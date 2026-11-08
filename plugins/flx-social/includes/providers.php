@@ -49,25 +49,25 @@ function flxsm_apps() {
 			'fields'   => array(
 				array( 'key' => 'app_id', 'label' => 'App ID' ),
 				array( 'key' => 'meta_secret', 'label' => 'App Secret', 'secret' => true ),
-				array( 'key' => 'config_id', 'label' => __( 'Login for Business yapılandırma kimliği (isteğe bağlı)', 'flx-social' ) ),
+				array( 'key' => 'config_id', 'label' => __( 'Login for Business configuration ID (optional)', 'flx-social' ) ),
 			),
 			'redirect' => flxsm_redirect_uri( 'meta' ),
-			'help'     => __( 'developers.facebook.com › Uygulama oluştur (İşletme türü) › Facebook Girişi ürünü › Geçerli OAuth yönlendirme adresine aşağıdaki adresi ekleyin. Kendi sayfalarınız için uygulamada yönetici/geliştirici olmanız yeterli; App Review gerekmez. Instagram profesyonel hesabı bir Facebook sayfasına bağlıysa aynı girişle gelir.', 'flx-social' ),
+			'help'     => __( 'developers.facebook.com › Create app (Business type) › Facebook Login product › add the address below to Valid OAuth redirect URIs. For your own pages being an admin/developer of the app is enough; no App Review needed. An Instagram professional account linked to a Facebook page comes with the same login.', 'flx-social' ),
 			'connect'  => array(
-				array( 'for' => 'facebook', 'label' => __( 'Facebook sayfası (+ bağlı Instagram)', 'flx-social' ), 'provider' => 'facebook' ),
+				array( 'for' => 'facebook', 'label' => __( 'Facebook page (+ linked Instagram)', 'flx-social' ), 'provider' => 'facebook' ),
 			),
 		),
 		'instagram' => array(
-			'label'    => __( 'Instagram girişi (Facebook sayfası olmadan)', 'flx-social' ),
+			'label'    => __( 'Instagram login (without a Facebook page)', 'flx-social' ),
 			'console'  => 'https://developers.facebook.com/apps/',
 			'fields'   => array(
 				array( 'key' => 'app_id', 'label' => 'Instagram App ID' ),
 				array( 'key' => 'instagram_secret', 'label' => 'Instagram App Secret', 'secret' => true ),
 			),
 			'redirect' => flxsm_redirect_uri( 'instagram' ),
-			'help'     => __( 'Meta uygulamasına "Instagram" ürününü ekleyin (API setup with Instagram login). Ürün sayfasındaki Instagram App ID/Secret buraya; yönlendirme adresi aşağıda. Hesap İşletme ya da İçerik üretici olmalı.', 'flx-social' ),
+			'help'     => __( 'Add the "Instagram" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator.', 'flx-social' ),
 			'connect'  => array(
-				array( 'for' => 'instagram', 'label' => __( 'Instagram (Instagram girişi)', 'flx-social' ), 'provider' => 'instagram' ),
+				array( 'for' => 'instagram', 'label' => __( 'Instagram (Instagram login)', 'flx-social' ), 'provider' => 'instagram' ),
 			),
 		),
 		'google'    => array(
@@ -78,10 +78,10 @@ function flxsm_apps() {
 				array( 'key' => 'google_secret', 'label' => 'Client Secret', 'secret' => true ),
 			),
 			'redirect' => flxsm_redirect_uri( 'google' ),
-			'help'     => __( 'Google Cloud › API’ler: YouTube Data API v3 (ve İşletme için My Business Account Management, Business Information, Google My Business API) etkinleştirin › OAuth istemcisi (Web uygulaması) › Yetkili yönlendirme adresi aşağıda. Denetlenmemiş projede YouTube’a yüklenen videolar "Özel" kalır; herkese açık için Google API denetimine başvurun. İşletme Profili API’si için Google’dan erişim onayı gerekir.', 'flx-social' ),
+			'help'     => __( 'Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay "Private"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google.', 'flx-social' ),
 			'connect'  => array(
-				array( 'for' => 'youtube', 'label' => __( 'YouTube kanalı', 'flx-social' ), 'provider' => 'youtube' ),
-				array( 'for' => 'gbp', 'label' => __( 'Google İşletme konumu', 'flx-social' ), 'provider' => 'gbp' ),
+				array( 'for' => 'youtube', 'label' => __( 'YouTube channel', 'flx-social' ), 'provider' => 'youtube' ),
+				array( 'for' => 'gbp', 'label' => __( 'Google Business location', 'flx-social' ), 'provider' => 'gbp' ),
 			),
 		),
 		'x'         => array(
@@ -92,9 +92,9 @@ function flxsm_apps() {
 				array( 'key' => 'x_secret', 'label' => 'API Key Secret', 'secret' => true ),
 			),
 			'redirect' => flxsm_redirect_uri( 'x' ),
-			'help'     => __( 'developer.x.com › Proje › Uygulama › User authentication settings: izin "Read and write", tür "Web App", Callback URI aşağıdaki adres. Keys and tokens bölümündeki API Key ve Secret buraya. Katmanı aşağıdan seçin (ücretsiz katmanda yazma sınırı düşüktür, metrikler okunmaz).', 'flx-social' ),
+			'help'     => __( 'developer.x.com › Project › App › User authentication settings: permission "Read and write", type "Web App", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read).', 'flx-social' ),
 			'connect'  => array(
-				array( 'for' => 'x', 'label' => __( 'X hesabı', 'flx-social' ), 'provider' => 'x' ),
+				array( 'for' => 'x', 'label' => __( 'X account', 'flx-social' ), 'provider' => 'x' ),
 			),
 		),
 		'linkedin'  => array(
@@ -103,12 +103,12 @@ function flxsm_apps() {
 			'fields'   => array(
 				array( 'key' => 'client_id', 'label' => 'Client ID' ),
 				array( 'key' => 'linkedin_secret', 'label' => 'Client Secret', 'secret' => true ),
-				array( 'key' => 'version', 'label' => __( 'API sürümü (YYYYAA)', 'flx-social' ), 'placeholder' => '202607' ),
+				array( 'key' => 'version', 'label' => __( 'API version (YYYYMM)', 'flx-social' ), 'placeholder' => '202607' ),
 			),
 			'redirect' => flxsm_redirect_uri( 'linkedin' ),
-			'help'     => __( 'linkedin.com/developers › Uygulama (dernek sayfasına bağlı) › Products: "Sign In with LinkedIn using OpenID Connect" ve "Share on LinkedIn" (kişisel); şirket sayfası için "Community Management API" (onay gerekir). Auth › Authorized redirect URL aşağıda.', 'flx-social' ),
+			'help'     => __( 'linkedin.com/developers › App (linked to the organization page) › Products: "Sign In with LinkedIn using OpenID Connect" and "Share on LinkedIn" (personal); for company pages "Community Management API" (needs approval). Auth › Authorized redirect URL below.', 'flx-social' ),
 			'connect'  => array(
-				array( 'for' => 'linkedin', 'label' => __( 'LinkedIn profil / sayfa', 'flx-social' ), 'provider' => 'linkedin' ),
+				array( 'for' => 'linkedin', 'label' => __( 'LinkedIn profile / page', 'flx-social' ), 'provider' => 'linkedin' ),
 			),
 		),
 		'tiktok'    => array(
@@ -119,9 +119,9 @@ function flxsm_apps() {
 				array( 'key' => 'tiktok_secret', 'label' => 'Client Secret', 'secret' => true ),
 			),
 			'redirect' => flxsm_redirect_uri( 'tiktok' ),
-			'help'     => __( 'developers.tiktok.com › Uygulama › Login Kit + Content Posting API ekleyin, Redirect URI aşağıda. Denetim (audit) yoksa "Taslak" modu önerilir: video TikTok uygulamasına düşer, oradan yayınlanır. Fotoğraf paylaşımı için site alan adını TikTok’ta doğrulayın (URL properties).', 'flx-social' ),
+			'help'     => __( 'developers.tiktok.com › App › add Login Kit + Content Posting API, Redirect URI below. Without the audit "Draft" mode is recommended: the video lands in the TikTok app and is published from there. For photo posts verify the site domain in TikTok (URL properties).', 'flx-social' ),
 			'connect'  => array(
-				array( 'for' => 'tiktok', 'label' => __( 'TikTok hesabı', 'flx-social' ), 'provider' => 'tiktok' ),
+				array( 'for' => 'tiktok', 'label' => __( 'TikTok account', 'flx-social' ), 'provider' => 'tiktok' ),
 			),
 		),
 		'pinterest' => array(
@@ -132,17 +132,17 @@ function flxsm_apps() {
 				array( 'key' => 'pinterest_secret', 'label' => 'App Secret', 'secret' => true ),
 			),
 			'redirect' => flxsm_redirect_uri( 'pinterest' ),
-			'help'     => __( 'developers.pinterest.com › Uygulama › Redirect URI aşağıda. Deneme (trial) erişiminde yalnız sandbox çalışır; Standard erişim için başvurun.', 'flx-social' ),
+			'help'     => __( 'developers.pinterest.com › App › Redirect URI below. Trial access works only in the sandbox; apply for Standard access.', 'flx-social' ),
 			'connect'  => array(
-				array( 'for' => 'pinterest', 'label' => __( 'Pinterest hesabı', 'flx-social' ), 'provider' => 'pinterest' ),
+				array( 'for' => 'pinterest', 'label' => __( 'Pinterest account', 'flx-social' ), 'provider' => 'pinterest' ),
 			),
 		),
 		'whatsapp'  => array(
 			'label'   => 'WhatsApp (Evolution)',
 			'fields'  => array(),
-			'help'    => __( 'Evolution bağlantısı Flux Mail’den (ya da Flux Chat’nden) gelir; burada anahtar girilmez. Durum ve gruplara paylaşım yapılır.', 'flx-social' ),
+			'help'    => __( 'The Evolution connection comes from Flux Mail (or Flux Chat); no key is entered here. Shares go to Status and groups.', 'flx-social' ),
 			'connect' => array(
-				array( 'for' => 'whatsapp', 'label' => __( 'WhatsApp Durum / grup', 'flx-social' ), 'provider' => 'whatsapp', 'local' => true ),
+				array( 'for' => 'whatsapp', 'label' => __( 'WhatsApp Status / group', 'flx-social' ), 'provider' => 'whatsapp', 'local' => true ),
 			),
 		),
 	);
@@ -192,7 +192,7 @@ function flxsm_apps_public() {
 function flxsm_save_app( $id, array $values ) {
 	$apps = flxsm_apps();
 	if ( ! isset( $apps[ $id ] ) ) {
-		return new WP_Error( 'flxsm_app', __( 'Bilinmeyen uygulama.', 'flx-social' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxsm_app', __( 'Unknown app.', 'flx-social' ), array( 'status' => 400 ) );
 	}
 	$all = (array) flxsm_setting( 'apps', array() );
 	foreach ( $apps[ $id ]['fields'] as $f ) {

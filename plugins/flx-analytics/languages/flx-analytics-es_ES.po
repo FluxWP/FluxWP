@@ -1,0 +1,1475 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: es_ES\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Mobile app: daily active accounts"
+msgstr "Aplicación móvil: cuentas activas diarias"
+
+msgid "UTC day / platform"
+msgstr "Día UTC/plataforma"
+
+msgid "Consenting accounts"
+msgstr "Cuentas consentidas"
+
+msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
+msgstr "Aún no hay totales elegibles. Se requiere el consentimiento tanto del dispositivo como del sitio; Se retienen las cohortes de menos de cinco cuentas por sitio/plataforma/día. El país es el país del sitio configurado, no la ubicación de una persona. Una misma persona puede contar con múltiples sitios o plataformas."
+
+msgid "Statistics"
+msgstr "Estadísticas"
+
+msgid "Site Analytics"
+msgstr "Análisis del sitio"
+
+msgid "Journeys"
+msgstr "Viajes"
+
+msgid "Site Analytics settings"
+msgstr "Configuración de análisis del sitio"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "You are not allowed to view this page."
+msgstr "No tienes permiso para ver esta página."
+
+msgid "This screen requires JavaScript."
+msgstr "Esta pantalla requiere JavaScript."
+
+msgid "Settings saved."
+msgstr "Configuración guardada."
+
+msgid "All statistics were deleted."
+msgstr "Se eliminaron todas las estadísticas."
+
+msgid "Koko Analytics data imported: %s rows."
+msgstr "Datos de Koko Analytics importados: filas%s."
+
+msgid "%s visit rows processed."
+msgstr "%sfilas de visita procesadas."
+
+msgid "Counting"
+msgstr "Contando"
+
+msgid "Count visits"
+msgstr "Contar visitas"
+
+msgid "On"
+msgstr "encendido"
+
+msgid "No IP address or browser data is stored. A visitor is recognised only within the same day by a random key that is deleted the next day. A cookie is set only for visitors who arrive via a referral link (?r=code); it holds only the code (30 days). Mention in your privacy policy that statistics are collected."
+msgstr "No se almacena ninguna dirección IP ni datos del navegador. Un visitante sólo es reconocido ese mismo día mediante una clave aleatoria que se elimina al día siguiente. Se establece una cookie sólo para los visitantes que llegan a través de un enlace de referencia (?r=código); solo contiene el código (30 días). Mencione en su política de privacidad que se recopilan estadísticas."
+
+msgid "Collection method"
+msgstr "Método de recolección"
+
+msgid "Automatic (recommended)"
+msgstr "Automático (recomendado)"
+
+msgid "Fast endpoint (WordPress is not loaded)"
+msgstr "Punto final rápido (WordPress no está cargado)"
+
+msgid "WordPress REST"
+msgstr "DESCANSO de WordPress"
+
+msgid "Now: fast endpoint"
+msgstr "Ahora: punto final rápido"
+
+msgid "Now: REST"
+msgstr "Ahora: DESCANSO"
+
+msgid "Automatic: the fast endpoint is tested when this page opens; if it fails, REST is used."
+msgstr "Automático: el punto final rápido se prueba cuando se abre esta página; si falla, se utiliza REST."
+
+msgid "\"Do Not Track\""
+msgstr "\"No realizar seguimiento\""
+
+msgid "Do not count visitors whose browser sends \"Do Not Track\" or GPC"
+msgstr "No cuente a los visitantes cuyo navegador envía \"No rastrear\" o GPC"
+
+msgid "Exclusions"
+msgstr "Exclusiones"
+
+msgid "Roles"
+msgstr "Roles"
+
+msgid "Logged-in people with these roles are not counted. The browser you open this screen in is not counted either (even after logging out)."
+msgstr "Las personas que hayan iniciado sesión con estos roles no se cuentan. El navegador en el que abre esta pantalla tampoco se cuenta (incluso después de cerrar sesión)."
+
+msgid "IP addresses"
+msgstr "direcciones IP"
+
+msgid "One address per line, \"*\" or CIDR (e.g. office network)."
+msgstr "Una dirección por línea, \"*\" o CIDR (por ejemplo, red de oficina)."
+
+msgid "Events"
+msgstr "Eventos"
+
+msgid "Tracked automatically"
+msgstr "Seguimiento automático"
+
+msgid "Outbound link clicks"
+msgstr "Clics en enlaces salientes"
+
+msgid "File downloads (PDF, ZIP, DOCX…)"
+msgstr "Descargas de archivos (PDF, ZIP, DOCX...)"
+
+msgid "Phone, email and WhatsApp clicks"
+msgstr "Clics en teléfono, correo electrónico y WhatsApp"
+
+msgid "Site searches (search term)"
+msgstr "Búsquedas en el sitio (término de búsqueda)"
+
+msgid "Paid donations and orders (WooCommerce; type and amount)"
+msgstr "Donaciones pagadas y pedidos (WooCommerce; tipo y monto)"
+
+msgid "Your own event: add data-flxan-event=\"name\" (and optional data-flxan-param) to a link, or call flxan.track(\"name\", \"detail\") in JavaScript. PHP: flxan_track_event( \"name\", \"detail\", amount )."
+msgstr "Su propio evento: agregue data-flxan-event=\"name\" (y data-flxan-param opcional) a un enlace, o llame a flxan.track(\"name\", \"detail\") en JavaScript. PHP: flxan_track_event( \"nombre\", \"detalle\", cantidad)."
+
+msgid "Funnels"
+msgstr "Embudos"
+
+msgid "Shows how far visitors get. Each step can be a page (all pages starting with that path), an event (e.g. the \"Pay\" click) or the site entry. Up to 5 funnels with 10 steps each. Changes apply to new visits; funnel steps can also be picked as goals on the Journeys screen."
+msgstr "Muestra hasta dónde llegan los visitantes. Cada paso puede ser una página (todas las páginas que comienzan con esa ruta), un evento (por ejemplo, el clic en \"Pagar\") o la entrada del sitio. Hasta 5 embudos con 10 pasos cada uno. Los cambios se aplican a nuevas visitas; Los pasos del embudo también se pueden elegir como objetivos en la pantalla Viajes."
+
+msgid "Display and retention"
+msgstr "Visualización y retención"
+
+msgid "Admin screens"
+msgstr "Pantallas de administración"
+
+msgid "\"Views\" column in the post and page lists"
+msgstr "Columna \"Vistas\" en las listas de publicaciones y páginas"
+
+msgid "Page views in the admin bar while browsing the site"
+msgstr "Vistas de página en la barra de administración mientras navega por el sitio"
+
+msgid "Retention"
+msgstr "Retención"
+
+msgid "months (0 = unlimited)"
+msgstr "meses (0 = ilimitado)"
+
+msgid "Daily summaries take little space; keeping them forever is usually fine."
+msgstr "Los resúmenes diarios ocupan poco espacio; conservarlos para siempre suele estar bien."
+
+msgid "Telemetry hub"
+msgstr "Centro de telemetría"
+
+msgid "Receive data from FluxWP installs"
+msgstr "Recibir datos de las instalaciones de FluxWP"
+
+msgid "Sites that tick \"Help us improve the product\" in FluxWP Panel send anonymous usage data once a day: which FluxWP plugins are used together, versions, FluxWP PHP errors and setup-wizard progress. IP and site address are not stored; records are kept for 90 days. When enabled, \"Product telemetry\" appears in the menu."
+msgstr "Los sitios que marcan \"Ayúdanos a mejorar el producto\" en el Panel FluxWP envían datos de uso anónimos una vez al día: qué complementos de FluxWP se usan juntos, versiones, errores de PHP de FluxWP y progreso del asistente de configuración. La dirección IP y del sitio no se almacenan; Los registros se conservan durante 90 días. Cuando está habilitado, aparece \"Telemetría del producto\" en el menú."
+
+msgid "Collection URL (FluxWP Panel › Settings › Telemetry URL):"
+msgstr "URL de colección (Panel FluxWP › Configuración › URL de telemetría):"
+
+msgid "Data"
+msgstr "Datos"
+
+msgid "Last processed %1$s. Waiting in queue: %2$s."
+msgstr "Último procesado%1$s. Esperando en cola:%2$s."
+
+msgid "No visits processed yet."
+msgstr "Aún no se han procesado visitas."
+
+msgid "Process now"
+msgstr "Procesar ahora"
+
+msgid "Download daily totals (CSV)"
+msgstr "Descargar totales diarios (CSV)"
+
+msgid "Download pages (CSV)"
+msgstr "Descargar páginas (CSV)"
+
+msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
+msgstr "Datos de Koko Analytics encontrados:%1$sdías (%2$s–%3$s). Se importan los días anteriores a la instalación de Flux Analytics; Las tablas Koko no se modifican."
+
+msgid "Import Koko Analytics data"
+msgstr "Importar datos de Koko Analytics"
+
+msgid "All statistics will be permanently deleted. Are you sure?"
+msgstr "Todas las estadísticas se eliminarán permanentemente. ¿Está seguro?"
+
+msgid "Delete all statistics"
+msgstr "Eliminar todas las estadísticas"
+
+msgid "Shortcodes and AI"
+msgstr "Códigos cortos e IA"
+
+msgid "list of the most viewed posts."
+msgstr "lista de las publicaciones más vistas."
+
+msgid "total views of this page (gun=\"30\" for the last 30 days)."
+msgstr "Vistas totales de esta página (gun=\"30\" durante los últimos 30 días)."
+
+msgid "Flux AI chat and MCP clients (Claude and others) read stats with: flxan_summary, flxan_timeseries, flxan_pages, flxan_referrers, flxan_breakdown, flxan_events, flxan_realtime, flxan_page, flxan_compare, flxan_funnel, flxan_journeys, flxan_refs, flxan_ref_save. Access needs the \"View statistics\" capability (flxan_view), which Flux Roles can grant."
+msgstr "Los clientes de chat Flux AI y MCP (Claude y otros) leen estadísticas con: flxan_summary, flxan_timeseries, flxan_pages, flxan_referrers, flxan_breakdown, flxan_events, flxan_realtime, flxan_page, flxan_compare, flxan_funnel, flxan_journeys, flxan_refs, flxan_ref_save. El acceso necesita la capacidad \"Ver estadísticas\" (flxan_view), que Flux Roles puede otorgar."
+
+msgid "You are not allowed to do this."
+msgstr "No tienes permitido hacer esto."
+
+msgid "Address"
+msgstr "Dirección"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Visitors"
+msgstr "Visitantes"
+
+msgid "Views"
+msgstr "Vistas"
+
+msgid "Site"
+msgstr "Sitio"
+
+msgid "Channel"
+msgstr "canal"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "Detail"
+msgstr "Detalle"
+
+msgid "Count"
+msgstr "contar"
+
+msgid "Unique"
+msgstr "Único"
+
+msgid "Amount"
+msgstr "Cantidad"
+
+msgid "Date"
+msgstr "Fecha"
+
+msgid "Direct"
+msgstr "directo"
+
+msgid "Search engine"
+msgstr "motor de búsqueda"
+
+msgid "Social media"
+msgstr "redes sociales"
+
+msgid "AI"
+msgstr "IA"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Ads"
+msgstr "Anuncios"
+
+msgid "Campaign"
+msgstr "Campaña"
+
+msgid "Other sites"
+msgstr "Otros sitios"
+
+msgid "Referral link"
+msgstr "Enlace de referencia"
+
+msgid "Mobile"
+msgstr "Móvil"
+
+msgid "Tablet"
+msgstr "tableta"
+
+msgid "Desktop"
+msgstr "Escritorio"
+
+msgid "Other"
+msgstr "Otro"
+
+msgid "Live visitors"
+msgstr "Visitantes en vivo"
+
+msgid "Traffic sources and referrals"
+msgstr "Fuentes de tráfico y referencias"
+
+msgid "Donation funnel"
+msgstr "embudo de donación"
+
+msgid "Last 14 days"
+msgstr "Últimos 14 días"
+
+msgid "%1$s: %2$s visitors, %3$s views"
+msgstr "%1$s: visitantes de%2$s, vistas de%3$s"
+
+msgid "All statistics →"
+msgstr "Todas las estadísticas →"
+
+msgid "on the site now (last 5 min)"
+msgstr "en el sitio ahora (últimos 5 minutos)"
+
+msgid "last 30 min · %s views"
+msgstr "últimos 30 min ·%svistas"
+
+msgid "Pages being viewed now"
+msgstr "Páginas que se están viendo ahora"
+
+msgid "Referral links"
+msgstr "Enlaces de referencia"
+
+msgid "Referring sites"
+msgstr "Sitios de referencia"
+
+msgid "Nobody right now"
+msgstr "nadie ahora mismo"
+
+msgid "today · %s views"
+msgstr "hoy ·%svistas"
+
+msgid "yesterday"
+msgstr "ayer"
+
+msgid "last 7 days"
+msgstr "últimos 7 días"
+
+msgid "Most viewed today"
+msgstr "Lo más visto hoy"
+
+msgid "Last 7 days"
+msgstr "últimos 7 días"
+
+msgid "Outside visitors / logged-in users"
+msgstr "Visitantes externos/usuarios registrados"
+
+msgid "Outside: %1$s · Logged in: %2$s"
+msgstr "Fuera:%1$s· Iniciado sesión:%2$s"
+
+msgid "Channels"
+msgstr "Canales"
+
+msgid "%s donations"
+msgstr "donaciones%s"
+
+msgid "No data in this range."
+msgstr "No hay datos en este rango."
+
+msgid "No funnel defined."
+msgstr "No hay embudo definido."
+
+msgid "%s · last 7 days"
+msgstr "%s· últimos 7 días"
+
+msgid "No goal"
+msgstr "Sin gol"
+
+msgid "Added to cart"
+msgstr "Agregado al carrito"
+
+msgid "Removed from cart"
+msgstr "Eliminado del carrito"
+
+msgid "Used a coupon"
+msgstr "Usé un cupón"
+
+msgid "Started checkout form"
+msgstr "Formulario de pago iniciado"
+
+msgid "Clicked \"Place order\""
+msgstr "Se hizo clic en \"Realizar pedido\""
+
+msgid "Checkout step"
+msgstr "Paso de pago"
+
+msgid "Chose payment method"
+msgstr "Elige el método de pago"
+
+msgid "Order created"
+msgstr "Orden creada"
+
+msgid "Clicked WhatsApp"
+msgstr "Se hizo clic en WhatsApp"
+
+msgid "Clicked phone"
+msgstr "Teléfono en el que se hizo clic"
+
+msgid "Downloaded a file"
+msgstr "Descargó un archivo"
+
+msgid "Other pages"
+msgstr "Otras paginas"
+
+msgid "Site traffic summary"
+msgstr "Resumen de tráfico del sitio"
+
+msgid "Daily visitor chart data"
+msgstr "Datos del gráfico de visitantes diarios"
+
+msgid "Most viewed pages"
+msgstr "Paginas mas vistas"
+
+msgid "Channel, device, browser breakdown"
+msgstr "Desglose del canal, dispositivo y navegador"
+
+msgid "Clicks and conversions"
+msgstr "Clics y conversiones"
+
+msgid "How many people are on the site now?"
+msgstr "¿Cuántas personas hay en el sitio ahora?"
+
+msgid "Single page statistics"
+msgstr "Estadísticas de una sola página"
+
+msgid "Compare two periods"
+msgstr "Compara dos periodos"
+
+msgid "Donation / checkout funnel"
+msgstr "Embudo de donación/compra"
+
+msgid "Visitor journeys"
+msgstr "Viajes de visitantes"
+
+msgid "Referral links report"
+msgstr "Informe de enlaces de referencia"
+
+msgid "Traffic by role"
+msgstr "Tráfico por rol"
+
+msgid "Create / name a referral link"
+msgstr "Crear/nombrar un enlace de referencia"
+
+msgid "You are not allowed to edit referral links."
+msgstr "No se le permite editar enlaces de referencia."
+
+msgid "Invalid code. Use letters, digits, - and _."
+msgstr "Código no válido. Utilice letras, dígitos, - y _."
+
+msgid "%s views"
+msgstr "Vistas%s"
+
+msgid "Last 30 days (Site Analytics)"
+msgstr "Últimos 30 días (análisis del sitio)"
+
+msgid "Views in the last 30 days"
+msgstr "Vistas en los últimos 30 días."
+
+msgid "Visitors today"
+msgstr "Visitantes hoy"
+
+msgid "Compare this week's traffic with last week"
+msgstr "Compare el tráfico de esta semana con el de la semana pasada"
+
+msgid "Where do most visitors come from?"
+msgstr "¿De dónde viene la mayoría de los visitantes?"
+
+msgid "How many people reached the donation page, and how many donated?"
+msgstr "¿Cuántas personas llegaron a la página de donaciones y cuántas donaron?"
+
+msgid "Every 5 minutes"
+msgstr "Cada 5 minutos"
+
+msgid "Site entry"
+msgstr "Entrada al sitio"
+
+msgid "Donation page"
+msgstr "pagina de donacion"
+
+msgid "Checkout page"
+msgstr "página de pago"
+
+msgid "Started filling the form"
+msgstr "Comenzó a llenar el formulario."
+
+msgid "Donation completed"
+msgstr "Donación completada"
+
+msgid "Donation flow"
+msgstr "Flujo de donaciones"
+
+msgid "Funnel"
+msgstr "embudo"
+
+msgid "First touch on checkout form"
+msgstr "Primer toque en el formulario de pago"
+
+msgid "\"Pay\" click"
+msgstr "Haga clic en \"Pagar\""
+
+msgid "Add to cart (any product)"
+msgstr "Añadir al carrito (cualquier producto)"
+
+msgid "Payment method chosen"
+msgstr "Método de pago elegido"
+
+msgid "Order created (before payment)"
+msgstr "Pedido creado (antes del pago)"
+
+msgid "Paid donation / order"
+msgstr "Donación / pedido pagado"
+
+msgid "Remove from cart"
+msgstr "Quitar del carrito"
+
+msgid "Coupon used"
+msgstr "Cupón usado"
+
+msgid "Today"
+msgstr "hoy"
+
+msgid "Yesterday"
+msgstr "ayer"
+
+msgid "Last 30 days"
+msgstr "últimos 30 días"
+
+msgid "Last 90 days"
+msgstr "últimos 90 días"
+
+msgid "This month"
+msgstr "este mes"
+
+msgid "Last month"
+msgstr "El mes pasado"
+
+msgid "Last 12 months"
+msgstr "últimos 12 meses"
+
+msgid "This year"
+msgstr "este año"
+
+msgid "Last year"
+msgstr "el año pasado"
+
+msgid "All time"
+msgstr "Todo el tiempo"
+
+msgid "Custom range"
+msgstr "Rango personalizado"
+
+msgid "Device"
+msgstr "Dispositivo"
+
+msgid "Browser"
+msgstr "Navegador"
+
+msgid "Operating system"
+msgstr "Sistema operativo"
+
+msgid "Browser language"
+msgstr "Idioma del navegador"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Campaign source"
+msgstr "Fuente de la campaña"
+
+msgid "Campaign medium"
+msgstr "Medio de campaña"
+
+msgid "Outbound link click"
+msgstr "Clic en enlace saliente"
+
+msgid "File download"
+msgstr "Descarga de archivos"
+
+msgid "Phone click"
+msgstr "Clic en el teléfono"
+
+msgid "Email click"
+msgstr "Clic en correo electrónico"
+
+msgid "WhatsApp click"
+msgstr "clic de whatsapp"
+
+msgid "Site search"
+msgstr "búsqueda del sitio"
+
+msgid "Donation / payment"
+msgstr "Donación/pago"
+
+msgid "Add to cart"
+msgstr "Añadir al carrito"
+
+msgid "Home page"
+msgstr "pagina de inicio"
+
+msgid "Outside visitors"
+msgstr "Visitantes externos"
+
+msgid "Total"
+msgstr "totales"
+
+msgid "By channel"
+msgstr "Por canal"
+
+msgid "By referring site"
+msgstr "Por sitio de referencia"
+
+msgid "By referral code"
+msgstr "Por código de referencia"
+
+msgid "By role"
+msgstr "Por rol"
+
+msgid "By country"
+msgstr "Por pais"
+
+msgid "(direct / unknown)"
+msgstr "(directo/desconocido)"
+
+msgid "(no referral)"
+msgstr "(sin referencia)"
+
+msgid "(unknown)"
+msgstr "(desconocido)"
+
+msgid "Statistics tables"
+msgstr "Tablas estadísticas"
+
+msgid "Tables are not installed. Deactivate and reactivate the plugin."
+msgstr "Las mesas no están instaladas. Desactiva y reactiva el complemento."
+
+msgid "Tables are from an older version; visits cannot be saved."
+msgstr "Las tablas son de una versión anterior; Las visitas no se pueden guardar."
+
+msgid "Visit counting"
+msgstr "Visita contando"
+
+msgid "On. No cookies, no personal data stored."
+msgstr "Encendido. No se almacenan cookies ni datos personales."
+
+msgid "Off: visits are not being counted."
+msgstr "Apagado: las visitas no se cuentan."
+
+msgid "Data directory"
+msgstr "Directorio de datos"
+
+msgid "wp-content/uploads/flx-analytics is writable and closed to web access."
+msgstr "wp-content/uploads/flx-analytics se puede escribir y está cerrado al acceso web."
+
+msgid "wp-content/uploads/flx-analytics could not be created or is not writable; visits cannot be recorded. Check the directory permissions (755)."
+msgstr "wp-content/uploads/flx-analytics no se pudo crear o no se puede escribir; Las visitas no se pueden registrar. Verifique los permisos del directorio (755)."
+
+msgid "Fast endpoint: visits are recorded without loading WordPress."
+msgstr "Endpoint rápido: las visitas se registran sin cargar WordPress."
+
+msgid "The fast endpoint failed its test (a security plugin or the server may block PHP in the plugins folder); the REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "El punto final rápido no pasó la prueba (un complemento de seguridad o el servidor pueden bloquear PHP en la carpeta de complementos); Se utiliza el punto final REST. Funciona, pero WordPress se carga en cada visita."
+
+msgid "The REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "Se utiliza el punto final REST. Funciona, pero WordPress se carga en cada visita."
+
+msgid "Statistics processing"
+msgstr "Procesamiento de estadísticas"
+
+msgid "Last processed %1$s. Waiting: %2$s."
+msgstr "Último procesado%1$s. Esperando:%2$s."
+
+msgid "Processing error"
+msgstr "error de procesamiento"
+
+msgid "Page cache compatibility"
+msgstr "Compatibilidad con caché de página"
+
+msgid "A cache plugin is active; the counter runs in the browser, so cached pages are counted too. The counter script is excluded from combining/delaying."
+msgstr "Un complemento de caché está activo; el contador se ejecuta en el navegador, por lo que las páginas almacenadas en caché también se cuentan. El contraguión está excluido de combinar/retrasar."
+
+msgid "The counter runs in the browser; counting continues if a cache plugin is installed."
+msgstr "El contador se ejecuta en el navegador; el conteo continúa si se instala un complemento de caché."
+
+msgid "Process statistics now"
+msgstr "Procesar estadísticas ahora"
+
+msgid "Processes the queued visits into the tables right away."
+msgstr "Procesa las visitas en cola en las tablas de inmediato."
+
+msgid "Processing is already running; try again in a few seconds."
+msgstr "El procesamiento ya se está ejecutando; Inténtalo de nuevo en unos segundos."
+
+msgid "%s rows processed."
+msgstr "%sfilas procesadas."
+
+msgid "Repair statistics tables"
+msgstr "Tablas de estadísticas de reparación"
+
+msgid "Adds missing columns and tables and updates keys. No data is deleted."
+msgstr "Agrega columnas y tablas faltantes y actualiza claves. No se elimina ningún dato."
+
+msgid "outdated"
+msgstr "anticuado"
+
+msgid "Tables could not be updated. The database user needs the ALTER privilege."
+msgstr "No se pudieron actualizar las tablas. El usuario de la base de datos necesita el privilegio ALTER."
+
+msgid "Tables updated."
+msgstr "Tablas actualizadas."
+
+msgid "Unknown"
+msgstr "Desconocido"
+
+msgid "Product telemetry"
+msgstr "Telemetría del producto"
+
+msgid "Admin theme"
+msgstr "Tema de administración"
+
+msgid "Store"
+msgstr "Tienda"
+
+msgid "Nonprofit and donations"
+msgstr "Organizaciones sin fines de lucro y donaciones"
+
+msgid "%s card"
+msgstr "Tarjeta%s"
+
+msgid "(theme)"
+msgstr "(tema)"
+
+msgid "Intro"
+msgstr "Introducción"
+
+msgid "Where to start?"
+msgstr "¿Por dónde empezar?"
+
+msgid "Appearance"
+msgstr "Apariencia"
+
+msgid "Install"
+msgstr "Instalar"
+
+msgid "Done"
+msgstr "hecho"
+
+msgid "Management"
+msgstr "Gestión"
+
+msgid "Communication"
+msgstr "comunicación"
+
+msgid "Growth"
+msgstr "Crecimiento"
+
+msgid "System"
+msgstr "Sistema"
+
+msgid "Plugins: %s"
+msgstr "Complementos:%s"
+
+msgid "No records in this range."
+msgstr "No hay registros en este rango."
+
+msgid "Overview"
+msgstr "Descripción general"
+
+msgid "Errors"
+msgstr "Errores"
+
+msgid "Setup wizard"
+msgstr "Asistente de configuración"
+
+msgid "%d days"
+msgstr "%ddías"
+
+msgid "All countries"
+msgstr "Todos los paises"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "Anonymous data sent once a day by sites that tick \"Help us improve the product\" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days."
+msgstr "Datos anónimos enviados una vez al día por sitios que marcan \"Ayúdanos a mejorar el producto\" en FluxWP Panel. La dirección IP y del sitio no se almacenan; Los registros se conservan durante 90 días."
+
+msgid "Reporting sites"
+msgstr "Sitios de informes"
+
+msgid "Unique installs"
+msgstr "Instalaciones únicas"
+
+msgid "Reports"
+msgstr "Informes"
+
+msgid "At most one per site per day"
+msgstr "Como máximo uno por sitio por día"
+
+msgid "Distinct errors"
+msgstr "Errores distintos"
+
+msgid "%s fatal"
+msgstr "%sfatal"
+
+msgid "Error events"
+msgstr "Eventos de error"
+
+msgid "Total occurrences"
+msgstr "Total de ocurrencias"
+
+msgid "No reports yet."
+msgstr "Aún no hay informes."
+
+msgid "FluxWP Panel on sites sends to this URL:"
+msgstr "El panel FluxWP en los sitios envía a esta URL:"
+
+msgid "Plugin usage"
+msgstr "Uso de complementos"
+
+msgid "Package"
+msgstr "Paquete"
+
+msgid "Share"
+msgstr "Compartir"
+
+msgid "Common version"
+msgstr "Versión común"
+
+msgid "Used together"
+msgstr "Usados juntos"
+
+msgid "Pair"
+msgstr "par"
+
+msgid "FluxWP Panel only"
+msgstr "Solo panel FluxWP"
+
+msgid "Most common package sets"
+msgstr "Conjuntos de paquetes más comunes"
+
+msgid "Set (excluding FluxWP Panel)"
+msgstr "Conjunto (excluyendo el panel FluxWP)"
+
+msgid "Version"
+msgstr "Versión"
+
+msgid "Site language"
+msgstr "Idioma del sitio"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
+msgstr "El país proviene de la configuración del sitio de envío (país de la tienda WooCommerce o Configuración › Zona horaria general). Las direcciones IP nunca se buscan ni almacenan. Haga clic en un país para filtrar cada pestaña por él."
+
+msgid "Error record removed. It will reappear if it happens again."
+msgstr "Registro de error eliminado. Reaparecerá si vuelve a suceder."
+
+msgid "All packages"
+msgstr "Todos los paquetes"
+
+msgid "All types"
+msgstr "Todos los tipos"
+
+msgid "Fatal only"
+msgstr "Solo fatal"
+
+msgid "%s records"
+msgstr "Registros%s"
+
+msgid "No errors in this range."
+msgstr "No hay errores en este rango."
+
+msgid "Error"
+msgstr "error"
+
+msgid "Last"
+msgstr "último"
+
+msgid "Remove as resolved"
+msgstr "Eliminar como resuelto"
+
+msgid "Resolved"
+msgstr "Resuelto"
+
+msgid "Delete all error records?"
+msgstr "¿Eliminar todos los registros de errores?"
+
+msgid "Clear all errors"
+msgstr "Borrar todos los errores"
+
+msgid "Server paths, domain, URLs, emails and IPs are removed from messages. The same error in the same package, version, file and line is one record; \"Sites\" is how many different installs saw it."
+msgstr "Las rutas del servidor, el dominio, las URL, los correos electrónicos y las IP se eliminan de los mensajes. El mismo error en el mismo paquete, versión, archivo y línea es un registro; \"Sitios\" es la cantidad de instalaciones diferentes que lo vieron."
+
+msgid "Wizard runs"
+msgstr "El asistente se ejecuta"
+
+msgid "Latest run per install"
+msgstr "Última ejecución por instalación"
+
+msgid "Finished"
+msgstr "Terminado"
+
+msgid "sites"
+msgstr "sitios"
+
+msgid "Skipped"
+msgstr "Saltado"
+
+msgid "Abandoned"
+msgstr "abandonado"
+
+msgid "Median time for finishers: %s min"
+msgstr "Tiempo medio para los finalistas:%smin"
+
+msgid "No wizard data yet."
+msgstr "Aún no hay datos del asistente."
+
+msgid "FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed."
+msgstr "FluxWP Panel 1.0.11 y posteriores envía el último paso y las opciones cuando el asistente finaliza o se cierra."
+
+msgid "Reached each step"
+msgstr "Llegó a cada paso"
+
+msgid "Steps"
+msgstr "Pasos"
+
+msgid "skipped"
+msgstr "saltado"
+
+msgid "closed"
+msgstr "cerrado"
+
+msgid "Where they stopped"
+msgstr "donde se detuvieron"
+
+msgid "Last step"
+msgstr "Último paso"
+
+msgid "Everyone finished."
+msgstr "Todos terminaron."
+
+msgid "Card choices"
+msgstr "Opciones de tarjeta"
+
+msgid "Card"
+msgstr "tarjeta"
+
+msgid "Picked"
+msgstr "elegido"
+
+msgid "Picked then removed"
+msgstr "Elegido y luego eliminado"
+
+msgid "Removed suggestion"
+msgstr "Sugerencia eliminada"
+
+msgid "Preset (finishers)"
+msgstr "Preestablecido (finalizadores)"
+
+msgid "Colour style (finishers)"
+msgstr "Estilo de color (acabados)"
+
+msgid "Choice"
+msgstr "Elección"
+
+msgid "Fast endpoint works"
+msgstr "El punto final rápido funciona"
+
+msgid "Fast endpoint unreachable, REST will be used"
+msgstr "Punto final rápido inalcanzable, se utilizará REST"
+
+msgid "%s s"
+msgstr "%ss"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$smin%2$ss"
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Link"
+msgstr "Enlace"
+
+msgid "Date range"
+msgstr "Rango de fechas"
+
+msgid "Start"
+msgstr "Empezar"
+
+msgid "End"
+msgstr "Fin"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "Download CSV"
+msgstr "Descargar CSV"
+
+msgid "Visitor type"
+msgstr "Tipo de visitante"
+
+msgid "All visitors"
+msgstr "Todos los visitantes"
+
+msgid "Logged-in users"
+msgstr "Usuarios registrados"
+
+msgid "Role: %s"
+msgstr "Rol:%s"
+
+msgid "Referral"
+msgstr "Referencia"
+
+msgid "All sources"
+msgstr "Todas las fuentes"
+
+msgid "Referral links only"
+msgstr "Solo enlaces de referencia"
+
+msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
+msgstr "Visitantes: la suma de personas únicas por día. Una persona sólo es reconocida dentro del mismo día; alguien que llegue a través de un enlace de referencia recibe un crédito en ese código durante 30 días. El país se deriva de la zona horaria del navegador, no de la IP."
+
+msgid "Visitors and views chart"
+msgstr "Gráfico de visitantes y vistas"
+
+msgid "Week of %s"
+msgstr "Semana de%s"
+
+msgid "Compared with the previous period of equal length"
+msgstr "En comparación con el período anterior de igual duración"
+
+msgid "Previous period: %s"
+msgstr "Período anterior:%s"
+
+msgid "Sessions"
+msgstr "Sesiones"
+
+msgid "Pages / visitor"
+msgstr "Páginas/visitante"
+
+msgid "Avg. session duration"
+msgstr "Promedio duración de la sesión"
+
+msgid "Bounce rate"
+msgstr "Tasa de rebote"
+
+msgid "Left after viewing one page"
+msgstr "Se fue después de ver una página"
+
+msgid "%1$s min ago: %2$s"
+msgstr "%1$shace minutos:%2$s"
+
+msgid "Live"
+msgstr "en vivo"
+
+msgid "Refreshes every 5 s"
+msgstr "Se actualiza cada 5 s."
+
+msgid "visitors in last %s min"
+msgstr "visitantes en el último minuto%s"
+
+msgid "%s min ago"
+msgstr "%shace minutos"
+
+msgid "now"
+msgstr "ahora"
+
+msgid "Pages"
+msgstr "paginas"
+
+msgid "Countries"
+msgstr "Países"
+
+msgid "See all (%s)"
+msgstr "Ver todo (%s)"
+
+msgid "Traffic sources"
+msgstr "Fuentes de tráfico"
+
+msgid "not logged in"
+msgstr "no iniciado sesión"
+
+msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
+msgstr "Haga clic en una fila para filtrar toda la pantalla por ese tipo de visitante. Solo para tráfico externo, elija \"Visitantes externos\" en la parte superior."
+
+msgid "No visits from other sites yet."
+msgstr "Aún no hay visitas de otros sitios."
+
+msgid "Device and browser"
+msgstr "Dispositivo y navegador"
+
+msgid "Campaigns (UTM)"
+msgstr "Campañas (UTM)"
+
+msgid "Not found pages (404)"
+msgstr "Páginas no encontradas (404)"
+
+msgid "Visitors by country"
+msgstr "Visitantes por país"
+
+msgid "World map"
+msgstr "mapa mundial"
+
+msgid "Few"
+msgstr "pocos"
+
+msgid "Many"
+msgstr "muchos"
+
+msgid "No country data in this range."
+msgstr "No hay datos de países en este rango."
+
+msgid "Funnel: %s"
+msgstr "Embudo:%s"
+
+msgid "Drop from previous step"
+msgstr "Salir del paso anterior"
+
+msgid "No visits entered the funnel in this range."
+msgstr "Ninguna visita ingresó al embudo en este rango."
+
+msgid "Completion"
+msgstr "Finalización"
+
+msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
+msgstr "Cuenta el paso más largo que alcanzó cada visitante en un día. Puede cambiar los pasos en Configuración › Embudos."
+
+msgid "Funnel settings"
+msgstr "Configuración del embudo"
+
+msgid "New link"
+msgstr "Nuevo enlace"
+
+msgid "Name (e.g. Ayşe's Instagram)"
+msgstr "Nombre (por ejemplo, Instagram de Ayşe)"
+
+msgid "Code (e.g. ayse-ig)"
+msgstr "Código (por ejemplo, ayse-ig)"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
+msgstr "Aún no hay enlaces de referencia. Agregue ?r=code a la dirección del sitio dondequiera que lo comparta (por ejemplo,%s); asígnele un nombre aquí y los informes mostrarán ese nombre."
+
+msgid "Pages / session"
+msgstr "Páginas/sesión"
+
+msgid "Avg. duration"
+msgstr "Promedio duración"
+
+msgid "Furthest step"
+msgstr "El paso más lejano"
+
+msgid "Donations"
+msgstr "Donaciones"
+
+msgid "Show what visitors from this link did"
+msgstr "Mostrar lo que hicieron los visitantes de este enlace"
+
+msgid "Copy link"
+msgstr "Copiar enlace"
+
+msgid "Rename"
+msgstr "Cambiar nombre"
+
+msgid "Remove name"
+msgstr "Quitar nombre"
+
+msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
+msgstr "Un visitante que llega a través del enlace recibe una cookie de 30 días; sus páginas posteriores, días posteriores y donación se acreditan a ese código. Haga clic en una fila para filtrar toda la pantalla a los visitantes desde ese enlace."
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Name for \"%s\""
+msgstr "Nombre para \"%s\""
+
+msgid "Remove the name? Statistics are kept and shown under the code."
+msgstr "¿Quitar el nombre? Las estadísticas se mantienen y se muestran bajo el código."
+
+msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
+msgstr "No hay eventos en este rango. Aquí aparecen enlaces salientes, descargas, clics por teléfono/WhatsApp, búsquedas y donaciones."
+
+msgid "All"
+msgstr "Todos"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "More"
+msgstr "Más"
+
+msgid "Could not load. Try again in a moment."
+msgstr "No se pudo cargar. Inténtalo de nuevo en un momento."
+
+msgid "No data yet."
+msgstr "Aún no hay datos."
+
+msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
+msgstr "Abra el sitio en un navegador en el que no haya iniciado sesión (o en su teléfono); la visita aparece aquí en unos minutos."
+
+msgid "Filter:"
+msgstr "Filtro:"
+
+msgid "Clear filter"
+msgstr "Limpiar filtro"
+
+msgid "Page"
+msgstr "Página"
+
+msgid "The first page of every visit counts"
+msgstr "La primera página de cada visita cuenta"
+
+msgid "Choose an event…"
+msgstr "Elige un evento..."
+
+msgid "Type another event…"
+msgstr "Escribe otro evento..."
+
+msgid "all pages starting with this path"
+msgstr "todas las páginas que comienzan con esta ruta"
+
+msgid "Funnel name"
+msgstr "Nombre del embudo"
+
+msgid "%s steps"
+msgstr "%spasos"
+
+msgid "Delete funnel"
+msgstr "Eliminar embudo"
+
+msgid "Drag to move"
+msgstr "Arrastra para mover"
+
+msgid "Step name"
+msgstr "Nombre del paso"
+
+msgid "Step type"
+msgstr "tipo de paso"
+
+msgid "Move up"
+msgstr "Subir"
+
+msgid "Move down"
+msgstr "Bajar"
+
+msgid "Delete step"
+msgstr "Eliminar paso"
+
+msgid "Add step"
+msgstr "Agregar paso"
+
+msgid "Add preset step"
+msgstr "Agregar paso preestablecido"
+
+msgid "Add preset step…"
+msgstr "Agregar paso preestablecido..."
+
+msgid "At most %s steps."
+msgstr "En la mayoría de los pasos%s."
+
+msgid "New funnel"
+msgstr "Nuevo embudo"
+
+msgid "Reset to default donation funnel"
+msgstr "Restablecer el embudo de donación predeterminado"
+
+msgid "Edit as text"
+msgstr "Editar como texto"
+
+msgid "Event name (e.g. donation_form or checkout:submit):"
+msgstr "Nombre del evento (por ejemplo, formulario_donación o pago:enviar):"
+
+msgid "Delete funnel \"%s\"?"
+msgstr "¿Eliminar el embudo \"%s\"?"
+
+msgid "Funnel %s"
+msgstr "Embudo%s"
+
+msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
+msgstr "¿Reemplazar todos los embudos con el embudo de donación predeterminado? (Se aplica al hacer clic en Guardar)."
+
+msgid "Back to visual editor"
+msgstr "Volver al editor visual"
+
+msgid "Compare previous period"
+msgstr "Comparar periodo anterior"
+
+msgid "Goal page"
+msgstr "página de objetivos"
+
+msgid "Combine sub-pages like /news/… into one box"
+msgstr "Combine subpáginas como /noticias/... en un solo cuadro"
+
+msgid "Group pages"
+msgstr "Páginas de grupo"
+
+msgid "Paths from session start"
+msgstr "Rutas desde el inicio de la sesión"
+
+msgid "Starts at"
+msgstr "Comienza en"
+
+msgid "All pages"
+msgstr "Todas las páginas"
+
+msgid "Ends at"
+msgstr "Termina en"
+
+msgid "Fewer steps"
+msgstr "Menos pasos"
+
+msgid "More steps"
+msgstr "Más pasos"
+
+msgid "Paths shown"
+msgstr "Caminos mostrados"
+
+msgid "Top %s paths"
+msgstr "Principales rutas%s"
+
+msgid "Top paths"
+msgstr "Rutas principales"
+
+msgid "Search pages…"
+msgstr "Buscar páginas..."
+
+msgid "Reach goal"
+msgstr "alcanzar la meta"
+
+msgid "Never reach"
+msgstr "nunca alcanzar"
+
+msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
+msgstr "Viaje: el orden de las páginas en una visita (primeros 8 pasos; actualizar la misma página cuenta una vez). Eventos como agregar al carrito, formulario de pago, \"Realizar pedido\", método de pago, pedido y clics en WhatsApp/teléfono se muestran como pasos marcados con ⚡. Sólo se enumeran las visitas con al menos 2 páginas. El objetivo se elige en Configuración › Embudos. Esta pantalla muestra las visitas posteriores a la versión 0.3.0."
+
+msgid "Could not load data. Refresh the page."
+msgstr "No se pudieron cargar datos. Actualiza la página."
+
+msgid "%1$s visits · %2$s"
+msgstr "%1$svisitas ·%2$s"
+
+msgid "No data"
+msgstr "Sin datos"
+
+msgid "Multi-page sessions"
+msgstr "Sesiones de varias páginas"
+
+msgid "%s of all visits"
+msgstr "%sde todas las visitas"
+
+msgid "Avg path length"
+msgstr "Longitud promedio de la ruta"
+
+msgid "%s pages"
+msgstr "%spáginas"
+
+msgid "In multi-page sessions"
+msgstr "En sesiones de varias páginas"
+
+msgid "Top entry page"
+msgstr "Página de entrada superior"
+
+msgid "Top exit after 2+ pages"
+msgstr "Salida superior después de más de 2 páginas"
+
+msgid "No goal selected"
+msgstr "Ningún objetivo seleccionado"
+
+msgid "No journeys yet"
+msgstr "Aún no hay viajes"
+
+msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
+msgstr "No visitas con al menos 2 páginas en el periodo seleccionado. Amplia los filtros o espera nuevas visitas."
+
+msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
+msgstr "Haga clic en un cuadro para filtrar las rutas a continuación por esa página. El espesor muestra el número de visitas."
+
+msgid "%s visits"
+msgstr "visitas%s"
+
+msgid "Entries"
+msgstr "Entradas"
+
+msgid "Step %s"
+msgstr "Paso%s"
+
+msgid "%s end here"
+msgstr "%stermina aquí"
+
+msgid "all continue"
+msgstr "todos continúan"
+
+msgid "continues"
+msgstr "continúa"
+
+msgid "No paths match the search."
+msgstr "Ninguna ruta coincide con la búsqueda."
+
+msgid "No paths to show."
+msgstr "No hay caminos para mostrar."
+
+msgid "Path"
+msgstr "Camino"
+
+msgid "vs prev"
+msgstr "vs anterior"
+
+msgid "new"
+msgstr "nuevo"
+
+msgid "Showing %2$s of %1$s paths."
+msgstr "Mostrando%2$sde las rutas%1$s."
+
+msgid "30 days"
+msgstr "30 dias"
+
+msgid "7 days"
+msgstr "7 dias"
+
+msgid "90 days"
+msgstr "90 dias"
+
+msgid "Search the address"
+msgstr "buscar la dirección"
+
+msgid "Range"
+msgstr "Rango"
+
+msgid "Pages being viewed"
+msgstr "Páginas que se están viendo"
+
+msgid "No external sites in this range."
+msgstr "No hay sitios externos en este rango."
+
+msgid "No pages were viewed in this range."
+msgstr "No se vieron páginas en este rango."
+
+msgid "No channel breakdown in this range."
+msgstr "No hay desglose de canales en este rango."
+
+msgid "No channels"
+msgstr "Sin canales"
+
+msgid "Sources"
+msgstr "Fuentes"
+
+msgid "Open in panel"
+msgstr "Abrir en panel"
+
+msgid "No pages"
+msgstr "Sin páginas"
+
+msgid "Search sites"
+msgstr "Sitios de búsqueda"
+
+msgid "Sites"
+msgstr "Sitios"
+
+msgid "Last minutes"
+msgstr "Últimos minutos"
+
+msgid "No referrers"
+msgstr "Sin referentes"
+
+msgid "Referrers"
+msgstr "Referentes"
+
+msgid "Visitors and pageviews"
+msgstr "Visitantes y páginas vistas"
+
+msgid "Analytics"
+msgstr "Analítica"
+
+msgid "Right now"
+msgstr "Ahora mismo"
+
+msgid "[['Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.', 'tr']]"
+msgstr "[['Estadísticas del sitio sin datos personales y sin cookies: visitantes, vistas, páginas más leídas, sitios de referencia, canal, dispositivo/navegador, campaña (UTM), eventos de clic y conversiones de donaciones. Los datos permanecen en el sitio; Lee con herramientas de inteligencia artificial Flux AI / Flux AI y MCP.', 'tr']]"

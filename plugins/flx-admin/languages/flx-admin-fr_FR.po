@@ -1,0 +1,1173 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Collapse menu"
+msgstr "Réduire le menu"
+
+msgid "Expand menu"
+msgstr "Développer le menu"
+
+msgid "Log out"
+msgstr "Se déconnecter"
+
+msgid "Collapse / expand menu ([)"
+msgstr "Réduire/développer le menu ([)"
+
+msgid "Store: %s"
+msgstr "Magasin:%s"
+
+msgid "WordPress updates"
+msgstr "Mises à jour WordPress"
+
+msgid "System"
+msgstr "Système"
+
+msgid "Screens"
+msgstr "Écrans"
+
+msgid "Growth"
+msgstr "Croissance"
+
+msgid "Communication"
+msgstr "Communications"
+
+msgid "Where to show"
+msgstr "Où montrer"
+
+msgid "%s: hidden"
+msgstr "%s: masqué"
+
+msgid "More"
+msgstr "Plus"
+
+msgid "Content"
+msgstr "Contenu"
+
+msgid "Can access the dashboard"
+msgstr "Peut accéder au tableau de bord"
+
+msgid "Can write posts"
+msgstr "Peut écrire des messages"
+
+msgid "Can publish posts"
+msgstr "Peut publier des articles"
+
+msgid "Can edit others' posts"
+msgstr "Peut modifier les messages des autres"
+
+msgid "Can delete posts"
+msgstr "Peut supprimer des messages"
+
+msgid "Can delete others' posts"
+msgstr "Peut supprimer les messages des autres"
+
+msgid "Can edit pages"
+msgstr "Peut modifier des pages"
+
+msgid "Can publish pages"
+msgstr "Peut publier des pages"
+
+msgid "Can edit others' pages"
+msgstr "Peut modifier les pages des autres"
+
+msgid "Can delete pages"
+msgstr "Peut supprimer des pages"
+
+msgid "Can upload files"
+msgstr "Peut télécharger des fichiers"
+
+msgid "Can manage categories"
+msgstr "Peut gérer les catégories"
+
+msgid "Can moderate comments"
+msgstr "Peut modérer les commentaires"
+
+msgid "Can post unfiltered HTML"
+msgstr "Peut publier du HTML non filtré"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Can change site settings"
+msgstr "Peut modifier les paramètres du site"
+
+msgid "Can edit menus and appearance"
+msgstr "Peut modifier les menus et l'apparence"
+
+msgid "Can see users"
+msgstr "Peut voir les utilisateurs"
+
+msgid "Can add users"
+msgstr "Peut ajouter des utilisateurs"
+
+msgid "Can edit users"
+msgstr "Peut modifier les utilisateurs"
+
+msgid "Can delete users"
+msgstr "Peut supprimer des utilisateurs"
+
+msgid "Can change roles"
+msgstr "Peut changer de rôle"
+
+msgid "Can activate/deactivate plugins"
+msgstr "Peut activer/désactiver les plugins"
+
+msgid "Can install plugins"
+msgstr "Peut installer des plugins"
+
+msgid "Can update plugins"
+msgstr "Peut mettre à jour les plugins"
+
+msgid "Can update WordPress"
+msgstr "Peut mettre à jour WordPress"
+
+msgid "Can export"
+msgstr "Peut exporter"
+
+msgid "Can import"
+msgstr "Peut importer"
+
+msgid "Can manage WooCommerce"
+msgstr "Peut gérer WooCommerce"
+
+msgid "Can see reports"
+msgstr "Peut voir les rapports"
+
+msgid "Can edit orders"
+msgstr "Peut modifier les commandes"
+
+msgid "Can edit products"
+msgstr "Peut modifier des produits"
+
+msgid "FluxWP plugins"
+msgstr "Plugins FluxWP"
+
+msgid "Changes here are real permissions: a disabled action is not just hidden from the menu, it can't be done even by URL. The Administrator role can't be changed."
+msgstr "Les changements ici sont de véritables autorisations : une action désactivée n'est pas seulement cachée dans le menu, elle ne peut pas être effectuée même par URL. Le rôle d'administrateur ne peut pas être modifié."
+
+msgid "Permissions before the first change are backed up (%s)."
+msgstr "Les autorisations avant la première modification sont sauvegardées (%s)."
+
+msgid "Restore all roles to the backup?"
+msgstr "Restaurer tous les rôles dans la sauvegarde ?"
+
+msgid "Restore backup"
+msgstr "Restaurer la sauvegarde"
+
+msgid "Search permissions…"
+msgstr "Autorisations de recherche..."
+
+msgid "users"
+msgstr "utilisateurs"
+
+msgid "You do not have permission."
+msgstr "Vous n'avez pas l'autorisation."
+
+msgid "Search or type a command…"
+msgstr "Recherchez ou tapez une commande..."
+
+msgid "No results"
+msgstr "Aucun résultat"
+
+msgid "Pages"
+msgstr "Pages"
+
+msgid "Apps"
+msgstr "Applications"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "New post"
+msgstr "Nouveau message"
+
+msgid "New page"
+msgstr "Nouvelle page"
+
+msgid "Theme: auto (follows device)"
+msgstr "Thème : auto (suit l'appareil)"
+
+msgid "Theme: light"
+msgstr "Thème : lumière"
+
+msgid "Theme: dark"
+msgstr "Thème : sombre"
+
+msgid "Toggle submenu"
+msgstr "Basculer le sous-menu"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "↑↓ select · Enter open · Esc close"
+msgstr "↑↓ sélectionner · Entrer ouvrir · Esc fermer"
+
+msgid "Tap the Share button and choose \"Add to Home Screen\"."
+msgstr "Appuyez sur le bouton Partager et choisissez « Ajouter à l'écran d'accueil »."
+
+msgid "App installed."
+msgstr "Application installée."
+
+msgid "No connection. Changes may not be saved."
+msgstr "Aucune connexion. Les modifications ne peuvent pas être enregistrées."
+
+msgid "Connection is back."
+msgstr "La connexion est rétablie."
+
+msgid "Pin to top"
+msgstr "Épingler en haut"
+
+msgid "Unpin"
+msgstr "Désépingler"
+
+msgid "Move to Other"
+msgstr "Passer à un autre"
+
+msgid "Put back"
+msgstr "Remettre"
+
+msgid "Move up"
+msgstr "Monter"
+
+msgid "Move down"
+msgstr "Descendre"
+
+msgid "Open in new tab"
+msgstr "Ouvrir dans un nouvel onglet"
+
+msgid "Edit role menus"
+msgstr "Modifier les menus de rôle"
+
+msgid "Pinned"
+msgstr "Épinglé"
+
+msgid "Other"
+msgstr "Autre"
+
+msgid "Expand/collapse group"
+msgstr "Développer/Réduire le groupe"
+
+msgid "Drag to resize (double-click: default)"
+msgstr "Faites glisser pour redimensionner (double-clic : par défaut)"
+
+msgid "Saved."
+msgstr "Enregistré."
+
+msgid "Couldn't save. Please try again."
+msgstr "Impossible d'enregistrer. Veuillez réessayer."
+
+msgid "Tip: right-click a menu item to pin it."
+msgstr "Astuce : cliquez avec le bouton droit sur un élément de menu pour l'épingler."
+
+msgid "New task"
+msgstr "Nouvelle tâche"
+
+msgid "Task name"
+msgstr "Nom de la tâche"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Due date"
+msgstr "Date d'échéance"
+
+msgid "Priority"
+msgstr "Priorité"
+
+msgid "Assign to me"
+msgstr "Attribuez-moi"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Task created."
+msgstr "Tâche créée."
+
+msgid "Open"
+msgstr "Ouvert"
+
+msgid "None"
+msgstr "Aucun"
+
+msgid "Switch app"
+msgstr "Changer d'application"
+
+msgid "Collapse / expand menu"
+msgstr "Réduire/agrandir le menu"
+
+msgid "Search or command…"
+msgstr "Rechercher ou commander…"
+
+msgid "Edit menu"
+msgstr "Menu Modifier"
+
+msgid "Theme"
+msgstr "Thème"
+
+msgid "Submenu"
+msgstr "Sous-menu"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "Search (Ctrl+K)"
+msgstr "Rechercher (Ctrl+K)"
+
+msgid "Theme: click for light / dark"
+msgstr "Thème : cliquez pour clair/foncé"
+
+msgid "System (follow device)"
+msgstr "Système (suivre l'appareil)"
+
+msgid "Flux Admin"
+msgstr "Administrateur de flux"
+
+msgid "Good morning"
+msgstr "Bonjour"
+
+msgid "Good afternoon"
+msgstr "Bonjour"
+
+msgid "Good evening"
+msgstr "Bonsoir"
+
+msgid "Good night"
+msgstr "Bonne nuit"
+
+msgid "Summary"
+msgstr "Résumé"
+
+msgid "l, F j, Y"
+msgstr "l, F j, Y"
+
+msgid "%1$s, %2$s"
+msgstr "%1$s , %2$s"
+
+msgid "Edit modules"
+msgstr "Modifier les modules"
+
+msgid "Add the dashboard to your home screen"
+msgstr "Ajoutez le tableau de bord à votre écran d'accueil"
+
+msgid "Opens full screen like an app and shows unread counts on its badge."
+msgstr "S'ouvre en plein écran comme une application et affiche les décomptes non lus sur son badge."
+
+msgid "Install"
+msgstr "Installer"
+
+msgid "Donations today"
+msgstr "Dons aujourd'hui"
+
+msgid "%s donations"
+msgstr "%sdons"
+
+msgid "This month"
+msgstr "Ce mois-ci"
+
+msgid "%1$s donations · %2$s donors"
+msgstr "Dons%1$s· Donateurs%2$s"
+
+msgid "Awaiting approval"
+msgstr "En attente d'approbation"
+
+msgid "Bank transfer / receipt"
+msgstr "Virement bancaire/reçu"
+
+msgid "Unread messages"
+msgstr "Messages non lus"
+
+msgid "Open Call Center →"
+msgstr "Ouvrir le centre d'appels →"
+
+msgid "My open tasks"
+msgstr "Mes tâches ouvertes"
+
+msgid "Flux Tasks →"
+msgstr "Tâches de flux →"
+
+msgid "System check"
+msgstr "Vérification du système"
+
+msgid "%s errors"
+msgstr "Erreurs%s"
+
+msgid "%s warnings"
+msgstr "Avertissements%s"
+
+msgid "No problems"
+msgstr "Aucun problème"
+
+msgid "%s checks OK"
+msgstr "%svérifie OK"
+
+msgid "Donations"
+msgstr "Dons"
+
+msgid "Tasks"
+msgstr "Tâches"
+
+msgid "Quick actions"
+msgstr "Actions rapides"
+
+msgid "OK"
+msgstr "D'accord"
+
+msgid "Warning"
+msgstr "Avertissement"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Fix"
+msgstr "Corriger"
+
+msgid "All checks"
+msgstr "Tous les chèques"
+
+msgid "Add donation"
+msgstr "Ajouter un don"
+
+msgid "Create certificate"
+msgstr "Créer un certificat"
+
+msgid "Create task"
+msgstr "Créer une tâche"
+
+msgid "Messages"
+msgstr "Messages"
+
+msgid "Add page"
+msgstr "Ajouter une page"
+
+msgid "Write a post"
+msgstr "Écrire un article"
+
+msgid "Upload media"
+msgstr "Télécharger des médias"
+
+msgid "Send email"
+msgstr "Envoyer un e-mail"
+
+msgid "Add shortcut"
+msgstr "Ajouter un raccourci"
+
+msgid "Admin"
+msgstr "Administrateur"
+
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Your access to this page is turned off. Contact the site administrator if needed."
+msgstr "Votre accès à cette page est désactivé. Contactez l'administrateur du site si nécessaire."
+
+msgid "Access blocked"
+msgstr "Accès bloqué"
+
+msgid "Admin dashboard"
+msgstr "Tableau de bord d'administration"
+
+msgid "No connection"
+msgstr "Aucune connexion"
+
+msgid "The dashboard reopens where you left off when the connection is back."
+msgstr "Le tableau de bord rouvre là où vous vous étiez arrêté lorsque la connexion est rétablie."
+
+msgid "Try again"
+msgstr "Réessayez"
+
+msgid "Admin theme"
+msgstr "Thème d'administration"
+
+msgid "Appearance"
+msgstr "Apparence"
+
+msgid "Menu and bottom bar"
+msgstr "Menu et barre inférieure"
+
+msgid "Permissions"
+msgstr "Autorisations"
+
+msgid "App (PWA)"
+msgstr "Application (PWA)"
+
+msgid "Choose logo"
+msgstr "Choisir le logo"
+
+msgid "All other roles"
+msgstr "Tous les autres rôles"
+
+msgid "Custom layout"
+msgstr "Mise en page personnalisée"
+
+msgid "Default layout"
+msgstr "Disposition par défaut"
+
+msgid "Group"
+msgstr "Groupe"
+
+msgid "Group name"
+msgstr "Nom du groupe"
+
+msgid "New group"
+msgstr "Nouveau groupe"
+
+msgid "+ Add group"
+msgstr "+ Ajouter un groupe"
+
+msgid "Remove group"
+msgstr "Supprimer le groupe"
+
+msgid "Menu name (empty = original name)"
+msgstr "Nom du menu (vide = nom d'origine)"
+
+msgid "Visible"
+msgstr "Visible"
+
+msgid "Hidden"
+msgstr "Caché"
+
+msgid "This role has no access"
+msgstr "Ce rôle n'a pas d'accès"
+
+msgid "Submenus"
+msgstr "Sous-menus"
+
+msgid "Reset this role to default"
+msgstr "Réinitialiser ce rôle par défaut"
+
+msgid "Copy from another role…"
+msgstr "Copier depuis un autre rôle..."
+
+msgid "Preview"
+msgstr "Aperçu"
+
+msgid "Mobile bottom bar"
+msgstr "Barre inférieure mobile"
+
+msgid "Up to 4 shortcuts; the fifth button \"More\" opens the side panel."
+msgstr "Jusqu'à 4 raccourcis ; le cinquième bouton \"Plus\" ouvre le panneau latéral."
+
+msgid "— empty —"
+msgstr "- vide -"
+
+msgid "Menus of newly installed plugins automatically land in the \"Other\" group."
+msgstr "Les menus des plugins nouvellement installés atterrissent automatiquement dans le groupe « Autre »."
+
+msgid "You have unsaved changes."
+msgstr "Vous avez des modifications non enregistrées."
+
+msgid "Block access"
+msgstr "Bloquer l'accès"
+
+msgid "Access blocked: not in the menu, opening by URL shows \"no permission\""
+msgstr "Accès bloqué : pas dans le menu, l'ouverture par URL affiche \"pas d'autorisation\""
+
+msgid "Start collapsed"
+msgstr "Début réduit"
+
+msgid "All permissions: Permissions tab"
+msgstr "Toutes les autorisations : onglet Autorisations"
+
+msgid "Access can't be blocked for the Administrator role."
+msgstr "L'accès ne peut pas être bloqué pour le rôle d'administrateur."
+
+msgid "Brand"
+msgstr "Marque"
+
+msgid "On (turning it off restores the standard WordPress dashboard)"
+msgstr "Activé (le désactiver restaure le tableau de bord WordPress standard)"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Subtitle"
+msgstr "Sous-titre"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Remove"
+msgstr "Supprimer"
+
+msgid "If empty, the site icon is used; if there is none, the Flux Admin icon."
+msgstr "Si vide, l'icône du site est utilisée ; s'il n'y en a pas, l'icône Flux Admin."
+
+msgid "Options"
+msgstr "Possibilités"
+
+msgid "Features"
+msgstr "Caractéristiques"
+
+msgid "Bottom bar on mobile"
+msgstr "Barre inférieure sur mobile"
+
+msgid "Open WhatsApp and Tasks right next to the side menu (menu shrinks to icons)"
+msgstr "Ouvrez WhatsApp et Tâches juste à côté du menu latéral (le menu se réduit à des icônes)"
+
+msgid "Show the app switcher on WhatsApp and Tasks screens on phones"
+msgstr "Afficher le sélecteur d'applications sur les écrans WhatsApp et Tâches sur les téléphones"
+
+msgid "Fast navigation: the clicked menu page is prepared in advance, transitions are smooth"
+msgstr "Navigation rapide : la page de menu cliquée est préparée à l'avance, les transitions sont fluides"
+
+msgid "Command palette (Ctrl+K / ⌘K)"
+msgstr "Palette de commandes (Ctrl+K / ⌘K)"
+
+msgid "Style the login screen too"
+msgstr "Stylisez également l'écran de connexion"
+
+msgid "Live counter interval"
+msgstr "Intervalle du compteur en direct"
+
+msgid "%d s"
+msgstr "%ds"
+
+msgid "Badges (WhatsApp, tasks, pending donations, updates) ride on the WordPress Heartbeat request; no extra requests. 60 s is recommended for Hostinger."
+msgstr "Les badges (WhatsApp, tâches, dons en attente, mises à jour) roulent sur la requête WordPress Heartbeat ; aucune demande supplémentaire. 60 s sont recommandés pour Hostinger."
+
+msgid "Each role sees its own side menu and mobile bottom bar. Drag to reorder, rename, hide, group. Hiding does not change permissions; it only removes the item from the menu."
+msgstr "Chaque rôle voit son propre menu latéral et sa barre inférieure mobile. Faites glisser pour réorganiser, renommer, masquer, regrouper. Le masquage ne modifie pas les autorisations ; il supprime uniquement l'élément du menu."
+
+msgid "The menu list is built on the next page load. Reload the page."
+msgstr "La liste des menus est construite lors du prochain chargement de la page. Rechargez la page."
+
+msgid "\"Block access\" really closes that menu for this role: it isn't shown, and opening it by URL shows a \"no permission\" page. See the Permissions tab for detailed permissions."
+msgstr "\"Bloquer l'accès\" ferme vraiment ce menu pour ce rôle : il n'est pas affiché, et son ouverture par URL affiche une page \"aucune autorisation\". Voir l'onglet Autorisations pour les autorisations détaillées."
+
+msgid "Donation awaiting approval"
+msgstr "Don en attente d'approbation"
+
+msgid "Welcome and summary"
+msgstr "Accueil et résumé"
+
+msgid "Top section"
+msgstr "Section supérieure"
+
+msgid "Greeting, date and summary tiles"
+msgstr "Vignettes de voeux, de date et de résumé"
+
+msgid "Summary tiles"
+msgstr "Tuiles récapitulatives"
+
+msgid "People only see tiles they have permission for. Plugins can add tiles with the `flxa_dashboard_stats` filter."
+msgstr "Les gens ne voient que les vignettes pour lesquelles ils ont l'autorisation. Les plugins peuvent ajouter des tuiles avec le filtre `flxa_dashboard_stats` ."
+
+msgid "Extra quick actions"
+msgstr "Actions très rapides"
+
+msgid "One \"Label|Address\" per line. The address can be relative to wp-admin or a full https:// URL."
+msgstr "Un \"Étiquette|Adresse\" par ligne. L'adresse peut être relative à wp-admin ou à une URL https:// complète."
+
+msgid "Module order and visibility are personal: open \"Edit modules\" on the dashboard and drag the boxes."
+msgstr "L'ordre et la visibilité des modules sont personnels : ouvrez \"Modifier les modules\" sur le tableau de bord et faites glisser les cases."
+
+msgid "Install as an app"
+msgstr "Installer en tant qu'application"
+
+msgid "The site is not HTTPS; browsers will not allow installing."
+msgstr "Le site n'est pas HTTPS ; les navigateurs ne permettront pas l'installation."
+
+msgid "PWA"
+msgstr "PWA"
+
+msgid "Allow installing the dashboard as an app on phones and computers"
+msgstr "Autoriser l'installation du tableau de bord en tant qu'application sur les téléphones et les ordinateurs"
+
+msgid "Opens full screen, shows the unread count on the app icon, and shows an offline screen when the connection drops. Admin pages are never cached."
+msgstr "Ouvre en plein écran, affiche le nombre de non lus sur l'icône de l'application et affiche un écran hors ligne lorsque la connexion est interrompue. Les pages d'administration ne sont jamais mises en cache."
+
+msgid "App name"
+msgstr "Nom de l'application"
+
+msgid "Short name (under the icon)"
+msgstr "Nom court (sous l'icône)"
+
+msgid "Icon"
+msgstr "Icône"
+
+msgid "The site icon (Appearance › Customize › Site Identity) is used if set."
+msgstr "L'icône du site (Apparence › Personnaliser › Identité du site) est utilisée si elle est définie."
+
+msgid "How to install?"
+msgstr "Comment installer ?"
+
+msgid "The \"Install\" button on the dashboard, or menu › Install the app."
+msgstr "Le bouton « Installer » sur le tableau de bord, ou le menu › Installer l'application."
+
+msgid "Share › Add to Home Screen."
+msgstr "Partager › Ajouter à l'écran d'accueil."
+
+msgid "Computer"
+msgstr "Ordinateur"
+
+msgid "The install icon in the address bar."
+msgstr "L'icône d'installation dans la barre d'adresse."
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Check"
+msgstr "Vérifier"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Description"
+msgstr "Descriptif"
+
+msgid "On. Role-based menu, bottom bar and light/dark theme are active."
+msgstr "Allumé. Le menu basé sur les rôles, la barre inférieure et le thème clair/sombre sont actifs."
+
+msgid "Off; the standard WordPress dashboard is shown."
+msgstr "Désactivé ; le tableau de bord WordPress standard s'affiche."
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Install as an app (PWA)"
+msgstr "Installer en tant qu'application (PWA)"
+
+msgid "HTTPS is on; the dashboard can be installed as an app on phones and computers."
+msgstr "HTTPS est activé ; le tableau de bord peut être installé sous forme d'application sur les téléphones et les ordinateurs."
+
+msgid "The site is not HTTPS; browsers do not allow installing a PWA. Set the addresses to https:// in Settings › General."
+msgstr "Le site n'est pas HTTPS ; les navigateurs ne permettent pas d’installer une PWA. Définissez les adresses sur https:// dans Paramètres > Général."
+
+msgid "General settings"
+msgstr "Paramètres généraux"
+
+msgid "App icon"
+msgstr "Icône de l'application"
+
+msgid "Using the site icon."
+msgstr "Utilisation de l'icône du site."
+
+msgid "No site icon; using the Flux Admin icon. You can change it in Appearance › Customize › Site Identity."
+msgstr "Aucune icône de site ; à l’aide de l’icône Flux Admin. Vous pouvez le modifier dans Apparence › Personnaliser › Identité du site."
+
+msgid "Role-based menu"
+msgstr "Menu basé sur les rôles"
+
+msgid "%s role has a custom menu layout; other roles see the default grouped menu."
+msgid_plural "%s roles have a custom menu layout; other roles see the default grouped menu."
+msgstr[0] "Le rôle%sa une disposition de menu personnalisée ; les autres rôles voient le menu groupé par défaut."
+msgstr[1] "Les rôles%sont une disposition de menu personnalisée ; les autres rôles voient le menu groupé par défaut."
+
+msgid "All roles see the default grouped menu."
+msgstr "Tous les rôles voient le menu groupé par défaut."
+
+msgid "Menu list"
+msgstr "Liste des menus"
+
+msgid "The menu editor's list is built when an administrator opens the dashboard."
+msgstr "La liste de l'éditeur de menus est construite lorsqu'un administrateur ouvre le tableau de bord."
+
+msgid "Live counters"
+msgstr "Compteurs en direct"
+
+msgid "Heartbeat is %s s; Hostinger may temporarily block the IP under heavy load. 60 s is recommended."
+msgstr "Le battement de coeur est%ss ; Hostinger peut bloquer temporairement l'adresse IP en cas de charge importante. 60 s sont recommandées."
+
+msgid "Badges refresh every %s s via WordPress Heartbeat (no extra requests)."
+msgstr "Les badges sont actualisés tous les%svia WordPress Heartbeat (pas de demandes supplémentaires)."
+
+msgid "Turn the admin theme on/off"
+msgstr "Activer/désactiver le thème d'administration"
+
+msgid "1 = on, 0 = standard WordPress dashboard."
+msgstr "1 = activé, 0 = tableau de bord WordPress standard."
+
+msgid "Admin theme turned on."
+msgstr "Thème d'administration activé."
+
+msgid "Admin theme turned off."
+msgstr "Thème d'administration désactivé."
+
+msgid "Seconds (30, 60 or 120)."
+msgstr "Secondes (30, 60 ou 120)."
+
+msgid "Interval set to %s s."
+msgstr "Intervalle défini sur%ss."
+
+msgid "PWA (install as an app)"
+msgstr "PWA (installer en tant qu'application)"
+
+msgid "1 = on, 0 = off (the registered service worker removes itself)."
+msgstr "1 = activé, 0 = désactivé (le technicien de service enregistré se supprime)."
+
+msgid "PWA turned on."
+msgstr "PWA activé."
+
+msgid "PWA turned off."
+msgstr "PWA désactivé."
+
+msgid "Reset a role's menu to default"
+msgstr "Réinitialiser le menu d'un rôle par défaut"
+
+msgid "Role key (e.g. editor)."
+msgstr "Clé de rôle (par exemple, éditeur)."
+
+msgid "%s menu reset to default."
+msgstr "Le menu%sest réinitialisé aux valeurs par défaut."
+
+msgid "Background"
+msgstr "Contexte"
+
+msgid "Side menu"
+msgstr "Menu latéral"
+
+msgid "Cards"
+msgstr "Cartes"
+
+msgid "Text"
+msgstr "Texte"
+
+msgid "Default theme"
+msgstr "Thème par défaut"
+
+msgid "Automatic (device setting)"
+msgstr "Automatique (réglage de l'appareil)"
+
+msgid "Light"
+msgstr "Lumière"
+
+msgid "Dark"
+msgstr "Sombre"
+
+msgid "Everyone can change their own preference with the moon/sun button at the bottom left."
+msgstr "Chacun peut modifier ses préférences avec le bouton lune/soleil en bas à gauche."
+
+msgid "Accent color"
+msgstr "Couleur d'accentuation"
+
+msgid "Colors"
+msgstr "Couleurs"
+
+msgid "Reset colors to default"
+msgstr "Réinitialiser les couleurs par défaut"
+
+msgid "Font"
+msgstr "Police"
+
+msgid "System font"
+msgstr "Police système"
+
+msgid "Custom…"
+msgstr "Personnalisé..."
+
+msgid "Custom: the name of a font installed on the computer or loaded on the site."
+msgstr "Personnalisé : le nom d'une police installée sur l'ordinateur ou chargée sur le site."
+
+msgid "Font size"
+msgstr "Taille de la police"
+
+msgid "Normal"
+msgstr "Normale"
+
+msgid "Large"
+msgstr "Grand"
+
+msgid "Larger"
+msgstr "Plus grand"
+
+msgid "Corners"
+msgstr "Coins"
+
+msgid "Sharp"
+msgstr "Pointu"
+
+msgid "Slightly rounded"
+msgstr "Légèrement arrondi"
+
+msgid "Rounded"
+msgstr "Arrondi"
+
+msgid "Very rounded"
+msgstr "Très arrondi"
+
+msgid "Density"
+msgstr "Densité"
+
+msgid "Comfortable"
+msgstr "Confortable"
+
+msgid "Compact (more rows in the menu)"
+msgstr "Compact (plus de lignes dans le menu)"
+
+msgid "Icons"
+msgstr "Icônes"
+
+msgid "Line icons in WordPress menus (FluxWP logos stay in color)"
+msgstr "Icônes de ligne dans les menus WordPress (les logos FluxWP restent en couleur)"
+
+msgid "Screens without dark theme"
+msgstr "Écrans sans thème sombre"
+
+msgid "One screen ID or body class per line (may end with *). Complex screens without their own dark theme stay light here."
+msgstr "Un identifiant d'écran ou une classe de corps par ligne (peut se terminer par *). Les écrans complexes sans leur propre thème sombre restent ici clairs."
+
+msgid "All lists"
+msgstr "Toutes les listes"
+
+msgid "Scope"
+msgstr "Portée"
+
+msgid "Assigned to me"
+msgstr "M'a été attribué"
+
+msgid "Created by me"
+msgstr "Créé par moi"
+
+msgid "All tasks"
+msgstr "Toutes les tâches"
+
+msgid "Chart"
+msgstr "Graphique"
+
+msgid "By status"
+msgstr "Par statut"
+
+msgid "By priority"
+msgstr "Par priorité"
+
+msgid "By list"
+msgstr "Par liste"
+
+msgid "By person"
+msgstr "Par personne"
+
+msgid "No task lists you can see."
+msgstr "Aucune liste de tâches que vous pouvez voir."
+
+msgid "No priority"
+msgstr "Aucune priorité"
+
+msgid "Unassigned"
+msgstr "Non attribué"
+
+msgid "Overdue"
+msgstr "En retard"
+
+msgid "Today"
+msgstr "Aujourd'hui"
+
+msgid "Done in the last 7 days"
+msgstr "Fait au cours des 7 derniers jours"
+
+msgid "open tasks"
+msgstr "tâches ouvertes"
+
+msgid "No open tasks."
+msgstr "Aucune tâche ouverte."
+
+msgid "+ Create task"
+msgstr "+ Créer une tâche"
+
+msgid "Open Flux Tasks"
+msgstr "Tâches de flux ouvertes"
+
+msgid "Period"
+msgstr "Période"
+
+msgid "Last 7 days"
+msgstr "7 derniers jours"
+
+msgid "Last 14 days"
+msgstr "14 derniers jours"
+
+msgid "Last 30 days"
+msgstr "30 derniers jours"
+
+msgid "Breakdown"
+msgstr "Répartition"
+
+msgid "By donation type"
+msgstr "Par type de don"
+
+msgid "By payment method"
+msgstr "Par mode de paiement"
+
+msgid "No breakdown"
+msgstr "Pas de panne"
+
+msgid "last %d days"
+msgstr "derniers jours%d"
+
+msgid "Daily donation totals"
+msgstr "Totaux des dons quotidiens"
+
+msgid "No type"
+msgstr "Aucun type"
+
+msgid "by type"
+msgstr "par type"
+
+msgid "by method"
+msgstr "par méthode"
+
+msgid "Anonymous"
+msgstr "Anonyme"
+
+msgid "%d items"
+msgstr "%déléments"
+
+msgid "No donations yet."
+msgstr "Aucun don pour l'instant."
+
+msgid "All donations"
+msgstr "Tous les dons"
+
+msgid "Flux Tasks isn't available."
+msgstr "Les tâches Flux ne sont pas disponibles."
+
+msgid "You can't add tasks to this list."
+msgstr "Vous ne pouvez pas ajouter de tâches à cette liste."
+
+msgid "Events|edit.php?post_type=etkinlik\nLive site|https://"
+msgstr "Événements|edit.php?post_type=etkinlik\nSite en direct|https://"
+
+msgid "Redesigns the admin: editable role-based side menu, mobile bottom bar and side panel, WhatsApp / Tasks switcher, editable Dashboard modules, automatic light/dark theme, command palette (Ctrl+K), live counters and PWA (add to home screen)."
+msgstr "Refonte l'administrateur : menu latéral modifiable basé sur les rôles, barre inférieure et panneau latéral mobiles, sélecteur WhatsApp/Tâches, modules de tableau de bord modifiables, thème clair/sombre automatique, palette de commandes (Ctrl+K), compteurs en direct et PWA (ajouter à l'écran d'accueil)."
+
+msgid "Filters"
+msgstr "Filtres"
+
+msgid "Clear"
+msgstr "Effacer"
+
+msgid "Pagination"
+msgstr "Pagination"
+
+msgid "%1$s–%2$s of %3$s"
+msgstr "%1$s–%2$sou%3$s"
+
+msgid "Previous page"
+msgstr "Page précédente"
+
+msgid "Next page"
+msgstr "Page suivante"
+
+msgid "Per page"
+msgstr "Par page"
+
+msgid "Apply"
+msgstr "Postuler"
+
+msgid "Default: the theme's primary colour (Appearance › Editor › Styles). If you pick the theme's colour, this follows the theme when it changes."
+msgstr "Par défaut : la couleur primaire du thème (Apparence › Editeur › Styles). Si vous choisissez la couleur du thème, celle-ci suit le thème lorsqu'il change."
+
+msgid "Package logos"
+msgstr "Logos des paquets"
+
+msgid "Gradient (default)"
+msgstr "Dégradé (par défaut)"
+
+msgid "Pastel"
+msgstr "Pastels"
+
+msgid "Used in the side menu, the FluxWP Panel package list and FluxWP App. Colours show the package group: platform, maintenance, communication, content, commerce."
+msgstr "Utilisé dans le menu latéral, la liste des packages FluxWP Panel et l'application FluxWP. Les couleurs indiquent le groupe de packages : plateforme, maintenance, communication, contenu, commerce."
+
+msgid "Admin panel look, menu and permissions"
+msgstr "Apparence du panneau d'administration, menu et autorisations"
+
+msgid "Shared AI hub for all plugins"
+msgstr "Hub d'IA partagé pour tous les plugins"
+
+msgid "Cookieless site statistics and visitor journeys"
+msgstr "Statistiques du site et parcours des visiteurs sans cookies"
+
+msgid "Desktop and mobile app sign-in, personal API keys"
+msgstr "Connexion aux applications de bureau et mobiles, clés API personnelles"
+
+msgid "Automatic pre-update backups, scheduled backups and restore"
+msgstr "Sauvegardes automatiques avant mise à jour, sauvegardes et restaurations planifiées"
+
+msgid "Certificate templates, creation, bulk sending and verification"
+msgstr "Modèles de certificats, création, envoi groupé et vérification"
+
+msgid "WhatsApp call centre, AI assistant and reports"
+msgstr "Centre d'appels WhatsApp, assistant IA et rapports"
+
+msgid "Donation types, donors and payments on WooCommerce"
+msgstr "Types de dons, donateurs et paiements sur WooCommerce"
+
+msgid "Drag-and-drop form builder, responses and automations"
+msgstr "Générateur de formulaires par glisser-déposer, réponses et automatisations"
+
+msgid "Multilingual site: language URLs and content translations"
+msgstr "Site multilingue : URL de langue et traductions de contenu"
+
+msgid "All site emails, mailbox and SMTP"
+msgstr "Tous les e-mails du site, boîte aux lettres et SMTP"
+
+msgid "Moves data saved under old package names to the new ones"
+msgstr "Déplace les données enregistrées sous les anciens noms de packages vers les nouveaux"
+
+msgid "Manage and publish QR menus from this site"
+msgstr "Gérer et publier des menus QR depuis ce site"
+
+msgid "Staff, Manager and Director roles and access"
+msgstr "Rôles et accès du personnel, du gestionnaire et du directeur"
+
+msgid "Meta tags, schema, sitemap and SEO audit"
+msgstr "Balises méta, schéma, plan du site et audit SEO"
+
+msgid "Set up the site in one step from a preset"
+msgstr "Configurer le site en une seule étape à partir d'un préréglage"
+
+msgid "Queries, PHP errors, external requests and cron in one place"
+msgstr "Requêtes, erreurs PHP, requêtes externes et cron en un seul endroit"
+
+msgid "Staff gifts, rent, accruals and collections"
+msgstr "Cadeaux du personnel, loyers, charges à payer et encaissements"
+
+msgid "Projects, lists and task tracking"
+msgstr "Projets, listes et suivi des tâches"
+
+msgid "Qurban donations, shares and proxies"
+msgstr "Dons, actions et procurations du Qurban"
+
+msgid "Boards and slides for your screens"
+msgstr "Tableaux et slides pour vos écrans"
+
+msgid "Control TVs and boards remotely"
+msgstr "Contrôler les téléviseurs et les tableaux à distance"
+
+msgid "Update FluxWP themes and plugins from the update server"
+msgstr "Mettre à jour les thèmes et plugins FluxWP depuis le serveur de mise à jour"
+
+msgid "Theme settings and presets"
+msgstr "Paramètres et préréglages du thème"
+
+msgid "Setup wizard, presets and FluxWP package updates"
+msgstr "Assistant de configuration, préréglages et mises à jour du package FluxWP"
+
+msgid "\\nOkunmamış WhatsApp\\n"
+msgstr "\\nOkunmamış WhatsApp\\n"
+
+msgid "[['%sdonate', 'tr']]"
+msgid_plural "[['%sdonate', 'tr']]"
+msgstr[0] "[['%sfaire un don', 'tr']]"
+msgstr[1] "[['%sfaire un don', 'tr']]"
+
+msgid "[['%seven', 'sw']]"
+msgid_plural "[['%seven', 'sw']]"
+msgstr[0] "[['%smême', 'sw']]"
+msgstr[1] "[['%smême', 'sw']]"
+
+msgid "[['%swarning', 'tr']]"
+msgid_plural "[['%swarning', 'tr']]"
+msgstr[0] "[[' Avertissement%s', 'tr']]"
+msgstr[1] "[[' Avertissement%s', 'tr']]"
+
+msgid "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]"
+msgid_plural "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]"
+msgstr[0] "[['%sa une disposition de menu spéciale pour le rôle ; les autres rôles voient le menu groupé par défaut.', 'tr']]"
+msgstr[1] "[['%sa une disposition de menu spéciale pour le rôle ; les autres rôles voient le menu groupé par défaut.', 'tr']]"

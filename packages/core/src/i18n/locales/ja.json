@@ -1,0 +1,322 @@
+{
+  "common": {
+    "back": "戻る",
+    "done": "完了",
+    "empty": "ここにはまだ何もありません。",
+    "refresh": "リフレッシュ",
+    "retry": "もう一度試してください",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "send": "送信"
+  },
+  "languages": {
+    "en": "English",
+    "tr": "Türkçe",
+    "de": "Deutsch",
+    "es": "Español",
+    "fr": "Français",
+    "pt-br": "Português do Brasil",
+    "ja": "日本語",
+    "zh": "简体中文",
+    "ar": "العربية",
+    "ru": "Русский"
+  },
+  "auth": {
+    "welcome": "{{name}}",
+    "connecting": "アカウントに接続中...",
+    "addSiteTitle": "サイトを接続する",
+    "addSiteHint": "WordPress サイトのアドレスを入力します。複数のサイトを追加できます。",
+    "siteUrl": "サイトアドレス",
+    "siteUrlPlaceholder": "example.org",
+    "continue": "続ける",
+    "change": "変更",
+    "loginBrowser": "ブラウザでサインインする",
+    "waitingBrowser": "ブラウザで承認を待っています...",
+    "useApiKey": "APIキーで接続する",
+    "apiKey": "APIキー",
+    "apiKeyHint": "ダッシュボード内: ユーザー › アプリ アクセス › キーの作成。",
+    "login": "サインイン",
+    "noYtApp": "Flux App プラグインはこのサイトにインストールされていません。アプリからサインインするにはインストールしてください。",
+    "tryDemo": "デモを試してみる",
+    "footer": "{{name}} · 安全な接続、パスワードがアプリに保存されることはありません"
+  },
+  "errors": {
+    "invalid_url": "このアドレスは無効です。",
+    "unreachable": "サイトにアクセスできませんでした。アドレスと接続を確認してください。",
+    "not_wordpress": "このアドレスには WordPress REST API が見つかりません。",
+    "access_denied": "サインインが承認されませんでした。",
+    "oauth_failed": "サインインを完了できませんでした。もう一度試してください。",
+    "oauth_unsupported": "このサインイン方法はブラウザではまだ利用できません。デスクトップアプリを使用します。",
+    "bad_credentials": "キーまたはセッションが無効です。",
+    "server": "サーバーからの応答がありません。",
+    "unknown": "何か問題が発生しました。"
+  },
+  "accounts": {
+    "title": "アカウント",
+    "add": "サイトまたはアカウントを追加する",
+    "active": "アクティブ",
+    "logout": "サインアウト",
+    "relogin": "再度サインインしてください",
+    "needsLogin": "セッションの有効期限が切れました。もう一度サインインしてください。",
+    "kind": {
+      "oauth": "ブラウザのサインイン",
+      "apikey": "APIキー",
+      "demo": "デモ"
+    }
+  },
+  "nav": {
+    "menu": "メインメニュー",
+    "search": "検索またはジャンプ",
+    "edit": "編集メニュー",
+    "reset": "リセット",
+    "show": "表示する",
+    "hide": "隠す",
+    "webView": "ダッシュボード ビューで開きます",
+    "collapse": "サイドバーを隠す",
+    "expand": "サイドバーを表示",
+    "back": "戻る",
+    "forward": "進む",
+    "resize": "サイドバーの幅",
+    "submenu": "サブメニューの切り替え",
+    "groups": {
+      "general": "一般",
+      "comms": "コミュニケーション",
+      "donate": "寄付",
+      "content": "内容",
+      "growth": "成長",
+      "screens": "スクリーン",
+      "system": "システム",
+      "other": "その他",
+      "apps": "アプリ"
+    }
+  },
+  "palette": {
+    "placeholder": "画面またはコマンドを検索...",
+    "empty": "結果はありません。"
+  },
+  "dashboard": {
+    "morning": "おはようございます {{name}}",
+    "afternoon": "こんにちは {{name}}",
+    "evening": "こんばんは {{name}}",
+    "customize": "カスタマイズ"
+  },
+  "web": {
+    "title": "この画面はダッシュボード ビューで開きます",
+    "body": "ネイティブバージョンはまだ準備ができていません。すでにサインインしているダッシュボード ページを別のウィンドウで開くことができます。",
+    "open": "ダッシュボードで開く",
+    "openBrowser": "ブラウザで開く"
+  },
+  "settings": {
+    "title": "設定",
+    "appearance": "外観",
+    "theme": "テーマ",
+    "themes": {
+      "system": "システム",
+      "light": "ライト",
+      "dark": "暗い"
+    },
+    "language": "言語",
+    "about": "について",
+    "app": "アプリ",
+    "support": "サポート",
+    "contact": "お問い合わせ",
+    "logoutConfirm": "{{site}} からログアウトしますか?",
+    "logoutFailed": "サインアウトできませんでした。もう一度試してください。"
+  },
+  "oauth": {
+    "doneTitle": "サインインしました",
+    "doneBody": "このタブを閉じてアプリに戻ることができます。"
+  },
+  "review": {
+    "title": "承認待ち",
+    "count_one": "{{count}} の寄付",
+    "count_other": "{{count}} の寄付",
+    "noReceipt": "領収書なし",
+    "noReceiptBody": "この寄付に対する領収書はまだ到着していません。",
+    "emptyTitle": "保留中の寄付はありません",
+    "emptyBody": "新しい領収書がここに表示されます。",
+    "allDone": "すべて完了しました",
+    "ref": "紹介",
+    "receipt": "領収書",
+    "approve": "承認する",
+    "reject": "寄付をキャンセルする",
+    "approveConfirm": "{{name}} からの {{amount}} の寄付を承認しますか?証明書が送付されます。",
+    "approved": "寄付が承認されました。",
+    "approvedCert_one": "寄付が承認され、{{count}} 証明書が送信されました。",
+    "approvedCert_other": "寄付が承認され、{{count}} 証明書が送信されました。",
+    "rejected": "寄付はキャンセルされました。",
+    "rejectTitle": "{{name}} の寄付をキャンセルする",
+    "reason": "理由",
+    "reasonPlaceholder": "例:領収書の金額が合わない",
+    "notify": "寄付者に通知する"
+  },
+  "tasks": {
+    "title": "タスク",
+    "views": {
+      "mine": "私に割り当てられました",
+      "today": "今日",
+      "overdue": "期限を過ぎました"
+    },
+    "projects": "プロジェクト",
+    "search": "タスクの検索",
+    "quickAdd": "タスクを追加し、Enter キーを押します",
+    "empty": "タスクがありません",
+    "complete": "完了",
+    "reopen": "再開",
+    "unassigned": "未割り当て",
+    "checklist": "チェックリスト",
+    "comments": "コメント",
+    "noComments": "コメントはまだありません。",
+    "addComment": "コメントを書く"
+  },
+  "inbox": {
+    "title": "ワッツアップ",
+    "search": "名前または番号を検索する",
+    "filters": {
+      "open": "開く",
+      "unread": "未読",
+      "mine": "私のもの",
+      "all": "すべて"
+    },
+    "empty": "チャットなし",
+    "pick": "チャットを選択してください",
+    "assigned": "{{name}} によって処理されます",
+    "donations_one": "{{count}} の寄付",
+    "donations_other": "{{count}} の寄付",
+    "botOn": "アシスタントがオン",
+    "botOff": "アシスタントがオフ",
+    "botHint": "このチャットの AI アシスタントをオン/オフにします",
+    "assistant": "アシスタント",
+    "write": "メッセージを入力し、Enter を押して送信します",
+    "blocked": "この連絡先はブロックされているため、メッセージを送信できません。"
+  },
+  "wa": {
+    "search": "名前、番号、メモ、メッセージを検索します",
+    "filters": {
+      "all": "開く",
+      "unread": "未読",
+      "mine": "私に割り当てられました",
+      "unassigned": "未割り当て",
+      "closed": "閉店"
+    },
+    "today": "今日",
+    "yesterday": "昨日",
+    "reply": "返信",
+    "copy": "コピー",
+    "retry": "再試行",
+    "deleteNote": "メモを削除する",
+    "menu": "メッセージメニュー",
+    "react": "反応する",
+    "src": {
+      "bot": "アシスタント",
+      "ai": "AIによる提案",
+      "phone": "電話から",
+      "auto": "自動",
+      "api": "API",
+      "cert": "証明書"
+    },
+    "message": "メッセージを送信する",
+    "deletedMsg": "このメッセージは削除されました",
+    "deletedBadge": "送信者によって削除されました",
+    "poll": "投票(WhatsAppで表示)",
+    "unsupported": "サポートされていないメッセージ",
+    "note": "内部メモ",
+    "customer": "お客様",
+    "you": "あなた",
+    "edited": "編集済み",
+    "failed": "送信されませんでした",
+    "types": {
+      "text": "メッセージ",
+      "note": "注記",
+      "image": "写真",
+      "video": "ビデオ",
+      "audio": "音声メッセージ",
+      "document": "文書",
+      "sticker": "ステッカー",
+      "location": "場所",
+      "contact": "連絡先カード",
+      "poll": "投票",
+      "deleted": "削除されたメッセージ",
+      "unknown": "メッセージ"
+    },
+    "noteHint": "社内メモ: 顧客ではなく、チームのみが表示します。",
+    "attach": "ファイルを添付する",
+    "noteMode": "内部メモ",
+    "quickReplies": "クイック返信",
+    "aiSuggest": "AIによる提案",
+    "notePlaceholder": "チーム向けのメモを書く",
+    "caption": "キャプションを追加します (オプション)",
+    "write": "メッセージを入力し、Enter を押して送信します",
+    "sessionExpired": "セッションの有効期限が切れました。再度サインインしてください。",
+    "offline": "サーバーにアクセスできないため、再試行しています...",
+    "connDown": "{{name}} 接続がダウンしています",
+    "typing": "入力中...",
+    "recording": "音声を録音中...",
+    "botTyping": "アシスタントが入力中です...",
+    "bootError": "WhatsAppを読み込めませんでした",
+    "quoteNotLoaded": "引用されたメッセージはまだ読み込まれていません。上にスクロールしてください。",
+    "closed": "閉店",
+    "bot": {
+      "on": "アシスタントがオン",
+      "off": "アシスタントがオフ",
+      "paused": "アシスタントが一時停止しました"
+    },
+    "assign": "チャットを割り当てる",
+    "unassigned": "未割り当て",
+    "pin": "ピン",
+    "unpin": "固定を解除する",
+    "close": "チャットを閉じる",
+    "reopen": "チャットを再開する",
+    "emoji": "絵文字",
+    "voice": {
+      "start": "音声メッセージを録音する",
+      "recording": "録音",
+      "denied": "マイクの許可が拒否されました。"
+    },
+    "info": {
+      "title": "連絡先情報",
+      "labels": "ラベル",
+      "notes": "注意事項",
+      "notesHint": "あなたのチームだけがこれを閲覧できます",
+      "saved": "保存されました",
+      "insert": "挿入",
+      "copied": "コピーされた番号",
+      "firstSeen": "最初のメッセージ: {{date}}"
+    },
+    "new": {
+      "title": "新しいチャット",
+      "phone": "電話番号",
+      "name": "名前 (オプション)",
+      "line": "ライン",
+      "invalid": "無効な番号です",
+      "exists": "この番号とのチャットが存在します: {{name}}",
+      "hasWa": "WhatsAppを使用する",
+      "noWa": "この番号には WhatsApp はありません",
+      "go": "チャットに行く",
+      "start": "チャットを開始する"
+    }
+  },
+  "account": {
+    "menu": "アカウント",
+    "profile": "私のプロフィール",
+    "switch": "アカウントを切り替える",
+    "web": "サイトを開く"
+  },
+  "update": {
+    "title": "アップデート",
+    "check": "チェックする",
+    "checking": "確認中...",
+    "upToDate": "最新の状態",
+    "newVersion": "新しいバージョン {{version}}",
+    "downloading": "ダウンロード中 {{version}} {{pct}}",
+    "restart": "更新するには再起動してください",
+    "download": "ダウンロード",
+    "installing": "インストール中...",
+    "failed": "確認できませんでした"
+  },
+  "legal": {
+    "title": "法的情報",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約"
+  }
+}

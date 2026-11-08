@@ -142,17 +142,17 @@ function flxsm_process_target( $id, $left = 30 ) {
 	$acc  = flxsm_account( $t['account_id'] );
 	$prov = $acc ? flxsm_provider( $acc['provider'] ) : null;
 	if ( ! $post || ! $acc || ! $prov ) {
-		flxsm_target_fail( $t, __( 'Hesap ya da gönderi bulunamadı.', 'flx-social' ) );
+		flxsm_target_fail( $t, __( 'Account or post not found.', 'flx-social' ) );
 		return;
 	}
 	if ( 'disabled' === $acc['status'] ) {
-		flxsm_target_fail( $t, __( 'Hesap kapalı.', 'flx-social' ) );
+		flxsm_target_fail( $t, __( 'Account is off.', 'flx-social' ) );
 		return;
 	}
 	$acc = $prov->ensure( $acc );
 	if ( is_wp_error( $acc ) ) {
 		flxsm_account_failed( $t['account_id'], $acc->get_error_message(), true );
-		flxsm_target_fail( $t, __( 'Bağlantının süresi dolmuş; Hesaplar’dan yeniden bağlayın.', 'flx-social' ) . ' (' . $acc->get_error_message() . ')' );
+		flxsm_target_fail( $t, __( 'The connection expired; reconnect it under Accounts.', 'flx-social' ) . ' (' . $acc->get_error_message() . ')' );
 		return;
 	}
 	$pl         = flxsm_target_payload( $t, $post );
@@ -220,7 +220,7 @@ function flxsm_process_target( $id, $left = 30 ) {
 			$cr = $prov->comment( $acc, (string) $res['id'], flxsm_apply_utm( $fc, $acc['provider'] ) );
 			if ( is_wp_error( $cr ) ) {
 				/* translators: %s: error */
-				flxsm_update_target( $id, array( 'error' => sprintf( __( 'Gönderi yayınlandı ama ilk yorum eklenemedi: %s', 'flx-social' ), $cr->get_error_message() ) ) );
+				flxsm_update_target( $id, array( 'error' => sprintf( __( 'The post was published but the first comment could not be added: %s', 'flx-social' ), $cr->get_error_message() ) ) );
 			}
 		}
 		flxsm_refresh_post_status( $t['post_id'] );
@@ -258,7 +258,7 @@ function flxsm_target_fail( array $t, $msg ) {
 function flxsm_retry_target( $id ) {
 	$t = flxsm_target_row( $id );
 	if ( ! $t || 'failed' !== $t['status'] ) {
-		return new WP_Error( 'flxsm_state', __( 'Yalnız başarısız hedef yeniden denenir.', 'flx-social' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxsm_state', __( 'Only a failed target can be retried.', 'flx-social' ), array( 'status' => 400 ) );
 	}
 	flxsm_update_target(
 		$id,
@@ -280,12 +280,12 @@ function flxsm_retry_target( $id ) {
 function flxsm_remote_ctx( $target_id ) {
 	$t = flxsm_target_row( $target_id );
 	if ( ! $t || 'published' !== $t['status'] || '' === $t['remote_id'] ) {
-		return new WP_Error( 'flxsm_state', __( 'Bu hedef ağda yayınlanmış değil.', 'flx-social' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxsm_state', __( 'This target is not published on the network.', 'flx-social' ), array( 'status' => 400 ) );
 	}
 	$acc  = flxsm_account( $t['account_id'] );
 	$prov = $acc ? flxsm_provider( $acc['provider'] ) : null;
 	if ( ! $prov ) {
-		return new WP_Error( 'flxsm_account', __( 'Hesap bulunamadı.', 'flx-social' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxsm_account', __( 'Account not found.', 'flx-social' ), array( 'status' => 404 ) );
 	}
 	$acc = $prov->ensure( $acc );
 	if ( is_wp_error( $acc ) ) {

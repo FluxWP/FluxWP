@@ -49,21 +49,21 @@ class EmsfbEmailHandler {
 
     private function get_fallback_text($key) {
         $fallbacks = [
-            'msgdml' => __('To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s .', 'flx-forms'),
-            'mlntip' => __('If your emails are not being delivered, try using an SMTP plugin. For more information, %1$s click here %2$s or contact our %3$s support team %4$s.', 'flx-forms'),
-            'msgnml' => __('To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s .', 'flx-forms'),
-            'serverEmailAble' => __('Email Server Status', 'flx-forms'),
-            'vmgs' => __('View Messages', 'flx-forms'),
-            'getProVersion' => __('Activate Pro version', 'flx-forms'),
-            'sentBy' => __('Sent by:', 'flx-forms'),
-            'hiUser' => __('Hello!', 'flx-forms'),
-            'trackingCode' => __('Confirmation Code', 'flx-forms'),
-            'newMessage' => __('New Message', 'flx-forms'),
+            'msgdml' => __('\\nTo explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s.\\n', 'flx-forms'),
+            'mlntip' => __('\\nIf your emails are not being delivered, try using an SMTP plugin. For more information,%1$sclick here%2$sor contact our%3$ssupport team%4$s.\\n', 'flx-forms'),
+            'msgnml' => __('\\nTo explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s.\\n', 'flx-forms'),
+            'serverEmailAble' => __('\\nEmail Server Status\\n', 'flx-forms'),
+            'vmgs' => __('\\nView Messages\\n', 'flx-forms'),
+            'getProVersion' => __('\\nActivate Pro version\\n', 'flx-forms'),
+            'sentBy' => __('\\nSent by:\\n', 'flx-forms'),
+            'hiUser' => __('\\nHello!\\n', 'flx-forms'),
+            'trackingCode' => __('\\nConfirmation Code\\n', 'flx-forms'),
+            'newMessage' => __('\\nNew Message\\n', 'flx-forms'),
             'createdBy' => __('Created by', 'flx-forms'),
-            'newMessageReceived' => __('New message received', 'flx-forms'),
-            'goodJob' => __('Good Job', 'flx-forms'),
-            'yFreeVEnPro' => __('Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s', 'flx-forms'),
-            'WeRecivedUrM' => __('We received your message', 'flx-forms'),
+            'newMessageReceived' => __('\\nNew message received\\n', 'flx-forms'),
+            'goodJob' => __('\\nGood Job\\n', 'flx-forms'),
+            'yFreeVEnPro' => __('\\nUpgrade to Pro for just%1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s\\n', 'flx-forms'),
+            'WeRecivedUrM' => __('\\nWe received your message\\n', 'flx-forms'),
         ];
 
         return $fallbacks[$key] ?? $key;
@@ -477,7 +477,7 @@ class EmsfbEmailHandler {
         $text_keys = ['msgdml', 'mlntip', 'msgnml', 'serverEmailAble', 'vmgs', 'getProVersion', 'sentBy', 'hiUser', 'trackingCode', 'newMessage', 'createdBy', 'newMessageReceived', 'goodJob', 'yFreeVEnPro', 'WeRecivedUrM'];
         $lang = $this->get_text_efb($text_keys);
 
-        $automatic_email_disclaimer = '📧 ' . __('This email was sent automatically. Please do not reply.', 'flx-forms');
+        $automatic_email_disclaimer = '📧 ' . __('\\nThis email was sent automatically. Please do not reply.\\n', 'flx-forms');
 
         $footer = "<a class='efb subtle-link' target='_blank' href='" . esc_url(home_url()) . "'>" . $lang['sentBy'] . " " . esc_html(get_bloginfo('name')) . "</a>";
         $align = is_rtl() ? 'right' : 'left';
@@ -498,7 +498,7 @@ class EmsfbEmailHandler {
                 $footer = "<div style='text-align:center;'>
                     " . $footer . "<br>
                     <p>" . sprintf(
-                        __('Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s', 'flx-forms'),
+                        __('\\nBuilt with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s\\n', 'flx-forms'),
                         "<a href='https://wordpress.org/plugins/easy-form-builder/' target='_blank' class='subtle-link' style='color:#888;text-decoration:none;'>",
                         "</a>",
                         "<a href='".$l."' target='_blank' class='subtle-link' style='color:#888;text-decoration:none;'>",
@@ -510,7 +510,7 @@ class EmsfbEmailHandler {
                 $footer = "<div style='text-align:center;'>
                         " . $footer . "<br>
                         <p>" . sprintf(
-                            __('Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s', 'flx-forms'),
+                            __('\\nBuilt with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s\\n', 'flx-forms'),
                             "<a href='https://wordpress.org/plugins/easy-form-builder/' target='_blank' class='subtle-link' style='color:#888;text-decoration:none;'>",
                             "</a>",
                             "<a href='".$l."' target='_blank' class='subtle-link' style='color:#888;text-decoration:none;'>",
@@ -526,7 +526,7 @@ class EmsfbEmailHandler {
         // report-specific shortcode_title value.
         $isWeeklyReportState = $state === 'weeklyAdminReport';
         $title = $isWeeklyReportState
-            ? __('Weekly Flux Forms report', 'flx-forms')
+            ? __('\\nWeekly Flux Forms report\\n', 'flx-forms')
             : $lang['newMessage'];
         $message = is_string($m) ? "<h3>$m</h3>" : "<h3>{$m[0]}</h3>";
         $blogName = get_bloginfo('name');
@@ -604,15 +604,15 @@ class EmsfbEmailHandler {
         }
 
         if ($isRegistrationState) {
-            $title = __('Welcome!', 'flx-forms');
+            $title = __('\\nWelcome!\\n', 'flx-forms');
         }
 
         if ($isRecoveryState) {
-            $title = __('Password Reset', 'flx-forms');
+            $title = __('\\nPassword Reset\\n', 'flx-forms');
         }
 
         if ($isAdminNoticeState) {
-            $title = __('Pro features are paused', 'flx-forms');
+            $title = __('\\nPro features are paused\\n', 'flx-forms');
         }
 
         if ($state == "testMailServer") {
@@ -674,10 +674,10 @@ class EmsfbEmailHandler {
                 <tr>
                     <td style='background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 25px; border-left: 5px solid #0ea5e9; border-radius: 12px; text-align: center;'>
                         <h2 style='color: #0c4a6e; margin: 0 0 15px 0; font-size: 24px; font-weight: 700;'>
-                            ✅ " . __('Congratulations! Email System Working', 'flx-forms') . "
+                            ✅ " . __('\\nCongratulations! Email System Working\\n', 'flx-forms') . "
                         </h2>
                         <p style='color: #075985; font-size: 16px; line-height: 1.6; margin: 0;'>
-                            " . __('Your server has successfully sent this test email. The email delivery system is properly configured and functioning.', 'flx-forms') . "
+                            " . __('\\nYour server has successfully sent this test email. The email delivery system is properly configured and functioning.\\n', 'flx-forms') . "
                         </p>
                     </td>
                 </tr>
@@ -686,7 +686,7 @@ class EmsfbEmailHandler {
                 <tr>
                     <td style='background-color: #fefce8; padding: 20px; border-left: 4px solid #eab308; border-radius: 10px;'>
                         <h3 style='color: #a16207; margin: 0 0 12px 0; font-size: 18px; font-weight: 600;'>
-                            💡 " . __('Email Delivery Tips', 'flx-forms') . "
+                            💡 " . __('\\nEmail Delivery Tips\\n', 'flx-forms') . "
                         </h3>
                         <div style='color: #713f12; font-size: 14px; line-height: 1.6;'>
                             $de
@@ -824,7 +824,7 @@ class EmsfbEmailHandler {
                 return $m;
             } else {
                 return "<h2 style='text-align:center'>" . $title . "</h2>
-                <p style='text-align:center;color:#666;'>" . __('Form submitted successfully without tracking.', 'flx-forms') . "</p>";
+                <p style='text-align:center;color:#666;'>" . __('\\nForm submitted successfully without tracking.\\n', 'flx-forms') . "</p>";
             }
         } elseif (is_array($m) && count($m) >= 2) {
             $form_content = $m[1];
@@ -878,7 +878,7 @@ class EmsfbEmailHandler {
                         <td style='text-align: center; padding: 20px;'>
                             <h2>" . $title . "</h2>
                             <p style='text-align:center'>" . $lang["trackingCode"] . ": <strong>" . $track_id . "</strong></p>
-                            <p style='text-align:center'> " . __('Your message has been received and recorded successfully.', 'flx-forms') . "</p>
+                            <p style='text-align:center'> " . __('\\nYour message has been received and recorded successfully.\\n', 'flx-forms') . "</p>
                             " . $tracking_section . "
                         </td>
                     </tr>
@@ -909,7 +909,7 @@ class EmsfbEmailHandler {
 
         // Generate recovery button
         $safe_link = esc_url($link);
-        $button_text = __('Reset Password', 'flx-forms');
+        $button_text = __('\\nReset Password\\n', 'flx-forms');
 
         $recovery_button = "
             <table role='presentation' cellspacing='0' cellpadding='0' border='0' style='margin: 25px auto;'>
@@ -930,27 +930,27 @@ class EmsfbEmailHandler {
 
         $link_text = sprintf(
             '<p style="margin: 20px 0 0 0; font-size: 13px; color: #6b7280; word-break: break-all; text-align: center;">%s<br><a href="%s" style="color: ' . esc_attr($btnBgColor) . '; text-decoration: none;">%s</a></p>',
-            esc_html__('Or copy and paste this link:', 'flx-forms'),
+            esc_html__('\\nOr copy and paste this link:\\n', 'flx-forms'),
             $safe_link,
             $safe_link
         );
 
         // Use theme color for warning section
         $warningBgColor = $this->adjust_color_brightness($btnBgColor, 0.92);
-        $warning_text = '<p style="margin: 20px 0 0 0; padding: 15px; background-color: ' . esc_attr($warningBgColor) . '; border-radius: 6px; font-size: 13px; color: ' . esc_attr($btnBgColor) . '; text-align: center;">⚠️ ' . esc_html__('If you did not request this, you can safely ignore it.', 'flx-forms') . '</p>';
+        $warning_text = '<p style="margin: 20px 0 0 0; padding: 15px; background-color: ' . esc_attr($warningBgColor) . '; border-radius: 6px; font-size: 13px; color: ' . esc_attr($btnBgColor) . '; text-align: center;">⚠️ ' . esc_html__('\\nIf you did not request this, you can safely ignore it.\\n', 'flx-forms') . '</p>';
 
         // Greeting with username if available
         $greeting = '';
         if (!empty($username)) {
             $greeting = sprintf(
                 '<p style="margin: 0 0 20px 0; font-size: 18px; text-align: center;">%s <strong>%s</strong>,</p>',
-                esc_html__('Hi', 'flx-forms'),
+                esc_html__('\\nHi\\n', 'flx-forms'),
                 $username
             );
         }
 
-        $main_text = '<p style="margin: 0 0 10px 0; text-align: center;">' . esc_html__('You have requested to reset your password.', 'flx-forms') . '</p>';
-        $main_text .= '<p style="margin: 0; text-align: center;">' . esc_html__('Click the button below to set a new password. This link will be valid for 24 hours.', 'flx-forms') . '</p>';
+        $main_text = '<p style="margin: 0 0 10px 0; text-align: center;">' . esc_html__('\\nYou have requested to reset your password.\\n', 'flx-forms') . '</p>';
+        $main_text .= '<p style="margin: 0; text-align: center;">' . esc_html__('\\nClick the button below to set a new password. This link will be valid for 24 hours.\\n', 'flx-forms') . '</p>';
 
         return $greeting . $main_text . $recovery_button . $link_text . $warning_text;
     }
@@ -975,7 +975,7 @@ class EmsfbEmailHandler {
         $username = is_string($m) ? esc_html($m) : '';
 
         $safe_link = esc_url($link);
-        $button_text = __('Verify Email', 'flx-forms');
+        $button_text = __('\\nVerify Email\\n', 'flx-forms');
 
         $verify_button = "
             <table role='presentation' cellspacing='0' cellpadding='0' border='0' style='margin: 25px auto;'>
@@ -996,27 +996,27 @@ class EmsfbEmailHandler {
 
         $link_text = sprintf(
             '<p style="margin: 20px 0 0 0; font-size: 13px; color: #6b7280; word-break: break-all; text-align: center;">%s<br><a href="%s" style="color: ' . esc_attr($btnBgColor) . '; text-decoration: none;">%s</a></p>',
-            esc_html__('Or copy and paste this link:', 'flx-forms'),
+            esc_html__('\\nOr copy and paste this link:\\n', 'flx-forms'),
             $safe_link,
             $safe_link
         );
 
         // Use theme color for warning section
         $warningBgColor = $this->adjust_color_brightness($btnBgColor, 0.92);
-        $warning_text = '<p style="margin: 20px 0 0 0; padding: 15px; background-color: ' . esc_attr($warningBgColor) . '; border-radius: 6px; font-size: 13px; color: ' . esc_attr($btnBgColor) . '; text-align: center;">⚠️ ' . esc_html__('If you did not request this, you can safely ignore it.', 'flx-forms') . '</p>';
+        $warning_text = '<p style="margin: 20px 0 0 0; padding: 15px; background-color: ' . esc_attr($warningBgColor) . '; border-radius: 6px; font-size: 13px; color: ' . esc_attr($btnBgColor) . '; text-align: center;">⚠️ ' . esc_html__('\\nIf you did not request this, you can safely ignore it.\\n', 'flx-forms') . '</p>';
 
         // Greeting with username if available
         $greeting = '';
         if (!empty($username)) {
             $greeting = sprintf(
                 '<p style="margin: 0 0 20px 0; font-size: 18px; text-align: center;">%s <strong>%s</strong>,</p>',
-                esc_html__('Hi', 'flx-forms'),
+                esc_html__('\\nHi\\n', 'flx-forms'),
                 $username
             );
         }
 
-        $main_text = '<p style="margin: 0 0 10px 0; text-align: center;">' . esc_html__('Your account has been successfully created!', 'flx-forms') . '</p>';
-        $main_text .= '<p style="margin: 0; text-align: center;">' . esc_html__('Please verify your email address by clicking the button below. This activation link will be valid for 24 hours.', 'flx-forms') . '</p>';
+        $main_text = '<p style="margin: 0 0 10px 0; text-align: center;">' . esc_html__('\\nYour account has been successfully created!\\n', 'flx-forms') . '</p>';
+        $main_text .= '<p style="margin: 0; text-align: center;">' . esc_html__('\\nPlease verify your email address by clicking the button below. This activation link will be valid for 24 hours.\\n', 'flx-forms') . '</p>';
 
         return $greeting . $main_text . $verify_button . $link_text . $warning_text;
     }
@@ -1045,7 +1045,7 @@ class EmsfbEmailHandler {
         $infoBgColor = $this->adjust_color_brightness($btnBgColor, 0.95);
 
         $content = '<div style="text-align: center;">';
-        $content .= '<p style="margin: 0 0 20px 0; font-size: 16px;">' . esc_html__('A new user has registered on your website.', 'flx-forms') . '</p>';
+        $content .= '<p style="margin: 0 0 20px 0; font-size: 16px;">' . esc_html__('\\nA new user has registered on your website.\\n', 'flx-forms') . '</p>';
 
         // User info box with theme colors
         $content .= '<table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 20px auto; background-color: ' . esc_attr($infoBgColor) . '; border-radius: 8px; border: 1px solid ' . esc_attr($this->adjust_color_brightness($btnBgColor, 0.8)) . ';">';
@@ -1068,7 +1068,7 @@ class EmsfbEmailHandler {
         $content .= '</td></tr></table>';
 
         // Note for admin with theme colors
-        $content .= '<p style="margin: 20px 0 0 0; padding: 15px; background-color: ' . esc_attr($headerBgColor) . '; border-radius: 6px; font-size: 13px; color: ' . esc_attr($btnBgColor) . '; text-align: center;">ℹ️ ' . esc_html__('The user has been sent a verification email to confirm their account.', 'flx-forms') . '</p>';
+        $content .= '<p style="margin: 20px 0 0 0; padding: 15px; background-color: ' . esc_attr($headerBgColor) . '; border-radius: 6px; font-size: 13px; color: ' . esc_attr($btnBgColor) . '; text-align: center;">ℹ️ ' . esc_html__('\\nThe user has been sent a verification email to confirm their account.\\n', 'flx-forms') . '</p>';
 
         $content .= '</div>';
 
@@ -2085,10 +2085,10 @@ table { border-collapse: collapse !important; }
 		// existing callers stay valid.
 		return false;
 		$all_plugins = get_plugins();
-		$msg = esc_html__('This is an alert message regarding a SID validation error. This issue may have occurred due to a plugin conflict or an unauthorized attempt to access the website.', 'flx-forms') . '<br>';
-        $msg .= esc_html__('If you receive this email multiple times, it could indicate a recurring issue.', 'flx-forms') ;
-		$msg .= '<a href="'.EMSFB_SERVER_URL.'/support" target="_blank">'.esc_html__('Please contact our support team for assistance.', 'flx-forms') . '</a><br>';
-		$msg .= esc_html__('One or more of the plugins listed below—typically related to caching or security—might be triggering this issue. For troubleshooting, temporarily deactivate them and test your site.', 'flx-forms') . '<br>';
+		$msg = esc_html__('\\nThis is an alert message regarding a SID validation error. This issue may have occurred due to a plugin conflict or an unauthorized attempt to access the website.\\n', 'flx-forms') . '<br>';
+        $msg .= esc_html__('\\nIf you receive this email multiple times, it could indicate a recurring issue.\\n', 'flx-forms') ;
+		$msg .= '<a href="'.EMSFB_SERVER_URL.'/support" target="_blank">'.esc_html__('\\nPlease contact our support team for assistance.\\n', 'flx-forms') . '</a><br>';
+		$msg .= esc_html__('\\nOne or more of the plugins listed below—typically related to caching or security—might be triggering this issue. For troubleshooting, temporarily deactivate them and test your site.\\n', 'flx-forms') . '<br>';
 
 		$str =   '<!--efb-->';
 		$str .= 'Error code:'.$status . '<br>';
@@ -2122,7 +2122,7 @@ table { border-collapse: collapse !important; }
 
 		}
 		$str .= $div;
-		$subject = esc_html__('Flux Forms', 'flx-forms') . ':' . esc_html__('SID Validation Error', 'flx-forms') . ' - ' . get_bloginfo('name');
+		$subject = esc_html__('\\nFlux Forms\\n', 'flx-forms') . ':' . esc_html__('\\nSID Validation Error\\n', 'flx-forms') . ' - ' . get_bloginfo('name');
 		$to = [];
 		$to[] = get_option('admin_email');
 		$settings = get_setting_Emsfb('decoded');

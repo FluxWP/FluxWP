@@ -1,0 +1,1862 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "FluxWP packages."
+msgstr "FluxWP 软件包。"
+
+msgid "Install and activate missing plugins"
+msgstr "安装并激活缺少的插件"
+
+msgid "The missing plugins could not be installed. Install them from FluxWP Panel › Packages."
+msgstr "无法安装缺少的插件。从 FluxWP 面板 › 软件包安装它们。"
+
+msgid "Presets"
+msgstr "预设"
+
+msgid "Preset applied to the empty site."
+msgstr "预设应用于空站点。"
+
+msgid "%s preset is ready. It was not applied automatically because the site has content: preview and apply it."
+msgstr "%s预设已准备就绪。它不会自动应用,因为该网站有内容:预览并应用它。"
+
+msgid "Presets: %1$d pending updates, %2$d patches awaiting approval."
+msgstr "预设:%1$d待更新,%2$d补丁等待批准。"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Done."
+msgstr "完成。"
+
+msgid "Applied: %d changes."
+msgstr "应用:%d更改。"
+
+msgid "%d manually changed values were kept."
+msgstr "保留%d手动更改的值。"
+
+msgid "Undone: %1$d. Left untouched because they changed later: %2$d."
+msgstr "撤消:%1$d。保持不变,因为它们后来更改了:%2$d。"
+
+msgid "\"%s\" imported. You can preview and apply it."
+msgstr "已导入“%s”。您可以预览并应用它。"
+
+msgid "An imported preset cannot contain \"$file\" references; write bodies inline or install the preset as a plugin."
+msgstr "导入的预设不能包含“$file”引用;内联编写主体或将预设安装为插件。"
+
+msgid "Organisation profile edited in the admin"
+msgstr "在管理员中编辑的组织资料"
+
+msgid "A preset sets up the site in one step: organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the admin are never overwritten; updates are applied below one by one with your approval."
+msgstr "预设可一步设置网站:组织配置文件、插件设置、颜色、页眉/页脚、模板、页面和菜单。您在管理中所做的更改永远不会被覆盖;经您批准后,更新将在下面一一应用。"
+
+msgid "Organisation profile"
+msgstr "组织简介"
+
+msgid "History"
+msgstr "历史"
+
+msgid "Export / import"
+msgstr "出口/进口"
+
+msgid "No presets installed. Install a preset plugin (e.g. Örnek Preset) or import JSON from the \"Export / import\" tab."
+msgstr "没有安装预设。安装预设插件(例如 Örnek Preset)或从“导出/导入”选项卡导入 JSON。"
+
+msgid "Invalid"
+msgstr "无效"
+
+msgid "Applied · %s"
+msgstr "Applied ·%s"
+
+msgid "Not applied"
+msgstr "未应用"
+
+msgid "Missing: %s. These parts are skipped."
+msgstr "缺少:%s。这些部分被跳过。"
+
+msgid "Preview and apply"
+msgstr "预览并应用"
+
+msgid "Fill empty values only"
+msgstr "仅填充空值"
+
+msgid "Compare again"
+msgstr "再比较一下"
+
+msgid "Remove the preset? Settings it wrote go back to their old values (your manual changes stay), pages it created become drafts."
+msgstr "删除预设?它编写的设置会返回到原来的值(您的手动更改保留),它创建的页面会变成草稿。"
+
+msgid "Remove preset"
+msgstr "删除预设"
+
+msgid "Pending updates"
+msgstr "待更新"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "Skip"
+msgstr "跳过"
+
+msgid "Patches awaiting approval"
+msgstr "补丁等待批准"
+
+msgid "Change proposals from the Flux AI chat or an external MCP client wait here for approval."
+msgstr "来自 Flux AI 聊天或外部 MCP 客户端的更改提案在此等待批准。"
+
+msgid "Reject"
+msgstr "拒绝"
+
+msgid "Site patches"
+msgstr "网站补丁"
+
+msgid "theme %s"
+msgstr "主题%s"
+
+msgid "Will be added"
+msgstr "将会添加"
+
+msgid "Will change"
+msgstr "会改变"
+
+msgid "Same"
+msgstr "一样"
+
+msgid "Filled, kept"
+msgstr "填满,保留"
+
+msgid "Changed manually, skipped"
+msgstr "手动更改,跳过"
+
+msgid "Media"
+msgstr "媒体"
+
+msgid "Content and theme"
+msgstr "内容和主题"
+
+msgid "WordPress settings"
+msgstr "WordPress 设置"
+
+msgid "Plugin settings"
+msgstr "插件设置"
+
+msgid "Patch not found."
+msgstr "未找到补丁。"
+
+msgid "Sync"
+msgstr "同步"
+
+msgid "Settings synced (%s)"
+msgstr "设置已同步 (%s)"
+
+msgid "%1$s: \"%2$s\" is not in the settings schema; it is written but the plugin may not use it."
+msgstr "%1$s:“%2$s”不在设置架构中;它已被写入,但插件可能不会使用它。"
+
+msgid "Patch"
+msgstr "补丁"
+
+msgid "Preset not found."
+msgstr "未找到预设。"
+
+msgid "Apply"
+msgstr "申请"
+
+msgid "What"
+msgstr "什么"
+
+msgid "Now"
+msgstr "现在"
+
+msgid "Preset"
+msgstr "预设"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Value of the %s preset. Once applied, that preset's updates will not overwrite it."
+msgstr "%s预设值。应用后,该预设的更新将不会覆盖它。"
+
+msgid "Conflict: %s also writes this value; the last one applied wins."
+msgstr "冲突:%s也写入这个值;最后应用的获胜。"
+
+msgid "Apply anyway"
+msgstr "Apply anyway"
+
+msgid "Apply (%d changes)"
+msgstr "应用(%d更改)"
+
+msgid "Show unchanged rows too"
+msgstr "也显示未更改的行"
+
+msgid "Organisation identity. Plugins read the name, signature, WhatsApp, IBAN and similar details from here. The preset fills it on first install; preset updates never overwrite values you change here."
+msgstr "组织身份。插件从此处读取姓名、签名、WhatsApp、IBAN 和类似详细信息。首次安装时预设会填充它;预设更新永远不会覆盖您在此处更改的值。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Nothing applied yet."
+msgstr "尚未应用任何内容。"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "Undo"
+msgstr "撤消"
+
+msgid "Removal"
+msgstr "去除"
+
+msgid "Skipped"
+msgstr "跳过"
+
+msgid "Profile"
+msgstr "公司简介"
+
+msgid "Time"
+msgstr "时间"
+
+msgid "Action"
+msgstr "行动"
+
+msgid "Source"
+msgstr "来源"
+
+msgid "Result"
+msgstr "结果"
+
+msgid "Undo this change?"
+msgstr "撤消此更改?"
+
+msgid "Export this site as a preset"
+msgstr "将此网站导出为预设"
+
+msgid "Downloads the site's current state as a flx-preset/1 JSON file. Secrets such as passwords, API keys and tokens are never written to the file."
+msgstr "将站点的当前状态下载为 flx-preset/1 JSON 文件。密码、API 密钥和令牌等秘密永远不会写入文件。"
+
+msgid "Styles, templates and parts"
+msgstr "样式、模板和零件"
+
+msgid "Menus"
+msgstr "菜单"
+
+msgid "Logo and site icon"
+msgstr "标志和网站图标"
+
+msgid "Pages"
+msgstr "页数"
+
+msgid "Download JSON"
+msgstr "下载 JSON"
+
+msgid "Import preset"
+msgstr "导入预设"
+
+msgid "Import"
+msgstr "进口"
+
+msgid "An imported preset is not applied; preview and apply it in the Presets tab."
+msgstr "不应用导入的预设;预览并在“预设”选项卡中应用它。"
+
+msgid "AI and MCP"
+msgstr "人工智能和MCP"
+
+msgid "The Flux AI chat and Flux MCP tools (preset_schema, preset_export, preset_patch_preview, preset_patch_apply, preset_revert, preset_history) edit the site through patches. In the chat every patch asks for approval before it is applied."
+msgstr "Flux AI 聊天和 Flux MCP 工具(preset_schema、preset_export、preset_patch_preview、preset_patch_apply、preset_revert、preset_history)通过补丁编辑站点。在聊天中,每个补丁在应用之前都会请求批准。"
+
+msgid "Apply patches from external MCP clients without waiting for approval"
+msgstr "应用来自外部 MCP 客户端的补丁,无需等待批准"
+
+msgid "More closing comments than opening ones."
+msgstr "结束语多于开场白。"
+
+msgid "Unregistered block: %s"
+msgstr "未注册块:%s"
+
+msgid "Media file missing: %s"
+msgstr "媒体文件丢失:%s"
+
+msgid "Media needs \"file\" or \"url\"."
+msgstr "媒体需要“文件”或“网址”。"
+
+msgid "Content type \"%s\" does not exist on this site, skipped."
+msgstr "该网站不存在内容类型“%s”,已跳过。"
+
+msgid "\"%s\" cannot be written, skipped."
+msgstr "“%s”不可写入,跳过。"
+
+msgid "The %s language pack is not installed; the site language was not set (Settings › General)."
+msgstr "%s语言包未安装;未设置网站语言(设置 > 常规)。"
+
+msgid "Migration not found."
+msgstr "未找到迁移。"
+
+msgid "Record not found."
+msgstr "未找到记录。"
+
+msgid "Exported from %1$s on %2$s."
+msgstr "从%2$s上的%1$s导出。"
+
+msgid "Page"
+msgstr "页面"
+
+msgid "Post"
+msgstr "邮政"
+
+msgid "Term"
+msgstr "期限"
+
+msgid "Taxonomy not found: %s"
+msgstr "未找到分类:%s"
+
+msgid "Menu"
+msgstr "菜单"
+
+msgid "Template"
+msgstr "模板"
+
+msgid "Template part"
+msgstr "模板部分"
+
+msgid "Global styles"
+msgstr "全局样式"
+
+msgid "Product"
+msgstr "产品展示"
+
+msgid "Product not found."
+msgstr "未找到产品。"
+
+msgid "This patch has already been processed."
+msgstr "该补丁已被处理。"
+
+msgid "Short name"
+msgstr "简称"
+
+msgid "Legal name"
+msgstr "法定名称"
+
+msgid "Tagline"
+msgstr "标语"
+
+msgid "Short introduction"
+msgstr "简短介绍"
+
+msgid "Message signature"
+msgstr "消息签名"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "WhatsApp support line"
+msgstr "WhatsApp 支持热线"
+
+msgid "Email"
+msgstr "电子邮件"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Map link"
+msgstr "地图链接"
+
+msgid "IBAN"
+msgstr "国际银行账号"
+
+msgid "Bank"
+msgstr "银行"
+
+msgid "Account holder"
+msgstr "账户持有人"
+
+msgid "Tax office"
+msgstr "税务局"
+
+msgid "Tax number"
+msgstr "税号"
+
+msgid "Year founded"
+msgstr "成立年份"
+
+msgid "Logo (media ID)"
+msgstr "徽标(媒体 ID)"
+
+msgid "Light logo (media ID)"
+msgstr "浅色徽标(媒体 ID)"
+
+msgid "Site icon (media ID)"
+msgstr "站点图标(媒体 ID)"
+
+msgid "Colours"
+msgstr "颜色"
+
+msgid "Social media"
+msgstr "社交媒体"
+
+msgid "Could not read the preset file."
+msgstr "无法读取预设文件。"
+
+msgid "The preset is not valid JSON: %s"
+msgstr "预设无效 JSON:%s"
+
+msgid "Not valid JSON: %s"
+msgstr "无效 JSON:%s"
+
+msgid "File not found: %s"
+msgstr "未找到文件:%s"
+
+msgid "\"format\" must be \"%s\"."
+msgstr "“格式”必须是“%s”。"
+
+msgid "\"id\" must use lowercase letters, digits, - and _."
+msgstr "“id”必须使用小写字母、数字、- 和 _。"
+
+msgid "\"name\" cannot be empty."
+msgstr "“姓名”不能为空。"
+
+msgid "\"%s\" must be an object."
+msgstr "“%s”必须是一个对象。"
+
+msgid "\"%s\" must be a list."
+msgstr "“%s”必须是一个列表。"
+
+msgid "content[%d]: \"type\" and \"key\" are required."
+msgstr "内容[%d]:“类型”和“密钥”是必需的。"
+
+msgid "content[%1$d]: no active plugin registers the \"%2$s\" type; it will be skipped."
+msgstr "content[%1$d]:没有活动插件注册“%2$s”类型;它将被跳过。"
+
+msgid "%s: secret fields (password, key, token) cannot be in a preset."
+msgstr "%s:秘密字段(密码、密钥、令牌)不能位于预设中。"
+
+msgid "The \"%s\" option cannot be written by a preset."
+msgstr "“%s”选项不能由预设写入。"
+
+msgid "Preset engine: sets up the site in one step from a preset file (preset.json) or changes it through approved patches. Organisation profile, plugin settings, global styles, templates, header/footer, pages, menus and media. Preview, apply, undo, migrations, export this site as a preset; approved edits from the Flux AI chat and Flux MCP."
+msgstr "预设引擎:从预设文件 (preset.json) 一步设置站点,或通过批准的补丁对其进行更改。组织配置文件、插件设置、全局样式、模板、页眉/页脚、页面、菜单和媒体。预览、应用、撤消、迁移、将此站点导出为预设;来自 Flux AI 聊天和 Flux MCP 的批准编辑。"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Package not found."
+msgstr "找不到包。"
+
+msgid "Installing %s"
+msgstr "安装%s"
+
+msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org. New versions appear on Dashboard › Updates as usual."
+msgstr "FluxWP 主题和插件是从您自己的更新服务器而不是 wordpress.org 更新的。新版本出现在仪表板上 › 照常更新。"
+
+msgid "Settings saved and updates checked."
+msgstr "已保存设置并检查更新。"
+
+msgid "Updates checked."
+msgstr "检查更新。"
+
+msgid "Connected to the server as \"%1$s\". Last check: %2$s ago."
+msgstr "作为“%1$s”连接到服务器。最后一次检查:%2$s前。"
+
+msgid "Packages"
+msgstr "套餐"
+
+msgid "Package"
+msgstr "套餐"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Installed"
+msgstr "已安装"
+
+msgid "Latest version"
+msgstr "最新版本"
+
+msgid "Could not get the package list from the server. Enter the key and press \"Check now\"."
+msgstr "无法从服务器获取包列表。输入密钥并按“立即检查”。"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "Plugin"
+msgstr "插件"
+
+msgid "Update available"
+msgstr "可用更新"
+
+msgid "Up to date"
+msgstr "最新"
+
+msgid "Not installed"
+msgstr "未安装"
+
+msgid "Install"
+msgstr "安装"
+
+msgid "Check now"
+msgstr "立即查看"
+
+msgid "Check for updates"
+msgstr "检查更新"
+
+msgid "Last check: %s"
+msgstr "最后检查:%s"
+
+msgid "Checking…"
+msgstr "正在检查..."
+
+msgid "Could not connect to the server."
+msgstr "无法连接到服务器。"
+
+msgid "%d update available"
+msgid_plural "%d updates available"
+msgstr[0] "%d可用更新"
+
+msgid "All up to date ✓"
+msgstr "全部是最新的 ✓"
+
+msgid "Connection"
+msgstr "连接方式"
+
+msgid "Server URL"
+msgstr "服务器地址"
+
+msgid "Set by the FLX_UPDATE_SERVER constant in wp-config.php."
+msgstr "由 wp-config.php 中的 FLX_UPDATE_SERVER 常量设置。"
+
+msgid "Leave empty to use the default server. https only."
+msgstr "留空以使用默认服务器。仅限 https。"
+
+msgid "Site key"
+msgstr "站点密钥"
+
+msgid "Set by the FLX_UPDATE_KEY constant in wp-config.php."
+msgstr "由 wp-config.php 中的 FLX_UPDATE_KEY 常量设置。"
+
+msgid "Saved (type a new key to change it)"
+msgstr "已保存(输入新密钥进行更改)"
+
+msgid "Remove key"
+msgstr "移除钥匙"
+
+msgid "Get it from the update server's admin panel (/admin) with \"Add site\". Give each site its own key."
+msgstr "使用“添加站点”从更新服务器的管理面板 (/admin) 获取它。为每个站点提供自己的密钥。"
+
+msgid "Automatic updates"
+msgstr "自动更新"
+
+msgid "Install new versions of FluxWP packages automatically"
+msgstr "自动安装新版本的 FluxWP 软件包"
+
+msgid "When this is off, WordPress's per-plugin \"Enable auto-updates\" setting applies."
+msgstr "关闭此功能后,WordPress 每个插件的“启用自动更新”设置将适用。"
+
+msgid "Save and check"
+msgstr "保存并检查"
+
+msgid "No site key entered."
+msgstr "未输入站点密钥。"
+
+msgid "Could not reach the server: %s"
+msgstr "无法到达服务器:%s"
+
+msgid "Invalid site key. Compare it with config.php on the server."
+msgstr "站点密钥无效。将其与服务器上的 config.php 进行比较。"
+
+msgid "The server returned an unexpected response (HTTP %d)."
+msgstr "服务器返回意外响应 (HTTP%d)。"
+
+msgid "No notes for this version."
+msgstr "此版本没有注释。"
+
+msgid "Could not rename the package folder."
+msgstr "无法重命名包文件夹。"
+
+msgid "Update key"
+msgstr "更新密钥"
+
+msgid "No site key entered; FluxWP packages will not receive updates."
+msgstr "未输入站点密钥; FluxWP 软件包不会收到更新。"
+
+msgid "Not checked yet."
+msgstr "尚未检查。"
+
+msgid "Server connection works. Last check: %s."
+msgstr "服务器连接有效。最后检查:%s。"
+
+msgid "Update server"
+msgstr "更新服务器"
+
+msgid "FluxWP package updates"
+msgstr "FluxWP 软件包更新"
+
+msgid "Waiting for update: %s"
+msgstr "等待更新:%s"
+
+msgid "Updates"
+msgstr "更新"
+
+msgid "Connected"
+msgstr "已连接"
+
+msgid "Connection error"
+msgstr "连接错误"
+
+msgid "Not connected"
+msgstr "未连接"
+
+msgid "Not checked yet"
+msgstr "尚未检查"
+
+msgid "Recognized by the server as \"%1$s\" (%2$s)."
+msgstr "服务器将其识别为“%1$s”(%2$s)。"
+
+msgid "No site key entered. Get one from the update server's admin panel (/admin)."
+msgstr "未输入站点密钥。从更新服务器的管理面板 (/admin) 获取一个。"
+
+msgid "Connect to the server with \"Test connection\"."
+msgstr "使用“测试连接”连接到服务器。"
+
+msgid "Last check: %s ago"
+msgstr "最后检查:%s前"
+
+msgid "%1$d packages, %2$d updates"
+msgstr "%1$d软件包、%2$d更新"
+
+msgid "Test connection"
+msgstr "测试连接"
+
+msgid "Flux Packages"
+msgstr "助焊剂包"
+
+msgid "Update settings"
+msgstr "更新设置"
+
+msgid "No package selected for update."
+msgstr "没有选择更新包。"
+
+msgid "Updating plugins"
+msgstr "更新插件"
+
+msgid "Updating themes"
+msgstr "更新主题"
+
+msgid "Installing %1$s version %2$s"
+msgstr "安装%1$s版本%2$s"
+
+msgid "No records."
+msgstr "没有记录。"
+
+msgid "Back to updates"
+msgstr "返回更新"
+
+msgid "version changed (%s)"
+msgstr "版本已更改(%s)"
+
+msgid "rolled back automatically (%s)"
+msgstr "自动回滚(%s)"
+
+msgid "update failed (%s)"
+msgstr "更新失败(%s)"
+
+msgid "updated (%s)"
+msgstr "已更新(%s)"
+
+msgid "Post-update check"
+msgstr "更新后检查"
+
+msgid "Check that the site still loads after updating; roll the package back if it fails"
+msgstr "检查更新后网站是否仍然加载;如果失败则回滚包"
+
+msgid "Only HTTP 500 (critical error) triggers a rollback; network or firewall errors do not."
+msgstr "只有HTTP 500(严重错误)才会触发回滚;网络或防火墙错误则不会。"
+
+msgid "FluxWP packages"
+msgstr "FluxWP 包"
+
+msgid "Update selected"
+msgstr "更新所选内容"
+
+msgid "Update all (%s)"
+msgstr "全部更新 (%s)"
+
+msgid "Select all"
+msgstr "选择全部"
+
+msgid "Could not get the package list. Enter the key in Settings and click \"Test connection\"."
+msgstr "无法获取包裹列表。在“设置”中输入密钥,然后单击“测试连接”。"
+
+msgid "Change version"
+msgstr "更改版本"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "older"
+msgstr "较老的"
+
+msgid "Install this version"
+msgstr "安装此版本"
+
+msgid "A backup is taken first."
+msgstr "首先进行备份。"
+
+msgid "Flux Backup is not installed: no backup will be taken."
+msgstr "Flux Backup 未安装:不会进行备份。"
+
+msgid "WordPress updates"
+msgstr "WordPress 更新"
+
+msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org."
+msgstr "FluxWP 主题和插件是从您自己的更新服务器而不是 wordpress.org 更新的。"
+
+msgid "A backup is taken before every update (Flux Backup)."
+msgstr "每次更新之前都会进行备份(Flux 备份)。"
+
+msgid "Backups"
+msgstr "备份"
+
+msgid "No backup before updates: the Flux Backup plugin is not installed or active."
+msgstr "更新前无备份:Flux 备份插件未安装或未激活。"
+
+msgid "Activate"
+msgstr "激活"
+
+msgid "Install Flux Backup"
+msgstr "安装通量备份"
+
+msgid "No FluxWP package updates yet."
+msgstr "尚未有 FluxWP 软件包更新。"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "By"
+msgstr "由"
+
+msgid "Backup"
+msgstr "备份"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Automatic"
+msgstr "自动"
+
+msgid "Open backup"
+msgstr "打开备份"
+
+msgid "Install version %2$s of %1$s?"
+msgstr "安装%1$s版本%2$s吗?"
+
+msgid "Package did not change; the installation may have failed."
+msgstr "包裹没有变化;安装可能失败。"
+
+msgid "Success ✓"
+msgstr "成功 ✓"
+
+msgid "Rolled back to the previous version automatically."
+msgstr "自动回滚到之前的版本。"
+
+msgid "Previous version not found; restore it manually."
+msgstr "未找到以前的版本;手动恢复它。"
+
+msgid "This version is not on the server."
+msgstr "该版本不在服务器上。"
+
+msgid "Package is not installed on this site."
+msgstr "此站点上未安装软件包。"
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "%1$s之前%2$s→%3$s"
+
+msgid "Backup failed, nothing was changed: %s"
+msgstr "备份失败,没有任何更改:%s"
+
+msgid "Installation failed."
+msgstr "安装失败。"
+
+msgid "The site failed after the update (HTTP 500: %s)."
+msgstr "更新后站点失败(HTTP 500:%s)。"
+
+msgid "Site check could not run (no connection)."
+msgstr "站点检查无法运行(无连接)。"
+
+msgid "Site check returned HTTP %d; not treated as a failure."
+msgstr "站点检查返回 HTTP%d;不被视为失败。"
+
+msgid "%d backup deleted."
+msgid_plural "%d backups deleted."
+msgstr[0] "%d备份已删除。"
+
+msgid "Retention saved and applied to existing update backups."
+msgstr "保留已保存并应用于现有更新备份。"
+
+msgid "%d expired backup deleted."
+msgid_plural "%d expired backups deleted."
+msgstr[0] "%d已删除过期备份。"
+
+msgid "Update backups are deleted automatically after"
+msgstr "更新后备份会自动删除"
+
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] "%d天"
+
+msgid "."
+msgstr "。"
+
+msgid "Flux Backup settings"
+msgstr "通量备份设置"
+
+msgid "Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here)."
+msgstr "更新备份保留在%s页面上设置(对于 Flux Backup 1.2.0,您也可以在此处更改它)。"
+
+msgid "Currently %1$d update backup, %2$s."
+msgid_plural "Currently %1$d update backups, %2$s."
+msgstr[0] "当前%1$d更新备份、%2$s。"
+
+msgid "Delete all unlocked update backups? This cannot be undone."
+msgstr "删除所有解锁的更新备份?此操作无法撤消。"
+
+msgid "Delete all"
+msgstr "全部删除"
+
+msgid "Deleted"
+msgstr "已删除"
+
+msgid "Locked backups are never deleted automatically."
+msgstr "锁定的备份永远不会自动删除。"
+
+msgid "Locked"
+msgstr "锁定"
+
+msgid "Deleted on %s"
+msgstr "已于%s删除"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Delete the selected update backups? This cannot be undone."
+msgstr "删除选定的更新备份吗?此操作无法撤消。"
+
+msgid "Delete selected backups"
+msgstr "删除选定的备份"
+
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] "%s项目"
+
+msgid "First page"
+msgstr "第一页"
+
+msgid "Previous page"
+msgstr "上一页"
+
+msgid "Next page"
+msgstr "下一页"
+
+msgid "Last page"
+msgstr "最后一页"
+
+msgid "%1$d of %2$d"
+msgstr "%1$d或%2$d"
+
+msgid "Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone."
+msgstr "删除这个备份吗?它还保存同一批量更新中其他包的备份。此操作无法撤消。"
+
+msgid "No package selected to install or update."
+msgstr "未选择要安装或更新的软件包。"
+
+msgid "installed %s"
+msgstr "已安装%s"
+
+msgid "install failed"
+msgstr "安装失败"
+
+msgid "Hide log"
+msgstr "隐藏日志"
+
+msgid "Show log"
+msgstr "显示日志"
+
+msgid "Activate installed"
+msgstr "激活已安装"
+
+msgid "Install / update selected"
+msgstr "安装/更新所选"
+
+msgid "Requires:"
+msgstr "要求:"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "Installed, inactive"
+msgstr "已安装,未激活"
+
+msgid "%1$s requires %2$s (%3$s)."
+msgstr "%1$s需要%2$s(%3$s)。"
+
+msgid "not installed"
+msgstr "未安装"
+
+msgid "installed, inactive"
+msgstr "已安装,未激活"
+
+msgid "Add %s too"
+msgstr "也添加%s"
+
+msgid "Will also be installed / activated:"
+msgstr "还将安装/激活:"
+
+msgid "wordpress.org"
+msgstr "wordpress.org"
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "%1$s was deselected: it does not work without %2$s."
+msgstr "%1$s已取消选择:没有%2$s就无法工作。"
+
+msgid "For %1$s these will also be installed and activated: %2$s. Continue?"
+msgstr "对于%1$s,还将安装并激活这些:%2$s。继续?"
+
+msgid "Preparing…"
+msgstr "正在准备......"
+
+msgid "Working, please stay on this page…"
+msgstr "工作中,请留在此页面..."
+
+msgid "Stay on this page until it finishes"
+msgstr "留在此页面直至完成"
+
+msgid "Reload"
+msgstr "重新加载"
+
+msgid "Reload the page to see the latest changes."
+msgstr "重新加载页面即可查看最新更改。"
+
+msgid "Dismiss"
+msgstr "解雇"
+
+msgid "Nothing to do."
+msgstr "无事可做。"
+
+msgid "Done: %1$d succeeded, %2$d failed."
+msgstr "完成:%1$d成功,%2$d失败。"
+
+msgid "The server did not respond (%s). Check the history and system checks."
+msgstr "服务器未响应 (%s)。检查历史记录和系统检查。"
+
+msgid "An install/update is running. Leaving the page may interrupt it."
+msgstr "安装/更新正在运行。离开页面可能会中断它。"
+
+msgid "Installing %s…"
+msgstr "正在安装%s..."
+
+msgid "Installing %s from wordpress.org…"
+msgstr "从 wordpress.org 安装%s..."
+
+msgid "Activating %s…"
+msgstr "激活%s..."
+
+msgid "Updating %s (backup first)…"
+msgstr "正在更新%s(先备份)..."
+
+msgid "Changing the version of %s (backup first)…"
+msgstr "更改%s的版本(先备份)..."
+
+msgid "Installing…"
+msgstr "正在安装..."
+
+msgid "Activating…"
+msgstr "激活..."
+
+msgid "Updating…"
+msgstr "正在更新..."
+
+msgid "Changing version…"
+msgstr "更改版本..."
+
+msgid "Queued"
+msgstr "排队"
+
+msgid "Done"
+msgstr "完成"
+
+msgid "(required by %s)"
+msgstr "(%s要求)"
+
+msgid "%1$s installed%2$s."
+msgstr "%1$s安装了%2$s。"
+
+msgid "%1$s was not activated: %2$s must be installed and active first."
+msgstr "%1$s未激活:必须首先安装并激活%2$s。"
+
+msgid "%1$s could not be activated: %2$s"
+msgstr "%1$s无法激活:%2$s"
+
+msgid "%s activated."
+msgstr "%s已激活。"
+
+msgid "%s: you are not allowed to install."
+msgstr "%s:不允许您安装。"
+
+msgid "Could not download %1$s from wordpress.org: %2$s"
+msgstr "无法从 wordpress.org 下载%1$s:%2$s"
+
+msgid "no download link"
+msgstr "没有下载链接"
+
+msgid "unknown error"
+msgstr "未知错误"
+
+msgid "%1$s could not be installed: %2$s"
+msgstr "无法安装%1$s:%2$s"
+
+msgid "%s is already installed."
+msgstr "%s已安装。"
+
+msgid "%1$s %2$s installed."
+msgstr "%1$s%2$s已安装。"
+
+msgid "This plugin is not required by any FluxWP package."
+msgstr "任何 FluxWP 包都不需要此插件。"
+
+msgid "%s was installed from wordpress.org."
+msgstr "%s是从 wordpress.org 安装的。"
+
+msgid "%s is not installed, so it could not be activated."
+msgstr "%s未安装,因此无法激活。"
+
+msgid "%s is already active."
+msgstr "%s已激活。"
+
+msgid "Unknown action."
+msgstr "未知的行动。"
+
+msgid "The package is not installed."
+msgstr "该软件包未安装。"
+
+msgid "%s was not updated: WordPress sees no update for it. Click \"Check for updates\" and try again."
+msgstr "%s未更新:WordPress 未发现任何更新。单击“检查更新”并重试。"
+
+msgid "Source: %s"
+msgstr "来源:%s"
+
+msgid "available from %d sources"
+msgstr "可从%d来源获得"
+
+msgid "Remove this source? Packages installed from it stay on the site; they just stop receiving updates."
+msgstr "删除这个源吗?从它安装的软件包保留在站点上;他们只是停止接收更新。"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Connected · %d package"
+msgid_plural "Connected · %d packages"
+msgstr[0] "已连接·%d包"
+
+msgid "Other sources"
+msgstr "其他来源"
+
+msgid "Packages are collected from these sources as well as the main server. If a package is in more than one source, it updates from the source it was installed from; if it is not installed, the source higher in the list wins."
+msgstr "包是从这些来源以及主服务器收集的。如果某个软件包位于多个源中,它将从安装它的源进行更新;如果未安装,则列表中较高的源获胜。"
+
+msgid "Source not added: %s"
+msgstr "未添加来源:%s"
+
+msgid "Source added and its packages loaded."
+msgstr "添加源并加载其包。"
+
+msgid "Source removed."
+msgstr "来源已删除。"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Main server"
+msgstr "主服务器"
+
+msgid "Server"
+msgstr "服务器"
+
+msgid "Set under Connection above"
+msgstr "在上面的连接下设置"
+
+msgid "Key saved"
+msgstr "密钥已保存"
+
+msgid "GitHub (public)"
+msgstr "GitHub(公开)"
+
+msgid "Move up"
+msgstr "向上移动"
+
+msgid "Turn off"
+msgstr "关闭"
+
+msgid "Turn on"
+msgstr "打开"
+
+msgid "Add source"
+msgstr "添加来源"
+
+msgid "A public GitHub repository (with <slug>.zip on its releases) or a FluxWP update-server address. https only."
+msgstr "公共 GitHub 存储库(其版本中包含<slug>.zip)或 FluxWP 更新服务器地址。仅限 https。"
+
+msgid "Taken from the address if empty"
+msgstr "如果地址为空则取自该地址"
+
+msgid "Optional"
+msgstr "可选"
+
+msgid "Only for servers that require a key. The key is sent only to that server's address."
+msgstr "仅适用于需要密钥的服务器。密钥仅发送到该服务器的地址。"
+
+msgid "Code from this source runs on your site; only add sources you trust."
+msgstr "来自此来源的代码在您的网站上运行;仅添加您信任的来源。"
+
+msgid "Test and add"
+msgstr "测试并添加"
+
+msgid "Could not reach %1$s: %2$s Its packages are shown from the last known data."
+msgstr "无法到达%1$s:%2$s其包根据最后的已知数据显示。"
+
+msgid "Sources"
+msgstr "来源"
+
+msgid "Update source: %s"
+msgstr "更新来源:%s"
+
+msgid "The GitHub address is not in owner/repo form."
+msgstr "GitHub 地址不是所有者/存储库形式。"
+
+msgid "Could not reach the source: %s"
+msgstr "无法到达源:%s"
+
+msgid "Repository not found or not public."
+msgstr "未找到存储库或未公开存储库。"
+
+msgid "GitHub returned an unexpected response (HTTP %d)."
+msgstr "GitHub 返回了意外响应 (HTTP%d)。"
+
+msgid "The address must start with https://."
+msgstr "地址必须以 https://. 开头"
+
+msgid "This source is already in the list."
+msgstr "该来源已在列表中。"
+
+msgid "The source could not be tested."
+msgstr "无法测试来源。"
+
+msgid "Connected without a key (%s): public packages are available. Enter a site key for private packages."
+msgstr "无需密钥即可连接 (%s):公共包可用。输入私有包的站点密钥。"
+
+msgid "Optional. Public packages need no key; for private packages, get one from the update server panel (/admin) with \"Add site\". Give each site its own key."
+msgstr "可选。公共包不需要密钥;对于私人软件包,请通过“添加站点”从更新服务器面板 (/admin) 获取一个。为每个站点提供自己的密钥。"
+
+msgid "The package list could not be fetched. Check the server address and key (if any) in Settings and press \"Test connection\"."
+msgstr "无法获取包列表。检查“设置”中的服务器地址和密钥(如果有),然后按“测试连接”。"
+
+msgid "This server does not serve updates without a key; enter a site key."
+msgstr "如果没有密钥,该服务器不提供更新;输入站点密钥。"
+
+msgid "Invalid site key. Try it with \"Test an existing key\" in the update server panel (/admin)."
+msgstr "站点密钥无效。使用更新服务器面板 (/admin) 中的“测试现有密钥”进行尝试。"
+
+msgid "No key: only public packages are available."
+msgstr "无密钥:仅提供公共包。"
+
+msgid "The site key is disabled on the server; only public packages are available."
+msgstr "站点密钥在服务器上被禁用;仅提供公共包。"
+
+msgid "Bulk action"
+msgstr "批量操作"
+
+msgid "Bulk actions"
+msgstr "批量操作"
+
+msgid "Deactivate"
+msgstr "停用"
+
+msgid "Inactive"
+msgstr "不活跃"
+
+msgid "%d package activated."
+msgid_plural "%d packages activated."
+msgstr[0] "%d软件包已激活。"
+
+msgid "%d package deactivated."
+msgid_plural "%d packages deactivated."
+msgstr[0] "%d软件包已停用。"
+
+msgid "%d package deleted."
+msgid_plural "%d packages deleted."
+msgstr[0] "%d软件包已删除。"
+
+msgid "Skipped (already in that state, active theme or FluxWP Panel): %s."
+msgstr "已跳过(已处于该状态、活动主题或 FluxWP 面板):%s。"
+
+msgid "Failed: %s."
+msgstr "失败:%s。"
+
+msgid "Delete these packages from the site? Their files will be removed. %s"
+msgstr "从网站上删除这些包吗?他们的文件将被删除。%s"
+
+msgid "Setup wizard"
+msgstr "设置向导"
+
+msgid "FluxWP demo"
+msgstr "FluxWP 演示"
+
+msgid "Sample home page, products and menus."
+msgstr "示例主页、产品和菜单。"
+
+msgid "Blank"
+msgstr "空白"
+
+msgid "Theme and colour only"
+msgstr "仅主题和颜色"
+
+msgid "Anthracite"
+msgstr "Anthracite"
+
+msgid "Blue"
+msgstr "蓝色"
+
+msgid "Teal"
+msgstr "青色"
+
+msgid "Indigo"
+msgstr "靛蓝"
+
+msgid "Forest"
+msgstr "森林"
+
+msgid "Connect e-mail"
+msgstr "连接电子邮件"
+
+msgid "Without SMTP, receipts and notifications are not delivered."
+msgstr "如果没有 SMTP,则不会发送收据和通知。"
+
+msgid "Flux Mail › Settings"
+msgstr "Flux 邮件 › 设置"
+
+msgid "Upload your logo"
+msgstr "上传您的徽标"
+
+msgid "Used in the admin and in e-mails."
+msgstr "用于管理和电子邮件。"
+
+msgid "Settings › Admin theme"
+msgstr "设置 › 管理主题"
+
+msgid "Add an AI key"
+msgstr "添加 AI 密钥"
+
+msgid "Needed for assistants and AI tools."
+msgstr "助理和人工智能工具所需。"
+
+msgid "Flux AI & MCP › Settings"
+msgstr "Flux AI 和 MCP › 设置"
+
+msgid "The setup wizard needs JavaScript."
+msgstr "设置向导需要 JavaScript。"
+
+msgid "Go to the Packages screen."
+msgstr "转到包屏幕。"
+
+msgid "Site name: %s"
+msgstr "站点名称:%s"
+
+msgid "The FluxWP theme is not installed."
+msgstr "FluxWP 主题未安装。"
+
+msgid "You are not allowed to switch themes."
+msgstr "不允许您切换主题。"
+
+msgid "FluxWP theme is active."
+msgstr "FluxWP 主题已激活。"
+
+msgid "No preset applied (Blank)."
+msgstr "未应用预设(空白)。"
+
+msgid "You are not allowed to apply presets."
+msgstr "不允许您应用预设。"
+
+msgid "The preset is already applied."
+msgstr "预设已应用。"
+
+msgid "Preset not found. If the package is installed, apply it under Appearance › Presets."
+msgstr "未找到预设。如果安装了该软件包,请在“外观”>“预设”下应用它。"
+
+msgid "%s preset applied."
+msgstr "已应用%s预设。"
+
+msgid "Setup finished."
+msgstr "设置完成。"
+
+msgid "Wizard skipped."
+msgstr "向导跳过。"
+
+msgid "Colour unchanged."
+msgstr "颜色不变。"
+
+msgid "You are not allowed to edit the appearance."
+msgstr "您无权编辑外观。"
+
+msgid "The active theme does not support colour styles."
+msgstr "活动主题不支持颜色样式。"
+
+msgid "The theme has no %s colour style."
+msgstr "主题没有%s颜色样式。"
+
+msgid "Could not create the global styles record."
+msgstr "无法创建全局样式记录。"
+
+msgid "Colour style: %s"
+msgstr "颜色风格:%s"
+
+msgid "Step %1$s of %2$s"
+msgstr "%2$s的步骤%1$s"
+
+msgid "Welcome to FluxWP"
+msgstr "欢迎来到 FluxWP"
+
+msgid "Let's set up your site in three steps. Pick the plugins, choose the look, and FluxWP Panel installs the rest."
+msgstr "让我们分三步设置您的网站。选择插件,选择外观,FluxWP Panel 会安装其余部分。"
+
+msgid "%d plugins"
+msgstr "%d插件"
+
+msgid "Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin."
+msgstr "捐款、表格、WhatsApp、电子邮件、SEO 和备份由一名管理员完成。"
+
+msgid "New versions appear on WordPress's Updates screen."
+msgstr "新版本出现在 WordPress 的更新屏幕上。"
+
+msgid "Change later"
+msgstr "稍后更改"
+
+msgid "You can change the preset and colour later under Appearance › Theme settings."
+msgstr "您可以稍后在外观 › 主题设置下更改预设和颜色。"
+
+msgid "Get started"
+msgstr "开始使用"
+
+msgid "I'll set it up myself"
+msgstr "我自己设置一下"
+
+msgid "About 3 minutes"
+msgstr "约3分钟"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "Updates first"
+msgstr "先更新"
+
+msgid "Your installed apps are being updated before setup, so everything is installed on the latest version."
+msgstr "您安装的应用程序会在安装前更新,因此所有内容都会安装在最新版本上。"
+
+msgid "Checking for updates…"
+msgstr "正在检查更新..."
+
+msgid "updating"
+msgstr "更新中"
+
+msgid "updated"
+msgstr "已更新"
+
+msgid "FluxWP Panel was updated. Reopening the wizard on the new version…"
+msgstr "FluxWP 面板已更新。在新版本上重新打开向导..."
+
+msgid "Updates could not be completed: %s Setup does not continue until the updates are done."
+msgstr "更新无法完成:%s更新完成后,安装程序才会继续。"
+
+msgid "Try again"
+msgstr "再试一次"
+
+msgid "Go to Packages"
+msgstr "前往套餐"
+
+msgid "Unknown error."
+msgstr "未知错误。"
+
+msgid "Clear selection"
+msgstr "清除选择"
+
+msgid "Essentials"
+msgstr "必需品"
+
+msgid "What should we start with?"
+msgstr "我们应该从什么开始呢?"
+
+msgid "Continue without these"
+msgstr "没有这些继续"
+
+msgid "Recommended"
+msgstr "推荐"
+
+msgid "Block theme with shop, donation and company page templates."
+msgstr "带有商店、捐赠和公司页面模板的块主题。"
+
+msgid "Appearance"
+msgstr "外观"
+
+msgid "How should your site look?"
+msgstr "您的网站应该是什么样子?"
+
+msgid "Pages and menus are created from it."
+msgstr "页面和菜单是根据它创建的。"
+
+msgid "Colour"
+msgstr "颜色"
+
+msgid "The theme and plugins share this colour."
+msgstr "主题和插件共享这种颜色。"
+
+msgid "Site name"
+msgstr "站点名称"
+
+msgid "Also shown in e-mails and certificates."
+msgstr "还显示在电子邮件和证书中。"
+
+msgid "Your site is ready"
+msgstr "您的网站已准备就绪"
+
+msgid "Plugins installed, preset and colour applied."
+msgstr "安装插件、预设并应用颜色。"
+
+msgid "Setup finished, some steps did not complete"
+msgstr "设置完成,某些步骤未完成"
+
+msgid "The failed steps are below. You can try again from FluxWP Panel › Packages."
+msgstr "失败的步骤如下。您可以从 FluxWP 面板 › 软件包重试。"
+
+msgid "plugins"
+msgstr "插件"
+
+msgid "pages"
+msgstr "页面"
+
+msgid "colour"
+msgstr "颜色"
+
+msgid "Open site"
+msgstr "打开网站"
+
+msgid "Go to dashboard"
+msgstr "转到仪表板"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Continue"
+msgstr "继续"
+
+msgid "Skip setup?"
+msgstr "跳过设置?"
+
+msgid "Nothing is installed. You can open the wizard later from FluxWP Panel › Setup wizard."
+msgstr "没有安装任何东西。您可以稍后从 FluxWP 面板 › 设置向导打开该向导。"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "%s plugins + FluxWP theme"
+msgstr "%s插件 + FluxWP 主题"
+
+msgid "%s plugins"
+msgstr "%s插件"
+
+msgid "Keep this tab open."
+msgstr "保持此选项卡打开。"
+
+msgid "queued"
+msgstr "排队"
+
+msgid "installing"
+msgstr "安装"
+
+msgid "installed"
+msgstr "已安装"
+
+msgid "applying"
+msgstr "申请"
+
+msgid "applied"
+msgstr "应用"
+
+msgid "error"
+msgstr "错误"
+
+msgid "Downloading packages"
+msgstr "下载包"
+
+msgid "Installing plugins"
+msgstr "安装插件"
+
+msgid "Getting your site ready"
+msgstr "准备好您的网站"
+
+msgid "Creating pages and menus"
+msgstr "创建页面和菜单"
+
+msgid "Almost there, final touches"
+msgstr "快到了,最后的润色"
+
+msgid "FluxWP theme"
+msgstr "FluxWP主题"
+
+msgid "Activating the theme"
+msgstr "激活主题"
+
+msgid "Ready"
+msgstr "准备好"
+
+msgid "Opening the final screen."
+msgstr "打开最终屏幕。"
+
+msgid "Could not reach the server. Check your connection and try again."
+msgstr "无法到达服务器。检查您的连接并重试。"
+
+msgid "Could not reach the update server; the package list is empty. Check the server under FluxWP Panel › Settings. The theme and preset can still be applied."
+msgstr "无法到达更新服务器;包列表为空。检查 FluxWP 面板 › 设置下的服务器。主题和预设仍然可以应用。"
+
+msgid "Flux Updater is now part of FluxWP Panel; the old plugin was deactivated and its settings were kept. You can delete it from the Plugins screen."
+msgstr "Flux Updater 现在是 FluxWP Panel 的一部分;旧插件已停用并保留其设置。您可以从插件屏幕中将其删除。"
+
+msgid "Store"
+msgstr "商店"
+
+msgid "Flux Commerce: sales dashboard, customers, reports and bank transfer with receipts."
+msgstr "Flux Commerce:销售仪表板、客户、报告和带有收据的银行转账。"
+
+msgid "Nonprofit and donations"
+msgstr "非营利组织和捐赠"
+
+msgid "Flux Donate and Flux Certificates: donation types, a one-page checkout and a certificate in every donor's name."
+msgstr "Flux 捐赠和 Flux 证书:捐赠类型、一页结帐和每个捐赠者姓名的证书。"
+
+msgid "Admin theme"
+msgstr "管理主题"
+
+msgid "Flux Admin: a redesigned admin panel with a command palette, mobile menu and light/dark mode."
+msgstr "Flux Admin:重新设计的管理面板,带有命令面板、移动菜单和明/暗模式。"
+
+msgid "Communication"
+msgstr "通讯"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "Other FluxWP packages."
+msgstr "其他 FluxWP 软件包。"
+
+msgid "Plugins · %1$s of %2$s"
+msgstr "插件 ·%1$s或%2$s"
+
+msgid "%s packages queued"
+msgstr "%s包已排队"
+
+msgid "activating"
+msgstr "激活"
+
+msgid "The admin theme and the kind of site: a store or a nonprofit. Pick one kind; you can install the other later."
+msgstr "管理主题和网站类型:商店或非营利组织。选择一种;您可以稍后安装另一个。"
+
+msgid "Blog"
+msgstr "博客"
+
+msgid "About us"
+msgstr "关于我们"
+
+msgid "FAQ"
+msgstr "常见问题解答"
+
+msgid "Tell visitors who you are and what you do."
+msgstr "告诉访客您是谁以及您做什么。"
+
+msgid "Add your address, phone and e-mail here."
+msgstr "在此添加您的地址、电话和电子邮件。"
+
+msgid "Add common questions and their answers here."
+msgstr "在此处添加常见问题及其答案。"
+
+msgid "Upload a PNG, JPG, WebP or GIF."
+msgstr "上传 PNG、JPG、WebP 或 GIF。"
+
+msgid "Tagline: %s"
+msgstr "口号:%s"
+
+msgid "Could not set the logo."
+msgstr "无法设置徽标。"
+
+msgid "Logo set."
+msgstr "标志集。"
+
+msgid "You are not allowed to create pages."
+msgstr "您无权创建页面。"
+
+msgid "Page: %s"
+msgstr "页面:%s"
+
+msgid "No new pages."
+msgstr "没有新页面。"
+
+msgid "Identity"
+msgstr "身份"
+
+msgid "Shown under the name on the home page and in search results."
+msgstr "显示在主页和搜索结果中的名称下方。"
+
+msgid "Logo"
+msgstr "标志"
+
+msgid "A square or wide image (PNG, JPG, WebP). You can change it later."
+msgstr "方形或宽图像(PNG、JPG、WebP)。您可以稍后更改。"
+
+msgid "Upload logo"
+msgstr "上传徽标"
+
+msgid "Change"
+msgstr "改变"
+
+msgid "Uploading…"
+msgstr "正在上传..."
+
+msgid "Selected pages are created empty for you to fill in later. Existing pages are not created again."
+msgstr "所选页面将被创建为空,供您稍后填写。不会再次创建现有页面。"
+
+msgid "Donate"
+msgstr "捐赠"
+
+msgid "Latest posts"
+msgstr "最新帖子"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "Calm and serious; fits anything."
+msgstr "冷静、严肃;适合任何东西。"
+
+msgid "Trustworthy, corporate."
+msgstr "值得信赖,企业。"
+
+msgid "Quiet and modern."
+msgstr "安静而现代。"
+
+msgid "Lively; tech and education."
+msgstr "活泼;科技和教育。"
+
+msgid "Nature; for nonprofits and foundations."
+msgstr "自然;对于非营利组织和基金会。"
+
+msgid "Your name and logo first, then preset, colour and pages. The preview on the right updates right away."
+msgstr "首先是您的名称和徽标,然后是预设、颜色和页面。右侧的预览会立即更新。"
+
+msgctxt "context_ac58193b5653"
+msgid "Contact"
+msgstr "联系方式"
+
+msgid "I accept the %1$s and %2$s; I have read the %3$s."
+msgstr "我接受%1$s和%2$s;我已阅读%3$s。"
+
+msgid "Terms of Use"
+msgstr "使用条款"
+
+msgid "Privacy Policy"
+msgstr "隐私政策"
+
+msgid "KVKK Privacy Notice"
+msgstr "KVKK 隐私声明"
+
+msgid "Help us improve FluxWP (send usage data)"
+msgstr "帮助我们改进 FluxWP(发送使用数据)"
+
+msgid "Optional. WordPress and PHP version, language and time zone, plus anonymous version and error data for FluxWP plugins. The site address and country are always recorded for updates (IPs are not stored). Updates work when this is off; change it under FluxWP Panel › Settings."
+msgstr "可选。 WordPress 和 PHP 版本、语言和时区,以及 FluxWP 插件的匿名版本和错误数据。始终记录站点地址和国家/地区以供更新(不存储 IP)。关闭时更新工作;在 FluxWP 面板 > 设置下更改它。"
+
+msgid "Accept the terms to continue."
+msgstr "接受条款以继续。"
+
+msgid "Usage data consent saved."
+msgstr "已保存使用数据同意。"
+
+msgid "Usage data will not be sent."
+msgstr "使用数据将不会被发送。"
+
+msgid "Usage data"
+msgstr "使用数据"
+
+msgid "Update checks always send the site address; the server also looks up the country from the IP and does not store the IP (mandatory record). When on, update checks also send the WordPress and PHP version, time zone and language, and FluxWP plugin versions and errors are sent anonymously. When off, only what updates need is sent and updates work the same. You can withdraw consent here at any time."
+msgstr "更新检查始终发送站点地址;服务器还会根据 IP 查找国家/地区,并且不存储 IP(强制记录)。启用后,更新检查还会发送 WordPress 和 PHP 版本、时区和语言,并且 FluxWP 插件版本和错误会匿名发送。关闭时,仅发送需要的更新,并且更新的工作方式相同。您可以随时在此处撤回同意。"
+
+msgid "Anonymous usage data"
+msgstr "Anonymous usage data"
+
+msgid "On"
+msgstr "开"
+
+msgid "Sent."
+msgstr "已发送。"
+
+msgid "Show the data that will be sent"
+msgstr "显示将要发送的数据"
+
+msgid "Could not send. Check the URL and that the Flux Analytics telemetry hub is on at the target site."
+msgstr "无法发送。检查 URL 以及 Flux Analytics 遥测中心是否在目标站点上打开。"
+
+msgid "Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent."
+msgstr "发送:随机安装 ID、WordPress 和 PHP 版本、站点语言、国家/地区(来自时区或商店国家/地区)、活动的 FluxWP 插件和主题、FluxWP 中的 PHP 错误(已删除路径、域、电子邮件和 IP)、安装向导进度和选择。站点地址、IP、用户和内容永远不会发送。"
+
+msgid "Not sent yet. Sent at most once a day."
+msgstr "还没发送。每天最多发送一次。"
+
+msgid "Nothing is sent. Tick \"Help us improve the product\" to turn it on."
+msgstr "没有发送任何内容。勾选“帮助我们改进产品”将其打开。"
+
+msgid "Saved."
+msgstr "已保存。"
+
+msgid "Last sent %s. Sent at most once a day."
+msgstr "最后发送%s。每天最多发送一次。"
+
+msgid "Telemetry URL"
+msgstr "遥测网址"
+
+msgid "Send now"
+msgstr "立即发送"
+
+msgid "Leave empty to send to FluxWP. To run your own hub, turn on Flux Analytics › Settings › Telemetry hub on one site and paste that address here. https only."
+msgstr "留空以发送到 FluxWP。要运行您自己的中心,请在一个站点上打开 Flux Analytics › 设置 › 遥测中心,然后将该地址粘贴到此处。仅限 https。"
+
+msgid "Be found on Google"
+msgstr "在 Google 上可以找到"
+
+msgid "Watch from the panel how the site looks in Google search, how many people arrive, and how fast pages open. Google Site Kit brings Search Console, Analytics and PageSpeed into one screen."
+msgstr "从面板上观察网站在 Google 搜索中的外观、访问人数以及页面打开速度。 Google Site Kit 将 Search Console、Analytics 和 PageSpeed 整合到一个屏幕中。"
+
+msgid "Install Google Site Kit"
+msgstr "安装 Google 站点工具包"
+
+msgid "Activate Google Site Kit"
+msgstr "激活 Google 站点工具包"
+
+msgid "Show your products on Google"
+msgstr "在 Google 上展示您的产品"
+
+msgid "Your Google account is connected. With Google for WooCommerce your products are listed for free on Google Shopping, Search, YouTube and Images; you can also run ads."
+msgstr "您的 Google 帐户已连接。通过 Google for WooCommerce,您的产品可以在 Google 购物、搜索、YouTube 和图片上免费列出;您还可以投放广告。"
+
+msgid "Install Google for WooCommerce"
+msgstr "安装 Google for WooCommerce"
+
+msgid "Activate Google for WooCommerce"
+msgstr "激活 Google for WooCommerce"
+
+msgid "Not needed"
+msgstr "不需要"
+
+msgid "Could not download %s from wordpress.org."
+msgstr "无法从 wordpress.org 下载%s。"
+
+msgid "Try from Plugins › Add New"
+msgstr "从插件尝试 › 添加新的"
+
+msgid "Next attempt: %s."
+msgstr "下一次尝试:%s。"
+
+msgid "Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on."
+msgstr "服务器上的更新分发暂时暂停。您的网站没有任何问题;重新打开分发后,更新将恢复。"
+
+msgid "The update server does not accept requests from this site's country. Contact the server administrator for access."
+msgstr "更新服务器不接受来自该站点所在国家/地区的请求。请联系服务器管理员获取访问权限。"
+
+msgid "The update server does not accept keyless requests from this site's country. Enter a site key or contact the server administrator."
+msgstr "更新服务器不接受来自该站点所在国家/地区的无密钥请求。输入站点密钥或联系服务器管理员。"
+
+msgid "This server has turned off keyless updates. Enter a site key to keep receiving packages."
+msgstr "该服务器已关闭无密钥更新。输入站点密钥以继续接收包裹。"
+
+msgid "The site key is disabled on the server and keyless updates are off, so no packages are available. Ask the server administrator to re-enable the key."
+msgstr "服务器上的站点密钥已禁用,并且无密钥更新已关闭,因此没有可用的软件包。请服务器管理员重新启用该密钥。"
+
+msgid "The server cannot respond right now (HTTP %d)."
+msgstr "服务器现在无法响应 (HTTP%d)。"
+
+msgid "Distribution paused"
+msgstr "分发暂停"
+
+msgid "Blocked in this region"
+msgstr "该地区被封锁"
+
+msgid "Site key required"
+msgstr "需要站点密钥"
+
+msgid "Site key disabled"
+msgstr "站点密钥已禁用"
+
+msgid "Support and feedback: %s"
+msgstr "支持和反馈:%s"
+
+msgid "FluxWP Panel"
+msgstr "FluxWP面板"
+
+msgid "[['%dthere is an update', 'tr']]"
+msgid_plural "[['%dthere is an update', 'tr']]"
+msgstr[0] "[['%d有更新','tr']]"
+
+msgid "[['%dpackage activated.', 'tr']]"
+msgid_plural "[['%dpackage activated.', 'tr']]"
+msgstr[0] "[['%d程序包已激活。', 'tr']]"
+
+msgid "[['%dpackage has been disabled.', 'tr']]"
+msgid_plural "[['%dpackage has been disabled.', 'tr']]"
+msgstr[0] "[['%d程序包已被禁用。', 'tr']]"
+
+msgid "[['%dpackage removed.', 'tr']]"
+msgid_plural "[['%dpackage removed.', 'tr']]"
+msgstr[0] "[['%d包已删除。', 'tr']]"
+
+msgid "[['%dbackup deleted.', 'tr']]"
+msgid_plural "[['%dbackup deleted.', 'tr']]"
+msgstr[0] "[['%d备份已删除。', 'tr']]"
+
+msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgstr "\\n已删除过期的%d备份。已删除过期的%d备份。\\n"
+
+msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgstr "\\n已连接·%d包已连接·%d包\\n"
+
+msgid "[['%dday', 'tr']]"
+msgid_plural "[['%dday', 'tr']]"
+msgstr[0] "[['%d天', 'tr']]"
+
+msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgstr "\\n当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。\\n"
+
+msgid "[['%sregistration', 'tr']]"
+msgid_plural "[['%sregistration', 'tr']]"
+msgstr[0] "[['%s注册','tr']]"
+
+msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
+msgstr "[[\"FluxWP 的安装和更新插件。第一次启动时的安装向导(介绍、插件选择、外观、安装);将 FluxWP 主题和插件从更新服务器(默认 updater.fluxwp.com)带到 WordPress 的更新屏幕;预设引擎(preset.json)一步设置站点,用批准的补丁替换它,然后回滚。\", 'tr']]"
+
+msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
+msgstr[0] "\\n已删除过期的%d备份。已删除过期的%d备份。\\n"
+
+msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
+msgstr[0] "\\n已连接·%d包已连接·%d包\\n"
+
+msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
+msgstr[0] "\\n当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。\\n"

@@ -49,12 +49,12 @@ function flxai_strip_private( array $messages ) {
 function flxai_api_error( $provider, $code, $msg, $key ) {
 	$msg = str_replace( (string) $key, '***', (string) $msg );
 	if ( 'anthropic' === $provider && false !== stripos( $msg, 'anthropic-workspace-id' ) ) {
-		$msg .= ' ' . __( '→ Flux AI & MCP › Ayarlar › "Anthropic workspace ID" alanına console.anthropic.com › Settings › Workspaces\'teki kimliği (wrkspc_…) girin.', 'flx-ai' );
+		$msg .= ' ' . __( '→ Flux AI & MCP › Settings › "Anthropic workspace ID": paste the id (wrkspc_…) from console.anthropic.com › Settings › Workspaces.', 'flx-ai' );
 	}
 	return new WP_Error(
 		'flxai_api',
 		/* translators: 1: HTTP code, 2: message */
-		sprintf( __( 'Yapay zekâ hatası (%1$d): %2$s', 'flx-ai' ), $code, '' !== $msg ? $msg : __( 'bilinmeyen hata', 'flx-ai' ) ),
+		sprintf( __( 'AI error (%1$d): %2$s', 'flx-ai' ), $code, '' !== $msg ? $msg : __( 'unknown error', 'flx-ai' ) ),
 		array( 'http' => (int) $code, 'msg' => $msg, 'provider' => $provider )
 	);
 }
@@ -142,7 +142,7 @@ function flxai_http_stream( $url, array $headers, $body, $timeout, callable $on_
 	$err  = curl_errno( $ch ) ? curl_error( $ch ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions
 	curl_close( $ch ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	if ( $stopped ) {
-		return new WP_Error( 'flxai_stopped', __( 'Kullanıcı durdurdu.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_stopped', __( 'Stopped by the user.', 'flx-ai' ) );
 	}
 	if ( '' !== $err && ( ! $code || $sse ) ) {
 		return new WP_Error( 'flxai_http', $err );
@@ -157,7 +157,7 @@ function flxai_http_stream( $url, array $headers, $body, $timeout, callable $on_
 function flxai_openrouter_request( array $messages, array $opts, $model ) {
 	$key = flxai_setting( 'key_openrouter' );
 	if ( '' === $key ) {
-		return new WP_Error( 'flxai_key', __( 'OpenRouter API anahtarı girilmemiş (Flux AI & MCP › Ayarlar).', 'flx-ai' ) );
+		return new WP_Error( 'flxai_key', __( 'No OpenRouter API key entered (Flux AI & MCP › Settings).', 'flx-ai' ) );
 	}
 	$body = array(
 		'model'      => $model,
@@ -250,7 +250,7 @@ function flxai_openrouter_request( array $messages, array $opts, $model ) {
 				return $st;
 			}
 			/* translators: %s: error */
-			return new WP_Error( 'flxai_http', sprintf( __( 'Yapay zekâ servisine ulaşılamadı: %s', 'flx-ai' ), $st->get_error_message() ), array( 'provider' => 'openrouter' ) );
+			return new WP_Error( 'flxai_http', sprintf( __( 'Could not reach the AI service: %s', 'flx-ai' ), $st->get_error_message() ), array( 'provider' => 'openrouter' ) );
 		}
 		$code = (int) $st['code'];
 		if ( $st['sse'] ) {
@@ -284,7 +284,7 @@ function flxai_openrouter_request( array $messages, array $opts, $model ) {
 		);
 		if ( is_wp_error( $r ) ) {
 			/* translators: %s: error */
-			return new WP_Error( 'flxai_http', sprintf( __( 'Yapay zekâ servisine ulaşılamadı: %s', 'flx-ai' ), $r->get_error_message() ), array( 'provider' => 'openrouter' ) );
+			return new WP_Error( 'flxai_http', sprintf( __( 'Could not reach the AI service: %s', 'flx-ai' ), $r->get_error_message() ), array( 'provider' => 'openrouter' ) );
 		}
 		$code = (int) wp_remote_retrieve_response_code( $r );
 		$json = json_decode( (string) wp_remote_retrieve_body( $r ), true );
@@ -295,7 +295,7 @@ function flxai_openrouter_request( array $messages, array $opts, $model ) {
 	}
 	$msg = $json['choices'][0]['message'] ?? null;
 	if ( ! is_array( $msg ) ) {
-		return new WP_Error( 'flxai_empty', __( 'Yapay zekâ boş cevap verdi.', 'flx-ai' ) );
+		return new WP_Error( 'flxai_empty', __( 'The AI returned an empty answer.', 'flx-ai' ) );
 	}
 	$u   = is_array( $json['usage'] ?? null ) ? $json['usage'] : array();
 	$in  = (int) ( $u['prompt_tokens'] ?? 0 );
@@ -512,7 +512,7 @@ function flxai_anthropic_tools( array $tools ) {
 function flxai_anthropic_request( array $messages, array $opts, $model ) {
 	$key = flxai_setting( 'key_anthropic' );
 	if ( '' === $key ) {
-		return new WP_Error( 'flxai_key', __( 'Anthropic (Claude) API anahtarı girilmemiş (Flux AI & MCP › Ayarlar).', 'flx-ai' ) );
+		return new WP_Error( 'flxai_key', __( 'No Anthropic (Claude) API key entered (Flux AI & MCP › Settings).', 'flx-ai' ) );
 	}
 	$cache = (string) ( $opts['cache'] ?? '' );
 	if ( ! in_array( $cache, array( 'off', '5m', '1h' ), true ) ) {
@@ -639,7 +639,7 @@ function flxai_anthropic_request( array $messages, array $opts, $model ) {
 				return $st;
 			}
 			/* translators: %s: error */
-			return new WP_Error( 'flxai_http', sprintf( __( 'Yapay zekâ servisine ulaşılamadı: %s', 'flx-ai' ), $st->get_error_message() ), array( 'provider' => 'anthropic' ) );
+			return new WP_Error( 'flxai_http', sprintf( __( 'Could not reach the AI service: %s', 'flx-ai' ), $st->get_error_message() ), array( 'provider' => 'anthropic' ) );
 		}
 		$code = (int) $st['code'];
 		if ( $st['sse'] ) {
@@ -667,7 +667,7 @@ function flxai_anthropic_request( array $messages, array $opts, $model ) {
 		);
 		if ( is_wp_error( $r ) ) {
 			/* translators: %s: error */
-			return new WP_Error( 'flxai_http', sprintf( __( 'Yapay zekâ servisine ulaşılamadı: %s', 'flx-ai' ), $r->get_error_message() ), array( 'provider' => 'anthropic' ) );
+			return new WP_Error( 'flxai_http', sprintf( __( 'Could not reach the AI service: %s', 'flx-ai' ), $r->get_error_message() ), array( 'provider' => 'anthropic' ) );
 		}
 		$code = (int) wp_remote_retrieve_response_code( $r );
 		$json = json_decode( (string) wp_remote_retrieve_body( $r ), true );

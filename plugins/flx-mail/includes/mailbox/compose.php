@@ -32,14 +32,14 @@ function flxi_mailbox_quote_html( array $m, $forward = false ) {
 	$from = $m['from_name'] ? $m['from_name'] . ' <' . $m['from_email'] . '>' : $m['from_email'];
 	$when = get_date_from_gmt( $m['mail_date'], 'd.m.Y H:i' );
 	if ( $forward ) {
-		$head = '<p>---------- ' . esc_html__( 'İletilen e-posta', 'flx-mail' ) . ' ----------<br>'
-			. esc_html__( 'Kimden', 'flx-mail' ) . ': ' . esc_html( $from ) . '<br>'
-			. esc_html__( 'Tarih', 'flx-mail' ) . ': ' . esc_html( $when ) . '<br>'
-			. esc_html__( 'Konu', 'flx-mail' ) . ': ' . esc_html( $m['subject'] ) . '<br>'
-			. esc_html__( 'Kime', 'flx-mail' ) . ': ' . esc_html( $m['to_list'] ) . '</p>';
+		$head = '<p>---------- ' . esc_html__( 'Forwarded email', 'flx-mail' ) . ' ----------<br>'
+			. esc_html__( 'From', 'flx-mail' ) . ': ' . esc_html( $from ) . '<br>'
+			. esc_html__( 'Date', 'flx-mail' ) . ': ' . esc_html( $when ) . '<br>'
+			. esc_html__( 'Subject', 'flx-mail' ) . ': ' . esc_html( $m['subject'] ) . '<br>'
+			. esc_html__( 'To', 'flx-mail' ) . ': ' . esc_html( $m['to_list'] ) . '</p>';
 	} else {
 		/* translators: 1: tarih, 2: gönderen */
-		$head = '<p>' . esc_html( sprintf( __( '%1$s tarihinde %2$s şunu yazdı:', 'flx-mail' ), $when, $from ) ) . '</p>';
+		$head = '<p>' . esc_html( sprintf( __( 'On %1$s, %2$s wrote:', 'flx-mail' ), $when, $from ) ) . '</p>';
 	}
 	return $head . flxi_text_to_html( $text );
 }
@@ -125,23 +125,23 @@ add_action(
 function flxi_draft_send( $draft_id ) {
 	$d = flxi_draft_get( $draft_id );
 	if ( ! $d ) {
-		return array( 'ok' => false, 'error' => __( 'Taslak bulunamadı.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'Draft not found.', 'flx-mail' ) );
 	}
 	if ( 'sent' === $d['status'] ) {
-		return array( 'ok' => false, 'error' => __( 'Bu taslak zaten gönderildi.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'This draft was already sent.', 'flx-mail' ) );
 	}
 	$to = flxi_mime_addresses( $d['to_list'] );
 	$cc = flxi_mime_addresses( $d['cc_list'] );
 	if ( ! $to ) {
-		return array( 'ok' => false, 'error' => __( 'Alıcı (Kime) yok ya da adres geçersiz.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'No recipient (To) or the address is invalid.', 'flx-mail' ) );
 	}
 	if ( '' === trim( (string) $d['subject'] ) ) {
-		return array( 'ok' => false, 'error' => __( 'Konu boş.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'Subject is empty.', 'flx-mail' ) );
 	}
 	$limits = flxi_limits();
 	if ( $limits['recipients'] && count( $to ) + count( $cc ) > $limits['recipients'] ) {
 		/* translators: %s: sayı */
-		return array( 'ok' => false, 'error' => sprintf( __( 'Bir e-postada en çok %s alıcı olabilir.', 'flx-mail' ), number_format_i18n( $limits['recipients'] ) ) );
+		return array( 'ok' => false, 'error' => sprintf( __( 'An email can have at most %s recipients.', 'flx-mail' ), number_format_i18n( $limits['recipients'] ) ) );
 	}
 
 	$orig    = $d['reply_to_id'] ? flxi_mailbox_get( $d['reply_to_id'] ) : null;
@@ -182,12 +182,12 @@ function flxi_draft_send( $draft_id ) {
 		$raw = (string) $GLOBALS['phpmailer']->getSentMIMEMessage();
 	}
 	if ( $block ) {
-		$err = 'blocklist' === $block ? __( 'Alıcı kara listede: e-posta gönderilmedi.', 'flx-mail' ) : __( 'E-posta gönderilmedi (şablon kapalı).', 'flx-mail' );
+		$err = 'blocklist' === $block ? __( 'Recipient is blocklisted: email not sent.', 'flx-mail' ) : __( 'Email not sent (template is off).', 'flx-mail' );
 		flxi_draft_save( array( 'status' => 'failed', 'error' => $err ), $draft_id );
 		return array( 'ok' => false, 'error' => $err );
 	}
 	if ( ! $ok ) {
-		$err = isset( $GLOBALS['phpmailer'] ) && is_object( $GLOBALS['phpmailer'] ) && ! empty( $GLOBALS['phpmailer']->ErrorInfo ) ? $GLOBALS['phpmailer']->ErrorInfo : __( 'Gönderilemedi. Ayrıntı Kayıtlar ekranında.', 'flx-mail' );
+		$err = isset( $GLOBALS['phpmailer'] ) && is_object( $GLOBALS['phpmailer'] ) && ! empty( $GLOBALS['phpmailer']->ErrorInfo ) ? $GLOBALS['phpmailer']->ErrorInfo : __( 'Could not send. Details in Logs.', 'flx-mail' );
 		flxi_draft_save( array( 'status' => 'failed', 'error' => $err ), $draft_id );
 		return array( 'ok' => false, 'error' => $err );
 	}
@@ -241,11 +241,11 @@ function flxi_draft_send( $draft_id ) {
  */
 function flxi_mailbox_new_draft( array $a ) {
 	if ( ! flxi_can_manage() ) {
-		return new WP_Error( 'flxi_cap', __( 'Yetkiniz yok.', 'flx-mail' ) );
+		return new WP_Error( 'flxi_cap', __( 'You do not have permission.', 'flx-mail' ) );
 	}
 	$body = (string) ( $a['body'] ?? '' );
 	if ( '' === trim( wp_strip_all_tags( $body ) ) && '' === trim( (string) ( $a['subject'] ?? '' ) ) ) {
-		return new WP_Error( 'flxi_empty', __( 'Taslak boş.', 'flx-mail' ) );
+		return new WP_Error( 'flxi_empty', __( 'The draft is empty.', 'flx-mail' ) );
 	}
 	$id = flxi_draft_save(
 		array(
@@ -261,7 +261,7 @@ function flxi_mailbox_new_draft( array $a ) {
 		)
 	);
 	if ( ! $id ) {
-		return new WP_Error( 'flxi_db', __( 'İşlem yapılamadı.', 'flx-mail' ) );
+		return new WP_Error( 'flxi_db', __( 'The action could not be completed.', 'flx-mail' ) );
 	}
 	return array( 'id' => $id, 'url' => flxi_admin_url( 'flxi-posta', array( 'taslak' => $id ) ) );
 }

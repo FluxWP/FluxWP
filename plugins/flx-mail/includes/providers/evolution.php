@@ -13,15 +13,15 @@ add_filter(
 		$types['evolution'] = array(
 			'label'   => __( 'WhatsApp · Evolution API', 'flx-mail' ),
 			'channel' => 'whatsapp',
-			'help'    => __( 'Kendi sunucunuzdaki Evolution API. Adres örn. https://wa.alanadiniz.com; instance, Evolution panelindeki bağlantı adı; API key, global AUTHENTICATION_API_KEY ya da instance token.', 'flx-mail' ),
+			'help'    => __( 'The Evolution API on your own server. The address is e.g. https://wa.yourdomain.com; instance is the connection name in the Evolution panel; API key is the global AUTHENTICATION_API_KEY or the instance token.', 'flx-mail' ),
 			'fields'  => array(
-				array( 'key' => 'base_url', 'label' => __( 'API adresi', 'flx-mail' ), 'type' => 'url', 'required' => true, 'placeholder' => 'https://wa.ornek.com' ),
+				array( 'key' => 'base_url', 'label' => __( 'API address', 'flx-mail' ), 'type' => 'url', 'required' => true, 'placeholder' => 'https://wa.ornek.com' ),
 				array( 'key' => 'api_key', 'label' => __( 'API key (apikey)', 'flx-mail' ), 'type' => 'password', 'required' => true ),
-				array( 'key' => 'instance', 'label' => __( 'Instance adı', 'flx-mail' ), 'type' => 'text', 'required' => true ),
-				array( 'key' => 'version', 'label' => __( 'API sürümü', 'flx-mail' ), 'type' => 'select', 'default' => 'v2', 'options' => array( 'v2' => 'v2', 'v1' => 'v1' ) ),
-				array( 'key' => 'link_preview', 'label' => __( 'Link önizlemesi göster', 'flx-mail' ), 'type' => 'checkbox', 'default' => 1 ),
-				array( 'key' => 'delay', 'label' => __( 'Toplu gönderimde mesajlar arası bekleme (sn)', 'flx-mail' ), 'type' => 'number', 'default' => 4, 'help' => __( 'Numara engellenmesin diye toplu gönderimde mesajlar aralıklı gider.', 'flx-mail' ) ),
-				array( 'key' => 'typing', 'label' => __( '"Yazıyor…" süresi (ms)', 'flx-mail' ), 'type' => 'number', 'default' => 1200 ),
+				array( 'key' => 'instance', 'label' => __( 'Instance name', 'flx-mail' ), 'type' => 'text', 'required' => true ),
+				array( 'key' => 'version', 'label' => __( 'API version', 'flx-mail' ), 'type' => 'select', 'default' => 'v2', 'options' => array( 'v2' => 'v2', 'v1' => 'v1' ) ),
+				array( 'key' => 'link_preview', 'label' => __( 'Show link preview', 'flx-mail' ), 'type' => 'checkbox', 'default' => 1 ),
+				array( 'key' => 'delay', 'label' => __( 'Delay between messages in bulk send (sec)', 'flx-mail' ), 'type' => 'number', 'default' => 4, 'help' => __( 'To avoid the number being blocked, messages are sent at intervals in bulk sends.', 'flx-mail' ) ),
+				array( 'key' => 'typing', 'label' => __( '"Typing…" duration (ms)', 'flx-mail' ), 'type' => 'number', 'default' => 1200 ),
 			),
 			'send'    => 'flxi_evolution_send',
 			'test'    => 'flxi_evolution_test',
@@ -31,7 +31,7 @@ add_filter(
 		$types['flxwpapi'] = array(
 			'label'   => __( 'WhatsApp · Flux WPAPI', 'flx-mail' ),
 			'channel' => 'whatsapp',
-			'help'    => __( 'Hostinger\'da Node.js uygulaması olarak kurulan Flux WPAPI köprüsü. Adres örn. https://wa.alanadiniz.com; API key, köprü panelindeki genel API key; instance, bu numaraya vereceğiniz ad (yoksa "Bağlan"da oluşturulur).', 'flx-mail' ),
+			'help'    => __( 'The Flux WPAPI bridge installed as a Node.js app on Hostinger. The address is e.g. https://wa.example.com; the API key is the bridge panel\'s general API key; the instance is the name you give this number (created on "Connect" if it does not exist).', 'flx-mail' ),
 			'fields'  => array_values(
 				array_filter(
 					$types['evolution']['fields'],
@@ -64,7 +64,7 @@ function flxi_evolution_send( $config, $msg, $conn = array() ) {
 	$phone = flxi_normalize_phone( $msg['recipient'] );
 	if ( ! $phone ) {
 		/* translators: %s: telefon */
-		return array( 'ok' => false, 'error' => sprintf( __( 'Geçersiz telefon: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
+		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid phone: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
 	}
 	$instance = rawurlencode( (string) $config['instance'] );
 	$v1       = 'v1' === ( $config['version'] ?? 'v2' );
@@ -91,7 +91,7 @@ function flxi_evolution_send( $config, $msg, $conn = array() ) {
 
 	if ( ! $r['ok'] ) {
 		if ( $r['error'] ) {
-			return array( 'ok' => false, 'error' => __( 'Bağlantı hatası:', 'flx-mail' ) . ' ' . $r['error'], 'retry' => true, 'response' => $resp );
+			return array( 'ok' => false, 'error' => __( 'Connection error:', 'flx-mail' ) . ' ' . $r['error'], 'retry' => true, 'response' => $resp );
 		}
 		$detail = '';
 		if ( isset( $json['response']['message'] ) ) {
@@ -100,7 +100,7 @@ function flxi_evolution_send( $config, $msg, $conn = array() ) {
 			$detail = is_array( $json['message'] ) ? wp_json_encode( $json['message'], JSON_UNESCAPED_UNICODE ) : $json['message'];
 		}
 		if ( false !== strpos( (string) $detail, '"exists":false' ) ) {
-			$detail = __( 'Bu numarada WhatsApp yok.', 'flx-mail' );
+			$detail = __( 'This number does not have WhatsApp.', 'flx-mail' );
 		}
 		$retry = $r['code'] >= 500 || 404 === $r['code'];
 		return array( 'ok' => false, 'error' => 'Evolution HTTP ' . $r['code'] . ( $detail ? ': ' . mb_substr( (string) $detail, 0, 300 ) : '' ), 'retry' => $retry, 'response' => $resp );
@@ -132,11 +132,11 @@ function flxi_evolution_test( $config, $to, $conn ) {
 	}
 	if ( 'open' !== $state ) {
 		/* translators: %s: bağlantı durumu */
-		return array( 'ok' => false, 'error' => sprintf( __( 'Numara bağlı değil (durum: %s). "Bağlan" ile QR okutun.', 'flx-mail' ), $state ? $state : '?' ), 'response' => $j );
+		return array( 'ok' => false, 'error' => sprintf( __( 'Number not connected (status: %s). Scan the QR with "Connect".', 'flx-mail' ), $state ? $state : '?' ), 'response' => $j );
 	}
 	if ( $to ) {
 		/* translators: %s: site adı */
-		return flxi_evolution_send( $config, array( 'recipient' => $to, 'body' => sprintf( __( 'Test mesajı · %s 🌱', 'flx-mail' ), get_bloginfo( 'name' ) ), 'media' => '', 'file_name' => '' ), $conn );
+		return flxi_evolution_send( $config, array( 'recipient' => $to, 'body' => sprintf( __( 'Test message · %s 🌱', 'flx-mail' ), get_bloginfo( 'name' ) ), 'media' => '', 'file_name' => '' ), $conn );
 	}
 	return array( 'ok' => true, 'response' => $j );
 }

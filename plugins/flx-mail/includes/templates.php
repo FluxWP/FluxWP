@@ -33,7 +33,7 @@ function flxi_email_types() {
 			$t,
 			array(
 				'label'       => $k,
-				'group'       => __( 'Diğer', 'flx-mail' ),
+				'group'       => __( 'Other', 'flx-mail' ),
 				'description' => '',
 				'recipient'   => 'user',
 				'vars'        => array(),
@@ -237,7 +237,7 @@ function flxi_source_label( $slug ) {
 		'flx-chat'               => 'Flux Chat',
 		'flx-seo'                         => 'Flux SEO',
 		'flx-mail'                    => 'Flux Mail',
-		'tema'                           => __( 'Tema', 'flx-mail' ),
+		'tema'                           => __( 'Theme', 'flx-mail' ),
 		'nextend-facebook-connect'       => 'Nextend Social Login',
 		'google-site-kit'                => 'Site Kit by Google',
 		'super-socializer'               => 'Super Socializer',
@@ -264,10 +264,10 @@ function flxi_discovered_label( $key, array $d ) {
 	$labels = apply_filters(
 		'flxi_discovered_labels',
 		array(
-			'flx-certificates:flxs_email_send'                          => __( 'Sertifika e-postası', 'flx-mail' ),
-			'flx-wc-bagis:FLXWB_Receipts::notify_admin'              => __( 'Dekont yüklendi (yöneticiye)', 'flx-mail' ),
-			'wordpress:wp_notify_moderator'                        => __( 'Onay bekleyen yorum', 'flx-mail' ),
-			'wordpress:wp_notify_postauthor'                       => __( 'Yazıya yeni yorum', 'flx-mail' ),
+			'flx-certificates:flxs_email_send'                          => __( 'Certificate email', 'flx-mail' ),
+			'flx-wc-bagis:FLXWB_Receipts::notify_admin'              => __( 'Receipt uploaded (to admin)', 'flx-mail' ),
+			'wordpress:wp_notify_moderator'                        => __( 'Comment awaiting approval', 'flx-mail' ),
+			'wordpress:wp_notify_postauthor'                       => __( 'New comment on a post', 'flx-mail' ),
 		)
 	);
 	if ( isset( $labels[ $key ] ) ) {

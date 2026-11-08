@@ -142,7 +142,7 @@ final class FLXCM_Stats {
 				}
 				$m = $order->get_payment_method();
 				if ( ! isset( $methods[ $m ] ) ) {
-					$methods[ $m ] = array( $order->get_payment_method_title() ? $order->get_payment_method_title() : ( $m ? $m : __( 'Ödemesiz', 'flx-commerce' ) ), 0, 0.0 );
+					$methods[ $m ] = array( $order->get_payment_method_title() ? $order->get_payment_method_title() : ( $m ? $m : __( 'No payment', 'flx-commerce' ) ), 0, 0.0 );
 				}
 				++$methods[ $m ][1];
 				$methods[ $m ][2] += $net;
@@ -159,7 +159,7 @@ final class FLXCM_Stats {
 					if ( $pid ) {
 						if ( ! isset( $cat_name[ $pid ] ) ) {
 							$terms            = get_the_terms( $pid, 'product_cat' );
-							$cat_name[ $pid ] = $terms && ! is_wp_error( $terms ) ? $terms[0]->name : __( 'Kategorisiz', 'flx-commerce' );
+							$cat_name[ $pid ] = $terms && ! is_wp_error( $terms ) ? $terms[0]->name : __( 'Uncategorized', 'flx-commerce' );
 						}
 						$c = $cat_name[ $pid ];
 						if ( ! isset( $cats[ $c ] ) ) {

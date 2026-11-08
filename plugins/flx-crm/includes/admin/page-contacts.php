@@ -35,7 +35,7 @@ final class FLXCRM_Page_Contacts {
 
 	public static function render() {
 		if ( ! flxcrm_can() ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-crm' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
 		}
 		$f        = self::filters_from( wp_unslash( $_GET ) ); // phpcs:ignore WordPress.Security
 		$per      = function_exists( 'flxa_list_per_page' ) ? flxa_list_per_page( 'flxcrm-contacts', 25 ) : 25;
@@ -66,10 +66,10 @@ final class FLXCRM_Page_Contacts {
 				$actions .= '<input type="hidden" name="' . esc_attr( 'sid' === $k ? 'segment_id' : $k ) . '" value="' . esc_attr( (string) $v ) . '">';
 			}
 			$actions .= '<button class="button">' . flxcrm_icon( 'download', 15 ) . ' ' . esc_html__( 'CSV', 'flx-crm' ) . '</button></form>';
-			$actions .= '<a class="button button-primary" href="' . esc_url( flxcrm_admin_url( 'contacts', array( 'action' => 'new' ) ) ) . '">' . flxcrm_icon( 'plus', 15 ) . ' ' . esc_html__( 'Kişi ekle', 'flx-crm' ) . '</a>';
+			$actions .= '<a class="button button-primary" href="' . esc_url( flxcrm_admin_url( 'contacts', array( 'action' => 'new' ) ) ) . '">' . flxcrm_icon( 'plus', 15 ) . ' ' . esc_html__( 'Add contact', 'flx-crm' ) . '</a>';
 		}
-		$title = __( 'Kişiler', 'flx-crm' );
-		$lead  = __( 'Bağışçılar, müşteriler, adaylar: her kişi tek kart. Kaynaklardan kendiliğinden gelir, elle de eklenir.', 'flx-crm' );
+		$title = __( 'Contacts', 'flx-crm' );
+		$lead  = __( 'Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand.', 'flx-crm' );
 		if ( ! empty( $f['sid'] ) ) {
 			$sg    = FLXCRM_Segments::get( $f['sid'] );
 			$title = $sg['name'];
@@ -79,9 +79,9 @@ final class FLXCRM_Page_Contacts {
 
 		/* Rol çipleri */
 		$base = array_diff_key( $keep, array( 'role' => 1 ) );
-		echo '<div class="flxcrm-chips" role="navigation" aria-label="' . esc_attr__( 'Rol', 'flx-crm' ) . '">';
+		echo '<div class="flxcrm-chips" role="navigation" aria-label="' . esc_attr__( 'Role', 'flx-crm' ) . '">';
 		$on = '' === $f['role'];
-		echo '<a class="flxcrm-chip' . ( $on ? ' is-on' : '' ) . '" href="' . esc_url( flxcrm_admin_url( 'contacts', $base ) ) . '"' . ( $on ? ' aria-current="true"' : '' ) . '>' . esc_html__( 'Tümü', 'flx-crm' ) . ' <span>' . esc_html( number_format_i18n( $stats['total'] ) ) . '</span></a>';
+		echo '<a class="flxcrm-chip' . ( $on ? ' is-on' : '' ) . '" href="' . esc_url( flxcrm_admin_url( 'contacts', $base ) ) . '"' . ( $on ? ' aria-current="true"' : '' ) . '>' . esc_html__( 'All', 'flx-crm' ) . ' <span>' . esc_html( number_format_i18n( $stats['total'] ) ) . '</span></a>';
 		foreach ( $roles as $k => $r ) {
 			$n = $stats['roles'][ $k ] ?? 0;
 			if ( ! $n && $k !== $f['role'] ) {
@@ -99,37 +99,37 @@ final class FLXCRM_Page_Contacts {
 		if ( '' !== $f['role'] ) {
 			echo '<input type="hidden" name="role" value="' . esc_attr( $f['role'] ) . '">';
 		}
-		echo '<input type="search" name="s" value="' . esc_attr( $f['s'] ) . '" placeholder="' . esc_attr__( 'Ad, e-posta, telefon, kurum, şehir', 'flx-crm' ) . '" aria-label="' . esc_attr__( 'Kişi ara', 'flx-crm' ) . '">';
-		echo '<select name="segment" data-flxa-primary aria-label="' . esc_attr__( 'RFM segmenti', 'flx-crm' ) . '"><option value="">' . esc_html__( 'Tüm RFM segmentleri', 'flx-crm' ) . '</option>';
+		echo '<input type="search" name="s" value="' . esc_attr( $f['s'] ) . '" placeholder="' . esc_attr__( 'Name, e-mail, phone, organisation, city', 'flx-crm' ) . '" aria-label="' . esc_attr__( 'Search contacts', 'flx-crm' ) . '">';
+		echo '<select name="segment" data-flxa-primary aria-label="' . esc_attr__( 'RFM segment', 'flx-crm' ) . '"><option value="">' . esc_html__( 'All RFM segments', 'flx-crm' ) . '</option>';
 		foreach ( flxcrm_rfm_segments() as $k => $s ) {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( $f['segment'], $k, false ) . '>' . esc_html( $s[0] ) . '</option>';
 		}
-		echo '<option value="none"' . selected( $f['segment'], 'none', false ) . '>' . esc_html__( 'Ödemesi yok', 'flx-crm' ) . '</option></select>';
-		echo '<select name="sid" data-flxa-primary aria-label="' . esc_attr__( 'Kayıtlı segment', 'flx-crm' ) . '"><option value="">' . esc_html__( 'Kayıtlı segment', 'flx-crm' ) . '</option>';
+		echo '<option value="none"' . selected( $f['segment'], 'none', false ) . '>' . esc_html__( 'No payments', 'flx-crm' ) . '</option></select>';
+		echo '<select name="sid" data-flxa-primary aria-label="' . esc_attr__( 'Saved segment', 'flx-crm' ) . '"><option value="">' . esc_html__( 'Saved segment', 'flx-crm' ) . '</option>';
 		foreach ( $segments as $sg ) {
 			echo '<option value="' . (int) $sg['id'] . '"' . selected( (int) ( $f['sid'] ?? 0 ), (int) $sg['id'], false ) . '>' . esc_html( $sg['name'] ) . '</option>';
 		}
 		echo '</select>';
-		echo '<select name="tag" aria-label="' . esc_attr__( 'Etiket', 'flx-crm' ) . '"><option value="">' . esc_html__( 'Tüm etiketler', 'flx-crm' ) . '</option>';
+		echo '<select name="tag" aria-label="' . esc_attr__( 'Tag', 'flx-crm' ) . '"><option value="">' . esc_html__( 'All tags', 'flx-crm' ) . '</option>';
 		foreach ( $tags as $t ) {
 			echo '<option value="' . (int) $t['id'] . '"' . selected( $f['tag'], (int) $t['id'], false ) . '>' . esc_html( $t['name'] . ' (' . number_format_i18n( (int) $t['count'] ) . ')' ) . '</option>';
 		}
 		echo '</select>';
-		echo '<select name="consent" aria-label="' . esc_attr__( 'İzin', 'flx-crm' ) . '"><option value="">' . esc_html__( 'İzin fark etmez', 'flx-crm' ) . '</option>';
+		echo '<select name="consent" aria-label="' . esc_attr__( 'Consent', 'flx-crm' ) . '"><option value="">' . esc_html__( 'Any consent', 'flx-crm' ) . '</option>';
 		foreach ( FLXCRM_Contacts::consent_labels() as $k => $l ) {
 			/* translators: %s: channel */
-			echo '<option value="' . esc_attr( $k ) . '"' . selected( $f['consent'], $k, false ) . '>' . esc_html( sprintf( __( '%s izni var', 'flx-crm' ), $l ) ) . '</option>';
+			echo '<option value="' . esc_attr( $k ) . '"' . selected( $f['consent'], $k, false ) . '>' . esc_html( sprintf( __( 'has %s consent', 'flx-crm' ), $l ) ) . '</option>';
 		}
 		echo '</select>';
-		echo '<label class="flxcrm-check"><input type="checkbox" name="risk" value="1"' . checked( $f['risk'], true, false ) . '> ' . esc_html__( 'Yalnız kayıp riski yüksek', 'flx-crm' ) . '</label>';
-		echo '<label class="flxcrm-check"><input type="checkbox" name="status" value="archived"' . checked( $f['status'], 'archived', false ) . '> ' . esc_html__( 'Arşiv', 'flx-crm' ) . '</label>';
-		echo '<button class="button">' . esc_html__( 'Filtrele', 'flx-crm' ) . '</button></form>';
+		echo '<label class="flxcrm-check"><input type="checkbox" name="risk" value="1"' . checked( $f['risk'], true, false ) . '> ' . esc_html__( 'Only high churn risk', 'flx-crm' ) . '</label>';
+		echo '<label class="flxcrm-check"><input type="checkbox" name="status" value="archived"' . checked( $f['status'], 'archived', false ) . '> ' . esc_html__( 'Archive', 'flx-crm' ) . '</label>';
+		echo '<button class="button">' . esc_html__( 'Filter', 'flx-crm' ) . '</button></form>';
 
 		if ( ! $q['rows'] ) {
 			$filtered = (bool) array_diff_key( $keep, array( 'status' => 1 ) );
-			echo '<div class="flxcrm-card flxcrm-empty-state">' . flxcrm_icon( 'users', 28 ) . '<p><strong>' . esc_html( $filtered ? __( 'Filtreye uyan kişi yok.', 'flx-crm' ) : __( 'Henüz kişi yok.', 'flx-crm' ) ) . '</strong></p>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<div class="flxcrm-card flxcrm-empty-state">' . flxcrm_icon( 'users', 28 ) . '<p><strong>' . esc_html( $filtered ? __( 'No contacts match the filter.', 'flx-crm' ) : __( 'No contacts yet.', 'flx-crm' ) ) . '</strong></p>'; // phpcs:ignore WordPress.Security.EscapeOutput
 			if ( ! $filtered && $can ) {
-				echo '<p class="flxcrm-muted">' . esc_html__( 'Bağış, sipariş, form ya da WhatsApp sohbeti geldikçe kişiler kendiliğinden oluşur. Geçmiş kayıtlar için Ayarlar › Tümünü eşitle.', 'flx-crm' ) . '</p><p><a class="button" href="' . esc_url( flxcrm_admin_url( 'settings' ) ) . '">' . esc_html__( 'Ayarlar', 'flx-crm' ) . '</a></p>';
+				echo '<p class="flxcrm-muted">' . esc_html__( 'Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything.', 'flx-crm' ) . '</p><p><a class="button" href="' . esc_url( flxcrm_admin_url( 'settings' ) ) . '">' . esc_html__( 'Settings', 'flx-crm' ) . '</a></p>';
 			}
 			echo '</div>';
 			FLXCRM_Admin::close();
@@ -149,15 +149,15 @@ final class FLXCRM_Page_Contacts {
 		echo '<input type="hidden" name="action" value="flxcrm_bulk"><input type="hidden" name="back" value="' . esc_attr( flxcrm_admin_url( 'contacts', $keep ) ) . '">';
 		if ( $can ) {
 			echo '<div class="flxcrm-bulk" data-flxcrm-bulkbar hidden><span data-flxcrm-selcount></span>';
-			echo '<select name="bulk_action" data-flxcrm-bulkaction aria-label="' . esc_attr__( 'Toplu işlem', 'flx-crm' ) . '"><option value="tag">' . esc_html__( 'Etiket ekle', 'flx-crm' ) . '</option><option value="role">' . esc_html__( 'Rol ekle', 'flx-crm' ) . '</option>';
-			echo 'archived' === $f['status'] ? '<option value="restore">' . esc_html__( 'Arşivden çıkar', 'flx-crm' ) . '</option>' : '<option value="archive">' . esc_html__( 'Arşivle', 'flx-crm' ) . '</option>';
-			echo '<option value="delete">' . esc_html__( 'Sil', 'flx-crm' ) . '</option></select>';
-			echo '<input type="text" name="bulk_value" list="flxcrm-tags" data-flxcrm-bulkvalue="tag" placeholder="' . esc_attr__( 'Etiket adı', 'flx-crm' ) . '" aria-label="' . esc_attr__( 'Etiket adı', 'flx-crm' ) . '">';
-			echo '<select name="bulk_value" data-flxcrm-bulkvalue="role" disabled hidden aria-label="' . esc_attr__( 'Rol', 'flx-crm' ) . '">';
+			echo '<select name="bulk_action" data-flxcrm-bulkaction aria-label="' . esc_attr__( 'Bulk action', 'flx-crm' ) . '"><option value="tag">' . esc_html__( 'Add tag', 'flx-crm' ) . '</option><option value="role">' . esc_html__( 'Add role', 'flx-crm' ) . '</option>';
+			echo 'archived' === $f['status'] ? '<option value="restore">' . esc_html__( 'Unarchive', 'flx-crm' ) . '</option>' : '<option value="archive">' . esc_html__( 'Archive', 'flx-crm' ) . '</option>';
+			echo '<option value="delete">' . esc_html__( 'Delete', 'flx-crm' ) . '</option></select>';
+			echo '<input type="text" name="bulk_value" list="flxcrm-tags" data-flxcrm-bulkvalue="tag" placeholder="' . esc_attr__( 'Tag name', 'flx-crm' ) . '" aria-label="' . esc_attr__( 'Tag name', 'flx-crm' ) . '">';
+			echo '<select name="bulk_value" data-flxcrm-bulkvalue="role" disabled hidden aria-label="' . esc_attr__( 'Role', 'flx-crm' ) . '">';
 			foreach ( $roles as $k => $r ) {
 				echo '<option value="' . esc_attr( $k ) . '">' . esc_html( $r['label'] ) . '</option>';
 			}
-			echo '</select><button class="button" data-flxcrm-bulkgo>' . esc_html__( 'Uygula', 'flx-crm' ) . '</button></div>';
+			echo '</select><button class="button" data-flxcrm-bulkgo>' . esc_html__( 'Apply', 'flx-crm' ) . '</button></div>';
 			echo '<datalist id="flxcrm-tags">';
 			foreach ( $tags as $t ) {
 				echo '<option value="' . esc_attr( $t['name'] ) . '">';
@@ -166,13 +166,13 @@ final class FLXCRM_Page_Contacts {
 		}
 		echo '<div class="flxcrm-card flxcrm-card--flush"><table class="flxcrm-table flxcrm-table--contacts"><thead><tr>';
 		if ( $can ) {
-			echo '<th class="flxcrm-col-check"><input type="checkbox" data-flxcrm-checkall aria-label="' . esc_attr__( 'Tümünü seç', 'flx-crm' ) . '"></th>';
+			echo '<th class="flxcrm-col-check"><input type="checkbox" data-flxcrm-checkall aria-label="' . esc_attr__( 'Select all', 'flx-crm' ) . '"></th>';
 		}
-		echo '<th>' . $sort( 'name', __( 'Kişi', 'flx-crm' ) ) . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<th>' . esc_html__( 'Rol ve segment', 'flx-crm' ) . '</th>';
-		echo '<th class="num">' . $sort( 'ltv', __( 'Değer', 'flx-crm' ) ) . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<th>' . $sort( 'churn', __( 'Kayıp riski', 'flx-crm' ) ) . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<th>' . $sort( 'last_activity_at', __( 'Son hareket', 'flx-crm' ) ) . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<th>' . $sort( 'name', __( 'Contact', 'flx-crm' ) ) . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<th>' . esc_html__( 'Role and segment', 'flx-crm' ) . '</th>';
+		echo '<th class="num">' . $sort( 'ltv', __( 'Value', 'flx-crm' ) ) . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<th>' . $sort( 'churn', __( 'Churn risk', 'flx-crm' ) ) . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<th>' . $sort( 'last_activity_at', __( 'Last activity', 'flx-crm' ) ) . '</th>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo '</tr></thead><tbody>';
 		foreach ( $q['rows'] as $c ) {
 			$url = flxcrm_contact_url( $c['id'] );
@@ -180,7 +180,7 @@ final class FLXCRM_Page_Contacts {
 			if ( $can ) {
 				echo '<td class="flxcrm-col-check"><input type="checkbox" name="ids[]" value="' . (int) $c['id'] . '" aria-label="' . esc_attr( flxcrm_display_name( $c ) ) . '"></td>';
 			}
-			echo '<td data-label="' . esc_attr__( 'Kişi', 'flx-crm' ) . '"><a class="flxcrm-who" href="' . esc_url( $url ) . '">' . FLXCRM_Admin::avatar( $c ) . '<span><strong>' . esc_html( flxcrm_display_name( $c ) ) . '</strong><small>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<td data-label="' . esc_attr__( 'Contact', 'flx-crm' ) . '"><a class="flxcrm-who" href="' . esc_url( $url ) . '">' . FLXCRM_Admin::avatar( $c ) . '<span><strong>' . esc_html( flxcrm_display_name( $c ) ) . '</strong><small>'; // phpcs:ignore WordPress.Security.EscapeOutput
 			$bits = array();
 			if ( $c['email'] ) {
 				$bits[] = esc_html( $c['email'] );
@@ -200,10 +200,10 @@ final class FLXCRM_Page_Contacts {
 				echo '</span>';
 			}
 			echo '</span></a></td>';
-			echo '<td data-label="' . esc_attr__( 'Rol ve segment', 'flx-crm' ) . '"><span class="flxcrm-pills">' . FLXCRM_Admin::role_pills( $c['roles'] ) . ( (int) $c['paid_days'] ? FLXCRM_Admin::segment_badge( $c['segment'] ) : '' ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput
-			echo '<td class="num" data-label="' . esc_attr__( 'Değer', 'flx-crm' ) . '">' . ( (float) $c['ltv'] > 0 ? '<strong>' . esc_html( flxcrm_money( $c['ltv'] ) ) . '</strong><small>' . esc_html( self::counts_label( $c ) ) . '</small>' : '<span class="flxcrm-muted">—</span>' ) . '</td>';
-			echo '<td data-label="' . esc_attr__( 'Kayıp riski', 'flx-crm' ) . '">' . FLXCRM_Admin::churn_meter( (int) $c['churn'], (int) $c['paid_days'] > 0 ) . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput
-			echo '<td data-label="' . esc_attr__( 'Son hareket', 'flx-crm' ) . '"><span title="' . esc_attr( flxcrm_date( $c['last_activity_at'], 'd.m.Y H:i' ) ) . '">' . esc_html( flxcrm_ago( $c['last_activity_at'] ) ) . '</span></td>';
+			echo '<td data-label="' . esc_attr__( 'Role and segment', 'flx-crm' ) . '"><span class="flxcrm-pills">' . FLXCRM_Admin::role_pills( $c['roles'] ) . ( (int) $c['paid_days'] ? FLXCRM_Admin::segment_badge( $c['segment'] ) : '' ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<td class="num" data-label="' . esc_attr__( 'Value', 'flx-crm' ) . '">' . ( (float) $c['ltv'] > 0 ? '<strong>' . esc_html( flxcrm_money( $c['ltv'] ) ) . '</strong><small>' . esc_html( self::counts_label( $c ) ) . '</small>' : '<span class="flxcrm-muted">—</span>' ) . '</td>';
+			echo '<td data-label="' . esc_attr__( 'Churn risk', 'flx-crm' ) . '">' . FLXCRM_Admin::churn_meter( (int) $c['churn'], (int) $c['paid_days'] > 0 ) . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<td data-label="' . esc_attr__( 'Last activity', 'flx-crm' ) . '"><span title="' . esc_attr( flxcrm_date( $c['last_activity_at'], 'd.m.Y H:i' ) ) . '">' . esc_html( flxcrm_ago( $c['last_activity_at'] ) ) . '</span></td>';
 			echo '</tr>';
 		}
 		echo '</tbody></table></div></form>';
@@ -215,11 +215,11 @@ final class FLXCRM_Page_Contacts {
 		$p = array();
 		if ( (int) $c['donations'] ) {
 			/* translators: %s: count */
-			$p[] = sprintf( _n( '%s bağış', '%s bağış', (int) $c['donations'], 'flx-crm' ), number_format_i18n( (int) $c['donations'] ) );
+			$p[] = sprintf( _n( '%s donation', '%s donations', (int) $c['donations'], 'flx-crm' ), number_format_i18n( (int) $c['donations'] ) );
 		}
 		if ( (int) $c['orders'] ) {
 			/* translators: %s: count */
-			$p[] = sprintf( _n( '%s sipariş', '%s sipariş', (int) $c['orders'], 'flx-crm' ), number_format_i18n( (int) $c['orders'] ) );
+			$p[] = sprintf( _n( '%s order', '%s orders', (int) $c['orders'], 'flx-crm' ), number_format_i18n( (int) $c['orders'] ) );
 		}
 		return implode( ' · ', $p );
 	}

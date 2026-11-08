@@ -156,5 +156,28 @@
     "open": "Menüyü aç",
     "close": "Menüyü kapat",
     "expand": "Alt menüyü aç"
+  },
+  "tasks": {
+    "engineLabels": {
+      "Status": "Durum",
+      "Priority": "Öncelik",
+      "Assignee": "Atanan",
+      "Due date": "Bitiş tarihi",
+      "Tag": "Etiket",
+      "List": "Liste",
+      "No grouping": "Gruplama yok",
+      "No priority": "Öncelik yok",
+      "Deleted user": "Silinmiş kullanıcı",
+      "Unassigned": "Atanmamış",
+      "Overdue": "Gecikmiş",
+      "Today": "Bugün",
+      "Tomorrow": "Yarın",
+      "This week": "Bu hafta",
+      "Later": "Daha sonra",
+      "No date": "Tarihsiz",
+      "No tag": "Etiketsiz",
+      "Empty": "Boş",
+      "All tasks": "Tüm görevler"
+    }
   }
 }

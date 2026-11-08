@@ -25,20 +25,20 @@ class FLXF_Payment_Test extends FLXF_Payment_Provider_Base {
 	}
 
 	public function label() {
-		return __( 'Test provider (development only)', 'flx-forms' );
+		return __( '\\nTest provider (development only)\\n', 'flx-forms' );
 	}
 
 	public function settings_fields() {
 		return array(
 			array(
 				'key'     => 'flxfTestPayOutcome',
-				'label'   => __( 'Test outcome', 'flx-forms' ),
+				'label'   => __( '[[\'Test outcome\\n', 'flx-forms' ),
 				'type'    => 'select',
 				'options' => array(
-					'approve' => __( 'Approve every payment', 'flx-forms' ),
-					'decline' => __( 'Decline every payment', 'flx-forms' ),
+					'approve' => __( '\\nApprove every payment\\n', 'flx-forms' ),
+					'decline' => __( '\\nDecline every payment\\n', 'flx-forms' ),
 				),
-				'help'    => __( 'No money is taken. Development only.', 'flx-forms' ),
+				'help'    => __( '\\nNo money is taken. Development only.\\n', 'flx-forms' ),
 			),
 		);
 	}
@@ -49,7 +49,7 @@ class FLXF_Payment_Test extends FLXF_Payment_Provider_Base {
 				'flxf-pay-test' => array(
 					'src' => plugins_url( 'assets/flxf-pay-test.js', dirname( __FILE__ ) ),
 					'ver' => flxf_payments_asset_ver( 'flxf-pay-test.js' ),
-					'data' => array( 'flxfPayTestI18n' => array( 'note' => __( 'TEST MODE: no card is charged.', 'flx-forms' ) ) ),
+					'data' => array( 'flxfPayTestI18n' => array( 'note' => __( '\\nTEST MODE: no card is charged.\\n', 'flx-forms' ) ) ),
 				),
 			),
 		);
@@ -57,7 +57,7 @@ class FLXF_Payment_Test extends FLXF_Payment_Provider_Base {
 
 	public function create_payment( $amount, $currency, array $meta ) {
 		if ( 'decline' === $this->setting( 'flxfTestPayOutcome', 'approve' ) ) {
-			return FLXF_Payment_Result::failed( __( 'Test provider: the payment was declined.', 'flx-forms' ) );
+			return FLXF_Payment_Result::failed( __( '\\nTest provider: the payment was declined.\\n', 'flx-forms' ) );
 		}
 		return FLXF_Payment_Result::completed( 'test_' . strtolower( wp_generate_password( 16, false, false ) ), array(
 			'record' => array( 'meta' => array( 'test' => true, 'reference' => $meta['reference'] ?? '' ) ),

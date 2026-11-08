@@ -136,7 +136,7 @@ add_filter(
 			return $html;
 		}
 		$done = true;
-		return '<div class="wp-block-buttons flx-cookie-open flx-cookie-change"><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#cerez-tercihleri">' . esc_html__( 'Çerez tercihlerini değiştir', 'fluxwp' ) . '</a></div></div>' . $html;
+		return '<div class="wp-block-buttons flx-cookie-open flx-cookie-change"><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#cerez-tercihleri">' . esc_html__( 'Change cookie preferences', 'fluxwp' ) . '</a></div></div>' . $html;
 	},
 	9
 );
@@ -153,7 +153,7 @@ function flx_ayar_policy_url() {
 /* ---------- Yönetim sayfası ---------- */
 
 function flx_ayar_menu() {
-	add_theme_page( __( 'Tema Ayarları', 'fluxwp' ), __( 'Tema Ayarları', 'fluxwp' ), 'manage_options', 'flx-ayarlar', 'flx_ayar_page' );
+	add_theme_page( __( 'Theme Settings', 'fluxwp' ), __( 'Theme Settings', 'fluxwp' ), 'manage_options', 'flx-ayarlar', 'flx_ayar_page' );
 }
 add_action( 'admin_menu', 'flx_ayar_menu' );
 
@@ -235,16 +235,16 @@ function flx_ayar_page() {
 	$has_presets = function_exists( 'flxk_render_panel' );
 	?>
 	<div class="wrap<?php echo 'onayarlar' === $bolum ? ' flxk' : ''; ?>">
-		<h1><?php esc_html_e( 'Tema Ayarları', 'fluxwp' ); ?></h1>
+		<h1><?php esc_html_e( 'Theme Settings', 'fluxwp' ); ?></h1>
 		<?php if ( $has_presets ) : ?>
 		<nav class="nav-tab-wrapper">
-			<a class="nav-tab<?php echo 'onayarlar' !== $bolum ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( 'themes.php?page=flx-ayarlar' ) ); ?>"><?php esc_html_e( 'Genel', 'fluxwp' ); ?></a>
-			<a class="nav-tab<?php echo 'onayarlar' === $bolum ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( 'themes.php?page=flx-ayarlar&bolum=onayarlar' ) ); ?>"><?php esc_html_e( 'Ön ayarlar', 'fluxwp' ); ?></a>
+			<a class="nav-tab<?php echo 'onayarlar' !== $bolum ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( 'themes.php?page=flx-ayarlar' ) ); ?>"><?php esc_html_e( 'General', 'fluxwp' ); ?></a>
+			<a class="nav-tab<?php echo 'onayarlar' === $bolum ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( admin_url( 'themes.php?page=flx-ayarlar&bolum=onayarlar' ) ); ?>"><?php esc_html_e( 'Presets', 'fluxwp' ); ?></a>
 		</nav>
 		<?php endif; ?>
 		<?php
 		if ( $has_presets && 'onayarlar' === $bolum ) {
-			echo '<p class="flxk-lead">' . esc_html__( 'Ön ayar; kurum profili, eklenti ayarları, renkler, header/footer, şablonlar, sayfalar ve menülerle siteyi tek adımda kurar. Panelden yaptığınız değişikliklerin üzerine yazılmaz; güncellemeler tek tek onayınızla uygulanır.', 'fluxwp' ) . '</p>';
+			echo '<p class="flxk-lead">' . esc_html__( 'A preset sets up the site in one step with the organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the panel are never overwritten; updates are applied one by one with your approval.', 'fluxwp' ) . '</p>';
 			flxk_render_panel();
 			echo '</div>';
 			return;
@@ -254,12 +254,12 @@ function flx_ayar_page() {
 		<form method="post" action="options.php">
 			<?php settings_fields( 'flx_ayarlar' ); ?>
 			<input type="hidden" name="flx_ayarlar[_form]" value="1">
-			<h2 class="title"><?php esc_html_e( 'Görünüm', 'fluxwp' ); ?></h2>
+			<h2 class="title"><?php esc_html_e( 'Appearance', 'fluxwp' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th scope="row"><?php esc_html_e( 'Site türü', 'fluxwp' ); ?></th><td>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[site_mod]" value="shop" <?php checked( $o['site_mod'], 'shop' ); ?>> <?php esc_html_e( 'Mağaza: Siparişler, Mağazaya dön', 'fluxwp' ); ?></label><br>
-					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[site_mod]" value="donation" <?php checked( $o['site_mod'], 'donation' ); ?>> <?php esc_html_e( 'Bağış: Bağışlar, Bağış Yap düğmesi, bağış sayfasına dönüş', 'fluxwp' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Hesabım, sepet ve mobil menüdeki metinleri belirler.', 'fluxwp' ); ?></p></td></tr>
+				<tr><th scope="row"><?php esc_html_e( 'Site type', 'fluxwp' ); ?></th><td>
+					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[site_mod]" value="shop" <?php checked( $o['site_mod'], 'shop' ); ?>> <?php esc_html_e( 'Shop: Orders, Return to shop', 'fluxwp' ); ?></label><br>
+					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[site_mod]" value="donation" <?php checked( $o['site_mod'], 'donation' ); ?>> <?php esc_html_e( 'Donation: Donations, Donate button, return to the donation page', 'fluxwp' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Sets the wording in My account, the cart and the mobile menu.', 'fluxwp' ); ?></p></td></tr>
 				<tr><th scope="row">Dark mode</th><td>
 					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[dark_mode]" value="auto" <?php checked( $o['dark_mode'], 'auto' ); ?>> Otomatik: cihaz koyu moddaysa site de koyu</label><br>
 					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[dark_mode]" value="off" <?php checked( $o['dark_mode'], 'off' ); ?>> Kapalı: site her zaman açık renk</label>
@@ -329,7 +329,7 @@ function flx_ayar_page() {
 				<tr><th scope="row"><label for="flx-bi">TL IBAN</label></th><td><input id="flx-bi" class="regular-text code" name="<?php echo esc_attr( $n ); ?>[bank_iban]" value="<?php echo esc_attr( flx_iban_bicim( $o['bank_iban'] ) ); ?>"></td></tr>
 			</table>
 			<?php flx_pay_logos_admin(); ?>
-			<?php submit_button( __( 'Ayarları kaydet', 'fluxwp' ) ); ?>
+			<?php submit_button( __( 'Save settings', 'fluxwp' ) ); ?>
 		</form>
 		<?php flx_tasi_box(); ?>
 	</div>
@@ -475,12 +475,12 @@ function flx_youtube_facade( $html, $block ) {
 	?>
 <figure class="<?php echo esc_attr( implode( ' ', array_unique( explode( ' ', $cls ) ) ) ); ?>">
 	<div class="wp-block-embed__wrapper flx-player" data-flx-id="<?php echo esc_attr( $id ); ?>">
-		<button type="button" class="flx-player__btn" aria-label="<?php esc_attr_e( 'Videoyu oynat', 'fluxwp' ); ?>">
+		<button type="button" class="flx-player__btn" aria-label="<?php esc_attr_e( 'Play video', 'fluxwp' ); ?>">
 			<img src="<?php echo esc_url( $thumb ); ?>" onerror="this.onerror=null;this.src='<?php echo esc_url( $alt ); ?>'" alt="" loading="lazy" decoding="async">
 			<span class="flx-player__play" aria-hidden="true"></span>
 		</button>
 	</div>
-	<figcaption class="flx-player__alt"><a href="<?php echo esc_url( $watch ); ?>" target="_blank" rel="noopener"><?php esc_html_e( "YouTube'da izle", 'fluxwp' ); ?></a></figcaption>
+	<figcaption class="flx-player__alt"><a href="<?php echo esc_url( $watch ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Watch on YouTube', 'fluxwp' ); ?></a></figcaption>
 </figure>
 	<?php
 	return ob_get_clean();

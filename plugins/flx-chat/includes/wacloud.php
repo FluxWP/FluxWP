@@ -62,7 +62,7 @@ function flxc_wacloud_unsupported() {
 		'code'  => 501,
 		'json'  => null,
 		'body'  => '',
-		'error' => __( 'Resmi WhatsApp Cloud API hattında bu işlem yok.', 'flx-chat' ),
+		'error' => __( 'This action is not available on an official WhatsApp Cloud API line.', 'flx-chat' ),
 	);
 }
 
@@ -75,7 +75,7 @@ function flxc_wacloud_result( $r ) {
 	$ok  = ! empty( $r['ok'] );
 	$err = $ok ? '' : (string) ( $r['error'] ?? '' );
 	if ( ! $ok && 131047 === (int) ( $r['code'] ?? 0 ) ) {
-		$err = __( 'WhatsApp 24 saat kuralı: kişi son 24 saatte yazmadığı için Cloud API serbest mesaj göndermiyor; yalnız onaylı şablon gider. Kişi yazınca yeniden deneyin.', 'flx-chat' );
+		$err = __( 'WhatsApp 24-hour rule: the contact has not written in the last 24 hours, so the Cloud API will not send a free-form message; only an approved template can be sent. Try again once they write.', 'flx-chat' );
 	}
 	if ( ! $ok && '' === $err ) {
 		$err = 'Cloud API ' . (int) ( $r['code'] ?? 0 );
@@ -91,10 +91,10 @@ function flxc_wacloud_result( $r ) {
 
 function flxc_wacloud_post( $flxi_id, $to, array $payload ) {
 	if ( ! function_exists( 'flxi_wacloud_post' ) ) {
-		return array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => __( 'Cloud API hattı için Flux Mail 1.10.0 veya üstü gerekli.', 'flx-chat' ) );
+		return array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => __( 'A Cloud API line needs Flux Mail 1.10.0 or later.', 'flx-chat' ) );
 	}
 	if ( '' === $to ) {
-		return array( 'ok' => false, 'code' => 400, 'json' => null, 'body' => '', 'error' => __( 'Cloud API bu adrese (gizli numara ya da grup) gönderemez.', 'flx-chat' ) );
+		return array( 'ok' => false, 'code' => 400, 'json' => null, 'body' => '', 'error' => __( 'The Cloud API cannot send to this address (hidden number or group).', 'flx-chat' ) );
 	}
 	return flxc_wacloud_result( flxi_wacloud_post( (int) $flxi_id, $to, $payload ) );
 }
@@ -207,11 +207,11 @@ function flxc_wacloud_evo( $conn, $flxi_id, $method, $path, $body ) {
 				'code'  => 200,
 				'json'  => array( 'instance' => array( 'state' => 'open' === $s ? 'open' : 'close' ) ),
 				'body'  => '',
-				'error' => 'open' === $s ? '' : (string) ( $st['error'] ?? __( 'Cloud API hesabına ulaşılamadı (İletişim › Bağlantılar).', 'flx-chat' ) ),
+				'error' => 'open' === $s ? '' : (string) ( $st['error'] ?? __( 'Could not reach the Cloud API account (İletişim › Connections).', 'flx-chat' ) ),
 			);
 
 		case '/instance/connect':
-			return array( 'ok' => false, 'code' => 400, 'json' => null, 'body' => '', 'error' => __( 'Cloud API hattında QR yok; hesap İletişim › Bağlantılar\'da kurulur.', 'flx-chat' ) );
+			return array( 'ok' => false, 'code' => 400, 'json' => null, 'body' => '', 'error' => __( 'A Cloud API line has no QR code; the account is set up in İletişim › Connections.', 'flx-chat' ) );
 
 		case '/webhook/set':
 		case '/webhook/find':
@@ -234,7 +234,7 @@ function flxc_wacloud_evo( $conn, $flxi_id, $method, $path, $body ) {
 			$name  = (string) ( $b['fileName'] ?? '' );
 			$link  = preg_match( '#^https?://#', $media ) ? $media : flxc_wacloud_temp_link( $media, (string) ( $b['mimetype'] ?? '' ), pathinfo( $name, PATHINFO_EXTENSION ) );
 			if ( '' === $link ) {
-				return array( 'ok' => false, 'code' => 400, 'json' => null, 'body' => '', 'error' => __( 'Dosya hazırlanamadı.', 'flx-chat' ) );
+				return array( 'ok' => false, 'code' => 400, 'json' => null, 'body' => '', 'error' => __( 'The file could not be prepared.', 'flx-chat' ) );
 			}
 			$obj = array( 'link' => $link );
 			if ( '' !== (string) ( $b['caption'] ?? '' ) ) {
@@ -253,7 +253,7 @@ function flxc_wacloud_evo( $conn, $flxi_id, $method, $path, $body ) {
 			list( $mime, $ext ) = flxc_wacloud_audio_type( $b['audio'] ?? '' );
 			$link = preg_match( '#^https?://#', (string) ( $b['audio'] ?? '' ) ) ? (string) $b['audio'] : flxc_wacloud_temp_link( $b['audio'] ?? '', $mime, $ext );
 			if ( '' === $link ) {
-				return array( 'ok' => false, 'code' => 400, 'json' => null, 'body' => '', 'error' => __( 'Dosya hazırlanamadı.', 'flx-chat' ) );
+				return array( 'ok' => false, 'code' => 400, 'json' => null, 'body' => '', 'error' => __( 'The file could not be prepared.', 'flx-chat' ) );
 			}
 			return flxc_wacloud_post( $flxi_id, flxc_wacloud_to( $b['number'] ?? '' ), array( 'type' => 'audio', 'audio' => array( 'link' => $link ) ) );
 

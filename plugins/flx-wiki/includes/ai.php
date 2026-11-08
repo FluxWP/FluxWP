@@ -30,8 +30,8 @@ add_filter(
 add_filter(
 	'flxai_purpose_labels',
 	function ( $l ) {
-		$l['wiki_ask']   = __( 'Wiki\'ye sor', 'flx-wiki' );
-		$l['wiki_draft'] = __( 'Wiki taslağı', 'flx-wiki' );
+		$l['wiki_ask']   = __( 'Ask the wiki', 'flx-wiki' );
+		$l['wiki_draft'] = __( 'Wiki draft', 'flx-wiki' );
 		return $l;
 	}
 );
@@ -45,7 +45,7 @@ add_filter(
  */
 function flxwk_ask( $q, $page_id = 0 ) {
 	if ( ! flxwk_ai_ready() ) {
-		return new WP_Error( 'flxwk_ai', __( 'Flux AI hazır değil.', 'flx-wiki' ), array( 'status' => 503 ) );
+		return new WP_Error( 'flxwk_ai', __( 'Flux AI is not ready.', 'flx-wiki' ), array( 'status' => 503 ) );
 	}
 	$q = mb_substr( trim( (string) $q ), 0, 1000 );
 	$hits = flxwk_ask_search( array( $q ) );
@@ -66,7 +66,7 @@ function flxwk_ask( $q, $page_id = 0 ) {
 	}
 	$ids = array_slice( array_values( array_unique( $ids ) ), 0, 5 );
 	if ( ! $ids ) {
-		$answer = __( 'Bu soruyu yanıtlayan bir rehber bulamadım. Eklenti adını ya da yapmak istediğiniz işlemi yazarak tekrar deneyin.', 'flx-wiki' );
+		$answer = __( 'I could not find a guide answering this question. Try again with the plugin name or the task you want to complete.', 'flx-wiki' );
 		return array( 'answer' => $answer, 'html' => '<p>' . esc_html( $answer ) . '</p>', 'sources' => array() );
 	}
 	$context = array();
@@ -100,11 +100,11 @@ function flxwk_ask( $q, $page_id = 0 ) {
 		)
 	);
 	if ( is_wp_error( $res ) ) {
-		return new WP_Error( 'flxwk_ai_fail', __( 'Cevap alınamadı. Biraz sonra tekrar deneyin.', 'flx-wiki' ), array( 'status' => 502, 'reason' => $res->get_error_code() ) );
+		return new WP_Error( 'flxwk_ai_fail', __( 'Could not get an answer. Try again in a moment.', 'flx-wiki' ), array( 'status' => 502, 'reason' => $res->get_error_code() ) );
 	}
 	$answer = trim( (string) ( $res['content'] ?? '' ) );
 	if ( '' === $answer || ! empty( $res['tool_calls'] ) ) {
-		return new WP_Error( 'flxwk_ai_empty', __( 'Cevap alınamadı. Biraz sonra tekrar deneyin.', 'flx-wiki' ), array( 'status' => 502 ) );
+		return new WP_Error( 'flxwk_ai_empty', __( 'Could not get an answer. Try again in a moment.', 'flx-wiki' ), array( 'status' => 502 ) );
 	}
 	$html = flxwk_render( $answer );
 	// Only cited Wiki URLs are clickable. Sanitization already strips unsafe markup.

@@ -126,10 +126,10 @@ function flxc_update_settings( array $values ) {
 /** Varsayılan etiketler: ilk kurulumda site dilinde yazılır, sonra panelden değiştirilir. */
 function flxc_default_labels() {
 	return array(
-		array( 'id' => 'yeni', 'name' => __( 'Yeni', 'flx-chat' ), 'color' => '#25d366' ),
-		array( 'id' => 'bagis', 'name' => __( 'Bağış', 'flx-chat' ), 'color' => '#53bdeb' ),
-		array( 'id' => 'oneli', 'name' => __( 'Önemli', 'flx-chat' ), 'color' => '#ff6b6b' ),
-		array( 'id' => 'takip', 'name' => __( 'Takip', 'flx-chat' ), 'color' => '#ffb347' ),
+		array( 'id' => 'yeni', 'name' => __( 'New', 'flx-chat' ), 'color' => '#25d366' ),
+		array( 'id' => 'bagis', 'name' => __( 'Donation', 'flx-chat' ), 'color' => '#53bdeb' ),
+		array( 'id' => 'oneli', 'name' => __( 'Important', 'flx-chat' ), 'color' => '#ff6b6b' ),
+		array( 'id' => 'takip', 'name' => __( 'Follow-up', 'flx-chat' ), 'color' => '#ffb347' ),
 	);
 }
 

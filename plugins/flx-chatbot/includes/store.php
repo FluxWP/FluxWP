@@ -335,7 +335,7 @@ function flxcb_conv_title( $conv ) {
 		return $conv['email'];
 	}
 	/* translators: %d: conversation number */
-	return sprintf( __( 'Ziyaretçi #%d', 'flx-chatbot' ), (int) $conv['id'] );
+	return sprintf( __( 'Visitor #%d', 'flx-chatbot' ), (int) $conv['id'] );
 }
 
 /** Sistem mesajı (ziyaretçiye görünen olay satırı). */

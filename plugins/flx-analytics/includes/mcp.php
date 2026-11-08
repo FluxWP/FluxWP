@@ -44,7 +44,7 @@ function flxan_tools() {
 	$tools = array();
 
 	$tools['flxan_summary'] = array(
-		'title'       => __( 'Site trafiği özeti', 'flx-analytics' ),
+		'title'       => __( 'Site traffic summary', 'flx-analytics' ),
 		'description' => 'Site Analitik (Flux Analiz): seçilen aralıkta ziyaretçi ve görüntülenme toplamı, önceki eşit dönemle yüzde değişim, en çok görüntülenen 10 sayfa, ilk 10 yönlendiren site, kanallar (doğrudan/arama/sosyal/yapay zekâ/e-posta/reklam/kampanya/diğer siteler), cihazlar, olay toplamları (dış bağlantı, indirme, telefon, WhatsApp, arama, bağış) oturum ölçüleri (ziyaret, ortalama süre, hemen çıkma, ziyaret başına sayfa), rollere göre dağılım, referans kodları, bağış hunisi (kanala göre) ve son 30 dakika. "Site trafiği nasıl / nereden geliyor" sorularına buradan başla. Not: ziyaretçi = günlük tekil ziyaretçilerin toplamı; çerez yok.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -65,7 +65,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_timeseries'] = array(
-		'title'       => __( 'Günlük ziyaretçi grafiği verisi', 'flx-analytics' ),
+		'title'       => __( 'Daily visitor chart data', 'flx-analytics' ),
 		'description' => 'Ziyaretçi ve görüntülenme zaman serisi (eksik günler 0). group: day | week | month | auto (≤92 gün günlük, ≤400 haftalık, üstü aylık).',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -80,7 +80,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_pages'] = array(
-		'title'       => __( 'En çok görüntülenen sayfalar', 'flx-analytics' ),
+		'title'       => __( 'Most viewed pages', 'flx-analytics' ),
 		'description' => 'Sayfa/yazı başına görüntülenme ve ziyaretçi (çoktan aza). q: adreste geçen metin (ör. "bagis"). only404: yalnız bulunamayan (404) adresler. Sayfalama: limit (≤100), offset.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -103,7 +103,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_referrers'] = array(
-		'title'       => __( 'Yönlendiren siteler', 'flx-analytics' ),
+		'title'       => __( 'Referring sites', 'flx-analytics' ),
 		'description' => 'Ziyaretçiyi gönderen siteler (alan adı; google.com, instagram.com, chatgpt.com gibi bilinen servisler tek ada toplanır) ve kanalı. q: alan adında geçen metin.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -125,7 +125,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_breakdown'] = array(
-		'title'       => __( 'Kanal, cihaz, tarayıcı dağılımı', 'flx-analytics' ),
+		'title'       => __( 'Channel, device, browser breakdown', 'flx-analytics' ),
 		'description' => 'Bir boyuta göre dağılım. kind: channel (giriş kanalı; visitors = o kanaldan gelen tekil ziyaretçi), device, browser, os, lang (tarayıcı dili), country (yalnız sunucu ülke başlığı gönderiyorsa), utm_source, utm_medium, utm_campaign.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -151,7 +151,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_events'] = array(
-		'title'       => __( 'Tıklamalar ve dönüşümler', 'flx-analytics' ),
+		'title'       => __( 'Clicks and conversions', 'flx-analytics' ),
 		'description' => 'Olaylar: outbound (dış bağlantı; param = alan adı), download (param = dosya adı), tel / mail (param = numara/adres), whatsapp (param = tıklandığı sayfa), search (param = aranan kelime), donation (ödenen bağış/sipariş; param = bağış türü, amount = toplam tutar). name boşsa tüm olaylar; summary olay türü toplamlarıdır. hits = tıklama, uniques = günlük tekil kişi.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -176,7 +176,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_realtime'] = array(
-		'title'       => __( 'Şu an sitede kaç kişi var?', 'flx-analytics' ),
+		'title'       => __( 'How many people are on the site now?', 'flx-analytics' ),
 		'description' => 'Son X dakika (1-60, varsayılan 30): görüntülenme, tekil ziyaretçi, dakikalık dağılım, en çok bakılan sayfalar ve kaynaklar. Önce kuyruğu işler.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -189,7 +189,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_page'] = array(
-		'title'       => __( 'Tek sayfanın istatistiği', 'flx-analytics' ),
+		'title'       => __( 'Single page statistics', 'flx-analytics' ),
 		'description' => 'Bir sayfa ya da yazının toplamı ve günlük serisi. target: yazı kimliği (sayı), yol ("/bagis/") ya da tam adres.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -205,7 +205,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_compare'] = array(
-		'title'       => __( 'İki dönemi karşılaştır', 'flx-analytics' ),
+		'title'       => __( 'Compare two periods', 'flx-analytics' ),
 		'description' => 'İki tarih aralığının ziyaretçi/görüntülenme toplamları ve yüzde değişimi, iki dönemin en çok görüntülenen 10 sayfası ve kanalları. a_start, a_end, b_start, b_end: YYYY-MM-DD (a = yeni dönem, b = karşılaştırılan).',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -245,7 +245,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_funnel'] = array(
-		'title'       => __( 'Bağış / ödeme hunisi', 'flx-analytics' ),
+		'title'       => __( 'Donation / checkout funnel', 'flx-analytics' ),
 		'description' => 'Huni: her adıma (siteye giriş → bağış sayfası → ödeme sayfası → forma başladı → "Ödeme yap" → tamamlandı; ayarlardan değişir) ulaşan ziyaret sayısı, başlangıca oranı (rate) ve önceki adımdan kayıp (drop) yüzdesi. by: channel | ref (yönlendiren site) | rc (referans kodu) | seg (rol) | country → "nereden gelenler hangi adıma kadar gitti" kırılımı (en kalabalık 8 grup, counts dizisi adım sırasında). id: huni no (boş = ilk huni; funnels listesi döner).',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -267,7 +267,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_journeys'] = array(
-		'title'       => __( 'Ziyaretçi yolculukları', 'flx-analytics' ),
+		'title'       => __( 'Visitor journeys', 'flx-analytics' ),
 		'description' => 'Yolculuklar: ziyaretçilerin siteye girdikten sonra hangi sayfaları hangi sırayla gezdiği; araya giren olaylar (sepete ekleme, ödeme formu, "Ödeme yap", ödeme yöntemi, sipariş, WhatsApp/telefon tıklaması) "@olay" anahtarlı adım olarak görünür (ev: true). summary: çok sayfalı ziyaret sayısı/oranı, ortalama yol uzunluğu, en sık giriş ve çıkış sayfası, hedefe ulaşma oranı (önceki döneme göre değişimle). flow: adım adım her sayfada kaç ziyaret, kaçı orada bitti (ends) ve adımlar arası geçişler (links). paths.items: en sık izlenen yollar (sessions, share %, prev, change %, rate = hedefe ulaşma %). steps: 2–6 adım; from / to: başlangıç / bitiş sayfası yolu; goal: "huni:adım" (ör. "1:3"), boş = hedefsiz, verilmezse ödeme sayfası; group: true ise /haber/... gibi alt sayfalar tek grupta.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -307,7 +307,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_refs'] = array(
-		'title'       => __( 'Referans bağlantıları raporu', 'flx-analytics' ),
+		'title'       => __( 'Referral links report', 'flx-analytics' ),
 		'description' => 'Referans kodları (?r=kod bağlantıları; ör. "ahmet-ig" = "Ahmet\'in Instagram\'ı"): kod, ad, bağlantı, ziyaretçi, görüntülenme, ziyaret (sessions), ziyaret başına sayfa, ortalama süre (sn), bağış sayısı/tutarı, huni içinde ulaşılan en derin adım ve tamamlayan ziyaret. Referansla gelen kişi 30 gün tanınır (çerez), sonraki ziyaretleri ve bağışı da o koda sayılır. Adı verilmiş ama trafik almamış kodlar da listelenir.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -320,7 +320,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_segments'] = array(
-		'title'       => __( 'Rollere göre trafik', 'flx-analytics' ),
+		'title'       => __( 'Traffic by role', 'flx-analytics' ),
 		'description' => 'Ziyaretçi ve görüntülenmenin role göre dağılımı: "" (Dışarıdan gelenler = giriş yapmamış) ve her WordPress rolü (yönetici, editör, müşteri…). Dışarıdan gelen trafiği ayrıca görmek için diğer araçlarda seg=guest verin.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -332,7 +332,7 @@ function flxan_tools() {
 	);
 
 	$tools['flxan_ref_save'] = array(
-		'title'       => __( 'Referans bağlantısı oluştur / adlandır', 'flx-analytics' ),
+		'title'       => __( 'Create / name a referral link', 'flx-analytics' ),
 		'description' => 'Referans kodu ekler ya da adını değiştirir (delete=true siler; istatistikler silinmez). Kod: küçük harf, rakam, - ve _ (en fazla 32; Türkçe karakter sadeleşir). Döner: paylaşılacak bağlantı (https://site/?r=kod). Ör. kod "ayse-wp", ad "Ayşe\'nin WhatsApp grubu".',
 		'readonly'    => false,
 		'cap'         => 'flxan_view',
@@ -347,11 +347,11 @@ function flxan_tools() {
 		),
 		'run'         => function ( $a ) {
 			if ( ! flxan_can_manage_refs() ) {
-				return new WP_Error( 'flxan_forbidden', __( 'Referans bağlantılarını düzenleme yetkiniz yok.', 'flx-analytics' ) );
+				return new WP_Error( 'flxan_forbidden', __( 'You are not allowed to edit referral links.', 'flx-analytics' ) );
 			}
 			$code = flxan_ref_save( (string) ( $a['code'] ?? '' ), ! empty( $a['delete'] ) ? null : (string) ( $a['name'] ?? '' ) );
 			if ( '' === $code ) {
-				return new WP_Error( 'flxan_bad_code', __( 'Geçersiz kod. Harf, rakam, - ve _ kullanın.', 'flx-analytics' ) );
+				return new WP_Error( 'flxan_bad_code', __( 'Invalid code. Use letters, digits, - and _.', 'flx-analytics' ) );
 			}
 			return array(
 				'code'    => $code,

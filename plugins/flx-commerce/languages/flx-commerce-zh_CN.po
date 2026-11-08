@@ -1,0 +1,903 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Flux Commerce needs WooCommerce. Install and activate WooCommerce."
+msgstr "Flux Commerce 需要 WooCommerce。安装并激活 WooCommerce。"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Sales dashboard, customers, reports and checkout improvements"
+msgstr "销售仪表板、客户、报告和结帐改进"
+
+msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your order is prepared when the payment is confirmed."
+msgstr "下订单后,您将看到 IBAN 和您自己的参考代码。付款后,您可以在网站上上传收据;付款确认后,您的订单已准备就绪。"
+
+msgid "Recipient"
+msgstr "收件人"
+
+msgid "Bank"
+msgstr "银行"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "Reference"
+msgstr "参考"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Uploading…"
+msgstr "正在上传..."
+
+msgid "The receipt could not be uploaded. Please try again."
+msgstr "无法上传收据。请再试一次。"
+
+msgid "We have your receipt. We will let you know once the payment is confirmed."
+msgstr "我们有您的收据。付款确认后我们会通知您。"
+
+msgid "Your order is in, we are waiting for your payment"
+msgstr "您的订单已到,我们正在等待您的付款"
+
+msgid "Make a bank transfer to the account below and write your own reference code in the description."
+msgstr "将银行转帐至以下帐户,并在说明中写下您自己的参考代码。"
+
+msgid "Make the bank transfer"
+msgstr "进行银行转帐"
+
+msgid "Copy %s"
+msgstr "复制%s"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "The reference code lets us match your payment to your order."
+msgstr "参考代码让我们能够将您的付款与您的订单进行匹配。"
+
+msgid "Upload your receipt"
+msgstr "上传您的收据"
+
+msgid "We prepare your order"
+msgstr "我们准备您的订单"
+
+msgid "You get an e-mail once the payment is confirmed; you can also follow your order under My account › Orders."
+msgstr "付款确认后您会收到一封电子邮件;您还可以在我的帐户 › 订单下关注您的订单。"
+
+msgid "Bank transfer details"
+msgstr "银行转账详情"
+
+msgid "After paying, upload your receipt:"
+msgstr "付款后,上传收据:"
+
+msgid "Please write the reference above in the transfer description. After paying, upload your receipt:"
+msgstr "请在转账说明中填写上述参考信息。付款后,上传收据:"
+
+msgid "Upload receipt"
+msgstr "上传收据"
+
+msgid "Bank transfer"
+msgstr "银行转账"
+
+msgid "This order was not placed by bank transfer."
+msgstr "该订单不是通过银行转账下达的。"
+
+msgid "No receipt uploaded yet."
+msgstr "尚未上传收据。"
+
+msgid "Confirm payment"
+msgstr "确认付款"
+
+msgid "Payment confirmed: %1$s · %2$s"
+msgstr "付款确认:%1$s·%2$s"
+
+msgid "Bank transfer payment confirmed."
+msgstr "银行转账付款已确认。"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Confirm bank transfer payment"
+msgstr "确认银行转账付款"
+
+msgid "Transfer"
+msgstr "转乘"
+
+msgid "Receipt in"
+msgstr "收据于"
+
+msgid "Awaiting payment"
+msgstr "等待付款"
+
+msgid "Confirmed"
+msgstr "已确认"
+
+msgid "Cancelled because no payment arrived within %d days."
+msgstr "已取消,因为%d天内未收到付款。"
+
+msgid "Add %s more for free shipping."
+msgstr "添加%s即可免运费。"
+
+msgid "Free shipping!"
+msgstr "免费送货!"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "E-mail"
+msgstr "电子邮件"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "City"
+msgstr "城市"
+
+msgid "Orders"
+msgstr "订单"
+
+msgid "Total spent"
+msgstr "总支出"
+
+msgid "First order"
+msgstr "第一个订单"
+
+msgid "Last order"
+msgstr "最后订单"
+
+msgid "Note"
+msgstr "注意事项"
+
+msgid "Hello %1$s, your %2$s order (#%3$s) is in.\n\nAmount: %4$s\nRecipient: %5$s\nIBAN: %6$s\nReference: %7$s\n\nAfter paying you can upload the receipt here: %8$s"
+msgstr "您好%1$s,您的%2$s订单 (#%3$s) 已到。\n\n金额:%4$s收件人:%5$sIBAN:%6$s参考:%7$s付款后,您可以在此处上传收据:%8$s"
+
+msgid "Bank transfer details sent to the customer by WhatsApp."
+msgstr "通过 WhatsApp 向客户发送银行转账详细信息。"
+
+msgid "Receipt in: order #%1$s · %2$s"
+msgstr "收据:订单#%1$s·%2$s"
+
+msgid "%1$s uploaded a receipt for order #%2$s.\n\nAmount: %3$s\nReference: %4$s\nFile: %5$s\n\nCheck and confirm: %6$s"
+msgstr "%1$s上传了订单 #%2$s的收据。\n\n金额:%3$s参考:%4$s文件:%5$s检查并确认:%6$s"
+
+msgid "Hello %1$s, the payment for your order #%2$s is confirmed. We are preparing your order. %3$s"
+msgstr "您好%1$s,您的订单 #%2$s的付款已确认。我们正在准备您的订单。%3$s"
+
+msgid "New order #%1$s · %2$s\n%3$s\n%4$s\n%5$s"
+msgstr "新订单#%1$s·%2$s%3$s%4$s%5$s"
+
+msgid "No receipt is expected for this order."
+msgstr "该订单预计不会收到任何收据。"
+
+msgid "At most 5 receipts can be uploaded for an order."
+msgstr "一个订单最多可上传 5 张收据。"
+
+msgid "The file is too large."
+msgstr "文件太大。"
+
+msgid "The file could not be uploaded. Please try again."
+msgstr "文件无法上传。请再试一次。"
+
+msgid "The file can be at most %s MB."
+msgstr "文件最多可为%sMB。"
+
+msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
+msgstr "只能上传 PDF、JPG、PNG、WEBP 或 HEIC 文件。"
+
+msgid "The file could not be saved."
+msgstr "无法保存文件。"
+
+msgid "The customer uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
+msgstr "客户上传了收据:%1$s(%2$s)。检查付款并确认。"
+
+msgid "Add another receipt"
+msgstr "添加另一张收据"
+
+msgid "Choose a receipt or drop it here"
+msgstr "选择收据或将其放在此处"
+
+msgid "PDF, JPG or PNG · up to %s MB"
+msgstr "PDF、JPG 或 PNG · 最大%sMB"
+
+msgid "Send receipt"
+msgstr "发送收据"
+
+msgid "Order not found."
+msgstr "未找到订单。"
+
+msgid "Please choose a file."
+msgstr "请选择一个文件。"
+
+msgid "We have your receipt. Thank you!"
+msgstr "我们有您的收据。谢谢你!"
+
+msgid "No payment"
+msgstr "没有付款"
+
+msgid "Uncategorized"
+msgstr "未分类"
+
+msgid "%s M"
+msgstr "%sM"
+
+msgid "%s K"
+msgstr "%sK"
+
+msgid "%s ago"
+msgstr "%s前"
+
+msgid "Processing"
+msgstr "加工"
+
+msgid "On hold"
+msgstr "暂停"
+
+msgid "Completed"
+msgstr "已完成"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "Refunded"
+msgstr "已退款"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Flux Commerce"
+msgstr "通量商务"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Active, version %s"
+msgstr "有效,版本%s"
+
+msgid "WooCommerce is not installed or not active; Flux Commerce does not work."
+msgstr "WooCommerce 未安装或未激活; Flux Commerce 不起作用。"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "Off; Flux Donate's bank transfer method is used."
+msgstr "关闭;使用Flux Donate的银行转账方式。"
+
+msgid "Off."
+msgstr "关闭。"
+
+msgid "On but no IBAN; it does not show at checkout."
+msgstr "已开启但无 IBAN;它不会在结账时显示。"
+
+msgid "Payment method"
+msgstr "付款方式"
+
+msgid "Customer list"
+msgstr "客户名单"
+
+msgid "Last full scan: %s"
+msgstr "上次完整扫描:%s"
+
+msgid "Older orders are not scanned yet; press \"Rebuild\" on the Customers page."
+msgstr "较旧的订单尚未扫描;按客户页面上的“重建”。"
+
+msgid "Customers"
+msgstr "客户"
+
+msgid "Store"
+msgstr "商店"
+
+msgid "Overview"
+msgstr "概述"
+
+msgid "Sales report"
+msgstr "销售报告"
+
+msgid "Scanning: %1$s / %2$s orders"
+msgstr "扫描:%1$s/%2$s命令"
+
+msgid "Done. Reloading…"
+msgstr "完成。正在重新加载..."
+
+msgid "Something went wrong. Please try again."
+msgstr "出了点问题。请再试一次。"
+
+msgid "Saved"
+msgstr "已保存"
+
+msgid "Store · today"
+msgstr "商店·今天"
+
+msgid "Revenue"
+msgstr "收入"
+
+msgid "Open the overview"
+msgstr "打开概览"
+
+msgid "Daily revenue"
+msgstr "每日收入"
+
+msgid "%1$s · %2$s · %3$s orders"
+msgstr "%1$s·%2$s·%3$s订单"
+
+msgid "%s pc"
+msgid_plural "%s pcs"
+msgstr[0] "%s件"
+
+msgid "Customer not found"
+msgstr "未找到客户"
+
+msgid "Back to customers"
+msgstr "返回给客户"
+
+msgid "Open in WooCommerce"
+msgstr "在 WooCommerce 中打开"
+
+msgid "No orders."
+msgstr "没有订单。"
+
+msgid "All orders (%s)"
+msgstr "所有订单 (%s)"
+
+msgid "Customer page"
+msgstr "客户页面"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Payments"
+msgstr "付款方式"
+
+msgid "Notes"
+msgstr "注释"
+
+msgid "Customer since %s"
+msgstr "自%s以来的客户"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "%s open orders"
+msgstr "%s未平仓订单"
+
+msgid "Average order"
+msgstr "平均订单数"
+
+msgid "Order frequency"
+msgstr "订单频率"
+
+msgid "Every %s days"
+msgstr "每%s天"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "User profile"
+msgstr "用户资料"
+
+msgid "Account"
+msgstr "账户"
+
+msgid "Registered member"
+msgstr "注册会员"
+
+msgid "Guest"
+msgstr "嘉宾"
+
+msgid "Timeline"
+msgstr "时间轴"
+
+msgid "Timeline filter"
+msgstr "时间轴过滤器"
+
+msgid "Nothing in this filter."
+msgstr "这个过滤器里什么都没有。"
+
+msgid "Show older"
+msgstr "显示较旧的"
+
+msgid "%1$s of %2$s entries"
+msgstr "%2$s条目中的%1$s"
+
+msgid "Order #%s"
+msgstr "订单#%s"
+
+msgid "New order"
+msgstr "新订单"
+
+msgid "Payment received"
+msgstr "已收到付款"
+
+msgid "Order #%1$s · %2$s"
+msgstr "订单 #%1$s·%2$s"
+
+msgid "Refund issued"
+msgstr "退款已发出"
+
+msgid "Note to customer"
+msgstr "客户须知"
+
+msgid "Order note"
+msgstr "订单备注"
+
+msgid "Addresses"
+msgstr "地址"
+
+msgid "Billing and shipping"
+msgstr "计费和运输"
+
+msgid "Billing"
+msgstr "计费"
+
+msgid "Shipping"
+msgstr "运输"
+
+msgid "From the latest order"
+msgstr "从最新订单来看"
+
+msgid "Frequently bought"
+msgstr "经常购买"
+
+msgid "Store note"
+msgstr "店铺备注"
+
+msgid "E.g. wants gift wrapping, leave at the door…"
+msgstr "例如想要礼品包装,留在门口..."
+
+msgid "Saved when you leave the field."
+msgstr "当您离开场地时保存。"
+
+msgid "Member"
+msgstr "会员"
+
+msgid "Repeat buyers"
+msgstr "重复购买者"
+
+msgid "Top 10% spenders"
+msgstr "前 10% 的消费者"
+
+msgid "Lapsed"
+msgstr "已失效"
+
+msgid "Download CSV"
+msgstr "下载 CSV 文件"
+
+msgid "Rebuild"
+msgstr "重建"
+
+msgid "Members and guests, one row per e-mail, with order count and total spent."
+msgstr "会员和客人,每封电子邮件一行,包含订单数和总消费。"
+
+msgid "Older orders are not scanned yet."
+msgstr "较旧的订单尚未扫描。"
+
+msgid "The list fills itself with new orders. To add older orders, press \"Rebuild\"; the scan runs in batches of 100."
+msgstr "该列表中充满了新订单。要添加旧订单,请按“重建”;扫描以 100 个为批次运行。"
+
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "Spend per customer"
+msgstr "每个客户的支出"
+
+msgid "No order in 90 days"
+msgstr "90天内没有订单"
+
+msgid "New (30 days)"
+msgstr "新(30 天)"
+
+msgid "Lapsed (90 days)"
+msgstr "失效(90 天)"
+
+msgid "Search customers"
+msgstr "搜寻客户"
+
+msgid "Name, e-mail, phone, city"
+msgstr "姓名、电子邮件、电话、城市"
+
+msgid "No customer matches the search."
+msgstr "没有客户与搜索匹配。"
+
+msgid "No customers yet."
+msgstr "还没有顾客。"
+
+msgid "Total"
+msgstr "合计"
+
+msgid "Repeat"
+msgstr "重复"
+
+msgid "Add a note…"
+msgstr "添加注释..."
+
+msgid "Note for %s"
+msgstr "%s的注释"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "7 days"
+msgstr "7天"
+
+msgid "30 days"
+msgstr "30天"
+
+msgid "90 days"
+msgstr "90天"
+
+msgid "Period"
+msgstr "时期"
+
+msgid "Sales, orders awaiting payment and stock at a glance."
+msgstr "销售情况、待付款订单、库存一目了然。"
+
+msgid "Net revenue"
+msgstr "净收入"
+
+msgid "%s new"
+msgstr "%s新"
+
+msgid "%1$s – %2$s · compared with %3$s – %4$s"
+msgstr "%1$s–%2$s· 与%3$s–%4$s相比"
+
+msgid "Full report"
+msgstr "完整报告"
+
+msgid "Pick 7 days or longer for the daily chart."
+msgstr "选择 7 天或更长的时间作为日线图。"
+
+msgid "No paid orders in this period."
+msgstr "此期间无已付款订单。"
+
+msgid "Best sellers"
+msgstr "畅销书"
+
+msgid "pcs"
+msgstr "件"
+
+msgid "No sales in this period."
+msgstr "在此期间没有销售。"
+
+msgid "Payment methods"
+msgstr "付款方式"
+
+msgid "orders"
+msgstr "订单"
+
+msgid "Products"
+msgstr "产品展示"
+
+msgid "New product"
+msgstr "新产品"
+
+msgid "Coupons"
+msgstr "优惠券"
+
+msgid "No orders awaiting payment."
+msgstr "没有等待付款的订单。"
+
+msgid "Low stock"
+msgstr "库存不足"
+
+msgid "threshold %s"
+msgstr "阈值%s"
+
+msgid "No products running low."
+msgstr "没有产品库存不足。"
+
+msgid "Out of stock"
+msgstr "缺货"
+
+msgid "%s left"
+msgstr "%s左"
+
+msgid "Paid orders in the period you pick; net amounts after refunds."
+msgstr "您选择的时间段内已付款的订单;退款后的净金额。"
+
+msgid "This month"
+msgstr "这个月"
+
+msgid "Last month"
+msgstr "上个月"
+
+msgid "This year"
+msgstr "今年"
+
+msgid "From"
+msgstr "来自"
+
+msgid "To"
+msgstr "至"
+
+msgid "Show"
+msgstr "显示"
+
+msgid "Items sold"
+msgstr "已售商品"
+
+msgid "Refunds"
+msgstr "退款"
+
+msgid "Shipping income"
+msgstr "运费收入"
+
+msgid "Product"
+msgstr "产品展示"
+
+msgid "Qty"
+msgstr "数量"
+
+msgid "Net sales"
+msgstr "净销售额"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Categories"
+msgstr "类别"
+
+msgid "Counted statuses: %s. Change them in Settings."
+msgstr "计数状态:%s。在“设置”中更改它们。"
+
+msgid "Summary"
+msgstr "总结"
+
+msgid "Gross revenue"
+msgstr "总收入"
+
+msgid "Tax"
+msgstr "税"
+
+msgid "Discount"
+msgstr "折扣"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Category"
+msgstr "类别"
+
+msgid "Dashboard, checkout, bank transfer, product feed and notifications."
+msgstr "仪表板、结帐、银行转账、产品源和通知。"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "Dashboard and reports"
+msgstr "仪表板和报告"
+
+msgid "Order statuses counted as revenue"
+msgstr "订单状态计为收入"
+
+msgid "On-hold (bank transfer) orders count once the payment is confirmed."
+msgstr "付款确认后,保留(银行转帐)订单即生效。"
+
+msgid "Leave donation orders out of the store statistics"
+msgstr "将捐赠订单排除在商店统计之外"
+
+msgid "Flux Donate is installed: orders with only donations stay in the Donations dashboard."
+msgstr "Flux Donate 已安装:仅包含捐赠的订单保留在捐赠仪表板中。"
+
+msgid "Low stock threshold"
+msgstr "库存门槛低"
+
+msgid "Products whose stock falls to this number or below are listed on the Overview."
+msgstr "库存低于此数量的产品将在概览中列出。"
+
+msgid "Cart and checkout"
+msgstr "购物车和结帐"
+
+msgid "Hide the company name field"
+msgstr "隐藏公司名称字段"
+
+msgid "Hide the second address line"
+msgstr "隐藏第二个地址行"
+
+msgid "Do not ask for an address when the cart only has virtual/downloadable products"
+msgstr "当购物车只有虚拟/可下载产品时,请勿询问地址"
+
+msgid "On the classic checkout. Country, name, e-mail and phone stay."
+msgstr "在经典结帐处。国家/地区、姓名、电子邮件地址和电话号码。"
+
+msgid "Order notes field"
+msgstr "订单备注字段"
+
+msgid "On mobile, keep the \"Place order\" button fixed at the bottom"
+msgstr "在移动设备上,将“下订单”按钮固定在底部"
+
+msgid "Free shipping bar"
+msgstr "免运费吧"
+
+msgid "\"Add X more for free shipping\" in the cart and at checkout."
+msgstr "在购物车和结账时“添加 X 件即可免费送货”。"
+
+msgid "Free shipping amount"
+msgstr "免运费金额"
+
+msgid "Empty or 0 = the minimum amount of WooCommerce's \"Free shipping\" method."
+msgstr "空或 0 = WooCommerce 的“免费送货”方法的最低金额。"
+
+msgid "Empty = from WooCommerce's \"Free shipping\" method: %s"
+msgstr "空 = 来自 WooCommerce 的“免运费”方法:%s"
+
+msgid "Turning the method on, the IBAN and the reference format are in WooCommerce › Settings › Payments › Bank transfer."
+msgstr "打开该方法后,IBAN 和参考格式位于 WooCommerce › 设置 › 付款 › 银行转账中。"
+
+msgid "Open the payment method"
+msgstr "打开支付方式"
+
+msgid "Hide this method when Flux Donate's bank transfer is on"
+msgstr "当 Flux Donate 的银行转账开启时隐藏此方法"
+
+msgid "So the checkout does not show two separate \"Bank transfer\" options."
+msgstr "因此结账时不会显示两个单独的“银行转账”选项。"
+
+msgid "Largest receipt (MB)"
+msgstr "最大收据(MB)"
+
+msgid "Receipt notification e-mail"
+msgstr "收到通知电子邮件"
+
+msgid "Empty = the site admin e-mail."
+msgstr "空 = 站点管理员电子邮件。"
+
+msgid "Cancel unpaid bank transfers after (days)"
+msgstr "在(天)后取消未付款的银行转账"
+
+msgid "0 = never cancel. Orders with a receipt are not cancelled; stock is restored."
+msgstr "0 = 永不取消。有收据的订单不会被取消;库存已恢复。"
+
+msgid "Product feed (Google Merchant)"
+msgstr "产品 Feed (Google Merchant)"
+
+msgid "Feed on"
+msgstr "继续进食"
+
+msgid "Google Merchant Center, Meta catalog and similar services read this address."
+msgstr "Google Merchant Center、元目录和类似服务读取此地址。"
+
+msgid "Feed address"
+msgstr "提要地址"
+
+msgid "Brand"
+msgstr "品牌"
+
+msgid "Empty = site name."
+msgstr "空=站点名称。"
+
+msgid "Notifications"
+msgstr "通知"
+
+msgid "WhatsApp messages go through Flux Mail's WhatsApp connection."
+msgstr "WhatsApp 消息通过 Flux Mail 的 WhatsApp 连接进行。"
+
+msgid "WhatsApp needs Flux Mail and a WhatsApp connection; only e-mail is sent for now."
+msgstr "WhatsApp 需要 Flux Mail 和 WhatsApp 连接;目前仅发送电子邮件。"
+
+msgid "Send the bank details and the payment confirmation to the customer by WhatsApp"
+msgstr "通过 WhatsApp 将银行详细信息和付款确认发送给客户"
+
+msgid "Admin WhatsApp number"
+msgstr "管理员 WhatsApp 号码"
+
+msgid "Gets a message when a receipt arrives (and, if on, for every new order)."
+msgstr "当收据到达时收到一条消息(如果打开,则针对每个新订单)收到一条消息。"
+
+msgid "WhatsApp the admin for every new paid order"
+msgstr "WhatsApp 是每个新付款订单的管理员"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Bank transfer (with receipt upload)"
+msgstr "银行转账(上传收据)"
+
+msgid "The customer pays with an order-specific reference and uploads the receipt on the site. When you confirm the payment the order moves on to processing. Flux Commerce."
+msgstr "客户使用特定于订单的参考号付款,并将收据上传到网站上。当您确认付款后,订单将继续处理。通量商务。"
+
+msgid "Enabled"
+msgstr "启用"
+
+msgid "Accept payments by bank transfer"
+msgstr "接受银行转账付款"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Empty = \"Bank transfer\" in the site language."
+msgstr "空 = 网站语言中的“银行转账”。"
+
+msgid "Text on the checkout page"
+msgstr "结帐页面上的文字"
+
+msgid "Empty = the default text in the site language."
+msgstr "空 = 站点语言的默认文本。"
+
+msgid "Recipient (account holder)"
+msgstr "收款人(账户持有人)"
+
+msgid "Empty = the first account of WooCommerce's \"Direct bank transfer\"."
+msgstr "空 = WooCommerce 的“直接银行转账”的第一个帐户。"
+
+msgid "Empty = the first account of WooCommerce's \"Direct bank transfer\" (recipient and bank come from it too)."
+msgstr "空 = WooCommerce 的“直接银行转账”的第一个帐户(收件人和银行也来自它)。"
+
+msgid "Bank (optional)"
+msgstr "银行(可选)"
+
+msgid "What the customer writes in the transfer description. Placeholders: {kod} (prefix + order no), {siparis}, {ad}, {site}. Empty: {kod} {ad}"
+msgstr "客户在转账说明中所写的内容。占位符:{kod}(前缀 + 订单号)、{siparis}、{ad}、{site}。空:{kod}{ad}"
+
+msgid "Code prefix"
+msgstr "代码前缀"
+
+msgid "Bank transfer: awaiting payment."
+msgstr "银行转账:等待付款。"
+
+msgid "Name, e-mail or phone"
+msgstr "姓名、电子邮件或电话"
+
+msgid "Call"
+msgstr "致电"
+
+msgid "No receipts waiting"
+msgstr "没有收据等待"
+
+msgid "This order is not waiting for approval."
+msgstr "该订单不等待批准。"
+
+msgid "Receipt"
+msgstr "收据"
+
+msgid "Awaiting a receipt"
+msgstr "等待收据"
+
+msgid "Receipt approval"
+msgstr "收据审批"
+
+msgid "Files"
+msgstr "文件"
+
+msgid "Bank-transfer orders appear here while payment is pending."
+msgstr "当付款待处理时,银行转帐订单会显示在此处。"
+
+msgid "Customer not found."
+msgstr "未找到客户。"
+
+msgid "No customers"
+msgstr "没有顾客"
+
+msgid "Approve"
+msgstr "批准"
+
+msgid "Sales summary"
+msgstr "销售总结"
+
+msgid "Segment"
+msgstr "段"
+
+msgid "Customers appear here as orders come in."
+msgstr "当订单进来时,顾客就会出现在这里。"
+
+msgid "The order is marked as paid."
+msgstr "该订单被标记为已付款。"
+
+msgid "New"
+msgstr "新"
+
+msgid "New customers"
+msgstr "新客户"
+
+msgid "High spenders"
+msgstr "高消费者"
+
+msgid "Payment approved"
+msgstr "付款已批准"
+
+msgid "Approve this payment?"
+msgstr "批准这笔付款吗?"
+
+msgid "Contact"
+msgstr "联系方式"
+
+msgid "[['Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.', 'tr']]"
+msgstr "[['WooCommerce 商店的销售面板、客户、销售报告、带有收据上传的汇票/电子转帐、简单付款页面、免费送货栏、Google Merchant 产品 Feed 和 WhatsApp/电子邮件通知。', 'tr']]"

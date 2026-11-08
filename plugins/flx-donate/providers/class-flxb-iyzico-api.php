@@ -184,7 +184,7 @@ final class FLXB_Iyzico_Api {
 			$phone = function_exists( 'flxb_normalize_phone' ) ? (string) flxb_normalize_phone( (string) $contact['phone'] ) : preg_replace( '/[^0-9+]/', '', (string) $contact['phone'] );
 		}
 		$city    = __( 'Istanbul', 'flx-donate' );
-		$country = __( 'Turkey', 'flx-donate' );
+		$country = __( '\\nTurkey\\n', 'flx-donate' );
 		$b       = array(
 			'id'                  => 'flxb-' . substr( md5( strtolower( $email ) . '|' . $phone ), 0, 16 ),
 			'name'                => mb_substr( $first, 0, 50 ),
@@ -267,11 +267,11 @@ final class FLXB_Iyzico_Api {
 			)
 		);
 		if ( is_wp_error( $res ) ) {
-			throw new FLXB_Iyzico_Error( __( 'iyzico could not be reached. Please try again.', 'flx-donate' ) );
+			throw new FLXB_Iyzico_Error( __( '\\niyzico could not be reached. Please try again.\\n', 'flx-donate' ) );
 		}
 		$data = json_decode( (string) wp_remote_retrieve_body( $res ), true );
 		if ( ! is_array( $data ) ) {
-			throw new FLXB_Iyzico_Error( sprintf( /* translators: %d: HTTP status code */ __( 'iyzico gave an unexpected answer (HTTP %d).', 'flx-donate' ), (int) wp_remote_retrieve_response_code( $res ) ) );
+			throw new FLXB_Iyzico_Error( sprintf( /* translators: %d: HTTP status code */ __( '\\niyzico gave an unexpected answer (HTTP%d).\\n', 'flx-donate' ), (int) wp_remote_retrieve_response_code( $res ) ) );
 		}
 		return $data;
 	}

@@ -75,9 +75,9 @@ class FLXB_WC_Feed {
 				if ( 'fidan' === $o['unit'] ) {
 					$count = number_format_i18n( max( 1, $n ) );
 					/* translators: %s: number of saplings */
-					$title = sprintf( __( '%s Sapling Donation', 'flx-donate' ), $count );
+					$title = sprintf( __( '\\n%sSapling Donation\\n', 'flx-donate' ), $count );
 					/* translators: 1: number of saplings, 2: organisation */
-					$text = sprintf( _n( 'Donation of %1$s sapling. %2$s plants it for you and sends an online certificate in your name. Pay by card or bank transfer.', 'Donation of %1$s saplings. %2$s plants them for you and sends an online certificate in your name. Pay by card or bank transfer.', max( 1, $n ), 'flx-donate' ), $count, $brand );
+					$text = sprintf( _n( '[[\'Donation of%1$ssapling.%2$splants it for you and sends an online certificate in your name. Pay by card or bank transfer.\', \'en\']]', '[[\'Donation of%1$ssaplings.%2$splants them for you and sends an online certificate in your name. Pay by card or bank transfer.\', \'en\']]', max( 1, $n ), 'flx-donate' ), $count, $brand );
 				} else {
 					$title = $t['title'] . ' · ' . $o['label'];
 					$text  = '';
@@ -109,7 +109,7 @@ class FLXB_WC_Feed {
 		echo '<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">' . "\n<channel>\n";
 		echo '<title>' . $x( $brand ) . "</title>\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- XML-escaped
 		echo '<link>' . $x( home_url( '/' ) ) . "</link>\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<description>' . $x( __( 'Donation packages', 'flx-donate' ) ) . "</description>\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<description>' . $x( __( '\\nDonation packages\\n', 'flx-donate' ) ) . "</description>\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		foreach ( self::items() as $i ) {
 			$rows = array(
 				'g:id'                => $i['id'],
@@ -123,7 +123,7 @@ class FLXB_WC_Feed {
 				'g:brand'             => $brand,
 				'g:identifier_exists' => 'no',
 				/* translators: %s: donation type */
-				'g:product_type'      => sprintf( __( 'Donation > %s', 'flx-donate' ), (string) ( $i['type'] ?? '' ) ),
+				'g:product_type'      => sprintf( __( '\\nDonation >%s\\n', 'flx-donate' ), (string) ( $i['type'] ?? '' ) ),
 			);
 			echo "<item>\n";
 			foreach ( $rows as $k => $v ) {

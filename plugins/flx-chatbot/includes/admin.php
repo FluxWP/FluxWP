@@ -179,8 +179,8 @@ final class FLXCB_Admin {
 		$open  = flxcb_stats_open_count();
 		$label = __( 'Chatbot', 'flx-chatbot' ) . ( $open ? ' <span class="awaiting-mod">' . (int) $open . '</span>' : '' );
 		add_menu_page( __( 'Flux AI Chatbot', 'flx-chatbot' ), $label, 'flxcb_reply', 'flx-chatbot-inbox', array( 'FLXCB_Inbox', 'render' ), 'none', 27 );
-		add_submenu_page( 'flx-chatbot-inbox', __( 'Site sohbetleri', 'flx-chatbot' ), __( 'Sohbetler', 'flx-chatbot' ), 'flxcb_reply', 'flx-chatbot-inbox', array( 'FLXCB_Inbox', 'render' ) );
-		add_submenu_page( 'flx-chatbot-inbox', __( 'Chatbot ayarları', 'flx-chatbot' ), __( 'Ayarlar', 'flx-chatbot' ), 'manage_options', 'flx-chatbot', array( __CLASS__, 'render' ) );
+		add_submenu_page( 'flx-chatbot-inbox', __( 'Site chats', 'flx-chatbot' ), __( 'Chats', 'flx-chatbot' ), 'flxcb_reply', 'flx-chatbot-inbox', array( 'FLXCB_Inbox', 'render' ) );
+		add_submenu_page( 'flx-chatbot-inbox', __( 'Chatbot settings', 'flx-chatbot' ), __( 'Settings', 'flx-chatbot' ), 'manage_options', 'flx-chatbot', array( __CLASS__, 'render' ) );
 	}
 
 	public static function menu_logo() {
@@ -213,9 +213,9 @@ final class FLXCB_Admin {
 					'defaults' => $defaults,
 					'theme'    => '',
 					'i18n'     => array(
-						'pick'    => __( 'Avatar seç', 'flx-chatbot' ),
-						'use'     => __( 'Bu görseli kullan', 'flx-chatbot' ),
-						'unsaved' => __( 'Kaydedilmemiş değişiklikler var', 'flx-chatbot' ),
+						'pick'    => __( 'Choose avatar', 'flx-chatbot' ),
+						'use'     => __( 'Use this image', 'flx-chatbot' ),
+						'unsaved' => __( 'You have unsaved changes', 'flx-chatbot' ),
 					),
 				)
 			);
@@ -250,11 +250,11 @@ final class FLXCB_Admin {
 			}
 		}
 		return array(
-			array( 'id' => -1, 'role' => 'visitor', 'body' => __( 'Merhaba, kargo ne kadar sürüyor?', 'flx-chatbot' ), 'ts' => $now - 60000, 'read' => 1 ),
+			array( 'id' => -1, 'role' => 'visitor', 'body' => __( 'Hi, how long does shipping take?', 'flx-chatbot' ), 'ts' => $now - 60000, 'read' => 1 ),
 			array(
 				'id'    => -2,
 				'role'  => 'bot',
-				'body'  => $card ? __( 'Siparişler **1-3 iş günü** içinde kargoya verilir. İlginizi çekebilecek bir ürün:', 'flx-chatbot' ) : __( 'Siparişler **1-3 iş günü** içinde kargoya verilir; 500 TL üzeri kargo ücretsiz. Başka bir konuda yardımcı olabilir miyim?', 'flx-chatbot' ),
+				'body'  => $card ? __( 'Orders ship within **1-3 business days**. Here is a product you might like:', 'flx-chatbot' ) : __( 'Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?', 'flx-chatbot' ),
 				'ts'    => $now - 55000,
 				'cards' => $card,
 			),
@@ -334,39 +334,39 @@ final class FLXCB_Admin {
 
 	public static function render() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-chatbot' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-chatbot' ), 403 );
 		}
 		$s     = flxcb_settings();
 		$st    = flxcb_stats( 30 );
 		$tabs  = array(
-			'general'    => array( __( 'Genel', 'flx-chatbot' ), 'settings' ),
-			'look'       => array( __( 'Görünüm', 'flx-chatbot' ), 'palette' ),
-			'texts'      => array( __( 'Metinler', 'flx-chatbot' ), 'text' ),
-			'ai'         => array( __( 'Yapay zekâ', 'flx-chatbot' ), 'sparkles' ),
-			'live'       => array( __( 'Canlı destek', 'flx-chatbot' ), 'headset' ),
-			'visibility' => array( __( 'Görünürlük', 'flx-chatbot' ), 'eye' ),
+			'general'    => array( __( 'General', 'flx-chatbot' ), 'settings' ),
+			'look'       => array( __( 'Appearance', 'flx-chatbot' ), 'palette' ),
+			'texts'      => array( __( 'Texts', 'flx-chatbot' ), 'text' ),
+			'ai'         => array( __( 'AI', 'flx-chatbot' ), 'sparkles' ),
+			'live'       => array( __( 'Live chat', 'flx-chatbot' ), 'headset' ),
+			'visibility' => array( __( 'Visibility', 'flx-chatbot' ), 'eye' ),
 		);
 		$tab   = isset( $_GET['tab'] ) && isset( $tabs[ sanitize_key( wp_unslash( $_GET['tab'] ) ) ] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'general'; // phpcs:ignore WordPress.Security.NonceVerification
 		$ai_ok = flxcb_ai_ready();
 		$fc    = flxcb_fc_ready();
 
 		echo '<div class="wrap flxcb">';
-		echo '<div class="flxcb-head"><div><h1>' . esc_html__( 'Flux AI Chatbot', 'flx-chatbot' ) . '</h1><p class="flxcb-lead">' . esc_html__( 'Sitenize yapay zekâ destekli sohbet penceresi: sorulara içeriğinizden ve ürünlerinizden cevap verir, gerekince sohbeti canlı temsilciye devreder. Değişiklikleri sağdaki önizlemede hemen görürsünüz.', 'flx-chatbot' ) . '</p></div>';
-		echo '<div class="flxcb-head__actions"><a class="button" href="' . esc_url( flxcb_inbox_url() ) . '">' . flxcb_icon( 'inbox', 14 ) . esc_html__( 'Sohbetler', 'flx-chatbot' ) . '</a><a class="button" href="' . esc_url( add_query_arg( 'flxcb_preview', '1', home_url( '/' ) ) ) . '" target="_blank" rel="noopener">' . flxcb_icon( 'ext', 14 ) . esc_html__( 'Sitede dene', 'flx-chatbot' ) . '</a></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<div class="flxcb-head"><div><h1>' . esc_html__( 'Flux AI Chatbot', 'flx-chatbot' ) . '</h1><p class="flxcb-lead">' . esc_html__( 'An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away.', 'flx-chatbot' ) . '</p></div>';
+		echo '<div class="flxcb-head__actions"><a class="button" href="' . esc_url( flxcb_inbox_url() ) . '">' . flxcb_icon( 'inbox', 14 ) . esc_html__( 'Chats', 'flx-chatbot' ) . '</a><a class="button" href="' . esc_url( add_query_arg( 'flxcb_preview', '1', home_url( '/' ) ) ) . '" target="_blank" rel="noopener">' . flxcb_icon( 'ext', 14 ) . esc_html__( 'Try on site', 'flx-chatbot' ) . '</a></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
 		if ( isset( $_GET['msg'] ) && 'saved' === $_GET['msg'] ) { // phpcs:ignore WordPress.Security.NonceVerification
-			echo '<div class="flxcb-notice is-ok">' . flxcb_icon( 'check', 16 ) . esc_html__( 'Ayarlar kaydedildi.', 'flx-chatbot' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<div class="flxcb-notice is-ok">' . flxcb_icon( 'check', 16 ) . esc_html__( 'Settings saved.', 'flx-chatbot' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 
 		echo '<div class="flxcb-kpis">';
-		self::kpi( 'chat', __( 'Sohbet', 'flx-chatbot' ), number_format_i18n( $st['total'] ), __( 'son 30 gün', 'flx-chatbot' ) );
-		self::kpi( 'sparkles', __( 'Asistanın çözdüğü', 'flx-chatbot' ), $st['total'] ? '%' . number_format_i18n( $st['resolved'] ) : '–', __( 'temsilciye geçmeden', 'flx-chatbot' ), 'is-ok' );
-		self::kpi( 'users', __( 'Potansiyel müşteri', 'flx-chatbot' ), number_format_i18n( $st['leads'] ), __( 'iletişim bilgisi bıraktı', 'flx-chatbot' ) );
+		self::kpi( 'chat', __( 'Chats', 'flx-chatbot' ), number_format_i18n( $st['total'] ), __( 'last 30 days', 'flx-chatbot' ) );
+		self::kpi( 'sparkles', __( 'Solved by the assistant', 'flx-chatbot' ), $st['total'] ? '%' . number_format_i18n( $st['resolved'] ) : '–', __( 'without an agent', 'flx-chatbot' ), 'is-ok' );
+		self::kpi( 'users', __( 'Lead', 'flx-chatbot' ), number_format_i18n( $st['leads'] ), __( 'left contact details', 'flx-chatbot' ) );
 		if ( function_exists( 'wc_get_orders' ) ) {
-			self::kpi( 'cart', __( 'Sohbet sonrası sipariş', 'flx-chatbot' ), number_format_i18n( $st['orders'] ), __( '7 gün içinde', 'flx-chatbot' ) );
+			self::kpi( 'cart', __( 'Orders after chat', 'flx-chatbot' ), number_format_i18n( $st['orders'] ), __( 'within 7 days', 'flx-chatbot' ) );
 		}
 		/* translators: %s: number of ratings */
-		self::kpi( 'star', __( 'Memnuniyet', 'flx-chatbot' ), $st['rated'] ? number_format_i18n( $st['rating'], 1 ) . ' / 5' : '–', $st['rated'] ? sprintf( __( '%s puan', 'flx-chatbot' ), number_format_i18n( $st['rated'] ) ) : __( 'henüz puan yok', 'flx-chatbot' ) );
+		self::kpi( 'star', __( 'Satisfaction', 'flx-chatbot' ), $st['rated'] ? number_format_i18n( $st['rating'], 1 ) . ' / 5' : '–', $st['rated'] ? sprintf( __( '%s ratings', 'flx-chatbot' ), number_format_i18n( $st['rated'] ) ) : __( 'no ratings yet', 'flx-chatbot' ) );
 		echo '</div>';
 
 		echo '<div class="flxcb-layout"><div class="flxcb-main">';
@@ -382,49 +382,49 @@ final class FLXCB_Admin {
 
 		/* ---------- Genel ---------- */
 		echo '<div class="flxcb-pane" data-pane="general"' . ( 'general' === $tab ? '' : ' hidden' ) . '>';
-		self::card_open( 'flxcb-on', 'chat', __( 'Sohbet penceresi', 'flx-chatbot' ) );
-		self::sw( 'enabled', __( 'Sitede göster', 'flx-chatbot' ), __( 'Kapalıyken pencere ziyaretçilere görünmez; yöneticiler "Sitede dene" ile önizleyebilir.', 'flx-chatbot' ) );
-		echo '<h3 class="flxcb-sub">' . esc_html__( 'Çalışma şekli', 'flx-chatbot' ) . '</h3>';
+		self::card_open( 'flxcb-on', 'chat', __( 'Chat window', 'flx-chatbot' ) );
+		self::sw( 'enabled', __( 'Show on site', 'flx-chatbot' ), __( 'While off, visitors don\'t see the window; admins can preview it with "Try on site".', 'flx-chatbot' ) );
+		echo '<h3 class="flxcb-sub">' . esc_html__( 'Mode', 'flx-chatbot' ) . '</h3>';
 		self::choices(
 			'mode',
 			array(
-				'hybrid' => array( __( 'AI + canlı destek', 'flx-chatbot' ), __( 'Asistan cevaplar, gerekince temsilciye devreder. Önerilen.', 'flx-chatbot' ), 'sparkles' ),
-				'ai'     => array( __( 'Yalnız AI', 'flx-chatbot' ), __( 'Temsilciye devir yok; asistan iletişim bilgilerinizi verir.', 'flx-chatbot' ), 'bot' ),
-				'live'   => array( __( 'Yalnız canlı destek', 'flx-chatbot' ), __( 'Asistan yok; mesajlar doğrudan temsilcilere gider.', 'flx-chatbot' ), 'headset' ),
+				'hybrid' => array( __( 'AI + live chat', 'flx-chatbot' ), __( 'The assistant answers and hands over to an agent when needed. Recommended.', 'flx-chatbot' ), 'sparkles' ),
+				'ai'     => array( __( 'AI only', 'flx-chatbot' ), __( 'No handoff; the assistant shares your contact details.', 'flx-chatbot' ), 'bot' ),
+				'live'   => array( __( 'Live chat only', 'flx-chatbot' ), __( 'No assistant; messages go straight to agents.', 'flx-chatbot' ), 'headset' ),
 			)
 		);
 		echo '</section>';
 
-		self::card_open( 'flxcb-health', 'shield', __( 'Bağlantılar', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-health', 'shield', __( 'Connections', 'flx-chatbot' ) );
 		echo '<ul class="flxcb-statuses">';
 		if ( $ai_ok ) {
-			self::status_row( true, __( 'Flux AI & MCP bağlı', 'flx-chatbot' ), __( 'Anahtar, model, harcama sınırı ve kayıtlar Flux AI\'dan gelir.', 'flx-chatbot' ), flx_ai_settings_url( 'flx-chatbot' ), __( 'Model seç', 'flx-chatbot' ) );
+			self::status_row( true, __( 'Flux AI & MCP connected', 'flx-chatbot' ), __( 'Key, model, spending limit and logs come from Flux AI.', 'flx-chatbot' ), flx_ai_settings_url( 'flx-chatbot' ), __( 'Choose model', 'flx-chatbot' ) );
 		} elseif ( function_exists( 'flxai_chat' ) ) {
-			self::status_row( false, __( 'Flux AI hazır değil', 'flx-chatbot' ), __( 'Flux AI & MCP\'de bir API anahtarı girin ya da Bağlı sistemler\'de Flux AI Chatbot\'u açın.', 'flx-chatbot' ), admin_url( 'admin.php?page=flx-ai' ), __( 'Flux AI', 'flx-chatbot' ) );
+			self::status_row( false, __( 'Flux AI is not ready', 'flx-chatbot' ), __( 'Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems.', 'flx-chatbot' ), admin_url( 'admin.php?page=flx-ai' ), __( 'Flux AI', 'flx-chatbot' ) );
 		} else {
-			self::status_row( false, __( 'Flux AI & MCP kurulu değil', 'flx-chatbot' ), __( 'Asistan için Flux AI & MCP eklentisini kurun. O zamana kadar pencere yalnız canlı destek olarak çalışır.', 'flx-chatbot' ) );
+			self::status_row( false, __( 'Flux AI & MCP is not installed', 'flx-chatbot' ), __( 'Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only.', 'flx-chatbot' ) );
 		}
 		if ( 'ai' === $s['mode'] ) {
-			self::status_row( null, __( 'Canlı destek kapalı', 'flx-chatbot' ), __( 'Çalışma şekli "Yalnız AI".', 'flx-chatbot' ) );
+			self::status_row( null, __( 'Live chat off', 'flx-chatbot' ), __( 'Mode is "AI only".', 'flx-chatbot' ) );
 		} elseif ( 'flx-chat' === flxcb_handoff_target() ) {
-			self::status_row( true, __( 'Flux Chat gelen kutusu', 'flx-chatbot' ), __( 'Tüm site sohbetleri (asistanın cevapladıkları dahil) çağrı merkezinde site sohbeti ikonuyla görünür; temsilciler WhatsApp ve diğer kanallarla aynı ekrandan cevaplar.', 'flx-chatbot' ), admin_url( 'admin.php?page=flx-chat' ), __( 'Flux Chat', 'flx-chatbot' ) );
+			self::status_row( true, __( 'Flux Chat inbox', 'flx-chatbot' ), __( 'All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels.', 'flx-chatbot' ), admin_url( 'admin.php?page=flx-chat' ), __( 'Flux Chat', 'flx-chatbot' ) );
 		} else {
-			self::status_row( true, __( 'Eklentinin gelen kutusu', 'flx-chatbot' ), $fc || flxcb_flux_chat_active() ? __( 'Devredilen sohbetler Chatbot › Sohbetler ekranına düşer.', 'flx-chatbot' ) : __( 'Devredilen sohbetler Chatbot › Sohbetler ekranına düşer. Flux Chat (1.37+) kurulursa çağrı merkezinden de cevaplanır.', 'flx-chatbot' ), flxcb_inbox_url(), __( 'Sohbetler', 'flx-chatbot' ) );
+			self::status_row( true, __( 'Plugin inbox', 'flx-chatbot' ), $fc || flxcb_flux_chat_active() ? __( 'Handed-over chats land on the Chatbot › Chats screen.', 'flx-chatbot' ) : __( 'Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center.', 'flx-chatbot' ), flxcb_inbox_url(), __( 'Chats', 'flx-chatbot' ) );
 		}
 		/* translators: %s: hours text */
-		self::status_row( flxcb_is_online() ? true : null, flxcb_is_online() ? __( 'Şu an çevrim içi', 'flx-chatbot' ) : __( 'Şu an mesai dışı', 'flx-chatbot' ), 'custom' === $s['hours_mode'] ? sprintf( __( 'Çalışma saatleri: %s', 'flx-chatbot' ), flxcb_hours_text() ) : ( 'flx-chat' === $s['hours_mode'] ? __( 'Mesai saatleri Flux Chat ayarından.', 'flx-chatbot' ) : __( 'Temsilciler her zaman çevrim içi sayılır.', 'flx-chatbot' ) ), flxcb_admin_url( 'live' ), __( 'Saatler', 'flx-chatbot' ) );
+		self::status_row( flxcb_is_online() ? true : null, flxcb_is_online() ? __( 'Online now', 'flx-chatbot' ) : __( 'Outside working hours now', 'flx-chatbot' ), 'custom' === $s['hours_mode'] ? sprintf( __( 'Working hours: %s', 'flx-chatbot' ), flxcb_hours_text() ) : ( 'flx-chat' === $s['hours_mode'] ? __( 'Working hours come from the Flux Chat settings.', 'flx-chatbot' ) : __( 'Agents always count as online.', 'flx-chatbot' ) ), flxcb_admin_url( 'live' ), __( 'Hours', 'flx-chatbot' ) );
 		echo '</ul></section>';
 
-		self::card_open( 'flxcb-embed', 'ext', __( 'Sayfadan açma', 'flx-chatbot' ), __( 'Herhangi bir düğme ya da bağlantı pencereyi açabilir.', 'flx-chatbot' ) );
-		echo '<ul class="flxcb-code"><li><code>[flx_chatbot label="' . esc_html__( 'Bize yazın', 'flx-chatbot' ) . '"]</code><small>' . esc_html__( 'Kısa kod: sayfa içinde düğme.', 'flx-chatbot' ) . '</small></li><li><code>&lt;a href="#flxcb-open"&gt;…&lt;/a&gt;</code><small>' . esc_html__( 'Bağlantı adresi #flxcb-open olunca pencere açılır.', 'flx-chatbot' ) . '</small></li><li><code>data-flxcb-message="…"</code><small>' . esc_html__( 'Düğmeye eklenirse pencere bu mesajla açılır.', 'flx-chatbot' ) . '</small></li><li><code>FluxChatbot.open()</code><small>' . esc_html__( 'JavaScript ile açma.', 'flx-chatbot' ) . '</small></li></ul></section>';
+		self::card_open( 'flxcb-embed', 'ext', __( 'Open from a page', 'flx-chatbot' ), __( 'Any button or link can open the window.', 'flx-chatbot' ) );
+		echo '<ul class="flxcb-code"><li><code>[flx_chatbot label="' . esc_html__( 'Message us', 'flx-chatbot' ) . '"]</code><small>' . esc_html__( 'Shortcode: a button inside the page.', 'flx-chatbot' ) . '</small></li><li><code>&lt;a href="#flxcb-open"&gt;…&lt;/a&gt;</code><small>' . esc_html__( 'A link to #flxcb-open opens the window.', 'flx-chatbot' ) . '</small></li><li><code>data-flxcb-message="…"</code><small>' . esc_html__( 'Added to a button, the window opens with this message.', 'flx-chatbot' ) . '</small></li><li><code>FluxChatbot.open()</code><small>' . esc_html__( 'Open with JavaScript.', 'flx-chatbot' ) . '</small></li></ul></section>';
 		echo '</div>';
 
 		/* ---------- Görünüm ---------- */
 		echo '<div class="flxcb-pane" data-pane="look"' . ( 'look' === $tab ? '' : ' hidden' ) . '>';
-		self::card_open( 'flxcb-brand', 'palette', __( 'Renk ve tema', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-brand', 'palette', __( 'Color and theme', 'flx-chatbot' ) );
 		echo '<div class="flxcb-grid2">';
-		echo '<div class="flxcb-field"><span>' . esc_html__( 'Ana renk', 'flx-chatbot' ) . '</span><div class="flxcb-color"><input type="color" value="' . esc_attr( $s['color'] ? $s['color'] : '#1f2937' ) . '" data-color-for="color"><input type="text" name="s[color]" value="' . esc_attr( $s['color'] ) . '" placeholder="' . esc_attr__( 'Tema rengi', 'flx-chatbot' ) . '" data-k="color" class="code" maxlength="7"><button type="button" class="button-link" data-clear="color">' . esc_html__( 'Temayı izle', 'flx-chatbot' ) . '</button></div><small>' . esc_html__( 'Boşsa sitenin tema rengi kullanılır.', 'flx-chatbot' ) . '</small></div>';
-		echo '<div class="flxcb-field"><span>' . esc_html__( 'Yazı rengi (başlık ve düğmeler)', 'flx-chatbot' ) . '</span><div class="flxcb-color"><input type="color" value="' . esc_attr( $s['color_text'] ? $s['color_text'] : '#ffffff' ) . '" data-color-for="color_text"><input type="text" name="s[color_text]" value="' . esc_attr( $s['color_text'] ) . '" placeholder="' . esc_attr__( 'Otomatik', 'flx-chatbot' ) . '" data-k="color_text" class="code" maxlength="7"><button type="button" class="button-link" data-clear="color_text">' . esc_html__( 'Otomatik', 'flx-chatbot' ) . '</button></div><small>' . esc_html__( 'Boşsa ana renge göre okunaklı renk seçilir.', 'flx-chatbot' ) . '</small></div>';
+		echo '<div class="flxcb-field"><span>' . esc_html__( 'Main color', 'flx-chatbot' ) . '</span><div class="flxcb-color"><input type="color" value="' . esc_attr( $s['color'] ? $s['color'] : '#1f2937' ) . '" data-color-for="color"><input type="text" name="s[color]" value="' . esc_attr( $s['color'] ) . '" placeholder="' . esc_attr__( 'Theme color', 'flx-chatbot' ) . '" data-k="color" class="code" maxlength="7"><button type="button" class="button-link" data-clear="color">' . esc_html__( 'Follow theme', 'flx-chatbot' ) . '</button></div><small>' . esc_html__( 'When empty, the site\'s theme color is used.', 'flx-chatbot' ) . '</small></div>';
+		echo '<div class="flxcb-field"><span>' . esc_html__( 'Text color (header and buttons)', 'flx-chatbot' ) . '</span><div class="flxcb-color"><input type="color" value="' . esc_attr( $s['color_text'] ? $s['color_text'] : '#ffffff' ) . '" data-color-for="color_text"><input type="text" name="s[color_text]" value="' . esc_attr( $s['color_text'] ) . '" placeholder="' . esc_attr__( 'Automatic', 'flx-chatbot' ) . '" data-k="color_text" class="code" maxlength="7"><button type="button" class="button-link" data-clear="color_text">' . esc_html__( 'Automatic', 'flx-chatbot' ) . '</button></div><small>' . esc_html__( 'When empty, a readable color is picked from the main color.', 'flx-chatbot' ) . '</small></div>';
 		echo '</div>';
 		echo '<div class="flxcb-swatches" data-swatches>';
 		foreach ( array( '#1f2937', '#2563eb', '#0f766e', '#16a34a', '#7c3aed', '#db2777', '#ea580c', '#0891b2' ) as $c ) {
@@ -432,147 +432,152 @@ final class FLXCB_Admin {
 		}
 		echo '</div>';
 		echo '<div class="flxcb-grid3">';
-		self::select( 'theme', __( 'Açık / koyu', 'flx-chatbot' ), array( 'auto' => __( 'Otomatik (cihaza ve siteye uyar)', 'flx-chatbot' ), 'light' => __( 'Hep açık', 'flx-chatbot' ), 'dark' => __( 'Hep koyu', 'flx-chatbot' ) ) );
-		self::select( 'header_style', __( 'Başlık', 'flx-chatbot' ), array( 'gradient' => __( 'Degrade', 'flx-chatbot' ), 'solid' => __( 'Düz renk', 'flx-chatbot' ) ) );
-		self::select( 'font', __( 'Yazı tipi', 'flx-chatbot' ), array( 'inherit' => __( 'Siteyle aynı', 'flx-chatbot' ), 'system' => __( 'Sistem yazı tipi', 'flx-chatbot' ) ) );
+		self::select( 'theme', __( 'Light / dark', 'flx-chatbot' ), array( 'auto' => __( 'Automatic (follows device and site)', 'flx-chatbot' ), 'light' => __( 'Always light', 'flx-chatbot' ), 'dark' => __( 'Always dark', 'flx-chatbot' ) ) );
+		self::select( 'header_style', __( 'Header', 'flx-chatbot' ), array( 'gradient' => __( 'Gradient', 'flx-chatbot' ), 'solid' => __( 'Solid color', 'flx-chatbot' ) ) );
+		self::select( 'font', __( 'Font', 'flx-chatbot' ), array( 'inherit' => __( 'Same as site', 'flx-chatbot' ), 'system' => __( 'System font', 'flx-chatbot' ) ) );
 		echo '</div></section>';
 
-		self::card_open( 'flxcb-avatar', 'bot', __( 'Asistan', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-avatar', 'bot', __( 'Assistant', 'flx-chatbot' ) );
 		echo '<div class="flxcb-grid2">';
-		self::text( 'bot_name', __( 'Asistanın adı', 'flx-chatbot' ), __( 'Sohbet başlığında görünür.', 'flx-chatbot' ) );
+		self::text( 'bot_name', __( 'Assistant name', 'flx-chatbot' ), __( 'Shown in the chat header.', 'flx-chatbot' ) );
 		$aurl = (int) $s['avatar_id'] ? wp_get_attachment_image_url( (int) $s['avatar_id'], 'thumbnail' ) : '';
-		echo '<div class="flxcb-field"><span>' . esc_html__( 'Avatar görseli', 'flx-chatbot' ) . '</span><div class="flxcb-media"><span class="flxcb-media__img" data-avatar-img>' . ( $aurl ? '<img src="' . esc_url( $aurl ) . '" alt="">' : flxcb_icon( 'image', 18 ) ) . '</span><input type="hidden" name="s[avatar_id]" value="' . (int) $s['avatar_id'] . '" data-k="avatar_id" data-url="' . esc_url( (string) $aurl ) . '"><button type="button" class="button" data-media>' . esc_html__( 'Seç', 'flx-chatbot' ) . '</button><button type="button" class="button-link" data-media-clear' . ( $aurl ? '' : ' hidden' ) . '>' . esc_html__( 'Kaldır', 'flx-chatbot' ) . '</button></div><small>' . esc_html__( 'Kare görsel önerilir. Seçilmezse aşağıdaki simge kullanılır.', 'flx-chatbot' ) . '</small></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<div class="flxcb-field"><span>' . esc_html__( 'Avatar image', 'flx-chatbot' ) . '</span><div class="flxcb-media"><span class="flxcb-media__img" data-avatar-img>' . ( $aurl ? '<img src="' . esc_url( $aurl ) . '" alt="">' : flxcb_icon( 'image', 18 ) ) . '</span><input type="hidden" name="s[avatar_id]" value="' . (int) $s['avatar_id'] . '" data-k="avatar_id" data-url="' . esc_url( (string) $aurl ) . '"><button type="button" class="button" data-media>' . esc_html__( 'Choose', 'flx-chatbot' ) . '</button><button type="button" class="button-link" data-media-clear' . ( $aurl ? '' : ' hidden' ) . '>' . esc_html__( 'Remove', 'flx-chatbot' ) . '</button></div><small>' . esc_html__( 'A square image works best. Without one, the icon below is used.', 'flx-chatbot' ) . '</small></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo '</div>';
-		echo '<div class="flxcb-field"><span>' . esc_html__( 'Avatar simgesi', 'flx-chatbot' ) . '</span>';
+		echo '<div class="flxcb-field"><span>' . esc_html__( 'Avatar icon', 'flx-chatbot' ) . '</span>';
 		self::icons(
 			'avatar_icon',
 			array(
 				'bot'      => array( __( 'Robot', 'flx-chatbot' ), 'bot' ),
-				'sparkles' => array( __( 'Pırıltı', 'flx-chatbot' ), 'sparkles' ),
-				'headset'  => array( __( 'Kulaklık', 'flx-chatbot' ), 'headset' ),
-				'smile'    => array( __( 'Gülen yüz', 'flx-chatbot' ), 'info' ),
-				'logo'     => array( __( 'Site simgesi', 'flx-chatbot' ), 'home' ),
+				'sparkles' => array( __( 'Sparkles', 'flx-chatbot' ), 'sparkles' ),
+				'headset'  => array( __( 'Headset', 'flx-chatbot' ), 'headset' ),
+				'smile'    => array( __( 'Smiley', 'flx-chatbot' ), 'info' ),
+				'logo'     => array( __( 'Site icon', 'flx-chatbot' ), 'home' ),
 			)
 		);
 		echo '</div></section>';
 
-		self::card_open( 'flxcb-launch', 'chat', __( 'Başlatıcı düğme ve konum', 'flx-chatbot' ) );
-		echo '<div class="flxcb-field"><span>' . esc_html__( 'Düğme simgesi', 'flx-chatbot' ) . '</span>';
+		self::card_open( 'flxcb-launch', 'chat', __( 'Launcher button and position', 'flx-chatbot' ) );
+		echo '<div class="flxcb-field"><span>' . esc_html__( 'Button icon', 'flx-chatbot' ) . '</span>';
 		self::icons(
 			'launcher_icon',
 			array(
-				'chat'     => array( __( 'Balon', 'flx-chatbot' ), 'chat' ),
-				'sparkles' => array( __( 'Pırıltı', 'flx-chatbot' ), 'sparkles' ),
-				'headset'  => array( __( 'Kulaklık', 'flx-chatbot' ), 'headset' ),
-				'help'     => array( __( 'Soru', 'flx-chatbot' ), 'info' ),
+				'chat'     => array( __( 'Bubble', 'flx-chatbot' ), 'chat' ),
+				'sparkles' => array( __( 'Sparkles', 'flx-chatbot' ), 'sparkles' ),
+				'headset'  => array( __( 'Headset', 'flx-chatbot' ), 'headset' ),
+				'help'     => array( __( 'Question', 'flx-chatbot' ), 'info' ),
 				'avatar'   => array( __( 'Avatar', 'flx-chatbot' ), 'image' ),
 			)
 		);
 		echo '</div><div class="flxcb-grid2">';
-		self::text( 'launcher_label', __( 'Düğme yanı etiketi', 'flx-chatbot' ), __( 'Boşsa yalnız düğme görünür. Örnek: Yardım lazım mı?', 'flx-chatbot' ), __( 'Yok', 'flx-chatbot' ) );
-		self::select( 'position', __( 'Konum', 'flx-chatbot' ), array( 'right' => __( 'Sağ alt', 'flx-chatbot' ), 'left' => __( 'Sol alt', 'flx-chatbot' ) ) );
+		self::text( 'launcher_label', __( 'Label next to the button', 'flx-chatbot' ), __( 'When empty only the button shows. Example: Need help?', 'flx-chatbot' ), __( 'None', 'flx-chatbot' ) );
+		self::select( 'position', __( 'Position', 'flx-chatbot' ), array( 'right' => __( 'Bottom right', 'flx-chatbot' ), 'left' => __( 'Bottom left', 'flx-chatbot' ) ) );
 		echo '</div><div class="flxcb-grid3">';
-		self::range( 'launcher_size', __( 'Düğme boyutu', 'flx-chatbot' ), 44, 80 );
-		self::range( 'offset_x', __( 'Kenar boşluğu', 'flx-chatbot' ), 0, 120 );
-		self::range( 'offset_y', __( 'Alt boşluk', 'flx-chatbot' ), 0, 200 );
-		self::range( 'width', __( 'Pencere genişliği', 'flx-chatbot' ), 320, 480 );
-		self::range( 'radius', __( 'Köşe yuvarlaklığı', 'flx-chatbot' ), 0, 28 );
+		self::range( 'launcher_size', __( 'Button size', 'flx-chatbot' ), 44, 80 );
+		self::range( 'offset_x', __( 'Side spacing', 'flx-chatbot' ), 0, 120 );
+		self::range( 'offset_y', __( 'Bottom spacing', 'flx-chatbot' ), 0, 200 );
+		self::range( 'width', __( 'Window width', 'flx-chatbot' ), 320, 480 );
+		self::range( 'radius', __( 'Corner radius', 'flx-chatbot' ), 0, 28 );
 		echo '</div><div class="flxcb-toggles">';
-		self::sw( 'mobile_full', __( 'Mobilde tam ekran', 'flx-chatbot' ), __( 'Küçük ekranlarda pencere tüm ekranı kaplar.', 'flx-chatbot' ) );
-		self::sw( 'sound', __( 'Bildirim sesi', 'flx-chatbot' ), __( 'Pencere kapalıyken yeni cevap gelince kısa ses.', 'flx-chatbot' ) );
-		self::sw( 'show_branding', __( '"FluxWP ile çalışır" yazısı', 'flx-chatbot' ), __( 'Pencerenin altında küçük imza.', 'flx-chatbot' ) );
+		self::sw( 'mobile_full', __( 'Full screen on mobile', 'flx-chatbot' ), __( 'On small screens the window covers the whole screen.', 'flx-chatbot' ) );
+		self::sw( 'sound', __( 'Notification sound', 'flx-chatbot' ), __( 'A short sound for a new reply while the window is closed.', 'flx-chatbot' ) );
+		self::sw( 'show_branding', __( '"Powered by FluxWP" note', 'flx-chatbot' ), __( 'A small signature at the bottom of the window.', 'flx-chatbot' ) );
 		echo '</div></section>';
 		echo '</div>';
 
 		/* ---------- Ana ekran ve metinler ---------- */
 		echo '<div class="flxcb-pane" data-pane="texts"' . ( 'texts' === $tab ? '' : ' hidden' ) . '>';
-		self::card_open( 'flxcb-home', 'home', __( 'Ana ekran', 'flx-chatbot' ), __( 'Pencere açılınca ilk görünen karşılama ekranı. Boş bırakılan metinler dile göre (TR/EN) varsayılanı kullanır.', 'flx-chatbot' ) );
-		self::sw( 'home_enabled', __( 'Ana ekranı göster', 'flx-chatbot' ), __( 'Kapalıysa pencere doğrudan sohbetle açılır.', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-home', 'home', __( 'Home screen', 'flx-chatbot' ), __( 'The welcome screen shown when the window opens. Empty texts use the default for the visitor\'s language (TR/EN).', 'flx-chatbot' ) );
+		self::sw( 'home_enabled', __( 'Show home screen', 'flx-chatbot' ), __( 'When off, the window opens straight into the chat.', 'flx-chatbot' ) );
 		echo '<div class="flxcb-grid2">';
-		self::text( 'home_title', __( 'Başlık', 'flx-chatbot' ) );
-		self::text( 'placeholder', __( 'Yazma alanı', 'flx-chatbot' ) );
+		self::text( 'home_title', __( 'Header', 'flx-chatbot' ) );
+		self::text( 'placeholder', __( 'Message field', 'flx-chatbot' ) );
 		echo '</div>';
-		self::area( 'home_text', __( 'Alt metin', 'flx-chatbot' ), '', 2 );
-		self::sw( 'show_team', __( 'Ekip avatarları', 'flx-chatbot' ), __( 'Son cevap veren temsilcilerin fotoğrafları başlıkta görünür.', 'flx-chatbot' ) );
+		self::area( 'home_text', __( 'Subtitle', 'flx-chatbot' ), '', 2 );
+		self::sw( 'show_team', __( 'Team avatars', 'flx-chatbot' ), __( 'Photos of agents who replied recently show in the header.', 'flx-chatbot' ) );
 		echo '<div class="flxcb-grid2">';
-		self::area( 'quick_replies', __( 'Hazır sorular', 'flx-chatbot' ), __( 'Satır başına bir soru (en fazla 6). Ana ekranda ve sohbet başında tıklanabilir.', 'flx-chatbot' ), 5, __( "Kargo ne kadar sürer?\nİade nasıl yapılır?\nSiparişim nerede?", 'flx-chatbot' ) );
-		self::area( 'links', __( 'İletişim bağlantıları', 'flx-chatbot' ), __( 'Satır başına: Etiket | adres. https, mailto:, tel: ve wa.me desteklenir.', 'flx-chatbot' ), 5, "WhatsApp | https://wa.me/905xxxxxxxxx\n" . __( 'E-posta', 'flx-chatbot' ) . " | mailto:info@example.com\n" . __( 'Telefon', 'flx-chatbot' ) . ' | tel:+90212xxxxxxx' );
+		self::area( 'quick_replies', __( 'Suggested questions', 'flx-chatbot' ), __( 'One question per line (up to 6). Clickable on the home screen and at the start of a chat.', 'flx-chatbot' ), 5, __( 'How long does shipping take?
+How do returns work?
+Where is my order?', 'flx-chatbot' ) );
+		self::area( 'links', __( 'Contact links', 'flx-chatbot' ), __( 'One per line: Label | address. https, mailto:, tel: and wa.me are supported.', 'flx-chatbot' ), 5, "WhatsApp | https://wa.me/905xxxxxxxxx\n" . __( 'Email', 'flx-chatbot' ) . " | mailto:info@example.com\n" . __( 'Phone', 'flx-chatbot' ) . ' | tel:+90212xxxxxxx' );
 		echo '</div></section>';
 
-		self::card_open( 'flxcb-msgs', 'chat', __( 'Sohbet metinleri', 'flx-chatbot' ) );
-		self::area( 'welcome', __( 'Karşılama mesajı', 'flx-chatbot' ), __( 'Asistanın ilk mesajı.', 'flx-chatbot' ), 2 );
+		self::card_open( 'flxcb-msgs', 'chat', __( 'Chat texts', 'flx-chatbot' ) );
+		self::area( 'welcome', __( 'Welcome message', 'flx-chatbot' ), __( 'The assistant\'s first message.', 'flx-chatbot' ), 2 );
 		echo '</section>';
 
-		self::card_open( 'flxcb-teaser', 'sparkles', __( 'Tanıtım balonu', 'flx-chatbot' ), __( 'Ziyaretçi bir süre sayfada kalınca düğmenin üstünde kısa bir mesaj belirir (oturum başına bir kez).', 'flx-chatbot' ) );
-		self::sw( 'teaser_enabled', __( 'Tanıtım balonunu göster', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-teaser', 'sparkles', __( 'Teaser bubble', 'flx-chatbot' ), __( 'After the visitor stays on the page a while, a short message pops up above the button (once per session).', 'flx-chatbot' ) );
+		self::sw( 'teaser_enabled', __( 'Show teaser bubble', 'flx-chatbot' ) );
 		echo '<div class="flxcb-grid2">';
-		self::text( 'teaser_text', __( 'Mesaj', 'flx-chatbot' ) );
-		self::text( 'teaser_delay', __( 'Kaç saniye sonra', 'flx-chatbot' ), '', '12', 'number', 'min="0" max="300"' );
+		self::text( 'teaser_text', __( 'Message', 'flx-chatbot' ) );
+		self::text( 'teaser_delay', __( 'After how many seconds', 'flx-chatbot' ), '', '12', 'number', 'min="0" max="300"' );
 		echo '</div></section>';
 		echo '</div>';
 
 		/* ---------- Yapay zekâ ---------- */
 		echo '<div class="flxcb-pane" data-pane="ai"' . ( 'ai' === $tab ? '' : ' hidden' ) . '>';
 		if ( ! $ai_ok ) {
-			echo '<div class="flxcb-callout is-warn">' . flxcb_icon( 'alert', 18 ) . '<div><strong>' . esc_html__( 'Asistan şu an çalışmıyor.', 'flx-chatbot' ) . '</strong> ' . esc_html__( 'Yapay zekâ çağrıları Flux AI & MCP üzerinden yapılır; anahtar, model ve harcama sınırı orada. Flux AI hazır olana kadar ziyaretçi mesajları temsilciye gider.', 'flx-chatbot' ) . '</div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<div class="flxcb-callout is-warn">' . flxcb_icon( 'alert', 18 ) . '<div><strong>' . esc_html__( 'The assistant is not working right now.', 'flx-chatbot' ) . '</strong> ' . esc_html__( 'AI calls go through Flux AI & MCP, where the key, model and spending limit live. Until Flux AI is ready, visitor messages go to an agent.', 'flx-chatbot' ) . '</div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		} else {
-			echo '<div class="flxcb-callout is-info">' . flxcb_icon( 'info', 18 ) . '<div>' . esc_html__( 'Anahtar, model, harcama sınırı ve kayıtlar Flux AI & MCP\'de. Bu eklentiye özel model seçmek için:', 'flx-chatbot' ) . ' <a href="' . esc_url( flx_ai_settings_url( 'flx-chatbot' ) ) . '">' . esc_html__( 'Flux AI › Bağlı sistemler › Flux AI Chatbot', 'flx-chatbot' ) . '</a></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<div class="flxcb-callout is-info">' . flxcb_icon( 'info', 18 ) . '<div>' . esc_html__( 'Key, model, spending limit and logs are in Flux AI & MCP. To pick a model just for this plugin:', 'flx-chatbot' ) . ' <a href="' . esc_url( flx_ai_settings_url( 'flx-chatbot' ) ) . '">' . esc_html__( 'Flux AI › Connected systems › Flux AI Chatbot', 'flx-chatbot' ) . '</a></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
-		self::card_open( 'flxcb-brain', 'sparkles', __( 'Kişilik ve talimat', 'flx-chatbot' ) );
-		self::area( 'ai_persona', __( 'Kişilik ve üslup', 'flx-chatbot' ), __( 'Örnek: Samimi ama kibar konuş, "siz" diye hitap et, kısa yaz.', 'flx-chatbot' ), 2, '' );
-		self::area( 'ai_instructions', __( 'Kurallar', 'flx-chatbot' ), __( 'Asistanın uyması gerekenler. Örnek: İndirim kodu verme. Kurumsal satış sorularını temsilciye devret.', 'flx-chatbot' ), 4, '' );
-		self::area( 'ai_knowledge', __( 'Bilgi bankası', 'flx-chatbot' ), __( 'Sitede yazmayan bilgiler: kargo, iade, çalışma saatleri, sık sorulan sorular. Düz metin; asistan yalnız buradan ve sitenizden cevap verir.', 'flx-chatbot' ), 9, __( "Kargo: 1-3 iş günü, 500 TL üzeri ücretsiz.\nİade: 14 gün içinde, faturayla.\nS: Mağazanız var mı?\nC: Yalnız online satış yapıyoruz.", 'flx-chatbot' ) );
+		self::card_open( 'flxcb-brain', 'sparkles', __( 'Personality and instructions', 'flx-chatbot' ) );
+		self::area( 'ai_persona', __( 'Personality and tone', 'flx-chatbot' ), __( 'Example: Be friendly but polite, keep answers short.', 'flx-chatbot' ), 2, '' );
+		self::area( 'ai_instructions', __( 'Rules', 'flx-chatbot' ), __( 'What the assistant must follow. Example: Don\'t give discount codes. Hand business sales questions to an agent.', 'flx-chatbot' ), 4, '' );
+		self::area( 'ai_knowledge', __( 'Knowledge base', 'flx-chatbot' ), __( 'Information not on your site: shipping, returns, opening hours, FAQs. Plain text; the assistant answers only from here and your site.', 'flx-chatbot' ), 9, __( 'Shipping: 1-3 business days, free over $50.
+Returns: within 14 days with the invoice.
+Q: Do you have a store?
+A: We sell online only.', 'flx-chatbot' ) );
 		echo '</section>';
-		self::card_open( 'flxcb-sources', 'book', __( 'Kaynaklar ve araçlar', 'flx-chatbot' ), __( 'Asistan cevap vermeden önce bunları arar. Yalnız yayımlanmış, şifresiz içerik okunur.', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-sources', 'book', __( 'Sources and tools', 'flx-chatbot' ), __( 'The assistant searches these before answering. Only published, non-password-protected content is read.', 'flx-chatbot' ) );
 		echo '<div class="flxcb-toggles">';
-		self::sw( 'ai_src_pages', __( 'Sayfalar', 'flx-chatbot' ) );
-		self::sw( 'ai_src_posts', __( 'Yazılar', 'flx-chatbot' ) );
-		self::sw( 'ai_src_products', __( 'WooCommerce ürünleri', 'flx-chatbot' ), __( 'Fiyat, stok ve bağlantı; ürünler pencerede kart olarak görünür.', 'flx-chatbot' ), ! function_exists( 'wc_get_product' ) );
-		self::sw( 'ai_cards', __( 'Ürün kartları', 'flx-chatbot' ), __( 'Görsel, fiyat, "İncele" ve "Sepete ekle".', 'flx-chatbot' ), ! function_exists( 'wc_get_product' ) );
-		self::sw( 'ai_src_wiki', __( 'Flux Wiki sayfaları', 'flx-chatbot' ), '', ! defined( 'FLXWK_PT' ) );
-		self::sw( 'ai_tool_orders', __( 'Sipariş durumu', 'flx-chatbot' ), __( 'Giriş yapmış müşteri yalnız kendi siparişlerini sorabilir.', 'flx-chatbot' ), ! function_exists( 'wc_get_orders' ) );
-		self::sw( 'ai_tool_lead', __( 'İletişim bilgisi kaydı', 'flx-chatbot' ), __( 'Ziyaretçi e-posta ya da telefon verirse sohbete (ve varsa Flux CRM\'e) yazılır.', 'flx-chatbot' ) );
+		self::sw( 'ai_src_pages', __( 'Pages', 'flx-chatbot' ) );
+		self::sw( 'ai_src_posts', __( 'Posts', 'flx-chatbot' ) );
+		self::sw( 'ai_src_products', __( 'WooCommerce products', 'flx-chatbot' ), __( 'Price, stock and link; products appear as cards in the window.', 'flx-chatbot' ), ! function_exists( 'wc_get_product' ) );
+		self::sw( 'ai_cards', __( 'Product cards', 'flx-chatbot' ), __( 'Image, price, "View" and "Add to cart".', 'flx-chatbot' ), ! function_exists( 'wc_get_product' ) );
+		self::sw( 'ai_src_wiki', __( 'Flux Wiki pages', 'flx-chatbot' ), '', ! defined( 'FLXWK_PT' ) );
+		self::sw( 'ai_tool_orders', __( 'Order status', 'flx-chatbot' ), __( 'A logged-in customer can only ask about their own orders.', 'flx-chatbot' ), ! function_exists( 'wc_get_orders' ) );
+		self::sw( 'ai_tool_lead', __( 'Save contact details', 'flx-chatbot' ), __( 'If the visitor gives an email or phone, it is saved to the chat (and to Flux CRM when installed).', 'flx-chatbot' ) );
 		echo '</div></section>';
-		self::card_open( 'flxcb-limits', 'shield', __( 'Sınırlar', 'flx-chatbot' ), __( 'Herkese açık AI bütçeyi hızla tüketebilir. Genel harcama sınırı Flux AI\'da; bunlar ek koruma.', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-limits', 'shield', __( 'Limits', 'flx-chatbot' ), __( 'A public AI can burn through the budget fast. The overall spending limit is in Flux AI; these are extra protection.', 'flx-chatbot' ) );
 		echo '<div class="flxcb-grid3">';
-		self::text( 'ai_max_turns', __( 'Sohbet başına cevap', 'flx-chatbot' ), __( 'Dolunca temsilciye devredilir.', 'flx-chatbot' ), '40', 'number', 'min="1" max="200"' );
-		self::text( 'ai_hour_limit', __( 'Sohbet başına saatlik', 'flx-chatbot' ), __( '0 = sınırsız', 'flx-chatbot' ), '30', 'number', 'min="0" max="500"' );
-		self::text( 'ai_daily_limit', __( 'Sitede günlük toplam', 'flx-chatbot' ), __( '0 = sınırsız', 'flx-chatbot' ), '400', 'number', 'min="0"' );
+		self::text( 'ai_max_turns', __( 'Replies per chat', 'flx-chatbot' ), __( 'When reached, the chat goes to an agent.', 'flx-chatbot' ), '40', 'number', 'min="1" max="200"' );
+		self::text( 'ai_hour_limit', __( 'Per chat per hour', 'flx-chatbot' ), __( '0 = unlimited', 'flx-chatbot' ), '30', 'number', 'min="0" max="500"' );
+		self::text( 'ai_daily_limit', __( 'Daily total on the site', 'flx-chatbot' ), __( '0 = unlimited', 'flx-chatbot' ), '400', 'number', 'min="0"' );
 		echo '</div></section>';
 		echo '</div>';
 
 		/* ---------- Canlı destek ---------- */
 		echo '<div class="flxcb-pane" data-pane="live"' . ( 'live' === $tab ? '' : ' hidden' ) . '>';
-		self::card_open( 'flxcb-target', 'headset', __( 'Temsilciye devir', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-target', 'headset', __( 'Handoff to a person', 'flx-chatbot' ) );
 		self::choices(
 			'handoff_to',
 			array(
-				'auto'     => array( __( 'Otomatik', 'flx-chatbot' ), __( 'Flux Chat varsa orası, yoksa eklentinin gelen kutusu.', 'flx-chatbot' ), 'sparkles' ),
-				'flx-chat' => array( __( 'Flux Chat', 'flx-chatbot' ), $fc ? __( 'Çağrı merkezi gelen kutusu; WhatsApp sohbetleriyle birlikte.', 'flx-chatbot' ) : __( 'Flux Chat 1.37+ kurulu değil; gelen kutusu kullanılır.', 'flx-chatbot' ), 'chat' ),
-				'inbox'    => array( __( 'Eklentinin gelen kutusu', 'flx-chatbot' ), __( 'Chatbot › Sohbetler ekranı; e-posta bildirimiyle.', 'flx-chatbot' ), 'inbox' ),
+				'auto'     => array( __( 'Automatic', 'flx-chatbot' ), __( 'Flux Chat when available, otherwise the plugin inbox.', 'flx-chatbot' ), 'sparkles' ),
+				'flx-chat' => array( __( 'Flux Chat', 'flx-chatbot' ), $fc ? __( 'Call center inbox, together with WhatsApp chats.', 'flx-chatbot' ) : __( 'Flux Chat 1.37+ is not installed; the inbox is used.', 'flx-chatbot' ), 'chat' ),
+				'inbox'    => array( __( 'Plugin inbox', 'flx-chatbot' ), __( 'Chatbot › Chats screen, with email notification.', 'flx-chatbot' ), 'inbox' ),
 			)
 		);
 		echo '<div class="flxcb-grid2">';
-		self::select( 'ask_email', __( 'E-posta sor', 'flx-chatbot' ), array( 'offline' => __( 'Yalnız mesai dışında', 'flx-chatbot' ), 'always' => __( 'Temsilciye geçmeden önce', 'flx-chatbot' ), 'never' => __( 'Hiç sorma', 'flx-chatbot' ) ) );
-		self::text( 'notify_email', __( 'Bildirim e-postası', 'flx-chatbot' ), __( 'Yeni devir ve mesai dışı mesajlar. Boşsa site yöneticisi.', 'flx-chatbot' ), (string) get_option( 'admin_email' ), 'email' );
+		self::select( 'ask_email', __( 'Ask for email', 'flx-chatbot' ), array( 'offline' => __( 'Only outside working hours', 'flx-chatbot' ), 'always' => __( 'Before handing over', 'flx-chatbot' ), 'never' => __( 'Never', 'flx-chatbot' ) ) );
+		self::text( 'notify_email', __( 'Notification email', 'flx-chatbot' ), __( 'New handoffs and after-hours messages. When empty, the site admin.', 'flx-chatbot' ), (string) get_option( 'admin_email' ), 'email' );
 		echo '</div>';
-		self::area( 'offline_text', __( 'Mesai dışı mesajı', 'flx-chatbot' ), '', 2 );
+		self::area( 'offline_text', __( 'After-hours message', 'flx-chatbot' ), '', 2 );
 		echo '<div class="flxcb-toggles">';
-		self::sw( 'email_replies', __( 'Cevapları e-postayla da gönder', 'flx-chatbot' ), __( 'Ziyaretçi sayfadan ayrıldıysa temsilci cevabı e-postasına gider.', 'flx-chatbot' ) );
-		self::sw( 'rating', __( 'Sohbet sonu puanlama', 'flx-chatbot' ), __( '1-5 yıldız ve isteğe bağlı not.', 'flx-chatbot' ) );
-		self::sw( 'uploads', __( 'Dosya gönderimi', 'flx-chatbot' ), __( 'Resim, PDF ve ofis belgeleri; dosyalar herkese açık klasöre konmaz.', 'flx-chatbot' ) );
-		self::sw( 'dictation', __( 'Sesli dikte', 'flx-chatbot' ), __( 'Yazma alanında mikrofon düğmesi: ziyaretçi konuşur, metin yazma alanına düşer. Tarayıcının konuşma tanıması kullanılır; desteklemeyen tarayıcıda düğme görünmez.', 'flx-chatbot' ) );
+		self::sw( 'email_replies', __( 'Also send replies by email', 'flx-chatbot' ), __( 'If the visitor has left the page, the agent\'s reply goes to their email.', 'flx-chatbot' ) );
+		self::sw( 'rating', __( 'End-of-chat rating', 'flx-chatbot' ), __( '1-5 stars and an optional note.', 'flx-chatbot' ) );
+		self::sw( 'uploads', __( 'File sharing', 'flx-chatbot' ), __( 'Images, PDFs and office documents; files are not put in a public folder.', 'flx-chatbot' ) );
+		self::sw( 'dictation', __( 'Voice dictation', 'flx-chatbot' ), __( 'A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser\'s speech recognition; the button is hidden where it isn\'t supported.', 'flx-chatbot' ) );
 		echo '</div><div class="flxcb-grid3">';
-		self::text( 'upload_mb', __( 'En büyük dosya (MB)', 'flx-chatbot' ), '', '5', 'number', 'min="1" max="20"' );
+		self::text( 'upload_mb', __( 'Largest file (MB)', 'flx-chatbot' ), '', '5', 'number', 'min="1" max="20"' );
 		echo '</div></section>';
 
-		self::card_open( 'flxcb-hours', 'clock', __( 'Çalışma saatleri', 'flx-chatbot' ), __( 'Mesai dışında ziyaretçiye "mesaj bırakın" gösterilir, temsilci e-postayla döner. Saatler site saat dilimine göredir.', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-hours', 'clock', __( 'Working hours', 'flx-chatbot' ), __( 'Outside working hours visitors see "leave a message" and the agent replies by email. Hours follow the site time zone.', 'flx-chatbot' ) );
 		self::choices(
 			'hours_mode',
 			array(
-				'always'   => array( __( 'Her zaman açık', 'flx-chatbot' ), '', 'check' ),
-				'custom'   => array( __( 'Haftalık saatler', 'flx-chatbot' ), '', 'clock' ),
-				'flx-chat' => array( __( 'Flux Chat mesaisi', 'flx-chatbot' ), flxcb_flux_chat_active() ? '' : __( 'Flux Chat kurulu değil', 'flx-chatbot' ), 'chat' ),
+				'always'   => array( __( 'Always open', 'flx-chatbot' ), '', 'check' ),
+				'custom'   => array( __( 'Weekly hours', 'flx-chatbot' ), '', 'clock' ),
+				'flx-chat' => array( __( 'Flux Chat hours', 'flx-chatbot' ), flxcb_flux_chat_active() ? '' : __( 'Flux Chat is not installed', 'flx-chatbot' ), 'chat' ),
 			)
 		);
 		echo '<table class="flxcb-hours" data-hours' . ( 'custom' === $s['hours_mode'] ? '' : ' hidden' ) . '><tbody>';
@@ -585,40 +590,40 @@ final class FLXCB_Admin {
 
 		/* ---------- Görünürlük ve gizlilik ---------- */
 		echo '<div class="flxcb-pane" data-pane="visibility"' . ( 'visibility' === $tab ? '' : ' hidden' ) . '>';
-		self::card_open( 'flxcb-where', 'eye', __( 'Nerede görünsün', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-where', 'eye', __( 'Where to show', 'flx-chatbot' ) );
 		echo '<div class="flxcb-checks">';
 		foreach ( flxcb_page_types() as $k => $l ) {
 			echo '<label class="flxcb-check"><input type="hidden" name="s[show_on_' . esc_attr( $k ) . ']" value="0"><input type="checkbox" name="s[show_on_' . esc_attr( $k ) . ']" value="1"' . checked( ! empty( $s[ 'show_on_' . $k ] ), true, false ) . '> ' . esc_html( $l ) . '</label>';
 		}
 		echo '</div><div class="flxcb-grid2">';
-		self::select( 'audience', __( 'Kimlere', 'flx-chatbot' ), array( 'all' => __( 'Herkese', 'flx-chatbot' ), 'guests' => __( 'Yalnız ziyaretçilere (giriş yapmamış)', 'flx-chatbot' ), 'members' => __( 'Yalnız üyelere (giriş yapmış)', 'flx-chatbot' ) ) );
-		echo '<div class="flxcb-field"><span>' . esc_html__( 'Cihaz', 'flx-chatbot' ) . '</span><div class="flxcb-checks">';
-		foreach ( array( 'device_desktop' => __( 'Masaüstü', 'flx-chatbot' ), 'device_mobile' => __( 'Mobil', 'flx-chatbot' ) ) as $k => $l ) {
+		self::select( 'audience', __( 'Who sees it', 'flx-chatbot' ), array( 'all' => __( 'Everyone', 'flx-chatbot' ), 'guests' => __( 'Only visitors (not logged in)', 'flx-chatbot' ), 'members' => __( 'Only members (logged in)', 'flx-chatbot' ) ) );
+		echo '<div class="flxcb-field"><span>' . esc_html__( 'Device', 'flx-chatbot' ) . '</span><div class="flxcb-checks">';
+		foreach ( array( 'device_desktop' => __( 'Desktop', 'flx-chatbot' ), 'device_mobile' => __( 'Mobile', 'flx-chatbot' ) ) as $k => $l ) {
 			echo '<label class="flxcb-check"><input type="hidden" name="s[' . esc_attr( $k ) . ']" value="0"><input type="checkbox" name="s[' . esc_attr( $k ) . ']" value="1"' . checked( ! empty( $s[ $k ] ), true, false ) . '> ' . esc_html( $l ) . '</label>';
 		}
 		echo '</div></div></div>';
-		self::area( 'exclude_urls', __( 'Gösterilmeyecek adresler', 'flx-chatbot' ), __( 'Satır başına bir yol. * joker karakterdir. Örnek: /odeme/* ya da /kampanya', 'flx-chatbot' ), 3, "/checkout/*\n/landing" );
+		self::area( 'exclude_urls', __( 'Hidden on these addresses', 'flx-chatbot' ), __( 'One path per line. * is a wildcard. Example: /checkout/* or /campaign', 'flx-chatbot' ), 3, "/checkout/*\n/landing" );
 		echo '</section>';
-		self::card_open( 'flxcb-privacy', 'shield', __( 'Gizlilik', 'flx-chatbot' ), __( 'Ziyaretçinin IP adresi saklanmaz; sohbet tarayıcıdaki rastgele bir anahtarla eşleşir.', 'flx-chatbot' ) );
+		self::card_open( 'flxcb-privacy', 'shield', __( 'Privacy', 'flx-chatbot' ), __( 'The visitor\'s IP address is not stored; the chat is matched by a random key in the browser.', 'flx-chatbot' ) );
 		echo '<div class="flxcb-grid2">';
-		self::text( 'privacy_text', __( 'Yazma alanı altındaki not', 'flx-chatbot' ), __( 'Örnek: Sohbet kayıtları <a href="/gizlilik">Gizlilik Politikası</a> kapsamında saklanır. Bağlantı yazılabilir.', 'flx-chatbot' ), '' );
-		self::text( 'retention_days', __( 'Saklama süresi (gün)', 'flx-chatbot' ), __( 'Süresi dolan sohbetler ve dosyaları silinir. 0 = silme.', 'flx-chatbot' ), '180', 'number', 'min="0"' );
+		self::text( 'privacy_text', __( 'Note under the message field', 'flx-chatbot' ), __( 'Example: Chats are kept under our <a href="/privacy">Privacy Policy</a>. Links are allowed.', 'flx-chatbot' ), '' );
+		self::text( 'retention_days', __( 'Retention (days)', 'flx-chatbot' ), __( 'Expired chats and their files are deleted. 0 = keep.', 'flx-chatbot' ), '180', 'number', 'min="0"' );
 		echo '</div></section>';
 		echo '</div>';
 
-		echo '<div class="flxcb-savebar"><span class="flxcb-dirty" data-dirty hidden>' . esc_html__( 'Kaydedilmemiş değişiklikler var', 'flx-chatbot' ) . '</span><button type="submit" class="button button-primary button-large">' . esc_html__( 'Kaydet', 'flx-chatbot' ) . '</button></div>';
+		echo '<div class="flxcb-savebar"><span class="flxcb-dirty" data-dirty hidden>' . esc_html__( 'You have unsaved changes', 'flx-chatbot' ) . '</span><button type="submit" class="button button-primary button-large">' . esc_html__( 'Save', 'flx-chatbot' ) . '</button></div>';
 		echo '</form></div>';
 
 		/* Önizleme */
-		echo '<aside class="flxcb-side"><div class="flxcb-preview"><div class="flxcb-preview__bar"><strong>' . esc_html__( 'Önizleme', 'flx-chatbot' ) . '</strong><span class="flxcb-seg" role="group"><button type="button" class="is-on" data-pv="home">' . esc_html__( 'Ana ekran', 'flx-chatbot' ) . '</button><button type="button" data-pv="chat">' . esc_html__( 'Sohbet', 'flx-chatbot' ) . '</button><button type="button" data-pv="teaser">' . esc_html__( 'Balon', 'flx-chatbot' ) . '</button><button type="button" data-pv="closed">' . esc_html__( 'Kapalı', 'flx-chatbot' ) . '</button></span></div>';
+		echo '<aside class="flxcb-side"><div class="flxcb-preview"><div class="flxcb-preview__bar"><strong>' . esc_html__( 'Preview', 'flx-chatbot' ) . '</strong><span class="flxcb-seg" role="group"><button type="button" class="is-on" data-pv="home">' . esc_html__( 'Home screen', 'flx-chatbot' ) . '</button><button type="button" data-pv="chat">' . esc_html__( 'Chats', 'flx-chatbot' ) . '</button><button type="button" data-pv="teaser">' . esc_html__( 'Bubble', 'flx-chatbot' ) . '</button><button type="button" data-pv="closed">' . esc_html__( 'Closed', 'flx-chatbot' ) . '</button></span></div>';
 		echo '<div class="flxcb-stage" data-flxcb-stage><div class="flxcb-fake" aria-hidden="true"><i></i><i></i><i class="s"></i><b></b><b></b><b class="s"></b></div></div>';
-		echo '<p class="flxcb-muted flxcb-preview__note">' . esc_html__( 'Önizlemede yazdığınız mesajlar gerçek asistana gider ve Sohbetler\'de görünür.', 'flx-chatbot' ) . '</p></div></aside>';
+		echo '<p class="flxcb-muted flxcb-preview__note">' . esc_html__( 'Messages you type in the preview go to the real assistant and show up in Chats.', 'flx-chatbot' ) . '</p></div></aside>';
 		echo '</div></div>';
 	}
 
 	public static function save() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-chatbot' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-chatbot' ), 403 );
 		}
 		check_admin_referer( 'flxcb_save' );
 		$in  = isset( $_POST['s'] ) && is_array( $_POST['s'] ) ? wp_unslash( $_POST['s'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized

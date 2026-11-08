@@ -43,5 +43,5 @@ function flxk_settings_path_warning( $opt, $path ) {
 		}
 	}
 	/* translators: 1: option, 2: alan yolu */
-	return sprintf( __( '%1$s: "%2$s" alanı ayar şemasında yok; yazılır ama eklenti kullanmayabilir.', 'flx-setup' ), $opt, $path );
+	return sprintf( __( '%1$s: "%2$s" is not in the settings schema; it is written but the plugin may not use it.', 'flx-setup' ), $opt, $path );
 }

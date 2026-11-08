@@ -20,18 +20,18 @@ function flxa_system_tab_redirect() {
 }
 
 function flxa_settings_menu() {
-	add_options_page( __( 'Yönetim teması', 'flx-admin' ), __( 'Yönetim teması', 'flx-admin' ), 'manage_options', 'flx-admin', 'flxa_settings_render' );
+	add_options_page( __( 'Admin theme', 'flx-admin' ), __( 'Admin theme', 'flx-admin' ), 'manage_options', 'flx-admin', 'flxa_settings_render' );
 }
 
 function flxa_settings_tabs() {
 	$tabs = array(
-		'general'   => __( 'Genel', 'flx-admin' ),
-		'look'      => __( 'Görünüm', 'flx-admin' ),
-		'menu'      => __( 'Menü ve alt bar', 'flx-admin' ),
-		'caps'      => __( 'Yetkiler', 'flx-admin' ),
-		'dashboard' => __( 'Başlangıç', 'flx-admin' ),
-		'pwa'       => __( 'Uygulama (PWA)', 'flx-admin' ),
-		'system'    => __( 'Sistem kontrolü', 'flx-admin' ),
+		'general'   => __( 'General', 'flx-admin' ),
+		'look'      => __( 'Appearance', 'flx-admin' ),
+		'menu'      => __( 'Menu and bottom bar', 'flx-admin' ),
+		'caps'      => __( 'Permissions', 'flx-admin' ),
+		'dashboard' => __( 'Dashboard', 'flx-admin' ),
+		'pwa'       => __( 'App (PWA)', 'flx-admin' ),
+		'system'    => __( 'System check', 'flx-admin' ),
 	);
 	if ( flxa_system_moved() ) {
 		unset( $tabs['system'] );
@@ -53,7 +53,7 @@ function flxa_settings_assets( $hook ) {
 	if ( 'general' === $tab ) {
 		wp_enqueue_media();
 		wp_enqueue_script( 'flxa-settings', FLXA_URL . 'assets/js/settings.js', array( 'jquery' ), FLXA_VERSION, true );
-		wp_localize_script( 'flxa-settings', 'FLXA_SET', array( 'pick' => __( 'Logo seç', 'flx-admin' ) ) );
+		wp_localize_script( 'flxa-settings', 'FLXA_SET', array( 'pick' => __( 'Choose logo', 'flx-admin' ) ) );
 	}
 	if ( 'menu' === $tab ) {
 		wp_enqueue_script( 'flxa-menu-editor', FLXA_URL . 'assets/js/menu-editor.js', array(), FLXA_VERSION, true );
@@ -65,7 +65,7 @@ function flxa_settings_assets( $hook ) {
 function flxa_menu_editor_data() {
 	$catalog = flxa_menu_catalog();
 	$slugs   = wp_list_pluck( $catalog, 'slug' );
-	$roles   = array( '_default' => __( 'Diğer tüm roller', 'flx-admin' ) ) + flxa_roles();
+	$roles   = array( '_default' => __( 'All other roles', 'flx-admin' ) ) + flxa_roles();
 	$access  = array();
 	foreach ( array_keys( $roles ) as $r ) {
 		$obj = '_default' === $r ? null : get_role( $r );
@@ -111,37 +111,37 @@ function flxa_menu_editor_data() {
 			'down'      => '↓',
 		),
 		'i18n'     => array(
-			'custom'      => __( 'Özel düzen', 'flx-admin' ),
-			'inherit'     => __( 'Varsayılan düzen', 'flx-admin' ),
-			'group'       => __( 'Grup', 'flx-admin' ),
-			'groupName'   => __( 'Grup adı', 'flx-admin' ),
-			'newGroup'    => __( 'Yeni grup', 'flx-admin' ),
-			'addGroup'    => __( '+ Grup ekle', 'flx-admin' ),
-			'removeGroup' => __( 'Grubu kaldır', 'flx-admin' ),
-			'rename'      => __( 'Menü adı (boş = özgün ad)', 'flx-admin' ),
-			'show'        => __( 'Görünür', 'flx-admin' ),
-			'hide'        => __( 'Gizli', 'flx-admin' ),
-			'noAccess'    => __( 'Bu rol erişemez', 'flx-admin' ),
-			'subs'        => __( 'Alt menüler', 'flx-admin' ),
-			'moveUp'      => __( 'Yukarı taşı', 'flx-admin' ),
-			'moveDown'    => __( 'Aşağı taşı', 'flx-admin' ),
-			'reset'       => __( 'Bu rolü varsayılana döndür', 'flx-admin' ),
-			'copyFrom'    => __( 'Başka rolden kopyala…', 'flx-admin' ),
-			'preview'     => __( 'Önizleme', 'flx-admin' ),
-			'bottom'      => __( 'Mobil alt bar', 'flx-admin' ),
-			'bottomHelp'  => __( 'En fazla 4 kısayol; beşinci düğme "Daha" yan paneli açar.', 'flx-admin' ),
-			'none'        => __( '— boş —', 'flx-admin' ),
-			'users'       => __( 'kişi', 'flx-admin' ),
-			'other'       => __( 'Yeni kurulan eklentilerin menüleri otomatik "Diğer" grubuna düşer.', 'flx-admin' ),
-			'unsaved'     => __( 'Kaydedilmemiş değişiklik var.', 'flx-admin' ),
-			'block'       => __( 'Erişimi engelle', 'flx-admin' ),
-			'blocked'     => __( 'Erişim engelli: menüde yok, adresle açılırsa "yetkiniz yok" görür', 'flx-admin' ),
-			'collapsed'   => __( 'Kapalı başlasın', 'flx-admin' ),
-			'capsLink'    => __( 'Yetkilerin tamamı: Yetkiler sekmesi', 'flx-admin' ),
-			'adminNote'   => __( 'Yönetici rolünde erişim engellenemez.', 'flx-admin' ),
-			'platforms'   => __( 'Nerede görünsün', 'flx-admin' ),
+			'custom'      => __( 'Custom layout', 'flx-admin' ),
+			'inherit'     => __( 'Default layout', 'flx-admin' ),
+			'group'       => __( 'Group', 'flx-admin' ),
+			'groupName'   => __( 'Group name', 'flx-admin' ),
+			'newGroup'    => __( 'New group', 'flx-admin' ),
+			'addGroup'    => __( '+ Add group', 'flx-admin' ),
+			'removeGroup' => __( 'Remove group', 'flx-admin' ),
+			'rename'      => __( 'Menu name (empty = original name)', 'flx-admin' ),
+			'show'        => __( 'Visible', 'flx-admin' ),
+			'hide'        => __( 'Hidden', 'flx-admin' ),
+			'noAccess'    => __( 'This role has no access', 'flx-admin' ),
+			'subs'        => __( 'Submenus', 'flx-admin' ),
+			'moveUp'      => __( 'Move up', 'flx-admin' ),
+			'moveDown'    => __( 'Move down', 'flx-admin' ),
+			'reset'       => __( 'Reset this role to default', 'flx-admin' ),
+			'copyFrom'    => __( 'Copy from another role…', 'flx-admin' ),
+			'preview'     => __( 'Preview', 'flx-admin' ),
+			'bottom'      => __( 'Mobile bottom bar', 'flx-admin' ),
+			'bottomHelp'  => __( 'Up to 4 shortcuts; the fifth button "More" opens the side panel.', 'flx-admin' ),
+			'none'        => __( '— empty —', 'flx-admin' ),
+			'users'       => __( 'users', 'flx-admin' ),
+			'other'       => __( 'Menus of newly installed plugins automatically land in the "Other" group.', 'flx-admin' ),
+			'unsaved'     => __( 'You have unsaved changes.', 'flx-admin' ),
+			'block'       => __( 'Block access', 'flx-admin' ),
+			'blocked'     => __( 'Access blocked: not in the menu, opening by URL shows "no permission"', 'flx-admin' ),
+			'collapsed'   => __( 'Start collapsed', 'flx-admin' ),
+			'capsLink'    => __( 'All permissions: Permissions tab', 'flx-admin' ),
+			'adminNote'   => __( 'Access can\'t be blocked for the Administrator role.', 'flx-admin' ),
+			'platforms'   => __( 'Where to show', 'flx-admin' ),
 			/* translators: %s: platform name */
-			'platformOff' => __( '%s: gösterilmez', 'flx-admin' ),
+			'platformOff' => __( '%s: hidden', 'flx-admin' ),
 		),
 	);
 }
@@ -154,9 +154,9 @@ function flxa_settings_render() {
 	$s    = flxa_settings();
 	$base = flxa_settings_url();
 	echo '<div class="wrap flxa-settings">';
-	echo '<h1 class="flxa-settings-title"><img src="' . esc_url( FLXA_URL . 'assets/icon.svg' ) . '" alt="" width="32" height="32"> ' . esc_html__( 'Yönetim teması', 'flx-admin' ) . ' <small>Flux Admin ' . esc_html( FLXA_VERSION ) . '</small></h1>';
+	echo '<h1 class="flxa-settings-title"><img src="' . esc_url( FLXA_URL . 'assets/icon.svg' ) . '" alt="" width="32" height="32"> ' . esc_html__( 'Admin theme', 'flx-admin' ) . ' <small>Flux Admin ' . esc_html( FLXA_VERSION ) . '</small></h1>';
 	if ( isset( $_GET['updated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Kaydedildi.', 'flx-admin' ) . '</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Saved.', 'flx-admin' ) . '</p></div>';
 	}
 	echo '<nav class="nav-tab-wrapper flxa-tabs">';
 	foreach ( flxa_settings_tabs() as $k => $l ) {
@@ -182,120 +182,121 @@ function flxa_settings_render() {
 		$logo = (int) $s['logo_id'];
 		?>
 		<div class="flxa-card">
-			<h2><?php esc_html_e( 'Marka', 'flx-admin' ); ?></h2>
+			<h2><?php esc_html_e( 'Brand', 'flx-admin' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th scope="row"><label for="flxa-enabled"><?php esc_html_e( 'Yönetim teması', 'flx-admin' ); ?></label></th>
-					<td><label><input type="checkbox" id="flxa-enabled" name="s[enabled]" value="1" <?php checked( $s['enabled'] ); ?>> <?php esc_html_e( 'Açık (kapatınca WordPress\'in standart paneli döner)', 'flx-admin' ); ?></label></td></tr>
-				<tr><th scope="row"><label for="flxa-brand"><?php esc_html_e( 'Ad', 'flx-admin' ); ?></label></th>
+				<tr><th scope="row"><label for="flxa-enabled"><?php esc_html_e( 'Admin theme', 'flx-admin' ); ?></label></th>
+					<td><label><input type="checkbox" id="flxa-enabled" name="s[enabled]" value="1" <?php checked( $s['enabled'] ); ?>> <?php esc_html_e( 'On (turning it off restores the standard WordPress dashboard)', 'flx-admin' ); ?></label></td></tr>
+				<tr><th scope="row"><label for="flxa-brand"><?php esc_html_e( 'Name', 'flx-admin' ); ?></label></th>
 					<td><input type="text" class="regular-text" id="flxa-brand" name="s[brand]" value="<?php echo esc_attr( $s['brand'] ); ?>" placeholder="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"></td></tr>
-				<tr><th scope="row"><label for="flxa-subtitle"><?php esc_html_e( 'Alt satır', 'flx-admin' ); ?></label></th>
-					<td><input type="text" class="regular-text" id="flxa-subtitle" name="s[subtitle]" value="<?php echo esc_attr( $s['subtitle'] ); ?>" placeholder="<?php esc_attr_e( 'Yönetim', 'flx-admin' ); ?>"></td></tr>
+				<tr><th scope="row"><label for="flxa-subtitle"><?php esc_html_e( 'Subtitle', 'flx-admin' ); ?></label></th>
+					<td><input type="text" class="regular-text" id="flxa-subtitle" name="s[subtitle]" value="<?php echo esc_attr( $s['subtitle'] ); ?>" placeholder="<?php esc_attr_e( 'Admin', 'flx-admin' ); ?>"></td></tr>
 				<tr><th scope="row"><?php esc_html_e( 'Logo', 'flx-admin' ); ?></th>
 					<td class="flxa-logo-field"><img src="<?php echo esc_url( flxa_logo_url( 96 ) ); ?>" alt="" width="48" height="48" data-flxa-logo-preview>
 						<input type="hidden" name="s[logo_id]" value="<?php echo (int) $logo; ?>" data-flxa-logo-id>
-						<button type="button" class="button" data-flxa-logo-pick><?php esc_html_e( 'Logo seç', 'flx-admin' ); ?></button>
-						<button type="button" class="button-link" data-flxa-logo-clear<?php echo $logo ? '' : ' hidden'; ?>><?php esc_html_e( 'Kaldır', 'flx-admin' ); ?></button>
-						<p class="description"><?php esc_html_e( 'Boşsa site simgesi, o da yoksa Flux Admin simgesi kullanılır.', 'flx-admin' ); ?></p></td></tr>
+						<button type="button" class="button" data-flxa-logo-pick><?php esc_html_e( 'Choose logo', 'flx-admin' ); ?></button>
+						<button type="button" class="button-link" data-flxa-logo-clear<?php echo $logo ? '' : ' hidden'; ?>><?php esc_html_e( 'Remove', 'flx-admin' ); ?></button>
+						<p class="description"><?php esc_html_e( 'If empty, the site icon is used; if there is none, the Flux Admin icon.', 'flx-admin' ); ?></p></td></tr>
 			</table>
 		</div>
 		<div class="flxa-card">
-			<h2><?php esc_html_e( 'Seçenekler', 'flx-admin' ); ?></h2>
+			<h2><?php esc_html_e( 'Options', 'flx-admin' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th scope="row"><?php esc_html_e( 'Özellikler', 'flx-admin' ); ?></th>
+				<tr><th scope="row"><?php esc_html_e( 'Features', 'flx-admin' ); ?></th>
 					<td><fieldset>
-						<label><input type="checkbox" name="s[bottom_bar]" value="1" <?php checked( $s['bottom_bar'] ); ?>> <?php esc_html_e( 'Mobilde alt bar', 'flx-admin' ); ?></label><br>
-						<label><input type="checkbox" name="s[app_rail]" value="1" <?php checked( $s['app_rail'] ); ?>> <?php esc_html_e( 'WhatsApp ve Görevler sol menünün hemen sağında açılsın (menü simgelere daralır)', 'flx-admin' ); ?></label><br>
-						<label><input type="checkbox" name="s[app_switcher]" value="1" <?php checked( $s['app_switcher'] ); ?>> <?php esc_html_e( 'Telefonda WhatsApp ve Görevler ekranlarında uygulama geçiş düğmesi', 'flx-admin' ); ?></label><br>
-						<label><input type="checkbox" name="s[fast_nav]" value="1" <?php checked( $s['fast_nav'] ); ?>> <?php esc_html_e( 'Hızlı geçiş: tıklanan menü sayfası önden hazırlanır, geçiş yumuşak olur', 'flx-admin' ); ?></label><br>
-						<label><input type="checkbox" name="s[palette]" value="1" <?php checked( $s['palette'] ); ?>> <?php esc_html_e( 'Komut paleti (Ctrl+K / ⌘K)', 'flx-admin' ); ?></label><br>
-						<label><input type="checkbox" name="s[login]" value="1" <?php checked( $s['login'] ); ?>> <?php esc_html_e( 'Giriş ekranını da tasarla', 'flx-admin' ); ?></label>
+						<label><input type="checkbox" name="s[bottom_bar]" value="1" <?php checked( $s['bottom_bar'] ); ?>> <?php esc_html_e( 'Bottom bar on mobile', 'flx-admin' ); ?></label><br>
+						<label><input type="checkbox" name="s[app_rail]" value="1" <?php checked( $s['app_rail'] ); ?>> <?php esc_html_e( 'Open WhatsApp and Tasks right next to the side menu (menu shrinks to icons)', 'flx-admin' ); ?></label><br>
+						<label><input type="checkbox" name="s[app_switcher]" value="1" <?php checked( $s['app_switcher'] ); ?>> <?php esc_html_e( 'Show the app switcher on WhatsApp and Tasks screens on phones', 'flx-admin' ); ?></label><br>
+						<label><input type="checkbox" name="s[fast_nav]" value="1" <?php checked( $s['fast_nav'] ); ?>> <?php esc_html_e( 'Fast navigation: the clicked menu page is prepared in advance, transitions are smooth', 'flx-admin' ); ?></label><br>
+						<label><input type="checkbox" name="s[palette]" value="1" <?php checked( $s['palette'] ); ?>> <?php esc_html_e( 'Command palette (Ctrl+K / ⌘K)', 'flx-admin' ); ?></label><br>
+						<label><input type="checkbox" name="s[login]" value="1" <?php checked( $s['login'] ); ?>> <?php esc_html_e( 'Style the login screen too', 'flx-admin' ); ?></label>
 					</fieldset></td></tr>
-				<tr><th scope="row"><label for="flxa-hb"><?php esc_html_e( 'Canlı sayaç aralığı', 'flx-admin' ); ?></label></th>
+				<tr><th scope="row"><label for="flxa-hb"><?php esc_html_e( 'Live counter interval', 'flx-admin' ); ?></label></th>
 					<td><select id="flxa-hb" name="s[heartbeat]">
 						<?php foreach ( array( 30, 60, 120 ) as $n ) : ?>
-							<option value="<?php echo (int) $n; ?>" <?php selected( (int) $s['heartbeat'], $n ); ?>><?php echo esc_html( sprintf( /* translators: %d: seconds */ __( '%d sn', 'flx-admin' ), $n ) ); ?></option>
+							<option value="<?php echo (int) $n; ?>" <?php selected( (int) $s['heartbeat'], $n ); ?>><?php echo esc_html( sprintf( /* translators: %d: seconds */ __( '%d s', 'flx-admin' ), $n ) ); ?></option>
 						<?php endforeach; ?>
 					</select>
-					<p class="description"><?php esc_html_e( 'Rozetler (WhatsApp, görev, bekleyen bağış, güncelleme) WordPress Heartbeat isteğine eklenir; ayrı istek açılmaz. Hostinger için 60 sn önerilir.', 'flx-admin' ); ?></p></td></tr>
+					<p class="description"><?php esc_html_e( 'Badges (WhatsApp, tasks, pending donations, updates) ride on the WordPress Heartbeat request; no extra requests. 60 s is recommended for Hostinger.', 'flx-admin' ); ?></p></td></tr>
 			</table>
 		</div>
 		<?php
 	} elseif ( 'look' === $tab ) {
 		flxa_settings_look( $s );
 	} elseif ( 'menu' === $tab ) {
-		echo '<p class="flxa-lead">' . esc_html__( 'Her rol kendi sol menüsünü ve mobil alt barını görür. Sürükleyip sırala, yeniden adlandır, gizle, grupla. Gizlemek yetkiyi değiştirmez; yalnız menüden kaldırır.', 'flx-admin' ) . '</p>';
+		echo '<p class="flxa-lead">' . esc_html__( 'Each role sees its own side menu and mobile bottom bar. Drag to reorder, rename, hide, group. Hiding does not change permissions; it only removes the item from the menu.', 'flx-admin' ) . '</p>';
 		if ( ! flxa_menu_catalog() ) {
-			echo '<div class="notice notice-info inline"><p>' . esc_html__( 'Menü listesi bir sonraki sayfa açılışında oluşur. Sayfayı yenileyin.', 'flx-admin' ) . '</p></div>';
+			echo '<div class="notice notice-info inline"><p>' . esc_html__( 'The menu list is built on the next page load. Reload the page.', 'flx-admin' ) . '</p></div>';
 		}
 		echo '<div id="flxa-menu-editor" class="flxa-me"></div>';
-		echo '<p class="description">' . esc_html__( '"Erişimi engelle" o menüyü bu rol için gerçekten kapatır: menüde görünmez, adresle açılırsa "yetkiniz yok" sayfası çıkar. Ayrıntılı yetkiler için Yetkiler sekmesi.', 'flx-admin' ) . '</p>';
+		echo '<p class="description">' . esc_html__( '"Block access" really closes that menu for this role: it isn\'t shown, and opening it by URL shows a "no permission" page. See the Permissions tab for detailed permissions.', 'flx-admin' ) . '</p>';
 		echo '<input type="hidden" name="menus" id="flxa-menus-json" value="">';
 	} elseif ( 'caps' === $tab ) {
 		flxa_caps_render();
 	} elseif ( 'dashboard' === $tab ) {
 		$labels = array(
-			'donations_today' => __( 'Bugünkü bağış', 'flx-admin' ),
-			'donations_month' => __( 'Bu ay', 'flx-admin' ),
-			'pending'         => __( 'Onay bekleyen bağış', 'flx-admin' ),
-			'whatsapp'        => __( 'Okunmamış WhatsApp', 'flx-admin' ),
-			'tasks'           => __( 'Açık görevlerim', 'flx-admin' ),
-			'system'          => __( 'Sistem kontrolü', 'flx-admin' ),
+			'donations_today' => __( 'Donations today', 'flx-admin' ),
+			'donations_month' => __( 'This month', 'flx-admin' ),
+			'pending'         => __( 'Donation awaiting approval', 'flx-admin' ),
+			'whatsapp'        => __( '\\nOkunmamış WhatsApp\\n', 'flx-admin' ),
+			'tasks'           => __( 'My open tasks', 'flx-admin' ),
+			'system'          => __( 'System check', 'flx-admin' ),
 		);
 		?>
 		<div class="flxa-card">
-			<h2><?php esc_html_e( 'Karşılama ve özet', 'flx-admin' ); ?></h2>
+			<h2><?php esc_html_e( 'Welcome and summary', 'flx-admin' ); ?></h2>
 			<table class="form-table" role="presentation">
-				<tr><th scope="row"><?php esc_html_e( 'Üst bölüm', 'flx-admin' ); ?></th>
-					<td><label><input type="checkbox" name="s[dash_header]" value="1" <?php checked( $s['dash_header'] ); ?>> <?php esc_html_e( 'Karşılama, tarih ve özet kutucukları', 'flx-admin' ); ?></label></td></tr>
-				<tr><th scope="row"><?php esc_html_e( 'Özet kutucukları', 'flx-admin' ); ?></th>
+				<tr><th scope="row"><?php esc_html_e( 'Top section', 'flx-admin' ); ?></th>
+					<td><label><input type="checkbox" name="s[dash_header]" value="1" <?php checked( $s['dash_header'] ); ?>> <?php esc_html_e( 'Greeting, date and summary tiles', 'flx-admin' ); ?></label></td></tr>
+				<tr><th scope="row"><?php esc_html_e( 'Summary tiles', 'flx-admin' ); ?></th>
 					<td><fieldset>
 					<?php foreach ( $labels as $k => $l ) : ?>
 						<label><input type="checkbox" name="s[dash_stats][]" value="<?php echo esc_attr( $k ); ?>" <?php checked( in_array( $k, (array) $s['dash_stats'], true ) ); ?>> <?php echo esc_html( $l ); ?></label><br>
 					<?php endforeach; ?>
-					<p class="description"><?php esc_html_e( 'Kişi yalnız yetkisi olan kutucukları görür. Eklentiler `flxa_dashboard_stats` filtresiyle kutucuk ekleyebilir.', 'flx-admin' ); ?></p>
+					<p class="description"><?php esc_html_e( 'People only see tiles they have permission for. Plugins can add tiles with the `flxa_dashboard_stats` filter.', 'flx-admin' ); ?></p>
 					</fieldset></td></tr>
-				<tr><th scope="row"><label for="flxa-ql"><?php esc_html_e( 'Ek hızlı işlemler', 'flx-admin' ); ?></label></th>
-					<td><textarea id="flxa-ql" name="s[quick_links]" rows="4" class="large-text code" placeholder="<?php esc_attr_e( "Etkinlikler|edit.php?post_type=etkinlik\nCanlı site|https://", 'flx-admin' ); ?>"><?php echo esc_textarea( $s['quick_links'] ); ?></textarea>
-					<p class="description"><?php esc_html_e( 'Satır başına "Etiket|Adres". Adres wp-admin\'e göre veya tam https:// olabilir.', 'flx-admin' ); ?></p></td></tr>
+				<tr><th scope="row"><label for="flxa-ql"><?php esc_html_e( 'Extra quick actions', 'flx-admin' ); ?></label></th>
+					<td><textarea id="flxa-ql" name="s[quick_links]" rows="4" class="large-text code" placeholder="<?php esc_attr_e( 'Events|edit.php?post_type=etkinlik
+Live site|https://', 'flx-admin' ); ?>"><?php echo esc_textarea( $s['quick_links'] ); ?></textarea>
+					<p class="description"><?php esc_html_e( 'One "Label|Address" per line. The address can be relative to wp-admin or a full https:// URL.', 'flx-admin' ); ?></p></td></tr>
 			</table>
-			<p class="description"><?php esc_html_e( 'Modüllerin sırası ve görünürlüğü kişiye özeldir: Başlangıç\'ta "Modülleri düzenle" ile açılır, kutular sürüklenerek taşınır.', 'flx-admin' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Module order and visibility are personal: open "Edit modules" on the dashboard and drag the boxes.', 'flx-admin' ); ?></p>
 		</div>
 		<?php
 	} elseif ( 'pwa' === $tab ) {
 		?>
 		<div class="flxa-card">
-			<h2><?php esc_html_e( 'Uygulama olarak yükleme', 'flx-admin' ); ?></h2>
+			<h2><?php esc_html_e( 'Install as an app', 'flx-admin' ); ?></h2>
 			<?php if ( ! flxa_pwa_possible() ) : ?>
-				<div class="notice notice-warning inline"><p><?php esc_html_e( 'Site HTTPS değil; tarayıcılar yüklemeye izin vermez.', 'flx-admin' ); ?></p></div>
+				<div class="notice notice-warning inline"><p><?php esc_html_e( 'The site is not HTTPS; browsers will not allow installing.', 'flx-admin' ); ?></p></div>
 			<?php endif; ?>
 			<table class="form-table" role="presentation">
 				<tr><th scope="row"><?php esc_html_e( 'PWA', 'flx-admin' ); ?></th>
-					<td><label><input type="checkbox" name="s[pwa]" value="1" <?php checked( $s['pwa'] ); ?>> <?php esc_html_e( 'Panel telefona / bilgisayara uygulama gibi yüklenebilsin', 'flx-admin' ); ?></label>
-					<p class="description"><?php esc_html_e( 'Tam ekran açılır, uygulama simgesinde okunmamış sayısı görünür, bağlantı kopunca çevrimdışı ekranı çıkar. Panel sayfaları önbelleğe alınmaz.', 'flx-admin' ); ?></p></td></tr>
-				<tr><th scope="row"><label for="flxa-pn"><?php esc_html_e( 'Uygulama adı', 'flx-admin' ); ?></label></th>
+					<td><label><input type="checkbox" name="s[pwa]" value="1" <?php checked( $s['pwa'] ); ?>> <?php esc_html_e( 'Allow installing the dashboard as an app on phones and computers', 'flx-admin' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Opens full screen, shows the unread count on the app icon, and shows an offline screen when the connection drops. Admin pages are never cached.', 'flx-admin' ); ?></p></td></tr>
+				<tr><th scope="row"><label for="flxa-pn"><?php esc_html_e( 'App name', 'flx-admin' ); ?></label></th>
 					<td><input type="text" class="regular-text" id="flxa-pn" name="s[pwa_name]" value="<?php echo esc_attr( $s['pwa_name'] ); ?>" placeholder="<?php echo esc_attr( flxa_brand() ); ?>"></td></tr>
-				<tr><th scope="row"><label for="flxa-ps"><?php esc_html_e( 'Kısa ad (simge altı)', 'flx-admin' ); ?></label></th>
+				<tr><th scope="row"><label for="flxa-ps"><?php esc_html_e( 'Short name (under the icon)', 'flx-admin' ); ?></label></th>
 					<td><input type="text" class="regular-text" id="flxa-ps" name="s[pwa_short]" maxlength="20" value="<?php echo esc_attr( $s['pwa_short'] ); ?>" placeholder="<?php echo esc_attr( flxa_pwa_short() ); ?>"></td></tr>
-				<tr><th scope="row"><?php esc_html_e( 'Simge', 'flx-admin' ); ?></th>
+				<tr><th scope="row"><?php esc_html_e( 'Icon', 'flx-admin' ); ?></th>
 					<td><img src="<?php echo esc_url( flxa_pwa_icons()[0]['src'] ); ?>" alt="" width="64" height="64" style="border-radius:14px">
-					<p class="description"><?php esc_html_e( 'Site simgesi (Görünüm › Özelleştir › Site kimliği) varsa o kullanılır.', 'flx-admin' ); ?></p></td></tr>
+					<p class="description"><?php esc_html_e( 'The site icon (Appearance › Customize › Site Identity) is used if set.', 'flx-admin' ); ?></p></td></tr>
 			</table>
-			<h3><?php esc_html_e( 'Nasıl yüklenir?', 'flx-admin' ); ?></h3>
+			<h3><?php esc_html_e( 'How to install?', 'flx-admin' ); ?></h3>
 			<ul class="flxa-howto">
-				<li><strong>Android / Chrome:</strong> <?php esc_html_e( 'Başlangıç\'taki "Yükle" düğmesi veya menü › Uygulamayı yükle.', 'flx-admin' ); ?></li>
-				<li><strong>iPhone / Safari:</strong> <?php esc_html_e( 'Paylaş › Ana Ekrana Ekle.', 'flx-admin' ); ?></li>
-				<li><strong><?php esc_html_e( 'Bilgisayar', 'flx-admin' ); ?>:</strong> <?php esc_html_e( 'Adres çubuğundaki yükle simgesi.', 'flx-admin' ); ?></li>
+				<li><strong>Android / Chrome:</strong> <?php esc_html_e( 'The "Install" button on the dashboard, or menu › Install the app.', 'flx-admin' ); ?></li>
+				<li><strong>iPhone / Safari:</strong> <?php esc_html_e( 'Share › Add to Home Screen.', 'flx-admin' ); ?></li>
+				<li><strong><?php esc_html_e( 'Computer', 'flx-admin' ); ?>:</strong> <?php esc_html_e( 'The install icon in the address bar.', 'flx-admin' ); ?></li>
 			</ul>
 		</div>
 		<?php
 	}
-	submit_button( __( 'Kaydet', 'flx-admin' ) );
+	submit_button( __( 'Save', 'flx-admin' ) );
 	echo '</form></div>';
 }
 
 function flxa_render_own_checks() {
 	$rows = flxa_system_checks( array() );
-	echo '<table class="widefat striped"><thead><tr><th>' . esc_html__( 'Kontrol', 'flx-admin' ) . '</th><th>' . esc_html__( 'Durum', 'flx-admin' ) . '</th><th>' . esc_html__( 'Açıklama', 'flx-admin' ) . '</th></tr></thead><tbody>';
+	echo '<table class="widefat striped"><thead><tr><th>' . esc_html__( 'Check', 'flx-admin' ) . '</th><th>' . esc_html__( 'Status', 'flx-admin' ) . '</th><th>' . esc_html__( 'Description', 'flx-admin' ) . '</th></tr></thead><tbody>';
 	foreach ( $rows as $r ) {
 		echo '<tr><td>' . esc_html( $r['label'] ) . '</td><td>' . esc_html( $r['status'] ) . '</td><td>' . esc_html( $r['message'] );
 		if ( ! empty( $r['action_url'] ) ) {
@@ -308,7 +309,7 @@ function flxa_render_own_checks() {
 
 function flxa_settings_save() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( esc_html__( 'Yetkiniz yok.', 'flx-admin' ), 403 );
+		wp_die( esc_html__( 'You do not have permission.', 'flx-admin' ), 403 );
 	}
 	check_admin_referer( 'flxa_save' );
 	$tab = sanitize_key( wp_unslash( $_POST['tab'] ?? 'general' ) );

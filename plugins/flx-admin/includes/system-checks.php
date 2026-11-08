@@ -19,11 +19,11 @@ function flxa_system_checks( $checks ) {
 		'id'      => 'flxa.enabled',
 		'source'  => $src,
 		'group'   => 'Config',
-		'label'   => __( 'Yönetim teması', 'flx-admin' ),
+		'label'   => __( 'Admin theme', 'flx-admin' ),
 		'status'  => flxa_enabled() ? 'ok' : 'info',
-		'message' => flxa_enabled() ? __( 'Açık. Rol bazlı menü, alt bar ve açık/koyu tema çalışıyor.', 'flx-admin' ) : __( 'Kapalı; WordPress\'in standart paneli görünüyor.', 'flx-admin' ),
+		'message' => flxa_enabled() ? __( 'On. Role-based menu, bottom bar and light/dark theme are active.', 'flx-admin' ) : __( 'Off; the standard WordPress dashboard is shown.', 'flx-admin' ),
 		'action_url'   => $url,
-		'action_label' => __( 'Ayarlar', 'flx-admin' ),
+		'action_label' => __( 'Settings', 'flx-admin' ),
 	);
 
 	if ( flxa_setting( 'pwa' ) ) {
@@ -32,19 +32,19 @@ function flxa_system_checks( $checks ) {
 			'id'      => 'flxa.pwa.https',
 			'source'  => $src,
 			'group'   => 'Config',
-			'label'   => __( 'Uygulama olarak yükleme (PWA)', 'flx-admin' ),
+			'label'   => __( 'Install as an app (PWA)', 'flx-admin' ),
 			'status'  => $ok ? 'ok' : 'warning',
-			'message' => $ok ? __( 'HTTPS açık; panel telefona ve bilgisayara uygulama gibi yüklenebilir.', 'flx-admin' ) : __( 'Site HTTPS değil; tarayıcılar PWA yüklemeye izin vermez. Ayarlar › Genel\'de adresleri https:// yapın.', 'flx-admin' ),
+			'message' => $ok ? __( 'HTTPS is on; the dashboard can be installed as an app on phones and computers.', 'flx-admin' ) : __( 'The site is not HTTPS; browsers do not allow installing a PWA. Set the addresses to https:// in Settings › General.', 'flx-admin' ),
 			'action_url'   => $ok ? '' : admin_url( 'options-general.php' ),
-			'action_label' => $ok ? '' : __( 'Genel ayarlar', 'flx-admin' ),
+			'action_label' => $ok ? '' : __( 'General settings', 'flx-admin' ),
 		);
 		$checks[] = array(
 			'id'      => 'flxa.pwa.icon',
 			'source'  => $src,
 			'group'   => 'Config',
-			'label'   => __( 'Uygulama simgesi', 'flx-admin' ),
+			'label'   => __( 'App icon', 'flx-admin' ),
 			'status'  => get_option( 'site_icon' ) ? 'ok' : 'info',
-			'message' => get_option( 'site_icon' ) ? __( 'Site simgesi kullanılıyor.', 'flx-admin' ) : __( 'Site simgesi yok; Flux Admin simgesi kullanılıyor. Görünüm › Özelleştir › Site kimliği\'nden değiştirilebilir.', 'flx-admin' ),
+			'message' => get_option( 'site_icon' ) ? __( 'Using the site icon.', 'flx-admin' ) : __( 'No site icon; using the Flux Admin icon. You can change it in Appearance › Customize › Site Identity.', 'flx-admin' ),
 		);
 	}
 
@@ -55,23 +55,23 @@ function flxa_system_checks( $checks ) {
 		'id'      => 'flxa.menu',
 		'source'  => $src,
 		'group'   => 'Config',
-		'label'   => __( 'Rol bazlı menü', 'flx-admin' ),
+		'label'   => __( 'Role-based menu', 'flx-admin' ),
 		'status'  => 'ok',
 		'message' => $n
 			/* translators: %s: role count */
-			? sprintf( _n( '%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.', '%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.', $n, 'flx-admin' ), number_format_i18n( $n ) )
-			: __( 'Tüm roller varsayılan gruplu menüyü görüyor.', 'flx-admin' ),
+			? sprintf( _n( '[[\'%shas a special menu layout for the role; other roles see the default grouped menu.\', \'tr\']]', '[[\'%shas a special menu layout for the role; other roles see the default grouped menu.\', \'tr\']]', $n, 'flx-admin' ), number_format_i18n( $n ) )
+			: __( 'All roles see the default grouped menu.', 'flx-admin' ),
 		'action_url'   => flxa_settings_url( 'menu' ),
-		'action_label' => __( 'Menüyü düzenle', 'flx-admin' ),
+		'action_label' => __( 'Edit menu', 'flx-admin' ),
 	);
 	if ( empty( $cat['items'] ) ) {
 		$checks[] = array(
 			'id'      => 'flxa.menu.catalog',
 			'source'  => $src,
 			'group'   => 'Config',
-			'label'   => __( 'Menü listesi', 'flx-admin' ),
+			'label'   => __( 'Menu list', 'flx-admin' ),
 			'status'  => 'info',
-			'message' => __( 'Menü düzenleyicinin listesi bir yönetici paneli açınca oluşur.', 'flx-admin' ),
+			'message' => __( 'The menu editor\'s list is built when an administrator opens the dashboard.', 'flx-admin' ),
 		);
 	}
 
@@ -80,12 +80,12 @@ function flxa_system_checks( $checks ) {
 		'id'      => 'flxa.live',
 		'source'  => $src,
 		'group'   => 'Config',
-		'label'   => __( 'Canlı sayaçlar', 'flx-admin' ),
+		'label'   => __( 'Live counters', 'flx-admin' ),
 		'status'  => $hb < 30 ? 'warning' : 'ok',
 		/* translators: %s: seconds */
-		'message' => $hb < 30 ? sprintf( __( 'Heartbeat %s sn; Hostinger yoğun istekte IP\'yi geçici kesebilir. 60 sn önerilir.', 'flx-admin' ), $hb ) : sprintf( __( 'Rozetler WordPress Heartbeat ile %s sn\'de bir yenilenir (ek istek yok).', 'flx-admin' ), $hb ),
+		'message' => $hb < 30 ? sprintf( __( 'Heartbeat is %s s; Hostinger may temporarily block the IP under heavy load. 60 s is recommended.', 'flx-admin' ), $hb ) : sprintf( __( 'Badges refresh every %s s via WordPress Heartbeat (no extra requests).', 'flx-admin' ), $hb ),
 		'action_url'   => $hb < 30 ? $url : '',
-		'action_label' => $hb < 30 ? __( 'Ayarlar', 'flx-admin' ) : '',
+		'action_label' => $hb < 30 ? __( 'Settings', 'flx-admin' ) : '',
 	);
 	return $checks;
 }
@@ -98,8 +98,8 @@ function flxa_system_fixes( $fixes ) {
 		update_option( 'flxa_settings', $s );
 	};
 	$fixes['flxa.enabled'] = array(
-		'label'       => __( 'Yönetim temasını aç/kapat', 'flx-admin' ),
-		'description' => __( '1 = açık, 0 = WordPress standart paneli.', 'flx-admin' ),
+		'label'       => __( 'Turn the admin theme on/off', 'flx-admin' ),
+		'description' => __( '1 = on, 0 = standard WordPress dashboard.', 'flx-admin' ),
 		'source'      => 'Flux Admin',
 		'checks'      => array( 'flxa.enabled' ),
 		'value'       => array( 'type' => 'enum', 'enum' => array( '1', '0' ) ),
@@ -108,12 +108,12 @@ function flxa_system_fixes( $fixes ) {
 		},
 		'run'         => function ( $v ) use ( $save ) {
 			$save( 'enabled', '1' === (string) $v ? 1 : 0 );
-			return '1' === (string) $v ? __( 'Yönetim teması açıldı.', 'flx-admin' ) : __( 'Yönetim teması kapatıldı.', 'flx-admin' );
+			return '1' === (string) $v ? __( 'Admin theme turned on.', 'flx-admin' ) : __( 'Admin theme turned off.', 'flx-admin' );
 		},
 	);
 	$fixes['flxa.heartbeat'] = array(
-		'label'       => __( 'Canlı sayaç aralığı', 'flx-admin' ),
-		'description' => __( 'Saniye (30, 60 veya 120).', 'flx-admin' ),
+		'label'       => __( 'Live counter interval', 'flx-admin' ),
+		'description' => __( 'Seconds (30, 60 or 120).', 'flx-admin' ),
 		'source'      => 'Flux Admin',
 		'checks'      => array( 'flxa.live' ),
 		'value'       => array( 'type' => 'enum', 'enum' => array( '30', '60', '120' ) ),
@@ -126,12 +126,12 @@ function flxa_system_fixes( $fixes ) {
 			}
 			$save( 'heartbeat', (int) $v );
 			/* translators: %s: seconds */
-			return sprintf( __( 'Aralık %s sn yapıldı.', 'flx-admin' ), (int) $v );
+			return sprintf( __( 'Interval set to %s s.', 'flx-admin' ), (int) $v );
 		},
 	);
 	$fixes['flxa.pwa'] = array(
-		'label'       => __( 'PWA (uygulama olarak yükleme)', 'flx-admin' ),
-		'description' => __( '1 = açık, 0 = kapalı (kayıtlı service worker kendini kaldırır).', 'flx-admin' ),
+		'label'       => __( 'PWA (install as an app)', 'flx-admin' ),
+		'description' => __( '1 = on, 0 = off (the registered service worker removes itself).', 'flx-admin' ),
 		'source'      => 'Flux Admin',
 		'checks'      => array( 'flxa.pwa.https' ),
 		'value'       => array( 'type' => 'enum', 'enum' => array( '1', '0' ) ),
@@ -140,14 +140,14 @@ function flxa_system_fixes( $fixes ) {
 		},
 		'run'         => function ( $v ) use ( $save ) {
 			$save( 'pwa', '1' === (string) $v ? 1 : 0 );
-			return '1' === (string) $v ? __( 'PWA açıldı.', 'flx-admin' ) : __( 'PWA kapatıldı.', 'flx-admin' );
+			return '1' === (string) $v ? __( 'PWA turned on.', 'flx-admin' ) : __( 'PWA turned off.', 'flx-admin' );
 		},
 	);
 	$roles = array_keys( (array) ( flxa_menus_option()['roles'] ?? array() ) );
 	if ( $roles ) {
 		$fixes['flxa.menu_reset'] = array(
-			'label'       => __( 'Bir rolün menüsünü varsayılana döndür', 'flx-admin' ),
-			'description' => __( 'Rol anahtarı (ör. editor).', 'flx-admin' ),
+			'label'       => __( 'Reset a role\'s menu to default', 'flx-admin' ),
+			'description' => __( 'Role key (e.g. editor).', 'flx-admin' ),
 			'source'      => 'Flux Admin',
 			'checks'      => array( 'flxa.menu' ),
 			'value'       => array( 'type' => 'enum', 'enum' => $roles ),
@@ -162,7 +162,7 @@ function flxa_system_fixes( $fixes ) {
 				unset( $o['roles'][ $v ] );
 				update_option( 'flxa_menus', $o );
 				/* translators: %s: role */
-				return sprintf( __( '%s menüsü varsayılana döndü.', 'flx-admin' ), $v );
+				return sprintf( __( '%s menu reset to default.', 'flx-admin' ), $v );
 			},
 		);
 	}

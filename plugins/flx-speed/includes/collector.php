@@ -209,7 +209,7 @@ class FLXP_Collector {
 
 	public static function on_deprecated_function( $function, $replacement, $version ) {
 		/* translators: 1: sürüm, 2: yerine kullanılacak */
-		self::wrong( 'deprecated', $function . '()', sprintf( __( '%1$s sürümünden beri kullanımdan kalktı. Yerine: %2$s', 'flx-speed' ), $version, $replacement ? $replacement : '—' ) );
+		self::wrong( 'deprecated', $function . '()', sprintf( __( 'Deprecated since %1$s. Use instead: %2$s', 'flx-speed' ), $version, $replacement ? $replacement : '—' ) );
 	}
 
 	public static function on_deprecated_argument( $function, $message, $version ) {
@@ -218,17 +218,17 @@ class FLXP_Collector {
 
 	public static function on_deprecated_hook( $hook, $replacement, $version, $message ) {
 		/* translators: 1: sürüm, 2: yerine kullanılacak */
-		self::wrong( 'deprecated', $hook, sprintf( __( '%1$s sürümünden beri kullanımdan kalktı. Yerine: %2$s', 'flx-speed' ), $version, $replacement ? $replacement : '—' ) . ( $message ? ' ' . $message : '' ) );
+		self::wrong( 'deprecated', $hook, sprintf( __( 'Deprecated since %1$s. Use instead: %2$s', 'flx-speed' ), $version, $replacement ? $replacement : '—' ) . ( $message ? ' ' . $message : '' ) );
 	}
 
 	public static function on_deprecated_file( $file, $replacement, $version, $message ) {
 		/* translators: 1: sürüm, 2: yerine kullanılacak */
-		self::wrong( 'deprecated', $file, sprintf( __( '%1$s sürümünden beri kullanımdan kalktı. Yerine: %2$s', 'flx-speed' ), $version, $replacement ? $replacement : '—' ) . ( $message ? ' ' . $message : '' ) );
+		self::wrong( 'deprecated', $file, sprintf( __( 'Deprecated since %1$s. Use instead: %2$s', 'flx-speed' ), $version, $replacement ? $replacement : '—' ) . ( $message ? ' ' . $message : '' ) );
 	}
 
 	public static function on_deprecated_class( $class, $replacement, $version ) {
 		/* translators: 1: sürüm, 2: yerine kullanılacak */
-		self::wrong( 'deprecated', $class, sprintf( __( '%1$s sürümünden beri kullanımdan kalktı. Yerine: %2$s', 'flx-speed' ), $version, $replacement ? $replacement : '—' ) );
+		self::wrong( 'deprecated', $class, sprintf( __( 'Deprecated since %1$s. Use instead: %2$s', 'flx-speed' ), $version, $replacement ? $replacement : '—' ) );
 	}
 
 	/* ---------------------------------------------------------------- HTTP API */

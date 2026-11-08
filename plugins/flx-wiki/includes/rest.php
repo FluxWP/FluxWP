@@ -46,7 +46,7 @@ add_action(
 			array(
 				'methods'             => 'POST',
 				'permission_callback' => function () {
-					return flxwk_can_ask() ? true : new WP_Error( 'flxwk_ask_off', __( 'Soru sormak için giriş yapın.', 'flx-wiki' ), array( 'status' => 403 ) );
+					return flxwk_can_ask() ? true : new WP_Error( 'flxwk_ask_off', __( 'Log in to ask a question.', 'flx-wiki' ), array( 'status' => 403 ) );
 				},
 				'args'                => array(
 					'q'    => array( 'type' => 'string', 'required' => true, 'maxLength' => 1000 ),
@@ -55,7 +55,7 @@ add_action(
 				'callback'            => function ( WP_REST_Request $r ) {
 					$q = trim( sanitize_textarea_field( (string) $r['q'] ) );
 					if ( mb_strlen( $q ) < 3 ) {
-						return new WP_Error( 'flxwk_short', __( 'Soru çok kısa.', 'flx-wiki' ), array( 'status' => 400 ) );
+						return new WP_Error( 'flxwk_short', __( 'The question is too short.', 'flx-wiki' ), array( 'status' => 400 ) );
 					}
 					$lock = flxwk_ask_lock();
 					if ( is_wp_error( $lock ) ) { return $lock; }
@@ -98,7 +98,7 @@ function flxwk_rate_hit() {
 	$key = 'flxwk_rl_' . flxwk_ask_identity() . '_' . (int) floor( time() / HOUR_IN_SECONDS );
 	$n   = (int) get_transient( $key );
 	if ( $n >= $max ) {
-		return new WP_Error( 'flxwk_rate', __( 'Bu saat için soru sınırına ulaştınız. Biraz sonra tekrar deneyin.', 'flx-wiki' ), array( 'status' => 429 ) );
+		return new WP_Error( 'flxwk_rate', __( 'You have reached the question limit for this hour. Try again later.', 'flx-wiki' ), array( 'status' => 429 ) );
 	}
 	set_transient( $key, $n + 1, HOUR_IN_SECONDS );
 	return true;
@@ -121,7 +121,7 @@ function flxwk_ask_lock() {
 		wp_cache_delete( $key, 'options' );
 	}
 	if ( ! add_option( $key, time() + 90, '', false ) ) {
-		return new WP_Error( 'flxwk_busy', __( 'Önceki sorunuz yanıtlanıyor. Biraz sonra tekrar deneyin.', 'flx-wiki' ), array( 'status' => 429 ) );
+		return new WP_Error( 'flxwk_busy', __( 'Your previous question is still being answered. Please try again shortly.', 'flx-wiki' ), array( 'status' => 429 ) );
 	}
 	return $key;
 }

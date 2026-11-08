@@ -301,8 +301,8 @@ function flxapp_rest_brand() {
 			'allowedSites'  => array( $host ),
 			'lockSite'      => true,
 			'loginMethods'  => $methods,
-			'defaultLocale' => 0 === strpos( get_locale(), 'en' ) ? 'en' : 'tr',
-			'locales'       => array( 'tr', 'en' ),
+			'defaultLocale' => flxapp_locale_code( get_locale() ),
+			'locales'       => array( 'en', 'tr', 'de', 'es', 'fr', 'pt-br', 'ja', 'zh', 'ar', 'ru' ),
 			'mobile'        => array(
 				'scheme'        => $mob ? $scheme( $mob ) : $slug,
 				'oauthClientId' => $mob ? $mob['id'] : 'flx-mobil-' . $slug,
@@ -316,8 +316,8 @@ function flxapp_rest_brand() {
 		'warnings'    => array_values(
 			array_filter(
 				array(
-					$mob ? '' : __( 'Mobil marka istemcisi (app_clients) tanımlı değil; markalı mobil uygulama bu siteye bağlanamaz.', 'flx-app' ),
-					$b['icon'] ? '' : __( 'Site simgesi yok; mağaza ikonu için 1024 px görsel gerekir.', 'flx-app' ),
+					$mob ? '' : __( 'No mobile brand client (app_clients) is defined; a branded mobile app cannot connect to this site.', 'flx-app' ),
+					$b['icon'] ? '' : __( 'No site icon; the store icon needs a 1024 px image.', 'flx-app' ),
 				)
 			)
 		),
@@ -344,7 +344,7 @@ add_action(
 				'methods'             => 'GET',
 				'callback'            => 'flxapp_rest_brand',
 				'permission_callback' => function () {
-					return current_user_can( 'manage_options' ) ? true : new WP_Error( 'rest_forbidden', __( 'Bu işlem için yetkiniz yok.', 'flx-app' ), array( 'status' => is_user_logged_in() ? 403 : 401 ) );
+					return current_user_can( 'manage_options' ) ? true : new WP_Error( 'rest_forbidden', __( 'You are not allowed to do this.', 'flx-app' ), array( 'status' => is_user_logged_in() ? 403 : 401 ) );
 				},
 			)
 		);
@@ -363,3 +363,11 @@ add_filter(
 		return $res;
 	}
 );
+
+/** Supported shared-client locale; independent of the site's multilingual plugin. */
+function flxapp_locale_code( $locale ) {
+	$locale = strtolower( str_replace( '_', '-', (string) $locale ) );
+	$base = explode( '-', $locale )[0];
+	if ( 'pt' === $base ) { return 'pt-br'; }
+	return in_array( $base, array( 'en', 'tr', 'de', 'es', 'fr', 'ja', 'zh', 'ar', 'ru' ), true ) ? $base : 'en';
+}

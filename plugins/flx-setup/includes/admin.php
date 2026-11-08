@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 add_action(
 	'admin_menu',
 	function () {
-		$hook = add_theme_page( __( 'Ön ayarlar', 'flx-setup' ), __( 'Ön ayarlar', 'flx-setup' ), flxk_cap(), 'flx-presets', 'flxk_render_page' );
+		$hook = add_theme_page( __( 'Presets', 'flx-setup' ), __( 'Presets', 'flx-setup' ), flxk_cap(), 'flx-presets', 'flxk_render_page' );
 		if ( flxk_panel_in_theme() ) {
 			// Tema kendi ayar ekranında sekme olarak gösteriyor: ayrı menü öğesi yok, eski adres oraya yönlenir.
 			remove_submenu_page( 'themes.php', 'flx-presets' );
@@ -79,7 +79,7 @@ function flxk_process_install_queue() {
 	}
 	update_option( 'flxk_install_queue', $left, false );
 	if ( $fresh && $q ) {
-		set_transient( 'flxk_notice', array( 'ok', __( 'Ön ayar boş siteye uygulandı.', 'flx-setup' ) ), 60 );
+		set_transient( 'flxk_notice', array( 'ok', __( 'Preset applied to the empty site.', 'flx-setup' ) ), 60 );
 	}
 }
 
@@ -112,14 +112,14 @@ add_action(
 		$pat = count( flxk_pending_patches() );
 		if ( $wait ) {
 			/* translators: %s: ön ayar adları */
-			$msg = sprintf( __( '%s ön ayarı hazır. Sitede içerik olduğu için kendiliğinden uygulanmadı: önizleyip uygulayın.', 'flx-setup' ), implode( ', ', $wait ) );
+			$msg = sprintf( __( '%s preset is ready. It was not applied automatically because the site has content: preview and apply it.', 'flx-setup' ), implode( ', ', $wait ) );
 		} elseif ( $mig || $pat ) {
 			/* translators: 1: migration sayısı, 2: yama sayısı */
-			$msg = sprintf( __( 'Ön ayarlar: %1$d bekleyen güncelleme, %2$d onay bekleyen yama.', 'flx-setup' ), $mig, $pat );
+			$msg = sprintf( __( 'Presets: %1$d pending updates, %2$d patches awaiting approval.', 'flx-setup' ), $mig, $pat );
 		} else {
 			return;
 		}
-		printf( '<div class="notice notice-info"><p>%1$s <a href="%2$s">%3$s</a></p></div>', esc_html( $msg ), esc_url( flxk_admin_url() ), esc_html__( 'Ön ayarlar', 'flx-setup' ) );
+		printf( '<div class="notice notice-info"><p>%1$s <a href="%2$s">%3$s</a></p></div>', esc_html( $msg ), esc_url( flxk_admin_url() ), esc_html__( 'Presets', 'flx-setup' ) );
 	}
 );
 
@@ -128,7 +128,7 @@ add_action(
 add_action( 'admin_post_flxk', 'flxk_handle_post' );
 function flxk_handle_post() {
 	if ( ! current_user_can( flxk_cap() ) ) {
-		wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-setup' ), 403 );
+		wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 	}
 	check_admin_referer( 'flxk' );
 	$do   = sanitize_key( wp_unslash( $_POST['do'] ?? '' ) );
@@ -167,7 +167,7 @@ function flxk_handle_post() {
 			$p   = flxk_get_preset( $id );
 			$out = flxk_install_plugins( $p ? flxk_inactive_plugins( (array) ( $p['requires'] ?? array() ) ) : array() );
 			$bad = wp_list_pluck( wp_list_filter( $out['lines'], array( 'ok' => false ) ), 'text' );
-			$res = $out['ok'] ? array( 'ok' => true ) : new WP_Error( 'requirements', $bad ? implode( ' ', $bad ) : __( 'Eksik eklentiler kurulamadı. FluxWP Panel › Paketler\'den kurun.', 'flx-setup' ) );
+			$res = $out['ok'] ? array( 'ok' => true ) : new WP_Error( 'requirements', $bad ? implode( ' ', $bad ) : __( 'The missing plugins could not be installed. Install them from FluxWP Panel › Packages.', 'flx-setup' ) );
 			break;
 		case 'revert':
 			$res = flxk_revert_run( sanitize_text_field( wp_unslash( $_POST['run'] ?? '' ) ) );
@@ -197,23 +197,23 @@ function flxk_handle_post() {
 	if ( is_wp_error( $res ) ) {
 		set_transient( 'flxk_notice', array( 'error', $res->get_error_message() ), 60 );
 	} elseif ( is_array( $res ) ) {
-		$msg = __( 'Tamam.', 'flx-setup' );
+		$msg = __( 'Done.', 'flx-setup' );
 		if ( isset( $res['written'] ) ) {
 			/* translators: %d: sayı */
-			$msg = sprintf( __( 'Uygulandı: %d değişiklik.', 'flx-setup' ), (int) $res['written'] );
+			$msg = sprintf( __( 'Applied: %d changes.', 'flx-setup' ), (int) $res['written'] );
 			if ( ! empty( $res['counts']['manual'] ) ) {
 				/* translators: %d: sayı */
-				$msg .= ' ' . sprintf( __( '%d elle değiştirilmiş değer korundu.', 'flx-setup' ), (int) $res['counts']['manual'] );
+				$msg .= ' ' . sprintf( __( '%d manually changed values were kept.', 'flx-setup' ), (int) $res['counts']['manual'] );
 			}
 			if ( ! empty( $res['errors'] ) ) {
 				$msg .= '<br>' . esc_html( implode( ' · ', $res['errors'] ) );
 			}
 		} elseif ( isset( $res['restored'] ) ) {
 			/* translators: 1: geri yüklenen, 2: atlanan */
-			$msg = sprintf( __( 'Geri alındı: %1$d. Sonradan değiştirildiği için dokunulmayan: %2$d.', 'flx-setup' ), (int) $res['restored'], count( (array) $res['skipped'] ) );
+			$msg = sprintf( __( 'Undone: %1$d. Left untouched because they changed later: %2$d.', 'flx-setup' ), (int) $res['restored'], count( (array) $res['skipped'] ) );
 		} elseif ( isset( $res['imported'] ) ) {
 			/* translators: %s: ön ayar adı */
-			$msg = sprintf( __( '"%s" içe aktarıldı. Önizleyip uygulayabilirsiniz.', 'flx-setup' ), $res['imported'] );
+			$msg = sprintf( __( '"%s" imported. You can preview and apply it.', 'flx-setup' ), $res['imported'] );
 		}
 		set_transient( 'flxk_notice', array( 'ok', $msg ), 60 );
 	}
@@ -225,7 +225,7 @@ function flxk_handle_post() {
 add_action( 'admin_post_flxk_export', 'flxk_handle_export' );
 function flxk_handle_export() {
 	if ( ! current_user_can( flxk_cap() ) ) {
-		wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-setup' ), 403 );
+		wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 	}
 	check_admin_referer( 'flxk_export' );
 	$sections = array_map( 'sanitize_key', (array) wp_unslash( $_POST['sections'] ?? array() ) );
@@ -255,7 +255,7 @@ function flxk_import_upload() {
 		return $data;
 	}
 	if ( false !== strpos( $raw, '"$file"' ) ) {
-		return new WP_Error( 'file', __( 'İçe aktarılan şablonda "$file" referansı olamaz; gövdeleri satır içi yazın ya da ön ayarı eklenti olarak kurun.', 'flx-setup' ) );
+		return new WP_Error( 'file', __( 'An imported preset cannot contain "$file" references; write bodies inline or install the preset as a plugin.', 'flx-setup' ) );
 	}
 	$ok = flxk_validate( $data );
 	if ( is_wp_error( $ok ) ) {
@@ -300,7 +300,7 @@ function flxk_save_profile_form() {
 		array(
 			'preset' => FLXK_SITE,
 			'kind'   => 'profile',
-			'title'  => __( 'Kurum profili panelden düzenlendi', 'flx-setup' ),
+			'title'  => __( 'Organisation profile edited in the admin', 'flx-setup' ),
 		)
 	);
 }
@@ -309,8 +309,8 @@ function flxk_save_profile_form() {
 
 function flxk_render_page() {
 	echo '<div class="wrap flxk">';
-	echo '<h1>' . esc_html__( 'Ön ayarlar', 'flx-setup' ) . '</h1>';
-	echo '<p class="flxk-lead">' . esc_html__( 'Ön ayar; kurum profili, eklenti ayarları, renkler, header/footer, şablonlar, sayfalar ve menülerle siteyi tek adımda kurar. Panelden yaptığınız değişikliklerin üzerine yazılmaz; güncellemeler aşağıda tek tek onayınızla uygulanır.', 'flx-setup' ) . '</p>';
+	echo '<h1>' . esc_html__( 'Presets', 'flx-setup' ) . '</h1>';
+	echo '<p class="flxk-lead">' . esc_html__( 'A preset sets up the site in one step: organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the admin are never overwritten; updates are applied below one by one with your approval.', 'flx-setup' ) . '</p>';
 	flxk_render_panel();
 	echo '</div>';
 }
@@ -328,10 +328,10 @@ function flxk_render_panel() {
 	}
 	// phpcs:enable
 	$tabs = array(
-		'onayarlar' => __( 'Ön ayarlar', 'flx-setup' ),
-		'profil'    => __( 'Kurum profili', 'flx-setup' ),
-		'gecmis'    => __( 'Geçmiş', 'flx-setup' ),
-		'araclar'   => __( 'Dışa / içe aktar', 'flx-setup' ),
+		'onayarlar' => __( 'Presets', 'flx-setup' ),
+		'profil'    => __( 'Organisation profile', 'flx-setup' ),
+		'gecmis'    => __( 'History', 'flx-setup' ),
+		'araclar'   => __( 'Export / import', 'flx-setup' ),
 	);
 	echo '<nav class="nav-tab-wrapper flxk-tabs">';
 	foreach ( $tabs as $k => $l ) {
@@ -365,21 +365,21 @@ function flxk_form_open( $do, array $hidden = array() ) {
 function flxk_render_presets() {
 	$presets = flxk_presets();
 	if ( ! $presets ) {
-		echo '<div class="flxk-card"><p>' . esc_html__( 'Kurulu ön ayar yok. Bir ön ayar eklentisi (ör. Örnek Preset) kurun ya da "Dışa / içe aktar" sekmesinden JSON içe aktarın.', 'flx-setup' ) . '</p></div>';
+		echo '<div class="flxk-card"><p>' . esc_html__( 'No presets installed. Install a preset plugin (e.g. Örnek Preset) or import JSON from the "Export / import" tab.', 'flx-setup' ) . '</p></div>';
 	}
 	foreach ( $presets as $id => $p ) {
 		$st = flxk_state( $id );
 		echo '<section class="flxk-card">';
 		echo '<header class="flxk-card__head"><h2>' . esc_html( $p['name'] ) . '</h2>';
 		if ( ! empty( $p['error'] ) ) {
-			echo '<span class="flxk-badge flxk-badge--err">' . esc_html__( 'Hatalı', 'flx-setup' ) . '</span></header><pre class="flxk-err">' . esc_html( $p['error'] ) . '</pre></section>';
+			echo '<span class="flxk-badge flxk-badge--err">' . esc_html__( 'Invalid', 'flx-setup' ) . '</span></header><pre class="flxk-err">' . esc_html( $p['error'] ) . '</pre></section>';
 			continue;
 		}
 		if ( $st ) {
 			/* translators: %s: tarih */
-			echo '<span class="flxk-badge flxk-badge--ok">' . esc_html( sprintf( __( 'Uygulandı · %s', 'flx-setup' ), ( empty( $st['applied_at'] ) ? '' : flx_date( get_gmt_from_date( $st['applied_at'] ) ) ) ) ) . '</span>';
+			echo '<span class="flxk-badge flxk-badge--ok">' . esc_html( sprintf( __( 'Applied · %s', 'flx-setup' ), ( empty( $st['applied_at'] ) ? '' : flx_date( get_gmt_from_date( $st['applied_at'] ) ) ) ) ) . '</span>';
 		} else {
-			echo '<span class="flxk-badge">' . esc_html__( 'Uygulanmadı', 'flx-setup' ) . '</span>';
+			echo '<span class="flxk-badge">' . esc_html__( 'Not applied', 'flx-setup' ) . '</span>';
 		}
 		echo '</header>';
 		if ( ! empty( $p['description'] ) ) {
@@ -388,30 +388,30 @@ function flxk_render_presets() {
 		$req = flxk_requirements_missing( $p );
 		if ( $req ) {
 			/* translators: %s: eksikler */
-			echo '<p class="flxk-warn">' . esc_html( sprintf( __( 'Eksik: %s. Bu kısımlar atlanır.', 'flx-setup' ), implode( ', ', $req ) ) ) . '</p>';
+			echo '<p class="flxk-warn">' . esc_html( sprintf( __( 'Missing: %s. These parts are skipped.', 'flx-setup' ), implode( ', ', $req ) ) ) . '</p>';
 			if ( flxk_inactive_plugins( (array) ( $p['requires'] ?? array() ) ) && current_user_can( 'install_plugins' ) ) {
 				echo '<div class="flxk-actions">';
 				flxk_form_open( 'requirements', array( 'preset' => $id ) );
-				echo '<button class="button">' . esc_html__( 'Eksik eklentileri kur ve etkinleştir', 'flx-setup' ) . '</button></form></div>';
+				echo '<button class="button">' . esc_html__( 'Install and activate missing plugins', 'flx-setup' ) . '</button></form></div>';
 			}
 		}
 		echo '<div class="flxk-actions">';
 		if ( ! $st ) {
-			printf( '<a class="button button-primary" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'preview' => $id ) ) ), esc_html__( 'Önizle ve uygula', 'flx-setup' ) );
-			printf( '<a class="button" href="%1$s">%2$s</a>', esc_url( flxk_admin_url( array( 'preview' => $id, 'mode' => 'fill' ) ) ), esc_html__( 'Yalnız boşları doldur', 'flx-setup' ) );
+			printf( '<a class="button button-primary" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'preview' => $id ) ) ), esc_html__( 'Preview and apply', 'flx-setup' ) );
+			printf( '<a class="button" href="%1$s">%2$s</a>', esc_url( flxk_admin_url( array( 'preview' => $id, 'mode' => 'fill' ) ) ), esc_html__( 'Fill empty values only', 'flx-setup' ) );
 		} else {
-			printf( '<a class="button" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'preview' => $id ) ) ), esc_html__( 'Yeniden karşılaştır', 'flx-setup' ) );
+			printf( '<a class="button" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'preview' => $id ) ) ), esc_html__( 'Compare again', 'flx-setup' ) );
 			flxk_form_open( 'remove', array( 'preset' => $id ) );
-			echo '<button class="button-link flxk-danger" onclick="return confirm(\'' . esc_js( __( 'Ön ayar kaldırılsın mı? Yazdığı ayarlar eski haline döner (elle değiştirdikleriniz kalır), oluşturduğu sayfalar taslağa alınır.', 'flx-setup' ) ) . '\')">' . esc_html__( 'Ön ayarı kaldır', 'flx-setup' ) . '</button></form>';
+			echo '<button class="button-link flxk-danger" onclick="return confirm(\'' . esc_js( __( 'Remove the preset? Settings it wrote go back to their old values (your manual changes stay), pages it created become drafts.', 'flx-setup' ) ) . '\')">' . esc_html__( 'Remove preset', 'flx-setup' ) . '</button></form>';
 		}
 		echo '</div>';
 
 		$pending = flxk_pending_migrations( $id );
 		if ( $st && $pending ) {
-			echo '<h3>' . esc_html__( 'Bekleyen güncellemeler', 'flx-setup' ) . '</h3><table class="widefat striped flxk-table"><tbody>';
+			echo '<h3>' . esc_html__( 'Pending updates', 'flx-setup' ) . '</h3><table class="widefat striped flxk-table"><tbody>';
 			foreach ( $pending as $m ) {
 				echo '<tr><td><strong>' . esc_html( $m['title'] ?? $m['id'] ) . '</strong>' . ( ! empty( $m['desc'] ) ? '<br><span class="flxk-muted">' . esc_html( $m['desc'] ) . '</span>' : '' ) . '</td><td class="flxk-right">';
-				printf( '<a class="button button-small" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'preview' => $id, 'migration' => $m['id'] ) ) ), esc_html__( 'Önizle', 'flx-setup' ) );
+				printf( '<a class="button button-small" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'preview' => $id, 'migration' => $m['id'] ) ) ), esc_html__( 'Preview', 'flx-setup' ) );
 				flxk_form_open(
 					'skip',
 					array(
@@ -419,7 +419,7 @@ function flxk_render_presets() {
 						'migration' => $m['id'],
 					)
 				);
-				echo '<button class="button-link">' . esc_html__( 'Atla', 'flx-setup' ) . '</button></form></td></tr>';
+				echo '<button class="button-link">' . esc_html__( 'Skip', 'flx-setup' ) . '</button></form></td></tr>';
 			}
 			echo '</tbody></table>';
 		}
@@ -427,17 +427,17 @@ function flxk_render_presets() {
 	}
 
 	$patches = flxk_pending_patches();
-	echo '<section class="flxk-card" id="yamalar"><header class="flxk-card__head"><h2>' . esc_html__( 'Onay bekleyen yamalar', 'flx-setup' ) . '</h2></header>';
+	echo '<section class="flxk-card" id="yamalar"><header class="flxk-card__head"><h2>' . esc_html__( 'Patches awaiting approval', 'flx-setup' ) . '</h2></header>';
 	if ( ! $patches ) {
-		echo '<p class="flxk-muted">' . esc_html__( 'Flux AI sohbetinden ya da dış MCP istemcisinden gelen değişiklik önerileri burada onay bekler.', 'flx-setup' ) . '</p>';
+		echo '<p class="flxk-muted">' . esc_html__( 'Change proposals from the Flux AI chat or an external MCP client wait here for approval.', 'flx-setup' ) . '</p>';
 	} else {
 		echo '<table class="widefat striped flxk-table"><tbody>';
 		foreach ( $patches as $pid => $pp ) {
 			$u = get_userdata( (int) $pp['user'] );
 			echo '<tr><td><strong>' . esc_html( $pp['note'] ? $pp['note'] : $pid ) . '</strong><br><span class="flxk-muted">' . esc_html( strtoupper( $pp['source'] ) . ' · ' . ( $u ? $u->display_name : '' ) . ' · ' . $pp['at'] ) . '</span></td><td class="flxk-right">';
-			printf( '<a class="button button-small button-primary" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'patch' => $pid ) ) ), esc_html__( 'Önizle', 'flx-setup' ) );
+			printf( '<a class="button button-small button-primary" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'patch' => $pid ) ) ), esc_html__( 'Preview', 'flx-setup' ) );
 			flxk_form_open( 'patch_reject', array( 'patch' => $pid ) );
-			echo '<button class="button-link flxk-danger">' . esc_html__( 'Reddet', 'flx-setup' ) . '</button></form></td></tr>';
+			echo '<button class="button-link flxk-danger">' . esc_html__( 'Reject', 'flx-setup' ) . '</button></form></td></tr>';
 		}
 		echo '</tbody></table>';
 	}
@@ -447,7 +447,7 @@ function flxk_render_presets() {
 /** Ön ayarın görünen adı. */
 function flxk_preset_label( $id ) {
 	if ( FLXK_SITE === $id ) {
-		return __( 'Site yamaları', 'flx-setup' );
+		return __( 'Site patches', 'flx-setup' );
 	}
 	$p = flxk_get_preset( $id );
 	return $p ? (string) $p['name'] : (string) $id;
@@ -471,29 +471,29 @@ function flxk_requirements_missing( array $p ) {
 	}
 	if ( ! empty( $req['theme'] ) && get_stylesheet() !== $req['theme'] && get_template() !== $req['theme'] ) {
 		/* translators: %s: tema */
-		$miss[] = sprintf( __( 'tema %s', 'flx-setup' ), $req['theme'] );
+		$miss[] = sprintf( __( 'theme %s', 'flx-setup' ), $req['theme'] );
 	}
 	return $miss;
 }
 
 function flxk_status_label( $s ) {
 	$l = array(
-		'add'    => __( 'Eklenecek', 'flx-setup' ),
-		'change' => __( 'Değişecek', 'flx-setup' ),
-		'same'   => __( 'Aynı', 'flx-setup' ),
-		'keep'   => __( 'Dolu, korunacak', 'flx-setup' ),
-		'manual' => __( 'Elle değiştirilmiş, atlanacak', 'flx-setup' ),
+		'add'    => __( 'Will be added', 'flx-setup' ),
+		'change' => __( 'Will change', 'flx-setup' ),
+		'same'   => __( 'Same', 'flx-setup' ),
+		'keep'   => __( 'Filled, kept', 'flx-setup' ),
+		'manual' => __( 'Changed manually, skipped', 'flx-setup' ),
 	);
 	return $l[ $s ] ?? $s;
 }
 
 function flxk_section_label( $s ) {
 	$l = array(
-		'profile'  => __( 'Kurum profili', 'flx-setup' ),
-		'media'    => __( 'Medya', 'flx-setup' ),
-		'content'  => __( 'İçerik ve tema', 'flx-setup' ),
-		'wp'       => __( 'WordPress ayarları', 'flx-setup' ),
-		'settings' => __( 'Eklenti ayarları', 'flx-setup' ),
+		'profile'  => __( 'Organisation profile', 'flx-setup' ),
+		'media'    => __( 'Media', 'flx-setup' ),
+		'content'  => __( 'Content and theme', 'flx-setup' ),
+		'wp'       => __( 'WordPress settings', 'flx-setup' ),
+		'settings' => __( 'Plugin settings', 'flx-setup' ),
 	);
 	return $l[ $s ] ?? $s;
 }
@@ -503,15 +503,15 @@ function flxk_render_preview( $id, $mode, $mig, $patch_id ) {
 	if ( $patch_id ) {
 		$pp = flxk_patches()[ $patch_id ] ?? null;
 		if ( ! $pp ) {
-			echo '<p>' . esc_html__( 'Yama bulunamadı.', 'flx-setup' ) . '</p>';
+			echo '<p>' . esc_html__( 'Patch not found.', 'flx-setup' ) . '</p>';
 			return;
 		}
-		$title = $pp['note'] ? $pp['note'] : __( 'Yama', 'flx-setup' );
+		$title = $pp['note'] ? $pp['note'] : __( 'Patch', 'flx-setup' );
 		$plan  = flxk_plan( FLXK_SITE, $pp['data'], array( 'mode' => 'apply' ) );
 	} else {
 		$p = flxk_get_preset( $id );
 		if ( ! $p ) {
-			echo '<p>' . esc_html__( 'Ön ayar bulunamadı.', 'flx-setup' ) . '</p>';
+			echo '<p>' . esc_html__( 'Preset not found.', 'flx-setup' ) . '</p>';
 			return;
 		}
 		if ( $mig ) {
@@ -527,10 +527,10 @@ function flxk_render_preview( $id, $mode, $mig, $patch_id ) {
 		}
 	}
 	$counts = flxk_plan_counts( $plan );
-	printf( '<p><a href="%1$s">← %2$s</a></p>', esc_url( flxk_admin_url() ), esc_html__( 'Ön ayarlar', 'flx-setup' ) );
+	printf( '<p><a href="%1$s">← %2$s</a></p>', esc_url( flxk_admin_url() ), esc_html__( 'Presets', 'flx-setup' ) );
 	echo '<section class="flxk-card"><header class="flxk-card__head"><h2>' . esc_html( $title ) . '</h2>';
 	if ( ! $patch_id && ! $mig ) {
-		echo '<span class="flxk-badge">' . esc_html( 'fill' === $mode ? __( 'Yalnız boşları doldur', 'flx-setup' ) : __( 'Uygula', 'flx-setup' ) ) . '</span>';
+		echo '<span class="flxk-badge">' . esc_html( 'fill' === $mode ? __( 'Fill empty values only', 'flx-setup' ) : __( 'Apply', 'flx-setup' ) ) . '</span>';
 	}
 	echo '</header><p class="flxk-counts">';
 	foreach ( array( 'add', 'change', 'manual', 'keep', 'same' ) as $s ) {
@@ -577,25 +577,25 @@ function flxk_render_preview( $id, $mode, $mig, $patch_id ) {
 		if ( ! $visible ) {
 			continue;
 		}
-		echo '<h3>' . esc_html( flxk_section_label( $sec ) ) . '</h3><table class="widefat striped flxk-table flxk-diff"><thead><tr><th>' . esc_html__( 'Ne', 'flx-setup' ) . '</th><th>' . esc_html__( 'Şu an', 'flx-setup' ) . '</th><th>' . esc_html( $patch_id ? __( 'Yama', 'flx-setup' ) : __( 'Ön ayar', 'flx-setup' ) ) . '</th><th>' . esc_html__( 'Durum', 'flx-setup' ) . '</th></tr></thead><tbody>';
+		echo '<h3>' . esc_html( flxk_section_label( $sec ) ) . '</h3><table class="widefat striped flxk-table flxk-diff"><thead><tr><th>' . esc_html__( 'What', 'flx-setup' ) . '</th><th>' . esc_html__( 'Now', 'flx-setup' ) . '</th><th>' . esc_html( $patch_id ? __( 'Patch', 'flx-setup' ) : __( 'Preset', 'flx-setup' ) ) . '</th><th>' . esc_html__( 'Status', 'flx-setup' ) . '</th></tr></thead><tbody>';
 		foreach ( $visible as $op ) {
 			$what = 'content' === $sec ? $op['label'] . ': ' . $op['key'] : preg_replace( '/^(profile|wp|option|media):/', '', $op['target'] );
 			$old  = 'content' === $sec ? ( $op['id'] ? '#' . $op['id'] : '—' ) : flxk_preview_value( $op['old'] );
 			$new  = 'content' === $sec ? flxk_preview_value( $op['new']['title'] ?? ( $op['new']['name'] ?? '' ), 80 ) : flxk_preview_value( $op['new'] );
-			echo '<tr><td><code>' . esc_html( $what ) . '</code></td><td data-label="' . esc_attr__( 'Şu an', 'flx-setup' ) . '">' . esc_html( $old ) . '</td><td data-label="' . esc_attr( $patch_id ? __( 'Yama', 'flx-setup' ) : __( 'Ön ayar', 'flx-setup' ) ) . '">' . esc_html( $new ) . '</td><td><span class="flxk-st flxk-st--' . esc_attr( $op['status'] ) . '">' . esc_html( flxk_status_label( $op['status'] ) ) . '</span>';
+			echo '<tr><td><code>' . esc_html( $what ) . '</code></td><td data-label="' . esc_attr__( 'Now', 'flx-setup' ) . '">' . esc_html( $old ) . '</td><td data-label="' . esc_attr( $patch_id ? __( 'Patch', 'flx-setup' ) : __( 'Preset', 'flx-setup' ) ) . '">' . esc_html( $new ) . '</td><td><span class="flxk-st flxk-st--' . esc_attr( $op['status'] ) . '">' . esc_html( flxk_status_label( $op['status'] ) ) . '</span>';
 			if ( ! empty( $op['conflict'] ) ) {
 				$other = flxk_preset_label( $op['conflict'] );
 				if ( $patch_id ) {
 					/* translators: %s: ön ayar adı */
-					$msg = sprintf( __( '%s ön ayarının değeri. Uygulanınca o ön ayarın güncellemeleri bunu ezmez.', 'flx-setup' ), $other );
+					$msg = sprintf( __( 'Value of the %s preset. Once applied, that preset\'s updates will not overwrite it.', 'flx-setup' ), $other );
 				} else {
 					/* translators: %s: ön ayar adı */
-					$msg = sprintf( __( 'Çakışma: %s de bu değeri yazıyor, son uygulanan kazanır.', 'flx-setup' ), $other );
+					$msg = sprintf( __( 'Conflict: %s also writes this value; the last one applied wins.', 'flx-setup' ), $other );
 				}
 				echo '<br><span class="flxk-muted">' . esc_html( $msg ) . '</span>';
 			}
 			if ( in_array( $op['status'], array( 'manual', 'keep' ), true ) ) {
-				echo '<br><label class="flxk-muted"><input type="checkbox" name="force[]" value="' . esc_attr( $op['target'] ) . '"> ' . esc_html__( 'Yine de uygula', 'flx-setup' ) . '</label>';
+				echo '<br><label class="flxk-muted"><input type="checkbox" name="force[]" value="' . esc_attr( $op['target'] ) . '"> ' . esc_html__( 'Apply anyway', 'flx-setup' ) . '</label>';
 			}
 			echo '</td></tr>';
 		}
@@ -604,17 +604,17 @@ function flxk_render_preview( $id, $mode, $mig, $patch_id ) {
 	$n = (int) ( $counts['add'] ?? 0 ) + (int) ( $counts['change'] ?? 0 );
 	echo '<p class="flxk-actions">';
 	/* translators: %d: sayı */
-	echo '<button class="button button-primary button-hero">' . esc_html( sprintf( __( 'Uygula (%d değişiklik)', 'flx-setup' ), $n ) ) . '</button> ';
+	echo '<button class="button button-primary button-hero">' . esc_html( sprintf( __( 'Apply (%d changes)', 'flx-setup' ), $n ) ) . '</button> ';
 	if ( ! $show_same ) {
 		// phpcs:ignore WordPress.Security.NonceVerification
-		printf( '<a href="%1$s">%2$s</a>', esc_url( add_query_arg( 'same', 1 ) ), esc_html__( 'Aynı olanları da göster', 'flx-setup' ) );
+		printf( '<a href="%1$s">%2$s</a>', esc_url( add_query_arg( 'same', 1 ) ), esc_html__( 'Show unchanged rows too', 'flx-setup' ) );
 	}
 	echo '</p></form></section>';
 }
 
 function flxk_render_profile() {
 	$p = flxk_profile_all();
-	echo '<section class="flxk-card"><p class="flxk-muted">' . esc_html__( 'Kurum kimliği. Eklentiler ad, imza, WhatsApp, IBAN gibi bilgileri buradan okur. Ön ayar ilk kurulumda doldurur; buradan değiştirdiğiniz değerlerin üzerine ön ayar güncellemeleri yazmaz.', 'flx-setup' ) . '</p>';
+	echo '<section class="flxk-card"><p class="flxk-muted">' . esc_html__( 'Organisation identity. Plugins read the name, signature, WhatsApp, IBAN and similar details from here. The preset fills it on first install; preset updates never overwrite values you change here.', 'flx-setup' ) . '</p>';
 	flxk_form_open( 'profile' );
 	echo '<table class="form-table" role="presentation"><tbody>';
 	foreach ( flxk_profile_fields() as $k => $label ) {
@@ -636,27 +636,27 @@ function flxk_render_profile() {
 		}
 		echo '</td></tr>';
 	}
-	echo '</tbody></table><p><button class="button button-primary">' . esc_html__( 'Kaydet', 'flx-setup' ) . '</button></p></form></section>';
+	echo '</tbody></table><p><button class="button button-primary">' . esc_html__( 'Save', 'flx-setup' ) . '</button></p></form></section>';
 }
 
 function flxk_render_history() {
 	$h = flxk_history();
 	echo '<section class="flxk-card">';
 	if ( ! $h ) {
-		echo '<p class="flxk-muted">' . esc_html__( 'Henüz bir şey uygulanmadı.', 'flx-setup' ) . '</p></section>';
+		echo '<p class="flxk-muted">' . esc_html__( 'Nothing applied yet.', 'flx-setup' ) . '</p></section>';
 		return;
 	}
 	$kinds = array(
-		'base'      => __( 'Ön ayar', 'flx-setup' ),
-		'migration' => __( 'Güncelleme', 'flx-setup' ),
-		'sync'      => __( 'Eşitleme', 'flx-setup' ),
-		'patch'     => __( 'Yama', 'flx-setup' ),
-		'revert'    => __( 'Geri alma', 'flx-setup' ),
-		'remove'    => __( 'Kaldırma', 'flx-setup' ),
-		'skip'      => __( 'Atlandı', 'flx-setup' ),
-		'profile'   => __( 'Profil', 'flx-setup' ),
+		'base'      => __( 'Preset', 'flx-setup' ),
+		'migration' => __( 'Update', 'flx-setup' ),
+		'sync'      => __( 'Sync', 'flx-setup' ),
+		'patch'     => __( 'Patch', 'flx-setup' ),
+		'revert'    => __( 'Undo', 'flx-setup' ),
+		'remove'    => __( 'Removal', 'flx-setup' ),
+		'skip'      => __( 'Skipped', 'flx-setup' ),
+		'profile'   => __( 'Profile', 'flx-setup' ),
 	);
-	echo '<table class="widefat striped flxk-table"><thead><tr><th>' . esc_html__( 'Zaman', 'flx-setup' ) . '</th><th>' . esc_html__( 'İşlem', 'flx-setup' ) . '</th><th>' . esc_html__( 'Kaynak', 'flx-setup' ) . '</th><th>' . esc_html__( 'Sonuç', 'flx-setup' ) . '</th><th></th></tr></thead><tbody>';
+	echo '<table class="widefat striped flxk-table"><thead><tr><th>' . esc_html__( 'Time', 'flx-setup' ) . '</th><th>' . esc_html__( 'Action', 'flx-setup' ) . '</th><th>' . esc_html__( 'Source', 'flx-setup' ) . '</th><th>' . esc_html__( 'Result', 'flx-setup' ) . '</th><th></th></tr></thead><tbody>';
 	foreach ( array_slice( $h, 0, 100 ) as $e ) {
 		$u   = get_userdata( (int) ( $e['user'] ?? 0 ) );
 		$res = '';
@@ -666,7 +666,7 @@ function flxk_render_history() {
 		echo '<tr><td>' . esc_html( $e['at'] ) . '</td><td><strong>' . esc_html( $kinds[ $e['kind'] ] ?? $e['kind'] ) . '</strong> ' . esc_html( $e['title'] ?? '' ) . '<br><span class="flxk-muted">' . esc_html( flxk_preset_label( $e['preset'] ?? '' ) ) . '</span></td><td>' . esc_html( strtoupper( $e['source'] ?? 'panel' ) . ( $u ? ' · ' . $u->display_name : '' ) ) . '</td><td>' . esc_html( rtrim( $res, ' ·' ) ) . '</td><td class="flxk-right">';
 		if ( ! empty( $e['run'] ) && in_array( $e['kind'], array( 'base', 'migration', 'sync', 'patch' ), true ) && flxk_run( $e['run'] ) ) {
 			flxk_form_open( 'revert', array( 'run' => $e['run'] ) );
-			echo '<button class="button button-small" onclick="return confirm(\'' . esc_js( __( 'Bu değişiklik geri alınsın mı?', 'flx-setup' ) ) . '\')">' . esc_html__( 'Geri al', 'flx-setup' ) . '</button></form>';
+			echo '<button class="button button-small" onclick="return confirm(\'' . esc_js( __( 'Undo this change?', 'flx-setup' ) ) . '\')">' . esc_html__( 'Undo', 'flx-setup' ) . '</button></form>';
 		}
 		echo '</td></tr>';
 	}
@@ -675,33 +675,33 @@ function flxk_render_history() {
 
 function flxk_render_tools() {
 	$s = flxk_settings();
-	echo '<section class="flxk-card"><header class="flxk-card__head"><h2>' . esc_html__( 'Bu siteden şablon çıkar', 'flx-setup' ) . '</h2></header>';
-	echo '<p class="flxk-muted">' . esc_html__( 'Sitenin şu anki halini flx-preset/1 JSON dosyası olarak indirir. Şifre, API key ve token gibi gizli alanlar dosyaya yazılmaz.', 'flx-setup' ) . '</p>';
+	echo '<section class="flxk-card"><header class="flxk-card__head"><h2>' . esc_html__( 'Export this site as a preset', 'flx-setup' ) . '</h2></header>';
+	echo '<p class="flxk-muted">' . esc_html__( 'Downloads the site\'s current state as a flx-preset/1 JSON file. Secrets such as passwords, API keys and tokens are never written to the file.', 'flx-setup' ) . '</p>';
 	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxk_export">';
 	wp_nonce_field( 'flxk_export' );
 	foreach ( array(
-		'profile'  => __( 'Kurum profili', 'flx-setup' ),
-		'wp'       => __( 'WordPress ayarları', 'flx-setup' ),
-		'settings' => __( 'Eklenti ayarları', 'flx-setup' ),
-		'theme'    => __( 'Stil, şablon ve parçalar', 'flx-setup' ),
-		'content'  => __( 'Menüler', 'flx-setup' ),
-		'media'    => __( 'Logo ve site simgesi', 'flx-setup' ),
+		'profile'  => __( 'Organisation profile', 'flx-setup' ),
+		'wp'       => __( 'WordPress settings', 'flx-setup' ),
+		'settings' => __( 'Plugin settings', 'flx-setup' ),
+		'theme'    => __( 'Styles, templates and parts', 'flx-setup' ),
+		'content'  => __( 'Menus', 'flx-setup' ),
+		'media'    => __( 'Logo and site icon', 'flx-setup' ),
 	) as $k => $l ) {
 		echo '<label class="flxk-check"><input type="checkbox" name="sections[]" value="' . esc_attr( $k ) . '" checked> ' . esc_html( $l ) . '</label> ';
 	}
-	echo '<label class="flxk-check"><input type="checkbox" name="pages" value="1"> ' . esc_html__( 'Sayfalar', 'flx-setup' ) . '</label>';
-	echo '<p><button class="button button-primary">' . esc_html__( 'JSON indir', 'flx-setup' ) . '</button></p></form></section>';
+	echo '<label class="flxk-check"><input type="checkbox" name="pages" value="1"> ' . esc_html__( 'Pages', 'flx-setup' ) . '</label>';
+	echo '<p><button class="button button-primary">' . esc_html__( 'Download JSON', 'flx-setup' ) . '</button></p></form></section>';
 
-	echo '<section class="flxk-card"><header class="flxk-card__head"><h2>' . esc_html__( 'Şablon içe aktar', 'flx-setup' ) . '</h2></header>';
+	echo '<section class="flxk-card"><header class="flxk-card__head"><h2>' . esc_html__( 'Import preset', 'flx-setup' ) . '</h2></header>';
 	echo '<form method="post" enctype="multipart/form-data" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxk"><input type="hidden" name="do" value="import">';
 	wp_nonce_field( 'flxk' );
 	echo '<p><input type="file" name="preset" accept=".json,application/json"></p>';
 	echo '<p><textarea name="json" rows="5" class="large-text code" placeholder="{ &quot;format&quot;: &quot;flx-preset/1&quot;, &quot;id&quot;: &quot;…&quot;, … }"></textarea></p>';
-	echo '<p><button class="button">' . esc_html__( 'İçe aktar', 'flx-setup' ) . '</button> <span class="flxk-muted">' . esc_html__( 'İçe aktarılan ön ayar uygulanmaz; Ön ayarlar sekmesinde önizleyip uygularsınız.', 'flx-setup' ) . '</span></p></form></section>';
+	echo '<p><button class="button">' . esc_html__( 'Import', 'flx-setup' ) . '</button> <span class="flxk-muted">' . esc_html__( 'An imported preset is not applied; preview and apply it in the Presets tab.', 'flx-setup' ) . '</span></p></form></section>';
 
-	echo '<section class="flxk-card"><header class="flxk-card__head"><h2>' . esc_html__( 'AI ve MCP', 'flx-setup' ) . '</h2></header>';
-	echo '<p class="flxk-muted">' . esc_html__( 'Flux AI sohbeti ve Flux MCP araçları (preset_schema, preset_export, preset_patch_preview, preset_patch_apply, preset_revert, preset_history) siteyi yamalarla düzenler. Sohbette her yama uygulanmadan önce onay ister.', 'flx-setup' ) . '</p>';
+	echo '<section class="flxk-card"><header class="flxk-card__head"><h2>' . esc_html__( 'AI and MCP', 'flx-setup' ) . '</h2></header>';
+	echo '<p class="flxk-muted">' . esc_html__( 'The Flux AI chat and Flux MCP tools (preset_schema, preset_export, preset_patch_preview, preset_patch_apply, preset_revert, preset_history) edit the site through patches. In the chat every patch asks for approval before it is applied.', 'flx-setup' ) . '</p>';
 	flxk_form_open( 'settings' );
-	echo '<label class="flxk-check"><input type="checkbox" name="mcp_direct" value="1"' . checked( $s['mcp_direct'], 1, false ) . '> ' . esc_html__( 'Dış MCP istemcilerinin yamaları onay beklemeden uygulansın', 'flx-setup' ) . '</label>';
-	echo '<p><button class="button">' . esc_html__( 'Kaydet', 'flx-setup' ) . '</button></p></form></section>';
+	echo '<label class="flxk-check"><input type="checkbox" name="mcp_direct" value="1"' . checked( $s['mcp_direct'], 1, false ) . '> ' . esc_html__( 'Apply patches from external MCP clients without waiting for approval', 'flx-setup' ) . '</label>';
+	echo '<p><button class="button">' . esc_html__( 'Save', 'flx-setup' ) . '</button></p></form></section>';
 }

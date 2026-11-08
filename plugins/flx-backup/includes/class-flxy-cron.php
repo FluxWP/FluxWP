@@ -93,7 +93,7 @@ final class FLXY_Cron {
 			FLXY_Storage::log(
 				'schedule',
 				/* translators: %s: error */
-				sprintf( __( 'Zamanlanmış yedek başlatılamadı: %s', 'flx-backup' ), $res->get_error_message() ),
+				sprintf( __( 'Could not start the scheduled backup: %s', 'flx-backup' ), $res->get_error_message() ),
 				'error'
 			);
 		}
@@ -151,7 +151,7 @@ final class FLXY_Cron {
 					$r['id'],
 					array(
 						'status' => 'failed',
-						'error'  => __( 'Yarım kaldı (zaman aşımı).', 'flx-backup' ),
+						'error'  => __( 'Left unfinished (timed out).', 'flx-backup' ),
 						'size'   => 0,
 					)
 				);
@@ -195,7 +195,7 @@ final class FLXY_Cron {
 			FLXY_Storage::log(
 				'retention',
 				/* translators: %s: number of backups */
-				sprintf( _n( 'Saklama süresi dolan %s yedek silindi.', 'Saklama süresi dolan %s yedek silindi.', count( $deleted ), 'flx-backup' ), number_format_i18n( count( $deleted ) ) )
+				sprintf( _n( '%s backup past its retention period was deleted.', '%s backups past their retention period were deleted.', count( $deleted ), 'flx-backup' ), number_format_i18n( count( $deleted ) ) )
 			);
 		}
 		return $deleted;

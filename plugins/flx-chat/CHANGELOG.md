@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.37.3
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 1.37.2
 - Mesajlar: hiç kanal kurulu değilken WhatsApp'a özel uyarı yerine genel not ("Henüz iletişim kanalı kurulmadı — iletişim ayarlarından bir kanal kurun"). WhatsApp koptuysa eski uyarı kalır.
 

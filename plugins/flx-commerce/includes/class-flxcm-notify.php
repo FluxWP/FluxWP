@@ -48,14 +48,14 @@ final class FLXCM_Notify {
 		}
 		$text = sprintf(
 			/* translators: 1: first name, 2: site, 3: order no, 4: amount, 5: holder, 6: IBAN, 7: reference, 8: link */
-			__( 'Merhaba %1$s, %2$s siparişiniz (#%3$s) alındı.
+			__( 'Hello %1$s, your %2$s order (#%3$s) is in.
 
-Ödeme: %4$s
-Alıcı: %5$s
+Amount: %4$s
+Recipient: %5$s
 IBAN: %6$s
-Açıklama: %7$s
+Reference: %7$s
 
-Ödemeden sonra dekontu buradan yükleyebilirsiniz: %8$s', 'flx-commerce' ),
+After paying you can upload the receipt here: %8$s', 'flx-commerce' ),
 			$order->get_billing_first_name(),
 			self::site(),
 			$order->get_order_number(),
@@ -68,7 +68,7 @@ Açıklama: %7$s
 		if ( self::whatsapp( $order->get_billing_phone(), (string) apply_filters( 'flxcm_wa_bank_placed', $text, $order ) ) ) {
 			$order->update_meta_data( '_flxcm_wa_placed', time() );
 			$order->save_meta_data();
-			$order->add_order_note( __( 'Havale bilgileri müşteriye WhatsApp ile gönderildi.', 'flx-commerce' ) );
+			$order->add_order_note( __( 'Bank transfer details sent to the customer by WhatsApp.', 'flx-commerce' ) );
 		}
 	}
 
@@ -79,16 +79,16 @@ Açıklama: %7$s
 		$to = trim( (string) flxcm_setting( 'receipt_notify' ) );
 		$to = is_email( $to ) ? $to : get_option( 'admin_email' );
 		/* translators: 1: order no, 2: name */
-		$subject = sprintf( __( 'Dekont geldi: sipariş #%1$s · %2$s', 'flx-commerce' ), $order->get_order_number(), $order->get_formatted_billing_full_name() );
+		$subject = sprintf( __( 'Receipt in: order #%1$s · %2$s', 'flx-commerce' ), $order->get_order_number(), $order->get_formatted_billing_full_name() );
 		$body    = sprintf(
 			/* translators: 1: name, 2: order no, 3: amount, 4: reference, 5: file, 6: link */
-			__( '%1$s, #%2$s siparişi için dekont yükledi.
+			__( '%1$s uploaded a receipt for order #%2$s.
 
-Tutar: %3$s
-Açıklama: %4$s
-Dosya: %5$s
+Amount: %3$s
+Reference: %4$s
+File: %5$s
 
-Kontrol edip onaylayın: %6$s', 'flx-commerce' ),
+Check and confirm: %6$s', 'flx-commerce' ),
 			$order->get_formatted_billing_full_name(),
 			$order->get_order_number(),
 			flxcm_money( $order->get_total(), $order->get_currency() ),
@@ -109,7 +109,7 @@ Kontrol edip onaylayın: %6$s', 'flx-commerce' ),
 		}
 		$text = sprintf(
 			/* translators: 1: first name, 2: order no, 3: site */
-			__( 'Merhaba %1$s, #%2$s siparişinizin ödemesi onaylandı. Siparişiniz hazırlanıyor. %3$s', 'flx-commerce' ),
+			__( 'Hello %1$s, the payment for your order #%2$s is confirmed. We are preparing your order. %3$s', 'flx-commerce' ),
 			$order->get_billing_first_name(),
 			$order->get_order_number(),
 			self::site()
@@ -129,7 +129,7 @@ Kontrol edip onaylayın: %6$s', 'flx-commerce' ),
 		}
 		$text = sprintf(
 			/* translators: 1: order no, 2: amount, 3: name, 4: items, 5: link */
-			__( 'Yeni sipariş #%1$s · %2$s
+			__( 'New order #%1$s · %2$s
 %3$s
 %4$s
 %5$s', 'flx-commerce' ),

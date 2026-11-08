@@ -60,18 +60,18 @@ function flxg_store_upload( $file, $task_id, $uid, $context = 'pending' ) {
 		$code = (int) ( $file['error'] ?? 0 );
 		if ( in_array( $code, array( UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE ), true ) ) {
 			/* translators: %s: size */
-			return flxg_error( 'flxg_size', sprintf( __( 'Dosya çok büyük. En fazla %s yüklenebilir.', 'flx-tasks' ), size_format( flxg_max_upload_bytes() ) ), 413 );
+			return flxg_error( 'flxg_size', sprintf( __( 'File is too large. The maximum upload size is %s.', 'flx-tasks' ), size_format( flxg_max_upload_bytes() ) ), 413 );
 		}
-		return flxg_error( 'flxg_upload', __( 'Dosya yüklenemedi.', 'flx-tasks' ) );
+		return flxg_error( 'flxg_upload', __( 'Could not upload the file.', 'flx-tasks' ) );
 	}
 	if ( (int) $file['size'] > flxg_max_upload_bytes() ) {
 		/* translators: %s: size */
-		return flxg_error( 'flxg_size', sprintf( __( 'Dosya çok büyük. En fazla %s yüklenebilir.', 'flx-tasks' ), size_format( flxg_max_upload_bytes() ) ), 413 );
+		return flxg_error( 'flxg_size', sprintf( __( 'File is too large. The maximum upload size is %s.', 'flx-tasks' ), size_format( flxg_max_upload_bytes() ) ), 413 );
 	}
 	$name  = sanitize_file_name( wp_basename( (string) $file['name'] ) );
 	$check = wp_check_filetype_and_ext( $file['tmp_name'], $name );
 	if ( empty( $check['type'] ) ) {
-		return flxg_error( 'flxg_type', __( 'Bu dosya türüne izin verilmiyor.', 'flx-tasks' ), 415 );
+		return flxg_error( 'flxg_type', __( 'This file type is not allowed.', 'flx-tasks' ), 415 );
 	}
 	if ( ! empty( $check['proper_filename'] ) ) {
 		$name = $check['proper_filename'];
@@ -82,7 +82,7 @@ function flxg_store_upload( $file, $task_id, $uid, $context = 'pending' ) {
 	$stored = $sub . '/' . wp_generate_password( 12, false ) . '-' . $name;
 	if ( ! @move_uploaded_file( $file['tmp_name'], $base . '/' . $stored ) ) { // phpcs:ignore
 		if ( ! @rename( $file['tmp_name'], $base . '/' . $stored ) ) { // phpcs:ignore
-			return flxg_error( 'flxg_move', __( 'Dosya kaydedilemedi.', 'flx-tasks' ), 500 );
+			return flxg_error( 'flxg_move', __( 'Could not save the file.', 'flx-tasks' ), 500 );
 		}
 	}
 	$mime  = $check['type'];

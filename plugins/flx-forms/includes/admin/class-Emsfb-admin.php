@@ -572,7 +572,7 @@ class Admin {
                 }
             }
             if (!$files_ok) {
-                wp_send_json_error(['success' => false, 'm' => esc_html__('This add-on is not included in Flux Forms.', 'flx-forms')], 200);
+                wp_send_json_error(['success' => false, 'm' => esc_html__('\\nThis add-on is not included in Flux Forms.\\n', 'flx-forms')], 200);
                 return;
             }
             $ac->{$post_value} = 1;
@@ -592,7 +592,7 @@ class Admin {
         ]);
 
         if (!$install_ready) {
-            $m = $status ? ($status['error_message'] ?? $status['current_message']) : esc_html__('File access status not checked yet. Please wait.', 'flx-forms');
+            $m = $status ? ($status['error_message'] ?? $status['current_message']) : esc_html__('\\nFile access status not checked yet. Please wait.\\n', 'flx-forms');
             $this->addon_install_log_efb('file_access_blocked_install', [
                 'requested_addon' => $post_value,
                 'message' => $m,
@@ -663,7 +663,7 @@ class Admin {
         $fallback_max_attempts = 2;
         $attempt = 0;
         $success = false;
-        $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
+        $error_message = esc_html__('\\nError: server (%s) responded with an invalid request. responded code :%s\\n', 'flx-forms');
         $error_message = sprintf($error_message, $domain, 'not_success');
         $switch_to_fallback = function($reason, $context = []) use (&$domain, &$u, &$attempt, &$max_attempts, &$remaining_endpoints, &$using_iran_url, $fallback_max_attempts, $build_addon_url, $post_value) {
             while (!empty($remaining_endpoints)) {
@@ -718,7 +718,7 @@ class Admin {
             if (is_wp_error($request)) {
                 $attempt++;
                 $error_message = sprintf(
-                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to connect to the %s server', 'flx-forms'),
+                    esc_html__('\\nCannot install add-ons of Flux Forms because the plugin is not able to connect to the%sserver\\n', 'flx-forms'),
                     wp_parse_url($domain, PHP_URL_HOST)
                 );
                 $this->addon_install_log_efb('remote_request_wp_error', [
@@ -764,7 +764,7 @@ class Admin {
             // blocking, which is exactly what we want to catch on Persian hosts.
             if ($response_code != 200) {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
+                $error_message = esc_html__('\\nError: server (%s) responded with an invalid request. responded code :%s\\n', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, $response_code);
                 $this->addon_install_log_efb('remote_response_invalid_code', [
                     'requested_addon' => $post_value,
@@ -810,7 +810,7 @@ class Admin {
             $data = json_decode($body);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
+                $error_message = esc_html__('\\nError: server (%s) responded with an invalid request. responded code :%s\\n', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, 'invalid_json');
                 $this->addon_install_log_efb('remote_response_invalid_json', [
                     'requested_addon' => $post_value,
@@ -839,7 +839,7 @@ class Admin {
 
             if ($data == null) {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
+                $error_message = esc_html__('\\nError: server (%s) responded with an invalid request. responded code :%s\\n', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, 'invalid_data');
                 $this->addon_install_log_efb('remote_response_empty_data', [
                     'requested_addon' => $post_value,
@@ -912,7 +912,7 @@ class Admin {
 
                     // Entitled locally: treat the verdict as an endpoint problem
                     // and give the other server a turn before giving up.
-                    $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
+                    $error_message = esc_html__('\\nError: server (%s) responded with an invalid request. responded code :%s\\n', 'flx-forms');
                     $error_message = sprintf($error_message, $domain, 'plan_mismatch');
                     $attempt++;
                     if ($attempt >= $max_attempts) {
@@ -942,13 +942,13 @@ class Admin {
                         'requested_addon' => $post_value,
                         'renew_url' => $renew_url,
                     ]);
-                    $m = esc_html__('Your Easy Form Builder Pro subscription has expired, so this add-on cannot be downloaded.', 'flx-forms')
-                        . ' <a href="' . $renew_url . '" target="_blank">' . esc_html__('Renew Subscription', 'flx-forms') . '</a>';
+                    $m = esc_html__('\\nYour Easy Form Builder Pro subscription has expired, so this add-on cannot be downloaded.\\n', 'flx-forms')
+                        . ' <a href="' . $renew_url . '" target="_blank">' . esc_html__('\\nRenew Subscription\\n', 'flx-forms') . '</a>';
                     $response = ['success' => false, 'm' => $m];
                     wp_send_json_error($response, 200);
                     return;
                 }
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
+                $error_message = esc_html__('\\nError: server (%s) responded with an invalid request. responded code :%s\\n', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, 'invalid_status');
                 if ($is_persian_locale) {
                     $attempt++;
@@ -1090,7 +1090,7 @@ class Admin {
                 ]);
             } else {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
+                $error_message = esc_html__('\\nError: server (%s) responded with an invalid request. responded code :%s\\n', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, 'download_unavailable');
                 $this->addon_install_log_efb('download_flag_false', [
                     'requested_addon' => $post_value,
@@ -1243,7 +1243,7 @@ class Admin {
         }
         if (empty($_POST['id']) && $this->isHTML(json_encode($_POST['value']),JSON_UNESCAPED_UNICODE)) {
             $m =   $lang['somethingWentWrongPleaseRefresh'];
-            $response = ['success' => false, "m" => esc_html__("Something went wrong, please refresh the page." ,'flx-forms')];
+            $response = ['success' => false, "m" => esc_html__('\\nSomething went wrong, please refresh the page.\\n' ,'flx-forms')];
             wp_send_json_success($response, 200);
             die();
         }
@@ -1520,7 +1520,7 @@ class Admin {
 				if ($response_attachment_urls === false) {
 					wp_send_json_success(array(
 						'success' => false,
-						'm' => esc_html__('The response attachment could not be verified. Please attach the file again.', 'flx-forms'),
+						'm' => esc_html__('\\nThe response attachment could not be verified. Please attach the file again.\\n', 'flx-forms'),
 					), 200);
 				}
                 $m = json_encode($message,JSON_UNESCAPED_UNICODE);
@@ -1917,12 +1917,12 @@ class Admin {
     public function efb_save_onboarding_email() {
         $efbFunction = get_efbFunction();
         if (!check_ajax_referer('wp_rest', 'nonce', false) || !$efbFunction->user_permission_efb_admin_dashboard()) {
-            wp_send_json_error(array('message' => esc_html__('You do not have permission to update these settings.', 'flx-forms')), 403);
+            wp_send_json_error(array('message' => esc_html__('\\nYou do not have permission to update these settings.", \'en\']]', 'flx-forms')), 403);
         }
 
         $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
         if (!is_email($email)) {
-            wp_send_json_error(array('message' => esc_html__('Please enter a valid admin email address.', 'flx-forms')), 422);
+            wp_send_json_error(array('message' => esc_html__('\\nPlease enter a valid admin email address.\\n', 'flx-forms')), 422);
         }
 
         $settings = get_setting_Emsfb('decoded');
@@ -1939,7 +1939,7 @@ class Admin {
     public function efb_complete_onboarding() {
         $efbFunction = get_efbFunction();
         if (!check_ajax_referer('wp_rest', 'nonce', false) || !$efbFunction->user_permission_efb_admin_dashboard()) {
-            wp_send_json_error(array('message' => esc_html__('You do not have permission to complete setup.', 'flx-forms')), 403);
+            wp_send_json_error(array('message' => esc_html__('\\nYou do not have permission to complete setup.\\n', 'flx-forms')), 403);
         }
 
         emsfb_complete_onboarding_efb();
@@ -1952,7 +1952,7 @@ class Admin {
             $validation_error = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('Invalid email address', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid email address\\n', 'flx-forms'),
                     'description' => esc_html__('Please enter a valid email address.', 'flx-forms'),
                     'id' => 'invalid_admin_email'
                 ],
@@ -1982,8 +1982,8 @@ class Admin {
             $validation_error = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('Invalid sender email', 'flx-forms'),
-                    'description' => esc_html__('The sender email address is not valid.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid sender email\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe sender email address is not valid.\\n', 'flx-forms'),
                     'id' => 'invalid_sender_email'
                 ],
                 'details' => [
@@ -2000,7 +2000,7 @@ class Admin {
             update_option('emsfb_email_status', $validation_error);
             return [
                 'success' => false,
-                'm' => esc_html__('The sender email address is not valid.', 'flx-forms'),
+                'm' => esc_html__('\\nThe sender email address is not valid.\\n', 'flx-forms'),
                 'stage' => 'validation'
             ];
         }
@@ -2010,8 +2010,8 @@ class Admin {
             $api_error = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('Email tester service error', 'flx-forms'),
-                    'description' => isset($start['m']) ? sanitize_text_field($start['m']) : esc_html__('Could not start email test.', 'flx-forms'),
+                    'title' => esc_html__('\\nEmail tester service error\\n', 'flx-forms'),
+                    'description' => isset($start['m']) ? sanitize_text_field($start['m']) : esc_html__('\\nCould not start email test.\\n', 'flx-forms'),
                     'id' => 'service_start_error'
                 ],
                 'details' => [
@@ -2040,8 +2040,8 @@ class Admin {
             $payload_error = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('Invalid service response', 'flx-forms'),
-                    'description' => esc_html__('The email tester service returned an invalid response.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid service response\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe email tester service returned an invalid response.\\n', 'flx-forms'),
                     'id' => 'invalid_service_payload'
                 ],
                 'details' => [
@@ -2058,7 +2058,7 @@ class Admin {
             update_option('emsfb_email_status', $payload_error);
             return [
                 'success' => false,
-                'm' => esc_html__('The email tester service returned an invalid response.', 'flx-forms'),
+                'm' => esc_html__('\\nThe email tester service returned an invalid response.\\n', 'flx-forms'),
                 'stage' => 'start',
                 'test' => $test
             ];
@@ -2159,8 +2159,8 @@ class Admin {
             $failure_status = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('WordPress could not send the email', 'flx-forms'),
-                    'description' => esc_html__('The message never left your website: WordPress reported an error while trying to send it. This is the one case where the fix really is on the WordPress or hosting side - usually an SMTP plugin, or PHP mail disabled by the host.', 'flx-forms'),
+                    'title' => esc_html__('\\nWordPress could not send the email\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe message never left your website: WordPress reported an error while trying to send it. This is the one case where the fix really is on the WordPress or hosting side - usually an SMTP plugin, or PHP mail disabled by the host.\\n', 'flx-forms'),
                     'id' => 'mail_function_failed'
                 ],
                 'details' => [
@@ -2176,7 +2176,7 @@ class Admin {
 
             return [
                 'success' => false,
-                'm' => esc_html__('WordPress could not send the test email. The message never left your website, so nothing was delivered.', 'flx-forms'),
+                'm' => esc_html__('\\nWordPress could not send the test email. The message never left your website, so nothing was delivered.\\n', 'flx-forms'),
                 'stage' => 'send',
                 'send_stage' => 'wp_mail_failed',
                 'mail_error' => is_array($last_mail_error) && !empty($last_mail_error['message'])
@@ -2199,8 +2199,8 @@ class Admin {
         $pending_status = [
             'status' => 'warning',
             'message' => [
-                'title' => esc_html__('Email test is waiting for delivery confirmation', 'flx-forms'),
-                'description' => esc_html__('WordPress sent the test email. Flux Forms is waiting for the delivery result before marking email as ready.', 'flx-forms'),
+                'title' => esc_html__('[[\'Email test is waiting for delivery confirmation\\n', 'flx-forms'),
+                'description' => esc_html__('\\nWordPress sent the test email. Flux Forms is waiting for the delivery result before marking email as ready.\\n', 'flx-forms'),
                 'id' => 'email_test_pending'
             ],
             'details' => [
@@ -2217,7 +2217,7 @@ class Admin {
 
         return [
             'success' => true,
-            'm' => isset($start['m']) ? $start['m'] : esc_html__('WordPress accepted and sent the test email. Waiting for it to arrive.', 'flx-forms'),
+            'm' => isset($start['m']) ? $start['m'] : esc_html__('\\nWordPress accepted and sent the test email. Waiting for it to arrive.\\n', 'flx-forms'),
             'stage' => 'sent',
             'send_stage' => 'handed_off',
             'test' => $test
@@ -2278,7 +2278,7 @@ class Admin {
         if (!is_array($data)) {
             return [
                 'success' => false,
-                'm' => esc_html__('The email tester service returned an invalid JSON response.', 'flx-forms'),
+                'm' => esc_html__('\\nThe email tester service returned an invalid JSON response.\\n', 'flx-forms'),
                 'stage' => 'start',
                 'code' => $code
             ];
@@ -2287,7 +2287,7 @@ class Admin {
         if ($code < 200 || $code >= 300 || empty($data['success'])) {
             return [
                 'success' => false,
-                'm' => isset($data['message']) ? sanitize_text_field($data['message']) : esc_html__('The email tester service could not start the test.', 'flx-forms'),
+                'm' => isset($data['message']) ? sanitize_text_field($data['message']) : esc_html__('\\nThe email tester service could not start the test.\\n', 'flx-forms'),
                 'stage' => 'start',
                 'code' => $code,
                 'test' => $data
@@ -2307,8 +2307,8 @@ class Admin {
             $validation_error = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('Invalid test hash', 'flx-forms'),
-                    'description' => esc_html__('The email test hash is not valid.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid test hash\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe email test hash is not valid.\\n', 'flx-forms'),
                     'id' => 'invalid_test_hash'
                 ],
                 'details' => [
@@ -2324,7 +2324,7 @@ class Admin {
             update_option('emsfb_email_status', $validation_error);
             return [
                 'success' => false,
-                'm' => esc_html__('The email test hash is not valid.', 'flx-forms'),
+                'm' => esc_html__('\\nThe email test hash is not valid.\\n', 'flx-forms'),
                 'stage' => 'result'
             ];
         }
@@ -2352,8 +2352,8 @@ class Admin {
             $request_error = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('Your site could not connect', 'flx-forms'),
-                    'description' => esc_html__('No connection could be opened from your site to our mail testing service. This is usually outbound traffic blocked by your server or its network - some hosts block connections to other countries - rather than a problem with the service. Your hosting provider can confirm it.', 'flx-forms'),
+                    'title' => esc_html__('\\nYour site could not connect\\n', 'flx-forms'),
+                    'description' => esc_html__('[[\'No connection could be opened from your site to our mail testing service. This is usually outbound traffic blocked by your server or its network - some hosts block connections to other countries - rather than a problem with the service. Your hosting provider can confirm it.\\n', 'flx-forms'),
                     'id' => 'service_request_error'
                 ],
                 'details' => [
@@ -2391,8 +2391,8 @@ class Admin {
             $parse_error = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('Invalid service response', 'flx-forms'),
-                    'description' => esc_html__('The email tester service returned an invalid JSON response.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid service response\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe email tester service returned an invalid JSON response.\\n', 'flx-forms'),
                     'id' => 'invalid_json_response'
                 ],
                 'details' => [
@@ -2404,7 +2404,7 @@ class Admin {
             update_option('emsfb_email_status', $parse_error);
             return [
                 'success' => false,
-                'm' => esc_html__('The email tester service returned an invalid JSON response.', 'flx-forms'),
+                'm' => esc_html__('\\nThe email tester service returned an invalid JSON response.\\n', 'flx-forms'),
                 'stage' => 'result',
                 'code' => $code
             ];
@@ -2425,8 +2425,8 @@ class Admin {
             $http_error = [
                 'status' => 'error',
                 'message' => [
-                    'title' => esc_html__('Service error', 'flx-forms'),
-                    'description' => isset($data['message']) ? sanitize_text_field($data['message']) : esc_html__('The email tester service could not return the result.', 'flx-forms'),
+                    'title' => esc_html__('\\nService error\\n', 'flx-forms'),
+                    'description' => isset($data['message']) ? sanitize_text_field($data['message']) : esc_html__('\\nThe email tester service could not return the result.\\n', 'flx-forms'),
                     'id' => 'service_http_error'
                 ],
                 'details' => [
@@ -2438,7 +2438,7 @@ class Admin {
             update_option('emsfb_email_status', $http_error);
             return [
                 'success' => false,
-                'm' => isset($data['message']) ? sanitize_text_field($data['message']) : esc_html__('The email tester service could not return the result.', 'flx-forms'),
+                'm' => isset($data['message']) ? sanitize_text_field($data['message']) : esc_html__('\\nThe email tester service could not return the result.\\n', 'flx-forms'),
                 'stage' => 'result',
                 'code' => $code,
                 'result' => $data
@@ -2486,14 +2486,14 @@ class Admin {
         $send_stage = isset($test_result['send_stage']) ? sanitize_key($test_result['send_stage']) : 'unknown';
 
         if ('wp_mail_failed' === $send_stage) {
-            $failure_title = esc_html__('WordPress could not send the email', 'flx-forms');
-            $failure_description = esc_html__('The message never left your website. WordPress reported an error while sending, so nothing could be delivered.', 'flx-forms');
+            $failure_title = esc_html__('\\nWordPress could not send the email\\n', 'flx-forms');
+            $failure_description = esc_html__('\\nThe message never left your website. WordPress reported an error while sending, so nothing could be delivered.\\n', 'flx-forms');
         } else if ('handed_off' === $send_stage) {
-            $failure_title = esc_html__('The email was sent, but it never arrived', 'flx-forms');
-            $failure_description = esc_html__('WordPress sent the message successfully, so your site and this plugin did their part. It was lost, delayed or rejected after leaving WordPress - usually the receiving side treated it as spam, or your host never delivered it from the outbound queue.', 'flx-forms');
+            $failure_title = esc_html__('\\nThe email was sent, but it never arrived\\n', 'flx-forms');
+            $failure_description = esc_html__('\\nWordPress sent the message successfully, so your site and this plugin did their part. It was lost, delayed or rejected after leaving WordPress - usually the receiving side treated it as spam, or your host never delivered it from the outbound queue.\\n', 'flx-forms');
         } else {
-            $failure_title = esc_html__('Email test failed', 'flx-forms');
-            $failure_description = esc_html__('The email server test could not verify email capability.', 'flx-forms');
+            $failure_title = esc_html__('\\nEmail test failed\', \'en\']]', 'flx-forms');
+            $failure_description = esc_html__('\\nThe email server test could not verify email capability.\\n', 'flx-forms');
         }
 
         $status_data = [
@@ -2524,21 +2524,21 @@ class Admin {
         if ($delivery_confirmed) {
             $status_data['status'] = 'ok_set_smtp';
             $status_data['message'] = [
-                'title' => esc_html__('Email capability verified', 'flx-forms'),
-                'description' => esc_html__('Server confirmed ability to send emails.', 'flx-forms'),
+                'title' => esc_html__('\\nEmail capability verified\\n', 'flx-forms'),
+                'description' => esc_html__('\\nServer confirmed ability to send emails.\\n', 'flx-forms'),
                 'id' => 'email_settings_configured'
             ];
         } else if ($score_too_low) {
             $status_data['message'] = [
-                'title' => esc_html__('Your emails are being delivered to spam', 'flx-forms'),
+                'title' => esc_html__('\\nYour emails are being delivered to spam\\n', 'flx-forms'),
                 'description' => \Emsfb\Email_Monitor::get_low_score_message(\Emsfb\Email_Monitor::get_report_score($test_result)),
                 'id' => 'email_test_low_score'
             ];
         } else if (isset($test_result['status']) && in_array($test_result['status'], ['pending', 'delayed'], true)) {
             $status_data['status'] = 'warning';
             $status_data['message'] = [
-                'title' => esc_html__('Email test is waiting for delivery confirmation', 'flx-forms'),
-                'description' => esc_html__('WordPress sent the test email, but delivery has not been confirmed yet.', 'flx-forms'),
+                'title' => esc_html__('[[\'Email test is waiting for delivery confirmation\\n', 'flx-forms'),
+                'description' => esc_html__('\\nWordPress sent the test email, but delivery has not been confirmed yet.\\n', 'flx-forms'),
                 'id' => 'email_test_pending'
             ];
         }
@@ -2547,7 +2547,7 @@ class Admin {
         if (!empty($test_result['delivery']['failure_reason'])) {
             $failure_reason = sanitize_text_field($test_result['delivery']['failure_reason']);
             $status_data['message']['description'] = sprintf(
-                esc_html__('Email delivery failed: %s', 'flx-forms'),
+                esc_html__('\\nEmail delivery failed:%s\\n', 'flx-forms'),
                 $failure_reason
             );
             $status_data['details']['failure_reason'] = $failure_reason;
@@ -2769,7 +2769,7 @@ class Admin {
             $data = [
                 'success' => false,
                 'code' => 'invalid_json_response',
-                'message' => esc_html__('The email tester service returned an invalid JSON response.', 'flx-forms'),
+                'message' => esc_html__('\\nThe email tester service returned an invalid JSON response.\\n', 'flx-forms'),
             ];
         }
 
@@ -3006,7 +3006,7 @@ class Admin {
                 $r = download_url($url, 300, true);
                 if (is_wp_error($r)) {
                     return new \WP_Error('download_failed',
-                        esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to download files', 'flx-forms')
+                        esc_html__('\\nCannot install add-ons of Flux Forms because the plugin is not able to download files\\n', 'flx-forms')
                         . ' (' . $r->get_error_message() . ')'
                     );
                 }
@@ -3023,7 +3023,7 @@ class Admin {
                 if ( ! emsfb_is_php_function_available_efb( 'mkdir' ) || ! emsfb_is_php_function_available_efb( 'rename' ) ) {
                     return new \WP_Error(
                         'filesystem_functions_unavailable',
-                        esc_html__( 'Cannot install add-ons because this server has disabled the PHP filesystem functions needed to prepare the download. Please ask your hosting provider to enable mkdir and rename, or configure the WordPress filesystem.', 'flx-forms' )
+                        esc_html__( '\\nCannot install add-ons because this server has disabled the PHP filesystem functions needed to prepare the download. Please ask your hosting provider to enable mkdir and rename, or configure the WordPress filesystem.\\n', 'flx-forms' )
                     );
                 }
                 $directory = EMSFB_PLUGIN_DIRECTORY . 'temp';
@@ -3037,7 +3037,7 @@ class Admin {
                     @unlink($r);
                 }
                 return new \WP_Error('move_failed',
-                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to move the downloaded file', 'flx-forms')
+                    esc_html__('\\nCannot install add-ons of Flux Forms because the plugin is not able to move the downloaded file\\n', 'flx-forms')
                 );
             }
             if (!$filesystem_ready) {
@@ -3049,7 +3049,7 @@ class Admin {
             }
             if(is_wp_error($r)){
                 return new \WP_Error('unzip_failed',
-                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to unzip files', 'flx-forms')
+                    esc_html__('\\nCannot install add-ons of Flux Forms because the plugin is not able to unzip files\', \'en\']]', 'flx-forms')
                     . ' (' . $r->get_error_message() . ')'
                 );
             }
@@ -3096,7 +3096,7 @@ class Admin {
 		}
 
 		if (!isset($_FILES['file'])) {
-			$response = array( 'success' => false, 'error' => esc_html__('No file was received. Please choose a file and try again.','flx-forms') );
+			$response = array( 'success' => false, 'error' => esc_html__('\\nNo file was received. Please choose a file and try again.\\n','flx-forms') );
 			wp_send_json_success($response, 200);
 		}
 
@@ -3127,7 +3127,7 @@ class Admin {
 
 		$file_contents = emsfb_read_file_efb($file_tmp);
 		if ($file_contents === false) {
-			$response = array( 'success' => false, 'error' => esc_html__('The file could not be read. Please try attaching it again.','flx-forms') );
+			$response = array( 'success' => false, 'error' => esc_html__('\\nThe file could not be read. Please try attaching it again.\\n','flx-forms') );
 			wp_send_json_success($response, 200);
 		}
 
@@ -3225,7 +3225,7 @@ class Admin {
     }
     public function loading_card_efb(){
         /* FluxWP: same loader as the admin scripts (flxf-loader, includes/flx/builder/assets/loader.css). */
-        echo "<div class='efb flxf-loader' role='status' aria-live='polite'><span class='flxf-loader__ring' aria-hidden='true'></span><span class='flxf-loader__text'>" . esc_html__('Please Wait','flx-forms') . "&hellip;</span></div>";
+        echo "<div class='efb flxf-loader' role='status' aria-live='polite'><span class='flxf-loader__ring' aria-hidden='true'></span><span class='flxf-loader__text'>" . esc_html__('\\nPlease Wait\\n','flx-forms') . "&hellip;</span></div>";
     }
     public function delete_messages_Emsfb(){
         $efbFunction = get_efbFunction();
@@ -3428,21 +3428,21 @@ function admin_notices_efb () {
                             <button type="button" id="efb-close-setup-notice-btn"
                                 style="position:absolute;top:8px;right:8px;background:transparent;border:none;font-size:20px;cursor:pointer;line-height:1;"
                                 aria-label="<?php esc_attr_e('Close', 'flx-forms'); ?>">&times;</button>
-                            <img src="<?php echo esc_url($logo_url); ?>" alt="<?php esc_attr_e('Flux Forms', 'flx-forms'); ?>" style="width:46px;height:auto;margin-top:2px;flex-shrink:0;" />
+                            <img src="<?php echo esc_url($logo_url); ?>" alt="<?php esc_attr_e('\\nFlux Forms\\n', 'flx-forms'); ?>" style="width:46px;height:auto;margin-top:2px;flex-shrink:0;" />
                             <div style="flex:1;min-width:0;">
                                 <p style="margin:0 0 6px 0;font-size:14px;">
-                                    <strong><?php esc_html_e('Flux Forms', 'flx-forms'); ?></strong>
+                                    <strong><?php esc_html_e('\\nFlux Forms\\n', 'flx-forms'); ?></strong>
                                     &mdash;
-                                    <?php esc_html_e('Enable the Email Notification Feature', 'flx-forms'); ?>
+                                    <?php esc_html_e('\\nEnable the Email Notification Feature\\n', 'flx-forms'); ?>
                                 </p>
-                                <p style="margin:0 0 8px 0;color:#555;"><?php esc_html_e('To receive email notifications from your forms, verify your email server by following these steps:', 'flx-forms'); ?></p>
+                                <p style="margin:0 0 8px 0;color:#555;"><?php esc_html_e('\\nTo receive email notifications from your forms, verify your email server by following these steps:\\n', 'flx-forms'); ?></p>
                                 <ol style="margin:0 0 10px 0;padding-left:22px;line-height:2;color:#333;">
-                                    <li><?php printf( wp_kses( __('Go to the <a href="%s" style="font-weight:600;">Flux Forms Panel</a>', 'flx-forms'), ['a' => ['href' => [], 'style' => []]] ), esc_url($panel_url) ); ?></li>
-                                    <li><?php esc_html_e('Click Settings from the top menu', 'flx-forms'); ?></li>
-                                    <li><?php esc_html_e('Select the Email Settings tab', 'flx-forms'); ?></li>
-                                    <li><?php esc_html_e('Click "Check Email Server" and wait for the test to finish', 'flx-forms'); ?></li>
-                                    <li><?php esc_html_e('If the score is above 70 — enable the "This site can send emails" switch and save', 'flx-forms'); ?></li>
-                                    <li><?php esc_html_e('Otherwise, follow the instructions shown in the test results', 'flx-forms'); ?></li>
+                                    <li><?php printf( wp_kses( __('\\nGo to the<a href="%s" style="font-weight:600;">Flux Forms Panel</a>\\n', 'flx-forms'), ['a' => ['href' => [], 'style' => []]] ), esc_url($panel_url) ); ?></li>
+                                    <li><?php esc_html_e('\\nClick Settings from the top menu\\n', 'flx-forms'); ?></li>
+                                    <li><?php esc_html_e('\\nSelect the Email Settings tab\\n', 'flx-forms'); ?></li>
+                                    <li><?php esc_html_e('\\nClick "Check Email Server" and wait for the test to finish\\n', 'flx-forms'); ?></li>
+                                    <li><?php esc_html_e('\\nIf the score is above 70 — enable the "This site can send emails" switch and save\\n', 'flx-forms'); ?></li>
+                                    <li><?php esc_html_e('\\nOtherwise, follow the instructions shown in the test results\\n', 'flx-forms'); ?></li>
                                 </ol>
                             </div>
                         </div>
@@ -3470,90 +3470,90 @@ function admin_notices_efb () {
 
             }
             $email_notifi = sprintf(
-                esc_html__('%s notification', 'flx-forms'),
+                esc_html__('\\n%snotification\\n', 'flx-forms'),
                 esc_html__('Email', 'flx-forms')
             );
 
             $warning =' '. sprintf(
-                esc_html__('Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the %s feature, please ensure it is enabled.', 'flx-forms'),
+                esc_html__('\\nDisabling this feature may affect the proper functionality of Flux Forms. If you plan to use the%sfeature, please ensure it is enabled.\\n', 'flx-forms'),
                 $email_notifi
             );
 
              $messages = [
                 'mail_function_ok' => [
-                    'title' => esc_html__('Email system is working properly.', 'flx-forms'),
-                    'description' => esc_html__('Your server is able to send emails using the default PHP mail system.', 'flx-forms'),
+                    'title' => esc_html__('\\nEmail system is working properly.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nYour server is able to send emails using the default PHP mail system.\', \'en\']]', 'flx-forms'),
                 ],
                 'mail_function_missing' => [
-                    'title' => esc_html__('Email system is not available.', 'flx-forms'),
-                    'description' => esc_html__('The PHP mail() function is missing. Your server cannot send emails.', 'flx-forms') . $warning,
+                    'title' => esc_html__('\\nEmail system is not available.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe PHP mail() function is missing. Your server cannot send emails.\\n', 'flx-forms') . $warning,
                 ],
                 'mail_function_disabled' => [
-                    'title' => esc_html__('Email sending is blocked by server settings.', 'flx-forms'),
-                    'description' => esc_html__('The mail() function is disabled in your server PHP configuration (php.ini).', 'flx-forms') . $warning,
+                    'title' => esc_html__('\\nEmail sending is blocked by server settings.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe mail() function is disabled in your server PHP configuration (php.ini).\\n', 'flx-forms') . $warning,
                 ],
                 'wp_mail_function_missing' => [
-                    'title' => esc_html__('WordPress mail function not found.', 'flx-forms'),
-                    'description' => esc_html__('The wp_mail() function is missing or not available. WordPress email features may be broken.', 'flx-forms') . $warning,
+                    'title' => esc_html__('\\nWordPress mail function not found.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe wp_mail() function is missing or not available. WordPress email features may be broken.\\n', 'flx-forms') . $warning,
                 ],
                 'smtp_sendmail_empty' => [
-                    'title' => esc_html__('No email handler configured.', 'flx-forms'),
-                    'description' => esc_html__('Your server has no SMTP host or sendmail path set. Emails may not be delivered.', 'flx-forms') ,
+                    'title' => esc_html__('\\nNo email handler configured.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nYour server has no SMTP host or sendmail path set. Emails may not be delivered.\\n', 'flx-forms') ,
                 ],
                 'mail_function_failed' => [
-                    'title' => esc_html__('Test email could not be sent.', 'flx-forms'),
-                    'description' => esc_html__('It seems that your WordPress site could not send a test email. To manually test your email system, go to Flux Forms > Settings > Email Settings tab and click the "Check Email Server" button.', 'flx-forms') . $warning,
+                    'title' => esc_html__('\\nTest email could not be sent.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nIt seems that your WordPress site could not send a test email. To manually test your email system, go to Flux Forms > Settings > Email Settings tab and click the "Check Email Server" button.\\n', 'flx-forms') . $warning,
                 ],
                 'invalid_admin_email' => [
-                    'title' => esc_html__('Invalid email address.', 'flx-forms'),
-                    'description' => esc_html__('Please enter a valid admin email address before testing email delivery.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid email address.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nPlease enter a valid admin email address before testing email delivery.\\n', 'flx-forms'),
                 ],
                 'invalid_sender_email' => [
-                    'title' => esc_html__('Invalid sender email.', 'flx-forms'),
-                    'description' => esc_html__('The sender email address is not valid. Please check your email settings.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid sender email.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe sender email address is not valid. Please check your email settings.\\n', 'flx-forms'),
                 ],
                 'service_start_error' => [
-                    'title' => esc_html__('Email tester service error.', 'flx-forms'),
-                    'description' => esc_html__('Flux Forms could not start the email delivery test. Please try again later.', 'flx-forms'),
+                    'title' => esc_html__('\\nEmail tester service error.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nFlux Forms could not start the email delivery test. Please try again later.\\n', 'flx-forms'),
                 ],
                 'invalid_service_payload' => [
-                    'title' => esc_html__('Invalid email tester response.', 'flx-forms'),
-                    'description' => esc_html__('The email tester service returned an invalid response.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid email tester response.\', \'en\']]', 'flx-forms'),
+                    'description' => esc_html__('\\nThe email tester service returned an invalid response.\\n', 'flx-forms'),
                 ],
                 'invalid_test_hash' => [
-                    'title' => esc_html__('Invalid email test.', 'flx-forms'),
-                    'description' => esc_html__('The email test identifier is invalid. Please start a new test.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid email test.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe email test identifier is invalid. Please start a new test.\\n', 'flx-forms'),
                 ],
                 'service_request_error' => [
-                    'title' => esc_html__('Email tester connection error.', 'flx-forms'),
-                    'description' => esc_html__('Flux Forms could not connect to the email tester service.', 'flx-forms'),
+                    'title' => esc_html__('\\nEmail tester connection error.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nFlux Forms could not connect to the email tester service.\\n', 'flx-forms'),
                 ],
                 'invalid_json_response' => [
-                    'title' => esc_html__('Invalid email tester response.', 'flx-forms'),
-                    'description' => esc_html__('The email tester service returned an invalid JSON response.', 'flx-forms'),
+                    'title' => esc_html__('\\nInvalid email tester response.\', \'en\']]', 'flx-forms'),
+                    'description' => esc_html__('\\nThe email tester service returned an invalid JSON response.\\n', 'flx-forms'),
                 ],
                 'service_http_error' => [
-                    'title' => esc_html__('Email tester service error.', 'flx-forms'),
-                    'description' => esc_html__('The email tester service could not return the result.', 'flx-forms'),
+                    'title' => esc_html__('\\nEmail tester service error.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe email tester service could not return the result.\\n', 'flx-forms'),
                 ],
                 'email_test_failed' => [
-                    'title' => esc_html__('Email delivery test failed.', 'flx-forms'),
-                    'description' => esc_html__('The email server test could not verify email capability.', 'flx-forms') . $warning,
+                    'title' => esc_html__('\\nEmail delivery test failed.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe email server test could not verify email capability.\\n', 'flx-forms') . $warning,
                 ],
                 'email_test_low_score' => [
-                    'title' => esc_html__('Your emails are arriving in the spam folder.', 'flx-forms'),
-                    'description' => esc_html__('The test message was delivered, but its deliverability score is too low to rely on. Sending through SMTP and adding SPF and DKIM records for your domain is what fixes this.', 'flx-forms'),
+                    'title' => esc_html__('\\nYour emails are arriving in the spam folder.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nThe test message was delivered, but its deliverability score is too low to rely on. Sending through SMTP and adding SPF and DKIM records for your domain is what fixes this.\\n', 'flx-forms'),
                 ],
                 'email_test_pending' => [
-                    'title' => esc_html__('Email delivery test is pending.', 'flx-forms'),
-                    'description' => esc_html__('WordPress sent the test email, but delivery has not been confirmed yet.', 'flx-forms'),
+                    'title' => esc_html__('\\nEmail delivery test is pending.\\n', 'flx-forms'),
+                    'description' => esc_html__('\\nWordPress sent the test email, but delivery has not been confirmed yet.\\n', 'flx-forms'),
                 ],
             ];
 
             $logo_url = EMSFB_PLUGIN_URL.'includes/admin/assets/image/logo.png';
             $msg_id = isset($check['message']['id']) ? $check['message']['id'] : '';
-            $help = '<a href="https://whitestudio.team/documents/how-to-fix-email-not-working-issue#'.$msg_id.'" target="_blank" >' . esc_html__('Click here for more details','flx-forms') . '</a>';
-            $title = isset($messages[$msg_id]['title']) ? $messages[$msg_id]['title'] : esc_html__('Email Issue', 'flx-forms');
+            $help = '<a href="https://whitestudio.team/documents/how-to-fix-email-not-working-issue#'.$msg_id.'" target="_blank" >' . esc_html__('\\nClick here for more details\\n','flx-forms') . '</a>';
+            $title = isset($messages[$msg_id]['title']) ? $messages[$msg_id]['title'] : esc_html__('\\nEmail Issue\\n', 'flx-forms');
             $description = isset($messages[$msg_id]['description']) ? $messages[$msg_id]['description'] : '';
 
             // The status the test saved knows which of the three send stages
@@ -3571,9 +3571,9 @@ function admin_notices_efb () {
                <button type="button" id="efb-close-notice-btn"
             style="position:absolute;top:8px;right:8px;background:transparent;border:none;font-size:20px;cursor:pointer;"
             aria-label="Close">&times;</button>
-                <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr__('Flux Forms', 'flx-forms'); ?>" style="width:46px;height:auto;margin-top:4px;" />
+                <img src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr__('\\nFlux Forms\\n', 'flx-forms'); ?>" style="width:46px;height:auto;margin-top:4px;" />
                 <div>
-                    <p><strong><?php echo esc_html__('Flux Forms Email Warning:', 'flx-forms'); ?></strong> <?php echo esc_html($title); ?></p>
+                    <p><strong><?php echo esc_html__('\\nFlux Forms Email Warning:\\n', 'flx-forms'); ?></strong> <?php echo esc_html($title); ?></p>
                     <p><?php echo esc_html($description); ?></p>
                     <p><?= $help ?></p>
                 </div>
@@ -3618,7 +3618,7 @@ function admin_notices_efb () {
 
         if (!isset($_POST['plan_data'])) {
             wp_send_json_error(array(
-                'message' => __('Plan data is missing.', 'flx-forms')
+                'message' => __('\\nPlan data is missing.\\n', 'flx-forms')
             ), 400);
             return;
         }
@@ -3628,7 +3628,7 @@ function admin_notices_efb () {
 
         if (!is_array($plan_data)) {
             wp_send_json_error(array(
-                'message' => __('Invalid plan data format.', 'flx-forms')
+                'message' => __('\\nInvalid plan data format.\\n', 'flx-forms')
             ), 400);
             return;
         }
@@ -3637,7 +3637,7 @@ function admin_notices_efb () {
         $timestamp = isset($plan_data['timestamp']) ? intval($plan_data['timestamp']) : time();
         if (!in_array($selected_plan, array('free', 'free_plus', 'pro'))) {
             wp_send_json_error(array(
-                'message' => __('Invalid plan type.', 'flx-forms')
+                'message' => __('\\nInvalid plan type.\\n', 'flx-forms')
             ), 400);
             return;
         }
@@ -3686,7 +3686,7 @@ function admin_notices_efb () {
         if (($is_downgrade || $removes_activation_code) && !$downgrade_confirmed) {
             wp_send_json_error(array(
                 'code' => 'downgrade_confirmation_required',
-                'message' => __('Please confirm this plan downgrade before continuing.', 'flx-forms'),
+                'message' => __('\\nPlease confirm this plan downgrade before continuing.\\n', 'flx-forms'),
                 'activation_code_present' => $has_active_code,
             ), 409);
             return;
@@ -3696,13 +3696,13 @@ function admin_notices_efb () {
             case 'free':
                 update_option('emsfb_pro', 2);
                 $package_type_efb = 2;
-                $action_performed = __('Free plan activated - no additional features.', 'flx-forms');
+                $action_performed = __('\\nFree plan activated - no additional features.\\n', 'flx-forms');
                 break;
 
             case 'free_plus':
                 update_option('emsfb_pro', 3);
                 $package_type_efb = 3;
-                $action_performed = __('Free Plus plan activated with enhanced features.', 'flx-forms');
+                $action_performed = __('\\nFree Plus plan activated with enhanced features.\\n', 'flx-forms');
                 break;
 
             case 'pro':
@@ -3712,7 +3712,7 @@ function admin_notices_efb () {
                     if ($settings_active_code === '' && $option_active_code !== '') {
                         $settings->activeCode = $option_active_code;
                     }
-                    $action_performed = __('Pro plan activated with existing activation code.', 'flx-forms');
+                    $action_performed = __('\\nPro plan activated with existing activation code.\\n', 'flx-forms');
                 } else {
                     // Opening the purchase page is not a plan change.  In
                     // particular, a Free Plus user must remain Free Plus until
@@ -3723,7 +3723,7 @@ function admin_notices_efb () {
                     if (get_locale() == 'fa_IR') {
                         $redirect_url = 'https://easyformbuilder.ir/#pricing';
                     }
-                    $action_performed = __('Redirecting to Pro plan purchase page.', 'flx-forms');
+                    $action_performed = __('\\nRedirecting to Pro plan purchase page.\\n', 'flx-forms');
                 }
                 break;
         }
@@ -3776,7 +3776,7 @@ function admin_notices_efb () {
 
         $response_data = array(
             'success' => true,
-            'message' => sprintf(__('Plan "%s" has been successfully processed.', 'flx-forms'), $selected_plan),
+            'message' => sprintf(__('\\nPlan "%s" has been successfully processed.\\n', 'flx-forms'), $selected_plan),
             'plan' => $selected_plan,
             'action' => $action_performed,
             'redirect_url' => $redirect_url,

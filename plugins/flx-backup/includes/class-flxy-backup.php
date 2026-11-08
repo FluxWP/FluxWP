@@ -52,24 +52,24 @@ final class FLXY_Backup {
 			return $paths;
 		}
 		if ( ! $db && ! $paths ) {
-			return new WP_Error( 'flxy_empty', __( 'Yedeklenecek bir şey seçilmedi.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_empty', __( 'Nothing was selected to back up.', 'flx-backup' ) );
 		}
 		if ( ! class_exists( 'ZipArchive' ) ) {
-			return new WP_Error( 'flxy_zip', __( 'Sunucuda ZipArchive (PHP zip eklentisi) yok.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_zip', __( 'ZipArchive (PHP zip extension) is not available on the server.', 'flx-backup' ) );
 		}
 		if ( ! function_exists( 'gzopen' ) ) {
-			return new WP_Error( 'flxy_zlib', __( 'Sunucuda zlib (gzip) yok.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_zlib', __( 'zlib (gzip) is not available on the server.', 'flx-backup' ) );
 		}
 		if ( ! FLXY_Storage::ensure() ) {
 			return new WP_Error(
 				'flxy_storage',
 				/* translators: %s: directory */
-				sprintf( __( 'Yedek klasörü yazılabilir değil: %s', 'flx-backup' ), FLXY_Storage::dir() )
+				sprintf( __( 'The backup folder is not writable: %s', 'flx-backup' ), FLXY_Storage::dir() )
 			);
 		}
 		$sync = ! empty( $args['sync'] );
 		if ( ! $sync && empty( $args['_nested'] ) && FLXY_Runner::busy() ) {
-			return new WP_Error( 'flxy_busy', __( 'Şu anda başka bir yedekleme veya geri yükleme çalışıyor. Bitmesini bekleyin.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_busy', __( 'Another backup or restore is running. Wait for it to finish.', 'flx-backup' ) );
 		}
 
 		$context = isset( $args['context'] ) ? (array) $args['context'] : array();
@@ -127,7 +127,7 @@ final class FLXY_Backup {
 			if ( 'failed' === $state['phase'] ) {
 				return new WP_Error( 'flxy_failed', $state['error'], $rec );
 			}
-			return $rec ? $rec : new WP_Error( 'flxy_failed', __( 'Yedek kaydı bulunamadı.', 'flx-backup' ) );
+			return $rec ? $rec : new WP_Error( 'flxy_failed', __( 'Backup record not found.', 'flx-backup' ) );
 		}
 
 		$started = FLXY_Runner::start( $state, ! empty( $args['interactive'] ) );
@@ -142,7 +142,7 @@ final class FLXY_Backup {
 	public static function append( string $id, array $paths, array $context_packages = array() ) {
 		$rec = FLXY_Storage::get( $id );
 		if ( ! $rec || 'ok' !== $rec['status'] || ! file_exists( $rec['file'] ) ) {
-			return new WP_Error( 'flxy_missing', __( 'Yedek bulunamadı.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_missing', __( 'Backup not found.', 'flx-backup' ) );
 		}
 		$paths = self::clean_paths( $paths );
 		if ( is_wp_error( $paths ) ) {
@@ -222,13 +222,13 @@ final class FLXY_Backup {
 				continue;
 			}
 			if ( false !== strpos( '/' . $p . '/', '/../' ) ) {
-				return new WP_Error( 'flxy_path', __( 'Geçersiz yol.', 'flx-backup' ) );
+				return new WP_Error( 'flxy_path', __( 'Invalid path.', 'flx-backup' ) );
 			}
 			if ( ! file_exists( self::abs( $p ) ) ) {
 				return new WP_Error(
 					'flxy_path',
 					/* translators: %s: path */
-					sprintf( __( 'Yol bulunamadı: %s', 'flx-backup' ), $p )
+					sprintf( __( 'Path not found: %s', 'flx-backup' ), $p )
 				);
 			}
 			$out[] = $p;
@@ -377,7 +377,7 @@ final class FLXY_Backup {
 			return self::fail(
 				$state,
 				/* translators: %s: number of attempts */
-				sprintf( __( 'Yedek aynı noktada %s kez yarıda kesildi (sunucunun süre sınırı). Daha az klasörle deneyin veya hariç tutulanlara büyük klasörleri ekleyin.', 'flx-backup' ), number_format_i18n( $tries - 1 ) )
+				sprintf( __( 'The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions.', 'flx-backup' ), number_format_i18n( $tries - 1 ) )
 			);
 		}
 		if ( $tries > 1 ) {
@@ -443,7 +443,7 @@ final class FLXY_Backup {
 	private static function step_scan( array $state, float $deadline ): array {
 		$fh = fopen( $state['tmp'] . '/files.txt', 'c+b' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		if ( ! $fh ) {
-			return self::fail( $state, __( 'Geçici dosya yazılamadı.', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not write a temporary file.', 'flx-backup' ) );
 		}
 		// Yarıda kesilmiş önceki adımın yazdığı satırları at (yoksa dosyalar iki kez arşivlenir).
 		if ( isset( $state['list_size'] ) ) {
@@ -572,7 +572,7 @@ final class FLXY_Backup {
 		$list = $state['tmp'] . '/files.txt';
 		$fh   = fopen( $list, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		if ( ! $fh ) {
-			return self::fail( $state, __( 'Dosya listesi okunamadı.', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not read the file list.', 'flx-backup' ) );
 		}
 		$zw = FLXY_Zip_Writer::open( $state['zip'], $state['tmp'] . '/central.bin', $state['zw'] );
 		if ( is_wp_error( $zw ) ) {
@@ -653,14 +653,14 @@ final class FLXY_Backup {
 		$list = $state['tmp'] . '/files.txt';
 		$fh   = fopen( $list, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		if ( ! $fh ) {
-			return self::fail( $state, __( 'Dosya listesi okunamadı.', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not read the file list.', 'flx-backup' ) );
 		}
 		$zip = new ZipArchive();
 		$res = $zip->open( $state['zip'], ZipArchive::CREATE );
 		if ( true !== $res ) {
 			fclose( $fh ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 			/* translators: %s: error code */
-			return self::fail( $state, sprintf( __( 'Zip dosyası açılamadı (kod %s).', 'flx-backup' ), $res ) );
+			return self::fail( $state, sprintf( __( 'Could not open the zip file (code %s).', 'flx-backup' ), $res ) );
 		}
 		$careful = ! empty( $state['careful'] );
 		fseek( $fh, (int) $state['zip_pos'] );
@@ -741,7 +741,7 @@ final class FLXY_Backup {
 				return $state;
 			}
 			/* translators: %s: zip error */
-			return self::fail( $state, sprintf( __( 'Zip yazılamadı: %s', 'flx-backup' ), $zip->getStatusString() ) );
+			return self::fail( $state, sprintf( __( 'Could not write the zip: %s', 'flx-backup' ), $zip->getStatusString() ) );
 		}
 		$state['careful']   = false;
 		$state['zip_pos']   = $pos;
@@ -759,7 +759,7 @@ final class FLXY_Backup {
 	private static function step_finalize( array $state ): array {
 		$rec = FLXY_Storage::get( $state['id'] );
 		if ( ! $rec ) {
-			return self::fail( $state, __( 'Yedek kaydı silinmiş.', 'flx-backup' ) );
+			return self::fail( $state, __( 'The backup record was deleted.', 'flx-backup' ) );
 		}
 		if ( empty( $state['stream'] ) ) {
 			return self::finalize_zip( $state );
@@ -774,7 +774,7 @@ final class FLXY_Backup {
 		if ( $state['db'] && file_exists( $gz ) ) {
 			if ( false === $zw->add_file( $gz, 'database.sql.gz', true ) ) {
 				$zw->close();
-				return self::fail( $state, __( 'Veritabanı dökümü arşive eklenemedi.', 'flx-backup' ) );
+				return self::fail( $state, __( 'Could not add the database dump to the archive.', 'flx-backup' ) );
 			}
 			$checksums['database.sql.gz'] = 'sha256:' . hash_file( 'sha256', $gz );
 			$gz_size                      = (int) filesize( $gz );
@@ -783,7 +783,7 @@ final class FLXY_Backup {
 		$ok       = $zw->add_string( 'manifest.json', wp_json_encode( $manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) ) && $zw->finish();
 		$zw->close();
 		if ( ! $ok ) {
-			return self::fail( $state, __( 'Zip yazılamadı (disk dolu olabilir).', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not write the zip (the disk may be full).', 'flx-backup' ) );
 		}
 		$state['zw'] = $zw->st;
 		return self::complete( $state, $manifest );
@@ -833,7 +833,7 @@ final class FLXY_Backup {
 	private static function finalize_zip( array $state ): array {
 		$zip = new ZipArchive();
 		if ( true !== $zip->open( $state['zip'], ZipArchive::CREATE ) ) {
-			return self::fail( $state, __( 'Zip dosyası açılamadı.', 'flx-backup' ) );
+			return self::fail( $state, __( 'Could not open the zip file.', 'flx-backup' ) );
 		}
 		$old = array();
 		if ( $state['append'] ) {
@@ -855,7 +855,7 @@ final class FLXY_Backup {
 		$zip->addFromString( 'manifest.json', wp_json_encode( $manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) );
 		if ( ! $zip->close() ) {
 			/* translators: %s: zip error */
-			return self::fail( $state, sprintf( __( 'Zip yazılamadı: %s', 'flx-backup' ), $zip->getStatusString() ) );
+			return self::fail( $state, sprintf( __( 'Could not write the zip: %s', 'flx-backup' ), $zip->getStatusString() ) );
 		}
 		return self::complete( $state, $manifest );
 	}
@@ -894,7 +894,7 @@ final class FLXY_Backup {
 				'backup',
 				sprintf(
 					/* translators: 1: backup title, 2: size */
-					__( 'Yedek alındı: %1$s (%2$s)', 'flx-backup' ),
+					__( 'Backup taken: %1$s (%2$s)', 'flx-backup' ),
 					FLXY_Storage::title( $rec ),
 					size_format( $rec['size'], 1 )
 				)
@@ -945,7 +945,7 @@ final class FLXY_Backup {
 			'backup',
 			sprintf(
 				/* translators: 1: backup title, 2: error */
-				__( 'Yedek alınamadı (%1$s): %2$s', 'flx-backup' ),
+				__( 'Backup failed (%1$s): %2$s', 'flx-backup' ),
 				$rec ? FLXY_Storage::title( $rec ) : $state['id'],
 				$message
 			),
@@ -983,11 +983,11 @@ final class FLXY_Backup {
 		switch ( $state['phase'] ) {
 			case 'scan':
 				/* translators: %s: number of files */
-				$text  = sprintf( __( 'Dosyalar taranıyor… %s dosya', 'flx-backup' ), number_format_i18n( $state['scan']['files'] ) );
+				$text  = sprintf( __( 'Scanning files… %s files', 'flx-backup' ), number_format_i18n( $state['scan']['files'] ) );
 				$done += 2;
 				break;
 			case 'quota':
-				$text = __( 'Kota kontrol ediliyor…', 'flx-backup' );
+				$text = __( 'Checking quota…', 'flx-backup' );
 				break;
 			case 'db':
 				$d     = $state['dump'];
@@ -995,7 +995,7 @@ final class FLXY_Backup {
 				$done += $w['db'] * $frac;
 				$table = $d && isset( $d['tables'][ $d['ti'] ] ) ? $d['tables'][ $d['ti'] ] : '';
 				/* translators: 1: table name, 2: rows done */
-				$text = sprintf( __( 'Veritabanı yedekleniyor: %1$s (%2$s satır)', 'flx-backup' ), $table, number_format_i18n( $d ? $d['rows_done'] : 0 ) );
+				$text = sprintf( __( 'Backing up database: %1$s (%2$s rows)', 'flx-backup' ), $table, number_format_i18n( $d ? $d['rows_done'] : 0 ) );
 				break;
 			case 'files':
 				$total_b = max( 1, (int) $state['scan']['bytes'] );
@@ -1006,14 +1006,14 @@ final class FLXY_Backup {
 				$frac  = 0.5 * $done_b / $total_b + 0.5 * $done_n / max( 1, $total_n );
 				$done += $w['files'] * $frac;
 				/* translators: 1: files done, 2: total files, 3: size done, 4: total size */
-				$text = sprintf( __( 'Dosyalar arşivleniyor: %1$s / %2$s dosya (%3$s / %4$s)', 'flx-backup' ), number_format_i18n( $done_n ), number_format_i18n( $total_n ), size_format( $done_b, 1 ), size_format( $total_b, 1 ) );
+				$text = sprintf( __( 'Archiving files: %1$s / %2$s files (%3$s / %4$s)', 'flx-backup' ), number_format_i18n( $done_n ), number_format_i18n( $total_n ), size_format( $done_b, 1 ), size_format( $total_b, 1 ) );
 				break;
 			case 'finalize':
-				$text = __( 'Tamamlanıyor…', 'flx-backup' );
+				$text = __( 'Finishing…', 'flx-backup' );
 				break;
 			case 'done':
 				$done = $sum;
-				$text = __( 'Yedek tamamlandı.', 'flx-backup' );
+				$text = __( 'Backup completed.', 'flx-backup' );
 				break;
 			case 'failed':
 				$text = $state['error'];

@@ -166,7 +166,7 @@ add_filter(
 			}
 			$fields[ 'flxl_alt_' . $code ] = array(
 				/* translators: %s: language name */
-				'label' => sprintf( __( 'Alternatif metin (%s)', 'flx-lang' ), $l['name'] ),
+				'label' => sprintf( __( 'Alternative text (%s)', 'flx-lang' ), $l['name'] ),
 				'input' => 'text',
 				'value' => flxl_image_alt( $post->ID, $code ),
 			);
@@ -174,11 +174,11 @@ add_filter(
 			$name = 'attachments[' . $post->ID . '][flxl_variant_' . $code . ']';
 			$fields[ 'flxl_variant_' . $code ] = array(
 				/* translators: %s: language name */
-				'label' => sprintf( __( 'Görsel (%s)', 'flx-lang' ), $l['name'] ),
+				'label' => sprintf( __( 'Image (%s)', 'flx-lang' ), $l['name'] ),
 				'input' => 'html',
 				'html'  => '<input type="number" min="0" class="small-text" name="' . esc_attr( $name ) . '" value="' . esc_attr( $v ? (string) $v : '' ) . '"> '
 					. ( $v ? wp_get_attachment_image( $v, array( 60, 60 ), false, array( 'style' => 'vertical-align:middle' ) ) : '' ),
-				'helps' => __( 'Bu dilde bu görselin yerine gösterilecek görselin ID\'si (ör. üzerinde yazı olan afişin çevirisi). Boş: aynı görsel.', 'flx-lang' ),
+				'helps' => __( 'ID of the image shown instead of this one in this language (e.g. the translated version of a poster with text). Empty: same image.', 'flx-lang' ),
 			);
 		}
 		return $fields;

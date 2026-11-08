@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.13
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 0.7.12
 - Support RTL across shared WordPress layouts, navigation, forms and WooCommerce styles using logical spacing and positions; keep technical syntax LTR and preserve the LTR layout.
 

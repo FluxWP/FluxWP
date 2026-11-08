@@ -49,7 +49,7 @@ function flxr_set_user_phone( $user_id, $raw ) {
 	}
 	$d = flxr_normalize_phone( $raw );
 	if ( '' === $d ) {
-		return new WP_Error( 'flxr_phone', __( 'Telefon numarası geçersiz. Ülke koduyla ya da 05xx ile yazın.', 'flx-roles' ) );
+		return new WP_Error( 'flxr_phone', __( 'Invalid phone number. Write it with the country code or as 05xx.', 'flx-roles' ) );
 	}
 	$other = flxr_user_by_phone( $d );
 	if ( $other && (int) $other->ID !== $user_id ) {
@@ -57,7 +57,7 @@ function flxr_set_user_phone( $user_id, $raw ) {
 			'flxr_phone_taken',
 			sprintf(
 				/* translators: %s: user display name */
-				__( 'Bu numara başka bir kullanıcıda kayıtlı: %s.', 'flx-roles' ),
+				__( 'This number belongs to another user: %s.', 'flx-roles' ),
 				$other->display_name
 			)
 		);
@@ -132,14 +132,14 @@ function flxr_phone_profile_field( $user ) {
 	if ( ! $can && '' === $val && ! flxr_user_role( $user ) ) {
 		return;
 	}
-	echo '<h2 id="flx-phone">' . esc_html__( 'WhatsApp numarası', 'flx-roles' ) . '</h2><table class="form-table" role="presentation"><tr><th scope="row"><label for="flxr-phone">' . esc_html__( 'Telefon', 'flx-roles' ) . '</label></th><td>';
+	echo '<h2 id="flx-phone">' . esc_html__( 'WhatsApp number', 'flx-roles' ) . '</h2><table class="form-table" role="presentation"><tr><th scope="row"><label for="flxr-phone">' . esc_html__( 'Phone', 'flx-roles' ) . '</label></th><td>';
 	if ( $can ) {
 		wp_nonce_field( 'flxr_phone_' . $user->ID, 'flxr_phone_nonce' );
 		echo '<input type="tel" id="flxr-phone" name="flxr_phone" class="regular-text" value="' . esc_attr( '' !== $val ? '+' . $val : '' ) . '" placeholder="+90 5xx xxx xx xx" autocomplete="off">';
 	} else {
 		echo '<input type="text" id="flxr-phone" class="regular-text" value="' . esc_attr( '' !== $val ? '+' . $val : '' ) . '" readonly>';
 	}
-	echo '<p class="description">' . esc_html__( 'WhatsApp asistanı bu numaradan yazan kişiyi bu kullanıcı olarak tanır ve rolünün izin verdiği işlemleri (ör. başkası adına bağış, kendi bağışçıları) açar. Numarayı yalnız yönetici değiştirebilir.', 'flx-roles' ) . '</p>';
+	echo '<p class="description">' . esc_html__( 'The WhatsApp assistant recognizes whoever writes from this number as this user and enables what their role allows (e.g. donations on behalf of others, their own donors). Only an administrator can change the number.', 'flx-roles' ) . '</p>';
 	echo '</td></tr></table>';
 }
 add_action( 'show_user_profile', 'flxr_phone_profile_field', 9 );

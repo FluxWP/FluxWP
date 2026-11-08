@@ -77,10 +77,10 @@ function flxai_agent_history( array $messages ) {
 function flxai_agent_send( array $chat, $text, $page = array() ) {
 	$text = trim( (string) $text );
 	if ( '' === $text ) {
-		return new WP_Error( 'flxai_empty', __( 'Mesaj boş.', 'flx-ai' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxai_empty', __( 'Message is empty.', 'flx-ai' ), array( 'status' => 400 ) );
 	}
 	if ( in_array( $chat['status'], array( 'running', 'approval' ), true ) ) {
-		flxai_agent_cancel_pending( $chat, __( 'Kullanıcı yeni mesaj yazdı; bu işlem yapılmadı.', 'flx-ai' ) );
+		flxai_agent_cancel_pending( $chat, __( 'The user wrote a new message; this action was not run.', 'flx-ai' ) );
 	}
 	$page               = is_array( $page ) ? array_intersect_key( $page, array_flip( array( 'title', 'url', 'admin' ) ) ) : array();
 	$chat['messages'][] = array(
@@ -213,7 +213,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 			if ( $rounds >= max( 2, (int) flxai_setting( 'chat_max_rounds', 12 ) ) ) {
 				$chat['messages'][] = array(
 					'role'    => 'assistant',
-					'content' => __( 'Bu tur için adım sınırına ulaştım. Devam etmemi isterseniz "devam" yazın.', 'flx-ai' ),
+					'content' => __( 'I reached the step limit for this turn. Type "continue" if you want me to go on.', 'flx-ai' ),
 					'_id'     => flxai_new_id(),
 					'_ts'     => time(),
 					'_notice' => 'max_rounds',
@@ -305,8 +305,8 @@ function flxai_agent_step( array $chat, $emit = null ) {
 			if ( empty( $res['tool_calls'] ) ) {
 				if ( '' === trim( (string) $res['content'] ) ) {
 					$chat['messages'][ count( $chat['messages'] ) - 1 ]['content'] = 'length' === ( $res['_finish'] ?? '' )
-						? __( 'Cevap uzunluk sınırına takıldı. Daha kısa bir soru deneyin.', 'flx-ai' )
-						: __( 'Bir cevap üretemedim, tekrar dener misiniz?', 'flx-ai' );
+						? __( 'The answer hit the length limit. Try a shorter question.', 'flx-ai' )
+						: __( 'I couldn\'t produce an answer, could you try again?', 'flx-ai' );
 				}
 				$chat['status'] = 'idle';
 				$state          = 'done';
@@ -320,7 +320,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 						$c,
 						array(
 							/* translators: %s: tool name */
-							'result' => wp_json_encode( array( 'error' => sprintf( __( 'Araç yok ya da yetkiniz yok: %s', 'flx-ai' ), $name ) ), JSON_UNESCAPED_UNICODE ),
+							'result' => wp_json_encode( array( 'error' => sprintf( __( 'Tool not found or not permitted: %s', 'flx-ai' ), $name ) ), JSON_UNESCAPED_UNICODE ),
 							'ok'     => false,
 							'ms'     => 0,
 						)
@@ -335,7 +335,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 	} finally {
 		if ( in_array( $chat['status'], array( 'running', 'approval' ), true ) && 'idle' === flxai_chat_status_fresh( $chat['id'] ) ) {
 			// Adım sürerken kullanıcı durdurdu: gelen cevap kalır, kalan işlemler yapılmaz.
-			flxai_agent_cancel_pending( $chat, __( 'Kullanıcı durdurdu; yapılmadı.', 'flx-ai' ) );
+			flxai_agent_cancel_pending( $chat, __( 'Stopped by the user; not run.', 'flx-ai' ) );
 			$chat['status'] = 'idle';
 			$state          = 'done';
 		}
@@ -392,7 +392,7 @@ function flxai_agent_decide( array $chat, array $decisions ) {
 
 /** Turu durdurur. */
 function flxai_agent_stop( array $chat ) {
-	flxai_agent_cancel_pending( $chat, __( 'Kullanıcı durdurdu; yapılmadı.', 'flx-ai' ) );
+	flxai_agent_cancel_pending( $chat, __( 'Stopped by the user; not run.', 'flx-ai' ) );
 	$chat['status'] = 'idle';
 	flxai_chat_save( $chat );
 	return $chat;
@@ -406,7 +406,7 @@ function flxai_agent_stop( array $chat ) {
  */
 function flxai_agent_rewind( array $chat, $mid, $mode ) {
 	if ( ! flxai_agent_lock( $chat['id'] ) ) {
-		return new WP_Error( 'flxai_busy', __( 'Asistan şu an çalışıyor; önce durdurun.', 'flx-ai' ), array( 'status' => 409 ) );
+		return new WP_Error( 'flxai_busy', __( 'The assistant is running; stop it first.', 'flx-ai' ), array( 'status' => 409 ) );
 	}
 	$at = null;
 	foreach ( $chat['messages'] as $i => $m ) {
@@ -417,7 +417,7 @@ function flxai_agent_rewind( array $chat, $mid, $mode ) {
 	}
 	if ( null === $at ) {
 		flxai_agent_unlock( $chat['id'] );
-		return new WP_Error( 'flxai_not_found', __( 'Mesaj bulunamadı.', 'flx-ai' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxai_not_found', __( 'Message not found.', 'flx-ai' ), array( 'status' => 404 ) );
 	}
 	$cut = $at;
 	if ( 'edit' !== $mode ) {

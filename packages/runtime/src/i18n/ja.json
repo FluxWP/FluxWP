@@ -1,0 +1,183 @@
+{
+  "shell": {
+    "tabs": {
+      "home": "ホーム",
+      "posts": "投稿",
+      "comments": "コメント",
+      "menu": "メニュー",
+      "more": "メニュー"
+    },
+    "status": {
+      "publish": "発行済み",
+      "draft": "草案",
+      "pending": "保留中",
+      "future": "予定されている",
+      "private": "プライベート"
+    },
+    "switchSite": "サイトを切り替える",
+    "offline": "オフライン: 保存されたデータを表示する",
+    "notFound": "この画面は見つかりませんでした。",
+    "demo": "デモ",
+    "nav": {
+      "more": "メニュー",
+      "accounts": "アカウント",
+      "settings": "設定",
+      "search": "検索",
+      "notifications": "通知"
+    },
+    "groups": {
+      "content": "内容"
+    },
+    "openedInWeb": "Webビューで開く"
+  },
+  "list": {
+    "search": "検索",
+    "empty": "ここにはまだ何もありません。",
+    "noResults": "結果はありません。",
+    "end": "以上です",
+    "loadingMore": "読み込み中..."
+  },
+  "states": {
+    "loading": "読み込み中...",
+    "errorTitle": "ロードできませんでした",
+    "errorBody": "サーバーに到達できませんでした。接続を確認して、もう一度試してください。",
+    "forbidden": "この画面にはアクセスできません。",
+    "sessionExpired": "セッションの有効期限が切れました。もう一度サインインしてください。"
+  },
+  "form": {
+    "required": "このフィールドは必須です。",
+    "invalid": "有効な値を入力してください。",
+    "min": "値が小さすぎます。",
+    "max": "値が大きすぎます。",
+    "submit": "保存",
+    "saving": "保存中...",
+    "saved": "保存されました。",
+    "minLength": "少なくとも {{count}} 文字。",
+    "maxLength": "最大 {{count}} 文字。",
+    "choose": "選択してください",
+    "change": "変更",
+    "remove": "削除",
+    "upload": "アップロード",
+    "uploading": "アップロード中...",
+    "search": "検索"
+  },
+  "action": {
+    "confirmTitle": "よろしいですか?",
+    "confirm": "確認する",
+    "done": "完了しました。",
+    "failed": "アクションを完了できませんでした。"
+  },
+  "webview": {
+    "loading": "ダッシュボード ページを開いています...",
+    "error": "ページを開けませんでした。",
+    "openBrowser": "ブラウザで開く",
+    "reload": "リロード",
+    "back": "戻る",
+    "demoNote": "デモ: サンプル ダッシュボード ページ"
+  },
+  "switcher": {
+    "title": "アカウント",
+    "manage": "アカウントの管理",
+    "remove": "アカウントを削除する",
+    "removeConfirm": "このデバイスから {{site}} アカウントを削除しますか?",
+    "current": "当座預金口座"
+  },
+  "prefs": {
+    "cache": "キャッシュ",
+    "clearCache": "キャッシュをクリアする",
+    "cacheCleared": "キャッシュがクリアされました。",
+    "version": "バージョン {{version}}"
+  },
+  "core": {
+    "pages": "ページ",
+    "post": "ポスト",
+    "edit": "編集",
+    "openInPanel": "ダッシュボードで開く",
+    "trash": "ゴミ箱に移動",
+    "trashConfirm": "このアイテムをゴミ箱に移動しますか?",
+    "trashed": "ゴミ箱に移動しました",
+    "title": "タイトル",
+    "status": "ステータス",
+    "excerpt": "抜粋",
+    "link": "リンク",
+    "date": "日付",
+    "author": "著者",
+    "image": "画像",
+    "content": "内容",
+    "newPost": "新しい投稿",
+    "approve": "承認する",
+    "spam": "スパムメール",
+    "approved": "承認済み",
+    "statusAll": "すべて",
+    "statusDraft": "下書き",
+    "statusPending": "保留中",
+    "statusHold": "保留中",
+    "emptyPosts": "まだ投稿はありません",
+    "emptyComments": "コメントはありません",
+    "searchPosts": "投稿の検索",
+    "searchComments": "コメントの検索",
+    "details": "詳細"
+  },
+  "accounts": {
+    "kind": {
+      "otp": "ワンタイムコード",
+      "apppass": "アプリケーションパスワード"
+    }
+  },
+  "auth": {
+    "otpLogin": "コードを使用してサインインする",
+    "otpHint": "ワンタイムコードを送信します。それは寄付者と顧客のために機能します。",
+    "sendCode": "コードを送信する",
+    "otpCode": "コード",
+    "verify": "確認してサインインする",
+    "codeSent": "アカウントが存在する場合、コードは送信中です。",
+    "appPassword": "アプリケーションパスワード"
+  },
+  "desktop": {
+    "selected": "{{count}} が選択されました",
+    "clear": "クリア",
+    "notifications": "通知",
+    "notificationsEmpty": "まだ通知はありません。",
+    "cancel": "キャンセル",
+    "more": "さらなるアクション",
+    "rowActions": "行アクション",
+    "back": "戻る",
+    "loading": "読み込み中...",
+    "offline": "保存したデータを表示する"
+  },
+  "addSite": {
+    "notAllowed": "このアプリは独自のサイトにのみ接続できます。",
+    "browserHint": "アプリの安全なブラウザ内でサインインします。あなたのパスワードがアプリに届くことはありません。",
+    "cancelled": "サインインがキャンセルされました。",
+    "title": "サイトを接続する",
+    "demo": "デモ口座を試してみる"
+  },
+  "drawer": {
+    "open": "メニューを開く",
+    "close": "メニューを閉じる",
+    "expand": "サブメニューの切り替え"
+  },
+  "tasks": {
+    "engineLabels": {
+      "Status": "ステータス",
+      "Priority": "優先順位",
+      "Assignee": "譲受人",
+      "Due date": "期限",
+      "Tag": "タグ",
+      "List": "リスト",
+      "No grouping": "グループ化なし",
+      "No priority": "優先順位なし",
+      "Deleted user": "削除されたユーザー",
+      "Unassigned": "未割り当て",
+      "Overdue": "期限を過ぎました",
+      "Today": "今日",
+      "Tomorrow": "明日",
+      "This week": "今週",
+      "Later": "後で",
+      "No date": "日付なし",
+      "No tag": "タグなし",
+      "Empty": "空の",
+      "All tasks": "すべてのタスク"
+    }
+  }
+}

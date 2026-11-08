@@ -12,16 +12,16 @@ require_once FLXC_DIR . 'includes/bench-default.php';
 function flxc_bench_groups() {
 	// 1.36.0: başka eklentiler kendi senaryo grubunu ekleyebilir (ör. Qurban); filtre boşken liste aynı.
 	return (array) apply_filters( 'flxc_bench_groups', array(
-		'karsilama' => __( 'Karşılama ve yönlendirme', 'flx-chat' ),
-		'bagis'     => __( 'Bağış süreci ve kayıt', 'flx-chat' ),
-		'devir'     => __( 'Temsilciye devir', 'flx-chat' ),
-		'gereksiz'  => __( 'Gereksiz devir yapmama', 'flx-chat' ),
-		'uydurma'   => __( 'Bilgi uydurmama', 'flx-chat' ),
-		'kalite'    => __( 'Cevap kalitesi ve üslup', 'flx-chat' ),
-		'araclar'   => __( 'Güncel bilgi ve araçlar', 'flx-chat' ),
-		'kayitlar'  => __( 'Kayıt, iptal ve dekont', 'flx-chat' ),
-		'personel'  => __( 'Personel asistanı', 'flx-chat' ),
-		'islemler'  => __( 'İşlem sonuçları (izole)', 'flx-chat' ),
+		'karsilama' => __( 'Greeting and guidance', 'flx-chat' ),
+		'bagis'     => __( 'Donation flow and record', 'flx-chat' ),
+		'devir'     => __( 'Handoff to the team', 'flx-chat' ),
+		'gereksiz'  => __( 'Avoiding needless handoff', 'flx-chat' ),
+		'uydurma'   => __( 'Not making up information', 'flx-chat' ),
+		'kalite'    => __( 'Reply quality and tone', 'flx-chat' ),
+		'araclar'   => __( 'Live info and tools', 'flx-chat' ),
+		'kayitlar'  => __( 'Records, cancellation and receipts', 'flx-chat' ),
+		'personel'  => __( 'Staff assistant', 'flx-chat' ),
+		'islemler'  => __( 'Action results (isolated)', 'flx-chat' ),
 	) );
 }
 
@@ -31,12 +31,12 @@ function flxc_bench_groups() {
  */
 function flxc_bench_setups() {
 	return array(
-		'don_pending'    => __( 'Ödeme bekleyen bir bağışı var', 'flx-chat' ),
-		'don_paid'       => __( 'Ödenmiş bir bağışı ve sertifikası var', 'flx-chat' ),
-		'verified_phone' => __( 'Numarası doğrulanmış', 'flx-chat' ),
-		'verified_email' => __( 'E-postası doğrulanmış', 'flx-chat' ),
-		'ch_whatsapp'    => __( 'Telefon kodu WhatsApp\'tan gider', 'flx-chat' ),
-		'ch_sms'         => __( 'Telefon kodu SMS ile gider', 'flx-chat' ),
+		'don_pending'    => __( 'Has a donation awaiting payment', 'flx-chat' ),
+		'don_paid'       => __( 'Has a paid donation and certificate', 'flx-chat' ),
+		'verified_phone' => __( 'Number verified', 'flx-chat' ),
+		'verified_email' => __( 'E-mail verified', 'flx-chat' ),
+		'ch_whatsapp'    => __( 'Phone code is sent via WhatsApp', 'flx-chat' ),
+		'ch_sms'         => __( 'Phone code is sent via SMS', 'flx-chat' ),
 	);
 }
 
@@ -46,16 +46,16 @@ function flxc_bench_setups() {
  */
 function flxc_bench_state_keys() {
 	return array(
-		'don_new'       => array( __( 'Yeni bağış açıldı', 'flx-chat' ), array( 'create_donation', 'staff_create_donation' ) ),
-		'don_canceled'  => array( __( 'Bağış iptal edildi', 'flx-chat' ), array( 'cancel_donation' ) ),
-		'cert_sent'     => array( __( 'Sertifika gönderildi', 'flx-chat' ), array( 'certificate_resend' ) ),
-		'code_sent'     => array( __( 'Doğrulama kodu gönderildi', 'flx-chat' ), array( 'verify_send' ) ),
-		'code_whatsapp' => array( __( 'Kod WhatsApp\'tan gönderildi', 'flx-chat' ), array( 'verify_send' ) ),
-		'code_sms'      => array( __( 'Kod SMS ile gönderildi', 'flx-chat' ), array( 'verify_send' ) ),
-		'code_email'    => array( __( 'Kod e-postayla gönderildi', 'flx-chat' ), array( 'verify_send' ) ),
-		'verified'      => array( __( 'Numara ya da e-posta doğrulandı', 'flx-chat' ), array( 'verify_check' ) ),
-		'reminder'      => array( __( 'Hatırlatıcı kuruldu', 'flx-chat' ), array( 'reminder_set' ) ),
-		'memory'        => array( __( 'Hafızaya bilgi yazıldı', 'flx-chat' ), array( 'remember' ) ),
+		'don_new'       => array( __( 'New donation opened', 'flx-chat' ), array( 'create_donation', 'staff_create_donation' ) ),
+		'don_canceled'  => array( __( 'Donation canceled', 'flx-chat' ), array( 'cancel_donation' ) ),
+		'cert_sent'     => array( __( 'Certificate sent', 'flx-chat' ), array( 'certificate_resend' ) ),
+		'code_sent'     => array( __( 'Verification code sent', 'flx-chat' ), array( 'verify_send' ) ),
+		'code_whatsapp' => array( __( 'Code sent via WhatsApp', 'flx-chat' ), array( 'verify_send' ) ),
+		'code_sms'      => array( __( 'Code sent via SMS', 'flx-chat' ), array( 'verify_send' ) ),
+		'code_email'    => array( __( 'Code sent by e-mail', 'flx-chat' ), array( 'verify_send' ) ),
+		'verified'      => array( __( 'Number or e-mail verified', 'flx-chat' ), array( 'verify_check' ) ),
+		'reminder'      => array( __( 'Reminder set', 'flx-chat' ), array( 'reminder_set' ) ),
+		'memory'        => array( __( 'Saved to memory', 'flx-chat' ), array( 'remember' ) ),
 	);
 }
 
@@ -238,10 +238,10 @@ function flxc_bench_scenario( $id ) {
 function flxc_bench_save_scenario( array $in ) {
 	$sc = flxc_bench_normalize( $in );
 	if ( '' === $sc['title'] || ! $sc['turns'] ) {
-		return new WP_Error( 'flxc_bench', __( 'Başlık ve en az bir mesaj gerekli.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_bench', __( 'A title and at least one message are required.', 'flx-chat' ) );
 	}
 	if ( 'user' !== end( $sc['turns'] )['role'] ) {
-		return new WP_Error( 'flxc_bench', __( 'Son mesaj müşterinin olmalı; asistan ona cevap verir.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_bench', __( 'The last message must be from the customer; the assistant replies to it.', 'flx-chat' ) );
 	}
 	$items = flxc_bench_scenarios();
 	$found = false;
@@ -297,7 +297,7 @@ function flxc_bench_reset_defaults() {
 /** Mesajlardaki {tur}, {birim}, {brand} yer tutucuları. */
 function flxc_bench_fill( $text, array $state = array() ) {
 	$types = flxc_ai_types();
-	$tur   = __( 'bağış', 'flx-chat' );
+	$tur   = __( 'donation', 'flx-chat' );
 	$birim = $tur;
 	if ( $types ) {
 		$tur = mb_strtolower( $types[0]['title'], 'UTF-8' );
@@ -335,18 +335,18 @@ function flxc_bench_update_run( $id, array $f ) {
 function flxc_bench_prompt_choice( $choice ) {
 	$choice = (string) $choice;
 	if ( 'builtin' === $choice ) {
-		return array( flxc_bot_default_prompt(), __( 'Yerleşik metin', 'flx-chat' ) );
+		return array( flxc_bot_default_prompt(), __( 'Built-in text', 'flx-chat' ) );
 	}
 	if ( '' !== $choice && 'live' !== $choice ) {
 		$v = flxc_bot_prompt_version( $choice );
 		if ( $v ) {
 			/* translators: %s: version id */
-			return array( (string) $v['text'], '' !== $v['note'] ? $v['note'] : sprintf( __( 'Sürüm %s', 'flx-chat' ), $v['id'] ) );
+			return array( (string) $v['text'], '' !== $v['note'] ? $v['note'] : sprintf( __( 'Version %s', 'flx-chat' ), $v['id'] ) );
 		}
 	}
 	$active = flxc_bot_prompt_version( flxc_bot_prompt_store()['active'] );
 	/* translators: %s: version label */
-	return array( flxc_bot_prompt_template(), sprintf( __( 'Yayındaki talimat (%s)', 'flx-chat' ), $active ? ( '' !== $active['note'] ? $active['note'] : $active['id'] ) : __( 'yerleşik', 'flx-chat' ) ) );
+	return array( flxc_bot_prompt_template(), sprintf( __( 'Live instructions (%s)', 'flx-chat' ), $active ? ( '' !== $active['note'] ? $active['note'] : $active['id'] ) : __( 'built-in', 'flx-chat' ) ) );
 }
 
 /** Yeni çalıştırma kaydı açar. */
@@ -361,7 +361,7 @@ function flxc_bench_create_run( array $p ) {
 		}
 	}
 	if ( ! $q ) {
-		return new WP_Error( 'flxc_bench', __( 'Çalıştırılacak senaryo yok.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_bench', __( 'No scenarios to run.', 'flx-chat' ) );
 	}
 	list( $text, $label ) = flxc_bench_prompt_choice( $p['prompt'] ?? 'live' );
 	$model = flxc_clean_model_id( $p['model'] ?? '' );
@@ -390,7 +390,7 @@ function flxc_bench_create_run( array $p ) {
 		// Tablo yoksa ya da yazılamıyorsa sessizce kaybolmasın.
 		flxc_install_tables();
 		/* translators: %s: database error */
-		return new WP_Error( 'flxc_bench_db', sprintf( __( 'Çalıştırma kaydedilemedi (veritabanı: %s). Sayfayı yenileyip tekrar deneyin.', 'flx-chat' ), $wpdb->last_error ? $wpdb->last_error : '?' ) );
+		return new WP_Error( 'flxc_bench_db', sprintf( __( 'The run could not be saved (database: %s). Refresh the page and try again.', 'flx-chat' ), $wpdb->last_error ? $wpdb->last_error : '?' ) );
 	}
 	return flxc_bench_run_row( (int) $wpdb->insert_id );
 }
@@ -420,7 +420,7 @@ function flxc_bench_step( $run_id ) {
 	if ( ! $got ) {
 		$run = flxc_bench_run_row( $run_id );
 		if ( ! $run ) {
-			return new WP_Error( 'flxc_bench', __( 'Çalıştırma bulunamadı.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_bench', __( 'Run not found.', 'flx-chat' ) );
 		}
 		return array( 'run' => flxc_bench_run_for_js( $run ), 'result' => null, 'done' => 'running' !== $run['status'], 'busy' => true );
 	}
@@ -469,7 +469,7 @@ function flxc_bench_step_locked( $run_id ) {
 	global $wpdb;
 	$run = flxc_bench_run_row( $run_id );
 	if ( ! $run ) {
-		return new WP_Error( 'flxc_bench', __( 'Çalıştırma bulunamadı.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_bench', __( 'Run not found.', 'flx-chat' ) );
 	}
 	if ( 'running' !== $run['status'] ) {
 		return array( 'run' => flxc_bench_run_for_js( $run ), 'result' => null, 'done' => true );
@@ -528,7 +528,7 @@ function flxc_bench_step_locked( $run_id ) {
 	// Önceki deneme sunucu tarafından kesildiyse (adım kaydı yarım) say; üçüncüde hata yazılıp geçilir.
 	if ( ! empty( $d['open'] ) && ! flxc_bench_retry( $res ) ) {
 		$d['open']         = 0;
-		$d['transcript'][] = array( 'role' => 'error', 'content' => __( 'Bu adım üç kez yarıda kaldı (sunucu isteği kesti ya da yapay zekâ cevap vermedi); senaryo hatalı sayıldı.', 'flx-chat' ) );
+		$d['transcript'][] = array( 'role' => 'error', 'content' => __( 'This step was cut off three times (the server stopped the request or the AI did not respond); the scenario was counted as an error.', 'flx-chat' ) );
 		$d['checks']       = array();
 		$wpdb->update( $rt, array( 'status' => 'error', 'data' => flxc_json( $d ) ), array( 'id' => (int) $res['id'] ) );
 		flxc_bench_recount( $run_id );
@@ -560,7 +560,7 @@ function flxc_bench_step_locked( $run_id ) {
 		$bm = $run['model'] === flxc_ai_model( 'bot' ) ? '' : $run['model'];
 		if ( '' !== (string) ( $sc['runner'] ?? '' ) ) {
 			// 1.36.0: başka eklentinin senaryosu; aynı dönüş biçimi (replies, state, log, handoff, usage).
-			$r = apply_filters( 'flxc_bench_turn', new WP_Error( 'flxc_bench_runner', __( 'Bu senaryoyu oynatacak eklenti kapalı.', 'flx-chat' ) ), $sc['runner'], $d['history'], (array) $d['state'], $bm, $sc );
+			$r = apply_filters( 'flxc_bench_turn', new WP_Error( 'flxc_bench_runner', __( 'The plugin that would run this scenario is inactive.', 'flx-chat' ) ), $sc['runner'], $d['history'], (array) $d['state'], $bm, $sc );
 		} else {
 			$r = flxc_bot_sandbox_turn( $d['history'], (array) $d['state'], $run['prompt_text'], $bm, time() + flxc_bench_step_sec(), (string) ( $run['meta']['cache'] ?? '' ) );
 		}
@@ -585,7 +585,7 @@ function flxc_bench_step_locked( $run_id ) {
 				$d['tools'][] = $l['tool'];
 			}
 			if ( ! empty( $r['keyword'] ) ) {
-				$tools[]      = 'handoff (' . __( 'anahtar kelime', 'flx-chat' ) . ')';
+				$tools[]      = 'handoff (' . __( 'keyword', 'flx-chat' ) . ')';
 				$d['tools'][] = 'handoff';
 			}
 			$replies = $r['replies'] ? $r['replies'] : array( '' );
@@ -607,7 +607,7 @@ function flxc_bench_step_locked( $run_id ) {
 			if ( ! empty( $r['handoff'] ) ) {
 				$d['handoff'] = true;
 				if ( $d['i'] < count( $turns ) ) {
-					$d['transcript'][] = array( 'role' => 'note', 'content' => __( 'Sohbet ekibe devredildi; kalan mesajlar gönderilmedi.', 'flx-chat' ) );
+					$d['transcript'][] = array( 'role' => 'note', 'content' => __( 'The chat was handed to the team; the remaining messages were not sent.', 'flx-chat' ) );
 				}
 			}
 		}
@@ -685,7 +685,7 @@ function flxc_bench_initial_data( array $sc ) {
 	if ( ! empty( $sc['setup'] ) ) {
 		$labels = array_intersect_key( flxc_bench_setups(), array_flip( $sc['setup'] ) );
 		/* translators: %s: setup list */
-		$d['transcript'][] = array( 'role' => 'note', 'content' => sprintf( __( 'Başlangıç (test): %s', 'flx-chat' ), implode( ', ', $labels ) ) );
+		$d['transcript'][] = array( 'role' => 'note', 'content' => sprintf( __( 'Start (test): %s', 'flx-chat' ), implode( ', ', $labels ) ) );
 	}
 	$d['seed'] = count( (array) ( $d['state']['tdons'] ?? array() ) );
 	if ( $d['seed'] ) {
@@ -698,9 +698,9 @@ function flxc_bench_initial_data( array $sc ) {
 			$d['state']['as_user'] = $uid;
 			$u                     = get_userdata( $uid );
 			/* translators: %s: user name */
-			$d['transcript'][] = array( 'role' => 'note', 'content' => sprintf( __( 'Personel olarak yazıyor: %s', 'flx-chat' ), $u ? $u->display_name : '#' . $uid ) );
+			$d['transcript'][] = array( 'role' => 'note', 'content' => sprintf( __( 'Writing as staff: %s', 'flx-chat' ), $u ? $u->display_name : '#' . $uid ) );
 		} else {
-			$d['transcript'][] = array( 'role' => 'note', 'content' => __( 'Personel aracı açık kullanıcı yok (Flux Roles, Profil › WhatsApp numarası); müşteri olarak oynatıldı.', 'flx-chat' ) );
+			$d['transcript'][] = array( 'role' => 'note', 'content' => __( 'No user with staff tools (Flux Roles, Profile › WhatsApp number); played as a donor.', 'flx-chat' ) );
 		}
 	}
 	return $d;
@@ -842,23 +842,23 @@ function flxc_bench_checks( array $sc, array $d ) {
 	$text = flxc_bot_lower( implode( "\n", $bot ) );
 	$out  = array();
 	$yn   = function ( $v ) {
-		return $v ? __( 'evet', 'flx-chat' ) : __( 'hayır', 'flx-chat' );
+		return $v ? __( 'yes', 'flx-chat' ) : __( 'no', 'flx-chat' );
 	};
 	if ( '' !== $e['handoff'] ) {
 		$got   = ! empty( $d['handoff'] );
-		$out[] = array( 'key' => 'handoff', 'pass' => ( 'yes' === $e['handoff'] ) === $got, 'detail' => sprintf( /* translators: 1: expected, 2: actual */ __( 'Beklenen: %1$s, olan: %2$s', 'flx-chat' ), $yn( 'yes' === $e['handoff'] ), $yn( $got ) ) );
+		$out[] = array( 'key' => 'handoff', 'pass' => ( 'yes' === $e['handoff'] ) === $got, 'detail' => sprintf( /* translators: 1: expected, 2: actual */ __( 'Expected: %1$s, actual: %2$s', 'flx-chat' ), $yn( 'yes' === $e['handoff'] ), $yn( $got ) ) );
 	}
 	if ( '' !== $e['donation'] ) {
 		$got   = ! empty( $state['donation'] );
-		$out[] = array( 'key' => 'donation', 'pass' => ( 'yes' === $e['donation'] ) === $got, 'detail' => sprintf( /* translators: 1: expected, 2: actual */ __( 'Beklenen: %1$s, olan: %2$s', 'flx-chat' ), $yn( 'yes' === $e['donation'] ), $yn( $got ) ) );
+		$out[] = array( 'key' => 'donation', 'pass' => ( 'yes' === $e['donation'] ) === $got, 'detail' => sprintf( /* translators: 1: expected, 2: actual */ __( 'Expected: %1$s, actual: %2$s', 'flx-chat' ), $yn( 'yes' === $e['donation'] ), $yn( $got ) ) );
 	}
 	if ( '' !== $e['price_list'] ) {
 		$got   = in_array( 'send_price_list', $tools, true );
-		$out[] = array( 'key' => 'price_list', 'pass' => ( 'yes' === $e['price_list'] ) === $got, 'detail' => sprintf( /* translators: 1: expected, 2: actual */ __( 'Beklenen: %1$s, olan: %2$s', 'flx-chat' ), $yn( 'yes' === $e['price_list'] ), $yn( $got ) ) );
+		$out[] = array( 'key' => 'price_list', 'pass' => ( 'yes' === $e['price_list'] ) === $got, 'detail' => sprintf( /* translators: 1: expected, 2: actual */ __( 'Expected: %1$s, actual: %2$s', 'flx-chat' ), $yn( 'yes' === $e['price_list'] ), $yn( $got ) ) );
 	}
 	if ( $e['order_qty'] ) {
 		$got   = (int) ( $state['order']['qty'] ?? 0 );
-		$out[] = array( 'key' => 'order_qty', 'pass' => $got === (int) $e['order_qty'], 'detail' => sprintf( /* translators: 1: expected, 2: actual */ __( 'Beklenen: %1$s, olan: %2$s', 'flx-chat' ), (int) $e['order_qty'], $got ? $got : '–' ) );
+		$out[] = array( 'key' => 'order_qty', 'pass' => $got === (int) $e['order_qty'], 'detail' => sprintf( /* translators: 1: expected, 2: actual */ __( 'Expected: %1$s, actual: %2$s', 'flx-chat' ), (int) $e['order_qty'], $got ? $got : '–' ) );
 	}
 	foreach ( $e['contains'] as $w ) {
 		$ok = false;
@@ -892,7 +892,7 @@ function flxc_bench_checks( array $sc, array $d ) {
 				}
 			);
 			if ( ! $open ) {
-				$out[] = array( 'key' => 'tools', 'pass' => true, 'detail' => $w . ' · ' . __( 'bu sitede kapalı, bakılmadı', 'flx-chat' ) );
+				$out[] = array( 'key' => 'tools', 'pass' => true, 'detail' => $w . ' · ' . __( 'disabled on this site, not checked', 'flx-chat' ) );
 				continue;
 			}
 			$out[] = array( 'key' => 'tools', 'pass' => (bool) array_intersect( $alts, $tools ), 'detail' => $w );
@@ -967,9 +967,9 @@ function flxc_bench_state_checks( array $want, array $d ) {
 		if ( ! isset( $keys[ $k ] ) ) {
 			continue;
 		}
-		$label = ( $neg ? __( 'Olmamalı', 'flx-chat' ) . ': ' : '' ) . $keys[ $k ][0];
+		$label = ( $neg ? __( 'Must not', 'flx-chat' ) . ': ' : '' ) . $keys[ $k ][0];
 		if ( ! array_intersect( $keys[ $k ][1], array_keys( $have ) ) ) {
-			$out[] = array( 'key' => 'state', 'pass' => true, 'detail' => $label . ' · ' . __( 'bu sitede kapalı, bakılmadı', 'flx-chat' ) );
+			$out[] = array( 'key' => 'state', 'pass' => true, 'detail' => $label . ' · ' . __( 'disabled on this site, not checked', 'flx-chat' ) );
 			continue;
 		}
 		$got   = flxc_bench_state_has( $k, $d );
@@ -1039,7 +1039,7 @@ function flxc_bench_judge( array $sc, array $transcript, $model, $deadline = 0, 
 			if ( $all ) {
 				break;
 			}
-			return new WP_Error( 'flxc_bot_deadline', __( 'Yapay zekâ zamanında cevap vermedi.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_bot_deadline', __( 'The AI did not respond in time.', 'flx-chat' ) );
 		}
 		$r = flxc_ai_chat(
 			array(
@@ -1069,7 +1069,7 @@ function flxc_bench_judge( array $sc, array $transcript, $model, $deadline = 0, 
 	$log   = array( 'model' => $model, 'system' => $sys, 'user' => $usr, 'raw' => (string) ( $r['content'] ?? '' ), 'usage' => $usage );
 	$json  = preg_match( '/\{.*\}/s', (string) ( $r['content'] ?? '' ), $m ) ? json_decode( $m[0], true ) : null;
 	if ( ! is_array( $json ) || ! isset( $json['pass'] ) ) {
-		return array( 'pass' => false, 'score' => 0, 'reason' => __( 'Değerlendirici anlaşılır cevap vermedi.', 'flx-chat' ), 'usage' => $usage, 'log' => $log );
+		return array( 'pass' => false, 'score' => 0, 'reason' => __( 'The judge did not give a clear answer.', 'flx-chat' ), 'usage' => $usage, 'log' => $log );
 	}
 	return array(
 		'pass'   => true === $json['pass'] || 'true' === $json['pass'],
@@ -1123,7 +1123,7 @@ function flxc_bench_ai_write( $request, $current = null, $model = '' ) {
 	$usage = flxc_ai_usage_sum( isset( $r['_usage'] ) ? array( $r['_usage'] ) : array(), '' !== $model ? $model : flxc_ai_model() );
 	$json  = preg_match( '/\{.*\}/s', (string) ( $r['content'] ?? '' ), $m ) ? json_decode( $m[0], true ) : null;
 	if ( ! is_array( $json ) || empty( $json['scenario'] ) || ! is_array( $json['scenario'] ) ) {
-		return new WP_Error( 'flxc_bench_ai', __( 'Yapay zekâ senaryo üretemedi, isteği biraz daha açık yazıp tekrar deneyin.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_bench_ai', __( 'The AI could not write a scenario; describe the request more clearly and try again.', 'flx-chat' ) );
 	}
 	$sc = $json['scenario'];
 	if ( $current ) {
@@ -1222,7 +1222,7 @@ function flxc_bench_report( $run_id, $format = 'md' ) {
 	global $wpdb;
 	$run = flxc_bench_run_row( $run_id );
 	if ( ! $run ) {
-		return new WP_Error( 'flxc_bench', __( 'Çalıştırma bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxc_bench', __( 'Run not found.', 'flx-chat' ), array( 'status' => 404 ) );
 	}
 	$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'bench_results' ) . " WHERE run_id = %d AND status <> 'skipped' ORDER BY id", $run_id ), ARRAY_A ); // phpcs:ignore
 	$res  = array();
@@ -1274,27 +1274,27 @@ function flxc_bench_report( $run_id, $format = 'md' ) {
 	};
 	$groups = flxc_bench_groups();
 	$fin    = (int) $run['passed'] + (int) $run['failed'];
-	$md     = '# ' . sprintf( /* translators: %d: run id */ __( 'Benchmark raporu #%d', 'flx-chat' ), (int) $run_id ) . "\n\n";
-	$md    .= '- ' . __( 'Tarih', 'flx-chat' ) . ': ' . flxc_local_date( $run['created_at'] ) . "\n";
-	$md    .= '- ' . __( 'Eklenti', 'flx-chat' ) . ': Flux Chat ' . FLXC_VERSION . ' · ' . flxc_brand_name() . "\n";
-	$md    .= '- ' . __( 'Durum', 'flx-chat' ) . ': ' . $run['status'] . "\n";
+	$md     = '# ' . sprintf( /* translators: %d: run id */ __( 'Benchmark report #%d', 'flx-chat' ), (int) $run_id ) . "\n\n";
+	$md    .= '- ' . __( 'Date', 'flx-chat' ) . ': ' . flxc_local_date( $run['created_at'] ) . "\n";
+	$md    .= '- ' . __( 'Plugin', 'flx-chat' ) . ': Flux Chat ' . FLXC_VERSION . ' · ' . flxc_brand_name() . "\n";
+	$md    .= '- ' . __( 'Status', 'flx-chat' ) . ': ' . $run['status'] . "\n";
 	if ( ! empty( $run['meta']['reason'] ) && 'paused' === $run['status'] ) {
-		$md .= '- ' . __( 'Durma nedeni', 'flx-chat' ) . ': ' . $run['meta']['reason'] . "\n";
+		$md .= '- ' . __( 'Stop reason', 'flx-chat' ) . ': ' . $run['meta']['reason'] . "\n";
 	}
-	$md    .= '- ' . __( 'Asistan modeli', 'flx-chat' ) . ': `' . $run['model'] . "`\n";
-	$md    .= '- ' . __( 'Değerlendirici model', 'flx-chat' ) . ': `' . $run['judge_model'] . "`\n";
-	$md    .= '- ' . __( 'Talimat', 'flx-chat' ) . ': ' . $run['prompt_label'] . "\n";
-	$md    .= '- ' . __( 'Başarı', 'flx-chat' ) . ': ' . (int) $run['passed'] . ' / ' . $fin . ( $fin ? ' (' . round( 100 * (int) $run['passed'] / $fin ) . '%)' : '' ) . ' · ' . __( 'senaryo', 'flx-chat' ) . ': ' . (int) $run['total'] . "\n";
-	$md    .= '- ' . __( 'Maliyet', 'flx-chat' ) . ': ' . $money( $run['cost'] ) . ' / ' . __( 'limit', 'flx-chat' ) . ' ' . $money( $run['limit_usd'] ) . ' · ' . __( 'Giriş / çıkış token', 'flx-chat' ) . ': ' . (int) $run['tokens_in'] . ' / ' . (int) $run['tokens_out'] . "\n";
+	$md    .= '- ' . __( 'Assistant model', 'flx-chat' ) . ': `' . $run['model'] . "`\n";
+	$md    .= '- ' . __( 'Judge model', 'flx-chat' ) . ': `' . $run['judge_model'] . "`\n";
+	$md    .= '- ' . __( 'Instructions', 'flx-chat' ) . ': ' . $run['prompt_label'] . "\n";
+	$md    .= '- ' . __( 'Success', 'flx-chat' ) . ': ' . (int) $run['passed'] . ' / ' . $fin . ( $fin ? ' (' . round( 100 * (int) $run['passed'] / $fin ) . '%)' : '' ) . ' · ' . __( 'scenarios', 'flx-chat' ) . ': ' . (int) $run['total'] . "\n";
+	$md    .= '- ' . __( 'Cost', 'flx-chat' ) . ': ' . $money( $run['cost'] ) . ' / ' . __( 'limit', 'flx-chat' ) . ' ' . $money( $run['limit_usd'] ) . ' · ' . __( 'Input / output tokens', 'flx-chat' ) . ': ' . (int) $run['tokens_in'] . ' / ' . (int) $run['tokens_out'] . "\n";
 	$ci = flxc_bench_cache_info( $run );
 	if ( '' !== $ci['mode'] ) {
-		$md .= '- ' . __( 'Claude önbelleği', 'flx-chat' ) . ': ' . flxc_ai_cache_label( $ci['mode'] ) . ' · ' . sprintf( /* translators: 1: read tokens, 2: written tokens */ __( 'okunan %1$d, yazılan %2$d token', 'flx-chat' ), $ci['cr'], $ci['cw'] ) . ' · ' . __( 'tasarruf', 'flx-chat' ) . ' ' . $money( $ci['save'] ) . "\n";
+		$md .= '- ' . __( 'Claude cache', 'flx-chat' ) . ': ' . flxc_ai_cache_label( $ci['mode'] ) . ' · ' . sprintf( /* translators: 1: read tokens, 2: written tokens */ __( '%1$d tokens read, %2$d written', 'flx-chat' ), $ci['cr'], $ci['cw'] ) . ' · ' . __( 'savings', 'flx-chat' ) . ' ' . $money( $ci['save'] ) . "\n";
 	}
 	if ( ! empty( $run['meta']['by'] ) ) {
-		$md .= "\n## " . __( 'Model kırılımı', 'flx-chat' ) . "\n\n| " . __( 'Model', 'flx-chat' ) . ' | ' . __( 'Rol', 'flx-chat' ) . ' | ' . __( 'İstek', 'flx-chat' ) . ' | ' . __( 'Giriş', 'flx-chat' ) . ' | ' . __( 'Çıkış', 'flx-chat' ) . ' | ' . __( 'Maliyet', 'flx-chat' ) . " |\n|---|---|---|---|---|---|\n";
+		$md .= "\n## " . __( 'Model breakdown', 'flx-chat' ) . "\n\n| " . __( 'Model', 'flx-chat' ) . ' | ' . __( 'Role', 'flx-chat' ) . ' | ' . __( 'Requests', 'flx-chat' ) . ' | ' . __( 'Input', 'flx-chat' ) . ' | ' . __( 'Output', 'flx-chat' ) . ' | ' . __( 'Cost', 'flx-chat' ) . " |\n|---|---|---|---|---|---|\n";
 		foreach ( $run['meta']['by'] as $m => $roles ) {
 			foreach ( (array) $roles as $role => $u ) {
-				$md .= '| `' . $m . '` | ' . ( 'judge' === $role ? __( 'Değerlendirici', 'flx-chat' ) : __( 'Asistan', 'flx-chat' ) ) . ' | ' . (int) $u['n'] . ' | ' . (int) $u['in'] . ' | ' . (int) $u['out'] . ' | ' . $money( $u['cost'] ) . " |\n";
+				$md .= '| `' . $m . '` | ' . ( 'judge' === $role ? __( 'Judge', 'flx-chat' ) : __( 'Assistant', 'flx-chat' ) ) . ' | ' . (int) $u['n'] . ' | ' . (int) $u['in'] . ' | ' . (int) $u['out'] . ' | ' . $money( $u['cost'] ) . " |\n";
 			}
 		}
 	}
@@ -1310,53 +1310,53 @@ function flxc_bench_report( $run_id, $format = 'md' ) {
 			$hc[ $x['handoff'] ]++;
 		}
 	}
-	$md .= "\n## " . __( 'Gruplar', 'flx-chat' ) . "\n\n";
+	$md .= "\n## " . __( 'Groups', 'flx-chat' ) . "\n\n";
 	foreach ( $by as $g => $x ) {
 		$md .= '- ' . ( $groups[ $g ] ?? $g ) . ': ' . $x[0] . ' / ' . $x[1] . "\n";
 	}
-	$md .= '- ' . __( 'Ekibe devir doğruluğu', 'flx-chat' ) . ': ' . sprintf( /* translators: 1-4: counts */ __( 'doğru devir %1$d, doğru devretmeme %2$d, gereksiz devir %3$d, kaçan devir %4$d', 'flx-chat' ), $hc['tp'], $hc['tn'], $hc['fp'], $hc['fn'] ) . "\n";
-	$md .= "\n## " . __( 'Talimat (tam metin)', 'flx-chat' ) . "\n\n" . $fence( $run['prompt_text'] );
-	$md .= "\n## " . __( 'Senaryolar', 'flx-chat' ) . "\n";
+	$md .= '- ' . __( 'Handoff accuracy', 'flx-chat' ) . ': ' . sprintf( /* translators: 1-4: counts */ __( 'correct handoff %1$d, correct no-handoff %2$d, unnecessary handoff %3$d, missed handoff %4$d', 'flx-chat' ), $hc['tp'], $hc['tn'], $hc['fp'], $hc['fn'] ) . "\n";
+	$md .= "\n## " . __( 'Instructions (full text)', 'flx-chat' ) . "\n\n" . $fence( $run['prompt_text'] );
+	$md .= "\n## " . __( 'Scenarios', 'flx-chat' ) . "\n";
 	foreach ( $res as $x ) {
 		$mark = 'pass' === $x['status'] ? '✓' : ( 'running' === $x['status'] ? '…' : '✕' );
 		$md  .= "\n### " . $mark . ' ' . $x['title'] . ' (' . ( $groups[ $x['group'] ] ?? $x['group'] ) . ', `' . $x['scenario'] . "`)\n\n";
 		if ( '' !== $x['desc'] ) {
 			$md .= $x['desc'] . "\n\n";
 		}
-		$md .= '- ' . __( 'Sonuç', 'flx-chat' ) . ': ' . $x['status'] . ( '' !== $x['handoff'] ? ' · ' . __( 'devir', 'flx-chat' ) . ': ' . $x['handoff'] : '' ) . ' · ' . $money( $x['cost'] ) . ' · ' . $x['tokens_in'] . '/' . $x['tokens_out'] . ' token · ' . round( $x['ms'] / 1000, 1 ) . " sn\n";
-		$md .= '- ' . __( 'Beklentiler', 'flx-chat' ) . ': `' . $j( $x['expect'] ) . "`\n\n";
-		$md .= '#### ' . __( 'Sohbet', 'flx-chat' ) . "\n\n";
+		$md .= '- ' . __( 'Result', 'flx-chat' ) . ': ' . $x['status'] . ( '' !== $x['handoff'] ? ' · ' . __( 'handoff', 'flx-chat' ) . ': ' . $x['handoff'] : '' ) . ' · ' . $money( $x['cost'] ) . ' · ' . $x['tokens_in'] . '/' . $x['tokens_out'] . ' token · ' . round( $x['ms'] / 1000, 1 ) . " sn\n";
+		$md .= '- ' . __( 'Expectations', 'flx-chat' ) . ': `' . $j( $x['expect'] ) . "`\n\n";
+		$md .= '#### ' . __( 'Conversation', 'flx-chat' ) . "\n\n";
 		foreach ( $x['transcript'] as $m ) {
 			$role = (string) ( $m['role'] ?? '' );
-			$who  = 'user' === $role ? __( 'Müşteri', 'flx-chat' ) : ( 'assistant' === $role ? __( 'Asistan', 'flx-chat' ) : ( 'error' === $role ? __( 'Hata', 'flx-chat' ) : __( 'Not', 'flx-chat' ) ) );
-			$md  .= '**' . $who . '**' . ( ! empty( $m['scripted'] ) ? ' _(' . __( 'yazılı geçmiş', 'flx-chat' ) . ')_' : '' ) . ( ! empty( $m['auto'] ) ? ' _(' . __( 'sistem mesajı', 'flx-chat' ) . ')_' : '' ) . ":\n\n" . ( '' !== (string) ( $m['content'] ?? '' ) ? '> ' . str_replace( "\n", "\n> ", (string) $m['content'] ) . "\n\n" : "> _(" . __( 'boş', 'flx-chat' ) . ")_\n\n" );
+			$who  = 'user' === $role ? __( 'Customer', 'flx-chat' ) : ( 'assistant' === $role ? __( 'Assistant', 'flx-chat' ) : ( 'error' === $role ? __( 'Error', 'flx-chat' ) : __( 'Note', 'flx-chat' ) ) );
+			$md  .= '**' . $who . '**' . ( ! empty( $m['scripted'] ) ? ' _(' . __( 'scripted history', 'flx-chat' ) . ')_' : '' ) . ( ! empty( $m['auto'] ) ? ' _(' . __( 'system message', 'flx-chat' ) . ')_' : '' ) . ":\n\n" . ( '' !== (string) ( $m['content'] ?? '' ) ? '> ' . str_replace( "\n", "\n> ", (string) $m['content'] ) . "\n\n" : "> _(" . __( 'empty', 'flx-chat' ) . ")_\n\n" );
 			foreach ( (array) ( $m['calls'] ?? array() ) as $c ) {
-				$md .= '- ⚙ `' . $c['tool'] . '` ' . __( 'argüman', 'flx-chat' ) . ': `' . $j( $c['args'] ) . '` → ' . __( 'sonuç', 'flx-chat' ) . ': `' . $j( $c['result'] ) . "`\n";
+				$md .= '- ⚙ `' . $c['tool'] . '` ' . __( 'arguments', 'flx-chat' ) . ': `' . $j( $c['args'] ) . '` → ' . __( 'result', 'flx-chat' ) . ': `' . $j( $c['result'] ) . "`\n";
 			}
 			if ( empty( $m['calls'] ) && ! empty( $m['tools'] ) ) {
 				$md .= '- ⚙ ' . $m['tools'] . "\n";
 			}
 			if ( ! empty( $m['usage'] ) ) {
 				$u   = $m['usage'];
-				$md .= '- ' . __( 'Kullanım', 'flx-chat' ) . ': ' . (int) $u['in'] . '/' . (int) $u['out'] . ' token · ' . $money( $u['cost'] ) . ' · ' . (int) ( $u['calls'] ?? 1 ) . ' ' . __( 'istek', 'flx-chat' ) . ( ! empty( $u['model'] ) ? ' · `' . $u['model'] . '`' : '' ) . "\n";
+				$md .= '- ' . __( 'Usage', 'flx-chat' ) . ': ' . (int) $u['in'] . '/' . (int) $u['out'] . ' token · ' . $money( $u['cost'] ) . ' · ' . (int) ( $u['calls'] ?? 1 ) . ' ' . __( 'requests', 'flx-chat' ) . ( ! empty( $u['model'] ) ? ' · `' . $u['model'] . '`' : '' ) . "\n";
 			}
 			if ( ! empty( $m['calls'] ) || ! empty( $m['usage'] ) || ! empty( $m['tools'] ) ) {
 				$md .= "\n";
 			}
 		}
-		$md .= '#### ' . __( 'Kontroller', 'flx-chat' ) . "\n\n";
+		$md .= '#### ' . __( 'Checks', 'flx-chat' ) . "\n\n";
 		foreach ( $x['checks'] as $c ) {
 			$md .= '- ' . ( $c['pass'] ? '✓' : '✕' ) . ' ' . $c['key'] . ( isset( $c['score'] ) ? ' (' . (int) $c['score'] . '/5)' : '' ) . ': ' . (string) ( $c['detail'] ?? '' ) . "\n";
 		}
-		$md .= '- ' . __( 'Son durum', 'flx-chat' ) . ': `' . $j( $x['final'] ) . "`\n";
+		$md .= '- ' . __( 'Final state', 'flx-chat' ) . ': `' . $j( $x['final'] ) . "`\n";
 		foreach ( $x['checks'] as $c ) {
 			if ( empty( $c['log'] ) ) {
 				continue;
 			}
-			$md .= "\n#### " . __( 'Değerlendirici logu', 'flx-chat' ) . ' (`' . $c['log']['model'] . "`)\n\n";
-			$md .= __( 'Sistem mesajı', 'flx-chat' ) . ":\n\n" . $fence( $c['log']['system'] );
-			$md .= "\n" . __( 'Gönderilen', 'flx-chat' ) . ":\n\n" . $fence( $c['log']['user'] );
-			$md .= "\n" . __( 'Ham cevap', 'flx-chat' ) . ":\n\n" . $fence( $c['log']['raw'] );
+			$md .= "\n#### " . __( 'Judge log', 'flx-chat' ) . ' (`' . $c['log']['model'] . "`)\n\n";
+			$md .= __( 'System message', 'flx-chat' ) . ":\n\n" . $fence( $c['log']['system'] );
+			$md .= "\n" . __( 'Sent', 'flx-chat' ) . ":\n\n" . $fence( $c['log']['user'] );
+			$md .= "\n" . __( 'Raw response', 'flx-chat' ) . ":\n\n" . $fence( $c['log']['raw'] );
 		}
 	}
 	return array( 'filename' => $name . '.md', 'mime' => 'text/markdown', 'content' => $md );
@@ -1512,7 +1512,7 @@ add_action(
 /* ---------- REST ---------- */
 
 function flxc_bench_need_ai() {
-	return flxc_ai_ready() ? null : new WP_Error( 'flxc_ai', __( 'Önce Ayarlar › Yapay zekâ bölümünden anahtar ve model girin.', 'flx-chat' ), array( 'status' => 400 ) );
+	return flxc_ai_ready() ? null : new WP_Error( 'flxc_ai', __( 'First enter an API key and model under Settings › AI.', 'flx-chat' ), array( 'status' => 400 ) );
 }
 
 add_action(
@@ -1620,7 +1620,7 @@ add_action(
 					global $wpdb;
 					$run = flxc_bench_run_row( (int) $req['id'] );
 					if ( ! $run ) {
-						return new WP_Error( 'flxc_bench', __( 'Çalıştırma bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+						return new WP_Error( 'flxc_bench', __( 'Run not found.', 'flx-chat' ), array( 'status' => 404 ) );
 					}
 					if ( 'running' === $run['status'] ) {
 						flxc_bench_revive();
@@ -1670,7 +1670,7 @@ add_action(
 				function ( WP_REST_Request $req ) {
 					$run = flxc_bench_run_row( (int) $req['id'] );
 					if ( ! $run ) {
-						return new WP_Error( 'flxc_bench', __( 'Çalıştırma bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+						return new WP_Error( 'flxc_bench', __( 'Run not found.', 'flx-chat' ), array( 'status' => 404 ) );
 					}
 					$to = 'resume' === $req->get_param( 'action' ) ? 'running' : 'stopped';
 					$f  = array( 'status' => $to );

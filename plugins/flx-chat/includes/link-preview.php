@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || exit;
 function flxc_rest_link_preview( WP_REST_Request $req ) {
 	$url = flxc_lp_clean_url( (string) $req->get_param( 'url' ) );
 	if ( ! $url ) {
-		return new WP_Error( 'flxc_url', __( 'Geçersiz adres.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_url', __( 'Invalid address.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$res = rest_ensure_response( flxc_link_preview( $url, (bool) $req->get_param( 'fresh' ) ) );
 	$res->header( 'Cache-Control', 'private, max-age=600' );

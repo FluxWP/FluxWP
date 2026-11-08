@@ -1,0 +1,1198 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "AI chat window, live chat and customer support"
+msgstr "KI-Chatfenster, Live-Chat und Kundensupport"
+
+msgid "Site chats"
+msgstr "Site-Chats"
+
+msgid "Open"
+msgstr "Offen"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "With assistant"
+msgstr "Mit Assistent"
+
+msgid "Closed"
+msgstr "Geschlossen"
+
+msgid "Search name, email, phone or page"
+msgstr "Suchen Sie nach Name, E-Mail, Telefonnummer oder Seite"
+
+msgid "No chats in this view."
+msgstr "In dieser Ansicht sind keine Chats vorhanden."
+
+msgid "Pick a chat on the left."
+msgstr "Wählen Sie links einen Chat aus."
+
+msgid "Loading…"
+msgstr "Laden…"
+
+msgid "Type your reply… (Enter sends, Shift+Enter for a new line)"
+msgstr "Geben Sie Ihre Antwort ein ... (Geben Sie sends ein, Umschalt+Eingabetaste für eine neue Zeile)"
+
+msgid "Send"
+msgstr "Senden"
+
+msgid "Attach file"
+msgstr "Datei anhängen"
+
+msgid "Close chat"
+msgstr "Chat schließen"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Delete this chat and its files permanently?"
+msgstr "Diesen Chat und seine Dateien dauerhaft löschen?"
+
+msgid "Close the chat? It reopens if the visitor writes again."
+msgstr "Den Chat schließen? Es wird erneut geöffnet, wenn der Besucher erneut schreibt."
+
+msgid "Open in Flux Chat"
+msgstr "Im Flux Chat öffnen"
+
+msgid "This chat is also in the Flux Chat inbox; replies from either place reach the visitor."
+msgstr "Dieser Chat befindet sich auch im Flux Chat-Posteingang. Antworten von beiden Orten erreichen den Besucher."
+
+msgid "Visitor"
+msgstr "Besucher"
+
+msgid "You"
+msgstr "Du"
+
+msgid "On the page"
+msgstr "Auf der Seite"
+
+msgid "Left"
+msgstr "Links"
+
+msgid "typing…"
+msgstr "Tippen..."
+
+msgid "Page"
+msgstr "Seite"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Member"
+msgstr "Mitglied"
+
+msgid "Order"
+msgstr "Bestellen"
+
+msgid "Rating"
+msgstr "Bewertung"
+
+msgid "Assistant's note"
+msgstr "Anmerkung des Assistenten"
+
+msgid "Lead"
+msgstr "Führen"
+
+msgid "Agent"
+msgstr "Agent"
+
+msgid "Something went wrong. Please try again."
+msgstr "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+
+msgid "Waiting for an agent"
+msgstr "Warten auf einen Agenten"
+
+msgid "In conversation"
+msgstr "Im Gespräch"
+
+msgid "Left a message"
+msgstr "Habe eine Nachricht hinterlassen"
+
+msgid "More"
+msgstr "Mehr"
+
+msgid "Back to list"
+msgstr "Zurück zur Liste"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Suggested products"
+msgstr "Empfohlene Produkte"
+
+msgid "You are not allowed to do this."
+msgstr "Dies ist Ihnen nicht gestattet."
+
+msgid "Conversations from the chat window on your site. Chats the assistant answered are here too; visitors asking for an agent are on top."
+msgstr "Gespräche aus dem Chat-Fenster auf Ihrer Website. Hier finden Sie auch Chats, auf die der Assistent geantwortet hat. Besucher, die nach einem Makler fragen, sind ganz oben."
+
+msgid "Flux Chat"
+msgstr "Flux-Chat"
+
+msgid "Flux AI Chatbot"
+msgstr "Flux AI Chatbot"
+
+msgid "Chatbot"
+msgstr "Chatbot"
+
+msgid "Chats"
+msgstr "Chats"
+
+msgid "Chatbot settings"
+msgstr "Chatbot-Einstellungen"
+
+msgid "Choose avatar"
+msgstr "Wählen Sie Avatar"
+
+msgid "Use this image"
+msgstr "Verwenden Sie dieses Bild"
+
+msgid "You have unsaved changes"
+msgstr "Sie haben nicht gespeicherte Änderungen"
+
+msgid "Hi, how long does shipping take?"
+msgstr "Hallo, wie lange dauert der Versand?"
+
+msgid "Orders ship within **1-3 business days**. Here is a product you might like:"
+msgstr "Bestellungen werden innerhalb von **1-3 Werktagen** versendet. Hier ist ein Produkt, das Ihnen gefallen könnte:"
+
+msgid "Orders ship within **1-3 business days**; shipping is free over $50. Anything else I can help with?"
+msgstr "Bestellungen werden innerhalb von **1-3 Werktagen** versendet; Der Versand ist ab 50 $ kostenlos. Gibt es sonst noch etwas, bei dem ich helfen kann?"
+
+msgid "General"
+msgstr "Allgemein"
+
+msgid "Appearance"
+msgstr "Aussehen"
+
+msgid "Texts"
+msgstr "Texte"
+
+msgid "AI"
+msgstr "KI"
+
+msgid "Live chat"
+msgstr "Live-Chat"
+
+msgid "Visibility"
+msgstr "Sichtbarkeit"
+
+msgid "An AI chat window for your site: it answers from your content and products and hands the chat to a live agent when needed. Changes show up in the preview on the right right away."
+msgstr "Ein KI-Chatfenster für Ihre Website: Es antwortet auf Ihre Inhalte und Produkte und leitet den Chat bei Bedarf an einen Live-Agenten weiter. Änderungen werden sofort in der Vorschau rechts angezeigt."
+
+msgid "Try on site"
+msgstr "Probieren Sie es vor Ort aus"
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "last 30 days"
+msgstr "letzten 30 Tage"
+
+msgid "Solved by the assistant"
+msgstr "Vom Assistenten gelöst"
+
+msgid "without an agent"
+msgstr "ohne Agenten"
+
+msgid "left contact details"
+msgstr "Kontaktdaten hinterlassen"
+
+msgid "Orders after chat"
+msgstr "Bestellungen nach Chat"
+
+msgid "within 7 days"
+msgstr "innerhalb von 7 Tagen"
+
+msgid "Satisfaction"
+msgstr "Zufriedenheit"
+
+msgid "%s ratings"
+msgstr "%s-Bewertungen"
+
+msgid "no ratings yet"
+msgstr "Noch keine Bewertungen"
+
+msgid "Chat window"
+msgstr "Chatfenster"
+
+msgid "Show on site"
+msgstr "Vor Ort anzeigen"
+
+msgid "While off, visitors don't see the window; admins can preview it with \"Try on site\"."
+msgstr "Während der Abwesenheit sehen Besucher das Fenster nicht; Administratoren können es mit „Vor Ort testen“ in der Vorschau anzeigen."
+
+msgid "Mode"
+msgstr "Modus"
+
+msgid "AI + live chat"
+msgstr "KI + Live-Chat"
+
+msgid "The assistant answers and hands over to an agent when needed. Recommended."
+msgstr "Der Assistent antwortet und übergibt bei Bedarf an einen Agenten. Empfohlen."
+
+msgid "AI only"
+msgstr "Nur KI"
+
+msgid "No handoff; the assistant shares your contact details."
+msgstr "Keine Übergabe; Der Assistent teilt Ihre Kontaktdaten mit."
+
+msgid "Live chat only"
+msgstr "Nur Live-Chat"
+
+msgid "No assistant; messages go straight to agents."
+msgstr "Kein Assistent; Nachrichten gehen direkt an die Agenten."
+
+msgid "Connections"
+msgstr "Verbindungen"
+
+msgid "Flux AI & MCP connected"
+msgstr "Flux AI & MCP verbunden"
+
+msgid "Key, model, spending limit and logs come from Flux AI."
+msgstr "Schlüssel, Modell, Ausgabenlimit und Protokolle stammen von Flux AI."
+
+msgid "Choose model"
+msgstr "Modell auswählen"
+
+msgid "Flux AI is not ready"
+msgstr "Flux AI ist noch nicht bereit"
+
+msgid "Enter an API key in Flux AI & MCP or turn on Flux AI Chatbot under Connected systems."
+msgstr "Geben Sie einen API-Schlüssel in Flux AI & MCP ein oder aktivieren Sie Flux AI Chatbot unter „Verbundene Systeme“."
+
+msgid "Flux AI"
+msgstr "Fluss-KI"
+
+msgid "Flux AI & MCP is not installed"
+msgstr "Flux AI & MCP ist nicht installiert"
+
+msgid "Install the Flux AI & MCP plugin for the assistant. Until then the window works as live chat only."
+msgstr "Installieren Sie das Flux AI & MCP-Plugin für den Assistenten. Bis dahin funktioniert das Fenster nur als Live-Chat."
+
+msgid "Live chat off"
+msgstr "Live-Chat ab"
+
+msgid "Mode is \"AI only\"."
+msgstr "Der Modus ist „Nur KI“."
+
+msgid "Flux Chat inbox"
+msgstr "Flux-Chat-Posteingang"
+
+msgid "All site chats (including the ones the assistant answered) appear in the call center with the site chat icon; agents reply from the same screen as WhatsApp and other channels."
+msgstr "Alle Site-Chats (einschließlich derjenigen, die der Assistent beantwortet hat) werden im Callcenter mit dem Site-Chat-Symbol angezeigt. Agenten antworten über denselben Bildschirm wie WhatsApp und andere Kanäle."
+
+msgid "Plugin inbox"
+msgstr "Plugin-Posteingang"
+
+msgid "Handed-over chats land on the Chatbot › Chats screen."
+msgstr "Übergebene Chats landen auf dem Bildschirm „Chatbot › Chats“."
+
+msgid "Handed-over chats land on the Chatbot › Chats screen. With Flux Chat (1.37+) installed they can also be answered from the call center."
+msgstr "Übergebene Chats landen auf dem Bildschirm „Chatbot › Chats“. Wenn Flux Chat (1.37+) installiert ist, können sie auch vom Callcenter aus beantwortet werden."
+
+msgid "Online now"
+msgstr "Jetzt online"
+
+msgid "Outside working hours now"
+msgstr "Jetzt außerhalb der Arbeitszeit"
+
+msgid "Working hours: %s"
+msgstr "Arbeitszeit:%s"
+
+msgid "Working hours come from the Flux Chat settings."
+msgstr "Die Arbeitszeiten ergeben sich aus den Flux Chat-Einstellungen."
+
+msgid "Agents always count as online."
+msgstr "Agenten gelten immer als online."
+
+msgid "Hours"
+msgstr "Stunden"
+
+msgid "Open from a page"
+msgstr "Von einer Seite aus öffnen"
+
+msgid "Any button or link can open the window."
+msgstr "Jede Schaltfläche oder jeder Link kann das Fenster öffnen."
+
+msgid "Message us"
+msgstr "Schreiben Sie uns eine Nachricht"
+
+msgid "Shortcode: a button inside the page."
+msgstr "Shortcode: eine Schaltfläche innerhalb der Seite."
+
+msgid "A link to #flxcb-open opens the window."
+msgstr "Ein Link zu #flxcb-open öffnet das Fenster."
+
+msgid "Added to a button, the window opens with this message."
+msgstr "Wird eine Schaltfläche hinzugefügt, öffnet sich das Fenster mit dieser Meldung."
+
+msgid "Open with JavaScript."
+msgstr "Mit JavaScript öffnen."
+
+msgid "Color and theme"
+msgstr "Farbe und Thema"
+
+msgid "Main color"
+msgstr "Hauptfarbe"
+
+msgid "Theme color"
+msgstr "Themenfarbe"
+
+msgid "Follow theme"
+msgstr "Thema folgen"
+
+msgid "When empty, the site's theme color is used."
+msgstr "Wenn es leer ist, wird die Designfarbe der Site verwendet."
+
+msgid "Text color (header and buttons)"
+msgstr "Textfarbe (Kopfzeile und Schaltflächen)"
+
+msgid "Automatic"
+msgstr "Automatisch"
+
+msgid "When empty, a readable color is picked from the main color."
+msgstr "Wenn es leer ist, wird eine lesbare Farbe aus der Hauptfarbe ausgewählt."
+
+msgid "Light / dark"
+msgstr "Hell/dunkel"
+
+msgid "Automatic (follows device and site)"
+msgstr "Automatisch (folgt Gerät und Standort)"
+
+msgid "Always light"
+msgstr "Immer leicht"
+
+msgid "Always dark"
+msgstr "Immer dunkel"
+
+msgid "Header"
+msgstr "Kopfzeile"
+
+msgid "Gradient"
+msgstr "Farbverlauf"
+
+msgid "Solid color"
+msgstr "Einfarbig"
+
+msgid "Font"
+msgstr "Schriftart"
+
+msgid "Same as site"
+msgstr "Identisch mit Website"
+
+msgid "System font"
+msgstr "Systemschriftart"
+
+msgid "Assistant"
+msgstr "Assistent"
+
+msgid "Assistant name"
+msgstr "Name des Assistenten"
+
+msgid "Shown in the chat header."
+msgstr "Wird im Chat-Header angezeigt."
+
+msgid "Avatar image"
+msgstr "Avatar-Bild"
+
+msgid "Choose"
+msgstr "Wählen Sie"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "A square image works best. Without one, the icon below is used."
+msgstr "Ein quadratisches Bild funktioniert am besten. Ohne eines wird das untenstehende Symbol verwendet."
+
+msgid "Avatar icon"
+msgstr "Avatar-Symbol"
+
+msgid "Robot"
+msgstr "Roboter"
+
+msgid "Sparkles"
+msgstr "Funkelt"
+
+msgid "Headset"
+msgstr "Headset"
+
+msgid "Smiley"
+msgstr "Smiley"
+
+msgid "Site icon"
+msgstr "Site-Symbol"
+
+msgid "Launcher button and position"
+msgstr "Startknopf und Position"
+
+msgid "Button icon"
+msgstr "Schaltflächensymbol"
+
+msgid "Bubble"
+msgstr "Blase"
+
+msgid "Question"
+msgstr "Frage"
+
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Label next to the button"
+msgstr "Beschriftung neben der Schaltfläche"
+
+msgid "When empty only the button shows. Example: Need help?"
+msgstr "Wenn es leer ist, wird nur die Schaltfläche angezeigt. Beispiel: Brauchen Sie Hilfe?"
+
+msgid "None"
+msgstr "Keine"
+
+msgid "Position"
+msgstr "Position"
+
+msgid "Bottom right"
+msgstr "Unten rechts"
+
+msgid "Bottom left"
+msgstr "Unten links"
+
+msgid "Button size"
+msgstr "Knopfgröße"
+
+msgid "Side spacing"
+msgstr "Seitenabstand"
+
+msgid "Bottom spacing"
+msgstr "Bodenabstand"
+
+msgid "Window width"
+msgstr "Fensterbreite"
+
+msgid "Corner radius"
+msgstr "Eckenradius"
+
+msgid "Full screen on mobile"
+msgstr "Vollbild auf dem Handy"
+
+msgid "On small screens the window covers the whole screen."
+msgstr "Bei kleinen Bildschirmen deckt das Fenster den gesamten Bildschirm ab."
+
+msgid "Notification sound"
+msgstr "Benachrichtigungston"
+
+msgid "A short sound for a new reply while the window is closed."
+msgstr "Ein kurzer Ton für eine neue Antwort, während das Fenster geschlossen ist."
+
+msgid "\"Powered by FluxWP\" note"
+msgstr "Hinweis „Powered by FluxWP“."
+
+msgid "A small signature at the bottom of the window."
+msgstr "Eine kleine Signatur am unteren Rand des Fensters."
+
+msgid "Home screen"
+msgstr "Startbildschirm"
+
+msgid "The welcome screen shown when the window opens. Empty texts use the default for the visitor's language (TR/EN)."
+msgstr "Der Begrüßungsbildschirm wird angezeigt, wenn das Fenster geöffnet wird. Leere Texte verwenden die Standardeinstellung für die Sprache des Besuchers (TR/EN)."
+
+msgid "Show home screen"
+msgstr "Startbildschirm anzeigen"
+
+msgid "When off, the window opens straight into the chat."
+msgstr "Wenn diese Option deaktiviert ist, öffnet sich das Fenster direkt zum Chat."
+
+msgid "Message field"
+msgstr "Nachrichtenfeld"
+
+msgid "Subtitle"
+msgstr "Untertitel"
+
+msgid "Team avatars"
+msgstr "Team-Avatare"
+
+msgid "Photos of agents who replied recently show in the header."
+msgstr "In der Kopfzeile werden Fotos von Agenten angezeigt, die kürzlich geantwortet haben."
+
+msgid "Suggested questions"
+msgstr "Vorgeschlagene Fragen"
+
+msgid "One question per line (up to 6). Clickable on the home screen and at the start of a chat."
+msgstr "Eine Frage pro Zeile (bis zu 6). Anklickbar auf dem Startbildschirm und zu Beginn eines Chats."
+
+msgid "How long does shipping take?\nHow do returns work?\nWhere is my order?"
+msgstr "Wie lange dauert der Versand?\nWie funktionieren Retouren?\nWo ist meine Bestellung?"
+
+msgid "Contact links"
+msgstr "Kontaktlinks"
+
+msgid "One per line: Label | address. https, mailto:, tel: and wa.me are supported."
+msgstr "Eine pro Zeile: Label | Adresse. https, mailto:, tel: und wa.me werden unterstützt."
+
+msgid "Chat texts"
+msgstr "Chat-Texte"
+
+msgid "Welcome message"
+msgstr "Willkommensnachricht"
+
+msgid "The assistant's first message."
+msgstr "Die erste Nachricht des Assistenten."
+
+msgid "Teaser bubble"
+msgstr "Teaser-Blase"
+
+msgid "After the visitor stays on the page a while, a short message pops up above the button (once per session)."
+msgstr "Nachdem der Besucher eine Weile auf der Seite verweilt, erscheint eine kurze Nachricht über der Schaltfläche (einmal pro Sitzung)."
+
+msgid "Show teaser bubble"
+msgstr "Teaser-Blase anzeigen"
+
+msgid "Message"
+msgstr "Nachricht"
+
+msgid "After how many seconds"
+msgstr "Nach wie vielen Sekunden"
+
+msgid "The assistant is not working right now."
+msgstr "Der Assistent funktioniert derzeit nicht."
+
+msgid "AI calls go through Flux AI & MCP, where the key, model and spending limit live. Until Flux AI is ready, visitor messages go to an agent."
+msgstr "KI-Anrufe laufen über Flux AI & MCP, wo der Schlüssel, das Modell und das Ausgabenlimit live sind. Bis Flux AI bereit ist, gehen Besuchernachrichten an einen Agenten."
+
+msgid "Key, model, spending limit and logs are in Flux AI & MCP. To pick a model just for this plugin:"
+msgstr "Schlüssel, Modell, Ausgabenlimit und Protokolle sind in Flux AI & MCP enthalten. So wählen Sie ein Modell nur für dieses Plugin aus:"
+
+msgid "Flux AI › Connected systems › Flux AI Chatbot"
+msgstr "Flux AI › Vernetzte Systeme › Flux AI Chatbot"
+
+msgid "Personality and instructions"
+msgstr "Persönlichkeit und Anweisungen"
+
+msgid "Personality and tone"
+msgstr "Persönlichkeit und Ton"
+
+msgid "Example: Be friendly but polite, keep answers short."
+msgstr "Beispiel: Seien Sie freundlich, aber höflich, halten Sie die Antworten kurz."
+
+msgid "Rules"
+msgstr "Regeln"
+
+msgid "What the assistant must follow. Example: Don't give discount codes. Hand business sales questions to an agent."
+msgstr "Was der Assistent beachten muss. Beispiel: Geben Sie keine Rabattcodes weiter. Geben Sie geschäftliche Verkaufsfragen an einen Agenten weiter."
+
+msgid "Knowledge base"
+msgstr "Wissensdatenbank"
+
+msgid "Information not on your site: shipping, returns, opening hours, FAQs. Plain text; the assistant answers only from here and your site."
+msgstr "Informationen, die nicht auf Ihrer Website verfügbar sind: Versand, Rücksendungen, Öffnungszeiten, FAQs. Klartext; Der Assistent antwortet nur von hier und Ihrer Website aus."
+
+msgid "Shipping: 1-3 business days, free over $50.\nReturns: within 14 days with the invoice.\nQ: Do you have a store?\nA: We sell online only."
+msgstr "Versand: 1–3 Werktage, ab 50 $ kostenlos.\nRücksendungen: innerhalb von 14 Tagen mit Rechnung.\nF: Haben Sie ein Geschäft?\nA: Wir verkaufen nur online."
+
+msgid "Sources and tools"
+msgstr "Quellen und Werkzeuge"
+
+msgid "The assistant searches these before answering. Only published, non-password-protected content is read."
+msgstr "Der Assistent durchsucht diese, bevor er antwortet. Es werden nur veröffentlichte, nicht passwortgeschützte Inhalte gelesen."
+
+msgid "Pages"
+msgstr "Seiten"
+
+msgid "Posts"
+msgstr "Beiträge"
+
+msgid "WooCommerce products"
+msgstr "WooCommerce-Produkte"
+
+msgid "Price, stock and link; products appear as cards in the window."
+msgstr "Preis, Lagerbestand und Link; Produkte erscheinen als Karten im Fenster."
+
+msgid "Product cards"
+msgstr "Produktkarten"
+
+msgid "Image, price, \"View\" and \"Add to cart\"."
+msgstr "Bild, Preis, „Ansehen“ und „In den Warenkorb legen“."
+
+msgid "Flux Wiki pages"
+msgstr "Flux-Wiki-Seiten"
+
+msgid "Order status"
+msgstr "Bestellstatus"
+
+msgid "A logged-in customer can only ask about their own orders."
+msgstr "Ein eingeloggter Kunde kann nur Fragen zu seinen eigenen Bestellungen stellen."
+
+msgid "Save contact details"
+msgstr "Kontaktdaten speichern"
+
+msgid "If the visitor gives an email or phone, it is saved to the chat (and to Flux CRM when installed)."
+msgstr "Wenn der Besucher eine E-Mail oder Telefonnummer angibt, wird diese im Chat (und bei Installation in Flux CRM) gespeichert."
+
+msgid "Limits"
+msgstr "Grenzen"
+
+msgid "A public AI can burn through the budget fast. The overall spending limit is in Flux AI; these are extra protection."
+msgstr "Eine öffentliche KI kann das Budget schnell aufzehren. Die Gesamtausgabengrenze liegt in Flux AI; Dies ist ein zusätzlicher Schutz."
+
+msgid "Replies per chat"
+msgstr "Antworten pro Chat"
+
+msgid "When reached, the chat goes to an agent."
+msgstr "Bei Erreichen geht der Chat an einen Agenten."
+
+msgid "Per chat per hour"
+msgstr "Pro Chat und Stunde"
+
+msgid "0 = unlimited"
+msgstr "0 = unbegrenzt"
+
+msgid "Daily total on the site"
+msgstr "Tagessumme auf der Website"
+
+msgid "Handoff to a person"
+msgstr "Übergabe an eine Person"
+
+msgid "Flux Chat when available, otherwise the plugin inbox."
+msgstr "Flux Chat, sofern verfügbar, ansonsten der Plugin-Posteingang."
+
+msgid "Call center inbox, together with WhatsApp chats."
+msgstr "Callcenter-Posteingang, zusammen mit WhatsApp-Chats."
+
+msgid "Flux Chat 1.37+ is not installed; the inbox is used."
+msgstr "Flux Chat 1.37+ ist nicht installiert; Der Posteingang wird verwendet."
+
+msgid "Chatbot › Chats screen, with email notification."
+msgstr "Chatbot › Chats-Bildschirm mit E-Mail-Benachrichtigung."
+
+msgid "Ask for email"
+msgstr "Bitte um E-Mail"
+
+msgid "Only outside working hours"
+msgstr "Nur außerhalb der Arbeitszeit"
+
+msgid "Before handing over"
+msgstr "Vor der Übergabe"
+
+msgid "Never"
+msgstr "Niemals"
+
+msgid "Notification email"
+msgstr "Benachrichtigungs-E-Mail"
+
+msgid "New handoffs and after-hours messages. When empty, the site admin."
+msgstr "Neue Übergaben und Nachrichten außerhalb der Geschäftszeiten. Wenn leer, der Site-Administrator."
+
+msgid "After-hours message"
+msgstr "Nachricht außerhalb der Geschäftszeiten"
+
+msgid "Also send replies by email"
+msgstr "Senden Sie Antworten auch per E-Mail"
+
+msgid "If the visitor has left the page, the agent's reply goes to their email."
+msgstr "Wenn der Besucher die Seite verlassen hat, geht die Antwort des Agenten an seine E-Mail."
+
+msgid "End-of-chat rating"
+msgstr "Bewertung am Ende des Chats"
+
+msgid "1-5 stars and an optional note."
+msgstr "1-5 Sterne und eine optionale Notiz."
+
+msgid "File sharing"
+msgstr "Dateifreigabe"
+
+msgid "Images, PDFs and office documents; files are not put in a public folder."
+msgstr "Bilder, PDFs und Bürodokumente; Dateien werden nicht in einem öffentlichen Ordner abgelegt."
+
+msgid "Voice dictation"
+msgstr "Sprachdiktat"
+
+msgid "A microphone button in the message field: the visitor speaks and the text lands in the field. Uses the browser's speech recognition; the button is hidden where it isn't supported."
+msgstr "Ein Mikrofonknopf im Nachrichtenfeld: Der Besucher spricht und der Text landet im Feld. Nutzt die Spracherkennung des Browsers; Die Schaltfläche ist dort ausgeblendet, wo sie nicht unterstützt wird."
+
+msgid "Largest file (MB)"
+msgstr "Größte Datei (MB)"
+
+msgid "Working hours"
+msgstr "Arbeitszeiten"
+
+msgid "Outside working hours visitors see \"leave a message\" and the agent replies by email. Hours follow the site time zone."
+msgstr "Außerhalb der Geschäftszeiten sehen Besucher „Nachricht hinterlassen“ und der Agent antwortet per E-Mail. Die Stunden richten sich nach der Zeitzone der Website."
+
+msgid "Always open"
+msgstr "Immer geöffnet"
+
+msgid "Weekly hours"
+msgstr "Wöchentliche Stunden"
+
+msgid "Flux Chat hours"
+msgstr "Flux-Chat-Stunden"
+
+msgid "Flux Chat is not installed"
+msgstr "Flux Chat ist nicht installiert"
+
+msgid "Where to show"
+msgstr "Wo zeigen"
+
+msgid "Who sees it"
+msgstr "Wer sieht es"
+
+msgid "Everyone"
+msgstr "Jeder"
+
+msgid "Only visitors (not logged in)"
+msgstr "Nur Besucher (nicht eingeloggt)"
+
+msgid "Only members (logged in)"
+msgstr "Nur Mitglieder (eingeloggt)"
+
+msgid "Device"
+msgstr "Gerät"
+
+msgid "Desktop"
+msgstr "Desktop"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Hidden on these addresses"
+msgstr "Versteckt auf diesen Adressen"
+
+msgid "One path per line. * is a wildcard. Example: /checkout/* or /campaign"
+msgstr "Ein Pfad pro Zeile. * ist ein Platzhalter. Beispiel: /checkout/* oder /campaign"
+
+msgid "Privacy"
+msgstr "Privatsphäre"
+
+msgid "The visitor's IP address is not stored; the chat is matched by a random key in the browser."
+msgstr "Die IP-Adresse des Besuchers wird nicht gespeichert; Dem Chat wird ein zufälliger Schlüssel im Browser zugeordnet."
+
+msgid "Note under the message field"
+msgstr "Hinweis unter dem Nachrichtenfeld"
+
+msgid "Example: Chats are kept under our <a href=\"/privacy\">Privacy Policy</a>. Links are allowed."
+msgstr "Beispiel: Chats werden gemäß unserer<a href=\"/privacy\">-Datenschutzrichtlinie</a>geführt. Links sind erlaubt."
+
+msgid "Retention (days)"
+msgstr "Aufbewahrung (Tage)"
+
+msgid "Expired chats and their files are deleted. 0 = keep."
+msgstr "Abgelaufene Chats und ihre Dateien werden gelöscht. 0 = behalten."
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "Messages you type in the preview go to the real assistant and show up in Chats."
+msgstr "Nachrichten, die Sie in der Vorschau eingeben, werden an den eigentlichen Assistenten weitergeleitet und in Chats angezeigt."
+
+msgid "The assistant of the chat window on the site, and site chats."
+msgstr "Der Assistent des Chat-Fensters auf der Site und Site-Chats."
+
+msgid "Assistant model"
+msgstr "Assistentenmodell"
+
+msgid "The model that answers visitors. A fast, low-cost model is recommended; when empty, the Flux AI default."
+msgstr "Das Modell, das Besuchern antwortet. Empfehlenswert ist ein schnelles, kostengünstiges Modell; wenn leer, die Flux AI-Standardeinstellung."
+
+msgid "Site chat transcript"
+msgstr "Transkript des Site-Chats"
+
+msgid "Chat not found."
+msgstr "Chat nicht gefunden."
+
+msgid "Chat statistics"
+msgstr "Chat-Statistiken"
+
+msgid "Site chat"
+msgstr "Site-Chat"
+
+msgid "Site chat · %s"
+msgstr "Site-Chat ·%s"
+
+msgid "A site chat is waiting for an agent."
+msgstr "Ein Site-Chat wartet auf einen Agenten."
+
+msgid "Page:"
+msgstr "Seite:"
+
+msgid "Contact:"
+msgstr "Kontakt:"
+
+msgid "Assistant note:"
+msgstr "Anmerkung des Assistenten:"
+
+msgid "Site chat not found."
+msgstr "Site-Chat nicht gefunden."
+
+msgid "Could not read the file."
+msgstr "Die Datei konnte nicht gelesen werden."
+
+msgid "This action isn't available in site chats."
+msgstr "Diese Aktion ist in Site-Chats nicht verfügbar."
+
+msgid "Could not save the message."
+msgstr "Die Nachricht konnte nicht gespeichert werden."
+
+msgid "Open chat"
+msgstr "Chat öffnen"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Minimize"
+msgstr "Minimieren"
+
+msgid "Back"
+msgstr "Zurück"
+
+msgid "Home"
+msgstr "Zuhause"
+
+msgid "Messages"
+msgstr "Nachrichten"
+
+msgid "Dictate"
+msgstr "Diktieren"
+
+msgid "Stop listening"
+msgstr "Hör auf zuzuhören"
+
+msgid "Continue the chat"
+msgstr "Setzen Sie den Chat fort"
+
+msgid "We usually reply within a few minutes"
+msgstr "Wir antworten in der Regel innerhalb weniger Minuten"
+
+msgid "Our assistant replies instantly"
+msgstr "Unser Assistent antwortet sofort"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Offline right now"
+msgstr "Bin gerade offline"
+
+msgid "Thinking…"
+msgstr "Denken..."
+
+msgid "Searching the site…"
+msgstr "Durchsuchen der Website..."
+
+msgid "Looking at products…"
+msgstr "Produkte ansehen..."
+
+msgid "Looking at your orders…"
+msgstr "Ich schaue mir Ihre Bestellungen an ..."
+
+msgid "Talk to a person"
+msgstr "Sprich mit einer Person"
+
+msgid "Would you like to talk to a person?"
+msgstr "Möchten Sie mit einer Person sprechen?"
+
+msgid "Your place in line: %d"
+msgstr "Ihr Platz in der Schlange:%d"
+
+msgid "Seen"
+msgstr "Gesehen"
+
+msgid "Sent"
+msgstr "Gesendet"
+
+msgid "End chat"
+msgstr "Chat beenden"
+
+msgid "End the chat?"
+msgstr "Den Chat beenden?"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "New chat"
+msgstr "Neuer Chat"
+
+msgid "How was the chat?"
+msgstr "Wie war der Chat?"
+
+msgid "Anything you'd like to add? (optional)"
+msgstr "Möchten Sie noch etwas hinzufügen? (optional)"
+
+msgid "Thanks, we got your feedback."
+msgstr "Vielen Dank, wir haben Ihr Feedback erhalten."
+
+msgid "Your name"
+msgstr "Dein Name"
+
+msgid "Your email"
+msgstr "Ihre E-Mail"
+
+msgid "Phone (optional)"
+msgstr "Telefon (optional)"
+
+msgid "Your message"
+msgstr "Ihre Nachricht"
+
+msgid "Leave a message"
+msgstr "Hinterlassen Sie eine Nachricht"
+
+msgid "Leave your email so we can get back to you."
+msgstr "Hinterlassen Sie Ihre E-Mail-Adresse, damit wir uns bei Ihnen melden können."
+
+msgid "Enter a valid email address."
+msgstr "Geben Sie eine gültige E-Mail-Adresse ein."
+
+msgid "Connection problem. Please try again."
+msgstr "Verbindungsproblem. Bitte versuchen Sie es erneut."
+
+msgid "Try again"
+msgstr "Versuchen Sie es erneut"
+
+msgid "The file is too large."
+msgstr "Die Datei ist zu groß."
+
+msgid "Add to cart"
+msgstr "In den Warenkorb legen"
+
+msgid "View"
+msgstr "Ansicht"
+
+msgid "Out of stock"
+msgstr "Ausverkauft"
+
+msgid "Powered by FluxWP"
+msgstr "Unterstützt von FluxWP"
+
+msgid "Today"
+msgstr "Heute"
+
+msgid "new message"
+msgstr "neue Nachricht"
+
+msgid "Ask a question"
+msgstr "Stellen Sie eine Frage"
+
+msgid "Contact us"
+msgstr "Kontaktieren Sie uns"
+
+msgid "Shop and products"
+msgstr "Shop und Produkte"
+
+msgid "Cart"
+msgstr "Warenkorb"
+
+msgid "Checkout"
+msgstr "Kasse"
+
+msgid "My account"
+msgstr "Mein Konto"
+
+msgid "Other (archives, search, 404…)"
+msgstr "Sonstiges (Archive, Suche, 404...)"
+
+msgid "Hi there 👋"
+msgstr "Hallo 👋"
+
+msgid "How can we help? We answer your questions right away."
+msgstr "Wie können wir helfen? Wir beantworten Ihre Fragen umgehend."
+
+msgid "Hi! I'm this site's assistant. Ask me about products, orders or anything else."
+msgstr "Hallo! Ich bin der Assistent dieser Seite. Fragen Sie mich nach Produkten, Bestellungen oder anderem."
+
+msgid "Type your message…"
+msgstr "Geben Sie Ihre Nachricht ein ..."
+
+msgid "Hi! Is there anything I can help with?"
+msgstr "Hallo! Gibt es irgendetwas, bei dem ich helfen kann?"
+
+msgid "No agents are online right now. Leave a message and we'll get back to you by email."
+msgstr "Im Moment sind keine Agenten online. Hinterlassen Sie eine Nachricht und wir werden uns per E-Mail bei Ihnen melden."
+
+msgid "Weekdays %s"
+msgstr "Wochentage%s"
+
+msgid "Every day %s"
+msgstr "Jeden Tag%s"
+
+msgid "Mon"
+msgstr "Mo"
+
+msgid "Tue"
+msgstr "Di"
+
+msgid "Wed"
+msgstr "Mi"
+
+msgid "Thu"
+msgstr "Do"
+
+msgid "Fri"
+msgstr "Fr"
+
+msgid "Sat"
+msgstr "Sa"
+
+msgid "Sun"
+msgstr "Sonne"
+
+msgid "Monday"
+msgstr "Montag"
+
+msgid "Tuesday"
+msgstr "Dienstag"
+
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+msgid "Thursday"
+msgstr "Donnerstag"
+
+msgid "Friday"
+msgstr "Freitag"
+
+msgid "Saturday"
+msgstr "Samstag"
+
+msgid "Sunday"
+msgstr "Sonntag"
+
+msgid "Connecting you to an agent…"
+msgstr "Wir verbinden Sie mit einem Agenten ..."
+
+msgid "%s joined the chat"
+msgstr "%sist dem Chat beigetreten"
+
+msgid "You ended the chat."
+msgstr "Sie haben den Chat beendet."
+
+msgid "The chat has ended."
+msgstr "Der Chat ist beendet."
+
+msgid "The visitor ended the site chat."
+msgstr "Der Besucher hat den Site-Chat beendet."
+
+msgid "Site chat #%d"
+msgstr "Site-Chat #%d"
+
+msgid "[%1$s] Message from site chat: %2$s"
+msgstr "[%1$s] Nachricht vom Site-Chat:%2$s"
+
+msgid "[%1$s] Site chat waiting for an agent: %2$s"
+msgstr "[%1$s] Site-Chat wartet auf einen Agenten:%2$s"
+
+msgid "To reply:"
+msgstr "Um zu antworten:"
+
+msgid "%s: you have a reply to your chat"
+msgstr "%s: Sie haben eine Antwort auf Ihren Chat"
+
+msgid "To continue the chat, open the site in the same browser:"
+msgstr "Um den Chat fortzusetzen, öffnen Sie die Site im selben Browser:"
+
+msgid "The file could not be uploaded."
+msgstr "Die Datei konnte nicht hochgeladen werden."
+
+msgid "Files can be up to %d MB."
+msgstr "Dateien können bis zu%dMB groß sein."
+
+msgid "This file type can't be sent. Send an image, PDF or office document."
+msgstr "Dieser Dateityp kann nicht gesendet werden. Senden Sie ein Bild, ein PDF oder ein Office-Dokument."
+
+msgid "Could not save the file."
+msgstr "Die Datei konnte nicht gespeichert werden."
+
+msgid "Too many requests. Please wait a moment."
+msgstr "Zu viele Anfragen. Bitte warten Sie einen Moment."
+
+msgid "Chat is closed right now."
+msgstr "Der Chat ist derzeit geschlossen."
+
+msgid "The message is empty."
+msgstr "Die Nachricht ist leer."
+
+msgid "You're typing too fast. Wait a moment and try again."
+msgstr "Du tippst zu schnell. Warten Sie einen Moment und versuchen Sie es erneut."
+
+msgid "Too many new chats were started. Please try again later."
+msgstr "Es wurden zu viele neue Chats gestartet. Bitte versuchen Sie es später noch einmal."
+
+msgid "Could not start the chat."
+msgstr "Der Chat konnte nicht gestartet werden."
+
+msgid "I can't answer right now. Please write again in a moment or reach us through our contact details."
+msgstr "Ich kann im Moment nicht antworten. Bitte schreiben Sie uns gleich noch einmal oder erreichen Sie uns über unsere Kontaktdaten."
+
+msgid "Live chat is off."
+msgstr "Der Live-Chat ist deaktiviert."
+
+msgid "Too many requests. Please try again later."
+msgstr "Zu viele Anfragen. Bitte versuchen Sie es später noch einmal."
+
+msgid "Thanks! We got your message and will reply to your email."
+msgstr "Danke! Wir haben Ihre Nachricht erhalten und werden auf Ihre E-Mail antworten."
+
+msgid "Write a message first."
+msgstr "Schreiben Sie zunächst eine Nachricht."
+
+msgid "File sharing is off."
+msgstr "Die Dateifreigabe ist deaktiviert."
+
+msgid "Too many files were sent. Please try again later."
+msgstr "Es wurden zu viele Dateien gesendet. Bitte versuchen Sie es später noch einmal."
+
+msgid "No file selected."
+msgstr "Keine Datei ausgewählt."
+
+msgid "File not found."
+msgstr "Datei nicht gefunden."
+
+msgid "Visitor rating: %1$s %2$s"
+msgstr "Besucherbewertung:%1$s%2$s"
+
+msgid "Visitor #%d"
+msgstr "Besucher #%d"
+
+msgid "%d chat is waiting for a reply."
+msgid_plural "%d chats are waiting for a reply."
+msgstr[0] "Der%d-Chat wartet auf eine Antwort."
+msgstr[1] "%d-Chats warten auf eine Antwort."
+
+msgid "Site chat window"
+msgstr "Site-Chat-Fenster"
+
+msgid "The window is off; visitors don't see it."
+msgstr "Das Fenster ist aus; Besucher sehen es nicht."
+
+msgid "Chat assistant"
+msgstr "Chat-Assistent"
+
+msgid "Flux AI connected; the assistant is answering."
+msgstr "Flux AI verbunden; Der Assistent antwortet."
+
+msgid "Flux AI is not ready; messages go to an agent instead of the assistant."
+msgstr "Flux AI ist noch nicht bereit; Nachrichten gehen an einen Agenten statt an den Assistenten."
+
+msgid "Handoffs go to the Flux Chat inbox."
+msgstr "Übergaben gehen an den Flux Chat-Posteingang."
+
+msgid "Handoffs go to the plugin inbox."
+msgstr "Übergaben gehen an den Plugin-Posteingang."
+
+msgid "Order placed: #%1$s (%2$s)"
+msgstr "Bestellung aufgegeben: #%1$s(%2$s)"
+
+msgid "Placed after site chat #%d"
+msgstr "Wird nach dem Site-Chat #%dplatziert"
+
+msgid "[[\"Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.\", 'tr']]"
+msgstr "[[„Von künstlicher Intelligenz unterstütztes Chat-Fenster zur Website: Mit Flux AI rund um die Uhr Antworten auf die Inhalte und Produkte Ihrer Website, Sammlung potenzieller Kunden, WooCommerce-Informationen, Übertragung mit einem Klick an einen Live-Vertreter (Flux-Chat-Posteingang oder der eigene Posteingang des Plugins), Dateifreigabe, Lesebestätigungen, Bewertung am Ende des Chats und Hinterlassen von Nachrichten nach Geschäftsschluss. Farbe, Position, Avatar, Texte und Sichtbarkeit werden über das Panel angepasst.“, 'tr']]"

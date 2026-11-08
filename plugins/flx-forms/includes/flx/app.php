@@ -114,7 +114,7 @@ function flxf_app_fields( $content ) {
 			continue;
 		}
 		$out[] = array(
-			'label' => '' !== $label ? $label : __( 'Alan', 'flx-forms' ),
+			'label' => '' !== $label ? $label : __( 'Field', 'flx-forms' ),
 			'value' => $value,
 		);
 	}
@@ -199,7 +199,7 @@ function flxf_app_response( WP_REST_Request $r ) {
 	$table = $wpdb->prefix . 'emsfb_msg_';
 	$row   = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM `{$table}` WHERE msg_id = %d", (int) $r['id'] ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
 	if ( ! $row || 2 === (int) $row['read_'] ) {
-		return new WP_Error( 'flxf_missing', __( 'Yanıt bulunamadı.', 'flx-forms' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxf_missing', __( 'Response not found.', 'flx-forms' ), array( 'status' => 404 ) );
 	}
 	return flxf_app_row( $row, flxf_app_forms_map() );
 }
@@ -209,7 +209,7 @@ function flxf_app_response_read( WP_REST_Request $r ) {
 	$table = $wpdb->prefix . 'emsfb_msg_';
 	$row   = $wpdb->get_row( $wpdb->prepare( "SELECT msg_id, read_ FROM `{$table}` WHERE msg_id = %d", (int) $r['id'] ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
 	if ( ! $row ) {
-		return new WP_Error( 'flxf_missing', __( 'Yanıt bulunamadı.', 'flx-forms' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxf_missing', __( 'Response not found.', 'flx-forms' ), array( 'status' => 404 ) );
 	}
 	$next = 3 === (int) $row['read_'] ? 4 : 1;
 	if ( flxf_app_unread( $row['read_'] ) ) {
@@ -238,7 +238,7 @@ function flxf_app_manifest( $m, $user ) {
 		'plugin'   => 'flx-forms',
 		'version'  => flxf_app_version(),
 		'min_app'  => '1.0.0',
-		'title'    => __( 'Formlar', 'flx-forms' ),
+		'title'    => __( 'Forms', 'flx-forms' ),
 		'icon'     => 'note',
 		'order'    => 24,
 		'menu'     => 'Emsfb',
@@ -278,7 +278,7 @@ function flxf_app_manifest( $m, $user ) {
 		'screens'  => array(
 			'forms'     => array(
 				'type'    => 'list',
-				'title'   => __( 'Formlar', 'flx-forms' ),
+				'title'   => __( 'Forms', 'flx-forms' ),
 				'source'  => 'forms',
 				'item'    => array(
 					'title'    => '{{name}}',
@@ -286,15 +286,15 @@ function flxf_app_manifest( $m, $user ) {
 				),
 				'onPress' => array( 'target' => 'screen:flxf/responses', 'params' => array( 'form' => '{{id}}' ) ),
 				'actions' => array( 'header' => array( 'open_builder' ) ),
-				'empty'   => array( 'title' => __( 'Form yok', 'flx-forms' ), 'body' => __( 'Form oluşturucu panelde açılır.', 'flx-forms' ) ),
+				'empty'   => array( 'title' => __( 'No forms', 'flx-forms' ), 'body' => __( 'The form builder opens in the panel.', 'flx-forms' ) ),
 			),
 			'responses' => array(
 				'type'    => 'list',
-				'title'   => __( 'Yanıtlar', 'flx-forms' ),
+				'title'   => __( 'Responses', 'flx-forms' ),
 				'source'  => 'responses',
-				'search'  => array( 'param' => 's', 'placeholder' => __( 'Yanıt içinde ara', 'flx-forms' ) ),
+				'search'  => array( 'param' => 's', 'placeholder' => __( 'Search in responses', 'flx-forms' ) ),
 				'filters' => array(
-					array( 'param' => 'unread', 'label' => __( 'Okunmamış', 'flx-forms' ), 'type' => 'toggle' ),
+					array( 'param' => 'unread', 'label' => __( 'Unread', 'flx-forms' ), 'type' => 'toggle' ),
 				),
 				'item'    => array(
 					'title'    => '{{form}}',
@@ -302,30 +302,30 @@ function flxf_app_manifest( $m, $user ) {
 					'caption'  => '{{date_label}}',
 					'unread'   => '{{unread}}',
 					'badges'   => array(
-						array( 'text' => __( 'Yeni', 'flx-forms' ), 'tone' => 'accent', 'when' => array( 'path' => 'unread', 'op' => 'truthy' ) ),
+						array( 'text' => __( 'New', 'flx-forms' ), 'tone' => 'accent', 'when' => array( 'path' => 'unread', 'op' => 'truthy' ) ),
 					),
 				),
 				'onPress' => array( 'target' => 'screen:flxf/response', 'params' => array( 'id' => '{{id}}' ) ),
-				'empty'   => array( 'title' => __( 'Yanıt yok', 'flx-forms' ), 'body' => __( 'Form gönderimleri burada görünür.', 'flx-forms' ) ),
+				'empty'   => array( 'title' => __( 'No responses', 'flx-forms' ), 'body' => __( 'Form submissions appear here.', 'flx-forms' ) ),
 			),
 			'response'  => array(
 				'type'     => 'detail',
-				'title'    => __( 'Yanıt', 'flx-forms' ),
+				'title'    => __( 'Reply', 'flx-forms' ),
 				'source'   => 'response',
 				'header'   => array( 'title' => '{{form}}', 'subtitle' => '{{date_label}}' ),
 				'sections' => array(
 					array(
 						'type'   => 'fields',
-						'title'  => __( 'Yanıt', 'flx-forms' ),
+						'title'  => __( 'Reply', 'flx-forms' ),
 						'fields' => array(
 							array( 'label' => __( 'Form', 'flx-forms' ), 'value' => '{{form}}' ),
-							array( 'label' => __( 'Takip kodu', 'flx-forms' ), 'value' => '{{track}}', 'copy' => true, 'when' => array( 'path' => 'track', 'op' => 'filled' ) ),
-							array( 'label' => __( 'Özet', 'flx-forms' ), 'value' => '{{preview}}' ),
+							array( 'label' => __( 'Tracking code', 'flx-forms' ), 'value' => '{{track}}', 'copy' => true, 'when' => array( 'path' => 'track', 'op' => 'filled' ) ),
+							array( 'label' => __( 'Summary', 'flx-forms' ), 'value' => '{{preview}}' ),
 						),
 					),
 					array(
 						'type'  => 'list',
-						'title' => __( 'Alanlar', 'flx-forms' ),
+						'title' => __( 'Fields', 'flx-forms' ),
 						'path'  => 'fields',
 						'item'  => array( 'title' => '{{label}}', 'subtitle' => '{{value}}' ),
 					),
@@ -334,18 +334,18 @@ function flxf_app_manifest( $m, $user ) {
 			),
 			'builder'   => array(
 				'type'  => 'web',
-				'title' => __( 'Form oluşturucu', 'flx-forms' ),
+				'title' => __( 'Form builder', 'flx-forms' ),
 				'path'  => 'admin.php?page=Emsfb_create',
 			),
 		),
 		'actions'  => array(
-			'open_builder' => array( 'label' => __( 'Form oluşturucu', 'flx-forms' ), 'icon' => 'edit', 'web' => 'admin.php?page=Emsfb_create' ),
+			'open_builder' => array( 'label' => __( 'Form builder', 'flx-forms' ), 'icon' => 'edit', 'web' => 'admin.php?page=Emsfb_create' ),
 			'mark_read'    => array(
-				'label'   => __( 'Okundu işaretle', 'flx-forms' ),
+				'label'   => __( 'Mark as read', 'flx-forms' ),
 				'icon'    => 'check',
 				'when'    => array( 'path' => 'unread', 'op' => 'truthy' ),
 				'request' => array( 'method' => 'POST', 'path' => 'flx-forms/v1/responses/{{data.id}}/read' ),
-				'after'   => array( 'toast' => __( 'Okundu', 'flx-forms' ), 'refresh' => true, 'invalidate' => array( 'responses' ) ),
+				'after'   => array( 'toast' => __( 'Read', 'flx-forms' ), 'refresh' => true, 'invalidate' => array( 'responses' ) ),
 			),
 		),
 	);

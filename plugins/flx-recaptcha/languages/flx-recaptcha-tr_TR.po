@@ -1,0 +1,425 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Protects forms against spam and bot attacks"
+msgstr "Formları spam ve bot saldırılarına karşı korur"
+
+msgid "reCAPTCHA"
+msgstr "reCAPTCHA"
+
+msgid "Enter the site key first."
+msgstr "Önce site anahtarını yazın."
+
+msgid "Enter the secret key."
+msgstr "Gizli anahtarı yazın."
+
+msgid "Loading Google reCAPTCHA…"
+msgstr "Google reCAPTCHA yükleniyor…"
+
+msgid "Tick the box; the test continues on its own once it is ticked."
+msgstr "Kutucuğu işaretleyin; işaretlenince test kendiliğinden sürer."
+
+msgid "Verifying with Google…"
+msgstr "Google ile doğrulanıyor…"
+
+msgid "Google reCAPTCHA could not be loaded. Check the site key and the domain; if Google is unreachable, try the \"recaptcha.net\" option."
+msgstr "Google reCAPTCHA yüklenemedi. Site anahtarını ve alan adını kontrol edin; Google erişilemiyorsa \"recaptcha.net\" seçeneğini deneyin."
+
+msgid "The site key changed; reloading the page to test with the new key…"
+msgstr "Site anahtarı değişti; testi yeni anahtarla yapmak için sayfa yenileniyor…"
+
+msgid "Something went wrong. Please try again."
+msgstr "Bir şey ters gitti. Tekrar deneyin."
+
+msgid "Keys saved; protection is on."
+msgstr "Anahtarlar kaydedildi; koruma açık."
+
+msgid "Forms are not protected yet. Enter your Google reCAPTCHA keys and test them."
+msgstr "Formlar henüz korunmuyor. Google reCAPTCHA anahtarlarını girip test edin."
+
+msgid "Go to settings"
+msgstr "Ayarlara git"
+
+msgid "You are not allowed to do this."
+msgstr "Bu işlem için yetkiniz yok."
+
+msgid "Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect."
+msgstr "Giriş, kayıt, yorum, ödeme, bağış ve form gönderimlerini botlara karşı Google reCAPTCHA ile korur. Hangi formun korunacağını aşağıdan seçin."
+
+msgid "Protection is turned off by the recovery constant."
+msgstr "Koruma kurtarma sabitiyle kapalı."
+
+msgid "Remove the FLXRC_DISABLE line from wp-config.php to turn protection back on."
+msgstr "wp-config.php dosyasındaki FLXRC_DISABLE satırını silince koruma yeniden çalışır."
+
+msgid "Protection is not running yet."
+msgstr "Koruma henüz çalışmıyor."
+
+msgid "Enter your keys and press \"Test\". No form is checked until the test passes, so a wrong key can never lock you out of the login screen."
+msgstr "Anahtarları girip \"Test et\"e basın. Test geçmeden hiçbir forma doğrulama eklenmez; böylece yanlış anahtarla giriş ekranına kilitlenmezsiniz."
+
+msgid "Google rejected the secret key"
+msgstr "Google gizli anahtarı reddetti"
+
+msgid "Google could not be reached"
+msgstr "Google'a ulaşılamadı"
+
+msgid "Submissions were let through without a check at that time."
+msgstr "O sırada gönderimler doğrulamasız geçirildi."
+
+msgid "Submissions were blocked at that time."
+msgstr "O sırada gönderimler engellendi."
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "On"
+msgstr "Açık"
+
+msgid "v3 · invisible"
+msgstr "v3 · görünmez"
+
+msgid "v2 · checkbox"
+msgstr "v2 · kutucuk"
+
+msgid "Awaiting test"
+msgstr "Test bekliyor"
+
+msgid "Test your keys"
+msgstr "Anahtarları test edin"
+
+msgid "Protection"
+msgstr "Koruma"
+
+msgid "Protected forms"
+msgstr "Korunan formlar"
+
+msgid "%1$s / %2$s"
+msgstr "%1$s / %2$s"
+
+msgid "forms of installed plugins"
+msgstr "kurulu eklentilerdeki formlar"
+
+msgid "Passed"
+msgstr "Geçen gönderim"
+
+msgid "last 30 days"
+msgstr "son 30 gün"
+
+msgid "Blocked"
+msgstr "Engellenen"
+
+msgid "Keys"
+msgstr "Anahtarlar"
+
+msgid "Tested"
+msgstr "Test edildi"
+
+msgid "Not tested"
+msgstr "Test edilmedi"
+
+msgid "Get your keys %s: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry."
+msgstr "Anahtarları %s alın: reCAPTCHA türünü seçin ve alan adınızı ekleyin. Site anahtarı ile gizli anahtar aynı kayda ait olmalı."
+
+msgid "from the Google reCAPTCHA console"
+msgstr "Google reCAPTCHA konsolundan"
+
+msgid "reCAPTCHA type"
+msgstr "reCAPTCHA türü"
+
+msgid "v3 · Invisible"
+msgstr "v3 · Görünmez"
+
+msgid "Visitors are never asked anything; Google returns a score from 0 to 1. Recommended."
+msgstr "Ziyaretçiye hiçbir şey sorulmaz; Google 0–1 arası puan verir. Önerilen."
+
+msgid "v2 · \"I'm not a robot\""
+msgstr "v2 · \"Ben robot değilim\""
+
+msgid "A checkbox appears on the form; suspicious visitors get an image challenge."
+msgstr "Formda kutucuk görünür; şüpheli ziyaretçiye resim sorulur."
+
+msgid "Site key"
+msgstr "Site anahtarı"
+
+msgid "Secret key"
+msgstr "Gizli anahtar"
+
+msgid "Saved (%s). Type to replace it."
+msgstr "Kayıtlı (%s). Değiştirmek için yazın."
+
+msgid "Paste the secret key"
+msgstr "Gizli anahtarı yapıştırın"
+
+msgid "Entered once, stored encrypted and never shown again."
+msgstr "Bir kez yazılır, şifreli saklanır ve bir daha gösterilmez."
+
+msgid "One of the keys comes from a wp-config.php constant (FLXRC_SITE_KEY / FLXRC_SECRET_KEY); the value in this panel is not used."
+msgstr "Anahtarlardan biri wp-config.php sabitinden geliyor (FLXRC_SITE_KEY / FLXRC_SECRET_KEY); paneldeki değer kullanılmaz."
+
+msgid "Test and save"
+msgstr "Test et ve kaydet"
+
+msgid "Runs a real check with Google; if it passes, the keys are saved and protection turns on."
+msgstr "Google'dan gerçek bir doğrulama alır; geçerse anahtarlar kaydedilir ve koruma açılır."
+
+msgid "Last test: %1$s · %2$s"
+msgstr "Son test: %1$s · %2$s"
+
+msgid "Last 30 days: passed / blocked"
+msgstr "Son 30 gün: geçen / engellenen"
+
+msgid "not installed"
+msgstr "kurulu değil"
+
+msgid "If a form has its own reCAPTCHA option turned on in Flux Forms, turn it off; two checks on one page conflict."
+msgstr "Flux Forms'ta formun kendi reCAPTCHA seçeneği açıksa kapatın; iki doğrulama aynı sayfada çakışır."
+
+msgid "Bot threshold (v3)"
+msgstr "Bot eşiği (v3)"
+
+msgid "Submissions scoring below this are blocked. 0.5 suits most sites; lower it if real people get stuck."
+msgstr "Puanı bunun altında kalan gönderim engellenir. 0,5 çoğu site için uygun; gerçek kişiler takılıyorsa düşürün."
+
+msgid "Checkbox theme (v2)"
+msgstr "Kutucuk görünümü (v2)"
+
+msgid "Automatic (follows the site's dark mode)"
+msgstr "Otomatik (sitenin koyu moduna uyar)"
+
+msgid "Light"
+msgstr "Açık tema"
+
+msgid "Dark"
+msgstr "Koyu"
+
+msgid "Checkbox size (v2)"
+msgstr "Kutucuk boyutu (v2)"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Compact"
+msgstr "Küçük"
+
+msgid "Google host"
+msgstr "Google adresi"
+
+msgid "Use recaptcha.net on networks where google.com is blocked."
+msgstr "google.com'un engellendiği ağlarda recaptcha.net kullanın."
+
+msgid "Skip signed-in users"
+msgstr "Giriş yapmış kullanıcılara sorma"
+
+msgid "Members are not checked on comments, checkout, donations and forms. Login and registration forms are always protected."
+msgstr "Yorum, ödeme, bağış ve formlarda üyelere doğrulama yapılmaz. Giriş ve kayıt formları her zaman korunur."
+
+msgid "Let submissions through if Google is unreachable"
+msgstr "Google'a ulaşılamazsa gönderimi geçir"
+
+msgid "Recommended. When off, no protected form can be sent during a Google outage (admin login included)."
+msgstr "Önerilen. Kapalıysa Google kesintisinde hiçbir korunan form gönderilemez (yönetici girişi dahil)."
+
+msgid "Hide the v3 badge"
+msgstr "v3 rozetini gizle"
+
+msgid "The reCAPTCHA badge in the bottom corner is hidden; the notice Google requires is added under protected forms."
+msgstr "Sağ alttaki reCAPTCHA rozeti gizlenir; Google'ın istediği bilgi metni korunan formların altına eklenir."
+
+msgid "IP addresses that skip the check"
+msgstr "Doğrulama yapılmayan IP adresleri"
+
+msgid "One IP or range (CIDR) per line. For your office, tests and monitoring services. Your current IP address: %s"
+msgstr "Satır başına bir IP ya da aralık (CIDR). Ofis, test ve izleme servisleri için. Şu anki IP adresiniz: %s"
+
+msgid "If you get locked out of the login screen, add define( 'FLXRC_DISABLE', true ); to wp-config.php; protection turns off completely."
+msgstr "Giriş ekranına kilitlenirseniz wp-config.php dosyasına define( 'FLXRC_DISABLE', true ); satırını ekleyin; koruma tamamen kapanır."
+
+msgid "Save settings"
+msgstr "Ayarları kaydet"
+
+msgid "Saved."
+msgstr "Kaydedildi."
+
+msgid "Saved. The keys changed, so protection stays off until they are tested."
+msgstr "Kaydedildi. Anahtarlar değiştiği için koruma test edilene kadar kapalı."
+
+msgid "The site key and the secret key are required."
+msgstr "Site anahtarı ve gizli anahtar gerekli."
+
+msgid "These are v2 (checkbox) keys. Choose v2, or create v3 keys in the Google console."
+msgstr "Bu anahtarlar v2 (kutucuk) anahtarı. Türü v2 seçin ya da Google konsolunda v3 anahtarı oluşturun."
+
+msgid "These are v3 keys. Choose v3, or create v2 keys in the Google console."
+msgstr "Bu anahtarlar v3 anahtarı. Türü v3 seçin ya da Google konsolunda v2 anahtarı oluşturun."
+
+msgid "JavaScript must be enabled in your browser to send this form."
+msgstr "Bu formu göndermek için tarayıcınızda JavaScript açık olmalı."
+
+msgid "This form is protected by reCAPTCHA and the Google %1$s and %2$s apply."
+msgstr "Bu form reCAPTCHA ile korunur; Google %1$s ve %2$s geçerlidir."
+
+msgid "Privacy Policy"
+msgstr "Gizlilik Politikası"
+
+msgid "Terms of Service"
+msgstr "Hizmet Şartları"
+
+msgid "Please tick the \"I'm not a robot\" box."
+msgstr "Lütfen \"Ben robot değilim\" kutusunu işaretleyin."
+
+msgid "The security check could not load. Refresh the page and try again."
+msgstr "Güvenlik doğrulaması yüklenemedi. Sayfayı yenileyip tekrar deneyin."
+
+msgid "The security check failed. Refresh the page and try again."
+msgstr "Güvenlik doğrulaması geçilemedi. Sayfayı yenileyip tekrar deneyin."
+
+msgid "Could not reach Google: %s"
+msgstr "Google'a ulaşılamadı: %s"
+
+msgid "Google returned an unexpected response."
+msgstr "Google beklenmeyen bir yanıt döndü."
+
+msgid "The secret key is invalid. Copy the \"Secret key\" from the Google reCAPTCHA console."
+msgstr "Gizli anahtar geçersiz. Google reCAPTCHA konsolundaki \"Gizli anahtar\"ı kopyalayın."
+
+msgid "The site key and the secret key do not belong to the same entry, or the wrong reCAPTCHA type (v2/v3) is selected."
+msgstr "Site anahtarı ile gizli anahtar aynı kayda ait değil ya da reCAPTCHA türü (v2/v3) yanlış seçildi."
+
+msgid "Could not verify (%s)."
+msgstr "Doğrulanamadı (%s)."
+
+msgid "The keys work. Score: %1$s, domain: %2$s"
+msgstr "Anahtarlar çalışıyor. Puan: %1$s, alan adı: %2$s"
+
+msgid "The keys work. Domain: %s"
+msgstr "Anahtarlar çalışıyor. Alan adı: %s"
+
+msgid "Login"
+msgstr "Giriş"
+
+msgid "wp-login.php and the Flux Speed custom login address (e.g. /fluxadmin)"
+msgstr "wp-login.php ve Flux Speed özel giriş adresi (örn. /fluxadmin)"
+
+msgid "Registration"
+msgstr "Kayıt"
+
+msgid "WordPress registration form"
+msgstr "WordPress kayıt formu"
+
+msgid "WordPress registration form (registration is currently closed on this site)"
+msgstr "WordPress kayıt formu (sitede kayıt şu an kapalı)"
+
+msgid "Password reset"
+msgstr "Şifre sıfırlama"
+
+msgid "Lost password form: WordPress and WooCommerce My Account"
+msgstr "Şifremi unuttum formu: WordPress ve WooCommerce Hesabım"
+
+msgid "Comments"
+msgstr "Yorumlar"
+
+msgid "Post and page comment form"
+msgstr "Yazı ve sayfa yorum formu"
+
+msgid "Account login"
+msgstr "Hesap girişi"
+
+msgid "WooCommerce My Account login form"
+msgstr "WooCommerce Hesabım giriş formu"
+
+msgid "Account registration"
+msgstr "Hesap kaydı"
+
+msgid "WooCommerce My Account registration form"
+msgstr "WooCommerce Hesabım kayıt formu"
+
+msgid "Checkout"
+msgstr "Ödeme"
+
+msgid "Checkout page (classic and block): store orders, Flux Donate and Flux Commerce payments"
+msgstr "Ödeme sayfası (klasik ve blok): mağaza siparişleri, Flux Donate ve Flux Commerce ödemeleri"
+
+msgid "Donation form"
+msgstr "Bağış formu"
+
+msgid "Flux Donate \"Donation options\" form (add to cart)"
+msgstr "Flux Donate \"Bağış seçenekleri\" formu (sepete ekleme)"
+
+msgid "Forms"
+msgstr "Formlar"
+
+msgid "Flux Forms submissions (contact, applications, login/registration forms)"
+msgstr "Flux Forms gönderimleri (iletişim, başvuru, form ile giriş/kayıt)"
+
+msgid "Other plugins"
+msgstr "Diğer eklentiler"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Comment not sent"
+msgstr "Yorum gönderilemedi"
+
+msgid "Protection is turned off by the FLXRC_DISABLE constant in wp-config.php. Remove the line once the issue is fixed."
+msgstr "Koruma wp-config.php'deki FLXRC_DISABLE sabitiyle kapalı. Sorun çözüldüyse satırı silin."
+
+msgid "Google reCAPTCHA keys are not set; forms are not protected."
+msgstr "Google reCAPTCHA anahtarları girilmemiş; formlar korunmuyor."
+
+msgid "The keys have not been tested; protection stays off until the test passes."
+msgstr "Anahtarlar test edilmemiş; test geçene kadar koruma kapalı."
+
+msgid "Protection is on (%s)."
+msgstr "Koruma açık (%s)."
+
+msgid "v3 invisible"
+msgstr "v3 görünmez"
+
+msgid "v2 checkbox"
+msgstr "v2 kutucuk"
+
+msgid "reCAPTCHA keys"
+msgstr "reCAPTCHA anahtarları"
+
+msgid "No form is selected."
+msgstr "Hiçbir form seçilmemiş."
+
+msgid "Not protected: %s"
+msgstr "Korunmuyor: %s"
+
+msgid "Google verification"
+msgstr "Google doğrulaması"
+
+msgid "%1$s: %2$s. Test the keys again; if Google is unreachable, set Settings > Google host to recaptcha.net."
+msgstr "%1$s: %2$s. Anahtarları yeniden test edin; Google erişilemiyorsa Ayarlar > Google adresi: recaptcha.net."
+
+msgid "Test"
+msgstr "Test et"
+
+msgid "Between 0.1 and 0.9. Submissions scoring below this are blocked."
+msgstr "0,1 ile 0,9 arası. Altında kalan gönderim engellenir."
+
+msgid "Leave blank to keep the saved key. The value is never read back."
+msgstr "Boş bırakılırsa kayıtlı anahtar kalır. Değer geri okunmaz."
+
+msgid "Checkbox size"
+msgstr "Kutucuk boyutu"
+
+msgid "Checkbox theme"
+msgstr "Kutucuk görünümü"
+
+msgid "Automatic"
+msgstr "Otomatik"
+
+msgid "google.com"
+msgstr "google.com"
+
+msgid "recaptcha.net"
+msgstr "recaptcha.net"
+
+msgid "[['It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed \\u200b\\u200bis compatible with custom login address.', 'tr']]"
+msgstr "Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur."

@@ -15,10 +15,10 @@ function flxp_fmt_uptime( $s ) {
 	$h = (int) floor( ( $s % DAY_IN_SECONDS ) / HOUR_IN_SECONDS );
 	if ( ! $d && ! $h ) {
 		/* translators: %d: dakika */
-		return sprintf( __( '%d dk', 'flx-speed' ), (int) floor( $s / MINUTE_IN_SECONDS ) );
+		return sprintf( __( '%d min', 'flx-speed' ), (int) floor( $s / MINUTE_IN_SECONDS ) );
 	}
 	/* translators: 1: gün, 2: saat */
-	return $d ? sprintf( __( '%1$d gün %2$d sa', 'flx-speed' ), $d, $h ) : sprintf( __( '%d sa', 'flx-speed' ), $h ); // phpcs:ignore
+	return $d ? sprintf( __( '%1$d d %2$d h', 'flx-speed' ), $d, $h ) : sprintf( __( '%d h', 'flx-speed' ), $h ); // phpcs:ignore
 }
 
 /**
@@ -33,18 +33,18 @@ function flxp_live_view( $l = null ) {
 	};
 	$lim   = flxp_bytes( ini_get( 'memory_limit' ) );
 	$scope = $l['scope'];
-	$na    = __( 'Hesap sınırı okunamıyor', 'flx-speed' );
+	$na    = __( 'Account limit cannot be read', 'flx-speed' );
 
 	if ( 'account' === $scope ) {
 		$cores   = number_format_i18n( $l['cores'], $l['cores'] == (int) $l['cores'] ? 0 : 1 ); // phpcs:ignore
 		$cpu_sub = empty( $l['cpu_limited'] )
 			/* translators: %s: çekirdek */
-			? sprintf( __( '%s çekirdek, hesap sınırı yok', 'flx-speed' ), $cores )
+			? sprintf( __( '%s cores, no account limit', 'flx-speed' ), $cores )
 			/* translators: %s: çekirdek */
-			: sprintf( __( 'Hesap sınırı %s çekirdek', 'flx-speed' ), $cores );
+			: sprintf( __( 'Account limit %s cores', 'flx-speed' ), $cores );
 	} elseif ( 'machine' === $scope ) {
 		/* translators: 1: çekirdek sayısı, 2: 1/5/15 dk yük */
-		$cpu_sub = $l['load'] ? sprintf( __( '%1$d çekirdek · yük %2$s', 'flx-speed' ), $l['cores'], implode( ' / ', $l['load'] ) ) : '';
+		$cpu_sub = $l['load'] ? sprintf( __( '%1$d cores · load %2$s', 'flx-speed' ), $l['cores'], implode( ' / ', $l['load'] ) ) : '';
 	} else {
 		$cpu_sub = $na;
 	}
@@ -55,20 +55,20 @@ function flxp_live_view( $l = null ) {
 			'label' => __( 'Disk', 'flx-speed' ),
 			'text'  => null === $l['disk_pct'] ? '—' : $l['disk_pct'] . '%',
 			/* translators: %s: boş alan */
-			'sub'   => null === $l['disk_free'] ? '' : sprintf( __( '%s boş', 'flx-speed' ), $fmt( $l['disk_free'] ) ),
+			'sub'   => null === $l['disk_free'] ? '' : sprintf( __( '%s free', 'flx-speed' ), $fmt( $l['disk_free'] ) ),
 		);
 	} elseif ( null === $du['bytes'] ) {
 		$disk = array(
-			'label' => __( 'Disk (hesap)', 'flx-speed' ),
-			'text'  => __( 'Hesaplanıyor…', 'flx-speed' ),
-			'sub'   => __( 'Hesap klasörü taranıyor', 'flx-speed' ),
+			'label' => __( 'Disk (account)', 'flx-speed' ),
+			'text'  => __( 'Calculating…', 'flx-speed' ),
+			'sub'   => __( 'Scanning the account folder', 'flx-speed' ),
 		);
 	} else {
 		$used  = $du['bytes'] + (float) $du['db'];
 		/* translators: 1: dosya boyutu, 2: veritabanı boyutu */
-		$parts = sprintf( __( 'dosyalar %1$s · veritabanı %2$s', 'flx-speed' ), $fmt( $du['bytes'] ), $fmt( $du['db'] ) );
+		$parts = sprintf( __( 'files %1$s · database %2$s', 'flx-speed' ), $fmt( $du['bytes'] ), $fmt( $du['db'] ) );
 		$disk  = array(
-			'label' => __( 'Disk (hesap)', 'flx-speed' ),
+			'label' => __( 'Disk (account)', 'flx-speed' ),
 			'text'  => null === $l['disk_pct'] ? $fmt( $used ) : $l['disk_pct'] . '%',
 			'sub'   => null === $l['disk_pct'] ? $parts : $fmt( $used ) . ' / ' . $fmt( $l['disk_total'] ) . ' · ' . $parts,
 		);
@@ -77,26 +77,26 @@ function flxp_live_view( $l = null ) {
 
 	return array(
 		'cpu'  => array(
-			'label' => 'machine' === $scope ? __( 'İşlemci yükü', 'flx-speed' ) : __( 'İşlemci (hesap)', 'flx-speed' ),
+			'label' => 'machine' === $scope ? __( 'CPU load', 'flx-speed' ) : __( 'CPU (account)', 'flx-speed' ),
 			'pct'   => $l['load_pct'],
 			'text'  => null === $l['load_pct'] ? '—' : $l['load_pct'] . '%',
 			'sub'   => $cpu_sub,
 		),
 		'ram'  => array(
-			'label' => 'machine' === $scope ? __( 'Bellek (RAM)', 'flx-speed' ) : __( 'Bellek (hesap)', 'flx-speed' ),
+			'label' => 'machine' === $scope ? __( 'Memory (RAM)', 'flx-speed' ) : __( 'Memory (account)', 'flx-speed' ),
 			'pct'   => $l['ram_pct'],
 			'text'  => null === $l['ram_pct'] ? '—' : $l['ram_pct'] . '%',
 			'sub'   => $l['ram_total_kb'] ? $fmt( $l['ram_used_kb'] * 1024 ) . ' / ' . $fmt( $l['ram_total_kb'] * 1024 ) : ( 'machine' === $scope ? '' : $na ),
 		),
 		'disk' => $disk,
 		'php'  => array(
-			'label' => __( 'PHP belleği (bu istek)', 'flx-speed' ),
+			'label' => __( 'PHP memory (this request)', 'flx-speed' ),
 			'pct'   => $lim > 0 ? (int) round( $l['php_mem_kb'] * 1024 / $lim * 100 ) : null,
 			'text'  => $fmt( $l['php_mem_kb'] * 1024 ),
 			'sub'   => 'memory_limit ' . ini_get( 'memory_limit' ),
 		),
 		'up'   => array(
-			'label' => 'machine' === $scope ? __( 'Sunucu açık', 'flx-speed' ) : __( 'Makine açık', 'flx-speed' ),
+			'label' => 'machine' === $scope ? __( 'Server uptime', 'flx-speed' ) : __( 'Machine uptime', 'flx-speed' ),
 			'pct'   => null,
 			'text'  => flxp_fmt_uptime( $l['uptime_s'] ),
 			'sub'   => '',
@@ -107,16 +107,16 @@ function flxp_live_view( $l = null ) {
 /** Kutuların altındaki açıklama: değerlerin kime ait olduğu. */
 function flxp_live_note( $l ) {
 	if ( 'account' === $l['scope'] ) {
-		$s = __( 'İşlemci ve bellek bu hesabın (konteyner/cgroup) sınırına göre.', 'flx-speed' );
+		$s = __( 'CPU and memory are measured against this account\'s (container/cgroup) limit.', 'flx-speed' );
 	} elseif ( 'shared' === $l['scope'] ) {
-		$s = __( 'Paylaşımlı hosting: PHP, sunucudaki tüm hesapların ortak işlemci/bellek/diskini görür, bunlar sizin değerleriniz değil ve gösterilmez. Hesabın işlemci ve bellek kullanımı hosting panelinde (Hostinger: hPanel › Hesap kaynakları).', 'flx-speed' );
+		$s = __( 'Shared hosting: PHP sees the CPU, memory and disk shared by every account on the machine; these are not your values and are not shown. Your account\'s CPU and memory usage is in the hosting panel (Hostinger: hPanel › Account resources).', 'flx-speed' );
 	} else {
 		$s = '';
 	}
 	if ( $l['disk_shared'] && ! flxp_settings( 'disk_quota_gb' ) ) {
-		$s .= ' ' . __( 'Disk yüzdesi için Ayarlar\'a hosting planınızın disk kotasını girin.', 'flx-speed' );
+		$s .= ' ' . __( 'Enter your hosting plan\'s disk quota in Settings to see a disk percentage.', 'flx-speed' );
 	}
-	return trim( $s . ' ' . __( 'Kutular 15 saniyede bir yenilenir.', 'flx-speed' ) );
+	return trim( $s . ' ' . __( 'Cards refresh every 15 seconds.', 'flx-speed' ) );
 }
 
 /** Canlı kutuları basar. */
@@ -162,7 +162,7 @@ add_action(
 		if ( ! flxp_can_view() ) {
 			return;
 		}
-		wp_add_dashboard_widget( 'flxp_dashboard', __( 'Performans', 'flx-speed' ), 'flxp_dashboard_widget' );
+		wp_add_dashboard_widget( 'flxp_dashboard', __( 'Performance', 'flx-speed' ), 'flxp_dashboard_widget' );
 	}
 );
 
@@ -184,9 +184,9 @@ function flxp_dashboard_widget() {
 	$err   = (int) ( $s['flags']['error'] ?? 0 ) + (int) ( $s['flags']['5xx'] ?? 0 ) + $fatal;
 	$slow  = (int) ( $s['flags']['slow'] ?? 0 );
 	echo '<ul class="flxp-dash-list">';
-	echo '<li><span>' . esc_html__( 'p95 süre (24 sa)', 'flx-speed' ) . '</span><b>' . esc_html( $s['recorded'] ? number_format_i18n( $s['ms_p95'] ) . ' ms' : '—' ) . '</b></li>';
-	echo '<li><span>' . esc_html__( 'Hatalı istek (24 sa)', 'flx-speed' ) . '</span><b class="' . ( $err ? 'flxp-err' : '' ) . '"><a href="' . esc_url( add_query_arg( array( 'tab' => 'records', 'hours' => 24, 'flag' => $fatal ? 'fatal' : 'error' ), $page ) ) . '">' . esc_html( number_format_i18n( $err ) ) . '</a></b></li>';
-	echo '<li><span>' . esc_html__( 'Yavaş istek (24 sa)', 'flx-speed' ) . '</span><b><a href="' . esc_url( add_query_arg( array( 'tab' => 'records', 'hours' => 24, 'flag' => 'slow' ), $page ) ) . '">' . esc_html( number_format_i18n( $slow ) ) . '</a></b></li>';
+	echo '<li><span>' . esc_html__( 'p95 time (24 h)', 'flx-speed' ) . '</span><b>' . esc_html( $s['recorded'] ? number_format_i18n( $s['ms_p95'] ) . ' ms' : '—' ) . '</b></li>';
+	echo '<li><span>' . esc_html__( 'Failed requests (24 h)', 'flx-speed' ) . '</span><b class="' . ( $err ? 'flxp-err' : '' ) . '"><a href="' . esc_url( add_query_arg( array( 'tab' => 'records', 'hours' => 24, 'flag' => $fatal ? 'fatal' : 'error' ), $page ) ) . '">' . esc_html( number_format_i18n( $err ) ) . '</a></b></li>';
+	echo '<li><span>' . esc_html__( 'Slow requests (24 h)', 'flx-speed' ) . '</span><b><a href="' . esc_url( add_query_arg( array( 'tab' => 'records', 'hours' => 24, 'flag' => 'slow' ), $page ) ) . '">' . esc_html( number_format_i18n( $slow ) ) . '</a></b></li>';
 	echo '</ul>';
 	$bad = array_filter(
 		flxp_server_checks(),
@@ -197,6 +197,6 @@ function flxp_dashboard_widget() {
 	foreach ( array_slice( $bad, 0, 3 ) as $c ) {
 		echo '<p class="flxp-dash-hint flxp-hint-' . esc_attr( $c['status'] ) . '">' . esc_html( $c['label'] ) . ': ' . esc_html( $c['message'] ) . '</p>';
 	}
-	echo '<p class="flxp-dash-foot"><a href="' . esc_url( $page ) . '">' . esc_html__( 'Ayrıntılar', 'flx-speed' ) . ' →</a></p>';
+	echo '<p class="flxp-dash-foot"><a href="' . esc_url( $page ) . '">' . esc_html__( 'Details', 'flx-speed' ) . ' →</a></p>';
 	echo '</div>';
 }

@@ -89,6 +89,7 @@ export function mount(el: HTMLElement, o: MountOptions): () => void {
 
   const qc = new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: true } } });
   const i18n = createI18n(o.locale ?? document.documentElement.lang);
+  el.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
   const root = createRoot(el);
   root.render(
     <StrictMode>

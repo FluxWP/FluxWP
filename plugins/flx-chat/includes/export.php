@@ -12,30 +12,30 @@ add_action( 'admin_post_flxc_export', 'flxc_export_download' );
 /** Mesajın yazarı (dışa aktarmada). */
 function flxc_export_author( array $m, array $meta ) {
 	if ( 'in' === $m['direction'] ) {
-		return ! empty( $meta['sender'] ) ? (string) $meta['sender'] : __( 'Kişi', 'flx-chat' );
+		return ! empty( $meta['sender'] ) ? (string) $meta['sender'] : __( 'Contact', 'flx-chat' );
 	}
 	if ( 'system' === $m['direction'] ) {
-		return __( 'Sistem', 'flx-chat' );
+		return __( 'System', 'flx-chat' );
 	}
 	$user = flxc_user_name( $m['user_id'] );
 	switch ( (string) $m['source'] ) {
 		case 'bot':
-			return __( 'Asistan', 'flx-chat' );
+			return __( 'Assistant', 'flx-chat' );
 		case 'agent':
 			/* translators: %s: agent name */
-			return '' !== $user ? sprintf( __( 'Temsilci (%s)', 'flx-chat' ), $user ) : __( 'Temsilci', 'flx-chat' );
+			return '' !== $user ? sprintf( __( 'Agent (%s)', 'flx-chat' ), $user ) : __( 'Agent', 'flx-chat' );
 		case 'note':
 			/* translators: %s: agent name */
-			return '' !== $user ? sprintf( __( 'Dahili not (%s)', 'flx-chat' ), $user ) : __( 'Dahili not', 'flx-chat' );
+			return '' !== $user ? sprintf( __( 'Internal note (%s)', 'flx-chat' ), $user ) : __( 'Internal note', 'flx-chat' );
 		case 'auto':
-			return __( 'Otomatik yanıt', 'flx-chat' );
+			return __( 'Auto reply', 'flx-chat' );
 		case '':
 		case 'phone':
-			return __( 'Telefondan', 'flx-chat' );
+			return __( 'From phone', 'flx-chat' );
 		case 'certificate':
 			return 'Flux Certificates';
 		default:
-			return __( 'Otomatik', 'flx-chat' );
+			return __( 'Automatic', 'flx-chat' );
 	}
 }
 
@@ -120,27 +120,27 @@ function flxc_export_chat( array $chat, array $o ) {
 
 function flxc_export_md( array $c ) {
 	$s  = '## ' . $c['title'] . "\n\n";
-	$s .= '- ' . __( 'Telefon', 'flx-chat' ) . ': ' . ( '' !== $c['phone'] ? '+' . $c['phone'] : '-' ) . "\n";
-	$s .= '- ' . __( 'Asistan yazdı', 'flx-chat' ) . ': ' . ( $c['assistant'] ? __( 'Evet', 'flx-chat' ) : __( 'Hayır', 'flx-chat' ) ) . "\n";
-	$s .= '- ' . __( 'Mesaj', 'flx-chat' ) . ': ' . count( $c['messages'] ) . "\n\n";
+	$s .= '- ' . __( 'Phone', 'flx-chat' ) . ': ' . ( '' !== $c['phone'] ? '+' . $c['phone'] : '-' ) . "\n";
+	$s .= '- ' . __( 'Assistant wrote', 'flx-chat' ) . ': ' . ( $c['assistant'] ? __( 'Yes', 'flx-chat' ) : __( 'No', 'flx-chat' ) ) . "\n";
+	$s .= '- ' . __( 'Message', 'flx-chat' ) . ': ' . count( $c['messages'] ) . "\n\n";
 	foreach ( $c['messages'] as $m ) {
 		$flags = array();
 		if ( 'text' !== $m['type'] ) {
 			$flags[] = $m['type'] . ( isset( $m['file'] ) ? ': ' . $m['file'] : '' );
 		}
 		if ( ! empty( $m['deleted'] ) ) {
-			$flags[] = __( 'kişi sildi', 'flx-chat' );
+			$flags[] = __( 'contact deleted', 'flx-chat' );
 		}
 		if ( ! empty( $m['edited'] ) ) {
-			$flags[] = __( 'düzenlendi', 'flx-chat' );
+			$flags[] = __( 'edited', 'flx-chat' );
 		}
 		if ( ! empty( $m['failed'] ) ) {
-			$flags[] = __( 'gönderilemedi', 'flx-chat' );
+			$flags[] = __( 'not sent', 'flx-chat' );
 		}
 		$text = str_replace( "\n", "\n  ", trim( $m['text'] ) );
 		$s   .= '- **' . $m['time'] . ' · ' . $m['author'] . '**' . ( $flags ? ' _(' . implode( ', ', $flags ) . ')_' : '' ) . ( '' !== $text ? ': ' . $text : '' ) . "\n";
 		if ( isset( $m['receipt_ai'] ) ) {
-			$s .= '  - ' . __( 'Dekont kontrolü', 'flx-chat' ) . ': ' . $m['receipt_ai'] . "\n";
+			$s .= '  - ' . __( 'Receipt check', 'flx-chat' ) . ': ' . $m['receipt_ai'] . "\n";
 		}
 	}
 	return $s . "\n";
@@ -167,7 +167,7 @@ function flxc_export_download() {
 	check_admin_referer( 'flxc_export' );
 	$chat_id = isset( $_GET['chat'] ) ? absint( $_GET['chat'] ) : 0;
 	if ( ! ( $chat_id ? flxc_can_use() : flxc_can_manage() ) ) {
-		wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-chat' ), '', array( 'response' => 403 ) );
+		wp_die( esc_html__( 'You do not have permission for this action.', 'flx-chat' ), '', array( 'response' => 403 ) );
 	}
 	// phpcs:disable WordPress.Security.NonceVerification
 	$o = array(
@@ -180,7 +180,7 @@ function flxc_export_download() {
 	// phpcs:enable
 	if ( $chat_id ) {
 		if ( ! flxc_get_chat( $chat_id ) ) {
-			wp_die( esc_html__( 'Sohbet bulunamadı.', 'flx-chat' ), '', array( 'response' => 404 ) );
+			wp_die( esc_html__( 'Chat not found.', 'flx-chat' ), '', array( 'response' => 404 ) );
 		}
 		$ids = array( $chat_id );
 	} else {
@@ -204,9 +204,9 @@ function flxc_export_download() {
 		echo substr( wp_json_encode( $head, JSON_UNESCAPED_UNICODE ), 0, -1 ) . ',"items":['; // phpcs:ignore
 	} else {
 		// İndirilen düz metin (HTML değil).
-		echo '# ' . flxc_brand_name() . ' · ' . __( 'WhatsApp sohbetleri', 'flx-chat' ) . "\n\n"; // phpcs:ignore
+		echo '# ' . flxc_brand_name() . ' · ' . __( 'WhatsApp chats', 'flx-chat' ) . "\n\n"; // phpcs:ignore
 		/* translators: 1: date, 2: chat count */
-		echo sprintf( __( 'Dışa aktarma: %1$s · %2$d sohbet', 'flx-chat' ), $head['exported_at'], count( $ids ) ) . ( $o['mask'] ? ' · ' . __( 'telefon ve e-postalar maskeli', 'flx-chat' ) : '' ) . "\n\n"; // phpcs:ignore
+		echo sprintf( __( 'Export: %1$s · %2$d chats', 'flx-chat' ), $head['exported_at'], count( $ids ) ) . ( $o['mask'] ? ' · ' . __( 'phones and emails masked', 'flx-chat' ) : '' ) . "\n\n"; // phpcs:ignore
 	}
 	foreach ( $ids as $i => $id ) {
 		$chat = flxc_get_chat( $id );
@@ -258,7 +258,7 @@ function flxc_rest_export( WP_REST_Request $req ) {
 		);
 	} else {
 		/* translators: 1: date, 2: chat count */
-		$body = '# ' . flxc_brand_name() . ' · ' . __( 'WhatsApp sohbetleri', 'flx-chat' ) . "\n\n" . sprintf( __( 'Dışa aktarma: %1$s · %2$d sohbet', 'flx-chat' ), wp_date( 'Y-m-d H:i' ), 1 ) . ( $o['mask'] ? ' · ' . __( 'telefon ve e-postalar maskeli', 'flx-chat' ) : '' ) . "\n\n" . flxc_export_md( $c );
+		$body = '# ' . flxc_brand_name() . ' · ' . __( 'WhatsApp chats', 'flx-chat' ) . "\n\n" . sprintf( __( 'Export: %1$s · %2$d chats', 'flx-chat' ), wp_date( 'Y-m-d H:i' ), 1 ) . ( $o['mask'] ? ' · ' . __( 'phones and emails masked', 'flx-chat' ) : '' ) . "\n\n" . flxc_export_md( $c );
 	}
 	nocache_headers();
 	header( 'Content-Type: ' . ( 'json' === $o['format'] ? 'application/json' : 'text/markdown' ) . '; charset=utf-8' );
@@ -305,7 +305,7 @@ function flxc_clear_chat_history( $chat_id, $keep_receipts = true ) {
 	$meta['hist']    = array( 'page' => 0, 'done' => true, 'per' => 50 );
 	flxc_update_chat( $chat_id, array( 'meta' => flxc_json( $meta ), 'unread' => 0, 'last_msg_id' => 0 ) );
 	/* translators: 1: message count, 2: user name */
-	flxc_system_message( flxc_get_chat( $chat_id ), sprintf( __( 'Sohbet geçmişi temizlendi (%1$d mesaj, %2$s).', 'flx-chat' ), $n, flxc_user_name( get_current_user_id() ) ) );
+	flxc_system_message( flxc_get_chat( $chat_id ), sprintf( __( 'Chat history cleared (%1$d messages, %2$s).', 'flx-chat' ), $n, flxc_user_name( get_current_user_id() ) ) );
 	do_action( 'flxc_chat_cleared', $chat_id, $n );
 	return $n;
 }
@@ -331,11 +331,11 @@ add_action(
 					$id   = (int) $req['id'];
 					$chat = flxc_get_chat( $id );
 					if ( ! $chat ) {
-						return new WP_Error( 'flxc_404', __( 'Sohbet bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+						return new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
 					}
 					// Arayüz onay kelimesini yazdırır; uca yanlışlıkla gelen istek silmesin.
 					if ( 'yes' !== (string) $req->get_param( 'confirm' ) ) {
-						return new WP_Error( 'flxc_confirm', __( 'Onay metni yanlış.', 'flx-chat' ), array( 'status' => 400 ) );
+						return new WP_Error( 'flxc_confirm', __( 'Confirmation text is wrong.', 'flx-chat' ), array( 'status' => 400 ) );
 					}
 					$n = flxc_clear_chat_history( $id, (bool) $req->get_param( 'keep_receipts' ) );
 					if ( $req->get_param( 'forget_memory' ) && function_exists( 'flxc_mem_forget' ) ) {

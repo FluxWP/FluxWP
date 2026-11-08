@@ -1,0 +1,1051 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Backups"
+msgstr "Yedekleme"
+
+msgid "Backups › Dashboard"
+msgstr "Yedekler › Panel"
+
+msgid "Dashboard"
+msgstr "Panel"
+
+msgid "Backups › Settings"
+msgstr "Yedekler › Ayarlar"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Permanently delete this backup?"
+msgstr "Bu yedek kalıcı olarak silinsin mi?"
+
+msgid "Permanently delete the selected backups?"
+msgstr "Seçilen yedekler kalıcı olarak silinsin mi?"
+
+msgid "The selected parts will be returned to their state in the backup and their current state will be overwritten. Continue?"
+msgstr "Seçilen parçalar yedekteki haline döndürülecek ve mevcut halleri üzerine yazılacak. Devam edilsin mi?"
+
+msgid "Cancel the running job?"
+msgstr "Çalışan işlem iptal edilsin mi?"
+
+msgid "Starting…"
+msgstr "Başlatılıyor…"
+
+msgid "Backing up"
+msgstr "Yedek alınıyor"
+
+msgid "Restoring"
+msgstr "Geri yükleniyor"
+
+msgid "Completed"
+msgstr "Tamamlandı"
+
+msgid "Failed"
+msgstr "Başarısız"
+
+msgid "Reload page"
+msgstr "Sayfayı yenile"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Cancel"
+msgstr "Vazgeç"
+
+msgid "An error occurred."
+msgstr "Bir hata oluştu."
+
+msgid "Connection lost, retrying…"
+msgstr "Bağlantı kesildi, yeniden deneniyor…"
+
+msgid "Database (all tables)"
+msgstr "Veritabanı (tüm tablolar)"
+
+msgid "Select at least one part."
+msgstr "En az bir parça seçin."
+
+msgid "You can keep this page open; if you close it, the job continues in the background."
+msgstr "Bu sayfayı açık tutabilirsiniz; kapatırsanız işlem arka planda sürer."
+
+msgid "Do not close this page until the restore finishes."
+msgstr "Geri yükleme bitene kadar bu sayfayı kapatmayın."
+
+msgid "The backup is running in the background. Follow its progress in the toolbar indicator at the top; you can leave this page."
+msgstr "Yedek arka planda alınıyor. İlerlemeyi üst çubuktaki göstergeden izleyebilir, bu sayfadan ayrılabilirsiniz."
+
+msgid "The restore has started in the background. Progress is shown in the toolbar indicator; do not change the site until it finishes."
+msgstr "Geri yükleme arka planda başladı. İlerleme üst çubuktaki göstergede; bitene kadar siteyi değiştirmeyin."
+
+msgid "Backup ready."
+msgstr "Yedek hazır."
+
+msgid "Refresh list"
+msgstr "Listeyi yenile"
+
+msgid "Details"
+msgstr "Ayrıntı"
+
+msgid "Dismiss this notice."
+msgstr "Bu bildirimi kapat."
+
+msgid "Uploading %1$s…"
+msgstr "%1$s yükleniyor…"
+
+msgid "%1$s / %2$s"
+msgstr "%1$s / %2$s"
+
+msgid "Verifying…"
+msgstr "Doğrulanıyor…"
+
+msgid "Only .zip backup files made with Flux Backup can be uploaded."
+msgstr "Yalnızca Flux Backup ile alınmış .zip yedek dosyaları yüklenebilir."
+
+msgid "Upload cancelled."
+msgstr "Yükleme iptal edildi."
+
+msgid "Upload failed: %s"
+msgstr "Yükleme başarısız: %s"
+
+msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
+msgstr "Bu yedek başka bir siteden alınmış: %s. Veritabanı geri yüklenirse içerik o siteden gelir; bu sitenin adresi (siteurl/home) korunur, içerikteki eski adres bağlantıları kendiliğinden değişmez."
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
+msgstr "Yedekteki tablo öneki (%1$s) bu sitenin önekinden (%2$s) farklı; veritabanı bu siteye geri yüklenemez, yalnız dosyalar seçilebilir."
+
+msgid "Flux Backup"
+msgstr "Flux Backup"
+
+msgid "Automatic pre-update backups, scheduled backups and restore"
+msgstr "Güncelleme öncesi otomatik yedek, zamanlanmış yedek ve geri yükleme"
+
+msgid "Upload backup"
+msgstr "Yedek yükle"
+
+msgid "Back up now"
+msgstr "Şimdi yedekle"
+
+msgid "Settings saved."
+msgstr "Ayarlar kaydedildi."
+
+msgid "ZipArchive (PHP zip extension) is not available on the server."
+msgstr "Sunucuda ZipArchive (PHP zip eklentisi) yok."
+
+msgid "The backup folder is not writable: %s"
+msgstr "Yedek klasörü yazılabilir değil: %s"
+
+msgid "Backup type"
+msgstr "Yedek türü"
+
+msgid "Full backup"
+msgstr "Tam yedek"
+
+msgid "Database + wp-content (plugins, themes, uploads)"
+msgstr "Veritabanı + wp-content (eklentiler, temalar, yüklemeler)"
+
+msgid "Database only"
+msgstr "Yalnız veritabanı"
+
+msgid "Posts, pages, settings, users"
+msgstr "Yazılar, sayfalar, ayarlar, kullanıcılar"
+
+msgid "Files only"
+msgstr "Yalnız dosyalar"
+
+msgid "The wp-content folder"
+msgstr "wp-content klasörü"
+
+msgid "Also include WordPress core files (wp-admin, wp-includes)"
+msgstr "WordPress çekirdek dosyalarını da ekle (wp-admin, wp-includes)"
+
+msgid "Description (optional)"
+msgstr "Açıklama (isteğe bağlı)"
+
+msgid "e.g. Before the theme change"
+msgstr "ör. Tema değişikliğinden önce"
+
+msgid "Lock: never delete automatically, even when the quota is full"
+msgstr "Kilitle: kota dolsa da otomatik silinmesin"
+
+msgid "Start backup"
+msgstr "Yedeği başlat"
+
+msgid "Restore"
+msgstr "Geri yükleme"
+
+msgid "First take a safety backup of the current database (recommended)"
+msgstr "Önce mevcut veritabanının güvenlik yedeğini al (önerilir)"
+
+msgid "The site address (siteurl/home), Flux Backup settings and the backup list are kept. Plugin and theme folders are replaced with their backed-up version; in other folders files are overwritten."
+msgstr "Site adresi (siteurl/home), Flux Backup ayarları ve yedek listesi korunur. Eklenti ve tema klasörleri yedekteki haliyle değiştirilir; diğer klasörlerde dosyalar üzerine yazılır."
+
+msgid "Start restore"
+msgstr "Geri yüklemeyi başlat"
+
+msgid "You are not allowed to do this."
+msgstr "Yetkiniz yok."
+
+msgid "Storage"
+msgstr "Depolama"
+
+msgid "%s%% of the quota is used"
+msgstr "Kotanın %%%s kadarı dolu"
+
+msgid "%1$s%% used · %2$s free"
+msgstr "%%%1$s dolu · %2$s boş"
+
+msgid "Last successful backup"
+msgstr "Son başarılı yedek"
+
+msgid "%s ago"
+msgstr "%s önce"
+
+msgid "No backups yet."
+msgstr "Henüz yedek yok."
+
+msgid "Next scheduled"
+msgstr "Sonraki zamanlanmış"
+
+msgid "Weekly full backup"
+msgstr "Haftalık tam yedek"
+
+msgid "Daily full backup"
+msgstr "Günlük tam yedek"
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "Turn on schedule"
+msgstr "Zamanlamayı aç"
+
+msgid "Pre-update backup: off"
+msgstr "Güncelleme öncesi yedek: kapalı"
+
+msgid "Pre-update backup: FluxWP packages"
+msgstr "Güncelleme öncesi yedek: FluxWP paketleri"
+
+msgid "Pre-update backup: on"
+msgstr "Güncelleme öncesi yedek: açık"
+
+msgid "Storage history"
+msgstr "Depolama geçmişi"
+
+msgid "Time range"
+msgstr "Zaman aralığı"
+
+msgid "%s days"
+msgstr "%s gün"
+
+msgid "Quota"
+msgstr "Kota"
+
+msgid "By type"
+msgstr "Türlere göre"
+
+msgid "Recent backups"
+msgstr "Son yedekler"
+
+msgid "View all"
+msgstr "Tümünü gör"
+
+msgid "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
+msgstr "Henüz yedek yok. \"Şimdi yedek al\" ile ilk yedeği alın; eklenti ve tema güncellemelerinden önce yedek kendiliğinden alınır."
+
+msgid "Running"
+msgstr "Sürüyor"
+
+msgid "Recent events"
+msgstr "Son olaylar"
+
+msgid "No events yet."
+msgstr "Henüz olay yok."
+
+msgid "Total"
+msgstr "Toplam"
+
+msgid "Not enough data yet: one measurement is recorded each day."
+msgstr "Henüz yeterli veri yok: her gün bir ölçüm kaydedilir."
+
+msgid "No measurement for this day"
+msgstr "Bu gün için ölçüm yok"
+
+msgid "Storage by type"
+msgstr "Türlere göre depolama"
+
+msgid "total"
+msgstr "toplam"
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "Delete selected"
+msgstr "Seçilenleri sil"
+
+msgid "Total %s"
+msgstr "Toplam %s"
+
+msgid "Select all"
+msgstr "Tümünü seç"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Contents"
+msgstr "İçerik"
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Retention"
+msgstr "Saklama"
+
+msgid "Actions"
+msgstr "İşlemler"
+
+msgid "No backups."
+msgstr "Yedek yok."
+
+msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
+msgstr "Yedekler %s klasöründe. Hostinger bu klasörü kendi yedeklerine almaz: önemli yedekleri bilgisayarınıza indirin."
+
+msgid "Database"
+msgstr "Veritabanı"
+
+msgid "Plugin"
+msgstr "Eklenti"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "WordPress core"
+msgstr "WordPress çekirdeği"
+
+msgid "Select"
+msgstr "Seç"
+
+msgid "Running…"
+msgstr "Sürüyor…"
+
+msgid "Locked: never deleted automatically. Click to unlock."
+msgstr "Kilitli: otomatik silinmez. Kilidi açmak için tıklayın."
+
+msgid "Lock: the quota and retention period will not delete this backup."
+msgstr "Kilitle: kota ve saklama süresi bu yedeği silmez."
+
+msgid "Unlock"
+msgstr "Kilidi aç"
+
+msgid "Lock"
+msgstr "Kilitle"
+
+msgid "Locked"
+msgstr "Kilitli"
+
+msgid "Until %s"
+msgstr "%s tarihine kadar"
+
+msgid "Last %s scheduled"
+msgstr "Son %s zamanlanmış"
+
+msgid "Until the quota is full"
+msgstr "Kota dolana kadar"
+
+msgid "Download"
+msgstr "İndir"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "All backups"
+msgstr "Tüm yedekler"
+
+msgid "Backup not found."
+msgstr "Yedek bulunamadı."
+
+msgid "Backup file"
+msgstr "Yedek dosyası"
+
+msgid "Uncompressed size"
+msgstr "Açılmış boyut"
+
+msgid "Files"
+msgstr "Dosya"
+
+msgid "%1$s tables, %2$s rows"
+msgstr "%1$s tablo, %2$s satır"
+
+msgid "Included"
+msgstr "Var"
+
+msgid "Source"
+msgstr "Kaynak"
+
+msgid "Taken on site"
+msgstr "Alındığı site"
+
+msgid "Originally taken"
+msgstr "Alındığı tarih"
+
+msgid "WordPress"
+msgstr "WordPress"
+
+msgid "The backup is running; details will appear here when it finishes."
+msgstr "Yedek alınıyor; ayrıntılar yedek bitince burada görünür."
+
+msgid "The backup file could not be read; the size breakdown cannot be shown."
+msgstr "Yedek dosyası okunamadı; boyut dağılımı gösterilemiyor."
+
+msgid "Size breakdown"
+msgstr "Boyut dağılımı"
+
+msgid "Measure"
+msgstr "Ölçü"
+
+msgid "Original size"
+msgstr "Özgün boyut"
+
+msgid "Size in archive"
+msgstr "Arşivdeki boyut"
+
+msgid "uncompressed"
+msgstr "açılmış haliyle"
+
+msgid "inside the zip"
+msgstr "zip içinde"
+
+msgid "Size breakdown by category"
+msgstr "Kategorilere göre boyut dağılımı"
+
+msgid "Section"
+msgstr "Bölüm"
+
+msgid "Files / rows"
+msgstr "Dosya / satır"
+
+msgid "In archive"
+msgstr "Arşivde"
+
+msgid "Share"
+msgstr "Pay"
+
+msgid "Original size: the size of the files on the site (for the database, the size of the SQL dump). In archive: the compressed size inside the zip. Images and videos are already compressed, so they do not get smaller in the archive."
+msgstr "Özgün boyut: dosyaların sitedeki boyutu (veritabanı için SQL dökümünün boyutu). Arşivde: zip içindeki sıkıştırılmış boyutu. Görseller ve videolar zaten sıkıştırılmış olduğundan arşivde küçülmez."
+
+msgid "Root files (wp-config.php, index.php …)"
+msgstr "Kök dosyalar (wp-config.php, index.php …)"
+
+msgid "Files directly in this folder"
+msgstr "Klasörün kendi dosyaları"
+
+msgid "Plugins"
+msgstr "Eklentiler"
+
+msgid "Themes"
+msgstr "Temalar"
+
+msgid "Other folders"
+msgstr "Diğer klasörler"
+
+msgid "wp-content (all)"
+msgstr "wp-content (tamamı)"
+
+msgid "Monday"
+msgstr "Pazartesi"
+
+msgid "Tuesday"
+msgstr "Salı"
+
+msgid "Wednesday"
+msgstr "Çarşamba"
+
+msgid "Thursday"
+msgstr "Perşembe"
+
+msgid "Friday"
+msgstr "Cuma"
+
+msgid "Saturday"
+msgstr "Cumartesi"
+
+msgid "Sunday"
+msgstr "Pazar"
+
+msgid "The total size of backups never exceeds this: before a new backup, the oldest unlocked backups are deleted. Locked backups are never deleted automatically; if no room can be made, the backup is not taken."
+msgstr "Yedeklerin toplam boyutu bunu aşmaz: yeni yedekten önce en eski kilitsiz yedekler silinir. Kilitli yedekler asla otomatik silinmez; yer açılamazsa yedek alınmaz."
+
+msgid "Currently using %1$s. Folder: %2$s"
+msgstr "Şu an %1$s kullanılıyor. Klasör: %2$s"
+
+msgid "Pre-update backup"
+msgstr "Güncelleme öncesi yedek"
+
+msgid "Scope"
+msgstr "Kapsam"
+
+msgid "All plugin and theme updates"
+msgstr "Tüm eklenti ve tema güncellemeleri"
+
+msgid "FluxWP packages only (flx-… plugins and FluxWP themes)"
+msgstr "Yalnız FluxWP paketleri (flx-… eklentileri ve FluxWP temaları)"
+
+msgid "In manual, bulk and automatic updates, the database and the updated package's folder are backed up right before the package is installed. A bulk update produces a single backup."
+msgstr "Elle, toplu ve otomatik güncellemelerde paket kurulmadan hemen önce veritabanı ve güncellenen paketin klasörü yedeklenir. Toplu güncellemede tek yedek alınır."
+
+msgid "Retention period"
+msgstr "Saklama süresi"
+
+msgid "days"
+msgstr "gün"
+
+msgid "If the update went fine, the backup is deleted after this period. Lock the ones you want to keep in the list."
+msgstr "Güncelleme sorunsuz geçtiyse bu süre sonunda silinir. Saklamak istediğinizi listede kilitleyin."
+
+msgid "Scheduled full backup"
+msgstr "Zamanlanmış tam yedek"
+
+msgid "Frequency"
+msgstr "Sıklık"
+
+msgid "Daily"
+msgstr "Her gün"
+
+msgid "Weekly"
+msgstr "Her hafta"
+
+msgid "Day"
+msgstr "Gün"
+
+msgid "Time"
+msgstr "Saat"
+
+msgid "In the site's time zone. Choose night hours; WP-Cron is triggered by visits, so it may run a few minutes late."
+msgstr "Site saat dilimine göre. Gece saatlerini seçin; WP-Cron ziyaretle tetiklendiği için birkaç dakika gecikebilir."
+
+msgid "Number to keep"
+msgstr "Saklanacak sayı"
+
+msgid "Only this many of the latest scheduled backups are kept (locked ones are not counted)."
+msgstr "Zamanlanmış yedeklerden son bu kadarı tutulur (kilitliler sayılmaz)."
+
+msgid "Add wp-admin, wp-includes and root files (including wp-config.php) to full backups"
+msgstr "Tam yedeklere wp-admin, wp-includes ve kök dosyaları (wp-config.php dahil) ekle"
+
+msgid "WordPress core can always be downloaded again from wordpress.org; leaving it out saves space."
+msgstr "Çekirdek her zaman wordpress.org'dan yeniden indirilebilir; kapalı bırakmak yer kazandırır."
+
+msgid "Exclusions"
+msgstr "Hariç tutulanlar"
+
+msgid "Extra paths"
+msgstr "Ek yollar"
+
+msgid "One path per line, relative to the WordPress root folder. The * wildcard can be used."
+msgstr "Her satıra bir yol, WordPress kök klasörüne göre. * joker karakteri kullanılabilir."
+
+msgid "Always excluded: the backup folder, wp-snapshots, other backup plugins' folders (ai1wm-backups, updraft, wpvividbackups, backups-dup-*), cache, litespeed, upgrade, upgrade-temp-backup."
+msgstr "Her zaman hariç: yedek klasörü, wp-snapshots, diğer yedek eklentilerinin klasörleri (ai1wm-backups, updraft, wpvividbackups, backups-dup-*), cache, litespeed, upgrade, upgrade-temp-backup."
+
+msgid "Restore and uninstall"
+msgstr "Geri yükleme ve kaldırma"
+
+msgid "Safety backup"
+msgstr "Güvenlik yedeği"
+
+msgid "Back up the current database before restoring the database (kept for 7 days)"
+msgstr "Veritabanını geri yüklemeden önce mevcut veritabanını yedekle (7 gün saklanır)"
+
+msgid "When the plugin is deleted"
+msgstr "Eklenti silinince"
+
+msgid "Also delete backup files"
+msgstr "Yedek dosyalarını da sil"
+
+msgid "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder."
+msgstr "Kapalıysa (varsayılan) eklenti silindiğinde yalnız ayarlar silinir, zip dosyaları klasörde kalır."
+
+msgid "Save settings"
+msgstr "Ayarları kaydet"
+
+msgid "Could not delete."
+msgstr "Silinemedi."
+
+msgid "No operation is running."
+msgstr "Çalışan bir işlem yok."
+
+msgid "Nothing was selected to back up."
+msgstr "Yedeklenecek bir şey seçilmedi."
+
+msgid "zlib (gzip) is not available on the server."
+msgstr "Sunucuda zlib (gzip) yok."
+
+msgid "Another backup or restore is running. Wait for it to finish."
+msgstr "Şu anda başka bir yedekleme veya geri yükleme çalışıyor. Bitmesini bekleyin."
+
+msgid "Backup record not found."
+msgstr "Yedek kaydı bulunamadı."
+
+msgid "Invalid path."
+msgstr "Geçersiz yol."
+
+msgid "Path not found: %s"
+msgstr "Yol bulunamadı: %s"
+
+msgid "Could not write a temporary file."
+msgstr "Geçici dosya yazılamadı."
+
+msgid "Could not read the file list."
+msgstr "Dosya listesi okunamadı."
+
+msgid "Could not open the zip file (code %s)."
+msgstr "Zip dosyası açılamadı (kod %s)."
+
+msgid "Could not write the zip: %s"
+msgstr "Zip yazılamadı: %s"
+
+msgid "The backup record was deleted."
+msgstr "Yedek kaydı silinmiş."
+
+msgid "Could not open the zip file."
+msgstr "Zip dosyası açılamadı."
+
+msgid "Could not add the database dump to the archive."
+msgstr "Veritabanı dökümü arşive eklenemedi."
+
+msgid "Could not write the zip (the disk may be full)."
+msgstr "Zip yazılamadı (disk dolu olabilir)."
+
+msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgstr "Yedek aynı noktada %s kez yarıda kesildi (sunucunun süre sınırı). Daha az klasörle deneyin veya hariç tutulanlara büyük klasörleri ekleyin."
+
+msgid "Backup taken: %1$s (%2$s)"
+msgstr "Yedek alındı: %1$s (%2$s)"
+
+msgid "Backup failed (%1$s): %2$s"
+msgstr "Yedek alınamadı (%1$s): %2$s"
+
+msgid "Scanning files… %s files"
+msgstr "Dosyalar taranıyor… %s dosya"
+
+msgid "Checking quota…"
+msgstr "Kota kontrol ediliyor…"
+
+msgid "Backing up database: %1$s (%2$s rows)"
+msgstr "Veritabanı yedekleniyor: %1$s (%2$s satır)"
+
+msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
+msgstr "Dosyalar arşivleniyor: %1$s / %2$s dosya (%3$s / %4$s)"
+
+msgid "Finishing…"
+msgstr "Tamamlanıyor…"
+
+msgid "Backup completed."
+msgstr "Yedek tamamlandı."
+
+msgid "Media (uploads)"
+msgstr "Medya (uploads)"
+
+msgid "Other wp-content"
+msgstr "Diğer wp-content"
+
+msgid "Backup folder writable"
+msgstr "Yedek klasörü yazılabilir"
+
+msgid "Backups are written to %s."
+msgstr "Yedekler %s klasörüne yazılıyor."
+
+msgid "The %s folder cannot be created or written. Check the file permissions (755)."
+msgstr "%s klasörü oluşturulamıyor veya yazılamıyor. Dosya izinlerini (755) kontrol edin."
+
+msgid "ZipArchive and zlib"
+msgstr "ZipArchive ve zlib"
+
+msgid "The PHP zip and zlib extensions are installed."
+msgstr "PHP zip ve zlib eklentileri yüklü."
+
+msgid "The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on \"zip\" under PHP Configuration › PHP Extensions."
+msgstr "PHP zip (ZipArchive) veya zlib eklentisi yok; yedek alınamaz. Hostinger panelinde PHP Yapılandırması › PHP Uzantıları'ndan \"zip\" açın."
+
+msgid "Backup quota"
+msgstr "Yedek kotası"
+
+msgid "%1$s / %2$s used (%3$s%%)."
+msgstr "%1$s / %2$s kullanılıyor (%%%3$s)."
+
+msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
+msgstr "Yeni yedek için en eski kilitsiz yedekler silinecek; kotayı artırın veya kilitli yedekleri gözden geçirin."
+
+msgid "There are no backups yet. Take the first one from the dashboard with \"Back up now\"."
+msgstr "Henüz hiç yedek yok. Panelden \"Şimdi yedek al\" ile ilk yedeği alın."
+
+msgid "%1$s (%2$s): %3$s"
+msgstr "%1$s (%2$s): %3$s"
+
+msgid "for all plugin and theme updates"
+msgstr "tüm eklenti ve tema güncellemelerinde"
+
+msgid "for FluxWP package updates only"
+msgstr "yalnız FluxWP paketlerinin güncellemelerinde"
+
+msgid "Off: no backup is taken before updates."
+msgstr "Kapalı: güncellemelerden önce yedek alınmıyor."
+
+msgid "On, %1$s. Backups are kept for %2$s days."
+msgstr "Açık, %1$s. Yedekler %2$s gün saklanır."
+
+msgid "The daily cleanup task ran %s."
+msgstr "Günlük temizlik görevi %s çalıştı."
+
+msgid "The daily task is scheduled but has not run yet."
+msgstr "Günlük görev zamanlandı, henüz çalışmadı."
+
+msgid "DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs."
+msgstr "DISABLE_WP_CRON açık ve günlük görev 2 gündür çalışmadı. Hostinger panelinde Gelişmiş › Cron Jobs ile wp-cron.php'yi 5–15 dakikada bir çağırın."
+
+msgid "The daily task has not run for 2 days; WP-Cron is triggered by visits. Old backups may not be getting deleted."
+msgstr "Günlük görev 2 gündür çalışmadı; WP-Cron ziyaretle tetiklenir. Eski yedekler silinmiyor olabilir."
+
+msgid "Flux Backup scheduled tasks"
+msgstr "Flux Backup zamanlanmış görevleri"
+
+msgid "Could not start the scheduled backup: %s"
+msgstr "Zamanlanmış yedek başlatılamadı: %s"
+
+msgid "Left unfinished (timed out)."
+msgstr "Yarım kaldı (zaman aşımı)."
+
+msgid "Could not write the SQL file."
+msgstr "SQL dosyası yazılamadı."
+
+msgid "Could not read table %1$s: %2$s"
+msgstr "%1$s tablosu okunamadı: %2$s"
+
+msgid "Could not get the structure of table %1$s: %2$s"
+msgstr "%1$s tablosunun yapısı alınamadı: %2$s"
+
+msgid "Could not open the SQL file."
+msgstr "SQL dosyası açılamadı."
+
+msgid "Flux Backup: click for details"
+msgstr "Flux Backup: ayrıntılar için tıklayın"
+
+msgid "Restoring %s"
+msgstr "Geri yükleniyor %s"
+
+msgid "Backing up %s"
+msgstr "Yedek alınıyor %s"
+
+msgid "Restore complete"
+msgstr "Geri yükleme tamamlandı"
+
+msgid "Backup ready · %s"
+msgstr "Yedek hazır · %s"
+
+msgid "Backup ready"
+msgstr "Yedek hazır"
+
+msgid "Restore failed"
+msgstr "Geri yükleme başarısız"
+
+msgid "Backup failed"
+msgstr "Yedek alınamadı"
+
+msgid "Cancelled"
+msgstr "İptal edildi"
+
+msgid "Cancelling…"
+msgstr "İptal ediliyor…"
+
+msgid "Elapsed: %s"
+msgstr "Geçen süre: %s"
+
+msgid "Remaining: about %s"
+msgstr "Kalan: yaklaşık %s"
+
+msgid "Backup"
+msgstr "Yedek"
+
+msgid "You can leave the page; it keeps running in the background."
+msgstr "Sayfadan ayrılabilirsiniz; işlem arka planda sürer."
+
+msgid "Do not change the site while the restore is running."
+msgstr "Geri yükleme sürerken siteyi değiştirmeyin."
+
+msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
+msgstr "%1$s güncellemesinden önce yedek alınamadı, güncelleme yedeksiz devam etti: %2$s"
+
+msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
+msgstr "%1$s klasörü güncelleme öncesi yedeğe eklenemedi: %2$s"
+
+msgid "The backup file is missing from disk."
+msgstr "Yedek dosyası diskte yok."
+
+msgid "This path is not in the backup: %s"
+msgstr "Bu yol yedekte yok: %s"
+
+msgid "This backup has no database."
+msgstr "Bu yedekte veritabanı yok."
+
+msgid "Nothing was selected to restore."
+msgstr "Geri yüklenecek bir şey seçilmedi."
+
+msgid "Safety backup before restore (%s)"
+msgstr "Geri yükleme öncesi güvenlik yedeği (%s)"
+
+msgid "The safety backup failed, so nothing was restored: %s"
+msgstr "Güvenlik yedeği alınamadı, geri yükleme yapılmadı: %s"
+
+msgid "The backup has no database.sql.gz."
+msgstr "Yedekte database.sql.gz yok."
+
+msgid "The database file's checksum does not match; the backup may be corrupt."
+msgstr "Veritabanı dosyasının sağlama toplamı tutmuyor; yedek bozuk olabilir."
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database was not restored."
+msgstr "Yedekteki tablo öneki (%1$s) bu sitenin önekinden (%2$s) farklı; veritabanı geri yüklenmedi."
+
+msgid "Not found in the backup: %s"
+msgstr "Yedekte bulunamadı: %s"
+
+msgid "Could not move the folder (permission problem?): %s"
+msgstr "Klasör taşınamadı (izin sorunu?): %s"
+
+msgid "Could not create the folder: %s"
+msgstr "Klasör oluşturulamadı: %s"
+
+msgid "Could not write the file: %s"
+msgstr "Dosya yazılamadı: %s"
+
+msgid "database"
+msgstr "veritabanı"
+
+msgid "Restored: %1$s (%2$s)."
+msgstr "Geri yüklendi: %1$s (%2$s)."
+
+msgid "%s SQL statements failed; details are in the log."
+msgstr "%s SQL ifadesi hata verdi; ayrıntı günlükte."
+
+msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
+msgstr "%s Veritabanı yarım kalmış olabilir; \"Geri yükleme öncesi güvenlik yedeği\"ni geri yükleyin."
+
+msgid "Restore failed (%1$s): %2$s"
+msgstr "Geri yükleme başarısız (%1$s): %2$s"
+
+msgid "Taking safety backup: %s"
+msgstr "Güvenlik yedeği alınıyor: %s"
+
+msgid "Unpacking the database file…"
+msgstr "Veritabanı dosyası açılıyor…"
+
+msgid "Restoring database: %s"
+msgstr "Veritabanı geri yükleniyor: %s"
+
+msgid "Preparing files…"
+msgstr "Dosyalar hazırlanıyor…"
+
+msgid "Restoring files: %1$s / %2$s"
+msgstr "Dosyalar geri yükleniyor: %1$s / %2$s"
+
+msgid "%s s"
+msgstr "%s sn"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s dk %2$s sn"
+
+msgid "%1$s h %2$s min"
+msgstr "%1$s sa %2$s dk"
+
+msgid "Cancelled."
+msgstr "İptal edildi."
+
+msgid "Could not verify the session. Reload the page."
+msgstr "Oturum doğrulanamadı. Sayfayı yenileyin."
+
+msgid "Backup deleted: %s"
+msgstr "Yedek silindi: %s"
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "%1$s %2$s → %3$s öncesi"
+
+msgid "Before updating %s"
+msgstr "%s güncellemesi öncesi"
+
+msgid "Pre-update"
+msgstr "Güncelleme öncesi"
+
+msgid "Manual"
+msgstr "Elle"
+
+msgid "Scheduled"
+msgstr "Zamanlanmış"
+
+msgid "Automatic update"
+msgstr "Otomatik güncelleme"
+
+msgid "Update"
+msgstr "Güncelleme"
+
+msgid "WP-CLI"
+msgstr "WP-CLI"
+
+msgid "Before restore"
+msgstr "Geri yükleme öncesi"
+
+msgid "Plugin (API)"
+msgstr "Eklenti (API)"
+
+msgid "Uploaded"
+msgstr "Dışarıdan yüklendi"
+
+msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings."
+msgstr "Yedeğin tahmini boyutu (%1$s) kotadan (%2$s) büyük. Ayarlar'dan kotayı artırın."
+
+msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
+msgstr "Kotada yer yok: yeni yedek yaklaşık %1$s, kullanılan %2$s, kota %3$s. Kalan yedekler kilitli; kilidi açın, silin veya kotayı artırın."
+
+msgid "The file is empty or too small."
+msgstr "Dosya boş ya da çok küçük."
+
+msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings."
+msgstr "Dosya (%1$s) yedek kotasından (%2$s) büyük. Ayarlar'dan kotayı artırın."
+
+msgid "There is not enough free disk space on the server (free: %s)."
+msgstr "Sunucuda yeterli boş disk alanı yok (boş: %s)."
+
+msgid "Upload not found; start again."
+msgstr "Yükleme bulunamadı; yeniden başlatın."
+
+msgid "A chunk did not reach the server (error %d)."
+msgstr "Parça sunucuya ulaşmadı (hata %d)."
+
+msgid "Chunks arrived out of order."
+msgstr "Parça sırası bozuldu."
+
+msgid "The file is larger than the declared size."
+msgstr "Dosya bildirilen boyuttan büyük."
+
+msgid "Could not write the temporary file (the disk may be full)."
+msgstr "Geçici dosya yazılamadı (disk dolu olabilir)."
+
+msgid "%1$s was uploaded (%2$s) and added to the backup list."
+msgstr "%1$s yüklendi (%2$s) ve yedek listesine eklendi."
+
+msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
+msgstr "Dosya eksik yüklendi (%1$s / %2$s). Yeniden deneyin."
+
+msgid "Could not move the file to the backup folder."
+msgstr "Yedek klasörüne taşınamadı."
+
+msgid "Uploaded: %s"
+msgstr "Yüklendi: %s"
+
+msgid "Backup uploaded: %1$s (%2$s, %3$s)"
+msgstr "Yedek yüklendi: %1$s (%2$s, %3$s)"
+
+msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
+msgstr "Bu dosya bir Flux Backup yedeği değil (zip açılamadı ya da manifest.json yok)."
+
+msgid "The backup contains an unexpected or unsafe path: %s"
+msgstr "Yedekte beklenmeyen veya güvenli olmayan bir yol var: %s"
+
+msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
+msgstr "Manifest veritabanı içerdiğini söylüyor ama database.sql.gz yok; dosya bozuk olabilir."
+
+msgid "The backup appears to be empty."
+msgstr "Yedek boş görünüyor."
+
+msgid "The uncompressed size of the backup is not plausible; the file was not accepted."
+msgstr "Yedeğin açılmış boyutu makul değil; dosya yüklenmedi."
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] "%s dosya"
+msgstr[1] "%s dosya"
+
+msgid "%s locked"
+msgid_plural "%s locked"
+msgstr[0] "%s kilitli"
+msgstr[1] "%s kilitli"
+
+msgid "Before updating %s package"
+msgid_plural "Before updating %s packages"
+msgstr[0] "%s paket güncellemesi öncesi"
+msgstr[1] "%s paket güncellemesi öncesi"
+
+msgid "%s row"
+msgid_plural "%s rows"
+msgstr[0] "%s satır"
+msgstr[1] "%s satır"
+
+msgid "%s backup"
+msgid_plural "%s backups"
+msgstr[0] "%s yedek"
+msgstr[1] "%s yedek"
+
+msgid "%s other item"
+msgid_plural "%s other items"
+msgstr[0] "Diğer %s öğe"
+msgstr[1] "Diğer %s öğe"
+
+msgid "%1$s old backup deleted for the quota: %2$s"
+msgid_plural "%1$s old backups deleted for the quota: %2$s"
+msgstr[0] "Kota için %1$s eski yedek silindi: %2$s"
+msgstr[1] "Kota için %1$s eski yedek silindi: %2$s"
+
+msgid "%s backup past its retention period was deleted."
+msgid_plural "%s backups past their retention period were deleted."
+msgstr[0] "Saklama süresi dolan %s yedek silindi."
+msgstr[1] "Saklama süresi dolan %s yedek silindi."
+
+msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
+msgstr "Her eklenti/tema güncellemesinden önce otomatik yedek alır, zamanlanmış tam yedekler, kota ve saklama süresi yönetimi, grafikli depolama paneli ve seçerek geri yükleme. Hostinger paylaşımlı barındırma ile uyumludur."
+
+msgctxt "context_fd86717aca41"
+msgid "%s%%"
+msgstr "%%%s"
+
+msgid "The archive file is deleted too."
+msgstr "Arşiv dosyası da silinir."
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Restore is only available in the panel."
+msgstr "Geri yükleme yalnız panelde yapılır."
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Deleted"
+msgstr "Silindi"
+
+msgid "Take a full backup?"
+msgstr "Tam yedek alınsın mı?"
+
+msgid "Done"
+msgstr "Tamam"
+
+msgid "The backup runs in the background and shows up in the list when it finishes."
+msgstr "Yedek arka planda hazırlanır. Bitince listede görünür."
+
+msgid "Backup started"
+msgstr "Yedek başladı"
+
+msgid "Delete this backup?"
+msgstr "Yedek silinsin mi?"
+
+msgid "No backups"
+msgstr "Yedek yok"
+
+msgid "Back up"
+msgstr "Yedekle"
+
+msgid "Progress"
+msgstr "İlerleme"
+
+msgid "Take the first backup with Back up now. Restore is done in the panel."
+msgstr "Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır."

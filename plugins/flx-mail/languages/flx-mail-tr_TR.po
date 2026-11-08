@@ -1,0 +1,2511 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Sample email"
+msgstr "Örnek e-posta"
+
+msgid "Branded email layout"
+msgstr "Kurumsal e-posta görünümü"
+
+msgid "<p>Hello Ayşe,</p><p>Every email sent from our site uses this layout: our logo on top, the content in the middle, and our organization details and social media accounts at the bottom.</p>"
+msgstr "<p>Merhaba Ayşe,</p><p>Sitemizden giden bütün e-postalar bu düzende görünür: üstte logomuz, ortada içerik, altta kurum bilgilerimiz ve sosyal medya hesaplarımız.</p>"
+
+msgid "Visit the site"
+msgstr "Siteyi ziyaret et"
+
+msgid "Test"
+msgstr "Test et"
+
+msgid "Test email"
+msgstr "Test e-postası"
+
+msgid "Your email settings are working 🎉"
+msgstr "E-posta ayarlarınız çalışıyor 🎉"
+
+msgid "<p>If you can see this email, your site's email sending is working.</p><table class=\"flxi-kv\"><tr><td>Sender</td><td><strong>%1$s</strong></td></tr><tr><td>Method</td><td>%2$s</td></tr></table>"
+msgstr "<p>Bu e-postayı görüyorsanız sitenin e-posta gönderimi çalışıyor.</p><table class=\"flxi-kv\"><tr><td>Gönderen</td><td><strong>%1$s</strong></td></tr><tr><td>Yöntem</td><td>%2$s</td></tr></table>"
+
+msgid "Server PHP mail()"
+msgstr "Sunucunun PHP mail()"
+
+msgid "Go to the site"
+msgstr "Siteye git"
+
+msgid "Send"
+msgstr "Gönder"
+
+msgid "Send an email, WhatsApp or SMS message to one person or a list using the branded template. Bulk sends are processed in the background, one after another."
+msgstr "Bir kişiye ya da bir listeye kurumsal şablonla e-posta, WhatsApp veya SMS gönderin. Toplu gönderim arka planda sırayla gider."
+
+msgid "%1$s / %2$s sent · %3$s failed"
+msgstr "%1$s / %2$s gönderildi · %3$s hatalı"
+
+msgid "Sending is faster while this page is open; if you close it, it continues in the background."
+msgstr "Bu sayfa açıkken gönderim hızlanır; kapatırsanız arka planda devam eder."
+
+msgid "Stop"
+msgstr "Durdur"
+
+msgid "View log"
+msgstr "Kayıtları gör"
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "no connection"
+msgstr "bağlantı yok"
+
+msgid "Recipients"
+msgstr "Alıcılar"
+
+msgid "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67"
+msgstr "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67"
+
+msgid "One person per line: email, phone, or \"Full Name <email>\" / \"Full Name, email, phone\"."
+msgstr "Her satıra bir kişi: e-posta, telefon veya \"Tam Ad <email> \" / \"Tam Ad, e-posta, telefon\"."
+
+msgid "Subject"
+msgstr "Konu"
+
+msgid "Heading"
+msgstr "Başlık"
+
+msgid "Hello {ad}"
+msgstr "Merhaba {ad}"
+
+msgid "Content"
+msgstr "İçerik"
+
+msgid "Button text"
+msgstr "Düğme yazısı"
+
+msgid "Donate"
+msgstr "Bağış yap"
+
+msgid "Button link"
+msgstr "Düğme bağlantısı"
+
+msgid "From"
+msgstr "Kimden"
+
+msgid "Add an \"unsubscribe\" link (recommended for bulk sends)"
+msgstr "\"Listeden çık\" bağlantısı ekle (toplu gönderimde önerilir)"
+
+msgid "Variables"
+msgstr "Değişkenler"
+
+msgid "First name"
+msgstr "Ad"
+
+msgid "Full name"
+msgstr "Ad soyad"
+
+msgid "Email"
+msgstr "E-posta"
+
+msgid "Site name"
+msgstr "Site adı"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Hello {ad} 🌱 …"
+msgstr "Merhaba {ad} 🌱 …"
+
+msgid "Variables: {ad}, {ad_soyad}, {telefon}. *Bold* and _italic_ work in WhatsApp."
+msgstr "Değişkenler: {ad}, {ad_soyad}, {telefon}. WhatsApp'ta *kalın* ve _italik_ çalışır."
+
+msgid "Link"
+msgstr "Bağlantı"
+
+msgid "Campaign name (only visible to you)"
+msgstr "Gönderim adı (yalnız sizin için)"
+
+msgid "E.g. November sapling planting invitation"
+msgstr "Ör. Kasım fidan dikimi daveti"
+
+msgid "Start sending?"
+msgstr "Gönderim başlasın mı?"
+
+msgid "Send me a test"
+msgstr "Bana test gönder"
+
+msgid "Subject:"
+msgstr "Konu:"
+
+msgid "Preview size"
+msgstr "Önizleme boyutu"
+
+msgid "Desktop"
+msgstr "Masaüstü"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Dark mode"
+msgstr "Koyu mod"
+
+msgid "Email preview"
+msgstr "E-posta önizlemesi"
+
+msgid "Queued"
+msgstr "Sırada"
+
+msgid "Sending"
+msgstr "Gönderiliyor"
+
+msgid "Done"
+msgstr "Bitti"
+
+msgid "Stopped"
+msgstr "Durduruldu"
+
+msgid "Recent sends"
+msgstr "Son gönderimler"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Sent"
+msgstr "Gönderildi"
+
+msgid "Failed"
+msgstr "Başarısız"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Sending started for %s recipients."
+msgstr "%s alıcı için gönderim başladı."
+
+msgid "Sending stopped."
+msgstr "Gönderim durduruldu."
+
+msgid "Disabled, not sent"
+msgstr "Kapalı, gitmedi"
+
+msgid "Log"
+msgstr "Kayıtlar"
+
+msgid "Every email, WhatsApp and SMS message sent from the site. Click a row to see its content."
+msgstr "Siteden giden her e-posta, WhatsApp ve SMS. Satıra tıklayınca içeriği görürsünüz."
+
+msgid "All statuses"
+msgstr "Tüm durumlar"
+
+msgid "All channels"
+msgstr "Tüm kanallar"
+
+msgid "Recipient or subject"
+msgstr "Alıcı ya da konu"
+
+msgid "Filter"
+msgstr "Filtrele"
+
+msgid "Clear"
+msgstr "Temizle"
+
+msgid "%s entries"
+msgstr "%s kayıt"
+
+msgid "Time"
+msgstr "Zaman"
+
+msgid "Recipient"
+msgstr "Alıcı"
+
+msgid "Subject / email"
+msgstr "Konu / e-posta"
+
+msgid "No entries."
+msgstr "Kayıt yok."
+
+msgid "Bulk send"
+msgstr "Toplu gönderim"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Emails"
+msgstr "E-postalar"
+
+msgid "All emails sent by the site. You can turn them on or off, edit their content, and choose who they are sent from."
+msgstr "Sitenin gönderdiği bütün e-postalar. Açıp kapatabilir, içeriği düzenleyebilir, kimden gideceğini seçebilirsiniz."
+
+msgid "PHP mail() (not recommended)"
+msgstr "PHP mail() (önerilmez)"
+
+msgid "sent (7 days)"
+msgstr "gönderildi (7 gün)"
+
+msgid "failed"
+msgstr "başarısız"
+
+msgid "not sent because disabled"
+msgstr "kapalı olduğu için gitmedi"
+
+msgid "Sender"
+msgstr "Gönderen"
+
+msgid "To admin"
+msgstr "Yöneticiye"
+
+msgid "To user"
+msgstr "Kişiye"
+
+msgid "Sent %1$s times, last: %2$s. The content is generated by the plugin that sends it; here you can turn it on or off and choose the sender address and the branded layout."
+msgstr "%1$s kez gönderildi, son: %2$s. İçeriği gönderen eklenti üretir; burada açıp kapatabilir, gönderen adresini ve kurumsal çerçeveyi seçebilirsiniz."
+
+msgid "Search emails…"
+msgstr "E-posta ara…"
+
+msgid "Search emails"
+msgstr "E-posta ara"
+
+msgid "Cannot be disabled"
+msgstr "Kapatılamaz"
+
+msgid "%s enabled"
+msgstr "%s açık"
+
+msgid "Disabled"
+msgstr "Kapalı"
+
+msgid "Edit in WooCommerce"
+msgstr "WooCommerce'te düzenle"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Could not load WooCommerce emails."
+msgstr "WooCommerce e-postaları yüklenemedi."
+
+msgid "When a plugin not in the list sends an email for the first time, it is added here automatically."
+msgstr "Listede olmayan bir eklentinin e-postası ilk gönderildiğinde buraya kendiliğinden eklenir."
+
+msgid "No emails found"
+msgstr "E-posta bulunamadı"
+
+msgid "All emails"
+msgstr "Tüm e-postalar"
+
+msgid "Sender: %1$s (%2$s). The content is generated by that plugin."
+msgstr "Gönderen: %1$s (%2$s). İçeriği o eklenti üretir."
+
+msgid "Last subject: %s"
+msgstr "Son konu: %s"
+
+msgid "Send this email"
+msgstr "Bu e-posta gönderilsin"
+
+msgid "Always sent"
+msgstr "Her zaman gönderilir"
+
+msgid "Send from"
+msgstr "Kimden gitsin"
+
+msgid "no reply expected"
+msgstr "yanıt beklenmez"
+
+msgid "The large heading inside the email."
+msgstr "E-postanın içindeki büyük başlık."
+
+msgid "If empty, the button is not shown."
+msgstr "Boşsa düğme gösterilmez."
+
+msgid "Variables (click to insert at the cursor)"
+msgstr "Değişkenler (tıklayınca imlecin olduğu yere eklenir)"
+
+msgid "Organization name"
+msgstr "Kurum adı"
+
+msgid "Organization email"
+msgstr "Kurum e-postası"
+
+msgid "Organization phone"
+msgstr "Kurum telefonu"
+
+msgid "Wrap in branded template (logo, organization details). HTML emails with their own design are left untouched."
+msgstr "Kurumsal şablonla sar (logo, kurum bilgileri). Kendi tasarımı olan HTML e-postalara dokunulmaz."
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Reset content to default?"
+msgstr "İçerik varsayılana dönsün mü?"
+
+msgid "Reset to default"
+msgstr "Varsayılana dön"
+
+msgid "Sample values are used in the preview."
+msgstr "Önizlemede örnek değerler kullanılır."
+
+msgid "Email enabled."
+msgstr "E-posta açıldı."
+
+msgid "Email disabled; it will not be sent."
+msgstr "E-posta kapatıldı; gönderilmeyecek."
+
+msgid "Default content restored."
+msgstr "Varsayılan içerik geri yüklendi."
+
+msgid "Saved."
+msgstr "Kaydedildi."
+
+msgid "Sender name and addresses, sending method, and email appearance."
+msgstr "Gönderen adı ve adresleri, gönderim yöntemi, e-postaların görünümü."
+
+msgid "Sections"
+msgstr "Bölümler"
+
+msgid "Sending method"
+msgstr "Gönderim yöntemi"
+
+msgid "Appearance"
+msgstr "Görünüm"
+
+msgid "Google sign-in"
+msgstr "Google ile giriş"
+
+msgid "Log and bulk send"
+msgstr "Kayıt ve toplu gönderim"
+
+msgid "In the inbox, your organization's name and address appear instead of \"WordPress <wordpress@…>\". Emails that expect a reply are sent from the bilgi@ address; emails that don't, such as passwords and notifications, are sent from the no-reply@ address. You can choose which one to use for each email separately."
+msgstr "Gelen kutusunda \"WordPress <wordpress@…>\" yerine kurumunuzun adı ve adresi görünür. Yanıt beklenen e-postalar bilgi@ adresinden, parola ve bildirim gibi yanıt beklenmeyenler no-reply@ adresinden gider. Hangisinin kullanılacağını her e-postada ayrı seçebilirsiniz."
+
+msgid "Sender name"
+msgstr "Gönderen adı"
+
+msgid "Sender address"
+msgstr "Gönderen adresi"
+
+msgid "No-reply name"
+msgstr "No-reply adı"
+
+msgid "No-reply address"
+msgstr "No-reply adresi"
+
+msgid "Reply-to address (optional)"
+msgstr "Yanıt adresi (isteğe bağlı)"
+
+msgid "If empty, replies go to the sender address."
+msgstr "Boşsa yanıtlar gönderen adrese gider."
+
+msgid "Also change the sender address of other plugins to this (recommended; for SPF/DKIM, all emails should be sent from the same domain)"
+msgstr "Diğer eklentilerin gönderen adresini de bununla değiştir (önerilir; SPF/DKIM için tüm e-postalar aynı alan adından gitmeli)"
+
+msgid "%s is active; it sends the emails and the SMTP settings here are not used. Do not use both at the same time: turn one off."
+msgstr "%s etkin; e-postaları o gönderiyor ve buradaki SMTP ayarı kullanılmıyor. İkisini aynı anda kullanmayın: birini kapatın."
+
+msgid "SMTP (recommended)"
+msgstr "SMTP (önerilen)"
+
+msgid "With emails sent via PHP mail(), Gmail shows \"via srv….main-hosting.eu\" and the risk of landing in spam is high."
+msgstr "PHP mail() ile giden e-postalarda Gmail \"via srv….main-hosting.eu\" yazar ve spama düşme riski yüksektir."
+
+msgid "In hPanel › Emails › Email accounts, create the bilgi@ account (a separate account or an alias for no-reply@). Server smtp.hostinger.com, port 465, SSL; the username is the full email address."
+msgstr "hPanel › E-postalar › E-posta hesapları'ndan bilgi@ hesabını oluşturun (no-reply@ için ayrı hesap ya da takma ad). Sunucu smtp.hostinger.com, port 465, SSL; kullanıcı adı e-posta adresinin tamamı."
+
+msgid "Fill in Hostinger settings"
+msgstr "Hostinger ayarlarını doldur"
+
+msgid "SMTP server"
+msgstr "SMTP sunucusu"
+
+msgid "Port"
+msgstr "Port"
+
+msgid "Encryption"
+msgstr "Şifreleme"
+
+msgid "None"
+msgstr "Yok"
+
+msgid "Authentication"
+msgstr "Kimlik doğrulama"
+
+msgid "Username (bilgi@)"
+msgstr "Kullanıcı adı (bilgi@)"
+
+msgid "Password"
+msgstr "Parola"
+
+msgid "defined in wp-config.php"
+msgstr "wp-config.php'de tanımlı"
+
+msgid "type to change"
+msgstr "değiştirmek için yazın"
+
+msgid "Stored encrypted, not shown in the panel."
+msgstr "Şifreli saklanır, panelde gösterilmez."
+
+msgid "Separate user for no-reply (optional)"
+msgstr "No-reply için ayrı kullanıcı (isteğe bağlı)"
+
+msgid "If no-reply@ is a separate account. If empty, no-reply emails are also sent with the account above (no-reply@ must be an alias of the bilgi@ account)."
+msgstr "no-reply@ ayrı bir hesapsa. Boşsa no-reply e-postaları da yukarıdaki hesapla gider (no-reply@, bilgi@ hesabının takma adı olmalı)."
+
+msgid "No-reply password"
+msgstr "No-reply şifresi"
+
+msgid "Set Return-Path to the sender address (recommended for SPF alignment)"
+msgstr "Return-Path'i gönderen adresi yap (SPF uyumu için önerilir)"
+
+msgid "Save settings"
+msgstr "Ayarları kaydet"
+
+msgid "Save the settings first, then test."
+msgstr "Önce ayarları kaydedin, sonra test edin."
+
+msgid "Test address"
+msgstr "Test adresi"
+
+msgid "Send test email"
+msgstr "Test e-postası gönder"
+
+msgid "Last test: %1$s · %2$s"
+msgstr "Son test: %1$s · %2$s"
+
+msgid "sent"
+msgstr "gönderildi"
+
+msgid "Domain records (SPF / DMARC)"
+msgstr "Alan adı kayıtları (SPF / DMARC)"
+
+msgid "To keep emails out of spam, the domain's DNS must have SPF, DKIM and DMARC records. When you create an email account on Hostinger, SPF and DKIM are usually added automatically."
+msgstr "E-postaların spama düşmemesi için alan adının DNS'inde SPF, DKIM ve DMARC kayıtları olmalı. Hostinger'da e-posta hesabı açınca SPF ve DKIM genelde kendiliğinden eklenir."
+
+msgid "Check DNS"
+msgstr "DNS'i kontrol et"
+
+msgid "none"
+msgstr "yok"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Change"
+msgstr "Değiştir"
+
+msgid "Default"
+msgstr "Varsayılan"
+
+msgid "PNG or JPG (email clients do not display SVG). Default: the theme's logo."
+msgstr "PNG ya da JPG (e-posta programları SVG göstermez). Varsayılan: temanın logosu."
+
+msgid "Dark background logo"
+msgstr "Koyu zemin logosu"
+
+msgid "Shown in dark mode (Apple Mail, iOS)."
+msgstr "Koyu modda (Apple Mail, iOS) görünür."
+
+msgid "Logo width (px)"
+msgstr "Logo genişliği (px)"
+
+msgid "Primary color"
+msgstr "Ana renk"
+
+msgid "Dark color"
+msgstr "Koyu renk"
+
+msgid "Background"
+msgstr "Arka plan"
+
+msgid "Heading color"
+msgstr "Başlık rengi"
+
+msgid "Footer (organization)"
+msgstr "Alt bilgi (kurum)"
+
+msgid "Empty fields are taken from SEO › Organization and social settings."
+msgstr "Boş alanlar SEO › Kurum ve sosyal ayarlarından gelir."
+
+msgid "Tagline"
+msgstr "Slogan"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Contact email"
+msgstr "İletişim e-postası"
+
+msgid "Website"
+msgstr "Web sitesi"
+
+msgid "Footnote (optional)"
+msgstr "Alt not (isteğe bağlı)"
+
+msgid "E.g. the association registration number or a data protection (KVKK) note. Shown in small print at the very bottom of all emails."
+msgstr "Ör. dernek kütük numarası ya da KVKK notu. Bütün e-postaların en altında küçük yazıyla görünür."
+
+msgid "Emails from other plugins"
+msgstr "Diğer eklentilerin e-postaları"
+
+msgid "Wrap plain-text emails in the branded template"
+msgstr "Düz metin e-postaları kurumsal şablona sar"
+
+msgid "Also wrap simple HTML emails (those with their own full design are left untouched)"
+msgstr "Basit HTML e-postaları da sar (kendi tam tasarımı olanlara dokunulmaz)"
+
+msgid "Preview"
+msgstr "Önizle"
+
+msgid "Appearance changes are applied to all emails when you save."
+msgstr "Görünüm değişiklikleri kaydedince bütün e-postalara uygulanır."
+
+msgid "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified."
+msgstr "Google e-posta adresini zaten doğruladığı için Google ile kayıt olan kişiye \"parolanızı belirleyin / oturum açma bilgileri\" e-postası gitmez ve hesabı doğrulanmış sayılır."
+
+msgid "Detected plugin: %s"
+msgstr "Algılanan eklenti: %s"
+
+msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
+msgstr "Bilinen bir Google giriş eklentisi algılanmadı; Google dönüşü istekten de anlaşılır."
+
+msgid "Do not send the WordPress \"login details / set password\" email"
+msgstr "WordPress \"oturum açma bilgileri / parola belirleme\" e-postasını gönderme"
+
+msgid "Do not send the WooCommerce \"your account has been created\" email"
+msgstr "WooCommerce \"hesabınız oluşturuldu\" e-postasını gönderme"
+
+msgid "Mark the email as verified (for verification plugins)"
+msgstr "E-postayı doğrulanmış olarak işaretle (doğrulama eklentileri için)"
+
+msgid "WooCommerce emails use their own template. You can apply our logo, colors, sender name and organization footer to WooCommerce › Settings › Emails with one click."
+msgstr "WooCommerce e-postaları kendi şablonunu kullanır. Logomuzu, renklerimizi, gönderen adını ve kurumsal alt bilgiyi WooCommerce › Ayarlar › E-postalar'a tek tıkla uygulayabilirsiniz."
+
+msgid "Last applied: %s"
+msgstr "Son uygulama: %s"
+
+msgid "Apply appearance to WooCommerce"
+msgstr "Görünümü WooCommerce'e uygula"
+
+msgid "WooCommerce is not active."
+msgstr "WooCommerce etkin değil."
+
+msgid "Log outgoing emails and messages"
+msgstr "Giden e-posta ve mesajları kaydet"
+
+msgid "Also store the content (to view the email in the log)"
+msgstr "İçeriği de sakla (kayıtta e-postayı görmek için)"
+
+msgid "Keep log for how many days"
+msgstr "Kayıtları kaç gün sakla"
+
+msgid "Number to send per round in bulk email"
+msgstr "Toplu e-postada her turda gönderilecek sayı"
+
+msgid "Hostinger shared hosting has an hourly sending limit; the default is 20 (one round per minute)."
+msgstr "Hostinger paylaşımlı hostingte saatlik gönderim sınırı vardır; varsayılan 20 (dakikada bir tur)."
+
+msgid "Add an \"unsubscribe\" link to bulk emails"
+msgstr "Toplu e-postalara \"listeden çık\" bağlantısı ekle"
+
+msgid "Unsubscribed: %s people"
+msgstr "Listeden çıkan: %s kişi"
+
+msgid "Settings saved."
+msgstr "Ayarlar kaydedildi."
+
+msgid "Logo, colors, sender and footer applied to WooCommerce emails."
+msgstr "Logo, renkler, gönderen ve alt bilgi WooCommerce e-postalarına uygulandı."
+
+msgid "Connections"
+msgstr "Bağlantılar"
+
+msgid "WhatsApp and SMS accounts in one place. Flux Certificates, Flux Chat and other plugins use these connections. Email settings are on the Settings tab."
+msgstr "WhatsApp ve SMS hesapları tek yerde. Flux Certificates, Flux Chat ve diğer eklentiler bu bağlantıları kullanır. E-posta ayarları Ayarlar sekmesinde."
+
+msgid "Active"
+msgstr "Etkin"
+
+msgid "Cancel"
+msgstr "Vazgeç"
+
+msgid "No connections yet."
+msgstr "Henüz bağlantı yok."
+
+msgid "Test successful"
+msgstr "Test başarılı"
+
+msgid "Migrated from Flux Certificates"
+msgstr "Flux Certificates'dan taşındı"
+
+msgid "Test number (if empty, connection only)"
+msgstr "Test numarası (boşsa yalnız bağlantı)"
+
+msgid "Test number"
+msgstr "Test numarası"
+
+msgid "More actions"
+msgstr "Diğer işlemler"
+
+msgid "Make default"
+msgstr "Varsayılan yap"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Delete this connection?"
+msgstr "Bağlantı silinsin mi?"
+
+msgid "Providers were migrated on %s. Flux Certificates now sends WhatsApp and SMS through the connections here; emails are sent with the branded template."
+msgstr "Sağlayıcılar %s tarihinde taşındı. Flux Certificates artık WhatsApp ve SMS'i buradaki bağlantılarla gönderiyor; e-postalar kurumsal şablonla gidiyor."
+
+msgid "The old provider records were not deleted, only disabled (Flux Chat continues to read from that record)."
+msgstr "Eski sağlayıcı kayıtları silinmedi, yalnız kapatıldı (Flux Chat o kayıttan okumaya devam eder)."
+
+msgid "Undo migration"
+msgstr "Taşımayı geri al"
+
+msgid "Switch Flux Certificates back to its old providers?"
+msgstr "Flux Certificates eski sağlayıcılarına dönsün mü?"
+
+msgid "Copies the WhatsApp (Evolution) and SMS (Netgsm) settings from Flux Certificates here and connects Flux Certificates to these connections. Nothing is deleted; you can undo it at any time."
+msgstr "Flux Certificates'daki WhatsApp (Evolution) ve SMS (Netgsm) ayarlarını buraya kopyalar, Flux Certificates'yı bu bağlantılara bağlar. Bir şey silinmez; istediğiniz an geri alabilirsiniz."
+
+msgid "disabled"
+msgstr "kapalı"
+
+msgid "Migrate from Flux Certificates"
+msgstr "Flux Certificates'dan taşı"
+
+msgid "Connection saved. Try it with \"Test\"."
+msgstr "Bağlantı kaydedildi. \"Test et\" ile deneyin."
+
+msgid "Connection deleted."
+msgstr "Bağlantı silindi."
+
+msgid "Default connection changed."
+msgstr "Varsayılan bağlantı değişti."
+
+msgid "Migrated: %s connections. Flux Certificates now uses these connections."
+msgstr "Taşındı: %s bağlantı. Flux Certificates artık bu bağlantıları kullanıyor."
+
+msgid "Undone: Flux Certificates is using its old providers."
+msgstr "Geri alındı: Flux Certificates eski sağlayıcılarını kullanıyor."
+
+msgid "Communication"
+msgstr "İletişim"
+
+msgid "Email templates"
+msgstr "E-posta şablonları"
+
+msgid "WhatsApp and SMS connections"
+msgstr "WhatsApp ve SMS bağlantıları"
+
+msgid "Communication settings"
+msgstr "İletişim ayarları"
+
+msgid "System check"
+msgstr "Sistem kontrolü"
+
+msgid "Sending…"
+msgstr "Gönderiliyor…"
+
+msgid "Sent to %s. Check your inbox (and spam folder)."
+msgstr "%s adresine gönderildi. Gelen kutusunu (ve spam klasörünü) kontrol edin."
+
+msgid "Could not send"
+msgstr "Gönderilemedi"
+
+msgid "Trying…"
+msgstr "Deneniyor…"
+
+msgid "Success"
+msgstr "Başarılı"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "%s recipients"
+msgstr "%s alıcı"
+
+msgid "No recipients"
+msgstr "Alıcı yok"
+
+msgid "Choose logo"
+msgstr "Logo seç"
+
+msgid "Use"
+msgstr "Kullan"
+
+msgid "Checking…"
+msgstr "Kontrol ediliyor…"
+
+msgid "Copied"
+msgstr "Kopyalandı"
+
+msgid "You do not have permission."
+msgstr "Yetkiniz yok."
+
+msgid "Rows related to email, WhatsApp and SMS. Checks for all plugins are on the Appearance › System Check screen."
+msgstr "E-posta, WhatsApp ve SMS ile ilgili satırlar. Tüm eklentilerin kontrolleri Görünüm › Sistem Kontrolü ekranında."
+
+msgid "WhatsApp · Evolution API"
+msgstr "WhatsApp · Evolution API"
+
+msgid "The Evolution API on your own server. The address is e.g. https://wa.yourdomain.com; instance is the connection name in the Evolution panel; API key is the global AUTHENTICATION_API_KEY or the instance token."
+msgstr "Kendi sunucunuzdaki Evolution API'si. Adres örn.   https://wa.yourdomain.com;  örneği, Gelişim panelindeki bağlantı adıdır; API anahtarı global AUTHENTICATION_API_KEY veya örnek belirtecidir."
+
+msgid "API address"
+msgstr "API adresi"
+
+msgid "API key (apikey)"
+msgstr "API key (apikey)"
+
+msgid "Instance name"
+msgstr "Instance adı"
+
+msgid "API version"
+msgstr "API sürümü"
+
+msgid "Show link preview"
+msgstr "Link önizlemesi göster"
+
+msgid "Delay between messages in bulk send (sec)"
+msgstr "Toplu gönderimde mesajlar arası bekleme (sn)"
+
+msgid "To avoid the number being blocked, messages are sent at intervals in bulk sends."
+msgstr "Numara engellenmesin diye toplu gönderimde mesajlar aralıklı gider."
+
+msgid "\"Typing…\" duration (ms)"
+msgstr "\"Yazıyor…\" süresi (ms)"
+
+msgid "Invalid phone: %s"
+msgstr "Geçersiz telefon: %s"
+
+msgid "Connection error:"
+msgstr "Bağlantı hatası:"
+
+msgid "This number does not have WhatsApp."
+msgstr "Bu numarada WhatsApp yok."
+
+msgid "Instance is not connected (status: %s). Scan the QR code in the Evolution panel."
+msgstr "Instance bağlı değil (durum: %s). Evolution panelinden QR okutun."
+
+msgid "Test message · %s 🌱"
+msgstr "Test mesajı · %s 🌱"
+
+msgid "SMS · Netgsm"
+msgstr "SMS · Netgsm"
+
+msgid "Netgsm REST v2. The username is usually the subscriber number starting with 850/312…. The message header must be approved in the Netgsm panel."
+msgstr "Netgsm REST v2. Kullanıcı adı genelde 850/312… ile başlayan abone numarasıdır. Mesaj başlığı Netgsm panelinde onaylı olmalı."
+
+msgid "Username (usercode)"
+msgstr "Kullanıcı adı (usercode)"
+
+msgid "Password (API sub-user password)"
+msgstr "Şifre (API alt kullanıcı şifresi)"
+
+msgid "Message header (msgheader)"
+msgstr "Mesaj başlığı (msgheader)"
+
+msgid "İYS filter"
+msgstr "İYS filtresi"
+
+msgid "0 · Informational (non-commercial)"
+msgstr "0 · Bilgilendirme (ticari değil)"
+
+msgid "11 · Commercial, individual recipient (İYS-checked)"
+msgstr "11 · Ticari, bireysel alıcı (İYS kontrollü)"
+
+msgid "12 · Commercial, merchant recipient (İYS-checked)"
+msgstr "12 · Ticari, tacir alıcı (İYS kontrollü)"
+
+msgid "Turkish characters"
+msgstr "Türkçe karakter"
+
+msgid "On (ş, ğ, ı…) · SMS length 155"
+msgstr "Açık (ş, ğ, ı…) · SMS boyu 155"
+
+msgid "Off (ASCII) · SMS length 160"
+msgstr "Kapalı (ASCII) · SMS boyu 160"
+
+msgid "Partner code (optional)"
+msgstr "Partner kodu (isteğe bağlı)"
+
+msgid "Message text is invalid or too long"
+msgstr "Mesaj metni hatalı ya da çok uzun"
+
+msgid "Invalid username/password, no API permission, or IP restriction"
+msgstr "Geçersiz kullanıcı adı/şifre, API yetkisi yok ya da IP kısıtı"
+
+msgid "Message header (msgheader) is not defined in the system"
+msgstr "Mesaj başlığı (msgheader) sistemde tanımlı değil"
+
+msgid "İYS-checked sending is not possible with a subscriber account"
+msgstr "Abone hesabıyla İYS kontrollü gönderim yapılamaz"
+
+msgid "No İYS brand information for the subscription"
+msgstr "Aboneliğe ait İYS marka bilgisi yok"
+
+msgid "Invalid query / missing parameter"
+msgstr "Hatalı sorgu / eksik parametre"
+
+msgid "Sending rate limit exceeded"
+msgstr "Gönderim hız limiti aşıldı"
+
+msgid "More than 20 tasks to the same number in 1 minute"
+msgstr "Aynı numaraya 1 dakikada 20'den fazla görev"
+
+msgid "Netgsm system error"
+msgstr "Netgsm sistem hatası"
+
+msgid "Unknown error"
+msgstr "Tanımsız hata"
+
+msgid "Test SMS · %s"
+msgstr "Test SMS · %s"
+
+msgid "Balance query failed:"
+msgstr "Bakiye sorgusu başarısız:"
+
+msgid "Our sapling planting event is complete"
+msgstr "Fidan dikim etkinliğimiz tamamlandı"
+
+msgid "Post title"
+msgstr "Yazının başlığı"
+
+msgid "Post URL"
+msgstr "Yazının adresi"
+
+msgid "Commenter"
+msgstr "Yorumu yazan"
+
+msgid "Commenter's email"
+msgstr "Yorumu yazanın e-postası"
+
+msgid "Comment text"
+msgstr "Yorum metni"
+
+msgid "Comment URL"
+msgstr "Yorumun adresi"
+
+msgid "Approval link"
+msgstr "Onaylama bağlantısı"
+
+msgid "Trash link"
+msgstr "Çöpe atma bağlantısı"
+
+msgid "Mark-as-spam link"
+msgstr "İstenmeyen olarak işaretleme bağlantısı"
+
+msgid "Number of comments awaiting approval"
+msgstr "Onay bekleyen yorum sayısı"
+
+msgid "Thanks to everyone who helped; we will join the next planting as a family!"
+msgstr "Emeği geçen herkese teşekkürler, bir sonraki dikime ailece katılacağız!"
+
+msgid "Person's name"
+msgstr "Kişinin adı"
+
+msgid "Username"
+msgstr "Kullanıcı adı"
+
+msgid "Email address"
+msgstr "E-posta adresi"
+
+msgid "New registration: set password"
+msgstr "Yeni üyelik: parola belirleme"
+
+msgid "Sent to the person when someone registers or an admin adds a user. Not sent to people who sign up with Google (Settings › Google sign-in)."
+msgstr "Biri üye olduğunda ya da yönetici kullanıcı eklediğinde kişiye gider. Google ile kayıt olanlara gönderilmez (Ayarlar › Google ile giriş)."
+
+msgid "Set password link"
+msgstr "Parola belirleme bağlantısı"
+
+msgid "Login page"
+msgstr "Giriş sayfası"
+
+msgid "Your account is ready, set your password"
+msgstr "Hesabınız hazır, parolanızı belirleyin"
+
+msgid "Welcome aboard, {ad}"
+msgstr "Aramıza hoş geldiniz, {ad}"
+
+msgid "<p>Your {site} account has been created. Your username: <strong>{kullanici_adi}</strong></p><p>Use the button below to set your password and sign in to your account. For your security, this link expires after a short time.</p>"
+msgstr "<p>{site} hesabınız oluşturuldu. Kullanıcı adınız: <strong>{kullanici_adi}</strong></p><p>Aşağıdaki düğmeyle parolanızı belirleyip hesabınıza giriş yapabilirsiniz. Bu bağlantı güvenliğiniz için kısa bir süre sonra geçersiz olur.</p>"
+
+msgid "Set my password"
+msgstr "Parolamı belirle"
+
+msgid "New registration (to admin)"
+msgstr "Yeni üyelik (yöneticiye)"
+
+msgid "User profile (dashboard)"
+msgstr "Kullanıcı profili (panel)"
+
+msgid "New member: {kullanici_adi}"
+msgstr "Yeni üye: {kullanici_adi}"
+
+msgid "There is a new member on the site"
+msgstr "Sitede yeni bir üye var"
+
+msgid "<table class=\"flxi-kv\"><tr><td>Username</td><td><strong>{kullanici_adi}</strong></td></tr><tr><td>Email</td><td>{eposta}</td></tr></table>"
+msgstr "<table class=\"flxi-kv\"><tr><td>Kullanıcı adı</td><td><strong>{kullanici_adi}</strong></td></tr><tr><td>E-posta</td><td>{eposta}</td></tr></table>"
+
+msgid "Open profile"
+msgstr "Profili aç"
+
+msgid "Password reset"
+msgstr "Parola sıfırlama"
+
+msgid "New password link"
+msgstr "Yeni parola bağlantısı"
+
+msgid "IP address of the request"
+msgstr "İsteğin geldiği IP"
+
+msgid "Password reset request"
+msgstr "Parola sıfırlama isteği"
+
+msgid "Reset your password"
+msgstr "Parolanızı yenileyin"
+
+msgid "<p>Hello {ad},</p><p>A password reset was requested for your account <strong>{kullanici_adi}</strong>. You can set a new password with the button below.</p><p>If you did not make this request, you can ignore this email; nothing will change in your account.</p>"
+msgstr "<p>Merhaba {ad},</p><p><strong>{kullanici_adi}</strong> hesabınız için parola sıfırlama istendi. Yeni parolanızı aşağıdaki düğmeyle belirleyebilirsiniz.</p><p>Bu isteği siz yapmadıysanız e-postayı yok sayabilirsiniz; hesabınızda hiçbir şey değişmez.</p>"
+
+msgid "Set new password"
+msgstr "Yeni parola belirle"
+
+msgid "Password changed"
+msgstr "Parola değişti"
+
+msgid "Your password has been changed"
+msgstr "Parolanız değiştirildi"
+
+msgid "<p>Hello {ad},</p><p>The password of your {site} account was just changed.</p><p>If you did not make this change, write to {kurum_eposta} right away.</p>"
+msgstr "<p>Merhaba {ad},</p><p>{site} hesabınızın parolası az önce değiştirildi.</p><p>Bu değişikliği siz yapmadıysanız hemen {kurum_eposta} adresine yazın.</p>"
+
+msgid "Sign in"
+msgstr "Giriş yap"
+
+msgid "Email address changed"
+msgstr "E-posta adresi değişti"
+
+msgid "New email address"
+msgstr "Yeni e-posta adresi"
+
+msgid "Your email address has been changed"
+msgstr "E-posta adresiniz değiştirildi"
+
+msgid "Your email address has changed"
+msgstr "E-posta adresiniz değişti"
+
+msgid "<p>Hello {ad},</p><p>The email address of your {site} account has been changed to <strong>{yeni_eposta}</strong>. Notifications will be sent to this address from now on.</p><p>If you did not make this change, write to {kurum_eposta} right away.</p>"
+msgstr "<p>Merhaba {ad},</p><p>{site} hesabınızın e-posta adresi <strong>{yeni_eposta}</strong> olarak değiştirildi. Bundan sonra bildirimler bu adrese gidecek.</p><p>Bu değişikliği siz yapmadıysanız hemen {kurum_eposta} adresine yazın.</p>"
+
+msgid "A member changed their password (to admin)"
+msgstr "Bir üye parolasını değiştirdi (yöneticiye)"
+
+msgid "{kullanici_adi} changed their password"
+msgstr "{kullanici_adi} parolasını değiştirdi"
+
+msgid "Password change"
+msgstr "Parola değişikliği"
+
+msgid "<p><strong>{kullanici_adi}</strong> ({eposta}) changed their password.</p>"
+msgstr "<p><strong>{kullanici_adi}</strong> ({eposta}) parolasını değiştirdi.</p>"
+
+msgid "New comment on a post (to author)"
+msgstr "Yazıya yeni yorum (yazara)"
+
+msgid "Notification of a new comment sent to the post's author."
+msgstr "Yazının yazarına yeni yorum bildirimi."
+
+msgid "New comment: {yazi}"
+msgstr "Yeni yorum: {yazi}"
+
+msgid "New comment on “{yazi}”"
+msgstr "“{yazi}” yazısına yeni yorum"
+
+msgid "<p><strong>{yorum_yazari}</strong> wrote:</p><blockquote>{yorum}</blockquote>"
+msgstr "<p><strong>{yorum_yazari}</strong> yazdı:</p><blockquote>{yorum}</blockquote>"
+
+msgid "View comment"
+msgstr "Yorumu görüntüle"
+
+msgid "Comment awaiting approval"
+msgstr "Onay bekleyen yorum"
+
+msgid "Sent to the site admin while a comment awaits approval."
+msgstr "Yorum onay beklerken site yöneticisine gider."
+
+msgid "Comment awaiting approval: {yazi}"
+msgstr "Onay bekleyen yorum: {yazi}"
+
+msgid "A comment is waiting for your approval"
+msgstr "Bir yorum onayınızı bekliyor"
+
+msgid "<p><strong>{yorum_yazari}</strong> ({yorum_eposta}) commented on <a href=\"{yazi_linki}\">{yazi}</a>:</p><blockquote>{yorum}</blockquote><p><a href=\"{cop_linki}\">Trash</a> &nbsp;·&nbsp; <a href=\"{spam_linki}\">Mark as spam</a></p><p>Total comments awaiting approval: {bekleyen_sayisi}</p>"
+msgstr "<p><strong>{yorum_yazari}</strong> ({yorum_eposta}), <a href=\"{yazi_linki}\">{yazi}</a> yazısına yorum yaptı:</p><blockquote>{yorum}</blockquote><p><a href=\"{cop_linki}\">Çöpe at</a> &nbsp;·&nbsp; <a href=\"{spam_linki}\">İstenmeyen olarak işaretle</a></p><p>Onay bekleyen toplam yorum: {bekleyen_sayisi}</p>"
+
+msgid "Approve comment"
+msgstr "Yorumu onayla"
+
+msgid "Automatic update report"
+msgstr "Otomatik güncelleme raporu"
+
+msgid "Admin email change confirmation"
+msgstr "Yönetici e-postası değişikliği onayı"
+
+msgid "Admin email changed"
+msgstr "Yönetici e-postası değişti"
+
+msgid "Confirm new email address"
+msgstr "Yeni e-posta adresini onaylama"
+
+msgid "Personal data request confirmation"
+msgstr "Kişisel veri isteği onayı"
+
+msgid "Personal data export ready"
+msgstr "Kişisel veri dışa aktarımı hazır"
+
+msgid "Personal data erased"
+msgstr "Kişisel veriler silindi"
+
+msgid "Site error: recovery mode"
+msgstr "Site hatası: kurtarma modu"
+
+msgid "The content is generated by WordPress; here you can turn it on or off and choose the branded layout."
+msgstr "İçeriği WordPress üretir; burada açıp kapatabilir ve kurumsal çerçeveyi seçebilirsiniz."
+
+msgid "Cannot be disabled for security. The content is generated by WordPress and sent with the branded layout."
+msgstr "Güvenlik için kapatılamaz. İçeriği WordPress üretir, kurumsal çerçeveyle gider."
+
+msgid "Anonymous"
+msgstr "Anonim"
+
+msgid "The sender email address is invalid. Enter your bilgi@ address in Communication › Settings."
+msgstr "Gönderen e-posta adresi geçersiz. İletişim › Ayarlar'dan bilgi@ adresinizi girin."
+
+msgid "%1$s is not on the site's domain (%2$s). Services like Gmail may mark emails from another domain as spam."
+msgstr "%1$s sitenin alan adında (%2$s) değil. Gmail gibi servisler başka alan adından gelen e-postayı spama atabilir."
+
+msgid "%1$s <%2$s>; emails that don't expect a reply are sent from %3$s."
+msgstr "%1$s <%2$s>; yanıt beklenmeyen e-postalar %3$s adresinden."
+
+msgid "Emails are sent by the %s plugin; the SMTP settings here are not used. The template, sender name and log still come from Flux Mail."
+msgstr "E-postaları %s eklentisi gönderiyor; buradaki SMTP ayarı kullanılmaz. Şablon, gönderen adı ve kayıt yine Flux Mail'den."
+
+msgid "SMTP is selected but the server, username or password is missing. Emails may not be sent."
+msgstr "SMTP seçili ama sunucu, kullanıcı adı ya da şifre eksik. E-postalar gönderilemeyebilir."
+
+msgid "SMTP settings"
+msgstr "SMTP ayarları"
+
+msgid "SMTP: %1$s:%2$s"
+msgstr "SMTP: %1$s:%2$s"
+
+msgid "Mail is sent with the server's PHP mail(). Gmail shows \"via srv….main-hosting.eu\" next to the sender and it is more likely to land in spam. Open a info@ mailbox on Hostinger and choose SMTP."
+msgstr "E-postalar sunucunun PHP mail() fonksiyonuyla gidiyor. Gmail gönderenin yanında \"via srv….main-hosting.eu\" gösterir ve spama düşme riski yüksektir. Hostinger'da bilgi@ e-posta hesabı açıp SMTP'yi seçin."
+
+msgid "Sent to %1$s (%2$s). Check that it reached the inbox."
+msgstr "%1$s adresine gönderildi (%2$s). Gelen kutusuna düştüğünü kontrol edin."
+
+msgid "Test again"
+msgstr "Yeniden test et"
+
+msgid "Could not send (%1$s): %2$s"
+msgstr "Gönderilemedi (%1$s): %2$s"
+
+msgid "Not tested yet."
+msgstr "Henüz test edilmedi."
+
+msgid "Last 24 hours"
+msgstr "Son 24 saat"
+
+msgid "%1$s sends failed, %2$s sent. Last error: %3$s"
+msgstr "%1$s gönderim başarısız, %2$s gönderildi. Son hata: %3$s"
+
+msgid "%s sent, no errors."
+msgstr "%s gönderim, hata yok."
+
+msgid "Bulk send queue"
+msgstr "Toplu gönderim kuyruğu"
+
+msgid "%s messages have been waiting for more than 30 minutes. WP-Cron may not be running; keeping the Send page open advances the queue. A real cron is recommended on Hostinger."
+msgstr "%s mesaj 30 dakikadan uzun süredir bekliyor. WP-Cron çalışmıyor olabilir; Gönderim sayfasını açık tutmak kuyruğu ilerletir. Hostinger'da gerçek cron önerilir."
+
+msgid "Sends"
+msgstr "Gönderimler"
+
+msgid "Database tables"
+msgstr "Veritabanı tabloları"
+
+msgid "Log tables are missing. Deactivate and reactivate the plugin."
+msgstr "Kayıt tabloları yok. Eklentiyi kapatıp açın."
+
+msgid "No SPF record was found for %s. Hostinger adds it to DNS when you open a mailbox; if the domain is elsewhere, add \"v=spf1 include:_spf.mail.hostinger.com ~all\"."
+msgstr "%s için SPF kaydı bulunamadı. Hostinger'da e-posta açınca DNS'e otomatik eklenir; alan adı başka yerdeyse \"v=spf1 include:_spf.mail.hostinger.com ~all\" ekleyin."
+
+msgid "Check again"
+msgstr "Yeniden kontrol et"
+
+msgid "The SPF record does not include Hostinger: "
+msgstr "SPF kaydı Hostinger'ı içermiyor: "
+
+msgid "There is no DMARC record. Gmail and Yahoo require DMARC for bulk mail; add a \"_dmarc\" TXT record: \"v=DMARC1; p=none; rua=mailto:info@…\"."
+msgstr "DMARC kaydı yok. Toplu gönderimde Gmail ve Yahoo DMARC ister; DNS'e \"_dmarc\" TXT kaydı olarak \"v=DMARC1; p=none; rua=mailto:bilgi@…\" ekleyin."
+
+msgid "SPF / DMARC (DNS)"
+msgstr "SPF / DMARC (DNS)"
+
+msgid "Not checked."
+msgstr "Kontrol edilmedi."
+
+msgid "Google sign-in plugin: %s."
+msgstr "Google ile giriş eklentisi: %s."
+
+msgid "People who sign up with Google do not receive the set-password email, and their emails are treated as verified."
+msgstr "Google ile kayıt olanlara parola belirleme e-postası gitmiyor, e-postaları doğrulanmış sayılıyor."
+
+msgid "People who sign up with Google receive the set-password email (setting is off)."
+msgstr "Google ile kayıt olanlara parola belirleme e-postası gidiyor (ayar kapalı)."
+
+msgid "Setting"
+msgstr "Ayar"
+
+msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
+msgstr "Bilinen bir Google giriş eklentisi etkin değil. Başka bir eklenti kullanılıyorsa da Google dönüşü algılanır ve parola e-postası durdurulur."
+
+msgid "No %s connection."
+msgstr "%s bağlantısı yok."
+
+msgid "Settings entered, not tested yet."
+msgstr "Ayarlar girilmiş, henüz test edilmedi."
+
+msgid "Test successful (%s)."
+msgstr "Test başarılı (%s)."
+
+msgid "Test failed (%1$s): %2$s"
+msgstr "Test başarısız (%1$s): %2$s"
+
+msgid "Flux Certificates providers"
+msgstr "Flux Certificates sağlayıcıları"
+
+msgid "The WhatsApp/SMS settings are still in Flux Certificates. To manage them in one place, use the \"Migrate from Flux Certificates\" button in Communication › Connections (it can be undone)."
+msgstr "WhatsApp/SMS ayarları hâlâ Flux Certificates'da. Tek yerden yönetmek için İletişim › Bağlantılar'daki \"Flux Certificates'dan taşı\" düğmesini kullanın (geri alınabilir)."
+
+msgid "Migrate"
+msgstr "Taşı"
+
+msgid "Flux Certificates"
+msgstr "Flux Certificates"
+
+msgid "Certificate emails use the corporate template; WhatsApp/SMS go through the connections here."
+msgstr "Sertifika e-postaları kurumsal şablonla, WhatsApp/SMS buradaki bağlantılarla gidiyor."
+
+msgid "%1$s: \"%2$s\" → \"%3$s\""
+msgstr "%1$s: \"%2$s\" → \"%3$s\""
+
+msgid "Enter a valid email address."
+msgstr "Geçerli bir e-posta adresi girin."
+
+msgid "Cannot be empty."
+msgstr "Boş olamaz."
+
+msgid "Sender email address"
+msgstr "Gönderen e-posta adresi"
+
+msgid "Address for emails that expect a reply (e.g. bilgi@yourdomain)."
+msgstr "Yanıt beklenen e-postaların adresi (ör. bilgi@alanadi)."
+
+msgid "Name shown in the inbox."
+msgstr "Gelen kutusunda görünen ad."
+
+msgid "Address for emails that don't expect a reply (passwords, notifications)."
+msgstr "Yanıt beklenmeyen e-postaların adresi (parola, bildirim)."
+
+msgid "Reply-to address (Reply-To)"
+msgstr "Yanıt adresi (Reply-To)"
+
+msgid "Empty: replies go to the sender address."
+msgstr "Boş: yanıtlar gönderen adrese gider."
+
+msgid "SMTP server (excluding password)"
+msgstr "SMTP sunucusu (şifre hariç)"
+
+msgid "The value is in the format \"server:port:ssl|tls|none:user\", e.g. \"smtp.hostinger.com:465:ssl:bilgi@yourdomain\". The password is entered by the admin in the dashboard."
+msgstr "Değer \"sunucu:port:ssl|tls|yok:kullanıcı\" biçiminde, ör. \"smtp.hostinger.com:465:ssl:bilgi@alanadi\". Şifreyi yönetici panelden girer."
+
+msgid "Format: server:port:ssl|tls|none:user"
+msgstr "Biçim: sunucu:port:ssl|tls|yok:kullanıcı"
+
+msgid "SMTP server details saved. The method did not change; the admin must select \"SMTP\" after entering the password."
+msgstr "SMTP sunucu bilgisi kaydedildi. Yöntem değişmedi; şifre girildikten sonra yönetici \"SMTP\" seçmeli."
+
+msgid "php: the server's mail() function; smtp: an SMTP account (the server and password must be entered)."
+msgstr "php: sunucunun mail() fonksiyonu; smtp: SMTP hesabı (sunucu ve şifre girilmiş olmalı)."
+
+msgid "The SMTP server or password is missing; the admin must enter it in the dashboard first."
+msgstr "SMTP sunucusu ya da şifresi eksik; önce yönetici panelden girmeli."
+
+msgid "SMTP selected."
+msgstr "SMTP seçildi."
+
+msgid "PHP mail() selected."
+msgstr "PHP mail() seçildi."
+
+msgid "Stop the password email on Google sign-up"
+msgstr "Google ile kayıtta parola e-postasını durdur"
+
+msgid "Enabled."
+msgstr "Açıldı."
+
+msgid "Disabled."
+msgstr "Kapatıldı."
+
+msgid "The value is the recipient address; if empty, the site admin's address."
+msgstr "Değer alıcı adresi; boşsa site yöneticisinin adresi."
+
+msgid "Could not send: "
+msgstr "Gönderilemedi: "
+
+msgid "Sent to %s."
+msgstr "%s adresine gönderildi."
+
+msgid "Recheck SPF / DMARC records"
+msgstr "SPF / DMARC kayıtlarını yeniden kontrol et"
+
+msgid "Each row shows something the site needs and whether it is in place. Fix errors first; also review the warnings."
+msgstr "Her satır sitenin ihtiyaç duyduğu bir şeyi ve yerinde olup olmadığını gösterir. Önce hataları düzeltin; uyarılara da göz atın."
+
+msgid "OK"
+msgstr "Tamam"
+
+msgid "Warning"
+msgstr "Uyarı"
+
+msgid "Info"
+msgstr "Bilgi"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$d tamam · %2$d uyarı · %3$d hata"
+
+msgid "Show only these (click again to show all)"
+msgstr "Yalnız bunları göster (tekrar tıklayınca hepsi)"
+
+msgid "Check: %s"
+msgstr "Kontrol: %s"
+
+msgid "Members: %1$s (%2$s)"
+msgstr "Üyeler: %1$s (%2$s)"
+
+msgid "Flux Certificates contacts (%s)"
+msgstr "Flux Certificates kişileri (%s)"
+
+msgid "There are no recipients to send to."
+msgstr "Gönderilecek alıcı yok."
+
+msgid "Subject is required."
+msgstr "Konu gerekli."
+
+msgid "Message text is required."
+msgstr "Mesaj metni gerekli."
+
+msgid "There is no active connection for this channel. Add one in Communication › Connections."
+msgstr "Bu kanal için etkin bağlantı yok. İletişim › Bağlantılar'dan ekleyin."
+
+msgid "Sending was canceled."
+msgstr "Gönderim iptal edildi."
+
+msgid "Unsubscribed."
+msgstr "Abonelikten çıkmış."
+
+msgid "The link is invalid."
+msgstr "Bağlantı geçersiz."
+
+msgid "You have been unsubscribed"
+msgstr "Listeden çıkarıldınız"
+
+msgid "We will no longer send bulk emails to %s. Transactional emails such as donation and certificate emails will continue to be sent."
+msgstr "%s adresine artık toplu e-posta göndermeyeceğiz. Bağış ve sertifika gibi işlem e-postaları gitmeye devam eder."
+
+msgid "Do you want to unsubscribe from bulk emails?"
+msgstr "Toplu e-postalardan çıkmak istiyor musunuz?"
+
+msgid "Yes, unsubscribe me"
+msgstr "Evet, listeden çıkar"
+
+msgid "Unsubscribe"
+msgstr "Abonelikten çık"
+
+msgid "Verified by Google. No set-password email is sent to this account."
+msgstr "Google tarafından doğrulandı. Bu hesaba parola belirleme e-postası gönderilmez."
+
+msgid "This email was sent automatically; please do not reply. For questions, you can write to %s."
+msgstr "Bu e-posta otomatik gönderildi, lütfen yanıtlamayın. Sorularınız için %s adresine yazabilirsiniz."
+
+msgid "I do not want to receive these kinds of emails"
+msgstr "Bu tür e-postaları almak istemiyorum"
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Certificate email"
+msgstr "Sertifika e-postası"
+
+msgid "Receipt uploaded (to admin)"
+msgstr "Dekont yüklendi (yöneticiye)"
+
+msgid "New comment on a post"
+msgstr "Yazıya yeni yorum"
+
+msgid "Certificate ready"
+msgstr "Sertifika hazır"
+
+msgid "Sent to the person when the certificate is emailed. The certificate image appears in the email, and clicking it opens the certificate page (where it can be downloaded and shared). {mesaj_html} is the email text from Flux Certificates › Settings or the template."
+msgstr "Sertifika e-postayla gönderilince kişiye gider. Sertifikanın görseli e-postada görünür, tıklayınca sertifika sayfası açılır (indirme ve paylaşma orada). {mesaj_html}, Flux Certificates › Ayarlar'daki ya da şablondaki e-posta metnidir."
+
+msgid "Certificate name"
+msgstr "Sertifika adı"
+
+msgid "Certificate number"
+msgstr "Sertifika numarası"
+
+msgid "Number of saplings (for sapling certificates)"
+msgstr "Fidan sayısı (fidan sertifikalarında)"
+
+msgid "Certificate date"
+msgstr "Sertifika tarihi"
+
+msgid "Certificate page"
+msgstr "Sertifika sayfası"
+
+msgid "Email subject from Flux Certificates"
+msgstr "Flux Certificates'daki e-posta konusu"
+
+msgid "Email text from Flux Certificates"
+msgstr "Flux Certificates'daki e-posta metni"
+
+msgid "Sapling Donation Certificate"
+msgstr "Fidan Bağış Sertifikası"
+
+msgid "Your Sapling Donation Certificate is ready 🌱"
+msgstr "Fidan Bağışı Sertifikanız hazır 🌱"
+
+msgid "Hello Ahmet,\n\nYour Sapling Donation Certificate is ready. Thank you very much for your support."
+msgstr "Merhaba Ahmet,\n\nFidan Bağış Sertifikanız hazırlandı. Desteğiniz için çok teşekkür ederiz."
+
+msgid "Your certificate is ready 🌱"
+msgstr "Sertifikanız hazır 🌱"
+
+msgid "View my certificate"
+msgstr "Sertifikamı görüntüle"
+
+msgid "Tap the image to open your certificate"
+msgstr "Sertifikanızı açmak için görsele dokunun"
+
+msgid "Sapling"
+msgstr "Fidan"
+
+msgid "%s saplings"
+msgstr "%s adet"
+
+msgid "Certificate no."
+msgstr "Sertifika no"
+
+msgid "You can download it as a PDF from the certificate page and share it on WhatsApp and social media."
+msgstr "Sertifika sayfasından PDF olarak indirebilir, WhatsApp ve sosyal medyada paylaşabilirsiniz."
+
+msgid "Flux Mail is active: the email is sent with the branded template and the sender address from Communication › Settings."
+msgstr "Flux Mail etkin: e-posta kurumsal şablonla ve İletişim › Ayarlar'daki gönderen adresiyle gider."
+
+msgid "Default connection"
+msgstr "Varsayılan bağlantı"
+
+msgid "Flux Mail connection"
+msgstr "Flux Mail bağlantısı"
+
+msgid "Also send the PDF as a document"
+msgstr "PDF'i ayrıca belge olarak gönder"
+
+msgid "WhatsApp · Flux Mail"
+msgstr "WhatsApp · Flux Mail"
+
+msgid "SMS · Flux Mail"
+msgstr "SMS · Flux Mail"
+
+msgid "Connection settings (Evolution / Netgsm) are kept in Communication › Connections; here you only choose which one to use."
+msgstr "Bağlantı ayarları (Evolution / Netgsm) İletişim › Bağlantılar'da tutulur; burada yalnız hangisinin kullanılacağı seçilir."
+
+msgid "There is no active connection for this channel in Flux Mail."
+msgstr "Flux Mail'de bu kanal için etkin bağlantı yok."
+
+msgid "Invalid email: %s"
+msgstr "Geçersiz e-posta: %s"
+
+msgid "wp_mail returned false (the server may be unable to send email)."
+msgstr "wp_mail false döndü (sunucu e-posta gönderemiyor olabilir)."
+
+msgid "Flux Certificates is not active."
+msgstr "Flux Certificates etkin değil."
+
+msgid "There is no migration to undo."
+msgstr "Geri alınacak taşıma yok."
+
+msgid "Unknown connection type."
+msgstr "Bilinmeyen bağlantı tipi."
+
+msgid "%s is required."
+msgstr "%s gerekli."
+
+msgid "There is no active connection for %s. Add one in Communication › Connections."
+msgstr "%s için etkin bağlantı yok. İletişim › Bağlantılar'dan ekleyin."
+
+msgid "Connection not found."
+msgstr "Bağlantı bulunamadı."
+
+msgid "This type cannot be tested."
+msgstr "Bu tip test edilemiyor."
+
+msgid "Google sign-up: not sent"
+msgstr "Google ile kayıt: gönderilmedi"
+
+msgid "Template disabled: not sent"
+msgstr "Şablon kapalı: gönderilmedi"
+
+msgid "Another email plugin could not send it."
+msgstr "Başka bir e-posta eklentisi gönderemedi."
+
+msgid "Flux Certificates sends WhatsApp and SMS through the active connections here; certificate emails use the corporate template."
+msgstr "Flux Certificates WhatsApp ve SMS'i buradaki etkin bağlantılarla gönderir; sertifika e-postaları kurumsal şablonla gider."
+
+msgid "The mailbox's daily sending limit has been reached. Sending will resume automatically around %s."
+msgstr "Posta kutusunun günlük gönderim sınırı doldu. Gönderim %s civarında kendiliğinden devam edecek."
+
+msgid "Daily email allowance"
+msgstr "Günlük e-posta hakkı"
+
+msgid "Mailbox limits"
+msgstr "Posta kutusu sınırları"
+
+msgid "The limits of your Hostinger email plan. The send counter uses them; bulk sends never exceed the daily limit, and the rest go out as allowance frees up. If you hit the limits often, upgrade to a higher email plan at Hostinger and update the values here."
+msgstr "Hostinger e-posta paketinizin sınırları. Gönderim sayacı bunlara göre çalışır; toplu gönderim günlük sınırı aşmaz, kalanlar hak açıldıkça sırayla gider. Sınırlar sık doluyorsa Hostinger'da üst e-posta paketine geçin ve buradaki değerleri güncelleyin."
+
+msgid "Daily sending (per 24 hours, per mailbox)"
+msgstr "Günlük gönderim (24 saatte, posta kutusu başına)"
+
+msgid "Each To, Cc and Bcc recipient counts as one. 0 = no limit."
+msgstr "Kime + Bilgi + Gizli alıcıların her biri bir sayılır. 0 = sınır yok."
+
+msgid "Reserve for individual emails"
+msgstr "Tekil e-postalara ayrılan pay"
+
+msgid "Bulk sending leaves this many sends for password reset, donation and certificate emails."
+msgstr "Toplu gönderim bu kadar hakkı parola sıfırlama, bağış ve sertifika e-postalarına bırakır."
+
+msgid "Recipients per message (To, Cc, Bcc)"
+msgstr "İleti başına alıcı (Kime, Bilgi, Gizli)"
+
+msgid "Outgoing email size (MB)"
+msgstr "Giden e-posta boyutu (MB)"
+
+msgid "Attachment size (MB)"
+msgstr "E-posta eki boyutu (MB)"
+
+msgid "Storage per mailbox (GB)"
+msgstr "Posta kutusu başına depolama (GB)"
+
+msgid "Emails per mailbox"
+msgstr "Posta kutusu başına e-posta"
+
+msgid "Aliases per mailbox"
+msgstr "Posta kutusu başına takma ad"
+
+msgid "Mailbox forwarders"
+msgstr "Posta kutusu yönlendiricileri"
+
+msgid "Last 24 hours: %1$s / %2$s"
+msgstr "Son 24 saat: %1$s / %2$s"
+
+msgid "Next free slot: %s"
+msgstr "Sonraki hak açılışı: %s"
+
+msgid "%1$s: %2$s / %3$s recipients in the last 24 hours."
+msgstr "%1$s: son 24 saatte %2$s / %3$s alıcı."
+
+msgid "Daily sending limit"
+msgstr "Günlük gönderim sınırı"
+
+msgid "Limit reached; emails from this address may not go out until around %s. If this happens often, upgrade to a higher email plan at Hostinger."
+msgstr "Sınır doldu; bu adresten e-posta %s civarına kadar gitmeyebilir. Sık oluyorsa Hostinger'da üst e-posta paketine geçin."
+
+msgid "Limits"
+msgstr "Sınırlar"
+
+msgid "Close to the limit; bulk sending pauses and leaves room for individual emails."
+msgstr "Sınıra yaklaşıldı; toplu gönderim tekil e-postalara pay bırakıp duraklar."
+
+msgid "The limit was hit on %s days in the last 30 days; consider upgrading to a higher email plan at Hostinger."
+msgstr "Son 30 günde %s gün sınıra dayanıldı; Hostinger'da üst e-posta paketine geçmeyi düşünün."
+
+msgid "Because of the daily limit of %1$s, sending all will take about %2$s day."
+msgid_plural "Because of the daily limit of %1$s, sending all will take about %2$s days."
+msgstr[0] "Günlük %1$s gönderim sınırı nedeniyle tamamı yaklaşık %2$s günde gider."
+msgstr[1] "Günlük %1$s gönderim sınırı nedeniyle tamamı yaklaşık %2$s günde gider."
+
+msgid "The daily limit was hit on %s day in the last 30 days."
+msgid_plural "The daily limit was hit on %s days in the last 30 days."
+msgstr[0] "Son 30 günde %s gün günlük sınıra dayanıldı."
+msgstr[1] "Son 30 günde %s gün günlük sınıra dayanıldı."
+
+msgid "On the blocklist: not sent"
+msgstr "Kara listede: gönderilmedi"
+
+msgid "Blocklist"
+msgstr "Kara liste"
+
+msgid "Active: people on the blocklist get no email, WhatsApp or SMS (except account security emails such as password reset)."
+msgstr "Etkin: kara listedeki kişilere e-posta, WhatsApp ve SMS gitmez (parola sıfırlama gibi hesap güvenliği e-postaları hariç)."
+
+msgid "No-reply account"
+msgstr "No-reply hesabı"
+
+msgid "SMTP account"
+msgstr "SMTP hesabı"
+
+msgid "Resent from bilgi@."
+msgstr "bilgi@ ile yeniden gönderildi."
+
+msgid "Could not sign in to %1$s (%2$s): %3$s Check the username and password; if the password changed in hPanel, enter it here too."
+msgstr "%1$s hesabına giriş yapılamadı (%2$s): %3$s Kullanıcı adını ve şifreyi kontrol edin; hPanel'de şifre değiştiyse buraya da yazın."
+
+msgid "%1$s: sign-in OK (last send %2$s)."
+msgstr "%1$s: giriş başarılı (son gönderim %2$s)."
+
+msgid "No password entered for %1$s; no-reply emails are sent from %2$s for now. Enter the password, or clear the username field if no-reply@ is an alias of the bilgi@ account."
+msgstr "%1$s için şifre girilmemiş; no-reply e-postaları şimdilik %2$s ile gidiyor. Şifreyi girin ya da no-reply@ bilgi@ hesabının takma adıysa kullanıcı alanını boşaltın."
+
+msgid "Could not sign in to %1$s (%2$s): %3$s no-reply emails are sent from %4$s for now. Fix and save the password (if the account does not exist, create it in hPanel or clear the username field), then send a test email from no-reply@."
+msgstr "%1$s hesabına giriş yapılamadı (%2$s): %3$s no-reply e-postaları şimdilik %4$s ile gidiyor. Şifreyi düzeltip kaydedin (hesap yoksa hPanel'de açın ya da kullanıcı alanını boşaltın); sonra no-reply@ ile test e-postası gönderin."
+
+msgid "Sent from %2$s because signing in to %1$s failed."
+msgstr "%1$s hesabına giriş yapılamadığı için %2$s ile gönderildi."
+
+msgid "Images"
+msgstr "Görseller"
+
+msgid "Make images work in every email app (WebP/AVIF → JPG/PNG, full URLs)"
+msgstr "Görselleri her e-posta programına uygun hale getir (WebP/AVIF → JPG/PNG, tam adres)"
+
+msgid "Embed the site's images in the email (recipients see them without clicking \"show images\")"
+msgstr "Sitenin görsellerini e-postaya göm (alıcı \"görselleri göster\" demeden görür)"
+
+msgid "Forest"
+msgstr "Orman"
+
+msgid "Hills"
+msgstr "Tepeler"
+
+msgid "Line art"
+msgstr "Çizgi"
+
+msgid "Footer illustration"
+msgstr "Alt kısım çizimi"
+
+msgid "A tree silhouette at the very bottom of every email. A darker drawing is shown in dark mode."
+msgstr "Bütün e-postaların en altında ağaç silüeti. Koyu modda koyu renkli çizim görünür."
+
+msgid "Inbox"
+msgstr "Gelen kutusu"
+
+msgid "Awaiting approval"
+msgstr "Onay bekliyor"
+
+msgid "Drafts"
+msgstr "Taslaklar"
+
+msgid "Layouts"
+msgstr "Şablonlar"
+
+msgid "New email"
+msgstr "Yeni e-posta"
+
+msgid "Search: person, subject…"
+msgstr "Ara: kişi, konu…"
+
+msgid "System emails"
+msgstr "Sistem e-postaları"
+
+msgid "Unread"
+msgstr "Okunmamış"
+
+msgid "Load more"
+msgstr "Daha fazla"
+
+msgid "No emails here."
+msgstr "Burada e-posta yok."
+
+msgid "No drafts."
+msgstr "Taslak yok."
+
+msgid "Select an email on the left to read it."
+msgstr "Okumak için soldan bir e-posta seçin."
+
+msgid "Sync"
+msgstr "Eşitle"
+
+msgid "Syncing…"
+msgstr "Eşitleniyor…"
+
+msgid "Last sync: %s"
+msgstr "Son eşitleme: %s"
+
+msgid "Fetching older emails…"
+msgstr "Eski e-postalar alınıyor…"
+
+msgid "Mailbox is off or IMAP details are missing. Fill in Settings › Mailbox to see incoming email. Writing and sending drafts still works."
+msgstr "Posta kutusu kapalı ya da IMAP bilgisi eksik. Gelen e-postaları görmek için Ayarlar › Posta kutusu'nu doldurun. Taslak yazıp göndermek yine çalışır."
+
+msgid "Open settings"
+msgstr "Ayarları aç"
+
+msgid "Reply"
+msgstr "Yanıtla"
+
+msgid "Reply all"
+msgstr "Tümünü cevapla"
+
+msgid "Forward"
+msgstr "İlet"
+
+msgid "Write reply with AI"
+msgstr "AI ile cevap yaz"
+
+msgid "Write with AI"
+msgstr "AI ile yaz"
+
+msgid "Fix with AI"
+msgstr "AI ile düzelt"
+
+msgid "Optional instruction: \"thank them, invite them to the 11 November event\""
+msgstr "İsteğe bağlı talimat: \"teşekkür et, 11 Kasım etkinliğine davet et\""
+
+msgid "What should it say? e.g. \"A short, warm tree-planting partnership offer to company X\""
+msgstr "Ne yazılsın? Ör. \"Firma X'e fidan dikim işbirliği teklifi, kısa ve sıcak\""
+
+msgid "AI is writing…"
+msgstr "AI yazıyor…"
+
+msgid "AI needs the Flux AI & MCP plugin and its key."
+msgstr "AI için Flux AI & MCP eklentisi ve anahtarı gerekir."
+
+msgid "AI draft: check and edit it, then send. Nothing goes out until you send it."
+msgstr "AI taslağı: kontrol edip düzenleyin, sonra gönderin. Siz göndermeden gitmez."
+
+msgid "Mark unread"
+msgstr "Okunmadı yap"
+
+msgid "Star"
+msgstr "Yıldızla"
+
+msgid "To"
+msgstr "Kime"
+
+msgid "Cc"
+msgstr "Bilgi (Cc)"
+
+msgid "Layout"
+msgstr "Şablon"
+
+msgid "Saved"
+msgstr "Kaydedildi"
+
+msgid "Delete?"
+msgstr "Silinsin mi?"
+
+msgid "Send this email now? To: %s"
+msgstr "Bu e-posta şimdi gönderilsin mi? Kime: %s"
+
+msgid "Replying to"
+msgstr "Cevaplanan"
+
+msgid "The earlier conversation is added below the email automatically."
+msgstr "Eski yazışma e-postanın altına otomatik eklenir."
+
+msgid "Show external images"
+msgstr "Dış görselleri göster"
+
+msgid "External images were not shown for privacy."
+msgstr "Gizlilik için dış görseller gösterilmedi."
+
+msgid "This conversation"
+msgstr "Bu yazışma"
+
+msgid "Attachments"
+msgstr "Ekler"
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "(no subject)"
+msgstr "(konu yok)"
+
+msgid "me"
+msgstr "ben"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "Replied"
+msgstr "Cevaplandı"
+
+msgid "Bold"
+msgstr "Kalın"
+
+msgid "Italic"
+msgstr "İtalik"
+
+msgid "Link address:"
+msgstr "Bağlantı adresi:"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Clear formatting"
+msgstr "Biçimi temizle"
+
+msgid "Open in logs"
+msgstr "Kayıtlarda aç"
+
+msgid "Layouts chosen when sending from the mailbox. In sub-layouts like \"Örnek Vakfı × Company\" the company logo appears at the top; the preset subject and content fill a new email."
+msgstr "Posta kutusundan gönderirken seçilen şablonlar. \"Örnek Vakfı × Firma\" gibi alt şablonlarda firmanın logosu üstte görünür; hazır konu ve içerik yeni e-postaya dolar."
+
+msgid "New sub-layout"
+msgstr "Yeni alt şablon"
+
+msgid "Built-in layout (cannot be changed)"
+msgstr "Hazır şablon (değiştirilemez)"
+
+msgid "Layout name"
+msgstr "Şablon adı"
+
+msgid "Short description"
+msgstr "Kısa açıklama"
+
+msgid "Corporate (card)"
+msgstr "Kurumsal (kart)"
+
+msgid "Plain (letter)"
+msgstr "Sade (mektup)"
+
+msgid "Company name"
+msgstr "Firma adı"
+
+msgid "Company logo"
+msgstr "Firma logosu"
+
+msgid "Company website"
+msgstr "Firma web sitesi"
+
+msgid "Accent color"
+msgstr "Vurgu rengi"
+
+msgid "Heading (large heading in corporate)"
+msgstr "Başlık (kurumsalda büyük başlık)"
+
+msgid "Preset subject"
+msgstr "Hazır konu"
+
+msgid "Preset content"
+msgstr "Hazır içerik"
+
+msgid "New email with this layout"
+msgstr "Bu şablonla yeni e-posta"
+
+msgid "Mailbox"
+msgstr "Posta kutusu"
+
+msgid "Incoming and outgoing email for bilgi@, drafts and AI replies."
+msgstr "bilgi@ adresine gelen ve giden e-postalar, taslaklar ve AI cevapları."
+
+msgid "Loading…"
+msgstr "Yükleniyor…"
+
+msgid "Dark"
+msgstr "Koyu"
+
+msgid "Email arriving at bilgi@ and email sent from webmail appear on the Mailbox screen in the left menu, where you can reply. The site connects over IMAP and fetches a few emails every few minutes (light on shared hosting). Attachments are not stored on the site; they are read from the server when opened."
+msgstr "bilgi@ adresine gelen e-postalar ve web postadan gönderilenler sol menüdeki Posta kutusu ekranında görünür; oradan cevap yazılır. Sunucuya IMAP ile bağlanılır, birkaç dakikada bir az sayıda e-posta alınır (paylaşımlı sunucuyu yormaz). Ekler sitede saklanmaz, açınca sunucudan okunur."
+
+msgid "Enable mailbox"
+msgstr "Posta kutusunu aç"
+
+msgid "IMAP server"
+msgstr "IMAP sunucusu"
+
+msgid "If empty, the SMTP user (bilgi@) is used."
+msgstr "Boşsa SMTP kullanıcısı (bilgi@) kullanılır."
+
+msgid "If empty, the SMTP password is used"
+msgstr "Boşsa SMTP şifresi kullanılır"
+
+msgid "How many days of email to fetch on first setup"
+msgstr "İlk kurulumda kaç günlük e-posta alınsın"
+
+msgid "How many days to keep on the site"
+msgstr "Sitede kaç gün saklansın"
+
+msgid "Emails on the server are not deleted; only the copy on the site."
+msgstr "Sunucudaki e-postalar silinmez; yalnız sitedeki kopya."
+
+msgid "Signature (optional)"
+msgstr "İmza (isteğe bağlı)"
+
+msgid "Kind regards,\n{ad_soyad}"
+msgstr "Saygılarımızla,\n{ad_soyad}"
+
+msgid "Added to the end of emails written from the mailbox, followed by the organization details with logo. {ad_soyad} becomes the writer's name. If empty, \"Kind regards,\"."
+msgstr "Posta kutusundan yazılan e-postaların sonuna eklenir; altına logolu kurum bilgisi gelir. {ad_soyad} yazan kişinin adı olur. Boşsa \"Saygılarımızla,\"."
+
+msgid "Test connection"
+msgstr "Bağlantıyı dene"
+
+msgid "Save first, then test."
+msgstr "Önce kaydedin, sonra deneyin."
+
+msgid "On, but the IMAP server, user or password is missing (Communication › Settings › Mailbox)."
+msgstr "Açık ama IMAP sunucusu, kullanıcı ya da şifre eksik (İletişim › Ayarlar › Posta kutusu)."
+
+msgid "Last sync %s. Scheduled tasks (WP-Cron) may not be running; syncing still happens while the Mailbox screen is open."
+msgstr "Son eşitleme %s. Zamanlanmış görevler (WP-Cron) çalışmıyor olabilir; Posta kutusu ekranı açıkken eşitleme yine yapılır."
+
+msgid "Syncing; last sync %s."
+msgstr "Eşitleniyor; son eşitleme %s."
+
+msgid "Sent folder not found: email sent from webmail will not appear."
+msgstr "Gönderilmiş klasörü bulunamadı: web postadan gönderilenler görünmez."
+
+msgid "Email not found."
+msgstr "E-posta bulunamadı."
+
+msgid "Content was not stored (Settings › Log › content logging is off)."
+msgstr "İçerik kaydedilmemiş (Ayarlar › Kayıt › içerik kaydı kapalı)."
+
+msgid "The action could not be completed."
+msgstr "İşlem yapılamadı."
+
+msgid "Connection successful. The inbox has %1$s emails. Sent folder: %2$s"
+msgstr "Bağlantı başarılı. Gelen kutusunda %1$s e-posta var. Gönderilmiş klasörü: %2$s"
+
+msgid "not found"
+msgstr "bulunamadı"
+
+msgid "Draft not found."
+msgstr "Taslak bulunamadı."
+
+msgid "Draft not found or already sent."
+msgstr "Taslak bulunamadı ya da gönderilmiş."
+
+msgid "Forwarded email"
+msgstr "İletilen e-posta"
+
+msgid "On %1$s, %2$s wrote:"
+msgstr "%1$s tarihinde %2$s şunu yazdı:"
+
+msgid "This draft was already sent."
+msgstr "Bu taslak zaten gönderildi."
+
+msgid "No recipient (To) or the address is invalid."
+msgstr "Alıcı (Kime) yok ya da adres geçersiz."
+
+msgid "Subject is empty."
+msgstr "Konu boş."
+
+msgid "An email can have at most %s recipients."
+msgstr "Bir e-postada en çok %s alıcı olabilir."
+
+msgid "Recipient is blocklisted: email not sent."
+msgstr "Alıcı kara listede: e-posta gönderilmedi."
+
+msgid "Email not sent (template is off)."
+msgstr "E-posta gönderilmedi (şablon kapalı)."
+
+msgid "Could not send. Details in Logs."
+msgstr "Gönderilemedi. Ayrıntı Kayıtlar ekranında."
+
+msgid "Draft"
+msgstr "Taslak"
+
+msgid "IMAP server, user or password is missing (Settings › Mailbox)."
+msgstr "IMAP sunucusu, kullanıcı ya da şifre eksik (Ayarlar › Posta kutusu)."
+
+msgid "Mailbox is off."
+msgstr "Posta kutusu kapalı."
+
+msgid "Attachment not found."
+msgstr "Ek bulunamadı."
+
+msgid "Message not found on the server (it may have been deleted or moved)."
+msgstr "İleti sunucuda bulunamadı (silinmiş ya da taşınmış olabilir)."
+
+msgid "Corporate"
+msgstr "Kurumsal"
+
+msgid "Logo card, button, corporate footer. For announcements and new emails."
+msgstr "Logolu kart, düğme, kurumsal alt bilgi. Duyuru ve yeni e-postalar için."
+
+msgid "Plain"
+msgstr "Sade"
+
+msgid "Personal letter look with a small logo signature below. For replies."
+msgstr "Kişisel mektup görünümü, altta küçük logolu imza. Cevaplar için."
+
+msgid "Untitled layout"
+msgstr "Adsız şablon"
+
+msgid "Kind regards,"
+msgstr "Saygılarımızla,"
+
+msgid "Could not connect to %1$s: %2$s"
+msgstr "%1$s sunucusuna bağlanılamadı: %2$s"
+
+msgid "The server sent no IMAP greeting."
+msgstr "Sunucu IMAP karşılaması göndermedi."
+
+msgid "STARTTLS failed."
+msgstr "STARTTLS başarısız."
+
+msgid "IMAP login failed: wrong user name or password."
+msgstr "IMAP girişi başarısız: kullanıcı adı ya da şifre yanlış."
+
+msgid "Could not open folder %s."
+msgstr "%s klasörü açılamadı."
+
+msgid "IMAP connection lost."
+msgstr "IMAP bağlantısı koptu."
+
+msgid "IMAP server did not respond (timeout)."
+msgstr "IMAP sunucusu cevap vermedi (zaman aşımı)."
+
+msgid "Flux AI & MCP is not installed or has no key (Flux AI & MCP › Settings)."
+msgstr "Flux AI & MCP kurulu değil ya da anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
+
+msgid "List emails"
+msgstr "E-postaları listele"
+
+msgid "Read email"
+msgstr "E-postayı oku"
+
+msgid "List email layouts"
+msgstr "E-posta şablonlarını listele"
+
+msgid "Write email draft"
+msgstr "E-posta taslağı yaz"
+
+msgid "Send draft"
+msgstr "Taslağı gönder"
+
+msgid "Communication (mailbox)"
+msgstr "İletişim (posta kutusu)"
+
+msgid "Flux Mail"
+msgstr "Flux Mail"
+
+msgid "Email reply"
+msgstr "E-posta cevabı"
+
+msgid "Email draft"
+msgstr "E-posta taslağı"
+
+msgid "No PDF converter on the server (Flux AI & MCP › Settings › Images › Gotenberg)."
+msgstr "Sunucuda PDF çevirici yok (Flux AI & MCP › Ayarlar › Görseller › Gotenberg)."
+
+msgid "Could not reach the PDF converter: %s"
+msgstr "PDF çeviriciye ulaşılamadı: %s"
+
+msgid "Could not create the PDF (HTTP %d)."
+msgstr "PDF oluşturulamadı (HTTP %d)."
+
+msgid "Download PDF"
+msgstr "PDF indir"
+
+msgid "Preparing PDF…"
+msgstr "PDF hazırlanıyor…"
+
+msgid "Email parser"
+msgstr "E-posta ayrıştırıcı"
+
+msgid "PHP mailparse extension is on: headers and addresses of incoming email are read with it."
+msgstr "PHP mailparse uzantısı açık: gelen e-postaların başlık ve adresleri onunla okunuyor."
+
+msgid "The PHP mailparse extension is missing; the plugin's own parser is used (it works). You can turn on \"mailparse\" in hPanel › PHP Configuration › PHP Extensions."
+msgstr "PHP mailparse uzantısı yok; eklentinin kendi ayrıştırıcısı kullanılıyor (çalışır). İsterseniz hPanel › PHP Yapılandırması › PHP Uzantıları'ndan \"mailparse\" açılabilir."
+
+msgid "Built-in"
+msgstr "Hazır"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "There are unsaved changes. Close anyway?"
+msgstr "Kaydedilmemiş değişiklik var. Yine de kapatılsın mı?"
+
+msgid "The draft is empty."
+msgstr "Taslak boş."
+
+msgid "Added to the end of emails written from the mailbox; the organization info with logo comes below it. {ad_soyad} becomes the writer's name. If empty, nothing is added."
+msgstr "Posta kutusundan yazılan e-postaların sonuna eklenir; altına logolu kurum bilgisi gelir. {ad_soyad} yazan kişinin adı olur. Boşsa hiçbir şey eklenmez."
+
+msgid "Server"
+msgstr "Sunucu"
+
+msgid "I'll enter new server details"
+msgstr "Yeni sunucu bilgisi gireceğim"
+
+msgid "Same server: %1$s (%2$s)"
+msgstr "Aynı sunucu: %1$s (%2$s)"
+
+msgid "When adding a second number to the same server, the address and API key aren't entered again; just type the new instance name."
+msgstr "Aynı sunucuya ikinci bir numara eklerken adres ve API key yeniden girilmez; yalnız yeni instance adını yazın."
+
+msgid "Each row is one number. Press \"Connect\" to link a number, see its status or reconnect it; no separate panel needed."
+msgstr "Her satır bir numara. Numarayı bağlamak, durumunu görmek ya da yeniden bağlamak için \"Bağlan\"a basın; ayrı bir panele girmeniz gerekmez."
+
+msgid "Connect"
+msgstr "Bağlan"
+
+msgid "Restart"
+msgstr "Yeniden başlat"
+
+msgid "Log the number out"
+msgstr "Numaranın oturumunu kapat"
+
+msgid "Server settings"
+msgstr "Sunucu ayarları"
+
+msgid "Delete (number stays on the server)"
+msgstr "Sil (numara sunucuda kalır)"
+
+msgid "Also delete from the server"
+msgstr "Sunucudan da sil"
+
+msgid "Also delete the number from the server? The session, message history and contacts are deleted on the server; adding it again needs a QR scan."
+msgstr "Numara sunucudan da silinsin mi? Oturum, mesaj geçmişi ve kişiler sunucudan silinir; yeniden eklemek için QR gerekir."
+
+msgid "Connection saved. On the phone, scan the QR in WhatsApp › Linked devices › Link a device."
+msgstr "Bağlantı kaydedildi. Telefonda WhatsApp › Bağlı cihazlar › Cihaz bağla ile QR'ı okutun."
+
+msgid "Connected"
+msgstr "Bağlı"
+
+msgid "Waiting for QR"
+msgstr "QR bekliyor"
+
+msgid "Not connected"
+msgstr "Bağlı değil"
+
+msgid "Not on the server"
+msgstr "Sunucuda yok"
+
+msgid "Server unreachable"
+msgstr "Sunucuya ulaşılamadı"
+
+msgid "Status unknown"
+msgstr "Durum bilinmiyor"
+
+msgid "WhatsApp QR code"
+msgstr "WhatsApp QR kodu"
+
+msgid "Open WhatsApp on the phone."
+msgstr "Telefonda WhatsApp'ı açın."
+
+msgid "Settings › Linked devices › Link a device."
+msgstr "Ayarlar › Bağlı cihazlar › Cihaz bağla."
+
+msgid "Scan this QR. The code refreshes by itself."
+msgstr "Bu QR'ı okutun. Kod kendiliğinden yenilenir."
+
+msgid "Can't scan the QR: get a code with the phone number"
+msgstr "QR okutamıyorum: telefon numarasıyla kod al"
+
+msgid "Phone number"
+msgstr "Telefon numarası"
+
+msgid "Get code"
+msgstr "Kod al"
+
+msgid "Type this code in WhatsApp › Linked devices › Link a device › \"Link with phone number instead\"."
+msgstr "WhatsApp › Bağlı cihazlar › Cihaz bağla › \"Bunun yerine telefon numarasıyla bağla\" ekranına bu kodu yazın."
+
+msgid "Flux WPAPI server"
+msgstr "Flux WPAPI sunucusu"
+
+msgid "Please wait…"
+msgstr "Bekleyin…"
+
+msgid "Scan the QR with the phone."
+msgstr "QR'ı telefonla okutun."
+
+msgid "Type this code in WhatsApp on the phone."
+msgstr "Bu kodu telefondaki WhatsApp'a yazın."
+
+msgid "Connected."
+msgstr "Bağlandı."
+
+msgid "Log the number out? Messages won't arrive; reconnecting needs a QR scan."
+msgstr "Numaranın oturumu kapatılsın mı? Mesaj gelmez; yeniden bağlamak için QR okutmak gerekir."
+
+msgid "Version"
+msgstr "Sürüm"
+
+msgid "Data store"
+msgstr "Veri deposu"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "Last keep-alive"
+msgstr "Son uyanık tutma"
+
+msgid "none yet"
+msgstr "henüz yok"
+
+msgid "Voice message converter"
+msgstr "Sesli mesaj çevirici"
+
+msgid "Yes"
+msgstr "Var"
+
+msgid "Bridge public address"
+msgstr "Köprünün dış adresi"
+
+msgid "Keep-alive sends requests to this address. E.g. https://example.org"
+msgstr "Uyanık tutma bu adrese istek atar. Ör. https://example.org"
+
+msgid "Keep awake (so Hostinger doesn't put the app to sleep)"
+msgstr "Uyanık tut (Hostinger uygulamayı uyutmasın)"
+
+msgid "Database"
+msgstr "Veritabanı"
+
+msgid "The database comes from the bridge's environment variables; it can't be changed here."
+msgstr "Veritabanı köprünün ortam değişkenlerinden geliyor; buradan değiştirilemez."
+
+msgid "Store"
+msgstr "Depo"
+
+msgid "Database name"
+msgstr "Veritabanı adı"
+
+msgid "User"
+msgstr "Kullanıcı"
+
+msgid "Saved · type to change"
+msgstr "Kayıtlı · değiştirmek için yazın"
+
+msgid "Table prefix"
+msgstr "Tablo öneki"
+
+msgid "The password is only sent to the bridge; it isn't stored in WordPress."
+msgstr "Parola yalnız köprüye gönderilir, WordPress'te saklanmaz."
+
+msgid "Changing the store closes the numbers' connections and they need a new QR scan. Continue?"
+msgstr "Depo değişince numaraların bağlantısı kapanır ve yeniden QR okutmak gerekir. Devam edilsin mi?"
+
+msgid "Test database"
+msgstr "Veritabanını dene"
+
+msgid "WhatsApp connection not found."
+msgstr "WhatsApp bağlantısı bulunamadı."
+
+msgid "Couldn't reach the server:"
+msgstr "Sunucuya ulaşılamadı:"
+
+msgid "API key was not accepted."
+msgstr "API key kabul edilmedi."
+
+msgid "Server settings exist only for Flux WPAPI connections."
+msgstr "Sunucu ayarları yalnız Flux WPAPI bağlantısında var."
+
+msgid "This Flux WPAPI version doesn't support changing server settings from WordPress. Update the bridge."
+msgstr "Bu Flux WPAPI sürümü sunucu ayarlarını WordPress'ten değiştirmeyi desteklemiyor. Köprüyü güncelleyin."
+
+msgid "WhatsApp · Flux WPAPI"
+msgstr "WhatsApp · Flux WPAPI"
+
+msgid "The Flux WPAPI bridge installed as a Node.js app on Hostinger. The address is e.g. https://wa.example.com; the API key is the bridge panel's general API key; the instance is the name you give this number (created on \"Connect\" if it does not exist)."
+msgstr "Flux WPAPI köprüsü Hostinger'da Node.js uygulaması olarak kuruldu. Adres örn.   https://wa.example.com;  API anahtarı köprü panelinin genel API anahtarıdır; örnek, bu numarayı verdiğiniz addır (eğer mevcut değilse \"Bağlan\" üzerinde oluşturulur)."
+
+msgid "Number not connected (status: %s). Scan the QR with \"Connect\"."
+msgstr "Numara bağlı değil (durum: %s). \"Bağlan\" ile QR okutun."
+
+msgid "Setup"
+msgstr "Kurulum"
+
+msgid "Connection saved. Now enter the webhook address in your Meta app."
+msgstr "Bağlantı kaydedildi. Şimdi webhook adresini Meta uygulamasına girin."
+
+msgid "What's different in Cloud API"
+msgstr "Cloud API'de farklı olanlar"
+
+msgid "24-hour rule: if the person hasn't written in the last 24 hours, only a Meta-approved template can be sent."
+msgstr "24 saat kuralı: kişi son 24 saatte yazmadıysa yalnız Meta'nın onayladığı şablon gönderilebilir."
+
+msgid "No group messages: Call Center's team group mirror doesn't work on this line."
+msgstr "Grup mesajı yok: Çağrı Merkezi'nin ekip grubu aynası bu hatta çalışmaz."
+
+msgid "Sent messages can't be edited; past chats can't be imported."
+msgstr "Gönderilen mesaj düzenlenemez; geçmiş sohbetler içe aktarılamaz."
+
+msgid "\"Typing…\" only shows while replying to an incoming message."
+msgstr "\"Yazıyor…\" yalnız gelen mesaja cevap verirken görünür."
+
+msgid "Cost: template messages and replies beyond 1000 a month are charged by Meta."
+msgstr "Ücret: şablon mesajları ve ayda 1000'i aşan cevap mesajları Meta tarafından ücretlendirilir."
+
+msgid "No ban risk; the number can stay in the WhatsApp Business app on the phone too (coexistence)."
+msgstr "Ban riski yok; numara telefondaki WhatsApp Business uygulamasında da kalabilir (coexistence)."
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "Number quality"
+msgstr "Numara kalitesi"
+
+msgid "High"
+msgstr "Yüksek"
+
+msgid "Medium"
+msgstr "Orta"
+
+msgid "Low"
+msgstr "Düşük"
+
+msgid "Webhook (incoming messages)"
+msgstr "Webhook (gelen mesajlar)"
+
+msgid "Meta for Developers › your app › WhatsApp › Configuration › Webhook: enter the address and verify token below, press \"Verify and save\", then subscribe to the \"messages\" field."
+msgstr "Meta for Developers › uygulamanız › WhatsApp › Yapılandırma › Webhook: aşağıdaki adresi ve doğrulama anahtarını girip \"Doğrula ve kaydet\"e basın, sonra \"messages\" alanına abone olun."
+
+msgid "Callback URL"
+msgstr "Geri çağırma adresi (Callback URL)"
+
+msgid "Verify token"
+msgstr "Doğrulama anahtarı (Verify token)"
+
+msgid "Meta verification"
+msgstr "Meta doğrulaması"
+
+msgid "Last incoming event"
+msgstr "Son gelen olay"
+
+msgid "Request with a bad signature"
+msgstr "İmzası tutmayan istek"
+
+msgid "Open 24-hour windows"
+msgstr "Açık 24 saat penceresi"
+
+msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
+msgstr "App Secret girilmedi: gelen isteklerin Meta'dan geldiği doğrulanmıyor. Düzenle'den ekleyin."
+
+msgid "Approved templates"
+msgstr "Onaylı şablonlar"
+
+msgid "WABA ID is required for templates."
+msgstr "Şablonlar için WABA ID gerekli."
+
+msgid "No templates. Add them in WhatsApp Manager › Message templates."
+msgstr "Şablon yok. WhatsApp Manager › Mesaj şablonları'ndan ekleyin."
+
+msgid "WhatsApp · Cloud API (Meta)"
+msgstr "WhatsApp · Cloud API (Meta)"
+
+msgid "Meta's official WhatsApp Cloud API; no extra server. From Meta Business › WhatsApp Manager copy the Phone Number ID and WhatsApp Business account (WABA) ID, and from Business settings › System users copy a permanent access token. After saving, paste the webhook URL from \"Setup\" into the Meta app."
+msgstr "Meta'nın resmi WhatsApp Cloud API'si; ek sunucu gerekmez. Meta Business › WhatsApp Manager'dan Phone Number ID ve WhatsApp Business hesap (WABA) ID'yi, Business ayarları › Sistem kullanıcıları'ndan kalıcı erişim anahtarını alın. Kaydettikten sonra \"Kurulum\"daki webhook adresini Meta uygulamasına yapıştırın."
+
+msgid "Phone Number ID"
+msgstr "Phone Number ID"
+
+msgid "WhatsApp Business account ID (WABA)"
+msgstr "WhatsApp Business hesap ID (WABA)"
+
+msgid "Needed for the template list."
+msgstr "Şablon listesi için gerekli."
+
+msgid "Permanent access token (System User token)"
+msgstr "Kalıcı erişim anahtarı (System User token)"
+
+msgid "App Secret"
+msgstr "Uygulama gizli anahtarı (App Secret)"
+
+msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
+msgstr "Gelen webhook'ların Meta'dan geldiğini doğrular. Boşsa imza denetlenmez (önerilmez)."
+
+msgid "Graph API version"
+msgstr "Graph API sürümü"
+
+msgid "Couldn't reach Meta:"
+msgstr "Meta'ya ulaşılamadı:"
+
+msgid "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent."
+msgstr "24 saat penceresi kapalı: kişi son 24 saatte yazmadı. Yalnız onaylı şablon gönderilebilir."
+
+msgid "Message not delivered: the number has no WhatsApp or has blocked you."
+msgstr "Mesaj iletilemedi: numarada WhatsApp yok ya da kişi engellemiş."
+
+msgid "Access token is invalid or expired."
+msgstr "Erişim anahtarı geçersiz ya da süresi dolmuş."
+
+msgid "This number isn't on the test list (Meta test account)."
+msgstr "Bu numara test listesinde değil (Meta test hesabı)."
+
+msgid "Messages sent to the same person too fast; wait a little."
+msgstr "Aynı kişiye çok hızlı mesaj gönderildi; biraz bekleyin."
+
+msgid "Template not found or not approved in this language."
+msgstr "Şablon bulunamadı ya da bu dilde onaylı değil."
+
+msgid "Cloud API connection is incomplete."
+msgstr "Cloud API bağlantısı eksik."
+
+msgid "To test, first send a message from that number to this line."
+msgstr "Denemek için önce o numaradan bu hatta bir mesaj atın."
+
+msgid "Cloud API connection not found."
+msgstr "Cloud API bağlantısı bulunamadı."
+
+msgid "Status / reconnect (QR)"
+msgstr "Durum / yeniden bağla (QR)"
+
+msgid "Check connection"
+msgstr "Bağlantıyı kontrol et"
+
+msgid "Sends no message; only checks the connection."
+msgstr "Mesaj göndermez; yalnız bağlantıya bakar."
+
+msgid "Recipient number"
+msgstr "Alıcı numara"
+
+msgid "With country code, e.g. 905301234567. Messages go to this number."
+msgstr "Ülke koduyla, ör. 905301234567. Mesajlar bu numaraya gider."
+
+msgid "What to send?"
+msgstr "Ne gönderilsin?"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Image"
+msgstr "Resim"
+
+msgid "Voice message"
+msgstr "Sesli mesaj"
+
+msgid "Document (PDF)"
+msgstr "Belge (PDF)"
+
+msgid "Message text"
+msgstr "Mesaj metni"
+
+msgid "Image / document caption"
+msgstr "Resim / belge açıklaması"
+
+msgid "Hello, this is a %s test message. 🌱"
+msgstr "Merhaba, bu %s test mesajıdır. 🌱"
+
+msgid "Test image · %s"
+msgstr "Test görseli · %s"
+
+msgid "Send %d messages"
+msgstr "%d mesaj gönder"
+
+msgid "Enter the recipient number first."
+msgstr "Önce alıcı numarayı yazın."
+
+msgid "Pick at least one scenario."
+msgstr "En az bir senaryo seçin."
+
+msgid "The number is not connected; messages will not go out. Scan the QR with \"Connect\" first."
+msgstr "Numara bağlı değil; mesajlar gitmez. Önce \"Bağlan\" ile QR okutun."
+
+msgid "24-hour rule: if the person has not written to this line in the last 24 hours, text, image, audio and documents will not go out; only approved templates. Send a message to this line from that number first."
+msgstr "24 saat kuralı: kişi son 24 saatte bu hatta yazmadıysa metin, resim, ses ve belge gitmez; yalnız onaylı şablon gider. Önce o numaradan bu hatta bir mesaj atın."
+
+msgid "Choose a template"
+msgstr "Şablon seçin"
+
+msgid "Loading templates…"
+msgstr "Şablonlar yükleniyor…"
+
+msgid "No approved templates."
+msgstr "Onaylı şablon yok."
+
+msgid "Variable {{%d}}"
+msgstr "Değişken {{%d}}"
+
+msgid "SMS is paid; each message is deducted from the balance."
+msgstr "SMS ücretlidir; her gönderim bakiyeden düşer."
+
+msgid "1 page · PDF"
+msgstr "1 sayfa · PDF"
+
+msgid "%1$d / %2$d sent."
+msgstr "%1$d / %2$d gönderildi."
+
+msgid "Check the phone."
+msgstr "Telefonda kontrol edin."
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "This connection does not support this scenario."
+msgstr "Bu bağlantı bu senaryoyu desteklemiyor."
+
+msgid "Enter a valid recipient number."
+msgstr "Geçerli bir alıcı numarası girin."
+
+msgid "Choose a template."
+msgstr "Şablon seçin."
+
+msgid "To try, first send a message to this line from that number, or send a template."
+msgstr "Denemek için önce o numaradan bu hatta bir mesaj atın ya da şablon gönderin."
+
+msgid "The file could not be read."
+msgstr "Dosya okunamadı."
+
+msgid "The file could not be uploaded to Meta:"
+msgstr "Dosya Meta'ya yüklenemedi:"
+
+msgid "Incoming e-mail appears here."
+msgstr "Gelen e-postalar burada görünür."
+
+msgid "Inbox is empty"
+msgstr "Gelen kutusu boş"
+
+msgid "Could not send."
+msgstr "Gönderilemedi."
+
+msgid "Sent e-mail, WhatsApp and SMS appear here."
+msgstr "Gönderilen e-posta, WhatsApp ve SMS burada görünür."
+
+msgid "Send log"
+msgstr "Gönderim kaydı"
+
+msgid "Log entry"
+msgstr "Kayıt"
+
+msgid "No log entries"
+msgstr "Kayıt yok"
+
+msgid "From or subject"
+msgstr "Kimden ya da konu"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "The reply cannot be empty."
+msgstr "Yanıt boş olamaz."
+
+msgid "[['All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.', 'tr']]"
+msgstr "Sitenin tüm e-postaları tek yerde: gönderen adı/adresi (bilgi@ / no-reply@), SMTP, logolu ve mobil uyumlu kurumsal şablonlar, WordPress + WooCommerce + FluxWP eklentilerinin e-postalarını görme, düzenleme, açma/kapama, gönderim kayıtları, tekil ve toplu gönderim. WhatsApp (Evolution API) ve SMS (Netgsm) bağlantıları da burada; diğer eklentiler ortak API ile kullanır."

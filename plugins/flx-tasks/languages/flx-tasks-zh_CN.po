@@ -1,0 +1,2741 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Tasks"
+msgstr "任务"
+
+msgid "Usage dashboard"
+msgstr "使用情况仪表板"
+
+msgid "Task Settings"
+msgstr "任务设置"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "JavaScript is required for Tasks."
+msgstr "任务需要 JavaScript。"
+
+msgid "Task notifications"
+msgstr "任务通知"
+
+msgid "AI needs the Flux AI & MCP plugin. An administrator must install Flux AI and enter a key."
+msgstr "AI 需要 Flux AI & MCP 插件。管理员必须安装 Flux AI 并输入密钥。"
+
+msgid "AI is not set up. An administrator must enter a key and choose a model in Flux AI & MCP › Settings."
+msgstr "AI未设置。管理员必须在 Flux AI 和 MCP › 设置中输入密钥并选择模型。"
+
+msgid "The operation took too long; split the request into smaller steps."
+msgstr "手术时间太长;将请求分成更小的步骤。"
+
+msgid "Deleted user"
+msgstr "已删除用户"
+
+msgid "List not found or you don't have access."
+msgstr "未找到列表或您无权访问。"
+
+msgid "Task not found or you don't have access."
+msgstr "未找到任务或您无权访问。"
+
+msgid "You don't have permission to add tasks to this list."
+msgstr "您无权将任务添加到此列表。"
+
+msgid "You don't have permission to edit this task."
+msgstr "您无权编辑此任务。"
+
+msgid "You don't have permission to add tasks to the target list."
+msgstr "您无权将任务添加到目标列表。"
+
+msgid "This list has no such status."
+msgstr "该列表没有这样的状态。"
+
+msgid "You don't have permission to comment on this task."
+msgstr "您无权对此任务发表评论。"
+
+msgid "Item not found."
+msgstr "未找到项目。"
+
+msgid "Open"
+msgstr "打开"
+
+msgid "Setup"
+msgstr "设置"
+
+msgid "WordPress and PHP version"
+msgstr "WordPress 和 PHP 版本"
+
+msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
+msgstr "WordPress%1$s、PHP%2$s。要求:WordPress 6.5+、PHP 7.4+。"
+
+msgid "Database tables"
+msgstr "数据库表"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "缺少表:%s。停用并重新激活插件。"
+
+msgid "Plugins"
+msgstr "插件"
+
+msgid "Tables are ready (schema %s)."
+msgstr "表已准备就绪(架构%s)。"
+
+msgid "File folder"
+msgstr "文件夹"
+
+msgid "wp-content/uploads/flx-tasks is missing or not writable. Files and images cannot be uploaded; check folder permissions (755)."
+msgstr "wp-content/uploads/flx-tasks 丢失或不可写。文件和图片无法上传;检查文件夹权限 (755)。"
+
+msgid "The folder is writable but the protection file (.htaccess) is missing; files can be opened by direct URL. Reactivate the plugin."
+msgstr "该文件夹可写,但缺少保护文件(.htaccess);文件可以通过直接 URL 打开。重新激活插件。"
+
+msgid "Writable and closed to direct access."
+msgstr "可写且禁止直接访问。"
+
+msgid "Upload limit"
+msgstr "上传限制"
+
+msgid "Effective limit %1$s (server limit %2$s)."
+msgstr "有效限制%1$s(服务器限制%2$s)。"
+
+msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
+msgstr "设置大于服务器限制; upload_max_filesize 和 post_max_size 可以在托管面板中提高。"
+
+msgid "Scheduled jobs"
+msgstr "预定职位"
+
+msgid "Daily task reminders"
+msgstr "每日任务提醒"
+
+msgid "Not scheduled: overdue/upcoming task notifications and old temporary file cleanup will not run. Opening the Tasks page once reschedules it."
+msgstr "未计划:过期/即将到来的任务通知和旧的临时文件清理将不会运行。重新安排任务后,打开“任务”页面。"
+
+msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
+msgstr "计划的作业迟到(由于%s)。 WP-Cron 可能不会触发(如果站点访问量很少,建议在托管面板中使用真正的 cron)。"
+
+msgid "Next run: %s."
+msgstr "下次运行:%s。"
+
+msgid "WP-Cron mode"
+msgstr "WP-Cron 模式"
+
+msgid "DISABLE_WP_CRON is on: scheduled jobs only run if a server cron calls wp-cron.php. This cron must be set up in the hosting panel."
+msgstr "DISABLE_WP_CRON 开启:计划作业仅在服务器 cron 调用 wp-cron.php 时运行。该 cron 必须在托管面板中设置。"
+
+msgid "Live updates"
+msgstr "实时更新"
+
+msgid "Update interval"
+msgstr "更新间隔"
+
+msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
+msgstr "屏幕上 10 秒,空闲 2 分钟后%d秒;后台选项卡不发送请求。"
+
+msgid "API cache"
+msgstr "API缓存"
+
+msgid "LiteSpeed Cache is active; task API responses are marked so they are not cached."
+msgstr "LiteSpeed 缓存处于活动状态;任务 API 响应经过标记,因此不会被缓存。"
+
+msgid "Task API responses are not cached."
+msgstr "任务 API 响应不会被缓存。"
+
+msgid "Notifications"
+msgstr "通知"
+
+msgid "Email notifications"
+msgstr "电子邮件通知"
+
+msgid "On. Emails are sent with WordPress's mail setup (an SMTP plugin is recommended)."
+msgstr "上。电子邮件通过 WordPress 的邮件设置发送(建议使用 SMTP 插件)。"
+
+msgid "Off; notifications are in-app only."
+msgstr "关闭;通知仅在应用程序内显示。"
+
+msgid "AI and MCP"
+msgstr "人工智能和MCP"
+
+msgid "AI"
+msgstr "人工智能"
+
+msgid "Via Flux AI, model: %s."
+msgstr "通过 Flux AI,型号:%s。"
+
+msgid "Flux AI"
+msgstr "通量人工智能"
+
+msgid "MCP server"
+msgstr "MCP服务器"
+
+msgid "On, %d personal key(s)."
+msgstr "打开,%d个人密钥。"
+
+msgid "Off."
+msgstr "关闭。"
+
+msgid "Untitled document"
+msgstr "无标题文档"
+
+msgid "List task projects"
+msgstr "列出任务项目"
+
+msgid "List task people"
+msgstr "列出任务人员"
+
+msgid "Search tasks"
+msgstr "搜索任务"
+
+msgid "Read task"
+msgstr "读任务"
+
+msgid "Create task"
+msgstr "创建任务"
+
+msgid "Update task"
+msgstr "更新任务"
+
+msgid "Comment on task"
+msgstr "对任务发表评论"
+
+msgid "List task fields"
+msgstr "列出任务字段"
+
+msgid "Create task list"
+msgstr "创建任务列表"
+
+msgid "Delete task"
+msgstr "删除任务"
+
+msgid "List task notifications"
+msgstr "列出任务通知"
+
+msgid "List documents"
+msgstr "列出文件"
+
+msgid "Read document page"
+msgstr "阅读文档页面"
+
+msgid "Edit document page"
+msgstr "编辑文档页面"
+
+msgid "Create document"
+msgstr "创建文档"
+
+msgid "Add page to document"
+msgstr "添加页面到文档"
+
+msgid "Document: %s"
+msgstr "文档:%s"
+
+msgid "Improve"
+msgstr "改善"
+
+msgid "Fix spelling & grammar"
+msgstr "修复拼写和语法"
+
+msgid "Shorten"
+msgstr "缩短"
+
+msgid "Make longer"
+msgstr "做得更长"
+
+msgid "Simplify"
+msgstr "简化"
+
+msgid "More formal"
+msgstr "更正式"
+
+msgid "More friendly"
+msgstr "更友善"
+
+msgid "Turn into bullets"
+msgstr "变成子弹"
+
+msgid "Turn into table"
+msgstr "变成桌子"
+
+msgid "Translate"
+msgstr "翻译"
+
+msgid "Explain"
+msgstr "解释一下"
+
+msgid "Custom request"
+msgstr "定制请求"
+
+msgid "Write"
+msgstr "写"
+
+msgid "Continue writing"
+msgstr "继续写"
+
+msgid "Summarize"
+msgstr "总结"
+
+msgid "Extract action items"
+msgstr "提取行动项目"
+
+msgid "Draft an outline"
+msgstr "起草大纲"
+
+msgid "Suggest a title"
+msgstr "建议标题"
+
+msgid "Ask the page"
+msgstr "询问页面"
+
+msgid "Page not found or you have no access."
+msgstr "找不到页面或您无权访问。"
+
+msgid "Unknown action."
+msgstr "未知的行动。"
+
+msgid "Write what should be done."
+msgstr "写下应该做什么。"
+
+msgid "The AI could not extract items. Try again or describe what you need."
+msgstr "AI无法提取物品。再试一次或描述您需要什么。"
+
+msgid "The AI returned an empty answer. Try again."
+msgstr "人工智能返回了一个空答案。再试一次。"
+
+msgid "You are not allowed to create documents in this project."
+msgstr "您不能在此项目中创建文档。"
+
+msgid "Document not found or you have no access."
+msgstr "未找到文档或您无权访问。"
+
+msgid "You are not allowed to edit this document."
+msgstr "您无权编辑此文档。"
+
+msgid "Only the owner or a project admin can delete the document."
+msgstr "只有所有者或项目管理员才能删除该文档。"
+
+msgid "A page cannot be moved under its own subpage."
+msgstr "页面不能移动到其自己的子页面下。"
+
+msgid "The last page of a document cannot be deleted. You can delete the document instead."
+msgstr "文档的最后一页无法删除。您可以删除该文档。"
+
+msgid "An email draft needs Flux Communication and mailbox permission."
+msgstr "电子邮件草稿需要 Flux Communication 和邮箱权限。"
+
+msgid "File is too large. The maximum upload size is %s."
+msgstr "文件太大。最大上传大小为%s。"
+
+msgid "Could not upload the file."
+msgstr "无法上传文件。"
+
+msgid "This file type is not allowed."
+msgstr "不允许使用此文件类型。"
+
+msgid "Could not save the file."
+msgstr "无法保存文件。"
+
+msgid "Urgent"
+msgstr "紧急"
+
+msgid "High"
+msgstr "高"
+
+msgid "Normal"
+msgstr "正常"
+
+msgid "Low"
+msgstr "低"
+
+msgid "To do"
+msgstr "要做的事"
+
+msgid "In progress"
+msgstr "进行中"
+
+msgid "In review"
+msgstr "审核中"
+
+msgid "Done"
+msgstr "完成"
+
+msgid "Short text"
+msgstr "短文本"
+
+msgid "Long text"
+msgstr "长文本"
+
+msgid "Number"
+msgstr "数量"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Checkbox"
+msgstr "复选框"
+
+msgid "Dropdown"
+msgstr "下拉菜单"
+
+msgid "Tags (multi-select)"
+msgstr "标签(多选)"
+
+msgid "Star rating"
+msgstr "星级"
+
+msgid "Person"
+msgstr "人"
+
+msgid "File"
+msgstr "文件"
+
+msgid "Web address"
+msgstr "网址"
+
+msgid "Email"
+msgstr "电子邮件"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Welcome to Flux Tasks: open this task and write a comment"
+msgstr "欢迎来到 Flux 任务:打开此任务并撰写评论"
+
+msgid "Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings."
+msgstr "在列表、看板和日历视图中跟踪任务。从左侧菜单添加新列表或文件夹,并在列表设置中设置自定义字段和权限。"
+
+msgid "MCP is off. Turn it on under Flux Tasks › Settings."
+msgstr "MCP 已关闭。在 Flux 任务 › 设置下将其打开。"
+
+msgid "Invalid or missing MCP key."
+msgstr "MCP 密钥无效或丢失。"
+
+msgid "This user is not allowed to use Flux Tasks."
+msgstr "不允许该用户使用 Flux 任务。"
+
+msgid "%s assigned you to a task"
+msgstr "%s为您分配了一项任务"
+
+msgid "%s mentioned you in a comment"
+msgstr "%s在评论中提到了您"
+
+msgid "%s wrote a comment"
+msgstr "%s写了一条评论"
+
+msgid "%1$s changed the status to \"%2$s\""
+msgstr "%1$s将状态更改为“%2$s”"
+
+msgid "Due tomorrow"
+msgstr "明天到期"
+
+msgid "Overdue"
+msgstr "逾期"
+
+msgid "[%1$s] %2$s"
+msgstr "[%1$s]%2$s"
+
+msgid "You can turn off email notifications under Flux Tasks › Profile."
+msgstr "您可以在 Flux 任务 › 配置文件下关闭电子邮件通知。"
+
+msgid "Recipient name"
+msgstr "收件人姓名"
+
+msgid "Person who acted"
+msgstr "行动过的人"
+
+msgid "Task name"
+msgstr "任务名称"
+
+msgid "List"
+msgstr "列表"
+
+msgid "Notification sentence"
+msgstr "通知语句"
+
+msgid "Comment excerpt"
+msgstr "评论摘录"
+
+msgid "Due date"
+msgstr "截止日期"
+
+msgid "Task link"
+msgstr "任务链接"
+
+msgid "Booth supplies list"
+msgstr "展位用品清单"
+
+msgid "Mehmet assigned you to a task"
+msgstr "穆罕默德为您分配了一项任务"
+
+msgid "Can you look at it by Friday?"
+msgstr "周五之前可以看一下吗?"
+
+msgid "You were assigned to a task"
+msgstr "您被分配了一项任务"
+
+msgid "Sent when someone assigns you to a task."
+msgstr "当有人为您分配任务时发送。"
+
+msgid "{kisi} assigned you to a task: {gorev}"
+msgstr "{kisi}为您分配了一项任务:{gorev}"
+
+msgid "New task: {gorev}"
+msgstr "新任务:{gorev}"
+
+msgid "Hi {ad},"
+msgstr "嗨,{ad},"
+
+msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
+msgstr "{kisi}已将您分配到<strong>{liste}</strong>列表中的<strong>{gorev}</strong>。"
+
+msgid "Open task"
+msgstr "开放任务"
+
+msgid "You were mentioned in a comment"
+msgstr "评论中提到了你"
+
+msgid "Sent when someone @mentions you in a comment."
+msgstr "当有人在评论中 @提及您时发送。"
+
+msgid "{kisi} mentioned you in a comment: {gorev}"
+msgstr "{kisi}在评论中提到了您:{gorev}"
+
+msgid "{kisi} mentioned you"
+msgstr "{kisi}提到了你"
+
+msgid "Comment on <strong>{gorev}</strong>:"
+msgstr "评论<strong>{gorev}</strong>:"
+
+msgid "Go to comment"
+msgstr "前往评论"
+
+msgid "Task due date is coming up"
+msgstr "任务截止日期即将到来"
+
+msgid "Sent one day before the due date of a task assigned to you."
+msgstr "在分配给您的任务截止日期前一天发送。"
+
+msgid "Due tomorrow: {gorev}"
+msgstr "明天到期:{gorev}"
+
+msgid "<strong>{gorev}</strong> is due on {tarih}."
+msgstr "<strong>{gorev}</strong>到期日为{tarih}。"
+
+msgid "Can view"
+msgstr "可以查看"
+
+msgid "Can comment"
+msgstr "可以评论"
+
+msgid "Can edit"
+msgstr "可以编辑"
+
+msgid "Can manage"
+msgstr "可以管理"
+
+msgid "Display preferences are too large."
+msgstr "显示首选项太大。"
+
+msgid "You don't have permission to create projects."
+msgstr "您没有创建项目的权限。"
+
+msgid "Name cannot be empty."
+msgstr "名称不能为空。"
+
+msgid "Project not found."
+msgstr "未找到项目。"
+
+msgid "You don't have permission to manage this project."
+msgstr "您无权管理此项目。"
+
+msgid "You don't have permission to create folders in this project."
+msgstr "您无权在此项目中创建文件夹。"
+
+msgid "You don't have permission to edit this folder."
+msgstr "您无权编辑此文件夹。"
+
+msgid "You don't have permission to delete this folder."
+msgstr "您无权删除此文件夹。"
+
+msgid "You don't have permission to create lists in this project."
+msgstr "您无权在此项目中创建列表。"
+
+msgid "You don't have permission to manage this list."
+msgstr "您无权管理此列表。"
+
+msgid "You don't have access to the target project."
+msgstr "您无权访问目标项目。"
+
+msgid "You must be a list manager to add fields."
+msgstr "您必须是列表管理员才能添加字段。"
+
+msgid "You must be a list manager to edit fields."
+msgstr "您必须是列表管理员才能编辑字段。"
+
+msgid "You must be a list manager to delete fields."
+msgstr "您必须是列表管理员才能删除字段。"
+
+msgid "You don't have access."
+msgstr "您无权访问。"
+
+msgid "New view"
+msgstr "新观点"
+
+msgid "You don't have permission to change this view."
+msgstr "您无权更改此视图。"
+
+msgid "You don't have permission to delete this view."
+msgstr "您无权删除此视图。"
+
+msgid "Project managers edit tags."
+msgstr "项目经理编辑标签。"
+
+msgid "You don't have permission to delete this task."
+msgstr "您无权删除此任务。"
+
+msgid "You can only edit your own comments."
+msgstr "您只能编辑自己的评论。"
+
+msgid "Comment cannot be empty."
+msgstr "评论不能为空。"
+
+msgid "You don't have permission to delete this comment."
+msgstr "您无权删除此评论。"
+
+msgid "You are not allowed to add files to this document."
+msgstr "不允许您向此文档添加文件。"
+
+msgid "You don't have permission to attach files to this task."
+msgstr "您无权将文件附加到此任务。"
+
+msgid "File not found."
+msgstr "未找到文件。"
+
+msgid "You don't have permission to delete this file."
+msgstr "您无权删除此文件。"
+
+msgid "You don't have permission to delete this key."
+msgstr "您无权删除此密钥。"
+
+msgid "Planned"
+msgstr "计划中"
+
+msgid "Held"
+msgstr "举行"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "Board"
+msgstr "董事会"
+
+msgid "Calendar"
+msgstr "日历"
+
+msgid "Parent task not found."
+msgstr "未找到父任务。"
+
+msgid "A task cannot be moved under its own subtask."
+msgstr "任务不能移动到其自己的子任务下。"
+
+msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
+msgstr "子任务可以嵌套在该项目中的最多%d级别。您可以更改项目设置中的限制。"
+
+msgid "Task name cannot be empty."
+msgstr "任务名称不能为空。"
+
+msgid "List not found."
+msgstr "未找到列表。"
+
+msgid "Task not found."
+msgstr "未找到任务。"
+
+msgid "Choose an image for the cover."
+msgstr "选择一张图像作为封面。"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "Tomorrow"
+msgstr "明天"
+
+msgid "Yesterday"
+msgstr "昨天"
+
+msgid "just now"
+msgstr "刚才"
+
+msgid "The server sent an unexpected response. Refresh the page and try again."
+msgstr "服务器发送了意外响应。刷新页面并重试。"
+
+msgid "The server is busy right now, try again shortly."
+msgstr "服务器当前正忙,请稍后重试。"
+
+msgid "Connection error"
+msgstr "连接错误"
+
+msgid "Deleting comment"
+msgstr "删除评论"
+
+msgid "Sending comment"
+msgstr "发送评论"
+
+msgid "Deleting file"
+msgstr "删除文件"
+
+msgid "Saving file"
+msgstr "保存文件"
+
+msgid "Deleting task"
+msgstr "删除任务"
+
+msgid "Saving task"
+msgstr "保存任务"
+
+msgid "AI is working"
+msgstr "人工智能正在发挥作用"
+
+msgid "Saving"
+msgstr "节省"
+
+msgid "Loading"
+msgstr "加载中"
+
+msgid "{n} failed"
+msgstr "{n}失败"
+
+msgid "{n} in progress"
+msgstr "{n}正在进行中"
+
+msgid "server busy, waiting"
+msgstr "服务器繁忙,等待"
+
+msgid "Saved"
+msgstr "已保存"
+
+msgid "Background tasks"
+msgstr "后台任务"
+
+msgid "Server busy, waiting"
+msgstr "服务器繁忙,等待"
+
+msgid "Retry"
+msgstr "重试"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Uploading: {n}"
+msgstr "上传中:{n}"
+
+msgid "Upload timed out."
+msgstr "上传超时。"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "OK"
+msgstr "好的"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Someone"
+msgstr "有人"
+
+msgid "Document name"
+msgstr "文件名称"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Delete document"
+msgstr "删除文档"
+
+msgid "\"{n}\" will be permanently deleted with all its pages and images."
+msgstr "“{n}”及其所有页面和图像将被永久删除。"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "Copy link"
+msgstr "复制链接"
+
+msgid "Pop-up blocked. Allow pop-ups for this site in your browser."
+msgstr "弹出窗口被阻止。允许在您的浏览器中显示该网站的弹出窗口。"
+
+msgid "My tasks"
+msgstr "我的任务"
+
+msgid "Email draft created."
+msgstr "已创建电子邮件草稿。"
+
+msgid "Open in mailbox"
+msgstr "在邮箱中打开"
+
+msgid "Pages"
+msgstr "页数"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "Rename document"
+msgstr "重命名文档"
+
+msgid "Add subpage"
+msgstr "添加子页面"
+
+msgid "Print / PDF"
+msgstr "打印/PDF"
+
+msgid "Create email draft"
+msgstr "创建电子邮件草稿"
+
+msgid "Create an email draft from this page"
+msgstr "从此页面创建电子邮件草稿"
+
+msgid "Email draft"
+msgstr "电子邮件草稿"
+
+msgid "AI (Ctrl+J)"
+msgstr "人工智能(Ctrl+J)"
+
+msgid "Untitled"
+msgstr "无题"
+
+msgid "Start writing… type \"/\" for blocks, \"#\" to link a task"
+msgstr "开始编写......输入“/”表示块,“#”表示链接任务"
+
+msgid "Open as full page"
+msgstr "以整页形式打开"
+
+msgid "Full page"
+msgstr "整页"
+
+msgid "Saving…"
+msgstr "正在保存..."
+
+msgid "Not saved, will retry"
+msgstr "未保存,将重试"
+
+msgid "Offline"
+msgstr "离线"
+
+msgid "Add page"
+msgstr "添加页面"
+
+msgid "Collapse"
+msgstr "崩溃"
+
+msgid "Page menu"
+msgstr "页面菜单"
+
+msgid "Page name"
+msgstr "页面名称"
+
+msgid "Move under the page above"
+msgstr "移至上一页下方"
+
+msgid "Move up a level"
+msgstr "提升一个级别"
+
+msgid "Delete page"
+msgstr "删除页面"
+
+msgid "\"{p}\" and its {n} subpages will be deleted."
+msgstr "“{p}”及其{n}子页面将被删除。"
+
+msgid "\"{p}\" will be deleted."
+msgstr "“{p}”将被删除。"
+
+msgid "Last edited by {n}, {t}"
+msgstr "最后编辑者{n},{t}"
+
+msgid "typing"
+msgstr "打字"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Remove link"
+msgstr "删除链接"
+
+msgid "Small"
+msgstr "小号"
+
+msgid "Medium"
+msgstr "中等"
+
+msgid "Full width"
+msgstr "全宽"
+
+msgid "Enlarge"
+msgstr "放大"
+
+msgid "Remove image"
+msgstr "删除图像"
+
+msgid "Link address"
+msgstr "链接地址"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "Search tasks…"
+msgstr "搜索任务..."
+
+msgid "No results"
+msgstr "没有结果"
+
+msgid "Type to search"
+msgstr "输入搜索"
+
+msgid "Basic blocks"
+msgstr "基本块"
+
+msgid "Media & links"
+msgstr "媒体和链接"
+
+msgid "Item"
+msgstr "项目"
+
+msgid "Text"
+msgstr "文字"
+
+msgid "Plain paragraph"
+msgstr "纯款"
+
+msgid "Page"
+msgstr "页面"
+
+msgid "A sub-page inside this page"
+msgstr "该页面内的子页面"
+
+msgid "Sub-page"
+msgstr "子页面"
+
+msgid "Heading 1"
+msgstr "标题 1"
+
+msgid "Large section heading"
+msgstr "大节标题"
+
+msgid "Heading"
+msgstr "标题"
+
+msgid "Heading 2"
+msgstr "标题 2"
+
+msgid "Medium section heading"
+msgstr "中节标题"
+
+msgid "Heading 3"
+msgstr "标题 3"
+
+msgid "Small section heading"
+msgstr "小节标题"
+
+msgid "Bulleted list"
+msgstr "项目符号列表"
+
+msgid "Simple bulleted list"
+msgstr "简单的项目符号列表"
+
+msgid "Numbered list"
+msgstr "编号列表"
+
+msgid "Checklist"
+msgstr "清单"
+
+msgid "Checkable to-dos"
+msgstr "可检查的待办事项"
+
+msgid "Quote"
+msgstr "报价"
+
+msgid "Quote or note"
+msgstr "报价或备注"
+
+msgid "Code"
+msgstr "代码"
+
+msgid "Code block"
+msgstr "代码块"
+
+msgid "Table"
+msgstr "表"
+
+msgid "3×3 table"
+msgstr "3×3桌"
+
+msgid "Divider"
+msgstr "分频器"
+
+msgid "Separates sections"
+msgstr "分隔各部分"
+
+msgid "Images"
+msgstr "图片"
+
+msgid "Upload an image"
+msgstr "上传图片"
+
+msgid "Add file"
+msgstr "添加文件"
+
+msgid "Link a task (#)"
+msgstr "链接任务 (#)"
+
+msgid "Link"
+msgstr "链接"
+
+msgid "Add a web link"
+msgstr "添加网页链接"
+
+msgid "Write with AI"
+msgstr "用人工智能写作"
+
+msgid "Have it write anything"
+msgstr "让它写点什么"
+
+msgid "Continues the page"
+msgstr "继续页面"
+
+msgid "Summary of the page"
+msgstr "页面摘要"
+
+msgid "Turn items into tasks"
+msgstr "将物品变成任务"
+
+msgid "Close menu"
+msgstr "关闭菜单"
+
+msgid "Gray"
+msgstr "灰色"
+
+msgid "Brown"
+msgstr "棕色"
+
+msgid "Orange"
+msgstr "橙色"
+
+msgid "Yellow"
+msgstr "黄色"
+
+msgid "Green"
+msgstr "绿色"
+
+msgid "Blue"
+msgstr "蓝色"
+
+msgid "Purple"
+msgstr "紫色"
+
+msgid "Pink"
+msgstr "粉色"
+
+msgid "Red"
+msgstr "红色"
+
+msgid "Default"
+msgstr "默认"
+
+msgid "Column: click for menu, drag to move"
+msgstr "栏目:点击菜单,拖动移动"
+
+msgid "Row: click for menu, drag to move"
+msgstr "行:点击菜单,拖动移动"
+
+msgid "Insert row above"
+msgstr "在上方插入行"
+
+msgid "Add column left"
+msgstr "添加左侧列"
+
+msgid "Insert row below"
+msgstr "在下面插入行"
+
+msgid "Add column right"
+msgstr "添加右侧列"
+
+msgid "Move up"
+msgstr "向上移动"
+
+msgid "Move left"
+msgstr "向左移动"
+
+msgid "Move down"
+msgstr "下移"
+
+msgid "Move right"
+msgstr "向右移动"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Text color"
+msgstr "文字颜色"
+
+msgid "Delete row"
+msgstr "删除行"
+
+msgid "Delete column"
+msgstr "删除列"
+
+msgid "Delete table"
+msgstr "删除表"
+
+msgid "Click to add a block below. Alt-click to add above"
+msgstr "单击以在下面添加一个块。按住 Alt 键单击以在上面添加"
+
+msgid "Drag to move. Click for menu"
+msgstr "拖动即可移动。点击查看菜单"
+
+msgid "Turn into"
+msgstr "变成"
+
+msgid "Edit with AI"
+msgstr "用人工智能编辑"
+
+msgid "Duplicate"
+msgstr "重复"
+
+msgid "Add row below"
+msgstr "添加下面的行"
+
+msgid "Add row above"
+msgstr "在上方添加行"
+
+msgid "Undo"
+msgstr "撤消"
+
+msgid "Redo"
+msgstr "重做"
+
+msgid "Bold"
+msgstr "大胆"
+
+msgid "Italic"
+msgstr "斜体"
+
+msgid "Underline"
+msgstr "下划线"
+
+msgid "Strikethrough"
+msgstr "删除线"
+
+msgid "Link (Ctrl+K)"
+msgstr "链接(Ctrl+K)"
+
+msgid "Alignment"
+msgstr "对准"
+
+msgid "Left"
+msgstr "左"
+
+msgid "Center"
+msgstr "中心"
+
+msgid "Right"
+msgstr "右"
+
+msgid "Add image"
+msgstr "添加图片"
+
+msgid "Add table"
+msgstr "添加表"
+
+msgid "Task link (#)"
+msgstr "任务链接 (#)"
+
+msgid "Translate to English"
+msgstr "翻译成英文"
+
+msgid "Translate to Turkish"
+msgstr "翻译成土耳其语"
+
+msgid "Turn into heading"
+msgstr "转为标题"
+
+msgid "Selected text"
+msgstr "选定的文本"
+
+msgid "This page"
+msgstr "本页"
+
+msgid "Describe the change… (e.g. make it shorter)"
+msgstr "描述变化......(例如缩短时间)"
+
+msgid "What should be done with the selection?"
+msgstr "选型时应该注意什么?"
+
+msgid "What should be written? E.g. a meeting agenda draft"
+msgstr "应该写什么?例如。会议议程草案"
+
+msgid "Ask a question about this page"
+msgstr "询问有关此页面的问题"
+
+msgid "Ask the page (the answer is not written into it)"
+msgstr "询问页面(答案不写进去)"
+
+msgid "Ask"
+msgstr "询问"
+
+msgid "Send"
+msgstr "发送"
+
+msgid "Chat with the assistant"
+msgstr "与助理聊天"
+
+msgid "AI is writing…"
+msgstr "人工智能正在写......"
+
+msgid "Replace"
+msgstr "更换"
+
+msgid "Insert below"
+msgstr "在下面插入"
+
+msgid "Use as title"
+msgstr "用作标题"
+
+msgid "Page title changed."
+msgstr "页面标题已更改。"
+
+msgid "Insert below cursor"
+msgstr "在光标下方插入"
+
+msgid "Append"
+msgstr "Append"
+
+msgid "Insert at top"
+msgstr "插入顶部"
+
+msgid "Add as new page"
+msgstr "添加为新页面"
+
+msgid "Add to page"
+msgstr "添加到页面"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Regenerate"
+msgstr "再生"
+
+msgid "Back"
+msgstr "返回"
+
+msgid "Select"
+msgstr "选择"
+
+msgid "Due"
+msgstr "由于"
+
+msgid "Add item"
+msgstr "添加项目"
+
+msgid "Add as tasks ({n})"
+msgstr "添加为任务 ({n})"
+
+msgid "{n} tasks added to \"{l}\"."
+msgstr "{n}任务已添加到“{l}”。"
+
+msgid "Open list"
+msgstr "打开列表"
+
+msgid "There is no list you can add tasks to."
+msgstr "没有可以添加任务的列表。"
+
+msgid "To-dos"
+msgstr "待办事项"
+
+msgid "New page created."
+msgstr "新页面已创建。"
+
+msgid "The selection changed meanwhile; the result was inserted below."
+msgstr "同时选择也发生了变化;结果插入下面。"
+
+msgid "Replaced."
+msgstr "更换了。"
+
+msgid "Added to the page."
+msgstr "添加到页面。"
+
+msgid "Drag to resize, double-click to reset"
+msgstr "拖动可调整大小,双击可重置"
+
+msgid "Hide sidebar"
+msgstr "隐藏侧边栏"
+
+msgid "AI assistant"
+msgstr "人工智能助手"
+
+msgid "Projects"
+msgstr "项目"
+
+msgid "New project"
+msgstr "新项目"
+
+msgid "Project menu"
+msgstr "项目菜单"
+
+msgid "Empty folder"
+msgstr "空文件夹"
+
+msgid "You have no visible projects."
+msgstr "您没有可见的项目。"
+
+msgid "Theme"
+msgstr "主题"
+
+msgid "System"
+msgstr "系统"
+
+msgid "Light"
+msgstr "光"
+
+msgid "Dark"
+msgstr "黑暗"
+
+msgid "Back to WordPress admin"
+msgstr "返回 WordPress 管理员"
+
+msgid "List menu"
+msgstr "列表菜单"
+
+msgid "Moves within the same project; statuses, fields and tags stay the same."
+msgstr "在同一项目内移动;状态、字段和标签保持不变。"
+
+msgid "Keep the list's own statuses"
+msgstr "保留列表自身的状态"
+
+msgid "Use the statuses of \"{n}\""
+msgstr "使用“{n}”的状态"
+
+msgid "Statuses"
+msgstr "状态"
+
+msgid "Pick a match for each status; tasks move to that status."
+msgstr "为每个状态选择一个匹配;任务转至该状态。"
+
+msgid "Statuses and custom fields move with the list; tasks keep their status."
+msgstr "状态和自定义字段随列表移动;任务保持其状态。"
+
+msgid "Tags"
+msgstr "标签"
+
+msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
+msgstr "{n}标签在目标项目中按名称链接:{e}已存在,将创建{c}。"
+
+msgid "People who will lose access"
+msgstr "将失去访问权限的人"
+
+msgid "These people are not members of the target project; checked ones are added as members."
+msgstr "这些人不是目标项目的成员;选中的将被添加为成员。"
+
+msgid "Target project or folder"
+msgstr "目标项目或文件夹"
+
+msgid "Move \"{n}\""
+msgstr "移动“{n}”"
+
+msgid "Move"
+msgstr "移动"
+
+msgid "Moving list"
+msgstr "搬家清单"
+
+msgid "\"{n}\" moved."
+msgstr "“{n}”移动了。"
+
+msgid "Document menu"
+msgstr "文档菜单"
+
+msgid "Task list"
+msgstr "任务清单"
+
+msgid "Meeting list"
+msgstr "会议清单"
+
+msgid "Document"
+msgstr "文件"
+
+msgid "New list"
+msgstr "新名单"
+
+msgid "New meeting list"
+msgstr "新的会议列表"
+
+msgid "New document"
+msgstr "新文件"
+
+msgid "New folder"
+msgstr "新建文件夹"
+
+msgid "Folder name"
+msgstr "文件夹名称"
+
+msgid "Project settings and members"
+msgstr "项目设置和成员"
+
+msgid "Delete project"
+msgstr "删除项目"
+
+msgid "All lists, tasks, comments and files in the project \"{n}\" will be permanently deleted."
+msgstr "项目“{n}”中的所有列表、任务、注释和文件都将被永久删除。"
+
+msgid "Add a list to this folder"
+msgstr "将列表添加到此文件夹"
+
+msgid "Add a meeting list to this folder"
+msgstr "将会议列表添加到此文件夹"
+
+msgid "Add a document to this folder"
+msgstr "将文档添加到此文件夹"
+
+msgid "Delete folder"
+msgstr "删除文件夹"
+
+msgid "The folder will be deleted; its lists will move to the project root."
+msgstr "该文件夹将被删除;它的列表将移动到项目根目录。"
+
+msgid "List settings"
+msgstr "列表设置"
+
+msgid "Custom fields"
+msgstr "自定义字段"
+
+msgid "Permissions"
+msgstr "权限"
+
+msgid "Move…"
+msgstr "移动..."
+
+msgid "Delete list"
+msgstr "删除列表"
+
+msgid "All tasks, comments and files in the list \"{n}\" will be permanently deleted."
+msgstr "列表“{n}”中的所有任务、注释和文件都将被永久删除。"
+
+msgid "Show sidebar"
+msgstr "显示侧边栏"
+
+msgid "Menu"
+msgstr "菜单"
+
+msgid "All lists"
+msgstr "所有列表"
+
+msgid "Visible to members only"
+msgstr "仅会员可见"
+
+msgid "Private"
+msgstr "私人"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "View menu"
+msgstr "查看菜单"
+
+msgid "View"
+msgstr "查看"
+
+msgid "View name"
+msgstr "查看名称"
+
+msgid "Create a copy"
+msgstr "创建副本"
+
+msgid "Share with everyone"
+msgstr "分享给大家"
+
+msgid "Make private to me"
+msgstr "对我设为私有"
+
+msgid "Delete view"
+msgstr "删除视图"
+
+msgid "The view \"{n}\" will be deleted. Tasks are not affected."
+msgstr "视图“{n}”将被删除。任务不受影响。"
+
+msgid "{n} assigned you to a task"
+msgstr "{n}为您分配了一项任务"
+
+msgid "{n} mentioned you in a comment"
+msgstr "{n}在评论中提到了您"
+
+msgid "{n} wrote a comment"
+msgstr "{n}写了一条评论"
+
+msgid "{n} changed the status to \"{s}\""
+msgstr "{n}将状态更改为“{s}”"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Unread"
+msgstr "未读"
+
+msgid "Mark all as read"
+msgstr "全部标记为已读"
+
+msgid "No unread notifications. 🎉"
+msgstr "没有未读通知。 🎉"
+
+msgid "No notifications yet."
+msgstr "还没有通知。"
+
+msgid "(deleted task)"
+msgstr "(已删除任务)"
+
+msgid "More"
+msgstr "更多"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "File storage"
+msgstr "文件存储"
+
+msgid "{n} files"
+msgstr "{n}文件"
+
+msgid "previews {s}"
+msgstr "预览{s}"
+
+msgid "Open tasks"
+msgstr "开放任务"
+
+msgid "{n} completed"
+msgstr "{n}已完成"
+
+msgid "open tasks past their due date"
+msgstr "未完成的任务已超过截止日期"
+
+msgid "Last 30 days"
+msgstr "过去 30 天"
+
+msgid "{n} tasks completed"
+msgstr "{n}任务已完成"
+
+msgid "Comments"
+msgstr "评论"
+
+msgid "{n} active users (30 days)"
+msgstr "{n}活跃用户(30 天)"
+
+msgid "Structure"
+msgstr "结构"
+
+msgid "projects / lists · {n} users"
+msgstr "项目/列表 ·{n}用户"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Documents"
+msgstr "文件"
+
+msgid "Video"
+msgstr "视频"
+
+msgid "Audio"
+msgstr "音频"
+
+msgid "Archives"
+msgstr "档案"
+
+msgid "Storage"
+msgstr "存储"
+
+msgid "No files uploaded yet."
+msgstr "尚未上传任何文件。"
+
+msgid "Task files (uploads/flx-tasks)"
+msgstr "任务文件(上传/flx-tasks)"
+
+msgid "Unsent comment attachments (deleted after 24 hours)"
+msgstr "未发送的评论附件(24小时后删除)"
+
+msgid "Single file limit"
+msgstr "单个文件限制"
+
+msgid "Free space on server"
+msgstr "服务器上的可用空间"
+
+msgid "Entire media folder (wp-content/uploads)"
+msgstr "整个媒体文件夹(wp-content/uploads)"
+
+msgid "Calculating…"
+msgstr "正在计算..."
+
+msgid "Recalculate"
+msgstr "重新计算"
+
+msgid "Calculate"
+msgstr "计算"
+
+msgid "By list"
+msgstr "按列表"
+
+msgid "Project"
+msgstr "项目"
+
+msgid "Task"
+msgstr "任务"
+
+msgid "Size"
+msgstr "尺寸"
+
+msgid "Uploaded by person"
+msgstr "由人上传"
+
+msgid "No data."
+msgstr "没有数据。"
+
+msgid "Monthly uploads"
+msgstr "每月上传数量"
+
+msgid "Largest files"
+msgstr "最大的文件"
+
+msgid "Uploader"
+msgstr "上传者"
+
+msgid "unlinked"
+msgstr "未链接的"
+
+msgid "Delete file"
+msgstr "删除文件"
+
+msgid "Database"
+msgstr "数据库"
+
+msgid "Rows"
+msgstr "行数"
+
+msgid "Total"
+msgstr "合计"
+
+msgid "AI usage"
+msgstr "人工智能的使用"
+
+msgid "Month"
+msgstr "月份"
+
+msgid "Requests"
+msgstr "要求"
+
+msgid "Tokens"
+msgstr "代币"
+
+msgid "Cost (OpenRouter)"
+msgstr "成本(开放路由器)"
+
+msgid "No usage this month."
+msgstr "这个月没有使用。"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Info"
+msgstr "信息"
+
+msgid "{n} problem(s)"
+msgstr "{n}问题"
+
+msgid "{n} warning(s)"
+msgstr "{n}警告"
+
+msgid "Everything is in place"
+msgstr "一切都已就位"
+
+msgid "System check"
+msgstr "系统检查"
+
+msgid "Check again"
+msgstr "再次检查"
+
+msgid "{n} item(s)"
+msgstr "{n}项目"
+
+msgid "Flux AI default: {m}"
+msgstr "通量 AI 默认值:{m}"
+
+msgid "Flux AI default"
+msgstr "通量 AI 默认值"
+
+msgid "Access"
+msgstr "访问"
+
+msgid "Choose which WordPress roles can use Tasks. Administrators always see all projects."
+msgstr "选择哪些 WordPress 角色可以使用任务。管理员始终可以看到所有项目。"
+
+msgid "Can use Tasks"
+msgstr "可以使用任务"
+
+msgid "Can create projects, folders and lists"
+msgstr "可以创建项目、文件夹和列表"
+
+msgid "Can use AI"
+msgstr "可以使用人工智能"
+
+msgid "Notifications and updates"
+msgstr "通知和更新"
+
+msgid "Live update interval (seconds)"
+msgstr "实时更新间隔(秒)"
+
+msgid "An open tab sends a single lightweight request at this interval; a background tab sends none. Increase it if the server is busy (default 45)."
+msgstr "打开的选项卡在此时间间隔发送单个轻量级请求;后台选项卡不发送任何内容。如果服务器繁忙则增加该值(默认 45)。"
+
+msgid "Emails are sent for assignments, mentions and upcoming due dates. People can turn them off in their profile."
+msgstr "会发送电子邮件以告知作业、提及和即将到来的截止日期。人们可以在个人资料中将其关闭。"
+
+msgid "Files"
+msgstr "文件"
+
+msgid "Single file limit (MB)"
+msgstr "单个文件限制(MB)"
+
+msgid "If the server's PHP limit is lower, that limit applies."
+msgstr "如果服务器的 PHP 限制较低,则应用该限制。"
+
+msgid "Keys, spending limit and reports come from the Flux AI & MCP plugin. Leave the model empty to use the Flux AI default."
+msgstr "密钥、支出限制和报告来自 Flux AI 和 MCP 插件。将模型留空以使用 Flux AI 默认值。"
+
+msgid "Flux AI settings"
+msgstr "通量AI设置"
+
+msgid "AI is off: a key or model is missing in Flux AI."
+msgstr "AI 已关闭:Flux AI 中缺少密钥或模型。"
+
+msgid "AI is off: the Flux AI & MCP plugin is not installed. The assistant and quick actions work through Flux AI."
+msgstr "AI 已关闭:未安装 Flux AI 和 MCP 插件。助手和快速操作通过 Flux AI 发挥作用。"
+
+msgid "Model (optional)"
+msgstr "型号(可选)"
+
+msgid "Creativity (temperature)"
+msgstr "创造力(温度)"
+
+msgid "Organization notes (the assistant knows this on every request)"
+msgstr "组织说明(助理对每个请求都了解这一点)"
+
+msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. Write dates as day.month.year."
+msgstr "例如协会伊斯坦布尔分会。将“事件”标签添加到事件任务。将日期写为日.月.年。"
+
+msgid "This month: {c} requests, {t} tokens, ${m}"
+msgstr "本月:{c}请求、{t}代币、${m}"
+
+msgid "Enable MCP server"
+msgstr "启用 MCP 服务器"
+
+msgid "AI clients such as Claude and Cursor can read and write tasks. Each person generates their own key on their Profile page."
+msgstr "Claude 和 Cursor 等 AI 客户端可以读写任务。每个人在其个人资料页面上生成自己的密钥。"
+
+msgid "Manage keys"
+msgstr "管理密钥"
+
+msgid "Data"
+msgstr "数据"
+
+msgid "Also delete all task data when the plugin is deleted"
+msgstr "删除插件时也会删除所有任务数据"
+
+msgid "When off, deleting the plugin leaves your data untouched."
+msgstr "关闭后,删除插件不会影响您的数据。"
+
+msgid "Settings saved"
+msgstr "设置已保存"
+
+msgid "Profile"
+msgstr "公司简介"
+
+msgid "Your profile photo and name come from your WordPress profile."
+msgstr "您的个人资料照片和姓名来自您的 WordPress 个人资料。"
+
+msgid "Get emails when you are assigned, mentioned, or a due date approaches."
+msgstr "当您被分配、提及或截止日期临近时,您会收到电子邮件。"
+
+msgid "The browser did not allow it."
+msgstr "浏览器不允许。"
+
+msgid "Desktop notifications"
+msgstr "桌面通知"
+
+msgid "While the Tasks tab is open, new notifications also arrive as browser notifications."
+msgstr "当“任务”选项卡打开时,新通知也会作为浏览器通知到达。"
+
+msgid "MCP connection"
+msgstr "MCP连接"
+
+msgid "The MCP server is off. An admin can turn it on from the Settings page."
+msgstr "MCP 服务器已关闭。管理员可以从“设置”页面将其打开。"
+
+msgid "Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions."
+msgstr "将此地址和您的个人密钥添加到支持 MCP 的客户端,例如 Claude、ChatGPT 或 Cursor。助手仅在您可以查看并具有您的权限的列表中工作。"
+
+msgid "Your new key (shown only now):"
+msgstr "您的新密钥(现在仅显示):"
+
+msgid "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address."
+msgstr "在客户端中,使用“Authorization: Bearer<key>”作为标头。如果无法添加标头,请将 ?key=<key>附加到地址末尾。"
+
+msgid "Unnamed"
+msgstr "未命名"
+
+msgid "Last used: {d}"
+msgstr "最后使用:{d}"
+
+msgid "never"
+msgstr "从不"
+
+msgid "Delete key"
+msgstr "删除键"
+
+msgid "Clients using this key will lose their connection."
+msgstr "使用此密钥的客户端将失去连接。"
+
+msgid "Key name (e.g. Claude desktop)"
+msgstr "键名(例如 Claude 桌面)"
+
+msgid "Create new key"
+msgstr "创建新密钥"
+
+msgid "Custom color"
+msgstr "定制颜色"
+
+msgid "No access"
+msgstr "无法访问"
+
+msgid "Remove"
+msgstr "删除"
+
+msgid "No members added yet."
+msgstr "尚未添加成员。"
+
+msgid "Add person"
+msgstr "添加人员"
+
+msgid "Project name"
+msgstr "项目名称"
+
+msgid "Everyone"
+msgstr "大家"
+
+msgid "Everyone who can use Tasks can enter this project."
+msgstr "每个可以使用Tasks的人都可以进入这个项目。"
+
+msgid "Members only"
+msgstr "仅限会员"
+
+msgid "Only the people added below can see it."
+msgstr "只有下面添加的人才能看到。"
+
+msgid "Default role for everyone"
+msgstr "每个人的默认角色"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Color"
+msgstr "颜色"
+
+msgid "Members and their roles"
+msgstr "成员及其角色"
+
+msgid "Subtask nesting limit"
+msgstr "子任务嵌套限制"
+
+msgid "How many levels of subtasks can be nested under a task (1–10). Default is 3."
+msgstr "一个任务下可以嵌套多少级子任务(1-10)。默认值为 3。"
+
+msgid "First list"
+msgstr "第一份清单"
+
+msgid "You will be added as a manager."
+msgstr "您将被添加为经理。"
+
+msgid "Project settings"
+msgstr "项目设置"
+
+msgid "Project saved"
+msgstr "项目已保存"
+
+msgid "List name"
+msgstr "名单名称"
+
+msgid "Tasks, subtasks, statuses"
+msgstr "任务、子任务、状态"
+
+msgid "Meetings, agenda, decisions, PDF report"
+msgstr "会议、议程、决定、PDF 报告"
+
+msgid "e.g. Board meetings"
+msgstr "例如董事会会议"
+
+msgid "Template"
+msgstr "模板"
+
+msgid "Folder"
+msgstr "文件夹"
+
+msgid "No folder (under the project)"
+msgstr "没有文件夹(项目下)"
+
+msgid "Private list"
+msgstr "私人名单"
+
+msgid "Only the people you add can see it. When off, project members can see it."
+msgstr "只有您添加的人才能看到它。关闭时,项目成员可以看到它。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "List type"
+msgstr "列表类型"
+
+msgid "New status"
+msgstr "新状态"
+
+msgid "Add status"
+msgstr "添加状态"
+
+msgid "Tasks in a deleted status move to the first status. Statuses of the \"Done\" type count the task as finished."
+msgstr "处于已删除状态的任务将移至第一个状态。 “完成”类型的状态将任务视为已完成。"
+
+msgid "Statuses saved"
+msgstr "状态已保存"
+
+msgid "Delete field"
+msgstr "删除字段"
+
+msgid "The field \"{n}\" and its values on all tasks will be deleted."
+msgstr "所有任务上的“{n}”字段及其值都将被删除。"
+
+msgid "This list has no custom fields. You can add fields such as text, number, date, dropdown, star rating or file."
+msgstr "该列表没有自定义字段。您可以添加文本、数字、日期、下拉列表、星级或文件等字段。"
+
+msgid "Add field"
+msgstr "添加字段"
+
+msgid "Field name"
+msgstr "字段名称"
+
+msgid "Option"
+msgstr "选项"
+
+msgid "Add option"
+msgstr "添加选项"
+
+msgid "Options"
+msgstr "选项"
+
+msgid "Max stars"
+msgstr "最多星星"
+
+msgid "Currency"
+msgstr "货币"
+
+msgid "Decimal places"
+msgstr "小数位"
+
+msgid "Description (optional)"
+msgstr "说明(可选)"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "The type cannot be changed later."
+msgstr "以后无法更改类型。"
+
+msgid "Add the field"
+msgstr "添加字段"
+
+msgid "Project members"
+msgstr "项目成员"
+
+msgid "Everyone who can use Tasks ({r})."
+msgstr "每个可以使用任务的人 ({r})。"
+
+msgid "The project's members, with their project roles."
+msgstr "项目的成员及其项目角色。"
+
+msgid "Selected people only"
+msgstr "仅限选定的人员"
+
+msgid "Private list: only the people below and project managers can see it."
+msgstr "私人列表:只有下面的人和项目经理才能看到。"
+
+msgid "Who can see it"
+msgstr "谁能看到它"
+
+msgid "Per-person roles"
+msgstr "每人角色"
+
+msgid "Can view: read only. Can comment: read and comment. Can edit: add and change tasks. Can manage: list settings, fields and permissions."
+msgstr "可以查看:只读。可以评论:阅读并评论。可以编辑:添加和更改任务。可以管理:列表设置、字段和权限。"
+
+msgid "Permissions saved"
+msgstr "权限已保存"
+
+msgid "List settings: {n}"
+msgstr "列表设置:{n}"
+
+msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
+msgstr "你想做什么?例如“显示此列表中明天到期的任务”或“打开周五到期的 Ayşe 海报任务”"
+
+msgid "Hi! What shall we do with your tasks?"
+msgstr "嗨!我们该怎么处理你的任务?"
+
+msgid "List my overdue tasks assigned to me"
+msgstr "列出分配给我的逾期任务"
+
+msgid "Add 3 tasks to this list: …"
+msgstr "将 3 项任务添加到此列表:..."
+
+msgid "Summarize this week"
+msgstr "总结本周"
+
+msgid "Task created"
+msgstr "任务已创建"
+
+msgid "Task updated"
+msgstr "任务已更新"
+
+msgid "Comment added"
+msgstr "已添加评论"
+
+msgid "Task deleted"
+msgstr "任务已删除"
+
+msgid "List created"
+msgstr "已创建列表"
+
+msgid "Document page edited"
+msgstr "文档页面已编辑"
+
+msgid "Document created"
+msgstr "文档已创建"
+
+msgid "Page added to document"
+msgstr "页面已添加到文档"
+
+msgid "Clear chat"
+msgstr "清除聊天记录"
+
+msgid "The assistant adds and changes tasks with your permissions."
+msgstr "助手会根据您的权限添加和更改任务。"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Priority"
+msgstr "优先级"
+
+msgid "Assignee"
+msgstr "受让人"
+
+msgid "Tag"
+msgstr "标签"
+
+msgid "No grouping"
+msgstr "没有分组"
+
+msgid "No priority"
+msgstr "无优先权"
+
+msgid "Unassigned"
+msgstr "未分配"
+
+msgid "This week"
+msgstr "本周"
+
+msgid "Later"
+msgstr "后来"
+
+msgid "No date"
+msgstr "无日期"
+
+msgid "No tag"
+msgstr "无标签"
+
+msgid "Empty"
+msgstr "空"
+
+msgid "All tasks"
+msgstr "所有任务"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Back to meeting"
+msgstr "返回会议"
+
+msgid "Back to parent task"
+msgstr "返回父任务"
+
+msgid "Unfollow"
+msgstr "取消关注"
+
+msgid "Follow (get notifications)"
+msgstr "关注(获取通知)"
+
+msgid "You will get notifications for this task"
+msgstr "您将收到此任务的通知"
+
+msgid "Notifications for this task are turned off"
+msgstr "此任务的通知已关闭"
+
+msgid "Move to another list"
+msgstr "移至另一个列表"
+
+msgid "Task moved"
+msgstr "任务已移动"
+
+msgid "Add subtask"
+msgstr "添加子任务"
+
+msgid "Unarchive"
+msgstr "取消归档"
+
+msgid "Archive"
+msgstr "存档"
+
+msgid "The task \"{n}\" will be permanently deleted along with its comments and files."
+msgstr "任务“{n}”及其注释和文件将被永久删除。"
+
+msgid "(copy)"
+msgstr "(副本)"
+
+msgid "Copy created"
+msgstr "已创建副本"
+
+msgid "Change cover"
+msgstr "更换封面"
+
+msgid "Complete"
+msgstr "完成"
+
+msgid "Completed: {d}"
+msgstr "已完成:{d}"
+
+msgid "You can only comment"
+msgstr "你只能评论"
+
+msgid "View only"
+msgstr "仅供查看"
+
+msgid "Print the meeting report or save it as PDF"
+msgstr "打印会议报告或另存为 PDF"
+
+msgid "PDF report"
+msgstr "PDF报告"
+
+msgid "Hide customization"
+msgstr "隐藏定制"
+
+msgid "Customize this screen"
+msgstr "自定义此屏幕"
+
+msgid "Assignees"
+msgstr "受让人"
+
+msgid "Dates"
+msgstr "枣子"
+
+msgid "Start"
+msgstr "开始"
+
+msgid "Add / edit custom field"
+msgstr "添加/编辑自定义字段"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Expand"
+msgstr "展开"
+
+msgid "Attachments"
+msgstr "附件"
+
+msgid "Show less"
+msgstr "显示较少"
+
+msgid "{n} more fields"
+msgstr "{n}更多字段"
+
+msgid "Participants"
+msgstr "参加者"
+
+msgid "Agenda"
+msgstr "议程"
+
+msgid "Decisions"
+msgstr "决定"
+
+msgid "Subtasks"
+msgstr "子任务"
+
+msgid "Shown on screen"
+msgstr "显示在屏幕上"
+
+msgid "Saved in this browser."
+msgstr "保存在此浏览器中。"
+
+msgid "Edit statuses"
+msgstr "编辑状态"
+
+msgid "Pick a date"
+msgstr "选择日期"
+
+msgid "Add people"
+msgstr "添加人员"
+
+msgid "Decision"
+msgstr "决定"
+
+msgid "Add decision… (assignable like a task, with date and tags)"
+msgstr "添加决策...(可像任务一样分配,带有日期和标签)"
+
+msgid "Mark as not discussed"
+msgstr "标记为未讨论"
+
+msgid "Mark as discussed"
+msgstr "标记为已讨论"
+
+msgid "No agenda items."
+msgstr "没有议程项目。"
+
+msgid "Add agenda item…"
+msgstr "添加议程项目..."
+
+msgid "Add a note…"
+msgstr "添加注释..."
+
+msgid "Add image / file"
+msgstr "添加图像/文件"
+
+msgid "Details and comments"
+msgstr "详情及评论"
+
+msgid "Delete agenda item"
+msgstr "删除议程项目"
+
+msgid "\"{n}\" will be deleted."
+msgstr "“{n}”将被删除。"
+
+msgid "Meeting report"
+msgstr "会议报告"
+
+msgid "agenda items discussed"
+msgstr "讨论的议程项目"
+
+msgid "decisions made"
+msgstr "做出的决定"
+
+msgid "subtasks completed"
+msgstr "子任务完成"
+
+msgid "Discussed"
+msgstr "讨论过"
+
+msgid "Owner"
+msgstr "业主"
+
+msgid "Report: {d} · {n}"
+msgstr "报告:{d}·{n}"
+
+msgid "Add subtask…"
+msgstr "添加子任务..."
+
+msgid "Show / hide columns"
+msgstr "显示/隐藏列"
+
+msgid "Subtask"
+msgstr "子任务"
+
+msgid "Decision columns"
+msgstr "决策栏"
+
+msgid "Subtask columns"
+msgstr "子任务列"
+
+msgid "Add a description… (list, checklist, link)"
+msgstr "添加描述...(列表、清单、链接)"
+
+msgid "Make cover image"
+msgstr "制作封面图片"
+
+msgid "Remove from cover"
+msgstr "从盖子上取下"
+
+msgid "Drag files here or choose"
+msgstr "将文件拖至此处或选择"
+
+msgid "Up to {s}"
+msgstr "直到{s}"
+
+msgid "{n} is too large (up to {s})."
+msgstr "{n}太大(最大为{s})。"
+
+msgid "Upload new image"
+msgstr "上传新图片"
+
+msgid "Cover image"
+msgstr "封面图片"
+
+msgid "No images on this task yet."
+msgstr "还没有关于此任务的图像。"
+
+msgid "created the task"
+msgstr "创建了任务"
+
+msgid "changed the status:"
+msgstr "改变了状态:"
+
+msgid "renamed it:"
+msgstr "将其重命名为:"
+
+msgid "updated the description"
+msgstr "更新了描述"
+
+msgid "set the priority to \"{p}\""
+msgstr "将优先级设置为“{p}”"
+
+msgid "removed the priority"
+msgstr "删除了优先级"
+
+msgid "set the due date to {d}"
+msgstr "将截止日期设置为{d}"
+
+msgid "removed the due date"
+msgstr "删除了截止日期"
+
+msgid "set the start date to {d}"
+msgstr "将开始日期设置为{d}"
+
+msgid "removed the start date"
+msgstr "删除了开始日期"
+
+msgid "took the task"
+msgstr "接了任务"
+
+msgid "assigned {n}"
+msgstr "分配{n}"
+
+msgid "unassigned {n}"
+msgstr "未分配的{n}"
+
+msgid "added a tag:"
+msgstr "添加了一个标签:"
+
+msgid "removed the tag:"
+msgstr "删除了标签:"
+
+msgid "updated the field \"{f}\""
+msgstr "更新了字段“{f}”"
+
+msgid "moved the task:"
+msgstr "移动任务:"
+
+msgid "changed the cover image"
+msgstr "更改了封面图片"
+
+msgid "removed the cover image"
+msgstr "删除了封面图片"
+
+msgid "attached a file:"
+msgstr "附上一个文件:"
+
+msgid "deleted a file:"
+msgstr "删除了一个文件:"
+
+msgid "archived the task"
+msgstr "存档任务"
+
+msgid "unarchived the task"
+msgstr "取消存档任务"
+
+msgid "Sending…"
+msgstr "正在发送..."
+
+msgid "edited"
+msgstr "已编辑"
+
+msgid "Delete comment"
+msgstr "删除评论"
+
+msgid "The comment and its attachments will be deleted."
+msgstr "评论及其附件将被删除。"
+
+msgid "Show comments and activity"
+msgstr "显示评论和活动"
+
+msgid "Comments and activity"
+msgstr "评论和活动"
+
+msgid "Show activity"
+msgstr "显示活动"
+
+msgid "Hide comments and activity"
+msgstr "隐藏评论和活动"
+
+msgid "No comments yet. Be the first to comment."
+msgstr "还没有评论。成为第一个发表评论的人。"
+
+msgid "You don't have permission to comment in this list."
+msgstr "您无权在此列表中发表评论。"
+
+msgid "Write a comment… mention someone with @, drag in files"
+msgstr "写评论...用@提及某人,拖入文件"
+
+msgid "Mention someone"
+msgstr "提及某人"
+
+msgid "Send with Ctrl+Enter"
+msgstr "使用 Ctrl+Enter 发送"
+
+msgid "Drop to add to the comment"
+msgstr "拖放到评论中即可添加"
+
+msgid "Comment could not be saved."
+msgstr "评论无法保存。"
+
+msgid "Write / improve description"
+msgstr "编写/改进描述"
+
+msgid "Turn into checklist"
+msgstr "变成清单"
+
+msgid "Fix spelling"
+msgstr "修正拼写"
+
+msgid "Add more detail"
+msgstr "添加更多细节"
+
+msgid "Improve task name"
+msgstr "改进任务名称"
+
+msgid "Split into subtasks"
+msgstr "分成子任务"
+
+msgid "Summarize comments"
+msgstr "总结评论"
+
+msgid "Say what to change… (e.g. make it more formal)"
+msgstr "说出要更改的内容...(例如使其更正式)"
+
+msgid "What should it do? E.g. add the target audience, write as bullet points"
+msgstr "它应该做什么?例如。添加目标受众,写为要点"
+
+msgid "Chat"
+msgstr "聊天"
+
+msgid "AI is thinking…"
+msgstr "人工智能正在思考......"
+
+msgid "Other options"
+msgstr "其他选项"
+
+msgid "Task name updated."
+msgstr "任务名称已更新。"
+
+msgid "Apply"
+msgstr "申请"
+
+msgid "Description updated."
+msgstr "描述已更新。"
+
+msgid "Added to the end of the description."
+msgstr "添加到说明的末尾。"
+
+msgid "{n} subtasks created"
+msgstr "已创建{n}子任务"
+
+msgid "Create subtasks"
+msgstr "创建子任务"
+
+msgid "Summary"
+msgstr "总结"
+
+msgid "Added as a comment."
+msgstr "添加为评论。"
+
+msgid "Add as comment"
+msgstr "添加为评论"
+
+msgid "Remove priority"
+msgstr "删除优先级"
+
+msgid "Search people…"
+msgstr "搜索人..."
+
+msgid "me"
+msgstr "我"
+
+msgid "Next week"
+msgstr "下周"
+
+msgid "In 2 weeks"
+msgstr "2周内"
+
+msgid "Time (optional)"
+msgstr "时间(可选)"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Search or create a tag…"
+msgstr "搜索或创建标签..."
+
+msgid "Create: {n}"
+msgstr "创建:{n}"
+
+msgid "No tags yet. Type to create one."
+msgstr "还没有标签。键入以创建一个。"
+
+msgid "There are no lists you can add tasks to."
+msgstr "没有可以添加任务的列表。"
+
+msgid "Created"
+msgstr "已创建"
+
+msgid "Updated"
+msgstr "已更新"
+
+msgid "Filter"
+msgstr "过滤器"
+
+msgid "Group"
+msgstr "集团"
+
+msgid "Group: {n}"
+msgstr "组:{n}"
+
+msgid "Manual order"
+msgstr "手动下单"
+
+msgid "Start date"
+msgstr "开始日期"
+
+msgid "Sort"
+msgstr "排序"
+
+msgid "Ascending"
+msgstr "升序"
+
+msgid "Descending"
+msgstr "降序"
+
+msgid "Fields"
+msgstr "领域"
+
+msgid "Save view"
+msgstr "保存视图"
+
+msgid "Meeting"
+msgstr "会议"
+
+msgid "Under the task, expanded"
+msgstr "根据任务,扩大"
+
+msgid "Under the task, collapsed"
+msgstr "任务之下,崩溃了"
+
+msgid "Don't show"
+msgstr "不显示"
+
+msgid "Apply filters to subtasks too"
+msgstr "也将过滤器应用于子任务"
+
+msgid "Save to this view"
+msgstr "保存到此视图"
+
+msgid "View saved"
+msgstr "查看已保存"
+
+msgid "Save as new view"
+msgstr "另存为新视图"
+
+msgid "filtered"
+msgstr "过滤的"
+
+msgid "Revert changes"
+msgstr "恢复更改"
+
+msgid "Assigned to me"
+msgstr "分配给我"
+
+msgid "None"
+msgstr "无"
+
+msgid "Within 7 days"
+msgstr "7天内"
+
+msgid "Has date"
+msgstr "有日期"
+
+msgid "Checked"
+msgstr "已检查"
+
+msgid "Unchecked"
+msgstr "未选中"
+
+msgid "Filled"
+msgstr "充满"
+
+msgid "Show completed tasks"
+msgstr "显示已完成的任务"
+
+msgid "When off, all subtasks of matching tasks are shown. When on, only matching subtasks are shown; their parent appears dimmed even if it doesn't match."
+msgstr "关闭时,将显示匹配任务的所有子任务。启用时,仅显示匹配的子任务;即使不匹配,他们的父母也会显得暗淡。"
+
+msgid "Clear filters"
+msgstr "清除过滤器"
+
+msgid "Show cover image"
+msgstr "显示封面图片"
+
+msgid "Wrap text"
+msgstr "文字换行"
+
+msgid "Long text shows up to 3 lines, the rest is cut with …"
+msgstr "长文本最多显示 3 行,其余部分用...剪切"
+
+msgid "Date to use in the calendar"
+msgstr "日历中使用的日期"
+
+msgid "Columns"
+msgstr "专栏"
+
+msgid "Fields shown on the card"
+msgstr "卡上显示的字段"
+
+msgid "Add custom field"
+msgstr "添加自定义字段"
+
+msgid "Can't be moved to this group."
+msgstr "无法移至该组。"
+
+msgid "No suitable status in this list."
+msgstr "此列表中没有合适的状态。"
+
+msgid "Drag to reorder"
+msgstr "拖动以重新排序"
+
+msgid "Type a subtask name and press Enter"
+msgstr "输入子任务名称并按 Enter"
+
+msgid "This task no longer matches this view's filter. It will be hidden when you change page."
+msgstr "该任务不再与该视图的过滤器匹配。当您更改页面时它将被隐藏。"
+
+msgid "Assigned: {n}"
+msgstr "已分配:{n}"
+
+msgid "Outside filter"
+msgstr "外过滤器"
+
+msgid "Hide subtasks"
+msgstr "隐藏子任务"
+
+msgid "Show subtasks"
+msgstr "显示子任务"
+
+msgid "Agenda item"
+msgstr "议程项目"
+
+msgid "Has description"
+msgstr "有说明"
+
+msgid "Shown because it has a subtask that matches the filter"
+msgstr "显示是因为它有一个与过滤器匹配的子任务"
+
+msgid "Add meeting"
+msgstr "添加会议"
+
+msgid "Add task"
+msgstr "添加任务"
+
+msgid "Type a task name and press Enter"
+msgstr "输入任务名称并按 Enter"
+
+msgid "No tasks match the filter."
+msgstr "没有任务与过滤器匹配。"
+
+msgid "You have no open tasks assigned. 🎉"
+msgstr "您没有分配未完成的任务。 🎉"
+
+msgid "No tasks in this list yet."
+msgstr "此列表中还没有任务。"
+
+msgid "{n} selected"
+msgstr "已选择{n}"
+
+msgid "Assign"
+msgstr "分配"
+
+msgid "Delete tasks"
+msgstr "删除任务"
+
+msgid "{n} tasks will be permanently deleted along with their comments and files."
+msgstr "{n}任务及其注释和文件将被永久删除。"
+
+msgid "Clear selection"
+msgstr "清除选择"
+
+msgid "{n} tasks updated"
+msgstr "{n}任务已更新"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "Next"
+msgstr "下一步"
+
+msgid "Week"
+msgstr "周"
+
+msgid "No date: {n}"
+msgstr "无日期:{n}"
+
+msgid "Tasks without a date"
+msgstr "没有日期的任务"
+
+msgid "No dated tasks this month."
+msgstr "本月没有日期任务。"
+
+msgid "+{n} more"
+msgstr "+{n}更多"
+
+msgid "Meeting name"
+msgstr "会议名称"
+
+msgid "Meeting created"
+msgstr "会议已创建"
+
+msgid "New meeting"
+msgstr "新会议"
+
+msgid "New task"
+msgstr "新任务"
+
+msgid "Create and open"
+msgstr "创建并打开"
+
+msgid "[['ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.', 'tr']]"
+msgstr "[['类似 ClickUp 的任务跟踪:项目、文件夹、列表;列表、看板(看板)和日历视图、保存的筛选视图、自定义字段、评论和文件附件、通知、列表授权、管理仪表板、MCP 服务器和 OpenRouter 人工智能。', 'tr']]"

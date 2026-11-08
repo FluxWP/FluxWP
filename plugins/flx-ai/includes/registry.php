@@ -308,7 +308,7 @@ function flxai_source_info( $id ) {
 		$label = (string) wp_get_theme()->get( 'Name' );
 	}
 	if ( '' === $label ) {
-		$label = '' !== $id ? $id : __( 'Bilinmiyor', 'flx-ai' );
+		$label = '' !== $id ? $id : __( 'Unknown', 'flx-ai' );
 	}
 	$cache[ $id ] = array(
 		'id'    => $id,

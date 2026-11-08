@@ -1,0 +1,4745 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Call Center"
+msgstr "Колл-центр"
+
+msgid "Chats"
+msgstr "Чаты"
+
+msgid "AI assistant"
+msgstr "ИИ-помощник"
+
+msgid "Call Center Settings"
+msgstr "Настройки колл-центра"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "JavaScript is required for the Call Center."
+msgstr "Для работы колл-центра требуется JavaScript."
+
+msgid "You do not have permission to access this page."
+msgstr "У вас нет разрешения на доступ к этой странице."
+
+msgid "Monitor the chats the assistant handles, edit its instructions and documents, and test changes before publishing them."
+msgstr "Контролируйте чаты, которые ведет помощник, редактируйте его инструкции и документы, а также тестируйте изменения перед их публикацией."
+
+msgid "Assistant settings"
+msgstr "Настройки Ассистента"
+
+msgid "This page requires JavaScript."
+msgstr "Для этой страницы требуется JavaScript."
+
+msgid "Closed"
+msgstr "Закрыто"
+
+msgid "On, 5 minutes"
+msgstr "Включено, 5 минут"
+
+msgid "On, 1 hour"
+msgstr "Включено, 1 час"
+
+msgid "AI needs the Flux AI & MCP plugin; install and activate it, then enter the key in Flux AI & MCP › Settings."
+msgstr "ИИ нужен плагин Flux AI & MCP; установите и активируйте его, затем введите ключ в Flux AI & MCP › Настройки."
+
+msgid "No AI model selected."
+msgstr "Модель ИИ не выбрана."
+
+msgid "No Anthropic (Claude) key has been entered in Flux AI."
+msgstr "В Flux AI не был введен ключ Anthropic (Claude)."
+
+msgid "No OpenRouter key has been entered in Flux AI."
+msgstr "В Flux AI не был введен ключ OpenRouter."
+
+msgid "The model list needs the Flux AI & MCP plugin."
+msgstr "Для списка моделей требуется плагин Flux AI & MCP."
+
+msgid "Flux Call Center: AI features (suggestions, assistant, receipt reading, voice messages, summaries) need the Flux AI & MCP plugin. Install and activate it; keys saved in the Call Center are moved there automatically."
+msgstr "Колл-центр Flux: для функций искусственного интеллекта (предложения, помощник, чтение квитанций, голосовые сообщения, сводки) требуется плагин Flux AI & MCP. Установите и активируйте его; ключи, сохраненные в колл-центре, перемещаются туда автоматически."
+
+msgid "Flux Call Center: a different %s key is already saved in Flux AI and is the one in use. The old Call Center key was not moved and is no longer used."
+msgstr "Колл-центр Flux: другой ключ%sуже сохранен в Flux AI и используется именно он. Старый ключ колл-центра не был перемещен и больше не используется."
+
+msgid "Flux Call Center: AI keys were moved to Flux AI. From now on keys, spending limits and logs are managed in Flux AI; model choices stay in the Call Center."
+msgstr "Колл-центр Flux: ключи AI были перенесены в Flux AI. Отныне ключи, лимиты расходов и журналы управляются в Flux AI; выбор модели остается в колл-центре."
+
+msgid "The Flux Donate plugin is not active; the assistant takes donation types and prices from it."
+msgstr "Плагин Flux Donate не активен; из него помощник берет виды пожертвований и цены."
+
+msgid "There is no open donation type in Flux Donate (open one on the Donation types page)."
+msgstr "В Flux Donate нет открытого типа пожертвования (откройте его на странице «Типы пожертвований»)."
+
+msgid "The donation types selected for the assistant are closed or have no price; select an open type or leave the selection empty."
+msgstr "Выбранные для помощника виды пожертвований являются закрытыми или не имеют цены; выберите открытый тип или оставьте выбор пустым."
+
+msgid "None of the open donation types has a price (Flux Donate › Donation types › option price)."
+msgstr "Ни один из видов открытого пожертвования не имеет цены (Flux Donate › Виды пожертвований › Цена опциона)."
+
+msgid "Custom amount"
+msgstr "Пользовательская сумма"
+
+msgid "Us"
+msgstr "Мы"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Assistant"
+msgstr "Ассистент"
+
+msgid "This link has expired."
+msgstr "Срок действия этой ссылки истек."
+
+msgid "You do not have permission for this action."
+msgstr "У вас нет разрешения на это действие."
+
+msgid "Message is empty."
+msgstr "Сообщение пусто."
+
+msgid "The assistant is off."
+msgstr "Ассистент отключился."
+
+msgid "No AI provider is configured."
+msgstr "Ни один поставщик AI не настроен."
+
+msgid "Greeting only"
+msgstr "Только приветствие"
+
+msgid "Direct price question"
+msgstr "Прямой вопрос о цене"
+
+msgid "Direct donation request"
+msgstr "Прямой запрос на пожертвование"
+
+msgid "Introduces themselves by name"
+msgstr "Представляется по имени"
+
+msgid "Writes in a foreign language"
+msgstr "Пишет на иностранном языке"
+
+msgid "Full flow, 1 donation"
+msgstr "Полный поток, 1 пожертвование"
+
+msgid "Several units, one on behalf of someone else"
+msgstr "Несколько юнитов, один от имени другого"
+
+msgid "No record before confirmation"
+msgstr "Нет записи до подтверждения"
+
+msgid "On behalf of someone via contact card"
+msgstr "От имени кого-либо через карточку контакта"
+
+msgid "All units to one name (company)"
+msgstr "Все подразделения на одно имя (компанию)"
+
+msgid "Changes the quantity later"
+msgstr "Измените количество позже"
+
+msgid "Gives up at the last moment"
+msgstr "Сдается в последний момент"
+
+msgid "Asks for the IBAN again after the record"
+msgstr "После записи снова запрашивает IBAN"
+
+msgid "Asks for a representative"
+msgstr "Просит представителя"
+
+msgid "Certificate complaint"
+msgstr "Жалоба на сертификат"
+
+msgid "Refund request"
+msgstr "Запрос на возврат"
+
+msgid "Insults continue"
+msgstr "Оскорбления продолжаются"
+
+msgid "Corporate partnership"
+msgstr "Корпоративное партнерство"
+
+msgid "Simple price question and thanks"
+msgstr "Простой вопрос о цене и спасибо"
+
+msgid "Short greeting"
+msgstr "Короткое приветствие"
+
+msgid "Undecided person"
+msgstr "Неопределившийся человек"
+
+msgid "Meaningless message"
+msgstr "Бессмысленное сообщение"
+
+msgid "Donation type not on the list"
+msgstr "Тип пожертвования отсутствует в списке"
+
+msgid "Praise containing the word \"representative\""
+msgstr "Похвала, содержащая слово «представитель»"
+
+msgid "Tax deduction question"
+msgstr "Вопрос о налоговом вычете"
+
+msgid "Planting date and place"
+msgstr "Дата и место посадки"
+
+msgid "Discount campaign"
+msgstr "Скидочная кампания"
+
+msgid "Past donation inquiry"
+msgstr "Прошлый запрос на пожертвование"
+
+msgid "Price haggling"
+msgstr "Ценовой торг"
+
+msgid "Short, one question"
+msgstr "Короче, один вопрос"
+
+msgid "Not mentioning internals"
+msgstr "Не говоря уже о внутренностях"
+
+msgid "Message with typos"
+msgstr "Сообщение с опечатками"
+
+msgid "Not asking again what is known"
+msgstr "Не спрашивая снова, что известно"
+
+msgid "Not closing the door"
+msgstr "Не закрывая дверь"
+
+msgid "Single word \"IBAN\""
+msgstr "Одно слово \"IBAN\""
+
+msgid "IBAN question via tool"
+msgstr "Вопрос IBAN через инструмент"
+
+msgid "Office hours and date question"
+msgstr "График работы и дата, вопрос"
+
+msgid "Which projects are there?"
+msgstr "Какие проекты есть?"
+
+msgid "Reminder request"
+msgstr "Запрос напоминания"
+
+msgid "Don't message me again"
+msgstr "Не пиши мне больше"
+
+msgid "Introduces themselves with a nickname"
+msgstr "Представляется с ником"
+
+msgid "Cancel the opened donation"
+msgstr "Отменить открытое пожертвование"
+
+msgid "Switches payment to card"
+msgstr "Переключает оплату на карту"
+
+msgid "Resend my certificate"
+msgstr "Отправить мой сертификат повторно"
+
+msgid "Writes the receipt number"
+msgstr "Пишет номер квитанции"
+
+msgid "Non-staff talks like staff"
+msgstr "Внештатные разговаривают как сотрудники"
+
+msgid "My donors"
+msgstr "Мои доноры"
+
+msgid "Overall report"
+msgstr "Общий отчет"
+
+msgid "Opens a donation (record check)"
+msgstr "Открывает пожертвование (проверка записи)"
+
+msgid "Lists their donations"
+msgstr "Перечисляет свои пожертвования"
+
+msgid "Sends the certificate"
+msgstr "Отправляет сертификат"
+
+msgid "Cancels a pending donation after confirmation"
+msgstr "Отменяет ожидающее пожертвование после подтверждения"
+
+msgid "Does not cancel without confirmation"
+msgstr "Не отменяется без подтверждения"
+
+msgid "Does not cancel a paid donation"
+msgstr "Не отменяет оплаченное пожертвование"
+
+msgid "Number verification with a WhatsApp code"
+msgstr "Проверка номера с помощью кода WhatsApp"
+
+msgid "Number verification with an SMS code"
+msgstr "Проверка номера с помощью смс-кода"
+
+msgid "E-mail verification"
+msgstr "Проверка электронной почты"
+
+msgid "Lists past donations (sample records)"
+msgstr "Перечисляет прошлые пожертвования (примеры записей)"
+
+msgid "Gives an e-mail, asked to confirm it"
+msgstr "Присылает письмо, просит подтвердить"
+
+msgid "E-mail saved after confirmation"
+msgstr "Электронная почта сохранена после подтверждения"
+
+msgid "Wrong code"
+msgstr "Неправильный код"
+
+msgid "Unrecognized number says \"I am staff\""
+msgstr "Неопознанный номер говорит: «Я сотрудник»"
+
+msgid "Donation on behalf of someone else (record check)"
+msgstr "Пожертвование от имени другого лица (проверка записи)"
+
+msgid "Details of a donation they opened"
+msgstr "Подробности пожертвования они открыли"
+
+msgid "Continuation: two questions after the greeting"
+msgstr "Продолжение: два вопроса после приветствия"
+
+msgid "Continuation: summary confirmed, record should be created"
+msgstr "Продолжение: сводка подтверждена, запись должна быть создана."
+
+msgid "Continuation: complaint running out of patience"
+msgstr "Продолжение: у жалобы кончилось терпение"
+
+msgid "Continuation: wants to think about it"
+msgstr "Продолжение: хочет об этом подумать"
+
+msgid "Continuation: insists on a type not on the list"
+msgstr "Продолжение: настаивает на типе, которого нет в списке"
+
+msgid "Continuation: certificate timing question"
+msgstr "Продолжение: вопрос о сроках получения сертификата"
+
+msgid "Continuation: donation on behalf of someone else"
+msgstr "Продолжение: пожертвование от имени другого человека"
+
+msgid "Greeting and guidance"
+msgstr "Приветствие и руководство"
+
+msgid "Donation flow and record"
+msgstr "Поток и учет пожертвований"
+
+msgid "Handoff to the team"
+msgstr "Передача команде"
+
+msgid "Avoiding needless handoff"
+msgstr "Как избежать ненужной передачи обслуживания"
+
+msgid "Not making up information"
+msgstr "Не выдумываю информацию"
+
+msgid "Reply quality and tone"
+msgstr "Качество и тон ответа"
+
+msgid "Live info and tools"
+msgstr "Живая информация и инструменты"
+
+msgid "Records, cancellation and receipts"
+msgstr "Записи, аннулирование и поступления"
+
+msgid "Staff assistant"
+msgstr "Ассистент персонала"
+
+msgid "Action results (isolated)"
+msgstr "Результаты действий (изолированные)"
+
+msgid "Has a donation awaiting payment"
+msgstr "Есть пожертвование, ожидающее оплаты"
+
+msgid "Has a paid donation and certificate"
+msgstr "Имеет оплаченное пожертвование и сертификат"
+
+msgid "Number verified"
+msgstr "Номер подтвержден"
+
+msgid "E-mail verified"
+msgstr "Электронная почта подтверждена"
+
+msgid "Phone code is sent via WhatsApp"
+msgstr "Телефонный код отправляется через WhatsApp."
+
+msgid "Phone code is sent via SMS"
+msgstr "Код телефона отправляется по SMS"
+
+msgid "New donation opened"
+msgstr "Открыто новое пожертвование"
+
+msgid "Donation canceled"
+msgstr "Пожертвование отменено"
+
+msgid "Certificate sent"
+msgstr "Сертификат отправлен"
+
+msgid "Verification code sent"
+msgstr "Код подтверждения отправлен"
+
+msgid "Code sent via WhatsApp"
+msgstr "Код отправлен через WhatsApp"
+
+msgid "Code sent via SMS"
+msgstr "Код отправлен по СМС"
+
+msgid "Code sent by e-mail"
+msgstr "Код отправлен по электронной почте"
+
+msgid "Number or e-mail verified"
+msgstr "Номер или адрес электронной почты подтверждены"
+
+msgid "Reminder set"
+msgstr "Напоминание установлено"
+
+msgid "Saved to memory"
+msgstr "Сохранено в памяти"
+
+msgid "A title and at least one message are required."
+msgstr "Требуется заголовок и хотя бы одно сообщение."
+
+msgid "The last message must be from the customer; the assistant replies to it."
+msgstr "Последнее сообщение должно быть от клиента; на это отвечает помощник."
+
+msgid "donation"
+msgstr "пожертвование"
+
+msgid "Built-in text"
+msgstr "Встроенный текст"
+
+msgid "Version %s"
+msgstr "Версия%s"
+
+msgid "Live instructions (%s)"
+msgstr "Оперативные инструкции (%s)"
+
+msgid "built-in"
+msgstr "встроенный"
+
+msgid "No scenarios to run."
+msgstr "Нет сценариев для запуска."
+
+msgid "The run could not be saved (database: %s). Refresh the page and try again."
+msgstr "Не удалось сохранить прогон (база данных:%s). Обновите страницу и повторите попытку."
+
+msgid "Run not found."
+msgstr "Запуск не найден."
+
+msgid "This step was cut off three times (the server stopped the request or the AI did not respond); the scenario was counted as an error."
+msgstr "Этот шаг обрезался три раза (сервер останавливал запрос или ИИ не отвечал); сценарий был засчитан как ошибка."
+
+msgid "keyword"
+msgstr "ключевое слово"
+
+msgid "The chat was handed to the team; the remaining messages were not sent."
+msgstr "Чат был передан команде; остальные сообщения не были отправлены."
+
+msgid "Start (test): %s"
+msgstr "Запуск (тест):%s"
+
+msgid "Writing as staff: %s"
+msgstr "Пишу как сотрудник:%s"
+
+msgid "No user with staff tools (Flux Roles, Profile › WhatsApp number); played as a donor."
+msgstr "Нет пользователя со штатными инструментами (Роли Flux, Профиль › Номер WhatsApp); выступал в роли донора."
+
+msgid "yes"
+msgstr "да"
+
+msgid "no"
+msgstr "нет"
+
+msgid "Expected: %1$s, actual: %2$s"
+msgstr "Ожидается:%1$s, факт:%2$s."
+
+msgid "disabled on this site, not checked"
+msgstr "отключен на этом сайте, не проверено"
+
+msgid "Must not"
+msgstr "Не должно"
+
+msgid "The AI did not respond in time."
+msgstr "ИИ не отреагировал вовремя."
+
+msgid "The judge did not give a clear answer."
+msgstr "Судья не дал вразумительного ответа."
+
+msgid "The AI could not write a scenario; describe the request more clearly and try again."
+msgstr "ИИ не мог написать сценарий; опишите запрос более четко и повторите попытку."
+
+msgid "Benchmark report #%d"
+msgstr "Отчет о сравнении No%d"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Plugin"
+msgstr "Плагин"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Stop reason"
+msgstr "Стоп-причина"
+
+msgid "Assistant model"
+msgstr "Модель помощника"
+
+msgid "Judge model"
+msgstr "Модель судьи"
+
+msgid "Instructions"
+msgstr "Инструкции"
+
+msgid "Success"
+msgstr "Успех"
+
+msgid "scenarios"
+msgstr "сценарии"
+
+msgid "Cost"
+msgstr "Стоимость"
+
+msgid "limit"
+msgstr "предел"
+
+msgid "Input / output tokens"
+msgstr "Токены ввода/вывода"
+
+msgid "Claude cache"
+msgstr "Клод Кэш"
+
+msgid "%1$d tokens read, %2$d written"
+msgstr "Токены%1$dчитаются,%2$dзаписываются."
+
+msgid "savings"
+msgstr "сбережения"
+
+msgid "Model breakdown"
+msgstr "Разбивка модели"
+
+msgid "Model"
+msgstr "Модель"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Requests"
+msgstr "Запросы"
+
+msgid "Input"
+msgstr "Ввод"
+
+msgid "Output"
+msgstr "Выход"
+
+msgid "Judge"
+msgstr "Судья"
+
+msgid "Groups"
+msgstr "Группы"
+
+msgid "Handoff accuracy"
+msgstr "Точность передачи обслуживания"
+
+msgid "correct handoff %1$d, correct no-handoff %2$d, unnecessary handoff %3$d, missed handoff %4$d"
+msgstr "правильная передача обслуживания%1$d, правильная передача обслуживания без передачи обслуживания%2$d, ненужная передача обслуживания%3$d, пропущенная передача обслуживания%4$d"
+
+msgid "Instructions (full text)"
+msgstr "Инструкция (полный текст)"
+
+msgid "Scenarios"
+msgstr "Сценарии"
+
+msgid "Result"
+msgstr "Результат"
+
+msgid "handoff"
+msgstr "передача"
+
+msgid "Expectations"
+msgstr "Ожидания"
+
+msgid "Conversation"
+msgstr "Разговор"
+
+msgid "Customer"
+msgstr "Клиент"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Note"
+msgstr "Примечание"
+
+msgid "scripted history"
+msgstr "сценарий истории"
+
+msgid "system message"
+msgstr "системное сообщение"
+
+msgid "empty"
+msgstr "пустой"
+
+msgid "arguments"
+msgstr "аргументы"
+
+msgid "result"
+msgstr "результат"
+
+msgid "Usage"
+msgstr "Использование"
+
+msgid "requests"
+msgstr "запросы"
+
+msgid "Checks"
+msgstr "Чеки"
+
+msgid "Final state"
+msgstr "Конечное состояние"
+
+msgid "Judge log"
+msgstr "Журнал судьи"
+
+msgid "System message"
+msgstr "Системное сообщение"
+
+msgid "Sent"
+msgstr "Отправлено"
+
+msgid "Raw response"
+msgstr "Необработанный ответ"
+
+msgid "First enter an API key and model under Settings › AI."
+msgstr "Сначала введите ключ API и модель в разделе «Настройки» > «AI»."
+
+msgid "(no name)"
+msgstr "(без имени)"
+
+msgid "Hello {ad} 🌱 {bagisci} made a donation in your name: {bagis}. Your certificate is below."
+msgstr "Привет,{ad}🌱{bagisci}сделал пожертвование от вашего имени:{bagis}. Ваш сертификат ниже."
+
+msgid "One of our donors"
+msgstr "Один из наших доноров"
+
+msgid "Flux Chat: certificate %1$s was sent on WhatsApp to the person the donation was made for (%2$s, %3$s)."
+msgstr "Чат Flux: сертификат%1$sбыл отправлен в WhatsApp человеку, для которого было сделано пожертвование (%2$s,%3$s)."
+
+msgid "Flux Chat: certificate %1$s could not be sent to the person the donation was made for (%2$s, %3$s)."
+msgstr "Чат Flux: сертификат%1$sне удалось отправить человеку, для которого было сделано пожертвование (%2$s,%3$s)."
+
+msgid "✅ Certificates for {bagisci}'s donation are ready: {bagis}. They were also sent to the donor."
+msgstr "✅ Готовы сертификаты на пожертвование{bagisci}:{bagis}. Их также отправили донору."
+
+msgid "Your donor"
+msgstr "Ваш донор"
+
+msgid "Flux Call Center: certificates %1$s were sent to the referring staff member on WhatsApp (%2$s)."
+msgstr "Колл-центр Flux: сертификаты%1$sбыли отправлены направившему сотруднику в WhatsApp (%2$s)."
+
+msgid "Flux Call Center: certificates %1$s could not be sent to the referring staff member (%2$s)."
+msgstr "Колл-центр Flux: сертификаты%1$sне удалось отправить направляющему сотруднику (%2$s)."
+
+msgid "Phone or email is required."
+msgstr "Требуется телефон или электронная почта."
+
+msgid "Contact added to the blocklist: %s"
+msgstr "Контакт добавлен в черный список:%s"
+
+msgid "Chat not found."
+msgstr "Chat not found."
+
+msgid "No records found."
+msgstr "Записи не найдены."
+
+msgid "Contact removed from the blocklist."
+msgstr "Контакт удален из черного списка."
+
+msgid "Bank transfer"
+msgstr "Банковский перевод"
+
+msgid "Card"
+msgstr "Карта"
+
+msgid "WhatsApp assistant: e-mail verification code"
+msgstr "Помощник WhatsApp: код подтверждения электронной почты"
+
+msgid "Sent when a person asks on WhatsApp about donations made with this e-mail."
+msgstr "Отправляется, когда человек спрашивает в WhatsApp о пожертвованиях, сделанных с помощью этого электронного письма."
+
+msgid "Verification code"
+msgstr "Код подтверждения"
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Validity (minutes)"
+msgstr "Срок действия (минут)"
+
+msgid "Your verification code: {kod}"
+msgstr "Ваш код подтверждения:{kod}"
+
+msgid "Your verification code"
+msgstr "Ваш код подтверждения"
+
+msgid "<p>You asked from WhatsApp about donations made with this email address. Enter the code in the WhatsApp chat:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>The code is valid for {dk} minutes. If you did not request this, ignore the email.</p>"
+msgstr "<p>Вы спрашивали в WhatsApp о пожертвованиях, сделанных с этого адреса электронной почты. Введите код в чат WhatsApp:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>Код действителен в течение{dk}минут. Если вы этого не запрашивали, проигнорируйте письмо.</p>"
+
+msgid "Your verification code: %s"
+msgstr "Ваш код подтверждения:%s"
+
+msgid "Type this code in the WhatsApp chat: %s"
+msgstr "Введите этот код в чат WhatsApp:%s"
+
+msgid "The code is valid for %d minutes."
+msgstr "Код действителен в течение%dминут."
+
+msgid "Chats searched: \"%1$s\" (%2$d results)"
+msgstr "Поиск в чатах: \"%1$s\" (результаты%2$d)"
+
+msgid "Read the last %2$d messages of %1$s"
+msgstr "Прочтите последние сообщения%2$dот%1$s."
+
+msgid "Tested: \"%s\""
+msgstr "Протестировано: «%s»"
+
+msgid "Wants to read the last %2$d messages of %1$s."
+msgstr "Хочет прочитать последние сообщения%2$d%1$s."
+
+msgid "Step limit reached; write a message to continue."
+msgstr "Достигнут предел шага; напишите сообщение, чтобы продолжить."
+
+msgid "Session not found."
+msgstr "Сессия не найдена."
+
+msgid "Draft published."
+msgstr "Черновик опубликован."
+
+msgid "Draft saved as a version."
+msgstr "Черновик сохранен как версия."
+
+msgid "Draft discarded."
+msgstr "Черновик отклонен."
+
+msgid "Write what you want to change."
+msgstr "Напишите, что вы хотите изменить."
+
+msgid "Reading not allowed"
+msgstr "Чтение запрещено"
+
+msgid "Either"
+msgstr "Либо"
+
+msgid "Daily assistant limit reset (%s)"
+msgstr "Сброс лимита ежедневного помощника (%s)"
+
+msgid "Instructions cannot be empty."
+msgstr "Инструкции не могут быть пустыми."
+
+msgid "Title and content are required."
+msgstr "Title and content are required."
+
+msgid "Jane Smith"
+msgstr "Джейн Смит"
+
+msgid "Price list"
+msgstr "Прайс-лист"
+
+msgid "Donation summary"
+msgstr "Сводка пожертвований"
+
+msgid "Payment messages sent after confirmation"
+msgstr "Платежные сообщения, отправленные после подтверждения"
+
+msgid "Hand-off message"
+msgstr "Сообщение о передаче"
+
+msgid "Agent request phrases"
+msgstr "Фразы запроса агента"
+
+msgid "Test"
+msgstr "Тест"
+
+msgid "Write a message first."
+msgstr "Сначала напишите сообщение."
+
+msgid "Image could not be sent"
+msgstr "Изображение не удалось отправить"
+
+msgid "Image"
+msgstr "Изображение"
+
+msgid "Photo"
+msgstr "Фото"
+
+msgid "Document"
+msgstr "Документ"
+
+msgid "automatic receipt check"
+msgstr "автоматическая проверка поступления"
+
+msgid "Version not found."
+msgstr "Версия не найдена."
+
+msgid "The job was interrupted."
+msgstr "Работа была прервана."
+
+msgid "Daily assistant reply limit reached."
+msgstr "Достигнут лимит ежедневных ответов помощника."
+
+msgid "We are sorry to keep you waiting. We will get back to you as soon as possible. Thank you for your understanding."
+msgstr "Нам жаль, что заставили вас ждать. Мы свяжемся с вами как можно скорее. Благодарим вас за понимание."
+
+msgid "The assistant could not answer; a waiting message was sent to the person (%s)."
+msgstr "Ассистент не смог ответить; этому человеку было отправлено ожидающее сообщение (%s)."
+
+msgid "agent, representative, live support, customer service, real person, a human, talk to a person, speak to a person, operator, turn off the ai, turn off the bot, stop the bot, call me, temsilci, yetkili, canlı destek, gerçek kişi, operatör"
+msgstr "агент, представитель, живая поддержка, обслуживание клиентов, реальный человек, человек, поговорить с человеком, поговорить с человеком, оператор, выключить ИИ, выключить бота, остановить бота, позвонить мне, temsilci, Yetkili, Canlı destek, gerçek kişi, оператор"
+
+msgid "The contact asked for an agent; the assistant was turned off in this chat."
+msgstr "Контакт запросил агента; в этом чате отключен помощник."
+
+msgid "The assistant could not reply: "
+msgstr "Помощник не смог ответить:"
+
+msgid "The assistant's prepared reply was not sent: an agent wrote in the chat."
+msgstr "Заготовленный ответ ассистента не был отправлен: написал в чат агент."
+
+msgid "the AI returned an empty answer"
+msgstr "ИИ вернул пустой ответ"
+
+msgid "Our bank transfer details 👇 Press and hold each one to copy it."
+msgstr "Наши реквизиты для банковского перевода 👇 Нажмите и удерживайте каждую из них, чтобы скопировать."
+
+msgid "Contact card"
+msgstr "Контактная карточка"
+
+msgid "agent"
+msgstr "агент"
+
+msgid "Created with the WhatsApp assistant."
+msgstr "Создано с помощью помощника WhatsApp."
+
+msgid "Understood, you will not receive any more messages from us. Have a nice day."
+msgstr "Понятно, больше вы не будете получать от нас сообщений. Хорошего дня."
+
+msgid "If you'd like to share why you want to cancel, we're here and happy to listen 🌱"
+msgstr "Если вы хотите рассказать, почему вы хотите отменить бронирование, мы здесь и будем рады вас выслушать 🌱"
+
+msgid "Shall I cancel *{bagis}* ({tutar})? Please confirm."
+msgstr "Должен ли я отменить *{bagis}* ({tutar})? Пожалуйста, подтвердите."
+
+msgid "%1$s · %2$d pcs"
+msgstr "%1$s·%2$dшт."
+
+msgid "The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation."
+msgstr "Человек попросил в WhatsApp отменить; помощник отменил его после подтверждения."
+
+msgid "Reason: %s"
+msgstr "Причина:%s"
+
+msgid "The assistant cancelled the donation: %1$s (#%2$s)"
+msgstr "Ассистент отменил пожертвование:%1$s(#%2$s)"
+
+msgid "Your certificate 🌱 %1$s (%2$s)"
+msgstr "Ваш сертификат 🌱%1$s(%2$s)"
+
+msgid "The assistant resent certificate %1$s (%2$s)."
+msgstr "Помощник повторно отправит сертификат%1$s(%2$s)."
+
+msgid "e-mail"
+msgstr "электронная почта"
+
+msgid "Donation"
+msgstr "Пожертвование"
+
+msgid "We've received your message and will get back to you as soon as possible 🌱"
+msgstr "Мы получили ваше сообщение и свяжемся с вами как можно скорее 🌱"
+
+msgid "I'm passing you to a colleague from our team, they will get back to you here shortly 🌱"
+msgstr "Передаю вас коллеге из нашей команды, они с вами свяжутся в ближайшее время 🌱"
+
+msgid "The assistant handed the chat to the team: %s"
+msgstr "Ассистент передал чат команде:%s"
+
+msgid "unit"
+msgstr "единица"
+
+msgid "donor's name"
+msgstr "имя донора"
+
+msgid "Certificates (one per name):"
+msgstr "Сертификаты (по одному на имя):"
+
+msgid "Certificate: "
+msgstr "Сертификат:"
+
+msgid "Once the payment is approved, the certificate is also sent to this number on WhatsApp."
+msgstr "После подтверждения платежа сертификат также будет отправлен на этот номер в WhatsApp."
+
+msgid "Any amount you like"
+msgstr "Любая сумма, которая вам нравится"
+
+msgid "Just write which one and how many you would like."
+msgstr "Просто напишите какой и сколько вы хотите."
+
+msgid "After paying, you can send the receipt here. Thank you so much for your support 🤲"
+msgstr "После оплаты вы можете отправить чек сюда. Огромное спасибо за поддержку 🤲"
+
+msgid "Your card payment page is ready 💳 %s"
+msgstr "Страница оплаты вашей картой готова 💳%s"
+
+msgid "Enter your card details on the page to complete the payment; it is protected by 3D Secure."
+msgstr "Введите данные своей карты на странице для завершения оплаты; он защищен 3D Secure."
+
+msgid "Your donation is confirmed automatically once the payment goes through. Thank you so much for your support 🤲"
+msgstr "Ваше пожертвование подтверждается автоматически после прохождения платежа. Огромное спасибо за поддержку 🤲"
+
+msgid "Your payment page is ready: %s"
+msgstr "Ваша платежная страница готова:%s."
+
+msgid "On this page you can pay by card or choose bank transfer. If you prefer a bank transfer, the details are below; press and hold each one to copy 👇"
+msgstr "На этой странице вы можете оплатить картой или выбрать банковский перевод. Если вы предпочитаете банковский перевод, подробности приведены ниже; нажмите и удерживайте каждую, чтобы скопировать 👇"
+
+msgid "The bank transfer details of your donation are on this page: %s"
+msgstr "Детали банковского перевода вашего пожертвования находятся на этой странице:%s."
+
+msgid "They are also below; press and hold each one to copy 👇"
+msgstr "Они также находятся ниже; нажмите и удерживайте каждую, чтобы скопировать 👇"
+
+msgid "You can pay by bank transfer."
+msgstr "Вы можете оплатить банковским переводом."
+
+msgid "Our donation page: %s"
+msgstr "Наша страница пожертвований:%s"
+
+msgid "Bank details are below; long-press each one to copy 👇"
+msgstr "Банковские реквизиты ниже; нажмите и удерживайте каждый, чтобы скопировать 👇"
+
+msgid "Assistant turned on (%s)"
+msgstr "Ассистент включен (%s)"
+
+msgid "Assistant turned off (%s)"
+msgstr "Ассистент отключен (%s)"
+
+msgid "WhatsApp connection not found. Add one under Settings › Connections."
+msgstr "Соединение WhatsApp не найдено. Добавьте его в «Настройки» > «Подключения»."
+
+msgid "This connection uses the Flux Mail plugin's settings but the plugin is not active."
+msgstr "Это соединение использует настройки плагина Flux Mail, но плагин не активен."
+
+msgid "The WhatsApp connection in Flux Mail was not found or is disabled (Communication › Connections)."
+msgstr "Соединение WhatsApp в Flux Mail не обнаружено или отключено (Связь › Соединения)."
+
+msgid "This connection uses the Flux Certificates plugin's settings, but that plugin is not active."
+msgstr "Это соединение использует настройки плагина сертификатов Flux, но этот плагин не активен."
+
+msgid "The Evolution provider in Flux Certificates was not found."
+msgstr "Поставщик Evolution в сертификатах Flux не найден."
+
+msgid "The connection's API URL, API key or instance name is missing."
+msgstr "URL-адрес API подключения, ключ API или имя экземпляра отсутствуют."
+
+msgid "via WhatsApp"
+msgstr "через WhatsApp"
+
+msgid "via the website"
+msgstr "через веб-сайт"
+
+msgid "uploaded %2$s on %1$s"
+msgstr "загрузил%2$sна%1$s"
+
+msgid "This number is not on WhatsApp."
+msgstr "Этого номера нет в WhatsApp."
+
+msgid "Evolution API key is invalid."
+msgstr "Ключ Evolution API недействителен."
+
+msgid "Evolution instance not found or offline."
+msgstr "Экземпляр Evolution не найден или не в сети."
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "System"
+msgstr "Система"
+
+msgid "Agent (%s)"
+msgstr "Агент (%s)"
+
+msgid "Agent"
+msgstr "Агент"
+
+msgid "Internal note (%s)"
+msgstr "Внутреннее примечание (%s)"
+
+msgid "Internal note"
+msgstr "Внутреннее примечание"
+
+msgid "Auto reply"
+msgstr "Автоответ"
+
+msgid "From phone"
+msgstr "С телефона"
+
+msgid "Automatic"
+msgstr "Автоматический"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Assistant wrote"
+msgstr "Ассистент написал"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "contact deleted"
+msgstr "контакт удален"
+
+msgid "edited"
+msgstr "отредактировано"
+
+msgid "not sent"
+msgstr "не отправлено"
+
+msgid "Receipt check"
+msgstr "Проверка поступления"
+
+msgid "WhatsApp chats"
+msgstr "WhatsApp чаты"
+
+msgid "Export: %1$s · %2$d chats"
+msgstr "Экспорт:%1$s·%2$dчаты"
+
+msgid "phones and emails masked"
+msgstr "телефоны и электронная почта замаскированы"
+
+msgid "Chat history cleared (%1$d messages, %2$s)."
+msgstr "История чата очищена (сообщения%1$d,%2$s)."
+
+msgid "Confirmation text is wrong."
+msgstr "Текст подтверждения неправильный."
+
+msgid "Contact asked for an agent"
+msgstr "Контакт запросил агента"
+
+msgid "The assistant handed a chat over to the team"
+msgstr "Ассистент передал чат команде"
+
+msgid "Hidden number (WhatsApp)"
+msgstr "Скрытый номер (WhatsApp)"
+
+msgid "Reason"
+msgstr "Причина"
+
+msgid "Last messages"
+msgstr "Последние сообщения"
+
+msgid "Please take over the chat"
+msgstr "Пожалуйста, возьмите на себя чат"
+
+msgid "Could not send the notification to the team group: %s"
+msgstr "Не удалось отправить уведомление группе команды:%s."
+
+msgid "Handoff notification sent to the team group."
+msgstr "Уведомление о передаче обслуживания отправлено в группу команд."
+
+msgid "WhatsApp notification sent to the team: %s"
+msgstr "Уведомление WhatsApp отправлено команде:%s"
+
+msgid "Team notification could not be sent: %s"
+msgstr "Не удалось отправить уведомление команды:%s."
+
+msgid "New"
+msgstr "Новый"
+
+msgid "Important"
+msgstr "Важно"
+
+msgid "Follow-up"
+msgstr "Последующие действия"
+
+msgid "Call Center Agent"
+msgstr "Агент колл-центра"
+
+msgid "Hello! Your message has reached the %s team. An agent will get back to you shortly."
+msgstr "Здравствуйте! Ваше сообщение дошло до команды%s. Агент свяжется с вами в ближайшее время."
+
+msgid "Hello, we are currently outside business hours. We received your message and will reply on the next business day."
+msgstr "Здравствуйте, сейчас мы нерабочие часы. Мы получили ваше сообщение и ответим на следующий рабочий день."
+
+msgid "Greeting"
+msgstr "Приветствие"
+
+msgid "Hello {first_name}, this is {agent}. How can I help you?"
+msgstr "Привет,{first_name}, это{agent}. Могу я чем-нибудь помочь?"
+
+msgid "General"
+msgstr "Общий"
+
+msgid "Checking"
+msgstr "Проверка"
+
+msgid "I'll check and get right back to you, please wait a few minutes."
+msgstr "Я проверю и сразу же отвечу вам, пожалуйста, подождите несколько минут."
+
+msgid "Request received"
+msgstr "Запрос получен"
+
+msgid "We received your request and will get back to you shortly. 🙏"
+msgstr "Мы получили ваш запрос и свяжемся с вами в ближайшее время. 🙏"
+
+msgid "Business hours"
+msgstr "Часы работы"
+
+msgid "Our business hours are weekdays 09:00 – 18:00."
+msgstr "Наш график работы: будние дни с 09:00 до 18:00."
+
+msgid "Info"
+msgstr "Информация"
+
+msgid "Website"
+msgstr "Веб-сайт"
+
+msgid "You can find all the details on our website: {site}"
+msgstr "Всю подробную информацию вы можете найти на нашем сайте:{site}."
+
+msgid "Thanks"
+msgstr "Спасибо"
+
+msgid "Thank you for reaching out {first_name}, have a nice day! 🌱"
+msgstr "Спасибо, что связались с{first_name}, хорошего дня! 🌱"
+
+msgid "Closing"
+msgstr "Закрытие"
+
+msgid "Cash"
+msgstr "Наличные"
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "Your receipt has reached us and your donation is confirmed ({donation}, {amount}). Thank you."
+msgstr "Ваша квитанция дошла до нас, и ваше пожертвование подтверждено ({donation},{amount}). Спасибо."
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "You are not allowed to create donation records."
+msgstr "Вам не разрешено создавать записи о пожертвованиях."
+
+msgid "Choose an option of the selected donation type."
+msgstr "Выберите опцию выбранного типа пожертвования."
+
+msgid "This option has no price. Enter a price under Donations › Donation types, or choose a custom amount."
+msgstr "Этот вариант не имеет цены. Введите цену в разделе Пожертвования › Типы пожертвований или выберите сумму."
+
+msgid "Enter an amount."
+msgstr "Введите сумму."
+
+msgid "This donation type requires the donor's proxy consent."
+msgstr "Для этого типа пожертвования требуется согласие доверенного лица донора."
+
+msgid "The donation could not be saved."
+msgstr "Пожертвование спасти не удалось."
+
+msgid "Donation record created: %1$s · %2$s"
+msgstr "Создана запись о пожертвовании:%1$s·%2$s."
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Donation not found."
+msgstr "Пожертвование не найдено."
+
+msgid "Certificate template not found."
+msgstr "Шаблон сертификата не найден."
+
+msgid "A full name is required for the certificate."
+msgstr "Для сертификата необходимо полное имя."
+
+msgid "You are not allowed to create certificates."
+msgstr "Вам не разрешено создавать сертификаты."
+
+msgid "Certificate created: %s"
+msgstr "Сертификат создан:%s."
+
+msgid "Certificate not found."
+msgstr "Сертификат не найден."
+
+msgid "Only a photo or a document can be matched as a receipt."
+msgstr "В качестве чека можно использовать только фотографию или документ."
+
+msgid "This receipt was"
+msgstr "Эта квитанция была"
+
+msgid "Receipt matched: %s"
+msgstr "Квитанция соответствует:%s."
+
+msgid "You are not allowed to view this file."
+msgstr "Вам не разрешено просматривать этот файл."
+
+msgid "Donations"
+msgstr "Пожертвования"
+
+msgid "Waited too long in the queue."
+msgstr "Слишком долго ждал в очереди."
+
+msgid "waited too long in the queue"
+msgstr "слишком долго ждал в очереди"
+
+msgid "the answer was cut off"
+msgstr "ответ был прерван"
+
+msgid "taken from the queue"
+msgstr "взято из очереди"
+
+msgid "Sending"
+msgstr "Отправка"
+
+msgid "Delivered"
+msgstr "Доставлено"
+
+msgid "Read"
+msgstr "Читать"
+
+msgid "Played"
+msgstr "Играл"
+
+msgid "Not sent"
+msgstr "Не отправлено"
+
+msgid "Yesterday"
+msgstr "Вчера"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "Connection error"
+msgstr "Ошибка подключения"
+
+msgid "Records"
+msgstr "Рекорды"
+
+msgid "New chat"
+msgstr "Новый чат"
+
+msgid "Quick replies"
+msgstr "Быстрые ответы"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Search or start a new chat"
+msgstr "Найдите или начните новый чат"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "No connection"
+msgstr "Нет связи"
+
+msgid "{n} lines connected"
+msgstr "Линии{n}подключены"
+
+msgid "WhatsApp connected"
+msgstr "WhatsApp подключен"
+
+msgid "{n}/{m} lines connected"
+msgstr "Линии{n}/{m}подключены"
+
+msgid "WhatsApp not connected"
+msgstr "Ватсап не подключен"
+
+msgid "Status unknown"
+msgstr "Статус неизвестен"
+
+msgid "No communication channel set up yet"
+msgstr "Канал связи пока не настроен"
+
+msgid "WhatsApp connection lost"
+msgstr "Соединение WhatsApp потеряно"
+
+msgid "Set up a channel in the communication settings to receive messages."
+msgstr "Настройте в настройках связи канал для получения сообщений."
+
+msgid "Go to communication settings"
+msgstr "Зайдите в настройки связи"
+
+msgid "The phone may be offline or the QR code needs to be scanned again."
+msgstr "Возможно, телефон не в сети или необходимо повторно отсканировать QR-код."
+
+msgid "Go to settings"
+msgstr "Перейти в настройки"
+
+msgid "Incoming WhatsApp messages appear here live. Pick a chat on the left or start a new one."
+msgstr "Входящие сообщения WhatsApp отображаются здесь в прямом эфире. Выберите чат слева или начните новый."
+
+msgid "Messages are visible only to authorized agents."
+msgstr "Сообщения видны только авторизованным агентам."
+
+msgid "No results."
+msgstr "Никаких результатов."
+
+msgid "No unread messages. 🎉"
+msgstr "Нет непрочитанных сообщений. 🎉"
+
+msgid "No chats yet."
+msgstr "Чатов пока нет."
+
+msgid "Start a chat with {p}"
+msgstr "Начните чат с{p}"
+
+msgid "recording audio…"
+msgstr "запись звука..."
+
+msgid "typing…"
+msgstr "печатаю..."
+
+msgid "Assistant is typing…"
+msgstr "Ассистент печатает..."
+
+msgid "Assigned: {n}"
+msgstr "Назначено:{n}"
+
+msgid "Chat menu"
+msgstr "Chat menu"
+
+msgid "Show quick reply bubbles"
+msgstr "Показывать пузырьки быстрого ответа"
+
+msgid "Hide quick reply bubbles"
+msgstr "Скрыть пузыри быстрого ответа"
+
+msgid "Theme: Auto"
+msgstr "Тема: Авто"
+
+msgid "Theme: Light"
+msgstr "Тема: Свет"
+
+msgid "Theme: Dark"
+msgstr "Тема: Темная"
+
+msgid "Enable desktop notifications"
+msgstr "Включить уведомления на рабочем столе"
+
+msgid "Mute notification sound"
+msgstr "Отключить звук уведомления"
+
+msgid "Unmute notification sound"
+msgstr "Включить звук уведомления"
+
+msgid "Notification sound on"
+msgstr "Звук уведомления включен"
+
+msgid "Notification sound off"
+msgstr "Звук уведомлений выключен"
+
+msgid "Export chats"
+msgstr "Экспорт чатов"
+
+msgid "Reminders"
+msgstr "Напоминания"
+
+msgid "Blocklist"
+msgstr "Черный список"
+
+msgid "Back to WordPress dashboard"
+msgstr "Вернуться к панели управления WordPress"
+
+msgid "Contact info"
+msgstr "Контактная информация"
+
+msgid "Unpin"
+msgstr "Открепить"
+
+msgid "Pin"
+msgstr "Пин-код"
+
+msgid "Mark as unread"
+msgstr "Отметить как непрочитанное"
+
+msgid "Unassign me"
+msgstr "Отменить назначение меня"
+
+msgid "Assign to me"
+msgstr "Назначьте мне"
+
+msgid "Create donation record"
+msgstr "Создать запись о пожертвовании"
+
+msgid "Donations and certificates"
+msgstr "Пожертвования и сертификаты"
+
+msgid "Export chat"
+msgstr "Экспортировать чат"
+
+msgid "Reopen chat"
+msgstr "Открыть чат снова"
+
+msgid "Close chat"
+msgstr "Закрыть чат"
+
+msgid "Assistant usage"
+msgstr "Использование Ассистента"
+
+msgid "Contact memory"
+msgstr "Контактная память"
+
+msgid "Remove from blocklist"
+msgstr "Удалить из черного списка"
+
+msgid "Add to blocklist (do not message)"
+msgstr "Добавить в черный список (не отправлять сообщения)"
+
+msgid "Clear chat history"
+msgstr "Очистить историю чата"
+
+msgid "Text (.md)"
+msgstr "Текст (.md)"
+
+msgid "Last 7 days"
+msgstr "Последние 7 дней"
+
+msgid "Last 30 days"
+msgstr "Последние 30 дней"
+
+msgid "Last 90 days"
+msgstr "Последние 90 дней"
+
+msgid "All"
+msgstr "Все"
+
+msgid "All chats"
+msgstr "Все чаты"
+
+msgid "Chats the assistant wrote in"
+msgstr "Чаты, в которых писал помощник"
+
+msgid "Chats an agent wrote in"
+msgstr "Чаты, в которых писал агент"
+
+msgid "Mask phones and emails"
+msgstr "Маскируйте телефоны и электронную почту"
+
+msgid "Include internal notes"
+msgstr "Включить внутренние примечания"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Download started"
+msgstr "Загрузка началась"
+
+msgid "Last message within"
+msgstr "Последнее сообщение внутри"
+
+msgid "Which chats?"
+msgstr "Какие чаты?"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "Messages are downloaded with time and author (contact, assistant, agent, automatic); the receipt check result is included."
+msgstr "Сообщения загружаются с указанием времени и автора (контакт, помощник, агент, автоматически); результат проверки поступления включен."
+
+msgid "The newest 1000 chats are downloaded, groups excluded. Messages include time and author (contact, assistant, agent, automatic)."
+msgstr "Загружаются новейшие 1000 чатов, за исключением групп. В сообщениях указывается время и автор (контакт, помощник, агент, автоматический)."
+
+msgid "CLEAR"
+msgstr "ЧИСТО"
+
+msgid "Keep receipts attached to donation records"
+msgstr "Храните квитанции вместе с записями о пожертвованиях."
+
+msgid "Also delete the contact memory"
+msgstr "Также удалите память контактов"
+
+msgid "Delete history permanently"
+msgstr "Удалить историю навсегда"
+
+msgid "{n} messages deleted"
+msgstr "Сообщения{n}удалены."
+
+msgid "All messages and files in the {c} chat are permanently deleted from this panel. Messages on the contact's phone and on the connected WhatsApp phone are not deleted. This cannot be undone."
+msgstr "Все сообщения и файлы в чате{c}будут безвозвратно удалены с этой панели. Сообщения на телефоне контакта и на подключенном телефоне WhatsApp не удаляются. Это невозможно отменить."
+
+msgid "The copy on the Evolution server will not be imported again; the assistant starts fresh in this chat. You may want to export the chat first."
+msgstr "Копия на сервере Evolution не будет импортирована повторно; помощник начинает в этом чате заново. Возможно, вы захотите сначала экспортировать чат."
+
+msgid "Type {w} to confirm"
+msgstr "Введите{w}для подтверждения."
+
+msgid "assistant"
+msgstr "помощник"
+
+msgid "summary"
+msgstr "резюме"
+
+msgid "team"
+msgstr "команда"
+
+msgid "Key (e.g. spouse's name)"
+msgstr "Ключ (например, имя супруга)"
+
+msgid "Value"
+msgstr "Значение"
+
+msgid "Attach"
+msgstr "Прикрепить"
+
+msgid "{n} items · about {t} tokens · the assistant reads them on every reply"
+msgstr "Элементы{n}· о токенах{t}· помощник читает их при каждом ответе"
+
+msgid "Contact memory is turned off in settings; items are not sent to the assistant."
+msgstr "Память контактов отключена в настройках; предметы не отправляются помощнику."
+
+msgid "Last summary: {s}"
+msgstr "Последний итог:{s}"
+
+msgid "queued"
+msgstr "в очереди"
+
+msgid "No items for this contact."
+msgstr "Для этого контакта нет товаров."
+
+msgid "Conversation summary"
+msgstr "Итог беседы"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Summarize now"
+msgstr "Подведите итоги сейчас"
+
+msgid "Summary queued"
+msgstr "Сводка в очереди"
+
+msgid "Delete all"
+msgstr "Удалить все"
+
+msgid "Delete all memory items for {c}?"
+msgstr "Удалить все элементы памяти для{c}?"
+
+msgid "If the contact asks, the assistant deletes the items itself. When the chat has been quiet for {h} hours, the conversation is summarized and important details are written here with date and time."
+msgstr "Если контакт спросит, помощник удалит элементы сам. Если в течение{h}часов тишина в чате, разговор суммируется и здесь записываются важные детали с указанием даты и времени."
+
+msgid "Loading…"
+msgstr "Загрузка..."
+
+msgid "Reason (e.g. the contact asked not to be messaged)"
+msgstr "Причина (например, контакт попросил не отправлять ему сообщения)"
+
+msgid "Add to blocklist"
+msgstr "Добавить в черный список"
+
+msgid "Added to blocklist"
+msgstr "Добавлен в черный список"
+
+msgid "From now on no WhatsApp, email or SMS will be sent to {c}, and the assistant will not talk to them. Their messages still arrive in the panel."
+msgstr "Отныне на{c}не будут отправляться WhatsApp, электронные письма или SMS, и помощник не будет с ними разговаривать. Их сообщения по-прежнему поступают на панель."
+
+msgid "Removed from blocklist"
+msgstr "Удален из черного списка"
+
+msgid "Search phone, email or reason"
+msgstr "Поиск телефона, электронной почты или причины"
+
+msgid "Email"
+msgstr "электронная почта"
+
+msgid "The blocklist is empty."
+msgstr "Черный список пуст."
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "{n} contacts in total"
+msgstr "Всего контактов{n}"
+
+msgid "Added manually"
+msgstr "Добавлено вручную"
+
+msgid "No WhatsApp, email or SMS is sent to these contacts and the assistant does not talk to them. The assistant adds anyone who says \"don't message me\". Removing someone from the list turns everything back on."
+msgstr "Этим контактам не отправляется WhatsApp, электронная почта или SMS, и помощник не разговаривает с ними. Ассистент добавляет всех, кто говорит «не писать мне». Удаление кого-либо из списка включает все обратно."
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "Stopped"
+msgstr "Остановлено"
+
+msgid "Finished"
+msgstr "Закончено"
+
+msgid "{n} reminders"
+msgstr "{n}напоминания"
+
+msgid "Reminders are turned off in the settings; due ones are not sent."
+msgstr "Напоминания отключены в настройках; причитающиеся не отправляются."
+
+msgid "No reminders. They show up here when a person asks the assistant something like \"remind me every month\"."
+msgstr "Никаких напоминаний. Они появляются здесь, когда человек просит ассистента что-то вроде «напоминать мне каждый месяц»."
+
+msgid "Next: {d}"
+msgstr "Далее:{d}"
+
+msgid "sent {n} times"
+msgstr "отправил{n}раз"
+
+msgid "Go to chat"
+msgstr "Перейти в чат"
+
+msgid "Stop"
+msgstr "Стоп"
+
+msgid "Resume"
+msgstr "Резюме"
+
+msgid "When a person asks, the assistant shows a summary and sets it up after approval; when it is due, the assistant writes and sends the message. The person can stop it by writing \"stop the reminder\"."
+msgstr "Когда человек спрашивает, помощник показывает резюме и настраивает его после одобрения; когда наступает срок, помощник пишет и отправляет сообщение. Человек может остановить это, написав «остановить напоминание»."
+
+msgid "Today's reply limit is reached; the chat is with the team."
+msgstr "Сегодняшний лимит ответов исчерпан; чат с командой."
+
+msgid "Assistant replies today"
+msgstr "Ассистент отвечает сегодня"
+
+msgid "Daily limit reset"
+msgstr "Сброс дневного лимита"
+
+msgid "Reset daily limit"
+msgstr "Сбросить дневной лимит"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Input tokens"
+msgstr "Входные токены"
+
+msgid "Output tokens"
+msgstr "Выходные токены"
+
+msgid "{n} requests"
+msgstr "{n}запросы"
+
+msgid "Daily reply limit per chat"
+msgstr "Дневной лимит ответов на чат"
+
+msgid "Applies to all chats (5-500). When reached, the person gets a \"we received your message\" reply and the chat is handed to the team."
+msgstr "Применяется ко всем чатам (5-500). При общении человек получает ответ «мы получили ваше сообщение», и чат передается команде."
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "Day"
+msgstr "День"
+
+msgid "Counts assistant replies, conversation summaries, reminders and receipt checks; test chat and benchmark are not counted. Cost at the provider's price (USD)."
+msgstr "Подсчитывает ответы помощника, сводки разговоров, напоминания и проверки квитанций; тестовый чат и бенчмарк не засчитываются. Стоимость по цене провайдера (USD)."
+
+msgid "Scroll to bottom"
+msgstr "Прокрутить вниз"
+
+msgid "Blocklisted: no messages are sent"
+msgstr "В черном списке: сообщения не отправляются"
+
+msgid "tap for contact info"
+msgstr "нажмите, чтобы увидеть контактную информацию"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Donation record"
+msgstr "Запись о пожертвовании"
+
+msgid "Pending donation"
+msgstr "Ожидается пожертвование"
+
+msgid "Assign"
+msgstr "Назначить"
+
+msgid "Chat closed"
+msgstr "Chat closed"
+
+msgid "{n} (me)"
+msgstr "{n}(я)"
+
+msgid "Remove assignment"
+msgstr "Удалить назначение"
+
+msgid "Older messages could not be fetched from the WhatsApp line: {e}"
+msgstr "Не удалось получить более старые сообщения из строки WhatsApp:{e}."
+
+msgid "Messages in this chat are visible only to authorized agents. Customers never see internal notes."
+msgstr "Сообщения в этом чате видны только авторизованным агентам. Клиенты никогда не видят внутренние заметки."
+
+msgid "Certificate"
+msgstr "Сертификат"
+
+msgid "Record"
+msgstr "Запись"
+
+msgid "AI suggestion"
+msgstr "предложение ИИ"
+
+msgid "AI does not read this message."
+msgstr "ИИ не читает это сообщение."
+
+msgid "The contact deleted this message"
+msgstr "Контакт удалил это сообщение"
+
+msgid "Deleted from the phone"
+msgstr "Удалено с телефона"
+
+msgid "Internal note · {n}"
+msgstr "Внутреннее примечание ·{n}"
+
+msgid "You"
+msgstr "ты"
+
+msgid "Message menu"
+msgstr "Меню сообщений"
+
+msgid "Retry"
+msgstr "Повторить попытку"
+
+msgid "This message was deleted"
+msgstr "Это сообщение было удалено"
+
+msgid "Image could not be loaded"
+msgstr "Изображение не удалось загрузить"
+
+msgid "Location"
+msgstr "Расположение"
+
+msgid "Send message"
+msgstr "Отправить сообщение"
+
+msgid "This message type can't be shown here. Check the phone."
+msgstr "Этот тип сообщения не может быть показан здесь. Проверьте телефон."
+
+msgid "Play"
+msgstr "Играть"
+
+msgid "Audio could not be played"
+msgstr "Не удалось воспроизвести аудио"
+
+msgid "The quoted message is further up; load older messages."
+msgstr "Цитируемое сообщение находится дальше; загрузить старые сообщения."
+
+msgid "Other emoji"
+msgstr "Другие смайлы"
+
+msgid "Reply"
+msgstr "Ответить"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Resend"
+msgstr "Отправить повторно"
+
+msgid "Match as receipt"
+msgstr "Сопоставить как квитанцию"
+
+msgid "Delete note"
+msgstr "Удалить заметку"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Loading preview…"
+msgstr "Загрузка предварительного просмотра..."
+
+msgid "Remove preview"
+msgstr "Удалить предварительный просмотр"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "Emoji"
+msgstr "Эмодзи"
+
+msgid "Record voice message"
+msgstr "Записать голосовое сообщение"
+
+msgid "Cancel note"
+msgstr "Отменить заметку"
+
+msgid "Type a message — / for quick replies"
+msgstr "Введите сообщение — / для быстрого ответа"
+
+msgid "Write a note only agents will see"
+msgstr "Напишите заметку, которую увидят только агенты"
+
+msgid "Video"
+msgstr "Видео"
+
+msgid "Voice message"
+msgstr "Голосовое сообщение"
+
+msgid "Cancel reply"
+msgstr "Отменить ответ"
+
+msgid "Photos & videos"
+msgstr "Фото и видео"
+
+msgid "Quick reply"
+msgstr "Быстрый ответ"
+
+msgid "This contact is blocklisted; no messages are sent."
+msgstr "Этот контакт занесен в черный список; никакие сообщения не отправляются."
+
+msgid "Preparing a suggestion…"
+msgstr "Готовим предложение..."
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Add a request: shorter, mention the price…"
+msgstr "Добавить запрос: короче, назовите цену..."
+
+msgid "Request for the suggestion"
+msgstr "Запросить предложение"
+
+msgid "Suggested reply"
+msgstr "Suggested reply"
+
+msgid "Another suggestion"
+msgstr "Еще одно предложение"
+
+msgid "Reload"
+msgstr "Перезагрузить"
+
+msgid "Assistant on"
+msgstr "Ассистент включен"
+
+msgid "Assistant waiting"
+msgstr "Ассистент ждет"
+
+msgid "Assistant off"
+msgstr "Ассистент выключен"
+
+msgid "The assistant replies to this chat automatically. Click to turn it off."
+msgstr "Ассистент отвечает в этот чат автоматически. Нажмите, чтобы выключить его."
+
+msgid "An agent wrote here, so the assistant is quiet for a while. Click to turn it on now."
+msgstr "Сюда написал агент, поэтому ассистент какое-то время молчит. Нажмите, чтобы включить его сейчас."
+
+msgid "The assistant is off in this chat. Click to turn it on."
+msgstr "Ассистент в этом чате отключен. Нажмите, чтобы включить его."
+
+msgid "Assistant turned on"
+msgstr "Ассистент включен."
+
+msgid "Assistant turned off"
+msgstr "Ассистент отключен"
+
+msgid "Drop the file to send"
+msgstr "Перетащите файл для отправки"
+
+msgid "Add a caption…"
+msgstr "Добавить подпись..."
+
+msgid "Caption"
+msgstr "Подпись"
+
+msgid "Send {n} files"
+msgstr "Отправить файлы{n}"
+
+msgid "This browser does not support audio recording."
+msgstr "Этот браузер не поддерживает запись звука."
+
+msgid "Could not access the microphone."
+msgstr "Не удалось получить доступ к микрофону."
+
+msgid "Delete recording"
+msgstr "Удалить запись"
+
+msgid "Recording…"
+msgstr "Запись..."
+
+msgid "No recently used emoji."
+msgstr "Нет недавно использованных смайлов."
+
+msgid "Recently used"
+msgstr "Недавно использовано"
+
+msgid "Add certificate message"
+msgstr "Добавить сообщение сертификата"
+
+msgid "Add link only"
+msgstr "Добавить только ссылку"
+
+msgid "No matching quick reply."
+msgstr "Нет соответствующего быстрого ответа."
+
+msgid "No quick replies yet. Add one with \"Edit\"."
+msgstr "Быстрых ответов пока нет. Добавьте один с помощью «Редактировать»."
+
+msgid "Search quick replies"
+msgstr "Поиск быстрых ответов"
+
+msgid "Used {n} times"
+msgstr "Использовано{n}раз"
+
+msgid "No quick replies found."
+msgstr "Быстрых ответов не найдено."
+
+msgid "e.g. Donation info"
+msgstr "например Информация о пожертвовании"
+
+msgid "example"
+msgstr "пример"
+
+msgid "Message text"
+msgstr "Текст сообщения"
+
+msgid "Insert variable:"
+msgstr "Вставьте переменную:"
+
+msgid "Back to list"
+msgstr "Вернуться к списку"
+
+msgid "Edit quick reply"
+msgstr "Изменить быстрый ответ"
+
+msgid "New quick reply"
+msgstr "Новый быстрый ответ"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Shortcut"
+msgstr "Ярлык"
+
+msgid "Category"
+msgstr "Категория"
+
+msgid "Type / and the shortcut in the message box to bring up this reply. Variables are filled with the contact's details when sending."
+msgstr "Введите / и ярлык в окне сообщения, чтобы открыть этот ответ. Переменные заполняются данными контакта при отправке."
+
+msgid "Delete this quick reply?"
+msgstr "Удалить этот быстрый ответ?"
+
+msgid "+1 555 000 0000"
+msgstr "+1 555 000 0000"
+
+msgid "Optional"
+msgstr "Необязательно"
+
+msgid "Start chat"
+msgstr "Начать чат"
+
+msgid "Checking…"
+msgstr "Проверка..."
+
+msgid "Invalid number"
+msgstr "Неверный номер"
+
+msgid "{p} uses WhatsApp"
+msgstr "{p}использует WhatsApp"
+
+msgid "{p} is not on WhatsApp"
+msgstr "{p}нет в WhatsApp"
+
+msgid "{p} — WhatsApp could not be checked, you can still try."
+msgstr "{p}— WhatsApp не удалось проверить, еще можно попробовать."
+
+msgid "A chat with this contact already exists: {n}"
+msgstr "Чат с этим контактом уже существует:{n}"
+
+msgid "Phone number"
+msgstr "Номер телефона"
+
+msgid "Contact name"
+msgstr "Контактное имя"
+
+msgid "From which line?"
+msgstr "С какой линии?"
+
+msgid "You can type the number with a leading 0, with +90 or with any country code."
+msgstr "Вы можете ввести номер с начальным 0, с +90 или с любым кодом страны."
+
+msgid "Note saved"
+msgstr "Заметка сохранена."
+
+msgid "Notes about this contact, visible only to agents"
+msgstr "Примечания об этом контакте видны только агентам"
+
+msgid "Labels are defined on the Settings page."
+msgstr "Метки определяются на странице настроек."
+
+msgid "— Unassigned —"
+msgstr "— Не назначено —"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Insert into message"
+msgstr "Вставить в сообщение"
+
+msgid "WhatsApp name: {n}"
+msgstr "Имя WhatsApp:{n}"
+
+msgid "Copy number"
+msgstr "Копировать номер"
+
+msgid "Labels"
+msgstr "Этикетки"
+
+msgid "Assigned agent"
+msgstr "Назначенный агент"
+
+msgid "Contact notes"
+msgstr "Контактные примечания"
+
+msgid "Create certificate"
+msgstr "Создать сертификат"
+
+msgid "Pin chat"
+msgstr "Закрепить чат"
+
+msgid "First contact: {d}"
+msgstr "Первый контакт:{d}"
+
+msgid "AI pre-check. The team makes the final check."
+msgstr "Предварительная проверка ИИ. Команда проводит финальную проверку."
+
+msgid "Receipt · {r}"
+msgstr "Квитанция ·{r}"
+
+msgid "No open donation type. Open one under Donations › Donation types."
+msgstr "Нет открытого типа пожертвования. Откройте его в разделе Пожертвования › Типы пожертвований."
+
+msgid "Amount"
+msgstr "Сумма"
+
+msgid "Visible in the panel only"
+msgstr "Видно только на панели"
+
+msgid "One name per line"
+msgstr "Одно имя в строке"
+
+msgid "The donor approved the proxy text"
+msgstr "Донор утвердил текст доверенности"
+
+msgid "On behalf of"
+msgstr "От имени"
+
+msgid "One name per unit. Empty ones count as the donor."
+msgstr "Одно имя на единицу. Пустые считаются донором."
+
+msgid "Send the person a WhatsApp message"
+msgstr "Отправьте человеку сообщение в WhatsApp"
+
+msgid "Awaiting payment"
+msgstr "Ожидание оплаты"
+
+msgid "Paid"
+msgstr "Платный"
+
+msgid "Also create and send a certificate"
+msgstr "Также создайте и отправьте сертификат"
+
+msgid "Certificate template"
+msgstr "Шаблон сертификата"
+
+msgid "Full name and quantity are taken from the donation."
+msgstr "Полное имя и количество взяты из пожертвования."
+
+msgid "Option"
+msgstr "Вариант"
+
+msgid "Quantity"
+msgstr "Количество"
+
+msgid "Total: {a}"
+msgstr "Итого:{a}"
+
+msgid "This option has no price."
+msgstr "Этот вариант не имеет цены."
+
+msgid "Donation saved: {d}"
+msgstr "Пожертвование сохранено:{d}"
+
+msgid "Donation record from receipt"
+msgstr "Запись о пожертвовании из квитанции"
+
+msgid "Donation type"
+msgstr "Тип пожертвования"
+
+msgid "Payment"
+msgstr "Оплата"
+
+msgid "Payment method"
+msgstr "Способ оплаты"
+
+msgid "Receipt / transaction no"
+msgstr "Номер квитанции/транзакции"
+
+msgid "Donor"
+msgstr "Донор"
+
+msgid "Full name"
+msgstr "Полное имя"
+
+msgid "Variables such as {donation}, {amount} and {bank} are filled in when sending."
+msgstr "Такие переменные, как{donation},{amount}и{bank}, заполняются при отправке."
+
+msgid "No active certificate template."
+msgstr "Нет активного шаблона сертификата."
+
+msgid "No event"
+msgstr "Нет события"
+
+msgid "Send to the person on WhatsApp"
+msgstr "Отправить человеку в WhatsApp"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Full name is required."
+msgstr "Требуется полное имя."
+
+msgid "Certificate created: {n}"
+msgstr "Сертификат создан:{n}."
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "The message text comes from the WhatsApp template in Flux Certificates."
+msgstr "Текст сообщения взят из шаблона WhatsApp в сертификатах Flux."
+
+msgid "Preparing certificate…"
+msgstr "Готовим сертификат..."
+
+msgid "Mark the pending donation as \"Paid\""
+msgstr "Отметьте ожидающее пожертвование как «Оплаченное»"
+
+msgid "Send the person a confirmation message"
+msgstr "Отправьте человеку подтверждающее сообщение"
+
+msgid "Search other records: name, phone, certificate no"
+msgstr "Поиск других записей: имя, телефон, номер сертификата"
+
+msgid "Match"
+msgstr "Матч"
+
+msgid "{n} receipts"
+msgstr "{n}квитанции"
+
+msgid "Pending donations"
+msgstr "Ожидаемые пожертвования"
+
+msgid "This person's donations"
+msgstr "Пожертвования этого человека"
+
+msgid "This person's certificates"
+msgstr "Сертификаты этого человека"
+
+msgid "No records for this person. Search below or create a new donation record."
+msgstr "Нет записей об этом человеке. Выполните поиск ниже или создайте новую запись о пожертвовании."
+
+msgid "Certificates"
+msgstr "Сертификаты"
+
+msgid "Receipt added to the record"
+msgstr "Квитанция добавлена в запись"
+
+msgid "New donation record"
+msgstr "Новый рекорд пожертвований"
+
+msgid "Match receipt with a record"
+msgstr "Квитанция о совпадении с записью"
+
+msgid "Search by name, phone, certificate no"
+msgstr "Поиск по имени, телефону, номеру сертификата"
+
+msgid "Pending"
+msgstr "Ожидается"
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "No records yet."
+msgstr "Записей пока нет."
+
+msgid "{n} pcs"
+msgstr "{n}шт."
+
+msgid "Receipt"
+msgstr "Квитанция"
+
+msgid "This person has no donations."
+msgstr "У этого человека нет пожертвований."
+
+msgid "This person has no certificates."
+msgstr "У этого человека нет сертификатов."
+
+msgid "{n}: donations and certificates"
+msgstr "{n}: пожертвования и сертификаты"
+
+msgid "Open chat"
+msgstr "Открыть чат"
+
+msgid "Open certificate"
+msgstr "Открытый сертификат"
+
+msgid "Mark as paid"
+msgstr "Отметить как оплаченное"
+
+msgid "Donation confirmed"
+msgstr "Пожертвование подтверждено"
+
+msgid "Open donation record"
+msgstr "Открыть запись о пожертвовании"
+
+msgid "Open in certificate list"
+msgstr "Открыть в списке сертификатов"
+
+msgid "Edit quick replies"
+msgstr "Редактировать быстрые ответы"
+
+msgid "Notifications enabled"
+msgstr "Уведомления включены"
+
+msgid "Notification permission denied"
+msgstr "Разрешение на уведомление отклонено"
+
+msgid "Session expired. Please reload the page."
+msgstr "Сессия истекла. Пожалуйста, перезагрузите страницу."
+
+msgid "Can't reach the server, retrying…"
+msgstr "Не удается связаться с сервером, повторяю попытку..."
+
+msgid "Unread"
+msgstr "Непрочитано"
+
+msgid "Assigned to me"
+msgstr "Назначено мне"
+
+msgid "Unassigned"
+msgstr "Неназначенный"
+
+msgid "Organization"
+msgstr "Организация"
+
+msgid "Invalid address."
+msgstr "Неверный адрес."
+
+msgid "donated for"
+msgstr "пожертвовано для"
+
+msgid "No new messages to summarize."
+msgstr "Новых сообщений нет."
+
+msgid "The AI summary could not be read."
+msgstr "Не удалось прочитать сводку AI."
+
+msgid "%1$d incoming messages summarized, %2$d items written."
+msgstr "%1$dсуммируются входящие сообщения, записываются элементы%2$d."
+
+msgid "Key and value are required."
+msgstr "Требуются ключ и значение."
+
+msgid "AI Chat"
+msgstr "AI-чат"
+
+msgid "Team (%s)"
+msgstr "Команда (%s)"
+
+msgid "Team (phone)"
+msgstr "Команда (телефон)"
+
+msgid "Free"
+msgstr "Бесплатно"
+
+msgid "Provider"
+msgstr "Поставщик"
+
+msgid "min"
+msgstr "мин"
+
+msgid "max"
+msgstr "Макс"
+
+msgid "Input price $"
+msgstr "Входная цена $"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Price: 1M tokens input / output"
+msgstr "Цена: ввод/вывод 1 млн токенов"
+
+msgid "Choose a model"
+msgstr "Выберите модель"
+
+msgid "Search {n} models…"
+msgstr "Поиск моделей{n}..."
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "{n} context"
+msgstr "Контекст{n}"
+
+msgid "tools"
+msgstr "инструменты"
+
+msgid "vision"
+msgstr "видение"
+
+msgid "{n} more models; narrow your search."
+msgstr "{n}больше моделей; сузьте область поиска."
+
+msgid "Use: {id}"
+msgstr "Используйте:{id}"
+
+msgid "Not in the list, ID entered manually"
+msgstr "Нет в списке, ID введен вручную"
+
+msgid "Could not load the model list:"
+msgstr "Не удалось загрузить список моделей:"
+
+msgid "No matching model."
+msgstr "Нет подходящей модели."
+
+msgid "Loading models…"
+msgstr "Загрузка моделей..."
+
+msgid "AI pre-check"
+msgstr "Предварительная проверка ИИ"
+
+msgid "AI approval"
+msgstr "одобрение ИИ"
+
+msgid "Receipt pre-check (AI): "
+msgstr "Предварительная проверка поступления (AI):"
+
+msgid "Awaiting staff approval"
+msgstr "Ожидаем одобрения персонала"
+
+msgid "Receipt received, final check by the team"
+msgstr "Квитанция получена, окончательная проверка командой"
+
+msgid "File could not be read."
+msgstr "Файл не может быть прочитан."
+
+msgid "Not a photo or PDF."
+msgstr "Не фото или PDF."
+
+msgid "The model could not read the file."
+msgstr "Модель не смогла прочитать файл."
+
+msgid "Amount %1$s (expected %2$s)"
+msgstr "Сумма%1$s(ожидаемая%2$s)"
+
+msgid "Recipient"
+msgstr "Получатель"
+
+msgid "Sender"
+msgstr "Отправитель"
+
+msgid "Receipt no"
+msgstr "Номер квитанции"
+
+msgid "Matches the donation"
+msgstr "Соответствует пожертвованию"
+
+msgid "Does not match the donation"
+msgstr "Не соответствует пожертвованию"
+
+msgid "Previously uploaded receipt"
+msgstr "Ранее загруженная квитанция"
+
+msgid "Receipt, no donation to match"
+msgstr "Квитанция, нет соответствующего пожертвования"
+
+msgid "Not a receipt"
+msgstr "Не квитанция"
+
+msgid "Could not read"
+msgstr "Не смог прочитать"
+
+msgid "Not checked"
+msgstr "Не проверено"
+
+msgid "We received your receipt, thank you 🌱 We'll get back to you about your payment as soon as possible."
+msgstr "Мы получили вашу квитанцию, спасибо 🌱 Мы свяжемся с вами по поводу оплаты как можно скорее."
+
+msgid "We received your receipt, thank you 🌱 Your donation is confirmed."
+msgstr "Мы получили вашу квитанцию, спасибо 🌱 Ваше пожертвование подтверждено."
+
+msgid "We had already received this receipt, thank you 🌱 We'll get back to you about your payment as soon as possible."
+msgstr "Мы уже получили эту квитанцию, спасибо 🌱 Мы свяжемся с вами по поводу оплаты как можно скорее."
+
+msgid "This receipt seems to have been uploaded to our system before. The same receipt cannot be used for a second donation. If you made a different payment, please send that receipt; our team will also check."
+msgstr "Похоже, эта квитанция уже была загружена в нашу систему ранее. Эту же квитанцию ​​нельзя использовать для второго пожертвования. Если вы произвели другой платеж, отправьте эту квитанцию; наша команда также проверит."
+
+msgid "We received your receipt. The amount on it (%1$s) does not seem to match your donation amount (%2$s). Could you check it? If you made a different payment, you can write here; our team will also take a look."
+msgstr "Мы получили вашу квитанцию. Сумма на нем (%1$s), похоже, не соответствует сумме вашего пожертвования (%2$s). Не могли бы вы это проверить? Если вы произвели другой платеж, вы можете написать здесь; наша команда также рассмотрит."
+
+msgid "We received your receipt, but the recipient on it does not seem to be our association. Donations are only made to our account in the name of \"%s\". Could you check? Our team will also take a look."
+msgstr "Мы получили вашу квитанцию, но получатель на ней, похоже, не является нашей ассоциацией. Пожертвования переводятся на наш счет только на имя «%s». Не могли бы вы проверить? Наша команда тоже присмотрится."
+
+msgid "We received your receipt, but the recipient on it does not seem to match our account. Could you check? Our team will also take a look."
+msgstr "Мы получили вашу квитанцию, но получатель на ней, похоже, не соответствует нашему аккаунту. Не могли бы вы проверить? Наша команда тоже присмотрится."
+
+msgid "The file you sent does not look like a payment receipt. If you have paid, you can send the receipt or a screenshot of the payment screen here."
+msgstr "Отправленный вами файл не похож на квитанцию об оплате. Если вы произвели оплату, вы можете отправить сюда квитанцию ​​или скриншот экрана оплаты."
+
+msgid "Every day"
+msgstr "Каждый день"
+
+msgid "Every week"
+msgstr "Каждую неделю"
+
+msgid "Every month"
+msgstr "Каждый месяц"
+
+msgid "Every year"
+msgstr "Каждый год"
+
+msgid "Once"
+msgstr "Однажды"
+
+msgid "Every day at %s"
+msgstr "Каждый день на%s"
+
+msgid "Every week on %1$s at %2$s"
+msgstr "Каждую неделю на%1$sв%2$s"
+
+msgid "Every month on day %1$d at %2$s"
+msgstr "Каждый месяц в день%1$dв%2$s."
+
+msgid "Every year on %1$s at %2$s"
+msgstr "Каждый год на%1$sна%2$s."
+
+msgid "%1$s: %2$s"
+msgstr "%1$s:%2$s"
+
+msgid "First: %s"
+msgstr "Первый:%s"
+
+msgid "The person stopped the reminder: %s"
+msgstr "Пользователь остановил напоминание:%s."
+
+msgid "The assistant set a reminder: %1$s (%2$s)"
+msgstr "Ассистент установил напоминание:%1$s(%2$s)."
+
+msgid "Did not run on time, skipped."
+msgstr "Не добежал вовремя, пропустил."
+
+msgid "No reminder or chat."
+msgstr "Никаких напоминаний и чата."
+
+msgid "The person is on the blocklist."
+msgstr "Человек внесен в черный список."
+
+msgid "reminder time"
+msgstr "время напоминания"
+
+msgid "The message could not be sent."
+msgstr "Сообщение не удалось отправить."
+
+msgid "Reminder sent: %s"
+msgstr "Напоминание отправлено:%s"
+
+msgid "The reminder could not be updated."
+msgstr "Не удалось обновить напоминание."
+
+msgid "Staff daily report"
+msgstr "Ежедневный отчет сотрудников"
+
+msgid "Thanks for your work today, every sapling is a hope 🌱"
+msgstr "Спасибо за вашу сегодняшнюю работу, каждый саженец - это надежда 🌱"
+
+msgid "Let's plant even more saplings together tomorrow 💪"
+msgstr "Давайте завтра вместе посадим еще больше саженцев 💪"
+
+msgid "Small steps grow great forests 🌳"
+msgstr "Маленькими шагами растут большие леса 🌳"
+
+msgid "Manager weekly overall report"
+msgstr "Еженедельный общий отчет менеджера"
+
+msgid "This month"
+msgstr "В этом месяце"
+
+msgid "Donation report"
+msgstr "Отчет о пожертвовании"
+
+msgid "Hello %s,"
+msgstr "Привет,%s!"
+
+msgid "✅ Paid: %1$d donations · %2$s (%3$d units)"
+msgstr "✅ Платные: пожертвования%1$d·%2$s(единицы%3$d)"
+
+msgid "⏳ Awaiting payment: %1$d · %2$s"
+msgstr "⏳ Ожидается платеж:%1$d·%2$s"
+
+msgid "❌ Cancelled: %d"
+msgstr "❌ Отменено:%d."
+
+msgid "• %1$s: %2$d paid (%3$s), %4$d pending"
+msgstr "•%1$s:%2$dоплачен (%3$s),%4$dв ожидании"
+
+msgid "Staff"
+msgstr "Персонал"
+
+msgid "No donations linked to you in this period."
+msgstr "За этот период с вами не было связано ни одного пожертвования."
+
+msgid "📅 This month: %1$d donations · %2$s"
+msgstr "📅 В этом месяце: пожертвования%1$d·%2$s"
+
+msgid "WhatsApp reports"
+msgstr "Отчеты WhatsApp"
+
+msgid "Reports"
+msgstr "Отчеты"
+
+msgid "New report"
+msgstr "Новый отчет"
+
+msgid "Your profile has no WhatsApp number (Users › Profile)."
+msgstr "В вашем профиле нет номера WhatsApp (Пользователи › Профиль)."
+
+msgid "Scheduled donation reports for staff and managers; a short motivational line can be added at the end."
+msgstr "Плановые отчеты о пожертвованиях для сотрудников и руководителей; В конце можно добавить короткую мотивационную строку."
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "%d messages sent."
+msgstr "Сообщения%dотправлены."
+
+msgid "Reports need Flux Roles 1.1.0 and Flux Donations."
+msgstr "Для отчетов необходимы роли Flux 1.1.0 и пожертвования Flux."
+
+msgid "Report name"
+msgstr "Название отчета"
+
+msgid "To"
+msgstr "Чтобы"
+
+msgid "Everyone who can receive reports"
+msgstr "Все, кто может получать отчеты"
+
+msgid "Those who can see the overall report (managers)"
+msgstr "Те, кто может видеть общий отчет (менеджеры)"
+
+msgid "Selected people"
+msgstr "Избранные люди"
+
+msgid "Content"
+msgstr "Содержание"
+
+msgid "The person's own donations"
+msgstr "Собственные пожертвования человека"
+
+msgid "Overall totals + per staff"
+msgstr "Общие итоги + на одного сотрудника"
+
+msgid "Period"
+msgstr "Период"
+
+msgid "Frequency"
+msgstr "Частота"
+
+msgid "Day of week"
+msgstr "День недели"
+
+msgid "Day of month"
+msgstr "День месяца"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "no number"
+msgstr "нет номера"
+
+msgid "Motivational lines (one per line; one is added at random to each report)"
+msgstr "Мотивационные строки (по одной в каждой строке; одна добавляется в каждый отчет случайным образом)"
+
+msgid "%d recipients (with a registered number and permission)."
+msgstr "Получатели%d(с зарегистрированным номером и разрешением)."
+
+msgid "Last sent: %s."
+msgstr "Последняя отправка:%s."
+
+msgid "Preview (for you)"
+msgstr "Предварительный просмотр (для вас)"
+
+msgid "Send me a test"
+msgstr "Отправьте мне тест"
+
+msgid "Send the report to all recipients now?"
+msgstr "Отправить отчет всем получателям сейчас?"
+
+msgid "Send to everyone now"
+msgstr "Отправить всем сейчас"
+
+msgid "Delete this report?"
+msgstr "Удалить этот отчет?"
+
+msgid "+ New report"
+msgstr "+ Новый отчет"
+
+msgid "The recipient's number comes from Users › Profile › WhatsApp number; permissions from Users › Roles and access (receive reports, view overall report, manage reports). Reports go out at the chosen time; without a server scheduler they are sent on the next site visit or chat panel use."
+msgstr "Номер получателя берется из Пользователи › Профиль › Номер WhatsApp; разрешения пользователей › Роли и доступ (получение отчетов, просмотр общего отчета, управление отчетами). Отчеты выходят в выбранное время; без планировщика сервера они отправляются при следующем посещении сайта или использовании панели чата."
+
+msgid "Invalid phone number."
+msgstr "Неверный номер телефона."
+
+msgid "First add a WhatsApp connection under Settings › Connections."
+msgstr "Сначала добавьте соединение WhatsApp в разделе «Настройки» > «Подключения»."
+
+msgid "%1$s assigned the chat to %2$s"
+msgstr "%1$sназначил чат пользователю%2$s."
+
+msgid "%s removed the chat assignment"
+msgstr "%sудалил назначение чата"
+
+msgid "%s closed the chat"
+msgstr "%sзакрыл чат"
+
+msgid "%s reopened the chat"
+msgstr "%sвновь открыл чат"
+
+msgid "File is too large (max %s)."
+msgstr "Файл слишком велик (максимум%s)."
+
+msgid "This file type cannot be sent."
+msgstr "Этот тип файла не может быть отправлен."
+
+msgid "File could not be uploaded."
+msgstr "Не удалось загрузить файл."
+
+msgid "This message cannot be resent."
+msgstr "Это сообщение нельзя отправить повторно."
+
+msgid "Can't react to this message."
+msgstr "Не могу отреагировать на это сообщение."
+
+msgid "You can only delete your own notes."
+msgstr "Вы можете удалять только свои заметки."
+
+msgid "Reply text cannot be empty."
+msgstr "Текст ответа не может быть пустым."
+
+msgid "Connection not found. Save the settings first."
+msgstr "Соединение не найдено. Сначала сохраните настройки."
+
+msgid "The message was only image code; it was not sent."
+msgstr "Сообщение представляло собой всего лишь код изображения; оно не было отправлено."
+
+msgid "This contact is blocklisted; no messages are sent. Remove them from the blocklist to write again."
+msgstr "Этот контакт занесен в черный список; никакие сообщения не отправляются. Удалите их из черного списка, чтобы написать снова."
+
+msgid "Message could not be saved."
+msgstr "Сообщение не удалось сохранить."
+
+msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API (version %s) could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
+msgstr "Этот контакт пишет со скрытого номера WhatsApp (@lid) и Evolution API (версия%s) не смог отправить на этот адрес. Обновите сервер Evolution API до версии 2.3 или новее; если приходит реальный номер контакта, плагин отправляет туда."
+
+msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
+msgstr "Этот контакт пишет со скрытого номера WhatsApp (@lid), и Evolution API не смог отправить сообщение на этот адрес. Обновите сервер Evolution API до версии 2.3 или новее; если приходит реальный номер контакта, плагин отправляет туда."
+
+msgid "No WhatsApp connection."
+msgstr "Нет подключения к WhatsApp."
+
+msgid "Connected ✓"
+msgstr "Подключено ✓"
+
+msgid "Not connected (state: %s). Connect with QR."
+msgstr "Не подключено (состояние:%s). Подключитесь с помощью QR."
+
+msgid "Webhook points to this site ✓"
+msgstr "Webhook указывает на этот сайт ✓"
+
+msgid "Evolution API version: %s"
+msgstr "Версия API эволюции:%s."
+
+msgid "(old: replies to hidden-number (@lid) contacts may fail, update to 2.3 or later)"
+msgstr "(старая версия: ответы на контакты со скрытым номером (@lid) могут не получиться, обновите до версии 2.3 или более поздней)"
+
+msgid "The webhook is not pointed at this site. Press \"Set up webhook\"."
+msgstr "Вебхук не направлен на этот сайт. Нажмите «Настроить вебхук»."
+
+msgid "Webhook set up ✓ Incoming messages will now arrive here."
+msgstr "Настройка вебхука ✓ Теперь входящие сообщения будут поступать сюда."
+
+msgid "Importing recent chats, this may take a while…"
+msgstr "Импорт последних чатов. Это может занять некоторое время..."
+
+msgid "Messages stored in Evolution: %s"
+msgstr "Сообщения, хранящиеся в Evolution:%s"
+
+msgid "Evolution does not store messages, so older messages cannot be loaded. On the Evolution server set DATABASE_SAVE_DATA_NEW_MESSAGE and DATABASE_SAVE_DATA_HISTORIC to true; for older conversations, keep \"Sync full history\" on in the instance settings when you reconnect the line with QR."
+msgstr "Evolution не хранит сообщения, поэтому старые сообщения загрузить невозможно. На сервере Evolution установите для DATABASE_SAVE_DATA_NEW_MESSAGE и DATABASE_SAVE_DATA_HISTORIC значение true; для более старых разговоров оставьте включенным параметр «Синхронизировать полную историю» в настройках экземпляра при повторном подключении линии с помощью QR."
+
+msgid "%1$s chats, %2$s messages imported ✓"
+msgstr "Импортированы чаты%1$s, сообщения%2$s✓"
+
+msgid "Scan this code via WhatsApp › Linked devices › Link a device."
+msgstr "Отсканируйте этот код через WhatsApp › Связанные устройства › Привяжите устройство."
+
+msgid "Pairing code:"
+msgstr "Код сопряжения:"
+
+msgid "This line is already connected ✓"
+msgstr "Эта линия уже подключена ✓"
+
+msgid "Save the settings first."
+msgstr "Сначала сохраните настройки."
+
+msgid "Error:"
+msgstr "Ошибка:"
+
+msgid "Delete this connection? Chat history is kept."
+msgstr "Удалить это соединение? История чата сохраняется."
+
+msgid "Asking the AI…"
+msgstr "Спросить ИИ..."
+
+msgid "Working ✓ (%2$s ms): %1$s"
+msgstr "Работает ✓ (%2$sмс):%1$s"
+
+msgid "Save the key and model first."
+msgstr "Сначала сохраните ключ и модель."
+
+msgid "Connections"
+msgstr "Соединения"
+
+msgid "Auto replies"
+msgstr "Автоответы"
+
+msgid "AI and assistant"
+msgstr "ИИ и помощник"
+
+msgid "System check"
+msgstr "Проверка системы"
+
+msgid "Connect your WhatsApp line, manage auto replies and labels."
+msgstr "Подключите свою линию WhatsApp, управляйте автоответами и метками."
+
+msgid "Open chats"
+msgstr "Открытые чаты"
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "Connections and settings the call center needs. Saved status is shown; use the \"test\" buttons on each tab for a live check. The same checks also appear with the other plugins on the theme's system-check screen."
+msgstr "Соединения и настройки, необходимые колл-центру. Отображается сохраненный статус; используйте кнопки «тест» на каждой вкладке для проверки в реальном времени. Те же проверки отображаются и с другими плагинами на экране проверки системы темы."
+
+msgid "WhatsApp lines"
+msgstr "Линии WhatsApp"
+
+msgid "Messages are sent and received through Evolution API. WhatsApp connections are managed in Flux Mail; choose which one to use here. The URL and API key stay there, so you do not need to update them here when they change."
+msgstr "Сообщения отправляются и принимаются через Evolution API. Подключения WhatsApp управляются в Flux Mail; выберите, какой из них использовать здесь. URL-адрес и ключ API остаются там, поэтому вам не нужно обновлять их здесь при их изменении."
+
+msgid "Communication › Connections"
+msgstr "Связь › Соединения"
+
+msgid "Messages are sent and received via Evolution API. If an Evolution provider is set up in Flux Certificates, you can pick the same connection; the URL and API key stay there."
+msgstr "Сообщения отправляются и принимаются через Evolution API. Если провайдер Evolution настроен в сертификатах Flux, вы можете выбрать то же соединение; URL-адрес и ключ API остаются там."
+
+msgid "Add line"
+msgstr "Добавить строку"
+
+msgid "Setup steps"
+msgstr "Шаги настройки"
+
+msgid "Add the line and save."
+msgstr "Добавьте строку и сохраните."
+
+msgid "Use \"Test connection\" to see that Evolution is reachable. If the line is not linked, choose \"Connect with QR\" and scan it from the phone."
+msgstr "Используйте «Проверочное соединение», чтобы убедиться, что Evolution доступен. Если линия не связана, выберите «Подключиться с помощью QR» и отсканируйте ее с телефона."
+
+msgid "Press \"Set up webhook\". Incoming messages, and messages sent from the phone and from Flux Certificates, then appear here live."
+msgstr "Нажмите «Настроить вебхук». Входящие сообщения и сообщения, отправленные с телефона и из сертификатов Flux, затем появляются здесь в прямом эфире."
+
+msgid "Optionally bring in past messages with \"Import recent chats\"."
+msgstr "При желании можно добавить прошлые сообщения с помощью «Импортировать последние чаты»."
+
+msgid "connected"
+msgstr "подключен"
+
+msgid "connecting"
+msgstr "подключение"
+
+msgid "not connected"
+msgstr "не подключен"
+
+msgid "not on server"
+msgstr "не на сервере"
+
+msgid "unreachable"
+msgstr "недостижимый"
+
+msgid "Flux Mail connection: %s"
+msgstr "Соединение Flux Mail:%s"
+
+msgid "Flux Mail connection #%d (not found or disabled)"
+msgstr "Соединение Flux Mail #%d(не найдено или отключено)"
+
+msgid "Use Flux Certificates provider: %s"
+msgstr "Используйте поставщика сертификатов Flux:%s."
+
+msgid "Enter separate Evolution API details"
+msgstr "Введите отдельные данные Evolution API."
+
+msgid "Line name (e.g. Main line)"
+msgstr "Название линии (например, основная линия)"
+
+msgid "Connection details"
+msgstr "Детали подключения"
+
+msgid "API URL"
+msgstr "URL-адрес API"
+
+msgid "Instance name"
+msgstr "Имя экземпляра"
+
+msgid "API key (apikey)"
+msgstr "API-ключ (apikey)"
+
+msgid "•••••••• (saved; type to change)"
+msgstr "•••••••• (сохранено; тип для изменения)"
+
+msgid "Webhook URL"
+msgstr "URL вебхука"
+
+msgid "Regenerate secret key"
+msgstr "Восстановить секретный ключ"
+
+msgid "Last webhook: %s"
+msgstr "Последний вебхук:%s"
+
+msgid "No webhook received yet."
+msgstr "Вебхук еще не получен."
+
+msgid "Test connection"
+msgstr "Тестовое соединение"
+
+msgid "Connect with QR"
+msgstr "Подключитесь с помощью QR"
+
+msgid "QR, status and accounts: Communication › Connections"
+msgstr "QR, статус и учетные записи: Общение › Соединения"
+
+msgid "Set up webhook"
+msgstr "Настройка вебхука"
+
+msgid "Import recent chats"
+msgstr "Импортировать последние чаты"
+
+msgid "The webhook URL and test buttons appear after saving."
+msgstr "URL-адрес веб-перехватчика и кнопки проверки появятся после сохранения."
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+msgid "Panel title"
+msgstr "Название панели"
+
+msgid "Site name if empty. The {brand} variable uses this too."
+msgstr "Имя сайта, если пусто. Переменная{brand}также использует это."
+
+msgid "Accent color"
+msgstr "Акцентный цвет"
+
+msgid "Behavior"
+msgstr "Поведение"
+
+msgid "Send read receipts (blue ticks) when a chat is opened"
+msgstr "Отправлять уведомления о прочтении (синие галочки) при открытии чата"
+
+msgid "Prefix messages with the agent's name (*Name:*)"
+msgstr "Префикс сообщений с именем агента (*Имя:*)"
+
+msgid "Agents see only chats assigned to them and unassigned chats (admins see all)"
+msgstr "Агенты видят только назначенные им чаты и неназначенные чаты (администраторы видят все)"
+
+msgid "Also show WhatsApp group messages"
+msgstr "Также показывать групповые сообщения WhatsApp"
+
+msgid "New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app"
+msgstr "Новый интерфейс (экспериментальный): страница чатов открывается на том же экране, что и настольное и мобильное приложение."
+
+msgid "Live update interval (sec)"
+msgstr "Интервал обновления в реальном времени (сек)"
+
+msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
+msgstr "Открытая вкладка проверяет наличие новых сообщений через этот интервал (рекомендуется 10). В фоновой вкладке проверяется раз в минуту, а после ошибок реже."
+
+msgid "Agents"
+msgstr "Агенты"
+
+msgid "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access."
+msgstr "Назначьте пользователю роль%s; они видят только экран чата и не могут открыть настройки. Администраторы всегда имеют доступ."
+
+msgid "Add new user"
+msgstr "Добавить нового пользователя"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Also delete all chats, messages and media files when the plugin is deleted"
+msgstr "Также удалите все чаты, сообщения и медиафайлы при удалении плагина."
+
+msgid "Media files are kept in wp-content/uploads/flx-chat, closed to outside access. They move with uploads when the site is migrated."
+msgstr "Медиа-файлы хранятся в папке wp-content/uploads/flx-chat и закрыты для внешнего доступа. Они перемещаются вместе с загрузками при переносе сайта."
+
+msgid "Mon"
+msgstr "Пн."
+
+msgid "Tue"
+msgstr "Вт"
+
+msgid "Wed"
+msgstr "ср."
+
+msgid "Thu"
+msgstr "Чт"
+
+msgid "Fri"
+msgstr "Пт"
+
+msgid "Sat"
+msgstr "Суббота"
+
+msgid "Sun"
+msgstr "Солнце"
+
+msgid "Welcome message"
+msgstr "Приветственное сообщение"
+
+msgid "Send automatically to people who write to us for the first time"
+msgstr "Отправлять автоматически людям, которые пишут нам впервые"
+
+msgid "Away message"
+msgstr "Сообщение об отсутствии"
+
+msgid "Auto reply to messages received outside business hours"
+msgstr "Автоматический ответ на сообщения, полученные в нерабочее время"
+
+msgid "Business days"
+msgstr "Рабочие дни"
+
+msgid "Start"
+msgstr "Старт"
+
+msgid "End"
+msgstr "Конец"
+
+msgid "At most once per contact every (hours)"
+msgstr "Не более одного раза за контакт каждые (часы)"
+
+msgid "Timezone: %1$s. Now: %2$s."
+msgstr "Часовой пояс:%1$s. Сейчас:%2$s."
+
+msgid "within business hours"
+msgstr "в рабочее время"
+
+msgid "outside business hours"
+msgstr "вне рабочего времени"
+
+msgid "The {first_name}, {name}, {brand}, {site}, {date} variables can be used in the texts."
+msgstr "В текстах можно использовать переменные{first_name},{name},{brand},{site},{date}."
+
+msgid "Chat labels"
+msgstr "Chat labels"
+
+msgid "Label chats and filter the list (e.g. Donation, Complaint, Follow-up)."
+msgstr "Пометьте чаты и отфильтруйте список (например, «Пожертвование», «Жалоба», «Последующие действия»)."
+
+msgid "Add label"
+msgstr "Добавить ярлык"
+
+msgid "Label name"
+msgstr "Название ярлыка"
+
+msgid "Creating records from chats"
+msgstr "Создание записей из чатов"
+
+msgid "Buttons in the chat header create a donation record (Flux Donate) and a certificate (Flux Certificates), and an incoming receipt is matched with a record. If a plugin is not installed, its button is hidden."
+msgstr "Кнопки в шапке чата создают запись о пожертвовании (Flux Donate) и сертификат (Flux Certificates), а входящая квитанция сопоставляется с записью. Если плагин не установлен, его кнопка скрыта."
+
+msgid "Agents can create donation records and match receipts"
+msgstr "Агенты могут создавать записи о пожертвованиях и сопоставлять квитанции."
+
+msgid "Agents can create and send certificates"
+msgstr "Агенты могут создавать и отправлять сертификаты"
+
+msgid "Show quick reply bubbles above the message box"
+msgstr "Показывать всплывающие окна быстрого ответа над окном сообщения"
+
+msgid "Donation messages"
+msgstr "Сообщения о пожертвованиях"
+
+msgid "Ready texts sent to the person when a record is created (editable before sending). If left empty, the default text is used."
+msgstr "Готовые тексты отправляются человеку при создании записи (редактируются перед отправкой). Если оставить пустым, используется текст по умолчанию."
+
+msgid "Awaiting payment (promised transfer)"
+msgstr "Ожидание платежа (обещанный перевод)"
+
+msgid "Donation received"
+msgstr "Пожертвование получено"
+
+msgid "Receipt confirmed"
+msgstr "Получение подтверждено"
+
+msgid "Bank details ({bank})"
+msgstr "Банковские реквизиты ({bank})"
+
+msgid "Recipient name, bank, IBAN"
+msgstr "Имя получателя, банк, IBAN"
+
+msgid "If empty, the account in WooCommerce › Payments › Bank transfer is used."
+msgstr "Если пусто, используется учетная запись в WooCommerce › Платежи › Банковский перевод."
+
+msgid "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
+msgstr "Переменные:{first_name},{name},{donation},{amount},{quantity},{bank},{certificate_link},{agent},{brand},{date}."
+
+msgid "AI connection"
+msgstr "AI-соединение"
+
+msgid "Keys, prompt caching, spending limits and usage logs come from the Flux AI & MCP plugin; all of the Call Center's AI requests go through it. Model choices stay here; if a field is empty, the model chosen for this plugin in Flux AI (or the default) is used."
+msgstr "Ключи, оперативное кэширование, лимиты расходов и журналы использования поступают из плагина Flux AI & MCP; все запросы ИИ колл-центра проходят через него. Выбор модели остается здесь; если поле пусто, используется модель, выбранная для этого плагина в Flux AI (или модель по умолчанию)."
+
+msgid "Open Flux AI settings"
+msgstr "Откройте настройки Flux AI."
+
+msgid "AI needs the Flux AI & MCP plugin. Install and activate it, then enter the OpenRouter and/or Anthropic key in Flux AI & MCP › Settings. Until then suggestions, the assistant, receipt reading, voice messages and summaries are off."
+msgstr "ИИ нужен плагин Flux AI & MCP. Установите и активируйте его, затем введите ключ OpenRouter и/или Anthropic в Flux AI & MCP › Настройки. До этого момента предложения, помощник, чтение квитанций, голосовые сообщения и сводки отключены."
+
+msgid "Creativity (0–1)"
+msgstr "Креативность (0–1)"
+
+msgid "Lower values give more consistent replies, higher values freer ones. 0.4 recommended."
+msgstr "Более низкие значения дают более последовательные ответы, более высокие — более свободные. рекомендуется 0,4."
+
+msgid "Model (for suggestions)"
+msgstr "Модель (для предложений)"
+
+msgid "Assistant model (optional)"
+msgstr "Модель помощника (опционально)"
+
+msgid "Model above"
+msgstr "Модель выше"
+
+msgid "Only models that support tools are listed."
+msgstr "В списке указаны только модели, поддерживающие инструменты."
+
+msgid "Receipt reading model (optional)"
+msgstr "Модель чтения квитанции (опционально)"
+
+msgid "If the selected model cannot read images, a cheap vision model is used automatically."
+msgstr "Если выбранная модель не может читать изображения, автоматически используется дешевая модель зрения."
+
+msgid "This month (%1$s): %2$s requests, %3$s tokens, about $%4$s."
+msgstr "В этом месяце (%1$s): запросы%2$s, токены%3$s, около $%4$s."
+
+msgid "Reply suggestions"
+msgstr "Ответить на предложения"
+
+msgid "Above the message box, the next message is suggested from the conversation. The agent clicks \"Send\" or takes it into the box with \"Edit\". A suggestion is never sent on its own."
+msgstr "Над окном сообщения предлагается следующее сообщение из беседы. Агент нажимает «Отправить» или переносит в поле «Редактировать». Предложение никогда не отправляется само по себе."
+
+msgid "Prepare a suggestion automatically when the last message came from the person (if off, ask with the ✨ button)"
+msgstr "Подготовьте предложение автоматически, когда пришло последнее сообщение от человека (если выключено, спросите кнопкой ✨)"
+
+msgid "Organization info and tone"
+msgstr "Информация об организации и тон"
+
+msgid "E.g. Our association plants saplings in Istanbul. Planting is done every year between November and March. The certificate is sent on WhatsApp after the donation. Use a warm but formal tone."
+msgstr "например Наша ассоциация сажает саженцы в Стамбуле. Посадка производится каждый год в период с ноября по март. Сертификат отправляется на WhatsApp после пожертвования. Используйте теплый, но формальный тон."
+
+msgid "Suggestions and the assistant use this. Donation types, prices, bank details and quick replies are added automatically."
+msgstr "Предложения и помощник используют это. Типы пожертвований, цены, банковские реквизиты и быстрые ответы добавляются автоматически."
+
+msgid "Suggestion provider"
+msgstr "Поставщик предложений"
+
+msgid "Donation assistant (automatic replies)"
+msgstr "Помощник по пожертвованиям (автоматические ответы)"
+
+msgid "When on, the assistant replies itself: it greets, asks the name to address them, sends donation options and prices, optionally collects email and \"in whose name\", and asks for confirmation after each change. After confirmation it opens an \"awaiting payment\" record in Flux Donate and sends the donation link, recipient, IBAN and reference as separate messages. If the topic leaves donations, it hands the chat to the team."
+msgstr "При включении помощник отвечает сам: приветствует, спрашивает имя для обращения, отправляет варианты пожертвований и цены, при необходимости собирает электронную почту и «от чьего имени» и запрашивает подтверждение после каждого изменения. После подтверждения он открывает запись «ожидает платежа» в Flux Donate и отправляет ссылку для пожертвования, получателя, IBAN и ссылку в виде отдельных сообщений. Если тема оставляет пожертвования, она передает чат команде."
+
+msgid "The Flux Donate plugin is not active; the assistant cannot create donation records."
+msgstr "Плагин Flux Donate не активен; помощник не может создавать записи о пожертвованиях."
+
+msgid "Instructions, documents, AI chats and test chat"
+msgstr "Инструкции, документы, AI-чаты и тестовый чат"
+
+msgid "Turn on the donation assistant (untick to turn it off everywhere)"
+msgstr "Включите помощника по пожертвованиям (снимите галочку, чтобы отключить его везде)"
+
+msgid "Which chats should it reply to"
+msgstr "В каких чатах он должен отвечать"
+
+msgid "In all chats (recommended)"
+msgstr "Во всех чатах (рекомендуется)"
+
+msgid "In chats not assigned to an agent"
+msgstr "В чатах, не закрепленных за агентом"
+
+msgid "Only outside working hours"
+msgstr "Только вне рабочего времени"
+
+msgid "When an agent writes in a chat (from the panel or the phone), the assistant stays quiet there for the time below. Use the assistant button in the chat header to turn it on or off per chat."
+msgstr "Когда агент пишет в чат (с панели или телефона), ассистент молчит там указанное ниже время. Используйте кнопку помощника в заголовке чата, чтобы включить или выключить его для каждого чата."
+
+msgid "Test mode: reply only to the numbers below"
+msgstr "Тестовый режим: отвечайте только на номера ниже"
+
+msgid "Test numbers"
+msgstr "Номера тестов"
+
+msgid "Separate with commas or new lines. Not used when test mode is off."
+msgstr "Разделяйте запятыми или новыми строками. Не используется, если тестовый режим выключен."
+
+msgid "Quiet after an agent writes (hours)"
+msgstr "Тишина после того, как агент напишет (часы)"
+
+msgid "Quantities in the price list"
+msgstr "Количество в прайс-листе"
+
+msgid "Conversation history (hours)"
+msgstr "История разговоров (часы)"
+
+msgid "Before replying, the assistant reads all messages from this period."
+msgstr "Прежде чем ответить, помощник читает все сообщения за этот период."
+
+msgid "Donation types the assistant offers"
+msgstr "Виды пожертвований, которые предлагает помощник"
+
+msgid "If none is selected, all open types are offered. When a new type is opened in Flux Donate, the assistant knows it too."
+msgstr "Если ничего не выбрано, предлагаются все открытые типы. Когда в Flux Donate открывается новый тип, помощник тоже об этом узнает."
+
+msgid "Receipt pre-check: when the contact sends a receipt, AI compares the amount, recipient and IBAN with the donation, tells the contact the result, attaches the file to the donation record and hands the chat to the team for final approval (does not mark it paid)"
+msgstr "Предварительная проверка квитанции: когда контакт отправляет квитанцию, AI сравнивает сумму, получателя и IBAN с пожертвованием, сообщает контакту результат, прикрепляет файл к записи о пожертвовании и передает чат команде для окончательного утверждения (не помечает его как оплаченного)"
+
+msgid "Last line of the price list"
+msgstr "Последняя строка прайс-листа"
+
+msgid "Payment details"
+msgstr "Детали оплаты"
+
+msgid "If the recipient and IBAN are empty, those in WooCommerce › Payments › Bank transfer are used (the account shown on orders). Fill them in only if the assistant should use a different account."
+msgstr "Если получатель и IBAN пусты, используются те, которые указаны в WooCommerce › Платежи › Банковский перевод (счет, указанный в заказах). Заполняйте их только в том случае, если помощник должен использовать другую учетную запись."
+
+msgid "Recipient name"
+msgstr "Имя получателя"
+
+msgid "Transfer description"
+msgstr "Описание трансфера"
+
+msgid "Variables: {type}, {name}, {amount}, {quantity}"
+msgstr "Переменные:{type},{name},{amount},{quantity}."
+
+msgid "Donation page URL"
+msgstr "URL страницы пожертвований"
+
+msgid "The selected type and quantity are added to the link (?flxb_opt=…&flxb_qty=…)."
+msgstr "Выбранный тип и количество добавляются в ссылку (?flxb_opt=...&flxb_qty=...)."
+
+msgid "Message after the payment details"
+msgstr "Сообщение после платежных реквизитов"
+
+msgid "Donation cancellation question"
+msgstr "Вопрос об отмене пожертвования"
+
+msgid "The assistant cancels only unpaid donations, with the person's confirmation. Empty = default text. Variables: {bagis}, {tutar}."
+msgstr "Помощник отменяет только неоплаченные пожертвования с согласия человека. Пусто = текст по умолчанию. Переменные:{bagis},{tutar}."
+
+msgid "Message sent when the daily limit is reached"
+msgstr "Сообщение отправляется при достижении дневного лимита"
+
+msgid "Sent once when a chat reaches the day's reply limit; the chat is handed to the team. Reset it from the chat's ⋮ menu › Assistant usage."
+msgstr "Отправляется один раз, когда в чате достигнут дневной лимит ответов; чат передается команде. Сбросьте его из меню ⋮ чата › Использование Ассистента."
+
+msgid "Message sent when handing over to the team"
+msgstr "Сообщение, отправленное при передаче команде"
+
+msgid "Message sent when the assistant cannot answer"
+msgstr "Сообщение отправляется, когда помощник не может ответить"
+
+msgid "If the AI fails, the time limit is hit or the queue gets too long, this message is sent and the chat is handed to the team; the person is never left without an answer."
+msgstr "Если ИИ дает сбой, истекает лимит времени или очередь становится слишком длинной, это сообщение отправляется, и чат передается команде; человек никогда не остается без ответа."
+
+msgid "Minimum wait before the holding message (s)"
+msgstr "Минимальное ожидание перед сообщением(ями) об удержании"
+
+msgid "The holding message is not sent until this many seconds after the person's message; meanwhile the assistant retries."
+msgstr "Сообщение об удержании не отправляется до истечения этого количества секунд после сообщения человека; тем временем помощник повторяет попытку."
+
+msgid "Longest time for one answer (s)"
+msgstr "Самое долгое время для одного ответа(ов)"
+
+msgid "Hostinger can cut requests at ~60 s; 50 is recommended."
+msgstr "Hostinger может обрезать запросы примерно за 60 с; рекомендуется 50."
+
+msgid "Numbers notified on handoff"
+msgstr "Номера уведомлены о передаче"
+
+msgid "When the assistant hands a chat over to the team, a WhatsApp message is sent to these numbers from the same line: the contact's name, phone, reason, last messages and panel link. Separate with commas or new lines. The assistant does not talk to these numbers."
+msgstr "Когда ассистент передает чат команде, на эти номера с одной линии отправляется сообщение WhatsApp: имя контакта, телефон, причина, последние сообщения и ссылка на панель. Разделяйте запятыми или новыми строками. Ассистент не разговаривает по этим номерам."
+
+msgid "When the contact writes one of these, the assistant immediately sends the hand-off message above and turns off in that chat. If left empty, the example list is used."
+msgstr "Когда контакт пишет одно из них, помощник немедленно отправляет сообщение о переключении связи, указанное выше, и отключается в этом чате. Если оставить пустым, используется список примеров."
+
+msgid "Extra instructions for the assistant"
+msgstr "Дополнительные инструкции для помощника"
+
+msgid "E.g. Saplings are planted in Kocaeli. Certificates are sent once the donation is confirmed."
+msgstr "например Саженцы посажены в Коджаэли. Сертификаты высылаются после подтверждения пожертвования."
+
+msgid "Last message when a contact opts out"
+msgstr "Последнее сообщение, когда контакт отказывается от подписки"
+
+msgid "If someone writes something like \"don't message me\", the assistant sends this message and blocklists them. A blocklisted person gets no WhatsApp, email or SMS; manage the list under Chats › ☰ › Blocklist."
+msgstr "Если кто-то напишет что-то вроде «не писать мне», помощник отправит это сообщение и занесет его в черный список. Человек, занесенный в черный список, не получает WhatsApp, электронной почты или SMS; управляйте списком в разделе «Чаты» › ☰ › Черный список."
+
+msgid "Contact memory and background jobs"
+msgstr "Память контактов и фоновые задания"
+
+msgid "Contact memory: the assistant remembers lasting details (form of address, relatives' names, numbers, preferences); expired chats are summarized"
+msgstr "Контактная память: ассистент запоминает устойчивые детали (форму обращения, имена родственников, номера телефонов, предпочтения); просроченные чаты суммируются"
+
+msgid "Summarize a chat after it has been quiet for (hours)"
+msgstr "Подведите итоги чата после того, как в нем было тихо в течение (часов)"
+
+msgid "Maximum jobs at the same time"
+msgstr "Максимальное количество рабочих мест одновременно"
+
+msgid "How many people can be answered at the same time. Assistant replies always come first; summaries do not start while someone is being answered or waiting. Each job uses one PHP worker: on shared hosting, stay under half of the total worker limit of your sites (e.g. 20-30 of 60 workers)."
+msgstr "Скольким людям можно ответить одновременно. Ответы Ассистента всегда на первом месте; сводки не запускаются, пока кому-то отвечают или ждут. В каждом задании используется один PHP-воркер: на общем хостинге не превышайте половину общего лимита рабочих на ваших сайтах (например, 20–30 из 60 рабочих)."
+
+msgid "Workers reserved for replies"
+msgstr "Рабочие зарезервированы для ответов"
+
+msgid "This many workers never take summaries or reminders."
+msgstr "Многие работники никогда не принимают конспекты и напоминания."
+
+msgid "Summary hours"
+msgstr "Суммарные часы"
+
+msgid "Summaries run only between these hours (except a manual \"Summarize now\"). If both are the same, any time."
+msgstr "Сводки публикуются только в эти часы (кроме инструкции «Подвести итоги сейчас»). Если оба одинаковы, в любое время."
+
+msgid "When someone sends a voice message, the assistant turns it into text and replies (the text also appears in the panel as a system line)"
+msgstr "Когда кто-то отправляет голосовое сообщение, помощник преобразует его в текст и отвечает (текст также отображается в панели в виде системной строки)"
+
+msgid "Longest voice message (sec)"
+msgstr "Самое длинное голосовое сообщение (сек)"
+
+msgid "For longer messages the assistant says \"the voice message was too long for us to listen to\"."
+msgstr "В случае более длинных сообщений помощник говорит: «Голосовое сообщение было слишком длинным, чтобы мы могли его прослушать»."
+
+msgid "Voice message model (optional)"
+msgstr "Модель голосового сообщения (необязательно)"
+
+msgid "Cheap audio model (Gemini Flash Lite)"
+msgstr "Дешевая аудиомодель (Gemini Flash Lite)"
+
+msgid "Must be an OpenRouter model that accepts audio (Claude does not). An OpenRouter key is required."
+msgstr "Должна быть модель OpenRouter, которая принимает аудио (Клод не принимает). Требуется ключ OpenRouter."
+
+msgid "Images"
+msgstr "Изображения"
+
+msgid "Let the assistant draw an image when useful (table, report, diagram); it goes to WhatsApp as a picture, the text is sent separately"
+msgstr "Пусть помощник нарисует изображение, когда это будет полезно (таблица, отчет, диаграмма); в WhatsApp он отправляется в виде картинки, текст отправляется отдельно"
+
+msgid "The Flux AI image renderer is used (Flux AI & MCP › Settings › Images)."
+msgstr "Используется рендеринг изображений Flux AI (Flux AI & MCP › Настройки › Изображения)."
+
+msgid "No image renderer on the server: enter a Gotenberg address in Flux AI & MCP › Settings › Images or install Imagick (SVG). Until then the assistant does not draw images."
+msgstr "На сервере нет средства рендеринга изображений: введите адрес Готенберга в Flux AI & MCP › Настройки › Изображения или установите Imagick (SVG). До этого момента помощник не рисует изображения."
+
+msgid "Works once Flux AI 0.2.0 or later is installed."
+msgstr "Работает после установки Flux AI 0.2.0 или новее."
+
+msgid "Donation on behalf of someone"
+msgstr "Пожертвование от имени кого-либо"
+
+msgid "If the donation is in someone else's name and their number was given (contact card or typed number), also send the certificate to that number on WhatsApp once the payment is approved"
+msgstr "Если пожертвование сделано на чье-то имя и был указан его номер (контактная карточка или введенный номер), также отправьте сертификат на этот номер в WhatsApp после подтверждения платежа."
+
+msgid "Message sent before the certificate"
+msgstr "Сообщение отправлено перед сертификатом"
+
+msgid "Then the WhatsApp certificate message from Flux Certificates is sent. Variables: {ad}, {bagisci}, {bagis}, {brand}."
+msgstr "Затем отправляется сообщение сертификата WhatsApp от Flux Certificates. Переменные:{ad},{bagisci},{bagis},{brand}."
+
+msgid "If a person asks, the assistant sets up a reminder (e.g. \"remind me of sapling planting every month\", \"send me your latest projects every month\", \"ask me for a sapling every month\"); when it is due, the assistant writes and sends the message"
+msgstr "Если человек спрашивает, помощник устанавливает напоминание (например, «напоминай мне о посадке саженцев каждый месяц», «присылай мне свои последние проекты каждый месяц», «проси у меня саженец каждый месяц»); когда наступит срок, помощник напишет и отправит сообщение"
+
+msgid "When no time is given"
+msgstr "Когда времени не дано"
+
+msgid "At most per person"
+msgstr "Максимум на человека"
+
+msgid "Staff (Flux Roles)"
+msgstr "Персонал (роли Flux)"
+
+msgid "Works once Flux Roles 1.1.0 is installed: users whose number is set in Profile › WhatsApp number get extra assistant tools based on their permissions."
+msgstr "Работает после установки Flux Roles 1.1.0: пользователи, номер которых указан в Профиле › Номер WhatsApp, получают дополнительные вспомогательные инструменты в зависимости от их разрешений."
+
+msgid "Give staff numbers extra assistant tools by permission (donation on behalf of someone with payment link, my donors, general report)"
+msgstr "Предоставьте сотрудникам дополнительные вспомогательные инструменты с разрешения (пожертвование от имени человека, у которого есть ссылка на оплату, моих доноров, общий отчет)"
+
+msgid "Notify staff on WhatsApp when a donation they referred is paid or cancelled"
+msgstr "Уведомляйте сотрудников в WhatsApp, когда пожертвование, на которое они ссылаются, оплачено или отменено."
+
+msgid "First message to the donor for a donation opened by staff"
+msgstr "Первое сообщение донору о пожертвовании, открытое сотрудниками"
+
+msgid "Hello {ad} 🌱 Your {bagis} donation request via {personel} has been received. You can pay with the details below."
+msgstr "Привет,{ad}🌱 Ваш запрос на пожертвование{bagis}через{personel}получен. Вы можете оплатить по реквизитам ниже."
+
+msgid "The payment link and bank details follow. Variables: {ad}, {adsoyad}, {personel}, {bagis}."
+msgstr "Далее следует ссылка для оплаты и банковские реквизиты. Переменные:{ad},{adsoyad},{personel},{bagis}."
+
+msgid "When a donation referred by a staff member is paid and its certificates are made, send them to the staff member on WhatsApp too (just like the donor)"
+msgstr "Когда пожертвование, указанное сотрудником, будет оплачено и получены сертификаты, отправьте их также сотруднику в WhatsApp (так же, как и донору)."
+
+msgid "Message sent to the staff member before the certificate"
+msgstr "Сообщение, отправленное сотруднику перед сертификатом"
+
+msgid "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
+msgstr "Переменные:{ad},{bagisci},{bagis},{no},{brand}."
+
+msgid "How many times staff can resend a donation's certificate"
+msgstr "Сколько раз сотрудники могут повторно отправить сертификат о пожертвовании"
+
+msgid "The assistant lists the recipients and asks for confirmation before sending. 0: off."
+msgstr "Помощник перечисляет получателей и запрашивает подтверждение перед отправкой. 0: выкл."
+
+msgid "Code verification for record lookups"
+msgstr "Проверка кода для поиска записей"
+
+msgid "When a person asks for their records and their number is hidden (or they donated with another number/e-mail), send a code to the number or e-mail they give; once verified, its records are shown too"
+msgstr "Когда человек запрашивает свои записи, а его номер скрыт (или он сделал пожертвование с помощью другого номера/электронной почты), отправьте код на указанный им номер или адрес электронной почты; после проверки его записи также отображаются"
+
+msgid "Code validity (min)"
+msgstr "Срок действия кода (мин)"
+
+msgid "Maximum failed attempts"
+msgstr "Максимальное количество неудачных попыток"
+
+msgid "Codes that could not be sent, wrong codes and expired codes count. At the limit the person gets the message below and the team is notified; the assistant keeps answering other questions but shares no record details for 24 hours."
+msgstr "Учитываются коды, которые не удалось отправить, неправильные коды и коды с истекшим сроком действия. При достижении лимита человек получает сообщение ниже, и команда уведомляется; помощник продолжает отвечать на другие вопросы, но не сообщает никаких подробностей в течение 24 часов."
+
+msgid "Code to phone"
+msgstr "Код на телефон"
+
+msgid "WhatsApp, SMS if it fails"
+msgstr "WhatsApp, SMS, если не получится"
+
+msgid "WhatsApp only"
+msgstr "только WhatsApp"
+
+msgid "SMS only"
+msgstr "только СМС"
+
+msgid "SMS is used if Flux Mail has an SMS connection (e.g. Netgsm)."
+msgstr "SMS используется, если Flux Mail имеет SMS-соединение (например, Netgsm)."
+
+msgid "Message when verification fails"
+msgstr "Сообщение при неудачной проверке"
+
+msgid "WhatsApp/SMS code message"
+msgstr "Кодовое сообщение WhatsApp/SMS"
+
+msgid "Default text if empty. Variables: {kod}, {dk}, {marka}. The e-mail text is edited in Flux Mail › E-mail templates."
+msgstr "Текст по умолчанию, если он пуст. Переменные:{kod},{dk},{marka}. Текст электронного письма редактируется в Flux Mail › Шаблоны электронной почты."
+
+msgid "Site content"
+msgstr "Содержание сайта"
+
+msgid "Let the assistant search published site content (e.g. \"do you have a post about tree planting\")"
+msgstr "Разрешите помощнику выполнять поиск по опубликованному контенту сайта (например, «есть ли у вас запись о посадке деревьев»)."
+
+msgid "Content types to search"
+msgstr "Типы контента для поиска"
+
+msgid "Only published content without a password is returned. Drafts, private and password-protected content are never shown."
+msgstr "Возвращается только опубликованный контент без пароля. Черновики, личный контент и контент, защищенный паролем, никогда не отображаются."
+
+msgid "Categories and tags never to share"
+msgstr "Категории и теги, которыми нельзя делиться"
+
+msgid "e.g. corporate-offers, internal-notice"
+msgstr "например корпоративные предложения, внутреннее уведомление"
+
+msgid "Name or slug, comma separated. To hide a single item, tick \"Do not let the assistant share this content\" on its edit screen."
+msgstr "Имя или номер, разделенные запятой. Чтобы скрыть отдельный элемент, установите флажок «Не разрешать помощнику делиться этим содержимым» на экране редактирования."
+
+msgid "Team group"
+msgstr "Группа команды"
+
+msgid "WhatsApp group"
+msgstr "Группа WhatsApp"
+
+msgid "— Not selected —"
+msgstr "— Не выбрано —"
+
+msgid "Groups the line is a member of. If a group you just created is missing,"
+msgstr "Группы, членом которых является линия. Если только что созданная группа отсутствует,"
+
+msgid "refresh the list"
+msgstr "обновить список"
+
+msgid "Post incoming messages and replies (assistant, team, automatic) to this group"
+msgstr "Публиковать входящие сообщения и ответы (помощник, команда, автоматические) в эту группу."
+
+msgid "Send handoff notifications to this group instead of each number; the numbers above are mentioned in the message"
+msgstr "Отправлять уведомления о передаче обслуживания на эту группу вместо каждого номера; номера выше указаны в сообщении"
+
+msgid "Last post to the group failed: "
+msgstr "Последнее сообщение в группе не удалось:"
+
+msgid "Price list preview"
+msgstr "Предварительный просмотр прайс-листа"
+
+msgid "Enter an AI key and model first so the assistant can work."
+msgstr "Сначала введите ключ AI и модель, чтобы помощник мог работать."
+
+msgid "The assistant will not reply right now: "
+msgstr "Ассистент сейчас не ответит:"
+
+msgid "WhatsApp assistant"
+msgstr "WhatsApp помощник"
+
+msgid "Do not let the assistant share this content"
+msgstr "Не позволяйте помощнику делиться этим контентом"
+
+msgid "Corrected by staff member %1$s; #%2$d was opened instead."
+msgstr "Исправлено сотрудником%1$s; Вместо этого был открыт #%2$d."
+
+msgid "Donation #%1$d was cancelled and #%2$d opened instead."
+msgstr "Пожертвование #%1$dбыло отменено и вместо него открыто #%2$d."
+
+msgid "Created by staff member %s via the WhatsApp assistant."
+msgstr "Создано сотрудником%sс помощью помощника WhatsApp."
+
+msgid "Donation opened via staff member %1$s: %2$s (#%3$d)"
+msgstr "Пожертвование открыто через сотрудника%1$s:%2$s(#%3$d)"
+
+msgid "Your certificate 🌱"
+msgstr "Ваш сертификат 🌱"
+
+msgid "Staff member %1$s resent the certificate on WhatsApp: %2$s"
+msgstr "Сотрудник%1$sповторно отправил сертификат в WhatsApp:%2$s."
+
+msgid "✅ Your donor paid: *%1$s* · %2$s #%3$d"
+msgstr "✅ Ваш донор заплатил: *%1$s* ·%2$s#%3$d"
+
+msgid "❌ Donation cancelled: *%1$s* · %2$s #%3$d"
+msgstr "❌ Пожертвование отменено: *%1$s* ·%2$s#%3$d"
+
+msgid "Sticker"
+msgstr "наклейка"
+
+msgid "Poll"
+msgstr "Опрос"
+
+msgid "Unsupported message"
+msgstr "Неподдерживаемое сообщение"
+
+msgid "{a} lines added, {d} lines removed"
+msgstr "Добавлены строки{a}, удалены строки{d}."
+
+msgid "No AI key or model has been entered."
+msgstr "Ни ключ AI, ни модель не были введены."
+
+msgid "The assistant is off and does not reply to incoming messages."
+msgstr "Ассистент выключен и не отвечает на входящие сообщения."
+
+msgid "Test mode is on: the assistant only replies to test numbers."
+msgstr "Включен тестовый режим: помощник отвечает только на тестовые номера."
+
+msgid "Assistant activity summary"
+msgstr "Сводка действий Ассистента"
+
+msgid "Hide details"
+msgstr "Скрыть детали"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Spend (USD)"
+msgstr "Расходы (долл. США)"
+
+msgid "Questions answered"
+msgstr "Ответы на вопросы"
+
+msgid "People answered"
+msgstr "Люди ответили"
+
+msgid "People directed to donate"
+msgstr "Людей, направленных на пожертвование"
+
+msgid "Donation records created"
+msgstr "Записи о пожертвованиях созданы"
+
+msgid "Confirmed donations · {a}"
+msgstr "Подтвержденные пожертвования ·{a}"
+
+msgid "Receipts read · ✓{a} ✕{b}"
+msgstr "Квитанции прочитаны · ✓{a}✕{b}"
+
+msgid "Memory tokens · {p} contacts"
+msgstr "Токены памяти · Контакты{p}"
+
+msgid "Opted out (blocklist)"
+msgstr "Отключено (черный список)"
+
+msgid "Reminders sent"
+msgstr "Напоминания отправлены"
+
+msgid "Codes sent · e-mail {e} · WhatsApp {w} · SMS {s}"
+msgstr "Коды отправлены · электронная почта{e}· WhatsApp{w}· SMS{s}"
+
+msgid "Verified · phone {p} · e-mail {e}"
+msgstr "Проверено · телефон{p}· электронная почта{e}"
+
+msgid "Code issues · wrong {w} · expired {x} · not delivered {f}"
+msgstr "Проблемы с кодом · неправильный{w}· срок действия истек{x}· не доставлен{f}"
+
+msgid "Not verified, team notified"
+msgstr "Не проверено, команда уведомлена"
+
+msgid "Certificates resent"
+msgstr "Сертификаты повторно отправлены"
+
+msgid "Donations cancelled by the assistant"
+msgstr "Пожертвования отменены ассистентом"
+
+msgid "Payment links resent"
+msgstr "Платежные ссылки отклонены"
+
+msgid "Tokens: {i} input / {o} output · {c} requests · {m} messages sent"
+msgstr "Токены: ввод{i}/ вывод{o}· запросы{c}· отправленные сообщения{m}"
+
+msgid "{n} donations awaiting payment"
+msgstr "{n}пожертвования ожидают оплаты"
+
+msgid "{n} errors"
+msgstr "Ошибки{n}"
+
+msgid "{n} chats summarized"
+msgstr "{n}итоги чатов"
+
+msgid "Counters since {d}"
+msgstr "Счетчики с момента{d}"
+
+msgid "Refreshes every 30 s"
+msgstr "Обновляется каждые 30 секунд."
+
+msgid "Models"
+msgstr "Модели"
+
+msgid "Contacts with the most memory"
+msgstr "Контакты с наибольшим объемом памяти"
+
+msgid "Tokens"
+msgstr "Токены"
+
+msgid "Daily"
+msgstr "Ежедневно"
+
+msgid "No records in this range."
+msgstr "В этом диапазоне записей нет."
+
+msgid "Replies"
+msgstr "Ответы"
+
+msgid "Handoff"
+msgstr "Передача"
+
+msgid "Only real chats are counted; test chat and benchmark are excluded. \"Confirmed\" means donations created by the assistant and marked paid."
+msgstr "Учитываются только реальные чаты; тестовый чат и тест исключены. «Подтверждено» означает пожертвования, созданные помощником и помеченные как оплаченные."
+
+msgid "With the team / paused"
+msgstr "С командой/на паузе"
+
+msgid "Donation record created"
+msgstr "Запись о пожертвовании создана"
+
+msgid "The assistant has not replied to any chat yet."
+msgstr "Ассистент еще не ответил ни в один чат."
+
+msgid "Load more"
+msgstr "Загрузить больше"
+
+msgid "Address: {h}"
+msgstr "Адрес:{h}"
+
+msgid "{n} assistant messages"
+msgstr "{n}сообщения помощника"
+
+msgid "Donation #{id}"
+msgstr "Пожертвование #{id}"
+
+msgid "Version {id}"
+msgstr "Версия{id}"
+
+msgid "Change note (e.g. Added sacrifice question)"
+msgstr "Примечание об изменении (например, добавлен вопрос о жертвоприношении)"
+
+msgid "Assistant instructions"
+msgstr "Инструкции помощника"
+
+msgid "The main text describing how the assistant talks and the flow. Prices, donation types, bank details and what is known about the contact are added automatically on every reply. {brand} becomes the organisation name and {{belge:kisa-ad}} becomes that document's content."
+msgstr "Основной текст, описывающий, как говорит ассистент и как он движется. Цены, типы пожертвований, банковские реквизиты и сведения о контакте добавляются автоматически при каждом ответе.{brand}становится названием организации, а {{belge:kisa-ad}} становится содержимым этого документа."
+
+msgid "Publish now"
+msgstr "Опубликовать сейчас"
+
+msgid "New version saved"
+msgstr "Новая версия сохранена."
+
+msgid "Save as new version"
+msgstr "Сохранить как новую версию"
+
+msgid "Show the full text sent to the model"
+msgstr "Показать полный текст, отправленный модели"
+
+msgid "Unsaved text"
+msgstr "Несохраненный текст"
+
+msgid "Test with this text"
+msgstr "Тест с этим текстом"
+
+msgid "Versions"
+msgstr "Версии"
+
+msgid "Live"
+msgstr "Живи"
+
+msgid "Text that ships with the plugin"
+msgstr "Текст, который поставляется с плагином"
+
+msgid "Diff: live → {v}"
+msgstr "Разница: live →{v}"
+
+msgid "Show diff"
+msgstr "Показать разницу"
+
+msgid "Published"
+msgstr "Опубликовано"
+
+msgid "Publish"
+msgstr "Опубликовать"
+
+msgid "Ready-made messages sent by the server"
+msgstr "Готовые сообщения, отправленные сервером"
+
+msgid "The model does not write these; they are generated from your settings."
+msgstr "Модель этого не пишет; они генерируются из ваших настроек."
+
+msgid "Change in settings"
+msgstr "Изменение настроек"
+
+msgid "(empty)"
+msgstr "(пусто)"
+
+msgid "Full text sent to the model (sample chat)"
+msgstr "Полный текст отправлен модели (пример чата)"
+
+msgid "Extra documents"
+msgstr "Дополнительные документы"
+
+msgid "Add FAQs, campaigns, planting locations and similar information as separate documents. If you write {{belge:kisa-ad}} in the instructions, the document is placed there. A document set to \"read when needed\" is only read when the topic comes up, which costs less for long documents."
+msgstr "Добавляйте часто задаваемые вопросы, кампании, места посадки и аналогичную информацию в отдельные документы. Если в инструкции написать {{belge:kisa-ad}}, документ помещается туда. Документ, настроенный на «чтение при необходимости», читается только тогда, когда возникает тема, что обходится дешевле для длинных документов."
+
+msgid "New document"
+msgstr "Новый документ"
+
+msgid "No documents yet."
+msgstr "Документов пока нет."
+
+msgid "Copy to use in the instructions"
+msgstr "Скопируйте для использования в инструкции"
+
+msgid "Delete the document “{t}”?"
+msgstr "Удалить документ «{t}»?"
+
+msgid "automatic"
+msgstr "автоматический"
+
+msgid "Edit document"
+msgstr "Редактировать документ"
+
+msgid "Short name"
+msgstr "Короткое имя"
+
+msgid "Content (Markdown)"
+msgstr "Контент (уценка)"
+
+msgid "Document saved"
+msgstr "Документ сохранен."
+
+msgid "in"
+msgstr "в"
+
+msgid "out"
+msgstr "из"
+
+msgid "cache {r} read, {w} written"
+msgstr "кэш{r}читается,{w}записывается"
+
+msgid "saved {c}"
+msgstr "сохранено{c}"
+
+msgid "first write +{c}"
+msgstr "сначала напишите +{c}"
+
+msgid "Claude prompt caching (only for Claude models with the Anthropic key)"
+msgstr "Кэширование подсказок Клода (только для моделей Клода с ключом Anthropic)"
+
+msgid "Cache: from settings ({m})"
+msgstr "Кэш: из настроек ({m})"
+
+msgid "Cache: {m}"
+msgstr "Кэш:{m}"
+
+msgid "Cache savings"
+msgstr "Экономия кэша"
+
+msgid "This month total (all AI)"
+msgstr "Всего за этот месяц (все AI)"
+
+msgid "Main model"
+msgstr "Основная модель"
+
+msgid "Reset"
+msgstr "Сброс"
+
+msgid "Prices are input / output per 1M tokens (USD). The selected model is used only here."
+msgstr "Цены указаны на вход/выход за 1 миллион токенов (USD). Выбранная модель используется только здесь."
+
+msgid "E.g. Look at Ahmet's chat and make the price answer shorter. / Hand over to the team when asked about Qurban donations."
+msgstr "например Посмотрите чат Ахмета и сделайте ответ по цене короче. / Передайте команду, когда вас спросят о пожертвованиях к Курбану."
+
+msgid "Search sessions…"
+msgstr "Поиск сеансов..."
+
+msgid "+ New session"
+msgstr "+ Новая сессия"
+
+msgid "No matching session."
+msgstr "Нет подходящего сеанса."
+
+msgid "No saved sessions yet. A session is saved automatically with your first message."
+msgstr "Сохраненных сессий пока нет. Сеанс автоматически сохраняется вместе с вашим первым сообщением."
+
+msgid "Untitled session"
+msgstr "Сессия без названия"
+
+msgid "Draft"
+msgstr "Черновик"
+
+msgid "Archive"
+msgstr "Архив"
+
+msgid "New session"
+msgstr "Новая сессия"
+
+msgid "Session name"
+msgstr "Имя сеанса"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Unarchived"
+msgstr "Разархивировано"
+
+msgid "Archived"
+msgstr "В архиве"
+
+msgid "Unarchive"
+msgstr "Разархивировать"
+
+msgid "Delete this session? This cannot be undone."
+msgstr "Удалить этот сеанс? Это невозможно отменить."
+
+msgid "The live instructions changed after this session; starting a new session is recommended."
+msgstr "После этого сеанса живые инструкции изменились; рекомендуется начать новый сеанс."
+
+msgid "Write what you want to change. If you mention a person's or a number's chat, the AI finds it, asks your permission to read it, updates the instructions and tries them itself in the test chat on the right. Publishing needs your approval."
+msgstr "Напишите, что вы хотите изменить. Если вы упоминаете чат человека или номера, ИИ находит его, спрашивает вашего разрешения на чтение, обновляет инструкции и сам пробует их в тестовом чате справа. Публикация требует вашего одобрения."
+
+msgid "Draft updated"
+msgstr "Черновик обновлен"
+
+msgid "Permission to read a chat"
+msgstr "Разрешение на чтение чата"
+
+msgid "Allow"
+msgstr "Разрешить"
+
+msgid "Always allow in this session"
+msgstr "Всегда разрешать в этом сеансе"
+
+msgid "Don't allow"
+msgstr "Не разрешать"
+
+msgid "Draft awaiting your approval"
+msgstr "Проект ожидает вашего одобрения"
+
+msgid "Approve and publish"
+msgstr "Утвердить и опубликовать"
+
+msgid "Save as draft version"
+msgstr "Сохранить как черновую версию"
+
+msgid "Proposed change"
+msgstr "Предлагаемое изменение"
+
+msgid "Open in test chat"
+msgstr "Открыть в тестовом чате"
+
+msgid "Running…"
+msgstr "Бег..."
+
+msgid "The AI tries the draft here itself: it writes like a person and sees the assistant's answer. Nothing is sent to WhatsApp."
+msgstr "Здесь ИИ сам пробует черновик: пишет как человек и видит ответ помощника. В WhatsApp ничего не отправляется."
+
+msgid "New version published ✓"
+msgstr "Опубликована новая версия ✓"
+
+msgid "Draft version saved ✓ (you can publish it from the Instructions tab)"
+msgstr "Черновая версия сохранена ✓ (опубликовать ее можно на вкладке «Инструкции»)"
+
+msgid "AI's test"
+msgstr "тест ИИ"
+
+msgid "A trial with the draft; read only."
+msgstr "Суд с призывом; только читать."
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Selected donation"
+msgstr "Выбранное пожертвование"
+
+msgid "test"
+msgstr "тест"
+
+msgid "Verification code (not sent, shown only here)"
+msgstr "Код подтверждения (не отправлен, показан только здесь)"
+
+msgid "until {h}"
+msgstr "до{h}"
+
+msgid "Test donations"
+msgstr "Тестовые пожертвования"
+
+msgid "Sample past donation"
+msgstr "Образец прошлого пожертвования"
+
+msgid "Set to pending"
+msgstr "Установить в состояние ожидания"
+
+msgid "No donation in this test."
+msgstr "Никаких пожертвований в этом тесте."
+
+msgid "Memory"
+msgstr "Память"
+
+msgid "Nothing remembered yet."
+msgstr "Еще ничего не вспомнил."
+
+msgid "Reminder awaiting approval"
+msgstr "Напоминание об ожидании одобрения"
+
+msgid "Scheduled"
+msgstr "Запланировано"
+
+msgid "No reminders set."
+msgstr "Напоминания не установлены."
+
+msgid "Code verification locked for 24 hours"
+msgstr "Проверка кода заблокирована на 24 часа."
+
+msgid "Verified"
+msgstr "Проверено"
+
+msgid "No verified number or e-mail."
+msgstr "Нет подтвержденного номера или электронной почты."
+
+msgid "Live instructions"
+msgstr "Живые инструкции"
+
+msgid "Write like a donor…"
+msgstr "Пишите как донор..."
+
+msgid "Donor (customer)"
+msgstr "Донор (заказчик)"
+
+msgid "Write as the staff member…"
+msgstr "Напишите как сотрудник..."
+
+msgid "Nothing you write here goes to WhatsApp and no records are created. The assistant replies with the real model and the selected instructions."
+msgstr "Ничего из того, что вы здесь пишете, не попадает в WhatsApp, и никакие записи не создаются. Помощник отвечает реальной моделью и выбранными инструкциями."
+
+msgid "Preparing files, one moment…"
+msgstr "Готовим файлы, один момент..."
+
+msgid "(no reply)"
+msgstr "(нет ответа)"
+
+msgid "— Chat handed over to the team; in a real chat the assistant stops here. —"
+msgstr "— Чат передан в команду; в реальном чате на этом месте ассистент останавливается. —"
+
+msgid "Attach file (photo, PDF, document)"
+msgstr "Прикрепить файл (фото, PDF, документ)"
+
+msgid "Attach file"
+msgstr "Прикрепить файл"
+
+msgid "Up to 5 files can be attached."
+msgstr "Можно прикрепить до 5 файлов."
+
+msgid "{f} is too large (max {n} MB)."
+msgstr "{f}слишком велик (максимум{n}МБ)."
+
+msgid "receipt pre-check"
+msgstr "предварительная проверка чека"
+
+msgid "Turn {n} · {t}"
+msgstr "Поверните{n}·{t}"
+
+msgid "File read"
+msgstr "Файл прочитан"
+
+msgid "Sent by the AI (arguments)"
+msgstr "Отправлено ИИ (аргументы)"
+
+msgid "Pre-check result"
+msgstr "Результат предварительной проверки"
+
+msgid "Returned by the system (result)"
+msgstr "Возвращено системой (результат)"
+
+msgid "Tool calls"
+msgstr "Вызовы инструментов"
+
+msgid "No tools called yet. Calls are listed here; click one to see what was sent and what came back."
+msgstr "Инструменты еще не вызывались. Здесь перечислены вызовы; щелкните один, чтобы увидеть, что было отправлено и что вернулось."
+
+msgid "Test chat"
+msgstr "Тестовый чат"
+
+msgid "Who are you writing as?"
+msgstr "От кого ты пишешь?"
+
+msgid "Show full text"
+msgstr "Показать полный текст"
+
+msgid "What the assistant knows"
+msgstr "Что знает помощник"
+
+msgid "Background"
+msgstr "Фон"
+
+msgid "Drop files here"
+msgstr "Перетащите сюда файлы"
+
+msgid "Contacts with memory"
+msgstr "Контакты с памятью"
+
+msgid "Lasting details"
+msgstr "Прочные детали"
+
+msgid "Total tokens (approx.)"
+msgstr "Всего жетонов (прибл.)"
+
+msgid "Tokens are the memory size the assistant reads for this contact on every reply (approx.; 3.5 characters = 1 token)."
+msgstr "Токены — это объем памяти, который помощник считывает для этого контакта при каждом ответе (приблизительно; 3,5 символа = 1 токен)."
+
+msgid "No memory items yet."
+msgstr "Элементов памяти пока нет."
+
+msgid "View"
+msgstr "Посмотреть"
+
+msgid "Summary"
+msgstr "Резюме"
+
+msgid "Last update"
+msgstr "Последнее обновление"
+
+msgid "Contact memory: {c}"
+msgstr "Память контактов:{c}"
+
+msgid "{n} items · about {t} tokens"
+msgstr "Товары{n}· о токенах{t}"
+
+msgid "To edit or delete, open the chat and use ⋮ › Contact memory."
+msgstr "Чтобы отредактировать или удалить, откройте чат и используйте ⋮ › Память контактов."
+
+msgid "{n} chats queued"
+msgstr "{n}чаты в очереди"
+
+msgid "Contact memory is off; summary jobs do not run."
+msgstr "Память контактов отключена; сводные задания не запускаются."
+
+msgid "Summaries paused for 30 minutes: {r}"
+msgstr "Сводки приостановлены на 30 минут:{r}."
+
+msgid "Running workers"
+msgstr "Бегущие рабочие"
+
+msgid "Chats being answered"
+msgstr "В чатах отвечают"
+
+msgid "Chats being summarized"
+msgstr "Чаты суммируются"
+
+msgid "Queued"
+msgstr "В очереди"
+
+msgid "Chats not yet expired"
+msgstr "Срок действия чатов еще не истек"
+
+msgid "Summaries today · USD"
+msgstr "Сводки сегодня · USD"
+
+msgid "Recent jobs"
+msgstr "Недавние вакансии"
+
+msgid "Scan now"
+msgstr "Сканировать сейчас"
+
+msgid "People who are writing are answered first; no summary starts while someone is being answered or waiting. Chats quiet for {h} hours are summarized only between {w}. At most {m} jobs run at once, {r} workers are reserved for replies (a benchmark counts as one). Refreshes every 5 s."
+msgstr "Пишущим отвечают первыми; сводка не начинается, пока кому-то отвечают или ждут. Чаты, молчащие в течение{h}часов, суммируются только между{w}. В большинстве случаев{m}задания выполняются одновременно, работники{r}зарезервированы для ответов (тест считается за один). Обновляется каждые 5 с."
+
+msgid "No jobs yet."
+msgstr "Вакансий пока нет."
+
+msgid "Reminder"
+msgstr "Напоминание"
+
+msgid "manual"
+msgstr "руководство"
+
+msgid "attempt {n}"
+msgstr "попытка{n}"
+
+msgid "Job"
+msgstr "Работа"
+
+msgid "Started"
+msgstr "Началось"
+
+msgid "Duration"
+msgstr "Продолжительность"
+
+msgid "Running"
+msgstr "Бег"
+
+msgid "Cost limit reached"
+msgstr "Достигнут лимит стоимости"
+
+msgid "Stopped: AI account"
+msgstr "Остановлено: учетная запись AI."
+
+msgid "No group"
+msgstr "Нет группы"
+
+msgid "Runs"
+msgstr "Бежит"
+
+msgid "All benchmarks"
+msgstr "Все тесты"
+
+msgid "Live · {n} running"
+msgstr "Прямой эфир ·{n}работает"
+
+msgid "Total spend"
+msgstr "Общие расходы"
+
+msgid "{n} scenario results"
+msgstr "Результаты сценария{n}"
+
+msgid "No runs yet."
+msgstr "Пробегов пока нет."
+
+msgid "Assistant + judge"
+msgstr "Ассистент + судья"
+
+msgid "Per scenario"
+msgstr "По сценарию"
+
+msgid "Success is attributed to the assistant model. Runs before 1.6.3 did not separate assistant and judge, so they show as \"Assistant + judge\"."
+msgstr "Успех приписывают модели-помощнику. До версии 1.6.3 ассистент и судья не разделялись, поэтому они отображаются как «Ассистент + судья»."
+
+msgid "Run {n} scenarios"
+msgstr "Запуск сценариев{n}"
+
+msgid "Loading model prices for the cost estimate…"
+msgstr "Загрузка цен моделей для составления сметы..."
+
+msgid "The selected model's price is unknown; no estimate."
+msgstr "Цена выбранной модели неизвестна; нет оценки."
+
+msgid "Estimated cost: ~{c}"
+msgstr "Ориентировочная стоимость: ~{c}"
+
+msgid "assistant {a} + judge {j}"
+msgstr "ассистент{a}+ судья{j}"
+
+msgid "Based on average token usage of {n} past scenario results; actual cost per scenario may vary."
+msgstr "На основе среднего использования токенов{n}по результатам прошлых сценариев; фактическая стоимость каждого сценария может отличаться."
+
+msgid "No runs yet; default estimate: ~{i} input / {o} output tokens per donor message."
+msgstr "Пробегов пока нет; оценка по умолчанию: ~ входные токены{i}/выходные токены{o}на одно сообщение донора."
+
+msgid "The estimate exceeds the cost limit; the run stops when the limit is reached."
+msgstr "Смета превышает лимит стоимости; запуск останавливается при достижении предела."
+
+msgid "New run"
+msgstr "Новый запуск"
+
+msgid "Scenarios are played like in the test chat: no WhatsApp message is sent and no record is created. The model is really called; the cost is charged to your AI account (OpenRouter or Anthropic) and the run stops when the limit is reached."
+msgstr "Сценарии проигрываются как в тестовом чате: сообщения в WhatsApp не отправляются и записи не создаются. Модель действительно называется; стоимость взимается с вашей учетной записи AI (OpenRouter или Anthropic), и запуск останавливается при достижении лимита."
+
+msgid "Cost limit (USD)"
+msgstr "Лимит стоимости (долл. США)"
+
+msgid "Past runs"
+msgstr "Прошлые запуски"
+
+msgid "All chats, tool calls and judge log"
+msgstr "Все чаты, вызовы инструментов и журнал судей"
+
+msgid "Report"
+msgstr "Отчет"
+
+msgid "Delete this run and its results?"
+msgstr "Удалить этот запуск и его результаты?"
+
+msgid "Running in the background on the server; it continues even if you close the page."
+msgstr "Работа в фоновом режиме на сервере; оно продолжится, даже если вы закроете страницу."
+
+msgid "Watch results live"
+msgstr "Смотрите результаты в прямом эфире"
+
+msgid "Download report (.md)"
+msgstr "Скачать отчет (.md)"
+
+msgid "of {n} scenarios"
+msgstr "сценариев{n}"
+
+msgid "{r} read, {w} written"
+msgstr "{r}читается,{w}записывается."
+
+msgid "The AI service rejected requests; the benchmark stopped."
+msgstr "Служба ИИ отклонила запросы; тест остановился."
+
+msgid "The remaining scenarios were not counted as failed. Check the provider budget, credit or key, then use Continue to resume where it stopped."
+msgstr "Остальные сценарии не были засчитаны как провальные. Проверьте бюджет, кредит или ключ поставщика, затем используйте «Продолжить», чтобы возобновить работу с того места, где она была остановлена."
+
+msgid "Handed off when it should"
+msgstr "Передано, когда это должно быть"
+
+msgid "Correct handoff"
+msgstr "Правильная передача"
+
+msgid "Did not hand off when it should not"
+msgstr "Не передал, когда не следовало"
+
+msgid "Correct no-handoff"
+msgstr "Правильное отсутствие передачи обслуживания"
+
+msgid "Handed off when it should not"
+msgstr "Передано, когда этого не должно быть"
+
+msgid "Needless handoff"
+msgstr "Ненужная передача"
+
+msgid "Did not hand off when it should"
+msgstr "Не передал, когда надо"
+
+msgid "Missed handoff"
+msgstr "Пропущенная передача"
+
+msgid "Failed only"
+msgstr "Только неудачно"
+
+msgid "Pick a scenario on the left."
+msgstr "Выберите сценарий слева."
+
+msgid "Scripted history in the scenario"
+msgstr "Заскриптованная история в сценарии"
+
+msgid "Scripted history"
+msgstr "Сценарная история"
+
+msgid "Passed"
+msgstr "Пройдено"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "Criterion"
+msgstr "Критерий"
+
+msgid "New scenario"
+msgstr "Новый сценарий"
+
+msgid "Write a scenario with AI"
+msgstr "Напишите сценарий с помощью ИИ"
+
+msgid "Reset the built-in scenarios? Scenarios you added are kept."
+msgstr "Сбросить встроенные сценарии? Добавленные вами сценарии сохраняются."
+
+msgid "Restore built-in scenarios"
+msgstr "Восстановление встроенных сценариев"
+
+msgid "In messages {tur} = \"{a}\", {birim} = \"{b}\", {brand} = \"{c}\"."
+msgstr "В сообщениях{tur}= «{a}»,{birim}= «{b}»,{brand}= «{c}»."
+
+msgid "Must contain"
+msgstr "Должен содержать"
+
+msgid "Must not contain"
+msgstr "Не должен содержать"
+
+msgid "Tool must be called"
+msgstr "Инструмент должен вызываться"
+
+msgid "Tool must not be called"
+msgstr "Инструмент нельзя вызывать"
+
+msgid "Must"
+msgstr "Должен"
+
+msgid "Built-in"
+msgstr "Встроенный"
+
+msgid "The assistant's reply after the scripted history is measured."
+msgstr "Ответ помощника после измерения записанной истории."
+
+msgid "Continuation"
+msgstr "Продолжение"
+
+msgid "Writes as the first Flux Roles user with staff tools."
+msgstr "Пишет как первый пользователь Flux Roles с помощью штатных инструментов."
+
+msgid "Staff writes"
+msgstr "Персонал пишет"
+
+msgid "Start: {n}"
+msgstr "Начало:{n}"
+
+msgid "{n} messages"
+msgstr "Сообщения{n}"
+
+msgid "Edit with AI"
+msgstr "Редактировать с помощью ИИ"
+
+msgid "Run only this"
+msgstr "Запускать только это"
+
+msgid "Delete this scenario?"
+msgstr "Удалить этот сценарий?"
+
+msgid "One phrase per line; alternatives as a|b"
+msgstr "Одна фраза в строке; альтернативы как a|b"
+
+msgid "One phrase per line"
+msgstr "Одна фраза в строке"
+
+msgid "E.g. Should not ask for a name; short and warm greeting."
+msgstr "например Не следует спрашивать имя; короткое и теплое приветствие."
+
+msgid "One tool name per line; a|b for alternatives"
+msgstr "Одно название инструмента в строке; a|b для альтернатив"
+
+msgid "One tool name per line"
+msgstr "Одно название инструмента в строке"
+
+msgid "Group"
+msgstr "Группа"
+
+msgid "Messages (in order)"
+msgstr "Сообщения (по порядку)"
+
+msgid "{tur}, {birim} and {brand} can be used. If there are only customer messages, the assistant replies to each in turn. If you add assistant messages it becomes a continuation scenario: the written history is given as-is and the assistant replies only to the last customer message."
+msgstr "Можно использовать{tur},{birim}и{brand}. Если есть только сообщения клиентов, помощник отвечает на каждое по очереди. Если вы добавите сообщения помощника, это станет сценарием продолжения: записанная история предоставляется как есть, и помощник отвечает только на последнее сообщение клиента."
+
+msgid "E.g. payment_info, cancel_donation, receipt_check. Tools disabled on this site are not checked."
+msgstr "например платежная_информация, отмена_пожертвования, чек_чека. Инструменты, отключенные на этом сайте, не проверяются."
+
+msgid "Who is writing?"
+msgstr "Кто пишет?"
+
+msgid "Starting state (test)"
+msgstr "Начальное состояние (тестовое)"
+
+msgid "The scenario runs isolated like the test chat; what you select here exists only in this test. In a customer message, {kod} becomes the verification code from the test panel."
+msgstr "Сценарий выполняется изолированно, как и тестовый чат; то, что вы здесь выбираете, существует только в этом тесте. В сообщении клиента{kod}становится кодом подтверждения с тестовой панели."
+
+msgid "End state"
+msgstr "Конечное состояние"
+
+msgid "When the conversation ends, the test state is checked (was a donation opened, canceled, a code sent…). Tools disabled on this site are not checked."
+msgstr "По окончании разговора проверяется состояние теста (было ли открыто пожертвование, отменено, отправлен код...). Инструменты, отключенные на этом сайте, не проверяются."
+
+msgid "Judge criterion"
+msgstr "Критерий судьи"
+
+msgid "If empty, the judge is not called. Put quality expectations that cannot be written as rules here."
+msgstr "Если пусто, судья не вызывается. Поместите сюда ожидания от качества, которые нельзя записать в виде правил."
+
+msgid "Message written by the assistant"
+msgstr "Сообщение написал помощник"
+
+msgid "Message written by the customer"
+msgstr "Сообщение, написанное клиентом"
+
+msgid "Drag to reorder"
+msgstr "Перетащите, чтобы изменить порядок"
+
+msgid "Change author"
+msgstr "Изменить автора"
+
+msgid "Delete message"
+msgstr "Удалить сообщение"
+
+msgid "Customer message"
+msgstr "Сообщение клиента"
+
+msgid "Assistant message"
+msgstr "Сообщение Ассистента"
+
+msgid "Scenario saved ✓"
+msgstr "Сценарий сохранен ✓"
+
+msgid "Edit scenario"
+msgstr "Редактировать сценарий"
+
+msgid "E.g. Add one more message: the person does not want to give an email."
+msgstr "например Добавьте еще одно сообщение: человек не хочет отправлять электронное письмо."
+
+msgid "E.g. The person asks about a sacrifice donation; the assistant hands off to the team without making anything up."
+msgstr "например Человек просит о жертвенном пожертвовании; помощник передает команду, ничего не придумывая."
+
+msgid "Write"
+msgstr "Написать"
+
+msgid "Edit scenario with AI"
+msgstr "Редактировать сценарий с помощью ИИ"
+
+msgid "What should be tested?"
+msgstr "Что следует протестировать?"
+
+msgid "Have the scenario written first."
+msgstr "Сначала напишите сценарий."
+
+msgid "Writing…"
+msgstr "Пишу..."
+
+msgid "Rewrite"
+msgstr "Переписать"
+
+msgid "Documents"
+msgstr "Документы"
+
+msgid "Benchmark"
+msgstr "Контрольный показатель"
+
+msgid "7 days"
+msgstr "7 дней"
+
+msgid "30 days"
+msgstr "30 дней"
+
+msgid "Added to the instructions on every reply"
+msgstr "Добавлено в инструкции к каждому ответу"
+
+msgid "Assistant reads it when needed"
+msgstr "Ассистент читает его, когда это необходимо."
+
+msgid "1h"
+msgstr "1 час"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "Paused"
+msgstr "Приостановлено"
+
+msgid "Out of scope"
+msgstr "Вне области действия"
+
+msgid "Approved"
+msgstr "Утверждено"
+
+msgid "Skipped"
+msgstr "Пропущено"
+
+msgid "Interrupted"
+msgstr "Прерванный"
+
+msgid "%s ago"
+msgstr "%sназад"
+
+msgid "Open settings"
+msgstr "Открыть настройки"
+
+msgid "Call Center · Setup"
+msgstr "Колл-центр · Настройка"
+
+msgid "Call Center · WhatsApp"
+msgstr "Колл-центр · WhatsApp"
+
+msgid "Call Center · AI"
+msgstr "Колл-центр · ИИ"
+
+msgid "Database tables"
+msgstr "Таблицы базы данных"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+
+msgid "Tables ready (schema %s)."
+msgstr "Таблицы готовы (схема%s)."
+
+msgid "Schema update pending; it completes when you open a page in the admin panel."
+msgstr "Ожидается обновление схемы; он завершается, когда вы открываете страницу в панели администратора."
+
+msgid "Media folder"
+msgstr "Медиа-папка"
+
+msgid "Cannot write to uploads/flx-chat; incoming photos, voice notes and documents cannot be saved. Check folder permissions."
+msgstr "Не могу писать в uploads/flx-chat; входящие фотографии, голосовые заметки и документы сохранить невозможно. Проверьте права доступа к папке."
+
+msgid "Folder protection (.htaccess) missing; it is created with the first saved media."
+msgstr "Защита папки (.htaccess) отсутствует; он создается с использованием первого сохраненного носителя."
+
+msgid "Writable and closed to the public."
+msgstr "Доступно для записи и закрыто для публики."
+
+msgid "PHP cURL"
+msgstr "PHP cURL"
+
+msgid "Available."
+msgstr "Доступен."
+
+msgid "Missing; while the assistant prepares a reply the \"typing…\" indicator shows only briefly."
+msgstr "Отсутствует; пока помощник готовит ответ, индикатор «ввод...» горит лишь кратковременно."
+
+msgid "Users with the agent role: %d."
+msgstr "Пользователи с ролью агента:%d."
+
+msgid "No user has the agent role; only administrators can use it for now."
+msgstr "Ни один пользователь не имеет роли агента; пока только администраторы могут использовать его."
+
+msgid "Live panel updates"
+msgstr "Обновления панели в реальном времени"
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
+msgstr "Последний запрос на обновление%1$s. Пока панель открыта, она проверяет наличие новых сообщений каждые%2$d(60 секунд на фоновой вкладке)."
+
+msgid "The chat screen has not been opened yet."
+msgstr "Экран чата еще не открыт."
+
+msgid "WhatsApp line"
+msgstr "Линия WhatsApp"
+
+msgid "No line added."
+msgstr "Ни одна строка не добавлена."
+
+msgid "%s: connection details"
+msgstr "%s: сведения о подключении."
+
+msgid "Using Flux Mail connection: %s."
+msgstr "Использование соединения Flux Mail:%s."
+
+msgid "Still using the old provider in Flux Certificates; move the connection to Flux Mail and select it here."
+msgstr "Все еще использую старого провайдера в сертификатах Flux; переместите соединение с Flux Mail и выберите его здесь."
+
+msgid "Using the Evolution provider from Flux Certificates."
+msgstr "Использование поставщика Evolution из сертификатов Flux."
+
+msgid "API URL, key and instance are entered in this plugin."
+msgstr "URL-адрес API, ключ и экземпляр вводятся в этот плагин."
+
+msgid "%s: line status"
+msgstr "%s: статус линии."
+
+msgid "Phone connected (last seen %s)."
+msgstr "Телефон подключен (последний раз видел%s)."
+
+msgid "Not tested yet. Press \"Test connection\"."
+msgstr "Еще не тестировался. Нажмите «Проверить соединение»."
+
+msgid "Phone not connected (state: %1$s, %2$s). Reconnect with \"Connect with QR\"."
+msgstr "Телефон не подключен (состояние:%1$s,%2$s). Повторно подключитесь с помощью «Подключиться с помощью QR»."
+
+msgid "%s: Evolution API version"
+msgstr "%s: версия API эволюции."
+
+msgid "Evolution API %s is in use. Replies to hidden-number (@lid) contacts may fail; update the server to 2.3 or later."
+msgstr "Используется Evolution API%s. Ответы на контакты со скрытым номером (@lid) могут не получиться; обновите сервер до версии 2.3 или новее."
+
+msgid "%s: webhook (incoming messages)"
+msgstr "%s: вебхук (входящие сообщения)"
+
+msgid "No events have arrived from Evolution; incoming messages will not show in the panel. Press \"Set up webhook\"."
+msgstr "Никаких событий от «Эволюции» не поступило; входящие сообщения не будут отображаться на панели. Нажмите «Настроить вебхук»."
+
+msgid "Last event arrived %s. The line may just be quiet; send yourself a message or set up the webhook again to be sure."
+msgstr "Последнее событие прибыло%s. На линии может быть просто тихо; отправьте себе сообщение или настройте вебхук еще раз, чтобы быть уверенным."
+
+msgid "Last event arrived %s."
+msgstr "Последнее событие прибыло%s."
+
+msgid "Flux Mail integration"
+msgstr "Интеграция Flux Mail"
+
+msgid "Active: WhatsApp connections are taken from Communication › Connections."
+msgstr "Активно: соединения WhatsApp берутся из раздела Общение › Соединения."
+
+msgid "Flux Mail is not active; connections are taken from Flux Certificates or from this plugin."
+msgstr "Flux Mail не активен; подключения берутся из Flux Certificates или из этого плагина."
+
+msgid "Flux Certificates integration"
+msgstr "Интеграция сертификатов Flux"
+
+msgid "Active: certificates can be created and sent from chats."
+msgstr "Активно: сертификаты можно создавать и отправлять из чатов."
+
+msgid "Flux Certificates is not active; certificate actions in chats are off."
+msgstr "Сертификаты Flux не активны; действия с сертификатами в чатах отключены."
+
+msgid "Flux Donate integration"
+msgstr "Интеграция Flux Donate"
+
+msgid "Active: donation records, receipt matching and the assistant are available from chats."
+msgstr "Активно: записи пожертвований, сопоставление квитанций и помощник доступны из чатов."
+
+msgid "Flux Donate is not active; donation records, receipt matching and the donation assistant are off."
+msgstr "Flux Donate не активен; записи пожертвований, сопоставление квитанций и помощник по пожертвованиям отключены."
+
+msgid "The Flux AI & MCP plugin is not installed; AI features (suggestions, assistant, receipt reading, voice messages, summaries) are off. Install Flux AI and enter the key there."
+msgstr "Плагин Flux AI & MCP не установлен; Функции искусственного интеллекта (предложения, помощник, чтение квитанций, голосовые сообщения, сводки) отключены. Установите Flux AI и введите туда ключ."
+
+msgid "No key has been entered in Flux AI; message suggestions and the assistant are off."
+msgstr "В Flux AI не был введен ключ; предложения сообщений и помощник отключены."
+
+msgid "Key saved but no model selected."
+msgstr "Ключ сохранен, но модель не выбрана."
+
+msgid "No provider key has been entered in Flux AI for the selected model (%s)."
+msgstr "В Flux AI для выбранной модели не был введен ключ провайдера (%s)."
+
+msgid "Key saved, model: %s. Use \"Test connection\" for a live check."
+msgstr "Ключ сохранен, модель:%s. Используйте «Тестовое соединение» для проверки в реальном времени."
+
+msgid "Donation assistant"
+msgstr "Помощник по пожертвованиям"
+
+msgid "Off."
+msgstr "Выкл."
+
+msgid "AI key or model is missing."
+msgstr "Ключ или модель AI отсутствует."
+
+msgid "On but not replying: "
+msgstr "Включаю, но не отвечаю:"
+
+msgid "On. Donation types offered: %s."
+msgstr "Вкл. Предлагаемые типы пожертвований:%s."
+
+msgid "%s does not support tools; choose a tool-capable model for the assistant."
+msgstr "%sне поддерживает инструменты; выберите для помощника модель, поддерживающую инструмент."
+
+msgid "Receipt reading model"
+msgstr "Модель чтения квитанции"
+
+msgid "%s cannot read images; the receipt pre-check will not work. Choose an image-capable receipt reading model."
+msgstr "%sне может читать изображения; предварительная проверка чека не будет работать. Выберите модель чтения квитанций с возможностью изображения."
+
+msgid "Assistant payment details"
+msgstr "Платежные реквизиты помощника"
+
+msgid "Recipient name and IBAN set."
+msgstr "Имя получателя и набор IBAN."
+
+msgid "Recipient name or IBAN missing; bank details cannot be sent after confirmation."
+msgstr "Имя получателя или IBAN отсутствуют; Банковские реквизиты не могут быть отправлены после подтверждения."
+
+msgid "Donation page link"
+msgstr "Ссылка на страницу пожертвований"
+
+msgid "Donation page not found; the assistant will not send a link."
+msgstr "Страница пожертвования не найдена; помощник не отправит ссылку."
+
+msgid "Background requests"
+msgstr "Фоновые запросы"
+
+msgid "The site could not send a background request to itself (%1$s: %2$s). Queued replies and the benchmark may move slowly; a security plugin or the server firewall may be blocking /wp-json/flx-chat/ requests."
+msgstr "Сайт не смог отправить себе фоновый запрос (%1$s:%2$s). Ответы в очереди и контрольный показатель могут двигаться медленно; плагин безопасности или брандмауэр сервера могут блокировать запросы /wp-json/flx-chat/."
+
+msgid "error"
+msgstr "ошибка"
+
+msgid "warning"
+msgstr "предупреждение"
+
+msgid "ok"
+msgstr "ок"
+
+msgid "Your {marka} verification code: {kod}"
+msgstr "Ваш код подтверждения{marka}:{kod}."
+
+msgid "The code is valid for {dk} minutes. Type it in your WhatsApp chat with us. If you did not ask for it, ignore this message."
+msgstr "Код действителен в течение{dk}минут. Введите его в свой чат WhatsApp с нами. Если вы не просили об этом, проигнорируйте это сообщение."
+
+msgid "Something went wrong; our team will contact you as soon as possible 🌱 Meanwhile, feel free to ask anything else."
+msgstr "Что-то пошло не так; наша команда свяжется с вами как можно скорее 🌱 А пока не стесняйтесь спрашивать что-нибудь еще."
+
+msgid "Verification attempt failed (%1$d/%2$d): %3$s"
+msgstr "Попытка проверки не удалась (%1$d/%2$d):%3$s."
+
+msgid "The person wanted to see their records but could not be verified; someone from the team should get in touch"
+msgstr "Человек хотел просмотреть свои записи, но его не удалось проверить; кто-то из команды должен связаться"
+
+msgid "e-mail could not be sent (check Flux Mail › SMTP settings)"
+msgstr "Не удалось отправить электронное письмо (проверьте Flux Mail › настройки SMTP)"
+
+msgid "The assistant sent a verification code for %1$s (%2$s)."
+msgstr "Ассистент отправил код подтверждения для%1$s(%2$s)."
+
+msgid "code expired"
+msgstr "срок действия кода истек"
+
+msgid "wrong code"
+msgstr "неправильный код"
+
+msgid "The person verified the code for %s; it is added to their record lookups."
+msgstr "Человек проверил код%s; он добавляется в их поиск по записям."
+
+msgid "Claude models cannot read audio; choose an audio-capable OpenRouter model in Settings › AI › Voice message model."
+msgstr "Модели Claude не могут читать аудио; выберите модель OpenRouter с поддержкой аудио в меню «Настройки» > «AI» > «Модель голосового сообщения»."
+
+msgid "The audio could not be transcribed."
+msgstr "Звук не удалось расшифровать."
+
+msgid "The audio file could not be read."
+msgstr "Аудиофайл не может быть прочитан."
+
+msgid "Voice message (%1$s) transcribed: %2$s"
+msgstr "Голосовое сообщение (%1$s) расшифровано:%2$s"
+
+msgid "Voice message (%1$s) could not be processed: %2$s"
+msgstr "Голосовое сообщение (%1$s) не удалось обработать:%2$s."
+
+msgid "This action is not available on an official WhatsApp Cloud API line."
+msgstr "Это действие недоступно в официальной строке WhatsApp Cloud API."
+
+msgid "WhatsApp 24-hour rule: the contact has not written in the last 24 hours, so the Cloud API will not send a free-form message; only an approved template can be sent. Try again once they write."
+msgstr "Правило 24 часов в WhatsApp: контакт не писал в течение последних 24 часов, поэтому Cloud API не будет отправлять сообщение в свободной форме; можно отправить только утвержденный шаблон. Попробуйте еще раз, как напишут."
+
+msgid "A Cloud API line needs Flux Mail 1.10.0 or later."
+msgstr "Для линии Cloud API требуется Flux Mail 1.10.0 или новее."
+
+msgid "The Cloud API cannot send to this address (hidden number or group)."
+msgstr "Cloud API не может отправить сообщение на этот адрес (скрытый номер или группу)."
+
+msgid "Could not reach the Cloud API account (İletişim › Connections)."
+msgstr "Не удалось получить доступ к учетной записи Cloud API (İletişim › Connections)."
+
+msgid "A Cloud API line has no QR code; the account is set up in İletişim › Connections."
+msgstr "Линия Cloud API не имеет QR-кода; учетная запись настроена в İletişim › Connections."
+
+msgid "The file could not be prepared."
+msgstr "Не удалось подготовить файл."
+
+msgid "Flux AI has no image support."
+msgstr "Flux AI не поддерживает изображения."
+
+msgid "The image could not be rendered."
+msgstr "Изображение не удалось отобразить."
+
+msgid "The assistant's image could not be sent: "
+msgstr "Не удалось отправить изображение помощника:"
+
+msgid "Hello {first_name}, we have created your donation record: {donation}, total {amount}.\n\n{bank}\n\nAfter paying, you can send the receipt here. Thank you."
+msgstr "Здравствуйте,{first_name}, мы создали запись о вашем пожертвовании:{donation}, общая сумма{amount}.{bank}После оплаты вы можете отправить чек сюда. Спасибо."
+
+msgid "Hello {first_name}, your donation has been recorded: {donation}, total {amount}.\n\nThank you for your support."
+msgstr "Здравствуйте,{first_name}, ваше пожертвование зарегистрировано:{donation}, общая сумма{amount}.\n\nСпасибо за вашу поддержку."
+
+msgid "The plugin that would run this scenario is inactive."
+msgstr "Плагин, который будет запускать этот сценарий, неактивен."
+
+msgid "This user is not allowed to use the staff tools."
+msgstr "Этому пользователю не разрешено использовать штатные инструменты."
+
+msgid "%1$s linked this chat to staff member %2$s"
+msgstr "%1$sсвязал этот чат с сотрудником%2$s"
+
+msgid "%s removed the staff link of this chat"
+msgstr "%sудалил ссылку на персонал этого чата."
+
+msgid "Chat linked to staff member"
+msgstr "Чат связан с сотрудником"
+
+msgid "Staff link removed"
+msgstr "Ссылка на персонал удалена"
+
+msgid "— Not staff —"
+msgstr "— Не персонал —"
+
+msgid "WhatsApp hides this person's number, so the assistant cannot recognise staff by number. If this person is on your team, link them here and the assistant opens the staff tools."
+msgstr "WhatsApp скрывает номер этого человека, поэтому помощник не может распознать сотрудника по номеру. Если этот человек входит в вашу команду, свяжите его здесь, и помощник откроет инструменты для персонала."
+
+msgid "The assistant recognises staff by the number in their Flux Roles profile. If the number does not match, you can link them here; in a chat with a known number the number comes first."
+msgstr "Ассистент узнает сотрудников по номеру в их профиле ролей Flux. Если номера не совпадают, вы можете связать их здесь; в чате с известным номером номер стоит первым."
+
+msgid "This channel is not available right now."
+msgstr "Этот канал сейчас недоступен."
+
+msgid "Site chat"
+msgstr "Чат на сайте"
+
+msgid "All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left."
+msgstr "Все сообщения из WhatsApp, чата сайта и других каналов отображаются здесь в прямом эфире. Выберите чат слева."
+
+msgid "[['WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.', 'tr']]"
+msgstr "[['Колл-центр WhatsApp (Evolution API): просмотр входящих и исходящих сообщений в реальном времени, запуск нового чата, готовые ответы, теги, назначения, внутренние заметки, автоответы; Регистрация пожертвований (Flux Donate) и сертификатов (Flux Certificates) из чата, сопоставление квитанций. Предложение ответа искусственного интеллекта и автоматический помощник по пожертвованиям с OpenRouter.', 'tr']]"

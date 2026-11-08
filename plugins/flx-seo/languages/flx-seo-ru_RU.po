@@ -1,0 +1,1211 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Recent posts"
+msgstr "Последние сообщения"
+
+msgid "Products"
+msgstr "Продукты"
+
+msgid "Optional"
+msgstr "Необязательно"
+
+msgid "Sitemap"
+msgstr "Карта сайта"
+
+msgid "List of all public pages"
+msgstr "Список всех общедоступных страниц"
+
+msgid "RSS feed"
+msgstr "RSS-канал"
+
+msgid "Searches the site and opens the results page."
+msgstr "Выполняет поиск по сайту и открывает страницу результатов."
+
+msgid "Words to search for"
+msgstr "Слова для поиска"
+
+msgid "Unknown fix."
+msgstr "Неизвестное исправление."
+
+msgid "Turn on llms.txt"
+msgstr "Включите llms.txt"
+
+msgid "Flux SEO builds /llms.txt from the site name, description, menu and recent content."
+msgstr "Flux SEO создает файл /llms.txt из имени сайта, описания, меню и недавнего контента."
+
+msgid "Turn on the WebMCP search tool"
+msgstr "Включите инструмент поиска WebMCP."
+
+msgid "Adds toolname/tooldescription to the search form so browser agents see it as a tool."
+msgstr "Добавляет имя/описание инструмента в форму поиска, чтобы агенты браузера воспринимали его как инструмент."
+
+msgid "Turn on security headers"
+msgstr "Включить заголовки безопасности"
+
+msgid "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Do not turn on if the site is embedded in other sites with an iframe."
+msgstr "Параметры X-Frame: SAMEORIGIN, COOP, всплывающие окна с одинаковым происхождением и базовый CSP (object-src «none»; base-uri «self»; Frame-ancestors «self»). Не включать, если сайт встроен в другие сайты с помощью iframe."
+
+msgid "HSTS includeSubDomains"
+msgstr "HSTS включает поддомены"
+
+msgid "If every subdomain is HTTPS, HSTS also covers subdomains."
+msgstr "Если каждый субдомен является HTTPS, HSTS также распространяется на субдомены."
+
+msgid "Turned on. Run the site audit again."
+msgstr "Включен. Запустите аудит сайта еще раз."
+
+msgid "General"
+msgstr "Общий"
+
+msgid "Organization and social"
+msgstr "Организация и соц."
+
+msgid "SEO check"
+msgstr "SEO проверка"
+
+msgid "Site audit"
+msgstr "Аудит сайта"
+
+msgid "AI (MCP)"
+msgstr "ИИ (МКП)"
+
+msgid "llms.txt follows recommendations"
+msgstr "llms.txt соответствует рекомендациям"
+
+msgid "Accessibility tree is well-formed"
+msgstr "Дерево доступности правильно сформировано"
+
+msgid "Forms are WebMCP tools"
+msgstr "Формы — это инструменты WebMCP."
+
+msgid "Low layout shift (CLS)"
+msgstr "Низкий сдвиг макета (CLS)"
+
+msgid "On-site"
+msgstr "На месте"
+
+msgid "PageSpeed mobile"
+msgstr "PageSpeed для мобильных устройств"
+
+msgid "PageSpeed desktop"
+msgstr "PageSpeed для рабочего стола"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google's real Lighthouse result."
+msgstr "Пять разделов PageSpeed Insights (Производительность, Доступность, Рекомендации, SEO, Агентический просмотр) по приоритету. Аудит на месте не требует ключа и выполняется каждый день самостоятельно; запуск PageSpeed ​​добавляет реальный результат Google Lighthouse."
+
+msgid "On-site audit: %1$s · %2$s"
+msgstr "Аудит на месте:%1$s·%2$s"
+
+msgid "No audit has run yet."
+msgstr "Ни одна проверка еще не проводилась."
+
+msgid "Address to audit"
+msgstr "Обращение к аудиту"
+
+msgid "On-site audit"
+msgstr "Выездной аудит"
+
+msgid "Measure with PageSpeed"
+msgstr "Измеряйте с помощью PageSpeed"
+
+msgid "Mobile"
+msgstr "мобильный"
+
+msgid "Desktop"
+msgstr "Рабочий стол"
+
+msgid "No PageSpeed run yet. Press \"Measure with PageSpeed\" (mobile + desktop takes about 1 minute)."
+msgstr "PageSpeed пока не запущен. Нажмите «Измерить с помощью PageSpeed» (мобильный + настольный компьютер занимает около 1 минуты)."
+
+msgid "Agentic browsing"
+msgstr "Агентический просмотр"
+
+msgid "MCP server on"
+msgstr "MCP-сервер включен"
+
+msgid "MCP server off"
+msgstr "MCP-сервер выключен"
+
+msgid "Recommendations"
+msgstr "Рекомендации"
+
+msgid "Filter by priority"
+msgstr "Фильтровать по приоритету"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Section"
+msgstr "Раздел"
+
+msgid "All sections"
+msgstr "Все разделы"
+
+msgid "Start the audit; recommendations are listed here by priority."
+msgstr "Запустить аудит; рекомендации перечислены здесь по приоритету."
+
+msgid "No recommendations. All good."
+msgstr "Никаких рекомендаций. Все хорошо."
+
+msgid "How to fix:"
+msgstr "Как исправить:"
+
+msgid "Where to fix: %s"
+msgstr "Где исправить:%s"
+
+msgid "Fix"
+msgstr "Исправить"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "PageSpeed Insights API key"
+msgstr "Ключ API PageSpeed Insights"
+
+msgid "Saved (type to replace)"
+msgstr "Сохранено (введите текст для замены)"
+
+msgid "Delete key"
+msgstr "Удалить ключ"
+
+msgid "Optional but recommended: the keyless quota is shared and runs out quickly. In Google Cloud Console › APIs, enable \"PageSpeed Insights API\" and create a free key."
+msgstr "Необязательно, но рекомендуется: квота бесключевого доступа является общей и быстро заканчивается. В Google Cloud Console › API включите «PageSpeed ​​Insights API» и создайте бесплатный ключ."
+
+msgid "Generate /llms.txt (site name, description, menu pages, recent content)"
+msgstr "Создать /llms.txt (название сайта, описание, страницы меню, недавнее содержимое)"
+
+msgid "llms.txt intro text (optional)"
+msgstr "Вступительный текст llms.txt (необязательно)"
+
+msgid "E.g. who your organization is, what it does, which pages agents should read first."
+msgstr "например кто ваша организация, чем она занимается, какие страницы агентам следует прочитать в первую очередь."
+
+msgid "WebMCP: expose the search form to browser agents as a tool"
+msgstr "WebMCP: предоставить форму поиска агентам браузера как инструмент."
+
+msgid "Security headers"
+msgstr "Заголовки безопасности"
+
+msgid "Clickjacking protection (X-Frame-Options: SAMEORIGIN, frame-ancestors 'self')"
+msgstr "Защита от кликджекинга (параметры X-Frame: SAMEORIGIN, предки фрейма «self»)"
+
+msgid "Origin isolation (Cross-Origin-Opener-Policy: same-origin-allow-popups)"
+msgstr "Изоляция источника (Cross-Origin-Opener-Policy: всплывающие окна с одинаковым происхождением)"
+
+msgid "Basic CSP (object-src 'none'; base-uri 'self'; upgrade-insecure-requests)"
+msgstr "Базовый CSP (object-src 'none'; base-uri 'self'; небезопасные запросы обновления)"
+
+msgid "HSTS covers subdomains (includeSubDomains)"
+msgstr "HSTS охватывает субдомены (includeSubDomains)."
+
+msgid "HSTS preload (takes months to undo; every subdomain must be HTTPS)"
+msgstr "Предварительная загрузка HSTS (отмена занимает месяцы; каждый поддомен должен быть HTTPS)"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "New site build guide"
+msgstr "Руководство по созданию нового сайта"
+
+msgid "Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool."
+msgstr "Правила и контрольный список для SEO, производительности, доступности, безопасности и готовности агента при создании новой страницы, темы или пресета. Агенты ИИ получают то же руководство с инструментом MCP flxseo_site_build_guide, а чат Flux AI получает его в качестве инструмента."
+
+msgid "Download Turkish (.md)"
+msgstr "Скачать турецкий (.md)"
+
+msgid "Download English (.md)"
+msgstr "Скачать английский (.md)"
+
+msgid "On-site audit running…"
+msgstr "Проводится выездная проверка..."
+
+msgid "Measuring PageSpeed mobile (30–40 s)…"
+msgstr "Измерение PageSpeed на мобильных устройствах (30–40 с)..."
+
+msgid "Measuring PageSpeed desktop…"
+msgstr "Измерение PageSpeed на рабочем столе..."
+
+msgid "Done, reloading…"
+msgstr "Готово, перезагрузка..."
+
+msgid "Failed:"
+msgstr "Не удалось:"
+
+msgid "You do not have permission."
+msgstr "У вас нет разрешения."
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "Turned on and the audit was refreshed. If a page cache (LiteSpeed) is on, run Purge All."
+msgstr "Включил и аудит обновился. Если кэш страниц (LiteSpeed) включен, запустите «Очистить все»."
+
+msgid "Critical"
+msgstr "Критический"
+
+msgid "High"
+msgstr "Высокий"
+
+msgid "Medium"
+msgstr "Средний"
+
+msgid "Low"
+msgstr "Низкий"
+
+msgid "Performance"
+msgstr "Производительность"
+
+msgid "Accessibility"
+msgstr "Доступность"
+
+msgid "Best practices"
+msgstr "Лучшие практики"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Theme / preset"
+msgstr "Тема/пресет"
+
+msgid "Content"
+msgstr "Содержание"
+
+msgid "Server"
+msgstr "Сервер"
+
+msgid "Flux SEO (one click)"
+msgstr "Flux SEO (один клик)"
+
+msgid "WordPress setting"
+msgstr "Настройка WordPress"
+
+msgid "Home page does not return a successful status code"
+msgstr "Домашняя страница не возвращает успешный код состояния"
+
+msgid "The page must return 200. It may be maintenance mode, a redirect loop or a PHP error; check System Check and the error log."
+msgstr "Страница должна вернуть 200. Это может быть режим обслуживания, цикл перенаправления или ошибка PHP; проверьте Проверка системы и журнал ошибок."
+
+msgid "Page is blocked from search engines"
+msgstr "Страница заблокирована для поисковых систем"
+
+msgid "Untick Settings › Reading › \"Discourage search engines from indexing this site\" and turn off noindex in the page's own SEO panel."
+msgstr "Снимите флажок «Настройки» > «Чтение» > «Запретить поисковым системам индексировать этот сайт» и отключите noindex на собственной панели SEO страницы."
+
+msgid "robots.txt blocks the whole site"
+msgstr "robots.txt блокирует весь сайт"
+
+msgid "The robots.txt file in the site root must not have \"Disallow: /\" under \"User-agent: *\". Delete or fix the file; WordPress generates its own robots.txt."
+msgstr "В файле robots.txt в корне сайта не должно быть «Disallow: /» в разделе «User-agent: *». Удалить или исправить файл; WordPress генерирует собственный файл robots.txt."
+
+msgid "Page has no <title>"
+msgstr "На странице нет<title>."
+
+msgid "The theme must declare add_theme_support( 'title-tag' ); fill in the home title in SEO › General."
+msgstr "В теме должно быть объявлено add_theme_support('title-tag'); заполните заголовок дома в SEO › General."
+
+msgid "Page title is long"
+msgstr "Заголовок страницы длинный"
+
+msgid "Keep the title around 60 characters; Google cuts the rest."
+msgstr "Держите заголовок около 60 символов; Остальное Google отсекает."
+
+msgid "No meta description"
+msgstr "Нет мета-описания"
+
+msgid "Turn on SEO output and write the home description (150–160 characters)."
+msgstr "Включите вывод SEO и напишите описание дома (150–160 символов)."
+
+msgid "Canonical link missing or duplicated"
+msgstr "Каноническая ссылка отсутствует или дублируется"
+
+msgid "Each page needs exactly one rel=canonical. If another plugin or the theme also adds one, turn one off."
+msgstr "Каждой странице нужен ровно один rel=canonical. Если другой плагин или тема также добавляет его, отключите его."
+
+msgid "No hreflang on a multilingual site"
+msgstr "На многоязычном сайте нет атрибута hreflang."
+
+msgid "With Flux Lang active, language versions must be linked with hreflang; check the language pairs in Flux Lang settings."
+msgstr "При активном Flux Lang языковые версии должны быть связаны с помощью hreflang; проверьте языковые пары в настройках Flux Lang."
+
+msgid "Main heading (H1) missing or repeated"
+msgstr "Основной заголовок (H1) отсутствует или повторяется."
+
+msgid "Each page needs one H1 that names the topic; subheadings are H2/H3."
+msgstr "На каждой странице должен быть один H1 с названием темы; подзаголовки H2/H3."
+
+msgid "Structured data (JSON-LD) missing or broken"
+msgstr "Структурированные данные (JSON-LD) отсутствуют или повреждены."
+
+msgid "With Flux SEO output on, Organization, WebSite and Breadcrumb schema are added. Find the block or plugin that outputs broken JSON-LD."
+msgstr "При включении вывода Flux SEO добавляются схемы «Организация», «Веб-сайт» и «Навигационная цепочка». Найдите блок или плагин, который выводит неверный JSON-LD."
+
+msgid "Link texts are not descriptive"
+msgstr "Тексты ссылок не носят описательный характер."
+
+msgid "Write text that names the target instead of \"click here\", \"more\", \"here\" (e.g. \"See donation options\")."
+msgstr "Напишите текст с названием цели вместо «нажмите здесь», «еще», «здесь» (например, «См. варианты пожертвований»)."
+
+msgid "More than one post with the same title"
+msgstr "Более одного поста с одинаковым заголовком"
+
+msgid "Delete the duplicate (usually the address ending in -2) or redirect it to the original; give different titles if both are needed. When links with the same text go to different addresses, the \"Identical links have the same purpose\" audit also fails."
+msgstr "Удалите дубликат (обычно адрес, заканчивающийся на -2) или перенаправьте его на оригинал; дайте разные названия, если оба необходимы. Когда ссылки с одинаковым текстом идут на разные адреса, проверка «Идентичные ссылки имеют одну и ту же цель» также не проходит."
+
+msgid "WordPress version is visible on the page"
+msgstr "Версия WordPress видна на странице"
+
+msgid "The meta generator tag reveals the version. The theme should call remove_action( 'wp_head', 'wp_generator' ); Flux SEO removes it when security headers are on."
+msgstr "Мета-тег генератора показывает версию. Тема должна вызвать функцию remove_action('wp_head', 'wp_generator'); Flux SEO удаляет его, когда включены заголовки безопасности."
+
+msgid "Zoom is blocked (user-scalable=no / maximum-scale)"
+msgstr "Масштаб заблокирован (масштабируемый пользователем = нет/максимальный масштаб)"
+
+msgid "Remove user-scalable=no and maximum-scale=1 from the viewport tag: <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">. Users with low vision cannot zoom; the Accessibility score drops directly."
+msgstr "Удалите user-scalable=no и Maximum-scale=1 из тега области просмотра:<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">. Пользователи со слабым зрением не могут масштабировать изображение; Оценка доступности напрямую падает."
+
+msgid "No viewport tag"
+msgstr "Нет тега области просмотра"
+
+msgid "The theme must add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> to <head>; otherwise the page opens at desktop width on mobile."
+msgstr "Тема должна добавить<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">к<head>; в противном случае страница откроется на ширине рабочего стола на мобильном устройстве."
+
+msgid "ARIA role is missing required children"
+msgstr "В роли ARIA отсутствуют необходимые дочерние элементы"
+
+msgid "E.g. role=\"tablist\" may only contain role=\"tab\" elements. Use <div role=\"tablist\"><button role=\"tab\"> instead of <ol role=\"tablist\"><li><button role=\"tab\">, or give the li elements role=\"presentation\". The accessibility tree breaks and Lighthouse also lowers the Agentic Browsing score."
+msgstr "Например. role=\"tablist\" может содержать только элементы role=\"tab\". Используйте<div role=\"tablist\"><button role=\"tab\">вместо<ol role=\"tablist\"><li><button role=\"tab\">или задайте элементам li role=\"presentation\". Дерево доступности ломается, и Lighthouse также снижает оценку агентного просмотра."
+
+msgid "ARIA role is not inside its required parent"
+msgstr "Роль ARIA не находится внутри обязательного родительского элемента"
+
+msgid "role=\"tab\" must sit directly inside role=\"tablist\", role=\"option\" inside role=\"listbox\". Remove the li/div elements in between or give them role=\"presentation\"."
+msgstr "role=\"tab\" должен находиться непосредственно внутри role=\"tablist\", role=\"option\" внутри role=\"listbox\". Удалите промежуточные элементы li/div или присвойте им роль=\"презентация\"."
+
+msgid "List items (<li>) are not inside a list"
+msgstr "Элементы списка (<li>) не находятся внутри списка."
+
+msgid "<li> may only sit inside <ul>, <ol> or <menu>, and the parent list must not get a non-list role (e.g. <ol role=\"tablist\">)."
+msgstr "<li>может находиться только внутри<ul>,<ol>или<menu>, а родительский список не должен иметь роль, не являющуюся списком (например,<ol role=\"tablist\">)."
+
+msgid "Images without alt text"
+msgstr "Изображения без замещающего текста"
+
+msgid "Give every meaningful image alt text that describes it; decorative images get alt=\"\". Fill in alt text in the media library or turn on SEO › General › Images."
+msgstr "Дайте каждому значимому изображению альтернативный текст, описывающий его; декоративные изображения получают alt=\"\". Заполните замещающий текст в медиатеке или включите SEO › Общие › Изображения."
+
+msgid "Links without a name"
+msgstr "Ссылки без названия"
+
+msgid "Add aria-label or hidden text (screen-reader-text) to icon-only links."
+msgstr "Добавьте метку-арию или скрытый текст (текст для чтения с экрана) к ссылкам, состоящим только из значков."
+
+msgid "Buttons without a name"
+msgstr "Кнопки без названия"
+
+msgid "Give icon buttons an aria-label (e.g. \"Open menu\"). Agents and screen readers cannot tell what the button does."
+msgstr "Присвойте кнопкам-значкам aria-метку (например, «Открыть меню»). Агенты и программы чтения с экрана не могут определить, что делает кнопка."
+
+msgid "Form fields without a label"
+msgstr "Поля формы без метки"
+
+msgid "Each field needs a name through <label for> or aria-label; a placeholder is not a label."
+msgstr "Каждому полю необходимо имя через<label for>или aria-label; заполнитель не является меткой."
+
+msgid "<html> has no lang attribute"
+msgstr "<html>не имеет атрибута lang."
+
+msgid "The theme should use <html <?php language_attributes(); ?>>."
+msgstr "В теме следует использовать<html <?php language_attributes(); ?>>."
+
+msgid "Duplicate or missing id references"
+msgstr "Дублирующиеся или отсутствующие ссылки на идентификаторы"
+
+msgid "No id may be used twice; aria-controls, aria-labelledby and label for must point to an existing id."
+msgstr "Ни один идентификатор не может использоваться дважды; aria-controls, aria-labeledby и label for должны указывать на существующий идентификатор."
+
+msgid "Heading levels skip"
+msgstr "Уровни заголовков пропускаются"
+
+msgid "Headings should step down in order (H2 → H3); do not skip levels for looks, size them with CSS."
+msgstr "Заголовки должны идти вниз по порядку (H2 → H3); не пропускайте уровни для внешнего вида, изменяйте их размер с помощью CSS."
+
+msgid "tabindex greater than 0"
+msgstr "табиндекс больше 0"
+
+msgid "Values like tabindex=\"1\" break keyboard order; use 0 or -1."
+msgstr "Такие значения, как tabindex=\"1\", нарушают порядок клавиатуры; используйте 0 или -1."
+
+msgid "Links with the same text go to different addresses"
+msgstr "Ссылки с одинаковым текстом идут на разные адреса"
+
+msgid "Links with the same name should go to the same page. Remove the duplicate page or make the link texts different."
+msgstr "Ссылки с одинаковым названием должны вести на одну и ту же страницу. Удалите дублирующую страницу или измените текст ссылок."
+
+msgid "iframe without a title"
+msgstr "iframe без заголовка"
+
+msgid "Every <iframe> needs a title (e.g. \"Location map\")."
+msgstr "Каждому<iframe>нужен заголовок (например, «Карта расположения»)."
+
+msgid "No <main> landmark on the page"
+msgstr "На странице нет ориентира<main>."
+
+msgid "Main content must be inside <main>; screen readers and agents find the main content this way."
+msgstr "Основное содержимое должно находиться внутри<main>; Таким образом программы чтения с экрана и агенты находят основной контент."
+
+msgid "Insufficient text/background contrast"
+msgstr "Недостаточный контраст текста и фона"
+
+msgid "At least 4.5:1 for normal text and 3:1 for large text. Darken the pale colors in the theme palette."
+msgstr "Не менее 4,5:1 для обычного текста и 3:1 для крупного текста. Затемните бледные цвета в палитре темы."
+
+msgid "Render-blocking requests"
+msgstr "Запросы на блокировку рендеринга"
+
+msgid "Inline the critical CSS for the first screen, load the rest with media=\"print\" onload or at the end of the page, and defer JS. LiteSpeed Cache › Page Optimization › CSS/JS settings, or the theme's own combined CSS."
+msgstr "Встройте критический CSS для первого экрана, загрузите остальные с помощью media=\"print\" при загрузке или в конце страницы и отложите JS. LiteSpeed ​​Cache › Оптимизация страницы › Настройки CSS/JS или собственный комбинированный CSS темы."
+
+msgid "Unused CSS"
+msgstr "Неиспользуемый CSS"
+
+msgid "Split the one large CSS file by page type, or drop unused rules (LiteSpeed \"Remove Unused CSS\"). The gain usually shows up in LCP."
+msgstr "Разделите один большой файл CSS по типам страниц или удалите неиспользуемые правила (LiteSpeed «Удалить неиспользуемый CSS»). Выигрыш обычно отображается в LCP."
+
+msgid "Unminified JavaScript"
+msgstr "Неминифицированный JavaScript"
+
+msgid "Ship .min versions of theme/plugin JS or turn on LiteSpeed \"JS Minify\"."
+msgstr "Загрузите .min-версии темы/плагина JS или включите LiteSpeed «JS Minify»."
+
+msgid "Unminified CSS"
+msgstr "Неминифицированный CSS"
+
+msgid "Minify CSS (LiteSpeed \"CSS Minify\" or a build step)."
+msgstr "Минимизировать CSS (LiteSpeed «CSS Minify» или этап сборки)."
+
+msgid "Non-composited animations"
+msgstr "Некомпозитная анимация"
+
+msgid "Animate with transform and opacity; properties like stroke-dashoffset, top/left and width repaint on every frame. Stop them under prefers-reduced-motion."
+msgstr "Анимация с трансформацией и непрозрачностью; такие свойства, как смещение штриха, верхнее/левое и ширина, перерисовываются в каждом кадре. Остановите их, предпочитая уменьшенное движение."
+
+msgid "DOM is too large"
+msgstr "DOM слишком велик"
+
+msgid "Aim for under 1,500 elements. Reduce copies in marquees, build hidden menus and long lists on demand, simplify nested wrappers."
+msgstr "Стремитесь к количеству менее 1500 элементов. Уменьшайте количество копий в рамках, создавайте скрытые меню и длинные списки по требованию, упрощайте вложенные оболочки."
+
+msgid "Largest content (LCP) paints late"
+msgstr "Самый большой контент (LCP) отрисовывается с опозданием"
+
+msgid "If the LCP element is text, preload its font, use font-display: swap and do not hide it behind an entrance animation on the first frame; if it is an image, give it fetchpriority=\"high\" and do not lazy load it."
+msgstr "Если элемент LCP является текстовым, предварительно загрузите его шрифт, используйте font-display: swap и не скрывайте его за анимацией входа в первом кадре; если это изображение, присвойте ему fetchpriority=\"high\" и не лениво загружайте его."
+
+msgid "Layout shift (CLS) culprits"
+msgstr "Виновники смещения макета (CLS)"
+
+msgid "Give images width/height and late blocks a fixed height; use size-adjust/fallback metrics for web fonts; absolutely positioned animated layers must not push the layout."
+msgstr "Присвойте изображениям ширину/высоту и поздним блокам фиксированную высоту; использовать метрики регулировки размера/резервного варианта для веб-шрифтов; абсолютно позиционированные анимированные слои не должны смещать макет."
+
+msgid "Fonts delay text"
+msgstr "Шрифты задерживают текст"
+
+msgid "Use font-display: swap in @font-face, preload the 1-2 fonts used on the first screen with <link rel=\"preload\" as=\"font\" crossorigin>, remove unused weights."
+msgstr "Используйте font-display: замените @font-face, предварительно загрузите 1-2 шрифта, используемых на первом экране, с помощью<link rel=\"preload\" as=\"font\" crossorigin>, удалите неиспользуемые насыщенности."
+
+msgid "Critical request chain is long"
+msgstr "Цепочка критических запросов длинная"
+
+msgid "Fonts loaded from CSS lengthen the chain; preload first-screen fonts and defer unneeded requests in the chain (e.g. guest.vary.php)."
+msgstr "Шрифты, загруженные из CSS, удлиняют цепочку; предварительно загрузите шрифты первого экрана и отложите ненужные запросы в цепочке (например, Guest.vary.php)."
+
+msgid "Forced reflow"
+msgstr "Принудительная перекомпоновка"
+
+msgid "Do not read offsetWidth/getBoundingClientRect after changing styles in JS; read first, then write inside requestAnimationFrame."
+msgstr "Не читайте offsetWidth/getBoundingClientRect после изменения стилей в JS; сначала прочитайте, затем напишите внутри requestAnimationFrame."
+
+msgid "Long main-thread tasks"
+msgstr "Длинные задачи основного потока"
+
+msgid "Split JS that runs at startup and defer work for off-screen sections with IntersectionObserver."
+msgstr "Разделите JS, который запускается при запуске, и отложите работу для разделов за кадром с помощью IntersectionObserver."
+
+msgid "Images are large or in an old format"
+msgstr "Изображения большие или в старом формате."
+
+msgid "Use WebP/AVIF, never send images larger than displayed (srcset), turn on image compression."
+msgstr "Используйте WebP/AVIF, никогда не отправляйте изображения размером больше, чем отображается (srcset), включите сжатие изображений."
+
+msgid "Images without width/height"
+msgstr "Изображения без ширины/высоты"
+
+msgid "Give <img> tags width and height; the browser reserves space and the page does not shift."
+msgstr "Присвойте тегам<img>ширину и высоту; браузер резервирует место и страница не сдвигается."
+
+msgid "First-screen image is lazy loaded"
+msgstr "Изображение на первом экране загружается отложенно"
+
+msgid "Do not give the page's first image loading=\"lazy\"; give it fetchpriority=\"high\". If LiteSpeed lazy load is on, exclude the first image (data-no-lazy or \"Lazy Load Image Excludes\")."
+msgstr "Не указывайте первое изображение страницы loading=\"lazy\"; дайте ему fetchpriority=\"high\". Если отложенная загрузка LiteSpeed ​​включена, исключите первое изображение (без отложенных данных или «Отложенная загрузка изображения исключает»)."
+
+msgid "Slow server response"
+msgstr "Медленный ответ сервера"
+
+msgid "Turn on page cache (LiteSpeed Cache); check slow plugins and the cron report in Flux Speed."
+msgstr "Включите кеш страниц (LiteSpeed Cache); проверьте медленные плагины и отчет cron в Flux Speed."
+
+msgid "No text compression (gzip/brotli)"
+msgstr "Без сжатия текста (gzip/brotli)"
+
+msgid "Turn on gzip or brotli on the server (on by default on Hostinger/LiteSpeed; check the CDN settings)."
+msgstr "Включите gzip или brotli на сервере (включено по умолчанию на Hostinger/LiteSpeed; проверьте настройки CDN)."
+
+msgid "HTML document is large"
+msgstr "HTML-документ большой"
+
+msgid "Move inline SVG icons into a sprite and large inline CSS/JSON into files."
+msgstr "Переместите встроенные значки SVG в спрайт, а большие встроенные CSS/JSON — в файлы."
+
+msgid "WordPress emoji script is loaded"
+msgstr "Скрипт WordPress emoji загружен."
+
+msgid "Modern browsers draw emoji themselves; the theme can remove print_emoji_detection_script."
+msgstr "Современные браузеры сами рисуют смайлы; тема может удалить print_emoji_detection_script."
+
+msgid "Largest Contentful Paint (LCP) is slow"
+msgstr "Самая большая содержательная отрисовка (LCP) работает медленно"
+
+msgid "Target under 2.5 s. Reduce render-blocking CSS, preload the LCP font/image, turn on the server cache."
+msgstr "Цель менее 2,5 с. Уменьшите блокировку рендеринга CSS, предварительно загрузите шрифт/изображение LCP, включите кеш сервера."
+
+msgid "Cumulative Layout Shift (CLS) is high"
+msgstr "Суммарное смещение макета (CLS) велико."
+
+msgid "Target under 0.1. Size images, prevent font shifts, reserve space for elements added later."
+msgstr "Цель ниже 0,1. Размер изображений, предотвращение смещения шрифта, резервирование места для элементов, добавленных позже."
+
+msgid "Total Blocking Time (TBT) is high"
+msgstr "Общее время блокировки (TBT) велико."
+
+msgid "Target under 200 ms. Reduce startup JS and defer third-party scripts."
+msgstr "Цель менее 200 мс. Уменьшите количество запускаемых JS и отложите выполнение сторонних скриптов."
+
+msgid "First Contentful Paint (FCP) is slow"
+msgstr "Первая контентная отрисовка (FCP) работает медленно"
+
+msgid "Target under 1.8 s. Reduce render-blocking CSS/JS and server response time."
+msgstr "Цель менее 1,8 с. Сократите блокировку рендеринга CSS/JS и время ответа сервера."
+
+msgid "Speed Index is slow"
+msgstr "Индекс скорости медленный"
+
+msgid "Prioritize critical CSS and fonts so the first screen fills quickly; shorten entrance animations."
+msgstr "Расставьте приоритеты для критически важных CSS и шрифтов, чтобы первый экран заполнялся быстро; сократить анимацию входа."
+
+msgid "Site is not HTTPS or has mixed content"
+msgstr "Сайт не HTTPS или имеет смешанный контент"
+
+msgid "Set the addresses to https:// in Settings › General and fix images/scripts loaded over http://."
+msgstr "Установите адреса https:// в «Настройки» > «Основные» и исправьте изображения/скрипты, загруженные через http://."
+
+msgid "Weak HSTS policy"
+msgstr "Слабая политика HSTS"
+
+msgid "Strict-Transport-Security: max-age=31536000; includeSubDomains. If every subdomain is HTTPS, you can also add \"preload\" and submit to hstspreload.org."
+msgstr "Строгая транспортная безопасность: максимальный возраст = 31536000; включитьПоддомены. Если каждый поддомен использует HTTPS, вы также можете добавить «предварительную загрузку» и отправить запрос на hstspreload.org."
+
+msgid "No or incomplete Content Security Policy (CSP)"
+msgstr "Политика безопасности контента (CSP) отсутствует или неполная."
+
+msgid "Flux SEO can add a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). A full script-src policy can break plugins on WordPress; try Content-Security-Policy-Report-Only first."
+msgstr "Flux SEO может добавить базовый CSP (object-src «none»; base-uri «self»; Frame-ancestors «self»). Полная политика script-src может привести к поломке плагинов WordPress; сначала попробуйте Content-Security-Policy-Report-Only."
+
+msgid "No clickjacking protection"
+msgstr "Нет защиты от кликджекинга"
+
+msgid "Send X-Frame-Options: SAMEORIGIN and CSP frame-ancestors 'self'. Do not turn on if your site is embedded in other sites with an iframe."
+msgstr "Отправьте X-Frame-Options: SAMEORIGIN и предки кадра CSP «self». Не включайте, если ваш сайт встроен в другие сайты с помощью iframe."
+
+msgid "No origin isolation (COOP)"
+msgstr "Без изоляции происхождения (COOP)"
+
+msgid "Send Cross-Origin-Opener-Policy: same-origin-allow-popups; payment and login popups keep working."
+msgstr "Отправить Cross-Origin-Opener-Policy: всплывающие окна того же происхождения; Всплывающие окна оплаты и входа продолжают работать."
+
+msgid "Trusted Types not set"
+msgstr "Доверенные типы не установлены"
+
+msgid "Advanced protection against DOM-based XSS. Most WordPress plugins are not compatible yet; try it with Report-Only only on custom-theme sites with few plugins."
+msgstr "Расширенная защита от XSS на основе DOM. Большинство плагинов WordPress пока несовместимы; попробуйте использовать Report-Only только на сайтах с индивидуальной темой и небольшим количеством плагинов."
+
+msgid "No X-Content-Type-Options header"
+msgstr "Нет заголовка X-Content-Type-Options"
+
+msgid "X-Content-Type-Options: nosniff. Flux SEO sends it by default; the server or a cache plugin may be removing it."
+msgstr "Параметры X-Content-Type: nosniff. Flux SEO отправляет его по умолчанию; сервер или плагин кэша могут удалять его."
+
+msgid "HTML doctype or charset missing"
+msgstr "Отсутствует тип документа или кодировка HTML"
+
+msgid "The page must start with <!DOCTYPE html> and have <meta charset=\"UTF-8\"> in the first lines."
+msgstr "Страница должна начинаться с<!DOCTYPE html>и содержать<meta charset=\"UTF-8\">в первых строках."
+
+msgid "No llms.txt"
+msgstr "Нет llms.txt"
+
+msgid "AI agents summarize a site through /llms.txt. Flux SEO builds it from the site name, description, menu pages and recent content; one click to turn it on."
+msgstr "Агенты ИИ обобщают информацию о сайте через /llms.txt. Flux SEO строит его на основе названия сайта, описания, страниц меню и недавнего контента; один щелчок, чтобы включить его."
+
+msgid "llms.txt is not in the recommended format"
+msgstr "llms.txt не в рекомендуемом формате"
+
+msgid "The first line must be \"# Site name\", then \"> short summary\" and link lists in [title](url) form. If an old hand-made file sits in the root, delete it; Flux SEO generates one."
+msgstr "В первой строке должно быть «# Имя сайта», затем «> краткое описание» и списки ссылок в форме [title](url). Если в корне сидит старый поделочный файл, удалите его; Flux SEO генерирует его."
+
+msgid "Forms are not declared as WebMCP tools"
+msgstr "Формы не объявлены как инструменты WebMCP."
+
+msgid "WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too."
+msgstr "WebMCP позволяет агентам браузера вызывать формы как инструменты (имя инструмента формы/описание инструмента). Flux SEO добавляет его в форму поиска; добавьте его и в свои собственные формы."
+
+msgid "robots.txt blocks AI crawlers"
+msgstr "robots.txt блокирует сканеры искусственного интеллекта"
+
+msgid "If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are blocked, your content does not show up in AI answers. Remove them from robots.txt unless you block them on purpose."
+msgstr "Если сканеры, такие как GPTBot, ClaudeBot, Google-Extended, PerplexityBot, заблокированы, ваш контент не будет отображаться в ответах ИИ. Удалите их из файла robots.txt, если вы не заблокировали их намеренно."
+
+msgid "Returned HTTP %d."
+msgstr "Возвращен HTTP%d."
+
+msgid "Settings › Reading: search engines discouraged"
+msgstr "Настройки › Чтение: поисковые системы не рекомендуются"
+
+msgid "%d characters."
+msgstr "Символы%d."
+
+msgid "%d H1 headings."
+msgstr "%dЗаголовки H1."
+
+msgid "JSON-LD could not be parsed."
+msgstr "JSON-LD не удалось проанализировать."
+
+msgid "not found"
+msgstr "не найден"
+
+msgid "%d render-blocking CSS/JS requests in <head>."
+msgstr "%dблокирует рендеринг запросов CSS/JS в<head>."
+
+msgid "%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed."
+msgstr "%dблокирует рендеринг запросов CSS/JS в<head>. Измерьте предполагаемую экономию с помощью PageSpeed."
+
+msgid "The page has %s elements."
+msgstr "На странице есть элементы%s."
+
+msgid "Response measured from the server: %d ms (may bypass the cache)."
+msgstr "Ответ, полученный от сервера:%dмс (может обходить кеш)."
+
+msgid "HTML is %s."
+msgstr "HTML —%s."
+
+msgid "The HTTPS page loads content over http://."
+msgstr "Страница HTTPS загружает контент через http://."
+
+msgid "No Content-Security-Policy header."
+msgstr "Нет заголовка Content-Security-Policy."
+
+msgid "Missing directive: %s."
+msgstr "Отсутствует директива:%s."
+
+msgid "first line is not \"# Title\""
+msgstr "первая строка не \"# Название\""
+
+msgid "no \"> summary\" line"
+msgstr "нет строки \"> резюме\""
+
+msgid "no link list"
+msgstr "нет списка ссылок"
+
+msgid "PageSpeed Insights can only measure addresses reachable from the internet."
+msgstr "PageSpeed Insights может измерять только адреса, доступные из Интернета."
+
+msgid "The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings."
+msgstr "Дневная квота PageSpeed использована. Введите бесплатный ключ Google API в SEO › Настройки."
+
+msgid "Open audit"
+msgstr "Открытый аудит"
+
+msgid "Not run yet. Check performance, accessibility, SEO, security and agent readiness."
+msgstr "Еще не бегал. Проверьте производительность, доступность, SEO, безопасность и готовность агента."
+
+msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
+msgstr "Критические рекомендации%1$d, высокие%2$d, средние%3$d, низкие%4$d."
+
+msgid "Site build guide"
+msgstr "Руководство по созданию сайта"
+
+msgid "SEO output"
+msgstr "SEO-выход"
+
+msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
+msgstr "Другой плагин SEO активен; мета, Open Graph и схема происходят из него. Flux SEO отключил собственный вывод, чтобы избежать конфликтов."
+
+msgid "Meta description, Open Graph and schema are added to every page."
+msgstr "Мета-описание, Open Graph и схема добавляются на каждую страницу."
+
+msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
+msgstr "Выкл. Описания страниц, изображения и сведения об организации не будут отображаться в Google и социальных сетях. Включите его, если хотите, чтобы вас нашли в Google."
+
+msgid "SEO settings"
+msgstr "Настройки SEO"
+
+msgid "Daily"
+msgstr "Ежедневно"
+
+msgid "Weekly"
+msgstr "Еженедельно"
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Monday"
+msgstr "понедельник"
+
+msgid "Tuesday"
+msgstr "вторник"
+
+msgid "Wednesday"
+msgstr "среда"
+
+msgid "Thursday"
+msgstr "Четверг"
+
+msgid "Friday"
+msgstr "Пятница"
+
+msgid "Saturday"
+msgstr "суббота"
+
+msgid "Sunday"
+msgstr "воскресенье"
+
+msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
+msgstr "[%1$s] Аудит сайта:%2$dновые критические/высокие рекомендации"
+
+msgid "The automatic site audit found new recommendations:"
+msgstr "Автоматический аудит сайта выявил новые рекомендации:"
+
+msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
+msgstr "Итого: критический%1$d, высокий%2$d, средний%3$d, низкий%4$d."
+
+msgid "Resolved since the previous audit: %d."
+msgstr "Устранено после предыдущего аудита:%d."
+
+msgid "Details and fixes:"
+msgstr "Подробности и исправления:"
+
+msgid "Automatic"
+msgstr "Автоматический"
+
+msgid "Manual"
+msgstr "Руководство"
+
+msgid "AI"
+msgstr "ИИ"
+
+msgid "After fix"
+msgstr "После исправления"
+
+msgid "Report history"
+msgstr "История отчета"
+
+msgid "Next automatic audit: %s"
+msgstr "Следующий автоматический аудит:%s"
+
+msgid "Automatic audit is off."
+msgstr "Автоматический аудит отключен."
+
+msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
+msgstr "Отчетов пока нет. Здесь сохраняется каждый аудит (ручной, автоматический или с помощью ИИ)."
+
+msgid "Number of recommendations over time"
+msgstr "Количество рекомендаций с течением времени"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Trigger"
+msgstr "Триггер"
+
+msgid "Mobile scores"
+msgstr "Мобильные результаты"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "No change"
+msgstr "Без изменений"
+
+msgid "new"
+msgstr "новый"
+
+msgid "resolved"
+msgstr "решено"
+
+msgid "Site audit history"
+msgstr "История аудита сайта"
+
+msgid "Automatic audit"
+msgstr "Автоматический аудит"
+
+msgid "Frequency"
+msgstr "Частота"
+
+msgid "Day"
+msgstr "День"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
+msgstr "Запускается в фоновом режиме и сохраняет результат в истории отчетов. Время использует часовой пояс сайта; если в это время сайт не посещается, он запускается при следующем запросе."
+
+msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
+msgstr "Также запустите PageSpeed Insights (мобильный + настольный компьютер; нужен ключ API)"
+
+msgid "Send an email when a new critical or high priority recommendation appears"
+msgstr "Отправлять электронное письмо при появлении новой критической или высокоприоритетной рекомендации."
+
+msgid "Email address (empty: site admin)"
+msgstr "Адрес электронной почты (пусто: администратор сайта)"
+
+msgid "Flux Speed (one click)"
+msgstr "Скорость потока (один щелчок)"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
+msgstr "Пять разделов PageSpeed Insights (Производительность, Доступность, Рекомендации, SEO, Агентический просмотр) по приоритету. Для выездного аудита ключ не нужен; запуск PageSpeed ​​добавляет реальный результат Google Lighthouse. Автоматический аудит, ключ API и заголовки безопасности находятся на вкладке «Настройки»."
+
+msgid "PageSpeed scores"
+msgstr "Оценки PageSpeed"
+
+msgid "PageSpeed not run"
+msgstr "PageSpeed не запускается"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+msgstr "Пока нет отчетов с запуском PageSpeed. Введите ключ API и включите PageSpeed ​​в автоматическом аудите."
+
+msgid "%s PageSpeed scores over time"
+msgstr "%sОценка PageSpeed с течением времени"
+
+msgid "Site audit and agent readiness"
+msgstr "Аудит сайта и готовность агента"
+
+msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
+msgstr "Инструменты AI (MCP) Flux SEO работают через общий сервер MCP. Сервер, ключи и настройки находятся в Flux AI & MCP › MCP; установите и активируйте Flux AI 0.7.0 или новее."
+
+msgid "No URLs to submit."
+msgstr "Нет URL-адресов для отправки."
+
+msgid "IndexNow returned %d."
+msgstr "IndexNow вернул%d."
+
+msgid "Not allowed."
+msgstr "Не разрешено."
+
+msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
+msgstr "IndexNow выключен или сайт скрыт от поисковых систем (Настройки › Чтение)."
+
+msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
+msgstr "%dURL-адреса, отправленные в Bing, Yandex и другие поисковые системы IndexNow."
+
+msgid "Open Search Console"
+msgstr "Открыть консоль поиска"
+
+msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+msgstr "Добавьте свойство › префикс URL-адреса › HTML-тег. Оставьте пустым, если вы прошли проверку с помощью DNS."
+
+msgid "Open Bing Webmaster"
+msgstr "Откройте Bing для веб-мастеров"
+
+msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+msgstr "Самый простой путь — «Импорт из Google Search Console»: проверка и карта сайта приходят сами, без кода. Если вы добавляете его вручную, вставьте метатег HTML. Результаты DuckDuckGo, Yahoo и Ecosia взяты из Bing."
+
+msgid "Open Yandex Webmaster"
+msgstr "Откройте Яндекс Вебмастер"
+
+msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+msgstr "Добавить сайт › Метатег. После проверки добавьте URL-адрес карты сайта в разделе Индексирование › Файлы карты сайта."
+
+msgid "%1$s · %2$d URLs · HTTP %3$d"
+msgstr "%1$s· URL-адреса%2$d· HTTP%3$d"
+
+msgid "key file could not be verified"
+msgstr "ключевой файл не может быть проверен"
+
+msgid "URLs do not match the site domain"
+msgstr "URL-адреса не соответствуют домену сайта"
+
+msgid "too many requests, try again later"
+msgstr "слишком много запросов, повторите попытку позже"
+
+msgid "error"
+msgstr "ошибка"
+
+msgid "Search engines"
+msgstr "Поисковые системы"
+
+msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+msgstr "Поисковые системы, отличные от Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia), быстро сканируют сайт только после того, как им его представили. Добавьте сайт в панель веб-мастера каждого из них, вставьте проверочный код ниже и отправьте URL-адрес карты сайта."
+
+msgid "Sitemap URL"
+msgstr "URL-адрес карты сайта"
+
+msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+msgstr "Также указано в robots.txt; добавьте этот URL в Search Console, Bing и Яндекс."
+
+msgid "Verification tag is on the site"
+msgstr "Тег подтверждения есть на сайте"
+
+msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
+msgstr "Мгновенно уведомляйте Bing, Яндекс, DuckDuckGo (через Bing), Seznam и Naver об опубликованных и обновленных страницах."
+
+msgid "Key file:"
+msgstr "Ключевой файл:"
+
+msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
+msgstr "Если этот параметр включен, весь сайт автоматически отправляется один раз. Google не использует IndexNow; добавьте карту сайта в Search Console для Google."
+
+msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
+msgstr "Сайт скрыт от поисковых систем (Настройки › Чтение); IndexNow ничего не отправляет."
+
+msgid "Last bulk submission:"
+msgstr "Последняя массовая отправка:"
+
+msgid "Submit the whole site now"
+msgstr "Отправьте весь сайт прямо сейчас"
+
+msgid "robots.txt blocks the Bing or Yandex crawler"
+msgstr "robots.txt блокирует сканер Bing или Yandex"
+
+msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
+msgstr "Поисковые роботы, такие как Bingbot, YandexBot и DuckDuckBot, не должны иметь «Disallow:/»; в противном случае сайт появится только в Google. Исправьте файл robots.txt в корне сайта."
+
+msgid "robots.txt has no Sitemap line"
+msgstr "В robots.txt нет строки Sitemap."
+
+msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
+msgstr "Bing и Яндекс находят карту сайта по строке «Sitemap:» в файле robots.txt. Если в корне лежит рукописный файл robots.txt, удалите его (Flux SEO добавляет строку) или добавьте строку самостоятельно."
+
+msgid "IndexNow is off"
+msgstr "IndexNow отключен"
+
+msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
+msgstr "IndexNow мгновенно уведомляет Bing, Yandex, Seznam и Naver о новых и обновленных страницах; это самый быстрый способ появиться за пределами Google. Один щелчок, чтобы включить его."
+
+msgid "IndexNow submission failed"
+msgstr "Отправка IndexNow не удалась"
+
+msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
+msgstr "Ключевой файл (/<key>.txt) должен быть доступен извне. Если плагин кэша или безопасности блокирует его, добавьте исключение, а затем используйте SEO › Общие › IndexNow › «Отправить весь сайт сейчас»."
+
+msgid "No Bing / Yandex verification code"
+msgstr "Нет кода подтверждения Bing/Яндекс."
+
+msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
+msgstr "Сайт нельзя добавить в Bing Webmaster Tools и Яндекс Вебмастер; без этого он появляется поздно или вообще не появляется. В Bing для «Импорта из консоли поиска Google» код не требуется; игнорируйте это, если вы уже импортировали. Коды находятся в разделе SEO › Общие › Поисковые системы."
+
+msgid "Turn on IndexNow"
+msgstr "Включите IndexNow"
+
+msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
+msgstr "Новые и обновленные страницы мгновенно отправляются в Bing, Yandex, Seznam и Naver; весь сайт отправляется один раз автоматически."
+
+msgid "Bing and Yandex"
+msgstr "Бинг и Яндекс"
+
+msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
+msgstr "Нет кода подтверждения:%s. Добавьте сайт в панели веб-мастеров этих поисковых систем (для импорта Bing из консоли поиска Google код не требуется)."
+
+msgid "Bing and Yandex verification codes are set."
+msgstr "Коды проверки Bing и Яндекс установлены."
+
+msgid "On; the site has been submitted to Bing and Yandex."
+msgstr "Вкл.; сайт отправлен в Bing и Яндекс."
+
+msgid "On; the first bulk submission is sent on the next admin page load."
+msgstr "Вкл.; первая массовая отправка отправляется при следующей загрузке страницы администратора."
+
+msgid "Off; new pages are not sent to Bing and Yandex."
+msgstr "Выкл.; новые страницы не отправляются в Bing и Яндекс."
+
+msgid "Open Naver Search Advisor"
+msgstr "Открыть советник по поиску Naver"
+
+msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
+msgstr "Крупнейшая поисковая система Кореи. Добавить сайт › HTML-тег; затем Запросить › Отправить карту сайта. Необязательный."
+
+msgid "Open Seznam Webmaster"
+msgstr "Открыть Seznam для веб-мастеров"
+
+msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
+msgstr "Чешская поисковая система (ссылка для веб-мастеров внизу страницы). Метод метатега. Необязательный."
+
+msgid "Open Baidu Webmaster"
+msgstr "Открыть Baidu для веб-мастеров"
+
+msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
+msgstr "поисковая система Китая; для регистрации может потребоваться китайский номер телефона. Не требуется, если вы не нацелены на Китай."
+
+msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
+msgstr "Подключено к Google Site Kit; Проверка Search Console и карта сайта обрабатываются там. Вы можете оставить это пустым."
+
+msgid "Connected with Google Site Kit."
+msgstr "Подключено к Google Site Kit."
+
+msgid "Areas of expertise"
+msgstr "Области экспертизы"
+
+msgid "One topic per line"
+msgstr "Одна тема в строке"
+
+msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
+msgstr "Темы, в которых организация является экспертом (схема знает). Поисковые системы и ИИ-помощники сопоставляют организацию с этими темами. Оставлено, когда пусто."
+
+msgid "Area served"
+msgstr "Обслуживаемая территория"
+
+msgid "e.g. United States"
+msgstr "например Соединенные Штаты"
+
+msgid "Country served (schema areaServed). Left out when empty."
+msgstr "Обслуживаемая страна (область схемыServed). Оставлено, когда пусто."
+
+msgid "Donation call to action"
+msgstr "Призыв к действию для пожертвования"
+
+msgid "e.g. Donate"
+msgstr "например Пожертвовать"
+
+msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
+msgstr "Для организаций, принимающих пожертвования (схема DonateAction). Оставлено, когда метка пуста; когда URL-адрес пуст, страница пожертвования находится автоматически."
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Homepage description"
+msgstr "Описание главной страницы"
+
+msgid "Homepage title"
+msgstr "Название домашней страницы"
+
+msgid "Don't index search"
+msgstr "Не индексировать поиск"
+
+msgid "Separator"
+msgstr "Сепаратор"
+
+msgid "No findings"
+msgstr "Нет результатов"
+
+msgid "Findings"
+msgstr "Выводы"
+
+msgid "Audit email"
+msgstr "Аудит электронной почты"
+
+msgid "Audit updated"
+msgstr "Аудит обновлен"
+
+msgid "Audit schedule"
+msgstr "График аудита"
+
+msgid "Findings show up here after an audit runs."
+msgstr "Результаты отображаются здесь после проведения аудита."
+
+msgid "Run audit"
+msgstr "Запустить аудит"
+
+msgid "Email"
+msgstr "электронная почта"
+
+msgid "Don't index tags"
+msgstr "Не индексировать теги"
+
+msgid "IndexNow"
+msgstr "ИндексNow"
+
+msgid "Organization"
+msgstr "Организация"
+
+msgid "Organization name"
+msgstr "Название организации"
+
+msgid "Organization type"
+msgstr "Тип организации"
+
+msgid "Open in panel"
+msgstr "Открыть на панели"
+
+msgid "Scores"
+msgstr "Результаты"
+
+msgid "NGO"
+msgstr "НПО"
+
+msgid "Site name"
+msgstr "Название сайта"
+
+msgid "Last local audit"
+msgstr "Последний локальный аудит"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "WebMCP"
+msgstr "ВебMCP"
+
+msgid "llms.txt"
+msgstr "llms.txt"
+
+msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
+msgstr "PHP%1$sне исправлен для%2$s. Обновите как минимум до%3$s(панель хостинга › версия PHP). Пакет распространения может содержать исправление без изменения номера версии; если вы не уверены, спросите своего провайдера."
+
+msgid "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
+msgstr "PHP%1$sбольше не получает исправлений безопасности; отверстия, такие как%2$s, остаются открытыми. Перейдите на PHP%3$sили другую исправленную, более новую версию."
+
+msgid "PHP %1$s is patched against %2$s."
+msgstr "PHP%1$sисправлен для%2$s."
+
+msgid "Security"
+msgstr "Безопасность"
+
+msgid "PHP security patch"
+msgstr "Исправление безопасности PHP"
+
+msgid "Release notes"
+msgstr "Примечания к выпуску"
+
+msgid "session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set \"session.upload_progress.enabled = Off\" in php.ini or the hosting panel."
+msgstr "session.upload_progress.enabled включен. WordPress его не использует; его выключение уменьшает поверхность атаки. Установите «session.upload_progress.enabled = Off» в php.ini или на панели хостинга."
+
+msgid "PHP version is missing a security patch"
+msgstr "В версии PHP отсутствует исправление безопасности"
+
+msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+msgstr "PHP сервера не исправлен против известной дыры или больше не поддерживается. Обновите PHP до текущей версии патча с панели хостинга."
+
+msgid "session.upload_progress is on"
+msgstr "session.upload_progress включен"
+
+msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
+msgstr "WordPress не использует эту функцию PHP; это путь использования дыр, таких как PHP2Shell. Установите session.upload_progress.enabled = Off в php.ini или на панели хостинга."
+
+msgid "[['Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).', 'tr']]"
+msgstr "[['Мета-заголовок/описание, канонический, Open Graph, схема (организация, веб-сайт, хлебная крошка, статья), настройки карты сайта, значок значка и контроль SEO. Контент и инструменты SEO для помощников ИИ (на сервере MCP Flux AI).', 'tr']]"

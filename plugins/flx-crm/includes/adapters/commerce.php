@@ -109,7 +109,7 @@ final class FLXCRM_Adapter_Commerce {
 		}
 		$total = (float) $order->get_total() - (float) $order->get_total_refunded();
 		/* translators: %s: order number */
-		$title = sprintf( __( 'Sipariş #%s', 'flx-crm' ), $order->get_order_number() );
+		$title = sprintf( __( 'Order #%s', 'flx-crm' ), $order->get_order_number() );
 		if ( $items ) {
 			$title .= ': ' . implode( ', ', array_slice( $items, 0, 3 ) ) . ( count( $items ) > 3 ? '…' : '' );
 		}

@@ -66,7 +66,7 @@ final class FLXCM_Bank {
 	}
 
 	public static function default_description() {
-		return __( 'Siparişi verdikten sonra IBAN\'ı ve size özel referans kodunu göreceksiniz. Ödemeyi yapınca dekontu sitede yükleyebilirsiniz; ödeme onaylanınca siparişiniz hazırlanır.', 'flx-commerce' );
+		return __( 'After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your order is prepared when the payment is confirmed.', 'flx-commerce' );
 	}
 
 	/** Yöntem ayarı; hesap bilgisi boşsa WooCommerce "Doğrudan banka havalesi"nin ilk hesabından gelir. */
@@ -140,14 +140,14 @@ final class FLXCM_Bank {
 	public static function rows( WC_Order $order ) {
 		$iban = self::option( 'iban' );
 		$rows = array(
-			array( __( 'Alıcı', 'flx-commerce' ), self::option( 'holder' ), self::option( 'holder' ) ),
+			array( __( 'Recipient', 'flx-commerce' ), self::option( 'holder' ), self::option( 'holder' ) ),
 			array( 'IBAN', self::format_iban( $iban ), strtoupper( preg_replace( '/\s+/', '', $iban ) ) ),
 		);
 		if ( self::option( 'bank' ) ) {
-			$rows[] = array( __( 'Banka', 'flx-commerce' ), self::option( 'bank' ), '' );
+			$rows[] = array( __( 'Bank', 'flx-commerce' ), self::option( 'bank' ), '' );
 		}
-		$rows[] = array( __( 'Tutar', 'flx-commerce' ), flxcm_money( $order->get_total(), $order->get_currency() ), wc_format_localized_price( $order->get_total() ) );
-		$rows[] = array( __( 'Açıklama', 'flx-commerce' ), self::reference( $order ), self::reference( $order ), true );
+		$rows[] = array( __( 'Amount', 'flx-commerce' ), flxcm_money( $order->get_total(), $order->get_currency() ), wc_format_localized_price( $order->get_total() ) );
+		$rows[] = array( __( 'Reference', 'flx-commerce' ), self::reference( $order ), self::reference( $order ), true );
 		return $rows;
 	}
 
@@ -164,10 +164,10 @@ final class FLXCM_Bank {
 			'flxcmFront',
 			array(
 				'rest'   => esc_url_raw( rest_url( 'flx-commerce/v1/receipt' ) ),
-				'copied' => __( 'Kopyalandı', 'flx-commerce' ),
-				'busy'   => __( 'Yükleniyor…', 'flx-commerce' ),
-				'error'  => __( 'Dekont yüklenemedi. Lütfen tekrar deneyin.', 'flx-commerce' ),
-				'ok'     => __( 'Dekontunuz bize ulaştı. Ödeme onaylanınca size haber vereceğiz.', 'flx-commerce' ),
+				'copied' => __( 'Copied', 'flx-commerce' ),
+				'busy'   => __( 'Uploading…', 'flx-commerce' ),
+				'error'  => __( 'The receipt could not be uploaded. Please try again.', 'flx-commerce' ),
+				'ok'     => __( 'We have your receipt. We will let you know once the payment is confirmed.', 'flx-commerce' ),
 			)
 		);
 	}
@@ -185,42 +185,42 @@ final class FLXCM_Bank {
 	<header class="flxcm-bank__head">
 		<span class="flxcm-bank__icon"><?php echo flxcm_icon( 'bank', 22 ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 		<div>
-			<h2 class="flxcm-bank__title"><?php esc_html_e( 'Siparişiniz alındı, ödemenizi bekliyoruz', 'flx-commerce' ); ?></h2>
-			<p class="flxcm-bank__lead"><?php esc_html_e( 'Aşağıdaki hesaba havale/EFT yapın ve açıklamaya size özel referans kodunu yazın.', 'flx-commerce' ); ?></p>
+			<h2 class="flxcm-bank__title"><?php esc_html_e( 'Your order is in, we are waiting for your payment', 'flx-commerce' ); ?></h2>
+			<p class="flxcm-bank__lead"><?php esc_html_e( 'Make a bank transfer to the account below and write your own reference code in the description.', 'flx-commerce' ); ?></p>
 		</div>
 	</header>
 	<ol class="flxcm-steps">
 		<li class="flxcm-step">
 			<span class="flxcm-step__no">1</span>
 			<div class="flxcm-step__body">
-				<p class="flxcm-step__title"><?php esc_html_e( 'Havale/EFT yapın', 'flx-commerce' ); ?></p>
+				<p class="flxcm-step__title"><?php esc_html_e( 'Make the bank transfer', 'flx-commerce' ); ?></p>
 				<dl class="flxcm-rows">
 					<?php foreach ( self::rows( $order ) as $r ) : ?>
 					<div class="flxcm-row<?php echo ! empty( $r[3] ) ? ' is-key' : ''; ?>">
 						<dt><?php echo esc_html( $r[0] ); ?></dt>
 						<dd><span><?php echo esc_html( $r[1] ); ?></span>
 							<?php if ( '' !== (string) $r[2] ) : ?>
-							<button type="button" class="flxcm-copy" data-flxcm-copy="<?php echo esc_attr( $r[2] ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: field label */ __( '%s kopyala', 'flx-commerce' ), $r[0] ) ); ?>"><?php echo flxcm_icon( 'copy', 15 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Kopyala', 'flx-commerce' ); ?></span></button>
+							<button type="button" class="flxcm-copy" data-flxcm-copy="<?php echo esc_attr( $r[2] ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: field label */ __( 'Copy %s', 'flx-commerce' ), $r[0] ) ); ?>"><?php echo flxcm_icon( 'copy', 15 ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Copy', 'flx-commerce' ); ?></span></button>
 							<?php endif; ?>
 						</dd>
 					</div>
 					<?php endforeach; ?>
 				</dl>
-				<p class="flxcm-hint"><?php esc_html_e( 'Referans kodu ödemenizi siparişinizle eşleştirmemizi sağlar.', 'flx-commerce' ); ?></p>
+				<p class="flxcm-hint"><?php esc_html_e( 'The reference code lets us match your payment to your order.', 'flx-commerce' ); ?></p>
 			</div>
 		</li>
 		<li class="flxcm-step">
 			<span class="flxcm-step__no">2</span>
 			<div class="flxcm-step__body">
-				<p class="flxcm-step__title"><?php esc_html_e( 'Dekontu yükleyin', 'flx-commerce' ); ?></p>
+				<p class="flxcm-step__title"><?php esc_html_e( 'Upload your receipt', 'flx-commerce' ); ?></p>
 				<?php echo FLXCM_Receipts::uploader( $order ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			</div>
 		</li>
 		<li class="flxcm-step">
 			<span class="flxcm-step__no">3</span>
 			<div class="flxcm-step__body">
-				<p class="flxcm-step__title"><?php esc_html_e( 'Siparişinizi hazırlayalım', 'flx-commerce' ); ?></p>
-				<p class="flxcm-hint"><?php esc_html_e( 'Ödeme onaylanınca e-posta alırsınız; siparişinizi Hesabım › Siparişler\'den de izleyebilirsiniz.', 'flx-commerce' ); ?></p>
+				<p class="flxcm-step__title"><?php esc_html_e( 'We prepare your order', 'flx-commerce' ); ?></p>
+				<p class="flxcm-hint"><?php esc_html_e( 'You get an e-mail once the payment is confirmed; you can also follow your order under My account › Orders.', 'flx-commerce' ); ?></p>
 			</div>
 		</li>
 	</ol>
@@ -267,34 +267,34 @@ final class FLXCM_Bank {
 		$rows = self::rows( $order );
 		$link = $order->get_checkout_order_received_url();
 		if ( $plain_text ) {
-			echo esc_html__( 'Havale/EFT bilgileri', 'flx-commerce' ) . "\n";
+			echo esc_html__( 'Bank transfer details', 'flx-commerce' ) . "\n";
 			foreach ( $rows as $r ) {
 				echo esc_html( $r[0] . ': ' . $r[1] ) . "\n";
 			}
-			echo "\n" . esc_html__( 'Ödemeden sonra dekontu yükleyin:', 'flx-commerce' ) . ' ' . esc_url_raw( $link ) . "\n\n";
+			echo "\n" . esc_html__( 'After paying, upload your receipt:', 'flx-commerce' ) . ' ' . esc_url_raw( $link ) . "\n\n";
 			return;
 		}
-		echo '<h2>' . esc_html__( 'Havale/EFT bilgileri', 'flx-commerce' ) . '</h2><table cellspacing="0" cellpadding="6" style="width:100%;border:1px solid #e5e5e5;margin-bottom:16px" border="1">';
+		echo '<h2>' . esc_html__( 'Bank transfer details', 'flx-commerce' ) . '</h2><table cellspacing="0" cellpadding="6" style="width:100%;border:1px solid #e5e5e5;margin-bottom:16px" border="1">';
 		foreach ( $rows as $r ) {
 			echo '<tr><th style="text-align:left;width:30%">' . esc_html( $r[0] ) . '</th><td>' . ( ! empty( $r[3] ) ? '<strong>' . esc_html( $r[1] ) . '</strong>' : esc_html( $r[1] ) ) . '</td></tr>';
 		}
-		echo '</table><p>' . esc_html__( 'Lütfen açıklamaya yukarıdaki referansı yazın. Ödemeden sonra dekontu yükleyin:', 'flx-commerce' ) . ' <a href="' . esc_url( $link ) . '">' . esc_html__( 'Dekont yükle', 'flx-commerce' ) . '</a></p>';
+		echo '</table><p>' . esc_html__( 'Please write the reference above in the transfer description. After paying, upload your receipt:', 'flx-commerce' ) . ' <a href="' . esc_url( $link ) . '">' . esc_html__( 'Upload receipt', 'flx-commerce' ) . '</a></p>';
 	}
 
 	/* ---------- Yönetim: onay, sütun, kutu ---------- */
 
 	public static function meta_box() {
 		$screen = function_exists( 'wc_get_page_screen_id' ) ? wc_get_page_screen_id( 'shop-order' ) : 'shop_order';
-		add_meta_box( 'flxcm-bank', __( 'Havale/EFT', 'flx-commerce' ), array( __CLASS__, 'render_box' ), $screen, 'side', 'high' );
+		add_meta_box( 'flxcm-bank', __( 'Bank transfer', 'flx-commerce' ), array( __CLASS__, 'render_box' ), $screen, 'side', 'high' );
 	}
 
 	public static function render_box( $post_or_order ) {
 		$order = $post_or_order instanceof WC_Order ? $post_or_order : wc_get_order( $post_or_order instanceof WP_Post ? $post_or_order->ID : 0 );
 		if ( ! $order || self::ID !== $order->get_payment_method() ) {
-			echo '<p class="description">' . esc_html__( 'Bu sipariş Havale/EFT ile verilmedi.', 'flx-commerce' ) . '</p>';
+			echo '<p class="description">' . esc_html__( 'This order was not placed by bank transfer.', 'flx-commerce' ) . '</p>';
 			return;
 		}
-		echo '<p><strong>' . esc_html__( 'Açıklama', 'flx-commerce' ) . ':</strong> <code>' . esc_html( self::reference( $order ) ) . '</code></p>';
+		echo '<p><strong>' . esc_html__( 'Reference', 'flx-commerce' ) . ':</strong> <code>' . esc_html( self::reference( $order ) ) . '</code></p>';
 		$list = FLXCM_Receipts::of( $order );
 		if ( $list ) {
 			echo '<ul style="margin:0 0 10px">';
@@ -303,15 +303,15 @@ final class FLXCM_Bank {
 			}
 			echo '</ul>';
 		} else {
-			echo '<p class="description">' . esc_html__( 'Henüz dekont yüklenmedi.', 'flx-commerce' ) . '</p>';
+			echo '<p class="description">' . esc_html__( 'No receipt uploaded yet.', 'flx-commerce' ) . '</p>';
 		}
 		if ( self::awaiting( $order ) ) {
 			$url = wp_nonce_url( admin_url( 'admin-post.php?action=flxcm_confirm&order=' . $order->get_id() ), 'flxcm_confirm_' . $order->get_id() );
-			echo '<p><a class="button button-primary" href="' . esc_url( $url ) . '">' . esc_html__( 'Ödemeyi onayla', 'flx-commerce' ) . '</a></p>';
+			echo '<p><a class="button button-primary" href="' . esc_url( $url ) . '">' . esc_html__( 'Confirm payment', 'flx-commerce' ) . '</a></p>';
 		} elseif ( $order->get_meta( '_flxcm_confirmed' ) ) {
 			$by = get_userdata( (int) $order->get_meta( '_flxcm_confirmed_by' ) );
 			/* translators: 1: date, 2: user */
-			echo '<p class="description">' . esc_html( sprintf( __( 'Ödeme onaylandı: %1$s · %2$s', 'flx-commerce' ), wp_date( 'd.m.Y H:i', (int) $order->get_meta( '_flxcm_confirmed' ) ), $by ? $by->display_name : '—' ) ) . '</p>';
+			echo '<p class="description">' . esc_html( sprintf( __( 'Payment confirmed: %1$s · %2$s', 'flx-commerce' ), wp_date( 'd.m.Y H:i', (int) $order->get_meta( '_flxcm_confirmed' ) ), $by ? $by->display_name : '—' ) ) . '</p>';
 		}
 	}
 
@@ -324,7 +324,7 @@ final class FLXCM_Bank {
 		$order->update_meta_data( '_flxcm_confirmed_by', get_current_user_id() );
 		$order->save_meta_data();
 		$order->payment_complete( (string) $order->get_meta( '_flxcm_code' ) );
-		$order->add_order_note( __( 'Havale/EFT ödemesi onaylandı.', 'flx-commerce' ), 0, true );
+		$order->add_order_note( __( 'Bank transfer payment confirmed.', 'flx-commerce' ), 0, true );
 		do_action( 'flxcm_bank_confirmed', $order );
 		return true;
 	}
@@ -333,7 +333,7 @@ final class FLXCM_Bank {
 		$oid = absint( $_GET['order'] ?? 0 );
 		check_admin_referer( 'flxcm_confirm_' . $oid );
 		if ( ! current_user_can( 'edit_shop_orders' ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-commerce' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
 		$order = wc_get_order( $oid );
 		if ( $order ) {
@@ -346,7 +346,7 @@ final class FLXCM_Bank {
 
 	public static function order_action( $actions, $order = null ) {
 		if ( $order instanceof WC_Order && self::awaiting( $order ) ) {
-			$actions['flxcm_confirm'] = __( 'Havale/EFT ödemesini onayla', 'flx-commerce' );
+			$actions['flxcm_confirm'] = __( 'Confirm bank transfer payment', 'flx-commerce' );
 		}
 		return $actions;
 	}
@@ -362,10 +362,10 @@ final class FLXCM_Bank {
 		foreach ( $cols as $k => $v ) {
 			$out[ $k ] = $v;
 			if ( 'order_status' === $k ) {
-				$out['flxcm_bank'] = __( 'Havale', 'flx-commerce' );
+				$out['flxcm_bank'] = __( 'Transfer', 'flx-commerce' );
 			}
 		}
-		return isset( $out['flxcm_bank'] ) ? $out : $out + array( 'flxcm_bank' => __( 'Havale', 'flx-commerce' ) );
+		return isset( $out['flxcm_bank'] ) ? $out : $out + array( 'flxcm_bank' => __( 'Transfer', 'flx-commerce' ) );
 	}
 
 	public static function column_value( $col, $order ) {
@@ -380,11 +380,11 @@ final class FLXCM_Bank {
 		if ( self::awaiting( $order ) ) {
 			$n = count( FLXCM_Receipts::of( $order ) );
 			echo $n
-				? '<mark class="order-status status-processing"><span>' . esc_html__( 'Dekont geldi', 'flx-commerce' ) . '</span></mark>'
-				: '<mark class="order-status status-on-hold"><span>' . esc_html__( 'Ödeme bekleniyor', 'flx-commerce' ) . '</span></mark>';
+				? '<mark class="order-status status-processing"><span>' . esc_html__( 'Receipt in', 'flx-commerce' ) . '</span></mark>'
+				: '<mark class="order-status status-on-hold"><span>' . esc_html__( 'Awaiting payment', 'flx-commerce' ) . '</span></mark>';
 			return;
 		}
-		echo '<mark class="order-status status-completed"><span>' . esc_html__( 'Onaylandı', 'flx-commerce' ) . '</span></mark>';
+		echo '<mark class="order-status status-completed"><span>' . esc_html__( 'Confirmed', 'flx-commerce' ) . '</span></mark>';
 	}
 
 	/** Ayarda gün verildiyse o kadar gün dekontsuz bekleyen havale siparişleri iptal edilir (stok geri döner). */
@@ -405,7 +405,7 @@ final class FLXCM_Bank {
 		foreach ( (array) $orders as $o ) {
 			if ( ! FLXCM_Receipts::of( $o ) ) {
 				/* translators: %d: days */
-				$o->update_status( 'cancelled', sprintf( __( '%d gün içinde ödeme gelmediği için iptal edildi.', 'flx-commerce' ), $days ) );
+				$o->update_status( 'cancelled', sprintf( __( 'Cancelled because no payment arrived within %d days.', 'flx-commerce' ), $days ) );
 			}
 		}
 	}

@@ -18,15 +18,15 @@ add_filter(
 		$types['wacloud'] = array(
 			'label'   => __( 'WhatsApp · Cloud API (Meta)', 'flx-mail' ),
 			'channel' => 'whatsapp',
-			'help'    => __( 'Meta\'nın resmi WhatsApp Cloud API\'si; ek sunucu gerekmez. Meta Business › WhatsApp Manager\'dan Phone Number ID ve WhatsApp Business hesap (WABA) ID\'yi, Business ayarları › Sistem kullanıcıları\'ndan kalıcı erişim anahtarını alın. Kaydettikten sonra "Kurulum"daki webhook adresini Meta uygulamasına yapıştırın.', 'flx-mail' ),
+			'help'    => __( 'Meta\'s official WhatsApp Cloud API; no extra server. From Meta Business › WhatsApp Manager copy the Phone Number ID and WhatsApp Business account (WABA) ID, and from Business settings › System users copy a permanent access token. After saving, paste the webhook URL from "Setup" into the Meta app.', 'flx-mail' ),
 			'fields'  => array(
 				array( 'key' => 'phone_id', 'label' => __( 'Phone Number ID', 'flx-mail' ), 'type' => 'text', 'required' => true, 'placeholder' => '1234567890' ),
-				array( 'key' => 'waba_id', 'label' => __( 'WhatsApp Business hesap ID (WABA)', 'flx-mail' ), 'type' => 'text', 'placeholder' => '1234567890', 'help' => __( 'Şablon listesi için gerekli.', 'flx-mail' ) ),
-				array( 'key' => 'token', 'label' => __( 'Kalıcı erişim anahtarı (System User token)', 'flx-mail' ), 'type' => 'password', 'required' => true ),
-				array( 'key' => 'app_secret', 'label' => __( 'Uygulama gizli anahtarı (App Secret)', 'flx-mail' ), 'type' => 'password', 'help' => __( 'Gelen webhook\'ların Meta\'dan geldiğini doğrular. Boşsa imza denetlenmez (önerilmez).', 'flx-mail' ) ),
-				array( 'key' => 'graph', 'label' => __( 'Graph API sürümü', 'flx-mail' ), 'type' => 'text', 'default' => 'v23.0', 'placeholder' => 'v23.0' ),
-				array( 'key' => 'link_preview', 'label' => __( 'Link önizlemesi göster', 'flx-mail' ), 'type' => 'checkbox', 'default' => 1 ),
-				array( 'key' => 'delay', 'label' => __( 'Toplu gönderimde mesajlar arası bekleme (sn)', 'flx-mail' ), 'type' => 'number', 'default' => 1 ),
+				array( 'key' => 'waba_id', 'label' => __( 'WhatsApp Business account ID (WABA)', 'flx-mail' ), 'type' => 'text', 'placeholder' => '1234567890', 'help' => __( 'Needed for the template list.', 'flx-mail' ) ),
+				array( 'key' => 'token', 'label' => __( 'Permanent access token (System User token)', 'flx-mail' ), 'type' => 'password', 'required' => true ),
+				array( 'key' => 'app_secret', 'label' => __( 'App Secret', 'flx-mail' ), 'type' => 'password', 'help' => __( 'Verifies that incoming webhooks come from Meta. If empty, the signature isn\'t checked (not recommended).', 'flx-mail' ) ),
+				array( 'key' => 'graph', 'label' => __( 'Graph API version', 'flx-mail' ), 'type' => 'text', 'default' => 'v23.0', 'placeholder' => 'v23.0' ),
+				array( 'key' => 'link_preview', 'label' => __( 'Show link preview', 'flx-mail' ), 'type' => 'checkbox', 'default' => 1 ),
+				array( 'key' => 'delay', 'label' => __( 'Delay between messages in bulk send (sec)', 'flx-mail' ), 'type' => 'number', 'default' => 1 ),
 			),
 			'send'    => 'flxi_wacloud_send',
 			'test'    => 'flxi_wacloud_test',
@@ -78,17 +78,17 @@ function flxi_wacloud_request( array $cfg, $method, $path, $body = null, $timeou
 /** Graph hata gövdesinden okunur metin (+ bilinen kodlar Türkçe). */
 function flxi_wacloud_error( $r ) {
 	if ( $r['error'] ) {
-		return __( 'Meta\'ya ulaşılamadı:', 'flx-mail' ) . ' ' . $r['error'];
+		return __( 'Couldn\'t reach Meta:', 'flx-mail' ) . ' ' . $r['error'];
 	}
 	$e    = is_array( $r['json'] ) ? (array) ( $r['json']['error'] ?? array() ) : array();
 	$code = (int) ( $e['code'] ?? 0 );
 	$map  = array(
-		131047 => __( '24 saat penceresi kapalı: kişi son 24 saatte yazmadı. Yalnız onaylı şablon gönderilebilir.', 'flx-mail' ),
-		131026 => __( 'Mesaj iletilemedi: numarada WhatsApp yok ya da kişi engellemiş.', 'flx-mail' ),
-		190    => __( 'Erişim anahtarı geçersiz ya da süresi dolmuş.', 'flx-mail' ),
-		131030 => __( 'Bu numara test listesinde değil (Meta test hesabı).', 'flx-mail' ),
-		131056 => __( 'Aynı kişiye çok hızlı mesaj gönderildi; biraz bekleyin.', 'flx-mail' ),
-		132001 => __( 'Şablon bulunamadı ya da bu dilde onaylı değil.', 'flx-mail' ),
+		131047 => __( '24-hour window closed: the person hasn\'t written in the last 24 hours. Only an approved template can be sent.', 'flx-mail' ),
+		131026 => __( 'Message not delivered: the number has no WhatsApp or has blocked you.', 'flx-mail' ),
+		190    => __( 'Access token is invalid or expired.', 'flx-mail' ),
+		131030 => __( 'This number isn\'t on the test list (Meta test account).', 'flx-mail' ),
+		131056 => __( 'Messages sent to the same person too fast; wait a little.', 'flx-mail' ),
+		132001 => __( 'Template not found or not approved in this language.', 'flx-mail' ),
 	);
 	$msg = $map[ $code ] ?? (string) ( $e['error_data']['details'] ?? ( $e['message'] ?? '' ) );
 	return 'Cloud API ' . ( $code ? '#' . $code : 'HTTP ' . $r['code'] ) . ( $msg ? ': ' . mb_substr( $msg, 0, 300 ) : '' );
@@ -128,7 +128,7 @@ function flxi_wacloud_note_inbound( $id, $phone, $ts ) {
 function flxi_wacloud_post( $id_or_cfg, $to, array $payload ) {
 	$cfg = is_array( $id_or_cfg ) ? $id_or_cfg : ( flxi_get_connection( (int) $id_or_cfg )['config'] ?? array() );
 	if ( empty( $cfg['phone_id'] ) || empty( $cfg['token'] ) ) {
-		return array( 'ok' => false, 'error' => __( 'Cloud API bağlantısı eksik.', 'flx-mail' ), 'retry' => false );
+		return array( 'ok' => false, 'error' => __( 'Cloud API connection is incomplete.', 'flx-mail' ), 'retry' => false );
 	}
 	// Okundu / "yazıyor" ({status: read, message_id, typing_indicator}) alıcısız gider; diğerlerinde to + recipient_type.
 	$is_status = isset( $payload['status'] );
@@ -151,7 +151,7 @@ function flxi_wacloud_send( $config, $msg, $conn = array() ) {
 	$phone = flxi_normalize_phone( $msg['recipient'] );
 	if ( ! $phone ) {
 		/* translators: %s: telefon */
-		return array( 'ok' => false, 'error' => sprintf( __( 'Geçersiz telefon: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
+		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid phone: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
 	}
 	if ( ! empty( $msg['template']['name'] ) ) {
 		$t    = $msg['template'];
@@ -213,9 +213,9 @@ function flxi_wacloud_test( $config, $to, $conn ) {
 	}
 	if ( $to ) {
 		/* translators: %s: site adı */
-		$r = flxi_wacloud_send( $config, array( 'recipient' => $to, 'body' => sprintf( __( 'Test mesajı · %s 🌱', 'flx-mail' ), get_bloginfo( 'name' ) ), 'media' => '', 'file_name' => '' ), $conn );
+		$r = flxi_wacloud_send( $config, array( 'recipient' => $to, 'body' => sprintf( __( 'Test message · %s 🌱', 'flx-mail' ), get_bloginfo( 'name' ) ), 'media' => '', 'file_name' => '' ), $conn );
 		if ( ! $r['ok'] && 131047 === (int) ( $r['code'] ?? 0 ) ) {
-			$r['error'] .= ' ' . __( 'Denemek için önce o numaradan bu hatta bir mesaj atın.', 'flx-mail' );
+			$r['error'] .= ' ' . __( 'To test, first send a message from that number to this line.', 'flx-mail' );
 		}
 		return $r;
 	}
@@ -226,10 +226,10 @@ function flxi_wacloud_test( $config, $to, $conn ) {
 function flxi_wacloud_templates( $id ) {
 	$c = flxi_get_connection( (int) $id );
 	if ( ! $c || 'wacloud' !== $c['type'] ) {
-		return new WP_Error( 'flxi_wac', __( 'Cloud API bağlantısı bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxi_wac', __( 'Cloud API connection not found.', 'flx-mail' ), array( 'status' => 404 ) );
 	}
 	if ( empty( $c['config']['waba_id'] ) ) {
-		return new WP_Error( 'flxi_wac', __( 'Şablonlar için WABA ID gerekli.', 'flx-mail' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxi_wac', __( 'WABA ID is required for templates.', 'flx-mail' ), array( 'status' => 400 ) );
 	}
 	$r = flxi_wacloud_request( $c['config'], 'GET', rawurlencode( (string) $c['config']['waba_id'] ) . '/message_templates?fields=name,language,status,category,components&limit=100' );
 	if ( ! $r['ok'] ) {
@@ -454,7 +454,7 @@ function flxi_wacloud_to_evolution( array $c, array $payload ) {
 function flxi_wacloud_setup( $id ) {
 	$c = flxi_get_connection( (int) $id );
 	if ( ! $c || 'wacloud' !== $c['type'] ) {
-		return new WP_Error( 'flxi_wac', __( 'Cloud API bağlantısı bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxi_wac', __( 'Cloud API connection not found.', 'flx-mail' ), array( 'status' => 404 ) );
 	}
 	if ( ! flxi_wacloud_verify_token( $id ) ) {
 		update_option( 'flxi_wac_verify_' . (int) $id, wp_generate_password( 24, false, false ), false );

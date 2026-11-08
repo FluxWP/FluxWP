@@ -1,0 +1,903 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Flux Commerce needs WooCommerce. Install and activate WooCommerce."
+msgstr "Flux Commerce には WooCommerce が必要です。 WooCommerce をインストールしてアクティブ化します。"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Sales dashboard, customers, reports and checkout improvements"
+msgstr "販売ダッシュボード、顧客、レポート、チェックアウトの改善"
+
+msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your order is prepared when the payment is confirmed."
+msgstr "注文すると、IBAN と独自の参照コードが表示されます。支払いが完了したら、サイトに領収書をアップロードできます。支払いが確認された時点で注文の準備が整います。"
+
+msgid "Recipient"
+msgstr "受信者"
+
+msgid "Bank"
+msgstr "銀行"
+
+msgid "Amount"
+msgstr "金額"
+
+msgid "Reference"
+msgstr "参考資料"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Uploading…"
+msgstr "アップロード中..."
+
+msgid "The receipt could not be uploaded. Please try again."
+msgstr "領収書をアップロードできませんでした。もう一度試してください。"
+
+msgid "We have your receipt. We will let you know once the payment is confirmed."
+msgstr "領収書はございます。ご入金が確認できましたらお知らせいたします。"
+
+msgid "Your order is in, we are waiting for your payment"
+msgstr "ご注文は完了しました。お支払いをお待ちしています"
+
+msgid "Make a bank transfer to the account below and write your own reference code in the description."
+msgstr "以下の口座に銀行振込を行って、説明欄に独自の参照コードを記入してください。"
+
+msgid "Make the bank transfer"
+msgstr "銀行振込をする"
+
+msgid "Copy %s"
+msgstr "%sをコピー"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "The reference code lets us match your payment to your order."
+msgstr "参照コードにより、お支払いとご注文を照合することができます。"
+
+msgid "Upload your receipt"
+msgstr "領収書をアップロードする"
+
+msgid "We prepare your order"
+msgstr "ご注文を準備いたします"
+
+msgid "You get an e-mail once the payment is confirmed; you can also follow your order under My account › Orders."
+msgstr "支払いが確認されると電子メールが届きます。 [マイアカウント] › [注文] から注文を追跡することもできます。"
+
+msgid "Bank transfer details"
+msgstr "銀行振込の詳細"
+
+msgid "After paying, upload your receipt:"
+msgstr "支払い後、領収書をアップロードします。"
+
+msgid "Please write the reference above in the transfer description. After paying, upload your receipt:"
+msgstr "転送説明に上記の参照先を記載してください。支払い後、領収書をアップロードします。"
+
+msgid "Upload receipt"
+msgstr "領収書のアップロード"
+
+msgid "Bank transfer"
+msgstr "銀行振込"
+
+msgid "This order was not placed by bank transfer."
+msgstr "この注文は銀行振込ではありませんでした。"
+
+msgid "No receipt uploaded yet."
+msgstr "領収書はまだアップロードされていません。"
+
+msgid "Confirm payment"
+msgstr "支払いを確認する"
+
+msgid "Payment confirmed: %1$s · %2$s"
+msgstr "支払いが確認されました:%1$s·%2$s"
+
+msgid "Bank transfer payment confirmed."
+msgstr "銀行振込入金確認しました。"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Confirm bank transfer payment"
+msgstr "銀行振込の支払いを確認する"
+
+msgid "Transfer"
+msgstr "転送"
+
+msgid "Receipt in"
+msgstr "での受け取り"
+
+msgid "Awaiting payment"
+msgstr "支払い待ち"
+
+msgid "Confirmed"
+msgstr "確認済み"
+
+msgid "Cancelled because no payment arrived within %d days."
+msgstr "%d日以内に支払いが届かなかったため、キャンセルされました。"
+
+msgid "Add %s more for free shipping."
+msgstr "%sをさらに追加すると送料無料になります。"
+
+msgid "Free shipping!"
+msgstr "送料無料!"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "E-mail"
+msgstr "電子メール"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "City"
+msgstr "市"
+
+msgid "Orders"
+msgstr "注文"
+
+msgid "Total spent"
+msgstr "支出総額"
+
+msgid "First order"
+msgstr "最初の注文"
+
+msgid "Last order"
+msgstr "ラストオーダー"
+
+msgid "Note"
+msgstr "注記"
+
+msgid "Hello %1$s, your %2$s order (#%3$s) is in.\n\nAmount: %4$s\nRecipient: %5$s\nIBAN: %6$s\nReference: %7$s\n\nAfter paying you can upload the receipt here: %8$s"
+msgstr "こんにちは%1$sさん、%2$sの注文 (#%3$s) が入っています。\n\n金額:%4$s受信者:%5$sIBAN:%6$s参考:%7$s支払い後、ここに領収書をアップロードできます:%8$s"
+
+msgid "Bank transfer details sent to the customer by WhatsApp."
+msgstr "WhatsApp によって顧客に送信される銀行振込の詳細。"
+
+msgid "Receipt in: order #%1$s · %2$s"
+msgstr "受け取り: オーダー #%1$s·%2$s"
+
+msgid "%1$s uploaded a receipt for order #%2$s.\n\nAmount: %3$s\nReference: %4$s\nFile: %5$s\n\nCheck and confirm: %6$s"
+msgstr "%1$sは注文 #%2$sの領収書をアップロードしました。\n\n金額:%3$s参考:%4$sファイル:%5$s確認と確認:%6$s"
+
+msgid "Hello %1$s, the payment for your order #%2$s is confirmed. We are preparing your order. %3$s"
+msgstr "こんにちは%1$sさん。ご注文 #%2$sの支払いが確認されました。ご注文を準備中です。%3$s"
+
+msgid "New order #%1$s · %2$s\n%3$s\n%4$s\n%5$s"
+msgstr "新しい注文 #%1$s·%2$s%3$s%4$s%5$s"
+
+msgid "No receipt is expected for this order."
+msgstr "この注文については領収書は期待されません。"
+
+msgid "At most 5 receipts can be uploaded for an order."
+msgstr "1 つの注文に対して最大 5 つの領収書をアップロードできます。"
+
+msgid "The file is too large."
+msgstr "ファイルが大きすぎます。"
+
+msgid "The file could not be uploaded. Please try again."
+msgstr "ファイルをアップロードできませんでした。もう一度試してください。"
+
+msgid "The file can be at most %s MB."
+msgstr "ファイルは最大%sMB まで可能です。"
+
+msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
+msgstr "PDF、JPG、PNG、WEBP、または HEIC ファイルのみをアップロードできます。"
+
+msgid "The file could not be saved."
+msgstr "ファイルを保存できませんでした。"
+
+msgid "The customer uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
+msgstr "顧客が領収書をアップロードしました:%1$s(%2$s)。支払いを確認して確定します。"
+
+msgid "Add another receipt"
+msgstr "別の領収書を追加する"
+
+msgid "Choose a receipt or drop it here"
+msgstr "領収書を選択するか、ここにドロップしてください"
+
+msgid "PDF, JPG or PNG · up to %s MB"
+msgstr "PDF、JPG、または PNG · 最大%sMB"
+
+msgid "Send receipt"
+msgstr "領収書の送信"
+
+msgid "Order not found."
+msgstr "注文が見つかりません。"
+
+msgid "Please choose a file."
+msgstr "ファイルを選択してください。"
+
+msgid "We have your receipt. Thank you!"
+msgstr "領収書はございます。ありがとう!"
+
+msgid "No payment"
+msgstr "支払いなし"
+
+msgid "Uncategorized"
+msgstr "未分類"
+
+msgid "%s M"
+msgstr "%sM"
+
+msgid "%s K"
+msgstr "%sK"
+
+msgid "%s ago"
+msgstr "%s前"
+
+msgid "Processing"
+msgstr "処理中"
+
+msgid "On hold"
+msgstr "保留中"
+
+msgid "Completed"
+msgstr "完了"
+
+msgid "Cancelled"
+msgstr "キャンセルされました"
+
+msgid "Refunded"
+msgstr "返金されました"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Flux Commerce"
+msgstr "フラックスコマース"
+
+msgid "WooCommerce"
+msgstr "ウーコマース"
+
+msgid "Active, version %s"
+msgstr "アクティブ、バージョン%s"
+
+msgid "WooCommerce is not installed or not active; Flux Commerce does not work."
+msgstr "WooCommerce がインストールされていないか、アクティブではありません。フラックスコマースは機能しません。"
+
+msgid "Plugins"
+msgstr "プラグイン"
+
+msgid "Off; Flux Donate's bank transfer method is used."
+msgstr "オフ; Flux Donateの銀行振込方法を利用します。"
+
+msgid "Off."
+msgstr "オフ。"
+
+msgid "On but no IBAN; it does not show at checkout."
+msgstr "オンだが IBAN なし。チェックアウト時には表示されません。"
+
+msgid "Payment method"
+msgstr "お支払い方法"
+
+msgid "Customer list"
+msgstr "顧客リスト"
+
+msgid "Last full scan: %s"
+msgstr "最後のフルスキャン:%s"
+
+msgid "Older orders are not scanned yet; press \"Rebuild\" on the Customers page."
+msgstr "古い注文はまだスキャンされていません。 「顧客」ページで「再構築」を押します。"
+
+msgid "Customers"
+msgstr "お客様"
+
+msgid "Store"
+msgstr "ストア"
+
+msgid "Overview"
+msgstr "概要"
+
+msgid "Sales report"
+msgstr "売上報告書"
+
+msgid "Scanning: %1$s / %2$s orders"
+msgstr "スキャン:%1$s/%2$sオーダー"
+
+msgid "Done. Reloading…"
+msgstr "完了しました。リロード中..."
+
+msgid "Something went wrong. Please try again."
+msgstr "何か問題が発生しました。もう一度試してください。"
+
+msgid "Saved"
+msgstr "保存されました"
+
+msgid "Store · today"
+msgstr "今日のストア"
+
+msgid "Revenue"
+msgstr "収益"
+
+msgid "Open the overview"
+msgstr "概要を開く"
+
+msgid "Daily revenue"
+msgstr "日次収益"
+
+msgid "%1$s · %2$s · %3$s orders"
+msgstr "%1$s·%2$s·%3$sの注文"
+
+msgid "%s pc"
+msgid_plural "%s pcs"
+msgstr[0] "%s個"
+
+msgid "Customer not found"
+msgstr "顧客が見つかりません"
+
+msgid "Back to customers"
+msgstr "お客様へ戻る"
+
+msgid "Open in WooCommerce"
+msgstr "WooCommerce で開く"
+
+msgid "No orders."
+msgstr "注文はありません。"
+
+msgid "All orders (%s)"
+msgstr "すべての注文 (%s)"
+
+msgid "Customer page"
+msgstr "お客様ページ"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Payments"
+msgstr "支払い"
+
+msgid "Notes"
+msgstr "注意事項"
+
+msgid "Customer since %s"
+msgstr "%s以降の顧客"
+
+msgid "WhatsApp"
+msgstr "ワッツアップ"
+
+msgid "%s open orders"
+msgstr "%sオープンオーダー"
+
+msgid "Average order"
+msgstr "平均注文"
+
+msgid "Order frequency"
+msgstr "注文頻度"
+
+msgid "Every %s days"
+msgstr "%s日ごと"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "User profile"
+msgstr "ユーザープロフィール"
+
+msgid "Account"
+msgstr "アカウント"
+
+msgid "Registered member"
+msgstr "登録会員"
+
+msgid "Guest"
+msgstr "ゲスト"
+
+msgid "Timeline"
+msgstr "タイムライン"
+
+msgid "Timeline filter"
+msgstr "タイムラインフィルター"
+
+msgid "Nothing in this filter."
+msgstr "このフィルターには何も入っていません。"
+
+msgid "Show older"
+msgstr "古いものを表示"
+
+msgid "%1$s of %2$s entries"
+msgstr "%2$sエントリの%1$s"
+
+msgid "Order #%s"
+msgstr "注文番号%s"
+
+msgid "New order"
+msgstr "新規注文"
+
+msgid "Payment received"
+msgstr "支払いを受け取りました"
+
+msgid "Order #%1$s · %2$s"
+msgstr "注文番号%1$s·%2$s"
+
+msgid "Refund issued"
+msgstr "払い戻しが行われました"
+
+msgid "Note to customer"
+msgstr "お客様への注意事項"
+
+msgid "Order note"
+msgstr "注文メモ"
+
+msgid "Addresses"
+msgstr "住所"
+
+msgid "Billing and shipping"
+msgstr "請求と配送"
+
+msgid "Billing"
+msgstr "請求"
+
+msgid "Shipping"
+msgstr "送料"
+
+msgid "From the latest order"
+msgstr "最新のご注文から"
+
+msgid "Frequently bought"
+msgstr "よく購入される"
+
+msgid "Store note"
+msgstr "ストアメモ"
+
+msgid "E.g. wants gift wrapping, leave at the door…"
+msgstr "例:ギフトラッピングをご希望の場合は、玄関に置いておきます..."
+
+msgid "Saved when you leave the field."
+msgstr "フィールドから離れると保存されます。"
+
+msgid "Member"
+msgstr "メンバー"
+
+msgid "Repeat buyers"
+msgstr "リピート購入者"
+
+msgid "Top 10% spenders"
+msgstr "上位 10% の支出者"
+
+msgid "Lapsed"
+msgstr "失効しました"
+
+msgid "Download CSV"
+msgstr "CSVをダウンロード"
+
+msgid "Rebuild"
+msgstr "再構築"
+
+msgid "Members and guests, one row per e-mail, with order count and total spent."
+msgstr "メンバーとゲスト、電子メールごとに 1 行、注文数と消費総額が表示されます。"
+
+msgid "Older orders are not scanned yet."
+msgstr "古い注文はまだスキャンされていません。"
+
+msgid "The list fills itself with new orders. To add older orders, press \"Rebuild\"; the scan runs in batches of 100."
+msgstr "リストは新しい注文でいっぱいになります。古い注文を追加するには、「再構築」を押します。スキャンは 100 個のバッチで実行されます。"
+
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "Spend per customer"
+msgstr "顧客あたりの支出"
+
+msgid "No order in 90 days"
+msgstr "90日間注文がありません"
+
+msgid "New (30 days)"
+msgstr "新規 (30 日間)"
+
+msgid "Lapsed (90 days)"
+msgstr "失効 (90 日)"
+
+msgid "Search customers"
+msgstr "顧客を検索する"
+
+msgid "Name, e-mail, phone, city"
+msgstr "名前、電子メール、電話番号、市区町村"
+
+msgid "No customer matches the search."
+msgstr "検索に一致する顧客はありません。"
+
+msgid "No customers yet."
+msgstr "まだ顧客はいません。"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Repeat"
+msgstr "リピート"
+
+msgid "Add a note…"
+msgstr "メモを追加..."
+
+msgid "Note for %s"
+msgstr "%sに関する注意事項"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "7 days"
+msgstr "7日間"
+
+msgid "30 days"
+msgstr "30日"
+
+msgid "90 days"
+msgstr "90日"
+
+msgid "Period"
+msgstr "期間"
+
+msgid "Sales, orders awaiting payment and stock at a glance."
+msgstr "売上、支払い待ちの注文、在庫が一目でわかります。"
+
+msgid "Net revenue"
+msgstr "純収益"
+
+msgid "%s new"
+msgstr "%s新規"
+
+msgid "%1$s – %2$s · compared with %3$s – %4$s"
+msgstr "%1$s–%2$s·%3$s–%4$sとの比較"
+
+msgid "Full report"
+msgstr "完全なレポート"
+
+msgid "Pick 7 days or longer for the daily chart."
+msgstr "日足チャートには 7 日以上を選択します。"
+
+msgid "No paid orders in this period."
+msgstr "この期間中は有料注文はありません。"
+
+msgid "Best sellers"
+msgstr "ベストセラー"
+
+msgid "pcs"
+msgstr "個"
+
+msgid "No sales in this period."
+msgstr "この期間の販売はありません。"
+
+msgid "Payment methods"
+msgstr "支払い方法"
+
+msgid "orders"
+msgstr "注文"
+
+msgid "Products"
+msgstr "製品"
+
+msgid "New product"
+msgstr "新製品"
+
+msgid "Coupons"
+msgstr "クーポン"
+
+msgid "No orders awaiting payment."
+msgstr "支払いを待っている注文はありません。"
+
+msgid "Low stock"
+msgstr "在庫僅少"
+
+msgid "threshold %s"
+msgstr "しきい値%s"
+
+msgid "No products running low."
+msgstr "残り少ない商品はありません。"
+
+msgid "Out of stock"
+msgstr "在庫切れ"
+
+msgid "%s left"
+msgstr "%s左"
+
+msgid "Paid orders in the period you pick; net amounts after refunds."
+msgstr "選択した期間内の有料注文。返金後の正味金額。"
+
+msgid "This month"
+msgstr "今月"
+
+msgid "Last month"
+msgstr "先月"
+
+msgid "This year"
+msgstr "今年は"
+
+msgid "From"
+msgstr "から"
+
+msgid "To"
+msgstr "に"
+
+msgid "Show"
+msgstr "表示する"
+
+msgid "Items sold"
+msgstr "販売アイテム"
+
+msgid "Refunds"
+msgstr "払い戻し"
+
+msgid "Shipping income"
+msgstr "配送収入"
+
+msgid "Product"
+msgstr "製品"
+
+msgid "Qty"
+msgstr "数量"
+
+msgid "Net sales"
+msgstr "売上高"
+
+msgid "Share"
+msgstr "シェアする"
+
+msgid "Categories"
+msgstr "カテゴリー"
+
+msgid "Counted statuses: %s. Change them in Settings."
+msgstr "カウントされるステータス:%s。設定で変更してください。"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "Gross revenue"
+msgstr "総収益"
+
+msgid "Tax"
+msgstr "税金"
+
+msgid "Discount"
+msgstr "割引"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Category"
+msgstr "カテゴリ"
+
+msgid "Dashboard, checkout, bank transfer, product feed and notifications."
+msgstr "ダッシュボード、チェックアウト、銀行振込、製品フィード、通知。"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "Dashboard and reports"
+msgstr "ダッシュボードとレポート"
+
+msgid "Order statuses counted as revenue"
+msgstr "注文ステータスが収益としてカウントされる"
+
+msgid "On-hold (bank transfer) orders count once the payment is confirmed."
+msgstr "保留(銀行振込)注文は、支払いが確認された時点でカウントされます。"
+
+msgid "Leave donation orders out of the store statistics"
+msgstr "寄付注文を店舗統計から除外する"
+
+msgid "Flux Donate is installed: orders with only donations stay in the Donations dashboard."
+msgstr "Flux Donate がインストールされています。寄付のみの注文は寄付ダッシュボードに残ります。"
+
+msgid "Low stock threshold"
+msgstr "在庫閾値が低い"
+
+msgid "Products whose stock falls to this number or below are listed on the Overview."
+msgstr "在庫がこの数以下の商品が概要に表示されます。"
+
+msgid "Cart and checkout"
+msgstr "カートとチェックアウト"
+
+msgid "Hide the company name field"
+msgstr "会社名フィールドを非表示にする"
+
+msgid "Hide the second address line"
+msgstr "2 番目の住所行を非表示にする"
+
+msgid "Do not ask for an address when the cart only has virtual/downloadable products"
+msgstr "カートに仮想/ダウンロード可能な製品のみがある場合は、アドレスを要求しないでください"
+
+msgid "On the classic checkout. Country, name, e-mail and phone stay."
+msgstr "古典的なチェックアウトについて。国、名前、電子メール、電話番号を入力します。"
+
+msgid "Order notes field"
+msgstr "注文メモ欄"
+
+msgid "On mobile, keep the \"Place order\" button fixed at the bottom"
+msgstr "モバイルでは、[注文する] ボタンを下部に固定したままにしてください"
+
+msgid "Free shipping bar"
+msgstr "送料無料バー"
+
+msgid "\"Add X more for free shipping\" in the cart and at checkout."
+msgstr "カート内およびチェックアウト時に「送料無料のためにさらに X を追加します」。"
+
+msgid "Free shipping amount"
+msgstr "送料無料金額"
+
+msgid "Empty or 0 = the minimum amount of WooCommerce's \"Free shipping\" method."
+msgstr "空または 0 = WooCommerce の「送料無料」方法の最小金額。"
+
+msgid "Empty = from WooCommerce's \"Free shipping\" method: %s"
+msgstr "空 = WooCommerce の「送料無料」メソッドから:%s"
+
+msgid "Turning the method on, the IBAN and the reference format are in WooCommerce › Settings › Payments › Bank transfer."
+msgstr "この方法をオンにすると、IBAN と参照形式は WooCommerce › 設定 › 支払い › 銀行振込に表示されます。"
+
+msgid "Open the payment method"
+msgstr "支払い方法を開く"
+
+msgid "Hide this method when Flux Donate's bank transfer is on"
+msgstr "Flux Donate の銀行振込がオンになっている場合は、このメソッドを非表示にします"
+
+msgid "So the checkout does not show two separate \"Bank transfer\" options."
+msgstr "そのため、チェックアウトには 2 つの個別の「銀行振込」オプションは表示されません。"
+
+msgid "Largest receipt (MB)"
+msgstr "最大レシート(MB)"
+
+msgid "Receipt notification e-mail"
+msgstr "入荷通知メール"
+
+msgid "Empty = the site admin e-mail."
+msgstr "空 = サイト管理者の電子メール。"
+
+msgid "Cancel unpaid bank transfers after (days)"
+msgstr "未払いの銀行振込を (日) 後にキャンセルします"
+
+msgid "0 = never cancel. Orders with a receipt are not cancelled; stock is restored."
+msgstr "0 = 決してキャンセルしません。領収書のあるご注文はキャンセルされません。在庫が復活しました。"
+
+msgid "Product feed (Google Merchant)"
+msgstr "商品フィード (Google 販売者)"
+
+msgid "Feed on"
+msgstr "フィードオン"
+
+msgid "Google Merchant Center, Meta catalog and similar services read this address."
+msgstr "Google Merchant Center、メタ カタログ、および同様のサービスはこのアドレスを読み取ります。"
+
+msgid "Feed address"
+msgstr "フィードアドレス"
+
+msgid "Brand"
+msgstr "ブランド"
+
+msgid "Empty = site name."
+msgstr "空 = サイト名。"
+
+msgid "Notifications"
+msgstr "通知"
+
+msgid "WhatsApp messages go through Flux Mail's WhatsApp connection."
+msgstr "WhatsApp メッセージは、Flux Mail の WhatsApp 接続を経由します。"
+
+msgid "WhatsApp needs Flux Mail and a WhatsApp connection; only e-mail is sent for now."
+msgstr "WhatsApp には Flux Mail と WhatsApp 接続が必要です。現時点では電子メールのみが送信されます。"
+
+msgid "Send the bank details and the payment confirmation to the customer by WhatsApp"
+msgstr "WhatsApp で銀行口座の詳細と支払い確認を顧客に送信します"
+
+msgid "Admin WhatsApp number"
+msgstr "管理者の WhatsApp 番号"
+
+msgid "Gets a message when a receipt arrives (and, if on, for every new order)."
+msgstr "レシートが到着するとメッセージを取得します (オンの場合は新しい注文ごとに)。"
+
+msgid "WhatsApp the admin for every new paid order"
+msgstr "WhatsApp はすべての新しい有料注文の管理者です"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Bank transfer (with receipt upload)"
+msgstr "銀行振込(領収書アップロードあり)"
+
+msgid "The customer pays with an order-specific reference and uploads the receipt on the site. When you confirm the payment the order moves on to processing. Flux Commerce."
+msgstr "顧客は注文固有の参照を使用して支払い、サイトに領収書をアップロードします。支払いが確認されると、注文は処理に進みます。フラックスコマース。"
+
+msgid "Enabled"
+msgstr "有効"
+
+msgid "Accept payments by bank transfer"
+msgstr "銀行振込による支払いを受け入れる"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Empty = \"Bank transfer\" in the site language."
+msgstr "空 = サイト言語では「銀行振込」。"
+
+msgid "Text on the checkout page"
+msgstr "チェックアウトページのテキスト"
+
+msgid "Empty = the default text in the site language."
+msgstr "空 = サイト言語のデフォルトのテキスト。"
+
+msgid "Recipient (account holder)"
+msgstr "受取人(口座名義人)"
+
+msgid "Empty = the first account of WooCommerce's \"Direct bank transfer\"."
+msgstr "空 = WooCommerce の「直接銀行振込」の最初のアカウント。"
+
+msgid "Empty = the first account of WooCommerce's \"Direct bank transfer\" (recipient and bank come from it too)."
+msgstr "空 = WooCommerce の「直接銀行振込」の最初のアカウント (受信者と銀行もそこから来ます)。"
+
+msgid "Bank (optional)"
+msgstr "銀行 (オプション)"
+
+msgid "What the customer writes in the transfer description. Placeholders: {kod} (prefix + order no), {siparis}, {ad}, {site}. Empty: {kod} {ad}"
+msgstr "顧客が転送説明に記入する内容。プレースホルダー:{kod}(プレフィックス + 注文番号)、{siparis}、{ad}、{site}。空:{kod}{ad}"
+
+msgid "Code prefix"
+msgstr "コードプレフィックス"
+
+msgid "Bank transfer: awaiting payment."
+msgstr "銀行振込:入金待ちです。"
+
+msgid "Name, e-mail or phone"
+msgstr "名前、電子メールまたは電話番号"
+
+msgid "Call"
+msgstr "電話をかける"
+
+msgid "No receipts waiting"
+msgstr "待っている領収書はありません"
+
+msgid "This order is not waiting for approval."
+msgstr "この注文は承認を待っていません。"
+
+msgid "Receipt"
+msgstr "領収書"
+
+msgid "Awaiting a receipt"
+msgstr "領収書を待っています"
+
+msgid "Receipt approval"
+msgstr "受け取り承認"
+
+msgid "Files"
+msgstr "ファイル"
+
+msgid "Bank-transfer orders appear here while payment is pending."
+msgstr "支払いが保留されている間、銀行振込の注文がここに表示されます。"
+
+msgid "Customer not found."
+msgstr "顧客が見つかりません。"
+
+msgid "No customers"
+msgstr "客がいない"
+
+msgid "Approve"
+msgstr "承認する"
+
+msgid "Sales summary"
+msgstr "販売概要"
+
+msgid "Segment"
+msgstr "セグメント"
+
+msgid "Customers appear here as orders come in."
+msgstr "注文が入ると、ここに顧客が現れます。"
+
+msgid "The order is marked as paid."
+msgstr "注文は支払い済みとしてマークされます。"
+
+msgid "New"
+msgstr "新しい"
+
+msgid "New customers"
+msgstr "新規のお客様"
+
+msgid "High spenders"
+msgstr "高額支出者"
+
+msgid "Payment approved"
+msgstr "支払いが承認されました"
+
+msgid "Approve this payment?"
+msgstr "この支払いを承認しますか?"
+
+msgid "Contact"
+msgstr "お問い合わせ"
+
+msgid "[['Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.', 'tr']]"
+msgstr "[['WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。', 'tr']]"

@@ -187,7 +187,7 @@ final class FLXCM_Customers {
 	public static function ajax_rebuild() {
 		check_ajax_referer( 'flxcm_admin' );
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Bu işlem için yetkiniz yok.', 'flx-commerce' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-commerce' ) ), 403 );
 		}
 		wp_send_json_success( self::rebuild_step( absint( $_POST['page'] ?? 1 ) ) );
 	}
@@ -196,7 +196,7 @@ final class FLXCM_Customers {
 		global $wpdb;
 		check_ajax_referer( 'flxcm_admin' );
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Bu işlem için yetkiniz yok.', 'flx-commerce' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-commerce' ) ), 403 );
 		}
 		$id   = absint( $_POST['id'] ?? 0 );
 		$note = sanitize_textarea_field( wp_unslash( $_POST['note'] ?? '' ) );
@@ -348,7 +348,7 @@ final class FLXCM_Customers {
 	public static function csv() {
 		check_admin_referer( 'flxcm_customers_csv' );
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-commerce' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
 		$q = self::query(
 			array(
@@ -364,7 +364,7 @@ final class FLXCM_Customers {
 		header( 'Content-Disposition: attachment; filename="customers-' . wp_date( 'Y-m-d' ) . '.csv"' );
 		$out = fopen( 'php://output', 'w' );
 		fwrite( $out, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
-		fputcsv( $out, array( __( 'Ad', 'flx-commerce' ), __( 'E-posta', 'flx-commerce' ), __( 'Telefon', 'flx-commerce' ), __( 'Şehir', 'flx-commerce' ), __( 'Sipariş', 'flx-commerce' ), __( 'Toplam harcama', 'flx-commerce' ), __( 'İlk sipariş', 'flx-commerce' ), __( 'Son sipariş', 'flx-commerce' ), __( 'Not', 'flx-commerce' ) ) );
+		fputcsv( $out, array( __( 'Name', 'flx-commerce' ), __( 'E-mail', 'flx-commerce' ), __( 'Phone', 'flx-commerce' ), __( 'City', 'flx-commerce' ), __( 'Orders', 'flx-commerce' ), __( 'Total spent', 'flx-commerce' ), __( 'First order', 'flx-commerce' ), __( 'Last order', 'flx-commerce' ), __( 'Note', 'flx-commerce' ) ) );
 		$page = 1;
 		do {
 			foreach ( $q['rows'] as $r ) {

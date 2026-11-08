@@ -25,38 +25,40 @@ add_filter(
 			return $types;
 		}
 		$types['flx-certificates/certificate'] = array(
-			'label'       => __( 'Sertifika hazır', 'flx-mail' ),
+			'label'       => __( 'Certificate ready', 'flx-mail' ),
 			'group'       => 'Flux Certificates',
-			'description' => __( 'Sertifika e-postayla gönderilince kişiye gider. Sertifikanın görseli e-postada görünür, tıklayınca sertifika sayfası açılır (indirme ve paylaşma orada). {mesaj_html}, Flux Certificates › Ayarlar\'daki ya da şablondaki e-posta metnidir.', 'flx-mail' ),
+			'description' => __( 'Sent to the person when the certificate is emailed. The certificate image appears in the email, and clicking it opens the certificate page (where it can be downloaded and shared). {mesaj_html} is the email text from Flux Certificates › Settings or the template.', 'flx-mail' ),
 			'recipient'   => 'user',
 			'image'       => true,
 			'vars'        => array(
-				'ad'           => __( 'Kişinin adı', 'flx-mail' ),
-				'ad_soyad'     => __( 'Ad soyad', 'flx-mail' ),
-				'sertifika'    => __( 'Sertifika adı', 'flx-mail' ),
-				'sertifika_no' => __( 'Sertifika numarası', 'flx-mail' ),
-				'fidan_sayisi' => __( 'Fidan sayısı (fidan sertifikalarında)', 'flx-mail' ),
-				'tarih'        => __( 'Sertifika tarihi', 'flx-mail' ),
-				'link'         => __( 'Sertifika sayfası', 'flx-mail' ),
-				'konu'         => __( 'Flux Certificates\'daki e-posta konusu', 'flx-mail' ),
-				'mesaj_html'   => __( 'Flux Certificates\'daki e-posta metni', 'flx-mail' ),
+				'ad'           => __( 'Person\'s name', 'flx-mail' ),
+				'ad_soyad'     => __( 'Full name', 'flx-mail' ),
+				'sertifika'    => __( 'Certificate name', 'flx-mail' ),
+				'sertifika_no' => __( 'Certificate number', 'flx-mail' ),
+				'fidan_sayisi' => __( 'Number of saplings (for sapling certificates)', 'flx-mail' ),
+				'tarih'        => __( 'Certificate date', 'flx-mail' ),
+				'link'         => __( 'Certificate page', 'flx-mail' ),
+				'konu'         => __( 'Email subject from Flux Certificates', 'flx-mail' ),
+				'mesaj_html'   => __( 'Email text from Flux Certificates', 'flx-mail' ),
 			),
 			'sample'      => array(
 				'ad'           => 'Ahmet',
 				'ad_soyad'     => 'Ahmet Hayrullah Yılmaz',
-				'sertifika'    => __( 'Fidan Bağış Sertifikası', 'flx-mail' ),
+				'sertifika'    => __( 'Sapling Donation Certificate', 'flx-mail' ),
 				'sertifika_no' => '2026-00042',
 				'fidan_sayisi' => '7',
 				'tarih'        => wp_date( 'd.m.Y' ),
 				'link'         => home_url( '/sertifika/ornek/' ),
-				'konu'         => __( 'Fidan Bağışı Sertifikanız hazır 🌱', 'flx-mail' ),
-				'mesaj_html'   => wpautop( __( "Merhaba Ahmet,\n\nFidan Bağış Sertifikanız hazırlandı. Desteğiniz için çok teşekkür ederiz.", 'flx-mail' ) ),
+				'konu'         => __( 'Your Sapling Donation Certificate is ready 🌱', 'flx-mail' ),
+				'mesaj_html'   => wpautop( __( 'Hello Ahmet,
+
+Your Sapling Donation Certificate is ready. Thank you very much for your support.', 'flx-mail' ) ),
 			),
 			'defaults'    => array(
 				'subject'     => '{konu}',
-				'heading'     => __( 'Sertifikanız hazır 🌱', 'flx-mail' ),
+				'heading'     => __( 'Your certificate is ready 🌱', 'flx-mail' ),
 				'body'        => '{mesaj_html}',
-				'button_text' => __( 'Sertifikamı görüntüle', 'flx-mail' ),
+				'button_text' => __( 'View my certificate', 'flx-mail' ),
 				'button_url'  => '{link}',
 				'sender'      => 'info',
 			),
@@ -79,22 +81,22 @@ add_filter(
 		}
 		$args['image_width']   = 340;
 		$args['image_alt']     = ! empty( $args['image_alt'] ) ? $args['image_alt'] : trim( ( $vars['sertifika'] ?? '' ) . ' · ' . ( $vars['ad_soyad'] ?? '' ), ' ·' );
-		$args['image_caption'] = ! empty( $args['image_caption'] ) ? $args['image_caption'] : esc_html__( 'Sertifikanızı açmak için görsele dokunun', 'flx-mail' );
+		$args['image_caption'] = ! empty( $args['image_caption'] ) ? $args['image_caption'] : esc_html__( 'Tap the image to open your certificate', 'flx-mail' );
 		if ( empty( $args['facts'] ) ) {
 			$facts = array();
 			if ( ! empty( $vars['fidan_sayisi'] ) ) {
-				$facts[ __( 'Fidan', 'flx-mail' ) ] = sprintf(
+				$facts[ __( 'Sapling', 'flx-mail' ) ] = sprintf(
 					/* translators: %s: fidan sayısı */
-					__( '%s adet', 'flx-mail' ),
+					__( '%s saplings', 'flx-mail' ),
 					number_format_i18n( (float) $vars['fidan_sayisi'] )
 				);
 			}
-			$facts[ __( 'Sertifika no', 'flx-mail' ) ] = (string) ( $vars['sertifika_no'] ?? '' );
-			$facts[ __( 'Tarih', 'flx-mail' ) ]        = (string) ( $vars['tarih'] ?? '' );
+			$facts[ __( 'Certificate no.', 'flx-mail' ) ] = (string) ( $vars['sertifika_no'] ?? '' );
+			$facts[ __( 'Date', 'flx-mail' ) ]        = (string) ( $vars['tarih'] ?? '' );
 			$args['facts'] = $facts;
 		}
 		if ( empty( $args['note'] ) ) {
-			$args['note'] = esc_html__( 'Sertifika sayfasından PDF olarak indirebilir, WhatsApp ve sosyal medyada paylaşabilirsiniz.', 'flx-mail' );
+			$args['note'] = esc_html__( 'You can download it as a PDF from the certificate page and share it on WhatsApp and social media.', 'flx-mail' );
 		}
 		return $args;
 	},
@@ -113,26 +115,26 @@ add_filter(
 		foreach ( array( 'wpmail', 'smtp' ) as $t ) {
 			if ( isset( $types[ $t ] ) ) {
 				$types[ $t ]['send'] = 'flxi_flxs_email_send';
-				$types[ $t ]['help'] = ( $types[ $t ]['help'] ?? '' ) . ' ' . __( 'Flux Mail etkin: e-posta kurumsal şablonla ve İletişim › Ayarlar\'daki gönderen adresiyle gider.', 'flx-mail' );
+				$types[ $t ]['help'] = ( $types[ $t ]['help'] ?? '' ) . ' ' . __( 'Flux Mail is active: the email is sent with the branded template and the sender address from Communication › Settings.', 'flx-mail' );
 			}
 		}
-		$choices = array( '' => __( 'Varsayılan bağlantı', 'flx-mail' ) );
+		$choices = array( '' => __( 'Default connection', 'flx-mail' ) );
 		foreach ( array( 'whatsapp', 'sms' ) as $ch ) {
 			$opts = $choices;
 			foreach ( flxi_list_connections( $ch ) as $c ) {
-				$opts[ (string) $c['id'] ] = $c['name'] . ( $c['active'] ? '' : ' (' . __( 'kapalı', 'flx-mail' ) . ')' );
+				$opts[ (string) $c['id'] ] = $c['name'] . ( $c['active'] ? '' : ' (' . __( 'disabled', 'flx-mail' ) . ')' );
 			}
 			$fields = array(
-				array( 'key' => 'connection', 'label' => __( 'Flux Mail bağlantısı', 'flx-mail' ), 'type' => 'select', 'default' => '', 'options' => $opts ),
-				array( 'key' => 'delay', 'label' => __( 'Toplu gönderimde mesajlar arası bekleme (sn)', 'flx-mail' ), 'type' => 'number', 'default' => 'whatsapp' === $ch ? 4 : 0 ),
+				array( 'key' => 'connection', 'label' => __( 'Flux Mail connection', 'flx-mail' ), 'type' => 'select', 'default' => '', 'options' => $opts ),
+				array( 'key' => 'delay', 'label' => __( 'Delay between messages in bulk send (sec)', 'flx-mail' ), 'type' => 'number', 'default' => 'whatsapp' === $ch ? 4 : 0 ),
 			);
 			if ( 'whatsapp' === $ch ) {
-				$fields[] = array( 'key' => 'send_pdf', 'label' => __( 'PDF\'i ayrıca belge olarak gönder', 'flx-mail' ), 'type' => 'checkbox', 'default' => 0 );
+				$fields[] = array( 'key' => 'send_pdf', 'label' => __( 'Also send the PDF as a document', 'flx-mail' ), 'type' => 'checkbox', 'default' => 0 );
 			}
 			$types[ 'flxi_' . $ch ] = array(
 				'label'   => 'whatsapp' === $ch ? __( 'WhatsApp · Flux Mail', 'flx-mail' ) : __( 'SMS · Flux Mail', 'flx-mail' ),
 				'channel' => $ch,
-				'help'    => __( 'Bağlantı ayarları (Evolution / Netgsm) İletişim › Bağlantılar\'da tutulur; burada yalnız hangisinin kullanılacağı seçilir.', 'flx-mail' ),
+				'help'    => __( 'Connection settings (Evolution / Netgsm) are kept in Communication › Connections; here you only choose which one to use.', 'flx-mail' ),
 				'fields'  => $fields,
 				'send'    => 'flxi_flxs_message_send',
 				'test'    => 'flxi_flxs_message_test',
@@ -172,7 +174,7 @@ function flxi_flxs_message_test( $config, $to, $provider ) {
 	$channel = $provider['channel'] ?? 'whatsapp';
 	$conn    = flxi_resolve_connection( $channel, (int) ( $config['connection'] ?? 0 ) );
 	if ( ! $conn ) {
-		return array( 'ok' => false, 'error' => __( 'Flux Mail\'de bu kanal için etkin bağlantı yok.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'There is no active connection for this channel in Flux Mail.', 'flx-mail' ) );
 	}
 	return flxi_test_connection( $conn['id'], $to );
 }
@@ -182,7 +184,7 @@ function flxi_flxs_email_send( $config, $msg, $provider = array() ) {
 	$to = sanitize_email( (string) $msg['recipient'] );
 	if ( ! is_email( $to ) ) {
 		/* translators: %s: e-posta */
-		return array( 'ok' => false, 'error' => sprintf( __( 'Geçersiz e-posta: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
+		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid email: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
 	}
 	$cert = ! empty( $msg['certificate_id'] ) ? flxs_get_certificate( $msg['certificate_id'] ) : null;
 	$text = trim( preg_replace( '/^[ \t]*\{buton\}[ \t]*\n?/m', '', (string) $msg['body'] ) );
@@ -246,7 +248,7 @@ function flxi_flxs_email_send( $config, $msg, $provider = array() ) {
 	if ( $ok ) {
 		return array( 'ok' => true, 'response' => array( 'mailer' => 'flx-mail' ) );
 	}
-	return array( 'ok' => false, 'error' => $error ? $error : __( 'wp_mail false döndü (sunucu e-posta gönderemiyor olabilir).', 'flx-mail' ), 'retry' => true );
+	return array( 'ok' => false, 'error' => $error ? $error : __( 'wp_mail returned false (the server may be unable to send email).', 'flx-mail' ), 'retry' => true );
 }
 
 /* ------------------------------------------------------------------ */

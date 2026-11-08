@@ -12,7 +12,7 @@ function flxc_evo( $conn, $method, $path, $body = null, $timeout = 25 ) {
 		 * Kanal eklentisi array( ok, code, json, body, error ) döner; json.key.id mesajın kanal kimliği olur.
 		 */
 		$r = apply_filters( 'flxc_virtual_request', null, is_array( $conn ) ? (string) $conn['id'] : (string) $conn, $method, $path, $body );
-		return is_array( $r ) ? wp_parse_args( $r, array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => '' ) ) : array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => __( 'Bu kanal şu an kullanılamıyor.', 'flx-chat' ) );
+		return is_array( $r ) ? wp_parse_args( $r, array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => '' ) ) : array( 'ok' => false, 'code' => 0, 'json' => null, 'body' => '', 'error' => __( 'This channel is not available right now.', 'flx-chat' ) );
 	}
 	$cfg = flxc_connection_config( $conn );
 	if ( is_wp_error( $cfg ) ) {
@@ -60,13 +60,13 @@ function flxc_evo_error_text( $code, $json, $raw ) {
 		$detail = is_array( $m ) ? wp_json_encode( $m, JSON_UNESCAPED_UNICODE ) : (string) $m;
 	}
 	if ( false !== strpos( $detail, '"exists":false' ) ) {
-		return __( 'Bu numarada WhatsApp yok.', 'flx-chat' );
+		return __( 'This number is not on WhatsApp.', 'flx-chat' );
 	}
 	if ( 401 === $code || 403 === $code ) {
-		return __( 'Evolution API key hatalı.', 'flx-chat' );
+		return __( 'Evolution API key is invalid.', 'flx-chat' );
 	}
 	if ( 404 === $code ) {
-		return __( 'Evolution instance bulunamadı ya da kapalı.', 'flx-chat' );
+		return __( 'Evolution instance not found or offline.', 'flx-chat' );
 	}
 	return 'Evolution HTTP ' . $code . ( $detail ? ': ' . mb_substr( $detail, 0, 300 ) : ( $raw ? ': ' . mb_substr( wp_strip_all_tags( $raw ), 0, 200 ) : '' ) );
 }

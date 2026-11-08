@@ -1,5 +1,8 @@
 # Flux reCAPTCHA
 
+## 0.2.1
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 0.2.0
 - Uygulama ayarları. Site anahtarı ve gizli anahtar write-only; gizli anahtar şifreli saklanır.
 

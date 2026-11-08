@@ -138,13 +138,13 @@ function flxr_profile_section( $user ) {
 		return;
 	}
 	$link = flxr_ref_link( $user->ID );
-	echo '<h2>' . esc_html__( 'Referans linki', 'flx-roles' ) . '</h2>';
-	echo '<table class="form-table" role="presentation"><tr><th scope="row">' . esc_html__( 'Kişisel link', 'flx-roles' ) . '</th><td>';
+	echo '<h2>' . esc_html__( 'Referral link', 'flx-roles' ) . '</h2>';
+	echo '<table class="form-table" role="presentation"><tr><th scope="row">' . esc_html__( 'Personal link', 'flx-roles' ) . '</th><td>';
 	echo '<input type="text" class="large-text code" readonly value="' . esc_attr( $link ) . '" onclick="this.select()"> ';
-	echo '<p class="description">' . esc_html__( 'Bu linkle siteye gelenlerin bağışlarında referans olarak siz görünürsünüz.', 'flx-roles' ) . ' ' . esc_html(
+	echo '<p class="description">' . esc_html__( 'Donations from visitors who come through this link show you as the referrer.', 'flx-roles' ) . ' ' . esc_html(
 		sprintf(
 			/* translators: %s: referral parameter, e.g. ?ref=abc123 */
-			__( 'Başka bir sayfayı paylaşacaksanız adresin sonuna %s ekleyin.', 'flx-roles' ),
+			__( 'To share another page, add %s to the end of its address.', 'flx-roles' ),
 			'?' . FLXR_REF_PARAM . '=' . flxr_ref_code( $user->ID )
 		)
 	) . '</p>';

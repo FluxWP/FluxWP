@@ -6,8 +6,8 @@
 	};
 	blocks.registerBlockType('fluxwp/dil-secici', {
 		apiVersion: 3,
-		title: __('Dil Seçici', 'fluxwp'),
-		description: __('TranslatePress, Polylang veya WPML ile eklenen dilleri gösterir. Tek dil varsa görünmez.', 'fluxwp'),
+		title: __("Language Switcher", 'fluxwp'),
+		description: __("Shows the languages added with TranslatePress, Polylang or WPML. Hidden when there is only one language.", 'fluxwp'),
 		category: 'theme',
 		icon: 'translation',
 		supports: { html: false },
@@ -18,8 +18,8 @@
 	});
 	blocks.registerBlockType('fluxwp/hesap-sepet', {
 		apiVersion: 3,
-		title: __('Hesap ve Sepet', 'fluxwp'),
-		description: __('WooCommerce hesap simgesi ve mini sepet. WooCommerce kapalıysa görünmez.', 'fluxwp'),
+		title: __("Account and Cart", 'fluxwp'),
+		description: __("WooCommerce account icon and mini cart. Hidden when WooCommerce is inactive.", 'fluxwp'),
 		category: 'theme',
 		icon: 'cart',
 		supports: { html: false },

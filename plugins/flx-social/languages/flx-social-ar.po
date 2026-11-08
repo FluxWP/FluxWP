@@ -1,0 +1,1661 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Draft"
+msgstr "مسودة"
+
+msgid "Awaiting approval"
+msgstr "في انتظار الموافقة"
+
+msgid "Scheduled"
+msgstr "المقرر"
+
+msgid "Publishing"
+msgstr "النشر"
+
+msgid "Published"
+msgstr "تم النشر"
+
+msgid "Partially published"
+msgstr "نشرت جزئيا"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+msgid "Sending"
+msgstr "إرسال"
+
+msgid "Deleted from network"
+msgstr "تم الحذف من الشبكة"
+
+msgid "Theme: system"
+msgstr "الموضوع: النظام"
+
+msgid "Theme: light"
+msgstr "الموضوع: نور"
+
+msgid "Theme: dark"
+msgstr "الموضوع: الظلام"
+
+msgid "Opening Social Media…"
+msgstr "فتح وسائل التواصل الاجتماعي..."
+
+msgid "Try again"
+msgstr "حاول مرة أخرى"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Social Media"
+msgstr "وسائل التواصل الاجتماعي"
+
+msgid "New post"
+msgstr "وظيفة جديدة"
+
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+msgid "Posts"
+msgstr "المشاركات"
+
+msgid "Calendar"
+msgstr "التقويم"
+
+msgid "Accounts"
+msgstr "الحسابات"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "{n} posts with errors"
+msgstr "مشاركات{n}تحتوي على أخطاء"
+
+msgid "Theme"
+msgstr "الموضوع"
+
+msgid "Back to dashboard"
+msgstr "العودة إلى لوحة القيادة"
+
+msgid "(no text)"
+msgstr "(بدون نص)"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Duplicate"
+msgstr "مكررة"
+
+msgid "Copy created as a draft."
+msgstr "تم إنشاء النسخة كمسودة."
+
+msgid "Approve"
+msgstr "موافقة"
+
+msgid "Approved."
+msgstr "تمت الموافقة عليه."
+
+msgid "Reject"
+msgstr "رفض"
+
+msgid "Share now"
+msgstr "شارك الآن"
+
+msgid "Share now?"
+msgstr "شارك الآن؟"
+
+msgid "The post is published on the selected accounts right away."
+msgstr "يتم نشر المنشور على الحسابات المختارة فوراً."
+
+msgid "Share"
+msgstr "شارك"
+
+msgid "Queued, it will be live shortly."
+msgstr "في قائمة الانتظار، وسوف يكون على الهواء مباشرة قريبا."
+
+msgid "Submit for approval"
+msgstr "تقديم للموافقة"
+
+msgid "Submitted for approval."
+msgstr "قدمت للموافقة عليها."
+
+msgid "Unschedule (back to draft)"
+msgstr "إلغاء الجدولة (العودة إلى المسودة)"
+
+msgid "Moved to drafts."
+msgstr "انتقل إلى المسودات."
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Why? (visible to the author)"
+msgstr "لماذا؟ (مرئي للمؤلف)"
+
+msgid "Reject post"
+msgstr "رفض المشاركة"
+
+msgid "The post goes back to draft; the author sees the note."
+msgstr "يعود المنشور إلى المسودة؛ يرى المؤلف المذكرة."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Rejected."
+msgstr "مرفوض."
+
+msgid "Delete post"
+msgstr "حذف المشاركة"
+
+msgid "The post is removed from the list."
+msgstr "تتم إزالة المشاركة من القائمة."
+
+msgid "Also delete from the networks it was published on ({n} accounts)"
+msgstr "احذفه أيضًا من الشبكات التي تم نشره عليها (حسابات{n})"
+
+msgid "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
+msgstr "لا يمكن حذف منشورات Instagram وTikTok عبر واجهة برمجة التطبيقات؛ حذفها هناك يدويا."
+
+msgid "Deleted."
+msgstr "تم الحذف."
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Drafts"
+msgstr "المسودات"
+
+msgid "With errors"
+msgstr "مع الأخطاء"
+
+msgid "Load more"
+msgstr "تحميل المزيد"
+
+msgid "Search text, title or tag"
+msgstr "البحث عن نص أو عنوان أو علامة"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Account"
+msgstr "الحساب"
+
+msgid "All accounts"
+msgstr "جميع الحسابات"
+
+msgid "Only mine"
+msgstr "فقط لي"
+
+msgid "Posts prepared by people without publishing permission. Once approved they are shared at their time (or right away)."
+msgstr "المشاركات التي أعدها الناس دون إذن النشر. بمجرد الموافقة عليها، تتم مشاركتها في وقتها (أو على الفور)."
+
+msgid "{n} selected"
+msgstr "تم تحديد{n}"
+
+msgid "Schedule"
+msgstr "الجدول الزمني"
+
+msgid "Scheduled."
+msgstr "المقرر."
+
+msgid "Move to drafts"
+msgstr "الانتقال إلى المسودات"
+
+msgid "Delete selected?"
+msgstr "هل تريد حذف المحدد؟"
+
+msgid "Only removed from the list; posts on the networks are not touched."
+msgstr "تمت إزالته فقط من القائمة؛ لا يتم التطرق إلى المشاركات على الشبكات."
+
+msgid "Clear selection"
+msgstr "مسح التحديد"
+
+msgid "Select"
+msgstr "اختر"
+
+msgid "every {n} days"
+msgstr "كل{n}أيام"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "No posts awaiting approval"
+msgstr "لا توجد مشاركات في انتظار الموافقة"
+
+msgid "No posts"
+msgstr "لا توجد مشاركات"
+
+msgid "Create your first post; share to several accounts at once, with separate text for each."
+msgstr "أنشئ مشاركتك الأولى؛ المشاركة في عدة حسابات في وقت واحد، مع نص منفصل لكل منها."
+
+msgid "Month"
+msgstr "شهر"
+
+msgid "List"
+msgstr "قائمة"
+
+msgid "Previous month"
+msgstr "الشهر السابق"
+
+msgid "Next month"
+msgstr "الشهر القادم"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "Time zone: {tz}"
+msgstr "المنطقة الزمنية:{tz}"
+
+msgid "Post on this day"
+msgstr "نشر في هذا اليوم"
+
+msgid "+{n} more"
+msgstr "+{n}المزيد"
+
+msgid "New time: {t}"
+msgstr "الوقت الجديد:{t}"
+
+msgid "No posts this month."
+msgstr "لا توجد مشاركات هذا الشهر."
+
+msgid "Connect account"
+msgstr "ربط الحساب"
+
+msgid "Account added."
+msgstr "تمت إضافة الحساب."
+
+msgid "{n} account connections refreshed."
+msgstr "تم تحديث اتصالات حساب{n}."
+
+msgid "No accounts yet"
+msgstr "لا توجد حسابات حتى الآن"
+
+msgid "First enter the network keys under Settings › Apps, then connect the account here."
+msgstr "أدخل أولاً مفاتيح الشبكة ضمن الإعدادات ›التطبيقات، ثم قم بتوصيل الحساب هنا."
+
+msgid "Accounts are connected by an administrator."
+msgstr "يتم ربط الحسابات بواسطة المسؤول."
+
+msgid "App keys"
+msgstr "مفاتيح التطبيق"
+
+msgid "{n} characters"
+msgstr "أحرف{n}"
+
+msgid "{n} images"
+msgstr "صور{n}"
+
+msgid "video"
+msgstr "فيديو"
+
+msgid "editing"
+msgstr "التحرير"
+
+msgid "deleting"
+msgstr "حذف"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Needs reconnecting"
+msgstr "يحتاج إلى إعادة الاتصال"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Reconnect"
+msgstr "أعد الاتصال"
+
+msgid "Page"
+msgstr "الصفحة"
+
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+msgid "Company page"
+msgstr "صفحة الشركة"
+
+msgid "Channel"
+msgstr "قناة"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Group"
+msgstr "المجموعة"
+
+msgid "Business"
+msgstr "الأعمال"
+
+msgid "Creator"
+msgstr "الخالق"
+
+msgid "Test and refresh connection"
+msgstr "اختبار وتحديث الاتصال"
+
+msgid "Trying…"
+msgstr "جارٍ المحاولة..."
+
+msgid "Connection works."
+msgstr "يعمل الاتصال."
+
+msgid "Rename"
+msgstr "إعادة تسمية"
+
+msgid "Account name"
+msgstr "اسم الحساب"
+
+msgid "Enable"
+msgstr "تمكين"
+
+msgid "Turn off (hidden in post account picker)"
+msgstr "إيقاف (مخفي في منتقي الحساب المنشور)"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Remove account?"
+msgstr "هل تريد إزالة الحساب؟"
+
+msgid "The token is deleted; posts scheduled for this account will not be shared. Published posts stay on the network."
+msgstr "يتم حذف الرمز المميز؛ لن يتم مشاركة المنشورات المجدولة لهذا الحساب. المنشورات المنشورة تبقى على الشبكة."
+
+msgid "Removed."
+msgstr "تمت الإزالة."
+
+msgid "Enter keys first: {app}"
+msgstr "أدخل المفاتيح أولاً:{app}"
+
+msgid "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
+msgstr "تفتح صفحة تسجيل الدخول الخاصة بالشبكة؛ بعد السماح بالوصول يمكنك العودة إلى هنا. إذا كان هناك عدة صفحات/قنوات تختار إضافتها."
+
+msgid "Choose accounts to add"
+msgstr "اختر الحسابات المراد إضافتها"
+
+msgid "{n} accounts added."
+msgstr "تمت إضافة حسابات{n}."
+
+msgid "Add"
+msgstr "أضف"
+
+msgid "WhatsApp: Status and groups"
+msgstr "واتساب: الحالة والمجموعات"
+
+msgid "The connection comes from the Evolution line in Flux Mail. Status: the line's WhatsApp Status (24 hours). Group: groups the line is a member of."
+msgstr "يأتي الاتصال من خط التطور في Flux Mail. الحالة: حالة الواتس اب للخط (24 ساعة). المجموعة: المجموعات التي ينتمي إليها الخط."
+
+msgid "{n} members"
+msgstr "أعضاء{n}"
+
+msgid "added"
+msgstr "وأضاف"
+
+msgid "Video title"
+msgstr "عنوان الفيديو"
+
+msgid "Pin title"
+msgstr "تثبيت العنوان"
+
+msgid "Link title"
+msgstr "عنوان الرابط"
+
+msgid "Title (photo post)"
+msgstr "العنوان (مشاركة الصور)"
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Pin link"
+msgstr "رابط الدبوس"
+
+msgid "Link (preview card)"
+msgstr "الرابط (بطاقة المعاينة)"
+
+msgid "Reply thread (first reply)"
+msgstr "رد الموضوع (الرد الأول)"
+
+msgid "First comment"
+msgstr "التعليق الأول"
+
+msgid "Added as a comment right after publishing (e.g. a link or hashtags)."
+msgstr "تتم إضافته كتعليق مباشرة بعد النشر (على سبيل المثال، رابط أو علامات تصنيف)."
+
+msgid "Visibility"
+msgstr "الرؤية"
+
+msgid "Public"
+msgstr "عام"
+
+msgid "Unlisted"
+msgstr "غير مدرج"
+
+msgid "Private"
+msgstr "خاص"
+
+msgid "Video tags (comma separated)"
+msgstr "علامات الفيديو (مفصولة بفواصل)"
+
+msgid "Category"
+msgstr "الفئة"
+
+msgid "Default"
+msgstr "الافتراضي"
+
+msgid "Nonprofits & Activism"
+msgstr "المنظمات غير الربحية والنشاط"
+
+msgid "People & Blogs"
+msgstr "الناس والمدونات"
+
+msgid "Education"
+msgstr "التعليم"
+
+msgid "Travel & Events"
+msgstr "السفر والأحداث"
+
+msgid "News & Politics"
+msgstr "الأخبار والسياسة"
+
+msgid "Entertainment"
+msgstr "الترفيه"
+
+msgid "Playlist"
+msgstr "قائمة التشغيل"
+
+msgid "None"
+msgstr "لا شيء"
+
+msgid "Made for kids"
+msgstr "صنع للأطفال"
+
+msgid "Notify subscribers"
+msgstr "إخطار المشتركين"
+
+msgid "Shorts (vertical, under 60 s)"
+msgstr "شورت (عمودي، أقل من 60 ثانية)"
+
+msgid "AI-generated content"
+msgstr "المحتوى الذي تم إنشاؤه بواسطة الذكاء الاصطناعي"
+
+msgid "Post type"
+msgstr "نوع المشاركة"
+
+msgid "Post (feed)"
+msgstr "مشاركة (تغذية)"
+
+msgid "Reels"
+msgstr "بكرات"
+
+msgid "Story"
+msgstr "قصة"
+
+msgid "Also show the Reel in the feed"
+msgstr "قم أيضًا بإظهار البكرة في الخلاصة"
+
+msgid "Cover image URL (Reels)"
+msgstr "عنوان URL لصورة الغلاف (بكرات)"
+
+msgid "Connections only"
+msgstr "اتصالات فقط"
+
+msgid "Image description (alt text)"
+msgstr "وصف الصورة (نص بديل)"
+
+msgid "Who can reply"
+msgstr "من يستطيع الرد"
+
+msgid "Everyone"
+msgstr "الجميع"
+
+msgid "People I follow"
+msgstr "الناس الذين أتابعهم"
+
+msgid "People I mention"
+msgstr "الناس الذين أذكرهم"
+
+msgid "Verified accounts"
+msgstr "حسابات تم التحقق منها"
+
+msgid "Choose a board"
+msgstr "اختر لوحة"
+
+msgid "Who can view"
+msgstr "من يستطيع المشاهدة"
+
+msgid "Friends"
+msgstr "الأصدقاء"
+
+msgid "Followers"
+msgstr "المتابعون"
+
+msgid "Only me"
+msgstr "أنا فقط"
+
+msgid "Turn off comments"
+msgstr "إيقاف التعليقات"
+
+msgid "Duet off"
+msgstr "دويتو قبالة"
+
+msgid "Stitch off"
+msgstr "غرزة قبالة"
+
+msgid "Paid partnership (branded content)"
+msgstr "الشراكة المدفوعة (المحتوى المرتبط بعلامة تجارية)"
+
+msgid "Promoting our own brand"
+msgstr "الترويج لعلامتنا التجارية الخاصة"
+
+msgid "Automatic music for photos"
+msgstr "موسيقى تلقائية للصور"
+
+msgid "Update"
+msgstr "تحديث"
+
+msgid "Event"
+msgstr "حدث"
+
+msgid "Offer"
+msgstr "العرض"
+
+msgid "Button"
+msgstr "زر"
+
+msgid "Learn more"
+msgstr "تعلم المزيد"
+
+msgid "Book"
+msgstr "كتاب"
+
+msgid "Order"
+msgstr "النظام"
+
+msgid "Shop"
+msgstr "تسوق"
+
+msgid "Sign up"
+msgstr "قم بالتسجيل"
+
+msgid "Button link"
+msgstr "رابط الزر"
+
+msgid "Event/offer title"
+msgstr "عنوان الحدث/العرض"
+
+msgid "Start"
+msgstr "ابدأ"
+
+msgid "End"
+msgstr "نهاية"
+
+msgid "Coupon code"
+msgstr "رمز القسيمة"
+
+msgid "Text or media is required."
+msgstr "النص أو الوسائط مطلوبة."
+
+msgid "Text is {n} characters too long (limit {max})."
+msgstr "النص عبارة عن أحرف{n}طويلة جدًا (الحد الأقصى هو{max})."
+
+msgid "This network requires an image or video."
+msgstr "تتطلب هذه الشبكة صورة أو مقطع فيديو."
+
+msgid "This network does not accept images."
+msgstr "هذه الشبكة لا تقبل الصور."
+
+msgid "This network does not accept video."
+msgstr "هذه الشبكة لا تقبل الفيديو."
+
+msgid "GIF is not supported."
+msgstr "GIF غير مدعوم."
+
+msgid "At most {n} images."
+msgstr "على الأكثر صور{n}."
+
+msgid "At most {n} videos."
+msgstr "على معظم مقاطع الفيديو{n}."
+
+msgid "Images and video cannot be sent together."
+msgstr "لا يمكن إرسال الصور والفيديو معًا."
+
+msgid "YouTube requires a video."
+msgstr "يوتيوب يتطلب فيديو."
+
+msgid "Choose a Pinterest board."
+msgstr "اختر لوحة Pinterest."
+
+msgid "Reels require a video."
+msgstr "بكرات تتطلب الفيديو."
+
+msgid "The account connection dropped; reconnect it under Accounts."
+msgstr "انقطع اتصال الحساب؛ أعد توصيله ضمن الحسابات."
+
+msgid "There are unsaved changes. Close anyway?"
+msgstr "هناك تغييرات غير محفوظة. هل تغلق على أية حال؟"
+
+msgid "No connected accounts"
+msgstr "لا توجد حسابات متصلة"
+
+msgid "Connect a social media account first."
+msgstr "قم بتوصيل حساب وسائل التواصل الاجتماعي أولاً."
+
+msgid "Ask an administrator to connect an account."
+msgstr "اطلب من المسؤول توصيل الحساب."
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Edit post"
+msgstr "تحرير المشاركة"
+
+msgid "The approver left a note: {n}"
+msgstr "ترك المعتمد ملاحظة:{n}"
+
+msgid "Published on {n} accounts; to change it there use Details › Edit on network."
+msgstr "تم النشر على حسابات{n}؛ لتغييره هناك استخدم التفاصيل › تحرير على الشبكة."
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Shared to all selected accounts; you can write separate text for each."
+msgstr "تمت مشاركتها مع كافة الحسابات المحددة؛ يمكنك كتابة نص منفصل لكل منها."
+
+msgid "Common text"
+msgstr "نص مشترك"
+
+msgid "Custom text"
+msgstr "نص مخصص"
+
+msgid "What would you like to share?"
+msgstr "ماذا تريد أن تشارك؟"
+
+msgid "Add signature"
+msgstr "أضف التوقيع"
+
+msgid "Custom text for this account"
+msgstr "نص مخصص لهذا الحساب"
+
+msgid "Separate image/video for this account"
+msgstr "صورة/فيديو منفصل لهذا الحساب"
+
+msgid "{net} options"
+msgstr "خيارات{net}"
+
+msgid "Direct post: the video is published on TikTok with the chosen visibility."
+msgstr "النشر المباشر: يتم نشر الفيديو على TikTok مع إمكانية الرؤية المختارة."
+
+msgid "Draft mode: the video lands in your TikTok app inbox and you publish it from there."
+msgstr "وضع المسودة: يصل الفيديو إلى صندوق الوارد الخاص بتطبيق TikTok وتقوم بنشره من هناك."
+
+msgid "Board list is empty. Refresh it under Accounts › Test connection."
+msgstr "قائمة المجلس فارغة. قم بتحديثه ضمن الحسابات ›اختبار الاتصال."
+
+msgid "Write some text first."
+msgstr "اكتب بعض النص أولاً."
+
+msgid "What should AI write?"
+msgstr "ماذا يجب أن يكتب الذكاء الاصطناعي؟"
+
+msgid "Write"
+msgstr "اكتب"
+
+msgid "Write with AI"
+msgstr "اكتب باستخدام الذكاء الاصطناعي"
+
+msgid "Fix and polish"
+msgstr "إصلاح وتلميع"
+
+msgid "Shorten"
+msgstr "تقصير"
+
+msgid "Suggest hashtags"
+msgstr "اقترح الهاشتاجات"
+
+msgid "Translate to English"
+msgstr "ترجمة إلى اللغة الإنجليزية"
+
+msgid "Writes separate text for each account in its network's style"
+msgstr "يكتب نصًا منفصلاً لكل حساب بأسلوب شبكته"
+
+msgid "Separate text written for each account; check the tabs."
+msgstr "نص منفصل مكتوب لكل حساب؛ تحقق من علامات التبويب."
+
+msgid "Adapt to networks"
+msgstr "التكيف مع الشبكات"
+
+msgid "Move left"
+msgstr "تحرك لليسار"
+
+msgid "Image / video"
+msgstr "صورة / فيديو"
+
+msgid "Tip: Instagram, TikTok and YouTube require an image/video; X allows up to 4 images."
+msgstr "نصيحة: يتطلب Instagram وTikTok وYouTube صورة/فيديو؛ X يسمح بما يصل إلى 4 صور."
+
+msgid "More (internal title, tags, repeat)"
+msgstr "المزيد (العنوان الداخلي، العلامات، التكرار)"
+
+msgid "Internal title (only shown in the list)"
+msgstr "العنوان الداخلي (يظهر فقط في القائمة)"
+
+msgid "Tags (comma separated; for filtering)"
+msgstr "العلامات (مفصولة بفواصل؛ للتصفية)"
+
+msgid "Share again how many days after publishing (0 = no)"
+msgstr "شارك مرة أخرى بعدد الأيام بعد النشر (0 = لا)"
+
+msgid "Select an account to see the preview here."
+msgstr "حدد حسابًا لرؤية المعاينة هنا."
+
+msgid "+{n} more accounts; check the tabs."
+msgstr "+{n}المزيد من الحسابات؛ تحقق من علامات التبويب."
+
+msgid "No image/video"
+msgstr "لا توجد صورة / فيديو"
+
+msgid "No video"
+msgstr "لا يوجد فيديو"
+
+msgid "(untitled)"
+msgstr "(بدون عنوان)"
+
+msgid "Limit exceeded: {n} characters over"
+msgstr "تم تجاوز الحد: تم تجاوز{n}من الأحرف"
+
+msgid "{n} issues"
+msgstr "قضايا{n}"
+
+msgid "Share time"
+msgstr "شارك الوقت"
+
+msgid "Quick time"
+msgstr "وقت سريع"
+
+msgid "In 1 hour"
+msgstr "في 1 ساعة"
+
+msgid "Today 19:00"
+msgstr "اليوم 19:00"
+
+msgid "Tomorrow 10:00"
+msgstr "غدا الساعة 10:00"
+
+msgid "Tomorrow 19:00"
+msgstr "غدا الساعة 19:00"
+
+msgid "Weekend 11:00"
+msgstr "عطلة نهاية الأسبوع 11:00"
+
+msgid "Clear time"
+msgstr "وقت واضح"
+
+msgid "Select at least one account."
+msgstr "حدد حسابًا واحدًا على الأقل."
+
+msgid "Choose a time in the future."
+msgstr "اختر وقتًا في المستقبل."
+
+msgid "Draft saved."
+msgstr "تم حفظ المسودة."
+
+msgid "Scheduled: {t}"
+msgstr "المجدولة:{t}"
+
+msgid "Saved."
+msgstr "تم الحفظ."
+
+msgid "Sent for approval because you do not have publishing permission."
+msgstr "تم إرساله للموافقة لأنه ليس لديك إذن النشر."
+
+msgid "Save draft"
+msgstr "حفظ المسودة"
+
+msgid "Media library"
+msgstr "مكتبة الوسائط"
+
+msgid "Flux Studio"
+msgstr "ستوديو فلوكس"
+
+msgid "Upload"
+msgstr "تحميل"
+
+msgid "Add from URL"
+msgstr "إضافة من URL"
+
+msgid "Image or video URL (https://…)"
+msgstr "عنوان URL للصورة أو الفيديو (https://…)"
+
+msgid "Downloading…"
+msgstr "جارٍ التنزيل..."
+
+msgid "Uploading {n} files…"
+msgstr "جارٍ تحميل ملفات{n}..."
+
+msgid "Choose image / video"
+msgstr "اختر الصورة / الفيديو"
+
+msgid "Importing Studio files into the library…"
+msgstr "جارٍ استيراد ملفات الاستوديو إلى المكتبة..."
+
+msgid "No files."
+msgstr "لا توجد ملفات."
+
+msgid "Post"
+msgstr "مشاركة"
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Retry"
+msgstr "أعد المحاولة"
+
+msgid "Queued again."
+msgstr "في قائمة الانتظار مرة أخرى."
+
+msgid "Edit on network"
+msgstr "تحرير على الشبكة"
+
+msgid "Delete from network"
+msgstr "حذف من الشبكة"
+
+msgid "Delete the post on {n}?"
+msgstr "هل تريد حذف المنشور على{n}؟"
+
+msgid "The post on the network is deleted permanently."
+msgstr "يتم حذف المنشور الموجود على الشبكة نهائيًا."
+
+msgid "Deleted from network."
+msgstr "تم الحذف من الشبكة."
+
+msgid "Engagement numbers are updated twice a day (last 30 days)."
+msgstr "يتم تحديث أرقام المشاركة مرتين يوميًا (آخر 30 يومًا)."
+
+msgid "Edit post on network"
+msgstr "تحرير المشاركة على الشبكة"
+
+msgid "The change is written directly to the post on the network."
+msgstr "تتم كتابة التغيير مباشرة إلى المنشور الموجود على الشبكة."
+
+msgid "Updated on network."
+msgstr "تم التحديث على الشبكة."
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "just now"
+msgstr "الآن فقط"
+
+msgid "{n} min ago"
+msgstr "{n}منذ دقيقة"
+
+msgid "{n} h ago"
+msgstr "{n}منذ ح"
+
+msgid "Server error ({n})."
+msgstr "خطأ في الخادم ({n})."
+
+msgid "Unexpected response from the server."
+msgstr "استجابة غير متوقعة من الخادم."
+
+msgid "Something went wrong."
+msgstr "حدث خطأ ما."
+
+msgid "OK"
+msgstr "حسنًا"
+
+msgid "Copied"
+msgstr "منقول"
+
+msgid "Daily posts"
+msgstr "المشاركات اليومية"
+
+msgid "Total: {n}"
+msgstr "الإجمالي:{n}"
+
+msgid "{n} days"
+msgstr "{n}أيام"
+
+msgid "Update metrics now"
+msgstr "قم بتحديث المقاييس الآن"
+
+msgid "{n} records updated."
+msgstr "تم تحديث سجلات{n}."
+
+msgid "No accounts connected yet. Enter the app keys first, then connect accounts."
+msgstr "لا توجد حسابات متصلة حتى الآن. أدخل مفاتيح التطبيق أولاً، ثم قم بتوصيل الحسابات."
+
+msgid "Success {n}%"
+msgstr "نجاح{n}%"
+
+msgid "last {n} days"
+msgstr "آخر{n}أيام"
+
+msgid "Engagement"
+msgstr "المشاركة"
+
+msgid "likes + comments + shares"
+msgstr "لايكات + تعليقات + مشاركات"
+
+msgid "Views"
+msgstr "وجهات النظر"
+
+msgid "reach / impressions"
+msgstr "الوصول / مرات الظهور"
+
+msgid "this period"
+msgstr "هذه الفترة"
+
+msgid "no change"
+msgstr "لا تغيير"
+
+msgid "{n} awaiting approval"
+msgstr "{n}في انتظار الموافقة"
+
+msgid "{n} drafts"
+msgstr "مسودات{n}"
+
+msgid "details below"
+msgstr "التفاصيل أدناه"
+
+msgid "no issues"
+msgstr "لا توجد قضايا"
+
+msgid "Network"
+msgstr "الشبكة"
+
+msgid "Errors"
+msgstr "أخطاء"
+
+msgid "By network"
+msgstr "عن طريق الشبكة"
+
+msgid "No posts in this period."
+msgstr "لا توجد مشاركات في هذه الفترة."
+
+msgid "Follower counts are collected once a day; first data appears tomorrow."
+msgstr "يتم جمع أعداد المتابعين مرة واحدة يوميًا؛ تظهر البيانات الأولى غدا."
+
+msgid "Top engaging posts"
+msgstr "أعلى المشاركات الجذابة"
+
+msgid "Metrics are collected twice a day after a post is published."
+msgstr "يتم جمع المقاييس مرتين يوميًا بعد نشر المنشور."
+
+msgid "Upcoming posts"
+msgstr "المشاركات القادمة"
+
+msgid "No scheduled posts."
+msgstr "لا توجد مشاركات مجدولة."
+
+msgid "Recent errors"
+msgstr "الأخطاء الأخيرة"
+
+msgid "Metrics last updated: {t}"
+msgstr "آخر تحديث للمقاييس:{t}"
+
+msgid "Metrics not collected yet (once a day, at night)."
+msgstr "لم يتم جمع المقاييس بعد (مرة واحدة يوميًا، ليلاً)."
+
+msgid "General"
+msgstr "عام"
+
+msgid "Apps"
+msgstr "تطبيقات"
+
+msgid "Network settings"
+msgstr "إعدادات الشبكة"
+
+msgid "Auto sharing"
+msgstr "المشاركة التلقائية"
+
+msgid "Log"
+msgstr "سجل"
+
+msgid "never"
+msgstr "أبدا"
+
+msgid "Approval and signature"
+msgstr "الموافقة والتوقيع"
+
+msgid "Posts by people without publishing permission go to approval"
+msgstr "المشاركات من قبل الأشخاص دون إذن النشر تذهب إلى الموافقة"
+
+msgid "Permissions come from Flux Roles: Social media: prepare / publish / manage."
+msgstr "تأتي الأذونات من Flux الأدوار: وسائل التواصل الاجتماعي: إعداد / نشر / إدارة."
+
+msgid "Add UTM to site links (utm_source=network)"
+msgstr "إضافة UTM إلى روابط الموقع (utm_source=network)"
+
+msgid "See how many visits each network brings in Analytics."
+msgstr "تعرف على عدد الزيارات التي تجلبها كل شبكة في Analytics."
+
+msgid "Saved signature (added with one click in the composer)"
+msgstr "التوقيع المحفوظ (يضاف بنقرة واحدة في الملحن)"
+
+msgid "Save signature"
+msgstr "حفظ التوقيع"
+
+msgid "Scheduled posts"
+msgstr "المشاركات المجدولة"
+
+msgid "WP-Cron is unreliable on Hostinger, so scheduled posts should be triggered from outside every minute. Create a job on cron-job.org (free) that calls this URL every minute. It also runs on its own while the panel is open and when a post is saved."
+msgstr "لا يمكن الاعتماد على WP-Cron على Hostinger، لذلك يجب تشغيل المنشورات المجدولة من الخارج كل دقيقة. أنشئ وظيفة على cron-job.org (مجانًا) تستدعي عنوان URL هذا كل دقيقة. كما أنه يعمل من تلقاء نفسه عندما تكون اللوحة مفتوحة وعند حفظ المنشور."
+
+msgid "Trigger URL (keep it secret)"
+msgstr "عنوان URL للتشغيل (احتفظ به سرًا)"
+
+msgid "Copy"
+msgstr "نسخ"
+
+msgid "New key"
+msgstr "مفتاح جديد"
+
+msgid "Regenerate the key?"
+msgstr "إعادة إنشاء المفتاح؟"
+
+msgid "The old URL stops working; you must also change the URL on cron-job.org."
+msgstr "يتوقف عنوان URL القديم عن العمل؛ يجب عليك أيضًا تغيير عنوان URL على cron-job.org."
+
+msgid "Regenerate"
+msgstr "تجديد"
+
+msgid "New key created."
+msgstr "تم إنشاء مفتاح جديد."
+
+msgid "External trigger"
+msgstr "الزناد الخارجي"
+
+msgid "Background request"
+msgstr "طلب الخلفية"
+
+msgid "Panel"
+msgstr "لوحة"
+
+msgid "Create your own developer app for each network and enter its keys here. Secret keys are stored encrypted and never shown again; type a new one to change it."
+msgstr "أنشئ تطبيق المطور الخاص بك لكل شبكة وأدخل مفاتيحه هنا. يتم تخزين المفاتيح السرية بشكل مشفر ولا يتم عرضها مرة أخرى أبدًا؛ اكتب واحدة جديدة لتغييره."
+
+msgid "Saved (type to change)"
+msgstr "تم الحفظ (اكتب للتغيير)"
+
+msgid "Not entered"
+msgstr "لم يتم الدخول"
+
+msgid "optional"
+msgstr "اختياري"
+
+msgid "Delete the key?"
+msgstr "هل تريد حذف المفتاح؟"
+
+msgid "Accounts on this network cannot post until reconnected."
+msgstr "لا يمكن للحسابات الموجودة على هذه الشبكة النشر حتى تتم إعادة الاتصال."
+
+msgid "Delete saved key"
+msgstr "حذف المفتاح المحفوظ"
+
+msgid "Ready"
+msgstr "جاهز"
+
+msgid "No key"
+msgstr "لا يوجد مفتاح"
+
+msgid "No connection"
+msgstr "لا يوجد اتصال"
+
+msgid "Open developer console"
+msgstr "افتح وحدة تحكم المطور"
+
+msgid "Redirect (callback) URL"
+msgstr "إعادة توجيه (رد الاتصال) URL"
+
+msgid "API tier"
+msgstr "طبقة واجهة برمجة التطبيقات"
+
+msgid "On the free tier only a few posts can be written per month and metrics are not read. Paid tiers (Basic/Pro or pay-as-you-go) also return metrics."
+msgstr "في المستوى المجاني، يمكن كتابة عدد قليل فقط من المشاركات شهريًا ولا تتم قراءة المقاييس. تقوم أيضًا المستويات المدفوعة (Basic/Pro أو الدفع حسب الاستخدام) بإرجاع المقاييس."
+
+msgid "X Premium account (long posts, 25,000 characters)"
+msgstr "حساب X Premium (مشاركات طويلة، 25000 حرف)"
+
+msgid "Monthly post limit (0 = unlimited)"
+msgstr "حد النشر الشهري (0 = غير محدود)"
+
+msgid "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
+msgstr "أُرسل هذا الشهر:{n}. عند الوصول إلى الحد الأقصى، يتم رفض منشورات X الجديدة (للبقاء ضمن حصة الطبقة)."
+
+msgid "Draft (lands in the TikTok app)"
+msgstr "المسودة (تصل إلى تطبيق TikTok)"
+
+msgid "Direct post"
+msgstr "مشاركة مباشرة"
+
+msgid "Sharing mode"
+msgstr "وضع المشاركة"
+
+msgid "Direct posting requires your TikTok app to pass the audit; until then posted videos are visible only to you. Draft mode needs no audit."
+msgstr "يتطلب النشر المباشر أن يجتاز تطبيق TikTok عملية التدقيق؛ حتى ذلك الحين تكون مقاطع الفيديو المنشورة مرئية لك فقط. وضع المسودة لا يحتاج إلى تدقيق."
+
+msgid "Sandbox (trial access)"
+msgstr "وضع الحماية (الوصول التجريبي)"
+
+msgid "Turn on if your Pinterest app does not have Standard access yet; pins are created only in the sandbox."
+msgstr "قم بالتشغيل إذا لم يكن لتطبيق Pinterest لديك وصول قياسي حتى الآن؛ يتم إنشاء الدبابيس فقط في وضع الحماية."
+
+msgid "Also fetch company pages I manage"
+msgstr "قم أيضًا بإحضار صفحات الشركة التي أديرها"
+
+msgid "Requires Community Management API approval. Turn off if not approved; only the personal profile is connected."
+msgstr "يتطلب موافقة واجهة برمجة تطبيقات إدارة المجتمع. قم بإيقاف التشغيل إذا لم تتم الموافقة عليه؛ يتم توصيل ملف التعريف الشخصي فقط."
+
+msgid "Graph API version"
+msgstr "إصدار واجهة برمجة التطبيقات للرسم البياني"
+
+msgid "Meta retires old versions after two years; upgrade here if needed (e.g. v25.0)."
+msgstr "تقوم Meta بإيقاف الإصدارات القديمة بعد عامين؛ قم بالترقية هنا إذا لزم الأمر (على سبيل المثال الإصدار 25.0)."
+
+msgid "Default connection"
+msgstr "الاتصال الافتراضي"
+
+msgid "default"
+msgstr "default"
+
+msgid "Evolution connection (Flux Mail)"
+msgstr "اتصال التطور (بريد الجريان)"
+
+msgid "No WhatsApp (Evolution) connection found in Flux Mail; Flux Chat settings are used."
+msgstr "لم يتم العثور على اتصال WhatsApp (Evolution) في Flux Mail؛ يتم استخدام إعدادات Flux Chat."
+
+msgid "Create a draft (I review and send it)"
+msgstr "إنشاء مسودة (أقوم بمراجعتها وإرسالها)"
+
+msgid "Schedule automatically"
+msgstr "الجدولة تلقائيا"
+
+msgid "Share when a post is published on the site"
+msgstr "شارك عند نشر منشور على الموقع"
+
+msgid "On"
+msgstr "على"
+
+msgid "Which content types"
+msgstr "ما هي أنواع المحتوى"
+
+msgid "Which accounts"
+msgstr "اي حسابات"
+
+msgid "Connect an account first."
+msgstr "ربط حساب أولا."
+
+msgid "Text template"
+msgstr "قالب النص"
+
+msgid "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
+msgstr "متاح:{title}{excerpt}{link}{site}{author}{category}{tags}. يقوم الرابط بإنشاء بطاقة معاينة الشبكة."
+
+msgid "Add the featured image"
+msgstr "أضف الصورة المميزة"
+
+msgid "What to do"
+msgstr "ماذا تفعل"
+
+msgid "Share after how many minutes (if scheduling)"
+msgstr "شارك بعد كم دقيقة (في حالة الجدولة)"
+
+msgid "Runs once per post. Accounts that break a network rule (e.g. Instagram without an image) stay as drafts."
+msgstr "يعمل مرة واحدة لكل مشاركة. تظل الحسابات التي تنتهك إحدى قواعد الشبكة (مثل Instagram بدون صورة) كمسودات."
+
+msgid "Last 200 entries (kept for 45 days)."
+msgstr "آخر 200 إدخال (يتم الاحتفاظ بها لمدة 45 يومًا)."
+
+msgid "No entries."
+msgstr "لا توجد إدخالات."
+
+msgid "Social Media requires JavaScript."
+msgstr "تتطلب وسائل التواصل الاجتماعي جافا سكريبت."
+
+msgid "Flux AI & MCP is not installed or no key has been entered."
+msgstr "لم يتم تثبيت Flux AI & MCP أو لم يتم إدخال أي مفتاح."
+
+msgid "Could not read the AI response, please try again."
+msgstr "تعذرت قراءة استجابة الذكاء الاصطناعي، يرجى المحاولة مرة أخرى."
+
+msgid "Social media"
+msgstr "وسائل التواصل الاجتماعي"
+
+msgid "Database tables"
+msgstr "جداول قاعدة البيانات"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "الجدول المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "Tables are ready."
+msgstr "الجداول جاهزة."
+
+msgid "Key encryption"
+msgstr "تشفير المفاتيح"
+
+msgid "Keys and tokens are stored encrypted (sodium)."
+msgstr "يتم تخزين المفاتيح والرموز المشفرة (الصوديوم)."
+
+msgid "The PHP sodium extension is off; keys are stored with a weaker method. Turn on sodium under Hostinger › PHP extensions."
+msgstr "امتداد الصوديوم PHP معطل؛ يتم تخزين المفاتيح بطريقة أضعف. قم بتشغيل الصوديوم ضمن ملحقات Hostinger › PHP."
+
+msgid "Network apps"
+msgstr "تطبيقات الشبكة"
+
+msgid "Keys entered: %s."
+msgstr "المفاتيح التي تم إدخالها:%s."
+
+msgid "No network app keys entered. Social Media › Settings › Apps."
+msgstr "لم يتم إدخال أي مفاتيح لتطبيقات الشبكة. وسائل التواصل الاجتماعي › الإعدادات › التطبيقات."
+
+msgid "Connected accounts"
+msgstr "الحسابات المتصلة"
+
+msgid "No accounts connected yet."
+msgstr "لا توجد حسابات متصلة حتى الآن."
+
+msgid "Accounts that need reconnecting: %s."
+msgstr "الحسابات التي تحتاج إلى إعادة الاتصال:%s."
+
+msgid "%d accounts connected and active."
+msgstr "حسابات%dمتصلة ونشطة."
+
+msgid "External per-minute trigger is running."
+msgstr "مشغل خارجي لكل دقيقة قيد التشغيل."
+
+msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "مشاركات%dكانت تنتظر أكثر من 5 دقائق. أضف عنوان URL للمشغل من الإعدادات › عام إلى cron-job.org (كل دقيقة)."
+
+msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
+msgstr "تتم معالجة المنشورات عبر WP-Cron وطلبات الخلفية؛ للنشر في الوقت المحدد، يوصى بإضافة عنوان URL للمشغل من الإعدادات › عام إلى cron-job.org (كل دقيقة)."
+
+msgid "The trigger has never run. Add the trigger URL from Settings › General to cron-job.org (every minute)."
+msgstr "لم يتم تشغيل الزناد أبدًا. أضف عنوان URL للمشغل من الإعدادات › عام إلى cron-job.org (كل دقيقة)."
+
+msgid "Background request error:"
+msgstr "خطأ في طلب الخلفية:"
+
+msgid "Failed shares"
+msgstr "أسهم فاشلة"
+
+msgid "%d shares failed in the last 7 days. Posts › Failed."
+msgstr "فشلت أسهم%dفي آخر 7 أيام. المشاركات › فشل."
+
+msgid "No failed shares in the last 7 days."
+msgstr "لا توجد مشاركات فاشلة في آخر 7 أيام."
+
+msgid "Media URLs"
+msgstr "عناوين URL للوسائط"
+
+msgid "Instagram, TikTok and Facebook fetch images from the site's HTTPS address."
+msgstr "يقوم Instagram وTikTok وFacebook بجلب الصور من عنوان HTTPS الخاص بالموقع."
+
+msgid "The site is not HTTPS; Instagram/TikTok/Facebook cannot fetch images and videos."
+msgstr "الموقع ليس HTTPS؛ يتعذر على Instagram/TikTok/Facebook جلب الصور ومقاطع الفيديو."
+
+msgid "Files folder"
+msgstr "مجلد الملفات"
+
+msgid "wp-content/uploads/flxsm is writable (JPEG copies for Instagram)."
+msgstr "wp-content/uploads/flxsm قابل للكتابة (نسخ JPEG لـ Instagram)."
+
+msgid "wp-content/uploads/flxsm is not writable; PNG/WebP images cannot be sent to Instagram."
+msgstr "wp-content/uploads/flxsm غير قابل للكتابة؛ لا يمكن إرسال صور PNG/WebP إلى Instagram."
+
+msgid "AI writing help"
+msgstr "مساعدة في الكتابة بالذكاء الاصطناعي"
+
+msgid "Flux AI ready: writing, shortening, adapting to networks."
+msgstr "Flux AI جاهز: الكتابة والتقصير والتكيف مع الشبكات."
+
+msgid "Flux AI & MCP is not installed or has no key; AI buttons are hidden, sharing still works."
+msgstr "لم يتم تثبيت Flux AI & MCP أو لا يحتوي على مفتاح؛ أزرار الذكاء الاصطناعي مخفية، ولا تزال المشاركة تعمل."
+
+msgid "Account or post not found."
+msgstr "لم يتم العثور على الحساب أو المنشور."
+
+msgid "Account is off."
+msgstr "الحساب معطل."
+
+msgid "The connection expired; reconnect it under Accounts."
+msgstr "انتهت صلاحية الاتصال؛ أعد توصيله ضمن الحسابات."
+
+msgid "The post was published but the first comment could not be added: %s"
+msgstr "تم نشر المنشور ولكن لا يمكن إضافة التعليق الأول:%s"
+
+msgid "Only a failed target can be retried."
+msgstr "يمكن إعادة محاولة الهدف الفاشل فقط."
+
+msgid "This target is not published on the network."
+msgstr "لم يتم نشر هذا الهدف على الشبكة."
+
+msgid "Account not found."
+msgstr "لم يتم العثور على الحساب."
+
+msgid "Social media: prepare posts"
+msgstr "وسائل التواصل الاجتماعي: إعداد المشاركات"
+
+msgid "Social media: publish and approve"
+msgstr "وسائل التواصل الاجتماعي: النشر والموافقة"
+
+msgid "Social media: accounts and settings"
+msgstr "وسائل التواصل الاجتماعي: الحسابات والإعدادات"
+
+msgid "Unknown network."
+msgstr "شبكة غير معروفة."
+
+msgid "Connection session not found or expired; please try again."
+msgstr "لم يتم العثور على جلسة الاتصال أو انتهت صلاحيتها؛ يرجى المحاولة مرة أخرى."
+
+msgid "The selection list expired; please reconnect."
+msgstr "انتهت صلاحية قائمة الاختيار؛ يرجى إعادة الاتصال."
+
+msgid "Login for Business configuration ID (optional)"
+msgstr "تسجيل الدخول لمعرف تكوين الأعمال (اختياري)"
+
+msgid "developers.facebook.com › Create app (Business type) › Facebook Login product › add the address below to Valid OAuth redirect URIs. For your own pages being an admin/developer of the app is enough; no App Review needed. An Instagram professional account linked to a Facebook page comes with the same login."
+msgstr "Developers.facebook.com › إنشاء تطبيق (نوع العمل) › منتج تسجيل الدخول إلى Facebook › أضف العنوان أدناه إلى عناوين URI الصالحة لإعادة توجيه OAuth. بالنسبة لصفحاتك الخاصة، يكفي أن تكون مسؤولاً/مطورًا للتطبيق؛ لا حاجة لمراجعة التطبيق. يأتي حساب Instagram الاحترافي المرتبط بصفحة Facebook بنفس معلومات تسجيل الدخول."
+
+msgid "Facebook page (+ linked Instagram)"
+msgstr "صفحة الفيسبوك (+ انستغرام مرتبط)"
+
+msgid "Instagram login (without a Facebook page)"
+msgstr "تسجيل الدخول إلى Instagram (بدون صفحة Facebook)"
+
+msgid "Add the \"Instagram\" product to the Meta app (API setup with Instagram login). Put the Instagram App ID/Secret from the product page here; the redirect URL is below. The account must be Business or Creator."
+msgstr "أضف منتج \"Instagram\" إلى تطبيق Meta (إعداد واجهة برمجة التطبيقات (API) مع تسجيل الدخول إلى Instagram). ضع معرف/سر تطبيق Instagram من صفحة المنتج هنا؛ عنوان URL لإعادة التوجيه موجود أدناه. يجب أن يكون الحساب تجاريًا أو منشئًا."
+
+msgid "Instagram (Instagram login)"
+msgstr "إنستغرام (تسجيل الدخول إلى إنستغرام)"
+
+msgid "Google Cloud › APIs: enable YouTube Data API v3 (and for Business: My Business Account Management, Business Information, Google My Business API) › OAuth client (Web application) › authorized redirect URL below. In an unaudited project videos uploaded to YouTube stay \"Private\"; apply for the Google API audit to make them public. The Business Profile API requires access approval from Google."
+msgstr "Google Cloud › واجهات برمجة التطبيقات: تمكين YouTube Data API v3 (وللأعمال: إدارة حساب نشاطي التجاري، معلومات الأعمال، واجهة برمجة تطبيقات Google My Business) › عميل OAuth (تطبيق ويب) › عنوان URL لإعادة التوجيه المعتمد أدناه. في مشروع غير مدقق، تظل مقاطع الفيديو التي تم تحميلها على YouTube \"خاصة\"؛ التقدم بطلب لتدقيق Google API لنشرها للعامة. تتطلب Business Profile API موافقة الوصول من Google."
+
+msgid "YouTube channel"
+msgstr "قناة يوتيوب"
+
+msgid "Google Business location"
+msgstr "موقع جوجل للأعمال"
+
+msgid "developer.x.com › Project › App › User authentication settings: permission \"Read and write\", type \"Web App\", Callback URI the address below. Put the API Key and Secret from Keys and tokens here. Choose the tier below (the free tier has a low write limit and metrics are not read)."
+msgstr "Developer.x.com › Project › App › إعدادات مصادقة المستخدم: الإذن \"القراءة والكتابة\"، اكتب \"تطبيق الويب\"، عنوان URI لرد الاتصال بالعنوان أدناه. ضع مفتاح API والسر من المفاتيح والرموز المميزة هنا. اختر الطبقة أدناه (الطبقة المجانية لها حد كتابة منخفض ولا تتم قراءة المقاييس)."
+
+msgid "X account"
+msgstr "حساب X"
+
+msgid "API version (YYYYMM)"
+msgstr "إصدار واجهة برمجة التطبيقات (YYYYMM)"
+
+msgid "linkedin.com/developers › App (linked to the organization page) › Products: \"Sign In with LinkedIn using OpenID Connect\" and \"Share on LinkedIn\" (personal); for company pages \"Community Management API\" (needs approval). Auth › Authorized redirect URL below."
+msgstr "LinkedIn.com/developers › التطبيق (مرتبط بصفحة المؤسسة) › المنتجات: \"تسجيل الدخول باستخدام LinkedIn باستخدام OpenID Connect\" و\"المشاركة على LinkedIn\" (شخصي)؛ لصفحات الشركة \"Community Management API\" (يحتاج إلى موافقة). المصادقة › عنوان URL لإعادة التوجيه المعتمد أدناه."
+
+msgid "LinkedIn profile / page"
+msgstr "الملف الشخصي/الصفحة على LinkedIn"
+
+msgid "developers.tiktok.com › App › add Login Kit + Content Posting API, Redirect URI below. Without the audit \"Draft\" mode is recommended: the video lands in the TikTok app and is published from there. For photo posts verify the site domain in TikTok (URL properties)."
+msgstr "Developers.tiktok.com ›التطبيق› أضف مجموعة أدوات تسجيل الدخول + واجهة برمجة تطبيقات نشر المحتوى، وأعد توجيه URI أدناه. بدون التدقيق، يوصى باستخدام وضع \"المسودة\": يصل الفيديو إلى تطبيق TikTok ويتم نشره من هناك. بالنسبة لمنشورات الصور، قم بالتحقق من نطاق الموقع في TikTok (خصائص عنوان URL)."
+
+msgid "TikTok account"
+msgstr "حساب تيك توك"
+
+msgid "developers.pinterest.com › App › Redirect URI below. Trial access works only in the sandbox; apply for Standard access."
+msgstr "Developers.pinterest.com ›التطبيق› إعادة توجيه URI أدناه. يعمل الوصول التجريبي فقط في وضع الحماية؛ التقدم بطلب للحصول على الوصول القياسي."
+
+msgid "Pinterest account"
+msgstr "حساب بينتيريست"
+
+msgid "The Evolution connection comes from Flux Mail (or Flux Chat); no key is entered here. Shares go to Status and groups."
+msgstr "يأتي اتصال Evolution من Flux Mail (أو Flux Chat)؛ لم يتم إدخال أي مفتاح هنا. تذهب المشاركات إلى الحالة والمجموعات."
+
+msgid "WhatsApp Status / group"
+msgstr "حالة واتس اب / مجموعة"
+
+msgid "Unknown app."
+msgstr "تطبيق غير معروف."
+
+msgid "Login required."
+msgstr "تسجيل الدخول مطلوب."
+
+msgid "You do not have social media permission."
+msgstr "ليس لديك إذن وسائل التواصل الاجتماعي."
+
+msgid "You do not have permission for this action."
+msgstr "ليس لديك إذن بهذا الإجراء."
+
+msgid "Record not found."
+msgstr "لم يتم العثور على السجل."
+
+msgid "You cannot change this post."
+msgstr "لا يمكنك تغيير هذه المشاركة."
+
+msgid "You cannot delete this post."
+msgstr "لا يمكنك حذف هذه المشاركة."
+
+msgid "Could not delete on some networks; the post stays in the list."
+msgstr "تعذر الحذف على بعض الشبكات؛ يبقى المنشور في القائمة."
+
+msgid "%s (copy)"
+msgstr "%s(نسخة)"
+
+msgid "You do not have permission to upload files."
+msgstr "ليس لديك الإذن بتحميل الملفات."
+
+msgid "No file received."
+msgstr "لم يتم استلام أي ملف."
+
+msgid "Account removed."
+msgstr "تمت إزالة الحساب."
+
+msgid "(deleted account)"
+msgstr "(حساب محذوف)"
+
+msgid "Post not found."
+msgstr "لم يتم العثور على آخر."
+
+msgid "Unknown action."
+msgstr "عمل غير معروف."
+
+msgid "%s: the connection expired, reconnect it under Accounts."
+msgstr "%s: انتهت صلاحية الاتصال، أعد توصيله ضمن \"الحسابات\"."
+
+msgid "Text can be at most %1$d characters (currently %2$d)."
+msgstr "يمكن أن يتكون النص من أحرف%1$dعلى الأكثر (حاليًا%2$d)."
+
+msgid "This network does not accept GIFs; use an image or video."
+msgstr "هذه الشبكة لا تقبل ملفات GIF؛ استخدام صورة أو فيديو."
+
+msgid "At most %d images."
+msgstr "على الأكثر صور%d."
+
+msgid "At most %d videos."
+msgstr "على معظم مقاطع الفيديو%d."
+
+msgid "Images and video cannot be used together in one post."
+msgstr "لا يمكن استخدام الصور والفيديو معًا في مشاركة واحدة."
+
+msgid "Media files must be reachable at a public https address."
+msgstr "يجب أن تكون ملفات الوسائط قابلة للوصول على عنوان https عام."
+
+msgid "This network does not connect via OAuth."
+msgstr "هذه الشبكة لا تتصل عبر OAuth."
+
+msgid "The connection expired, please reconnect."
+msgstr "انتهت صلاحية الاتصال، يرجى إعادة الاتصال."
+
+msgid "This network does not allow editing a published post."
+msgstr "هذه الشبكة لا تسمح بتحرير منشور منشور."
+
+msgid "This network does not allow deleting posts via the API; delete it in the app."
+msgstr "لا تسمح هذه الشبكة بحذف المشاركات عبر واجهة برمجة التطبيقات؛ حذفه في التطبيق."
+
+msgid "First comment is not supported on this network."
+msgstr "التعليق الأول غير مدعوم على هذه الشبكة."
+
+msgid "First enter this network's keys under Settings › Apps."
+msgstr "أدخل أولاً مفاتيح هذه الشبكة ضمن الإعدادات > التطبيقات."
+
+msgid "Choose a video for YouTube."
+msgstr "اختر فيديو ليوتيوب."
+
+msgid "YouTube title can be at most 100 characters."
+msgstr "يمكن أن يصل عنوان YouTube إلى 100 حرف على الأكثر."
+
+msgid "YouTube does not accept < and > in the title and description."
+msgstr "لا يقبل YouTube استخدام< and >في العنوان والوصف."
+
+msgid "This Google account has no YouTube channel."
+msgstr "لا يحتوي حساب Google هذا على قناة على YouTube."
+
+msgid "Video file not found on the server."
+msgstr "لم يتم العثور على ملف الفيديو على الخادم."
+
+msgid "Could not read the video file."
+msgstr "لا يمكن قراءة ملف الفيديو."
+
+msgid "Video not found on YouTube."
+msgstr "لم يتم العثور على الفيديو على موقع يوتيوب."
+
+msgid "An event/offer post needs a title and a start date."
+msgstr "يحتاج منشور الحدث/العرض إلى عنوان وتاريخ بدء."
+
+msgid "Could not get business accounts (requires Google's Business Profile API access approval)"
+msgstr "تعذر الحصول على حسابات الأعمال (يتطلب موافقة الوصول إلى Business Profile API من Google)"
+
+msgid "No managed business location found on this Google account."
+msgstr "لم يتم العثور على موقع نشاط تجاري مُدار في حساب Google هذا."
+
+msgid "LinkedIn could not process the video."
+msgstr "لم يتمكن LinkedIn من معالجة الفيديو."
+
+msgid "LinkedIn video processing took too long."
+msgstr "استغرقت معالجة فيديو LinkedIn وقتًا طويلاً."
+
+msgid "No Facebook page you manage was found. Make sure you selected the pages during login."
+msgstr "لم يتم العثور على صفحة الفيسبوك التي تديرها. تأكد من تحديد الصفحات أثناء تسجيل الدخول."
+
+msgid "A story has a single image or video."
+msgstr "تحتوي القصة على صورة واحدة أو مقطع فيديو واحد."
+
+msgid "Instagram accepts at most 30 hashtags."
+msgstr "يقبل Instagram 30 علامة تصنيف على الأكثر."
+
+msgid "Instagram feed image aspect ratio must be between 4:5 and 1.91:1 (except stories)."
+msgstr "يجب أن تكون نسبة العرض إلى الارتفاع لصورة خلاصة Instagram بين 4:5 و1.91:1 (باستثناء القصص)."
+
+msgid "First enter the keys under Settings › Apps › Instagram login."
+msgstr "أدخل المفاتيح أولاً ضمن الإعدادات › التطبيقات › تسجيل الدخول إلى Instagram."
+
+msgid "Instagram could not process a carousel item (format/size not suitable)."
+msgstr "تعذر على Instagram معالجة عنصر دائري (التنسيق/الحجم غير مناسب)."
+
+msgid "Instagram could not process the media. Video: MP4 (H.264/AAC), 3–90 s (Reels 15 min), up to 1 GB; image: JPEG, up to 8 MB."
+msgstr "تعذر على Instagram معالجة الوسائط. الفيديو: MP4 (H.264/AAC)، 3–90 ثانية (بكرات 15 دقيقة)، حتى 1 جيجابايت؛ الصورة: JPEG، يصل حجمها إلى 8 ميجابايت."
+
+msgid "Instagram video processing did not finish in 30 minutes."
+msgstr "لم تنتهي معالجة فيديو Instagram خلال 30 دقيقة."
+
+msgid "Pinterest title can be at most 100 characters."
+msgstr "يمكن أن يصل عنوان Pinterest إلى 100 حرف على الأكثر."
+
+msgid "Pinterest could not process the video."
+msgstr "تعذر على Pinterest معالجة الفيديو."
+
+msgid "Pinterest video processing took too long."
+msgstr "استغرقت معالجة فيديو Pinterest وقتًا طويلاً."
+
+msgid "Because the TikTok app has not been audited yet, only \"Only me\" visibility can be used."
+msgstr "نظرًا لأن تطبيق TikTok لم يتم تدقيقه بعد، فيمكن استخدام رؤية \"أنا فقط\" فقط."
+
+msgid "Draft sent to the TikTok app; publish it from the notification in the app."
+msgstr "تم إرسال المسودة إلى تطبيق TikTok؛ نشره من الإخطار في التطبيق."
+
+msgid "TikTok processing took too long; check in the TikTok app."
+msgstr "استغرقت معالجة TikTok وقتًا طويلاً؛ تحقق في تطبيق TikTok."
+
+msgid "No WhatsApp connection. Set up an Evolution connection in Flux Mail or Flux Chat."
+msgstr "لا يوجد اتصال واتس اب. قم بإعداد اتصال Evolution في Flux Mail أو Flux Chat."
+
+msgid "WhatsApp Status"
+msgstr "حالة واتس اب"
+
+msgid "Free (no cost, low write limit, no metrics)"
+msgstr "مجانًا (بدون تكلفة، حد كتابة منخفض، بدون مقاييس)"
+
+msgid "Basic (paid monthly)"
+msgstr "الأساسية (المدفوعة شهريا)"
+
+msgid "Pro (paid monthly)"
+msgstr "برو (المدفوعة شهريا)"
+
+msgid "Pay-as-you-go"
+msgstr "الدفع عند الاستخدام"
+
+msgid "X: a video or GIF is shared on its own."
+msgstr "X: تتم مشاركة مقطع فيديو أو صورة GIF بمفردها."
+
+msgid "The monthly limit of %d posts set for X has been reached."
+msgstr "تم الوصول إلى الحد الشهري لمشاركات%dالمحددة لـ X."
+
+msgid "First enter the API Key and API Key Secret under Settings › Apps › X."
+msgstr "أدخل أولاً مفتاح API ومفتاح API السري ضمن الإعدادات > التطبيقات > X."
+
+msgid "Connection refused."
+msgstr "تم رفض الاتصال."
+
+msgid "Could not read the media file."
+msgstr "لا يمكن قراءة ملف الوسائط."
+
+msgid "video could not be processed"
+msgstr "لا يمكن معالجة الفيديو"
+
+msgid "Nothing this month"
+msgstr "لا شيء هذا الشهر"
+
+msgid "Delete this post?"
+msgstr "هل تريد حذف هذه المشاركة؟"
+
+msgid "Search posts"
+msgstr "بحث في المشاركات"
+
+msgid "Account enabled"
+msgstr "تم تفعيل الحساب"
+
+msgid "Open the panel to connect an account."
+msgstr "افتح اللوحة لتوصيل الحساب."
+
+msgid "Account disabled"
+msgstr "تم تعطيل الحساب"
+
+msgid "No accounts"
+msgstr "لا حسابات"
+
+msgid "Note"
+msgstr "ملاحظة"
+
+msgid "Review"
+msgstr "مراجعة"
+
+msgid "Approved"
+msgstr "تمت الموافقة عليه"
+
+msgid "Open in panel"
+msgstr "فتح في اللوحة"
+
+msgid "Deleted"
+msgstr "تم الحذف"
+
+msgid "New posts are composed in the media composer."
+msgstr "وتتألف المشاركات الجديدة في الملحن وسائل الإعلام."
+
+msgid "Scheduled and published posts show up here."
+msgstr "تظهر هنا المشاركات المجدولة والمنشورة."
+
+msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
+msgstr "[['إدارة الوسائط الاجتماعية داخل الموقع: ربط الحساب (مفاتيح من اللوحة)، والمحتوى لكل حساب، والجدولة، وتحرير/حذف الشبكة، والتقويم، ولوحة المعلومات، ومساعدة الكتابة Flux AI وأدوات MCP. Facebook، Instagram، YouTube، X، LinkedIn، TikTok، Pinterest، Google Business، WhatsApp.', 'tr']]"

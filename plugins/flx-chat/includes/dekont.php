@@ -147,11 +147,11 @@ add_filter(
 /** Kişiye/ekibe kısa açıklama: "12.10.2026 tarihinde WhatsApp'tan yüklenmiş". */
 function flxc_dekont_dup_text( array $dup ) {
 	$src = array(
-		'whatsapp' => __( 'WhatsApp\'tan', 'flx-chat' ),
-		'site'     => __( 'siteden', 'flx-chat' ),
+		'whatsapp' => __( 'via WhatsApp', 'flx-chat' ),
+		'site'     => __( 'via the website', 'flx-chat' ),
 	);
 	/* translators: 1: date, 2: source (WhatsApp'tan / siteden) */
-	return sprintf( __( '%1$s tarihinde %2$s yüklenmiş', 'flx-chat' ), wp_date( 'd.m.Y H:i', (int) $dup['created_at'] ), $src[ $dup['source'] ] ?? $dup['source'] );
+	return sprintf( __( 'uploaded %2$s on %1$s', 'flx-chat' ), wp_date( 'd.m.Y H:i', (int) $dup['created_at'] ), $src[ $dup['source'] ] ?? $dup['source'] );
 }
 
 /** Asistan aracı: kişi dekont no yazınca ya da emin olmak istediğinde. */

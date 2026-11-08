@@ -133,8 +133,8 @@ add_filter(
 add_filter(
 	'flxa_cap_labels',
 	function ( $l ) {
-		$l[ FLXST_CAP_USE ]    = __( 'Stüdyo: görsel/video üret', 'flx-studio' );
-		$l[ FLXST_CAP_MANAGE ] = __( 'Stüdyo: tüm galeriler ve ayarlar', 'flx-studio' );
+		$l[ FLXST_CAP_USE ]    = __( 'Studio: generate images/videos', 'flx-studio' );
+		$l[ FLXST_CAP_MANAGE ] = __( 'Studio: all galleries and settings', 'flx-studio' );
 		return $l;
 	}
 );

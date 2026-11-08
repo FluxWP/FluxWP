@@ -110,7 +110,7 @@ add_action(
 
 function flxg_mcp_permission( WP_REST_Request $req ) {
 	if ( ! flxg_setting( 'mcp_enabled' ) ) {
-		return new WP_Error( 'mcp_disabled', __( 'MCP kapalı. Flux Tasks › Ayarlar bölümünden açın.', 'flx-tasks' ), array( 'status' => 403 ) );
+		return new WP_Error( 'mcp_disabled', __( 'MCP is off. Turn it on under Flux Tasks › Settings.', 'flx-tasks' ), array( 'status' => 403 ) );
 	}
 	$k = flxg_mcp_find_key( flxg_mcp_request_key( $req ) );
 	if ( $k ) {
@@ -122,10 +122,10 @@ function flxg_mcp_permission( WP_REST_Request $req ) {
 		}
 	}
 	if ( ! is_user_logged_in() ) {
-		return new WP_Error( 'mcp_auth', __( 'Geçersiz veya eksik MCP anahtarı.', 'flx-tasks' ), array( 'status' => 401 ) );
+		return new WP_Error( 'mcp_auth', __( 'Invalid or missing MCP key.', 'flx-tasks' ), array( 'status' => 401 ) );
 	}
 	if ( ! current_user_can( 'flxg_use' ) ) {
-		return new WP_Error( 'mcp_cap', __( 'Bu kullanıcının Flux Tasks kullanma yetkisi yok.', 'flx-tasks' ), array( 'status' => 403 ) );
+		return new WP_Error( 'mcp_cap', __( 'This user is not allowed to use Flux Tasks.', 'flx-tasks' ), array( 'status' => 403 ) );
 	}
 	return true;
 }

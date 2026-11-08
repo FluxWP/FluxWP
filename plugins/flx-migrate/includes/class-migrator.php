@@ -34,20 +34,20 @@ final class Flx_Migrate_Migrator {
 	/** Adımlar, sırayla. */
 	public static function steps(): array {
 		return array(
-			'tables'   => __( 'Tablolar', 'flx-migrate' ),
-			'tabledata'=> __( 'Tablo içerikleri', 'flx-migrate' ),
-			'options'  => __( 'Ayarlar (options)', 'flx-migrate' ),
-			'theme'    => __( 'Tema', 'flx-migrate' ),
-			'postmeta' => __( 'Yazı meta verileri', 'flx-migrate' ),
-			'usermeta' => __( 'Kullanıcı meta verileri', 'flx-migrate' ),
-			'termmeta' => __( 'Terim meta verileri', 'flx-migrate' ),
-			'orders'   => __( 'WooCommerce siparişleri', 'flx-migrate' ),
-			'itemmeta' => __( 'Sipariş kalemleri', 'flx-migrate' ),
-			'posts'    => __( 'Yazılar ve sayfalar', 'flx-migrate' ),
-			'terms'    => __( 'Taksonomiler', 'flx-migrate' ),
-			'uploads'  => __( 'Yükleme klasörleri', 'flx-migrate' ),
-			'secrets'  => __( 'Şifreli ayarlar (parolalar, anahtarlar)', 'flx-migrate' ),
-			'finish'   => __( 'Bitiş', 'flx-migrate' ),
+			'tables'   => __( 'Tables', 'flx-migrate' ),
+			'tabledata'=> __( 'Table contents', 'flx-migrate' ),
+			'options'  => __( 'Settings (options)', 'flx-migrate' ),
+			'theme'    => __( 'Theme', 'flx-migrate' ),
+			'postmeta' => __( 'Post meta', 'flx-migrate' ),
+			'usermeta' => __( 'User meta', 'flx-migrate' ),
+			'termmeta' => __( 'Term meta', 'flx-migrate' ),
+			'orders'   => __( 'WooCommerce orders', 'flx-migrate' ),
+			'itemmeta' => __( 'Order items', 'flx-migrate' ),
+			'posts'    => __( 'Posts and pages', 'flx-migrate' ),
+			'terms'    => __( 'Taxonomies', 'flx-migrate' ),
+			'uploads'  => __( 'Upload folders', 'flx-migrate' ),
+			'secrets'  => __( 'Encrypted settings (passwords, keys)', 'flx-migrate' ),
+			'finish'   => __( 'Finish', 'flx-migrate' ),
 		);
 	}
 
@@ -130,7 +130,7 @@ final class Flx_Migrate_Migrator {
 				$old  = (int) $wpdb->get_var( "SELECT COUNT(*) FROM `{$t}`" ); // phpcs:ignore
 				if ( $rows > 0 && 0 === $old ) {
 					/* translators: 1: eski tablo, 2: yeni tablo */
-					$notes[] = sprintf( __( '%1$s boş, %2$s olduğu gibi bırakıldı.', 'flx-migrate' ), $t, $target );
+					$notes[] = sprintf( __( '%1$s is empty, %2$s was left as it is.', 'flx-migrate' ), $t, $target );
 					continue;
 				}
 				if ( $rows > 0 ) {
@@ -139,7 +139,7 @@ final class Flx_Migrate_Migrator {
 					// table is kept under a backup name instead of being dropped.
 					$bak = $this->backup_name( $target, $tables );
 					/* translators: 1: yeni tablo, 2: yedek tablo, 3: eski tablo */
-					$notes[] = sprintf( __( '%1$s doluydu: %2$s adıyla yedeklendi, yerine %3$s taşındı.', 'flx-migrate' ), $target, $bak, $t );
+					$notes[] = sprintf( __( '%1$s was not empty: it was backed up as %2$s and replaced by %3$s.', 'flx-migrate' ), $target, $bak, $t );
 					if ( ! $this->dry ) {
 						$wpdb->query( "RENAME TABLE `{$target}` TO `{$bak}`" ); // phpcs:ignore
 					}
@@ -377,7 +377,7 @@ final class Flx_Migrate_Migrator {
 	private function step_secrets( int $cursor ): array {
 		global $wpdb;
 		if ( ! Flx_Migrate_Secrets::available() ) {
-			return $this->res( true, 0, 0, array( __( 'Sodium yok: şifreli ayarlar taşınamadı, panelden yeniden girin.', 'flx-migrate' ) ) );
+			return $this->res( true, 0, 0, array( __( 'Sodium is missing: encrypted settings could not be moved, enter them again in the panel.', 'flx-migrate' ) ) );
 		}
 		$like = array();
 		foreach ( array( 'yti0:', 'yti1:', 'flxi0:', 'flxi1:', 'enc1:', 's1:', 'o1:' ) as $p ) {
@@ -436,7 +436,7 @@ final class Flx_Migrate_Migrator {
 		$notes = array();
 		if ( $sec->failed() ) {
 			/* translators: %d: sayı */
-			$notes[] = sprintf( __( '%d şifreli değer açılamadı (site anahtarları değişmiş olabilir); bunları panelden yeniden girin.', 'flx-migrate' ), $sec->failed() );
+			$notes[] = sprintf( __( '%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel.', 'flx-migrate' ), $sec->failed() );
 		}
 		if ( ! $this->dry ) {
 			wp_cache_flush();
@@ -534,11 +534,11 @@ final class Flx_Migrate_Migrator {
 				if ( $moved ) {
 					$changed++;
 					/* translators: 1: eski klasör, 2: yeni klasör, 3: dosya sayısı */
-					$notes[] = sprintf( __( '%1$s içindeki %3$d öğe %2$s klasörüne taşındı.', 'flx-migrate' ), 'uploads/' . $d, 'uploads/' . $n, $moved );
+					$notes[] = sprintf( __( '%3$d items from %1$s were moved into %2$s.', 'flx-migrate' ), 'uploads/' . $d, 'uploads/' . $n, $moved );
 				}
 				if ( $kept ) {
 					/* translators: 1: eski klasör, 2: sayı */
-					$notes[] = sprintf( __( '%1$s içinde aynı adlı %2$d dosya yeni klasörde zaten vardı, eski kopyaları yerinde bırakıldı.', 'flx-migrate' ), 'uploads/' . $d, $kept );
+					$notes[] = sprintf( __( '%2$d files in %1$s already existed in the new folder; the old copies were left in place.', 'flx-migrate' ), 'uploads/' . $d, $kept );
 				}
 				continue;
 			}
@@ -612,7 +612,7 @@ final class Flx_Migrate_Migrator {
 		if ( ! in_array( strtolower( $host ), $old, true ) ) {
 			return 0;
 		}
-		$notes[] = __( 'Eski güncelleme sunucusu adresi ve site anahtarı silindi. FluxWP Panel › Ayarlar\'da yeni sunucunun anahtarını girin.', 'flx-migrate' );
+		$notes[] = __( 'The old update-server address and site key were removed. Enter the new server\'s key under FluxWP Panel › Settings.', 'flx-migrate' );
 		if ( $this->dry ) {
 			return 1;
 		}

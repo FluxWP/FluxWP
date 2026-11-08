@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Wiki
  * Description:       Sitede /wiki altında geliştirici wiki'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude'da aç. Flux AI ile "Wiki'ye sor" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir.
- * Version:           0.2.5
+ * Version:           0.2.6
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -17,13 +17,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
 if ( defined( 'FLXWK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXWK_VERSION', '0.2.5' );
+define( 'FLXWK_VERSION', '0.2.6' );
 define( 'FLXWK_FILE', __FILE__ );
 define( 'FLXWK_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXWK_URL', plugin_dir_url( __FILE__ ) );
@@ -107,8 +108,8 @@ add_filter(
 	function ( $links ) {
 		array_unshift(
 			$links,
-			'<a href="' . esc_url( flxwk_admin_url() ) . '">' . esc_html__( 'Ayarlar', 'flx-wiki' ) . '</a>',
-			'<a href="' . esc_url( flxwk_home_url() ) . '" target="_blank" rel="noopener">' . esc_html__( 'Wiki\'yi aç', 'flx-wiki' ) . '</a>'
+			'<a href="' . esc_url( flxwk_admin_url() ) . '">' . esc_html__( 'Settings', 'flx-wiki' ) . '</a>',
+			'<a href="' . esc_url( flxwk_home_url() ) . '" target="_blank" rel="noopener">' . esc_html__( 'Open wiki', 'flx-wiki' ) . '</a>'
 		);
 		return $links;
 	}
@@ -139,7 +140,7 @@ add_filter(
 add_filter(
 	'flxa_package_heads',
 	function ( $heads ) {
-		$heads['flx-wiki'] = array( 'Flux Wiki', __( 'Geliştirici wiki\'si: Markdown sayfalar, arama, LLM ve MCP desteği', 'flx-wiki' ) );
+		$heads['flx-wiki'] = array( 'Flux Wiki', __( 'Developer wiki: Markdown pages, search, LLM and MCP support', 'flx-wiki' ) );
 		return $heads;
 	}
 );

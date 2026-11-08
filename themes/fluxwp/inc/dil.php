@@ -146,18 +146,18 @@ add_filter( 'render_block', 'flx_i18n_render_block', 5, 2 );
  */
 function flx_i18n_script_strings() {
 	$s = array(
-		'copy'        => __( 'Kopyala', 'fluxwp' ),
-		'prev'        => __( 'Önceki', 'fluxwp' ),
-		'next'        => __( 'Sonraki', 'fluxwp' ),
-		'more'        => __( 'Daha fazla göster', 'fluxwp' ),
-		'loading'     => __( 'Yükleniyor…', 'fluxwp' ),
-		'copied'      => __( 'Kopyalandı ✓', 'fluxwp' ),
-		'searchSite'  => __( 'Sitede ara', 'fluxwp' ),
-		'close'       => __( 'Kapat', 'fluxwp' ),
-		'searchTitle' => __( 'Ne aramıştınız?', 'fluxwp' ),
-		'search'      => __( 'Ara', 'fluxwp' ),
-		'searchPh'    => (string) apply_filters( 'flx_search_placeholder', __( 'Ürün, yazı, sayfa ara…', 'fluxwp' ) ),
-		'popular'     => __( 'Popüler:', 'fluxwp' ),
+		'copy'        => __( 'Copy', 'fluxwp' ),
+		'prev'        => __( 'Previous', 'fluxwp' ),
+		'next'        => __( 'Next', 'fluxwp' ),
+		'more'        => __( 'Show more', 'fluxwp' ),
+		'loading'     => __( 'Loading…', 'fluxwp' ),
+		'copied'      => __( 'Copied ✓', 'fluxwp' ),
+		'searchSite'  => __( 'Search the site', 'fluxwp' ),
+		'close'       => __( 'Close', 'fluxwp' ),
+		'searchTitle' => __( 'What are you looking for?', 'fluxwp' ),
+		'search'      => __( 'Search', 'fluxwp' ),
+		'searchPh'    => (string) apply_filters( 'flx_search_placeholder', __( 'Search products, posts, pages…', 'fluxwp' ) ),
+		'popular'     => __( 'Popular:', 'fluxwp' ),
 		'chips'       => array_values( (array) apply_filters( 'flx_search_chips', array() ) ),
 	);
 	wp_add_inline_script( 'fluxwp', 'window.flxI18n=' . wp_json_encode( $s ) . ';', 'before' );
@@ -169,7 +169,7 @@ add_action( 'wp_enqueue_scripts', 'flx_i18n_script_strings', 20 );
  */
 function flx_i18n_style_strings() {
 	$t = array(
-		'read' => __( 'Devamını oku', 'fluxwp' ),
+		'read' => __( 'Read more', 'fluxwp' ),
 	);
 	$css = ':root{';
 	foreach ( $t as $k => $v ) {
@@ -242,11 +242,11 @@ add_filter(
 	'flxl_text_fields',
 	function ( $f ) {
 		$fields = array(
-			'cookie_title'  => array( __( 'Çerez banner\'ı başlığı', 'fluxwp' ), false ),
-			'cookie_text'   => array( __( 'Çerez banner\'ı metni', 'fluxwp' ), true ),
-			'cookie_accept' => array( __( 'Çerez banner\'ı: kabul düğmesi', 'fluxwp' ), false ),
-			'cookie_reject' => array( __( 'Çerez banner\'ı: yalnızca zorunlu düğmesi', 'fluxwp' ), false ),
-			'cookie_more'   => array( __( 'Çerez banner\'ı: politika bağlantısı', 'fluxwp' ), false ),
+			'cookie_title'  => array( __( 'Cookie banner title', 'fluxwp' ), false ),
+			'cookie_text'   => array( __( 'Cookie banner text', 'fluxwp' ), true ),
+			'cookie_accept' => array( __( 'Cookie banner: accept button', 'fluxwp' ), false ),
+			'cookie_reject' => array( __( 'Cookie banner: necessary only button', 'fluxwp' ), false ),
+			'cookie_more'   => array( __( 'Cookie banner: policy link', 'fluxwp' ), false ),
 		);
 		foreach ( $fields as $key => $d ) {
 			$f[ 'tema_' . $key ] = array(
@@ -268,7 +268,7 @@ function flx_language_switcher() {
 	if ( count( $langs ) < 2 ) {
 		return '';
 	}
-	$out = '<nav class="flx-lang" aria-label="' . esc_attr__( 'Dil seçimi', 'fluxwp' ) . '" data-no-translation>';
+	$out = '<nav class="flx-lang" aria-label="' . esc_attr__( 'Language selection', 'fluxwp' ) . '" data-no-translation>';
 	foreach ( $langs as $l ) {
 		$out .= sprintf(
 			'<a href="%1$s" hreflang="%2$s" lang="%2$s" title="%3$s"%4$s>%5$s</a>',
@@ -293,7 +293,7 @@ function flx_register_theme_blocks() {
 		'fluxwp/dil-secici',
 		array(
 			'api_version'     => 3,
-			'title'           => __( 'Dil Seçici', 'fluxwp' ),
+			'title'           => __( 'Language Switcher', 'fluxwp' ),
 			'category'        => 'theme',
 			'editor_script'   => 'fluxwp-bloklar',
 			'supports'        => array( 'html' => false ),
@@ -304,7 +304,7 @@ function flx_register_theme_blocks() {
 		'fluxwp/hesap-sepet',
 		array(
 			'api_version'     => 3,
-			'title'           => __( 'Hesap ve Sepet', 'fluxwp' ),
+			'title'           => __( 'Account and Cart', 'fluxwp' ),
 			'category'        => 'theme',
 			'editor_script'   => 'fluxwp-bloklar',
 			'supports'        => array( 'html' => false ),

@@ -59,12 +59,12 @@ final class FLXU_Admin {
 			'none',
 			2.9
 		);
-		add_submenu_page( self::SLUG, __( 'Flux Paketleri', 'flx-setup' ), __( 'Paketler', 'flx-setup' ), 'update_plugins', self::SLUG, array( $this, 'render' ) );
+		add_submenu_page( self::SLUG, __( 'Flux Packages', 'flx-setup' ), __( 'Packages', 'flx-setup' ), 'update_plugins', self::SLUG, array( $this, 'render' ) );
 		if ( function_exists( 'flxk_cap' ) && current_user_can( flxk_cap() ) ) {
 			// Ön ayarlar ekranı Görünüm altında (ya da tema ayarlarında) kalır; buradan kısayol.
-			add_submenu_page( self::SLUG, __( 'Ön ayarlar', 'flx-setup' ), __( 'Ön ayarlar', 'flx-setup' ), flxk_cap(), 'flx-setup-presets', '__return_null' );
+			add_submenu_page( self::SLUG, __( 'Presets', 'flx-setup' ), __( 'Presets', 'flx-setup' ), flxk_cap(), 'flx-setup-presets', '__return_null' );
 		}
-		add_submenu_page( self::SLUG, __( 'Güncelleme ayarları', 'flx-setup' ), __( 'Ayarlar', 'flx-setup' ), 'manage_options', self::SETTINGS_SLUG, array( $this, 'render_settings' ) );
+		add_submenu_page( self::SLUG, __( 'Update settings', 'flx-setup' ), __( 'Settings', 'flx-setup' ), 'manage_options', self::SETTINGS_SLUG, array( $this, 'render_settings' ) );
 	}
 
 	/** WordPress menü SVG'lerini tek renge boyar; renkli logo CSS ile. */
@@ -93,7 +93,7 @@ final class FLXU_Admin {
 	}
 
 	public function action_links( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( self::url() ) . '">' . esc_html__( 'Paketler', 'flx-setup' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( self::url() ) . '">' . esc_html__( 'Packages', 'flx-setup' ) . '</a>' );
 		return $links;
 	}
 
@@ -105,9 +105,9 @@ final class FLXU_Admin {
 		$status = FLXU_Updater::status();
 		$state  = self::connection_state( $status );
 		$labels = array(
-			'connected' => array( '#1e8e3e', __( 'Bağlı', 'flx-setup' ) . ( ! empty( $status['site'] ) ? ': ' . $status['site'] : '' ) ),
-			'error'     => array( 'paused' === ( $status['code'] ?? '' ) ? '#dba617' : '#d63638', FLXU_Updater::block_title( $status ) ?: __( 'Bağlantı hatası', 'flx-setup' ) ),
-			'unknown'   => array( '#dba617', __( 'Henüz kontrol edilmedi', 'flx-setup' ) ),
+			'connected' => array( '#1e8e3e', __( 'Connected', 'flx-setup' ) . ( ! empty( $status['site'] ) ? ': ' . $status['site'] : '' ) ),
+			'error'     => array( 'paused' === ( $status['code'] ?? '' ) ? '#dba617' : '#d63638', FLXU_Updater::block_title( $status ) ?: __( 'Connection error', 'flx-setup' ) ),
+			'unknown'   => array( '#dba617', __( 'Not checked yet', 'flx-setup' ) ),
 		);
 		list( $color, $text ) = $labels[ $state ];
 		$meta[] = '<a href="' . esc_url( self::url() ) . '"><span style="color:' . esc_attr( $color ) . '">&#9679;</span> ' . esc_html( $text ) . '</a>';
@@ -124,7 +124,7 @@ final class FLXU_Admin {
 
 	public function save(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-setup' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 		}
 		check_admin_referer( 'flxu_save' );
 
@@ -158,7 +158,7 @@ final class FLXU_Admin {
 
 	public function check(): void {
 		if ( ! current_user_can( 'update_plugins' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-setup' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 		}
 		check_admin_referer( 'flxu_check' );
 		FLXU_Updater::instance()->check_now();
@@ -169,7 +169,7 @@ final class FLXU_Admin {
 	/** Diğer kaynaklar: ekle / sil / aç-kapat / yukarı. */
 	public function source_action(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-setup' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 		}
 		check_admin_referer( 'flxu_source' );
 		$op   = sanitize_key( wp_unslash( $_POST['op'] ?? '' ) );
@@ -205,7 +205,7 @@ final class FLXU_Admin {
 		$catalog = FLXU_Updater::instance()->catalog();
 		$steps   = FLXU_Installer::steps( FLXU_Installer::plan( $slugs, $catalog, self::rows( $catalog ) ), $catalog, $activate );
 		if ( ! $steps ) {
-			echo '<div class="notice notice-warning"><p>' . esc_html__( 'Kurulacak ya da güncellenecek paket seçilmedi.', 'flx-setup' ) . '</p></div>';
+			echo '<div class="notice notice-warning"><p>' . esc_html__( 'No package selected to install or update.', 'flx-setup' ) . '</p></div>';
 		}
 		foreach ( $steps as $st ) {
 			$res = FLXU_Ajax::run_step( $st['kind'], $st['slug'] );
@@ -214,7 +214,7 @@ final class FLXU_Admin {
 			}
 		}
 		FLXU_Updater::instance()->check_now();
-		echo '<p><a class="button button-primary" href="' . esc_url( self::url() ) . '">' . esc_html__( 'Güncellemelere dön', 'flx-setup' ) . '</a></p>';
+		echo '<p><a class="button button-primary" href="' . esc_url( self::url() ) . '">' . esc_html__( 'Back to updates', 'flx-setup' ) . '</a></p>';
 	}
 
 	private function version_change( string $slug, string $version ): void {
@@ -222,11 +222,11 @@ final class FLXU_Admin {
 		$catalog = FLXU_Updater::instance()->catalog();
 		$p       = $catalog[ $slug ] ?? null;
 		if ( ! $p ) {
-			echo '<div class="notice notice-error"><p>' . esc_html__( 'Paket bulunamadı.', 'flx-setup' ) . '</p></div>';
+			echo '<div class="notice notice-error"><p>' . esc_html__( 'Package not found.', 'flx-setup' ) . '</p></div>';
 			return;
 		}
 		/* translators: 1: package name, 2: version */
-		$title = sprintf( __( '%1$s %2$s sürümü kuruluyor', 'flx-setup' ), $p['name'], $version );
+		$title = sprintf( __( 'Installing %1$s version %2$s', 'flx-setup' ), $p['name'], $version );
 		echo '<h2>' . esc_html( $title ) . '</h2>';
 		$skin = 'theme' === $p['type'] ? new Theme_Installer_Skin( array( 'title' => '' ) ) : new Plugin_Installer_Skin( array( 'title' => '' ) );
 		$res  = FLXU_Guard::instance()->change_version( $slug, $version, $skin );
@@ -240,7 +240,7 @@ final class FLXU_Admin {
 	private function after_action_summary(): void {
 		FLXU_Updater::instance()->check_now();
 		$recent = array_reverse( array_slice( FLXU_Guard::history(), 0, FLXU_Guard::instance()->logged ) );
-		echo '<h2>' . esc_html__( 'Sonuç', 'flx-setup' ) . '</h2>';
+		echo '<h2>' . esc_html__( 'Result', 'flx-setup' ) . '</h2>';
 		$shown = 0;
 		foreach ( $recent as $e ) {
 			++$shown;
@@ -248,9 +248,9 @@ final class FLXU_Admin {
 			echo '<div class="notice notice-' . ( $ok ? 'success' : 'error' ) . ' inline"><p><strong>' . esc_html( $e['name'] ) . '</strong> ' . esc_html( self::entry_tail( $e ) ) . '</p></div>';
 		}
 		if ( ! $shown ) {
-			echo '<p>' . esc_html__( 'Kayıt yok.', 'flx-setup' ) . '</p>';
+			echo '<p>' . esc_html__( 'No records.', 'flx-setup' ) . '</p>';
 		}
-		echo '<p><a class="button button-primary" href="' . esc_url( self::url() ) . '">' . esc_html__( 'Güncellemelere dön', 'flx-setup' ) . '</a></p>';
+		echo '<p><a class="button button-primary" href="' . esc_url( self::url() ) . '">' . esc_html__( 'Back to updates', 'flx-setup' ) . '</a></p>';
 	}
 
 	/** Geçmiş kaydının tek satırlık metni: "Ad güncellendi (1.0 → 1.1) · Başarılı ✓"; mesaj yalnız sorunda yazılır. */
@@ -261,7 +261,7 @@ final class FLXU_Admin {
 	public static function entry_tail( array $e ): string {
 		$tail = self::action_label( $e );
 		if ( 'ok' === $e['result'] && 'auto_rollback' !== $e['action'] ) {
-			return $tail . ' · ' . __( 'Başarılı ✓', 'flx-setup' );
+			return $tail . ' · ' . __( 'Success ✓', 'flx-setup' );
 		}
 		return $tail . ( $e['message'] ? ' · ' . $e['message'] : '' );
 	}
@@ -271,22 +271,22 @@ final class FLXU_Admin {
 		switch ( $e['action'] ) {
 			case 'version_change':
 				/* translators: %s: from → to */
-				return sprintf( __( 'sürüm değiştirildi (%s)', 'flx-setup' ), $v );
+				return sprintf( __( 'version changed (%s)', 'flx-setup' ), $v );
 			case 'install':
 				return 'ok' === $e['result']
 					/* translators: %s: version */
-					? sprintf( __( 'kuruldu %s', 'flx-setup' ), $e['to'] )
-					: __( 'kurulamadı', 'flx-setup' );
+					? sprintf( __( 'installed %s', 'flx-setup' ), $e['to'] )
+					: __( 'install failed', 'flx-setup' );
 			case 'auto_rollback':
 				/* translators: %s: from → to */
-				return sprintf( __( 'otomatik geri alındı (%s)', 'flx-setup' ), $v );
+				return sprintf( __( 'rolled back automatically (%s)', 'flx-setup' ), $v );
 			default:
 				if ( 'ok' !== $e['result'] ) {
 					/* translators: %s: from → to */
-					return sprintf( __( 'güncelleme sorunlu (%s)', 'flx-setup' ), $v );
+					return sprintf( __( 'update failed (%s)', 'flx-setup' ), $v );
 				}
 				/* translators: %s: from → to */
-				return sprintf( __( 'güncellendi (%s)', 'flx-setup' ), $v );
+				return sprintf( __( 'updated (%s)', 'flx-setup' ), $v );
 		}
 	}
 
@@ -360,11 +360,11 @@ final class FLXU_Admin {
 	/** "Son kontrol: 2 Kasım 2026 17:12" */
 	public static function checked_label( array $status ): string {
 		if ( empty( $status['checked'] ) ) {
-			return __( 'Henüz kontrol edilmedi', 'flx-setup' );
+			return __( 'Not checked yet', 'flx-setup' );
 		}
 		$t = (int) $status['checked'];
 		/* translators: %s: date and time */
-		return sprintf( __( 'Son kontrol: %s', 'flx-setup' ), flx_date( $t, 'datetime' ) );
+		return sprintf( __( 'Last check: %s', 'flx-setup' ), flx_date( $t, 'datetime' ) );
 	}
 
 	private static function status_card( array $status, array $catalog ): void {
@@ -372,27 +372,27 @@ final class FLXU_Admin {
 		$host  = (string) wp_parse_url( FLXU_Updater::server(), PHP_URL_HOST );
 		switch ( $state ) {
 			case 'connected':
-				$title = __( 'Bağlı', 'flx-setup' );
+				$title = __( 'Connected', 'flx-setup' );
 				if ( '' !== (string) ( $status['error'] ?? '' ) ) {
 					$line = (string) $status['error'];
 				} elseif ( '' === FLXU_Updater::key() ) {
 					/* translators: %s: server host */
-					$line = sprintf( __( 'Anahtarsız bağlı (%s): public paketler geliyor. Private paketler için site anahtarı girin.', 'flx-setup' ), $host );
+					$line = sprintf( __( 'Connected without a key (%s): public packages are available. Enter a site key for private packages.', 'flx-setup' ), $host );
 				} else {
 					/* translators: 1: site name on server, 2: server host */
-					$line = sprintf( __( 'Sunucuda "%1$s" olarak tanınıyor (%2$s).', 'flx-setup' ), $status['site'], $host );
+					$line = sprintf( __( 'Recognized by the server as "%1$s" (%2$s).', 'flx-setup' ), $status['site'], $host );
 				}
 				break;
 			case 'error':
-				$title = FLXU_Updater::block_title( $status ) ?: __( 'Bağlantı hatası', 'flx-setup' );
+				$title = FLXU_Updater::block_title( $status ) ?: __( 'Connection error', 'flx-setup' );
 				$line  = FLXU_Updater::status_message( $status, '' !== FLXU_Updater::key(), $host );
 				if ( 'paused' === ( $status['code'] ?? '' ) ) {
 					$state = 'paused';
 				}
 				break;
 			default:
-				$title = __( 'Henüz kontrol edilmedi', 'flx-setup' );
-				$line  = __( '"Bağlantıyı test et" ile sunucuya bağlanın.', 'flx-setup' );
+				$title = __( 'Not checked yet', 'flx-setup' );
+				$line  = __( 'Connect to the server with "Test connection".', 'flx-setup' );
 		}
 		$updates = 0;
 		foreach ( self::rows( $catalog ) as $row ) {
@@ -410,11 +410,11 @@ final class FLXU_Admin {
 					<small>
 						<?php
 						/* translators: %s: human time diff */
-						echo esc_html( sprintf( __( 'Son kontrol: %s', 'flx-setup' ), flx_time_ago( (int) $status['checked'] ) ) );
+						echo esc_html( sprintf( __( 'Last check: %s', 'flx-setup' ), flx_time_ago( (int) $status['checked'] ) ) );
 						if ( 'connected' === $state ) {
 							echo ' · ';
 							/* translators: 1: package count, 2: update count */
-							echo esc_html( sprintf( __( '%1$d paket, %2$d güncelleme', 'flx-setup' ), count( $catalog ), $updates ) );
+							echo esc_html( sprintf( __( '%1$d packages, %2$d updates', 'flx-setup' ), count( $catalog ), $updates ) );
 						}
 						?>
 					</small>
@@ -423,7 +423,7 @@ final class FLXU_Admin {
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="flxu_check">
 				<?php wp_nonce_field( 'flxu_check' ); ?>
-				<button type="submit" class="button"><?php esc_html_e( 'Bağlantıyı test et', 'flx-setup' ); ?></button>
+				<button type="submit" class="button"><?php esc_html_e( 'Test connection', 'flx-setup' ); ?></button>
 			</form>
 		</div>
 		<?php
@@ -434,66 +434,66 @@ final class FLXU_Admin {
 	 */
 	private static function connection_form( array $settings ): void {
 		?>
-			<h2><?php esc_html_e( 'Bağlantı', 'flx-setup' ); ?></h2>
+			<h2><?php esc_html_e( 'Connection', 'flx-setup' ); ?></h2>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="flxu_save">
 				<?php wp_nonce_field( 'flxu_save' ); ?>
 				<table class="form-table" role="presentation">
 					<tr>
-						<th scope="row"><label for="flxu-server"><?php esc_html_e( 'Sunucu adresi', 'flx-setup' ); ?></label></th>
+						<th scope="row"><label for="flxu-server"><?php esc_html_e( 'Server URL', 'flx-setup' ); ?></label></th>
 						<td>
 							<?php if ( defined( 'FLX_UPDATE_SERVER' ) && FLX_UPDATE_SERVER ) : ?>
 								<code><?php echo esc_html( FLXU_Updater::server() ); ?></code>
-								<p class="description"><?php esc_html_e( 'wp-config.php içindeki FLX_UPDATE_SERVER sabitinden geliyor.', 'flx-setup' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Set by the FLX_UPDATE_SERVER constant in wp-config.php.', 'flx-setup' ); ?></p>
 							<?php else : ?>
 								<input type="url" id="flxu-server" name="server" class="regular-text" value="<?php echo esc_attr( $settings['server'] ); ?>" placeholder="<?php echo esc_attr( FLXU_DEFAULT_SERVER ); ?>">
-								<p class="description"><?php esc_html_e( 'Boş bırakılırsa varsayılan sunucu kullanılır. Yalnız https.', 'flx-setup' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Leave empty to use the default server. https only.', 'flx-setup' ); ?></p>
 							<?php endif; ?>
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="flxu-key"><?php esc_html_e( 'Site anahtarı', 'flx-setup' ); ?></label></th>
+						<th scope="row"><label for="flxu-key"><?php esc_html_e( 'Site key', 'flx-setup' ); ?></label></th>
 						<td>
 							<?php if ( FLXU_Updater::key_from_config() ) : ?>
 								<code>••••••••</code>
-								<p class="description"><?php esc_html_e( 'wp-config.php içindeki FLX_UPDATE_KEY sabitinden geliyor.', 'flx-setup' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Set by the FLX_UPDATE_KEY constant in wp-config.php.', 'flx-setup' ); ?></p>
 							<?php else : ?>
-								<input type="password" id="flxu-key" name="key" class="regular-text" autocomplete="off" value="" placeholder="<?php echo $settings['key'] ? esc_attr__( 'Kayıtlı (değiştirmek için yeni anahtarı yazın)', 'flx-setup' ) : 'flxu_…'; ?>">
+								<input type="password" id="flxu-key" name="key" class="regular-text" autocomplete="off" value="" placeholder="<?php echo $settings['key'] ? esc_attr__( 'Saved (type a new key to change it)', 'flx-setup' ) : 'flxu_…'; ?>">
 								<?php if ( $settings['key'] ) : ?>
-									<label style="margin-left:8px"><input type="checkbox" name="clear_key" value="1"> <?php esc_html_e( 'Anahtarı sil', 'flx-setup' ); ?></label>
+									<label style="margin-left:8px"><input type="checkbox" name="clear_key" value="1"> <?php esc_html_e( 'Remove key', 'flx-setup' ); ?></label>
 								<?php endif; ?>
-								<p class="description"><?php esc_html_e( 'İsteğe bağlı. Public paketler anahtarsız gelir; private paketler için güncelleme sunucusunun panelinde (/admin) "Site ekle" ile alınır. Her siteye ayrı anahtar verin.', 'flx-setup' ); ?></p>
+								<p class="description"><?php esc_html_e( 'Optional. Public packages need no key; for private packages, get one from the update server panel (/admin) with "Add site". Give each site its own key.', 'flx-setup' ); ?></p>
 							<?php endif; ?>
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><?php esc_html_e( 'Güncelleme sonrası kontrol', 'flx-setup' ); ?></th>
-						<td><label><input type="checkbox" name="health" value="1" <?php checked( ! empty( $settings['health'] ) ); ?>> <?php esc_html_e( 'Güncellemeden sonra site açılıyor mu kontrol et; hata verirse paketi önceki sürüme döndür', 'flx-setup' ); ?></label>
-							<p class="description"><?php esc_html_e( 'Yalnız HTTP 500 (kritik hata) geri alınır; ağ veya güvenlik duvarı hataları geri alma sebebi sayılmaz.', 'flx-setup' ); ?></p>
+						<th scope="row"><?php esc_html_e( 'Post-update check', 'flx-setup' ); ?></th>
+						<td><label><input type="checkbox" name="health" value="1" <?php checked( ! empty( $settings['health'] ) ); ?>> <?php esc_html_e( 'Check that the site still loads after updating; roll the package back if it fails', 'flx-setup' ); ?></label>
+							<p class="description"><?php esc_html_e( 'Only HTTP 500 (critical error) triggers a rollback; network or firewall errors do not.', 'flx-setup' ); ?></p>
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><?php esc_html_e( 'Otomatik güncelleme', 'flx-setup' ); ?></th>
-						<td><label><input type="checkbox" name="auto" value="1" <?php checked( ! empty( $settings['auto'] ) ); ?>> <?php esc_html_e( 'FluxWP paketlerinin yeni sürümleri kendiliğinden kurulsun', 'flx-setup' ); ?></label>
-							<p class="description"><?php esc_html_e( 'Kapalıyken WordPress\'in eklenti başına "Otomatik güncellemeyi etkinleştir" ayarı geçerlidir.', 'flx-setup' ); ?></p>
+						<th scope="row"><?php esc_html_e( 'Automatic updates', 'flx-setup' ); ?></th>
+						<td><label><input type="checkbox" name="auto" value="1" <?php checked( ! empty( $settings['auto'] ) ); ?>> <?php esc_html_e( 'Install new versions of FluxWP packages automatically', 'flx-setup' ); ?></label>
+							<p class="description"><?php esc_html_e( 'When this is off, WordPress\'s per-plugin "Enable auto-updates" setting applies.', 'flx-setup' ); ?></p>
 						</td>
 					</tr>
 					<?php if ( function_exists( 'flxk_telemetry_enabled' ) ) : ?>
 						<?php $legal = flxk_legal_urls(); ?>
 						<tr>
-							<th scope="row"><?php esc_html_e( 'Kullanım verisi', 'flx-setup' ); ?></th>
-							<td><label><input type="checkbox" name="usage" value="1" <?php checked( flxk_telemetry_enabled() ); ?>> <?php esc_html_e( 'Ürünü geliştirmemize yardımcı olun (kullanım verisi gönder)', 'flx-setup' ); ?></label>
-								<p class="description"><?php esc_html_e( 'Güncelleme denetimi her zaman site adresini gönderir; sunucu ayrıca IP\'den ülkeyi bulur ve IP\'yi saklamaz (zorunlu kayıt). Açıkken WordPress ve PHP sürümü, saat dilimi ve dil eklenir; FluxWP eklentilerinin sürümleri ve hataları anonim olarak gönderilir. Kapalıyken yalnız güncelleme için gereken bilgi gider, güncellemeler aynı çalışır. İzni istediğiniz zaman buradan geri alabilirsiniz.', 'flx-setup' ); ?></p>
+							<th scope="row"><?php esc_html_e( 'Usage data', 'flx-setup' ); ?></th>
+							<td><label><input type="checkbox" name="usage" value="1" <?php checked( flxk_telemetry_enabled() ); ?>> <?php esc_html_e( 'Help us improve FluxWP (send usage data)', 'flx-setup' ); ?></label>
+								<p class="description"><?php esc_html_e( 'Update checks always send the site address; the server also looks up the country from the IP and does not store the IP (mandatory record). When on, update checks also send the WordPress and PHP version, time zone and language, and FluxWP plugin versions and errors are sent anonymously. When off, only what updates need is sent and updates work the same. You can withdraw consent here at any time.', 'flx-setup' ); ?></p>
 								<p class="description">
-									<a href="<?php echo esc_url( $legal['kvkk'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'KVKK Aydınlatma Metni', 'flx-setup' ); ?></a> ·
-									<a href="<?php echo esc_url( $legal['privacy'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Gizlilik Politikası', 'flx-setup' ); ?></a> ·
-									<a href="<?php echo esc_url( $legal['terms'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Kullanım Şartları', 'flx-setup' ); ?></a>
+									<a href="<?php echo esc_url( $legal['kvkk'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'KVKK Privacy Notice', 'flx-setup' ); ?></a> ·
+									<a href="<?php echo esc_url( $legal['privacy'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Privacy Policy', 'flx-setup' ); ?></a> ·
+									<a href="<?php echo esc_url( $legal['terms'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Terms of Use', 'flx-setup' ); ?></a>
 								</p>
 							</td>
 						</tr>
 					<?php endif; ?>
 				</table>
-				<?php submit_button( __( 'Kaydet ve kontrol et', 'flx-setup' ) ); ?>
+				<?php submit_button( __( 'Save and check', 'flx-setup' ) ); ?>
 			</form>
 		<?php
 	}
@@ -511,7 +511,7 @@ final class FLXU_Admin {
 		if ( isset( $_GET['flxu_install'] ) ) {
 			$slug = sanitize_key( wp_unslash( $_GET['flxu_install'] ) );
 			check_admin_referer( 'flxu_install_' . $slug );
-			echo '<div class="wrap flxu-wrap"><h1>' . esc_html__( 'Paketler', 'flx-setup' ) . '</h1>';
+			echo '<div class="wrap flxu-wrap"><h1>' . esc_html__( 'Packages', 'flx-setup' ) . '</h1>';
 			$this->run_fallback( array( $slug ), true );
 			echo '</div>';
 			return;
@@ -519,7 +519,7 @@ final class FLXU_Admin {
 		$do = isset( $_POST['flxu_do'] ) ? sanitize_key( wp_unslash( $_POST['flxu_do'] ) ) : '';
 		if ( $do ) {
 			check_admin_referer( 'flxu_bulk' );
-			echo '<div class="wrap flxu-wrap"><h1>' . esc_html__( 'Paketler', 'flx-setup' ) . '</h1>';
+			echo '<div class="wrap flxu-wrap"><h1>' . esc_html__( 'Packages', 'flx-setup' ) . '</h1>';
 			if ( 'version' === $do ) {
 				$slug    = sanitize_key( wp_unslash( $_POST['flxu_slug'] ?? '' ) );
 				$version = sanitize_text_field( wp_unslash( $_POST['flxu_version'] ?? '' ) );
@@ -560,8 +560,8 @@ final class FLXU_Admin {
 		$auto     = $auto_ttl > 0 && ! FLXU_Updater::backing_off( $status ) && ( time() - (int) ( $status['checked'] ?? 0 ) ) >= $auto_ttl;
 		?>
 		<div class="wrap flxu-wrap">
-			<h1 class="wp-heading-inline"><?php esc_html_e( 'Paketler', 'flx-setup' ); ?></h1>
-			<a class="page-title-action" id="flxu-check"<?php echo $auto ? ' data-auto="1"' : ''; ?> href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxu_check' ), 'flxu_check' ) ); ?>"><span class="flxu-check__spin" aria-hidden="true"></span><?php esc_html_e( 'Güncellemeleri kontrol et', 'flx-setup' ); ?></a>
+			<h1 class="wp-heading-inline"><?php esc_html_e( 'Packages', 'flx-setup' ); ?></h1>
+			<a class="page-title-action" id="flxu-check"<?php echo $auto ? ' data-auto="1"' : ''; ?> href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxu_check' ), 'flxu_check' ) ); ?>"><span class="flxu-check__spin" aria-hidden="true"></span><?php esc_html_e( 'Check for updates', 'flx-setup' ); ?></a>
 			<span class="flxu-checked" id="flxu-checked"><?php echo esc_html( self::checked_label( $status ) ); ?></span>
 			<hr class="wp-header-end">
 
@@ -571,46 +571,46 @@ final class FLXU_Admin {
 					<strong class="flxu-log__title"></strong>
 					<span class="flxu-log__count"></span>
 					<span class="flxu-toolbar__spacer"></span>
-					<button type="button" class="button-link flxu-log__toggle"><?php esc_html_e( 'Kaydı gizle', 'flx-setup' ); ?></button>
+					<button type="button" class="button-link flxu-log__toggle"><?php esc_html_e( 'Hide log', 'flx-setup' ); ?></button>
 				</div>
 				<div class="flxu-log__bar"><span></span></div>
 				<ol class="flxu-log__lines"></ol>
 			</div>
 
 			<?php if ( 'saved' === $msg ) : ?>
-				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Ayarlar kaydedildi ve kontrol yapıldı.', 'flx-setup' ); ?></p></div>
+				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Settings saved and updates checked.', 'flx-setup' ); ?></p></div>
 			<?php elseif ( 'managed' === $msg && ( $mr = get_transient( 'flxu_manage_' . get_current_user_id() ) ) ) : ?>
 				<?php
 				delete_transient( 'flxu_manage_' . get_current_user_id() );
 				$labels = array(
 					/* translators: %d: number of packages */
-					'activate'   => _n( '%d paket etkinleştirildi.', '%d paket etkinleştirildi.', (int) $mr['done'], 'flx-setup' ),
+					'activate'   => _n( '[[\'%dpackage activated.\', \'tr\']]', '[[\'%dpackage activated.\', \'tr\']]', (int) $mr['done'], 'flx-setup' ),
 					/* translators: %d: number of packages */
-					'deactivate' => _n( '%d paket devre dışı bırakıldı.', '%d paket devre dışı bırakıldı.', (int) $mr['done'], 'flx-setup' ),
+					'deactivate' => _n( '[[\'%dpackage has been disabled.\', \'tr\']]', '[[\'%dpackage has been disabled.\', \'tr\']]', (int) $mr['done'], 'flx-setup' ),
 					/* translators: %d: number of packages */
-					'delete'     => _n( '%d paket kaldırıldı.', '%d paket kaldırıldı.', (int) $mr['done'], 'flx-setup' ),
+					'delete'     => _n( '[[\'%dpackage removed.\', \'tr\']]', '[[\'%dpackage removed.\', \'tr\']]', (int) $mr['done'], 'flx-setup' ),
 				);
 				?>
 				<div class="notice notice-<?php echo $mr['fail'] ? 'warning' : 'success'; ?> is-dismissible"><p>
 					<?php echo esc_html( sprintf( $labels[ $mr['op'] ] ?? '%d', (int) $mr['done'] ) ); ?>
 					<?php if ( $mr['skip'] ) : ?>
-						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Atlananlar (zaten bu durumda, etkin tema ya da FluxWP Panel): %s.', 'flx-setup' ), implode( ', ', $mr['skip'] ) ) ); ?>
+						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Skipped (already in that state, active theme or FluxWP Panel): %s.', 'flx-setup' ), implode( ', ', $mr['skip'] ) ) ); ?>
 					<?php endif; ?>
 					<?php if ( $mr['fail'] ) : ?>
-						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Yapılamayanlar: %s.', 'flx-setup' ), implode( ', ', $mr['fail'] ) ) ); ?>
+						<?php /* translators: %s: package names */ echo esc_html( sprintf( __( 'Failed: %s.', 'flx-setup' ), implode( ', ', $mr['fail'] ) ) ); ?>
 					<?php endif; ?>
 				</p></div>
 			<?php elseif ( 'checked' === $msg ) : ?>
-				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Güncellemeler kontrol edildi.', 'flx-setup' ); ?></p></div>
+				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Updates checked.', 'flx-setup' ); ?></p></div>
 			<?php elseif ( 'bk_deleted' === $msg ) : ?>
 				<?php $n = isset( $_GET['flxu_n'] ) ? absint( $_GET['flxu_n'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification ?>
-				<div class="notice notice-success is-dismissible"><p><?php echo esc_html( sprintf( _n( '%d yedek silindi.', '%d yedek silindi.', $n, 'flx-setup' ), $n ) ); ?></p></div>
+				<div class="notice notice-success is-dismissible"><p><?php echo esc_html( sprintf( _n( '[[\'%dbackup deleted.\', \'tr\']]', '[[\'%dbackup deleted.\', \'tr\']]', $n, 'flx-setup' ), $n ) ); ?></p></div>
 			<?php elseif ( 'keep_saved' === $msg ) : ?>
 				<?php $n = isset( $_GET['flxu_n'] ) ? absint( $_GET['flxu_n'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification ?>
 				<div class="notice notice-success is-dismissible"><p><?php
-					esc_html_e( 'Saklama süresi kaydedildi; mevcut güncelleme yedeklerine de uygulandı.', 'flx-setup' );
+					esc_html_e( 'Retention saved and applied to existing update backups.', 'flx-setup' );
 					if ( $n ) {
-						echo ' ' . esc_html( sprintf( _n( 'Süresi dolan %d yedek silindi.', 'Süresi dolan %d yedek silindi.', $n, 'flx-setup' ), $n ) );
+						echo ' ' . esc_html( sprintf( _n( '\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n', '\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n', $n, 'flx-setup' ), $n ) );
 					}
 				?></p></div>
 			<?php endif; ?>
@@ -631,40 +631,40 @@ final class FLXU_Admin {
 				<input type="hidden" name="flxu_slug" value="">
 				<input type="hidden" name="flxu_version" value="">
 				<div class="flxu-toolbar">
-					<h2><?php esc_html_e( 'FluxWP paketleri', 'flx-setup' ); ?></h2>
+					<h2><?php esc_html_e( 'FluxWP packages', 'flx-setup' ); ?></h2>
 					<span class="flxu-toolbar__spacer"></span>
-					<label class="flxu-act"><input type="checkbox" name="flxu_activate" value="1" id="flxu-activate" checked> <?php esc_html_e( 'Kurulanları etkinleştir', 'flx-setup' ); ?></label>
-					<button type="submit" class="button" name="flxu_do" value="selected" id="flxu-do-selected" disabled><?php esc_html_e( 'Seçilenleri kur / güncelle', 'flx-setup' ); ?></button>
+					<label class="flxu-act"><input type="checkbox" name="flxu_activate" value="1" id="flxu-activate" checked> <?php esc_html_e( 'Activate installed', 'flx-setup' ); ?></label>
+					<button type="submit" class="button" name="flxu_do" value="selected" id="flxu-do-selected" disabled><?php esc_html_e( 'Install / update selected', 'flx-setup' ); ?></button>
 					<span class="flxu-bulk">
-						<label class="screen-reader-text" for="flxu-bulk-op"><?php esc_html_e( 'Toplu işlem', 'flx-setup' ); ?></label>
+						<label class="screen-reader-text" for="flxu-bulk-op"><?php esc_html_e( 'Bulk action', 'flx-setup' ); ?></label>
 						<select name="flxu_op" id="flxu-bulk-op">
-							<option value=""><?php esc_html_e( 'Toplu işlemler', 'flx-setup' ); ?></option>
-							<option value="activate"><?php esc_html_e( 'Etkinleştir', 'flx-setup' ); ?></option>
-							<option value="deactivate"><?php esc_html_e( 'Devre dışı bırak', 'flx-setup' ); ?></option>
-							<option value="delete"><?php esc_html_e( 'Kaldır', 'flx-setup' ); ?></option>
+							<option value=""><?php esc_html_e( 'Bulk actions', 'flx-setup' ); ?></option>
+							<option value="activate"><?php esc_html_e( 'Activate', 'flx-setup' ); ?></option>
+							<option value="deactivate"><?php esc_html_e( 'Deactivate', 'flx-setup' ); ?></option>
+							<option value="delete"><?php esc_html_e( 'Delete', 'flx-setup' ); ?></option>
 						</select>
-						<button type="submit" class="button" name="flxu_do" value="manage" id="flxu-do-manage" formaction="<?php echo esc_url( admin_url( 'admin-post.php?action=flxu_manage' ) ); ?>" disabled><?php esc_html_e( 'Uygula', 'flx-setup' ); ?></button>
+						<button type="submit" class="button" name="flxu_do" value="manage" id="flxu-do-manage" formaction="<?php echo esc_url( admin_url( 'admin-post.php?action=flxu_manage' ) ); ?>" disabled><?php esc_html_e( 'Apply', 'flx-setup' ); ?></button>
 					</span>
 					<button type="submit" class="button button-primary" name="flxu_do" value="all" <?php disabled( 0 === $pending ); ?>>
 						<?php
 						/* translators: %s: number of updates */
-						echo esc_html( sprintf( __( 'Tümünü güncelle (%s)', 'flx-setup' ), number_format_i18n( $pending ) ) );
+						echo esc_html( sprintf( __( 'Update all (%s)', 'flx-setup' ), number_format_i18n( $pending ) ) );
 						?>
 					</button>
 				</div>
 				<div id="flxu-deps" class="flxu-deps" hidden></div>
 				<table class="widefat striped flxu-table">
 					<thead><tr>
-						<td class="check-column"><input type="checkbox" id="flxu-check-all" aria-label="<?php esc_attr_e( 'Tümünü seç', 'flx-setup' ); ?>"></td>
-						<th><?php esc_html_e( 'Paket', 'flx-setup' ); ?></th>
-						<th><?php esc_html_e( 'Tür', 'flx-setup' ); ?></th>
-						<th><?php esc_html_e( 'Kurulu', 'flx-setup' ); ?></th>
-						<th><?php esc_html_e( 'Son sürüm', 'flx-setup' ); ?></th>
-						<th><?php esc_html_e( 'Durum', 'flx-setup' ); ?></th>
+						<td class="check-column"><input type="checkbox" id="flxu-check-all" aria-label="<?php esc_attr_e( 'Select all', 'flx-setup' ); ?>"></td>
+						<th><?php esc_html_e( 'Package', 'flx-setup' ); ?></th>
+						<th><?php esc_html_e( 'Type', 'flx-setup' ); ?></th>
+						<th><?php esc_html_e( 'Installed', 'flx-setup' ); ?></th>
+						<th><?php esc_html_e( 'Latest version', 'flx-setup' ); ?></th>
+						<th><?php esc_html_e( 'Status', 'flx-setup' ); ?></th>
 					</tr></thead>
 					<tbody>
 					<?php if ( ! $rows ) : ?>
-						<tr><td></td><td colspan="5"><?php esc_html_e( 'Sunucudan paket listesi alınamadı. Ayarlar\'dan sunucu adresini ve (varsa) anahtarı kontrol edip "Bağlantıyı test et"e basın.', 'flx-setup' ); ?></td></tr>
+						<tr><td></td><td colspan="5"><?php esc_html_e( 'The package list could not be fetched. Check the server address and key (if any) in Settings and press "Test connection".', 'flx-setup' ); ?></td></tr>
 					<?php endif; ?>
 					<?php foreach ( $rows as $row ) : ?>
 						<?php
@@ -708,31 +708,31 @@ final class FLXU_Admin {
 										<small class="flxu-src">
 										<?php
 										/* translators: %s: source name */
-										echo esc_html( sprintf( __( 'Kaynak: %s', 'flx-setup' ), $catalog[ $row['slug'] ]['source_name'] ?? '' ) );
+										echo esc_html( sprintf( __( 'Source: %s', 'flx-setup' ), $catalog[ $row['slug'] ]['source_name'] ?? '' ) );
 										if ( $src_n > 1 ) {
 											/* translators: %d: number of sources */
-											echo ' · ' . esc_html( sprintf( __( '%d kaynakta var', 'flx-setup' ), $src_n ) );
+											echo ' · ' . esc_html( sprintf( __( 'available from %d sources', 'flx-setup' ), $src_n ) );
 										}
 										?>
 										</small>
 									<?php endif; ?>
 									<?php if ( $req ) : ?>
-										<br><small class="flxu-req"><?php esc_html_e( 'Gerekli:', 'flx-setup' ); ?>
+										<br><small class="flxu-req"><?php esc_html_e( 'Requires:', 'flx-setup' ); ?>
 										<?php
 										$installed_pl = FLXU_Installer::installed_plugins();
 										foreach ( $req as $i => $d ) {
 											$on = ! empty( $installed_pl[ $d ]['active'] );
-											echo ( $i ? ', ' : ' ' ) . '<span class="flxu-req__item ' . ( $on ? 'is-ok' : 'is-missing' ) . '" data-dep="' . esc_attr( $d ) . '" title="' . esc_attr( $on ? __( 'Etkin', 'flx-setup' ) : ( isset( $installed_pl[ $d ] ) ? __( 'Kurulu, etkin değil', 'flx-setup' ) : __( 'Kurulu değil', 'flx-setup' ) ) ) . '">' . esc_html( FLXU_Installer::plugin_name( $d, $catalog, $installed_pl ) ) . ( $on ? ' ✓' : '' ) . '</span>';
+											echo ( $i ? ', ' : ' ' ) . '<span class="flxu-req__item ' . ( $on ? 'is-ok' : 'is-missing' ) . '" data-dep="' . esc_attr( $d ) . '" title="' . esc_attr( $on ? __( 'Active', 'flx-setup' ) : ( isset( $installed_pl[ $d ] ) ? __( 'Installed, inactive', 'flx-setup' ) : __( 'Not installed', 'flx-setup' ) ) ) . '">' . esc_html( FLXU_Installer::plugin_name( $d, $catalog, $installed_pl ) ) . ( $on ? ' ✓' : '' ) . '</span>';
 										}
 										?>
 										</small>
 									<?php endif; ?>
 								</span>
 							</td>
-							<td class="flxu-c-type"><?php echo 'theme' === $row['type'] ? esc_html__( 'Tema', 'flx-setup' ) : esc_html__( 'Eklenti', 'flx-setup' ); ?></td>
+							<td class="flxu-c-type"><?php echo 'theme' === $row['type'] ? esc_html__( 'Theme', 'flx-setup' ) : esc_html__( 'Plugin', 'flx-setup' ); ?></td>
 							<td class="flxu-c-inst"><?php echo $row['installed'] ? esc_html( $row['installed'] ) : '—'; ?>
 								<?php if ( $row['installed'] && ! $row['active'] && 'plugin' === $row['type'] ) : ?>
-									<br><small class="flxu-off"><?php esc_html_e( 'Devre dışı', 'flx-setup' ); ?></small>
+									<br><small class="flxu-off"><?php esc_html_e( 'Inactive', 'flx-setup' ); ?></small>
 								<?php endif; ?>
 							</td>
 							<td class="flxu-c-latest"><?php echo esc_html( $row['latest'] ); ?>
@@ -745,23 +745,23 @@ final class FLXU_Admin {
 								<div class="flxu-done" hidden></div>
 								<div class="flxu-idle">
 								<?php if ( 'update' === $row['state'] ) : ?>
-									<span class="flxu-badge flxu-badge--update"><?php esc_html_e( 'Güncelleme var', 'flx-setup' ); ?></span>
+									<span class="flxu-badge flxu-badge--update"><?php esc_html_e( 'Update available', 'flx-setup' ); ?></span>
 									<?php if ( $can ) : ?>
-										<button type="submit" class="button button-small" name="flxu_do" value="one" data-slug="<?php echo esc_attr( $row['slug'] ); ?>"><?php esc_html_e( 'Güncelle', 'flx-setup' ); ?></button>
+										<button type="submit" class="button button-small" name="flxu_do" value="one" data-slug="<?php echo esc_attr( $row['slug'] ); ?>"><?php esc_html_e( 'Update', 'flx-setup' ); ?></button>
 									<?php endif; ?>
 								<?php elseif ( 'current' === $row['state'] ) : ?>
-									<span class="flxu-badge flxu-badge--ok"><?php esc_html_e( 'Güncel', 'flx-setup' ); ?></span>
+									<span class="flxu-badge flxu-badge--ok"><?php esc_html_e( 'Up to date', 'flx-setup' ); ?></span>
 								<?php else : ?>
-									<span class="flxu-badge"><?php esc_html_e( 'Kurulu değil', 'flx-setup' ); ?></span>
+									<span class="flxu-badge"><?php esc_html_e( 'Not installed', 'flx-setup' ); ?></span>
 									<?php if ( $can_ins ) : ?>
-										<button type="submit" class="button button-small" name="flxu_do" value="one" data-slug="<?php echo esc_attr( $row['slug'] ); ?>"><?php esc_html_e( 'Kur', 'flx-setup' ); ?></button>
+										<button type="submit" class="button button-small" name="flxu_do" value="one" data-slug="<?php echo esc_attr( $row['slug'] ); ?>"><?php esc_html_e( 'Install', 'flx-setup' ); ?></button>
 									<?php endif; ?>
 								<?php endif; ?>
 								<?php if ( $row['installed'] && $versions && $can ) : ?>
 									<details class="flxu-ver">
-										<summary><?php esc_html_e( 'Sürüm değiştir', 'flx-setup' ); ?></summary>
+										<summary><?php esc_html_e( 'Change version', 'flx-setup' ); ?></summary>
 										<div class="flxu-ver__box">
-											<select aria-label="<?php esc_attr_e( 'Sürüm', 'flx-setup' ); ?>">
+											<select aria-label="<?php esc_attr_e( 'Version', 'flx-setup' ); ?>">
 												<?php foreach ( $versions as $v ) : ?>
 													<option value="<?php echo esc_attr( $v['version'] ); ?>">
 														<?php
@@ -770,14 +770,14 @@ final class FLXU_Admin {
 															echo ' · ' . esc_html( flx_date( strtotime( $v['released'] ) ) );
 														}
 														if ( version_compare( $v['version'], $row['installed'], '<' ) ) {
-															echo ' · ' . esc_html__( 'eski', 'flx-setup' );
+															echo ' · ' . esc_html__( 'older', 'flx-setup' );
 														}
 														?>
 													</option>
 												<?php endforeach; ?>
 											</select>
-											<button type="submit" class="button button-small" name="flxu_do" value="version" data-slug="<?php echo esc_attr( $row['slug'] ); ?>" data-name="<?php echo esc_attr( $row['name'] ); ?>"><?php esc_html_e( 'Bu sürümü kur', 'flx-setup' ); ?></button>
-											<p class="description"><?php echo FLXU_Guard::backup_ready() ? esc_html__( 'Önce yedek alınır.', 'flx-setup' ) : esc_html__( 'Flux Backup kurulu değil: yedek alınmaz.', 'flx-setup' ); ?></p>
+											<button type="submit" class="button button-small" name="flxu_do" value="version" data-slug="<?php echo esc_attr( $row['slug'] ); ?>" data-name="<?php echo esc_attr( $row['name'] ); ?>"><?php esc_html_e( 'Install this version', 'flx-setup' ); ?></button>
+											<p class="description"><?php echo FLXU_Guard::backup_ready() ? esc_html__( 'A backup is taken first.', 'flx-setup' ) : esc_html__( 'Flux Backup is not installed: no backup will be taken.', 'flx-setup' ); ?></p>
 										</div>
 									</details>
 								<?php endif; ?>
@@ -789,7 +789,7 @@ final class FLXU_Admin {
 				</table>
 			</form>
 
-			<p><a class="button-link" href="<?php echo esc_url( admin_url( 'update-core.php' ) ); ?>"><?php esc_html_e( 'WordPress güncellemeleri', 'flx-setup' ); ?></a></p>
+			<p><a class="button-link" href="<?php echo esc_url( admin_url( 'update-core.php' ) ); ?>"><?php esc_html_e( 'WordPress updates', 'flx-setup' ); ?></a></p>
 
 			<?php self::backup_strip( $catalog ); ?>
 
@@ -806,10 +806,10 @@ final class FLXU_Admin {
 		$msg = isset( $_GET['flxu_msg'] ) ? sanitize_key( wp_unslash( $_GET['flxu_msg'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		?>
 		<div class="wrap flxu-wrap">
-			<h1><?php esc_html_e( 'Güncelleme ayarları', 'flx-setup' ); ?></h1>
-			<p class="description"><?php esc_html_e( 'FluxWP tema ve eklentileri wordpress.org yerine kendi güncelleme sunucunuzdan güncellenir.', 'flx-setup' ); ?></p>
+			<h1><?php esc_html_e( 'Update settings', 'flx-setup' ); ?></h1>
+			<p class="description"><?php esc_html_e( 'FluxWP themes and plugins are updated from your own update server instead of wordpress.org.', 'flx-setup' ); ?></p>
 			<?php if ( 'saved' === $msg ) : ?>
-				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Ayarlar kaydedildi ve kontrol yapıldı.', 'flx-setup' ); ?></p></div>
+				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Settings saved and updates checked.', 'flx-setup' ); ?></p></div>
 			<?php endif; ?>
 			<?php self::status_card( FLXU_Updater::status(), FLXU_Updater::instance()->catalog() ); ?>
 			<?php self::connection_form( FLXU_Updater::settings() ); ?>
@@ -830,67 +830,67 @@ final class FLXU_Admin {
 				<input type="hidden" name="op" value="<?php echo esc_attr( $op ); ?>">
 				<input type="hidden" name="id" value="<?php echo esc_attr( $id ); ?>">
 				<?php wp_nonce_field( 'flxu_source' ); ?>
-				<button type="submit" class="<?php echo esc_attr( $class ); ?>"<?php echo 'remove' === $op ? ' data-confirm="' . esc_attr__( 'Bu kaynak silinsin mi? Ondan kurulan paketler sitede kalır, yalnız güncelleme gelmez.', 'flx-setup' ) . '"' : ''; ?>><?php echo esc_html( $label ); ?></button>
+				<button type="submit" class="<?php echo esc_attr( $class ); ?>"<?php echo 'remove' === $op ? ' data-confirm="' . esc_attr__( 'Remove this source? Packages installed from it stay on the site; they just stop receiving updates.', 'flx-setup' ) . '"' : ''; ?>><?php echo esc_html( $label ); ?></button>
 			</form>
 			<?php
 		};
 		$state_cell = static function ( array $s ): string {
 			if ( empty( $s['enabled'] ) ) {
-				return '<span class="flxu-src-st is-off">' . esc_html__( 'Kapalı', 'flx-setup' ) . '</span>';
+				return '<span class="flxu-src-st is-off">' . esc_html__( 'Off', 'flx-setup' ) . '</span>';
 			}
 			$st = FLXU_Sources::status( $s['id'] );
 			if ( empty( $st['checked'] ) ) {
-				return '<span class="flxu-src-st">' . esc_html__( 'Henüz kontrol edilmedi', 'flx-setup' ) . '</span>';
+				return '<span class="flxu-src-st">' . esc_html__( 'Not checked yet', 'flx-setup' ) . '</span>';
 			}
 			if ( empty( $st['ok'] ) ) {
 				return '<span class="flxu-src-st is-err">' . esc_html( FLXU_Updater::status_message( $st, '' !== (string) ( $s['key'] ?? '' ), FLXU_Sources::host( $s ) ) ) . '</span>';
 			}
 			/* translators: %d: package count */
-			return '<span class="flxu-src-st is-ok">' . esc_html( sprintf( _n( 'Bağlı · %d paket', 'Bağlı · %d paket', (int) $st['count'], 'flx-setup' ), (int) $st['count'] ) ) . '</span>';
+			return '<span class="flxu-src-st is-ok">' . esc_html( sprintf( _n( '\\nConnected ·%dpackage Connected ·%dpackage\\n', '\\nConnected ·%dpackage Connected ·%dpackage\\n', (int) $st['count'], 'flx-setup' ), (int) $st['count'] ) ) . '</span>';
 		};
 		$main = FLXU_Sources::main();
 		?>
-		<h2 id="flxu-sources"><?php esc_html_e( 'Diğer kaynaklar', 'flx-setup' ); ?></h2>
-		<p class="description"><?php esc_html_e( 'Paketler ana sunucuyla birlikte bu kaynaklardan da toplanır. Aynı paket birden çok kaynakta varsa kurulu olduğu kaynaktan güncellenir; kurulu değilse listede üstteki kaynak kazanır.', 'flx-setup' ); ?></p>
+		<h2 id="flxu-sources"><?php esc_html_e( 'Other sources', 'flx-setup' ); ?></h2>
+		<p class="description"><?php esc_html_e( 'Packages are collected from these sources as well as the main server. If a package is in more than one source, it updates from the source it was installed from; if it is not installed, the source higher in the list wins.', 'flx-setup' ); ?></p>
 		<?php if ( 'src_error' === $msg ) : ?>
 			<?php $err = (string) get_transient( 'flxu_src_err_' . get_current_user_id() ); ?>
-			<div class="notice notice-error inline"><p><?php echo esc_html( sprintf( /* translators: %s: error */ __( 'Kaynak eklenmedi: %s', 'flx-setup' ), $err ) ); ?></p></div>
+			<div class="notice notice-error inline"><p><?php echo esc_html( sprintf( /* translators: %s: error */ __( 'Source not added: %s', 'flx-setup' ), $err ) ); ?></p></div>
 		<?php elseif ( 'src_add' === $msg ) : ?>
-			<div class="notice notice-success inline"><p><?php esc_html_e( 'Kaynak eklendi ve paketleri alındı.', 'flx-setup' ); ?></p></div>
+			<div class="notice notice-success inline"><p><?php esc_html_e( 'Source added and its packages loaded.', 'flx-setup' ); ?></p></div>
 		<?php elseif ( 'src_remove' === $msg ) : ?>
-			<div class="notice notice-success inline"><p><?php esc_html_e( 'Kaynak silindi.', 'flx-setup' ); ?></p></div>
+			<div class="notice notice-success inline"><p><?php esc_html_e( 'Source removed.', 'flx-setup' ); ?></p></div>
 		<?php endif; ?>
 		<table class="widefat striped flxu-sources">
 			<thead><tr>
-				<th><?php esc_html_e( 'Ad', 'flx-setup' ); ?></th>
-				<th><?php esc_html_e( 'Adres', 'flx-setup' ); ?></th>
-				<th><?php esc_html_e( 'Tür', 'flx-setup' ); ?></th>
-				<th><?php esc_html_e( 'Durum', 'flx-setup' ); ?></th>
+				<th><?php esc_html_e( 'Name', 'flx-setup' ); ?></th>
+				<th><?php esc_html_e( 'Address', 'flx-setup' ); ?></th>
+				<th><?php esc_html_e( 'Type', 'flx-setup' ); ?></th>
+				<th><?php esc_html_e( 'Status', 'flx-setup' ); ?></th>
 				<th></th>
 			</tr></thead>
 			<tbody>
 				<tr class="is-main">
-					<td><strong><?php echo esc_html( $main['name'] ); ?></strong><br><small><?php esc_html_e( 'Ana sunucu', 'flx-setup' ); ?></small></td>
+					<td><strong><?php echo esc_html( $main['name'] ); ?></strong><br><small><?php esc_html_e( 'Main server', 'flx-setup' ); ?></small></td>
 					<td class="flxu-src-url"><code><?php echo esc_html( $main['url'] ); ?></code></td>
-					<td class="flxu-src-type"><?php esc_html_e( 'Sunucu', 'flx-setup' ); ?></td>
+					<td class="flxu-src-type"><?php esc_html_e( 'Server', 'flx-setup' ); ?></td>
 					<td><?php echo $state_cell( $main ); // phpcs:ignore WordPress.Security.EscapeOutput ?></td>
-					<td class="flxu-src-act"><small><?php esc_html_e( 'Yukarıdaki Bağlantı ayarı', 'flx-setup' ); ?></small></td>
+					<td class="flxu-src-act"><small><?php esc_html_e( 'Set under Connection above', 'flx-setup' ); ?></small></td>
 				</tr>
 				<?php foreach ( $extra as $i => $s ) : ?>
 					<tr class="<?php echo empty( $s['enabled'] ) ? 'is-off' : ''; ?>">
 						<td><strong><?php echo esc_html( $s['name'] ); ?></strong>
-							<?php if ( 'server' === $s['type'] && '' !== $s['key'] ) : ?><br><small><?php esc_html_e( 'Anahtar kayıtlı', 'flx-setup' ); ?></small><?php endif; ?>
+							<?php if ( 'server' === $s['type'] && '' !== $s['key'] ) : ?><br><small><?php esc_html_e( 'Key saved', 'flx-setup' ); ?></small><?php endif; ?>
 						</td>
 						<td class="flxu-src-url"><a href="<?php echo esc_url( $s['url'] ); ?>" target="_blank" rel="noopener"><code><?php echo esc_html( $s['url'] ); ?></code></a></td>
-						<td class="flxu-src-type"><?php echo 'github' === $s['type'] ? esc_html__( 'GitHub (public)', 'flx-setup' ) : esc_html__( 'Sunucu', 'flx-setup' ); ?></td>
+						<td class="flxu-src-type"><?php echo 'github' === $s['type'] ? esc_html__( 'GitHub (public)', 'flx-setup' ) : esc_html__( 'Server', 'flx-setup' ); ?></td>
 						<td><?php echo $state_cell( $s ); // phpcs:ignore WordPress.Security.EscapeOutput ?></td>
 						<td class="flxu-src-act">
 							<?php
 							if ( $i > 0 ) {
-								$form( 'up', $s['id'], __( 'Yukarı', 'flx-setup' ) );
+								$form( 'up', $s['id'], __( 'Move up', 'flx-setup' ) );
 							}
-							$form( 'toggle', $s['id'], empty( $s['enabled'] ) ? __( 'Kaynağı aç', 'flx-setup' ) : __( 'Kapat', 'flx-setup' ) );
-							$form( 'remove', $s['id'], __( 'Sil', 'flx-setup' ), 'button-link flxu-src-del flxu-confirm' );
+							$form( 'toggle', $s['id'], empty( $s['enabled'] ) ? __( 'Turn on', 'flx-setup' ) : __( 'Turn off', 'flx-setup' ) );
+							$form( 'remove', $s['id'], __( 'Delete', 'flx-setup' ), 'button-link flxu-src-del flxu-confirm' );
 							?>
 						</td>
 					</tr>
@@ -898,29 +898,29 @@ final class FLXU_Admin {
 			</tbody>
 		</table>
 
-		<h3><?php esc_html_e( 'Kaynak ekle', 'flx-setup' ); ?></h3>
+		<h3><?php esc_html_e( 'Add source', 'flx-setup' ); ?></h3>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxu-src-add">
 			<input type="hidden" name="action" value="flxu_source">
 			<input type="hidden" name="op" value="add">
 			<?php wp_nonce_field( 'flxu_source' ); ?>
 			<table class="form-table" role="presentation">
 				<tr>
-					<th scope="row"><label for="flxu-src-url"><?php esc_html_e( 'Adres', 'flx-setup' ); ?></label></th>
+					<th scope="row"><label for="flxu-src-url"><?php esc_html_e( 'Address', 'flx-setup' ); ?></label></th>
 					<td><input type="url" id="flxu-src-url" name="url" class="regular-text" required placeholder="https://github.com/owner/repo">
-						<p class="description"><?php esc_html_e( 'Public GitHub deposu (release\'lerinde <slug>.zip olan) ya da FluxWP güncelleme sunucusu adresi. Yalnız https.', 'flx-setup' ); ?></p></td>
+						<p class="description"><?php esc_html_e( 'A public GitHub repository (with <slug>.zip on its releases) or a FluxWP update-server address. https only.', 'flx-setup' ); ?></p></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="flxu-src-name"><?php esc_html_e( 'Ad', 'flx-setup' ); ?></label></th>
-					<td><input type="text" id="flxu-src-name" name="name" class="regular-text" placeholder="<?php esc_attr_e( 'Boşsa adresten alınır', 'flx-setup' ); ?>"></td>
+					<th scope="row"><label for="flxu-src-name"><?php esc_html_e( 'Name', 'flx-setup' ); ?></label></th>
+					<td><input type="text" id="flxu-src-name" name="name" class="regular-text" placeholder="<?php esc_attr_e( 'Taken from the address if empty', 'flx-setup' ); ?>"></td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="flxu-src-key"><?php esc_html_e( 'Site anahtarı', 'flx-setup' ); ?></label></th>
-					<td><input type="password" id="flxu-src-key" name="key" class="regular-text" autocomplete="off" placeholder="<?php esc_attr_e( 'İsteğe bağlı', 'flx-setup' ); ?>">
-						<p class="description"><?php esc_html_e( 'Yalnız anahtar isteyen sunucularda. Anahtar sadece o sunucunun adresine gönderilir.', 'flx-setup' ); ?></p></td>
+					<th scope="row"><label for="flxu-src-key"><?php esc_html_e( 'Site key', 'flx-setup' ); ?></label></th>
+					<td><input type="password" id="flxu-src-key" name="key" class="regular-text" autocomplete="off" placeholder="<?php esc_attr_e( 'Optional', 'flx-setup' ); ?>">
+						<p class="description"><?php esc_html_e( 'Only for servers that require a key. The key is sent only to that server\'s address.', 'flx-setup' ); ?></p></td>
 				</tr>
 			</table>
-			<p class="flxu-src-warn"><span class="dashicons dashicons-warning"></span> <?php esc_html_e( 'Bu kaynaktan gelen kod sitende çalışır; yalnız güvendiğin kaynağı ekle.', 'flx-setup' ); ?></p>
-			<?php submit_button( __( 'Test et ve ekle', 'flx-setup' ), 'secondary', 'submit', false ); ?>
+			<p class="flxu-src-warn"><span class="dashicons dashicons-warning"></span> <?php esc_html_e( 'Code from this source runs on your site; only add sources you trust.', 'flx-setup' ); ?></p>
+			<?php submit_button( __( 'Test and add', 'flx-setup' ), 'secondary', 'submit', false ); ?>
 		</form>
 		<?php
 	}
@@ -930,9 +930,9 @@ final class FLXU_Admin {
 		foreach ( FLXU_Sources::failing() as $f ) {
 			echo '<div class="flxu-strip flxu-strip--err"><span class="dashicons dashicons-warning"></span><span>';
 			/* translators: 1: source name, 2: error */
-			echo esc_html( sprintf( __( '%1$s kaynağına ulaşılamadı: %2$s Bu kaynağın paketleri son bilinen veriden gösteriliyor.', 'flx-setup' ), $f['name'], rtrim( $f['error'], '.' ) . '.' ) );
+			echo esc_html( sprintf( __( 'Could not reach %1$s: %2$s Its packages are shown from the last known data.', 'flx-setup' ), $f['name'], rtrim( $f['error'], '.' ) . '.' ) );
 			if ( current_user_can( 'manage_options' ) ) {
-				echo ' <a href="' . esc_url( self::url( array(), self::SETTINGS_SLUG ) . '#flxu-sources' ) . '">' . esc_html__( 'Kaynaklar', 'flx-setup' ) . '</a>';
+				echo ' <a href="' . esc_url( self::url( array(), self::SETTINGS_SLUG ) . '#flxu-sources' ) . '">' . esc_html__( 'Sources', 'flx-setup' ) . '</a>';
 			}
 			echo '</span></div>';
 		}
@@ -942,15 +942,15 @@ final class FLXU_Admin {
 	private static function backup_strip( array $catalog ): void {
 		if ( FLXU_Guard::backup_ready() ) {
 			$url = admin_url( 'admin.php?page=flx-backup' );
-			echo '<div class="flxu-strip flxu-strip--ok"><span class="dashicons dashicons-shield"></span><span>' . esc_html__( 'Her güncellemeden önce yedek alınır (Flux Backup).', 'flx-setup' ) . '</span> <a href="' . esc_url( $url ) . '">' . esc_html__( 'Yedekler', 'flx-setup' ) . '</a></div>';
+			echo '<div class="flxu-strip flxu-strip--ok"><span class="dashicons dashicons-shield"></span><span>' . esc_html__( 'A backup is taken before every update (Flux Backup).', 'flx-setup' ) . '</span> <a href="' . esc_url( $url ) . '">' . esc_html__( 'Backups', 'flx-setup' ) . '</a></div>';
 			return;
 		}
 		$files = FLXU_Updater::plugin_files();
-		echo '<div class="flxu-strip flxu-strip--warn"><span class="dashicons dashicons-warning"></span><span>' . esc_html__( 'Güncelleme öncesi yedek alınmıyor: Flux Backup eklentisi kurulu ya da etkin değil.', 'flx-setup' ) . '</span>';
+		echo '<div class="flxu-strip flxu-strip--warn"><span class="dashicons dashicons-warning"></span><span>' . esc_html__( 'No backup before updates: the Flux Backup plugin is not installed or active.', 'flx-setup' ) . '</span>';
 		if ( isset( $files['flx-backup'] ) && current_user_can( 'activate_plugins' ) ) {
-			echo ' <a href="' . esc_url( wp_nonce_url( admin_url( 'plugins.php?action=activate&plugin=' . rawurlencode( $files['flx-backup'] ) ), 'activate-plugin_' . $files['flx-backup'] ) ) . '">' . esc_html__( 'Etkinleştir', 'flx-setup' ) . '</a>';
+			echo ' <a href="' . esc_url( wp_nonce_url( admin_url( 'plugins.php?action=activate&plugin=' . rawurlencode( $files['flx-backup'] ) ), 'activate-plugin_' . $files['flx-backup'] ) ) . '">' . esc_html__( 'Activate', 'flx-setup' ) . '</a>';
 		} elseif ( isset( $catalog['flx-backup'] ) && current_user_can( 'install_plugins' ) ) {
-			echo ' <a href="' . esc_url( wp_nonce_url( self::url( array( 'flxu_install' => 'flx-backup' ) ), 'flxu_install_flx-backup' ) ) . '">' . esc_html__( 'Flux Backup\'i kur', 'flx-setup' ) . '</a>';
+			echo ' <a href="' . esc_url( wp_nonce_url( self::url( array( 'flxu_install' => 'flx-backup' ) ), 'flxu_install_flx-backup' ) ) . '">' . esc_html__( 'Install Flux Backup', 'flx-setup' ) . '</a>';
 		}
 		echo '</div>';
 	}
@@ -1068,7 +1068,7 @@ final class FLXU_Admin {
 
 	public function backups_action(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-setup' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 		}
 		check_admin_referer( 'flxu_backups' );
 		$back = self::url( array( 'hp' => max( 1, absint( $_POST['hp'] ?? 1 ) ) ) );
@@ -1138,24 +1138,24 @@ final class FLXU_Admin {
 			<span class="dashicons dashicons-backup"></span>
 			<span class="flxu-keep__text">
 				<?php if ( $days ) : ?>
-					<label for="flxu-keep-days"><?php esc_html_e( 'Güncelleme yedekleri', 'flx-setup' ); ?></label>
+					<label for="flxu-keep-days"><?php esc_html_e( 'Update backups are deleted automatically after', 'flx-setup' ); ?></label>
 					<select id="flxu-keep-days" name="keep_days">
 						<?php foreach ( $choices as $c ) : ?>
-							<option value="<?php echo esc_attr( (string) $c ); ?>" <?php selected( $days, $c ); ?>><?php echo esc_html( sprintf( _n( '%d gün', '%d gün', $c, 'flx-setup' ), $c ) ); ?></option>
+							<option value="<?php echo esc_attr( (string) $c ); ?>" <?php selected( $days, $c ); ?>><?php echo esc_html( sprintf( _n( '[[\'%dday\', \'tr\']]', '[[\'%dday\', \'tr\']]', $c, 'flx-setup' ), $c ) ); ?></option>
 						<?php endforeach; ?>
 					</select>
-					<?php esc_html_e( 'sonra otomatik silinir.', 'flx-setup' ); ?>
-					<button type="submit" name="flxu_bk" value="keep" class="button button-small"><?php esc_html_e( 'Kaydet', 'flx-setup' ); ?></button>
+					<?php esc_html_e( '.', 'flx-setup' ); ?>
+					<button type="submit" name="flxu_bk" value="keep" class="button button-small"><?php esc_html_e( 'Save', 'flx-setup' ); ?></button>
 				<?php else : ?>
 					<?php
 					/* translators: %s: Flux Backup ayarları bağlantısı */
-					printf( esc_html__( 'Güncelleme yedeklerinin saklama süresi %s sayfasından değiştirilir (Flux Backup 1.2.0 ile buradan da değiştirilebilir).', 'flx-setup' ), '<a href="' . esc_url( admin_url( 'admin.php?page=flx-backup-settings' ) ) . '">' . esc_html__( 'Flux Backup ayarları', 'flx-setup' ) . '</a>' );
+					printf( esc_html__( 'Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here).', 'flx-setup' ), '<a href="' . esc_url( admin_url( 'admin.php?page=flx-backup-settings' ) ) . '">' . esc_html__( 'Flux Backup settings', 'flx-setup' ) . '</a>' );
 					?>
 				<?php endif; ?>
-				<small><?php echo esc_html( sprintf( _n( 'Şu an %1$d güncelleme yedeği, %2$s.', 'Şu an %1$d güncelleme yedeği, %2$s.', count( $list ), 'flx-setup' ), count( $list ), size_format( $total, 1 ) ) ); ?></small>
+				<small><?php echo esc_html( sprintf( _n( '\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n', '\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n', count( $list ), 'flx-setup' ), count( $list ), size_format( $total, 1 ) ) ); ?></small>
 			</span>
 			<?php if ( $list ) : ?>
-				<button type="submit" name="flxu_bk" value="all" class="button button-link-delete flxu-confirm" data-confirm="<?php echo esc_attr__( 'Kilitli olmayan tüm güncelleme yedekleri silinsin mi? Bu geri alınamaz.', 'flx-setup' ); ?>"><?php esc_html_e( 'Tümünü sil', 'flx-setup' ); ?></button>
+				<button type="submit" name="flxu_bk" value="all" class="button button-link-delete flxu-confirm" data-confirm="<?php echo esc_attr__( 'Delete all unlocked update backups? This cannot be undone.', 'flx-setup' ); ?>"><?php esc_html_e( 'Delete all', 'flx-setup' ); ?></button>
 			<?php endif; ?>
 		</form>
 		<?php
@@ -1172,10 +1172,10 @@ final class FLXU_Admin {
 		$page  = min( self::history_page(), $pages );
 		$log   = array_slice( $all, ( $page - 1 ) * self::HISTORY_PER_PAGE, self::HISTORY_PER_PAGE );
 
-		echo '<h2 id="flxu-history">' . esc_html__( 'Geçmiş', 'flx-setup' ) . '</h2>';
+		echo '<h2 id="flxu-history">' . esc_html__( 'History', 'flx-setup' ) . '</h2>';
 		self::retention_bar();
 		if ( ! $log ) {
-			echo '<p class="description">' . esc_html__( 'Henüz FluxWP paket güncellemesi yapılmadı.', 'flx-setup' ) . '</p>';
+			echo '<p class="description">' . esc_html__( 'No FluxWP package updates yet.', 'flx-setup' ) . '</p>';
 			return;
 		}
 		$api         = self::backup_api();
@@ -1191,13 +1191,13 @@ final class FLXU_Admin {
 			<?php self::history_nav( $page, $pages, $total, $can_delete ); ?>
 			<table class="widefat striped flxu-history">
 				<thead><tr>
-					<?php if ( $can_delete ) : ?><td class="check-column"><input type="checkbox" id="flxu-hcheck-all" aria-label="<?php esc_attr_e( 'Tümünü seç', 'flx-setup' ); ?>"></td><?php endif; ?>
-					<th><?php esc_html_e( 'Tarih', 'flx-setup' ); ?></th>
-					<th><?php esc_html_e( 'Paket', 'flx-setup' ); ?></th>
-					<th><?php esc_html_e( 'İşlem', 'flx-setup' ); ?></th>
-					<th><?php esc_html_e( 'Sonuç', 'flx-setup' ); ?></th>
-					<th><?php esc_html_e( 'Kim', 'flx-setup' ); ?></th>
-					<th><?php esc_html_e( 'Yedek', 'flx-setup' ); ?></th>
+					<?php if ( $can_delete ) : ?><td class="check-column"><input type="checkbox" id="flxu-hcheck-all" aria-label="<?php esc_attr_e( 'Select all', 'flx-setup' ); ?>"></td><?php endif; ?>
+					<th><?php esc_html_e( 'Date', 'flx-setup' ); ?></th>
+					<th><?php esc_html_e( 'Package', 'flx-setup' ); ?></th>
+					<th><?php esc_html_e( 'Action', 'flx-setup' ); ?></th>
+					<th><?php esc_html_e( 'Result', 'flx-setup' ); ?></th>
+					<th><?php esc_html_e( 'By', 'flx-setup' ); ?></th>
+					<th><?php esc_html_e( 'Backup', 'flx-setup' ); ?></th>
 				</tr></thead>
 				<tbody>
 				<?php foreach ( $log as $e ) : ?>
@@ -1219,30 +1219,30 @@ final class FLXU_Admin {
 						<td><strong><?php echo esc_html( $e['name'] ); ?></strong></td>
 						<td><?php echo esc_html( self::action_label( $e ) ); ?></td>
 						<td>
-							<span class="flxu-badge <?php echo 'ok' === $e['result'] ? 'flxu-badge--ok' : 'flxu-badge--err'; ?>"><?php echo 'ok' === $e['result'] ? esc_html__( 'Başarılı', 'flx-setup' ) : esc_html__( 'Hata', 'flx-setup' ); ?></span>
+							<span class="flxu-badge <?php echo 'ok' === $e['result'] ? 'flxu-badge--ok' : 'flxu-badge--err'; ?>"><?php echo 'ok' === $e['result'] ? esc_html__( 'Success', 'flx-setup' ) : esc_html__( 'Error', 'flx-setup' ); ?></span>
 							<?php if ( $e['message'] && ( 'ok' !== $e['result'] || 'auto_rollback' === $e['action'] ) ) : ?><br><small><?php echo esc_html( $e['message'] ); ?></small><?php endif; ?>
 						</td>
-						<td><?php echo $e['auto'] ? esc_html__( 'Otomatik', 'flx-setup' ) : esc_html( $e['user'] ); ?></td>
+						<td><?php echo $e['auto'] ? esc_html__( 'Automatic', 'flx-setup' ) : esc_html( $e['user'] ); ?></td>
 						<td class="flxu-bk">
 							<?php if ( ! $bid ) : ?>
 								—
 							<?php elseif ( $api && ! $rec ) : ?>
-								<span class="flxu-muted"><?php esc_html_e( 'Silindi', 'flx-setup' ); ?></span>
+								<span class="flxu-muted"><?php esc_html_e( 'Deleted', 'flx-setup' ); ?></span>
 							<?php elseif ( $rec ) : ?>
 								<span class="flxu-bk__size"><?php echo esc_html( size_format( (int) ( $rec['size'] ?? 0 ), 1 ) ); ?></span>
 								<?php if ( ! empty( $rec['locked'] ) ) : ?>
-									<span class="flxu-badge" title="<?php esc_attr_e( 'Kilitli yedekler otomatik silinmez.', 'flx-setup' ); ?>"><?php esc_html_e( 'Kilitli', 'flx-setup' ); ?></span>
+									<span class="flxu-badge" title="<?php esc_attr_e( 'Locked backups are never deleted automatically.', 'flx-setup' ); ?>"><?php esc_html_e( 'Locked', 'flx-setup' ); ?></span>
 								<?php elseif ( ! empty( $rec['keep_until'] ) ) : ?>
-									<small class="flxu-muted"><?php echo esc_html( sprintf( __( '%s silinir', 'flx-setup' ), flx_date( (int) $rec['keep_until'] ) ) ); ?></small>
+									<small class="flxu-muted"><?php echo esc_html( sprintf( __( 'Deleted on %s', 'flx-setup' ), flx_date( (int) $rec['keep_until'] ) ) ); ?></small>
 								<?php endif; ?>
 								<br>
-								<?php if ( $backup_page ) : ?><a href="<?php echo esc_url( add_query_arg( 'view', $bid, $backup_page ) ); ?>"><?php esc_html_e( 'Aç', 'flx-setup' ); ?></a><?php endif; ?>
+								<?php if ( $backup_page ) : ?><a href="<?php echo esc_url( add_query_arg( 'view', $bid, $backup_page ) ); ?>"><?php esc_html_e( 'Open', 'flx-setup' ); ?></a><?php endif; ?>
 								<?php if ( $deletable ) : ?>
 									<?php if ( $backup_page ) : ?> · <?php endif; ?>
-									<button type="submit" name="flxu_bk" value="one" class="button-link button-link-delete flxu-del" data-id="<?php echo esc_attr( $bid ); ?>"><?php esc_html_e( 'Sil', 'flx-setup' ); ?></button>
+									<button type="submit" name="flxu_bk" value="one" class="button-link button-link-delete flxu-del" data-id="<?php echo esc_attr( $bid ); ?>"><?php esc_html_e( 'Delete', 'flx-setup' ); ?></button>
 								<?php endif; ?>
 							<?php elseif ( $backup_page ) : ?>
-								<a href="<?php echo esc_url( add_query_arg( 'id', $bid, $backup_page ) ); ?>"><?php esc_html_e( 'Yedeği aç', 'flx-setup' ); ?></a>
+								<a href="<?php echo esc_url( add_query_arg( 'id', $bid, $backup_page ) ); ?>"><?php esc_html_e( 'Open backup', 'flx-setup' ); ?></a>
 							<?php else : ?>
 								—
 							<?php endif; ?>
@@ -1265,24 +1265,24 @@ final class FLXU_Admin {
 		<div class="tablenav">
 			<?php if ( $bulk ) : ?>
 				<div class="alignleft actions">
-					<button type="submit" name="flxu_bk" value="selected" class="button flxu-confirm" id="flxu-hdel" disabled data-confirm="<?php echo esc_attr__( 'Seçilen güncelleme yedekleri silinsin mi? Bu geri alınamaz.', 'flx-setup' ); ?>"><?php esc_html_e( 'Seçili yedekleri sil', 'flx-setup' ); ?></button>
+					<button type="submit" name="flxu_bk" value="selected" class="button flxu-confirm" id="flxu-hdel" disabled data-confirm="<?php echo esc_attr__( 'Delete the selected update backups? This cannot be undone.', 'flx-setup' ); ?>"><?php esc_html_e( 'Delete selected backups', 'flx-setup' ); ?></button>
 				</div>
 			<?php endif; ?>
 			<div class="tablenav-pages<?php echo $pages < 2 ? ' one-page' : ''; ?>">
-				<span class="displaying-num"><?php echo esc_html( sprintf( _n( '%s kayıt', '%s kayıt', $total, 'flx-setup' ), number_format_i18n( $total ) ) ); ?></span>
+				<span class="displaying-num"><?php echo esc_html( sprintf( _n( '[[\'%sregistration\', \'tr\']]', '[[\'%sregistration\', \'tr\']]', $total, 'flx-setup' ), number_format_i18n( $total ) ) ); ?></span>
 				<?php if ( $pages > 1 ) : ?>
 					<span class="pagination-links">
 						<?php if ( $page > 1 ) : ?>
-							<a class="first-page button" href="<?php echo esc_url( $link( 1 ) ); ?>"><span aria-hidden="true">«</span><span class="screen-reader-text"><?php esc_html_e( 'İlk sayfa', 'flx-setup' ); ?></span></a>
-							<a class="prev-page button" href="<?php echo esc_url( $link( $page - 1 ) ); ?>"><span aria-hidden="true">‹</span><span class="screen-reader-text"><?php esc_html_e( 'Önceki sayfa', 'flx-setup' ); ?></span></a>
+							<a class="first-page button" href="<?php echo esc_url( $link( 1 ) ); ?>"><span aria-hidden="true">«</span><span class="screen-reader-text"><?php esc_html_e( 'First page', 'flx-setup' ); ?></span></a>
+							<a class="prev-page button" href="<?php echo esc_url( $link( $page - 1 ) ); ?>"><span aria-hidden="true">‹</span><span class="screen-reader-text"><?php esc_html_e( 'Previous page', 'flx-setup' ); ?></span></a>
 						<?php else : ?>
 							<span class="tablenav-pages-navspan button disabled" aria-hidden="true">«</span>
 							<span class="tablenav-pages-navspan button disabled" aria-hidden="true">‹</span>
 						<?php endif; ?>
-						<span class="paging-input"><?php echo esc_html( sprintf( __( '%1$d / %2$d', 'flx-setup' ), $page, $pages ) ); ?></span>
+						<span class="paging-input"><?php echo esc_html( sprintf( __( '%1$d of %2$d', 'flx-setup' ), $page, $pages ) ); ?></span>
 						<?php if ( $page < $pages ) : ?>
-							<a class="next-page button" href="<?php echo esc_url( $link( $page + 1 ) ); ?>"><span aria-hidden="true">›</span><span class="screen-reader-text"><?php esc_html_e( 'Sonraki sayfa', 'flx-setup' ); ?></span></a>
-							<a class="last-page button" href="<?php echo esc_url( $link( $pages ) ); ?>"><span aria-hidden="true">»</span><span class="screen-reader-text"><?php esc_html_e( 'Son sayfa', 'flx-setup' ); ?></span></a>
+							<a class="next-page button" href="<?php echo esc_url( $link( $page + 1 ) ); ?>"><span aria-hidden="true">›</span><span class="screen-reader-text"><?php esc_html_e( 'Next page', 'flx-setup' ); ?></span></a>
+							<a class="last-page button" href="<?php echo esc_url( $link( $pages ) ); ?>"><span aria-hidden="true">»</span><span class="screen-reader-text"><?php esc_html_e( 'Last page', 'flx-setup' ); ?></span></a>
 						<?php else : ?>
 							<span class="tablenav-pages-navspan button disabled" aria-hidden="true">›</span>
 							<span class="tablenav-pages-navspan button disabled" aria-hidden="true">»</span>
@@ -1456,7 +1456,7 @@ final class FLXU_Admin {
 			document.addEventListener('click',function(e){
 				var c=e.target.closest('.flxu-confirm'); if(c&&!window.confirm(c.getAttribute('data-confirm'))){e.preventDefault();}
 				var d=e.target.closest('.flxu-del'); if(d){
-					if(!window.confirm(<?php echo wp_json_encode( __( 'Bu yedek silinsin mi? Aynı toplu güncellemedeki diğer paketlerin yedeği de bu dosyadadır. Geri alınamaz.', 'flx-setup' ) ); ?>)){e.preventDefault();return;}
+					if(!window.confirm(<?php echo wp_json_encode( __( 'Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone.', 'flx-setup' ) ); ?>)){e.preventDefault();return;}
 					d.form.elements.flxu_id.value=d.getAttribute('data-id');
 				}
 			});
@@ -1476,48 +1476,48 @@ final class FLXU_Admin {
 	/** Panel betiğinin metinleri (çevrilebilir). */
 	private static function js_strings(): array {
 		return array(
-			'needs'        => __( '%1$s için %2$s gerekli (%3$s).', 'flx-setup' ),
-			'checking'     => __( 'Kontrol ediliyor…', 'flx-setup' ),
-			'notInstalled' => __( 'kurulu değil', 'flx-setup' ),
-			'inactive'     => __( 'kurulu, etkin değil', 'flx-setup' ),
-			'addDep'       => __( '%s eklentisini de ekle', 'flx-setup' ),
-			'together'     => __( 'Birlikte kurulacak / etkinleştirilecek:', 'flx-setup' ),
+			'needs'        => __( '%1$s requires %2$s (%3$s).', 'flx-setup' ),
+			'checking'     => __( 'Checking…', 'flx-setup' ),
+			'notInstalled' => __( 'not installed', 'flx-setup' ),
+			'inactive'     => __( 'installed, inactive', 'flx-setup' ),
+			'addDep'       => __( 'Add %s too', 'flx-setup' ),
+			'together'     => __( 'Will also be installed / activated:', 'flx-setup' ),
 			'wporg'        => __( 'wordpress.org', 'flx-setup' ),
-			'remove'       => __( 'Çıkar', 'flx-setup' ),
-			'removed'      => __( '%1$s seçimden çıkarıldı: %2$s olmadan çalışmaz.', 'flx-setup' ),
-			'confirmDeps'  => __( '%1$s için şunlar da kurulup etkinleştirilecek: %2$s. Devam edilsin mi?', 'flx-setup' ),
-			'confirmVer'   => __( '%1$s için %2$s sürümü kurulsun mu?', 'flx-setup' ),
-			'confirmDel'   => __( 'Şu paketler siteden kaldırılsın mı? Dosyaları silinir. %s', 'flx-setup' ),
-			'preparing'    => __( 'Hazırlanıyor…', 'flx-setup' ),
-			'working'      => __( 'İşlem sürüyor, sayfadan ayrılmayın…', 'flx-setup' ),
-			'stay'         => __( 'Bitene kadar bu sayfadan ayrılmayın', 'flx-setup' ),
-			'reload'       => __( 'Yeniden başlat', 'flx-setup' ),
-			'reloadHint'   => __( 'Son değişiklikleri görmek için sayfayı yeniden başlatın.', 'flx-setup' ),
-			'close'        => __( 'Uyarıyı kapat', 'flx-setup' ),
-			'nothing'      => __( 'Yapılacak bir şey yok.', 'flx-setup' ),
-			'done'         => __( 'Bitti: %1$d başarılı, %2$d hatalı.', 'flx-setup' ),
-			'stepOf'       => __( '%1$d / %2$d', 'flx-setup' ),
-			'http'         => __( 'Sunucu yanıt vermedi (%s). Geçmiş ve sistem kontrolüne bakın.', 'flx-setup' ),
-			'leave'        => __( 'Kurulum/güncelleme sürüyor. Sayfadan ayrılırsanız yarım kalabilir.', 'flx-setup' ),
-			'hideLog'      => __( 'Kaydı gizle', 'flx-setup' ),
-			'showLog'      => __( 'Kaydı göster', 'flx-setup' ),
+			'remove'       => __( 'Remove', 'flx-setup' ),
+			'removed'      => __( '%1$s was deselected: it does not work without %2$s.', 'flx-setup' ),
+			'confirmDeps'  => __( 'For %1$s these will also be installed and activated: %2$s. Continue?', 'flx-setup' ),
+			'confirmVer'   => __( 'Install version %2$s of %1$s?', 'flx-setup' ),
+			'confirmDel'   => __( 'Delete these packages from the site? Their files will be removed. %s', 'flx-setup' ),
+			'preparing'    => __( 'Preparing…', 'flx-setup' ),
+			'working'      => __( 'Working, please stay on this page…', 'flx-setup' ),
+			'stay'         => __( 'Stay on this page until it finishes', 'flx-setup' ),
+			'reload'       => __( 'Reload', 'flx-setup' ),
+			'reloadHint'   => __( 'Reload the page to see the latest changes.', 'flx-setup' ),
+			'close'        => __( 'Dismiss', 'flx-setup' ),
+			'nothing'      => __( 'Nothing to do.', 'flx-setup' ),
+			'done'         => __( 'Done: %1$d succeeded, %2$d failed.', 'flx-setup' ),
+			'stepOf'       => __( '%1$d of %2$d', 'flx-setup' ),
+			'http'         => __( 'The server did not respond (%s). Check the history and system checks.', 'flx-setup' ),
+			'leave'        => __( 'An install/update is running. Leaving the page may interrupt it.', 'flx-setup' ),
+			'hideLog'      => __( 'Hide log', 'flx-setup' ),
+			'showLog'      => __( 'Show log', 'flx-setup' ),
 			'kind'         => array(
-				'install'  => __( '%s kuruluyor…', 'flx-setup' ),
-				'wporg'    => __( '%s wordpress.org\'dan kuruluyor…', 'flx-setup' ),
-				'activate' => __( '%s etkinleştiriliyor…', 'flx-setup' ),
-				'update'   => __( '%s güncelleniyor (önce yedek alınır)…', 'flx-setup' ),
-				'version'  => __( '%s sürümü değiştiriliyor (önce yedek alınır)…', 'flx-setup' ),
+				'install'  => __( 'Installing %s…', 'flx-setup' ),
+				'wporg'    => __( 'Installing %s from wordpress.org…', 'flx-setup' ),
+				'activate' => __( 'Activating %s…', 'flx-setup' ),
+				'update'   => __( 'Updating %s (backup first)…', 'flx-setup' ),
+				'version'  => __( 'Changing the version of %s (backup first)…', 'flx-setup' ),
 			),
 			'short'        => array(
-				'install'  => __( 'Kuruluyor…', 'flx-setup' ),
-				'wporg'    => __( 'Kuruluyor…', 'flx-setup' ),
-				'activate' => __( 'Etkinleştiriliyor…', 'flx-setup' ),
-				'update'   => __( 'Güncelleniyor…', 'flx-setup' ),
-				'version'  => __( 'Sürüm değiştiriliyor…', 'flx-setup' ),
-				'queued'   => __( 'Sırada', 'flx-setup' ),
+				'install'  => __( 'Installing…', 'flx-setup' ),
+				'wporg'    => __( 'Installing…', 'flx-setup' ),
+				'activate' => __( 'Activating…', 'flx-setup' ),
+				'update'   => __( 'Updating…', 'flx-setup' ),
+				'version'  => __( 'Changing version…', 'flx-setup' ),
+				'queued'   => __( 'Queued', 'flx-setup' ),
 			),
-			'ok'           => __( 'Tamam', 'flx-setup' ),
-			'fail'         => __( 'Hata', 'flx-setup' ),
+			'ok'           => __( 'Done', 'flx-setup' ),
+			'fail'         => __( 'Error', 'flx-setup' ),
 		);
 	}
 }

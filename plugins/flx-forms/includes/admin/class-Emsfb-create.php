@@ -201,7 +201,7 @@ class Create {
 					setTimeout(() => {
 						if(typeof efb_var == 'undefined' || efb_var == null) {
 							console.error('efb_var not found!')
-							document.getElementById('tab_container_efb').innerHTML ='<div class="efb bg-danger m-5 fs-6 p-5 text-white" ><p><?php echo esc_html__('If you are seeing this message, it is likely for one of these reasons: If you have a caching plugin installed, its settings may need to be reviewed.','flx-forms') . ' ' . esc_html__('Please also ensure that you have a stable internet connection and try again.','flx-forms') ?></p><p class="efb fs-7 text-darkb mt-3"><?php echo  esc_html__('Flux Forms','flx-forms') ?></p></div>';
+							document.getElementById('tab_container_efb').innerHTML ='<div class="efb bg-danger m-5 fs-6 p-5 text-white" ><p><?php echo esc_html__('\\nIf you are seeing this message, it is likely for one of these reasons: If you have a caching plugin installed, its settings may need to be reviewed.\\n','flx-forms') . ' ' . esc_html__('\\nPlease also ensure that you have a stable internet connection and try again.\\n','flx-forms') ?></p><p class="efb fs-7 text-darkb mt-3"><?php echo  esc_html__('\\nFlux Forms\\n','flx-forms') ?></p></div>';
 						}
 					}, 90000);
 			</script>

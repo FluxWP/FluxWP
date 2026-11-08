@@ -336,7 +336,7 @@ add_action(
 					$b['until'] = 0;
 					flxc_bot_save_state( $chat['id'], $b );
 					/* translators: %s: user */
-					flxc_system_message( $chat, sprintf( __( 'Günlük asistan sınırı sıfırlandı (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) );
+					flxc_system_message( $chat, sprintf( __( 'Daily assistant limit reset (%s)', 'flx-chat' ), flxc_user_name( get_current_user_id() ) ) );
 					$fresh = flxc_get_chat( $chat['id'] );
 					return array( 'usage' => flxc_chat_usage_for_js( $fresh ), 'chat' => flxc_chat_for_js( $fresh ) );
 				},

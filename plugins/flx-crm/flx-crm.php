@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux CRM
  * Description:       Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.
- * Version:           0.2.3
+ * Version:           0.2.4
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -17,13 +17,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
 if ( defined( 'FLXCRM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCRM_VERSION', '0.2.3' );
+define( 'FLXCRM_VERSION', '0.2.4' );
 define( 'FLXCRM_DB_VERSION', 1 );
 define( 'FLXCRM_FILE', __FILE__ );
 define( 'FLXCRM_DIR', plugin_dir_path( __FILE__ ) );
@@ -103,7 +104,7 @@ add_action(
 add_filter(
 	'plugin_action_links_' . plugin_basename( FLXCRM_FILE ),
 	function ( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( flxcrm_admin_url( 'settings' ) ) . '">' . esc_html__( 'Ayarlar', 'flx-crm' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( flxcrm_admin_url( 'settings' ) ) . '">' . esc_html__( 'Settings', 'flx-crm' ) . '</a>' );
 		return $links;
 	}
 );
@@ -133,7 +134,7 @@ add_filter(
 add_filter(
 	'flxa_package_heads',
 	function ( $heads ) {
-		$heads['flx-crm'] = array( 'Flux CRM', __( 'Kişiler, roller, segmentler ve pazarlama', 'flx-crm' ) );
+		$heads['flx-crm'] = array( 'Flux CRM', __( 'Contacts, roles, segments and marketing', 'flx-crm' ) );
 		return $heads;
 	}
 );

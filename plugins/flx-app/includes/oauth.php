@@ -129,9 +129,9 @@ function flxapp_clean_scope( $scope ) {
 }
 
 function flxapp_authorize_error_page( $message ) {
-	login_header( __( 'Uygulama bağlantısı', 'flx-app' ) );
+	login_header( __( 'App connection', 'flx-app' ) );
 	echo '<div id="login_error" class="notice notice-error"><p>' . esc_html( $message ) . '</p></div>';
-	echo '<p id="backtoblog"><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( '← Siteye dön', 'flx-app' ) . '</a></p>';
+	echo '<p id="backtoblog"><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( '← Back to site', 'flx-app' ) . '</a></p>';
 	login_footer();
 	exit;
 }
@@ -174,10 +174,10 @@ add_action(
 		}
 		$client = flxapp_client( $p['client_id'] );
 		if ( ! $client ) {
-			flxapp_authorize_error_page( __( 'Tanınmayan uygulama (client_id).', 'flx-app' ) );
+			flxapp_authorize_error_page( __( 'Unknown application (client_id).', 'flx-app' ) );
 		}
 		if ( ! flxapp_redirect_ok( $client, $p['redirect_uri'] ) ) {
-			flxapp_authorize_error_page( __( 'Yönlendirme adresi bu uygulama için kayıtlı değil.', 'flx-app' ) );
+			flxapp_authorize_error_page( __( 'This redirect URI is not registered for the application.', 'flx-app' ) );
 		}
 		// Buradan sonra hatalar istemciye yönlendirilir.
 		$back = array( 'state' => $p['state'] );
@@ -207,7 +207,7 @@ add_action(
 
 		if ( 'POST' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) ) {
 			if ( ! isset( $_POST['_flxapp'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_flxapp'] ) ), 'flxapp_authorize_' . $p['client_id'] ) ) {
-				flxapp_authorize_error_page( __( 'Oturum süresi doldu. Uygulamadan yeniden deneyin.', 'flx-app' ) );
+				flxapp_authorize_error_page( __( 'Your session expired. Try again from the app.', 'flx-app' ) );
 			}
 			if ( empty( $_POST['allow'] ) ) {
 				flxapp_redirect_with( $p['redirect_uri'], $back + array( 'error' => 'access_denied' ) );
@@ -230,7 +230,7 @@ add_action(
 
 		flxapp_nocache_headers();
 		add_filter( 'login_display_language_dropdown', '__return_false' );
-		login_header( __( 'Uygulama bağlantısı', 'flx-app' ) );
+		login_header( __( 'App connection', 'flx-app' ) );
 		$switch  = wp_logout_url( add_query_arg( array_map( 'rawurlencode', array_filter( $p ) ), flxapp_authorize_url() ) );
 		$host    = 'https' === wp_parse_url( $p['redirect_uri'], PHP_URL_SCHEME ) ? wp_parse_url( $p['redirect_uri'], PHP_URL_HOST ) : '';
 		$privacy = get_privacy_policy_url();
@@ -245,7 +245,7 @@ add_action(
 				<?php
 				printf(
 					/* translators: %s: app name */
-					esc_html__( '%s hesabınıza erişmek istiyor', 'flx-app' ),
+					esc_html__( '%s wants to access your account', 'flx-app' ),
 					'<strong>' . esc_html( $client['name'] ) . '</strong>'
 				);
 				?>
@@ -256,16 +256,16 @@ add_action(
 					<strong><?php echo esc_html( $user->display_name ); ?></strong>
 					<span><?php echo esc_html( $user->user_email ); ?></span>
 				</div>
-				<a class="flxapp-switch" href="<?php echo esc_url( $switch ); ?>"><?php esc_html_e( 'Değiştir', 'flx-app' ); ?></a>
+				<a class="flxapp-switch" href="<?php echo esc_url( $switch ); ?>"><?php esc_html_e( 'Change', 'flx-app' ); ?></a>
 			</div>
 			<ul class="flxapp-points">
-				<li><?php esc_html_e( 'Uygulama sizin yetkilerinizle çalışır: rolünüzün gördüğü menü ve işlemler.', 'flx-app' ); ?></li>
-				<li><?php esc_html_e( 'Erişimi istediğiniz zaman Kullanıcılar › Uygulama erişimi sayfasından kaldırabilirsiniz.', 'flx-app' ); ?></li>
+				<li><?php esc_html_e( 'The app works with your permissions: the menus and actions your role can see.', 'flx-app' ); ?></li>
+				<li><?php esc_html_e( 'You can revoke access at any time under Users › App access.', 'flx-app' ); ?></li>
 				<?php if ( $host && ! flxapp_is_loopback( $host ) ) : ?>
 					<li>
 						<?php
 						/* translators: %s: host name */
-						printf( esc_html__( 'Onaydan sonra %s adresine dönülecek.', 'flx-app' ), '<code>' . esc_html( $host ) . '</code>' );
+						printf( esc_html__( 'After approval you will return to %s.', 'flx-app' ), '<code>' . esc_html( $host ) . '</code>' );
 						?>
 					</li>
 				<?php endif; ?>
@@ -275,11 +275,11 @@ add_action(
 					<input type="hidden" name="<?php echo esc_attr( $k ); ?>" value="<?php echo esc_attr( $v ); ?>">
 				<?php endforeach; ?>
 				<?php wp_nonce_field( 'flxapp_authorize_' . $p['client_id'], '_flxapp' ); ?>
-				<button type="submit" name="deny" value="1" class="flxapp-btn"><?php esc_html_e( 'Reddet', 'flx-app' ); ?></button>
-				<button type="submit" name="allow" value="1" class="flxapp-btn is-primary"><?php esc_html_e( 'İzin ver', 'flx-app' ); ?></button>
+				<button type="submit" name="deny" value="1" class="flxapp-btn"><?php esc_html_e( 'Deny', 'flx-app' ); ?></button>
+				<button type="submit" name="allow" value="1" class="flxapp-btn is-primary"><?php esc_html_e( 'Allow', 'flx-app' ); ?></button>
 			</form>
 			<div class="flxapp-links">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Siteye dön', 'flx-app' ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Back to site', 'flx-app' ); ?></a>
 				<?php if ( $privacy ) : ?>
 					<span aria-hidden="true">·</span>
 					<a href="<?php echo esc_url( $privacy ); ?>"><?php echo esc_html( get_the_title( (int) get_option( 'wp_page_for_privacy_policy' ) ) ); ?></a>
@@ -366,7 +366,7 @@ function flxapp_sso_handle() {
 	$d   = '' !== $t ? get_transient( $key ) : false;
 	delete_transient( $key );
 	if ( ! $d || ! flxapp_opt( 'web_session' ) || ! get_userdata( (int) $d['user'] ) ) {
-		flxapp_authorize_error_page( __( 'Bağlantının süresi doldu. Uygulamadan yeniden açın.', 'flx-app' ) );
+		flxapp_authorize_error_page( __( 'This link has expired. Open it again from the app.', 'flx-app' ) );
 	}
 	wp_set_current_user( (int) $d['user'] );
 	$grant = (string) ( $d['grant'] ?? '' );

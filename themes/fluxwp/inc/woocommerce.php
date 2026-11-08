@@ -69,11 +69,11 @@ function flx_mobile_menu_actions( $html ) {
 	$donate = function_exists( 'flx_bagis_url' ) ? flx_bagis_url() : home_url( '/bagis/' );
 	$out    = '<div class="flx-mnav-actions">';
 	if ( class_exists( 'WooCommerce' ) && function_exists( 'wc_get_page_permalink' ) ) {
-		$out .= sprintf( '<a class="flx-mnav-btn" href="%s">%s<span>%s</span></a>', esc_url( wc_get_page_permalink( 'myaccount' ) ), flx_wc_icon( 'user' ), esc_html__( 'Hesabım', 'fluxwp' ) );
-		$out .= sprintf( '<a class="flx-mnav-btn flx-mnav-cart" href="%s">%s<span>%s</span><b class="flx-mnav-count" hidden></b></a>', esc_url( wc_get_cart_url() ), flx_wc_icon( 'cart' ), esc_html__( 'Sepet', 'fluxwp' ) );
+		$out .= sprintf( '<a class="flx-mnav-btn" href="%s">%s<span>%s</span></a>', esc_url( wc_get_page_permalink( 'myaccount' ) ), flx_wc_icon( 'user' ), esc_html__( 'My account', 'fluxwp' ) );
+		$out .= sprintf( '<a class="flx-mnav-btn flx-mnav-cart" href="%s">%s<span>%s</span><b class="flx-mnav-count" hidden></b></a>', esc_url( wc_get_cart_url() ), flx_wc_icon( 'cart' ), esc_html__( 'Cart', 'fluxwp' ) );
 	}
 	if ( flx_donation_mode() ) {
-		$out .= sprintf( '<a class="flx-mnav-btn flx-mnav-donate" href="%s">%s<span>%s</span></a>', esc_url( $donate ), flx_wc_icon( 'heart' ), esc_html__( 'Bağış Yap', 'fluxwp' ) );
+		$out .= sprintf( '<a class="flx-mnav-btn flx-mnav-donate" href="%s">%s<span>%s</span></a>', esc_url( $donate ), flx_wc_icon( 'heart' ), esc_html__( 'Donate', 'fluxwp' ) );
 	}
 	$out .= '</div>';
 	return substr( $html, 0, $end + 5 ) . $out . substr( $html, $end + 5 );
@@ -137,11 +137,11 @@ function flx_wc_page_title( $title, $id = 0 ) {
 		return $title;
 	}
 	$map = array(
-		'My account' => __( 'Hesabım', 'fluxwp' ),
-		'My Account' => __( 'Hesabım', 'fluxwp' ),
-		'Cart'       => __( 'Sepet', 'fluxwp' ),
-		'Checkout'   => __( 'Ödeme', 'fluxwp' ),
-		'Shop'       => __( 'Mağaza', 'fluxwp' ),
+		'My account' => __( 'My account', 'fluxwp' ),
+		'My Account' => __( 'My account', 'fluxwp' ),
+		'Cart'       => __( 'Cart', 'fluxwp' ),
+		'Checkout'   => __( 'Checkout', 'fluxwp' ),
+		'Shop'       => __( 'Shop', 'fluxwp' ),
 	);
 	return $map[ $title ] ?? $title;
 }
@@ -173,30 +173,30 @@ function flx_wc_hero( $html, $block, $instance = null ) {
 		$icon = 'user';
 		$ep   = WC()->query->get_current_endpoint();
 		if ( ! is_user_logged_in() ) {
-			$title = 'lost-password' === $ep ? WC()->query->get_endpoint_title( $ep ) : __( 'Hoş geldiniz', 'fluxwp' );
+			$title = 'lost-password' === $ep ? WC()->query->get_endpoint_title( $ep ) : __( 'Welcome', 'fluxwp' );
 			$lead  = flx_donation_mode()
-				? __( 'Bağışlarınızı, adreslerinizi ve hesap bilgilerinizi yönetmek için giriş yapın ya da birkaç saniyede hesap oluşturun.', 'fluxwp' )
-				: __( 'Siparişlerinizi, adreslerinizi ve hesap bilgilerinizi yönetmek için giriş yapın ya da birkaç saniyede hesap oluşturun.', 'fluxwp' );
+				? __( 'Log in to manage your donations, addresses and account details, or create an account in seconds.', 'fluxwp' )
+				: __( 'Log in to manage your orders, addresses and account details, or create an account in seconds.', 'fluxwp' );
 		} elseif ( $ep && 'dashboard' !== $ep ) {
 			$t     = WC()->query->get_endpoint_title( $ep );
 			$title = $t ? $t : $page;
 		} else {
 			$u = wp_get_current_user();
 			/* translators: %s: müşterinin adı */
-			$title = sprintf( __( 'Merhaba, %s', 'fluxwp' ), $u->first_name ? $u->first_name : $u->display_name );
+			$title = sprintf( __( 'Hello, %s', 'fluxwp' ), $u->first_name ? $u->first_name : $u->display_name );
 			$lead  = flx_donation_mode()
-				? __( 'Bağışlarınızı takip edin, adreslerinizi ve hesap bilgilerinizi tek yerden yönetin.', 'fluxwp' )
-				: __( 'Siparişlerinizi takip edin, adreslerinizi ve hesap bilgilerinizi tek yerden yönetin.', 'fluxwp' );
+				? __( 'Track your donations and manage your addresses and account details in one place.', 'fluxwp' )
+				: __( 'Track your orders and manage your addresses and account details in one place.', 'fluxwp' );
 		}
 	} else {
 		$steps = array(
-			'cart'     => __( 'Sepet', 'fluxwp' ),
-			'checkout' => __( 'Ödeme', 'fluxwp' ),
-			'received' => __( 'Onay', 'fluxwp' ),
+			'cart'     => __( 'Cart', 'fluxwp' ),
+			'checkout' => __( 'Checkout', 'fluxwp' ),
+			'received' => __( 'Confirmation', 'fluxwp' ),
 		);
 		$keys  = array_keys( $steps );
 		$cur   = array_search( $ctx, $keys, true );
-		$side  = '<ol class="flx-steps" aria-label="' . esc_attr__( 'Sipariş adımları', 'fluxwp' ) . '">';
+		$side  = '<ol class="flx-steps" aria-label="' . esc_attr__( 'Order steps', 'fluxwp' ) . '">';
 		foreach ( $keys as $i => $k ) {
 			$state = $i < $cur ? 'is-done' : ( $i === $cur ? 'is-current' : '' );
 			$side .= sprintf(
@@ -210,13 +210,13 @@ function flx_wc_hero( $html, $block, $instance = null ) {
 		$side .= '</ol>';
 		if ( 'received' === $ctx ) {
 			$icon  = 'check';
-			$title = flx_donation_mode() ? __( 'Teşekkürler, bağışınız alındı', 'fluxwp' ) : __( 'Teşekkürler, siparişiniz alındı', 'fluxwp' );
-			$lead  = flx_donation_mode() ? __( 'Bağış özetiniz aşağıda. Ayrıntılar e-posta adresinize de gönderildi.', 'fluxwp' ) : __( 'Sipariş özetiniz aşağıda. Ayrıntılar e-posta adresinize de gönderildi.', 'fluxwp' );
+			$title = flx_donation_mode() ? __( 'Thank you, your donation has been received', 'fluxwp' ) : __( 'Thank you, your order has been received', 'fluxwp' );
+			$lead  = flx_donation_mode() ? __( 'Your donation summary is below. The details have also been sent to your email address.', 'fluxwp' ) : __( 'Your order summary is below. The details were also sent to your email address.', 'fluxwp' );
 		} elseif ( 'checkout' === $ctx ) {
 			$icon = 'card';
-			$lead = __( 'Bilgilerinizi girin, siparişinizi güvenle tamamlayın.', 'fluxwp' );
+			$lead = __( 'Enter your details and complete your order securely.', 'fluxwp' );
 		} else {
-			$lead = flx_donation_mode() ? __( 'Sepetinizi gözden geçirin; her alışveriş doğaya bir katkı.', 'fluxwp' ) : __( 'Sepetinizi gözden geçirin, ardından ödemeye geçin.', 'fluxwp' );
+			$lead = flx_donation_mode() ? __( 'Review your cart; every purchase is a contribution to nature.', 'fluxwp' ) : __( 'Review your cart, then proceed to checkout.', 'fluxwp' );
 		}
 	}
 
@@ -264,8 +264,8 @@ function flx_wc_account_side_close() {
 	 */
 	$bagis = flx_donation_mode() ? get_page_by_path( 'bagis' ) : null;
 	$cta   = $bagis
-		? array( 'url' => get_permalink( $bagis ), 'title' => __( 'Bağışa devam et', 'fluxwp' ), 'text' => __( 'Bağış yap', 'fluxwp' ), 'icon' => 'heart' )
-		: ( function_exists( 'wc_get_page_permalink' ) ? array( 'url' => wc_get_page_permalink( 'shop' ), 'title' => __( 'Alışverişe devam et', 'fluxwp' ), 'text' => __( 'Mağazaya git', 'fluxwp' ), 'icon' => 'cart' ) : array() );
+		? array( 'url' => get_permalink( $bagis ), 'title' => __( 'Continue donating', 'fluxwp' ), 'text' => __( 'Donate', 'fluxwp' ), 'icon' => 'heart' )
+		: ( function_exists( 'wc_get_page_permalink' ) ? array( 'url' => wc_get_page_permalink( 'shop' ), 'title' => __( 'Continue shopping', 'fluxwp' ), 'text' => __( 'Go to the shop', 'fluxwp' ), 'icon' => 'cart' ) : array() );
 	$cta   = (array) apply_filters( 'flx_account_cta', $cta );
 	?>
 	<?php if ( ! empty( $cta['url'] ) ) : ?>
@@ -287,11 +287,11 @@ add_action( 'woocommerce_after_account_navigation', 'flx_wc_account_side_close',
  */
 function flx_wc_endpoint_meta( $endpoint ) {
 	$m = array(
-		'orders'          => flx_donation_mode() ? array( 'heart', __( 'Bağışlarınızı ve durumlarını görün.', 'fluxwp' ) ) : array( 'cart', __( 'Siparişlerinizi ve durumlarını görün.', 'fluxwp' ) ),
-		'downloads'       => array( 'download', __( 'Satın aldığınız dosyaları indirin.', 'fluxwp' ) ),
-		'edit-address'    => array( 'address', __( 'Fatura ve teslimat adreslerinizi düzenleyin.', 'fluxwp' ) ),
-		'payment-methods' => array( 'card', __( 'Kayıtlı ödeme yöntemlerinizi yönetin.', 'fluxwp' ) ),
-		'edit-account'    => array( 'account', __( 'Ad, e-posta ve şifrenizi güncelleyin.', 'fluxwp' ) ),
+		'orders'          => flx_donation_mode() ? array( 'heart', __( 'See your donations and their status.', 'fluxwp' ) ) : array( 'cart', __( 'See your orders and their status.', 'fluxwp' ) ),
+		'downloads'       => array( 'download', __( 'Download the files you purchased.', 'fluxwp' ) ),
+		'edit-address'    => array( 'address', __( 'Edit your billing and shipping addresses.', 'fluxwp' ) ),
+		'payment-methods' => array( 'card', __( 'Manage your saved payment methods.', 'fluxwp' ) ),
+		'edit-account'    => array( 'account', __( 'Update your name, email and password.', 'fluxwp' ) ),
 	);
 	$meta = $m[ $endpoint ] ?? array( 'item', '' );
 	$meta = apply_filters( 'flx_wc_endpoint_meta', $meta, $endpoint );
@@ -322,7 +322,7 @@ add_action( 'woocommerce_my_account_my_orders_column_order-status', 'flx_wc_orde
  */
 function flx_wc_account_menu( $items ) {
 	if ( isset( $items['orders'] ) && flx_donation_mode() ) {
-		$items['orders'] = __( 'Bağışlar', 'fluxwp' );
+		$items['orders'] = __( 'Donations', 'fluxwp' );
 	}
 	return $items;
 }
@@ -331,7 +331,7 @@ add_filter( 'woocommerce_account_menu_items', 'flx_wc_account_menu', 20 );
 add_filter(
 	'woocommerce_endpoint_orders_title',
 	function ( $title ) {
-		return flx_donation_mode() ? __( 'Bağışlar', 'fluxwp' ) : $title;
+		return flx_donation_mode() ? __( 'Donations', 'fluxwp' ) : $title;
 	}
 );
 
@@ -339,7 +339,7 @@ add_filter(
 	'woocommerce_account_orders_columns',
 	function ( $cols ) {
 		if ( isset( $cols['order-number'] ) && flx_donation_mode() ) {
-			$cols['order-number'] = __( 'Bağış', 'fluxwp' );
+			$cols['order-number'] = __( 'Donation', 'fluxwp' );
 		}
 		return $cols;
 	}

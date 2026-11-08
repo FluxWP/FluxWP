@@ -78,7 +78,7 @@ class FLXB_WC_Fee {
 			return '';
 		}
 		$on = isset( $old['flxb_action'] ) ? ! empty( $old['fee_cover'] ) : ( function_exists( 'WC' ) && WC()->session && null !== WC()->session->get( self::SESSION ) ? (bool) WC()->session->get( self::SESSION ) : (bool) FLXB_WC_Look::get( 'fee_checked' ) );
-		return '<label class="flxwb-check flxwb-fee" data-flxwb-fee><input type="checkbox" name="fee_cover" value="1"' . checked( $on, true, false ) . '> <span><strong>' . esc_html__( 'I will also cover the transaction fee', 'flx-donate' ) . '</strong> <small data-flxwb-fee-amount></small><small class="flxwb-fee__help">' . esc_html__( 'So your whole donation reaches its purpose. The exact fee depends on the payment method and is shown at the checkout.', 'flx-donate' ) . '</small></span></label>';
+		return '<label class="flxwb-check flxwb-fee" data-flxwb-fee><input type="checkbox" name="fee_cover" value="1"' . checked( $on, true, false ) . '> <span><strong>' . esc_html__( '\\nI will also cover the transaction fee\\n', 'flx-donate' ) . '</strong> <small data-flxwb-fee-amount></small><small class="flxwb-fee__help">' . esc_html__( '\\nSo your whole donation reaches its purpose. The exact fee depends on the payment method and is shown at the checkout.\\n', 'flx-donate' ) . '</small></span></label>';
 	}
 
 	/** Keep the form's choice for the checkout. */
@@ -108,7 +108,7 @@ class FLXB_WC_Fee {
 		$base = (float) $cart->get_cart_contents_total();
 		$fee  = self::amount( $base, self::chosen() );
 		if ( $fee > 0 ) {
-			$cart->add_fee( __( 'Transaction fee (covered by you)', 'flx-donate' ), $fee, false );
+			$cart->add_fee( __( '\\nTransaction fee (covered by you)\\n', 'flx-donate' ), $fee, false );
 		}
 	}
 

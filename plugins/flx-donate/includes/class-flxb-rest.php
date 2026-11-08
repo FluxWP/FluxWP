@@ -45,7 +45,7 @@ final class FLXB_Rest {
 				'callback'            => function ( WP_REST_Request $r ) {
 					$t = flxb_get_type( (string) $r['ref'] );
 					if ( ! $t || 'archived' === $t['state'] ) {
-						return new WP_Error( 'flxb_not_found', __( 'Donation type not found.', 'flx-donate' ), array( 'status' => 404 ) );
+						return new WP_Error( 'flxb_not_found', __( '[[\'Donation type not found.\\n', 'flx-donate' ), array( 'status' => 404 ) );
 					}
 					return rest_ensure_response( $t );
 				},

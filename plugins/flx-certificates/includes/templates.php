@@ -254,7 +254,7 @@ function flxs_donor_templates() {
 		$out[] = array(
 			'id'     => (int) $t['id'],
 			'name'   => $t['config']['title'] ? $t['config']['title'] : $t['name'],
-			'group'  => '' !== $t['config']['donor']['group'] ? $t['config']['donor']['group'] : __( 'Sertifikalar', 'flx-certificates' ),
+			'group'  => '' !== $t['config']['donor']['group'] ? $t['config']['donor']['group'] : __( 'Certificates', 'flx-certificates' ),
 			'sort'   => (int) $t['config']['donor']['sort'],
 			'thumb'  => $t['thumb'] ? flxs_upload_dir()['url'] . '/' . $t['thumb'] : ( 'image' === $t['config']['background']['type'] ? $t['config']['background']['url'] : '' ),
 			'fields' => $fields,

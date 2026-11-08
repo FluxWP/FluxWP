@@ -1,0 +1,1475 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Mobile app: daily active accounts"
+msgstr "移动应用程序:每日活跃账户"
+
+msgid "UTC day / platform"
+msgstr "UTC 日/平台"
+
+msgid "Consenting accounts"
+msgstr "同意账户"
+
+msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
+msgstr "尚无符合条件的总数。需要设备和站点同意;每个网站/平台/每天少于五个帐户的群组将被扣留。国家/地区是配置的站点国家/地区,而不是人员的位置。同一个人可能会依赖多个网站或平台。"
+
+msgid "Statistics"
+msgstr "统计数据"
+
+msgid "Site Analytics"
+msgstr "网站分析"
+
+msgid "Journeys"
+msgstr "旅程"
+
+msgid "Site Analytics settings"
+msgstr "网站分析设置"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "You are not allowed to view this page."
+msgstr "您无权查看此页面。"
+
+msgid "This screen requires JavaScript."
+msgstr "此屏幕需要 JavaScript。"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "All statistics were deleted."
+msgstr "所有统计数据均被删除。"
+
+msgid "Koko Analytics data imported: %s rows."
+msgstr "Koko Analytics 已导入数据:%s行。"
+
+msgid "%s visit rows processed."
+msgstr "%s访问已处理的行。"
+
+msgid "Counting"
+msgstr "计数"
+
+msgid "Count visits"
+msgstr "统计访问次数"
+
+msgid "On"
+msgstr "开"
+
+msgid "No IP address or browser data is stored. A visitor is recognised only within the same day by a random key that is deleted the next day. A cookie is set only for visitors who arrive via a referral link (?r=code); it holds only the code (30 days). Mention in your privacy policy that statistics are collected."
+msgstr "不存储 IP 地址或浏览器数据。访客只能在同一天内通过随机密钥进行识别,并在第二天删除该随机密钥。 Cookie 仅为通过推荐链接 (?r=code) 到达的访问者设置;它仅包含代码(30 天)。在您的隐私政策中提及统计数据的收集。"
+
+msgid "Collection method"
+msgstr "采集方式"
+
+msgid "Automatic (recommended)"
+msgstr "自动(推荐)"
+
+msgid "Fast endpoint (WordPress is not loaded)"
+msgstr "快速端点(WordPress 未加载)"
+
+msgid "WordPress REST"
+msgstr "WordPress 休息"
+
+msgid "Now: fast endpoint"
+msgstr "现在:快速端点"
+
+msgid "Now: REST"
+msgstr "现在:休息"
+
+msgid "Automatic: the fast endpoint is tested when this page opens; if it fails, REST is used."
+msgstr "自动:打开该页面时测试快速端点;如果失败,则使用 REST。"
+
+msgid "\"Do Not Track\""
+msgstr "“请勿追踪”"
+
+msgid "Do not count visitors whose browser sends \"Do Not Track\" or GPC"
+msgstr "不计算浏览器发送“请勿跟踪”或 GPC 的访问者"
+
+msgid "Exclusions"
+msgstr "排除情况"
+
+msgid "Roles"
+msgstr "角色"
+
+msgid "Logged-in people with these roles are not counted. The browser you open this screen in is not counted either (even after logging out)."
+msgstr "具有这些角色的登录人员不计算在内。您打开此屏幕的浏览器也不计算在内(即使在注销后)。"
+
+msgid "IP addresses"
+msgstr "IP地址"
+
+msgid "One address per line, \"*\" or CIDR (e.g. office network)."
+msgstr "每行一个地址,“*”或 CIDR(例如办公网络)。"
+
+msgid "Events"
+msgstr "活动"
+
+msgid "Tracked automatically"
+msgstr "自动追踪"
+
+msgid "Outbound link clicks"
+msgstr "出站链接点击次数"
+
+msgid "File downloads (PDF, ZIP, DOCX…)"
+msgstr "文件下载(PDF、ZIP、DOCX...)"
+
+msgid "Phone, email and WhatsApp clicks"
+msgstr "电话、电子邮件和 WhatsApp 点击次数"
+
+msgid "Site searches (search term)"
+msgstr "网站搜索(搜索词)"
+
+msgid "Paid donations and orders (WooCommerce; type and amount)"
+msgstr "付费捐赠和订单(WooCommerce;类型和金额)"
+
+msgid "Your own event: add data-flxan-event=\"name\" (and optional data-flxan-param) to a link, or call flxan.track(\"name\", \"detail\") in JavaScript. PHP: flxan_track_event( \"name\", \"detail\", amount )."
+msgstr "您自己的事件:将 data-flxan-event=\"name\" (和可选的 data-flxan-param)添加到链接,或在 JavaScript 中调用 flxan.track(\"name\", \"detail\")。 PHP:flxan_track_event(“名称”,“详细信息”,金额)。"
+
+msgid "Funnels"
+msgstr "漏斗"
+
+msgid "Shows how far visitors get. Each step can be a page (all pages starting with that path), an event (e.g. the \"Pay\" click) or the site entry. Up to 5 funnels with 10 steps each. Changes apply to new visits; funnel steps can also be picked as goals on the Journeys screen."
+msgstr "显示访客走了多远。每个步骤可以是一个页面(以该路径开头的所有页面)、一个事件(例如“支付”点击)或站点条目。最多 5 个漏斗,每个漏斗有 10 个步骤。更改适用于新的访问;也可以在“旅程”屏幕上选择漏斗步骤作为目标。"
+
+msgid "Display and retention"
+msgstr "显示和保留"
+
+msgid "Admin screens"
+msgstr "管理屏幕"
+
+msgid "\"Views\" column in the post and page lists"
+msgstr "帖子和页面列表中的“视图”列"
+
+msgid "Page views in the admin bar while browsing the site"
+msgstr "浏览网站时管理栏中的页面视图"
+
+msgid "Retention"
+msgstr "保留率"
+
+msgid "months (0 = unlimited)"
+msgstr "月(0 = 无限制)"
+
+msgid "Daily summaries take little space; keeping them forever is usually fine."
+msgstr "每日总结占用的空间很小;永远保留它们通常没问题。"
+
+msgid "Telemetry hub"
+msgstr "遥测中心"
+
+msgid "Receive data from FluxWP installs"
+msgstr "从 FluxWP 安装接收数据"
+
+msgid "Sites that tick \"Help us improve the product\" in FluxWP Panel send anonymous usage data once a day: which FluxWP plugins are used together, versions, FluxWP PHP errors and setup-wizard progress. IP and site address are not stored; records are kept for 90 days. When enabled, \"Product telemetry\" appears in the menu."
+msgstr "在 FluxWP 面板中勾选“帮助我们改进产品”的网站每天发送一次匿名使用数据:一起使用哪些 FluxWP 插件、版本、FluxWP PHP 错误和安装向导进度。不存储IP和站点地址;记录保存 90 天。启用后,“产品遥测”将出现在菜单中。"
+
+msgid "Collection URL (FluxWP Panel › Settings › Telemetry URL):"
+msgstr "集合 URL(FluxWP 面板 › 设置 › 遥测 URL):"
+
+msgid "Data"
+msgstr "数据"
+
+msgid "Last processed %1$s. Waiting in queue: %2$s."
+msgstr "最后处理%1$s。在队列中等待:%2$s。"
+
+msgid "No visits processed yet."
+msgstr "尚未处理任何访问。"
+
+msgid "Process now"
+msgstr "立即处理"
+
+msgid "Download daily totals (CSV)"
+msgstr "下载每日总计 (CSV)"
+
+msgid "Download pages (CSV)"
+msgstr "下载页面 (CSV)"
+
+msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
+msgstr "Koko Analytics 数据发现:%1$s天 (%2$s–%3$s)。导入 Flux Analytics 安装前的天数; Koko 表未修改。"
+
+msgid "Import Koko Analytics data"
+msgstr "导入 Koko Analytics 数据"
+
+msgid "All statistics will be permanently deleted. Are you sure?"
+msgstr "所有统计数据将被永久删除。你确定吗?"
+
+msgid "Delete all statistics"
+msgstr "删除所有统计数据"
+
+msgid "Shortcodes and AI"
+msgstr "简码和人工智能"
+
+msgid "list of the most viewed posts."
+msgstr "浏览次数最多的帖子列表。"
+
+msgid "total views of this page (gun=\"30\" for the last 30 days)."
+msgstr "此页面的总浏览量(过去 30 天的gun=“30”)。"
+
+msgid "Flux AI chat and MCP clients (Claude and others) read stats with: flxan_summary, flxan_timeseries, flxan_pages, flxan_referrers, flxan_breakdown, flxan_events, flxan_realtime, flxan_page, flxan_compare, flxan_funnel, flxan_journeys, flxan_refs, flxan_ref_save. Access needs the \"View statistics\" capability (flxan_view), which Flux Roles can grant."
+msgstr "Flux AI 聊天和 MCP 客户端(Claude 等)通过以下方式读取统计信息:flxan_summary、flxan_timeseries、flxan_pages、flxan_referrers、flxan_breakdown、flxan_events、flxan_realtime、flxan_page、flxan_compare、flxan_funnel、flxan_journeys、flxan_refs、flxan_ref_save。 Access 需要“查看统计信息”功能 (flxan_view),Flux 角色可以授予该功能。"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Visitors"
+msgstr "访客"
+
+msgid "Views"
+msgstr "意见"
+
+msgid "Site"
+msgstr "网站"
+
+msgid "Channel"
+msgstr "频道"
+
+msgid "Event"
+msgstr "活动"
+
+msgid "Detail"
+msgstr "详情"
+
+msgid "Count"
+msgstr "计数"
+
+msgid "Unique"
+msgstr "独特"
+
+msgid "Amount"
+msgstr "金额"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Direct"
+msgstr "直接"
+
+msgid "Search engine"
+msgstr "搜索引擎"
+
+msgid "Social media"
+msgstr "社交媒体"
+
+msgid "AI"
+msgstr "人工智能"
+
+msgid "Email"
+msgstr "电子邮件"
+
+msgid "Ads"
+msgstr "广告"
+
+msgid "Campaign"
+msgstr "活动"
+
+msgid "Other sites"
+msgstr "其他网站"
+
+msgid "Referral link"
+msgstr "推荐链接"
+
+msgid "Mobile"
+msgstr "手机"
+
+msgid "Tablet"
+msgstr "平板电脑"
+
+msgid "Desktop"
+msgstr "桌面"
+
+msgid "Other"
+msgstr "其他"
+
+msgid "Live visitors"
+msgstr "现场访客"
+
+msgid "Traffic sources and referrals"
+msgstr "流量来源和推荐"
+
+msgid "Donation funnel"
+msgstr "捐赠漏斗"
+
+msgid "Last 14 days"
+msgstr "过去 14 天"
+
+msgid "%1$s: %2$s visitors, %3$s views"
+msgstr "%1$s:%2$s访问者、%3$s浏览量"
+
+msgid "All statistics →"
+msgstr "所有统计 →"
+
+msgid "on the site now (last 5 min)"
+msgstr "现在在网站上(最后 5 分钟)"
+
+msgid "last 30 min · %s views"
+msgstr "最后 30 分钟 ·%s浏览次数"
+
+msgid "Pages being viewed now"
+msgstr "正在查看的页面"
+
+msgid "Referral links"
+msgstr "推荐链接"
+
+msgid "Referring sites"
+msgstr "参考网站"
+
+msgid "Nobody right now"
+msgstr "现在没人"
+
+msgid "today · %s views"
+msgstr "今天 ·%s浏览次数"
+
+msgid "yesterday"
+msgstr "昨天"
+
+msgid "last 7 days"
+msgstr "过去 7 天"
+
+msgid "Most viewed today"
+msgstr "今日观看次数最多"
+
+msgid "Last 7 days"
+msgstr "过去 7 天"
+
+msgid "Outside visitors / logged-in users"
+msgstr "外部访客/登录用户"
+
+msgid "Outside: %1$s · Logged in: %2$s"
+msgstr "外部:%1$s· 登录:%2$s"
+
+msgid "Channels"
+msgstr "渠道"
+
+msgid "%s donations"
+msgstr "%s捐款"
+
+msgid "No data in this range."
+msgstr "没有该范围内的数据。"
+
+msgid "No funnel defined."
+msgstr "没有定义漏斗。"
+
+msgid "%s · last 7 days"
+msgstr "%s· 过去 7 天"
+
+msgid "No goal"
+msgstr "没有目标"
+
+msgid "Added to cart"
+msgstr "已添加到购物车"
+
+msgid "Removed from cart"
+msgstr "已从购物车中删除"
+
+msgid "Used a coupon"
+msgstr "使用了优惠券"
+
+msgid "Started checkout form"
+msgstr "开始结帐表格"
+
+msgid "Clicked \"Place order\""
+msgstr "点击“下订单”"
+
+msgid "Checkout step"
+msgstr "结账步骤"
+
+msgid "Chose payment method"
+msgstr "选择付款方式"
+
+msgid "Order created"
+msgstr "订单已创建"
+
+msgid "Clicked WhatsApp"
+msgstr "单击 WhatsApp"
+
+msgid "Clicked phone"
+msgstr "点击电话"
+
+msgid "Downloaded a file"
+msgstr "下载了一个文件"
+
+msgid "Other pages"
+msgstr "其他页面"
+
+msgid "Site traffic summary"
+msgstr "网站流量汇总"
+
+msgid "Daily visitor chart data"
+msgstr "每日访客图表数据"
+
+msgid "Most viewed pages"
+msgstr "浏览次数最多的页面"
+
+msgid "Channel, device, browser breakdown"
+msgstr "渠道、设备、浏览器细分"
+
+msgid "Clicks and conversions"
+msgstr "点击次数和转化次数"
+
+msgid "How many people are on the site now?"
+msgstr "现在网站上有多少人?"
+
+msgid "Single page statistics"
+msgstr "单页统计"
+
+msgid "Compare two periods"
+msgstr "比较两个时期"
+
+msgid "Donation / checkout funnel"
+msgstr "捐赠/结帐漏斗"
+
+msgid "Visitor journeys"
+msgstr "游客旅程"
+
+msgid "Referral links report"
+msgstr "推荐链接报告"
+
+msgid "Traffic by role"
+msgstr "按角色划分的流量"
+
+msgid "Create / name a referral link"
+msgstr "创建/命名推荐链接"
+
+msgid "You are not allowed to edit referral links."
+msgstr "您不得编辑推荐链接。"
+
+msgid "Invalid code. Use letters, digits, - and _."
+msgstr "代码无效。使用字母、数字、- 和 _。"
+
+msgid "%s views"
+msgstr "%s浏览次数"
+
+msgid "Last 30 days (Site Analytics)"
+msgstr "过去 30 天(网站分析)"
+
+msgid "Views in the last 30 days"
+msgstr "过去 30 天内的观看次数"
+
+msgid "Visitors today"
+msgstr "今天的访客"
+
+msgid "Compare this week's traffic with last week"
+msgstr "比较本周与上周的流量"
+
+msgid "Where do most visitors come from?"
+msgstr "大多数游客来自哪里?"
+
+msgid "How many people reached the donation page, and how many donated?"
+msgstr "有多少人到达了捐款页面,有多少人捐款了?"
+
+msgid "Every 5 minutes"
+msgstr "每5分钟一班"
+
+msgid "Site entry"
+msgstr "网站入口"
+
+msgid "Donation page"
+msgstr "捐款页面"
+
+msgid "Checkout page"
+msgstr "结账页面"
+
+msgid "Started filling the form"
+msgstr "开始填写表格"
+
+msgid "Donation completed"
+msgstr "捐赠完成"
+
+msgid "Donation flow"
+msgstr "捐赠流程"
+
+msgid "Funnel"
+msgstr "漏斗"
+
+msgid "First touch on checkout form"
+msgstr "第一次接触结账表格"
+
+msgid "\"Pay\" click"
+msgstr "点击“支付”"
+
+msgid "Add to cart (any product)"
+msgstr "添加到购物车(任何产品)"
+
+msgid "Payment method chosen"
+msgstr "选择的付款方式"
+
+msgid "Order created (before payment)"
+msgstr "订单已创建(付款前)"
+
+msgid "Paid donation / order"
+msgstr "有偿捐赠/订单"
+
+msgid "Remove from cart"
+msgstr "从购物车中删除"
+
+msgid "Coupon used"
+msgstr "使用优惠券"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "Yesterday"
+msgstr "昨天"
+
+msgid "Last 30 days"
+msgstr "过去 30 天"
+
+msgid "Last 90 days"
+msgstr "过去 90 天"
+
+msgid "This month"
+msgstr "这个月"
+
+msgid "Last month"
+msgstr "上个月"
+
+msgid "Last 12 months"
+msgstr "过去 12 个月"
+
+msgid "This year"
+msgstr "今年"
+
+msgid "Last year"
+msgstr "去年"
+
+msgid "All time"
+msgstr "所有时间"
+
+msgid "Custom range"
+msgstr "定制范围"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "Browser"
+msgstr "浏览器"
+
+msgid "Operating system"
+msgstr "操作系统"
+
+msgid "Browser language"
+msgstr "浏览器语言"
+
+msgid "Country"
+msgstr "国家"
+
+msgid "Campaign source"
+msgstr "活动来源"
+
+msgid "Campaign medium"
+msgstr "活动媒介"
+
+msgid "Outbound link click"
+msgstr "出站链接点击"
+
+msgid "File download"
+msgstr "文件下载"
+
+msgid "Phone click"
+msgstr "电话点击"
+
+msgid "Email click"
+msgstr "电子邮件点击"
+
+msgid "WhatsApp click"
+msgstr "点击WhatsApp"
+
+msgid "Site search"
+msgstr "站内搜索"
+
+msgid "Donation / payment"
+msgstr "捐赠/付款"
+
+msgid "Add to cart"
+msgstr "添加到购物车"
+
+msgid "Home page"
+msgstr "主页"
+
+msgid "Outside visitors"
+msgstr "外部访客"
+
+msgid "Total"
+msgstr "合计"
+
+msgid "By channel"
+msgstr "按渠道"
+
+msgid "By referring site"
+msgstr "通过参考网站"
+
+msgid "By referral code"
+msgstr "通过推荐码"
+
+msgid "By role"
+msgstr "按角色"
+
+msgid "By country"
+msgstr "按国家/地区"
+
+msgid "(direct / unknown)"
+msgstr "(直接/未知)"
+
+msgid "(no referral)"
+msgstr "(无推荐)"
+
+msgid "(unknown)"
+msgstr "(未知)"
+
+msgid "Statistics tables"
+msgstr "统计表"
+
+msgid "Tables are not installed. Deactivate and reactivate the plugin."
+msgstr "未安装表。停用并重新激活插件。"
+
+msgid "Tables are from an older version; visits cannot be saved."
+msgstr "表格来自旧版本;访问次数无法保存。"
+
+msgid "Visit counting"
+msgstr "访问计数"
+
+msgid "On. No cookies, no personal data stored."
+msgstr "上。没有cookies,没有存储个人数据。"
+
+msgid "Off: visits are not being counted."
+msgstr "关闭:不计算访问次数。"
+
+msgid "Data directory"
+msgstr "数据目录"
+
+msgid "wp-content/uploads/flx-analytics is writable and closed to web access."
+msgstr "wp-content/uploads/flx-analytics 是可写的并且禁止 Web 访问。"
+
+msgid "wp-content/uploads/flx-analytics could not be created or is not writable; visits cannot be recorded. Check the directory permissions (755)."
+msgstr "wp-content/uploads/flx-analytics 无法创建或不可写;无法记录访问情况。检查目录权限(755)。"
+
+msgid "Fast endpoint: visits are recorded without loading WordPress."
+msgstr "快速端点:无需加载 WordPress 即可记录访问。"
+
+msgid "The fast endpoint failed its test (a security plugin or the server may block PHP in the plugins folder); the REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "快速端点未通过测试(安全插件或服务器可能会阻止插件文件夹中的 PHP);使用 REST 端点。它可以工作,但每次访问都会加载 WordPress。"
+
+msgid "The REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "使用 REST 端点。它可以工作,但每次访问都会加载 WordPress。"
+
+msgid "Statistics processing"
+msgstr "统计处理"
+
+msgid "Last processed %1$s. Waiting: %2$s."
+msgstr "最后处理%1$s。等待:%2$s。"
+
+msgid "Processing error"
+msgstr "处理错误"
+
+msgid "Page cache compatibility"
+msgstr "页面缓存兼容性"
+
+msgid "A cache plugin is active; the counter runs in the browser, so cached pages are counted too. The counter script is excluded from combining/delaying."
+msgstr "缓存插件处于活动状态;计数器在浏览器中运行,因此缓存的页面也会被计算在内。计数器脚本被排除在组合/延迟之外。"
+
+msgid "The counter runs in the browser; counting continues if a cache plugin is installed."
+msgstr "计数器在浏览器中运行;如果安装了缓存插件,计数将继续。"
+
+msgid "Process statistics now"
+msgstr "立即处理统计"
+
+msgid "Processes the queued visits into the tables right away."
+msgstr "立即将排队的访问处理到表中。"
+
+msgid "Processing is already running; try again in a few seconds."
+msgstr "处理已在运行;几秒钟后重试。"
+
+msgid "%s rows processed."
+msgstr "已处理%s行。"
+
+msgid "Repair statistics tables"
+msgstr "修复统计表"
+
+msgid "Adds missing columns and tables and updates keys. No data is deleted."
+msgstr "添加缺少的列和表并更新键。没有数据被删除。"
+
+msgid "outdated"
+msgstr "过时的"
+
+msgid "Tables could not be updated. The database user needs the ALTER privilege."
+msgstr "无法更新表。数据库用户需要ALTER权限。"
+
+msgid "Tables updated."
+msgstr "表格已更新。"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "Product telemetry"
+msgstr "产品遥测"
+
+msgid "Admin theme"
+msgstr "管理主题"
+
+msgid "Store"
+msgstr "商店"
+
+msgid "Nonprofit and donations"
+msgstr "非营利组织和捐赠"
+
+msgid "%s card"
+msgstr "%s卡"
+
+msgid "(theme)"
+msgstr "(主题)"
+
+msgid "Intro"
+msgstr "简介"
+
+msgid "Where to start?"
+msgstr "从哪里开始?"
+
+msgid "Appearance"
+msgstr "外观"
+
+msgid "Install"
+msgstr "安装"
+
+msgid "Done"
+msgstr "完成"
+
+msgid "Management"
+msgstr "管理"
+
+msgid "Communication"
+msgstr "通讯"
+
+msgid "Growth"
+msgstr "成长"
+
+msgid "System"
+msgstr "系统"
+
+msgid "Plugins: %s"
+msgstr "插件:%s"
+
+msgid "No records in this range."
+msgstr "此范围内无记录。"
+
+msgid "Overview"
+msgstr "概述"
+
+msgid "Errors"
+msgstr "错误"
+
+msgid "Setup wizard"
+msgstr "设置向导"
+
+msgid "%d days"
+msgstr "%d天"
+
+msgid "All countries"
+msgstr "所有国家"
+
+msgid "Filter"
+msgstr "过滤器"
+
+msgid "Anonymous data sent once a day by sites that tick \"Help us improve the product\" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days."
+msgstr "FluxWP 面板中勾选“帮助我们改进产品”的网站每天发送一次匿名数据。不存储IP和站点地址;记录保存 90 天。"
+
+msgid "Reporting sites"
+msgstr "举报网站"
+
+msgid "Unique installs"
+msgstr "独特的安装量"
+
+msgid "Reports"
+msgstr "报告"
+
+msgid "At most one per site per day"
+msgstr "每个站点每天最多 1 个"
+
+msgid "Distinct errors"
+msgstr "明显的错误"
+
+msgid "%s fatal"
+msgstr "%s致命"
+
+msgid "Error events"
+msgstr "错误事件"
+
+msgid "Total occurrences"
+msgstr "总出现次数"
+
+msgid "No reports yet."
+msgstr "还没有报道。"
+
+msgid "FluxWP Panel on sites sends to this URL:"
+msgstr "站点上的 FluxWP Panel 发送到此 URL:"
+
+msgid "Plugin usage"
+msgstr "插件使用"
+
+msgid "Package"
+msgstr "套餐"
+
+msgid "Share"
+msgstr "分享"
+
+msgid "Common version"
+msgstr "普通版"
+
+msgid "Used together"
+msgstr "一起使用"
+
+msgid "Pair"
+msgstr "配对"
+
+msgid "FluxWP Panel only"
+msgstr "仅 FluxWP 面板"
+
+msgid "Most common package sets"
+msgstr "最常见的套装"
+
+msgid "Set (excluding FluxWP Panel)"
+msgstr "套装(不包括 FluxWP 面板)"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Site language"
+msgstr "网站语言"
+
+msgid "Language"
+msgstr "语言"
+
+msgid "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
+msgstr "国家/地区来自发送站点的设置(WooCommerce 商店国家/地区或设置 › 常规时区)。 IP 地址永远不会被查找或存储。单击一个国家/地区可按该国家/地区过滤每个选项卡。"
+
+msgid "Error record removed. It will reappear if it happens again."
+msgstr "错误记录已删除。如果再次发生,它还会再次出现。"
+
+msgid "All packages"
+msgstr "所有套餐"
+
+msgid "All types"
+msgstr "所有类型"
+
+msgid "Fatal only"
+msgstr "仅致命"
+
+msgid "%s records"
+msgstr "%s记录"
+
+msgid "No errors in this range."
+msgstr "在此范围内无误差。"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Last"
+msgstr "最后"
+
+msgid "Remove as resolved"
+msgstr "删除已解决"
+
+msgid "Resolved"
+msgstr "已解决"
+
+msgid "Delete all error records?"
+msgstr "删除所有错误记录?"
+
+msgid "Clear all errors"
+msgstr "清除所有错误"
+
+msgid "Server paths, domain, URLs, emails and IPs are removed from messages. The same error in the same package, version, file and line is one record; \"Sites\" is how many different installs saw it."
+msgstr "服务器路径、域、URL、电子邮件和 IP 将从邮件中删除。同一包、同一版本、同一文件、同一行的同一错误为一条记录; “站点”是有多少不同的安装看到它。"
+
+msgid "Wizard runs"
+msgstr "向导运行"
+
+msgid "Latest run per install"
+msgstr "每次安装最新运行"
+
+msgid "Finished"
+msgstr "完成"
+
+msgid "sites"
+msgstr "站点"
+
+msgid "Skipped"
+msgstr "跳过"
+
+msgid "Abandoned"
+msgstr "被遗弃"
+
+msgid "Median time for finishers: %s min"
+msgstr "完成者的中位时间:%s分钟"
+
+msgid "No wizard data yet."
+msgstr "还没有向导数据。"
+
+msgid "FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed."
+msgstr "FluxWP Panel 1.0.11 及更高版本在向导完成或关闭时发送最后一个步骤和选择。"
+
+msgid "Reached each step"
+msgstr "每一步都达到了"
+
+msgid "Steps"
+msgstr "步骤"
+
+msgid "skipped"
+msgstr "跳过"
+
+msgid "closed"
+msgstr "关闭"
+
+msgid "Where they stopped"
+msgstr "他们停下的地方"
+
+msgid "Last step"
+msgstr "最后一步"
+
+msgid "Everyone finished."
+msgstr "大家都结束了。"
+
+msgid "Card choices"
+msgstr "卡牌选择"
+
+msgid "Card"
+msgstr "卡"
+
+msgid "Picked"
+msgstr "采摘"
+
+msgid "Picked then removed"
+msgstr "挑选然后移除"
+
+msgid "Removed suggestion"
+msgstr "已删除建议"
+
+msgid "Preset (finishers)"
+msgstr "预设(整理器)"
+
+msgid "Colour style (finishers)"
+msgstr "颜色款式(饰面)"
+
+msgid "Choice"
+msgstr "选择"
+
+msgid "Fast endpoint works"
+msgstr "快速端点工作"
+
+msgid "Fast endpoint unreachable, REST will be used"
+msgstr "快速端点无法到达,将使用 REST"
+
+msgid "%s s"
+msgstr "%ss"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s分钟%2$s秒"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Link"
+msgstr "链接"
+
+msgid "Date range"
+msgstr "日期范围"
+
+msgid "Start"
+msgstr "开始"
+
+msgid "End"
+msgstr "结束"
+
+msgid "Apply"
+msgstr "申请"
+
+msgid "Download CSV"
+msgstr "下载 CSV 文件"
+
+msgid "Visitor type"
+msgstr "访客类型"
+
+msgid "All visitors"
+msgstr "所有访客"
+
+msgid "Logged-in users"
+msgstr "已登录用户"
+
+msgid "Role: %s"
+msgstr "角色:%s"
+
+msgid "Referral"
+msgstr "推荐"
+
+msgid "All sources"
+msgstr "所有来源"
+
+msgid "Referral links only"
+msgstr "仅推荐链接"
+
+msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
+msgstr "访客:每天唯一身份人数的总和。一个人只能在同一天内被认出;通过推荐链接到达的用户将在 30 天内记入该代码。国家/地区源自浏览器时区,而不是 IP。"
+
+msgid "Visitors and views chart"
+msgstr "访客及浏览量图表"
+
+msgid "Week of %s"
+msgstr "%s周"
+
+msgid "Compared with the previous period of equal length"
+msgstr "与之前同等长度的时期相比"
+
+msgid "Previous period: %s"
+msgstr "上期:%s"
+
+msgid "Sessions"
+msgstr "会议"
+
+msgid "Pages / visitor"
+msgstr "页数/访客"
+
+msgid "Avg. session duration"
+msgstr "平均。会话持续时间"
+
+msgid "Bounce rate"
+msgstr "跳出率"
+
+msgid "Left after viewing one page"
+msgstr "查看一页后离开"
+
+msgid "%1$s min ago: %2$s"
+msgstr "%1$s分钟前:%2$s"
+
+msgid "Live"
+msgstr "直播"
+
+msgid "Refreshes every 5 s"
+msgstr "每 5 秒刷新一次"
+
+msgid "visitors in last %s min"
+msgstr "最后%s分钟内的访问者"
+
+msgid "%s min ago"
+msgstr "%s分钟前"
+
+msgid "now"
+msgstr "现在"
+
+msgid "Pages"
+msgstr "页数"
+
+msgid "Countries"
+msgstr "国家"
+
+msgid "See all (%s)"
+msgstr "查看全部 (%s)"
+
+msgid "Traffic sources"
+msgstr "流量来源"
+
+msgid "not logged in"
+msgstr "未登录"
+
+msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
+msgstr "单击一行可按该访客类型过滤整个屏幕。仅对于外部流量,请选择顶部的“外部访客”。"
+
+msgid "No visits from other sites yet."
+msgstr "还没有其他网站的访问。"
+
+msgid "Device and browser"
+msgstr "设备和浏览器"
+
+msgid "Campaigns (UTM)"
+msgstr "营销活动 (UTM)"
+
+msgid "Not found pages (404)"
+msgstr "未找到页面 (404)"
+
+msgid "Visitors by country"
+msgstr "按国家/地区划分的访客"
+
+msgid "World map"
+msgstr "世界地图"
+
+msgid "Few"
+msgstr "很少"
+
+msgid "Many"
+msgstr "很多"
+
+msgid "No country data in this range."
+msgstr "没有此范围内的国家/地区数据。"
+
+msgid "Funnel: %s"
+msgstr "漏斗:%s"
+
+msgid "Drop from previous step"
+msgstr "从上一步中删除"
+
+msgid "No visits entered the funnel in this range."
+msgstr "在此范围内没有访问进入漏斗。"
+
+msgid "Completion"
+msgstr "完成"
+
+msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
+msgstr "计算每个访问者在一天内达到的最远步数。您可以在“设置”>“渠道”中更改步骤。"
+
+msgid "Funnel settings"
+msgstr "漏斗设置"
+
+msgid "New link"
+msgstr "新链接"
+
+msgid "Name (e.g. Ayşe's Instagram)"
+msgstr "姓名(例如 Ayşe 的 Instagram)"
+
+msgid "Code (e.g. ayse-ig)"
+msgstr "代码(例如 ayse-ig)"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
+msgstr "还没有推荐链接。将 ?r=code 添加到您共享的站点地址(例如%s);在这里给它一个名称,报告将显示该名称。"
+
+msgid "Pages / session"
+msgstr "页数/会话数"
+
+msgid "Avg. duration"
+msgstr "平均。持续时间"
+
+msgid "Furthest step"
+msgstr "最远的一步"
+
+msgid "Donations"
+msgstr "捐款"
+
+msgid "Show what visitors from this link did"
+msgstr "显示来自此链接的访问者做了什么"
+
+msgid "Copy link"
+msgstr "复制链接"
+
+msgid "Rename"
+msgstr "重命名"
+
+msgid "Remove name"
+msgstr "删除姓名"
+
+msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
+msgstr "通过链接到达的访客将获得 30 天的 cookie;他们后来的页面、后来的日子和捐赠都记入该代码。单击一行可将整个屏幕过滤给来自该链接的访问者。"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Name for \"%s\""
+msgstr "名称为“%s”"
+
+msgid "Remove the name? Statistics are kept and shown under the code."
+msgstr "去掉名字?统计数据保存并显示在代码下。"
+
+msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
+msgstr "此范围内没有事件。出站链接、下载、电话/WhatsApp 点击、搜索和捐赠都显示在此处。"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "More"
+msgstr "更多"
+
+msgid "Could not load. Try again in a moment."
+msgstr "无法加载。稍后再试一次。"
+
+msgid "No data yet."
+msgstr "还没有数据。"
+
+msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
+msgstr "在您未登录的浏览器(或手机)中打开该网站;访问会在几分钟内出现在此处。"
+
+msgid "Filter:"
+msgstr "过滤器:"
+
+msgid "Clear filter"
+msgstr "清除过滤器"
+
+msgid "Page"
+msgstr "页面"
+
+msgid "The first page of every visit counts"
+msgstr "每次访问的首页都很重要"
+
+msgid "Choose an event…"
+msgstr "选择一个活动..."
+
+msgid "Type another event…"
+msgstr "输入另一个事件..."
+
+msgid "all pages starting with this path"
+msgstr "以此路径开头的所有页面"
+
+msgid "Funnel name"
+msgstr "漏斗名称"
+
+msgid "%s steps"
+msgstr "%s步骤"
+
+msgid "Delete funnel"
+msgstr "删除漏斗"
+
+msgid "Drag to move"
+msgstr "拖动移动"
+
+msgid "Step name"
+msgstr "步骤名称"
+
+msgid "Step type"
+msgstr "台阶式"
+
+msgid "Move up"
+msgstr "向上移动"
+
+msgid "Move down"
+msgstr "下移"
+
+msgid "Delete step"
+msgstr "删除步骤"
+
+msgid "Add step"
+msgstr "添加步骤"
+
+msgid "Add preset step"
+msgstr "添加预设步骤"
+
+msgid "Add preset step…"
+msgstr "添加预设步骤..."
+
+msgid "At most %s steps."
+msgstr "最多%s步骤。"
+
+msgid "New funnel"
+msgstr "新漏斗"
+
+msgid "Reset to default donation funnel"
+msgstr "重置为默认捐赠渠道"
+
+msgid "Edit as text"
+msgstr "编辑为文本"
+
+msgid "Event name (e.g. donation_form or checkout:submit):"
+msgstr "事件名称(例如donation_form或checkout:submit):"
+
+msgid "Delete funnel \"%s\"?"
+msgstr "删除漏斗“%s”?"
+
+msgid "Funnel %s"
+msgstr "漏斗%s"
+
+msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
+msgstr "将所有渠道替换为默认捐赠渠道? (单击“保存”时应用。)"
+
+msgid "Back to visual editor"
+msgstr "返回可视化编辑器"
+
+msgid "Compare previous period"
+msgstr "比较上期"
+
+msgid "Goal page"
+msgstr "目标页面"
+
+msgid "Combine sub-pages like /news/… into one box"
+msgstr "将 /news/... 等子页面合并到一个框中"
+
+msgid "Group pages"
+msgstr "群组页面"
+
+msgid "Paths from session start"
+msgstr "从会话开始的路径"
+
+msgid "Starts at"
+msgstr "开始于"
+
+msgid "All pages"
+msgstr "所有页面"
+
+msgid "Ends at"
+msgstr "结束于"
+
+msgid "Fewer steps"
+msgstr "更少的步骤"
+
+msgid "More steps"
+msgstr "更多步骤"
+
+msgid "Paths shown"
+msgstr "显示路径"
+
+msgid "Top %s paths"
+msgstr "顶部%s路径"
+
+msgid "Top paths"
+msgstr "热门路径"
+
+msgid "Search pages…"
+msgstr "搜索页面..."
+
+msgid "Reach goal"
+msgstr "达到目标"
+
+msgid "Never reach"
+msgstr "永远达不到"
+
+msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
+msgstr "旅程:一次访问的页面顺序(前 8 个步骤;刷新同一页面算一次)。添加到购物车、结帐表格、“下订单”、付款方式、订单和 WhatsApp/电话点击等事件显示为标记为 ⚡ 的步骤。仅列出至少 2 页的访问。从“设置”>“渠道”中选择目标。此屏幕显示 0.3.0 版本之后的访问情况。"
+
+msgid "Could not load data. Refresh the page."
+msgstr "无法加载数据。刷新页面。"
+
+msgid "%1$s visits · %2$s"
+msgstr "%1$s访问 ·%2$s"
+
+msgid "No data"
+msgstr "无数据"
+
+msgid "Multi-page sessions"
+msgstr "多页会话"
+
+msgid "%s of all visits"
+msgstr "所有访问的%s"
+
+msgid "Avg path length"
+msgstr "平均路径长度"
+
+msgid "%s pages"
+msgstr "%s页"
+
+msgid "In multi-page sessions"
+msgstr "在多页会话中"
+
+msgid "Top entry page"
+msgstr "顶部入口页面"
+
+msgid "Top exit after 2+ pages"
+msgstr "2页以上后顶部退出"
+
+msgid "No goal selected"
+msgstr "未选择目标"
+
+msgid "No journeys yet"
+msgstr "还没有行程"
+
+msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
+msgstr "所选时间段内没有至少 2 页的访问。扩大过滤器或等待新的访问。"
+
+msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
+msgstr "单击一个框可按该页面过滤下面的路径。粗细显示访问次数。"
+
+msgid "%s visits"
+msgstr "%s访问次数"
+
+msgid "Entries"
+msgstr "参赛作品"
+
+msgid "Step %s"
+msgstr "步骤%s"
+
+msgid "%s end here"
+msgstr "%s在此结束"
+
+msgid "all continue"
+msgstr "一切继续"
+
+msgid "continues"
+msgstr "继续"
+
+msgid "No paths match the search."
+msgstr "没有路径与搜索匹配。"
+
+msgid "No paths to show."
+msgstr "没有可显示的路径。"
+
+msgid "Path"
+msgstr "路径"
+
+msgid "vs prev"
+msgstr "与上一个相比"
+
+msgid "new"
+msgstr "新的"
+
+msgid "Showing %2$s of %1$s paths."
+msgstr "显示%1$s路径中的%2$s。"
+
+msgid "30 days"
+msgstr "30天"
+
+msgid "7 days"
+msgstr "7天"
+
+msgid "90 days"
+msgstr "90天"
+
+msgid "Search the address"
+msgstr "搜索地址"
+
+msgid "Range"
+msgstr "范围"
+
+msgid "Pages being viewed"
+msgstr "正在查看的页面"
+
+msgid "No external sites in this range."
+msgstr "此范围内没有外部站点。"
+
+msgid "No pages were viewed in this range."
+msgstr "在此范围内没有查看任何页面。"
+
+msgid "No channel breakdown in this range."
+msgstr "在此范围内无通道击穿。"
+
+msgid "No channels"
+msgstr "无频道"
+
+msgid "Sources"
+msgstr "来源"
+
+msgid "Open in panel"
+msgstr "在面板中打开"
+
+msgid "No pages"
+msgstr "没有页面"
+
+msgid "Search sites"
+msgstr "搜索网站"
+
+msgid "Sites"
+msgstr "站点"
+
+msgid "Last minutes"
+msgstr "最后几分钟"
+
+msgid "No referrers"
+msgstr "没有推荐人"
+
+msgid "Referrers"
+msgstr "推荐人"
+
+msgid "Visitors and pageviews"
+msgstr "访问者和页面浏览量"
+
+msgid "Analytics"
+msgstr "分析"
+
+msgid "Right now"
+msgstr "现在"
+
+msgid "[['Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.', 'tr']]"
+msgstr "[['无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。', 'tr']]"

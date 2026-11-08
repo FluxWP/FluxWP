@@ -57,13 +57,13 @@ function flx_tasi_run( $src ) {
 		if ( $merged !== $new ) {
 			update_option( 'theme_mods_' . $dst, $merged );
 			/* translators: %d: count */
-			$log[] = sprintf( __( 'Tema ayarları kopyalandı (%d alan).', 'fluxwp' ), count( $merged ) - count( $new ) );
+			$log[] = sprintf( __( 'Theme settings copied (%d fields).', 'fluxwp' ), count( $merged ) - count( $new ) );
 		}
 		// Özel CSS ayrı yazı olarak tutulur (post_name = tema adı).
 		$css = wp_get_custom_css_post( $src );
 		if ( $css && ! wp_get_custom_css_post( $dst ) && '' !== trim( $css->post_content ) ) {
 			wp_update_custom_css_post( $css->post_content, array( 'stylesheet' => $dst ) );
-			$log[] = __( 'Ek CSS kopyalandı.', 'fluxwp' );
+			$log[] = __( 'Additional CSS copied.', 'fluxwp' );
 		}
 	}
 
@@ -127,7 +127,7 @@ function flx_tasi_run( $src ) {
 	}
 	if ( $copied ) {
 		/* translators: %d: count */
-		$log[] = sprintf( __( 'Site Editor kayıtları kopyalandı (%d şablon, parça ya da stil).', 'fluxwp' ), $copied );
+		$log[] = sprintf( __( 'Site Editor records copied (%d templates, parts or styles).', 'fluxwp' ), $copied );
 	}
 
 	$done         = (array) get_option( 'flx_tasi_done', array() );
@@ -146,7 +146,7 @@ add_action(
 		$src = $old_theme instanceof WP_Theme ? $old_theme->get_stylesheet() : (string) get_option( 'theme_switched' );
 		if ( in_array( $src, flx_tasi_sources(), true ) ) {
 			$log = flx_tasi_run( $src );
-			set_transient( 'flx_tasi_notice', $log ? $log : array( __( 'Taşınacak yeni bir şey yoktu.', 'fluxwp' ) ), 600 );
+			set_transient( 'flx_tasi_notice', $log ? $log : array( __( 'There was nothing new to migrate.', 'fluxwp' ) ), 600 );
 		}
 	},
 	10,
@@ -158,7 +158,7 @@ add_action(
 	'admin_post_flx_tasi',
 	function () {
 		if ( ! current_user_can( 'switch_themes' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'fluxwp' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'fluxwp' ) );
 		}
 		check_admin_referer( 'flx_tasi' );
 		$src = sanitize_key( wp_unslash( $_POST['src'] ?? '' ) );
@@ -167,7 +167,7 @@ add_action(
 			unset( $done[ $src ] );
 			update_option( 'flx_tasi_done', $done, false );
 			$log = flx_tasi_run( $src );
-			set_transient( 'flx_tasi_notice', $log ? $log : array( __( 'Taşınacak yeni bir şey yoktu.', 'fluxwp' ) ), 600 );
+			set_transient( 'flx_tasi_notice', $log ? $log : array( __( 'There was nothing new to migrate.', 'fluxwp' ) ), 600 );
 		}
 		wp_safe_redirect( admin_url( 'themes.php?page=flx-ayarlar' ) );
 		exit;
@@ -182,7 +182,7 @@ add_action(
 			return;
 		}
 		delete_transient( 'flx_tasi_notice' );
-		echo '<div class="notice notice-success is-dismissible"><p><strong>' . esc_html__( 'Eski temadan taşındı.', 'fluxwp' ) . '</strong> ' . esc_html( implode( ' ', (array) $log ) ) . '</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p><strong>' . esc_html__( 'Migrated from the previous theme.', 'fluxwp' ) . '</strong> ' . esc_html( implode( ' ', (array) $log ) ) . '</p></div>';
 	}
 );
 
@@ -198,17 +198,17 @@ function flx_tasi_box() {
 		return;
 	}
 	$done = (array) get_option( 'flx_tasi_done', array() );
-	echo '<h2 class="title">' . esc_html__( 'Eski temadan taşı', 'fluxwp' ) . '</h2>';
-	echo '<p>' . esc_html__( 'Eski temanın ayarlarını (logo, menüler, ek CSS) ve Site Editor\'de kaydettiğiniz şablon, parça ve stilleri bu temaya kopyalar. Eski temaya dokunulmaz; bu temada aynı adlı kayıt varsa üzerine yazılmaz.', 'fluxwp' ) . '</p>';
+	echo '<h2 class="title">' . esc_html__( 'Migrate from the previous theme', 'fluxwp' ) . '</h2>';
+	echo '<p>' . esc_html__( 'Copies the previous theme\'s settings (logo, menus, additional CSS) and the templates, parts and styles you saved in the Site Editor to this theme. The previous theme is left untouched; records with the same name in this theme are not overwritten.', 'fluxwp' ) . '</p>';
 	foreach ( $sources as $src ) {
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" style="display:inline-block;margin-right:8px">';
 		echo '<input type="hidden" name="action" value="flx_tasi"><input type="hidden" name="src" value="' . esc_attr( $src ) . '">';
 		wp_nonce_field( 'flx_tasi' );
 		$label = empty( $done[ $src ] )
 			/* translators: %s: theme */
-			? sprintf( __( '%s temasından taşı', 'fluxwp' ), $src )
+			? sprintf( __( 'Migrate from %s', 'fluxwp' ), $src )
 			/* translators: 1: theme, 2: date */
-			: sprintf( __( '%1$s temasından yeniden taşı (son: %2$s)', 'fluxwp' ), $src, wp_date( 'Y-m-d H:i', (int) $done[ $src ] ) );
+			: sprintf( __( 'Migrate from %1$s again (last: %2$s)', 'fluxwp' ), $src, wp_date( 'Y-m-d H:i', (int) $done[ $src ] ) );
 		submit_button( $label, 'secondary', 'submit', false );
 		echo '</form>';
 	}

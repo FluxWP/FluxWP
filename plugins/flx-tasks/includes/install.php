@@ -356,7 +356,7 @@ function flxg_install_defaults() {
 		$list  = flxg_create_list_row(
 			array(
 				'space_id' => $space,
-				'name'     => __( 'İşler', 'flx-tasks' ),
+				'name'     => __( 'Tasks', 'flx-tasks' ),
 				'color'    => '#2e7d32',
 				'owner_id' => $owner,
 			)
@@ -365,8 +365,8 @@ function flxg_install_defaults() {
 			flxg_create_task_row(
 				array(
 					'list_id'     => $list,
-					'title'       => __( 'Flux Tasks\'e hoş geldiniz: bu görevi açıp yorum yazın', 'flx-tasks' ),
-					'description' => '<p>' . esc_html__( 'Görevleri liste, pano ve takvim görünümlerinde takip edin. Sol menüden yeni liste ya da klasör ekleyebilir, liste ayarlarından özel alan ve yetki tanımlayabilirsiniz.', 'flx-tasks' ) . '</p>',
+					'title'       => __( 'Welcome to Flux Tasks: open this task and write a comment', 'flx-tasks' ),
+					'description' => '<p>' . esc_html__( 'Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings.', 'flx-tasks' ) . '</p>',
 					'status'      => 'todo',
 					'priority'    => 3,
 					'creator_id'  => $owner,

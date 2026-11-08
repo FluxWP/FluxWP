@@ -42,10 +42,10 @@ class FLXSM_Pinterest extends FLXSM_Provider {
 	public function validate( array $pl, $acc ) {
 		$errs = parent::validate( $pl, $acc );
 		if ( empty( $pl['options']['board'] ) ) {
-			$errs[] = __( 'Pinterest panosu seçin.', 'flx-social' );
+			$errs[] = __( 'Choose a Pinterest board.', 'flx-social' );
 		}
 		if ( flxsm_len( (string) ( $pl['options']['title'] ?? '' ) ) > 100 ) {
-			$errs[] = __( 'Pinterest başlığı en çok 100 karakter.', 'flx-social' );
+			$errs[] = __( 'Pinterest title can be at most 100 characters.', 'flx-social' );
 		}
 		return $errs;
 	}
@@ -227,12 +227,12 @@ class FLXSM_Pinterest extends FLXSM_Provider {
 			}
 			$st = (string) ( $r['json']['status'] ?? '' );
 			if ( 'failed' === $st ) {
-				return new WP_Error( 'flxsm_api', __( 'Pinterest videoyu işleyemedi.', 'flx-social' ), array( 'retry' => false ) );
+				return new WP_Error( 'flxsm_api', __( 'Pinterest could not process the video.', 'flx-social' ), array( 'retry' => false ) );
 			}
 			if ( 'succeeded' !== $st ) {
 				$state['n'] = (int) $state['n'] + 1;
 				if ( $state['n'] > 60 ) {
-					return new WP_Error( 'flxsm_api', __( 'Pinterest video işlemesi uzun sürdü.', 'flx-social' ), array( 'retry' => false ) );
+					return new WP_Error( 'flxsm_api', __( 'Pinterest video processing took too long.', 'flx-social' ), array( 'retry' => false ) );
 				}
 				return array(
 					'wait'  => 15,

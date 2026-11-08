@@ -27,13 +27,13 @@ function flxwk_register_types() {
 		FLXWK_PT,
 		array(
 			'labels'            => array(
-				'name'          => __( 'Bölümler', 'flx-wiki' ),
-				'singular_name' => __( 'Bölüm', 'flx-wiki' ),
-				'add_new_item'  => __( 'Yeni bölüm', 'flx-wiki' ),
-				'edit_item'     => __( 'Bölümü düzenle', 'flx-wiki' ),
-				'search_items'  => __( 'Bölüm ara', 'flx-wiki' ),
-				'all_items'     => __( 'Tüm bölümler', 'flx-wiki' ),
-				'menu_name'     => __( 'Bölümler', 'flx-wiki' ),
+				'name'          => __( 'Sections', 'flx-wiki' ),
+				'singular_name' => __( 'Section', 'flx-wiki' ),
+				'add_new_item'  => __( 'New section', 'flx-wiki' ),
+				'edit_item'     => __( 'Edit section', 'flx-wiki' ),
+				'search_items'  => __( 'Search sections', 'flx-wiki' ),
+				'all_items'     => __( 'All sections', 'flx-wiki' ),
+				'menu_name'     => __( 'Sections', 'flx-wiki' ),
 			),
 			'public'            => true,
 			'hierarchical'      => true,
@@ -51,18 +51,18 @@ function flxwk_register_types() {
 		array(
 			'labels'          => array(
 				'name'               => __( 'Wiki', 'flx-wiki' ),
-				'singular_name'      => __( 'Wiki sayfası', 'flx-wiki' ),
+				'singular_name'      => __( 'Wiki page', 'flx-wiki' ),
 				'menu_name'          => __( 'Wiki', 'flx-wiki' ),
-				'all_items'          => __( 'Tüm sayfalar', 'flx-wiki' ),
-				'add_new'            => __( 'Yeni sayfa', 'flx-wiki' ),
-				'add_new_item'       => __( 'Yeni wiki sayfası', 'flx-wiki' ),
-				'edit_item'          => __( 'Wiki sayfasını düzenle', 'flx-wiki' ),
-				'new_item'           => __( 'Yeni wiki sayfası', 'flx-wiki' ),
-				'view_item'          => __( 'Sayfayı görüntüle', 'flx-wiki' ),
-				'search_items'       => __( 'Wiki\'de ara', 'flx-wiki' ),
-				'not_found'          => __( 'Sayfa bulunamadı', 'flx-wiki' ),
-				'not_found_in_trash' => __( 'Çöpte sayfa yok', 'flx-wiki' ),
-				'parent_item_colon'  => __( 'Üst sayfa:', 'flx-wiki' ),
+				'all_items'          => __( 'All pages', 'flx-wiki' ),
+				'add_new'            => __( 'Add page', 'flx-wiki' ),
+				'add_new_item'       => __( 'New wiki page', 'flx-wiki' ),
+				'edit_item'          => __( 'Edit wiki page', 'flx-wiki' ),
+				'new_item'           => __( 'New wiki page', 'flx-wiki' ),
+				'view_item'          => __( 'View page', 'flx-wiki' ),
+				'search_items'       => __( 'Search the wiki', 'flx-wiki' ),
+				'not_found'          => __( 'No pages found', 'flx-wiki' ),
+				'not_found_in_trash' => __( 'No pages in trash', 'flx-wiki' ),
+				'parent_item_colon'  => __( 'Parent page:', 'flx-wiki' ),
 			),
 			'description'     => flxwk_intro(),
 			'public'          => true,
@@ -147,7 +147,7 @@ function flxwk_save_page( array $a ) {
 	$id   = isset( $a['id'] ) ? (int) $a['id'] : 0;
 	$post = $id ? get_post( $id ) : null;
 	if ( $id && ( ! $post || FLXWK_PT !== $post->post_type ) ) {
-		return new WP_Error( 'flxwk_not_found', __( 'Wiki sayfası bulunamadı.', 'flx-wiki' ) );
+		return new WP_Error( 'flxwk_not_found', __( 'Wiki page not found.', 'flx-wiki' ) );
 	}
 	$md = array_key_exists( 'md', $a ) ? (string) $a['md'] : ( $post ? flxwk_md( $post ) : '' );
 	$r  = flxwk_render( $md );
@@ -162,7 +162,7 @@ function flxwk_save_page( array $a ) {
 	if ( isset( $a['title'] ) ) {
 		$data['post_title'] = sanitize_text_field( $a['title'] );
 	} elseif ( ! $id ) {
-		return new WP_Error( 'flxwk_title', __( 'Başlık gerekli.', 'flx-wiki' ) );
+		return new WP_Error( 'flxwk_title', __( 'A title is required.', 'flx-wiki' ) );
 	}
 	if ( isset( $a['slug'] ) && '' !== $a['slug'] ) {
 		$data['post_name'] = sanitize_title( $a['slug'] );

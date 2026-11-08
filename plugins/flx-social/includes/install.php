@@ -161,9 +161,9 @@ add_filter(
 add_filter(
 	'flxa_cap_labels',
 	function ( $l ) {
-		$l[ FLXSM_CAP_POST ]    = __( 'Sosyal medya: gönderi hazırla', 'flx-social' );
-		$l[ FLXSM_CAP_PUBLISH ] = __( 'Sosyal medya: yayınla ve onayla', 'flx-social' );
-		$l[ FLXSM_CAP_MANAGE ]  = __( 'Sosyal medya: hesaplar ve ayarlar', 'flx-social' );
+		$l[ FLXSM_CAP_POST ]    = __( 'Social media: prepare posts', 'flx-social' );
+		$l[ FLXSM_CAP_PUBLISH ] = __( 'Social media: publish and approve', 'flx-social' );
+		$l[ FLXSM_CAP_MANAGE ]  = __( 'Social media: accounts and settings', 'flx-social' );
 		return $l;
 	}
 );

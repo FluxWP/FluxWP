@@ -63,20 +63,20 @@ function flxp_component_label( $c ) {
 	switch ( $c['type'] ) {
 		case 'plugin':
 			/* translators: %s: eklenti klasörü */
-			return sprintf( __( 'Eklenti: %s', 'flx-speed' ), $c['slug'] );
+			return sprintf( __( 'Plugin: %s', 'flx-speed' ), $c['slug'] );
 		case 'mu-plugin':
 			/* translators: %s: eklenti dosyası */
-			return sprintf( __( 'MU eklenti: %s', 'flx-speed' ), $c['slug'] );
+			return sprintf( __( 'MU plugin: %s', 'flx-speed' ), $c['slug'] );
 		case 'theme':
 			/* translators: %s: tema klasörü */
-			return sprintf( __( 'Tema: %s', 'flx-speed' ), $c['slug'] );
+			return sprintf( __( 'Theme: %s', 'flx-speed' ), $c['slug'] );
 		case 'dropin':
 			/* translators: %s: drop-in dosyası */
 			return sprintf( __( 'Drop-in: %s', 'flx-speed' ), $c['slug'] );
 		case 'core':
-			return __( 'WordPress çekirdeği', 'flx-speed' );
+			return __( 'WordPress core', 'flx-speed' );
 	}
-	return __( 'Diğer', 'flx-speed' );
+	return __( 'Other', 'flx-speed' );
 }
 
 /** Bileşen anahtarı: "plugin:flx-donate". */

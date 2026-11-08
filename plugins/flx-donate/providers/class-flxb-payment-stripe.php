@@ -39,9 +39,9 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 
 	public function settings_fields() {
 		return array(
-			array( 'key' => 'stripePKey', 'label' => __( 'Publishable key', 'flx-donate' ), 'type' => 'text', 'required' => true, 'help' => __( 'Starts with pk_live_ or pk_test_.', 'flx-donate' ) ),
-			array( 'key' => 'stripeSKey', 'label' => __( 'Secret key', 'flx-donate' ), 'type' => 'password', 'required' => true, 'help' => __( 'Starts with sk_live_, sk_test_ or rk_ (restricted key).', 'flx-donate' ) ),
-			array( 'key' => 'stripeWebhookSecret', 'label' => __( 'Webhook signing secret', 'flx-donate' ), 'type' => 'password', 'help' => __( 'Starts with whsec_. Needed for refunds and renewals of recurring gifts to show up here.', 'flx-donate' ) ),
+			array( 'key' => 'stripePKey', 'label' => __( '[[\'Publishable key\\n', 'flx-donate' ), 'type' => 'text', 'required' => true, 'help' => __( '[[\'Starts with pk_live_ or pk_test_.\\n', 'flx-donate' ) ),
+			array( 'key' => 'stripeSKey', 'label' => __( 'Secret key', 'flx-donate' ), 'type' => 'password', 'required' => true, 'help' => __( '\\nStarts with sk_live_, sk_test_ or rk_ (restricted key).\\n', 'flx-donate' ) ),
+			array( 'key' => 'stripeWebhookSecret', 'label' => __( '\\nWebhook signing secret\\n', 'flx-donate' ), 'type' => 'password', 'help' => __( '\\nStarts with whsec_. Needed for refunds and renewals of recurring gifts to show up here.\\n', 'flx-donate' ) ),
 		);
 	}
 
@@ -79,7 +79,7 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 	public function create_payment( $amount, $currency, array $meta ) {
 		$api = $this->api();
 		if ( ! $api ) {
-			return FLXB_Payment_Result::failed( __( 'Stripe is not configured on this site. Please contact the site administrator.', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( '\\nStripe is not configured on this site. Please contact the site administrator.\\n', 'flx-donate' ) );
 		}
 		$method = (string) ( $meta['method'] ?? 'charge' );
 		$minor  = FLXB_Stripe_Api::to_minor( $amount, $currency );
@@ -100,7 +100,7 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 				}
 				$pi = $api->request( 'POST', '/v1/payment_intents', $p, $ref . '-pi' );
 				if ( empty( $pi['id'] ) || empty( $pi['client_secret'] ) ) {
-					return FLXB_Payment_Result::failed( __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
+					return FLXB_Payment_Result::failed( __( '\\nThe payment could not be started. Please try again.\\n', 'flx-donate' ) );
 				}
 				return FLXB_Payment_Result::requires_action( (string) $pi['id'], array( 'client_secret' => (string) $pi['client_secret'] ), array( 'record' => array( 'payment_type' => 'one-time', 'status' => 'pending' ) ) );
 			}
@@ -108,7 +108,7 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 			/* Recurring gift. */
 			$token = (string) ( $meta['params']['token'] ?? '' );
 			if ( ! preg_match( '/^(tok|pm|src|card)_[A-Za-z0-9_]+$/', $token ) ) {
-				return FLXB_Payment_Result::failed( __( 'Invalid payment data. Please refresh the page and try again.', 'flx-donate' ) );
+				return FLXB_Payment_Result::failed( __( '\\nInvalid payment data. Please refresh the page and try again.\\n', 'flx-donate' ) );
 			}
 			$product  = $api->request( 'POST', '/v1/products', array( 'name' => '' !== $desc ? $desc : get_bloginfo( 'name' ) ), $ref . '-prod' );
 			$price    = $api->request( 'POST', '/v1/prices', array( 'unit_amount' => $minor, 'currency' => strtolower( $currency ), 'recurring' => array( 'interval' => $method ), 'product' => (string) $product['id'] ), $ref . '-price' );
@@ -132,7 +132,7 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 		}
 		$status = (string) ( $sub['status'] ?? '' );
 		if ( empty( $sub['id'] ) || ! in_array( $status, self::SUB_OK, true ) ) {
-			return FLXB_Payment_Result::failed( __( 'Your card could not be charged for the recurring donation. Please try another card.', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( '\\nYour card could not be charged for the recurring donation. Please try another card.\\n', 'flx-donate' ) );
 		}
 		$end = $sub['current_period_end'] ?? ( $sub['items']['data'][0]['current_period_end'] ?? null );
 		return FLXB_Payment_Result::completed(
@@ -182,7 +182,7 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 	}
 
 	public function verify( $record, array $params = array() ) {
-		$no = FLXB_Payment_Result::failed( __( 'The payment could not be verified yet.', 'flx-donate' ) );
+		$no = FLXB_Payment_Result::failed( __( '\\nThe payment could not be verified yet.\\n', 'flx-donate' ) );
 		if ( ! is_object( $record ) || 'stripe' !== $record->gateway ) {
 			return $no;
 		}
@@ -227,7 +227,7 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 	public function refund( $record, $amount = null ) {
 		$api = $this->api();
 		if ( ! $api || ! is_object( $record ) || 'one-time' !== $record->payment_type || '' === (string) $record->transaction_id ) {
-			return FLXB_Payment_Result::failed( __( 'This payment cannot be refunded from the site.', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( '\\nThis payment cannot be refunded from the site.\\n', 'flx-donate' ) );
 		}
 		$p = array( 'payment_intent' => (string) $record->transaction_id );
 		if ( null !== $amount && (float) $amount > 0 && (float) $amount < (float) $record->amount ) {
@@ -239,7 +239,7 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 			return FLXB_Payment_Result::failed( 'Stripe: ' . $e->getMessage() );
 		}
 		if ( empty( $r['id'] ) || in_array( $r['status'] ?? '', array( 'failed', 'canceled' ), true ) ) {
-			return FLXB_Payment_Result::failed( __( 'Stripe did not accept the refund.', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( '\\nStripe did not accept the refund.\\n', 'flx-donate' ) );
 		}
 		FLXB_Payment_Records::update( $record->id, array( 'status' => isset( $p['amount'] ) ? 'partially_refunded' : 'refunded' ) );
 		return FLXB_Payment_Result::completed( (string) $r['id'] );
@@ -249,14 +249,14 @@ class FLXB_Payment_Stripe extends FLXB_Payment_Provider_Base {
 	public function cancel_subscription( $subscription_id ) {
 		$api = $this->api();
 		if ( ! $api || '' === (string) $subscription_id ) {
-			return FLXB_Payment_Result::failed( __( 'Stripe is not configured on this site.', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( '\\nStripe is not configured on this site.\\n', 'flx-donate' ) );
 		}
 		try {
 			$s = $api->request( 'DELETE', '/v1/subscriptions/' . rawurlencode( (string) $subscription_id ) );
 		} catch ( FLXB_Stripe_Error $e ) {
 			return FLXB_Payment_Result::failed( 'Stripe: ' . $e->getMessage() );
 		}
-		return 'canceled' === ( $s['status'] ?? '' ) ? FLXB_Payment_Result::completed( (string) $subscription_id ) : FLXB_Payment_Result::failed( __( 'Stripe did not cancel the subscription.', 'flx-donate' ) );
+		return 'canceled' === ( $s['status'] ?? '' ) ? FLXB_Payment_Result::completed( (string) $subscription_id ) : FLXB_Payment_Result::failed( __( '\\nStripe did not cancel the subscription.\\n', 'flx-donate' ) );
 	}
 
 	/* ------------------------------------------------------------------

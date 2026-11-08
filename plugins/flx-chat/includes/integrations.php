@@ -132,9 +132,9 @@ function flxc_records_boot() {
 
 function flxc_donation_methods() {
 	return array(
-		'bank_transfer' => __( 'Havale / EFT', 'flx-chat' ),
-		'cash'          => __( 'Nakit', 'flx-chat' ),
-		'other'         => __( 'Diğer', 'flx-chat' ),
+		'bank_transfer' => __( 'Bank transfer', 'flx-chat' ),
+		'cash'          => __( 'Cash', 'flx-chat' ),
+		'other'         => __( 'Other', 'flx-chat' ),
 	);
 }
 
@@ -145,9 +145,15 @@ function flxc_record_text( $key ) {
 		return $v;
 	}
 	$def = array(
-		'msg_donation_pending' => __( "Merhaba {first_name}, bağış kaydınızı oluşturduk: {donation}, toplam {amount}.\n\n{bank}\n\nÖdemeyi yaptıktan sonra dekontu buradan gönderebilirsiniz. Teşekkür ederiz.", 'flx-chat' ),
-		'msg_donation_done'    => __( "Merhaba {first_name}, bağışınız kaydedildi: {donation}, toplam {amount}.\n\nDesteğiniz için teşekkür ederiz.", 'flx-chat' ),
-		'msg_receipt'          => __( 'Dekontunuz bize ulaştı, bağışınız onaylandı ({donation}, {amount}). Teşekkür ederiz.', 'flx-chat' ),
+		'msg_donation_pending' => __( 'Hello {first_name}, we have created your donation record: {donation}, total {amount}.
+
+{bank}
+
+After paying, you can send the receipt here. Thank you.', 'flx-chat' ),
+		'msg_donation_done'    => __( 'Hello {first_name}, your donation has been recorded: {donation}, total {amount}.
+
+Thank you for your support.', 'flx-chat' ),
+		'msg_receipt'          => __( 'Your receipt has reached us and your donation is confirmed ({donation}, {amount}). Thank you.', 'flx-chat' ),
 	);
 	return $def[ $key ] ?? '';
 }
@@ -191,7 +197,7 @@ function flxc_donation_for_js( array $d ) {
 	return array(
 		'kind'     => 'donation',
 		'id'       => (int) $d['id'],
-		'title'    => $what ? implode( ' · ', array_unique( $what ) ) : __( 'Bağış', 'flx-chat' ),
+		'title'    => $what ? implode( ' · ', array_unique( $what ) ) : __( 'Donation', 'flx-chat' ),
 		'qty'      => $qty,
 		'amount'   => (float) $d['amount'],
 		'money'    => flxc_money( $d['amount'], $d['currency'] ),
@@ -221,7 +227,7 @@ function flxc_certificate_for_js( array $c ) {
 		'phone'    => $person ? (string) $person['phone'] : '',
 		'qty'      => isset( $vals['fidan_sayisi'] ) ? (int) $vals['fidan_sayisi'] : 0,
 		'status'   => (string) $c['status'],
-		'statusL'  => 'revoked' === $c['status'] ? __( 'İptal', 'flx-chat' ) : '',
+		'statusL'  => 'revoked' === $c['status'] ? __( 'Cancel', 'flx-chat' ) : '',
 		'url'      => flxs_certificate_url( $c ),
 		'files'    => '' !== (string) $c['pdf_file'] && '' !== (string) $c['image_file'] && '' !== (string) ( $c['data']['og'] ?? '' ),
 		'event'    => function_exists( 'flxs_event_label' ) ? (string) flxs_event_label( $c['event_id'] ?? 0 ) : '',
@@ -366,7 +372,7 @@ function flxc_rest_records_for_chat( WP_REST_Request $req ) {
 
 function flxc_rest_create_donation( WP_REST_Request $req ) {
 	if ( ! flxc_can_record_donation() ) {
-		return new WP_Error( 'flxc_forbidden', __( 'Bağış kaydı oluşturma yetkiniz yok.', 'flx-chat' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxc_forbidden', __( 'You are not allowed to create donation records.', 'flx-chat' ), array( 'status' => 403 ) );
 	}
 	$p    = (array) $req->get_json_params();
 	$chat = ! empty( $p['chat'] ) ? flxc_rest_chat_or_error( (int) $p['chat'] ) : null;
@@ -395,7 +401,7 @@ function flxc_create_donation( array $p, $chat = null ) {
 	$opt  = $type && '' !== $key ? FLXB_Types::option( $type, $key ) : null;
 	$qty  = max( 1, absint( $p['quantity'] ?? 1 ) );
 	if ( '' !== $key && ! $opt ) {
-		return new WP_Error( 'flxc_opt', __( 'Seçilen bağış türünün bir seçeneğini seçin.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_opt', __( 'Choose an option of the selected donation type.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$currency = $type ? (string) $type['currency'] : ( function_exists( 'flxb_default_currency' ) ? flxb_default_currency() : 'TRY' );
 	$method   = sanitize_key( (string) ( $p['method'] ?? 'bank_transfer' ) );
@@ -411,7 +417,7 @@ function flxc_create_donation( array $p, $chat = null ) {
 	if ( $opt ) {
 		$unit = (float) $opt['price'];
 		if ( $unit <= 0 ) {
-			return new WP_Error( 'flxc_price', __( 'Bu seçeneğin fiyatı yok. Bağışlar › Bağış türleri sayfasından fiyat girin ya da serbest tutar seçin.', 'flx-chat' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxc_price', __( 'This option has no price. Enter a price under Donations › Donation types, or choose a custom amount.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
 		$amount = round( $unit * $qty, 2 );
 		$lines  = array( array( 'key' => $opt['key'], 'label' => $opt['label'], 'units' => $qty, 'unit_price' => $unit, 'amount' => $amount, 'unit' => $opt['unit'] ?? '', 'units_per' => (int) ( $opt['units_per'] ?? 1 ) ) );
@@ -419,16 +425,16 @@ function flxc_create_donation( array $p, $chat = null ) {
 		$amount = $num( $p['amount'] ?? 0 );
 		$unit   = $amount;
 		$qty    = 1;
-		$lines  = array( array( 'key' => '', 'label' => __( 'Serbest tutar', 'flx-chat' ), 'units' => 1, 'unit_price' => $amount, 'amount' => $amount, 'unit' => '', 'units_per' => 1 ) );
+		$lines  = array( array( 'key' => '', 'label' => __( 'Custom amount', 'flx-chat' ), 'units' => 1, 'unit_price' => $amount, 'amount' => $amount, 'unit' => '', 'units_per' => 1 ) );
 	}
 	if ( $amount <= 0 ) {
-		return new WP_Error( 'flxc_amount', __( 'Tutar girin.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_amount', __( 'Enter an amount.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$names = function_exists( 'flxb_split_names' ) ? flxb_split_names( (string) ( $p['beneficiaries'] ?? '' ) ) : array();
 	if ( $type && FLXB_Types::requires_proxy( $type ) ) {
 		$text = function_exists( 'flxb_proxy_text' ) ? flxb_proxy_text() : null;
 		if ( ! $text || empty( $p['proxy_consent'] ) ) {
-			return new WP_Error( 'flxc_proxy', __( 'Bu bağış türü için bağışçının vekâlet onayı gerekli.', 'flx-chat' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxc_proxy', __( 'This donation type requires the donor\'s proxy consent.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
 		$meta['proxy_consent'] = array( 'version' => (int) $text['version'], 'accepted_at' => flxb_now(), 'source' => 'flx-chat' );
 	}
@@ -473,7 +479,7 @@ function flxc_create_donation( array $p, $chat = null ) {
 		)
 	);
 	if ( ! $id ) {
-		return new WP_Error( 'flxc_save', __( 'Bağış kaydedilemedi.', 'flx-chat' ), array( 'status' => 500 ) );
+		return new WP_Error( 'flxc_save', __( 'The donation could not be saved.', 'flx-chat' ), array( 'status' => 500 ) );
 	}
 	$d   = FLXB_Donations::get( $id );
 	$out = array( 'donation' => flxc_donation_for_js( $d ) );
@@ -512,7 +518,7 @@ function flxc_create_donation( array $p, $chat = null ) {
 	}
 	if ( $chat ) {
 		/* translators: 1: donation summary, 2: amount */
-		flxc_system_message( $chat, sprintf( __( 'Bağış kaydı oluşturuldu: %1$s · %2$s', 'flx-chat' ), $out['donation']['title'], $out['donation']['money'] ) );
+		flxc_system_message( $chat, sprintf( __( 'Donation record created: %1$s · %2$s', 'flx-chat' ), $out['donation']['title'], $out['donation']['money'] ) );
 	}
 	return $out;
 }
@@ -536,11 +542,11 @@ function flxc_fill_donation_vars( $text, $chat, array $d ) {
 /** Bekleyen bağışı onayla (dekont geldiğinde). */
 function flxc_rest_donation_status( WP_REST_Request $req ) {
 	if ( ! flxc_can_record_donation() ) {
-		return new WP_Error( 'flxc_forbidden', __( 'Yetkiniz yok.', 'flx-chat' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxc_forbidden', __( 'You are not allowed to do this.', 'flx-chat' ), array( 'status' => 403 ) );
 	}
 	$d = FLXB_Donations::get( (int) $req['id'] );
 	if ( ! $d ) {
-		return new WP_Error( 'flxc_404', __( 'Bağış bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxc_404', __( 'Donation not found.', 'flx-chat' ), array( 'status' => 404 ) );
 	}
 	$st = 'completed' === $req->get_param( 'status' ) ? 'completed' : '';
 	if ( ! $st ) {
@@ -566,7 +572,7 @@ function flxc_make_certificate( array $a ) {
 	}
 	$tpl = $tpl_id ? flxs_get_template( $tpl_id ) : null;
 	if ( ! $tpl ) {
-		return new WP_Error( 'flxc_tpl', __( 'Sertifika şablonu bulunamadı.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_tpl', __( 'Certificate template not found.', 'flx-chat' ) );
 	}
 	$values = array();
 	foreach ( (array) ( $a['values'] ?? array() ) as $k => $v ) {
@@ -574,7 +580,7 @@ function flxc_make_certificate( array $a ) {
 	}
 	$name = trim( sanitize_text_field( (string) ( $values['ad_soyad'] ?? ( $a['name'] ?? '' ) ) ) );
 	if ( '' === $name ) {
-		return new WP_Error( 'flxc_name', __( 'Sertifika için ad soyad gerekli.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_name', __( 'A full name is required for the certificate.', 'flx-chat' ) );
 	}
 	$values['ad_soyad'] = $name;
 	$person             = flxs_upsert_person( $name, (string) ( $a['phone'] ?? '' ), (string) ( $a['email'] ?? '' ) );
@@ -594,7 +600,7 @@ function flxc_make_certificate( array $a ) {
 
 function flxc_rest_create_certificate( WP_REST_Request $req ) {
 	if ( ! flxc_can_record_certificate() ) {
-		return new WP_Error( 'flxc_forbidden', __( 'Sertifika oluşturma yetkiniz yok.', 'flx-chat' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxc_forbidden', __( 'You are not allowed to create certificates.', 'flx-chat' ), array( 'status' => 403 ) );
 	}
 	$p    = (array) $req->get_json_params();
 	$chat = ! empty( $p['chat'] ) ? flxc_rest_chat_or_error( (int) $p['chat'] ) : null;
@@ -624,7 +630,7 @@ function flxc_rest_create_certificate( WP_REST_Request $req ) {
 	}
 	if ( $chat ) {
 		/* translators: %s: certificate number */
-		flxc_system_message( $chat, sprintf( __( 'Sertifika oluşturuldu: %s', 'flx-chat' ), $cert['number'] ) );
+		flxc_system_message( $chat, sprintf( __( 'Certificate created: %s', 'flx-chat' ), $cert['number'] ) );
 	}
 	return array( 'certificate' => flxc_certificate_for_js( $cert ) );
 }
@@ -655,7 +661,7 @@ function flxc_rest_send_certificate( WP_REST_Request $req ) {
 	$c    = flxs_get_certificate( (int) $req['id'] );
 	$chat = flxc_rest_chat_or_error( (int) $req->get_param( 'chat' ) );
 	if ( ! $c ) {
-		return new WP_Error( 'flxc_404', __( 'Sertifika bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxc_404', __( 'Certificate not found.', 'flx-chat' ), array( 'status' => 404 ) );
 	}
 	if ( is_wp_error( $chat ) ) {
 		return $chat;
@@ -694,19 +700,19 @@ function flxc_attach_receipt( $message_id, $kind, $ref_id, $mark_paid = false, $
 	global $wpdb;
 	$m = flxc_get_message( $message_id );
 	if ( ! $m || ! in_array( $m['type'], array( 'image', 'document' ), true ) ) {
-		return new WP_Error( 'flxc_receipt', __( 'Dekont olarak yalnız fotoğraf veya belge seçilebilir.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_receipt', __( 'Only a photo or a document can be matched as a receipt.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$kind = 'certificate' === $kind ? 'certificate' : 'donation';
 	if ( 'donation' === $kind ) {
 		$d = flxc_flxb_on() ? FLXB_Donations::get( $ref_id ) : null;
 		if ( ! $d ) {
-			return new WP_Error( 'flxc_404', __( 'Bağış bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxc_404', __( 'Donation not found.', 'flx-chat' ), array( 'status' => 404 ) );
 		}
 		$label = flxc_donation_for_js( $d )['title'];
 	} else {
 		$c = flxc_flxs_on() ? flxs_get_certificate( $ref_id ) : null;
 		if ( ! $c ) {
-			return new WP_Error( 'flxc_404', __( 'Sertifika bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxc_404', __( 'Certificate not found.', 'flx-chat' ), array( 'status' => 404 ) );
 		}
 		$label = (string) $c['number'];
 	}
@@ -742,7 +748,7 @@ function flxc_attach_receipt( $message_id, $kind, $ref_id, $mark_paid = false, $
 		// 1.26.1: Flux Donate ödeme onayı kartı önizleme türünü ve dekont tekrarı uyarısını buradan gösterir.
 		$dup = (array) ( $meta['rcheck']['dup'] ?? array() );
 		if ( $dup && function_exists( 'flxc_dekont_dup_text' ) ) {
-			$rec['warn'] = __( 'Bu dekont daha önce', 'flx-chat' ) . ' ' . flxc_dekont_dup_text( array( 'created_at' => $dup['at'] ?? '', 'source' => $dup['source'] ?? '' ) ) . ( ! empty( $dup['donation'] ) ? ' (' . __( 'bağış', 'flx-chat' ) . ' #' . (int) $dup['donation'] . ')' : '' );
+			$rec['warn'] = __( 'This receipt was', 'flx-chat' ) . ' ' . flxc_dekont_dup_text( array( 'created_at' => $dup['at'] ?? '', 'source' => $dup['source'] ?? '' ) ) . ( ! empty( $dup['donation'] ) ? ' (' . __( 'donation', 'flx-chat' ) . ' #' . (int) $dup['donation'] . ')' : '' );
 		}
 		$recs[] = $rec;
 		FLXB_Donations::update_meta( (int) $d['id'], array( 'receipts' => $recs ) );
@@ -781,14 +787,14 @@ function flxc_rest_attach_receipt( WP_REST_Request $req ) {
 	}
 	$kind = 'certificate' === $req->get_param( 'kind' ) ? 'certificate' : 'donation';
 	if ( ( 'donation' === $kind && ! flxc_can_record_donation() ) || ( 'certificate' === $kind && ! flxc_can_record_certificate() ) ) {
-		return new WP_Error( 'flxc_forbidden', __( 'Yetkiniz yok.', 'flx-chat' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxc_forbidden', __( 'You are not allowed to do this.', 'flx-chat' ), array( 'status' => 403 ) );
 	}
 	$r = flxc_attach_receipt( (int) $m['id'], $kind, (int) $req->get_param( 'ref' ), (bool) $req->get_param( 'paid' ), (string) $req->get_param( 'note' ) );
 	if ( is_wp_error( $r ) ) {
 		return $r;
 	}
 	/* translators: 1: record title */
-	flxc_system_message( $chat, sprintf( __( 'Dekont eşleştirildi: %s', 'flx-chat' ), 'donation' === $kind ? $r['record']['title'] . ' · ' . $r['record']['money'] : $r['record']['number'] ) );
+	flxc_system_message( $chat, sprintf( __( 'Receipt matched: %s', 'flx-chat' ), 'donation' === $kind ? $r['record']['title'] . ' · ' . $r['record']['money'] : $r['record']['number'] ) );
 	$text = trim( (string) $req->get_param( 'reply' ) );
 	if ( '' !== $text ) {
 		$d    = 'donation' === $kind ? FLXB_Donations::get( (int) $req->get_param( 'ref' ) ) : null;
@@ -824,12 +830,12 @@ function flxc_receipt_download() {
 	$m  = $id ? flxc_get_message( $id ) : null;
 	$ok = flxc_can_use() || ( function_exists( 'flxb_can_view' ) && flxb_can_view() );
 	if ( ! $m || ! $ok ) {
-		wp_die( esc_html__( 'Bu dosyayı görme yetkiniz yok.', 'flx-chat' ), '', array( 'response' => 403 ) );
+		wp_die( esc_html__( 'You are not allowed to view this file.', 'flx-chat' ), '', array( 'response' => 403 ) );
 	}
 	global $wpdb;
 	$linked = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxc_table( 'receipts' ) . ' WHERE message_id = %d', $id ) ); // phpcs:ignore
 	if ( ! $linked && ! flxc_can_use() ) {
-		wp_die( esc_html__( 'Bu dosyayı görme yetkiniz yok.', 'flx-chat' ), '', array( 'response' => 403 ) );
+		wp_die( esc_html__( 'You are not allowed to view this file.', 'flx-chat' ), '', array( 'response' => 403 ) );
 	}
 	$path = flxc_message_media_path( $m );
 	if ( is_wp_error( $path ) ) {
@@ -862,7 +868,7 @@ function flxc_records_contact_sections( $sections, $chat ) {
 			$sections,
 			array(
 				'id'    => 'flxb',
-				'title' => __( 'Bağışlar', 'flx-chat' ),
+				'title' => __( 'Donations', 'flx-chat' ),
 				'items' => $items,
 			)
 		);

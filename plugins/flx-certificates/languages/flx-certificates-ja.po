@@ -1,0 +1,929 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Sapling goal progress"
+msgstr "苗木の目標進捗状況"
+
+msgid "No record"
+msgstr "記録なし"
+
+msgid "Certificate not found"
+msgstr "証明書が見つかりません"
+
+msgid "The link may have been copied incompletely. Check the code or request your certificate below."
+msgstr "リンクが不完全にコピーされた可能性があります。コードを確認するか、以下で証明書をリクエストしてください。"
+
+msgid "Revoked certificate"
+msgstr "失効した証明書"
+
+msgid "Verified certificate"
+msgstr "検証済みの証明書"
+
+msgid "REVOKED"
+msgstr "取り消されました"
+
+msgid "Full name"
+msgstr "フルネーム"
+
+msgid "Certificate no."
+msgstr "証明書番号"
+
+msgid "Issue date"
+msgstr "発行日"
+
+msgid "Issued by"
+msgstr "発行者"
+
+msgid "Verification code"
+msgstr "認証コード"
+
+msgid "Download PDF"
+msgstr "PDFをダウンロード"
+
+msgid "Share"
+msgstr "シェアする"
+
+msgid "Add to LinkedIn"
+msgstr "LinkedIn に追加"
+
+msgid "Copy link"
+msgstr "リンクをコピー"
+
+msgid "This certificate has been revoked by the issuing organization and is no longer valid."
+msgstr "この証明書は発行組織によって取り消されており、有効ではありません。"
+
+msgid "This page confirms that the certificate is on record at %s."
+msgstr "このページでは、証明書が%sに記録されていることを確認します。"
+
+msgid "Lookup is disabled."
+msgstr "ルックアップは無効になっています。"
+
+msgid "Too many attempts. Please try again later."
+msgstr "試行回数が多すぎます。後でもう一度試してください。"
+
+msgid "Enter a valid phone number or email address."
+msgstr "有効な電話番号または電子メール アドレスを入力してください。"
+
+msgid "Hello %1$s,\n\nYour %2$s certificates:\n%3$s"
+msgstr "%1$sさん、こんにちは。%2$s証明書:%3$s"
+
+msgid "Your certificates"
+msgstr "あなたの証明書"
+
+msgid "If a certificate is registered with these details, its link will be sent to you within a few minutes."
+msgstr "証明書がこれらの詳細で登録されている場合、そのリンクが数分以内に送信されます。"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "Test WhatsApp/SMS connections"
+msgstr "WhatsApp/SMS 接続をテストする"
+
+msgid "System check"
+msgstr "システムチェック"
+
+msgid "Whether setup, cron and sending are in place. Checked again each time this page opens. WhatsApp/SMS connections and tests live in Flux Mail."
+msgstr "セットアップ、cron、送信が適切に行われているかどうか。このページを開くたびに再度確認します。 WhatsApp/SMS 接続とテストは Flux Mail にあります。"
+
+msgid "Not allowed"
+msgstr "許可されていません"
+
+msgid "Valid"
+msgstr "有効"
+
+msgid "Revoked"
+msgstr "取り消されました"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "Event"
+msgstr "イベント"
+
+msgid "Template"
+msgstr "テンプレート"
+
+msgid "Referrer"
+msgstr "参照元"
+
+msgid "Created by"
+msgstr "作成者"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Views"
+msgstr "ビュー"
+
+msgid "Messages sent"
+msgstr "送信されたメッセージ"
+
+msgid "Certificate link"
+msgstr "証明書リンク"
+
+msgctxt "context_e363ab036dc9"
+msgid "certificates"
+msgstr "証明書"
+
+msgid "Certificates"
+msgstr "証明書"
+
+msgid "The server has no ZipArchive (PHP zip extension); the Excel file could not be created."
+msgstr "サーバーには ZipArchive (PHP zip 拡張子) がありません。 Excelファイルを作成できませんでした。"
+
+msgid "The Excel file could not be created."
+msgstr "Excelファイルを作成できませんでした。"
+
+msgid "On donation page"
+msgstr "寄付ページでは"
+
+msgid "Donation page"
+msgstr "寄付ページ"
+
+msgid "Donors can choose this design on the donation page"
+msgstr "寄付者は寄付ページでこのデザインを選択できます"
+
+msgid "Heading (group)"
+msgstr "見出し(グループ)"
+
+msgid "Order"
+msgstr "注文"
+
+msgid "The donor picks the design and fills in the template's text, date and choice fields (e.g. recipient name, message). The price comes from the donation type."
+msgstr "寄付者はデザインを選択し、テンプレートのテキスト、日付、選択フィールド (受取人の名前、メッセージなど) を記入します。価格は寄付型によるものです。"
+
+msgid "No certificates selected."
+msgstr "証明書が選択されていません。"
+
+msgid "%d messages queued."
+msgstr "%dメッセージがキューに入れられました。"
+
+msgid "%d certificates updated."
+msgstr "%d証明書が更新されました。"
+
+msgid "Download Excel"
+msgstr "Excelのダウンロード"
+
+msgid "New certificate"
+msgstr "新しい証明書"
+
+msgid "Name, phone, email, certificate no…"
+msgstr "名前、電話番号、メールアドレス、証明書番号..."
+
+msgid "All statuses"
+msgstr "すべてのステータス"
+
+msgid "Cancelled"
+msgstr "キャンセルされました"
+
+msgid "All events"
+msgstr "すべてのイベント"
+
+msgid "No event (%d)"
+msgstr "イベントなし (%d)"
+
+msgid "archived"
+msgstr "アーカイブされた"
+
+msgid "All templates"
+msgstr "すべてのテンプレート"
+
+msgid "All referrers"
+msgstr "すべての参照者"
+
+msgid "No referrer (%d)"
+msgstr "リファラーがありません (%d)"
+
+msgid "Created by: anyone"
+msgstr "作成者: 誰でも"
+
+msgid "Filter"
+msgstr "フィルター"
+
+msgid "Bulk actions…"
+msgstr "一括アクション..."
+
+msgid "Send via WhatsApp"
+msgstr "WhatsApp経由で送信する"
+
+msgid "Send via SMS"
+msgstr "SMSで送信"
+
+msgid "Send via email"
+msgstr "電子メールで送信する"
+
+msgid "Revoke"
+msgstr "取り消し"
+
+msgid "Make valid"
+msgstr "有効にする"
+
+msgid "Assign to event…"
+msgstr "イベントに割り当て..."
+
+msgid "Assign referrer…"
+msgstr "リファラーを割り当てます..."
+
+msgid "Delete permanently"
+msgstr "完全に削除"
+
+msgid "— No event —"
+msgstr "— イベントなし —"
+
+msgid "— No referrer —"
+msgstr "— リファラーなし —"
+
+msgid "Apply to the selected items?"
+msgstr "選択した項目に適用しますか?"
+
+msgid "Apply"
+msgstr "申し込む"
+
+msgid "Certificate"
+msgstr "証明書"
+
+msgid "Person"
+msgstr "人"
+
+msgid "Event / Template"
+msgstr "イベント/テンプレート"
+
+msgid "Deliveries"
+msgstr "配達"
+
+msgid "Referrer / Created by"
+msgstr "参照者 / 作成者"
+
+msgid "No certificates yet."
+msgstr "まだ証明書がありません。"
+
+msgid "Create the first certificate"
+msgstr "最初の証明書を作成する"
+
+msgid "Actually created: %s"
+msgstr "実際に作成したもの:%s"
+
+msgid "backdated"
+msgstr "過去の"
+
+msgid "%d view"
+msgid_plural "%d views"
+msgstr[0] "%dビュー"
+
+msgid "Registered person: %s"
+msgstr "登録者:%s"
+
+msgid "created by: %s"
+msgstr "作成者:%s"
+
+msgid "Actions"
+msgstr "アクション"
+
+msgid "Open page"
+msgstr "ページを開く"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Send to someone else…"
+msgstr "他の人に送る..."
+
+msgid "Update referrer…"
+msgstr "リファラーを更新..."
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Revoke this certificate? The link will show \"revoked\"."
+msgstr "この証明書を取り消しますか?リンクには「取り消されました」と表示されます。"
+
+msgid "Delivery history"
+msgstr "納品履歴"
+
+msgid "No connection in Flux Mail"
+msgstr "Flux Mail に接続がありません"
+
+msgid "Flux Mail is not active"
+msgstr "Flux メールはアクティブではありません"
+
+msgid "add"
+msgstr "追加する"
+
+msgid "Plugins"
+msgstr "プラグイン"
+
+msgid "%d record"
+msgid_plural "%d records"
+msgstr[0] "%dレコード"
+
+msgid "Inactive"
+msgstr "非アクティブ"
+
+msgid "Father's Day Certificate"
+msgstr "父の日証明書"
+
+msgid "Just Because Certificate"
+msgstr "ただの理由で証明書"
+
+msgid "Birthday Gift"
+msgstr "誕生日プレゼント"
+
+msgid "Get Well Soon"
+msgstr "早く良くなってね"
+
+msgid "First Day at Work"
+msgstr "出社初日"
+
+msgid "Condolence Certificate"
+msgstr "お悔やみ証明書"
+
+msgid "Mother's Day Certificate"
+msgstr "母の日証明書"
+
+msgid "Wedding Sapling Donation"
+msgstr "ウェディング苗木の寄付"
+
+msgid "Teachers' Day Certificate"
+msgstr "教師の日の証明書"
+
+msgid "Thank You Certificate"
+msgstr "感謝状"
+
+msgid "Welcome Baby Certificate"
+msgstr "ウェルカムベイビー証明書"
+
+msgid "Wedding Congratulations Certificate"
+msgstr "結婚祝い証明書"
+
+msgid "Wedding Anniversary Certificate"
+msgstr "結婚記念日証明書"
+
+msgid "Sapling Donation Certificate (one name)"
+msgstr "苗木寄付証明書(1名分)"
+
+msgid "Sapling Donation (two names, sapling count)"
+msgstr "苗木寄付(2名様、苗木の数)"
+
+msgid "Sapling Donation Certificate (two names)"
+msgstr "苗木寄付証明書(2名分)"
+
+msgid "Recipient name"
+msgstr "受信者名"
+
+msgid "Donor (your name)"
+msgstr "寄付者(あなたの名前)"
+
+msgid "Person remembered"
+msgstr "記憶に残る人"
+
+msgid "Number of saplings"
+msgstr "苗木の数"
+
+msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
+msgstr "%de-card デザインが非アクティブなテンプレートとして追加されました。アクティブ化したデザインは、寄付ページで選択できます。"
+
+msgid "All e-card designs are already added."
+msgstr "すべての電子カードのデザインはすでに追加されています。"
+
+msgid "The server has no ZipArchive (PHP zip extension)."
+msgstr "サーバーには ZipArchive (PHP zip 拡張子) がありません。"
+
+msgid "Ready-made e-cards"
+msgstr "既製の電子カード"
+
+msgid "(%1$d/%2$d added)"
+msgstr "(%1$d/%2$dを追加)"
+
+msgid "Add the missing e-card designs as inactive templates?"
+msgstr "不足している電子カードのデザインを非アクティブなテンプレートとして追加しますか?"
+
+msgid "Import"
+msgstr "インポート"
+
+msgid "Download images as zip"
+msgstr "画像をzipとしてダウンロードする"
+
+msgid "Flux Mail (organization template)"
+msgstr "Flux Mail (組織テンプレート)"
+
+msgid "%s ago"
+msgstr "%s前"
+
+msgid "Certificates · Setup"
+msgstr "証明書・セットアップ"
+
+msgid "Certificates · Sending and cron"
+msgstr "証明書 · 送信と cron"
+
+msgid "Certificates · Site"
+msgstr "証明書・サイト"
+
+msgid "Database tables"
+msgstr "データベーステーブル"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "テーブルがありません:%s。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "A database update is pending; it completes when an admin page is opened."
+msgstr "データベースの更新は保留中です。管理者ページが開かれると完了します。"
+
+msgid "All tables exist. Plugin %1$s, database version %2$s."
+msgstr "すべてのテーブルが存在します。プラグイン%1$s、データベース バージョン%2$s。"
+
+msgid "Files folder"
+msgstr "ファイルフォルダー"
+
+msgid "The folder for certificate PDFs and images is writable."
+msgstr "証明書の PDF および画像のフォルダーは書き込み可能です。"
+
+msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
+msgstr "%sは書き込み可能ではありません。証明書ファイルは保存できません。フォルダーのアクセス許可 (755) を確認してください。"
+
+msgid "Certificate page address"
+msgstr "証明書ページのアドレス"
+
+msgid "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended."
+msgstr "パーマリンクは「プレーン」に設定されています。証明書リンクは ?flxs_kod= として機能します。 「投稿名」がおすすめです。"
+
+msgid "Permalinks"
+msgstr "パーマリンク"
+
+msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
+msgstr "証明書 URL ルールが登録されていません。リンクは 404 を返す場合があります。パーマリンク ページで [変更を保存] をクリックします。"
+
+msgid "Certificates open at %s{code}."
+msgstr "証明書は%s{code}で開きます。"
+
+msgid "Certificate templates"
+msgstr "証明書テンプレート"
+
+msgid "%d active template."
+msgid_plural "%d active templates."
+msgstr[0] "%dアクティブなテンプレート。"
+
+msgid "No active template; certificates cannot be created."
+msgstr "アクティブなテンプレートはありません。証明書を作成できません。"
+
+msgid "Templates"
+msgstr "テンプレート"
+
+msgid "Plugin files"
+msgstr "プラグインファイル"
+
+msgid "Missing file: %s. Upload the plugin zip again."
+msgstr "ファイルがありません:%s。プラグイン zip を再度アップロードします。"
+
+msgid "PDF renderer, QR and fonts are in place."
+msgstr "PDF レンダラー、QR、フォントが用意されています。"
+
+msgid "Staff role"
+msgstr "スタッフの役割"
+
+msgid "The \"Certificate Staff\" role exists."
+msgstr "「証明書スタッフ」ロールが存在します。"
+
+msgid "The \"Certificate Staff\" role is missing. Deactivate and reactivate the plugin."
+msgstr "「証明書スタッフ」ロールがありません。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "Sending queue (cron)"
+msgstr "送信キュー(cron)"
+
+msgid "The per-minute queue task is not scheduled. Reload any admin page; if it persists, reactivate the plugin."
+msgstr "分単位のキュー タスクはスケジュールされていません。管理ページをリロードします。問題が解決しない場合は、プラグインを再アクティブ化してください。"
+
+msgid "Queue"
+msgstr "キュー"
+
+msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgstr[0] "%1$dメッセージが 10 分以上待機しています。キューが実行されていない可能性があります。ランナー:%2$s、最終ラン:%3$s。"
+
+msgid "never"
+msgstr "決して"
+
+msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel."
+msgstr "WP-Cron は無効になっています (DISABLE_WP_CRON)。 wp-cron.php の分単位の cron をホスティング パネルで設定する必要があります。"
+
+msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
+msgstr "ランナー:%1$s。最終実行%2$s; cron がまれに起動します。待機中のメッセージはありません。通常のトラフィックがない場合は、ホスティング パネルの wp-cron.php の分単位の cron を使用することをお勧めします。"
+
+msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
+msgstr "ランナー:%1$s。最終実行:%2$s。待機中の古いメッセージはありません。"
+
+msgid "not recorded yet"
+msgstr "まだ記録されていません"
+
+msgid "Sending in the last 24 hours"
+msgstr "過去 24 時間以内に送信中"
+
+msgid "%d message failed."
+msgid_plural "%d messages failed."
+msgstr[0] "%dメッセージが失敗しました。"
+
+msgid "View failed"
+msgstr "表示に失敗しました"
+
+msgid "%d message sent, none failed."
+msgid_plural "%d messages sent, none failed."
+msgstr[0] "%dメッセージが送信されましたが、何も失敗しませんでした。"
+
+msgid "Daily cleanup task"
+msgstr "毎日の掃除タスク"
+
+msgid "The daily task (old log cleanup) is not scheduled; reload an admin page."
+msgstr "毎日のタスク (古いログのクリーンアップ) はスケジュールされていません。管理ページをリロードします。"
+
+msgid "Flux Mail"
+msgstr "フラックスメール"
+
+msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; email goes through WordPress (wp_mail). Install and activate Flux Mail."
+msgstr "Flux メールはアクティブではありません。証明書は WhatsApp や SMS では送信できません。電子メールは WordPress (wp_mail) を経由します。 Flux Mail をインストールしてアクティブ化します。"
+
+msgid "%s sending"
+msgstr "%s送信"
+
+msgid "Sent through the Flux Mail connection: %s."
+msgstr "Flux Mail 接続を通じて送信されます:%s。"
+
+msgid "Last successful send %s."
+msgstr "最後に成功した送信%s。"
+
+msgid "Connections"
+msgstr "接続"
+
+msgid "No %1$s connection is set up; certificates are not sent by %1$s."
+msgstr "%1$s接続が設定されていません。証明書は%1$sによって送信されません。"
+
+msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
+msgstr "Flux Mail にはアクティブな%s接続がありません。そのチャネルでは証明書を送信できません。"
+
+msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
+msgstr "証明書電子メールは、組織テンプレートを使用して Flux Mail を経由します (通信 › 電子メール)。"
+
+msgid "Emails"
+msgstr "メール"
+
+msgid "Theme compatibility"
+msgstr "テーマの互換性"
+
+msgid "The FluxWP theme (%s) is active; the events section and certificate page match the theme."
+msgstr "FluxWP テーマ (%s) はアクティブです。イベントセクションと証明書ページはテーマと一致しています。"
+
+msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
+msgstr "アクティブなテーマ:%s。イベント セクションは、Örnek Vakfı テーマでのみ自動的に表示されます。他のテーマではショートコードを使用して追加します。"
+
+msgid "Ongoing events"
+msgstr "開催中のイベント"
+
+msgid "No open events; the events section is hidden on the site."
+msgstr "オープンなイベントはありません。イベントセクションはサイト上で非表示になります。"
+
+msgid "Events"
+msgstr "イベント"
+
+msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
+msgstr "公開されたページのないイベントを開く:%s。イベント編集画面の「サイトに公開」で修正してください。"
+
+msgid "%d open event, its page is published."
+msgid_plural "%d open events, their pages are published."
+msgstr[0] "%dオープンイベント、そのページが公開されます。"
+
+msgid "Certificate lookup"
+msgstr "証明書の検索"
+
+msgid "The lookup form is on %s."
+msgstr "ルックアップフォームは%sにあります。"
+
+msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
+msgstr "ルックアップはオンになっていますが、[flx_sertifika_sorgula] ショートコードを含む公開ページはありません。"
+
+msgid "Flux Forms integration"
+msgstr "Flux Forms の統合"
+
+msgid "Flux Forms is installed; form automations can create and send certificates."
+msgstr "Flux Forms がインストールされています。フォームオートメーションは証明書を作成して送信できます。"
+
+msgid "PDF generation on the server"
+msgstr "サーバー上での PDF 生成"
+
+msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in the browser, when the certificate page is first opened."
+msgstr "PHP GD (FreeType) 拡張機能がありません: PDF と画像は、最初に証明書ページを開いたときにブラウザーでのみ作成されます。"
+
+msgid "%d certificate is missing its PDF or image."
+msgstr "%d証明書に PDF または画像がありません。"
+
+msgid "Create missing files"
+msgstr "不足しているファイルを作成する"
+
+msgid "On. PDFs and images for new certificates are generated in the background on the server."
+msgstr "オン。新しい証明書の PDF と画像はサーバー上のバックグラウンドで生成されます。"
+
+msgid "Create missing certificate files"
+msgstr "不足している証明書ファイルを作成する"
+
+msgid "Generates files on the server for up to 25 certificates that are missing a PDF or image."
+msgstr "PDF または画像が欠落している最大 25 個の証明書のファイルをサーバー上に生成します。"
+
+msgid "Files created for %1$d certificates, %2$d errors."
+msgstr "%1$d証明書用に作成されたファイル、%2$dエラー。"
+
+msgid "%d certificates left, press again."
+msgstr "%d証明書が残っています。もう一度押してください。"
+
+msgid "Ongoing Events"
+msgstr "開催中のイベント"
+
+msgid "Your saplings are planted at these events. You too can contribute by donating saplings."
+msgstr "あなたの苗木はこれらのイベントで植えられます。あなたも苗木を寄付することで貢献できます。"
+
+msgid "Event location"
+msgstr "イベント場所"
+
+msgctxt "context_39c93914dff5"
+msgid "l, F j, Y"
+msgstr "l、F、j、Y"
+
+msgid "sapling planted"
+msgid_plural "saplings planted"
+msgstr[0] "植えられた苗木"
+
+msgid "sapling collected"
+msgid_plural "saplings collected"
+msgstr[0] "苗木を集めました"
+
+msgctxt "context_a43dbd63afaf"
+msgid "F j"
+msgstr "Fj"
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
+msgstr "植栽場所はイベントの10日前に当局によって発表されます。%sあたりでここで共有します。"
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
+msgstr "植栽場所はイベントの10日前に当局によって発表されます。ここで共有させていただきます。"
+
+msgid "Location coming soon"
+msgstr "場所は近日公開予定"
+
+msgid "Event site"
+msgstr "イベント会場"
+
+msgid "Get directions"
+msgstr "道順を調べる"
+
+msgid "Show map"
+msgstr "地図を表示"
+
+msgid "Loads Google Maps"
+msgstr "Googleマップをロードします"
+
+msgid "Goal: %s saplings"
+msgstr "目標:%sの苗木"
+
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "Completed event"
+msgstr "完了したイベント"
+
+msgid "Sapling counter"
+msgstr "苗木カウンター"
+
+msgid "saplings planted"
+msgstr "植えられた苗木"
+
+msgid "%s person contributed"
+msgid_plural "%s people contributed"
+msgstr[0] "%sのユーザーが投稿しました"
+
+msgctxt "context_a104e4060425"
+msgid "F j, Y"
+msgstr "Fj、Y"
+
+msgid "Time: %s"
+msgstr "時間:%s"
+
+msgid "This event is complete. Thank you to everyone who contributed."
+msgstr "このイベントは完了しました。ご協力いただいた皆様に感謝いたします。"
+
+msgid "Donate saplings for this event"
+msgstr "このイベントに苗木を寄付してください"
+
+msgid "Your donation is added to the counter instantly."
+msgstr "あなたの寄付は即座にカウンターに追加されます。"
+
+msgid "Tree planting events"
+msgstr "植樹イベント"
+
+msgid "Location to be announced"
+msgstr "場所は発表予定"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Donate saplings"
+msgstr "苗木を寄付する"
+
+msgid "System"
+msgstr "システム"
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "WhatsApp"
+msgstr "ワッツアップ"
+
+msgid "Queued"
+msgstr "キューに入れられました"
+
+msgid "Sending"
+msgstr "送信中"
+
+msgid "Sent"
+msgstr "送信済み"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "The server has no GD (FreeType) extension."
+msgstr "サーバーには GD (FreeType) 拡張子がありません。"
+
+msgid "This certificate's files are being prepared right now."
+msgstr "この証明書のファイルは現在準備中です。"
+
+msgid "Template not found."
+msgstr "テンプレートが見つかりません。"
+
+msgid "The background PDF could not be read on the server."
+msgstr "サーバー上で背景 PDF を読み取ることができませんでした。"
+
+msgid "Link copied"
+msgstr "リンクがコピーされました"
+
+msgid "Copy the link:"
+msgstr "リンクをコピーします:"
+
+msgid "Sending…"
+msgstr "送信中..."
+
+msgid "Done."
+msgstr "完了しました。"
+
+msgid "Something went wrong."
+msgstr "何か問題が発生しました。"
+
+msgid "Connection error. Please try again."
+msgstr "接続エラー。もう一度試してください。"
+
+msgid "The PDF library could not be loaded (%s). Reload the page and try again."
+msgstr "PDF ライブラリをロードできませんでした (%s)。ページをリロードして、もう一度お試しください。"
+
+msgid "Find your certificate"
+msgstr "証明書を見つける"
+
+msgid "Enter the phone number or email address you registered with. We will send your certificate link only to that address."
+msgstr "登録した電話番号またはメールアドレスを入力します。そのアドレスにのみ証明書リンクを送信します。"
+
+msgid "0532 123 45 67 or name@example.com"
+msgstr "0532 123 45 67 または name@example.com"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Name, e-mail or phone"
+msgstr "名前、電子メールまたは電話番号"
+
+msgid "Name, number or code"
+msgstr "名前、番号、またはコード"
+
+msgid "Recipient or subject"
+msgstr "受信者または件名"
+
+msgid "Saplings"
+msgstr "苗木"
+
+msgid "Queued to send"
+msgstr "送信待ち状態です"
+
+msgid "Send queue"
+msgstr "送信キュー"
+
+msgid "Sends appear here."
+msgstr "送信はここに表示されます。"
+
+msgid "Channel"
+msgstr "チャンネル"
+
+msgid "No people"
+msgstr "人がいない"
+
+msgid "People"
+msgstr "人々"
+
+msgid "Code"
+msgstr "コード"
+
+msgid "Queue is empty"
+msgstr "キューが空です"
+
+msgid "Number"
+msgstr "番号"
+
+msgid "Cancel this certificate?"
+msgstr "この証明書をキャンセルしますか?"
+
+msgid "People who received a certificate appear here."
+msgstr "認定証を受け取った人がここに表示されます。"
+
+msgid "No certificates"
+msgstr "証明書がありません"
+
+msgid "Send the certificate"
+msgstr "証明書を送信する"
+
+msgid "New certificates appear here."
+msgstr "新しい証明書がここに表示されます。"
+
+msgid "Restore"
+msgstr "復元"
+
+msgid "Restored"
+msgstr "復元されました"
+
+msgid "Retry"
+msgstr "再試行"
+
+msgid "Will be retried"
+msgstr "再試行されます"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "A cancelled certificate is hidden on the public page."
+msgstr "キャンセルされた証明書は公開ページに非表示になります。"
+
+msgid "%d open event, its page is published."
+msgstr "%dオープンイベント、そのページが公開されました。"
+
+msgid "[['%dviews', 'tr']]"
+msgid_plural "[['%dviews', 'tr']]"
+msgstr[0] "[['%dビュー', 'tr']]"
+
+msgid "[['%dregistration', 'tr']]"
+msgid_plural "[['%dregistration', 'tr']]"
+msgstr[0] "[['%d登録', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgstr "\\n アクティブなテンプレート%dがあります。アクティブなテンプレート%dがあります。\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr "\\n%1$dメッセージは 10 分以上待機しています。キューが機能していない可能性があります。ハンドラー:%2$s、最後の実行:%3$s。%1$dメッセージが 10 分以上保留されています。キューが機能していない可能性があります。ハンドラ:%2$s、最後の実行:%3$s。\\n"
+
+msgid "[['%dmessage could not be sent.', 'tr']]"
+msgid_plural "[['%dmessage could not be sent.', 'tr']]"
+msgstr[0] "[['%dメッセージを送信できませんでした。', 'tr']]"
+
+msgid "[['%dmessage sent, no failure.', 'tr']]"
+msgid_plural "[['%dmessage sent, no failure.', 'tr']]"
+msgstr[0] "[['%dメッセージが送信されました。失敗はありませんでした。', 'tr']]"
+
+msgid "[['%dhas an open event, its page is live on the site.', 'tr']]"
+msgid_plural "[['%dhas open events, its pages are live on the site.', 'tr']]"
+msgstr[0] "[['%dにはオープン イベントがあり、そのページはサイト上で公開されています。', 'tr']]"
+
+msgid "[['saplings were planted', 'tr']]"
+msgid_plural "[['saplings were planted', 'tr']]"
+msgstr[0] "[['苗木が植えられました', 'tr']]"
+
+msgid "[['saplings were collected', 'tr']]"
+msgid_plural "[['saplings were collected', 'tr']]"
+msgstr[0] "[['苗木が集められました', 'tr']]"
+
+msgid "[['%scontributed by', 'tr']]"
+msgid_plural "[['%scontributed by', 'tr']]"
+msgstr[0] "[['%sの寄稿者', 'tr']]"
+
+msgid "[['Certificate templates, certificate creation with live PDF preview, /certificate/{kod}verification page, email / SMS (Netgsm) / WhatsApp (Evolution API) sending, asynchronous queue, contact registration and detailed logs.', 'tr']]"
+msgstr "[['証明書テンプレート、ライブ PDF プレビューによる証明書の作成、/certificate/{kod}検証ページ、電子メール / SMS (Netgsm) / WhatsApp (Evolution API) 送信、非同期キュー、連絡先登録および詳細ログ。', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgid_plural "\\n There is active template%d. There is active template%d.\\n"
+msgstr[0] "\\n アクティブなテンプレート%dがあります。アクティブなテンプレート%dがあります。\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgid_plural "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr[0] "\\n%1$dメッセージは 10 分以上待機しています。キューが機能していない可能性があります。ハンドラー:%2$s、最後の実行:%3$s。%1$dメッセージが 10 分以上保留されています。キューが機能していない可能性があります。ハンドラ:%2$s、最後の実行:%3$s。\\n"

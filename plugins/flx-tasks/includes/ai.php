@@ -25,9 +25,9 @@ function flxg_ai_model() {
 /** Yapay zekâ kapalıyken kullanıcıya gösterilen neden. */
 function flxg_ai_off_message() {
 	if ( ! flxg_ai_hub() ) {
-		return __( 'Yapay zekâ için Flux AI & MCP eklentisi gerekli. Yönetici Flux AI\'yi kurup anahtar girmeli.', 'flx-tasks' );
+		return __( 'AI needs the Flux AI & MCP plugin. An administrator must install Flux AI and enter a key.', 'flx-tasks' );
 	}
-	return __( 'Yapay zekâ ayarlanmamış. Yönetici Flux AI & MCP › Ayarlar\'dan anahtar ve model seçmeli.', 'flx-tasks' );
+	return __( 'AI is not set up. An administrator must enter a key and choose a model in Flux AI & MCP › Settings.', 'flx-tasks' );
 }
 
 /**
@@ -273,7 +273,7 @@ function flxg_ai_chat( array $history, array $context = array() ) {
 		}
 	}
 	return array(
-		'reply'   => __( 'İşlem çok uzun sürdü; isteği daha küçük adımlara bölün.', 'flx-tasks' ),
+		'reply'   => __( 'The operation took too long; split the request into smaller steps.', 'flx-tasks' ),
 		'actions' => $actions,
 	);
 }

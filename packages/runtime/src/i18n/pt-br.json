@@ -1,0 +1,183 @@
+{
+  "shell": {
+    "tabs": {
+      "home": "Página inicial",
+      "posts": "Postagens",
+      "comments": "Comentários",
+      "menu": "Cardápio",
+      "more": "Cardápio"
+    },
+    "status": {
+      "publish": "Publicado",
+      "draft": "Rascunho",
+      "pending": "Pendente",
+      "future": "Agendado",
+      "private": "Privado"
+    },
+    "switchSite": "Mudar de site",
+    "offline": "Off-line: mostrando dados salvos",
+    "notFound": "Esta tela não foi encontrada.",
+    "demo": "Demonstração",
+    "nav": {
+      "more": "Cardápio",
+      "accounts": "Contas",
+      "settings": "Configurações",
+      "search": "Pesquisar",
+      "notifications": "Notificações"
+    },
+    "groups": {
+      "content": "Conteúdo"
+    },
+    "openedInWeb": "Aberto na visualização da web"
+  },
+  "list": {
+    "search": "Pesquisar",
+    "empty": "Nada aqui ainda.",
+    "noResults": "Sem resultados.",
+    "end": "Isso é tudo",
+    "loadingMore": "Carregando..."
+  },
+  "states": {
+    "loading": "Carregando...",
+    "errorTitle": "Não foi possível carregar",
+    "errorBody": "O servidor não pôde ser alcançado. Verifique sua conexão e tente novamente.",
+    "forbidden": "Você não tem acesso a esta tela.",
+    "sessionExpired": "Sua sessão expirou. Faça login novamente."
+  },
+  "form": {
+    "required": "Este campo é obrigatório.",
+    "invalid": "Insira um valor válido.",
+    "min": "O valor é muito pequeno.",
+    "max": "O valor é muito grande.",
+    "submit": "Salvar",
+    "saving": "Salvando...",
+    "saved": "Salvo.",
+    "minLength": "Pelo menos {{count}} caracteres.",
+    "maxLength": "No máximo {{count}} caracteres.",
+    "choose": "Escolha",
+    "change": "Mudança",
+    "remove": "Remover",
+    "upload": "Carregar",
+    "uploading": "Fazendo upload...",
+    "search": "Pesquisar"
+  },
+  "action": {
+    "confirmTitle": "Você tem certeza?",
+    "confirm": "Confirmar",
+    "done": "Feito.",
+    "failed": "A ação não pôde ser concluída."
+  },
+  "webview": {
+    "loading": "Abrindo a página do painel...",
+    "error": "A página não pôde ser aberta.",
+    "openBrowser": "Abrir no navegador",
+    "reload": "Recarregar",
+    "back": "Voltar",
+    "demoNote": "Demonstração: exemplo de página do painel"
+  },
+  "switcher": {
+    "title": "Contas",
+    "manage": "Gerenciar contas",
+    "remove": "Remover conta",
+    "removeConfirm": "Remover a conta {{site}} deste dispositivo?",
+    "current": "Conta corrente"
+  },
+  "prefs": {
+    "cache": "Cache",
+    "clearCache": "Limpar cache",
+    "cacheCleared": "Cache limpo.",
+    "version": "Versão {{version}}"
+  },
+  "core": {
+    "pages": "Páginas",
+    "post": "Postar",
+    "edit": "Editar",
+    "openInPanel": "Abrir no painel",
+    "trash": "Mover para a lixeira",
+    "trashConfirm": "Mover este item para a lixeira?",
+    "trashed": "Movido para a lixeira",
+    "title": "Título",
+    "status": "Estado",
+    "excerpt": "Trecho",
+    "link": "Ligação",
+    "date": "Data",
+    "author": "Autor",
+    "image": "Imagem",
+    "content": "Conteúdo",
+    "newPost": "Nova postagem",
+    "approve": "Aprovar",
+    "spam": "Spam",
+    "approved": "Aprovado",
+    "statusAll": "Todos",
+    "statusDraft": "Rascunhos",
+    "statusPending": "Pendente",
+    "statusHold": "Pendente",
+    "emptyPosts": "Nenhuma postagem ainda",
+    "emptyComments": "Sem comentários",
+    "searchPosts": "Pesquisar postagens",
+    "searchComments": "Pesquisar comentários",
+    "details": "Detalhes"
+  },
+  "accounts": {
+    "kind": {
+      "otp": "Código único",
+      "apppass": "Senha do aplicativo"
+    }
+  },
+  "auth": {
+    "otpLogin": "Faça login com um código",
+    "otpHint": "Enviamos um código único. Funciona para doadores e clientes.",
+    "sendCode": "Enviar código",
+    "otpCode": "Código",
+    "verify": "Verifique e faça login",
+    "codeSent": "Se a conta existir, o código está a caminho.",
+    "appPassword": "Senha do aplicativo"
+  },
+  "desktop": {
+    "selected": "{{count}} selecionado",
+    "clear": "Limpar",
+    "notifications": "Notificações",
+    "notificationsEmpty": "Nenhuma notificação ainda.",
+    "cancel": "Cancelar",
+    "more": "Mais ações",
+    "rowActions": "Ações de linha",
+    "back": "Voltar",
+    "loading": "Carregando...",
+    "offline": "Mostrando dados salvos"
+  },
+  "addSite": {
+    "notAllowed": "Este aplicativo só pode se conectar ao seu próprio site.",
+    "browserHint": "Você faz login no navegador seguro do aplicativo. Sua senha nunca chega ao aplicativo.",
+    "cancelled": "O login foi cancelado.",
+    "title": "Conecte seu site",
+    "demo": "Experimente a conta demo"
+  },
+  "drawer": {
+    "open": "Abrir menu",
+    "close": "Fechar menu",
+    "expand": "Alternar submenu"
+  },
+  "tasks": {
+    "engineLabels": {
+      "Status": "Estado",
+      "Priority": "Prioridade",
+      "Assignee": "Cessionário",
+      "Due date": "Data de vencimento",
+      "Tag": "Etiqueta",
+      "List": "Lista",
+      "No grouping": "Sem agrupamento",
+      "No priority": "Sem prioridade",
+      "Deleted user": "Usuário excluído",
+      "Unassigned": "Não atribuído",
+      "Overdue": "Atrasado",
+      "Today": "Hoje",
+      "Tomorrow": "Amanhã",
+      "This week": "Esta semana",
+      "Later": "Mais tarde",
+      "No date": "Sem data",
+      "No tag": "Sem etiqueta",
+      "Empty": "Vazio",
+      "All tasks": "Todas as tarefas"
+    }
+  }
+}

@@ -218,38 +218,38 @@ final class FLXU_Installer {
 		switch ( $kind ) {
 			case 'install':
 				if ( ! $p ) {
-					$this->add( false, __( 'Paket bulunamadı.', 'flx-setup' ) );
+					$this->add( false, __( 'Package not found.', 'flx-setup' ) );
 					break;
 				}
 				if ( isset( $installed[ $slug ] ) || ( 'theme' === $p['type'] && wp_get_theme( $slug )->exists() ) ) {
 					/* translators: %s: package */
-					$this->add( true, sprintf( __( '%s zaten kurulu.', 'flx-setup' ), $name ) );
+					$this->add( true, sprintf( __( '%s is already installed.', 'flx-setup' ), $name ) );
 					$ok = true;
 					break;
 				}
 				$ok = $this->install_package( $slug, $p );
 				if ( $ok ) {
 					/* translators: 1: package, 2: version */
-					$this->add( true, sprintf( __( '%1$s %2$s kuruldu.', 'flx-setup' ), $name, $p['version'] ) );
+					$this->add( true, sprintf( __( '%1$s %2$s installed.', 'flx-setup' ), $name, $p['version'] ) );
 					FLXU_Guard::instance()->record( $slug, $name, $p['type'], $p['version'], 'install', true );
 				}
 				break;
 
 			case 'wporg':
 				if ( ! in_array( $slug, $allowed_wporg, true ) ) {
-					$this->add( false, __( 'Bu eklenti hiçbir FluxWP paketinin gereksinimi değil.', 'flx-setup' ) );
+					$this->add( false, __( 'This plugin is not required by any FluxWP package.', 'flx-setup' ) );
 					break;
 				}
 				if ( isset( $installed[ $slug ] ) ) {
 					/* translators: %s: plugin */
-					$this->add( true, sprintf( __( '%s zaten kurulu.', 'flx-setup' ), $name ) );
+					$this->add( true, sprintf( __( '%s is already installed.', 'flx-setup' ), $name ) );
 					$ok = true;
 					break;
 				}
 				$ok = $this->install_wporg( $slug, $name );
 				if ( $ok ) {
 					/* translators: %s: plugin */
-					$this->add( true, sprintf( __( '%s wordpress.org\'dan kuruldu.', 'flx-setup' ), $name ) );
+					$this->add( true, sprintf( __( '%s was installed from wordpress.org.', 'flx-setup' ), $name ) );
 					FLXU_Guard::instance()->record( $slug, $name, 'plugin', '', 'install', true );
 				}
 				break;
@@ -257,12 +257,12 @@ final class FLXU_Installer {
 			case 'activate':
 				if ( ! isset( $installed[ $slug ] ) ) {
 					/* translators: %s: plugin */
-					$this->add( false, sprintf( __( '%s kurulu olmadığı için etkinleştirilemedi.', 'flx-setup' ), $name ) );
+					$this->add( false, sprintf( __( '%s is not installed, so it could not be activated.', 'flx-setup' ), $name ) );
 					break;
 				}
 				if ( $installed[ $slug ]['active'] ) {
 					/* translators: %s: plugin */
-					$this->add( true, sprintf( __( '%s zaten etkin.', 'flx-setup' ), $name ) );
+					$this->add( true, sprintf( __( '%s is already active.', 'flx-setup' ), $name ) );
 					$ok = true;
 					break;
 				}
@@ -270,7 +270,7 @@ final class FLXU_Installer {
 				break;
 
 			default:
-				$this->add( false, __( 'Bilinmeyen işlem.', 'flx-setup' ) );
+				$this->add( false, __( 'Unknown action.', 'flx-setup' ) );
 		}
 		return array(
 			'ok'    => $ok,
@@ -325,7 +325,7 @@ final class FLXU_Installer {
 		}
 		if ( $missing ) {
 			/* translators: 1: plugin, 2: required plugins */
-			$this->add( false, sprintf( __( '%1$s etkinleştirilmedi: önce %2$s kurulup etkinleştirilmeli.', 'flx-setup' ), $name, implode( ', ', $missing ) ) );
+			$this->add( false, sprintf( __( '%1$s was not activated: %2$s must be installed and active first.', 'flx-setup' ), $name, implode( ', ', $missing ) ) );
 			return false;
 		}
 		// silent = false: paketin etkinleştirme kancası (tablolar, varsayılan ayarlar) çalışmalı.
@@ -335,11 +335,11 @@ final class FLXU_Installer {
 		}
 		if ( is_wp_error( $res ) ) {
 			/* translators: 1: plugin, 2: error */
-			$this->add( false, sprintf( __( '%1$s etkinleştirilemedi: %2$s', 'flx-setup' ), $name, wp_strip_all_tags( $res->get_error_message() ) ) );
+			$this->add( false, sprintf( __( '%1$s could not be activated: %2$s', 'flx-setup' ), $name, wp_strip_all_tags( $res->get_error_message() ) ) );
 			return false;
 		}
 		/* translators: %s: plugin */
-		$this->add( true, sprintf( __( '%s etkinleştirildi.', 'flx-setup' ), $name ) );
+		$this->add( true, sprintf( __( '%s activated.', 'flx-setup' ), $name ) );
 		return true;
 	}
 
@@ -347,7 +347,7 @@ final class FLXU_Installer {
 		$cap = 'theme' === $p['type'] ? 'install_themes' : 'install_plugins';
 		if ( ! current_user_can( $cap ) ) {
 			/* translators: %s: package */
-			$this->add( false, sprintf( __( '%s: kurma yetkiniz yok.', 'flx-setup' ), $p['name'] ) );
+			$this->add( false, sprintf( __( '%s: you are not allowed to install.', 'flx-setup' ), $p['name'] ) );
 			return false;
 		}
 		$skin     = new WP_Ajax_Upgrader_Skin();
@@ -359,7 +359,7 @@ final class FLXU_Installer {
 	private function install_wporg( string $slug, string $name ): bool {
 		if ( ! current_user_can( 'install_plugins' ) ) {
 			/* translators: %s: plugin */
-			$this->add( false, sprintf( __( '%s: kurma yetkiniz yok.', 'flx-setup' ), $name ) );
+			$this->add( false, sprintf( __( '%s: you are not allowed to install.', 'flx-setup' ), $name ) );
 			return false;
 		}
 		$api = plugins_api(
@@ -371,7 +371,7 @@ final class FLXU_Installer {
 		);
 		if ( is_wp_error( $api ) || empty( $api->download_link ) ) {
 			/* translators: 1: plugin, 2: error */
-			$this->add( false, sprintf( __( '%1$s wordpress.org\'dan alınamadı: %2$s', 'flx-setup' ), $name, is_wp_error( $api ) ? $api->get_error_message() : __( 'indirme adresi yok', 'flx-setup' ) ) );
+			$this->add( false, sprintf( __( 'Could not download %1$s from wordpress.org: %2$s', 'flx-setup' ), $name, is_wp_error( $api ) ? $api->get_error_message() : __( 'no download link', 'flx-setup' ) ) );
 			return false;
 		}
 		$skin     = new WP_Ajax_Upgrader_Skin();
@@ -384,9 +384,9 @@ final class FLXU_Installer {
 	private function check_install( $res, WP_Ajax_Upgrader_Skin $skin, string $name, string $slug, string $type ): bool {
 		$err = is_wp_error( $res ) ? $res : ( $skin->get_errors()->has_errors() ? $skin->get_errors() : null );
 		if ( $err || ! $res ) {
-			$msg = $err ? wp_strip_all_tags( $err->get_error_message() ) : __( 'bilinmeyen hata', 'flx-setup' );
+			$msg = $err ? wp_strip_all_tags( $err->get_error_message() ) : __( 'unknown error', 'flx-setup' );
 			/* translators: 1: package, 2: error */
-			$this->add( false, sprintf( __( '%1$s kurulamadı: %2$s', 'flx-setup' ), $name, $msg ) );
+			$this->add( false, sprintf( __( '%1$s could not be installed: %2$s', 'flx-setup' ), $name, $msg ) );
 			FLXU_Guard::instance()->record( $slug, $name, $type, '', 'install', false, $msg );
 			return false;
 		}

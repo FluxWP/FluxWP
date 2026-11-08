@@ -1,5 +1,8 @@
 # Flux AI Chatbot
 
+## 0.1.2
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 0.1.1
 
 - Sohbet penceresi masaüstünde butonun üstünde değil yanında açılır (sağdaysa solunda, soldaysa sağında); dar ekranda yine üstünde ya da tam ekran.

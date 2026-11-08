@@ -229,7 +229,7 @@ function flxi_email_footer( $a, $b, $font ) {
 	if ( 'noreply' === $a['sender'] ) {
 		$small[] = sprintf(
 			/* translators: %s: iletişim e-posta adresi */
-			esc_html__( 'Bu e-posta otomatik gönderildi, lütfen yanıtlamayın. Sorularınız için %s adresine yazabilirsiniz.', 'flx-mail' ),
+			esc_html__( 'This email was sent automatically; please do not reply. For questions, you can write to %s.', 'flx-mail' ),
 			'<a class="flxi-link" href="mailto:' . esc_attr( $b['email'] ) . '" style="color:#5E707A;">' . esc_html( $b['email'] ) . '</a>'
 		);
 	}
@@ -237,7 +237,7 @@ function flxi_email_footer( $a, $b, $font ) {
 		$small[] = esc_html( flxi_fill( $b['note'], array() ) );
 	}
 	if ( $a['unsubscribe_url'] ) {
-		$small[] = '<a class="flxi-link" href="' . esc_url( $a['unsubscribe_url'] ) . '" style="color:#5E707A;">' . esc_html__( 'Bu tür e-postaları almak istemiyorum', 'flx-mail' ) . '</a>';
+		$small[] = '<a class="flxi-link" href="' . esc_url( $a['unsubscribe_url'] ) . '" style="color:#5E707A;">' . esc_html__( 'I do not want to receive these kinds of emails', 'flx-mail' ) . '</a>';
 	}
 	$small[] = '© ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( $b['org'] );
 	$o      .= '<div class="flxi-muted" style="padding-top:16px;font-size:12px;line-height:1.6;color:#7C8C95;">' . implode( '<br>', $small ) . '</div>';

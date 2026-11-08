@@ -81,7 +81,7 @@ function flxai_run_tool( $name, $args, array $ctx = array() ) {
 	$ok    = false;
 	if ( ! isset( $tools[ $name ] ) ) {
 		/* translators: %s: tool name */
-		$data = array( 'error' => sprintf( __( 'Araç yok ya da yetkiniz yok: %s', 'flx-ai' ), $name ) );
+		$data = array( 'error' => sprintf( __( 'Tool not found or not permitted: %s', 'flx-ai' ), $name ) );
 	} else {
 		$t = $tools[ $name ];
 		try {
@@ -124,7 +124,7 @@ function flxai_run_tool( $name, $args, array $ctx = array() ) {
 function flxai_core_tools() {
 	return array(
 		'flxai_usage'        => array(
-			'title'       => __( 'Yapay zekâ kullanımı', 'flx-ai' ),
+			'title'       => __( 'AI usage', 'flx-ai' ),
 			'description' => 'Yapay zekâ harcaması ve kullanım özeti: günlük/haftalık/aylık harcama ve sınırlar, son 30 günün eklenti ve model dökümü.',
 			'readonly'    => true,
 			'cap'         => 'manage_options',
@@ -142,7 +142,7 @@ function flxai_core_tools() {
 			},
 		),
 		'flxai_current_time' => array(
-			'title'       => __( 'Tarih ve saat', 'flx-ai' ),
+			'title'       => __( 'Date and time', 'flx-ai' ),
 			'description' => 'Sitenin saat dilimine göre şu anki tarih ve saat.',
 			'readonly'    => true,
 			'cap'         => 'read',

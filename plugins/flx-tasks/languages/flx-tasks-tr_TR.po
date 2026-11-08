@@ -1,0 +1,2741 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Tasks"
+msgstr "İşler"
+
+msgid "Usage dashboard"
+msgstr "Kullanım panosu"
+
+msgid "Task Settings"
+msgstr "Görev Ayarları"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "JavaScript is required for Tasks."
+msgstr "Görevler için JavaScript gerekli."
+
+msgid "Task notifications"
+msgstr "Görev bildirimleri"
+
+msgid "AI needs the Flux AI & MCP plugin. An administrator must install Flux AI and enter a key."
+msgstr "Yapay zekâ için Flux AI & MCP eklentisi gerekli. Yönetici Flux AI'yi kurup anahtar girmeli."
+
+msgid "AI is not set up. An administrator must enter a key and choose a model in Flux AI & MCP › Settings."
+msgstr "Yapay zekâ ayarlanmamış. Yönetici Flux AI & MCP › Ayarlar'dan anahtar ve model seçmeli."
+
+msgid "The operation took too long; split the request into smaller steps."
+msgstr "İşlem çok uzun sürdü; isteği daha küçük adımlara bölün."
+
+msgid "Deleted user"
+msgstr "Silinmiş kullanıcı"
+
+msgid "List not found or you don't have access."
+msgstr "Liste bulunamadı ya da erişiminiz yok."
+
+msgid "Task not found or you don't have access."
+msgstr "Görev bulunamadı ya da erişiminiz yok."
+
+msgid "You don't have permission to add tasks to this list."
+msgstr "Bu listeye görev ekleme yetkiniz yok."
+
+msgid "You don't have permission to edit this task."
+msgstr "Bu görevi düzenleme yetkiniz yok."
+
+msgid "You don't have permission to add tasks to the target list."
+msgstr "Hedef listeye görev ekleme yetkiniz yok."
+
+msgid "This list has no such status."
+msgstr "Bu listede böyle bir durum yok."
+
+msgid "You don't have permission to comment on this task."
+msgstr "Bu göreve yorum yazma yetkiniz yok."
+
+msgid "Item not found."
+msgstr "Madde bulunamadı."
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "Setup"
+msgstr "Kurulum"
+
+msgid "WordPress and PHP version"
+msgstr "WordPress ve PHP sürümü"
+
+msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
+msgstr "WordPress %1$s, PHP %2$s. Gereken: WordPress 6.5+, PHP 7.4+."
+
+msgid "Database tables"
+msgstr "Veritabanı tabloları"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+
+msgid "Plugins"
+msgstr "Eklentiler"
+
+msgid "Tables are ready (schema %s)."
+msgstr "Tablolar hazır (şema %s)."
+
+msgid "File folder"
+msgstr "Dosya klasörü"
+
+msgid "wp-content/uploads/flx-tasks is missing or not writable. Files and images cannot be uploaded; check folder permissions (755)."
+msgstr "wp-content/uploads/flx-tasks yok ya da yazılamıyor. Dosya ve görsel yüklenemez; klasör izinlerini (755) kontrol edin."
+
+msgid "The folder is writable but the protection file (.htaccess) is missing; files can be opened by direct URL. Reactivate the plugin."
+msgstr "Klasör yazılabilir ama koruma dosyası (.htaccess) yok; dosyalar doğrudan adresle açılabilir. Eklentiyi yeniden etkinleştirin."
+
+msgid "Writable and closed to direct access."
+msgstr "Yazılabilir ve dışarıya kapalı."
+
+msgid "Upload limit"
+msgstr "Yükleme sınırı"
+
+msgid "Effective limit %1$s (server limit %2$s)."
+msgstr "Geçerli sınır %1$s (sunucu sınırı %2$s)."
+
+msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
+msgstr "Ayardaki değer sunucu sınırından büyük; hosting panelinden upload_max_filesize ve post_max_size artırılabilir."
+
+msgid "Scheduled jobs"
+msgstr "Zamanlanmış işler"
+
+msgid "Daily task reminders"
+msgstr "Günlük görev hatırlatmaları"
+
+msgid "Not scheduled: overdue/upcoming task notifications and old temporary file cleanup will not run. Opening the Tasks page once reschedules it."
+msgstr "Zamanlanmamış: geciken/yaklaşan görev bildirimleri ve eski geçici dosya temizliği çalışmaz. Görevler sayfasını bir kez açmak yeniden zamanlar."
+
+msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
+msgstr "Zamanlanmış iş gecikti (%s çalışmalıydı). WP-Cron tetiklenmiyor olabilir (site az ziyaret alıyorsa hosting panelinden gerçek cron önerilir)."
+
+msgid "Next run: %s."
+msgstr "Sonraki çalışma: %s."
+
+msgid "WP-Cron mode"
+msgstr "WP-Cron modu"
+
+msgid "DISABLE_WP_CRON is on: scheduled jobs only run if a server cron calls wp-cron.php. This cron must be set up in the hosting panel."
+msgstr "DISABLE_WP_CRON açık: zamanlanmış işler yalnız sunucu cron'u wp-cron.php'yi çağırırsa çalışır. Hosting panelinde bu cron tanımlı olmalı."
+
+msgid "Live updates"
+msgstr "Canlı güncelleme"
+
+msgid "Update interval"
+msgstr "Güncelleme aralığı"
+
+msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
+msgstr "Ekrandayken 10 sn, 2 dk hareketsizken %d sn; arka plandaki sekme istek atmaz."
+
+msgid "API cache"
+msgstr "API önbelleği"
+
+msgid "LiteSpeed Cache is active; task API responses are marked so they are not cached."
+msgstr "LiteSpeed Cache açık; görev API yanıtları önbelleğe alınmaması için işaretleniyor."
+
+msgid "Task API responses are not cached."
+msgstr "Görev API yanıtları önbelleğe alınmaz."
+
+msgid "Notifications"
+msgstr "Bildirimler"
+
+msgid "Email notifications"
+msgstr "E-posta bildirimleri"
+
+msgid "On. Emails are sent with WordPress's mail setup (an SMTP plugin is recommended)."
+msgstr "Açık. E-postalar WordPress'in e-posta ayarıyla gider (SMTP eklentisi önerilir)."
+
+msgid "Off; notifications are in-app only."
+msgstr "Kapalı; bildirimler yalnız uygulama içinde."
+
+msgid "AI and MCP"
+msgstr "Yapay zekâ ve MCP"
+
+msgid "AI"
+msgstr "Yapay zekâ"
+
+msgid "Via Flux AI, model: %s."
+msgstr "Flux AI üzerinden, model: %s."
+
+msgid "Flux AI"
+msgstr "Flux AI"
+
+msgid "MCP server"
+msgstr "MCP sunucusu"
+
+msgid "On, %d personal key(s)."
+msgstr "Açık, %d kişisel anahtar var."
+
+msgid "Off."
+msgstr "Kapalı."
+
+msgid "Untitled document"
+msgstr "Adsız doküman"
+
+msgid "List task projects"
+msgstr "Görev projelerini listele"
+
+msgid "List task people"
+msgstr "Görev kişilerini listele"
+
+msgid "Search tasks"
+msgstr "Görev ara"
+
+msgid "Read task"
+msgstr "Görevi oku"
+
+msgid "Create task"
+msgstr "Görev oluştur"
+
+msgid "Update task"
+msgstr "Görevi güncelle"
+
+msgid "Comment on task"
+msgstr "Göreve yorum ekle"
+
+msgid "List task fields"
+msgstr "Görev alanlarını listele"
+
+msgid "Create task list"
+msgstr "Görev listesi oluştur"
+
+msgid "Delete task"
+msgstr "Görevi sil"
+
+msgid "List task notifications"
+msgstr "Görev bildirimlerini listele"
+
+msgid "List documents"
+msgstr "Dokümanları listele"
+
+msgid "Read document page"
+msgstr "Doküman sayfasını oku"
+
+msgid "Edit document page"
+msgstr "Doküman sayfasını düzenle"
+
+msgid "Create document"
+msgstr "Doküman oluştur"
+
+msgid "Add page to document"
+msgstr "Dokümana sayfa ekle"
+
+msgid "Document: %s"
+msgstr "Belge: %s"
+
+msgid "Improve"
+msgstr "İyileştir"
+
+msgid "Fix spelling & grammar"
+msgstr "Yazım ve dil bilgisini düzelt"
+
+msgid "Shorten"
+msgstr "Kısalt"
+
+msgid "Make longer"
+msgstr "Uzat"
+
+msgid "Simplify"
+msgstr "Sadeleştir"
+
+msgid "More formal"
+msgstr "Daha resmi"
+
+msgid "More friendly"
+msgstr "Daha samimi"
+
+msgid "Turn into bullets"
+msgstr "Maddelere çevir"
+
+msgid "Turn into table"
+msgstr "Tabloya çevir"
+
+msgid "Translate"
+msgstr "Çevir"
+
+msgid "Explain"
+msgstr "Açıkla"
+
+msgid "Custom request"
+msgstr "Özel istek"
+
+msgid "Write"
+msgstr "Yaz"
+
+msgid "Continue writing"
+msgstr "Devam et"
+
+msgid "Summarize"
+msgstr "Özetle"
+
+msgid "Extract action items"
+msgstr "Yapılacakları çıkar"
+
+msgid "Draft an outline"
+msgstr "Taslak çıkar"
+
+msgid "Suggest a title"
+msgstr "Başlık öner"
+
+msgid "Ask the page"
+msgstr "Sayfaya sor"
+
+msgid "Page not found or you have no access."
+msgstr "Sayfa bulunamadı ya da erişiminiz yok."
+
+msgid "Unknown action."
+msgstr "Bilinmeyen işlem."
+
+msgid "Write what should be done."
+msgstr "Ne yapılacağını yazın."
+
+msgid "The AI could not extract items. Try again or describe what you need."
+msgstr "Yapay zekâ madde çıkaramadı. Yeniden deneyin ya da ne istediğinizi yazın."
+
+msgid "The AI returned an empty answer. Try again."
+msgstr "Yapay zekâ boş cevap verdi. Yeniden deneyin."
+
+msgid "You are not allowed to create documents in this project."
+msgstr "Bu projede doküman oluşturma yetkiniz yok."
+
+msgid "Document not found or you have no access."
+msgstr "Doküman bulunamadı ya da erişiminiz yok."
+
+msgid "You are not allowed to edit this document."
+msgstr "Bu dokümanı düzenleme yetkiniz yok."
+
+msgid "Only the owner or a project admin can delete the document."
+msgstr "Dokümanı sahibi ya da proje yöneticisi silebilir."
+
+msgid "A page cannot be moved under its own subpage."
+msgstr "Sayfa kendi alt sayfasının altına taşınamaz."
+
+msgid "The last page of a document cannot be deleted. You can delete the document instead."
+msgstr "Dokümanın son sayfası silinemez. Dokümanı silebilirsiniz."
+
+msgid "An email draft needs Flux Communication and mailbox permission."
+msgstr "E-posta taslağı için Flux Mail ve posta kutusu yetkisi gerekli."
+
+msgid "File is too large. The maximum upload size is %s."
+msgstr "Dosya çok büyük. En fazla %s yüklenebilir."
+
+msgid "Could not upload the file."
+msgstr "Dosya yüklenemedi."
+
+msgid "This file type is not allowed."
+msgstr "Bu dosya türüne izin verilmiyor."
+
+msgid "Could not save the file."
+msgstr "Dosya kaydedilemedi."
+
+msgid "Urgent"
+msgstr "Acil"
+
+msgid "High"
+msgstr "Yüksek"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Low"
+msgstr "Düşük"
+
+msgid "To do"
+msgstr "Yapılacak"
+
+msgid "In progress"
+msgstr "Devam ediyor"
+
+msgid "In review"
+msgstr "İncelemede"
+
+msgid "Done"
+msgstr "Tamamlandı"
+
+msgid "Short text"
+msgstr "Kısa metin"
+
+msgid "Long text"
+msgstr "Uzun metin"
+
+msgid "Number"
+msgstr "Sayı"
+
+msgid "Amount"
+msgstr "Tutar"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Checkbox"
+msgstr "Onay kutusu"
+
+msgid "Dropdown"
+msgstr "Açılır liste"
+
+msgid "Tags (multi-select)"
+msgstr "Etiketler (çoklu seçim)"
+
+msgid "Star rating"
+msgstr "Yıldız"
+
+msgid "Person"
+msgstr "Kişi"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "Web address"
+msgstr "Web adresi"
+
+msgid "Email"
+msgstr "E-posta"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Welcome to Flux Tasks: open this task and write a comment"
+msgstr "Flux Tasks'e hoş geldiniz: bu görevi açıp yorum yazın"
+
+msgid "Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings."
+msgstr "Görevleri liste, pano ve takvim görünümlerinde takip edin. Sol menüden yeni liste ya da klasör ekleyebilir, liste ayarlarından özel alan ve yetki tanımlayabilirsiniz."
+
+msgid "MCP is off. Turn it on under Flux Tasks › Settings."
+msgstr "MCP kapalı. Flux Tasks › Ayarlar bölümünden açın."
+
+msgid "Invalid or missing MCP key."
+msgstr "Geçersiz veya eksik MCP anahtarı."
+
+msgid "This user is not allowed to use Flux Tasks."
+msgstr "Bu kullanıcının Flux Tasks kullanma yetkisi yok."
+
+msgid "%s assigned you to a task"
+msgstr "%s sizi bir göreve atadı"
+
+msgid "%s mentioned you in a comment"
+msgstr "%s bir yorumda sizden bahsetti"
+
+msgid "%s wrote a comment"
+msgstr "%s yorum yazdı"
+
+msgid "%1$s changed the status to \"%2$s\""
+msgstr "%1$s durumu \"%2$s\" yaptı"
+
+msgid "Due tomorrow"
+msgstr "Bitiş tarihi yarın"
+
+msgid "Overdue"
+msgstr "Gecikmiş"
+
+msgid "[%1$s] %2$s"
+msgstr "[%1$s] %2$s"
+
+msgid "You can turn off email notifications under Flux Tasks › Profile."
+msgstr "E-posta bildirimlerini Flux Tasks › Profil bölümünden kapatabilirsiniz."
+
+msgid "Recipient name"
+msgstr "Alıcının adı"
+
+msgid "Person who acted"
+msgstr "İşlemi yapan kişi"
+
+msgid "Task name"
+msgstr "Görev adı"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Notification sentence"
+msgstr "Bildirim cümlesi"
+
+msgid "Comment excerpt"
+msgstr "Yorumdan alıntı"
+
+msgid "Due date"
+msgstr "Son tarih"
+
+msgid "Task link"
+msgstr "Görev bağlantısı"
+
+msgid "Booth supplies list"
+msgstr "Stant malzemeleri listesi"
+
+msgid "Mehmet assigned you to a task"
+msgstr "Mehmet sizi bir göreve atadı"
+
+msgid "Can you look at it by Friday?"
+msgstr "Cuma gününe kadar bakabilir misin?"
+
+msgid "You were assigned to a task"
+msgstr "Göreve atandınız"
+
+msgid "Sent when someone assigns you to a task."
+msgstr "Biri sizi bir göreve atayınca gider."
+
+msgid "{kisi} assigned you to a task: {gorev}"
+msgstr "{kisi} sizi bir göreve atadı: {gorev}"
+
+msgid "New task: {gorev}"
+msgstr "Yeni görev: {gorev}"
+
+msgid "Hi {ad},"
+msgstr "Merhaba {ad},"
+
+msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
+msgstr "{kisi} sizi <strong>{liste}</strong> listesindeki <strong>{gorev}</strong> görevine atadı."
+
+msgid "Open task"
+msgstr "Görevi aç"
+
+msgid "You were mentioned in a comment"
+msgstr "Yorumda bahsedildiniz"
+
+msgid "Sent when someone @mentions you in a comment."
+msgstr "Biri yorumda @ ile sizi etiketleyince gider."
+
+msgid "{kisi} mentioned you in a comment: {gorev}"
+msgstr "{kisi} bir yorumda sizden bahsetti: {gorev}"
+
+msgid "{kisi} mentioned you"
+msgstr "{kisi} sizden bahsetti"
+
+msgid "Comment on <strong>{gorev}</strong>:"
+msgstr "<strong>{gorev}</strong> görevindeki yorum:"
+
+msgid "Go to comment"
+msgstr "Yoruma git"
+
+msgid "Task due date is coming up"
+msgstr "Görevin bitiş tarihi yaklaşıyor"
+
+msgid "Sent one day before the due date of a task assigned to you."
+msgstr "Size atanan görevin bitiş tarihinden bir gün önce gider."
+
+msgid "Due tomorrow: {gorev}"
+msgstr "Yarın bitiyor: {gorev}"
+
+msgid "<strong>{gorev}</strong> is due on {tarih}."
+msgstr "<strong>{gorev}</strong> görevinin bitiş tarihi {tarih}."
+
+msgid "Can view"
+msgstr "Görüntüler"
+
+msgid "Can comment"
+msgstr "Yorum yapar"
+
+msgid "Can edit"
+msgstr "Düzenler"
+
+msgid "Can manage"
+msgstr "Yönetir"
+
+msgid "Display preferences are too large."
+msgstr "Ekran tercihleri çok büyük."
+
+msgid "You don't have permission to create projects."
+msgstr "Proje oluşturma yetkiniz yok."
+
+msgid "Name cannot be empty."
+msgstr "Ad boş olamaz."
+
+msgid "Project not found."
+msgstr "Proje bulunamadı."
+
+msgid "You don't have permission to manage this project."
+msgstr "Bu projeyi yönetme yetkiniz yok."
+
+msgid "You don't have permission to create folders in this project."
+msgstr "Bu projede klasör oluşturma yetkiniz yok."
+
+msgid "You don't have permission to edit this folder."
+msgstr "Bu klasörü düzenleme yetkiniz yok."
+
+msgid "You don't have permission to delete this folder."
+msgstr "Bu klasörü silme yetkiniz yok."
+
+msgid "You don't have permission to create lists in this project."
+msgstr "Bu projede liste oluşturma yetkiniz yok."
+
+msgid "You don't have permission to manage this list."
+msgstr "Bu listeyi yönetme yetkiniz yok."
+
+msgid "You don't have access to the target project."
+msgstr "Hedef projeye erişiminiz yok."
+
+msgid "You must be a list manager to add fields."
+msgstr "Alan eklemek için liste yöneticisi olmalısınız."
+
+msgid "You must be a list manager to edit fields."
+msgstr "Alanı düzenlemek için liste yöneticisi olmalısınız."
+
+msgid "You must be a list manager to delete fields."
+msgstr "Alanı silmek için liste yöneticisi olmalısınız."
+
+msgid "You don't have access."
+msgstr "Erişiminiz yok."
+
+msgid "New view"
+msgstr "Yeni görünüm"
+
+msgid "You don't have permission to change this view."
+msgstr "Bu görünümü değiştirme yetkiniz yok."
+
+msgid "You don't have permission to delete this view."
+msgstr "Bu görünümü silme yetkiniz yok."
+
+msgid "Project managers edit tags."
+msgstr "Etiketleri proje yöneticileri düzenler."
+
+msgid "You don't have permission to delete this task."
+msgstr "Bu görevi silme yetkiniz yok."
+
+msgid "You can only edit your own comments."
+msgstr "Yalnız kendi yorumunuzu düzenleyebilirsiniz."
+
+msgid "Comment cannot be empty."
+msgstr "Yorum boş olamaz."
+
+msgid "You don't have permission to delete this comment."
+msgstr "Bu yorumu silme yetkiniz yok."
+
+msgid "You are not allowed to add files to this document."
+msgstr "Bu dokümana dosya ekleme yetkiniz yok."
+
+msgid "You don't have permission to attach files to this task."
+msgstr "Bu göreve dosya ekleme yetkiniz yok."
+
+msgid "File not found."
+msgstr "Dosya bulunamadı."
+
+msgid "You don't have permission to delete this file."
+msgstr "Bu dosyayı silme yetkiniz yok."
+
+msgid "You don't have permission to delete this key."
+msgstr "Bu anahtarı silme yetkiniz yok."
+
+msgid "Planned"
+msgstr "Planlandı"
+
+msgid "Held"
+msgstr "Yapıldı"
+
+msgid "Cancelled"
+msgstr "İptal"
+
+msgid "Board"
+msgstr "Pano"
+
+msgid "Calendar"
+msgstr "Takvim"
+
+msgid "Parent task not found."
+msgstr "Üst görev bulunamadı."
+
+msgid "A task cannot be moved under its own subtask."
+msgstr "Görev kendi alt görevinin altına taşınamaz."
+
+msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
+msgstr "Bu projede alt görevler en fazla %d kademe olabilir. Sınırı proje ayarlarından değiştirebilirsiniz."
+
+msgid "Task name cannot be empty."
+msgstr "Görev adı boş olamaz."
+
+msgid "List not found."
+msgstr "Liste bulunamadı."
+
+msgid "Task not found."
+msgstr "Görev bulunamadı."
+
+msgid "Choose an image for the cover."
+msgstr "Kapak için bir görsel seçin."
+
+msgid "Today"
+msgstr "Bugün"
+
+msgid "Tomorrow"
+msgstr "Yarın"
+
+msgid "Yesterday"
+msgstr "Dün"
+
+msgid "just now"
+msgstr "az önce"
+
+msgid "The server sent an unexpected response. Refresh the page and try again."
+msgstr "Sunucu beklenmeyen bir yanıt verdi. Sayfayı yenileyip tekrar deneyin."
+
+msgid "The server is busy right now, try again shortly."
+msgstr "Sunucu şu an yoğun, biraz sonra yeniden deneyin."
+
+msgid "Connection error"
+msgstr "Bağlantı hatası"
+
+msgid "Deleting comment"
+msgstr "Yorum siliniyor"
+
+msgid "Sending comment"
+msgstr "Yorum gönderiliyor"
+
+msgid "Deleting file"
+msgstr "Dosya siliniyor"
+
+msgid "Saving file"
+msgstr "Dosya kaydediliyor"
+
+msgid "Deleting task"
+msgstr "Görev siliniyor"
+
+msgid "Saving task"
+msgstr "Görev kaydediliyor"
+
+msgid "AI is working"
+msgstr "Yapay zekâ çalışıyor"
+
+msgid "Saving"
+msgstr "Kaydediliyor"
+
+msgid "Loading"
+msgstr "Yükleniyor"
+
+msgid "{n} failed"
+msgstr "{n} işlem başarısız"
+
+msgid "{n} in progress"
+msgstr "{n} işlem sürüyor"
+
+msgid "server busy, waiting"
+msgstr "sunucu yoğun, bekleniyor"
+
+msgid "Saved"
+msgstr "Kaydedildi"
+
+msgid "Background tasks"
+msgstr "Arka plan işleri"
+
+msgid "Server busy, waiting"
+msgstr "Sunucu yoğun, bekleniyor"
+
+msgid "Retry"
+msgstr "Yeniden dene"
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Uploading: {n}"
+msgstr "Yükleniyor: {n}"
+
+msgid "Upload timed out."
+msgstr "Yükleme zaman aşımına uğradı."
+
+msgid "Cancel"
+msgstr "Vazgeç"
+
+msgid "OK"
+msgstr "Tamam"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Copied"
+msgstr "Kopyalandı"
+
+msgid "Download"
+msgstr "İndir"
+
+msgid "Someone"
+msgstr "Biri"
+
+msgid "Document name"
+msgstr "Doküman adı"
+
+msgid "Create"
+msgstr "Oluştur"
+
+msgid "Delete document"
+msgstr "Dokümanı sil"
+
+msgid "\"{n}\" will be permanently deleted with all its pages and images."
+msgstr "\"{n}\" dokümanı tüm sayfaları ve görselleriyle kalıcı olarak silinecek."
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Rename"
+msgstr "Yeniden adlandır"
+
+msgid "Copy link"
+msgstr "Bağlantıyı kopyala"
+
+msgid "Pop-up blocked. Allow pop-ups for this site in your browser."
+msgstr "Açılır pencere engellendi. Tarayıcıda bu site için açılır pencerelere izin verin."
+
+msgid "My tasks"
+msgstr "Benim görevlerim"
+
+msgid "Email draft created."
+msgstr "E-posta taslağı oluşturuldu."
+
+msgid "Open in mailbox"
+msgstr "Posta kutusunda aç"
+
+msgid "Pages"
+msgstr "Sayfalar"
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "Rename document"
+msgstr "Dokümanı yeniden adlandır"
+
+msgid "Add subpage"
+msgstr "Alt sayfa ekle"
+
+msgid "Print / PDF"
+msgstr "Yazdır / PDF"
+
+msgid "Create email draft"
+msgstr "E-posta taslağı oluştur"
+
+msgid "Create an email draft from this page"
+msgstr "Bu sayfadan e-posta taslağı oluştur"
+
+msgid "Email draft"
+msgstr "E-posta taslağı"
+
+msgid "AI (Ctrl+J)"
+msgstr "Yapay zekâ (Ctrl+J)"
+
+msgid "Untitled"
+msgstr "Başlıksız"
+
+msgid "Start writing… type \"/\" for blocks, \"#\" to link a task"
+msgstr "Yazmaya başlayın… \"/\" ile blok, \"#\" ile görev ekleyin"
+
+msgid "Open as full page"
+msgstr "Tam sayfa aç"
+
+msgid "Full page"
+msgstr "Tam sayfa"
+
+msgid "Saving…"
+msgstr "Kaydediliyor…"
+
+msgid "Not saved, will retry"
+msgstr "Kaydedilemedi, yeniden denenecek"
+
+msgid "Offline"
+msgstr "Bağlantı yok"
+
+msgid "Add page"
+msgstr "Sayfa ekle"
+
+msgid "Collapse"
+msgstr "Daralt"
+
+msgid "Page menu"
+msgstr "Sayfa menüsü"
+
+msgid "Page name"
+msgstr "Sayfa adı"
+
+msgid "Move under the page above"
+msgstr "Üstteki sayfanın altına taşı"
+
+msgid "Move up a level"
+msgstr "Bir üst düzeye taşı"
+
+msgid "Delete page"
+msgstr "Sayfayı sil"
+
+msgid "\"{p}\" and its {n} subpages will be deleted."
+msgstr "\"{p}\" sayfası ve {n} alt sayfası silinecek."
+
+msgid "\"{p}\" will be deleted."
+msgstr "\"{p}\" sayfası silinecek."
+
+msgid "Last edited by {n}, {t}"
+msgstr "Son düzenleme: {n}, {t}"
+
+msgid "typing"
+msgstr "yazıyor"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Remove link"
+msgstr "Bağlantıyı kaldır"
+
+msgid "Small"
+msgstr "Küçük"
+
+msgid "Medium"
+msgstr "Orta"
+
+msgid "Full width"
+msgstr "Tam genişlik"
+
+msgid "Enlarge"
+msgstr "Büyüt"
+
+msgid "Remove image"
+msgstr "Görseli kaldır"
+
+msgid "Link address"
+msgstr "Bağlantı adresi"
+
+msgid "Add"
+msgstr "Ekle"
+
+msgid "Search tasks…"
+msgstr "Görev ara…"
+
+msgid "No results"
+msgstr "Sonuç yok"
+
+msgid "Type to search"
+msgstr "Aramak için yazın"
+
+msgid "Basic blocks"
+msgstr "Temel bloklar"
+
+msgid "Media & links"
+msgstr "Medya ve bağlantı"
+
+msgid "Item"
+msgstr "Madde"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Plain paragraph"
+msgstr "Düz paragraf"
+
+msgid "Page"
+msgstr "Sayfa"
+
+msgid "A sub-page inside this page"
+msgstr "Bu sayfanın içinde alt sayfa"
+
+msgid "Sub-page"
+msgstr "Alt sayfa"
+
+msgid "Heading 1"
+msgstr "Başlık 1"
+
+msgid "Large section heading"
+msgstr "Büyük bölüm başlığı"
+
+msgid "Heading"
+msgstr "Başlık"
+
+msgid "Heading 2"
+msgstr "Başlık 2"
+
+msgid "Medium section heading"
+msgstr "Orta bölüm başlığı"
+
+msgid "Heading 3"
+msgstr "Başlık 3"
+
+msgid "Small section heading"
+msgstr "Küçük bölüm başlığı"
+
+msgid "Bulleted list"
+msgstr "Madde listesi"
+
+msgid "Simple bulleted list"
+msgstr "Basit madde işaretli liste"
+
+msgid "Numbered list"
+msgstr "Sıra numaralı liste"
+
+msgid "Checklist"
+msgstr "Kontrol listesi"
+
+msgid "Checkable to-dos"
+msgstr "İşaretlenebilir yapılacaklar"
+
+msgid "Quote"
+msgstr "Alıntı"
+
+msgid "Quote or note"
+msgstr "Alıntı ya da not"
+
+msgid "Code"
+msgstr "Kod"
+
+msgid "Code block"
+msgstr "Kod bloğu"
+
+msgid "Table"
+msgstr "Tablo"
+
+msgid "3×3 table"
+msgstr "3×3 tablo"
+
+msgid "Divider"
+msgstr "Ayırıcı çizgi"
+
+msgid "Separates sections"
+msgstr "Bölümleri ayırır"
+
+msgid "Images"
+msgstr "Görsel"
+
+msgid "Upload an image"
+msgstr "Resim yükle"
+
+msgid "Add file"
+msgstr "Dosya ekle"
+
+msgid "Link a task (#)"
+msgstr "Bir görevi bağla (#)"
+
+msgid "Link"
+msgstr "Bağlantı"
+
+msgid "Add a web link"
+msgstr "Web adresi ekle"
+
+msgid "Write with AI"
+msgstr "Yapay zekâ ile yaz"
+
+msgid "Have it write anything"
+msgstr "İstediğini yazdır"
+
+msgid "Continues the page"
+msgstr "Sayfayı sürdürür"
+
+msgid "Summary of the page"
+msgstr "Sayfanın özeti"
+
+msgid "Turn items into tasks"
+msgstr "Maddeleri göreve çevir"
+
+msgid "Close menu"
+msgstr "Menüyü kapat"
+
+msgid "Gray"
+msgstr "Gri"
+
+msgid "Brown"
+msgstr "Kahverengi"
+
+msgid "Orange"
+msgstr "Turuncu"
+
+msgid "Yellow"
+msgstr "Sarı"
+
+msgid "Green"
+msgstr "Yeşil"
+
+msgid "Blue"
+msgstr "Mavi"
+
+msgid "Purple"
+msgstr "Mor"
+
+msgid "Pink"
+msgstr "Pembe"
+
+msgid "Red"
+msgstr "Kırmızı"
+
+msgid "Default"
+msgstr "Varsayılan"
+
+msgid "Column: click for menu, drag to move"
+msgstr "Sütun: tıkla menü, sürükle taşı"
+
+msgid "Row: click for menu, drag to move"
+msgstr "Satır: tıkla menü, sürükle taşı"
+
+msgid "Insert row above"
+msgstr "Üstüne satır ekle"
+
+msgid "Add column left"
+msgstr "Sola sütun ekle"
+
+msgid "Insert row below"
+msgstr "Altına satır ekle"
+
+msgid "Add column right"
+msgstr "Sağa sütun ekle"
+
+msgid "Move up"
+msgstr "Yukarı taşı"
+
+msgid "Move left"
+msgstr "Sola taşı"
+
+msgid "Move down"
+msgstr "Aşağı taşı"
+
+msgid "Move right"
+msgstr "Sağa taşı"
+
+msgid "Background"
+msgstr "Arka plan"
+
+msgid "Text color"
+msgstr "Metin rengi"
+
+msgid "Delete row"
+msgstr "Satırı sil"
+
+msgid "Delete column"
+msgstr "Sütunu sil"
+
+msgid "Delete table"
+msgstr "Tabloyu sil"
+
+msgid "Click to add a block below. Alt-click to add above"
+msgstr "Tıkla: altına blok ekle. Alt+tıkla: üstüne ekle"
+
+msgid "Drag to move. Click for menu"
+msgstr "Sürükle: taşı. Tıkla: menü"
+
+msgid "Turn into"
+msgstr "Dönüştür"
+
+msgid "Edit with AI"
+msgstr "Yapay zekâ ile düzenle"
+
+msgid "Duplicate"
+msgstr "Çoğalt"
+
+msgid "Add row below"
+msgstr "Alta satır ekle"
+
+msgid "Add row above"
+msgstr "Üste satır ekle"
+
+msgid "Undo"
+msgstr "Geri al"
+
+msgid "Redo"
+msgstr "Yinele"
+
+msgid "Bold"
+msgstr "Kalın"
+
+msgid "Italic"
+msgstr "İtalik"
+
+msgid "Underline"
+msgstr "Altı çizili"
+
+msgid "Strikethrough"
+msgstr "Üstü çizili"
+
+msgid "Link (Ctrl+K)"
+msgstr "Bağlantı (Ctrl+K)"
+
+msgid "Alignment"
+msgstr "Hizalama"
+
+msgid "Left"
+msgstr "Sola"
+
+msgid "Center"
+msgstr "Ortaya"
+
+msgid "Right"
+msgstr "Sağa"
+
+msgid "Add image"
+msgstr "Görsel ekle"
+
+msgid "Add table"
+msgstr "Tablo ekle"
+
+msgid "Task link (#)"
+msgstr "Görev bağlantısı (#)"
+
+msgid "Translate to English"
+msgstr "İngilizceye çevir"
+
+msgid "Translate to Turkish"
+msgstr "Türkçeye çevir"
+
+msgid "Turn into heading"
+msgstr "Başlığa çevir"
+
+msgid "Selected text"
+msgstr "Seçili metin"
+
+msgid "This page"
+msgstr "Bu sayfa"
+
+msgid "Describe the change… (e.g. make it shorter)"
+msgstr "Değiştirmek istediğini yaz… (örn. daha kısa olsun)"
+
+msgid "What should be done with the selection?"
+msgstr "Seçili metne ne yapılsın?"
+
+msgid "What should be written? E.g. a meeting agenda draft"
+msgstr "Ne yazılsın? Örn: toplantı gündemi taslağı"
+
+msgid "Ask a question about this page"
+msgstr "Bu sayfaya bir soru sorun"
+
+msgid "Ask the page (the answer is not written into it)"
+msgstr "Sayfaya soru sor (cevap sayfaya yazılmaz)"
+
+msgid "Ask"
+msgstr "Sor"
+
+msgid "Send"
+msgstr "Gönder"
+
+msgid "Chat with the assistant"
+msgstr "Asistanla sohbet et"
+
+msgid "AI is writing…"
+msgstr "Yapay zekâ yazıyor…"
+
+msgid "Replace"
+msgstr "Değiştir"
+
+msgid "Insert below"
+msgstr "Altına ekle"
+
+msgid "Use as title"
+msgstr "Başlık yap"
+
+msgid "Page title changed."
+msgstr "Sayfa başlığı değişti."
+
+msgid "Insert below cursor"
+msgstr "İmlecin altına ekle"
+
+msgid "Append"
+msgstr "Sona ekle"
+
+msgid "Insert at top"
+msgstr "Başa ekle"
+
+msgid "Add as new page"
+msgstr "Yeni sayfa olarak ekle"
+
+msgid "Add to page"
+msgstr "Sayfaya ekle"
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "Regenerate"
+msgstr "Yeniden üret"
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Select"
+msgstr "Seç"
+
+msgid "Due"
+msgstr "Bitiş"
+
+msgid "Add item"
+msgstr "Madde ekle"
+
+msgid "Add as tasks ({n})"
+msgstr "Görev olarak ekle ({n})"
+
+msgid "{n} tasks added to \"{l}\"."
+msgstr "{n} görev \"{l}\" listesine eklendi."
+
+msgid "Open list"
+msgstr "Listeyi aç"
+
+msgid "There is no list you can add tasks to."
+msgstr "Görev ekleyebileceğiniz bir liste yok."
+
+msgid "To-dos"
+msgstr "Yapılacaklar"
+
+msgid "New page created."
+msgstr "Yeni sayfa oluşturuldu."
+
+msgid "The selection changed meanwhile; the result was inserted below."
+msgstr "Seçili metin bu arada değişti; sonuç altına eklendi."
+
+msgid "Replaced."
+msgstr "Değiştirildi."
+
+msgid "Added to the page."
+msgstr "Sayfaya eklendi."
+
+msgid "Drag to resize, double-click to reset"
+msgstr "Genişliği değiştirmek için sürükleyin, sıfırlamak için çift tıklayın"
+
+msgid "Hide sidebar"
+msgstr "Kenar menüyü gizle"
+
+msgid "AI assistant"
+msgstr "Yapay zekâ asistanı"
+
+msgid "Projects"
+msgstr "Projeler"
+
+msgid "New project"
+msgstr "Yeni proje"
+
+msgid "Project menu"
+msgstr "Proje menüsü"
+
+msgid "Empty folder"
+msgstr "Boş klasör"
+
+msgid "You have no visible projects."
+msgstr "Görebildiğiniz proje yok."
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "Light"
+msgstr "Açık"
+
+msgid "Dark"
+msgstr "Koyu"
+
+msgid "Back to WordPress admin"
+msgstr "WordPress paneline dön"
+
+msgid "List menu"
+msgstr "Liste menüsü"
+
+msgid "Moves within the same project; statuses, fields and tags stay the same."
+msgstr "Aynı proje içinde taşınır; durumlar, alanlar ve etiketler değişmez."
+
+msgid "Keep the list's own statuses"
+msgstr "Listenin kendi durumlarını koru"
+
+msgid "Use the statuses of \"{n}\""
+msgstr "\"{n}\" listesinin durumlarını kullan"
+
+msgid "Statuses"
+msgstr "Durumlar"
+
+msgid "Pick a match for each status; tasks move to that status."
+msgstr "Her durumun karşılığını seçin; görevler bu duruma geçer."
+
+msgid "Statuses and custom fields move with the list; tasks keep their status."
+msgstr "Durumlar ve özel alanlar listeyle birlikte taşınır, görevler aynı durumda kalır."
+
+msgid "Tags"
+msgstr "Etiketler"
+
+msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
+msgstr "{n} etiket hedef projede aynı adla bağlanır: {e} tanesi zaten var, {c} tanesi oluşturulur."
+
+msgid "People who will lose access"
+msgstr "Erişimi kalkacak kişiler"
+
+msgid "These people are not members of the target project; checked ones are added as members."
+msgstr "Bu kişiler hedef projenin üyesi değil; işaretlerseniz projeye üye eklenir."
+
+msgid "Target project or folder"
+msgstr "Hedef proje ya da klasör"
+
+msgid "Move \"{n}\""
+msgstr "\"{n}\" listesini taşı"
+
+msgid "Move"
+msgstr "Taşı"
+
+msgid "Moving list"
+msgstr "Liste taşınıyor"
+
+msgid "\"{n}\" moved."
+msgstr "\"{n}\" taşındı."
+
+msgid "Document menu"
+msgstr "Doküman menüsü"
+
+msgid "Task list"
+msgstr "Görev listesi"
+
+msgid "Meeting list"
+msgstr "Toplantı listesi"
+
+msgid "Document"
+msgstr "Doküman"
+
+msgid "New list"
+msgstr "Yeni liste"
+
+msgid "New meeting list"
+msgstr "Yeni toplantı listesi"
+
+msgid "New document"
+msgstr "Yeni doküman"
+
+msgid "New folder"
+msgstr "Yeni klasör"
+
+msgid "Folder name"
+msgstr "Klasör adı"
+
+msgid "Project settings and members"
+msgstr "Proje ayarları ve üyeler"
+
+msgid "Delete project"
+msgstr "Projeyi sil"
+
+msgid "All lists, tasks, comments and files in the project \"{n}\" will be permanently deleted."
+msgstr "\"{n}\" projesindeki tüm listeler, görevler, yorumlar ve dosyalar kalıcı olarak silinecek."
+
+msgid "Add a list to this folder"
+msgstr "Bu klasöre liste ekle"
+
+msgid "Add a meeting list to this folder"
+msgstr "Bu klasöre toplantı listesi ekle"
+
+msgid "Add a document to this folder"
+msgstr "Bu klasöre doküman ekle"
+
+msgid "Delete folder"
+msgstr "Klasörü sil"
+
+msgid "The folder will be deleted; its lists will move to the project root."
+msgstr "Klasör silinir; içindeki listeler projenin altına taşınır."
+
+msgid "List settings"
+msgstr "Liste ayarları"
+
+msgid "Custom fields"
+msgstr "Özel alanlar"
+
+msgid "Permissions"
+msgstr "Yetkiler"
+
+msgid "Move…"
+msgstr "Taşı…"
+
+msgid "Delete list"
+msgstr "Listeyi sil"
+
+msgid "All tasks, comments and files in the list \"{n}\" will be permanently deleted."
+msgstr "\"{n}\" listesindeki tüm görevler, yorumlar ve dosyalar kalıcı olarak silinecek."
+
+msgid "Show sidebar"
+msgstr "Kenar menüyü göster"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "All lists"
+msgstr "Tüm listeler"
+
+msgid "Visible to members only"
+msgstr "Yalnız üyeler görür"
+
+msgid "Private"
+msgstr "Özel"
+
+msgid "Share"
+msgstr "Paylaş"
+
+msgid "View menu"
+msgstr "Görünüm menüsü"
+
+msgid "View"
+msgstr "Görünüm"
+
+msgid "View name"
+msgstr "Görünüm adı"
+
+msgid "Create a copy"
+msgstr "Kopyasını oluştur"
+
+msgid "Share with everyone"
+msgstr "Herkesle paylaş"
+
+msgid "Make private to me"
+msgstr "Yalnız bana özel yap"
+
+msgid "Delete view"
+msgstr "Görünümü sil"
+
+msgid "The view \"{n}\" will be deleted. Tasks are not affected."
+msgstr "\"{n}\" görünümü silinecek. Görevler etkilenmez."
+
+msgid "{n} assigned you to a task"
+msgstr "{n} sizi bir göreve atadı"
+
+msgid "{n} mentioned you in a comment"
+msgstr "{n} bir yorumda sizden bahsetti"
+
+msgid "{n} wrote a comment"
+msgstr "{n} yorum yazdı"
+
+msgid "{n} changed the status to \"{s}\""
+msgstr "{n} durumu \"{s}\" yaptı"
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "Unread"
+msgstr "Okunmamış"
+
+msgid "Mark all as read"
+msgstr "Tümünü okundu say"
+
+msgid "No unread notifications. 🎉"
+msgstr "Okunmamış bildirim yok. 🎉"
+
+msgid "No notifications yet."
+msgstr "Henüz bildirim yok."
+
+msgid "(deleted task)"
+msgstr "(silinmiş görev)"
+
+msgid "More"
+msgstr "Daha fazla"
+
+msgid "Refresh"
+msgstr "Yenile"
+
+msgid "File storage"
+msgstr "Dosya depolama"
+
+msgid "{n} files"
+msgstr "{n} dosya"
+
+msgid "previews {s}"
+msgstr "önizlemeler {s}"
+
+msgid "Open tasks"
+msgstr "Açık görev"
+
+msgid "{n} completed"
+msgstr "{n} tamamlandı"
+
+msgid "open tasks past their due date"
+msgstr "bitiş tarihi geçmiş açık görev"
+
+msgid "Last 30 days"
+msgstr "Son 30 gün"
+
+msgid "{n} tasks completed"
+msgstr "{n} görev tamamlandı"
+
+msgid "Comments"
+msgstr "Yorumlar"
+
+msgid "{n} active users (30 days)"
+msgstr "{n} aktif kişi (30 gün)"
+
+msgid "Structure"
+msgstr "Yapı"
+
+msgid "projects / lists · {n} users"
+msgstr "proje / liste · {n} kullanıcı"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Documents"
+msgstr "Belge"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Audio"
+msgstr "Ses"
+
+msgid "Archives"
+msgstr "Arşiv"
+
+msgid "Storage"
+msgstr "Depolama"
+
+msgid "No files uploaded yet."
+msgstr "Henüz dosya yüklenmemiş."
+
+msgid "Task files (uploads/flx-tasks)"
+msgstr "Görev dosyaları (uploads/flx-tasks)"
+
+msgid "Unsent comment attachments (deleted after 24 hours)"
+msgstr "Gönderilmemiş yorum ekleri (24 saat sonra silinir)"
+
+msgid "Single file limit"
+msgstr "Tek dosya sınırı"
+
+msgid "Free space on server"
+msgstr "Sunucuda boş alan"
+
+msgid "Entire media folder (wp-content/uploads)"
+msgstr "Tüm medya klasörü (wp-content/uploads)"
+
+msgid "Calculating…"
+msgstr "Hesaplanıyor…"
+
+msgid "Recalculate"
+msgstr "Yeniden hesapla"
+
+msgid "Calculate"
+msgstr "Hesapla"
+
+msgid "By list"
+msgstr "Listelere göre"
+
+msgid "Project"
+msgstr "Proje"
+
+msgid "Task"
+msgstr "Görev"
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Uploaded by person"
+msgstr "Kişilere göre yüklenen"
+
+msgid "No data."
+msgstr "Veri yok."
+
+msgid "Monthly uploads"
+msgstr "Aylık yükleme"
+
+msgid "Largest files"
+msgstr "En büyük dosyalar"
+
+msgid "Uploader"
+msgstr "Yükleyen"
+
+msgid "unlinked"
+msgstr "bağlanmamış"
+
+msgid "Delete file"
+msgstr "Dosyayı sil"
+
+msgid "Database"
+msgstr "Veritabanı"
+
+msgid "Rows"
+msgstr "Satır"
+
+msgid "Total"
+msgstr "Toplam"
+
+msgid "AI usage"
+msgstr "Yapay zekâ kullanımı"
+
+msgid "Month"
+msgstr "Ay"
+
+msgid "Requests"
+msgstr "İstek"
+
+msgid "Tokens"
+msgstr "Token"
+
+msgid "Cost (OpenRouter)"
+msgstr "Maliyet (OpenRouter)"
+
+msgid "No usage this month."
+msgstr "Bu ay kullanım yok."
+
+msgid "Warning"
+msgstr "Uyarı"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Info"
+msgstr "Bilgi"
+
+msgid "{n} problem(s)"
+msgstr "{n} sorun var"
+
+msgid "{n} warning(s)"
+msgstr "{n} uyarı var"
+
+msgid "Everything is in place"
+msgstr "Her şey yerli yerinde"
+
+msgid "System check"
+msgstr "Sistem kontrolü"
+
+msgid "Check again"
+msgstr "Yeniden kontrol et"
+
+msgid "{n} item(s)"
+msgstr "{n} konu"
+
+msgid "Flux AI default: {m}"
+msgstr "Flux AI varsayılanı: {m}"
+
+msgid "Flux AI default"
+msgstr "Flux AI varsayılanı"
+
+msgid "Access"
+msgstr "Erişim"
+
+msgid "Choose which WordPress roles can use Tasks. Administrators always see all projects."
+msgstr "Hangi WordPress rollerinin görevleri kullanabileceğini seçin. Yöneticiler her zaman tüm projeleri görür."
+
+msgid "Can use Tasks"
+msgstr "Görevleri kullanabilir"
+
+msgid "Can create projects, folders and lists"
+msgstr "Proje, klasör ve liste oluşturabilir"
+
+msgid "Can use AI"
+msgstr "Yapay zekâyı kullanabilir"
+
+msgid "Notifications and updates"
+msgstr "Bildirimler ve güncelleme"
+
+msgid "Live update interval (seconds)"
+msgstr "Canlı güncelleme aralığı (saniye)"
+
+msgid "An open tab sends a single lightweight request at this interval; a background tab sends none. Increase it if the server is busy (default 45)."
+msgstr "Açık sekme bu aralıkla tek bir hafif istek atar; arka plandaki sekme hiç istek atmaz. Sunucu yoğunsa artırın (varsayılan 45)."
+
+msgid "Emails are sent for assignments, mentions and upcoming due dates. People can turn them off in their profile."
+msgstr "Atama, bahsetme ve yaklaşan bitiş tarihi için e-posta gönderilir. Kişiler profilinden kapatabilir."
+
+msgid "Files"
+msgstr "Dosyalar"
+
+msgid "Single file limit (MB)"
+msgstr "Tek dosya sınırı (MB)"
+
+msgid "If the server's PHP limit is lower, that limit applies."
+msgstr "Sunucunun PHP sınırı daha düşükse o geçerli olur."
+
+msgid "Keys, spending limit and reports come from the Flux AI & MCP plugin. Leave the model empty to use the Flux AI default."
+msgstr "Anahtarlar, harcama sınırı ve raporlar Flux AI & MCP eklentisinden gelir. Model alanını boş bırakırsanız Flux AI varsayılanı kullanılır."
+
+msgid "Flux AI settings"
+msgstr "Flux AI ayarları"
+
+msgid "AI is off: a key or model is missing in Flux AI."
+msgstr "Yapay zekâ kapalı: Flux AI'de anahtar ya da model eksik."
+
+msgid "AI is off: the Flux AI & MCP plugin is not installed. The assistant and quick actions work through Flux AI."
+msgstr "Yapay zekâ kapalı: Flux AI & MCP eklentisi kurulu değil. Asistan ve hızlı işlemler Flux AI ile çalışır."
+
+msgid "Model (optional)"
+msgstr "Model (isteğe bağlı)"
+
+msgid "Creativity (temperature)"
+msgstr "Yaratıcılık (temperature)"
+
+msgid "Organization notes (the assistant knows this on every request)"
+msgstr "Kurum notları (asistan her istekte bunu bilir)"
+
+msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. Write dates as day.month.year."
+msgstr "Örn: Dernek İstanbul şubesi. Etkinlik görevlerine \"Etkinlik\" etiketi koy. Tarihleri gün.ay.yıl yaz."
+
+msgid "This month: {c} requests, {t} tokens, ${m}"
+msgstr "Bu ay: {c} istek, {t} token, ${m}"
+
+msgid "Enable MCP server"
+msgstr "MCP sunucusunu aç"
+
+msgid "AI clients such as Claude and Cursor can read and write tasks. Each person generates their own key on their Profile page."
+msgstr "Claude, Cursor gibi yapay zekâ istemcileri görevleri okuyup yazabilir. Her kişi kendi anahtarını Profil sayfasından üretir."
+
+msgid "Manage keys"
+msgstr "Anahtarları yönet"
+
+msgid "Data"
+msgstr "Veri"
+
+msgid "Also delete all task data when the plugin is deleted"
+msgstr "Eklenti silinince tüm görev verisini de sil"
+
+msgid "When off, deleting the plugin leaves your data untouched."
+msgstr "Kapalıyken eklentiyi silmek verilere dokunmaz."
+
+msgid "Settings saved"
+msgstr "Ayarlar kaydedildi"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Your profile photo and name come from your WordPress profile."
+msgstr "Profil fotoğrafı ve adı WordPress profilinden gelir."
+
+msgid "Get emails when you are assigned, mentioned, or a due date approaches."
+msgstr "Size atanınca, bahsedilince ve bitiş tarihi yaklaşınca e-posta alın."
+
+msgid "The browser did not allow it."
+msgstr "Tarayıcı izin vermedi."
+
+msgid "Desktop notifications"
+msgstr "Masaüstü bildirimleri"
+
+msgid "While the Tasks tab is open, new notifications also arrive as browser notifications."
+msgstr "Görevler sekmesi açıkken yeni bildirimler tarayıcı bildirimi olarak da gelir."
+
+msgid "MCP connection"
+msgstr "MCP bağlantısı"
+
+msgid "The MCP server is off. An admin can turn it on from the Settings page."
+msgstr "MCP sunucusu kapalı. Yönetici Ayarlar sayfasından açabilir."
+
+msgid "Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions."
+msgstr "Claude, ChatGPT, Cursor gibi MCP destekli bir istemciye bu adresi ve kişisel anahtarınızı ekleyin. Asistan yalnız sizin görebildiğiniz listelerde, sizin yetkinizle çalışır."
+
+msgid "Your new key (shown only now):"
+msgstr "Yeni anahtarınız (yalnız şimdi gösterilir):"
+
+msgid "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address."
+msgstr "İstemcide başlık olarak \"Yetkilendirme: Taşıyıcı <key>\" ifadesini kullanın. Başlık ekleyemiyorsanız adresin sonuna ?key= <key> ekleyin."
+
+msgid "Unnamed"
+msgstr "Adsız"
+
+msgid "Last used: {d}"
+msgstr "Son kullanım: {d}"
+
+msgid "never"
+msgstr "hiç"
+
+msgid "Delete key"
+msgstr "Anahtarı sil"
+
+msgid "Clients using this key will lose their connection."
+msgstr "Bu anahtarı kullanan istemciler bağlantıyı kaybeder."
+
+msgid "Key name (e.g. Claude desktop)"
+msgstr "Anahtar adı (örn: Claude masaüstü)"
+
+msgid "Create new key"
+msgstr "Yeni anahtar oluştur"
+
+msgid "Custom color"
+msgstr "Özel renk"
+
+msgid "No access"
+msgstr "Erişim yok"
+
+msgid "Remove"
+msgstr "Kaldır"
+
+msgid "No members added yet."
+msgstr "Henüz üye eklenmedi."
+
+msgid "Add person"
+msgstr "Kişi ekle"
+
+msgid "Project name"
+msgstr "Proje adı"
+
+msgid "Everyone"
+msgstr "Herkes"
+
+msgid "Everyone who can use Tasks can enter this project."
+msgstr "Görevleri kullanabilen herkes bu projeye girer."
+
+msgid "Members only"
+msgstr "Yalnız üyeler"
+
+msgid "Only the people added below can see it."
+msgstr "Yalnız aşağıda eklenen kişiler görür."
+
+msgid "Default role for everyone"
+msgstr "Herkesin varsayılan rolü"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Color"
+msgstr "Renk"
+
+msgid "Members and their roles"
+msgstr "Üyeler ve rolleri"
+
+msgid "Subtask nesting limit"
+msgstr "Alt görev kademe sınırı"
+
+msgid "How many levels of subtasks can be nested under a task (1–10). Default is 3."
+msgstr "Bir görevin altına en fazla kaç kademe alt görev eklenebileceği (1–10). Varsayılan 3."
+
+msgid "First list"
+msgstr "İlk liste"
+
+msgid "You will be added as a manager."
+msgstr "Siz yönetici olarak eklenirsiniz."
+
+msgid "Project settings"
+msgstr "Proje ayarları"
+
+msgid "Project saved"
+msgstr "Proje kaydedildi"
+
+msgid "List name"
+msgstr "Liste adı"
+
+msgid "Tasks, subtasks, statuses"
+msgstr "Görevler, alt görevler, durumlar"
+
+msgid "Meetings, agenda, decisions, PDF report"
+msgstr "Toplantılar, gündem, kararlar, PDF rapor"
+
+msgid "e.g. Board meetings"
+msgstr "Örn. Yönetim kurulu toplantıları"
+
+msgid "Template"
+msgstr "Şablon"
+
+msgid "Folder"
+msgstr "Klasör"
+
+msgid "No folder (under the project)"
+msgstr "Klasörsüz (projenin altında)"
+
+msgid "Private list"
+msgstr "Özel liste"
+
+msgid "Only the people you add can see it. When off, project members can see it."
+msgstr "Yalnız sizin ekleyeceğiniz kişiler görür. Kapalıyken proje üyeleri görür."
+
+msgid "General"
+msgstr "Genel"
+
+msgid "List type"
+msgstr "Liste türü"
+
+msgid "New status"
+msgstr "Yeni durum"
+
+msgid "Add status"
+msgstr "Durum ekle"
+
+msgid "Tasks in a deleted status move to the first status. Statuses of the \"Done\" type count the task as finished."
+msgstr "Silinen durumdaki görevler ilk duruma alınır. \"Tamamlandı\" türündeki durumlar görevi bitmiş sayar."
+
+msgid "Statuses saved"
+msgstr "Durumlar kaydedildi"
+
+msgid "Delete field"
+msgstr "Alanı sil"
+
+msgid "The field \"{n}\" and its values on all tasks will be deleted."
+msgstr "\"{n}\" alanı ve tüm görevlerdeki değerleri silinecek."
+
+msgid "This list has no custom fields. You can add fields such as text, number, date, dropdown, star rating or file."
+msgstr "Bu listede özel alan yok. Metin, sayı, tarih, açılır liste, yıldız, dosya gibi alanlar ekleyebilirsiniz."
+
+msgid "Add field"
+msgstr "Alan ekle"
+
+msgid "Field name"
+msgstr "Alan adı"
+
+msgid "Option"
+msgstr "Seçenek"
+
+msgid "Add option"
+msgstr "Seçenek ekle"
+
+msgid "Options"
+msgstr "Seçenekler"
+
+msgid "Max stars"
+msgstr "En fazla yıldız"
+
+msgid "Currency"
+msgstr "Para birimi"
+
+msgid "Decimal places"
+msgstr "Ondalık basamak"
+
+msgid "Description (optional)"
+msgstr "Açıklama (isteğe bağlı)"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "The type cannot be changed later."
+msgstr "Tür sonradan değiştirilemez."
+
+msgid "Add the field"
+msgstr "Alanı ekle"
+
+msgid "Project members"
+msgstr "Proje üyeleri"
+
+msgid "Everyone who can use Tasks ({r})."
+msgstr "Görevleri kullanabilen herkes ({r})."
+
+msgid "The project's members, with their project roles."
+msgstr "Projenin üyeleri, projedeki rolleriyle."
+
+msgid "Selected people only"
+msgstr "Yalnız seçilen kişiler"
+
+msgid "Private list: only the people below and project managers can see it."
+msgstr "Özel liste: yalnız aşağıdaki kişiler ve proje yöneticileri görür."
+
+msgid "Who can see it"
+msgstr "Kimler görür"
+
+msgid "Per-person roles"
+msgstr "Kişiye özel roller"
+
+msgid "Can view: read only. Can comment: read and comment. Can edit: add and change tasks. Can manage: list settings, fields and permissions."
+msgstr "Görüntüler: yalnız okur. Yorum yapar: okur ve yorum yazar. Düzenler: görev ekler, değiştirir. Yönetir: liste ayarları, alanlar ve yetkiler."
+
+msgid "Permissions saved"
+msgstr "Yetkiler kaydedildi"
+
+msgid "List settings: {n}"
+msgstr "Liste ayarları: {n}"
+
+msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
+msgstr "Ne yapmak istersiniz? Örn: \"Bu listede yarın biten görevleri göster\" ya da \"Ayşe'ye cuma günü bitecek afiş görevi aç\""
+
+msgid "Hi! What shall we do with your tasks?"
+msgstr "Merhaba! Görevlerle ilgili ne yapalım?"
+
+msgid "List my overdue tasks assigned to me"
+msgstr "Bana atanan geciken görevleri listele"
+
+msgid "Add 3 tasks to this list: …"
+msgstr "Bu listeye 3 görev ekle: …"
+
+msgid "Summarize this week"
+msgstr "Bu haftanın özetini çıkar"
+
+msgid "Task created"
+msgstr "Görev oluşturuldu"
+
+msgid "Task updated"
+msgstr "Görev güncellendi"
+
+msgid "Comment added"
+msgstr "Yorum eklendi"
+
+msgid "Task deleted"
+msgstr "Görev silindi"
+
+msgid "List created"
+msgstr "Liste oluşturuldu"
+
+msgid "Document page edited"
+msgstr "Doküman sayfası düzenlendi"
+
+msgid "Document created"
+msgstr "Doküman oluşturuldu"
+
+msgid "Page added to document"
+msgstr "Dokümana sayfa eklendi"
+
+msgid "Clear chat"
+msgstr "Sohbeti temizle"
+
+msgid "The assistant adds and changes tasks with your permissions."
+msgstr "Asistan sizin yetkinizle görev ekler ve değiştirir."
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Priority"
+msgstr "Öncelik"
+
+msgid "Assignee"
+msgstr "Atanan"
+
+msgid "Tag"
+msgstr "Etiket"
+
+msgid "No grouping"
+msgstr "Gruplama yok"
+
+msgid "No priority"
+msgstr "Öncelik yok"
+
+msgid "Unassigned"
+msgstr "Atanmamış"
+
+msgid "This week"
+msgstr "Bu hafta"
+
+msgid "Later"
+msgstr "Daha sonra"
+
+msgid "No date"
+msgstr "Tarihsiz"
+
+msgid "No tag"
+msgstr "Etiketsiz"
+
+msgid "Empty"
+msgstr "Boş"
+
+msgid "All tasks"
+msgstr "Tüm görevler"
+
+msgid "Details"
+msgstr "Detaylar"
+
+msgid "Back to meeting"
+msgstr "Toplantıya dön"
+
+msgid "Back to parent task"
+msgstr "Üst göreve dön"
+
+msgid "Unfollow"
+msgstr "Takibi bırak"
+
+msgid "Follow (get notifications)"
+msgstr "Takip et (bildirim al)"
+
+msgid "You will get notifications for this task"
+msgstr "Bu görevin bildirimlerini alacaksınız"
+
+msgid "Notifications for this task are turned off"
+msgstr "Bu görevin bildirimleri kapatıldı"
+
+msgid "Move to another list"
+msgstr "Başka listeye taşı"
+
+msgid "Task moved"
+msgstr "Görev taşındı"
+
+msgid "Add subtask"
+msgstr "Alt görev ekle"
+
+msgid "Unarchive"
+msgstr "Arşivden çıkar"
+
+msgid "Archive"
+msgstr "Arşivle"
+
+msgid "The task \"{n}\" will be permanently deleted along with its comments and files."
+msgstr "\"{n}\" görevi, yorum ve dosyalarıyla birlikte kalıcı olarak silinecek."
+
+msgid "(copy)"
+msgstr "(kopya)"
+
+msgid "Copy created"
+msgstr "Kopya oluşturuldu"
+
+msgid "Change cover"
+msgstr "Kapağı değiştir"
+
+msgid "Complete"
+msgstr "Tamamla"
+
+msgid "Completed: {d}"
+msgstr "Tamamlandı: {d}"
+
+msgid "You can only comment"
+msgstr "Yalnız yorum yapabilirsiniz"
+
+msgid "View only"
+msgstr "Yalnız görüntüleme"
+
+msgid "Print the meeting report or save it as PDF"
+msgstr "Toplantı raporunu yazdır ya da PDF olarak kaydet"
+
+msgid "PDF report"
+msgstr "PDF rapor"
+
+msgid "Hide customization"
+msgstr "Özelleştirmeyi gizle"
+
+msgid "Customize this screen"
+msgstr "Ekranı özelleştir"
+
+msgid "Assignees"
+msgstr "Atananlar"
+
+msgid "Dates"
+msgstr "Tarihler"
+
+msgid "Start"
+msgstr "Başlangıç"
+
+msgid "Add / edit custom field"
+msgstr "Özel alan ekle / düzenle"
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Expand"
+msgstr "Genişlet"
+
+msgid "Attachments"
+msgstr "Ekler"
+
+msgid "Show less"
+msgstr "Daha az göster"
+
+msgid "{n} more fields"
+msgstr "{n} alan daha"
+
+msgid "Participants"
+msgstr "Katılımcılar"
+
+msgid "Agenda"
+msgstr "Ajanda"
+
+msgid "Decisions"
+msgstr "Kararlar"
+
+msgid "Subtasks"
+msgstr "Alt görevler"
+
+msgid "Shown on screen"
+msgstr "Ekranda görünenler"
+
+msgid "Saved in this browser."
+msgstr "Bu tarayıcıda saklanır."
+
+msgid "Edit statuses"
+msgstr "Durumları düzenle"
+
+msgid "Pick a date"
+msgstr "Tarih seçin"
+
+msgid "Add people"
+msgstr "Kişi ekleyin"
+
+msgid "Decision"
+msgstr "Karar"
+
+msgid "Add decision… (assignable like a task, with date and tags)"
+msgstr "Karar ekle… (görev gibi atanır, tarih ve etiket alır)"
+
+msgid "Mark as not discussed"
+msgstr "Görüşülmedi olarak işaretle"
+
+msgid "Mark as discussed"
+msgstr "Görüşüldü olarak işaretle"
+
+msgid "No agenda items."
+msgstr "Gündem maddesi yok."
+
+msgid "Add agenda item…"
+msgstr "Gündem maddesi ekle…"
+
+msgid "Add a note…"
+msgstr "Not ekleyin…"
+
+msgid "Add image / file"
+msgstr "Görsel / dosya ekle"
+
+msgid "Details and comments"
+msgstr "Ayrıntı ve yorumlar"
+
+msgid "Delete agenda item"
+msgstr "Gündem maddesini sil"
+
+msgid "\"{n}\" will be deleted."
+msgstr "\"{n}\" silinecek."
+
+msgid "Meeting report"
+msgstr "Toplantı raporu"
+
+msgid "agenda items discussed"
+msgstr "gündem maddesi görüşüldü"
+
+msgid "decisions made"
+msgstr "karar alındı"
+
+msgid "subtasks completed"
+msgstr "alt görev tamamlandı"
+
+msgid "Discussed"
+msgstr "Görüşüldü"
+
+msgid "Owner"
+msgstr "Sorumlu"
+
+msgid "Report: {d} · {n}"
+msgstr "Rapor: {d} · {n}"
+
+msgid "Add subtask…"
+msgstr "Alt görev ekle…"
+
+msgid "Show / hide columns"
+msgstr "Sütunları göster / gizle"
+
+msgid "Subtask"
+msgstr "Alt görev"
+
+msgid "Decision columns"
+msgstr "Karar sütunları"
+
+msgid "Subtask columns"
+msgstr "Alt görev sütunları"
+
+msgid "Add a description… (list, checklist, link)"
+msgstr "Açıklama ekleyin… (liste, kontrol listesi, bağlantı)"
+
+msgid "Make cover image"
+msgstr "Kapak görseli yap"
+
+msgid "Remove from cover"
+msgstr "Kapaktan kaldır"
+
+msgid "Drag files here or choose"
+msgstr "Dosyaları buraya sürükleyin ya da seçin"
+
+msgid "Up to {s}"
+msgstr "En fazla {s}"
+
+msgid "{n} is too large (up to {s})."
+msgstr "{n} çok büyük (en fazla {s})."
+
+msgid "Upload new image"
+msgstr "Yeni görsel yükle"
+
+msgid "Cover image"
+msgstr "Kapak görseli"
+
+msgid "No images on this task yet."
+msgstr "Görevde henüz görsel yok."
+
+msgid "created the task"
+msgstr "görevi oluşturdu"
+
+msgid "changed the status:"
+msgstr "durumu değiştirdi:"
+
+msgid "renamed it:"
+msgstr "adı değiştirdi:"
+
+msgid "updated the description"
+msgstr "açıklamayı güncelledi"
+
+msgid "set the priority to \"{p}\""
+msgstr "önceliği \"{p}\" yaptı"
+
+msgid "removed the priority"
+msgstr "önceliği kaldırdı"
+
+msgid "set the due date to {d}"
+msgstr "bitiş tarihini {d} yaptı"
+
+msgid "removed the due date"
+msgstr "bitiş tarihini kaldırdı"
+
+msgid "set the start date to {d}"
+msgstr "başlangıç tarihini {d} yaptı"
+
+msgid "removed the start date"
+msgstr "başlangıç tarihini kaldırdı"
+
+msgid "took the task"
+msgstr "görevi üstlendi"
+
+msgid "assigned {n}"
+msgstr "{n} kişisini atadı"
+
+msgid "unassigned {n}"
+msgstr "{n} atamasını kaldırdı"
+
+msgid "added a tag:"
+msgstr "etiket ekledi:"
+
+msgid "removed the tag:"
+msgstr "etiketi kaldırdı:"
+
+msgid "updated the field \"{f}\""
+msgstr "\"{f}\" alanını güncelledi"
+
+msgid "moved the task:"
+msgstr "görevi taşıdı:"
+
+msgid "changed the cover image"
+msgstr "kapak görselini değiştirdi"
+
+msgid "removed the cover image"
+msgstr "kapak görselini kaldırdı"
+
+msgid "attached a file:"
+msgstr "dosya ekledi:"
+
+msgid "deleted a file:"
+msgstr "dosya sildi:"
+
+msgid "archived the task"
+msgstr "görevi arşivledi"
+
+msgid "unarchived the task"
+msgstr "görevi arşivden çıkardı"
+
+msgid "Sending…"
+msgstr "Gönderiliyor…"
+
+msgid "edited"
+msgstr "düzenlendi"
+
+msgid "Delete comment"
+msgstr "Yorumu sil"
+
+msgid "The comment and its attachments will be deleted."
+msgstr "Yorum ve ekleri silinecek."
+
+msgid "Show comments and activity"
+msgstr "Yorumları ve etkinliği göster"
+
+msgid "Comments and activity"
+msgstr "Yorumlar ve etkinlik"
+
+msgid "Show activity"
+msgstr "Etkinliği göster"
+
+msgid "Hide comments and activity"
+msgstr "Yorumları ve etkinliği gizle"
+
+msgid "No comments yet. Be the first to comment."
+msgstr "Henüz yorum yok. İlk yorumu siz yazın."
+
+msgid "You don't have permission to comment in this list."
+msgstr "Bu listede yorum yazma yetkiniz yok."
+
+msgid "Write a comment… mention someone with @, drag in files"
+msgstr "Yorum yazın… @ ile birinden bahsedin, dosya sürükleyin"
+
+msgid "Mention someone"
+msgstr "Birinden bahset"
+
+msgid "Send with Ctrl+Enter"
+msgstr "Ctrl+Enter ile gönder"
+
+msgid "Drop to add to the comment"
+msgstr "Yoruma eklemek için bırakın"
+
+msgid "Comment could not be saved."
+msgstr "Yorum kaydedilemedi."
+
+msgid "Write / improve description"
+msgstr "Açıklama yaz / geliştir"
+
+msgid "Turn into checklist"
+msgstr "Kontrol listesine çevir"
+
+msgid "Fix spelling"
+msgstr "Yazımı düzelt"
+
+msgid "Add more detail"
+msgstr "Daha detaylı yaz"
+
+msgid "Improve task name"
+msgstr "Görev adını iyileştir"
+
+msgid "Split into subtasks"
+msgstr "Alt görevlere böl"
+
+msgid "Summarize comments"
+msgstr "Yorumları özetle"
+
+msgid "Say what to change… (e.g. make it more formal)"
+msgstr "Değiştirmek istediğini yaz… (örn. daha resmi olsun)"
+
+msgid "What should it do? E.g. add the target audience, write as bullet points"
+msgstr "Ne yapılsın? Örn: hedef kitleyi ekle, maddeler halinde yaz"
+
+msgid "Chat"
+msgstr "Sohbet et"
+
+msgid "AI is thinking…"
+msgstr "Yapay zekâ düşünüyor…"
+
+msgid "Other options"
+msgstr "Diğer seçenekler"
+
+msgid "Task name updated."
+msgstr "Görev adı güncellendi."
+
+msgid "Apply"
+msgstr "Uygula"
+
+msgid "Description updated."
+msgstr "Açıklama güncellendi."
+
+msgid "Added to the end of the description."
+msgstr "Açıklamanın sonuna eklendi."
+
+msgid "{n} subtasks created"
+msgstr "{n} alt görev oluşturuldu"
+
+msgid "Create subtasks"
+msgstr "Alt görevleri oluştur"
+
+msgid "Summary"
+msgstr "Özet"
+
+msgid "Added as a comment."
+msgstr "Yorum olarak eklendi."
+
+msgid "Add as comment"
+msgstr "Yorum olarak ekle"
+
+msgid "Remove priority"
+msgstr "Önceliği kaldır"
+
+msgid "Search people…"
+msgstr "Kişi ara…"
+
+msgid "me"
+msgstr "ben"
+
+msgid "Next week"
+msgstr "Gelecek hafta"
+
+msgid "In 2 weeks"
+msgstr "2 hafta sonra"
+
+msgid "Time (optional)"
+msgstr "Saat (isteğe bağlı)"
+
+msgid "Clear"
+msgstr "Temizle"
+
+msgid "Search or create a tag…"
+msgstr "Etiket ara veya oluştur…"
+
+msgid "Create: {n}"
+msgstr "Oluştur: {n}"
+
+msgid "No tags yet. Type to create one."
+msgstr "Henüz etiket yok. Yazıp oluşturun."
+
+msgid "There are no lists you can add tasks to."
+msgstr "Görev ekleyebileceğiniz liste yok."
+
+msgid "Created"
+msgstr "Oluşturma"
+
+msgid "Updated"
+msgstr "Güncelleme"
+
+msgid "Filter"
+msgstr "Filtre"
+
+msgid "Group"
+msgstr "Grupla"
+
+msgid "Group: {n}"
+msgstr "Grup: {n}"
+
+msgid "Manual order"
+msgstr "Elle sıralama"
+
+msgid "Start date"
+msgstr "Başlangıç tarihi"
+
+msgid "Sort"
+msgstr "Sırala"
+
+msgid "Ascending"
+msgstr "Artan"
+
+msgid "Descending"
+msgstr "Azalan"
+
+msgid "Fields"
+msgstr "Alanlar"
+
+msgid "Save view"
+msgstr "Görünümü kaydet"
+
+msgid "Meeting"
+msgstr "Toplantı"
+
+msgid "Under the task, expanded"
+msgstr "Görevin altında, açık"
+
+msgid "Under the task, collapsed"
+msgstr "Görevin altında, kapalı"
+
+msgid "Don't show"
+msgstr "Gösterme"
+
+msgid "Apply filters to subtasks too"
+msgstr "Filtreyi alt görevlere de uygula"
+
+msgid "Save to this view"
+msgstr "Bu görünüme kaydet"
+
+msgid "View saved"
+msgstr "Görünüm kaydedildi"
+
+msgid "Save as new view"
+msgstr "Yeni görünüm olarak kaydet"
+
+msgid "filtered"
+msgstr "filtreli"
+
+msgid "Revert changes"
+msgstr "Değişiklikleri geri al"
+
+msgid "Assigned to me"
+msgstr "Bana atananlar"
+
+msgid "None"
+msgstr "Yok"
+
+msgid "Within 7 days"
+msgstr "7 gün içinde"
+
+msgid "Has date"
+msgstr "Tarihli"
+
+msgid "Checked"
+msgstr "İşaretli"
+
+msgid "Unchecked"
+msgstr "İşaretsiz"
+
+msgid "Filled"
+msgstr "Dolu"
+
+msgid "Show completed tasks"
+msgstr "Tamamlanan görevleri göster"
+
+msgid "When off, all subtasks of matching tasks are shown. When on, only matching subtasks are shown; their parent appears dimmed even if it doesn't match."
+msgstr "Kapalıyken filtreye uyan görevlerin tüm alt görevleri görünür. Açıkken yalnız filtreye uyan alt görevler görünür; üst görevi uymasa da soluk olarak gösterilir."
+
+msgid "Clear filters"
+msgstr "Filtreleri temizle"
+
+msgid "Show cover image"
+msgstr "Kapak görselini göster"
+
+msgid "Wrap text"
+msgstr "Metni sar"
+
+msgid "Long text shows up to 3 lines, the rest is cut with …"
+msgstr "Uzun metinler en fazla 3 satır görünür, fazlası … ile kısalır."
+
+msgid "Date to use in the calendar"
+msgstr "Takvimde kullanılacak tarih"
+
+msgid "Columns"
+msgstr "Sütunlar"
+
+msgid "Fields shown on the card"
+msgstr "Kartta gösterilecek alanlar"
+
+msgid "Add custom field"
+msgstr "Özel alan ekle"
+
+msgid "Can't be moved to this group."
+msgstr "Bu gruba taşınamaz."
+
+msgid "No suitable status in this list."
+msgstr "Bu listede uygun durum yok."
+
+msgid "Drag to reorder"
+msgstr "Sırayı değiştirmek için sürükleyin"
+
+msgid "Type a subtask name and press Enter"
+msgstr "Alt görev adı yazıp Enter’a basın"
+
+msgid "This task no longer matches this view's filter. It will be hidden when you change page."
+msgstr "Bu görev artık bu görünümün filtresine uymuyor. Sayfa değişince gizlenir."
+
+msgid "Assigned: {n}"
+msgstr "Atandı: {n}"
+
+msgid "Outside filter"
+msgstr "Filtre dışı"
+
+msgid "Hide subtasks"
+msgstr "Alt görevleri gizle"
+
+msgid "Show subtasks"
+msgstr "Alt görevleri göster"
+
+msgid "Agenda item"
+msgstr "Gündem maddesi"
+
+msgid "Has description"
+msgstr "Açıklama var"
+
+msgid "Shown because it has a subtask that matches the filter"
+msgstr "Filtreye uyan alt görevi olduğu için gösteriliyor"
+
+msgid "Add meeting"
+msgstr "Toplantı ekle"
+
+msgid "Add task"
+msgstr "Görev ekle"
+
+msgid "Type a task name and press Enter"
+msgstr "Görev adı yazıp Enter’a basın"
+
+msgid "No tasks match the filter."
+msgstr "Filtreye uyan görev yok."
+
+msgid "You have no open tasks assigned. 🎉"
+msgstr "Size atanmış açık görev yok. 🎉"
+
+msgid "No tasks in this list yet."
+msgstr "Bu listede henüz görev yok."
+
+msgid "{n} selected"
+msgstr "{n} seçili"
+
+msgid "Assign"
+msgstr "Ata"
+
+msgid "Delete tasks"
+msgstr "Görevleri sil"
+
+msgid "{n} tasks will be permanently deleted along with their comments and files."
+msgstr "{n} görev, yorum ve dosyalarıyla birlikte kalıcı olarak silinecek."
+
+msgid "Clear selection"
+msgstr "Seçimi kaldır"
+
+msgid "{n} tasks updated"
+msgstr "{n} görev güncellendi"
+
+msgid "Previous"
+msgstr "Önceki"
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "Week"
+msgstr "Hafta"
+
+msgid "No date: {n}"
+msgstr "Tarihsiz: {n}"
+
+msgid "Tasks without a date"
+msgstr "Tarihsiz görevler"
+
+msgid "No dated tasks this month."
+msgstr "Bu ay tarihli görev yok."
+
+msgid "+{n} more"
+msgstr "+{n} daha"
+
+msgid "Meeting name"
+msgstr "Toplantı adı"
+
+msgid "Meeting created"
+msgstr "Toplantı oluşturuldu"
+
+msgid "New meeting"
+msgstr "Yeni toplantı"
+
+msgid "New task"
+msgstr "Yeni görev"
+
+msgid "Create and open"
+msgstr "Oluştur ve aç"
+
+msgid "[['ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.', 'tr']]"
+msgstr "ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu, MCP sunucusu ve OpenRouter ile yapay zekâ."

@@ -38,13 +38,13 @@ function flxa_default_groups() {
 	return (array) apply_filters(
 		'flxa_default_groups',
 		array(
-			'general' => array( __( 'Genel', 'flx-admin' ), array( 'index.php' ), false ),
-			'comms'   => array( __( 'İletişim', 'flx-admin' ), array( 'flx-chat', 'flxi-posta', 'flx-tasks', 'flxi' ), false ),
-			'donate'  => array( __( 'Bağış', 'flx-admin' ), array( 'flxb-dashboard', 'flxs', 'Emsfb', 'woocommerce', 'wc-settings&tab=checkout&from=PAYMENTS_MENU_ITEM', 'flx-wc-bagis', 'edit.php?post_type=product' ), false ),
-			'content' => array( __( 'İçerik', 'flx-admin' ), array( 'edit.php?post_type=page', 'edit.php', 'edit.php?post_type=proje', 'edit.php?post_type=etkinlik', 'upload.php', 'edit-comments.php', 'flx-studio' ), false ),
-			'growth'  => array( __( 'Büyüme', 'flx-admin' ), array( 'woocommerce-marketing', 'flx-social', 'flxseo', 'flx-analytics', 'wc-admin&path=/analytics/overview', 'googlesitekit-dashboard' ), true ),
-			'screens' => array( __( 'Ekranlar', 'flx-admin' ), array( 'flx-tv-board', 'flx-tv-remote', 'flxapp-settings' ), true ),
-			'system'  => array( __( 'Sistem', 'flx-admin' ), array( 'flx-setup', 'flx-backup', 'flx-speed', 'flx-ai', 'flx-roles', 'plugins.php', 'themes.php', 'users.php', 'options-general.php', 'tools.php', 'hostinger', 'litespeed' ), true ),
+			'general' => array( __( 'General', 'flx-admin' ), array( 'index.php' ), false ),
+			'comms'   => array( __( 'Communication', 'flx-admin' ), array( 'flx-chat', 'flxi-posta', 'flx-tasks', 'flxi' ), false ),
+			'donate'  => array( __( 'Donations', 'flx-admin' ), array( 'flxb-dashboard', 'flxs', 'Emsfb', 'woocommerce', 'wc-settings&tab=checkout&from=PAYMENTS_MENU_ITEM', 'flx-wc-bagis', 'edit.php?post_type=product' ), false ),
+			'content' => array( __( 'Content', 'flx-admin' ), array( 'edit.php?post_type=page', 'edit.php', 'edit.php?post_type=proje', 'edit.php?post_type=etkinlik', 'upload.php', 'edit-comments.php', 'flx-studio' ), false ),
+			'growth'  => array( __( 'Growth', 'flx-admin' ), array( 'woocommerce-marketing', 'flx-social', 'flxseo', 'flx-analytics', 'wc-admin&path=/analytics/overview', 'googlesitekit-dashboard' ), true ),
+			'screens' => array( __( 'Screens', 'flx-admin' ), array( 'flx-tv-board', 'flx-tv-remote', 'flxapp-settings' ), true ),
+			'system'  => array( __( 'System', 'flx-admin' ), array( 'flx-setup', 'flx-backup', 'flx-speed', 'flx-ai', 'flx-roles', 'plugins.php', 'themes.php', 'users.php', 'options-general.php', 'tools.php', 'hostinger', 'litespeed' ), true ),
 		)
 	);
 }
@@ -104,7 +104,7 @@ function flxa_default_entries( array $slugs ) {
 		}
 	}
 	if ( $other ) {
-		$entries[] = array( 't' => 'g', 'id' => 'other', 'label' => __( 'Diğer', 'flx-admin' ), 'c' => 1 );
+		$entries[] = array( 't' => 'g', 'id' => 'other', 'label' => __( 'Other', 'flx-admin' ), 'c' => 1 );
 		foreach ( $other as $slug ) {
 			$entries[] = array( 't' => 'i', 'slug' => $slug );
 		}
@@ -211,7 +211,7 @@ function flxa_group_key( $g ) {
 		return $id;
 	}
 	$label = (string) ( $g['label'] ?? '' );
-	if ( __( 'Diğer', 'flx-admin' ) === $label ) {
+	if ( __( 'Other', 'flx-admin' ) === $label ) {
 		return 'other';
 	}
 	$k = sanitize_title( $label );
@@ -336,7 +336,7 @@ function flxa_menu_apply() {
 		if ( $other ) {
 			$cur = $other;
 		} else {
-			$open_group( array( 'id' => 'other', 'label' => __( 'Diğer', 'flx-admin' ) ) );
+			$open_group( array( 'id' => 'other', 'label' => __( 'Other', 'flx-admin' ) ) );
 		}
 		/* Diğer: önce bizim paketlerimiz, sonra ada göre. */
 		uksort(
@@ -386,7 +386,7 @@ function flxa_menu_apply() {
 			$pinned[ $slug ] = $e;
 		} else {
 			if ( ! isset( $groups['other'] ) ) {
-				$groups['other'] = array( 'label' => __( 'Diğer', 'flx-admin' ), 'collapsed' => true, 'items' => array() );
+				$groups['other'] = array( 'label' => __( 'Other', 'flx-admin' ), 'collapsed' => true, 'items' => array() );
 				$gorder[]        = 'other';
 			}
 			$groups['other']['items'][ $slug ] = $e;
@@ -410,7 +410,7 @@ function flxa_menu_apply() {
 		array_unshift( $gorder, 'solo' );
 	}
 	if ( $pinned ) {
-		$groups = array( 'pinned' => array( 'label' => __( 'Sabitlenenler', 'flx-admin' ), 'collapsed' => false, 'items' => $pinned ) ) + $groups;
+		$groups = array( 'pinned' => array( 'label' => __( 'Pinned', 'flx-admin' ), 'collapsed' => false, 'items' => $pinned ) ) + $groups;
 		array_unshift( $gorder, 'pinned' );
 	}
 
@@ -515,7 +515,7 @@ function flxa_menu_merge_duplicates() {
 		foreach ( $submenu['index.php'] as $i => $s ) {
 			if ( 'update-core.php' === ( $s[2] ?? '' ) ) {
 				list( , $badge ) = flxa_split_label( $s[0] );
-				$s[0]            = esc_html__( 'WordPress güncellemeleri', 'flx-admin' ) . ( '' !== $badge ? ' ' . $badge : '' );
+				$s[0]            = esc_html__( 'WordPress updates', 'flx-admin' ) . ( '' !== $badge ? ' ' . $badge : '' );
 				array_splice( $submenu[ $upd ], 1, 0, array( $s ) );
 				unset( $submenu['index.php'][ $i ] );
 			}
@@ -530,7 +530,7 @@ function flxa_menu_merge_duplicates() {
 			}
 			list( $label ) = flxa_split_label( $s[0] );
 			/* translators: %s: WooCommerce rapor adı (Gelir, Siparişler…) */
-			$s[0]                   = esc_html( sprintf( __( 'Mağaza: %s', 'flx-admin' ), $label ) );
+			$s[0]                   = esc_html( sprintf( __( 'Store: %s', 'flx-admin' ), $label ) );
 			$s[2]                   = $slug;
 			$submenu['flx-analytics'][] = $s; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		}
@@ -643,8 +643,8 @@ function flxa_block_check() {
 
 function flxa_block_die() {
 	wp_die(
-		esc_html__( 'Bu sayfaya erişiminiz kapatıldı. Gerekirse site yöneticisine başvurun.', 'flx-admin' ),
-		esc_html__( 'Erişim kapalı', 'flx-admin' ),
+		esc_html__( 'Your access to this page is turned off. Contact the site administrator if needed.', 'flx-admin' ),
+		esc_html__( 'Access blocked', 'flx-admin' ),
 		array(
 			'response'  => 403,
 			'back_link' => true,
@@ -759,9 +759,9 @@ function flxa_bottom_items() {
 		'flx-setup'       => 'updates',
 	);
 	$short = array(
-		'index.php'     => __( 'Panel', 'flx-admin' ),
-		'flx-chat'      => __( 'Mesajlar', 'flx-admin' ),
-		'flxb-dashboard' => __( 'Bağışlar', 'flx-admin' ),
+		'index.php'     => __( 'Dashboard', 'flx-admin' ),
+		'flx-chat'      => __( 'Messages', 'flx-admin' ),
+		'flxb-dashboard' => __( 'Donations', 'flx-admin' ),
 	);
 	$names = array();
 	foreach ( (array) ( $cfg['entries'] ?? array() ) as $e ) {

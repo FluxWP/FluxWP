@@ -27,11 +27,11 @@ add_filter(
 				'id'           => 'flxcb.enabled',
 				'source'       => $src,
 				'group'        => 'Communication',
-				'label'        => __( 'Site sohbet penceresi', 'flx-chatbot' ),
+				'label'        => __( 'Site chat window', 'flx-chatbot' ),
 				'status'       => 'info',
-				'message'      => __( 'Pencere kapalı; ziyaretçiler görmüyor.', 'flx-chatbot' ),
+				'message'      => __( 'The window is off; visitors don\'t see it.', 'flx-chatbot' ),
 				'action_url'   => flxcb_admin_url( 'general' ),
-				'action_label' => __( 'Ayarlar', 'flx-chatbot' ),
+				'action_label' => __( 'Settings', 'flx-chatbot' ),
 			);
 			return $checks;
 		}
@@ -42,9 +42,9 @@ add_filter(
 				'id'           => 'flxcb.ai',
 				'source'       => $src,
 				'group'        => 'Communication',
-				'label'        => __( 'Sohbet asistanı', 'flx-chatbot' ),
+				'label'        => __( 'Chat assistant', 'flx-chatbot' ),
 				'status'       => $ok ? 'ok' : 'warning',
-				'message'      => $ok ? __( 'Flux AI bağlı; asistan cevap veriyor.', 'flx-chatbot' ) : __( 'Flux AI hazır değil; mesajlar asistan yerine temsilciye gidiyor.', 'flx-chatbot' ),
+				'message'      => $ok ? __( 'Flux AI connected; the assistant is answering.', 'flx-chatbot' ) : __( 'Flux AI is not ready; messages go to an agent instead of the assistant.', 'flx-chatbot' ),
 				'action_url'   => $ok ? flx_ai_settings_url( 'flx-chatbot' ) : admin_url( 'admin.php?page=flx-ai' ),
 				'action_label' => __( 'Flux AI', 'flx-chatbot' ),
 			);
@@ -57,13 +57,13 @@ add_filter(
 				'id'           => 'flxcb.live',
 				'source'       => $src,
 				'group'        => 'Communication',
-				'label'        => __( 'Canlı destek', 'flx-chatbot' ),
+				'label'        => __( 'Live chat', 'flx-chatbot' ),
 				'status'       => $open > 5 ? 'warning' : 'ok',
-				'message'      => ( 'flx-chat' === $target ? __( 'Devirler Flux Chat gelen kutusuna gidiyor.', 'flx-chatbot' ) : __( 'Devirler eklentinin gelen kutusuna gidiyor.', 'flx-chatbot' ) )
+				'message'      => ( 'flx-chat' === $target ? __( 'Handoffs go to the Flux Chat inbox.', 'flx-chatbot' ) : __( 'Handoffs go to the plugin inbox.', 'flx-chatbot' ) )
 					/* translators: %d: number of conversations */
-					. ( $open ? ' ' . sprintf( _n( '%d sohbet cevap bekliyor.', '%d sohbet cevap bekliyor.', $open, 'flx-chatbot' ), $open ) : '' ),
+					. ( $open ? ' ' . sprintf( _n( '%d chat is waiting for a reply.', '%d chats are waiting for a reply.', $open, 'flx-chatbot' ), $open ) : '' ),
 				'action_url'   => flxcb_inbox_url(),
-				'action_label' => __( 'Sohbetler', 'flx-chatbot' ),
+				'action_label' => __( 'Chats', 'flx-chatbot' ),
 			);
 		}
 		return $checks;

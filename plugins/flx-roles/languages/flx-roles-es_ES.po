@@ -1,0 +1,322 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: es_ES\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Roles and access"
+msgstr "Roles y acceso"
+
+msgid "Automatic (first available: Tasks, Certificates, Donations)"
+msgstr "Automático (primero disponible: Tareas, Certificados, Donaciones)"
+
+msgid "Tasks"
+msgstr "Tareas"
+
+msgid "Certificates"
+msgstr "Certificados"
+
+msgid "Donations"
+msgstr "Donaciones"
+
+msgid "Dashboard (admin home)"
+msgstr "Panel de control (inicio de administrador)"
+
+msgid "Profile"
+msgstr "Perfil"
+
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%spersona"
+msgstr[1] "%spersonas"
+
+msgid "You are not allowed to do this."
+msgstr "No tienes permitido hacer esto."
+
+msgid "Saved. Permission changes apply immediately."
+msgstr "Guardado. Los cambios de permiso se aplican inmediatamente."
+
+msgid "The role is back to its default permissions."
+msgstr "La función ha vuelto a sus permisos predeterminados."
+
+msgid "Person added to the role."
+msgstr "Persona agregada al rol."
+
+msgid "Person removed from the role."
+msgstr "Persona removida del cargo."
+
+msgid "No user with this username or email. Create the user first."
+msgstr "Ningún usuario con este nombre de usuario o correo electrónico. Primero cree el usuario."
+
+msgid "Administrators can't get this role; they already see everything."
+msgstr "Los administradores no pueden obtener este rol; ya ven todo."
+
+msgid "The action could not be completed."
+msgstr "La acción no se pudo completar."
+
+msgid "Role added; it starts with admin panel access only. Turn on its permissions in the table."
+msgstr "Rol agregado; comienza solo con acceso al panel de administración. Active sus permisos en la tabla."
+
+msgid "Role deleted; its people moved to the default role."
+msgstr "Rol eliminado; su gente pasó al rol predeterminado."
+
+msgid "Role name must be 1-40 characters."
+msgstr "El nombre del rol debe tener entre 1 y 40 caracteres."
+
+msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
+msgstr "Activa y desactiva a qué puede acceder cada rol. Una acción deshabilitada desaparece del menú y no se puede realizar ni siquiera mediante URL. El administrador de WordPress ve todo."
+
+msgid "Delete this role? Its people move to the default role."
+msgstr "¿Eliminar este rol? Su gente pasa al rol predeterminado."
+
+msgid "Delete role"
+msgstr "Eliminar rol"
+
+msgid "New role"
+msgstr "Nuevo rol"
+
+msgid "For example Volunteer or Accounting. Starts with admin panel access only."
+msgstr "Por ejemplo Voluntario o Contabilidad. Comienza solo con acceso al panel de administración."
+
+msgid "Role name"
+msgstr "Nombre del rol"
+
+msgid "Add role"
+msgstr "Agregar rol"
+
+msgid "Access"
+msgstr "Acceso"
+
+msgid "%s is not installed"
+msgstr "%sno está instalado"
+
+msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
+msgstr "La configuración se guarda; entra en vigor una vez que el complemento se actualiza a una versión que aplica este permiso."
+
+msgid "Waiting for %s update"
+msgstr "Esperando la actualización%s"
+
+msgid "broad access"
+msgstr "amplio acceso"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "%s: screen after login"
+msgstr "%s: pantalla después de iniciar sesión"
+
+msgid "Referral link lifetime"
+msgstr "Duración del enlace de referencia"
+
+msgid "days"
+msgstr "dias"
+
+msgid "If a visitor who came through a referral link donates within this period, the donation is credited to that person. If they come through another referral link, the latest one wins."
+msgstr "Si un visitante que llegó a través de un enlace de referencia dona dentro de este período, la donación se acredita a esa persona. Si llegan a través de otro enlace de referencia, gana el último."
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Reset this role's permissions to the defaults?"
+msgstr "¿Restablecer los permisos de esta función a los valores predeterminados?"
+
+msgid "%s: reset to defaults"
+msgstr "%s: restablecer los valores predeterminados"
+
+msgid "People"
+msgstr "gente"
+
+msgid "Add WhatsApp number"
+msgstr "Agregar número de whatsapp"
+
+msgid "Referral link"
+msgstr "Enlace de referencia"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Remove this person from the role?"
+msgstr "¿Quitar a esta persona del rol?"
+
+msgid "Remove from role"
+msgstr "Quitar del rol"
+
+msgid "Nobody yet."
+msgstr "Nadie todavía."
+
+msgid "Username or email"
+msgstr "Nombre de usuario o correo electrónico"
+
+msgid "Add"
+msgstr "Añadir"
+
+msgid "For a new person, first <a href=\"%s\">create a user</a> and choose one of these roles."
+msgstr "Para una persona nueva, primero<a href=\"%s\">cree un usuario</a>y elija uno de estos roles."
+
+msgid "For every permission of every role, see <a href=\"%s\">Admin theme › Permissions</a>."
+msgstr "Para conocer cada permiso de cada función, consulte<a href=\"%s\">Tema de administración › Permisos</a>."
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "Director"
+msgstr "Directora"
+
+msgid "Has every permission on this page: all donations, certificate and task management, reports. Unlike the WordPress administrator, can't install plugins or change site settings."
+msgstr "Tiene todos los permisos en esta página: todas las donaciones, gestión de certificados y tareas, informes. A diferencia del administrador de WordPress, no puede instalar complementos ni cambiar la configuración del sitio."
+
+msgid "Manager"
+msgstr "Gerente"
+
+msgid "Everything Staff can do, plus the donation and certificate dashboards (overall totals) and reports, and sets report schedules."
+msgstr "Todo lo que el personal puede hacer, además de los paneles de donaciones y certificados (totales generales) y los informes, y establece cronogramas de informes."
+
+msgid "Staff"
+msgstr "Personal"
+
+msgid "Regular user in Tasks, creates certificates, opens donations on behalf of others, sees the donations, donors and certificates they referred."
+msgstr "Usuario habitual en Tareas, crea certificados, abre donaciones en nombre de otros, ve las donaciones, los donantes y los certificados que refirieron."
+
+msgid "Role added from the panel."
+msgstr "Rol agregado desde el panel."
+
+msgid "General"
+msgstr "generales"
+
+msgid "Can enter the admin panel"
+msgstr "Puede ingresar al panel de administración"
+
+msgid "Can be a referrer (gets a personal referral link, can be chosen as referrer on certificates and donations)"
+msgstr "Puede ser un referente (obtiene un enlace de referencia personal, puede ser elegido como referente en certificados y donaciones)"
+
+msgid "Uses Tasks; sees the projects and lists they have access to"
+msgstr "Utiliza tareas; ve los proyectos y las listas a las que tienen acceso"
+
+msgid "Creates projects, folders and lists"
+msgstr "Crea proyectos, carpetas y listas."
+
+msgid "Uses AI features in Tasks"
+msgstr "Utiliza funciones de IA en Tareas"
+
+msgid "Manages Tasks (sees every project, usage board, settings)"
+msgstr "Gestiona tareas (ve cada proyecto, tablero de uso, configuración)"
+
+msgid "Creates certificates"
+msgstr "Crea certificados"
+
+msgid "Sees only certificates they created or referred"
+msgstr "Solo ve los certificados que crearon o refirieron"
+
+msgid "Sends in bulk"
+msgstr "Envíos masivos"
+
+msgid "Sees the certificate dashboard"
+msgstr "Ve el panel de certificados"
+
+msgid "Manages certificates (all, templates, events, settings)"
+msgstr "Gestiona certificados (todos, plantillas, eventos, configuraciones)"
+
+msgid "Sees donations they referred"
+msgstr "Ve donaciones que refirieron"
+
+msgid "Lists their own donors (donors of donations they referred)"
+msgstr "Enumera sus propios donantes (donantes de donaciones que recomendaron)"
+
+msgid "Creates donations on behalf of others, with themselves as referrer (from the panel or the WhatsApp assistant)"
+msgstr "Crea donaciones en nombre de otros, teniendo ellos mismos como referente (desde el panel o el asistente de WhatsApp)"
+
+msgid "Gets notified when a donation they referred is paid or cancelled"
+msgstr "Recibe una notificación cuando se paga o cancela una donación que ellos recomendaron."
+
+msgid "Sees the donation dashboard (overall totals)"
+msgstr "Ve el panel de donaciones (totales generales)"
+
+msgid "Sees all donations and donors"
+msgstr "Ve todas las donaciones y donantes."
+
+msgid "Call Center"
+msgstr "centro de llamadas"
+
+msgid "Uses WhatsApp chats"
+msgstr "Utiliza chats de WhatsApp"
+
+msgid "Uses staff tools in the WhatsApp assistant according to their role (if their number is on their profile)"
+msgstr "Utiliza herramientas del personal en el asistente de WhatsApp según su rol (si su número está en su perfil)"
+
+msgid "Manages the Call Center (AI assistant, settings)"
+msgstr "Gestiona el Call Center (asistente de IA, configuración)"
+
+msgid "Studio"
+msgstr "estudio"
+
+msgid "Uses Studio (own gallery and shared folders)"
+msgstr "Utiliza Studio (galería propia y carpetas compartidas)"
+
+msgid "Manages Studio (everyone's gallery, settings)"
+msgstr "Gestiona Studio (galería de todos, configuración)"
+
+msgid "Reports"
+msgstr "Informes"
+
+msgid "Can receive daily/periodic reports"
+msgstr "Puede recibir informes diarios/periódicos"
+
+msgid "Sees overall reports (all staff, totals)"
+msgstr "Ve informes generales (todo el personal, totales)"
+
+msgid "Sets staff and manager report schedules and motivation messages"
+msgstr "Establece cronogramas de informes y mensajes de motivación para el personal y el gerente."
+
+msgid "Invalid phone number. Write it with the country code or as 05xx."
+msgstr "Número de teléfono no válido. Escríbalo con el código del país o como 05xx."
+
+msgid "This number belongs to another user: %s."
+msgstr "Este número pertenece a otro usuario:%s."
+
+msgid "WhatsApp number"
+msgstr "numero whatsap"
+
+msgid "Phone"
+msgstr "Teléfono"
+
+msgid "The WhatsApp assistant recognizes whoever writes from this number as this user and enables what their role allows (e.g. donations on behalf of others, their own donors). Only an administrator can change the number."
+msgstr "El asistente de WhatsApp reconoce como este usuario a quien escribe desde este número y habilita lo que su rol le permite (por ejemplo, donaciones en nombre de otros, donantes propios). Sólo un administrador puede cambiar el número."
+
+msgid "Personal link"
+msgstr "enlace personal"
+
+msgid "Donations from visitors who come through this link show you as the referrer."
+msgstr "Las donaciones de los visitantes que llegan a través de este enlace lo muestran como el referente."
+
+msgid "To share another page, add %s to the end of its address."
+msgstr "Para compartir otra página, agregue%sal final de su dirección."
+
+msgid "Flux Roles"
+msgstr "Roles de flujo"
+
+msgid "FluxWP roles"
+msgstr "Funciones de FluxWP"
+
+msgid "Missing role: %s. Deactivate and reactivate the plugin."
+msgstr "Rol faltante:%s. Desactiva y reactiva el complemento."
+
+msgid "Staff WhatsApp numbers"
+msgstr "Números de WhatsApp del personal"
+
+msgid "%s people have no WhatsApp number on their profile; the assistant won't recognize them."
+msgstr "Las personas%sno tienen número de WhatsApp en su perfil; el asistente no los reconocerá."
+
+msgid "Everyone in the roles has a number."
+msgstr "Todos en los roles tienen un número."
+
+msgid "Plugins enforcing role permissions"
+msgstr "Complementos que imponen permisos de roles"
+
+msgid "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen."
+msgstr "Algunos permisos habilitados aún no se aplican; esperando actualizaciones de:%s. Hasta entonces, estas personas no pueden ver la pantalla relacionada."
+
+msgid "All enabled permissions are enforced."
+msgstr "Se aplican todos los permisos habilitados."
+
+msgid "Roles"
+msgstr "Roles"
+
+msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
+msgstr "[['Agrega roles de personal, administrador y gerente (también se agrega un nuevo rol desde el panel); Puede activar y desactivar el acceso a tareas, certificados, donaciones, centros de llamadas, Studio e informes para roles desde una sola página. El enlace de referencia personal y el número de teléfono del usuario (para el asistente de WhatsApp) están aquí.', 'tr']]"

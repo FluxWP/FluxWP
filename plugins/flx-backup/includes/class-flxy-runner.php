@@ -133,7 +133,7 @@ final class FLXY_Runner {
 	/** @return true|WP_Error */
 	public static function start( array $state, bool $interactive = false ) {
 		if ( self::busy() ) {
-			return new WP_Error( 'flxy_busy', __( 'Şu anda başka bir yedekleme veya geri yükleme çalışıyor. Bitmesini bekleyin.', 'flx-backup' ) );
+			return new WP_Error( 'flxy_busy', __( 'Another backup or restore is running. Wait for it to finish.', 'flx-backup' ) );
 		}
 		// Bitmiş eski işi temizle.
 		self::save_backup( null );
@@ -352,14 +352,14 @@ final class FLXY_Runner {
 	public static function duration( int $sec ): string {
 		if ( $sec < 60 ) {
 			/* translators: %s: seconds */
-			return sprintf( __( '%s sn', 'flx-backup' ), number_format_i18n( $sec ) );
+			return sprintf( __( '%s s', 'flx-backup' ), number_format_i18n( $sec ) );
 		}
 		if ( $sec < HOUR_IN_SECONDS ) {
 			/* translators: 1: minutes, 2: seconds */
-			return sprintf( __( '%1$s dk %2$s sn', 'flx-backup' ), number_format_i18n( intdiv( $sec, 60 ) ), number_format_i18n( $sec % 60 ) );
+			return sprintf( __( '%1$s min %2$s s', 'flx-backup' ), number_format_i18n( intdiv( $sec, 60 ) ), number_format_i18n( $sec % 60 ) );
 		}
 		/* translators: 1: hours, 2: minutes */
-		return sprintf( __( '%1$s sa %2$s dk', 'flx-backup' ), number_format_i18n( intdiv( $sec, 3600 ) ), number_format_i18n( intdiv( $sec % 3600, 60 ) ) );
+		return sprintf( __( '%1$s h %2$s min', 'flx-backup' ), number_format_i18n( intdiv( $sec, 3600 ) ), number_format_i18n( intdiv( $sec % 3600, 60 ) ) );
 	}
 
 	private static function cancel_file(): string {
@@ -397,9 +397,9 @@ final class FLXY_Runner {
 			wp_delete_file( self::cancel_file() );
 		}
 		if ( 'restore' === $state['kind'] ) {
-			$state = FLXY_Restore::fail( $state, __( 'İptal edildi.', 'flx-backup' ) );
+			$state = FLXY_Restore::fail( $state, __( 'Cancelled.', 'flx-backup' ) );
 		} else {
-			$state = FLXY_Backup::fail( $state, __( 'İptal edildi.', 'flx-backup' ) );
+			$state = FLXY_Backup::fail( $state, __( 'Cancelled.', 'flx-backup' ) );
 		}
 		$state['cancelled'] = true;
 		self::save( $state );
@@ -435,7 +435,7 @@ final class FLXY_Runner {
 		}
 		if ( ! $authed ) {
 			// Bitmiş geri yüklemenin sonucunu belirteç olmadan da göstermeyelim.
-			wp_send_json_error( array( 'message' => __( 'Oturum doğrulanamadı. Sayfayı yenileyin.', 'flx-backup' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Could not verify the session. Reload the page.', 'flx-backup' ) ), 403 );
 		}
 		$state = self::run_step( true );
 		// Metinler göstergenin bulunduğu sayfanın dilinde olsun (ön yüzde sitenin dili geçerli olabilir).

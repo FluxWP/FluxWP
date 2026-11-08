@@ -12,7 +12,7 @@ add_filter(
 	'flx_system_checks',
 	function ( $checks ) {
 		$checks = is_array( $checks ) ? $checks : array();
-		$src    = __( 'Flux Speed', 'flx-speed' );
+		$src    = __( 'Flux Performance', 'flx-speed' );
 		$page   = admin_url( 'admin.php?page=flx-speed&tab=records' );
 		$s      = flxp_settings();
 
@@ -21,9 +21,9 @@ add_filter(
 				'id'      => 'flxp.table',
 				'source'  => $src,
 				'group'   => 'Plugins',
-				'label'   => __( 'Kayıt tablosu', 'flx-speed' ),
+				'label'   => __( 'Records table', 'flx-speed' ),
 				'status'  => 'error',
-				'message' => __( 'Tablo kurulmamış. Eklentiyi devre dışı bırakıp yeniden etkinleştirin.', 'flx-speed' ),
+				'message' => __( 'The table is not installed. Deactivate and reactivate the plugin.', 'flx-speed' ),
 			);
 			return $checks;
 		}
@@ -32,14 +32,14 @@ add_filter(
 			'id'           => 'flxp.record',
 			'source'       => $src,
 			'group'        => 'Plugins',
-			'label'        => __( 'İstek kaydı', 'flx-speed' ),
+			'label'        => __( 'Request recording', 'flx-speed' ),
 			'status'       => $s['record'] ? 'ok' : 'info',
 			'message'      => $s['record']
 				/* translators: 1: örnekleme yüzdesi, 2: yavaş eşiği ms */
-				? sprintf( __( 'Açık: isteklerin %%%1$d kadarı örnekleniyor, %2$d ms üstü ve hatalı istekler kaydediliyor.', 'flx-speed' ), (int) $s['sample'], (int) $s['slow_ms'] )
-				: __( 'Kapalı: yalnız anlık panel çalışıyor, yapay zekâ geçmişi okuyamaz.', 'flx-speed' ),
+				? sprintf( __( 'On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded.', 'flx-speed' ), (int) $s['sample'], (int) $s['slow_ms'] )
+				: __( 'Off: only the live panel works; AI cannot read history.', 'flx-speed' ),
 			'action_url'   => admin_url( 'admin.php?page=flx-speed&tab=settings' ),
-			'action_label' => __( 'Ayarlar', 'flx-speed' ),
+			'action_label' => __( 'Settings', 'flx-speed' ),
 		);
 
 		$fatal  = FLXP_Store::count_flag( 'fatal', 24 );
@@ -48,14 +48,14 @@ add_filter(
 			'id'           => 'flxp.errors_24h',
 			'source'       => $src,
 			'group'        => 'Plugins',
-			'label'        => __( 'Son 24 saatte hatalı istek', 'flx-speed' ),
+			'label'        => __( 'Failing requests in the last 24 hours', 'flx-speed' ),
 			'status'       => $fatal ? 'error' : ( $errors ? 'warning' : 'ok' ),
 			'message'      => $errors
 				/* translators: 1: hatalı istek sayısı, 2: ölümcül hata sayısı */
-				? sprintf( __( '%1$d istekte PHP/sunucu hatası, %2$d ölümcül. Ayrıntı Kayıtlar\'da.', 'flx-speed' ), $errors, $fatal )
-				: __( 'Kayıtlı hata yok.', 'flx-speed' ),
+				? sprintf( __( '%1$d requests with PHP/server errors, %2$d fatal. See Records.', 'flx-speed' ), $errors, $fatal )
+				: __( 'No recorded errors.', 'flx-speed' ),
 			'action_url'   => add_query_arg( array( 'hours' => 24, 'flag' => $fatal ? 'fatal' : 'error' ), $page ),
-			'action_label' => __( 'Kayıtlar', 'flx-speed' ),
+			'action_label' => __( 'Records', 'flx-speed' ),
 		);
 
 		$slow     = FLXP_Store::count_flag( 'slow', 24 );
@@ -63,12 +63,12 @@ add_filter(
 			'id'           => 'flxp.slow_24h',
 			'source'       => $src,
 			'group'        => 'Plugins',
-			'label'        => __( 'Son 24 saatte yavaş istek', 'flx-speed' ),
+			'label'        => __( 'Slow requests in the last 24 hours', 'flx-speed' ),
 			'status'       => $slow > 20 ? 'warning' : ( $slow ? 'info' : 'ok' ),
 			/* translators: 1: sayı, 2: eşik ms */
-			'message'      => sprintf( __( '%1$d istek %2$d ms eşiğini aştı.', 'flx-speed' ), $slow, (int) $s['slow_ms'] ),
+			'message'      => sprintf( __( '%1$d requests exceeded %2$d ms.', 'flx-speed' ), $slow, (int) $s['slow_ms'] ),
 			'action_url'   => add_query_arg( array( 'hours' => 24, 'flag' => 'slow', 'order' => 'slow' ), $page ),
-			'action_label' => __( 'Kayıtlar', 'flx-speed' ),
+			'action_label' => __( 'Records', 'flx-speed' ),
 		);
 
 		$http     = FLXP_Store::count_flag( 'http_fail', 24 );
@@ -76,12 +76,12 @@ add_filter(
 			'id'           => 'flxp.http_24h',
 			'source'       => $src,
 			'group'        => 'Plugins',
-			'label'        => __( 'Başarısız dış istek', 'flx-speed' ),
+			'label'        => __( 'Failed HTTP call', 'flx-speed' ),
 			'status'       => $http ? 'warning' : 'ok',
 			/* translators: %d: sayı */
-			'message'      => $http ? sprintf( __( 'Son 24 saatte %d kayıtlı istekte dış servis hatası.', 'flx-speed' ), $http ) : __( 'Kayıtlı dış servis hatası yok.', 'flx-speed' ),
+			'message'      => $http ? sprintf( __( '%d recorded requests had external service errors in the last 24 hours.', 'flx-speed' ), $http ) : __( 'No recorded external service errors.', 'flx-speed' ),
 			'action_url'   => add_query_arg( array( 'hours' => 24, 'flag' => 'http_fail' ), $page ),
-			'action_label' => __( 'Kayıtlar', 'flx-speed' ),
+			'action_label' => __( 'Records', 'flx-speed' ),
 		);
 
 		if ( FLXP_Collector::$sq_preset ) {
@@ -91,7 +91,7 @@ add_filter(
 				'group'   => 'Config',
 				'label'   => 'SAVEQUERIES',
 				'status'  => 'warning',
-				'message' => __( 'wp-config.php\'de SAVEQUERIES açık: her istekte tüm sorgular bellekte tutuluyor. Flux Speed bunu gerektiğinde kendisi açar; wp-config\'ten kaldırın.', 'flx-speed' ),
+				'message' => __( 'SAVEQUERIES is on in wp-config.php: every request keeps all queries in memory. Flux Performance turns it on itself when needed; remove it from wp-config.', 'flx-speed' ),
 			);
 		}
 
@@ -100,11 +100,11 @@ add_filter(
 			'id'      => 'flxp.mcp',
 			'source'  => $src,
 			'group'   => 'Plugins',
-			'label'   => __( 'Yapay zekâ araçları (flxp_*)', 'flx-speed' ),
+			'label'   => __( 'AI tools (flxp_*)', 'flx-speed' ),
 			'status'  => isset( $tools['flxp_summary'] ) ? 'ok' : 'info',
 			'message' => isset( $tools['flxp_summary'] )
-				? __( 'MCP ve Flux AI sohbeti kayıtları okuyabilir.', 'flx-speed' )
-				: __( 'Flux AI & MCP etkin değil ya da MCP kapalı; araçlar görünmüyor.', 'flx-speed' ),
+				? __( 'MCP and Flux AI chat can read the records.', 'flx-speed' )
+				: __( 'Flux AI & MCP is not active or MCP is off; tools are not visible.', 'flx-speed' ),
 		);
 		// Tema kendi cron satırlarını (theme.cron.*) veriyorsa aynı şeyi iki kez gösterme.
 		$own = array_filter(
@@ -123,7 +123,7 @@ add_filter(
  */
 function flxp_server_checks() {
 	global $wpdb;
-	$src  = __( 'Flux Speed', 'flx-speed' );
+	$src  = __( 'Flux Performance', 'flx-speed' );
 	$url  = function ( $tab ) {
 		return admin_url( 'admin.php?page=flx-speed&tab=' . $tab );
 	};
@@ -136,10 +136,10 @@ function flxp_server_checks() {
 		'id'           => 'flxp.autoload',
 		'source'       => $src,
 		'group'        => 'Performance',
-		'label'        => __( 'Autoload seçenekleri', 'flx-speed' ),
+		'label'        => __( 'Autoloaded options', 'flx-speed' ),
 		'status'       => $kb > 1600 ? 'error' : ( $kb > 800 ? 'warning' : 'ok' ),
 		/* translators: 1: KB, 2: adet */
-		'message'      => sprintf( __( 'Her istekte %1$d KB (%2$d seçenek) yükleniyor.', 'flx-speed' ), $kb, (int) ( $auto['n'] ?? 0 ) ) . ( $kb > 800 ? ' ' . __( '800 KB altı önerilir; en büyük satırlara bakın.', 'flx-speed' ) : '' ),
+		'message'      => sprintf( __( '%1$d KB (%2$d options) is loaded on every request.', 'flx-speed' ), $kb, (int) ( $auto['n'] ?? 0 ) ) . ( $kb > 800 ? ' ' . __( 'Under 800 KB is recommended; check the largest rows.', 'flx-speed' ) : '' ),
 		'action_url'   => $url( 'autoload' ),
 		'action_label' => 'Autoload',
 	);
@@ -148,17 +148,17 @@ function flxp_server_checks() {
 	$stale = ! $cron['last_seen'] || $cron['last_seen'] < time() - HOUR_IN_SECONDS;
 	$msg   = $cron['last_seen']
 		/* translators: %s: süre */
-		? sprintf( __( 'Son çalışma %s.', 'flx-speed' ), flx_time_ago( $cron['last_seen'] ) )
-		: __( 'Cron\'un çalıştığı henüz görülmedi.', 'flx-speed' );
+		? sprintf( __( 'Last run %s.', 'flx-speed' ), flx_time_ago( $cron['last_seen'] ) )
+		: __( 'Cron has not been seen running yet.', 'flx-speed' );
 	if ( $cron['overdue'] ) {
 		/* translators: %d: adet */
-		$msg .= ' ' . sprintf( __( '%d görev gecikmiş.', 'flx-speed' ), $cron['overdue'] );
+		$msg .= ' ' . sprintf( __( '%d events overdue.', 'flx-speed' ), $cron['overdue'] );
 	}
 	$out[] = array(
 		'id'           => 'flxp.cron',
 		'source'       => $src,
 		'group'        => 'Cron',
-		'label'        => __( 'Zamanlanmış görevler çalışıyor', 'flx-speed' ),
+		'label'        => __( 'Scheduled events are running', 'flx-speed' ),
 		'status'       => ( $stale && $cron['overdue'] ) ? 'error' : ( ( $stale || $cron['overdue'] > 5 ) ? 'warning' : 'ok' ),
 		'message'      => $msg,
 		'action_url'   => $url( 'cron' ),
@@ -170,12 +170,12 @@ function flxp_server_checks() {
 			'id'           => 'flxp.disk',
 			'source'       => $src,
 			'group'        => 'Performance',
-			'label'        => __( 'Disk alanı', 'flx-speed' ),
+			'label'        => __( 'Disk space', 'flx-speed' ),
 			'status'       => $live['disk_pct'] >= 95 ? 'error' : ( $live['disk_pct'] >= 90 ? 'warning' : 'ok' ),
 			/* translators: 1: yüzde, 2: boş alan */
-			'message'      => sprintf( __( '%%%1$d dolu, %2$s boş.', 'flx-speed' ), $live['disk_pct'], size_format( (float) $live['disk_free'], 1 ) ) . ( $live['disk_shared'] ? ' ' . __( '(hesap kullanımı / Ayarlar\'daki kota)', 'flx-speed' ) : '' ),
+			'message'      => sprintf( __( '%1$d%% used, %2$s free.', 'flx-speed' ), $live['disk_pct'], size_format( (float) $live['disk_free'], 1 ) ) . ( $live['disk_shared'] ? ' ' . __( '(account usage / quota from Settings)', 'flx-speed' ) : '' ),
 			'action_url'   => $url( 'server' ),
-			'action_label' => __( 'Sunucu', 'flx-speed' ),
+			'action_label' => __( 'Server', 'flx-speed' ),
 		);
 	}
 
@@ -184,15 +184,15 @@ function flxp_server_checks() {
 			'id'           => 'flxp.load',
 			'source'       => $src,
 			'group'        => 'Performance',
-			'label'        => __( 'İşlemci yükü', 'flx-speed' ),
+			'label'        => __( 'CPU load', 'flx-speed' ),
 			'status'       => $live['load_pct'] >= 150 ? 'warning' : ( $live['load_pct'] >= 100 ? 'info' : 'ok' ),
 			'message'      => 'account' === $live['scope']
 				/* translators: 1: yüzde, 2: çekirdek sınırı */
-				? sprintf( __( 'Hesap işlemci sınırının %%%1$d kadarı kullanılıyor (%2$s çekirdek).', 'flx-speed' ), $live['load_pct'], number_format_i18n( $live['cores'], 1 ) )
+				? sprintf( __( '%1$d%% of the account CPU limit in use (%2$s cores).', 'flx-speed' ), $live['load_pct'], number_format_i18n( $live['cores'], 1 ) )
 				/* translators: 1: yüzde, 2: çekirdek sayısı */
-				: sprintf( __( 'Son 1 dakikada %%%1$d (%2$d çekirdek).', 'flx-speed' ), $live['load_pct'], $live['cores'] ),
+				: sprintf( __( '%1$d%% over the last minute (%2$d cores).', 'flx-speed' ), $live['load_pct'], $live['cores'] ),
 			'action_url'   => $url( 'server' ),
-			'action_label' => __( 'Sunucu', 'flx-speed' ),
+			'action_label' => __( 'Server', 'flx-speed' ),
 		);
 	}
 
@@ -205,10 +205,10 @@ function flxp_server_checks() {
 		'label'        => 'OPcache',
 		'status'       => $on ? 'ok' : ( false === $opc && ini_get( 'opcache.enable' ) ? 'info' : 'warning' ),
 		'message'      => $on
-			? __( 'Açık: PHP dosyaları derlenmiş halde bellekte.', 'flx-speed' )
-			: ( false === $opc && ini_get( 'opcache.enable' ) ? __( 'Açık görünüyor ama durum okunamıyor (sunucu kısıtlı).', 'flx-speed' ) : __( 'Kapalı: her istekte PHP dosyaları yeniden derleniyor. Hostinger › PHP yapılandırmasından açın.', 'flx-speed' ) ),
+			? __( 'On: compiled PHP files are kept in memory.', 'flx-speed' )
+			: ( false === $opc && ini_get( 'opcache.enable' ) ? __( 'Looks enabled but its status cannot be read (restricted by the server).', 'flx-speed' ) : __( 'Off: PHP files are compiled again on every request. Turn it on in Hostinger › PHP configuration.', 'flx-speed' ) ),
 		'action_url'   => $url( 'server' ),
-		'action_label' => __( 'Sunucu', 'flx-speed' ),
+		'action_label' => __( 'Server', 'flx-speed' ),
 	);
 
 	$exp   = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE %s AND option_value < %d", $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) );
@@ -216,12 +216,12 @@ function flxp_server_checks() {
 		'id'           => 'flxp.transients',
 		'source'       => $src,
 		'group'        => 'Performance',
-		'label'        => __( 'Süresi dolmuş geçici veriler', 'flx-speed' ),
+		'label'        => __( 'Expired transients', 'flx-speed' ),
 		'status'       => $exp > 500 ? 'warning' : 'ok',
 		/* translators: %d: adet */
-		'message'      => $exp ? sprintf( __( '%d süresi dolmuş geçici veri tabloda duruyor.', 'flx-speed' ), $exp ) : __( 'Yok.', 'flx-speed' ),
+		'message'      => $exp ? sprintf( __( '%d expired transients are still in the table.', 'flx-speed' ), $exp ) : __( 'None.', 'flx-speed' ),
 		'action_url'   => $url( 'database' ),
-		'action_label' => __( 'Veritabanı', 'flx-speed' ),
+		'action_label' => __( 'Database', 'flx-speed' ),
 	);
 	return $out;
 }
@@ -232,13 +232,13 @@ add_filter(
 	function ( $fixes ) {
 		$fixes = is_array( $fixes ) ? $fixes : array();
 		$fixes['flxp_expired_transients'] = array(
-			'label'       => __( 'Süresi dolmuş geçici verileri sil', 'flx-speed' ),
+			'label'       => __( 'Delete expired transients', 'flx-speed' ),
 			'description' => 'Süresi dolmuş transient satırlarını siler (delete_expired_transients). Geri alınması gerekmez; eklentiler gerekirse yeniden oluşturur.',
 			'checks'      => array( 'flxp.transients' ),
 			'source'      => 'Flux Speed',
 			'run'         => function () {
 				/* translators: %d: adet */
-				return sprintf( __( '%d geçici veri silindi.', 'flx-speed' ), (int) flxp_cleanup( 'expired_transients' ) );
+				return sprintf( __( '%d transients deleted.', 'flx-speed' ), (int) flxp_cleanup( 'expired_transients' ) );
 			},
 		);
 		return $fixes;
@@ -267,42 +267,42 @@ add_filter(
 		return array_merge(
 			(array) $l,
 			array(
-				'title'       => __( 'Sistem Kontrolü', 'flx-speed' ),
-				'intro'       => __( 'Her satır sitenin ihtiyaç duyduğu bir şeyi ve yerinde olup olmadığını gösterir. Önce hataları düzeltin; uyarılara da göz atın.', 'flx-speed' ),
-				'ok'          => __( 'Tamam', 'flx-speed' ),
-				'warning'     => __( 'Uyarı', 'flx-speed' ),
-				'error'       => __( 'Hata', 'flx-speed' ),
-				'info'        => __( 'Bilgi', 'flx-speed' ),
+				'title'       => __( 'System check', 'flx-speed' ),
+				'intro'       => __( 'Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look.', 'flx-speed' ),
+				'ok'          => __( 'OK', 'flx-speed' ),
+				'warning'     => __( 'Warning', 'flx-speed' ),
+				'error'       => __( 'Errors', 'flx-speed' ),
+				'info'        => __( 'Info', 'flx-speed' ),
 				/* translators: 1: tamam, 2: uyarı, 3: hata sayısı */
-				'summary'     => __( '%1$d tamam · %2$d uyarı · %3$d hata', 'flx-speed' ),
-				'recheck'     => __( 'Yeniden kontrol et', 'flx-speed' ),
-				'filter_hint' => __( 'Yalnız bunları göster (tekrar tıklayınca hepsi)', 'flx-speed' ),
+				'summary'     => __( '%1$d OK · %2$d warnings · %3$d errors', 'flx-speed' ),
+				'recheck'     => __( 'Check again', 'flx-speed' ),
+				'filter_hint' => __( 'Show only these (click again to show all)', 'flx-speed' ),
 				/* translators: %s: saat */
-				'checked'     => __( 'Kontrol: %s', 'flx-speed' ),
-				'col_status'  => __( 'Durum', 'flx-speed' ),
-				'col_check'   => __( 'Kontrol', 'flx-speed' ),
-				'col_detail'  => __( 'Ayrıntı', 'flx-speed' ),
-				'col_source'  => __( 'Kaynak', 'flx-speed' ),
-				'col_action'  => __( 'İşlem', 'flx-speed' ),
-				'none'        => __( 'Kayıtlı kontrol yok.', 'flx-speed' ),
+				'checked'     => __( 'Checked: %s', 'flx-speed' ),
+				'col_status'  => __( 'Status', 'flx-speed' ),
+				'col_check'   => __( 'Check', 'flx-speed' ),
+				'col_detail'  => __( 'Details', 'flx-speed' ),
+				'col_source'  => __( 'Source', 'flx-speed' ),
+				'col_action'  => __( 'Action', 'flx-speed' ),
+				'none'        => __( 'No checks are registered.', 'flx-speed' ),
 				/* translators: %d: hata sayısı */
-				'notice'      => __( 'Sistem Kontrolü bağışları ya da otomasyonları durdurabilecek %d sorun buldu.', 'flx-speed' ),
-				'notice_link' => __( 'Sistem Kontrolü\'nü aç', 'flx-speed' ),
-				'dismiss'     => __( 'Sonraki güncellemeye kadar gizle', 'flx-speed' ),
+				'notice'      => __( 'System check found %d problem(s) that can stop donations or automations.', 'flx-speed' ),
+				'notice_link' => __( 'Open system check', 'flx-speed' ),
+				'dismiss'     => __( 'Hide until the next update', 'flx-speed' ),
 				/* translators: %d: hata sayısı */
-				'bar'         => __( 'Sistem: %d hata', 'flx-speed' ),
+				'bar'         => __( 'System: %d error(s)', 'flx-speed' ),
 				/* translators: %s: hata mesajı */
-				'broken'      => __( 'Bu kontrol çalışamadı: %s', 'flx-speed' ),
+				'broken'      => __( 'This check could not run: %s', 'flx-speed' ),
 				'groups'      => array(
-					'Cron'        => __( 'Zamanlanmış görevler (cron)', 'flx-speed' ),
-					'Payments'    => __( 'Ödemeler', 'flx-speed' ),
-					'Plugins'     => __( 'Eklentiler', 'flx-speed' ),
-					'Config'      => __( 'Site ayarları', 'flx-speed' ),
-					'Email'       => __( 'E-posta', 'flx-speed' ),
-					'Security'    => __( 'Güvenlik', 'flx-speed' ),
-					'Forms'       => __( 'Formlar', 'flx-speed' ),
-					'Performance' => __( 'Performans', 'flx-speed' ),
-					'Other'       => __( 'Diğer', 'flx-speed' ),
+					'Cron'        => __( 'Scheduled tasks (cron)', 'flx-speed' ),
+					'Payments'    => __( 'Payments', 'flx-speed' ),
+					'Plugins'     => __( 'Plugins', 'flx-speed' ),
+					'Config'      => __( 'Settings', 'flx-speed' ),
+					'Email'       => __( 'E-mail', 'flx-speed' ),
+					'Security'    => __( 'Security', 'flx-speed' ),
+					'Forms'       => __( 'Forms', 'flx-speed' ),
+					'Performance' => __( 'Performance', 'flx-speed' ),
+					'Other'       => __( 'Other', 'flx-speed' ),
 				),
 			)
 		);

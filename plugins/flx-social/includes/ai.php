@@ -30,7 +30,7 @@ function flxsm_ai_network_hint( $provider ) {
  */
 function flxsm_ai_write( $mode, array $args ) {
 	if ( ! flxsm_ai_ready() ) {
-		return new WP_Error( 'flxsm_ai', __( 'Flux AI & MCP kurulu değil ya da anahtar girilmemiş.', 'flx-social' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxsm_ai', __( 'Flux AI & MCP is not installed or no key has been entered.', 'flx-social' ), array( 'status' => 400 ) );
 	}
 	$org   = get_bloginfo( 'name' );
 	$lang  = ! empty( $args['lang'] ) ? (string) $args['lang'] : ( 0 === strpos( get_locale(), 'tr' ) ? 'Turkish' : 'English' );
@@ -87,7 +87,7 @@ function flxsm_ai_write( $mode, array $args ) {
 				return array_map( fn( $v ) => trim( (string) $v ), array_intersect_key( $j, array_flip( $prov ) ) );
 			}
 		}
-		return new WP_Error( 'flxsm_ai', __( 'AI cevabı okunamadı, tekrar deneyin.', 'flx-social' ), array( 'status' => 502 ) );
+		return new WP_Error( 'flxsm_ai', __( 'Could not read the AI response, please try again.', 'flx-social' ), array( 'status' => 502 ) );
 	}
 	return trim( $out, "\"“” \n" );
 }

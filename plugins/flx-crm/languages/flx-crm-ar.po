@@ -1,0 +1,1175 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Contacts, roles, segments and marketing"
+msgstr "جهات الاتصال والأدوار والقطاعات والتسويق"
+
+msgid "Reads"
+msgstr "يقرأ"
+
+msgid "Edits"
+msgstr "التعديلات"
+
+msgid "Needs approval"
+msgstr "يحتاج إلى موافقة"
+
+msgid "Automation"
+msgstr "الأتمتة"
+
+msgid "CRM overview"
+msgstr "نظرة عامة على إدارة علاقات العملاء"
+
+msgid "CRM structure and settings"
+msgstr "هيكل وإعدادات CRM"
+
+msgid "Search CRM contacts"
+msgstr "البحث في جهات اتصال CRM"
+
+msgid "CRM contact card"
+msgstr "بطاقة اتصال CRM"
+
+msgid "Timeline"
+msgstr "الجدول الزمني"
+
+msgid "Recent activity"
+msgstr "النشاط الأخير"
+
+msgid "Find duplicate contacts"
+msgstr "البحث عن جهات الاتصال المكررة"
+
+msgid "Saved segments"
+msgstr "المقاطع المحفوظة"
+
+msgid "Preview segment"
+msgstr "معاينة المقطع"
+
+msgid "Preview bulk action"
+msgstr "معاينة الإجراء المجمع"
+
+msgid "Add CRM contact"
+msgstr "إضافة جهة اتصال CRM"
+
+msgid "Edit CRM contact"
+msgstr "تحرير جهة اتصال CRM"
+
+msgid "Add/remove contact tags"
+msgstr "إضافة/إزالة علامات الاتصال"
+
+msgid "Add timeline entry"
+msgstr "إضافة إدخال الجدول الزمني"
+
+msgid "Add/edit tag"
+msgstr "إضافة/تحرير العلامة"
+
+msgid "Save segment"
+msgstr "حفظ المقطع"
+
+msgid "Change CRM settings"
+msgstr "تغيير إعدادات إدارة علاقات العملاء"
+
+msgid "Recalculate scores"
+msgstr "إعادة حساب الدرجات"
+
+msgid "Delete timeline entry"
+msgstr "حذف إدخال الجدول الزمني"
+
+msgid "Delete tag"
+msgstr "حذف العلامة"
+
+msgid "Delete segment"
+msgstr "حذف المقطع"
+
+msgid "Merge contacts"
+msgstr "دمج جهات الاتصال"
+
+msgid "Delete CRM contact"
+msgstr "حذف جهة اتصال CRM"
+
+msgid "Bulk action"
+msgstr "العمل بالجملة"
+
+msgid "Send message to contact"
+msgstr "إرسال رسالة إلى الاتصال"
+
+msgid "Source: %s"
+msgstr "المصدر:%s"
+
+msgid "Contact not found."
+msgstr "لم يتم العثور على جهة الاتصال."
+
+msgid "The e-mail address is not valid."
+msgstr "عنوان البريد الإلكتروني غير صالح."
+
+msgid "The phone number is not valid."
+msgstr "رقم الهاتف غير صالح."
+
+msgid "on"
+msgstr "على"
+
+msgid "off"
+msgstr "خارج"
+
+msgid "E-mail"
+msgstr "البريد الإلكتروني"
+
+msgid "SMS"
+msgstr "الرسائل القصيرة"
+
+msgid "WhatsApp"
+msgstr "واتساب"
+
+msgid "Ad audiences"
+msgstr "جماهير الإعلان"
+
+msgid "Choose other contacts to merge."
+msgstr "اختر جهات اتصال أخرى لدمجها."
+
+msgid "Up to 20 contacts can be merged at once."
+msgstr "يمكن دمج ما يصل إلى 20 جهة اتصال في وقت واحد."
+
+msgid "An e-mail or phone number is required."
+msgstr "مطلوب البريد الإلكتروني أو رقم الهاتف."
+
+msgid "The contact could not be saved."
+msgstr "لا يمكن حفظ جهة الاتصال."
+
+msgid "Text cannot be empty."
+msgstr "لا يمكن أن يكون النص فارغًا."
+
+msgid "The tag could not be added."
+msgstr "لا يمكن إضافة العلامة."
+
+msgid "Segment not found."
+msgstr "لم يتم العثور على المقطع."
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Tag"
+msgstr "علامة"
+
+msgid "RFM segment"
+msgstr "قطاع RFM"
+
+msgid "Total value"
+msgstr "القيمة الإجمالية"
+
+msgid "Days with a payment"
+msgstr "أيام مع الدفع"
+
+msgid "Last payment"
+msgstr "الدفعة الأخيرة"
+
+msgid "Last activity"
+msgstr "النشاط الأخير"
+
+msgid "Added"
+msgstr "تمت الإضافة"
+
+msgid "Churn risk (%)"
+msgstr "خطر التقلب (%)"
+
+msgid "Consent"
+msgstr "موافقة"
+
+msgid "First source"
+msgstr "المصدر الأول"
+
+msgid "City"
+msgstr "المدينة"
+
+msgid "Has an e-mail"
+msgstr "لديه بريد إلكتروني"
+
+msgid "Has a phone"
+msgstr "لديه هاتف"
+
+msgid "has"
+msgstr "لديه"
+
+msgid "is not / has not"
+msgstr "ليس / لم"
+
+msgid "is"
+msgstr "هو"
+
+msgid "at least"
+msgstr "على الأقل"
+
+msgid "at most"
+msgstr "على الأكثر"
+
+msgid "in the last … days"
+msgstr "في الأيام الأخيرة"
+
+msgid "more than … days ago"
+msgstr "منذ أكثر من...أيام"
+
+msgid "yes"
+msgstr "نعم"
+
+msgid "no"
+msgstr "لا"
+
+msgid "contains"
+msgstr "يحتوي على"
+
+msgid "%1$s: more than %2$s days ago"
+msgstr "%1$s: منذ أكثر من%2$sيوم"
+
+msgid "%1$s: in the last %2$s days"
+msgstr "%1$s: في آخر أيام%2$s"
+
+msgid "no %s consent"
+msgstr "لا توجد موافقة%s"
+
+msgid "has %s consent"
+msgstr "لديه موافقة%s"
+
+msgid "or"
+msgstr "أو"
+
+msgid "A segment name is required."
+msgstr "مطلوب اسم المقطع."
+
+msgid "Add at least one rule."
+msgstr "أضف قاعدة واحدة على الأقل."
+
+msgid "Donors to win back"
+msgstr "الجهات المانحة لاستعادة"
+
+msgid "Donors with a high churn risk. For a check-in or a new project announcement."
+msgstr "الجهات المانحة ذات المخاطر العالية. لتسجيل الوصول أو إعلان مشروع جديد."
+
+msgid "New contacts (30 days)"
+msgstr "جهات الاتصال الجديدة (30 يومًا)"
+
+msgid "Contacts added in the last 30 days. For a welcome message."
+msgstr "تمت إضافة جهات الاتصال في آخر 30 يومًا. للحصول على رسالة ترحيب."
+
+msgid "Champions and loyal supporters"
+msgstr "الأبطال والأنصار المخلصين"
+
+msgid "The people who support most often and most recently."
+msgstr "الأشخاص الذين يدعمون في أغلب الأحيان وفي الآونة الأخيرة."
+
+msgid "WhatsApp messages"
+msgstr "رسائل واتس اب"
+
+msgid "Totals"
+msgstr "المجاميع"
+
+msgid "RFM score"
+msgstr "نقاط RFM"
+
+msgid "Tag not found."
+msgstr "لم يتم العثور على العلامة."
+
+msgid "Tag name cannot be empty."
+msgstr "لا يمكن أن يكون اسم العلامة فارغًا."
+
+msgid "Another tag already has this name."
+msgstr "هناك علامة أخرى تحمل هذا الاسم بالفعل."
+
+msgid "Invalid color (use e.g. #16a34a)."
+msgstr "لون غير صالح (استخدم على سبيل المثال #16a34a)."
+
+msgid "Donor"
+msgstr "الجهة المانحة"
+
+msgid "Customer"
+msgstr "العميل"
+
+msgid "Lead"
+msgstr "الرصاص"
+
+msgid "Volunteer"
+msgstr "متطوع"
+
+msgid "Member"
+msgstr "عضو"
+
+msgid "Partner"
+msgstr "شريك"
+
+msgid "Beneficiary"
+msgstr "المستفيد"
+
+msgid "Donation"
+msgstr "التبرع"
+
+msgid "Order"
+msgstr "النظام"
+
+msgid "Form"
+msgstr "النموذج"
+
+msgid "Incoming message"
+msgstr "رسالة واردة"
+
+msgid "Outgoing message"
+msgstr "رسالة صادرة"
+
+msgid "Chat started"
+msgstr "بدأت الدردشة"
+
+msgid "Incoming e-mail"
+msgstr "البريد الإلكتروني الوارد"
+
+msgid "Note"
+msgstr "ملاحظة"
+
+msgid "Call"
+msgstr "اتصل"
+
+msgid "Meeting"
+msgstr "اجتماع"
+
+msgid "Sign-up"
+msgstr "الاشتراك"
+
+msgid "Contact added"
+msgstr "تمت إضافة جهة الاتصال"
+
+msgid "Role added"
+msgstr "تمت إضافة الدور"
+
+msgid "Segment changed"
+msgstr "تم تغيير المقطع"
+
+msgid "Consent changed"
+msgstr "تغيرت الموافقة"
+
+msgid "Contacts merged"
+msgstr "تم دمج جهات الاتصال"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "Paid for the first time recently. A good fit for a welcome flow."
+msgstr "تم الدفع لأول مرة مؤخرًا. مناسبة جيدة لتدفق الترحيب."
+
+msgid "Champion"
+msgstr "بطل"
+
+msgid "Pays often and recently. Worth a personal thank-you and attention."
+msgstr "يدفع في كثير من الأحيان ومؤخرا. يستحق الشكر الشخصي والاهتمام."
+
+msgid "Loyal"
+msgstr "مخلص"
+
+msgid "Gives regular support. Tell them first about new projects and products."
+msgstr "يعطي دعمًا منتظمًا. أخبرهم أولاً عن المشاريع والمنتجات الجديدة."
+
+msgid "Promising"
+msgstr "واعدة"
+
+msgid "Arrived recently; frequency is still low."
+msgstr "وصل مؤخرا؛ التردد لا يزال منخفضا."
+
+msgid "At risk"
+msgstr "في خطر"
+
+msgid "Used to be frequent, has drifted away lately. A win-back target."
+msgstr "كانت متكررة، وقد انجرفت بعيدا في الآونة الأخيرة. هدف الفوز."
+
+msgid "Hibernating"
+msgstr "السبات"
+
+msgid "Away for a long time with low frequency."
+msgstr "بعيدا لفترة طويلة مع التردد المنخفض."
+
+msgid "Lost"
+msgstr "ضائع"
+
+msgid "The slice that has gone longest without paying."
+msgstr "الشريحة التي طال أمدها دون أن تدفع."
+
+msgid "No payments"
+msgstr "لا المدفوعات"
+
+msgid "Manual"
+msgstr "دليل"
+
+msgid "Import"
+msgstr "استيراد"
+
+msgid "Site account"
+msgstr "حساب الموقع"
+
+msgid "%s M"
+msgstr "%s م"
+
+msgid "%s K"
+msgstr "%s ك"
+
+msgid "(unnamed contact)"
+msgstr "(جهة اتصال غير مسماة)"
+
+msgid "CRM segment: %1$s (%2$s)"
+msgstr "شريحة إدارة علاقات العملاء:%1$s(%2$s)"
+
+msgid "CRM role: %1$s (%2$s)"
+msgstr "دور إدارة علاقات العملاء:%1$s(%2$s)"
+
+msgid "CRM"
+msgstr "إدارة علاقات العملاء"
+
+msgid "Sees contacts, segments and the timeline"
+msgstr "يرى جهات الاتصال والقطاعات والجدول الزمني"
+
+msgid "Adds, edits and deletes contacts; manages segments and CRM settings"
+msgstr "إضافة وتعديل وحذف جهات الاتصال؛ يدير الشرائح وإعدادات CRM"
+
+msgid "Flux CRM"
+msgstr "تدفق إدارة علاقات العملاء"
+
+msgid "Contact sources"
+msgstr "مصادر الاتصال"
+
+msgid "No source brings in contacts (Flux Donate, WooCommerce, Flux Chat and Flux Forms are off or not installed). Contacts can only be added by hand."
+msgstr "لا يوجد مصدر يجلب جهات الاتصال (Flux Donate وWooCommerce وFlux Chat وFlux Forms متوقفة أو غير مثبتة). لا يمكن إضافة جهات الاتصال إلا يدويًا."
+
+msgid "First sync"
+msgstr "المزامنة الأولى"
+
+msgid "Last full sync: %s"
+msgstr "آخر مزامنة كاملة:%s"
+
+msgid "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
+msgstr "لم يتم استيراد التبرعات والطلبات والمحادثات السابقة بعد. CRM › الإعدادات › \"مزامنة كل شيء\"."
+
+msgid "Sync"
+msgstr "مزامنة"
+
+msgid "RFM scoring"
+msgstr "سجل RFM"
+
+msgid "Not calculated yet."
+msgstr "لم يتم حسابها بعد."
+
+msgid "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
+msgstr "آخر حساب%s. قد لا تكون المهمة اليومية (WP-Cron) قيد التشغيل؛ أضف كرون الخادم أو أعد الحساب يدويًا."
+
+msgid "Last calculated: %s"
+msgstr "آخر حساب:%s"
+
+msgid "Foreign currency payments"
+msgstr "المدفوعات بالعملة الأجنبية"
+
+msgid "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
+msgstr "تتم دفعات%1$sبعملة أخرى غير%2$sوليس لها سعر صرف؛ يتم احتسابها ضمن التردد ولكن ليس ضمن القيمة الإجمالية. استخدم مرشح `flxcrm_fx_rate` لتوفير السعر."
+
+msgid "Overview"
+msgstr "نظرة عامة"
+
+msgid "Contacts"
+msgstr "اتصالات"
+
+msgid "Segments"
+msgstr "شرائح"
+
+msgid "CRM settings"
+msgstr "إعدادات إدارة علاقات العملاء"
+
+msgid "%1$s: %2$s / %3$s"
+msgstr "%1$s:%2$s/%3$s"
+
+msgid "Done. Reloading the page…"
+msgstr "تم. جارٍ إعادة تحميل الصفحة..."
+
+msgid "Something went wrong. Please try again."
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+
+msgid "Are you sure? This cannot be undone."
+msgstr "هل أنت متأكد؟ لا يمكن التراجع عن هذا."
+
+msgid "%s contacts match"
+msgstr "تطابق جهات الاتصال%s"
+
+msgid "Counting…"
+msgstr "العد..."
+
+msgid "Calculating…"
+msgstr "جارٍ الحساب..."
+
+msgid "%s contacts scored. Reloading the page…"
+msgstr "سجلت جهات الاتصال%s. جارٍ إعادة تحميل الصفحة..."
+
+msgid "%s contacts selected"
+msgstr "تم تحديد جهات الاتصال%s"
+
+msgid "Remove rule"
+msgstr "إزالة القاعدة"
+
+msgid "and"
+msgstr "و"
+
+msgid "days"
+msgstr "أيام"
+
+msgid "No rules: every contact"
+msgstr "لا توجد قواعد: كل جهة اتصال"
+
+msgid "No contacts match."
+msgstr "لا توجد جهات اتصال متطابقة."
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Roles"
+msgstr "الأدوار"
+
+msgid "Segment"
+msgstr "شريحة"
+
+msgid "Churn risk"
+msgstr "خطر التقلب"
+
+msgid "E-mail consent"
+msgstr "موافقة البريد الإلكتروني"
+
+msgid "SMS consent"
+msgstr "موافقة الرسائل القصيرة"
+
+msgid "WhatsApp consent"
+msgstr "موافقة واتس اب"
+
+msgid "Tags"
+msgstr "العلامات"
+
+msgid "Saved."
+msgstr "تم الحفظ."
+
+msgid "Contact added."
+msgstr "تمت إضافة جهة الاتصال."
+
+msgid "Deleted."
+msgstr "تم الحذف."
+
+msgid "Added to the timeline."
+msgstr "تمت إضافته إلى الجدول الزمني."
+
+msgid "A contact with this e-mail or phone already exists; their card is open."
+msgstr "جهة اتصال بهذا البريد الإلكتروني أو الهاتف موجودة بالفعل؛ بطاقتهم مفتوحة."
+
+msgid "%s contacts updated."
+msgstr "تم تحديث جهات اتصال%s."
+
+msgid "Churn risk %s%%"
+msgstr "خطر التقلب%s%%"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Payments"
+msgstr "المدفوعات"
+
+msgid "Messages"
+msgstr "الرسائل"
+
+msgid "Forms"
+msgstr "النماذج"
+
+msgid "Notes"
+msgstr "ملاحظات"
+
+msgid "Contact not found"
+msgstr "لم يتم العثور على جهة الاتصال"
+
+msgid "Back to contacts"
+msgstr "العودة إلى جهات الاتصال"
+
+msgid "Archived"
+msgstr "مؤرشف"
+
+msgid "Since %1$s · %2$s"
+msgstr "منذ%1$s·%2$s"
+
+msgid "WhatsApp chat"
+msgstr "دردشة واتس اب"
+
+msgid "Write an e-mail"
+msgstr "اكتب بريدًا إلكترونيًا"
+
+msgid "CRM card"
+msgstr "بطاقة إدارة علاقات العملاء"
+
+msgid "First payment"
+msgstr "الدفعة الأولى"
+
+msgid "once every %s days on average"
+msgstr "مرة واحدة كل%sيومًا في المتوسط"
+
+msgid "RFM"
+msgstr "آر إف إم"
+
+msgid "recency · frequency · value (1–5)"
+msgstr "الحداثة · التكرار · القيمة (1-5)"
+
+msgid "Delete contact"
+msgstr "حذف جهة الاتصال"
+
+msgid "Donations and orders stay in their own plugins; only the CRM card is deleted."
+msgstr "تبقى التبرعات والأوامر في المكونات الإضافية الخاصة بها؛ يتم حذف بطاقة CRM فقط."
+
+msgid "Add a note: talked on the phone, call again about the qurban…"
+msgstr "أضف ملاحظة: تحدثت عبر الهاتف، اتصل مرة أخرى بخصوص الأضحية..."
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "Add"
+msgstr "أضف"
+
+msgid "No events for this filter."
+msgstr "لا توجد أحداث لهذا الفلتر."
+
+msgid "Loading…"
+msgstr "جارٍ التحميل..."
+
+msgid "Answers"
+msgstr "الإجابات"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Pending"
+msgstr "في انتظار"
+
+msgid "On hold"
+msgstr "في الانتظار"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+msgid "Refunded"
+msgstr "ردها"
+
+msgid "Partly refunded"
+msgstr "تم ردها جزئيا"
+
+msgid "Full name"
+msgstr "الاسم الكامل"
+
+msgid "Organisation"
+msgstr "التنظيم"
+
+msgid "Contact consents"
+msgstr "موافقات الاتصال"
+
+msgid "Last changed: %s"
+msgstr "آخر تغيير:%s"
+
+msgid "Owner"
+msgstr "المالك"
+
+msgid "— none —"
+msgstr "— لا شيء —"
+
+msgid "Short note"
+msgstr "ملاحظة قصيرة"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "No tags."
+msgstr "لا توجد علامات."
+
+msgid "Remove the %s tag"
+msgstr "قم بإزالة علامة%s"
+
+msgid "Add tags (comma for several)"
+msgstr "إضافة علامات (فاصلة لعدة)"
+
+msgid "Add tag"
+msgstr "إضافة علامة"
+
+msgid "Sources"
+msgstr "المصادر"
+
+msgid "Added by hand."
+msgstr "تمت إضافتها باليد."
+
+msgid "First campaign"
+msgstr "الحملة الأولى"
+
+msgid "New contact"
+msgstr "جهة اتصال جديدة"
+
+msgid "An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens."
+msgstr "البريد الإلكتروني أو رقم الهاتف يكفي. في حالة وجود جهة اتصال لها نفس البريد الإلكتروني أو الهاتف، يتم فتح بطاقتها."
+
+msgid "separate with commas"
+msgstr "منفصلة بفواصل"
+
+msgid "Add contact"
+msgstr "أضف جهة اتصال"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "%s donation"
+msgid_plural "%s donations"
+msgstr[0] "تبرعات%s"
+msgstr[1] "التبرع بـ%s"
+msgstr[2] "تبرعات%s"
+msgstr[3] "تبرعات%s"
+msgstr[4] "تبرعات%s"
+msgstr[5] "تبرعات%s"
+
+msgid "%s order"
+msgid_plural "%s orders"
+msgstr[0] "أوامر%s"
+msgstr[1] "طلب%s"
+msgstr[2] "أوامر%s"
+msgstr[3] "أوامر%s"
+msgstr[4] "أوامر%s"
+msgstr[5] "أوامر%s"
+
+msgid "CSV"
+msgstr "CSV"
+
+msgid "Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand."
+msgstr "الجهات المانحة والعملاء والعملاء المتوقعين: بطاقة واحدة لكل شخص. أنها تصل من مصادرك من تلقاء نفسها، أو يمكنك إضافتها باليد."
+
+msgid "Name, e-mail, phone, organisation, city"
+msgstr "الاسم، البريد الإلكتروني، الهاتف، المنظمة، المدينة"
+
+msgid "Search contacts"
+msgstr "البحث في جهات الاتصال"
+
+msgid "All RFM segments"
+msgstr "جميع قطاعات RFM"
+
+msgid "Saved segment"
+msgstr "المقطع المحفوظ"
+
+msgid "All tags"
+msgstr "جميع العلامات"
+
+msgid "Any consent"
+msgstr "أي موافقة"
+
+msgid "Only high churn risk"
+msgstr "خطر التقلب العالي فقط"
+
+msgid "Archive"
+msgstr "أرشيف"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "No contacts match the filter."
+msgstr "لا توجد جهات اتصال تتطابق مع عامل التصفية."
+
+msgid "No contacts yet."
+msgstr "لا توجد اتصالات حتى الآن."
+
+msgid "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
+msgstr "تظهر جهات الاتصال من تلقاء نفسها مع وصول التبرعات والطلبات والنماذج ومحادثات WhatsApp. بالنسبة للسجلات القديمة: الإعدادات › مزامنة كل شيء."
+
+msgid "Add role"
+msgstr "إضافة دور"
+
+msgid "Unarchive"
+msgstr "إلغاء الأرشفة"
+
+msgid "Tag name"
+msgstr "اسم العلامة"
+
+msgid "Apply"
+msgstr "تطبيق"
+
+msgid "Select all"
+msgstr "حدد الكل"
+
+msgid "Contact"
+msgstr "الاتصال"
+
+msgid "Role and segment"
+msgstr "الدور والقطاع"
+
+msgid "Value"
+msgstr "القيمة"
+
+msgid "Donors, customers, volunteers and leads in one place: who did what, who is drifting away, who should hear what."
+msgstr "المانحون والعملاء والمتطوعين والقادة في مكان واحد: من فعل ماذا، ومن يبتعد، ومن يجب أن يسمع ماذا."
+
+msgid "Import your past data."
+msgstr "استيراد بياناتك السابقة."
+
+msgid "New records arrive on their own. To link older ones to contacts too, sync: %s."
+msgstr "سجلات جديدة تصل من تلقاء نفسها. لربط جهات الاتصال القديمة أيضًا، قم بالمزامنة:%s."
+
+msgid "No source brings in contacts; you can add them by hand."
+msgstr "لا يوجد مصدر يجلب الاتصالات. يمكنك إضافتها باليد."
+
+msgid "Sync everything"
+msgstr "مزامنة كل شيء"
+
+msgid "%s have paid"
+msgstr "لقد دفعت%s"
+
+msgid "New in the last 30 days"
+msgstr "جديد في آخر 30 يومًا"
+
+msgid "%s against the previous 30 days"
+msgstr "%sمقابل الثلاثين يومًا السابقة"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "with activity in the last %s days"
+msgstr "مع النشاط في آخر أيام%s"
+
+msgid "High churn risk"
+msgstr "مخاطر التقلب العالية"
+
+msgid "risk %s%% and above"
+msgstr "خطر%s%% وما فوق"
+
+msgid "%s per contact"
+msgstr "%sلكل جهة اتصال"
+
+msgid "RFM segments"
+msgstr "قطاعات RFM"
+
+msgid "Calculated: %s"
+msgstr "المحسوبة:%s"
+
+msgid "Recalculate"
+msgstr "إعادة الحساب"
+
+msgid "Once contacts have paid, donors and customers are grouped here by frequency, recency and value."
+msgstr "بمجرد قيام جهات الاتصال بالدفع، يتم تجميع الجهات المانحة والعملاء هنا حسب التكرار والحداثة والقيمة."
+
+msgid "Reach out"
+msgstr "تواصل معنا"
+
+msgid "No valuable contacts with a high churn risk."
+msgstr "لا توجد اتصالات قيمة ذات مخاطر عالية."
+
+msgid "last payment %s"
+msgstr "الدفعة الأخيرة%s"
+
+msgid "Donations, orders, forms and WhatsApp activity appear here."
+msgstr "تظهر هنا التبرعات والطلبات والنماذج ونشاط الواتساب."
+
+msgid "Where they came from"
+msgstr "من أين أتوا"
+
+msgid "New segment"
+msgstr "شريحة جديدة"
+
+msgid "Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail."
+msgstr "القوائم المباشرة التي تحددها القواعد: تنضم جهة اتصال عندما تتطابق وتغادر عندما لا تعود كذلك. استخدمهم كمستلمين لعمليات الإرسال المجمعة في Flux Mail."
+
+msgid "No segments yet."
+msgstr "لا توجد قطاعات بعد."
+
+msgid "Examples: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers with no purchase for 3 months\"."
+msgstr "أمثلة: \"لقد تبرعت بالأضحية العام الماضي ولكن ليس هذا العام\"، \"متطوعون في إسطنبول\"، \"العملاء ليس لديهم أي شراء لمدة 3 أشهر\"."
+
+msgid "contacts"
+msgstr "اتصالات"
+
+msgid "View contacts"
+msgstr "عرض جهات الاتصال"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it."
+msgstr "Flux Mail › إرسال: اختر هذا الجزء ضمن المستلمون. فقط الأشخاص الذين سمحوا لهذه القناة يتلقونها."
+
+msgid "Send a campaign"
+msgstr "أرسل حملة"
+
+msgid "Edit segment"
+msgstr "تحرير المقطع"
+
+msgid "Add rules; the number of matching contacts updates on the right as you go."
+msgstr "إضافة القواعد؛ عدد تحديثات جهات الاتصال المطابقة على اليمين أثناء تقدمك."
+
+msgid "E.g. Donors drifting away"
+msgstr "على سبيل المثال المانحون يبتعدون"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Rules"
+msgstr "القواعد"
+
+msgid "all rules"
+msgstr "جميع القواعد"
+
+msgid "at least one"
+msgstr "واحد على الأقل"
+
+msgid "Contact matches"
+msgstr "مباريات الاتصال"
+
+msgid "Add rule"
+msgstr "أضف القاعدة"
+
+msgid "Matching contacts"
+msgstr "مطابقة الاتصالات"
+
+msgid "Where contacts come from, which role they get and how scoring works."
+msgstr "من أين تأتي جهات الاتصال، وما هو الدور الذي تحصل عليه وكيف يتم تسجيل النقاط."
+
+msgid "Not synced yet"
+msgstr "لم تتم المزامنة بعد"
+
+msgid "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
+msgstr "يتم ربط التبرعات والأوامر والنماذج والمحادثات الجديدة بجهات الاتصال على الفور. قم بمزامنة كل شيء لاستيراد السجلات السابقة، أو لإعادة الارتباط بعد تشغيل المصدر أو إيقاف تشغيله. يتم الاحتفاظ بجهات الاتصال والملاحظات الموجودة، ولا تتم إضافة أي شيء مرتين."
+
+msgid "Donors and donations"
+msgstr "الجهات المانحة والتبرعات"
+
+msgid "Customers and orders (donation orders excluded)"
+msgstr "العملاء والطلبات (باستثناء طلبات التبرع)"
+
+msgid "WhatsApp chats and every message"
+msgstr "محادثات الواتس اب وكل رسالة"
+
+msgid "Form submissions (with an e-mail or phone field)"
+msgstr "عمليات إرسال النماذج (مع حقل البريد الإلكتروني أو الهاتف)"
+
+msgid "Site members"
+msgstr "أعضاء الموقع"
+
+msgid "WordPress users with the customer or subscriber role"
+msgstr "مستخدمو WordPress مع دور العميل أو المشترك"
+
+msgid "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
+msgstr "رسائل البريد الإلكتروني والرسائل النصية القصيرة وإشعارات WhatsApp المرسلة إلى جهة الاتصال ورسائل البريد الإلكتروني الواردة (المخطط الزمني فقط، لا توجد جهات اتصال جديدة)"
+
+msgid "Source"
+msgstr "المصدر"
+
+msgid "On"
+msgstr "على"
+
+msgid "Role for new contacts"
+msgstr "دور لجهات الاتصال الجديدة"
+
+msgid "not installed"
+msgstr "غير مثبت"
+
+msgid "— no role —"
+msgstr "– لا يوجد دور –"
+
+msgid "Write WhatsApp messages to the timeline (one line per message)"
+msgstr "كتابة رسائل WhatsApp إلى الجدول الزمني (سطر واحد لكل رسالة)"
+
+msgid "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
+msgstr "يتم إعطاء الدور بمجرد اكتمال الدفع (المانح، العميل). ويختفي دور \"العميل المتوقع\" من تلقاء نفسه عندما تحصل جهة الاتصال على دور آخر."
+
+msgid "The contact's relationship with you. A contact can have several roles, e.g. donor and volunteer."
+msgstr "علاقة جهة الاتصال معك. يمكن أن يكون لجهة الاتصال عدة أدوار، على سبيل المثال. المتبرع والمتطوع."
+
+msgid "Colour"
+msgstr "اللون"
+
+msgid "New role: Sponsor, Philanthropist, Dealer…"
+msgstr "دور جديد: الراعي، المحسن، التاجر..."
+
+msgid "New role"
+msgstr "دور جديد"
+
+msgid "Scoring"
+msgstr "التهديف"
+
+msgid "Churn risk threshold (%)"
+msgstr "عتبة خطر التقلب (%)"
+
+msgid "Contacts above this value go to the \"Reach out\" list. Risk follows each person's own rhythm: a monthly donor is at risk after 45 days, a yearly one is not."
+msgstr "تنتقل جهات الاتصال الأعلى من هذه القيمة إلى قائمة \"الوصول\". تتبع المخاطر إيقاع كل شخص: فالمتبرع شهريًا يكون في خطر بعد 45 يومًا، أما المتبرع السنوي فلا يكون كذلك."
+
+msgid "Active window (days)"
+msgstr "النافذة النشطة (بالأيام)"
+
+msgid "A contact with any activity within this many days counts as active."
+msgstr "تعتبر جهة الاتصال التي تمارس أي نشاط خلال هذه الأيام العديدة نشطة."
+
+msgid "Reporting currency"
+msgstr "عملة التقارير"
+
+msgid "Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given."
+msgstr "فارغ يعني عملة المتجر. لا يتم احتساب المدفوعات بعملات أخرى ضمن القيمة ما لم يتم تحديد سعر."
+
+msgid "Save settings"
+msgstr "حفظ الإعدادات"
+
+msgid "AI & MCP"
+msgstr "الذكاء الاصطناعي وMCP"
+
+msgid "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions."
+msgstr "يمكن قراءة كل شيء في CRM (جهات الاتصال، والحقول، والأدوار، والعلامات، والموافقات، والمخطط الزمني، والشرائح، والإعدادات) وتحريره من دردشة Flux AI وعبر MCP (Claude، ChatGPT، Cursor...). يتم تشغيل الأدوات باستخدام أذونات CRM الخاصة بالمستخدم."
+
+msgid "connected"
+msgstr "متصل"
+
+msgid "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
+msgstr "أدوات إدارة علاقات العملاء (CRM) في دردشة الإدارة. كل أداة تغير شيئًا ما تنتظر بطاقة الموافقة."
+
+msgid "Flux AI & MCP is not installed"
+msgstr "لم يتم تثبيت Flux AI & MCP"
+
+msgid "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."
+msgstr "يؤدي حذف الإجراءات المجمعة ودمجها وإرسالها إلى معاينة فقط في المكالمة الأولى؛ يتم تشغيلها عند الاتصال بها مرة أخرى باستخدام رمز الموافقة."
+
+msgid "MCP keys"
+msgstr "مفاتيح MCP"
+
+msgid "AI and MCP tools on"
+msgstr "أدوات الذكاء الاصطناعي وMCP قيد التشغيل"
+
+msgid "Editing: contacts, tags, segments, notes, settings"
+msgstr "التحرير: جهات الاتصال، العلامات، المقاطع، الملاحظات، الإعدادات"
+
+msgid "Approval actions: delete, merge, bulk actions, sending messages"
+msgstr "إجراءات الموافقة: الحذف والدمج والإجراءات المجمعة وإرسال الرسائل"
+
+msgid "Tools: %1$d / %2$d on"
+msgstr "الأدوات: تشغيل%1$d/%2$d"
+
+msgid "Tool"
+msgstr "أداة"
+
+msgid "Recent changes made with AI"
+msgstr "التغييرات الأخيرة التي تم إجراؤها باستخدام الذكاء الاصطناعي"
+
+msgid "No changes yet. Every change made with Flux AI or MCP shows up here."
+msgstr "لا توجد تغييرات حتى الآن. يظهر هنا كل تغيير يتم إجراؤه باستخدام Flux AI أو MCP."
+
+msgid "When"
+msgstr "متى"
+
+msgid "Who"
+msgstr "من"
+
+msgid "Action"
+msgstr "العمل"
+
+msgid "Result"
+msgstr "النتيجة"
+
+msgid "done"
+msgstr "تم"
+
+msgid "error"
+msgstr "خطأ"
+
+msgid "WhatsApp chat opened"
+msgstr "تم فتح دردشة الواتس اب"
+
+msgid "WhatsApp reply"
+msgstr "الرد واتس اب"
+
+msgid "WhatsApp message"
+msgstr "رسالة واتس اب"
+
+msgid "Order #%s"
+msgstr "الطلب #%s"
+
+msgid "Form #%d"
+msgstr "النموذج #%d"
+
+msgid "SMS sent"
+msgstr "تم إرسال الرسائل القصيرة"
+
+msgid "WhatsApp notification"
+msgstr "إشعار الواتساب"
+
+msgid "Created an account on the site"
+msgstr "تم إنشاء حساب على الموقع"
+
+msgid "Name, e-mail or phone"
+msgstr "الاسم أو البريد الإلكتروني أو الهاتف"
+
+msgid "Contacts arrive on their own from gifts, orders and forms."
+msgstr "تصل جهات الاتصال من تلقاء نفسها من خلال الهدايا والأوامر والنماذج."
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Remove tag"
+msgstr "إزالة العلامة"
+
+msgid "Add an interaction"
+msgstr "إضافة تفاعل"
+
+msgid "Saved"
+msgstr "تم الحفظ"
+
+msgid "Delete this contact?"
+msgstr "هل تريد حذف جهة الاتصال هذه؟"
+
+msgid "No people"
+msgstr "لا يوجد أشخاص"
+
+msgid "Text"
+msgstr "نص"
+
+msgid "Add a note"
+msgstr "أضف ملاحظة"
+
+msgid "Open in the panel"
+msgstr "افتح في اللوحة"
+
+msgid "Ads"
+msgstr "إعلانات"
+
+msgid "Ad consent"
+msgstr "الموافقة على الإعلان"
+
+msgid "Risk"
+msgstr "خطر"
+
+msgid "Segment rules"
+msgstr "قواعد القسم"
+
+msgid "No segments"
+msgstr "لا شرائح"
+
+msgid "Create segments by adding rules in the panel."
+msgstr "قم بإنشاء شرائح عن طريق إضافة القواعد في اللوحة."
+
+msgid "Deleted"
+msgstr "تم الحذف"
+
+msgid "Last 30 days"
+msgstr "آخر 30 يومًا"
+
+msgid "The timeline and tags are deleted too."
+msgstr "يتم حذف الجدول الزمني والعلامات أيضًا."
+
+msgid "repeat"
+msgstr "كرر"
+
+msgid "Paying"
+msgstr "الدفع"
+
+msgid "Consents"
+msgstr "الموافقات"
+
+msgid "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"
+msgstr "[['الناس والتسويق: المتبرع، العميل، المتطوع والمرشح في بطاقة شخص واحد؛ الجدول الزمني، العلامات، أذونات KVKK، درجة RFM ومخاطر الخسارة، القطاعات الديناميكية. يجمع البيانات من مستخدمي Flux Donate وFlux Commerce وFlux Chat وFlux Forms وWordPress؛ الشحن عبر Flux Mail، AI Flux AI.', 'tr']]"

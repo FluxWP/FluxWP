@@ -1,0 +1,425 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Protects forms against spam and bot attacks"
+msgstr "Защищает формы от спама и атак ботов."
+
+msgid "reCAPTCHA"
+msgstr "реКАПЧА"
+
+msgid "Enter the site key first."
+msgstr "Сначала введите ключ сайта."
+
+msgid "Enter the secret key."
+msgstr "Введите секретный ключ."
+
+msgid "Loading Google reCAPTCHA…"
+msgstr "Загрузка Google reCAPTCHA..."
+
+msgid "Tick the box; the test continues on its own once it is ticked."
+msgstr "Поставьте галочку; тест продолжается сам по себе, как только он отмечен галочкой."
+
+msgid "Verifying with Google…"
+msgstr "Проверка с помощью Google..."
+
+msgid "Google reCAPTCHA could not be loaded. Check the site key and the domain; if Google is unreachable, try the \"recaptcha.net\" option."
+msgstr "Не удалось загрузить Google reCAPTCHA. Проверьте ключ сайта и домен; если Google недоступен, попробуйте опцию «recaptcha.net»."
+
+msgid "The site key changed; reloading the page to test with the new key…"
+msgstr "Ключ сайта изменен; перезагрузка страницы для проверки с новым ключом..."
+
+msgid "Something went wrong. Please try again."
+msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз."
+
+msgid "Keys saved; protection is on."
+msgstr "Ключи сохранены; защита включена."
+
+msgid "Forms are not protected yet. Enter your Google reCAPTCHA keys and test them."
+msgstr "Формы еще не защищены. Введите ключи Google reCAPTCHA и проверьте их."
+
+msgid "Go to settings"
+msgstr "Перейти в настройки"
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA. Choose below which forms to protect."
+msgstr "Защищает вход в систему, регистрацию, комментарии, оформление заказа, пожертвования и отправку форм от ботов с помощью Google reCAPTCHA. Ниже выберите, какие формы защитить."
+
+msgid "Protection is turned off by the recovery constant."
+msgstr "Защита отключается константой восстановления."
+
+msgid "Remove the FLXRC_DISABLE line from wp-config.php to turn protection back on."
+msgstr "Удалите строку FLXRC_DISABLE из wp-config.php, чтобы снова включить защиту."
+
+msgid "Protection is not running yet."
+msgstr "Защита еще не работает."
+
+msgid "Enter your keys and press \"Test\". No form is checked until the test passes, so a wrong key can never lock you out of the login screen."
+msgstr "Введите свои ключи и нажмите «Тест». Никакая форма не проверяется до тех пор, пока тест не пройдет, поэтому неправильный ключ никогда не заблокирует вас на экране входа в систему."
+
+msgid "Google rejected the secret key"
+msgstr "Google отверг секретный ключ"
+
+msgid "Google could not be reached"
+msgstr "Не удалось связаться с Google"
+
+msgid "Submissions were let through without a check at that time."
+msgstr "В то время материалы пропускались без проверки."
+
+msgid "Submissions were blocked at that time."
+msgstr "На тот момент заявки были заблокированы."
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "v3 · invisible"
+msgstr "v3 · невидимый"
+
+msgid "v2 · checkbox"
+msgstr "v2 · флажок"
+
+msgid "Awaiting test"
+msgstr "Ожидание теста"
+
+msgid "Test your keys"
+msgstr "Проверьте свои ключи"
+
+msgid "Protection"
+msgstr "Защита"
+
+msgid "Protected forms"
+msgstr "Защищенные формы"
+
+msgid "%1$s / %2$s"
+msgstr "%1$s/%2$s"
+
+msgid "forms of installed plugins"
+msgstr "формы установленных плагинов"
+
+msgid "Passed"
+msgstr "Пройдено"
+
+msgid "last 30 days"
+msgstr "последние 30 дней"
+
+msgid "Blocked"
+msgstr "Заблокировано"
+
+msgid "Keys"
+msgstr "Ключи"
+
+msgid "Tested"
+msgstr "Протестировано"
+
+msgid "Not tested"
+msgstr "Не проверено"
+
+msgid "Get your keys %s: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry."
+msgstr "Получите ключи%s: выберите тип reCAPTCHA и добавьте свой домен. Ключ сайта и секретный ключ должны принадлежать одной и той же записи."
+
+msgid "from the Google reCAPTCHA console"
+msgstr "из консоли Google reCAPTCHA"
+
+msgid "reCAPTCHA type"
+msgstr "тип reCAPTCHA"
+
+msgid "v3 · Invisible"
+msgstr "v3 · Невидимый"
+
+msgid "Visitors are never asked anything; Google returns a score from 0 to 1. Recommended."
+msgstr "Посетителей никогда ни о чем не спрашивают; Google возвращает оценку от 0 до 1. Рекомендуется."
+
+msgid "v2 · \"I'm not a robot\""
+msgstr "v2 · «Я не робот»"
+
+msgid "A checkbox appears on the form; suspicious visitors get an image challenge."
+msgstr "В форме появится флажок; подозрительные посетители получают имиджевый вызов."
+
+msgid "Site key"
+msgstr "Ключ сайта"
+
+msgid "Secret key"
+msgstr "Секретный ключ"
+
+msgid "Saved (%s). Type to replace it."
+msgstr "Сохранено (%s). Введите, чтобы заменить его."
+
+msgid "Paste the secret key"
+msgstr "Вставьте секретный ключ"
+
+msgid "Entered once, stored encrypted and never shown again."
+msgstr "Введен один раз, хранится в зашифрованном виде и больше никогда не отображается."
+
+msgid "One of the keys comes from a wp-config.php constant (FLXRC_SITE_KEY / FLXRC_SECRET_KEY); the value in this panel is not used."
+msgstr "Один из ключей берется из константы wp-config.php (FLXRC_SITE_KEY/FLXRC_SECRET_KEY); значение в этой панели не используется."
+
+msgid "Test and save"
+msgstr "Протестируйте и сохраните"
+
+msgid "Runs a real check with Google; if it passes, the keys are saved and protection turns on."
+msgstr "Проводит реальную проверку с помощью Google; если он пройдет, то ключи сохраняются и включается защита."
+
+msgid "Last test: %1$s · %2$s"
+msgstr "Последний тест:%1$s·%2$s"
+
+msgid "Last 30 days: passed / blocked"
+msgstr "Последние 30 дней: прошло/заблокировано"
+
+msgid "not installed"
+msgstr "не установлен"
+
+msgid "If a form has its own reCAPTCHA option turned on in Flux Forms, turn it off; two checks on one page conflict."
+msgstr "Если в форме в Flux Forms включена собственная опция reCAPTCHA, отключите ее; две проверки на одной странице конфликтуют."
+
+msgid "Bot threshold (v3)"
+msgstr "Порог бота (v3)"
+
+msgid "Submissions scoring below this are blocked. 0.5 suits most sites; lower it if real people get stuck."
+msgstr "Работы с рейтингом ниже этого значения блокируются. 0,5 подходит большинству сайтов; опустите его, если реальные люди застрянут."
+
+msgid "Checkbox theme (v2)"
+msgstr "Тема флажка (v2)"
+
+msgid "Automatic (follows the site's dark mode)"
+msgstr "Автоматически (следует темному режиму сайта)"
+
+msgid "Light"
+msgstr "Свет"
+
+msgid "Dark"
+msgstr "Темный"
+
+msgid "Checkbox size (v2)"
+msgstr "Размер флажка (v2)"
+
+msgid "Normal"
+msgstr "Нормальный"
+
+msgid "Compact"
+msgstr "Компактный"
+
+msgid "Google host"
+msgstr "Хост Google"
+
+msgid "Use recaptcha.net on networks where google.com is blocked."
+msgstr "Используйте recaptcha.net в сетях, где google.com заблокирован."
+
+msgid "Skip signed-in users"
+msgstr "Пропускать вошедших пользователей"
+
+msgid "Members are not checked on comments, checkout, donations and forms. Login and registration forms are always protected."
+msgstr "Участники не проверяются на комментариях, оформлении заказа, пожертвованиях и формах. Формы входа и регистрации всегда защищены."
+
+msgid "Let submissions through if Google is unreachable"
+msgstr "Разрешить отправку заявок, если Google недоступен"
+
+msgid "Recommended. When off, no protected form can be sent during a Google outage (admin login included)."
+msgstr "Рекомендуется. Если этот параметр отключен, защищенная форма не может быть отправлена ​​во время сбоя в работе Google (включая вход администратора)."
+
+msgid "Hide the v3 badge"
+msgstr "Скрыть значок v3"
+
+msgid "The reCAPTCHA badge in the bottom corner is hidden; the notice Google requires is added under protected forms."
+msgstr "Значок reCAPTCHA в нижнем углу скрыт; уведомление, требуемое Google, добавляется в защищенные формы."
+
+msgid "IP addresses that skip the check"
+msgstr "IP-адреса, которые пропускают проверку"
+
+msgid "One IP or range (CIDR) per line. For your office, tests and monitoring services. Your current IP address: %s"
+msgstr "Один IP-адрес или диапазон (CIDR) на линию. Для вашего офиса, услуги тестирования и мониторинга. Ваш текущий IP-адрес:%s"
+
+msgid "If you get locked out of the login screen, add define( 'FLXRC_DISABLE', true ); to wp-config.php; protection turns off completely."
+msgstr "Если вы заблокированы на экране входа в систему, добавьте define('FLXRC_DISABLE', true); в wp-config.php; защита отключается полностью."
+
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "Saved. The keys changed, so protection stays off until they are tested."
+msgstr "Сохранено. Ключи поменялись, поэтому защита отключена, пока они не проверятся."
+
+msgid "The site key and the secret key are required."
+msgstr "Требуется ключ сайта и секретный ключ."
+
+msgid "These are v2 (checkbox) keys. Choose v2, or create v3 keys in the Google console."
+msgstr "Это ключи v2 (флажок). Выберите версию 2 или создайте ключи версии 3 в консоли Google."
+
+msgid "These are v3 keys. Choose v3, or create v2 keys in the Google console."
+msgstr "Это ключи v3. Выберите версию 3 или создайте ключи версии 2 в консоли Google."
+
+msgid "JavaScript must be enabled in your browser to send this form."
+msgstr "Для отправки этой формы в вашем браузере должен быть включен JavaScript."
+
+msgid "This form is protected by reCAPTCHA and the Google %1$s and %2$s apply."
+msgstr "Эта форма защищена reCAPTCHA и применяется Google%1$sи%2$s."
+
+msgid "Privacy Policy"
+msgstr "Политика конфиденциальности"
+
+msgid "Terms of Service"
+msgstr "Условия использования"
+
+msgid "Please tick the \"I'm not a robot\" box."
+msgstr "Пожалуйста, отметьте галочкой «Я не робот»."
+
+msgid "The security check could not load. Refresh the page and try again."
+msgstr "Не удалось загрузить проверку безопасности. Обновите страницу и повторите попытку."
+
+msgid "The security check failed. Refresh the page and try again."
+msgstr "Проверка безопасности не удалась. Обновите страницу и повторите попытку."
+
+msgid "Could not reach Google: %s"
+msgstr "Не удалось связаться с Google:%s."
+
+msgid "Google returned an unexpected response."
+msgstr "Google вернул неожиданный ответ."
+
+msgid "The secret key is invalid. Copy the \"Secret key\" from the Google reCAPTCHA console."
+msgstr "Секретный ключ недействителен. Скопируйте «Секретный ключ» из консоли Google reCAPTCHA."
+
+msgid "The site key and the secret key do not belong to the same entry, or the wrong reCAPTCHA type (v2/v3) is selected."
+msgstr "Ключ сайта и секретный ключ не принадлежат одной и той же записи, или выбран неправильный тип reCAPTCHA (v2/v3)."
+
+msgid "Could not verify (%s)."
+msgstr "Не удалось проверить (%s)."
+
+msgid "The keys work. Score: %1$s, domain: %2$s"
+msgstr "Ключи работают. Оценка:%1$s, домен:%2$s"
+
+msgid "The keys work. Domain: %s"
+msgstr "Ключи работают. Домен:%s"
+
+msgid "Login"
+msgstr "Войти"
+
+msgid "wp-login.php and the Flux Speed custom login address (e.g. /fluxadmin)"
+msgstr "wp-login.php и пользовательский адрес входа в систему Flux Speed (например, /fluxadmin)"
+
+msgid "Registration"
+msgstr "Регистрация"
+
+msgid "WordPress registration form"
+msgstr "Регистрационная форма WordPress"
+
+msgid "WordPress registration form (registration is currently closed on this site)"
+msgstr "Регистрационная форма WordPress (регистрация на этом сайте в настоящее время закрыта)"
+
+msgid "Password reset"
+msgstr "Сброс пароля"
+
+msgid "Lost password form: WordPress and WooCommerce My Account"
+msgstr "Форма потери пароля: WordPress и WooCommerce Моя учетная запись"
+
+msgid "Comments"
+msgstr "Комментарии"
+
+msgid "Post and page comment form"
+msgstr "Форма комментариев к публикациям и страницам"
+
+msgid "Account login"
+msgstr "Вход в аккаунт"
+
+msgid "WooCommerce My Account login form"
+msgstr "Форма входа в мою учетную запись WooCommerce"
+
+msgid "Account registration"
+msgstr "Регистрация аккаунта"
+
+msgid "WooCommerce My Account registration form"
+msgstr "Форма регистрации моей учетной записи WooCommerce"
+
+msgid "Checkout"
+msgstr "Оформить заказ"
+
+msgid "Checkout page (classic and block): store orders, Flux Donate and Flux Commerce payments"
+msgstr "Страница оформления заказа (классическая и блочная): заказы в магазине, платежи Flux Donate и Flux Commerce."
+
+msgid "Donation form"
+msgstr "Форма пожертвования"
+
+msgid "Flux Donate \"Donation options\" form (add to cart)"
+msgstr "Форма Flux Donate «Варианты пожертвования» (добавить в корзину)"
+
+msgid "Forms"
+msgstr "Формы"
+
+msgid "Flux Forms submissions (contact, applications, login/registration forms)"
+msgstr "Отправка форм Flux (контакты, заявки, формы входа/регистрации)"
+
+msgid "Other plugins"
+msgstr "Другие плагины"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Comment not sent"
+msgstr "Комментарий не отправлен"
+
+msgid "Protection is turned off by the FLXRC_DISABLE constant in wp-config.php. Remove the line once the issue is fixed."
+msgstr "Защита отключается константой FLXRC_DISABLE в wp-config.php. Удалите строку, как только проблема будет устранена."
+
+msgid "Google reCAPTCHA keys are not set; forms are not protected."
+msgstr "Ключи Google reCAPTCHA не установлены; формы не защищены."
+
+msgid "The keys have not been tested; protection stays off until the test passes."
+msgstr "Ключи не проверялись; защита остается выключенной до тех пор, пока тест не пройдет."
+
+msgid "Protection is on (%s)."
+msgstr "Защита включена (%s)."
+
+msgid "v3 invisible"
+msgstr "v3 невидимый"
+
+msgid "v2 checkbox"
+msgstr "флажок v2"
+
+msgid "reCAPTCHA keys"
+msgstr "ключи reCAPTCHA"
+
+msgid "No form is selected."
+msgstr "Ни одна форма не выбрана."
+
+msgid "Not protected: %s"
+msgstr "Не защищено:%s"
+
+msgid "Google verification"
+msgstr "Google-проверка"
+
+msgid "%1$s: %2$s. Test the keys again; if Google is unreachable, set Settings > Google host to recaptcha.net."
+msgstr "%1$s:%2$s. Проверьте клавиши еще раз; если Google недоступен, установите «Настройки» > «Хост Google» на recaptcha.net."
+
+msgid "Test"
+msgstr "Тест"
+
+msgid "Between 0.1 and 0.9. Submissions scoring below this are blocked."
+msgstr "Между 0,1 и 0,9. Работы с рейтингом ниже этого значения блокируются."
+
+msgid "Leave blank to keep the saved key. The value is never read back."
+msgstr "Оставьте поле пустым, чтобы сохранить сохраненный ключ. Значение никогда не считывается обратно."
+
+msgid "Checkbox size"
+msgstr "Размер флажка"
+
+msgid "Checkbox theme"
+msgstr "Тема флажка"
+
+msgid "Automatic"
+msgstr "Автоматический"
+
+msgid "google.com"
+msgstr "google.com"
+
+msgid "recaptcha.net"
+msgstr "рекапча.нет"
+
+msgid "[['It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed \\u200b\\u200bis compatible with custom login address.', 'tr']]"
+msgstr "[['Он защищает вход в систему, регистрацию, сброс пароля, комментарии, учетную запись WooCommerce и платежи, форму пожертвования Flux Donate и отправку форм Flux Forms от спама и атак ботов с помощью Google reCAPTCHA (невидимая версия v3 или плитка v2). Какая форма будет поддерживаться, включается и выключается с панели; Flux Speed совместим с пользовательским адресом входа.', 'tr']]"

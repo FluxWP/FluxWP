@@ -43,25 +43,25 @@ function flxi_test_scenario( $id, $scenario, $to, $args = array() ) {
 	}
 	$conn = flxi_get_connection( $id );
 	if ( ! $conn ) {
-		return array( 'ok' => false, 'error' => __( 'Bağlantı bulunamadı.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'Connection not found.', 'flx-mail' ) );
 	}
 	if ( ! in_array( $scenario, flxi_test_scenarios( $conn['type'] ), true ) ) {
-		return array( 'ok' => false, 'error' => __( 'Bu bağlantı bu senaryoyu desteklemiyor.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'This connection does not support this scenario.', 'flx-mail' ) );
 	}
 	if ( ! flxi_normalize_phone( $to ) ) {
-		return array( 'ok' => false, 'error' => __( 'Geçerli bir alıcı numarası girin.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'Enter a valid recipient number.', 'flx-mail' ) );
 	}
 	$type = flxi_connection_types()[ $conn['type'] ] ?? null;
 	$text = trim( (string) ( $args['text'] ?? '' ) );
 	try {
 		if ( 'text' === $scenario ) {
 			/* translators: %s: site adı */
-			$text = $text ? $text : sprintf( __( 'Test mesajı · %s 🌱', 'flx-mail' ), get_bloginfo( 'name' ) );
+			$text = $text ? $text : sprintf( __( 'Test message · %s 🌱', 'flx-mail' ), get_bloginfo( 'name' ) );
 			$r    = call_user_func( $type['send'], $conn['config'], array( 'recipient' => $to, 'body' => $text, 'media' => '', 'file_name' => '' ), $conn );
 		} elseif ( 'template' === $scenario ) {
 			$t = (array) ( $args['template'] ?? array() );
 			if ( empty( $t['name'] ) ) {
-				return array( 'ok' => false, 'error' => __( 'Şablon seçin.', 'flx-mail' ) );
+				return array( 'ok' => false, 'error' => __( 'Choose a template.', 'flx-mail' ) );
 			}
 			$r = flxi_wacloud_send( $conn['config'], array( 'recipient' => $to, 'body' => '', 'media' => '', 'file_name' => '', 'template' => $t ), $conn );
 		} else {
@@ -83,7 +83,7 @@ function flxi_test_scenario( $id, $scenario, $to, $args = array() ) {
 	}
 	$r = wp_parse_args( $r, array( 'ok' => false, 'error' => '' ) );
 	if ( ! $r['ok'] && 'wacloud' === $conn['type'] && 131047 === (int) ( $r['code'] ?? 0 ) ) {
-		$r['error'] .= ' ' . __( 'Denemek için önce o numaradan bu hatta bir mesaj atın ya da şablon gönderin.', 'flx-mail' );
+		$r['error'] .= ' ' . __( 'To try, first send a message to this line from that number, or send a template.', 'flx-mail' );
 	}
 	$tests        = (array) get_option( 'flxi_conn_tests', array() );
 	$tests[ $id ] = array( 'ok' => (bool) $r['ok'], 'error' => mb_substr( (string) $r['error'], 0, 300 ), 'at' => time() );
@@ -104,7 +104,7 @@ function flxi_test_scenario( $id, $scenario, $to, $args = array() ) {
 function flxi_wa_send_media( $conn, $to, $kind, array $m ) {
 	$conn = is_array( $conn ) ? $conn : flxi_get_connection( (int) $conn );
 	if ( ! $conn || ! flxi_is_wa_type( $conn['type'] ) ) {
-		return array( 'ok' => false, 'error' => __( 'WhatsApp bağlantısı bulunamadı.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'WhatsApp connection not found.', 'flx-mail' ) );
 	}
 	if ( ! in_array( $kind, array( 'image', 'audio', 'document' ), true ) ) {
 		return array( 'ok' => false, 'error' => 'kind' );
@@ -112,11 +112,11 @@ function flxi_wa_send_media( $conn, $to, $kind, array $m ) {
 	$phone = flxi_normalize_phone( $to );
 	if ( ! $phone ) {
 		/* translators: %s: telefon */
-		return array( 'ok' => false, 'error' => sprintf( __( 'Geçersiz telefon: %s', 'flx-mail' ), $to ) );
+		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid phone: %s', 'flx-mail' ), $to ) );
 	}
 	$path = (string) ( $m['path'] ?? '' );
 	if ( $path && ! is_readable( $path ) ) {
-		return array( 'ok' => false, 'error' => __( 'Dosya okunamadı.', 'flx-mail' ) );
+		return array( 'ok' => false, 'error' => __( 'The file could not be read.', 'flx-mail' ) );
 	}
 	$name = (string) ( $m['file_name'] ?? '' );
 	$name = $name ? $name : basename( $path ? $path : (string) wp_parse_url( (string) ( $m['url'] ?? '' ), PHP_URL_PATH ) );
@@ -171,7 +171,7 @@ function flxi_wa_send_media( $conn, $to, $kind, array $m ) {
 			$detail = is_array( $msg ) ? wp_json_encode( $msg, JSON_UNESCAPED_UNICODE ) : (string) $msg;
 		}
 		if ( false !== strpos( (string) $detail, '"exists":false' ) ) {
-			$detail = __( 'Bu numarada WhatsApp yok.', 'flx-mail' );
+			$detail = __( 'This number does not have WhatsApp.', 'flx-mail' );
 		}
 		return array( 'ok' => false, 'error' => 'HTTP ' . $r['code'] . ( $detail ? ': ' . mb_substr( (string) $detail, 0, 300 ) : '' ) );
 	}
@@ -203,7 +203,7 @@ function flxi_wacloud_upload( array $cfg, $path, $mime ) {
 		)
 	);
 	if ( ! $r['ok'] || empty( $r['json']['id'] ) ) {
-		return new WP_Error( 'flxi_wac_upload', __( 'Dosya Meta\'ya yüklenemedi:', 'flx-mail' ) . ' ' . flxi_wacloud_error( $r ) );
+		return new WP_Error( 'flxi_wac_upload', __( 'The file could not be uploaded to Meta:', 'flx-mail' ) . ' ' . flxi_wacloud_error( $r ) );
 	}
 	set_transient( $key, (string) $r['json']['id'], 20 * DAY_IN_SECONDS );
 	return (string) $r['json']['id'];

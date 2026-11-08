@@ -21,7 +21,7 @@ class Emsfb_Elementor_Widget extends Widget_Base {
     }
 
     public function get_title() {
-        return __('Flux Forms', 'flx-forms');
+        return __('\\nFlux Forms\\n', 'flx-forms');
     }
 
     public function get_icon() {
@@ -45,7 +45,7 @@ class Emsfb_Elementor_Widget extends Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => __('Form Settings', 'flx-forms'),
+                'label' => __('\\nForm Settings\\n', 'flx-forms'),
                 'tab' => Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -55,19 +55,19 @@ class Emsfb_Elementor_Widget extends Widget_Base {
         $this->add_control(
             'form_id',
             [
-                'label' => __('Select Form', 'flx-forms'),
+                'label' => __('\\nSelect Form\\n', 'flx-forms'),
                 'type' => Controls_Manager::SELECT,
                 'options' => $form_options,
                 'default' => '',
                 'label_block' => true,
-                'description' => __('Choose a form to display. The tracking form allows users to find submissions by confirmation code.', 'flx-forms'),
+                'description' => __('\\nChoose a form to display. The tracking form allows users to find submissions by confirmation code.\\n', 'flx-forms'),
             ]
         );
 
         $this->add_control(
             'show_form_title',
             [
-                'label' => __('Show Form Title', 'flx-forms'),
+                'label' => __('\\nShow Form Title\\n', 'flx-forms'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Yes', 'flx-forms'),
                 'label_off' => __('No', 'flx-forms'),
@@ -84,7 +84,7 @@ class Emsfb_Elementor_Widget extends Widget_Base {
         $this->start_controls_section(
             'style_container_section',
             [
-                'label' => __('Container', 'flx-forms'),
+                'label' => __('\\nContainer\\n', 'flx-forms'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -92,7 +92,7 @@ class Emsfb_Elementor_Widget extends Widget_Base {
         $this->add_responsive_control(
             'container_padding',
             [
-                'label' => __('Padding', 'flx-forms'),
+                'label' => __('\\nPadding\\n', 'flx-forms'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -104,7 +104,7 @@ class Emsfb_Elementor_Widget extends Widget_Base {
         $this->add_control(
             'container_background',
             [
-                'label' => __('Background Color', 'flx-forms'),
+                'label' => __('\\nBackground Color\\n', 'flx-forms'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .efb-elementor-form-wrapper' => 'background-color: {{VALUE}};',
@@ -124,7 +124,7 @@ class Emsfb_Elementor_Widget extends Widget_Base {
         $this->add_control(
             'container_border_radius',
             [
-                'label' => __('Border Radius', 'flx-forms'),
+                'label' => __('\\nBorder Radius\\n', 'flx-forms'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -137,7 +137,7 @@ class Emsfb_Elementor_Widget extends Widget_Base {
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'container_box_shadow',
-                'label' => __('Box Shadow', 'flx-forms'),
+                'label' => __('\\nBox Shadow\\n', 'flx-forms'),
                 'selector' => '{{WRAPPER}} .efb-elementor-form-wrapper',
             ]
         );
@@ -147,7 +147,7 @@ class Emsfb_Elementor_Widget extends Widget_Base {
 
     private function get_forms() {
         if (!class_exists('Emsfb_Widgets_Helper')) {
-            return ['' => __('— Select a Form —', 'flx-forms')];
+            return ['' => __('\\n— Select a Form —\\n', 'flx-forms')];
         }
 
         return Emsfb_Widgets_Helper::get_forms_for_select(true, true);
@@ -225,8 +225,8 @@ class Emsfb_Elementor_Widget extends Widget_Base {
                 </div>
             </div>',
             esc_url(Emsfb_Widgets_Helper::get_logo_url()),
-            esc_html__('Select a form from the widget settings panel.', 'flx-forms'),
-            esc_html__('👈 Use the sidebar to choose a form', 'flx-forms')
+            esc_html__('\\nSelect a form from the widget settings panel.\\n', 'flx-forms'),
+            esc_html__('\\n👈 Use the sidebar to choose a form\', \'tr\']]', 'flx-forms')
         );
     }
 
@@ -246,9 +246,9 @@ class Emsfb_Elementor_Widget extends Widget_Base {
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             ">
                 <div style="font-size: 20px; font-weight: 700; margin-bottom: 10px;">Flux Forms</div>
-                <div style="font-size: 14px; opacity: 0.9;"><?php echo esc_html__('Select a form from the widget settings panel.', 'flx-forms'); ?></div>
+                <div style="font-size: 14px; opacity: 0.9;"><?php echo esc_html__('\\nSelect a form from the widget settings panel.\\n', 'flx-forms'); ?></div>
                 <div style="margin-top: 15px; padding: 10px 20px; background: rgba(255,255,255,0.2); border-radius: 6px; display: inline-block; font-size: 13px;">
-                    <?php echo esc_html__('👈 Use the sidebar to choose a form', 'flx-forms'); ?>
+                    <?php echo esc_html__('\\n👈 Use the sidebar to choose a form\', \'tr\']]', 'flx-forms'); ?>
                 </div>
             </div>
             <#
@@ -264,11 +264,11 @@ class Emsfb_Elementor_Widget extends Widget_Base {
                 ">
                     <div style="font-size: 18px; font-weight: 700; margin-bottom: 12px;">Flux Forms</div>
                     <div style="font-size: 14px; background: rgba(255,255,255,0.15); padding: 10px 15px; border-radius: 6px; display: inline-block;">
-                        <span style="opacity: 0.8;"><?php echo esc_html__('Selected Form ID:', 'flx-forms'); ?></span>
+                        <span style="opacity: 0.8;"><?php echo esc_html__('\\nSelected Form ID:\\n', 'flx-forms'); ?></span>
                         <strong>{{ formId }}</strong>
                     </div>
                     <div style="margin-top: 15px; font-size: 13px; opacity: 0.8;">
-                        <?php echo esc_html__('The form will appear here on the frontend.', 'flx-forms'); ?>
+                        <?php echo esc_html__('\\nThe form will appear here on the frontend.\\n', 'flx-forms'); ?>
                     </div>
                 </div>
             </div>

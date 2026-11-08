@@ -8,7 +8,7 @@ add_filter(
 	'flxapp_modules',
 	function ( $m ) {
 		$m['studio'] = array(
-			'title'   => __( 'Stüdyo', 'flx-studio' ),
+			'title'   => __( 'Studio', 'flx-studio' ),
 			'cap'     => FLXST_CAP_USE,
 			'menu'    => 'flx-studio',
 			'api'     => rest_url( FLXST_NS ),
@@ -31,7 +31,7 @@ add_filter(
 	'flxa_apps',
 	function ( $apps ) {
 		$apps['studio'] = array(
-			'label' => __( 'Stüdyo', 'flx-studio' ),
+			'label' => __( 'Studio', 'flx-studio' ),
 			'url'   => admin_url( 'admin.php?page=flx-studio' ),
 			'cap'   => FLXST_CAP_USE,
 			'icon'  => 'image',

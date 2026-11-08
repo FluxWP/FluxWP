@@ -39,7 +39,7 @@ function flxcb_handoff( $conv, $by = 'visitor', $summary = '' ) {
 	flxcb_event(
 		(int) $conv['id'],
 		$online ? 'queued' : 'offline',
-		$online ? __( 'Sizi bir temsilciye bağlıyoruz…', 'flx-chatbot' ) : flxcb_text( 'offline_text' )
+		$online ? __( 'Connecting you to an agent…', 'flx-chatbot' ) : flxcb_text( 'offline_text' )
 	);
 	$conv = flxcb_get_conversation( (int) $conv['id'] );
 	if ( 'flx-chat' === $target ) {
@@ -71,7 +71,7 @@ function flxcb_agent_reply( $conv, $user_id, $text, array $file = array(), $ext_
 		flxcb_update_conversation( (int) $conv['id'], $upd );
 		if ( $user_id && (int) $conv['assigned_to'] !== $user_id ) {
 			/* translators: %s: agent first name */
-			flxcb_event( (int) $conv['id'], 'joined', sprintf( __( '%s sohbete katıldı', 'flx-chatbot' ), flxcb_user_name( $user_id ) ) );
+			flxcb_event( (int) $conv['id'], 'joined', sprintf( __( '%s joined the chat', 'flx-chatbot' ), flxcb_user_name( $user_id ) ) );
 		}
 	}
 	$id = flxcb_add_message(
@@ -103,11 +103,11 @@ function flxcb_close( $conv, $by = 'visitor' ) {
 		return;
 	}
 	flxcb_update_conversation( (int) $conv['id'], array( 'status' => 'closed', 'unread' => 0 ) );
-	flxcb_event( (int) $conv['id'], 'closed', 'visitor' === $by ? __( 'Sohbeti sonlandırdınız.', 'flx-chatbot' ) : __( 'Sohbet sonlandırıldı.', 'flx-chatbot' ) );
+	flxcb_event( (int) $conv['id'], 'closed', 'visitor' === $by ? __( 'You ended the chat.', 'flx-chatbot' ) : __( 'The chat has ended.', 'flx-chatbot' ) );
 	if ( 'visitor' === $by && $conv['flxc_chat'] && function_exists( 'flxc_system_message' ) && function_exists( 'flxc_get_chat' ) ) {
 		$chat = flxc_get_chat( (int) $conv['flxc_chat'] );
 		if ( $chat ) {
-			flxc_system_message( $chat, __( 'Ziyaretçi site sohbetini sonlandırdı.', 'flx-chatbot' ) );
+			flxc_system_message( $chat, __( 'The visitor ended the site chat.', 'flx-chatbot' ) );
 		}
 	}
 	do_action( 'flxcb_closed', flxcb_get_conversation( (int) $conv['id'] ), $by );
@@ -154,7 +154,7 @@ function flxcb_save_lead( $conv_id, $note = '' ) {
 					'note',
 					array(
 						/* translators: %d: conversation number */
-						'title' => sprintf( __( 'Site sohbeti #%d', 'flx-chatbot' ), (int) $conv['id'] ),
+						'title' => sprintf( __( 'Site chat #%d', 'flx-chatbot' ), (int) $conv['id'] ),
 						'uniq'  => 'chatbot:conv:' . (int) $conv['id'],
 						'data'  => array(
 							'text' => '' !== $note ? $note : (string) $conv['page_title'],
@@ -185,11 +185,11 @@ function flxcb_notify_team( $conv, $kind ) {
 	$site = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
 	$subj = 'offline' === $kind
 		/* translators: 1: site name, 2: visitor */
-		? sprintf( __( '[%1$s] Site sohbetinden mesaj: %2$s', 'flx-chatbot' ), $site, flxcb_conv_title( $conv ) )
+		? sprintf( __( '[%1$s] Message from site chat: %2$s', 'flx-chatbot' ), $site, flxcb_conv_title( $conv ) )
 		/* translators: 1: site name, 2: visitor */
-		: sprintf( __( '[%1$s] Temsilci bekleyen site sohbeti: %2$s', 'flx-chatbot' ), $site, flxcb_conv_title( $conv ) );
+		: sprintf( __( '[%1$s] Site chat waiting for an agent: %2$s', 'flx-chatbot' ), $site, flxcb_conv_title( $conv ) );
 	$link = flxcb_conv_admin_link( $conv );
-	$body = flxcb_transcript( $conv, 12 ) . "\n\n" . __( 'Cevaplamak için:', 'flx-chatbot' ) . ' ' . $link;
+	$body = flxcb_transcript( $conv, 12 ) . "\n\n" . __( 'To reply:', 'flx-chatbot' ) . ' ' . $link;
 	$headers = array();
 	if ( is_email( (string) $conv['email'] ) ) {
 		$headers[] = 'Reply-To: ' . $conv['email'];
@@ -219,8 +219,8 @@ function flxcb_maybe_mail_visitor( $conv_id ) {
 	}
 	$url  = '' !== (string) $conv['page_url'] ? add_query_arg( 'flxcb', 'open', $conv['page_url'] ) : home_url( '/?flxcb=open' );
 	/* translators: %s: site name */
-	$subj = sprintf( __( '%s: sohbetinize cevap geldi', 'flx-chatbot' ), $site );
-	$body = implode( "\n\n", $lines ) . "\n\n" . __( 'Sohbete devam etmek için siteyi aynı tarayıcıda açın:', 'flx-chatbot' ) . ' ' . $url;
+	$subj = sprintf( __( '%s: you have a reply to your chat', 'flx-chatbot' ), $site );
+	$body = implode( "\n\n", $lines ) . "\n\n" . __( 'To continue the chat, open the site in the same browser:', 'flx-chatbot' ) . ' ' . $url;
 	if ( wp_mail( (string) $conv['email'], $subj, $body ) ) {
 		flxcb_update_conversation( (int) $conv['id'], array( 'mailed_ts' => $now ) );
 	}
@@ -240,7 +240,7 @@ function flxcb_transcript( $conv, $limit = 50 ) {
 	}
 	$sum = (string) flxcb_conv_meta( $conv, 'summary' );
 	if ( '' !== $sum ) {
-		$out[] = __( 'Asistan notu:', 'flx-chatbot' ) . ' ' . $sum;
+		$out[] = __( 'Assistant note:', 'flx-chatbot' ) . ' ' . $sum;
 	}
 	$out[] = '';
 	foreach ( flxcb_messages( (int) $conv['id'], 0, $limit ) as $m ) {
@@ -257,11 +257,11 @@ function flxcb_transcript( $conv, $limit = 50 ) {
 function flxcb_store_upload( array $f ) {
 	$max = max( 1, (int) flxcb_setting( 'upload_mb' ) ) * MB_IN_BYTES;
 	if ( empty( $f['tmp_name'] ) || ! is_uploaded_file( $f['tmp_name'] ) || (int) $f['size'] <= 0 ) {
-		return new WP_Error( 'flxcb_file', __( 'Dosya yüklenemedi.', 'flx-chatbot' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxcb_file', __( 'The file could not be uploaded.', 'flx-chatbot' ), array( 'status' => 400 ) );
 	}
 	if ( (int) $f['size'] > $max ) {
 		/* translators: %d: megabytes */
-		return new WP_Error( 'flxcb_file', sprintf( __( 'Dosya en fazla %d MB olabilir.', 'flx-chatbot' ), (int) flxcb_setting( 'upload_mb' ) ), array( 'status' => 413 ) );
+		return new WP_Error( 'flxcb_file', sprintf( __( 'Files can be up to %d MB.', 'flx-chatbot' ), (int) flxcb_setting( 'upload_mb' ) ), array( 'status' => 413 ) );
 	}
 	$check = wp_check_filetype_and_ext( $f['tmp_name'], (string) $f['name'] );
 	$mime  = (string) ( $check['type'] ?? '' );
@@ -269,7 +269,7 @@ function flxcb_store_upload( array $f ) {
 		$mime = (string) mime_content_type( $f['tmp_name'] );
 	}
 	if ( ! isset( flxcb_allowed_mimes()[ $mime ] ) ) {
-		return new WP_Error( 'flxcb_file', __( 'Bu dosya türü gönderilemez. Resim, PDF ya da ofis belgesi gönderin.', 'flx-chatbot' ), array( 'status' => 415 ) );
+		return new WP_Error( 'flxcb_file', __( 'This file type can\'t be sent. Send an image, PDF or office document.', 'flx-chatbot' ), array( 'status' => 415 ) );
 	}
 	return flxcb_store_bytes( file_get_contents( $f['tmp_name'] ), $mime, sanitize_file_name( (string) $f['name'] ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 }
@@ -281,7 +281,7 @@ function flxcb_store_bytes( $bin, $mime, $name ) {
 	$path = gmdate( 'Ymd' ) . '-' . wp_generate_password( 20, false, false ) . '.' . $ext;
 	// phpcs:ignore WordPress.WP.AlternativeFunctions
 	if ( false === file_put_contents( flxcb_upload_dir() . '/' . $path, $bin ) ) {
-		return new WP_Error( 'flxcb_file', __( 'Dosya kaydedilemedi.', 'flx-chatbot' ), array( 'status' => 500 ) );
+		return new WP_Error( 'flxcb_file', __( 'Could not save the file.', 'flx-chatbot' ), array( 'status' => 500 ) );
 	}
 	return array(
 		'path' => $path,

@@ -54,19 +54,19 @@ class FLXI_Imap {
 		$this->fp = @stream_socket_client( $proto . $this->host . ':' . $this->port, $errno, $errstr, $this->timeout, STREAM_CLIENT_CONNECT, $ctx ); // phpcs:ignore
 		if ( ! $this->fp ) {
 			/* translators: 1: sunucu, 2: hata */
-			$this->error = sprintf( __( '%1$s sunucusuna bağlanılamadı: %2$s', 'flx-mail' ), $this->host . ':' . $this->port, $errstr ? $errstr : $errno );
+			$this->error = sprintf( __( 'Could not connect to %1$s: %2$s', 'flx-mail' ), $this->host . ':' . $this->port, $errstr ? $errstr : $errno );
 			return false;
 		}
 		stream_set_timeout( $this->fp, $this->timeout );
 		$greet = $this->read_line();
 		if ( 0 !== strpos( $greet, '* OK' ) && 0 !== strpos( $greet, '* PREAUTH' ) ) {
-			$this->error = __( 'Sunucu IMAP karşılaması göndermedi.', 'flx-mail' );
+			$this->error = __( 'The server sent no IMAP greeting.', 'flx-mail' );
 			return false;
 		}
 		if ( 'tls' === $this->secure ) {
 			$r = $this->cmd( 'STARTTLS' );
 			if ( ! $r['ok'] || ! @stream_socket_enable_crypto( $this->fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT ) ) { // phpcs:ignore
-				$this->error = __( 'STARTTLS başarısız.', 'flx-mail' );
+				$this->error = __( 'STARTTLS failed.', 'flx-mail' );
 				return false;
 			}
 		}
@@ -76,7 +76,7 @@ class FLXI_Imap {
 	public function login( $user, $pass ) {
 		$r = $this->cmd( 'LOGIN ' . $this->quote( $user ) . ' ' . $this->quote( $pass ) );
 		if ( ! $r['ok'] ) {
-			$this->error = __( 'IMAP girişi başarısız: kullanıcı adı ya da şifre yanlış.', 'flx-mail' ) . ( $r['text'] ? ' (' . $this->clean( $r['text'] ) . ')' : '' );
+			$this->error = __( 'IMAP login failed: wrong user name or password.', 'flx-mail' ) . ( $r['text'] ? ' (' . $this->clean( $r['text'] ) . ')' : '' );
 			return false;
 		}
 		return true;
@@ -116,7 +116,7 @@ class FLXI_Imap {
 		$r = $this->cmd( ( $readonly ? 'EXAMINE ' : 'SELECT ' ) . $this->quote( $folder ) );
 		if ( ! $r['ok'] ) {
 			/* translators: %s: klasör */
-			$this->error = sprintf( __( '%s klasörü açılamadı.', 'flx-mail' ), $folder );
+			$this->error = sprintf( __( 'Could not open folder %s.', 'flx-mail' ), $folder );
 			return false;
 		}
 		$info = array( 'exists' => 0, 'uidvalidity' => 0, 'uidnext' => 0 );
@@ -227,7 +227,7 @@ class FLXI_Imap {
 		for ( $done = 0; $done < $len; ) {
 			$n = @fwrite( $this->fp, substr( $s, $done, 65536 ) ); // phpcs:ignore
 			if ( ! $n ) {
-				$this->error = __( 'IMAP bağlantısı koptu.', 'flx-mail' );
+				$this->error = __( 'IMAP connection lost.', 'flx-mail' );
 				return false;
 			}
 			$done += $n;
@@ -274,7 +274,7 @@ class FLXI_Imap {
 		while ( true ) {
 			$line = $this->read_line();
 			if ( '' === $line ) {
-				$this->error = $this->error ? $this->error : __( 'IMAP sunucusu cevap vermedi (zaman aşımı).', 'flx-mail' );
+				$this->error = $this->error ? $this->error : __( 'IMAP server did not respond (timeout).', 'flx-mail' );
 				if ( null !== $cur ) {
 					$untagged[] = $cur;
 				}

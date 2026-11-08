@@ -43,9 +43,9 @@ final class FLXB_Page_Track {
 			'assign'    => $l['do_assign'],
 			'revoke'    => $l['do_revoke'],
 			'done'      => $l['do_done'],
-			'delivered' => __( 'Mark delivered to owner', 'flx-donate' ),
+			'delivered' => __( '\\nMark delivered to owner\\n', 'flx-donate' ),
 			'cancel'    => __( 'Cancel', 'flx-donate' ),
-			'reset'     => __( 'Back to waiting', 'flx-donate' ),
+			'reset'     => __( '\\nBack to waiting\\n', 'flx-donate' ),
 		);
 	}
 
@@ -68,7 +68,7 @@ final class FLXB_Page_Track {
 			return array( 'error', $r['error'] );
 		}
 		/* translators: %d: number of items */
-		$msg = sprintf( _n( '%d item updated.', '%d items updated.', count( $r['done'] ), 'flx-donate' ), count( $r['done'] ) );
+		$msg = sprintf( _n( '[[\'%ditem updated.\', \'en\']]', '[[\'%ditems updated.\', \'en\']]', count( $r['done'] ), 'flx-donate' ), count( $r['done'] ) );
 		if ( $r['skipped'] ) {
 			$why = array();
 			foreach ( $r['skipped'] as $id => $reason ) {
@@ -76,7 +76,7 @@ final class FLXB_Page_Track {
 				$why[] = ( $it ? $it['code'] : '#' . $id ) . ': ' . $reason;
 			}
 			/* translators: %s: list of codes with the reason */
-			$msg .= ' ' . sprintf( __( 'Skipped: %s', 'flx-donate' ), implode( ', ', array_slice( $why, 0, 8 ) ) . ( count( $why ) > 8 ? '…' : '' ) );
+			$msg .= ' ' . sprintf( __( '\\nSkipped:%s\\n', 'flx-donate' ), implode( ', ', array_slice( $why, 0, 8 ) ) . ( count( $why ) > 8 ? '…' : '' ) );
 		}
 		return array( $r['skipped'] ? 'warn' : 'saved', $msg );
 	}
@@ -88,8 +88,8 @@ final class FLXB_Page_Track {
 		}
 		$st  = FLXB_Track::target_state( $it );
 		$map = array(
-			'window' => array( 'pending', __( 'due', 'flx-donate' ) ),
-			'late'   => array( 'failed', __( 'late', 'flx-donate' ) ),
+			'window' => array( 'pending', __( '\\ndue\\n', 'flx-donate' ) ),
+			'late'   => array( 'failed', __( '\\nlate\\n', 'flx-donate' ) ),
 		);
 		$h = esc_html( flx_date( strtotime( (string) $it['target_date'] ), 'j M Y' ) );
 		if ( isset( $map[ $st ] ) ) {
@@ -124,10 +124,10 @@ final class FLXB_Page_Track {
 
 		$acts = array();
 		if ( FLXB_Refs::can_create() ) {
-			$acts[] = array( 'label' => __( 'New record', 'flx-donate' ), 'url' => FLXB_Admin_Url::page( 'flxb-add' ), 'primary' => true, 'icon' => 'plus' );
+			$acts[] = array( 'label' => __( '\\nNew record\\n', 'flx-donate' ), 'url' => FLXB_Admin_Url::page( 'flxb-add' ), 'primary' => true, 'icon' => 'plus' );
 		}
 		$acts = (array) apply_filters( 'flxb_kurban_page_actions', $acts ); // before 2.11
-		FLXB_Admin::header( $l['title'], __( 'Every item with its code, payment, partner, target date and files. Open one to see its whole flow.', 'flx-donate' ), (array) apply_filters( 'flxb_track_page_actions', $acts ) );
+		FLXB_Admin::header( $l['title'], __( '\\nEvery item with its code, payment, partner, target date and files. Open one to see its whole flow.\\n', 'flx-donate' ), (array) apply_filters( 'flxb_track_page_actions', $acts ) );
 
 		echo '<div class="flxb-seg flxb-kseg">';
 		$all = array( '' => __( 'All', 'flx-donate' ) ) + FLXB_Track::statuses( $tid );
@@ -142,7 +142,7 @@ final class FLXB_Page_Track {
 		if ( '' !== $f['status'] ) {
 			echo '<input type="hidden" name="status" value="' . esc_attr( $f['status'] ) . '">';
 		}
-		echo '<input type="search" name="s" value="' . esc_attr( $f['q'] ) . '" placeholder="' . esc_attr__( 'Code, name, phone, donation no…', 'flx-donate' ) . '" aria-label="' . esc_attr__( 'Search', 'flx-donate' ) . '">';
+		echo '<input type="search" name="s" value="' . esc_attr( $f['q'] ) . '" placeholder="' . esc_attr__( '\\nCode, name, phone, donation no...\\n', 'flx-donate' ) . '" aria-label="' . esc_attr__( 'Search', 'flx-donate' ) . '">';
 		$types = FLXB_Track::tracked_types();
 		if ( count( $types ) > 1 ) {
 			echo '<label><span class="screen-reader-text">' . esc_html__( 'Donation type', 'flx-donate' ) . '</span><select name="type"><option value="">' . esc_html__( 'All types', 'flx-donate' ) . '</option>';
@@ -152,13 +152,13 @@ final class FLXB_Page_Track {
 			echo '</select></label>';
 		}
 		echo '<label><span class="screen-reader-text">' . esc_html( $l['partner'] ) . '</span>' . self::place_select( 'place', $f['place'], '— ' . $l['partner'] . ' —', $tid ) . '</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<label><span class="screen-reader-text">' . esc_html__( 'Payment', 'flx-donate' ) . '</span><select name="paid"><option value="">' . esc_html__( 'Any payment', 'flx-donate' ) . '</option><option value="1"' . selected( $f['paid'], '1', false ) . '>' . esc_html__( 'Paid', 'flx-donate' ) . '</option><option value="0"' . selected( $f['paid'], '0', false ) . '>' . esc_html__( 'Not paid', 'flx-donate' ) . '</option></select></label>';
-		echo '<label class="flxb-check"><input type="checkbox" name="due" value="1"' . checked( $f['due'], 1, false ) . '> ' . esc_html__( 'Due now', 'flx-donate' ) . '</label>';
+		echo '<label><span class="screen-reader-text">' . esc_html__( 'Payment', 'flx-donate' ) . '</span><select name="paid"><option value="">' . esc_html__( '\\nAny payment\\n', 'flx-donate' ) . '</option><option value="1"' . selected( $f['paid'], '1', false ) . '>' . esc_html__( 'Paid', 'flx-donate' ) . '</option><option value="0"' . selected( $f['paid'], '0', false ) . '>' . esc_html__( '\\nNot paid\\n', 'flx-donate' ) . '</option></select></label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="due" value="1"' . checked( $f['due'], 1, false ) . '> ' . esc_html__( '\\nDue now\\n', 'flx-donate' ) . '</label>';
 		echo '<div class="flxb-filters__end"><button class="flxb-btn flxb-btn--primary" type="submit">' . FLXB_Admin::icon( 'search' ) . esc_html__( 'Search', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		echo '<div class="flxb-panel">';
 		if ( ! $res['items'] ) {
-			echo '<div class="flxb-emptystate">' . FLXB_Admin::icon( 'heart', 32 ) . '<h2>' . esc_html__( 'Nothing to track yet', 'flx-donate' ) . '</h2><p>' . esc_html__( 'An item is created for every unit of a donation type that is tracked one by one (Donation types › Tracking).', 'flx-donate' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="flxb-emptystate">' . FLXB_Admin::icon( 'heart', 32 ) . '<h2>' . esc_html__( '\\nNothing to track yet\\n', 'flx-donate' ) . '</h2><p>' . esc_html__( '\\nAn item is created for every unit of a donation type that is tracked one by one (Donation types › Tracking).\\n', 'flx-donate' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			FLXB_Admin::footer();
 			return;
 		}
@@ -166,14 +166,14 @@ final class FLXB_Page_Track {
 		if ( $can ) {
 			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" id="flxb-kbulk"><input type="hidden" name="action" value="flxb_track_bulk"><input type="hidden" name="back" value="' . esc_attr( wp_json_encode( $args ) ) . '">';
 			wp_nonce_field( 'flxb_track_bulk' );
-			echo '<div class="flxb-kbulk"><label><span>' . esc_html__( 'Selected', 'flx-donate' ) . '</span><select name="step" data-flxb-kstep>';
+			echo '<div class="flxb-kbulk"><label><span>' . esc_html__( '\\nSelected\\n', 'flx-donate' ) . '</span><select name="step" data-flxb-kstep>';
 			foreach ( self::steps( $tid ) as $k => $label ) {
 				echo '<option value="' . esc_attr( $k ) . '">' . esc_html( $label ) . '</option>';
 			}
 			echo '</select></label><label data-flxb-kplace hidden><span>' . esc_html( $l['partner'] ) . '</span>' . self::place_select( 'place', '', '', $tid ) . '</label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<label class="flxb-kbulk__note"><span>' . esc_html__( 'Note', 'flx-donate' ) . '</span><input type="text" name="note" maxlength="300"></label><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Apply', 'flx-donate' ) . '</button></div>';
 		}
-		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr>' . ( $can ? '<th scope="col" class="flxb-col-cb"><input type="checkbox" data-flxb-kall aria-label="' . esc_attr__( 'Select all', 'flx-donate' ) . '"></th>' : '' ) . '<th scope="col">' . esc_html__( 'Code', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Donation', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Payment', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Target date', 'flx-donate' ) . '</th><th scope="col">' . esc_html( $l['partner'] ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th><th scope="col">' . esc_html( $l['files'] ) . '</th>';
+		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr>' . ( $can ? '<th scope="col" class="flxb-col-cb"><input type="checkbox" data-flxb-kall aria-label="' . esc_attr__( 'Select all', 'flx-donate' ) . '"></th>' : '' ) . '<th scope="col">' . esc_html__( 'Code', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Donation', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Payment', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( '\\nTarget date\\n', 'flx-donate' ) . '</th><th scope="col">' . esc_html( $l['partner'] ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th><th scope="col">' . esc_html( $l['files'] ) . '</th>';
 		$cols = (array) apply_filters( 'flxb_kurban_columns', array() ); // before 2.11
 		$cols = (array) apply_filters( 'flxb_track_columns', $cols ); // key => label, cells from `flxb_track_cell`
 		foreach ( $cols as $label ) {
@@ -192,11 +192,11 @@ final class FLXB_Page_Track {
 			echo '<td data-label="' . esc_attr__( 'On behalf of', 'flx-donate' ) . '"><span>' . esc_html( '' !== (string) $it['beneficiary_name'] ? $it['beneficiary_name'] : '—' ) . ( '' !== (string) $it['beneficiary_phone'] ? '<span class="flxb-sub2">' . esc_html( flxb_format_phone( $it['beneficiary_phone'] ) ) . '</span>' : '' ) . '</span></td>';
 			echo '<td data-label="' . esc_attr__( 'Donation', 'flx-donate' ) . '"><span><a href="' . esc_url( FLXB_Admin_Url::donation( (int) $it['donation_id'] ) ) . '">#' . (int) $it['donation_id'] . '</a> ' . esc_html( (string) $it['donor_name'] ) . '</span></td>';
 			echo '<td data-label="' . esc_attr__( 'Payment', 'flx-donate' ) . '"><span>' . ( $it['pay_status'] ? FLXB_Admin::pill( $it['pay_status'] ) : '—' ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<td data-label="' . esc_attr__( 'Target date', 'flx-donate' ) . '"><span>' . self::target_html( $it ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<td data-label="' . esc_attr__( '\\nTarget date\\n', 'flx-donate' ) . '"><span>' . self::target_html( $it ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '<td data-label="' . esc_attr( $l['partner'] ) . '"><span>' . esc_html( '' !== (string) $it['place_name'] ? $it['place_name'] : '—' ) . '</span></td>';
 			echo '<td data-label="' . esc_attr__( 'Status', 'flx-donate' ) . '"><span>' . FLXB_Track::status_pill( $it['status'], (int) $it['type_id'] ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			/* translators: 1: files, 2: sent */
-			echo '<td data-label="' . esc_attr( $l['files'] ) . '"><span>' . ( $fil ? esc_html( sprintf( __( '%1$d · %2$d sent', 'flx-donate' ), count( $fil ), $snt ) ) : '—' ) . '</span></td>';
+			echo '<td data-label="' . esc_attr( $l['files'] ) . '"><span>' . ( $fil ? esc_html( sprintf( __( '\\n%1$d·%2$dcents\\n', 'flx-donate' ), count( $fil ), $snt ) ) : '—' ) . '</span></td>';
 			foreach ( $cols as $key => $label ) {
 				$cell = (string) apply_filters( 'flxb_kurban_cell', '', $key, $it ); // before 2.11
 				echo '<td data-label="' . esc_attr( $label ) . '"><span>' . wp_kses_post( (string) apply_filters( 'flxb_track_cell', $cell, $key, $it ) ) . '</span></td>';
@@ -262,10 +262,10 @@ final class FLXB_Page_Track {
 		}
 		echo '</ol>';
 		if ( 'canceled' === $it['status'] ) {
-			echo '<div class="flxb-notice flxb-notice--warn">' . esc_html__( 'This item is canceled.', 'flx-donate' ) . '</div>';
+			echo '<div class="flxb-notice flxb-notice--warn">' . esc_html__( '\\nThis item is canceled.\\n', 'flx-donate' ) . '</div>';
 		}
 		if ( 'late' === FLXB_Track::target_state( $it ) ) {
-			echo '<div class="flxb-notice flxb-notice--warn">' . esc_html__( 'The target date has passed and it is not completed yet.', 'flx-donate' ) . '</div>';
+			echo '<div class="flxb-notice flxb-notice--warn">' . esc_html__( '\\nThe target date has passed and it is not completed yet.\', \'en\']]', 'flx-donate' ) . '</div>';
 		}
 
 		echo '<div class="flxb-grid flxb-grid--1-1">';
@@ -275,16 +275,16 @@ final class FLXB_Page_Track {
 		echo '<dt>' . esc_html__( 'Option', 'flx-donate' ) . '</dt><dd>' . esc_html( $it['option_label'] ) . ' · ' . esc_html( flxb_money( $it['unit_price'], $it['currency'] ) ) . '</dd>';
 		if ( '' !== (string) $it['intention'] ) {
 			$ints = FLXB_Types::intentions();
-			echo '<dt>' . esc_html__( 'Intention', 'flx-donate' ) . '</dt><dd>' . esc_html( is_array( $ints[ $it['intention'] ] ?? null ) ? ( $ints[ $it['intention'] ]['label'] ?? $it['intention'] ) : ( $ints[ $it['intention'] ] ?? $it['intention'] ) ) . '</dd>';
+			echo '<dt>' . esc_html__( '\\nIntention\\n', 'flx-donate' ) . '</dt><dd>' . esc_html( is_array( $ints[ $it['intention'] ] ?? null ) ? ( $ints[ $it['intention'] ]['label'] ?? $it['intention'] ) : ( $ints[ $it['intention'] ] ?? $it['intention'] ) ) . '</dd>';
 		}
-		echo '<dt>' . esc_html__( 'Target date', 'flx-donate' ) . '</dt><dd>' . self::target_html( $it ) . '</dd>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<dt>' . esc_html__( '\\nTarget date\\n', 'flx-donate' ) . '</dt><dd>' . self::target_html( $it ) . '</dd>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<dt>' . esc_html( $l['partner'] ) . '</dt><dd>' . esc_html( '' !== (string) $it['place_name'] ? $it['place_name'] : '—' );
 		if ( (float) $it['cost'] > 0 && flxb_can_view() ) {
 			echo ' · ' . esc_html( flxb_money( $it['cost'], $it['cost_currency'] ) );
 		}
 		echo '</dd>';
 		if ( (int) $it['source_id'] ) {
-			echo '<dt>' . esc_html__( 'Came through', 'flx-donate' ) . '</dt><dd>' . esc_html( FLXB_Partners::name( (int) $it['source_id'] ) ) . '</dd>';
+			echo '<dt>' . esc_html__( '\\nCame through\\n', 'flx-donate' ) . '</dt><dd>' . esc_html( FLXB_Partners::name( (int) $it['source_id'] ) ) . '</dd>';
 		}
 		$rows = (array) apply_filters( 'flxb_kurban_detail_rows', array(), $it ); // before 2.11
 		foreach ( (array) apply_filters( 'flxb_track_detail_rows', $rows, $it ) as $label => $html ) {
@@ -292,14 +292,14 @@ final class FLXB_Page_Track {
 		}
 		echo '</dl>';
 		if ( $can ) {
-			echo self::form_open( 'edit', $id ) . '<div class="flxb-grid flxb-grid--1-1"><label class="flxb-field"><span class="flxb-label">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</span><input type="text" name="name" maxlength="190" value="' . esc_attr( $it['beneficiary_name'] ) . '"></label><label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Owner phone', 'flx-donate' ) . '</span><input type="tel" name="phone" maxlength="32" value="' . esc_attr( $it['beneficiary_phone'] ) . '" placeholder="' . esc_attr__( 'Empty = donor phone', 'flx-donate' ) . '"></label></div><label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Target date', 'flx-donate' ) . '</span><input type="date" name="target_date" value="' . esc_attr( (string) $it['target_date'] ) . '"></label><div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--sm">' . esc_html__( 'Save', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo self::form_open( 'edit', $id ) . '<div class="flxb-grid flxb-grid--1-1"><label class="flxb-field"><span class="flxb-label">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</span><input type="text" name="name" maxlength="190" value="' . esc_attr( $it['beneficiary_name'] ) . '"></label><label class="flxb-field"><span class="flxb-label">' . esc_html__( '\\nOwner phone\\n', 'flx-donate' ) . '</span><input type="tel" name="phone" maxlength="32" value="' . esc_attr( $it['beneficiary_phone'] ) . '" placeholder="' . esc_attr__( '\\nEmpty = donor phone\\n', 'flx-donate' ) . '"></label></div><label class="flxb-field"><span class="flxb-label">' . esc_html__( '\\nTarget date\\n', 'flx-donate' ) . '</span><input type="date" name="target_date" value="' . esc_attr( (string) $it['target_date'] ) . '"></label><div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--sm">' . esc_html__( 'Save', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			echo '<dl class="flxb-dl"><dt>' . esc_html__( 'On behalf of', 'flx-donate' ) . '</dt><dd>' . esc_html( $it['beneficiary_name'] ) . '</dd></dl>';
 		}
 		echo '</section>';
 
 		/* Donation & payment */
-		echo '<section class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Donation and payment', 'flx-donate' ) . '</h2>' . ( $d ? FLXB_Admin::pill( $d['status'] ) : '' ) . '</div><dl class="flxb-dl">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<section class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( '\\nDonation and payment\\n', 'flx-donate' ) . '</h2>' . ( $d ? FLXB_Admin::pill( $d['status'] ) : '' ) . '</div><dl class="flxb-dl">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		if ( $d ) {
 			echo '<dt>' . esc_html__( 'Donation', 'flx-donate' ) . '</dt><dd><a href="' . esc_url( FLXB_Admin_Url::donation( (int) $d['id'] ) ) . '">#' . (int) $d['id'] . '</a> · ' . esc_html( flxb_money( $d['amount'], $d['currency'] ) ) . ' · ' . esc_html( flxb_date( $d['created_at'] ) ) . '</dd>';
 			echo '<dt>' . esc_html__( 'Donor', 'flx-donate' ) . '</dt><dd>' . esc_html( $donor ? FLXB_Admin::donor_name( $donor, '' ) : '—' ) . ( $donor && '' !== (string) $donor['phone'] ? ' · ' . esc_html( flxb_format_phone( $donor['phone'] ) ) : '' ) . '</dd>';
@@ -329,12 +329,12 @@ final class FLXB_Page_Track {
 				foreach ( $sibs as $s ) {
 					$links[] = (int) $s['id'] === (int) $id ? '<strong class="flxb-mono">' . esc_html( $s['code'] ) . '</strong>' : '<a class="flxb-mono" href="' . esc_url( self::url( (int) $s['id'] ) ) . '">' . esc_html( $s['code'] ) . '</a>';
 				}
-				echo '<dt>' . esc_html__( 'Others in this donation', 'flx-donate' ) . '</dt><dd>' . implode( ' · ', $links ) . '</dd>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<dt>' . esc_html__( '\\nOthers in this donation\\n', 'flx-donate' ) . '</dt><dd>' . implode( ' · ', $links ) . '</dd>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 		echo '</dl>';
 		if ( $d && ! in_array( $d['status'], FLXB_Donations::PAID, true ) ) {
-			echo '<p class="flxb-notice flxb-notice--warn">' . esc_html__( 'Payment not received: it cannot be sent to a partner until the payment is approved.', 'flx-donate' ) . '</p>';
+			echo '<p class="flxb-notice flxb-notice--warn">' . esc_html__( '\\nPayment not received: it cannot be sent to a partner until the payment is approved.\\n', 'flx-donate' ) . '</p>';
 		}
 		echo '</section></div>';
 
@@ -355,8 +355,8 @@ final class FLXB_Page_Track {
 			);
 			$conf = array(
 				/* translators: %s: button text, e.g. "Take back from the partner" */
-				'revoke' => sprintf( __( '%s? It goes back to approved and can be sent to another partner.', 'flx-donate' ), $l['do_revoke'] ),
-				'cancel' => __( 'Cancel this item?', 'flx-donate' ),
+				'revoke' => sprintf( __( '\\n%s? It goes back to approved and can be sent to another partner.\\n', 'flx-donate' ), $l['do_revoke'] ),
+				'cancel' => __( '\\nCancel this item?\\n', 'flx-donate' ),
 			);
 			$steps = self::steps( $tid );
 			echo '<div class="flxb-kbtns">';
@@ -364,16 +364,16 @@ final class FLXB_Page_Track {
 				echo self::form_open( 'step', $id, isset( $conf[ $s ] ) ? ' onsubmit="return confirm(' . esc_attr( wp_json_encode( $conf[ $s ] ) ) . ')"' : '' ) . '<input type="hidden" name="step" value="' . esc_attr( $s ) . '"><button type="submit" class="flxb-btn' . ( in_array( $s, array( 'approve', 'done', 'delivered' ), true ) ? ' flxb-btn--primary' : ( in_array( $s, array( 'cancel', 'revoke' ), true ) ? ' flxb-btn--danger' : '' ) ) . '">' . esc_html( $steps[ $s ] ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			echo '</div>';
-			echo self::form_open( 'note', $id ) . '<label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Add a note to the history', 'flx-donate' ) . '</span><input type="text" name="note" maxlength="300" required></label><div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--sm">' . esc_html__( 'Add note', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo self::form_open( 'note', $id ) . '<label class="flxb-field"><span class="flxb-label">' . esc_html__( '\\nAdd a note to the history\\n', 'flx-donate' ) . '</span><input type="text" name="note" maxlength="300" required></label><div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--sm">' . esc_html__( 'Add note', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '</section>';
 		}
 
 		/* Files */
 		$files = FLXB_Track::files( $it );
-		$hint  = FLXB_Track::file_completes( $it ) ? __( 'Files stay on the item. The first file marks an item that is with a partner as completed.', 'flx-donate' ) : __( 'Files stay on the item.', 'flx-donate' );
+		$hint  = FLXB_Track::file_completes( $it ) ? __( '\\nFiles stay on the item. The first file marks an item that is with a partner as completed.\\n', 'flx-donate' ) : __( '\\nFiles stay on the item.\\n', 'flx-donate' );
 		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html( $l['files'] ) . '</h2><p class="flxb-card__hint">' . esc_html( $hint ) . '</p></div></div>';
 		if ( ! $files ) {
-			echo '<p class="flxb-muted">' . esc_html__( 'No file yet.', 'flx-donate' ) . '</p>';
+			echo '<p class="flxb-muted">' . esc_html__( '\\nNo file yet.\\n', 'flx-donate' ) . '</p>';
 		}
 		$phone = FLXB_Track::owner_phone( $it );
 		foreach ( $files as $v ) {
@@ -383,25 +383,25 @@ final class FLXB_Page_Track {
 			echo '<span>' . esc_html( flxb_date( (string) $v['at'] ) . ( $by ? ' · ' . $by->display_name : '' ) ) . '</span>';
 			foreach ( (array) ( $v['sent'] ?? array() ) as $s ) {
 				/* translators: 1: phone, 2: date */
-				echo '<span class="flxb-pill flxb-pill--ok">' . esc_html( sprintf( __( 'Sent to %1$s · %2$s', 'flx-donate' ), self::phone( (string) $s['to'] ), flxb_date( (string) $s['at'] ) ) ) . '</span>';
+				echo '<span class="flxb-pill flxb-pill--ok">' . esc_html( sprintf( __( '\\nSent to%1$s·%2$s\\n', 'flx-donate' ), self::phone( (string) $s['to'] ), flxb_date( (string) $s['at'] ) ) ) . '</span>';
 			}
 			if ( $can ) {
 				echo '<div class="flxb-kbtns">';
 				if ( FLXB_Track::can_send() && '' !== $phone ) {
 					/* translators: %s: phone */
-					echo self::form_open( 'file_send', $id, ' onsubmit="return confirm(' . esc_attr( wp_json_encode( sprintf( __( 'Send this file to %s over WhatsApp?', 'flx-donate' ), self::phone( $phone ) ) ) ) . ')"' ) . '<input type="hidden" name="att" value="' . $att . '"><button type="submit" class="flxb-btn flxb-btn--primary flxb-btn--sm">' . esc_html__( 'Send to owner', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo self::form_open( 'file_send', $id, ' onsubmit="return confirm(' . esc_attr( wp_json_encode( sprintf( __( '\\nSend this file to%sover WhatsApp?\\n', 'flx-donate' ), self::phone( $phone ) ) ) ) . ')"' ) . '<input type="hidden" name="att" value="' . $att . '"><button type="submit" class="flxb-btn flxb-btn--primary flxb-btn--sm">' . esc_html__( '\\nSend to owner\\n', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
-				echo self::form_open( 'file_delete', $id, ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Remove this file from the item? It stays in the media library.', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="att" value="' . $att . '"><button type="submit" class="flxb-linkbtn flxb-linkbtn--danger">' . esc_html__( 'Remove', 'flx-donate' ) . '</button></form></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo self::form_open( 'file_delete', $id, ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( '\\nRemove this file from the item? It stays in the media library.\\n', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="att" value="' . $att . '"><button type="submit" class="flxb-linkbtn flxb-linkbtn--danger">' . esc_html__( 'Remove', 'flx-donate' ) . '</button></form></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			echo '</div></div>';
 		}
 		if ( $can ) {
 			if ( ! FLXB_Track::can_send() ) {
-				echo '<p class="flxb-muted">' . esc_html__( 'Install Flux Chat to send files over WhatsApp.', 'flx-donate' ) . '</p>';
+				echo '<p class="flxb-muted">' . esc_html__( '\\nInstall Flux Chat to send files over WhatsApp.\\n', 'flx-donate' ) . '</p>';
 			} elseif ( '' === $phone ) {
-				echo '<p class="flxb-muted">' . esc_html__( 'There is no phone number for the owner. Add one above to send the file.', 'flx-donate' ) . '</p>';
+				echo '<p class="flxb-muted">' . esc_html__( '\\nThere is no phone number for the owner. Add one above to send the file.\\n', 'flx-donate' ) . '</p>';
 			}
-			echo self::form_open( 'file_upload', $id, ' enctype="multipart/form-data"' ) . '<label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Upload a file', 'flx-donate' ) . '</span><input type="file" name="file" accept="video/*,image/*,audio/*,application/pdf" required></label><div class="flxb-formactions"><button type="submit" class="flxb-btn">' . esc_html__( 'Upload', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo self::form_open( 'file_upload', $id, ' enctype="multipart/form-data"' ) . '<label class="flxb-field"><span class="flxb-label">' . esc_html__( '\\nUpload a file\\n', 'flx-donate' ) . '</span><input type="file" name="file" accept="video/*,image/*,audio/*,application/pdf" required></label><div class="flxb-formactions"><button type="submit" class="flxb-btn">' . esc_html__( 'Upload', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</section>';
 		if ( ! $can ) {
@@ -426,7 +426,7 @@ final class FLXB_Page_Track {
 			if ( 'assigned' === $h['event'] && ! empty( $data['from'] ) ) {
 				$from = FLXB_Track::place_name( (string) $data['from'] );
 				/* translators: 1: new partner, 2: previous partner */
-				$more = sprintf( __( '%1$s (moved from %2$s)', 'flx-donate' ), (string) $data['place_name'], '' !== $from ? $from : (string) $data['from'] );
+				$more = sprintf( __( '\\n%1$s(moved from%2$s)\\n', 'flx-donate' ), (string) $data['place_name'], '' !== $from ? $from : (string) $data['from'] );
 			}
 			if ( in_array( $h['event'], array( 'file_sent', 'video_sent' ), true ) && ! empty( $data['to'] ) ) {
 				$more = self::phone( (string) $data['to'] );
@@ -468,7 +468,7 @@ final class FLXB_Page_Track {
 		$back = is_array( $back ) ? array_map( 'sanitize_text_field', $back ) : array();
 		unset( $back['page'] );
 		if ( ! $ids ) {
-			FLXB_Admin::redirect( self::SLUG, $back + array( 'flxb_msg' => 'error', 'flxb_err' => __( 'Select at least one item.', 'flx-donate' ) ) );
+			FLXB_Admin::redirect( self::SLUG, $back + array( 'flxb_msg' => 'error', 'flxb_err' => __( '\\nSelect at least one item.\\n', 'flx-donate' ) ) );
 		}
 		$m = self::result_msg( FLXB_Track::apply( $ids, sanitize_key( self::post( 'step' ) ), array( 'place' => self::post( 'place' ), 'note' => self::post( 'note' ) ) ) );
 		FLXB_Admin::redirect( self::SLUG, $back + array( 'flxb_msg' => $m[0], 'flxb_err' => $m[1] ) );
@@ -503,21 +503,21 @@ final class FLXB_Page_Track {
 		$id = absint( $_POST['id'] ?? 0 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		self::guard( 'file_upload', $id );
 		if ( empty( $_FILES['file']['tmp_name'] ) ) {
-			self::back_item( $id, array( 'error', __( 'Choose a file.', 'flx-donate' ) ) );
+			self::back_item( $id, array( 'error', __( '\\nChoose a file.\\n', 'flx-donate' ) ) );
 		}
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 		$att = media_handle_upload( 'file', 0 ); // WordPress checks the file type against the allowed list
 		$r   = is_wp_error( $att ) ? $att : FLXB_Track::add_file( $id, $att );
-		self::back_item( $id, is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'saved', __( 'File added.', 'flx-donate' ) ) );
+		self::back_item( $id, is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'saved', __( '\\nFile added.\\n', 'flx-donate' ) ) );
 	}
 
 	public static function file_send() {
 		$id = absint( $_POST['id'] ?? 0 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		self::guard( 'file_send', $id );
 		$r = FLXB_Track::send_file( $id, absint( $_POST['att'] ?? 0 ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		self::back_item( $id, is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'saved', __( 'The file was sent to the owner over WhatsApp.', 'flx-donate' ) ) );
+		self::back_item( $id, is_wp_error( $r ) ? array( 'error', $r->get_error_message() ) : array( 'saved', __( '\\nThe file was sent to the owner over WhatsApp.\\n', 'flx-donate' ) ) );
 	}
 
 	public static function file_delete() {

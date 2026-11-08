@@ -40,8 +40,15 @@ function flxl_switcher( $args = array() ) {
 		return '';
 	}
 	$style = $args['style'] ?? flxl_settings()['switcher'];
-	$out   = '<nav class="flx-lang flxl-switcher" aria-label="' . esc_attr__( 'Dil seçimi', 'flx-lang' ) . '" data-no-translation>';
+	$compact = 'dropdown' === ( $args['layout'] ?? '' ) || ( count( $items ) > 4 && 'inline' !== ( $args['layout'] ?? '' ) );
+	$out   = '<nav class="flx-lang flxl-switcher" aria-label="' . esc_attr__( 'Language selection', 'flx-lang' ) . '" data-no-translation>';
+	if ( $compact ) {
+		$current = $items[0];
+		foreach ( $items as $item ) { if ( $item['current'] ) { $current = $item; break; } }
+		$out .= '<details class="flxl-picker"><summary aria-label="' . esc_attr__( 'Language selection', 'flx-lang' ) . '"><span dir="auto">' . esc_html( strtoupper( $current['code'] ) ) . '</span><span aria-hidden="true">⌄</span></summary><ul class="flxl-picker__list">';
+	}
 	foreach ( $items as $i ) {
+		if ( $compact ) { $out .= '<li>'; }
 		switch ( $style ) {
 			case 'name':
 				$label = esc_html( $i['name'] );
@@ -59,9 +66,11 @@ function flxl_switcher( $args = array() ) {
 			esc_attr( $i['name'] ),
 			esc_attr( $i['code'] ),
 			$i['current'] ? ' class="is-current" aria-current="true"' : '',
-			$label
+			$compact ? esc_html( $i['name'] ) . ' <small>' . esc_html( strtoupper( $i['code'] ) ) . '</small>' : $label
 		);
+		if ( $compact ) { $out .= '</li>'; }
 	}
+	if ( $compact ) { $out .= '</ul></details>'; }
 	return $out . '</nav>';
 }
 
@@ -81,7 +90,7 @@ add_action(
 			'flx-lang/secici',
 			array(
 				'api_version'     => 3,
-				'title'           => __( 'Flux Lang Seçici', 'flx-lang' ),
+				'title'           => __( 'Flux Language Switcher', 'flx-lang' ),
 				'category'        => 'theme',
 				'editor_script'   => 'flxl-blok',
 				'attributes'      => array( 'style' => array( 'type' => 'string', 'default' => '' ) ),
@@ -177,8 +186,9 @@ add_filter(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		if ( 'header' !== flxl_switcher_place() && count( flxl_languages() ) > 1 ) {
+		if ( count( flxl_languages() ) > 1 ) {
 			wp_enqueue_style( 'flxl-secici', FLXL_URL . 'assets/css/secici.css', array(), FLXL_VERSION );
+			if ( count( flxl_languages() ) > 1 ) { wp_enqueue_script( 'flxl-picker', FLXL_URL . 'assets/js/secici.js', array(), FLXL_VERSION, true ); }
 		}
 	}
 );

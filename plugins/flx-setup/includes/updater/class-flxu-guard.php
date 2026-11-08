@@ -130,7 +130,7 @@ final class FLXU_Guard {
 			}
 			$to = self::installed_version( $b['type'], $slug );
 			if ( '' === $to || $to === $b['from'] ) {
-				$this->log( $slug, $b, $to, $this->action, 'failed', __( 'Paket değişmedi; kurulum başarısız olmuş olabilir.', 'flx-setup' ) );
+				$this->log( $slug, $b, $to, $this->action, 'failed', __( 'Package did not change; the installation may have failed.', 'flx-setup' ) );
 				continue;
 			}
 			$changed[ $slug ] = $b + array( 'to' => $to );
@@ -163,7 +163,7 @@ final class FLXU_Guard {
 				self::installed_version( $c['type'], $slug ),
 				'auto_rollback',
 				is_wp_error( $res ) ? 'failed' : 'ok',
-				is_wp_error( $res ) ? $res->get_error_message() : __( 'Önceki sürüme otomatik dönüldü.', 'flx-setup' )
+				is_wp_error( $res ) ? $res->get_error_message() : __( 'Rolled back to the previous version automatically.', 'flx-setup' )
 			);
 		}
 	}
@@ -203,7 +203,7 @@ final class FLXU_Guard {
 			$res = flxy_backup_restore( $this->backup_id, array( 'db' => false, 'paths' => array( self::rel_path( $c['type'], $slug ) ) ) );
 			return is_wp_error( $res ) ? $res : true;
 		}
-		return new WP_Error( 'flxu_no_rollback', __( 'Eski sürüm bulunamadı; elle geri yükleyin.', 'flx-setup' ) );
+		return new WP_Error( 'flxu_no_rollback', __( 'Previous version not found; restore it manually.', 'flx-setup' ) );
 	}
 
 	/* ------------------------------------------------------------------ */
@@ -217,7 +217,7 @@ final class FLXU_Guard {
 		$catalog = FLXU_Updater::instance()->catalog();
 		$p       = $catalog[ $slug ] ?? null;
 		if ( ! $p ) {
-			return new WP_Error( 'flxu_unknown', __( 'Paket bulunamadı.', 'flx-setup' ) );
+			return new WP_Error( 'flxu_unknown', __( 'Package not found.', 'flx-setup' ) );
 		}
 		$package = '';
 		foreach ( (array) $p['versions'] as $v ) {
@@ -229,11 +229,11 @@ final class FLXU_Guard {
 			$package = $p['package'];
 		}
 		if ( '' === $package ) {
-			return new WP_Error( 'flxu_version', __( 'Bu sürüm sunucuda yok.', 'flx-setup' ) );
+			return new WP_Error( 'flxu_version', __( 'This version is not on the server.', 'flx-setup' ) );
 		}
 		$from = self::installed_version( $p['type'], $slug );
 		if ( '' === $from ) {
-			return new WP_Error( 'flxu_missing', __( 'Paket bu sitede kurulu değil.', 'flx-setup' ) );
+			return new WP_Error( 'flxu_missing', __( 'Package is not installed on this site.', 'flx-setup' ) );
 		}
 
 		// Kurulumda WordPress hangi paketin değiştiğini bildirmez; yedeği burada biz alıyoruz.
@@ -242,7 +242,7 @@ final class FLXU_Guard {
 				array(
 					'type'    => 'pre_update',
 					/* translators: 1: package name, 2: from version, 3: to version */
-					'label'   => sprintf( __( '%1$s %2$s → %3$s öncesi', 'flx-setup' ), $p['name'], $from, $version ),
+					'label'   => sprintf( __( 'Before %1$s %2$s → %3$s', 'flx-setup' ), $p['name'], $from, $version ),
 					'db'      => true,
 					'paths'   => array( self::rel_path( $p['type'], $slug ) ),
 					'context' => array(
@@ -261,7 +261,7 @@ final class FLXU_Guard {
 			);
 			if ( is_wp_error( $backup ) ) {
 				/* translators: %s: error */
-				return new WP_Error( 'flxu_backup', sprintf( __( 'Yedek alınamadı, işlem yapılmadı: %s', 'flx-setup' ), $backup->get_error_message() ) );
+				return new WP_Error( 'flxu_backup', sprintf( __( 'Backup failed, nothing was changed: %s', 'flx-setup' ), $backup->get_error_message() ) );
 			}
 			$this->backup_id = (string) ( $backup['id'] ?? '' );
 		}
@@ -301,7 +301,7 @@ final class FLXU_Guard {
 				return $errors;
 			}
 			$msgs = method_exists( $skin, 'get_upgrade_messages' ) ? implode( ' | ', array_map( 'wp_strip_all_tags', (array) $skin->get_upgrade_messages() ) ) : '';
-			return new WP_Error( 'flxu_install', trim( __( 'Kurulum başarısız.', 'flx-setup' ) . ' ' . $msgs ) );
+			return new WP_Error( 'flxu_install', trim( __( 'Installation failed.', 'flx-setup' ) . ' ' . $msgs ) );
 		}
 		return true;
 	}
@@ -346,13 +346,13 @@ final class FLXU_Guard {
 			}
 			if ( 500 === $code ) {
 				/* translators: %s: URL path */
-				return array( 'state' => 'fail', 'message' => sprintf( __( 'Güncellemeden sonra site hata verdi (HTTP 500: %s).', 'flx-setup' ), (string) wp_parse_url( $url, PHP_URL_PATH ) ) );
+				return array( 'state' => 'fail', 'message' => sprintf( __( 'The site failed after the update (HTTP 500: %s).', 'flx-setup' ), (string) wp_parse_url( $url, PHP_URL_PATH ) ) );
 			}
 			if ( 200 !== $code && '' === $unknown ) {
 				$unknown = 0 === $code
-					? __( 'Site kontrolü yapılamadı (bağlantı kurulamadı).', 'flx-setup' )
+					? __( 'Site check could not run (no connection).', 'flx-setup' )
 					/* translators: %d: HTTP status */
-					: sprintf( __( 'Site kontrolü HTTP %d döndü; hata sayılmadı.', 'flx-setup' ), $code );
+					: sprintf( __( 'Site check returned HTTP %d; not treated as a failure.', 'flx-setup' ), $code );
 			}
 		}
 		return '' === $unknown ? array( 'state' => 'ok', 'message' => '' ) : array( 'state' => 'unknown', 'message' => $unknown );

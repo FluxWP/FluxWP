@@ -39,12 +39,12 @@ add_filter(
 /** Açılış ekranı seçenekleri: anahtar => array( etiket, adres, gereken yetki ). */
 function flxr_home_choices() {
 	return array(
-		'auto'      => array( __( 'Otomatik (ilk erişebildiği: Görevler, Sertifikalar, Bağışlar)', 'flx-roles' ), '', '' ),
-		'gorev'     => array( __( 'Görevler', 'flx-roles' ), 'admin.php?page=flx-tasks', 'flxg_use' ),
-		'sertifika' => array( __( 'Sertifikalar', 'flx-roles' ), 'admin.php?page=flxs', 'flxs_use' ),
-		'bagis'     => array( __( 'Bağışlar', 'flx-roles' ), 'admin.php?page=flxb-dashboard', '' ),
-		'dashboard' => array( __( 'Başlangıç (panel ana sayfası)', 'flx-roles' ), 'index.php', 'read' ),
-		'profile'   => array( __( 'Profil', 'flx-roles' ), 'profile.php', 'read' ),
+		'auto'      => array( __( 'Automatic (first available: Tasks, Certificates, Donations)', 'flx-roles' ), '', '' ),
+		'gorev'     => array( __( 'Tasks', 'flx-roles' ), 'admin.php?page=flx-tasks', 'flxg_use' ),
+		'sertifika' => array( __( 'Certificates', 'flx-roles' ), 'admin.php?page=flxs', 'flxs_use' ),
+		'bagis'     => array( __( 'Donations', 'flx-roles' ), 'admin.php?page=flxb-dashboard', '' ),
+		'dashboard' => array( __( 'Dashboard (admin home)', 'flx-roles' ), 'index.php', 'read' ),
+		'profile'   => array( __( 'Profile', 'flx-roles' ), 'profile.php', 'read' ),
 	);
 }
 

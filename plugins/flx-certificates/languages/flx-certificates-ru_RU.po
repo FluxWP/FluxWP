@@ -1,0 +1,969 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Sapling goal progress"
+msgstr "Прогресс цели саженца"
+
+msgid "No record"
+msgstr "Нет записи"
+
+msgid "Certificate not found"
+msgstr "Сертификат не найден"
+
+msgid "The link may have been copied incompletely. Check the code or request your certificate below."
+msgstr "Возможно, ссылка скопирована не полностью. Проверьте код или запросите сертификат ниже."
+
+msgid "Revoked certificate"
+msgstr "Отозванный сертификат"
+
+msgid "Verified certificate"
+msgstr "Подтвержденный сертификат"
+
+msgid "REVOKED"
+msgstr "ОТМЕНЕН"
+
+msgid "Full name"
+msgstr "Полное имя"
+
+msgid "Certificate no."
+msgstr "Сертификат No."
+
+msgid "Issue date"
+msgstr "Дата выпуска"
+
+msgid "Issued by"
+msgstr "Выдано"
+
+msgid "Verification code"
+msgstr "Код подтверждения"
+
+msgid "Download PDF"
+msgstr "Скачать PDF"
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "Add to LinkedIn"
+msgstr "Добавить в LinkedIn"
+
+msgid "Copy link"
+msgstr "Копировать ссылку"
+
+msgid "This certificate has been revoked by the issuing organization and is no longer valid."
+msgstr "Этот сертификат был отозван организацией-выдателем и больше не действителен."
+
+msgid "This page confirms that the certificate is on record at %s."
+msgstr "Эта страница подтверждает, что сертификат зарегистрирован по адресу%s."
+
+msgid "Lookup is disabled."
+msgstr "Поиск отключен."
+
+msgid "Too many attempts. Please try again later."
+msgstr "Слишком много попыток. Пожалуйста, повторите попытку позже."
+
+msgid "Enter a valid phone number or email address."
+msgstr "Введите действительный номер телефона или адрес электронной почты."
+
+msgid "Hello %1$s,\n\nYour %2$s certificates:\n%3$s"
+msgstr "Привет,%1$s!\n\nВаши сертификаты%2$s:%3$s"
+
+msgid "Your certificates"
+msgstr "Ваши сертификаты"
+
+msgid "If a certificate is registered with these details, its link will be sent to you within a few minutes."
+msgstr "Если сертификат зарегистрирован по этим реквизитам, ссылка на него будет отправлена вам в течение нескольких минут."
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Info"
+msgstr "Информация"
+
+msgid "Test WhatsApp/SMS connections"
+msgstr "Проверка соединений WhatsApp/SMS"
+
+msgid "System check"
+msgstr "Проверка системы"
+
+msgid "Whether setup, cron and sending are in place. Checked again each time this page opens. WhatsApp/SMS connections and tests live in Flux Mail."
+msgstr "Установлены ли настройка, cron и отправка. Проверено снова каждый раз, когда открывается эта страница. Соединения и тесты WhatsApp/SMS доступны в Flux Mail."
+
+msgid "Not allowed"
+msgstr "Не разрешено"
+
+msgid "Valid"
+msgstr "Действителен"
+
+msgid "Revoked"
+msgstr "Отозван"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Email"
+msgstr "электронная почта"
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Referrer"
+msgstr "реферер"
+
+msgid "Created by"
+msgstr "Создано"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Views"
+msgstr "Просмотры"
+
+msgid "Messages sent"
+msgstr "Сообщения отправлены"
+
+msgid "Certificate link"
+msgstr "Ссылка на сертификат"
+
+msgctxt "context_e363ab036dc9"
+msgid "certificates"
+msgstr "сертификаты"
+
+msgid "Certificates"
+msgstr "Сертификаты"
+
+msgid "The server has no ZipArchive (PHP zip extension); the Excel file could not be created."
+msgstr "На сервере нет ZipArchive (расширение PHP-архива); файл Excel не удалось создать."
+
+msgid "The Excel file could not be created."
+msgstr "Не удалось создать файл Excel."
+
+msgid "On donation page"
+msgstr "На странице пожертвований"
+
+msgid "Donation page"
+msgstr "Страница пожертвований"
+
+msgid "Donors can choose this design on the donation page"
+msgstr "Доноры могут выбрать этот дизайн на странице пожертвований."
+
+msgid "Heading (group)"
+msgstr "Рубрика (группа)"
+
+msgid "Order"
+msgstr "Заказать"
+
+msgid "The donor picks the design and fills in the template's text, date and choice fields (e.g. recipient name, message). The price comes from the donation type."
+msgstr "Даритель выбирает дизайн и заполняет поля текста шаблона, даты и выбора (например, имя получателя, сообщение). Цена зависит от типа пожертвования."
+
+msgid "No certificates selected."
+msgstr "Сертификаты не выбраны."
+
+msgid "%d messages queued."
+msgstr "Сообщения%dпоставлены в очередь."
+
+msgid "%d certificates updated."
+msgstr "Сертификаты%dобновлены."
+
+msgid "Download Excel"
+msgstr "Скачать Excel"
+
+msgid "New certificate"
+msgstr "Новый сертификат"
+
+msgid "Name, phone, email, certificate no…"
+msgstr "Имя, телефон, адрес электронной почты, номер сертификата..."
+
+msgid "All statuses"
+msgstr "Все статусы"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "All events"
+msgstr "Все события"
+
+msgid "No event (%d)"
+msgstr "Нет события (%d)"
+
+msgid "archived"
+msgstr "в архиве"
+
+msgid "All templates"
+msgstr "Все шаблоны"
+
+msgid "All referrers"
+msgstr "Все рефереры"
+
+msgid "No referrer (%d)"
+msgstr "Нет реферера (%d)"
+
+msgid "Created by: anyone"
+msgstr "Создатель: кто угодно"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Bulk actions…"
+msgstr "Массовые действия..."
+
+msgid "Send via WhatsApp"
+msgstr "Отправить через WhatsApp"
+
+msgid "Send via SMS"
+msgstr "Отправить по СМС"
+
+msgid "Send via email"
+msgstr "Отправить по электронной почте"
+
+msgid "Revoke"
+msgstr "Отозвать"
+
+msgid "Make valid"
+msgstr "Сделать действительным"
+
+msgid "Assign to event…"
+msgstr "Назначить событие..."
+
+msgid "Assign referrer…"
+msgstr "Назначить реферера..."
+
+msgid "Delete permanently"
+msgstr "Удалить навсегда"
+
+msgid "— No event —"
+msgstr "— Нет события —"
+
+msgid "— No referrer —"
+msgstr "— Нет реферера —"
+
+msgid "Apply to the selected items?"
+msgstr "Применить к выбранным элементам?"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Certificate"
+msgstr "Сертификат"
+
+msgid "Person"
+msgstr "Человек"
+
+msgid "Event / Template"
+msgstr "Событие/Шаблон"
+
+msgid "Deliveries"
+msgstr "Поставки"
+
+msgid "Referrer / Created by"
+msgstr "Реферер / Создатель"
+
+msgid "No certificates yet."
+msgstr "Сертификатов пока нет."
+
+msgid "Create the first certificate"
+msgstr "Создайте первый сертификат"
+
+msgid "Actually created: %s"
+msgstr "Фактически создано:%s."
+
+msgid "backdated"
+msgstr "задним числом"
+
+msgid "%d view"
+msgid_plural "%d views"
+msgstr[0] "Просмотр%d"
+msgstr[1] "Просмотры%d"
+msgstr[2] "Просмотры%d"
+
+msgid "Registered person: %s"
+msgstr "Зарегистрированное лицо:%s"
+
+msgid "created by: %s"
+msgstr "автор:%s"
+
+msgid "Actions"
+msgstr "Действия"
+
+msgid "Open page"
+msgstr "Открыть страницу"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Send to someone else…"
+msgstr "Отправьте кому-нибудь другому..."
+
+msgid "Update referrer…"
+msgstr "Обновить реферер..."
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Revoke this certificate? The link will show \"revoked\"."
+msgstr "Отозвать этот сертификат? Ссылка будет отображаться как «отозвана»."
+
+msgid "Delivery history"
+msgstr "История доставки"
+
+msgid "No connection in Flux Mail"
+msgstr "Нет соединения в Flux Mail"
+
+msgid "Flux Mail is not active"
+msgstr "Flux Mail не активен"
+
+msgid "add"
+msgstr "добавить"
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "%d record"
+msgid_plural "%d records"
+msgstr[0] "%dзапись"
+msgstr[1] "%dзаписи"
+msgstr[2] "%dзаписи"
+
+msgid "Inactive"
+msgstr "Неактивный"
+
+msgid "Father's Day Certificate"
+msgstr "Сертификат ко Дню отца"
+
+msgid "Just Because Certificate"
+msgstr "Просто потому, что сертификат"
+
+msgid "Birthday Gift"
+msgstr "Подарок на День Рождения"
+
+msgid "Get Well Soon"
+msgstr "Выздоравливай скорее"
+
+msgid "First Day at Work"
+msgstr "Первый день на работе"
+
+msgid "Condolence Certificate"
+msgstr "Сертификат соболезнования"
+
+msgid "Mother's Day Certificate"
+msgstr "Сертификат ко Дню матери"
+
+msgid "Wedding Sapling Donation"
+msgstr "Пожертвование свадебного саженца"
+
+msgid "Teachers' Day Certificate"
+msgstr "Сертификат ко Дню учителя"
+
+msgid "Thank You Certificate"
+msgstr "Благодарственный сертификат"
+
+msgid "Welcome Baby Certificate"
+msgstr "Приветственный детский сертификат"
+
+msgid "Wedding Congratulations Certificate"
+msgstr "Сертификат свадебного поздравления"
+
+msgid "Wedding Anniversary Certificate"
+msgstr "Сертификат на годовщину свадьбы"
+
+msgid "Sapling Donation Certificate (one name)"
+msgstr "Сертификат на дарение саженцев (одно имя)"
+
+msgid "Sapling Donation (two names, sapling count)"
+msgstr "Пожертвование саженцев (два имени, количество саженцев)"
+
+msgid "Sapling Donation Certificate (two names)"
+msgstr "Свидетельство о дарении саженцев (два имени)"
+
+msgid "Recipient name"
+msgstr "Имя получателя"
+
+msgid "Donor (your name)"
+msgstr "Донор (Ваше имя)"
+
+msgid "Person remembered"
+msgstr "Человек запомнился"
+
+msgid "Number of saplings"
+msgstr "Количество саженцев"
+
+msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
+msgstr "Дизайны электронных открыток%dбыли добавлены как неактивные шаблоны. Активированные вами дизайны можно выбрать на странице пожертвований."
+
+msgid "All e-card designs are already added."
+msgstr "Все дизайны открыток уже добавлены."
+
+msgid "The server has no ZipArchive (PHP zip extension)."
+msgstr "На сервере нет ZipArchive (расширение PHP-zip)."
+
+msgid "Ready-made e-cards"
+msgstr "Готовые электронные открытки"
+
+msgid "(%1$d/%2$d added)"
+msgstr "(добавлены%1$d/%2$d)"
+
+msgid "Add the missing e-card designs as inactive templates?"
+msgstr "Добавить недостающие дизайны электронных открыток в качестве неактивных шаблонов?"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "Download images as zip"
+msgstr "Загрузить изображения в формате zip"
+
+msgid "Flux Mail (organization template)"
+msgstr "Flux Mail (шаблон организации)"
+
+msgid "%s ago"
+msgstr "%sназад"
+
+msgid "Certificates · Setup"
+msgstr "Сертификаты · Настройка"
+
+msgid "Certificates · Sending and cron"
+msgstr "Сертификаты · Отправка и cron"
+
+msgid "Certificates · Site"
+msgstr "Сертификаты · Сайт"
+
+msgid "Database tables"
+msgstr "Таблицы базы данных"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+
+msgid "A database update is pending; it completes when an admin page is opened."
+msgstr "Ожидается обновление базы данных; он завершается, когда открывается страница администратора."
+
+msgid "All tables exist. Plugin %1$s, database version %2$s."
+msgstr "Все таблицы существуют. Плагин%1$s, версия базы данных%2$s."
+
+msgid "Files folder"
+msgstr "Папка с файлами"
+
+msgid "The folder for certificate PDFs and images is writable."
+msgstr "Папка для PDF-файлов сертификатов и изображений доступна для записи."
+
+msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
+msgstr "%sнедоступен для записи; файлы сертификатов не могут быть сохранены. Проверьте права доступа к папке (755)."
+
+msgid "Certificate page address"
+msgstr "Адрес страницы сертификата"
+
+msgid "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended."
+msgstr "Для постоянных ссылок установлено значение «Обычный»; Ссылки на сертификаты работают как ?flxs_kod=. Рекомендуется указать «Имя публикации»."
+
+msgid "Permalinks"
+msgstr "Постоянные ссылки"
+
+msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
+msgstr "Правило URL-адреса сертификата не зарегистрировано; ссылки могут возвращать 404. Нажмите «Сохранить изменения» на странице «Постоянные ссылки»."
+
+msgid "Certificates open at %s{code}."
+msgstr "Сертификаты открываются по адресу%s{code}."
+
+msgid "Certificate templates"
+msgstr "Шаблоны сертификатов"
+
+msgid "%d active template."
+msgid_plural "%d active templates."
+msgstr[0] "%dактивный шаблон."
+msgstr[1] "%dактивные шаблоны."
+msgstr[2] "%dактивные шаблоны."
+
+msgid "No active template; certificates cannot be created."
+msgstr "Нет активного шаблона; сертификаты не могут быть созданы."
+
+msgid "Templates"
+msgstr "Шаблоны"
+
+msgid "Plugin files"
+msgstr "Файлы плагинов"
+
+msgid "Missing file: %s. Upload the plugin zip again."
+msgstr "Отсутствует файл:%s. Загрузите zip-архив плагина еще раз."
+
+msgid "PDF renderer, QR and fonts are in place."
+msgstr "PDF-рендеринг, QR-код и шрифты на месте."
+
+msgid "Staff role"
+msgstr "Роль персонала"
+
+msgid "The \"Certificate Staff\" role exists."
+msgstr "Существует роль «Сотрудник по сертификации»."
+
+msgid "The \"Certificate Staff\" role is missing. Deactivate and reactivate the plugin."
+msgstr "Роль «Сотрудник сертификата» отсутствует. Деактивируйте и повторно активируйте плагин."
+
+msgid "Sending queue (cron)"
+msgstr "Очередь отправки (cron)"
+
+msgid "The per-minute queue task is not scheduled. Reload any admin page; if it persists, reactivate the plugin."
+msgstr "Задача поминутной очереди не запланирована. Перезагрузить любую страницу администратора; если проблема не исчезнет, ​​повторно активируйте плагин."
+
+msgid "Queue"
+msgstr "Очередь"
+
+msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
+msgstr[0] "Сообщение%1$dожидает более 10 минут; очередь может не работать. Бегун:%2$s, последний запуск:%3$s."
+msgstr[1] "Сообщения%1$dожидаются более 10 минут; очередь может не работать. Бегун:%2$s, последний запуск:%3$s."
+msgstr[2] "Сообщения%1$dожидаются более 10 минут; очередь может не работать. Бегун:%2$s, последний запуск:%3$s."
+
+msgid "never"
+msgstr "никогда"
+
+msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel."
+msgstr "WP-Cron отключен (DISABLE_WP_CRON); в панели хостинга должен быть установлен поминутный cron для wp-cron.php."
+
+msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
+msgstr "Участник:%1$s. Последний запуск%2$s; cron срабатывает редко. Никаких ожидающих сообщений. Без регулярного трафика рекомендуется поминутный cron для wp-cron.php в панели хостинга."
+
+msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
+msgstr "Участник:%1$s. Последний запуск:%2$s. Никаких старых сообщений."
+
+msgid "not recorded yet"
+msgstr "еще не записано"
+
+msgid "Sending in the last 24 hours"
+msgstr "Отправка за последние 24 часа"
+
+msgid "%d message failed."
+msgid_plural "%d messages failed."
+msgstr[0] "Сообщение%dне удалось."
+msgstr[1] "Сообщения%dне удалось отправить."
+msgstr[2] "Сообщения%dне удалось отправить."
+
+msgid "View failed"
+msgstr "Посмотреть не удалось"
+
+msgid "%d message sent, none failed."
+msgid_plural "%d messages sent, none failed."
+msgstr[0] "Сообщение%dотправлено, ни одно сообщение не выполнено."
+msgstr[1] "Сообщения%dотправлены, ни одно из них не завершилось ошибкой."
+msgstr[2] "Сообщения%dотправлены, ни одно из них не завершилось ошибкой."
+
+msgid "Daily cleanup task"
+msgstr "Ежедневная задача по уборке"
+
+msgid "The daily task (old log cleanup) is not scheduled; reload an admin page."
+msgstr "Ежедневная задача (очистка старого журнала) не запланирована; перезагрузите страницу администратора."
+
+msgid "Flux Mail"
+msgstr "Флакс-почта"
+
+msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; email goes through WordPress (wp_mail). Install and activate Flux Mail."
+msgstr "Flux Mail не активен. Сертификаты нельзя отправить по WhatsApp или SMS; электронная почта проходит через WordPress (wp_mail). Установите и активируйте Flux Mail."
+
+msgid "%s sending"
+msgstr "%sотправка"
+
+msgid "Sent through the Flux Mail connection: %s."
+msgstr "Отправляется через соединение Flux Mail:%s."
+
+msgid "Last successful send %s."
+msgstr "Последняя успешная отправка%s."
+
+msgid "Connections"
+msgstr "Соединения"
+
+msgid "No %1$s connection is set up; certificates are not sent by %1$s."
+msgstr "Соединение%1$sне установлено; сертификаты не отправляются%1$s."
+
+msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
+msgstr "Flux Mail не имеет активного соединения%s; сертификаты не могут быть отправлены по этому каналу."
+
+msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
+msgstr "Электронные письма с сертификатами проходят через Flux Mail с шаблоном организации (Связь > Электронная почта)."
+
+msgid "Emails"
+msgstr "Электронная почта"
+
+msgid "Theme compatibility"
+msgstr "Совместимость тем"
+
+msgid "The FluxWP theme (%s) is active; the events section and certificate page match the theme."
+msgstr "Тема FluxWP (%s) активна; раздел событий и страница сертификата соответствуют теме."
+
+msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
+msgstr "Активная тема:%s. Раздел событий появляется автоматически только в теме Örnek Vakfı; в других темах добавьте его с помощью шорткода."
+
+msgid "Ongoing events"
+msgstr "Текущие события"
+
+msgid "No open events; the events section is hidden on the site."
+msgstr "Никаких открытых мероприятий; раздел событий на сайте скрыт."
+
+msgid "Events"
+msgstr "События"
+
+msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
+msgstr "Открытое событие без опубликованной страницы:%s. Исправьте это с помощью параметра «Опубликовать на сайте» на экране редактирования мероприятия."
+
+msgid "%d open event, its page is published."
+msgid_plural "%d open events, their pages are published."
+msgstr[0] "Открыто мероприятие%d, его страница опубликована."
+msgstr[1] "%dоткрытые мероприятия, их страницы публикуются."
+msgstr[2] "%dоткрытые мероприятия, их страницы публикуются."
+
+msgid "Certificate lookup"
+msgstr "Поиск сертификата"
+
+msgid "The lookup form is on %s."
+msgstr "Форма поиска находится на%s."
+
+msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
+msgstr "Поиск включен, но ни одна из опубликованных страниц не имеет короткого кода [flx_sertifika_sorgula]."
+
+msgid "Flux Forms integration"
+msgstr "Интеграция Flux Forms"
+
+msgid "Flux Forms is installed; form automations can create and send certificates."
+msgstr "Установлен Flux Forms; средства автоматизации форм могут создавать и отправлять сертификаты."
+
+msgid "PDF generation on the server"
+msgstr "Генерация PDF на сервере"
+
+msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in the browser, when the certificate page is first opened."
+msgstr "Расширение PHP GD (FreeType) отсутствует: PDF-файлы и изображения создаются только в браузере при первом открытии страницы сертификата."
+
+msgid "%d certificate is missing its PDF or image."
+msgstr "В сертификате%dотсутствует PDF-файл или изображение."
+
+msgid "Create missing files"
+msgstr "Создать недостающие файлы"
+
+msgid "On. PDFs and images for new certificates are generated in the background on the server."
+msgstr "Вкл. PDF-файлы и изображения для новых сертификатов генерируются на сервере в фоновом режиме."
+
+msgid "Create missing certificate files"
+msgstr "Создать недостающие файлы сертификатов"
+
+msgid "Generates files on the server for up to 25 certificates that are missing a PDF or image."
+msgstr "Создает на сервере файлы для до 25 сертификатов, в которых отсутствует PDF-файл или изображение."
+
+msgid "Files created for %1$d certificates, %2$d errors."
+msgstr "Файлы, созданные для сертификатов%1$d, ошибок%2$d."
+
+msgid "%d certificates left, press again."
+msgstr "%dсертификаты остались, нажмите еще раз."
+
+msgid "Ongoing Events"
+msgstr "Текущие события"
+
+msgid "Your saplings are planted at these events. You too can contribute by donating saplings."
+msgstr "На этих мероприятиях высаживаются ваши саженцы. Вы тоже можете внести свой вклад, пожертвовав саженцы."
+
+msgid "Event location"
+msgstr "Место проведения мероприятия"
+
+msgctxt "context_39c93914dff5"
+msgid "l, F j, Y"
+msgstr "л, Ф ж, Й"
+
+msgid "sapling planted"
+msgid_plural "saplings planted"
+msgstr[0] "посажен саженец"
+msgstr[1] "посажены саженцы"
+msgstr[2] "посажены саженцы"
+
+msgid "sapling collected"
+msgid_plural "saplings collected"
+msgstr[0] "Саженец собран"
+msgstr[1] "саженцы собраны"
+msgstr[2] "саженцы собраны"
+
+msgctxt "context_a43dbd63afaf"
+msgid "F j"
+msgstr "Ф Дж"
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
+msgstr "Место посадки объявляется властями за 10 дней до мероприятия. Мы поделимся этим здесь, около%s."
+
+msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
+msgstr "Место посадки объявляется властями за 10 дней до мероприятия. Мы поделимся этим здесь."
+
+msgid "Location coming soon"
+msgstr "Местоположение скоро появится"
+
+msgid "Event site"
+msgstr "Сайт мероприятия"
+
+msgid "Get directions"
+msgstr "Проложить маршрут"
+
+msgid "Show map"
+msgstr "Показать карту"
+
+msgid "Loads Google Maps"
+msgstr "Загружает карты Google"
+
+msgid "Goal: %s saplings"
+msgstr "Цель: саженцы%s"
+
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "Completed event"
+msgstr "Завершенное мероприятие"
+
+msgid "Sapling counter"
+msgstr "Прилавок для саженцев"
+
+msgid "saplings planted"
+msgstr "посажены саженцы"
+
+msgid "%s person contributed"
+msgid_plural "%s people contributed"
+msgstr[0] "%sчеловек внёс вклад"
+msgstr[1] "%sчеловек внесли свой вклад"
+msgstr[2] "%sчеловек внесли свой вклад"
+
+msgctxt "context_a104e4060425"
+msgid "F j, Y"
+msgstr "Ф дж, Й"
+
+msgid "Time: %s"
+msgstr "Время:%s"
+
+msgid "This event is complete. Thank you to everyone who contributed."
+msgstr "Это событие завершено. Спасибо всем, кто внес свой вклад."
+
+msgid "Donate saplings for this event"
+msgstr "Пожертвуйте саженцы для этого мероприятия"
+
+msgid "Your donation is added to the counter instantly."
+msgstr "Ваше пожертвование добавляется на счетчик мгновенно."
+
+msgid "Tree planting events"
+msgstr "Мероприятия по посадке деревьев"
+
+msgid "Location to be announced"
+msgstr "Место будет объявлено позднее"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Donate saplings"
+msgstr "Пожертвовать саженцы"
+
+msgid "System"
+msgstr "Система"
+
+msgid "SMS"
+msgstr "СМС"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Queued"
+msgstr "В очереди"
+
+msgid "Sending"
+msgstr "Отправка"
+
+msgid "Sent"
+msgstr "Отправлено"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "The server has no GD (FreeType) extension."
+msgstr "Сервер не имеет расширения GD (FreeType)."
+
+msgid "This certificate's files are being prepared right now."
+msgstr "Файлы этого сертификата сейчас готовятся."
+
+msgid "Template not found."
+msgstr "Шаблон не найден."
+
+msgid "The background PDF could not be read on the server."
+msgstr "Фоновый PDF-файл не удалось прочитать на сервере."
+
+msgid "Link copied"
+msgstr "Ссылка скопирована"
+
+msgid "Copy the link:"
+msgstr "Скопируйте ссылку:"
+
+msgid "Sending…"
+msgstr "Отправка..."
+
+msgid "Done."
+msgstr "Готово."
+
+msgid "Something went wrong."
+msgstr "Что-то пошло не так."
+
+msgid "Connection error. Please try again."
+msgstr "Ошибка подключения. Пожалуйста, попробуйте еще раз."
+
+msgid "The PDF library could not be loaded (%s). Reload the page and try again."
+msgstr "Не удалось загрузить библиотеку PDF (%s). Перезагрузите страницу и повторите попытку."
+
+msgid "Find your certificate"
+msgstr "Найдите свой сертификат"
+
+msgid "Enter the phone number or email address you registered with. We will send your certificate link only to that address."
+msgstr "Введите номер телефона или адрес электронной почты, с которым вы регистрировались. Мы отправим ссылку на ваш сертификат только на этот адрес."
+
+msgid "0532 123 45 67 or name@example.com"
+msgstr "0532 123 45 67 или name@example.com"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "Name, e-mail or phone"
+msgstr "Имя, адрес электронной почты или телефон"
+
+msgid "Name, number or code"
+msgstr "Имя, номер или код"
+
+msgid "Recipient or subject"
+msgstr "Получатель или субъект"
+
+msgid "Saplings"
+msgstr "Саженцы"
+
+msgid "Queued to send"
+msgstr "В очереди на отправку"
+
+msgid "Send queue"
+msgstr "Отправить очередь"
+
+msgid "Sends appear here."
+msgstr "Отправления появляются здесь."
+
+msgid "Channel"
+msgstr "Канал"
+
+msgid "No people"
+msgstr "Нет людей"
+
+msgid "People"
+msgstr "Люди"
+
+msgid "Code"
+msgstr "Код"
+
+msgid "Queue is empty"
+msgstr "Очередь пуста"
+
+msgid "Number"
+msgstr "Номер"
+
+msgid "Cancel this certificate?"
+msgstr "Отменить этот сертификат?"
+
+msgid "People who received a certificate appear here."
+msgstr "Здесь появляются люди, получившие сертификат."
+
+msgid "No certificates"
+msgstr "Нет сертификатов"
+
+msgid "Send the certificate"
+msgstr "Отправить сертификат"
+
+msgid "New certificates appear here."
+msgstr "Здесь появляются новые сертификаты."
+
+msgid "Restore"
+msgstr "Восстановить"
+
+msgid "Restored"
+msgstr "Восстановлен"
+
+msgid "Retry"
+msgstr "Повторить попытку"
+
+msgid "Will be retried"
+msgstr "Будет повторена попытка"
+
+msgid "Summary"
+msgstr "Резюме"
+
+msgid "A cancelled certificate is hidden on the public page."
+msgstr "Аннулированный сертификат скрыт на общедоступной странице."
+
+msgid "%d open event, its page is published."
+msgstr "Открыто мероприятие%d, его страница опубликована."
+
+msgid "[['%dviews', 'tr']]"
+msgid_plural "[['%dviews', 'tr']]"
+msgstr[0] "[['Просмотры%d', 'tr']]"
+msgstr[1] "[['Просмотры%d', 'tr']]"
+msgstr[2] "[['Просмотры%d', 'tr']]"
+
+msgid "[['%dregistration', 'tr']]"
+msgid_plural "[['%dregistration', 'tr']]"
+msgstr[0] "[['Регистрация%d', 'tr']]"
+msgstr[1] "[['Регистрация%d', 'tr']]"
+msgstr[2] "[['Регистрация%d', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgstr "\\n Существует активный шаблон%d. Существует активный шаблон%d.\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr "\\n Сообщение%1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s. Сообщение%1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s.\\n"
+
+msgid "[['%dmessage could not be sent.', 'tr']]"
+msgid_plural "[['%dmessage could not be sent.', 'tr']]"
+msgstr[0] "[[' Не удалось отправить сообщение%d.', 'tr']]"
+msgstr[1] "[[' Не удалось отправить сообщение%d.', 'tr']]"
+msgstr[2] "[[' Не удалось отправить сообщение%d.', 'tr']]"
+
+msgid "[['%dmessage sent, no failure.', 'tr']]"
+msgid_plural "[['%dmessage sent, no failure.', 'tr']]"
+msgstr[0] "[[' Сообщение%dотправлено, ошибок нет.', 'tr']]"
+msgstr[1] "[[' Сообщение%dотправлено, ошибок нет.', 'tr']]"
+msgstr[2] "[[' Сообщение%dотправлено, ошибок нет.', 'tr']]"
+
+msgid "[['%dhas an open event, its page is live on the site.', 'tr']]"
+msgid_plural "[['%dhas open events, its pages are live on the site.', 'tr']]"
+msgstr[0] "[[' У%dоткрытое мероприятие, его страница активна на сайте.', 'tr']]"
+msgstr[1] "[['У%dесть открытые мероприятия, его страницы активны на сайте.', 'tr']]"
+msgstr[2] "[['У%dесть открытые мероприятия, его страницы активны на сайте.', 'tr']]"
+
+msgid "[['saplings were planted', 'tr']]"
+msgid_plural "[['saplings were planted', 'tr']]"
+msgstr[0] "[['саженцы посадили', 'тр']]"
+msgstr[1] "[['саженцы посадили', 'тр']]"
+msgstr[2] "[['саженцы посадили', 'тр']]"
+
+msgid "[['saplings were collected', 'tr']]"
+msgid_plural "[['saplings were collected', 'tr']]"
+msgstr[0] "[['саженцы были собраны', 'тр']]"
+msgstr[1] "[['саженцы были собраны', 'тр']]"
+msgstr[2] "[['саженцы были собраны', 'тр']]"
+
+msgid "[['%scontributed by', 'tr']]"
+msgid_plural "[['%scontributed by', 'tr']]"
+msgstr[0] "[['%sпредоставлен', 'tr']]"
+msgstr[1] "[['%sпредоставлен', 'tr']]"
+msgstr[2] "[['%sпредоставлен', 'tr']]"
+
+msgid "[['Certificate templates, certificate creation with live PDF preview, /certificate/{kod}verification page, email / SMS (Netgsm) / WhatsApp (Evolution API) sending, asynchronous queue, contact registration and detailed logs.', 'tr']]"
+msgstr "[['Шаблоны сертификатов, создание сертификатов с предварительным просмотром PDF в реальном времени, страница проверки /certificate/{kod}, отправка электронной почты/SMS (Netgsm)/WhatsApp (Evolution API), асинхронная очередь, регистрация контактов и подробные журналы.', 'tr']]"
+
+msgid "\\n There is active template%d. There is active template%d.\\n"
+msgid_plural "\\n There is active template%d. There is active template%d.\\n"
+msgstr[0] "\\n Существует активный шаблон%d. Существует активный шаблон%d.\\n"
+msgstr[1] "\\n Существует активный шаблон%d. Существует активный шаблон%d.\\n"
+msgstr[2] "\\n Существует активный шаблон%d. Существует активный шаблон%d.\\n"
+
+msgid "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgid_plural "\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n"
+msgstr[0] "\\n Сообщение%1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s. Сообщение%1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s.\\n"
+msgstr[1] "\\n Сообщение%1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s. Сообщение%1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s.\\n"
+msgstr[2] "\\n Сообщение%1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s. Сообщение%1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s.\\n"

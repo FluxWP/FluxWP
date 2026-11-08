@@ -36,6 +36,8 @@ TARGETS = {
     'ru': {'code': 'ru', 'name': 'Русский'},
 }
 
+SOURCE_LANGUAGE = 'en'
+
 DELIM = "\n<<<FLX_SPLIT>>>\n"
 
 CURLY_KEYS = [
@@ -46,8 +48,8 @@ CURLY_KEYS = [
 
 def call_translation_api(text, tl):
     endpoints = [
-        f'https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=en&tl={tl}',
-        f'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl={tl}&dt=t'
+        f'https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl={SOURCE_LANGUAGE}&tl={tl}',
+        f'https://translate.googleapis.com/translate_a/single?client=gtx&sl={SOURCE_LANGUAGE}&tl={tl}&dt=t'
     ]
     
     for attempt in range(8):
@@ -102,6 +104,7 @@ def protect_string(text):
     s = re.sub(r'!?\[([^\]]*)\]\(([^)]+)\)', md_link_sub, s)
     # 8. Standalone URLs
     s = re.sub(r'https?://[^\s<>"\'\)\]]+', lambda m: add_ph(m.group(0)), s)
+    s = re.sub(r'\{\{[^{}]+\}\}', lambda m: add_ph(m.group(0)), s)
     # 9. Curly template variables
     s = re.sub(r'\{(?:[A-Za-z_][A-Za-z0-9_.:-]*|url:@[^}]+|id:@[^}]+)\}', lambda m: add_ph(m.group(0)), s)
     # 10. Printf specifiers
@@ -478,6 +481,29 @@ def main():
         for lang in langs:
             candidate = json.loads((WORKSPACE / f'{lang}.json').read_text(encoding='utf-8'))
             print(json.dumps(validate(candidate, canonical, allow_blank=False)))
+
+
+# For machine-translated marker names (notably very short Arabic UI labels),
+# numeric markers provide a literal, language-neutral retry path.
+def translate_numeric_markers(text, target):
+    masked, tokens = protect_string(text)
+    def scheme(match):
+        index = len(tokens); tokens.append(match[0]); return f' FLXTOK{index}END '
+    masked = re.sub(r'https?://(?=\s|[.,;!?)])', scheme, masked)
+    marker_base = 910000
+    while any(f'[{marker_base + index}]' in text for index in range(len(tokens))): marker_base += 1000
+    for index in range(len(tokens)):
+        masked = masked.replace(f'FLXTOK{index}END', f'[{marker_base + index}]')
+    translated = unicodedata.normalize('NFKC', call_translation_api(masked, target))
+    for index, token in reversed(list(enumerate(tokens))):
+        number = marker_base + index
+        # Arabic digits are matched as Unicode decimals; normalize only the marker.
+        pattern = re.compile(r'[\[【⟦]\s*([\d\s,]+)\s*[\]】⟧]')
+        literal = (' ' + token + ' ') if token.startswith(('http://', 'https://')) else token
+        translated = pattern.sub(lambda m: literal if ''.join(str(unicodedata.digit(c)) for c in m[1] if c.isdecimal()) == str(number) else m[0], translated)
+    if protected(text) != protected(translated):
+        raise ValueError('Numeric marker retry changed protected content')
+    return translated
 
 if __name__ == '__main__':
     main()

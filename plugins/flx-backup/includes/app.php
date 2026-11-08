@@ -44,21 +44,21 @@ add_filter( 'rest_post_dispatch', 'flxy_app_nocache', 10, 3 );
 
 function flxy_app_type_label( $type ) {
 	$labels = array(
-		'full'       => __( 'Tam yedek', 'flx-backup' ),
-		'db'         => __( 'Veritabanı', 'flx-backup' ),
-		'files'      => __( 'Dosyalar', 'flx-backup' ),
-		'pre_update' => __( 'Güncelleme öncesi', 'flx-backup' ),
-		'manual'     => __( 'Elle', 'flx-backup' ),
+		'full'       => __( 'Full backup', 'flx-backup' ),
+		'db'         => __( 'Database', 'flx-backup' ),
+		'files'      => __( 'Files', 'flx-backup' ),
+		'pre_update' => __( 'Pre-update', 'flx-backup' ),
+		'manual'     => __( 'Manual', 'flx-backup' ),
 	);
 	return isset( $labels[ $type ] ) ? $labels[ $type ] : (string) $type;
 }
 
 function flxy_app_status_label( $status ) {
 	$labels = array(
-		'running' => __( 'Sürüyor', 'flx-backup' ),
-		'done'    => __( 'Tamam', 'flx-backup' ),
-		'ok'      => __( 'Tamam', 'flx-backup' ),
-		'failed'  => __( 'Hata', 'flx-backup' ),
+		'running' => __( 'Running', 'flx-backup' ),
+		'done'    => __( 'Done', 'flx-backup' ),
+		'ok'      => __( 'Done', 'flx-backup' ),
+		'failed'  => __( 'Error', 'flx-backup' ),
 	);
 	return isset( $labels[ $status ] ) ? $labels[ $status ] : (string) $status;
 }
@@ -114,7 +114,7 @@ function flxy_app_list( WP_REST_Request $req ) {
 function flxy_app_get( WP_REST_Request $req ) {
 	$r = flxy_backup_get( (string) $req['id'] );
 	if ( ! $r ) {
-		return new WP_Error( 'flxy_not_found', __( 'Yedek bulunamadı.', 'flx-backup' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxy_not_found', __( 'Backup not found.', 'flx-backup' ), array( 'status' => 404 ) );
 	}
 	return rest_ensure_response( flxy_app_public( $r ) );
 }
@@ -141,7 +141,7 @@ function flxy_app_create( WP_REST_Request $req ) {
 function flxy_app_delete( WP_REST_Request $req ) {
 	$id = (string) $req['id'];
 	if ( ! flxy_backup_get( $id ) ) {
-		return new WP_Error( 'flxy_not_found', __( 'Yedek bulunamadı.', 'flx-backup' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxy_not_found', __( 'Backup not found.', 'flx-backup' ), array( 'status' => 404 ) );
 	}
 	if ( class_exists( 'FLXY_Runner' ) ) {
 		$state = FLXY_Runner::load_backup();

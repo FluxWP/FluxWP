@@ -112,26 +112,26 @@ add_action(
 				'page'   => $post ? (int) $post->ID : 0,
 				'md'     => $post ? flxwk_md_url( $post ) : flxwk_home_url( 'index.md' ),
 				'i18n'   => array(
-					'copied'      => __( 'Kopyalandı', 'flx-wiki' ),
-					'copy'        => __( 'Kopyala', 'flx-wiki' ),
-					'copyFail'    => __( 'Kopyalanamadı', 'flx-wiki' ),
-					'searching'   => __( 'Aranıyor…', 'flx-wiki' ),
-					'noResults'   => __( 'Sonuç yok. Başka bir kelime deneyin.', 'flx-wiki' ),
-					'typeToFind'  => __( 'Aramak için yazın', 'flx-wiki' ),
-					'results'     => __( '%d sonuç', 'flx-wiki' ),
-					'askAi'       => __( 'AI\'a sor', 'flx-wiki' ),
-					'askHint'     => __( 'Sorunuzu yazın; cevap yalnız wiki sayfalarından verilir.', 'flx-wiki' ),
-					'thinking'    => __( 'Wiki okunuyor, cevap hazırlanıyor…', 'flx-wiki' ),
-					'sources'     => __( 'Kaynaklar', 'flx-wiki' ),
-					'askFail'     => __( 'Cevap alınamadı. Biraz sonra tekrar deneyin.', 'flx-wiki' ),
-					'searchTab'   => __( 'Ara', 'flx-wiki' ),
-					'loginToAsk'  => __( 'Soru sormak için giriş yapın.', 'flx-wiki' ),
+					'copied'      => __( 'Copied', 'flx-wiki' ),
+					'copy'        => __( 'Copy', 'flx-wiki' ),
+					'copyFail'    => __( 'Could not copy', 'flx-wiki' ),
+					'searching'   => __( 'Searching…', 'flx-wiki' ),
+					'noResults'   => __( 'No results. Try another word.', 'flx-wiki' ),
+					'typeToFind'  => __( 'Type to search', 'flx-wiki' ),
+					'results'     => __( '%d results', 'flx-wiki' ),
+					'askAi'       => __( 'Ask AI', 'flx-wiki' ),
+					'askHint'     => __( 'Type your question; the answer comes only from the wiki pages.', 'flx-wiki' ),
+					'thinking'    => __( 'Reading the wiki, preparing an answer…', 'flx-wiki' ),
+					'sources'     => __( 'Sources', 'flx-wiki' ),
+					'askFail'     => __( 'Could not get an answer. Try again in a moment.', 'flx-wiki' ),
+					'searchTab'   => __( 'Search', 'flx-wiki' ),
+					'loginToAsk'  => __( 'Log in to ask a question.', 'flx-wiki' ),
 					/* translators: 1: aranan, 2: düzeltilmiş sorgu */
-					'fixed'       => __( '"%1$s" bulunamadı; "%2$s" için sonuçlar gösteriliyor.', 'flx-wiki' ),
+					'fixed'       => __( 'No results for "%1$s"; showing results for "%2$s".', 'flx-wiki' ),
 					/* translators: 1: sonuç sayısı, 2: sorgu */
-					'countFor'    => _n( '"%2$s" için %1$s sonuç', '"%2$s" için %1$s sonuç', 2, 'flx-wiki' ),
+					'countFor'    => _n( '%1$s result for "%2$s"', '%1$s results for "%2$s"', 2, 'flx-wiki' ),
 					/* translators: %d: sonuç sayısı */
-					'seeAll'      => __( '%d sonucun hepsini gör', 'flx-wiki' ),
+					'seeAll'      => __( 'See all %d results', 'flx-wiki' ),
 				),
 			)
 		);
@@ -156,7 +156,7 @@ add_filter(
 		if ( is_post_type_archive( FLXWK_PT ) ) {
 			$q             = flxwk_query();
 			/* translators: %s: arama sorgusu */
-			$parts['title'] = '' !== $q ? sprintf( __( '"%s" için wiki araması', 'flx-wiki' ), $q ) : flxwk_title();
+			$parts['title'] = '' !== $q ? sprintf( __( 'Wiki search for "%s"', 'flx-wiki' ), $q ) : flxwk_title();
 		} elseif ( is_singular( FLXWK_PT ) ) {
 			$parts['title'] = single_post_title( '', false ) . ' – ' . flxwk_title();
 		}

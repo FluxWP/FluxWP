@@ -13,12 +13,12 @@ class FLXCM_Gateway_Bank extends WC_Payment_Gateway {
 		$this->id                 = FLXCM_Bank::ID;
 		$this->icon               = '';
 		$this->has_fields         = false;
-		$this->method_title       = __( 'Havale/EFT (dekont yüklemeli)', 'flx-commerce' );
-		$this->method_description = __( 'Müşteri siparişe özel referansla ödeme yapar ve dekontu sitede yükler. Ödemeyi onaylayınca sipariş hazırlanmaya geçer. Flux Commerce.', 'flx-commerce' );
+		$this->method_title       = __( 'Bank transfer (with receipt upload)', 'flx-commerce' );
+		$this->method_description = __( 'The customer pays with an order-specific reference and uploads the receipt on the site. When you confirm the payment the order moves on to processing. Flux Commerce.', 'flx-commerce' );
 		$this->supports           = array( 'products' );
 		$this->init_form_fields();
 		$this->init_settings();
-		$this->title       = $this->get_option( 'title' ) ? $this->get_option( 'title' ) : __( 'Havale/EFT', 'flx-commerce' );
+		$this->title       = $this->get_option( 'title' ) ? $this->get_option( 'title' ) : __( 'Bank transfer', 'flx-commerce' );
 		$this->description = $this->get_option( 'description' ) ? $this->get_option( 'description' ) : FLXCM_Bank::default_description();
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 	}
@@ -26,51 +26,51 @@ class FLXCM_Gateway_Bank extends WC_Payment_Gateway {
 	public function init_form_fields() {
 		$this->form_fields = array(
 			'enabled'     => array(
-				'title'   => __( 'Açık', 'flx-commerce' ),
+				'title'   => __( 'Enabled', 'flx-commerce' ),
 				'type'    => 'checkbox',
-				'label'   => __( 'Havale/EFT ile ödeme al', 'flx-commerce' ),
+				'label'   => __( 'Accept payments by bank transfer', 'flx-commerce' ),
 				'default' => 'no',
 			),
 			'title'       => array(
-				'title'       => __( 'Başlık', 'flx-commerce' ),
+				'title'       => __( 'Title', 'flx-commerce' ),
 				'type'        => 'text',
-				'description' => __( 'Boş = site dilinde "Havale/EFT".', 'flx-commerce' ),
+				'description' => __( 'Empty = "Bank transfer" in the site language.', 'flx-commerce' ),
 				'default'     => '',
-				'placeholder' => __( 'Havale/EFT', 'flx-commerce' ),
+				'placeholder' => __( 'Bank transfer', 'flx-commerce' ),
 			),
 			'description' => array(
-				'title'       => __( 'Ödeme sayfasındaki metin', 'flx-commerce' ),
+				'title'       => __( 'Text on the checkout page', 'flx-commerce' ),
 				'type'        => 'textarea',
-				'description' => __( 'Boş = site dilinde varsayılan metin.', 'flx-commerce' ),
+				'description' => __( 'Empty = the default text in the site language.', 'flx-commerce' ),
 				'default'     => '',
 				'placeholder' => FLXCM_Bank::default_description(),
 			),
 			'holder'      => array(
-				'title'       => __( 'Alıcı (hesap sahibi)', 'flx-commerce' ),
+				'title'       => __( 'Recipient (account holder)', 'flx-commerce' ),
 				'type'        => 'text',
-				'description' => __( 'Boş = WooCommerce "Doğrudan banka havalesi"nin ilk hesabı.', 'flx-commerce' ),
+				'description' => __( 'Empty = the first account of WooCommerce\'s "Direct bank transfer".', 'flx-commerce' ),
 				'default'     => '',
 			),
 			'iban'        => array(
 				'title'       => 'IBAN',
 				'type'        => 'text',
-				'description' => __( 'Boş = WooCommerce "Doğrudan banka havalesi"nin ilk hesabı (alıcı ve banka da oradan gelir).', 'flx-commerce' ),
+				'description' => __( 'Empty = the first account of WooCommerce\'s "Direct bank transfer" (recipient and bank come from it too).', 'flx-commerce' ),
 				'default'     => '',
 			),
 			'bank'        => array(
-				'title'   => __( 'Banka (isteğe bağlı)', 'flx-commerce' ),
+				'title'   => __( 'Bank (optional)', 'flx-commerce' ),
 				'type'    => 'text',
 				'default' => '',
 			),
 			'ref_format'  => array(
-				'title'       => __( 'Açıklama', 'flx-commerce' ),
+				'title'       => __( 'Reference', 'flx-commerce' ),
 				'type'        => 'text',
-				'description' => __( 'Müşterinin havale açıklamasına yazacağı metin. Yer tutucular: {kod} (önek + sipariş no), {siparis}, {ad}, {site}. Boş: {kod} {ad}', 'flx-commerce' ),
+				'description' => __( 'What the customer writes in the transfer description. Placeholders: {kod} (prefix + order no), {siparis}, {ad}, {site}. Empty: {kod} {ad}', 'flx-commerce' ),
 				'default'     => '',
 				'placeholder' => '{kod} {ad}',
 			),
 			'ref_prefix'  => array(
-				'title'   => __( 'Kod öneki', 'flx-commerce' ),
+				'title'   => __( 'Code prefix', 'flx-commerce' ),
 				'type'    => 'text',
 				'default' => 'SP',
 			),
@@ -87,7 +87,7 @@ class FLXCM_Gateway_Bank extends WC_Payment_Gateway {
 			return array( 'result' => 'failure' );
 		}
 		FLXCM_Bank::reference( $order );
-		$order->update_status( 'on-hold', __( 'Havale/EFT: ödeme bekleniyor.', 'flx-commerce' ) );
+		$order->update_status( 'on-hold', __( 'Bank transfer: awaiting payment.', 'flx-commerce' ) );
 		wc_maybe_reduce_stock_levels( $order_id );
 		if ( WC()->cart ) {
 			WC()->cart->empty_cart();

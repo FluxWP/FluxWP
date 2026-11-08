@@ -1,0 +1,1303 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Aggregate mobile app usage"
+msgstr "Utilisation globale des applications mobiles"
+
+msgid "Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice."
+msgstr "Facultatif et désactivé par défaut. Seuls les comptes qui s'inscrivent également dans l'application sont pris en compte. Les totaux iOS/Android complétés le jour UTC sont envoyés à votre hub de télémétrie uniquement pour les cohortes d'au moins cinq comptes. Aucun nom, identifiant de compte, contenu, URL de site ou localisation GPS n'est inclus. Le pays provient des paramètres du site. Le partage d’utilisation générale doit également être activé. Les fonctionnalités de connexion et d’application ne dépendent pas de ce choix."
+
+msgid "Share aggregate mobile app usage"
+msgstr "Partager l'utilisation globale des applications mobiles"
+
+msgid "Application"
+msgstr "Demande"
+
+msgid "Menu (all items)"
+msgstr "Menu (tous les articles)"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Accounts"
+msgstr "Comptes"
+
+msgid "App settings"
+msgstr "Paramètres de l'application"
+
+msgid "Screens"
+msgstr "Écrans"
+
+msgid "Native modules"
+msgstr "Modules natifs"
+
+msgid "Admin menu"
+msgstr "Menu administrateur"
+
+msgid "Primary"
+msgstr "Primaire"
+
+msgid "Accent"
+msgstr "Accent"
+
+msgid "Background"
+msgstr "Contexte"
+
+msgid "Surface"
+msgstr "Surface"
+
+msgid "Text"
+msgstr "Texte"
+
+msgid "Appearance of the desktop and mobile app. Empty colours come from the theme (theme.json) and the Flux Admin colour. Menus are filtered by the user's role: an item they cannot see in the admin does not show in the app either."
+msgstr "Apparition de l’application de bureau et mobile. Les couleurs vides proviennent du thème (theme.json) et de la couleur Flux Admin. Les menus sont filtrés selon le rôle de l'utilisateur : un élément qu'il ne peut pas voir dans l'administrateur ne s'affiche pas non plus dans l'application."
+
+msgid "Theme"
+msgstr "Thème"
+
+msgid "Mode"
+msgstr "Mode"
+
+msgid "Follow device"
+msgstr "Suivre l'appareil"
+
+msgid "On"
+msgstr "Sur"
+
+msgid "Dark"
+msgstr "Sombre"
+
+msgid "Corners"
+msgstr "Coins"
+
+msgid "From theme"
+msgstr "Du thème"
+
+msgid "Sharp"
+msgstr "Pointu"
+
+msgid "Slight"
+msgstr "Légère"
+
+msgid "Medium"
+msgstr "Moyen"
+
+msgid "Round"
+msgstr "Rond"
+
+msgid "Density"
+msgstr "Densité"
+
+msgid "Comfortable"
+msgstr "Confortable"
+
+msgid "Compact"
+msgstr "Compacte"
+
+msgid "Font"
+msgstr "Police"
+
+msgid "Heading font"
+msgstr "Police de titre"
+
+msgid "From theme (%s)"
+msgstr "À partir du thème (%s)"
+
+msgid "Mobile"
+msgstr "Mobile"
+
+msgid "Navigation"
+msgstr "Navigation"
+
+msgid "Tab bar + drawer"
+msgstr "Barre d'onglets + tiroir"
+
+msgid "Tab bar only"
+msgstr "Barre d'onglets uniquement"
+
+msgid "Drawer only"
+msgstr "Tiroir uniquement"
+
+msgid "Home screen"
+msgstr "Écran d'accueil"
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "Tab bar (up to 5)"
+msgstr "Barre d'onglets (jusqu'à 5)"
+
+msgid "If empty, the Flux Admin mobile bottom bar setting is used. Tabs the user cannot open are hidden; \"Menu\" always stays reachable."
+msgstr "S'il est vide, le paramètre de la barre inférieure mobile de Flux Admin est utilisé. Les onglets que l'utilisateur ne peut pas ouvrir sont masqués ; Le « Menu » reste toujours accessible."
+
+msgid "Label"
+msgstr "Étiquette"
+
+msgid "Icon (home, chat…)"
+msgstr "Icône (accueil, chat...)"
+
+msgid "Badge"
+msgstr "Insigne"
+
+msgid "Drawer (role menu groups)"
+msgstr "Tiroir (groupes de menus de rôles)"
+
+msgid "Logo in the top bar"
+msgstr "Logo dans la barre supérieure"
+
+msgid "Site switcher"
+msgstr "Changeur de site"
+
+msgid "Top bar"
+msgstr "Barre supérieure"
+
+msgid "Large title"
+msgstr "Grand titre"
+
+msgid "Desktop"
+msgstr "Bureau"
+
+msgid "The sidebar follows the role's Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):"
+msgstr "La barre latérale suit la disposition du menu Flux Admin du rôle (épingles et groupes). Raccourcis toujours affichés dans la palette de commandes (⌘K) :"
+
+msgid "A disabled screen does not open natively in the app; that page opens in the web view."
+msgstr "Un écran désactivé ne s’ouvre pas nativement dans l’application ; cette page s'ouvre dans la vue Web."
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Preview"
+msgstr "Aperçu"
+
+msgid "Preview uses your role; other roles see their own menus."
+msgstr "L'aperçu utilise votre rôle ; les autres rôles voient leurs propres menus."
+
+msgid "Which apps may connect to this site, store links and notifications."
+msgstr "Quelles applications peuvent se connecter à ce site, stocker des liens et des notifications."
+
+msgid "Main FluxWP app"
+msgstr "Application FluxWP principale"
+
+msgid "Allow the FluxWP desktop and mobile app (flx-masaustu, flx-mobil)"
+msgstr "Autoriser l'application de bureau et mobile FluxWP (flx-masaustu, flx-mobil)"
+
+msgid "When off, only the branded apps below can connect; open sessions of the main app end at their next refresh."
+msgstr "Lorsqu'elle est désactivée, seules les applications de marque ci-dessous peuvent se connecter ; les sessions ouvertes de l'application principale se terminent lors de leur prochaine actualisation."
+
+msgid "Store links"
+msgstr "Liens vers les magasins"
+
+msgid "Send push notifications to mobile devices (Expo)"
+msgstr "Envoyer des notifications push aux appareils mobiles (Expo)"
+
+msgid "Hide content on the lock screen (only the notification type shows)"
+msgstr "Masquer le contenu sur l'écran de verrouillage (seul le type de notification s'affiche)"
+
+msgid "Saved (type to replace)"
+msgstr "Enregistré (type à remplacer)"
+
+msgid "Expo access token (optional)"
+msgstr "Jeton d'accès à l'Expo (facultatif)"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Only needed when enhanced push security is on in the Expo account. The desktop app does not receive push; it shows notifications through sync while open."
+msgstr "Nécessaire uniquement lorsque la sécurité push améliorée est activée dans le compte Expo. L'application de bureau ne reçoit pas de push ; il affiche les notifications via synchronisation lorsqu'il est ouvert."
+
+msgid "Devices: %1$d · notifications on: %2$d"
+msgstr "Appareils :%1$d· notifications sur :%2$d"
+
+msgid "Last send %1$s: %2$d sent, %3$d failed"
+msgstr "Dernier envoi%1$s:%2$denvoyé,%3$da échoué"
+
+msgid "Web view"
+msgstr "Vue Web"
+
+msgid "Hide the admin bar on site pages opened in the app"
+msgstr "Masquer la barre d'administration sur les pages du site ouvertes dans l'application"
+
+msgid "Developer mode"
+msgstr "Mode développeur"
+
+msgid "Allow Expo development redirects (exp://…/--/oauth/callback)"
+msgstr "Autoriser les redirections de développement Expo (exp://.../--/oauth/callback)"
+
+msgid "Turn on only on test sites."
+msgstr "Activez uniquement sur les sites de test."
+
+msgid "Branded apps"
+msgstr "Applications de marque"
+
+msgid "An app published under the organisation's own name connects to this site only if it is listed here. Usually filled in by the preset."
+msgstr "Une application publiée sous le nom propre de l'organisation ne se connecte à ce site que si elle y est répertoriée. Généralement rempli par le préréglage."
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Platform"
+msgstr "Plateforme"
+
+msgid "Redirect URIs (one per line)"
+msgstr "URI de redirection (un par ligne)"
+
+msgid "Redirect URIs"
+msgstr "Redirection des URI"
+
+msgid "Connection details"
+msgstr "Détails de connexion"
+
+msgid "Active preset"
+msgstr "Préréglage actif"
+
+msgid "Send me a test notification"
+msgstr "Envoyez-moi une notification de test"
+
+msgid "Test notification: this device receives notifications."
+msgstr "Notification de test : cet appareil reçoit des notifications."
+
+msgid "No device is signed in to the app."
+msgstr "Aucun appareil n'est connecté à l'application."
+
+msgid "User"
+msgstr "Utilisateur"
+
+msgid "Device"
+msgstr "Appareil"
+
+msgid "Last seen"
+msgstr "Vu pour la dernière fois"
+
+msgid "Unnamed device"
+msgstr "Appareil sans nom"
+
+msgid "Off"
+msgstr "Désactivé"
+
+msgid "Sign this device out?"
+msgstr "Déconnecter cet appareil ?"
+
+msgid "Sign out"
+msgstr "Se déconnecter"
+
+msgid "%d screen"
+msgid_plural "%d screens"
+msgstr[0] "Écran %d"
+msgstr[1] "Écrans%d"
+
+msgid "General"
+msgstr "Général"
+
+msgid "Appearance"
+msgstr "Apparence"
+
+msgid "Applications"
+msgstr "Applications"
+
+msgid "Modules"
+msgstr "Modules"
+
+msgid "Menu"
+msgstr "Menus"
+
+msgid "OAuth clients"
+msgstr "Clients OAuth"
+
+msgid "All access"
+msgstr "Tous les accès"
+
+msgid "App access"
+msgstr "Accès aux applications"
+
+msgid "You are not allowed to do this."
+msgstr "Vous n'êtes pas autorisé à faire cela."
+
+msgid "All users"
+msgstr "Tous les utilisateurs"
+
+msgid "Users who can edit content"
+msgstr "Utilisateurs pouvant modifier le contenu"
+
+msgid "Administrators only"
+msgstr "Administrateurs uniquement"
+
+msgid "Nothing here yet."
+msgstr "Rien ici encore."
+
+msgid "Type"
+msgstr "Tapez"
+
+msgid "Created"
+msgstr "Créé"
+
+msgid "Last used"
+msgstr "Dernière utilisation"
+
+msgid "Expires"
+msgstr "Expire"
+
+msgid "API key"
+msgstr "Clé API"
+
+msgid "App session"
+msgstr "Session d'application"
+
+msgid "Never"
+msgstr "Jamais"
+
+msgid "Remove this access?"
+msgstr "Supprimer cet accès ?"
+
+msgid "Remove"
+msgstr "Supprimer"
+
+msgid "Copy it now; it will not be shown again."
+msgstr "Copiez-le maintenant ; il ne sera plus affiché."
+
+msgid "Saved."
+msgstr "Enregistré."
+
+msgid "Test notification: %1$d sent, %2$d failed, %3$d skipped."
+msgstr "Notification de test :%1$denvoyé,%2$da échoué,%3$dignoré."
+
+msgid "Give the key a name."
+msgstr "Donnez un nom à la clé."
+
+msgid "Could not save."
+msgstr "Impossible d'enregistrer."
+
+msgid "Desktop app"
+msgstr "Application de bureau"
+
+msgid "Use the panel as a separate app on your Mac or Windows computer. New versions install themselves."
+msgstr "Utilisez le panneau comme une application distincte sur votre ordinateur Mac ou Windows. Les nouvelles versions s'installent elles-mêmes."
+
+msgid "Download for macOS"
+msgstr "Télécharger pour macOS"
+
+msgid "Download for Windows"
+msgstr "Télécharger pour Windows"
+
+msgid "macOS 11 or later (Apple Silicon and Intel). Windows 10 and 11 (64-bit)."
+msgstr "macOS 11 ou version ultérieure (Apple Silicon et Intel). Windows 10 et 11 (64 bits)."
+
+msgid "Windows MSI package (managed deployment)"
+msgstr "Package Windows MSI (déploiement géré)"
+
+msgid "In the Flux Desktop app, press \"Sign in\": you sign in to this site in the browser and approve; the app then works with your permissions. For other tools (MCP clients, scripts) you can create a personal API key."
+msgstr "Dans l'application Flux Desktop, appuyez sur « Se connecter » : vous vous connectez à ce site dans le navigateur et approuvez ; l'application fonctionne alors avec vos autorisations. Pour les autres outils (clients MCP, scripts) vous pouvez créer une clé API personnelle."
+
+msgid "My devices"
+msgstr "Mes appareils"
+
+msgid "Connected apps"
+msgstr "Applications connectées"
+
+msgid "API keys"
+msgstr "Clés API"
+
+msgid "e.g. Claude MCP"
+msgstr "par ex. Claude MCP"
+
+msgid "Valid for"
+msgstr "Valable pour"
+
+msgid "%d days"
+msgstr "%djours"
+
+msgid "Create key"
+msgstr "Créer une clé"
+
+msgid "Usage: send Authorization: Bearer flxak_… to any REST endpoint and MCP (/wp-json/flx-mcp/v1/mcp). The key acts with your permissions."
+msgstr "Utilisation : envoyer l'autorisation : Bearer flxak_... à n'importe quel point de terminaison REST et MCP (/wp-json/flx-mcp/v1/mcp). La clé agit avec vos autorisations."
+
+msgid "Sign-in, session and panel settings for the desktop (macOS, Windows) and mobile (iOS, Android) app."
+msgstr "Paramètres de connexion, de session et de panneau pour l’application de bureau (macOS, Windows) et mobile (iOS, Android)."
+
+msgid "Access token lifetime"
+msgstr "Durée de vie du jeton d'accès"
+
+msgid "minutes"
+msgstr "minutes"
+
+msgid "Session lifetime (when unused)"
+msgstr "Durée de vie de la session (lorsqu'elle n'est pas utilisée)"
+
+msgid "days"
+msgstr "jours"
+
+msgid "The period renews while the app is used; after this many days without use, sign-in is required again."
+msgstr "La période se renouvelle pendant l'utilisation de l'application ; après plusieurs jours sans utilisation, vous devrez à nouveau vous connecter."
+
+msgid "MCP clients"
+msgstr "Clients MCP"
+
+msgid "Allow self-registration (MCP clients such as Claude connect via OAuth; every connection still needs your approval)"
+msgstr "Autoriser l'auto-inscription (les clients MCP tels que Claude se connectent via OAuth ; chaque connexion nécessite toujours votre approbation)"
+
+msgid "Admin session"
+msgstr "Session d'administration"
+
+msgid "Let the app open menus without a native screen as admin pages (one-time sign-in link)"
+msgstr "Laissez l'application ouvrir les menus sans écran natif en tant que pages d'administration (lien de connexion unique)"
+
+msgid "Sign in with code"
+msgstr "Connectez-vous avec le code"
+
+msgid "Let donors sign in to the app with a code sent to their email or phone"
+msgstr "Permettez aux donateurs de se connecter à l'application avec un code envoyé sur leur e-mail ou leur téléphone"
+
+msgid "Create a customer account if none exists but there is a donation with these details"
+msgstr "Créez un compte client s'il n'en existe pas mais qu'il y a un don avec ces coordonnées"
+
+msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
+msgstr "Permettez au personnel de se connecter également avec un code (non recommandé ; le personnel utilise OAuth dans le navigateur)"
+
+msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
+msgstr "Les codes téléphoniques sont envoyés via Flux Call Center (WhatsApp); sans cela, e-mail uniquement."
+
+msgid "Can create API keys"
+msgstr "Peut créer des clés API"
+
+msgid "Devices"
+msgstr "Appareils"
+
+msgid "Sessions and keys"
+msgstr "Séances et clés"
+
+msgid "Built-in"
+msgstr "Intégré"
+
+msgid "Self-registered (MCP)"
+msgstr "Auto-inscrit (MCP)"
+
+msgid "Added manually"
+msgstr "Ajouté manuellement"
+
+msgid "with secret"
+msgstr "avec secret"
+
+msgid "Delete the application and all of its sessions?"
+msgstr "Supprimer l'application et toutes ses sessions ?"
+
+msgid "Add application"
+msgstr "Ajouter une application"
+
+msgid "Generate a client secret (for server-side apps; not needed for desktop/mobile)"
+msgstr "Générer un secret client (pour les applications côté serveur ; non nécessaire pour les ordinateurs de bureau/mobiles)"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Manifest"
+msgstr "Manifeste"
+
+msgid "Native screen"
+msgstr "Écran natif"
+
+msgid "Plugin screens in the app. Manifest modules are drawn from the same definition on desktop and mobile; native modules open with the app's own screen. A disabled module's menu opens as an admin page in the app. Who sees what follows capabilities and the role menu."
+msgstr "Écrans de plug-in dans l'application. Les modules manifestes sont tirés de la même définition sur ordinateur et mobile ; les modules natifs s'ouvrent avec le propre écran de l'application. Le menu d'un module désactivé s'ouvre en tant que page d'administration dans l'application. Qui voit ce qui suit les capacités et le menu des rôles."
+
+msgid "No modules registered."
+msgstr "Aucun module enregistré."
+
+msgid "Module"
+msgstr "Module"
+
+msgid "In the app"
+msgstr "Dans l'application"
+
+msgid "Capability"
+msgstr "Capacité"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Manifest error: %s"
+msgstr "Erreur manifeste :%s"
+
+msgid "Separate item"
+msgstr "Article séparé"
+
+msgid "The app's side menu is the same as the panel menu for the user's role (order, groups, names, hidden items). Whether each item shows on web, mobile or desktop is chosen in the menu editor. An item with Web off shows only in the app."
+msgstr "Le menu latéral de l'application est le même que le menu du panneau pour le rôle de l'utilisateur (ordre, groupes, noms, éléments masqués). L'affichage de chaque élément sur le Web, sur mobile ou sur ordinateur est choisi dans l'éditeur de menu. Un élément avec Web désactivé s'affiche uniquement dans l'application."
+
+msgid "Platform selection needs Flux Admin 1.3.0 or later."
+msgstr "La sélection de la plateforme nécessite Flux Admin 1.3.0 ou version ultérieure."
+
+msgid "Open menu editor"
+msgstr "Ouvrir l'éditeur de menu"
+
+msgid "Default"
+msgstr "Par défaut"
+
+msgid "Items hidden by platform"
+msgstr "Éléments masqués par plateforme"
+
+msgid "None: every item shows everywhere."
+msgstr "Aucun : chaque élément apparaît partout."
+
+msgid "Role"
+msgstr "Rôle"
+
+msgid "Visible"
+msgstr "Visible"
+
+msgid "Hidden"
+msgstr "Caché"
+
+msgid "FluxWP Mobile"
+msgstr "FluxWP Mobile"
+
+msgid "No mobile brand client (app_clients) is defined; a branded mobile app cannot connect to this site."
+msgstr "Aucun client de marque mobile (app_clients) n'est défini ; une application mobile de marque ne peut pas se connecter à ce site."
+
+msgid "No site icon; the store icon needs a 1024 px image."
+msgstr "Aucune icône de site ; l'icône du magasin a besoin d'une image de 1024 px."
+
+msgid "Flux Desktop"
+msgstr "Bureau Flux"
+
+msgid "A name and at least one redirect URI are required (at most 10)."
+msgstr "Un nom et au moins un URI de redirection sont requis (au maximum 10)."
+
+msgid "Redirect URI rejected: %s (must be https, 127.0.0.1 or an app scheme)."
+msgstr "URI de redirection rejeté :%s(doit être https, 127.0.0.1 ou un schéma d'application)."
+
+msgid "Dynamic client limit reached; delete old ones."
+msgstr "Limite de clients dynamiques atteinte ; supprimer les anciens."
+
+msgid "Comments"
+msgstr "Commentaires"
+
+msgid "Posts"
+msgstr "Messages"
+
+msgid "%s drafts"
+msgstr "%sbrouillons"
+
+msgid "My drafts"
+msgstr "Mes brouillons"
+
+msgid "(no title)"
+msgstr "(pas de titre)"
+
+msgid "Pages"
+msgstr "Pages"
+
+msgid "Pending comments"
+msgstr "Commentaires en attente"
+
+msgid "%s approved"
+msgstr "%sapprouvé"
+
+msgid "Recent comments"
+msgstr "Commentaires récents"
+
+msgid "Pending"
+msgstr "En attente"
+
+msgid "Media"
+msgstr "Médias"
+
+msgid "Users"
+msgstr "Utilisateurs"
+
+msgid "Updates"
+msgstr "Mises à jour"
+
+msgid "Today's orders"
+msgstr "Les commandes du jour"
+
+msgid "%s orders"
+msgstr "Commandes%s"
+
+msgid "Awaiting payment"
+msgstr "En attente de paiement"
+
+msgid "Recent orders"
+msgstr "Commandes récentes"
+
+msgid "Web"
+msgstr "Internet"
+
+msgid "Sign-in required."
+msgstr "Connexion requise."
+
+msgid "This works only with an app session (OAuth)."
+msgstr "Cela fonctionne uniquement avec une session d'application (OAuth)."
+
+msgid "Push token not recognised."
+msgstr "Jeton push non reconnu."
+
+msgid "Device not found."
+msgstr "Appareil introuvable."
+
+msgid "Manifest not found."
+msgstr "Manifeste introuvable."
+
+msgid "App connection"
+msgstr "Connexion à l'application"
+
+msgid "← Back to site"
+msgstr "← Retour au site"
+
+msgid "Unknown application (client_id)."
+msgstr "Application inconnue (client_id)."
+
+msgid "This redirect URI is not registered for the application."
+msgstr "Cet URI de redirection n’est pas enregistré pour l’application."
+
+msgid "Your session expired. Try again from the app."
+msgstr "Votre session a expiré. Réessayez depuis l'application."
+
+msgid "%s wants to access your account"
+msgstr "%ssouhaite accéder à votre compte"
+
+msgid "Change"
+msgstr "Changement"
+
+msgid "The app works with your permissions: the menus and actions your role can see."
+msgstr "L'application fonctionne avec vos autorisations : les menus et les actions que votre rôle peut voir."
+
+msgid "You can revoke access at any time under Users › App access."
+msgstr "Vous pouvez révoquer l'accès à tout moment sous Utilisateurs > Accès aux applications."
+
+msgid "After approval you will return to %s."
+msgstr "Après approbation, vous reviendrez à%s."
+
+msgid "Deny"
+msgstr "Refuser"
+
+msgid "Allow"
+msgstr "Autoriser"
+
+msgid "Back to site"
+msgstr "Retour au site"
+
+msgid "This link has expired. Open it again from the app."
+msgstr "Ce lien a expiré. Ouvrez-le à nouveau depuis l'application."
+
+msgid "%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$sest votre code de connexion pour l'application%2$s. Valable 10 minutes. Ne partagez ce code avec personne."
+
+msgid "%s sign-in code"
+msgstr "%scode de connexion"
+
+msgid "Your app sign-in code:"
+msgstr "Code de connexion à votre application :"
+
+msgid "The code is valid for 10 minutes. If you did not request it, ignore this email."
+msgstr "Le code est valable 10 minutes. Si vous ne l'avez pas demandé, ignorez cet e-mail."
+
+msgid "Email"
+msgstr "Courriel"
+
+msgid "Sign in with code is turned off."
+msgstr "La connexion avec le code est désactivée."
+
+msgid "Enter a valid email or phone number."
+msgstr "Entrez un e-mail ou un numéro de téléphone valide."
+
+msgid "Too many attempts. Try again in a little while."
+msgstr "Trop de tentatives. Réessayez dans quelques instants."
+
+msgid "The code is wrong or has expired."
+msgstr "Le code est erroné ou a expiré."
+
+msgid "Other"
+msgstr "Autre"
+
+msgid "Admin sessions are turned off in settings."
+msgstr "Les sessions d'administration sont désactivées dans les paramètres."
+
+msgid "Too many requests. Please wait a moment."
+msgstr "Trop de demandes. Veuillez patienter un moment."
+
+msgid "Invalid admin path."
+msgstr "Chemin d'administrateur invalide."
+
+msgid "This setting cannot be opened from the app."
+msgstr "Ce paramètre ne peut pas être ouvert depuis l'application."
+
+msgid "Invalid value."
+msgstr "Valeur invalide."
+
+msgid "Some fields are invalid."
+msgstr "Certains champs ne sont pas valides."
+
+msgid "Flux App"
+msgstr "Application Flux"
+
+msgid "Token table"
+msgstr "Tableau des jetons"
+
+msgid "Ready."
+msgstr "Prêt."
+
+msgid "Table missing. Deactivate and reactivate the plugin."
+msgstr "Tableau manquant. Désactivez et réactivez le plugin."
+
+msgid "HTTPS"
+msgstr "HTTPS"
+
+msgid "The site address is https; app sign-in is secure."
+msgstr "L'adresse du site est https ; la connexion à l'application est sécurisée."
+
+msgid "The site address is not https; OAuth tokens travel unencrypted. Use https in production."
+msgstr "L'adresse du site n'est pas https ; Les jetons OAuth voyagent en clair. Utilisez https en production."
+
+msgid "Active access"
+msgstr "Accès actif"
+
+msgid "App sessions: %1$s · API keys: %2$s"
+msgstr "Sessions d'application :%1$s· Clés API :%2$s"
+
+msgid "Push notifications"
+msgstr "Notifications poussées"
+
+msgid "Off."
+msgstr "Éteint."
+
+msgid "Nothing sent yet. Registered devices: %s"
+msgstr "Rien d'envoyé pour l'instant. Appareils enregistrés :%s"
+
+msgid "Last send %1$s: %2$s sent, %3$s failed. %4$s"
+msgstr "Dernier envoi %1$s : %2$s envoyé, %3$s a échoué.  %4$s"
+
+msgid "App screens (manifest)"
+msgstr "Écrans d'application (manifeste)"
+
+msgid "Modules with schema errors: %s. They may open in the web view in the app."
+msgstr "Modules avec des erreurs de schéma :%s. Ils peuvent s'ouvrir dans la vue Web de l'application."
+
+msgid "%s modules valid."
+msgstr "Modules%svalides."
+
+msgid "App clients"
+msgstr "Clients d'application"
+
+msgid "Main FluxWP app: %1$s · branded apps: %2$s"
+msgstr "Application FluxWP principale :%1$s· applications de marque :%2$s"
+
+msgid "on"
+msgstr "sur"
+
+msgid "off"
+msgstr "éteint"
+
+msgid "Developer mode is on (exp:// redirects); turn it off on the live site."
+msgstr "Le mode développeur est activé (exp:// redirections) ; désactivez-le sur le site en direct."
+
+msgid "The token is invalid or expired."
+msgstr "Le jeton est invalide ou a expiré."
+
+msgid "Draft"
+msgstr "Brouillon"
+
+msgid "Pending review"
+msgstr "En attente d'examen"
+
+msgid "Scheduled"
+msgstr "Programmé"
+
+msgid "Private"
+msgstr "Privé"
+
+msgid "Published"
+msgstr "Publié"
+
+msgid "All"
+msgstr "Tout"
+
+msgid "Trash"
+msgstr "Corbeille"
+
+msgid "Title"
+msgstr "Titre"
+
+msgid "Summary"
+msgstr "Résumé"
+
+msgid "Content"
+msgstr "Contenu"
+
+msgid "Edit formatted content and blocks in the admin."
+msgstr "Modifiez le contenu formaté et les blocs dans l'administrateur."
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Publish date"
+msgstr "Date de publication"
+
+msgid "Categories"
+msgstr "Catégories"
+
+msgid "Tags"
+msgstr "Balises"
+
+msgid "Featured image"
+msgstr "Image en vedette"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Modified"
+msgstr "Modifié"
+
+msgid "Last modified"
+msgstr "Dernière modification"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Saved"
+msgstr "Enregistré"
+
+msgid "Quick edit"
+msgstr "Modification rapide"
+
+msgid "Open in editor"
+msgstr "Ouvrir dans l'éditeur"
+
+msgid "View on site"
+msgstr "A voir sur place"
+
+msgid "Publish"
+msgstr "Publier"
+
+msgid "Move to trash"
+msgstr "Déplacer vers la corbeille"
+
+msgid "Moved to trash"
+msgstr "Déplacé vers la corbeille"
+
+msgid "New post"
+msgstr "Nouveau message"
+
+msgid "Search posts"
+msgstr "Rechercher des articles"
+
+msgid "No posts"
+msgstr "Aucun message"
+
+msgid "Add your first post here."
+msgstr "Ajoutez votre premier message ici."
+
+msgid "Move this post to the trash?"
+msgstr "Déplacer ce message à la corbeille ?"
+
+msgid "Page"
+msgstr "Pages"
+
+msgid "New page"
+msgstr "Nouvelle page"
+
+msgid "Search pages"
+msgstr "Pages de recherche"
+
+msgid "No pages"
+msgstr "Aucune page"
+
+msgid "Add your first page here."
+msgstr "Ajoutez votre première page ici."
+
+msgid "Move this page to the trash?"
+msgstr "Déplacer cette page vers la corbeille ?"
+
+msgid "Approved"
+msgstr "Approuvé"
+
+msgid "Spam"
+msgstr "Pourriel"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Search media"
+msgstr "Rechercher des médias"
+
+msgid "Image"
+msgstr "Images"
+
+msgid "Video"
+msgstr "Vidéo"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Document"
+msgstr "Documenter"
+
+msgid "No media"
+msgstr "Aucun média"
+
+msgid "Upload from the camera or gallery."
+msgstr "Téléchargez depuis la caméra ou la galerie."
+
+msgid "Alt text"
+msgstr "Texte alternatif"
+
+msgid "Size"
+msgstr "Taille"
+
+msgid "Uploaded"
+msgstr "Téléchargé"
+
+msgid "A short description for screen readers and search engines."
+msgstr "Une brève description pour les lecteurs d'écran et les moteurs de recherche."
+
+msgid "Caption"
+msgstr "Légende"
+
+msgid "Search comments"
+msgstr "Rechercher des commentaires"
+
+msgid "No comments"
+msgstr "Pas de commentaires"
+
+msgid "No comments with this status."
+msgstr "Aucun commentaire avec ce statut."
+
+msgid "Comment"
+msgstr "Commentaire"
+
+msgid "IP"
+msgstr "IP"
+
+msgid "Name or email"
+msgstr "Nom ou email"
+
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+msgid "Website"
+msgstr "Site Web"
+
+msgid "Registered"
+msgstr "Inscrit"
+
+msgid "Last name"
+msgstr "Nom de famille"
+
+msgid "Display name"
+msgstr "Nom d'affichage"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "Leave empty to keep it."
+msgstr "Laissez vide pour le conserver."
+
+msgid "General settings"
+msgstr "Paramètres généraux"
+
+msgid "Site title"
+msgstr "Titre du site"
+
+msgid "Tagline"
+msgstr "Slogan"
+
+msgid "Administration email"
+msgstr "E-mail administratif"
+
+msgid "Timezone"
+msgstr "Fuseau horaire"
+
+msgid "Example: Europe/Istanbul"
+msgstr "Exemple : Europe/Istanbul"
+
+msgid "Date format"
+msgstr "Format des dates"
+
+msgid "Time format"
+msgstr "Format de l'heure"
+
+msgid "Week starts on"
+msgstr "La semaine commence le"
+
+msgid "Monday"
+msgstr "lundi"
+
+msgid "Sunday"
+msgstr "dimanche"
+
+msgid "Saturday"
+msgstr "samedi"
+
+msgid "Reading settings"
+msgstr "Paramètres de lecture"
+
+msgid "Your homepage displays"
+msgstr "Votre page d'accueil s'affiche"
+
+msgid "Latest posts"
+msgstr "Derniers messages"
+
+msgid "A static page"
+msgstr "Une page statique"
+
+msgid "Homepage"
+msgstr "Page d'accueil"
+
+msgid "Posts page"
+msgstr "Page des publications"
+
+msgid "Posts per page"
+msgstr "Articles par page"
+
+msgid "Discussion settings"
+msgstr "Paramètres des discussions"
+
+msgid "Comments on new posts"
+msgstr "Commentaires sur les nouveaux articles"
+
+msgid "Pingbacks"
+msgstr "Pings"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Search plugins"
+msgstr "Plugins de recherche"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "Inactive"
+msgstr "Inactif"
+
+msgid "Upload"
+msgstr "Télécharger"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Share"
+msgstr "Partager"
+
+msgid "Delete permanently"
+msgstr "Supprimer définitivement"
+
+msgid "Delete this file permanently?"
+msgstr "Supprimer définitivement ce fichier ?"
+
+msgid "It disappears from the pages that use it."
+msgstr "Il disparaît des pages qui l'utilisent."
+
+msgid "Deleted"
+msgstr "Supprimé"
+
+msgid "Reply"
+msgstr "Répondre"
+
+msgid "Reply sent"
+msgstr "Réponse envoyée"
+
+msgid "Open in admin"
+msgstr "Ouvrir dans l'administrateur"
+
+msgid "New user"
+msgstr "Nouvel utilisateur"
+
+msgid "Activate"
+msgstr "Activer"
+
+msgid "Activated"
+msgstr "Activé"
+
+msgid "Deactivate"
+msgstr "Désactiver"
+
+msgid "Deactivate this plugin?"
+msgstr "Désactiver ce plugin ?"
+
+msgid "Deactivated"
+msgstr "Désactivé"
+
+msgid "Approve"
+msgstr "Approuver"
+
+msgid "Unapprove"
+msgstr "Désapprouver"
+
+msgid "Moved to pending"
+msgstr "Déplacé en attente"
+
+msgid "Marked as spam"
+msgstr "Marqué comme spam"
+
+msgid "My donations"
+msgstr "Mes dons"
+
+msgid "Total donated"
+msgstr "Total des dons"
+
+msgid "Donations"
+msgstr "Dons"
+
+msgid "Certificates"
+msgstr "Certificats"
+
+msgid "No donations yet"
+msgstr "Aucun don pour l'instant"
+
+msgid "Your donations show up here."
+msgstr "Vos dons apparaissent ici."
+
+msgid "Amount"
+msgstr "Montant"
+
+msgid "Items"
+msgstr "Articles"
+
+msgid "My certificates"
+msgstr "Mes certificats"
+
+msgid "No certificates"
+msgstr "Aucun certificat"
+
+msgid "Certificates for your sapling donations show up here."
+msgstr "Les certificats pour vos dons de jeunes arbres s'affichent ici."
+
+msgid "Donate"
+msgstr "Faire un don"
+
+msgid "View order"
+msgstr "Voir la commande"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Store"
+msgstr "Magasin"
+
+msgid "Orders"
+msgstr "Commandes"
+
+msgid "Order"
+msgstr "Commande"
+
+msgid "Customer"
+msgstr "Client"
+
+msgid "Order number, name or email"
+msgstr "Numéro de commande, nom ou email"
+
+msgid "Processing"
+msgstr "Traitement"
+
+msgid "Cancelled"
+msgstr "Annulé"
+
+msgid "No orders"
+msgstr "Aucune commande"
+
+msgid "No orders with this status."
+msgstr "Aucune commande avec ce statut."
+
+msgid "Payment"
+msgstr "Paiement"
+
+msgid "Products"
+msgstr "Produits"
+
+msgid "Phone"
+msgstr "Téléphone"
+
+msgid "Customer note"
+msgstr "Note client"
+
+msgid "Order notes"
+msgstr "Notes de commande"
+
+msgid "Sent to customer"
+msgstr "Envoyé au client"
+
+msgid "No notes"
+msgstr "Aucune note"
+
+msgid "Product name or SKU"
+msgstr "Nom du produit ou SKU"
+
+msgid "Stock"
+msgstr "Actions"
+
+msgid "In stock"
+msgstr "En stock"
+
+msgid "Out of stock"
+msgstr "En rupture de stock"
+
+msgid "On backorder"
+msgstr "En rupture de stock"
+
+msgid "Product"
+msgstr "Produit"
+
+msgid "Price"
+msgstr "Prix"
+
+msgid "Sale price"
+msgstr "Prix de vente"
+
+msgid "Manage stock"
+msgstr "Gérer les stocks"
+
+msgid "Stock status"
+msgstr "État des stocks"
+
+msgid "Customers"
+msgstr "Clients"
+
+msgid "City"
+msgstr "Ville"
+
+msgid "Completed"
+msgstr "Terminé"
+
+msgid "Order completed"
+msgstr "Commande terminée"
+
+msgid "Change status"
+msgstr "Changer de statut"
+
+msgid "Order status"
+msgstr "Statut de la commande"
+
+msgid "Updated"
+msgstr "Mis à jour"
+
+msgid "Add note"
+msgstr "Ajouter une note"
+
+msgid "Order note"
+msgstr "Bon de commande"
+
+msgid "Note"
+msgstr "Remarque"
+
+msgid "Send to customer"
+msgstr "Envoyer au client"
+
+msgid "Note added"
+msgstr "Remarque ajoutée"
+
+msgid "Notes"
+msgstr "Remarques"
+
+msgid "Call"
+msgstr "Appeler"
+
+msgid "\\nYetkiniz yok.\\n"
+msgstr "\\nYetkiniz yok.\\n"
+
+msgid "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]"
+msgstr "[['Côté serveur de l'application de bureau et mobile FluxWP : connexion OAuth 2.0 (PKCE), appareils et push, vue de l'application (config), affichages du plugin (manifeste), session de panel. Les clients MCP se connectent également via OAuth.', 'tr']]"

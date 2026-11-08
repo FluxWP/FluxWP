@@ -2,7 +2,7 @@
 	"format": "flx-preset/1",
 	"id": "flux-demo",
 	"name": "FluxWP: demo mağaza",
-	"version": "0.2.0",
+	"version": "0.7.13",
 	"license": "CC-BY-4.0",
 	"description": "Boş bir siteyi örnek bir mağazaya çevirir: dört ürün, Hakkımızda, İletişim ve Blog sayfaları, bir örnek yazı. Kuruma özel hiçbir bilgi içermez; sonra panelden değiştirin ya da kaldırın.",
 	"requires": {

@@ -1,0 +1,1043 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Backups"
+msgstr "バックアップ"
+
+msgid "Backups › Dashboard"
+msgstr "バックアップ › ダッシュボード"
+
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+msgid "Backups › Settings"
+msgstr "バックアップ › 設定"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Permanently delete this backup?"
+msgstr "このバックアップを完全に削除しますか?"
+
+msgid "Permanently delete the selected backups?"
+msgstr "選択したバックアップを完全に削除しますか?"
+
+msgid "The selected parts will be returned to their state in the backup and their current state will be overwritten. Continue?"
+msgstr "選択したパーツはバックアップの状態に戻され、現在の状態は上書きされます。続く?"
+
+msgid "Cancel the running job?"
+msgstr "実行中のジョブをキャンセルしますか?"
+
+msgid "Starting…"
+msgstr "開始中..."
+
+msgid "Backing up"
+msgstr "バックアップ中"
+
+msgid "Restoring"
+msgstr "復元中"
+
+msgid "Completed"
+msgstr "完了"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Reload page"
+msgstr "ページをリロードする"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "An error occurred."
+msgstr "エラーが発生しました。"
+
+msgid "Connection lost, retrying…"
+msgstr "接続が失われました。再試行します..."
+
+msgid "Database (all tables)"
+msgstr "データベース (すべてのテーブル)"
+
+msgid "Select at least one part."
+msgstr "少なくとも 1 つのパーツを選択します。"
+
+msgid "You can keep this page open; if you close it, the job continues in the background."
+msgstr "このページは開いたままにしておくことができます。 if you close it, the job continues in the background."
+
+msgid "Do not close this page until the restore finishes."
+msgstr "復元が完了するまで、このページを閉じないでください。"
+
+msgid "The backup is running in the background. Follow its progress in the toolbar indicator at the top; you can leave this page."
+msgstr "バックアップはバックグラウンドで実行されています。上部のツールバーインジケーターで進行状況を確認してください。このページから離れても構いません。"
+
+msgid "The restore has started in the background. Progress is shown in the toolbar indicator; do not change the site until it finishes."
+msgstr "復元がバックグラウンドで開始されました。進行状況はツールバーのインジケーターに表示されます。完了するまでサイトを変更しないでください。"
+
+msgid "Backup ready."
+msgstr "バックアップの準備ができました。"
+
+msgid "Refresh list"
+msgstr "リストを更新する"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Dismiss this notice."
+msgstr "この通知を無視してください。"
+
+msgid "Uploading %1$s…"
+msgstr "%1$sをアップロード中 ..."
+
+msgid "%1$s / %2$s"
+msgstr "%1$s/%2$s"
+
+msgid "Verifying…"
+msgstr "確認中..."
+
+msgid "Only .zip backup files made with Flux Backup can be uploaded."
+msgstr "Flux Backup で作成された .zip バックアップ ファイルのみをアップロードできます。"
+
+msgid "Upload cancelled."
+msgstr "アップロードがキャンセルされました。"
+
+msgid "Upload failed: %s"
+msgstr "アップロードに失敗しました:%s"
+
+msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
+msgstr "このバックアップは別のサイト%sで作成されました。データベースを復元すると、コンテンツはそのサイトから取得されます。このサイトのアドレス (siteurl/home) は保持されますが、コンテンツ内の古いアドレスへのリンクは自動的には変更されません。"
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
+msgstr "バックアップ内のテーブルの接頭辞 (%1$s) は、このサイトの接頭辞 (%2$s) とは異なります。データベースをこのサイトに復元することはできません。選択できるのはファイルのみです。"
+
+msgid "Flux Backup"
+msgstr "磁束バックアップ"
+
+msgid "Automatic pre-update backups, scheduled backups and restore"
+msgstr "自動更新前のバックアップ、スケジュールされたバックアップと復元"
+
+msgid "Upload backup"
+msgstr "バックアップをアップロードする"
+
+msgid "Back up now"
+msgstr "今すぐバックアップしてください"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "ZipArchive (PHP zip extension) is not available on the server."
+msgstr "ZipArchive (PHP zip 拡張子) はサーバーでは使用できません。"
+
+msgid "The backup folder is not writable: %s"
+msgstr "バックアップ フォルダーは書き込み可能ではありません:%s"
+
+msgid "Backup type"
+msgstr "バックアップの種類"
+
+msgid "Full backup"
+msgstr "完全バックアップ"
+
+msgid "Database + wp-content (plugins, themes, uploads)"
+msgstr "データベース + WP コンテンツ (プラグイン、テーマ、アップロード)"
+
+msgid "Database only"
+msgstr "データベースのみ"
+
+msgid "Posts, pages, settings, users"
+msgstr "投稿、ページ、設定、ユーザー"
+
+msgid "Files only"
+msgstr "ファイルのみ"
+
+msgid "The wp-content folder"
+msgstr "wp-content フォルダー"
+
+msgid "Also include WordPress core files (wp-admin, wp-includes)"
+msgstr "WordPress コア ファイル (wp-admin、wp-includes) も含めます"
+
+msgid "Description (optional)"
+msgstr "説明 (オプション)"
+
+msgid "e.g. Before the theme change"
+msgstr "例:テーマ変更前"
+
+msgid "Lock: never delete automatically, even when the quota is full"
+msgstr "ロック: クォータがいっぱいの場合でも、自動的に削除されません。"
+
+msgid "Start backup"
+msgstr "バックアップの開始"
+
+msgid "Restore"
+msgstr "復元"
+
+msgid "First take a safety backup of the current database (recommended)"
+msgstr "まず、現在のデータベースの安全なバックアップを作成します (推奨)"
+
+msgid "The site address (siteurl/home), Flux Backup settings and the backup list are kept. Plugin and theme folders are replaced with their backed-up version; in other folders files are overwritten."
+msgstr "サイトアドレス (siteurl/home)、Flux バックアップ設定、およびバックアップ リストが保持されます。プラグインとテーマのフォルダーは、バックアップされたバージョンに置き換えられます。他のフォルダー内のファイルは上書きされます。"
+
+msgid "Start restore"
+msgstr "復元の開始"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Storage"
+msgstr "ストレージ"
+
+msgid "%s%% of the quota is used"
+msgstr "%sクォータの %% が使用されています"
+
+msgid "%1$s%% used · %2$s free"
+msgstr "%1$s%% 使用中 ·%2$sは無料"
+
+msgid "Last successful backup"
+msgstr "最後に成功したバックアップ"
+
+msgid "%s ago"
+msgstr "%s前"
+
+msgid "No backups yet."
+msgstr "まだバックアップはありません。"
+
+msgid "Next scheduled"
+msgstr "次回の予定"
+
+msgid "Weekly full backup"
+msgstr "毎週の完全バックアップ"
+
+msgid "Daily full backup"
+msgstr "毎日の完全バックアップ"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Turn on schedule"
+msgstr "スケジュールをオンにする"
+
+msgid "Pre-update backup: off"
+msgstr "アップデート前のバックアップ: オフ"
+
+msgid "Pre-update backup: FluxWP packages"
+msgstr "アップデート前のバックアップ: FluxWP パッケージ"
+
+msgid "Pre-update backup: on"
+msgstr "アップデート前のバックアップ: オン"
+
+msgid "Storage history"
+msgstr "保管履歴"
+
+msgid "Time range"
+msgstr "時間範囲"
+
+msgid "%s days"
+msgstr "%s日"
+
+msgid "Quota"
+msgstr "割り当て"
+
+msgid "By type"
+msgstr "種類別"
+
+msgid "Recent backups"
+msgstr "最近のバックアップ"
+
+msgid "View all"
+msgstr "すべて見る"
+
+msgid "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
+msgstr "まだバックアップはありません。最初の例は「今すぐバックアップ」です。プラグインとテーマを更新する前に、バックアップが自動的に作成されます。"
+
+msgid "Running"
+msgstr "ランニング"
+
+msgid "Recent events"
+msgstr "最近の出来事"
+
+msgid "No events yet."
+msgstr "まだイベントはありません。"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Not enough data yet: one measurement is recorded each day."
+msgstr "データがまだ十分ではありません。毎日 1 つの測定値が記録されます。"
+
+msgid "No measurement for this day"
+msgstr "この日は計測なし"
+
+msgid "Storage by type"
+msgstr "タイプ別のストレージ"
+
+msgid "total"
+msgstr "合計"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Delete selected"
+msgstr "選択したものを削除"
+
+msgid "Total %s"
+msgstr "合計%s"
+
+msgid "Select all"
+msgstr "すべて選択"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "Description"
+msgstr "説明"
+
+msgid "Contents"
+msgstr "内容"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Retention"
+msgstr "保持"
+
+msgid "Actions"
+msgstr "アクション"
+
+msgid "No backups."
+msgstr "バックアップはありません。"
+
+msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
+msgstr "バックアップは%sに保存されます。 Hostinger は、このフォルダーを独自のバックアップに含めません。重要なバックアップをコンピューターにダウンロードしてください。"
+
+msgid "Database"
+msgstr "データベース"
+
+msgid "Plugin"
+msgstr "プラグイン"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "WordPress core"
+msgstr "WordPress コア"
+
+msgid "Select"
+msgstr "選択"
+
+msgid "Running…"
+msgstr "実行中..."
+
+msgid "Locked: never deleted automatically. Click to unlock."
+msgstr "ロック済み: 自動的に削除されることはありません。クリックしてロックを解除します。"
+
+msgid "Lock: the quota and retention period will not delete this backup."
+msgstr "ロック: クォータと保持期間により、このバックアップは削除されません。"
+
+msgid "Unlock"
+msgstr "ロックを解除する"
+
+msgid "Lock"
+msgstr "ロック"
+
+msgid "Locked"
+msgstr "ロックされています"
+
+msgid "Until %s"
+msgstr "%sまで"
+
+msgid "Last %s scheduled"
+msgstr "最後にスケジュールされた%s"
+
+msgid "Until the quota is full"
+msgstr "割り当てがいっぱいになるまで"
+
+msgid "Download"
+msgstr "ダウンロード"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "All backups"
+msgstr "すべてのバックアップ"
+
+msgid "Backup not found."
+msgstr "バックアップが見つかりません。"
+
+msgid "Backup file"
+msgstr "バックアップファイル"
+
+msgid "Uncompressed size"
+msgstr "非圧縮サイズ"
+
+msgid "Files"
+msgstr "ファイル"
+
+msgid "%1$s tables, %2$s rows"
+msgstr "%1$sテーブル、%2$s行"
+
+msgid "Included"
+msgstr "付属"
+
+msgid "Source"
+msgstr "ソース"
+
+msgid "Taken on site"
+msgstr "現場で撮影"
+
+msgid "Originally taken"
+msgstr "元々撮影したもの"
+
+msgid "WordPress"
+msgstr "ワードプレス"
+
+msgid "The backup is running; details will appear here when it finishes."
+msgstr "バックアップは実行中です。完了すると詳細がここに表示されます。"
+
+msgid "The backup file could not be read; the size breakdown cannot be shown."
+msgstr "バックアップ ファイルを読み取ることができませんでした。サイズの内訳は表示できません。"
+
+msgid "Size breakdown"
+msgstr "サイズの内訳"
+
+msgid "Measure"
+msgstr "測定する"
+
+msgid "Original size"
+msgstr "元のサイズ"
+
+msgid "Size in archive"
+msgstr "アーカイブ内のサイズ"
+
+msgid "uncompressed"
+msgstr "非圧縮"
+
+msgid "inside the zip"
+msgstr "ジッパーの内側に"
+
+msgid "Size breakdown by category"
+msgstr "カテゴリごとのサイズの内訳"
+
+msgid "Section"
+msgstr "セクション"
+
+msgid "Files / rows"
+msgstr "ファイル/行"
+
+msgid "In archive"
+msgstr "アーカイブ内"
+
+msgid "Share"
+msgstr "シェアする"
+
+msgid "Original size: the size of the files on the site (for the database, the size of the SQL dump). In archive: the compressed size inside the zip. Images and videos are already compressed, so they do not get smaller in the archive."
+msgstr "元のサイズ: サイト上のファイルのサイズ (データベースの場合は SQL ダンプのサイズ)。アーカイブ内: zip 内の圧縮サイズ。画像とビデオはすでに圧縮されているため、アーカイブ内でサイズが小さくなることはありません。"
+
+msgid "Root files (wp-config.php, index.php …)"
+msgstr "ルートファイル (wp-config.php、index.php ...)"
+
+msgid "Files directly in this folder"
+msgstr "このフォルダー内のファイルを直接"
+
+msgid "Plugins"
+msgstr "プラグイン"
+
+msgid "Themes"
+msgstr "テーマ"
+
+msgid "Other folders"
+msgstr "その他のフォルダー"
+
+msgid "wp-content (all)"
+msgstr "wp-content (すべて)"
+
+msgid "Monday"
+msgstr "月曜日"
+
+msgid "Tuesday"
+msgstr "火曜日"
+
+msgid "Wednesday"
+msgstr "水曜日"
+
+msgid "Thursday"
+msgstr "木曜日"
+
+msgid "Friday"
+msgstr "金曜日"
+
+msgid "Saturday"
+msgstr "土曜日"
+
+msgid "Sunday"
+msgstr "日曜日"
+
+msgid "The total size of backups never exceeds this: before a new backup, the oldest unlocked backups are deleted. Locked backups are never deleted automatically; if no room can be made, the backup is not taken."
+msgstr "バックアップの合計サイズがこれを超えることはありません。新しいバックアップの前に、ロックされていない最も古いバックアップが削除されます。ロックされたバックアップは自動的には削除されません。スペースを作成できない場合、バックアップは作成されません。"
+
+msgid "Currently using %1$s. Folder: %2$s"
+msgstr "現在%1$sを使用しています。フォルダー:%2$s"
+
+msgid "Pre-update backup"
+msgstr "アップデート前のバックアップ"
+
+msgid "Scope"
+msgstr "範囲"
+
+msgid "All plugin and theme updates"
+msgstr "すべてのプラグインとテーマのアップデート"
+
+msgid "FluxWP packages only (flx-… plugins and FluxWP themes)"
+msgstr "FluxWP パッケージのみ (flx-... プラグインおよび FluxWP テーマ)"
+
+msgid "In manual, bulk and automatic updates, the database and the updated package's folder are backed up right before the package is installed. A bulk update produces a single backup."
+msgstr "手動、一括、および自動更新では、データベースと更新されたパッケージのフォルダーは、パッケージがインストールされる直前にバックアップされます。一括更新では単一のバックアップが作成されます。"
+
+msgid "Retention period"
+msgstr "保存期間"
+
+msgid "days"
+msgstr "日"
+
+msgid "If the update went fine, the backup is deleted after this period. Lock the ones you want to keep in the list."
+msgstr "アップデートが正常に完了した場合、バックアップはこの期間後に削除されます。リストに残しておきたいものをロックします。"
+
+msgid "Scheduled full backup"
+msgstr "スケジュールされた完全バックアップ"
+
+msgid "Frequency"
+msgstr "周波数"
+
+msgid "Daily"
+msgstr "毎日"
+
+msgid "Weekly"
+msgstr "毎週"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "In the site's time zone. Choose night hours; WP-Cron is triggered by visits, so it may run a few minutes late."
+msgstr "サイトのタイムゾーン。夜の時間を選択してください。 WP-Cron は訪問によってトリガーされるため、数分遅れて実行される場合があります。"
+
+msgid "Number to keep"
+msgstr "保管する番号"
+
+msgid "Only this many of the latest scheduled backups are kept (locked ones are not counted)."
+msgstr "最新のスケジュールされたバックアップのうち、これだけが保持されます (ロックされたバックアップはカウントされません)。"
+
+msgid "Add wp-admin, wp-includes and root files (including wp-config.php) to full backups"
+msgstr "wp-admin、wp-includes、およびルートファイル (wp-config.php を含む) を完全バックアップに追加します。"
+
+msgid "WordPress core can always be downloaded again from wordpress.org; leaving it out saves space."
+msgstr "WordPress コアはいつでも wordpress.org から再ダウンロードできます。省略するとスペースが節約されます。"
+
+msgid "Exclusions"
+msgstr "除外事項"
+
+msgid "Extra paths"
+msgstr "追加のパス"
+
+msgid "One path per line, relative to the WordPress root folder. The * wildcard can be used."
+msgstr "WordPress ルート フォルダーを基準とした、1 行に 1 つのパス。 * ワイルドカードを使用できます。"
+
+msgid "Always excluded: the backup folder, wp-snapshots, other backup plugins' folders (ai1wm-backups, updraft, wpvividbackups, backups-dup-*), cache, litespeed, upgrade, upgrade-temp-backup."
+msgstr "常に除外されます: バックアップ フォルダー、wp-snapshots、他のバックアップ プラグインのフォルダー (ai1wm-backups、updraft、wpvividbackups、backups-dup-*)、キャッシュ、litespeed、upgrade、upgrade-temp-backup。"
+
+msgid "Restore and uninstall"
+msgstr "復元とアンインストール"
+
+msgid "Safety backup"
+msgstr "安全バックアップ"
+
+msgid "Back up the current database before restoring the database (kept for 7 days)"
+msgstr "データベースを復元する前に現在のデータベースをバックアップします (7 日間保持)"
+
+msgid "When the plugin is deleted"
+msgstr "プラグインを削除した場合"
+
+msgid "Also delete backup files"
+msgstr "バックアップファイルも削除"
+
+msgid "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder."
+msgstr "オフ (デフォルト) の場合、プラグインを削除すると、その設定のみが削除されます。 zip ファイルはフォルダー内に残ります。"
+
+msgid "Save settings"
+msgstr "設定を保存する"
+
+msgid "Could not delete."
+msgstr "削除できませんでした。"
+
+msgid "No operation is running."
+msgstr "操作は実行されていません。"
+
+msgid "Nothing was selected to back up."
+msgstr "バックアップするものが何も選択されていませんでした。"
+
+msgid "zlib (gzip) is not available on the server."
+msgstr "zlib (gzip) はサーバーでは使用できません。"
+
+msgid "Another backup or restore is running. Wait for it to finish."
+msgstr "別のバックアップまたは復元が実行中です。完了するまで待ちます。"
+
+msgid "Backup record not found."
+msgstr "バックアップレコードが見つかりません。"
+
+msgid "Invalid path."
+msgstr "無効なパスです。"
+
+msgid "Path not found: %s"
+msgstr "パスが見つかりません:%s"
+
+msgid "Could not write a temporary file."
+msgstr "一時ファイルに書き込めませんでした。"
+
+msgid "Could not read the file list."
+msgstr "ファイルリストを読み取れませんでした。"
+
+msgid "Could not open the zip file (code %s)."
+msgstr "zip ファイルを開けませんでした (コード%s)。"
+
+msgid "Could not write the zip: %s"
+msgstr "zip を書き込めませんでした:%s"
+
+msgid "The backup record was deleted."
+msgstr "バックアップレコードが削除されました。"
+
+msgid "Could not open the zip file."
+msgstr "zip ファイルを開けませんでした。"
+
+msgid "Could not add the database dump to the archive."
+msgstr "データベース ダンプをアーカイブに追加できませんでした。"
+
+msgid "Could not write the zip (the disk may be full)."
+msgstr "zip を書き込めませんでした (ディスクがいっぱいである可能性があります)。"
+
+msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgstr "バックアップは同じ時点で%s回中断されました (サーバーの時間制限)。フォルダーの数を減らして試すか、大きなフォルダーを除外に追加してください。"
+
+msgid "Backup taken: %1$s (%2$s)"
+msgstr "取得されたバックアップ:%1$s(%2$s)"
+
+msgid "Backup failed (%1$s): %2$s"
+msgstr "バックアップ失敗 (%1$s):%2$s"
+
+msgid "Scanning files… %s files"
+msgstr "ファイルをスキャン中...%sファイル"
+
+msgid "Checking quota…"
+msgstr "割り当てを確認しています..."
+
+msgid "Backing up database: %1$s (%2$s rows)"
+msgstr "データベースをバックアップしています:%1$s(%2$s行)"
+
+msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
+msgstr "ファイルのアーカイブ:%1$s/%2$sファイル (%3$s/%4$s)"
+
+msgid "Finishing…"
+msgstr "仕上げ中..."
+
+msgid "Backup completed."
+msgstr "バックアップが完了しました。"
+
+msgid "Media (uploads)"
+msgstr "メディア (アップロード)"
+
+msgid "Other wp-content"
+msgstr "その他の WP コンテンツ"
+
+msgid "Backup folder writable"
+msgstr "書き込み可能なバックアップフォルダー"
+
+msgid "Backups are written to %s."
+msgstr "バックアップは%sに書き込まれます。"
+
+msgid "The %s folder cannot be created or written. Check the file permissions (755)."
+msgstr "%sフォルダーを作成または書き込みできません。ファイルのアクセス許可 (755) を確認してください。"
+
+msgid "ZipArchive and zlib"
+msgstr "ZipArchive と zlib"
+
+msgid "The PHP zip and zlib extensions are installed."
+msgstr "PHP zip および zlib 拡張機能がインストールされます。"
+
+msgid "The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on \"zip\" under PHP Configuration › PHP Extensions."
+msgstr "PHP zip (ZipArchive) または zlib 拡張子がありません。バックアップは作成できません。 Hostinger で、PHP 設定 › PHP 拡張機能で「zip」をオンにします。"
+
+msgid "Backup quota"
+msgstr "バックアップクォータ"
+
+msgid "%1$s / %2$s used (%3$s%%)."
+msgstr "%1$s/%2$sが使用されました (%3$s%%)。"
+
+msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
+msgstr "新しいバックアップのためのスペースを確保するために、ロックされていない最も古いバックアップが削除されます。クォータを増やすか、ロックされたバックアップを確認してください。"
+
+msgid "There are no backups yet. Take the first one from the dashboard with \"Back up now\"."
+msgstr "まだバックアップはありません。ダッシュボードから「今すぐバックアップ」を選択して最初のものを選択します。"
+
+msgid "%1$s (%2$s): %3$s"
+msgstr "%1$s(%2$s):%3$s"
+
+msgid "for all plugin and theme updates"
+msgstr "すべてのプラグインとテーマのアップデート"
+
+msgid "for FluxWP package updates only"
+msgstr "FluxWP パッケージのアップデートのみ"
+
+msgid "Off: no backup is taken before updates."
+msgstr "オフ: 更新前にバックアップは作成されません。"
+
+msgid "On, %1$s. Backups are kept for %2$s days."
+msgstr "オン、%1$s。バックアップは%2$s日間保存されます。"
+
+msgid "The daily cleanup task ran %s."
+msgstr "毎日のクリーンアップ タスクは%sを実行しました。"
+
+msgid "The daily task is scheduled but has not run yet."
+msgstr "毎日のタスクはスケジュールされていますが、まだ実行されていません。"
+
+msgid "DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs."
+msgstr "DISABLE_WP_CRON がオンになっており、毎日のジョブが 2 日間実行されていません。 Hostinger パネルで、Advanced › Cron Jobs で 5 ~ 15 分ごとに wp-cron.php を呼び出します。"
+
+msgid "The daily task has not run for 2 days; WP-Cron is triggered by visits. Old backups may not be getting deleted."
+msgstr "日次タスクは 2 日間実行されていません。 WP-Cron は訪問によってトリガーされます。古いバックアップが削除されていない可能性があります。"
+
+msgid "Flux Backup scheduled tasks"
+msgstr "Flux バックアップのスケジュールされたタスク"
+
+msgid "Could not start the scheduled backup: %s"
+msgstr "スケジュールされたバックアップを開始できませんでした:%s"
+
+msgid "Left unfinished (timed out)."
+msgstr "未完了のままです(タイムアウト)。"
+
+msgid "Could not write the SQL file."
+msgstr "SQLファイルを書き込めませんでした。"
+
+msgid "Could not read table %1$s: %2$s"
+msgstr "テーブル%1$sを読み取れませんでした:%2$s"
+
+msgid "Could not get the structure of table %1$s: %2$s"
+msgstr "テーブル%1$sの構造を取得できませんでした:%2$s"
+
+msgid "Could not open the SQL file."
+msgstr "SQL ファイルを開けませんでした。"
+
+msgid "Flux Backup: click for details"
+msgstr "Flux バックアップ: 詳細についてはクリックしてください"
+
+msgid "Restoring %s"
+msgstr "%sの復元"
+
+msgid "Backing up %s"
+msgstr "%sをバックアップしています"
+
+msgid "Restore complete"
+msgstr "復元が完了しました"
+
+msgid "Backup ready · %s"
+msgstr "バックアップ準備完了 ·%s"
+
+msgid "Backup ready"
+msgstr "バックアップ準備完了"
+
+msgid "Restore failed"
+msgstr "復元に失敗しました"
+
+msgid "Backup failed"
+msgstr "バックアップに失敗しました"
+
+msgid "Cancelled"
+msgstr "キャンセルされました"
+
+msgid "Cancelling…"
+msgstr "キャンセル中..."
+
+msgid "Elapsed: %s"
+msgstr "経過時間:%s"
+
+msgid "Remaining: about %s"
+msgstr "残り:%s程度"
+
+msgid "Backup"
+msgstr "バックアップ"
+
+msgid "You can leave the page; it keeps running in the background."
+msgstr "ページを離れても構いません。バックグラウンドで実行され続けます。"
+
+msgid "Do not change the site while the restore is running."
+msgstr "復元の実行中はサイトを変更しないでください。"
+
+msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
+msgstr "%1$sを更新する前にバックアップできませんでした。バックアップなしで更新が続行されました:%2$s"
+
+msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
+msgstr "%1$sフォルダーを更新前のバックアップに追加できませんでした:%2$s"
+
+msgid "The backup file is missing from disk."
+msgstr "バックアップ ファイルがディスクにありません。"
+
+msgid "This path is not in the backup: %s"
+msgstr "このパスはバックアップにありません:%s"
+
+msgid "This backup has no database."
+msgstr "このバックアップにはデータベースがありません。"
+
+msgid "Nothing was selected to restore."
+msgstr "復元するものが何も選択されていません。"
+
+msgid "Safety backup before restore (%s)"
+msgstr "復元前の安全バックアップ (%s)"
+
+msgid "The safety backup failed, so nothing was restored: %s"
+msgstr "安全バックアップが失敗したため、何も復元されませんでした:%s"
+
+msgid "The backup has no database.sql.gz."
+msgstr "バックアップには、database.sql.gz がありません。"
+
+msgid "The database file's checksum does not match; the backup may be corrupt."
+msgstr "データベース ファイルのチェックサムが一致しません。バックアップが破損している可能性があります。"
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database was not restored."
+msgstr "バックアップ内のテーブルの接頭辞 (%1$s) は、このサイトの接頭辞 (%2$s) とは異なります。データベースは復元されませんでした。"
+
+msgid "Not found in the backup: %s"
+msgstr "バックアップに見つかりません:%s"
+
+msgid "Could not move the folder (permission problem?): %s"
+msgstr "フォルダーを移動できませんでした (権限の問題?):%s"
+
+msgid "Could not create the folder: %s"
+msgstr "フォルダーを作成できませんでした:%s"
+
+msgid "Could not write the file: %s"
+msgstr "ファイルを書き込めませんでした:%s"
+
+msgid "database"
+msgstr "データベース"
+
+msgid "Restored: %1$s (%2$s)."
+msgstr "復元されました:%1$s(%2$s)。"
+
+msgid "%s SQL statements failed; details are in the log."
+msgstr "%sSQL ステートメントが失敗しました。詳細はログにあります。"
+
+msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
+msgstr "%sデータベースは部分的に復元される可能性があります。 「復元前の安全なバックアップ」を復元します。"
+
+msgid "Restore failed (%1$s): %2$s"
+msgstr "復元に失敗しました (%1$s):%2$s"
+
+msgid "Taking safety backup: %s"
+msgstr "安全バックアップの取得:%s"
+
+msgid "Unpacking the database file…"
+msgstr "データベース ファイルを解凍しています..."
+
+msgid "Restoring database: %s"
+msgstr "データベースを復元中:%s"
+
+msgid "Preparing files…"
+msgstr "ファイルを準備しています..."
+
+msgid "Restoring files: %1$s / %2$s"
+msgstr "ファイルの復元:%1$s/%2$s"
+
+msgid "%s s"
+msgstr "%s"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s分%2$s秒"
+
+msgid "%1$s h %2$s min"
+msgstr "%1$sh%2$s分"
+
+msgid "Cancelled."
+msgstr "キャンセルされました。"
+
+msgid "Could not verify the session. Reload the page."
+msgstr "セッションを確認できませんでした。ページをリロードします。"
+
+msgid "Backup deleted: %s"
+msgstr "バックアップが削除されました:%s"
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "%1$s前%2$s→%3$s"
+
+msgid "Before updating %s"
+msgstr "アップデート前%s"
+
+msgid "Pre-update"
+msgstr "アップデート前"
+
+msgid "Manual"
+msgstr "マニュアル"
+
+msgid "Scheduled"
+msgstr "予定されている"
+
+msgid "Automatic update"
+msgstr "自動更新"
+
+msgid "Update"
+msgstr "アップデート"
+
+msgid "WP-CLI"
+msgstr "WP-CLI"
+
+msgid "Before restore"
+msgstr "復元前"
+
+msgid "Plugin (API)"
+msgstr "プラグイン(API)"
+
+msgid "Uploaded"
+msgstr "アップロードされました"
+
+msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings."
+msgstr "推定バックアップ サイズ (%1$s) がクォータ (%2$s) より大きくなっています。設定でクォータを引き上げます。"
+
+msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
+msgstr "クォータが不十分です: 新しいバックアップは約%1$s、使用済み%2$s、クォータ%3$sです。残りのバックアップはロックされています。一部のロックを解除または削除するか、クォータを増やします。"
+
+msgid "The file is empty or too small."
+msgstr "ファイルが空か小さすぎます。"
+
+msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings."
+msgstr "ファイル (%1$s) がバックアップ クォータ (%2$s) より大きくなっています。設定でクォータを引き上げます。"
+
+msgid "There is not enough free disk space on the server (free: %s)."
+msgstr "サーバー上に十分な空きディスク容量がありません (空き:%s)。"
+
+msgid "Upload not found; start again."
+msgstr "アップロードが見つかりません。もう一度始めます。"
+
+msgid "A chunk did not reach the server (error %d)."
+msgstr "チャンクがサーバーに到達しませんでした (エラー%d)。"
+
+msgid "Chunks arrived out of order."
+msgstr "チャンクが順番どおりに到着しませんでした。"
+
+msgid "The file is larger than the declared size."
+msgstr "ファイルが宣言されたサイズよりも大きいです。"
+
+msgid "Could not write the temporary file (the disk may be full)."
+msgstr "一時ファイルに書き込めませんでした (ディスクがいっぱいである可能性があります)。"
+
+msgid "%1$s was uploaded (%2$s) and added to the backup list."
+msgstr "%1$sがアップロードされ (%2$s)、バックアップ リストに追加されました。"
+
+msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
+msgstr "ファイルは不完全にアップロードされました (%1$s/%2$s)。もう一度やり直してください。"
+
+msgid "Could not move the file to the backup folder."
+msgstr "ファイルをバックアップ フォルダーに移動できませんでした。"
+
+msgid "Uploaded: %s"
+msgstr "アップロード:%s"
+
+msgid "Backup uploaded: %1$s (%2$s, %3$s)"
+msgstr "アップロードされたバックアップ:%1$s(%2$s、%3$s)"
+
+msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
+msgstr "このファイルは Flux Backup バックアップではありません (zip を開けなかったか、manifest.json がありません)。"
+
+msgid "The backup contains an unexpected or unsafe path: %s"
+msgstr "バックアップに予期しないパスまたは安全でないパスが含まれています:%s"
+
+msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
+msgstr "マニフェストには、バックアップにはデータベースが含まれていますが、database.sql.gz が欠落していると記載されています。ファイルが壊れている可能性があります。"
+
+msgid "The backup appears to be empty."
+msgstr "バックアップは空のようです。"
+
+msgid "The uncompressed size of the backup is not plausible; the file was not accepted."
+msgstr "バックアップの非圧縮サイズは妥当ではありません。ファイルは受け入れられませんでした。"
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] "%sファイル"
+
+msgid "%s locked"
+msgid_plural "%s locked"
+msgstr[0] "%sはロックされています"
+
+msgid "Before updating %s package"
+msgid_plural "Before updating %s packages"
+msgstr[0] "%sパッケージを更新する前に"
+
+msgid "%s row"
+msgid_plural "%s rows"
+msgstr[0] "%s行"
+
+msgid "%s backup"
+msgid_plural "%s backups"
+msgstr[0] "%sバックアップ"
+
+msgid "%s other item"
+msgid_plural "%s other items"
+msgstr[0] "%sその他の商品"
+
+msgid "%1$s old backup deleted for the quota: %2$s"
+msgid_plural "%1$s old backups deleted for the quota: %2$s"
+msgstr[0] "クォータに対して%1$sの古いバックアップが削除されました:%2$s"
+
+msgid "%s backup past its retention period was deleted."
+msgid_plural "%s backups past their retention period were deleted."
+msgstr[0] "保存期間を過ぎた%sバックアップは削除されました。"
+
+msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
+msgstr "すべてのプラグイン/テーマの更新前の自動バックアップ、スケジュールされた完全バックアップ、クォータと保持の管理、グラフと選択的復元を備えたストレージ ダッシュボードを作成します。 Hostinger 共有ホスティングと互換性があります。"
+
+msgctxt "context_fd86717aca41"
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "The archive file is deleted too."
+msgstr "アーカイブファイルも削除されます。"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Restore is only available in the panel."
+msgstr "復元はパネルでのみ使用できます。"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Deleted"
+msgstr "削除されました"
+
+msgid "Take a full backup?"
+msgstr "完全バックアップを取りますか?"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "The backup runs in the background and shows up in the list when it finishes."
+msgstr "バックアップはバックグラウンドで実行され、完了するとリストに表示されます。"
+
+msgid "Backup started"
+msgstr "バックアップが開始されました"
+
+msgid "Delete this backup?"
+msgstr "このバックアップを削除しますか?"
+
+msgid "No backups"
+msgstr "バックアップなし"
+
+msgid "Back up"
+msgstr "バックアップ"
+
+msgid "Progress"
+msgstr "進捗状況"
+
+msgid "Take the first backup with Back up now. Restore is done in the panel."
+msgstr "「今すぐバックアップ」で最初のバックアップを作成します。復元はパネルで行われます。"

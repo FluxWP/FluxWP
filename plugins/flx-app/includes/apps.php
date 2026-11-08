@@ -89,7 +89,7 @@ add_filter(
 		$loop                            = flxapp_loopback_redirects();
 		$clients[ FLXAPP_MOBILE_CLIENT ] = array(
 			'id'            => FLXAPP_MOBILE_CLIENT,
-			'name'          => __( 'FluxWP Mobil', 'flx-app' ),
+			'name'          => __( 'FluxWP Mobile', 'flx-app' ),
 			'redirect_uris' => array_merge( array( 'fluxwp://oauth/callback', 'fluxapp://oauth/callback' ), $loop ),
 			'secret_hash'   => '',
 			'builtin'       => true,

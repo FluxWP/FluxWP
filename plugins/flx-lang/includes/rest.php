@@ -21,10 +21,10 @@ add_action(
 					},
 					'update_callback' => function ( $value, $post ) {
 						if ( ! current_user_can( 'edit_post', $post->ID ) ) {
-							return new WP_Error( 'flxl_cap', __( 'Bu işlem için yetkiniz yok.', 'flx-lang' ), array( 'status' => 403 ) );
+							return new WP_Error( 'flxl_cap', __( 'You are not allowed to do this.', 'flx-lang' ), array( 'status' => 403 ) );
 						}
 						if ( ! flxl_is_language( $value ) ) {
-							return new WP_Error( 'flxl_lang', __( 'Dil etkin değil.', 'flx-lang' ), array( 'status' => 400 ) );
+							return new WP_Error( 'flxl_lang', __( 'Language is not active.', 'flx-lang' ), array( 'status' => 400 ) );
 						}
 						flxl_set_post_language( $post->ID, $value );
 						return true;

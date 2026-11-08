@@ -1,0 +1,530 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Open wiki"
+msgstr "打开维基"
+
+msgid "Developer wiki: Markdown pages, search, LLM and MCP support"
+msgstr "开发者维基:Markdown 页面、搜索、LLM 和 MCP 支持"
+
+msgid "Wiki settings"
+msgstr "维基设置"
+
+msgid "Preparing preview…"
+msgstr "正在准备预览..."
+
+msgid "Could not load the preview."
+msgstr "无法加载预览。"
+
+msgid "Nothing to preview."
+msgstr "没有什么可预览的。"
+
+msgid "Link URL"
+msgstr "链接网址"
+
+msgid "Heading"
+msgstr "标题"
+
+msgid "text"
+msgstr "文字"
+
+msgid "code"
+msgstr "代码"
+
+msgid "link"
+msgstr "链接"
+
+msgid "page-slug"
+msgstr "页面块"
+
+msgid "item"
+msgstr "项目"
+
+msgid "Note"
+msgstr "注意事项"
+
+msgid "Subheading"
+msgstr "副标题"
+
+msgid "Bold"
+msgstr "大胆"
+
+msgid "Italic"
+msgstr "斜体"
+
+msgid "Inline code"
+msgstr "内联代码"
+
+msgid "Code block"
+msgstr "代码块"
+
+msgid "Link"
+msgstr "链接"
+
+msgid "Wiki link"
+msgstr "维基链接"
+
+msgid "List"
+msgstr "列表"
+
+msgid "Callout"
+msgstr "标注"
+
+msgid "Table"
+msgstr "表"
+
+msgid "Write"
+msgstr "写"
+
+msgid "Preview"
+msgstr "预览"
+
+msgid "Side by side"
+msgstr "并排"
+
+msgid "Write Markdown. ## Heading, ```php code```, [[page-slug]] wiki link, > [!NOTE] callout."
+msgstr "编写 Markdown。 ## 标题、 ```php code``` 、[[page-slug]] wiki 链接、> [!NOTE] 标注。"
+
+msgid "Markdown: GitHub flavour (tables, code blocks). Wiki links [[slug]] or [[slug|label]]. Callouts: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Do not repeat the title in the content."
+msgstr "Markdown:GitHub 风格(表格、代码块)。 Wiki 链接 [[slug]] 或 [[slug|label]]。标注:> [!注意]、[!提示]、[!重要]、[!警告]、[!警告]。内容中请勿重复标题。"
+
+msgid "Open as .md"
+msgstr "打开为 .md"
+
+msgid "Order"
+msgstr "订单"
+
+msgid "Lower numbers come first on the wiki home and in the menu."
+msgstr "较低的数字在 wiki 主页和菜单中排在第一位。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Appearance"
+msgstr "外观"
+
+msgid "AI"
+msgstr "人工智能"
+
+msgid "Add page"
+msgstr "添加页面"
+
+msgid "The wiki is closed to visitors; only people who can write pages see it."
+msgstr "维基百科不对访客开放;只有会写页面的人才能看到它。"
+
+msgid "Settings saved."
+msgstr "设置已保存。"
+
+msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
+msgstr "导入的指南:%1$d新、%2$d更新、%3$d跳过(手动编辑或最新)。"
+
+msgid "Wiki"
+msgstr "维基百科"
+
+msgid "Wiki open to visitors"
+msgstr "维基百科向访客开放"
+
+msgid "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it."
+msgstr "关闭后,wiki 地址、.md 和 llms.txt 会向访问者返回 404 并离开站点地图。会写页面的人仍然会看到它。"
+
+msgid "Wiki name"
+msgstr "维基名称"
+
+msgid "Developer Wiki"
+msgstr "开发者维基"
+
+msgid "Intro"
+msgstr "简介"
+
+msgid "Used on the wiki home, in the search engine description and in llms.txt."
+msgstr "用于 wiki 主页、搜索引擎描述和 llms.txt。"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Lowercase letters, digits and hyphens. Old addresses stop working when you change it."
+msgstr "小写字母、数字和连字符。当您更改旧地址时,旧地址将停止工作。"
+
+msgid "Page buttons"
+msgstr "页面按钮"
+
+msgid "ChatGPT, Claude, Google AI and Perplexity links in the \"Ask AI\" menu"
+msgstr "“Ask AI”菜单中的 ChatGPT、Claude、Google AI 和 Perplexity 链接"
+
+msgid "\"Edit\" button for editors"
+msgstr "编辑者的“编辑”按钮"
+
+msgid "Accent colour"
+msgstr "强调色"
+
+msgid "Use the theme colour"
+msgstr "使用主题颜色"
+
+msgid "Links, the selected menu item and accent buttons."
+msgstr "链接、选定的菜单项和强调按钮。"
+
+msgid "Width"
+msgstr "宽度"
+
+msgid "Normal"
+msgstr "正常"
+
+msgid "Wide (for long code and tables)"
+msgstr "宽(适用于长代码和表格)"
+
+msgid "Page layout"
+msgstr "页面布局"
+
+msgid "Page menu and search on the left"
+msgstr "左侧页面菜单和搜索"
+
+msgid "\"On this page\" (contents) on the right"
+msgstr "右侧“在此页”(内容)"
+
+msgid "Flux AI is not installed. Once installed, visitors can use \"Ask the wiki\", which answers from the wiki content."
+msgstr "Flux AI 未安装。安装后,访问者可以使用“询问 wiki”,从 wiki 内容中获取答案。"
+
+msgid "Flux AI has no key or the Flux Wiki system is off (Flux AI › Connected systems)."
+msgstr "Flux AI 没有密钥或 Flux Wiki 系统已关闭(Flux AI › 连接的系统)。"
+
+msgid "Who can ask"
+msgstr "谁可以询问"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Logged-in users"
+msgstr "已登录用户"
+
+msgid "Everyone (including visitors)"
+msgstr "所有人(包括访客)"
+
+msgid "Every question counts towards the Flux AI spending limit; keep the hourly limit low with \"Everyone\"."
+msgstr "每个问题都会计入 Flux AI 支出限额;使用“所有人”将每小时限制保持在较低水平。"
+
+msgid "Hourly question limit"
+msgstr "每小时提问限制"
+
+msgid "per person (unlimited for administrators)"
+msgstr "每人(管理员无限制)"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Addresses"
+msgstr "地址"
+
+msgid "Search API"
+msgstr "搜索接口"
+
+msgid "Flux AI › MCP is off"
+msgstr "Flux AI › MCP 已关闭"
+
+msgid "Add .md to any page address to get it as Markdown. With Flux SEO installed, a \"Wiki\" section is added to the site's /llms.txt."
+msgstr "将 .md 添加到任意页面地址即可将其转换为 Markdown。安装 Flux SEO 后,“Wiki”部分将添加到网站的 /llms.txt 中。"
+
+msgid "Bundled guides"
+msgstr "捆绑指南"
+
+msgid "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
+msgstr "该插件附带%d指南:编写插件和主题、支持 AI 的插件、MCP 工具、设置架构、翻译、版本和发布。添加缺失的页面;您尚未编辑的页面将更新为新版本。"
+
+msgid "Import / update guides"
+msgstr "导入/更新指南"
+
+msgid "%d published pages."
+msgstr "%d已发布页面。"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Ask the wiki"
+msgstr "询问维基百科"
+
+msgid "Wiki draft"
+msgstr "维基草稿"
+
+msgid "Flux AI is not ready."
+msgstr "Flux AI 尚未准备好。"
+
+msgid "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete."
+msgstr "我找不到回答这个问题的指南。使用插件名称或您要完成的任务重试。"
+
+msgid "Could not get an answer. Try again in a moment."
+msgstr "无法得到答案。稍后再试一次。"
+
+msgid "%1$s result for \"%2$s\""
+msgid_plural "%1$s results for \"%2$s\""
+msgstr[0] "“%2$s”的%1$s结果"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Could not copy"
+msgstr "无法复制"
+
+msgid "Searching…"
+msgstr "正在寻找..."
+
+msgid "No results. Try another word."
+msgstr "没有结果。尝试另一个词。"
+
+msgid "Type to search"
+msgstr "输入搜索"
+
+msgid "%d results"
+msgstr "%d结果"
+
+msgid "Ask AI"
+msgstr "询问人工智能"
+
+msgid "Type your question; the answer comes only from the wiki pages."
+msgstr "输入您的问题;答案仅来自维基页面。"
+
+msgid "Reading the wiki, preparing an answer…"
+msgstr "阅读维基,准备答案......"
+
+msgid "Sources"
+msgstr "来源"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Log in to ask a question."
+msgstr "登录提问。"
+
+msgid "No results for \"%1$s\"; showing results for \"%2$s\"."
+msgstr "没有“%1$s”的结果;显示“%2$s”的结果。"
+
+msgid "See all %d results"
+msgstr "查看所有%d结果"
+
+msgid "Wiki search for \"%s\""
+msgstr "维基搜索“%s”"
+
+msgid "Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform."
+msgstr "编写 FluxWP 插件和主题、支持 AI 的功能和共享平台的指南。"
+
+msgid "Source"
+msgstr "来源"
+
+msgid "Section"
+msgstr "部分"
+
+msgid "Last updated"
+msgstr "最后更新"
+
+msgid "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
+msgstr "将 .md 添加到任意页面地址即可获取其 Markdown。整个 wiki 位于一个文件中:%1$s"
+
+msgid "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgstr "MCP 服务器(需要密钥):%s、工具 flxwk_search、flxwk_get_page、flxwk_list_pages。"
+
+msgid "Other pages"
+msgstr "其他页面"
+
+msgid "Whole wiki (one file)"
+msgstr "整个维基(一个文件)"
+
+msgid "This page does not exist yet"
+msgstr "该页面尚不存在"
+
+msgid "Tip"
+msgstr "提示"
+
+msgid "Important"
+msgstr "重要"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "Caution"
+msgstr "注意事项"
+
+msgid "Search the wiki"
+msgstr "搜索维基"
+
+msgid "Read wiki page"
+msgstr "阅读维基页面"
+
+msgid "List wiki pages"
+msgstr "列出维基页面"
+
+msgid "Write wiki page"
+msgstr "编写维基页面"
+
+msgid "Write a FluxWP plugin (with the wiki guides)"
+msgstr "编写一个 FluxWP 插件(使用 wiki 指南)"
+
+msgid "Sections"
+msgstr "部分"
+
+msgid "New section"
+msgstr "新版块"
+
+msgid "Edit section"
+msgstr "编辑部分"
+
+msgid "Search sections"
+msgstr "搜索栏目"
+
+msgid "All sections"
+msgstr "所有部分"
+
+msgid "Wiki page"
+msgstr "维基页面"
+
+msgid "All pages"
+msgstr "所有页面"
+
+msgid "New wiki page"
+msgstr "新的维基页面"
+
+msgid "Edit wiki page"
+msgstr "编辑维基页面"
+
+msgid "View page"
+msgstr "查看页面"
+
+msgid "No pages found"
+msgstr "没有找到页面"
+
+msgid "No pages in trash"
+msgstr "回收站中没有页面"
+
+msgid "Parent page:"
+msgstr "父页面:"
+
+msgid "Wiki page not found."
+msgstr "未找到维基页面。"
+
+msgid "A title is required."
+msgstr "需要一个标题。"
+
+msgid "Wiki section"
+msgstr "维基部分"
+
+msgid "The question is too short."
+msgstr "问题太短了。"
+
+msgid "You have reached the question limit for this hour. Try again later."
+msgstr "您已达到这一小时的问题限制。稍后再试。"
+
+msgid "Your previous question is still being answered. Please try again shortly."
+msgstr "您之前的问题仍在回答中。请稍后重试。"
+
+msgid "Wiki addresses"
+msgstr "维基地址"
+
+msgid "The wiki is at %s; .md and llms.txt addresses work."
+msgstr "维基百科位于%s; .md 和 llms.txt 地址有效。"
+
+msgid "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
+msgstr "固定链接设置为“普通”; /wiki、.md 和 llms.txt 地址不起作用。在“设置”>“永久链接”中选择“帖子名称”。"
+
+msgid "Permalinks"
+msgstr "固定链接"
+
+msgid "Flux AI is ready; visitors can get answers from the wiki content."
+msgstr "Flux AI 已准备就绪;访问者可以从维基内容中得到答案。"
+
+msgid "Flux AI is not installed, has no key or the Flux Wiki system is off; \"Ask the wiki\" is hidden."
+msgstr "Flux AI 未安装、没有密钥或 Flux Wiki 系统已关闭; “询问维基”被隐藏。"
+
+msgid "%s page"
+msgid_plural "%s pages"
+msgstr[0] "%s页"
+
+msgid "%s min read"
+msgid_plural "%s min read"
+msgstr[0] "%s最小读取值"
+
+msgid "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
+msgstr "你在找什么?例如。 MCP 工具、flx_settings_schema、主题..."
+
+msgid "Search the wiki…"
+msgstr "搜索维基..."
+
+msgid "Documentation"
+msgstr "文档"
+
+msgid "Start here"
+msgstr "从这里开始"
+
+msgid "Explore the guides"
+msgstr "探索指南"
+
+msgid "No published pages yet."
+msgstr "尚未发布页面。"
+
+msgid "See all"
+msgstr "查看全部"
+
+msgid "Recently updated"
+msgstr "最近更新"
+
+msgid "For LLMs and AI agents"
+msgstr "对于法学硕士和人工智能代理人"
+
+msgid "Add .md to any page address to open it as plain Markdown. Agents read the index from llms.txt and the whole content in one file from llms-full.txt."
+msgstr "将 .md 添加到任何页面地址,以将其作为纯 Markdown 打开。代理从 llms.txt 读取索引,并从 llms-full.txt 读取一个文件中的全部内容。"
+
+msgid "On this page"
+msgstr "在此页面上"
+
+msgid "Subpages"
+msgstr "子页面"
+
+msgid "Updated %s"
+msgstr "更新了%s"
+
+msgid "Previous and next page"
+msgstr "上一页和下一页"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "Next"
+msgstr "下一步"
+
+msgid "Markdown"
+msgstr "降价"
+
+msgid "Read the document at %s, then answer my questions about it."
+msgstr "阅读%s上的文档,然后回答我的相关问题。"
+
+msgid "Copy Markdown"
+msgstr "复制 Markdown"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Breadcrumb"
+msgstr "面包屑"
+
+msgid "Pages"
+msgstr "页数"
+
+msgid "Wiki pages"
+msgstr "维基页面"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "select"
+msgstr "选择"
+
+msgid "open"
+msgstr "打开"
+
+msgid "close"
+msgstr "关闭"
+
+msgid "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"
+msgstr "[['/wiki 下网站上的开发人员 wiki:Markdown 页面、部分、页面树和目录、详细的即时搜索、SEO 友好的输出。 LLM 友好:每个页面都打开并复制为 .md、/wiki/llms.txt 和 llms-full.txt,在 ChatGPT / Claude 中打开。使用 Flux AI 的“询问 Wiki”和 MCP 工具(搜索、读取、列出、写入)。它附带了编写插件和主题以及使插件由人工智能驱动的指南。', 'tr']]"

@@ -79,8 +79,8 @@ export class Ui {
         title,
         body: <p className="flxg-muted">{text}</p>,
         actions: [
-          { label: tt('Vazgeç'), onClick: () => ((done = true), resolve(false)) },
-          { label: okLabel ?? tt('Tamam'), primary: !danger, danger, onClick: () => ((done = true), resolve(true)) },
+          { label: tt("Cancel"), onClick: () => ((done = true), resolve(false)) },
+          { label: okLabel ?? tt("OK"), primary: !danger, danger, onClick: () => ((done = true), resolve(true)) },
         ],
         onClose: () => !done && resolve(false),
       });
@@ -106,7 +106,7 @@ export class Ui {
             onKeyDown={(ev) => ev.key === 'Enter' && (ok(), close())}
           />
         ),
-        actions: [{ label: tt('Vazgeç') }, { label: okLabel ?? tt('Kaydet'), primary: true, onClick: ok }],
+        actions: [{ label: tt("Cancel") }, { label: okLabel ?? tt("Save"), primary: true, onClick: ok }],
         onClose: () => !done && resolve(null),
       });
     });
@@ -205,9 +205,9 @@ export function fmtDue(s: string, opts: { full?: boolean } = {}) {
   const td = today();
   const time = s.length > 10 ? ' ' + d.toLocaleTimeString(loc, { hour: '2-digit', minute: '2-digit' }) : '';
   if (!opts.full) {
-    if (key === td) return tt('Bugün') + time;
-    if (key === addDays(td, 1)) return tt('Yarın') + time;
-    if (key === addDays(td, -1)) return tt('Dün') + time;
+    if (key === td) return tt("Today") + time;
+    if (key === addDays(td, 1)) return tt("Tomorrow") + time;
+    if (key === addDays(td, -1)) return tt("Yesterday") + time;
   }
   const sameYear = d.getFullYear() === new Date().getFullYear();
   return d.toLocaleDateString(loc, sameYear && !opts.full ? { day: 'numeric', month: 'short' } : { day: 'numeric', month: 'short', year: 'numeric' }) + time;
@@ -228,7 +228,7 @@ export function ago(iso?: string | null) {
   const diff = (d.getTime() - Date.now()) / 1000;
   const a = Math.abs(diff);
   const rtf = new Intl.RelativeTimeFormat(loc, { numeric: 'auto' });
-  if (a < 45) return tt('az önce');
+  if (a < 45) return tt("just now");
   if (a < 3600) return rtf.format(Math.round(diff / 60), 'minute');
   if (a < 86400) return rtf.format(Math.round(diff / 3600), 'hour');
   if (a < 86400 * 7) return rtf.format(Math.round(diff / 86400), 'day');
@@ -250,7 +250,7 @@ export function richText(body: string, users: Record<number, FlxgUser>, meId: nu
   let esc = String(body || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
   esc = esc.replace(/@\{(\d+)\}/g, (_, id) => {
     const u = users[+id];
-    return '<span class="flxg-mention' + (+id === meId ? ' is-me' : '') + '">@' + (u ? u.name.replace(/[&<>]/g, '') : tt('Silinmiş kullanıcı')) + '</span>';
+    return '<span class="flxg-mention' + (+id === meId ? ' is-me' : '') + '">@' + (u ? u.name.replace(/[&<>]/g, '') : tt("Deleted user")) + '</span>';
   });
   esc = esc.replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"])/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
   esc = esc.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
@@ -515,7 +515,7 @@ function ModalBox({ m, ui }: { m: ModalT; ui: Ui }) {
       <div className={'flxg-modal' + (m.wide ? ' is-wide' : '')} role="dialog" aria-modal="true" aria-label={m.title}>
         <div className="flxg-modal-head">
           <h2>{m.title}</h2>
-          <button type="button" className="flxg-icon-btn" aria-label={tt('Kapat')} onClick={() => ui.closeModal(m.id)}>
+          <button type="button" className="flxg-icon-btn" aria-label={tt("Close")} onClick={() => ui.closeModal(m.id)}>
             <Ic n="x" s={18} />
           </button>
         </div>
@@ -577,7 +577,7 @@ function Lightbox({ e, ui }: { e: FlxgEngine; ui: Ui }) {
   });
   return (
     <div className="flxg-lightbox" onClick={(ev) => ev.target === ev.currentTarget && close()}>
-      <button type="button" className="flxg-lb-close" aria-label={tt('Kapat')} onClick={close}>
+      <button type="button" className="flxg-lb-close" aria-label={tt("Close")} onClick={close}>
         <Ic n="x" s={22} />
       </button>
       {lb.files.length > 1 && (
@@ -597,7 +597,7 @@ function Lightbox({ e, ui }: { e: FlxgEngine; ui: Ui }) {
         </span>
         <button type="button" className="flxg-btn is-ghost" onClick={() => void downloadFile(e, f).catch(ui.fail)}>
           <Ic n="download" />
-          {tt('İndir')}
+          {tt("Download")}
         </button>
       </div>
     </div>
@@ -608,14 +608,14 @@ function Lightbox({ e, ui }: { e: FlxgEngine; ui: Ui }) {
 export function pickStatus(c: Ctx, anchor: HTMLElement, listId: number, current: string, onPick: (k: string) => void) {
   const l = c.e.list(listId);
   if (!l) return;
-  c.ui.menu(anchor, [{ head: tt('Durum') }, ...l.statuses.map((s) => ({ label: s.label, swatch: s.color, checked: s.key === current, onClick: () => onPick(s.key) }))]);
+  c.ui.menu(anchor, [{ head: tt("Status") }, ...l.statuses.map((s) => ({ label: s.label, swatch: s.color, checked: s.key === current, onClick: () => onPick(s.key) }))]);
 }
 export function pickPriority(c: Ctx, anchor: HTMLElement, current: number, onPick: (n: number) => void) {
   c.ui.menu(anchor, [
-    { head: tt('Öncelik') },
+    { head: tt("Priority") },
     ...c.e.S.config.priorities.map((p) => ({ label: p.label, swatch: p.color, checked: +current === p.id, onClick: () => onPick(p.id) })),
     { sep: true },
-    { label: tt('Önceliği kaldır'), icon: 'x', onClick: () => onPick(0) },
+    { label: tt("Remove priority"), icon: 'x', onClick: () => onPick(0) },
   ]);
 }
 export function pickList(c: Ctx, anchor: HTMLElement, onPick: (id: number) => void, opts: { current?: number; need?: string } = {}) {
@@ -630,7 +630,7 @@ export function pickList(c: Ctx, anchor: HTMLElement, onPick: (id: number) => vo
       items.push({ label: (f ? f.name + ' / ' : '') + l.name, swatch: l.color, checked: opts.current === l.id, onClick: () => onPick(l.id) });
     }
   }
-  if (!items.length) items.push({ head: tt('Görev ekleyebileceğiniz liste yok.') });
+  if (!items.length) items.push({ head: tt("There are no lists you can add tasks to.") });
   c.ui.menu(anchor, items);
 }
 export function pickPeople(c: Ctx, anchor: HTMLElement, selected: number[], onChange: (ids: number[]) => void, opts: { single?: boolean } = {}) {
@@ -654,7 +654,7 @@ function PeoplePick({ c, selected, onChange, single }: { c: Ctx; selected: numbe
     .filter((u) => !nq || u.name.toLocaleLowerCase('tr').includes(nq));
   return (
     <div className="flxg-pick">
-      <input className="flxg-input is-sm" type="search" placeholder={tt('Kişi ara…')} value={q} onChange={(ev) => setQ(ev.target.value)} />
+      <input className="flxg-input is-sm" type="search" placeholder={tt("Search people…")} value={q} onChange={(ev) => setQ(ev.target.value)} />
       <div className="flxg-pick-list">
         {users.map((u) => {
           const on = sel.includes(u.id);
@@ -676,12 +676,12 @@ function PeoplePick({ c, selected, onChange, single }: { c: Ctx; selected: numbe
               }}
             >
               <Avatar u={u} size={24} />
-              <span>{u.name + (u.id === me ? ' (' + tt('ben') + ')' : '')}</span>
+              <span>{u.name + (u.id === me ? ' (' + tt("me") + ')' : '')}</span>
               {on && <Ic n="check" s={14} cls="flxg-menu-check" />}
             </button>
           );
         })}
-        {!users.length && <div className="flxg-empty-sm">{tt('Sonuç yok')}</div>}
+        {!users.length && <div className="flxg-empty-sm">{tt("No results")}</div>}
       </div>
     </div>
   );
@@ -700,10 +700,10 @@ function DatePick({ c, value, onPick, label }: { c: Ctx; value: string; onPick: 
   const d = new Date();
   d.setDate(d.getDate() + ((8 - d.getDay()) % 7 || 7));
   const quick: [string, string][] = [
-    [tt('Bugün'), td],
-    [tt('Yarın'), addDays(td, 1)],
-    [tt('Gelecek hafta'), dayKey(d)],
-    [tt('2 hafta sonra'), addDays(td, 14)],
+    [tt("Today"), td],
+    [tt("Tomorrow"), addDays(td, 1)],
+    [tt("Next week"), dayKey(d)],
+    [tt("In 2 weeks"), addDays(td, 14)],
   ];
   return (
     <div className="flxg-datepick">
@@ -715,21 +715,21 @@ function DatePick({ c, value, onPick, label }: { c: Ctx; value: string; onPick: 
         ))}
       </div>
       <label className="flxg-field">
-        <span>{label ?? tt('Tarih')}</span>
+        <span>{label ?? tt("Date")}</span>
         <input className="flxg-input is-sm" type="date" value={day} onChange={(ev) => setDay(ev.target.value)} onKeyDown={(ev) => ev.key === 'Enter' && emit(day, time)} />
       </label>
       <label className="flxg-field">
-        <span>{tt('Saat (isteğe bağlı)')}</span>
+        <span>{tt("Time (optional)")}</span>
         <input className="flxg-input is-sm" type="time" value={time} onChange={(ev) => setTime(ev.target.value)} />
       </label>
       <div className="flxg-row-btns">
         {value && (
           <button type="button" className="flxg-btn is-ghost" onClick={() => emit('')}>
-            {tt('Temizle')}
+            {tt("Clear")}
           </button>
         )}
         <button type="button" className="flxg-btn is-primary" onClick={() => emit(day, time)}>
-          {tt('Uygula')}
+          {tt("Apply")}
         </button>
       </div>
     </div>
@@ -761,7 +761,7 @@ function TagPick({ c, spaceId, selected, onChange }: { c: Ctx; spaceId: number; 
       <input
         className="flxg-input is-sm"
         type="search"
-        placeholder={tt('Etiket ara veya oluştur…')}
+        placeholder={tt("Search or create a tag…")}
         value={q}
         onChange={(ev) => setQ(ev.target.value)}
         onKeyDown={(ev) => ev.key === 'Enter' && canCreate && void create()}
@@ -790,10 +790,10 @@ function TagPick({ c, spaceId, selected, onChange }: { c: Ctx; spaceId: number; 
         {canCreate && (
           <button type="button" className="flxg-pick-item is-create" onClick={() => void create()}>
             <Ic n="plus" />
-            <span>{tt('Oluştur: {n}', { n: q.trim() })}</span>
+            <span>{tt("Create: {n}", { n: q.trim() })}</span>
           </button>
         )}
-        {!tags.length && !canCreate && <div className="flxg-empty-sm">{tt('Henüz etiket yok. Yazıp oluşturun.')}</div>}
+        {!tags.length && !canCreate && <div className="flxg-empty-sm">{tt("No tags yet. Type to create one.")}</div>}
       </div>
     </div>
   );

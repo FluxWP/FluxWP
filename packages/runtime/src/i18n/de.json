@@ -1,0 +1,183 @@
+{
+  "shell": {
+    "tabs": {
+      "home": "Zuhause",
+      "posts": "Beiträge",
+      "comments": "Kommentare",
+      "menu": "Menü",
+      "more": "Menü"
+    },
+    "status": {
+      "publish": "Veröffentlicht",
+      "draft": "Entwurf",
+      "pending": "Ausstehend",
+      "future": "Geplant",
+      "private": "Privat"
+    },
+    "switchSite": "Website wechseln",
+    "offline": "Offline: Gespeicherte Daten anzeigen",
+    "notFound": "Dieser Bildschirm wurde nicht gefunden.",
+    "demo": "Demo",
+    "nav": {
+      "more": "Menü",
+      "accounts": "Konten",
+      "settings": "Einstellungen",
+      "search": "Suchen",
+      "notifications": "Benachrichtigungen"
+    },
+    "groups": {
+      "content": "Inhalt"
+    },
+    "openedInWeb": "In der Webansicht geöffnet"
+  },
+  "list": {
+    "search": "Suchen",
+    "empty": "Hier ist noch nichts.",
+    "noResults": "Keine Ergebnisse.",
+    "end": "Das ist alles",
+    "loadingMore": "Laden…"
+  },
+  "states": {
+    "loading": "Laden…",
+    "errorTitle": "Konnte nicht geladen werden",
+    "errorBody": "Der Server konnte nicht erreicht werden. Überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "forbidden": "Sie haben keinen Zugriff auf diesen Bildschirm.",
+    "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+  },
+  "form": {
+    "required": "Dieses Feld ist erforderlich.",
+    "invalid": "Geben Sie einen gültigen Wert ein.",
+    "min": "Der Wert ist zu gering.",
+    "max": "Der Wert ist zu groß.",
+    "submit": "Speichern",
+    "saving": "Sparen...",
+    "saved": "Gespeichert.",
+    "minLength": "Mindestens {{count}} Zeichen.",
+    "maxLength": "Höchstens {{count}} Zeichen.",
+    "choose": "Wählen Sie",
+    "change": "Veränderung",
+    "remove": "Entfernen",
+    "upload": "Hochladen",
+    "uploading": "Hochladen...",
+    "search": "Suchen"
+  },
+  "action": {
+    "confirmTitle": "Bist du sicher?",
+    "confirm": "Bestätigen",
+    "done": "Fertig.",
+    "failed": "Die Aktion konnte nicht abgeschlossen werden."
+  },
+  "webview": {
+    "loading": "Dashboard-Seite wird geöffnet...",
+    "error": "Die Seite konnte nicht geöffnet werden.",
+    "openBrowser": "Im Browser öffnen",
+    "reload": "Neu laden",
+    "back": "Zurück",
+    "demoNote": "Demo: Beispiel-Dashboard-Seite"
+  },
+  "switcher": {
+    "title": "Konten",
+    "manage": "Konten verwalten",
+    "remove": "Konto entfernen",
+    "removeConfirm": "Das {{site}}-Konto von diesem Gerät entfernen?",
+    "current": "Girokonto"
+  },
+  "prefs": {
+    "cache": "Cache",
+    "clearCache": "Cache leeren",
+    "cacheCleared": "Cache geleert.",
+    "version": "Version {{version}}"
+  },
+  "core": {
+    "pages": "Seiten",
+    "post": "Beitrag",
+    "edit": "Bearbeiten",
+    "openInPanel": "Im Dashboard öffnen",
+    "trash": "In den Papierkorb verschieben",
+    "trashConfirm": "Dieses Element in den Papierkorb verschieben?",
+    "trashed": "In den Papierkorb verschoben",
+    "title": "Titel",
+    "status": "Status",
+    "excerpt": "Auszug",
+    "link": "Link",
+    "date": "Datum",
+    "author": "Autor",
+    "image": "Bild",
+    "content": "Inhalt",
+    "newPost": "Neuer Beitrag",
+    "approve": "Genehmigen",
+    "spam": "Spam",
+    "approved": "Genehmigt",
+    "statusAll": "Alle",
+    "statusDraft": "Entwürfe",
+    "statusPending": "Ausstehend",
+    "statusHold": "Ausstehend",
+    "emptyPosts": "Noch keine Beiträge",
+    "emptyComments": "Keine Kommentare",
+    "searchPosts": "Beiträge durchsuchen",
+    "searchComments": "Kommentare durchsuchen",
+    "details": "Details"
+  },
+  "accounts": {
+    "kind": {
+      "otp": "Einmaliger Code",
+      "apppass": "Anwendungspasswort"
+    }
+  },
+  "auth": {
+    "otpLogin": "Melden Sie sich mit einem Code an",
+    "otpHint": "Wir senden einen einmaligen Code. Es funktioniert für Spender und Kunden.",
+    "sendCode": "Code senden",
+    "otpCode": "Code",
+    "verify": "Bestätigen Sie und melden Sie sich an",
+    "codeSent": "Wenn das Konto existiert, ist der Code unterwegs.",
+    "appPassword": "Anwendungspasswort"
+  },
+  "desktop": {
+    "selected": "{{count}} ausgewählt",
+    "clear": "Klar",
+    "notifications": "Benachrichtigungen",
+    "notificationsEmpty": "Noch keine Benachrichtigungen.",
+    "cancel": "Abbrechen",
+    "more": "Weitere Aktionen",
+    "rowActions": "Zeilenaktionen",
+    "back": "Zurück",
+    "loading": "Laden…",
+    "offline": "Gespeicherte Daten anzeigen"
+  },
+  "addSite": {
+    "notAllowed": "Diese App kann nur eine Verbindung zu ihrer eigenen Website herstellen.",
+    "browserHint": "Sie melden sich im sicheren Browser der App an. Ihr Passwort erreicht die App nie.",
+    "cancelled": "Die Anmeldung wurde abgebrochen.",
+    "title": "Verknüpfen Sie Ihre Website",
+    "demo": "Probieren Sie das Demokonto aus"
+  },
+  "drawer": {
+    "open": "Menü öffnen",
+    "close": "Menü schließen",
+    "expand": "Untermenü umschalten"
+  },
+  "tasks": {
+    "engineLabels": {
+      "Status": "Status",
+      "Priority": "Priorität",
+      "Assignee": "Bevollmächtigter",
+      "Due date": "Fälligkeitsdatum",
+      "Tag": "Etikett",
+      "List": "Liste",
+      "No grouping": "Keine Gruppierung",
+      "No priority": "Keine Priorität",
+      "Deleted user": "Gelöschter Benutzer",
+      "Unassigned": "Nicht zugewiesen",
+      "Overdue": "Überfällig",
+      "Today": "Heute",
+      "Tomorrow": "Morgen",
+      "This week": "Diese Woche",
+      "Later": "Später",
+      "No date": "Kein Datum",
+      "No tag": "Kein Etikett",
+      "Empty": "Leer",
+      "All tasks": "Alle Aufgaben"
+    }
+  }
+}

@@ -1,5 +1,8 @@
 # @fluxwp/panel
 
+## 0.3.3
+- Support ten shared locales, English translation keys and Arabic direction for WordPress embeds and shared screens.
+
 ## 0.3.2
 
 - Her hesapta "Yeniden giriş" durur ve o sitenin adresini açar. Oturum düşünce hesabı silmeden giriş yapılır. Keşif, site simgesi yoksa marka logosunu gösterir.

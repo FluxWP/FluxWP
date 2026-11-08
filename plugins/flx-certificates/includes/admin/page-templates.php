@@ -106,7 +106,7 @@ function flxs_page_templates() {
 		echo '<div class="flxs-tplcard' . ( 'active' === $t['status'] ? '' : ' is-off' ) . '">';
 		echo '<a class="flxs-tplcard__img" href="' . esc_url( admin_url( 'admin.php?page=flxs-sablonlar&edit=' . (int) $t['id'] ) ) . '">' . ( $thumb ? '<img src="' . esc_url( $thumb ) . '" alt="">' : '<span class="dashicons dashicons-awards"></span><small>Önizleme kaydedilince oluşur</small>' ) . '</a>';
 		echo '<div class="flxs-tplcard__body"><strong>' . esc_html( $t['name'] ) . '</strong> ' . flxs_status_badge( $t['status'] ); // phpcs:ignore
-		echo ! empty( $t['config']['donor']['selectable'] ) ? ' <span class="flxs-pill flxs-pill--sent">' . esc_html__( 'Bağış sayfasında', 'flx-certificates' ) . '</span>' : '';
+		echo ! empty( $t['config']['donor']['selectable'] ) ? ' <span class="flxs-pill flxs-pill--sent">' . esc_html__( 'On donation page', 'flx-certificates' ) . '</span>' : '';
 		echo '<div class="flxs-muted">' . count( $t['config']['fields'] ) . ' alan · ' . (int) ( $counts[ $t['id'] ] ?? 0 ) . ' sertifika</div>';
 		echo '<div class="flxs-tplcard__acts"><a href="' . esc_url( admin_url( 'admin.php?page=flxs-sablonlar&edit=' . (int) $t['id'] ) ) . '">Düzenle</a>' .
 			$act( 'duplicate', 'Çoğalt' ) . $act( 'toggle', 'active' === $t['status'] ? 'Pasif yap' : 'Aktif yap' ) . $act( 'export', 'Dışa aktar' ) .
@@ -204,13 +204,13 @@ function flxs_page_template_editor( $id ) {
 			<section class="flxs-card flxs-fprops" id="te-props" hidden></section>
 
 			<section class="flxs-card">
-				<h2 class="flxs-card__title"><?php esc_html_e( 'Bağış sayfası', 'flx-certificates' ); ?></h2>
-				<label class="flxs-check"><input type="checkbox" id="te-donor"> <?php esc_html_e( 'Bağışçı bu tasarımı bağış sayfasında seçebilir', 'flx-certificates' ); ?></label>
+				<h2 class="flxs-card__title"><?php esc_html_e( 'Donation page', 'flx-certificates' ); ?></h2>
+				<label class="flxs-check"><input type="checkbox" id="te-donor"> <?php esc_html_e( 'Donors can choose this design on the donation page', 'flx-certificates' ); ?></label>
 				<div class="flxs-grid" id="te-donor-opts">
-					<label class="flxs-field"><span><?php esc_html_e( 'Başlık (grup)', 'flx-certificates' ); ?></span><input type="text" id="te-donor-group" placeholder="<?php esc_attr_e( 'Sertifikalar', 'flx-certificates' ); ?>"></label>
-					<label class="flxs-field"><span><?php esc_html_e( 'Sıra', 'flx-certificates' ); ?></span><input type="number" id="te-donor-sort" step="1"></label>
+					<label class="flxs-field"><span><?php esc_html_e( 'Heading (group)', 'flx-certificates' ); ?></span><input type="text" id="te-donor-group" placeholder="<?php esc_attr_e( 'Certificates', 'flx-certificates' ); ?>"></label>
+					<label class="flxs-field"><span><?php esc_html_e( 'Order', 'flx-certificates' ); ?></span><input type="number" id="te-donor-sort" step="1"></label>
 				</div>
-				<p class="description"><?php esc_html_e( 'Bağışçı tasarımı seçer, şablondaki metin, tarih ve seçim alanlarını (ör. alıcı adı, mesaj) doldurur. Fiyat bağış türünden gelir.', 'flx-certificates' ); ?></p>
+				<p class="description"><?php esc_html_e( 'The donor picks the design and fills in the template\'s text, date and choice fields (e.g. recipient name, message). The price comes from the donation type.', 'flx-certificates' ); ?></p>
 			</section>
 
 			<section class="flxs-card">

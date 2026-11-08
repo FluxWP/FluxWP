@@ -41,17 +41,17 @@ function flx_hesap_satiri() {
 		$out  = function_exists( 'wc_logout_url' ) ? wc_logout_url( $here ) : wp_logout_url( $here );
 		$txt  = sprintf(
 			/* translators: %s: kullanıcı adı */
-			esc_html__( 'Merhaba %s, bağışların hesabına kaydedilir.', 'fluxwp' ),
+			esc_html__( 'Hi %s, your donations are saved to your account.', 'fluxwp' ),
 			'<strong>' . esc_html( $name ) . '</strong>'
 		);
-		$acts = '<a class="flx-hesap-satiri__btn" href="' . esc_url( $acc ) . '">' . esc_html__( 'Hesabım', 'fluxwp' ) . '</a>'
-			. '<a class="flx-hesap-satiri__link" href="' . esc_url( $out ) . '">' . esc_html__( 'Çıkış yap', 'fluxwp' ) . '</a>';
+		$acts = '<a class="flx-hesap-satiri__btn" href="' . esc_url( $acc ) . '">' . esc_html__( 'My account', 'fluxwp' ) . '</a>'
+			. '<a class="flx-hesap-satiri__link" href="' . esc_url( $out ) . '">' . esc_html__( 'Log out', 'fluxwp' ) . '</a>';
 	} else {
 		$login = add_query_arg( 'flx_donus', rawurlencode( $rel ), $acc );
-		$txt   = esc_html__( 'Hesabın var mı? Giriş yaparak bağışlarını hesabından takip edebilirsin.', 'fluxwp' );
-		$acts  = '<a class="flx-hesap-satiri__btn" href="' . esc_url( $login ) . '">' . esc_html__( 'Giriş yap', 'fluxwp' ) . '</a>';
+		$txt   = esc_html__( 'Have an account? Log in to track your donations from your account.', 'fluxwp' );
+		$acts  = '<a class="flx-hesap-satiri__btn" href="' . esc_url( $login ) . '">' . esc_html__( 'Log in', 'fluxwp' ) . '</a>';
 		if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) ) {
-			$acts .= '<a class="flx-hesap-satiri__link" href="' . esc_url( $login . '#kayit' ) . '">' . esc_html__( 'Kayıt ol', 'fluxwp' ) . '</a>';
+			$acts .= '<a class="flx-hesap-satiri__link" href="' . esc_url( $login . '#kayit' ) . '">' . esc_html__( 'Sign up', 'fluxwp' ) . '</a>';
 		}
 	}
 	return '<div class="flx-hesap-satiri alignwide"><span class="flx-hesap-satiri__ic">' . $ic . '</span><p class="flx-hesap-satiri__txt">' . $txt . '</p><div class="flx-hesap-satiri__acts">' . $acts . '</div></div>';
@@ -138,7 +138,7 @@ add_filter(
 add_filter(
 	'woocommerce_return_to_shop_text',
 	function ( $text ) {
-		return flx_donation_mode() ? __( 'Bağışlar Sayfasına dön', 'fluxwp' ) : $text;
+		return flx_donation_mode() ? __( 'Back to Donations', 'fluxwp' ) : $text;
 	}
 );
 add_filter(
@@ -148,7 +148,7 @@ add_filter(
 			return $html;
 		}
 		$html = preg_replace( '/href="[^"]*"/', 'href="' . esc_url( flx_bagis_url() ) . '"', $html, 1 );
-		return preg_replace( '/(<div class="wc-block-components-button__text">)[^<]*(<\/div>)/', '$1' . esc_html__( 'Bağışlar Sayfasına dön', 'fluxwp' ) . '$2', $html, 1 );
+		return preg_replace( '/(<div class="wc-block-components-button__text">)[^<]*(<\/div>)/', '$1' . esc_html__( 'Back to Donations', 'fluxwp' ) . '$2', $html, 1 );
 	}
 );
 
@@ -158,10 +158,10 @@ add_action(
 	function () {
 		$d = array(
 			'donateUrl'  => flx_bagis_url(),
-			'backToDon'  => flx_donation_mode() ? __( 'Bağışlar Sayfasına dön', 'fluxwp' ) : '',
-			'tabLogin'   => __( 'Giriş Yap', 'fluxwp' ),
-			'tabReg'     => __( 'Kayıt Ol', 'fluxwp' ),
-			'or'         => __( 'veya', 'fluxwp' ),
+			'backToDon'  => flx_donation_mode() ? __( 'Back to Donations', 'fluxwp' ) : '',
+			'tabLogin'   => __( 'Log In', 'fluxwp' ),
+			'tabReg'     => __( 'Sign Up', 'fluxwp' ),
+			'or'         => __( 'or', 'fluxwp' ),
 		);
 		wp_add_inline_script( 'fluxwp', 'window.flxHesap=' . wp_json_encode( $d ) . ';', 'before' );
 	},
@@ -187,9 +187,9 @@ function flx_telefon_temizle( $raw ) {
 function flx_telefon_alani( $id, $value ) {
 	?>
 	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide flx-tel-row">
-		<label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Telefon', 'fluxwp' ); ?> <span class="optional"><?php esc_html_e( '(isteğe bağlı)', 'fluxwp' ); ?></span></label>
+		<label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Phone', 'fluxwp' ); ?> <span class="optional"><?php esc_html_e( '(optional)', 'fluxwp' ); ?></span></label>
 		<input type="tel" class="woocommerce-Input woocommerce-Input--text input-text" name="flx_phone" id="<?php echo esc_attr( $id ); ?>" autocomplete="tel" inputmode="tel" placeholder="05XX XXX XX XX" value="<?php echo esc_attr( $value ); ?>">
-		<span class="flx-tel-hint"><?php echo esc_html( apply_filters( 'flx_phone_hint_text', __( 'Bağış ve sipariş bildirimlerini WhatsApp’tan da gönderebilmemiz için.', 'fluxwp' ) ) ); ?></span>
+		<span class="flx-tel-hint"><?php echo esc_html( apply_filters( 'flx_phone_hint_text', __( 'So we can also send your donation and order updates via WhatsApp.', 'fluxwp' ) ) ); ?></span>
 	</p>
 	<?php
 }
@@ -204,7 +204,7 @@ add_filter(
 	'woocommerce_registration_errors',
 	function ( $errors ) {
 		if ( isset( $_POST['flx_phone'] ) && false === flx_telefon_temizle( wp_unslash( $_POST['flx_phone'] ) ) ) { // phpcs:ignore WordPress.Security
-			$errors->add( 'flx_phone', __( 'Telefon numarası geçersiz görünüyor. Örnek: 0532 123 45 67', 'fluxwp' ) );
+			$errors->add( 'flx_phone', __( 'The phone number looks invalid. Example: +90 532 123 45 67', 'fluxwp' ) );
 		}
 		return $errors;
 	}
@@ -234,7 +234,7 @@ add_action(
 	'woocommerce_save_account_details_errors',
 	function ( $errors ) {
 		if ( isset( $_POST['flx_phone'] ) && false === flx_telefon_temizle( wp_unslash( $_POST['flx_phone'] ) ) ) { // phpcs:ignore WordPress.Security
-			$errors->add( 'flx_phone', __( 'Telefon numarası geçersiz görünüyor. Örnek: 0532 123 45 67', 'fluxwp' ) );
+			$errors->add( 'flx_phone', __( 'The phone number looks invalid. Example: +90 532 123 45 67', 'fluxwp' ) );
 		}
 	}
 );
@@ -261,9 +261,9 @@ add_action(
 			return;
 		}
 		echo '<div class="flx-tel-nudge"><span class="flx-tel-nudge__ic">' . ( function_exists( 'flx_wc_icon' ) ? flx_wc_icon( 'account' ) : '' ) . '</span><p>'
-			. esc_html( apply_filters( 'flx_phone_nudge_text', __( 'Telefon numaranı ekle, bildirimleri WhatsApp’tan da alabilirsin.', 'fluxwp' ) ) )
+			. esc_html( apply_filters( 'flx_phone_nudge_text', __( 'Add your phone number to also receive updates via WhatsApp.', 'fluxwp' ) ) )
 			. '</p><a class="flx-hesap-satiri__btn" href="' . esc_url( wc_get_account_endpoint_url( 'edit-account' ) ) . '#account_flx_phone">'
-			. esc_html__( 'Telefon ekle', 'fluxwp' ) . '</a></div>';
+			. esc_html__( 'Add phone', 'fluxwp' ) . '</a></div>';
 	},
 	5
 );

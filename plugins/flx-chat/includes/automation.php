@@ -96,7 +96,7 @@ function flxc_ai_active() {
 function flxc_ai_suggest( $chat, $hint = '' ) {
 	$p = flxc_ai_active();
 	if ( ! $p || empty( $p['suggest'] ) || ! is_callable( $p['suggest'] ) ) {
-		return new WP_Error( 'flxc_ai', __( 'Yapay zekâ sağlayıcısı tanımlı değil.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_ai', __( 'No AI provider is configured.', 'flx-chat' ) );
 	}
 	$msgs = array();
 	foreach ( flxc_chat_messages( $chat['id'], 0, 30 ) as $m ) {

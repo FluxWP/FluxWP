@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.3
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 0.4.2
 - Mobil uygulama kullanım toplamlarını telemetri merkezinde gün, platform ve site ülkesi bazında gösterir. Eksik/küçük gruplar, bilinmeyen alanlar ve geçersiz sayılar kabul edilmez; kişi veya site adresi eklenmez.
 

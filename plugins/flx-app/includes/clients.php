@@ -14,7 +14,7 @@ function flxapp_builtin_clients() {
 		array(
 			FLXAPP_DESKTOP_CLIENT => array(
 				'id'            => FLXAPP_DESKTOP_CLIENT,
-				'name'          => __( 'Flux Masaüstü', 'flx-app' ),
+				'name'          => __( 'Flux Desktop', 'flx-app' ),
 				'redirect_uris' => array( 'flxmasaustu://oauth/callback', 'http://127.0.0.1/callback', 'http://localhost/callback' ),
 				'secret_hash'   => '',
 				'builtin'       => true,
@@ -106,20 +106,20 @@ function flxapp_add_client( $name, array $uris, $confidential = false, $dynamic 
 	$name = sanitize_text_field( $name );
 	$uris = array_values( array_unique( array_filter( array_map( 'trim', $uris ) ) ) );
 	if ( '' === $name || ! $uris || count( $uris ) > 10 ) {
-		return new WP_Error( 'invalid_client_metadata', __( 'Ad ve en az bir yönlendirme adresi gerekli (en çok 10).', 'flx-app' ) );
+		return new WP_Error( 'invalid_client_metadata', __( 'A name and at least one redirect URI are required (at most 10).', 'flx-app' ) );
 	}
 	foreach ( $uris as $u ) {
 		if ( ! flxapp_redirect_allowed_format( $u ) ) {
 			return new WP_Error(
 				'invalid_redirect_uri',
 				/* translators: %s: redirect URI */
-				sprintf( __( 'Yönlendirme adresi kabul edilmedi: %s (https, 127.0.0.1 ya da uygulama şeması olmalı).', 'flx-app' ), $u )
+				sprintf( __( 'Redirect URI rejected: %s (must be https, 127.0.0.1 or an app scheme).', 'flx-app' ), $u )
 			);
 		}
 	}
 	$all = flxapp_stored_clients();
 	if ( $dynamic && count( array_filter( $all, function ( $c ) { return ! empty( $c['dynamic'] ); } ) ) >= 100 ) {
-		return new WP_Error( 'invalid_client_metadata', __( 'Dinamik istemci sınırı doldu; eskileri silin.', 'flx-app' ) );
+		return new WP_Error( 'invalid_client_metadata', __( 'Dynamic client limit reached; delete old ones.', 'flx-app' ) );
 	}
 	$id     = 'flxc_' . strtolower( wp_generate_password( 16, false ) );
 	$secret = $confidential ? flxapp_random( 'flxcs_' ) : '';

@@ -120,7 +120,7 @@ function flxapp_otp_key( $login ) {
 function flxapp_otp_deliver( WP_User $user, $type, $value, $code ) {
 	$site = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
 	/* translators: 1: code, 2: site name */
-	$text = sprintf( __( '%1$s, %2$s uygulamasına giriş kodunuz. 10 dakika geçerli. Bu kodu kimseyle paylaşmayın.', 'flx-app' ), $code, $site );
+	$text = sprintf( __( '%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone.', 'flx-app' ), $code, $site );
 	$via  = apply_filters( 'flxapp_otp_send', null, $user, $type, $value, $code, $text );
 	if ( $via ) {
 		return (string) $via;
@@ -140,11 +140,11 @@ function flxapp_otp_deliver( WP_User $user, $type, $value, $code ) {
 	$email = $user->user_email;
 	if ( 'email' === $type || is_email( $email ) ) {
 		/* translators: %s: site name */
-		$subject = sprintf( __( '%s giriş kodu', 'flx-app' ), $site );
+		$subject = sprintf( __( '%s sign-in code', 'flx-app' ), $site );
 		$body    = '<div style="font:16px/1.5 -apple-system,Segoe UI,sans-serif;max-width:420px">'
-			. '<p>' . esc_html__( 'Uygulamaya giriş kodunuz:', 'flx-app' ) . '</p>'
+			. '<p>' . esc_html__( 'Your app sign-in code:', 'flx-app' ) . '</p>'
 			. '<p style="font-size:32px;letter-spacing:8px;font-weight:700;margin:16px 0">' . esc_html( $code ) . '</p>'
-			. '<p style="color:#5f6b64">' . esc_html__( 'Kod 10 dakika geçerli. Siz istemediyseniz bu e-postayı yok sayın.', 'flx-app' ) . '</p></div>';
+			. '<p style="color:#5f6b64">' . esc_html__( 'The code is valid for 10 minutes. If you did not request it, ignore this email.', 'flx-app' ) . '</p></div>';
 		if ( wp_mail( $email, $subject, $body, array( 'Content-Type: text/html; charset=UTF-8' ) ) ) {
 			return 'email';
 		}
@@ -154,7 +154,7 @@ function flxapp_otp_deliver( WP_User $user, $type, $value, $code ) {
 
 function flxapp_otp_via_label( $via ) {
 	$l = array(
-		'email'    => __( 'E-posta', 'flx-app' ),
+		'email'    => __( 'Email', 'flx-app' ),
 		'whatsapp' => 'WhatsApp',
 		'sms'      => 'SMS',
 	);
@@ -163,18 +163,18 @@ function flxapp_otp_via_label( $via ) {
 
 function flxapp_rest_otp_start( WP_REST_Request $req ) {
 	if ( ! flxapp_opt( 'otp_enabled' ) ) {
-		return new WP_Error( 'flxapp_otp_off', __( 'Kodla giriş kapalı.', 'flx-app' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxapp_otp_off', __( 'Sign in with code is turned off.', 'flx-app' ), array( 'status' => 403 ) );
 	}
 	if ( ! flxapp_client( (string) $req->get_param( 'client_id' ) ) ) {
 		return flxapp_oauth_error( 'invalid_client', '', 401 );
 	}
 	list( $type, $value ) = flxapp_otp_normalize( $req->get_param( 'login' ) );
 	if ( '' === $type ) {
-		return new WP_Error( 'flxapp_otp_login', __( 'Geçerli bir e-posta ya da telefon yazın.', 'flx-app' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxapp_otp_login', __( 'Enter a valid email or phone number.', 'flx-app' ), array( 'status' => 400 ) );
 	}
 	// IP başına 10 dk'da 6, giriş değeri başına 10 dk'da 3 kod.
 	if ( ! flxapp_rate( 'otp_ip', 6, 10 * MINUTE_IN_SECONDS ) || ! flxapp_rate( 'otp_login|' . $value, 3, 10 * MINUTE_IN_SECONDS ) ) {
-		return new WP_Error( 'flxapp_rate', __( 'Çok fazla deneme. Biraz sonra tekrar deneyin.', 'flx-app' ), array( 'status' => 429 ) );
+		return new WP_Error( 'flxapp_rate', __( 'Too many attempts. Try again in a little while.', 'flx-app' ), array( 'status' => 429 ) );
 	}
 	$via  = 'phone' === $type ? ( function_exists( 'flxc_send_text' ) ? 'whatsapp' : 'email' ) : 'email';
 	$user = flxapp_otp_find_user( $type, $value );
@@ -210,13 +210,13 @@ function flxapp_rest_otp_verify( WP_REST_Request $req ) {
 		return flxapp_oauth_error( 'invalid_client', '', 401 );
 	}
 	if ( ! flxapp_rate( 'otp_verify', 20, 10 * MINUTE_IN_SECONDS ) ) {
-		return new WP_Error( 'flxapp_rate', __( 'Çok fazla deneme. Biraz sonra tekrar deneyin.', 'flx-app' ), array( 'status' => 429 ) );
+		return new WP_Error( 'flxapp_rate', __( 'Too many attempts. Try again in a little while.', 'flx-app' ), array( 'status' => 429 ) );
 	}
 	list( $type, $value ) = flxapp_otp_normalize( $req->get_param( 'login' ) );
 	$key  = flxapp_otp_key( $value );
 	$d    = '' !== $type ? get_transient( $key ) : false;
 	$code = preg_replace( '/\D/', '', (string) $req->get_param( 'code' ) );
-	$bad  = new WP_Error( 'flxapp_otp_code', __( 'Kod yanlış ya da süresi dolmuş.', 'flx-app' ), array( 'status' => 400 ) );
+	$bad  = new WP_Error( 'flxapp_otp_code', __( 'The code is wrong or has expired.', 'flx-app' ), array( 'status' => 400 ) );
 	if ( ! $d || $d['client'] !== $client['id'] ) {
 		return $bad;
 	}

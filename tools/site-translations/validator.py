@@ -14,7 +14,7 @@ class Markup(HTMLParser):
 
 def protected(value):
     tokens=[]
-    for pattern in (r'%(?:\d+\$)?[-+0-9.]*[sdf]',r'\{(?:[A-Za-z_][A-Za-z0-9_.:-]*|url:@[^}]+|id:@[^}]+)\}',r'https?://[^\s<>"\'\)\]]+',r'```[\s\S]*?```',r'`[^`\n]+`',r'!?\[[^\]]*\]\(([^)]+)\)'):
+    for pattern in (r'\{\{[^{}]+\}\}',r'%(?:\d+\$)?[-+0-9.]*[sdf]',r'\{(?:[A-Za-z_][A-Za-z0-9_.:-]*|url:@[^}]+|id:@[^}]+)\}',r'https?://[^\s<>"\'\)\]]+',r'```[\s\S]*?```',r'`[^`\n]+`',r'!?\[[^\]]*\]\(([^)]+)\)'):
         tokens+=re.findall(pattern,value)
     parser=Markup();parser.feed(value)
     tokens+=parser.tokens

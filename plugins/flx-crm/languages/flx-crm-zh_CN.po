@@ -1,0 +1,1165 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Contacts, roles, segments and marketing"
+msgstr "联系人、角色、细分市场和营销"
+
+msgid "Reads"
+msgstr "读"
+
+msgid "Edits"
+msgstr "编辑"
+
+msgid "Needs approval"
+msgstr "需要批准"
+
+msgid "Automation"
+msgstr "自动化"
+
+msgid "CRM overview"
+msgstr "客户关系管理概述"
+
+msgid "CRM structure and settings"
+msgstr "CRM 结构和设置"
+
+msgid "Search CRM contacts"
+msgstr "搜索 CRM 联系人"
+
+msgid "CRM contact card"
+msgstr "CRM 联系卡"
+
+msgid "Timeline"
+msgstr "时间轴"
+
+msgid "Recent activity"
+msgstr "最近的活动"
+
+msgid "Find duplicate contacts"
+msgstr "查找重复的联系人"
+
+msgid "Saved segments"
+msgstr "已保存的片段"
+
+msgid "Preview segment"
+msgstr "预览片段"
+
+msgid "Preview bulk action"
+msgstr "预览批量操作"
+
+msgid "Add CRM contact"
+msgstr "添加 CRM 联系人"
+
+msgid "Edit CRM contact"
+msgstr "编辑 CRM 联系人"
+
+msgid "Add/remove contact tags"
+msgstr "添加/删除联系人标签"
+
+msgid "Add timeline entry"
+msgstr "添加时间线条目"
+
+msgid "Add/edit tag"
+msgstr "添加/编辑标签"
+
+msgid "Save segment"
+msgstr "保存段"
+
+msgid "Change CRM settings"
+msgstr "更改 CRM 设置"
+
+msgid "Recalculate scores"
+msgstr "重新计算分数"
+
+msgid "Delete timeline entry"
+msgstr "删除时间线条目"
+
+msgid "Delete tag"
+msgstr "删除标签"
+
+msgid "Delete segment"
+msgstr "删除段"
+
+msgid "Merge contacts"
+msgstr "合并联系人"
+
+msgid "Delete CRM contact"
+msgstr "删除 CRM 联系人"
+
+msgid "Bulk action"
+msgstr "批量操作"
+
+msgid "Send message to contact"
+msgstr "发送消息给联系人"
+
+msgid "Source: %s"
+msgstr "来源:%s"
+
+msgid "Contact not found."
+msgstr "未找到联系方式。"
+
+msgid "The e-mail address is not valid."
+msgstr "该电子邮件地址无效。"
+
+msgid "The phone number is not valid."
+msgstr "电话号码无效。"
+
+msgid "on"
+msgstr "上"
+
+msgid "off"
+msgstr "关闭"
+
+msgid "E-mail"
+msgstr "电子邮件"
+
+msgid "SMS"
+msgstr "短信"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Ad audiences"
+msgstr "广告受众"
+
+msgid "Choose other contacts to merge."
+msgstr "选择要合并的其他联系人。"
+
+msgid "Up to 20 contacts can be merged at once."
+msgstr "一次最多可以合并 20 个联系人。"
+
+msgid "An e-mail or phone number is required."
+msgstr "需要提供电子邮件或电话号码。"
+
+msgid "The contact could not be saved."
+msgstr "无法保存联系人。"
+
+msgid "Text cannot be empty."
+msgstr "文本不能为空。"
+
+msgid "The tag could not be added."
+msgstr "无法添加标签。"
+
+msgid "Segment not found."
+msgstr "未找到段。"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Tag"
+msgstr "标签"
+
+msgid "RFM segment"
+msgstr "RFM部分"
+
+msgid "Total value"
+msgstr "总价值"
+
+msgid "Days with a payment"
+msgstr "付款天数"
+
+msgid "Last payment"
+msgstr "最后付款"
+
+msgid "Last activity"
+msgstr "上次活动"
+
+msgid "Added"
+msgstr "已添加"
+
+msgid "Churn risk (%)"
+msgstr "流失风险 (%)"
+
+msgid "Consent"
+msgstr "同意"
+
+msgid "First source"
+msgstr "第一来源"
+
+msgid "City"
+msgstr "城市"
+
+msgid "Has an e-mail"
+msgstr "有电子邮件"
+
+msgid "Has a phone"
+msgstr "有电话"
+
+msgid "has"
+msgstr "有"
+
+msgid "is not / has not"
+msgstr "不是/没有"
+
+msgid "is"
+msgstr "是"
+
+msgid "at least"
+msgstr "至少"
+
+msgid "at most"
+msgstr "至多"
+
+msgid "in the last … days"
+msgstr "在过去的......几天里"
+
+msgid "more than … days ago"
+msgstr "超过...天前"
+
+msgid "yes"
+msgstr "是的"
+
+msgid "no"
+msgstr "不"
+
+msgid "contains"
+msgstr "包含"
+
+msgid "%1$s: more than %2$s days ago"
+msgstr "%1$s:超过%2$s天前"
+
+msgid "%1$s: in the last %2$s days"
+msgstr "%1$s:过去%2$s天"
+
+msgid "no %s consent"
+msgstr "未经%s同意"
+
+msgid "has %s consent"
+msgstr "已获得%s同意"
+
+msgid "or"
+msgstr "或"
+
+msgid "A segment name is required."
+msgstr "需要段名称。"
+
+msgid "Add at least one rule."
+msgstr "添加至少一项规则。"
+
+msgid "Donors to win back"
+msgstr "捐助者赢回"
+
+msgid "Donors with a high churn risk. For a check-in or a new project announcement."
+msgstr "流失风险较高的捐赠者。用于签到或新项目公告。"
+
+msgid "New contacts (30 days)"
+msgstr "新联系人(30 天)"
+
+msgid "Contacts added in the last 30 days. For a welcome message."
+msgstr "过去 30 天内添加的联系人。欢迎留言。"
+
+msgid "Champions and loyal supporters"
+msgstr "冠军和忠实支持者"
+
+msgid "The people who support most often and most recently."
+msgstr "最常和最近支持的人。"
+
+msgid "WhatsApp messages"
+msgstr "WhatsApp 消息"
+
+msgid "Totals"
+msgstr "总计"
+
+msgid "RFM score"
+msgstr "RFM评分"
+
+msgid "Tag not found."
+msgstr "未找到标签。"
+
+msgid "Tag name cannot be empty."
+msgstr "标签名称不能为空。"
+
+msgid "Another tag already has this name."
+msgstr "另一个标签已具有此名称。"
+
+msgid "Invalid color (use e.g. #16a34a)."
+msgstr "颜色无效(例如使用#16a34a)。"
+
+msgid "Donor"
+msgstr "捐赠者"
+
+msgid "Customer"
+msgstr "客户"
+
+msgid "Lead"
+msgstr "铅"
+
+msgid "Volunteer"
+msgstr "志愿者"
+
+msgid "Member"
+msgstr "会员"
+
+msgid "Partner"
+msgstr "合伙人"
+
+msgid "Beneficiary"
+msgstr "受益人"
+
+msgid "Donation"
+msgstr "捐赠"
+
+msgid "Order"
+msgstr "订单"
+
+msgid "Form"
+msgstr "形式"
+
+msgid "Incoming message"
+msgstr "收到消息"
+
+msgid "Outgoing message"
+msgstr "传出消息"
+
+msgid "Chat started"
+msgstr "聊天开始"
+
+msgid "Incoming e-mail"
+msgstr "收到电子邮件"
+
+msgid "Note"
+msgstr "注意事项"
+
+msgid "Call"
+msgstr "致电"
+
+msgid "Meeting"
+msgstr "会议"
+
+msgid "Sign-up"
+msgstr "注册"
+
+msgid "Contact added"
+msgstr "已添加联系人"
+
+msgid "Role added"
+msgstr "添加角色"
+
+msgid "Segment changed"
+msgstr "段已更改"
+
+msgid "Consent changed"
+msgstr "同意书已更改"
+
+msgid "Contacts merged"
+msgstr "联系人已合并"
+
+msgid "New"
+msgstr "新"
+
+msgid "Paid for the first time recently. A good fit for a welcome flow."
+msgstr "最近第一次付款。非常适合欢迎流程。"
+
+msgid "Champion"
+msgstr "冠军"
+
+msgid "Pays often and recently. Worth a personal thank-you and attention."
+msgstr "经常和最近付款。值得个人感谢和关注。"
+
+msgid "Loyal"
+msgstr "忠诚"
+
+msgid "Gives regular support. Tell them first about new projects and products."
+msgstr "提供定期支持。首先告诉他们新项目和产品。"
+
+msgid "Promising"
+msgstr "有前途"
+
+msgid "Arrived recently; frequency is still low."
+msgstr "最近到达;频率还是很低。"
+
+msgid "At risk"
+msgstr "有风险"
+
+msgid "Used to be frequent, has drifted away lately. A win-back target."
+msgstr "以前很频繁,最近渐渐消失了。赢回目标。"
+
+msgid "Hibernating"
+msgstr "冬眠"
+
+msgid "Away for a long time with low frequency."
+msgstr "离开时间长、频率低。"
+
+msgid "Lost"
+msgstr "迷失"
+
+msgid "The slice that has gone longest without paying."
+msgstr "没有付费的时间最长的一片。"
+
+msgid "No payments"
+msgstr "没有付款"
+
+msgid "Manual"
+msgstr "手册"
+
+msgid "Import"
+msgstr "进口"
+
+msgid "Site account"
+msgstr "网站帐号"
+
+msgid "%s M"
+msgstr "%sM"
+
+msgid "%s K"
+msgstr "%sK"
+
+msgid "(unnamed contact)"
+msgstr "(未透露姓名的联系人)"
+
+msgid "CRM segment: %1$s (%2$s)"
+msgstr "CRM 段:%1$s(%2$s)"
+
+msgid "CRM role: %1$s (%2$s)"
+msgstr "CRM 角色:%1$s(%2$s)"
+
+msgid "CRM"
+msgstr "客户关系管理"
+
+msgid "Sees contacts, segments and the timeline"
+msgstr "查看联系人、细分和时间线"
+
+msgid "Adds, edits and deletes contacts; manages segments and CRM settings"
+msgstr "添加、编辑和删除联系人;管理细分和 CRM 设置"
+
+msgid "Flux CRM"
+msgstr "通量客户关系管理"
+
+msgid "Contact sources"
+msgstr "联系来源"
+
+msgid "No source brings in contacts (Flux Donate, WooCommerce, Flux Chat and Flux Forms are off or not installed). Contacts can only be added by hand."
+msgstr "没有来源引入联系人(Flux Donate、WooCommerce、Flux Chat 和 Flux Forms 已关闭或未安装)。联系人只能手动添加。"
+
+msgid "First sync"
+msgstr "第一次同步"
+
+msgid "Last full sync: %s"
+msgstr "上次完全同步:%s"
+
+msgid "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
+msgstr "过去的捐赠、订单和聊天尚未导入。 CRM › 设置 › “同步所有内容”。"
+
+msgid "Sync"
+msgstr "同步"
+
+msgid "RFM scoring"
+msgstr "RFM评分"
+
+msgid "Not calculated yet."
+msgstr "还没算。"
+
+msgid "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
+msgstr "最后计算%s。日常作业(WP-Cron)可能没有运行;添加服务器 cron 或手动重新计算。"
+
+msgid "Last calculated: %s"
+msgstr "最后计算:%s"
+
+msgid "Foreign currency payments"
+msgstr "外币支付"
+
+msgid "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
+msgstr "%1$s付款采用%2$s以外的货币,并且没有汇率;它们计入频率,但不计入总价值。使用 `flxcrm_fx_rate` 过滤器提供速率。"
+
+msgid "Overview"
+msgstr "概述"
+
+msgid "Contacts"
+msgstr "联系方式"
+
+msgid "Segments"
+msgstr "段"
+
+msgid "CRM settings"
+msgstr "客户关系管理设置"
+
+msgid "%1$s: %2$s / %3$s"
+msgstr "%1$s:%2$s/%3$s"
+
+msgid "Done. Reloading the page…"
+msgstr "完成。正在重新加载页面..."
+
+msgid "Something went wrong. Please try again."
+msgstr "出了点问题。请再试一次。"
+
+msgid "Are you sure? This cannot be undone."
+msgstr "你确定吗?此操作无法撤消。"
+
+msgid "%s contacts match"
+msgstr "%s联系人匹配"
+
+msgid "Counting…"
+msgstr "计数..."
+
+msgid "Calculating…"
+msgstr "正在计算..."
+
+msgid "%s contacts scored. Reloading the page…"
+msgstr "%s联系人得分。正在重新加载页面..."
+
+msgid "%s contacts selected"
+msgstr "已选择%s联系人"
+
+msgid "Remove rule"
+msgstr "删除规则"
+
+msgid "and"
+msgstr "和"
+
+msgid "days"
+msgstr "天"
+
+msgid "No rules: every contact"
+msgstr "没有规则:每次接触"
+
+msgid "No contacts match."
+msgstr "没有匹配的联系人。"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "Roles"
+msgstr "角色"
+
+msgid "Segment"
+msgstr "段"
+
+msgid "Churn risk"
+msgstr "流失风险"
+
+msgid "E-mail consent"
+msgstr "电子邮件同意"
+
+msgid "SMS consent"
+msgstr "短信同意"
+
+msgid "WhatsApp consent"
+msgstr "WhatsApp 同意"
+
+msgid "Tags"
+msgstr "标签"
+
+msgid "Saved."
+msgstr "已保存。"
+
+msgid "Contact added."
+msgstr "已添加联系方式。"
+
+msgid "Deleted."
+msgstr "已删除。"
+
+msgid "Added to the timeline."
+msgstr "添加到时间线中。"
+
+msgid "A contact with this e-mail or phone already exists; their card is open."
+msgstr "使用此电子邮件或电话的联系人已存在;他们的卡是开放的。"
+
+msgid "%s contacts updated."
+msgstr "%s联系人已更新。"
+
+msgid "Churn risk %s%%"
+msgstr "流失风险%s%%"
+
+msgid "All"
+msgstr "全部"
+
+msgid "Payments"
+msgstr "付款方式"
+
+msgid "Messages"
+msgstr "留言"
+
+msgid "Forms"
+msgstr "表格"
+
+msgid "Notes"
+msgstr "注释"
+
+msgid "Contact not found"
+msgstr "找不到联系方式"
+
+msgid "Back to contacts"
+msgstr "返回联系人"
+
+msgid "Archived"
+msgstr "已存档"
+
+msgid "Since %1$s · %2$s"
+msgstr "自%1$s·%2$s"
+
+msgid "WhatsApp chat"
+msgstr "WhatsApp 聊天"
+
+msgid "Write an e-mail"
+msgstr "写一封电子邮件"
+
+msgid "CRM card"
+msgstr "客户关系管理卡"
+
+msgid "First payment"
+msgstr "首次付款"
+
+msgid "once every %s days on average"
+msgstr "平均每%s天一次"
+
+msgid "RFM"
+msgstr "射频调制"
+
+msgid "recency · frequency · value (1–5)"
+msgstr "新近度·频率·值 (1–5)"
+
+msgid "Delete contact"
+msgstr "删除联系人"
+
+msgid "Donations and orders stay in their own plugins; only the CRM card is deleted."
+msgstr "捐赠和订单保留在自己的插件中;仅删除 CRM 卡。"
+
+msgid "Add a note: talked on the phone, call again about the qurban…"
+msgstr "添加注释:在电话中交谈,再次打电话询问古尔班......"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "No events for this filter."
+msgstr "此过滤器没有事件。"
+
+msgid "Loading…"
+msgstr "加载中..."
+
+msgid "Answers"
+msgstr "答案"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Pending"
+msgstr "待定"
+
+msgid "On hold"
+msgstr "暂停"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "Refunded"
+msgstr "已退款"
+
+msgid "Partly refunded"
+msgstr "部分退款"
+
+msgid "Full name"
+msgstr "全名"
+
+msgid "Organisation"
+msgstr "组织机构"
+
+msgid "Contact consents"
+msgstr "联系同意书"
+
+msgid "Last changed: %s"
+msgstr "最后更改:%s"
+
+msgid "Owner"
+msgstr "业主"
+
+msgid "— none —"
+msgstr "— 无 —"
+
+msgid "Short note"
+msgstr "简短的笔记"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "No tags."
+msgstr "没有标签。"
+
+msgid "Remove the %s tag"
+msgstr "删除%s标签"
+
+msgid "Add tags (comma for several)"
+msgstr "添加标签(多个用逗号表示)"
+
+msgid "Add tag"
+msgstr "添加标签"
+
+msgid "Sources"
+msgstr "来源"
+
+msgid "Added by hand."
+msgstr "手工添加。"
+
+msgid "First campaign"
+msgstr "第一个活动"
+
+msgid "New contact"
+msgstr "新联系人"
+
+msgid "An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens."
+msgstr "电子邮件或电话号码就足够了。如果存在具有相同电子邮件地址或电话号码的联系人,他们的卡片就会打开。"
+
+msgid "separate with commas"
+msgstr "用逗号分隔"
+
+msgid "Add contact"
+msgstr "添加联系人"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "%s donation"
+msgid_plural "%s donations"
+msgstr[0] "%s捐款"
+
+msgid "%s order"
+msgid_plural "%s orders"
+msgstr[0] "%s订单"
+
+msgid "CSV"
+msgstr "CSV"
+
+msgid "Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand."
+msgstr "捐助者、客户、潜在客户:每人一张卡。它们自行来自您的来源,或者您手动添加它们。"
+
+msgid "Name, e-mail, phone, organisation, city"
+msgstr "姓名、电子邮件、电话、组织、城市"
+
+msgid "Search contacts"
+msgstr "搜索联系人"
+
+msgid "All RFM segments"
+msgstr "所有 RFM 部分"
+
+msgid "Saved segment"
+msgstr "已保存的片段"
+
+msgid "All tags"
+msgstr "所有标签"
+
+msgid "Any consent"
+msgstr "Any consent"
+
+msgid "Only high churn risk"
+msgstr "只有高流失风险"
+
+msgid "Archive"
+msgstr "存档"
+
+msgid "Filter"
+msgstr "过滤器"
+
+msgid "No contacts match the filter."
+msgstr "没有与过滤器匹配的触点。"
+
+msgid "No contacts yet."
+msgstr "还没有联系方式。"
+
+msgid "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
+msgstr "当捐款、订单、表格和 WhatsApp 聊天进来时,联系人会自行显示。对于较旧的记录:设置 › 同步所有内容。"
+
+msgid "Add role"
+msgstr "添加角色"
+
+msgid "Unarchive"
+msgstr "取消归档"
+
+msgid "Tag name"
+msgstr "标签名称"
+
+msgid "Apply"
+msgstr "申请"
+
+msgid "Select all"
+msgstr "选择全部"
+
+msgid "Contact"
+msgstr "联系方式"
+
+msgid "Role and segment"
+msgstr "角色和细分"
+
+msgid "Value"
+msgstr "价值"
+
+msgid "Donors, customers, volunteers and leads in one place: who did what, who is drifting away, who should hear what."
+msgstr "捐助者、客户、志愿者和领导者集中在一个地方:谁做了什么、谁正在离开、谁应该听到什么。"
+
+msgid "Import your past data."
+msgstr "导入您过去的数据。"
+
+msgid "New records arrive on their own. To link older ones to contacts too, sync: %s."
+msgstr "新记录自行到来。要将旧的也链接到联系人,请同步:%s。"
+
+msgid "No source brings in contacts; you can add them by hand."
+msgstr "没有消息来源带来联系;您可以手动添加它们。"
+
+msgid "Sync everything"
+msgstr "同步一切"
+
+msgid "%s have paid"
+msgstr "%s已付款"
+
+msgid "New in the last 30 days"
+msgstr "过去 30 天内的新内容"
+
+msgid "%s against the previous 30 days"
+msgstr "%s与前 30 天相比"
+
+msgid "Active"
+msgstr "活跃"
+
+msgid "with activity in the last %s days"
+msgstr "最近%s天内有活动"
+
+msgid "High churn risk"
+msgstr "高流失风险"
+
+msgid "risk %s%% and above"
+msgstr "风险%s%% 及以上"
+
+msgid "%s per contact"
+msgstr "每个联系人%s"
+
+msgid "RFM segments"
+msgstr "RFM 段"
+
+msgid "Calculated: %s"
+msgstr "计算:%s"
+
+msgid "Recalculate"
+msgstr "重新计算"
+
+msgid "Once contacts have paid, donors and customers are grouped here by frequency, recency and value."
+msgstr "一旦联系人付款,捐赠者和客户就会按照频率、新近度和价值进行分组。"
+
+msgid "Reach out"
+msgstr "伸出手"
+
+msgid "No valuable contacts with a high churn risk."
+msgstr "没有具有高流失风险的有价值的联系人。"
+
+msgid "last payment %s"
+msgstr "最后付款%s"
+
+msgid "Donations, orders, forms and WhatsApp activity appear here."
+msgstr "捐款、订单、表格和 WhatsApp 活动均显示在此处。"
+
+msgid "Where they came from"
+msgstr "他们来自哪里"
+
+msgid "New segment"
+msgstr "新段"
+
+msgid "Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail."
+msgstr "由规则定义的实时列表:联系人在匹配时加入,在不再匹配时离开。使用它们作为 Flux Mail 中批量发送的收件人。"
+
+msgid "No segments yet."
+msgstr "还没有片段。"
+
+msgid "Examples: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers with no purchase for 3 months\"."
+msgstr "示例:“去年捐赠了古尔班,但今年没有捐赠”、“伊斯坦布尔的志愿者”、“3 个月没有购物的顾客”。"
+
+msgid "contacts"
+msgstr "联系人"
+
+msgid "View contacts"
+msgstr "查看联系人"
+
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it."
+msgstr "Flux Mail › 发送:在收件人下选择此部分。只有允许该频道的人才能收到它。"
+
+msgid "Send a campaign"
+msgstr "发送活动"
+
+msgid "Edit segment"
+msgstr "编辑片段"
+
+msgid "Add rules; the number of matching contacts updates on the right as you go."
+msgstr "添加规则;匹配的联系人数量会在您进行操作时在右侧更新。"
+
+msgid "E.g. Donors drifting away"
+msgstr "例如捐助者渐行渐远"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Rules"
+msgstr "规则"
+
+msgid "all rules"
+msgstr "所有规则"
+
+msgid "at least one"
+msgstr "至少一个"
+
+msgid "Contact matches"
+msgstr "接触比赛"
+
+msgid "Add rule"
+msgstr "添加规则"
+
+msgid "Matching contacts"
+msgstr "匹配联系人"
+
+msgid "Where contacts come from, which role they get and how scoring works."
+msgstr "联系人来自哪里、他们扮演什么角色以及评分如何进行。"
+
+msgid "Not synced yet"
+msgstr "尚未同步"
+
+msgid "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
+msgstr "新的捐赠、订单、表格和聊天会立即与联系人相关联。同步所有内容以导入过去的记录,或在打开或关闭源后重新链接。现有的联系人和注释将被保留,并且不会重复添加任何内容。"
+
+msgid "Donors and donations"
+msgstr "捐助者和捐款"
+
+msgid "Customers and orders (donation orders excluded)"
+msgstr "客户及订单(捐赠订单除外)"
+
+msgid "WhatsApp chats and every message"
+msgstr "WhatsApp 聊天和每条消息"
+
+msgid "Form submissions (with an e-mail or phone field)"
+msgstr "表单提交(带有电子邮件或电话字段)"
+
+msgid "Site members"
+msgstr "网站会员"
+
+msgid "WordPress users with the customer or subscriber role"
+msgstr "具有客户或订阅者角色的 WordPress 用户"
+
+msgid "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
+msgstr "发送给联系人的电子邮件、短信和 WhatsApp 通知以及传入的电子邮件(仅时间线,没有新联系人)"
+
+msgid "Source"
+msgstr "来源"
+
+msgid "On"
+msgstr "开"
+
+msgid "Role for new contacts"
+msgstr "新联系人的角色"
+
+msgid "not installed"
+msgstr "未安装"
+
+msgid "— no role —"
+msgstr "—没有角色—"
+
+msgid "Write WhatsApp messages to the timeline (one line per message)"
+msgstr "将 WhatsApp 消息写入时间线(每条消息一行)"
+
+msgid "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
+msgstr "付款完成后即授予角色(捐赠者、客户)。当联系人获得另一个角色时,“领导”角色会自行消失。"
+
+msgid "The contact's relationship with you. A contact can have several roles, e.g. donor and volunteer."
+msgstr "联系人与您的关系。一个联系人可以有多个角色,例如捐助者和志愿者。"
+
+msgid "Colour"
+msgstr "颜色"
+
+msgid "New role: Sponsor, Philanthropist, Dealer…"
+msgstr "新角色:赞助商、慈善家、经销商......"
+
+msgid "New role"
+msgstr "新角色"
+
+msgid "Scoring"
+msgstr "评分"
+
+msgid "Churn risk threshold (%)"
+msgstr "流失风险阈值 (%)"
+
+msgid "Contacts above this value go to the \"Reach out\" list. Risk follows each person's own rhythm: a monthly donor is at risk after 45 days, a yearly one is not."
+msgstr "高于此值的联系人将进入“联系”列表。风险遵循每个人自己的节奏:每月捐献者在 45 天后就会面临风险,而每年捐献者则不会。"
+
+msgid "Active window (days)"
+msgstr "活动窗口(天)"
+
+msgid "A contact with any activity within this many days counts as active."
+msgstr "在这么多天内进行的任何活动的联系都算作活动。"
+
+msgid "Reporting currency"
+msgstr "报告货币"
+
+msgid "Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given."
+msgstr "空表示商店货币。除非给出费率,否则以其他货币付款不计入价值。"
+
+msgid "Save settings"
+msgstr "保存设置"
+
+msgid "AI & MCP"
+msgstr "人工智能与MCP"
+
+msgid "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions."
+msgstr "CRM 中的所有内容(联系人、字段、角色、标签、同意、时间线、细分、设置)都可以通过 Flux AI 聊天和 MCP(Claude、ChatGPT、Cursor...)读取和编辑。工具以用户自己的 CRM 权限运行。"
+
+msgid "connected"
+msgstr "已连接"
+
+msgid "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
+msgstr "管理员聊天中的 CRM 工具。每个改变某些东西的工具都需要等待批准卡。"
+
+msgid "Flux AI & MCP is not installed"
+msgstr "Flux AI 和 MCP 未安装"
+
+msgid "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."
+msgstr "删除、合并、批量操作和发送仅在第一次调用时返回预览;当使用批准令牌再次调用时,它们会运行。"
+
+msgid "MCP keys"
+msgstr "MCP 键"
+
+msgid "AI and MCP tools on"
+msgstr "AI 和 MCP 工具"
+
+msgid "Editing: contacts, tags, segments, notes, settings"
+msgstr "编辑:联系人、标签、片段、注释、设置"
+
+msgid "Approval actions: delete, merge, bulk actions, sending messages"
+msgstr "批准操作:删除、合并、批量操作、发送消息"
+
+msgid "Tools: %1$d / %2$d on"
+msgstr "工具:%1$d/%2$d上"
+
+msgid "Tool"
+msgstr "工具"
+
+msgid "Recent changes made with AI"
+msgstr "最近人工智能带来的变化"
+
+msgid "No changes yet. Every change made with Flux AI or MCP shows up here."
+msgstr "还没有任何变化。使用 Flux AI 或 MCP 所做的每项更改都会显示在这里。"
+
+msgid "When"
+msgstr "当"
+
+msgid "Who"
+msgstr "谁"
+
+msgid "Action"
+msgstr "行动"
+
+msgid "Result"
+msgstr "结果"
+
+msgid "done"
+msgstr "完成"
+
+msgid "error"
+msgstr "错误"
+
+msgid "WhatsApp chat opened"
+msgstr "WhatsApp 聊天已打开"
+
+msgid "WhatsApp reply"
+msgstr "WhatsApp回复"
+
+msgid "WhatsApp message"
+msgstr "WhatsApp 消息"
+
+msgid "Order #%s"
+msgstr "订单#%s"
+
+msgid "Form #%d"
+msgstr "表格#%d"
+
+msgid "SMS sent"
+msgstr "短信已发送"
+
+msgid "WhatsApp notification"
+msgstr "WhatsApp 通知"
+
+msgid "Created an account on the site"
+msgstr "在网站上创建了一个帐户"
+
+msgid "Name, e-mail or phone"
+msgstr "姓名、电子邮件或电话"
+
+msgid "Contacts arrive on their own from gifts, orders and forms."
+msgstr "联系人通过礼物、订单和表格自行到达。"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Remove tag"
+msgstr "删除标签"
+
+msgid "Add an interaction"
+msgstr "添加互动"
+
+msgid "Saved"
+msgstr "已保存"
+
+msgid "Delete this contact?"
+msgstr "删除此联系人?"
+
+msgid "No people"
+msgstr "没有人"
+
+msgid "Text"
+msgstr "文字"
+
+msgid "Add a note"
+msgstr "添加注释"
+
+msgid "Open in the panel"
+msgstr "在面板中打开"
+
+msgid "Ads"
+msgstr "广告"
+
+msgid "Ad consent"
+msgstr "广告同意"
+
+msgid "Risk"
+msgstr "风险"
+
+msgid "Segment rules"
+msgstr "分段规则"
+
+msgid "No segments"
+msgstr "无段"
+
+msgid "Create segments by adding rules in the panel."
+msgstr "通过在面板中添加规则来创建分段。"
+
+msgid "Deleted"
+msgstr "已删除"
+
+msgid "Last 30 days"
+msgstr "过去 30 天"
+
+msgid "The timeline and tags are deleted too."
+msgstr "时间线和标签也被删除。"
+
+msgid "repeat"
+msgstr "重复"
+
+msgid "Paying"
+msgstr "付费"
+
+msgid "Consents"
+msgstr "同意书"
+
+msgid "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"
+msgstr "[['人员与营销:一张人卡中的捐赠者、客户、志愿者和候选人;时间线、标签、KVKK 权限、RFM 评分和损失风险、动态片段。从 Flux Donate、Flux Commerce、Flux Chat、Flux Forms 和 WordPress 用户收集数据;通过 Flux Mail、AI Flux AI 发货。', 'tr']]"

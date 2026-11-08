@@ -1,922 +1,950 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Flux Studio\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Genel"
+msgid "General"
 msgstr ""
 
-msgid "Kişi (yüz/kimlik)"
+msgid "Person (face/identity)"
 msgstr ""
 
-msgid "Stil"
+msgid "Style"
 msgstr ""
 
-msgid "Ürün"
+msgid "Product"
 msgstr ""
 
-msgid "Arka plan"
+msgid "Background"
 msgstr ""
 
-msgid "Kompozisyon"
+msgid "Composition"
 msgstr ""
 
-msgid "İlk kare"
+msgid "First frame"
 msgstr ""
 
-msgid "Son kare"
+msgid "Last frame"
 msgstr ""
 
-msgid "Otomatik"
+msgid "Auto"
 msgstr ""
 
-msgid "Düşük"
+msgid "Low"
 msgstr ""
 
-msgid "Orta"
+msgid "Medium"
 msgstr ""
 
-msgid "Yüksek"
+msgid "High"
 msgstr ""
 
-msgid "Tema: sistem"
+msgid "Theme: system"
 msgstr ""
 
-msgid "Tema: açık"
+msgid "Theme: light"
 msgstr ""
 
-msgid "Tema: koyu"
+msgid "Theme: dark"
 msgstr ""
 
-msgid "Stüdyo açılıyor…"
+msgid "Opening Studio…"
 msgstr ""
 
-msgid "Yeniden dene"
+msgid "Try again"
 msgstr ""
 
-msgid "İstem, başlık ya da model ara"
+msgid "Search prompt, title or model"
 msgstr ""
 
-msgid "Ara"
+msgid "Search"
 msgstr ""
 
-msgid "Menü"
+msgid "Menu"
 msgstr ""
 
-msgid "Seç"
+msgid "Select"
 msgstr ""
 
-msgid "Görsel ve video üretimi için Flux AI & MCP › Ayarlar › Görsel ve video bölümünden en az bir anahtar (fal.ai, EvoLink…) girin."
+msgid "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI & MCP › Settings › Images and video."
 msgstr ""
 
-msgid "Flux AI (0.6.0+) kurulu değil. Üretim Flux AI üzerinden yapılır."
+msgid "Flux AI (0.6.0+) is not installed. Generation runs through Flux AI."
 msgstr ""
 
-msgid "Flux AI ayarları"
+msgid "Flux AI settings"
 msgstr ""
 
-msgid "Benim"
+msgid "Mine"
 msgstr ""
 
-msgid "Herkes"
+msgid "Everyone"
 msgstr ""
 
-msgid "Stüdyo"
+msgid "Studio"
 msgstr ""
 
-msgid "Tümü"
+msgid "All"
 msgstr ""
 
-msgid "Favoriler"
+msgid "Favorites"
 msgstr ""
 
-msgid "Görseller"
+msgid "Images"
 msgstr ""
 
-msgid "Videolar"
+msgid "Videos"
 msgstr ""
 
-msgid "Pano"
+msgid "Dashboard"
 msgstr ""
 
-msgid "Klasörler"
+msgid "Folders"
 msgstr ""
 
-msgid "Yeni klasör"
+msgid "New folder"
 msgstr ""
 
-msgid "Klasörsüz"
+msgid "Unfiled"
 msgstr ""
 
-msgid "Ekiple paylaşılıyor"
+msgid "Shared with the team"
 msgstr ""
 
-msgid "Klasör işlemleri"
+msgid "Folder actions"
 msgstr ""
 
-msgid "Kişiler"
+msgid "People"
 msgstr ""
 
-msgid "Kişi ekle"
+msgid "Add person"
 msgstr ""
 
-msgid "{name} — üretime ekle"
+msgid "{name} — add to generation"
 msgstr ""
 
-msgid "Yüz referansı için kişi ekleyin; istemde @ad yazarak kullanın."
+msgid "Add people for face references; use them by typing @name in the prompt."
 msgstr ""
 
-msgid "Kişileri yönet"
+msgid "Manage people"
 msgstr ""
 
-msgid "Panele dön"
+msgid "Back to dashboard"
 msgstr ""
 
-msgid "Tema"
+msgid "Theme"
 msgstr ""
 
-msgid "Stüdyo ayarları"
+msgid "Studio settings"
 msgstr ""
 
-msgid "Flux AI harcama sınırı"
+msgid "Flux AI spending limit"
 msgstr ""
 
-msgid "Klasör"
+msgid "Folder"
 msgstr ""
 
-msgid "Alt klasör"
+msgid "Subfolder"
 msgstr ""
 
-msgid "Oluştur"
+msgid "Create"
 msgstr ""
 
-msgid "Klasör oluşturuldu"
+msgid "Folder created"
 msgstr ""
 
-msgid "Yeniden adlandır"
+msgid "Rename"
 msgstr ""
 
-msgid "Klasör adı"
+msgid "Folder name"
 msgstr ""
 
-msgid "Paylaşımı kapat"
+msgid "Stop sharing"
 msgstr ""
 
-msgid "Ekiple paylaş"
+msgid "Share with team"
 msgstr ""
 
-msgid "Klasör ekiple paylaşılıyor"
+msgid "Folder is shared with the team"
 msgstr ""
 
-msgid "Klasör yalnız sizin"
+msgid "Folder is private"
 msgstr ""
 
-msgid "Klasörü sil"
+msgid "Delete folder"
 msgstr ""
 
-msgid "Klasör silinsin mi?"
+msgid "Delete folder?"
 msgstr ""
 
-msgid "İçindeki üretimler ve alt klasörler bir üst klasöre taşınır; hiçbir dosya silinmez."
+msgid "Its items and subfolders move up one level; no files are deleted."
 msgstr ""
 
-msgid "Sil"
+msgid "Delete"
 msgstr ""
 
-msgid "{n} üretim taşındı"
+msgid "{n} items moved"
 msgstr ""
 
-msgid "Burada üretim yok"
+msgid "Nothing here"
 msgstr ""
 
-msgid "İlk görselinizi üretin"
+msgid "Create your first image"
 msgstr ""
 
-msgid "Filtreyi değiştirin ya da aşağıdan yeni bir üretim başlatın."
+msgid "Change the filter or start a new generation below."
 msgstr ""
 
-msgid "Aşağıya ne istediğinizi yazın. Referans görsel sürükleyip bırakabilir, @ ile kişi ekleyebilirsiniz."
+msgid "Describe what you want below. Drag in reference images or add people with @."
 msgstr ""
 
-msgid "Favoriden çıkar"
+msgid "Remove from favorites"
 msgstr ""
 
-msgid "Favorilere ekle"
+msgid "Add to favorites"
 msgstr ""
 
-msgid "Sırada"
+msgid "Queued"
 msgstr ""
 
-msgid "Üretiliyor"
+msgid "Generating"
 msgstr ""
 
-msgid "İptal"
+msgid "Cancel"
 msgstr ""
 
-msgid "İptal edildi"
+msgid "Cancelled"
 msgstr ""
 
-msgid "Üretilemedi"
+msgid "Failed"
 msgstr ""
 
-msgid "Ayarları kullan"
+msgid "Reuse settings"
 msgstr ""
 
-msgid "{n} seçili"
+msgid "{n} selected"
 msgstr ""
 
-msgid "Üretimlere dokunarak seçin"
+msgid "Tap items to select"
 msgstr ""
 
-msgid "Referans yap"
+msgid "Use as reference"
 msgstr ""
 
-msgid "Taşı"
+msgid "Move"
 msgstr ""
 
-msgid "Seçimi kapat"
+msgid "Exit selection"
 msgstr ""
 
-msgid "Yeni klasör…"
+msgid "New folder…"
 msgstr ""
 
-msgid "{n} üretim silinsin mi?"
+msgid "Delete {n} items?"
 msgstr ""
 
-msgid "Üretim silinsin mi?"
+msgid "Delete item?"
 msgstr ""
 
-msgid "Dosyalar sunucudan silinir. Medya kitaplığına eklenmiş kopyalar kalır."
+msgid "Files are deleted from the server. Copies added to the Media Library stay."
 msgstr ""
 
-msgid "{n} üretim hazır"
+msgid "{n} items ready"
 msgstr ""
 
-msgid "Üretim hazır"
+msgid "Generation ready"
 msgstr ""
 
-msgid "Bir üretim başarısız oldu"
+msgid "A generation failed"
 msgstr ""
 
-msgid "Kaldır"
+msgid "Remove"
 msgstr ""
 
-msgid "Referans ekle"
+msgid "Add reference"
 msgstr ""
 
-msgid "Videoda ne olsun? Konu, hareket, kamera… (@ ile kişi ekleyin)"
+msgid "What happens in the video? Subject, motion, camera… (add people with @)"
 msgstr ""
 
-msgid "Ne üretmek istiyorsunuz? (@ ile kişi ekleyin, görsel sürükleyip bırakın)"
+msgid "What do you want to create? (add people with @, drop images here)"
 msgstr ""
 
-msgid "Görsel"
+msgid "Image"
 msgstr ""
 
 msgid "Video"
 msgstr ""
 
-msgid "En-boy oranı"
+msgid "Aspect ratio"
 msgstr ""
 
-msgid "Uyarlanır"
+msgid "Adaptive"
 msgstr ""
 
-msgid "Çözünürlük"
+msgid "Resolution"
 msgstr ""
 
-msgid "Kalite"
+msgid "Quality"
 msgstr ""
 
-msgid "Adet"
+msgid "Count"
 msgstr ""
 
-msgid "Süre"
+msgid "Duration"
 msgstr ""
 
-msgid "Ses"
+msgid "Audio"
 msgstr ""
 
-msgid "Sağlayıcı ve model"
+msgid "Provider and model"
 msgstr ""
 
-msgid "Model seç"
+msgid "Choose model"
 msgstr ""
 
-msgid "Model yok"
+msgid "No models"
 msgstr ""
 
-msgid "Üret (Ctrl/⌘+Enter)"
+msgid "Generate (Ctrl/⌘+Enter)"
 msgstr ""
 
-msgid "Üret"
+msgid "Generate"
 msgstr ""
 
-msgid "Şablonlar"
+msgid "Templates"
 msgstr ""
 
-msgid "Bir fikirden birden çok farklı istem"
+msgid "Several different prompts from one idea"
 msgstr ""
 
-msgid "Flux AI metin modeli hazır değil"
+msgid "Flux AI text model is not ready"
 msgstr ""
 
-msgid "Beyin fırtınası"
+msgid "Brainstorm"
 msgstr ""
 
-msgid "Taslağı modele uygun ayrıntılı isteme çevir"
+msgid "Turn the draft into a detailed prompt for the model"
 msgstr ""
 
-msgid "Geliştir"
+msgid "Enhance"
 msgstr ""
 
-msgid "Sağlayıcı"
+msgid "Provider"
 msgstr ""
 
-msgid "{n} model"
+msgid "{n} models"
 msgstr ""
 
-msgid "anahtar yok"
+msgid "no key"
 msgstr ""
 
-msgid "{p} anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video)."
+msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
 msgstr ""
 
-msgid "Bu referans zaten ekli"
+msgid "This reference is already added"
 msgstr ""
 
-msgid "Bu model en çok {n} referans alır"
+msgid "This model accepts at most {n} references"
 msgstr ""
 
-msgid "Kayıtlı referanslara ekle"
+msgid "Save to references"
 msgstr ""
 
-msgid "Kaydedildi"
+msgid "Saved"
 msgstr ""
 
-msgid "Dosyadan yükle"
+msgid "Upload file"
 msgstr ""
 
-msgid "Galeriden seç"
+msgid "Pick from gallery"
 msgstr ""
 
-msgid "{n} foto"
+msgid "{n} photos"
 msgstr ""
 
-msgid "foto yok"
+msgid "no photos"
 msgstr ""
 
-msgid "Kayıtlı referanslar"
+msgid "Saved references"
 msgstr ""
 
-msgid "Referans"
+msgid "Reference"
 msgstr ""
 
-msgid "Yalnız PNG, JPEG, WebP ya da GIF eklenebilir."
+msgid "Only PNG, JPEG, WebP or GIF can be added."
 msgstr ""
 
-msgid "Galeriden referans seç"
+msgid "Pick references from gallery"
 msgstr ""
 
-msgid "Vazgeç"
+msgid "Add"
 msgstr ""
 
-msgid "Ekle"
+msgid "No images yet."
 msgstr ""
 
-msgid "Henüz görsel yok."
+msgid "{name} has no photos; add some in Manage people"
 msgstr ""
 
-msgid "{name} için fotoğraf yok; Kişileri yönet’ten ekleyin"
+msgid "Write a short draft first."
 msgstr ""
 
-msgid "Önce kısa bir taslak yazın."
+msgid "Prompt enhanced"
 msgstr ""
 
-msgid "İstem geliştirildi"
+msgid "Back to draft"
 msgstr ""
 
-msgid "Taslağa dön"
+msgid "Describe what to generate."
 msgstr ""
 
-msgid "Ne üretileceğini yazın."
+msgid "References are uploading, one moment…"
 msgstr ""
 
-msgid "Referanslar yükleniyor, bir saniye…"
+msgid "team"
 msgstr ""
 
-msgid "ekip"
+msgid "No templates yet"
 msgstr ""
 
-msgid "Henüz şablon yok"
+msgid "Save current settings"
 msgstr ""
 
-msgid "Şu anki ayarları kaydet"
+msgid "Delete template…"
 msgstr ""
 
-msgid "Şablon sil…"
+msgid "E.g. Event poster 4:5"
 msgstr ""
 
-msgid "Örn: Etkinlik afişi 4:5"
+msgid "Save as template"
 msgstr ""
 
-msgid "Şablon olarak kaydet"
+msgid "Name"
 msgstr ""
 
-msgid "Ad"
+msgid "Prompt, model, ratio, resolution and references are saved."
 msgstr ""
 
-msgid "İstem, model, oran, çözünürlük ve referanslar kaydedilir."
+msgid "Template saved"
 msgstr ""
 
-msgid "Şablon kaydedildi"
+msgid "Save"
 msgstr ""
 
-msgid "Kaydet"
+msgid "Previous"
 msgstr ""
 
-msgid "Önceki"
+msgid "Next"
 msgstr ""
 
-msgid "Sonraki"
-msgstr ""
-
-msgid "Kapat"
+msgid "Close"
 msgstr ""
 
 msgid "Model"
 msgstr ""
 
-msgid "Boyut"
+msgid "Size"
 msgstr ""
 
-msgid "Maliyet"
+msgid "Cost"
 msgstr ""
 
-msgid "Tarih"
+msgid "Date"
 msgstr ""
 
-msgid "Üreten"
+msgid "Created by"
 msgstr ""
 
-msgid "Favoride"
+msgid "Favorited"
 msgstr ""
 
-msgid "Favori"
+msgid "Favorite"
 msgstr ""
 
-msgid "İndir"
+msgid "Download"
 msgstr ""
 
-msgid "Referanslara eklendi"
+msgid "Added to references"
 msgstr ""
 
-msgid "Alanı düzenle"
+msgid "Edit area"
 msgstr ""
 
-msgid "Bu model alan düzenlemeyi desteklemiyor"
+msgid "This model does not support area editing"
 msgstr ""
 
-msgid "Karşılaştırmayı kapat"
+msgid "Close comparison"
 msgstr ""
 
-msgid "Önceki ile karşılaştır"
+msgid "Compare with original"
 msgstr ""
 
-msgid "Kitaplıkta"
+msgid "In library"
 msgstr ""
 
-msgid "Medya kitaplığına ekle"
+msgid "Add to Media Library"
 msgstr ""
 
-msgid "Başlık ekle"
+msgid "Add title"
 msgstr ""
 
-msgid "Başlık"
+msgid "Title"
 msgstr ""
 
-msgid "İstemi kopyala"
+msgid "Copy prompt"
 msgstr ""
 
-msgid "İlk taslak"
+msgid "Original draft"
 msgstr ""
 
-msgid "Zaten medya kitaplığında"
+msgid "Already in the Media Library"
 msgstr ""
 
-msgid "Medya kitaplığına eklendi"
+msgid "Added to the Media Library"
 msgstr ""
 
-msgid "Alan düzenlemeyi destekleyen ve anahtarı girilmiş model yok."
+msgid "No model with area editing and a configured key."
 msgstr ""
 
-msgid "Düzenleme başladı; sonuç galeride görünecek"
+msgid "Edit started; the result will appear in the gallery"
 msgstr ""
 
-msgid "Fikri anlatın: Örn. 11 Kasım fidan dikim etkinliği için Instagram görseli"
+msgid "Describe the idea: e.g. Instagram post for the 11 November tree planting event"
 msgstr ""
 
-msgid "Fikir sayısı"
+msgid "Number of ideas"
 msgstr ""
 
-msgid "{n} fikir"
+msgid "{n} ideas"
 msgstr ""
 
-msgid "Tarz"
+msgid "YouTube thumbnail"
 msgstr ""
 
-msgid "YouTube küçük resmi"
+msgid "Generate ideas"
 msgstr ""
 
-msgid "Fikir üret"
+msgid "Preparing ideas…"
 msgstr ""
 
-msgid "Fikirler hazırlanıyor…"
+msgid "Generate selected ({n})"
 msgstr ""
 
-msgid "Seçilenleri üret ({n})"
+msgid "{n} generations started"
 msgstr ""
 
-msgid "{n} üretim başladı"
+msgid "Sending {i}/{n}"
 msgstr ""
 
-msgid "Gönderiliyor {i}/{n}"
+msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
 msgstr ""
 
-msgid "Bir fikirden birbirinden farklı istemler üretir. Beğendiklerinizi seçip tek seferde üretin. Model ve oran üretim çubuğundaki ayarlardan alınır."
+msgid "Idea"
 msgstr ""
 
-msgid "Fikir"
+msgid "No people yet. Add a person and upload 1-4 clear face photos; typing @name in the prompt sends them as identity references."
 msgstr ""
 
-msgid "Henüz kişi yok. Kişi ekleyip 1-4 net yüz fotoğrafı yükleyin; istemde @ad yazınca bu fotoğraflar kimlik referansı olarak gider."
+msgid "Delete photo"
 msgstr ""
 
-msgid "Fotoğrafı sil"
+msgid "Add photo"
 msgstr ""
 
-msgid "Fotoğraf ekle"
+msgid "Person name"
 msgstr ""
 
-msgid "Kişi adı"
+msgid "Delete person"
 msgstr ""
 
-msgid "Kişiyi sil"
+msgid "Delete {name}?"
 msgstr ""
 
-msgid "{name} silinsin mi?"
+msgid "The person and their photos are deleted. Earlier generations stay."
 msgstr ""
 
-msgid "Kişi ve fotoğrafları silinir. Önceki üretimler kalır."
+msgid "New person"
 msgstr ""
 
-msgid "Yeni kişi"
+msgid "Default image model"
 msgstr ""
 
-msgid "Varsayılan görsel modeli"
+msgid "Default video model"
 msgstr ""
 
-msgid "Varsayılan video modeli"
+msgid "Empty: Flux AI default"
 msgstr ""
 
-msgid "Boş: Flux AI varsayılanı"
+msgid "Enhance / Brainstorm text model"
 msgstr ""
 
-msgid "Geliştir / Beyin fırtınası metin modeli"
+msgid "Max images per request"
 msgstr ""
 
-msgid "Bir seferde en çok görsel"
+msgid "Max brainstorm ideas"
 msgstr ""
 
-msgid "Beyin fırtınasında en çok fikir"
+msgid "Share people with all Studio users"
 msgstr ""
 
-msgid "Kişiler tüm Stüdyo kullanıcılarıyla paylaşılsın"
+msgid "Keys, providers and the spending limit are in Flux AI & MCP › Settings."
 msgstr ""
 
-msgid "Anahtarlar, sağlayıcılar ve harcama sınırı Flux AI & MCP › Ayarlar’dadır."
+msgid "Settings saved"
 msgstr ""
 
-msgid "Ayarlar kaydedildi"
+msgid "just now"
 msgstr ""
 
-msgid "az önce"
+msgid "{n} min ago"
 msgstr ""
 
-msgid "{n} dk önce"
+msgid "{n} h ago"
 msgstr ""
 
-msgid "{n} sa önce"
+msgid "Server error ({n})."
 msgstr ""
 
-msgid "Sunucu hatası ({n})."
+msgid "Unexpected response from the server."
 msgstr ""
 
-msgid "Sunucudan beklenmeyen cevap geldi."
+msgid "Something went wrong."
 msgstr ""
 
-msgid "Bir hata oluştu."
+msgid "OK"
 msgstr ""
 
-msgid "Tamam"
+msgid "Copied"
 msgstr ""
 
-msgid "Kopyalandı"
+msgid "7 days"
 msgstr ""
 
-msgid "7 gün"
+msgid "30 days"
 msgstr ""
 
-msgid "30 gün"
+msgid "90 days"
 msgstr ""
 
-msgid "90 gün"
+msgid "Spend from Flux AI logs"
 msgstr ""
 
-msgid "Harcama Flux AI kayıtlarından"
+msgid "Flux AI logs unavailable; Studio amounts"
 msgstr ""
 
-msgid "Flux AI kayıtları okunamadı; Stüdyo tutarları"
+msgid "Refresh"
 msgstr ""
 
-msgid "Yenile"
+msgid "(estimated)"
 msgstr ""
 
-msgid "(tahmini)"
+msgid "Generations"
 msgstr ""
 
-msgid "Üretim"
+msgid "{i} images · {v} videos"
 msgstr ""
 
-msgid "{i} görsel · {v} video"
+msgid "Spend"
 msgstr ""
 
-msgid "Harcama"
+msgid "Image/video {m} · text {x}"
 msgstr ""
 
-msgid "Görsel/video {m} · metin {x}"
+msgid "Average"
 msgstr ""
 
-msgid "Ortalama"
+msgid "per generation"
 msgstr ""
 
-msgid "üretim başına"
+msgid "{p}% error rate"
 msgstr ""
 
-msgid "Başarısız"
+msgid "no attempts yet"
 msgstr ""
 
-msgid "%{p} hata oranı"
+msgid "Storage {b}"
 msgstr ""
 
-msgid "henüz deneme yok"
+msgid "Daily generations"
 msgstr ""
 
-msgid "Depolama {b}"
+msgid "No generations in this period."
 msgstr ""
 
-msgid "Günlük üretim"
+msgid "Daily spend"
 msgstr ""
 
-msgid "Bu dönemde üretim yok."
+msgid "No spend in this period."
 msgstr ""
 
-msgid "Günlük harcama"
+msgid "Flux AI logs"
 msgstr ""
 
-msgid "Bu dönemde harcama yok."
+msgid "Models"
 msgstr ""
 
-msgid "Flux AI kayıtları"
+msgid "Errors"
 msgstr ""
 
-msgid "Modeller"
+msgid "Amount"
 msgstr ""
 
-msgid "Hata"
+msgid "No records."
 msgstr ""
 
-msgid "Tutar"
+msgid "Providers"
 msgstr ""
 
-msgid "Kayıt yok."
+msgid "Person"
 msgstr ""
 
-msgid "Sağlayıcılar"
+msgid "Recent errors"
 msgstr ""
 
-msgid "Kişi"
+msgid "Brush"
 msgstr ""
 
-msgid "Son hatalar"
+msgid "Rectangle"
 msgstr ""
 
-msgid "Fırça"
+msgid "Eraser"
 msgstr ""
 
-msgid "Dikdörtgen"
+msgid "Brush size"
 msgstr ""
 
-msgid "Silgi"
+msgid "Undo"
 msgstr ""
 
-msgid "Fırça boyutu"
+msgid "Clear"
 msgstr ""
 
-msgid "Geri al"
+msgid "What should change in the selected area? E.g. make the T-shirt green, change the text to \"Plant a Tree\""
 msgstr ""
 
-msgid "Temizle"
+msgid "Edit"
 msgstr ""
 
-msgid "Seçili alanda ne değişsin? Örn: tişörtü yeşil yap, yazıyı \"Fidan Dik\" olarak değiştir"
+msgid "Describe the change."
 msgstr ""
 
-msgid "Düzenle"
+msgid "Tool"
 msgstr ""
 
-msgid "Ne değişeceğini yazın."
+msgid "Paint the area to change. Unpainted areas are kept."
 msgstr ""
 
-msgid "Araç"
+msgid "Change"
 msgstr ""
 
-msgid "Değişecek alanı boyayın. Boyanmayan yerler korunur."
+msgid "Before"
 msgstr ""
 
-msgid "Değişiklik"
+msgid "After"
 msgstr ""
 
-msgid "Önce"
+msgid "Studio requires JavaScript."
 msgstr ""
 
-msgid "Sonra"
+msgid "Flux AI (0.6.0+) is not installed or image generation is off."
 msgstr ""
 
-msgid "Stüdyo için JavaScript gerekli."
+msgid "Model not found. Check the keys in Flux AI & MCP › Settings › Images and video."
 msgstr ""
 
-msgid "Flux AI (0.6.0+) kurulu değil ya da görsel üretimi kapalı."
+msgid "Image to edit not found."
 msgstr ""
 
-msgid "Model bulunamadı. Flux AI & MCP › Ayarlar › Görsel ve video anahtarlarını kontrol edin."
+msgid "This model does not support area editing."
 msgstr ""
 
-msgid "Düzenlenecek görsel bulunamadı."
+msgid "Mask must be a PNG."
 msgstr ""
 
-msgid "Bu model alan düzenlemeyi desteklemiyor."
+msgid "The request may have reached the provider; check the provider's history before sending again."
 msgstr ""
 
-msgid "Maske PNG olmalı."
+msgid "Sending did not complete, please try again."
 msgstr ""
 
-msgid "İstek sağlayıcıya ulaşmış olabilir; tekrar göndermeden önce sağlayıcı geçmişine bakın."
+msgid "The provider returned fewer results than requested."
 msgstr ""
 
-msgid "Gönderim tamamlanamadı, yeniden deneyin."
+msgid "The file is hosted temporarily by the provider; add it to the Media Library or download it."
 msgstr ""
 
-msgid "Sağlayıcı istenenden az sonuç döndürdü."
+msgid "Cancelled."
 msgstr ""
 
-msgid "Dosya sağlayıcıda duruyor ve geçici; Medya kitaplığına ekleyin ya da indirin."
+msgid "Generation failed."
 msgstr ""
 
-msgid "İptal edildi."
+msgid "Flux AI text model is not ready (Flux AI & MCP › Settings)."
 msgstr ""
 
-msgid "Üretim başarısız."
+msgid "Briefly describe the idea first."
 msgstr ""
 
-msgid "Flux AI metin modeli hazır değil (Flux AI & MCP › Ayarlar)."
+msgid "The model did not return a valid idea list. Try again."
 msgstr ""
 
-msgid "Önce fikri kısaca yazın."
+msgid "Open"
 msgstr ""
 
-msgid "Model geçerli fikir listesi döndürmedi. Tekrar deneyin."
+msgid "Database tables"
 msgstr ""
 
-msgid "Aç"
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
 msgstr ""
 
-msgid "Veritabanı tabloları"
+msgid "Tables are ready."
 msgstr ""
 
-msgid "Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin."
+msgid "File folder"
 msgstr ""
 
-msgid "Tablolar hazır."
+msgid "wp-content/uploads/flx-studio is writable."
 msgstr ""
 
-msgid "Dosya klasörü"
+msgid "wp-content/uploads/flx-studio could not be created or is not writable; references and thumbnails cannot be saved."
 msgstr ""
 
-msgid "wp-content/uploads/flx-studio yazılabilir."
+msgid "Image and video backend"
 msgstr ""
 
-msgid "wp-content/uploads/flx-studio oluşturulamadı ya da yazılamıyor; referans ve küçük resimler kaydedilemez."
+msgid "Flux AI 0.6.0 or newer is required (image/video generation runs through Flux AI)."
 msgstr ""
 
-msgid "Görsel ve video altyapısı"
+msgid "Plugins"
 msgstr ""
 
-msgid "Flux AI 0.6.0 veya üstü gerekli (görsel/video üretimi Flux AI üzerinden yapılır)."
-msgstr ""
-
-msgid "Eklentiler"
-msgstr ""
-
-msgid "Hiçbir model için anahtar yok. Flux AI & MCP › Ayarlar › Görsel ve video bölümünden fal.ai, EvoLink ya da başka bir anahtar girin."
+msgid "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI & MCP › Settings › Images and video."
 msgstr ""
 
 msgid "Flux AI"
 msgstr ""
 
-msgid "%1$d model kullanılabilir (%2$s)."
+msgid "%1$d models available (%2$s)."
 msgstr ""
 
-msgid "Geliştir ve Beyin fırtınası"
+msgid "Enhance and Brainstorm"
 msgstr ""
 
-msgid "Flux AI metin modeli hazır."
+msgid "Flux AI text model is ready."
 msgstr ""
 
-msgid "Flux AI metin modeli hazır değil; istem geliştirme ve fikir üretme çalışmaz, üretim çalışır."
+msgid "Flux AI text model is not ready; prompt enhancement and ideas are unavailable, generation still works."
 msgstr ""
 
-msgid "Referans görselleri"
+msgid "Reference images"
 msgstr ""
 
-msgid "Referanslar sağlayıcıya site adresiyle gönderilir."
+msgid "References are sent to the provider by site URL."
 msgstr ""
 
-msgid "Site HTTPS değil; referanslar dosya içeriğiyle (base64) gönderilir, istek büyür."
+msgid "The site is not HTTPS; references are sent inline (base64), making requests larger."
 msgstr ""
 
-msgid "Stüdyo: görsel/video üret"
+msgid "Studio: generate images/videos"
 msgstr ""
 
-msgid "Stüdyo: tüm galeriler ve ayarlar"
+msgid "Studio: all galleries and settings"
 msgstr ""
 
-msgid "Dosya boş."
+msgid "The file is empty."
 msgstr ""
 
-msgid "Dosya %d MB sınırını aşıyor."
+msgid "The file exceeds the %d MB limit."
 msgstr ""
 
-msgid "Bu dosya türü desteklenmiyor."
+msgid "This file type is not supported."
 msgstr ""
 
-msgid "Dosya kaydedilemedi."
+msgid "The file could not be saved."
 msgstr ""
 
-msgid "Referans görsel bulunamadı."
+msgid "Reference image not found."
 msgstr ""
 
-msgid "Kişi bulunamadı."
+msgid "Person not found."
 msgstr ""
 
-msgid "En çok %d referans görsel kullanılabilir."
+msgid "At most %d reference images can be used."
 msgstr ""
 
-msgid "Dosya sunucuda yok."
+msgid "The file is not on the server."
 msgstr ""
 
-msgid "Giriş gerekli."
+msgid "Login required."
 msgstr ""
 
-msgid "Stüdyo için yetkiniz yok."
+msgid "You do not have access to Studio."
 msgstr ""
 
-msgid "Bu işlem için yetkiniz yok."
+msgid "You are not allowed to do this."
 msgstr ""
 
-msgid "Kayıt bulunamadı."
+msgid "Record not found."
 msgstr ""
 
-msgid "Dosya yüklenemedi."
+msgid "The file could not be uploaded."
 msgstr ""
 
-msgid "Dosya gelmedi."
+msgid "No file received."
 msgstr ""
 
-msgid "Bu klasöre taşıyamazsınız."
+msgid "You cannot move items to this folder."
 msgstr ""
 
-msgid "Medya kitaplığına ekleme yetkiniz yok."
+msgid "You are not allowed to add to the Media Library."
 msgstr ""
 
-msgid "Klasör adı gerekli."
+msgid "Folder name is required."
 msgstr ""
 
-msgid "Kişi adı gerekli."
+msgid "Person name is required."
 msgstr ""
 
-msgid "Şablon adı gerekli."
+msgid "Template name is required."
 msgstr ""
 
-msgid "Silinmiş kullanıcı"
+msgid "Deleted user"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Gallery"
+msgstr ""
+
+msgid "Gallery is empty"
+msgstr ""
+
+msgid "Search the gallery"
+msgstr ""
+
+msgid "Working"
+msgstr ""
+
+msgid "Open in panel"
+msgstr ""
+
+msgid "Owner"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Star"
+msgstr ""
+
+msgid "Starred"
+msgstr ""
+
+msgid "Generated images are listed here. The production screen opens in the app later."
+msgstr ""
+
+msgid "Prompt"
+msgstr ""
+
+msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
 msgstr ""

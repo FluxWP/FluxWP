@@ -90,7 +90,7 @@ function flxi_mailbox_list_row( array $r ) {
 		'from'    => $r['from_name'] ? $r['from_name'] : $r['from_email'],
 		'from_email' => $r['from_email'],
 		'to'      => $r['to_list'],
-		'subject' => '' !== (string) $r['subject'] ? $r['subject'] : __( '(konu yok)', 'flx-mail' ),
+		'subject' => '' !== (string) $r['subject'] ? $r['subject'] : __( '(no subject)', 'flx-mail' ),
 		'snippet' => $r['snippet'],
 		'date'    => flxi_mailbox_date( $r['mail_date'] ),
 		'iso'     => mysql2date( 'c', get_date_from_gmt( $r['mail_date'] ) ),
@@ -149,7 +149,7 @@ function flxi_rest_mb_item( WP_REST_Request $q ) {
 	global $wpdb;
 	$m = flxi_mailbox_get( (int) $q['id'] );
 	if ( ! $m ) {
-		return new WP_Error( 'flxi_404', __( 'E-posta bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxi_404', __( 'Email not found.', 'flx-mail' ), array( 'status' => 404 ) );
 	}
 	if ( ! (int) $m['is_read'] ) {
 		flxi_mailbox_mark( $m['id'], 'is_read', 1 );
@@ -159,7 +159,7 @@ function flxi_rest_mb_item( WP_REST_Request $q ) {
 	if ( '' === $html && $m['log_id'] ) {
 		$html = (string) $wpdb->get_var( $wpdb->prepare( 'SELECT body FROM ' . flxi_table( 'log' ) . ' WHERE id = %d', (int) $m['log_id'] ) ); // phpcs:ignore
 		if ( '' === $html ) {
-			$html = '<p style="font-family:sans-serif;color:#667">' . esc_html__( 'İçerik kaydedilmemiş (Ayarlar › Kayıt › içerik kaydı kapalı).', 'flx-mail' ) . '</p>';
+			$html = '<p style="font-family:sans-serif;color:#667">' . esc_html__( 'Content was not stored (Settings › Log › content logging is off).', 'flx-mail' ) . '</p>';
 		}
 	}
 	if ( '' === $html ) {
@@ -216,7 +216,7 @@ function flxi_rest_mb_mark( WP_REST_Request $q ) {
 	$f = sanitize_key( (string) $q['field'] );
 	$map = array( 'read' => 'is_read', 'starred' => 'is_starred' );
 	if ( ! isset( $map[ $f ] ) || ! flxi_mailbox_mark( (int) $q['id'], $map[ $f ], ! empty( $q['value'] ) && 'false' !== $q['value'] ) ) {
-		return new WP_Error( 'flxi_bad', __( 'İşlem yapılamadı.', 'flx-mail' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxi_bad', __( 'The action could not be completed.', 'flx-mail' ), array( 'status' => 400 ) );
 	}
 	return array( 'ok' => true, 'status' => flxi_mailbox_status() );
 }
@@ -261,7 +261,7 @@ function flxi_rest_mb_test() {
 	return array(
 		'ok'      => true,
 		/* translators: 1: e-posta sayısı, 2: Gönderilmiş klasörü adı */
-		'message' => sprintf( __( 'Bağlantı başarılı. Gelen kutusunda %1$s e-posta var. Gönderilmiş klasörü: %2$s', 'flx-mail' ), number_format_i18n( $sel ? $sel['exists'] : 0 ), $f['sent'] ? FLXI_Imap::utf7_decode( $f['sent'] ) : __( 'bulunamadı', 'flx-mail' ) ),
+		'message' => sprintf( __( 'Connection successful. The inbox has %1$s emails. Sent folder: %2$s', 'flx-mail' ), number_format_i18n( $sel ? $sel['exists'] : 0 ), $f['sent'] ? FLXI_Imap::utf7_decode( $f['sent'] ) : __( 'not found', 'flx-mail' ) ),
 	);
 }
 
@@ -298,7 +298,7 @@ function flxi_rest_mb_drafts( WP_REST_Request $q ) {
 
 function flxi_rest_mb_draft_get( WP_REST_Request $q ) {
 	$d = flxi_draft_get( (int) $q['id'] );
-	return $d ? flxi_rest_mb_nocache( flxi_mailbox_draft_out( $d ) ) : new WP_Error( 'flxi_404', __( 'Taslak bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+	return $d ? flxi_rest_mb_nocache( flxi_mailbox_draft_out( $d ) ) : new WP_Error( 'flxi_404', __( 'Draft not found.', 'flx-mail' ), array( 'status' => 404 ) );
 }
 
 /** Formdaki alanlar → taslak sütunları. */
@@ -318,7 +318,7 @@ function flxi_rest_mb_draft_save( WP_REST_Request $q ) {
 	if ( $id ) {
 		$cur = flxi_draft_get( $id );
 		if ( ! $cur || 'sent' === $cur['status'] ) {
-			return new WP_Error( 'flxi_404', __( 'Taslak bulunamadı ya da gönderilmiş.', 'flx-mail' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxi_404', __( 'Draft not found or already sent.', 'flx-mail' ), array( 'status' => 404 ) );
 		}
 		// Elle düzenlenen hatalı taslak yeniden taslak olur; AI taslağı onaylanana kadar "Onay bekliyor" kalır.
 		if ( 'failed' === $cur['status'] ) {
@@ -353,15 +353,15 @@ function flxi_rest_mb_draft_send( WP_REST_Request $q ) {
 function flxi_rest_mb_send_reply( WP_REST_Request $q ) {
 	$body = trim( (string) ( $q['body'] ? $q['body'] : '' ) );
 	if ( '' === $body ) {
-		return new WP_Error( 'flxi_body', __( 'Yanıt boş olamaz.', 'flx-mail' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxi_body', __( 'The reply cannot be empty.', 'flx-mail' ), array( 'status' => 400 ) );
 	}
 	$id = flxi_mailbox_start_reply( (int) $q['id'], 'reply', array( 'body' => wp_kses_post( $body ) ) );
 	if ( ! $id ) {
-		return new WP_Error( 'flxi_404', __( 'E-posta bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxi_404', __( 'Email not found.', 'flx-mail' ), array( 'status' => 404 ) );
 	}
 	$res = flxi_draft_send( $id );
 	if ( empty( $res['ok'] ) ) {
-		return new WP_Error( 'flxi_send', isset( $res['error'] ) ? $res['error'] : __( 'Gönderilemedi.', 'flx-mail' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxi_send', isset( $res['error'] ) ? $res['error'] : __( 'Could not send.', 'flx-mail' ), array( 'status' => 400 ) );
 	}
 	return flxi_rest_mb_nocache( $res );
 }
@@ -370,7 +370,7 @@ function flxi_rest_mb_reply( WP_REST_Request $q ) {
 	$mode = in_array( $q['mode'], array( 'reply', 'replyall', 'forward' ), true ) ? $q['mode'] : 'reply';
 	$id   = flxi_mailbox_start_reply( (int) $q['mail_id'], $mode );
 	if ( ! $id ) {
-		return new WP_Error( 'flxi_404', __( 'E-posta bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxi_404', __( 'Email not found.', 'flx-mail' ), array( 'status' => 404 ) );
 	}
 	return flxi_mailbox_draft_out( flxi_draft_get( $id ) );
 }
@@ -413,7 +413,7 @@ function flxi_rest_mb_ai( WP_REST_Request $q ) {
 	if ( $draft_id ) {
 		$cur = flxi_draft_get( $draft_id );
 		if ( ! $cur ) {
-			return new WP_Error( 'flxi_404', __( 'Taslak bulunamadı.', 'flx-mail' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxi_404', __( 'Draft not found.', 'flx-mail' ), array( 'status' => 404 ) );
 		}
 		$body = null !== $q['body'] ? (string) $q['body'] : (string) $cur['body'];
 		$w    = flxi_mailbox_ai_write(

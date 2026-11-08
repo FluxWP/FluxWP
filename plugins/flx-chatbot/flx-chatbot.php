@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux AI Chatbot, Live Chat & Customer Support
  * Description:       Siteye yapay zekâ destekli sohbet penceresi: Flux AI ile sitenizin içeriğinden ve ürünlerinden 7/24 cevap, potansiyel müşteri toplama, WooCommerce bilgisi, tek tıkla canlı temsilciye devir (Flux Chat gelen kutusu ya da eklentinin kendi gelen kutusu), dosya paylaşımı, okundu bilgisi, sohbet sonu puanlama ve mesai dışında mesaj bırakma. Renk, konum, avatar, metinler ve görünürlük panelden özelleştirilir.
- * Version:           0.1.1
+ * Version:           0.1.2
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -17,6 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 require_once __DIR__ . '/includes/flx-ai-sdk/loader.php'; // Flux AI SDK (tools/ai-sdk).
 
@@ -24,7 +25,7 @@ if ( defined( 'FLXCB_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCB_VERSION', '0.1.1' );
+define( 'FLXCB_VERSION', '0.1.2' );
 define( 'FLXCB_DB_VERSION', '1' );
 define( 'FLXCB_FILE', __FILE__ );
 define( 'FLXCB_DIR', plugin_dir_path( __FILE__ ) );
@@ -82,7 +83,7 @@ add_filter(
 add_filter(
 	'plugin_action_links_' . plugin_basename( FLXCB_FILE ),
 	function ( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( flxcb_admin_url() ) . '">' . esc_html__( 'Ayarlar', 'flx-chatbot' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( flxcb_admin_url() ) . '">' . esc_html__( 'Settings', 'flx-chatbot' ) . '</a>' );
 		return $links;
 	}
 );
@@ -113,7 +114,7 @@ add_filter(
 add_filter(
 	'flxa_package_heads',
 	function ( $heads ) {
-		$heads['flx-chatbot'] = array( 'Flux AI Chatbot', __( 'Yapay zekâ sohbet penceresi, canlı destek ve müşteri hizmetleri', 'flx-chatbot' ) );
+		$heads['flx-chatbot'] = array( 'Flux AI Chatbot', __( 'AI chat window, live chat and customer support', 'flx-chatbot' ) );
 		return $heads;
 	}
 );
@@ -142,7 +143,7 @@ add_filter(
 			return $apps; // sohbetler Flux Chat uygulamasında
 		}
 		$apps['chatbot'] = array(
-			'label' => __( 'Site sohbetleri', 'flx-chatbot' ),
+			'label' => __( 'Site chats', 'flx-chatbot' ),
 			'url'   => admin_url( 'admin.php?page=flx-chatbot-inbox' ),
 			'cap'   => 'flxcb_reply',
 			'icon'  => 'bot-message-square',

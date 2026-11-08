@@ -155,7 +155,7 @@ function flxc_mem_save_benef( $chat, array $benef, $self = '' ) {
 			continue;
 		}
 		$done[ $low ] = 1;
-		$plain        = flxc_mem_key( __( 'bağış yapılan kişi', 'flx-chat' ) . ': ' . $name );
+		$plain        = flxc_mem_key( __( 'donated for', 'flx-chat' ) . ': ' . $name );
 		$key          = ! empty( $b['relation'] ) ? flxc_mem_key( $b['relation'] ) : $plain;
 		// Tek olan yakınlık (anne, baba, eş) güncellenir; kardeş, çocuk, arkadaş gibi birden çok olabilecekler adla ayrılır.
 		if ( $key !== $plain && isset( $facts[ $key ] ) && 0 !== mb_stripos( $facts[ $key ], $name ) && ! preg_match( '/^(anne|baba|eş|annem|babam|eşim|annesi|babası|eşi|hanımı|kocası)$/u', $key ) ) {
@@ -288,7 +288,7 @@ function flxc_mem_summarize( $chat_id, $deadline = 0 ) {
 	global $wpdb;
 	$chat = flxc_get_chat( $chat_id );
 	if ( ! $chat ) {
-		return array( 'status' => 'skipped', 'note' => __( 'Sohbet bulunamadı.', 'flx-chat' ), 'usage' => array() );
+		return array( 'status' => 'skipped', 'note' => __( 'Chat not found.', 'flx-chat' ), 'usage' => array() );
 	}
 	$tr  = flxc_mem_transcript( $chat_id, (int) $chat['mem_ts'] );
 	$set = function ( $ts ) use ( $wpdb, $chat_id ) {
@@ -297,7 +297,7 @@ function flxc_mem_summarize( $chat_id, $deadline = 0 ) {
 	};
 	if ( ! $tr['in'] ) {
 		$set( max( (int) $chat['last_ts'], (int) $chat['mem_ts'] ) );
-		return array( 'status' => 'skipped', 'note' => __( 'Özetlenecek yeni mesaj yok.', 'flx-chat' ), 'usage' => array() );
+		return array( 'status' => 'skipped', 'note' => __( 'No new messages to summarize.', 'flx-chat' ), 'usage' => array() );
 	}
 	$known = array();
 	foreach ( flxc_mem_items( $chat ) as $r ) {
@@ -330,7 +330,7 @@ function flxc_mem_summarize( $chat_id, $deadline = 0 ) {
 	$usage = isset( $r['_usage'] ) ? array( $r['_usage'] ) : array();
 	$j     = flxc_mem_json( (string) ( $r['content'] ?? '' ) );
 	if ( ! $j ) {
-		return array( 'status' => 'error', 'note' => __( 'Yapay zekâ özeti okunamadı.', 'flx-chat' ), 'usage' => $usage );
+		return array( 'status' => 'error', 'note' => __( 'The AI summary could not be read.', 'flx-chat' ), 'usage' => $usage );
 	}
 	$nf = 0;
 	foreach ( (array) ( $j['forget'] ?? array() ) as $k ) {
@@ -350,7 +350,7 @@ function flxc_mem_summarize( $chat_id, $deadline = 0 ) {
 	$set( $tr['last'] );
 	flxc_bot_stat_add( array( 'summaries' => 1 ), $usage, (int) $chat_id );
 	/* translators: 1: message count, 2: fact count */
-	return array( 'status' => 'done', 'note' => sprintf( __( '%1$d gelen mesaj özetlendi, %2$d bilgi yazıldı.', 'flx-chat' ), $tr['in'], $nf ), 'usage' => $usage );
+	return array( 'status' => 'done', 'note' => sprintf( __( '%1$d incoming messages summarized, %2$d items written.', 'flx-chat' ), $tr['in'], $nf ), 'usage' => $usage );
 }
 
 /* ---------- Asistan araçları ---------- */
@@ -434,7 +434,7 @@ add_action(
 		};
 		$get = function ( WP_REST_Request $req ) {
 			$chat = flxc_get_chat( (int) $req['id'] );
-			return $chat ? $chat : new WP_Error( 'flxc_404', __( 'Sohbet bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+			return $chat ? $chat : new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
 		};
 		register_rest_route(
 			$ns,
@@ -460,14 +460,14 @@ add_action(
 						$k = flxc_mem_key( $req->get_param( 'key' ) );
 						$v = flxc_mem_value( $req->get_param( 'value' ) );
 						if ( '' === $k || '' === $v ) {
-							return new WP_Error( 'flxc_mem', __( 'Anahtar ve değer gerekli.', 'flx-chat' ), array( 'status' => 400 ) );
+							return new WP_Error( 'flxc_mem', __( 'Key and value are required.', 'flx-chat' ), array( 'status' => 400 ) );
 						}
 						$item = (int) $req->get_param( 'item' );
 						$t    = flxc_table( 'memory' );
 						if ( $item ) {
 							$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE id = %d AND who = %s", $item, flxc_mem_who( $chat ) ), ARRAY_A ); // phpcs:ignore
 							if ( ! $row ) {
-								return new WP_Error( 'flxc_404', __( 'Kayıt bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+								return new WP_Error( 'flxc_404', __( 'No records found.', 'flx-chat' ), array( 'status' => 404 ) );
 							}
 							if ( 'fact' === $row['kind'] && $k !== $row['k'] ) {
 								// Anahtar değiştiyse aynı anahtardaki eski kayıt kalkar.
@@ -489,7 +489,7 @@ add_action(
 							return $chat;
 						}
 						if ( 'yes' !== (string) $req->get_param( 'confirm' ) ) {
-							return new WP_Error( 'flxc_confirm', __( 'Onay metni yanlış.', 'flx-chat' ), array( 'status' => 400 ) );
+							return new WP_Error( 'flxc_confirm', __( 'Confirmation text is wrong.', 'flx-chat' ), array( 'status' => 400 ) );
 						}
 						flxc_mem_forget( $chat );
 						return flxc_mem_for_js( $chat );
@@ -525,7 +525,7 @@ add_action(
 					$t   = flxc_table( 'memory' );
 					$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE id = %d", (int) $req['id'] ), ARRAY_A ); // phpcs:ignore
 					if ( ! $row ) {
-						return new WP_Error( 'flxc_404', __( 'Kayıt bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+						return new WP_Error( 'flxc_404', __( 'No records found.', 'flx-chat' ), array( 'status' => 404 ) );
 					}
 					$wpdb->delete( $t, array( 'id' => (int) $row['id'] ) );
 					$chat = flxc_get_chat( (int) $row['chat_id'] );

@@ -200,8 +200,8 @@ add_filter(
 function flxapp_platforms() {
 	return array(
 		'web'     => __( 'Web', 'flx-app' ),
-		'mobile'  => __( 'Mobil', 'flx-app' ),
-		'desktop' => __( 'Masaüstü', 'flx-app' ),
+		'mobile'  => __( 'Mobile', 'flx-app' ),
+		'desktop' => __( 'Desktop', 'flx-app' ),
 	);
 }
 

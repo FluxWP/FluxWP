@@ -341,7 +341,7 @@ function flxs_rest_lookup( WP_REST_Request $r ) {
 		switch_to_locale( $lang );
 	}
 	if ( ! flxs_setting( 'lookup_enabled' ) ) {
-		return flxs_rest_error( __( 'Sorgulama kapalı.', 'flx-certificates' ), 403 );
+		return flxs_rest_error( __( 'Lookup is disabled.', 'flx-certificates' ), 403 );
 	}
 	// Sayfa önbellekte olabileceği için nonce yerine IP + adres limiti ve bal küpü alanı kullanılıyor.
 	if ( '' !== (string) $r->get_param( 'website' ) ) { // bal küpü
@@ -352,14 +352,14 @@ function flxs_rest_lookup( WP_REST_Request $r ) {
 	$ipkey   = 'flxs_lk_ip_' . md5( $ip );
 	$hits    = (int) get_transient( $ipkey );
 	if ( $hits >= 10 ) {
-		return flxs_rest_error( __( 'Çok fazla deneme. Lütfen daha sonra tekrar deneyin.', 'flx-certificates' ), 429 );
+		return flxs_rest_error( __( 'Too many attempts. Please try again later.', 'flx-certificates' ), 429 );
 	}
 	set_transient( $ipkey, $hits + 1, HOUR_IN_SECONDS );
 
 	$is_email = (bool) is_email( $contact );
 	$phone    = $is_email ? '' : flxs_normalize_phone( $contact );
 	if ( ! $is_email && ! $phone ) {
-		return flxs_rest_error( __( 'Geçerli bir telefon numarası ya da e-posta girin.', 'flx-certificates' ) );
+		return flxs_rest_error( __( 'Enter a valid phone number or email address.', 'flx-certificates' ) );
 	}
 	$ckey = 'flxs_lk_c_' . md5( $is_email ? strtolower( $contact ) : $phone );
 	if ( get_transient( $ckey ) ) {
@@ -379,14 +379,17 @@ function flxs_rest_lookup( WP_REST_Request $r ) {
 			$channel = $is_email ? 'email' : ( in_array( 'whatsapp', $allow, true ) && flxs_resolve_provider( 'whatsapp' ) ? 'whatsapp' : 'sms' );
 			if ( in_array( $channel, $allow, true ) && flxs_resolve_provider( $channel ) ) {
 				/* translators: 1: ad, 2: site adı, 3: sertifika linkleri (satır satır) */
-				$body = sprintf( __( "Merhaba %1\$s,\n\n%2\$s sertifikalarınız:\n%3\$s", 'flx-certificates' ), flxs_first_name( $person['name'] ), get_bloginfo( 'name' ), implode( "\n", $lines ) );
+				$body = sprintf( __( 'Hello %1$s,
+
+Your %2$s certificates:
+%3$s', 'flx-certificates' ), flxs_first_name( $person['name'] ), get_bloginfo( 'name' ), implode( "\n", $lines ) );
 				flxs_enqueue(
 					array(
 						'channel'        => $channel,
 						'recipient'      => $is_email ? $person['email'] : $person['phone'],
 						'recipient_name' => $person['name'],
 						'person_id'      => $person['id'],
-						'subject'        => __( 'Sertifikalarınız', 'flx-certificates' ) . ' · ' . get_bloginfo( 'name' ),
+						'subject'        => __( 'Your certificates', 'flx-certificates' ) . ' · ' . get_bloginfo( 'name' ),
 						'body'           => $body,
 						'source'         => 'lookup',
 					)
@@ -400,7 +403,7 @@ function flxs_rest_lookup( WP_REST_Request $r ) {
 }
 
 function flxs_lookup_message() {
-	return __( 'Bu bilgiyle kayıtlı bir sertifika varsa bağlantısı birkaç dakika içinde size gönderilecek.', 'flx-certificates' );
+	return __( 'If a certificate is registered with these details, its link will be sent to you within a few minutes.', 'flx-certificates' );
 }
 
 /* ---------- Başka birine gönder + kayıtlı alıcılar (rehber) ---------- */
@@ -591,7 +594,7 @@ function flxs_rest_cert_list( WP_REST_Request $r ) {
 		$js['phone']     = (string) ( $js['person']['phone_label'] ?? '' );
 		$js['template']  = (string) ( $row['template_name'] ?? '' );
 		$js['date_label'] = flxs_date( $row['created_at'] );
-		$js['status_label'] = 'revoked' === $row['status'] ? __( 'İptal', 'flx-certificates' ) : __( 'Geçerli', 'flx-certificates' );
+		$js['status_label'] = 'revoked' === $row['status'] ? __( 'Cancelled', 'flx-certificates' ) : __( 'Valid', 'flx-certificates' );
 		$items[]         = $js;
 	}
 	return array(

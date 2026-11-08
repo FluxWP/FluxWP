@@ -302,7 +302,7 @@ function flxc_install_tables() {
 function flxc_install_roles() {
 	$role = get_role( 'flxc_agent' );
 	if ( ! $role ) {
-		$role = add_role( 'flxc_agent', __( 'Çağrı Merkezi Temsilcisi', 'flx-chat' ), array( 'read' => true, 'flxc_use' => true ) );
+		$role = add_role( 'flxc_agent', __( 'Call Center Agent', 'flx-chat' ), array( 'read' => true, 'flxc_use' => true ) );
 	}
 	if ( $role ) {
 		$role->add_cap( 'read' );
@@ -320,8 +320,8 @@ function flxc_install_defaults() {
 		$s           = flxc_default_settings();
 		$s['labels'] = flxc_default_labels();
 		/* translators: %s: site name */
-		$s['welcome_text'] = sprintf( __( 'Merhaba! Mesajınız %s ekibine ulaştı. Temsilcimiz en kısa sürede size dönecek.', 'flx-chat' ), get_bloginfo( 'name' ) );
-		$s['away_text']    = __( 'Merhaba, şu an mesai saatleri dışındayız. Mesajınızı aldık; ilk iş gününde size dönüş yapacağız.', 'flx-chat' );
+		$s['welcome_text'] = sprintf( __( 'Hello! Your message has reached the %s team. An agent will get back to you shortly.', 'flx-chat' ), get_bloginfo( 'name' ) );
+		$s['away_text']    = __( 'Hello, we are currently outside business hours. We received your message and will reply on the next business day.', 'flx-chat' );
 		// İlk bağlantı olarak Flux Mail'deki (yoksa Flux Certificates'daki) WhatsApp bağlantısını öner.
 		$flxi = flxc_flxi_whatsapp_choices();
 		if ( $flxi ) {
@@ -359,12 +359,12 @@ function flxc_install_defaults() {
 /** Örnek hazır cevaplar (site dilinde). Değişkenler: {first_name} {name} {phone} {agent} {site} {date} */
 function flxc_default_replies() {
 	return array(
-		array( 'merhaba', __( 'Karşılama', 'flx-chat' ), __( 'Merhaba {first_name}, ben {agent}. Size nasıl yardımcı olabilirim?', 'flx-chat' ), __( 'Genel', 'flx-chat' ) ),
-		array( 'bekle', __( 'Kontrol ediyorum', 'flx-chat' ), __( 'Hemen kontrol edip size dönüyorum, lütfen birkaç dakika bekleyin.', 'flx-chat' ), __( 'Genel', 'flx-chat' ) ),
-		array( 'alindi', __( 'Talep alındı', 'flx-chat' ), __( 'Talebinizi aldık, en kısa sürede size dönüş yapacağız. 🙏', 'flx-chat' ), __( 'Genel', 'flx-chat' ) ),
-		array( 'mesai', __( 'Mesai saatleri', 'flx-chat' ), __( 'Mesai saatlerimiz hafta içi 09:00 – 18:00 arasıdır.', 'flx-chat' ), __( 'Bilgi', 'flx-chat' ) ),
-		array( 'site', __( 'Web sitesi', 'flx-chat' ), __( 'Tüm detaylara web sitemizden ulaşabilirsiniz: {site}', 'flx-chat' ), __( 'Bilgi', 'flx-chat' ) ),
-		array( 'tesekkur', __( 'Teşekkür', 'flx-chat' ), __( 'Bize ulaştığınız için teşekkür ederiz {first_name}, iyi günler dileriz! 🌱', 'flx-chat' ), __( 'Kapanış', 'flx-chat' ) ),
+		array( 'merhaba', __( 'Greeting', 'flx-chat' ), __( 'Hello {first_name}, this is {agent}. How can I help you?', 'flx-chat' ), __( 'General', 'flx-chat' ) ),
+		array( 'bekle', __( 'Checking', 'flx-chat' ), __( 'I\'ll check and get right back to you, please wait a few minutes.', 'flx-chat' ), __( 'General', 'flx-chat' ) ),
+		array( 'alindi', __( 'Request received', 'flx-chat' ), __( 'We received your request and will get back to you shortly. 🙏', 'flx-chat' ), __( 'General', 'flx-chat' ) ),
+		array( 'mesai', __( 'Business hours', 'flx-chat' ), __( 'Our business hours are weekdays 09:00 – 18:00.', 'flx-chat' ), __( 'Info', 'flx-chat' ) ),
+		array( 'site', __( 'Website', 'flx-chat' ), __( 'You can find all the details on our website: {site}', 'flx-chat' ), __( 'Info', 'flx-chat' ) ),
+		array( 'tesekkur', __( 'Thanks', 'flx-chat' ), __( 'Thank you for reaching out {first_name}, have a nice day! 🌱', 'flx-chat' ), __( 'Closing', 'flx-chat' ) ),
 	);
 }
 

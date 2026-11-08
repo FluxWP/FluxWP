@@ -217,5 +217,5 @@ function flxi_profile_social_row( $user ) {
 	if ( ! flxi_user_is_social( $user->ID ) ) {
 		return;
 	}
-	echo '<h2>' . esc_html__( 'Google ile giriş', 'flx-mail' ) . '</h2><table class="form-table"><tr><th>' . esc_html__( 'E-posta', 'flx-mail' ) . '</th><td><span class="dashicons dashicons-yes-alt" style="color:#0E7A56"></span> ' . esc_html__( 'Google tarafından doğrulandı. Bu hesaba parola belirleme e-postası gönderilmez.', 'flx-mail' ) . '</td></tr></table>';
+	echo '<h2>' . esc_html__( 'Google sign-in', 'flx-mail' ) . '</h2><table class="form-table"><tr><th>' . esc_html__( 'Email', 'flx-mail' ) . '</th><td><span class="dashicons dashicons-yes-alt" style="color:#0E7A56"></span> ' . esc_html__( 'Verified by Google. No set-password email is sent to this account.', 'flx-mail' ) . '</td></tr></table>';
 }

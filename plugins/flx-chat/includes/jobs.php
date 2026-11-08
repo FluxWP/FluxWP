@@ -121,7 +121,7 @@ function flxc_jobs_recover() {
 	// Bekçi: yarıda ölen (sunucu kesti) ya da sırada çok bekleyen cevap; kişiye o işten sonra hiç mesaj gitmediyse yedek mesaj.
 	$dead = (array) $wpdb->get_results( $wpdb->prepare( "SELECT id, chat_id, started_at, created_at, status FROM $t WHERE kind = 'reply' AND ((status = 'running' AND locked_until < %d) OR (status = 'queued' AND created_at < %d))", $now, $now - 3 * MINUTE_IN_SECONDS ), ARRAY_A ); // phpcs:ignore
 	foreach ( $dead as $j ) {
-		$wpdb->update( $t, array( 'status' => 'error', 'locked_until' => 0, 'finished_at' => $now, 'note' => 'queued' === $j['status'] ? __( 'Sırada çok bekledi.', 'flx-chat' ) : __( 'İş yarıda kaldı.', 'flx-chat' ) ), array( 'id' => (int) $j['id'] ) );
+		$wpdb->update( $t, array( 'status' => 'error', 'locked_until' => 0, 'finished_at' => $now, 'note' => 'queued' === $j['status'] ? __( 'Waited too long in the queue.', 'flx-chat' ) : __( 'The job was interrupted.', 'flx-chat' ) ), array( 'id' => (int) $j['id'] ) );
 		$since = 1000 * (int) ( $j['started_at'] ? $j['started_at'] : $j['created_at'] );
 		// Saatler önce ölmüş bir iş için şimdi özür yazılmaz; kişi yeniden yazınca asistan baştan cevaplar.
 		if ( $since < ( $now - 15 * MINUTE_IN_SECONDS ) * 1000 ) {
@@ -131,11 +131,11 @@ function flxc_jobs_recover() {
 		if ( ! $out && function_exists( 'flxc_bot_fallback' ) ) {
 			delete_transient( 'flxc_bot_lock_' . (int) $j['chat_id'] );
 			flxc_bot_busy( (int) $j['chat_id'], false );
-			flxc_bot_fallback( flxc_get_chat( (int) $j['chat_id'] ), 'queued' === $j['status'] ? __( 'sırada çok bekledi', 'flx-chat' ) : __( 'cevap yarıda kaldı', 'flx-chat' ) );
+			flxc_bot_fallback( flxc_get_chat( (int) $j['chat_id'] ), 'queued' === $j['status'] ? __( 'waited too long in the queue', 'flx-chat' ) : __( 'the answer was cut off', 'flx-chat' ) );
 		}
 	}
 	$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'queued', locked_until = 0 WHERE status = 'running' AND kind = 'summary' AND locked_until < %d AND attempts < 3", $now ) ); // phpcs:ignore
-	$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'error', locked_until = 0, finished_at = %d, note = %s WHERE status = 'running' AND locked_until < %d", $now, __( 'İş yarıda kaldı.', 'flx-chat' ), $now ) ); // phpcs:ignore
+	$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'error', locked_until = 0, finished_at = %d, note = %s WHERE status = 'running' AND locked_until < %d", $now, __( 'The job was interrupted.', 'flx-chat' ), $now ) ); // phpcs:ignore
 }
 
 /**
@@ -325,7 +325,7 @@ function flxc_jobs_run( $id ) {
 	}
 	if ( 'reply' === $job['kind'] ) {
 		// Sıradaki kişi: kaydı kapatılır, asistan turu kendi işini açar.
-		flxc_job_finish( $id, 'done', __( 'sıradan alındı', 'flx-chat' ) );
+		flxc_job_finish( $id, 'done', __( 'taken from the queue', 'flx-chat' ) );
 		ignore_user_abort( true );
 		if ( function_exists( 'set_time_limit' ) ) {
 			@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors

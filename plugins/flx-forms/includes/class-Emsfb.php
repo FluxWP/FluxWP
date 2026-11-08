@@ -560,8 +560,8 @@ class Emsfb {
 
         $files = array_map('esc_html', array_unique($this->missing_core_files));
         echo '<div class="notice notice-error"><p><b>Flux Forms:</b> '
-            . esc_html__('Some plugin files are missing, so the plugin stopped loading to keep your site running. Please reinstall Flux Forms from the Plugins page — your forms, messages, and settings are kept.', 'flx-forms')
-            . '</p><p>' . esc_html__('Missing files:', 'flx-forms') . ' <code>'
+            . esc_html__('\\nSome plugin files are missing, so the plugin stopped loading to keep your site running. Please reinstall Flux Forms from the Plugins page — your forms, messages, and settings are kept.\\n', 'flx-forms')
+            . '</p><p>' . esc_html__('\\nMissing files:\\n', 'flx-forms') . ' <code>'
             . implode('</code>, <code>', $files)
             . '</code></p></div>';
     }
@@ -1638,7 +1638,7 @@ class Emsfb {
             ? EMSFB_PLUGIN_URL . 'public/assets/images/email_template1.png'
             : '';
         $disclaimer = function_exists('__')
-            ? __('This email was sent automatically. Please do not reply directly.', 'flx-forms')
+            ? __('\\nThis email was sent automatically. Please do not reply directly.\\n', 'flx-forms')
             : 'This email was sent automatically. Please do not reply directly.';
 
         $builder_data = [

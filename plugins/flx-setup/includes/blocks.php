@@ -80,14 +80,14 @@ function flxk_node_to_block( $node ) {
 function flxk_check_markup( $markup ) {
 	$warn = array();
 	if ( substr_count( $markup, '<!-- wp:' ) < substr_count( $markup, '<!-- /wp:' ) ) {
-		$warn[] = __( 'Kapanış yorumu açılıştan fazla.', 'flx-setup' );
+		$warn[] = __( 'More closing comments than opening ones.', 'flx-setup' );
 	}
 	$reg = class_exists( 'WP_Block_Type_Registry' ) ? WP_Block_Type_Registry::get_instance() : null;
 	$walk = function ( $blocks ) use ( &$walk, &$warn, $reg ) {
 		foreach ( $blocks as $b ) {
 			if ( $b['blockName'] && $reg && did_action( 'init' ) && ! $reg->is_registered( $b['blockName'] ) ) {
 				/* translators: %s: blok adı */
-				$warn[] = sprintf( __( 'Kayıtlı olmayan blok: %s', 'flx-setup' ), $b['blockName'] );
+				$warn[] = sprintf( __( 'Unregistered block: %s', 'flx-setup' ), $b['blockName'] );
 			}
 			if ( ! empty( $b['innerBlocks'] ) ) {
 				$walk( $b['innerBlocks'] );

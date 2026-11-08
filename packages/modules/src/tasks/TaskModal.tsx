@@ -64,7 +64,7 @@ function autosize(el: HTMLTextAreaElement | null) {
   el.style.height = el.scrollHeight + 'px';
 }
 function copyText(c: Ctx, s: string) {
-  void navigator.clipboard?.writeText(s).then(() => c.ui.toast(tt('Kopyalandı')), () => c.ui.toast(s));
+  void navigator.clipboard?.writeText(s).then(() => c.ui.toast(tt("Copied")), () => c.ui.toast(s));
 }
 function openLightbox(c: Ctx, files: FlxgFile[], index: number) {
   if (!files.length) return;
@@ -267,7 +267,7 @@ function Drawer({ id }: { id: number }) {
     const max = e.S.config.maxUpload;
     list = list.filter((f) => {
       if (f.size > max) {
-        ui.toast(tt('{n} çok büyük (en fazla {s}).', { n: f.name, s: bytes(max) }), { error: true });
+        ui.toast(tt("{n} is too large (up to {s}).", { n: f.name, s: bytes(max) }), { error: true });
         return false;
       }
       return true;
@@ -275,7 +275,7 @@ function Drawer({ id }: { id: number }) {
     if (!list.length) return [];
     const tid = t0.id;
     const ups = (mem.uploads[tid] ??= []);
-    const mine = list.map((file, i): Up => ({ key: 'u' + Date.now() + '-' + i, name: file.name || tt('Dosya'), preview: /^image\//.test(file.type) ? URL.createObjectURL(file) : '' }));
+    const mine = list.map((file, i): Up => ({ key: 'u' + Date.now() + '-' + i, name: file.name || tt("File"), preview: /^image\//.test(file.type) ? URL.createObjectURL(file) : '' }));
     ups.push(...mine);
     if (!o.noReload) force();
     const res = await Promise.all(
@@ -339,7 +339,7 @@ function Drawer({ id }: { id: number }) {
       <div className="flxg-empty">
         <p>{D.error}</p>
         <button type="button" className="flxg-btn" onClick={close}>
-          {tt('Kapat')}
+          {tt("Close")}
         </button>
       </div>
     ) : (
@@ -359,10 +359,10 @@ function Drawer({ id }: { id: number }) {
       <>
         <div className="flxg-seg flxg-dr-tabs">
           <button type="button" className={D.tab === 'details' ? 'is-on' : ''} onClick={() => ((D.tab = 'details'), force())}>
-            {tt('Detaylar')}
+            {tt("Details")}
           </button>
           <button type="button" className={D.tab === 'comments' ? 'is-on' : ''} onClick={() => ((D.tab = 'comments'), force())}>
-            {tt('Yorumlar')}
+            {tt("Comments")}
             {task.comments_list.length > 0 && <span className="flxg-badge">{task.comments_list.length}</span>}
           </button>
         </div>
@@ -386,7 +386,7 @@ function Drawer({ id }: { id: number }) {
         className={cls('flxg-drawer', shown && 'is-open', mobile && 'is-mobile', page && 'is-page', !mobile && !sideOpen && 'is-side-closed', D.saving > 0 && 'is-saving')}
         role="dialog"
         aria-modal="true"
-        aria-label={tt('Görev')}
+        aria-label={tt("Task")}
       >
         <header className="flxg-dr-head">{task && <Head task={task} />}</header>
         <div className="flxg-dr-body">{body}</div>
@@ -404,14 +404,14 @@ function Head({ task }: { task: Detail }) {
   const sp = l ? e.space(l.space_id) : null;
   const more = (anchor: HTMLElement) =>
     ui.menu(anchor, [
-      { label: tt('Bağlantıyı kopyala'), icon: 'link', onClick: () => copyText(c, d.link(task.id)) },
+      { label: tt("Copy link"), icon: 'link', onClick: () => copyText(c, d.link(task.id)) },
       canEdit && {
-        label: tt('Başka listeye taşı'),
+        label: tt("Move to another list"),
         icon: 'move',
-        onClick: () => pickList(c, anchor, (lid) => void save({ list: lid }).then(() => ui.toast(tt('Görev taşındı'))), { current: task.list }),
+        onClick: () => pickList(c, anchor, (lid) => void save({ list: lid }).then(() => ui.toast(tt("Task moved"))), { current: task.list }),
       },
       canEdit && {
-        label: tt('Alt görev ekle'),
+        label: tt("Add subtask"),
         icon: 'subtask',
         onClick: () => {
           D.tab = 'details';
@@ -420,18 +420,18 @@ function Head({ task }: { task: Detail }) {
         },
       },
       canEdit && {
-        label: tt('Kopyasını oluştur'),
+        label: tt("Create a copy"),
         icon: 'copy',
         onClick: () => {
           const x = task;
-          e.createTask({ list: x.list, title: x.title + ' ' + tt('(kopya)'), description: x.description, status: x.status, priority: x.priority, start: x.start, due: x.due, assignees: x.assignees, tags: x.tags, fields: x.fields, parent: x.parent || 0 }).then((n) => {
-            ui.toast(tt('Kopya oluşturuldu'));
+          e.createTask({ list: x.list, title: x.title + ' ' + tt("(copy)"), description: x.description, status: x.status, priority: x.priority, start: x.start, due: x.due, assignees: x.assignees, tags: x.tags, fields: x.fields, parent: x.parent || 0 }).then((n) => {
+            ui.toast(tt("Copy created"));
             e.openTask(n.id);
           }, ui.fail);
         },
       },
       canEdit && {
-        label: task.archived ? tt('Arşivden çıkar') : tt('Arşivle'),
+        label: task.archived ? tt("Unarchive") : tt("Archive"),
         icon: 'archive',
         onClick: () =>
           void save({ archived: !task.archived }).then(() => {
@@ -443,15 +443,15 @@ function Head({ task }: { task: Detail }) {
       },
       canEdit && { sep: true },
       canEdit && {
-        label: tt('Görevi sil'),
+        label: tt("Delete task"),
         icon: 'trash',
         danger: true,
         onClick: () =>
-          void ui.confirm(tt('Görevi sil'), tt('"{n}" görevi, yorum ve dosyalarıyla birlikte kalıcı olarak silinecek.', { n: task.title }), tt('Sil'), true).then((ok) => {
+          void ui.confirm(tt("Delete task"), tt("The task \"{n}\" will be permanently deleted along with its comments and files.", { n: task.title }), tt("Delete"), true).then((ok) => {
             if (ok)
               e.deleteTask(task.id).then(() => {
                 close();
-                ui.toast(tt('Görev silindi'));
+                ui.toast(tt("Task deleted"));
               }, ui.fail);
           }),
       },
@@ -462,7 +462,7 @@ function Head({ task }: { task: Detail }) {
       {task.parentInfo && (
         <button type="button" className="flxg-back-btn" title={task.parentInfo.title} onClick={() => e.openTask(task.parentInfo!.id)}>
           <Ic n="back" s={16} />
-          <span className="flxg-back-k">{isSub ? tt('Toplantıya dön') : tt('Üst göreve dön')}</span>
+          <span className="flxg-back-k">{isSub ? tt("Back to meeting") : tt("Back to parent task")}</span>
           <span className="flxg-back-t">{task.parentInfo.title}</span>
         </button>
       )}
@@ -481,7 +481,7 @@ function Head({ task }: { task: Detail }) {
             {l.name}
           </a>
         )}
-        <button type="button" className="flxg-idchip" title={tt('Bağlantıyı kopyala')} onClick={() => copyText(c, d.link(task.id))}>
+        <button type="button" className="flxg-idchip" title={tt("Copy link")} onClick={() => copyText(c, d.link(task.id))}>
           #{task.id}
         </button>
       </div>
@@ -489,23 +489,23 @@ function Head({ task }: { task: Detail }) {
         <button
           type="button"
           className={cls('flxg-icon-btn', task.watching && 'is-on')}
-          title={task.watching ? tt('Takibi bırak') : tt('Takip et (bildirim al)')}
+          title={task.watching ? tt("Unfollow") : tt("Follow (get notifications)")}
           onClick={() =>
             e.api.watch(task.id, !task.watching).then((r) => {
               task.watchers = r.watchers;
               task.watching = !task.watching;
               d.render();
-              ui.toast(task.watching ? tt('Bu görevin bildirimlerini alacaksınız') : tt('Bu görevin bildirimleri kapatıldı'));
+              ui.toast(task.watching ? tt("You will get notifications for this task") : tt("Notifications for this task are turned off"));
             }, ui.fail)
           }
         >
           <Ic n="bell" s={17} />
           <span className="flxg-watch-n">{task.watchers.length}</span>
         </button>
-        <button type="button" className="flxg-icon-btn" title={tt('Diğer')} onClick={(ev) => more(ev.currentTarget)}>
+        <button type="button" className="flxg-icon-btn" title={tt("Other")} onClick={(ev) => more(ev.currentTarget)}>
           <Ic n="dots" s={18} />
         </button>
-        <button type="button" className="flxg-icon-btn" title={tt('Kapat')} onClick={close}>
+        <button type="button" className="flxg-icon-btn" title={tt("Close")} onClick={close}>
           <Ic n="x" s={19} />
         </button>
       </div>
@@ -546,7 +546,7 @@ function LimitAttrs({ rows, cls: extra }: { rows: ReactNode[]; cls?: string }) {
       {over && (
         <button type="button" className="flxg-attrs-more" onClick={() => (c.e.setPref('attrs-all', all ? null : 1), render())}>
           <Ic n={all ? 'chevU' : 'chevD'} s={14} />
-          {all ? tt('Daha az göster') : tt('{n} alan daha', { n: rows.length - ATTR_MIN })}
+          {all ? tt("Show less") : tt("{n} more fields", { n: rows.length - ATTR_MIN })}
         </button>
       )}
     </div>
@@ -588,7 +588,7 @@ function Sec({ k, cls: boxCls, head, headCls, children }: { k: string; cls: stri
           render();
         }}
       >
-        <button type="button" className="flxg-sec-tog" aria-expanded={open} title={open ? tt('Daralt') : tt('Genişlet')}>
+        <button type="button" className="flxg-sec-tog" aria-expanded={open} title={open ? tt("Collapse") : tt("Expand")}>
           <Ic n="chevD" s={15} />
         </button>
         {head}
@@ -669,7 +669,7 @@ function Main({ task }: { task: Detail }) {
     c.ui.openPop(
       anchor,
       <div className="flxg-pick">
-        <div className="flxg-menu-head">{tt('Kapak görseli')}</div>
+        <div className="flxg-menu-head">{tt("Cover image")}</div>
         {imgs.length ? (
           <div className="flxg-cover-grid">
             {imgs.map((f) => (
@@ -679,12 +679,12 @@ function Main({ task }: { task: Detail }) {
             ))}
           </div>
         ) : (
-          <div className="flxg-empty-sm">{tt('Görevde henüz görsel yok.')}</div>
+          <div className="flxg-empty-sm">{tt("No images on this task yet.")}</div>
         )}
         <div className="flxg-row-btns">
           <label className="flxg-btn is-sm">
             <Ic n="upload" s={14} />
-            {tt('Yeni görsel yükle')}
+            {tt("Upload new image")}
             <input
               type="file"
               accept="image/*"
@@ -716,25 +716,25 @@ function Main({ task }: { task: Detail }) {
       {edit && doneKey && st.type !== 'done' && (
         <button type="button" className="flxg-btn is-sm is-done-btn" onClick={() => void save({ status: doneKey })}>
           <Ic n="check" s={14} />
-          {mtg ? tt('Yapıldı') : tt('Tamamla')}
+          {mtg ? tt("Held") : tt("Complete")}
         </button>
       )}
-      {st.type === 'done' && task.completed && !mtg && <span className="flxg-muted">{tt('Tamamlandı: {d}', { d: ago(task.completed) })}</span>}
+      {st.type === 'done' && task.completed && !mtg && <span className="flxg-muted">{tt("Completed: {d}", { d: ago(task.completed) })}</span>}
       {!edit && (
         <span className="flxg-readonly">
           <Ic n="lock" s={13} />
-          {rank(d.role) >= 2 ? tt('Yalnız yorum yapabilirsiniz') : tt('Yalnız görüntüleme')}
+          {rank(d.role) >= 2 ? tt("You can only comment") : tt("View only")}
         </span>
       )}
       {mtg && <span className="flxg-grow" />}
       {mtg && (
-        <button type="button" className="flxg-btn is-sm is-ghost" title={tt('Toplantı raporunu yazdır ya da PDF olarak kaydet')} onClick={() => meetingReport(c, task)}>
+        <button type="button" className="flxg-btn is-sm is-ghost" title={tt("Print the meeting report or save it as PDF")} onClick={() => meetingReport(c, task)}>
           <Ic n="printer" s={14} />
-          <span>{tt('PDF rapor')}</span>
+          <span>{tt("PDF report")}</span>
         </button>
       )}
       {mtg && (
-        <button type="button" className={cls('flxg-icon-btn', 'is-sm', D.mtgCustom && 'is-on')} title={D.mtgCustom ? tt('Özelleştirmeyi gizle') : tt('Ekranı özelleştir')} onClick={() => ((D.mtgCustom = !D.mtgCustom), d.render())}>
+        <button type="button" className={cls('flxg-icon-btn', 'is-sm', D.mtgCustom && 'is-on')} title={D.mtgCustom ? tt("Hide customization") : tt("Customize this screen")} onClick={() => ((D.mtgCustom = !D.mtgCustom), d.render())}>
           <Ic n="dots" s={16} />
         </button>
       )}
@@ -743,17 +743,17 @@ function Main({ task }: { task: Detail }) {
 
   const dates = (
     <span className="flxg-dates">
-      <button type="button" className="flxg-date-btn" disabled={!edit} onClick={(ev) => (ev.stopPropagation(), pickDate(c, ev.currentTarget, task.start, (v) => void save({ start: v }), { label: tt('Başlangıç') }))}>
-        {task.start ? fmtDue(task.start) : tt('Başlangıç')}
+      <button type="button" className="flxg-date-btn" disabled={!edit} onClick={(ev) => (ev.stopPropagation(), pickDate(c, ev.currentTarget, task.start, (v) => void save({ start: v }), { label: tt("Start") }))}>
+        {task.start ? fmtDue(task.start) : tt("Start")}
       </button>
       <Ic n="chevR" s={13} />
       <button
         type="button"
         className={cls('flxg-date-btn', dueState(task.due, st.type === 'done') && 'is-' + dueState(task.due, st.type === 'done'))}
         disabled={!edit}
-        onClick={(ev) => (ev.stopPropagation(), pickDate(c, ev.currentTarget, task.due, (v) => void save({ due: v }), { label: tt('Bitiş') }))}
+        onClick={(ev) => (ev.stopPropagation(), pickDate(c, ev.currentTarget, task.due, (v) => void save({ due: v }), { label: tt("Due") }))}
       >
-        {task.due ? fmtDue(task.due) : tt('Bitiş')}
+        {task.due ? fmtDue(task.due) : tt("Due")}
       </button>
     </span>
   );
@@ -777,10 +777,10 @@ function Main({ task }: { task: Detail }) {
             <div className="flxg-dr-cover-btns">
               <button type="button" className="flxg-btn is-sm" onClick={(ev) => coverPick(ev.currentTarget)}>
                 <Ic n="image" s={14} />
-                {tt('Kapağı değiştir')}
+                {tt("Change cover")}
               </button>
               <button type="button" className="flxg-btn is-sm" onClick={() => void save({ cover: 0 })}>
-                {tt('Kaldır')}
+                {tt("Remove")}
               </button>
             </div>
           )}
@@ -792,7 +792,7 @@ function Main({ task }: { task: Detail }) {
           className={cls('flxg-dr-title', D.pend.title && 'is-pending')}
           rows={1}
           readOnly={!edit}
-          aria-label={tt('Görev adı')}
+          aria-label={tt("Task name")}
           defaultValue={task.title}
           onInput={(ev) => autosize(ev.currentTarget)}
           onFocus={() => (D.editing = true)}
@@ -817,17 +817,17 @@ function Main({ task }: { task: Detail }) {
         <>
           <LimitAttrs
             rows={[
-              <Attr key="a" icon="users" label={tt('Atananlar')} k="assignees" onEdit={peopleEdit}>
-                <People ids={task.assignees} empty={tt('Boş')} />
+              <Attr key="a" icon="users" label={tt("Assignees")} k="assignees" onEdit={peopleEdit}>
+                <People ids={task.assignees} empty={tt("Empty")} />
               </Attr>,
-              <Attr key="d" icon="calendar" label={tt('Tarihler')} k="start due">
+              <Attr key="d" icon="calendar" label={tt("Dates")} k="start due">
                 {dates}
               </Attr>,
-              <Attr key="p" icon="flag" label={tt('Öncelik')} k="priority" onEdit={prioEdit}>
-                {task.priority ? <PrioFlag n={task.priority} label /> : <span className="flxg-muted">{tt('Boş')}</span>}
+              <Attr key="p" icon="flag" label={tt("Priority")} k="priority" onEdit={prioEdit}>
+                {task.priority ? <PrioFlag n={task.priority} label /> : <span className="flxg-muted">{tt("Empty")}</span>}
               </Attr>,
-              <Attr key="t" icon="tag" label={tt('Etiketler')} k="tags" onEdit={tagsEdit}>
-                {task.tags.length ? <TagChips ids={task.tags} /> : <span className="flxg-muted">{tt('Boş')}</span>}
+              <Attr key="t" icon="tag" label={tt("Tags")} k="tags" onEdit={tagsEdit}>
+                {task.tags.length ? <TagChips ids={task.tags} /> : <span className="flxg-muted">{tt("Empty")}</span>}
               </Attr>,
               ...e.fieldsFor(task.list).map((f) => <FieldRow key={'f' + f.id} task={task} f={f} />),
             ]}
@@ -838,7 +838,7 @@ function Main({ task }: { task: Detail }) {
             headCls="has-tools"
             head={
               <>
-                <span>{tt('Açıklama')}</span>
+                <span>{tt("Description")}</span>
                 {e.S.me?.can.ai && d.canComment && (
                   <button
                     type="button"
@@ -849,7 +849,7 @@ function Main({ task }: { task: Detail }) {
                     }}
                   >
                     <Ic n="sparkle" s={14} />
-                    <span>{tt('Yapay zekâ')}</span>
+                    <span>{tt("AI")}</span>
                   </button>
                 )}
               </>
@@ -884,7 +884,7 @@ function FieldRow({ task, f }: { task: Detail; f: FlxgField }) {
           {edit && (
             <label className="flxg-chip-btn">
               <Ic n="upload" s={14} />
-              {tt('Dosya ekle')}
+              {tt("Add file")}
               <input
                 type="file"
                 multiple
@@ -922,7 +922,7 @@ function FieldRow({ task, f }: { task: Detail; f: FlxgField }) {
       title={(opts.hint as string) || undefined}
       onEdit={edit ? (a) => editFieldPop(c, a, task, { id: f.id, name: f.name, type: f.type, options: opts }, () => void d.load(task.id), (id, p) => save(p).then((r) => r)) : null}
     >
-      {empty ? <span className="flxg-muted">{tt('Boş')}</span> : view}
+      {empty ? <span className="flxg-muted">{tt("Empty")}</span> : view}
     </Attr>
   );
 }
@@ -1008,19 +1008,19 @@ function DescEditor({ task }: { task: Detail }) {
     }
   };
   const tools: [string, string, string][] = [
-    ['bold', 'bold', tt('Kalın')],
-    ['italic', 'italic', tt('İtalik')],
-    ['heading', 'formatBlock:h3', tt('Başlık')],
-    ['ul', 'insertUnorderedList', tt('Madde listesi')],
-    ['ol', 'insertOrderedList', tt('Numaralı liste')],
-    ['checklist', 'checklist', tt('Kontrol listesi')],
-    ['quote', 'formatBlock:blockquote', tt('Alıntı')],
-    ['code', 'formatBlock:pre', tt('Kod')],
-    ['link', 'link', tt('Bağlantı')],
+    ['bold', 'bold', tt("Bold")],
+    ['italic', 'italic', tt("Italic")],
+    ['heading', 'formatBlock:h3', tt("Heading")],
+    ['ul', 'insertUnorderedList', tt("Bulleted list")],
+    ['ol', 'insertOrderedList', tt("Numbered list")],
+    ['checklist', 'checklist', tt("Checklist")],
+    ['quote', 'formatBlock:blockquote', tt("Quote")],
+    ['code', 'formatBlock:pre', tt("Code")],
+    ['link', 'link', tt("Link")],
   ];
   const tool = (b: string) => {
     if (b === 'link') {
-      void c.ui.prompt(tt('Bağlantı adresi'), 'https://').then((url) => url && cmd('createLink', url));
+      void c.ui.prompt(tt("Link address"), 'https://').then((url) => url && cmd('createLink', url));
       return;
     }
     if (b === 'checklist') {
@@ -1058,7 +1058,7 @@ function DescEditor({ task }: { task: Detail }) {
         contentEditable={edit}
         suppressContentEditableWarning
         data-k="description"
-        data-ph={edit ? tt('Açıklama ekleyin… (liste, kontrol listesi, bağlantı)') : ''}
+        data-ph={edit ? tt("Add a description… (list, checklist, link)") : ''}
         onFocus={() => ((D.editing = true), setFocus(true))}
         onBlur={() => {
           D.editing = false;
@@ -1112,15 +1112,15 @@ function DescEditor({ task }: { task: Detail }) {
 
 /* ---------------- Alt görevler tablosu ---------------- */
 const SUB_DEFAULT = ['assignees'];
-const subDefault = (): SubOpts => ({ kind: 'task', key: 'sub-cols', title: tt('Alt görevler'), head: tt('Görev adı'), ph: tt('Alt görev ekle…'), def: SUB_DEFAULT });
+const subDefault = (): SubOpts => ({ kind: 'task', key: 'sub-cols', title: tt("Subtasks"), head: tt("Task name"), ph: tt("Add subtask…"), def: SUB_DEFAULT });
 function subColDefs(c: Ctx, task: Detail, o: SubOpts): SubCol[] {
   const defs: SubCol[] = builtinCols(c.e)
     .filter((x) => !['list', 'comments'].includes(x.key))
     .map((x) => ({ ...x }));
   if (o.kind === 'decision')
     for (const x of defs) {
-      if (x.key === 'assignees') x.name = tt('Sorumlu');
-      if (x.key === 'due') x.name = tt('Son tarih');
+      if (x.key === 'assignees') x.name = tt("Owner");
+      if (x.key === 'due') x.name = tt("Due date");
     }
   for (const f of c.e.fieldsFor(task.list))
     defs.push({ key: 'f' + f.id, name: f.name, w: f.type === 'textarea' ? '200px' : '140px', field: { key: 'f' + f.id, id: f.id, ids: [f.id], name: f.name, type: f.type, options: (f.options ?? {}) as Record<string, unknown> } });
@@ -1161,7 +1161,7 @@ function SubTable({ task, o: oIn }: { task: Detail; o?: SubOpts }) {
       const [w, setW] = useState<string[]>((e.pref<string[]>(o.key) ?? o.def).slice());
       return (
         <div className="flxg-fieldspop">
-          <div className="flxg-menu-head">{o.kind === 'decision' ? tt('Karar sütunları') : tt('Alt görev sütunları')}</div>
+          <div className="flxg-menu-head">{o.kind === 'decision' ? tt("Decision columns") : tt("Subtask columns")}</div>
           {defs.map((x) => {
             const on = w.includes(x.key);
             return (
@@ -1191,7 +1191,7 @@ function SubTable({ task, o: oIn }: { task: Detail; o?: SubOpts }) {
       {!narrow && (
         <span
           className="flxg-col-resize"
-          title={tt('Genişliği değiştirmek için sürükleyin, sıfırlamak için çift tıklayın')}
+          title={tt("Drag to resize, double-click to reset")}
           aria-hidden="true"
           onPointerDown={(ev) => {
             if (ev.button !== 0) return;
@@ -1251,13 +1251,13 @@ function SubTable({ task, o: oIn }: { task: Detail; o?: SubOpts }) {
             {x.title}
           </button>
           {x.subtasks > 0 && !ch.length && (
-            <span className="flxg-meta" title={tt('Alt görev')}>
+            <span className="flxg-meta" title={tt("Subtask")}>
               <Ic n="subtask" s={13} />
               {x.subtasks}
             </span>
           )}
           {canEditC && depth0 + depth + 1 < limit && (
-            <button type="button" className="flxg-row-addsub" title={tt('Alt görev ekle')} onClick={() => ((D.focusSubAdd = true), e.openTask(x.id))}>
+            <button type="button" className="flxg-row-addsub" title={tt("Add subtask")} onClick={() => ((D.focusSubAdd = true), e.openTask(x.id))}>
               <Ic n="plus" s={14} />
             </button>
           )}
@@ -1322,7 +1322,7 @@ function SubTable({ task, o: oIn }: { task: Detail; o?: SubOpts }) {
               {headCell('title', o.head)}
               {cols.map((x) => headCell(x.key, x.name))}
               <span className="flxg-subpick">
-                <button type="button" className="flxg-icon-btn is-sm" title={tt('Sütunları göster / gizle')} onClick={(ev) => colPick(ev.currentTarget)}>
+                <button type="button" className="flxg-icon-btn is-sm" title={tt("Show / hide columns")} onClick={(ev) => colPick(ev.currentTarget)}>
                   <Ic n="plus" s={15} />
                 </button>
               </span>
@@ -1365,7 +1365,7 @@ function settle<K extends 'children' | 'comments_list'>(D: DS, taskId: number, k
 function FilesSection({ task }: { task: Detail }) {
   const files = task.attachments.filter((f) => f.context !== 'field');
   return (
-    <Sec k="files" cls="flxg-sec-box" head={<>{tt('Ekler')}{files.length > 0 && <span className="flxg-gcount">{files.length}</span>}</>}>
+    <Sec k="files" cls="flxg-sec-box" head={<>{tt("Attachments")}{files.length > 0 && <span className="flxg-gcount">{files.length}</span>}</>}>
       <Attachments task={task} files={files} />
     </Sec>
   );
@@ -1414,16 +1414,16 @@ function FileChip({ f, task, onRemove }: { f: FlxgFile; task: Detail; onRemove?:
           className="flxg-icon-btn is-sm flxg-file-more"
           onClick={(ev) =>
             c.ui.menu(ev.currentTarget, [
-              { label: tt('İndir'), icon: 'download', onClick: dl },
-              f.image && canEdit && task.cover !== f.id && { label: tt('Kapak görseli yap'), icon: 'image', onClick: () => void save({ cover: f.id }) },
-              f.image && canEdit && task.cover === f.id && { label: tt('Kapaktan kaldır'), icon: 'image', onClick: () => void save({ cover: 0 }) },
+              { label: tt("Download"), icon: 'download', onClick: dl },
+              f.image && canEdit && task.cover !== f.id && { label: tt("Make cover image"), icon: 'image', onClick: () => void save({ cover: f.id }) },
+              f.image && canEdit && task.cover === f.id && { label: tt("Remove from cover"), icon: 'image', onClick: () => void save({ cover: 0 }) },
               { sep: true },
               {
-                label: tt('Sil'),
+                label: tt("Delete"),
                 icon: 'trash',
                 danger: true,
                 onClick: () =>
-                  void c.ui.confirm(tt('Dosyayı sil'), f.name, tt('Sil'), true).then((ok) => {
+                  void c.ui.confirm(tt("Delete file"), f.name, tt("Delete"), true).then((ok) => {
                     if (!ok) return;
                     onRemove?.();
                     c.e.api.deleteFile(f.id).then(() => void d.load(task.id), c.ui.fail);
@@ -1490,8 +1490,8 @@ function Attachments({ task, files }: { task: Detail; files: FlxgFile[] }) {
             }}
           />
           <Ic n="upload" s={18} />
-          <span>{tt('Dosyaları buraya sürükleyin ya da seçin')}</span>
-          <span className="flxg-muted">{tt('En fazla {s}', { s: bytes(d.c.e.S.config.maxUpload) })}</span>
+          <span>{tt("Drag files here or choose")}</span>
+          <span className="flxg-muted">{tt("Up to {s}", { s: bytes(d.c.e.S.config.maxUpload) })}</span>
         </label>
       )}
     </div>
@@ -1502,8 +1502,8 @@ function Attachments({ task, files }: { task: Detail; files: FlxgFile[] }) {
  * Toplantı: görev altyapısı, sade ekran (tarih, katılımcılar, gündem, kararlar, rapor)
  * ================================================================== */
 const mtgSections = () => [
-  ['date', tt('Tarih')], ['people', tt('Katılımcılar')], ['tags', tt('Etiketler')], ['fields', tt('Özel alanlar')], ['priority', tt('Öncelik')],
-  ['desc', tt('Açıklama')], ['agenda', tt('Gündem')], ['decisions', tt('Kararlar')], ['subtasks', tt('Alt görevler')], ['files', tt('Ekler')],
+  ['date', tt("Date")], ['people', tt("Participants")], ['tags', tt("Tags")], ['fields', tt("Custom fields")], ['priority', tt("Priority")],
+  ['desc', tt("Description")], ['agenda', tt("Agenda")], ['decisions', tt("Decisions")], ['subtasks', tt("Subtasks")], ['files', tt("Attachments")],
 ] as const;
 const mtgHidden = (c: Ctx) => c.e.pref<Record<string, number>>('mtg-hide') ?? { priority: 1, subtasks: 1 };
 function MeetingBody({ task }: { task: Detail }) {
@@ -1516,28 +1516,28 @@ function MeetingBody({ task }: { task: Detail }) {
   const meta: ReactNode[] = [];
   if (on('date'))
     meta.push(
-      <Attr key="date" icon="calendar" label={tt('Tarih')} k="due">
-        <button type="button" className="flxg-date-btn" disabled={!edit} onClick={(ev) => (ev.stopPropagation(), pickDate(c, ev.currentTarget, task.due, (v) => void save({ due: v }), { label: tt('Tarih') }))}>
-          {task.due ? fmtDue(task.due, { full: true }) : tt('Tarih seçin')}
+      <Attr key="date" icon="calendar" label={tt("Date")} k="due">
+        <button type="button" className="flxg-date-btn" disabled={!edit} onClick={(ev) => (ev.stopPropagation(), pickDate(c, ev.currentTarget, task.due, (v) => void save({ due: v }), { label: tt("Date") }))}>
+          {task.due ? fmtDue(task.due, { full: true }) : tt("Pick a date")}
         </button>
       </Attr>,
     );
   if (on('people'))
     meta.push(
-      <Attr key="people" icon="users" label={tt('Katılımcılar')} k="assignees" onEdit={edit ? (a) => pickPeople(c, a, task.assignees, debounce((ids: number[]) => void save({ assignees: ids }), 700)) : null}>
-        <People ids={task.assignees} empty={tt('Kişi ekleyin')} />
+      <Attr key="people" icon="users" label={tt("Participants")} k="assignees" onEdit={edit ? (a) => pickPeople(c, a, task.assignees, debounce((ids: number[]) => void save({ assignees: ids }), 700)) : null}>
+        <People ids={task.assignees} empty={tt("Add people")} />
       </Attr>,
     );
   if (on('tags'))
     meta.push(
-      <Attr key="tags" icon="tag" label={tt('Etiketler')} k="tags" onEdit={edit ? (a) => pickTags(c, a, l ? l.space_id : 0, task.tags, debounce((ids: number[]) => void save({ tags: ids }), 700)) : null}>
-        {task.tags.length ? <TagChips ids={task.tags} /> : <span className="flxg-muted">{tt('Boş')}</span>}
+      <Attr key="tags" icon="tag" label={tt("Tags")} k="tags" onEdit={edit ? (a) => pickTags(c, a, l ? l.space_id : 0, task.tags, debounce((ids: number[]) => void save({ tags: ids }), 700)) : null}>
+        {task.tags.length ? <TagChips ids={task.tags} /> : <span className="flxg-muted">{tt("Empty")}</span>}
       </Attr>,
     );
   if (on('priority'))
     meta.push(
-      <Attr key="prio" icon="flag" label={tt('Öncelik')} k="priority" onEdit={edit ? (a) => pickPriority(c, a, task.priority, (n) => void save({ priority: n })) : null}>
-        {task.priority ? <PrioFlag n={task.priority} label /> : <span className="flxg-muted">{tt('Boş')}</span>}
+      <Attr key="prio" icon="flag" label={tt("Priority")} k="priority" onEdit={edit ? (a) => pickPriority(c, a, task.priority, (n) => void save({ priority: n })) : null}>
+        {task.priority ? <PrioFlag n={task.priority} label /> : <span className="flxg-muted">{tt("Empty")}</span>}
       </Attr>,
     );
   if (on('fields')) for (const f of e.fieldsFor(task.list)) meta.push(<FieldRow key={'f' + f.id} task={task} f={f} />);
@@ -1546,10 +1546,10 @@ function MeetingBody({ task }: { task: Detail }) {
       {D.mtgCustom && (
         <div className="flxg-mtg-custom">
           <div className="flxg-mtg-custom-head">
-            <b>{tt('Ekranda görünenler')}</b>
-            <span className="flxg-muted">{tt('Bu tarayıcıda saklanır.')}</span>
+            <b>{tt("Shown on screen")}</b>
+            <span className="flxg-muted">{tt("Saved in this browser.")}</span>
             <span className="flxg-grow" />
-            <button type="button" className="flxg-icon-btn is-sm" title={tt('Kapat')} onClick={() => ((D.mtgCustom = false), d.render())}>
+            <button type="button" className="flxg-icon-btn is-sm" title={tt("Close")} onClick={() => ((D.mtgCustom = false), d.render())}>
               <Ic n="x" s={15} />
             </button>
           </div>
@@ -1575,12 +1575,12 @@ function MeetingBody({ task }: { task: Detail }) {
       )}
       {meta.length > 0 && <LimitAttrs rows={meta} cls="flxg-mtg-meta" />}
       {on('desc') && (
-        <Sec k="desc" cls="flxg-sec-box" head={tt('Açıklama')}>
+        <Sec k="desc" cls="flxg-sec-box" head={tt("Description")}>
           <DescEditor task={task} />
         </Sec>
       )}
       {on('agenda') && <Agenda task={task} />}
-      {on('decisions') && <SubTable task={task} o={{ kind: 'decision', key: 'dec-cols', title: tt('Kararlar'), head: tt('Karar'), ph: tt('Karar ekle… (görev gibi atanır, tarih ve etiket alır)'), def: ['assignees', 'due', 'tags'] }} />}
+      {on('decisions') && <SubTable task={task} o={{ kind: 'decision', key: 'dec-cols', title: tt("Decisions"), head: tt("Decision"), ph: tt("Add decision… (assignable like a task, with date and tags)"), def: ['assignees', 'due', 'tags'] }} />}
       {on('subtasks') && <SubTable task={task} />}
       {on('files') && <FilesSection task={task} />}
     </>
@@ -1624,7 +1624,7 @@ function Agenda({ task }: { task: Detail }) {
   };
   const byId = new Map(items.map((x) => [x.id, x]));
   return (
-    <Sec k="agenda" cls="flxg-agenda-wrap" head={<>{tt('Gündem')}{items.length > 0 && <span className="flxg-gcount">{done + '/' + items.length}</span>}</>}>
+    <Sec k="agenda" cls="flxg-agenda-wrap" head={<>{tt("Agenda")}{items.length > 0 && <span className="flxg-gcount">{done + '/' + items.length}</span>}</>}>
       <DndArea
         canStart={(id) => edit && !!id && !D.agOpen[id]}
         overlay={(id) => <div className="flxg-ag-item"><div className="flxg-ag-line"><span className="flxg-ag-t">{byId.get(id)?.title}</span></div></div>}
@@ -1640,11 +1640,11 @@ function Agenda({ task }: { task: Detail }) {
       >
         <AgendaList task={task} items={items} doneK={doneK} openK={openK} />
       </DndArea>
-      {!items.length && !edit && <div className="flxg-muted flxg-ag-empty">{tt('Gündem maddesi yok.')}</div>}
+      {!items.length && !edit && <div className="flxg-muted flxg-ag-empty">{tt("No agenda items.")}</div>}
       {edit && (
         <div className="flxg-ag-add">
           <Ic n="plus" s={14} />
-          <input ref={inRef} className="flxg-input is-sm" type="text" placeholder={tt('Gündem maddesi ekle…')} onKeyDown={(ev) => ev.key === 'Enter' && add()} />
+          <input ref={inRef} className="flxg-input is-sm" type="text" placeholder={tt("Add agenda item…")} onKeyDown={(ev) => ev.key === 'Enter' && add()} />
         </div>
       )}
     </Sec>
@@ -1680,7 +1680,7 @@ function AgendaItem({ task, x, i, doneK, openK }: { task: Detail; x: Child; i: n
     <div ref={drag.ref} className={cls('flxg-ag-item', isDone && 'is-done', exp && 'is-open', (x.sending || D.subPend[x.id]) && 'is-sending', drag.dragging && 'is-drag-hidden')} data-id={x.id || ''} {...drag.props}>
       <div className="flxg-ag-line">
         <span className="flxg-ag-num">{i + 1}.</span>
-        <button type="button" className="flxg-ag-check" disabled={!edit || !x.id} title={isDone ? tt('Görüşülmedi olarak işaretle') : tt('Görüşüldü olarak işaretle')} onClick={() => void patch(x.id, { status: isDone ? openK : doneK })}>
+        <button type="button" className="flxg-ag-check" disabled={!edit || !x.id} title={isDone ? tt("Mark as not discussed") : tt("Mark as discussed")} onClick={() => void patch(x.id, { status: isDone ? openK : doneK })}>
           {isDone && <Ic n="check" s={12} />}
         </button>
         <button type="button" className="flxg-ag-title" onClick={toggle}>
@@ -1707,7 +1707,7 @@ function AgendaItem({ task, x, i, doneK, openK }: { task: Detail; x: Child; i: n
             {x.comments}
           </span>
         )}
-        <button type="button" className="flxg-icon-btn is-sm flxg-ag-chev" aria-label={exp ? tt('Daralt') : tt('Aç')} onClick={toggle}>
+        <button type="button" className="flxg-icon-btn is-sm flxg-ag-chev" aria-label={exp ? tt("Collapse") : tt("Open")} onClick={toggle}>
           <Ic n={exp ? 'chevD' : 'chevR'} s={14} />
         </button>
       </div>
@@ -1729,7 +1729,7 @@ function AgendaDetail({ task, x, files }: { task: Detail; x: Child; files: FlxgF
           ref={ta}
           className="flxg-input flxg-ag-notein"
           rows={2}
-          placeholder={edit ? tt('Not ekleyin…') : ''}
+          placeholder={edit ? tt("Add a note…") : ''}
           readOnly={!edit}
           defaultValue={initial}
           onInput={(ev) => autosize(ev.currentTarget)}
@@ -1763,7 +1763,7 @@ function AgendaDetail({ task, x, files }: { task: Detail; x: Child; files: FlxgF
         {edit && (
           <label className="flxg-chip-btn">
             <Ic n="upload" s={14} />
-            {tt('Görsel / dosya ekle')}
+            {tt("Add image / file")}
             <input
               type="file"
               multiple
@@ -1781,20 +1781,20 @@ function AgendaDetail({ task, x, files }: { task: Detail; x: Child; files: FlxgF
         )}
         <button type="button" className="flxg-chip-btn" onClick={() => c.e.openTask(x.id)}>
           <Ic n="eye" s={14} />
-          {tt('Ayrıntı ve yorumlar')}
+          {tt("Details and comments")}
         </button>
         {edit && (
           <button
             type="button"
             className="flxg-chip-btn is-danger"
             onClick={() =>
-              void c.ui.confirm(tt('Gündem maddesini sil'), tt('"{n}" silinecek.', { n: x.title }), tt('Sil'), true).then((ok) => {
+              void c.ui.confirm(tt("Delete agenda item"), tt("\"{n}\" will be deleted.", { n: x.title }), tt("Delete"), true).then((ok) => {
                 if (ok) c.e.deleteTask(x.id).then(() => void d.load(task.id), c.ui.fail);
               })
             }
           >
             <Ic n="trash" s={14} />
-            {tt('Sil')}
+            {tt("Delete")}
           </button>
         )}
       </div>
@@ -1831,34 +1831,34 @@ function meetingReport(c: Ctx, task: Detail) {
   const dec = kids.filter((x) => x.kind === 'decision' && x.id);
   const subs = kids.filter((x) => (x.kind || 'task') === 'task' && x.id);
   let out =
-    '<div class="rp-head"><div class="rp-org">' + esc(sp?.name ?? '') + '<small>' + esc(l?.name ?? '') + '</small></div><div class="rp-kind">' + esc(tt('Toplantı raporu')) + '<small>' + due(task.due) + '</small></div></div>';
+    '<div class="rp-head"><div class="rp-org">' + esc(sp?.name ?? '') + '<small>' + esc(l?.name ?? '') + '</small></div><div class="rp-kind">' + esc(tt("Meeting report")) + '<small>' + due(task.due) + '</small></div></div>';
   out += '<h1>' + esc(task.title) + '</h1>' + pill(task);
-  const info: [string, string, number?][] = [[tt('Tarih'), due(task.due)], [tt('Proje'), esc((sp ? sp.name + ' / ' : '') + (l?.name ?? ''))]];
-  if (task.assignees.length) info.push([tt('Katılımcılar'), esc(task.assignees.map((id) => user(id).name).join(', ')), 1]);
-  if (task.tags.length) info.push([tt('Etiketler'), esc(task.tags.map((id) => e.tag(id)?.name ?? '').join(', ')), 1]);
+  const info: [string, string, number?][] = [[tt("Date"), due(task.due)], [tt("Project"), esc((sp ? sp.name + ' / ' : '') + (l?.name ?? ''))]];
+  if (task.assignees.length) info.push([tt("Participants"), esc(task.assignees.map((id) => user(id).name).join(', ')), 1]);
+  if (task.tags.length) info.push([tt("Tags"), esc(task.tags.map((id) => e.tag(id)?.name ?? '').join(', ')), 1]);
   out += '<div class="rp-info">' + info.map((r) => '<div' + (r[2] ? ' class="wide"' : '') + '><div class="k">' + esc(r[0]) + '</div>' + r[1] + '</div>').join('') + '</div>';
   const stats: [string, string][] = [];
-  if (agenda.length) stats.push([agenda.filter((x) => e.isDone(x)).length + '/' + agenda.length, tt('gündem maddesi görüşüldü')]);
-  if (dec.length) stats.push([String(dec.length), tt('karar alındı')]);
-  if (subs.length) stats.push([subs.filter((x) => e.isDone(x)).length + '/' + subs.length, tt('alt görev tamamlandı')]);
+  if (agenda.length) stats.push([agenda.filter((x) => e.isDone(x)).length + '/' + agenda.length, tt("agenda items discussed")]);
+  if (dec.length) stats.push([String(dec.length), tt("decisions made")]);
+  if (subs.length) stats.push([subs.filter((x) => e.isDone(x)).length + '/' + subs.length, tt("subtasks completed")]);
   if (stats.length) out += '<div class="rp-stats">' + stats.map((x) => '<div><b>' + esc(x[0]) + '</b><span>' + esc(x[1]) + '</span></div>').join('') + '</div>';
-  if (plain(task.description)) out += '<h2>' + esc(tt('Açıklama')) + '</h2><p>' + esc(plain(task.description)).replace(/\n/g, '<br>') + '</p>';
+  if (plain(task.description)) out += '<h2>' + esc(tt("Description")) + '</h2><p>' + esc(plain(task.description)).replace(/\n/g, '<br>') + '</p>';
   if (agenda.length) {
-    out += '<h2>' + esc(tt('Gündem')) + ' <span class="n">' + agenda.length + '</span></h2>';
+    out += '<h2>' + esc(tt("Agenda")) + ' <span class="n">' + agenda.length + '</span></h2>';
     agenda.forEach((x, i) => {
       const ok = e.isDone(x);
       const note = plain(x.description);
-      out += '<div class="ag' + (ok ? ' is-done' : '') + '"><span class="ag-no">' + (i + 1) + '</span><div><span class="ag-t">' + esc(x.title) + '</span>' + (ok ? '<span class="ok">✓ ' + esc(tt('Görüşüldü')) + '</span>' : '') + (note ? '<div class="ag-note">' + esc(note).replace(/\n/g, '<br>') + '</div>' : '') + '</div></div>';
+      out += '<div class="ag' + (ok ? ' is-done' : '') + '"><span class="ag-no">' + (i + 1) + '</span><div><span class="ag-t">' + esc(x.title) + '</span>' + (ok ? '<span class="ok">✓ ' + esc(tt("Discussed")) + '</span>' : '') + (note ? '<div class="ag-note">' + esc(note).replace(/\n/g, '<br>') + '</div>' : '') + '</div></div>';
     });
   }
   const table = (title: string, head: string, rows: Child[]) => {
-    out += '<h2>' + esc(title) + ' <span class="n">' + rows.length + '</span></h2><table class="t"><thead><tr><th>' + esc(head) + '</th><th>' + esc(tt('Sorumlu')) + '</th><th>' + esc(tt('Son tarih')) + '</th><th>' + esc(tt('Durum')) + '</th></tr></thead><tbody>';
+    out += '<h2>' + esc(title) + ' <span class="n">' + rows.length + '</span></h2><table class="t"><thead><tr><th>' + esc(head) + '</th><th>' + esc(tt("Owner")) + '</th><th>' + esc(tt("Due date")) + '</th><th>' + esc(tt("Status")) + '</th></tr></thead><tbody>';
     for (const x of rows) out += '<tr><td><b>' + esc(x.title) + '</b>' + (plain(x.description) ? '<div class="desc">' + esc(plain(x.description)) + '</div>' : '') + '</td><td class="c">' + esc(x.assignees.map((id) => user(id).name).join(', ')) + '</td><td class="c">' + due(x.due) + '</td><td class="c">' + pill(x) + '</td></tr>';
     out += '</tbody></table>';
   };
-  if (dec.length) table(tt('Kararlar'), tt('Karar'), dec);
-  if (subs.length) table(tt('Alt görevler'), tt('Görev'), subs);
-  out += '<div class="rp-foot"><span>' + esc(sp?.name ?? '') + '</span><span>' + esc(tt('Rapor: {d} · {n}', { d: new Date().toLocaleString(), n: e.S.me?.name ?? '' })) + '</span></div>';
+  if (dec.length) table(tt("Decisions"), tt("Decision"), dec);
+  if (subs.length) table(tt("Subtasks"), tt("Task"), subs);
+  out += '<div class="rp-foot"><span>' + esc(sp?.name ?? '') + '</span><span>' + esc(tt("Report: {d} · {n}", { d: new Date().toLocaleString(), n: e.S.me?.name ?? '' })) + '</span></div>';
   // Gizli çerçevede yazdır (tarayıcı ve masaüstü uygulamasında "PDF olarak kaydet").
   const fr = document.createElement('iframe');
   fr.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0';
@@ -1885,11 +1885,11 @@ function SideRail({ task }: { task: Detail }) {
   const d = useDr();
   const n = task.comments_list.length;
   return (
-    <button type="button" className="flxg-dr-rail" title={tt('Yorumları ve etkinliği göster')} onClick={() => (store.set('task-side', null), d.render())}>
+    <button type="button" className="flxg-dr-rail" title={tt("Show comments and activity")} onClick={() => (store.set('task-side', null), d.render())}>
       <Ic n="chevL" s={16} />
       <Ic n="msg" s={17} />
       {n > 0 && <span className="flxg-badge">{n}</span>}
-      <span className="flxg-dr-rail-label">{tt('Yorumlar ve etkinlik')}</span>
+      <span className="flxg-dr-rail-label">{tt("Comments and activity")}</span>
     </button>
   );
 }
@@ -1898,7 +1898,7 @@ function ActivityText({ a, task }: { a: FlxgActivity; task: Detail }) {
   const { e } = c;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dt = a.data as Record<string, any>;
-  const who = <b>{e.S.users[a.user]?.name ?? (a.user ? tt('Silinmiş kullanıcı') : tt('Sistem'))}</b>;
+  const who = <b>{e.S.users[a.user]?.name ?? (a.user ? tt("Deleted user") : tt("System"))}</b>;
   const l = e.list(task.list);
   const stNode = (k: string) => {
     const s = l?.statuses.find((x) => x.key === k);
@@ -1908,31 +1908,31 @@ function ActivityText({ a, task }: { a: FlxgActivity; task: Detail }) {
       </span>
     );
   };
-  const uName = (id: number) => e.S.users[id]?.name ?? tt('Silinmiş kullanıcı');
+  const uName = (id: number) => e.S.users[id]?.name ?? tt("Deleted user");
   const r = (...rest: ReactNode[]) => (
     <>
       {who} {rest}
     </>
   );
   switch (a.action) {
-    case 'created': return r(tt('görevi oluşturdu'));
-    case 'status': return r(tt('durumu değiştirdi:'), ' ', stNode(dt.from), ' → ', stNode(dt.to));
-    case 'title': return r(tt('adı değiştirdi:'), ' ', <i key="i">{dt.to}</i>);
-    case 'description': return r(tt('açıklamayı güncelledi'));
-    case 'priority': return r(dt.to ? tt('önceliği "{p}" yaptı', { p: e.priority(dt.to)?.label ?? '' }) : tt('önceliği kaldırdı'));
-    case 'due': return r(dt.to ? tt('bitiş tarihini {d} yaptı', { d: fmtDue(dt.to, { full: true }) }) : tt('bitiş tarihini kaldırdı'));
-    case 'start': return r(dt.to ? tt('başlangıç tarihini {d} yaptı', { d: fmtDue(dt.to, { full: true }) }) : tt('başlangıç tarihini kaldırdı'));
-    case 'assign': return r(dt.user === a.user ? tt('görevi üstlendi') : tt('{n} kişisini atadı', { n: uName(dt.user) }));
-    case 'unassign': return r(tt('{n} atamasını kaldırdı', { n: uName(dt.user) }));
-    case 'tag': return r(tt('etiket ekledi:'), ' ', <TagChips key="t" ids={[dt.tag]} />);
-    case 'untag': return r(tt('etiketi kaldırdı:'), ' ', <TagChips key="t" ids={[dt.tag]} />);
-    case 'field': return r(tt('"{f}" alanını güncelledi', { f: dt.name || '' }));
-    case 'moved': return r(tt('görevi taşıdı:'), ' ', e.list(dt.from)?.name ?? '…', ' → ', e.list(dt.to)?.name ?? '…');
-    case 'cover': return r(dt.to ? tt('kapak görselini değiştirdi') : tt('kapak görselini kaldırdı'));
-    case 'attach': return r(tt('dosya ekledi:'), ' ', <i key="i">{dt.name || ''}</i>);
-    case 'detach': return r(tt('dosya sildi:'), ' ', <i key="i">{dt.name || ''}</i>);
-    case 'archived': return r(tt('görevi arşivledi'));
-    case 'unarchived': return r(tt('görevi arşivden çıkardı'));
+    case 'created': return r(tt("created the task"));
+    case 'status': return r(tt("changed the status:"), ' ', stNode(dt.from), ' → ', stNode(dt.to));
+    case 'title': return r(tt("renamed it:"), ' ', <i key="i">{dt.to}</i>);
+    case 'description': return r(tt("updated the description"));
+    case 'priority': return r(dt.to ? tt("set the priority to \"{p}\"", { p: e.priority(dt.to)?.label ?? '' }) : tt("removed the priority"));
+    case 'due': return r(dt.to ? tt("set the due date to {d}", { d: fmtDue(dt.to, { full: true }) }) : tt("removed the due date"));
+    case 'start': return r(dt.to ? tt("set the start date to {d}", { d: fmtDue(dt.to, { full: true }) }) : tt("removed the start date"));
+    case 'assign': return r(dt.user === a.user ? tt("took the task") : tt("assigned {n}", { n: uName(dt.user) }));
+    case 'unassign': return r(tt("unassigned {n}", { n: uName(dt.user) }));
+    case 'tag': return r(tt("added a tag:"), ' ', <TagChips key="t" ids={[dt.tag]} />);
+    case 'untag': return r(tt("removed the tag:"), ' ', <TagChips key="t" ids={[dt.tag]} />);
+    case 'field': return r(tt("updated the field \"{f}\"", { f: dt.name || '' }));
+    case 'moved': return r(tt("moved the task:"), ' ', e.list(dt.from)?.name ?? '…', ' → ', e.list(dt.to)?.name ?? '…');
+    case 'cover': return r(dt.to ? tt("changed the cover image") : tt("removed the cover image"));
+    case 'attach': return r(tt("attached a file:"), ' ', <i key="i">{dt.name || ''}</i>);
+    case 'detach': return r(tt("deleted a file:"), ' ', <i key="i">{dt.name || ''}</i>);
+    case 'archived': return r(tt("archived the task"));
+    case 'unarchived': return r(tt("unarchived the task"));
   }
   return r(a.action);
 }
@@ -1962,11 +1962,11 @@ function CommentNode({ cm, task }: { cm: FlxgComment; task: Detail }) {
       <Avatar u={u} size={30} />
       <div className="flxg-cmt-main">
         <div className="flxg-cmt-head">
-          <b>{u ? u.name : tt('Silinmiş kullanıcı')}</b>
+          <b>{u ? u.name : tt("Deleted user")}</b>
           <span className="flxg-muted" title={fullTime(cm.created)}>
-            {cm.sending ? tt('Gönderiliyor…') : ago(cm.created)}
+            {cm.sending ? tt("Sending…") : ago(cm.created)}
           </span>
-          {cm.edited && <span className="flxg-muted">· {tt('düzenlendi')}</span>}
+          {cm.edited && <span className="flxg-muted">· {tt("edited")}</span>}
           <span className="flxg-grow" />
           {!cm.sending && (mine || rank(d.role) >= 4) && (
             <button
@@ -1974,13 +1974,13 @@ function CommentNode({ cm, task }: { cm: FlxgComment; task: Detail }) {
               className="flxg-icon-btn is-sm"
               onClick={(ev) =>
                 c.ui.menu(ev.currentTarget, [
-                  mine && { label: tt('Düzenle'), icon: 'edit', onClick: () => setEditing(true) },
+                  mine && { label: tt("Edit"), icon: 'edit', onClick: () => setEditing(true) },
                   {
-                    label: tt('Sil'),
+                    label: tt("Delete"),
                     icon: 'trash',
                     danger: true,
                     onClick: () =>
-                      void c.ui.confirm(tt('Yorumu sil'), tt('Yorum ve ekleri silinecek.'), tt('Sil'), true).then((ok) => {
+                      void c.ui.confirm(tt("Delete comment"), tt("The comment and its attachments will be deleted."), tt("Delete"), true).then((ok) => {
                         if (ok)
                           e.api.deleteComment(Number(cm.id)).then(() => {
                             void d.load(task.id);
@@ -2000,10 +2000,10 @@ function CommentNode({ cm, task }: { cm: FlxgComment; task: Detail }) {
             <textarea ref={ta} className="flxg-input" rows={3} defaultValue={cm.body} onInput={(ev) => autosize(ev.currentTarget)} />
             <div className="flxg-row-btns">
               <button type="button" className="flxg-btn is-sm" onClick={() => setEditing(false)}>
-                {tt('Vazgeç')}
+                {tt("Cancel")}
               </button>
               <button type="button" className="flxg-btn is-primary is-sm" onClick={() => e.api.editComment(Number(cm.id), ta.current!.value).then(() => (setEditing(false), void d.load(task.id)), c.ui.fail)}>
-                {tt('Kaydet')}
+                {tt("Save")}
               </button>
             </div>
           </div>
@@ -2079,7 +2079,7 @@ function Side({ task }: { task: Detail }) {
       }}
     >
       <div className="flxg-side-head">
-        <h3>{tt('Yorumlar ve etkinlik')}</h3>
+        <h3>{tt("Comments and activity")}</h3>
         <label className="flxg-switch-sm">
           <input
             type="checkbox"
@@ -2089,16 +2089,16 @@ function Side({ task }: { task: Detail }) {
               store.set('task-act', ev.target.checked ? null : '0');
             }}
           />
-          <span>{tt('Etkinliği göster')}</span>
+          <span>{tt("Show activity")}</span>
         </label>
         {!d.mobile && (
-          <button type="button" className="flxg-icon-btn is-sm" title={tt('Yorumları ve etkinliği gizle')} onClick={() => (store.set('task-side', '0'), d.render())}>
+          <button type="button" className="flxg-icon-btn is-sm" title={tt("Hide comments and activity")} onClick={() => (store.set('task-side', '0'), d.render())}>
             <Ic n="chevR" s={16} />
           </button>
         )}
       </div>
       <div ref={stream} className="flxg-stream">
-        {!items.length && <div className="flxg-empty-sm">{tt('Henüz yorum yok. İlk yorumu siz yazın.')}</div>}
+        {!items.length && <div className="flxg-empty-sm">{tt("No comments yet. Be the first to comment.")}</div>}
         {items.map((it) =>
           it.c ? (
             <CommentNode key={'c' + (it.c._tmp ?? it.c.id)} cm={it.c} task={task} />
@@ -2120,12 +2120,12 @@ function Side({ task }: { task: Detail }) {
       ) : (
         <div className="flxg-readonly is-block">
           <Ic n="lock" s={14} />
-          {tt('Bu listede yorum yazma yetkiniz yok.')}
+          {tt("You don't have permission to comment in this list.")}
         </div>
       )}
       <div className="flxg-drop-over">
         <Ic n="upload" s={28} />
-        <span>{tt('Yoruma eklemek için bırakın')}</span>
+        <span>{tt("Drop to add to the comment")}</span>
       </div>
       {D.pending.length > 0 && null}
     </div>
@@ -2152,7 +2152,7 @@ function Composer({ task, addFilesRef, onSent }: { task: Detail; addFilesRef: { 
   const addFiles = (list: File[]) => {
     for (const file of list) {
       if (file.size > e.S.config.maxUpload) {
-        ui.toast(tt('{n} çok büyük (en fazla {s}).', { n: file.name, s: bytes(e.S.config.maxUpload) }), { error: true });
+        ui.toast(tt("{n} is too large (up to {s}).", { n: file.name, s: bytes(e.S.config.maxUpload) }), { error: true });
         continue;
       }
       const p: Pending = { file };
@@ -2254,7 +2254,7 @@ function Composer({ task, addFilesRef, onSent }: { task: Detail; addFilesRef: { 
     if (!d.mobile) el.focus();
     e.api.comment(tid, body, files).then(
       (cm) => {
-        if (!cm || !cm.id) throw new Error(tt('Yorum kaydedilemedi.'));
+        if (!cm || !cm.id) throw new Error(tt("Comment could not be saved."));
         if (settle(D, tid, 'comments_list', tmp, cm)) {
           d.render();
           if (D.remoteStale && !D.pending.length && !ta.current?.value.trim()) void d.load(tid);
@@ -2294,7 +2294,7 @@ function Composer({ task, addFilesRef, onSent }: { task: Detail; addFilesRef: { 
             <button
               type="button"
               className="flxg-icon-btn is-sm"
-              aria-label={tt('Kaldır')}
+              aria-label={tt("Remove")}
               onClick={() => {
                 D.pending = D.pending.filter((x) => x !== p);
                 if (p.id) e.api.deleteFile(p.id).catch(() => {});
@@ -2310,7 +2310,7 @@ function Composer({ task, addFilesRef, onSent }: { task: Detail; addFilesRef: { 
         ref={ta}
         className="flxg-composer-input"
         rows={2}
-        placeholder={tt('Yorum yazın… @ ile birinden bahsedin, dosya sürükleyin')}
+        placeholder={tt("Write a comment… mention someone with @, drag in files")}
         onInput={(ev) => {
           autosize(ev.currentTarget);
           D.draft = ev.currentTarget.value;
@@ -2348,7 +2348,7 @@ function Composer({ task, addFilesRef, onSent }: { task: Detail; addFilesRef: { 
         }}
       />
       <div className="flxg-composer-bar">
-        <label className="flxg-icon-btn" title={tt('Dosya ekle')}>
+        <label className="flxg-icon-btn" title={tt("Add file")}>
           <Ic n="clip" s={17} />
           <input
             type="file"
@@ -2360,14 +2360,14 @@ function Composer({ task, addFilesRef, onSent }: { task: Detail; addFilesRef: { 
             }}
           />
         </label>
-        <button type="button" className="flxg-icon-btn" title={tt('Birinden bahset')} onClick={() => (insertAt('@'), mentionCheck())}>
+        <button type="button" className="flxg-icon-btn" title={tt("Mention someone")} onClick={() => (insertAt('@'), mentionCheck())}>
           <Ic n="at" s={17} />
         </button>
         <span className="flxg-grow" />
-        <span className="flxg-muted flxg-hint">{tt('Ctrl+Enter ile gönder')}</span>
+        <span className="flxg-muted flxg-hint">{tt("Send with Ctrl+Enter")}</span>
         <button type="button" className="flxg-btn is-primary is-sm" disabled={busy} onClick={send}>
           <Ic n="send" s={14} />
-          <span>{tt('Gönder')}</span>
+          <span>{tt("Send")}</span>
         </button>
       </div>
     </div>
@@ -2378,14 +2378,14 @@ function Composer({ task, addFilesRef, onSent }: { task: Detail; addFilesRef: { 
  * Yapay zekâ (görev için)
  * ================================================================== */
 const aiPresets = () => [
-  { action: 'description', label: tt('Açıklama yaz / geliştir'), hint: '' },
-  { action: 'description', label: tt('Kısalt'), hint: 'Make it shorter and clearer, keep every important point.' },
-  { action: 'description', label: tt('Kontrol listesine çevir'), hint: 'Turn it into a checklist: <ul data-checklist="1"> with <li data-checked="0"> items.' },
-  { action: 'description', label: tt('Yazımı düzelt'), hint: 'Only fix spelling, grammar and punctuation. Keep the meaning, wording and structure.' },
-  { action: 'description', label: tt('Daha detaylı yaz'), hint: 'Make it more detailed: goal, steps and done criteria.' },
-  { action: 'title', label: tt('Görev adını iyileştir'), hint: '' },
-  { action: 'subtasks', label: tt('Alt görevlere böl'), hint: '' },
-  { action: 'summary', label: tt('Yorumları özetle'), hint: '' },
+  { action: 'description', label: tt("Write / improve description"), hint: '' },
+  { action: 'description', label: tt("Shorten"), hint: 'Make it shorter and clearer, keep every important point.' },
+  { action: 'description', label: tt("Turn into checklist"), hint: 'Turn it into a checklist: <ul data-checklist="1"> with <li data-checked="0"> items.' },
+  { action: 'description', label: tt("Fix spelling"), hint: 'Only fix spelling, grammar and punctuation. Keep the meaning, wording and structure.' },
+  { action: 'description', label: tt("Add more detail"), hint: 'Make it more detailed: goal, steps and done criteria.' },
+  { action: 'title', label: tt("Improve task name"), hint: '' },
+  { action: 'subtasks', label: tt("Split into subtasks"), hint: '' },
+  { action: 'summary', label: tt("Summarize comments"), hint: '' },
 ];
 function AiPanel({ task }: { task: Detail }) {
   const d = useDr();
@@ -2437,7 +2437,7 @@ function AiPanel({ task }: { task: Detail }) {
         ref={ask}
         className="flxg-input is-sm"
         type="text"
-        placeholder={st.result ? tt('Değiştirmek istediğini yaz… (örn. daha resmi olsun)') : tt('Ne yapılsın? Örn: hedef kitleyi ekle, maddeler halinde yaz')}
+        placeholder={st.result ? tt("Say what to change… (e.g. make it more formal)") : tt("What should it do? E.g. add the target audience, write as bullet points")}
         onKeyDown={(ev) => ev.key === 'Enter' && (ev.preventDefault(), go())}
       />
       <button type="button" className="flxg-btn is-primary is-sm" onClick={go}>
@@ -2448,10 +2448,10 @@ function AiPanel({ task }: { task: Detail }) {
   const head = (
     <div className="flxg-ai-inline-head">
       <Ic n="sparkle" s={15} />
-      <b>{tt('Yapay zekâ')}</b>
+      <b>{tt("AI")}</b>
       {st.label && <span className="flxg-muted flxg-ai-label">{st.label}</span>}
       <span className="flxg-grow" />
-      <button type="button" className="flxg-icon-btn is-sm" aria-label={tt('Kapat')} onClick={() => ((D.ai = null), d.render())}>
+      <button type="button" className="flxg-icon-btn is-sm" aria-label={tt("Close")} onClick={() => ((D.ai = null), d.render())}>
         <Ic n="x" s={14} />
       </button>
     </div>
@@ -2483,7 +2483,7 @@ function AiPanel({ task }: { task: Detail }) {
             <i />
             <i />
           </span>
-          {tt('Yapay zekâ düşünüyor…')}
+          {tt("AI is thinking…")}
         </div>
         <div className="flxg-ai-sk">
           {['92%', '80%', '86%', '54%'].map((w) => (
@@ -2505,10 +2505,10 @@ function AiPanel({ task }: { task: Detail }) {
           className="flxg-btn is-primary is-sm"
           onClick={() => {
             const old = task.title;
-            void save({ title: titleIn.current!.value.trim() }).then(() => applied(tt('Görev adı güncellendi.'), () => void save({ title: old })));
+            void save({ title: titleIn.current!.value.trim() }).then(() => applied(tt("Task name updated."), () => void save({ title: old })));
           }}
         >
-          {tt('Uygula')}
+          {tt("Apply")}
         </button>
       );
   } else if (st.action === 'description') {
@@ -2516,12 +2516,12 @@ function AiPanel({ task }: { task: Detail }) {
       body = <div className="flxg-prose flxg-ai-preview" dangerouslySetInnerHTML={{ __html: r.html ?? '' }} />;
       foot = (
         <>
-          <button type="button" className="flxg-btn is-primary is-sm" onClick={() => void save({ description: r.html }).then(() => applied(tt('Açıklama güncellendi.'), () => void save({ description: oldD })))}>
-            {oldD ? tt('Değiştir') : tt('Uygula')}
+          <button type="button" className="flxg-btn is-primary is-sm" onClick={() => void save({ description: r.html }).then(() => applied(tt("Description updated."), () => void save({ description: oldD })))}>
+            {oldD ? tt("Replace") : tt("Apply")}
           </button>
           {oldD && (
-            <button type="button" className="flxg-btn is-sm" onClick={() => void save({ description: oldD + (r.html ?? '') }).then(() => applied(tt('Açıklamanın sonuna eklendi.'), () => void save({ description: oldD })))}>
-              {tt('Sona ekle')}
+            <button type="button" className="flxg-btn is-sm" onClick={() => void save({ description: oldD + (r.html ?? '') }).then(() => applied(tt("Added to the end of the description."), () => void save({ description: oldD })))}>
+              {tt("Append")}
             </button>
           )}
         </>
@@ -2548,7 +2548,7 @@ function AiPanel({ task }: { task: Detail }) {
             const list = subs.filter((s) => s.on && s.t.trim());
             try {
               for (const s of list) await e.api.create({ list: task.list, parent: task.id, title: s.t.trim() });
-              st.applied = tt('{n} alt görev oluşturuldu', { n: list.length });
+              st.applied = tt("{n} subtasks created", { n: list.length });
               void d.load(task.id);
               void e.reloadTasks();
             } catch (er) {
@@ -2556,7 +2556,7 @@ function AiPanel({ task }: { task: Detail }) {
             }
           }}
         >
-          {tt('Alt görevleri oluştur')}
+          {tt("Create subtasks")}
         </button>
       );
   } else {
@@ -2565,21 +2565,21 @@ function AiPanel({ task }: { task: Detail }) {
       <>
         <button type="button" className="flxg-btn is-sm" onClick={() => copyText(c, r.text ?? '')}>
           <Ic n="copy" s={13} />
-          {tt('Kopyala')}
+          {tt("Copy")}
         </button>
         {d.canComment && !st.applied && (
           <button
             type="button"
             className="flxg-btn is-primary is-sm"
             onClick={() =>
-              e.api.comment(task.id, '✨ ' + tt('Özet') + '\n' + (r.text ?? ''), []).then(() => {
+              e.api.comment(task.id, '✨ ' + tt("Summary") + '\n' + (r.text ?? ''), []).then(() => {
                 bumpCount(c, task.id, 1);
-                applied(tt('Yorum olarak eklendi.'));
+                applied(tt("Added as a comment."));
                 void d.load(task.id);
               }, ui.fail)
             }
           >
-            {tt('Yorum olarak ekle')}
+            {tt("Add as comment")}
           </button>
         )}
       </>
@@ -2604,7 +2604,7 @@ function AiPanel({ task }: { task: Detail }) {
                   u();
                 }}
               >
-                {tt('Geri al')}
+                {tt("Undo")}
               </button>
             )}
           </div>
@@ -2615,11 +2615,11 @@ function AiPanel({ task }: { task: Detail }) {
         {foot}
         <span className="flxg-grow" />
         <button type="button" className="flxg-btn is-ghost is-sm" onClick={() => (Object.assign(st, { state: 'menu', result: null, applied: null, label: '' }), d.render())}>
-          {tt('Diğer seçenekler')}
+          {tt("Other options")}
         </button>
         <button type="button" className="flxg-btn is-ghost is-sm" onClick={() => run(st.action!, st.hint ?? '', st.label ?? '')}>
           <Ic n="sparkle" s={13} />
-          {tt('Yeniden üret')}
+          {tt("Regenerate")}
         </button>
       </div>
       {edit && st.action !== 'summary' && askRow}

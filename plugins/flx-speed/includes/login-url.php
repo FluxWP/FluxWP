@@ -73,13 +73,13 @@ class FLXP_Login_URL {
 	 */
 	public static function validate( $s, $check_posts = true ) {
 		if ( ! preg_match( '/^[a-z0-9][a-z0-9_-]{2,39}$/', $s ) ) {
-			return new WP_Error( 'flxp_login_slug', __( 'Giriş adresi 3-40 karakter olmalı; yalnız küçük harf (a-z), rakam, tire ve alt çizgi kullanın.', 'flx-speed' ) );
+			return new WP_Error( 'flxp_login_slug', __( 'The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores.', 'flx-speed' ) );
 		}
 		if ( in_array( $s, self::reserved(), true ) || 0 === strpos( $s, 'wp-' ) ) {
-			return new WP_Error( 'flxp_login_slug', __( 'Bu adres WordPress tarafından kullanılıyor; başka bir ad seçin.', 'flx-speed' ) );
+			return new WP_Error( 'flxp_login_slug', __( 'WordPress already uses this address; pick another name.', 'flx-speed' ) );
 		}
 		if ( $check_posts && get_page_by_path( $s, OBJECT, array_values( get_post_types( array( 'public' => true ) ) ) ) ) {
-			return new WP_Error( 'flxp_login_slug', __( 'Bu adreste zaten bir sayfa ya da yazı var; başka bir ad seçin.', 'flx-speed' ) );
+			return new WP_Error( 'flxp_login_slug', __( 'A page or post already uses this address; pick another name.', 'flx-speed' ) );
 		}
 		return true;
 	}
@@ -259,7 +259,7 @@ class FLXP_Login_URL {
 	/** Adres değişikliğinden sonra açılan giriş ekranında bilgi. */
 	public static function moved_message( $errors ) {
 		if ( self::$is_login && isset( $_GET['flxp_moved'] ) && is_wp_error( $errors ) ) { // phpcs:ignore
-			$errors->add( 'flxp_moved', __( 'Giriş adresi değişti. Bu sayfayı yer imlerine ekleyin ve yeniden giriş yapın.', 'flx-speed' ), 'message' );
+			$errors->add( 'flxp_moved', __( 'The login URL has changed. Bookmark this page and log in again.', 'flx-speed' ), 'message' );
 		}
 		return $errors;
 	}

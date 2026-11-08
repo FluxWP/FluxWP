@@ -630,11 +630,11 @@ function flxp_cron() {
 /** Güvenli temizlik işleri: anahtar → etiket. İçerik silen (revizyon, çöp yazı) iş yok. */
 function flxp_cleanup_jobs() {
 	return array(
-		'expired_transients' => __( 'Süresi dolmuş geçici veriler', 'flx-speed' ),
-		'auto_drafts'        => __( '7 günden eski otomatik taslaklar', 'flx-speed' ),
-		'spam_comments'      => __( 'İstenmeyen yorumlar', 'flx-speed' ),
-		'trashed_comments'   => __( 'Çöpteki yorumlar', 'flx-speed' ),
-		'optimize'           => __( 'Boş alanı geri kazan (OPTIMIZE)', 'flx-speed' ),
+		'expired_transients' => __( 'Expired transients', 'flx-speed' ),
+		'auto_drafts'        => __( 'Auto-drafts older than 7 days', 'flx-speed' ),
+		'spam_comments'      => __( 'Spam comments', 'flx-speed' ),
+		'trashed_comments'   => __( 'Trashed comments', 'flx-speed' ),
+		'optimize'           => __( 'Reclaim free space (OPTIMIZE)', 'flx-speed' ),
 	);
 }
 
@@ -678,7 +678,7 @@ function flxp_cleanup( $job ) {
 			}
 			break;
 		default:
-			return new WP_Error( 'flxp_job', __( 'Bilinmeyen temizlik işi.', 'flx-speed' ) );
+			return new WP_Error( 'flxp_job', __( 'Unknown cleanup job.', 'flx-speed' ) );
 	}
 	return $n;
 }

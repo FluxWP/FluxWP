@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.1.16
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 2.1.15
 - Güvenlik (CodeQL): modal başlığı düz metin; uyarı, e-posta önizlemesi ve HTML blok içeriği izin listeli temizleyiciden (`efb_safe_html_efb`, script/on* yok) geçer. Seçenek değerleri, ayarlar ve dosya adları HTML'e kaçışlanır; resim önizlemesi yalnız `data:image`, font bağlantısı yalnız https. Kısa kod etiketleri `switch` ile; e-posta şablonunda şifre etiketi anahtarla okunur.
 

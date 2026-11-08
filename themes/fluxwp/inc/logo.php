@@ -69,7 +69,7 @@ function flx_logo_html( $dark = false, $class = '' ) {
 		esc_attr( $class ),
 		esc_url( home_url( '/' ) ),
 		$img,
-		esc_attr__( 'Ana sayfa', 'fluxwp' )
+		esc_attr__( 'Home', 'fluxwp' )
 	);
 }
 

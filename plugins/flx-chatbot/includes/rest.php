@@ -134,10 +134,10 @@ function flxcb_rest_session( WP_REST_Request $req ) {
 function flxcb_rest_poll( WP_REST_Request $req ) {
 	$conv = flxcb_req_conv( $req );
 	if ( ! $conv ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Sohbet bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
 	}
 	if ( ! flxcb_rate( 'poll|' . $conv['id'], 60, MINUTE_IN_SECONDS ) ) {
-		return flxcb_rest_err( 'flxcb_rate', __( 'Çok sık istek. Biraz bekleyin.', 'flx-chatbot' ), 429 );
+		return flxcb_rest_err( 'flxcb_rate', __( 'Too many requests. Please wait a moment.', 'flx-chatbot' ), 429 );
 	}
 	$conv  = flxcb_fc_sync_status( $conv );
 	$state = flxcb_state( $conv, flxcb_p( $req, 't' ), (int) $req->get_param( 'after' ) );
@@ -151,15 +151,15 @@ function flxcb_rest_poll( WP_REST_Request $req ) {
 /** Ziyaretçi mesajı; asistan açıksa cevap NDJSON akışıyla gelir. */
 function flxcb_rest_message( WP_REST_Request $req ) {
 	if ( ! flxcb_rest_enabled() ) {
-		return flxcb_rest_err( 'flxcb_off', __( 'Sohbet şu an kapalı.', 'flx-chatbot' ), 403 );
+		return flxcb_rest_err( 'flxcb_off', __( 'Chat is closed right now.', 'flx-chatbot' ), 403 );
 	}
 	$text = trim( sanitize_textarea_field( flxcb_p( $req, 'text' ) ) );
 	if ( '' === $text ) {
-		return flxcb_rest_err( 'flxcb_empty', __( 'Mesaj boş.', 'flx-chatbot' ) );
+		return flxcb_rest_err( 'flxcb_empty', __( 'The message is empty.', 'flx-chatbot' ) );
 	}
 	$text = mb_substr( $text, 0, 2000 );
 	if ( ! flxcb_rate( 'msg|' . flxcb_ip_key(), 20, MINUTE_IN_SECONDS ) ) {
-		return flxcb_rest_err( 'flxcb_rate', __( 'Çok hızlı yazıyorsunuz. Biraz bekleyip tekrar deneyin.', 'flx-chatbot' ), 429 );
+		return flxcb_rest_err( 'flxcb_rate', __( 'You\'re typing too fast. Wait a moment and try again.', 'flx-chatbot' ), 429 );
 	}
 	$page  = flxcb_page_param( $req );
 	$conv  = flxcb_req_conv( $req );
@@ -167,7 +167,7 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 	$new   = false;
 	if ( ! $conv ) {
 		if ( ! flxcb_rate( 'new|' . flxcb_ip_key(), 10, HOUR_IN_SECONDS ) ) {
-			return flxcb_rest_err( 'flxcb_rate', __( 'Çok fazla yeni sohbet açıldı. Biraz sonra tekrar deneyin.', 'flx-chatbot' ), 429 );
+			return flxcb_rest_err( 'flxcb_rate', __( 'Too many new chats were started. Please try again later.', 'flx-chatbot' ), 429 );
 		}
 		$data = array(
 			'page_url'   => $page['url'],
@@ -177,7 +177,7 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 		flxcb_fill_user( $data );
 		list( $conv, $token ) = flxcb_create_conversation( $data );
 		if ( ! $conv ) {
-			return flxcb_rest_err( 'flxcb_db', __( 'Sohbet başlatılamadı.', 'flx-chatbot' ), 500 );
+			return flxcb_rest_err( 'flxcb_db', __( 'Could not start the chat.', 'flx-chatbot' ), 500 );
 		}
 		$new = true;
 		// Karşılama mesajı ilk satır olsun (asistan geçmişinde de görünür).
@@ -202,7 +202,7 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 		}
 	}
 	if ( ! flxcb_rate( 'cmsg|' . $conv['id'], 12, MINUTE_IN_SECONDS ) ) {
-		return flxcb_rest_err( 'flxcb_rate', __( 'Çok hızlı yazıyorsunuz. Biraz bekleyip tekrar deneyin.', 'flx-chatbot' ), 429 );
+		return flxcb_rest_err( 'flxcb_rate', __( 'You\'re typing too fast. Wait a moment and try again.', 'flx-chatbot' ), 429 );
 	}
 	$before = (int) $req->get_param( 'after' );
 	$mid    = flxcb_add_message( array( 'conv_id' => (int) $conv['id'], 'role' => 'visitor', 'body' => $text ) );
@@ -266,7 +266,7 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 		if ( '' !== flxcb_handoff_target() ) {
 			flxcb_handoff( $conv, 'auto' );
 		} else {
-			flxcb_event( (int) $conv['id'], 'error', __( 'Şu an cevap veremiyorum. Lütfen biraz sonra tekrar yazın ya da iletişim bilgilerimizden bize ulaşın.', 'flx-chatbot' ) );
+			flxcb_event( (int) $conv['id'], 'error', __( 'I can\'t answer right now. Please write again in a moment or reach us through our contact details.', 'flx-chatbot' ) );
 		}
 	} elseif ( ! empty( $res['handoff'] ) ) {
 		flxcb_handoff( $conv, 'bot', (string) $res['handoff']['summary'] );
@@ -287,10 +287,10 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 function flxcb_rest_handoff( WP_REST_Request $req ) {
 	$conv = flxcb_req_conv( $req );
 	if ( ! $conv ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Sohbet bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
 	}
 	if ( '' === flxcb_handoff_target() ) {
-		return flxcb_rest_err( 'flxcb_live', __( 'Canlı destek kapalı.', 'flx-chatbot' ), 403 );
+		return flxcb_rest_err( 'flxcb_live', __( 'Live chat is off.', 'flx-chatbot' ), 403 );
 	}
 	$conv = flxcb_reopen( $conv );
 	flxcb_handoff( $conv, 'visitor' );
@@ -300,17 +300,17 @@ function flxcb_rest_handoff( WP_REST_Request $req ) {
 /** İletişim bilgisi (sohbet öncesi ya da mesai dışı form). Sohbet yoksa açılır. */
 function flxcb_rest_contact( WP_REST_Request $req ) {
 	if ( ! flxcb_rest_enabled() ) {
-		return flxcb_rest_err( 'flxcb_off', __( 'Sohbet şu an kapalı.', 'flx-chatbot' ), 403 );
+		return flxcb_rest_err( 'flxcb_off', __( 'Chat is closed right now.', 'flx-chatbot' ), 403 );
 	}
 	$email = sanitize_email( flxcb_p( $req, 'email' ) );
 	$name  = mb_substr( sanitize_text_field( flxcb_p( $req, 'name' ) ), 0, 190 );
 	$phone = mb_substr( preg_replace( '/[^0-9+ ()-]/', '', flxcb_p( $req, 'phone' ) ), 0, 40 );
 	$text  = mb_substr( trim( sanitize_textarea_field( flxcb_p( $req, 'message' ) ) ), 0, 2000 );
 	if ( ! is_email( $email ) ) {
-		return flxcb_rest_err( 'flxcb_email', __( 'Geçerli bir e-posta adresi yazın.', 'flx-chatbot' ) );
+		return flxcb_rest_err( 'flxcb_email', __( 'Enter a valid email address.', 'flx-chatbot' ) );
 	}
 	if ( ! flxcb_rate( 'contact|' . flxcb_ip_key(), 6, HOUR_IN_SECONDS ) ) {
-		return flxcb_rest_err( 'flxcb_rate', __( 'Çok fazla istek. Biraz sonra tekrar deneyin.', 'flx-chatbot' ), 429 );
+		return flxcb_rest_err( 'flxcb_rate', __( 'Too many requests. Please try again later.', 'flx-chatbot' ), 429 );
 	}
 	$conv  = flxcb_req_conv( $req );
 	$token = flxcb_p( $req, 't' );
@@ -325,7 +325,7 @@ function flxcb_rest_contact( WP_REST_Request $req ) {
 		flxcb_fill_user( $data );
 		list( $conv, $token ) = flxcb_create_conversation( $data );
 		if ( ! $conv ) {
-			return flxcb_rest_err( 'flxcb_db', __( 'Sohbet başlatılamadı.', 'flx-chatbot' ), 500 );
+			return flxcb_rest_err( 'flxcb_db', __( 'Could not start the chat.', 'flx-chatbot' ), 500 );
 		}
 		$new = true;
 	}
@@ -345,7 +345,7 @@ function flxcb_rest_contact( WP_REST_Request $req ) {
 	if ( $req->get_param( 'handoff' ) && '' !== flxcb_handoff_target() ) {
 		flxcb_handoff( flxcb_reopen( $conv ), 'visitor' );
 	} elseif ( 'offline' === $conv['status'] || $new ) {
-		flxcb_event( (int) $conv['id'], 'contact', __( 'Teşekkürler! Mesajınızı aldık, e-postanıza dönüş yapacağız.', 'flx-chatbot' ) );
+		flxcb_event( (int) $conv['id'], 'contact', __( 'Thanks! We got your message and will reply to your email.', 'flx-chatbot' ) );
 		flxcb_notify_team( $conv, 'offline' );
 		if ( 'flx-chat' === flxcb_handoff_target() && ! $conv['flxc_chat'] ) {
 			flxcb_fc_push( $conv );
@@ -359,17 +359,17 @@ function flxcb_rest_contact( WP_REST_Request $req ) {
 function flxcb_rest_upload( WP_REST_Request $req ) {
 	$conv = flxcb_req_conv( $req );
 	if ( ! $conv ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Önce bir mesaj yazın.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_conv', __( 'Write a message first.', 'flx-chatbot' ), 404 );
 	}
 	if ( ! flxcb_setting( 'uploads' ) ) {
-		return flxcb_rest_err( 'flxcb_upload', __( 'Dosya gönderimi kapalı.', 'flx-chatbot' ), 403 );
+		return flxcb_rest_err( 'flxcb_upload', __( 'File sharing is off.', 'flx-chatbot' ), 403 );
 	}
 	if ( ! flxcb_rate( 'up|' . $conv['id'], 10, HOUR_IN_SECONDS ) ) {
-		return flxcb_rest_err( 'flxcb_rate', __( 'Çok fazla dosya gönderildi. Biraz sonra tekrar deneyin.', 'flx-chatbot' ), 429 );
+		return flxcb_rest_err( 'flxcb_rate', __( 'Too many files were sent. Please try again later.', 'flx-chatbot' ), 429 );
 	}
 	$files = $req->get_file_params();
 	if ( empty( $files['file'] ) ) {
-		return flxcb_rest_err( 'flxcb_file', __( 'Dosya seçilmedi.', 'flx-chatbot' ) );
+		return flxcb_rest_err( 'flxcb_file', __( 'No file selected.', 'flx-chatbot' ) );
 	}
 	$f = flxcb_store_upload( $files['file'] );
 	if ( is_wp_error( $f ) ) {
@@ -395,15 +395,15 @@ function flxcb_rest_upload( WP_REST_Request $req ) {
 function flxcb_rest_file( WP_REST_Request $req ) {
 	$m = flxcb_get_message( (int) $req['id'] );
 	if ( ! $m || '' === $m['file_path'] ) {
-		return flxcb_rest_err( 'flxcb_file', __( 'Dosya bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_file', __( 'File not found.', 'flx-chatbot' ), 404 );
 	}
 	$conv = flxcb_req_conv( $req );
 	if ( ! flxcb_can_reply() && ( ! $conv || (int) $conv['id'] !== (int) $m['conv_id'] ) ) {
-		return flxcb_rest_err( 'flxcb_file', __( 'Dosya bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_file', __( 'File not found.', 'flx-chatbot' ), 404 );
 	}
 	$path = flxcb_upload_dir() . '/' . basename( $m['file_path'] );
 	if ( ! is_readable( $path ) ) {
-		return flxcb_rest_err( 'flxcb_file', __( 'Dosya bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_file', __( 'File not found.', 'flx-chatbot' ), 404 );
 	}
 	$mime   = (string) $m['file_mime'];
 	$inline = 0 === strpos( $mime, 'image/' ) || 0 === strpos( $mime, 'audio/' ) || 'application/pdf' === $mime;
@@ -420,7 +420,7 @@ function flxcb_rest_file( WP_REST_Request $req ) {
 function flxcb_rest_rate( WP_REST_Request $req ) {
 	$conv = flxcb_req_conv( $req );
 	if ( ! $conv ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Sohbet bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
 	}
 	$r = max( 1, min( 5, (int) $req->get_param( 'rating' ) ) );
 	flxcb_update_conversation(
@@ -434,7 +434,7 @@ function flxcb_rest_rate( WP_REST_Request $req ) {
 		$chat = flxc_get_chat( (int) $conv['flxc_chat'] );
 		if ( $chat ) {
 			/* translators: 1: stars, 2: note */
-			flxc_system_message( $chat, trim( sprintf( __( 'Ziyaretçi puanı: %1$s %2$s', 'flx-chatbot' ), str_repeat( '★', $r ) . str_repeat( '☆', 5 - $r ), flxcb_p( $req, 'note' ) ) ) );
+			flxc_system_message( $chat, trim( sprintf( __( 'Visitor rating: %1$s %2$s', 'flx-chatbot' ), str_repeat( '★', $r ) . str_repeat( '☆', 5 - $r ), flxcb_p( $req, 'note' ) ) ) );
 		}
 	}
 	do_action( 'flxcb_rated', flxcb_get_conversation( (int) $conv['id'] ), $r );
@@ -444,7 +444,7 @@ function flxcb_rest_rate( WP_REST_Request $req ) {
 function flxcb_rest_close( WP_REST_Request $req ) {
 	$conv = flxcb_req_conv( $req );
 	if ( ! $conv ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Sohbet bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
 	}
 	flxcb_close( $conv, 'visitor' );
 	return flxcb_rest_out( flxcb_state( flxcb_get_conversation( (int) $conv['id'] ), flxcb_p( $req, 't' ), (int) $req->get_param( 'after' ) ) );
@@ -543,7 +543,7 @@ function flxcb_rest_agent_list( WP_REST_Request $req ) {
 function flxcb_rest_agent_get( WP_REST_Request $req ) {
 	$c = flxcb_get_conversation( (int) $req['id'] );
 	if ( ! $c ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Sohbet bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
 	}
 	$c    = flxcb_fc_sync_status( $c );
 	$rows = flxcb_messages( (int) $c['id'], (int) $req->get_param( 'after' ), 300 );
@@ -564,7 +564,7 @@ function flxcb_rest_agent_get( WP_REST_Request $req ) {
 function flxcb_rest_agent_reply( WP_REST_Request $req ) {
 	$c = flxcb_get_conversation( (int) $req['id'] );
 	if ( ! $c ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Sohbet bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
 	}
 	$text  = trim( sanitize_textarea_field( flxcb_p( $req, 'text' ) ) );
 	$file  = array();
@@ -577,7 +577,7 @@ function flxcb_rest_agent_reply( WP_REST_Request $req ) {
 		$file = $f;
 	}
 	if ( '' === $text && ! $file ) {
-		return flxcb_rest_err( 'flxcb_empty', __( 'Mesaj boş.', 'flx-chatbot' ) );
+		return flxcb_rest_err( 'flxcb_empty', __( 'The message is empty.', 'flx-chatbot' ) );
 	}
 	flxcb_agent_reply( $c, get_current_user_id(), $text, $file );
 	return flxcb_rest_agent_get( $req );
@@ -586,7 +586,7 @@ function flxcb_rest_agent_reply( WP_REST_Request $req ) {
 function flxcb_rest_agent_close( WP_REST_Request $req ) {
 	$c = flxcb_get_conversation( (int) $req['id'] );
 	if ( ! $c ) {
-		return flxcb_rest_err( 'flxcb_conv', __( 'Sohbet bulunamadı.', 'flx-chatbot' ), 404 );
+		return flxcb_rest_err( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ), 404 );
 	}
 	flxcb_close( $c, 'agent' );
 	return flxcb_rest_agent_get( $req );

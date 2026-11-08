@@ -95,7 +95,7 @@ function flxwk_wikilinks( $md ) {
 				$label  = isset( $m[3] ) && '' !== trim( $m[3] ) ? trim( $m[3] ) : $target;
 				$post   = flxwk_find_page( $target );
 				if ( ! $post ) {
-					return '<span class="flxwk-missing" title="' . esc_attr__( 'Bu sayfa henüz yok', 'flx-wiki' ) . '">' . esc_html( $label ) . '</span>';
+					return '<span class="flxwk-missing" title="' . esc_attr__( 'This page does not exist yet', 'flx-wiki' ) . '">' . esc_html( $label ) . '</span>';
 				}
 				if ( $label === $target ) {
 					$label = get_the_title( $post );
@@ -149,11 +149,11 @@ function flxwk_find_page( $ref ) {
 /** GitHub tarzı uyarılar: > [!NOTE] / [!TIP] / [!IMPORTANT] / [!WARNING] / [!CAUTION]. */
 function flxwk_callouts( $html ) {
 	$labels = array(
-		'note'      => __( 'Not', 'flx-wiki' ),
-		'tip'       => __( 'İpucu', 'flx-wiki' ),
-		'important' => __( 'Önemli', 'flx-wiki' ),
-		'warning'   => __( 'Uyarı', 'flx-wiki' ),
-		'caution'   => __( 'Dikkat', 'flx-wiki' ),
+		'note'      => __( 'Note', 'flx-wiki' ),
+		'tip'       => __( 'Tip', 'flx-wiki' ),
+		'important' => __( 'Important', 'flx-wiki' ),
+		'warning'   => __( 'Warning', 'flx-wiki' ),
+		'caution'   => __( 'Caution', 'flx-wiki' ),
 	);
 	return preg_replace_callback(
 		'#<blockquote>\s*<p>\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(.*?)</blockquote>#s',

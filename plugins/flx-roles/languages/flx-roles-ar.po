@@ -1,0 +1,326 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Roles and access"
+msgstr "الأدوار والوصول"
+
+msgid "Automatic (first available: Tasks, Certificates, Donations)"
+msgstr "تلقائي (أولاً متاح: المهام، الشهادات، التبرعات)"
+
+msgid "Tasks"
+msgstr "المهام"
+
+msgid "Certificates"
+msgstr "الشهادات"
+
+msgid "Donations"
+msgstr "التبرعات"
+
+msgid "Dashboard (admin home)"
+msgstr "لوحة التحكم (الصفحة الرئيسية للمسؤول)"
+
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%sالناس"
+msgstr[1] "شخص%s"
+msgstr[2] "%sالناس"
+msgstr[3] "%sالناس"
+msgstr[4] "%sالناس"
+msgstr[5] "%sالناس"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Saved. Permission changes apply immediately."
+msgstr "تم الحفظ. يتم تطبيق تغييرات الأذونات على الفور."
+
+msgid "The role is back to its default permissions."
+msgstr "عاد الدور إلى أذوناته الافتراضية."
+
+msgid "Person added to the role."
+msgstr "تمت إضافة الشخص إلى الدور."
+
+msgid "Person removed from the role."
+msgstr "تمت إزالة الشخص من الدور."
+
+msgid "No user with this username or email. Create the user first."
+msgstr "لا يوجد مستخدم باسم المستخدم أو البريد الإلكتروني هذا. قم بإنشاء المستخدم أولاً."
+
+msgid "Administrators can't get this role; they already see everything."
+msgstr "لا يمكن للمسؤولين الحصول على هذا الدور؛ يرون كل شيء بالفعل."
+
+msgid "The action could not be completed."
+msgstr "لا يمكن إكمال الإجراء."
+
+msgid "Role added; it starts with admin panel access only. Turn on its permissions in the table."
+msgstr "تمت إضافة الدور؛ يبدأ بالوصول إلى لوحة الإدارة فقط. قم بتشغيل أذوناتها في الجدول."
+
+msgid "Role deleted; its people moved to the default role."
+msgstr "تم حذف الدور؛ انتقل شعبها إلى الدور الافتراضي."
+
+msgid "Role name must be 1-40 characters."
+msgstr "يجب أن يتكون اسم الدور من 1 إلى 40 حرفًا."
+
+msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
+msgstr "قم بتشغيل وإيقاف ما يمكن لكل دور الوصول إليه. يختفي الإجراء المعطل من القائمة ولا يمكن تنفيذه حتى عن طريق عنوان URL. يرى مسؤول WordPress كل شيء."
+
+msgid "Delete this role? Its people move to the default role."
+msgstr "هل تريد حذف هذا الدور؟ ينتقل شعبها إلى الدور الافتراضي."
+
+msgid "Delete role"
+msgstr "حذف الدور"
+
+msgid "New role"
+msgstr "دور جديد"
+
+msgid "For example Volunteer or Accounting. Starts with admin panel access only."
+msgstr "على سبيل المثال التطوع أو المحاسبة. يبدأ بالوصول إلى لوحة الإدارة فقط."
+
+msgid "Role name"
+msgstr "اسم الدور"
+
+msgid "Add role"
+msgstr "إضافة دور"
+
+msgid "Access"
+msgstr "الوصول"
+
+msgid "%s is not installed"
+msgstr "لم يتم تثبيت%s"
+
+msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
+msgstr "يتم حفظ الإعداد. يصبح ساري المفعول بمجرد تحديث المكون الإضافي إلى إصدار يفرض هذا الإذن."
+
+msgid "Waiting for %s update"
+msgstr "في انتظار تحديث%s"
+
+msgid "broad access"
+msgstr "وصول واسع النطاق"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "%s: screen after login"
+msgstr "%s: الشاشة بعد تسجيل الدخول"
+
+msgid "Referral link lifetime"
+msgstr "عمر رابط الإحالة"
+
+msgid "days"
+msgstr "أيام"
+
+msgid "If a visitor who came through a referral link donates within this period, the donation is credited to that person. If they come through another referral link, the latest one wins."
+msgstr "إذا تبرع الزائر الذي جاء من خلال رابط الإحالة خلال هذه الفترة، فسيتم إضافة التبرع إلى ذلك الشخص. إذا جاءوا من خلال رابط إحالة آخر، فإن الرابط الأخير هو الذي يفوز."
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Reset this role's permissions to the defaults?"
+msgstr "هل تريد إعادة تعيين أذونات هذا الدور إلى الإعدادات الافتراضية؟"
+
+msgid "%s: reset to defaults"
+msgstr "%s: إعادة التعيين إلى الإعدادات الافتراضية"
+
+msgid "People"
+msgstr "الناس"
+
+msgid "Add WhatsApp number"
+msgstr "إضافة رقم الواتساب"
+
+msgid "Referral link"
+msgstr "رابط الإحالة"
+
+msgid "Copy"
+msgstr "نسخ"
+
+msgid "Remove this person from the role?"
+msgstr "هل ترغب في إزالة هذا الشخص من الدور؟"
+
+msgid "Remove from role"
+msgstr "إزالة من الدور"
+
+msgid "Nobody yet."
+msgstr "لا أحد بعد."
+
+msgid "Username or email"
+msgstr "اسم المستخدم أو البريد الإلكتروني"
+
+msgid "Add"
+msgstr "أضف"
+
+msgid "For a new person, first <a href=\"%s\">create a user</a> and choose one of these roles."
+msgstr "بالنسبة لشخص جديد، قم أولاً<a href=\"%s\">بإنشاء مستخدم</a>واختيار أحد هذه الأدوار."
+
+msgid "For every permission of every role, see <a href=\"%s\">Admin theme › Permissions</a>."
+msgstr "للحصول على كل إذن لكل دور، راجع موضوع المسؤول<a href=\"%s\">›الأذونات</a>."
+
+msgid "Copied"
+msgstr "منقول"
+
+msgid "Director"
+msgstr "مدير"
+
+msgid "Has every permission on this page: all donations, certificate and task management, reports. Unlike the WordPress administrator, can't install plugins or change site settings."
+msgstr "لديه كل الإذن في هذه الصفحة: جميع التبرعات والشهادات وإدارة المهام والتقارير. على عكس مسؤول WordPress، لا يمكنه تثبيت المكونات الإضافية أو تغيير إعدادات الموقع."
+
+msgid "Manager"
+msgstr "مدير"
+
+msgid "Everything Staff can do, plus the donation and certificate dashboards (overall totals) and reports, and sets report schedules."
+msgstr "كل ما يمكن للموظفين القيام به، بالإضافة إلى لوحات معلومات التبرع والشهادات (الإجمالي الإجمالي) والتقارير، وتعيين جداول التقارير."
+
+msgid "Staff"
+msgstr "الموظفين"
+
+msgid "Regular user in Tasks, creates certificates, opens donations on behalf of others, sees the donations, donors and certificates they referred."
+msgstr "مستخدم عادي في المهام، يقوم بإنشاء الشهادات، ويفتح التبرعات نيابة عن الآخرين، ويطلع على التبرعات والمتبرعين والشهادات التي أشاروا إليها."
+
+msgid "Role added from the panel."
+msgstr "تمت إضافة الدور من اللوحة."
+
+msgid "General"
+msgstr "عام"
+
+msgid "Can enter the admin panel"
+msgstr "يمكن أن تدخل لوحة الإدارة"
+
+msgid "Can be a referrer (gets a personal referral link, can be chosen as referrer on certificates and donations)"
+msgstr "يمكن أن يكون مُحيلًا (يحصل على رابط إحالة شخصي، ويمكن اختياره كمُحيل على الشهادات والتبرعات)"
+
+msgid "Uses Tasks; sees the projects and lists they have access to"
+msgstr "يستخدم المهام؛ يرى المشاريع والقوائم التي يمكنهم الوصول إليها"
+
+msgid "Creates projects, folders and lists"
+msgstr "إنشاء المشاريع والمجلدات والقوائم"
+
+msgid "Uses AI features in Tasks"
+msgstr "يستخدم ميزات الذكاء الاصطناعي في المهام"
+
+msgid "Manages Tasks (sees every project, usage board, settings)"
+msgstr "إدارة المهام (رؤية كل مشروع ولوحة الاستخدام والإعدادات)"
+
+msgid "Creates certificates"
+msgstr "يخلق الشهادات"
+
+msgid "Sees only certificates they created or referred"
+msgstr "يرى فقط الشهادات التي قاموا بإنشائها أو إحالتها"
+
+msgid "Sends in bulk"
+msgstr "يرسل بكميات كبيرة"
+
+msgid "Sees the certificate dashboard"
+msgstr "يرى لوحة القيادة الشهادة"
+
+msgid "Manages certificates (all, templates, events, settings)"
+msgstr "إدارة الشهادات (الكل، القوالب، الأحداث، الإعدادات)"
+
+msgid "Sees donations they referred"
+msgstr "يرى التبرعات التي أشاروا إليها"
+
+msgid "Lists their own donors (donors of donations they referred)"
+msgstr "يسرد الجهات المانحة الخاصة بهم (الجهات المانحة للتبرعات التي أشاروا إليها)"
+
+msgid "Creates donations on behalf of others, with themselves as referrer (from the panel or the WhatsApp assistant)"
+msgstr "يقوم بإنشاء تبرعات نيابة عن الآخرين، مع أنفسهم كمحيل (من اللوحة أو مساعد WhatsApp)"
+
+msgid "Gets notified when a donation they referred is paid or cancelled"
+msgstr "يتم إعلامك عند دفع أو إلغاء التبرع الذي أشاروا إليه"
+
+msgid "Sees the donation dashboard (overall totals)"
+msgstr "يرى لوحة معلومات التبرع (الإجمالي الإجمالي)"
+
+msgid "Sees all donations and donors"
+msgstr "يرى جميع التبرعات والمانحين"
+
+msgid "Call Center"
+msgstr "مركز الاتصال"
+
+msgid "Uses WhatsApp chats"
+msgstr "يستخدم محادثات الواتس اب"
+
+msgid "Uses staff tools in the WhatsApp assistant according to their role (if their number is on their profile)"
+msgstr "يستخدم أدوات الموظفين في مساعد WhatsApp وفقًا لدورهم (إذا كان رقمهم موجودًا في ملفهم الشخصي)"
+
+msgid "Manages the Call Center (AI assistant, settings)"
+msgstr "يدير مركز الاتصال (مساعد الذكاء الاصطناعي، الإعدادات)"
+
+msgid "Studio"
+msgstr "استوديو"
+
+msgid "Uses Studio (own gallery and shared folders)"
+msgstr "يستخدم الاستوديو (المعرض الخاص والمجلدات المشتركة)"
+
+msgid "Manages Studio (everyone's gallery, settings)"
+msgstr "إدارة الاستوديو (معرض الجميع، والإعدادات)"
+
+msgid "Reports"
+msgstr "التقارير"
+
+msgid "Can receive daily/periodic reports"
+msgstr "يمكن أن تتلقى التقارير اليومية / الدورية"
+
+msgid "Sees overall reports (all staff, totals)"
+msgstr "الاطلاع على التقارير الشاملة (جميع الموظفين، الإجماليات)"
+
+msgid "Sets staff and manager report schedules and motivation messages"
+msgstr "يحدد جداول تقارير الموظفين والمدير ورسائل التحفيز"
+
+msgid "Invalid phone number. Write it with the country code or as 05xx."
+msgstr "رقم الهاتف غير صالح. اكتبه مع رمز البلد أو كـ 05xx."
+
+msgid "This number belongs to another user: %s."
+msgstr "هذا الرقم يخص مستخدم آخر:%s."
+
+msgid "WhatsApp number"
+msgstr "رقم الواتساب"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "The WhatsApp assistant recognizes whoever writes from this number as this user and enables what their role allows (e.g. donations on behalf of others, their own donors). Only an administrator can change the number."
+msgstr "يتعرف مساعد WhatsApp على كل من يكتب من هذا الرقم باعتباره هذا المستخدم ويقوم بتمكين ما يسمح به دوره (على سبيل المثال، التبرعات نيابة عن الآخرين، أو الجهات المانحة الخاصة بهم). يمكن للمسؤول فقط تغيير الرقم."
+
+msgid "Personal link"
+msgstr "الرابط الشخصي"
+
+msgid "Donations from visitors who come through this link show you as the referrer."
+msgstr "تظهر لك تبرعات الزوار الذين يأتون من خلال هذا الرابط كمحيل."
+
+msgid "To share another page, add %s to the end of its address."
+msgstr "لمشاركة صفحة أخرى، أضف%sإلى نهاية عنوانها."
+
+msgid "Flux Roles"
+msgstr "أدوار التدفق"
+
+msgid "FluxWP roles"
+msgstr "أدوار FluxWP"
+
+msgid "Missing role: %s. Deactivate and reactivate the plugin."
+msgstr "الدور المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "Staff WhatsApp numbers"
+msgstr "ارقام واتس اب للموظفين"
+
+msgid "%s people have no WhatsApp number on their profile; the assistant won't recognize them."
+msgstr "ليس لدى الأشخاص في%sرقم WhatsApp في ملفهم الشخصي؛ لن يتعرف عليهم المساعد."
+
+msgid "Everyone in the roles has a number."
+msgstr "كل شخص في الأدوار لديه رقم."
+
+msgid "Plugins enforcing role permissions"
+msgstr "الإضافات التي تفرض أذونات الدور"
+
+msgid "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen."
+msgstr "لم يتم فرض بعض الأذونات الممكّنة بعد؛ في انتظار تحديثات:%s. وحتى ذلك الحين، لا يستطيع هؤلاء الأشخاص رؤية الشاشة ذات الصلة."
+
+msgid "All enabled permissions are enforced."
+msgstr "يتم فرض كافة الأذونات الممكّنة."
+
+msgid "Roles"
+msgstr "الأدوار"
+
+msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
+msgstr "[['يضيف أدوار الموظفين والمسؤول والمدير (يُضاف دور جديد أيضًا من اللوحة)؛ يمكنك تشغيل وإيقاف الوصول إلى المهام والشهادات والتبرعات ومركز الاتصال والاستوديو والوصول إلى التقارير للأدوار من صفحة واحدة. الرابط المرجعي الشخصي ورقم هاتف المستخدم (لمساعد WhatsApp) موجودان هنا.', 'tr']]"

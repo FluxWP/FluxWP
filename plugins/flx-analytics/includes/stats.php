@@ -46,52 +46,52 @@ class FLXAN_Stats {
 	/** Hazır aralıklar → etiket. */
 	public static function presets() {
 		return array(
-			'today'      => __( 'Bugün', 'flx-analytics' ),
-			'yesterday'  => __( 'Dün', 'flx-analytics' ),
-			'7d'         => __( 'Son 7 gün', 'flx-analytics' ),
-			'30d'        => __( 'Son 30 gün', 'flx-analytics' ),
-			'90d'        => __( 'Son 90 gün', 'flx-analytics' ),
-			'this_month' => __( 'Bu ay', 'flx-analytics' ),
-			'last_month' => __( 'Geçen ay', 'flx-analytics' ),
-			'12m'        => __( 'Son 12 ay', 'flx-analytics' ),
-			'this_year'  => __( 'Bu yıl', 'flx-analytics' ),
-			'last_year'  => __( 'Geçen yıl', 'flx-analytics' ),
-			'all'        => __( 'Tüm zamanlar', 'flx-analytics' ),
-			'custom'     => __( 'Özel aralık', 'flx-analytics' ),
+			'today'      => __( 'Today', 'flx-analytics' ),
+			'yesterday'  => __( 'Yesterday', 'flx-analytics' ),
+			'7d'         => __( 'Last 7 days', 'flx-analytics' ),
+			'30d'        => __( 'Last 30 days', 'flx-analytics' ),
+			'90d'        => __( 'Last 90 days', 'flx-analytics' ),
+			'this_month' => __( 'This month', 'flx-analytics' ),
+			'last_month' => __( 'Last month', 'flx-analytics' ),
+			'12m'        => __( 'Last 12 months', 'flx-analytics' ),
+			'this_year'  => __( 'This year', 'flx-analytics' ),
+			'last_year'  => __( 'Last year', 'flx-analytics' ),
+			'all'        => __( 'All time', 'flx-analytics' ),
+			'custom'     => __( 'Custom range', 'flx-analytics' ),
 		);
 	}
 
 	/** Boyut türleri → etiket. */
 	public static function kinds() {
 		return array(
-			'channel'      => __( 'Kanal', 'flx-analytics' ),
-			'device'       => __( 'Cihaz', 'flx-analytics' ),
-			'browser'      => __( 'Tarayıcı', 'flx-analytics' ),
-			'os'           => __( 'İşletim sistemi', 'flx-analytics' ),
-			'lang'         => __( 'Tarayıcı dili', 'flx-analytics' ),
-			'country'      => __( 'Ülke', 'flx-analytics' ),
-			'utm_source'   => __( 'Kampanya kaynağı', 'flx-analytics' ),
-			'utm_medium'   => __( 'Kampanya ortamı', 'flx-analytics' ),
-			'utm_campaign' => __( 'Kampanya', 'flx-analytics' ),
+			'channel'      => __( 'Channel', 'flx-analytics' ),
+			'device'       => __( 'Device', 'flx-analytics' ),
+			'browser'      => __( 'Browser', 'flx-analytics' ),
+			'os'           => __( 'Operating system', 'flx-analytics' ),
+			'lang'         => __( 'Browser language', 'flx-analytics' ),
+			'country'      => __( 'Country', 'flx-analytics' ),
+			'utm_source'   => __( 'Campaign source', 'flx-analytics' ),
+			'utm_medium'   => __( 'Campaign medium', 'flx-analytics' ),
+			'utm_campaign' => __( 'Campaign', 'flx-analytics' ),
 		);
 	}
 
 	/** Olay adları → etiket. */
 	public static function event_labels() {
 		return array(
-			'outbound' => __( 'Dış bağlantı tıklaması', 'flx-analytics' ),
-			'download' => __( 'Dosya indirme', 'flx-analytics' ),
-			'tel'      => __( 'Telefon tıklaması', 'flx-analytics' ),
-			'mail'     => __( 'E-posta tıklaması', 'flx-analytics' ),
-			'whatsapp' => __( 'WhatsApp tıklaması', 'flx-analytics' ),
-			'search'   => __( 'Site içi arama', 'flx-analytics' ),
-			'donation' => __( 'Bağış / ödeme', 'flx-analytics' ),
-			'checkout' => __( 'Ödeme adımı', 'flx-analytics' ),
-			'add_to_cart'      => __( 'Sepete ekleme', 'flx-analytics' ),
-			'remove_from_cart' => __( 'Sepetten çıkarma', 'flx-analytics' ),
-			'coupon'           => __( 'Kupon kullanma', 'flx-analytics' ),
-			'payment'          => __( 'Ödeme yöntemi seçme', 'flx-analytics' ),
-			'order'            => __( 'Sipariş oluşturma (ödeme öncesi)', 'flx-analytics' ),
+			'outbound' => __( 'Outbound link click', 'flx-analytics' ),
+			'download' => __( 'File download', 'flx-analytics' ),
+			'tel'      => __( 'Phone click', 'flx-analytics' ),
+			'mail'     => __( 'Email click', 'flx-analytics' ),
+			'whatsapp' => __( 'WhatsApp click', 'flx-analytics' ),
+			'search'   => __( 'Site search', 'flx-analytics' ),
+			'donation' => __( 'Donation / payment', 'flx-analytics' ),
+			'checkout' => __( 'Checkout step', 'flx-analytics' ),
+			'add_to_cart'      => __( 'Add to cart', 'flx-analytics' ),
+			'remove_from_cart' => __( 'Remove from cart', 'flx-analytics' ),
+			'coupon'           => __( 'Coupon used', 'flx-analytics' ),
+			'payment'          => __( 'Payment method chosen', 'flx-analytics' ),
+			'order'            => __( 'Order created (before payment)', 'flx-analytics' ),
 		);
 	}
 
@@ -241,7 +241,7 @@ class FLXAN_Stats {
 			}
 		}
 		if ( '/' === $path ) {
-			return __( 'Ana sayfa', 'flx-analytics' );
+			return __( 'Home page', 'flx-analytics' );
 		}
 		return rawurldecode( $path );
 	}
@@ -507,7 +507,7 @@ class FLXAN_Stats {
 	/** Segment (rol) etiketi. */
 	public static function seg_label( $seg ) {
 		if ( '' === (string) $seg ) {
-			return __( 'Dışarıdan gelenler', 'flx-analytics' );
+			return __( 'Outside visitors', 'flx-analytics' );
 		}
 		$names = function_exists( 'wp_roles' ) ? wp_roles()->get_names() : array();
 		return isset( $names[ $seg ] ) ? translate_user_role( $names[ $seg ] ) : $seg;
@@ -638,12 +638,12 @@ class FLXAN_Stats {
 	/** Huni gruplama seçenekleri. */
 	public static function funnel_by() {
 		return array(
-			''        => __( 'Toplam', 'flx-analytics' ),
-			'channel' => __( 'Kanala göre', 'flx-analytics' ),
-			'ref'     => __( 'Yönlendiren siteye göre', 'flx-analytics' ),
-			'rc'      => __( 'Referans koduna göre', 'flx-analytics' ),
-			'seg'     => __( 'Role göre', 'flx-analytics' ),
-			'country' => __( 'Ülkeye göre', 'flx-analytics' ),
+			''        => __( 'Total', 'flx-analytics' ),
+			'channel' => __( 'By channel', 'flx-analytics' ),
+			'ref'     => __( 'By referring site', 'flx-analytics' ),
+			'rc'      => __( 'By referral code', 'flx-analytics' ),
+			'seg'     => __( 'By role', 'flx-analytics' ),
+			'country' => __( 'By country', 'flx-analytics' ),
 		);
 	}
 
@@ -725,16 +725,16 @@ class FLXAN_Stats {
 						$label = flxan_dim_label( 'channel', '' !== $k ? $k : 'direct' );
 						break;
 					case 'ref':
-						$label = '0' === $k || '' === $k ? __( '(doğrudan / bilinmiyor)', 'flx-analytics' ) : ( isset( $hosts[ $k ] ) ? $hosts[ $k ]->host : $k );
+						$label = '0' === $k || '' === $k ? __( '(direct / unknown)', 'flx-analytics' ) : ( isset( $hosts[ $k ] ) ? $hosts[ $k ]->host : $k );
 						break;
 					case 'rc':
-						$label = '' === $k ? __( '(referanssız)', 'flx-analytics' ) : flxan_ref_label( $k );
+						$label = '' === $k ? __( '(no referral)', 'flx-analytics' ) : flxan_ref_label( $k );
 						break;
 					case 'seg':
 						$label = self::seg_label( $k );
 						break;
 					default:
-						$label = '' === $k ? __( '(bilinmiyor)', 'flx-analytics' ) : flxan_dim_label( 'country', $k );
+						$label = '' === $k ? __( '(unknown)', 'flx-analytics' ) : flxan_dim_label( 'country', $k );
 				}
 				$groups[] = array(
 					'value'  => $k,

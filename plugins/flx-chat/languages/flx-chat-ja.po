@@ -1,0 +1,4745 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Call Center"
+msgstr "コールセンター"
+
+msgid "Chats"
+msgstr "チャット"
+
+msgid "AI assistant"
+msgstr "AIアシスタント"
+
+msgid "Call Center Settings"
+msgstr "コールセンターの設定"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "JavaScript is required for the Call Center."
+msgstr "コールセンターにはJavaScriptが必要です。"
+
+msgid "You do not have permission to access this page."
+msgstr "このページにアクセスする権限がありません。"
+
+msgid "Monitor the chats the assistant handles, edit its instructions and documents, and test changes before publishing them."
+msgstr "アシスタントが処理するチャットを監視し、その指示とドキュメントを編集し、公開する前に変更をテストします。"
+
+msgid "Assistant settings"
+msgstr "アシスタントの設定"
+
+msgid "This page requires JavaScript."
+msgstr "このページにはJavaScriptが必要です。"
+
+msgid "Closed"
+msgstr "閉店"
+
+msgid "On, 5 minutes"
+msgstr "オン、5 分"
+
+msgid "On, 1 hour"
+msgstr "オン、1時間"
+
+msgid "AI needs the Flux AI & MCP plugin; install and activate it, then enter the key in Flux AI & MCP › Settings."
+msgstr "AI には Flux AI および MCP プラグインが必要です。インストールしてアクティベートし、Flux AI & MCP › 設定にキーを入力します。"
+
+msgid "No AI model selected."
+msgstr "AI モデルが選択されていません。"
+
+msgid "No Anthropic (Claude) key has been entered in Flux AI."
+msgstr "Flux AI に Anthropic (Claude) キーが入力されていません。"
+
+msgid "No OpenRouter key has been entered in Flux AI."
+msgstr "Flux AI に OpenRouter キーが入力されていません。"
+
+msgid "The model list needs the Flux AI & MCP plugin."
+msgstr "モデル リストには Flux AI および MCP プラグインが必要です。"
+
+msgid "Flux Call Center: AI features (suggestions, assistant, receipt reading, voice messages, summaries) need the Flux AI & MCP plugin. Install and activate it; keys saved in the Call Center are moved there automatically."
+msgstr "Flux コールセンター: AI 機能 (提案、アシスタント、領収書の読み取り、音声メッセージ、概要) には、Flux AI および MCP プラグインが必要です。インストールしてアクティブ化します。コールセンターに保存されたキーは自動的にそこに移動されます。"
+
+msgid "Flux Call Center: a different %s key is already saved in Flux AI and is the one in use. The old Call Center key was not moved and is no longer used."
+msgstr "Flux コールセンター: 別の%sキーがすでに Flux AI に保存されており、使用されています。古いコールセンター キーは移動されず、使用されなくなりました。"
+
+msgid "Flux Call Center: AI keys were moved to Flux AI. From now on keys, spending limits and logs are managed in Flux AI; model choices stay in the Call Center."
+msgstr "Flux コールセンター: AI キーが Flux AI に移動されました。今後、キー、支出制限、ログは Flux AI で管理されます。モデルの選択はコールセンターに残ります。"
+
+msgid "The Flux Donate plugin is not active; the assistant takes donation types and prices from it."
+msgstr "Flux Donate プラグインはアクティブではありません。アシスタントはそこから寄付の種類と価格を取得します。"
+
+msgid "There is no open donation type in Flux Donate (open one on the Donation types page)."
+msgstr "Flux Donate には開いている寄付タイプはありません ([寄付タイプ] ページで開いてください)。"
+
+msgid "The donation types selected for the assistant are closed or have no price; select an open type or leave the selection empty."
+msgstr "アシスタント用に選択された寄付タイプは終了しているか、価格がありません。オープンタイプを選択するか、選択を空のままにしてください。"
+
+msgid "None of the open donation types has a price (Flux Donate › Donation types › option price)."
+msgstr "オープンな寄付タイプには価格がありません (Flux Donate › 寄付タイプ › オプション価格)。"
+
+msgid "Custom amount"
+msgstr "カスタム金額"
+
+msgid "Us"
+msgstr "私たち"
+
+msgid "WhatsApp"
+msgstr "ワッツアップ"
+
+msgid "Assistant"
+msgstr "アシスタント"
+
+msgid "This link has expired."
+msgstr "このリンクの有効期限は切れています。"
+
+msgid "You do not have permission for this action."
+msgstr "このアクションに対する権限がありません。"
+
+msgid "Message is empty."
+msgstr "メッセージが空です。"
+
+msgid "The assistant is off."
+msgstr "アシスタントはオフです。"
+
+msgid "No AI provider is configured."
+msgstr "AI プロバイダーが構成されていません。"
+
+msgid "Greeting only"
+msgstr "挨拶のみ"
+
+msgid "Direct price question"
+msgstr "価格に関する直接の質問"
+
+msgid "Direct donation request"
+msgstr "直接寄付のお願い"
+
+msgid "Introduces themselves by name"
+msgstr "名前で自己紹介"
+
+msgid "Writes in a foreign language"
+msgstr "外国語で書く"
+
+msgid "Full flow, 1 donation"
+msgstr "フルフロー、1 回の寄付"
+
+msgid "Several units, one on behalf of someone else"
+msgstr "複数のユニット、1 つは他の人の代理"
+
+msgid "No record before confirmation"
+msgstr "確認前の記録はありません"
+
+msgid "On behalf of someone via contact card"
+msgstr "連絡先カードを介して誰かの代わりに"
+
+msgid "All units to one name (company)"
+msgstr "すべてのユニットを 1 つの名前 (会社) に"
+
+msgid "Changes the quantity later"
+msgstr "後から数量を変更します"
+
+msgid "Gives up at the last moment"
+msgstr "最後の瞬間に諦める"
+
+msgid "Asks for the IBAN again after the record"
+msgstr "記録後に再度 IBAN を要求する"
+
+msgid "Asks for a representative"
+msgstr "代表者を求めます"
+
+msgid "Certificate complaint"
+msgstr "証明書の苦情"
+
+msgid "Refund request"
+msgstr "返金リクエスト"
+
+msgid "Insults continue"
+msgstr "侮辱は続く"
+
+msgid "Corporate partnership"
+msgstr "企業パートナーシップ"
+
+msgid "Simple price question and thanks"
+msgstr "簡単な価格の質問と感謝"
+
+msgid "Short greeting"
+msgstr "短い挨拶"
+
+msgid "Undecided person"
+msgstr "未定の人"
+
+msgid "Meaningless message"
+msgstr "意味のないメッセージ"
+
+msgid "Donation type not on the list"
+msgstr "寄付の種類がリストにありません"
+
+msgid "Praise containing the word \"representative\""
+msgstr "「代表」という言葉を含む賞賛"
+
+msgid "Tax deduction question"
+msgstr "税額控除に関する質問"
+
+msgid "Planting date and place"
+msgstr "植え付け日と場所"
+
+msgid "Discount campaign"
+msgstr "割引キャンペーン"
+
+msgid "Past donation inquiry"
+msgstr "過去の寄付に関するお問い合わせ"
+
+msgid "Price haggling"
+msgstr "価格交渉"
+
+msgid "Short, one question"
+msgstr "短い質問が 1 つあります"
+
+msgid "Not mentioning internals"
+msgstr "内部事情には言及しない"
+
+msgid "Message with typos"
+msgstr "タイプミスのあるメッセージ"
+
+msgid "Not asking again what is known"
+msgstr "既知のことを再度質問しない"
+
+msgid "Not closing the door"
+msgstr "ドアを閉めていない"
+
+msgid "Single word \"IBAN\""
+msgstr "一言「IBAN」"
+
+msgid "IBAN question via tool"
+msgstr "ツールによる IBAN の質問"
+
+msgid "Office hours and date question"
+msgstr "オフィスアワーと日付に関する質問"
+
+msgid "Which projects are there?"
+msgstr "どのようなプロジェクトがありますか?"
+
+msgid "Reminder request"
+msgstr "リマインダーリクエスト"
+
+msgid "Don't message me again"
+msgstr "二度とメッセージを送らないでください"
+
+msgid "Introduces themselves with a nickname"
+msgstr "ニックネームで自己紹介"
+
+msgid "Cancel the opened donation"
+msgstr "開いた寄付をキャンセルする"
+
+msgid "Switches payment to card"
+msgstr "支払いをカードに切り替えます"
+
+msgid "Resend my certificate"
+msgstr "証明書を再送信してください"
+
+msgid "Writes the receipt number"
+msgstr "受付番号を書き込みます"
+
+msgid "Non-staff talks like staff"
+msgstr "スタッフ以外の人もスタッフのように話す"
+
+msgid "My donors"
+msgstr "私の寄付者"
+
+msgid "Overall report"
+msgstr "全体報告書"
+
+msgid "Opens a donation (record check)"
+msgstr "寄付を開始します(記録チェック)"
+
+msgid "Lists their donations"
+msgstr "寄付金のリストを掲載"
+
+msgid "Sends the certificate"
+msgstr "証明書を送信します"
+
+msgid "Cancels a pending donation after confirmation"
+msgstr "確認後に保留中の寄付をキャンセルします"
+
+msgid "Does not cancel without confirmation"
+msgstr "確認なしでのキャンセルはできません"
+
+msgid "Does not cancel a paid donation"
+msgstr "支払った寄付はキャンセルされません"
+
+msgid "Number verification with a WhatsApp code"
+msgstr "WhatsAppコードによる番号認証"
+
+msgid "Number verification with an SMS code"
+msgstr "SMSコードによる番号認証"
+
+msgid "E-mail verification"
+msgstr "電子メール認証"
+
+msgid "Lists past donations (sample records)"
+msgstr "過去の寄付実績一覧(記録例)"
+
+msgid "Gives an e-mail, asked to confirm it"
+msgstr "電子メールを送信し、確認を求められる"
+
+msgid "E-mail saved after confirmation"
+msgstr "確認後に保存されたメール"
+
+msgid "Wrong code"
+msgstr "間違ったコード"
+
+msgid "Unrecognized number says \"I am staff\""
+msgstr "認識できない番号に「私はスタッフです」と表示される"
+
+msgid "Donation on behalf of someone else (record check)"
+msgstr "代理寄付(記録確認)"
+
+msgid "Details of a donation they opened"
+msgstr "彼らが開設した寄付の詳細"
+
+msgid "Continuation: two questions after the greeting"
+msgstr "続き:挨拶後の2つの質問"
+
+msgid "Continuation: summary confirmed, record should be created"
+msgstr "継続: 概要が確認されたため、記録を作成する必要があります"
+
+msgid "Continuation: complaint running out of patience"
+msgstr "続:我慢できなくなった愚痴"
+
+msgid "Continuation: wants to think about it"
+msgstr "続き:考えてみたい"
+
+msgid "Continuation: insists on a type not on the list"
+msgstr "続き: リストにないタイプを主張します"
+
+msgid "Continuation: certificate timing question"
+msgstr "続き: 証明書のタイミングに関する質問"
+
+msgid "Continuation: donation on behalf of someone else"
+msgstr "続き:代理寄付"
+
+msgid "Greeting and guidance"
+msgstr "ご挨拶とご案内"
+
+msgid "Donation flow and record"
+msgstr "寄付の流れと実績"
+
+msgid "Handoff to the team"
+msgstr "チームへの引き継ぎ"
+
+msgid "Avoiding needless handoff"
+msgstr "不必要なハンドオフの回避"
+
+msgid "Not making up information"
+msgstr "情報をでっち上げていないこと"
+
+msgid "Reply quality and tone"
+msgstr "返信の質と口調"
+
+msgid "Live info and tools"
+msgstr "ライブ情報とツール"
+
+msgid "Records, cancellation and receipts"
+msgstr "記録、キャンセル、領収書"
+
+msgid "Staff assistant"
+msgstr "スタッフアシスタント"
+
+msgid "Action results (isolated)"
+msgstr "アクションの結果 (分離)"
+
+msgid "Has a donation awaiting payment"
+msgstr "支払い待ちの寄付金があります"
+
+msgid "Has a paid donation and certificate"
+msgstr "支払い済みの寄付金と証明書がある"
+
+msgid "Number verified"
+msgstr "確認された番号"
+
+msgid "E-mail verified"
+msgstr "電子メールが確認されました"
+
+msgid "Phone code is sent via WhatsApp"
+msgstr "電話コードはWhatsApp経由で送信されます"
+
+msgid "Phone code is sent via SMS"
+msgstr "電話コードはSMSで送信されます"
+
+msgid "New donation opened"
+msgstr "新しい寄付が開始されました"
+
+msgid "Donation canceled"
+msgstr "寄付がキャンセルされました"
+
+msgid "Certificate sent"
+msgstr "証明書を送信しました"
+
+msgid "Verification code sent"
+msgstr "認証コードが送信されました"
+
+msgid "Code sent via WhatsApp"
+msgstr "WhatsApp経由で送信されたコード"
+
+msgid "Code sent via SMS"
+msgstr "SMS 経由で送信されたコード"
+
+msgid "Code sent by e-mail"
+msgstr "電子メールで送信されたコード"
+
+msgid "Number or e-mail verified"
+msgstr "番号または電子メールが確認されました"
+
+msgid "Reminder set"
+msgstr "リマインダーセット"
+
+msgid "Saved to memory"
+msgstr "メモリに保存されました"
+
+msgid "A title and at least one message are required."
+msgstr "タイトルと少なくとも 1 つのメッセージが必要です。"
+
+msgid "The last message must be from the customer; the assistant replies to it."
+msgstr "最後のメッセージは顧客からのものでなければなりません。アシスタントがそれに答えます。"
+
+msgid "donation"
+msgstr "寄付"
+
+msgid "Built-in text"
+msgstr "内蔵テキスト"
+
+msgid "Version %s"
+msgstr "バージョン%s"
+
+msgid "Live instructions (%s)"
+msgstr "ライブ指示 (%s)"
+
+msgid "built-in"
+msgstr "内蔵"
+
+msgid "No scenarios to run."
+msgstr "実行するシナリオはありません。"
+
+msgid "The run could not be saved (database: %s). Refresh the page and try again."
+msgstr "実行を保存できませんでした (データベース:%s)。ページを更新して、もう一度お試しください。"
+
+msgid "Run not found."
+msgstr "実行が見つかりません。"
+
+msgid "This step was cut off three times (the server stopped the request or the AI did not respond); the scenario was counted as an error."
+msgstr "このステップは 3 回中断されました (サーバーがリクエストを停止したか、AI が応答しませんでした)。シナリオはエラーとしてカウントされました。"
+
+msgid "keyword"
+msgstr "キーワード"
+
+msgid "The chat was handed to the team; the remaining messages were not sent."
+msgstr "チャットはチームに渡されました。残りのメッセージは送信されませんでした。"
+
+msgid "Start (test): %s"
+msgstr "開始 (テスト):%s"
+
+msgid "Writing as staff: %s"
+msgstr "スタッフ執筆:%s"
+
+msgid "No user with staff tools (Flux Roles, Profile › WhatsApp number); played as a donor."
+msgstr "スタッフ ツール (Flux ロール、プロフィール › WhatsApp 番号) を持つユーザーがいない。ドナーとしてプレーした。"
+
+msgid "yes"
+msgstr "はい"
+
+msgid "no"
+msgstr "いいえ"
+
+msgid "Expected: %1$s, actual: %2$s"
+msgstr "予期:%1$s、実際:%2$s"
+
+msgid "disabled on this site, not checked"
+msgstr "このサイトでは無効になっており、チェックされていません"
+
+msgid "Must not"
+msgstr "してはなりません"
+
+msgid "The AI did not respond in time."
+msgstr "AIは時間内に応答しませんでした。"
+
+msgid "The judge did not give a clear answer."
+msgstr "裁判官は明確な答えを示さなかった。"
+
+msgid "The AI could not write a scenario; describe the request more clearly and try again."
+msgstr "AI はシナリオを書くことができませんでした。リクエストをより明確に説明して、もう一度試してください。"
+
+msgid "Benchmark report #%d"
+msgstr "ベンチマーク レポート #%d"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Plugin"
+msgstr "プラグイン"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Stop reason"
+msgstr "停止理由"
+
+msgid "Assistant model"
+msgstr "アシスタントモデル"
+
+msgid "Judge model"
+msgstr "ジャッジモデル"
+
+msgid "Instructions"
+msgstr "指示"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "scenarios"
+msgstr "シナリオ"
+
+msgid "Cost"
+msgstr "コスト"
+
+msgid "limit"
+msgstr "限界"
+
+msgid "Input / output tokens"
+msgstr "入力/出力トークン"
+
+msgid "Claude cache"
+msgstr "クロード・キャッシュ"
+
+msgid "%1$d tokens read, %2$d written"
+msgstr "%1$dトークンが読み取られ、%2$dが書き込まれました"
+
+msgid "savings"
+msgstr "貯蓄"
+
+msgid "Model breakdown"
+msgstr "モデルの内訳"
+
+msgid "Model"
+msgstr "モデル"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "Requests"
+msgstr "リクエスト"
+
+msgid "Input"
+msgstr "入力"
+
+msgid "Output"
+msgstr "出力"
+
+msgid "Judge"
+msgstr "裁判官"
+
+msgid "Groups"
+msgstr "グループ"
+
+msgid "Handoff accuracy"
+msgstr "ハンドオフ精度"
+
+msgid "correct handoff %1$d, correct no-handoff %2$d, unnecessary handoff %3$d, missed handoff %4$d"
+msgstr "正しいハンドオフ%1$d、正しいノーハンドオフ%2$d、不要なハンドオフ%3$d、ミス ハンドオフ%4$d"
+
+msgid "Instructions (full text)"
+msgstr "説明書(全文)"
+
+msgid "Scenarios"
+msgstr "シナリオ"
+
+msgid "Result"
+msgstr "結果"
+
+msgid "handoff"
+msgstr "引き継ぎ"
+
+msgid "Expectations"
+msgstr "期待"
+
+msgid "Conversation"
+msgstr "会話"
+
+msgid "Customer"
+msgstr "お客様"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Note"
+msgstr "注記"
+
+msgid "scripted history"
+msgstr "スクリプト化された歴史"
+
+msgid "system message"
+msgstr "システムメッセージ"
+
+msgid "empty"
+msgstr "空の"
+
+msgid "arguments"
+msgstr "引数"
+
+msgid "result"
+msgstr "結果"
+
+msgid "Usage"
+msgstr "使用法"
+
+msgid "requests"
+msgstr "リクエスト"
+
+msgid "Checks"
+msgstr "小切手"
+
+msgid "Final state"
+msgstr "最終状態"
+
+msgid "Judge log"
+msgstr "ジャッジログ"
+
+msgid "System message"
+msgstr "システムメッセージ"
+
+msgid "Sent"
+msgstr "送信済み"
+
+msgid "Raw response"
+msgstr "生の応答"
+
+msgid "First enter an API key and model under Settings › AI."
+msgstr "まず、設定 › AI で API キーとモデルを入力します。"
+
+msgid "(no name)"
+msgstr "(名前なし)"
+
+msgid "Hello {ad} 🌱 {bagisci} made a donation in your name: {bagis}. Your certificate is below."
+msgstr "こんにちは{ad}🌱{bagisci}はあなたの名前{bagis}で寄付をしました。あなたの証明書は以下にあります。"
+
+msgid "One of our donors"
+msgstr "私たちの寄付者の一人"
+
+msgid "Flux Chat: certificate %1$s was sent on WhatsApp to the person the donation was made for (%2$s, %3$s)."
+msgstr "Flux Chat: 証明書%1$sが WhatsApp で寄付の対象者 (%2$s、%3$s) に送信されました。"
+
+msgid "Flux Chat: certificate %1$s could not be sent to the person the donation was made for (%2$s, %3$s)."
+msgstr "Flux Chat: 証明書%1$sを寄付先 (%2$s、%3$s) に送信できませんでした。"
+
+msgid "✅ Certificates for {bagisci}'s donation are ready: {bagis}. They were also sent to the donor."
+msgstr "✅{bagisci}の寄付の証明書が準備できました:{bagis}。寄付者にも送られました。"
+
+msgid "Your donor"
+msgstr "あなたのドナー"
+
+msgid "Flux Call Center: certificates %1$s were sent to the referring staff member on WhatsApp (%2$s)."
+msgstr "Flux コールセンター: 証明書%1$sが WhatsApp の紹介スタッフ メンバー (%2$s) に送信されました。"
+
+msgid "Flux Call Center: certificates %1$s could not be sent to the referring staff member (%2$s)."
+msgstr "Flux コールセンター: 証明書%1$sを紹介スタッフ メンバー (%2$s) に送信できませんでした。"
+
+msgid "Phone or email is required."
+msgstr "電話またはメールは必須です。"
+
+msgid "Contact added to the blocklist: %s"
+msgstr "連絡先がブロックリストに追加されました:%s"
+
+msgid "Chat not found."
+msgstr "チャットが見つかりません。"
+
+msgid "No records found."
+msgstr "記録が見つかりませんでした。"
+
+msgid "Contact removed from the blocklist."
+msgstr "連絡先がブロックリストから削除されました。"
+
+msgid "Bank transfer"
+msgstr "銀行振込"
+
+msgid "Card"
+msgstr "カード"
+
+msgid "WhatsApp assistant: e-mail verification code"
+msgstr "WhatsApp アシスタント: 電子メール確認コード"
+
+msgid "Sent when a person asks on WhatsApp about donations made with this e-mail."
+msgstr "WhatsApp でこの電子メールで行われた寄付について尋ねたときに送信されます。"
+
+msgid "Verification code"
+msgstr "認証コード"
+
+msgid "First name"
+msgstr "名"
+
+msgid "Validity (minutes)"
+msgstr "有効期限(分)"
+
+msgid "Your verification code: {kod}"
+msgstr "確認コード:{kod}"
+
+msgid "Your verification code"
+msgstr "あなたの確認コード"
+
+msgid "<p>You asked from WhatsApp about donations made with this email address. Enter the code in the WhatsApp chat:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>The code is valid for {dk} minutes. If you did not request this, ignore the email.</p>"
+msgstr "<p>このメール アドレスを使用して行われた寄付について WhatsApp から問い合わせました。 WhatsApp チャットにコードを入力します:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>コードは{dk}分間有効です。あなたがこれを要求していない場合は、電子メールを無視してください。</p>"
+
+msgid "Your verification code: %s"
+msgstr "確認コード:%s"
+
+msgid "Type this code in the WhatsApp chat: %s"
+msgstr "WhatsApp チャットに次のコードを入力します:%s"
+
+msgid "The code is valid for %d minutes."
+msgstr "コードは%d分間有効です。"
+
+msgid "Chats searched: \"%1$s\" (%2$d results)"
+msgstr "検索されたチャット: 「%1$s」 (%2$dの結果)"
+
+msgid "Read the last %2$d messages of %1$s"
+msgstr "%1$sの最後の%2$dメッセージを読み取る"
+
+msgid "Tested: \"%s\""
+msgstr "テスト済み: 「%s」"
+
+msgid "Wants to read the last %2$d messages of %1$s."
+msgstr "%1$sの最後の%2$dメッセージを読みたい。"
+
+msgid "Step limit reached; write a message to continue."
+msgstr "ステップ制限に達しました。続行するにはメッセージを書いてください。"
+
+msgid "Session not found."
+msgstr "セッションが見つかりません。"
+
+msgid "Draft published."
+msgstr "草案が公開されました。"
+
+msgid "Draft saved as a version."
+msgstr "ドラフトはバージョンとして保存されました。"
+
+msgid "Draft discarded."
+msgstr "草案は破棄されました。"
+
+msgid "Write what you want to change."
+msgstr "変更したいことを書きます。"
+
+msgid "Reading not allowed"
+msgstr "読み取りは許可されていません"
+
+msgid "Either"
+msgstr "どちらか"
+
+msgid "Daily assistant limit reset (%s)"
+msgstr "毎日のアシスタント制限のリセット (%s)"
+
+msgid "Instructions cannot be empty."
+msgstr "指示を空にすることはできません。"
+
+msgid "Title and content are required."
+msgstr "タイトルと内容は必須です。"
+
+msgid "Jane Smith"
+msgstr "ジェーン・スミス"
+
+msgid "Price list"
+msgstr "価格表"
+
+msgid "Donation summary"
+msgstr "寄付概要"
+
+msgid "Payment messages sent after confirmation"
+msgstr "確認後に送信される支払いメッセージ"
+
+msgid "Hand-off message"
+msgstr "引き継ぎメッセージ"
+
+msgid "Agent request phrases"
+msgstr "エージェントのリクエストフレーズ"
+
+msgid "Test"
+msgstr "テスト"
+
+msgid "Write a message first."
+msgstr "まずメッセージを書きます。"
+
+msgid "Image could not be sent"
+msgstr "画像を送信できませんでした"
+
+msgid "Image"
+msgstr "画像"
+
+msgid "Photo"
+msgstr "写真"
+
+msgid "Document"
+msgstr "文書"
+
+msgid "automatic receipt check"
+msgstr "自動領収書チェック"
+
+msgid "Version not found."
+msgstr "バージョンが見つかりません。"
+
+msgid "The job was interrupted."
+msgstr "仕事が中断されました。"
+
+msgid "Daily assistant reply limit reached."
+msgstr "アシスタントの 1 日あたりの返信制限に達しました。"
+
+msgid "We are sorry to keep you waiting. We will get back to you as soon as possible. Thank you for your understanding."
+msgstr "お待たせして申し訳ございません。できるだけ早くご連絡させていただきます。ご理解いただきありがとうございます。"
+
+msgid "The assistant could not answer; a waiting message was sent to the person (%s)."
+msgstr "助手は答えることができなかった。待機中のメッセージがその人に送信されました (%s)。"
+
+msgid "agent, representative, live support, customer service, real person, a human, talk to a person, speak to a person, operator, turn off the ai, turn off the bot, stop the bot, call me, temsilci, yetkili, canlı destek, gerçek kişi, operatör"
+msgstr "エージェント、代表者、ライブ サポート、カスタマー サービス、実在の人物、人間、人と話す、人と話す、オペレーター、AI をオフにする、ボットをオフにする、ボットを停止する、電話してください、テムシルチ、イエッキリ、キャンル デステク、ゲルチェク キシ、オペレーター"
+
+msgid "The contact asked for an agent; the assistant was turned off in this chat."
+msgstr "連絡先はエージェントを求めました。このチャットではアシスタントがオフになっています。"
+
+msgid "The assistant could not reply: "
+msgstr "アシスタントは次のように答えることができませんでした。"
+
+msgid "The assistant's prepared reply was not sent: an agent wrote in the chat."
+msgstr "アシスタントが準備した返信は送信されませんでした。エージェントがチャットに書き込みました。"
+
+msgid "the AI returned an empty answer"
+msgstr "AIは空の答えを返しました"
+
+msgid "Our bank transfer details 👇 Press and hold each one to copy it."
+msgstr "銀行振込の詳細 👇 それぞれを長押ししてコピーします。"
+
+msgid "Contact card"
+msgstr "連絡先カード"
+
+msgid "agent"
+msgstr "エージェント"
+
+msgid "Created with the WhatsApp assistant."
+msgstr "WhatsApp アシスタントを使用して作成されました。"
+
+msgid "Understood, you will not receive any more messages from us. Have a nice day."
+msgstr "理解しました。今後、私たちからメッセージを受け取ることはありません。良い1日を。"
+
+msgid "If you'd like to share why you want to cancel, we're here and happy to listen 🌱"
+msgstr "キャンセルしたい理由を共有したい場合は、喜んで聞きます 🌱"
+
+msgid "Shall I cancel *{bagis}* ({tutar})? Please confirm."
+msgstr "*{bagis}* ({tutar}) をキャンセルしましょうか?ご確認ください。"
+
+msgid "%1$s · %2$d pcs"
+msgstr "%1$s・%2$d個"
+
+msgid "The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation."
+msgstr "その人はWhatsAppでキャンセルを求めました。アシスタントは確認後にキャンセルしました。"
+
+msgid "Reason: %s"
+msgstr "理由:%s"
+
+msgid "The assistant cancelled the donation: %1$s (#%2$s)"
+msgstr "アシスタントが寄付をキャンセルしました:%1$s(#%2$s)"
+
+msgid "Your certificate 🌱 %1$s (%2$s)"
+msgstr "あなたの証明書 🌱%1$s(%2$s)"
+
+msgid "The assistant resent certificate %1$s (%2$s)."
+msgstr "アシスタントは証明書%1$s(%2$s) を再送信しました。"
+
+msgid "e-mail"
+msgstr "電子メール"
+
+msgid "Donation"
+msgstr "寄付"
+
+msgid "We've received your message and will get back to you as soon as possible 🌱"
+msgstr "メッセージを受け取りましたので、できるだけ早くご連絡させていただきます 🌱"
+
+msgid "I'm passing you to a colleague from our team, they will get back to you here shortly 🌱"
+msgstr "私たちのチームの同僚にあなたを引き継ぎます。すぐにこちらから折り返しご連絡いたします 🌱"
+
+msgid "The assistant handed the chat to the team: %s"
+msgstr "アシスタントがチャットをチームに渡しました:%s"
+
+msgid "unit"
+msgstr "ユニット"
+
+msgid "donor's name"
+msgstr "寄付者の名前"
+
+msgid "Certificates (one per name):"
+msgstr "証明書 (名前ごとに 1 つ):"
+
+msgid "Certificate: "
+msgstr "証明書:"
+
+msgid "Once the payment is approved, the certificate is also sent to this number on WhatsApp."
+msgstr "支払いが承認されると、証明書は WhatsApp のこの番号にも送信されます。"
+
+msgid "Any amount you like"
+msgstr "お好みの量で"
+
+msgid "Just write which one and how many you would like."
+msgstr "どれを何個欲しいかを書くだけです。"
+
+msgid "After paying, you can send the receipt here. Thank you so much for your support 🤲"
+msgstr "お支払い後、こちらから領収書をお送りください。ご支援誠にありがとうございます🤲"
+
+msgid "Your card payment page is ready 💳 %s"
+msgstr "カード支払いページの準備ができました 💳%s"
+
+msgid "Enter your card details on the page to complete the payment; it is protected by 3D Secure."
+msgstr "ページにカードの詳細を入力して支払いを完了します。 3Dセキュアによって保護されています。"
+
+msgid "Your donation is confirmed automatically once the payment goes through. Thank you so much for your support 🤲"
+msgstr "支払いが完了すると、寄付は自動的に確認されます。ご支援誠にありがとうございます🤲"
+
+msgid "Your payment page is ready: %s"
+msgstr "支払いページの準備ができました:%s"
+
+msgid "On this page you can pay by card or choose bank transfer. If you prefer a bank transfer, the details are below; press and hold each one to copy 👇"
+msgstr "このページではカード決済または銀行振込をお選びいただけます。銀行振込をご希望の場合、詳細は以下の通りです。それぞれを長押ししてコピーします 👇"
+
+msgid "The bank transfer details of your donation are on this page: %s"
+msgstr "寄付の銀行振込の詳細は次のページにあります:%s"
+
+msgid "They are also below; press and hold each one to copy 👇"
+msgstr "それらは以下にもあります。それぞれを長押ししてコピーします 👇"
+
+msgid "You can pay by bank transfer."
+msgstr "銀行振込でお支払いいただけます。"
+
+msgid "Our donation page: %s"
+msgstr "私たちの寄付ページ:%s"
+
+msgid "Bank details are below; long-press each one to copy 👇"
+msgstr "銀行の詳細は以下の通りです。それぞれを長押ししてコピーします 👇"
+
+msgid "Assistant turned on (%s)"
+msgstr "アシスタントがオンになりました (%s)"
+
+msgid "Assistant turned off (%s)"
+msgstr "アシスタントがオフになりました (%s)"
+
+msgid "WhatsApp connection not found. Add one under Settings › Connections."
+msgstr "WhatsApp 接続が見つかりません。 [設定] › [接続] の下に 1 つを追加します。"
+
+msgid "This connection uses the Flux Mail plugin's settings but the plugin is not active."
+msgstr "この接続では Flux Mail プラグインの設定が使用されますが、プラグインはアクティブではありません。"
+
+msgid "The WhatsApp connection in Flux Mail was not found or is disabled (Communication › Connections)."
+msgstr "Flux Mail の WhatsApp 接続が見つからないか、無効になっています (通信 › 接続)。"
+
+msgid "This connection uses the Flux Certificates plugin's settings, but that plugin is not active."
+msgstr "この接続では Flux Certificates プラグインの設定が使用されますが、そのプラグインはアクティブではありません。"
+
+msgid "The Evolution provider in Flux Certificates was not found."
+msgstr "Flux 証明書の Evolution プロバイダーが見つかりませんでした。"
+
+msgid "The connection's API URL, API key or instance name is missing."
+msgstr "接続の API URL、API キー、またはインスタンス名がありません。"
+
+msgid "via WhatsApp"
+msgstr "WhatsApp経由"
+
+msgid "via the website"
+msgstr "ウェブサイト経由で"
+
+msgid "uploaded %2$s on %1$s"
+msgstr "%1$sに%2$sをアップロードしました"
+
+msgid "This number is not on WhatsApp."
+msgstr "この番号は WhatsApp にはありません。"
+
+msgid "Evolution API key is invalid."
+msgstr "Evolution API キーが無効です。"
+
+msgid "Evolution instance not found or offline."
+msgstr "Evolution インスタンスが見つからないかオフラインです。"
+
+msgid "Contact"
+msgstr "お問い合わせ"
+
+msgid "System"
+msgstr "システム"
+
+msgid "Agent (%s)"
+msgstr "エージェント (%s)"
+
+msgid "Agent"
+msgstr "エージェント"
+
+msgid "Internal note (%s)"
+msgstr "内部メモ (%s)"
+
+msgid "Internal note"
+msgstr "内部メモ"
+
+msgid "Auto reply"
+msgstr "自動返信"
+
+msgid "From phone"
+msgstr "電話から"
+
+msgid "Automatic"
+msgstr "自動"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "Assistant wrote"
+msgstr "アシスタントが書きました"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "contact deleted"
+msgstr "連絡先が削除されました"
+
+msgid "edited"
+msgstr "編集済み"
+
+msgid "not sent"
+msgstr "送信されませんでした"
+
+msgid "Receipt check"
+msgstr "領収書小切手"
+
+msgid "WhatsApp chats"
+msgstr "WhatsApp チャット"
+
+msgid "Export: %1$s · %2$d chats"
+msgstr "エクスポート:%1$s·%2$dチャット"
+
+msgid "phones and emails masked"
+msgstr "電話とメールはマスクされている"
+
+msgid "Chat history cleared (%1$d messages, %2$s)."
+msgstr "チャット履歴がクリアされました (%1$dメッセージ、%2$s)。"
+
+msgid "Confirmation text is wrong."
+msgstr "確認文が間違っています。"
+
+msgid "Contact asked for an agent"
+msgstr "担当者にエージェントを依頼しました"
+
+msgid "The assistant handed a chat over to the team"
+msgstr "アシスタントがチャットをチームに引き継ぎました"
+
+msgid "Hidden number (WhatsApp)"
+msgstr "隠し番号 (WhatsApp)"
+
+msgid "Reason"
+msgstr "理由"
+
+msgid "Last messages"
+msgstr "最後のメッセージ"
+
+msgid "Please take over the chat"
+msgstr "チャットを引き継いでください"
+
+msgid "Could not send the notification to the team group: %s"
+msgstr "チーム グループに通知を送信できませんでした:%s"
+
+msgid "Handoff notification sent to the team group."
+msgstr "ハンドオフ通知がチーム グループに送信されました。"
+
+msgid "WhatsApp notification sent to the team: %s"
+msgstr "WhatsApp 通知がチームに送信されました:%s"
+
+msgid "Team notification could not be sent: %s"
+msgstr "チーム通知を送信できませんでした:%s"
+
+msgid "New"
+msgstr "新しい"
+
+msgid "Important"
+msgstr "重要"
+
+msgid "Follow-up"
+msgstr "フォローアップ"
+
+msgid "Call Center Agent"
+msgstr "コールセンターエージェント"
+
+msgid "Hello! Your message has reached the %s team. An agent will get back to you shortly."
+msgstr "こんにちは!あなたのメッセージは%sチームに届きました。担当者がすぐにご連絡いたします。"
+
+msgid "Hello, we are currently outside business hours. We received your message and will reply on the next business day."
+msgstr "こんにちは、現在営業時間外です。メッセージを受け取りましたので、翌営業日に返信させていただきます。"
+
+msgid "Greeting"
+msgstr "ご挨拶"
+
+msgid "Hello {first_name}, this is {agent}. How can I help you?"
+msgstr "こんにちは、{first_name}さん。{agent}です。どんな御用でしょうか?"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Checking"
+msgstr "チェック中"
+
+msgid "I'll check and get right back to you, please wait a few minutes."
+msgstr "確認してすぐにご連絡いたしますので、数分お待ちください。"
+
+msgid "Request received"
+msgstr "リクエストを受信しました"
+
+msgid "We received your request and will get back to you shortly. 🙏"
+msgstr "ご要望を受け付けましたので、近日中に折り返しご連絡させていただきます。 🙏"
+
+msgid "Business hours"
+msgstr "営業時間"
+
+msgid "Our business hours are weekdays 09:00 – 18:00."
+msgstr "営業時間は平日9:00~18:00です。"
+
+msgid "Info"
+msgstr "情報"
+
+msgid "Website"
+msgstr "ウェブサイト"
+
+msgid "You can find all the details on our website: {site}"
+msgstr "You can find all the details on our website:{site}"
+
+msgid "Thanks"
+msgstr "ありがとう"
+
+msgid "Thank you for reaching out {first_name}, have a nice day! 🌱"
+msgstr "{first_name}にお問い合わせいただきありがとうございます。良い一日をお過ごしください。 🌱"
+
+msgid "Closing"
+msgstr "終わりに"
+
+msgid "Cash"
+msgstr "現金"
+
+msgid "Other"
+msgstr "その他"
+
+msgid "Your receipt has reached us and your donation is confirmed ({donation}, {amount}). Thank you."
+msgstr "領収書が到着し、寄付が確認されました ({donation}、{amount})。ありがとう。"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "You are not allowed to create donation records."
+msgstr "寄付記録を作成することはできません。"
+
+msgid "Choose an option of the selected donation type."
+msgstr "選択した寄付タイプのオプションを選択してください。"
+
+msgid "This option has no price. Enter a price under Donations › Donation types, or choose a custom amount."
+msgstr "このオプションには価格はありません。 [寄付] › [寄付の種類] で価格を入力するか、カスタム金額を選択します。"
+
+msgid "Enter an amount."
+msgstr "金額を入力します。"
+
+msgid "This donation type requires the donor's proxy consent."
+msgstr "この寄付タイプでは寄付者の代理同意が必要です。"
+
+msgid "The donation could not be saved."
+msgstr "寄付金を保存できませんでした。"
+
+msgid "Donation record created: %1$s · %2$s"
+msgstr "作成された寄付記録:%1$s·%2$s"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Donation not found."
+msgstr "寄付が見つかりませんでした。"
+
+msgid "Certificate template not found."
+msgstr "証明書テンプレートが見つかりません。"
+
+msgid "A full name is required for the certificate."
+msgstr "証明書にはフルネームが必要です。"
+
+msgid "You are not allowed to create certificates."
+msgstr "証明書を作成することはできません。"
+
+msgid "Certificate created: %s"
+msgstr "作成された証明書:%s"
+
+msgid "Certificate not found."
+msgstr "証明書が見つかりません。"
+
+msgid "Only a photo or a document can be matched as a receipt."
+msgstr "領収書として照合できるのは写真または文書のみです。"
+
+msgid "This receipt was"
+msgstr "この領収書は、"
+
+msgid "Receipt matched: %s"
+msgstr "一致したレシート:%s"
+
+msgid "You are not allowed to view this file."
+msgstr "このファイルを閲覧することは許可されていません。"
+
+msgid "Donations"
+msgstr "寄付"
+
+msgid "Waited too long in the queue."
+msgstr "行列で待ちすぎた。"
+
+msgid "waited too long in the queue"
+msgstr "行列で長く待ちすぎた"
+
+msgid "the answer was cut off"
+msgstr "答えは打ち切られた"
+
+msgid "taken from the queue"
+msgstr "キューから取られた"
+
+msgid "Sending"
+msgstr "送信中"
+
+msgid "Delivered"
+msgstr "納品済み"
+
+msgid "Read"
+msgstr "読む"
+
+msgid "Played"
+msgstr "遊んだ"
+
+msgid "Not sent"
+msgstr "送信されませんでした"
+
+msgid "Yesterday"
+msgstr "昨日"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "Connection error"
+msgstr "接続エラー"
+
+msgid "Records"
+msgstr "記録"
+
+msgid "New chat"
+msgstr "新しいチャット"
+
+msgid "Quick replies"
+msgstr "クイック返信"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "Search or start a new chat"
+msgstr "検索または新しいチャットを開始する"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "No connection"
+msgstr "接続がありません"
+
+msgid "{n} lines connected"
+msgstr "{n}ラインが接続されました"
+
+msgid "WhatsApp connected"
+msgstr "WhatsApp が接続されました"
+
+msgid "{n}/{m} lines connected"
+msgstr "{n}/{m}ラインが接続されています"
+
+msgid "WhatsApp not connected"
+msgstr "WhatsAppが接続されていません"
+
+msgid "Status unknown"
+msgstr "ステータス不明"
+
+msgid "No communication channel set up yet"
+msgstr "通信チャネルがまだ設定されていません"
+
+msgid "WhatsApp connection lost"
+msgstr "WhatsApp 接続が失われました"
+
+msgid "Set up a channel in the communication settings to receive messages."
+msgstr "通信設定でメッセージを受信するチャネルを設定します。"
+
+msgid "Go to communication settings"
+msgstr "通信設定に移動します"
+
+msgid "The phone may be offline or the QR code needs to be scanned again."
+msgstr "電話機がオフラインであるか、QR コードを再度スキャンする必要がある可能性があります。"
+
+msgid "Go to settings"
+msgstr "設定に移動"
+
+msgid "Incoming WhatsApp messages appear here live. Pick a chat on the left or start a new one."
+msgstr "受信した WhatsApp メッセージがここにライブで表示されます。左側でチャットを選択するか、新しいチャットを開始します。"
+
+msgid "Messages are visible only to authorized agents."
+msgstr "メッセージは、許可されたエージェントのみに表示されます。"
+
+msgid "No results."
+msgstr "結果はありません。"
+
+msgid "No unread messages. 🎉"
+msgstr "未読メッセージはありません。 🎉"
+
+msgid "No chats yet."
+msgstr "まだチャットはありません。"
+
+msgid "Start a chat with {p}"
+msgstr "{p}とチャットを開始する"
+
+msgid "recording audio…"
+msgstr "音声を録音中..."
+
+msgid "typing…"
+msgstr "入力中..."
+
+msgid "Assistant is typing…"
+msgstr "アシスタントが入力中です..."
+
+msgid "Assigned: {n}"
+msgstr "割り当て済み:{n}"
+
+msgid "Chat menu"
+msgstr "チャットメニュー"
+
+msgid "Show quick reply bubbles"
+msgstr "クイック返信バブルを表示する"
+
+msgid "Hide quick reply bubbles"
+msgstr "クイック返信バブルを非表示にする"
+
+msgid "Theme: Auto"
+msgstr "テーマ: 自動"
+
+msgid "Theme: Light"
+msgstr "テーマ: 光"
+
+msgid "Theme: Dark"
+msgstr "テーマ: ダーク"
+
+msgid "Enable desktop notifications"
+msgstr "デスクトップ通知を有効にする"
+
+msgid "Mute notification sound"
+msgstr "通知音をミュートする"
+
+msgid "Unmute notification sound"
+msgstr "通知音のミュートを解除する"
+
+msgid "Notification sound on"
+msgstr "通知音オン"
+
+msgid "Notification sound off"
+msgstr "通知音オフ"
+
+msgid "Export chats"
+msgstr "チャットをエクスポートする"
+
+msgid "Reminders"
+msgstr "リマインダー"
+
+msgid "Blocklist"
+msgstr "ブロックリスト"
+
+msgid "Back to WordPress dashboard"
+msgstr "WordPress ダッシュボードに戻る"
+
+msgid "Contact info"
+msgstr "連絡先情報"
+
+msgid "Unpin"
+msgstr "固定を解除する"
+
+msgid "Pin"
+msgstr "ピン"
+
+msgid "Mark as unread"
+msgstr "未読としてマークする"
+
+msgid "Unassign me"
+msgstr "私の割り当てを解除する"
+
+msgid "Assign to me"
+msgstr "私に割り当ててください"
+
+msgid "Create donation record"
+msgstr "寄付記録を作成する"
+
+msgid "Donations and certificates"
+msgstr "寄付と証明書"
+
+msgid "Export chat"
+msgstr "チャットをエクスポートする"
+
+msgid "Reopen chat"
+msgstr "チャットを再開する"
+
+msgid "Close chat"
+msgstr "チャットを閉じる"
+
+msgid "Assistant usage"
+msgstr "アシスタントの使用法"
+
+msgid "Contact memory"
+msgstr "接点メモリ"
+
+msgid "Remove from blocklist"
+msgstr "ブロックリストから削除"
+
+msgid "Add to blocklist (do not message)"
+msgstr "ブロックリストに追加(メッセージを送信しないでください)"
+
+msgid "Clear chat history"
+msgstr "チャット履歴をクリアする"
+
+msgid "Text (.md)"
+msgstr "テキスト (.md)"
+
+msgid "Last 7 days"
+msgstr "過去 7 日間"
+
+msgid "Last 30 days"
+msgstr "過去 30 日間"
+
+msgid "Last 90 days"
+msgstr "過去90日間"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "All chats"
+msgstr "すべてのチャット"
+
+msgid "Chats the assistant wrote in"
+msgstr "アシスタントが書き込んだチャット"
+
+msgid "Chats an agent wrote in"
+msgstr "エージェントが書き込んだチャット"
+
+msgid "Mask phones and emails"
+msgstr "電話やメールをマスクする"
+
+msgid "Include internal notes"
+msgstr "内部メモを含める"
+
+msgid "Download"
+msgstr "ダウンロード"
+
+msgid "Download started"
+msgstr "ダウンロードが開始されました"
+
+msgid "Last message within"
+msgstr "最後のメッセージ"
+
+msgid "Which chats?"
+msgstr "どのチャットですか?"
+
+msgid "Format"
+msgstr "フォーマット"
+
+msgid "Messages are downloaded with time and author (contact, assistant, agent, automatic); the receipt check result is included."
+msgstr "メッセージは時間と作成者 (連絡先、アシスタント、エージェント、自動) とともにダウンロードされます。領収書チェック結果が含まれます。"
+
+msgid "The newest 1000 chats are downloaded, groups excluded. Messages include time and author (contact, assistant, agent, automatic)."
+msgstr "最新の 1000 件のチャットがダウンロードされます (グループは除外されます)。メッセージには時刻と作成者 (連絡先、アシスタント、エージェント、自動) が含まれます。"
+
+msgid "CLEAR"
+msgstr "クリア"
+
+msgid "Keep receipts attached to donation records"
+msgstr "領収書は寄付記録に添付して保管してください"
+
+msgid "Also delete the contact memory"
+msgstr "連絡先メモリも削除します"
+
+msgid "Delete history permanently"
+msgstr "履歴を完全に削除する"
+
+msgid "{n} messages deleted"
+msgstr "{n}メッセージが削除されました"
+
+msgid "All messages and files in the {c} chat are permanently deleted from this panel. Messages on the contact's phone and on the connected WhatsApp phone are not deleted. This cannot be undone."
+msgstr "{c}チャット内のすべてのメッセージとファイルは、このパネルから完全に削除されます。連絡先の電話および接続されている WhatsApp 電話上のメッセージは削除されません。これを元に戻すことはできません。"
+
+msgid "The copy on the Evolution server will not be imported again; the assistant starts fresh in this chat. You may want to export the chat first."
+msgstr "Evolution サーバー上のコピーは再度インポートされません。アシスタントはこのチャットで新たにスタートします。最初にチャットをエクスポートすることもできます。"
+
+msgid "Type {w} to confirm"
+msgstr "{w}と入力して確認します"
+
+msgid "assistant"
+msgstr "アシスタント"
+
+msgid "summary"
+msgstr "概要"
+
+msgid "team"
+msgstr "チーム"
+
+msgid "Key (e.g. spouse's name)"
+msgstr "キー (配偶者の名前など)"
+
+msgid "Value"
+msgstr "値"
+
+msgid "Attach"
+msgstr "添付する"
+
+msgid "{n} items · about {t} tokens · the assistant reads them on every reply"
+msgstr "{n}アイテム ·{t}トークンについて · アシスタントは応答ごとにそれらを読み取ります"
+
+msgid "Contact memory is turned off in settings; items are not sent to the assistant."
+msgstr "連絡先メモリは設定でオフになっています。アイテムはアシスタントに送信されません。"
+
+msgid "Last summary: {s}"
+msgstr "最後の要約:{s}"
+
+msgid "queued"
+msgstr "列に並んだ"
+
+msgid "No items for this contact."
+msgstr "この連絡先には項目がありません。"
+
+msgid "Conversation summary"
+msgstr "会話の要約"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Deleted"
+msgstr "削除されました"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Summarize now"
+msgstr "今すぐ要約してください"
+
+msgid "Summary queued"
+msgstr "要約がキューに入れられました"
+
+msgid "Delete all"
+msgstr "すべて削除"
+
+msgid "Delete all memory items for {c}?"
+msgstr "{c}のメモリ項目をすべて削除しますか?"
+
+msgid "If the contact asks, the assistant deletes the items itself. When the chat has been quiet for {h} hours, the conversation is summarized and important details are written here with date and time."
+msgstr "連絡先が要求した場合、アシスタントはアイテム自体を削除します。{h}時間チャットが沈黙していると、会話が要約され、重要な詳細が日付と時刻とともにここに書き込まれます。"
+
+msgid "Loading…"
+msgstr "読み込み中..."
+
+msgid "Reason (e.g. the contact asked not to be messaged)"
+msgstr "理由 (例: 連絡先がメッセージを受信しないように求められた)"
+
+msgid "Add to blocklist"
+msgstr "ブロックリストに追加"
+
+msgid "Added to blocklist"
+msgstr "ブロックリストに追加されました"
+
+msgid "From now on no WhatsApp, email or SMS will be sent to {c}, and the assistant will not talk to them. Their messages still arrive in the panel."
+msgstr "今後、WhatsApp、電子メール、SMS は{c}に送信されなくなり、アシスタントはそれらと会話しなくなります。彼らのメッセージは今でもパネルに届きます。"
+
+msgid "Removed from blocklist"
+msgstr "ブロックリストから削除されました"
+
+msgid "Search phone, email or reason"
+msgstr "電話、メール、または理由を検索"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "The blocklist is empty."
+msgstr "ブロックリストは空です。"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "{n} contacts in total"
+msgstr "合計{n}コンタクト"
+
+msgid "Added manually"
+msgstr "手動で追加"
+
+msgid "No WhatsApp, email or SMS is sent to these contacts and the assistant does not talk to them. The assistant adds anyone who says \"don't message me\". Removing someone from the list turns everything back on."
+msgstr "WhatsApp、電子メール、SMS はこれらの連絡先に送信されず、アシスタントは連絡先に話しかけることはありません。アシスタントは「メッセージを送信しないでください」という人を追加します。リストから誰かを削除すると、すべてがオンに戻ります。"
+
+msgid "Active"
+msgstr "アクティブ"
+
+msgid "Stopped"
+msgstr "停止しました"
+
+msgid "Finished"
+msgstr "完了しました"
+
+msgid "{n} reminders"
+msgstr "{n}リマインダー"
+
+msgid "Reminders are turned off in the settings; due ones are not sent."
+msgstr "リマインダーは設定でオフになっています。期限のものが送られてこない。"
+
+msgid "No reminders. They show up here when a person asks the assistant something like \"remind me every month\"."
+msgstr "リマインダーはありません。人がアシスタントに「毎月リマインドして」などの質問をすると、ここに表示されます。"
+
+msgid "Next: {d}"
+msgstr "次へ:{d}"
+
+msgid "sent {n} times"
+msgstr "{n}回送信"
+
+msgid "Go to chat"
+msgstr "チャットに行く"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "Resume"
+msgstr "再開"
+
+msgid "When a person asks, the assistant shows a summary and sets it up after approval; when it is due, the assistant writes and sends the message. The person can stop it by writing \"stop the reminder\"."
+msgstr "誰かが質問すると、アシスタントは概要を表示し、承認後に設定します。期限が来ると、アシスタントがメッセージを書いて送信します。その人は「リマインダーを停止する」と書くことでそれを止めることができます。"
+
+msgid "Today's reply limit is reached; the chat is with the team."
+msgstr "本日の返信制限に達しました。チャットはチームとのものです。"
+
+msgid "Assistant replies today"
+msgstr "アシスタントが今日返信します"
+
+msgid "Daily limit reset"
+msgstr "1日あたりの制限のリセット"
+
+msgid "Reset daily limit"
+msgstr "1 日あたりの制限をリセットする"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "Input tokens"
+msgstr "入力トークン"
+
+msgid "Output tokens"
+msgstr "出力トークン"
+
+msgid "{n} requests"
+msgstr "{n}リクエスト"
+
+msgid "Daily reply limit per chat"
+msgstr "チャットごとの 1 日の返信制限"
+
+msgid "Applies to all chats (5-500). When reached, the person gets a \"we received your message\" reply and the chat is handed to the team."
+msgstr "すべてのチャット (5 ~ 500) に適用されます。連絡が届くと、その人は「メッセージを受け取りました」という返信を受け取り、チャットはチームに渡されます。"
+
+msgid "Saved"
+msgstr "保存されました"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Counts assistant replies, conversation summaries, reminders and receipt checks; test chat and benchmark are not counted. Cost at the provider's price (USD)."
+msgstr "アシスタントの返信、会話の要約、リマインダー、領収書チェックをカウントします。テストチャットとベンチマークはカウントされません。料金はプロバイダーの価格 (USD) です。"
+
+msgid "Scroll to bottom"
+msgstr "一番下までスクロール"
+
+msgid "Blocklisted: no messages are sent"
+msgstr "ブロックリストに登録: メッセージは送信されません"
+
+msgid "tap for contact info"
+msgstr "タップして連絡先情報を表示します"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Donation record"
+msgstr "寄付実績"
+
+msgid "Pending donation"
+msgstr "保留中の寄付"
+
+msgid "Assign"
+msgstr "割り当てる"
+
+msgid "Chat closed"
+msgstr "チャットは終了しました"
+
+msgid "{n} (me)"
+msgstr "{n}(私)"
+
+msgid "Remove assignment"
+msgstr "割り当てを削除する"
+
+msgid "Older messages could not be fetched from the WhatsApp line: {e}"
+msgstr "WhatsApp 行から古いメッセージを取得できませんでした:{e}"
+
+msgid "Messages in this chat are visible only to authorized agents. Customers never see internal notes."
+msgstr "このチャットのメッセージは、承認されたエージェントのみに表示されます。顧客が内部メモを見ることはありません。"
+
+msgid "Certificate"
+msgstr "証明書"
+
+msgid "Record"
+msgstr "記録"
+
+msgid "AI suggestion"
+msgstr "AIによる提案"
+
+msgid "AI does not read this message."
+msgstr "AIはこのメッセージを読みません。"
+
+msgid "The contact deleted this message"
+msgstr "連絡先がこのメッセージを削除しました"
+
+msgid "Deleted from the phone"
+msgstr "携帯電話から削除されました"
+
+msgid "Internal note · {n}"
+msgstr "内部メモ ·{n}"
+
+msgid "You"
+msgstr "あなた"
+
+msgid "Message menu"
+msgstr "メッセージメニュー"
+
+msgid "Retry"
+msgstr "再試行"
+
+msgid "This message was deleted"
+msgstr "このメッセージは削除されました"
+
+msgid "Image could not be loaded"
+msgstr "画像を読み込めませんでした"
+
+msgid "Location"
+msgstr "場所"
+
+msgid "Send message"
+msgstr "メッセージを送信する"
+
+msgid "This message type can't be shown here. Check the phone."
+msgstr "このメッセージ タイプはここでは表示できません。電話を確認してください。"
+
+msgid "Play"
+msgstr "遊ぶ"
+
+msgid "Audio could not be played"
+msgstr "音声を再生できませんでした"
+
+msgid "The quoted message is further up; load older messages."
+msgstr "引用されたメッセージはさらに上にあります。古いメッセージをロードします。"
+
+msgid "Other emoji"
+msgstr "その他の絵文字"
+
+msgid "Reply"
+msgstr "返信"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Resend"
+msgstr "再送信"
+
+msgid "Match as receipt"
+msgstr "領収書と一致する"
+
+msgid "Delete note"
+msgstr "メモを削除する"
+
+msgid "Copied"
+msgstr "コピーされました"
+
+msgid "Loading preview…"
+msgstr "プレビューを読み込み中..."
+
+msgid "Remove preview"
+msgstr "プレビューを削除"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Emoji"
+msgstr "絵文字"
+
+msgid "Record voice message"
+msgstr "音声メッセージを録音する"
+
+msgid "Cancel note"
+msgstr "メモをキャンセルする"
+
+msgid "Type a message — / for quick replies"
+msgstr "メッセージを入力してください — / すぐに返信する場合"
+
+msgid "Write a note only agents will see"
+msgstr "エージェントのみが閲覧できるメモを書く"
+
+msgid "Video"
+msgstr "ビデオ"
+
+msgid "Voice message"
+msgstr "音声メッセージ"
+
+msgid "Cancel reply"
+msgstr "返信をキャンセル"
+
+msgid "Photos & videos"
+msgstr "写真とビデオ"
+
+msgid "Quick reply"
+msgstr "素早い返信"
+
+msgid "This contact is blocklisted; no messages are sent."
+msgstr "この連絡先はブロックリストに登録されています。メッセージは送信されません。"
+
+msgid "Preparing a suggestion…"
+msgstr "提案を準備しています..."
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Add a request: shorter, mention the price…"
+msgstr "リクエストを追加: 短くして、価格を明記してください..."
+
+msgid "Request for the suggestion"
+msgstr "提案の依頼"
+
+msgid "Suggested reply"
+msgstr "提案された返信"
+
+msgid "Another suggestion"
+msgstr "別の提案"
+
+msgid "Reload"
+msgstr "リロード"
+
+msgid "Assistant on"
+msgstr "アシスタントがオン"
+
+msgid "Assistant waiting"
+msgstr "アシスタントが待機中"
+
+msgid "Assistant off"
+msgstr "アシスタントがオフ"
+
+msgid "The assistant replies to this chat automatically. Click to turn it off."
+msgstr "アシスタントはこのチャットに自動的に返信します。クリックしてオフにします。"
+
+msgid "An agent wrote here, so the assistant is quiet for a while. Click to turn it on now."
+msgstr "エージェントがここに書いたので、アシスタントはしばらく沈黙します。クリックして今すぐオンにします。"
+
+msgid "The assistant is off in this chat. Click to turn it on."
+msgstr "このチャットではアシスタントはオフになっています。クリックしてオンにします。"
+
+msgid "Assistant turned on"
+msgstr "アシスタントがオンになりました"
+
+msgid "Assistant turned off"
+msgstr "アシスタントがオフになりました"
+
+msgid "Drop the file to send"
+msgstr "送信するファイルをドロップします"
+
+msgid "Add a caption…"
+msgstr "キャプションを追加..."
+
+msgid "Caption"
+msgstr "キャプション"
+
+msgid "Send {n} files"
+msgstr "{n}ファイルを送信する"
+
+msgid "This browser does not support audio recording."
+msgstr "このブラウザは音声録音をサポートしていません。"
+
+msgid "Could not access the microphone."
+msgstr "マイクにアクセスできませんでした。"
+
+msgid "Delete recording"
+msgstr "録音の削除"
+
+msgid "Recording…"
+msgstr "録音中..."
+
+msgid "No recently used emoji."
+msgstr "最近使用した絵文字はありません。"
+
+msgid "Recently used"
+msgstr "最近使用した"
+
+msgid "Add certificate message"
+msgstr "証明書メッセージを追加"
+
+msgid "Add link only"
+msgstr "リンクのみ追加"
+
+msgid "No matching quick reply."
+msgstr "一致するクイック返信はありません。"
+
+msgid "No quick replies yet. Add one with \"Edit\"."
+msgstr "クイック返信はまだありません。 「編集」で追加します。"
+
+msgid "Search quick replies"
+msgstr "クイック返信を検索する"
+
+msgid "Used {n} times"
+msgstr "{n}の使用回数"
+
+msgid "No quick replies found."
+msgstr "クイック返信は見つかりませんでした。"
+
+msgid "e.g. Donation info"
+msgstr "例:寄付に関する情報"
+
+msgid "example"
+msgstr "例"
+
+msgid "Message text"
+msgstr "メッセージテキスト"
+
+msgid "Insert variable:"
+msgstr "変数を挿入します:"
+
+msgid "Back to list"
+msgstr "リストに戻る"
+
+msgid "Edit quick reply"
+msgstr "クイック返信を編集する"
+
+msgid "New quick reply"
+msgstr "新しいクイック返信"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Shortcut"
+msgstr "ショートカット"
+
+msgid "Category"
+msgstr "カテゴリ"
+
+msgid "Type / and the shortcut in the message box to bring up this reply. Variables are filled with the contact's details when sending."
+msgstr "この返信を表示するには、メッセージ ボックスに / とショートカットを入力します。変数には、送信時に連絡先の詳細が入力されます。"
+
+msgid "Delete this quick reply?"
+msgstr "このクイック返信を削除しますか?"
+
+msgid "+1 555 000 0000"
+msgstr "+1 555 000 0000"
+
+msgid "Optional"
+msgstr "オプション"
+
+msgid "Start chat"
+msgstr "チャットを開始する"
+
+msgid "Checking…"
+msgstr "確認中..."
+
+msgid "Invalid number"
+msgstr "無効な番号です"
+
+msgid "{p} uses WhatsApp"
+msgstr "{p}は WhatsApp を使用します"
+
+msgid "{p} is not on WhatsApp"
+msgstr "{p}は WhatsApp にありません"
+
+msgid "{p} — WhatsApp could not be checked, you can still try."
+msgstr "{p}— WhatsApp をチェックできませんでしたが、まだ試すことができます。"
+
+msgid "A chat with this contact already exists: {n}"
+msgstr "この連絡先とのチャットはすでに存在します:{n}"
+
+msgid "Phone number"
+msgstr "電話番号"
+
+msgid "Contact name"
+msgstr "連絡先名"
+
+msgid "From which line?"
+msgstr "どの線からですか?"
+
+msgid "You can type the number with a leading 0, with +90 or with any country code."
+msgstr "先頭に 0、+90、または任意の国コードを付けて番号を入力できます。"
+
+msgid "Note saved"
+msgstr "メモが保存されました"
+
+msgid "Notes about this contact, visible only to agents"
+msgstr "この連絡先に関するメモ。エージェントのみに表示されます"
+
+msgid "Labels are defined on the Settings page."
+msgstr "ラベルは「設定」ページで定義します。"
+
+msgid "— Unassigned —"
+msgstr "— 未割り当て —"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Insert into message"
+msgstr "メッセージに挿入"
+
+msgid "WhatsApp name: {n}"
+msgstr "WhatsApp 名:{n}"
+
+msgid "Copy number"
+msgstr "コピー番号"
+
+msgid "Labels"
+msgstr "ラベル"
+
+msgid "Assigned agent"
+msgstr "割り当てられたエージェント"
+
+msgid "Contact notes"
+msgstr "連絡先メモ"
+
+msgid "Create certificate"
+msgstr "証明書の作成"
+
+msgid "Pin chat"
+msgstr "チャットをピン留めする"
+
+msgid "First contact: {d}"
+msgstr "最初の連絡先:{d}"
+
+msgid "AI pre-check. The team makes the final check."
+msgstr "AIによる事前チェック。チームが最終チェックを行います。"
+
+msgid "Receipt · {r}"
+msgstr "領収書・{r}"
+
+msgid "No open donation type. Open one under Donations › Donation types."
+msgstr "オープンな寄付タイプはありません。 [寄付] › [寄付の種類] の下にある 1 つを開きます。"
+
+msgid "Amount"
+msgstr "金額"
+
+msgid "Visible in the panel only"
+msgstr "パネルにのみ表示されます"
+
+msgid "One name per line"
+msgstr "1 行に 1 つの名前"
+
+msgid "The donor approved the proxy text"
+msgstr "寄付者が委任状を承認しました"
+
+msgid "On behalf of"
+msgstr "を代表して"
+
+msgid "One name per unit. Empty ones count as the donor."
+msgstr "ユニットごとに 1 つの名前。空のものはドナーとしてカウントされます。"
+
+msgid "Send the person a WhatsApp message"
+msgstr "その人に WhatsApp メッセージを送信する"
+
+msgid "Awaiting payment"
+msgstr "支払い待ち"
+
+msgid "Paid"
+msgstr "有料"
+
+msgid "Also create and send a certificate"
+msgstr "証明書も作成して送信します"
+
+msgid "Certificate template"
+msgstr "証明書テンプレート"
+
+msgid "Full name and quantity are taken from the donation."
+msgstr "フルネームと数量は寄付金から取得されます。"
+
+msgid "Option"
+msgstr "オプション"
+
+msgid "Quantity"
+msgstr "数量"
+
+msgid "Total: {a}"
+msgstr "合計:{a}"
+
+msgid "This option has no price."
+msgstr "このオプションには価格はありません。"
+
+msgid "Donation saved: {d}"
+msgstr "寄付が保存されました:{d}"
+
+msgid "Donation record from receipt"
+msgstr "レシートからの寄付記録"
+
+msgid "Donation type"
+msgstr "寄付の種類"
+
+msgid "Payment"
+msgstr "お支払い"
+
+msgid "Payment method"
+msgstr "お支払い方法"
+
+msgid "Receipt / transaction no"
+msgstr "領収書/取引番号"
+
+msgid "Donor"
+msgstr "ドナー"
+
+msgid "Full name"
+msgstr "フルネーム"
+
+msgid "Variables such as {donation}, {amount} and {bank} are filled in when sending."
+msgstr "{donation}、{amount}、{bank}などの変数は送信時に入力されます。"
+
+msgid "No active certificate template."
+msgstr "アクティブな証明書テンプレートがありません。"
+
+msgid "No event"
+msgstr "イベントなし"
+
+msgid "Send to the person on WhatsApp"
+msgstr "WhatsApp 上の相手に送信する"
+
+msgid "Create"
+msgstr "作成"
+
+msgid "Full name is required."
+msgstr "フルネームは必須です。"
+
+msgid "Certificate created: {n}"
+msgstr "作成された証明書:{n}"
+
+msgid "Template"
+msgstr "テンプレート"
+
+msgid "Event"
+msgstr "イベント"
+
+msgid "The message text comes from the WhatsApp template in Flux Certificates."
+msgstr "メッセージ テキストは、Flux 証明書の WhatsApp テンプレートから取得されます。"
+
+msgid "Preparing certificate…"
+msgstr "証明書を準備しています..."
+
+msgid "Mark the pending donation as \"Paid\""
+msgstr "保留中の寄付を「支払い済み」としてマークします"
+
+msgid "Send the person a confirmation message"
+msgstr "相手に確認メッセージを送信する"
+
+msgid "Search other records: name, phone, certificate no"
+msgstr "他の記録を検索: 名前、電話番号、証明書番号"
+
+msgid "Match"
+msgstr "一致"
+
+msgid "{n} receipts"
+msgstr "{n}の領収書"
+
+msgid "Pending donations"
+msgstr "保留中の寄付"
+
+msgid "This person's donations"
+msgstr "この人の寄付"
+
+msgid "This person's certificates"
+msgstr "この人の証明書"
+
+msgid "No records for this person. Search below or create a new donation record."
+msgstr "この人の記録はありません。以下で検索するか、新しい寄付記録を作成してください。"
+
+msgid "Certificates"
+msgstr "証明書"
+
+msgid "Receipt added to the record"
+msgstr "領収書が記録に追加されました"
+
+msgid "New donation record"
+msgstr "新しい寄付記録"
+
+msgid "Match receipt with a record"
+msgstr "レシートとレコードを照合する"
+
+msgid "Search by name, phone, certificate no"
+msgstr "名前、電話番号、証明書番号で検索"
+
+msgid "Pending"
+msgstr "保留中"
+
+msgid "Completed"
+msgstr "完了"
+
+msgid "No records yet."
+msgstr "まだ記録がありません。"
+
+msgid "{n} pcs"
+msgstr "{n}個"
+
+msgid "Receipt"
+msgstr "領収書"
+
+msgid "This person has no donations."
+msgstr "この人は寄付をしていません。"
+
+msgid "This person has no certificates."
+msgstr "この人は証明書を持っていません。"
+
+msgid "{n}: donations and certificates"
+msgstr "{n}: 寄付と証明書"
+
+msgid "Open chat"
+msgstr "オープンチャット"
+
+msgid "Open certificate"
+msgstr "証明書を開く"
+
+msgid "Mark as paid"
+msgstr "支払い済みとしてマークする"
+
+msgid "Donation confirmed"
+msgstr "寄付を確認しました"
+
+msgid "Open donation record"
+msgstr "寄付記録を開く"
+
+msgid "Open in certificate list"
+msgstr "証明書リストで開く"
+
+msgid "Edit quick replies"
+msgstr "クイック返信を編集する"
+
+msgid "Notifications enabled"
+msgstr "通知が有効になっています"
+
+msgid "Notification permission denied"
+msgstr "通知の許可が拒否されました"
+
+msgid "Session expired. Please reload the page."
+msgstr "セッションの有効期限が切れました。ページをリロードしてください。"
+
+msgid "Can't reach the server, retrying…"
+msgstr "サーバーにアクセスできないため、再試行しています..."
+
+msgid "Unread"
+msgstr "未読"
+
+msgid "Assigned to me"
+msgstr "私に割り当てられました"
+
+msgid "Unassigned"
+msgstr "未割り当て"
+
+msgid "Organization"
+msgstr "組織"
+
+msgid "Invalid address."
+msgstr "無効なアドレスです。"
+
+msgid "donated for"
+msgstr "のために寄付されました"
+
+msgid "No new messages to summarize."
+msgstr "要約する新しいメッセージはありません。"
+
+msgid "The AI summary could not be read."
+msgstr "AI サマリを読み取れませんでした。"
+
+msgid "%1$d incoming messages summarized, %2$d items written."
+msgstr "%1$d受信メッセージが要約され、%2$d項目が書き込まれます。"
+
+msgid "Key and value are required."
+msgstr "キーと値は必須です。"
+
+msgid "AI Chat"
+msgstr "AIチャット"
+
+msgid "Team (%s)"
+msgstr "チーム (%s)"
+
+msgid "Team (phone)"
+msgstr "チーム(電話)"
+
+msgid "Free"
+msgstr "無料"
+
+msgid "Provider"
+msgstr "プロバイダー"
+
+msgid "min"
+msgstr "分"
+
+msgid "max"
+msgstr "最大"
+
+msgid "Input price $"
+msgstr "価格を入力 $"
+
+msgid "Clear"
+msgstr "クリア"
+
+msgid "Price: 1M tokens input / output"
+msgstr "価格: 100万トークンの入出力"
+
+msgid "Choose a model"
+msgstr "モデルを選択してください"
+
+msgid "Search {n} models…"
+msgstr "{n}モデルを検索..."
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "{n} context"
+msgstr "{n}コンテキスト"
+
+msgid "tools"
+msgstr "ツール"
+
+msgid "vision"
+msgstr "ビジョン"
+
+msgid "{n} more models; narrow your search."
+msgstr "{n}より多くのモデル;検索を絞り込みます。"
+
+msgid "Use: {id}"
+msgstr "使用:{id}"
+
+msgid "Not in the list, ID entered manually"
+msgstr "リストにありません。ID は手動で入力されました"
+
+msgid "Could not load the model list:"
+msgstr "モデルリストをロードできませんでした:"
+
+msgid "No matching model."
+msgstr "一致するモデルがありません。"
+
+msgid "Loading models…"
+msgstr "モデルをロード中..."
+
+msgid "AI pre-check"
+msgstr "AI事前チェック"
+
+msgid "AI approval"
+msgstr "AI承認"
+
+msgid "Receipt pre-check (AI): "
+msgstr "受領前チェック(AI):"
+
+msgid "Awaiting staff approval"
+msgstr "スタッフの承認待ち"
+
+msgid "Receipt received, final check by the team"
+msgstr "領収書を受け取り、チームによる最終チェック"
+
+msgid "File could not be read."
+msgstr "ファイルを読み取れませんでした。"
+
+msgid "Not a photo or PDF."
+msgstr "写真やPDFではありません。"
+
+msgid "The model could not read the file."
+msgstr "モデルはファイルを読み取れませんでした。"
+
+msgid "Amount %1$s (expected %2$s)"
+msgstr "金額%1$s(予想%2$s)"
+
+msgid "Recipient"
+msgstr "受信者"
+
+msgid "Sender"
+msgstr "送信者"
+
+msgid "Receipt no"
+msgstr "領収書番号"
+
+msgid "Matches the donation"
+msgstr "寄付金と同額"
+
+msgid "Does not match the donation"
+msgstr "寄付金と一致しません"
+
+msgid "Previously uploaded receipt"
+msgstr "以前にアップロードした領収書"
+
+msgid "Receipt, no donation to match"
+msgstr "領収書、それに相当する寄付はありません"
+
+msgid "Not a receipt"
+msgstr "領収書ではありません"
+
+msgid "Could not read"
+msgstr "読めませんでした"
+
+msgid "Not checked"
+msgstr "未チェック"
+
+msgid "We received your receipt, thank you 🌱 We'll get back to you about your payment as soon as possible."
+msgstr "領収書を受け取りました、ありがとうございます 🌱 お支払いについてはできるだけ早くご連絡いたします。"
+
+msgid "We received your receipt, thank you 🌱 Your donation is confirmed."
+msgstr "領収書を受け取りました、ありがとうございます 🌱 寄付が確認されました。"
+
+msgid "We had already received this receipt, thank you 🌱 We'll get back to you about your payment as soon as possible."
+msgstr "この領収書はすでに受領しております。ありがとうございます 🌱 お支払いについてはできるだけ早くご連絡いたします。"
+
+msgid "This receipt seems to have been uploaded to our system before. The same receipt cannot be used for a second donation. If you made a different payment, please send that receipt; our team will also check."
+msgstr "この領収書は以前に当社のシステムにアップロードされたものと思われます。同じ領収書を二度目の寄付に使用することはできません。別の支払いをした場合は、その領収書をお送りください。私たちのチームもチェックします。"
+
+msgid "We received your receipt. The amount on it (%1$s) does not seem to match your donation amount (%2$s). Could you check it? If you made a different payment, you can write here; our team will also take a look."
+msgstr "領収書を受け取りました。記載されている金額 (%1$s) が寄付金額 (%2$s) と一致していないようです。確認してもらえますか?別の支払いをした場合は、ここに記入できます。私たちのチームも検討します。"
+
+msgid "We received your receipt, but the recipient on it does not seem to be our association. Donations are only made to our account in the name of \"%s\". Could you check? Our team will also take a look."
+msgstr "領収書を受け取りましたが、その受取人は当協会ではないようです。寄付は「%s」という名前のアカウントにのみ行われます。確認してもらえますか?私たちのチームも検討します。"
+
+msgid "We received your receipt, but the recipient on it does not seem to match our account. Could you check? Our team will also take a look."
+msgstr "領収書を受け取りましたが、領収書に記載されている受取人が私たちのアカウントと一致していないようです。確認してもらえますか?私たちのチームも検討します。"
+
+msgid "The file you sent does not look like a payment receipt. If you have paid, you can send the receipt or a screenshot of the payment screen here."
+msgstr "送信されたファイルは支払い領収書のようには見えません。支払いを行った場合は、領収書または支払い画面のスクリーンショットをここに送信できます。"
+
+msgid "Every day"
+msgstr "毎日"
+
+msgid "Every week"
+msgstr "毎週"
+
+msgid "Every month"
+msgstr "毎月"
+
+msgid "Every year"
+msgstr "毎年"
+
+msgid "Once"
+msgstr "一度"
+
+msgid "Every day at %s"
+msgstr "%sで毎日"
+
+msgid "Every week on %1$s at %2$s"
+msgstr "毎週%1$s、%2$s"
+
+msgid "Every month on day %1$d at %2$s"
+msgstr "毎月%1$dの%2$sの日"
+
+msgid "Every year on %1$s at %2$s"
+msgstr "毎年%1$s、%2$sで開催"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s:%2$s"
+
+msgid "First: %s"
+msgstr "最初:%s"
+
+msgid "The person stopped the reminder: %s"
+msgstr "リマインダーを停止した人:%s"
+
+msgid "The assistant set a reminder: %1$s (%2$s)"
+msgstr "アシスタントがリマインダーを設定しました:%1$s(%2$s)"
+
+msgid "Did not run on time, skipped."
+msgstr "時間通りに走れず、飛ばされました。"
+
+msgid "No reminder or chat."
+msgstr "リマインダーやチャットはありません。"
+
+msgid "The person is on the blocklist."
+msgstr "その人はブロックリストに載っています。"
+
+msgid "reminder time"
+msgstr "リマインダー時間"
+
+msgid "The message could not be sent."
+msgstr "メッセージを送信できませんでした。"
+
+msgid "Reminder sent: %s"
+msgstr "リマインダーの送信:%s"
+
+msgid "The reminder could not be updated."
+msgstr "リマインダーを更新できませんでした。"
+
+msgid "Staff daily report"
+msgstr "スタッフ日報"
+
+msgid "Thanks for your work today, every sapling is a hope 🌱"
+msgstr "今日もお疲れ様です、どの苗木も希望です🌱"
+
+msgid "Let's plant even more saplings together tomorrow 💪"
+msgstr "明日はもっとたくさんの苗を一緒に植えましょう💪"
+
+msgid "Small steps grow great forests 🌳"
+msgstr "小さな一歩が大きな森を育む🌳"
+
+msgid "Manager weekly overall report"
+msgstr "マネージャーの週次全体レポート"
+
+msgid "This month"
+msgstr "今月"
+
+msgid "Donation report"
+msgstr "寄付レポート"
+
+msgid "Hello %s,"
+msgstr "%sさん、こんにちは。"
+
+msgid "✅ Paid: %1$d donations · %2$s (%3$d units)"
+msgstr "✅ 有料:%1$d寄付 ·%2$s(%3$dユニット)"
+
+msgid "⏳ Awaiting payment: %1$d · %2$s"
+msgstr "⏳ 支払い待ち:%1$d·%2$s"
+
+msgid "❌ Cancelled: %d"
+msgstr "❌ キャンセル:%d"
+
+msgid "• %1$s: %2$d paid (%3$s), %4$d pending"
+msgstr "•%1$s:%2$d支払い済み (%3$s)、%4$d保留中"
+
+msgid "Staff"
+msgstr "スタッフ"
+
+msgid "No donations linked to you in this period."
+msgstr "この期間中、あなたにリンクされた寄付はありません。"
+
+msgid "📅 This month: %1$d donations · %2$s"
+msgstr "📅 今月:%1$d寄付 ·%2$s"
+
+msgid "WhatsApp reports"
+msgstr "WhatsApp レポート"
+
+msgid "Reports"
+msgstr "レポート"
+
+msgid "New report"
+msgstr "新しいレポート"
+
+msgid "Your profile has no WhatsApp number (Users › Profile)."
+msgstr "あなたのプロフィールには WhatsApp 番号がありません (ユーザー › プロフィール)。"
+
+msgid "Scheduled donation reports for staff and managers; a short motivational line can be added at the end."
+msgstr "スタッフとマネージャー向けの定期的な寄付レポート。最後に短い動機付けの行を追加できます。"
+
+msgid "Saved."
+msgstr "保存されました。"
+
+msgid "%d messages sent."
+msgstr "%dメッセージが送信されました。"
+
+msgid "Reports need Flux Roles 1.1.0 and Flux Donations."
+msgstr "レポートには Flux ロール 1.1.0 と Flux Donations が必要です。"
+
+msgid "Report name"
+msgstr "レポート名"
+
+msgid "To"
+msgstr "に"
+
+msgid "Everyone who can receive reports"
+msgstr "レポートを受け取れる方全員"
+
+msgid "Those who can see the overall report (managers)"
+msgstr "全体レポートをご覧いただける方(管理者)"
+
+msgid "Selected people"
+msgstr "選ばれた人々"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "The person's own donations"
+msgstr "本人の寄付"
+
+msgid "Overall totals + per staff"
+msgstr "全体の合計 + スタッフごと"
+
+msgid "Period"
+msgstr "期間"
+
+msgid "Frequency"
+msgstr "周波数"
+
+msgid "Day of week"
+msgstr "曜日"
+
+msgid "Day of month"
+msgstr "月の日"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "no number"
+msgstr "番号なし"
+
+msgid "Motivational lines (one per line; one is added at random to each report)"
+msgstr "動機付けの行 (1 行に 1 つ、各レポートにランダムに 1 つ追加されます)"
+
+msgid "%d recipients (with a registered number and permission)."
+msgstr "%d受信者 (登録番号と許可あり)。"
+
+msgid "Last sent: %s."
+msgstr "最終送信日:%s。"
+
+msgid "Preview (for you)"
+msgstr "プレビュー (あなた向け)"
+
+msgid "Send me a test"
+msgstr "テストを送ってください"
+
+msgid "Send the report to all recipients now?"
+msgstr "今すぐすべての受信者にレポートを送信しますか?"
+
+msgid "Send to everyone now"
+msgstr "今すぐ全員に送信"
+
+msgid "Delete this report?"
+msgstr "このレポートを削除しますか?"
+
+msgid "+ New report"
+msgstr "+ 新しいレポート"
+
+msgid "The recipient's number comes from Users › Profile › WhatsApp number; permissions from Users › Roles and access (receive reports, view overall report, manage reports). Reports go out at the chosen time; without a server scheduler they are sent on the next site visit or chat panel use."
+msgstr "受信者の番号は、ユーザー › プロフィール › WhatsApp 番号から取得されます。ユーザーからの権限 › 役割とアクセス (レポートの受信、レポート全体の表示、レポートの管理)。レポートは選択した時間に送信されます。サーバー スケジューラを使用しないと、次回のサイト訪問時またはチャット パネルの使用時に送信されます。"
+
+msgid "Invalid phone number."
+msgstr "電話番号が無効です。"
+
+msgid "First add a WhatsApp connection under Settings › Connections."
+msgstr "まず、[設定] › [接続] で WhatsApp 接続を追加します。"
+
+msgid "%1$s assigned the chat to %2$s"
+msgstr "%1$sがチャットを%2$sに割り当てました"
+
+msgid "%s removed the chat assignment"
+msgstr "%sがチャット割り当てを削除しました"
+
+msgid "%s closed the chat"
+msgstr "%sがチャットを閉じました"
+
+msgid "%s reopened the chat"
+msgstr "%sがチャットを再開しました"
+
+msgid "File is too large (max %s)."
+msgstr "ファイルが大きすぎます (最大%s)。"
+
+msgid "This file type cannot be sent."
+msgstr "この種類のファイルは送信できません。"
+
+msgid "File could not be uploaded."
+msgstr "ファイルをアップロードできませんでした。"
+
+msgid "This message cannot be resent."
+msgstr "このメッセージは再送信できません。"
+
+msgid "Can't react to this message."
+msgstr "このメッセージには反応できません。"
+
+msgid "You can only delete your own notes."
+msgstr "削除できるのは自分のメモのみです。"
+
+msgid "Reply text cannot be empty."
+msgstr "返信テキストを空にすることはできません。"
+
+msgid "Connection not found. Save the settings first."
+msgstr "接続が見つかりません。まず設定を保存します。"
+
+msgid "The message was only image code; it was not sent."
+msgstr "メッセージは画像コードのみでした。送信されませんでした。"
+
+msgid "This contact is blocklisted; no messages are sent. Remove them from the blocklist to write again."
+msgstr "この連絡先はブロックリストに登録されています。メッセージは送信されません。再度書き込むには、ブロックリストから削除してください。"
+
+msgid "Message could not be saved."
+msgstr "メッセージを保存できませんでした。"
+
+msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API (version %s) could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
+msgstr "この連絡先は非表示の WhatsApp 番号 (@lid) から書き込みを行っており、Evolution API (バージョン%s) はこのアドレスに送信できませんでした。 Evolution API サーバーを 2.3 以降に更新します。連絡先の実番号が到着すると、プラグインはそこに送信します。"
+
+msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
+msgstr "この連絡先は非表示の WhatsApp 番号 (@lid) から書き込んでいるため、Evolution API はこのアドレスに送信できませんでした。 Evolution API サーバーを 2.3 以降に更新します。連絡先の実番号が到着すると、プラグインはそこに送信します。"
+
+msgid "No WhatsApp connection."
+msgstr "WhatsApp 接続がありません。"
+
+msgid "Connected ✓"
+msgstr "接続済み ✓"
+
+msgid "Not connected (state: %s). Connect with QR."
+msgstr "接続されていません (状態:%s)。 QRで接続します。"
+
+msgid "Webhook points to this site ✓"
+msgstr "Webhook はこのサイトを指します ✓"
+
+msgid "Evolution API version: %s"
+msgstr "Evolution API バージョン:%s"
+
+msgid "(old: replies to hidden-number (@lid) contacts may fail, update to 2.3 or later)"
+msgstr "(旧: 非表示の番号 (@lid) 連絡先への返信が失敗する場合がある。2.3 以降に更新してください)"
+
+msgid "The webhook is not pointed at this site. Press \"Set up webhook\"."
+msgstr "Webhook はこのサイトを指していません。 「Webhookを設定する」を押します。"
+
+msgid "Webhook set up ✓ Incoming messages will now arrive here."
+msgstr "Webhook の設定 ✓ 受信メッセージがここに到着します。"
+
+msgid "Importing recent chats, this may take a while…"
+msgstr "最近のチャットをインポートしています。これにはしばらく時間がかかる場合があります..."
+
+msgid "Messages stored in Evolution: %s"
+msgstr "Evolution に保存されたメッセージ:%s"
+
+msgid "Evolution does not store messages, so older messages cannot be loaded. On the Evolution server set DATABASE_SAVE_DATA_NEW_MESSAGE and DATABASE_SAVE_DATA_HISTORIC to true; for older conversations, keep \"Sync full history\" on in the instance settings when you reconnect the line with QR."
+msgstr "Evolution はメッセージを保存しないため、古いメッセージをロードすることはできません。 Evolution サーバーで、DATABASE_SAVE_DATA_NEW_MESSAGE と DATABASE_SAVE_DATA_HISTORIC を true に設定します。古い会話の場合は、QR で回線を再接続するときにインスタンス設定で [全履歴を同期] をオンのままにします。"
+
+msgid "%1$s chats, %2$s messages imported ✓"
+msgstr "%1$sチャット、%2$sメッセージのインポート ✓"
+
+msgid "Scan this code via WhatsApp › Linked devices › Link a device."
+msgstr "WhatsApp › リンクされたデバイス › デバイスをリンクしてこのコードをスキャンします。"
+
+msgid "Pairing code:"
+msgstr "ペアリングコード:"
+
+msgid "This line is already connected ✓"
+msgstr "この回線はすでに接続されています ✓"
+
+msgid "Save the settings first."
+msgstr "まず設定を保存します。"
+
+msgid "Error:"
+msgstr "エラー:"
+
+msgid "Delete this connection? Chat history is kept."
+msgstr "この接続を削除しますか?チャット履歴は保存されます。"
+
+msgid "Asking the AI…"
+msgstr "AIに聞いてみると..."
+
+msgid "Working ✓ (%2$s ms): %1$s"
+msgstr "動作中 ✓ (%2$sミリ秒):%1$s"
+
+msgid "Save the key and model first."
+msgstr "まずキーとモデルを保存します。"
+
+msgid "Connections"
+msgstr "接続"
+
+msgid "Auto replies"
+msgstr "自動返信"
+
+msgid "AI and assistant"
+msgstr "AIとアシスタント"
+
+msgid "System check"
+msgstr "システムチェック"
+
+msgid "Connect your WhatsApp line, manage auto replies and labels."
+msgstr "WhatsApp 回線に接続し、自動返信とラベルを管理します。"
+
+msgid "Open chats"
+msgstr "オープンチャット"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "Connections and settings the call center needs. Saved status is shown; use the \"test\" buttons on each tab for a live check. The same checks also appear with the other plugins on the theme's system-check screen."
+msgstr "コールセンターに必要な接続と設定。保存されたステータスが表示されます。ライブチェックには各タブの「テスト」ボタンを使用してください。テーマのシステムチェック画面では、他のプラグインにも同じチェックが表示されます。"
+
+msgid "WhatsApp lines"
+msgstr "WhatsApp ライン"
+
+msgid "Messages are sent and received through Evolution API. WhatsApp connections are managed in Flux Mail; choose which one to use here. The URL and API key stay there, so you do not need to update them here when they change."
+msgstr "メッセージはEvolution APIを通じて送受信されます。 WhatsApp 接続は Flux Mail で管理されます。ここでどれを使用するかを選択します。 URL と API キーはそこに残るため、変更されたときにここで更新する必要はありません。"
+
+msgid "Communication › Connections"
+msgstr "コミュニケーション › 接続"
+
+msgid "Messages are sent and received via Evolution API. If an Evolution provider is set up in Flux Certificates, you can pick the same connection; the URL and API key stay there."
+msgstr "メッセージはEvolution APIを介して送受信されます。 Evolution プロバイダーが Flux 証明書で設定されている場合は、同じ接続を選択できます。 URL と API キーはそこに残ります。"
+
+msgid "Add line"
+msgstr "行を追加"
+
+msgid "Setup steps"
+msgstr "セットアップ手順"
+
+msgid "Add the line and save."
+msgstr "行を追加して保存します。"
+
+msgid "Use \"Test connection\" to see that Evolution is reachable. If the line is not linked, choose \"Connect with QR\" and scan it from the phone."
+msgstr "「テスト接続」を使用して、Evolution に到達できることを確認します。回線がリンクされていない場合は、「QRで接続」を選択し、携帯電話からスキャンしてください。"
+
+msgid "Press \"Set up webhook\". Incoming messages, and messages sent from the phone and from Flux Certificates, then appear here live."
+msgstr "「Webhookを設定する」を押します。受信メッセージ、電話や Flux 証明書から送信されたメッセージは、ここにライブで表示されます。"
+
+msgid "Optionally bring in past messages with \"Import recent chats\"."
+msgstr "必要に応じて、「最近のチャットをインポート」を使用して過去のメッセージを取り込みます。"
+
+msgid "connected"
+msgstr "接続されています"
+
+msgid "connecting"
+msgstr "接続する"
+
+msgid "not connected"
+msgstr "接続されていません"
+
+msgid "not on server"
+msgstr "サーバー上にない"
+
+msgid "unreachable"
+msgstr "到達不可能な"
+
+msgid "Flux Mail connection: %s"
+msgstr "Flux メール接続:%s"
+
+msgid "Flux Mail connection #%d (not found or disabled)"
+msgstr "Flux Mail 接続 #%d(見つからないか無効になっています)"
+
+msgid "Use Flux Certificates provider: %s"
+msgstr "Flux 証明書プロバイダーを使用:%s"
+
+msgid "Enter separate Evolution API details"
+msgstr "Evolution API の詳細を個別に入力します"
+
+msgid "Line name (e.g. Main line)"
+msgstr "路線名(例:幹線)"
+
+msgid "Connection details"
+msgstr "接続の詳細"
+
+msgid "API URL"
+msgstr "API URL"
+
+msgid "Instance name"
+msgstr "インスタンス名"
+
+msgid "API key (apikey)"
+msgstr "APIキー(アピキー)"
+
+msgid "•••••••• (saved; type to change)"
+msgstr "•••••••(保存済み、変更するタイプ)"
+
+msgid "Webhook URL"
+msgstr "Webhook URL"
+
+msgid "Regenerate secret key"
+msgstr "秘密鍵を再生成する"
+
+msgid "Last webhook: %s"
+msgstr "最後の Webhook:%s"
+
+msgid "No webhook received yet."
+msgstr "Webhook はまだ受信されていません。"
+
+msgid "Test connection"
+msgstr "テスト接続"
+
+msgid "Connect with QR"
+msgstr "QRでつながる"
+
+msgid "QR, status and accounts: Communication › Connections"
+msgstr "QR、ステータス、アカウント: コミュニケーション › 接続"
+
+msgid "Set up webhook"
+msgstr "Webhook を設定する"
+
+msgid "Import recent chats"
+msgstr "最近のチャットをインポートする"
+
+msgid "The webhook URL and test buttons appear after saving."
+msgstr "保存すると、Webhook URL とテスト ボタンが表示されます。"
+
+msgid "Appearance"
+msgstr "外観"
+
+msgid "Panel title"
+msgstr "パネルタイトル"
+
+msgid "Site name if empty. The {brand} variable uses this too."
+msgstr "空の場合はサイト名。{brand}変数もこれを使用します。"
+
+msgid "Accent color"
+msgstr "アクセントカラー"
+
+msgid "Behavior"
+msgstr "行動"
+
+msgid "Send read receipts (blue ticks) when a chat is opened"
+msgstr "チャットを開いたときに開封確認 (青いチェックマーク) を送信します"
+
+msgid "Prefix messages with the agent's name (*Name:*)"
+msgstr "メッセージの前にエージェント名を付けます (*Name:*)"
+
+msgid "Agents see only chats assigned to them and unassigned chats (admins see all)"
+msgstr "エージェントには、自分に割り当てられたチャットと割り当てられていないチャットのみが表示されます (管理者にはすべてが表示されます)"
+
+msgid "Also show WhatsApp group messages"
+msgstr "WhatsApp グループメッセージも表示します"
+
+msgid "New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app"
+msgstr "新しいインターフェイス (実験的): デスクトップおよびモバイル アプリと同じ画面でチャット ページが開きます。"
+
+msgid "Live update interval (sec)"
+msgstr "ライブアップデート間隔(秒)"
+
+msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
+msgstr "開いているタブは、この間隔 (推奨 10) で新しいメッセージをチェックします。バックグラウンド タブでは、1 分に 1 回チェックされますが、エラー後は頻度が低くなります。"
+
+msgid "Agents"
+msgstr "エージェント"
+
+msgid "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access."
+msgstr "ユーザーに%sロールを与えます。チャット画面のみが表示され、設定を開くことはできません。管理者は常にアクセスできます。"
+
+msgid "Add new user"
+msgstr "新しいユーザーを追加"
+
+msgid "Data"
+msgstr "データ"
+
+msgid "Also delete all chats, messages and media files when the plugin is deleted"
+msgstr "プラグインを削除すると、すべてのチャット、メッセージ、メディア ファイルも削除されます。"
+
+msgid "Media files are kept in wp-content/uploads/flx-chat, closed to outside access. They move with uploads when the site is migrated."
+msgstr "メディア ファイルは wp-content/uploads/flx-chat に保管され、外部からのアクセスは禁止されています。サイトが移行されると、アップロードとともに移動します。"
+
+msgid "Mon"
+msgstr "月"
+
+msgid "Tue"
+msgstr "火"
+
+msgid "Wed"
+msgstr "水"
+
+msgid "Thu"
+msgstr "木"
+
+msgid "Fri"
+msgstr "金"
+
+msgid "Sat"
+msgstr "土"
+
+msgid "Sun"
+msgstr "太陽"
+
+msgid "Welcome message"
+msgstr "ウェルカムメッセージ"
+
+msgid "Send automatically to people who write to us for the first time"
+msgstr "初めてメールを送信する人に自動的に送信します"
+
+msgid "Away message"
+msgstr "アウェイメッセージ"
+
+msgid "Auto reply to messages received outside business hours"
+msgstr "営業時間外に受信したメッセージには自動返信します"
+
+msgid "Business days"
+msgstr "営業日"
+
+msgid "Start"
+msgstr "スタート"
+
+msgid "End"
+msgstr "終了"
+
+msgid "At most once per contact every (hours)"
+msgstr "連絡先ごとに最大 1 回(時間ごと)"
+
+msgid "Timezone: %1$s. Now: %2$s."
+msgstr "タイムゾーン:%1$s。現在:%2$s。"
+
+msgid "within business hours"
+msgstr "営業時間内"
+
+msgid "outside business hours"
+msgstr "営業時間外"
+
+msgid "The {first_name}, {name}, {brand}, {site}, {date} variables can be used in the texts."
+msgstr "{first_name}、{name}、{brand}、{site}、{date}変数はテキスト内で使用できます。"
+
+msgid "Chat labels"
+msgstr "チャットラベル"
+
+msgid "Label chats and filter the list (e.g. Donation, Complaint, Follow-up)."
+msgstr "チャットにラベルを付けてリストをフィルタリングします (寄付、苦情、フォローアップなど)。"
+
+msgid "Add label"
+msgstr "ラベルを追加する"
+
+msgid "Label name"
+msgstr "レーベル名"
+
+msgid "Creating records from chats"
+msgstr "チャットからレコードを作成する"
+
+msgid "Buttons in the chat header create a donation record (Flux Donate) and a certificate (Flux Certificates), and an incoming receipt is matched with a record. If a plugin is not installed, its button is hidden."
+msgstr "チャット ヘッダーのボタンにより寄付レコード (Flux Donate) と証明書 (Flux Certificates) が作成され、受信した領収書がレコードと照合されます。プラグインがインストールされていない場合、そのボタンは非表示になります。"
+
+msgid "Agents can create donation records and match receipts"
+msgstr "エージェントは寄付記録を作成し、領収書を照合できます"
+
+msgid "Agents can create and send certificates"
+msgstr "エージェントは証明書を作成して送信できます"
+
+msgid "Show quick reply bubbles above the message box"
+msgstr "メッセージ ボックスの上にクイック返信バブルを表示する"
+
+msgid "Donation messages"
+msgstr "寄付メッセージ"
+
+msgid "Ready texts sent to the person when a record is created (editable before sending). If left empty, the default text is used."
+msgstr "レコードの作成時にその人に送信される準備完了のテキスト (送信前に編集可能)。空のままにすると、デフォルトのテキストが使用されます。"
+
+msgid "Awaiting payment (promised transfer)"
+msgstr "支払い待ち(約束された送金)"
+
+msgid "Donation received"
+msgstr "寄付金を受け取りました"
+
+msgid "Receipt confirmed"
+msgstr "受領確認済み"
+
+msgid "Bank details ({bank})"
+msgstr "銀行詳細 ({bank})"
+
+msgid "Recipient name, bank, IBAN"
+msgstr "受取人の名前、銀行、IBAN"
+
+msgid "If empty, the account in WooCommerce › Payments › Bank transfer is used."
+msgstr "空の場合、WooCommerce › 支払い › 銀行振込のアカウントが使用されます。"
+
+msgid "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
+msgstr "変数:{first_name}、{name}、{donation}、{amount}、{quantity}、{bank}、{certificate_link}、{agent}、{brand}、{date}。"
+
+msgid "AI connection"
+msgstr "AI接続"
+
+msgid "Keys, prompt caching, spending limits and usage logs come from the Flux AI & MCP plugin; all of the Call Center's AI requests go through it. Model choices stay here; if a field is empty, the model chosen for this plugin in Flux AI (or the default) is used."
+msgstr "キー、プロンプト キャッシュ、支出制限、使用ログは Flux AI および MCP プラグインから取得されます。コールセンターの AI リクエストはすべてそれを通過します。モデルの選択はここに留まります。フィールドが空の場合、Flux AI でこのプラグイン用に選択されたモデル (またはデフォルト) が使用されます。"
+
+msgid "Open Flux AI settings"
+msgstr "Flux AI 設定を開く"
+
+msgid "AI needs the Flux AI & MCP plugin. Install and activate it, then enter the OpenRouter and/or Anthropic key in Flux AI & MCP › Settings. Until then suggestions, the assistant, receipt reading, voice messages and summaries are off."
+msgstr "AI には Flux AI および MCP プラグインが必要です。インストールしてアクティベートし、Flux AI と MCP › 設定に OpenRouter キーや Anthropic キーを入力します。それまでは、提案、アシスタント、レシートの読み上げ、音声メッセージ、概要はオフになります。"
+
+msgid "Creativity (0–1)"
+msgstr "創造性 (0–1)"
+
+msgid "Lower values give more consistent replies, higher values freer ones. 0.4 recommended."
+msgstr "値が低いほど一貫性のある応答が得られ、値が高いほど自由な応答が得られます。 0.4をお勧めします。"
+
+msgid "Model (for suggestions)"
+msgstr "モデル(提案用)"
+
+msgid "Assistant model (optional)"
+msgstr "アシスタントモデル(オプション)"
+
+msgid "Model above"
+msgstr "上記のモデル"
+
+msgid "Only models that support tools are listed."
+msgstr "ツールをサポートするモデルのみがリストされています。"
+
+msgid "Receipt reading model (optional)"
+msgstr "レシート読み取りモデル(オプション)"
+
+msgid "If the selected model cannot read images, a cheap vision model is used automatically."
+msgstr "選択したモデルが画像を読み取れない場合は、安価なビジョンモデルが自動的に使用されます。"
+
+msgid "This month (%1$s): %2$s requests, %3$s tokens, about $%4$s."
+msgstr "今月 (%1$s):%2$sリクエスト、%3$sトークン、約 $%4$s。"
+
+msgid "Reply suggestions"
+msgstr "返信の提案"
+
+msgid "Above the message box, the next message is suggested from the conversation. The agent clicks \"Send\" or takes it into the box with \"Edit\". A suggestion is never sent on its own."
+msgstr "メッセージ ボックスの上に、会話から次のメッセージが提案されます。エージェントは「送信」をクリックするか、「編集」でボックスにそれを取り込みます。提案が単独で送信されることはありません。"
+
+msgid "Prepare a suggestion automatically when the last message came from the person (if off, ask with the ✨ button)"
+msgstr "相手から最後のメッセージが届いたときに自動的に提案を準備します (オフの場合は、✨ ボタンで質問します)"
+
+msgid "Organization info and tone"
+msgstr "組織の情報とトーン"
+
+msgid "E.g. Our association plants saplings in Istanbul. Planting is done every year between November and March. The certificate is sent on WhatsApp after the donation. Use a warm but formal tone."
+msgstr "例:私たちの協会はイスタンブールで苗木を植えています。植え付けは毎年11月から3月の間に行われます。証明書は寄付後にWhatsAppで送信されます。温かみのある、しかしフォーマルな口調を使用します。"
+
+msgid "Suggestions and the assistant use this. Donation types, prices, bank details and quick replies are added automatically."
+msgstr "提案とアシスタントはこれを使用します。寄付の種類、価格、銀行詳細、クイック返信が自動的に追加されます。"
+
+msgid "Suggestion provider"
+msgstr "提案プロバイダー"
+
+msgid "Donation assistant (automatic replies)"
+msgstr "寄付アシスタント(自動返信)"
+
+msgid "When on, the assistant replies itself: it greets, asks the name to address them, sends donation options and prices, optionally collects email and \"in whose name\", and asks for confirmation after each change. After confirmation it opens an \"awaiting payment\" record in Flux Donate and sends the donation link, recipient, IBAN and reference as separate messages. If the topic leaves donations, it hands the chat to the team."
+msgstr "オンの場合、アシスタントは自ら応答します。挨拶し、宛先を尋ねる名前を尋ね、寄付のオプションと価格を送信し、オプションで電子メールと「誰の名前で」を収集し、変更のたびに確認を求めます。確認後、Flux Donate で「支払い待ち」レコードが開き、寄付リンク、受取人、IBAN、参照先が別のメッセージとして送信されます。トピックが寄付を残すと、チャットがチームに渡されます。"
+
+msgid "The Flux Donate plugin is not active; the assistant cannot create donation records."
+msgstr "Flux Donate プラグインはアクティブではありません。アシスタントは寄付記録を作成できません。"
+
+msgid "Instructions, documents, AI chats and test chat"
+msgstr "説明書、ドキュメント、AI チャット、テスト チャット"
+
+msgid "Turn on the donation assistant (untick to turn it off everywhere)"
+msgstr "寄付アシスタントをオンにします (どこでもオフにするにはチェックを外します)"
+
+msgid "Which chats should it reply to"
+msgstr "どのチャットに返信すべきか"
+
+msgid "In all chats (recommended)"
+msgstr "すべてのチャットで (推奨)"
+
+msgid "In chats not assigned to an agent"
+msgstr "エージェントに割り当てられていないチャット内"
+
+msgid "Only outside working hours"
+msgstr "勤務時間外のみ"
+
+msgid "When an agent writes in a chat (from the panel or the phone), the assistant stays quiet there for the time below. Use the assistant button in the chat header to turn it on or off per chat."
+msgstr "エージェントが (パネルまたは電話から) チャットに書き込みを行うと、アシスタントは以下の時間の間、そこで沈黙を保ちます。チャット ヘッダーのアシスタント ボタンを使用して、チャットごとにオンまたはオフにします。"
+
+msgid "Test mode: reply only to the numbers below"
+msgstr "テストモード: 以下の番号にのみ返信してください"
+
+msgid "Test numbers"
+msgstr "検査番号"
+
+msgid "Separate with commas or new lines. Not used when test mode is off."
+msgstr "カンマまたは改行で区切ります。テストモードがオフの場合は使用されません。"
+
+msgid "Quiet after an agent writes (hours)"
+msgstr "エージェントが書き込みを行った後は静かになります (時間)"
+
+msgid "Quantities in the price list"
+msgstr "価格表の数量"
+
+msgid "Conversation history (hours)"
+msgstr "会話履歴(時間)"
+
+msgid "Before replying, the assistant reads all messages from this period."
+msgstr "応答する前に、アシスタントはこの期間のすべてのメッセージを読みます。"
+
+msgid "Donation types the assistant offers"
+msgstr "アシスタントが提供する寄付の種類"
+
+msgid "If none is selected, all open types are offered. When a new type is opened in Flux Donate, the assistant knows it too."
+msgstr "何も選択されていない場合は、すべてのオープン タイプが提供されます。新しいタイプが Flux Donate で開かれると、アシスタントもそれを認識します。"
+
+msgid "Receipt pre-check: when the contact sends a receipt, AI compares the amount, recipient and IBAN with the donation, tells the contact the result, attaches the file to the donation record and hands the chat to the team for final approval (does not mark it paid)"
+msgstr "領収書の事前チェック: 連絡先が領収書を送信すると、AI が金額、受取人、および IBAN を寄付と比較し、結果を連絡先に伝え、ファイルを寄付記録に添付して、最終承認のためにチャットをチームに渡します (支払い済みとはマークされません)。"
+
+msgid "Last line of the price list"
+msgstr "価格表の最後の行"
+
+msgid "Payment details"
+msgstr "お支払い詳細"
+
+msgid "If the recipient and IBAN are empty, those in WooCommerce › Payments › Bank transfer are used (the account shown on orders). Fill them in only if the assistant should use a different account."
+msgstr "受信者と IBAN が空の場合、WooCommerce › 支払い › 銀行振込のものが使用されます (注文に表示されているアカウント)。アシスタントが別のアカウントを使用する必要がある場合にのみ入力してください。"
+
+msgid "Recipient name"
+msgstr "受信者名"
+
+msgid "Transfer description"
+msgstr "転送の説明"
+
+msgid "Variables: {type}, {name}, {amount}, {quantity}"
+msgstr "変数:{type}、{name}、{amount}、{quantity}"
+
+msgid "Donation page URL"
+msgstr "寄付ページURL"
+
+msgid "The selected type and quantity are added to the link (?flxb_opt=…&flxb_qty=…)."
+msgstr "選択したタイプと数量がリンクに追加されます (?flxb_opt=...&flxb_qty=...)。"
+
+msgid "Message after the payment details"
+msgstr "支払い詳細後のメッセージ"
+
+msgid "Donation cancellation question"
+msgstr "寄付キャンセルに関する質問"
+
+msgid "The assistant cancels only unpaid donations, with the person's confirmation. Empty = default text. Variables: {bagis}, {tutar}."
+msgstr "アシスタントは、本人の確認を得て、未払いの寄付のみをキャンセルします。空 = デフォルトのテキスト。変数:{bagis}、{tutar}。"
+
+msgid "Message sent when the daily limit is reached"
+msgstr "1 日の制限に達したときに送信されるメッセージ"
+
+msgid "Sent once when a chat reaches the day's reply limit; the chat is handed to the team. Reset it from the chat's ⋮ menu › Assistant usage."
+msgstr "チャットがその日の返信制限に達したときに 1 回送信されます。チャットはチームに渡されます。チャットの ⋮ メニュー › アシスタントの使用状況からリセットします。"
+
+msgid "Message sent when handing over to the team"
+msgstr "チームへの引き継ぎ時に送信されるメッセージ"
+
+msgid "Message sent when the assistant cannot answer"
+msgstr "アシスタントが応答できないときに送信されるメッセージ"
+
+msgid "If the AI fails, the time limit is hit or the queue gets too long, this message is sent and the chat is handed to the team; the person is never left without an answer."
+msgstr "AI が失敗した場合、制限時間に達した場合、またはキューが長すぎる場合、このメッセージが送信され、チャットはチームに渡されます。その人が答えを持たずに放置されることは決してありません。"
+
+msgid "Minimum wait before the holding message (s)"
+msgstr "メッセージを保持するまでの最小待機時間 (複数可)"
+
+msgid "The holding message is not sent until this many seconds after the person's message; meanwhile the assistant retries."
+msgstr "保留中のメッセージは、その人のメッセージからこの秒数が経過するまで送信されません。その間、アシスタントは再試行します。"
+
+msgid "Longest time for one answer (s)"
+msgstr "1 つの回答にかかる最長時間 (秒)"
+
+msgid "Hostinger can cut requests at ~60 s; 50 is recommended."
+msgstr "Hostinger はリクエストを最大 60 秒でカットできます。 50が推奨されます。"
+
+msgid "Numbers notified on handoff"
+msgstr "ハンドオフ時に通知される番号"
+
+msgid "When the assistant hands a chat over to the team, a WhatsApp message is sent to these numbers from the same line: the contact's name, phone, reason, last messages and panel link. Separate with commas or new lines. The assistant does not talk to these numbers."
+msgstr "アシスタントがチャットをチームに引き渡すと、連絡先の名前、電話番号、理由、最後のメッセージ、パネル リンクといった WhatsApp メッセージが同じ回線からこれらの番号に送信されます。カンマまたは改行で区切ります。アシスタントはこれらの番号とは会話しません。"
+
+msgid "When the contact writes one of these, the assistant immediately sends the hand-off message above and turns off in that chat. If left empty, the example list is used."
+msgstr "連絡先がこれらのいずれかを書き込むと、アシスタントはすぐに上記のハンドオフ メッセージを送信し、そのチャットをオフにします。空のままにすると、サンプルのリストが使用されます。"
+
+msgid "Extra instructions for the assistant"
+msgstr "アシスタントへの追加指示"
+
+msgid "E.g. Saplings are planted in Kocaeli. Certificates are sent once the donation is confirmed."
+msgstr "例:コジャエリには苗木が植えられています。寄附確認後に証明書を発送いたします。"
+
+msgid "Last message when a contact opts out"
+msgstr "連絡先がオプトアウトしたときの最後のメッセージ"
+
+msgid "If someone writes something like \"don't message me\", the assistant sends this message and blocklists them. A blocklisted person gets no WhatsApp, email or SMS; manage the list under Chats › ☰ › Blocklist."
+msgstr "誰かが「メッセージを送らないでください」のような内容を書き込んだ場合、アシスタントはこのメッセージを送信し、ブロックリストに登録します。ブロックリストに登録された人は、WhatsApp、電子メール、SMS を受け取りません。チャット › ☰ › ブロックリストでリストを管理します。"
+
+msgid "Contact memory and background jobs"
+msgstr "コンタクトメモリとバックグラウンドジョブ"
+
+msgid "Contact memory: the assistant remembers lasting details (form of address, relatives' names, numbers, preferences); expired chats are summarized"
+msgstr "連絡先の記憶: アシスタントは永続的な詳細 (住所の形式、親戚の名前、番号、好み) を記憶します。期限切れのチャットがまとめられています"
+
+msgid "Summarize a chat after it has been quiet for (hours)"
+msgstr "(時間) 沈黙が続いた後にチャットを要約する"
+
+msgid "Maximum jobs at the same time"
+msgstr "同時に最大ジョブ数"
+
+msgid "How many people can be answered at the same time. Assistant replies always come first; summaries do not start while someone is being answered or waiting. Each job uses one PHP worker: on shared hosting, stay under half of the total worker limit of your sites (e.g. 20-30 of 60 workers)."
+msgstr "同時に何人まで回答できるか。アシスタントの応答は常に最初に行われます。誰かが応答しているか待っている間は、要約は開始されません。各ジョブは 1 つの PHP ワーカーを使用します。共有ホスティングでは、サイトの総ワーカー制限の半分未満に抑えてください (例: 60 ワーカーのうち 20 ~ 30 人)。"
+
+msgid "Workers reserved for replies"
+msgstr "返信用に予約されたワーカー"
+
+msgid "This many workers never take summaries or reminders."
+msgstr "これほど多くの従業員は、概要やリマインダーをまったく受け取らないのです。"
+
+msgid "Summary hours"
+msgstr "概要時間"
+
+msgid "Summaries run only between these hours (except a manual \"Summarize now\"). If both are the same, any time."
+msgstr "要約は、これらの時間の間にのみ実行されます (手動の「今すぐ要約」を除く)。両方が同じであればいつでも。"
+
+msgid "When someone sends a voice message, the assistant turns it into text and replies (the text also appears in the panel as a system line)"
+msgstr "誰かが音声メッセージを送信すると、アシスタントがそれをテキストに変換して返信します (テキストはシステム行としてもパネルに表示されます)。"
+
+msgid "Longest voice message (sec)"
+msgstr "最長の音声メッセージ (秒)"
+
+msgid "For longer messages the assistant says \"the voice message was too long for us to listen to\"."
+msgstr "長いメッセージの場合、アシスタントは「音声メッセージが長すぎて聞くことができませんでした」と言います。"
+
+msgid "Voice message model (optional)"
+msgstr "音声メッセージモデル(オプション)"
+
+msgid "Cheap audio model (Gemini Flash Lite)"
+msgstr "廉価オーディオモデル(Gemini Flash Lite)"
+
+msgid "Must be an OpenRouter model that accepts audio (Claude does not). An OpenRouter key is required."
+msgstr "オーディオを受け入れる OpenRouter モデルである必要があります (Claude は受け入れません)。 OpenRouter キーが必要です。"
+
+msgid "Images"
+msgstr "画像"
+
+msgid "Let the assistant draw an image when useful (table, report, diagram); it goes to WhatsApp as a picture, the text is sent separately"
+msgstr "必要に応じてアシスタントに画像 (表、レポート、図) を描画させます。 WhatsApp に画像として送信され、テキストは個別に送信されます"
+
+msgid "The Flux AI image renderer is used (Flux AI & MCP › Settings › Images)."
+msgstr "Flux AI イメージ レンダラーが使用されます (Flux AI と MCP › 設定 › 画像)。"
+
+msgid "No image renderer on the server: enter a Gotenberg address in Flux AI & MCP › Settings › Images or install Imagick (SVG). Until then the assistant does not draw images."
+msgstr "サーバー上に画像レンダラーがありません: Flux AI & MCP › 設定 › 画像 に Gotenberg アドレスを入力するか、Imagick (SVG) をインストールします。それまでアシスタントは画像を描画しません。"
+
+msgid "Works once Flux AI 0.2.0 or later is installed."
+msgstr "Flux AI 0.2.0 以降がインストールされていると動作します。"
+
+msgid "Donation on behalf of someone"
+msgstr "誰かに代わって寄付する"
+
+msgid "If the donation is in someone else's name and their number was given (contact card or typed number), also send the certificate to that number on WhatsApp once the payment is approved"
+msgstr "寄付が他人の名前であり、その番号が指定されている場合(連絡先カードまたは入力された番号)、支払いが承認されたら、WhatsApp のその番号にも証明書を送信してください。"
+
+msgid "Message sent before the certificate"
+msgstr "証明書の前にメッセージが送信される"
+
+msgid "Then the WhatsApp certificate message from Flux Certificates is sent. Variables: {ad}, {bagisci}, {bagis}, {brand}."
+msgstr "次に、Flux Certificates から WhatsApp 証明書メッセージが送信されます。変数:{ad}、{bagisci}、{bagis}、{brand}。"
+
+msgid "If a person asks, the assistant sets up a reminder (e.g. \"remind me of sapling planting every month\", \"send me your latest projects every month\", \"ask me for a sapling every month\"); when it is due, the assistant writes and sends the message"
+msgstr "誰かが尋ねると、アシスタントはリマインダーを設定します(例:「毎月苗木を植えることを思い出させて」、「毎月最新のプロジェクトを送って」、「毎月苗木をくれと頼んで」)。期限が来ると、アシスタントがメッセージを書いて送信します"
+
+msgid "When no time is given"
+msgstr "時間が与えられないとき"
+
+msgid "At most per person"
+msgstr "最大でもお一人様あたり"
+
+msgid "Staff (Flux Roles)"
+msgstr "スタッフ (フラックスの役割)"
+
+msgid "Works once Flux Roles 1.1.0 is installed: users whose number is set in Profile › WhatsApp number get extra assistant tools based on their permissions."
+msgstr "Flux ロール 1.1.0 がインストールされると機能します。番号が [プロファイル] › WhatsApp 番号に設定されているユーザーは、権限に基づいて追加のアシスタント ツールを取得します。"
+
+msgid "Give staff numbers extra assistant tools by permission (donation on behalf of someone with payment link, my donors, general report)"
+msgstr "許可を得てスタッフ番号に追加のアシスタント ツールを提供します (支払いリンクを持つ誰かに代わって寄付、私の寄付者、一般的なレポート)"
+
+msgid "Notify staff on WhatsApp when a donation they referred is paid or cancelled"
+msgstr "紹介した寄付が支払われたとき、またはキャンセルされたときにスタッフに WhatsApp で通知する"
+
+msgid "First message to the donor for a donation opened by staff"
+msgstr "スタッフが開く寄付者への最初のメッセージ"
+
+msgid "Hello {ad} 🌱 Your {bagis} donation request via {personel} has been received. You can pay with the details below."
+msgstr "こんにちは{ad}🌱{personel}経由で{bagis}の寄付リクエストを受け取りました。以下の詳細でお支払いいただけます。"
+
+msgid "The payment link and bank details follow. Variables: {ad}, {adsoyad}, {personel}, {bagis}."
+msgstr "支払いリンクと銀行の詳細が続きます。変数:{ad}、{adsoyad}、{personel}、{bagis}。"
+
+msgid "When a donation referred by a staff member is paid and its certificates are made, send them to the staff member on WhatsApp too (just like the donor)"
+msgstr "スタッフメンバーから紹介された寄付金が支払われ、証明書が作成されたら、それを WhatsApp でスタッフメンバーにも送信します (寄付者と同じように)"
+
+msgid "Message sent to the staff member before the certificate"
+msgstr "証明書を受け取る前にスタッフに送信されたメッセージ"
+
+msgid "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
+msgstr "変数:{ad}、{bagisci}、{bagis}、{no}、{brand}。"
+
+msgid "How many times staff can resend a donation's certificate"
+msgstr "スタッフが寄付証明書を何回再送できるか"
+
+msgid "The assistant lists the recipients and asks for confirmation before sending. 0: off."
+msgstr "アシスタントは受信者をリストし、送信する前に確認を求めます。 0: オフ。"
+
+msgid "Code verification for record lookups"
+msgstr "レコード検索のコード検証"
+
+msgid "When a person asks for their records and their number is hidden (or they donated with another number/e-mail), send a code to the number or e-mail they give; once verified, its records are shown too"
+msgstr "誰かが自分の記録を要求し、その番号が隠されている場合(または別の番号/電子メールで寄付した場合)、その人が提供した番号または電子メールにコードを送信します。確認されると、その記録も表示されます"
+
+msgid "Code validity (min)"
+msgstr "コードの有効性 (分)"
+
+msgid "Maximum failed attempts"
+msgstr "失敗した試行の最大数"
+
+msgid "Codes that could not be sent, wrong codes and expired codes count. At the limit the person gets the message below and the team is notified; the assistant keeps answering other questions but shares no record details for 24 hours."
+msgstr "送信できなかったコード、間違ったコード、期限切れのコードもカウントされます。制限に達すると、その人は以下のメッセージを受け取り、チームに通知されます。アシスタントは他の質問に答え続けますが、記録の詳細は 24 時間共有されません。"
+
+msgid "Code to phone"
+msgstr "電話へのコード"
+
+msgid "WhatsApp, SMS if it fails"
+msgstr "WhatsApp、失敗した場合はSMS"
+
+msgid "WhatsApp only"
+msgstr "WhatsAppのみ"
+
+msgid "SMS only"
+msgstr "SMSのみ"
+
+msgid "SMS is used if Flux Mail has an SMS connection (e.g. Netgsm)."
+msgstr "Flux Mail に SMS 接続 (Netgsm など) がある場合、SMS が使用されます。"
+
+msgid "Message when verification fails"
+msgstr "検証失敗時のメッセージ"
+
+msgid "WhatsApp/SMS code message"
+msgstr "WhatsApp/SMS コードメッセージ"
+
+msgid "Default text if empty. Variables: {kod}, {dk}, {marka}. The e-mail text is edited in Flux Mail › E-mail templates."
+msgstr "空の場合のデフォルトのテキスト。変数:{kod}、{dk}、{marka}。電子メールのテキストは、Flux Mail › 電子メール テンプレートで編集します。"
+
+msgid "Site content"
+msgstr "サイトのコンテンツ"
+
+msgid "Let the assistant search published site content (e.g. \"do you have a post about tree planting\")"
+msgstr "アシスタントが公開されているサイトのコンテンツを検索できるようにします (例: 「植樹に関する投稿はありますか」)"
+
+msgid "Content types to search"
+msgstr "検索するコンテンツの種類"
+
+msgid "Only published content without a password is returned. Drafts, private and password-protected content are never shown."
+msgstr "パスワードなしで公開されたコンテンツのみが返されます。下書き、プライベート、パスワードで保護されたコンテンツは表示されません。"
+
+msgid "Categories and tags never to share"
+msgstr "決して共有しないカテゴリとタグ"
+
+msgid "e.g. corporate-offers, internal-notice"
+msgstr "例:企業オファー、社内通知"
+
+msgid "Name or slug, comma separated. To hide a single item, tick \"Do not let the assistant share this content\" on its edit screen."
+msgstr "名前またはスラッグ、カンマ区切り。単一のアイテムを非表示にするには、その編集画面で「アシスタントにこのコンテンツを共有させない」にチェックを入れます。"
+
+msgid "Team group"
+msgstr "チームグループ"
+
+msgid "WhatsApp group"
+msgstr "WhatsAppグループ"
+
+msgid "— Not selected —"
+msgstr "— 未選択 —"
+
+msgid "Groups the line is a member of. If a group you just created is missing,"
+msgstr "ラインがメンバーとなっているグループ。作成したばかりのグループが見つからない場合は、"
+
+msgid "refresh the list"
+msgstr "リストを更新する"
+
+msgid "Post incoming messages and replies (assistant, team, automatic) to this group"
+msgstr "受信メッセージと返信 (アシスタント、チーム、自動) をこのグループに投稿します"
+
+msgid "Send handoff notifications to this group instead of each number; the numbers above are mentioned in the message"
+msgstr "各番号の代わりにこのグループにハンドオフ通知を送信します。上記の数字はメッセージに記載されています"
+
+msgid "Last post to the group failed: "
+msgstr "グループへの最後の投稿は失敗しました:"
+
+msgid "Price list preview"
+msgstr "価格表のプレビュー"
+
+msgid "Enter an AI key and model first so the assistant can work."
+msgstr "アシスタントが機能できるように、最初に AI キーとモデルを入力します。"
+
+msgid "The assistant will not reply right now: "
+msgstr "アシスタントは現在応答しません:"
+
+msgid "WhatsApp assistant"
+msgstr "WhatsAppアシスタント"
+
+msgid "Do not let the assistant share this content"
+msgstr "アシスタントにこのコンテンツを共有させないでください"
+
+msgid "Corrected by staff member %1$s; #%2$d was opened instead."
+msgstr "スタッフメンバー%1$sによって修正されました。 #%2$dが代わりにオープンされました。"
+
+msgid "Donation #%1$d was cancelled and #%2$d opened instead."
+msgstr "寄付 #%1$dはキャンセルされ、代わりに #%2$dがオープンされました。"
+
+msgid "Created by staff member %s via the WhatsApp assistant."
+msgstr "WhatsApp アシスタントを介してスタッフ メンバー%sによって作成されました。"
+
+msgid "Donation opened via staff member %1$s: %2$s (#%3$d)"
+msgstr "スタッフメンバー%1$s:%2$s(#%3$d) を通じて寄付が開始されました"
+
+msgid "Your certificate 🌱"
+msgstr "あなたの証明書 🌱"
+
+msgid "Staff member %1$s resent the certificate on WhatsApp: %2$s"
+msgstr "スタッフ メンバー%1$sが WhatsApp で証明書を再送信しました:%2$s"
+
+msgid "✅ Your donor paid: *%1$s* · %2$s #%3$d"
+msgstr "✅ あなたの寄付者が支払ったもの: *%1$s* ·%2$s#%3$d"
+
+msgid "❌ Donation cancelled: *%1$s* · %2$s #%3$d"
+msgstr "❌ 寄付がキャンセルされました: *%1$s* ·%2$s#%3$d"
+
+msgid "Sticker"
+msgstr "ステッカー"
+
+msgid "Poll"
+msgstr "投票"
+
+msgid "Unsupported message"
+msgstr "サポートされていないメッセージ"
+
+msgid "{a} lines added, {d} lines removed"
+msgstr "{a}行が追加され、{d}行が削除されました"
+
+msgid "No AI key or model has been entered."
+msgstr "AI キーまたはモデルが入力されていません。"
+
+msgid "The assistant is off and does not reply to incoming messages."
+msgstr "アシスタントはオフになっており、受信メッセージに応答しません。"
+
+msgid "Test mode is on: the assistant only replies to test numbers."
+msgstr "テスト モードがオンです。アシスタントはテスト番号にのみ応答します。"
+
+msgid "Assistant activity summary"
+msgstr "アシスタント活動の概要"
+
+msgid "Hide details"
+msgstr "詳細を隠す"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Spend (USD)"
+msgstr "支出 (USD)"
+
+msgid "Questions answered"
+msgstr "回答された質問"
+
+msgid "People answered"
+msgstr "人々は答えました"
+
+msgid "People directed to donate"
+msgstr "寄付をするように指示された人々"
+
+msgid "Donation records created"
+msgstr "寄付記録が作成されました"
+
+msgid "Confirmed donations · {a}"
+msgstr "確認された寄付 ·{a}"
+
+msgid "Receipts read · ✓{a} ✕{b}"
+msgstr "領収書の読み取り · ✓{a}✕{b}"
+
+msgid "Memory tokens · {p} contacts"
+msgstr "メモリトークン・{p}コンタクト"
+
+msgid "Opted out (blocklist)"
+msgstr "オプトアウト済み (ブロックリスト)"
+
+msgid "Reminders sent"
+msgstr "送信されたリマインダー"
+
+msgid "Codes sent · e-mail {e} · WhatsApp {w} · SMS {s}"
+msgstr "送信されたコード · 電子メール{e}· WhatsApp{w}· SMS{s}"
+
+msgid "Verified · phone {p} · e-mail {e}"
+msgstr "確認済み · 電話{p}· 電子メール{e}"
+
+msgid "Code issues · wrong {w} · expired {x} · not delivered {f}"
+msgstr "コードの問題 · 間違った{w}· 期限切れの{x}·{f}が配信されていない"
+
+msgid "Not verified, team notified"
+msgstr "未確認、チームに通知済み"
+
+msgid "Certificates resent"
+msgstr "証明書が再送信されました"
+
+msgid "Donations cancelled by the assistant"
+msgstr "アシスタントによって寄付がキャンセルされました"
+
+msgid "Payment links resent"
+msgstr "支払いリンクが再送信されました"
+
+msgid "Tokens: {i} input / {o} output · {c} requests · {m} messages sent"
+msgstr "トークン:{i}入力 /{o}出力 ·{c}リクエスト · 送信された{m}メッセージ"
+
+msgid "{n} donations awaiting payment"
+msgstr "{n}の寄付は支払い待ちです"
+
+msgid "{n} errors"
+msgstr "{n}エラー"
+
+msgid "{n} chats summarized"
+msgstr "{n}のチャットまとめ"
+
+msgid "Counters since {d}"
+msgstr "{d}以降のカウンター"
+
+msgid "Refreshes every 30 s"
+msgstr "30秒ごとに更新"
+
+msgid "Models"
+msgstr "モデル"
+
+msgid "Contacts with the most memory"
+msgstr "最も多くのメモリを備えた連絡先"
+
+msgid "Tokens"
+msgstr "トークン"
+
+msgid "Daily"
+msgstr "毎日"
+
+msgid "No records in this range."
+msgstr "この範囲にはレコードがありません。"
+
+msgid "Replies"
+msgstr "返信"
+
+msgid "Handoff"
+msgstr "ハンドオフ"
+
+msgid "Only real chats are counted; test chat and benchmark are excluded. \"Confirmed\" means donations created by the assistant and marked paid."
+msgstr "実際のチャットのみがカウントされます。テストチャットとベンチマークは除きます。 「確認済み」とは、アシスタントによって作成され、支払い済みとマークされた寄付を意味します。"
+
+msgid "With the team / paused"
+msgstr "チームと一緒に / 一時停止中"
+
+msgid "Donation record created"
+msgstr "寄付記録が作成されました"
+
+msgid "The assistant has not replied to any chat yet."
+msgstr "アシスタントはまだチャットに応答していません。"
+
+msgid "Load more"
+msgstr "さらにロードする"
+
+msgid "Address: {h}"
+msgstr "住所:{h}"
+
+msgid "{n} assistant messages"
+msgstr "{n}アシスタント メッセージ"
+
+msgid "Donation #{id}"
+msgstr "寄付 #{id}"
+
+msgid "Version {id}"
+msgstr "バージョン{id}"
+
+msgid "Change note (e.g. Added sacrifice question)"
+msgstr "変更メモ (例: 犠牲の質問の追加)"
+
+msgid "Assistant instructions"
+msgstr "アシスタントの指示"
+
+msgid "The main text describing how the assistant talks and the flow. Prices, donation types, bank details and what is known about the contact are added automatically on every reply. {brand} becomes the organisation name and {{belge:kisa-ad}} becomes that document's content."
+msgstr "アシスタントの話し方や流れを説明した本文。価格、寄付の種類、銀行口座の詳細、連絡先についてわかっている内容が、返信ごとに自動的に追加されます。{brand}が組織名になり、{{belge:kisa-ad}} がそのドキュメントのコンテンツになります。"
+
+msgid "Publish now"
+msgstr "今すぐ公開"
+
+msgid "New version saved"
+msgstr "新しいバージョンが保存されました"
+
+msgid "Save as new version"
+msgstr "新しいバージョンとして保存"
+
+msgid "Show the full text sent to the model"
+msgstr "モデルに送信された全文を表示します"
+
+msgid "Unsaved text"
+msgstr "保存されていないテキスト"
+
+msgid "Test with this text"
+msgstr "このテキストでテストしてください"
+
+msgid "Versions"
+msgstr "バージョン"
+
+msgid "Live"
+msgstr "ライブ"
+
+msgid "Text that ships with the plugin"
+msgstr "プラグインに同梱されるテキスト"
+
+msgid "Diff: live → {v}"
+msgstr "差分: ライブ →{v}"
+
+msgid "Show diff"
+msgstr "差分を表示"
+
+msgid "Published"
+msgstr "発行済み"
+
+msgid "Publish"
+msgstr "発行する"
+
+msgid "Ready-made messages sent by the server"
+msgstr "サーバーによって送信される既製のメッセージ"
+
+msgid "The model does not write these; they are generated from your settings."
+msgstr "モデルはこれらを記述しません。これらは設定から​​生成されます。"
+
+msgid "Change in settings"
+msgstr "設定の変更"
+
+msgid "(empty)"
+msgstr "(空)"
+
+msgid "Full text sent to the model (sample chat)"
+msgstr "モデルに送信された全文(サンプルチャット)"
+
+msgid "Extra documents"
+msgstr "追加の書類"
+
+msgid "Add FAQs, campaigns, planting locations and similar information as separate documents. If you write {{belge:kisa-ad}} in the instructions, the document is placed there. A document set to \"read when needed\" is only read when the topic comes up, which costs less for long documents."
+msgstr "よくある質問、キャンペーン、植栽場所、および同様の情報を別の文書として追加します。指示に {{belge:kisa-ad}} と書くと、そこにドキュメントが配置されます。 「必要なときに読む」ように設定された文書は、トピックが出たときにのみ読み取られるため、長い文書の場合はコストが低くなります。"
+
+msgid "New document"
+msgstr "新しいドキュメント"
+
+msgid "No documents yet."
+msgstr "まだ書類がありません。"
+
+msgid "Copy to use in the instructions"
+msgstr "コピーして説明書に使用します"
+
+msgid "Delete the document “{t}”?"
+msgstr "ドキュメント「{t}」を削除しますか?"
+
+msgid "automatic"
+msgstr "自動"
+
+msgid "Edit document"
+msgstr "ドキュメントの編集"
+
+msgid "Short name"
+msgstr "略称"
+
+msgid "Content (Markdown)"
+msgstr "コンテンツ (マークダウン)"
+
+msgid "Document saved"
+msgstr "文書が保存されました"
+
+msgid "in"
+msgstr "で"
+
+msgid "out"
+msgstr "アウト"
+
+msgid "cache {r} read, {w} written"
+msgstr "キャッシュ{r}読み取り、{w}書き込み"
+
+msgid "saved {c}"
+msgstr "保存済み{c}"
+
+msgid "first write +{c}"
+msgstr "最初の書き込み +{c}"
+
+msgid "Claude prompt caching (only for Claude models with the Anthropic key)"
+msgstr "クロード プロンプト キャッシュ (Anthropic キーを備えたクロード モデルのみ)"
+
+msgid "Cache: from settings ({m})"
+msgstr "キャッシュ: 設定から ({m})"
+
+msgid "Cache: {m}"
+msgstr "キャッシュ:{m}"
+
+msgid "Cache savings"
+msgstr "キャッシュの節約"
+
+msgid "This month total (all AI)"
+msgstr "今月の合計(すべてAI)"
+
+msgid "Main model"
+msgstr "主要モデル"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "Prices are input / output per 1M tokens (USD). The selected model is used only here."
+msgstr "価格は 100 万トークン (USD) あたりのインプット/アウトプットです。選択したモデルはここでのみ使用されます。"
+
+msgid "E.g. Look at Ahmet's chat and make the price answer shorter. / Hand over to the team when asked about Qurban donations."
+msgstr "例:アーメットのチャットを見て、価格の答えを短くしてください。 / クルバンの寄付について尋ねられたら、チームに渡します。"
+
+msgid "Search sessions…"
+msgstr "セッションを検索..."
+
+msgid "+ New session"
+msgstr "+ 新しいセッション"
+
+msgid "No matching session."
+msgstr "一致するセッションがありません。"
+
+msgid "No saved sessions yet. A session is saved automatically with your first message."
+msgstr "保存されたセッションはまだありません。セッションは最初のメッセージとともに自動的に保存されます。"
+
+msgid "Untitled session"
+msgstr "無題のセッション"
+
+msgid "Draft"
+msgstr "草案"
+
+msgid "Archive"
+msgstr "アーカイブ"
+
+msgid "New session"
+msgstr "新しいセッション"
+
+msgid "Session name"
+msgstr "セッション名"
+
+msgid "Rename"
+msgstr "名前の変更"
+
+msgid "Unarchived"
+msgstr "未アーカイブ"
+
+msgid "Archived"
+msgstr "アーカイブ済み"
+
+msgid "Unarchive"
+msgstr "アーカイブを解除する"
+
+msgid "Delete this session? This cannot be undone."
+msgstr "このセッションを削除しますか?これを元に戻すことはできません。"
+
+msgid "The live instructions changed after this session; starting a new session is recommended."
+msgstr "このセッションの後、ライブの指示が変更されました。新しいセッションを開始することをお勧めします。"
+
+msgid "Write what you want to change. If you mention a person's or a number's chat, the AI finds it, asks your permission to read it, updates the instructions and tries them itself in the test chat on the right. Publishing needs your approval."
+msgstr "変更したいことを書きます。あなたが特定の人物または番号のチャットに言及すると、AI がそれを見つけて、それを読む許可を求め、指示を更新し、右側のテスト チャットでそれを試します。公開にはあなたの承認が必要です。"
+
+msgid "Draft updated"
+msgstr "ドラフトが更新されました"
+
+msgid "Permission to read a chat"
+msgstr "チャットを読む許可"
+
+msgid "Allow"
+msgstr "許可する"
+
+msgid "Always allow in this session"
+msgstr "このセッションでは常に許可します"
+
+msgid "Don't allow"
+msgstr "許可しないでください"
+
+msgid "Draft awaiting your approval"
+msgstr "草案は承認待ちです"
+
+msgid "Approve and publish"
+msgstr "承認して公開する"
+
+msgid "Save as draft version"
+msgstr "ドラフトバージョンとして保存"
+
+msgid "Proposed change"
+msgstr "変更案"
+
+msgid "Open in test chat"
+msgstr "テストチャットで開く"
+
+msgid "Running…"
+msgstr "実行中..."
+
+msgid "The AI tries the draft here itself: it writes like a person and sees the assistant's answer. Nothing is sent to WhatsApp."
+msgstr "AI はここで草稿自体を試します。人間のように書き、アシスタントの回答を確認します。 WhatsApp には何も送信されません。"
+
+msgid "New version published ✓"
+msgstr "新しいバージョンが公開されました ✓"
+
+msgid "Draft version saved ✓ (you can publish it from the Instructions tab)"
+msgstr "ドラフト バージョンが保存されました ✓ ([手順] タブから公開できます)"
+
+msgid "AI's test"
+msgstr "AIのテスト"
+
+msgid "A trial with the draft; read only."
+msgstr "草案に関する裁判。読み取り専用。"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Selected donation"
+msgstr "選択された寄付"
+
+msgid "test"
+msgstr "テスト"
+
+msgid "Verification code (not sent, shown only here)"
+msgstr "確認コード (送信されず、ここにのみ表示されます)"
+
+msgid "until {h}"
+msgstr "{h}まで"
+
+msgid "Test donations"
+msgstr "テスト寄付"
+
+msgid "Sample past donation"
+msgstr "過去の寄付例"
+
+msgid "Set to pending"
+msgstr "保留に設定"
+
+msgid "No donation in this test."
+msgstr "このテストでは寄付はありません。"
+
+msgid "Memory"
+msgstr "記憶"
+
+msgid "Nothing remembered yet."
+msgstr "まだ何も覚えていない。"
+
+msgid "Reminder awaiting approval"
+msgstr "承認待ちのリマインダー"
+
+msgid "Scheduled"
+msgstr "予定されている"
+
+msgid "No reminders set."
+msgstr "リマインダーは設定されていません。"
+
+msgid "Code verification locked for 24 hours"
+msgstr "コード認証は 24 時間ロックされます"
+
+msgid "Verified"
+msgstr "確認済み"
+
+msgid "No verified number or e-mail."
+msgstr "確認された番号または電子メールがありません。"
+
+msgid "Live instructions"
+msgstr "ライブの指示"
+
+msgid "Write like a donor…"
+msgstr "寄付者のように書いてください..."
+
+msgid "Donor (customer)"
+msgstr "寄付者(顧客)"
+
+msgid "Write as the staff member…"
+msgstr "スタッフとして書いてください..."
+
+msgid "Nothing you write here goes to WhatsApp and no records are created. The assistant replies with the real model and the selected instructions."
+msgstr "ここに書いた内容は WhatsApp には送信されず、記録は作成されません。アシスタントは実際のモデルと選択された指示を返します。"
+
+msgid "Preparing files, one moment…"
+msgstr "ファイルを準備しています。しばらくお待ちください..."
+
+msgid "(no reply)"
+msgstr "(返事はありません)"
+
+msgid "— Chat handed over to the team; in a real chat the assistant stops here. —"
+msgstr "— チャットはチームに引き継がれます。実際のチャットでは、アシスタントはここで停止します。 —"
+
+msgid "Attach file (photo, PDF, document)"
+msgstr "ファイル添付(写真、PDF、文書)"
+
+msgid "Attach file"
+msgstr "ファイルを添付する"
+
+msgid "Up to 5 files can be attached."
+msgstr "最大5つのファイルを添付できます。"
+
+msgid "{f} is too large (max {n} MB)."
+msgstr "{f}が大きすぎます (最大{n}MB)。"
+
+msgid "receipt pre-check"
+msgstr "領収書の事前チェック"
+
+msgid "Turn {n} · {t}"
+msgstr "{n}・{t}を回す"
+
+msgid "File read"
+msgstr "ファイルの読み取り"
+
+msgid "Sent by the AI (arguments)"
+msgstr "AIが送信(引数)"
+
+msgid "Pre-check result"
+msgstr "事前チェック結果"
+
+msgid "Returned by the system (result)"
+msgstr "システムによって返される (結果)"
+
+msgid "Tool calls"
+msgstr "ツール呼び出し"
+
+msgid "No tools called yet. Calls are listed here; click one to see what was sent and what came back."
+msgstr "まだ呼び出されたツールはありません。通話はここにリストされます。いずれかをクリックすると、何が送信され、何が返されたかを確認できます。"
+
+msgid "Test chat"
+msgstr "テストチャット"
+
+msgid "Who are you writing as?"
+msgstr "誰として書いていますか?"
+
+msgid "Show full text"
+msgstr "全文を表示"
+
+msgid "What the assistant knows"
+msgstr "アシスタントが知っていること"
+
+msgid "Background"
+msgstr "背景"
+
+msgid "Drop files here"
+msgstr "ここにファイルをドロップします"
+
+msgid "Contacts with memory"
+msgstr "記憶との接点"
+
+msgid "Lasting details"
+msgstr "永続的な詳細"
+
+msgid "Total tokens (approx.)"
+msgstr "トークンの総数(約)"
+
+msgid "Tokens are the memory size the assistant reads for this contact on every reply (approx.; 3.5 characters = 1 token)."
+msgstr "トークンは、アシスタントが返信ごとにこの連絡先から読み取るメモリ サイズです (約; 3.5 文字 = 1 トークン)。"
+
+msgid "No memory items yet."
+msgstr "思い出のアイテムはまだありません。"
+
+msgid "View"
+msgstr "見る"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "Last update"
+msgstr "最終更新"
+
+msgid "Contact memory: {c}"
+msgstr "接点メモリ:{c}"
+
+msgid "{n} items · about {t} tokens"
+msgstr "{n}アイテム ·{t}トークンについて"
+
+msgid "To edit or delete, open the chat and use ⋮ › Contact memory."
+msgstr "編集または削除するには、チャットを開いて、 ⋮ › メモリーに連絡するを使用します。"
+
+msgid "{n} chats queued"
+msgstr "{n}チャットがキューに入れられました"
+
+msgid "Contact memory is off; summary jobs do not run."
+msgstr "接点メモリがオフになっています。要約ジョブは実行されません。"
+
+msgid "Summaries paused for 30 minutes: {r}"
+msgstr "サマリーが 30 分間一時停止されました:{r}"
+
+msgid "Running workers"
+msgstr "労働者を実行する"
+
+msgid "Chats being answered"
+msgstr "応答中のチャット"
+
+msgid "Chats being summarized"
+msgstr "チャットをまとめています"
+
+msgid "Queued"
+msgstr "キューに入れられました"
+
+msgid "Chats not yet expired"
+msgstr "チャットの有効期限がまだ切れていない"
+
+msgid "Summaries today · USD"
+msgstr "今日の概要 · USD"
+
+msgid "Recent jobs"
+msgstr "最近の仕事"
+
+msgid "Scan now"
+msgstr "今すぐスキャン"
+
+msgid "People who are writing are answered first; no summary starts while someone is being answered or waiting. Chats quiet for {h} hours are summarized only between {w}. At most {m} jobs run at once, {r} workers are reserved for replies (a benchmark counts as one). Refreshes every 5 s."
+msgstr "書いている人が最初に答えられます。誰かが応答している間、または待っている間は要約は開始されません。{h}時間の静かなチャットは{w}の間でのみ要約されます。一度に実行できる{m}ジョブは最大で、{r}ワーカーは応答用に予約されています (ベンチマークは 1 つとしてカウントされます)。 5秒ごとに更新されます。"
+
+msgid "No jobs yet."
+msgstr "まだ仕事はありません。"
+
+msgid "Reminder"
+msgstr "リマインダー"
+
+msgid "manual"
+msgstr "マニュアル"
+
+msgid "attempt {n}"
+msgstr "{n}を試みます"
+
+msgid "Job"
+msgstr "仕事"
+
+msgid "Started"
+msgstr "開始しました"
+
+msgid "Duration"
+msgstr "期間"
+
+msgid "Running"
+msgstr "ランニング"
+
+msgid "Cost limit reached"
+msgstr "コスト制限に達しました"
+
+msgid "Stopped: AI account"
+msgstr "停止: AI アカウント"
+
+msgid "No group"
+msgstr "グループなし"
+
+msgid "Runs"
+msgstr "走る"
+
+msgid "All benchmarks"
+msgstr "すべてのベンチマーク"
+
+msgid "Live · {n} running"
+msgstr "ライブ・{n}実行中"
+
+msgid "Total spend"
+msgstr "総支出額"
+
+msgid "{n} scenario results"
+msgstr "{n}シナリオの結果"
+
+msgid "No runs yet."
+msgstr "まだ実行はありません。"
+
+msgid "Assistant + judge"
+msgstr "アシスタント+審査員"
+
+msgid "Per scenario"
+msgstr "シナリオごと"
+
+msgid "Success is attributed to the assistant model. Runs before 1.6.3 did not separate assistant and judge, so they show as \"Assistant + judge\"."
+msgstr "成功はアシスタントモデルのおかげです。 1.6.3 より前の実行ではアシスタントとジャッジが分離されていなかったため、「アシスタント + ジャッジ」として表示されます。"
+
+msgid "Run {n} scenarios"
+msgstr "{n}シナリオを実行する"
+
+msgid "Loading model prices for the cost estimate…"
+msgstr "コスト見積もりのためにモデルの価格をロードしています..."
+
+msgid "The selected model's price is unknown; no estimate."
+msgstr "選択したモデルの価格は不明です。見積もりはありません。"
+
+msgid "Estimated cost: ~{c}"
+msgstr "推定コスト: ~{c}"
+
+msgid "assistant {a} + judge {j}"
+msgstr "アシスタント{a}+ 裁判官{j}"
+
+msgid "Based on average token usage of {n} past scenario results; actual cost per scenario may vary."
+msgstr "{n}の過去のシナリオ結果の平均トークン使用量に基づきます。シナリオごとの実際のコストは異なる場合があります。"
+
+msgid "No runs yet; default estimate: ~{i} input / {o} output tokens per donor message."
+msgstr "まだ実行はありません。デフォルトの推定値: ~{i}入力 /{o}出力トークン (ドナー メッセージあたり)。"
+
+msgid "The estimate exceeds the cost limit; the run stops when the limit is reached."
+msgstr "見積もりがコスト制限を超えています。制限に達すると実行が停止します。"
+
+msgid "New run"
+msgstr "新しい実行"
+
+msgid "Scenarios are played like in the test chat: no WhatsApp message is sent and no record is created. The model is really called; the cost is charged to your AI account (OpenRouter or Anthropic) and the run stops when the limit is reached."
+msgstr "シナリオはテスト チャットと同じように再生されます。WhatsApp メッセージは送信されず、レコードも作成されません。モデルは実際には次のように呼ばれます。コストは AI アカウント (OpenRouter または Anthropic) に請求され、制限に達すると実行が停止します。"
+
+msgid "Cost limit (USD)"
+msgstr "コスト制限 (USD)"
+
+msgid "Past runs"
+msgstr "過去の走行"
+
+msgid "All chats, tool calls and judge log"
+msgstr "すべてのチャット、ツール呼び出し、ジャッジログ"
+
+msgid "Report"
+msgstr "レポート"
+
+msgid "Delete this run and its results?"
+msgstr "この実行とその結果を削除しますか?"
+
+msgid "Running in the background on the server; it continues even if you close the page."
+msgstr "サーバー上でバックグラウンドで実行されます。ページを閉じても続きます。"
+
+msgid "Watch results live"
+msgstr "結果をライブで見る"
+
+msgid "Download report (.md)"
+msgstr "レポート (.md) をダウンロードする"
+
+msgid "of {n} scenarios"
+msgstr "{n}シナリオの数"
+
+msgid "{r} read, {w} written"
+msgstr "{r}読み取り、{w}書き込み"
+
+msgid "The AI service rejected requests; the benchmark stopped."
+msgstr "AI サービスはリクエストを拒否しました。ベンチマークが停止しました。"
+
+msgid "The remaining scenarios were not counted as failed. Check the provider budget, credit or key, then use Continue to resume where it stopped."
+msgstr "残りのシナリオは失敗としてカウントされませんでした。プロバイダーの予算、クレジット、またはキーを確認し、[続行] を使用して停止したところから再開します。"
+
+msgid "Handed off when it should"
+msgstr "引き渡すべきときに引き渡される"
+
+msgid "Correct handoff"
+msgstr "正しいハンドオフ"
+
+msgid "Did not hand off when it should not"
+msgstr "引き継ぎすべきではないときに引き継ぎをしなかった"
+
+msgid "Correct no-handoff"
+msgstr "正しいノーハンドオフ"
+
+msgid "Handed off when it should not"
+msgstr "渡すべきではないときに渡される"
+
+msgid "Needless handoff"
+msgstr "不必要なハンドオフ"
+
+msgid "Did not hand off when it should"
+msgstr "引き継ぎすべきときに引き継ぎをしなかった"
+
+msgid "Missed handoff"
+msgstr "ハンドオフに失敗した"
+
+msgid "Failed only"
+msgstr "失敗のみ"
+
+msgid "Pick a scenario on the left."
+msgstr "左側でシナリオを選択します。"
+
+msgid "Scripted history in the scenario"
+msgstr "シナリオ内のスクリプト化された歴史"
+
+msgid "Scripted history"
+msgstr "スクリプト化された履歴"
+
+msgid "Passed"
+msgstr "合格"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Criterion"
+msgstr "基準"
+
+msgid "New scenario"
+msgstr "新しいシナリオ"
+
+msgid "Write a scenario with AI"
+msgstr "AIでシナリオを書く"
+
+msgid "Reset the built-in scenarios? Scenarios you added are kept."
+msgstr "内蔵シナリオをリセットしますか?追加したシナリオは保持されます。"
+
+msgid "Restore built-in scenarios"
+msgstr "組み込みシナリオの復元"
+
+msgid "In messages {tur} = \"{a}\", {birim} = \"{b}\", {brand} = \"{c}\"."
+msgstr "メッセージ{tur}= \"{a}\"、{birim}= \"{b}\"、{brand}= \"{c}\"。"
+
+msgid "Must contain"
+msgstr "必ず含まれている必要があります"
+
+msgid "Must not contain"
+msgstr "含まないこと"
+
+msgid "Tool must be called"
+msgstr "ツールを呼び出す必要があります"
+
+msgid "Tool must not be called"
+msgstr "ツールを呼び出してはなりません"
+
+msgid "Must"
+msgstr "必須"
+
+msgid "Built-in"
+msgstr "内蔵"
+
+msgid "The assistant's reply after the scripted history is measured."
+msgstr "スクリプト化された履歴が測定された後のアシスタントの応答。"
+
+msgid "Continuation"
+msgstr "続き"
+
+msgid "Writes as the first Flux Roles user with staff tools."
+msgstr "スタッフ ツールを使用して最初の Flux ロール ユーザーとして書き込みます。"
+
+msgid "Staff writes"
+msgstr "スタッフが書きます"
+
+msgid "Start: {n}"
+msgstr "開始:{n}"
+
+msgid "{n} messages"
+msgstr "{n}メッセージ"
+
+msgid "Edit with AI"
+msgstr "AIで編集する"
+
+msgid "Run only this"
+msgstr "これだけを実行する"
+
+msgid "Delete this scenario?"
+msgstr "このシナリオを削除しますか?"
+
+msgid "One phrase per line; alternatives as a|b"
+msgstr "1 行に 1 つのフレーズ。 a|b としての代替案"
+
+msgid "One phrase per line"
+msgstr "1 行に 1 つのフレーズ"
+
+msgid "E.g. Should not ask for a name; short and warm greeting."
+msgstr "例:名前を尋ねるべきではありません。短くて温かい挨拶。"
+
+msgid "One tool name per line; a|b for alternatives"
+msgstr "1 行に 1 つのツール名。 a|b (代替案)"
+
+msgid "One tool name per line"
+msgstr "1 行に 1 つのツール名"
+
+msgid "Group"
+msgstr "グループ"
+
+msgid "Messages (in order)"
+msgstr "メッセージ(順番に)"
+
+msgid "{tur}, {birim} and {brand} can be used. If there are only customer messages, the assistant replies to each in turn. If you add assistant messages it becomes a continuation scenario: the written history is given as-is and the assistant replies only to the last customer message."
+msgstr "{tur}、{birim}および{brand}を使用できます。顧客メッセージのみがある場合、アシスタントはそれぞれのメッセージに順番に返信します。アシスタント メッセージを追加すると、継続シナリオになります。書き込まれた履歴はそのまま提供され、アシスタントは最後の顧客メッセージにのみ返信します。"
+
+msgid "E.g. payment_info, cancel_donation, receipt_check. Tools disabled on this site are not checked."
+msgstr "例:支払い情報、寄付キャンセル、領収書チェック。このサイトで無効になっているツールはチェックされていません。"
+
+msgid "Who is writing?"
+msgstr "誰が書いていますか?"
+
+msgid "Starting state (test)"
+msgstr "開始状態(テスト)"
+
+msgid "The scenario runs isolated like the test chat; what you select here exists only in this test. In a customer message, {kod} becomes the verification code from the test panel."
+msgstr "シナリオはテスト チャットのように分離して実行されます。ここで選択したものは、このテスト内にのみ存在します。顧客メッセージでは、{kod}がテスト パネルからの確認コードになります。"
+
+msgid "End state"
+msgstr "終了状態"
+
+msgid "When the conversation ends, the test state is checked (was a donation opened, canceled, a code sent…). Tools disabled on this site are not checked."
+msgstr "会話が終了すると、テスト状態がチェックされます (寄付が開かれたか、キャンセルされたか、コードが送信されたかなど)。このサイトで無効になっているツールはチェックされていません。"
+
+msgid "Judge criterion"
+msgstr "審査基準"
+
+msgid "If empty, the judge is not called. Put quality expectations that cannot be written as rules here."
+msgstr "空の場合、ジャッジは呼ばれません。ルールとして記述できない品質への期待をここに記述します。"
+
+msgid "Message written by the assistant"
+msgstr "アシスタントが書いたメッセージ"
+
+msgid "Message written by the customer"
+msgstr "お客様が書いてくださったメッセージ"
+
+msgid "Drag to reorder"
+msgstr "ドラッグして並べ替えます"
+
+msgid "Change author"
+msgstr "著者を変更する"
+
+msgid "Delete message"
+msgstr "メッセージを削除する"
+
+msgid "Customer message"
+msgstr "お客様からのメッセージ"
+
+msgid "Assistant message"
+msgstr "アシスタントメッセージ"
+
+msgid "Scenario saved ✓"
+msgstr "シナリオが保存されました ✓"
+
+msgid "Edit scenario"
+msgstr "シナリオの編集"
+
+msgid "E.g. Add one more message: the person does not want to give an email."
+msgstr "例:もう 1 つメッセージを追加します。その人は電子メールを送りたくないのです。"
+
+msgid "E.g. The person asks about a sacrifice donation; the assistant hands off to the team without making anything up."
+msgstr "例:その人は犠牲の寄付について尋ねます。アシスタントは何も作り話せずにチームに引き継ぎます。"
+
+msgid "Write"
+msgstr "書く"
+
+msgid "Edit scenario with AI"
+msgstr "AIによるシナリオ編集"
+
+msgid "What should be tested?"
+msgstr "何をテストする必要がありますか?"
+
+msgid "Have the scenario written first."
+msgstr "まずはシナリオを書いてもらいます。"
+
+msgid "Writing…"
+msgstr "執筆中..."
+
+msgid "Rewrite"
+msgstr "リライト"
+
+msgid "Documents"
+msgstr "書類"
+
+msgid "Benchmark"
+msgstr "ベンチマーク"
+
+msgid "7 days"
+msgstr "7日間"
+
+msgid "30 days"
+msgstr "30日"
+
+msgid "Added to the instructions on every reply"
+msgstr "すべての返信の手順に追加"
+
+msgid "Assistant reads it when needed"
+msgstr "アシスタントが必要に応じて読み上げます"
+
+msgid "1h"
+msgstr "1時間"
+
+msgid "On"
+msgstr "オン"
+
+msgid "Paused"
+msgstr "一時停止中"
+
+msgid "Out of scope"
+msgstr "範囲外"
+
+msgid "Approved"
+msgstr "承認済み"
+
+msgid "Skipped"
+msgstr "スキップされました"
+
+msgid "Interrupted"
+msgstr "中断されました"
+
+msgid "%s ago"
+msgstr "%s前"
+
+msgid "Open settings"
+msgstr "設定を開く"
+
+msgid "Call Center · Setup"
+msgstr "コールセンター・セットアップ"
+
+msgid "Call Center · WhatsApp"
+msgstr "コールセンター · WhatsApp"
+
+msgid "Call Center · AI"
+msgstr "コールセンター・AI"
+
+msgid "Database tables"
+msgstr "データベーステーブル"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "テーブルがありません:%s。プラグインを非アクティブ化し、再度アクティブ化します。"
+
+msgid "Tables ready (schema %s)."
+msgstr "テーブルの準備ができました (スキーマ%s)。"
+
+msgid "Schema update pending; it completes when you open a page in the admin panel."
+msgstr "スキーマの更新は保留中です。管理パネルでページを開くと完了します。"
+
+msgid "Media folder"
+msgstr "メディアフォルダー"
+
+msgid "Cannot write to uploads/flx-chat; incoming photos, voice notes and documents cannot be saved. Check folder permissions."
+msgstr "Uploads/flx-chat に書き込めません。受信した写真、音声メモ、ドキュメントは保存できません。フォルダーの権限を確認してください。"
+
+msgid "Folder protection (.htaccess) missing; it is created with the first saved media."
+msgstr "フォルダー保護 (.htaccess) がありません。最初に保存されたメディアを使用して作成されます。"
+
+msgid "Writable and closed to the public."
+msgstr "書き込み可能で非公開です。"
+
+msgid "PHP cURL"
+msgstr "PHPカール"
+
+msgid "Available."
+msgstr "利用可能です。"
+
+msgid "Missing; while the assistant prepares a reply the \"typing…\" indicator shows only briefly."
+msgstr "行方不明。アシスタントが応答を準備している間、「入力中...」インジケーターは短時間だけ表示されます。"
+
+msgid "Users with the agent role: %d."
+msgstr "エージェントの役割を持つユーザー:%d。"
+
+msgid "No user has the agent role; only administrators can use it for now."
+msgstr "エージェントの役割を持っているユーザーはいません。現時点では管理者のみが使用できます。"
+
+msgid "Live panel updates"
+msgstr "ライブパネルの更新"
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
+msgstr "最終更新リクエスト%1$s。パネルが開いている間、%2$d秒 (バックグラウンド タブでは 60 秒) ごとに新しいメッセージがチェックされます。"
+
+msgid "The chat screen has not been opened yet."
+msgstr "まだチャット画面は開いていません。"
+
+msgid "WhatsApp line"
+msgstr "WhatsAppライン"
+
+msgid "No line added."
+msgstr "行は追加されていません。"
+
+msgid "%s: connection details"
+msgstr "%s: 接続の詳細"
+
+msgid "Using Flux Mail connection: %s."
+msgstr "Flux Mail 接続の使用:%s。"
+
+msgid "Still using the old provider in Flux Certificates; move the connection to Flux Mail and select it here."
+msgstr "Flux 証明書では依然として古いプロバイダーを使用しています。接続を Flux Mail に移動し、ここで選択します。"
+
+msgid "Using the Evolution provider from Flux Certificates."
+msgstr "Flux 証明書の Evolution プロバイダーを使用します。"
+
+msgid "API URL, key and instance are entered in this plugin."
+msgstr "このプラグインにはAPIのURL、キー、インスタンスを入力します。"
+
+msgid "%s: line status"
+msgstr "%s: 回線ステータス"
+
+msgid "Phone connected (last seen %s)."
+msgstr "電話が接続されました (最後に表示されたのは%s)。"
+
+msgid "Not tested yet. Press \"Test connection\"."
+msgstr "まだテストされていません。 「接続テスト」を押します。"
+
+msgid "Phone not connected (state: %1$s, %2$s). Reconnect with \"Connect with QR\"."
+msgstr "電話が接続されていません (状態:%1$s、%2$s)。 「QRで接続」で再接続してください。"
+
+msgid "%s: Evolution API version"
+msgstr "%s: Evolution API バージョン"
+
+msgid "Evolution API %s is in use. Replies to hidden-number (@lid) contacts may fail; update the server to 2.3 or later."
+msgstr "Evolution API%sが使用されています。非表示の番号 (@lid) 連絡先への返信は失敗する場合があります。サーバーを 2.3 以降に更新します。"
+
+msgid "%s: webhook (incoming messages)"
+msgstr "%s: Webhook (受信メッセージ)"
+
+msgid "No events have arrived from Evolution; incoming messages will not show in the panel. Press \"Set up webhook\"."
+msgstr "Evolution からイベントが到着していません。受信メッセージはパネルに表示されません。 「Webhookを設定する」を押します。"
+
+msgid "Last event arrived %s. The line may just be quiet; send yourself a message or set up the webhook again to be sure."
+msgstr "最後のイベント%sが到着しました。回線が静かなだけかもしれません。自分にメッセージを送信するか、Webhook を再度設定して確認してください。"
+
+msgid "Last event arrived %s."
+msgstr "最後のイベントが%sに到着しました。"
+
+msgid "Flux Mail integration"
+msgstr "Flux メールの統合"
+
+msgid "Active: WhatsApp connections are taken from Communication › Connections."
+msgstr "アクティブ: WhatsApp 接続は、通信 › 接続から取得されます。"
+
+msgid "Flux Mail is not active; connections are taken from Flux Certificates or from this plugin."
+msgstr "Flux Mail はアクティブではありません。接続は Flux 証明書またはこのプラグインから取得されます。"
+
+msgid "Flux Certificates integration"
+msgstr "Flux 証明書の統合"
+
+msgid "Active: certificates can be created and sent from chats."
+msgstr "アクティブ: チャットから証明書を作成および送信できます。"
+
+msgid "Flux Certificates is not active; certificate actions in chats are off."
+msgstr "Flux 証明書はアクティブではありません。チャットでの証明書アクションがオフになっています。"
+
+msgid "Flux Donate integration"
+msgstr "Flux Donateの統合"
+
+msgid "Active: donation records, receipt matching and the assistant are available from chats."
+msgstr "アクティブ: 寄付記録、領収書の照合、アシスタントはチャットから利用できます。"
+
+msgid "Flux Donate is not active; donation records, receipt matching and the donation assistant are off."
+msgstr "Flux Donate はアクティブではありません。寄付記録、領収書の照合、寄付アシスタントがオフになっています。"
+
+msgid "The Flux AI & MCP plugin is not installed; AI features (suggestions, assistant, receipt reading, voice messages, summaries) are off. Install Flux AI and enter the key there."
+msgstr "Flux AI および MCP プラグインはインストールされていません。 AI 機能 (提案、アシスタント、レシート読み上げ、音声メッセージ、要約) はオフになっています。 Flux AI をインストールし、そこにキーを入力します。"
+
+msgid "No key has been entered in Flux AI; message suggestions and the assistant are off."
+msgstr "Flux AI にキーが入力されていません。メッセージの提案とアシスタントはオフになっています。"
+
+msgid "Key saved but no model selected."
+msgstr "キーは保存されましたが、モデルが選択されていません。"
+
+msgid "No provider key has been entered in Flux AI for the selected model (%s)."
+msgstr "選択したモデル (%s) の Flux AI にプロバイダー キーが入力されていません。"
+
+msgid "Key saved, model: %s. Use \"Test connection\" for a live check."
+msgstr "キーが保存されました、モデル:%s。ライブチェックには「接続テスト」を使用します。"
+
+msgid "Donation assistant"
+msgstr "寄付アシスタント"
+
+msgid "Off."
+msgstr "オフ。"
+
+msgid "AI key or model is missing."
+msgstr "AI キーまたはモデルがありません。"
+
+msgid "On but not replying: "
+msgstr "オンだが応答がない:"
+
+msgid "On. Donation types offered: %s."
+msgstr "オン。提供される寄付の種類:%s。"
+
+msgid "%s does not support tools; choose a tool-capable model for the assistant."
+msgstr "%sはツールをサポートしていません。アシスタントにはツール対応モデルを選択してください。"
+
+msgid "Receipt reading model"
+msgstr "レシート読み取りモデル"
+
+msgid "%s cannot read images; the receipt pre-check will not work. Choose an image-capable receipt reading model."
+msgstr "%sはイメージを読み取れません。領収書の事前チェックは機能しません。画像対応のレシート読み取りモデルを選択してください。"
+
+msgid "Assistant payment details"
+msgstr "アシスタントの支払い詳細"
+
+msgid "Recipient name and IBAN set."
+msgstr "受信者名とIBANが設定されています。"
+
+msgid "Recipient name or IBAN missing; bank details cannot be sent after confirmation."
+msgstr "受信者名または IBAN がありません。確認後に銀行口座情報を送信することはできません。"
+
+msgid "Donation page link"
+msgstr "寄付ページへのリンク"
+
+msgid "Donation page not found; the assistant will not send a link."
+msgstr "寄付ページが見つかりません。アシスタントはリンクを送信しません。"
+
+msgid "Background requests"
+msgstr "バックグラウンドリクエスト"
+
+msgid "The site could not send a background request to itself (%1$s: %2$s). Queued replies and the benchmark may move slowly; a security plugin or the server firewall may be blocking /wp-json/flx-chat/ requests."
+msgstr "サイトはバックグラウンドリクエストをそれ自体に送信できませんでした (%1$s:%2$s)。応答がキューに入れられ、ベンチマークの動きが遅くなる可能性があります。セキュリティ プラグインまたはサーバー ファイアウォールが /wp-json/flx-chat/ リクエストをブロックしている可能性があります。"
+
+msgid "error"
+msgstr "エラー"
+
+msgid "warning"
+msgstr "警告"
+
+msgid "ok"
+msgstr "わかりました"
+
+msgid "Your {marka} verification code: {kod}"
+msgstr "{marka}確認コード:{kod}"
+
+msgid "The code is valid for {dk} minutes. Type it in your WhatsApp chat with us. If you did not ask for it, ignore this message."
+msgstr "コードは{dk}分間有効です。 WhatsApp チャットにそれを入力してください。要求していない場合は、このメッセージを無視してください。"
+
+msgid "Something went wrong; our team will contact you as soon as possible 🌱 Meanwhile, feel free to ask anything else."
+msgstr "何か問題が発生しました。私たちのチームができるだけ早くご連絡いたします 🌱 その他、何かございましたらお気軽にご質問ください。"
+
+msgid "Verification attempt failed (%1$d/%2$d): %3$s"
+msgstr "検証の試行が失敗しました (%1$d/%2$d):%3$s"
+
+msgid "The person wanted to see their records but could not be verified; someone from the team should get in touch"
+msgstr "その人は自分の記録を見たいと思っていましたが、確認することができませんでした。チームの誰かが連絡する必要があります"
+
+msgid "e-mail could not be sent (check Flux Mail › SMTP settings)"
+msgstr "電子メールを送信できませんでした (Flux Mail › SMTP 設定を確認してください)"
+
+msgid "The assistant sent a verification code for %1$s (%2$s)."
+msgstr "アシスタントは%1$s(%2$s) の確認コードを送信しました。"
+
+msgid "code expired"
+msgstr "コードの有効期限が切れました"
+
+msgid "wrong code"
+msgstr "間違ったコード"
+
+msgid "The person verified the code for %s; it is added to their record lookups."
+msgstr "その人は%sのコードを検証しました。それはレコード検索に追加されます。"
+
+msgid "Claude models cannot read audio; choose an audio-capable OpenRouter model in Settings › AI › Voice message model."
+msgstr "クロード モデルは音声を読み取ることができません。 [設定] › AI › 音声メッセージ モデルでオーディオ対応の OpenRouter モデルを選択します。"
+
+msgid "The audio could not be transcribed."
+msgstr "音声を転写できませんでした。"
+
+msgid "The audio file could not be read."
+msgstr "音声ファイルを読み取れませんでした。"
+
+msgid "Voice message (%1$s) transcribed: %2$s"
+msgstr "音声メッセージ (%1$s) 文字起こし:%2$s"
+
+msgid "Voice message (%1$s) could not be processed: %2$s"
+msgstr "音声メッセージ (%1$s) を処理できませんでした:%2$s"
+
+msgid "This action is not available on an official WhatsApp Cloud API line."
+msgstr "このアクションは、公式の WhatsApp Cloud API ラインでは利用できません。"
+
+msgid "WhatsApp 24-hour rule: the contact has not written in the last 24 hours, so the Cloud API will not send a free-form message; only an approved template can be sent. Try again once they write."
+msgstr "WhatsApp の 24 時間ルール: 連絡先は過去 24 時間にメッセージを書いていないため、Cloud API は自由形式のメッセージを送信しません。承認されたテンプレートのみを送信できます。彼らが書いたら、もう一度試してください。"
+
+msgid "A Cloud API line needs Flux Mail 1.10.0 or later."
+msgstr "Cloud API ラインには Flux Mail 1.10.0 以降が必要です。"
+
+msgid "The Cloud API cannot send to this address (hidden number or group)."
+msgstr "Cloud API は、このアドレス (非表示の番号またはグループ) に送信できません。"
+
+msgid "Could not reach the Cloud API account (İletişim › Connections)."
+msgstr "Cloud API アカウント (İletişim › 接続) にアクセスできませんでした。"
+
+msgid "A Cloud API line has no QR code; the account is set up in İletişim › Connections."
+msgstr "Cloud API ラインには QR コードがありません。アカウントは İletişim › 接続 で設定されます。"
+
+msgid "The file could not be prepared."
+msgstr "ファイルを準備できませんでした。"
+
+msgid "Flux AI has no image support."
+msgstr "Flux AI は画像をサポートしていません。"
+
+msgid "The image could not be rendered."
+msgstr "画像をレンダリングできませんでした。"
+
+msgid "The assistant's image could not be sent: "
+msgstr "アシスタントの画像を送信できませんでした:"
+
+msgid "Hello {first_name}, we have created your donation record: {donation}, total {amount}.\n\n{bank}\n\nAfter paying, you can send the receipt here. Thank you."
+msgstr "{first_name}さん、こんにちは。寄付記録{donation}、合計{amount}が作成されました。{bank}お支払い後、こちらから領収書をお送りください。ありがとう。"
+
+msgid "Hello {first_name}, your donation has been recorded: {donation}, total {amount}.\n\nThank you for your support."
+msgstr "こんにちは{first_name}さん、あなたの寄付が記録されました:{donation}、合計{amount}。\n\nご支援ありがとうございます。"
+
+msgid "The plugin that would run this scenario is inactive."
+msgstr "このシナリオを実行するプラグインは非アクティブです。"
+
+msgid "This user is not allowed to use the staff tools."
+msgstr "このユーザーはスタッフツールを使用できません。"
+
+msgid "%1$s linked this chat to staff member %2$s"
+msgstr "%1$sがこのチャットをスタッフ メンバー%2$sにリンクしました"
+
+msgid "%s removed the staff link of this chat"
+msgstr "%sがこのチャットのスタッフ リンクを削除しました"
+
+msgid "Chat linked to staff member"
+msgstr "スタッフメンバーにリンクされたチャット"
+
+msgid "Staff link removed"
+msgstr "スタッフリンクが削除されました"
+
+msgid "— Not staff —"
+msgstr "— スタッフではありません —"
+
+msgid "WhatsApp hides this person's number, so the assistant cannot recognise staff by number. If this person is on your team, link them here and the assistant opens the staff tools."
+msgstr "WhatsApp はこの人の番号を非表示にするため、アシスタントは番号でスタッフを認識できません。この人があなたのチームに属している場合は、ここでリンクすると、アシスタントがスタッフ ツールを開きます。"
+
+msgid "The assistant recognises staff by the number in their Flux Roles profile. If the number does not match, you can link them here; in a chat with a known number the number comes first."
+msgstr "アシスタントは、Flux ロール プロファイル内の番号によってスタッフを認識します。番号が一致しない場合は、ここでリンクできます。既知の番号とのチャットでは、その番号が最初に来ます。"
+
+msgid "This channel is not available right now."
+msgstr "このチャンネルは現在利用できません。"
+
+msgid "Site chat"
+msgstr "サイトチャット"
+
+msgid "All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left."
+msgstr "WhatsApp、サイトチャット、その他のチャネルからのすべてのメッセージがここにライブで表示されます。左側にあるチャットを選択します。"
+
+msgid "[['WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.', 'tr']]"
+msgstr "[['WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。', 'tr']]"

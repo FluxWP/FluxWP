@@ -102,13 +102,13 @@ function flxapp_usage_settings() {
 	}
 	?>
 	<div class="card" style="max-width:none;margin-top:20px">
-		<h2><?php esc_html_e( 'Mobil uygulama kullanım toplamları', 'flx-app' ); ?></h2>
-		<p><?php esc_html_e( 'İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayrıca izin veren hesaplar sayılır. Her tamamlanmış UTC günü için iOS/Android toplamları, en az beş hesap varsa telemetri merkezinize gönderilir. Kişi adları, hesap kimlikleri, içerik, site adresi ve GPS konumu bu rapora eklenmez. Ülke, sitenin ayarından gelir. Genel kullanım verisi izni de açık olmalıdır. Giriş ve uygulama özellikleri bu seçime bağlı değildir.', 'flx-app' ); ?></p>
+		<h2><?php esc_html_e( 'Aggregate mobile app usage', 'flx-app' ); ?></h2>
+		<p><?php esc_html_e( 'Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice.', 'flx-app' ); ?></p>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<input type="hidden" name="action" value="flxapp_usage_consent">
 			<?php wp_nonce_field( 'flxapp_usage_consent' ); ?>
-			<label><input type="checkbox" name="share" value="1" <?php checked( '1', get_option( 'flxapp_usage_share', '' ) ); ?>> <?php esc_html_e( 'Mobil uygulamanın toplam kullanımını paylaş', 'flx-app' ); ?></label>
-			<p><button class="button button-primary"><?php esc_html_e( 'Kaydet', 'flx-app' ); ?></button></p>
+			<label><input type="checkbox" name="share" value="1" <?php checked( '1', get_option( 'flxapp_usage_share', '' ) ); ?>> <?php esc_html_e( 'Share aggregate mobile app usage', 'flx-app' ); ?></label>
+			<p><button class="button button-primary"><?php esc_html_e( 'Save', 'flx-app' ); ?></button></p>
 		</form>
 	</div>
 	<?php
@@ -116,7 +116,7 @@ function flxapp_usage_settings() {
 
 function flxapp_usage_save_consent() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( esc_html__( 'Yetkiniz yok.', 'flx-app' ) );
+		wp_die( esc_html__( '\\nYetkiniz yok.\\n', 'flx-app' ) );
 	}
 	check_admin_referer( 'flxapp_usage_consent' );
 	update_option( 'flxapp_usage_share', ! empty( $_POST['share'] ) ? '1' : '0', false );

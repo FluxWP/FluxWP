@@ -51,7 +51,7 @@ class FLXF_Payment_Stripe extends FLXF_Payment_Provider_Base implements FLXF_Pay
 	 */
 	public function settings_fields() {
 		return array(
-			array( 'key' => 'stripePKey', 'label' => __( 'Publishable key', 'flx-forms' ), 'type' => 'text', 'required' => true ),
+			array( 'key' => 'stripePKey', 'label' => __( '[[\'Publishable key\\n', 'flx-forms' ), 'type' => 'text', 'required' => true ),
 			array( 'key' => 'stripeSKey', 'label' => __( 'Secret key', 'flx-forms' ), 'type' => 'password', 'required' => true ),
 		);
 	}
@@ -67,7 +67,7 @@ class FLXF_Payment_Stripe extends FLXF_Payment_Provider_Base implements FLXF_Pay
 
 	public function start_request( $request, $public ) {
 		if ( ! self::handler() ) {
-			return new WP_REST_Response( array( 'success' => true, 'data' => array( 'success' => false, 'm' => __( 'Stripe is not configured on this site. Please contact the site administrator.', 'flx-forms' ) ) ), 200 );
+			return new WP_REST_Response( array( 'success' => true, 'data' => array( 'success' => false, 'm' => __( '\\nStripe is not configured on this site. Please contact the site administrator.\\n', 'flx-forms' ) ) ), 200 );
 		}
 		return \Emsfb\StripeHandlerEfb::card_add_stripe( $request, $public );
 	}
@@ -79,14 +79,14 @@ class FLXF_Payment_Stripe extends FLXF_Payment_Provider_Base implements FLXF_Pay
 	 */
 	public function create_payment( $amount, $currency, array $meta ) {
 		if ( ! self::handler() ) {
-			return FLXF_Payment_Result::failed( __( 'Stripe is not configured on this site. Please contact the site administrator.', 'flx-forms' ) );
+			return FLXF_Payment_Result::failed( __( '\\nStripe is not configured on this site. Please contact the site administrator.\\n', 'flx-forms' ) );
 		}
 		if ( 'charge' !== ( $meta['method'] ?? 'charge' ) ) {
-			return FLXF_Payment_Result::failed( __( 'The payment method of this form is not supported.', 'flx-forms' ) );
+			return FLXF_Payment_Result::failed( __( '\\nThe payment method of this form is not supported.\\n', 'flx-forms' ) );
 		}
 		$api = \Emsfb\StripeHandlerEfb::api();
 		if ( ! $api ) {
-			return FLXF_Payment_Result::failed( __( 'Stripe is not configured on this site. Please contact the site administrator.', 'flx-forms' ) );
+			return FLXF_Payment_Result::failed( __( '\\nStripe is not configured on this site. Please contact the site administrator.\\n', 'flx-forms' ) );
 		}
 		$params = array(
 			'amount'                 => \Emsfb\StripeApiEfb::to_minor( $amount, $currency ),
@@ -103,26 +103,26 @@ class FLXF_Payment_Stripe extends FLXF_Payment_Provider_Base implements FLXF_Pay
 			return FLXF_Payment_Result::failed( 'Stripe: ' . $e->getMessage() );
 		}
 		if ( empty( $pi['id'] ) || empty( $pi['client_secret'] ) ) {
-			return FLXF_Payment_Result::failed( __( 'The payment could not be started. Please try again.', 'flx-forms' ) );
+			return FLXF_Payment_Result::failed( __( '\\nThe payment could not be started. Please try again.\\n', 'flx-forms' ) );
 		}
 		return FLXF_Payment_Result::requires_action( $pi['id'], array( 'client_secret' => $pi['client_secret'] ), array( 'record' => array( 'payment_type' => 'one-time' ) ) );
 	}
 
 	public function verify( $record, array $params = array() ) {
 		if ( ! self::handler() ) {
-			return FLXF_Payment_Result::failed( __( 'The payment could not be verified yet.', 'flx-forms' ) );
+			return FLXF_Payment_Result::failed( __( '\\nThe payment could not be verified yet.\\n', 'flx-forms' ) );
 		}
 		$reason = '';
 		if ( \Emsfb\StripeHandlerEfb::verify_payment_row( $record, $reason ) ) {
 			return FLXF_Payment_Result::completed( (string) $record->transaction_id );
 		}
-		return FLXF_Payment_Result::failed( __( 'The payment could not be verified yet.', 'flx-forms' ), array( 'record' => array( 'reason' => $reason ) ) );
+		return FLXF_Payment_Result::failed( __( '\\nThe payment could not be verified yet.\\n', 'flx-forms' ), array( 'record' => array( 'reason' => $reason ) ) );
 	}
 
 	/** Webhook card on the Payments admin page (legacy URL + signing secret form of the add-on). */
 	public function admin_webhook_card() {
 		$has = self::handler() && class_exists( '\Emsfb\StripePayment' ) ? '' !== \Emsfb\StripePayment::webhook_secret() : false;
-		echo '<p class="flxfp-muted">' . esc_html__( 'Optional but recommended: in the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.updated and customer.subscription.deleted, then paste its signing secret below.', 'flx-forms' ) . '</p>';
+		echo '<p class="flxfp-muted">' . esc_html__( '\\nOptional but recommended: in the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.updated and customer.subscription.deleted, then paste its signing secret below.\\n', 'flx-forms' ) . '</p>';
 		echo '<p><code class="flxfp-code">' . esc_html( rest_url( 'Emsfb/v1/forms/payment/stripe/webhook' ) ) . '</code></p>';
 		if ( ! has_action( 'admin_post_emsfb_stripe_save' ) ) {
 			return;
@@ -130,11 +130,11 @@ class FLXF_Payment_Stripe extends FLXF_Payment_Provider_Base implements FLXF_Pay
 		echo '<form class="flxfp-form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 		echo '<input type="hidden" name="action" value="emsfb_stripe_save">';
 		wp_nonce_field( 'emsfb_stripe_save' );
-		echo '<label class="flxfp-label" for="emsfb_stripe_webhook_secret">' . esc_html__( 'Webhook signing secret', 'flx-forms' ) . '</label>';
-		echo '<div class="flxfp-row"><input type="password" class="flxfp-input" autocomplete="off" id="emsfb_stripe_webhook_secret" name="emsfb_stripe_webhook_secret" value="" placeholder="' . esc_attr( $has ? __( 'Saved - leave empty to keep it', 'flx-forms' ) : 'whsec_...' ) . '">';
+		echo '<label class="flxfp-label" for="emsfb_stripe_webhook_secret">' . esc_html__( '\\nWebhook signing secret\\n', 'flx-forms' ) . '</label>';
+		echo '<div class="flxfp-row"><input type="password" class="flxfp-input" autocomplete="off" id="emsfb_stripe_webhook_secret" name="emsfb_stripe_webhook_secret" value="" placeholder="' . esc_attr( $has ? __( '\\nSaved - leave empty to keep it\\n', 'flx-forms' ) : 'whsec_...' ) . '">';
 		echo '<button type="submit" class="flxfp-btn flxfp-btn--primary">' . esc_html__( 'Save', 'flx-forms' ) . '</button></div>';
 		if ( $has ) {
-			echo '<label class="flxfp-check"><input type="checkbox" name="emsfb_stripe_webhook_clear" value="1"> ' . esc_html__( 'Remove the saved secret', 'flx-forms' ) . '</label>';
+			echo '<label class="flxfp-check"><input type="checkbox" name="emsfb_stripe_webhook_clear" value="1"> ' . esc_html__( '\\nRemove the saved secret\\n', 'flx-forms' ) . '</label>';
 		}
 		echo '</form>';
 	}

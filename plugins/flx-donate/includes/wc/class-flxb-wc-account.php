@@ -99,10 +99,10 @@ class FLXB_WC_Account {
 		$orders = self::pending_orders();
 		echo '<div class="flxwb-pending">';
 		if ( ! $orders ) {
-			echo '<div class="flxwb-empty">' . FLXB_WC::icon( 'check' ) . '<p><strong>' . esc_html__( 'You have no pending donations.', 'flx-donate' ) . '</strong><br>' . esc_html__( 'Donations made by bank transfer appear here until the payment is confirmed.', 'flx-donate' ) . '</p><a class="flxwb-btn flxwb-btn--primary" href="' . esc_url( FLXB_WC::page_url() ) . '">' . esc_html__( 'Donate', 'flx-donate' ) . '</a></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG
+			echo '<div class="flxwb-empty">' . FLXB_WC::icon( 'check' ) . '<p><strong>' . esc_html__( '\\nYou have no pending donations.\\n', 'flx-donate' ) . '</strong><br>' . esc_html__( '\\nDonations made by bank transfer appear here until the payment is confirmed.\\n', 'flx-donate' ) . '</p><a class="flxwb-btn flxwb-btn--primary" href="' . esc_url( FLXB_WC::page_url() ) . '">' . esc_html__( 'Donate', 'flx-donate' ) . '</a></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG
 			return;
 		}
-		echo '<p class="flxwb-pending__lead">' . esc_html__( 'Your bank transfer donations. If you have made the payment, upload your receipt; your certificate is sent once it is confirmed.', 'flx-donate' ) . '</p>';
+		echo '<p class="flxwb-pending__lead">' . esc_html__( '\\nYour bank transfer donations. If you have made the payment, upload your receipt; your certificate is sent once it is confirmed.\\n', 'flx-donate' ) . '</p>';
 		foreach ( $orders as $order ) {
 			$uploaded = (bool) FLXB_WC_Receipts::of( $order );
 			$summary  = array();
@@ -111,10 +111,10 @@ class FLXB_WC_Account {
 			}
 			echo '<details class="flxwb-pcard"' . ( $uploaded ? '' : ' open' ) . '><summary class="flxwb-pcard__sum"><span class="flxwb-pcard__main"><strong>'
 				/* translators: %s: donation number */
-				. esc_html( sprintf( __( 'Donation #%s', 'flx-donate' ), $order->get_order_number() ) ) . '</strong><small>'
+				. esc_html( sprintf( __( '\\nDonation #%s\\n', 'flx-donate' ), $order->get_order_number() ) ) . '</strong><small>'
 				. esc_html( wc_format_datetime( $order->get_date_created() ) ) . ' · ' . esc_html( implode( ', ', $summary ) ) . '</small></span>'
 				. '<span class="flxwb-pcard__amount">' . wp_kses_post( $order->get_formatted_order_total() ) . '</span>'
-				. '<span class="flxwb-pill flxwb-pill--' . ( $uploaded ? 'review' : 'wait' ) . '">' . ( $uploaded ? esc_html__( 'Receipt under review', 'flx-donate' ) : esc_html__( 'Awaiting payment', 'flx-donate' ) ) . '</span></summary>'
+				. '<span class="flxwb-pill flxwb-pill--' . ( $uploaded ? 'review' : 'wait' ) . '">' . ( $uploaded ? esc_html__( '\\nReceipt under review\\n', 'flx-donate' ) : esc_html__( 'Awaiting payment', 'flx-donate' ) ) . '</span></summary>'
 				. '<div class="flxwb-pcard__body">' . FLXB_WC_Havale::panel( $order, 'account' ) . '</div></details>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- panel() escapes
 		}
 		echo '</div>';
@@ -155,7 +155,7 @@ class FLXB_WC_Account {
 		FLXB_WC_Form::enqueue();
 		echo '<a class="flxwb-remind" href="' . esc_url( wc_get_account_endpoint_url( self::ENDPOINT ) ) . '">' . FLXB_WC::icon( 'clock' ) . '<span><strong>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG
 			/* translators: %s: number of donations */
-			. esc_html( sprintf( _n( '%s donation is awaiting payment', '%s donations are awaiting payment', $n, 'flx-donate' ), number_format_i18n( $n ) ) ) . '</strong><small>'
-			. esc_html__( 'If you have made the transfer, upload your receipt.', 'flx-donate' ) . '</small></span></a>';
+			. esc_html( sprintf( _n( '[[\'%sdonation is awaiting payment\', \'en\']]', '[[\'%sdonations are awaiting payment\', \'en\']]', $n, 'flx-donate' ), number_format_i18n( $n ) ) ) . '</strong><small>'
+			. esc_html__( '\\nIf you have made the transfer, upload your receipt.\\n', 'flx-donate' ) . '</small></span></a>';
 	}
 }

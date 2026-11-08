@@ -153,7 +153,7 @@ abstract class FLXSM_Meta_Base extends FLXSM_Provider {
 			$q   = array();
 		}
 		if ( ! $out ) {
-			return new WP_Error( 'flxsm_none', __( 'Yönettiğiniz Facebook sayfası bulunamadı. Girişte sayfaları seçtiğinizden emin olun.', 'flx-social' ) );
+			return new WP_Error( 'flxsm_none', __( 'No Facebook page you manage was found. Make sure you selected the pages during login.', 'flx-social' ) );
 		}
 		return $out;
 	}
@@ -406,16 +406,16 @@ class FLXSM_Instagram extends FLXSM_Meta_Base {
 		$errs = parent::validate( $pl, $acc );
 		$type = (string) ( $pl['options']['ig_type'] ?? 'feed' );
 		if ( 'story' === $type && count( $pl['media'] ) > 1 ) {
-			$errs[] = __( 'Hikâyede tek görsel ya da video olur.', 'flx-social' );
+			$errs[] = __( 'A story has a single image or video.', 'flx-social' );
 		}
 		if ( preg_match_all( '/#[\p{L}\p{N}_]+/u', (string) $pl['text'] ) > 30 ) {
-			$errs[] = __( 'Instagram en çok 30 hashtag kabul ediyor.', 'flx-social' );
+			$errs[] = __( 'Instagram accepts at most 30 hashtags.', 'flx-social' );
 		}
 		foreach ( $pl['media'] as $m ) {
 			if ( 'image' === $m['kind'] && $m['width'] && $m['height'] && 'story' !== $type ) {
 				$r = $m['width'] / $m['height'];
 				if ( $r < 0.79 || $r > 1.92 ) {
-					$errs[] = __( 'Instagram akış görseli en-boy oranı 4:5 ile 1.91:1 arasında olmalı (hikâye hariç).', 'flx-social' );
+					$errs[] = __( 'Instagram feed image aspect ratio must be between 4:5 and 1.91:1 (except stories).', 'flx-social' );
 					break;
 				}
 			}
@@ -429,7 +429,7 @@ class FLXSM_Instagram extends FLXSM_Meta_Base {
 			return parent::auth_url( $ctx );
 		}
 		if ( '' === flxsm_app( 'instagram', 'app_id' ) || ! flxsm_has_secret( 'instagram_secret' ) ) {
-			return new WP_Error( 'flxsm_app', __( 'Önce Ayarlar › Uygulamalar › Instagram girişi anahtarlarını girin.', 'flx-social' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxsm_app', __( 'First enter the keys under Settings › Apps › Instagram login.', 'flx-social' ), array( 'status' => 400 ) );
 		}
 		return 'https://www.instagram.com/oauth/authorize?' . http_build_query(
 			array(
@@ -657,7 +657,7 @@ class FLXSM_Instagram extends FLXSM_Meta_Base {
 					return $st;
 				}
 				if ( in_array( $st, array( 'ERROR', 'EXPIRED' ), true ) ) {
-					return new WP_Error( 'flxsm_api', __( 'Instagram carousel öğesini işleyemedi (biçim/boyut uygun değil).', 'flx-social' ), array( 'retry' => false ) );
+					return new WP_Error( 'flxsm_api', __( 'Instagram could not process a carousel item (format/size not suitable).', 'flx-social' ), array( 'retry' => false ) );
 				}
 				if ( 'FINISHED' !== $st ) {
 					return array(
@@ -693,12 +693,12 @@ class FLXSM_Instagram extends FLXSM_Meta_Base {
 				return $st;
 			}
 			if ( in_array( $st, array( 'ERROR', 'EXPIRED' ), true ) ) {
-				return new WP_Error( 'flxsm_api', __( 'Instagram medyayı işleyemedi. Video: MP4 (H.264/AAC), 3–90 sn (Reels 15 dk), en çok 1 GB; görsel: JPEG, en çok 8 MB.', 'flx-social' ), array( 'retry' => false ) );
+				return new WP_Error( 'flxsm_api', __( 'Instagram could not process the media. Video: MP4 (H.264/AAC), 3–90 s (Reels 15 min), up to 1 GB; image: JPEG, up to 8 MB.', 'flx-social' ), array( 'retry' => false ) );
 			}
 			if ( 'FINISHED' !== $st ) {
 				$n = (int) $state['n'] + 1;
 				if ( $n > 90 ) {
-					return new WP_Error( 'flxsm_api', __( 'Instagram video işlemesi 30 dakikada bitmedi.', 'flx-social' ), array( 'retry' => false ) );
+					return new WP_Error( 'flxsm_api', __( 'Instagram video processing did not finish in 30 minutes.', 'flx-social' ), array( 'retry' => false ) );
 				}
 				return array(
 					'wait'  => 20,

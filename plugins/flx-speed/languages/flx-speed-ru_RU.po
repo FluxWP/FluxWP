@@ -1,0 +1,1505 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Performance"
+msgstr "Производительность"
+
+msgid "Safe"
+msgstr "Сейф"
+
+msgid "Test first"
+msgstr "Сначала протестируйте"
+
+msgid "The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect."
+msgstr "Тема или предустановка переопределяет эту функцию в коде (flxp_pagespeed_enabled); эта настройка может не вступить в силу."
+
+msgid "Saved. The cache and the LiteSpeed page cache were cleared; browse a few pages to check."
+msgstr "Сохранено. Кэш и кеш страницы LiteSpeed ​​были очищены; просмотрите несколько страниц, чтобы проверить."
+
+msgid "PageSpeed cache cleared."
+msgstr "Кэш PageSpeed очищен."
+
+msgid "Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a \"Test first\" item, check a few pages of the site (home, a post, donation/checkout)."
+msgstr "Предложения Google PageSpeed/Lighthouse, которые можно применять без изменения темы. Каждый из них включается отдельно; после включения пункта «Сначала протестируйте», проверьте несколько страниц сайта (домашняя страница, публикация, пожертвование/оформление заказа)."
+
+msgid "Basics"
+msgstr "Основы"
+
+msgid "Remove the zoom lock"
+msgstr "Снимите блокировку зума"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag so visitors with low vision can zoom in. Directly affects the Accessibility score."
+msgstr "user-scalable=no и максимальный масштаб удаляются из тега области просмотра, чтобы посетители с плохим зрением могли увеличивать масштаб. Напрямую влияет на оценку доступности."
+
+msgid "Remove the emoji script"
+msgstr "Удалить скрипт эмодзи"
+
+msgid "WordPress's emoji detection script and style are not loaded. Modern browsers render emoji themselves."
+msgstr "Сценарий и стиль обнаружения смайлов WordPress не загружаются. Современные браузеры сами отображают смайлы."
+
+msgid "Scope"
+msgstr "Область применения"
+
+msgid "Theme CSS only (recommended)"
+msgstr "Только CSS темы (рекомендуется)"
+
+msgid "Theme + plugins (all CSS under wp-content)"
+msgstr "Тема + плагины (весь CSS под wp-content)"
+
+msgid "Inline limit"
+msgstr "Встроенный предел"
+
+msgid "Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file."
+msgstr "Обрезанный CSS записывается в<head>до этого размера; все, что выходит за рамки, загружается как отдельный кэшированный файл. 0 = всегда файл."
+
+msgid "Always keep these classes"
+msgstr "Всегда сохраняйте эти занятия"
+
+msgid "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept."
+msgstr "Один класс или идентификатор в строке, * в качестве подстановочного знака. Если стиль, добавленный позже с помощью JavaScript, сломался, добавьте сюда его класс. is-*, has-*, wp-*, swiper-* сохраняются всегда."
+
+msgid "Remove unused CSS and inline it"
+msgstr "Удалите неиспользуемый CSS и встройте его."
+
+msgid "Each page's class/id inventory is collected (HTML + the page's scripts); rules with no match on that page are dropped from the CSS file and the rest is written into <head>. The render-blocking CSS request goes away and LCP/FCP improve. Pages with the same inventory share one copy; copies are rebuilt when the file changes, and the full file is used if there are too many different pages."
+msgstr "Собирается инвентарь класса/идентификатора каждой страницы (HTML + скрипты страницы); правила, не имеющие совпадений на этой странице, удаляются из файла CSS, а остальные записываются в<head>. Запрос CSS, блокирующий рендеринг, исчез, а LCP/FCP улучшились. Страницы с одинаковым инвентарем имеют одну копию; копии перестраиваются при изменении файла, а полный файл используется, если разных страниц слишком много."
+
+msgid "Minify CSS files"
+msgstr "Минимизировать CSS-файлы"
+
+msgid "For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used."
+msgstr "Для неминифицированных (не .min) локальных CSS-файлов используется обновленный аналог .min или копия без комментариев и пробелов."
+
+msgid "Minify JS files"
+msgstr "Минимизировать JS-файлы"
+
+msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
+msgstr "Для сценариев тем и плагинов используется родственный .min, если он новее, чем исходный; в противном случае создается копия без комментариев и отступов (переносы строк сохраняются). Банды, загружающие чанки относительно своего местоположения, и скрипты с переводами остаются в покое."
+
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "jQuery всегда остается блокирующим (более старые встроенные скрипты на странице могут вызывать его напрямую). Сам WordPress удаляет отсрочку для скриптов, после которых есть встроенный скрипт или от которых зависит скрипт блокировки."
+
+msgid "Defer head scripts"
+msgstr "Отложить выполнение головных сценариев"
+
+msgid "Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts)."
+msgstr "Скрипты, загруженные на страницу<head>и задерживающие рендеринг, откладываются (например, предложение языка, сценарии аналитики)."
+
+msgid "Fonts"
+msgstr "Шрифты"
+
+msgid "Remove unused fonts"
+msgstr "Удалить неиспользуемые шрифты"
+
+msgid "Font families defined in theme.json but not referenced in the page's CSS (@font-face) are not printed. If usage cannot be determined, nothing is removed."
+msgstr "Семейства шрифтов, определенные в theme.json, но не упомянутые в CSS страницы (@font-face), не печатаются. Если использование невозможно определить, ничего не удаляется."
+
+msgid "Preload the above-the-fold font"
+msgstr "Предварительная загрузка шрифта над сгибом"
+
+msgid "The regular (400) woff2 of up to two families in use is requested with <link rel=\"preload\"> so text paints sooner. Preloading the wrong weight wastes a download; turn this off if PageSpeed reports an unused preload."
+msgstr "Обычный (400) woff2, используемый максимум двумя семействами, запрашивается с помощью<link rel=\"preload\">, поэтому текст рисуется быстрее. Предварительная загрузка неправильного веса приведет к потере загрузки; отключите это, если PageSpeed ​​сообщит о неиспользованной предварительной загрузке."
+
+msgid "Exclusions"
+msgstr "Исключения"
+
+msgid "Files to leave alone"
+msgstr "Файлы, которые стоит оставить в покое"
+
+msgid "One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files."
+msgstr "Один дескриптор или часть URL-адреса в каждой строке. К этим файлам не применяются обрезка, минимизация и отсрочка."
+
+msgid "Pages to leave alone"
+msgstr "Страницы, которые стоит оставить в покое"
+
+msgid "One URL part per line. No PageSpeed optimization runs on these pages."
+msgstr "Одна часть URL-адреса в строке. На этих страницах не выполняется оптимизация PageSpeed."
+
+msgid "Save and clear cache"
+msgstr "Сохранить и очистить кеш"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Cache"
+msgstr "Кэш"
+
+msgid "%1$d CSS, %2$d JS copies · %3$s"
+msgstr "%1$dCSS,%2$dКопии JS ·%3$s"
+
+msgid "Compare"
+msgstr "Сравнить"
+
+msgid "Optimized"
+msgstr "Оптимизированный"
+
+msgid "Off (?flxp_off=1)"
+msgstr "Выкл. (?flxp_off=1)"
+
+msgid "Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here."
+msgstr "Добавление ?flxp_off=1 к URL-адресу открывает страницу без оптимизации; если страница выглядит по-другому, причина здесь."
+
+msgid "Measure"
+msgstr "Мера"
+
+msgid "Flux SEO › Site audit"
+msgstr "Flux SEO › Аудит сайта"
+
+msgid "The site audit suggests these settings itself and turns them on with one click."
+msgstr "Аудит сайта сам предлагает эти настройки и включает их одним кликом."
+
+msgid "Clear cache"
+msgstr "Очистить кеш"
+
+msgid "Animations not running on the GPU"
+msgstr "Анимации не запускаются на графическом процессоре"
+
+msgid "Lighthouse \"non-composited animations\": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity."
+msgstr "«Некомпозитная анимация» Lighthouse: свойства, отличные от преобразования и непрозрачности (смещение штриха-штриха, фон, ширина...), перерисовываются в каждом кадре. Настройка не может это исправить; тема или пресет должны переписать их с помощью преобразования/непрозрачности."
+
+msgid "Animation"
+msgstr "Анимация"
+
+msgid "Properties"
+msgstr "Свойства"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "no prefers-reduced-motion"
+msgstr "нет предпочтений с ограниченным движением"
+
+msgid "All good: animations in the CSS files seen use transform/opacity."
+msgstr "Все хорошо: анимация в видимых файлах CSS использует преобразование/непрозрачность."
+
+msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
+msgstr "Отсканированные CSS-файлы%1$d, видимые на внешнем интерфейсе (%2$s)."
+
+msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
+msgstr "Переднюю часть еще не видели, поэтому просканировали папку темы. После открытия сайта сканируются файлы, загружаемые страницей."
+
+msgid "Summary"
+msgstr "Резюме"
+
+msgid "Records"
+msgstr "Рекорды"
+
+msgid "Server"
+msgstr "Сервер"
+
+msgid "Database"
+msgstr "База данных"
+
+msgid "System check"
+msgstr "Проверка системы"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Flux Performance"
+msgstr "Производительность потока"
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "All records deleted."
+msgstr "Все записи удалены."
+
+msgid "Custom login URL turned off; login is back on wp-login.php."
+msgstr "Пользовательский URL-адрес для входа отключен; вход вернулся на wp-login.php."
+
+msgid "Cleanup done: %s items."
+msgstr "Очистка завершена: элементы%s."
+
+msgid "Login URL changed."
+msgstr "URL-адрес входа изменен."
+
+msgid "New address:"
+msgstr "Новый адрес:"
+
+msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
+msgstr "Вы выходите из системы, чтобы увидеть работу нового адреса; вы будете перенаправлены на новую страницу входа через%sсекунд. После входа в систему вы вернетесь на этот экран."
+
+msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
+msgstr "Редирект остановлен. Вы все еще вошли в систему; новый адрес будет использован при следующем входе в систему."
+
+msgid "Go now"
+msgstr "Иди сейчас"
+
+msgid "Stay logged in"
+msgstr "Оставайтесь в системе"
+
+msgid "You are not allowed to view this page."
+msgstr "Вам не разрешено просматривать эту страницу."
+
+msgid "Recording is off: only the live panel works."
+msgstr "Запись выключена: работает только живая панель."
+
+msgid "All time"
+msgstr "Все время"
+
+msgid "Last hour"
+msgstr "Последний час"
+
+msgid "Last 24 hours"
+msgstr "Последние 24 часа"
+
+msgid "Last 7 days"
+msgstr "Последние 7 дней"
+
+msgid "All flags"
+msgstr "Все флаги"
+
+msgid "All types"
+msgstr "Все типы"
+
+msgid "Newest"
+msgstr "Новейший"
+
+msgid "Slowest"
+msgstr "Самый медленный"
+
+msgid "Search URL"
+msgstr "URL-адрес поиска"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "URL to profile"
+msgstr "URL-адрес профиля"
+
+msgid "Profile page"
+msgstr "Страница профиля"
+
+msgid "\"Profile page\" opens the URL as a visitor (bypassing cache) and records it in full detail."
+msgstr "«Страница профиля» открывает URL как посетитель (минуя кэш) и записывает его во всех подробностях."
+
+msgid "Time"
+msgstr "Время"
+
+msgid "URL"
+msgstr "URL-адрес"
+
+msgid "Memory"
+msgstr "Память"
+
+msgid "Queries"
+msgstr "Запросы"
+
+msgid "Errors"
+msgstr "Ошибки"
+
+msgid "Flags"
+msgstr "Флаги"
+
+msgid "No records yet. Slow or failing requests and sampled requests appear here."
+msgstr "Записей пока нет. Здесь отображаются медленные или невыполненные запросы, а также выборочные запросы."
+
+msgid "Records: %s"
+msgstr "Записи:%s"
+
+msgid "Delete all records?"
+msgstr "Удалить все записи?"
+
+msgid "Delete all records"
+msgstr "Удалить все записи"
+
+msgid "Record not found."
+msgstr "Запись не найдена."
+
+msgid "Recorded requests"
+msgstr "Записанные запросы"
+
+msgid "Average time"
+msgstr "Среднее время"
+
+msgid "Longest"
+msgstr "Самый длинный"
+
+msgid "Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average."
+msgstr "Время рассчитывается на основе записанных запросов: выборочные запросы плюс медленные/неудачные, поэтому среднее значение может выглядеть выше реального среднего."
+
+msgid "By request type"
+msgstr "По типу запроса"
+
+msgid "The time visitors wait is the \"Front end\" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy."
+msgstr "Время ожидания посетителей — это строка «Внешний интерфейс». Cron, Ajax и REST — это в основном фоновая работа (шаг резервного копирования, запланированное задание, Heartbeat); когда они занимают много времени, они не замедляют страницы напрямую, но заставляют сервер быть занятым."
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Request"
+msgstr "Запрос"
+
+msgid "Average"
+msgstr "Средний"
+
+msgid "Slowest URLs"
+msgstr "Самые медленные URL-адреса"
+
+msgid "Query time by component (per request)"
+msgstr "Время запроса по компонентам (на запрос)"
+
+msgid "Component"
+msgstr "Компонент"
+
+msgid "Per request"
+msgstr "По запросу"
+
+msgid "Slow and failed queries"
+msgstr "Медленные и неудачные запросы"
+
+msgid "Count"
+msgstr "Граф"
+
+msgid "PHP errors"
+msgstr "Ошибки PHP"
+
+msgid "Level"
+msgstr "Уровень"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "HTTP API calls"
+msgstr "HTTP-вызовы API"
+
+msgid "Endpoint"
+msgstr "Конечная точка"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "Last error"
+msgstr "Последняя ошибка"
+
+msgid "No records."
+msgstr "Никаких записей."
+
+msgid "Suggestions"
+msgstr "Предложения"
+
+msgid "Account limit (cgroup)"
+msgstr "Лимит аккаунта (cgroup)"
+
+msgid "Shared hosting: account limit cannot be read"
+msgstr "Виртуальный хостинг: невозможно прочитать лимит учетной записи"
+
+msgid "Server belongs to this site (VPS/dedicated)"
+msgstr "Сервер принадлежит этому сайту (VPS/выделенный)"
+
+msgid "Scanned folder"
+msgstr "Отсканированная папка"
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "Calculating…"
+msgstr "Расчет..."
+
+msgid "Files and folders (inodes)"
+msgstr "Файлы и папки (иноды)"
+
+msgid "Disk quota"
+msgstr "Дисковая квота"
+
+msgid "Not set (Settings)"
+msgstr "Не установлено (Настройки)"
+
+msgid "Last measured"
+msgstr "Последнее измерение"
+
+msgid "refreshing"
+msgstr "освежающий"
+
+msgid "Account disk"
+msgstr "Диск аккаунта"
+
+msgid "Whole machine (shared, all accounts)"
+msgstr "Вся машина (общая, все учетные записи)"
+
+msgid "CPU cores"
+msgstr "Ядра процессора"
+
+msgid "Load (1/5/15 min)"
+msgstr "Нагрузка (1/5/15 мин)"
+
+msgid "Disk"
+msgstr "Диск"
+
+msgid "%s free"
+msgstr "%sбесплатно"
+
+msgid "Note"
+msgstr "Примечание"
+
+msgid "These values belong to every account on the machine; they are not your site's usage or limit."
+msgstr "Эти значения принадлежат каждой учетной записи на машине; они не являются использованием или ограничением вашего сайта."
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
+
+msgid "Operating system"
+msgstr "Операционная система"
+
+msgid "Software"
+msgstr "Программное обеспечение"
+
+msgid "Hostname"
+msgstr "Имя хоста"
+
+msgid "IP address"
+msgstr "IP-адрес"
+
+msgid "Port"
+msgstr "Порт"
+
+msgid "Document root"
+msgstr "Корень документа"
+
+msgid "Resource values"
+msgstr "Ценности ресурсов"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "Memory (this request)"
+msgstr "Память (этот запрос)"
+
+msgid "peak"
+msgstr "пик"
+
+msgid "Disabled functions"
+msgstr "Отключенные функции"
+
+msgid "Extensions"
+msgstr "Расширения"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "Off"
+msgstr "Выкл."
+
+msgid "Hit rate"
+msgstr "Частота попаданий"
+
+msgid "Cached files"
+msgstr "Кэшированные файлы"
+
+msgid "Wasted"
+msgstr "впустую"
+
+msgid "Restarts"
+msgstr "Перезапускает"
+
+msgid "No data (disabled or not allowed by the server)."
+msgstr "Нет данных (отключено или не разрешено сервером)."
+
+msgid "Object cache"
+msgstr "Кэш объектов"
+
+msgid "External"
+msgstr "Внешний"
+
+msgid "None"
+msgstr "Нет"
+
+msgid "Page cache (WP_CACHE)"
+msgstr "Кэш страниц (WP_CACHE)"
+
+msgid "Locale"
+msgstr "Языковой стандарт"
+
+msgid "Timezone"
+msgstr "Часовой пояс"
+
+msgid "Permalinks"
+msgstr "Постоянные ссылки"
+
+msgid "Environment type"
+msgstr "Тип среды"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "undefined"
+msgstr "неопределенный"
+
+msgid "Active plugins"
+msgstr "Активные плагины"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Index"
+msgstr "Индекс"
+
+msgid "Free space"
+msgstr "Свободное место"
+
+msgid "Table"
+msgstr "Таблица"
+
+msgid "Rows (approx.)"
+msgstr "Ряды (прибл.)"
+
+msgid "Open connections"
+msgstr "Открытые соединения"
+
+msgid "Charset"
+msgstr "Charset"
+
+msgid "Uptime"
+msgstr "Время работы"
+
+msgid "Queries per second"
+msgstr "Запросов в секунду"
+
+msgid "Slow queries (server)"
+msgstr "Медленные запросы (сервер)"
+
+msgid "Max concurrent connections"
+msgstr "Максимальное количество одновременных подключений"
+
+msgid "Running threads"
+msgstr "Запуск потоков"
+
+msgid "Buffer pool hit rate"
+msgstr "Скорость попадания в буферный пул"
+
+msgid "Temp tables on disk"
+msgstr "Временные таблицы на диске"
+
+msgid "Aborted connects"
+msgstr "Прерванное соединение"
+
+msgid "Cleanup"
+msgstr "Очистка"
+
+msgid "Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config."
+msgstr "Только безопасные задания: сообщения, страницы и версии никогда не удаляются. Ограничьте количество редакций с помощью WP_POST_REVISIONS в wp-config."
+
+msgid "continue?"
+msgstr "продолжить?"
+
+msgid "Clean"
+msgstr "Чистый"
+
+msgid "Revisions"
+msgstr "Редакции"
+
+msgid "Trashed posts"
+msgstr "Удаленные сообщения"
+
+msgid "All transients"
+msgstr "Все переходные процессы"
+
+msgid "Job"
+msgstr "Работа"
+
+msgid "Tables"
+msgstr "Таблицы"
+
+msgid "Engine"
+msgstr "Двигатель"
+
+msgid "Rows"
+msgstr "Строки"
+
+msgid "Collation"
+msgstr "Сортировка"
+
+msgid "Autoloaded options"
+msgstr "Автозагружаемые параметры"
+
+msgid "Total size"
+msgstr "Общий размер"
+
+msgid "These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows."
+msgstr "Эти параметры загружаются из базы данных при каждом запросе. Общий размер более 800 КБ замедляет работу страниц; уменьшите настройку или кеш в плагине, которому принадлежат большие строки."
+
+msgid "Option"
+msgstr "Вариант"
+
+msgid "Owner"
+msgstr "Владелец"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Events"
+msgstr "События"
+
+msgid "Overdue"
+msgstr "Просрочено"
+
+msgid "Last run"
+msgstr "Последний запуск"
+
+msgid "Not seen"
+msgstr "Не видел"
+
+msgid "WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes."
+msgstr "WordPress cron отключен: события запускаются только тогда, когда задание cron сервера вызывает wp-cron.php. На Hostinger добавьте задание cron, которое будет вызывать его каждые 5 минут."
+
+msgid "Task durations"
+msgstr "Продолжительность задачи"
+
+msgid "Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. \"Cut off\": the task hit the time limit and stopped halfway."
+msgstr "Измеряется для каждой задачи при каждом запуске wp-cron.php; отсортировано по общему времени. Сводка старше одного дня сбрасывается при повторном запуске задачи. «Отрезано»: задание уложилось в лимит времени и остановилось на полпути."
+
+msgid "Hook"
+msgstr "Крюк"
+
+msgid "Runs"
+msgstr "Бежит"
+
+msgid "Last"
+msgstr "Последний"
+
+msgid "Cut off"
+msgstr "Отрезать"
+
+msgid "Scheduled events"
+msgstr "Запланированные мероприятия"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "Recurrence"
+msgstr "Повторение"
+
+msgid "Args"
+msgstr "Аргументы"
+
+msgid "Overdue: due %s"
+msgstr "Просрочено: срок%s"
+
+msgid "once"
+msgstr "однажды"
+
+msgid "Recent fixes (AI / MCP)"
+msgstr "Последние исправления (AI/MCP)"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Fix"
+msgstr "Исправить"
+
+msgid "Before → After"
+msgstr "До → После"
+
+msgid "Result"
+msgstr "Результат"
+
+msgid "Developer panel"
+msgstr "Панель разработчика"
+
+msgid "Show a summary in the admin bar and a bottom panel to authorized users"
+msgstr "Показывать сводку в панели администратора и нижней панели авторизованным пользователям."
+
+msgid "Show on the front end too"
+msgstr "Показать и на переднем конце"
+
+msgid "Collect capability checks"
+msgstr "Собирайте проверки возможностей"
+
+msgid "The panel is visible to administrators and to staff granted \"View performance\" by Flux Roles."
+msgstr "Панель видна администраторам и сотрудникам, которым предоставлена функция «Просмотр производительности» в соответствии с ролями Flux."
+
+msgid "Recording"
+msgstr "Запись"
+
+msgid "Record slow and failing requests"
+msgstr "Запись медленных и неудачных запросов"
+
+msgid "Also record my own requests while the panel is on (only when something is wrong)"
+msgstr "Также записываю свои запросы при включенной панели (только когда что-то не так)"
+
+msgid "Sampling"
+msgstr "Выборка"
+
+msgid "This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off."
+msgstr "Эта доля запросов детально собирается (со списком запросов) и фиксируется. На Hostinger рекомендуется 1-5; 0 выключает его."
+
+msgid "Slow request threshold"
+msgstr "Порог медленного запроса"
+
+msgid "Slow query threshold"
+msgstr "Порог медленного запроса"
+
+msgid "Retention"
+msgstr "Удержание"
+
+msgid "days"
+msgstr "дни"
+
+msgid "at most"
+msgstr "максимум"
+
+msgid "records"
+msgstr "записи"
+
+msgid "Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only."
+msgstr "Ограничение диска вашего плана общего хостинга (Hostinger: hPanel › Ресурсы учетной записи). PHP не может его прочитать; если установлено, на Дисковой карте отображается использование учетной записи в процентах. Оставьте пустым, чтобы отображалось только использованное пространство."
+
+msgid "AI (MCP)"
+msgstr "ИИ (МКП)"
+
+msgid "The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgstr "Данные считываются инструментами только для чтения на сервере Flux AI и MCP и в чате Flux AI: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+
+msgid "Flux AI & MCP is active: tools are registered."
+msgstr "Flux AI & MCP активен: инструменты зарегистрированы."
+
+msgid "Flux AI & MCP is not active: tools are available in Flux AI chat only."
+msgstr "Flux AI и MCP не активны: инструменты доступны только в чате Flux AI."
+
+msgid "Admin login URL"
+msgstr "URL-адрес входа администратора"
+
+msgid "Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load."
+msgstr "Открывает экран входа по вашему собственному адресу вместо wp-login.php. Запросы wp-login.php и wp-admin от вышедших из системы посетителей больше не отвечают, что сокращает подбор пароля ботом и нагрузку на сервер."
+
+msgid "FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved."
+msgstr "FLXP_LOGIN_DISABLE определен в wp-config.php: пользовательский URL-адрес отключен, и для входа используется wp-login.php. Удалите эту строку, как только проблема будет решена."
+
+msgid "Your login URL"
+msgstr "Ваш URL-адрес для входа"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below."
+msgstr "Добавьте этот адрес в закладки и поделитесь им со всеми, кто войдет в систему. Если вы забыли его, воспользуйтесь приведенным ниже шагом восстановления."
+
+msgid "Login URL"
+msgstr "URL-адрес входа"
+
+msgid "The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it."
+msgstr "Адрес берется из константы FLXP_LOGIN_SLUG в wp-config.php; отредактируйте или удалите константу, чтобы изменить ее."
+
+msgid "Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed)."
+msgstr "Оставьте пустым, чтобы использовать стандартный адрес WordPress (wp-login.php). 3–40 символов: строчные буквы, цифры, дефис, подчеркивание. Выберите что-нибудь, что сложно угадать (администратор и вход в систему запрещены)."
+
+msgid "Visitors to the old addresses"
+msgstr "Посетители по старым адресам"
+
+msgid "Show the 404 page (recommended)"
+msgstr "Показать страницу 404 (рекомендуется)"
+
+msgid "Redirect to the home page"
+msgstr "Перенаправление на домашнюю страницу"
+
+msgid "Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected."
+msgstr "Применяется к wp-login.php и к запросам wp-admin от вышедших из системы посетителей. admin-ajax.php, admin-post.php, REST API, wp-cron, вход в мою учетную запись WooCommerce и подключение к приложению Flux не затрагиваются."
+
+msgid "Recovery"
+msgstr "Восстановление"
+
+msgid "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line."
+msgstr "Если вы забыли адрес или логин не открывается: добавьте строку ниже в wp-config.php с помощью вашего файлового менеджера (Hostinger hPanel › File Manager). Вход возвращается в wp-login.php; как только вы войдете, исправьте здесь адрес и удалите строку."
+
+msgid "Deprecated since %1$s. Use instead: %2$s"
+msgstr "Устарело с%1$s. Вместо этого используйте:%2$s"
+
+msgid "%d min"
+msgstr "%dмин."
+
+msgid "%1$d d %2$d h"
+msgstr "%1$dd%2$dh"
+
+msgid "%d h"
+msgstr "%dч."
+
+msgid "Account limit cannot be read"
+msgstr "Лимит счета не может быть прочитан"
+
+msgid "%s cores, no account limit"
+msgstr "%sядер, без ограничений по счету"
+
+msgid "Account limit %s cores"
+msgstr "Ограничение аккаунта%sядер"
+
+msgid "%1$d cores · load %2$s"
+msgstr "%1$dядра · загрузить%2$s"
+
+msgid "Disk (account)"
+msgstr "Диск (аккаунт)"
+
+msgid "Scanning the account folder"
+msgstr "Сканирование папки аккаунта"
+
+msgid "files %1$s · database %2$s"
+msgstr "файлы%1$s· база данных%2$s"
+
+msgid "CPU load"
+msgstr "загрузка процессора"
+
+msgid "CPU (account)"
+msgstr "ЦП (учетная запись)"
+
+msgid "Memory (RAM)"
+msgstr "Память (ОЗУ)"
+
+msgid "Memory (account)"
+msgstr "Память (аккаунт)"
+
+msgid "PHP memory (this request)"
+msgstr "Память PHP (этот запрос)"
+
+msgid "Server uptime"
+msgstr "Время работы сервера"
+
+msgid "Machine uptime"
+msgstr "Время безотказной работы машины"
+
+msgid "CPU and memory are measured against this account's (container/cgroup) limit."
+msgstr "ЦП и память измеряются в соответствии с ограничением этой учетной записи (контейнера/группы)."
+
+msgid "Shared hosting: PHP sees the CPU, memory and disk shared by every account on the machine; these are not your values and are not shown. Your account's CPU and memory usage is in the hosting panel (Hostinger: hPanel › Account resources)."
+msgstr "Общий хостинг: PHP видит процессор, память и диск, совместно используемые каждой учетной записью на компьютере; это не ваши значения и они не отображаются. Использование ЦП и памяти вашей учетной записи отображается на панели хостинга (Hostinger: hPanel › Ресурсы учетной записи)."
+
+msgid "Enter your hosting plan's disk quota in Settings to see a disk percentage."
+msgstr "Введите дисковую квоту вашего плана хостинга в настройках, чтобы увидеть процент дискового пространства."
+
+msgid "Cards refresh every 15 seconds."
+msgstr "Карты обновляются каждые 15 секунд."
+
+msgid "p95 time (24 h)"
+msgstr "время p95 (24 часа)"
+
+msgid "Failed requests (24 h)"
+msgstr "Неудачные запросы (24 часа)"
+
+msgid "Slow requests (24 h)"
+msgstr "Медленные запросы (24 часа)"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores."
+msgstr "URL-адрес для входа должен состоять из 3–40 символов; используйте только строчные буквы (a-z), цифры, дефисы и подчеркивания."
+
+msgid "WordPress already uses this address; pick another name."
+msgstr "WordPress уже использует этот адрес; выберите другое имя."
+
+msgid "A page or post already uses this address; pick another name."
+msgstr "Страница или сообщение уже используют этот адрес; выберите другое имя."
+
+msgid "The login URL has changed. Bookmark this page and log in again."
+msgstr "URL-адрес для входа изменился. Добавьте эту страницу в закладки и войдите снова."
+
+msgid "Performance summary"
+msgstr "Сводка производительности"
+
+msgid "List recorded requests"
+msgstr "Список записанных запросов"
+
+msgid "Record details"
+msgstr "Подробности записи"
+
+msgid "Outgoing HTTP requests"
+msgstr "Исходящие HTTP-запросы"
+
+msgid "Server and WordPress environment"
+msgstr "Сервер и среда WordPress"
+
+msgid "Server status"
+msgstr "Статус сервера"
+
+msgid "Database status"
+msgstr "Статус базы данных"
+
+msgid "Flux Speed: remove unused CSS and inline it"
+msgstr "Flux Speed: удалите неиспользуемый CSS и встройте его"
+
+msgid "Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list."
+msgstr "Удаляет правила CSS темы, которые страница не использует, а остальные записывает в<head>, удаляя запрос CSS, блокирующий рендеринг. Сначала проверьте несколько страниц; если что-то сломается, отключите это или добавьте класс в список сохранения."
+
+msgid "Flux Speed: minify CSS and JS files"
+msgstr "Flux Speed: минимизируйте файлы CSS и JS"
+
+msgid "Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy."
+msgstr "Неминифицированные файлы CSS/JS тем и плагинов предоставляются из актуальной версии .min или сгенерированной копии."
+
+msgid "Flux Speed: defer head scripts"
+msgstr "Flux Speed: отложить выполнение головных сценариев"
+
+msgid "Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone."
+msgstr "Блокирующие скрипты вверху страницы загружаются с отсрочкой. jQuery и исключенные скрипты остаются в покое."
+
+msgid "Flux Speed: remove the zoom lock"
+msgstr "Скорость потока: снимите блокировку зума"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag."
+msgstr "user-scalable=no и максимальный масштаб удалены из тега области просмотра."
+
+msgid "Flux Speed: optimize fonts"
+msgstr "Flux Speed: оптимизировать шрифты"
+
+msgid "theme.json fonts not used on the page are removed and the above-the-fold font is preloaded."
+msgstr "Шрифты theme.json, не используемые на странице, удаляются, а шрифт над сгибом загружается заранее."
+
+msgid "Flux Speed: remove the emoji script"
+msgstr "Flux Speed: удалите скрипт эмодзи"
+
+msgid "WordPress's emoji detection script and style are not loaded; modern browsers render emoji themselves."
+msgstr "Сценарий и стиль обнаружения эмодзи WordPress не загружаются; современные браузеры сами отображают смайлы."
+
+msgid "Unknown fix."
+msgstr "Неизвестное исправление."
+
+msgid "Flux Speed › PageSpeed lists which animation in which file is the problem."
+msgstr "Flux Speed › PageSpeed показывает, какая анимация и в каком файле является проблемой."
+
+msgid "The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset."
+msgstr "Соответствующая настройка скорости потока включена; очистите кэш (LiteSpeed ​​Purge All) и повторите измерение. Все, что остается, зависит от темы/предустановки."
+
+msgid "Turned on. The page cache was cleared; run the site audit or PageSpeed test again."
+msgstr "Включен. Кэш страницы очищен; снова запустите аудит сайта или тест PageSpeed."
+
+msgid "Animations (GPU)"
+msgstr "Анимации (графический процессор)"
+
+msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
+msgstr "Анимация не работает на графическом процессоре:%s. Должно быть переписано с использованием преобразования/непрозрачности (тема/предустановка)."
+
+msgid "Animations in the CSS files seen use transform/opacity."
+msgstr "Анимации в CSS-файлах используют трансформацию/непрозрачность."
+
+msgid "PageSpeed"
+msgstr "Скорость страницы"
+
+msgid "PageSpeed cache"
+msgstr "Кэш PageSpeed"
+
+msgid "uploads/flx-speed is writable."
+msgstr "uploads/flx-speed доступен для записи."
+
+msgid "The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files."
+msgstr "Папка uploads/flx-speed недоступна для записи: обрезка и минимизация CSS не будут работать, страницы загружают исходные файлы."
+
+msgid "Expired transients"
+msgstr "Просроченные переходные процессы"
+
+msgid "Auto-drafts older than 7 days"
+msgstr "Авто-черновики старше 7 дней"
+
+msgid "Spam comments"
+msgstr "Спам-комментарии"
+
+msgid "Trashed comments"
+msgstr "Удаленные комментарии"
+
+msgid "Reclaim free space (OPTIMIZE)"
+msgstr "Освободите свободное место (ОПТИМИЗИРОВАТЬ)"
+
+msgid "Unknown cleanup job."
+msgstr "Неизвестное задание по очистке."
+
+msgid "Slow"
+msgstr "Медленно"
+
+msgid "PHP error"
+msgstr "Ошибка PHP"
+
+msgid "Fatal error"
+msgstr "Неустранимая ошибка"
+
+msgid "Server error (5xx)"
+msgstr "Ошибка сервера (5xx)"
+
+msgid "Failed HTTP call"
+msgstr "Неудачный HTTP-вызов"
+
+msgid "Slow query"
+msgstr "Медленный запрос"
+
+msgid "Query error"
+msgstr "Ошибка запроса"
+
+msgid "Error log"
+msgstr "Журнал ошибок"
+
+msgid "Sample"
+msgstr "Образец"
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Front end"
+msgstr "Передняя часть"
+
+msgid "Admin"
+msgstr "Админ"
+
+msgid "Only URLs on this site can be profiled."
+msgstr "Профилированию подлежат только URL-адреса на этом сайте."
+
+msgid "The records table is not installed."
+msgstr "Таблица записей не установлена."
+
+msgid "The page loaded but no record was created. It may have been served from cache, or Flux Performance did not load on that request."
+msgstr "Страница загрузилась, но запись не была создана. Возможно, он был отправлен из кэша, или Flux Performance не загрузился по этому запросу."
+
+msgid "Records table"
+msgstr "Таблица рекордов"
+
+msgid "The table is not installed. Deactivate and reactivate the plugin."
+msgstr "Стол не установлен. Деактивируйте и повторно активируйте плагин."
+
+msgid "Request recording"
+msgstr "Запросить запись"
+
+msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
+msgstr "Включено:%1$dВыборка %% запросов; регистрируются запросы в течение%2$dмс и неудачные запросы."
+
+msgid "Off: only the live panel works; AI cannot read history."
+msgstr "Выкл.: работает только живая панель; ИИ не может читать историю."
+
+msgid "Failing requests in the last 24 hours"
+msgstr "Неудачные запросы за последние 24 часа"
+
+msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
+msgstr "Запросы%1$dс ошибками PHP/сервера,%2$dфатальные. См. Записи."
+
+msgid "No recorded errors."
+msgstr "Никаких зафиксированных ошибок."
+
+msgid "Slow requests in the last 24 hours"
+msgstr "Медленные запросы за последние 24 часа"
+
+msgid "%1$d requests exceeded %2$d ms."
+msgstr "Запросы%1$dпревысили%2$dмс."
+
+msgid "%d recorded requests had external service errors in the last 24 hours."
+msgstr "За последние 24 часа в записанных запросах%dбыли ошибки внешних служб."
+
+msgid "No recorded external service errors."
+msgstr "Никаких зарегистрированных ошибок внешних служб."
+
+msgid "SAVEQUERIES is on in wp-config.php: every request keeps all queries in memory. Flux Performance turns it on itself when needed; remove it from wp-config."
+msgstr "SAVEQUERIES включен в wp-config.php: каждый запрос сохраняет все запросы в памяти. Flux Performance включает его при необходимости; удалите его из wp-config."
+
+msgid "AI tools (flxp_*)"
+msgstr "Инструменты ИИ (flxp_*)"
+
+msgid "MCP and Flux AI chat can read the records."
+msgstr "Чат MCP и Flux AI может читать записи."
+
+msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
+msgstr "Flux AI и MCP не активны или MCP выключен; инструменты не видны."
+
+msgid "%1$d KB (%2$d options) is loaded on every request."
+msgstr "%1$dКБ (опции%2$d) загружаются при каждом запросе."
+
+msgid "Under 800 KB is recommended; check the largest rows."
+msgstr "Рекомендуется менее 800 КБ; проверьте самые большие строки."
+
+msgid "Last run %s."
+msgstr "Последний запуск%s."
+
+msgid "Cron has not been seen running yet."
+msgstr "Cron еще не был замечен работающим."
+
+msgid "%d events overdue."
+msgstr "События%dпросрочены."
+
+msgid "Scheduled events are running"
+msgstr "Запланированные мероприятия идут"
+
+msgid "Disk space"
+msgstr "Дисковое пространство"
+
+msgid "%1$d%% used, %2$s free."
+msgstr "%1$d%% использовано,%2$sсвободен."
+
+msgid "(account usage / quota from Settings)"
+msgstr "(использование аккаунта/квота из настроек)"
+
+msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
+msgstr "%1$dИспользуемый %% лимита ЦП учетной записи (ядра%2$s)."
+
+msgid "%1$d%% over the last minute (%2$d cores)."
+msgstr "%1$d%% за последнюю минуту (ядра%2$d)."
+
+msgid "On: compiled PHP files are kept in memory."
+msgstr "Включено: скомпилированные файлы PHP хранятся в памяти."
+
+msgid "Looks enabled but its status cannot be read (restricted by the server)."
+msgstr "Выглядит включенным, но его статус невозможно прочитать (ограничено сервером)."
+
+msgid "Off: PHP files are compiled again on every request. Turn it on in Hostinger › PHP configuration."
+msgstr "Выкл.: файлы PHP компилируются заново при каждом запросе. Включите его в Hostinger › Конфигурация PHP."
+
+msgid "%d expired transients are still in the table."
+msgstr "Переходные процессы с истекшим сроком действия%dвсе еще находятся в таблице."
+
+msgid "None."
+msgstr "Нет."
+
+msgid "Delete expired transients"
+msgstr "Удалить просроченные переходные процессы"
+
+msgid "%d transients deleted."
+msgstr "Переходные процессы%dудалены."
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr "В каждой строке показано, что нужно сайту и есть ли это на месте. Сначала исправьте ошибки; предупреждения заслуживают внимания."
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "Info"
+msgstr "Информация"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$dOK · Предупреждения%2$d· Ошибки%3$d"
+
+msgid "Check again"
+msgstr "Проверьте еще раз"
+
+msgid "Show only these (click again to show all)"
+msgstr "Показать только эти (нажмите еще раз, чтобы показать все)"
+
+msgid "Checked: %s"
+msgstr "Проверено:%s"
+
+msgid "Check"
+msgstr "Проверить"
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "No checks are registered."
+msgstr "Никакие чеки не регистрируются."
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr "Проверка системы выявила проблемы%d, которые могут остановить пожертвования или автоматизацию."
+
+msgid "Open system check"
+msgstr "Открытая проверка системы"
+
+msgid "Hide until the next update"
+msgstr "Скрыть до следующего обновления"
+
+msgid "System: %d error(s)"
+msgstr "Система: ошибки%d"
+
+msgid "This check could not run: %s"
+msgstr "Эту проверку не удалось выполнить:%s."
+
+msgid "Scheduled tasks (cron)"
+msgstr "Запланированные задачи (cron)"
+
+msgid "Payments"
+msgstr "Платежи"
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "E-mail"
+msgstr "Электронная почта"
+
+msgid "Security"
+msgstr "Безопасность"
+
+msgid "Forms"
+msgstr "Формы"
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "Plugin: %s"
+msgstr "Плагин:%s"
+
+msgid "MU plugin: %s"
+msgstr "Плагин MU:%s"
+
+msgid "Theme: %s"
+msgstr "Тема:%s"
+
+msgid "Drop-in: %s"
+msgstr "Вход:%s"
+
+msgid "WordPress core"
+msgstr "Ядро WordPress"
+
+msgid "Search…"
+msgstr "Искать..."
+
+msgid "All"
+msgstr "Все"
+
+msgid "Showing the first 1500 rows; narrow down with search."
+msgstr "Показаны первые 1500 строк; сузить поиск."
+
+msgid "Call stack"
+msgstr "Стек вызовов"
+
+msgid "Fatal"
+msgstr "Фатальный"
+
+msgid "Notice"
+msgstr "Уведомление"
+
+msgid "Deprecated"
+msgstr "Устарело"
+
+msgid "Overview"
+msgstr "Обзор"
+
+msgid "Duplicate queries"
+msgstr "Повторяющиеся запросы"
+
+msgid "By component"
+msgstr "По компонентам"
+
+msgid "Doing it wrong"
+msgstr "Делаю это неправильно"
+
+msgid "Cron tasks"
+msgstr "Задачи Крон"
+
+msgid "Logs"
+msgstr "Журналы"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Capability checks"
+msgstr "Проверка возможностей"
+
+msgid "Scripts and styles"
+msgstr "Скрипты и стили"
+
+msgid "Languages"
+msgstr "Языки"
+
+msgid "Transient updates"
+msgstr "Временные обновления"
+
+msgid "Hooks"
+msgstr "Крючки"
+
+msgid "Peak memory"
+msgstr "Пиковая память"
+
+msgid "Limit"
+msgstr "Лимит"
+
+msgid "Time not measured"
+msgstr "Время не измерено"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Response"
+msgstr "Ответ"
+
+msgid "Query details were not collected for this request (not sampled). Open the page while logged in as an administrator or raise the sampling rate."
+msgstr "Подробности запроса не были собраны для этого запроса (не выбраны). Откройте страницу, войдя в систему как администратор, или увеличьте частоту дискретизации."
+
+msgid "Timeline"
+msgstr "Хронология"
+
+msgid "Visitor"
+msgstr "Посетитель"
+
+msgid "Collection mode"
+msgstr "Режим сбора"
+
+msgid "Detailed"
+msgstr "Подробный"
+
+msgid "Light"
+msgstr "Свет"
+
+msgid "Duplicates"
+msgstr "Дубликаты"
+
+msgid "Only the slowest queries were stored in this record."
+msgstr "В этой записи сохранялись только самые медленные запросы."
+
+msgid "Caller"
+msgstr "Звонящий"
+
+msgid "Callers"
+msgstr "Звонящие"
+
+msgid "Query types"
+msgstr "Типы запросов"
+
+msgid "Subject"
+msgstr "Тема"
+
+msgid "Method"
+msgstr "Метод"
+
+msgid "No logs in this request."
+msgstr "В этом запросе нет журналов."
+
+msgid "Packages can write here with do_action( 'flx_log', 'warning', 'message' )."
+msgstr "Пакеты могут писать сюда с помощью do_action('flx_log', 'warning', 'message')."
+
+msgid "Timers"
+msgstr "Таймеры"
+
+msgid "Not stopped"
+msgstr "Не остановлено"
+
+msgid "Template file"
+msgstr "Файл шаблона"
+
+msgid "Parent theme"
+msgstr "Родительская тема"
+
+msgid "Block theme"
+msgstr "Блокировать тему"
+
+msgid "Block template"
+msgstr "Шаблон блока"
+
+msgid "Body classes"
+msgstr "Классы тела"
+
+msgid "Template parts"
+msgstr "Части шаблона"
+
+msgid "Not found"
+msgstr "Не найден"
+
+msgid "Request path"
+msgstr "Путь запроса"
+
+msgid "Matched rule"
+msgstr "Соответствующее правило"
+
+msgid "Matched query"
+msgstr "Соответствующий запрос"
+
+msgid "Queried object"
+msgstr "Запрошенный объект"
+
+msgid "Query vars"
+msgstr "Переменные запроса"
+
+msgid "Conditionals"
+msgstr "Условные предложения"
+
+msgid "Capability"
+msgstr "Возможность"
+
+msgid "Granted"
+msgstr "Предоставлено"
+
+msgid "Denied"
+msgstr "Отказано"
+
+msgid "Scripts"
+msgstr "Скрипты"
+
+msgid "Styles"
+msgstr "Стили"
+
+msgid "Dependencies"
+msgstr "Зависимости"
+
+msgid "Missing"
+msgstr "Отсутствует"
+
+msgid "Position"
+msgstr "Позиция"
+
+msgid "Footer"
+msgstr "Нижний колонтитул"
+
+msgid "Header"
+msgstr "Заголовок"
+
+msgid "Loaded"
+msgstr "Загружено"
+
+msgid "No file"
+msgstr "Нет файла"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "No expiry"
+msgstr "Нет срока действия"
+
+msgid "Distinct actions fired in this request"
+msgstr "Различные действия, выполняемые в этом запросе"
+
+msgid "Most fired:"
+msgstr "Больше всего уволили:"
+
+msgid "queries"
+msgstr "запросы"
+
+msgid "Resize"
+msgstr "Изменить размер"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "24 hours"
+msgstr "24 часа"
+
+msgid "7 days"
+msgstr "7 дней"
+
+msgid "No matching requests in this range."
+msgstr "В этом диапазоне нет соответствующих запросов."
+
+msgid "HTTP"
+msgstr "HTTP"
+
+msgid "No records"
+msgstr "Нет записей"
+
+msgid "Critical"
+msgstr "Критический"
+
+msgid "PHP notices"
+msgstr "PHP-уведомления"
+
+msgid "Open in panel"
+msgstr "Открыть на панели"
+
+msgid "Query time"
+msgstr "Время запроса"
+
+msgid "Only slow, failed and sampled PHP requests are recorded. Pages served from cache are not in these numbers."
+msgstr "Записываются только медленные, неудачные и выборочные PHP-запросы. Страницы, обслуживаемые из кеша, не входят в это число."
+
+msgid "Slow requests"
+msgstr "Медленные запросы"
+
+msgid "Load"
+msgstr "Загрузить"
+
+msgid "p95"
+msgstr "стр.95"
+
+msgid "Flag"
+msgstr "Флаг"
+
+msgid "[['Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.', 'tr']]"
+msgstr "[['Производительность сайта в одном месте: запросы по каждому запросу, ошибки PHP, внешние HTTP-запросы (панель разработчика), журналы медленных/ошибочных запросов, сервер (ЦП, ОЗУ, диск, OPcache), база данных, автозагрузка, cron и проверка системы. ИИ читает их все с помощью инструментов Flux AI и MCP / Flux AI.', 'tr']]"

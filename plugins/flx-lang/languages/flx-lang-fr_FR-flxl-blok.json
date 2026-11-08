@@ -1,0 +1,666 @@
+{
+  "domain": "flx-lang",
+  "locale_data": {
+    "flx-lang": {
+      "": {
+        "domain": "flx-lang",
+        "lang": "fr_FR",
+        "plural-forms": "nplurals=2; plural=(n > 1);"
+      },
+      "Languages": [
+        "Langues"
+      ],
+      "Shared page: the same in every language, interface in the visitor's language.": [
+        "Page partagée : la même dans toutes les langues, interface dans la langue du visiteur."
+      ],
+      "Shared": [
+        "Partagé"
+      ],
+      "%1$s translation (%2$s)": [
+        "%1$straduction (%2$s)"
+      ],
+      "Create %s translation": [
+        "Créer une traduction%s"
+      ],
+      "You are not allowed to do this.": [
+        "Vous n'êtes pas autorisé à faire cela."
+      ],
+      "Filter by language": [
+        "Filtrer par langue"
+      ],
+      "All languages": [
+        "Toutes les langues"
+      ],
+      "Language": [
+        "Langue"
+      ],
+      "Language of this content": [
+        "Langue de ce contenu"
+      ],
+      "After saving you can create translations in other languages.": [
+        "Après avoir enregistré, vous pouvez créer des traductions dans d'autres langues."
+      ],
+      "Re-translate with AI": [
+        "Retraduire avec l'IA"
+      ],
+      "Copy and translate": [
+        "Copier et traduire"
+      ],
+      "Translate with AI": [
+        "Traduire avec l'IA"
+      ],
+      "With Flux AI installed, translation is one click; AI agents connected over MCP can also translate with the flxl_save_translation tool.": [
+        "Avec Flux AI installé, la traduction se fait en un clic ; Les agents IA connectés via MCP peuvent également traduire avec l'outil flxl_save_translation."
+      ],
+      "Preparing translation…": [
+        "Préparation de la traduction…"
+      ],
+      "AI is translating: %1$d / %2$d": [
+        "L'IA traduit :%1$d/%2$d"
+      ],
+      "Translation ready, opening the editor…": [
+        "Traduction prête, ouverture de l’éditeur…"
+      ],
+      "Some sections could not be translated and stayed in Turkish. Check them in the editor.": [
+        "Certaines sections n'ont pas pu être traduites et sont restées en turc. Vérifiez-les dans l'éditeur."
+      ],
+      "Translation stopped:": [
+        "Traduction arrêtée :"
+      ],
+      "Replace the title, excerpt and body of the existing translation with an AI translation?": [
+        "Remplacer le titre, l'extrait et le corps de la traduction existante par une traduction IA ?"
+      ],
+      "Translate with AI? If you choose No, a draft copy is created for you to translate yourself.": [
+        "Traduire avec l’IA ? Si vous choisissez Non, un brouillon est créé pour que vous puissiez le traduire vous-même."
+      ],
+      "Settings": [
+        "Paramètres"
+      ],
+      "Saved.": [
+        "Enregistré."
+      ],
+      "The default language has no prefix in the address (example.org/hakkimizda/); other languages open with a prefix such as /en/. Each language version of a content is a separate page/post: create it from the language badge in the list or from the Language box in the editor. Theme and plugin interface texts use their own translations.": [
+        "La langue par défaut n'a pas de préfixe dans l'adresse (example.org/hakkimizda/) ; d'autres langues s'ouvrent avec un préfixe tel que /en/. Chaque version linguistique d'un contenu est une page/article distinct : créez-la à partir du badge de langue dans la liste ou à partir de la zone Langue de l'éditeur. Les textes de l'interface du thème et du plugin utilisent leurs propres traductions."
+      ],
+      "Active": [
+        "Actif"
+      ],
+      "Code / address": [
+        "Code/adresse"
+      ],
+      "Name": [
+        "Nom"
+      ],
+      "Flag": [
+        "Drapeau"
+      ],
+      "WordPress locale": [
+        "Paramètres régionaux WordPress"
+      ],
+      "Default": [
+        "Par défaut"
+      ],
+      "Remove": [
+        "Supprimer"
+      ],
+      "Add language": [
+        "Ajouter une langue"
+      ],
+      "— choose —": [
+        "- choisir -"
+      ],
+      "A new language is added inactive: prepare its content, then activate it. Languages other than English also need the WordPress language pack (System check warns).": [
+        "Une nouvelle langue est ajoutée inactive : préparez son contenu, puis activez-la. Les langues autres que l’anglais ont également besoin du pack de langue WordPress (avertissement de vérification du système)."
+      ],
+      "Content": [
+        "Contenu"
+      ],
+      "Translated content types": [
+        "Types de contenu traduit"
+      ],
+      "Cart, checkout and my account pages are shared by all languages. Categories are shared; their names are translated per language on the category edit screen. Language-specific alt text and replacement images are on the media edit screen.": [
+        "Les pages de panier, de paiement et de mon compte sont partagées dans toutes les langues. Les catégories sont partagées ; leurs noms sont traduits par langue sur l'écran d'édition de catégorie. Le texte alternatif spécifique à la langue et les images de remplacement se trouvent sur l'écran d'édition multimédia."
+      ],
+      "Content without a translation": [
+        "Contenu sans traduction"
+      ],
+      "Show the Turkish version in other languages (menu and interface stay in that language; search engines get the Turkish canonical address)": [
+        "Afficher la version turque dans d'autres langues (le menu et l'interface restent dans cette langue ; les moteurs de recherche obtiennent l'adresse canonique turque)"
+      ],
+      "When off, the English site lists only content that has an English version.": [
+        "Lorsqu'il est désactivé, le site anglais répertorie uniquement le contenu disposant d'une version anglaise."
+      ],
+      "Language switcher": [
+        "Sélecteur de langue"
+      ],
+      "Elsewhere: the \"Flux Language Switcher\" block or the [flx_dil_secici] shortcode.": [
+        "Ailleurs : le bloc \"Flux Language Switcher\" ou le shortcode [flx_dil_secici]."
+      ],
+      "Switcher position": [
+        "Position du commutateur"
+      ],
+      "Footer": [
+        "Pied de page"
+      ],
+      "Header and mobile menu": [
+        "En-tête et menu mobile"
+      ],
+      "Both": [
+        "Les deux"
+      ],
+      "Language suggestion for visitors": [
+        "Suggestion de langue pour les visiteurs"
+      ],
+      "Visitors from outside Türkiye": [
+        "Visiteurs extérieurs à la Turquie"
+      ],
+      "Open directly in their language (recommended)": [
+        "Ouvrir directement dans leur langue (recommandé)"
+      ],
+      "Show a suggestion bar at the top of the page": [
+        "Afficher une barre de suggestions en haut de la page"
+      ],
+      "Off": [
+        "Désactivé"
+      ],
+      "Visitors from outside Türkiye open the version in their language (English if none) before the page renders, and stay in it on later visits. A visitor who picks another language in the switcher stays in it. Search engine bots are never redirected. If the country or time zone is Türkiye, the visitor stays in Turkish. Not applied to logged-in users; use a private window to test.": [
+        "Les visiteurs extérieurs à la Turquie ouvrent la version dans leur langue (anglais s'il n'y en a pas) avant le rendu de la page et y restent lors de leurs visites ultérieures. Un visiteur qui choisit une autre langue dans le mélangeur y reste. Les robots des moteurs de recherche ne sont jamais redirigés. Si le pays ou le fuseau horaire est Türkiye, le visiteur reste en turc. Non appliqué aux utilisateurs connectés ; utilisez une fenêtre privée pour tester."
+      ],
+      "Suggested language": [
+        "Langue suggérée"
+      ],
+      "If the browser language is one of the active languages (e.g. German once added), that one is suggested; otherwise this one.": [
+        "Si la langue du navigateur est l'une des langues actives (par exemple l'allemand une fois ajouté), celle-ci est suggérée ; sinon celui-ci."
+      ],
+      "Countries that see Turkish": [
+        "Pays qui voient le turc"
+      ],
+      "Two-letter country codes (TR, CY…).": [
+        "Codes pays à deux lettres (TR, CY…)."
+      ],
+      "Country information": [
+        "Informations sur le pays"
+      ],
+      "Country in your request: %1$s (%2$s header). Country-based suggestion works.": [
+        "Pays dans votre demande :%1$s(en-tête%2$s). Les suggestions basées sur les pays fonctionnent."
+      ],
+      "The server sends no country information; the browser's time zone is used (Türkiye time = Turkish). For more accurate results, put the domain behind Cloudflare (free plan, the CF-IPCountry header is used automatically) or enable your host's GeoIP header.": [
+        "Le serveur n'envoie aucune information sur le pays ; le fuseau horaire du navigateur est utilisé (heure Türkiye = turc). Pour des résultats plus précis, placez le domaine derrière Cloudflare (forfait gratuit, l'en-tête CF-IPCountry est utilisé automatiquement) ou activez l'en-tête GeoIP de votre hébergeur."
+      ],
+      "Site texts per language": [
+        "Textes du site par langue"
+      ],
+      "Empty fields are shown in Turkish.": [
+        "Les champs vides sont affichés en turc."
+      ],
+      "Save": [
+        "Enregistrer"
+      ],
+      "Translation with AI": [
+        "Traduction avec l'IA"
+      ],
+      "With Flux AI installed, a \"Translate with AI\" button appears in the list and the editor. AI agents connected over MCP (Claude etc.) and the Flux AI chat use these tools: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. Flux SEO tools (list_content, create_content, update_content) have a lang parameter.": [
+        "Une fois Flux AI installé, un bouton « Traduire avec AI » apparaît dans la liste et dans l'éditeur. Les agents IA connectés via MCP (Claude etc.) et le chat Flux AI utilisent ces outils : flxl_linguals, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_lingual, flxl_image_langage, flxl_term_translation, flxl_site_texts. Les outils Flux SEO (list_content, create_content, update_content) ont un paramètre lang."
+      ],
+      "Source content not found or this type is not translated.": [
+        "Contenu source introuvable ou ce type n'est pas traduit."
+      ],
+      "Language is not active.": [
+        "La langue n'est pas active."
+      ],
+      "The content is already in this language.": [
+        "Le contenu est déjà dans cette langue."
+      ],
+      "Flux Language (translation)": [
+        "Langage Flux (traduction)"
+      ],
+      "Flux Language": [
+        "Langage des flux"
+      ],
+      "Flux AI & MCP is not installed or not ready.": [
+        "Flux AI & MCP n'est pas installé ou n'est pas prêt."
+      ],
+      "AI returned an empty answer.": [
+        "AI a renvoyé une réponse vide."
+      ],
+      "The AI answer was cut off.": [
+        "La réponse de l’IA a été coupée."
+      ],
+      "Translation job not found or expired.": [
+        "Travail de traduction introuvable ou expiré."
+      ],
+      "Alternative text (%s)": [
+        "Texte alternatif (%s)"
+      ],
+      "Image (%s)": [
+        "Image (%s)"
+      ],
+      "ID of the image shown instead of this one in this language (e.g. the translated version of a poster with text). Empty: same image.": [
+        "ID de l'image affichée à la place de celle-ci dans cette langue (par exemple la version traduite d'une affiche avec texte). Vide : même image."
+      ],
+      "This page is available in %s.": [
+        "Cette page est disponible dans%s."
+      ],
+      "Switch to %s": [
+        "Passer à%s"
+      ],
+      "Stay on this version": [
+        "Restez sur cette version"
+      ],
+      "Close": [
+        "Fermer"
+      ],
+      "Language selection": [
+        "Sélection de la langue"
+      ],
+      "Flux Language Switcher": [
+        "Sélecteur de langue de flux"
+      ],
+      "Site title": [
+        "Titre du site"
+      ],
+      "Tagline": [
+        "Slogan"
+      ],
+      "Flux SEO: site name": [
+        "Flux SEO : nom du site"
+      ],
+      "Flux SEO: alternate name": [
+        "Flux SEO : nom alternatif"
+      ],
+      "Flux SEO: home page title": [
+        "Flux SEO : titre de la page d’accueil"
+      ],
+      "Flux SEO: home page description": [
+        "Flux SEO : description de la page d'accueil"
+      ],
+      "Only the default language is active; the site is single-language.": [
+        "Seule la langue par défaut est active ; le site est monolingue."
+      ],
+      "WordPress language packs": [
+        "Packs de langues WordPress"
+      ],
+      "Not installed: %s. Pick it once in Settings › General › Site Language and save (the pack downloads), then switch back.": [
+        "Non installé :%s. Choisissez-le une fois dans Paramètres > Général > Langue du site et enregistrez (le pack télécharge), puis revenez."
+      ],
+      "All active languages have WordPress translations.": [
+        "Toutes les langues actives ont des traductions WordPress."
+      ],
+      "General settings": [
+        "Paramètres généraux"
+      ],
+      "Page translations: %s": [
+        "Traductions de pages :%s"
+      ],
+      "%1$d / %2$d pages translated. %3$s": [
+        "Pages%1$d/%2$dtraduites.  FLXTOK2FIN. %3$s"
+      ],
+      "Untranslated ones are shown in Turkish (canonical address is Turkish).": [
+        "Ceux qui ne sont pas traduits sont affichés en turc (l'adresse canonique est turque)."
+      ],
+      "Untranslated ones are hidden in this language.": [
+        "Les non traduits sont cachés dans cette langue."
+      ],
+      "Pages": [
+        "Pages"
+      ],
+      "Visitor country": [
+        "Pays du visiteur"
+      ],
+      "No visitor has been checked for a language suggestion yet.": [
+        "Aucun visiteur n'a encore été vérifié pour une suggestion de langue."
+      ],
+      "The server sends no country information; the browser time zone is used (Türkiye time = Turkish). If Cloudflare is enabled, the country code is used automatically.": [
+        "Le serveur n'envoie aucune information sur le pays ; le fuseau horaire du navigateur est utilisé (heure Türkiye = turc). Si Cloudflare est activé, le code du pays est utilisé automatiquement."
+      ],
+      "Country information comes from the %s header.": [
+        "Les informations sur le pays proviennent de l'en-tête%s."
+      ],
+      "Permalinks": [
+        "Liens permanents"
+      ],
+      "Plain (?p=) links are in use; choose the \"Post name\" structure for language addresses.": [
+        "Des liens simples (?p=) sont utilisés ; choisissez la structure \"Nom du message\" pour les adresses linguistiques."
+      ],
+      "Name (%s)": [
+        "Nom (%s)"
+      ],
+      "Description (%s)": [
+        "Description (%s)"
+      ],
+      "If left empty, the Turkish name and description are shown.": [
+        "S'il est laissé vide, le nom turc et la description sont affichés."
+      ],
+      "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]": [
+        "[['Rend le site multilingue : adresses de langue comme /en/, traduction par page, publication, projet et événement, visuel spécifique à la langue, hreflang et canonique, recommandation en anglais pour ceux venant de l'extérieur de la Turquie, sélecteur de langue ; Prise en charge linguistique pour les outils Flux AI & MCP et Flux AI.', 'tr']]"
+      ],
+      "Diller": [
+        "Langues"
+      ],
+      "Ortak sayfa: her dilde aynı, arayüz ziyaretçinin dilinde.": [
+        "Page partagée : la même dans toutes les langues, interface dans la langue du visiteur."
+      ],
+      "Ortak": [
+        "Partagé"
+      ],
+      "%1$s çevirisi (%2$s)": [
+        "%1$straduction (%2$s)"
+      ],
+      "%s çevirisi oluştur": [
+        "Créer une traduction%s"
+      ],
+      "Bu işlem için yetkiniz yok.": [
+        "Vous n'êtes pas autorisé à faire cela."
+      ],
+      "Dile göre süz": [
+        "Filtrer par langue"
+      ],
+      "Tüm diller": [
+        "Toutes les langues"
+      ],
+      "Dil": [
+        "Langue"
+      ],
+      "Bu içeriğin dili": [
+        "Langue de ce contenu"
+      ],
+      "Kaydettikten sonra diğer dillere çeviri oluşturabilirsiniz.": [
+        "Après avoir enregistré, vous pouvez créer des traductions dans d'autres langues."
+      ],
+      "AI ile yeniden çevir": [
+        "Retraduire avec l'IA"
+      ],
+      "Kopyala ve çevir": [
+        "Copier et traduire"
+      ],
+      "AI ile çevir": [
+        "Traduire avec l'IA"
+      ],
+      "Flux AI kurulursa tek tıkla çeviri yapılır; MCP ile bağlı AI ajanları da flxl_save_translation aracıyla çevirebilir.": [
+        "Avec Flux AI installé, la traduction se fait en un clic ; Les agents IA connectés via MCP peuvent également traduire avec l'outil flxl_save_translation."
+      ],
+      "Çeviri hazırlanıyor…": [
+        "Préparation de la traduction…"
+      ],
+      "AI çeviriyor: %1$d / %2$d": [
+        "L'IA traduit :%1$d/%2$d"
+      ],
+      "Çeviri hazır, düzenleyici açılıyor…": [
+        "Traduction prête, ouverture de l’éditeur…"
+      ],
+      "Bazı bölümler çevrilemedi, Türkçe kaldı. Düzenleyicide kontrol edin.": [
+        "Certaines sections n'ont pas pu être traduites et sont restées en turc. Vérifiez-les dans l'éditeur."
+      ],
+      "Çeviri durdu:": [
+        "Traduction arrêtée :"
+      ],
+      "Var olan çevirinin başlığı, özeti ve gövdesi AI çevirisiyle değiştirilsin mi?": [
+        "Remplacer le titre, l'extrait et le corps de la traduction existante par une traduction IA ?"
+      ],
+      "AI ile çevrilsin mi? Hayır derseniz kopya taslak oluşturulur, kendiniz çevirirsiniz.": [
+        "Traduire avec l’IA ? Si vous choisissez Non, un brouillon est créé pour que vous puissiez le traduire vous-même."
+      ],
+      "Ayarlar": [
+        "Paramètres"
+      ],
+      "Kaydedildi.": [
+        "Enregistré."
+      ],
+      "Varsayılan dil adreste önek almaz (example.org/hakkimizda/); diğer diller /en/ gibi önekle açılır. Her içeriğin dil sürümü ayrı bir sayfa/yazıdır: listede dil rozetinden ya da düzenleme ekranındaki Dil kutusundan oluşturulur. Tema ve eklenti arayüz metinleri kendi çevirileriyle gösterilir.": [
+        "La langue par défaut n'a pas de préfixe dans l'adresse (example.org/hakkimizda/) ; d'autres langues s'ouvrent avec un préfixe tel que /en/. Chaque version linguistique d'un contenu est une page/article distinct : créez-la à partir du badge de langue dans la liste ou à partir de la zone Langue de l'éditeur. Les textes de l'interface du thème et du plugin utilisent leurs propres traductions."
+      ],
+      "Etkin": [
+        "Actif"
+      ],
+      "Kod / adres": [
+        "Code/adresse"
+      ],
+      "Ad": [
+        "Nom"
+      ],
+      "Bayrak": [
+        "Drapeau"
+      ],
+      "WordPress dili": [
+        "Paramètres régionaux WordPress"
+      ],
+      "Varsayılan": [
+        "Par défaut"
+      ],
+      "Kaldır": [
+        "Supprimer"
+      ],
+      "Dil ekle": [
+        "Ajouter une langue"
+      ],
+      "— seçin —": [
+        "- choisir -"
+      ],
+      "Yeni dil pasif eklenir: içeriği hazırlayıp sonra etkinleştirin. İngilizce dışındaki dillerde WordPress dil paketi de gerekir (Sistem kontrolü uyarır).": [
+        "Une nouvelle langue est ajoutée inactive : préparez son contenu, puis activez-la. Les langues autres que l’anglais ont également besoin du pack de langue WordPress (avertissement de vérification du système)."
+      ],
+      "İçerik": [
+        "Contenu"
+      ],
+      "Çevrilen içerik türleri": [
+        "Types de contenu traduit"
+      ],
+      "Sepet, ödeme ve hesabım sayfaları her dilde ortaktır. Kategoriler ortaktır; adları kategori düzenleme ekranında dil başına çevrilir. Görsellerin dile özgü alt metni ve farklı görseli medya düzenleme ekranında.": [
+        "Les pages de panier, de paiement et de mon compte sont partagées dans toutes les langues. Les catégories sont partagées ; leurs noms sont traduits par langue sur l'écran d'édition de catégorie. Le texte alternatif spécifique à la langue et les images de remplacement se trouvent sur l'écran d'édition multimédia."
+      ],
+      "Çevirisi olmayan içerik": [
+        "Contenu sans traduction"
+      ],
+      "Diğer dillerde Türkçesini göster (menü ve arayüz o dilde kalır; arama motoruna kanonik Türkçe adres bildirilir)": [
+        "Afficher la version turque dans d'autres langues (le menu et l'interface restent dans cette langue ; les moteurs de recherche obtiennent l'adresse canonique turque)"
+      ],
+      "Kapalıysa İngilizce sitede yalnız İngilizcesi olan içerik listelenir.": [
+        "Lorsqu'il est désactivé, le site anglais répertorie uniquement le contenu disposant d'une version anglaise."
+      ],
+      "Dil seçici": [
+        "Sélecteur de langue"
+      ],
+      "Başka yere: \"Flux Lang Seçici\" bloğu ya da [flx_dil_secici] kısa kodu.": [
+        "Ailleurs : le bloc \"Flux Language Switcher\" ou le shortcode [flx_dil_secici]."
+      ],
+      "Dil seçicinin yeri": [
+        "Position du commutateur"
+      ],
+      "Alt bilgi (footer)": [
+        "Pied de page"
+      ],
+      "Başlık (header) ve mobil menü": [
+        "En-tête et menu mobile"
+      ],
+      "İkisi de": [
+        "Les deux"
+      ],
+      "Ziyaretçiye dil önerisi": [
+        "Suggestion de langue pour les visiteurs"
+      ],
+      "Türkiye dışından gelene": [
+        "Visiteurs extérieurs à la Turquie"
+      ],
+      "Direkt kendi dilinde aç (önerilen)": [
+        "Ouvrir directement dans leur langue (recommandé)"
+      ],
+      "Sayfanın üstünde öneri bandı göster": [
+        "Afficher une barre de suggestions en haut de la page"
+      ],
+      "Kapalı": [
+        "Désactivé"
+      ],
+      "Türkiye dışından gelen ziyaretçi sayfa çizilmeden kendi dilindeki (yoksa İngilizce) sürüme açılır ve sonraki girişlerde de o dilde kalır. Dil seçicide başka dil seçen o dilde kalır. Arama motoru botları hiçbir zaman yönlendirilmez. Ülke Türkiye ya da saat dilimi Türkiye ise Türkçe kalır. Giriş yapmış kullanıcıya uygulanmaz; denemek için gizli pencere kullanın.": [
+        "Les visiteurs extérieurs à la Turquie ouvrent la version dans leur langue (anglais s'il n'y en a pas) avant le rendu de la page et y restent lors de leurs visites ultérieures. Un visiteur qui choisit une autre langue dans le mélangeur y reste. Les robots des moteurs de recherche ne sont jamais redirigés. Si le pays ou le fuseau horaire est Türkiye, le visiteur reste en turc. Non appliqué aux utilisateurs connectés ; utilisez une fenêtre privée pour tester."
+      ],
+      "Önerilen dil": [
+        "Langue suggérée"
+      ],
+      "Tarayıcı dili etkin dillerden biriyse (ör. Almanca eklendiğinde Almanca) o önerilir, değilse bu.": [
+        "Si la langue du navigateur est l'une des langues actives (par exemple l'allemand une fois ajouté), celle-ci est suggérée ; sinon celui-ci."
+      ],
+      "Türkçe gösterilen ülkeler": [
+        "Pays qui voient le turc"
+      ],
+      "İki harfli ülke kodları (TR, CY…).": [
+        "Codes pays à deux lettres (TR, CY…)."
+      ],
+      "Ülke bilgisi": [
+        "Informations sur le pays"
+      ],
+      "Sizin isteğinizde ülke: %1$s (%2$s başlığı). Ülkeye göre öneri çalışır.": [
+        "Pays dans votre demande :%1$s(en-tête%2$s). Les suggestions basées sur les pays fonctionnent."
+      ],
+      "Sunucu ülke bilgisi göndermiyor; tarayıcının saat dilimi kullanılır (Türkiye saati = Türkçe). Daha kesin sonuç için alan adını Cloudflare'e bağlayın (ücretsiz plan, CF-IPCountry başlığı kendiliğinden kullanılır) ya da hosting'in GeoIP başlığını açın.": [
+        "Le serveur n'envoie aucune information sur le pays ; le fuseau horaire du navigateur est utilisé (heure Türkiye = turc). Pour des résultats plus précis, placez le domaine derrière Cloudflare (forfait gratuit, l'en-tête CF-IPCountry est utilisé automatiquement) ou activez l'en-tête GeoIP de votre hébergeur."
+      ],
+      "Dile göre site metinleri": [
+        "Textes du site par langue"
+      ],
+      "Boş bırakılan alan Türkçesiyle gösterilir.": [
+        "Les champs vides sont affichés en turc."
+      ],
+      "Kaydet": [
+        "Enregistrer"
+      ],
+      "Yapay zekâ ile çeviri": [
+        "Traduction avec l'IA"
+      ],
+      "Flux AI kuruluysa listede ve düzenleme ekranında \"AI ile çevir\" düğmesi çıkar. MCP ile bağlı AI ajanları (Claude vb.) ve Flux AI sohbeti şu araçları kullanır: flxl_languages, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_language, flxl_image_language, flxl_term_translation, flxl_site_texts. Flux SEO araçlarında (list_content, create_content, update_content) lang parametresi var.": [
+        "Une fois Flux AI installé, un bouton « Traduire avec AI » apparaît dans la liste et dans l'éditeur. Les agents IA connectés via MCP (Claude etc.) et le chat Flux AI utilisent ces outils : flxl_linguals, flxl_untranslated, flxl_translations, flxl_save_translation, flxl_set_lingual, flxl_image_langage, flxl_term_translation, flxl_site_texts. Les outils Flux SEO (list_content, create_content, update_content) ont un paramètre lang."
+      ],
+      "Kaynak içerik bulunamadı ya da bu tür çevrilmiyor.": [
+        "Contenu source introuvable ou ce type n'est pas traduit."
+      ],
+      "Dil etkin değil.": [
+        "La langue n'est pas active."
+      ],
+      "İçerik zaten bu dilde.": [
+        "Le contenu est déjà dans cette langue."
+      ],
+      "Flux Lang (çeviri)": [
+        "Langage Flux (traduction)"
+      ],
+      "Flux Lang": [
+        "Langage des flux"
+      ],
+      "Flux AI kurulu ya da hazır değil.": [
+        "Flux AI & MCP n'est pas installé ou n'est pas prêt."
+      ],
+      "AI boş cevap döndü.": [
+        "AI a renvoyé une réponse vide."
+      ],
+      "AI cevabı yarıda kesildi.": [
+        "La réponse de l’IA a été coupée."
+      ],
+      "Çeviri işi bulunamadı ya da süresi doldu.": [
+        "Travail de traduction introuvable ou expiré."
+      ],
+      "Alternatif metin (%s)": [
+        "Texte alternatif (%s)"
+      ],
+      "Görsel (%s)": [
+        "Image (%s)"
+      ],
+      "Bu dilde bu görselin yerine gösterilecek görselin ID'si (ör. üzerinde yazı olan afişin çevirisi). Boş: aynı görsel.": [
+        "ID de l'image affichée à la place de celle-ci dans cette langue (par exemple la version traduite d'une affiche avec texte). Vide : même image."
+      ],
+      "Bu sayfanın %s sürümü var.": [
+        "Cette page est disponible dans%s."
+      ],
+      "%s sürümüne geç": [
+        "Passer à%s"
+      ],
+      "Bu sürümde kal": [
+        "Restez sur cette version"
+      ],
+      "Kapat": [
+        "Fermer"
+      ],
+      "Dil seçimi": [
+        "Sélection de la langue"
+      ],
+      "Flux Lang Seçici": [
+        "Sélecteur de langue de flux"
+      ],
+      "Site adı": [
+        "Titre du site"
+      ],
+      "Slogan": [
+        "Slogan"
+      ],
+      "Flux SEO: site adı": [
+        "Flux SEO : nom du site"
+      ],
+      "Flux SEO: alternatif ad": [
+        "Flux SEO : nom alternatif"
+      ],
+      "Flux SEO: ana sayfa başlığı": [
+        "Flux SEO : titre de la page d’accueil"
+      ],
+      "Flux SEO: ana sayfa açıklaması": [
+        "Flux SEO : description de la page d'accueil"
+      ],
+      "Yalnız varsayılan dil etkin; site tek dilli.": [
+        "Seule la langue par défaut est active ; le site est monolingue."
+      ],
+      "WordPress dil paketleri": [
+        "Packs de langues WordPress"
+      ],
+      "Kurulu değil: %s. Ayarlar › Genel › Site dili listesinden bir kez seçip kaydedin (paket iner), sonra eski dile dönün.": [
+        "Non installé :%s. Choisissez-le une fois dans Paramètres > Général > Langue du site et enregistrez (le pack télécharge), puis revenez."
+      ],
+      "Etkin dillerin hepsinin WordPress çevirisi var.": [
+        "Toutes les langues actives ont des traductions WordPress."
+      ],
+      "Genel ayarlar": [
+        "Paramètres généraux"
+      ],
+      "Sayfa çevirileri: %s": [
+        "Traductions de pages :%s"
+      ],
+      "%1$d / %2$d sayfa çevrildi. %3$s": [
+        "Pages%1$d/%2$dtraduites.  FLXTOK2FIN. %3$s"
+      ],
+      "Çevrilmeyenler Türkçe gösteriliyor (kanonik adres Türkçe).": [
+        "Ceux qui ne sont pas traduits sont affichés en turc (l'adresse canonique est turque)."
+      ],
+      "Çevrilmeyenler bu dilde gizli.": [
+        "Les non traduits sont cachés dans cette langue."
+      ],
+      "Sayfalar": [
+        "Pages"
+      ],
+      "Ziyaretçi ülkesi": [
+        "Pays du visiteur"
+      ],
+      "Henüz yabancı dil önerisi için ziyaretçi kontrolü yapılmadı.": [
+        "Aucun visiteur n'a encore été vérifié pour une suggestion de langue."
+      ],
+      "Sunucu ülke bilgisi göndermiyor; tarayıcı saat dilimi kullanılıyor (Türkiye saati = Türkçe). Cloudflare açılırsa ülke kodu kendiliğinden kullanılır.": [
+        "Le serveur n'envoie aucune information sur le pays ; le fuseau horaire du navigateur est utilisé (heure Türkiye = turc). Si Cloudflare est activé, le code du pays est utilisé automatiquement."
+      ],
+      "Ülke bilgisi %s başlığından geliyor.": [
+        "Les informations sur le pays proviennent de l'en-tête%s."
+      ],
+      "Kalıcı bağlantılar": [
+        "Liens permanents"
+      ],
+      "Düz (?p=) bağlantılar kullanılıyor; dil adresleri için \"Yazı adı\" yapısını seçin.": [
+        "Des liens simples (?p=) sont utilisés ; choisissez la structure \"Nom du message\" pour les adresses linguistiques."
+      ],
+      "Ad (%s)": [
+        "Nom (%s)"
+      ],
+      "Açıklama (%s)": [
+        "Description (%s)"
+      ],
+      "Boş bırakılırsa Türkçe ad ve açıklama gösterilir.": [
+        "S'il est laissé vide, le nom turc et la description sont affichés."
+      ],
+      "Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.": [
+        "[['Rend le site multilingue : adresses de langue comme /en/, traduction par page, publication, projet et événement, visuel spécifique à la langue, hreflang et canonique, recommandation en anglais pour ceux venant de l'extérieur de la Turquie, sélecteur de langue ; Prise en charge linguistique pour les outils Flux AI & MCP et Flux AI.', 'tr']]"
+      ]
+    }
+  }
+}

@@ -100,7 +100,7 @@ class Email_Monitor {
             <img src="<?php echo esc_url($logo_url); ?>" alt="" style="width:42px;height:auto;margin-top:2px;flex-shrink:0;" />
             <div style="flex:1;min-width:0;">
                 <p style="margin:0 0 6px;font-size:14px;">
-                    <strong><?php esc_html_e('Flux Forms', 'flx-forms'); ?></strong>
+                    <strong><?php esc_html_e('\\nFlux Forms\\n', 'flx-forms'); ?></strong>
                     &mdash;
                     <?php echo esc_html($copy['title']); ?>
                 </p>
@@ -108,7 +108,7 @@ class Email_Monitor {
                     <?php echo esc_html($copy['body']); ?>
                 </p>
                 <p style="margin:0;">
-                    <a href="<?php echo esc_url($panel_url); ?>" class="button button-primary"><?php esc_html_e('Run the email check', 'flx-forms'); ?></a>
+                    <a href="<?php echo esc_url($panel_url); ?>" class="button button-primary"><?php esc_html_e('\\nRun the email check\\n', 'flx-forms'); ?></a>
                     <a href="<?php echo esc_url($guide_url); ?>" target="_blank" rel="noopener" style="margin-inline-start:10px;"><?php echo esc_html(self::get_smtp_guide_label()); ?></a>
                 </p>
             </div>
@@ -349,13 +349,13 @@ class Email_Monitor {
             $body = null !== $verdict['score']
                 ? sprintf(
                     /* translators: %s: deliverability score out of 100. */
-                    __('The last delivery check scored %s out of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this.', 'flx-forms'),
+                    __('\\nThe last delivery check scored%sout of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this.\\n', 'flx-forms'),
                     number_format_i18n($verdict['score'])
                 )
-                : __('The last delivery check found that your messages do leave the site, but mailboxes file them as spam. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this.', 'flx-forms');
+                : __('\\nThe last delivery check found that your messages do leave the site, but mailboxes file them as spam. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this.\\n', 'flx-forms');
 
             return [
-                'title' => __('Your form emails are going to the spam folder', 'flx-forms'),
+                'title' => __('\\nYour form emails are going to the spam folder\\n', 'flx-forms'),
                 'body'  => $body,
             ];
         }
@@ -366,21 +366,21 @@ class Email_Monitor {
             // WordPress did send it. Telling this administrator their site
             // "cannot send email" would point them at the wrong thing entirely.
             return [
-                'title' => __('Your form emails are sent, but they are not arriving', 'flx-forms'),
-                'body'  => __('WordPress sent the last test message successfully, so your site and this plugin did their part - it was lost, delayed or rejected after leaving WordPress. Usually the receiving mailbox treated it as spam, or your host never delivered it from the outbound queue. Sending through an SMTP service, with SPF and DKIM records for your domain, is what fixes this.', 'flx-forms'),
+                'title' => __('[[\'Your form emails are sent, but they are not arriving\\n', 'flx-forms'),
+                'body'  => __('\\nWordPress sent the last test message successfully, so your site and this plugin did their part - it was lost, delayed or rejected after leaving WordPress. Usually the receiving mailbox treated it as spam, or your host never delivered it from the outbound queue. Sending through an SMTP service, with SPF and DKIM records for your domain, is what fixes this.\\n', 'flx-forms'),
             ];
         }
 
         if ('wp_mail_failed' === $send_stage) {
             return [
-                'title' => __('WordPress cannot send your form emails', 'flx-forms'),
-                'body'  => __('The last check could not even hand a message to your mail server: WordPress reported an error while sending, so nothing left the site. An SMTP plugin, or asking your host whether PHP mail is disabled, is where to start.', 'flx-forms'),
+                'title' => __('\\nWordPress cannot send your form emails\\n', 'flx-forms'),
+                'body'  => __('\\nThe last check could not even hand a message to your mail server: WordPress reported an error while sending, so nothing left the site. An SMTP plugin, or asking your host whether PHP mail is disabled, is where to start.\\n', 'flx-forms'),
             ];
         }
 
         return [
-            'title' => __('Your form emails are not being delivered', 'flx-forms'),
-            'body'  => __('The last delivery check could not get a message through, so nothing your forms send is reaching anybody. A hosting server usually sends mail without a trusted signature; sending through an SMTP service is the standard fix.', 'flx-forms'),
+            'title' => __('\\nYour form emails are not being delivered\', \'en\']]', 'flx-forms'),
+            'body'  => __('\\nThe last delivery check could not get a message through, so nothing your forms send is reaching anybody. A hosting server usually sends mail without a trusted signature; sending through an SMTP service is the standard fix.\\n', 'flx-forms'),
         ];
     }
 
@@ -453,7 +453,7 @@ class Email_Monitor {
         if (!isset($schedules['emsfb_weekly'])) {
             $schedules['emsfb_weekly'] = [
                 'interval' => WEEK_IN_SECONDS,
-                'display' => __('Once Weekly (Flux Forms)', 'flx-forms'),
+                'display' => __('\\nOnce Weekly (Flux Forms)\\n', 'flx-forms'),
             ];
         }
         return $schedules;
@@ -684,7 +684,7 @@ class Email_Monitor {
         $code = (int) wp_remote_retrieve_response_code($response);
         $result = json_decode(wp_remote_retrieve_body($response), true);
         if ($code < 200 || $code >= 300 || !is_array($result)) {
-            self::retry_or_finish($pending, 'invalid_service_response', __('The email tester service returned an invalid response.', 'flx-forms'));
+            self::retry_or_finish($pending, 'invalid_service_response', __('\\nThe email tester service returned an invalid response.\\n', 'flx-forms'));
             return;
         }
 
@@ -706,8 +706,8 @@ class Email_Monitor {
         }
         if ($message === '') {
             $message = $can_send
-                ? __('The weekly email delivery test completed successfully.', 'flx-forms')
-                : __('The weekly email delivery test found an email delivery problem.', 'flx-forms');
+                ? __('\\nThe weekly email delivery test completed successfully.\\n', 'flx-forms')
+                : __('\\nThe weekly email delivery test found an email delivery problem.\\n', 'flx-forms');
         }
 
         self::save_status(
@@ -736,7 +736,7 @@ class Email_Monitor {
 
         $admin_email = sanitize_email(get_option('admin_email', ''));
         if (!is_email($admin_email)) {
-            self::finish_without_test($context, 'invalid_admin_email', __('The main WordPress administrator email address is not valid.', 'flx-forms'));
+            self::finish_without_test($context, 'invalid_admin_email', __('\\nThe main WordPress administrator email address is not valid.\\n', 'flx-forms'));
             return;
         }
 
@@ -783,7 +783,7 @@ class Email_Monitor {
         if ($code < 200 || $code >= 300 || !is_array($test) || empty($test['success'])) {
             $message = is_array($test) && !empty($test['message'])
                 ? sanitize_text_field($test['message'])
-                : __('Could not start the email delivery test.', 'flx-forms');
+                : __('\\nCould not start the email delivery test.\\n', 'flx-forms');
             self::finish_without_test($context, 'service_start_error', $message);
             return;
         }
@@ -792,7 +792,7 @@ class Email_Monitor {
         $subject = isset($test['email_subject']) ? str_replace(["\r", "\n"], '', (string) $test['email_subject']) : '';
         $test_hash = isset($test['test_hash']) ? sanitize_text_field($test['test_hash']) : '';
         if (!is_email($recipient) || $subject === '' || !self::is_valid_hash($test_hash)) {
-            self::finish_without_test($context, 'invalid_service_response', __('The email tester service returned an invalid response.', 'flx-forms'));
+            self::finish_without_test($context, 'invalid_service_response', __('\\nThe email tester service returned an invalid response.\\n', 'flx-forms'));
             return;
         }
 
@@ -861,8 +861,8 @@ class Email_Monitor {
         self::save_status(
             $sent ? 'pending' : 'failed',
             $sent
-                ? __('WordPress sent the automated test email and is waiting for it to arrive.', 'flx-forms')
-                : __('WordPress could not send the automated test email. The message never left this website.', 'flx-forms'),
+                ? __('\\nWordPress sent the automated test email and is waiting for it to arrive.\\n', 'flx-forms')
+                : __('\\nWordPress could not send the automated test email. The message never left this website.\\n', 'flx-forms'),
             $context,
             [],
             // wp_mail() refusing outright is this site's own failure, and the
@@ -878,7 +878,7 @@ class Email_Monitor {
         if ($pending['attempts'] >= 10 || (time() - (int) $pending['started_at']) >= 12 * MINUTE_IN_SECONDS) {
 			$final_message = $message !== ''
 				? sanitize_text_field($message)
-				: __('The email delivery test timed out before confirmation was received.', 'flx-forms');
+				: __('\\nThe email delivery test timed out before confirmation was received.\\n', 'flx-forms');
 			// Out of attempts without the service ever confirming arrival: the
 			// email never turned up. That is a real delivery failure, unless
 			// the service itself was what could not be reached - which the
@@ -1016,7 +1016,7 @@ class Email_Monitor {
         }
         $subject = sprintf(
             /* translators: %s: site name. */
-            __('Weekly Flux Forms report for %s', 'flx-forms'),
+            __('\\nWeekly Flux Forms report for%s\\n', 'flx-forms'),
             wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES)
         );
 
@@ -1054,7 +1054,7 @@ class Email_Monitor {
         $generated_at = flx_date( time(), 'datetime' );
         $intro = sprintf(
             /* translators: %s: site name. */
-            __('Here is your weekly snapshot for %s.', 'flx-forms'),
+            __('\\nHere is your weekly snapshot for%s.\\n', 'flx-forms'),
             $site_name
         );
 
@@ -1071,7 +1071,7 @@ class Email_Monitor {
         $html .= '<p style="margin:0 0 4px 0;font-size:16px;line-height:24px;font-weight:700;text-align:' . esc_attr($align) . ';">' . esc_html($intro) . '</p>';
         $html .= '<p style="margin:0 0 22px 0;font-size:12px;line-height:18px;color:#6b7280;text-align:' . esc_attr($align) . ';">' . sprintf(
             /* translators: %s: report generation date and time. */
-            esc_html__('Report generated %s', 'flx-forms'),
+            esc_html__('[[\'Report generated%s\\n', 'flx-forms'),
             esc_html($generated_at)
         ) . '</p>';
 
@@ -1103,7 +1103,7 @@ class Email_Monitor {
                 if ($recommendation_rows !== '') {
                     $html .= '<table role="presentation" dir="' . esc_attr($direction) . '" cellspacing="0" cellpadding="0" border="0" width="100%" style="' . self::TABLE_RESET . 'width:100%;margin:14px 0 0 0;">'
                         . '<tr><td align="' . esc_attr($align) . '" style="padding:14px 15px;background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;text-align:' . esc_attr($align) . ';">'
-                        . '<p style="margin:0 0 8px 0;font-size:13px;line-height:20px;font-weight:700;color:#334155;text-align:' . esc_attr($align) . ';">' . esc_html__('Detailed analysis', 'flx-forms') . '</p>'
+                        . '<p style="margin:0 0 8px 0;font-size:13px;line-height:20px;font-weight:700;color:#334155;text-align:' . esc_attr($align) . ';">' . esc_html__('\\nDetailed analysis\\n', 'flx-forms') . '</p>'
                         . '<table role="presentation" dir="' . esc_attr($direction) . '" cellspacing="0" cellpadding="0" border="0" width="100%" style="' . self::TABLE_RESET . 'width:100%;">' . $recommendation_rows . '</table>'
                         . '</td></tr></table>';
                 }
@@ -1118,11 +1118,11 @@ class Email_Monitor {
             $activity = !empty($sections['activity']) ? self::get_form_activity_stats() : null;
             $tiles = [];
             if ($activity) {
-                $tiles[] = ['value' => (int) $activity['page_views'], 'label' => __('Form views', 'flx-forms'), 'tone' => 'accent'];
-                $tiles[] = ['value' => (int) $activity['submissions'], 'label' => __('Submissions', 'flx-forms'), 'tone' => 'accent'];
+                $tiles[] = ['value' => (int) $activity['page_views'], 'label' => __('\\nForm views\\n', 'flx-forms'), 'tone' => 'accent'];
+                $tiles[] = ['value' => (int) $activity['submissions'], 'label' => __('\\nSubmissions\\n', 'flx-forms'), 'tone' => 'accent'];
             }
-            $tiles[] = ['value' => (int) $email_stats['success'], 'label' => __('Emails sent', 'flx-forms'), 'tone' => 'good'];
-            $tiles[] = ['value' => $failed, 'label' => __('Emails failed', 'flx-forms'), 'tone' => $failed > 0 ? 'bad' : 'muted'];
+            $tiles[] = ['value' => (int) $email_stats['success'], 'label' => __('\\nEmails sent\\n', 'flx-forms'), 'tone' => 'good'];
+            $tiles[] = ['value' => $failed, 'label' => __('\\nEmails failed\\n', 'flx-forms'), 'tone' => $failed > 0 ? 'bad' : 'muted'];
 
             $html .= self::build_stat_tiles($tiles, $direction, $align, $theme);
 
@@ -1135,8 +1135,8 @@ class Email_Monitor {
             $activity = self::get_form_activity_stats();
             $html .= self::build_section_heading(__('This week', 'flx-forms'), $align, 0);
             $html .= self::build_stat_tiles([
-                ['value' => (int) $activity['page_views'], 'label' => __('Form views', 'flx-forms'), 'tone' => 'accent'],
-                ['value' => (int) $activity['submissions'], 'label' => __('Submissions', 'flx-forms'), 'tone' => 'accent'],
+                ['value' => (int) $activity['page_views'], 'label' => __('\\nForm views\\n', 'flx-forms'), 'tone' => 'accent'],
+                ['value' => (int) $activity['submissions'], 'label' => __('\\nSubmissions\\n', 'flx-forms'), 'tone' => 'accent'],
             ], $direction, $align, $theme);
             $html .= self::build_forms_summary_line($activity, $direction, $align);
         }
@@ -1145,7 +1145,7 @@ class Email_Monitor {
             $html .= self::build_pro_upgrade_callout($direction, $align);
         }
 
-        $html .= '<p style="margin:24px 0 0 0;color:#6b7280;font-size:12px;line-height:18px;text-align:' . esc_attr($align) . ';">' . esc_html__('You can turn these reports off in Flux Forms settings.', 'flx-forms') . '</p>';
+        $html .= '<p style="margin:24px 0 0 0;color:#6b7280;font-size:12px;line-height:18px;text-align:' . esc_attr($align) . ';">' . esc_html__('\\nYou can turn these reports off in Flux Forms settings.\\n', 'flx-forms') . '</p>';
         $html .= '</div>';
 
         return $html;
@@ -1265,7 +1265,7 @@ class Email_Monitor {
     public static function get_low_score_message($score) {
         return sprintf(
             /* translators: 1: measured deliverability score, 2: minimum acceptable score. */
-            __('The test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s), so the emails your forms send are very likely to be rejected or filtered as spam.', 'flx-forms'),
+            __('\\nThe test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s), so the emails your forms send are very likely to be rejected or filtered as spam.\\n', 'flx-forms'),
             number_format_i18n((float) $score),
             number_format_i18n(self::MIN_DELIVERY_SCORE)
         );
@@ -1323,14 +1323,14 @@ class Email_Monitor {
      * @return string
      */
     public static function get_delivery_check_message() {
-        return __('Run the email check so you can be sure the messages your forms send are actually reaching people. The check sends a real message through the new WhiteStudio delivery service and reports back what arrived.', 'flx-forms');
+        return __('\\nRun the email check so you can be sure the messages your forms send are actually reaching people. The check sends a real message through the new WhiteStudio delivery service and reports back what arrived.\\n', 'flx-forms');
     }
 
     /**
      * @return string Anchor text for the SMTP guide.
      */
     public static function get_smtp_guide_label() {
-        return __('Read the guide to sending email through SMTP', 'flx-forms');
+        return __('\\nRead the guide to sending email through SMTP\\n', 'flx-forms');
     }
 
     /**
@@ -1460,13 +1460,13 @@ class Email_Monitor {
             $badge_text = '&#63;';
             $badge_sub = '';
             if ($can_send) {
-                $title = __('Delivery has not been scored yet', 'flx-forms');
+                $title = __('\\nDelivery has not been scored yet\\n', 'flx-forms');
             } elseif ('handed_off' === $send_stage) {
-                $title = __('WordPress sent your email, but it never arrived', 'flx-forms');
+                $title = __('\\nWordPress sent your email, but it never arrived\\n', 'flx-forms');
             } elseif ('wp_mail_failed' === $send_stage) {
-                $title = __('WordPress could not send your email', 'flx-forms');
+                $title = __('\\nWordPress could not send your email\', \'en\']]', 'flx-forms');
             } else {
-                $title = __('We could not confirm your emails are being delivered', 'flx-forms');
+                $title = __('\\nWe could not confirm your emails are being delivered\\n', 'flx-forms');
             }
             $title_colour = '#3f4657';
             $subtitle = '';
@@ -1476,18 +1476,18 @@ class Email_Monitor {
             $border = $healthy ? '#d3ecdf' : '#f4d6cf';
             $badge_bg = $healthy ? '#0f9d58' : '#d9483b';
             $badge_text = number_format_i18n($score);
-            $badge_sub = __('out of 100', 'flx-forms');
+            $badge_sub = __('\\nout of 100\\n', 'flx-forms');
             $title_colour = $healthy ? '#0b6b3d' : '#9c2f24';
             if ($healthy) {
-                $title = __('Your email delivery is healthy', 'flx-forms');
+                $title = __('\\nYour email delivery is healthy\\n', 'flx-forms');
             } elseif ($arrived) {
-                $title = __('Your emails are likely going to spam', 'flx-forms');
+                $title = __('\\nYour emails are likely going to spam\\n', 'flx-forms');
             } elseif ('handed_off' === $send_stage) {
-                $title = __('WordPress sent your email, but it never arrived', 'flx-forms');
+                $title = __('\\nWordPress sent your email, but it never arrived\\n', 'flx-forms');
             } elseif ('wp_mail_failed' === $send_stage) {
-                $title = __('WordPress could not send your email', 'flx-forms');
+                $title = __('\\nWordPress could not send your email\', \'en\']]', 'flx-forms');
             } else {
-                $title = __('Your emails are not reaching anybody', 'flx-forms');
+                $title = __('\\nYour emails are not reaching anybody\\n', 'flx-forms');
             }
             if ($grade !== '') {
                 // The grade comes from the tester service and is never translated,
@@ -1499,7 +1499,7 @@ class Email_Monitor {
                 // unit positioned right after the sentence, in every direction.
                 $title .= ' <span dir="ltr" style="unicode-bidi:embed;white-space:nowrap;">&mdash; ' . sprintf(
                     /* translators: %s: deliverability grade such as A or D. */
-                    esc_html__('grade %s', 'flx-forms'),
+                    esc_html__('\\ngrade%s\\n', 'flx-forms'),
                     esc_html($grade)
                 ) . '</span>';
             }
@@ -1595,22 +1595,22 @@ class Email_Monitor {
             . '<tr><td align="' . esc_attr($align) . '" style="padding:19px 18px;text-align:' . esc_attr($align) . ';border-' . ($is_rtl ? 'right' : 'left') . ':4px solid #f59e0b;">';
 
         $html .= '<p style="margin:0 0 9px 0;color:#7c4a03;font-size:16px;line-height:24px;font-weight:700;text-align:' . esc_attr($align) . ';">'
-            . esc_html__('What you should do', 'flx-forms') . '</p>';
+            . esc_html__('\\nWhat you should do\\n', 'flx-forms') . '</p>';
 
         if ('unknown' === $mode) {
             $html .= '<p style="margin:0 0 13px 0;color:#5f4a2a;font-size:13.5px;line-height:23px;text-align:' . esc_attr($align) . ';">'
                 . esc_html(self::get_delivery_check_message()) . '</p>';
         } else {
             $html .= '<p style="margin:0 0 12px 0;color:#5f4a2a;font-size:13.5px;line-height:23px;text-align:' . esc_attr($align) . ';">'
-                . esc_html__('A hosting server usually sends mail without a trusted signature, which is what pushes your form emails into the spam folder or stops them arriving at all. The standard fix is to send through an SMTP service.', 'flx-forms')
+                . esc_html__('\\nA hosting server usually sends mail without a trusted signature, which is what pushes your form emails into the spam folder or stops them arriving at all. The standard fix is to send through an SMTP service.\\n', 'flx-forms')
                 . '</p>';
 
             $steps = [
-                __('Install an SMTP plugin and enter the details of your email service.', 'flx-forms'),
-                __('Add the SPF and DKIM records to your domain settings.', 'flx-forms'),
+                __('\\nInstall an SMTP plugin and enter the details of your email service.\\n', 'flx-forms'),
+                __('\\nAdd the SPF and DKIM records to your domain settings.\\n', 'flx-forms'),
                 sprintf(
                     /* translators: %s: the healthy score threshold, such as 70. */
-                    __('Run the email check again until the score is above %s.', 'flx-forms'),
+                    __('\\nRun the email check again until the score is above%s.\\n', 'flx-forms'),
                     number_format_i18n(self::HEALTHY_SCORE)
                 ),
             ];
@@ -1715,7 +1715,7 @@ class Email_Monitor {
     private static function build_forms_summary_line($activity, $direction, $align) {
         $sentence = sprintf(
             /* translators: 1: total forms, 2: active forms, 3: inactive forms. */
-            esc_html__('You have %1$s forms: %2$s active and %3$s inactive.', 'flx-forms'),
+            esc_html__('\\nYou have%1$sforms:%2$sactive and%3$sinactive.\\n', 'flx-forms'),
             '<span style="color:#111827;font-weight:700;">' . esc_html(number_format_i18n((int) $activity['forms_total'])) . '</span>',
             '<span style="color:#0f9d58;font-weight:700;">' . esc_html(number_format_i18n((int) $activity['forms_active'])) . '</span>',
             '<span style="color:#9aa1af;font-weight:700;">' . esc_html(number_format_i18n((int) $activity['forms_inactive'])) . '</span>'
@@ -1772,14 +1772,14 @@ class Email_Monitor {
         }
 
         $title = $is_expired
-            ? __('Renew Flux Forms Pro', 'flx-forms')
-            : __('Get more from Flux Forms Pro', 'flx-forms');
+            ? __('\\nRenew Flux Forms Pro\\n', 'flx-forms')
+            : __('\\nGet more from Flux Forms Pro\\n', 'flx-forms');
         $description = $is_expired
-            ? __('Renew your subscription to restore all Pro features and add-ons.', 'flx-forms')
-            : __('Unlock premium add-ons, unlimited features and priority support for your forms.', 'flx-forms');
+            ? __('\\nRenew your subscription to restore all Pro features and add-ons.\\n', 'flx-forms')
+            : __('\\nUnlock premium add-ons, unlimited features and priority support for your forms.\\n', 'flx-forms');
         $button_label = $is_expired
-            ? __('Renew Pro', 'flx-forms')
-            : __('Upgrade to Pro', 'flx-forms');
+            ? __('\\nRenew Pro\\n', 'flx-forms')
+            : __('\\nUpgrade to Pro\\n', 'flx-forms');
 
         return '<table role="presentation" dir="' . esc_attr($direction) . '" cellspacing="0" cellpadding="0" border="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;margin:24px 0 0 0;border-collapse:separate;background-color:#eef2ff;border:1px solid #c7d2fe;border-radius:8px;">'
             . '<tr><td align="' . esc_attr($align) . '" style="padding:18px 16px;text-align:' . esc_attr($align) . ';">'
@@ -1806,8 +1806,8 @@ class Email_Monitor {
         update_option('emsfb_email_status', [
             'status' => 'ok',
             'message' => [
-                'title' => __('Email delivery is working', 'flx-forms'),
-                'description' => __('The automated Flux Forms email delivery test completed successfully.', 'flx-forms'),
+                'title' => __('\\nEmail delivery is working\\n', 'flx-forms'),
+                'description' => __('\\nThe automated Flux Forms email delivery test completed successfully.\\n', 'flx-forms'),
                 'id' => 'automated_email_test_ok',
             ],
             'details' => [

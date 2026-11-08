@@ -69,7 +69,7 @@ function flxc_block_add( $phone, $email = '', $reason = '', $source = 'agent', $
 	$email = flxc_block_email( $email );
 	$jid   = $chat && '' === $phone ? (string) $chat['jid'] : '';
 	if ( '' === $phone && '' === $email && '' === $jid ) {
-		return new WP_Error( 'flxc_block', __( 'Telefon ya da e-posta gerekli.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_block', __( 'Phone or email is required.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$have = flxc_block_find( $phone, $email, $jid );
 	if ( $have ) {
@@ -157,7 +157,7 @@ function flxc_block_chat( $chat, $reason, $source ) {
 			flxc_block_add( '', $e, $reason, $source, null );
 		}
 		/* translators: %s: reason */
-		flxc_system_message( $chat, sprintf( __( 'Kişi kara listeye alındı: %s', 'flx-chat' ), '' !== (string) $reason ? $reason : '-' ) );
+		flxc_system_message( $chat, sprintf( __( 'Contact added to the blocklist: %s', 'flx-chat' ), '' !== (string) $reason ? $reason : '-' ) );
 	}
 	return $id;
 }
@@ -238,7 +238,7 @@ add_action(
 						if ( $cid ) {
 							$chat = flxc_get_chat( $cid );
 							if ( ! $chat ) {
-								return new WP_Error( 'flxc_404', __( 'Sohbet bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+								return new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
 							}
 							$id = flxc_block_chat( $chat, $reason, 'agent' );
 							return is_wp_error( $id ) ? $id : array( 'id' => $id, 'chat' => flxc_chat_for_js( flxc_get_chat( $cid ) ) );
@@ -256,7 +256,7 @@ add_action(
 				'methods'             => 'DELETE',
 				'permission_callback' => $mng,
 				'callback'            => function ( WP_REST_Request $req ) {
-					return flxc_block_remove( (int) $req['id'] ) ? array( 'ok' => true ) : new WP_Error( 'flxc_404', __( 'Kayıt bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+					return flxc_block_remove( (int) $req['id'] ) ? array( 'ok' => true ) : new WP_Error( 'flxc_404', __( 'No records found.', 'flx-chat' ), array( 'status' => 404 ) );
 				},
 			)
 		);
@@ -269,12 +269,12 @@ add_action(
 				'callback'            => function ( WP_REST_Request $req ) {
 					$chat = flxc_get_chat( (int) $req['id'] );
 					if ( ! $chat ) {
-						return new WP_Error( 'flxc_404', __( 'Sohbet bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+						return new WP_Error( 'flxc_404', __( 'Chat not found.', 'flx-chat' ), array( 'status' => 404 ) );
 					}
 					$id = flxc_block_find( $chat['phone'], '', $chat['jid'] );
 					if ( $id ) {
 						flxc_block_remove( $id );
-						flxc_system_message( $chat, __( 'Kişi kara listeden çıkarıldı.', 'flx-chat' ) );
+						flxc_system_message( $chat, __( 'Contact removed from the blocklist.', 'flx-chat' ) );
 					}
 					return array( 'chat' => flxc_chat_for_js( flxc_get_chat( $chat['id'] ) ) );
 				},

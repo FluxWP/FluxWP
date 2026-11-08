@@ -36,7 +36,7 @@ add_filter(
 		};
 
 		$tools['flxwk_search'] = array(
-			'title'       => __( 'Wiki\'de ara', 'flx-wiki' ),
+			'title'       => __( 'Search the wiki', 'flx-wiki' ),
 			'description' => 'Searches the developer wiki (FluxWP plugin/theme development, AI-enabled plugins, shared APIs). Turkish characters are folded (i=ı, s=ş …). Returns ranked pages with the best matching heading and a snippet. Read a result with flxwk_get_page.',
 			'readonly'    => true,
 			'cap'         => 'read',
@@ -60,7 +60,7 @@ add_filter(
 		);
 
 		$tools['flxwk_get_page'] = array(
-			'title'       => __( 'Wiki sayfasını oku', 'flx-wiki' ),
+			'title'       => __( 'Read wiki page', 'flx-wiki' ),
 			'description' => 'Returns one wiki page as Markdown (title, source URL, section, last update and full body). Identify the page by slug/path (e.g. "plugins/ai-enabled"), title, id or URL.',
 			'readonly'    => true,
 			'cap'         => 'read',
@@ -76,7 +76,7 @@ add_filter(
 		);
 
 		$tools['flxwk_list_pages'] = array(
-			'title'       => __( 'Wiki sayfalarını listele', 'flx-wiki' ),
+			'title'       => __( 'List wiki pages', 'flx-wiki' ),
 			'description' => 'Lists the wiki as a tree grouped by section (title, slug, URL, excerpt). Use it to discover what the wiki covers.',
 			'readonly'    => true,
 			'cap'         => 'read',
@@ -110,7 +110,7 @@ add_filter(
 		);
 
 		$tools['flxwk_save_page'] = array(
-			'title'       => __( 'Wiki sayfası yaz', 'flx-wiki' ),
+			'title'       => __( 'Write wiki page', 'flx-wiki' ),
 			'description' => 'Creates or updates a wiki page from Markdown. Without "id" a new page is created as a draft unless status=publish. Use [[slug]] or [[slug|label]] for links to other wiki pages and > [!NOTE] / [!TIP] / [!WARNING] callouts. Do not repeat the title as an H1.',
 			'readonly'    => false,
 			'cap'         => 'edit_posts',
@@ -195,7 +195,7 @@ add_filter(
 	'flx_mcp_prompts',
 	function ( $p ) {
 		$p['flxwk_build_plugin'] = array(
-			'title'       => __( 'FluxWP eklentisi yaz (wiki rehberiyle)', 'flx-wiki' ),
+			'title'       => __( 'Write a FluxWP plugin (with the wiki guides)', 'flx-wiki' ),
 			'description' => 'Starts a FluxWP plugin/theme task with the relevant wiki guides attached.',
 			'arguments'   => array(
 				array( 'name' => 'task', 'description' => 'What to build, e.g. "a plugin that adds an AI summary button to orders".', 'required' => true ),

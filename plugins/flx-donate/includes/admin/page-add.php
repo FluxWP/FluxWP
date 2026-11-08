@@ -57,31 +57,31 @@ final class FLXB_Page_Add {
 		}
 		$proxy = flxb_proxy_text();
 		$accs  = self::accounts();
-		FLXB_Admin::header( __( 'Add donation', 'flx-donate' ), __( 'Record a gift paid or promised by bank transfer, in cash or another way.', 'flx-donate' ), array(), array( __( 'Donations', 'flx-donate' ), FLXB_Admin_Url::page( 'flxb-donations' ) ) );
+		FLXB_Admin::header( __( 'Add donation', 'flx-donate' ), __( '\\nRecord a gift paid or promised by bank transfer, in cash or another way.\\n', 'flx-donate' ), array(), array( __( 'Donations', 'flx-donate' ), FLXB_Admin_Url::page( 'flxb-donations' ) ) );
 		echo '<form class="flxb-form flxb-addform" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flxb-add="' . esc_attr( wp_json_encode( $data ) ) . '"><input type="hidden" name="action" value="flxb_add_donation">';
 		wp_nonce_field( 'flxb_add_donation' );
 		echo '<div class="flxb-grid flxb-grid--2-1"><div class="flxb-stack">';
 
 		/* Gift */
 		echo '<section class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Donation', 'flx-donate' ) . '</h2></div><div class="flxb-form">';
-		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-type">' . esc_html__( 'Donation type', 'flx-donate' ) . '</label><select id="flxb-a-type" name="type_id"><option value="0">' . esc_html__( 'No donation type', 'flx-donate' ) . '</option>';
+		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-type">' . esc_html__( 'Donation type', 'flx-donate' ) . '</label><select id="flxb-a-type" name="type_id"><option value="0">' . esc_html__( '\\nNo donation type\\n', 'flx-donate' ) . '</option>';
 		foreach ( $types as $t ) {
 			echo '<option value="' . (int) $t['id'] . '">' . esc_html( $t['title'] ) . '</option>';
 		}
-		echo '</select></div><div class="flxb-field"><label for="flxb-a-opt">' . esc_html__( 'Option', 'flx-donate' ) . '</label><select id="flxb-a-opt" name="option_key"><option value="">' . esc_html__( 'Free amount', 'flx-donate' ) . '</option></select></div></div>';
-		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-qty">' . esc_html__( 'Quantity', 'flx-donate' ) . '</label><div class="flxb-stepper"><button type="button" class="flxb-stepper__btn" data-flxb-step="-1" aria-label="' . esc_attr__( 'Decrease', 'flx-donate' ) . '">−</button><input type="number" id="flxb-a-qty" name="quantity" min="1" step="1" value="1" inputmode="numeric"><button type="button" class="flxb-stepper__btn" data-flxb-step="1" aria-label="' . esc_attr__( 'Increase', 'flx-donate' ) . '">+</button></div></div>';
-		echo '<div class="flxb-field"><label for="flxb-a-unit">' . esc_html__( 'Unit price', 'flx-donate' ) . '</label><input type="number" id="flxb-a-unit" name="unit_price" min="0" step="0.01" placeholder="' . esc_attr__( 'from the donation type', 'flx-donate' ) . '"><p class="flxb-help">' . esc_html__( 'Leave empty to use the price of the type. A different price needs a reason.', 'flx-donate' ) . '</p></div></div>';
-		echo '<div class="flxb-field"><label for="flxb-a-reason">' . esc_html__( 'Reason for a different price', 'flx-donate' ) . '</label><input type="text" id="flxb-a-reason" name="price_reason" maxlength="190"></div>';
-		echo '<div class="flxb-fields-amount"><div class="flxb-field"><label for="flxb-a-amount">' . esc_html__( 'Amount', 'flx-donate' ) . '</label><input type="number" id="flxb-a-amount" name="amount" min="0" step="0.01"><p class="flxb-help">' . esc_html__( 'For a free amount. With an option the amount is quantity × unit price.', 'flx-donate' ) . '</p></div>';
+		echo '</select></div><div class="flxb-field"><label for="flxb-a-opt">' . esc_html__( 'Option', 'flx-donate' ) . '</label><select id="flxb-a-opt" name="option_key"><option value="">' . esc_html__( '\\nFree amount\', \'en\']]', 'flx-donate' ) . '</option></select></div></div>';
+		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-qty">' . esc_html__( 'Quantity', 'flx-donate' ) . '</label><div class="flxb-stepper"><button type="button" class="flxb-stepper__btn" data-flxb-step="-1" aria-label="' . esc_attr__( '\\nDecrease\\n', 'flx-donate' ) . '">−</button><input type="number" id="flxb-a-qty" name="quantity" min="1" step="1" value="1" inputmode="numeric"><button type="button" class="flxb-stepper__btn" data-flxb-step="1" aria-label="' . esc_attr__( '\\nIncrease\\n', 'flx-donate' ) . '">+</button></div></div>';
+		echo '<div class="flxb-field"><label for="flxb-a-unit">' . esc_html__( '\\nUnit price\\n', 'flx-donate' ) . '</label><input type="number" id="flxb-a-unit" name="unit_price" min="0" step="0.01" placeholder="' . esc_attr__( '\\nfrom the donation type\\n', 'flx-donate' ) . '"><p class="flxb-help">' . esc_html__( '\\nLeave empty to use the price of the type. A different price needs a reason.\\n', 'flx-donate' ) . '</p></div></div>';
+		echo '<div class="flxb-field"><label for="flxb-a-reason">' . esc_html__( '\\nReason for a different price\\n', 'flx-donate' ) . '</label><input type="text" id="flxb-a-reason" name="price_reason" maxlength="190"></div>';
+		echo '<div class="flxb-fields-amount"><div class="flxb-field"><label for="flxb-a-amount">' . esc_html__( 'Amount', 'flx-donate' ) . '</label><input type="number" id="flxb-a-amount" name="amount" min="0" step="0.01"><p class="flxb-help">' . esc_html__( '\\nFor a free amount. With an option the amount is quantity × unit price.\\n', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-field"><label for="flxb-a-cur">' . esc_html__( 'Currency', 'flx-donate' ) . '</label><select id="flxb-a-cur" name="currency">';
 		foreach ( array( 'TRY', 'EUR', 'USD', 'GBP' ) as $c ) {
 			echo '<option value="' . esc_attr( $c ) . '"' . selected( flxb_default_currency(), $c, false ) . '>' . esc_html( $c . ' (' . flxb_currency_symbol( $c ) . ')' ) . '</option>';
 		}
 		echo '</select></div></div>';
-		echo '<div class="flxb-field" data-flxb-proxy hidden><label for="flxb-a-ben">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</label><textarea id="flxb-a-ben" name="beneficiaries" rows="3"></textarea><p class="flxb-help">' . esc_html__( 'One name per line, one per unit. Units without a name are given on behalf of the donor.', 'flx-donate' ) . '</p>';
+		echo '<div class="flxb-field" data-flxb-proxy hidden><label for="flxb-a-ben">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</label><textarea id="flxb-a-ben" name="beneficiaries" rows="3"></textarea><p class="flxb-help">' . esc_html__( '\\nOne name per line, one per unit. Units without a name are given on behalf of the donor.\\n', 'flx-donate' ) . '</p>';
 		if ( $proxy ) {
 			/* translators: %s: version number */
-			echo '<label class="flxb-check"><input type="checkbox" name="proxy_consent" value="1"> ' . esc_html( sprintf( __( 'The donor accepted the proxy (vekâlet) text, version %s', 'flx-donate' ), number_format_i18n( (int) $proxy['version'] ) ) ) . '</label>';
+			echo '<label class="flxb-check"><input type="checkbox" name="proxy_consent" value="1"> ' . esc_html( sprintf( __( '\\nThe donor accepted the proxy (vekâlet) text, version%s\\n', 'flx-donate' ), number_format_i18n( (int) $proxy['version'] ) ) ) . '</label>';
 		}
 		echo '</div></div></section>';
 
@@ -89,11 +89,11 @@ final class FLXB_Page_Add {
 		$pre = absint( FLXB_Admin::q( 'donor', '0' ) );
 		$pre = $pre ? FLXB_Donors::get( $pre ) : null;
 		$pre = is_array( $pre ) ? $pre : array( 'name' => '', 'phone' => '', 'email' => '', 'consent_kvkk' => 0, 'consent_email' => 0, 'consent_sms' => 0 );
-		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Donor', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Matched to an existing donor card on phone number or e-mail address.', 'flx-donate' ) . '</p></div></div><div class="flxb-form">';
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Donor', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nMatched to an existing donor card on phone number or e-mail address.\\n', 'flx-donate' ) . '</p></div></div><div class="flxb-form">';
 		echo '<div class="flxb-field"><label for="flxb-a-name">' . esc_html__( 'Name', 'flx-donate' ) . '</label><input type="text" id="flxb-a-name" name="donor_name" maxlength="190" value="' . esc_attr( (string) $pre['name'] ) . '"></div>';
 		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-phone">' . esc_html__( 'Phone', 'flx-donate' ) . '</label><input type="tel" id="flxb-a-phone" name="donor_phone" maxlength="32" value="' . esc_attr( (string) $pre['phone'] ) . '"></div>';
 		echo '<div class="flxb-field"><label for="flxb-a-mail">' . esc_html__( 'E-mail', 'flx-donate' ) . '</label><input type="email" id="flxb-a-mail" name="donor_email" maxlength="190" value="' . esc_attr( (string) $pre['email'] ) . '"></div></div>';
-		echo '<div class="flxb-checks"><label class="flxb-check"><input type="checkbox" name="consent_kvkk" value="1"' . checked( (int) $pre['consent_kvkk'], 1, false ) . '> ' . esc_html__( 'Privacy notice (KVKK) accepted', 'flx-donate' ) . '</label><label class="flxb-check"><input type="checkbox" name="consent_email" value="1"' . checked( (int) $pre['consent_email'], 1, false ) . '> ' . esc_html__( 'May be contacted by e-mail', 'flx-donate' ) . '</label><label class="flxb-check"><input type="checkbox" name="consent_sms" value="1"' . checked( (int) $pre['consent_sms'], 1, false ) . '> ' . esc_html__( 'May be contacted by SMS', 'flx-donate' ) . '</label></div>';
+		echo '<div class="flxb-checks"><label class="flxb-check"><input type="checkbox" name="consent_kvkk" value="1"' . checked( (int) $pre['consent_kvkk'], 1, false ) . '> ' . esc_html__( '\\nPrivacy notice (KVKK) accepted\\n', 'flx-donate' ) . '</label><label class="flxb-check"><input type="checkbox" name="consent_email" value="1"' . checked( (int) $pre['consent_email'], 1, false ) . '> ' . esc_html__( '\\nMay be contacted by e-mail\\n', 'flx-donate' ) . '</label><label class="flxb-check"><input type="checkbox" name="consent_sms" value="1"' . checked( (int) $pre['consent_sms'], 1, false ) . '> ' . esc_html__( '\\nMay be contacted by SMS\\n', 'flx-donate' ) . '</label></div>';
 		echo '</div></section></div>';
 
 		/* Payment */
@@ -112,22 +112,22 @@ final class FLXB_Page_Add {
 		}
 		/* 2.14.0: a gift can be recorded before the money arrives (pending) and marked paid later. */
 		echo '<div class="flxb-field"><label for="flxb-a-status">' . esc_html__( 'Status', 'flx-donate' ) . '</label><select id="flxb-a-status" name="status">';
-		foreach ( array( 'pending' => __( 'Pending (payment not received yet)', 'flx-donate' ), 'completed' => __( 'Completed (payment received)', 'flx-donate' ) ) as $k => $l ) {
+		foreach ( array( 'pending' => __( '\\nPending (payment not received yet)\\n', 'flx-donate' ), 'completed' => __( '\\nCompleted (payment received)\\n', 'flx-donate' ) ) as $k => $l ) {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( 'pending', $k, false ) . '>' . esc_html( $l ) . '</option>';
 		}
-		echo '</select><p class="flxb-help">' . esc_html__( 'You can change it later on the donation page.', 'flx-donate' ) . '</p></div>';
+		echo '</select><p class="flxb-help">' . esc_html__( '\\nYou can change it later on the donation page.\\n', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-field"><label for="flxb-a-date">' . esc_html__( 'Date', 'flx-donate' ) . '</label><input type="datetime-local" id="flxb-a-date" name="date" value="' . esc_attr( wp_date( 'Y-m-d\TH:i' ) ) . '"></div>';
-		echo '<div class="flxb-field"><label for="flxb-a-ref">' . esc_html__( 'Receipt or transaction no.', 'flx-donate' ) . '</label><input type="text" id="flxb-a-ref" name="reference" maxlength="120"></div>';
+		echo '<div class="flxb-field"><label for="flxb-a-ref">' . esc_html__( '\\nReceipt or transaction no.\\n', 'flx-donate' ) . '</label><input type="text" id="flxb-a-ref" name="reference" maxlength="120"></div>';
 		$refs = FLXB_Refs::users();
 		if ( $refs ) {
 			echo '<div class="flxb-field"><label for="flxb-a-refuser">' . esc_html__( 'Referral', 'flx-donate' ) . '</label><select id="flxb-a-refuser" name="ref_user_id"><option value="0">' . esc_html__( 'None', 'flx-donate' ) . '</option>';
 			foreach ( $refs as $uid => $label ) {
 				echo '<option value="' . (int) $uid . '">' . esc_html( $label ) . '</option>';
 			}
-			echo '</select><p class="flxb-help">' . esc_html__( 'The staff member who brought this donation. They see it under their referrals.', 'flx-donate' ) . '</p></div>';
+			echo '</select><p class="flxb-help">' . esc_html__( '\\nThe staff member who brought this donation. They see it under their referrals.\\n', 'flx-donate' ) . '</p></div>';
 		}
 		echo '<div class="flxb-field"><label for="flxb-a-note">' . esc_html__( 'Notes', 'flx-donate' ) . '</label><textarea id="flxb-a-note" name="note" rows="3"></textarea></div>';
-		echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Save donation', 'flx-donate' ) . '</button></div>';
+		echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( '\\nSave donation\\n', 'flx-donate' ) . '</button></div>';
 		echo '</div></section></div></div></form>';
 		FLXB_Admin::footer();
 	}
@@ -154,7 +154,7 @@ final class FLXB_Page_Add {
 		$method   = isset( self::methods()[ $method ] ) ? $method : 'other';
 		$meta     = array( 'created_by' => get_current_user_id(), 'method' => $method );
 		if ( '' !== $key && ! $opt ) {
-			$fail( __( 'Please choose an option of the selected donation type.', 'flx-donate' ) );
+			$fail( __( '\\nPlease choose an option of the selected donation type.\\n', 'flx-donate' ) );
 		}
 		if ( $opt ) {
 			$currency = (string) $type['currency']; // option prices are in the type's currency
@@ -163,13 +163,13 @@ final class FLXB_Page_Add {
 			if ( null !== $given && abs( $given - $unit ) >= 0.005 ) {
 				$reason = sanitize_text_field( (string) ( $p['price_reason'] ?? '' ) );
 				if ( '' === $reason ) {
-					$fail( __( 'Please give a reason for the different unit price.', 'flx-donate' ) );
+					$fail( __( '\\nPlease give a reason for the different unit price.\\n', 'flx-donate' ) );
 				}
 				$meta['price_override'] = array( 'type_price' => $unit, 'price' => $given, 'reason' => $reason );
 				$unit                   = $given;
 			}
 			if ( $unit <= 0 ) {
-				$fail( __( 'This option has no price yet. Enter the unit price and a reason.', 'flx-donate' ) );
+				$fail( __( '[[\'This option has no price yet. Enter the unit price and a reason.\\n', 'flx-donate' ) );
 			}
 			$amount = round( $unit * $qty, 2 );
 			$lines  = array( array( 'key' => $opt['key'], 'label' => $opt['label'], 'units' => $qty, 'unit_price' => $unit, 'amount' => $amount, 'unit' => $opt['unit'], 'units_per' => (int) $opt['units_per'] ) );
@@ -177,16 +177,16 @@ final class FLXB_Page_Add {
 			$amount = $num( $p['amount'] ?? 0 );
 			$unit   = $amount;
 			$qty    = 1;
-			$lines  = array( array( 'key' => '', 'label' => __( 'Free amount', 'flx-donate' ), 'units' => 1, 'unit_price' => $amount, 'amount' => $amount, 'unit' => '', 'units_per' => 1 ) );
+			$lines  = array( array( 'key' => '', 'label' => __( '\\nFree amount\', \'en\']]', 'flx-donate' ), 'units' => 1, 'unit_price' => $amount, 'amount' => $amount, 'unit' => '', 'units_per' => 1 ) );
 		}
 		if ( $amount <= 0 ) {
-			$fail( __( 'Please enter an amount.', 'flx-donate' ) );
+			$fail( __( '\\nPlease enter an amount.\\n', 'flx-donate' ) );
 		}
 		$names = flxb_split_names( (string) ( $p['beneficiaries'] ?? '' ) );
 		if ( $type && FLXB_Types::requires_proxy( $type ) ) {
 			$text = flxb_proxy_text();
 			if ( ! $text || empty( $p['proxy_consent'] ) ) {
-				$fail( __( 'This donation type needs the donor\'s proxy (vekâlet) consent.', 'flx-donate' ) );
+				$fail( __( '\\nThis donation type needs the donor\'s proxy (vekâlet) consent.\\n', 'flx-donate' ) );
 			}
 			$meta['proxy_consent'] = array( 'version' => (int) $text['version'], 'accepted_at' => flxb_now(), 'source' => 'manual' );
 		}
@@ -239,7 +239,7 @@ final class FLXB_Page_Add {
 			)
 		);
 		if ( ! $id ) {
-			$fail( __( 'Something went wrong. Please check the form and try again.', 'flx-donate' ) );
+			$fail( __( '\\nSomething went wrong. Please check the form and try again.\\n', 'flx-donate' ) );
 		}
 		FLXB_Admin::redirect( 'flxb-donations', array( 'donation' => $id, 'flxb_msg' => 'saved' ) );
 	}
@@ -248,7 +248,7 @@ final class FLXB_Page_Add {
 
 	private static function request_form() {
 		$done = absint( FLXB_Admin::q( 'flxb_req', '0' ) );
-		FLXB_Admin::header( __( 'New donation request', 'flx-donate' ), __( 'Open a donation on behalf of a donor. The donor gets a payment link and you are the referral.', 'flx-donate' ), array(), current_user_can( FLXB_Refs::CAP_OWN ) ? array( __( 'My referrals', 'flx-donate' ), FLXB_Admin_Url::page( 'flxb-donations' ) ) : array() );
+		FLXB_Admin::header( __( '\\nNew donation request\\n', 'flx-donate' ), __( '\\nOpen a donation on behalf of a donor. The donor gets a payment link and you are the referral.\\n', 'flx-donate' ), array(), current_user_can( FLXB_Refs::CAP_OWN ) ? array( __( '\\nMy referrals\\n', 'flx-donate' ), FLXB_Admin_Url::page( 'flxb-donations' ) ) : array() );
 		if ( $done ) {
 			self::request_result( $done );
 		}
@@ -270,7 +270,7 @@ final class FLXB_Page_Add {
 			}
 		}
 		if ( ! $types ) {
-			echo '<div class="flxb-panel"><p class="flxb-empty">' . esc_html__( 'There is no open donation type yet.', 'flx-donate' ) . '</p></div>';
+			echo '<div class="flxb-panel"><p class="flxb-empty">' . esc_html__( '\\nThere is no open donation type yet.\\n', 'flx-donate' ) . '</p></div>';
 			FLXB_Admin::footer();
 			return;
 		}
@@ -282,22 +282,22 @@ final class FLXB_Page_Add {
 		foreach ( $types as $t ) {
 			echo '<option value="' . (int) $t['id'] . '">' . esc_html( $t['title'] ) . '</option>';
 		}
-		echo '</select></div><div class="flxb-field"><label for="flxb-a-opt">' . esc_html__( 'Option', 'flx-donate' ) . '</label><select id="flxb-a-opt" name="option_key"><option value="">' . esc_html__( 'Free amount', 'flx-donate' ) . '</option></select></div></div>';
-		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-qty">' . esc_html__( 'Quantity', 'flx-donate' ) . '</label><div class="flxb-stepper"><button type="button" class="flxb-stepper__btn" data-flxb-step="-1" aria-label="' . esc_attr__( 'Decrease', 'flx-donate' ) . '">−</button><input type="number" id="flxb-a-qty" name="quantity" min="1" max="1000" step="1" value="1" inputmode="numeric"><button type="button" class="flxb-stepper__btn" data-flxb-step="1" aria-label="' . esc_attr__( 'Increase', 'flx-donate' ) . '">+</button></div></div>';
-		echo '<div class="flxb-field"><label for="flxb-a-amount">' . esc_html__( 'Amount', 'flx-donate' ) . '</label><input type="number" id="flxb-a-amount" name="amount" min="0" step="0.01"><p class="flxb-help">' . esc_html__( 'Only for a free amount.', 'flx-donate' ) . '</p></div></div>';
-		echo '<div class="flxb-field"><label for="flxb-a-ben">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</label><textarea id="flxb-a-ben" name="beneficiaries" rows="3"></textarea><p class="flxb-help">' . esc_html__( 'One name per line, one per unit; this name goes on the certificate. Empty = the donor\'s name.', 'flx-donate' ) . '</p></div>';
+		echo '</select></div><div class="flxb-field"><label for="flxb-a-opt">' . esc_html__( 'Option', 'flx-donate' ) . '</label><select id="flxb-a-opt" name="option_key"><option value="">' . esc_html__( '\\nFree amount\', \'en\']]', 'flx-donate' ) . '</option></select></div></div>';
+		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-qty">' . esc_html__( 'Quantity', 'flx-donate' ) . '</label><div class="flxb-stepper"><button type="button" class="flxb-stepper__btn" data-flxb-step="-1" aria-label="' . esc_attr__( '\\nDecrease\\n', 'flx-donate' ) . '">−</button><input type="number" id="flxb-a-qty" name="quantity" min="1" max="1000" step="1" value="1" inputmode="numeric"><button type="button" class="flxb-stepper__btn" data-flxb-step="1" aria-label="' . esc_attr__( '\\nIncrease\\n', 'flx-donate' ) . '">+</button></div></div>';
+		echo '<div class="flxb-field"><label for="flxb-a-amount">' . esc_html__( 'Amount', 'flx-donate' ) . '</label><input type="number" id="flxb-a-amount" name="amount" min="0" step="0.01"><p class="flxb-help">' . esc_html__( '\\nOnly for a free amount.\\n', 'flx-donate' ) . '</p></div></div>';
+		echo '<div class="flxb-field"><label for="flxb-a-ben">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</label><textarea id="flxb-a-ben" name="beneficiaries" rows="3"></textarea><p class="flxb-help">' . esc_html__( '\\nOne name per line, one per unit; this name goes on the certificate. Empty = the donor\\\'s name.\\n', 'flx-donate' ) . '</p></div>';
 		echo '</div></section>';
 		echo '<section class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Donor', 'flx-donate' ) . '</h2></div><div class="flxb-form">';
 		echo '<div class="flxb-field"><label for="flxb-a-name">' . esc_html__( 'Name', 'flx-donate' ) . '</label><input type="text" id="flxb-a-name" name="donor_name" maxlength="190" required></div>';
 		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-a-phone">' . esc_html__( 'Phone', 'flx-donate' ) . '</label><input type="tel" id="flxb-a-phone" name="donor_phone" maxlength="32"></div>';
 		echo '<div class="flxb-field"><label for="flxb-a-mail">' . esc_html__( 'E-mail', 'flx-donate' ) . '</label><input type="email" id="flxb-a-mail" name="donor_email" maxlength="190"></div></div>';
-		echo '<p class="flxb-help">' . esc_html__( 'Phone or e-mail is required: the payment link goes there.', 'flx-donate' ) . '</p>';
-		echo '<label class="flxb-check"><input type="checkbox" name="send_email" value="1" checked> ' . esc_html__( 'E-mail the payment link to the donor', 'flx-donate' ) . '</label>';
+		echo '<p class="flxb-help">' . esc_html__( '\\nPhone or e-mail is required: the payment link goes there.\', \'en\']]', 'flx-donate' ) . '</p>';
+		echo '<label class="flxb-check"><input type="checkbox" name="send_email" value="1" checked> ' . esc_html__( '\\nE-mail the payment link to the donor\\n', 'flx-donate' ) . '</label>';
 		echo '</div></section></div>';
 		echo '<div class="flxb-stack"><section class="flxb-card"><div class="flxb-form">';
 		echo '<div class="flxb-field"><label for="flxb-a-note">' . esc_html__( 'Notes', 'flx-donate' ) . '</label><textarea id="flxb-a-note" name="note" rows="3"></textarea></div>';
-		echo '<p class="flxb-help">' . esc_html__( 'The donor pays by card or bank transfer on the payment page. You are told when the donation is paid or cancelled.', 'flx-donate' ) . '</p>';
-		echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Create request', 'flx-donate' ) . '</button></div>';
+		echo '<p class="flxb-help">' . esc_html__( '\\nThe donor pays by card or bank transfer on the payment page. You are told when the donation is paid or cancelled.\\n', 'flx-donate' ) . '</p>';
+		echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( '\\nCreate request\\n', 'flx-donate' ) . '</button></div>';
 		echo '</div></section></div></div></form>';
 		FLXB_Admin::footer();
 	}
@@ -317,17 +317,17 @@ final class FLXB_Page_Add {
 			$phone = '9' . $phone;
 		}
 		/* translators: 1: donor name, 2: amount, 3: payment link */
-		$text = sprintf( __( 'Hello %1$s, we have received your donation request (%2$s). You can pay here: %3$s', 'flx-donate' ), $name, wp_strip_all_tags( $order->get_formatted_order_total() ), $url );
-		echo '<section class="flxb-card flxb-reqdone"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Request created', 'flx-donate' ) . '</h2></div><div class="flxb-form">';
-		echo '<div class="flxb-field"><label for="flxb-req-url">' . esc_html__( 'Payment link', 'flx-donate' ) . '</label><input type="text" id="flxb-req-url" class="flxb-input code" readonly value="' . esc_attr( $url ) . '" onclick="this.select()"></div>';
+		$text = sprintf( __( '\\nHello%1$s, we have received your donation request (%2$s). You can pay here:%3$s\\n', 'flx-donate' ), $name, wp_strip_all_tags( $order->get_formatted_order_total() ), $url );
+		echo '<section class="flxb-card flxb-reqdone"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( '\\nRequest created\\n', 'flx-donate' ) . '</h2></div><div class="flxb-form">';
+		echo '<div class="flxb-field"><label for="flxb-req-url">' . esc_html__( '\\nPayment link\\n', 'flx-donate' ) . '</label><input type="text" id="flxb-req-url" class="flxb-input code" readonly value="' . esc_attr( $url ) . '" onclick="this.select()"></div>';
 		echo '<div class="flxb-formactions">';
 		echo '<button type="button" class="flxb-btn" onclick="var i=document.getElementById(\'flxb-req-url\');i.select();navigator.clipboard&&navigator.clipboard.writeText(i.value);this.textContent=' . esc_attr( wp_json_encode( __( 'Copied', 'flx-donate' ) ) ) . ';">' . esc_html__( 'Copy link', 'flx-donate' ) . '</button>';
 		if ( strlen( $phone ) >= 10 ) {
-			echo '<a class="flxb-btn flxb-btn--primary" target="_blank" rel="noopener" href="' . esc_url( 'https://wa.me/' . $phone . '?text=' . rawurlencode( $text ) ) . '">' . esc_html__( 'Send on WhatsApp', 'flx-donate' ) . '</a>';
+			echo '<a class="flxb-btn flxb-btn--primary" target="_blank" rel="noopener" href="' . esc_url( 'https://wa.me/' . $phone . '?text=' . rawurlencode( $text ) ) . '">' . esc_html__( '\\nSend on WhatsApp\\n', 'flx-donate' ) . '</a>';
 		}
 		echo '</div>';
 		if ( FLXB_Admin::q( 'mailed' ) ) {
-			echo '<p class="flxb-help">' . esc_html__( 'The payment link was also e-mailed to the donor.', 'flx-donate' ) . '</p>';
+			echo '<p class="flxb-help">' . esc_html__( '\\nThe payment link was also e-mailed to the donor.\\n', 'flx-donate' ) . '</p>';
 		}
 		echo '</div></section>';
 	}

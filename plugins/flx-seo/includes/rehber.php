@@ -67,7 +67,7 @@ add_filter(
 		$tools['flxseo_site_build_guide'] = array(
 			'aliases'     => array( 'site_build_guide' ), // Flux SEO 1.5.x ve öncesindeki ad.
 			'source'      => 'flx-seo',
-			'title'       => __( 'Site yapım rehberi', 'flx-seo' ),
+			'title'       => __( 'Site build guide', 'flx-seo' ),
 			'description' => 'FluxWP site build guide (Markdown): rules for SEO, Core Web Vitals performance, accessibility (ARIA patterns), security headers and agent readiness (llms.txt, WebMCP) plus a pre-launch checklist. Read it BEFORE creating or redesigning pages, patterns, themes or presets, then follow it. topic narrows to one section; lang tr|en (default: user language).',
 			'readonly'    => true,
 			'cap'         => 'edit_posts',
@@ -94,7 +94,7 @@ add_filter(
 		$tools['flxseo_site_audit'] = array(
 			'aliases'     => array( 'site_audit' ), // Flux SEO 1.5.x ve öncesindeki ad.
 			'source'      => 'flx-seo',
-			'title'       => __( 'Site denetimi', 'flx-seo' ),
+			'title'       => __( 'Site audit', 'flx-seo' ),
 			'description' => 'PageSpeed-style site audit sorted by priority (critical, high, medium, low) across performance, accessibility, best-practices, seo and agentic. refresh=true re-runs the on-site audit (~2-5 s); every run is saved to history (see flxseo_site_audit_history). pagespeed=mobile|desktop also runs Google PageSpeed Insights (15-40 s, uses the API key from settings). Each finding: id, category, priority, title, fix (how to fix), owner (theme/content/server/flx-seo/setting), items (offending elements), fix_id (one-step fix: pass it to flxseo_system_fix after telling the user). Fix in priority order, then re-run.',
 			'readonly'    => true,
 			'cap'         => 'manage_options',

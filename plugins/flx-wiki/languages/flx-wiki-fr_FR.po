@@ -1,0 +1,533 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: fr_FR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Settings"
+msgstr "Paramètres"
+
+msgid "Open wiki"
+msgstr "Ouvrir le wiki"
+
+msgid "Developer wiki: Markdown pages, search, LLM and MCP support"
+msgstr "Wiki du développeur : pages Markdown, recherche, prise en charge LLM et MCP"
+
+msgid "Wiki settings"
+msgstr "Paramètres du wiki"
+
+msgid "Preparing preview…"
+msgstr "Préparation de l'aperçu…"
+
+msgid "Could not load the preview."
+msgstr "Impossible de charger l'aperçu."
+
+msgid "Nothing to preview."
+msgstr "Rien à prévisualiser."
+
+msgid "Link URL"
+msgstr "URL du lien"
+
+msgid "Heading"
+msgstr "Rubrique"
+
+msgid "text"
+msgstr "texte"
+
+msgid "code"
+msgstr "coder"
+
+msgid "link"
+msgstr "lien"
+
+msgid "page-slug"
+msgstr "page-slug"
+
+msgid "item"
+msgstr "article"
+
+msgid "Note"
+msgstr "Remarque"
+
+msgid "Subheading"
+msgstr "Sous-titre"
+
+msgid "Bold"
+msgstr "Audacieux"
+
+msgid "Italic"
+msgstr "Italique"
+
+msgid "Inline code"
+msgstr "Code en ligne"
+
+msgid "Code block"
+msgstr "Bloc de code"
+
+msgid "Link"
+msgstr "Lien"
+
+msgid "Wiki link"
+msgstr "Lien wiki"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Callout"
+msgstr "Légende"
+
+msgid "Table"
+msgstr "Tableau"
+
+msgid "Write"
+msgstr "Écrire"
+
+msgid "Preview"
+msgstr "Aperçu"
+
+msgid "Side by side"
+msgstr "Côte à côte"
+
+msgid "Write Markdown. ## Heading, ```php code```, [[page-slug]] wiki link, > [!NOTE] callout."
+msgstr "Écrivez Markdown. ## Titre,```php code```, lien wiki [[page-slug]], > légende [!NOTE]."
+
+msgid "Markdown: GitHub flavour (tables, code blocks). Wiki links [[slug]] or [[slug|label]]. Callouts: > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Do not repeat the title in the content."
+msgstr "Markdown : saveur GitHub (tableaux, blocs de code). Liens wiki [[slug]] ou [[slug|label]]. Légendes : > [!NOTE], [!TIP], [!IMPORTANT], [!WARNING], [!CAUTION]. Ne répétez pas le titre dans le contenu."
+
+msgid "Open as .md"
+msgstr "Ouvrir en .md"
+
+msgid "Order"
+msgstr "Commande"
+
+msgid "Lower numbers come first on the wiki home and in the menu."
+msgstr "Les nombres inférieurs apparaissent en premier sur l'accueil wiki et dans le menu."
+
+msgid "General"
+msgstr "Général"
+
+msgid "Appearance"
+msgstr "Apparence"
+
+msgid "AI"
+msgstr "IA"
+
+msgid "Add page"
+msgstr "Ajouter une page"
+
+msgid "The wiki is closed to visitors; only people who can write pages see it."
+msgstr "Le wiki est fermé aux visiteurs ; seules les personnes capables d’écrire des pages le voient."
+
+msgid "Settings saved."
+msgstr "Paramètres enregistrés."
+
+msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
+msgstr "Guides importés :%1$dnouveau,%2$dmis à jour,%3$dignoré (édité à la main ou à jour)."
+
+msgid "Wiki"
+msgstr "Wiki"
+
+msgid "Wiki open to visitors"
+msgstr "Wiki ouvert aux visiteurs"
+
+msgid "When closed, wiki addresses, .md and llms.txt return 404 to visitors and leave the sitemap. People who can write pages still see it."
+msgstr "Une fois fermées, les adresses wiki, .md et llms.txt renvoient 404 aux visiteurs et quittent le plan du site. Les gens qui peuvent écrire des pages le voient toujours."
+
+msgid "Wiki name"
+msgstr "Nom wiki"
+
+msgid "Developer Wiki"
+msgstr "Wiki des développeurs"
+
+msgid "Intro"
+msgstr "Introduction"
+
+msgid "Used on the wiki home, in the search engine description and in llms.txt."
+msgstr "Utilisé sur l'accueil wiki, dans la description du moteur de recherche et dans llms.txt."
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Lowercase letters, digits and hyphens. Old addresses stop working when you change it."
+msgstr "Lettres minuscules, chiffres et tirets. Les anciennes adresses cessent de fonctionner lorsque vous les modifiez."
+
+msgid "Page buttons"
+msgstr "Boutons de page"
+
+msgid "ChatGPT, Claude, Google AI and Perplexity links in the \"Ask AI\" menu"
+msgstr "Liens ChatGPT, Claude, Google AI et Perplexity dans le menu \"Ask AI\""
+
+msgid "\"Edit\" button for editors"
+msgstr "Bouton \"Modifier\" pour les éditeurs"
+
+msgid "Accent colour"
+msgstr "Couleur d'accentuation"
+
+msgid "Use the theme colour"
+msgstr "Utilisez la couleur du thème"
+
+msgid "Links, the selected menu item and accent buttons."
+msgstr "Liens, l'élément de menu sélectionné et les boutons d'accentuation."
+
+msgid "Width"
+msgstr "Largeur"
+
+msgid "Normal"
+msgstr "Normale"
+
+msgid "Wide (for long code and tables)"
+msgstr "Large (pour le code long et les tableaux)"
+
+msgid "Page layout"
+msgstr "Mise en page"
+
+msgid "Page menu and search on the left"
+msgstr "Menu des pages et recherche à gauche"
+
+msgid "\"On this page\" (contents) on the right"
+msgstr "\"Sur cette page\" (contenu) à droite"
+
+msgid "Flux AI is not installed. Once installed, visitors can use \"Ask the wiki\", which answers from the wiki content."
+msgstr "Flux AI n'est pas installé. Une fois installé, les visiteurs peuvent utiliser « Demander au wiki », qui répond à partir du contenu du wiki."
+
+msgid "Flux AI has no key or the Flux Wiki system is off (Flux AI › Connected systems)."
+msgstr "Flux AI n'a pas de clé ou le système Flux Wiki est désactivé (Flux AI › Systèmes connectés)."
+
+msgid "Who can ask"
+msgstr "Qui peut demander"
+
+msgid "Off"
+msgstr "Désactivé"
+
+msgid "Logged-in users"
+msgstr "Utilisateurs connectés"
+
+msgid "Everyone (including visitors)"
+msgstr "Tout le monde (y compris les visiteurs)"
+
+msgid "Every question counts towards the Flux AI spending limit; keep the hourly limit low with \"Everyone\"."
+msgstr "Chaque question compte dans la limite de dépenses de Flux AI ; maintenez la limite horaire basse avec « Tout le monde »."
+
+msgid "Hourly question limit"
+msgstr "Limite de questions par heure"
+
+msgid "per person (unlimited for administrators)"
+msgstr "par personne (illimité pour les administrateurs)"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Addresses"
+msgstr "Adresses"
+
+msgid "Search API"
+msgstr "API de recherche"
+
+msgid "Flux AI › MCP is off"
+msgstr "Flux AI › MCP est désactivé"
+
+msgid "Add .md to any page address to get it as Markdown. With Flux SEO installed, a \"Wiki\" section is added to the site's /llms.txt."
+msgstr "Ajoutez .md à n’importe quelle adresse de page pour l’obtenir en Markdown. Une fois Flux SEO installé, une section « Wiki » est ajoutée au /llms.txt du site."
+
+msgid "Bundled guides"
+msgstr "Guides groupés"
+
+msgid "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
+msgstr "Le plugin contient des guides%d: écriture de plugins et de thèmes, plugins compatibles IA, outils MCP, schéma de paramètres, traduction, versions et versions. Les pages manquantes sont ajoutées ; les pages que vous n'avez pas modifiées sont mises à jour vers la nouvelle version."
+
+msgid "Import / update guides"
+msgstr "Guides d'importation/mise à jour"
+
+msgid "%d published pages."
+msgstr "%dpages publiées."
+
+msgid "You are not allowed to do this."
+msgstr "Vous n'êtes pas autorisé à faire cela."
+
+msgid "Ask the wiki"
+msgstr "Demandez au wiki"
+
+msgid "Wiki draft"
+msgstr "Brouillon wiki"
+
+msgid "Flux AI is not ready."
+msgstr "Flux AI n'est pas prêt."
+
+msgid "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete."
+msgstr "Je n'ai pas trouvé de guide répondant à cette question. Réessayez avec le nom du plugin ou la tâche que vous souhaitez effectuer."
+
+msgid "Could not get an answer. Try again in a moment."
+msgstr "Impossible d'obtenir une réponse. Réessayez dans un instant."
+
+msgid "%1$s result for \"%2$s\""
+msgid_plural "%1$s results for \"%2$s\""
+msgstr[0] "%1$srésultat pour \"%2$s\""
+msgstr[1] "%1$srésultats pour \"%2$s\""
+
+msgid "Copied"
+msgstr "Copié"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Could not copy"
+msgstr "Impossible de copier"
+
+msgid "Searching…"
+msgstr "Recherche…"
+
+msgid "No results. Try another word."
+msgstr "Aucun résultat. Essayez un autre mot."
+
+msgid "Type to search"
+msgstr "Tapez pour rechercher"
+
+msgid "%d results"
+msgstr "Résultats%d"
+
+msgid "Ask AI"
+msgstr "Demandez à l'IA"
+
+msgid "Type your question; the answer comes only from the wiki pages."
+msgstr "Tapez votre question ; la réponse vient uniquement des pages wiki."
+
+msgid "Reading the wiki, preparing an answer…"
+msgstr "Lire le wiki, préparer une réponse…"
+
+msgid "Sources"
+msgstr "Sources"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "Log in to ask a question."
+msgstr "Connectez-vous pour poser une question."
+
+msgid "No results for \"%1$s\"; showing results for \"%2$s\"."
+msgstr "Aucun résultat pour «%1$s» ; affichant les résultats pour \"%2$s\"."
+
+msgid "See all %d results"
+msgstr "Voir tous les résultats%d"
+
+msgid "Wiki search for \"%s\""
+msgstr "Recherche wiki pour \"%s\""
+
+msgid "Guides for writing FluxWP plugins and themes, AI-enabled features and the shared platform."
+msgstr "Guides pour l'écriture de plugins et de thèmes FluxWP, les fonctionnalités compatibles avec l'IA et la plateforme partagée."
+
+msgid "Source"
+msgstr "Source"
+
+msgid "Section"
+msgstr "Section"
+
+msgid "Last updated"
+msgstr "Dernière mise à jour"
+
+msgid "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
+msgstr "Ajoutez .md à n’importe quelle adresse de page pour obtenir son Markdown. Tout le wiki dans un seul fichier :%1$s"
+
+msgid "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgstr "Serveur MCP (clé requise) :%s, outils flxwk_search, flxwk_get_page, flxwk_list_pages."
+
+msgid "Other pages"
+msgstr "Autres pages"
+
+msgid "Whole wiki (one file)"
+msgstr "Wiki entier (un fichier)"
+
+msgid "This page does not exist yet"
+msgstr "Cette page n'existe pas encore"
+
+msgid "Tip"
+msgstr "Astuce"
+
+msgid "Important"
+msgstr "Important"
+
+msgid "Warning"
+msgstr "Avertissement"
+
+msgid "Caution"
+msgstr "Attention"
+
+msgid "Search the wiki"
+msgstr "Rechercher sur le wiki"
+
+msgid "Read wiki page"
+msgstr "Lire la page wiki"
+
+msgid "List wiki pages"
+msgstr "Liste des pages wiki"
+
+msgid "Write wiki page"
+msgstr "Écrire une page wiki"
+
+msgid "Write a FluxWP plugin (with the wiki guides)"
+msgstr "Écrire un plugin FluxWP (avec les guides wiki)"
+
+msgid "Sections"
+msgstr "Sections"
+
+msgid "New section"
+msgstr "Nouvelle rubrique"
+
+msgid "Edit section"
+msgstr "Modifier la rubrique"
+
+msgid "Search sections"
+msgstr "Rubriques de recherche"
+
+msgid "All sections"
+msgstr "Toutes les rubriques"
+
+msgid "Wiki page"
+msgstr "Page wiki"
+
+msgid "All pages"
+msgstr "Toutes les pages"
+
+msgid "New wiki page"
+msgstr "Nouvelle page wiki"
+
+msgid "Edit wiki page"
+msgstr "Modifier la page wiki"
+
+msgid "View page"
+msgstr "Afficher la page"
+
+msgid "No pages found"
+msgstr "Aucune page trouvée"
+
+msgid "No pages in trash"
+msgstr "Aucune page dans la corbeille"
+
+msgid "Parent page:"
+msgstr "Page parent :"
+
+msgid "Wiki page not found."
+msgstr "Page wiki introuvable."
+
+msgid "A title is required."
+msgstr "Un titre est requis."
+
+msgid "Wiki section"
+msgstr "Rubrique wiki"
+
+msgid "The question is too short."
+msgstr "La question est trop courte."
+
+msgid "You have reached the question limit for this hour. Try again later."
+msgstr "Vous avez atteint la limite de questions pour cette heure. Réessayez plus tard."
+
+msgid "Your previous question is still being answered. Please try again shortly."
+msgstr "Votre question précédente reçoit toujours une réponse. Veuillez réessayer sous peu."
+
+msgid "Wiki addresses"
+msgstr "Adresses wiki"
+
+msgid "The wiki is at %s; .md and llms.txt addresses work."
+msgstr "Le wiki est à%s; Les adresses .md et llms.txt fonctionnent."
+
+msgid "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
+msgstr "Les permaliens sont définis sur « Plain » ; Les adresses /wiki, .md et llms.txt ne fonctionnent pas. Choisissez « Nom de la publication » dans Paramètres > Permaliens."
+
+msgid "Permalinks"
+msgstr "Liens permanents"
+
+msgid "Flux AI is ready; visitors can get answers from the wiki content."
+msgstr "Flux AI est prêt ; les visiteurs peuvent obtenir des réponses à partir du contenu du wiki."
+
+msgid "Flux AI is not installed, has no key or the Flux Wiki system is off; \"Ask the wiki\" is hidden."
+msgstr "Flux AI n'est pas installé, n'a pas de clé ou le système Flux Wiki est désactivé ; \"Demander au wiki\" est masqué."
+
+msgid "%s page"
+msgid_plural "%s pages"
+msgstr[0] "%s FLXTOK0FIN de page"
+msgstr[1] "%s FLXTOK0FIN de pages"
+
+msgid "%s min read"
+msgid_plural "%s min read"
+msgstr[0] "%slecture minimale"
+msgstr[1] "%slecture minimale"
+
+msgid "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
+msgstr "Que cherchez-vous ? Par ex. Outil MCP, flx_settings_schema, thème…"
+
+msgid "Search the wiki…"
+msgstr "Recherchez sur le wiki…"
+
+msgid "Documentation"
+msgstr "Documentation"
+
+msgid "Start here"
+msgstr "Commencez ici"
+
+msgid "Explore the guides"
+msgstr "Découvrez les guides"
+
+msgid "No published pages yet."
+msgstr "Aucune page publiée pour l'instant."
+
+msgid "See all"
+msgstr "Voir tout"
+
+msgid "Recently updated"
+msgstr "Récemment mis à jour"
+
+msgid "For LLMs and AI agents"
+msgstr "Pour les LLM et les agents IA"
+
+msgid "Add .md to any page address to open it as plain Markdown. Agents read the index from llms.txt and the whole content in one file from llms-full.txt."
+msgstr "Ajoutez .md à n’importe quelle adresse de page pour l’ouvrir en simple Markdown. Les agents lisent l'index à partir de llms.txt et l'intégralité du contenu dans un seul fichier à partir de llms-full.txt."
+
+msgid "On this page"
+msgstr "Sur cette page"
+
+msgid "Subpages"
+msgstr "Sous-pages"
+
+msgid "Updated %s"
+msgstr "%smis à jour"
+
+msgid "Previous and next page"
+msgstr "Page précédente et suivante"
+
+msgid "Previous"
+msgstr "Précédent"
+
+msgid "Next"
+msgstr "Suivant"
+
+msgid "Markdown"
+msgstr "Démarquage"
+
+msgid "Read the document at %s, then answer my questions about it."
+msgstr "Lisez le document à%s, puis répondez à mes questions à ce sujet."
+
+msgid "Copy Markdown"
+msgstr "Copier la démarque"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Breadcrumb"
+msgstr "Fil d'Ariane"
+
+msgid "Pages"
+msgstr "Pages"
+
+msgid "Wiki pages"
+msgstr "Pages wiki"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "select"
+msgstr "sélectionner"
+
+msgid "open"
+msgstr "ouvert"
+
+msgid "close"
+msgstr "fermer"
+
+msgid "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"
+msgstr "[['Wiki du développeur sur le site sous /wiki : pages Markdown, sections, arborescence des pages et table des matières, recherche instantanée détaillée, sortie optimisée pour le référencement. LLM friendly : chaque page est ouverte et copiée au format .md, /wiki/llms.txt et llms-full.txt, ouverte dans ChatGPT / Claude. \"Ask the Wiki\" et outils MCP (recherche, lecture, liste, écriture) avec Flux AI. Il est livré avec des guides pour écrire des plugins et des thèmes, et créer des plugins alimentés par l'IA.', 'tr']]"

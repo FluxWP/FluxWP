@@ -19,15 +19,15 @@ function flxa_on_dashboard() {
 function flxa_greeting() {
 	$h = (int) wp_date( 'G' );
 	if ( $h >= 5 && $h < 12 ) {
-		return __( 'Günaydın', 'flx-admin' );
+		return __( 'Good morning', 'flx-admin' );
 	}
 	if ( $h >= 12 && $h < 18 ) {
-		return __( 'İyi günler', 'flx-admin' );
+		return __( 'Good afternoon', 'flx-admin' );
 	}
 	if ( $h >= 18 && $h < 23 ) {
-		return __( 'İyi akşamlar', 'flx-admin' );
+		return __( 'Good evening', 'flx-admin' );
 	}
-	return __( 'İyi geceler', 'flx-admin' );
+	return __( 'Good night', 'flx-admin' );
 }
 
 function flxa_dash_header() {
@@ -38,14 +38,14 @@ function flxa_dash_header() {
 	$name  = trim( (string) $u->first_name ) ? $u->first_name : $u->display_name;
 	$stats = flxa_dash_stats();
 	?>
-	<section class="flxa-hero" aria-label="<?php esc_attr_e( 'Özet', 'flx-admin' ); ?>">
+	<section class="flxa-hero" aria-label="<?php esc_attr_e( 'Summary', 'flx-admin' ); ?>">
 		<div class="flxa-hero-top">
 			<div class="flxa-hero-title">
-				<p class="flxa-date"><?php echo esc_html( flx_date( time(), __( 'j F Y, l', 'flx-admin' ) ) ); ?></p>
+				<p class="flxa-date"><?php echo esc_html( flx_date( time(), __( 'l, F j, Y', 'flx-admin' ) ) ); ?></p>
 				<h1><?php echo esc_html( sprintf( /* translators: 1: greeting, 2: name */ __( '%1$s, %2$s', 'flx-admin' ), flxa_greeting(), $name ) ); ?></h1>
 			</div>
 			<div class="flxa-hero-actions">
-				<button type="button" class="flxa-btn" data-flxa-edit aria-expanded="false"><?php echo flxa_icon( 'grid', 16 ); // phpcs:ignore ?><span><?php esc_html_e( 'Modülleri düzenle', 'flx-admin' ); ?></span></button>
+				<button type="button" class="flxa-btn" data-flxa-edit aria-expanded="false"><?php echo flxa_icon( 'grid', 16 ); // phpcs:ignore ?><span><?php esc_html_e( 'Edit modules', 'flx-admin' ); ?></span></button>
 			</div>
 		</div>
 		<?php flxa_quick_bar(); ?>
@@ -65,9 +65,9 @@ function flxa_dash_header() {
 		<?php endif; ?>
 		<div class="flxa-install" hidden>
 			<span class="flxa-install-ico"><?php echo flxa_icon( 'download', 20 ); // phpcs:ignore ?></span>
-			<span class="flxa-install-text"><strong><?php esc_html_e( 'Paneli ana ekrana ekle', 'flx-admin' ); ?></strong><small data-flxa-install-hint><?php esc_html_e( 'Uygulama gibi tam ekran açılır, rozetle okunmamışları gösterir.', 'flx-admin' ); ?></small></span>
-			<button type="button" class="flxa-btn flxa-btn-primary" data-flxa-install><?php esc_html_e( 'Yükle', 'flx-admin' ); ?></button>
-			<button type="button" class="flxa-icon-btn" data-flxa-install-close aria-label="<?php esc_attr_e( 'Kapat', 'flx-admin' ); ?>"><?php echo flxa_icon( 'x', 16 ); // phpcs:ignore ?></button>
+			<span class="flxa-install-text"><strong><?php esc_html_e( 'Add the dashboard to your home screen', 'flx-admin' ); ?></strong><small data-flxa-install-hint><?php esc_html_e( 'Opens full screen like an app and shows unread counts on its badge.', 'flx-admin' ); ?></small></span>
+			<button type="button" class="flxa-btn flxa-btn-primary" data-flxa-install><?php esc_html_e( 'Install', 'flx-admin' ); ?></button>
+			<button type="button" class="flxa-icon-btn" data-flxa-install-close aria-label="<?php esc_attr_e( 'Close', 'flx-admin' ); ?>"><?php echo flxa_icon( 'x', 16 ); // phpcs:ignore ?></button>
 		</div>
 	</section>
 	<?php
@@ -82,24 +82,24 @@ function flxa_dash_stats() {
 			$d   = flxa_donation_totals();
 			$cur = $d['currency'];
 			$stats['donations_today'] = array(
-				'label' => __( 'Bugünkü bağış', 'flx-admin' ),
+				'label' => __( 'Donations today', 'flx-admin' ),
 				'value' => flxa_money( $d['today'], $cur ),
 				/* translators: %s: number of donations */
-				'meta'  => sprintf( _n( '%s bağış', '%s bağış', $d['today_n'], 'flx-admin' ), number_format_i18n( $d['today_n'] ) ),
+				'meta'  => sprintf( _n( '[[\'%sdonate\', \'tr\']]', '[[\'%sdonate\', \'tr\']]', $d['today_n'], 'flx-admin' ), number_format_i18n( $d['today_n'] ) ),
 				'url'   => admin_url( 'admin.php?page=flxb-donations&from=' . wp_date( 'Y-m-d' ) ),
 			);
 			$stats['donations_month'] = array(
-				'label' => __( 'Bu ay', 'flx-admin' ),
+				'label' => __( 'This month', 'flx-admin' ),
 				'value' => flxa_money( $d['month'], $cur ),
 				/* translators: 1: donations, 2: donors */
-				'meta'  => sprintf( __( '%1$s bağış · %2$s bağışçı', 'flx-admin' ), number_format_i18n( $d['month_n'] ), number_format_i18n( $d['month_donors'] ) ),
+				'meta'  => sprintf( __( '%1$s donations · %2$s donors', 'flx-admin' ), number_format_i18n( $d['month_n'] ), number_format_i18n( $d['month_donors'] ) ),
 				'url'   => admin_url( 'admin.php?page=flxb-dashboard' ),
 			);
 			$p                = flxa_pending_donations();
 			$stats['pending'] = array(
-				'label'     => __( 'Onay bekleyen', 'flx-admin' ),
+				'label'     => __( 'Awaiting approval', 'flx-admin' ),
 				'value'     => number_format_i18n( $p ),
-				'meta'      => __( 'Havale / dekont', 'flx-admin' ),
+				'meta'      => __( 'Bank transfer / receipt', 'flx-admin' ),
 				'url'       => admin_url( 'admin.php?page=flxb-donations&status=pending' ),
 				'tone'      => $p ? 'warn' : 'neutral',
 				'count_key' => 'pending',
@@ -108,9 +108,9 @@ function flxa_dash_stats() {
 		$c = flxa_counts();
 		if ( isset( $c['whatsapp'] ) ) {
 			$stats['whatsapp'] = array(
-				'label'     => __( 'Okunmamış mesaj', 'flx-admin' ),
+				'label'     => __( 'Unread messages', 'flx-admin' ),
 				'value'     => number_format_i18n( $c['whatsapp'] ),
-				'meta'      => __( 'Çağrı Merkezi\'ni aç →', 'flx-admin' ),
+				'meta'      => __( 'Open Call Center →', 'flx-admin' ),
 				'url'       => admin_url( 'admin.php?page=flx-chat' ),
 				'tone'      => $c['whatsapp'] ? 'ok' : 'neutral',
 				'count_key' => 'whatsapp',
@@ -119,7 +119,7 @@ function flxa_dash_stats() {
 		if ( function_exists( 'flxg_table' ) && current_user_can( 'flxg_use' ) ) {
 			$open = count( flxa_my_tasks( 50 ) );
 			$stats['tasks'] = array(
-				'label' => __( 'Açık görevlerim', 'flx-admin' ),
+				'label' => __( 'My open tasks', 'flx-admin' ),
 				'value' => number_format_i18n( $open ),
 				'meta'  => __( 'Flux Tasks →', 'flx-admin' ),
 				'url'   => admin_url( 'admin.php?page=flx-tasks#/home' ),
@@ -128,10 +128,10 @@ function flxa_dash_stats() {
 		if ( current_user_can( 'manage_options' ) && function_exists( 'flx_system_checks_run' ) && function_exists( 'flx_system_checks_summary' ) ) {
 			$sum             = flxa_system_summary();
 			$stats['system'] = array(
-				'label' => __( 'Sistem kontrolü', 'flx-admin' ),
-				'value' => $sum['error'] ? sprintf( /* translators: %s: count */ _n( '%s hata', '%s hata', $sum['error'], 'flx-admin' ), number_format_i18n( $sum['error'] ) ) : ( $sum['warning'] ? sprintf( /* translators: %s: count */ _n( '%s uyarı', '%s uyarı', $sum['warning'], 'flx-admin' ), number_format_i18n( $sum['warning'] ) ) : __( 'Sorun yok', 'flx-admin' ) ),
+				'label' => __( 'System check', 'flx-admin' ),
+				'value' => $sum['error'] ? sprintf( /* translators: %s: count */ _n( '[[\'%seven\', \'sw\']]', '[[\'%seven\', \'sw\']]', $sum['error'], 'flx-admin' ), number_format_i18n( $sum['error'] ) ) : ( $sum['warning'] ? sprintf( /* translators: %s: count */ _n( '[[\'%swarning\', \'tr\']]', '[[\'%swarning\', \'tr\']]', $sum['warning'], 'flx-admin' ), number_format_i18n( $sum['warning'] ) ) : __( 'No problems', 'flx-admin' ) ),
 				/* translators: %s: count */
-				'meta'  => sprintf( __( '%s kontrol iyi', 'flx-admin' ), number_format_i18n( $sum['ok'] ) ),
+				'meta'  => sprintf( __( '%s checks OK', 'flx-admin' ), number_format_i18n( $sum['ok'] ) ),
 				'url'   => (string) apply_filters( 'flx_system_checks_page_url', flxa_settings_url( 'system' ) ),
 				'tone'  => $sum['error'] ? 'error' : ( $sum['warning'] ? 'warn' : 'ok' ),
 			);
@@ -254,16 +254,16 @@ function flxa_dash_widgets() {
 		return;
 	}
 	if ( function_exists( 'flxb_table' ) && flxa_can_view_donations() ) {
-		wp_add_dashboard_widget( 'flxa_donations', __( 'Bağışlar', 'flx-admin' ), 'flxa_widget_donations' );
+		wp_add_dashboard_widget( 'flxa_donations', __( 'Donations', 'flx-admin' ), 'flxa_widget_donations' );
 	}
 	if ( flxa_task_available() ) {
-		wp_add_dashboard_widget( 'flxa_tasks', __( 'Görevler', 'flx-admin' ), 'flxa_widget_tasks', null, null, 'side' );
+		wp_add_dashboard_widget( 'flxa_tasks', __( 'Tasks', 'flx-admin' ), 'flxa_widget_tasks', null, null, 'side' );
 	}
 	if ( current_user_can( 'manage_options' ) && function_exists( 'flx_system_checks_run' ) ) {
-		wp_add_dashboard_widget( 'flxa_system', __( 'Sistem kontrolü', 'flx-admin' ), 'flxa_widget_system', null, null, 'side' );
+		wp_add_dashboard_widget( 'flxa_system', __( 'System check', 'flx-admin' ), 'flxa_widget_system', null, null, 'side' );
 	}
 	if ( ! flxa_setting( 'dash_header' ) ) {
-		wp_add_dashboard_widget( 'flxa_quick', __( 'Hızlı işlemler', 'flx-admin' ), 'flxa_widget_quick' );
+		wp_add_dashboard_widget( 'flxa_quick', __( 'Quick actions', 'flx-admin' ), 'flxa_widget_quick' );
 	}
 
 	/* Bizim modüller önde (kullanıcı sıraladıysa onun sırası geçerli). */
@@ -305,7 +305,7 @@ function flxa_widget_system() {
 	$c   = flxa_system_summary( true );
 	$sum = $c['sum'];
 	echo '<div class="flxa-sys">';
-	foreach ( array( 'ok' => __( 'İyi', 'flx-admin' ), 'warning' => __( 'Uyarı', 'flx-admin' ), 'error' => __( 'Hata', 'flx-admin' ) ) as $k => $l ) {
+	foreach ( array( 'ok' => __( 'OK', 'flx-admin' ), 'warning' => __( 'Warning', 'flx-admin' ), 'error' => __( 'Error', 'flx-admin' ) ) as $k => $l ) {
 		echo '<span class="flxa-sys-n is-' . esc_attr( $k ) . '"><strong>' . esc_html( number_format_i18n( (int) $sum[ $k ] ) ) . '</strong><small>' . esc_html( $l ) . '</small></span>';
 	}
 	echo '</div>';
@@ -314,41 +314,41 @@ function flxa_widget_system() {
 		foreach ( $c['bad'] as $r ) {
 			echo '<li><span class="flxa-dot is-' . esc_attr( $r['status'] ) . '" aria-hidden="true"></span><span class="flxa-li-main"><strong>' . esc_html( $r['label'] ) . '</strong><small>' . esc_html( $r['source'] . ( $r['message'] ? ' · ' . wp_trim_words( $r['message'], 14 ) : '' ) ) . '</small>';
 			if ( $r['action_url'] ) {
-				echo '<a class="flxa-li-action" href="' . esc_url( $r['action_url'] ) . '">' . esc_html( $r['action_label'] ? $r['action_label'] : __( 'Düzelt', 'flx-admin' ) ) . '</a>';
+				echo '<a class="flxa-li-action" href="' . esc_url( $r['action_url'] ) . '">' . esc_html( $r['action_label'] ? $r['action_label'] : __( 'Fix', 'flx-admin' ) ) . '</a>';
 			}
 			echo '</span></li>';
 		}
 		echo '</ul>';
 	}
-	echo '<p class="flxa-widget-foot"><a href="' . esc_url( (string) apply_filters( 'flx_system_checks_page_url', flxa_settings_url( 'system' ) ) ) . '">' . esc_html__( 'Tüm kontroller', 'flx-admin' ) . ' →</a></p>';
+	echo '<p class="flxa-widget-foot"><a href="' . esc_url( (string) apply_filters( 'flx_system_checks_page_url', flxa_settings_url( 'system' ) ) ) . '">' . esc_html__( 'All checks', 'flx-admin' ) . ' →</a></p>';
 }
 
 /** Hızlı işlemler: yetkiye göre hazır bağlantılar + ayardaki "Etiket|Adres" satırları. */
 function flxa_quick_links() {
 	$l = array();
 	if ( function_exists( 'flxb_table' ) && current_user_can( (string) apply_filters( 'flxb_manage_capability', 'manage_options' ) ) ) {
-		$l[] = array( __( 'Bağış ekle', 'flx-admin' ), admin_url( 'admin.php?page=flxb-add' ), 'heart' );
+		$l[] = array( __( 'Add donation', 'flx-admin' ), admin_url( 'admin.php?page=flxb-add' ), 'heart' );
 	}
 	if ( defined( 'FLXS_VERSION' ) && ( current_user_can( 'flxs_use' ) || current_user_can( 'manage_options' ) ) ) {
-		$l[] = array( __( 'Sertifika oluştur', 'flx-admin' ), admin_url( 'admin.php?page=flxs-yeni' ), 'medal' );
+		$l[] = array( __( 'Create certificate', 'flx-admin' ), admin_url( 'admin.php?page=flxs-yeni' ), 'medal' );
 	}
 	if ( flxa_task_available() ) {
-		$l[] = array( __( 'Görev oluştur', 'flx-admin' ), admin_url( 'admin.php?page=flx-tasks' ), 'check', 'task' );
+		$l[] = array( __( 'Create task', 'flx-admin' ), admin_url( 'admin.php?page=flx-tasks' ), 'check', 'task' );
 	}
 	if ( defined( 'FLXC_VERSION' ) && function_exists( 'flxc_can_use' ) && flxc_can_use() ) {
-		$l[] = array( __( 'Mesajlar', 'flx-admin' ), admin_url( 'admin.php?page=flx-chat' ), 'chat' );
+		$l[] = array( __( 'Messages', 'flx-admin' ), admin_url( 'admin.php?page=flx-chat' ), 'chat' );
 	}
 	if ( current_user_can( 'edit_pages' ) ) {
-		$l[] = array( __( 'Sayfa ekle', 'flx-admin' ), admin_url( 'post-new.php?post_type=page' ), 'file' );
+		$l[] = array( __( 'Add page', 'flx-admin' ), admin_url( 'post-new.php?post_type=page' ), 'file' );
 	}
 	if ( current_user_can( 'edit_posts' ) ) {
-		$l[] = array( __( 'Yazı yaz', 'flx-admin' ), admin_url( 'post-new.php' ), 'pen' );
+		$l[] = array( __( 'Write a post', 'flx-admin' ), admin_url( 'post-new.php' ), 'pen' );
 	}
 	if ( current_user_can( 'upload_files' ) ) {
-		$l[] = array( __( 'Medya yükle', 'flx-admin' ), admin_url( 'media-new.php' ), 'image' );
+		$l[] = array( __( 'Upload media', 'flx-admin' ), admin_url( 'media-new.php' ), 'image' );
 	}
 	if ( function_exists( 'flxi_send_email' ) && current_user_can( 'manage_options' ) ) {
-		$l[] = array( __( 'E-posta gönder', 'flx-admin' ), admin_url( 'admin.php?page=flxi-gonder' ), 'mail' );
+		$l[] = array( __( 'Send email', 'flx-admin' ), admin_url( 'admin.php?page=flxi-gonder' ), 'mail' );
 	}
 	foreach ( preg_split( '/\r\n|\r|\n/', (string) flxa_setting( 'quick_links' ) ) as $line ) {
 		$p = array_map( 'trim', explode( '|', $line, 2 ) );
@@ -367,7 +367,7 @@ function flxa_widget_quick() {
 		echo '<a class="flxa-quick-item" href="' . esc_url( $l[1] ) . '"' . ( 'task' === ( $l[3] ?? '' ) ? ' data-flxa-task' : '' ) . '>' . flxa_icon( $l[2] ?? 'dot', 18 ) . '<span>' . esc_html( $l[0] ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	if ( current_user_can( 'manage_options' ) ) {
-		echo '<a class="flxa-quick-item is-add" href="' . esc_url( flxa_settings_url( 'dashboard' ) ) . '">' . flxa_icon( 'plus', 18 ) . '<span>' . esc_html__( 'Kısayol ekle', 'flx-admin' ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<a class="flxa-quick-item is-add" href="' . esc_url( flxa_settings_url( 'dashboard' ) ) . '">' . flxa_icon( 'plus', 18 ) . '<span>' . esc_html__( 'Add shortcut', 'flx-admin' ) . '</span></a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 	echo '</div>';
 }

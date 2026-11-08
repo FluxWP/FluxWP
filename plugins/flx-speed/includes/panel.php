@@ -22,7 +22,7 @@ class FLXP_Panel {
 		$bar->add_node(
 			array(
 				'id'    => 'flxp',
-				'title' => '<span class="ab-icon" aria-hidden="true"></span><span class="ab-label flxp-ab-label">' . esc_html__( 'Performans', 'flx-speed' ) . '</span>',
+				'title' => '<span class="ab-icon" aria-hidden="true"></span><span class="ab-label flxp-ab-label">' . esc_html__( 'Performance', 'flx-speed' ) . '</span>',
 				'href'  => '#flxp-panel',
 				'meta'  => array( 'class' => 'flxp-ab' ),
 			)

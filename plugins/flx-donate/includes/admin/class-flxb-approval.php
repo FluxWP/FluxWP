@@ -123,13 +123,13 @@ final class FLXB_Approval {
 		$bits  = array( flxb_money( $total, $cur, 2 ), $order ? $order->get_payment_method_title() : flxb_provider_label( $d['provider'] ) );
 		if ( $order ) {
 			/* translators: %s: order number */
-			$bits[] = sprintf( __( 'order #%s', 'flx-donate' ), $order->get_order_number() );
+			$bits[] = sprintf( __( '\\norder #%s\\n', 'flx-donate' ), $order->get_order_number() );
 		}
-		echo '<section class="flxb-card flxb-approve" aria-labelledby="flxb-approve-title"><div class="flxb-card__head"><div><h2 class="flxb-card__title" id="flxb-approve-title">' . esc_html__( 'Payment awaiting approval', 'flx-donate' ) . '</h2>';
+		echo '<section class="flxb-card flxb-approve" aria-labelledby="flxb-approve-title"><div class="flxb-card__head"><div><h2 class="flxb-card__title" id="flxb-approve-title">' . esc_html__( '\\nPayment awaiting approval\\n', 'flx-donate' ) . '</h2>';
 		echo '<p class="flxb-card__hint">' . esc_html( implode( ' · ', array_filter( $bits ) ) ) . '</p></div>';
 		if ( self::can( $d ) ) {
 			echo '<div class="flxb-approve__actions">';
-			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Has the payment reached the bank? When you confirm, the certificate is made and sent to the donor.', 'flx-donate' ) ) ) . ')">';
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(' . esc_attr( wp_json_encode( __( '\\nHas the payment reached the bank? When you confirm, the certificate is made and sent to the donor.\\n', 'flx-donate' ) ) ) . ')">';
 			wp_nonce_field( 'flxb_pay_' . (int) $d['id'] );
 			echo '<input type="hidden" name="action" value="flxb_pay_approve"><input type="hidden" name="id" value="' . (int) $d['id'] . '">';
 			echo '<button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Approve', 'flx-donate' ) . '</button></form>';
@@ -151,7 +151,7 @@ final class FLXB_Approval {
 			}
 			echo '</ul>';
 		} else {
-			echo '<p class="flxb-muted">' . esc_html__( 'No receipt uploaded yet. Check the bank account before approving.', 'flx-donate' ) . '</p>';
+			echo '<p class="flxb-muted">' . esc_html__( '\\nNo receipt uploaded yet. Check the bank account before approving.\\n', 'flx-donate' ) . '</p>';
 		}
 		echo '</section>';
 
@@ -170,15 +170,15 @@ final class FLXB_Approval {
 		echo '<dialog class="flxb-modal" id="flxb-reject" aria-labelledby="flxb-reject-title"><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 		wp_nonce_field( 'flxb_pay_' . (int) $d['id'] );
 		echo '<input type="hidden" name="action" value="flxb_pay_reject"><input type="hidden" name="id" value="' . (int) $d['id'] . '">';
-		echo '<div class="flxb-modal__head"><h2 class="flxb-modal__title" id="flxb-reject-title">' . esc_html__( 'Reject the payment', 'flx-donate' ) . '</h2><button type="button" class="flxb-modal__x" data-flxb-close aria-label="' . esc_attr__( 'Close', 'flx-donate' ) . '">×</button></div>';
-		echo '<div class="flxb-modal__body flxb-modal__body--form"><label class="flxb-field"><span>' . esc_html__( 'Reason (sent to the donor)', 'flx-donate' ) . '</span><textarea name="reason" rows="4" required maxlength="600" placeholder="' . esc_attr__( 'e.g. The recipient name on the receipt does not match our account.', 'flx-donate' ) . '"></textarea></label>';
+		echo '<div class="flxb-modal__head"><h2 class="flxb-modal__title" id="flxb-reject-title">' . esc_html__( '\\nReject the payment", \'en\']]', 'flx-donate' ) . '</h2><button type="button" class="flxb-modal__x" data-flxb-close aria-label="' . esc_attr__( 'Close', 'flx-donate' ) . '">×</button></div>';
+		echo '<div class="flxb-modal__body flxb-modal__body--form"><label class="flxb-field"><span>' . esc_html__( '\\nReason (sent to the donor)\\n', 'flx-donate' ) . '</span><textarea name="reason" rows="4" required maxlength="600" placeholder="' . esc_attr__( '\\ne.g. The recipient name on the receipt does not match our account.\\n', 'flx-donate' ) . '"></textarea></label>';
 		if ( $to ) {
 			/* translators: %s: channels (WhatsApp, e-mail) */
-			echo '<label class="flxb-check"><input type="checkbox" name="notify" value="1" checked> ' . esc_html( sprintf( __( 'Tell the donor (%s)', 'flx-donate' ), implode( ', ', $to ) ) ) . '</label>';
+			echo '<label class="flxb-check"><input type="checkbox" name="notify" value="1" checked> ' . esc_html( sprintf( __( '\\nTell the donor (%s)\\n', 'flx-donate' ), implode( ', ', $to ) ) ) . '</label>';
 		} else {
-			echo '<p class="flxb-muted">' . esc_html__( 'The donor has no phone or e-mail; the reason is only kept on the order.', 'flx-donate' ) . '</p>';
+			echo '<p class="flxb-muted">' . esc_html__( '\\nThe donor has no phone or e-mail; the reason is only kept on the order.\\n', 'flx-donate' ) . '</p>';
 		}
-		echo '<p class="flxb-muted">' . esc_html__( 'The donation is canceled. The donor can make a new one.', 'flx-donate' ) . '</p></div>';
+		echo '<p class="flxb-muted">' . esc_html__( '\\nThe donation is canceled. The donor can make a new one.\\n', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-modal__foot"><button type="button" class="flxb-btn" data-flxb-close>' . esc_html__( 'Cancel', 'flx-donate' ) . '</button><button type="submit" class="flxb-btn flxb-btn--danger">' . esc_html__( 'Reject', 'flx-donate' ) . '</button></div>';
 		echo '</form></dialog>';
 	}
@@ -192,7 +192,7 @@ final class FLXB_Approval {
 			FLXB_Admin::deny();
 		}
 		if ( ! self::pending( $d ) ) {
-			FLXB_Admin::redirect( 'flxb-donations', array( 'donation' => $id, 'flxb_msg' => 'error', 'flxb_err' => __( 'This donation is no longer awaiting approval.', 'flx-donate' ) ) );
+			FLXB_Admin::redirect( 'flxb-donations', array( 'donation' => $id, 'flxb_msg' => 'error', 'flxb_err' => __( '\\nThis donation is no longer awaiting approval.\\n', 'flx-donate' ) ) );
 		}
 		return $d;
 	}
@@ -216,7 +216,7 @@ final class FLXB_Approval {
 			$order->update_meta_data( '_flxb_state', 'approved' );
 			$order->save_meta_data();
 			/* translators: %s: user */
-			$order->add_order_note( sprintf( __( 'Bank transfer confirmed (%s).', 'flx-donate' ), $who ) );
+			$order->add_order_note( sprintf( __( '[[\'Bank transfer confirmed (%s).\\n', 'flx-donate' ), $who ) );
 			$order->payment_complete();
 		} else {
 			if ( FLXB_Donations::set_status_by_uniq( $d['uniq'], 'completed' ) ) {
@@ -231,13 +231,13 @@ final class FLXB_Approval {
 		$d      = self::from_request();
 		$reason = isset( $_POST['reason'] ) ? trim( sanitize_textarea_field( wp_unslash( $_POST['reason'] ) ) ) : '';
 		if ( '' === $reason ) {
-			FLXB_Admin::redirect( 'flxb-donations', array( 'donation' => (int) $d['id'], 'flxb_msg' => 'error', 'flxb_err' => __( 'Please write a reason.', 'flx-donate' ) ) );
+			FLXB_Admin::redirect( 'flxb-donations', array( 'donation' => (int) $d['id'], 'flxb_msg' => 'error', 'flxb_err' => __( '\\nPlease write a reason.\\n', 'flx-donate' ) ) );
 		}
 		$sent = self::do_reject( $d, $reason, ! empty( $_POST['notify'] ) );
 		$msg  = $sent
 			/* translators: %s: channels */
-			? sprintf( __( 'Payment rejected; the donor was told by %s.', 'flx-donate' ), implode( ', ', $sent ) )
-			: __( 'Payment rejected.', 'flx-donate' );
+			? sprintf( __( '\\nPayment rejected; the donor was told by%s.\\n', 'flx-donate' ), implode( ', ', $sent ) )
+			: __( '[[\'Payment rejected.\\n', 'flx-donate' );
 		FLXB_Admin::redirect( 'flxb-donations', array( 'donation' => (int) $d['id'], 'flxb_msg' => 'rejected', 'flxb_err' => $msg ) );
 	}
 
@@ -258,7 +258,7 @@ final class FLXB_Approval {
 			$order->update_meta_data( '_flxb_reject_reason', $reason );
 			$order->save_meta_data();
 			/* translators: 1: user, 2: reason */
-			$order->update_status( 'cancelled', sprintf( __( 'Payment rejected by %1$s. Reason: %2$s', 'flx-donate' ), $who, $reason ) );
+			$order->update_status( 'cancelled', sprintf( __( '\\nPayment rejected by%1$s. Reason:%2$s\', \'en\']]', 'flx-donate' ), $who, $reason ) );
 		} elseif ( FLXB_Donations::set_status_by_uniq( $d['uniq'], 'canceled' ) ) {
 			FLXB_Donations::add_audit( (int) $d['id'], 'status', array( 'status' => array( 'pending', 'canceled' ) ) );
 		}
@@ -266,7 +266,7 @@ final class FLXB_Approval {
 		FLXB_Donations::add_audit( (int) $d['id'], 'rejected', array( 'reason' => $reason, 'sent' => $sent ) );
 		if ( $order && $sent ) {
 			/* translators: %s: channels */
-			$order->add_order_note( sprintf( __( 'Rejection sent to the donor: %s', 'flx-donate' ), implode( ', ', $sent ) ) );
+			$order->add_order_note( sprintf( __( '[[\'Rejection sent to the donor:%s\\n', 'flx-donate' ), implode( ', ', $sent ) ) );
 		}
 		do_action( 'flxb_payment_rejected', (int) $d['id'], $reason, $order, $sent );
 		return $sent;
@@ -279,12 +279,12 @@ final class FLXB_Approval {
 		$total = $order ? flxb_money( $order->get_total(), $order->get_currency(), 2 ) : flxb_money( $d['amount'], $d['currency'], 2 );
 		$lines = array(
 			/* translators: %s: donor name */
-			'' !== $name ? sprintf( __( 'Hello %s,', 'flx-donate' ), $name ) : __( 'Hello,', 'flx-donate' ),
+			'' !== $name ? sprintf( __( 'Hello %s,', 'flx-donate' ), $name ) : __( '\\nHello,\\n', 'flx-donate' ),
 			/* translators: %s: amount */
-			sprintf( __( 'We could not confirm the payment of your %s donation.', 'flx-donate' ), $total ),
+			sprintf( __( '\\nWe could not confirm the payment of your%sdonation.\\n', 'flx-donate' ), $total ),
 			/* translators: %s: reason */
 			sprintf( __( 'Reason: %s', 'flx-donate' ), $reason ),
-			__( 'If you think this is a mistake, please reply to this message. Thank you.', 'flx-donate' ),
+			__( '\\nIf you think this is a mistake, please reply to this message. Thank you.\\n', 'flx-donate' ),
 		);
 		return (string) apply_filters( 'flxb_payment_rejected_text', implode( "\n\n", $lines ), $d, $reason, $order );
 	}

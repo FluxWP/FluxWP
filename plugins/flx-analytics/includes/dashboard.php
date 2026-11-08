@@ -11,10 +11,10 @@ defined( 'ABSPATH' ) || exit;
 /** Widget kimliği → başlık ve çizici. */
 function flxan_dashboard_widgets() {
 	return array(
-		'live'     => array( __( 'Canlı ziyaretçiler', 'flx-analytics' ), 'flxan_dw_live' ),
-		'visitors' => array( __( 'Ziyaretçiler', 'flx-analytics' ), 'flxan_dw_visitors' ),
-		'sources'  => array( __( 'Trafik kaynakları ve referanslar', 'flx-analytics' ), 'flxan_dw_sources' ),
-		'funnel'   => array( __( 'Bağış hunisi', 'flx-analytics' ), 'flxan_dw_funnel' ),
+		'live'     => array( __( 'Live visitors', 'flx-analytics' ), 'flxan_dw_live' ),
+		'visitors' => array( __( 'Visitors', 'flx-analytics' ), 'flxan_dw_visitors' ),
+		'sources'  => array( __( 'Traffic sources and referrals', 'flx-analytics' ), 'flxan_dw_sources' ),
+		'funnel'   => array( __( 'Donation funnel', 'flx-analytics' ), 'flxan_dw_funnel' ),
 	);
 }
 
@@ -102,14 +102,14 @@ function flxan_svg_bars( array $items, $w = 400, $h = 90 ) {
 		$max = max( $max, (int) $it['pageviews'] );
 	}
 	$bw  = $w / $n;
-	$out = '<svg class="flxan-mini" viewBox="0 0 ' . (int) $w . ' ' . (int) $h . '" preserveAspectRatio="none" role="img" aria-label="' . esc_attr__( 'Son 14 gün', 'flx-analytics' ) . '">';
+	$out = '<svg class="flxan-mini" viewBox="0 0 ' . (int) $w . ' ' . (int) $h . '" preserveAspectRatio="none" role="img" aria-label="' . esc_attr__( 'Last 14 days', 'flx-analytics' ) . '">';
 	foreach ( array_values( $items ) as $i => $it ) {
 		$ph   = round( (int) $it['pageviews'] / $max * ( $h - 4 ), 1 );
 		$vh   = round( (int) $it['visitors'] / $max * ( $h - 4 ), 1 );
 		$x    = round( $i * $bw + $bw * 0.15, 1 );
 		$bwid = round( $bw * 0.7, 1 );
 		/* translators: 1: tarih, 2: ziyaretçi, 3: görüntülenme */
-		$tip  = sprintf( __( '%1$s: %2$s ziyaretçi, %3$s görüntülenme', 'flx-analytics' ), flx_date( strtotime( $it['d'] ), 'short' ), number_format_i18n( $it['visitors'] ), number_format_i18n( $it['pageviews'] ) );
+		$tip  = sprintf( __( '%1$s: %2$s visitors, %3$s views', 'flx-analytics' ), flx_date( strtotime( $it['d'] ), 'short' ), number_format_i18n( $it['visitors'] ), number_format_i18n( $it['pageviews'] ) );
 		$out .= '<g><title>' . esc_html( $tip ) . '</title>';
 		$out .= '<rect class="flxan-mini__pv" x="' . $x . '" y="' . ( $h - $ph ) . '" width="' . $bwid . '" height="' . $ph . '" rx="2"/>';
 		$out .= '<rect class="flxan-mini__v" x="' . $x . '" y="' . ( $h - $vh ) . '" width="' . $bwid . '" height="' . $vh . '" rx="2"/></g>';
@@ -134,7 +134,7 @@ function flxan_dw_list( $title, array $rows ) {
 }
 
 function flxan_dw_link( $hash = '' ) {
-	return '<p class="flxan-dw__more"><a href="' . esc_url( admin_url( 'admin.php?page=flx-analytics' . $hash ) ) . '">' . esc_html__( 'Tüm istatistikler →', 'flx-analytics' ) . '</a></p>';
+	return '<p class="flxan-dw__more"><a href="' . esc_url( admin_url( 'admin.php?page=flx-analytics' . $hash ) ) . '">' . esc_html__( 'All statistics →', 'flx-analytics' ) . '</a></p>';
 }
 
 /** Canlı: şu an (5 dk), son 30 dk, dakikalık çubuklar, sayfalar, referanslar. */
@@ -148,17 +148,17 @@ function flxan_dw_live() {
 		$hh    = round( $v / $max * 40, 2 );
 		$bars .= '<rect x="' . round( $i * $w + $w * 0.12, 2 ) . '" y="' . ( 40 - $hh ) . '" width="' . round( $w * 0.76, 2 ) . '" height="' . max( $hh, $v ? 1.5 : 0.6 ) . '"' . ( $v ? '' : ' class="z"' ) . '/>';
 	}
-	$h  = '<div class="flxan-dw__now"><div><span class="flxan-dw__dot" aria-hidden="true"></span><b class="flxan-dw__big">' . esc_html( number_format_i18n( $rt['active'] ) ) . '</b><span>' . esc_html__( 'şu an sitede (son 5 dk)', 'flx-analytics' ) . '</span></div>';
+	$h  = '<div class="flxan-dw__now"><div><span class="flxan-dw__dot" aria-hidden="true"></span><b class="flxan-dw__big">' . esc_html( number_format_i18n( $rt['active'] ) ) . '</b><span>' . esc_html__( 'on the site now (last 5 min)', 'flx-analytics' ) . '</span></div>';
 	/* translators: %s: görüntülenme */
-	$h .= '<div><b class="flxan-dw__mid">' . esc_html( number_format_i18n( $rt['visitors'] ) ) . '</b><span>' . esc_html( sprintf( __( 'son 30 dk · %s görüntülenme', 'flx-analytics' ), number_format_i18n( $rt['pageviews'] ) ) ) . '</span></div></div>';
+	$h .= '<div><b class="flxan-dw__mid">' . esc_html( number_format_i18n( $rt['visitors'] ) ) . '</b><span>' . esc_html( sprintf( __( 'last 30 min · %s views', 'flx-analytics' ), number_format_i18n( $rt['pageviews'] ) ) ) . '</span></div></div>';
 	$h .= '<svg class="flxan-dw__bars" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">' . $bars . '</svg>';
 	$h .= '<div class="flxan-dw__cols">';
-	$h .= '<div>' . flxan_dw_list( __( 'Şu an bakılan sayfalar', 'flx-analytics' ), array_map( function ( $p ) { return array( esc_html( $p['title'] ), $p['pageviews'] ); }, $rt['pages'] ) ) . '</div>';
-	$side = flxan_dw_list( __( 'Referans bağlantıları', 'flx-analytics' ), array_map( function ( $p ) { return array( esc_html( $p['label'] ), $p['visitors'] ); }, $rt['codes'] ) );
-	$side .= flxan_dw_list( __( 'Yönlendiren siteler', 'flx-analytics' ), array_map( function ( $p ) { return array( esc_html( $p['host'] ), $p['pageviews'] ); }, $rt['referrers'] ) );
+	$h .= '<div>' . flxan_dw_list( __( 'Pages being viewed now', 'flx-analytics' ), array_map( function ( $p ) { return array( esc_html( $p['title'] ), $p['pageviews'] ); }, $rt['pages'] ) ) . '</div>';
+	$side = flxan_dw_list( __( 'Referral links', 'flx-analytics' ), array_map( function ( $p ) { return array( esc_html( $p['label'] ), $p['visitors'] ); }, $rt['codes'] ) );
+	$side .= flxan_dw_list( __( 'Referring sites', 'flx-analytics' ), array_map( function ( $p ) { return array( esc_html( $p['host'] ), $p['pageviews'] ); }, $rt['referrers'] ) );
 	$h .= '<div>' . $side . '</div></div>';
 	if ( ! $rt['visitors'] ) {
-		$h .= '<p class="flxan-dw__empty">' . esc_html__( 'Şu an kimse yok', 'flx-analytics' ) . '</p>';
+		$h .= '<p class="flxan-dw__empty">' . esc_html__( 'Nobody right now', 'flx-analytics' ) . '</p>';
 	}
 	return $h . flxan_dw_link();
 }
@@ -175,11 +175,11 @@ function flxan_dw_visitors() {
 	$top   = FLXAN_Stats::pages( $today, $today, 5 );
 	$h     = '<div class="flxan-dw__nums">';
 	/* translators: %s: görüntülenme */
-	$h .= '<div><b>' . esc_html( number_format_i18n( $t['visitors'] ) ) . '</b><span>' . esc_html( sprintf( __( 'bugün · %s görüntülenme', 'flx-analytics' ), number_format_i18n( $t['pageviews'] ) ) ) . '</span></div>';
-	$h .= '<div><b>' . esc_html( number_format_i18n( $y['visitors'] ) ) . '</b><span>' . esc_html__( 'dün', 'flx-analytics' ) . '</span></div>';
-	$h .= '<div><b>' . esc_html( number_format_i18n( $w7['visitors'] ) ) . '</b><span>' . esc_html__( 'son 7 gün', 'flx-analytics' ) . '</span></div></div>';
+	$h .= '<div><b>' . esc_html( number_format_i18n( $t['visitors'] ) ) . '</b><span>' . esc_html( sprintf( __( 'today · %s views', 'flx-analytics' ), number_format_i18n( $t['pageviews'] ) ) ) . '</span></div>';
+	$h .= '<div><b>' . esc_html( number_format_i18n( $y['visitors'] ) ) . '</b><span>' . esc_html__( 'yesterday', 'flx-analytics' ) . '</span></div>';
+	$h .= '<div><b>' . esc_html( number_format_i18n( $w7['visitors'] ) ) . '</b><span>' . esc_html__( 'last 7 days', 'flx-analytics' ) . '</span></div></div>';
 	$h .= flxan_svg_bars( $ser['items'] );
-	$h .= flxan_dw_list( __( 'Bugün en çok görüntülenenler', 'flx-analytics' ), array_map( function ( $p ) { return array( '<a href="' . esc_url( $p['url'] ) . '" target="_blank" rel="noopener">' . esc_html( $p['title'] ) . '</a>', $p['pageviews'] ); }, $top['items'] ) );
+	$h .= flxan_dw_list( __( 'Most viewed today', 'flx-analytics' ), array_map( function ( $p ) { return array( '<a href="' . esc_url( $p['url'] ) . '" target="_blank" rel="noopener">' . esc_html( $p['title'] ) . '</a>', $p['pageviews'] ); }, $top['items'] ) );
 	return $h . flxan_dw_link( '#range=7d' );
 }
 
@@ -205,23 +205,23 @@ function flxan_dw_sources() {
 			$m += $x['visitors'];
 		}
 	}
-	$h  = '<p class="flxan-dw__sub">' . esc_html__( 'Son 7 gün', 'flx-analytics' ) . '</p>';
-	$h .= '<div class="flxan-dw__split" title="' . esc_attr__( 'Dışarıdan gelenler / giriş yapanlar', 'flx-analytics' ) . '"><span style="flex:' . max( 1, $g ) . '"></span><span style="flex:' . (int) $m . '"></span></div>';
+	$h  = '<p class="flxan-dw__sub">' . esc_html__( 'Last 7 days', 'flx-analytics' ) . '</p>';
+	$h .= '<div class="flxan-dw__split" title="' . esc_attr__( 'Outside visitors / logged-in users', 'flx-analytics' ) . '"><span style="flex:' . max( 1, $g ) . '"></span><span style="flex:' . (int) $m . '"></span></div>';
 	/* translators: 1: dışarıdan, 2: giriş yapan */
-	$h .= '<p class="flxan-dw__sub">' . esc_html( sprintf( __( 'Dışarıdan: %1$s · Giriş yapan: %2$s', 'flx-analytics' ), number_format_i18n( $g ), number_format_i18n( $m ) ) ) . '</p>';
-	$h .= '<div class="flxan-dw__cols"><div>' . flxan_dw_list( __( 'Kanallar', 'flx-analytics' ), array_map( function ( $x ) { return array( esc_html( $x['label'] ), $x['visitors'] ); }, $ch ) ) . '</div>';
+	$h .= '<p class="flxan-dw__sub">' . esc_html( sprintf( __( 'Outside: %1$s · Logged in: %2$s', 'flx-analytics' ), number_format_i18n( $g ), number_format_i18n( $m ) ) ) . '</p>';
+	$h .= '<div class="flxan-dw__cols"><div>' . flxan_dw_list( __( 'Channels', 'flx-analytics' ), array_map( function ( $x ) { return array( esc_html( $x['label'] ), $x['visitors'] ); }, $ch ) ) . '</div>';
 	$h .= '<div>' . flxan_dw_list(
-		__( 'Referans bağlantıları', 'flx-analytics' ),
+		__( 'Referral links', 'flx-analytics' ),
 		array_map(
 			function ( $x ) {
-				$don = $x['donations'] ? ' <small>' . esc_html( sprintf( /* translators: %s: bağış sayısı */ __( '%s bağış', 'flx-analytics' ), number_format_i18n( $x['donations'] ) ) ) . '</small>' : '';
+				$don = $x['donations'] ? ' <small>' . esc_html( sprintf( /* translators: %s: bağış sayısı */ __( '%s donations', 'flx-analytics' ), number_format_i18n( $x['donations'] ) ) ) . '</small>' : '';
 				return array( esc_html( $x['label'] ) . $don, $x['visitors'] );
 			},
 			array_values( $refs )
 		)
 	) . '</div></div>';
 	if ( ! $ch ) {
-		$h .= '<p class="flxan-dw__empty">' . esc_html__( 'Bu aralıkta veri yok.', 'flx-analytics' ) . '</p>';
+		$h .= '<p class="flxan-dw__empty">' . esc_html__( 'No data in this range.', 'flx-analytics' ) . '</p>';
 	}
 	return $h . flxan_dw_link( '#range=7d' );
 }
@@ -231,10 +231,10 @@ function flxan_dw_funnel() {
 	FLXAN_Stats::set_filter();
 	$f = FLXAN_Stats::funnel( 0, wp_date( 'Y-m-d', time() - 6 * DAY_IN_SECONDS ), wp_date( 'Y-m-d' ) );
 	if ( empty( $f['found'] ) ) {
-		return '<p class="flxan-dw__empty">' . esc_html__( 'Huni tanımlı değil.', 'flx-analytics' ) . '</p>';
+		return '<p class="flxan-dw__empty">' . esc_html__( 'No funnel defined.', 'flx-analytics' ) . '</p>';
 	}
 	/* translators: %s: huni adı */
-	$h     = '<p class="flxan-dw__sub">' . esc_html( sprintf( __( '%s · son 7 gün', 'flx-analytics' ), $f['name'] ) ) . '</p><ol class="flxan-dw__funnel">';
+	$h     = '<p class="flxan-dw__sub">' . esc_html( sprintf( __( '%s · last 7 days', 'flx-analytics' ), $f['name'] ) ) . '</p><ol class="flxan-dw__funnel">';
 	$first = $f['steps'][0]['count'] ?? 0;
 	foreach ( $f['steps'] as $st ) {
 		$pct = $first ? $st['count'] / $first * 100 : 0;

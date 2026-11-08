@@ -41,7 +41,7 @@ class FLXB_WC_Checks {
 			$checks = array_merge( $checks, self::rows() );
 		} catch ( Throwable $e ) {
 			/* translators: %s: error message */
-			$checks[] = self::c( 'broken', 'Config', __( 'WooCommerce checks', 'flx-donate' ), 'error', sprintf( __( 'This check could not run: %s', 'flx-donate' ), $e->getMessage() ) );
+			$checks[] = self::c( 'broken', 'Config', __( '\\nWooCommerce checks\\n', 'flx-donate' ), 'error', sprintf( __( 'This check could not run: %s', 'flx-donate' ), $e->getMessage() ) );
 		}
 		return $checks;
 	}
@@ -59,36 +59,36 @@ class FLXB_WC_Checks {
 		$v = defined( 'WC_VERSION' ) ? (string) WC_VERSION : '?';
 		if ( version_compare( $v, self::TESTED_WC, '>' ) && version_compare( preg_replace( '/^(\d+\.\d+).*$/', '$1', $v ), self::TESTED_WC, '>' ) ) {
 			/* translators: 1: installed version, 2: tested version */
-			$out[] = self::c( 'version', 'Plugins', 'WooCommerce', 'info', sprintf( __( 'Version %1$s is active. Flux Donate was checked up to %2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates.', 'flx-donate' ), $v, self::TESTED_WC ) );
+			$out[] = self::c( 'version', 'Plugins', 'WooCommerce', 'info', sprintf( __( '\\nVersion%1$sis active. Flux Donate was checked up to%2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates.\\n', 'flx-donate' ), $v, self::TESTED_WC ) );
 		} else {
 			/* translators: %s: version */
-			$out[] = self::c( 'version', 'Plugins', 'WooCommerce', 'ok', sprintf( __( 'Active, version %s. Donations are paid through the WooCommerce cart and checkout.', 'flx-donate' ), $v ) );
+			$out[] = self::c( 'version', 'Plugins', 'WooCommerce', 'ok', sprintf( __( '\\nActive, version%s. Donations are paid through the WooCommerce cart and checkout.\\n', 'flx-donate' ), $v ) );
 		}
 
 		/* Card payments. */
 		$cm = FLXB_WC_Gateways::card_method();
 		if ( ! in_array( $cm, array( 'iyzico', 'all' ), true ) ) {
 			/* translators: %s: payment method */
-			$card = array( 'ok', sprintf( __( 'One-time card payments are taken by %s; iyzico is not shown at the checkout.', 'flx-donate' ), FLXB_WC_Gateways::third_party_enabled()[ $cm ] ?? $cm ) );
+			$card = array( 'ok', sprintf( __( '\\nOne-time card payments are taken by%s; iyzico is not shown at the checkout.\\n', 'flx-donate' ), FLXB_WC_Gateways::third_party_enabled()[ $cm ] ?? $cm ) );
 		} elseif ( $on( FLXB_WC_Iyzico::OFFICIAL ) && 'official' === FLXB_WC_Iyzico::ui() ) {
-			$card = array( 'ok', __( 'One-time card payments are taken by the official iyzico WooCommerce plugin.', 'flx-donate' ) );
+			$card = array( 'ok', __( '\\nOne-time card payments are taken by the official iyzico WooCommerce plugin.\\n', 'flx-donate' ) );
 		} elseif ( $on( FLXB_WC_Iyzico::ID ) && FLXB_WC_Iyzico::configured() && FLXB_WC_Iyzico_Card::on() ) {
-			$card = array( 'ok', __( 'Card payments use our own card fields on the checkout (iyzico 3D Secure, installments, saved cards).', 'flx-donate' ) );
+			$card = array( 'ok', __( '\\nCard payments use our own card fields on the checkout (iyzico 3D Secure, installments, saved cards).\\n', 'flx-donate' ) );
 		} elseif ( $on( FLXB_WC_Iyzico::ID ) && FLXB_WC_Iyzico::configured() ) {
-			$card = array( 'ok', __( 'One-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled).', 'flx-donate' ) );
+			$card = array( 'ok', __( '\\nOne-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled).\\n', 'flx-donate' ) );
 		} elseif ( FLXB_WC_Gateways::third_party_enabled() ) {
 			/* translators: %s: payment methods */
-			$card = array( 'ok', sprintf( __( 'Card payments are taken by: %s.', 'flx-donate' ), implode( ', ', FLXB_WC_Gateways::third_party_enabled() ) ) );
+			$card = array( 'ok', sprintf( __( '\\nCard payments are taken by:%s.\\n', 'flx-donate' ), implode( ', ', FLXB_WC_Gateways::third_party_enabled() ) ) );
 		} else {
-			$card = array( 'warning', __( 'No card method is enabled; donations can only be paid by bank transfer.', 'flx-donate' ) );
+			$card = array( 'warning', __( '\\nNo card method is enabled; donations can only be paid by bank transfer.\\n', 'flx-donate' ) );
 		}
-		$out[] = self::c( 'card', 'Payments', __( 'Card payments (WooCommerce)', 'flx-donate' ), $card[0], $card[1], 'ok' === $card[0] ? '' : $pay, __( 'Payments', 'flx-donate' ) );
+		$out[] = self::c( 'card', 'Payments', __( '\\nCard payments (WooCommerce)\\n', 'flx-donate' ), $card[0], $card[1], 'ok' === $card[0] ? '' : $pay, __( 'Payments', 'flx-donate' ) );
 
 		/* Monthly donations. */
 		if ( FLXB_WC_Iyzico::usable() ) {
-			$out[] = self::c( 'monthly', 'Payments', __( 'Monthly donations', 'flx-donate' ), 'ok', __( 'Flux Donate iyzico stores the card at the first payment; a renewal order is opened and charged every month.', 'flx-donate' ) . ' ' . FLXB_WC_Iyzico::keys_text() );
+			$out[] = self::c( 'monthly', 'Payments', __( '\\nMonthly donations\\n', 'flx-donate' ), 'ok', __( '\\nFlux Donate iyzico stores the card at the first payment; a renewal order is opened and charged every month.\\n', 'flx-donate' ) . ' ' . FLXB_WC_Iyzico::keys_text() );
 		} else {
-			$out[] = self::c( 'monthly', 'Payments', __( 'Monthly donations', 'flx-donate' ), 'info', __( 'Monthly donations are off: enable "Card (iyzico) - Flux Donate" in WooCommerce › Settings › Payments and enter iyzico keys.', 'flx-donate' ) . ' ' . FLXB_WC_Iyzico::keys_text(), admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . FLXB_WC_Iyzico::ID ), __( 'Payments', 'flx-donate' ) );
+			$out[] = self::c( 'monthly', 'Payments', __( '\\nMonthly donations\\n', 'flx-donate' ), 'info', __( '\\nMonthly donations are off: enable "Card (iyzico) - Flux Donate" in WooCommerce › Settings › Payments and enter iyzico keys.\\n', 'flx-donate' ) . ' ' . FLXB_WC_Iyzico::keys_text(), admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . FLXB_WC_Iyzico::ID ), __( 'Payments', 'flx-donate' ) );
 		}
 
 		/* Bank transfer. */
@@ -97,14 +97,14 @@ class FLXB_WC_Checks {
 		$out[] = self::c(
 			'havale',
 			'Payments',
-			__( 'Bank transfer (donations)', 'flx-donate' ),
+			__( '\\nBank transfer (donations)\\n', 'flx-donate' ),
 			$hv && '' !== $iban ? 'ok' : 'warning',
-			$hv ? ( '' !== $iban ? FLXB_WC_Havale::format_iban( $iban ) : __( 'No IBAN entered.', 'flx-donate' ) ) : __( 'The payment method is disabled.', 'flx-donate' ),
+			$hv ? ( '' !== $iban ? FLXB_WC_Havale::format_iban( $iban ) : __( '\\nNo IBAN entered.\\n', 'flx-donate' ) ) : __( '\\nThe payment method is disabled.\\n', 'flx-donate' ),
 			$hv && '' !== $iban ? '' : admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . FLXB_WC_Havale::ID ),
-			__( 'Bank transfer settings', 'flx-donate' )
+			__( '\\nBank transfer settings\\n', 'flx-donate' )
 		);
 		if ( $hv && $on( 'bacs' ) ) {
-			$out[] = self::c( 'bacs', 'Payments', __( 'Two bank transfer methods', 'flx-donate' ), 'warning', __( 'WooCommerce\'s own "Direct bank transfer" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable "Direct bank transfer".', 'flx-donate' ), admin_url( 'admin.php?page=wc-settings&tab=checkout&section=bacs' ), __( 'Payments', 'flx-donate' ) );
+			$out[] = self::c( 'bacs', 'Payments', __( '\\nTwo bank transfer methods\\n', 'flx-donate' ), 'warning', __( '\\nWooCommerce\\\'s own "Direct bank transfer" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable "Direct bank transfer".\\n', 'flx-donate' ), admin_url( 'admin.php?page=wc-settings&tab=checkout&section=bacs' ), __( 'Payments', 'flx-donate' ) );
 		}
 
 		/* Currency. */
@@ -117,9 +117,9 @@ class FLXB_WC_Checks {
 		}
 		$out[] = $other
 			/* translators: 1: WooCommerce currency, 2: list of types */
-			? self::c( 'currency', 'Config', __( 'Currency', 'flx-donate' ), 'warning', sprintf( __( 'The shop currency is %1$s; these types use another currency and are charged in %1$s at the same number: %2$s', 'flx-donate' ), $cur, implode( ', ', $other ) ), $pay, __( 'WooCommerce settings', 'flx-donate' ) )
+			? self::c( 'currency', 'Config', __( 'Currency', 'flx-donate' ), 'warning', sprintf( __( '\\nThe shop currency is%1$s; these types use another currency and are charged in%1$sat the same number:%2$s\\n', 'flx-donate' ), $cur, implode( ', ', $other ) ), $pay, __( '\\nWooCommerce settings\\n', 'flx-donate' ) )
 			/* translators: %s: currency */
-			: self::c( 'currency', 'Config', __( 'Currency', 'flx-donate' ), 'ok', sprintf( __( 'Donation types and the shop use %s.', 'flx-donate' ), $cur ) );
+			: self::c( 'currency', 'Config', __( 'Currency', 'flx-donate' ), 'ok', sprintf( __( '\\nDonation types and the shop use%s.\\n', 'flx-donate' ), $cur ) );
 
 		/* Hidden products. */
 		$missing = array();
@@ -132,14 +132,14 @@ class FLXB_WC_Checks {
 		}
 		$out[] = $missing
 			/* translators: %s: type titles */
-			? self::c( 'products', 'Config', __( 'Donation products', 'flx-donate' ), 'info', sprintf( __( 'These types get their hidden WooCommerce product the first time they are donated to or saved: %s', 'flx-donate' ), implode( ', ', $missing ) ), FLXB_Admin_Url::page( 'flxb-types' ), __( 'Donation types', 'flx-donate' ) )
+			? self::c( 'products', 'Config', __( '\\nDonation products\\n', 'flx-donate' ), 'info', sprintf( __( '\\nThese types get their hidden WooCommerce product the first time they are donated to or saved:%s\\n', 'flx-donate' ), implode( ', ', $missing ) ), FLXB_Admin_Url::page( 'flxb-types' ), __( 'Donation types', 'flx-donate' ) )
 			/* translators: %d: number of types */
-			: self::c( 'products', 'Config', __( 'Donation products', 'flx-donate' ), 'ok', sprintf( _n( '%d active type has its hidden WooCommerce product.', '%d active types have their hidden WooCommerce products.', $count, 'flx-donate' ), $count ) );
+			: self::c( 'products', 'Config', __( '\\nDonation products\\n', 'flx-donate' ), 'ok', sprintf( _n( '\\n%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\\n', '\\n%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\\n', $count, 'flx-donate' ), $count ) );
 
 		/* Donation page. */
 		$page = (int) FLXB_WC::setting( 'page_id' );
 		$ok   = $page && 'publish' === get_post_status( $page );
-		$out[] = self::c( 'page', 'Config', __( 'Donation page', 'flx-donate' ), $ok ? 'ok' : 'warning', $ok ? get_the_title( $page ) . ' · ' . get_permalink( $page ) : __( 'No page with the donation options block is selected.', 'flx-donate' ), $ok ? '' : $set, __( 'WooCommerce settings', 'flx-donate' ) );
+		$out[] = self::c( 'page', 'Config', __( 'Donation page', 'flx-donate' ), $ok ? 'ok' : 'warning', $ok ? get_the_title( $page ) . ' · ' . get_permalink( $page ) : __( '\\nNo page with the donation options block is selected.\\n', 'flx-donate' ), $ok ? '' : $set, __( '\\nWooCommerce settings\\n', 'flx-donate' ) );
 
 		/* Other payment plugins (virtual POS). */
 		$block = FLXB_WC_Gateways::block_checkout();
@@ -160,9 +160,9 @@ class FLXB_WC_Checks {
 		if ( $third ) {
 			$out[] = $bad
 				/* translators: %s: list of payment methods with problems */
-				? self::c( 'gateways', 'Payments', __( 'Other payment plugins', 'flx-donate' ), 'warning', sprintf( __( 'Check these on the donation checkout: %s. Details: Donations › Settings › WooCommerce › Payment methods.', 'flx-donate' ), implode( '; ', $bad ) ), $set, __( 'Payment methods', 'flx-donate' ) )
+				? self::c( 'gateways', 'Payments', __( '\\nOther payment plugins\\n', 'flx-donate' ), 'warning', sprintf( __( '\\nCheck these on the donation checkout:%s. Details: Donations › Settings › WooCommerce › Payment methods.\\n', 'flx-donate' ), implode( '; ', $bad ) ), $set, __( 'Payment methods', 'flx-donate' ) )
 				/* translators: %s: list of payment methods */
-				: self::c( 'gateways', 'Payments', __( 'Other payment plugins', 'flx-donate' ), 'ok', sprintf( __( 'Enabled and shown on the donation checkout: %s.', 'flx-donate' ), implode( ', ', $third ) ), $set, __( 'Payment methods', 'flx-donate' ) );
+				: self::c( 'gateways', 'Payments', __( '\\nOther payment plugins\\n', 'flx-donate' ), 'ok', sprintf( __( '\\nEnabled and shown on the donation checkout:%s.\\n', 'flx-donate' ), implode( ', ', $third ) ), $set, __( 'Payment methods', 'flx-donate' ) );
 		}
 
 		/* Certificates. */
@@ -171,32 +171,32 @@ class FLXB_WC_Checks {
 		$out[] = self::c(
 			'certs',
 			'Config',
-			__( 'Certificates after payment', 'flx-donate' ),
+			__( '\\nCertificates after payment\\n', 'flx-donate' ),
 			$tpl ? 'ok' : ( $avail ? 'warning' : 'error' ),
-			$tpl ? __( 'Flux Certificates makes the certificates of paid donation lines.', 'flx-donate' ) : ( $avail ? __( 'Flux Certificates has no active template.', 'flx-donate' ) : __( 'Flux Certificates is not active: no certificate is made after payment.', 'flx-donate' ) ),
+			$tpl ? __( '\\nFlux Certificates makes the certificates of paid donation lines.\\n', 'flx-donate' ) : ( $avail ? __( '\\nFlux Certificates has no active template.\\n', 'flx-donate' ) : __( '\\nFlux Certificates is not active: no certificate is made after payment.\\n', 'flx-donate' ) ),
 			$tpl ? '' : $set,
-			__( 'WooCommerce settings', 'flx-donate' )
+			__( '\\nWooCommerce settings\\n', 'flx-donate' )
 		);
 
 		/* Product feed. */
 		$items = count( FLXB_WC_Feed::items() );
 		/* translators: 1: address, 2: number of items */
-		$out[] = self::c( 'feed', 'Config', __( 'Product XML', 'flx-donate' ), $items ? 'ok' : 'info', sprintf( __( '%1$s lists %2$d donation packages (Google Merchant format, e.g. for iyzico).', 'flx-donate' ), FLXB_WC_Feed::url(), $items ), FLXB_WC_Feed::url(), __( 'Open', 'flx-donate' ) );
+		$out[] = self::c( 'feed', 'Config', __( '\\nProduct XML\\n', 'flx-donate' ), $items ? 'ok' : 'info', sprintf( __( '\\n%1$slists%2$ddonation packages (Google Merchant format, e.g. for iyzico).\\n', 'flx-donate' ), FLXB_WC_Feed::url(), $items ), FLXB_WC_Feed::url(), __( 'Open', 'flx-donate' ) );
 
 		/* Flux Forms forms. */
 		if ( defined( 'EMSFB_PLUGIN_DIRECTORY' ) && FLXB_WC::setting( 'forms_checkout' ) ) {
 			$v = defined( 'FLXF_FORK_VERSION' ) ? (string) FLXF_FORK_VERSION : '';
 			$out[] = '' !== $v && version_compare( $v, '2.1.0', '>=' )
-				? self::c( 'flxform', 'Forms', __( 'Payment forms on the checkout', 'flx-donate' ), 'ok', __( 'Donation forms send their choice to the WooCommerce cart; "Payment completed" automations run when the order is paid.', 'flx-donate' ) )
+				? self::c( 'flxform', 'Forms', __( '\\nPayment forms on the checkout\\n', 'flx-donate' ), 'ok', __( '\\nDonation forms send their choice to the WooCommerce cart; "Payment completed" automations run when the order is paid.\\n', 'flx-donate' ) )
 				/* translators: %s: version */
-				: self::c( 'flxform', 'Forms', __( 'Payment forms on the checkout', 'flx-donate' ), 'warning', sprintf( __( 'Flux Forms %s is active. Forms are paid on the checkout, but their "Payment completed" automations need Flux Forms 2.1.0 or later.', 'flx-donate' ), '' !== $v ? $v : '?' ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-donate' ) );
+				: self::c( 'flxform', 'Forms', __( '\\nPayment forms on the checkout\\n', 'flx-donate' ), 'warning', sprintf( __( '\\nFlux Forms%sis active. Forms are paid on the checkout, but their "Payment completed" automations need Flux Forms 2.1.0 or later.\\n', 'flx-donate' ), '' !== $v ? $v : '?' ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-donate' ) );
 		}
 
 		/* E-mails. */
 		if ( FLXB_Mail::iletisim() ) {
-			$out[] = self::c( 'mail', 'Email', __( 'Donation e-mails', 'flx-donate' ), 'ok', __( 'Sent by Flux Mail; the templates (group "Flux Donate") can be edited there. WooCommerce order e-mails stay in WooCommerce › Settings › Emails.', 'flx-donate' ), admin_url( 'admin.php?page=flxi' ), __( 'E-mail templates', 'flx-donate' ) );
+			$out[] = self::c( 'mail', 'Email', __( '\\nDonation e-mails\\n', 'flx-donate' ), 'ok', __( '\\nSent by Flux Mail; the templates (group "Flux Donate") can be edited there. WooCommerce order e-mails stay in WooCommerce › Settings › Emails.\\n', 'flx-donate' ), admin_url( 'admin.php?page=flxi' ), __( '\\nE-mail templates\\n', 'flx-donate' ) );
 		} else {
-			$out[] = self::c( 'mail', 'Email', __( 'Donation e-mails', 'flx-donate' ), 'info', __( 'Flux Mail is not active: the donation e-mails are sent as plain text with their default wording.', 'flx-donate' ) );
+			$out[] = self::c( 'mail', 'Email', __( '\\nDonation e-mails\\n', 'flx-donate' ), 'info', __( '\\nFlux Mail is not active: the donation e-mails are sent as plain text with their default wording.\\n', 'flx-donate' ) );
 		}
 
 		return $out;

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.3.1
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 1.3.0
 - Uygulama menüsü rol matrisini web görünümünde açar.
 

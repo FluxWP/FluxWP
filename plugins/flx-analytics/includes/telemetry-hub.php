@@ -264,7 +264,7 @@ class FLXAN_Telemetry_Hub {
 	/** Ülke adı (site dilinde). */
 	private static function cc_name( $cc ) {
 		if ( '' === $cc || '?' === $cc ) {
-			return __( 'Bilinmiyor', 'flx-analytics' );
+			return __( 'Unknown', 'flx-analytics' );
 		}
 		return function_exists( 'flxan_dim_label' ) ? (string) flxan_dim_label( 'country', $cc ) : $cc;
 	}
@@ -552,7 +552,7 @@ class FLXAN_Telemetry_Hub {
 	/* ------------------------------------------------------------------ */
 
 	public static function menu() {
-		add_menu_page( __( 'Ürün telemetrisi', 'flx-analytics' ), __( 'Ürün telemetrisi', 'flx-analytics' ), 'manage_options', self::SLUG, array( __CLASS__, 'page' ), 'dashicons-chart-area', 4 );
+		add_menu_page( __( 'Product telemetry', 'flx-analytics' ), __( 'Product telemetry', 'flx-analytics' ), 'manage_options', self::SLUG, array( __CLASS__, 'page' ), 'dashicons-chart-area', 4 );
 	}
 
 	public static function menu_icon() {
@@ -565,7 +565,7 @@ class FLXAN_Telemetry_Hub {
 
 	public static function forget() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-analytics' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-analytics' ) );
 		}
 		check_admin_referer( 'flxan_tm_forget' );
 		global $wpdb;
@@ -600,24 +600,24 @@ class FLXAN_Telemetry_Hub {
 		$s     = $theme ? substr( $slug, 6 ) : $slug;
 		if ( 0 === strpos( $s, 'core:' ) ) {
 			$core = array(
-				'admin'   => __( 'Yönetim teması', 'flx-analytics' ),
-				'store'   => __( 'Mağaza', 'flx-analytics' ),
-				'charity' => __( 'Dernek ve bağış', 'flx-analytics' ),
+				'admin'   => __( 'Admin theme', 'flx-analytics' ),
+				'store'   => __( 'Store', 'flx-analytics' ),
+				'charity' => __( 'Nonprofit and donations', 'flx-analytics' ),
 			);
 			$k = substr( $s, 5 );
 			/* translators: %s: sihirbazın ilk ekranındaki kart adı */
-			return sprintf( __( '%s kartı', 'flx-analytics' ), $core[ $k ] ?? $k );
+			return sprintf( __( '%s card', 'flx-analytics' ), $core[ $k ] ?? $k );
 		}
-		return ( $names[ $s ] ?? $s ) . ( $theme ? ' ' . __( '(tema)', 'flx-analytics' ) : '' );
+		return ( $names[ $s ] ?? $s ) . ( $theme ? ' ' . __( '(theme)', 'flx-analytics' ) : '' );
 	}
 
 	private static function step_name( $key ) {
 		$map = array(
-			'intro'      => __( 'Tanıtım', 'flx-analytics' ),
-			'base'       => __( 'Neyle başlayalım?', 'flx-analytics' ),
-			'appearance' => __( 'Görünüm', 'flx-analytics' ),
-			'install'    => __( 'Kurulum', 'flx-analytics' ),
-			'done'       => __( 'Bitti', 'flx-analytics' ),
+			'intro'      => __( 'Intro', 'flx-analytics' ),
+			'base'       => __( 'Where to start?', 'flx-analytics' ),
+			'appearance' => __( 'Appearance', 'flx-analytics' ),
+			'install'    => __( 'Install', 'flx-analytics' ),
+			'done'       => __( 'Done', 'flx-analytics' ),
 		);
 		if ( isset( $map[ $key ] ) ) {
 			return $map[ $key ];
@@ -626,16 +626,16 @@ class FLXAN_Telemetry_Hub {
 			return $key;
 		}
 		$groups = array(
-			'manage'  => __( 'Yönetim', 'flx-analytics' ),
-			'contact' => __( 'İletişim', 'flx-analytics' ),
-			'grow'    => __( 'Büyüme', 'flx-analytics' ),
-			'ai'      => __( 'Yapay zekâ', 'flx-analytics' ),
-			'system'  => __( 'Sistem', 'flx-analytics' ),
-			'other'   => __( 'Diğer', 'flx-analytics' ),
+			'manage'  => __( 'Management', 'flx-analytics' ),
+			'contact' => __( 'Communication', 'flx-analytics' ),
+			'grow'    => __( 'Growth', 'flx-analytics' ),
+			'ai'      => __( 'AI', 'flx-analytics' ),
+			'system'  => __( 'System', 'flx-analytics' ),
+			'other'   => __( 'Other', 'flx-analytics' ),
 		);
 		$g = substr( $key, 6 );
 		/* translators: %s: eklenti kategorisi (Yönetim, İletişim…) */
-		return sprintf( __( 'Eklentiler: %s', 'flx-analytics' ), $groups[ $g ] ?? $g );
+		return sprintf( __( 'Plugins: %s', 'flx-analytics' ), $groups[ $g ] ?? $g );
 	}
 
 	private static function pct( $n, $of ) {
@@ -650,7 +650,7 @@ class FLXAN_Telemetry_Hub {
 	private static function bars( $title, $rows, $cols, $max_of = null, $empty = '' ) {
 		echo '<div class="flxan-panel"><div class="flxan-panel__head"><h2>' . esc_html( $title ) . '</h2></div>';
 		if ( ! $rows ) {
-			echo '<p class="flxan-empty">' . esc_html( $empty ? $empty : __( 'Bu aralıkta kayıt yok.', 'flx-analytics' ) ) . '</p></div>';
+			echo '<p class="flxan-empty">' . esc_html( $empty ? $empty : __( 'No records in this range.', 'flx-analytics' ) ) . '</p></div>';
 			return;
 		}
 		$max = $max_of;
@@ -679,7 +679,7 @@ class FLXAN_Telemetry_Hub {
 
 	public static function page() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Bu sayfayı görme yetkiniz yok.', 'flx-analytics' ) );
+			wp_die( esc_html__( 'You are not allowed to view this page.', 'flx-analytics' ) );
 		}
 		self::maybe_install();
 		// phpcs:disable WordPress.Security.NonceVerification
@@ -692,9 +692,9 @@ class FLXAN_Telemetry_Hub {
 		$S    = self::summary( $range, $cc );
 		$ctry = self::countries( $range );
 		$tabs = array(
-			'overview'   => __( 'Genel bakış', 'flx-analytics' ),
-			'errors'     => __( 'Hatalar', 'flx-analytics' ),
-			'onboarding' => __( 'Kurulum sihirbazı', 'flx-analytics' ),
+			'overview'   => __( 'Overview', 'flx-analytics' ),
+			'errors'     => __( 'Errors', 'flx-analytics' ),
+			'onboarding' => __( 'Setup wizard', 'flx-analytics' ),
 		);
 		?>
 		<div class="wrap flxan flxan-tm">
@@ -715,10 +715,10 @@ class FLXAN_Telemetry_Hub {
 				@media(max-width:782px){.flxan-tm .flxan-cards,.flxan-tm .flxan-grid{grid-template-columns:1fr 1fr}.flxan-tm .flxan-grid{grid-template-columns:1fr}.flxan-tm .tm-hide-m{display:none}}
 			</style>
 			<div class="flxan-head">
-				<h1><?php esc_html_e( 'Ürün telemetrisi', 'flx-analytics' ); ?></h1>
+				<h1><?php esc_html_e( 'Product telemetry', 'flx-analytics' ); ?></h1>
 				<div class="flxan-tabs" role="tablist">
 					<?php foreach ( array( 7, 30, 90 ) as $r ) : ?>
-						<a href="<?php echo esc_url( self::url( array( 'tab' => $tab, 'r' => $r, 'c' => $cc ) ) ); ?>"<?php echo $r === $range ? ' aria-current="page"' : ''; ?>><?php /* translators: %d: gün */ echo esc_html( sprintf( __( '%d gün', 'flx-analytics' ), $r ) ); ?></a>
+						<a href="<?php echo esc_url( self::url( array( 'tab' => $tab, 'r' => $r, 'c' => $cc ) ) ); ?>"<?php echo $r === $range ? ' aria-current="page"' : ''; ?>><?php /* translators: %d: gün */ echo esc_html( sprintf( __( '%d days', 'flx-analytics' ), $r ) ); ?></a>
 					<?php endforeach; ?>
 				</div>
 				<?php if ( $ctry || '' !== $cc ) : ?>
@@ -726,17 +726,17 @@ class FLXAN_Telemetry_Hub {
 					<input type="hidden" name="page" value="<?php echo esc_attr( self::SLUG ); ?>">
 					<input type="hidden" name="tab" value="<?php echo esc_attr( $tab ); ?>">
 					<input type="hidden" name="r" value="<?php echo esc_attr( $range ); ?>">
-					<select name="c" onchange="this.form.submit()" aria-label="<?php esc_attr_e( 'Ülke', 'flx-analytics' ); ?>">
-						<option value=""><?php esc_html_e( 'Tüm ülkeler', 'flx-analytics' ); ?></option>
+					<select name="c" onchange="this.form.submit()" aria-label="<?php esc_attr_e( 'Country', 'flx-analytics' ); ?>">
+						<option value=""><?php esc_html_e( 'All countries', 'flx-analytics' ); ?></option>
 						<?php foreach ( $ctry as $row ) : ?>
 							<option value="<?php echo esc_attr( strtolower( $row['cc'] ) ); ?>" <?php selected( $cc, $row['cc'] ); ?>><?php echo esc_html( self::cc_name( $row['cc'] ) . ' (' . number_format_i18n( (int) $row['n'] ) . ')' ); ?></option>
 						<?php endforeach; ?>
 					</select>
-					<noscript><button class="button"><?php esc_html_e( 'Süz', 'flx-analytics' ); ?></button></noscript>
+					<noscript><button class="button"><?php esc_html_e( 'Filter', 'flx-analytics' ); ?></button></noscript>
 				</form>
 				<?php endif; ?>
 			</div>
-			<p class="description" style="margin:-8px 0 14px"><?php esc_html_e( 'FluxWP Panel\'de "Ürünü geliştirmemize yardımcı olun" kutusunu işaretleyen sitelerden günde bir kez gelen anonim veri. IP ve site adresi saklanmaz; kayıtlar 90 gün tutulur.', 'flx-analytics' ); ?></p>
+			<p class="description" style="margin:-8px 0 14px"><?php esc_html_e( 'Anonymous data sent once a day by sites that tick "Help us improve the product" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days.', 'flx-analytics' ); ?></p>
 			<nav class="flxan-tabs" style="margin-bottom:14px">
 				<?php foreach ( $tabs as $k => $l ) : ?>
 					<a href="<?php echo esc_url( self::url( array( 'tab' => $k, 'r' => $range, 'c' => $cc ) ) ); ?>"<?php echo $k === $tab ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $l ); ?></a>
@@ -758,14 +758,14 @@ class FLXAN_Telemetry_Hub {
 	private static function view_overview( $S, $range = 30, $cc = '' ) {
 		$n = $S['installs'];
 		echo '<div class="flxan-cards">';
-		echo self::kpi( __( 'Raporlayan site', 'flx-analytics' ), number_format_i18n( $n ), __( 'Tekil kurulum', 'flx-analytics' ), 'green' ); // phpcs:ignore
-		echo self::kpi( __( 'Rapor', 'flx-analytics' ), number_format_i18n( $S['reports'] ), __( 'Günde en fazla bir / site', 'flx-analytics' ), 'blue' ); // phpcs:ignore
+		echo self::kpi( __( 'Reporting sites', 'flx-analytics' ), number_format_i18n( $n ), __( 'Unique installs', 'flx-analytics' ), 'green' ); // phpcs:ignore
+		echo self::kpi( __( 'Reports', 'flx-analytics' ), number_format_i18n( $S['reports'] ), __( 'At most one per site per day', 'flx-analytics' ), 'blue' ); // phpcs:ignore
 		/* translators: %s: sayı */
-		echo self::kpi( __( 'Farklı hata', 'flx-analytics' ), number_format_i18n( $S['errors_open'] ), sprintf( __( '%s ölümcül', 'flx-analytics' ), number_format_i18n( $S['fatal_open'] ) ), 'rose' ); // phpcs:ignore
-		echo self::kpi( __( 'Hata olayı', 'flx-analytics' ), number_format_i18n( $S['events'] ), __( 'Toplam tekrar', 'flx-analytics' ), 'amber' ); // phpcs:ignore
+		echo self::kpi( __( 'Distinct errors', 'flx-analytics' ), number_format_i18n( $S['errors_open'] ), sprintf( __( '%s fatal', 'flx-analytics' ), number_format_i18n( $S['fatal_open'] ) ), 'rose' ); // phpcs:ignore
+		echo self::kpi( __( 'Error events', 'flx-analytics' ), number_format_i18n( $S['events'] ), __( 'Total occurrences', 'flx-analytics' ), 'amber' ); // phpcs:ignore
 		echo '</div>';
 		if ( ! $n ) {
-			echo '<div class="flxan-panel flxan-empty--big"><b>' . esc_html__( 'Henüz rapor yok.', 'flx-analytics' ) . '</b><p>' . esc_html__( 'Sitelerdeki FluxWP Panel bu adrese gönderir:', 'flx-analytics' ) . '</p><code>' . esc_html( self::endpoint() ) . '</code></div>';
+			echo '<div class="flxan-panel flxan-empty--big"><b>' . esc_html__( 'No reports yet.', 'flx-analytics' ) . '</b><p>' . esc_html__( 'FluxWP Panel on sites sends to this URL:', 'flx-analytics' ) . '</p><code>' . esc_html( self::endpoint() ) . '</code></div>';
 			return;
 		}
 		$usage_rows = array();
@@ -775,40 +775,40 @@ class FLXAN_Telemetry_Hub {
 				$usage_rows[ esc_html( $day . ' · ' . $platform ) ] = array( (int) $count );
 			}
 		}
-		self::bars( __( 'Mobil uygulama: günlük aktif hesaplar', 'flx-analytics' ), $usage_rows, array( __( 'UTC gün / platform', 'flx-analytics' ), __( 'İzin veren hesaplar', 'flx-analytics' ) ), 0, __( 'Henüz uygun toplam yok. Kullanıcı ve site izni gerekir; site/platform/gün başına beşten az hesap paylaşılmaz. Ülke filtresi sitenin ayarlı ülkesidir; kişilerin konumu değildir. Aynı kişi farklı sitelerde veya platformlarda tekrar sayılabilir.', 'flx-analytics' ) );
+		self::bars( __( 'Mobile app: daily active accounts', 'flx-analytics' ), $usage_rows, array( __( 'UTC day / platform', 'flx-analytics' ), __( 'Consenting accounts', 'flx-analytics' ) ), 0, __( 'No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms.', 'flx-analytics' ) );
 		echo '<div class="flxan-grid">';
 		$rows = array();
 		foreach ( $S['usage'] as $s => $c ) {
 			$top              = array_key_first( (array) ( $S['versions'][ $s ] ?? array() ) );
 			$rows[ esc_html( self::name( $s ) ) ] = array( $c, self::pct( $c, $n ), (string) $top );
 		}
-		self::bars( __( 'Eklenti kullanımı', 'flx-analytics' ), array_slice( $rows, 0, 25, true ), array( __( 'Paket', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ), __( 'Yaygın sürüm', 'flx-analytics' ) ), $n );
+		self::bars( __( 'Plugin usage', 'flx-analytics' ), array_slice( $rows, 0, 25, true ), array( __( 'Package', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ), __( 'Common version', 'flx-analytics' ) ), $n );
 		$rows = array();
 		foreach ( $S['pairs'] as $k => $c ) {
 			list( $a, $b ) = explode( '|', $k );
 			$rows[ esc_html( self::name( $a ) ) . ' + ' . esc_html( self::name( $b ) ) ] = array( $c, self::pct( $c, $n ) );
 		}
-		self::bars( __( 'Birlikte kullanılanlar', 'flx-analytics' ), $rows, array( __( 'İkili', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $n );
+		self::bars( __( 'Used together', 'flx-analytics' ), $rows, array( __( 'Pair', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ) ), $n );
 		$rows = array();
 		foreach ( $S['combos'] as $k => $c ) {
-			$names = '' === $k ? array( __( 'Yalnız FluxWP Panel', 'flx-analytics' ) ) : array_map( array( __CLASS__, 'name' ), explode( '|', $k ) );
+			$names = '' === $k ? array( __( 'FluxWP Panel only', 'flx-analytics' ) ) : array_map( array( __CLASS__, 'name' ), explode( '|', $k ) );
 			$rows[ esc_html( implode( ', ', $names ) ) . ' <small>' . esc_html( count( '' === $k ? array() : explode( '|', $k ) ) ) . '</small>' ] = array( $c, self::pct( $c, $n ) );
 		}
 		echo '<div class="flxan-wide">';
-		self::bars( __( 'En sık paket setleri', 'flx-analytics' ), $rows, array( __( 'Set (FluxWP Panel hariç)', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $n );
+		self::bars( __( 'Most common package sets', 'flx-analytics' ), $rows, array( __( 'Set (excluding FluxWP Panel)', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ) ), $n );
 		echo '</div>';
 		foreach ( array( 'php' => 'PHP', 'wp' => 'WordPress' ) as $k => $l ) {
 			$rows = array();
 			foreach ( $S[ $k ] as $v => $c ) {
 				$rows[ esc_html( $l . ' ' . $v ) ] = array( $c, self::pct( $c, $n ) );
 			}
-			self::bars( $l, $rows, array( __( 'Sürüm', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $n );
+			self::bars( $l, $rows, array( __( 'Version', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ) ), $n );
 		}
 		$rows = array();
 		foreach ( $S['locale'] as $v => $c ) {
 			$rows[ esc_html( $v ) ] = array( $c, self::pct( $c, $n ) );
 		}
-		self::bars( __( 'Site dili', 'flx-analytics' ), $rows, array( __( 'Dil', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $n );
+		self::bars( __( 'Site language', 'flx-analytics' ), $rows, array( __( 'Language', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ) ), $n );
 		if ( '' === $cc ) {
 			$rows = array();
 			foreach ( array_slice( $S['country'], 0, 15, true ) as $v => $c ) {
@@ -818,10 +818,10 @@ class FLXAN_Telemetry_Hub {
 				}
 				$rows[ $label ] = array( $c, self::pct( $c, $n ) );
 			}
-			self::bars( __( 'Ülke', 'flx-analytics' ), $rows, array( __( 'Ülke', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $n );
+			self::bars( __( 'Country', 'flx-analytics' ), $rows, array( __( 'Country', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ) ), $n );
 		}
 		echo '</div>';
-		echo '<p class="description">' . esc_html__( 'Ülke, gönderen sitenin ayarlarından gelir (WooCommerce mağaza ülkesi ya da Ayarlar › Genel saat dilimi). IP\'ye bakılmaz ve saklanmaz. Bir ülkeye tıklayınca tüm sekmeler o ülkeye süzülür.', 'flx-analytics' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Country comes from the sending site\'s settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it.', 'flx-analytics' ) . '</p>';
 	}
 
 	private static function view_errors( $range, $S, $cc = '' ) {
@@ -829,7 +829,7 @@ class FLXAN_Telemetry_Hub {
 		$plugin = isset( $_GET['p'] ) ? sanitize_key( wp_unslash( $_GET['p'] ) ) : '';
 		$type   = isset( $_GET['t'] ) ? sanitize_text_field( wp_unslash( $_GET['t'] ) ) : '';
 		if ( isset( $_GET['flxan_tm'] ) ) {
-			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Hata kaydı silindi. Yeniden olursa tekrar görünür.', 'flx-analytics' ) . '</p></div>';
+			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Error record removed. It will reappear if it happens again.', 'flx-analytics' ) . '</p></div>';
 		}
 		// phpcs:enable
 		$list = self::errors( $range, $plugin, $type, $cc );
@@ -841,26 +841,26 @@ class FLXAN_Telemetry_Hub {
 				<input type="hidden" name="r" value="<?php echo esc_attr( $range ); ?>">
 				<input type="hidden" name="c" value="<?php echo esc_attr( strtolower( $cc ) ); ?>">
 				<select name="p">
-					<option value=""><?php esc_html_e( 'Tüm paketler', 'flx-analytics' ); ?></option>
+					<option value=""><?php esc_html_e( 'All packages', 'flx-analytics' ); ?></option>
 					<?php foreach ( self::error_plugins() as $p ) : ?>
 						<option value="<?php echo esc_attr( $p ); ?>" <?php selected( $plugin, $p ); ?>><?php echo esc_html( self::name( $p ) ); ?></option>
 					<?php endforeach; ?>
 				</select>
 				<select name="t">
-					<option value=""><?php esc_html_e( 'Tüm türler', 'flx-analytics' ); ?></option>
-					<option value="fatal" <?php selected( $type, 'fatal' ); ?>><?php esc_html_e( 'Yalnız ölümcül', 'flx-analytics' ); ?></option>
+					<option value=""><?php esc_html_e( 'All types', 'flx-analytics' ); ?></option>
+					<option value="fatal" <?php selected( $type, 'fatal' ); ?>><?php esc_html_e( 'Fatal only', 'flx-analytics' ); ?></option>
 					<?php foreach ( array( 'E_WARNING', 'E_NOTICE', 'E_DEPRECATED', 'E_USER_WARNING', 'E_USER_NOTICE', 'E_USER_DEPRECATED' ) as $t ) : ?>
 						<option value="<?php echo esc_attr( $t ); ?>" <?php selected( $type, $t ); ?>><?php echo esc_html( $t ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<button class="button"><?php esc_html_e( 'Süz', 'flx-analytics' ); ?></button>
-				<span class="flxan-muted" style="margin-left:auto"><?php /* translators: %s: sayı */ echo esc_html( sprintf( __( '%s kayıt', 'flx-analytics' ), number_format_i18n( count( $list ) ) ) ); ?></span>
+				<button class="button"><?php esc_html_e( 'Filter', 'flx-analytics' ); ?></button>
+				<span class="flxan-muted" style="margin-left:auto"><?php /* translators: %s: sayı */ echo esc_html( sprintf( __( '%s records', 'flx-analytics' ), number_format_i18n( count( $list ) ) ) ); ?></span>
 			</form>
 			<?php if ( ! $list ) : ?>
-				<p class="flxan-empty"><?php esc_html_e( 'Bu aralıkta hata yok.', 'flx-analytics' ); ?></p>
+				<p class="flxan-empty"><?php esc_html_e( 'No errors in this range.', 'flx-analytics' ); ?></p>
 			<?php else : ?>
 			<div style="overflow-x:auto"><table class="flxan-table tm-err">
-				<tr><th><?php esc_html_e( 'Hata', 'flx-analytics' ); ?></th><th><?php esc_html_e( 'Paket', 'flx-analytics' ); ?></th><th class="n"><?php esc_html_e( 'Site', 'flx-analytics' ); ?></th><th class="n"><?php esc_html_e( 'Tekrar', 'flx-analytics' ); ?></th><th class="n tm-hide-m"><?php esc_html_e( 'Son', 'flx-analytics' ); ?></th><th class="n"></th></tr>
+				<tr><th><?php esc_html_e( 'Error', 'flx-analytics' ); ?></th><th><?php esc_html_e( 'Package', 'flx-analytics' ); ?></th><th class="n"><?php esc_html_e( 'Site', 'flx-analytics' ); ?></th><th class="n"><?php esc_html_e( 'Count', 'flx-analytics' ); ?></th><th class="n tm-hide-m"><?php esc_html_e( 'Last', 'flx-analytics' ); ?></th><th class="n"></th></tr>
 				<?php foreach ( $list as $e ) : ?>
 					<?php
 					$fatal = in_array( $e['t'], self::FATAL, true );
@@ -886,19 +886,19 @@ class FLXAN_Telemetry_Hub {
 							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 								<input type="hidden" name="action" value="flxan_tm_forget"><input type="hidden" name="h" value="<?php echo esc_attr( $e['h'] ); ?>">
 								<?php wp_nonce_field( 'flxan_tm_forget' ); ?>
-								<button class="button button-small" title="<?php esc_attr_e( 'Çözüldü olarak kaldır', 'flx-analytics' ); ?>"><?php esc_html_e( 'Çözüldü', 'flx-analytics' ); ?></button>
+								<button class="button button-small" title="<?php esc_attr_e( 'Remove as resolved', 'flx-analytics' ); ?>"><?php esc_html_e( 'Resolved', 'flx-analytics' ); ?></button>
 							</form>
 						</td>
 					</tr>
 				<?php endforeach; ?>
 			</table></div>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxan-more" onsubmit="return confirm('<?php echo esc_js( __( 'Tüm hata kayıtları silinsin mi?', 'flx-analytics' ) ); ?>')">
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxan-more" onsubmit="return confirm('<?php echo esc_js( __( 'Delete all error records?', 'flx-analytics' ) ); ?>')">
 				<input type="hidden" name="action" value="flxan_tm_forget"><input type="hidden" name="h" value="all">
 				<?php wp_nonce_field( 'flxan_tm_forget' ); ?>
-				<button class="button-link" style="color:#b32d2e"><?php esc_html_e( 'Tüm hataları temizle', 'flx-analytics' ); ?></button>
+				<button class="button-link" style="color:#b32d2e"><?php esc_html_e( 'Clear all errors', 'flx-analytics' ); ?></button>
 			</form>
 			<?php endif; ?>
-			<p class="description"><?php esc_html_e( 'Mesajlardan sunucu yolları, alan adı, URL, e-posta ve IP silinmiş olarak gelir. Aynı paket, sürüm, dosya ve satırdaki aynı hata tek kayıttır; "Site" kaç farklı kurulumda görüldüğüdür.', 'flx-analytics' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Server paths, domain, URLs, emails and IPs are removed from messages. The same error in the same package, version, file and line is one record; "Sites" is how many different installs saw it.', 'flx-analytics' ); ?></p>
 		</div>
 		<?php
 	}
@@ -907,14 +907,14 @@ class FLXAN_Telemetry_Hub {
 		$O    = $S['ob'];
 		$runs = $O['runs'];
 		echo '<div class="flxan-cards">';
-		echo self::kpi( __( 'Sihirbaz açılışı', 'flx-analytics' ), number_format_i18n( $runs ), __( 'Kurulum başına son çalıştırma', 'flx-analytics' ), 'blue' ); // phpcs:ignore
-		echo self::kpi( __( 'Bitiren', 'flx-analytics' ), self::pct( $O['out']['done'], $runs ), number_format_i18n( $O['out']['done'] ) . ' ' . __( 'site', 'flx-analytics' ), 'green' ); // phpcs:ignore
-		echo self::kpi( __( 'Atlayan', 'flx-analytics' ), self::pct( $O['out']['skip'], $runs ), number_format_i18n( $O['out']['skip'] ) . ' ' . __( 'site', 'flx-analytics' ), 'amber' ); // phpcs:ignore
+		echo self::kpi( __( 'Wizard runs', 'flx-analytics' ), number_format_i18n( $runs ), __( 'Latest run per install', 'flx-analytics' ), 'blue' ); // phpcs:ignore
+		echo self::kpi( __( 'Finished', 'flx-analytics' ), self::pct( $O['out']['done'], $runs ), number_format_i18n( $O['out']['done'] ) . ' ' . __( 'sites', 'flx-analytics' ), 'green' ); // phpcs:ignore
+		echo self::kpi( __( 'Skipped', 'flx-analytics' ), self::pct( $O['out']['skip'], $runs ), number_format_i18n( $O['out']['skip'] ) . ' ' . __( 'sites', 'flx-analytics' ), 'amber' ); // phpcs:ignore
 		/* translators: %s: dakika */
-		echo self::kpi( __( 'Yarıda bırakan', 'flx-analytics' ), self::pct( $O['out']['left'], $runs ), $O['median'] ? sprintf( __( 'Bitirenlerde ortanca süre %s dk', 'flx-analytics' ), number_format_i18n( max( 1, round( $O['median'] / 60 ) ) ) ) : '—', 'rose' ); // phpcs:ignore
+		echo self::kpi( __( 'Abandoned', 'flx-analytics' ), self::pct( $O['out']['left'], $runs ), $O['median'] ? sprintf( __( 'Median time for finishers: %s min', 'flx-analytics' ), number_format_i18n( max( 1, round( $O['median'] / 60 ) ) ) ) : '—', 'rose' ); // phpcs:ignore
 		echo '</div>';
 		if ( ! $runs ) {
-			echo '<div class="flxan-panel flxan-empty--big"><b>' . esc_html__( 'Henüz sihirbaz verisi yok.', 'flx-analytics' ) . '</b><p>' . esc_html__( 'FluxWP Panel 1.0.11 ve üstü, sihirbaz bitince ya da kapatılınca son adımı ve seçimleri gönderir.', 'flx-analytics' ) . '</p></div>';
+			echo '<div class="flxan-panel flxan-empty--big"><b>' . esc_html__( 'No wizard data yet.', 'flx-analytics' ) . '</b><p>' . esc_html__( 'FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed.', 'flx-analytics' ) . '</p></div>';
 			return;
 		}
 		echo '<div class="flxan-grid">';
@@ -923,14 +923,14 @@ class FLXAN_Telemetry_Hub {
 		foreach ( $O['reach'] as $st => $c ) {
 			$rows[ esc_html( self::step_name( $st ) ) ] = array( $c, self::pct( $c, $runs ) );
 		}
-		self::bars( __( 'Adımlara ulaşan', 'flx-analytics' ), $rows, array( __( 'Adım', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $runs );
+		self::bars( __( 'Reached each step', 'flx-analytics' ), $rows, array( __( 'Steps', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ) ), $runs );
 		echo '</div>';
 		$rows = array();
 		foreach ( $O['stop'] as $k => $c ) {
 			list( $st, $out ) = explode( '|', $k );
-			$rows[ esc_html( self::step_name( $st ) ) . ' <small>' . esc_html( 'skip' === $out ? __( 'atladı', 'flx-analytics' ) : __( 'kapattı', 'flx-analytics' ) ) . '</small>' ] = array( $c, self::pct( $c, $runs ) );
+			$rows[ esc_html( self::step_name( $st ) ) . ' <small>' . esc_html( 'skip' === $out ? __( 'skipped', 'flx-analytics' ) : __( 'closed', 'flx-analytics' ) ) . '</small>' ] = array( $c, self::pct( $c, $runs ) );
 		}
-		self::bars( __( 'Nerede bıraktılar', 'flx-analytics' ), $rows, array( __( 'Son adım', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $runs, __( 'Herkes bitirdi.', 'flx-analytics' ) );
+		self::bars( __( 'Where they stopped', 'flx-analytics' ), $rows, array( __( 'Last step', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ) ), $runs, __( 'Everyone finished.', 'flx-analytics' ) );
 		$slugs = array_unique( array_merge( array_keys( $O['picked'] ), array_keys( $O['dropped'] ), array_keys( $O['rec_off'] ) ) );
 		$rows  = array();
 		foreach ( $slugs as $s ) {
@@ -944,14 +944,14 @@ class FLXAN_Telemetry_Hub {
 			}
 		);
 		echo '<div class="flxan-wide">';
-		self::bars( __( 'Kart seçimleri', 'flx-analytics' ), $rows, array( __( 'Kart', 'flx-analytics' ), __( 'Seçen', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ), __( 'Seçip vazgeçen', 'flx-analytics' ), __( 'Öneriyi kaldıran', 'flx-analytics' ) ), $runs );
+		self::bars( __( 'Card choices', 'flx-analytics' ), $rows, array( __( 'Card', 'flx-analytics' ), __( 'Picked', 'flx-analytics' ), __( 'Share', 'flx-analytics' ), __( 'Picked then removed', 'flx-analytics' ), __( 'Removed suggestion', 'flx-analytics' ) ), $runs );
 		echo '</div>';
-		foreach ( array( 'preset' => __( 'Ön ayar (bitirenler)', 'flx-analytics' ), 'style' => __( 'Renk stili (bitirenler)', 'flx-analytics' ) ) as $k => $l ) {
+		foreach ( array( 'preset' => __( 'Preset (finishers)', 'flx-analytics' ), 'style' => __( 'Colour style (finishers)', 'flx-analytics' ) ) as $k => $l ) {
 			$rows = array();
 			foreach ( $O[ $k ] as $v => $c ) {
 				$rows[ esc_html( $v ) ] = array( $c, self::pct( $c, $O['out']['done'] ) );
 			}
-			self::bars( $l, $rows, array( __( 'Seçim', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Pay', 'flx-analytics' ) ), $O['out']['done'] );
+			self::bars( $l, $rows, array( __( 'Choice', 'flx-analytics' ), __( 'Site', 'flx-analytics' ), __( 'Share', 'flx-analytics' ) ), $O['out']['done'] );
 		}
 		echo '</div>';
 	}

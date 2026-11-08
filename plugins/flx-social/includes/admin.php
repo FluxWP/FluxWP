@@ -9,7 +9,7 @@ add_action(
 	'admin_menu',
 	function () {
 		$cap   = current_user_can( FLXSM_CAP_POST ) ? FLXSM_CAP_POST : FLXSM_CAP_MANAGE;
-		$title = __( 'Sosyal Medya', 'flx-social' );
+		$title = __( 'Social Media', 'flx-social' );
 		$n     = flxsm_can_publish() ? (int) ( flxsm_counts()['pending'] ?? 0 ) : 0;
 		$menu  = $title . ( $n ? ' <span class="awaiting-mod count-' . $n . '"><span class="pending-count">' . number_format_i18n( $n ) . '</span></span>' : '' );
 		add_menu_page( $title, $menu, $cap, 'flx-social', 'flxsm_render_app', 'none', 12 );
@@ -69,7 +69,7 @@ add_action(
 
 function flxsm_render_app() {
 	echo '<script>document.documentElement.classList.add("flxsm-lock");</script>';
-	echo '<div id="flxsm-app" class="flxsm"><noscript>' . esc_html__( 'Sosyal Medya için JavaScript gerekli.', 'flx-social' ) . '</noscript></div>';
+	echo '<div id="flxsm-app" class="flxsm"><noscript>' . esc_html__( 'Social Media requires JavaScript.', 'flx-social' ) . '</noscript></div>';
 	// Tema div'in hemen ardından, ilk boyamadan önce (app.js yüklenene kadar açık tema görünmesin).
 	printf( "<script>(function(d,w){var m=null;try{m=JSON.parse(localStorage.getItem('flxsm.theme')||'null')}catch(e){}m=m||%s;d.getElementById('flxsm-app').setAttribute('data-theme',m==='dark'||(m==='auto'&&!!w.matchMedia&&w.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light')})(document,window)</script>", wp_json_encode( function_exists( 'flxa_user_mode' ) ? flxa_user_mode() : 'auto' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
 }
@@ -96,7 +96,7 @@ add_filter(
 add_filter(
 	'plugin_action_links_' . plugin_basename( FLXSM_FILE ),
 	function ( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-social' ) ) . '">' . esc_html__( 'Sosyal Medya', 'flx-social' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( admin_url( 'admin.php?page=flx-social' ) ) . '">' . esc_html__( 'Social Media', 'flx-social' ) . '</a>' );
 		return $links;
 	}
 );

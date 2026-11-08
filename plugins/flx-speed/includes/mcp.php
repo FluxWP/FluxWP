@@ -81,7 +81,7 @@ function flxp_tools() {
 	};
 
 	$tools['flxp_summary'] = array(
-		'title'       => __( 'Performans özeti', 'flx-speed' ),
+		'title'       => __( 'Performance summary', 'flx-speed' ),
 		'description' => 'Flux Speed: son X saatte kaydedilen isteklerin özeti: sayı, ortalama/p50/p95/en uzun süre, işaret sayıları (slow, error, fatal, 5xx, http_fail, slow_query), en yavaş adresler (admin-ajax action ile ayrılır) ve sorgu süresine göre en ağır eklenti/tema. by_type: tür başına (front = ziyaretçi sayfası; cron/ajax/rest = çoğunlukla arka plan) süreler. cron_hooks: en ağır zamanlanmış görevler. Yalnız yavaş/hatalı/örneklenen istekler kaydedilir ve önbellekten gelen sayfalar PHP\'ye hiç uğramaz: "kayıtların çoğu yavaş" sitenin çoğu yavaş demek değildir (note alanını oku). "Site neden yavaş / hata var mı" sorularına buradan başla.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -95,7 +95,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_requests'] = array(
-		'title'       => __( 'Kayıtlı istekleri listele', 'flx-speed' ),
+		'title'       => __( 'List recorded requests', 'flx-speed' ),
 		'description' => 'Flux Speed kayıtları (ayrıntısız satırlar). Süz: flag (slow, error, fatal, 5xx, http_fail, slow_query, db_error, log_error, sample, profile), type (front, admin, ajax, rest, cron), url (adreste geçen metin), min_ms. order: new | slow. Ayrıntı için flxp_request.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -130,7 +130,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_request'] = array(
-		'title'       => __( 'Kayıt ayrıntısı', 'flx-speed' ),
+		'title'       => __( 'Record details', 'flx-speed' ),
 		'description' => 'Tek kaydın ayrıntısı. sections boşsa: milestones, queries (en yavaş 25), dupes, components, php, wrong, http, logs. Diğerleri: template, request, caps, lang, transients, hooks.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -152,7 +152,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_slow_queries'] = array(
-		'title'       => __( 'Yavaş ve hatalı sorgular', 'flx-speed' ),
+		'title'       => __( 'Slow and failed queries', 'flx-speed' ),
 		'description' => 'Son X saatin ayrıntılı kayıtlarından eşik üstü ve hatalı SQL sorguları; değerler soyutlanıp gruplanır (adet, ortalama, en uzun, bileşen, çağıran fonksiyon, örnek kayıt id).',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -172,7 +172,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_php_errors'] = array(
-		'title'       => __( 'PHP hataları', 'flx-speed' ),
+		'title'       => __( 'PHP errors', 'flx-speed' ),
 		'description' => 'Son X saatte kaydedilen PHP hataları gruplanmış: seviye, mesaj, dosya:satır, sorumlu eklenti/tema, kaç istekte görüldü, çağrı yığını. min_level: fatal | warning (varsayılan) | notice | deprecated.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -190,7 +190,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_http_calls'] = array(
-		'title'       => __( 'Dış HTTP istekleri', 'flx-speed' ),
+		'title'       => __( 'Outgoing HTTP requests', 'flx-speed' ),
 		'description' => 'Sitenin dışarıya yaptığı istekler (Evolution, OpenRouter, Gotenberg, iyzico, güncelleme sunucusu...) uç başına gruplanmış: adet, başarısız, ortalama/en uzun süre, son hata. failed_only ile yalnız başarısızlar.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -208,7 +208,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_environment'] = array(
-		'title'       => __( 'Sunucu ve WordPress ortamı', 'flx-speed' ),
+		'title'       => __( 'Server and WordPress environment', 'flx-speed' ),
 		'description' => 'PHP sürümü/limitleri/uzantıları, veritabanı sürümü ve boyutu, autoload boyutu, WordPress sabitleri (WP_DEBUG, DISABLE_WP_CRON...), gecikmiş cron sayısı, etkin eklentiler ve sürümleri, sunucu yazılımı.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -219,7 +219,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_server'] = array(
-		'title'       => __( 'Sunucu durumu', 'flx-speed' ),
+		'title'       => __( 'Server status', 'flx-speed' ),
 		'description' => 'Anlık sunucu ölçüleri: işlemci yükü (1/5/15 dk, çekirdek sayısı, yüzde), RAM kullanımı, disk doluluğu, çalışma süresi; PHP limitleri, OPcache (isabet oranı, bellek), önbellekler (nesne önbelleği, LiteSpeed, APCu, Redis), sunucu yazılımı/IP/port. live.scope: account = değerler hesabın cgroup sınırına göre; shared = paylaşımlı hosting, hesap sınırı okunamadı (CPU/RAM null; live.machine tüm hesapların ortak makinesidir, sitenin kullanımı DEĞİL, öyle raporlama); machine = sunucu siteye ait. live.disk_usage: hesap klasörü dosyaları + veritabanı (bayt), kota Ayarlar\'dan.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -230,7 +230,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_database'] = array(
-		'title'       => __( 'Veritabanı durumu', 'flx-speed' ),
+		'title'       => __( 'Database status', 'flx-speed' ),
 		'description' => 'MySQL/MariaDB değişkenleri (max_connections, buffer pool, max_allowed_packet...), durum (uptime, bağlantılar, yavaş sorgu sayısı, saniyede sorgu, buffer pool isabeti, diske düşen geçici tablo), toplam veri/indeks/boş alan, temizlik adayları (süresi dolmuş transient, revizyon, otomatik taslak, spam). with_tables=true ile tablo tablo boyutlar (büyükten küçüğe, en fazla 50).',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -251,7 +251,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_autoload'] = array(
-		'title'       => __( 'Autoload seçenekleri', 'flx-speed' ),
+		'title'       => __( 'Autoloaded options', 'flx-speed' ),
 		'description' => 'Her istekte yüklenen (autoload) seçeneklerin toplam boyutu ve en büyükleri, tahmini sahibi (eklenti) ile. 800 KB üstü yavaşlatır.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -265,7 +265,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_cron'] = array(
-		'title'       => __( 'Zamanlanmış görevler', 'flx-speed' ),
+		'title'       => __( 'Scheduled events', 'flx-speed' ),
 		'description' => 'WordPress cron: DISABLE_WP_CRON, cron\'un en son ne zaman çalıştığı (last_seen, unix), görev sayısı, gecikmiş görevler ve görev listesi (hook, next unix, in_s saniye, schedule). overdue_only ile yalnız gecikenler. timings: wp-cron.php isteklerinde ölçülen kanca başına süre (bir günden eski özet bir sonraki çalışmada sıfırlanır; last_at unix; runs, avg_ms, max_ms, last_ms, total_ms, component = hangi eklenti, cut = süre dolup kesildi). "WP-Cron yavaş" denince hangi görevin suçlu olduğunu buradan bul.',
 		'readonly'    => true,
 		'cap'         => $cap,
@@ -292,7 +292,7 @@ function flxp_tools() {
 	);
 
 	$tools['flxp_profile_url'] = array(
-		'title'       => __( 'Sayfayı ölç', 'flx-speed' ),
+		'title'       => __( 'Profile page', 'flx-speed' ),
 		'description' => 'Sitedeki bir adresi ziyaretçi gibi (önbelleksiz) açar, o isteği tüm ayrıntıyla (sorgular, HTTP, hatalar, zaman çizelgesi) kaydeder ve kaydı döndürür. Yalnız bu sitenin adresleri; yol ("/bagis/") ya da tam adres.',
 		'readonly'    => true,
 		'cap'         => $cap,

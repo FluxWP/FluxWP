@@ -1,0 +1,1211 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Pages"
+msgstr "ページ"
+
+msgid "Recent posts"
+msgstr "最近の投稿"
+
+msgid "Products"
+msgstr "製品"
+
+msgid "Optional"
+msgstr "オプション"
+
+msgid "Sitemap"
+msgstr "サイトマップ"
+
+msgid "List of all public pages"
+msgstr "すべての公開ページのリスト"
+
+msgid "RSS feed"
+msgstr "RSSフィード"
+
+msgid "Searches the site and opens the results page."
+msgstr "サイトを検索し、結果ページを開きます。"
+
+msgid "Words to search for"
+msgstr "検索する言葉"
+
+msgid "Unknown fix."
+msgstr "不明な修正。"
+
+msgid "Turn on llms.txt"
+msgstr "llms.txtをオンにする"
+
+msgid "Flux SEO builds /llms.txt from the site name, description, menu and recent content."
+msgstr "Flux SEO は、サイト名、説明、メニュー、最近のコンテンツから /llms.txt を構築します。"
+
+msgid "Turn on the WebMCP search tool"
+msgstr "WebMCP検索ツールをオンにする"
+
+msgid "Adds toolname/tooldescription to the search form so browser agents see it as a tool."
+msgstr "ツール名/ツールの説明を検索フォームに追加して、ブラウザー エージェントがツールとして認識できるようにします。"
+
+msgid "Turn on security headers"
+msgstr "セキュリティヘッダーをオンにする"
+
+msgid "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Do not turn on if the site is embedded in other sites with an iframe."
+msgstr "X-Frame-Options: SAMEORIGIN、COOP 同一オリジン許可ポップアップおよび基本 CSP (object-src 'none'、base-uri 'self'、frame-ancestors 'self')。サイトが iframe を使用して他のサイトに埋め込まれている場合はオンにしないでください。"
+
+msgid "HSTS includeSubDomains"
+msgstr "HSTS にはサブドメインが含まれます"
+
+msgid "If every subdomain is HTTPS, HSTS also covers subdomains."
+msgstr "すべてのサブドメインが HTTPS の場合、HSTS はサブドメインもカバーします。"
+
+msgid "Turned on. Run the site audit again."
+msgstr "オンになりました。サイト監査を再度実行します。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Organization and social"
+msgstr "組織と社会"
+
+msgid "SEO check"
+msgstr "SEOチェック"
+
+msgid "Site audit"
+msgstr "現場監査"
+
+msgid "AI (MCP)"
+msgstr "AI(MCP)"
+
+msgid "llms.txt follows recommendations"
+msgstr "llms.txt は推奨事項に従います"
+
+msgid "Accessibility tree is well-formed"
+msgstr "アクセシビリティ ツリーが適切に形成されている"
+
+msgid "Forms are WebMCP tools"
+msgstr "フォームは WebMCP ツールです"
+
+msgid "Low layout shift (CLS)"
+msgstr "低レイアウトシフト (CLS)"
+
+msgid "On-site"
+msgstr "オンサイト"
+
+msgid "PageSpeed mobile"
+msgstr "PageSpeed モバイル"
+
+msgid "PageSpeed desktop"
+msgstr "PageSpeed デスクトップ"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google's real Lighthouse result."
+msgstr "PageSpeed Insights の 5 つのセクション (パフォーマンス、アクセシビリティ、ベスト プラクティス、SEO、エージェント ブラウジング) を優先順位別に示します。オンサイト監査にはキーは必要なく、毎日自動的に実行されます。 PageSpeed を実行すると、Google の実際の Lighthouse 結果が追加されます。"
+
+msgid "On-site audit: %1$s · %2$s"
+msgstr "現場監査:%1$s・%2$s"
+
+msgid "No audit has run yet."
+msgstr "監査はまだ実行されていません。"
+
+msgid "Address to audit"
+msgstr "監査先の住所"
+
+msgid "On-site audit"
+msgstr "現場監査"
+
+msgid "Measure with PageSpeed"
+msgstr "PageSpeedで測定する"
+
+msgid "Mobile"
+msgstr "モバイル"
+
+msgid "Desktop"
+msgstr "デスクトップ"
+
+msgid "No PageSpeed run yet. Press \"Measure with PageSpeed\" (mobile + desktop takes about 1 minute)."
+msgstr "PageSpeed はまだ実行されていません。 「PageSpeedで測定」を押します(モバイル+デスクトップでは約1分かかります)。"
+
+msgid "Agentic browsing"
+msgstr "エージェントブラウジング"
+
+msgid "MCP server on"
+msgstr "MCPサーバーがオン"
+
+msgid "MCP server off"
+msgstr "MCPサーバーがオフになっています"
+
+msgid "Recommendations"
+msgstr "推奨事項"
+
+msgid "Filter by priority"
+msgstr "優先度によるフィルター"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Section"
+msgstr "セクション"
+
+msgid "All sections"
+msgstr "すべてのセクション"
+
+msgid "Start the audit; recommendations are listed here by priority."
+msgstr "監査を開始します。推奨事項は優先度別にここにリストされています。"
+
+msgid "No recommendations. All good."
+msgstr "推奨事項はありません。大丈夫です。"
+
+msgid "How to fix:"
+msgstr "修正方法:"
+
+msgid "Where to fix: %s"
+msgstr "修正箇所:%s"
+
+msgid "Fix"
+msgstr "修正"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "PageSpeed Insights API key"
+msgstr "PageSpeed Insights API キー"
+
+msgid "Saved (type to replace)"
+msgstr "保存済み (置き換える文字を入力)"
+
+msgid "Delete key"
+msgstr "削除キー"
+
+msgid "Optional but recommended: the keyless quota is shared and runs out quickly. In Google Cloud Console › APIs, enable \"PageSpeed Insights API\" and create a free key."
+msgstr "オプションですが推奨: キーレス クォータは共有されるため、すぐに使い果たされます。 Google Cloud Console › API で、「PageSpeed Insights API」を有効にし、無料キーを作成します。"
+
+msgid "Generate /llms.txt (site name, description, menu pages, recent content)"
+msgstr "/llms.txt を生成 (サイト名、説明、メニュー ページ、最近のコンテンツ)"
+
+msgid "llms.txt intro text (optional)"
+msgstr "llms.txt の紹介テキスト (オプション)"
+
+msgid "E.g. who your organization is, what it does, which pages agents should read first."
+msgstr "例:あなたの組織が誰なのか、何をしているのか、担当者が最初に読むべきページは何か。"
+
+msgid "WebMCP: expose the search form to browser agents as a tool"
+msgstr "WebMCP: 検索フォームをツールとしてブラウザー エージェントに公開します。"
+
+msgid "Security headers"
+msgstr "セキュリティヘッダー"
+
+msgid "Clickjacking protection (X-Frame-Options: SAMEORIGIN, frame-ancestors 'self')"
+msgstr "クリックジャッキング保護 (X-Frame-Options: SAMEORIGIN、frame-ancestors 'self')"
+
+msgid "Origin isolation (Cross-Origin-Opener-Policy: same-origin-allow-popups)"
+msgstr "オリジンの分離 (Cross-Origin-Opener-Policy: Same-origin-allow-popups)"
+
+msgid "Basic CSP (object-src 'none'; base-uri 'self'; upgrade-insecure-requests)"
+msgstr "基本 CSP (object-src 'none'、base-uri 'self'、upgrade-insecure-requests)"
+
+msgid "HSTS covers subdomains (includeSubDomains)"
+msgstr "HSTS はサブドメインをカバーします (SubDomains を含む)"
+
+msgid "HSTS preload (takes months to undo; every subdomain must be HTTPS)"
+msgstr "HSTS プリロード (元に戻すには数か月かかります。すべてのサブドメインは HTTPS である必要があります)"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "New site build guide"
+msgstr "新しいサイト構築ガイド"
+
+msgid "Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool."
+msgstr "新しいページ、テーマ、またはプリセットを作成するときの SEO、パフォーマンス、アクセシビリティ、セキュリティ、エージェントの準備に関するルールとチェックリスト。 AI エージェントは MCP ツール flxseo_site_build_guide を使用して同じガイドを取得し、Flux AI チャットはそれをツールとして取得します。"
+
+msgid "Download Turkish (.md)"
+msgstr "トルコ語 (.md) をダウンロード"
+
+msgid "Download English (.md)"
+msgstr "英語 (.md) をダウンロード"
+
+msgid "On-site audit running…"
+msgstr "オンサイト監査が実行中..."
+
+msgid "Measuring PageSpeed mobile (30–40 s)…"
+msgstr "モバイルの PageSpeed を測定中 (30 ~ 40 秒)..."
+
+msgid "Measuring PageSpeed desktop…"
+msgstr "デスクトップの PageSpeed を測定中..."
+
+msgid "Done, reloading…"
+msgstr "完了、リロード中..."
+
+msgid "Failed:"
+msgstr "失敗しました:"
+
+msgid "You do not have permission."
+msgstr "許可がありません。"
+
+msgid "Saved."
+msgstr "保存されました。"
+
+msgid "Turned on and the audit was refreshed. If a page cache (LiteSpeed) is on, run Purge All."
+msgstr "オンにすると監査が更新されました。ページ キャッシュ (LiteSpeed) がオンになっている場合は、「すべてパージ」を実行します。"
+
+msgid "Critical"
+msgstr "クリティカル"
+
+msgid "High"
+msgstr "高"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "Low"
+msgstr "低い"
+
+msgid "Performance"
+msgstr "パフォーマンス"
+
+msgid "Accessibility"
+msgstr "アクセシビリティ"
+
+msgid "Best practices"
+msgstr "ベストプラクティス"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Theme / preset"
+msgstr "テーマ/プリセット"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "Server"
+msgstr "サーバー"
+
+msgid "Flux SEO (one click)"
+msgstr "Flux SEO (ワンクリック)"
+
+msgid "WordPress setting"
+msgstr "ワードプレスの設定"
+
+msgid "Home page does not return a successful status code"
+msgstr "ホームページが成功ステータス コードを返さない"
+
+msgid "The page must return 200. It may be maintenance mode, a redirect loop or a PHP error; check System Check and the error log."
+msgstr "ページは 200 を返す必要があります。メンテナンス モード、リダイレクト ループ、または PHP エラーである可能性があります。システムチェックとエラーログを確認してください。"
+
+msgid "Page is blocked from search engines"
+msgstr "ページは検索エンジンからブロックされています"
+
+msgid "Untick Settings › Reading › \"Discourage search engines from indexing this site\" and turn off noindex in the page's own SEO panel."
+msgstr "設定 › 読書 › 「検索エンジンによるこのサイトのインデックス作成を禁止する」のチェックを外し、ページ独自の SEO パネルで noindex をオフにします。"
+
+msgid "robots.txt blocks the whole site"
+msgstr "robots.txt がサイト全体をブロックする"
+
+msgid "The robots.txt file in the site root must not have \"Disallow: /\" under \"User-agent: *\". Delete or fix the file; WordPress generates its own robots.txt."
+msgstr "サイト ルートの robots.txt ファイルの「User-agent: *」の下に「Disallow: /」を含めることはできません。ファイルを削除または修正します。 WordPress は独自の robots.txt を生成します。"
+
+msgid "Page has no <title>"
+msgstr "ページに<title>がありません"
+
+msgid "The theme must declare add_theme_support( 'title-tag' ); fill in the home title in SEO › General."
+msgstr "テーマは add_theme_support( 'title-tag' ); を宣言する必要があります。 SEO › 一般に家のタイトルを入力します。"
+
+msgid "Page title is long"
+msgstr "ページタイトルが長い"
+
+msgid "Keep the title around 60 characters; Google cuts the rest."
+msgstr "タイトルは 60 文字程度にしてください。 Googleは残りをカットします。"
+
+msgid "No meta description"
+msgstr "メタディスクリプションなし"
+
+msgid "Turn on SEO output and write the home description (150–160 characters)."
+msgstr "SEO 出力をオンにして、家の説明 (150 ~ 160 文字) を書きます。"
+
+msgid "Canonical link missing or duplicated"
+msgstr "正規リンクが見つからないか重複しています"
+
+msgid "Each page needs exactly one rel=canonical. If another plugin or the theme also adds one, turn one off."
+msgstr "各ページには rel=canonical が 1 つだけ必要です。別のプラグインまたはテーマでもプラグインが追加されている場合は、いずれかをオフにします。"
+
+msgid "No hreflang on a multilingual site"
+msgstr "多言語サイトには hreflang がありません"
+
+msgid "With Flux Lang active, language versions must be linked with hreflang; check the language pairs in Flux Lang settings."
+msgstr "Flux Lang がアクティブな場合、言語バージョンを hreflang にリンクする必要があります。 Flux Lang 設定で言語ペアを確認してください。"
+
+msgid "Main heading (H1) missing or repeated"
+msgstr "主見出し (H1) が欠落しているか重複している"
+
+msgid "Each page needs one H1 that names the topic; subheadings are H2/H3."
+msgstr "各ページには、トピックに名前を付ける H1 が 1 つ必要です。小見出しは H2/H3 です。"
+
+msgid "Structured data (JSON-LD) missing or broken"
+msgstr "構造化データ (JSON-LD) が欠落しているか壊れています"
+
+msgid "With Flux SEO output on, Organization, WebSite and Breadcrumb schema are added. Find the block or plugin that outputs broken JSON-LD."
+msgstr "Flux SEO 出力をオンにすると、組織、Web サイト、およびパンくずリストのスキーマが追加されます。壊れた JSON-LD を出力するブロックまたはプラグインを見つけます。"
+
+msgid "Link texts are not descriptive"
+msgstr "リンクテキストが説明的ではない"
+
+msgid "Write text that names the target instead of \"click here\", \"more\", \"here\" (e.g. \"See donation options\")."
+msgstr "「ここをクリック」、「もっと見る」、「ここ」ではなく、ターゲットの名前を示すテキストを書きます (例: 「寄付オプションを参照」)。"
+
+msgid "More than one post with the same title"
+msgstr "同じタイトルの複数の投稿"
+
+msgid "Delete the duplicate (usually the address ending in -2) or redirect it to the original; give different titles if both are needed. When links with the same text go to different addresses, the \"Identical links have the same purpose\" audit also fails."
+msgstr "重複したアドレス (通常は -2 で終わるアドレス) を削除するか、元のアドレスにリダイレクトします。両方が必要な場合は、別のタイトルを付けます。同じテキストのリンクが異なるアドレスに移動する場合、「同一のリンクは同じ目的を持っている」監査も失敗します。"
+
+msgid "WordPress version is visible on the page"
+msgstr "WordPressのバージョンがページに表示されます"
+
+msgid "The meta generator tag reveals the version. The theme should call remove_action( 'wp_head', 'wp_generator' ); Flux SEO removes it when security headers are on."
+msgstr "メタ ジェネレーター タグによってバージョンがわかります。テーマは、remove_action( 'wp_head', 'wp_generator' ); を呼び出す必要があります。 Flux SEO は、セキュリティ ヘッダーがオンの場合にこれを削除します。"
+
+msgid "Zoom is blocked (user-scalable=no / maximum-scale)"
+msgstr "ズームはブロックされています (user-scalable=no / minimum-scale)"
+
+msgid "Remove user-scalable=no and maximum-scale=1 from the viewport tag: <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">. Users with low vision cannot zoom; the Accessibility score drops directly."
+msgstr "user-scalable=no と minimum-scale=1 をビューポート タグ<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">から削除します。視力の低いユーザーはズームできません。アクセシビリティスコアは直接低下します。"
+
+msgid "No viewport tag"
+msgstr "ビューポートタグがありません"
+
+msgid "The theme must add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> to <head>; otherwise the page opens at desktop width on mobile."
+msgstr "テーマでは<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">を<head>に追加する必要があります。それ以外の場合、ページはモバイルではデスクトップの幅で開きます。"
+
+msgid "ARIA role is missing required children"
+msgstr "ARIA ロールに必要な子がありません"
+
+msgid "E.g. role=\"tablist\" may only contain role=\"tab\" elements. Use <div role=\"tablist\"><button role=\"tab\"> instead of <ol role=\"tablist\"><li><button role=\"tab\">, or give the li elements role=\"presentation\". The accessibility tree breaks and Lighthouse also lowers the Agentic Browsing score."
+msgstr "例えば。 role=\"tablist\" には、role=\"tab\" 要素のみを含めることができます。<ol role=\"tablist\"><li><button role=\"tab\">の代わりに<div role=\"tablist\"><button role=\"tab\">を使用するか、 li 要素に role=\"presentation\" を与えます。アクセシビリティ ツリーが壊れ、Lighthouse によってエージェント ブラウジング スコアも低下します。"
+
+msgid "ARIA role is not inside its required parent"
+msgstr "ARIA ロールが必要な親内にありません"
+
+msgid "role=\"tab\" must sit directly inside role=\"tablist\", role=\"option\" inside role=\"listbox\". Remove the li/div elements in between or give them role=\"presentation\"."
+msgstr "role=\"tab\" は role=\"tablist\" 内に直接配置する必要があり、role=\"option\" は role=\"listbox\" 内に配置する必要があります。間にある li/div 要素を削除するか、それらに role=\"presentation\" を与えます。"
+
+msgid "List items (<li>) are not inside a list"
+msgstr "リスト項目 (<li>) がリスト内にありません"
+
+msgid "<li> may only sit inside <ul>, <ol> or <menu>, and the parent list must not get a non-list role (e.g. <ol role=\"tablist\">)."
+msgstr "<li>は<ul>、<ol>、または<menu>内にのみ配置でき、親リストは非リストの役割 (例:<ol role=\"tablist\">) を取得してはなりません。"
+
+msgid "Images without alt text"
+msgstr "代替テキストのない画像"
+
+msgid "Give every meaningful image alt text that describes it; decorative images get alt=\"\". Fill in alt text in the media library or turn on SEO › General › Images."
+msgstr "意味のあるすべての画像に、それを説明する代替テキストを付けます。装飾画像は alt=\"\" を取得します。メディア ライブラリに代替テキストを入力するか、SEO › 一般 › 画像をオンにします。"
+
+msgid "Links without a name"
+msgstr "名前のないリンク"
+
+msgid "Add aria-label or hidden text (screen-reader-text) to icon-only links."
+msgstr "aria-label または隠しテキスト (screen-reader-text) をアイコンのみのリンクに追加します。"
+
+msgid "Buttons without a name"
+msgstr "名前のないボタン"
+
+msgid "Give icon buttons an aria-label (e.g. \"Open menu\"). Agents and screen readers cannot tell what the button does."
+msgstr "アイコンボタンに aria ラベルを付けます (例: 「メニューを開く」)。エージェントとスクリーン リーダーは、ボタンが何をするのかを知ることができません。"
+
+msgid "Form fields without a label"
+msgstr "ラベルのないフォームフィールド"
+
+msgid "Each field needs a name through <label for> or aria-label; a placeholder is not a label."
+msgstr "各フィールドには<label for>または aria-label による名前が必要です。プレースホルダーはラベルではありません。"
+
+msgid "<html> has no lang attribute"
+msgstr "<html>には lang 属性がありません"
+
+msgid "The theme should use <html <?php language_attributes(); ?>>."
+msgstr "テーマでは<html <?php language_attributes(); ?>> を使用する必要があります。"
+
+msgid "Duplicate or missing id references"
+msgstr "ID 参照が重複または欠落しています"
+
+msgid "No id may be used twice; aria-controls, aria-labelledby and label for must point to an existing id."
+msgstr "ID を 2 回使用することはできません。 aria-controls、aria-labelledby、label for は既存の ID を指している必要があります。"
+
+msgid "Heading levels skip"
+msgstr "見出しレベルをスキップします"
+
+msgid "Headings should step down in order (H2 → H3); do not skip levels for looks, size them with CSS."
+msgstr "見出しは順番に下がります (H2 → H3)。見た目のためにレベルをスキップせず、CSS でサイズを調整してください。"
+
+msgid "tabindex greater than 0"
+msgstr "tabindex が 0 より大きい"
+
+msgid "Values like tabindex=\"1\" break keyboard order; use 0 or -1."
+msgstr "tabindex=\"1\" のような値はキーボードの順序を壊します。 0 または -1 を使用します。"
+
+msgid "Links with the same text go to different addresses"
+msgstr "同じテキストのリンクは異なるアドレスに移動します"
+
+msgid "Links with the same name should go to the same page. Remove the duplicate page or make the link texts different."
+msgstr "同じ名前のリンクは同じページに移動する必要があります。重複したページを削除するか、リンクテキストを変更してください。"
+
+msgid "iframe without a title"
+msgstr "タイトルのない iframe"
+
+msgid "Every <iframe> needs a title (e.g. \"Location map\")."
+msgstr "すべての<iframe>にはタイトルが必要です (例: 「ロケーションマップ」)。"
+
+msgid "No <main> landmark on the page"
+msgstr "ページに<main>ランドマークがありません"
+
+msgid "Main content must be inside <main>; screen readers and agents find the main content this way."
+msgstr "メインコンテンツは<main>内にある必要があります。スクリーン リーダーとエージェントは、この方法でメイン コンテンツを見つけます。"
+
+msgid "Insufficient text/background contrast"
+msgstr "テキストと背景のコントラストが不十分です"
+
+msgid "At least 4.5:1 for normal text and 3:1 for large text. Darken the pale colors in the theme palette."
+msgstr "通常のテキストの場合は少なくとも 4.5:1、大きなテキストの場合は 3:1。テーマパレットの淡い色を暗くします。"
+
+msgid "Render-blocking requests"
+msgstr "レンダリングブロックリクエスト"
+
+msgid "Inline the critical CSS for the first screen, load the rest with media=\"print\" onload or at the end of the page, and defer JS. LiteSpeed Cache › Page Optimization › CSS/JS settings, or the theme's own combined CSS."
+msgstr "最初の画面の重要な CSS をインライン化し、残りを media=\"print\" onload またはページの最後でロードし、JS を延期します。 LiteSpeed キャッシュ › ページ最適化 › CSS/JS 設定、またはテーマ独自の組み合わせ CSS。"
+
+msgid "Unused CSS"
+msgstr "未使用のCSS"
+
+msgid "Split the one large CSS file by page type, or drop unused rules (LiteSpeed \"Remove Unused CSS\"). The gain usually shows up in LCP."
+msgstr "1 つの大きな CSS ファイルをページ タイプごとに分割するか、未使用のルールを削除します (LiteSpeed の「未使用の CSS の削除」)。通常、ゲインは LCP に表示されます。"
+
+msgid "Unminified JavaScript"
+msgstr "縮小されていないJavaScript"
+
+msgid "Ship .min versions of theme/plugin JS or turn on LiteSpeed \"JS Minify\"."
+msgstr "テーマ/プラグイン JS の .min バージョンを出荷するか、LiteSpeed の「JS Minify」をオンにします。"
+
+msgid "Unminified CSS"
+msgstr "縮小されていないCSS"
+
+msgid "Minify CSS (LiteSpeed \"CSS Minify\" or a build step)."
+msgstr "CSS を縮小します (LiteSpeed の「CSS Minify」またはビルド ステップ)。"
+
+msgid "Non-composited animations"
+msgstr "非合成アニメーション"
+
+msgid "Animate with transform and opacity; properties like stroke-dashoffset, top/left and width repaint on every frame. Stop them under prefers-reduced-motion."
+msgstr "変換と不透明度を使用してアニメーション化します。ストロークダッシュオフセット、上/左、幅などのプロパティはフレームごとに再ペイントされます。 pres-reduced-motion でそれらを停止します。"
+
+msgid "DOM is too large"
+msgstr "DOM が大きすぎます"
+
+msgid "Aim for under 1,500 elements. Reduce copies in marquees, build hidden menus and long lists on demand, simplify nested wrappers."
+msgstr "要素数は 1,500 未満を目指します。マーキー内のコピーを減らし、オンデマンドで非表示のメニューと長いリストを作成し、ネストされたラッパーを簡素化します。"
+
+msgid "Largest content (LCP) paints late"
+msgstr "最大コンテンツ (LCP) が遅くペイントされる"
+
+msgid "If the LCP element is text, preload its font, use font-display: swap and do not hide it behind an entrance animation on the first frame; if it is an image, give it fetchpriority=\"high\" and do not lazy load it."
+msgstr "LCP 要素がテキストの場合は、そのフォントをプリロードし、font-display: swap を使用します。最初のフレームの開始アニメーションの背後にそれを隠さないでください。画像の場合は、fetchpriority=\"high\" を指定し、遅延ロードしないでください。"
+
+msgid "Layout shift (CLS) culprits"
+msgstr "レイアウトシフト (CLS) の原因"
+
+msgid "Give images width/height and late blocks a fixed height; use size-adjust/fallback metrics for web fonts; absolutely positioned animated layers must not push the layout."
+msgstr "画像の幅/高さと後期ブロックの高さを固定します。 Web フォントのサイズ調整/フォールバック メトリックを使用します。絶対的に配置されたアニメーション レイヤーは、レイアウトをプッシュしないでください。"
+
+msgid "Fonts delay text"
+msgstr "フォントがテキストを遅延させる"
+
+msgid "Use font-display: swap in @font-face, preload the 1-2 fonts used on the first screen with <link rel=\"preload\" as=\"font\" crossorigin>, remove unused weights."
+msgstr "font-display を使用します。 @font-face で交換し、最初の画面で使用される 1 ~ 2 個のフォントを<link rel=\"preload\" as=\"font\" crossorigin>でプリロードし、未使用のウェイトを削除します。"
+
+msgid "Critical request chain is long"
+msgstr "クリティカルリクエストチェーンが長い"
+
+msgid "Fonts loaded from CSS lengthen the chain; preload first-screen fonts and defer unneeded requests in the chain (e.g. guest.vary.php)."
+msgstr "CSS から読み込まれたフォントはチェーンを長くします。最初の画面のフォントをプリロードし、チェーン内の不要なリクエストを延期します (例: guest.vary.php)。"
+
+msgid "Forced reflow"
+msgstr "強制リフロー"
+
+msgid "Do not read offsetWidth/getBoundingClientRect after changing styles in JS; read first, then write inside requestAnimationFrame."
+msgstr "JS でスタイルを変更した後は、offsetWidth/getBoundingClientRect を読み取らないでください。最初に読み取り、次に requestAnimationFrame 内に書き込みます。"
+
+msgid "Long main-thread tasks"
+msgstr "長いメインスレッドタスク"
+
+msgid "Split JS that runs at startup and defer work for off-screen sections with IntersectionObserver."
+msgstr "IntersectionObserver を使用して、起動時に実行される JS を分割し、画面外のセクションの作業を延期します。"
+
+msgid "Images are large or in an old format"
+msgstr "画像が大きいか古い形式です"
+
+msgid "Use WebP/AVIF, never send images larger than displayed (srcset), turn on image compression."
+msgstr "WebP/AVIF を使用し、表示 (srcset) より大きい画像を送信しないでください。画像圧縮をオンにしてください。"
+
+msgid "Images without width/height"
+msgstr "幅/高さのない画像"
+
+msgid "Give <img> tags width and height; the browser reserves space and the page does not shift."
+msgstr "<img>タグに幅と高さを指定します。ブラウザはスペースを確保し、ページは移動しません。"
+
+msgid "First-screen image is lazy loaded"
+msgstr "最初の画面イメージは遅延ロードされます"
+
+msgid "Do not give the page's first image loading=\"lazy\"; give it fetchpriority=\"high\". If LiteSpeed lazy load is on, exclude the first image (data-no-lazy or \"Lazy Load Image Excludes\")."
+msgstr "ページの最初の画像にloading=\"lazy\"を指定しないでください。 fetchpriority=\"high\" を指定します。 LiteSpeed 遅延ロードがオンの場合、最初のイメージを除外します (data-no-lazy または \"Lazy Load Image Excludes\")。"
+
+msgid "Slow server response"
+msgstr "サーバーの応答が遅い"
+
+msgid "Turn on page cache (LiteSpeed Cache); check slow plugins and the cron report in Flux Speed."
+msgstr "ページ キャッシュ (LiteSpeed Cache) をオンにします。 Flux Speed で遅いプラグインと cron レポートを確認してください。"
+
+msgid "No text compression (gzip/brotli)"
+msgstr "テキスト圧縮なし (gzip/brotli)"
+
+msgid "Turn on gzip or brotli on the server (on by default on Hostinger/LiteSpeed; check the CDN settings)."
+msgstr "サーバー上で gzip または brotli をオンにします (Hostinger/LiteSpeed ではデフォルトでオンになっています。CDN 設定を確認してください)。"
+
+msgid "HTML document is large"
+msgstr "HTMLドキュメントが大きい"
+
+msgid "Move inline SVG icons into a sprite and large inline CSS/JSON into files."
+msgstr "インライン SVG アイコンをスプライトに移動し、大きなインライン CSS/JSON をファイルに移動します。"
+
+msgid "WordPress emoji script is loaded"
+msgstr "WordPress 絵文字スクリプトがロードされました"
+
+msgid "Modern browsers draw emoji themselves; the theme can remove print_emoji_detection_script."
+msgstr "最近のブラウザは絵文字を自ら描画します。テーマは print_emoji_detection_script を削除できます。"
+
+msgid "Largest Contentful Paint (LCP) is slow"
+msgstr "最大のコンテンツフル ペイント (LCP) が遅い"
+
+msgid "Target under 2.5 s. Reduce render-blocking CSS, preload the LCP font/image, turn on the server cache."
+msgstr "2.5秒未満をターゲットにします。レンダリングをブロックする CSS を減らし、LCP フォント/画像をプリロードし、サーバー キャッシュをオンにします。"
+
+msgid "Cumulative Layout Shift (CLS) is high"
+msgstr "累積レイアウト シフト (CLS) が高い"
+
+msgid "Target under 0.1. Size images, prevent font shifts, reserve space for elements added later."
+msgstr "0.1未満を目標にします。画像のサイズを調整し、フォントのずれを防ぎ、後で追加する要素用のスペースを確保します。"
+
+msgid "Total Blocking Time (TBT) is high"
+msgstr "合計ブロッキング時間 (TBT) が長い"
+
+msgid "Target under 200 ms. Reduce startup JS and defer third-party scripts."
+msgstr "200 ミリ秒未満をターゲットにします。起動 JS を減らし、サードパーティのスクリプトを延期します。"
+
+msgid "First Contentful Paint (FCP) is slow"
+msgstr "First Contentful Paint (FCP) が遅い"
+
+msgid "Target under 1.8 s. Reduce render-blocking CSS/JS and server response time."
+msgstr "1.8秒以内を目標にします。レンダリングをブロックする CSS/JS とサーバーの応答時間を短縮します。"
+
+msgid "Speed Index is slow"
+msgstr "スピードインデックスが遅い"
+
+msgid "Prioritize critical CSS and fonts so the first screen fills quickly; shorten entrance animations."
+msgstr "最初の画面がすぐに埋まるように、重要な CSS とフォントを優先します。入場アニメーションを短くします。"
+
+msgid "Site is not HTTPS or has mixed content"
+msgstr "サイトが HTTPS ではないか、コンテンツが混在しています"
+
+msgid "Set the addresses to https:// in Settings › General and fix images/scripts loaded over http://."
+msgstr "[設定] › [一般] でアドレスを https:// に設定し、 http://. でロードされた画像/スクリプトを修正します"
+
+msgid "Weak HSTS policy"
+msgstr "弱いHSTSポリシー"
+
+msgid "Strict-Transport-Security: max-age=31536000; includeSubDomains. If every subdomain is HTTPS, you can also add \"preload\" and submit to hstspreload.org."
+msgstr "厳格なトランスポート セキュリティ: max-age=31536000;サブドメインを含めます。すべてのサブドメインが HTTPS の場合は、「preload」を追加して hstspreload.org に送信することもできます。"
+
+msgid "No or incomplete Content Security Policy (CSP)"
+msgstr "コンテンツ セキュリティ ポリシー (CSP) がないか不完全です"
+
+msgid "Flux SEO can add a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). A full script-src policy can break plugins on WordPress; try Content-Security-Policy-Report-Only first."
+msgstr "Flux SEO では、基本的な CSP (object-src 'none'、base-uri 'self'、frame-ancestors 'self') を追加できます。完全な script-src ポリシーを使用すると、WordPress のプラグインが壊れる可能性があります。まず Content-Security-Policy-Report-Only を試してください。"
+
+msgid "No clickjacking protection"
+msgstr "クリックジャッキング保護なし"
+
+msgid "Send X-Frame-Options: SAMEORIGIN and CSP frame-ancestors 'self'. Do not turn on if your site is embedded in other sites with an iframe."
+msgstr "X-Frame-Options: SAMEORIGIN および CSP フレーム祖先「self」を送信します。サイトが iframe を使用して他のサイトに埋め込まれている場合はオンにしないでください。"
+
+msgid "No origin isolation (COOP)"
+msgstr "オリジン分離なし (COOP)"
+
+msgid "Send Cross-Origin-Opener-Policy: same-origin-allow-popups; payment and login popups keep working."
+msgstr "Cross-Origin-Opener-Policy を送信します: Same-origin-allow-popups;支払いとログインのポップアップは引き続き機能します。"
+
+msgid "Trusted Types not set"
+msgstr "信頼できるタイプが設定されていません"
+
+msgid "Advanced protection against DOM-based XSS. Most WordPress plugins are not compatible yet; try it with Report-Only only on custom-theme sites with few plugins."
+msgstr "DOM ベースの XSS に対する高度な保護。ほとんどの WordPress プラグインはまだ互換性がありません。プラグインが少ないカスタム テーマ サイトでのみレポートのみを試してください。"
+
+msgid "No X-Content-Type-Options header"
+msgstr "X-Content-Type-Options ヘッダーがありません"
+
+msgid "X-Content-Type-Options: nosniff. Flux SEO sends it by default; the server or a cache plugin may be removing it."
+msgstr "X-Content-Type-Options: nosniff。 Flux SEO はデフォルトでこれを送信します。サーバーまたはキャッシュ プラグインによって削除されている可能性があります。"
+
+msgid "HTML doctype or charset missing"
+msgstr "HTML doctype または charset がありません"
+
+msgid "The page must start with <!DOCTYPE html> and have <meta charset=\"UTF-8\"> in the first lines."
+msgstr "ページは<!DOCTYPE html>で始まり、最初の行に<meta charset=\"UTF-8\">がなければなりません。"
+
+msgid "No llms.txt"
+msgstr "llms.txtがありません"
+
+msgid "AI agents summarize a site through /llms.txt. Flux SEO builds it from the site name, description, menu pages and recent content; one click to turn it on."
+msgstr "AI エージェントは /llms.txt を通じてサイトを要約します。 Flux SEO は、サイト名、説明、メニュー ページ、最近のコンテンツからサイトを構築します。ワンクリックでオンになります。"
+
+msgid "llms.txt is not in the recommended format"
+msgstr "llms.txt は推奨される形式ではありません"
+
+msgid "The first line must be \"# Site name\", then \"> short summary\" and link lists in [title](url) form. If an old hand-made file sits in the root, delete it; Flux SEO generates one."
+msgstr "最初の行は「# サイト名」、次に「> 短い概要」と [タイトル](url) 形式のリンク リストである必要があります。古い手作りファイルがルートにある場合は、それを削除します。 Flux SEO はこれを生成します。"
+
+msgid "Forms are not declared as WebMCP tools"
+msgstr "フォームは WebMCP ツールとして宣言されていません"
+
+msgid "WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too."
+msgstr "WebMCP を使用すると、ブラウザー エージェントがフォームをツール (フォーム ツール名/ツール説明) として呼び出すことができます。 Flux SEO はそれを検索フォームに追加します。独自のフォームにも追加してください。"
+
+msgid "robots.txt blocks AI crawlers"
+msgstr "robots.txt は AI クローラーをブロックします"
+
+msgid "If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are blocked, your content does not show up in AI answers. Remove them from robots.txt unless you block them on purpose."
+msgstr "GPTBot、ClaudeBot、Google-Extended、PerplexityBot などのクローラーがブロックされている場合、コンテンツは AI 回答に表示されません。意図的にブロックしない限り、robots.txt から削除してください。"
+
+msgid "Returned HTTP %d."
+msgstr "HTTP%dが返されました。"
+
+msgid "Settings › Reading: search engines discouraged"
+msgstr "設定 › 読書: 検索エンジンは推奨されません"
+
+msgid "%d characters."
+msgstr "%d文字。"
+
+msgid "%d H1 headings."
+msgstr "%dH1 見出し。"
+
+msgid "JSON-LD could not be parsed."
+msgstr "JSON-LDを解析できませんでした。"
+
+msgid "not found"
+msgstr "見つからない"
+
+msgid "%d render-blocking CSS/JS requests in <head>."
+msgstr "%dの<head>での CSS/JS リクエストのレンダリングをブロックします。"
+
+msgid "%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed."
+msgstr "%dの<head>での CSS/JS リクエストのレンダリングをブロックします。 PageSpeed で推定節約量を測定します。"
+
+msgid "The page has %s elements."
+msgstr "ページには%s要素があります。"
+
+msgid "Response measured from the server: %d ms (may bypass the cache)."
+msgstr "サーバーから測定された応答:%dミリ秒 (キャッシュをバイパスする可能性があります)。"
+
+msgid "HTML is %s."
+msgstr "HTML は%sです。"
+
+msgid "The HTTPS page loads content over http://."
+msgstr "HTTPS ページは http://. 経由でコンテンツをロードします"
+
+msgid "No Content-Security-Policy header."
+msgstr "Content-Security-Policy ヘッダーはありません。"
+
+msgid "Missing directive: %s."
+msgstr "ディレクティブがありません:%s。"
+
+msgid "first line is not \"# Title\""
+msgstr "1行目が「#タイトル」ではありません"
+
+msgid "no \"> summary\" line"
+msgstr "「いいえ > 概要」行"
+
+msgid "no link list"
+msgstr "リンクリストがありません"
+
+msgid "PageSpeed Insights can only measure addresses reachable from the internet."
+msgstr "PageSpeed Insights は、インターネットから到達可能なアドレスのみを測定できます。"
+
+msgid "The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings."
+msgstr "PageSpeed の 1 日あたりの割り当てが使い果たされています。 SEO › 設定に無料の Google API キーを入力します。"
+
+msgid "Open audit"
+msgstr "公開監査"
+
+msgid "Not run yet. Check performance, accessibility, SEO, security and agent readiness."
+msgstr "まだ実行されていません。パフォーマンス、アクセシビリティ、SEO、セキュリティ、エージェントの準備状況を確認します。"
+
+msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
+msgstr "クリティカル%1$d、高%2$d、中%3$d、低%4$dの推奨事項。"
+
+msgid "Site build guide"
+msgstr "サイト構築ガイド"
+
+msgid "SEO output"
+msgstr "SEO の出力"
+
+msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
+msgstr "別の SEO プラグインがアクティブになっています。メタ、Open Graph、スキーマはそこから来ています。 Flux SEO は競合を避けるためにそれ自体の出力をオフにしました。"
+
+msgid "Meta description, Open Graph and schema are added to every page."
+msgstr "メタディスクリプション、Open Graph、スキーマがすべてのページに追加されます。"
+
+msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
+msgstr "オフ。ページの説明、画像、組織の詳細は Google やソーシャル共有には表示されません。 Google で見つけてもらいたい場合はオンにしてください。"
+
+msgid "SEO settings"
+msgstr "SEO設定"
+
+msgid "Daily"
+msgstr "毎日"
+
+msgid "Weekly"
+msgstr "毎週"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Monday"
+msgstr "月曜日"
+
+msgid "Tuesday"
+msgstr "火曜日"
+
+msgid "Wednesday"
+msgstr "水曜日"
+
+msgid "Thursday"
+msgstr "木曜日"
+
+msgid "Friday"
+msgstr "金曜日"
+
+msgid "Saturday"
+msgstr "土曜日"
+
+msgid "Sunday"
+msgstr "日曜日"
+
+msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
+msgstr "[%1$s] サイト監査:%2$dの新しい重要/高推奨事項"
+
+msgid "The automatic site audit found new recommendations:"
+msgstr "自動サイト監査により、次の新しい推奨事項が見つかりました。"
+
+msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
+msgstr "合計: クリティカル%1$d、高%2$d、中%3$d、低%4$d。"
+
+msgid "Resolved since the previous audit: %d."
+msgstr "前回の監査以降に解決されました:%d。"
+
+msgid "Details and fixes:"
+msgstr "詳細と修正:"
+
+msgid "Automatic"
+msgstr "自動"
+
+msgid "Manual"
+msgstr "マニュアル"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "After fix"
+msgstr "修正後"
+
+msgid "Report history"
+msgstr "レポート履歴"
+
+msgid "Next automatic audit: %s"
+msgstr "次の自動監査:%s"
+
+msgid "Automatic audit is off."
+msgstr "自動監査はオフになっています。"
+
+msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
+msgstr "まだ報告はありません。すべての監査 (手動、自動、また​​は AI による) がここに保存されます。"
+
+msgid "Number of recommendations over time"
+msgstr "一定期間にわたる推奨事項の数"
+
+msgid "Date"
+msgstr "日付"
+
+msgid "Trigger"
+msgstr "トリガー"
+
+msgid "Mobile scores"
+msgstr "モバイルスコア"
+
+msgid "Change"
+msgstr "変更"
+
+msgid "No change"
+msgstr "変化なし"
+
+msgid "new"
+msgstr "新しい"
+
+msgid "resolved"
+msgstr "解決済み"
+
+msgid "Site audit history"
+msgstr "サイト監査履歴"
+
+msgid "Automatic audit"
+msgstr "自動監査"
+
+msgid "Frequency"
+msgstr "周波数"
+
+msgid "Day"
+msgstr "日"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
+msgstr "バックグラウンドで実行され、結果がレポート履歴に保存されます。時間にはサイトのタイムゾーンが使用されます。その時点でサイトにアクセスがなかった場合、次のリクエストからサイトが開始されます。"
+
+msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
+msgstr "PageSpeed Insights も実行します (モバイル + デスクトップ。API キーが必要)"
+
+msgid "Send an email when a new critical or high priority recommendation appears"
+msgstr "新しい重要な推奨事項または優先度の高い推奨事項が表示されたときに電子メールを送信する"
+
+msgid "Email address (empty: site admin)"
+msgstr "メールアドレス (空: サイト管理者)"
+
+msgid "Flux Speed (one click)"
+msgstr "磁束速度 (ワンクリック)"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
+msgstr "PageSpeed Insights の 5 つのセクション (パフォーマンス、アクセシビリティ、ベスト プラクティス、SEO、エージェント ブラウジング) を優先順位別に示します。オンサイト監査にはキーは必要ありません。 PageSpeed を実行すると、Google の実際の Lighthouse 結果が追加されます。自動監査、API キー、セキュリティ ヘッダーは [設定] タブにあります。"
+
+msgid "PageSpeed scores"
+msgstr "ページスピードスコア"
+
+msgid "PageSpeed not run"
+msgstr "PageSpeed が実行されない"
+
+msgid "Device"
+msgstr "デバイス"
+
+msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+msgstr "PageSpeed を実行したレポートはまだありません。 API キーを入力し、自動監査で PageSpeed をオンにします。"
+
+msgid "%s PageSpeed scores over time"
+msgstr "%sPageSpeed スコアの経時変化"
+
+msgid "Site audit and agent readiness"
+msgstr "サイト監査とエージェントの準備"
+
+msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
+msgstr "Flux SEO の AI (MCP) ツールは、共有 MCP サーバーを通じて実行されます。サーバー、キー、設定は Flux AI & MCP › MCP にあります。 Flux AI 0.7.0 以降をインストールしてアクティブ化します。"
+
+msgid "No URLs to submit."
+msgstr "送信する URL はありません。"
+
+msgid "IndexNow returned %d."
+msgstr "IndexNow が%dを返しました。"
+
+msgid "Not allowed."
+msgstr "許可されていません。"
+
+msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
+msgstr "IndexNow がオフになっているか、サイトが検索エンジンから非表示になっています (設定 › 閲覧)。"
+
+msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
+msgstr "%dBing、Yandex、およびその他の IndexNow 検索エンジンに送信された URL。"
+
+msgid "Open Search Console"
+msgstr "サーチコンソールを開く"
+
+msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+msgstr "プロパティ › URL プレフィックス › HTML タグを追加します。 DNS で検証した場合は空のままにしてください。"
+
+msgid "Open Bing Webmaster"
+msgstr "Bing ウェブマスターを開く"
+
+msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+msgstr "最も簡単な方法は「Google Search Console からインポート」です。コードを必要とせず、検証とサイトマップが自動的に到着します。手動で追加する場合は、HTML メタタグを貼り付けます。 DuckDuckGo、Yahoo、Ecosia の結果は Bing から取得されます。"
+
+msgid "Open Yandex Webmaster"
+msgstr "Yandex ウェブマスターを開く"
+
+msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+msgstr "サイトを追加 › メタタグ。確認したら、インデックス作成 › サイトマップ ファイルの下にサイトマップ URL を追加します。"
+
+msgid "%1$s · %2$d URLs · HTTP %3$d"
+msgstr "%1$s·%2$dURL · HTTP%3$d"
+
+msgid "key file could not be verified"
+msgstr "キーファイルを検証できませんでした"
+
+msgid "URLs do not match the site domain"
+msgstr "URL がサイトのドメインと一致しません"
+
+msgid "too many requests, try again later"
+msgstr "リクエストが多すぎます。後でもう一度お試しください"
+
+msgid "error"
+msgstr "エラー"
+
+msgid "Search engines"
+msgstr "検索エンジン"
+
+msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+msgstr "Google 以外の検索エンジン (Bing、Yandex、DuckDuckGo、Yahoo、Ecosia) は、サイトが導入されるとすぐにサイトをクロールします。それぞれのウェブマスター パネルにサイトを追加し、以下の確認コードを貼り付けて、サイトマップ URL を送信します。"
+
+msgid "Sitemap URL"
+msgstr "サイトマップURL"
+
+msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+msgstr "robots.txt にもリストされています。この URL を Search Console、Bing、Yandex に追加します。"
+
+msgid "Verification tag is on the site"
+msgstr "検証タグがサイト上にあります"
+
+msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
+msgstr "公開および更新されたページについて Bing、Yandex、DuckDuckGo (Bing 経由)、Seznam、Naver に即座に通知します"
+
+msgid "Key file:"
+msgstr "キーファイル:"
+
+msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
+msgstr "オンにすると、サイト全体が自動的に 1 回送信されます。 Google は IndexNow を使用しません。 Search Console for Google にサイトマップを追加します。"
+
+msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
+msgstr "サイトは検索エンジンから非表示になります (設定 › 閲覧)。 IndexNow は何も送信しません。"
+
+msgid "Last bulk submission:"
+msgstr "最後の一括送信:"
+
+msgid "Submit the whole site now"
+msgstr "今すぐサイト全体を送信してください"
+
+msgid "robots.txt blocks the Bing or Yandex crawler"
+msgstr "robots.txt が Bing または Yandex クローラーをブロックする"
+
+msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
+msgstr "Bingbot、YandexBot、DuckDuckBot などの検索クローラーには「Disallow: /」を含めてはなりません。それ以外の場合、サイトは Google にのみ表示されます。サイトのルートにある robots.txt ファイルを修正します。"
+
+msgid "robots.txt has no Sitemap line"
+msgstr "robots.txt にはサイトマップ行がありません"
+
+msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
+msgstr "Bing と Yandex は、robots.txt の「Sitemap:」行からサイトマップを見つけます。手書きの robots.txt がルートにある場合は、それを削除するか (Flux SEO によって行が追加されます)、または自分で行を追加します。"
+
+msgid "IndexNow is off"
+msgstr "IndexNow はオフです"
+
+msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
+msgstr "IndexNow は、Bing、Yandex、Seznam、Naver に新しいページと更新されたページを即座に通知します。これは、Google 以外に表示される最も速い方法です。ワンクリックでオンになります。"
+
+msgid "IndexNow submission failed"
+msgstr "IndexNow の送信に失敗しました"
+
+msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
+msgstr "キー ファイル (/<key>.txt) は外部からアクセスできる必要があります。キャッシュまたはセキュリティ プラグインによってブロックされている場合は、例外を追加してから、SEO › 一般 › IndexNow › 「今すぐサイト全体を送信」を使用します。"
+
+msgid "No Bing / Yandex verification code"
+msgstr "Bing / Yandex 認証コードがありません"
+
+msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
+msgstr "サイトを Bing ウェブマスター ツールおよび Yandex ウェブマスターに追加することはできません。それがなければ、遅れているか、まったく存在しないように見えます。 Bing では、「Google Search Console からインポート」にコードは必要ありません。すでにインポートしている場合は、これを無視してください。コードは SEO › 一般 › 検索エンジンにあります。"
+
+msgid "Turn on IndexNow"
+msgstr "IndexNow をオンにする"
+
+msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
+msgstr "新しいページと更新されたページは、Bing、Yandex、Seznam、Naver に即座に送信されます。サイト全体が一度自動的に送信されます。"
+
+msgid "Bing and Yandex"
+msgstr "Bing と Yandex"
+
+msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
+msgstr "確認コードなし:%s。これらの検索エンジンのウェブマスター パネルにサイトを追加します (Google Search Console からの Bing のインポートにはコードは必要ありません)。"
+
+msgid "Bing and Yandex verification codes are set."
+msgstr "Bing と Yandex の検証コードが設定されています。"
+
+msgid "On; the site has been submitted to Bing and Yandex."
+msgstr "オン。サイトは Bing と Yandex に送信されています。"
+
+msgid "On; the first bulk submission is sent on the next admin page load."
+msgstr "オン。最初の一括送信は、次回の管理ページの読み込み時に送信されます。"
+
+msgid "Off; new pages are not sent to Bing and Yandex."
+msgstr "オフ;新しいページは Bing と Yandex に送信されません。"
+
+msgid "Open Naver Search Advisor"
+msgstr "Naver 検索アドバイザーを開く"
+
+msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
+msgstr "韓国最大の検索エンジン。サイトを追加 › HTML タグ;次に、リクエスト › サイトマップを送信します。オプション。"
+
+msgid "Open Seznam Webmaster"
+msgstr "セズナムウェブマスターを開く"
+
+msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
+msgstr "チェコ語の検索エンジン (ページの下部にあるウェブマスター リンク)。メタタグ方式。オプション。"
+
+msgid "Open Baidu Webmaster"
+msgstr "Baidu ウェブマスターを開く"
+
+msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
+msgstr "中国の検索エンジン。サインアップには中国の電話番号が必要になる場合があります。中国をターゲットにしない限り必要ありません。"
+
+msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
+msgstr "Google サイトキットに接続。 Search Console の検証とサイトマップはそこで処理されます。これは空のままにすることができます。"
+
+msgid "Connected with Google Site Kit."
+msgstr "Google サイトキットと接続します。"
+
+msgid "Areas of expertise"
+msgstr "専門分野"
+
+msgid "One topic per line"
+msgstr "1 行に 1 つのトピック"
+
+msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
+msgstr "組織が専門とするトピック (スキーマは知っている)。検索エンジンと AI アシスタントは、組織をこれらのトピックに適合させます。空の場合は放置されます。"
+
+msgid "Area served"
+msgstr "サービスエリア"
+
+msgid "e.g. United States"
+msgstr "例:米国"
+
+msgid "Country served (schema areaServed). Left out when empty."
+msgstr "サービスを提供する国 (サービスを提供するスキーマエリア)。空の場合は放置されます。"
+
+msgid "Donation call to action"
+msgstr "寄付による行動喚起"
+
+msgid "e.g. Donate"
+msgstr "例:寄付する"
+
+msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
+msgstr "寄付を受け入れる組織の場合 (スキーマ DonateAction)。ラベルが空の場合は省略されます。 URL が空の場合は、寄付ページが自動的に検索されます。"
+
+msgid "Address"
+msgstr "住所"
+
+msgid "Homepage description"
+msgstr "ホームページの説明"
+
+msgid "Homepage title"
+msgstr "ホームページのタイトル"
+
+msgid "Don't index search"
+msgstr "インデックス検索をしない"
+
+msgid "Separator"
+msgstr "セパレータ"
+
+msgid "No findings"
+msgstr "所見なし"
+
+msgid "Findings"
+msgstr "調査結果"
+
+msgid "Audit email"
+msgstr "監査メール"
+
+msgid "Audit updated"
+msgstr "監査が更新されました"
+
+msgid "Audit schedule"
+msgstr "監査スケジュール"
+
+msgid "Findings show up here after an audit runs."
+msgstr "監査の実行後に検出結果がここに表示されます。"
+
+msgid "Run audit"
+msgstr "監査の実行"
+
+msgid "Email"
+msgstr "電子メール"
+
+msgid "Don't index tags"
+msgstr "タグのインデックスを作成しない"
+
+msgid "IndexNow"
+msgstr "今すぐインデックス"
+
+msgid "Organization"
+msgstr "組織"
+
+msgid "Organization name"
+msgstr "組織名"
+
+msgid "Organization type"
+msgstr "組織の種類"
+
+msgid "Open in panel"
+msgstr "パネルで開く"
+
+msgid "Scores"
+msgstr "スコア"
+
+msgid "NGO"
+msgstr "NGO"
+
+msgid "Site name"
+msgstr "サイト名"
+
+msgid "Last local audit"
+msgstr "前回の現地監査"
+
+msgid "Phone"
+msgstr "電話"
+
+msgid "WebMCP"
+msgstr "WebMCP"
+
+msgid "llms.txt"
+msgstr "llms.txt"
+
+msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
+msgstr "PHP%1$sには%2$sに対するパッチが適用されていません。少なくとも%3$s(ホスティング パネル › PHP バージョン) に更新します。配布パッケージには、バージョン番号を変更せずに修正が含まれる場合があります。不明な場合はプロバイダーに問い合わせてください。"
+
+msgid "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
+msgstr "PHP%1$sにはセキュリティ修正が適用されなくなりました。%2$sなどの穴は開いたままになります。 PHP%3$sまたは別のパッチ適用された新しいバージョンに移動します。"
+
+msgid "PHP %1$s is patched against %2$s."
+msgstr "PHP%1$sには、%2$sに対するパッチが適用されます。"
+
+msgid "Security"
+msgstr "セキュリティ"
+
+msgid "PHP security patch"
+msgstr "PHPセキュリティパッチ"
+
+msgid "Release notes"
+msgstr "リリースノート"
+
+msgid "session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set \"session.upload_progress.enabled = Off\" in php.ini or the hosting panel."
+msgstr "session.upload_progress.enabled がオンになっています。 WordPress はそれを使用しません。これをオフにすると、攻撃対象領域が縮小します。 php.ini またはホスティング パネルで「session.upload_progress.enabled = Off」を設定します。"
+
+msgid "PHP version is missing a security patch"
+msgstr "PHP バージョンにはセキュリティ パッチがありません"
+
+msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+msgstr "サーバーの PHP には既知のホールに対するパッチが適用されていないか、サポートされていません。ホスティング パネルから PHP を現在のパッチ リリースにアップグレードします。"
+
+msgid "session.upload_progress is on"
+msgstr "session.upload_progress がオンになっています"
+
+msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
+msgstr "WordPress はこの PHP 機能を使用しません。これは、PHP2Shell などのホールの悪用パスです。 php.ini またはホスティング パネルで session.upload_progress.enabled = Off を設定します。"
+
+msgid "[['Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).', 'tr']]"
+msgstr "[['メタ タイトル/説明、正規、オープン グラフ、スキーマ (組織、Web サイト、パンくずリスト、記事)、サイトマップ設定、ファビコン、および SEO コントロール。 AI アシスタント用のコンテンツおよび SEO ツール (MCP サーバー Flux AI 上)。', 'tr']]"

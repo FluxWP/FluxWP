@@ -142,7 +142,7 @@ class FLXSM_TikTok extends FLXSM_Provider {
 		if ( ! $r['ok'] || ( '' !== $c && 'ok' !== $c ) ) {
 			$msg = (string) ( $r['json']['error']['message'] ?? $r['error'] );
 			if ( false !== strpos( $c, 'privacy_level_option_mismatch' ) || false !== strpos( $c, 'unaudited' ) ) {
-				$msg = __( 'TikTok uygulaması henüz denetlenmediği için yalnız "Sadece ben" görünürlüğü kullanılabilir.', 'flx-social' );
+				$msg = __( 'Because the TikTok app has not been audited yet, only "Only me" visibility can be used.', 'flx-social' );
 			}
 			return new WP_Error(
 				'flxsm_api',
@@ -296,12 +296,12 @@ class FLXSM_TikTok extends FLXSM_Provider {
 					'done' => true,
 					'id'   => $pid ? $pid : $state['pid'],
 					'url'  => $pid && $usr ? "https://www.tiktok.com/{$usr}/video/{$pid}" : ( $usr ? "https://www.tiktok.com/{$usr}" : '' ),
-					'note' => 'SEND_TO_USER_INBOX' === $st ? __( 'Taslak TikTok uygulamasına gönderildi; uygulamadaki bildirimden yayınlayın.', 'flx-social' ) : '',
+					'note' => 'SEND_TO_USER_INBOX' === $st ? __( 'Draft sent to the TikTok app; publish it from the notification in the app.', 'flx-social' ) : '',
 				);
 			}
 			$state['n'] = (int) $state['n'] + 1;
 			if ( $state['n'] > 120 ) {
-				return new WP_Error( 'flxsm_api', __( 'TikTok işlemesi uzun sürdü; TikTok uygulamasından kontrol edin.', 'flx-social' ), array( 'retry' => false ) );
+				return new WP_Error( 'flxsm_api', __( 'TikTok processing took too long; check in the TikTok app.', 'flx-social' ), array( 'retry' => false ) );
 			}
 			return array(
 				'wait'  => 15,

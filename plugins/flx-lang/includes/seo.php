@@ -154,12 +154,12 @@ add_filter(
  */
 function flxl_text_fields() {
 	$labels = array(
-		'blogname'         => __( 'Site adı', 'flx-lang' ),
-		'blogdescription'  => __( 'Slogan', 'flx-lang' ),
-		'flxseo_site_name'  => __( 'Flux SEO: site adı', 'flx-lang' ),
-		'flxseo_alt_name'   => __( 'Flux SEO: alternatif ad', 'flx-lang' ),
-		'flxseo_home_title' => __( 'Flux SEO: ana sayfa başlığı', 'flx-lang' ),
-		'flxseo_home_desc'  => __( 'Flux SEO: ana sayfa açıklaması', 'flx-lang' ),
+		'blogname'         => __( 'Site title', 'flx-lang' ),
+		'blogdescription'  => __( 'Tagline', 'flx-lang' ),
+		'flxseo_site_name'  => __( 'Flux SEO: site name', 'flx-lang' ),
+		'flxseo_alt_name'   => __( 'Flux SEO: alternate name', 'flx-lang' ),
+		'flxseo_home_title' => __( 'Flux SEO: home page title', 'flx-lang' ),
+		'flxseo_home_desc'  => __( 'Flux SEO: home page description', 'flx-lang' ),
 	);
 	$out = array();
 	foreach ( flxl_text_targets() as $k => $t ) {

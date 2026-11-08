@@ -76,7 +76,7 @@ final class FLXRC_Integrations {
 			return $user;
 		}
 		$ok = FLXRC_Verify::check( 'login' );
-		return is_wp_error( $ok ) ? new WP_Error( 'flxrc_failed', '<strong>' . esc_html__( 'Hata', 'flx-recaptcha' ) . ':</strong> ' . esc_html( $ok->get_error_message() ) ) : $user;
+		return is_wp_error( $ok ) ? new WP_Error( 'flxrc_failed', '<strong>' . esc_html__( 'Error', 'flx-recaptcha' ) . ':</strong> ' . esc_html( $ok->get_error_message() ) ) : $user;
 	}
 
 	public static function verify_register( $errors, $login = '', $email = '' ) {
@@ -86,7 +86,7 @@ final class FLXRC_Integrations {
 		}
 		$ok = FLXRC_Verify::check( 'register' );
 		if ( is_wp_error( $ok ) && $errors instanceof WP_Error ) {
-			$errors->add( 'flxrc_failed', '<strong>' . esc_html__( 'Hata', 'flx-recaptcha' ) . ':</strong> ' . esc_html( $ok->get_error_message() ) );
+			$errors->add( 'flxrc_failed', '<strong>' . esc_html__( 'Error', 'flx-recaptcha' ) . ':</strong> ' . esc_html( $ok->get_error_message() ) );
 		}
 		return $errors;
 	}
@@ -99,7 +99,7 @@ final class FLXRC_Integrations {
 		}
 		$ok = FLXRC_Verify::check( 'lostpassword' );
 		if ( is_wp_error( $ok ) && $errors instanceof WP_Error ) {
-			$errors->add( 'flxrc_failed', did_action( 'login_init' ) ? '<strong>' . esc_html__( 'Hata', 'flx-recaptcha' ) . ':</strong> ' . esc_html( $ok->get_error_message() ) : $ok->get_error_message() );
+			$errors->add( 'flxrc_failed', did_action( 'login_init' ) ? '<strong>' . esc_html__( 'Error', 'flx-recaptcha' ) . ':</strong> ' . esc_html( $ok->get_error_message() ) : $ok->get_error_message() );
 		}
 	}
 
@@ -121,7 +121,7 @@ final class FLXRC_Integrations {
 		if ( is_wp_error( $ok ) ) {
 			wp_die(
 				'<p>' . esc_html( $ok->get_error_message() ) . '</p>',
-				esc_html__( 'Yorum gönderilemedi', 'flx-recaptcha' ),
+				esc_html__( 'Comment not sent', 'flx-recaptcha' ),
 				array(
 					'response'  => 403,
 					'back_link' => true,

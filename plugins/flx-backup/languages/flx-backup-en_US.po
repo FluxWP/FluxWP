@@ -1,0 +1,1051 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Backups"
+msgstr "Backups"
+
+msgid "Backups › Dashboard"
+msgstr "Backups › Dashboard"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Backups › Settings"
+msgstr "Backups › Settings"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Permanently delete this backup?"
+msgstr "Permanently delete this backup?"
+
+msgid "Permanently delete the selected backups?"
+msgstr "Permanently delete the selected backups?"
+
+msgid "The selected parts will be returned to their state in the backup and their current state will be overwritten. Continue?"
+msgstr "The selected parts will be returned to their state in the backup and their current state will be overwritten. Continue?"
+
+msgid "Cancel the running job?"
+msgstr "Cancel the running job?"
+
+msgid "Starting…"
+msgstr "Starting…"
+
+msgid "Backing up"
+msgstr "Backing up"
+
+msgid "Restoring"
+msgstr "Restoring"
+
+msgid "Completed"
+msgstr "Completed"
+
+msgid "Failed"
+msgstr "Failed"
+
+msgid "Reload page"
+msgstr "Reload page"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "An error occurred."
+msgstr "An error occurred."
+
+msgid "Connection lost, retrying…"
+msgstr "Connection lost, retrying…"
+
+msgid "Database (all tables)"
+msgstr "Database (all tables)"
+
+msgid "Select at least one part."
+msgstr "Select at least one part."
+
+msgid "You can keep this page open; if you close it, the job continues in the background."
+msgstr "You can keep this page open; if you close it, the job continues in the background."
+
+msgid "Do not close this page until the restore finishes."
+msgstr "Do not close this page until the restore finishes."
+
+msgid "The backup is running in the background. Follow its progress in the toolbar indicator at the top; you can leave this page."
+msgstr "The backup is running in the background. Follow its progress in the toolbar indicator at the top; you can leave this page."
+
+msgid "The restore has started in the background. Progress is shown in the toolbar indicator; do not change the site until it finishes."
+msgstr "The restore has started in the background. Progress is shown in the toolbar indicator; do not change the site until it finishes."
+
+msgid "Backup ready."
+msgstr "Backup ready."
+
+msgid "Refresh list"
+msgstr "Refresh list"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Dismiss this notice."
+msgstr "Dismiss this notice."
+
+msgid "Uploading %1$s…"
+msgstr "Uploading %1$s…"
+
+msgid "%1$s / %2$s"
+msgstr "%1$s / %2$s"
+
+msgid "Verifying…"
+msgstr "Verifying…"
+
+msgid "Only .zip backup files made with Flux Backup can be uploaded."
+msgstr "Only .zip backup files made with Flux Backup can be uploaded."
+
+msgid "Upload cancelled."
+msgstr "Upload cancelled."
+
+msgid "Upload failed: %s"
+msgstr "Upload failed: %s"
+
+msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
+msgstr "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
+msgstr "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
+
+msgid "Flux Backup"
+msgstr "Flux Backup"
+
+msgid "Automatic pre-update backups, scheduled backups and restore"
+msgstr "Automatic pre-update backups, scheduled backups and restore"
+
+msgid "Upload backup"
+msgstr "Upload backup"
+
+msgid "Back up now"
+msgstr "Back up now"
+
+msgid "Settings saved."
+msgstr "Settings saved."
+
+msgid "ZipArchive (PHP zip extension) is not available on the server."
+msgstr "ZipArchive (PHP zip extension) is not available on the server."
+
+msgid "The backup folder is not writable: %s"
+msgstr "The backup folder is not writable: %s"
+
+msgid "Backup type"
+msgstr "Backup type"
+
+msgid "Full backup"
+msgstr "Full backup"
+
+msgid "Database + wp-content (plugins, themes, uploads)"
+msgstr "Database + wp-content (plugins, themes, uploads)"
+
+msgid "Database only"
+msgstr "Database only"
+
+msgid "Posts, pages, settings, users"
+msgstr "Posts, pages, settings, users"
+
+msgid "Files only"
+msgstr "Files only"
+
+msgid "The wp-content folder"
+msgstr "The wp-content folder"
+
+msgid "Also include WordPress core files (wp-admin, wp-includes)"
+msgstr "Also include WordPress core files (wp-admin, wp-includes)"
+
+msgid "Description (optional)"
+msgstr "Description (optional)"
+
+msgid "e.g. Before the theme change"
+msgstr "e.g. Before the theme change"
+
+msgid "Lock: never delete automatically, even when the quota is full"
+msgstr "Lock: never delete automatically, even when the quota is full"
+
+msgid "Start backup"
+msgstr "Start backup"
+
+msgid "Restore"
+msgstr "Restore"
+
+msgid "First take a safety backup of the current database (recommended)"
+msgstr "First take a safety backup of the current database (recommended)"
+
+msgid "The site address (siteurl/home), Flux Backup settings and the backup list are kept. Plugin and theme folders are replaced with their backed-up version; in other folders files are overwritten."
+msgstr "The site address (siteurl/home), Flux Backup settings and the backup list are kept. Plugin and theme folders are replaced with their backed-up version; in other folders files are overwritten."
+
+msgid "Start restore"
+msgstr "Start restore"
+
+msgid "You are not allowed to do this."
+msgstr "You are not allowed to do this."
+
+msgid "Storage"
+msgstr "Storage"
+
+msgid "%s%% of the quota is used"
+msgstr "%s%% of the quota is used"
+
+msgid "%1$s%% used · %2$s free"
+msgstr "%1$s%% used · %2$s free"
+
+msgid "Last successful backup"
+msgstr "Last successful backup"
+
+msgid "%s ago"
+msgstr "%s ago"
+
+msgid "No backups yet."
+msgstr "No backups yet."
+
+msgid "Next scheduled"
+msgstr "Next scheduled"
+
+msgid "Weekly full backup"
+msgstr "Weekly full backup"
+
+msgid "Daily full backup"
+msgstr "Daily full backup"
+
+msgid "Off"
+msgstr "Off"
+
+msgid "Turn on schedule"
+msgstr "Turn on schedule"
+
+msgid "Pre-update backup: off"
+msgstr "Pre-update backup: off"
+
+msgid "Pre-update backup: FluxWP packages"
+msgstr "Pre-update backup: FluxWP packages"
+
+msgid "Pre-update backup: on"
+msgstr "Pre-update backup: on"
+
+msgid "Storage history"
+msgstr "Storage history"
+
+msgid "Time range"
+msgstr "Time range"
+
+msgid "%s days"
+msgstr "%s days"
+
+msgid "Quota"
+msgstr "Quota"
+
+msgid "By type"
+msgstr "By type"
+
+msgid "Recent backups"
+msgstr "Recent backups"
+
+msgid "View all"
+msgstr "View all"
+
+msgid "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
+msgstr "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
+
+msgid "Running"
+msgstr "Running"
+
+msgid "Recent events"
+msgstr "Recent events"
+
+msgid "No events yet."
+msgstr "No events yet."
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Not enough data yet: one measurement is recorded each day."
+msgstr "Not enough data yet: one measurement is recorded each day."
+
+msgid "No measurement for this day"
+msgstr "No measurement for this day"
+
+msgid "Storage by type"
+msgstr "Storage by type"
+
+msgid "total"
+msgstr "total"
+
+msgid "All"
+msgstr "All"
+
+msgid "Delete selected"
+msgstr "Delete selected"
+
+msgid "Total %s"
+msgstr "Total %s"
+
+msgid "Select all"
+msgstr "Select all"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Contents"
+msgstr "Contents"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "Retention"
+msgstr "Retention"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "No backups."
+msgstr "No backups."
+
+msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
+msgstr "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
+
+msgid "Database"
+msgstr "Database"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "Theme"
+msgstr "Theme"
+
+msgid "WordPress core"
+msgstr "WordPress core"
+
+msgid "Select"
+msgstr "Select"
+
+msgid "Running…"
+msgstr "Running…"
+
+msgid "Locked: never deleted automatically. Click to unlock."
+msgstr "Locked: never deleted automatically. Click to unlock."
+
+msgid "Lock: the quota and retention period will not delete this backup."
+msgstr "Lock: the quota and retention period will not delete this backup."
+
+msgid "Unlock"
+msgstr "Unlock"
+
+msgid "Lock"
+msgstr "Lock"
+
+msgid "Locked"
+msgstr "Locked"
+
+msgid "Until %s"
+msgstr "Until %s"
+
+msgid "Last %s scheduled"
+msgstr "Last %s scheduled"
+
+msgid "Until the quota is full"
+msgstr "Until the quota is full"
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "All backups"
+msgstr "All backups"
+
+msgid "Backup not found."
+msgstr "Backup not found."
+
+msgid "Backup file"
+msgstr "Backup file"
+
+msgid "Uncompressed size"
+msgstr "Uncompressed size"
+
+msgid "Files"
+msgstr "Files"
+
+msgid "%1$s tables, %2$s rows"
+msgstr "%1$s tables, %2$s rows"
+
+msgid "Included"
+msgstr "Included"
+
+msgid "Source"
+msgstr "Source"
+
+msgid "Taken on site"
+msgstr "Taken on site"
+
+msgid "Originally taken"
+msgstr "Originally taken"
+
+msgid "WordPress"
+msgstr "WordPress"
+
+msgid "The backup is running; details will appear here when it finishes."
+msgstr "The backup is running; details will appear here when it finishes."
+
+msgid "The backup file could not be read; the size breakdown cannot be shown."
+msgstr "The backup file could not be read; the size breakdown cannot be shown."
+
+msgid "Size breakdown"
+msgstr "Size breakdown"
+
+msgid "Measure"
+msgstr "Measure"
+
+msgid "Original size"
+msgstr "Original size"
+
+msgid "Size in archive"
+msgstr "Size in archive"
+
+msgid "uncompressed"
+msgstr "uncompressed"
+
+msgid "inside the zip"
+msgstr "inside the zip"
+
+msgid "Size breakdown by category"
+msgstr "Size breakdown by category"
+
+msgid "Section"
+msgstr "Section"
+
+msgid "Files / rows"
+msgstr "Files / rows"
+
+msgid "In archive"
+msgstr "In archive"
+
+msgid "Share"
+msgstr "Share"
+
+msgid "Original size: the size of the files on the site (for the database, the size of the SQL dump). In archive: the compressed size inside the zip. Images and videos are already compressed, so they do not get smaller in the archive."
+msgstr "Original size: the size of the files on the site (for the database, the size of the SQL dump). In archive: the compressed size inside the zip. Images and videos are already compressed, so they do not get smaller in the archive."
+
+msgid "Root files (wp-config.php, index.php …)"
+msgstr "Root files (wp-config.php, index.php …)"
+
+msgid "Files directly in this folder"
+msgstr "Files directly in this folder"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Themes"
+msgstr "Themes"
+
+msgid "Other folders"
+msgstr "Other folders"
+
+msgid "wp-content (all)"
+msgstr "wp-content (all)"
+
+msgid "Monday"
+msgstr "Monday"
+
+msgid "Tuesday"
+msgstr "Tuesday"
+
+msgid "Wednesday"
+msgstr "Wednesday"
+
+msgid "Thursday"
+msgstr "Thursday"
+
+msgid "Friday"
+msgstr "Friday"
+
+msgid "Saturday"
+msgstr "Saturday"
+
+msgid "Sunday"
+msgstr "Sunday"
+
+msgid "The total size of backups never exceeds this: before a new backup, the oldest unlocked backups are deleted. Locked backups are never deleted automatically; if no room can be made, the backup is not taken."
+msgstr "The total size of backups never exceeds this: before a new backup, the oldest unlocked backups are deleted. Locked backups are never deleted automatically; if no room can be made, the backup is not taken."
+
+msgid "Currently using %1$s. Folder: %2$s"
+msgstr "Currently using %1$s. Folder: %2$s"
+
+msgid "Pre-update backup"
+msgstr "Pre-update backup"
+
+msgid "Scope"
+msgstr "Scope"
+
+msgid "All plugin and theme updates"
+msgstr "All plugin and theme updates"
+
+msgid "FluxWP packages only (flx-… plugins and FluxWP themes)"
+msgstr "FluxWP packages only (flx-… plugins and FluxWP themes)"
+
+msgid "In manual, bulk and automatic updates, the database and the updated package's folder are backed up right before the package is installed. A bulk update produces a single backup."
+msgstr "In manual, bulk and automatic updates, the database and the updated package's folder are backed up right before the package is installed. A bulk update produces a single backup."
+
+msgid "Retention period"
+msgstr "Retention period"
+
+msgid "days"
+msgstr "days"
+
+msgid "If the update went fine, the backup is deleted after this period. Lock the ones you want to keep in the list."
+msgstr "If the update went fine, the backup is deleted after this period. Lock the ones you want to keep in the list."
+
+msgid "Scheduled full backup"
+msgstr "Scheduled full backup"
+
+msgid "Frequency"
+msgstr "Frequency"
+
+msgid "Daily"
+msgstr "Daily"
+
+msgid "Weekly"
+msgstr "Weekly"
+
+msgid "Day"
+msgstr "Day"
+
+msgid "Time"
+msgstr "Time"
+
+msgid "In the site's time zone. Choose night hours; WP-Cron is triggered by visits, so it may run a few minutes late."
+msgstr "In the site's time zone. Choose night hours; WP-Cron is triggered by visits, so it may run a few minutes late."
+
+msgid "Number to keep"
+msgstr "Number to keep"
+
+msgid "Only this many of the latest scheduled backups are kept (locked ones are not counted)."
+msgstr "Only this many of the latest scheduled backups are kept (locked ones are not counted)."
+
+msgid "Add wp-admin, wp-includes and root files (including wp-config.php) to full backups"
+msgstr "Add wp-admin, wp-includes and root files (including wp-config.php) to full backups"
+
+msgid "WordPress core can always be downloaded again from wordpress.org; leaving it out saves space."
+msgstr "WordPress core can always be downloaded again from wordpress.org; leaving it out saves space."
+
+msgid "Exclusions"
+msgstr "Exclusions"
+
+msgid "Extra paths"
+msgstr "Extra paths"
+
+msgid "One path per line, relative to the WordPress root folder. The * wildcard can be used."
+msgstr "One path per line, relative to the WordPress root folder. The * wildcard can be used."
+
+msgid "Always excluded: the backup folder, wp-snapshots, other backup plugins' folders (ai1wm-backups, updraft, wpvividbackups, backups-dup-*), cache, litespeed, upgrade, upgrade-temp-backup."
+msgstr "Always excluded: the backup folder, wp-snapshots, other backup plugins' folders (ai1wm-backups, updraft, wpvividbackups, backups-dup-*), cache, litespeed, upgrade, upgrade-temp-backup."
+
+msgid "Restore and uninstall"
+msgstr "Restore and uninstall"
+
+msgid "Safety backup"
+msgstr "Safety backup"
+
+msgid "Back up the current database before restoring the database (kept for 7 days)"
+msgstr "Back up the current database before restoring the database (kept for 7 days)"
+
+msgid "When the plugin is deleted"
+msgstr "When the plugin is deleted"
+
+msgid "Also delete backup files"
+msgstr "Also delete backup files"
+
+msgid "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder."
+msgstr "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder."
+
+msgid "Save settings"
+msgstr "Save settings"
+
+msgid "Could not delete."
+msgstr "Could not delete."
+
+msgid "No operation is running."
+msgstr "No operation is running."
+
+msgid "Nothing was selected to back up."
+msgstr "Nothing was selected to back up."
+
+msgid "zlib (gzip) is not available on the server."
+msgstr "zlib (gzip) is not available on the server."
+
+msgid "Another backup or restore is running. Wait for it to finish."
+msgstr "Another backup or restore is running. Wait for it to finish."
+
+msgid "Backup record not found."
+msgstr "Backup record not found."
+
+msgid "Invalid path."
+msgstr "Invalid path."
+
+msgid "Path not found: %s"
+msgstr "Path not found: %s"
+
+msgid "Could not write a temporary file."
+msgstr "Could not write a temporary file."
+
+msgid "Could not read the file list."
+msgstr "Could not read the file list."
+
+msgid "Could not open the zip file (code %s)."
+msgstr "Could not open the zip file (code %s)."
+
+msgid "Could not write the zip: %s"
+msgstr "Could not write the zip: %s"
+
+msgid "The backup record was deleted."
+msgstr "The backup record was deleted."
+
+msgid "Could not open the zip file."
+msgstr "Could not open the zip file."
+
+msgid "Could not add the database dump to the archive."
+msgstr "Could not add the database dump to the archive."
+
+msgid "Could not write the zip (the disk may be full)."
+msgstr "Could not write the zip (the disk may be full)."
+
+msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgstr "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+
+msgid "Backup taken: %1$s (%2$s)"
+msgstr "Backup taken: %1$s (%2$s)"
+
+msgid "Backup failed (%1$s): %2$s"
+msgstr "Backup failed (%1$s): %2$s"
+
+msgid "Scanning files… %s files"
+msgstr "Scanning files… %s files"
+
+msgid "Checking quota…"
+msgstr "Checking quota…"
+
+msgid "Backing up database: %1$s (%2$s rows)"
+msgstr "Backing up database: %1$s (%2$s rows)"
+
+msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
+msgstr "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
+
+msgid "Finishing…"
+msgstr "Finishing…"
+
+msgid "Backup completed."
+msgstr "Backup completed."
+
+msgid "Media (uploads)"
+msgstr "Media (uploads)"
+
+msgid "Other wp-content"
+msgstr "Other wp-content"
+
+msgid "Backup folder writable"
+msgstr "Backup folder writable"
+
+msgid "Backups are written to %s."
+msgstr "Backups are written to %s."
+
+msgid "The %s folder cannot be created or written. Check the file permissions (755)."
+msgstr "The %s folder cannot be created or written. Check the file permissions (755)."
+
+msgid "ZipArchive and zlib"
+msgstr "ZipArchive and zlib"
+
+msgid "The PHP zip and zlib extensions are installed."
+msgstr "The PHP zip and zlib extensions are installed."
+
+msgid "The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on \"zip\" under PHP Configuration › PHP Extensions."
+msgstr "The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on \"zip\" under PHP Configuration › PHP Extensions."
+
+msgid "Backup quota"
+msgstr "Backup quota"
+
+msgid "%1$s / %2$s used (%3$s%%)."
+msgstr "%1$s / %2$s used (%3$s%%)."
+
+msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
+msgstr "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
+
+msgid "There are no backups yet. Take the first one from the dashboard with \"Back up now\"."
+msgstr "There are no backups yet. Take the first one from the dashboard with \"Back up now\"."
+
+msgid "%1$s (%2$s): %3$s"
+msgstr "%1$s (%2$s): %3$s"
+
+msgid "for all plugin and theme updates"
+msgstr "for all plugin and theme updates"
+
+msgid "for FluxWP package updates only"
+msgstr "for FluxWP package updates only"
+
+msgid "Off: no backup is taken before updates."
+msgstr "Off: no backup is taken before updates."
+
+msgid "On, %1$s. Backups are kept for %2$s days."
+msgstr "On, %1$s. Backups are kept for %2$s days."
+
+msgid "The daily cleanup task ran %s."
+msgstr "The daily cleanup task ran %s."
+
+msgid "The daily task is scheduled but has not run yet."
+msgstr "The daily task is scheduled but has not run yet."
+
+msgid "DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs."
+msgstr "DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs."
+
+msgid "The daily task has not run for 2 days; WP-Cron is triggered by visits. Old backups may not be getting deleted."
+msgstr "The daily task has not run for 2 days; WP-Cron is triggered by visits. Old backups may not be getting deleted."
+
+msgid "Flux Backup scheduled tasks"
+msgstr "Flux Backup scheduled tasks"
+
+msgid "Could not start the scheduled backup: %s"
+msgstr "Could not start the scheduled backup: %s"
+
+msgid "Left unfinished (timed out)."
+msgstr "Left unfinished (timed out)."
+
+msgid "Could not write the SQL file."
+msgstr "Could not write the SQL file."
+
+msgid "Could not read table %1$s: %2$s"
+msgstr "Could not read table %1$s: %2$s"
+
+msgid "Could not get the structure of table %1$s: %2$s"
+msgstr "Could not get the structure of table %1$s: %2$s"
+
+msgid "Could not open the SQL file."
+msgstr "Could not open the SQL file."
+
+msgid "Flux Backup: click for details"
+msgstr "Flux Backup: click for details"
+
+msgid "Restoring %s"
+msgstr "Restoring %s"
+
+msgid "Backing up %s"
+msgstr "Backing up %s"
+
+msgid "Restore complete"
+msgstr "Restore complete"
+
+msgid "Backup ready · %s"
+msgstr "Backup ready · %s"
+
+msgid "Backup ready"
+msgstr "Backup ready"
+
+msgid "Restore failed"
+msgstr "Restore failed"
+
+msgid "Backup failed"
+msgstr "Backup failed"
+
+msgid "Cancelled"
+msgstr "Cancelled"
+
+msgid "Cancelling…"
+msgstr "Cancelling…"
+
+msgid "Elapsed: %s"
+msgstr "Elapsed: %s"
+
+msgid "Remaining: about %s"
+msgstr "Remaining: about %s"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "You can leave the page; it keeps running in the background."
+msgstr "You can leave the page; it keeps running in the background."
+
+msgid "Do not change the site while the restore is running."
+msgstr "Do not change the site while the restore is running."
+
+msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
+msgstr "Could not back up before updating %1$s; the update continued without a backup: %2$s"
+
+msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
+msgstr "Could not add the %1$s folder to the pre-update backup: %2$s"
+
+msgid "The backup file is missing from disk."
+msgstr "The backup file is missing from disk."
+
+msgid "This path is not in the backup: %s"
+msgstr "This path is not in the backup: %s"
+
+msgid "This backup has no database."
+msgstr "This backup has no database."
+
+msgid "Nothing was selected to restore."
+msgstr "Nothing was selected to restore."
+
+msgid "Safety backup before restore (%s)"
+msgstr "Safety backup before restore (%s)"
+
+msgid "The safety backup failed, so nothing was restored: %s"
+msgstr "The safety backup failed, so nothing was restored: %s"
+
+msgid "The backup has no database.sql.gz."
+msgstr "The backup has no database.sql.gz."
+
+msgid "The database file's checksum does not match; the backup may be corrupt."
+msgstr "The database file's checksum does not match; the backup may be corrupt."
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database was not restored."
+msgstr "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database was not restored."
+
+msgid "Not found in the backup: %s"
+msgstr "Not found in the backup: %s"
+
+msgid "Could not move the folder (permission problem?): %s"
+msgstr "Could not move the folder (permission problem?): %s"
+
+msgid "Could not create the folder: %s"
+msgstr "Could not create the folder: %s"
+
+msgid "Could not write the file: %s"
+msgstr "Could not write the file: %s"
+
+msgid "database"
+msgstr "database"
+
+msgid "Restored: %1$s (%2$s)."
+msgstr "Restored: %1$s (%2$s)."
+
+msgid "%s SQL statements failed; details are in the log."
+msgstr "%s SQL statements failed; details are in the log."
+
+msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
+msgstr "%s The database may be partially restored; restore the \"Safety backup before restore\"."
+
+msgid "Restore failed (%1$s): %2$s"
+msgstr "Restore failed (%1$s): %2$s"
+
+msgid "Taking safety backup: %s"
+msgstr "Taking safety backup: %s"
+
+msgid "Unpacking the database file…"
+msgstr "Unpacking the database file…"
+
+msgid "Restoring database: %s"
+msgstr "Restoring database: %s"
+
+msgid "Preparing files…"
+msgstr "Preparing files…"
+
+msgid "Restoring files: %1$s / %2$s"
+msgstr "Restoring files: %1$s / %2$s"
+
+msgid "%s s"
+msgstr "%s s"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s min %2$s s"
+
+msgid "%1$s h %2$s min"
+msgstr "%1$s h %2$s min"
+
+msgid "Cancelled."
+msgstr "Cancelled."
+
+msgid "Could not verify the session. Reload the page."
+msgstr "Could not verify the session. Reload the page."
+
+msgid "Backup deleted: %s"
+msgstr "Backup deleted: %s"
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "Before %1$s %2$s → %3$s"
+
+msgid "Before updating %s"
+msgstr "Before updating %s"
+
+msgid "Pre-update"
+msgstr "Pre-update"
+
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Scheduled"
+msgstr "Scheduled"
+
+msgid "Automatic update"
+msgstr "Automatic update"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "WP-CLI"
+msgstr "WP-CLI"
+
+msgid "Before restore"
+msgstr "Before restore"
+
+msgid "Plugin (API)"
+msgstr "Plugin (API)"
+
+msgid "Uploaded"
+msgstr "Uploaded"
+
+msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings."
+msgstr "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings."
+
+msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
+msgstr "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
+
+msgid "The file is empty or too small."
+msgstr "The file is empty or too small."
+
+msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings."
+msgstr "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings."
+
+msgid "There is not enough free disk space on the server (free: %s)."
+msgstr "There is not enough free disk space on the server (free: %s)."
+
+msgid "Upload not found; start again."
+msgstr "Upload not found; start again."
+
+msgid "A chunk did not reach the server (error %d)."
+msgstr "A chunk did not reach the server (error %d)."
+
+msgid "Chunks arrived out of order."
+msgstr "Chunks arrived out of order."
+
+msgid "The file is larger than the declared size."
+msgstr "The file is larger than the declared size."
+
+msgid "Could not write the temporary file (the disk may be full)."
+msgstr "Could not write the temporary file (the disk may be full)."
+
+msgid "%1$s was uploaded (%2$s) and added to the backup list."
+msgstr "%1$s was uploaded (%2$s) and added to the backup list."
+
+msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
+msgstr "The file was uploaded incompletely (%1$s / %2$s). Try again."
+
+msgid "Could not move the file to the backup folder."
+msgstr "Could not move the file to the backup folder."
+
+msgid "Uploaded: %s"
+msgstr "Uploaded: %s"
+
+msgid "Backup uploaded: %1$s (%2$s, %3$s)"
+msgstr "Backup uploaded: %1$s (%2$s, %3$s)"
+
+msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
+msgstr "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
+
+msgid "The backup contains an unexpected or unsafe path: %s"
+msgstr "The backup contains an unexpected or unsafe path: %s"
+
+msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
+msgstr "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
+
+msgid "The backup appears to be empty."
+msgstr "The backup appears to be empty."
+
+msgid "The uncompressed size of the backup is not plausible; the file was not accepted."
+msgstr "The uncompressed size of the backup is not plausible; the file was not accepted."
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] "%s file"
+msgstr[1] "%s files"
+
+msgid "%s locked"
+msgid_plural "%s locked"
+msgstr[0] "%s locked"
+msgstr[1] "%s locked"
+
+msgid "Before updating %s package"
+msgid_plural "Before updating %s packages"
+msgstr[0] "Before updating %s package"
+msgstr[1] "Before updating %s packages"
+
+msgid "%s row"
+msgid_plural "%s rows"
+msgstr[0] "%s row"
+msgstr[1] "%s rows"
+
+msgid "%s backup"
+msgid_plural "%s backups"
+msgstr[0] "%s backup"
+msgstr[1] "%s backups"
+
+msgid "%s other item"
+msgid_plural "%s other items"
+msgstr[0] "%s other item"
+msgstr[1] "%s other items"
+
+msgid "%1$s old backup deleted for the quota: %2$s"
+msgid_plural "%1$s old backups deleted for the quota: %2$s"
+msgstr[0] "%1$s old backup deleted for the quota: %2$s"
+msgstr[1] "%1$s old backups deleted for the quota: %2$s"
+
+msgid "%s backup past its retention period was deleted."
+msgid_plural "%s backups past their retention period were deleted."
+msgstr[0] "%s backup past its retention period was deleted."
+msgstr[1] "%s backups past their retention period were deleted."
+
+msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
+msgstr "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
+
+msgctxt "context_fd86717aca41"
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "The archive file is deleted too."
+msgstr "The archive file is deleted too."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Restore is only available in the panel."
+msgstr "Restore is only available in the panel."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Deleted"
+msgstr "Deleted"
+
+msgid "Take a full backup?"
+msgstr "Take a full backup?"
+
+msgid "Done"
+msgstr "Done"
+
+msgid "The backup runs in the background and shows up in the list when it finishes."
+msgstr "The backup runs in the background and shows up in the list when it finishes."
+
+msgid "Backup started"
+msgstr "Backup started"
+
+msgid "Delete this backup?"
+msgstr "Delete this backup?"
+
+msgid "No backups"
+msgstr "No backups"
+
+msgid "Back up"
+msgstr "Back up"
+
+msgid "Progress"
+msgstr "Progress"
+
+msgid "Take the first backup with Back up now. Restore is done in the panel."
+msgstr "Take the first backup with Back up now. Restore is done in the panel."

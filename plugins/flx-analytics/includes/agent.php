@@ -174,25 +174,25 @@ function flxan_dim_label( $kind, $val ) {
 	if ( null === $labels ) {
 		$labels = array(
 			'channel' => array(
-				'direct'   => __( 'Doğrudan', 'flx-analytics' ),
-				'search'   => __( 'Arama motoru', 'flx-analytics' ),
-				'social'   => __( 'Sosyal medya', 'flx-analytics' ),
-				'ai'       => __( 'Yapay zekâ', 'flx-analytics' ),
-				'email'    => __( 'E-posta', 'flx-analytics' ),
-				'paid'     => __( 'Reklam', 'flx-analytics' ),
-				'campaign' => __( 'Kampanya', 'flx-analytics' ),
-				'referral' => __( 'Diğer siteler', 'flx-analytics' ),
-				'ref'      => __( 'Referans bağlantısı', 'flx-analytics' ),
+				'direct'   => __( 'Direct', 'flx-analytics' ),
+				'search'   => __( 'Search engine', 'flx-analytics' ),
+				'social'   => __( 'Social media', 'flx-analytics' ),
+				'ai'       => __( 'AI', 'flx-analytics' ),
+				'email'    => __( 'Email', 'flx-analytics' ),
+				'paid'     => __( 'Ads', 'flx-analytics' ),
+				'campaign' => __( 'Campaign', 'flx-analytics' ),
+				'referral' => __( 'Other sites', 'flx-analytics' ),
+				'ref'      => __( 'Referral link', 'flx-analytics' ),
 			),
 			'device'  => array(
-				'mobile'  => __( 'Mobil', 'flx-analytics' ),
+				'mobile'  => __( 'Mobile', 'flx-analytics' ),
 				'tablet'  => __( 'Tablet', 'flx-analytics' ),
-				'desktop' => __( 'Masaüstü', 'flx-analytics' ),
+				'desktop' => __( 'Desktop', 'flx-analytics' ),
 			),
 		);
 	}
 	if ( 'other' === $val || '' === $val ) {
-		return __( 'Diğer', 'flx-analytics' );
+		return __( 'Other', 'flx-analytics' );
 	}
 	if ( isset( $labels[ $kind ][ $val ] ) ) {
 		return $labels[ $kind ][ $val ];

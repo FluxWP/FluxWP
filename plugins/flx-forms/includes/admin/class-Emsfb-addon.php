@@ -25,7 +25,7 @@ class Addon {
 		add_action( 'admin_menu', array( $this, 'add_addon_menu' ), 11 );
 	}
 	public function add_addon_menu() {
-		add_submenu_page( 'Emsfb', esc_html__('Add-ons', 'flx-forms' ),esc_html__('Add-ons', 'flx-forms' ), 'Emsfb_addon', 'Emsfb_addon', array(
+		add_submenu_page( 'Emsfb', esc_html__('\\nAdd-ons\\n', 'flx-forms' ),esc_html__('\\nAdd-ons\\n', 'flx-forms' ), 'Emsfb_addon', 'Emsfb_addon', array(
 			$this,
 			'render_settings'
 		) );
@@ -88,11 +88,11 @@ class Addon {
 	<?php if ($noti_pro !== 0 && $addon_status): ?>
 		<?php if (!$addon_status['status']): ?>
 			<div class="notice notice-error efb" style="margin: 20px 0;">
-				<p><strong><?php echo esc_html__('Addon Installation Issue', 'flx-forms'); ?>:</strong></p>
+				<p><strong><?php echo esc_html__('\\nAddon Installation Issue\\n', 'flx-forms'); ?>:</strong></p>
 				<p><?php echo esc_html($addon_status['current_message']); ?></p>
 				<?php if (!empty($addon_status['error_codes'])): ?>
 					<details style="margin-top: 10px;">
-						<summary><?php echo esc_html__('Technical Details', 'flx-forms'); ?></summary>
+						<summary><?php echo esc_html__('\\nTechnical Details\\n', 'flx-forms'); ?></summary>
 						<ul style="margin: 10px 0;">
 							<?php foreach ($addon_status['error_codes'] as $error_code): ?>
 								<li><code><?php echo esc_html($error_code); ?></code></li>
@@ -100,47 +100,47 @@ class Addon {
 						</ul>
 					</details>
 				<?php endif; ?>
-				<p><em><?php echo sprintf(esc_html__('Checked %s', 'flx-forms'), esc_html(flx_time_ago(get_gmt_from_date($addon_status['checked_at'])))); ?></em></p>
+				<p><em><?php echo sprintf(esc_html__('\\nChecked%s\\n', 'flx-forms'), esc_html(flx_time_ago(get_gmt_from_date($addon_status['checked_at'])))); ?></em></p>
 			</div>
 		<?php else: ?>
 			<div class="notice notice-success efb" style="margin: 20px 0;">
-				<p><strong><?php echo esc_html__('System Ready', 'flx-forms'); ?>:</strong> <?php echo esc_html($addon_status['current_message']); ?></p>
-				<p><em><?php echo sprintf(esc_html__('Checked %s', 'flx-forms'), esc_html(flx_time_ago(get_gmt_from_date($addon_status['checked_at'])))); ?></em></p>
+				<p><strong><?php echo esc_html__('\\nSystem Ready\\n', 'flx-forms'); ?>:</strong> <?php echo esc_html($addon_status['current_message']); ?></p>
+				<p><em><?php echo sprintf(esc_html__('\\nChecked%s\\n', 'flx-forms'), esc_html(flx_time_ago(get_gmt_from_date($addon_status['checked_at'])))); ?></em></p>
 			</div>
 		<?php endif; ?>
 	<?php elseif ($noti_pro !== 0 && !$addon_status): ?>
 		<div class="notice notice-info efb" style="margin: 20px 0;">
-			<p><?php echo esc_html__('Checking add-on installation capabilities&hellip;', 'flx-forms'); ?></p>
-			<p><em><?php echo esc_html__('This check runs once after plugin activation. Please refresh the page in a few moments.', 'flx-forms'); ?></em></p>
+			<p><?php echo esc_html__('\\nChecking add-on installation capabilities...\', \'en\']]', 'flx-forms'); ?></p>
+			<p><em><?php echo esc_html__('\\nThis check runs once after plugin activation. Please refresh the page in a few moments.\\n', 'flx-forms'); ?></em></p>
 		</div>
 	<?php endif; ?>
 	<!-- End Addon Directory Status Check -->
 
 	<?php if ( ! empty( $php_addon_issues ) ) : ?>
 		<div class="notice notice-error efb" style="margin: 20px 0;">
-			<p><strong><?php echo esc_html__( 'Some add-ons need a PHP server change', 'flx-forms' ); ?></strong></p>
-			<p><?php echo esc_html__( 'Flux Forms has safely paused each affected active add-on, so the rest of the plugin can continue working.', 'flx-forms' ); ?></p>
+			<p><strong><?php echo esc_html__( '\\nSome add-ons need a PHP server change\\n', 'flx-forms' ); ?></strong></p>
+			<p><?php echo esc_html__( '\\nFlux Forms has safely paused each affected active add-on, so the rest of the plugin can continue working.\\n', 'flx-forms' ); ?></p>
 			<ul style="list-style: disc; margin: 0 0 0 22px;">
 				<?php foreach ( $php_addon_issues as $php_addon_issue ) : ?>
 					<li style="margin-bottom: 8px;">
 						<strong><?php echo esc_html( $php_addon_issue['name'] ); ?></strong>
 						<?php if ( ! empty( $php_addon_issue['enabled'] ) ) : ?>
-							<?php echo esc_html__( '(currently enabled and paused)', 'flx-forms' ); ?>
+							<?php echo esc_html__( '\\n(currently enabled and paused)\\n', 'flx-forms' ); ?>
 						<?php else : ?>
-							<?php echo esc_html__( '(not enabled)', 'flx-forms' ); ?>
+							<?php echo esc_html__( '\\n(not enabled)\\n', 'flx-forms' ); ?>
 						<?php endif; ?>
 						<?php if ( ! empty( $php_addon_issue['disabled_functions'] ) ) : ?>
-							&mdash; <?php echo esc_html__( 'disabled in php.ini:', 'flx-forms' ); ?>
+							&mdash; <?php echo esc_html__( '\\ndisabled in php.ini:\\n', 'flx-forms' ); ?>
 							<code><?php echo esc_html( implode( ', ', $php_addon_issue['disabled_functions'] ) ); ?></code>.
 						<?php endif; ?>
 						<?php if ( ! empty( $php_addon_issue['missing_extension_functions'] ) ) : ?>
-							&mdash; <?php echo esc_html__( 'not provided by PHP or its required extension:', 'flx-forms' ); ?>
+							&mdash; <?php echo esc_html__( '[["not provided by PHP or its required extension:\\n', 'flx-forms' ); ?>
 							<code><?php echo esc_html( implode( ', ', $php_addon_issue['missing_extension_functions'] ) ); ?></code>.
 						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>
 			</ul>
-			<p><?php echo esc_html__( 'This usually means the needed PHP extension is not installed, or the function is listed in disable_functions in php.ini. Please ask your hosting provider to enable it, then refresh this page.', 'flx-forms' ); ?></p>
+			<p><?php echo esc_html__( '\\nThis usually means the needed PHP extension is not installed, or the function is listed in disable_functions in php.ini. Please ask your hosting provider to enable it, then refresh this page.\\n', 'flx-forms' ); ?></p>
 		</div>
 	<?php endif; ?>
 

@@ -25,22 +25,22 @@ function flxk_google_cards() {
 		'site-kit'   => array(
 			'slug'  => 'google-site-kit',
 			'file'  => 'google-site-kit/google-site-kit.php',
-			'title' => __( 'Google\'da bulunun', 'flx-setup' ),
-			'text'  => __( 'Sitenizin Google aramalarında nasıl göründüğünü, kaç kişinin geldiğini ve sayfalarınızın ne kadar hızlı açıldığını panelden izleyin. Google Site Kit Search Console, Analytics ve PageSpeed\'i tek ekranda toplar.', 'flx-setup' ),
+			'title' => __( 'Be found on Google', 'flx-setup' ),
+			'text'  => __( 'Watch from the panel how the site looks in Google search, how many people arrive, and how fast pages open. Google Site Kit brings Search Console, Analytics and PageSpeed into one screen.', 'flx-setup' ),
 			'name'  => 'Google Site Kit',
-			'install'  => __( 'Google Site Kit\'i kur', 'flx-setup' ),
-			'activate' => __( 'Google Site Kit\'i etkinleştir', 'flx-setup' ),
+			'install'  => __( 'Install Google Site Kit', 'flx-setup' ),
+			'activate' => __( 'Activate Google Site Kit', 'flx-setup' ),
 			'next'  => admin_url( 'admin.php?page=googlesitekit-splash' ),
 			'show'  => true,
 		),
 		'google-woo' => array(
 			'slug'  => 'google-listings-and-ads',
 			'file'  => 'google-listings-and-ads/google-listings-and-ads.php',
-			'title' => __( 'Ürünlerinizi Google\'da gösterin', 'flx-setup' ),
-			'text'  => __( 'Google hesabınız bağlı. Google for WooCommerce ile ürünleriniz Google Alışveriş, Arama, YouTube ve Görseller\'de ücretsiz listelenir; isterseniz reklam da verebilirsiniz.', 'flx-setup' ),
+			'title' => __( 'Show your products on Google', 'flx-setup' ),
+			'text'  => __( 'Your Google account is connected. With Google for WooCommerce your products are listed for free on Google Shopping, Search, YouTube and Images; you can also run ads.', 'flx-setup' ),
 			'name'  => 'Google for WooCommerce',
-			'install'  => __( 'Google for WooCommerce\'ı kur', 'flx-setup' ),
-			'activate' => __( 'Google for WooCommerce\'ı etkinleştir', 'flx-setup' ),
+			'install'  => __( 'Install Google for WooCommerce', 'flx-setup' ),
+			'activate' => __( 'Activate Google for WooCommerce', 'flx-setup' ),
 			'next'  => admin_url( 'admin.php?page=wc-admin&path=/google/start' ),
 			'show'  => class_exists( 'WooCommerce' ) && flxk_google_connected(),
 		),
@@ -110,7 +110,7 @@ add_action(
 					<p><?php echo esc_html( $c['text'] ); ?></p>
 				</div>
 				<div class="flxk-gcard__act">
-					<a class="button flxk-gcard__skip" href="<?php echo esc_url( $skip ); ?>"><?php esc_html_e( 'Gerekli değil', 'flx-setup' ); ?></a>
+					<a class="button flxk-gcard__skip" href="<?php echo esc_url( $skip ); ?>"><?php esc_html_e( 'Not needed', 'flx-setup' ); ?></a>
 					<a class="button button-primary" href="<?php echo esc_url( $go ); ?>"><?php echo esc_html( $btn ); ?></a>
 				</div>
 			</div>
@@ -161,12 +161,12 @@ add_action(
 		check_admin_referer( 'flxk_google_install_' . $id );
 		$c = flxk_google_cards()[ $id ] ?? null;
 		if ( ! $c || ! current_user_can( 'install_plugins' ) || ! current_user_can( 'activate_plugins' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-setup' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 		}
 		$err = flxk_google_install( $c );
 		if ( is_wp_error( $err ) ) {
 			wp_die(
-				'<p>' . esc_html( $err->get_error_message() ) . '</p><p><a href="' . esc_url( admin_url( 'plugin-install.php?s=' . rawurlencode( $c['slug'] ) . '&tab=search&type=term' ) ) . '">' . esc_html__( 'Eklentiler › Yeni ekle\'den deneyin', 'flx-setup' ) . '</a></p>',
+				'<p>' . esc_html( $err->get_error_message() ) . '</p><p><a href="' . esc_url( admin_url( 'plugin-install.php?s=' . rawurlencode( $c['slug'] ) . '&tab=search&type=term' ) ) . '">' . esc_html__( 'Try from Plugins › Add New', 'flx-setup' ) . '</a></p>',
 				esc_html( $c['name'] )
 			);
 		}
@@ -193,14 +193,14 @@ function flxk_google_install( array $c ) {
 		);
 		if ( is_wp_error( $api ) || empty( $api->download_link ) ) {
 			/* translators: %s: plugin name */
-			return new WP_Error( 'flxk_google', sprintf( __( '%s wordpress.org\'dan alınamadı.', 'flx-setup' ), $c['name'] ) );
+			return new WP_Error( 'flxk_google', sprintf( __( 'Could not download %s from wordpress.org.', 'flx-setup' ), $c['name'] ) );
 		}
 		$skin = new WP_Ajax_Upgrader_Skin();
 		$res  = ( new Plugin_Upgrader( $skin ) )->install( $api->download_link );
 		if ( is_wp_error( $res ) || ! $res ) {
 			$msg = is_wp_error( $res ) ? $res->get_error_message() : implode( ' ', (array) $skin->get_error_messages() );
 			/* translators: 1: plugin name, 2: error */
-			return new WP_Error( 'flxk_google', sprintf( __( '%1$s kurulamadı: %2$s', 'flx-setup' ), $c['name'], $msg ) );
+			return new WP_Error( 'flxk_google', sprintf( __( '%1$s could not be installed: %2$s', 'flx-setup' ), $c['name'], $msg ) );
 		}
 		wp_clean_plugins_cache();
 	}

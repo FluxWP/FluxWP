@@ -1,0 +1,321 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: zh_CN\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Roles and access"
+msgstr "角色和访问权限"
+
+msgid "Automatic (first available: Tasks, Certificates, Donations)"
+msgstr "自动(首先可用:任务、证书、捐赠)"
+
+msgid "Tasks"
+msgstr "任务"
+
+msgid "Certificates"
+msgstr "证书"
+
+msgid "Donations"
+msgstr "捐款"
+
+msgid "Dashboard (admin home)"
+msgstr "仪表板(管理主页)"
+
+msgid "Profile"
+msgstr "公司简介"
+
+msgid "%s person"
+msgid_plural "%s people"
+msgstr[0] "%s人"
+
+msgid "You are not allowed to do this."
+msgstr "你不可以这样做。"
+
+msgid "Saved. Permission changes apply immediately."
+msgstr "已保存。权限更改会立即应用。"
+
+msgid "The role is back to its default permissions."
+msgstr "该角色恢复到其默认权限。"
+
+msgid "Person added to the role."
+msgstr "添加到角色的人员。"
+
+msgid "Person removed from the role."
+msgstr "从角色中删除的人。"
+
+msgid "No user with this username or email. Create the user first."
+msgstr "没有用户使用此用户名或电子邮件。首先创建用户。"
+
+msgid "Administrators can't get this role; they already see everything."
+msgstr "管理员无法获得此角色;他们已经看到了一切。"
+
+msgid "The action could not be completed."
+msgstr "该操作无法完成。"
+
+msgid "Role added; it starts with admin panel access only. Turn on its permissions in the table."
+msgstr "添加角色;它仅从管理面板访问开始。打开其在表中的权限。"
+
+msgid "Role deleted; its people moved to the default role."
+msgstr "角色已删除;它的人员转移到默认角色。"
+
+msgid "Role name must be 1-40 characters."
+msgstr "角色名称必须为 1-40 个字符。"
+
+msgid "Turn on and off what each role can access. A disabled action disappears from the menu and can't be done even by URL. The WordPress Administrator sees everything."
+msgstr "打开和关闭每个角色可以访问的内容。禁用的操作将从菜单中消失,即使通过 URL 也无法完成。 WordPress 管理员可以看到一切。"
+
+msgid "Delete this role? Its people move to the default role."
+msgstr "删除这个角色?它的人员转移到默认角色。"
+
+msgid "Delete role"
+msgstr "删除角色"
+
+msgid "New role"
+msgstr "新角色"
+
+msgid "For example Volunteer or Accounting. Starts with admin panel access only."
+msgstr "例如志愿者或会计。仅从管理面板访问开始。"
+
+msgid "Role name"
+msgstr "角色名称"
+
+msgid "Add role"
+msgstr "添加角色"
+
+msgid "Access"
+msgstr "访问"
+
+msgid "%s is not installed"
+msgstr "%s未安装"
+
+msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
+msgstr "设置已保存;一旦插件更新到强制执行此权限的版本,它就会生效。"
+
+msgid "Waiting for %s update"
+msgstr "等待%s更新"
+
+msgid "broad access"
+msgstr "广泛的访问"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "%s: screen after login"
+msgstr "%s: 登录后的屏幕"
+
+msgid "Referral link lifetime"
+msgstr "推荐链接的生命周期"
+
+msgid "days"
+msgstr "天"
+
+msgid "If a visitor who came through a referral link donates within this period, the donation is credited to that person. If they come through another referral link, the latest one wins."
+msgstr "如果通过推荐链接访问的访客在此期间捐款,捐款将记入该人的账户。如果他们通过另一个推荐链接,则最新的获胜。"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Reset this role's permissions to the defaults?"
+msgstr "将此角色的权限重置为默认值?"
+
+msgid "%s: reset to defaults"
+msgstr "%s:重置为默认值"
+
+msgid "People"
+msgstr "人"
+
+msgid "Add WhatsApp number"
+msgstr "添加 WhatsApp 号码"
+
+msgid "Referral link"
+msgstr "推荐链接"
+
+msgid "Copy"
+msgstr "复制"
+
+msgid "Remove this person from the role?"
+msgstr "将此人从角色中删除?"
+
+msgid "Remove from role"
+msgstr "从角色中删除"
+
+msgid "Nobody yet."
+msgstr "还没人。"
+
+msgid "Username or email"
+msgstr "用户名或电子邮件"
+
+msgid "Add"
+msgstr "添加"
+
+msgid "For a new person, first <a href=\"%s\">create a user</a> and choose one of these roles."
+msgstr "对于新人员,首先<a href=\"%s\">创建用户</a>并选择这些角色之一。"
+
+msgid "For every permission of every role, see <a href=\"%s\">Admin theme › Permissions</a>."
+msgstr "对于每个角色的每个权限,请参阅<a href=\"%s\">管理主题 › 权限</a>。"
+
+msgid "Copied"
+msgstr "已复制"
+
+msgid "Director"
+msgstr "导演"
+
+msgid "Has every permission on this page: all donations, certificate and task management, reports. Unlike the WordPress administrator, can't install plugins or change site settings."
+msgstr "拥有此页面的所有权限:所有捐赠、证书和任务管理、报告。与 WordPress 管理员不同,无法安装插件或更改网站设置。"
+
+msgid "Manager"
+msgstr "经理"
+
+msgid "Everything Staff can do, plus the donation and certificate dashboards (overall totals) and reports, and sets report schedules."
+msgstr "员工可以做的一切,加上捐赠和证书仪表板(总体)和报告,并设置报告时间表。"
+
+msgid "Staff"
+msgstr "员工"
+
+msgid "Regular user in Tasks, creates certificates, opens donations on behalf of others, sees the donations, donors and certificates they referred."
+msgstr "任务中的常规用户创建证书、代表其他人打开捐赠、查看他们引用的捐赠、捐赠者和证书。"
+
+msgid "Role added from the panel."
+msgstr "从面板添加的角色。"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Can enter the admin panel"
+msgstr "可以进入管理面板"
+
+msgid "Can be a referrer (gets a personal referral link, can be chosen as referrer on certificates and donations)"
+msgstr "可以成为推荐人(获得个人推荐链接,可以选择作为证书和捐赠的推荐人)"
+
+msgid "Uses Tasks; sees the projects and lists they have access to"
+msgstr "使用任务;查看他们有权访问的项目和列表"
+
+msgid "Creates projects, folders and lists"
+msgstr "创建项目、文件夹和列表"
+
+msgid "Uses AI features in Tasks"
+msgstr "在任务中使用人工智能功能"
+
+msgid "Manages Tasks (sees every project, usage board, settings)"
+msgstr "管理任务(查看每个项目、使用板、设置)"
+
+msgid "Creates certificates"
+msgstr "创建证书"
+
+msgid "Sees only certificates they created or referred"
+msgstr "仅查看他们创建或引用的证书"
+
+msgid "Sends in bulk"
+msgstr "批量发送"
+
+msgid "Sees the certificate dashboard"
+msgstr "查看证书仪表板"
+
+msgid "Manages certificates (all, templates, events, settings)"
+msgstr "管理证书(全部、模板、事件、设置)"
+
+msgid "Sees donations they referred"
+msgstr "查看他们推荐的捐款"
+
+msgid "Lists their own donors (donors of donations they referred)"
+msgstr "列出他们自己的捐赠者(他们推荐的捐赠的捐赠者)"
+
+msgid "Creates donations on behalf of others, with themselves as referrer (from the panel or the WhatsApp assistant)"
+msgstr "代表他人创建捐款,并以自己为推荐人(来自小组或 WhatsApp 助手)"
+
+msgid "Gets notified when a donation they referred is paid or cancelled"
+msgstr "当他们推荐的捐款已支付或取消时收到通知"
+
+msgid "Sees the donation dashboard (overall totals)"
+msgstr "查看捐赠仪表板(总体)"
+
+msgid "Sees all donations and donors"
+msgstr "查看所有捐款和捐助者"
+
+msgid "Call Center"
+msgstr "呼叫中心"
+
+msgid "Uses WhatsApp chats"
+msgstr "使用 WhatsApp 聊天"
+
+msgid "Uses staff tools in the WhatsApp assistant according to their role (if their number is on their profile)"
+msgstr "根据其角色使用 WhatsApp 助手中的员工工具(如果其电话号码在其个人资料中)"
+
+msgid "Manages the Call Center (AI assistant, settings)"
+msgstr "管理呼叫中心(AI助手、设置)"
+
+msgid "Studio"
+msgstr "工作室"
+
+msgid "Uses Studio (own gallery and shared folders)"
+msgstr "使用 Studio(自己的图库和共享文件夹)"
+
+msgid "Manages Studio (everyone's gallery, settings)"
+msgstr "管理工作室(每个人的图库、设置)"
+
+msgid "Reports"
+msgstr "报告"
+
+msgid "Can receive daily/periodic reports"
+msgstr "可以接收日报/定期报告"
+
+msgid "Sees overall reports (all staff, totals)"
+msgstr "查看总体报告(所有员工,总计)"
+
+msgid "Sets staff and manager report schedules and motivation messages"
+msgstr "设置员工和经理的报告时间表和激励信息"
+
+msgid "Invalid phone number. Write it with the country code or as 05xx."
+msgstr "电话号码无效。使用国家/地区代码或 05xx 编写。"
+
+msgid "This number belongs to another user: %s."
+msgstr "该号码属于另一个用户:%s。"
+
+msgid "WhatsApp number"
+msgstr "WhatsApp 号码"
+
+msgid "Phone"
+msgstr "电话"
+
+msgid "The WhatsApp assistant recognizes whoever writes from this number as this user and enables what their role allows (e.g. donations on behalf of others, their own donors). Only an administrator can change the number."
+msgstr "WhatsApp 助手会将从此号码写入的任何人识别为该用户,并启用其角色允许的功能(例如代表他人、他们自己的捐赠者进行捐赠)。只有管​​理员可以更改号码。"
+
+msgid "Personal link"
+msgstr "个人链接"
+
+msgid "Donations from visitors who come through this link show you as the referrer."
+msgstr "通过此链接访问的访客的捐款将显示您为推荐人。"
+
+msgid "To share another page, add %s to the end of its address."
+msgstr "要共享另一个页面,请将%s添加到其地址末尾。"
+
+msgid "Flux Roles"
+msgstr "通量角色"
+
+msgid "FluxWP roles"
+msgstr "FluxWP 角色"
+
+msgid "Missing role: %s. Deactivate and reactivate the plugin."
+msgstr "缺少角色:%s。停用并重新激活插件。"
+
+msgid "Staff WhatsApp numbers"
+msgstr "员工 WhatsApp 号码"
+
+msgid "%s people have no WhatsApp number on their profile; the assistant won't recognize them."
+msgstr "%s人的个人资料中没有 WhatsApp 号码;助理不会认出他们。"
+
+msgid "Everyone in the roles has a number."
+msgstr "每个角色都有一个编号。"
+
+msgid "Plugins enforcing role permissions"
+msgstr "强制角色权限的插件"
+
+msgid "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen."
+msgstr "一些已启用的权限尚未强制执行;等待更新:%s。在此之前这些人无法看到相关屏幕。"
+
+msgid "All enabled permissions are enforced."
+msgstr "所有启用的权限都会被强制执行。"
+
+msgid "Roles"
+msgstr "角色"
+
+msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
+msgstr "[['添加员工、管理员和经理角色(新角色也是从面板添加的);您可以从单个页面打开和关闭角色的任务、证书、捐赠、呼叫中心、工作室和报告访问权限。个人参考链接和用户电话号码(WhatsApp 助手)位于此处。', 'tr']]"

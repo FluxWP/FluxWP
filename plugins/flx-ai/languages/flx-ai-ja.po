@@ -1,0 +1,1523 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "YOUR_KEY"
+msgstr "あなたのキー"
+
+msgid "AI assistants such as Claude connect to this site over MCP (Model Context Protocol). Tools come from the installed FluxWP plugins (SEO, CRM, Mail, Speed…); Flux AI chat uses the same tools."
+msgstr "クロードなどの AI アシスタントは、MCP (Model Context Protocol) 経由でこのサイトに接続します。ツールは、インストールされている FluxWP プラグイン (SEO、CRM、Mail、Speed など) から提供されます。 Flux AI チャットは同じツールを使用します。"
+
+msgid "An old Flux SEO version is running its own MCP server. Update Flux SEO; keys and the setting move here automatically."
+msgstr "古い Flux SEO バージョンは独自の MCP サーバーを実行しています。 Flux SEO を更新します。キーと設定は自動的にここに移動します。"
+
+msgid "1. Server"
+msgstr "1.サーバー"
+
+msgid "MCP server enabled"
+msgstr "MCP サーバーが有効になっている"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Server URL"
+msgstr "サーバーURL"
+
+msgid "on"
+msgstr "に"
+
+msgid "off"
+msgstr "オフ"
+
+msgid "Tools"
+msgstr "ツール"
+
+msgid "2. Keys"
+msgstr "2. キー"
+
+msgid "The assistant works with the permissions of the user who created the key. New content is created as a draft; deleting only moves to trash."
+msgstr "アシスタントは、キーを作成したユーザーの権限で動作します。新しいコンテンツはドラフトとして作成されます。削除するとゴミ箱に移動するだけです。"
+
+msgid "New key (shown only now, copy it):"
+msgstr "新しいキー (ここでのみ表示されているため、コピーします):"
+
+msgid "reads"
+msgstr "読む"
+
+msgid "Limit tools (optional)"
+msgstr "リミットツール(オプション)"
+
+msgid "If none is selected the key works with all of the user's permissions. If some are selected it only sees and runs those tools (e.g. only order_summary for a TV order board)."
+msgstr "何も選択されていない場合、キーはユーザーのすべての権限で機能します。いくつかが選択されている場合、それらのツールのみが表示され、実行されます (たとえば、TV 注文ボードの order_summary のみ)。"
+
+msgid "e.g. Claude – Alex"
+msgstr "例:クロード – アレックス"
+
+msgid "Create new key"
+msgstr "新しいキーを作成する"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "User"
+msgstr "ユーザー"
+
+msgid "Created"
+msgstr "作成されました"
+
+msgid "Last used"
+msgstr "最後に使用した"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "Revoke"
+msgstr "取り消し"
+
+msgid "3. Connect an assistant"
+msgstr "3. アシスタントを接続する"
+
+msgid "Connectors › Add custom connector"
+msgstr "コネクタ › カスタム コネクタの追加"
+
+msgid "URL with the key, for places where headers can't be added; don't share it:"
+msgstr "ヘッダーを追加できない場所のキーを含む URL。共有しないでください:"
+
+msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
+msgstr "Apache で「無効なキー」が表示された場合は、SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 を .htaccess に追加するか、キー付き URL を使用します。"
+
+msgid "Recent activity"
+msgstr "最近の活動"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "Tool"
+msgstr "ツール"
+
+msgid "Target"
+msgstr "ターゲット"
+
+msgid "Result"
+msgstr "結果"
+
+msgid "%d tools registered."
+msgstr "%dツールが登録されました。"
+
+msgid "AI settings of this plugin. Values are stored in Flux AI and read by the plugin."
+msgstr "このプラグインのAI設定。値は Flux AI に保存され、プラグインによって読み取られます。"
+
+msgid "Connected systems"
+msgstr "接続されたシステム"
+
+msgid "Saved."
+msgstr "保存されました。"
+
+msgid "AI"
+msgstr "AI"
+
+msgid "This plugin may use AI"
+msgstr "このプラグインは AI を使用する可能性があります"
+
+msgid "When off, the plugin's model requests are rejected; its tools are turned off separately on the Tools screen."
+msgstr "オフの場合、プラグインのモデル要求は拒否されます。そのツールは [ツール] 画面で個別にオフになります。"
+
+msgid "Model"
+msgstr "モデル"
+
+msgid "Empty uses the default model."
+msgstr "空の場合はデフォルトのモデルが使用されます。"
+
+msgid "On"
+msgstr "オン"
+
+msgid "%1$s / %2$s tools on"
+msgstr "%1$s/%2$sツール"
+
+msgid "Manage tools"
+msgstr "ツールの管理"
+
+msgid "This plugin has no tools."
+msgstr "このプラグインにはツールがありません。"
+
+msgid "This plugin declares no settings with the Flux AI SDK; only on/off and the model can be set."
+msgstr "このプラグインは、Flux AI SDK での設定を宣言しません。オン/オフとモデルのみ設定可能です。"
+
+msgid "Flux AI SDK %s loaded."
+msgstr "Flux AI SDK%sがロードされました。"
+
+msgid "Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time."
+msgstr "プラグインが AI に提供するツール、共有チャットと MCP サーバー。オフになったツールは両方で使用できません。データを変更するツールは毎回承認を求めます。"
+
+msgid "The plugin used for %s was changed."
+msgstr "%sで使用するプラグインを変更しました。"
+
+msgid "%s off"
+msgstr "%sオフ"
+
+msgid "Name conflicts"
+msgstr "名前の競合"
+
+msgid "Only one is on per name"
+msgstr "名前ごとに 1 つだけ表示されます"
+
+msgid "None"
+msgstr "なし"
+
+msgid "Unprefixed names"
+msgstr "接頭辞のない名前"
+
+msgid "Tools without a plugin prefix"
+msgstr "プラグインプレフィックスのないツール"
+
+msgid "By plugin"
+msgstr "プラグインによる"
+
+msgid "Search tools"
+msgstr "検索ツール"
+
+msgid "Search name, description, plugin…"
+msgstr "名前、説明、プラグインを検索..."
+
+msgid "Source"
+msgstr "ソース"
+
+msgid "All plugins"
+msgstr "すべてのプラグイン"
+
+msgid "Reads"
+msgstr "読み取り"
+
+msgid "Changes"
+msgstr "変更点"
+
+msgid "Off"
+msgstr "オフ"
+
+msgid "Conflict"
+msgstr "紛争"
+
+msgid "Unprefixed"
+msgstr "接頭辞なし"
+
+msgid "Turn on"
+msgstr "オンにする"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Clear selection"
+msgstr "選択をクリア"
+
+msgid "Select all visible"
+msgstr "表示されているものをすべて選択します"
+
+msgid "Type"
+msgstr "タイプ"
+
+msgid "Where"
+msgstr "どこで"
+
+msgid "Capability"
+msgstr "能力"
+
+msgid "30 days"
+msgstr "30日"
+
+msgid "Avg. time"
+msgstr "平均時間"
+
+msgid "Conflict: off, %s is used"
+msgstr "競合: オフ、%sが使用されます"
+
+msgid "Conflict: this one is on, %s is off"
+msgstr "競合: これはオン、%sはオフ"
+
+msgid "The name does not start with a plugin prefix; it may clash with another plugin's tool."
+msgstr "名前はプラグインの接頭辞で始まりません。別のプラグインのツールと衝突する可能性があります。"
+
+msgid "unprefixed"
+msgstr "接頭辞なし"
+
+msgid "Old name: %s"
+msgstr "旧名:%s"
+
+msgid "Use this one"
+msgstr "これを使ってください"
+
+msgid "%s on"
+msgstr "%sオン"
+
+msgid "Select %s"
+msgstr "%sを選択します"
+
+msgid "Chat"
+msgstr "チャット"
+
+msgid "writes · needs approval"
+msgstr "書き込みます · 承認が必要です"
+
+msgid "No tools registered."
+msgstr "ツールが登録されていません。"
+
+msgid "No tools match the filters."
+msgstr "フィルターに一致するツールはありません。"
+
+msgid "There are unsaved changes."
+msgstr "未保存の変更があります。"
+
+msgid "Plugins add tools with the Flux AI SDK (<code>flx_ai_tool</code>) or the <code>flx_mcp_tools</code> / <code>flxai_tools</code> filters. If two plugins register the same name, the first stays on and the other waits turned off; switch with \"Use this one\". Plugin settings: %s."
+msgstr "プラグインは、Flux AI SDK (<code>flx_ai_tool</code>) または<code>flx_mcp_tools</code>/<code>flxai_tools</code>フィルターを備えたツールを追加します。 2 つのプラグインが同じ名前を登録した場合、最初のプラグインはオンのままになり、もう 1 つのプラグインはオフになります。 「これを使う」で切り替えます。プラグイン設定:%s。"
+
+msgid "%s tools updated."
+msgstr "%sツールが更新されました。"
+
+msgid "%s plugins"
+msgstr "%sプラグイン"
+
+msgid "Overview"
+msgstr "概要"
+
+msgid "Logs"
+msgstr "ログ"
+
+msgid "Billing"
+msgstr "請求"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Limit %1$s · resets %2$s"
+msgstr "%1$sを制限する ·%2$sをリセットする"
+
+msgid "No limit"
+msgstr "制限なし"
+
+msgid "AI usage across all plugins: cost, time, cache and tools."
+msgstr "すべてのプラグインにわたる AI の使用状況: コスト、時間、キャッシュ、ツール。"
+
+msgid "No API key entered yet."
+msgstr "API キーがまだ入力されていません。"
+
+msgid "%d days"
+msgstr "%d日"
+
+msgid "Cost"
+msgstr "コスト"
+
+msgid "Cache savings %s"
+msgstr "キャッシュの節約%s"
+
+msgid "Model requests"
+msgstr "モデルリクエスト"
+
+msgid "%s tool calls"
+msgstr "%sツール呼び出し"
+
+msgid "Tokens"
+msgstr "トークン"
+
+msgid "Input %1$s · output %2$s · from cache %3$s"
+msgstr "入力%1$s· 出力%2$s· キャッシュからの%3$s"
+
+msgid "Total time"
+msgstr "合計時間"
+
+msgid "Model/thinking %1$s%% · tools %2$s%%"
+msgstr "モデル/考え方%1$s%% · ツール%2$s%%"
+
+msgid "Errors"
+msgstr "エラー"
+
+msgid "%s%% of requests"
+msgstr "%sリクエストの %%"
+
+msgid "Daily cost (USD)"
+msgstr "1 日あたりの費用 (米ドル)"
+
+msgid "Where time goes: model/thinking vs tools"
+msgstr "時間の行方: モデル/思考 vs ツール"
+
+msgid "Daily tokens"
+msgstr "デイリートークン"
+
+msgid "Average time per tool"
+msgstr "ツールあたりの平均時間"
+
+msgid "By model"
+msgstr "モデル別"
+
+msgid "By purpose"
+msgstr "目的別"
+
+msgid "No records in this range."
+msgstr "この範囲にはレコードがありません。"
+
+msgid "Requests"
+msgstr "リクエスト"
+
+msgid "Model time"
+msgstr "モデルタイム"
+
+msgid "Tool time"
+msgstr "ツールタイム"
+
+msgid "%s errors"
+msgstr "%sエラー"
+
+msgid "Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked."
+msgstr "すべてのモデルのリクエストとツールの呼び出し: どのシステム、誰のため、どのモデル、トークン、時間とコスト。コンテンツは個人データをマスクして保存されます。"
+
+msgid "Tool calls"
+msgstr "ツール呼び出し"
+
+msgid "All systems"
+msgstr "すべてのシステム"
+
+msgid "Errors only"
+msgstr "エラーのみ"
+
+msgid "24 hours"
+msgstr "24時間"
+
+msgid "Filter"
+msgstr "フィルター"
+
+msgid "%s records"
+msgstr "%sレコード"
+
+msgid "No records."
+msgstr "記録はありません。"
+
+msgid "Who"
+msgstr "誰"
+
+msgid "Model / tool"
+msgstr "モデル・ツール"
+
+msgid "Input"
+msgstr "入力"
+
+msgid "Output"
+msgstr "出力"
+
+msgid "Cache"
+msgstr "キャッシュ"
+
+msgid "Duration"
+msgstr "期間"
+
+msgid "tool"
+msgstr "ツール"
+
+msgid "Spending limit reached"
+msgstr "利用限度額に達しました"
+
+msgid "Off (Connected systems)"
+msgstr "オフ (接続されたシステム)"
+
+msgid "System"
+msgstr "システム"
+
+msgid "Content"
+msgstr "内容"
+
+msgid "Page %1$s / %2$s"
+msgstr "ページ%1$s/%2$s"
+
+msgid "Cache column: tokens read / written. \"~\" is estimated from the price list. Content: last outgoing messages and the incoming reply, shortened; e-mail, phone, IBAN and keys are masked."
+msgstr "キャッシュ列: トークンの読み取り/書き込み。 「〜」は価格表からの推計となります。内容: 最後に送信したメッセージと受信した返信を短縮したもの。電子メール、電話、IBAN、キーはマスクされています。"
+
+msgid "Plugins that use Flux AI. A system switched off here cannot send AI requests; its own settings stay as they are."
+msgstr "Flux AI を使用するプラグイン。ここでシステムがオフになった場合、AI リクエストを送信できません。独自の設定はそのまま残ります。"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Requests (30 days)"
+msgstr "リクエスト(30日間)"
+
+msgid "not installed"
+msgstr "インストールされていません"
+
+msgid "plugin inactive"
+msgstr "プラグインが非アクティブ"
+
+msgid "AI off"
+msgstr "AIオフ"
+
+msgid "working"
+msgstr "働いている"
+
+msgid "AI settings"
+msgstr "AI設定"
+
+msgid "Its settings"
+msgstr "その設定"
+
+msgid "The Model column is the model that system uses. Change it under Settings › Per-plugin model. Requests to a disabled system are rejected and show as \"Disabled\" in the log."
+msgstr "[モデル] 列は、システムが使用するモデルです。 [設定] › [プラグインごとのモデル] で変更します。無効なシステムへのリクエストは拒否され、ログに「無効」と表示されます。"
+
+msgid "Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list."
+msgstr "月ごとの内訳、支出制限、プロバイダーのクレジット。金額は米ドルで表示されます。 OpenRouter は実際のコストを報告し、Anthropic は価格リストから計算されます。"
+
+msgid "Months"
+msgstr "月"
+
+msgid "Download CSV"
+msgstr "CSVをダウンロード"
+
+msgid "Total"
+msgstr "合計"
+
+msgid "%s without cache"
+msgstr "キャッシュなしの%s"
+
+msgid "Cache savings"
+msgstr "キャッシュの節約"
+
+msgid "%s%% less"
+msgstr "%s%% 未満"
+
+msgid "By provider"
+msgstr "プロバイダー別"
+
+msgid "Provider"
+msgstr "プロバイダー"
+
+msgid "Without cache"
+msgstr "キャッシュなし"
+
+msgid "Amount"
+msgstr "金額"
+
+msgid "partly estimated"
+msgstr "部分的に推定"
+
+msgid "No records this month."
+msgstr "今月は記録がありません。"
+
+msgid "OpenRouter account"
+msgstr "OpenRouter アカウント"
+
+msgid "Refresh"
+msgstr "リフレッシュ"
+
+msgid "Remaining credit"
+msgstr "残りのクレジット"
+
+msgid "Total usage of this key"
+msgstr "このキーの合計使用量"
+
+msgid "Key limit / remaining"
+msgstr "キー制限/残り"
+
+msgid "Checked"
+msgstr "チェック済み"
+
+msgid "Press Refresh to see remaining credit. (Anthropic has no balance API; see console.anthropic.com › Billing.)"
+msgstr "残りのクレジットを確認するには、[更新] を押します。 (Anthropic には残高 API がありません。console.anthropic.com › Billing を参照してください。)"
+
+msgid "Flux AI settings"
+msgstr "Flux AI 設定"
+
+msgid "Enter keys here once; all FluxWP plugins use this connection."
+msgstr "ここにキーを 1 回入力します。すべての FluxWP プラグインはこの接続を使用します。"
+
+msgid "Settings saved."
+msgstr "設定が保存されました。"
+
+msgid "Providers"
+msgstr "プロバイダー"
+
+msgid "OpenRouter API key"
+msgstr "OpenRouter APIキー"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "openrouter.ai › Keys. Hundreds of models with one key; actual cost is reported with every request."
+msgstr "openrouter.ai › キー。 1 つのキーで数百のモデル。実際の費用はリクエストごとに報告されます。"
+
+msgid "Anthropic (Claude) API key"
+msgstr "Anthropic (クロード) API キー"
+
+msgid "console.anthropic.com › API Keys. Claude models are listed with the \"claude:\" prefix."
+msgstr "console.anthropic.com › API キー。クロード モデルは「claude:」という接頭辞を付けてリストされます。"
+
+msgid "Anthropic workspace ID"
+msgstr "人間のワークスペースID"
+
+msgid "Only needed when the key is not tied to a workspace (if the error asks for \"anthropic-workspace-id\")."
+msgstr "キーがワークスペースに関連付けられていない場合にのみ必要です (エラーで「anthropic-workspace-id」が要求された場合)。"
+
+msgid "Models"
+msgstr "モデル"
+
+msgid "Default model"
+msgstr "デフォルトモデル"
+
+msgid "Test"
+msgstr "テスト"
+
+msgid "Used when a plugin does not specify its own model."
+msgstr "プラグインが独自のモデルを指定しない場合に使用されます。"
+
+msgid "Shared chat model"
+msgstr "共有チャットモデル"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Choose a model that supports tools."
+msgstr "ツールをサポートするモデルを選択してください。"
+
+msgid "Chat title model"
+msgstr "チャットタイトルモデル"
+
+msgid "Chat model"
+msgstr "チャットモデル"
+
+msgid "A cheap model is enough for automatic chat titles."
+msgstr "自動チャットタイトルは安いモデルで十分です。"
+
+msgid "Per-plugin model"
+msgstr "プラグインごとのモデル"
+
+msgid "Used when the plugin's request names no model; empty means the default."
+msgstr "プラグインのリクエストがモデルを指定しない場合に使用されます。空はデフォルトを意味します。"
+
+msgid "Cache and thinking"
+msgstr "キャッシュと考え方"
+
+msgid "Claude prompt cache"
+msgstr "クロードプロンプトキャッシュ"
+
+msgid "On, 5 minutes"
+msgstr "オン、5 分"
+
+msgid "On, 1 hour"
+msgstr "オン、1時間"
+
+msgid "When the same instructions and tools are sent again most of the input cost drops (read 0.1x; write 5 min 1.25x, 1 hour 2x). Plugins can override per request. OpenRouter caching is automatic at the provider."
+msgstr "同じ指示とツールが再度送信されると、入力コストのほとんどが低下します (読み取り 0.1 倍、書き込み 5 分で 1.25 倍、1 時間で 2 倍)。プラグインはリクエストごとにオーバーライドできます。 OpenRouter のキャッシュはプロバイダーで自動的に行われます。"
+
+msgid "Claude effort"
+msgstr "クロードの努力"
+
+msgid "Low: fast and cheap"
+msgstr "低:速くて安い"
+
+msgid "Medium"
+msgstr "中"
+
+msgid "High: thinks deeper"
+msgstr "高:より深く考える"
+
+msgid "Thinking steps"
+msgstr "思考ステップ"
+
+msgid "Show the model's thinking summary in chat"
+msgstr "モデルの思考概要をチャットで表示"
+
+msgid "Spending limit"
+msgstr "支出制限"
+
+msgid "Daily (resets every day at 00:00)"
+msgstr "毎日(毎日00:00にリセット)"
+
+msgid "Weekly (resets on Monday)"
+msgstr "毎週(月曜日にリセット)"
+
+msgid "Monthly (resets on the 1st)"
+msgstr "毎月(1日にリセット)"
+
+msgid "0 = unlimited"
+msgstr "0 = 無制限"
+
+msgid "When the limit is reached"
+msgstr "限界に達したとき"
+
+msgid "Stop requests (plugins switch to their fallback behaviour)"
+msgstr "リクエストの停止 (プラグインはフォールバック動作に切り替わります)"
+
+msgid "Warn only"
+msgstr "警告のみ"
+
+msgid "Warning threshold"
+msgstr "警告しきい値"
+
+msgid "Email the admin at the threshold and when reached"
+msgstr "しきい値に達したとき、およびしきい値に達したときに管理者にメールを送信する"
+
+msgid "Shared chat"
+msgstr "共有チャット"
+
+msgid "Who can use it"
+msgstr "誰が使えるのか"
+
+msgid "Everyone only uses tools their own capabilities allow. Individual users can also be given the \"flxai_chat\" capability."
+msgstr "誰もが自分の能力で許可されるツールのみを使用します。個々のユーザーに「flxai_chat」機能を与えることもできます。"
+
+msgid "Where to show"
+msgstr "どこに見せるか"
+
+msgid "Admin panel"
+msgstr "管理者パネル"
+
+msgid "Site (for logged-in permitted users)"
+msgstr "サイト(ログイン許可ユーザー向け)"
+
+msgid "Default layout"
+msgstr "デフォルトのレイアウト"
+
+msgid "Floating window"
+msgstr "フローティングウィンドウ"
+
+msgid "Docked right (pushes the page)"
+msgstr "右にドッキング (ページをプッシュ)"
+
+msgid "Users can switch from the panel; the choice stays in their browser."
+msgstr "ユーザーはパネルから切り替えることができます。選択肢はブラウザ内に残ります。"
+
+msgid "Max steps per turn"
+msgstr "1 ターンあたりの最大ステップ数"
+
+msgid "Max messages sent to the model"
+msgstr "モデルに送信される最大メッセージ数"
+
+msgid "Extra instructions"
+msgstr "追加の指示"
+
+msgid "E.g. Use a formal tone; always create new pages as drafts."
+msgstr "例:フォーマルな口調を使いましょう。常に新しいページを下書きとして作成します。"
+
+msgid "Image and video generation"
+msgstr "画像とビデオの生成"
+
+msgid "Plugins that generate images and video (Flux Studio etc.) use these keys. In automatic mode the first provider with a key for the model is used; a request that may have been charged is never resent to another provider. The spending limit and Logs apply here too."
+msgstr "画像やビデオを生成するプラグイン (Flux Studio など) はこれらのキーを使用します。自動モードでは、モデルのキーを持つ最初のプロバイダーが使用されます。課金された可能性のあるリクエストが別のプロバイダーに再送信されることはありません。支出制限とログもここに適用されます。"
+
+msgid "%s API key"
+msgstr "%sAPIキー"
+
+msgid "OpenRouter"
+msgstr "オープンルーター"
+
+msgid "The OpenRouter key in Providers is also used for images and video."
+msgstr "プロバイダーの OpenRouter キーは、画像とビデオにも使用されます。"
+
+msgid "Default image model"
+msgstr "デフォルトのイメージモデル"
+
+msgid "Default video model"
+msgstr "デフォルトのビデオモデル"
+
+msgid "Model › provider"
+msgstr "モデル › プロバイダー"
+
+msgid "Order"
+msgstr "注文"
+
+msgid "Automatic"
+msgstr "自動"
+
+msgid "video"
+msgstr "ビデオ"
+
+msgid "No key"
+msgstr "鍵なし"
+
+msgid "Job records"
+msgstr "仕事の記録"
+
+msgid "days kept (generated files are not deleted)"
+msgstr "保存日数 (生成されたファイルは削除されません)"
+
+msgid "Visuals"
+msgstr "ビジュアル"
+
+msgid "Visuals in chat"
+msgstr "チャット内のビジュアル"
+
+msgid "Let the model draw tables, cards, diagrams and charts as visuals (```widget and ```mermaid)"
+msgstr "モデルに表、カード、図、チャートをビジュアルとして描画させます ( ```widget and ``` マーメイド)"
+
+msgid "Works with any model. Visuals are drawn in a separate, isolated frame with no external links, forms or access to the site."
+msgstr "どのモデルでも動作します。ビジュアルは、外部リンク、フォーム、サイトへのアクセスを持たない、独立した独立したフレーム内に描画されます。"
+
+msgid "Server-side visual renderer"
+msgstr "サーバーサイドのビジュアルレンダラー"
+
+msgid "Gotenberg: HTML and SVG visuals can be sent as PNG."
+msgstr "Gotenberg: HTML および SVG ビジュアルは PNG として送信できます。"
+
+msgid "Imagick: only SVG visuals can be sent as PNG."
+msgstr "Imagick: SVG ビジュアルのみを PNG として送信できます。"
+
+msgid "None: channels like WhatsApp get text instead of visuals."
+msgstr "なし: WhatsApp などのチャネルは、ビジュアルではなくテキストを取得します。"
+
+msgid "Optional. Channels like WhatsApp and email cannot show HTML; visuals are converted to PNG. Shared hosting has no browser, so HTML visuals are converted by Gotenberg on a Docker server (gotenberg/gotenberg:8)."
+msgstr "オプション。 WhatsApp や電子メールなどのチャネルでは HTML を表示できません。ビジュアルは PNG に変換されます。共有ホスティングにはブラウザがないため、HTML ビジュアルは Docker サーバー上の Gotenberg によって変換されます (gotenberg/gotenberg:8)。"
+
+msgid "Gotenberg user / password"
+msgstr "ゴーテンベルグのユーザー/パスワード"
+
+msgid "If Gotenberg is protected with basic authentication."
+msgstr "Gotenberg が Basic 認証で保護されている場合。"
+
+msgid "Keep usage logs for"
+msgstr "使用ログを保存する"
+
+msgid "Unlimited"
+msgstr "無制限"
+
+msgid "Leave empty to keep logs forever. If you enter days, older logs are deleted once a day."
+msgstr "ログを永久に保持するには、空のままにします。日を入力すると、古いログが 1 日に 1 回削除されます。"
+
+msgid "days"
+msgstr "日"
+
+msgid "Content log"
+msgstr "コンテンツログ"
+
+msgid "Also store outgoing/incoming content (shortened; e-mail, phone, IBAN and keys masked)"
+msgstr "送信/受信コンテンツも保存します (短縮: 電子メール、電話、IBAN、キーはマスクされています)"
+
+msgid "days to keep"
+msgstr "保管する日数"
+
+msgid "Leave empty to keep content forever too."
+msgstr "コンテンツを永久に保持するには、空のままにしておきます。"
+
+msgid "On uninstall"
+msgstr "アンインストール時"
+
+msgid "Delete logs and chats when the plugin is deleted"
+msgstr "プラグインの削除時にログとチャットを削除する"
+
+msgid "Message is empty."
+msgstr "メッセージが空です。"
+
+msgid "The user wrote a new message; this action was not run."
+msgstr "ユーザーが新しいメッセージを書きました。このアクションは実行されませんでした。"
+
+msgid "I reached the step limit for this turn. Type \"continue\" if you want me to go on."
+msgstr "このターンの歩数制限に達しました。続行する場合は「続行」と入力してください。"
+
+msgid "The answer hit the length limit. Try a shorter question."
+msgstr "答えが長さの制限に達しました。より短い質問を試してください。"
+
+msgid "I couldn't produce an answer, could you try again?"
+msgstr "答えられませんでした。もう一度試してもらえますか?"
+
+msgid "Tool not found or not permitted: %s"
+msgstr "ツールが見つからないか、許可されていません:%s"
+
+msgid "Stopped by the user; not run."
+msgstr "ユーザーによって停止されました。走らない。"
+
+msgid "The assistant is running; stop it first."
+msgstr "アシスタントが実行中です。まずやめてください。"
+
+msgid "Message not found."
+msgstr "メッセージが見つかりません。"
+
+msgid "AI is off for %s (Flux AI & MCP › Connected systems)."
+msgstr "%sでは AI がオフになっています (Flux AI および MCP › 接続システム)。"
+
+msgid "No AI model selected (Flux AI & MCP › Settings)."
+msgstr "AI モデルが選択されていません (Flux AI と MCP › 設定)。"
+
+msgid "Daily"
+msgstr "毎日"
+
+msgid "Weekly"
+msgstr "毎週"
+
+msgid "Monthly"
+msgstr "毎月"
+
+msgid "%1$s AI spending limit (%2$s) reached. It resets %3$s; you can change it in Flux AI & MCP › Settings."
+msgstr "%1$sAI の使用制限 (%2$s) に達しました。%3$sをリセットします。 Flux AI と MCP › 設定で変更できます。"
+
+msgid "Flux AI: %2$s%% of the %1$s spending limit used"
+msgstr "Flux AI:%1$sの支出制限の%2$s%% が使用されました"
+
+msgid "%1$s spending: %2$s / %3$s (%4$s%%)."
+msgstr "%1$sの支出:%2$s/%3$s(%4$s%%)。"
+
+msgid "AI requests are stopped."
+msgstr "AI リクエストは停止されます。"
+
+msgid "AI keys"
+msgstr "AIキー"
+
+msgid "Connected providers: %s."
+msgstr "接続されているプロバイダー:%s。"
+
+msgid "No OpenRouter or Anthropic key entered; AI features will not work."
+msgstr "OpenRouter キーまたは Anthropic キーが入力されていません。 AI機能は動作しません。"
+
+msgid "Using %s."
+msgstr "%sを使用します。"
+
+msgid "The selected model's provider has no key, or no model is selected."
+msgstr "選択したモデルのプロバイダーにキーがないか、モデルが選択されていません。"
+
+msgid "No daily/weekly/monthly spending limit set."
+msgstr "日次、週次、月次の支出制限は設定されていません。"
+
+msgid "Set a limit"
+msgstr "制限を設定する"
+
+msgid "%1$s: %2$s / %3$s."
+msgstr "%1$s:%2$s/%3$s。"
+
+msgid "Limit reached, AI requests stopped."
+msgstr "制限に達したため、AI リクエストが停止されました。"
+
+msgid "Error rate, last 24 hours"
+msgstr "過去 24 時間のエラー率"
+
+msgid "%1$s / %2$s requests failed."
+msgstr "%1$s/%2$sリクエストが失敗しました。"
+
+msgid "No requests in the last 24 hours."
+msgstr "過去 24 時間にリクエストはありませんでした。"
+
+msgid "MCP server"
+msgstr "MCPサーバー"
+
+msgid "%1$s %2$d tools registered; Flux AI chat uses them too, and tools that change data ask for approval."
+msgstr "%1$s%2$dツールが登録されました。 Flux AI チャットもこれらを使用しており、データを変更するツールは承認を求めます。"
+
+msgid "MCP server is on."
+msgstr "MCPサーバーはオンになっています。"
+
+msgid "MCP server is off."
+msgstr "MCPサーバーがオフになっています。"
+
+msgid "Visual renderer (WhatsApp/email)"
+msgstr "ビジュアルレンダラー (WhatsApp/電子メール)"
+
+msgid "%s AI spending limit (USD)"
+msgstr "%sAI 支出制限 (USD)"
+
+msgid "0 = unlimited. When reached, AI requests stop (or only warn, per setting)."
+msgstr "0 = 無制限。この値に達すると、AI リクエストは停止します (設定に応じて、警告のみが行われます)。"
+
+msgid "Enter a valid amount (0 or a positive number)."
+msgstr "有効な金額 (0 または正の数) を入力します。"
+
+msgid "Limit saved as %s."
+msgstr "制限は%sとして保存されます。"
+
+msgid "What can I do on this page?"
+msgstr "このページでは何ができますか?"
+
+msgid "Summarize the site's system check warnings"
+msgstr "サイトのシステムチェック警告の概要"
+
+msgid "List recently added drafts"
+msgstr "最近追加された下書きをリストする"
+
+msgid "How much have we spent on AI this month?"
+msgstr "今月 AI にいくら費やしましたか?"
+
+msgid "Summarize this page"
+msgstr "このページを要約する"
+
+msgid "Show this page's SEO issues"
+msgstr "このページの SEO の問題を表示する"
+
+msgid "Find typos on this page"
+msgstr "このページでタイプミスを見つける"
+
+msgid "saved (…%s)"
+msgstr "保存しました (...%s)"
+
+msgid "%s ms"
+msgstr "%sミリ秒"
+
+msgid "%s s"
+msgstr "%s"
+
+msgid "chat"
+msgstr "チャット"
+
+msgid "title"
+msgstr "タイトル"
+
+msgid "test"
+msgstr "テスト"
+
+msgid "Flux AI chat"
+msgstr "Flux AI チャット"
+
+msgid "Unspecified"
+msgstr "不特定"
+
+msgid "MCP is off. Turn it on in Flux AI & MCP › MCP."
+msgstr "MCPはオフです。 Flux AI & MCP › MCP でオンにします。"
+
+msgid "Invalid or missing MCP key."
+msgstr "MCP キーが無効または欠落しています。"
+
+msgid "This user can't edit content."
+msgstr "このユーザーはコンテンツを編集できません。"
+
+msgid "Unknown tool: %s"
+msgstr "不明なツール:%s"
+
+msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
+msgstr "このツールはオフになっています (Flux AI と MCP › ツール):%s"
+
+msgid "This key can't use this tool: %s"
+msgstr "このキーはこのツールを使用できません:%s"
+
+msgid "You don't have permission for this."
+msgstr "これには許可がありません。"
+
+msgid "Unauthorized."
+msgstr "無許可。"
+
+msgid "Unsupported model."
+msgstr "サポートされていないモデルです。"
+
+msgid "This provider does not offer the selected model."
+msgstr "このプロバイダーは選択されたモデルを提供していません。"
+
+msgid "%s key is not set (Flux AI & MCP › Settings › Image and video)."
+msgstr "%sキーが設定されていません (Flux AI & MCP › 設定 › 画像とビデオ)。"
+
+msgid "This model needs one of these keys: %s (Flux AI & MCP › Settings › Image and video)."
+msgstr "このモデルには、次のキーのいずれかが必要です:%s(Flux AI & MCP › 設定 › 画像とビデオ)。"
+
+msgid "A prompt is required (up to 20,000 characters)."
+msgstr "プロンプトは必須です (最大 20,000 文字)。"
+
+msgid "This model accepts at most %d reference images."
+msgstr "このモデルは、最大で%d参照イメージを受け入れます。"
+
+msgid "This model does not support this aspect ratio."
+msgstr "このモデルはこのアスペクト比をサポートしていません。"
+
+msgid "Duration must be %1$d–%2$d seconds."
+msgstr "期間は%1$d~%2$d秒でなければなりません。"
+
+msgid "Pick 1 or 2 images for the first/last frame."
+msgstr "最初/最後のフレームに 1 つまたは 2 つの画像を選択します。"
+
+msgid "Reference mode needs an image or a video."
+msgstr "リファレンス モードには画像またはビデオが必要です。"
+
+msgid "This model does not support area editing."
+msgstr "このモデルはエリア編集には対応していません。"
+
+msgid "Area editing needs the image to edit (refs[0])."
+msgstr "エリア編集には編集する画像(refs[0])が必要です。"
+
+msgid "Could not read the reference."
+msgstr "リファレンスを読み取れませんでした。"
+
+msgid "Could not download the reference."
+msgstr "リファレンスをダウンロードできませんでした。"
+
+msgid "No response from %1$s (%2$s). The request may have been charged; check the provider's history before sending again."
+msgstr "%1$s(%2$s) からの応答がありません。リクエストは有料である可能性があります。再送信する前にプロバイダーの履歴を確認してください。"
+
+msgid "Unsupported provider."
+msgstr "サポートされていないプロバイダーです。"
+
+msgid "no request id"
+msgstr "リクエストIDがありません"
+
+msgid "EvoLink only accepts public http(s) URLs; upload the reference to the site."
+msgstr "EvoLink はパブリック http(s) URL のみを受け入れます。リファレンスをサイトにアップロードします。"
+
+msgid "no task id"
+msgstr "タスクIDがありません"
+
+msgid "OpenRouter does not accept video/audio references; choose fal.ai or EvoLink."
+msgstr "OpenRouter はビデオ/オーディオ参照を受け入れません。 fal.ai または EvoLink を選択します。"
+
+msgid "Choose an aspect ratio for OpenRouter."
+msgstr "OpenRouter のアスペクト比を選択します。"
+
+msgid "Seedance 2.5 on OpenRouter is limited to 720p; choose fal.ai or EvoLink for 1080p."
+msgstr "OpenRouter の Seedance 2.5 は 720p に制限されています。 1080p の場合は fal.ai または EvoLink を選択します。"
+
+msgid "OpenAI returned no image. Check usage history before sending again."
+msgstr "OpenAI は画像を返しませんでした。再送信する前に利用履歴を確認してください。"
+
+msgid "OpenRouter returned no image. Check usage history before sending again."
+msgstr "OpenRouter は画像を返しませんでした。再送信する前に利用履歴を確認してください。"
+
+msgid "Gemini returned no image (possibly the content filter)."
+msgstr "Gemini は画像を返しませんでした (おそらくコンテンツ フィルター)。"
+
+msgid "Job not found."
+msgstr "ジョブが見つかりません。"
+
+msgid "The provider key was removed; the job is kept and continues once the key is entered again."
+msgstr "プロバイダー キーが削除されました。ジョブは保持され、キーが再度入力されると続行されます。"
+
+msgid "The job was interrupted."
+msgstr "仕事が中断されました。"
+
+msgid "fal.ai returned no output (possibly the content filter)."
+msgstr "fal.ai は出力を返しませんでした (おそらくコンテンツ フィルター)。"
+
+msgid "The EvoLink task finished but has no result URL yet."
+msgstr "EvoLink タスクは終了しましたが、結果 URL がまだありません。"
+
+msgid "The provider did not confirm the cancellation; the job may be charged if it completes."
+msgstr "プロバイダーはキャンセルを確認しませんでした。ジョブが完了すると料金が発生する場合があります。"
+
+msgid "Cancelled locally; a job already started at the provider may be charged."
+msgstr "現地でキャンセルされました。プロバイダーですでに開始されているジョブには料金が発生する場合があります。"
+
+msgid "Unsupported output type."
+msgstr "サポートされていない出力タイプです。"
+
+msgid "Could not save the output."
+msgstr "出力を保存できませんでした。"
+
+msgid "Could not download the output; the provider URL is used for now."
+msgstr "出力をダウンロードできませんでした。現時点ではプロバイダー URL が使用されます。"
+
+msgid "Could not load the model list."
+msgstr "モデルリストを読み込めませんでした。"
+
+msgid "→ Flux AI & MCP › Settings › \"Anthropic workspace ID\": paste the id (wrkspc_…) from console.anthropic.com › Settings › Workspaces."
+msgstr "→ Flux AI と MCP › 設定 › \"Anthropic ワークスペース ID\": console.anthropic.com › 設定 › ワークスペースから ID (wrkspc_...) を貼り付けます。"
+
+msgid "AI error (%1$d): %2$s"
+msgstr "AI エラー (%1$d):%2$s"
+
+msgid "unknown error"
+msgstr "不明なエラー"
+
+msgid "Stopped by the user."
+msgstr "ユーザーによって停止されました。"
+
+msgid "No OpenRouter API key entered (Flux AI & MCP › Settings)."
+msgstr "OpenRouter API キーが入力されていません (Flux AI と MCP › 設定)。"
+
+msgid "Could not reach the AI service: %s"
+msgstr "AI サービスに到達できませんでした:%s"
+
+msgid "The AI returned an empty answer."
+msgstr "AIは空の答えを返しました。"
+
+msgid "No Anthropic (Claude) API key entered (Flux AI & MCP › Settings)."
+msgstr "Anthropic (Claude) API キーが入力されていません (Flux AI と MCP › 設定)。"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid "No OpenRouter key entered."
+msgstr "OpenRouter キーが入力されていません。"
+
+msgid "You are not allowed to do this."
+msgstr "これを行うことは許可されていません。"
+
+msgid "Chat not found."
+msgstr "チャットが見つかりません。"
+
+msgid "Flux AI is not set up yet: enter an API key and model in Flux AI & MCP › Settings."
+msgstr "Flux AI はまだセットアップされていません。Flux AI と MCP › 設定に API キーとモデルを入力します。"
+
+msgid "Image renderer works"
+msgstr "イメージレンダラーの動作"
+
+msgid "Enter the Gotenberg address first."
+msgstr "最初にゴーテンベルクの住所を入力します。"
+
+msgid "Content was not stored for this record."
+msgstr "このレコードにはコンテンツが保存されませんでした。"
+
+msgid "%s-character system prompt"
+msgstr "%s- 文字システム プロンプト"
+
+msgid "AI usage"
+msgstr "AIの活用"
+
+msgid "Date and time"
+msgstr "日付と時刻"
+
+msgid "Visual code is empty."
+msgstr "ビジュアルコードが空です。"
+
+msgid "This visual contains HTML; the server can only convert SVG. For HTML, enter a Gotenberg address in Flux AI & MCP › Settings › Visuals."
+msgstr "このビジュアルには HTML が含まれています。サーバーは SVG のみを変換できます。 HTML の場合、Flux AI & MCP › 設定 › ビジュアル に Gotenberg アドレスを入力します。"
+
+msgid "No visual renderer on the server (Imagick with SVG support or a Gotenberg address is required)."
+msgstr "サーバー上にビジュアル レンダラーはありません (SVG サポートを備えた Imagick または Gotenberg アドレスが必要です)。"
+
+msgid "Could not reach the visual renderer: %s"
+msgstr "ビジュアルレンダラーに到達できませんでした:%s"
+
+msgid "The image renderer rejected the username or password."
+msgstr "イメージ レンダラーがユーザー名またはパスワードを拒否しました。"
+
+msgid "Could not convert the visual (HTTP %d)."
+msgstr "ビジュアルを変換できませんでした (HTTP%d)。"
+
+msgid "Could not convert SVG: %s"
+msgstr "SVG を変換できませんでした:%s"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$s分%2$s秒"
+
+msgid "No data in this range."
+msgstr "この範囲にはデータがありません。"
+
+msgid "Show as table"
+msgstr "表として表示"
+
+msgid "%1$s requests · %2$s tools"
+msgstr "%1$sリクエスト ·%2$sツール"
+
+msgid "Model / thinking"
+msgstr "モデル・考え方"
+
+msgid "Average time"
+msgstr "平均時間"
+
+msgid "%1$s calls · longest %2$s"
+msgstr "%1$s呼び出し · 最長%2$s"
+
+msgid "Testing…"
+msgstr "テスト中..."
+
+msgid "%s KB"
+msgstr "%sKB"
+
+msgid "Outgoing · user"
+msgstr "発信・ユーザー"
+
+msgid "Outgoing · assistant"
+msgstr "発信・アシスタント"
+
+msgid "Outgoing · tool result"
+msgstr "発信・ツール結果"
+
+msgid "Incoming · error"
+msgstr "受信・エラー"
+
+msgid "Incoming · reply"
+msgstr "着信・返信"
+
+msgid "Showing %s tools"
+msgstr "%sツールの表示"
+
+msgid "%s selected"
+msgstr "%sが選択されました"
+
+msgid "Preparing visual…"
+msgstr "ビジュアルを準備中..."
+
+msgid "Could not draw the visual; its code:"
+msgstr "ビジュアルを描画できませんでした。そのコード:"
+
+msgid "Visual"
+msgstr "ビジュアル"
+
+msgid "Could not connect. Check your internet connection and try again."
+msgstr "接続できませんでした。インターネット接続を確認して、もう一度試してください。"
+
+msgid "New chat"
+msgstr "新しいチャット"
+
+msgid "Ask AI"
+msgstr "AIに聞く"
+
+msgid "AI assistant"
+msgstr "AIアシスタント"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "Resize width"
+msgstr "幅のサイズを変更する"
+
+msgid "Resize"
+msgstr "サイズ変更"
+
+msgid "Search chats"
+msgstr "チャットを検索する"
+
+msgid "Ask something or give a task…"
+msgstr "何か質問したり、タスクを与えたり..."
+
+msgid "Send"
+msgstr "送信"
+
+msgid "Dock right"
+msgstr "右にドッキング"
+
+msgid "Your approval is needed: %s"
+msgstr "あなたの承認が必要です:%s"
+
+msgid "%s running…"
+msgstr "%s実行中..."
+
+msgid "Thinking…"
+msgstr "考え中..."
+
+msgid "How can I help you?"
+msgstr "どうすればお手伝いできますか?"
+
+msgid "Content, settings, reports: anything your permissions allow. I ask for your approval before making changes."
+msgstr "コンテンツ、設定、レポート: 権限が許可するものすべて。変更を行う前に、ご承認をお願いいたします。"
+
+msgid "You can ask about this page and the site, or give me a task."
+msgstr "このページやサイトについて質問したり、私に仕事を与えてください。"
+
+msgid "Thinking"
+msgstr "考える"
+
+msgid "Retry"
+msgstr "再試行"
+
+msgid "Edit message"
+msgstr "メッセージを編集する"
+
+msgid "This message and everything after it will be rewritten."
+msgstr "このメッセージとそれ以降のすべてが書き換えられます。"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Rewind to here"
+msgstr "ここまで巻き戻します"
+
+msgid "Working"
+msgstr "働く"
+
+msgid "Thought for %s"
+msgstr "%sへの思い"
+
+msgid "The model is preparing an answer…"
+msgstr "モデルは答えを準備中です..."
+
+msgid "rejected"
+msgstr "拒否されました"
+
+msgid "awaiting approval"
+msgstr "承認待ち"
+
+msgid "No result"
+msgstr "結果はありません"
+
+msgid "Your approval is needed"
+msgstr "あなたの承認が必要です"
+
+msgid "The assistant wants to make the changes below. None of them run until you approve."
+msgstr "アシスタントは以下の変更を加えたいと考えています。あなたが承認するまではどれも実行されません。"
+
+msgid "Reject"
+msgstr "拒否する"
+
+msgid "Approve"
+msgstr "承認する"
+
+msgid "Data to be sent"
+msgstr "送信するデータ"
+
+msgid "%1$s / %2$s decided"
+msgstr "%1$s/%2$s決定"
+
+msgid "Reject all"
+msgstr "すべて拒否する"
+
+msgid "Approve all"
+msgstr "全て承認する"
+
+msgid "Continue"
+msgstr "続ける"
+
+msgid "The conversation after this message will be deleted. Continue?"
+msgstr "このメッセージ以降の会話は削除されます。続く?"
+
+msgid "Choose model"
+msgstr "モデルを選択してください"
+
+msgid "Enter sends, Shift+Enter for a new line"
+msgstr "Enter を押して送信し、Shift+Enter で新しい行を入力します"
+
+msgid "Flux AI is not set up yet: an API key and model are needed."
+msgstr "Flux AI はまだセットアップされていません。API キーとモデルが必要です。"
+
+msgid "Search titles or content…"
+msgstr "タイトルまたはコンテンツを検索..."
+
+msgid "Include archived"
+msgstr "アーカイブを含める"
+
+msgid "Enter opens the first result, Esc closes."
+msgstr "Enter を押すと最初の結果が開き、Esc を押すと閉じます。"
+
+msgid "No results."
+msgstr "結果はありません。"
+
+msgid "No chats yet."
+msgstr "まだチャットはありません。"
+
+msgid "Untitled chat"
+msgstr "無題のチャット"
+
+msgid "Archive"
+msgstr "アーカイブ"
+
+msgid "Awaiting approval"
+msgstr "承認待ち"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Rename"
+msgstr "名前の変更"
+
+msgid "Unarchive"
+msgstr "アーカイブを解除する"
+
+msgid "Delete this chat permanently?"
+msgstr "このチャットを完全に削除しますか?"
+
+msgid "Search models…"
+msgstr "モデルを検索..."
+
+msgid "No matching model; you can type the ID manually."
+msgstr "一致するモデルがありません。 ID は手動で入力できます。"
+
+msgid "no tools"
+msgstr "工具がありません"
+
+msgid "Loading models…"
+msgstr "モデルをロード中..."
+
+msgid "0 means unlimited."
+msgstr "0 は無制限を意味します。"
+
+msgid "1 hour"
+msgstr "1時間"
+
+msgid "5 minutes"
+msgstr "5分"
+
+msgid "Anthropic key"
+msgstr "人間の鍵"
+
+msgid "Monthly limit (USD)"
+msgstr "月間限度額 (USD)"
+
+msgid "Low"
+msgstr "低い"
+
+msgid "Thinking summary"
+msgstr "考え方のまとめ"
+
+msgid "Evolink key"
+msgstr "エボリンクキー"
+
+msgid "Fal key"
+msgstr "Falキー"
+
+msgid "Flux AI"
+msgstr "フラックスAI"
+
+msgid "Gemini key"
+msgstr "ジェミニキー"
+
+msgid "Gotenberg key"
+msgstr "ゴーテンベルクの鍵"
+
+msgid "Daily limit (USD)"
+msgstr "1 日あたりの限度額 (USD)"
+
+msgid "Record"
+msgstr "記録"
+
+msgid "Keep records (days)"
+msgstr "記録を残す(日数)"
+
+msgid "Keep content (days)"
+msgstr "コンテンツの保持 (日数)"
+
+msgid "No records"
+msgstr "記録がありません"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Model and tool calls are listed here. Request bodies are not sent to the app."
+msgstr "モデルとツールの呼び出しがここにリストされます。リクエスト本文はアプリに送信されません。"
+
+msgid "Model, tool or error"
+msgstr "モデル、ツール、またはエラー"
+
+msgid "OpenAI key"
+msgstr "OpenAIキー"
+
+msgid "OpenRouter key"
+msgstr "オープンルーターキー"
+
+msgid "Window"
+msgstr "窓"
+
+msgid "Chat on the site"
+msgstr "サイト上でチャットする"
+
+msgid "Chat layout"
+msgstr "チャットのレイアウト"
+
+msgid "Chat instructions"
+msgstr "チャットの指示"
+
+msgid "When the limit is hit"
+msgstr "限界に達したとき"
+
+msgid "Warn"
+msgstr "警告する"
+
+msgid "Docked"
+msgstr "ドッキング済み"
+
+msgid "Chat in admin"
+msgstr "管理者でチャットする"
+
+msgid "High"
+msgstr "高"
+
+msgid "Effort"
+msgstr "努力"
+
+msgid "Store request bodies"
+msgstr "ストアリクエストボディ"
+
+msgid "[['%stool updated.', 'tr']]"
+msgid_plural "[['%stool updated.', 'tr']]"
+msgstr[0] "[['%sツールが更新されました。', 'tr']]"
+
+msgid "[['%splugin', 'tr']]"
+msgid_plural "[['%splugin', 'tr']]"
+msgstr[0] "[['%sプラグイン', 'tr']]"
+
+msgid "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgstr "\\n%d車両が登録されています。%d車両が登録されています。', 'tr']]"
+
+msgid "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n"
+msgstr "\\n使用済み:%1$s/ 制限:%2$s\\n再生成:%3$s\\n\\n詳細:%4$s\\n"
+
+msgid "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]"
+msgstr "[['すべての FluxWP プラグインの共通 AI ハブ: OpenRouter および Anthropic キー、モデル カタログと価格、プロンプト キャッシュ、車両登録、共通 MCP サーバー、使用状況レポート、請求と支出制限。承認されたユーザー向けに、管理者と公開 AI がサイト上でチャットします。', 'tr']]"
+
+msgid "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgid_plural "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgstr[0] "\\n%d車両が登録されています。%d車両が登録されています。', 'tr']]"

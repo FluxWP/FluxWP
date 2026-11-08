@@ -1,0 +1,1083 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Backups"
+msgstr "النسخ الاحتياطية"
+
+msgid "Backups › Dashboard"
+msgstr "النسخ الاحتياطية › لوحة القيادة"
+
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+msgid "Backups › Settings"
+msgstr "النسخ الاحتياطية › الإعدادات"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Permanently delete this backup?"
+msgstr "هل تريد حذف هذه النسخة الاحتياطية نهائيًا؟"
+
+msgid "Permanently delete the selected backups?"
+msgstr "هل تريد حذف النسخ الاحتياطية المحددة نهائيًا؟"
+
+msgid "The selected parts will be returned to their state in the backup and their current state will be overwritten. Continue?"
+msgstr "سيتم إرجاع الأجزاء المحددة إلى حالتها في النسخة الاحتياطية وسيتم استبدال حالتها الحالية. يكمل؟"
+
+msgid "Cancel the running job?"
+msgstr "إلغاء المهمة الجارية؟"
+
+msgid "Starting…"
+msgstr "جارٍ البدء..."
+
+msgid "Backing up"
+msgstr "النسخ الاحتياطي"
+
+msgid "Restoring"
+msgstr "استعادة"
+
+msgid "Completed"
+msgstr "مكتمل"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "Reload page"
+msgstr "إعادة تحميل الصفحة"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "An error occurred."
+msgstr "حدث خطأ."
+
+msgid "Connection lost, retrying…"
+msgstr "تم فقدان الاتصال، جارٍ إعادة المحاولة..."
+
+msgid "Database (all tables)"
+msgstr "قاعدة البيانات (كافة الجداول)"
+
+msgid "Select at least one part."
+msgstr "حدد جزءًا واحدًا على الأقل."
+
+msgid "You can keep this page open; if you close it, the job continues in the background."
+msgstr "يمكنك إبقاء هذه الصفحة مفتوحة؛ إذا قمت بإغلاقه، تستمر المهمة في الخلفية."
+
+msgid "Do not close this page until the restore finishes."
+msgstr "لا تغلق هذه الصفحة حتى تنتهي عملية الاستعادة."
+
+msgid "The backup is running in the background. Follow its progress in the toolbar indicator at the top; you can leave this page."
+msgstr "يتم تشغيل النسخة الاحتياطية في الخلفية. اتبع تقدمه في مؤشر شريط الأدوات في الأعلى؛ يمكنك ترك هذه الصفحة."
+
+msgid "The restore has started in the background. Progress is shown in the toolbar indicator; do not change the site until it finishes."
+msgstr "بدأت عملية الاستعادة في الخلفية. يظهر التقدم في مؤشر شريط الأدوات؛ لا تغير الموقع حتى ينتهي."
+
+msgid "Backup ready."
+msgstr "النسخ الاحتياطي جاهز."
+
+msgid "Refresh list"
+msgstr "تحديث القائمة"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Dismiss this notice."
+msgstr "تجاهل هذا الإشعار."
+
+msgid "Uploading %1$s…"
+msgstr "جارٍ تحميل%1$s..."
+
+msgid "%1$s / %2$s"
+msgstr "%1$s/%2$s"
+
+msgid "Verifying…"
+msgstr "جارٍ التحقق..."
+
+msgid "Only .zip backup files made with Flux Backup can be uploaded."
+msgstr "يمكن فقط تحميل ملفات النسخ الاحتياطي بتنسيق .zip التي تم إنشاؤها باستخدام Flux Backup."
+
+msgid "Upload cancelled."
+msgstr "تم إلغاء التحميل."
+
+msgid "Upload failed: %s"
+msgstr "فشل التحميل:%s"
+
+msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
+msgstr "تم أخذ هذه النسخة الاحتياطية على موقع آخر:%s. إذا قمت باستعادة قاعدة البيانات، فإن المحتوى يأتي من هذا الموقع؛ يتم الاحتفاظ بعنوان هذا الموقع (siteurl/home)، ولكن لا يتم تغيير الروابط إلى العنوان القديم داخل المحتوى تلقائيًا."
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
+msgstr "تختلف بادئة الجدول في النسخة الاحتياطية (%1$s) عن بادئة هذا الموقع (%2$s)؛ لا يمكن استعادة قاعدة البيانات إلى هذا الموقع، يمكن تحديد الملفات فقط."
+
+msgid "Flux Backup"
+msgstr "النسخ الاحتياطي التدفق"
+
+msgid "Automatic pre-update backups, scheduled backups and restore"
+msgstr "النسخ الاحتياطية التلقائية قبل التحديث، والنسخ الاحتياطية المجدولة والاستعادة"
+
+msgid "Upload backup"
+msgstr "تحميل النسخة الاحتياطية"
+
+msgid "Back up now"
+msgstr "قم بالنسخ الاحتياطي الآن"
+
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+msgid "ZipArchive (PHP zip extension) is not available on the server."
+msgstr "ZipArchive (امتداد PHP المضغوط) غير متوفر على الخادم."
+
+msgid "The backup folder is not writable: %s"
+msgstr "مجلد النسخ الاحتياطي غير قابل للكتابة:%s"
+
+msgid "Backup type"
+msgstr "نوع النسخ الاحتياطي"
+
+msgid "Full backup"
+msgstr "النسخ الاحتياطي الكامل"
+
+msgid "Database + wp-content (plugins, themes, uploads)"
+msgstr "قاعدة البيانات + محتوى wp (المكونات الإضافية، والموضوعات، والتحميلات)"
+
+msgid "Database only"
+msgstr "قاعدة البيانات فقط"
+
+msgid "Posts, pages, settings, users"
+msgstr "المشاركات والصفحات والإعدادات والمستخدمين"
+
+msgid "Files only"
+msgstr "الملفات فقط"
+
+msgid "The wp-content folder"
+msgstr "مجلد محتوى wp"
+
+msgid "Also include WordPress core files (wp-admin, wp-includes)"
+msgstr "قم أيضًا بتضمين ملفات WordPress الأساسية (wp-admin، wp-includes)"
+
+msgid "Description (optional)"
+msgstr "الوصف (اختياري)"
+
+msgid "e.g. Before the theme change"
+msgstr "على سبيل المثال قبل تغيير الموضوع"
+
+msgid "Lock: never delete automatically, even when the quota is full"
+msgstr "القفل: لا تقم أبدًا بالحذف تلقائيًا، حتى عندما تكون الحصة ممتلئة"
+
+msgid "Start backup"
+msgstr "بدء النسخ الاحتياطي"
+
+msgid "Restore"
+msgstr "استعادة"
+
+msgid "First take a safety backup of the current database (recommended)"
+msgstr "قم أولاً بعمل نسخة احتياطية آمنة لقاعدة البيانات الحالية (مستحسن)"
+
+msgid "The site address (siteurl/home), Flux Backup settings and the backup list are kept. Plugin and theme folders are replaced with their backed-up version; in other folders files are overwritten."
+msgstr "يتم الاحتفاظ بعنوان الموقع (siteurl/home) وإعدادات Flux Backup وقائمة النسخ الاحتياطي. يتم استبدال مجلدات المكونات الإضافية والموضوعات بإصدارها الاحتياطي؛ تتم الكتابة فوق الملفات في المجلدات الأخرى."
+
+msgid "Start restore"
+msgstr "ابدأ الاستعادة"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Storage"
+msgstr "التخزين"
+
+msgid "%s%% of the quota is used"
+msgstr "تم استخدام%s%% من الحصة"
+
+msgid "%1$s%% used · %2$s free"
+msgstr "تم استخدام%1$s%% ·%2$sمجاني"
+
+msgid "Last successful backup"
+msgstr "آخر نسخة احتياطية ناجحة"
+
+msgid "%s ago"
+msgstr "منذ%s"
+
+msgid "No backups yet."
+msgstr "لا توجد نسخ احتياطية حتى الآن."
+
+msgid "Next scheduled"
+msgstr "المقرر التالي"
+
+msgid "Weekly full backup"
+msgstr "النسخ الاحتياطي الكامل الأسبوعي"
+
+msgid "Daily full backup"
+msgstr "النسخ الاحتياطي الكامل اليومي"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Turn on schedule"
+msgstr "قم بتشغيل الجدول الزمني"
+
+msgid "Pre-update backup: off"
+msgstr "النسخ الاحتياطي قبل التحديث: متوقف"
+
+msgid "Pre-update backup: FluxWP packages"
+msgstr "النسخ الاحتياطي قبل التحديث: حزم FluxWP"
+
+msgid "Pre-update backup: on"
+msgstr "النسخ الاحتياطي قبل التحديث: قيد التشغيل"
+
+msgid "Storage history"
+msgstr "تاريخ التخزين"
+
+msgid "Time range"
+msgstr "النطاق الزمني"
+
+msgid "%s days"
+msgstr "%sأيام"
+
+msgid "Quota"
+msgstr "الحصة النسبية"
+
+msgid "By type"
+msgstr "حسب النوع"
+
+msgid "Recent backups"
+msgstr "النسخ الاحتياطية الأخيرة"
+
+msgid "View all"
+msgstr "عرض الكل"
+
+msgid "No backups yet. Take the first one with \"Back up now\"; a backup is taken automatically before plugin and theme updates."
+msgstr "لا توجد نسخ احتياطية حتى الآن. خذ الخيار الأول باستخدام \"النسخ الاحتياطي الآن\"؛ يتم أخذ نسخة احتياطية تلقائيًا قبل تحديثات البرنامج المساعد والموضوع."
+
+msgid "Running"
+msgstr "الجري"
+
+msgid "Recent events"
+msgstr "الأحداث الأخيرة"
+
+msgid "No events yet."
+msgstr "لا توجد أحداث حتى الآن."
+
+msgid "Total"
+msgstr "المجموع"
+
+msgid "Not enough data yet: one measurement is recorded each day."
+msgstr "لا توجد بيانات كافية حتى الآن: يتم تسجيل قياس واحد كل يوم."
+
+msgid "No measurement for this day"
+msgstr "لا يوجد قياس لهذا اليوم"
+
+msgid "Storage by type"
+msgstr "التخزين حسب النوع"
+
+msgid "total"
+msgstr "المجموع"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Delete selected"
+msgstr "حذف المحدد"
+
+msgid "Total %s"
+msgstr "إجمالي%s"
+
+msgid "Select all"
+msgstr "حدد الكل"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Contents"
+msgstr "المحتويات"
+
+msgid "Size"
+msgstr "الحجم"
+
+msgid "Retention"
+msgstr "الاحتفاظ"
+
+msgid "Actions"
+msgstr "الإجراءات"
+
+msgid "No backups."
+msgstr "لا توجد نسخ احتياطية."
+
+msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
+msgstr "يتم تخزين النسخ الاحتياطية في%s. لا يقوم Hostinger بتضمين هذا المجلد في النسخ الاحتياطية الخاصة به: قم بتنزيل النسخ الاحتياطية المهمة على جهاز الكمبيوتر الخاص بك."
+
+msgid "Database"
+msgstr "قاعدة البيانات"
+
+msgid "Plugin"
+msgstr "البرنامج المساعد"
+
+msgid "Theme"
+msgstr "الموضوع"
+
+msgid "WordPress core"
+msgstr "ووردبريس الأساسية"
+
+msgid "Select"
+msgstr "اختر"
+
+msgid "Running…"
+msgstr "جاري..."
+
+msgid "Locked: never deleted automatically. Click to unlock."
+msgstr "مغلق: لا يتم حذفه تلقائيًا أبدًا. انقر لفتح."
+
+msgid "Lock: the quota and retention period will not delete this backup."
+msgstr "القفل: لن تؤدي فترة الحصة والاحتفاظ إلى حذف هذه النسخة الاحتياطية."
+
+msgid "Unlock"
+msgstr "فتح"
+
+msgid "Lock"
+msgstr "قفل"
+
+msgid "Locked"
+msgstr "مغلق"
+
+msgid "Until %s"
+msgstr "حتى%s"
+
+msgid "Last %s scheduled"
+msgstr "تمت جدولة آخر%s"
+
+msgid "Until the quota is full"
+msgstr "حتى اكتمال الحصة"
+
+msgid "Download"
+msgstr "تحميل"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "All backups"
+msgstr "جميع النسخ الاحتياطية"
+
+msgid "Backup not found."
+msgstr "لم يتم العثور على النسخة الاحتياطية."
+
+msgid "Backup file"
+msgstr "ملف النسخ الاحتياطي"
+
+msgid "Uncompressed size"
+msgstr "حجم غير مضغوط"
+
+msgid "Files"
+msgstr "ملفات"
+
+msgid "%1$s tables, %2$s rows"
+msgstr "جداول%1$s، صفوف%2$s"
+
+msgid "Included"
+msgstr "متضمنة"
+
+msgid "Source"
+msgstr "المصدر"
+
+msgid "Taken on site"
+msgstr "تم التقاطها في الموقع"
+
+msgid "Originally taken"
+msgstr "اتخذت أصلا"
+
+msgid "WordPress"
+msgstr "ووردبريس"
+
+msgid "The backup is running; details will appear here when it finishes."
+msgstr "النسخ الاحتياطي قيد التشغيل؛ ستظهر التفاصيل هنا عند الانتهاء."
+
+msgid "The backup file could not be read; the size breakdown cannot be shown."
+msgstr "لا يمكن قراءة ملف النسخة الاحتياطية؛ لا يمكن إظهار تفاصيل الحجم."
+
+msgid "Size breakdown"
+msgstr "انهيار الحجم"
+
+msgid "Measure"
+msgstr "قياس"
+
+msgid "Original size"
+msgstr "الحجم الأصلي"
+
+msgid "Size in archive"
+msgstr "الحجم في الأرشيف"
+
+msgid "uncompressed"
+msgstr "غير مضغوط"
+
+msgid "inside the zip"
+msgstr "داخل الرمز البريدي"
+
+msgid "Size breakdown by category"
+msgstr "توزيع الحجم حسب الفئة"
+
+msgid "Section"
+msgstr "القسم"
+
+msgid "Files / rows"
+msgstr "الملفات / الصفوف"
+
+msgid "In archive"
+msgstr "في الأرشيف"
+
+msgid "Share"
+msgstr "شارك"
+
+msgid "Original size: the size of the files on the site (for the database, the size of the SQL dump). In archive: the compressed size inside the zip. Images and videos are already compressed, so they do not get smaller in the archive."
+msgstr "الحجم الأصلي: حجم الملفات الموجودة على الموقع (بالنسبة لقاعدة البيانات، حجم تفريغ SQL). في الأرشيف: الحجم المضغوط داخل الرمز البريدي. الصور ومقاطع الفيديو مضغوطة بالفعل، لذا لا تصبح أصغر حجمًا في الأرشيف."
+
+msgid "Root files (wp-config.php, index.php …)"
+msgstr "الملفات الجذرية (wp-config.php، وindex.php...)"
+
+msgid "Files directly in this folder"
+msgstr "الملفات مباشرة في هذا المجلد"
+
+msgid "Plugins"
+msgstr "الإضافات"
+
+msgid "Themes"
+msgstr "المواضيع"
+
+msgid "Other folders"
+msgstr "المجلدات الأخرى"
+
+msgid "wp-content (all)"
+msgstr "محتوى wp (الكل)"
+
+msgid "Monday"
+msgstr "الاثنين"
+
+msgid "Tuesday"
+msgstr "الثلاثاء"
+
+msgid "Wednesday"
+msgstr "الأربعاء"
+
+msgid "Thursday"
+msgstr "الخميس"
+
+msgid "Friday"
+msgstr "الجمعة"
+
+msgid "Saturday"
+msgstr "السبت"
+
+msgid "Sunday"
+msgstr "الأحد"
+
+msgid "The total size of backups never exceeds this: before a new backup, the oldest unlocked backups are deleted. Locked backups are never deleted automatically; if no room can be made, the backup is not taken."
+msgstr "لا يتجاوز الحجم الإجمالي للنسخ الاحتياطية هذا أبدًا: قبل إجراء نسخة احتياطية جديدة، يتم حذف أقدم النسخ الاحتياطية غير المؤمّنة. لا يتم حذف النسخ الاحتياطية المقفلة تلقائيًا أبدًا؛ إذا لم يكن من الممكن توفير مساحة، فلن يتم أخذ النسخة الاحتياطية."
+
+msgid "Currently using %1$s. Folder: %2$s"
+msgstr "تستخدم حاليا%1$s. المجلد:%2$s"
+
+msgid "Pre-update backup"
+msgstr "النسخ الاحتياطي قبل التحديث"
+
+msgid "Scope"
+msgstr "النطاق"
+
+msgid "All plugin and theme updates"
+msgstr "جميع تحديثات البرنامج المساعد والموضوع"
+
+msgid "FluxWP packages only (flx-… plugins and FluxWP themes)"
+msgstr "حزم FluxWP فقط (flx-... المكونات الإضافية وموضوعات FluxWP)"
+
+msgid "In manual, bulk and automatic updates, the database and the updated package's folder are backed up right before the package is installed. A bulk update produces a single backup."
+msgstr "في التحديثات اليدوية والمجمعة والتلقائية، يتم إجراء نسخ احتياطي لقاعدة البيانات ومجلد الحزمة المحدثة مباشرة قبل تثبيت الحزمة. يؤدي التحديث المجمع إلى إنشاء نسخة احتياطية واحدة."
+
+msgid "Retention period"
+msgstr "فترة الاحتفاظ"
+
+msgid "days"
+msgstr "أيام"
+
+msgid "If the update went fine, the backup is deleted after this period. Lock the ones you want to keep in the list."
+msgstr "إذا سار التحديث بشكل جيد، فسيتم حذف النسخة الاحتياطية بعد هذه الفترة. قم بقفل العناصر التي تريد الاحتفاظ بها في القائمة."
+
+msgid "Scheduled full backup"
+msgstr "النسخ الاحتياطي الكامل المقرر"
+
+msgid "Frequency"
+msgstr "التردد"
+
+msgid "Daily"
+msgstr "يوميا"
+
+msgid "Weekly"
+msgstr "أسبوعيا"
+
+msgid "Day"
+msgstr "يوم"
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid "In the site's time zone. Choose night hours; WP-Cron is triggered by visits, so it may run a few minutes late."
+msgstr "في المنطقة الزمنية للموقع. اختر ساعات الليل؛ يتم تشغيل WP-Cron عن طريق الزيارات، لذلك قد يتأخر بضع دقائق."
+
+msgid "Number to keep"
+msgstr "رقم للاحتفاظ به"
+
+msgid "Only this many of the latest scheduled backups are kept (locked ones are not counted)."
+msgstr "يتم الاحتفاظ فقط بهذا العدد من أحدث النسخ الاحتياطية المجدولة (لا يتم احتساب النسخ المقفلة)."
+
+msgid "Add wp-admin, wp-includes and root files (including wp-config.php) to full backups"
+msgstr "أضف wp-admin، وwp-includes، وملفات الجذر (بما في ذلك wp-config.php) إلى النسخ الاحتياطية الكاملة"
+
+msgid "WordPress core can always be downloaded again from wordpress.org; leaving it out saves space."
+msgstr "يمكن دائمًا تنزيل WordPress الأساسي مرة أخرى من wordpress.org؛ تركها يوفر المساحة."
+
+msgid "Exclusions"
+msgstr "الاستثناءات"
+
+msgid "Extra paths"
+msgstr "مسارات اضافية"
+
+msgid "One path per line, relative to the WordPress root folder. The * wildcard can be used."
+msgstr "مسار واحد لكل سطر، بالنسبة إلى المجلد الجذر لـ WordPress. يمكن استخدام حرف البدل *."
+
+msgid "Always excluded: the backup folder, wp-snapshots, other backup plugins' folders (ai1wm-backups, updraft, wpvividbackups, backups-dup-*), cache, litespeed, upgrade, upgrade-temp-backup."
+msgstr "مستبعد دائمًا: مجلد النسخ الاحتياطي، wp-snapshots، ومجلدات المكونات الإضافية للنسخ الاحتياطي الأخرى (ai1wm-backups، updraft، wpvividbackups، Backups-dup-*)، ذاكرة التخزين المؤقت، litespeed، ترقية، ترقية-درجة الحرارة الاحتياطية."
+
+msgid "Restore and uninstall"
+msgstr "استعادة وإلغاء التثبيت"
+
+msgid "Safety backup"
+msgstr "احتياطية السلامة"
+
+msgid "Back up the current database before restoring the database (kept for 7 days)"
+msgstr "قم بعمل نسخة احتياطية من قاعدة البيانات الحالية قبل استعادة قاعدة البيانات (يتم الاحتفاظ بها لمدة 7 أيام)"
+
+msgid "When the plugin is deleted"
+msgstr "عندما يتم حذف البرنامج المساعد"
+
+msgid "Also delete backup files"
+msgstr "قم أيضًا بحذف ملفات النسخ الاحتياطي"
+
+msgid "When off (default), deleting the plugin removes only its settings; the zip files stay in the folder."
+msgstr "عند إيقافه (افتراضي)، يؤدي حذف المكون الإضافي إلى إزالة إعداداته فقط؛ تبقى الملفات المضغوطة في المجلد."
+
+msgid "Save settings"
+msgstr "حفظ الإعدادات"
+
+msgid "Could not delete."
+msgstr "لا يمكن الحذف."
+
+msgid "No operation is running."
+msgstr "لا توجد عملية قيد التشغيل."
+
+msgid "Nothing was selected to back up."
+msgstr "لم يتم تحديد أي شيء لإجراء نسخ احتياطي."
+
+msgid "zlib (gzip) is not available on the server."
+msgstr "zlib (gzip) غير متوفر على الخادم."
+
+msgid "Another backup or restore is running. Wait for it to finish."
+msgstr "هناك نسخة احتياطية أو استعادة أخرى قيد التشغيل. انتظر حتى ينتهي."
+
+msgid "Backup record not found."
+msgstr "لم يتم العثور على سجل النسخ الاحتياطي."
+
+msgid "Invalid path."
+msgstr "مسار غير صالح."
+
+msgid "Path not found: %s"
+msgstr "لم يتم العثور على المسار:%s"
+
+msgid "Could not write a temporary file."
+msgstr "لا يمكن كتابة ملف مؤقت."
+
+msgid "Could not read the file list."
+msgstr "لا يمكن قراءة قائمة الملفات."
+
+msgid "Could not open the zip file (code %s)."
+msgstr "تعذر فتح الملف المضغوط (الرمز%s)."
+
+msgid "Could not write the zip: %s"
+msgstr "لا يمكن كتابة الملف المضغوط:%s"
+
+msgid "The backup record was deleted."
+msgstr "تم حذف سجل النسخ الاحتياطي."
+
+msgid "Could not open the zip file."
+msgstr "لا يمكن فتح الملف المضغوط."
+
+msgid "Could not add the database dump to the archive."
+msgstr "تعذر إضافة تفريغ قاعدة البيانات إلى الأرشيف."
+
+msgid "Could not write the zip (the disk may be full)."
+msgstr "تعذر كتابة الملف المضغوط (قد يكون القرص ممتلئًا)."
+
+msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
+msgstr "تم قطع النسخة الاحتياطية%sمرات في نفس النقطة (الحد الزمني للخادم). حاول استخدام مجلدات أقل أو قم بإضافة مجلدات كبيرة إلى الاستثناءات."
+
+msgid "Backup taken: %1$s (%2$s)"
+msgstr "تم أخذ النسخة الاحتياطية:%1$s(%2$s)"
+
+msgid "Backup failed (%1$s): %2$s"
+msgstr "فشل النسخ الاحتياطي (%1$s):%2$s"
+
+msgid "Scanning files… %s files"
+msgstr "مسح الملفات... ملفات%s"
+
+msgid "Checking quota…"
+msgstr "جارٍ التحقق من الحصة..."
+
+msgid "Backing up database: %1$s (%2$s rows)"
+msgstr "النسخ الاحتياطي لقاعدة البيانات:%1$s(صفوف%2$s)"
+
+msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
+msgstr "أرشفة الملفات: ملفات%1$s/%2$s(%3$s/%4$s)"
+
+msgid "Finishing…"
+msgstr "تشطيب..."
+
+msgid "Backup completed."
+msgstr "اكتمل النسخ الاحتياطي."
+
+msgid "Media (uploads)"
+msgstr "الوسائط (التحميلات)"
+
+msgid "Other wp-content"
+msgstr "محتوى wp آخر"
+
+msgid "Backup folder writable"
+msgstr "مجلد النسخ الاحتياطي للكتابة"
+
+msgid "Backups are written to %s."
+msgstr "تتم كتابة النسخ الاحتياطية إلى%s."
+
+msgid "The %s folder cannot be created or written. Check the file permissions (755)."
+msgstr "لا يمكن إنشاء المجلد%sأو كتابته. تأكد من أذونات الملف (755)."
+
+msgid "ZipArchive and zlib"
+msgstr "ZipArchive و zlib"
+
+msgid "The PHP zip and zlib extensions are installed."
+msgstr "تم تثبيت ملحقات PHP zip وzlib."
+
+msgid "The PHP zip (ZipArchive) or zlib extension is missing; backups cannot be created. On Hostinger, turn on \"zip\" under PHP Configuration › PHP Extensions."
+msgstr "PHP zip (ZipArchive) أو ملحق zlib مفقود؛ لا يمكن إنشاء النسخ الاحتياطية. في Hostinger، قم بتشغيل \"zip\" ضمن تكوين PHP › ملحقات PHP."
+
+msgid "Backup quota"
+msgstr "الحصص الاحتياطية"
+
+msgid "%1$s / %2$s used (%3$s%%)."
+msgstr "تم استخدام%1$s/%2$s(%3$s%%)."
+
+msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
+msgstr "سيتم حذف أقدم النسخ الاحتياطية غير المؤمنة لإفساح المجال للنسخ الاحتياطية الجديدة؛ قم بزيادة الحصة أو قم بمراجعة النسخ الاحتياطية المقفلة."
+
+msgid "There are no backups yet. Take the first one from the dashboard with \"Back up now\"."
+msgstr "لا توجد نسخ احتياطية حتى الآن. خذ أول واحد من لوحة التحكم باستخدام \"النسخ الاحتياطي الآن\"."
+
+msgid "%1$s (%2$s): %3$s"
+msgstr "%1$s(%2$s):%3$s"
+
+msgid "for all plugin and theme updates"
+msgstr "لجميع تحديثات البرنامج المساعد والموضوع"
+
+msgid "for FluxWP package updates only"
+msgstr "لتحديثات حزمة FluxWP فقط"
+
+msgid "Off: no backup is taken before updates."
+msgstr "إيقاف: لا يتم أخذ نسخة احتياطية قبل التحديثات."
+
+msgid "On, %1$s. Backups are kept for %2$s days."
+msgstr "تشغيل،%1$s. يتم الاحتفاظ بالنسخ الاحتياطية لمدة%2$sأيام."
+
+msgid "The daily cleanup task ran %s."
+msgstr "تم تشغيل مهمة التنظيف اليومية بواسطة%s."
+
+msgid "The daily task is scheduled but has not run yet."
+msgstr "تمت جدولة المهمة اليومية ولكن لم يتم تشغيلها بعد."
+
+msgid "DISABLE_WP_CRON is on and the daily job has not run for 2 days. In the Hostinger panel, call wp-cron.php every 5–15 minutes under Advanced › Cron Jobs."
+msgstr "DISABLE_WP_CRON قيد التشغيل ولم يتم تشغيل المهمة اليومية لمدة يومين. في لوحة Hostinger، اتصل بـ wp-cron.php كل 5-15 دقيقة تحت خيارات متقدمة › وظائف Cron."
+
+msgid "The daily task has not run for 2 days; WP-Cron is triggered by visits. Old backups may not be getting deleted."
+msgstr "لم يتم تشغيل المهمة اليومية لمدة يومين؛ يتم تشغيل WP-Cron عن طريق الزيارات. قد لا يتم حذف النسخ الاحتياطية القديمة."
+
+msgid "Flux Backup scheduled tasks"
+msgstr "المهام المجدولة للنسخ الاحتياطي Flux"
+
+msgid "Could not start the scheduled backup: %s"
+msgstr "تعذر بدء النسخة الاحتياطية المجدولة:%s"
+
+msgid "Left unfinished (timed out)."
+msgstr "تركت غير مكتملة (انتهت المهلة)."
+
+msgid "Could not write the SQL file."
+msgstr "لا يمكن كتابة ملف SQL."
+
+msgid "Could not read table %1$s: %2$s"
+msgstr "لا يمكن قراءة الجدول%1$s:%2$s"
+
+msgid "Could not get the structure of table %1$s: %2$s"
+msgstr "تعذر الحصول على بنية الجدول%1$s:%2$s"
+
+msgid "Could not open the SQL file."
+msgstr "لا يمكن فتح ملف SQL."
+
+msgid "Flux Backup: click for details"
+msgstr "النسخ الاحتياطي التدفق: انقر للحصول على التفاصيل"
+
+msgid "Restoring %s"
+msgstr "استعادة%s"
+
+msgid "Backing up %s"
+msgstr "النسخ الاحتياطي%s"
+
+msgid "Restore complete"
+msgstr "اكتملت الاستعادة"
+
+msgid "Backup ready · %s"
+msgstr "النسخ الاحتياطي جاهز ·%s"
+
+msgid "Backup ready"
+msgstr "النسخ الاحتياطي جاهز"
+
+msgid "Restore failed"
+msgstr "فشلت عملية الاستعادة"
+
+msgid "Backup failed"
+msgstr "فشل النسخ الاحتياطي"
+
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+msgid "Cancelling…"
+msgstr "جارٍ الإلغاء..."
+
+msgid "Elapsed: %s"
+msgstr "المنقضي:%s"
+
+msgid "Remaining: about %s"
+msgstr "المتبقي: حوالي%s"
+
+msgid "Backup"
+msgstr "النسخ الاحتياطي"
+
+msgid "You can leave the page; it keeps running in the background."
+msgstr "يمكنك مغادرة الصفحة؛ يستمر في العمل في الخلفية."
+
+msgid "Do not change the site while the restore is running."
+msgstr "لا تقم بتغيير الموقع أثناء تشغيل الاستعادة."
+
+msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
+msgstr "لا يمكن عمل نسخة احتياطية قبل تحديث%1$s؛ استمر التحديث بدون نسخة احتياطية:%2$s"
+
+msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
+msgstr "تعذر إضافة المجلد%1$sإلى النسخة الاحتياطية للتحديث المسبق:%2$s"
+
+msgid "The backup file is missing from disk."
+msgstr "ملف النسخ الاحتياطي مفقود من القرص."
+
+msgid "This path is not in the backup: %s"
+msgstr "هذا المسار غير موجود في النسخة الاحتياطية:%s"
+
+msgid "This backup has no database."
+msgstr "لا تحتوي هذه النسخة الاحتياطية على قاعدة بيانات."
+
+msgid "Nothing was selected to restore."
+msgstr "لم يتم تحديد أي شيء لاستعادته."
+
+msgid "Safety backup before restore (%s)"
+msgstr "النسخ الاحتياطي للسلامة قبل الاستعادة (%s)"
+
+msgid "The safety backup failed, so nothing was restored: %s"
+msgstr "فشلت النسخة الاحتياطية الآمنة، لذا لم تتم استعادة أي شيء:%s"
+
+msgid "The backup has no database.sql.gz."
+msgstr "النسخة الاحتياطية لا تحتوي على قاعدة بيانات.sql.gz."
+
+msgid "The database file's checksum does not match; the backup may be corrupt."
+msgstr "المجموع الاختباري لملف قاعدة البيانات غير متطابق؛ قد تكون النسخة الاحتياطية تالفة."
+
+msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database was not restored."
+msgstr "تختلف بادئة الجدول في النسخة الاحتياطية (%1$s) عن بادئة هذا الموقع (%2$s)؛ لم تتم استعادة قاعدة البيانات."
+
+msgid "Not found in the backup: %s"
+msgstr "لم يتم العثور عليه في النسخة الاحتياطية:%s"
+
+msgid "Could not move the folder (permission problem?): %s"
+msgstr "تعذر نقل المجلد (مشكلة في الإذن؟):%s"
+
+msgid "Could not create the folder: %s"
+msgstr "تعذر إنشاء المجلد:%s"
+
+msgid "Could not write the file: %s"
+msgstr "تعذر كتابة الملف:%s"
+
+msgid "database"
+msgstr "قاعدة البيانات"
+
+msgid "Restored: %1$s (%2$s)."
+msgstr "تمت الاستعادة:%1$s(%2$s)."
+
+msgid "%s SQL statements failed; details are in the log."
+msgstr "فشلت عبارات SQL%s؛ التفاصيل موجودة في السجل."
+
+msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
+msgstr "%sقد تتم استعادة قاعدة البيانات جزئيًا؛ استعادة \"النسخ الاحتياطي للسلامة قبل الاستعادة\"."
+
+msgid "Restore failed (%1$s): %2$s"
+msgstr "فشلت الاستعادة (%1$s):%2$s"
+
+msgid "Taking safety backup: %s"
+msgstr "أخذ نسخة احتياطية للسلامة:%s"
+
+msgid "Unpacking the database file…"
+msgstr "جارٍ تفريغ ملف قاعدة البيانات..."
+
+msgid "Restoring database: %s"
+msgstr "استعادة قاعدة البيانات:%s"
+
+msgid "Preparing files…"
+msgstr "جارٍ تحضير الملفات..."
+
+msgid "Restoring files: %1$s / %2$s"
+msgstr "استعادة الملفات:%1$s/%2$s"
+
+msgid "%s s"
+msgstr "%sس"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$sدقيقة%2$sث"
+
+msgid "%1$s h %2$s min"
+msgstr "%1$sح%2$sدقيقة"
+
+msgid "Cancelled."
+msgstr "تم الإلغاء."
+
+msgid "Could not verify the session. Reload the page."
+msgstr "تعذر التحقق من الجلسة. أعد تحميل الصفحة."
+
+msgid "Backup deleted: %s"
+msgstr "تم حذف النسخة الاحتياطية:%s"
+
+msgid "Before %1$s %2$s → %3$s"
+msgstr "قبل%1$s%2$s→%3$s"
+
+msgid "Before updating %s"
+msgstr "قبل تحديث%s"
+
+msgid "Pre-update"
+msgstr "التحديث المسبق"
+
+msgid "Manual"
+msgstr "دليل"
+
+msgid "Scheduled"
+msgstr "المقرر"
+
+msgid "Automatic update"
+msgstr "التحديث التلقائي"
+
+msgid "Update"
+msgstr "تحديث"
+
+msgid "WP-CLI"
+msgstr "الفسفور الأبيض-CLI"
+
+msgid "Before restore"
+msgstr "قبل الاستعادة"
+
+msgid "Plugin (API)"
+msgstr "البرنامج المساعد (واجهة برمجة التطبيقات)"
+
+msgid "Uploaded"
+msgstr "تم الرفع"
+
+msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise the quota in Settings."
+msgstr "حجم النسخة الاحتياطية المقدر (%1$s) أكبر من الحصة (%2$s). ارفع الحصة في الإعدادات."
+
+msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
+msgstr "الحصة غير كافية: النسخة الاحتياطية الجديدة تدور حول%1$s، وتستخدم%2$s، والحصة%3$s. النسخ الاحتياطية المتبقية مؤمنة؛ فتح أو حذف بعض، أو زيادة الحصة."
+
+msgid "The file is empty or too small."
+msgstr "الملف فارغ أو صغير جدًا."
+
+msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota in Settings."
+msgstr "الملف (%1$s) أكبر من حصة النسخ الاحتياطي (%2$s). ارفع الحصة في الإعدادات."
+
+msgid "There is not enough free disk space on the server (free: %s)."
+msgstr "لا توجد مساحة كافية على القرص على الخادم (مجاني:%s)."
+
+msgid "Upload not found; start again."
+msgstr "لم يتم العثور على التحميل؛ ابدأ مرة أخرى."
+
+msgid "A chunk did not reach the server (error %d)."
+msgstr "لم تصل القطعة إلى الخادم (خطأ%d)."
+
+msgid "Chunks arrived out of order."
+msgstr "وصلت القطع خارج الترتيب."
+
+msgid "The file is larger than the declared size."
+msgstr "الملف أكبر من الحجم المعلن."
+
+msgid "Could not write the temporary file (the disk may be full)."
+msgstr "تعذر كتابة الملف المؤقت (قد يكون القرص ممتلئًا)."
+
+msgid "%1$s was uploaded (%2$s) and added to the backup list."
+msgstr "تم تحميل%1$s(%2$s) وإضافته إلى قائمة النسخ الاحتياطية."
+
+msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
+msgstr "تم تحميل الملف بشكل غير كامل (%1$s/%2$s). حاول ثانية."
+
+msgid "Could not move the file to the backup folder."
+msgstr "تعذر نقل الملف إلى مجلد النسخ الاحتياطي."
+
+msgid "Uploaded: %s"
+msgstr "تم الرفع:%s"
+
+msgid "Backup uploaded: %1$s (%2$s, %3$s)"
+msgstr "تم تحميل النسخة الاحتياطية:%1$s(%2$s,%3$s)"
+
+msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
+msgstr "هذا الملف ليس نسخة احتياطية لـ Flux Backup (تعذر فتح الملف المضغوط أو لا يحتوي على ملف Manifest.json)."
+
+msgid "The backup contains an unexpected or unsafe path: %s"
+msgstr "تحتوي النسخة الاحتياطية على مسار غير متوقع أو غير آمن:%s"
+
+msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
+msgstr "يقول البيان أن النسخة الاحتياطية تتضمن قاعدة البيانات ولكن قاعدة البيانات.sql.gz مفقودة؛ قد يكون الملف تالفًا."
+
+msgid "The backup appears to be empty."
+msgstr "يبدو أن النسخة الاحتياطية فارغة."
+
+msgid "The uncompressed size of the backup is not plausible; the file was not accepted."
+msgstr "الحجم غير المضغوط للنسخة الاحتياطية غير معقول؛ لم يتم قبول الملف."
+
+msgid "%s file"
+msgid_plural "%s files"
+msgstr[0] "ملفات%s"
+msgstr[1] "ملف%s"
+msgstr[2] "ملفات%s"
+msgstr[3] "ملفات%s"
+msgstr[4] "ملفات%s"
+msgstr[5] "ملفات%s"
+
+msgid "%s locked"
+msgid_plural "%s locked"
+msgstr[0] "تم قفل%s"
+msgstr[1] "تم قفل%s"
+msgstr[2] "تم قفل%s"
+msgstr[3] "تم قفل%s"
+msgstr[4] "تم قفل%s"
+msgstr[5] "تم قفل%s"
+
+msgid "Before updating %s package"
+msgid_plural "Before updating %s packages"
+msgstr[0] "قبل تحديث حزم%s"
+msgstr[1] "قبل تحديث حزمة%s"
+msgstr[2] "قبل تحديث حزم%s"
+msgstr[3] "قبل تحديث حزم%s"
+msgstr[4] "قبل تحديث حزم%s"
+msgstr[5] "قبل تحديث حزم%s"
+
+msgid "%s row"
+msgid_plural "%s rows"
+msgstr[0] "صفوف%s"
+msgstr[1] "صف%s"
+msgstr[2] "صفوف%s"
+msgstr[3] "صفوف%s"
+msgstr[4] "صفوف%s"
+msgstr[5] "صفوف%s"
+
+msgid "%s backup"
+msgid_plural "%s backups"
+msgstr[0] "النسخ الاحتياطية%s"
+msgstr[1] "النسخ الاحتياطي%s"
+msgstr[2] "النسخ الاحتياطية%s"
+msgstr[3] "النسخ الاحتياطية%s"
+msgstr[4] "النسخ الاحتياطية%s"
+msgstr[5] "النسخ الاحتياطية%s"
+
+msgid "%s other item"
+msgid_plural "%s other items"
+msgstr[0] "%sعناصر أخرى"
+msgstr[1] "%sعنصر آخر"
+msgstr[2] "%sعناصر أخرى"
+msgstr[3] "%sعناصر أخرى"
+msgstr[4] "%sعناصر أخرى"
+msgstr[5] "%sعناصر أخرى"
+
+msgid "%1$s old backup deleted for the quota: %2$s"
+msgid_plural "%1$s old backups deleted for the quota: %2$s"
+msgstr[0] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
+msgstr[1] "تم حذف النسخة الاحتياطية القديمة لـ%1$sللحصة:%2$s"
+msgstr[2] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
+msgstr[3] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
+msgstr[4] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
+msgstr[5] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
+
+msgid "%s backup past its retention period was deleted."
+msgid_plural "%s backups past their retention period were deleted."
+msgstr[0] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
+msgstr[1] "تم حذف النسخة الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
+msgstr[2] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
+msgstr[3] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
+msgstr[4] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
+msgstr[5] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
+
+msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
+msgstr "يأخذ نسخة احتياطية تلقائية قبل كل تحديث للمكون الإضافي/الموضوع، والنسخ الاحتياطية الكاملة المجدولة، وإدارة الحصص والاحتفاظ، ولوحة معلومات التخزين مع المخططات والاستعادة الانتقائية. متوافق مع استضافة Hostinger المشتركة."
+
+msgctxt "context_fd86717aca41"
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "The archive file is deleted too."
+msgstr "يتم حذف ملف الأرشيف أيضًا."
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Restore is only available in the panel."
+msgstr "الاستعادة متاحة فقط في اللوحة."
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Deleted"
+msgstr "تم الحذف"
+
+msgid "Take a full backup?"
+msgstr "أخذ نسخة احتياطية كاملة؟"
+
+msgid "Done"
+msgstr "تم"
+
+msgid "The backup runs in the background and shows up in the list when it finishes."
+msgstr "يتم تشغيل النسخة الاحتياطية في الخلفية وتظهر في القائمة عند الانتهاء."
+
+msgid "Backup started"
+msgstr "بدأ النسخ الاحتياطي"
+
+msgid "Delete this backup?"
+msgstr "هل تريد حذف هذه النسخة الاحتياطية؟"
+
+msgid "No backups"
+msgstr "لا توجد نسخ احتياطية"
+
+msgid "Back up"
+msgstr "نسخ احتياطي"
+
+msgid "Progress"
+msgstr "التقدم"
+
+msgid "Take the first backup with Back up now. Restore is done in the panel."
+msgstr "خذ النسخة الاحتياطية الأولى مع النسخ الاحتياطي الآن. تتم الاستعادة في اللوحة."

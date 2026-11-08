@@ -1,0 +1,177 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%d rows"
+msgstr ""
+
+msgid "%1$d files, %2$s"
+msgstr ""
+
+msgid "Content may still use image URLs from this theme; check your pages first."
+msgstr ""
+
+msgid "%d old settings"
+msgstr ""
+
+msgid "Old tables"
+msgstr ""
+
+msgid "Backup tables (sample data of the new plugins)"
+msgstr ""
+
+msgid "Old upload folders"
+msgstr ""
+
+msgid "Old plugins (inactive)"
+msgstr ""
+
+msgid "Old themes"
+msgstr ""
+
+msgid "Old settings"
+msgstr ""
+
+msgid "Leftovers"
+msgstr ""
+
+msgid "%d items deleted."
+msgstr ""
+
+msgid "Could not delete:"
+msgstr ""
+
+msgid "No tables, folders, plugins or settings with old names are left."
+msgstr ""
+
+msgid "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+msgstr ""
+
+msgid "The selected items will be deleted permanently. Did you take a backup?"
+msgstr ""
+
+msgid "What"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Delete selected"
+msgstr ""
+
+msgid "Finish the migration first."
+msgstr ""
+
+msgid "WooCommerce orders"
+msgstr ""
+
+msgid "Order items"
+msgstr ""
+
+msgid "Encrypted settings (passwords, keys)"
+msgstr ""
+
+msgid "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+msgstr ""
+
+msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+msgstr ""
+
+msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+msgstr ""
+
+msgid "%1$s is empty, %2$s was left as it is."
+msgstr ""
+
+msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+msgstr ""
+
+msgid "%3$d items from %1$s were moved into %2$s."
+msgstr ""
+
+msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+msgstr ""
+
+msgid "Step"
+msgstr ""
+
+msgid "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+msgstr ""
+
+msgid "Migrate"
+msgstr ""
+
+msgid "Migration finished on %s. You can delete this plugin now."
+msgstr ""
+
+msgid "Migration finished. Check that the new plugins are active and clear the cache."
+msgstr ""
+
+msgid "Settings (options)"
+msgstr ""
+
+msgid "Finish"
+msgstr ""
+
+msgid "To change"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "User meta"
+msgstr ""
+
+msgid "Table contents"
+msgstr ""
+
+msgid "Tables"
+msgstr ""
+
+msgid "Taxonomies"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Scan"
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "Term meta"
+msgstr ""
+
+msgid "Data will be moved to the new names. Did you take a backup?"
+msgstr ""
+
+msgid "Post meta"
+msgstr ""
+
+msgid "Posts and pages"
+msgstr ""
+
+msgid "Upload folders"
+msgstr ""
+
+msgid "Working…"
+msgstr ""
+
+msgid "Upload these new packages first (do not activate them):"
+msgstr ""
+
+msgid "[['%drow', 'tr']]"
+msgid_plural "[['%drow', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['%dold setting', 'tr']]"
+msgid_plural "[['%dold setting', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""

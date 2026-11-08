@@ -157,7 +157,7 @@ final class FLXCRM_REST {
 	public static function get_contact( WP_REST_Request $r ) {
 		$c = FLXCRM_Contacts::get( (int) $r['id'] );
 		if ( ! $c ) {
-			return new WP_Error( 'flxcrm_missing', __( 'Kişi bulunamadı.', 'flx-crm' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxcrm_missing', __( 'Contact not found.', 'flx-crm' ), array( 'status' => 404 ) );
 		}
 		$out             = self::shape( $c, true );
 		$out['tags']     = array_map(
@@ -179,11 +179,11 @@ final class FLXCRM_REST {
 	public static function create_contact( WP_REST_Request $r ) {
 		$b = self::body( $r );
 		if ( '' === flxcrm_email( $b['email'] ?? '' ) && '' === flxcrm_phone( $b['phone'] ?? '' ) ) {
-			return new WP_Error( 'flxcrm_contact', __( 'E-posta ya da telefon gerekli.', 'flx-crm' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxcrm_contact', __( 'An e-mail or phone number is required.', 'flx-crm' ), array( 'status' => 400 ) );
 		}
 		$id = FLXCRM_Contacts::upsert( array_merge( $b, array( 'source' => sanitize_key( (string) ( $b['source'] ?? 'api' ) ) ) ) );
 		if ( ! $id ) {
-			return new WP_Error( 'flxcrm_contact', __( 'Kişi kaydedilemedi.', 'flx-crm' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxcrm_contact', __( 'The contact could not be saved.', 'flx-crm' ), array( 'status' => 400 ) );
 		}
 		foreach ( (array) ( $b['tags'] ?? array() ) as $tag ) {
 			FLXCRM_Tags::attach( $id, is_numeric( $tag ) ? (int) $tag : (string) $tag );
@@ -213,7 +213,7 @@ final class FLXCRM_REST {
 			$type = 'note';
 		}
 		if ( ! FLXCRM_Contacts::get( (int) $r['id'] ) || '' === trim( $text ) ) {
-			return new WP_Error( 'flxcrm_event', __( 'Metin boş olamaz.', 'flx-crm' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxcrm_event', __( 'Text cannot be empty.', 'flx-crm' ), array( 'status' => 400 ) );
 		}
 		$id = self::manual_event( (int) $r['id'], $type, $text );
 		global $wpdb;
@@ -244,7 +244,7 @@ final class FLXCRM_REST {
 		$tag = $b['tag'] ?? ( $b['name'] ?? '' );
 		$id  = FLXCRM_Contacts::get( (int) $r['id'] ) ? FLXCRM_Tags::attach( (int) $r['id'], is_numeric( $tag ) ? (int) $tag : (string) $tag ) : 0;
 		if ( ! $id ) {
-			return new WP_Error( 'flxcrm_tag', __( 'Etiket eklenemedi.', 'flx-crm' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxcrm_tag', __( 'The tag could not be added.', 'flx-crm' ), array( 'status' => 400 ) );
 		}
 		$all = FLXCRM_Tags::all();
 		return array( 'id' => $id, 'name' => $all[ $id ]['name'] ?? '', 'color' => $all[ $id ]['color'] ?? '' );
@@ -293,7 +293,7 @@ final class FLXCRM_REST {
 	public static function segment_contacts( WP_REST_Request $r ) {
 		$s = FLXCRM_Segments::get( (int) $r['id'] );
 		if ( ! $s ) {
-			return new WP_Error( 'flxcrm_missing', __( 'Segment bulunamadı.', 'flx-crm' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxcrm_missing', __( 'Segment not found.', 'flx-crm' ), array( 'status' => 404 ) );
 		}
 		$f          = self::filters( $r );
 		$f['rules'] = $s['rules'];

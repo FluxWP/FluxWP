@@ -1,0 +1,175 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ja\nPlural-Forms: nplurals=1; plural=0;\n"
+
+msgid "%d rows"
+msgstr "%d行"
+
+msgid "%1$d files, %2$s"
+msgstr "%1$dファイル、%2$s"
+
+msgid "Content may still use image URLs from this theme; check your pages first."
+msgstr "コンテンツでは引き続きこのテーマの画像 URL を使用できます。まずページを確認してください。"
+
+msgid "%d old settings"
+msgstr "%dの古い設定"
+
+msgid "Old tables"
+msgstr "古いテーブル"
+
+msgid "Backup tables (sample data of the new plugins)"
+msgstr "バックアップテーブル(新規プラグインのサンプルデータ)"
+
+msgid "Old upload folders"
+msgstr "古いアップロードフォルダー"
+
+msgid "Old plugins (inactive)"
+msgstr "古いプラグイン (非アクティブ)"
+
+msgid "Old themes"
+msgstr "古いテーマ"
+
+msgid "Old settings"
+msgstr "古い設定"
+
+msgid "Leftovers"
+msgstr "残り物"
+
+msgid "%d items deleted."
+msgstr "%dアイテムが削除されました。"
+
+msgid "Could not delete:"
+msgstr "削除できませんでした:"
+
+msgid "No tables, folders, plugins or settings with old names are left."
+msgstr "古い名前のテーブル、フォルダー、プラグイン、設定は残りません。"
+
+msgid "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+msgstr "移行後に古い名前で残っているもの。サイトが新しいプラグインで動作することを確認したら、削除してください。削除を元に戻すことはできません。まずバックアップを作成してください。"
+
+msgid "The selected items will be deleted permanently. Did you take a backup?"
+msgstr "選択したアイテムは完全に削除されます。バックアップを取りましたか?"
+
+msgid "What"
+msgstr "何"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Delete selected"
+msgstr "選択したものを削除"
+
+msgid "Finish the migration first."
+msgstr "まず移行を完了します。"
+
+msgid "WooCommerce orders"
+msgstr "WooCommerce の注文"
+
+msgid "Order items"
+msgstr "注文品"
+
+msgid "Encrypted settings (passwords, keys)"
+msgstr "暗号化された設定 (パスワード、キー)"
+
+msgid "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+msgstr "ナトリウムが欠落しています: 暗号化された設定を移動できませんでした。パネルに再度入力してください。"
+
+msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+msgstr "%d暗号化された値を開けませんでした (サイトキーが変更された可能性があります)。パネルに再度入力します。"
+
+msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+msgstr "古いパッケージ名 (設定、テーブル、メタ、コンテンツ、テーマ、アップロード フォルダー) で保存されたサイト データを FluxWP 名に移動します。名前マップはmap.jsonにあります。"
+
+msgid "%1$s is empty, %2$s was left as it is."
+msgstr "%1$sは空で、%2$sはそのまま残されました。"
+
+msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+msgstr "%1$sは空ではありませんでした。%2$sとしてバックアップされ、%3$sに置き換えられました。"
+
+msgid "%3$d items from %1$s were moved into %2$s."
+msgstr "%1$sの%3$d項目は%2$sに移動されました。"
+
+msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+msgstr "%1$s内の%2$dファイルは新しいフォルダーにすでに存在していました。古いコピーはそのまま残されました。"
+
+msgid "Step"
+msgstr "ステップ"
+
+msgid "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+msgstr "古い更新サーバーのアドレスとサイト キーは削除されました。 FluxWP パネル › 設定 に新しいサーバーのキーを入力します。"
+
+msgid "Migrate"
+msgstr "移行する"
+
+msgid "Migration finished on %s. You can delete this plugin now."
+msgstr "移行は%sに終了しました。このプラグインは今すぐ削除できます。"
+
+msgid "Migration finished. Check that the new plugins are active and clear the cache."
+msgstr "移行が完了しました。新しいプラグインがアクティブであることを確認し、キャッシュをクリアします。"
+
+msgid "Settings (options)"
+msgstr "設定(オプション)"
+
+msgid "Finish"
+msgstr "終了"
+
+msgid "To change"
+msgstr "変更するには"
+
+msgid "Status"
+msgstr "ステータス"
+
+msgid "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+msgstr "古い名前で保存されているデータを新しい名前に移動します。まずバックアップを作成し、新しいプラグインとテーマをアップロードし(アクティブ化しないでください)、次に「スキャン」をクリックし、その後「移行」をクリックします。"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "User meta"
+msgstr "ユーザーメタ"
+
+msgid "Table contents"
+msgstr "表の内容"
+
+msgid "Tables"
+msgstr "テーブル"
+
+msgid "Taxonomies"
+msgstr "分類法"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "Scan"
+msgstr "スキャン"
+
+msgid "Theme"
+msgstr "テーマ"
+
+msgid "Term meta"
+msgstr "用語メタ"
+
+msgid "Data will be moved to the new names. Did you take a backup?"
+msgstr "データは新しい名前に移動されます。バックアップを取りましたか?"
+
+msgid "Post meta"
+msgstr "ポストメタ"
+
+msgid "Posts and pages"
+msgstr "投稿とページ"
+
+msgid "Upload folders"
+msgstr "フォルダーをアップロードする"
+
+msgid "Working…"
+msgstr "働いています..."
+
+msgid "Upload these new packages first (do not activate them):"
+msgstr "最初にこれらの新しいパッケージをアップロードします (アクティブ化しないでください)。"
+
+msgid "[['%drow', 'tr']]"
+msgid_plural "[['%drow', 'tr']]"
+msgstr[0] "[['%d行', 'tr']]"
+
+msgid "[['%dold setting', 'tr']]"
+msgid_plural "[['%dold setting', 'tr']]"
+msgstr[0] "[['%dの古い設定', 'tr']]"

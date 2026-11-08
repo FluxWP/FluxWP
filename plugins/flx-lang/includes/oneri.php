@@ -84,11 +84,11 @@ function flxl_suggest_texts() {
 		$switched = switch_to_locale( flxl_language_locale( $code ) );
 		$data[ $code ] = array(
 			/* translators: %s: language name, e.g. English */
-			'msg'  => sprintf( __( 'Bu sayfanın %s sürümü var.', 'flx-lang' ), $l['name'] ),
+			'msg'  => sprintf( __( 'This page is available in %s.', 'flx-lang' ), $l['name'] ),
 			/* translators: %s: language name */
-			'go'   => sprintf( __( '%s sürümüne geç', 'flx-lang' ), $l['name'] ),
-			'stay' => __( 'Bu sürümde kal', 'flx-lang' ),
-			'close' => __( 'Kapat', 'flx-lang' ),
+			'go'   => sprintf( __( 'Switch to %s', 'flx-lang' ), $l['name'] ),
+			'stay' => __( 'Stay on this version', 'flx-lang' ),
+			'close' => __( 'Close', 'flx-lang' ),
 		);
 		if ( $switched ) {
 			restore_previous_locale();

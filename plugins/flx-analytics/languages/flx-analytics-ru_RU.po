@@ -1,0 +1,1475 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Mobile app: daily active accounts"
+msgstr "Мобильное приложение: ежедневные активные аккаунты"
+
+msgid "UTC day / platform"
+msgstr "День UTC/платформа"
+
+msgid "Consenting accounts"
+msgstr "Согласованные аккаунты"
+
+msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
+msgstr "Подходящих итогов пока нет. Требуется согласие как устройства, так и сайта; когорты менее пяти аккаунтов на сайт/платформу/день удерживаются. Страна — это настроенная страна сайта, а не местоположение человека. Один и тот же человек может рассчитывать на несколько сайтов или платформ."
+
+msgid "Statistics"
+msgstr "Статистика"
+
+msgid "Site Analytics"
+msgstr "Аналитика сайта"
+
+msgid "Journeys"
+msgstr "Путешествия"
+
+msgid "Site Analytics settings"
+msgstr "Настройки аналитики сайта"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "You are not allowed to view this page."
+msgstr "Вам не разрешено просматривать эту страницу."
+
+msgid "This screen requires JavaScript."
+msgstr "Для этого экрана требуется JavaScript."
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "All statistics were deleted."
+msgstr "Вся статистика удалена."
+
+msgid "Koko Analytics data imported: %s rows."
+msgstr "Импортированы данные Koko Analytics: строки%s."
+
+msgid "%s visit rows processed."
+msgstr "%sстроки посещений обработаны."
+
+msgid "Counting"
+msgstr "Подсчет"
+
+msgid "Count visits"
+msgstr "Подсчитайте посещения"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "No IP address or browser data is stored. A visitor is recognised only within the same day by a random key that is deleted the next day. A cookie is set only for visitors who arrive via a referral link (?r=code); it holds only the code (30 days). Mention in your privacy policy that statistics are collected."
+msgstr "Ни IP-адрес, ни данные браузера не сохраняются. Посетитель распознается только в течение одного дня по случайному ключу, который удаляется на следующий день. Файл cookie устанавливается только для посетителей, которые переходят по реферальной ссылке (?r=код); он содержит только код (30 дней). Упомяните в своей политике конфиденциальности, что собирается статистика."
+
+msgid "Collection method"
+msgstr "Метод сбора"
+
+msgid "Automatic (recommended)"
+msgstr "Автоматический (рекомендуется)"
+
+msgid "Fast endpoint (WordPress is not loaded)"
+msgstr "Быстрая конечная точка (WordPress не загружен)"
+
+msgid "WordPress REST"
+msgstr "WordPress REST"
+
+msgid "Now: fast endpoint"
+msgstr "Сейчас: быстрая конечная точка"
+
+msgid "Now: REST"
+msgstr "Сейчас: ОТДЫХ"
+
+msgid "Automatic: the fast endpoint is tested when this page opens; if it fails, REST is used."
+msgstr "Автоматически: быстрая конечная точка проверяется при открытии этой страницы; в случае неудачи используется REST."
+
+msgid "\"Do Not Track\""
+msgstr "«Не отслеживать»"
+
+msgid "Do not count visitors whose browser sends \"Do Not Track\" or GPC"
+msgstr "Не учитывать посетителей, чей браузер отправляет сообщение «Не отслеживать» или GPC."
+
+msgid "Exclusions"
+msgstr "Исключения"
+
+msgid "Roles"
+msgstr "Роли"
+
+msgid "Logged-in people with these roles are not counted. The browser you open this screen in is not counted either (even after logging out)."
+msgstr "Вошедшие в систему люди с этими ролями не учитываются. Браузер, в котором вы открываете этот экран, также не учитывается (даже после выхода из системы)."
+
+msgid "IP addresses"
+msgstr "IP-адреса"
+
+msgid "One address per line, \"*\" or CIDR (e.g. office network)."
+msgstr "Один адрес в строке, «*» или CIDR (например, офисная сеть)."
+
+msgid "Events"
+msgstr "События"
+
+msgid "Tracked automatically"
+msgstr "Отслеживается автоматически"
+
+msgid "Outbound link clicks"
+msgstr "Клики по исходящим ссылкам"
+
+msgid "File downloads (PDF, ZIP, DOCX…)"
+msgstr "Загрузка файлов (PDF, ZIP, DOCX...)"
+
+msgid "Phone, email and WhatsApp clicks"
+msgstr "Телефон, электронная почта и WhatsApp клики"
+
+msgid "Site searches (search term)"
+msgstr "Поиск по сайту (поисковой запрос)"
+
+msgid "Paid donations and orders (WooCommerce; type and amount)"
+msgstr "Платные пожертвования и заказы (WooCommerce; тип и сумма)"
+
+msgid "Your own event: add data-flxan-event=\"name\" (and optional data-flxan-param) to a link, or call flxan.track(\"name\", \"detail\") in JavaScript. PHP: flxan_track_event( \"name\", \"detail\", amount )."
+msgstr "Ваше собственное событие: добавьте data-flxan-event=\"name\" (и необязательный data-flxan-param) к ссылке или вызовите flxan.track(\"name\", \"detail\") в JavaScript. PHP: flxan_track_event(\"имя\", \"детализация\", сумма)."
+
+msgid "Funnels"
+msgstr "Воронки"
+
+msgid "Shows how far visitors get. Each step can be a page (all pages starting with that path), an event (e.g. the \"Pay\" click) or the site entry. Up to 5 funnels with 10 steps each. Changes apply to new visits; funnel steps can also be picked as goals on the Journeys screen."
+msgstr "Показывает, как далеко заходят посетители. Каждый шаг может представлять собой страницу (все страницы, начинающиеся с этого пути), событие (например, нажатие кнопки «Оплатить») или запись на сайте. До 5 воронок по 10 шагов в каждой. Изменения распространяются на новые посещения; Шаги воронки также можно выбрать в качестве целей на экране «Путешествия»."
+
+msgid "Display and retention"
+msgstr "Отображение и удержание"
+
+msgid "Admin screens"
+msgstr "Экраны администратора"
+
+msgid "\"Views\" column in the post and page lists"
+msgstr "Столбец «Просмотры» в списках записей и страниц."
+
+msgid "Page views in the admin bar while browsing the site"
+msgstr "Просмотры страниц в админ-баре при просмотре сайта"
+
+msgid "Retention"
+msgstr "Удержание"
+
+msgid "months (0 = unlimited)"
+msgstr "месяцев (0 = неограниченно)"
+
+msgid "Daily summaries take little space; keeping them forever is usually fine."
+msgstr "Ежедневные сводки занимают мало места; хранить их вечно — обычно нормально."
+
+msgid "Telemetry hub"
+msgstr "Центр телеметрии"
+
+msgid "Receive data from FluxWP installs"
+msgstr "Получать данные от установок FluxWP"
+
+msgid "Sites that tick \"Help us improve the product\" in FluxWP Panel send anonymous usage data once a day: which FluxWP plugins are used together, versions, FluxWP PHP errors and setup-wizard progress. IP and site address are not stored; records are kept for 90 days. When enabled, \"Product telemetry\" appears in the menu."
+msgstr "Сайты, которые отмечают «Помогите нам улучшить продукт» в панели FluxWP, отправляют анонимные данные об использовании один раз в день: какие плагины FluxWP используются вместе, версии, ошибки PHP FluxWP и ход работы мастера установки. IP и адрес сайта не сохраняются; записи хранятся 90 дней. При включении в меню появляется «Телеметрия продукта»."
+
+msgid "Collection URL (FluxWP Panel › Settings › Telemetry URL):"
+msgstr "URL-адрес сбора (Панель FluxWP › Настройки › URL-адрес телеметрии):"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Last processed %1$s. Waiting in queue: %2$s."
+msgstr "Последний обработанный%1$s. Ожидание в очереди:%2$s."
+
+msgid "No visits processed yet."
+msgstr "Посещения еще не обработаны."
+
+msgid "Process now"
+msgstr "Обработать сейчас"
+
+msgid "Download daily totals (CSV)"
+msgstr "Загрузить ежедневные итоги (CSV)"
+
+msgid "Download pages (CSV)"
+msgstr "Загрузить страницы (CSV)"
+
+msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
+msgstr "Обнаружены данные Koko Analytics:%1$sдней (%2$s–%3$s). Импортируются дни до установки Flux Analytics; Таблицы Коко не изменяются."
+
+msgid "Import Koko Analytics data"
+msgstr "Импортируйте данные Koko Analytics"
+
+msgid "All statistics will be permanently deleted. Are you sure?"
+msgstr "Вся статистика будет удалена навсегда. Вы уверены?"
+
+msgid "Delete all statistics"
+msgstr "Удалить всю статистику"
+
+msgid "Shortcodes and AI"
+msgstr "Шорткоды и искусственный интеллект"
+
+msgid "list of the most viewed posts."
+msgstr "список самых просматриваемых постов."
+
+msgid "total views of this page (gun=\"30\" for the last 30 days)."
+msgstr "общее количество просмотров этой страницы (gun=\"30\" за последние 30 дней)."
+
+msgid "Flux AI chat and MCP clients (Claude and others) read stats with: flxan_summary, flxan_timeseries, flxan_pages, flxan_referrers, flxan_breakdown, flxan_events, flxan_realtime, flxan_page, flxan_compare, flxan_funnel, flxan_journeys, flxan_refs, flxan_ref_save. Access needs the \"View statistics\" capability (flxan_view), which Flux Roles can grant."
+msgstr "Чат Flux AI и клиенты MCP (Клод и другие) читают статистику с помощью: flxan_summary, flxan_timeseries, flxan_pages, flxan_referrers, flxan_breakdown, flxan_events, flxan_realtime, flxan_page, flxan_compare, flxan_funnel, flxan_journeys, flxan_refs, flxan_ref_save. Для доступа требуется возможность «Просмотр статистики» (flxan_view), которую могут предоставить роли Flux."
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Visitors"
+msgstr "Посетители"
+
+msgid "Views"
+msgstr "Просмотры"
+
+msgid "Site"
+msgstr "Сайт"
+
+msgid "Channel"
+msgstr "Канал"
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "Detail"
+msgstr "Деталь"
+
+msgid "Count"
+msgstr "Граф"
+
+msgid "Unique"
+msgstr "Уникальный"
+
+msgid "Amount"
+msgstr "Сумма"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Direct"
+msgstr "Прямой"
+
+msgid "Search engine"
+msgstr "Поисковая система"
+
+msgid "Social media"
+msgstr "Социальные сети"
+
+msgid "AI"
+msgstr "ИИ"
+
+msgid "Email"
+msgstr "электронная почта"
+
+msgid "Ads"
+msgstr "Объявления"
+
+msgid "Campaign"
+msgstr "Кампания"
+
+msgid "Other sites"
+msgstr "Другие сайты"
+
+msgid "Referral link"
+msgstr "Реферальная ссылка"
+
+msgid "Mobile"
+msgstr "мобильный"
+
+msgid "Tablet"
+msgstr "Таблетка"
+
+msgid "Desktop"
+msgstr "Рабочий стол"
+
+msgid "Other"
+msgstr "Другое"
+
+msgid "Live visitors"
+msgstr "Живые посетители"
+
+msgid "Traffic sources and referrals"
+msgstr "Источники трафика и переходы"
+
+msgid "Donation funnel"
+msgstr "Воронка пожертвований"
+
+msgid "Last 14 days"
+msgstr "Последние 14 дней"
+
+msgid "%1$s: %2$s visitors, %3$s views"
+msgstr "%1$s: посетители%2$s, просмотры%3$s."
+
+msgid "All statistics →"
+msgstr "Вся статистика →"
+
+msgid "on the site now (last 5 min)"
+msgstr "на сайте сейчас (последние 5 минут)"
+
+msgid "last 30 min · %s views"
+msgstr "за последние 30 минут · Просмотры:%s"
+
+msgid "Pages being viewed now"
+msgstr "Страницы, просматриваемые сейчас"
+
+msgid "Referral links"
+msgstr "Реферальные ссылки"
+
+msgid "Referring sites"
+msgstr "Ссылающиеся сайты"
+
+msgid "Nobody right now"
+msgstr "Никто прямо сейчас"
+
+msgid "today · %s views"
+msgstr "сегодня · Просмотры%s"
+
+msgid "yesterday"
+msgstr "вчера"
+
+msgid "last 7 days"
+msgstr "последние 7 дней"
+
+msgid "Most viewed today"
+msgstr "Самые просматриваемые сегодня"
+
+msgid "Last 7 days"
+msgstr "Последние 7 дней"
+
+msgid "Outside visitors / logged-in users"
+msgstr "Внешние посетители/вошедшие пользователи"
+
+msgid "Outside: %1$s · Logged in: %2$s"
+msgstr "За пределами:%1$s· Войти:%2$s"
+
+msgid "Channels"
+msgstr "Каналы"
+
+msgid "%s donations"
+msgstr "%sпожертвования"
+
+msgid "No data in this range."
+msgstr "Нет данных в этом диапазоне."
+
+msgid "No funnel defined."
+msgstr "Воронка не определена."
+
+msgid "%s · last 7 days"
+msgstr "%s· за последние 7 дней"
+
+msgid "No goal"
+msgstr "Нет цели"
+
+msgid "Added to cart"
+msgstr "Добавлено в корзину"
+
+msgid "Removed from cart"
+msgstr "Удалено из корзины"
+
+msgid "Used a coupon"
+msgstr "Использовал купон"
+
+msgid "Started checkout form"
+msgstr "Начал оформление заказа"
+
+msgid "Clicked \"Place order\""
+msgstr "Нажал «Оформить заказ»"
+
+msgid "Checkout step"
+msgstr "Шаг оформления заказа"
+
+msgid "Chose payment method"
+msgstr "Выберите способ оплаты"
+
+msgid "Order created"
+msgstr "Заказ создан"
+
+msgid "Clicked WhatsApp"
+msgstr "Нажал WhatsApp"
+
+msgid "Clicked phone"
+msgstr "Щелкнул телефон"
+
+msgid "Downloaded a file"
+msgstr "Скачал файл"
+
+msgid "Other pages"
+msgstr "Другие страницы"
+
+msgid "Site traffic summary"
+msgstr "Сводка трафика сайта"
+
+msgid "Daily visitor chart data"
+msgstr "Данные графика посетителей за день"
+
+msgid "Most viewed pages"
+msgstr "Самые просматриваемые страницы"
+
+msgid "Channel, device, browser breakdown"
+msgstr "Разбивка по каналу, устройству, браузеру"
+
+msgid "Clicks and conversions"
+msgstr "Клики и конверсии"
+
+msgid "How many people are on the site now?"
+msgstr "Сколько человек сейчас на сайте?"
+
+msgid "Single page statistics"
+msgstr "Статистика на одной странице"
+
+msgid "Compare two periods"
+msgstr "Сравните два периода"
+
+msgid "Donation / checkout funnel"
+msgstr "Воронка пожертвований / оформления заказа"
+
+msgid "Visitor journeys"
+msgstr "Путешествия посетителей"
+
+msgid "Referral links report"
+msgstr "Отчет по реферальным ссылкам"
+
+msgid "Traffic by role"
+msgstr "Трафик по ролям"
+
+msgid "Create / name a referral link"
+msgstr "Создайте/назовите реферальную ссылку"
+
+msgid "You are not allowed to edit referral links."
+msgstr "Вам не разрешено редактировать реферальные ссылки."
+
+msgid "Invalid code. Use letters, digits, - and _."
+msgstr "Неверный код. Используйте буквы, цифры, - и _."
+
+msgid "%s views"
+msgstr "Просмотры%s"
+
+msgid "Last 30 days (Site Analytics)"
+msgstr "Последние 30 дней (аналитика сайта)"
+
+msgid "Views in the last 30 days"
+msgstr "Просмотры за последние 30 дней"
+
+msgid "Visitors today"
+msgstr "Посетители сегодня"
+
+msgid "Compare this week's traffic with last week"
+msgstr "Сравните трафик на этой неделе с трафиком на прошлой неделе"
+
+msgid "Where do most visitors come from?"
+msgstr "Откуда приезжает больше всего посетителей?"
+
+msgid "How many people reached the donation page, and how many donated?"
+msgstr "Сколько людей дошло до страницы пожертвований и сколько пожертвовало?"
+
+msgid "Every 5 minutes"
+msgstr "Каждые 5 минут"
+
+msgid "Site entry"
+msgstr "Вход на сайт"
+
+msgid "Donation page"
+msgstr "Страница пожертвований"
+
+msgid "Checkout page"
+msgstr "Страница оформления заказа"
+
+msgid "Started filling the form"
+msgstr "Начал заполнять форму"
+
+msgid "Donation completed"
+msgstr "Пожертвование завершено"
+
+msgid "Donation flow"
+msgstr "Поток пожертвований"
+
+msgid "Funnel"
+msgstr "Воронка"
+
+msgid "First touch on checkout form"
+msgstr "Первое касание формы оформления заказа"
+
+msgid "\"Pay\" click"
+msgstr "Нажимаем «Оплатить»"
+
+msgid "Add to cart (any product)"
+msgstr "В корзину (любой товар)"
+
+msgid "Payment method chosen"
+msgstr "Выбранный способ оплаты"
+
+msgid "Order created (before payment)"
+msgstr "Заказ создан (до оплаты)"
+
+msgid "Paid donation / order"
+msgstr "Платное пожертвование/заказ"
+
+msgid "Remove from cart"
+msgstr "Удалить из корзины"
+
+msgid "Coupon used"
+msgstr "Купон использован"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "Yesterday"
+msgstr "Вчера"
+
+msgid "Last 30 days"
+msgstr "Последние 30 дней"
+
+msgid "Last 90 days"
+msgstr "Последние 90 дней"
+
+msgid "This month"
+msgstr "В этом месяце"
+
+msgid "Last month"
+msgstr "В прошлом месяце"
+
+msgid "Last 12 months"
+msgstr "Последние 12 месяцев"
+
+msgid "This year"
+msgstr "В этом году"
+
+msgid "Last year"
+msgstr "В прошлом году"
+
+msgid "All time"
+msgstr "Все время"
+
+msgid "Custom range"
+msgstr "Пользовательский диапазон"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "Browser"
+msgstr "Браузер"
+
+msgid "Operating system"
+msgstr "Операционная система"
+
+msgid "Browser language"
+msgstr "Язык браузера"
+
+msgid "Country"
+msgstr "Страна"
+
+msgid "Campaign source"
+msgstr "Источник кампании"
+
+msgid "Campaign medium"
+msgstr "Канал кампании"
+
+msgid "Outbound link click"
+msgstr "Щелчок по исходящей ссылке"
+
+msgid "File download"
+msgstr "Загрузка файла"
+
+msgid "Phone click"
+msgstr "Щелчок по телефону"
+
+msgid "Email click"
+msgstr "Нажмите по электронной почте"
+
+msgid "WhatsApp click"
+msgstr "WhatsApp нажмите"
+
+msgid "Site search"
+msgstr "Поиск по сайту"
+
+msgid "Donation / payment"
+msgstr "Пожертвование / оплата"
+
+msgid "Add to cart"
+msgstr "В корзину"
+
+msgid "Home page"
+msgstr "Домашняя страница"
+
+msgid "Outside visitors"
+msgstr "Внешние посетители"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "By channel"
+msgstr "По каналу"
+
+msgid "By referring site"
+msgstr "Ссылаясь на сайт"
+
+msgid "By referral code"
+msgstr "По реферальному коду"
+
+msgid "By role"
+msgstr "По роли"
+
+msgid "By country"
+msgstr "По стране"
+
+msgid "(direct / unknown)"
+msgstr "(прямой/неизвестный)"
+
+msgid "(no referral)"
+msgstr "(без направления)"
+
+msgid "(unknown)"
+msgstr "(неизвестно)"
+
+msgid "Statistics tables"
+msgstr "Статистические таблицы"
+
+msgid "Tables are not installed. Deactivate and reactivate the plugin."
+msgstr "Таблицы не установлены. Деактивируйте и повторно активируйте плагин."
+
+msgid "Tables are from an older version; visits cannot be saved."
+msgstr "Таблицы взяты из более старой версии; посещения не могут быть сохранены."
+
+msgid "Visit counting"
+msgstr "Подсчет посещений"
+
+msgid "On. No cookies, no personal data stored."
+msgstr "Вкл. Никаких файлов cookie и личных данных не сохраняется."
+
+msgid "Off: visits are not being counted."
+msgstr "Выключено: посещения не учитываются."
+
+msgid "Data directory"
+msgstr "Каталог данных"
+
+msgid "wp-content/uploads/flx-analytics is writable and closed to web access."
+msgstr "wp-content/uploads/flx-analytics доступен для записи и закрыт для веб-доступа."
+
+msgid "wp-content/uploads/flx-analytics could not be created or is not writable; visits cannot be recorded. Check the directory permissions (755)."
+msgstr "wp-content/uploads/flx-analytics не может быть создан или недоступен для записи; посещения не могут быть зафиксированы. Проверьте права доступа к каталогу (755)."
+
+msgid "Fast endpoint: visits are recorded without loading WordPress."
+msgstr "Быстрая конечная точка: посещения фиксируются без загрузки WordPress."
+
+msgid "The fast endpoint failed its test (a security plugin or the server may block PHP in the plugins folder); the REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "Быстрая конечная точка не прошла проверку (плагин безопасности или сервер могут заблокировать PHP в папке плагинов); используется конечная точка REST. Это работает, но WordPress загружается при каждом посещении."
+
+msgid "The REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "Используется конечная точка REST. Это работает, но WordPress загружается при каждом посещении."
+
+msgid "Statistics processing"
+msgstr "Обработка статистики"
+
+msgid "Last processed %1$s. Waiting: %2$s."
+msgstr "Последний обработанный%1$s. Ожидание:%2$s."
+
+msgid "Processing error"
+msgstr "Ошибка обработки"
+
+msgid "Page cache compatibility"
+msgstr "Совместимость с кэшем страниц"
+
+msgid "A cache plugin is active; the counter runs in the browser, so cached pages are counted too. The counter script is excluded from combining/delaying."
+msgstr "Плагин кэша активен; счетчик запускается в браузере, поэтому учитываются и кэшированные страницы. Счетчик-скрипт исключен из объединения/отсрочки."
+
+msgid "The counter runs in the browser; counting continues if a cache plugin is installed."
+msgstr "Счетчик запускается в браузере; подсчет продолжается, если установлен плагин кэша."
+
+msgid "Process statistics now"
+msgstr "Обработать статистику сейчас"
+
+msgid "Processes the queued visits into the tables right away."
+msgstr "Сразу обрабатывает очереди посещений в таблицах."
+
+msgid "Processing is already running; try again in a few seconds."
+msgstr "Обработка уже запущена; повторите попытку через несколько секунд."
+
+msgid "%s rows processed."
+msgstr "Строки%sобработаны."
+
+msgid "Repair statistics tables"
+msgstr "Таблицы статистики ремонта"
+
+msgid "Adds missing columns and tables and updates keys. No data is deleted."
+msgstr "Добавляет недостающие столбцы и таблицы и обновляет ключи. Никакие данные не удаляются."
+
+msgid "outdated"
+msgstr "устаревший"
+
+msgid "Tables could not be updated. The database user needs the ALTER privilege."
+msgstr "Таблицы не удалось обновить. Пользователю базы данных необходима привилегия ALTER."
+
+msgid "Tables updated."
+msgstr "Таблицы обновлены."
+
+msgid "Unknown"
+msgstr "Неизвестно"
+
+msgid "Product telemetry"
+msgstr "Телеметрия продукта"
+
+msgid "Admin theme"
+msgstr "Админ-тема"
+
+msgid "Store"
+msgstr "Магазин"
+
+msgid "Nonprofit and donations"
+msgstr "Некоммерческая организация и пожертвования"
+
+msgid "%s card"
+msgstr "Карта%s"
+
+msgid "(theme)"
+msgstr "(тема)"
+
+msgid "Intro"
+msgstr "Введение"
+
+msgid "Where to start?"
+msgstr "С чего начать?"
+
+msgid "Appearance"
+msgstr "Внешний вид"
+
+msgid "Install"
+msgstr "Установить"
+
+msgid "Done"
+msgstr "Готово"
+
+msgid "Management"
+msgstr "Управление"
+
+msgid "Communication"
+msgstr "Общение"
+
+msgid "Growth"
+msgstr "Рост"
+
+msgid "System"
+msgstr "Система"
+
+msgid "Plugins: %s"
+msgstr "Плагины:%s"
+
+msgid "No records in this range."
+msgstr "В этом диапазоне записей нет."
+
+msgid "Overview"
+msgstr "Обзор"
+
+msgid "Errors"
+msgstr "Ошибки"
+
+msgid "Setup wizard"
+msgstr "Мастер настройки"
+
+msgid "%d days"
+msgstr "%dдней"
+
+msgid "All countries"
+msgstr "Все страны"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Anonymous data sent once a day by sites that tick \"Help us improve the product\" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days."
+msgstr "Анонимные данные, отправляемые один раз в день сайтами, которые отмечают «Помогите нам улучшить продукт» в панели FluxWP. IP и адрес сайта не сохраняются; записи хранятся 90 дней."
+
+msgid "Reporting sites"
+msgstr "Сайты отчетности"
+
+msgid "Unique installs"
+msgstr "Уникальные установки"
+
+msgid "Reports"
+msgstr "Отчеты"
+
+msgid "At most one per site per day"
+msgstr "Не более одного на сайт в день"
+
+msgid "Distinct errors"
+msgstr "Явные ошибки"
+
+msgid "%s fatal"
+msgstr "%sфатальный"
+
+msgid "Error events"
+msgstr "События ошибок"
+
+msgid "Total occurrences"
+msgstr "Всего случаев"
+
+msgid "No reports yet."
+msgstr "Отчетов пока нет."
+
+msgid "FluxWP Panel on sites sends to this URL:"
+msgstr "Панель FluxWP на сайтах отправляет на этот URL:"
+
+msgid "Plugin usage"
+msgstr "Использование плагина"
+
+msgid "Package"
+msgstr "Пакет"
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "Common version"
+msgstr "Общая версия"
+
+msgid "Used together"
+msgstr "Используются вместе"
+
+msgid "Pair"
+msgstr "Пара"
+
+msgid "FluxWP Panel only"
+msgstr "Только панель FluxWP"
+
+msgid "Most common package sets"
+msgstr "Наиболее распространенные наборы пакетов"
+
+msgid "Set (excluding FluxWP Panel)"
+msgstr "Комплект (кроме панели FluxWP)"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "Site language"
+msgstr "Язык сайта"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
+msgstr "Страна задается из настроек сайта-отправителя (страна магазина WooCommerce или Настройки › Общий часовой пояс). IP-адреса никогда не просматриваются и не сохраняются. Щелкните страну, чтобы отфильтровать по ней все вкладки."
+
+msgid "Error record removed. It will reappear if it happens again."
+msgstr "Запись об ошибке удалена. Оно появится снова, если произойдет снова."
+
+msgid "All packages"
+msgstr "Все пакеты"
+
+msgid "All types"
+msgstr "Все типы"
+
+msgid "Fatal only"
+msgstr "Только фатально"
+
+msgid "%s records"
+msgstr "%sзаписи"
+
+msgid "No errors in this range."
+msgstr "В этом диапазоне ошибок нет."
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Last"
+msgstr "Последний"
+
+msgid "Remove as resolved"
+msgstr "Удалить как решено"
+
+msgid "Resolved"
+msgstr "Решено"
+
+msgid "Delete all error records?"
+msgstr "Удалить все записи об ошибках?"
+
+msgid "Clear all errors"
+msgstr "Удалить все ошибки"
+
+msgid "Server paths, domain, URLs, emails and IPs are removed from messages. The same error in the same package, version, file and line is one record; \"Sites\" is how many different installs saw it."
+msgstr "Пути к серверу, домен, URL-адреса, адреса электронной почты и IP-адреса удаляются из сообщений. Одна и та же ошибка в одном и том же пакете, версии, файле и строке — это одна запись; «Сайты» — это количество различных установок, которые его увидели."
+
+msgid "Wizard runs"
+msgstr "Мастер запускается"
+
+msgid "Latest run per install"
+msgstr "Последний запуск на установку"
+
+msgid "Finished"
+msgstr "Закончено"
+
+msgid "sites"
+msgstr "сайты"
+
+msgid "Skipped"
+msgstr "Пропущено"
+
+msgid "Abandoned"
+msgstr "Заброшенный"
+
+msgid "Median time for finishers: %s min"
+msgstr "Среднее время финишеров:%sмин."
+
+msgid "No wizard data yet."
+msgstr "Данных мастера пока нет."
+
+msgid "FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed."
+msgstr "Панель FluxWP 1.0.11 и более поздних версий отправляет последний шаг и варианты выбора, когда мастер завершен или закрыт."
+
+msgid "Reached each step"
+msgstr "Достиг каждого шага"
+
+msgid "Steps"
+msgstr "Шаги"
+
+msgid "skipped"
+msgstr "пропущен"
+
+msgid "closed"
+msgstr "закрыто"
+
+msgid "Where they stopped"
+msgstr "Где они остановились"
+
+msgid "Last step"
+msgstr "Последний шаг"
+
+msgid "Everyone finished."
+msgstr "Все закончили."
+
+msgid "Card choices"
+msgstr "Выбор карты"
+
+msgid "Card"
+msgstr "Карта"
+
+msgid "Picked"
+msgstr "Выбранный"
+
+msgid "Picked then removed"
+msgstr "Выбрали, затем удалили"
+
+msgid "Removed suggestion"
+msgstr "Удалено предложение"
+
+msgid "Preset (finishers)"
+msgstr "Пресет (финишеры)"
+
+msgid "Colour style (finishers)"
+msgstr "Цветовой стиль (отделки)"
+
+msgid "Choice"
+msgstr "Выбор"
+
+msgid "Fast endpoint works"
+msgstr "Быстрая конечная точка работает"
+
+msgid "Fast endpoint unreachable, REST will be used"
+msgstr "Быстрая конечная точка недоступна, будет использоваться REST"
+
+msgid "%s s"
+msgstr "%sс"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$sмин%2$sс"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Link"
+msgstr "Ссылка"
+
+msgid "Date range"
+msgstr "Диапазон дат"
+
+msgid "Start"
+msgstr "Старт"
+
+msgid "End"
+msgstr "Конец"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Download CSV"
+msgstr "Скачать CSV-файл"
+
+msgid "Visitor type"
+msgstr "Тип посетителя"
+
+msgid "All visitors"
+msgstr "Все посетители"
+
+msgid "Logged-in users"
+msgstr "Вошедшие пользователи"
+
+msgid "Role: %s"
+msgstr "Роль:%s"
+
+msgid "Referral"
+msgstr "Направление"
+
+msgid "All sources"
+msgstr "Все источники"
+
+msgid "Referral links only"
+msgstr "Только реферальные ссылки"
+
+msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
+msgstr "Посетители: сумма уникальных людей в день. Человека узнают только в течение одного дня; кто-то, пришедший по реферальной ссылке, зачисляется на этот код на 30 дней. Страна определяется часовым поясом браузера, а не IP."
+
+msgid "Visitors and views chart"
+msgstr "График посетителей и просмотров"
+
+msgid "Week of %s"
+msgstr "Неделя%s"
+
+msgid "Compared with the previous period of equal length"
+msgstr "По сравнению с предыдущим периодом такой же продолжительности"
+
+msgid "Previous period: %s"
+msgstr "Предыдущий период:%s"
+
+msgid "Sessions"
+msgstr "Сессии"
+
+msgid "Pages / visitor"
+msgstr "Страницы / посетитель"
+
+msgid "Avg. session duration"
+msgstr "Среднее продолжительность сеанса"
+
+msgid "Bounce rate"
+msgstr "Показатель отказов"
+
+msgid "Left after viewing one page"
+msgstr "Осталось после просмотра одной страницы"
+
+msgid "%1$s min ago: %2$s"
+msgstr "%1$sмин. назад:%2$s"
+
+msgid "Live"
+msgstr "Живи"
+
+msgid "Refreshes every 5 s"
+msgstr "Обновляется каждые 5 с."
+
+msgid "visitors in last %s min"
+msgstr "посетителей за последнюю%sминуту"
+
+msgid "%s min ago"
+msgstr "%sмин назад"
+
+msgid "now"
+msgstr "сейчас"
+
+msgid "Pages"
+msgstr "Страницы"
+
+msgid "Countries"
+msgstr "Страны"
+
+msgid "See all (%s)"
+msgstr "Посмотреть все (%s)"
+
+msgid "Traffic sources"
+msgstr "Источники трафика"
+
+msgid "not logged in"
+msgstr "не вошел в систему"
+
+msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
+msgstr "Щелкните строку, чтобы отфильтровать весь экран по этому типу посетителей. Только для внешнего трафика выберите вверху «Внешние посетители»."
+
+msgid "No visits from other sites yet."
+msgstr "Посещений с других сайтов пока нет."
+
+msgid "Device and browser"
+msgstr "Устройство и браузер"
+
+msgid "Campaigns (UTM)"
+msgstr "Кампании (UTM)"
+
+msgid "Not found pages (404)"
+msgstr "Не найдено страниц (404)"
+
+msgid "Visitors by country"
+msgstr "Посетители по странам"
+
+msgid "World map"
+msgstr "Карта мира"
+
+msgid "Few"
+msgstr "Мало"
+
+msgid "Many"
+msgstr "Многие"
+
+msgid "No country data in this range."
+msgstr "В этом диапазоне нет данных о стране."
+
+msgid "Funnel: %s"
+msgstr "Воронка:%s"
+
+msgid "Drop from previous step"
+msgstr "Отказаться от предыдущего шага"
+
+msgid "No visits entered the funnel in this range."
+msgstr "В этом диапазоне в воронку не попало ни одного посещения."
+
+msgid "Completion"
+msgstr "Завершение"
+
+msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
+msgstr "Подсчитывает самый дальний шаг каждого посетителя за день. Вы можете изменить шаги в Настройки › Воронки."
+
+msgid "Funnel settings"
+msgstr "Настройки воронки"
+
+msgid "New link"
+msgstr "Новая ссылка"
+
+msgid "Name (e.g. Ayşe's Instagram)"
+msgstr "Имя (например, Instagram Айше)"
+
+msgid "Code (e.g. ayse-ig)"
+msgstr "Код (например, ayse-ig)"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
+msgstr "Реферальных ссылок пока нет. Добавьте ?r=code к адресу сайта, где бы вы им не делились (например,%s); дайте ему имя здесь, и в отчетах будет показано это имя."
+
+msgid "Pages / session"
+msgstr "Страницы/сессия"
+
+msgid "Avg. duration"
+msgstr "Среднее продолжительность"
+
+msgid "Furthest step"
+msgstr "Самый дальний шаг"
+
+msgid "Donations"
+msgstr "Пожертвования"
+
+msgid "Show what visitors from this link did"
+msgstr "Показать, что сделали посетители по этой ссылке"
+
+msgid "Copy link"
+msgstr "Копировать ссылку"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Remove name"
+msgstr "Удалить имя"
+
+msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
+msgstr "Посетитель, перешедший по ссылке, получает 30-дневный файл cookie; их более поздние страницы, более поздние дни и пожертвования зачисляются на этот код. Щелкните строку, чтобы отфильтровать весь экран для посетителей, перешедших по этой ссылке."
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Name for \"%s\""
+msgstr "Имя для \"%s\""
+
+msgid "Remove the name? Statistics are kept and shown under the code."
+msgstr "Удалить имя? Статистика сохраняется и отображается под кодом."
+
+msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
+msgstr "В этом диапазоне нет событий. Здесь отображаются исходящие ссылки, загрузки, клики по телефону/WhatsApp, поисковые запросы и пожертвования."
+
+msgid "All"
+msgstr "Все"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "More"
+msgstr "Подробнее"
+
+msgid "Could not load. Try again in a moment."
+msgstr "Не удалось загрузить. Повторите попытку через минуту."
+
+msgid "No data yet."
+msgstr "Данных пока нет."
+
+msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
+msgstr "Откройте сайт в браузере, где вы не авторизованы (или на телефоне); визит появится здесь через несколько минут."
+
+msgid "Filter:"
+msgstr "Фильтр:"
+
+msgid "Clear filter"
+msgstr "Очистить фильтр"
+
+msgid "Page"
+msgstr "Страница"
+
+msgid "The first page of every visit counts"
+msgstr "Первая страница каждого посещения имеет значение"
+
+msgid "Choose an event…"
+msgstr "Выберите событие..."
+
+msgid "Type another event…"
+msgstr "Введите другое событие..."
+
+msgid "all pages starting with this path"
+msgstr "все страницы, начинающиеся с этого пути"
+
+msgid "Funnel name"
+msgstr "Название воронки"
+
+msgid "%s steps"
+msgstr "%sшаги"
+
+msgid "Delete funnel"
+msgstr "Удалить воронку"
+
+msgid "Drag to move"
+msgstr "Перетащите, чтобы переместить"
+
+msgid "Step name"
+msgstr "Имя шага"
+
+msgid "Step type"
+msgstr "Тип шага"
+
+msgid "Move up"
+msgstr "Вверх"
+
+msgid "Move down"
+msgstr "Двигаться вниз"
+
+msgid "Delete step"
+msgstr "Удалить шаг"
+
+msgid "Add step"
+msgstr "Добавить шаг"
+
+msgid "Add preset step"
+msgstr "Добавить предустановленный шаг"
+
+msgid "Add preset step…"
+msgstr "Добавить заданный шаг..."
+
+msgid "At most %s steps."
+msgstr "Не более шагов%s."
+
+msgid "New funnel"
+msgstr "Новая воронка"
+
+msgid "Reset to default donation funnel"
+msgstr "Сбросить воронку пожертвований по умолчанию"
+
+msgid "Edit as text"
+msgstr "Редактировать как текст"
+
+msgid "Event name (e.g. donation_form or checkout:submit):"
+msgstr "Название события (например, donation_form или checkout:submit):"
+
+msgid "Delete funnel \"%s\"?"
+msgstr "Удалить последовательность \"%s\"?"
+
+msgid "Funnel %s"
+msgstr "Воронка%s"
+
+msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
+msgstr "Заменить все воронки на воронку для пожертвований по умолчанию? (Применяется при нажатии кнопки «Сохранить».)"
+
+msgid "Back to visual editor"
+msgstr "Вернуться к визуальному редактору"
+
+msgid "Compare previous period"
+msgstr "Сравнить предыдущий период"
+
+msgid "Goal page"
+msgstr "Страница цели"
+
+msgid "Combine sub-pages like /news/… into one box"
+msgstr "Объедините подстраницы, такие как /news/..., в одно поле."
+
+msgid "Group pages"
+msgstr "Страницы группы"
+
+msgid "Paths from session start"
+msgstr "Пути от начала сеанса"
+
+msgid "Starts at"
+msgstr "Начинается в"
+
+msgid "All pages"
+msgstr "Все страницы"
+
+msgid "Ends at"
+msgstr "Заканчивается в"
+
+msgid "Fewer steps"
+msgstr "Меньше шагов"
+
+msgid "More steps"
+msgstr "Дополнительные шаги"
+
+msgid "Paths shown"
+msgstr "Показаны пути"
+
+msgid "Top %s paths"
+msgstr "Основные пути%s"
+
+msgid "Top paths"
+msgstr "Лучшие пути"
+
+msgid "Search pages…"
+msgstr "Поиск страниц..."
+
+msgid "Reach goal"
+msgstr "Достичь цели"
+
+msgid "Never reach"
+msgstr "Никогда не достигай"
+
+msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
+msgstr "Путешествие: порядок страниц за одно посещение (первые 8 шагов; обновление одной и той же страницы засчитывается один раз). Такие события, как добавление в корзину, форма оформления заказа, «Размещение заказа», способ оплаты, заказ и клики по WhatsApp/телефону, отображаются как шаги, отмеченные ⚡. Указываются только посещения, содержащие не менее 2 страниц. Цель выбирается в Настройки › Воронки. На этом экране показаны посещения после версии 0.3.0."
+
+msgid "Could not load data. Refresh the page."
+msgstr "Не удалось загрузить данные. Обновите страницу."
+
+msgid "%1$s visits · %2$s"
+msgstr "%1$sпосещения ·%2$s"
+
+msgid "No data"
+msgstr "Нет данных"
+
+msgid "Multi-page sessions"
+msgstr "Многостраничные сессии"
+
+msgid "%s of all visits"
+msgstr "%sвсех посещений"
+
+msgid "Avg path length"
+msgstr "Средняя длина пути"
+
+msgid "%s pages"
+msgstr "Страницы%s"
+
+msgid "In multi-page sessions"
+msgstr "В многостраничных сессиях"
+
+msgid "Top entry page"
+msgstr "Верхняя страница входа"
+
+msgid "Top exit after 2+ pages"
+msgstr "Верхний выход после 2+ страниц"
+
+msgid "No goal selected"
+msgstr "Цель не выбрана"
+
+msgid "No journeys yet"
+msgstr "Пока нет поездок"
+
+msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
+msgstr "Нет посещений хотя бы двух страниц за выбранный период. Расширьте фильтры или ждите новых посещений."
+
+msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
+msgstr "Щелкните поле, чтобы отфильтровать пути ниже по этой странице. Толщина показывает количество посещений."
+
+msgid "%s visits"
+msgstr "%sпосещений"
+
+msgid "Entries"
+msgstr "Записи"
+
+msgid "Step %s"
+msgstr "Шаг%s"
+
+msgid "%s end here"
+msgstr "%sзаканчивается здесь"
+
+msgid "all continue"
+msgstr "все продолжается"
+
+msgid "continues"
+msgstr "продолжается"
+
+msgid "No paths match the search."
+msgstr "Ни один путь не соответствует запросу."
+
+msgid "No paths to show."
+msgstr "Нет путей для отображения."
+
+msgid "Path"
+msgstr "Путь"
+
+msgid "vs prev"
+msgstr "против предыдущего"
+
+msgid "new"
+msgstr "новый"
+
+msgid "Showing %2$s of %1$s paths."
+msgstr "Показаны пути%2$sиз%1$s."
+
+msgid "30 days"
+msgstr "30 дней"
+
+msgid "7 days"
+msgstr "7 дней"
+
+msgid "90 days"
+msgstr "90 дней"
+
+msgid "Search the address"
+msgstr "Искать адрес"
+
+msgid "Range"
+msgstr "Диапазон"
+
+msgid "Pages being viewed"
+msgstr "Просматриваемые страницы"
+
+msgid "No external sites in this range."
+msgstr "В этом диапазоне нет внешних сайтов."
+
+msgid "No pages were viewed in this range."
+msgstr "В этом диапазоне не просмотрено ни одной страницы."
+
+msgid "No channel breakdown in this range."
+msgstr "В этом диапазоне нет пробоев каналов."
+
+msgid "No channels"
+msgstr "Нет каналов"
+
+msgid "Sources"
+msgstr "Источники"
+
+msgid "Open in panel"
+msgstr "Открыть на панели"
+
+msgid "No pages"
+msgstr "Нет страниц"
+
+msgid "Search sites"
+msgstr "Поиск сайтов"
+
+msgid "Sites"
+msgstr "Сайты"
+
+msgid "Last minutes"
+msgstr "Последние минуты"
+
+msgid "No referrers"
+msgstr "Нет рефералов"
+
+msgid "Referrers"
+msgstr "Рефереры"
+
+msgid "Visitors and pageviews"
+msgstr "Посетители и просмотры страниц"
+
+msgid "Analytics"
+msgstr "Аналитика"
+
+msgid "Right now"
+msgstr "Прямо сейчас"
+
+msgid "[['Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.', 'tr']]"
+msgstr "[['Статистика сайта без файлов cookie и личных данных: посетители, просмотры, наиболее читаемые страницы, ссылающиеся сайты, канал, устройство/браузер, кампания (UTM), события кликов и конверсии пожертвований. Данные остаются на сайте; Читает с помощью инструментов искусственного интеллекта Flux AI / Flux AI и MCP.', 'tr']]"

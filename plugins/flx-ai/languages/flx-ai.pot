@@ -1,1411 +1,1526 @@
 msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Project-Id-Version: Flux AI\n"
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: en_US\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "ANAHTARINIZ"
+msgid "YOUR_KEY"
 msgstr ""
 
-msgid "Claude gibi yapay zekâ asistanları bu siteye MCP (Model Context Protocol) ile bağlanır. Araçları kurulu FluxWP eklentileri verir (SEO, CRM, Mail, Speed…); Flux AI sohbeti de aynı araçları kullanır."
+msgid "AI assistants such as Claude connect to this site over MCP (Model Context Protocol). Tools come from the installed FluxWP plugins (SEO, CRM, Mail, Speed…); Flux AI chat uses the same tools."
 msgstr ""
 
-msgid "Eski Flux SEO sürümü kendi MCP sunucusunu çalıştırıyor. Flux SEO'yu güncelleyin; anahtarlar ve ayar buraya kendiliğinden geçer."
+msgid "An old Flux SEO version is running its own MCP server. Update Flux SEO; keys and the setting move here automatically."
 msgstr ""
 
-msgid "1. Sunucu"
+msgid "1. Server"
 msgstr ""
 
-msgid "MCP sunucusu etkin"
+msgid "MCP server enabled"
 msgstr ""
 
-msgid "Kaydet"
+msgid "Save"
 msgstr ""
 
-msgid "Sunucu adresi"
+msgid "Server URL"
 msgstr ""
 
-msgid "açık"
+msgid "on"
 msgstr ""
 
-msgid "kapalı"
+msgid "off"
 msgstr ""
 
-msgid "Araçlar"
+msgid "Tools"
 msgstr ""
 
-msgid "2. Anahtarlar"
+msgid "2. Keys"
 msgstr ""
 
-msgid "Asistan, anahtarı oluşturan kullanıcının yetkileriyle çalışır. Yeni içerikler taslak açılır, silme yalnız çöpe taşır."
+msgid "The assistant works with the permissions of the user who created the key. New content is created as a draft; deleting only moves to trash."
 msgstr ""
 
-msgid "Yeni anahtar (yalnız şimdi gösterilir, kopyalayın):"
+msgid "New key (shown only now, copy it):"
 msgstr ""
 
-msgid "okur"
+msgid "reads"
 msgstr ""
 
-msgid "Araçları sınırla (isteğe bağlı)"
+msgid "Limit tools (optional)"
 msgstr ""
 
-msgid "Hiçbiri seçilmezse anahtar kullanıcının bütün yetkileriyle çalışır. Seçilirse yalnız işaretli araçları görür ve çalıştırır (ör. TV sipariş paneli için yalnız order_summary)."
+msgid "If none is selected the key works with all of the user's permissions. If some are selected it only sees and runs those tools (e.g. only order_summary for a TV order board)."
 msgstr ""
 
-msgid "Ör. Claude – Ahmet"
+msgid "e.g. Claude – Alex"
 msgstr ""
 
-msgid "Yeni anahtar oluştur"
+msgid "Create new key"
 msgstr ""
 
-msgid "Ad"
+msgid "Name"
 msgstr ""
 
-msgid "Kullanıcı"
+msgid "User"
 msgstr ""
 
-msgid "Oluşturma"
+msgid "Created"
 msgstr ""
 
-msgid "Son kullanım"
+msgid "Last used"
 msgstr ""
 
-msgid "Tümü"
+msgid "All"
 msgstr ""
 
-msgid "İptal et"
+msgid "Revoke"
 msgstr ""
 
-msgid "3. Asistana bağla"
+msgid "3. Connect an assistant"
 msgstr ""
 
-msgid "Bağlayıcılar › Özel bağlayıcı ekle"
+msgid "Connectors › Add custom connector"
 msgstr ""
 
-msgid "başlık eklenemeyen yerler için anahtarlı adres; kimseyle paylaşmayın:"
+msgid "URL with the key, for places where headers can't be added; don't share it:"
 msgstr ""
 
-msgid "Sunucu Apache ise ve \"Geçersiz anahtar\" hatası alırsanız .htaccess'e SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 ekleyin ya da anahtarlı adresi kullanın."
+msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
 msgstr ""
 
-msgid "Son işlemler"
+msgid "Recent activity"
 msgstr ""
 
-msgid "Zaman"
+msgid "Time"
 msgstr ""
 
-msgid "Araç"
+msgid "Tool"
 msgstr ""
 
-msgid "Hedef"
+msgid "Target"
 msgstr ""
 
-msgid "Sonuç"
+msgid "Result"
 msgstr ""
 
-msgid "%d araç kayıtlı."
+msgid "%d tools registered."
 msgstr ""
 
-msgid "Bu eklentinin yapay zekâ ayarları. Değerler Flux AI'da saklanır, eklenti kendisi okur."
+msgid "AI settings of this plugin. Values are stored in Flux AI and read by the plugin."
 msgstr ""
 
-msgid "Bağlı sistemler"
+msgid "Connected systems"
 msgstr ""
 
-msgid "Kaydedildi."
+msgid "Saved."
 msgstr ""
 
-msgid "Yapay zekâ"
+msgid "AI"
 msgstr ""
 
-msgid "Bu eklenti yapay zekâ kullanabilir"
+msgid "This plugin may use AI"
 msgstr ""
 
-msgid "Kapalıyken eklentinin model istekleri reddedilir; araçları ayrıca Araçlar ekranından kapatılır."
+msgid "When off, the plugin's model requests are rejected; its tools are turned off separately on the Tools screen."
 msgstr ""
 
 msgid "Model"
 msgstr ""
 
-msgid "Boşsa varsayılan model kullanılır."
+msgid "Empty uses the default model."
 msgstr ""
 
-msgid "Açık"
+msgid "On"
 msgstr ""
 
-msgid "%1$s / %2$s araç açık"
+msgid "%1$s / %2$s tools on"
 msgstr ""
 
-msgid "Araçları yönet"
+msgid "Manage tools"
 msgstr ""
 
-msgid "Bu eklentinin aracı yok."
+msgid "This plugin has no tools."
 msgstr ""
 
-msgid "Bu eklenti Flux AI SDK ile ayar tanımlamamış; yalnız aç/kapa ve model seçilebilir."
+msgid "This plugin declares no settings with the Flux AI SDK; only on/off and the model can be set."
 msgstr ""
 
-msgid "Flux AI SDK %s yüklü."
+msgid "Flux AI SDK %s loaded."
 msgstr ""
 
-msgid "Eklentilerin yapay zekâya sunduğu araçlar: ortak sohbet ve MCP sunucusu. Kapatılan araç ikisinde de kullanılamaz; değişiklik yapan araçlar her seferinde onay ister."
+msgid "Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time."
 msgstr ""
 
-msgid "%s için kullanılacak eklenti değişti."
+msgid "The plugin used for %s was changed."
 msgstr ""
 
-msgid "%s kapalı"
+msgid "%s off"
 msgstr ""
 
-msgid "Ad çakışması"
+msgid "Name conflicts"
 msgstr ""
 
-msgid "Her adda yalnız biri açık"
+msgid "Only one is on per name"
 msgstr ""
 
-msgid "Yok"
+msgid "None"
 msgstr ""
 
-msgid "Öneksiz ad"
+msgid "Unprefixed names"
 msgstr ""
 
-msgid "Eklenti öneki olmayan araç"
+msgid "Tools without a plugin prefix"
 msgstr ""
 
-msgid "Eklentiye göre"
+msgid "By plugin"
 msgstr ""
 
-msgid "Araç ara"
+msgid "Search tools"
 msgstr ""
 
-msgid "Ad, açıklama, eklenti ara…"
+msgid "Search name, description, plugin…"
 msgstr ""
 
-msgid "Kaynak"
+msgid "Source"
 msgstr ""
 
-msgid "Tüm eklentiler"
+msgid "All plugins"
 msgstr ""
 
-msgid "Okur"
+msgid "Reads"
 msgstr ""
 
-msgid "Değiştirir"
+msgid "Changes"
 msgstr ""
 
-msgid "Kapalı"
+msgid "Off"
 msgstr ""
 
-msgid "Çakışma"
+msgid "Conflict"
 msgstr ""
 
-msgid "Öneksiz"
+msgid "Unprefixed"
 msgstr ""
 
-msgid "Aç"
+msgid "Turn on"
 msgstr ""
 
-msgid "Kapat"
+msgid "Close"
 msgstr ""
 
-msgid "Seçimi kaldır"
+msgid "Clear selection"
 msgstr ""
 
-msgid "Görünenlerin hepsini seç"
+msgid "Select all visible"
 msgstr ""
 
-msgid "Tür"
+msgid "Type"
 msgstr ""
 
-msgid "Nerede"
+msgid "Where"
 msgstr ""
 
-msgid "Yetki"
+msgid "Capability"
 msgstr ""
 
-msgid "30 gün"
+msgid "30 days"
 msgstr ""
 
-msgid "Ort. süre"
+msgid "Avg. time"
 msgstr ""
 
-msgid "Çakışma: kapalı, %s kullanılıyor"
+msgid "Conflict: off, %s is used"
 msgstr ""
 
-msgid "Çakışma: bu açık, %s kapalı"
+msgid "Conflict: this one is on, %s is off"
 msgstr ""
 
-msgid "Ad eklenti önekiyle başlamıyor; başka eklentinin aracıyla karışabilir."
+msgid "The name does not start with a plugin prefix; it may clash with another plugin's tool."
 msgstr ""
 
-msgid "öneksiz"
+msgid "unprefixed"
 msgstr ""
 
-msgid "Eski ad: %s"
+msgid "Old name: %s"
 msgstr ""
 
-msgid "Bunu kullan"
+msgid "Use this one"
 msgstr ""
 
-msgid "%s açık"
+msgid "%s on"
 msgstr ""
 
-msgid "%s seç"
+msgid "Select %s"
 msgstr ""
 
-msgid "Sohbet"
+msgid "Chat"
 msgstr ""
 
-msgid "değiştirir · onaylı"
+msgid "writes · needs approval"
 msgstr ""
 
-msgid "Kayıtlı araç yok."
+msgid "No tools registered."
 msgstr ""
 
-msgid "Süzgece uyan araç yok."
+msgid "No tools match the filters."
 msgstr ""
 
-msgid "Kaydedilmemiş değişiklik var."
+msgid "There are unsaved changes."
 msgstr ""
 
-msgid "Eklentiler araçlarını Flux AI SDK (<code>flx_ai_tool</code>) ya da <code>flx_mcp_tools</code> / <code>flxai_tools</code> filtreleriyle ekler. Aynı adı iki eklenti kaydederse ilk kaydeden açık kalır, diğeri kapalı bekler; \"Bunu kullan\" ile değiştirebilirsiniz. Eklenti ayarları: %s."
+msgid "Plugins add tools with the Flux AI SDK (<code>flx_ai_tool</code>) or the <code>flx_mcp_tools</code> / <code>flxai_tools</code> filters. If two plugins register the same name, the first stays on and the other waits turned off; switch with \"Use this one\". Plugin settings: %s."
 msgstr ""
 
-msgid "%s araç güncellendi."
+msgid "%s tools updated."
 msgstr ""
 
-msgid "%s eklenti"
+msgid "%s plugins"
 msgstr ""
 
-msgid "Genel bakış"
+msgid "Overview"
 msgstr ""
 
-msgid "Kayıtlar"
+msgid "Logs"
 msgstr ""
 
-msgid "Faturalandırma"
+msgid "Billing"
 msgstr ""
 
-msgid "Ayarlar"
+msgid "Settings"
 msgstr ""
 
-msgid "Sınır %1$s · %2$s yenilenir"
+msgid "Limit %1$s · resets %2$s"
 msgstr ""
 
-msgid "Sınır yok"
+msgid "No limit"
 msgstr ""
 
-msgid "Tüm eklentilerin yapay zekâ kullanımı: maliyet, süre, önbellek ve araçlar."
+msgid "AI usage across all plugins: cost, time, cache and tools."
 msgstr ""
 
-msgid "Henüz API anahtarı girilmedi."
+msgid "No API key entered yet."
 msgstr ""
 
-msgid "%d gün"
+msgid "%d days"
 msgstr ""
 
-msgid "Maliyet"
+msgid "Cost"
 msgstr ""
 
-msgid "Önbellek tasarrufu %s"
+msgid "Cache savings %s"
 msgstr ""
 
-msgid "Model istekleri"
+msgid "Model requests"
 msgstr ""
 
-msgid "%s araç çağrısı"
+msgid "%s tool calls"
 msgstr ""
 
-msgid "Token"
+msgid "Tokens"
 msgstr ""
 
-msgid "Giriş %1$s · çıkış %2$s · önbellekten %3$s"
+msgid "Input %1$s · output %2$s · from cache %3$s"
 msgstr ""
 
-msgid "Toplam süre"
+msgid "Total time"
 msgstr ""
 
-msgid "Model/düşünme %%%1$s · araçlar %%%2$s"
+msgid "Model/thinking %1$s%% · tools %2$s%%"
 msgstr ""
 
-msgid "Hata"
+msgid "Errors"
 msgstr ""
 
-msgid "İsteklerin %%%s"
+msgid "%s%% of requests"
 msgstr ""
 
-msgid "Günlük maliyet (USD)"
+msgid "Daily cost (USD)"
 msgstr ""
 
-msgid "Süre nereye gidiyor: model/düşünme ve araçlar"
+msgid "Where time goes: model/thinking vs tools"
 msgstr ""
 
-msgid "Günlük token"
+msgid "Daily tokens"
 msgstr ""
 
-msgid "Araç başına ortalama süre"
+msgid "Average time per tool"
 msgstr ""
 
-msgid "Modele göre"
+msgid "By model"
 msgstr ""
 
-msgid "Amaca göre"
+msgid "By purpose"
 msgstr ""
 
-msgid "Bu aralıkta kayıt yok."
+msgid "No records in this range."
 msgstr ""
 
-msgid "İstek"
+msgid "Requests"
 msgstr ""
 
-msgid "Model süresi"
+msgid "Model time"
 msgstr ""
 
-msgid "Araç süresi"
+msgid "Tool time"
 msgstr ""
 
-msgid "%s hata"
+msgid "%s errors"
 msgstr ""
 
-msgid "Her model isteği ve araç çağrısı: hangi sistemden, kim için, hangi model, token, süre, maliyet. İçerik kişisel veriler maskelenerek saklanır."
+msgid "Every model request and tool call: which system, for whom, which model, tokens, time and cost. Content is stored with personal data masked."
 msgstr ""
 
-msgid "Araç çağrıları"
+msgid "Tool calls"
 msgstr ""
 
-msgid "Tüm sistemler"
+msgid "All systems"
 msgstr ""
 
-msgid "Yalnız hatalar"
+msgid "Errors only"
 msgstr ""
 
-msgid "24 saat"
+msgid "24 hours"
 msgstr ""
 
-msgid "Filtrele"
+msgid "Filter"
 msgstr ""
 
-msgid "%s kayıt"
+msgid "%s records"
 msgstr ""
 
-msgid "Kayıt yok."
+msgid "No records."
 msgstr ""
 
-msgid "Kim"
+msgid "Who"
 msgstr ""
 
-msgid "Model / araç"
+msgid "Model / tool"
 msgstr ""
 
-msgid "Giriş"
+msgid "Input"
 msgstr ""
 
-msgid "Çıkış"
+msgid "Output"
 msgstr ""
 
-msgid "Önbellek"
+msgid "Cache"
 msgstr ""
 
-msgid "Süre"
+msgid "Duration"
 msgstr ""
 
-msgid "araç"
+msgid "tool"
 msgstr ""
 
-msgid "Harcama sınırı doldu"
+msgid "Spending limit reached"
 msgstr ""
 
-msgid "Kapalı (Bağlı sistemler)"
+msgid "Off (Connected systems)"
 msgstr ""
 
-msgid "Sistem"
+msgid "System"
 msgstr ""
 
-msgid "İçerik"
+msgid "Content"
 msgstr ""
 
-msgid "Sayfa %1$s / %2$s"
+msgid "Page %1$s / %2$s"
 msgstr ""
 
-msgid "Önbellek sütunu: okunan / yazılan token. \"~\" fiyat listesinden tahmin. İçerik: giden son mesajlar ve gelen cevap, kısaltılmış; e-posta, telefon, IBAN ve anahtarlar maskeli."
+msgid "Cache column: tokens read / written. \"~\" is estimated from the price list. Content: last outgoing messages and the incoming reply, shortened; e-mail, phone, IBAN and keys are masked."
 msgstr ""
 
-msgid "Flux AI'yı kullanan eklentiler. Buradan kapatılan sistem yapay zekâ isteği gönderemez; kendi ayarları da olduğu gibi kalır."
+msgid "Plugins that use Flux AI. A system switched off here cannot send AI requests; its own settings stay as they are."
 msgstr ""
 
-msgid "Durum"
+msgid "Status"
 msgstr ""
 
-msgid "İstek (30 gün)"
+msgid "Requests (30 days)"
 msgstr ""
 
-msgid "kurulu değil"
+msgid "not installed"
 msgstr ""
 
-msgid "eklenti pasif"
+msgid "plugin inactive"
 msgstr ""
 
-msgid "AI kapalı"
+msgid "AI off"
 msgstr ""
 
-msgid "çalışıyor"
+msgid "working"
 msgstr ""
 
-msgid "AI ayarları"
+msgid "AI settings"
 msgstr ""
 
-msgid "Ayarları"
+msgid "Its settings"
 msgstr ""
 
-msgid "Model sütunu: o sistemin kullandığı model. Değiştirmek için Ayarlar › Eklentiye özel model. Kapalı sistemin istekleri reddedilir ve Kayıtlar'da \"Kapalı\" olarak görünür."
+msgid "The Model column is the model that system uses. Change it under Settings › Per-plugin model. Requests to a disabled system are rejected and show as \"Disabled\" in the log."
 msgstr ""
 
-msgid "Aylık döküm, harcama sınırları ve sağlayıcı kredisi. Tutarlar USD; OpenRouter gerçek maliyeti, Anthropic fiyat listesinden hesaplanır."
+msgid "Monthly breakdown, spending limits and provider credit. Amounts in USD; OpenRouter reports actual cost, Anthropic is computed from the price list."
 msgstr ""
 
-msgid "Aylar"
+msgid "Months"
 msgstr ""
 
-msgid "CSV indir"
+msgid "Download CSV"
 msgstr ""
 
-msgid "Toplam"
+msgid "Total"
 msgstr ""
 
-msgid "Önbelleksiz olsaydı %s"
+msgid "%s without cache"
 msgstr ""
 
-msgid "Önbellek tasarrufu"
+msgid "Cache savings"
 msgstr ""
 
-msgid "%%%s daha az"
+msgid "%s%% less"
 msgstr ""
 
-msgid "Sağlayıcıya göre"
+msgid "By provider"
 msgstr ""
 
-msgid "Sağlayıcı"
+msgid "Provider"
 msgstr ""
 
-msgid "Önbelleksiz"
+msgid "Without cache"
 msgstr ""
 
-msgid "Tutar"
+msgid "Amount"
 msgstr ""
 
-msgid "kısmen tahmini"
+msgid "partly estimated"
 msgstr ""
 
-msgid "Bu ay kayıt yok."
+msgid "No records this month."
 msgstr ""
 
-msgid "OpenRouter hesabı"
+msgid "OpenRouter account"
 msgstr ""
 
-msgid "Yenile"
+msgid "Refresh"
 msgstr ""
 
-msgid "Kalan kredi"
+msgid "Remaining credit"
 msgstr ""
 
-msgid "Bu anahtarın toplam kullanımı"
+msgid "Total usage of this key"
 msgstr ""
 
-msgid "Anahtar sınırı / kalan"
+msgid "Key limit / remaining"
 msgstr ""
 
-msgid "Kontrol"
+msgid "Checked"
 msgstr ""
 
-msgid "Kalan krediyi görmek için Yenile'ye basın. (Anthropic bakiye API'si sunmuyor; console.anthropic.com › Billing.)"
+msgid "Press Refresh to see remaining credit. (Anthropic has no balance API; see console.anthropic.com › Billing.)"
 msgstr ""
 
-msgid "Flux AI ayarları"
+msgid "Flux AI settings"
 msgstr ""
 
-msgid "Anahtarlar burada bir kez girilir; tüm FluxWP eklentileri bu bağlantıyı kullanır."
+msgid "Enter keys here once; all FluxWP plugins use this connection."
 msgstr ""
 
-msgid "Ayarlar kaydedildi."
+msgid "Settings saved."
 msgstr ""
 
-msgid "Sağlayıcılar"
+msgid "Providers"
 msgstr ""
 
-msgid "OpenRouter API anahtarı"
+msgid "OpenRouter API key"
 msgstr ""
 
-msgid "Sil"
+msgid "Remove"
 msgstr ""
 
-msgid "openrouter.ai › Keys. Yüzlerce model tek anahtarla; gerçek maliyet her istekte bildirilir."
+msgid "openrouter.ai › Keys. Hundreds of models with one key; actual cost is reported with every request."
 msgstr ""
 
-msgid "Anthropic (Claude) API anahtarı"
+msgid "Anthropic (Claude) API key"
 msgstr ""
 
-msgid "console.anthropic.com › API Keys. Claude modelleri \"claude:\" önekiyle listelenir."
+msgid "console.anthropic.com › API Keys. Claude models are listed with the \"claude:\" prefix."
 msgstr ""
 
 msgid "Anthropic workspace ID"
 msgstr ""
 
-msgid "Yalnız anahtar bir workspace'e bağlı değilse gerekir (hata mesajı \"anthropic-workspace-id\" isterse)."
+msgid "Only needed when the key is not tied to a workspace (if the error asks for \"anthropic-workspace-id\")."
 msgstr ""
 
-msgid "Modeller"
+msgid "Models"
 msgstr ""
 
-msgid "Varsayılan model"
+msgid "Default model"
 msgstr ""
 
-msgid "Test et"
+msgid "Test"
 msgstr ""
 
-msgid "Eklentiler kendi modelini vermezse bu kullanılır."
+msgid "Used when a plugin does not specify its own model."
 msgstr ""
 
-msgid "Ortak sohbet modeli"
+msgid "Shared chat model"
 msgstr ""
 
-msgid "Varsayılan"
+msgid "Default"
 msgstr ""
 
-msgid "Araç kullanabilen bir model seçin."
+msgid "Choose a model that supports tools."
 msgstr ""
 
-msgid "Sohbet adı modeli"
+msgid "Chat title model"
 msgstr ""
 
-msgid "Sohbet modeli"
+msgid "Chat model"
 msgstr ""
 
-msgid "Sohbete otomatik isim vermek için ucuz bir model yeterli."
+msgid "A cheap model is enough for automatic chat titles."
 msgstr ""
 
-msgid "Eklentiye özel model"
+msgid "Per-plugin model"
 msgstr ""
 
-msgid "Eklenti istekte model belirtmezse buradaki model kullanılır; boşsa varsayılan."
+msgid "Used when the plugin's request names no model; empty means the default."
 msgstr ""
 
-msgid "Önbellek ve düşünme"
+msgid "Cache and thinking"
 msgstr ""
 
-msgid "Claude prompt önbelleği"
+msgid "Claude prompt cache"
 msgstr ""
 
-msgid "Açık, 5 dakika"
+msgid "On, 5 minutes"
 msgstr ""
 
-msgid "Açık, 1 saat"
+msgid "On, 1 hour"
 msgstr ""
 
-msgid "Aynı talimat ve araçlar tekrar gönderilince giriş ücretinin çoğu düşer (okuma 0,1x; yazma 5 dk 1,25x, 1 saat 2x). Eklentiler istek başına değiştirebilir. OpenRouter önbelleği sağlayıcıda otomatik."
+msgid "When the same instructions and tools are sent again most of the input cost drops (read 0.1x; write 5 min 1.25x, 1 hour 2x). Plugins can override per request. OpenRouter caching is automatic at the provider."
 msgstr ""
 
-msgid "Claude çaba (effort)"
+msgid "Claude effort"
 msgstr ""
 
-msgid "Düşük: hızlı ve ucuz"
+msgid "Low: fast and cheap"
 msgstr ""
 
-msgid "Orta"
+msgid "Medium"
 msgstr ""
 
-msgid "Yüksek: daha derin düşünür"
+msgid "High: thinks deeper"
 msgstr ""
 
-msgid "Düşünme adımları"
+msgid "Thinking steps"
 msgstr ""
 
-msgid "Sohbette modelin düşünme özetini göster"
+msgid "Show the model's thinking summary in chat"
 msgstr ""
 
-msgid "Harcama sınırı"
+msgid "Spending limit"
 msgstr ""
 
-msgid "Günlük (her gün 00:00'da yenilenir)"
+msgid "Daily (resets every day at 00:00)"
 msgstr ""
 
-msgid "Haftalık (Pazartesi yenilenir)"
+msgid "Weekly (resets on Monday)"
 msgstr ""
 
-msgid "Aylık (ayın 1'inde yenilenir)"
+msgid "Monthly (resets on the 1st)"
 msgstr ""
 
-msgid "0 = sınırsız"
+msgid "0 = unlimited"
 msgstr ""
 
-msgid "Sınır dolunca"
+msgid "When the limit is reached"
 msgstr ""
 
-msgid "İstekleri durdur (eklentiler kendi yedek davranışına geçer)"
+msgid "Stop requests (plugins switch to their fallback behaviour)"
 msgstr ""
 
-msgid "Yalnız uyar"
+msgid "Warn only"
 msgstr ""
 
-msgid "Uyarı eşiği"
+msgid "Warning threshold"
 msgstr ""
 
-msgid "Eşikte ve dolunca yöneticiye e-posta"
+msgid "Email the admin at the threshold and when reached"
 msgstr ""
 
-msgid "Ortak sohbet"
+msgid "Shared chat"
 msgstr ""
 
-msgid "Kimler kullanır"
+msgid "Who can use it"
 msgstr ""
 
-msgid "Herkes yalnız kendi yetkisinin izin verdiği araçları kullanır. Tek tek kullanıcıya \"flxai_chat\" yetkisi de verilebilir."
+msgid "Everyone only uses tools their own capabilities allow. Individual users can also be given the \"flxai_chat\" capability."
 msgstr ""
 
-msgid "Nerede görünsün"
+msgid "Where to show"
 msgstr ""
 
-msgid "Yönetim paneli"
+msgid "Admin panel"
 msgstr ""
 
-msgid "Site (giriş yapmış yetkili kullanıcıya)"
+msgid "Site (for logged-in permitted users)"
 msgstr ""
 
-msgid "Varsayılan görünüm"
+msgid "Default layout"
 msgstr ""
 
-msgid "Yüzen pencere"
+msgid "Floating window"
 msgstr ""
 
-msgid "Sağa yerleşik (sayfayı iter)"
+msgid "Docked right (pushes the page)"
 msgstr ""
 
-msgid "Kullanıcı panelden değiştirebilir; seçimi kendi tarayıcısında kalır."
+msgid "Users can switch from the panel; the choice stays in their browser."
 msgstr ""
 
-msgid "Tur başına en fazla adım"
+msgid "Max steps per turn"
 msgstr ""
 
-msgid "Modele giden en fazla mesaj"
+msgid "Max messages sent to the model"
 msgstr ""
 
-msgid "Ek talimatlar"
+msgid "Extra instructions"
 msgstr ""
 
-msgid "Ör. Kurum dili resmi olsun; yeni sayfaları her zaman taslak aç."
+msgid "E.g. Use a formal tone; always create new pages as drafts."
 msgstr ""
 
-msgid "Görsel ve video üretimi"
+msgid "Image and video generation"
 msgstr ""
 
-msgid "Görsel ve video üreten eklentiler (Flux Studio vb.) bu anahtarları kullanır. Otomatik seçimde model için anahtarı girilmiş ilk sağlayıcı kullanılır; ücretli olabilecek bir istek başka sağlayıcıya tekrar gönderilmez. Harcama sınırı ve Kayıtlar burada da geçerlidir."
+msgid "Plugins that generate images and video (Flux Studio etc.) use these keys. In automatic mode the first provider with a key for the model is used; a request that may have been charged is never resent to another provider. The spending limit and Logs apply here too."
 msgstr ""
 
-msgid "%s API anahtarı"
+msgid "%s API key"
 msgstr ""
 
 msgid "OpenRouter"
 msgstr ""
 
-msgid "Sağlayıcılar bölümündeki OpenRouter anahtarı görsel ve video için de kullanılır."
+msgid "The OpenRouter key in Providers is also used for images and video."
 msgstr ""
 
-msgid "Varsayılan görsel modeli"
+msgid "Default image model"
 msgstr ""
 
-msgid "Varsayılan video modeli"
+msgid "Default video model"
 msgstr ""
 
-msgid "Model › sağlayıcı"
+msgid "Model › provider"
 msgstr ""
 
-msgid "Sıra"
+msgid "Order"
 msgstr ""
 
-msgid "Otomatik"
+msgid "Automatic"
 msgstr ""
 
 msgid "video"
 msgstr ""
 
-msgid "Anahtar yok"
+msgid "No key"
 msgstr ""
 
-msgid "İş kayıtları"
+msgid "Job records"
 msgstr ""
 
-msgid "gün saklanır (üretilen dosyalar silinmez)"
+msgid "days kept (generated files are not deleted)"
 msgstr ""
 
-msgid "Görseller"
+msgid "Visuals"
 msgstr ""
 
-msgid "Sohbette görsel"
+msgid "Visuals in chat"
 msgstr ""
 
-msgid "Model tablo, kart, şema ve grafikleri görsel olarak çizebilsin (```widget ve ```mermaid)"
+msgid "Let the model draw tables, cards, diagrams and charts as visuals (```widget and ```mermaid)"
 msgstr ""
 
-msgid "Her model ile çalışır. Görseller ayrı, izole bir çerçevede çizilir; dış bağlantı, form ve siteye erişim yoktur."
+msgid "Works with any model. Visuals are drawn in a separate, isolated frame with no external links, forms or access to the site."
 msgstr ""
 
-msgid "Sunucuda görsel çevirici"
+msgid "Server-side visual renderer"
 msgstr ""
 
-msgid "Gotenberg: HTML ve SVG görseller PNG olarak gönderilebilir."
+msgid "Gotenberg: HTML and SVG visuals can be sent as PNG."
 msgstr ""
 
-msgid "Imagick: yalnız SVG görseller PNG olarak gönderilebilir."
+msgid "Imagick: only SVG visuals can be sent as PNG."
 msgstr ""
 
-msgid "Yok: WhatsApp gibi kanallarda görsel yerine metin gider."
+msgid "None: channels like WhatsApp get text instead of visuals."
 msgstr ""
 
-msgid "İsteğe bağlı. WhatsApp ve e-posta gibi kanallar HTML gösteremez; görseller PNG'ye çevrilir. Paylaşımlı sunucuda tarayıcı olmadığı için HTML görseller Docker sunucusundaki Gotenberg ile çevrilir (gotenberg/gotenberg:8)."
+msgid "Optional. Channels like WhatsApp and email cannot show HTML; visuals are converted to PNG. Shared hosting has no browser, so HTML visuals are converted by Gotenberg on a Docker server (gotenberg/gotenberg:8)."
 msgstr ""
 
-msgid "Gotenberg kullanıcı / şifre"
+msgid "Gotenberg user / password"
 msgstr ""
 
-msgid "Gotenberg temel kimlik doğrulama ile korunuyorsa."
+msgid "If Gotenberg is protected with basic authentication."
 msgstr ""
 
-msgid "Kullanım kayıtlarını sakla"
+msgid "Keep usage logs for"
 msgstr ""
 
-msgid "Sınırsız"
+msgid "Unlimited"
 msgstr ""
 
-msgid "gün"
+msgid "Leave empty to keep logs forever. If you enter days, older logs are deleted once a day."
 msgstr ""
 
-msgid "Boş bırakın: kayıtlar sınırsız saklanır. Gün girerseniz daha eski kayıtlar günde bir kez silinir."
+msgid "days"
 msgstr ""
 
-msgid "İçerik kaydı"
+msgid "Content log"
 msgstr ""
 
-msgid "Giden/gelen içeriği de sakla (kısaltılmış; e-posta, telefon, IBAN ve anahtarlar maskeli)"
+msgid "Also store outgoing/incoming content (shortened; e-mail, phone, IBAN and keys masked)"
 msgstr ""
 
-msgid "gün sakla"
+msgid "days to keep"
 msgstr ""
 
-msgid "Boş bırakın: içerik de sınırsız saklanır."
+msgid "Leave empty to keep content forever too."
 msgstr ""
 
-msgid "Kaldırınca"
+msgid "On uninstall"
 msgstr ""
 
-msgid "Eklenti silinirken kayıtları ve sohbetleri de sil"
+msgid "Delete logs and chats when the plugin is deleted"
 msgstr ""
 
-msgid "Mesaj boş."
+msgid "Message is empty."
 msgstr ""
 
-msgid "Kullanıcı yeni mesaj yazdı; bu işlem yapılmadı."
+msgid "The user wrote a new message; this action was not run."
 msgstr ""
 
-msgid "Bu tur için adım sınırına ulaştım. Devam etmemi isterseniz \"devam\" yazın."
+msgid "I reached the step limit for this turn. Type \"continue\" if you want me to go on."
 msgstr ""
 
-msgid "Cevap uzunluk sınırına takıldı. Daha kısa bir soru deneyin."
+msgid "The answer hit the length limit. Try a shorter question."
 msgstr ""
 
-msgid "Bir cevap üretemedim, tekrar dener misiniz?"
+msgid "I couldn't produce an answer, could you try again?"
 msgstr ""
 
-msgid "Araç yok ya da yetkiniz yok: %s"
+msgid "Tool not found or not permitted: %s"
 msgstr ""
 
-msgid "Kullanıcı durdurdu; yapılmadı."
+msgid "Stopped by the user; not run."
 msgstr ""
 
-msgid "Asistan şu an çalışıyor; önce durdurun."
+msgid "The assistant is running; stop it first."
 msgstr ""
 
-msgid "Mesaj bulunamadı."
+msgid "Message not found."
 msgstr ""
 
-msgid "%s için yapay zekâ kapalı (Flux AI & MCP › Bağlı sistemler)."
+msgid "AI is off for %s (Flux AI & MCP › Connected systems)."
 msgstr ""
 
-msgid "Yapay zekâ modeli seçilmemiş (Flux AI & MCP › Ayarlar)."
+msgid "No AI model selected (Flux AI & MCP › Settings)."
 msgstr ""
 
-msgid "Günlük"
+msgid "Daily"
 msgstr ""
 
-msgid "Haftalık"
+msgid "Weekly"
 msgstr ""
 
-msgid "Aylık"
+msgid "Monthly"
 msgstr ""
 
-msgid "%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI & MCP › Ayarlar'dan değiştirebilirsiniz."
+msgid "%1$s AI spending limit (%2$s) reached. It resets %3$s; you can change it in Flux AI & MCP › Settings."
 msgstr ""
 
-msgid "Flux AI: %1$s harcama sınırının %2$s%%'i kullanıldı"
+msgid "Flux AI: %2$s%% of the %1$s spending limit used"
 msgstr ""
 
-msgid "%1$s harcama: %2$s / %3$s (%%%4$s)."
+msgid "%1$s spending: %2$s / %3$s (%4$s%%)."
 msgstr ""
 
-msgid "Yapay zekâ istekleri durduruldu."
+msgid "AI requests are stopped."
 msgstr ""
 
-msgid "Yapay zekâ anahtarları"
+msgid "AI keys"
 msgstr ""
 
-msgid "Bağlı sağlayıcılar: %s."
+msgid "Connected providers: %s."
 msgstr ""
 
-msgid "OpenRouter ya da Anthropic anahtarı girilmemiş; yapay zekâ özellikleri çalışmaz."
+msgid "No OpenRouter or Anthropic key entered; AI features will not work."
 msgstr ""
 
-msgid "%s kullanılıyor."
+msgid "Using %s."
 msgstr ""
 
-msgid "Seçili modelin sağlayıcısının anahtarı yok ya da model seçilmemiş."
+msgid "The selected model's provider has no key, or no model is selected."
 msgstr ""
 
-msgid "Günlük/haftalık/aylık harcama sınırı tanımlı değil."
+msgid "No daily/weekly/monthly spending limit set."
 msgstr ""
 
-msgid "Sınır koy"
+msgid "Set a limit"
 msgstr ""
 
 msgid "%1$s: %2$s / %3$s."
 msgstr ""
 
-msgid "Sınır doldu, yapay zekâ istekleri durdu."
+msgid "Limit reached, AI requests stopped."
 msgstr ""
 
-msgid "Son 24 saat hata oranı"
+msgid "Error rate, last 24 hours"
 msgstr ""
 
-msgid "%1$s / %2$s istek hatalı."
+msgid "%1$s / %2$s requests failed."
 msgstr ""
 
-msgid "Son 24 saatte istek yok."
+msgid "No requests in the last 24 hours."
 msgstr ""
 
-msgid "MCP sunucusu"
+msgid "MCP server"
 msgstr ""
 
-msgid "%1$s %2$d araç kayıtlı; Flux AI sohbeti de bunları kullanır, değişiklik yapanlar onay ister."
+msgid "%1$s %2$d tools registered; Flux AI chat uses them too, and tools that change data ask for approval."
 msgstr ""
 
-msgid "MCP sunucusu açık."
+msgid "MCP server is on."
 msgstr ""
 
-msgid "MCP sunucusu kapalı."
+msgid "MCP server is off."
 msgstr ""
 
-msgid "Görsel çevirici (WhatsApp/e-posta)"
+msgid "Visual renderer (WhatsApp/email)"
 msgstr ""
 
-msgid "%s yapay zekâ harcama sınırı (USD)"
+msgid "%s AI spending limit (USD)"
 msgstr ""
 
-msgid "0 = sınırsız. Dolunca yapay zekâ istekleri durur (ayara göre yalnız uyarı)."
+msgid "0 = unlimited. When reached, AI requests stop (or only warn, per setting)."
 msgstr ""
 
-msgid "Geçerli bir tutar girin (0 veya pozitif sayı)."
+msgid "Enter a valid amount (0 or a positive number)."
 msgstr ""
 
-msgid "Sınır %s olarak kaydedildi."
+msgid "Limit saved as %s."
 msgstr ""
 
-msgid "Bu sayfada neler yapabilirim?"
+msgid "What can I do on this page?"
 msgstr ""
 
-msgid "Sitedeki sistem kontrolü uyarılarını özetle"
+msgid "Summarize the site's system check warnings"
 msgstr ""
 
-msgid "Son eklenen taslak içerikleri listele"
+msgid "List recently added drafts"
 msgstr ""
 
-msgid "Bu ay yapay zekâya ne kadar harcadık?"
+msgid "How much have we spent on AI this month?"
 msgstr ""
 
-msgid "Bu sayfayı özetle"
+msgid "Summarize this page"
 msgstr ""
 
-msgid "Bu sayfanın SEO eksiklerini göster"
+msgid "Show this page's SEO issues"
 msgstr ""
 
-msgid "Bu sayfadaki yazım hatalarını bul"
+msgid "Find typos on this page"
 msgstr ""
 
-msgid "kayıtlı (…%s)"
+msgid "saved (…%s)"
 msgstr ""
 
 msgid "%s ms"
 msgstr ""
 
-msgid "%s sn"
+msgid "%s s"
 msgstr ""
 
-msgid "sohbet"
+msgid "chat"
 msgstr ""
 
-msgid "başlık"
+msgid "title"
 msgstr ""
 
 msgid "test"
 msgstr ""
 
-msgid "Flux AI sohbet"
+msgid "Flux AI chat"
 msgstr ""
 
-msgid "Belirtilmemiş"
+msgid "Unspecified"
 msgstr ""
 
-msgid "MCP kapalı. Flux AI & MCP › MCP ekranından açın."
+msgid "MCP is off. Turn it on in Flux AI & MCP › MCP."
 msgstr ""
 
-msgid "Geçersiz veya eksik MCP anahtarı."
+msgid "Invalid or missing MCP key."
 msgstr ""
 
-msgid "Bu kullanıcının içerik düzenleme yetkisi yok."
+msgid "This user can't edit content."
 msgstr ""
 
-msgid "Bilinmeyen araç: %s"
+msgid "Unknown tool: %s"
 msgstr ""
 
-msgid "Bu araç kapalı (Flux AI & MCP › Araçlar): %s"
+msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
 msgstr ""
 
-msgid "Bu anahtar bu aracı kullanamaz: %s"
+msgid "This key can't use this tool: %s"
 msgstr ""
 
-msgid "Bu işlem için yetkiniz yok."
+msgid "You don't have permission for this."
 msgstr ""
 
-msgid "Yetkisiz."
+msgid "Unauthorized."
 msgstr ""
 
-msgid "Desteklenmeyen model."
+msgid "Unsupported model."
 msgstr ""
 
-msgid "Bu sağlayıcı seçilen modeli sunmuyor."
+msgid "This provider does not offer the selected model."
 msgstr ""
 
-msgid "%s anahtarı girilmemiş (Flux AI & MCP › Ayarlar › Görsel ve video)."
+msgid "%s key is not set (Flux AI & MCP › Settings › Image and video)."
 msgstr ""
 
-msgid "Bu model için şu anahtarlardan biri gerekli: %s (Flux AI & MCP › Ayarlar › Görsel ve video)."
+msgid "This model needs one of these keys: %s (Flux AI & MCP › Settings › Image and video)."
 msgstr ""
 
-msgid "İstem gerekli (en çok 20.000 karakter)."
+msgid "A prompt is required (up to 20,000 characters)."
 msgstr ""
 
-msgid "Bu model en çok %d referans görsel alır."
+msgid "This model accepts at most %d reference images."
 msgstr ""
 
-msgid "Bu model bu en-boy oranını desteklemiyor."
+msgid "This model does not support this aspect ratio."
 msgstr ""
 
-msgid "Süre %1$d–%2$d saniye olmalı."
+msgid "Duration must be %1$d–%2$d seconds."
 msgstr ""
 
-msgid "İlk/son kare için 1 ya da 2 görsel seçin."
+msgid "Pick 1 or 2 images for the first/last frame."
 msgstr ""
 
-msgid "Referans modu için görsel ya da video gerekli."
+msgid "Reference mode needs an image or a video."
 msgstr ""
 
-msgid "Bu model alan düzenlemeyi desteklemiyor."
+msgid "This model does not support area editing."
 msgstr ""
 
-msgid "Alan düzenleme için düzenlenecek görsel (refs[0]) gerekli."
+msgid "Area editing needs the image to edit (refs[0])."
 msgstr ""
 
-msgid "Referans okunamadı."
+msgid "Could not read the reference."
 msgstr ""
 
-msgid "Referans indirilemedi."
+msgid "Could not download the reference."
 msgstr ""
 
-msgid "%1$s cevabı alınamadı (%2$s). İstek ücretlendirilmiş olabilir; tekrar göndermeden önce sağlayıcı geçmişine bakın."
+msgid "No response from %1$s (%2$s). The request may have been charged; check the provider's history before sending again."
 msgstr ""
 
-msgid "Desteklenmeyen sağlayıcı."
+msgid "Unsupported provider."
 msgstr ""
 
-msgid "iş kimliği yok"
+msgid "no request id"
 msgstr ""
 
-msgid "EvoLink yalnız herkese açık http(s) adreslerini kabul eder; referansı siteye yükleyin."
+msgid "EvoLink only accepts public http(s) URLs; upload the reference to the site."
 msgstr ""
 
-msgid "görev kimliği yok"
+msgid "no task id"
 msgstr ""
 
-msgid "OpenRouter video/ses referansı almaz; fal.ai ya da EvoLink seçin."
+msgid "OpenRouter does not accept video/audio references; choose fal.ai or EvoLink."
 msgstr ""
 
-msgid "OpenRouter için en-boy oranı seçin."
+msgid "Choose an aspect ratio for OpenRouter."
 msgstr ""
 
-msgid "OpenRouter'da Seedance 2.5 en çok 720p; 1080p için fal.ai ya da EvoLink seçin."
+msgid "Seedance 2.5 on OpenRouter is limited to 720p; choose fal.ai or EvoLink for 1080p."
 msgstr ""
 
-msgid "OpenAI görsel döndürmedi. Tekrar göndermeden önce kullanım geçmişine bakın."
+msgid "OpenAI returned no image. Check usage history before sending again."
 msgstr ""
 
-msgid "OpenRouter görsel döndürmedi. Tekrar göndermeden önce kullanım geçmişine bakın."
+msgid "OpenRouter returned no image. Check usage history before sending again."
 msgstr ""
 
-msgid "Gemini görsel döndürmedi (içerik filtresi olabilir)."
+msgid "Gemini returned no image (possibly the content filter)."
 msgstr ""
 
-msgid "İş bulunamadı."
+msgid "Job not found."
 msgstr ""
 
-msgid "Sağlayıcı anahtarı silinmiş; iş korunuyor. Anahtarı geri girince devam eder."
+msgid "The provider key was removed; the job is kept and continues once the key is entered again."
 msgstr ""
 
-msgid "İş yarıda kaldı."
+msgid "The job was interrupted."
 msgstr ""
 
-msgid "fal.ai çıktı döndürmedi (içerik filtresi olabilir)."
+msgid "fal.ai returned no output (possibly the content filter)."
 msgstr ""
 
-msgid "EvoLink görevi bitti ama sonuç adresi henüz yok."
+msgid "The EvoLink task finished but has no result URL yet."
 msgstr ""
 
-msgid "Sağlayıcı iptali onaylamadı; iş tamamlanırsa ücretlendirilebilir."
+msgid "The provider did not confirm the cancellation; the job may be charged if it completes."
 msgstr ""
 
-msgid "Yerel olarak iptal edildi; sağlayıcıda başlamış iş ücretlendirilebilir."
+msgid "Cancelled locally; a job already started at the provider may be charged."
 msgstr ""
 
-msgid "Çıktı türü desteklenmiyor."
+msgid "Unsupported output type."
 msgstr ""
 
-msgid "Çıktı kaydedilemedi."
+msgid "Could not save the output."
 msgstr ""
 
-msgid "Çıktı indirilemedi; sağlayıcı adresi geçici olarak kullanılıyor."
+msgid "Could not download the output; the provider URL is used for now."
 msgstr ""
 
-msgid "Model listesi alınamadı."
+msgid "Could not load the model list."
 msgstr ""
 
-msgid "→ Flux AI & MCP › Ayarlar › \"Anthropic workspace ID\" alanına console.anthropic.com › Settings › Workspaces'teki kimliği (wrkspc_…) girin."
+msgid "→ Flux AI & MCP › Settings › \"Anthropic workspace ID\": paste the id (wrkspc_…) from console.anthropic.com › Settings › Workspaces."
 msgstr ""
 
-msgid "Yapay zekâ hatası (%1$d): %2$s"
+msgid "AI error (%1$d): %2$s"
 msgstr ""
 
-msgid "bilinmeyen hata"
+msgid "unknown error"
 msgstr ""
 
-msgid "Kullanıcı durdurdu."
+msgid "Stopped by the user."
 msgstr ""
 
-msgid "OpenRouter API anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
+msgid "No OpenRouter API key entered (Flux AI & MCP › Settings)."
 msgstr ""
 
-msgid "Yapay zekâ servisine ulaşılamadı: %s"
+msgid "Could not reach the AI service: %s"
 msgstr ""
 
-msgid "Yapay zekâ boş cevap verdi."
+msgid "The AI returned an empty answer."
 msgstr ""
 
-msgid "Anthropic (Claude) API anahtarı girilmemiş (Flux AI & MCP › Ayarlar)."
+msgid "No Anthropic (Claude) API key entered (Flux AI & MCP › Settings)."
 msgstr ""
 
-msgid "Bilinmiyor"
+msgid "Unknown"
 msgstr ""
 
-msgid "OpenRouter anahtarı girilmemiş."
+msgid "No OpenRouter key entered."
 msgstr ""
 
-msgid "Yetkiniz yok."
+msgid "You are not allowed to do this."
 msgstr ""
 
-msgid "Sohbet bulunamadı."
+msgid "Chat not found."
 msgstr ""
 
-msgid "Flux AI henüz ayarlanmadı: Flux AI & MCP › Ayarlar'dan bir API anahtarı ve model girin."
+msgid "Flux AI is not set up yet: enter an API key and model in Flux AI & MCP › Settings."
 msgstr ""
 
-msgid "Görsel çevirici çalışıyor"
+msgid "Image renderer works"
 msgstr ""
 
-msgid "Önce Gotenberg adresini girin."
+msgid "Enter the Gotenberg address first."
 msgstr ""
 
-msgid "Bu kaydın içeriği saklanmamış."
+msgid "Content was not stored for this record."
 msgstr ""
 
-msgid "%s karakter sistem talimatı"
+msgid "%s-character system prompt"
 msgstr ""
 
-msgid "Yapay zekâ kullanımı"
+msgid "AI usage"
 msgstr ""
 
-msgid "Tarih ve saat"
+msgid "Date and time"
 msgstr ""
 
-msgid "Görsel kodu boş."
+msgid "Visual code is empty."
 msgstr ""
 
-msgid "Bu görsel HTML içeriyor; sunucuda yalnız SVG çevrilebiliyor. HTML için Flux AI & MCP › Ayarlar › Görseller'e Gotenberg adresi girin."
+msgid "This visual contains HTML; the server can only convert SVG. For HTML, enter a Gotenberg address in Flux AI & MCP › Settings › Visuals."
 msgstr ""
 
-msgid "Sunucuda görsel çevirici yok (Imagick SVG desteği ya da Gotenberg adresi gerekli)."
+msgid "No visual renderer on the server (Imagick with SVG support or a Gotenberg address is required)."
 msgstr ""
 
-msgid "Görsel çeviriciye ulaşılamadı: %s"
+msgid "Could not reach the visual renderer: %s"
 msgstr ""
 
-msgid "Görsel çevirici kullanıcı adı veya şifreyi kabul etmedi."
+msgid "The image renderer rejected the username or password."
 msgstr ""
 
-msgid "Görsel çevrilemedi (HTTP %d)."
+msgid "Could not convert the visual (HTTP %d)."
 msgstr ""
 
-msgid "SVG çevrilemedi: %s"
+msgid "Could not convert SVG: %s"
 msgstr ""
 
-msgid "%1$s dk %2$s sn"
+msgid "%1$s min %2$s s"
 msgstr ""
 
-msgid "Bu aralıkta veri yok."
+msgid "No data in this range."
 msgstr ""
 
-msgid "Tablo olarak göster"
+msgid "Show as table"
 msgstr ""
 
-msgid "%1$s istek · %2$s araç"
+msgid "%1$s requests · %2$s tools"
 msgstr ""
 
-msgid "Model / düşünme"
+msgid "Model / thinking"
 msgstr ""
 
-msgid "Ortalama süre"
+msgid "Average time"
 msgstr ""
 
-msgid "%1$s çağrı · en uzun %2$s"
+msgid "%1$s calls · longest %2$s"
 msgstr ""
 
-msgid "Deneniyor…"
+msgid "Testing…"
 msgstr ""
 
 msgid "%s KB"
 msgstr ""
 
-msgid "Giden · kullanıcı"
+msgid "Outgoing · user"
 msgstr ""
 
-msgid "Giden · asistan"
+msgid "Outgoing · assistant"
 msgstr ""
 
-msgid "Giden · araç sonucu"
+msgid "Outgoing · tool result"
 msgstr ""
 
-msgid "Gelen · hata"
+msgid "Incoming · error"
 msgstr ""
 
-msgid "Gelen · cevap"
+msgid "Incoming · reply"
 msgstr ""
 
-msgid "%s araç gösteriliyor"
+msgid "Showing %s tools"
 msgstr ""
 
-msgid "%s seçili"
+msgid "%s selected"
 msgstr ""
 
-msgid "Görsel hazırlanıyor…"
+msgid "Preparing visual…"
 msgstr ""
 
-msgid "Görsel çizilemedi; kodu:"
+msgid "Could not draw the visual; its code:"
 msgstr ""
 
-msgid "Görsel"
+msgid "Visual"
 msgstr ""
 
-msgid "Bağlantı kurulamadı. İnternet bağlantınızı kontrol edip tekrar deneyin."
+msgid "Could not connect. Check your internet connection and try again."
 msgstr ""
 
-msgid "Yeni sohbet"
+msgid "New chat"
 msgstr ""
 
-msgid "AI'ya sor"
+msgid "Ask AI"
 msgstr ""
 
-msgid "Yapay zekâ asistanı"
+msgid "AI assistant"
 msgstr ""
 
-msgid "Durdur"
+msgid "Stop"
 msgstr ""
 
-msgid "Genişliği değiştir"
+msgid "Resize width"
 msgstr ""
 
-msgid "Boyutu değiştir"
+msgid "Resize"
 msgstr ""
 
-msgid "Sohbetlerde ara"
+msgid "Search chats"
 msgstr ""
 
-msgid "Bir şey sorun ya da bir iş verin…"
+msgid "Ask something or give a task…"
 msgstr ""
 
-msgid "Gönder"
+msgid "Send"
 msgstr ""
 
-msgid "Sağa yerleştir"
+msgid "Dock right"
 msgstr ""
 
-msgid "Onayınız gerekiyor: %s"
+msgid "Your approval is needed: %s"
 msgstr ""
 
-msgid "%s çalışıyor…"
+msgid "%s running…"
 msgstr ""
 
-msgid "Düşünüyor…"
+msgid "Thinking…"
 msgstr ""
 
-msgid "Size nasıl yardımcı olabilirim?"
+msgid "How can I help you?"
 msgstr ""
 
-msgid "İçerik, ayarlar, raporlar: yetkinizin açtığı her şey. Değişiklik yapmadan önce onayınızı isterim."
+msgid "Content, settings, reports: anything your permissions allow. I ask for your approval before making changes."
 msgstr ""
 
-msgid "Bu sayfa ve site hakkında sorabilir, iş verebilirsiniz."
+msgid "You can ask about this page and the site, or give me a task."
 msgstr ""
 
-msgid "Düşünüyor"
+msgid "Thinking"
 msgstr ""
 
-msgid "Tekrar dene"
+msgid "Retry"
 msgstr ""
 
-msgid "Mesajı düzenle"
+msgid "Edit message"
 msgstr ""
 
-msgid "Bu mesaj ve sonrası yeniden yazılır."
+msgid "This message and everything after it will be rewritten."
 msgstr ""
 
-msgid "İptal"
+msgid "Cancel"
 msgstr ""
 
-msgid "Düzenle"
+msgid "Edit"
 msgstr ""
 
-msgid "Bu noktaya geri dön"
+msgid "Rewind to here"
 msgstr ""
 
-msgid "Çalışıyor"
+msgid "Working"
 msgstr ""
 
-msgid "%s düşündü"
+msgid "Thought for %s"
 msgstr ""
 
-msgid "Model cevap hazırlıyor…"
+msgid "The model is preparing an answer…"
 msgstr ""
 
-msgid "reddedildi"
+msgid "rejected"
 msgstr ""
 
-msgid "onay bekliyor"
+msgid "awaiting approval"
 msgstr ""
 
-msgid "Girdi"
+msgid "No result"
 msgstr ""
 
-msgid "Sonuç yok"
+msgid "Your approval is needed"
 msgstr ""
 
-msgid "Onayınız gerekiyor"
+msgid "The assistant wants to make the changes below. None of them run until you approve."
 msgstr ""
 
-msgid "Asistan aşağıdaki değişiklikleri yapmak istiyor. Siz onaylamadan hiçbiri çalışmaz."
+msgid "Reject"
 msgstr ""
 
-msgid "Reddet"
+msgid "Approve"
 msgstr ""
 
-msgid "Onayla"
+msgid "Data to be sent"
 msgstr ""
 
-msgid "Gönderilecek veri"
+msgid "%1$s / %2$s decided"
 msgstr ""
 
-msgid "%1$s / %2$s karar verildi"
+msgid "Reject all"
 msgstr ""
 
-msgid "Tümünü reddet"
+msgid "Approve all"
 msgstr ""
 
-msgid "Tümünü onayla"
+msgid "Continue"
 msgstr ""
 
-msgid "Devam et"
+msgid "The conversation after this message will be deleted. Continue?"
 msgstr ""
 
-msgid "Bu mesajdan sonraki konuşma silinecek. Devam edilsin mi?"
+msgid "Choose model"
 msgstr ""
 
-msgid "Model seç"
+msgid "Enter sends, Shift+Enter for a new line"
 msgstr ""
 
-msgid "Enter gönderir, Shift+Enter yeni satır"
+msgid "Flux AI is not set up yet: an API key and model are needed."
 msgstr ""
 
-msgid "Flux AI henüz ayarlanmadı: bir API anahtarı ve model girilmeli."
+msgid "Search titles or content…"
 msgstr ""
 
-msgid "Başlıkta ya da içerikte ara…"
+msgid "Include archived"
 msgstr ""
 
-msgid "Arşivdekileri de göster"
+msgid "Enter opens the first result, Esc closes."
 msgstr ""
 
-msgid "Enter ilk sonucu açar, Esc kapatır."
+msgid "No results."
 msgstr ""
 
-msgid "Sonuç yok."
+msgid "No chats yet."
 msgstr ""
 
-msgid "Henüz sohbet yok."
+msgid "Untitled chat"
 msgstr ""
 
-msgid "Adsız sohbet"
+msgid "Archive"
 msgstr ""
 
-msgid "Arşiv"
+msgid "Awaiting approval"
 msgstr ""
 
-msgid "Onay bekliyor"
+msgid "Options"
 msgstr ""
 
-msgid "Seçenekler"
+msgid "Rename"
 msgstr ""
 
-msgid "Yeniden adlandır"
+msgid "Unarchive"
 msgstr ""
 
-msgid "Arşivden çıkar"
+msgid "Delete this chat permanently?"
 msgstr ""
 
-msgid "Arşive al"
+msgid "Search models…"
 msgstr ""
 
-msgid "Bu sohbet kalıcı olarak silinsin mi?"
+msgid "No matching model; you can type the ID manually."
 msgstr ""
 
-msgid "Model ara…"
+msgid "no tools"
 msgstr ""
 
-msgid "Eşleşen model yok; kimliği elle yazabilirsiniz."
+msgid "Loading models…"
 msgstr ""
 
-msgid "araç yok"
+msgid "0 means unlimited."
 msgstr ""
 
-msgid "Modeller yükleniyor…"
+msgid "1 hour"
 msgstr ""
+
+msgid "5 minutes"
+msgstr ""
+
+msgid "Anthropic key"
+msgstr ""
+
+msgid "Monthly limit (USD)"
+msgstr ""
+
+msgid "Low"
+msgstr ""
+
+msgid "Thinking summary"
+msgstr ""
+
+msgid "Evolink key"
+msgstr ""
+
+msgid "Fal key"
+msgstr ""
+
+msgid "Flux AI"
+msgstr ""
+
+msgid "Gemini key"
+msgstr ""
+
+msgid "Gotenberg key"
+msgstr ""
+
+msgid "Daily limit (USD)"
+msgstr ""
+
+msgid "Record"
+msgstr ""
+
+msgid "Keep records (days)"
+msgstr ""
+
+msgid "Keep content (days)"
+msgstr ""
+
+msgid "No records"
+msgstr ""
+
+msgid "MCP"
+msgstr ""
+
+msgid "Model and tool calls are listed here. Request bodies are not sent to the app."
+msgstr ""
+
+msgid "Model, tool or error"
+msgstr ""
+
+msgid "OpenAI key"
+msgstr ""
+
+msgid "OpenRouter key"
+msgstr ""
+
+msgid "Window"
+msgstr ""
+
+msgid "Chat on the site"
+msgstr ""
+
+msgid "Chat layout"
+msgstr ""
+
+msgid "Chat instructions"
+msgstr ""
+
+msgid "When the limit is hit"
+msgstr ""
+
+msgid "Warn"
+msgstr ""
+
+msgid "Docked"
+msgstr ""
+
+msgid "Chat in admin"
+msgstr ""
+
+msgid "High"
+msgstr ""
+
+msgid "Effort"
+msgstr ""
+
+msgid "Store request bodies"
+msgstr ""
+
+msgid "[['%stool updated.', 'tr']]"
+msgid_plural "[['%stool updated.', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "[['%splugin', 'tr']]"
+msgid_plural "[['%splugin', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgstr ""
+
+msgid "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n"
+msgstr ""
+
+msgid "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]"
+msgstr ""
+
+msgid "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgid_plural "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+msgstr[0] ""
+msgstr[1] ""

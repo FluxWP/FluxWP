@@ -489,7 +489,7 @@ function flxapp_rest_manifest_one( WP_REST_Request $req ) {
 	$mods = flxapp_user_manifest();
 	$id   = sanitize_key( (string) $req['id'] );
 	if ( ! isset( $mods[ $id ] ) ) {
-		return new WP_Error( 'flxapp_not_found', __( 'Manifest bulunamadı.', 'flx-app' ), array( 'status' => 404 ) );
+		return new WP_Error( 'flxapp_not_found', __( 'Manifest not found.', 'flx-app' ), array( 'status' => 404 ) );
 	}
 	return flxapp_etag_response( $mods[ $id ], substr( md5( wp_json_encode( $mods[ $id ] ) ), 0, 12 ), $req );
 }

@@ -73,9 +73,9 @@ function flxai_limits() {
 
 function flxai_period_label( $p ) {
 	$l = array(
-		'day'   => __( 'Günlük', 'flx-ai' ),
-		'week'  => __( 'Haftalık', 'flx-ai' ),
-		'month' => __( 'Aylık', 'flx-ai' ),
+		'day'   => __( 'Daily', 'flx-ai' ),
+		'week'  => __( 'Weekly', 'flx-ai' ),
+		'month' => __( 'Monthly', 'flx-ai' ),
 	);
 	return $l[ $p ] ?? $p;
 }
@@ -117,7 +117,7 @@ function flxai_budget_check( array $opts = array() ) {
 			return new WP_Error(
 				'flxai_limit',
 				/* translators: 1: period (Günlük…), 2: limit, 3: reset date */
-				sprintf( __( '%1$s yapay zekâ harcama sınırı (%2$s) doldu. %3$s yenilenir; sınırı Flux AI & MCP › Ayarlar\'dan değiştirebilirsiniz.', 'flx-ai' ), $row['label'], flxai_usd( $row['limit'], 2 ), flx_date( $row['resets'], 'datetime' ) ),
+				sprintf( __( '%1$s AI spending limit (%2$s) reached. It resets %3$s; you can change it in Flux AI & MCP › Settings.', 'flx-ai' ), $row['label'], flxai_usd( $row['limit'], 2 ), flx_date( $row['resets'], 'datetime' ) ),
 				array( 'status' => 402, 'http' => 402, 'period' => $p )
 			);
 		}
@@ -146,10 +146,10 @@ function flxai_budget_after_log() {
 		}
 		$sent[ $key ] = $level;
 		/* translators: 1: period, 2: percent */
-		$subject = sprintf( __( 'Flux AI: %1$s harcama sınırının %2$s%%\'i kullanıldı', 'flx-ai' ), $row['label'], number_format_i18n( $row['pct'], 0 ) );
+		$subject = sprintf( __( 'Flux AI: %2$s%% of the %1$s spending limit used', 'flx-ai' ), $row['label'], number_format_i18n( $row['pct'], 0 ) );
 		$body    = sprintf(
 			/* translators: 1: spent, 2: limit, 3: reset date, 4: url */
-			__( "Harcanan: %1\$s / Sınır: %2\$s\nYenilenme: %3\$s\n\nAyrıntı: %4\$s", 'flx-ai' ),
+			__( '\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n', 'flx-ai' ),
 			flxai_usd( $row['spent'], 2 ),
 			flxai_usd( $row['limit'], 2 ),
 			flx_date( $row['resets'], 'datetime' ),
@@ -192,15 +192,15 @@ add_action(
 				esc_html(
 					sprintf(
 						/* translators: 1: period, 2: spent, 3: limit, 4: percent */
-						__( '%1$s harcama: %2$s / %3$s (%%%4$s).', 'flx-ai' ),
+						__( '%1$s spending: %2$s / %3$s (%4$s%%).', 'flx-ai' ),
 						$row['label'],
 						flxai_usd( $row['spent'], 2 ),
 						flxai_usd( $row['limit'], 2 ),
 						number_format_i18n( $row['pct'], 0 )
-					) . ( $row['over'] && 'block' === flxai_setting( 'limit_action' ) ? ' ' . __( 'Yapay zekâ istekleri durduruldu.', 'flx-ai' ) : '' )
+					) . ( $row['over'] && 'block' === flxai_setting( 'limit_action' ) ? ' ' . __( 'AI requests are stopped.', 'flx-ai' ) : '' )
 				),
 				esc_url( admin_url( 'admin.php?page=flx-ai-billing' ) ),
-				esc_html__( 'Faturalandırma', 'flx-ai' )
+				esc_html__( 'Billing', 'flx-ai' )
 			);
 			return;
 		}

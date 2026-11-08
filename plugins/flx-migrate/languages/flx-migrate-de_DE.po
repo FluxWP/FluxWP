@@ -1,0 +1,177 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%d rows"
+msgstr "%dZeilen"
+
+msgid "%1$d files, %2$s"
+msgstr "%1$d-Dateien,%2$s"
+
+msgid "Content may still use image URLs from this theme; check your pages first."
+msgstr "Der Inhalt verwendet möglicherweise weiterhin Bild-URLs aus diesem Thema. Überprüfen Sie zuerst Ihre Seiten."
+
+msgid "%d old settings"
+msgstr "%dalte Einstellungen"
+
+msgid "Old tables"
+msgstr "Alte Tische"
+
+msgid "Backup tables (sample data of the new plugins)"
+msgstr "Backup-Tabellen (Beispieldaten der neuen Plugins)"
+
+msgid "Old upload folders"
+msgstr "Alte Upload-Ordner"
+
+msgid "Old plugins (inactive)"
+msgstr "Alte Plugins (inaktiv)"
+
+msgid "Old themes"
+msgstr "Alte Themen"
+
+msgid "Old settings"
+msgstr "Alte Einstellungen"
+
+msgid "Leftovers"
+msgstr "Reste"
+
+msgid "%d items deleted."
+msgstr "%d-Elemente gelöscht."
+
+msgid "Could not delete:"
+msgstr "Konnte nicht gelöscht werden:"
+
+msgid "No tables, folders, plugins or settings with old names are left."
+msgstr "Es bleiben keine Tabellen, Ordner, Plugins oder Einstellungen mit alten Namen übrig."
+
+msgid "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+msgstr "Was nach der Migration unter den alten Namen übrig bleibt. Löschen Sie es, sobald Sie überprüft haben, dass die Website mit den neuen Plugins funktioniert. Der Löschvorgang kann nicht rückgängig gemacht werden. Erstellen Sie zunächst ein Backup."
+
+msgid "The selected items will be deleted permanently. Did you take a backup?"
+msgstr "Die ausgewählten Elemente werden dauerhaft gelöscht. Hast du ein Backup gemacht?"
+
+msgid "What"
+msgstr "Was"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Delete selected"
+msgstr "Ausgewählte löschen"
+
+msgid "Finish the migration first."
+msgstr "Schließen Sie zunächst die Migration ab."
+
+msgid "WooCommerce orders"
+msgstr "WooCommerce-Bestellungen"
+
+msgid "Order items"
+msgstr "Artikel bestellen"
+
+msgid "Encrypted settings (passwords, keys)"
+msgstr "Verschlüsselte Einstellungen (Passwörter, Schlüssel)"
+
+msgid "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+msgstr "Natrium fehlt: Verschlüsselte Einstellungen konnten nicht verschoben werden, geben Sie sie erneut in das Panel ein."
+
+msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+msgstr "Mit%dverschlüsselte Werte konnten nicht geöffnet werden (die Site-Schlüssel haben sich möglicherweise geändert); Geben Sie diese erneut in das Panel ein."
+
+msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+msgstr "Verschiebt Site-Daten, die unter den alten Paketnamen gespeichert sind (Einstellungen, Tabellen, Meta, Inhalt, Thema, Upload-Ordner) in die FluxWP-Namen. Der Name „map“ befindet sich in „map.json“."
+
+msgid "%1$s is empty, %2$s was left as it is."
+msgstr "%1$sist leer,%2$swurde so belassen."
+
+msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+msgstr "%1$swar nicht leer: Es wurde als%2$sgesichert und durch%3$sersetzt."
+
+msgid "%3$d items from %1$s were moved into %2$s."
+msgstr "%3$d-Elemente von%1$swurden nach%2$sverschoben."
+
+msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+msgstr "%2$d-Dateien in%1$swaren bereits im neuen Ordner vorhanden; die alten Kopien wurden an Ort und Stelle belassen."
+
+msgid "Step"
+msgstr "Schritt"
+
+msgid "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+msgstr "Die alte Update-Server-Adresse und der Site-Schlüssel wurden entfernt. Geben Sie den Schlüssel des neuen Servers unter FluxWP Panel › Einstellungen ein."
+
+msgid "Migrate"
+msgstr "Migrieren"
+
+msgid "Migration finished on %s. You can delete this plugin now."
+msgstr "Die Migration wurde am%sabgeschlossen. Sie können dieses Plugin jetzt löschen."
+
+msgid "Migration finished. Check that the new plugins are active and clear the cache."
+msgstr "Migration abgeschlossen. Überprüfen Sie, ob die neuen Plugins aktiv sind und leeren Sie den Cache."
+
+msgid "Settings (options)"
+msgstr "Einstellungen (Optionen)"
+
+msgid "Finish"
+msgstr "Fertig"
+
+msgid "To change"
+msgstr "Zu ändern"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+msgstr "Verschiebt die unter den alten Namen gespeicherten Daten auf die neuen Namen. Erstellen Sie zunächst ein Backup, laden Sie die neuen Plugins und das neue Theme hoch (aktivieren Sie sie nicht), klicken Sie dann auf „Scannen“ und anschließend auf „Migrieren“."
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "User meta"
+msgstr "Benutzer-Meta"
+
+msgid "Table contents"
+msgstr "Tabelleninhalt"
+
+msgid "Tables"
+msgstr "Tische"
+
+msgid "Taxonomies"
+msgstr "Taxonomien"
+
+msgid "Done"
+msgstr "Fertig"
+
+msgid "Scan"
+msgstr "Scannen"
+
+msgid "Theme"
+msgstr "Thema"
+
+msgid "Term meta"
+msgstr "Begriff Meta"
+
+msgid "Data will be moved to the new names. Did you take a backup?"
+msgstr "Die Daten werden auf die neuen Namen verschoben. Hast du ein Backup gemacht?"
+
+msgid "Post meta"
+msgstr "Post-Meta"
+
+msgid "Posts and pages"
+msgstr "Beiträge und Seiten"
+
+msgid "Upload folders"
+msgstr "Ordner hochladen"
+
+msgid "Working…"
+msgstr "Arbeiten..."
+
+msgid "Upload these new packages first (do not activate them):"
+msgstr "Laden Sie zuerst diese neuen Pakete hoch (aktivieren Sie sie nicht):"
+
+msgid "[['%drow', 'tr']]"
+msgid_plural "[['%drow', 'tr']]"
+msgstr[0] "[['%drow', 'tr']]"
+msgstr[1] "[['%drow', 'tr']]"
+
+msgid "[['%dold setting', 'tr']]"
+msgid_plural "[['%dold setting', 'tr']]"
+msgstr[0] "[['%dalte Einstellung', 'tr']]"
+msgstr[1] "[['%dalte Einstellung', 'tr']]"

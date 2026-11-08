@@ -203,11 +203,11 @@ final class FLXB_Types {
 				return '';
 			case 'upcoming':
 				/* translators: %s: start date */
-				return sprintf( __( 'Donations for this cause open on %s.', 'flx-donate' ), flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) );
+				return sprintf( __( '\\nDonations for this cause open on%s.\\n', 'flx-donate' ), flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) );
 			case 'ended':
-				return __( 'Donations for this cause have ended.', 'flx-donate' );
+				return __( '\\nDonations for this cause have ended.\\n', 'flx-donate' );
 			default:
-				return __( 'Donations for this cause are closed at the moment.', 'flx-donate' );
+				return __( '\\nDonations for this cause are closed at the moment.\\n', 'flx-donate' );
 		}
 	}
 
@@ -305,7 +305,7 @@ final class FLXB_Types {
 
 	private static function conflict_notice( $fid, array $other ) {
 		/* translators: 1: form title, 2: other donation type */
-		return sprintf( __( 'The form “%1$s” is already linked to the open donation type “%2$s” for the same dates, so it was not linked here. Close that type, change the dates, or use another form.', 'flx-donate' ), flxb_form_title( $fid ), $other['title'] );
+		return sprintf( __( '\\nThe form “%1$s” is already linked to the open donation type “%2$s” for the same dates, so it was not linked here. Close that type, change the dates, or use another form.\\n', 'flx-donate' ), flxb_form_title( $fid ), $other['title'] );
 	}
 
 	/**
@@ -318,7 +318,7 @@ final class FLXB_Types {
 		$t     = flxb_table( 'types' );
 		$title = sanitize_text_field( (string) ( $d['title'] ?? '' ) );
 		if ( '' === $title ) {
-			return new WP_Error( 'flxb_title', __( 'Please enter a title.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_title', __( '\\nPlease enter a title.\\n', 'flx-donate' ) );
 		}
 		$slug = sanitize_title( '' !== (string) ( $d['slug'] ?? '' ) ? $d['slug'] : remove_accents( $title ) );
 		$slug = '' === $slug ? 'bagis' : $slug;
@@ -334,12 +334,12 @@ final class FLXB_Types {
 		$start = $date( $d['start_date'] ?? '' );
 		$end   = $date( $d['end_date'] ?? '' );
 		if ( $start && $end && $end < $start ) {
-			return new WP_Error( 'flxb_dates', __( 'The end date must be after the start date.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_dates', __( '\\nThe end date must be after the start date.\\n', 'flx-donate' ) );
 		}
 		$options = self::clean_options( $d['options'] ?? array() );
 		$free    = ! empty( $d['allow_free'] );
 		if ( ! $options && ! $free ) {
-			return new WP_Error( 'flxb_options', __( 'Add at least one option with a price, or allow a free amount.', 'flx-donate' ) );
+			return new WP_Error( 'flxb_options', __( '\\nAdd at least one option with a price, or allow a free amount.\\n', 'flx-donate' ) );
 		}
 		self::$notices = array();
 		$old      = $id ? self::get( $id ) : null;
@@ -441,10 +441,10 @@ final class FLXB_Types {
 
 	public static function intentions() {
 		return array(
-			'vacip'  => __( 'Vacip', 'flx-donate' ),
-			'adak'   => __( 'Adak', 'flx-donate' ),
-			'akika'  => __( 'Akika', 'flx-donate' ),
-			'sifa'   => __( 'Şifa', 'flx-donate' ),
+			'vacip'  => __( '\\nVacip\\n', 'flx-donate' ),
+			'adak'   => __( '\\nAdak\\n', 'flx-donate' ),
+			'akika'  => __( '\\nAkika\\n', 'flx-donate' ),
+			'sifa'   => __( '\\nhealing\\n', 'flx-donate' ),
 			'nafile' => __( 'Nafile', 'flx-donate' ),
 		);
 	}
@@ -604,7 +604,7 @@ final class FLXB_Types {
 				}
 			}
 			if ( (int) $t['max_quantity'] > 0 && $qty > (int) $t['max_quantity'] ) {
-				return array_merge( $out, array( 'ok' => false, 'message' => sprintf( /* translators: %s: maximum quantity */ __( 'You can choose at most %s.', 'flx-donate' ), number_format_i18n( (int) $t['max_quantity'] ) ) ) );
+				return array_merge( $out, array( 'ok' => false, 'message' => sprintf( /* translators: %s: maximum quantity */ __( '\\nYou can choose at most%s.\\n', 'flx-donate' ), number_format_i18n( (int) $t['max_quantity'] ) ) ) );
 			}
 		}
 		foreach ( $rows as $r ) {
@@ -620,7 +620,7 @@ final class FLXB_Types {
 					continue;
 				}
 				if ( ! self::option_on_sale( $o ) ) {
-					return array_merge( $out, array( 'ok' => false, 'mapped' => true, 'message' => __( 'This option is not open for donations at the moment.', 'flx-donate' ) ) );
+					return array_merge( $out, array( 'ok' => false, 'mapped' => true, 'message' => __( '\\nThis option is not open for donations at the moment.\\n', 'flx-donate' ) ) );
 				}
 				$units          = max( 1, (int) $opts[ $id ]['units'] ) * $qty;
 				$amount         = round( $o['price'] * $units, 2 );
@@ -633,7 +633,7 @@ final class FLXB_Types {
 				$raw           = is_numeric( $r['price'] ?? null ) ? $r['price'] : ( $r['value'] ?? null );
 				$v             = is_numeric( $raw ) ? round( abs( (float) $raw ), 2 ) : 0.0;
 				if ( $v > 0 && $t['allow_free'] ) {
-					$out['lines'][] = array( 'key' => '', 'label' => __( 'Free amount', 'flx-donate' ), 'units' => 1, 'unit_price' => $v, 'amount' => $v, 'row' => $id, 'unit' => '', 'units_per' => 1 );
+					$out['lines'][] = array( 'key' => '', 'label' => __( '\\nFree amount\', \'en\']]', 'flx-donate' ), 'units' => 1, 'unit_price' => $v, 'amount' => $v, 'row' => $id, 'unit' => '', 'units_per' => 1 );
 					$out['total']  += $v;
 					$out['quantity'] += 1;
 				}
@@ -687,9 +687,9 @@ final class FLXB_Types {
 		}
 		$text = flxb_proxy_text();
 		if ( '' === $cf || ! $text ) {
-			$out['error'] = __( 'This donation needs a proxy (vekâlet) consent, but the form is not set up for it yet. Please contact the site administrator.', 'flx-donate' );
+			$out['error'] = __( '\\nThis donation needs a proxy (vekâlet) consent, but the form is not set up for it yet. Please contact the site administrator.\\n', 'flx-donate' );
 		} elseif ( ! $ok ) {
-			$out['error'] = __( 'Please accept the proxy (vekâlet) text to continue.', 'flx-donate' );
+			$out['error'] = __( '\\nPlease accept the proxy (vekâlet) text to continue.\\n', 'flx-donate' );
 		} else {
 			$out['consent'] = array( 'version' => (int) $text['version'], 'accepted_at' => flxb_now(), 'source' => 'form' );
 		}
@@ -774,19 +774,19 @@ final class FLXB_Types {
 	public static function samples() {
 		return array(
 			'trees'   => array(
-				'label'      => __( 'Tree planting (sapling donations)', 'flx-donate' ),
+				'label'      => __( '\\nTree planting (sapling donations)\\n', 'flx-donate' ),
 				'categories' => array( 'fidan' => __( 'Saplings', 'flx-donate' ) ),
 				'types'      => array(
 					array( 'title' => __( 'Sapling donation', 'flx-donate' ), 'category' => 'fidan', 'options' => array( array( 'key' => 'fidan', 'label' => __( 'Sapling', 'flx-donate' ), 'price' => 150, 'unit' => 'fidan' ) ), 'allow_quantity' => 1, 'allow_recurring' => 1, 'goal_amount' => 0 ),
 				),
 			),
 			'charity' => array(
-				'label'      => __( 'Charity (kurban, ramazan, general)', 'flx-donate' ),
-				'categories' => array( 'kurban' => __( 'Kurban', 'flx-donate' ), 'ramazan' => __( 'Ramazan', 'flx-donate' ), 'general' => __( 'General', 'flx-donate' ) ),
+				'label'      => __( '\\nCharity (kurban, ramazan, general)\\n', 'flx-donate' ),
+				'categories' => array( 'kurban' => __( 'Kurban', 'flx-donate' ), 'ramazan' => __( '\\nRamazan\\n', 'flx-donate' ), 'general' => __( 'General', 'flx-donate' ) ),
 				'types'      => array(
-					array( 'title' => __( 'Kurban share (cattle)', 'flx-donate' ), 'category' => 'kurban', 'options' => array( array( 'key' => 'hisse', 'label' => __( 'One share (1/7)', 'flx-donate' ), 'price' => 0, 'unit' => 'hisse' ), array( 'key' => 'tam', 'label' => __( 'Whole animal (7 shares)', 'flx-donate' ), 'price' => 0, 'unit' => 'hisse', 'units_per' => 7 ) ), 'allow_quantity' => 1, 'meta' => array( 'requires_proxy' => true, 'intention' => 'vacip', 'grouping' => 'buyukbas' ) ),
-					array( 'title' => __( 'Kurban (sheep or goat)', 'flx-donate' ), 'category' => 'kurban', 'options' => array( array( 'key' => 'kucukbas', 'label' => __( 'Sheep or goat', 'flx-donate' ), 'price' => 0 ) ), 'allow_quantity' => 1, 'meta' => array( 'requires_proxy' => true, 'intention' => 'vacip', 'grouping' => 'kucukbas' ) ),
-					array( 'title' => __( 'Ramazan', 'flx-donate' ), 'category' => 'ramazan', 'options' => array( array( 'key' => 'iftar', 'label' => __( 'Iftar', 'flx-donate' ), 'price' => 0, 'unit' => 'kisi' ), array( 'key' => 'sahur', 'label' => __( 'Sahur', 'flx-donate' ), 'price' => 0, 'unit' => 'kisi' ), array( 'key' => 'fitre', 'label' => __( 'Fitre', 'flx-donate' ), 'price' => 0, 'unit' => 'kisi' ) ), 'allow_quantity' => 1 ),
+					array( 'title' => __( '\\nKurban share (cattle)\\n', 'flx-donate' ), 'category' => 'kurban', 'options' => array( array( 'key' => 'hisse', 'label' => __( '\\nOne share (1/7)\\n', 'flx-donate' ), 'price' => 0, 'unit' => 'hisse' ), array( 'key' => 'tam', 'label' => __( '\\nWhole animal (7 shares)\\n', 'flx-donate' ), 'price' => 0, 'unit' => 'hisse', 'units_per' => 7 ) ), 'allow_quantity' => 1, 'meta' => array( 'requires_proxy' => true, 'intention' => 'vacip', 'grouping' => 'buyukbas' ) ),
+					array( 'title' => __( '\\nSacrifice (sheep or goat)\\n', 'flx-donate' ), 'category' => 'kurban', 'options' => array( array( 'key' => 'kucukbas', 'label' => __( 'Sheep or goat', 'flx-donate' ), 'price' => 0 ) ), 'allow_quantity' => 1, 'meta' => array( 'requires_proxy' => true, 'intention' => 'vacip', 'grouping' => 'kucukbas' ) ),
+					array( 'title' => __( '\\nRamazan\\n', 'flx-donate' ), 'category' => 'ramazan', 'options' => array( array( 'key' => 'iftar', 'label' => __( 'Iftar', 'flx-donate' ), 'price' => 0, 'unit' => 'kisi' ), array( 'key' => 'sahur', 'label' => __( '\\nSahur\\n', 'flx-donate' ), 'price' => 0, 'unit' => 'kisi' ), array( 'key' => 'fitre', 'label' => __( '\\nFitre\\n', 'flx-donate' ), 'price' => 0, 'unit' => 'kisi' ) ), 'allow_quantity' => 1 ),
 					array( 'title' => __( 'General donation', 'flx-donate' ), 'category' => 'general', 'options' => array(), 'allow_free' => 1, 'min_amount' => 0, 'allow_recurring' => 1 ),
 				),
 			),

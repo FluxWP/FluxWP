@@ -416,10 +416,10 @@ function flxi_normalize_phone( $raw ) {
 /** Alt kısım çizimleri (e-postanın en altındaki ağaç silüeti). */
 function flxi_footer_arts() {
 	return array(
-		'none'    => __( 'Yok', 'flx-mail' ),
-		'orman'   => __( 'Orman', 'flx-mail' ),
-		'tepeler' => __( 'Tepeler', 'flx-mail' ),
-		'cizgi'   => __( 'Çizgi', 'flx-mail' ),
+		'none'    => __( 'None', 'flx-mail' ),
+		'orman'   => __( 'Forest', 'flx-mail' ),
+		'tepeler' => __( 'Hills', 'flx-mail' ),
+		'cizgi'   => __( 'Line art', 'flx-mail' ),
 	);
 }
 

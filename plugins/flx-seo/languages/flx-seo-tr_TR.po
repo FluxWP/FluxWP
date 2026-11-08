@@ -1,0 +1,1211 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Pages"
+msgstr "Sayfalar"
+
+msgid "Recent posts"
+msgstr "Son yazılar"
+
+msgid "Products"
+msgstr "Ürünler"
+
+msgid "Optional"
+msgstr "İsteğe bağlı"
+
+msgid "Sitemap"
+msgstr "Site haritası"
+
+msgid "List of all public pages"
+msgstr "Tüm herkese açık sayfaların listesi"
+
+msgid "RSS feed"
+msgstr "RSS beslemesi"
+
+msgid "Searches the site and opens the results page."
+msgstr "Sitede arama yapar ve sonuç sayfasını açar."
+
+msgid "Words to search for"
+msgstr "Aranacak kelimeler"
+
+msgid "Unknown fix."
+msgstr "Bilinmeyen düzeltme."
+
+msgid "Turn on llms.txt"
+msgstr "llms.txt'i aç"
+
+msgid "Flux SEO builds /llms.txt from the site name, description, menu and recent content."
+msgstr "Flux SEO /llms.txt dosyasını site adı, açıklama, menü ve son içeriklerden üretir."
+
+msgid "Turn on the WebMCP search tool"
+msgstr "WebMCP arama aracını aç"
+
+msgid "Adds toolname/tooldescription to the search form so browser agents see it as a tool."
+msgstr "Arama formuna toolname/tooldescription eklenir; tarayıcıdaki ajanlar formu araç olarak görür."
+
+msgid "Turn on security headers"
+msgstr "Güvenlik başlıklarını aç"
+
+msgid "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups and a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Do not turn on if the site is embedded in other sites with an iframe."
+msgstr "X-Frame-Options: SAMEORIGIN, COOP same-origin-allow-popups ve temel CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). Site başka sitelerde iframe ile gösteriliyorsa açmayın."
+
+msgid "HSTS includeSubDomains"
+msgstr "HSTS includeSubDomains"
+
+msgid "If every subdomain is HTTPS, HSTS also covers subdomains."
+msgstr "Tüm alt alan adları HTTPS ise HSTS alt alan adlarını da kapsar."
+
+msgid "Turned on. Run the site audit again."
+msgstr "Açıldı. Site denetimini yeniden çalıştırın."
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Organization and social"
+msgstr "Kurum ve sosyal"
+
+msgid "SEO check"
+msgstr "SEO kontrolü"
+
+msgid "Site audit"
+msgstr "Site denetimi"
+
+msgid "AI (MCP)"
+msgstr "Yapay zekâ (MCP)"
+
+msgid "llms.txt follows recommendations"
+msgstr "llms.txt önerilere uygun"
+
+msgid "Accessibility tree is well-formed"
+msgstr "Erişilebilirlik ağacı düzgün"
+
+msgid "Forms are WebMCP tools"
+msgstr "Formlar WebMCP aracı"
+
+msgid "Low layout shift (CLS)"
+msgstr "Yerleşim kayması düşük (CLS)"
+
+msgid "On-site"
+msgstr "Site içi"
+
+msgid "PageSpeed mobile"
+msgstr "PageSpeed mobil"
+
+msgid "PageSpeed desktop"
+msgstr "PageSpeed masaüstü"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key and runs by itself every day; a PageSpeed run adds Google's real Lighthouse result."
+msgstr "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsız ve her gün kendiliğinden çalışır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler."
+
+msgid "On-site audit: %1$s · %2$s"
+msgstr "Site içi denetim: %1$s · %2$s"
+
+msgid "No audit has run yet."
+msgstr "Henüz denetim yapılmadı."
+
+msgid "Address to audit"
+msgstr "Denetlenecek adres"
+
+msgid "On-site audit"
+msgstr "Site içi denetim"
+
+msgid "Measure with PageSpeed"
+msgstr "PageSpeed ile ölç"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Desktop"
+msgstr "Masaüstü"
+
+msgid "No PageSpeed run yet. Press \"Measure with PageSpeed\" (mobile + desktop takes about 1 minute)."
+msgstr "PageSpeed ölçümü yok. \"PageSpeed ile ölç\" düğmesine basın (mobil + masaüstü yaklaşık 1 dakika)."
+
+msgid "Agentic browsing"
+msgstr "Ajan uyumu"
+
+msgid "MCP server on"
+msgstr "MCP sunucusu açık"
+
+msgid "MCP server off"
+msgstr "MCP sunucusu kapalı"
+
+msgid "Recommendations"
+msgstr "Öneri sayısı"
+
+msgid "Filter by priority"
+msgstr "Önceliğe göre süz"
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "Section"
+msgstr "Başlık"
+
+msgid "All sections"
+msgstr "Tüm başlıklar"
+
+msgid "Start the audit; recommendations are listed here by priority."
+msgstr "Denetimi başlatın; öneriler burada önceliğe göre sıralanır."
+
+msgid "No recommendations. All good."
+msgstr "Öneri yok. Her şey yolunda."
+
+msgid "How to fix:"
+msgstr "Nasıl düzeltilir:"
+
+msgid "Where to fix: %s"
+msgstr "Düzeltme yeri: %s"
+
+msgid "Fix"
+msgstr "Düzelt"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "PageSpeed Insights API key"
+msgstr "PageSpeed Insights API anahtarı"
+
+msgid "Saved (type to replace)"
+msgstr "Kayıtlı (değiştirmek için yazın)"
+
+msgid "Delete key"
+msgstr "Anahtarı sil"
+
+msgid "Optional but recommended: the keyless quota is shared and runs out quickly. In Google Cloud Console › APIs, enable \"PageSpeed Insights API\" and create a free key."
+msgstr "İsteğe bağlı ama önerilir: anahtarsız kota paylaşımlı ve çabuk dolar. Google Cloud Console › API'ler › \"PageSpeed Insights API\"yi etkinleştirip ücretsiz anahtar oluşturun."
+
+msgid "Generate /llms.txt (site name, description, menu pages, recent content)"
+msgstr "/llms.txt üret (site adı, açıklama, menü sayfaları, son içerikler)"
+
+msgid "llms.txt intro text (optional)"
+msgstr "llms.txt giriş metni (isteğe bağlı)"
+
+msgid "E.g. who your organization is, what it does, which pages agents should read first."
+msgstr "Ör. Kurumumuz kimdir, ne yapar, ajanlar hangi sayfaları öncelikle okumalı."
+
+msgid "WebMCP: expose the search form to browser agents as a tool"
+msgstr "WebMCP: arama formunu tarayıcı ajanlarına araç olarak tanıt"
+
+msgid "Security headers"
+msgstr "Güvenlik başlıkları"
+
+msgid "Clickjacking protection (X-Frame-Options: SAMEORIGIN, frame-ancestors 'self')"
+msgstr "Clickjacking koruması (X-Frame-Options: SAMEORIGIN, frame-ancestors 'self')"
+
+msgid "Origin isolation (Cross-Origin-Opener-Policy: same-origin-allow-popups)"
+msgstr "Pencere yalıtımı (Cross-Origin-Opener-Policy: same-origin-allow-popups)"
+
+msgid "Basic CSP (object-src 'none'; base-uri 'self'; upgrade-insecure-requests)"
+msgstr "Temel CSP (object-src 'none'; base-uri 'self'; upgrade-insecure-requests)"
+
+msgid "HSTS covers subdomains (includeSubDomains)"
+msgstr "HSTS alt alan adlarını kapsasın (includeSubDomains)"
+
+msgid "HSTS preload (takes months to undo; every subdomain must be HTTPS)"
+msgstr "HSTS preload (geri alması aylar sürer; tüm alt alan adları HTTPS olmalı)"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "New site build guide"
+msgstr "Yeni site yapım rehberi"
+
+msgid "Rules and a checklist for SEO, performance, accessibility, security and agent readiness when you build a new page, theme or preset. AI agents get the same guide with the MCP tool flxseo_site_build_guide, and Flux AI chat gets it as a tool."
+msgstr "Yeni sayfa, tema ya da ön ayar yaparken SEO, performans, erişilebilirlik, güvenlik ve ajan uyumu için kurallar ve kontrol listesi. Yapay zekâ ajanları aynı rehberi MCP aracı flxseo_site_build_guide ile, Flux AI sohbeti de araç olarak alır."
+
+msgid "Download Turkish (.md)"
+msgstr "Türkçe (.md) indir"
+
+msgid "Download English (.md)"
+msgstr "İngilizce (.md) indir"
+
+msgid "On-site audit running…"
+msgstr "Site içi denetim çalışıyor…"
+
+msgid "Measuring PageSpeed mobile (30–40 s)…"
+msgstr "PageSpeed mobil ölçülüyor (30–40 sn)…"
+
+msgid "Measuring PageSpeed desktop…"
+msgstr "PageSpeed masaüstü ölçülüyor…"
+
+msgid "Done, reloading…"
+msgstr "Bitti, sayfa yenileniyor…"
+
+msgid "Failed:"
+msgstr "Olmadı:"
+
+msgid "You do not have permission."
+msgstr "Yetkiniz yok."
+
+msgid "Saved."
+msgstr "Kaydedildi."
+
+msgid "Turned on and the audit was refreshed. If a page cache (LiteSpeed) is on, run Purge All."
+msgstr "Açıldı ve denetim yenilendi. Sayfa önbelleği (LiteSpeed) varsa Purge All yapın."
+
+msgid "Critical"
+msgstr "Kritik"
+
+msgid "High"
+msgstr "Yüksek"
+
+msgid "Medium"
+msgstr "Orta"
+
+msgid "Low"
+msgstr "Düşük"
+
+msgid "Performance"
+msgstr "Performans"
+
+msgid "Accessibility"
+msgstr "Erişilebilirlik"
+
+msgid "Best practices"
+msgstr "En iyi uygulamalar"
+
+msgid "SEO"
+msgstr "SEO"
+
+msgid "Theme / preset"
+msgstr "Tema / ön ayar"
+
+msgid "Content"
+msgstr "İçerik"
+
+msgid "Server"
+msgstr "Sunucu"
+
+msgid "Flux SEO (one click)"
+msgstr "Flux SEO (tek tık)"
+
+msgid "WordPress setting"
+msgstr "WordPress ayarı"
+
+msgid "Home page does not return a successful status code"
+msgstr "Ana sayfa başarılı durum kodu döndürmüyor"
+
+msgid "The page must return 200. It may be maintenance mode, a redirect loop or a PHP error; check System Check and the error log."
+msgstr "Sayfa 200 dönmeli. Bakım modu, yönlendirme döngüsü ya da PHP hatası olabilir; Sistem Kontrolü ve hata günlüğüne bakın."
+
+msgid "Page is blocked from search engines"
+msgstr "Sayfa arama motorlarına kapalı"
+
+msgid "Untick Settings › Reading › \"Discourage search engines from indexing this site\" and turn off noindex in the page's own SEO panel."
+msgstr "Ayarlar › Okuma › \"Arama motorlarının siteyi dizine eklemesini engelle\" kutusunu kaldırın; sayfanın kendi SEO panelindeki noindex işaretini kapatın."
+
+msgid "robots.txt blocks the whole site"
+msgstr "robots.txt tüm siteyi engelliyor"
+
+msgid "The robots.txt file in the site root must not have \"Disallow: /\" under \"User-agent: *\". Delete or fix the file; WordPress generates its own robots.txt."
+msgstr "Kökteki robots.txt dosyasında \"User-agent: *\" altında \"Disallow: /\" olmamalı. Dosyayı silin ya da düzeltin; WordPress kendi robots.txt'sini üretir."
+
+msgid "Page has no <title>"
+msgstr "Sayfa başlığı (<title>) yok"
+
+msgid "The theme must declare add_theme_support( 'title-tag' ); fill in the home title in SEO › General."
+msgstr "Tema add_theme_support( 'title-tag' ) desteklemeli; SEO › Genel'de ana sayfa başlığını doldurun."
+
+msgid "Page title is long"
+msgstr "Sayfa başlığı uzun"
+
+msgid "Keep the title around 60 characters; Google cuts the rest."
+msgstr "Başlığı 60 karakter civarında tutun; Google sonrasını keser."
+
+msgid "No meta description"
+msgstr "Meta açıklama yok"
+
+msgid "Turn on SEO output and write the home description (150–160 characters)."
+msgstr "SEO çıktısını açın ve ana sayfa açıklamasını (150–160 karakter) yazın."
+
+msgid "Canonical link missing or duplicated"
+msgstr "Canonical bağlantısı eksik ya da birden fazla"
+
+msgid "Each page needs exactly one rel=canonical. If another plugin or the theme also adds one, turn one off."
+msgstr "Her sayfada tek bir rel=canonical olmalı. Başka bir eklenti ya da tema da ekliyorsa birini kapatın."
+
+msgid "No hreflang on a multilingual site"
+msgstr "Çok dilli sitede hreflang yok"
+
+msgid "With Flux Lang active, language versions must be linked with hreflang; check the language pairs in Flux Lang settings."
+msgstr "Flux Lang etkinse dil sürümleri hreflang ile bağlanmalı; Flux Lang ayarlarında dil eşleştirmelerini kontrol edin."
+
+msgid "Main heading (H1) missing or repeated"
+msgstr "Ana başlık (H1) yok ya da birden fazla"
+
+msgid "Each page needs one H1 that names the topic; subheadings are H2/H3."
+msgstr "Her sayfada konuyu anlatan tek bir H1 olsun; ara başlıklar H2/H3."
+
+msgid "Structured data (JSON-LD) missing or broken"
+msgstr "Yapılandırılmış veri (JSON-LD) yok ya da bozuk"
+
+msgid "With Flux SEO output on, Organization, WebSite and Breadcrumb schema are added. Find the block or plugin that outputs broken JSON-LD."
+msgstr "Flux SEO çıktısı açıkken Organization, WebSite ve Breadcrumb schema eklenir. Bozuk JSON-LD üreten blok ya da eklentiyi bulun."
+
+msgid "Link texts are not descriptive"
+msgstr "Bağlantı metinleri açıklayıcı değil"
+
+msgid "Write text that names the target instead of \"click here\", \"more\", \"here\" (e.g. \"See donation options\")."
+msgstr "\"Tıklayın\", \"devamı\", \"buraya\" yerine hedefi anlatan metin yazın (ör. \"Bağış seçeneklerini görün\")."
+
+msgid "More than one post with the same title"
+msgstr "Aynı başlıkta birden fazla yayın var"
+
+msgid "Delete the duplicate (usually the address ending in -2) or redirect it to the original; give different titles if both are needed. When links with the same text go to different addresses, the \"Identical links have the same purpose\" audit also fails."
+msgstr "Kopya sayfayı (çoğunlukla adresi -2 ile biten) silin ya da asıl sayfaya yönlendirin; gerekiyorsa başlıkları ayırın. Aynı metinli bağlantılar farklı adreslere gidince \"Aynı bağlantılar aynı amaca sahip\" denetimi de düşer."
+
+msgid "WordPress version is visible on the page"
+msgstr "WordPress sürümü sayfada görünüyor"
+
+msgid "The meta generator tag reveals the version. The theme should call remove_action( 'wp_head', 'wp_generator' ); Flux SEO removes it when security headers are on."
+msgstr "meta generator etiketi sürümü ele verir. Tema remove_action( 'wp_head', 'wp_generator' ) yapmalı; Flux SEO güvenlik başlıkları açıkken kaldırılır."
+
+msgid "Zoom is blocked (user-scalable=no / maximum-scale)"
+msgstr "Yakınlaştırma engellenmiş (user-scalable=no / maximum-scale)"
+
+msgid "Remove user-scalable=no and maximum-scale=1 from the viewport tag: <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">. Users with low vision cannot zoom; the Accessibility score drops directly."
+msgstr "Viewport etiketinden user-scalable=no ve maximum-scale=1 kaldırın: <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">. Az gören kullanıcılar sayfayı büyütemiyor; Erişilebilirlik puanı doğrudan düşer."
+
+msgid "No viewport tag"
+msgstr "Viewport etiketi yok"
+
+msgid "The theme must add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> to <head>; otherwise the page opens at desktop width on mobile."
+msgstr "Tema <head> içine <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> eklemeli; yoksa mobilde sayfa masaüstü genişliğinde açılır."
+
+msgid "ARIA role is missing required children"
+msgstr "ARIA rolü gerekli alt öğeleri içermiyor"
+
+msgid "E.g. role=\"tablist\" may only contain role=\"tab\" elements. Use <div role=\"tablist\"><button role=\"tab\"> instead of <ol role=\"tablist\"><li><button role=\"tab\">, or give the li elements role=\"presentation\". The accessibility tree breaks and Lighthouse also lowers the Agentic Browsing score."
+msgstr "Ör. role=\"tablist\" yalnız role=\"tab\" öğeleri içermeli. <ol role=\"tablist\"><li><button role=\"tab\"> yerine <div role=\"tablist\"><button role=\"tab\"> kullanın ya da li öğelerine role=\"presentation\" verin. Erişilebilirlik ağacı bozulur; Lighthouse \"Ajan uyumu\" puanını da düşürür."
+
+msgid "ARIA role is not inside its required parent"
+msgstr "ARIA rolü gerekli üst öğenin içinde değil"
+
+msgid "role=\"tab\" must sit directly inside role=\"tablist\", role=\"option\" inside role=\"listbox\". Remove the li/div elements in between or give them role=\"presentation\"."
+msgstr "role=\"tab\" doğrudan role=\"tablist\" içinde, role=\"option\" role=\"listbox\" içinde olmalı. Aradaki li/div öğelerini kaldırın ya da role=\"presentation\" verin."
+
+msgid "List items (<li>) are not inside a list"
+msgstr "Liste öğeleri (<li>) liste içinde değil"
+
+msgid "<li> may only sit inside <ul>, <ol> or <menu>, and the parent list must not get a non-list role (e.g. <ol role=\"tablist\">)."
+msgstr "<li> yalnız <ul>, <ol> ya da <menu> içinde olmalı ve üst listeye liste dışı bir role verilmemeli (ör. <ol role=\"tablist\">)."
+
+msgid "Images without alt text"
+msgstr "Görsellerde alt metin yok"
+
+msgid "Give every meaningful image alt text that describes it; decorative images get alt=\"\". Fill in alt text in the media library or turn on SEO › General › Images."
+msgstr "Her anlamlı görsele içeriği anlatan alt metin yazın; süs görselleri alt=\"\" alsın. Medya kütüphanesinde alt metni doldurun ya da SEO › Genel › Görseller seçeneğini açın."
+
+msgid "Links without a name"
+msgstr "Adı olmayan bağlantılar var"
+
+msgid "Add aria-label or hidden text (screen-reader-text) to icon-only links."
+msgstr "Yalnız simge içeren bağlantılara aria-label ya da görünmez metin (screen-reader-text) ekleyin."
+
+msgid "Buttons without a name"
+msgstr "Adı olmayan düğmeler var"
+
+msgid "Give icon buttons an aria-label (e.g. \"Open menu\"). Agents and screen readers cannot tell what the button does."
+msgstr "Simge düğmelerine aria-label verin (ör. \"Menüyü aç\"). Ajanlar ve ekran okuyucular düğmenin ne yaptığını bilemez."
+
+msgid "Form fields without a label"
+msgstr "Etiketi olmayan form alanları var"
+
+msgid "Each field needs a name through <label for> or aria-label; a placeholder is not a label."
+msgstr "Her alanın <label for> ya da aria-label ile bir adı olmalı; placeholder etiket yerine geçmez."
+
+msgid "<html> has no lang attribute"
+msgstr "<html> etiketinde dil (lang) yok"
+
+msgid "The theme should use <html <?php language_attributes(); ?>>."
+msgstr "Tema <html <?php language_attributes(); ?>> kullanmalı."
+
+msgid "Duplicate or missing id references"
+msgstr "Yinelenen ya da bulunmayan id başvuruları"
+
+msgid "No id may be used twice; aria-controls, aria-labelledby and label for must point to an existing id."
+msgstr "Aynı id iki öğede olmamalı; aria-controls, aria-labelledby ve label for var olan bir id'yi göstermeli."
+
+msgid "Heading levels skip"
+msgstr "Başlık sırası atlıyor"
+
+msgid "Headings should step down in order (H2 → H3); do not skip levels for looks, size them with CSS."
+msgstr "Başlıklar sırayla inmeli (H2 → H3); görünüm için seviye atlamayın, CSS ile boyutlandırın."
+
+msgid "tabindex greater than 0"
+msgstr "tabindex değeri 0'dan büyük"
+
+msgid "Values like tabindex=\"1\" break keyboard order; use 0 or -1."
+msgstr "tabindex=\"1\" gibi değerler klavye sırasını bozar; 0 ya da -1 kullanın."
+
+msgid "Links with the same text go to different addresses"
+msgstr "Aynı metinli bağlantılar farklı adreslere gidiyor"
+
+msgid "Links with the same name should go to the same page. Remove the duplicate page or make the link texts different."
+msgstr "Aynı adı taşıyan bağlantılar aynı sayfaya gitmeli. Kopya sayfayı kaldırın ya da bağlantı metinlerini ayırın."
+
+msgid "iframe without a title"
+msgstr "Başlıksız iframe"
+
+msgid "Every <iframe> needs a title (e.g. \"Location map\")."
+msgstr "Her <iframe> title almalı (ör. \"Konum haritası\")."
+
+msgid "No <main> landmark on the page"
+msgstr "Sayfada <main> bölgesi yok"
+
+msgid "Main content must be inside <main>; screen readers and agents find the main content this way."
+msgstr "Ana içerik <main> içinde olmalı; ekran okuyucu ve ajanlar ana içeriği böyle bulur."
+
+msgid "Insufficient text/background contrast"
+msgstr "Metin/zemin karşıtlığı yetersiz"
+
+msgid "At least 4.5:1 for normal text and 3:1 for large text. Darken the pale colors in the theme palette."
+msgstr "Normal metin için en az 4.5:1, büyük metin için 3:1 karşıtlık. Tema paletindeki soluk renkleri koyulaştırın."
+
+msgid "Render-blocking requests"
+msgstr "Oluşturmayı engelleyen istekler"
+
+msgid "Inline the critical CSS for the first screen, load the rest with media=\"print\" onload or at the end of the page, and defer JS. LiteSpeed Cache › Page Optimization › CSS/JS settings, or the theme's own combined CSS."
+msgstr "İlk ekran için gereken kritik CSS'i satır içine alın, gerisini media=\"print\" onload ile ya da sayfa sonunda yükleyin; JS'e defer verin. LiteSpeed Cache › Page Optimization › CSS/JS ayarları ya da temanın kendi birleştirilmiş CSS'i."
+
+msgid "Unused CSS"
+msgstr "Kullanılmayan CSS"
+
+msgid "Split the one large CSS file by page type, or drop unused rules (LiteSpeed \"Remove Unused CSS\"). The gain usually shows up in LCP."
+msgstr "Tek büyük CSS dosyasını sayfa türüne göre bölün ya da kullanılmayan kuralları ayıklayın (LiteSpeed \"Remove Unused CSS\"). Kazanç çoğunlukla LCP'ye yansır."
+
+msgid "Unminified JavaScript"
+msgstr "Sıkıştırılmamış (minify edilmemiş) JavaScript"
+
+msgid "Ship .min versions of theme/plugin JS or turn on LiteSpeed \"JS Minify\"."
+msgstr "Tema/eklenti JS dosyalarının .min sürümünü yayınlayın ya da LiteSpeed \"JS Minify\"ı açın."
+
+msgid "Unminified CSS"
+msgstr "Sıkıştırılmamış CSS"
+
+msgid "Minify CSS (LiteSpeed \"CSS Minify\" or a build step)."
+msgstr "CSS'i minify edin (LiteSpeed \"CSS Minify\" ya da derleme adımı)."
+
+msgid "Non-composited animations"
+msgstr "GPU'da çalışmayan animasyonlar"
+
+msgid "Animate with transform and opacity; properties like stroke-dashoffset, top/left and width repaint on every frame. Stop them under prefers-reduced-motion."
+msgstr "Animasyonları transform ve opacity ile yapın; stroke-dashoffset, top/left, width gibi özellikler her karede yeniden çizim yapar. prefers-reduced-motion'da durdurun."
+
+msgid "DOM is too large"
+msgstr "DOM çok büyük"
+
+msgid "Aim for under 1,500 elements. Reduce copies in marquees, build hidden menus and long lists on demand, simplify nested wrappers."
+msgstr "1.500 öğenin altını hedefleyin. Kayan şeritlerdeki (marquee) kopyaları azaltın, gizli menüleri ve uzun listeleri ihtiyaç olunca oluşturun, iç içe sarmalayıcıları sadeleştirin."
+
+msgid "Largest content (LCP) paints late"
+msgstr "En büyük içerik (LCP) geç çiziliyor"
+
+msgid "If the LCP element is text, preload its font, use font-display: swap and do not hide it behind an entrance animation on the first frame; if it is an image, give it fetchpriority=\"high\" and do not lazy load it."
+msgstr "LCP öğesi metinse yazı tipini preload edip font-display: swap kullanın ve giriş animasyonunu ilk karede göstermeyin; görselse fetchpriority=\"high\" verin, lazy load etmeyin."
+
+msgid "Layout shift (CLS) culprits"
+msgstr "Yerleşim kayması (CLS) kaynakları"
+
+msgid "Give images width/height and late blocks a fixed height; use size-adjust/fallback metrics for web fonts; absolutely positioned animated layers must not push the layout."
+msgstr "Görsellere width/height, sonradan gelen bloklara sabit yükseklik verin; web fontları için size-adjust/fallback metrikleri kullanın; absolute konumlu animasyonlu katmanlar yerleşimi itmesin."
+
+msgid "Fonts delay text"
+msgstr "Yazı tipleri metni geciktiriyor"
+
+msgid "Use font-display: swap in @font-face, preload the 1-2 fonts used on the first screen with <link rel=\"preload\" as=\"font\" crossorigin>, remove unused weights."
+msgstr "@font-face içinde font-display: swap kullanın, ilk ekranda kullanılan 1-2 yazı tipini <link rel=\"preload\" as=\"font\" crossorigin> ile önden yükleyin, kullanılmayan ağırlıkları kaldırın."
+
+msgid "Critical request chain is long"
+msgstr "Kritik istek zinciri uzun"
+
+msgid "Fonts loaded from CSS lengthen the chain; preload first-screen fonts and defer unneeded requests in the chain (e.g. guest.vary.php)."
+msgstr "CSS içinden yüklenen fontlar zinciri uzatır; ilk ekran fontlarını preload edin, zincirdeki gereksiz istekleri (ör. guest.vary.php) ertelenmiş yükleyin."
+
+msgid "Forced reflow"
+msgstr "Zorunlu yeniden yerleşim (forced reflow)"
+
+msgid "Do not read offsetWidth/getBoundingClientRect after changing styles in JS; read first, then write inside requestAnimationFrame."
+msgstr "JS'te stil değiştirdikten sonra offsetWidth/getBoundingClientRect okumayın; okumaları önce, yazmaları sonra requestAnimationFrame içinde yapın."
+
+msgid "Long main-thread tasks"
+msgstr "Uzun ana iş parçacığı görevleri"
+
+msgid "Split JS that runs at startup and defer work for off-screen sections with IntersectionObserver."
+msgstr "Açılışta çalışan JS'i bölün, görünür olmayan bölümlerin işini IntersectionObserver ile erteleyin."
+
+msgid "Images are large or in an old format"
+msgstr "Görseller büyük ya da eski biçimde"
+
+msgid "Use WebP/AVIF, never send images larger than displayed (srcset), turn on image compression."
+msgstr "WebP/AVIF kullanın, görünen boyuttan büyük görsel göndermeyin (srcset), görsel sıkıştırmayı açın."
+
+msgid "Images without width/height"
+msgstr "Genişlik/yükseklik vermeyen görseller"
+
+msgid "Give <img> tags width and height; the browser reserves space and the page does not shift."
+msgstr "<img> etiketlerine width ve height verin; tarayıcı yer ayırır, sayfa kaymaz."
+
+msgid "First-screen image is lazy loaded"
+msgstr "İlk ekrandaki görsel lazy yükleniyor"
+
+msgid "Do not give the page's first image loading=\"lazy\"; give it fetchpriority=\"high\". If LiteSpeed lazy load is on, exclude the first image (data-no-lazy or \"Lazy Load Image Excludes\")."
+msgstr "Sayfanın ilk görseline loading=\"lazy\" vermeyin, fetchpriority=\"high\" verin. LiteSpeed lazy load açıksa ilk görseli hariç tutun (data-no-lazy ya da \"Lazy Load Image Excludes\")."
+
+msgid "Slow server response"
+msgstr "Sunucu yanıtı yavaş"
+
+msgid "Turn on page cache (LiteSpeed Cache); check slow plugins and the cron report in Flux Speed."
+msgstr "Sayfa önbelleğini (LiteSpeed Cache) açın; Flux Speed › yavaş eklentiler ve cron raporuna bakın."
+
+msgid "No text compression (gzip/brotli)"
+msgstr "Metin sıkıştırma (gzip/brotli) yok"
+
+msgid "Turn on gzip or brotli on the server (on by default on Hostinger/LiteSpeed; check the CDN settings)."
+msgstr "Sunucuda gzip ya da brotli açın (Hostinger/LiteSpeed'de varsayılan açıktır; CDN ayarını kontrol edin)."
+
+msgid "HTML document is large"
+msgstr "HTML belgesi büyük"
+
+msgid "Move inline SVG icons into a sprite and large inline CSS/JSON into files."
+msgstr "Satır içi SVG ikonları sprite'a, büyük satır içi CSS/JSON'u dosyaya taşıyın."
+
+msgid "WordPress emoji script is loaded"
+msgstr "WordPress emoji betiği yükleniyor"
+
+msgid "Modern browsers draw emoji themselves; the theme can remove print_emoji_detection_script."
+msgstr "Modern tarayıcılar emojiyi kendisi çizer; tema print_emoji_detection_script'i kaldırabilir."
+
+msgid "Largest Contentful Paint (LCP) is slow"
+msgstr "Largest Contentful Paint (LCP) yavaş"
+
+msgid "Target under 2.5 s. Reduce render-blocking CSS, preload the LCP font/image, turn on the server cache."
+msgstr "Hedef 2,5 sn altı. Engelleyen CSS'i azaltın, LCP yazı tipini/görselini önden yükleyin, sunucu önbelleğini açın."
+
+msgid "Cumulative Layout Shift (CLS) is high"
+msgstr "Cumulative Layout Shift (CLS) yüksek"
+
+msgid "Target under 0.1. Size images, prevent font shifts, reserve space for elements added later."
+msgstr "Hedef 0,1 altı. Görsellere boyut verin, fontların kaymasını önleyin, sonradan eklenen öğelere yer ayırın."
+
+msgid "Total Blocking Time (TBT) is high"
+msgstr "Total Blocking Time (TBT) yüksek"
+
+msgid "Target under 200 ms. Reduce startup JS and defer third-party scripts."
+msgstr "Hedef 200 ms altı. Açılış JS'ini azaltın, üçüncü taraf betikleri erteleyin."
+
+msgid "First Contentful Paint (FCP) is slow"
+msgstr "First Contentful Paint (FCP) yavaş"
+
+msgid "Target under 1.8 s. Reduce render-blocking CSS/JS and server response time."
+msgstr "Hedef 1,8 sn altı. Engelleyen CSS/JS ve sunucu yanıt süresini azaltın."
+
+msgid "Speed Index is slow"
+msgstr "Speed Index yavaş"
+
+msgid "Prioritize critical CSS and fonts so the first screen fills quickly; shorten entrance animations."
+msgstr "İlk ekranın hızlı dolması için kritik CSS ve yazı tiplerini önceliklendirin, giriş animasyonlarını kısaltın."
+
+msgid "Site is not HTTPS or has mixed content"
+msgstr "Site HTTPS değil ya da karışık içerik var"
+
+msgid "Set the addresses to https:// in Settings › General and fix images/scripts loaded over http://."
+msgstr "Adresleri Ayarlar › Genel'de  https://  olarak ayarlayın ve  http://.  üzerinden yüklenen görüntüleri/komut dosyalarını düzeltin"
+
+msgid "Weak HSTS policy"
+msgstr "HSTS politikası zayıf"
+
+msgid "Strict-Transport-Security: max-age=31536000; includeSubDomains. If every subdomain is HTTPS, you can also add \"preload\" and submit to hstspreload.org."
+msgstr "Strict-Transport-Security: max-age=31536000; includeSubDomains. Tüm alt alan adları HTTPS ise \"preload\" da ekleyip hstspreload.org'a başvurabilirsiniz."
+
+msgid "No or incomplete Content Security Policy (CSP)"
+msgstr "İçerik Güvenlik Politikası (CSP) yok ya da eksik"
+
+msgid "Flux SEO can add a basic CSP (object-src 'none'; base-uri 'self'; frame-ancestors 'self'). A full script-src policy can break plugins on WordPress; try Content-Security-Policy-Report-Only first."
+msgstr "Flux SEO temel CSP'yi (object-src 'none'; base-uri 'self'; frame-ancestors 'self') ekleyebilir. Tam script-src politikası WordPress'te eklentileri bozabilir; önce Content-Security-Policy-Report-Only ile deneyin."
+
+msgid "No clickjacking protection"
+msgstr "Tıklama korsanlığına (clickjacking) karşı koruma yok"
+
+msgid "Send X-Frame-Options: SAMEORIGIN and CSP frame-ancestors 'self'. Do not turn on if your site is embedded in other sites with an iframe."
+msgstr "X-Frame-Options: SAMEORIGIN ve CSP frame-ancestors 'self' gönderin. Siteniz başka sitelerde iframe ile gösteriliyorsa açmayın."
+
+msgid "No origin isolation (COOP)"
+msgstr "Pencere yalıtımı (COOP) yok"
+
+msgid "Send Cross-Origin-Opener-Policy: same-origin-allow-popups; payment and login popups keep working."
+msgstr "Cross-Origin-Opener-Policy: same-origin-allow-popups gönderin; ödeme ve giriş açılır pencereleri çalışmaya devam eder."
+
+msgid "Trusted Types not set"
+msgstr "Trusted Types tanımlı değil"
+
+msgid "Advanced protection against DOM-based XSS. Most WordPress plugins are not compatible yet; try it with Report-Only only on custom-theme sites with few plugins."
+msgstr "DOM tabanlı XSS'e karşı ileri seviye koruma. WordPress eklentilerinin çoğu henüz uyumlu değil; yalnız özel temalı, az eklentili sitelerde Report-Only ile deneyin."
+
+msgid "No X-Content-Type-Options header"
+msgstr "X-Content-Type-Options başlığı yok"
+
+msgid "X-Content-Type-Options: nosniff. Flux SEO sends it by default; the server or a cache plugin may be removing it."
+msgstr "X-Content-Type-Options: nosniff. Flux SEO bunu kendiliğinden gönderir; sunucu ya da önbellek eklentisi siliyor olabilir."
+
+msgid "HTML doctype or charset missing"
+msgstr "HTML doctype ya da charset eksik"
+
+msgid "The page must start with <!DOCTYPE html> and have <meta charset=\"UTF-8\"> in the first lines."
+msgstr "Sayfa <!DOCTYPE html> ile başlamalı ve <meta charset=\"UTF-8\"> ilk satırlarda olmalı."
+
+msgid "No llms.txt"
+msgstr "llms.txt yok"
+
+msgid "AI agents summarize a site through /llms.txt. Flux SEO builds it from the site name, description, menu pages and recent content; one click to turn it on."
+msgstr "Yapay zekâ ajanları siteyi /llms.txt ile özetler. Flux SEO site adı, açıklama, menü sayfaları ve son içeriklerden kendiliğinden üretir; açmak için tek tık."
+
+msgid "llms.txt is not in the recommended format"
+msgstr "llms.txt önerilen biçimde değil"
+
+msgid "The first line must be \"# Site name\", then \"> short summary\" and link lists in [title](url) form. If an old hand-made file sits in the root, delete it; Flux SEO generates one."
+msgstr "İlk satırda \"# Site adı\", ardından \"> kısa özet\" ve [başlık](url) biçiminde bağlantı listeleri olmalıdır. Kökte eski bir el yapımı dosya varsa onu silin; Flux SEO bir tane oluşturur."
+
+msgid "Forms are not declared as WebMCP tools"
+msgstr "Formlar WebMCP aracı olarak tanımlı değil"
+
+msgid "WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too."
+msgstr "WebMCP, tarayıcıdaki ajanların formları araç olarak çağırmasını sağlar (form toolname/tooldescription). Flux SEO arama formuna kendiliğinden ekler; kendi formlarınıza da ekleyin."
+
+msgid "robots.txt blocks AI crawlers"
+msgstr "robots.txt yapay zekâ tarayıcılarını engelliyor"
+
+msgid "If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are blocked, your content does not show up in AI answers. Remove them from robots.txt unless you block them on purpose."
+msgstr "GPTBot, ClaudeBot, Google-Extended, PerplexityBot gibi tarayıcılar engelliyse içeriğiniz yapay zekâ yanıtlarında görünmez. Bilerek engellemediyseniz robots.txt'den kaldırın."
+
+msgid "Returned HTTP %d."
+msgstr "HTTP %d döndü."
+
+msgid "Settings › Reading: search engines discouraged"
+msgstr "Ayarlar › Okuma: arama motorları engelli"
+
+msgid "%d characters."
+msgstr "%d karakter."
+
+msgid "%d H1 headings."
+msgstr "%d adet H1 var."
+
+msgid "JSON-LD could not be parsed."
+msgstr "JSON-LD ayrıştırılamadı."
+
+msgid "not found"
+msgstr "bulunamadı"
+
+msgid "%d render-blocking CSS/JS requests in <head>."
+msgstr "<head> içinde %d engelleyen CSS/JS isteği."
+
+msgid "%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed."
+msgstr "<head> içinde %d engelleyen CSS/JS isteği. PageSpeed ile tahmini kazancı ölçün."
+
+msgid "The page has %s elements."
+msgstr "Sayfada %s öğe var."
+
+msgid "Response measured from the server: %d ms (may bypass the cache)."
+msgstr "Sunucu içinden ölçülen yanıt: %d ms (önbellek dışı olabilir)."
+
+msgid "HTML is %s."
+msgstr "HTML %s."
+
+msgid "The HTTPS page loads content over http://."
+msgstr "HTTPS sayfası  http://.  üzerinden içerik yüklüyor"
+
+msgid "No Content-Security-Policy header."
+msgstr "Content-Security-Policy başlığı yok."
+
+msgid "Missing directive: %s."
+msgstr "Eksik yönerge: %s."
+
+msgid "first line is not \"# Title\""
+msgstr "ilk satır \"# Başlık\" değil"
+
+msgid "no \"> summary\" line"
+msgstr "\"> özet\" satırı yok"
+
+msgid "no link list"
+msgstr "bağlantı listesi yok"
+
+msgid "PageSpeed Insights can only measure addresses reachable from the internet."
+msgstr "PageSpeed Insights yalnız internetten erişilebilen adresleri ölçebilir."
+
+msgid "The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings."
+msgstr "PageSpeed günlük kotası doldu. SEO › Ayarlar'a ücretsiz bir Google API anahtarı girin."
+
+msgid "Open audit"
+msgstr "Denetimi aç"
+
+msgid "Not run yet. Check performance, accessibility, SEO, security and agent readiness."
+msgstr "Henüz çalıştırılmadı. Performans, erişilebilirlik, SEO, güvenlik ve ajan uyumunu kontrol edin."
+
+msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
+msgstr "Kritik %1$d, yüksek %2$d, orta %3$d, düşük %4$d öneri."
+
+msgid "Site build guide"
+msgstr "Site yapım rehberi"
+
+msgid "SEO output"
+msgstr "SEO çıktısı"
+
+msgid "Another SEO plugin is active; meta, Open Graph and schema come from it. Flux SEO turned its own output off to avoid conflicts."
+msgstr "Başka bir SEO eklentisi etkin; meta, Open Graph ve schema onun üzerinden. Flux SEO çakışmasın diye kendi çıktısını kapattı."
+
+msgid "Meta description, Open Graph and schema are added to every page."
+msgstr "Meta açıklama, Open Graph ve schema her sayfada ekleniyor."
+
+msgid "Off. Page descriptions, images and organization details will not show on Google and social shares. Turn it on if you want to be found on Google."
+msgstr "Kapalı. Google ve sosyal paylaşımlarda sayfa açıklaması, görsel ve kurum bilgisi görünmez. Google'da bulunmak istiyorsanız açın."
+
+msgid "SEO settings"
+msgstr "SEO ayarları"
+
+msgid "Daily"
+msgstr "Her gün"
+
+msgid "Weekly"
+msgstr "Her hafta"
+
+msgid "Off"
+msgstr "Kapalı"
+
+msgid "Monday"
+msgstr "Pazartesi"
+
+msgid "Tuesday"
+msgstr "Salı"
+
+msgid "Wednesday"
+msgstr "Çarşamba"
+
+msgid "Thursday"
+msgstr "Perşembe"
+
+msgid "Friday"
+msgstr "Cuma"
+
+msgid "Saturday"
+msgstr "Cumartesi"
+
+msgid "Sunday"
+msgstr "Pazar"
+
+msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
+msgstr "[%1$s] Site denetimi: %2$d yeni kritik/yüksek öneri"
+
+msgid "The automatic site audit found new recommendations:"
+msgstr "Otomatik site denetiminde yeni öneriler çıktı:"
+
+msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
+msgstr "Toplam: kritik %1$d, yüksek %2$d, orta %3$d, düşük %4$d."
+
+msgid "Resolved since the previous audit: %d."
+msgstr "Önceki denetimden bu yana çözülen: %d."
+
+msgid "Details and fixes:"
+msgstr "Ayrıntılar ve düzeltmeler:"
+
+msgid "Automatic"
+msgstr "Otomatik"
+
+msgid "Manual"
+msgstr "Elle"
+
+msgid "AI"
+msgstr "Yapay zekâ"
+
+msgid "After fix"
+msgstr "Düzeltme sonrası"
+
+msgid "Report history"
+msgstr "Rapor geçmişi"
+
+msgid "Next automatic audit: %s"
+msgstr "Sonraki otomatik denetim: %s"
+
+msgid "Automatic audit is off."
+msgstr "Otomatik denetim kapalı."
+
+msgid "No reports yet. Every audit (manual, automatic or by AI) is saved here."
+msgstr "Henüz rapor yok. Her denetim (elle, otomatik ya da yapay zekâ ile) burada saklanır."
+
+msgid "Number of recommendations over time"
+msgstr "Öneri sayısının zaman içindeki değişimi"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Trigger"
+msgstr "Nasıl"
+
+msgid "Mobile scores"
+msgstr "Mobil puanlar"
+
+msgid "Change"
+msgstr "Değişim"
+
+msgid "No change"
+msgstr "Değişiklik yok"
+
+msgid "new"
+msgstr "yeni"
+
+msgid "resolved"
+msgstr "çözüldü"
+
+msgid "Site audit history"
+msgstr "Site denetimi geçmişi"
+
+msgid "Automatic audit"
+msgstr "Otomatik denetim"
+
+msgid "Frequency"
+msgstr "Sıklık"
+
+msgid "Day"
+msgstr "Gün"
+
+msgid "Time"
+msgstr "Saat"
+
+msgid "Runs in the background and saves the result to Report history. The time uses the site time zone; if the site gets no visit at that time, it starts on the next request."
+msgstr "Arka planda çalışır, sonuç Rapor geçmişine yazılır. Saat sitenin saat dilimine göredir; site o saatte ziyaret almazsa ilk istekte başlar."
+
+msgid "Also run PageSpeed Insights (mobile + desktop; needs the API key)"
+msgstr "PageSpeed Insights (mobil + masaüstü) da çalışsın (API anahtarı gerekir)"
+
+msgid "Send an email when a new critical or high priority recommendation appears"
+msgstr "Yeni kritik ya da yüksek öncelikli öneri çıkınca e-posta gönder"
+
+msgid "Email address (empty: site admin)"
+msgstr "E-posta adresi (boşsa site yöneticisi)"
+
+msgid "Flux Speed (one click)"
+msgstr "Flux Speed (tek tık)"
+
+msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Practices, SEO, Agentic Browsing) by priority. The on-site audit needs no key; a PageSpeed run adds Google's real Lighthouse result. Automatic audit, API key and security headers are in the Settings tab."
+msgstr "PageSpeed Insights'ın beş başlığı (Performans, Erişilebilirlik, En iyi uygulamalar, SEO, Ajan uyumu) önceliğe göre. Site içi denetim anahtarsızdır; PageSpeed ölçümü Google'ın gerçek Lighthouse sonucunu ekler. Otomatik denetim, API anahtarı ve güvenlik başlıkları Ayarlar sekmesinde."
+
+msgid "PageSpeed scores"
+msgstr "PageSpeed puanları"
+
+msgid "PageSpeed not run"
+msgstr "PageSpeed çalışmadı"
+
+msgid "Device"
+msgstr "Cihaz"
+
+msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpeed in the automatic audit."
+msgstr "PageSpeed ölçümü olan rapor yok. API anahtarı girip otomatik denetimde PageSpeed'i açın."
+
+msgid "%s PageSpeed scores over time"
+msgstr "%s PageSpeed puanlarının zaman içindeki değişimi"
+
+msgid "Site audit and agent readiness"
+msgstr "Site denetimi ve ajan uyumu"
+
+msgid "Flux SEO's AI (MCP) tools run through the shared MCP server. The server, keys and settings are in Flux AI & MCP › MCP; install and activate Flux AI 0.7.0 or later."
+msgstr "Flux SEO'nun yapay zekâ (MCP) araçları ortak MCP sunucusu üzerinden çalışır. Sunucu, anahtarlar ve ayarlar Flux AI & MCP › MCP ekranındadır; Flux AI 0.7.0 ve üstünü kurup etkinleştirin."
+
+msgid "No URLs to submit."
+msgstr "Gönderilecek adres yok."
+
+msgid "IndexNow returned %d."
+msgstr "IndexNow %d döndü."
+
+msgid "Not allowed."
+msgstr "Yetki yok."
+
+msgid "IndexNow is off or the site is hidden from search engines (Settings › Reading)."
+msgstr "IndexNow kapalı ya da site arama motorlarına kapalı (Ayarlar › Okuma)."
+
+msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
+msgstr "%d adres Bing, Yandex ve diğer IndexNow arama motorlarına bildirildi."
+
+msgid "Open Search Console"
+msgstr "Search Console'u aç"
+
+msgid "Add property › URL prefix › HTML tag. Leave empty if you verified with DNS."
+msgstr "Özellik ekle › URL öneki › HTML etiketi. DNS ile doğruladıysanız boş bırakın."
+
+msgid "Open Bing Webmaster"
+msgstr "Bing Webmaster'ı aç"
+
+msgid "The easiest path is \"Import from Google Search Console\": verification and the sitemap arrive on their own, no code. If you add it by hand, paste the HTML meta tag. DuckDuckGo, Yahoo and Ecosia results come from Bing."
+msgstr "En kolayı \"Google Search Console'dan içe aktar\": doğrulama ve sitemap kendiliğinden gelir, kod gerekmez. Elle eklerken HTML Meta Tag kodunu yapıştırın. DuckDuckGo, Yahoo ve Ecosia sonuçları Bing'den gelir."
+
+msgid "Open Yandex Webmaster"
+msgstr "Yandex Webmaster'ı aç"
+
+msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexing › Sitemap files."
+msgstr "Site ekle › Meta etiketi. Doğruladıktan sonra Indexing › Sitemap files bölümüne sitemap adresini ekleyin."
+
+msgid "%1$s · %2$d URLs · HTTP %3$d"
+msgstr "%1$s · %2$d adres · HTTP %3$d"
+
+msgid "key file could not be verified"
+msgstr "anahtar dosyası doğrulanamadı"
+
+msgid "URLs do not match the site domain"
+msgstr "adresler site alan adıyla eşleşmiyor"
+
+msgid "too many requests, try again later"
+msgstr "çok sık istek, sonra tekrar deneyin"
+
+msgid "error"
+msgstr "hata"
+
+msgid "Search engines"
+msgstr "Arama motorları"
+
+msgid "Search engines other than Google (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) crawl a site quickly only once it is introduced to them. Add the site in each one's webmaster panel, paste the verification code below and submit the sitemap URL."
+msgstr "Google dışındaki arama motorları (Bing, Yandex, DuckDuckGo, Yahoo, Ecosia) siteyi ancak tanıtılınca hızlı tarar. Her birinin kendi panelinde siteyi ekleyin; doğrulama kodunu aşağıya yapıştırın, sitemap adresini gönderin."
+
+msgid "Sitemap URL"
+msgstr "Sitemap adresi"
+
+msgid "Also listed in robots.txt; add this URL in Search Console, Bing and Yandex."
+msgstr "robots.txt'de de yazılı; Search Console, Bing ve Yandex panellerine bu adresi ekleyin."
+
+msgid "Verification tag is on the site"
+msgstr "Doğrulama etiketi sitede"
+
+msgid "Instantly notify Bing, Yandex, DuckDuckGo (via Bing), Seznam and Naver about published and updated pages"
+msgstr "Yayınlanan ve güncellenen sayfaları Bing, Yandex, DuckDuckGo (Bing üzerinden), Seznam ve Naver'e anında bildir"
+
+msgid "Key file:"
+msgstr "Anahtar dosyası:"
+
+msgid "When on, the whole site is submitted once automatically. Google does not use IndexNow; add your sitemap in Search Console for Google."
+msgstr "Açıkken tüm site bir kez kendiliğinden bildirilir. Google IndexNow kullanmaz; Google için Search Console'a sitemap ekleyin."
+
+msgid "The site is hidden from search engines (Settings › Reading); IndexNow sends nothing."
+msgstr "Site arama motorlarına kapalı (Ayarlar › Okuma); IndexNow bildirim göndermez."
+
+msgid "Last bulk submission:"
+msgstr "Son toplu bildirim:"
+
+msgid "Submit the whole site now"
+msgstr "Tüm siteyi şimdi bildir"
+
+msgid "robots.txt blocks the Bing or Yandex crawler"
+msgstr "robots.txt Bing ya da Yandex tarayıcısını engelliyor"
+
+msgid "Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have \"Disallow: /\"; otherwise the site only appears on Google. Fix the robots.txt file in the site root."
+msgstr "Bingbot, YandexBot, DuckDuckBot gibi arama motoru tarayıcıları için \"Disallow: /\" olmamalı; site yalnız Google'da görünür. Kökteki robots.txt dosyasını düzeltin."
+
+msgid "robots.txt has no Sitemap line"
+msgstr "robots.txt'de Sitemap satırı yok"
+
+msgid "Bing and Yandex find the sitemap from the \"Sitemap:\" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself."
+msgstr "Bing ve Yandex sitemap'i robots.txt'deki \"Sitemap:\" satırından bulur. Kökte elle konmuş bir robots.txt varsa silin (Flux SEO satırı ekler) ya da satırı elle ekleyin."
+
+msgid "IndexNow is off"
+msgstr "IndexNow kapalı"
+
+msgid "IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on."
+msgstr "IndexNow yeni ve güncellenen sayfaları Bing, Yandex, Seznam ve Naver'e anında bildirir; Google dışındaki arama motorlarında görünmenin en hızlı yolu. Açmak için tek tık."
+
+msgid "IndexNow submission failed"
+msgstr "IndexNow bildirimi başarısız"
+
+msgid "The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › \"Submit the whole site now\"."
+msgstr "Anahtar dosyasına (/ <key> .txt) dışarıdan ulaşılabilir olmalıdır. Bir önbellek veya güvenlik eklentisi bunu engelliyorsa bir istisna ekleyin ve ardından SEO › Genel › IndexNow › \"Sitenin tamamını şimdi gönder\" seçeneğini kullanın."
+
+msgid "No Bing / Yandex verification code"
+msgstr "Bing / Yandex doğrulama kodu girilmemiş"
+
+msgid "The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, \"Import from Google Search Console\" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines."
+msgstr "Site Bing Webmaster Tools ve Yandex Webmaster'a eklenmemiş olabilir; eklenmezse bu arama motorlarında geç ya da hiç görünmez. Bing'de \"Google Search Console'dan içe aktar\" ile kod gerekmez; o yolla eklediyseniz yok sayın. Kodlar SEO › Genel › Arama motorları'nda."
+
+msgid "Turn on IndexNow"
+msgstr "IndexNow'u aç"
+
+msgid "New and updated pages are sent instantly to Bing, Yandex, Seznam and Naver; the whole site is submitted once automatically."
+msgstr "Yeni ve güncellenen sayfalar Bing, Yandex, Seznam ve Naver'e anında bildirilir; tüm site bir kez kendiliğinden gönderilir."
+
+msgid "Bing and Yandex"
+msgstr "Bing ve Yandex"
+
+msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
+msgstr "Doğrulama kodu girilmemiş: %s. Siteyi bu arama motorlarının panellerine ekleyin (Bing'de Google Search Console'dan içe aktarma kod istemez)."
+
+msgid "Bing and Yandex verification codes are set."
+msgstr "Bing ve Yandex doğrulama kodları girili."
+
+msgid "On; the site has been submitted to Bing and Yandex."
+msgstr "Açık; site Bing ve Yandex'e bildirildi."
+
+msgid "On; the first bulk submission is sent on the next admin page load."
+msgstr "Açık; ilk toplu bildirim yönetim panelinde bir sonraki istekte gönderilir."
+
+msgid "Off; new pages are not sent to Bing and Yandex."
+msgstr "Kapalı; yeni sayfalar Bing ve Yandex'e bildirilmiyor."
+
+msgid "Open Naver Search Advisor"
+msgstr "Naver Search Advisor'ı aç"
+
+msgid "Korea's largest search engine. Add site › HTML tag; then Request › Submit sitemap. Optional."
+msgstr "Kore'nin en büyük arama motoru. Site ekle › HTML etiketi; sonra Request › Submit sitemap. İsteğe bağlı."
+
+msgid "Open Seznam Webmaster"
+msgstr "Seznam Webmaster'ı aç"
+
+msgid "Czech search engine (Webmaster link at the bottom of the page). Meta tag method. Optional."
+msgstr "Çekya'nın arama motoru (Webmaster bağlantısı sayfa altında). Meta etiketi yöntemi. İsteğe bağlı."
+
+msgid "Open Baidu Webmaster"
+msgstr "Baidu Webmaster'ı aç"
+
+msgid "China's search engine; sign-up may need a Chinese phone number. Not needed unless you target China."
+msgstr "Çin'in arama motoru; kayıt için Çin telefon numarası gerekebilir. Çin'e hitap etmiyorsanız gerek yok."
+
+msgid "Connected with Google Site Kit; Search Console verification and the sitemap are handled there. You can leave this empty."
+msgstr "Google Site Kit ile bağlı; Search Console doğrulaması ve sitemap Site Kit'te. Bu alanı boş bırakabilirsiniz."
+
+msgid "Connected with Google Site Kit."
+msgstr "Google Site Kit ile bağlı."
+
+msgid "Areas of expertise"
+msgstr "Uzmanlık konuları"
+
+msgid "One topic per line"
+msgstr "Her satıra bir konu"
+
+msgid "Topics the organization is an expert in (schema knowsAbout). Search engines and AI assistants match the organization to these topics. Left out when empty."
+msgstr "Kurumun uzman olduğu konular (schema knowsAbout). Arama motorları ve yapay zekâ asistanları kurumu bu konularla eşleştirir. Boşsa eklenmez."
+
+msgid "Area served"
+msgstr "Hizmet bölgesi"
+
+msgid "e.g. United States"
+msgstr "ör. Türkiye"
+
+msgid "Country served (schema areaServed). Left out when empty."
+msgstr "Hizmet verilen ülke (schema areaServed). Boşsa eklenmez."
+
+msgid "Donation call to action"
+msgstr "Bağış çağrısı"
+
+msgid "e.g. Donate"
+msgstr "ör. Bağış yap"
+
+msgid "For organizations that accept donations (schema DonateAction). Left out when the label is empty; when the URL is empty the donation page is found automatically."
+msgstr "Bağış kabul eden kurumlar için (schema DonateAction). Ad boşsa eklenmez; adres boşsa bağış sayfası kendiliğinden bulunur."
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Homepage description"
+msgstr "Ana sayfa açıklaması"
+
+msgid "Homepage title"
+msgstr "Ana sayfa başlığı"
+
+msgid "Don't index search"
+msgstr "Aramayı dizine ekleme"
+
+msgid "Separator"
+msgstr "Ayırıcı"
+
+msgid "No findings"
+msgstr "Bulgu yok"
+
+msgid "Findings"
+msgstr "Bulgular"
+
+msgid "Audit email"
+msgstr "Denetim e-postası"
+
+msgid "Audit updated"
+msgstr "Denetim güncellendi"
+
+msgid "Audit schedule"
+msgstr "Denetim sıklığı"
+
+msgid "Findings show up here after an audit runs."
+msgstr "Denetim çalışınca bulgular burada listelenir."
+
+msgid "Run audit"
+msgstr "Denetimi çalıştır"
+
+msgid "Email"
+msgstr "E-posta"
+
+msgid "Don't index tags"
+msgstr "Etiketleri dizine ekleme"
+
+msgid "IndexNow"
+msgstr "IndexNow"
+
+msgid "Organization"
+msgstr "Kuruluş"
+
+msgid "Organization name"
+msgstr "Kurum adı"
+
+msgid "Organization type"
+msgstr "Kurum türü"
+
+msgid "Open in panel"
+msgstr "Panelde aç"
+
+msgid "Scores"
+msgstr "Puanlar"
+
+msgid "NGO"
+msgstr "STK"
+
+msgid "Site name"
+msgstr "Site adı"
+
+msgid "Last local audit"
+msgstr "Son yerel denetim"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "WebMCP"
+msgstr "WebMCP"
+
+msgid "llms.txt"
+msgstr "llms.txt"
+
+msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
+msgstr "PHP %1$s, %2$s açığına karşı yamasız. En az %3$s sürümüne güncelleyin (hosting paneli › PHP sürümü). Dağıtım paketi yamayı sürüm numarasını değiştirmeden almış olabilir; emin değilseniz sağlayıcınıza sorun."
+
+msgid "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
+msgstr "PHP %1$s artık güvenlik yaması almıyor; %2$s gibi açıklar kapatılmaz. PHP %3$s ya da yamalı daha yeni bir sürüme geçin."
+
+msgid "PHP %1$s is patched against %2$s."
+msgstr "PHP %1$s, %2$s için yamalı."
+
+msgid "Security"
+msgstr "Güvenlik"
+
+msgid "PHP security patch"
+msgstr "PHP güvenlik yaması"
+
+msgid "Release notes"
+msgstr "Sürüm notları"
+
+msgid "session.upload_progress.enabled is on. WordPress does not use it; turning it off shrinks the attack surface. Set \"session.upload_progress.enabled = Off\" in php.ini or the hosting panel."
+msgstr "session.upload_progress.enabled açık. WordPress bunu kullanmaz; kapatmak saldırı yüzeyini küçültür. php.ini ya da hosting panelinde \"session.upload_progress.enabled = Off\" yapın."
+
+msgid "PHP version is missing a security patch"
+msgstr "PHP sürümü güvenlik yaması almamış"
+
+msgid "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel."
+msgstr "Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP'yi güncel yama sürümüne yükseltin."
+
+msgid "session.upload_progress is on"
+msgstr "session.upload_progress açık"
+
+msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
+msgstr "WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın."
+
+msgid "[['Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).', 'tr']]"
+msgstr "Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI'da)."

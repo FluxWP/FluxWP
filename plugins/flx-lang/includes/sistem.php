@@ -19,7 +19,7 @@ add_filter(
 	'flx_system_checks',
 	function ( $checks ) {
 		$checks = is_array( $checks ) ? $checks : array();
-		$src    = __( 'Flux Lang', 'flx-lang' );
+		$src    = __( 'Flux Language', 'flx-lang' );
 		$url    = admin_url( 'options-general.php?page=flx-lang' );
 		$langs  = flxl_languages();
 
@@ -27,15 +27,15 @@ add_filter(
 			'id'           => 'flxl.languages',
 			'source'       => $src,
 			'group'        => 'Config',
-			'label'        => __( 'Diller', 'flx-lang' ),
+			'label'        => __( 'Languages', 'flx-lang' ),
 			'status'       => count( $langs ) > 1 ? 'ok' : 'info',
 			'message'      => count( $langs ) > 1
 				? implode( ' · ', array_map( function ( $l ) {
 					return $l['name'] . ' (' . ( $l['code'] === flxl_default_language() ? '/' : '/' . $l['code'] . '/' ) . ')';
 				}, $langs ) )
-				: __( 'Yalnız varsayılan dil etkin; site tek dilli.', 'flx-lang' ),
+				: __( 'Only the default language is active; the site is single-language.', 'flx-lang' ),
 			'action_url'   => $url,
-			'action_label' => __( 'Diller', 'flx-lang' ),
+			'action_label' => __( 'Languages', 'flx-lang' ),
 		);
 
 		// Çekirdek dil paketleri: İngilizce dışındaki dillerde WordPress/WooCommerce çevirisi kurulu olmalı.
@@ -51,17 +51,17 @@ add_filter(
 			'id'           => 'flxl.core_lang',
 			'source'       => $src,
 			'group'        => 'Config',
-			'label'        => __( 'WordPress dil paketleri', 'flx-lang' ),
+			'label'        => __( 'WordPress language packs', 'flx-lang' ),
 			'status'       => $missing ? 'warning' : 'ok',
 			'message'      => $missing
 				? sprintf(
 					/* translators: %s: language list */
-					__( 'Kurulu değil: %s. Ayarlar › Genel › Site dili listesinden bir kez seçip kaydedin (paket iner), sonra eski dile dönün.', 'flx-lang' ),
+					__( 'Not installed: %s. Pick it once in Settings › General › Site Language and save (the pack downloads), then switch back.', 'flx-lang' ),
 					implode( ', ', $missing )
 				)
-				: __( 'Etkin dillerin hepsinin WordPress çevirisi var.', 'flx-lang' ),
+				: __( 'All active languages have WordPress translations.', 'flx-lang' ),
 			'action_url'   => admin_url( 'options-general.php' ),
-			'action_label' => __( 'Genel ayarlar', 'flx-lang' ),
+			'action_label' => __( 'General settings', 'flx-lang' ),
 		);
 
 		// Çeviri kapsamı (yayındaki varsayılan dil içeriği).
@@ -79,17 +79,17 @@ add_filter(
 				'source'       => $src,
 				'group'        => 'Config',
 				/* translators: %s: language name */
-				'label'        => sprintf( __( 'Sayfa çevirileri: %s', 'flx-lang' ), $l['name'] ),
+				'label'        => sprintf( __( 'Page translations: %s', 'flx-lang' ), $l['name'] ),
 				'status'       => 'info',
 				'message'      => sprintf(
 					/* translators: 1: translated count, 2: total, 3: fallback info */
-					__( '%1$d / %2$d sayfa çevrildi. %3$s', 'flx-lang' ),
+					__( '%1$d / %2$d pages translated. %3$s', 'flx-lang' ),
 					$done,
 					$all,
-					flxl_fallback() ? __( 'Çevrilmeyenler Türkçe gösteriliyor (kanonik adres Türkçe).', 'flx-lang' ) : __( 'Çevrilmeyenler bu dilde gizli.', 'flx-lang' )
+					flxl_fallback() ? __( 'Untranslated ones are shown in Turkish (canonical address is Turkish).', 'flx-lang' ) : __( 'Untranslated ones are hidden in this language.', 'flx-lang' )
 				),
 				'action_url'   => admin_url( 'edit.php?post_type=page&flxl_filter=' . flxl_default_language() ),
-				'action_label' => __( 'Sayfalar', 'flx-lang' ),
+				'action_label' => __( 'Pages', 'flx-lang' ),
 			);
 		}
 
@@ -101,16 +101,16 @@ add_filter(
 				'id'           => 'flxl.geo',
 				'source'       => $src,
 				'group'        => 'Config',
-				'label'        => __( 'Ziyaretçi ülkesi', 'flx-lang' ),
+				'label'        => __( 'Visitor country', 'flx-lang' ),
 				'status'       => '' === $src2 ? 'info' : ( 'none' === $src2 ? 'info' : 'ok' ),
 				'message'      => '' === $src2
-					? __( 'Henüz yabancı dil önerisi için ziyaretçi kontrolü yapılmadı.', 'flx-lang' )
+					? __( 'No visitor has been checked for a language suggestion yet.', 'flx-lang' )
 					: ( 'none' === $src2
-						? __( 'Sunucu ülke bilgisi göndermiyor; tarayıcı saat dilimi kullanılıyor (Türkiye saati = Türkçe). Cloudflare açılırsa ülke kodu kendiliğinden kullanılır.', 'flx-lang' )
+						? __( 'The server sends no country information; the browser time zone is used (Türkiye time = Turkish). If Cloudflare is enabled, the country code is used automatically.', 'flx-lang' )
 						/* translators: %s: header name */
-						: sprintf( __( 'Ülke bilgisi %s başlığından geliyor.', 'flx-lang' ), $src2 ) ),
+						: sprintf( __( 'Country information comes from the %s header.', 'flx-lang' ), $src2 ) ),
 				'action_url'   => $url,
-				'action_label' => __( 'Diller', 'flx-lang' ),
+				'action_label' => __( 'Languages', 'flx-lang' ),
 			);
 		}
 
@@ -119,11 +119,11 @@ add_filter(
 				'id'           => 'flxl.permalinks',
 				'source'       => $src,
 				'group'        => 'Config',
-				'label'        => __( 'Kalıcı bağlantılar', 'flx-lang' ),
+				'label'        => __( 'Permalinks', 'flx-lang' ),
 				'status'       => 'warning',
-				'message'      => __( 'Düz (?p=) bağlantılar kullanılıyor; dil adresleri için "Yazı adı" yapısını seçin.', 'flx-lang' ),
+				'message'      => __( 'Plain (?p=) links are in use; choose the "Post name" structure for language addresses.', 'flx-lang' ),
 				'action_url'   => admin_url( 'options-permalink.php' ),
-				'action_label' => __( 'Kalıcı bağlantılar', 'flx-lang' ),
+				'action_label' => __( 'Permalinks', 'flx-lang' ),
 			);
 		}
 		return $checks;

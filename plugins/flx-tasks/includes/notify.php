@@ -133,20 +133,20 @@ function flxg_notification_text( $type, $data, $actor_name ) {
 	switch ( $type ) {
 		case 'assigned':
 			/* translators: %s: person */
-			return sprintf( __( '%s sizi bir göreve atadı', 'flx-tasks' ), $actor_name );
+			return sprintf( __( '%s assigned you to a task', 'flx-tasks' ), $actor_name );
 		case 'mention':
 			/* translators: %s: person */
-			return sprintf( __( '%s bir yorumda sizden bahsetti', 'flx-tasks' ), $actor_name );
+			return sprintf( __( '%s mentioned you in a comment', 'flx-tasks' ), $actor_name );
 		case 'comment':
 			/* translators: %s: person */
-			return sprintf( __( '%s yorum yazdı', 'flx-tasks' ), $actor_name );
+			return sprintf( __( '%s wrote a comment', 'flx-tasks' ), $actor_name );
 		case 'status':
 			/* translators: 1: person, 2: status */
-			return sprintf( __( '%1$s durumu "%2$s" yaptı', 'flx-tasks' ), $actor_name, $data['label'] ?? '' );
+			return sprintf( __( '%1$s changed the status to "%2$s"', 'flx-tasks' ), $actor_name, $data['label'] ?? '' );
 		case 'due':
-			return __( 'Bitiş tarihi yarın', 'flx-tasks' );
+			return __( 'Due tomorrow', 'flx-tasks' );
 		case 'overdue':
-			return __( 'Bitiş tarihi geçti', 'flx-tasks' );
+			return __( 'Overdue', 'flx-tasks' );
 	}
 	return '';
 }
@@ -168,7 +168,7 @@ function flxg_maybe_email( $uid, $type, $task_id, $data, $actor ) {
 	if ( ! empty( $data['excerpt'] ) ) {
 		$body .= "\n“" . $data['excerpt'] . "”\n";
 	}
-	$body .= "\n" . flxg_app_url( $task_id ) . "\n\n— " . __( 'E-posta bildirimlerini Flux Tasks › Profil bölümünden kapatabilirsiniz.', 'flx-tasks' );
+	$body .= "\n" . flxg_app_url( $task_id ) . "\n\n— " . __( 'You can turn off email notifications under Flux Tasks › Profile.', 'flx-tasks' );
 	$list = flxg_get_list( (int) $task['list_id'] );
 	$vars = array(
 		'ad'     => flxg_user_name( $uid ),
@@ -202,26 +202,26 @@ function flxg_maybe_email( $uid, $type, $task_id, $data, $actor ) {
 add_filter( 'flxi_email_types', 'flxg_email_types' );
 function flxg_email_types( $types ) {
 	$vars   = array(
-		'ad'     => __( 'Alıcının adı', 'flx-tasks' ),
-		'kisi'   => __( 'İşlemi yapan kişi', 'flx-tasks' ),
-		'gorev'  => __( 'Görev adı', 'flx-tasks' ),
-		'liste'  => __( 'Liste', 'flx-tasks' ),
-		'mesaj'  => __( 'Bildirim cümlesi', 'flx-tasks' ),
-		'alinti' => __( 'Yorumdan alıntı', 'flx-tasks' ),
-		'tarih'  => __( 'Bitiş tarihi', 'flx-tasks' ),
-		'link'   => __( 'Görev bağlantısı', 'flx-tasks' ),
+		'ad'     => __( 'Recipient name', 'flx-tasks' ),
+		'kisi'   => __( 'Person who acted', 'flx-tasks' ),
+		'gorev'  => __( 'Task name', 'flx-tasks' ),
+		'liste'  => __( 'List', 'flx-tasks' ),
+		'mesaj'  => __( 'Notification sentence', 'flx-tasks' ),
+		'alinti' => __( 'Comment excerpt', 'flx-tasks' ),
+		'tarih'  => __( 'Due date', 'flx-tasks' ),
+		'link'   => __( 'Task link', 'flx-tasks' ),
 	);
 	$sample = array(
 		'ad'     => 'Ayşe',
 		'kisi'   => 'Mehmet',
-		'gorev'  => __( 'Stant malzemeleri listesi', 'flx-tasks' ),
-		'liste'  => __( 'İşler', 'flx-tasks' ),
-		'mesaj'  => __( 'Mehmet sizi bir göreve atadı', 'flx-tasks' ),
-		'alinti' => __( 'Cuma gününe kadar bakabilir misin?', 'flx-tasks' ),
+		'gorev'  => __( 'Booth supplies list', 'flx-tasks' ),
+		'liste'  => __( 'Tasks', 'flx-tasks' ),
+		'mesaj'  => __( 'Mehmet assigned you to a task', 'flx-tasks' ),
+		'alinti' => __( 'Can you look at it by Friday?', 'flx-tasks' ),
 		'tarih'  => flx_date( time() + DAY_IN_SECONDS ),
 		'link'   => admin_url( 'admin.php?page=flx-tasks' ),
 	);
-	$foot   = '<p style="color:#6b7280;font-size:13px">' . __( 'E-posta bildirimlerini Flux Tasks › Profil bölümünden kapatabilirsiniz.', 'flx-tasks' ) . '</p>';
+	$foot   = '<p style="color:#6b7280;font-size:13px">' . __( 'You can turn off email notifications under Flux Tasks › Profile.', 'flx-tasks' ) . '</p>';
 	$base   = array(
 		'group'       => 'Flux Tasks',
 		'recipient'   => 'user',
@@ -230,39 +230,39 @@ function flxg_email_types( $types ) {
 		'can_disable' => true,
 	);
 	$types['flx-tasks/assigned'] = $base + array(
-		'label'       => __( 'Göreve atandınız', 'flx-tasks' ),
-		'description' => __( 'Biri sizi bir göreve atayınca gider.', 'flx-tasks' ),
+		'label'       => __( 'You were assigned to a task', 'flx-tasks' ),
+		'description' => __( 'Sent when someone assigns you to a task.', 'flx-tasks' ),
 		'defaults'    => array(
-			'subject'     => __( '{kisi} sizi bir göreve atadı: {gorev}', 'flx-tasks' ),
-			'heading'     => __( 'Yeni görev: {gorev}', 'flx-tasks' ),
-			'body'        => '<p>' . __( 'Merhaba {ad},', 'flx-tasks' ) . '</p><p>' . __( '{kisi} sizi <strong>{liste}</strong> listesindeki <strong>{gorev}</strong> görevine atadı.', 'flx-tasks' ) . '</p>' . $foot,
-			'button_text' => __( 'Görevi aç', 'flx-tasks' ),
+			'subject'     => __( '{kisi} assigned you to a task: {gorev}', 'flx-tasks' ),
+			'heading'     => __( 'New task: {gorev}', 'flx-tasks' ),
+			'body'        => '<p>' . __( 'Hi {ad},', 'flx-tasks' ) . '</p><p>' . __( '{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list.', 'flx-tasks' ) . '</p>' . $foot,
+			'button_text' => __( 'Open task', 'flx-tasks' ),
 			'button_url'  => '{link}',
 			'sender'      => 'noreply',
 			'enabled'     => 1,
 		),
 	);
 	$types['flx-tasks/mention']  = $base + array(
-		'label'       => __( 'Yorumda bahsedildiniz', 'flx-tasks' ),
-		'description' => __( 'Biri yorumda @ ile sizi etiketleyince gider.', 'flx-tasks' ),
+		'label'       => __( 'You were mentioned in a comment', 'flx-tasks' ),
+		'description' => __( 'Sent when someone @mentions you in a comment.', 'flx-tasks' ),
 		'defaults'    => array(
-			'subject'     => __( '{kisi} bir yorumda sizden bahsetti: {gorev}', 'flx-tasks' ),
-			'heading'     => __( '{kisi} sizden bahsetti', 'flx-tasks' ),
-			'body'        => '<p>' . __( 'Merhaba {ad},', 'flx-tasks' ) . '</p><p>' . __( '<strong>{gorev}</strong> görevindeki yorum:', 'flx-tasks' ) . '</p><blockquote style="margin:0;padding:8px 14px;border-left:3px solid #2e7d32;color:#374151">{alinti}</blockquote>' . $foot,
-			'button_text' => __( 'Yoruma git', 'flx-tasks' ),
+			'subject'     => __( '{kisi} mentioned you in a comment: {gorev}', 'flx-tasks' ),
+			'heading'     => __( '{kisi} mentioned you', 'flx-tasks' ),
+			'body'        => '<p>' . __( 'Hi {ad},', 'flx-tasks' ) . '</p><p>' . __( 'Comment on <strong>{gorev}</strong>:', 'flx-tasks' ) . '</p><blockquote style="margin:0;padding:8px 14px;border-left:3px solid #2e7d32;color:#374151">{alinti}</blockquote>' . $foot,
+			'button_text' => __( 'Go to comment', 'flx-tasks' ),
 			'button_url'  => '{link}',
 			'sender'      => 'noreply',
 			'enabled'     => 1,
 		),
 	);
 	$types['flx-tasks/due']      = $base + array(
-		'label'       => __( 'Görevin bitiş tarihi yaklaşıyor', 'flx-tasks' ),
-		'description' => __( 'Size atanan görevin bitiş tarihinden bir gün önce gider.', 'flx-tasks' ),
+		'label'       => __( 'Task due date is coming up', 'flx-tasks' ),
+		'description' => __( 'Sent one day before the due date of a task assigned to you.', 'flx-tasks' ),
 		'defaults'    => array(
-			'subject'     => __( 'Yarın bitiyor: {gorev}', 'flx-tasks' ),
-			'heading'     => __( 'Bitiş tarihi yarın', 'flx-tasks' ),
-			'body'        => '<p>' . __( 'Merhaba {ad},', 'flx-tasks' ) . '</p><p>' . __( '<strong>{gorev}</strong> görevinin bitiş tarihi {tarih}.', 'flx-tasks' ) . '</p>' . $foot,
-			'button_text' => __( 'Görevi aç', 'flx-tasks' ),
+			'subject'     => __( 'Due tomorrow: {gorev}', 'flx-tasks' ),
+			'heading'     => __( 'Due tomorrow', 'flx-tasks' ),
+			'body'        => '<p>' . __( 'Hi {ad},', 'flx-tasks' ) . '</p><p>' . __( '<strong>{gorev}</strong> is due on {tarih}.', 'flx-tasks' ) . '</p>' . $foot,
+			'button_text' => __( 'Open task', 'flx-tasks' ),
 			'button_url'  => '{link}',
 			'sender'      => 'noreply',
 			'enabled'     => 1,

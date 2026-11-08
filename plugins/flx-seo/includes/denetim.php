@@ -21,32 +21,32 @@ const FLXSEO_PSI_ENDPOINT = 'https://www.googleapis.com/pagespeedonline/v5/runPa
 /** Öncelik sırası (küçük = önemli). */
 function flxseo_audit_priorities() {
 	return array(
-		'critical' => array( 0, __( 'Kritik', 'flx-seo' ) ),
-		'high'     => array( 1, __( 'Yüksek', 'flx-seo' ) ),
-		'medium'   => array( 2, __( 'Orta', 'flx-seo' ) ),
-		'low'      => array( 3, __( 'Düşük', 'flx-seo' ) ),
+		'critical' => array( 0, __( 'Critical', 'flx-seo' ) ),
+		'high'     => array( 1, __( 'High', 'flx-seo' ) ),
+		'medium'   => array( 2, __( 'Medium', 'flx-seo' ) ),
+		'low'      => array( 3, __( 'Low', 'flx-seo' ) ),
 	);
 }
 
 function flxseo_audit_categories() {
 	return array(
-		'performance'    => __( 'Performans', 'flx-seo' ),
-		'accessibility'  => __( 'Erişilebilirlik', 'flx-seo' ),
-		'best-practices' => __( 'En iyi uygulamalar', 'flx-seo' ),
+		'performance'    => __( 'Performance', 'flx-seo' ),
+		'accessibility'  => __( 'Accessibility', 'flx-seo' ),
+		'best-practices' => __( 'Best practices', 'flx-seo' ),
 		'seo'            => __( 'SEO', 'flx-seo' ),
-		'agentic'        => __( 'Ajan uyumu', 'flx-seo' ),
+		'agentic'        => __( 'Agentic browsing', 'flx-seo' ),
 	);
 }
 
 /** Düzeltmeyi kimin yapacağı (panelde etiket). */
 function flxseo_audit_owners() {
 	return array(
-		'theme'   => __( 'Tema / ön ayar', 'flx-seo' ),
-		'content' => __( 'İçerik', 'flx-seo' ),
-		'server'  => __( 'Sunucu', 'flx-seo' ),
-		'flx-seo' => __( 'Flux SEO (tek tık)', 'flx-seo' ),
-		'flx-speed' => __( 'Flux Speed (tek tık)', 'flx-seo' ),
-		'setting' => __( 'WordPress ayarı', 'flx-seo' ),
+		'theme'   => __( 'Theme / preset', 'flx-seo' ),
+		'content' => __( 'Content', 'flx-seo' ),
+		'server'  => __( 'Server', 'flx-seo' ),
+		'flx-seo' => __( 'Flux SEO (one click)', 'flx-seo' ),
+		'flx-speed' => __( 'Flux Speed (one click)', 'flx-seo' ),
+		'setting' => __( 'WordPress setting', 'flx-seo' ),
 	);
 }
 
@@ -61,87 +61,87 @@ function flxseo_audit_catalog() {
 	}
 	$c = array(
 		/* SEO */
-		'http-status-code'             => array( 'seo', __( 'Ana sayfa başarılı durum kodu döndürmüyor', 'flx-seo' ), __( 'Sayfa 200 dönmeli. Bakım modu, yönlendirme döngüsü ya da PHP hatası olabilir; Sistem Kontrolü ve hata günlüğüne bakın.', 'flx-seo' ), 'server' ),
-		'is-crawlable'                 => array( 'seo', __( 'Sayfa arama motorlarına kapalı', 'flx-seo' ), __( 'Ayarlar › Okuma › "Arama motorlarının siteyi dizine eklemesini engelle" kutusunu kaldırın; sayfanın kendi SEO panelindeki noindex işaretini kapatın.', 'flx-seo' ), 'setting' ),
-		'robots-txt'                   => array( 'seo', __( 'robots.txt tüm siteyi engelliyor', 'flx-seo' ), __( 'Kökteki robots.txt dosyasında "User-agent: *" altında "Disallow: /" olmamalı. Dosyayı silin ya da düzeltin; WordPress kendi robots.txt\'sini üretir.', 'flx-seo' ), 'server' ),
-		'search-bots-blocked'          => array( 'seo', __( 'robots.txt Bing ya da Yandex tarayıcısını engelliyor', 'flx-seo' ), __( 'Bingbot, YandexBot, DuckDuckBot gibi arama motoru tarayıcıları için "Disallow: /" olmamalı; site yalnız Google\'da görünür. Kökteki robots.txt dosyasını düzeltin.', 'flx-seo' ), 'server' ),
-		'robots-sitemap'               => array( 'seo', __( 'robots.txt\'de Sitemap satırı yok', 'flx-seo' ), __( 'Bing ve Yandex sitemap\'i robots.txt\'deki "Sitemap:" satırından bulur. Kökte elle konmuş bir robots.txt varsa silin (Flux SEO satırı ekler) ya da satırı elle ekleyin.', 'flx-seo' ), 'server' ),
-		'indexnow'                     => array( 'seo', __( 'IndexNow kapalı', 'flx-seo' ), __( 'IndexNow yeni ve güncellenen sayfaları Bing, Yandex, Seznam ve Naver\'e anında bildirir; Google dışındaki arama motorlarında görünmenin en hızlı yolu. Açmak için tek tık.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_indexnow' ),
-		'indexnow-error'               => array( 'seo', __( 'IndexNow bildirimi başarısız', 'flx-seo' ), __( 'Anahtar dosyası (/<anahtar>.txt) dışarıdan açılabilmeli. Önbellek ya da güvenlik eklentisi engelliyorsa istisna ekleyin, sonra SEO › Genel › IndexNow › "Tüm siteyi şimdi bildir".', 'flx-seo' ), 'flx-seo' ),
-		'search-verify'                => array( 'seo', __( 'Bing / Yandex doğrulama kodu girilmemiş', 'flx-seo' ), __( 'Site Bing Webmaster Tools ve Yandex Webmaster\'a eklenmemiş olabilir; eklenmezse bu arama motorlarında geç ya da hiç görünmez. Bing\'de "Google Search Console\'dan içe aktar" ile kod gerekmez; o yolla eklediyseniz yok sayın. Kodlar SEO › Genel › Arama motorları\'nda.', 'flx-seo' ), 'setting' ),
-		'php-unpatched'                => array( 'best-practices', __( 'PHP sürümü güvenlik yaması almamış', 'flx-seo' ), __( 'Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP\'yi güncel yama sürümüne yükseltin.', 'flx-seo' ), 'server' ),
-		'php-upload-progress'          => array( 'best-practices', __( 'session.upload_progress açık', 'flx-seo' ), __( 'WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın.', 'flx-seo' ), 'server' ),
-		'document-title'               => array( 'seo', __( 'Sayfa başlığı (<title>) yok', 'flx-seo' ), __( 'Tema add_theme_support( \'title-tag\' ) desteklemeli; SEO › Genel\'de ana sayfa başlığını doldurun.', 'flx-seo' ), 'theme', array( 'accessibility' ) ),
-		'title-length'                 => array( 'seo', __( 'Sayfa başlığı uzun', 'flx-seo' ), __( 'Başlığı 60 karakter civarında tutun; Google sonrasını keser.', 'flx-seo' ), 'content' ),
-		'meta-description'             => array( 'seo', __( 'Meta açıklama yok', 'flx-seo' ), __( 'SEO çıktısını açın ve ana sayfa açıklamasını (150–160 karakter) yazın.', 'flx-seo' ), 'flx-seo' ),
-		'canonical'                    => array( 'seo', __( 'Canonical bağlantısı eksik ya da birden fazla', 'flx-seo' ), __( 'Her sayfada tek bir rel=canonical olmalı. Başka bir eklenti ya da tema da ekliyorsa birini kapatın.', 'flx-seo' ), 'theme' ),
-		'hreflang'                     => array( 'seo', __( 'Çok dilli sitede hreflang yok', 'flx-seo' ), __( 'Flux Lang etkinse dil sürümleri hreflang ile bağlanmalı; Flux Lang ayarlarında dil eşleştirmelerini kontrol edin.', 'flx-seo' ), 'theme' ),
-		'heading-h1'                   => array( 'seo', __( 'Ana başlık (H1) yok ya da birden fazla', 'flx-seo' ), __( 'Her sayfada konuyu anlatan tek bir H1 olsun; ara başlıklar H2/H3.', 'flx-seo' ), 'content', array( 'accessibility' ) ),
-		'structured-data'              => array( 'seo', __( 'Yapılandırılmış veri (JSON-LD) yok ya da bozuk', 'flx-seo' ), __( 'Flux SEO çıktısı açıkken Organization, WebSite ve Breadcrumb schema eklenir. Bozuk JSON-LD üreten blok ya da eklentiyi bulun.', 'flx-seo' ), 'flx-seo', array( 'agentic' ) ),
-		'link-text'                    => array( 'seo', __( 'Bağlantı metinleri açıklayıcı değil', 'flx-seo' ), __( '"Tıklayın", "devamı", "buraya" yerine hedefi anlatan metin yazın (ör. "Bağış seçeneklerini görün").', 'flx-seo' ), 'content', array( 'accessibility', 'agentic' ) ),
-		'duplicate-titles'             => array( 'seo', __( 'Aynı başlıkta birden fazla yayın var', 'flx-seo' ), __( 'Kopya sayfayı (çoğunlukla adresi -2 ile biten) silin ya da asıl sayfaya yönlendirin; gerekiyorsa başlıkları ayırın. Aynı metinli bağlantılar farklı adreslere gidince "Aynı bağlantılar aynı amaca sahip" denetimi de düşer.', 'flx-seo' ), 'content', array( 'accessibility' ) ),
-		'generator'                    => array( 'best-practices', __( 'WordPress sürümü sayfada görünüyor', 'flx-seo' ), __( 'meta generator etiketi sürümü ele verir. Tema remove_action( \'wp_head\', \'wp_generator\' ) yapmalı; Flux SEO güvenlik başlıkları açıkken kaldırılır.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_headers' ),
+		'http-status-code'             => array( 'seo', __( 'Home page does not return a successful status code', 'flx-seo' ), __( 'The page must return 200. It may be maintenance mode, a redirect loop or a PHP error; check System Check and the error log.', 'flx-seo' ), 'server' ),
+		'is-crawlable'                 => array( 'seo', __( 'Page is blocked from search engines', 'flx-seo' ), __( 'Untick Settings › Reading › "Discourage search engines from indexing this site" and turn off noindex in the page\'s own SEO panel.', 'flx-seo' ), 'setting' ),
+		'robots-txt'                   => array( 'seo', __( 'robots.txt blocks the whole site', 'flx-seo' ), __( 'The robots.txt file in the site root must not have "Disallow: /" under "User-agent: *". Delete or fix the file; WordPress generates its own robots.txt.', 'flx-seo' ), 'server' ),
+		'search-bots-blocked'          => array( 'seo', __( 'robots.txt blocks the Bing or Yandex crawler', 'flx-seo' ), __( 'Search crawlers such as Bingbot, YandexBot and DuckDuckBot must not have "Disallow: /"; otherwise the site only appears on Google. Fix the robots.txt file in the site root.', 'flx-seo' ), 'server' ),
+		'robots-sitemap'               => array( 'seo', __( 'robots.txt has no Sitemap line', 'flx-seo' ), __( 'Bing and Yandex find the sitemap from the "Sitemap:" line in robots.txt. If a hand-written robots.txt sits in the root, delete it (Flux SEO adds the line) or add the line yourself.', 'flx-seo' ), 'server' ),
+		'indexnow'                     => array( 'seo', __( 'IndexNow is off', 'flx-seo' ), __( 'IndexNow instantly notifies Bing, Yandex, Seznam and Naver about new and updated pages; it is the fastest way to show up outside Google. One click to turn it on.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_indexnow' ),
+		'indexnow-error'               => array( 'seo', __( 'IndexNow submission failed', 'flx-seo' ), __( 'The key file (/<key>.txt) must be reachable from outside. If a cache or security plugin blocks it, add an exception, then use SEO › General › IndexNow › "Submit the whole site now".', 'flx-seo' ), 'flx-seo' ),
+		'search-verify'                => array( 'seo', __( 'No Bing / Yandex verification code', 'flx-seo' ), __( 'The site may not be added to Bing Webmaster Tools and Yandex Webmaster; without that it appears late or not at all there. On Bing, "Import from Google Search Console" needs no code; ignore this if you already imported. The codes are under SEO › General › Search engines.', 'flx-seo' ), 'setting' ),
+		'php-unpatched'                => array( 'best-practices', __( 'PHP version is missing a security patch', 'flx-seo' ), __( 'The server\'s PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel.', 'flx-seo' ), 'server' ),
+		'php-upload-progress'          => array( 'best-practices', __( 'session.upload_progress is on', 'flx-seo' ), __( 'WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel.', 'flx-seo' ), 'server' ),
+		'document-title'               => array( 'seo', __( 'Page has no <title>', 'flx-seo' ), __( 'The theme must declare add_theme_support( \'title-tag\' ); fill in the home title in SEO › General.', 'flx-seo' ), 'theme', array( 'accessibility' ) ),
+		'title-length'                 => array( 'seo', __( 'Page title is long', 'flx-seo' ), __( 'Keep the title around 60 characters; Google cuts the rest.', 'flx-seo' ), 'content' ),
+		'meta-description'             => array( 'seo', __( 'No meta description', 'flx-seo' ), __( 'Turn on SEO output and write the home description (150–160 characters).', 'flx-seo' ), 'flx-seo' ),
+		'canonical'                    => array( 'seo', __( 'Canonical link missing or duplicated', 'flx-seo' ), __( 'Each page needs exactly one rel=canonical. If another plugin or the theme also adds one, turn one off.', 'flx-seo' ), 'theme' ),
+		'hreflang'                     => array( 'seo', __( 'No hreflang on a multilingual site', 'flx-seo' ), __( 'With Flux Lang active, language versions must be linked with hreflang; check the language pairs in Flux Lang settings.', 'flx-seo' ), 'theme' ),
+		'heading-h1'                   => array( 'seo', __( 'Main heading (H1) missing or repeated', 'flx-seo' ), __( 'Each page needs one H1 that names the topic; subheadings are H2/H3.', 'flx-seo' ), 'content', array( 'accessibility' ) ),
+		'structured-data'              => array( 'seo', __( 'Structured data (JSON-LD) missing or broken', 'flx-seo' ), __( 'With Flux SEO output on, Organization, WebSite and Breadcrumb schema are added. Find the block or plugin that outputs broken JSON-LD.', 'flx-seo' ), 'flx-seo', array( 'agentic' ) ),
+		'link-text'                    => array( 'seo', __( 'Link texts are not descriptive', 'flx-seo' ), __( 'Write text that names the target instead of "click here", "more", "here" (e.g. "See donation options").', 'flx-seo' ), 'content', array( 'accessibility', 'agentic' ) ),
+		'duplicate-titles'             => array( 'seo', __( 'More than one post with the same title', 'flx-seo' ), __( 'Delete the duplicate (usually the address ending in -2) or redirect it to the original; give different titles if both are needed. When links with the same text go to different addresses, the "Identical links have the same purpose" audit also fails.', 'flx-seo' ), 'content', array( 'accessibility' ) ),
+		'generator'                    => array( 'best-practices', __( 'WordPress version is visible on the page', 'flx-seo' ), __( 'The meta generator tag reveals the version. The theme should call remove_action( \'wp_head\', \'wp_generator\' ); Flux SEO removes it when security headers are on.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_headers' ),
 
 		/* Erişilebilirlik */
-		'meta-viewport'                => array( 'accessibility', __( 'Yakınlaştırma engellenmiş (user-scalable=no / maximum-scale)', 'flx-seo' ), __( 'Viewport etiketinden user-scalable=no ve maximum-scale=1 kaldırın: <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">. Az gören kullanıcılar sayfayı büyütemiyor; Erişilebilirlik puanı doğrudan düşer.', 'flx-seo' ), 'theme' ),
-		'viewport'                     => array( 'performance', __( 'Viewport etiketi yok', 'flx-seo' ), __( 'Tema <head> içine <meta name="viewport" content="width=device-width, initial-scale=1"> eklemeli; yoksa mobilde sayfa masaüstü genişliğinde açılır.', 'flx-seo' ), 'theme', array( 'seo' ) ),
-		'aria-required-children'       => array( 'accessibility', __( 'ARIA rolü gerekli alt öğeleri içermiyor', 'flx-seo' ), __( 'Ör. role="tablist" yalnız role="tab" öğeleri içermeli. <ol role="tablist"><li><button role="tab"> yerine <div role="tablist"><button role="tab"> kullanın ya da li öğelerine role="presentation" verin. Erişilebilirlik ağacı bozulur; Lighthouse "Ajan uyumu" puanını da düşürür.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'aria-required-parent'         => array( 'accessibility', __( 'ARIA rolü gerekli üst öğenin içinde değil', 'flx-seo' ), __( 'role="tab" doğrudan role="tablist" içinde, role="option" role="listbox" içinde olmalı. Aradaki li/div öğelerini kaldırın ya da role="presentation" verin.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'listitem'                     => array( 'accessibility', __( 'Liste öğeleri (<li>) liste içinde değil', 'flx-seo' ), __( '<li> yalnız <ul>, <ol> ya da <menu> içinde olmalı ve üst listeye liste dışı bir role verilmemeli (ör. <ol role="tablist">).', 'flx-seo' ), 'theme' ),
-		'image-alt'                    => array( 'accessibility', __( 'Görsellerde alt metin yok', 'flx-seo' ), __( 'Her anlamlı görsele içeriği anlatan alt metin yazın; süs görselleri alt="" alsın. Medya kütüphanesinde alt metni doldurun ya da SEO › Genel › Görseller seçeneğini açın.', 'flx-seo' ), 'content', array( 'seo', 'agentic' ) ),
-		'link-name'                    => array( 'accessibility', __( 'Adı olmayan bağlantılar var', 'flx-seo' ), __( 'Yalnız simge içeren bağlantılara aria-label ya da görünmez metin (screen-reader-text) ekleyin.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'button-name'                  => array( 'accessibility', __( 'Adı olmayan düğmeler var', 'flx-seo' ), __( 'Simge düğmelerine aria-label verin (ör. "Menüyü aç"). Ajanlar ve ekran okuyucular düğmenin ne yaptığını bilemez.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'label'                        => array( 'accessibility', __( 'Etiketi olmayan form alanları var', 'flx-seo' ), __( 'Her alanın <label for> ya da aria-label ile bir adı olmalı; placeholder etiket yerine geçmez.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'html-has-lang'                => array( 'accessibility', __( '<html> etiketinde dil (lang) yok', 'flx-seo' ), __( 'Tema <html <?php language_attributes(); ?>> kullanmalı.', 'flx-seo' ), 'theme', array( 'seo' ) ),
-		'duplicate-id-aria'            => array( 'accessibility', __( 'Yinelenen ya da bulunmayan id başvuruları', 'flx-seo' ), __( 'Aynı id iki öğede olmamalı; aria-controls, aria-labelledby ve label for var olan bir id\'yi göstermeli.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'heading-order'                => array( 'accessibility', __( 'Başlık sırası atlıyor', 'flx-seo' ), __( 'Başlıklar sırayla inmeli (H2 → H3); görünüm için seviye atlamayın, CSS ile boyutlandırın.', 'flx-seo' ), 'content' ),
-		'tabindex'                     => array( 'accessibility', __( 'tabindex değeri 0\'dan büyük', 'flx-seo' ), __( 'tabindex="1" gibi değerler klavye sırasını bozar; 0 ya da -1 kullanın.', 'flx-seo' ), 'theme' ),
-		'identical-links-same-purpose' => array( 'accessibility', __( 'Aynı metinli bağlantılar farklı adreslere gidiyor', 'flx-seo' ), __( 'Aynı adı taşıyan bağlantılar aynı sayfaya gitmeli. Kopya sayfayı kaldırın ya da bağlantı metinlerini ayırın.', 'flx-seo' ), 'content', array( 'seo' ) ),
-		'frame-title'                  => array( 'accessibility', __( 'Başlıksız iframe', 'flx-seo' ), __( 'Her <iframe> title almalı (ör. "Konum haritası").', 'flx-seo' ), 'content' ),
-		'landmark-one-main'            => array( 'accessibility', __( 'Sayfada <main> bölgesi yok', 'flx-seo' ), __( 'Ana içerik <main> içinde olmalı; ekran okuyucu ve ajanlar ana içeriği böyle bulur.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'color-contrast'               => array( 'accessibility', __( 'Metin/zemin karşıtlığı yetersiz', 'flx-seo' ), __( 'Normal metin için en az 4.5:1, büyük metin için 3:1 karşıtlık. Tema paletindeki soluk renkleri koyulaştırın.', 'flx-seo' ), 'theme' ),
+		'meta-viewport'                => array( 'accessibility', __( 'Zoom is blocked (user-scalable=no / maximum-scale)', 'flx-seo' ), __( 'Remove user-scalable=no and maximum-scale=1 from the viewport tag: <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">. Users with low vision cannot zoom; the Accessibility score drops directly.', 'flx-seo' ), 'theme' ),
+		'viewport'                     => array( 'performance', __( 'No viewport tag', 'flx-seo' ), __( 'The theme must add <meta name="viewport" content="width=device-width, initial-scale=1"> to <head>; otherwise the page opens at desktop width on mobile.', 'flx-seo' ), 'theme', array( 'seo' ) ),
+		'aria-required-children'       => array( 'accessibility', __( 'ARIA role is missing required children', 'flx-seo' ), __( 'E.g. role="tablist" may only contain role="tab" elements. Use <div role="tablist"><button role="tab"> instead of <ol role="tablist"><li><button role="tab">, or give the li elements role="presentation". The accessibility tree breaks and Lighthouse also lowers the Agentic Browsing score.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'aria-required-parent'         => array( 'accessibility', __( 'ARIA role is not inside its required parent', 'flx-seo' ), __( 'role="tab" must sit directly inside role="tablist", role="option" inside role="listbox". Remove the li/div elements in between or give them role="presentation".', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'listitem'                     => array( 'accessibility', __( 'List items (<li>) are not inside a list', 'flx-seo' ), __( '<li> may only sit inside <ul>, <ol> or <menu>, and the parent list must not get a non-list role (e.g. <ol role="tablist">).', 'flx-seo' ), 'theme' ),
+		'image-alt'                    => array( 'accessibility', __( 'Images without alt text', 'flx-seo' ), __( 'Give every meaningful image alt text that describes it; decorative images get alt="". Fill in alt text in the media library or turn on SEO › General › Images.', 'flx-seo' ), 'content', array( 'seo', 'agentic' ) ),
+		'link-name'                    => array( 'accessibility', __( 'Links without a name', 'flx-seo' ), __( 'Add aria-label or hidden text (screen-reader-text) to icon-only links.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'button-name'                  => array( 'accessibility', __( 'Buttons without a name', 'flx-seo' ), __( 'Give icon buttons an aria-label (e.g. "Open menu"). Agents and screen readers cannot tell what the button does.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'label'                        => array( 'accessibility', __( 'Form fields without a label', 'flx-seo' ), __( 'Each field needs a name through <label for> or aria-label; a placeholder is not a label.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'html-has-lang'                => array( 'accessibility', __( '<html> has no lang attribute', 'flx-seo' ), __( 'The theme should use <html <?php language_attributes(); ?>>.', 'flx-seo' ), 'theme', array( 'seo' ) ),
+		'duplicate-id-aria'            => array( 'accessibility', __( 'Duplicate or missing id references', 'flx-seo' ), __( 'No id may be used twice; aria-controls, aria-labelledby and label for must point to an existing id.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'heading-order'                => array( 'accessibility', __( 'Heading levels skip', 'flx-seo' ), __( 'Headings should step down in order (H2 → H3); do not skip levels for looks, size them with CSS.', 'flx-seo' ), 'content' ),
+		'tabindex'                     => array( 'accessibility', __( 'tabindex greater than 0', 'flx-seo' ), __( 'Values like tabindex="1" break keyboard order; use 0 or -1.', 'flx-seo' ), 'theme' ),
+		'identical-links-same-purpose' => array( 'accessibility', __( 'Links with the same text go to different addresses', 'flx-seo' ), __( 'Links with the same name should go to the same page. Remove the duplicate page or make the link texts different.', 'flx-seo' ), 'content', array( 'seo' ) ),
+		'frame-title'                  => array( 'accessibility', __( 'iframe without a title', 'flx-seo' ), __( 'Every <iframe> needs a title (e.g. "Location map").', 'flx-seo' ), 'content' ),
+		'landmark-one-main'            => array( 'accessibility', __( 'No <main> landmark on the page', 'flx-seo' ), __( 'Main content must be inside <main>; screen readers and agents find the main content this way.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'color-contrast'               => array( 'accessibility', __( 'Insufficient text/background contrast', 'flx-seo' ), __( 'At least 4.5:1 for normal text and 3:1 for large text. Darken the pale colors in the theme palette.', 'flx-seo' ), 'theme' ),
 
 		/* Performans */
-		'render-blocking-insight'      => array( 'performance', __( 'Oluşturmayı engelleyen istekler', 'flx-seo' ), __( 'İlk ekran için gereken kritik CSS\'i satır içine alın, gerisini media="print" onload ile ya da sayfa sonunda yükleyin; JS\'e defer verin. LiteSpeed Cache › Page Optimization › CSS/JS ayarları ya da temanın kendi birleştirilmiş CSS\'i.', 'flx-seo' ), 'theme' ),
-		'unused-css-rules'             => array( 'performance', __( 'Kullanılmayan CSS', 'flx-seo' ), __( 'Tek büyük CSS dosyasını sayfa türüne göre bölün ya da kullanılmayan kuralları ayıklayın (LiteSpeed "Remove Unused CSS"). Kazanç çoğunlukla LCP\'ye yansır.', 'flx-seo' ), 'theme' ),
-		'unminified-javascript'        => array( 'performance', __( 'Sıkıştırılmamış (minify edilmemiş) JavaScript', 'flx-seo' ), __( 'Tema/eklenti JS dosyalarının .min sürümünü yayınlayın ya da LiteSpeed "JS Minify"ı açın.', 'flx-seo' ), 'theme' ),
-		'unminified-css'               => array( 'performance', __( 'Sıkıştırılmamış CSS', 'flx-seo' ), __( 'CSS\'i minify edin (LiteSpeed "CSS Minify" ya da derleme adımı).', 'flx-seo' ), 'theme' ),
-		'non-composited-animations'    => array( 'performance', __( 'GPU\'da çalışmayan animasyonlar', 'flx-seo' ), __( 'Animasyonları transform ve opacity ile yapın; stroke-dashoffset, top/left, width gibi özellikler her karede yeniden çizim yapar. prefers-reduced-motion\'da durdurun.', 'flx-seo' ), 'theme' ),
-		'dom-size-insight'             => array( 'performance', __( 'DOM çok büyük', 'flx-seo' ), __( '1.500 öğenin altını hedefleyin. Kayan şeritlerdeki (marquee) kopyaları azaltın, gizli menüleri ve uzun listeleri ihtiyaç olunca oluşturun, iç içe sarmalayıcıları sadeleştirin.', 'flx-seo' ), 'theme' ),
-		'lcp-breakdown-insight'        => array( 'performance', __( 'En büyük içerik (LCP) geç çiziliyor', 'flx-seo' ), __( 'LCP öğesi metinse yazı tipini preload edip font-display: swap kullanın ve giriş animasyonunu ilk karede göstermeyin; görselse fetchpriority="high" verin, lazy load etmeyin.', 'flx-seo' ), 'theme' ),
-		'cls-culprits-insight'         => array( 'performance', __( 'Yerleşim kayması (CLS) kaynakları', 'flx-seo' ), __( 'Görsellere width/height, sonradan gelen bloklara sabit yükseklik verin; web fontları için size-adjust/fallback metrikleri kullanın; absolute konumlu animasyonlu katmanlar yerleşimi itmesin.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'font-display-insight'         => array( 'performance', __( 'Yazı tipleri metni geciktiriyor', 'flx-seo' ), __( '@font-face içinde font-display: swap kullanın, ilk ekranda kullanılan 1-2 yazı tipini <link rel="preload" as="font" crossorigin> ile önden yükleyin, kullanılmayan ağırlıkları kaldırın.', 'flx-seo' ), 'theme' ),
-		'network-dependency-tree-insight' => array( 'performance', __( 'Kritik istek zinciri uzun', 'flx-seo' ), __( 'CSS içinden yüklenen fontlar zinciri uzatır; ilk ekran fontlarını preload edin, zincirdeki gereksiz istekleri (ör. guest.vary.php) ertelenmiş yükleyin.', 'flx-seo' ), 'theme' ),
-		'forced-reflow-insight'        => array( 'performance', __( 'Zorunlu yeniden yerleşim (forced reflow)', 'flx-seo' ), __( 'JS\'te stil değiştirdikten sonra offsetWidth/getBoundingClientRect okumayın; okumaları önce, yazmaları sonra requestAnimationFrame içinde yapın.', 'flx-seo' ), 'theme' ),
-		'long-tasks'                   => array( 'performance', __( 'Uzun ana iş parçacığı görevleri', 'flx-seo' ), __( 'Açılışta çalışan JS\'i bölün, görünür olmayan bölümlerin işini IntersectionObserver ile erteleyin.', 'flx-seo' ), 'theme' ),
-		'image-delivery-insight'       => array( 'performance', __( 'Görseller büyük ya da eski biçimde', 'flx-seo' ), __( 'WebP/AVIF kullanın, görünen boyuttan büyük görsel göndermeyin (srcset), görsel sıkıştırmayı açın.', 'flx-seo' ), 'content' ),
-		'unsized-images'               => array( 'performance', __( 'Genişlik/yükseklik vermeyen görseller', 'flx-seo' ), __( '<img> etiketlerine width ve height verin; tarayıcı yer ayırır, sayfa kaymaz.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'lcp-lazy-loaded'              => array( 'performance', __( 'İlk ekrandaki görsel lazy yükleniyor', 'flx-seo' ), __( 'Sayfanın ilk görseline loading="lazy" vermeyin, fetchpriority="high" verin. LiteSpeed lazy load açıksa ilk görseli hariç tutun (data-no-lazy ya da "Lazy Load Image Excludes").', 'flx-seo' ), 'theme' ),
-		'server-response-time'         => array( 'performance', __( 'Sunucu yanıtı yavaş', 'flx-seo' ), __( 'Sayfa önbelleğini (LiteSpeed Cache) açın; Flux Speed › yavaş eklentiler ve cron raporuna bakın.', 'flx-seo' ), 'server' ),
-		'uses-text-compression'        => array( 'performance', __( 'Metin sıkıştırma (gzip/brotli) yok', 'flx-seo' ), __( 'Sunucuda gzip ya da brotli açın (Hostinger/LiteSpeed\'de varsayılan açıktır; CDN ayarını kontrol edin).', 'flx-seo' ), 'server' ),
-		'document-size'                => array( 'performance', __( 'HTML belgesi büyük', 'flx-seo' ), __( 'Satır içi SVG ikonları sprite\'a, büyük satır içi CSS/JSON\'u dosyaya taşıyın.', 'flx-seo' ), 'theme' ),
-		'emoji-script'                 => array( 'performance', __( 'WordPress emoji betiği yükleniyor', 'flx-seo' ), __( 'Modern tarayıcılar emojiyi kendisi çizer; tema print_emoji_detection_script\'i kaldırabilir.', 'flx-seo' ), 'theme' ),
-		'largest-contentful-paint'     => array( 'performance', __( 'Largest Contentful Paint (LCP) yavaş', 'flx-seo' ), __( 'Hedef 2,5 sn altı. Engelleyen CSS\'i azaltın, LCP yazı tipini/görselini önden yükleyin, sunucu önbelleğini açın.', 'flx-seo' ), 'theme' ),
-		'cumulative-layout-shift'      => array( 'performance', __( 'Cumulative Layout Shift (CLS) yüksek', 'flx-seo' ), __( 'Hedef 0,1 altı. Görsellere boyut verin, fontların kaymasını önleyin, sonradan eklenen öğelere yer ayırın.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
-		'total-blocking-time'          => array( 'performance', __( 'Total Blocking Time (TBT) yüksek', 'flx-seo' ), __( 'Hedef 200 ms altı. Açılış JS\'ini azaltın, üçüncü taraf betikleri erteleyin.', 'flx-seo' ), 'theme' ),
-		'first-contentful-paint'       => array( 'performance', __( 'First Contentful Paint (FCP) yavaş', 'flx-seo' ), __( 'Hedef 1,8 sn altı. Engelleyen CSS/JS ve sunucu yanıt süresini azaltın.', 'flx-seo' ), 'theme' ),
-		'speed-index'                  => array( 'performance', __( 'Speed Index yavaş', 'flx-seo' ), __( 'İlk ekranın hızlı dolması için kritik CSS ve yazı tiplerini önceliklendirin, giriş animasyonlarını kısaltın.', 'flx-seo' ), 'theme' ),
+		'render-blocking-insight'      => array( 'performance', __( 'Render-blocking requests', 'flx-seo' ), __( 'Inline the critical CSS for the first screen, load the rest with media="print" onload or at the end of the page, and defer JS. LiteSpeed Cache › Page Optimization › CSS/JS settings, or the theme\'s own combined CSS.', 'flx-seo' ), 'theme' ),
+		'unused-css-rules'             => array( 'performance', __( 'Unused CSS', 'flx-seo' ), __( 'Split the one large CSS file by page type, or drop unused rules (LiteSpeed "Remove Unused CSS"). The gain usually shows up in LCP.', 'flx-seo' ), 'theme' ),
+		'unminified-javascript'        => array( 'performance', __( 'Unminified JavaScript', 'flx-seo' ), __( 'Ship .min versions of theme/plugin JS or turn on LiteSpeed "JS Minify".', 'flx-seo' ), 'theme' ),
+		'unminified-css'               => array( 'performance', __( 'Unminified CSS', 'flx-seo' ), __( 'Minify CSS (LiteSpeed "CSS Minify" or a build step).', 'flx-seo' ), 'theme' ),
+		'non-composited-animations'    => array( 'performance', __( 'Non-composited animations', 'flx-seo' ), __( 'Animate with transform and opacity; properties like stroke-dashoffset, top/left and width repaint on every frame. Stop them under prefers-reduced-motion.', 'flx-seo' ), 'theme' ),
+		'dom-size-insight'             => array( 'performance', __( 'DOM is too large', 'flx-seo' ), __( 'Aim for under 1,500 elements. Reduce copies in marquees, build hidden menus and long lists on demand, simplify nested wrappers.', 'flx-seo' ), 'theme' ),
+		'lcp-breakdown-insight'        => array( 'performance', __( 'Largest content (LCP) paints late', 'flx-seo' ), __( 'If the LCP element is text, preload its font, use font-display: swap and do not hide it behind an entrance animation on the first frame; if it is an image, give it fetchpriority="high" and do not lazy load it.', 'flx-seo' ), 'theme' ),
+		'cls-culprits-insight'         => array( 'performance', __( 'Layout shift (CLS) culprits', 'flx-seo' ), __( 'Give images width/height and late blocks a fixed height; use size-adjust/fallback metrics for web fonts; absolutely positioned animated layers must not push the layout.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'font-display-insight'         => array( 'performance', __( 'Fonts delay text', 'flx-seo' ), __( 'Use font-display: swap in @font-face, preload the 1-2 fonts used on the first screen with <link rel="preload" as="font" crossorigin>, remove unused weights.', 'flx-seo' ), 'theme' ),
+		'network-dependency-tree-insight' => array( 'performance', __( 'Critical request chain is long', 'flx-seo' ), __( 'Fonts loaded from CSS lengthen the chain; preload first-screen fonts and defer unneeded requests in the chain (e.g. guest.vary.php).', 'flx-seo' ), 'theme' ),
+		'forced-reflow-insight'        => array( 'performance', __( 'Forced reflow', 'flx-seo' ), __( 'Do not read offsetWidth/getBoundingClientRect after changing styles in JS; read first, then write inside requestAnimationFrame.', 'flx-seo' ), 'theme' ),
+		'long-tasks'                   => array( 'performance', __( 'Long main-thread tasks', 'flx-seo' ), __( 'Split JS that runs at startup and defer work for off-screen sections with IntersectionObserver.', 'flx-seo' ), 'theme' ),
+		'image-delivery-insight'       => array( 'performance', __( 'Images are large or in an old format', 'flx-seo' ), __( 'Use WebP/AVIF, never send images larger than displayed (srcset), turn on image compression.', 'flx-seo' ), 'content' ),
+		'unsized-images'               => array( 'performance', __( 'Images without width/height', 'flx-seo' ), __( 'Give <img> tags width and height; the browser reserves space and the page does not shift.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'lcp-lazy-loaded'              => array( 'performance', __( 'First-screen image is lazy loaded', 'flx-seo' ), __( 'Do not give the page\'s first image loading="lazy"; give it fetchpriority="high". If LiteSpeed lazy load is on, exclude the first image (data-no-lazy or "Lazy Load Image Excludes").', 'flx-seo' ), 'theme' ),
+		'server-response-time'         => array( 'performance', __( 'Slow server response', 'flx-seo' ), __( 'Turn on page cache (LiteSpeed Cache); check slow plugins and the cron report in Flux Speed.', 'flx-seo' ), 'server' ),
+		'uses-text-compression'        => array( 'performance', __( 'No text compression (gzip/brotli)', 'flx-seo' ), __( 'Turn on gzip or brotli on the server (on by default on Hostinger/LiteSpeed; check the CDN settings).', 'flx-seo' ), 'server' ),
+		'document-size'                => array( 'performance', __( 'HTML document is large', 'flx-seo' ), __( 'Move inline SVG icons into a sprite and large inline CSS/JSON into files.', 'flx-seo' ), 'theme' ),
+		'emoji-script'                 => array( 'performance', __( 'WordPress emoji script is loaded', 'flx-seo' ), __( 'Modern browsers draw emoji themselves; the theme can remove print_emoji_detection_script.', 'flx-seo' ), 'theme' ),
+		'largest-contentful-paint'     => array( 'performance', __( 'Largest Contentful Paint (LCP) is slow', 'flx-seo' ), __( 'Target under 2.5 s. Reduce render-blocking CSS, preload the LCP font/image, turn on the server cache.', 'flx-seo' ), 'theme' ),
+		'cumulative-layout-shift'      => array( 'performance', __( 'Cumulative Layout Shift (CLS) is high', 'flx-seo' ), __( 'Target under 0.1. Size images, prevent font shifts, reserve space for elements added later.', 'flx-seo' ), 'theme', array( 'agentic' ) ),
+		'total-blocking-time'          => array( 'performance', __( 'Total Blocking Time (TBT) is high', 'flx-seo' ), __( 'Target under 200 ms. Reduce startup JS and defer third-party scripts.', 'flx-seo' ), 'theme' ),
+		'first-contentful-paint'       => array( 'performance', __( 'First Contentful Paint (FCP) is slow', 'flx-seo' ), __( 'Target under 1.8 s. Reduce render-blocking CSS/JS and server response time.', 'flx-seo' ), 'theme' ),
+		'speed-index'                  => array( 'performance', __( 'Speed Index is slow', 'flx-seo' ), __( 'Prioritize critical CSS and fonts so the first screen fills quickly; shorten entrance animations.', 'flx-seo' ), 'theme' ),
 
 		/* En iyi uygulamalar / güvenlik */
-		'is-on-https'                  => array( 'best-practices', __( 'Site HTTPS değil ya da karışık içerik var', 'flx-seo' ), __( 'Ayarlar › Genel\'de adresleri https:// yapın, http:// ile yüklenen görsel/betikleri düzeltin.', 'flx-seo' ), 'setting', array( 'seo' ) ),
-		'has-hsts'                     => array( 'best-practices', __( 'HSTS politikası zayıf', 'flx-seo' ), __( 'Strict-Transport-Security: max-age=31536000; includeSubDomains. Tüm alt alan adları HTTPS ise "preload" da ekleyip hstspreload.org\'a başvurabilirsiniz.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_hsts' ),
-		'csp-xss'                      => array( 'best-practices', __( 'İçerik Güvenlik Politikası (CSP) yok ya da eksik', 'flx-seo' ), __( 'Flux SEO temel CSP\'yi (object-src \'none\'; base-uri \'self\'; frame-ancestors \'self\') ekleyebilir. Tam script-src politikası WordPress\'te eklentileri bozabilir; önce Content-Security-Policy-Report-Only ile deneyin.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_headers' ),
-		'clickjacking-mitigation'      => array( 'best-practices', __( 'Tıklama korsanlığına (clickjacking) karşı koruma yok', 'flx-seo' ), __( 'X-Frame-Options: SAMEORIGIN ve CSP frame-ancestors \'self\' gönderin. Siteniz başka sitelerde iframe ile gösteriliyorsa açmayın.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_headers' ),
-		'origin-isolation'             => array( 'best-practices', __( 'Pencere yalıtımı (COOP) yok', 'flx-seo' ), __( 'Cross-Origin-Opener-Policy: same-origin-allow-popups gönderin; ödeme ve giriş açılır pencereleri çalışmaya devam eder.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_headers' ),
-		'trusted-types-xss'            => array( 'best-practices', __( 'Trusted Types tanımlı değil', 'flx-seo' ), __( 'DOM tabanlı XSS\'e karşı ileri seviye koruma. WordPress eklentilerinin çoğu henüz uyumlu değil; yalnız özel temalı, az eklentili sitelerde Report-Only ile deneyin.', 'flx-seo' ), 'server' ),
-		'x-content-type-options'       => array( 'best-practices', __( 'X-Content-Type-Options başlığı yok', 'flx-seo' ), __( 'X-Content-Type-Options: nosniff. Flux SEO bunu kendiliğinden gönderir; sunucu ya da önbellek eklentisi siliyor olabilir.', 'flx-seo' ), 'server' ),
-		'doctype'                      => array( 'best-practices', __( 'HTML doctype ya da charset eksik', 'flx-seo' ), __( 'Sayfa <!DOCTYPE html> ile başlamalı ve <meta charset="UTF-8"> ilk satırlarda olmalı.', 'flx-seo' ), 'theme' ),
+		'is-on-https'                  => array( 'best-practices', __( 'Site is not HTTPS or has mixed content', 'flx-seo' ), __( 'Set the addresses to https:// in Settings › General and fix images/scripts loaded over http://.', 'flx-seo' ), 'setting', array( 'seo' ) ),
+		'has-hsts'                     => array( 'best-practices', __( 'Weak HSTS policy', 'flx-seo' ), __( 'Strict-Transport-Security: max-age=31536000; includeSubDomains. If every subdomain is HTTPS, you can also add "preload" and submit to hstspreload.org.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_hsts' ),
+		'csp-xss'                      => array( 'best-practices', __( 'No or incomplete Content Security Policy (CSP)', 'flx-seo' ), __( 'Flux SEO can add a basic CSP (object-src \'none\'; base-uri \'self\'; frame-ancestors \'self\'). A full script-src policy can break plugins on WordPress; try Content-Security-Policy-Report-Only first.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_headers' ),
+		'clickjacking-mitigation'      => array( 'best-practices', __( 'No clickjacking protection', 'flx-seo' ), __( 'Send X-Frame-Options: SAMEORIGIN and CSP frame-ancestors \'self\'. Do not turn on if your site is embedded in other sites with an iframe.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_headers' ),
+		'origin-isolation'             => array( 'best-practices', __( 'No origin isolation (COOP)', 'flx-seo' ), __( 'Send Cross-Origin-Opener-Policy: same-origin-allow-popups; payment and login popups keep working.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_headers' ),
+		'trusted-types-xss'            => array( 'best-practices', __( 'Trusted Types not set', 'flx-seo' ), __( 'Advanced protection against DOM-based XSS. Most WordPress plugins are not compatible yet; try it with Report-Only only on custom-theme sites with few plugins.', 'flx-seo' ), 'server' ),
+		'x-content-type-options'       => array( 'best-practices', __( 'No X-Content-Type-Options header', 'flx-seo' ), __( 'X-Content-Type-Options: nosniff. Flux SEO sends it by default; the server or a cache plugin may be removing it.', 'flx-seo' ), 'server' ),
+		'doctype'                      => array( 'best-practices', __( 'HTML doctype or charset missing', 'flx-seo' ), __( 'The page must start with <!DOCTYPE html> and have <meta charset="UTF-8"> in the first lines.', 'flx-seo' ), 'theme' ),
 
 		/* Ajan uyumu */
-		'llms-txt'                     => array( 'agentic', __( 'llms.txt yok', 'flx-seo' ), __( 'Yapay zekâ ajanları siteyi /llms.txt ile özetler. Flux SEO site adı, açıklama, menü sayfaları ve son içeriklerden kendiliğinden üretir; açmak için tek tık.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_llms' ),
-		'llms-txt-format'              => array( 'agentic', __( 'llms.txt önerilen biçimde değil', 'flx-seo' ), __( 'İlk satır "# Site adı", ardından "> kısa özet" ve [başlık](adres) biçiminde bağlantı listeleri olmalı. Kökte elle konmuş eski bir dosya varsa silin; Flux SEO üretir.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_llms' ),
-		'webmcp-forms'                 => array( 'agentic', __( 'Formlar WebMCP aracı olarak tanımlı değil', 'flx-seo' ), __( 'WebMCP, tarayıcıdaki ajanların formları araç olarak çağırmasını sağlar (form toolname/tooldescription). Flux SEO arama formuna kendiliğinden ekler; kendi formlarınıza da ekleyin.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_webmcp' ),
-		'ai-crawlers-blocked'          => array( 'agentic', __( 'robots.txt yapay zekâ tarayıcılarını engelliyor', 'flx-seo' ), __( 'GPTBot, ClaudeBot, Google-Extended, PerplexityBot gibi tarayıcılar engelliyse içeriğiniz yapay zekâ yanıtlarında görünmez. Bilerek engellemediyseniz robots.txt\'den kaldırın.', 'flx-seo' ), 'server' ),
+		'llms-txt'                     => array( 'agentic', __( 'No llms.txt', 'flx-seo' ), __( 'AI agents summarize a site through /llms.txt. Flux SEO builds it from the site name, description, menu pages and recent content; one click to turn it on.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_llms' ),
+		'llms-txt-format'              => array( 'agentic', __( 'llms.txt is not in the recommended format', 'flx-seo' ), __( 'The first line must be "# Site name", then "> short summary" and link lists in [title](url) form. If an old hand-made file sits in the root, delete it; Flux SEO generates one.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_llms' ),
+		'webmcp-forms'                 => array( 'agentic', __( 'Forms are not declared as WebMCP tools', 'flx-seo' ), __( 'WebMCP lets browser agents call forms as tools (form toolname/tooldescription). Flux SEO adds it to the search form; add it to your own forms too.', 'flx-seo' ), 'flx-seo', array(), 'flxseo_webmcp' ),
+		'ai-crawlers-blocked'          => array( 'agentic', __( 'robots.txt blocks AI crawlers', 'flx-seo' ), __( 'If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are blocked, your content does not show up in AI answers. Remove them from robots.txt unless you block them on purpose.', 'flx-seo' ), 'server' ),
 	);
 	return $c;
 }
@@ -342,7 +342,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 
 	if ( 200 !== $page['code'] ) {
 		/* translators: %d: HTTP durum kodu */
-		$add( 'http-status-code', 'critical', array(), sprintf( __( 'HTTP %d döndü.', 'flx-seo' ), $page['code'] ) );
+		$add( 'http-status-code', 'critical', array(), sprintf( __( 'Returned HTTP %d.', 'flx-seo' ), $page['code'] ) );
 		if ( '' === $html ) {
 			return $f;
 		}
@@ -363,7 +363,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 	/* --- SEO --- */
 	$robots_meta = strtolower( (string) ( $xp->evaluate( 'string(//meta[translate(@name,"ROBTS","robts")="robots"]/@content)' ) ) );
 	if ( ! get_option( 'blog_public' ) ) {
-		$add( 'is-crawlable', 'critical', array( __( 'Ayarlar › Okuma: arama motorları engelli', 'flx-seo' ) ) );
+		$add( 'is-crawlable', 'critical', array( __( 'Settings › Reading: search engines discouraged', 'flx-seo' ) ) );
 	} elseif ( false !== strpos( $robots_meta, 'noindex' ) || false !== stripos( $h['x-robots-tag'] ?? '', 'noindex' ) ) {
 		$add( 'is-crawlable', 'critical', array( 'robots: ' . $robots_meta . ' ' . ( $h['x-robots-tag'] ?? '' ) ) );
 	}
@@ -372,7 +372,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 		$add( 'document-title', 'critical' );
 	} elseif ( mb_strlen( $title ) > 65 ) {
 		/* translators: %d: karakter sayısı */
-		$add( 'title-length', 'low', array( $title ), sprintf( __( '%d karakter.', 'flx-seo' ), mb_strlen( $title ) ) );
+		$add( 'title-length', 'low', array( $title ), sprintf( __( '%d characters.', 'flx-seo' ), mb_strlen( $title ) ) );
 	}
 	if ( '' === trim( (string) $xp->evaluate( 'string(//meta[translate(@name,"DESCRIPTION","description")="description"]/@content)' ) ) ) {
 		$add( 'meta-description', 'high' );
@@ -401,7 +401,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 			$items[] = flxseo_audit_snippet( $e );
 		}
 		/* translators: %d: H1 sayısı */
-		$add( 'heading-h1', 'low', $items, sprintf( __( '%d adet H1 var.', 'flx-seo' ), $h1->length ) );
+		$add( 'heading-h1', 'low', $items, sprintf( __( '%d H1 headings.', 'flx-seo' ), $h1->length ) );
 	}
 	$ld_ok = 0;
 	$ld_bad = array();
@@ -414,7 +414,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 		}
 	}
 	if ( $ld_bad ) {
-		$add( 'structured-data', 'high', $ld_bad, __( 'JSON-LD ayrıştırılamadı.', 'flx-seo' ) );
+		$add( 'structured-data', 'high', $ld_bad, __( 'JSON-LD could not be parsed.', 'flx-seo' ) );
 	} elseif ( ! $ld_ok ) {
 		$add( 'structured-data', 'medium' );
 	}
@@ -591,7 +591,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 		foreach ( array( 'aria-controls', 'aria-labelledby', 'aria-describedby', 'for' ) as $attr ) {
 			foreach ( preg_split( '/\s+/', trim( $el->getAttribute( $attr ) ) ) as $ref ) {
 				if ( $ref && ! isset( $ids[ $ref ] ) ) {
-					$dupe[ $attr . $ref ] = $attr . '="' . $ref . '" → ' . __( 'bulunamadı', 'flx-seo' );
+					$dupe[ $attr . $ref ] = $attr . '="' . $ref . '" → ' . __( 'not found', 'flx-seo' );
 				}
 			}
 		}
@@ -646,15 +646,15 @@ function flxseo_audit_analyze( array $page, $url ) {
 	}
 	if ( count( $block ) > 2 ) {
 		/* translators: %d: istek sayısı */
-		$add( 'render-blocking-insight', count( $block ) > 6 ? 'high' : 'medium', $block, sprintf( __( '<head> içinde %d engelleyen CSS/JS isteği.', 'flx-seo' ), count( $block ) ) );
+		$add( 'render-blocking-insight', count( $block ) > 6 ? 'high' : 'medium', $block, sprintf( __( '%d render-blocking CSS/JS requests in <head>.', 'flx-seo' ), count( $block ) ) );
 	} elseif ( $block ) {
 		/* translators: %d: istek sayısı */
-		$add( 'render-blocking-insight', 'low', $block, sprintf( __( '<head> içinde %d engelleyen CSS/JS isteği. PageSpeed ile tahmini kazancı ölçün.', 'flx-seo' ), count( $block ) ) );
+		$add( 'render-blocking-insight', 'low', $block, sprintf( __( '%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed.', 'flx-seo' ), count( $block ) ) );
 	}
 	$nodes = $xp->query( '//body//*' )->length;
 	if ( $nodes > 800 ) {
 		/* translators: %s: öğe sayısı */
-		$add( 'dom-size-insight', $nodes > 3000 ? 'high' : ( $nodes > 1500 ? 'medium' : 'low' ), array(), sprintf( __( 'Sayfada %s öğe var.', 'flx-seo' ), number_format_i18n( $nodes ) ) );
+		$add( 'dom-size-insight', $nodes > 3000 ? 'high' : ( $nodes > 1500 ? 'medium' : 'low' ), array(), sprintf( __( 'The page has %s elements.', 'flx-seo' ), number_format_i18n( $nodes ) ) );
 	}
 	$unsized = array();
 	$first   = null;
@@ -687,14 +687,14 @@ function flxseo_audit_analyze( array $page, $url ) {
 	}
 	if ( $page['ms'] > 600 ) {
 		/* translators: %d: milisaniye */
-		$add( 'server-response-time', $page['ms'] > 1800 ? 'high' : 'medium', array(), sprintf( __( 'Sunucu içinden ölçülen yanıt: %d ms (önbellek dışı olabilir).', 'flx-seo' ), $page['ms'] ) );
+		$add( 'server-response-time', $page['ms'] > 1800 ? 'high' : 'medium', array(), sprintf( __( 'Response measured from the server: %d ms (may bypass the cache).', 'flx-seo' ), $page['ms'] ) );
 	}
 	if ( strlen( $html ) > 2048 && empty( $h['content-encoding'] ) && ! preg_match( '/^(127\.|localhost)/', (string) wp_parse_url( $url, PHP_URL_HOST ) ) ) {
 		$add( 'uses-text-compression', 'medium' );
 	}
 	if ( strlen( $html ) > 150 * 1024 ) {
 		/* translators: %s: boyut */
-		$add( 'document-size', strlen( $html ) > 400 * 1024 ? 'medium' : 'low', array(), sprintf( __( 'HTML %s.', 'flx-seo' ), size_format( strlen( $html ) ) ) );
+		$add( 'document-size', strlen( $html ) > 400 * 1024 ? 'medium' : 'low', array(), sprintf( __( 'HTML is %s.', 'flx-seo' ), size_format( strlen( $html ) ) ) );
 	}
 	if ( false !== strpos( $html, 'wp-emoji-release.min.js' ) || false !== strpos( $html, '_wpemojiSettings' ) ) {
 		$add( 'emoji-script', 'low' );
@@ -706,7 +706,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 	if ( ! $https && ! $local ) {
 		$add( 'is-on-https', 'high' );
 	} elseif ( $https && preg_match_all( '/<(?:img|script|link|iframe|source)\b[^>]+(?:src|href)=["\']http:\/\/[^"\']+/i', $html, $mixed ) ) {
-		$add( 'is-on-https', 'high', array_slice( $mixed[0], 0, 5 ), __( 'HTTPS sayfada http:// ile yüklenen içerik var.', 'flx-seo' ) );
+		$add( 'is-on-https', 'high', array_slice( $mixed[0], 0, 5 ), __( 'The HTTPS page loads content over http://.', 'flx-seo' ) );
 	}
 	if ( $https || $local ) {
 		$hsts = strtolower( $h['strict-transport-security'] ?? '' );
@@ -718,7 +718,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 	}
 	$csp = strtolower( $h['content-security-policy'] ?? '' );
 	if ( '' === $csp ) {
-		$add( 'csp-xss', 'medium', array(), __( 'Content-Security-Policy başlığı yok.', 'flx-seo' ) );
+		$add( 'csp-xss', 'medium', array(), __( 'No Content-Security-Policy header.', 'flx-seo' ) );
 	} else {
 		$miss = array();
 		foreach ( array( 'object-src', 'base-uri', 'script-src' ) as $d ) {
@@ -728,7 +728,7 @@ function flxseo_audit_analyze( array $page, $url ) {
 		}
 		if ( $miss ) {
 			/* translators: %s: eksik yönergeler */
-			$add( 'csp-xss', 'low', array( 'Content-Security-Policy: ' . mb_substr( $h['content-security-policy'], 0, 160 ) ), sprintf( __( 'Eksik yönerge: %s.', 'flx-seo' ), implode( ', ', $miss ) ) );
+			$add( 'csp-xss', 'low', array( 'Content-Security-Policy: ' . mb_substr( $h['content-security-policy'], 0, 160 ) ), sprintf( __( 'Missing directive: %s.', 'flx-seo' ), implode( ', ', $miss ) ) );
 		}
 	}
 	if ( empty( $h['x-frame-options'] ) && false === strpos( $csp, 'frame-ancestors' ) ) {
@@ -824,13 +824,13 @@ function flxseo_audit_site_checks() {
 		$body = ltrim( $llms['body'] );
 		$miss = array();
 		if ( 0 !== strpos( $body, '# ' ) ) {
-			$miss[] = __( 'ilk satır "# Başlık" değil', 'flx-seo' );
+			$miss[] = __( 'first line is not "# Title"', 'flx-seo' );
 		}
 		if ( ! preg_match( '/^>\s+\S/m', $body ) ) {
-			$miss[] = __( '"> özet" satırı yok', 'flx-seo' );
+			$miss[] = __( 'no "> summary" line', 'flx-seo' );
 		}
 		if ( ! preg_match( '/\[[^\]]+\]\([^)]+\)/', $body ) ) {
-			$miss[] = __( 'bağlantı listesi yok', 'flx-seo' );
+			$miss[] = __( 'no link list', 'flx-seo' );
 		}
 		if ( $miss ) {
 			$f[] = flxseo_audit_finding( 'llms-txt-format', 'low', $miss );
@@ -931,7 +931,7 @@ function flxseo_psi_run( $strategy = 'mobile', $url = '' ) {
 	$strategy = 'desktop' === $strategy ? 'desktop' : 'mobile';
 	$url      = $url ? esc_url_raw( $url ) : home_url( '/' );
 	if ( preg_match( '/^(localhost|127\.|10\.|192\.168\.)|\.(local|test)$/', (string) wp_parse_url( $url, PHP_URL_HOST ) ) ) {
-		return new WP_Error( 'flxseo_psi_local', __( 'PageSpeed Insights yalnız internetten erişilebilen adresleri ölçebilir.', 'flx-seo' ) );
+		return new WP_Error( 'flxseo_psi_local', __( 'PageSpeed Insights can only measure addresses reachable from the internet.', 'flx-seo' ) );
 	}
 	$cats  = (array) apply_filters( 'flxseo_psi_categories', array( 'performance', 'accessibility', 'best-practices', 'seo' ) );
 	$query = 'url=' . rawurlencode( $url ) . '&strategy=' . $strategy . '&locale=' . ( 0 === strpos( determine_locale(), 'tr' ) ? 'tr' : 'en' );
@@ -960,7 +960,7 @@ function flxseo_psi_run( $strategy = 'mobile', $url = '' ) {
 	if ( 200 !== $code || empty( $data['lighthouseResult'] ) ) {
 		$msg = $data['error']['message'] ?? ( 'HTTP ' . $code );
 		if ( 429 === $code ) {
-			$msg = __( 'PageSpeed günlük kotası doldu. SEO › Ayarlar\'a ücretsiz bir Google API anahtarı girin.', 'flx-seo' );
+			$msg = __( 'The PageSpeed daily quota is used up. Enter a free Google API key in SEO › Settings.', 'flx-seo' );
 		}
 		return new WP_Error( 'flxseo_psi', $msg );
 	}
@@ -1197,7 +1197,7 @@ add_filter(
 	'flx_system_checks',
 	function ( $checks ) {
 		$r     = flxseo_audit_report();
-		$label = __( 'Site denetimi', 'flx-seo' );
+		$label = __( 'Site audit', 'flx-seo' );
 		$url   = flxseo_admin_url( 'denetim' );
 		$base  = array(
 			'id'           => 'flxseo.audit',
@@ -1205,18 +1205,18 @@ add_filter(
 			'group'        => 'SEO',
 			'label'        => $label,
 			'action_url'   => $url,
-			'action_label' => __( 'Denetimi aç', 'flx-seo' ),
+			'action_label' => __( 'Open audit', 'flx-seo' ),
 		);
 		if ( empty( $r['local']['time'] ) && empty( $r['psi'] ) ) {
 			$checks[] = $base + array(
 				'status'  => 'info',
-				'message' => __( 'Henüz çalıştırılmadı. Performans, erişilebilirlik, SEO, güvenlik ve ajan uyumunu kontrol edin.', 'flx-seo' ),
+				'message' => __( 'Not run yet. Check performance, accessibility, SEO, security and agent readiness.', 'flx-seo' ),
 			);
 			return $checks;
 		}
 		$c = $r['counts'];
 		/* translators: 1: kritik, 2: yüksek, 3: orta, 4: düşük bulgu sayısı */
-		$msg      = sprintf( __( 'Kritik %1$d, yüksek %2$d, orta %3$d, düşük %4$d öneri.', 'flx-seo' ), $c['critical'], $c['high'], $c['medium'], $c['low'] );
+		$msg      = sprintf( __( 'Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations.', 'flx-seo' ), $c['critical'], $c['high'], $c['medium'], $c['low'] );
 		$top      = array_slice( array_filter( $r['findings'], fn( $f ) => in_array( $f['priority'], array( 'critical', 'high' ), true ) ), 0, 3 );
 		if ( $top ) {
 			$msg .= ' ' . implode( ' · ', wp_list_pluck( $top, 'title' ) );

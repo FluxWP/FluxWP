@@ -65,7 +65,7 @@ function flxc_send( $chat, array $args ) {
 	if ( 'text' === $type && 'bot' === $args['source'] && ( false !== strpos( $body, '```' ) || false !== stripos( $body, '<svg' ) ) && function_exists( 'flxc_widgets_strip' ) ) {
 		$body = flxc_widgets_strip( $body );
 		if ( '' === $body ) {
-			return new WP_Error( 'flxc_empty', __( 'Mesaj yalnız görsel kodundan oluşuyordu; gönderilmedi.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_empty', __( 'The message was only image code; it was not sent.', 'flx-chat' ) );
 		}
 		$args['body'] = $body;
 	}
@@ -89,7 +89,7 @@ function flxc_send( $chat, array $args ) {
 
 	// Kara listedeki kişiye hiçbir mesaj gitmez (yalnız "artık yazmayacağız" onayı, aynı turda).
 	if ( empty( $args['allow_blocked'] ) && function_exists( 'flxc_chat_blocked' ) && flxc_chat_blocked( $chat ) ) {
-		return new WP_Error( 'flxc_blocked', __( 'Bu kişi kara listede; mesaj gönderilmez. Kara listeden çıkarınca yeniden yazabilirsiniz.', 'flx-chat' ), array( 'status' => 403 ) );
+		return new WP_Error( 'flxc_blocked', __( 'This contact is blocklisted; no messages are sent. Remove them from the blocklist to write again.', 'flx-chat' ), array( 'status' => 403 ) );
 	}
 
 	$quoted_row = $args['quoted_id'] ? flxc_get_message( $args['quoted_id'] ) : null;
@@ -112,7 +112,7 @@ function flxc_send( $chat, array $args ) {
 			$saved = flxc_save_media_binary( file_get_contents( $args['file'] ), $args['mime'], $args['name'] );
 		}
 		if ( ! $saved ) {
-			return new WP_Error( 'flxc_file', __( 'Dosya okunamadı.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_file', __( 'File could not be read.', 'flx-chat' ) );
 		}
 	}
 
@@ -142,7 +142,7 @@ function flxc_send( $chat, array $args ) {
 		);
 	}
 	if ( ! $id ) {
-		return new WP_Error( 'flxc_db', __( 'Mesaj kaydedilemedi.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_db', __( 'Message could not be saved.', 'flx-chat' ) );
 	}
 
 	$number = flxc_chat_number( $chat );
@@ -183,8 +183,8 @@ function flxc_send( $chat, array $args ) {
 			$ver = flxc_evo_version( $chat['conn'] );
 			$err = '' !== $ver
 				/* translators: %s: Evolution API version */
-				? sprintf( __( 'Bu kişi WhatsApp gizli numarasıyla (@lid) yazıyor ve Evolution API (sürüm %s) bu adrese gönderemedi. Evolution API sunucusunu 2.3 veya üstüne güncelleyin; kişinin gerçek numarası gelirse eklenti oraya gönderir.', 'flx-chat' ), $ver )
-				: __( 'Bu kişi WhatsApp gizli numarasıyla (@lid) yazıyor ve Evolution API bu adrese gönderemedi. Evolution API sunucusunu 2.3 veya üstüne güncelleyin; kişinin gerçek numarası gelirse eklenti oraya gönderir.', 'flx-chat' );
+				? sprintf( __( 'This contact writes from a hidden WhatsApp number (@lid) and Evolution API (version %s) could not send to this address. Update the Evolution API server to 2.3 or later; if the contact\'s real number arrives, the plugin sends there.', 'flx-chat' ), $ver )
+				: __( 'This contact writes from a hidden WhatsApp number (@lid) and Evolution API could not send to this address. Update the Evolution API server to 2.3 or later; if the contact\'s real number arrives, the plugin sends there.', 'flx-chat' );
 		}
 		flxc_update_message( $id, array( 'status' => 'failed', 'error' => mb_substr( $err, 0, 500 ) ) );
 	}
@@ -206,16 +206,16 @@ function flxc_send_text( $chat_or_phone, $text, $args = array() ) {
 	} else {
 		$phone = flxc_normalize_phone( (string) $chat_or_phone );
 		if ( ! $phone ) {
-			return new WP_Error( 'flxc_phone', __( 'Geçersiz telefon numarası.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_phone', __( 'Invalid phone number.', 'flx-chat' ) );
 		}
 		$conn = $args['conn'] ? flxc_get_connection( $args['conn'] ) : flxc_default_connection();
 		if ( ! $conn ) {
-			return new WP_Error( 'flxc_conn', __( 'WhatsApp bağlantısı yok.', 'flx-chat' ) );
+			return new WP_Error( 'flxc_conn', __( 'No WhatsApp connection.', 'flx-chat' ) );
 		}
 		$chat = flxc_ensure_chat( $conn['id'], $phone . '@s.whatsapp.net', array( 'name' => $args['name'] ) );
 	}
 	if ( ! $chat ) {
-		return new WP_Error( 'flxc_chat', __( 'Sohbet bulunamadı.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_chat', __( 'Chat not found.', 'flx-chat' ) );
 	}
 	return flxc_send(
 		$chat,
@@ -242,11 +242,11 @@ function flxc_send_private_text( $phone, $text, $args = array() ) {
 	$args  = wp_parse_args( $args, array( 'conn' => '', 'source' => 'api' ) );
 	$phone = flxc_normalize_phone( (string) $phone );
 	if ( ! $phone ) {
-		return new WP_Error( 'flxc_phone', __( 'Geçersiz telefon numarası.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_phone', __( 'Invalid phone number.', 'flx-chat' ) );
 	}
 	$conn = $args['conn'] ? flxc_get_connection( $args['conn'] ) : flxc_default_connection();
 	if ( ! $conn ) {
-		return new WP_Error( 'flxc_conn', __( 'WhatsApp bağlantısı yok.', 'flx-chat' ) );
+		return new WP_Error( 'flxc_conn', __( 'No WhatsApp connection.', 'flx-chat' ) );
 	}
 	flxc_notify_remember( '', $text );
 	$r = flxc_evo_send_text( $conn['id'], $phone, (string) $text, null, false );

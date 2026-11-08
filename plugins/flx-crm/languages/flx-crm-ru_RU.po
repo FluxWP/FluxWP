@@ -1,0 +1,1169 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Contacts, roles, segments and marketing"
+msgstr "Контакты, роли, сегменты и маркетинг"
+
+msgid "Reads"
+msgstr "Читает"
+
+msgid "Edits"
+msgstr "Правки"
+
+msgid "Needs approval"
+msgstr "Требуется одобрение"
+
+msgid "Automation"
+msgstr "Автоматизация"
+
+msgid "CRM overview"
+msgstr "Обзор CRM"
+
+msgid "CRM structure and settings"
+msgstr "Структура и настройки CRM"
+
+msgid "Search CRM contacts"
+msgstr "Поиск контактов CRM"
+
+msgid "CRM contact card"
+msgstr "Карточка контакта CRM"
+
+msgid "Timeline"
+msgstr "Хронология"
+
+msgid "Recent activity"
+msgstr "Недавняя активность"
+
+msgid "Find duplicate contacts"
+msgstr "Найдите повторяющиеся контакты"
+
+msgid "Saved segments"
+msgstr "Сохраненные сегменты"
+
+msgid "Preview segment"
+msgstr "Предварительный сегмент"
+
+msgid "Preview bulk action"
+msgstr "Предварительный просмотр массового действия"
+
+msgid "Add CRM contact"
+msgstr "Добавить контакт CRM"
+
+msgid "Edit CRM contact"
+msgstr "Изменить контакт CRM"
+
+msgid "Add/remove contact tags"
+msgstr "Добавить/удалить теги контактов"
+
+msgid "Add timeline entry"
+msgstr "Добавить запись на временной шкале"
+
+msgid "Add/edit tag"
+msgstr "Добавить/изменить тег"
+
+msgid "Save segment"
+msgstr "Сохранить сегмент"
+
+msgid "Change CRM settings"
+msgstr "Изменить настройки CRM"
+
+msgid "Recalculate scores"
+msgstr "Пересчитать баллы"
+
+msgid "Delete timeline entry"
+msgstr "Удалить запись временной шкалы"
+
+msgid "Delete tag"
+msgstr "Удалить тег"
+
+msgid "Delete segment"
+msgstr "Удалить сегмент"
+
+msgid "Merge contacts"
+msgstr "Объединить контакты"
+
+msgid "Delete CRM contact"
+msgstr "Удалить контакт CRM"
+
+msgid "Bulk action"
+msgstr "Массовое действие"
+
+msgid "Send message to contact"
+msgstr "Отправить сообщение контакту"
+
+msgid "Source: %s"
+msgstr "Источник:%s"
+
+msgid "Contact not found."
+msgstr "Контакт не найден."
+
+msgid "The e-mail address is not valid."
+msgstr "Адрес электронной почты недействителен."
+
+msgid "The phone number is not valid."
+msgstr "Номер телефона недействителен."
+
+msgid "on"
+msgstr "на"
+
+msgid "off"
+msgstr "выкл."
+
+msgid "E-mail"
+msgstr "Электронная почта"
+
+msgid "SMS"
+msgstr "СМС"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Ad audiences"
+msgstr "Рекламные аудитории"
+
+msgid "Choose other contacts to merge."
+msgstr "Выберите другие контакты для объединения."
+
+msgid "Up to 20 contacts can be merged at once."
+msgstr "Одновременно можно объединить до 20 контактов."
+
+msgid "An e-mail or phone number is required."
+msgstr "Требуется адрес электронной почты или номер телефона."
+
+msgid "The contact could not be saved."
+msgstr "Контакт не удалось сохранить."
+
+msgid "Text cannot be empty."
+msgstr "Текст не может быть пустым."
+
+msgid "The tag could not be added."
+msgstr "Не удалось добавить тег."
+
+msgid "Segment not found."
+msgstr "Сегмент не найден."
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Tag"
+msgstr "Тег"
+
+msgid "RFM segment"
+msgstr "RFM-сегмент"
+
+msgid "Total value"
+msgstr "Общая стоимость"
+
+msgid "Days with a payment"
+msgstr "Дни с оплатой"
+
+msgid "Last payment"
+msgstr "Последний платеж"
+
+msgid "Last activity"
+msgstr "Последняя активность"
+
+msgid "Added"
+msgstr "Добавлено"
+
+msgid "Churn risk (%)"
+msgstr "Риск оттока (%)"
+
+msgid "Consent"
+msgstr "Согласие"
+
+msgid "First source"
+msgstr "Первый источник"
+
+msgid "City"
+msgstr "Город"
+
+msgid "Has an e-mail"
+msgstr "Имеет электронную почту"
+
+msgid "Has a phone"
+msgstr "Есть телефон"
+
+msgid "has"
+msgstr "имеет"
+
+msgid "is not / has not"
+msgstr "нет / не имеет"
+
+msgid "is"
+msgstr "есть"
+
+msgid "at least"
+msgstr "по крайней мере"
+
+msgid "at most"
+msgstr "максимум"
+
+msgid "in the last … days"
+msgstr "за последние ... дней"
+
+msgid "more than … days ago"
+msgstr "более ... дней назад"
+
+msgid "yes"
+msgstr "да"
+
+msgid "no"
+msgstr "нет"
+
+msgid "contains"
+msgstr "содержит"
+
+msgid "%1$s: more than %2$s days ago"
+msgstr "%1$s: более%2$sдней назад"
+
+msgid "%1$s: in the last %2$s days"
+msgstr "%1$s: за последние%2$sдни."
+
+msgid "no %s consent"
+msgstr "нет согласия%s"
+
+msgid "has %s consent"
+msgstr "имеет согласие%s"
+
+msgid "or"
+msgstr "или"
+
+msgid "A segment name is required."
+msgstr "Укажите название сегмента."
+
+msgid "Add at least one rule."
+msgstr "Добавьте хотя бы одно правило."
+
+msgid "Donors to win back"
+msgstr "Доноры, которые хотят отыграться"
+
+msgid "Donors with a high churn risk. For a check-in or a new project announcement."
+msgstr "Доноры с высоким риском оттока. Для регистрации или анонса нового проекта."
+
+msgid "New contacts (30 days)"
+msgstr "Новые контакты (30 дней)"
+
+msgid "Contacts added in the last 30 days. For a welcome message."
+msgstr "Контакты добавлены за последние 30 дней. Для приветственного сообщения."
+
+msgid "Champions and loyal supporters"
+msgstr "Чемпионы и верные сторонники"
+
+msgid "The people who support most often and most recently."
+msgstr "Люди, которые поддерживают чаще всего и в последнее время."
+
+msgid "WhatsApp messages"
+msgstr "Сообщения WhatsApp"
+
+msgid "Totals"
+msgstr "Итоги"
+
+msgid "RFM score"
+msgstr "RFM-оценка"
+
+msgid "Tag not found."
+msgstr "Тег не найден."
+
+msgid "Tag name cannot be empty."
+msgstr "Имя тега не может быть пустым."
+
+msgid "Another tag already has this name."
+msgstr "Это имя уже есть у другого тега."
+
+msgid "Invalid color (use e.g. #16a34a)."
+msgstr "Неверный цвет (используйте, например, #16a34a)."
+
+msgid "Donor"
+msgstr "Донор"
+
+msgid "Customer"
+msgstr "Клиент"
+
+msgid "Lead"
+msgstr "Ведущий"
+
+msgid "Volunteer"
+msgstr "Волонтер"
+
+msgid "Member"
+msgstr "Член"
+
+msgid "Partner"
+msgstr "Партнер"
+
+msgid "Beneficiary"
+msgstr "Бенефициар"
+
+msgid "Donation"
+msgstr "Пожертвование"
+
+msgid "Order"
+msgstr "Заказать"
+
+msgid "Form"
+msgstr "Форма"
+
+msgid "Incoming message"
+msgstr "Входящее сообщение"
+
+msgid "Outgoing message"
+msgstr "Исходящее сообщение"
+
+msgid "Chat started"
+msgstr "Chat started"
+
+msgid "Incoming e-mail"
+msgstr "Входящее электронное письмо"
+
+msgid "Note"
+msgstr "Примечание"
+
+msgid "Call"
+msgstr "Позвонить"
+
+msgid "Meeting"
+msgstr "Встреча"
+
+msgid "Sign-up"
+msgstr "Регистрация"
+
+msgid "Contact added"
+msgstr "Контакт добавлен"
+
+msgid "Role added"
+msgstr "Роль добавлена"
+
+msgid "Segment changed"
+msgstr "Сегмент изменен"
+
+msgid "Consent changed"
+msgstr "Согласие изменено"
+
+msgid "Contacts merged"
+msgstr "Контакты объединены"
+
+msgid "New"
+msgstr "Новый"
+
+msgid "Paid for the first time recently. A good fit for a welcome flow."
+msgstr "Недавно заплатил первый раз. Хорошо подходит для приветственного потока."
+
+msgid "Champion"
+msgstr "Чемпион"
+
+msgid "Pays often and recently. Worth a personal thank-you and attention."
+msgstr "Платит часто и в последнее время. Достойна личной благодарности и внимания."
+
+msgid "Loyal"
+msgstr "Верный"
+
+msgid "Gives regular support. Tell them first about new projects and products."
+msgstr "Оказывает регулярную поддержку. Расскажите им первыми о новых проектах и ​​продуктах."
+
+msgid "Promising"
+msgstr "Многообещающий"
+
+msgid "Arrived recently; frequency is still low."
+msgstr "Прибыл недавно; частота все еще низкая."
+
+msgid "At risk"
+msgstr "В зоне риска"
+
+msgid "Used to be frequent, has drifted away lately. A win-back target."
+msgstr "Раньше было часто, в последнее время отошло. Цель отыгрыша."
+
+msgid "Hibernating"
+msgstr "Спящий режим"
+
+msgid "Away for a long time with low frequency."
+msgstr "Отсутствует долгое время с низкой частотой."
+
+msgid "Lost"
+msgstr "Потерянный"
+
+msgid "The slice that has gone longest without paying."
+msgstr "Кусочек, который дольше всех оставался без оплаты."
+
+msgid "No payments"
+msgstr "Никаких платежей"
+
+msgid "Manual"
+msgstr "Руководство"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "Site account"
+msgstr "Аккаунт сайта"
+
+msgid "%s M"
+msgstr "%sМ"
+
+msgid "%s K"
+msgstr "%sК."
+
+msgid "(unnamed contact)"
+msgstr "(неназванный контакт)"
+
+msgid "CRM segment: %1$s (%2$s)"
+msgstr "Сегмент CRM:%1$s(%2$s)"
+
+msgid "CRM role: %1$s (%2$s)"
+msgstr "Роль CRM:%1$s(%2$s)"
+
+msgid "CRM"
+msgstr "CRM"
+
+msgid "Sees contacts, segments and the timeline"
+msgstr "Видит контакты, сегменты и временную шкалу"
+
+msgid "Adds, edits and deletes contacts; manages segments and CRM settings"
+msgstr "Добавляет, редактирует и удаляет контакты; управляет сегментами и настройками CRM"
+
+msgid "Flux CRM"
+msgstr "Поток CRM"
+
+msgid "Contact sources"
+msgstr "Контактные источники"
+
+msgid "No source brings in contacts (Flux Donate, WooCommerce, Flux Chat and Flux Forms are off or not installed). Contacts can only be added by hand."
+msgstr "Ни один источник не приводит контакты (Flux Donate, WooCommerce, Flux Chat и Flux Forms отключены или не установлены). Контакты можно добавлять только вручную."
+
+msgid "First sync"
+msgstr "Первая синхронизация"
+
+msgid "Last full sync: %s"
+msgstr "Последняя полная синхронизация:%s."
+
+msgid "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
+msgstr "Прошлые пожертвования, заказы и чаты еще не импортированы. CRM › Настройки › «Синхронизировать всё»."
+
+msgid "Sync"
+msgstr "Синхронизировать"
+
+msgid "RFM scoring"
+msgstr "RFM-оценка"
+
+msgid "Not calculated yet."
+msgstr "Еще не рассчитано."
+
+msgid "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
+msgstr "Последний вычисленный%s. Возможно, ежедневное задание (WP-Cron) не запущено; добавьте cron сервера или пересчитайте вручную."
+
+msgid "Last calculated: %s"
+msgstr "Последний расчет:%s."
+
+msgid "Foreign currency payments"
+msgstr "Платежи в иностранной валюте"
+
+msgid "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
+msgstr "Платежи%1$sосуществляются в валюте, отличной от%2$s, и не имеют обменного курса; они учитываются в частоте, но не в общей стоимости. Используйте фильтр `flxcrm_fx_rate` , чтобы указать тариф."
+
+msgid "Overview"
+msgstr "Обзор"
+
+msgid "Contacts"
+msgstr "Контакты"
+
+msgid "Segments"
+msgstr "Сегменты"
+
+msgid "CRM settings"
+msgstr "настройки CRM"
+
+msgid "%1$s: %2$s / %3$s"
+msgstr "%1$s:%2$s/%3$s"
+
+msgid "Done. Reloading the page…"
+msgstr "Готово. Перезагружаем страницу..."
+
+msgid "Something went wrong. Please try again."
+msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз."
+
+msgid "Are you sure? This cannot be undone."
+msgstr "Вы уверены? Это невозможно отменить."
+
+msgid "%s contacts match"
+msgstr "Контакты%sсовпадают"
+
+msgid "Counting…"
+msgstr "Подсчет..."
+
+msgid "Calculating…"
+msgstr "Расчет..."
+
+msgid "%s contacts scored. Reloading the page…"
+msgstr "Контакты%sзабиты. Перезагружаем страницу..."
+
+msgid "%s contacts selected"
+msgstr "%sвыбраны контакты"
+
+msgid "Remove rule"
+msgstr "Удалить правило"
+
+msgid "and"
+msgstr "и"
+
+msgid "days"
+msgstr "дни"
+
+msgid "No rules: every contact"
+msgstr "Никаких правил: каждый контакт"
+
+msgid "No contacts match."
+msgstr "Ни один контакт не совпадает."
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Roles"
+msgstr "Роли"
+
+msgid "Segment"
+msgstr "Сегмент"
+
+msgid "Churn risk"
+msgstr "Риск оттока"
+
+msgid "E-mail consent"
+msgstr "Согласие по электронной почте"
+
+msgid "SMS consent"
+msgstr "СМС-согласие"
+
+msgid "WhatsApp consent"
+msgstr "Согласие WhatsApp"
+
+msgid "Tags"
+msgstr "Теги"
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "Contact added."
+msgstr "Контакт добавлен."
+
+msgid "Deleted."
+msgstr "Удален."
+
+msgid "Added to the timeline."
+msgstr "Добавлено в таймлайн."
+
+msgid "A contact with this e-mail or phone already exists; their card is open."
+msgstr "Контакт с таким адресом электронной почты или телефоном уже существует; их карта открыта."
+
+msgid "%s contacts updated."
+msgstr "Контакты%sобновлены."
+
+msgid "Churn risk %s%%"
+msgstr "Риск оттока%s%%"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Payments"
+msgstr "Платежи"
+
+msgid "Messages"
+msgstr "Сообщения"
+
+msgid "Forms"
+msgstr "Формы"
+
+msgid "Notes"
+msgstr "Примечания"
+
+msgid "Contact not found"
+msgstr "Контакт не найден"
+
+msgid "Back to contacts"
+msgstr "Вернуться к контактам"
+
+msgid "Archived"
+msgstr "В архиве"
+
+msgid "Since %1$s · %2$s"
+msgstr "Поскольку%1$s·%2$s"
+
+msgid "WhatsApp chat"
+msgstr "WhatsApp чат"
+
+msgid "Write an e-mail"
+msgstr "Напишите электронное письмо"
+
+msgid "CRM card"
+msgstr "CRM-карта"
+
+msgid "First payment"
+msgstr "Первый платеж"
+
+msgid "once every %s days on average"
+msgstr "в среднем раз в%sдней"
+
+msgid "RFM"
+msgstr "РФМ"
+
+msgid "recency · frequency · value (1–5)"
+msgstr "новизна · частота · значение (1–5)"
+
+msgid "Delete contact"
+msgstr "Удалить контакт"
+
+msgid "Donations and orders stay in their own plugins; only the CRM card is deleted."
+msgstr "Пожертвования и заказы остаются в отдельных плагинах; удаляется только карточка CRM."
+
+msgid "Add a note: talked on the phone, call again about the qurban…"
+msgstr "Добавить примечание: поговорили по телефону, еще раз позвоните по поводу курбана..."
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "No events for this filter."
+msgstr "Для этого фильтра нет событий."
+
+msgid "Loading…"
+msgstr "Загрузка..."
+
+msgid "Answers"
+msgstr "Ответы"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Pending"
+msgstr "Ожидается"
+
+msgid "On hold"
+msgstr "На удержании"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Refunded"
+msgstr "Возвращено"
+
+msgid "Partly refunded"
+msgstr "Частично возмещено"
+
+msgid "Full name"
+msgstr "Полное имя"
+
+msgid "Organisation"
+msgstr "Организация"
+
+msgid "Contact consents"
+msgstr "Контактные согласия"
+
+msgid "Last changed: %s"
+msgstr "Последнее изменение:%s."
+
+msgid "Owner"
+msgstr "Владелец"
+
+msgid "— none —"
+msgstr "— нет —"
+
+msgid "Short note"
+msgstr "Краткое примечание"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "No tags."
+msgstr "Никаких тегов."
+
+msgid "Remove the %s tag"
+msgstr "Удалите тег%s."
+
+msgid "Add tags (comma for several)"
+msgstr "Добавить теги (несколько запятых)"
+
+msgid "Add tag"
+msgstr "Добавить тег"
+
+msgid "Sources"
+msgstr "Источники"
+
+msgid "Added by hand."
+msgstr "Добавлено вручную."
+
+msgid "First campaign"
+msgstr "Первая кампания"
+
+msgid "New contact"
+msgstr "Новый контакт"
+
+msgid "An e-mail or a phone number is enough. If a contact with the same e-mail or phone exists, their card opens."
+msgstr "Достаточно электронной почты или номера телефона. Если контакт с таким же адресом электронной почты или телефоном существует, откроется его карточка."
+
+msgid "separate with commas"
+msgstr "отделять запятыми"
+
+msgid "Add contact"
+msgstr "Добавить контакт"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "%s donation"
+msgid_plural "%s donations"
+msgstr[0] "%sпожертвование"
+msgstr[1] "%sпожертвования"
+msgstr[2] "%sпожертвования"
+
+msgid "%s order"
+msgid_plural "%s orders"
+msgstr[0] "%sзаказ"
+msgstr[1] "%sзаказы"
+msgstr[2] "%sзаказы"
+
+msgid "CSV"
+msgstr "CSV-файл"
+
+msgid "Donors, customers, leads: one card per person. They arrive from your sources on their own, or you add them by hand."
+msgstr "Доноры, клиенты, лиды: по одной карте на человека. Они поступают из ваших источников самостоятельно или вы добавляете их вручную."
+
+msgid "Name, e-mail, phone, organisation, city"
+msgstr "Имя, электронная почта, телефон, организация, город"
+
+msgid "Search contacts"
+msgstr "Поиск контактов"
+
+msgid "All RFM segments"
+msgstr "Все сегменты RFM"
+
+msgid "Saved segment"
+msgstr "Сохраненный сегмент"
+
+msgid "All tags"
+msgstr "Все теги"
+
+msgid "Any consent"
+msgstr "Любое согласие"
+
+msgid "Only high churn risk"
+msgstr "Только высокий риск оттока"
+
+msgid "Archive"
+msgstr "Архив"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "No contacts match the filter."
+msgstr "Ни один контакт не соответствует фильтру."
+
+msgid "No contacts yet."
+msgstr "Контактов пока нет."
+
+msgid "Contacts appear on their own as donations, orders, forms and WhatsApp chats come in. For older records: Settings › Sync everything."
+msgstr "Контакты появляются сами по себе по мере поступления пожертвований, заказов, форм и чатов WhatsApp. Для старых записей: Настройки > Синхронизировать все."
+
+msgid "Add role"
+msgstr "Добавить роль"
+
+msgid "Unarchive"
+msgstr "Разархивировать"
+
+msgid "Tag name"
+msgstr "Имя тега"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Select all"
+msgstr "Выбрать все"
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "Role and segment"
+msgstr "Роль и сегмент"
+
+msgid "Value"
+msgstr "Значение"
+
+msgid "Donors, customers, volunteers and leads in one place: who did what, who is drifting away, who should hear what."
+msgstr "Доноры, клиенты, волонтеры и лидеры в одном месте: кто что сделал, кто уходит, кто что должен услышать."
+
+msgid "Import your past data."
+msgstr "Импортируйте свои прошлые данные."
+
+msgid "New records arrive on their own. To link older ones to contacts too, sync: %s."
+msgstr "Новые пластинки приходят сами собой. Чтобы связать более старые контакты с контактами, синхронизируйте:%s."
+
+msgid "No source brings in contacts; you can add them by hand."
+msgstr "Ни один источник не приводит контактов; вы можете добавить их вручную."
+
+msgid "Sync everything"
+msgstr "Синхронизировать все"
+
+msgid "%s have paid"
+msgstr "%sзаплатили"
+
+msgid "New in the last 30 days"
+msgstr "Новое за последние 30 дней"
+
+msgid "%s against the previous 30 days"
+msgstr "%sза предыдущие 30 дней"
+
+msgid "Active"
+msgstr "Активный"
+
+msgid "with activity in the last %s days"
+msgstr "с активностью за последние%sдни"
+
+msgid "High churn risk"
+msgstr "Высокий риск оттока"
+
+msgid "risk %s%% and above"
+msgstr "риск%s%% и выше"
+
+msgid "%s per contact"
+msgstr "%sза контакт"
+
+msgid "RFM segments"
+msgstr "RFM-сегменты"
+
+msgid "Calculated: %s"
+msgstr "Рассчитано:%s"
+
+msgid "Recalculate"
+msgstr "Пересчитать"
+
+msgid "Once contacts have paid, donors and customers are grouped here by frequency, recency and value."
+msgstr "После оплаты контактов доноры и клиенты группируются здесь по частоте, давности и стоимости."
+
+msgid "Reach out"
+msgstr "Протянуть руку"
+
+msgid "No valuable contacts with a high churn risk."
+msgstr "Нет ценных контактов с высоким риском оттока."
+
+msgid "last payment %s"
+msgstr "последний платеж%s"
+
+msgid "Donations, orders, forms and WhatsApp activity appear here."
+msgstr "Здесь отображаются пожертвования, заказы, формы и активность в WhatsApp."
+
+msgid "Where they came from"
+msgstr "Откуда они пришли"
+
+msgid "New segment"
+msgstr "Новый сегмент"
+
+msgid "Live lists defined by rules: a contact joins when they match and leaves when they no longer do. Use them as recipients for bulk sends in Flux Mail."
+msgstr "Живые списки, определенные правилами: контакт присоединяется, когда они совпадают, и уходит, когда они больше не совпадают. Используйте их в качестве получателей для массовых рассылок в Flux Mail."
+
+msgid "No segments yet."
+msgstr "Сегментов пока нет."
+
+msgid "Examples: \"Gave a qurban donation last year but not this year\", \"Volunteers in Istanbul\", \"Customers with no purchase for 3 months\"."
+msgstr "Примеры: «Сделали пожертвование курбану в прошлом году, но не в этом году», «Волонтеры в Стамбуле», «Клиенты, не совершавшие покупок в течение 3 месяцев»."
+
+msgid "contacts"
+msgstr "контакты"
+
+msgid "View contacts"
+msgstr "Просмотр контактов"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Flux Mail › Send: pick this segment under Recipients. Only people who allowed that channel receive it."
+msgstr "Flux Mail › Отправить: выберите этот сегмент в разделе «Получатели». Его получают только люди, разрешившие этот канал."
+
+msgid "Send a campaign"
+msgstr "Отправить кампанию"
+
+msgid "Edit segment"
+msgstr "Изменить сегмент"
+
+msgid "Add rules; the number of matching contacts updates on the right as you go."
+msgstr "Добавить правила; количество совпадающих контактов обновляется справа по мере продвижения."
+
+msgid "E.g. Donors drifting away"
+msgstr "например Доноры уходят"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Rules"
+msgstr "Правила"
+
+msgid "all rules"
+msgstr "все правила"
+
+msgid "at least one"
+msgstr "хотя бы один"
+
+msgid "Contact matches"
+msgstr "Контактные матчи"
+
+msgid "Add rule"
+msgstr "Добавить правило"
+
+msgid "Matching contacts"
+msgstr "Сопоставление контактов"
+
+msgid "Where contacts come from, which role they get and how scoring works."
+msgstr "Откуда берутся контакты, какую роль они получают и как работает скоринг."
+
+msgid "Not synced yet"
+msgstr "Еще не синхронизировано"
+
+msgid "New donations, orders, forms and chats are linked to contacts straight away. Sync everything to import past records, or to relink after switching a source on or off. Existing contacts and notes are kept, and nothing is added twice."
+msgstr "Новые пожертвования, заказы, формы и чаты сразу привязываются к контактам. Синхронизируйте все, чтобы импортировать предыдущие записи или повторно связать их после включения или выключения источника. Существующие контакты и заметки сохраняются, и дважды ничего не добавляется."
+
+msgid "Donors and donations"
+msgstr "Доноры и пожертвования"
+
+msgid "Customers and orders (donation orders excluded)"
+msgstr "Клиенты и заказы (кроме заказов на пожертвования)"
+
+msgid "WhatsApp chats and every message"
+msgstr "Чаты WhatsApp и каждое сообщение"
+
+msgid "Form submissions (with an e-mail or phone field)"
+msgstr "Отправка формы (с полем электронной почты или телефона)"
+
+msgid "Site members"
+msgstr "Участники сайта"
+
+msgid "WordPress users with the customer or subscriber role"
+msgstr "Пользователи WordPress с ролью клиента или подписчика"
+
+msgid "E-mails, SMS and WhatsApp notifications sent to the contact, and incoming e-mails (timeline only, no new contacts)"
+msgstr "Электронная почта, SMS и уведомления WhatsApp, отправленные контакту, а также входящие электронные письма (только временная шкала, без новых контактов)"
+
+msgid "Source"
+msgstr "Источник"
+
+msgid "On"
+msgstr "Вкл."
+
+msgid "Role for new contacts"
+msgstr "Роль для новых контактов"
+
+msgid "not installed"
+msgstr "не установлен"
+
+msgid "— no role —"
+msgstr "— нет роли —"
+
+msgid "Write WhatsApp messages to the timeline (one line per message)"
+msgstr "Записывайте сообщения WhatsApp на временную шкалу (одна строка на сообщение)"
+
+msgid "The role is given once a payment completes (donor, customer). The \"Lead\" role drops off by itself when the contact gets another role."
+msgstr "Роль присваивается после завершения платежа (донор, клиент). Роль «Ведущий» отпадает сама собой, когда контакт получает другую роль."
+
+msgid "The contact's relationship with you. A contact can have several roles, e.g. donor and volunteer."
+msgstr "Отношения контакта с вами. Контакт может иметь несколько ролей, например: донор и волонтер."
+
+msgid "Colour"
+msgstr "Цвет"
+
+msgid "New role: Sponsor, Philanthropist, Dealer…"
+msgstr "Новая роль: Спонсор, Филантроп, Дилер..."
+
+msgid "New role"
+msgstr "Новая роль"
+
+msgid "Scoring"
+msgstr "Подсчет очков"
+
+msgid "Churn risk threshold (%)"
+msgstr "Порог риска оттока (%)"
+
+msgid "Contacts above this value go to the \"Reach out\" list. Risk follows each person's own rhythm: a monthly donor is at risk after 45 days, a yearly one is not."
+msgstr "Контакты выше этого значения попадают в список «Обратиться». Риск следует индивидуальному ритму каждого человека: ежемесячный донор подвергается риску через 45 дней, а ежегодный — нет."
+
+msgid "Active window (days)"
+msgstr "Активное окно (дни)"
+
+msgid "A contact with any activity within this many days counts as active."
+msgstr "Контакт с любой активностью в течение этого количества дней считается активным."
+
+msgid "Reporting currency"
+msgstr "Отчетная валюта"
+
+msgid "Empty means the store currency. Payments in other currencies don't count towards value unless a rate is given."
+msgstr "Пусто означает валюту магазина. Платежи в других валютах не учитываются в стоимости, если не указан курс."
+
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+msgid "AI & MCP"
+msgstr "ИИ и MCP"
+
+msgid "Everything in the CRM (contacts, fields, roles, tags, consents, timeline, segments, settings) can be read and edited from the Flux AI chat and over MCP (Claude, ChatGPT, Cursor…). Tools run with the user's own CRM permissions."
+msgstr "Все в CRM (контакты, поля, роли, теги, согласия, временная шкала, сегменты, настройки) можно читать и редактировать из чата Flux AI и через MCP (Claude, ChatGPT, Cursor...). Инструменты запускаются с собственными разрешениями пользователя CRM."
+
+msgid "connected"
+msgstr "подключен"
+
+msgid "CRM tools in the admin chat. Every tool that changes something waits on an approval card."
+msgstr "Инструменты CRM в чате администратора. Каждый инструмент, который что-то меняет, ожидает одобрения."
+
+msgid "Flux AI & MCP is not installed"
+msgstr "Flux AI и MCP не установлены."
+
+msgid "Delete, merge, bulk actions and sending return only a preview on the first call; they run when called again with the approval token."
+msgstr "Удаление, объединение, массовые действия и отправка возвращают только предварительный просмотр при первом вызове; они запускаются при повторном вызове с маркером утверждения."
+
+msgid "MCP keys"
+msgstr "Ключи MCP"
+
+msgid "AI and MCP tools on"
+msgstr "Инструменты AI и MCP на"
+
+msgid "Editing: contacts, tags, segments, notes, settings"
+msgstr "Редактирование: контакты, теги, сегменты, заметки, настройки"
+
+msgid "Approval actions: delete, merge, bulk actions, sending messages"
+msgstr "Действия по утверждению: удаление, объединение, массовые действия, отправка сообщений."
+
+msgid "Tools: %1$d / %2$d on"
+msgstr "Инструменты:%1$d/%2$dвкл."
+
+msgid "Tool"
+msgstr "Инструмент"
+
+msgid "Recent changes made with AI"
+msgstr "Последние изменения, внесенные с помощью ИИ"
+
+msgid "No changes yet. Every change made with Flux AI or MCP shows up here."
+msgstr "Никаких изменений пока нет. Здесь отображаются все изменения, сделанные с помощью Flux AI или MCP."
+
+msgid "When"
+msgstr "Когда"
+
+msgid "Who"
+msgstr "Кто"
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "Result"
+msgstr "Результат"
+
+msgid "done"
+msgstr "сделано"
+
+msgid "error"
+msgstr "ошибка"
+
+msgid "WhatsApp chat opened"
+msgstr "Чат WhatsApp открыт"
+
+msgid "WhatsApp reply"
+msgstr "Ответ в WhatsApp"
+
+msgid "WhatsApp message"
+msgstr "сообщение WhatsApp"
+
+msgid "Order #%s"
+msgstr "Заказ No%s"
+
+msgid "Form #%d"
+msgstr "Форма No%d"
+
+msgid "SMS sent"
+msgstr "СМС отправлено"
+
+msgid "WhatsApp notification"
+msgstr "Уведомление WhatsApp"
+
+msgid "Created an account on the site"
+msgstr "Создал аккаунт на сайте"
+
+msgid "Name, e-mail or phone"
+msgstr "Имя, адрес электронной почты или телефон"
+
+msgid "Contacts arrive on their own from gifts, orders and forms."
+msgstr "Контакты приходят сами собой из подарков, заказов и анкет."
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Remove tag"
+msgstr "Удалить тег"
+
+msgid "Add an interaction"
+msgstr "Добавить взаимодействие"
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "Delete this contact?"
+msgstr "Удалить этот контакт?"
+
+msgid "No people"
+msgstr "Нет людей"
+
+msgid "Text"
+msgstr "Текст"
+
+msgid "Add a note"
+msgstr "Добавить заметку"
+
+msgid "Open in the panel"
+msgstr "Открыть в панели"
+
+msgid "Ads"
+msgstr "Объявления"
+
+msgid "Ad consent"
+msgstr "Согласие на рекламу"
+
+msgid "Risk"
+msgstr "Риск"
+
+msgid "Segment rules"
+msgstr "Правила сегмента"
+
+msgid "No segments"
+msgstr "Нет сегментов"
+
+msgid "Create segments by adding rules in the panel."
+msgstr "Создавайте сегменты, добавляя правила на панели."
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "Last 30 days"
+msgstr "Последние 30 дней"
+
+msgid "The timeline and tags are deleted too."
+msgstr "Временная шкала и теги также удаляются."
+
+msgid "repeat"
+msgstr "повторять"
+
+msgid "Paying"
+msgstr "Платит"
+
+msgid "Consents"
+msgstr "Согласия"
+
+msgid "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"
+msgstr "[['Люди и маркетинг: донор, клиент, волонтер и кандидат в одном лице; временная шкала, теги, разрешения KVKK, оценка RFM и риск потерь, динамические сегменты. Собирает данные от пользователей Flux Donate, Flux Commerce, Flux Chat, Flux Forms и WordPress; доставка через Flux Mail, AI Flux AI.', 'tr']]"

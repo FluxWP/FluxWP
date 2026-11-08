@@ -29,7 +29,7 @@ add_filter(
 		$list['web'] = array_merge(
 			(array) ( $list['web'] ?? array() ),
 			array(
-				'label'  => __( 'Site sohbeti', 'flx-chatbot' ),
+				'label'  => __( 'Site chat', 'flx-chatbot' ),
 				'conns'  => array( FLXCB_FC_CONN ),
 				'active' => flxcb_fc_unified() && (bool) flxcb_setting( 'enabled' ),
 			)
@@ -68,9 +68,9 @@ add_filter(
 		$conv = flxcb_fc_conv_from_jid( $chat['jid'] );
 		if ( $conv && '' !== (string) $conv['email'] ) {
 			/* translators: %s: visitor email */
-			return sprintf( __( 'Site sohbeti · %s', 'flx-chatbot' ), $conv['email'] );
+			return sprintf( __( 'Site chat · %s', 'flx-chatbot' ), $conv['email'] );
 		}
-		return __( 'Site sohbeti', 'flx-chatbot' );
+		return __( 'Site chat', 'flx-chatbot' );
 	},
 	10,
 	2
@@ -183,15 +183,15 @@ function flxcb_fc_push( $conv, $summary = '' ) {
 	if ( ! $chat ) {
 		return 0;
 	}
-	$lines = array( __( 'Site sohbeti temsilci bekliyor.', 'flx-chatbot' ) );
+	$lines = array( __( 'A site chat is waiting for an agent.', 'flx-chatbot' ) );
 	if ( '' !== (string) $conv['page_url'] ) {
-		$lines[] = __( 'Sayfa:', 'flx-chatbot' ) . ' ' . ( '' !== (string) $conv['page_title'] ? $conv['page_title'] . ' · ' : '' ) . $conv['page_url'];
+		$lines[] = __( 'Page:', 'flx-chatbot' ) . ' ' . ( '' !== (string) $conv['page_title'] ? $conv['page_title'] . ' · ' : '' ) . $conv['page_url'];
 	}
 	if ( '' !== (string) $conv['email'] || '' !== (string) $conv['phone'] ) {
-		$lines[] = __( 'İletişim:', 'flx-chatbot' ) . ' ' . trim( $conv['email'] . ' ' . $conv['phone'] );
+		$lines[] = __( 'Contact:', 'flx-chatbot' ) . ' ' . trim( $conv['email'] . ' ' . $conv['phone'] );
 	}
 	if ( '' !== trim( (string) $summary ) ) {
-		$lines[] = __( 'Asistan notu:', 'flx-chatbot' ) . ' ' . $summary;
+		$lines[] = __( 'Assistant note:', 'flx-chatbot' ) . ' ' . $summary;
 	}
 	if ( function_exists( 'flxc_system_message' ) ) {
 		flxc_system_message( $chat, implode( "\n", $lines ) );
@@ -315,7 +315,7 @@ add_filter(
 		$conv = flxcb_fc_conv_from_jid( (string) ( $body['number'] ?? '' ) );
 		if ( ! $conv ) {
 			// Ekip numarasına giden bildirim vb. bu kanaldan gönderilemez.
-			return $fail( __( 'Site sohbeti bulunamadı.', 'flx-chatbot' ) );
+			return $fail( __( 'Site chat not found.', 'flx-chatbot' ) );
 		}
 		if ( '/chat/sendPresence' === $route ) {
 			if ( in_array( (string) ( $body['presence'] ?? '' ), array( 'composing', 'recording' ), true ) ) {
@@ -344,7 +344,7 @@ add_filter(
 			$bin   = preg_match( '#^https?://#', $data ) ? '' : base64_decode( preg_replace( '#^data:[^,]*,#', '', $data ), true );
 			if ( ! $bin ) {
 				flxcb_fc_quiet( false );
-				return $fail( __( 'Dosya okunamadı.', 'flx-chatbot' ) );
+				return $fail( __( 'Could not read the file.', 'flx-chatbot' ) );
 			}
 			if ( '' === $name ) {
 				$name = 'file.' . ( wp_get_default_extension_for_mime_type( $mime ) ?: 'bin' );
@@ -357,10 +357,10 @@ add_filter(
 			$id = flxcb_agent_reply( $conv, $user, (string) ( $body['caption'] ?? '' ), $file );
 		} else {
 			flxcb_fc_quiet( false );
-			return $fail( __( 'Bu işlem site sohbetinde kullanılamaz.', 'flx-chatbot' ) );
+			return $fail( __( 'This action isn\'t available in site chats.', 'flx-chatbot' ) );
 		}
 		flxcb_fc_quiet( false );
-		return $id ? $ok( array( 'key' => array( 'id' => 'cb' . (int) $id ) ) ) : $fail( __( 'Mesaj kaydedilemedi.', 'flx-chatbot' ) );
+		return $id ? $ok( array( 'key' => array( 'id' => 'cb' . (int) $id ) ) ) : $fail( __( 'Could not save the message.', 'flx-chatbot' ) );
 	},
 	10,
 	5

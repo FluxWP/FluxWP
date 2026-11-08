@@ -16,17 +16,17 @@ type T = FlxgTask & { _ctx?: boolean; _outside?: boolean };
 export function builtinCols(e: FlxgEngine): Col[] {
   const mt = e.meetingScope();
   const b: Col[] = [
-    { key: 'status', name: tt('Durum'), w: '130px' },
-    { key: 'assignees', name: mt ? tt('Katılımcılar') : tt('Atananlar'), w: '120px' },
-    { key: 'due', name: mt ? tt('Tarih') : tt('Bitiş'), w: '120px' },
-    { key: 'start', name: tt('Başlangıç'), w: '120px' },
-    { key: 'priority', name: tt('Öncelik'), w: '110px' },
-    { key: 'tags', name: tt('Etiketler'), w: '170px' },
-    { key: 'created', name: tt('Oluşturma'), w: '120px' },
-    { key: 'updated', name: tt('Güncelleme'), w: '120px' },
-    { key: 'comments', name: tt('Yorum'), w: '80px' },
+    { key: 'status', name: tt("Status"), w: '130px' },
+    { key: 'assignees', name: mt ? tt("Participants") : tt("Assignees"), w: '120px' },
+    { key: 'due', name: mt ? tt("Date") : tt("Due"), w: '120px' },
+    { key: 'start', name: tt("Start"), w: '120px' },
+    { key: 'priority', name: tt("Priority"), w: '110px' },
+    { key: 'tags', name: tt("Tags"), w: '170px' },
+    { key: 'created', name: tt("Created"), w: '120px' },
+    { key: 'updated', name: tt("Updated"), w: '120px' },
+    { key: 'comments', name: tt("Comments"), w: '80px' },
   ];
-  if (e.S.scope && e.S.scope.type !== 'list') b.splice(1, 0, { key: 'list', name: tt('Liste'), w: '150px' });
+  if (e.S.scope && e.S.scope.type !== 'list') b.splice(1, 0, { key: 'list', name: tt("List"), w: '150px' });
   return b;
 }
 export function columnDefs(e: FlxgEngine): Col[] {
@@ -112,7 +112,7 @@ export function editFieldPop(c: Ctx, anchor: HTMLElement, task: FlxgTask, f: { i
   };
   const o = (f.options ?? {}) as { choices?: { id: string; label: string; color: string }[]; max?: number };
   if (f.type === 'dropdown') {
-    ui.menu(anchor, [{ head: f.name }, ...(o.choices ?? []).map((ch) => ({ label: ch.label, swatch: ch.color, checked: cur === ch.id, onClick: () => save(ch.id) })), { sep: true }, { label: tt('Temizle'), icon: 'x', onClick: () => save(null) }]);
+    ui.menu(anchor, [{ head: f.name }, ...(o.choices ?? []).map((ch) => ({ label: ch.label, swatch: ch.color, checked: cur === ch.id, onClick: () => save(ch.id) })), { sep: true }, { label: tt("Clear"), icon: 'x', onClick: () => save(null) }]);
     return;
   }
   if (f.type === 'checkbox') return save(!cur);
@@ -175,7 +175,7 @@ function TextFieldPop({ f, cur, onSave }: { f: { name: string; type: string }; c
         <input className="flxg-input" type={type} step="any" value={v} onChange={(ev) => setV(ev.target.value)} onKeyDown={(ev) => ev.key === 'Enter' && (ev.preventDefault(), go())} />
       )}
       <div className="flxg-row-btns">
-        <button type="button" className="flxg-btn is-primary is-sm" onClick={go}>{tt('Kaydet')}</button>
+        <button type="button" className="flxg-btn is-primary is-sm" onClick={go}>{tt("Save")}</button>
       </div>
     </div>
   );
@@ -260,17 +260,17 @@ export function Toolbar({ onQuick }: { onQuick: () => void }) {
   if (f.due) fcount++;
   if (f.fields) fcount += Object.keys(f.fields as object).length;
   if (cfg.showDone === false) fcount++;
-  const gl = e.groupOptions().find((o) => o.id === cfg.group)?.label ?? tt('Durum');
+  const gl = e.groupOptions().find((o) => o.id === cfg.group)?.label ?? tt("Status");
   const canAdd = e.scopeLists().some((l) => rank(l.role) >= 3);
   const sortMenu = (a: HTMLElement) => {
-    const opts: [string, string][] = [['position', tt('Elle sıralama')], ['due', tt('Bitiş tarihi')], ['start', tt('Başlangıç tarihi')], ['priority', tt('Öncelik')], ['created', tt('Oluşturma')], ['updated', tt('Güncelleme')], ['title', tt('Ad')]];
+    const opts: [string, string][] = [['position', tt("Manual order")], ['due', tt("Due date")], ['start', tt("Start date")], ['priority', tt("Priority")], ['created', tt("Created")], ['updated', tt("Updated")], ['title', tt("Name")]];
     const s = cfg.sort ?? { by: 'position', dir: 'asc' as const };
     ui.menu(a, [
-      { head: tt('Sırala') },
+      { head: tt("Sort") },
       ...opts.map((o) => ({ label: o[1], checked: s.by === o[0], onClick: () => ((cfg.sort = { by: o[0], dir: s.dir || 'asc' }), e.touchDraft()) })),
       { sep: true },
-      { label: tt('Artan'), checked: s.dir !== 'desc', onClick: () => ((cfg.sort = { by: s.by, dir: 'asc' }), e.touchDraft()) },
-      { label: tt('Azalan'), checked: s.dir === 'desc', onClick: () => ((cfg.sort = { by: s.by, dir: 'desc' }), e.touchDraft()) },
+      { label: tt("Ascending"), checked: s.dir !== 'desc', onClick: () => ((cfg.sort = { by: s.by, dir: 'asc' }), e.touchDraft()) },
+      { label: tt("Descending"), checked: s.dir === 'desc', onClick: () => ((cfg.sort = { by: s.by, dir: 'desc' }), e.touchDraft()) },
     ]);
   };
   const subMenu = (a: HTMLElement) => {
@@ -283,12 +283,12 @@ export function Toolbar({ onQuick }: { onQuick: () => void }) {
       e.bump();
     };
     ui.menu(a, [
-      { head: tt('Alt görevler') },
-      { label: tt('Görevin altında, açık'), checked: m === 'open', onClick: () => set('open') },
-      { label: tt('Görevin altında, kapalı'), checked: m === 'closed', onClick: () => set('closed') },
-      { label: tt('Gösterme'), checked: m === 'off', onClick: () => set('off') },
+      { head: tt("Subtasks") },
+      { label: tt("Under the task, expanded"), checked: m === 'open', onClick: () => set('open') },
+      { label: tt("Under the task, collapsed"), checked: m === 'closed', onClick: () => set('closed') },
+      { label: tt("Don't show"), checked: m === 'off', onClick: () => set('off') },
       { sep: true },
-      { label: tt('Filtreyi alt görevlere de uygula'), checked: !!cfg.subFilter, onClick: () => ((cfg.subFilter = !cfg.subFilter), e.touchDraft()) },
+      { label: tt("Apply filters to subtasks too"), checked: !!cfg.subFilter, onClick: () => ((cfg.subFilter = !cfg.subFilter), e.touchDraft()) },
     ]);
   };
   const saveMenu = (a: HTMLElement) => {
@@ -296,12 +296,12 @@ export function Toolbar({ onQuick }: { onQuick: () => void }) {
     const role = S.scope?.role ?? 'view';
     ui.menu(a, [
       {
-        label: tt('Bu görünüme kaydet'), icon: 'check', disabled: view.user_id === 0 && rank(role) < 3,
-        onClick: () => e.api.updateView(view.id, { config: S.draft }).then((r) => { Object.assign(view, r.view); e.setView(view); e.bump(); ui.toast(tt('Görünüm kaydedildi')); }, ui.fail),
+        label: tt("Save to this view"), icon: 'check', disabled: view.user_id === 0 && rank(role) < 3,
+        onClick: () => e.api.updateView(view.id, { config: S.draft }).then((r) => { Object.assign(view, r.view); e.setView(view); e.bump(); ui.toast(tt("View saved")); }, ui.fail),
       },
       {
-        label: tt('Yeni görünüm olarak kaydet'), icon: 'plus',
-        onClick: () => void ui.prompt(tt('Görünüm adı'), view.name + ' – ' + tt('filtreli')).then((name) => {
+        label: tt("Save as new view"), icon: 'plus',
+        onClick: () => void ui.prompt(tt("View name"), view.name + ' – ' + tt("filtered")).then((name) => {
           if (!name) return;
           e.api.createView({ scope: S.scope!.type, scope_id: S.scope!.type === 'home' ? S.me!.id : S.scope!.id, name, type: view.type, config: S.draft, shared: rank(role) >= 3 }).then((r) => {
             S.views = r.views;
@@ -310,7 +310,7 @@ export function Toolbar({ onQuick }: { onQuick: () => void }) {
         }),
       },
       { sep: true },
-      { label: tt('Değişiklikleri geri al'), icon: 'x', onClick: () => (e.setView(view), e.bump()) },
+      { label: tt("Revert changes"), icon: 'x', onClick: () => (e.setView(view), e.bump()) },
     ]);
   };
   return (
@@ -318,47 +318,47 @@ export function Toolbar({ onQuick }: { onQuick: () => void }) {
       <div className="flxg-tb-left">
         <label className="flxg-search-wrap">
           <Ic n="search" s={15} />
-          <input className="flxg-input flxg-search" type="search" placeholder={tt('Görev ara…')} value={q} onChange={(ev) => (setQ(ev.target.value), deb(ev.target.value))} />
+          <input className="flxg-input flxg-search" type="search" placeholder={tt("Search tasks…")} value={q} onChange={(ev) => (setQ(ev.target.value), deb(ev.target.value))} />
         </label>
       </div>
       <div className="flxg-tb-right">
         <button type="button" className={'flxg-tb-btn' + (fcount ? ' is-active' : '')} onClick={(ev) => ui.openPop(ev.currentTarget, <FilterPop />, { cls: 'is-wide', alignRight: true, inline: true })}>
           <Ic n="filter" s={15} />
-          <span className="flxg-tb-label">{tt('Filtre')}</span>
+          <span className="flxg-tb-label">{tt("Filter")}</span>
           {fcount > 0 && <span className="flxg-badge">{fcount}</span>}
         </button>
         {v && v.type !== 'calendar' && (
           <>
-            <button type="button" className="flxg-tb-btn" onClick={(ev) => ui.menu(ev.currentTarget, [{ head: tt('Grupla') }, ...e.groupOptions().map((o) => ({ label: o.label, checked: (cfg.group || 'status') === o.id, onClick: () => ((cfg.group = o.id), e.touchDraft()) }))])}>
+            <button type="button" className="flxg-tb-btn" onClick={(ev) => ui.menu(ev.currentTarget, [{ head: tt("Group") }, ...e.groupOptions().map((o) => ({ label: o.label, checked: (cfg.group || 'status') === o.id, onClick: () => ((cfg.group = o.id), e.touchDraft()) }))])}>
               <Ic n="group" s={15} />
-              <span className="flxg-tb-label">{tt('Grup: {n}', { n: gl })}</span>
+              <span className="flxg-tb-label">{tt("Group: {n}", { n: gl })}</span>
             </button>
             <button type="button" className={'flxg-tb-btn' + (cfg.sort && cfg.sort.by !== 'position' ? ' is-active' : '')} onClick={(ev) => sortMenu(ev.currentTarget)}>
               <Ic n="sort" s={15} />
-              <span className="flxg-tb-label">{tt('Sırala')}</span>
+              <span className="flxg-tb-label">{tt("Sort")}</span>
             </button>
           </>
         )}
         {v?.type === 'list' && (
           <button type="button" className={'flxg-tb-btn' + ((cfg.subtasks ?? 'open') !== 'open' ? ' is-active' : '')} onClick={(ev) => subMenu(ev.currentTarget)}>
             <Ic n="subtask" s={15} />
-            <span className="flxg-tb-label">{tt('Alt görevler')}</span>
+            <span className="flxg-tb-label">{tt("Subtasks")}</span>
           </button>
         )}
         <button type="button" className="flxg-tb-btn" onClick={(ev) => ui.openPop(ev.currentTarget, <FieldsPop />, { alignRight: true, inline: true })}>
           <Ic n="columns" s={15} />
-          <span className="flxg-tb-label">{tt('Alanlar')}</span>
+          <span className="flxg-tb-label">{tt("Fields")}</span>
         </button>
         {S.dirty && v && (
           <button type="button" className="flxg-tb-btn is-save" onClick={(ev) => saveMenu(ev.currentTarget)}>
             <Ic n="check" s={15} />
-            <span className="flxg-tb-label">{tt('Görünümü kaydet')}</span>
+            <span className="flxg-tb-label">{tt("Save view")}</span>
           </button>
         )}
         {canAdd && (
           <button type="button" className="flxg-btn is-primary flxg-add-task" onClick={onQuick}>
             <Ic n="plus" s={16} />
-            <span>{e.meetingScope() ? tt('Toplantı') : tt('Görev')}</span>
+            <span>{e.meetingScope() ? tt("Meeting") : tt("Task")}</span>
           </button>
         )}
       </div>
@@ -427,15 +427,15 @@ function FilterPop() {
     </div>
   );
   const tags = e.scopeTags();
-  const dues: [string, string][] = [['overdue', tt('Gecikmiş')], ['today', tt('Bugün')], ['week', tt('7 gün içinde')], ['has', tt('Tarihli')], ['none', tt('Tarihsiz')]];
+  const dues: [string, string][] = [['overdue', tt("Overdue")], ['today', tt("Today")], ['week', tt("Within 7 days")], ['has', tt("Has date")], ['none', tt("No date")]];
   return (
     <div className="flxg-filter">
-      {sec(tt('Durum'), e.scopeStatuses().map((s) => chip('status', s.key, s.label, s.color)))}
-      {sec(tt('Atanan'), [chip('assignees', 'me', tt('Bana atananlar')), chip('assignees', 'none', tt('Atanmamış')), ...S.userList.filter((u) => u.id !== S.me!.id).map((u) => chip('assignees', String(u.id), u.name, undefined, <Avatar u={u} size={18} />))])}
-      {sec(tt('Öncelik'), [...S.config.priorities.map((p) => chip('priority', String(p.id), p.label, p.color)), chip('priority', '0', tt('Yok'))])}
-      {tags.length > 0 && sec(tt('Etiket'), [...tags.map((tg) => chip('tags', String(tg.id), tg.name, tg.color)), chip('tags', 'none', tt('Etiketsiz'))])}
+      {sec(tt("Status"), e.scopeStatuses().map((s) => chip('status', s.key, s.label, s.color)))}
+      {sec(tt("Assignee"), [chip('assignees', 'me', tt("Assigned to me")), chip('assignees', 'none', tt("Unassigned")), ...S.userList.filter((u) => u.id !== S.me!.id).map((u) => chip('assignees', String(u.id), u.name, undefined, <Avatar u={u} size={18} />))])}
+      {sec(tt("Priority"), [...S.config.priorities.map((p) => chip('priority', String(p.id), p.label, p.color)), chip('priority', '0', tt("None"))])}
+      {tags.length > 0 && sec(tt("Tag"), [...tags.map((tg) => chip('tags', String(tg.id), tg.name, tg.color)), chip('tags', 'none', tt("No tag"))])}
       {sec(
-        tt('Bitiş tarihi'),
+        tt("Due date"),
         dues.map((d) => (
           <button key={d[0]} type="button" className={'flxg-fchip' + (f.due === d[0] ? ' is-on' : '')} onClick={() => ((f.due === d[0] ? delete f.due : (f.due = d[0])), e.touchDraft())}>
             {d[1]}
@@ -444,20 +444,20 @@ function FilterPop() {
       )}
       <label className="flxg-switch-row">
         <input type="checkbox" checked={cfg.showDone !== false} onChange={(ev) => ((cfg.showDone = ev.target.checked), e.touchDraft())} />
-        <span>{tt('Tamamlanan görevleri göster')}</span>
+        <span>{tt("Show completed tasks")}</span>
       </label>
       {S.view?.type === 'list' && (
         <label className="flxg-switch-row">
           <input type="checkbox" checked={!!cfg.subFilter} onChange={(ev) => ((cfg.subFilter = ev.target.checked), e.touchDraft())} />
           <span>
-            <b>{tt('Filtreyi alt görevlere de uygula')}</b>
-            <small>{tt('Kapalıyken filtreye uyan görevlerin tüm alt görevleri görünür. Açıkken yalnız filtreye uyan alt görevler görünür; üst görevi uymasa da soluk olarak gösterilir.')}</small>
+            <b>{tt("Apply filters to subtasks too")}</b>
+            <small>{tt("When off, all subtasks of matching tasks are shown. When on, only matching subtasks are shown; their parent appears dimmed even if it doesn't match.")}</small>
           </span>
         </label>
       )}
       <div className="flxg-row-btns">
         <button type="button" className="flxg-btn is-ghost is-sm" onClick={() => ((cfg.filters = {}), (cfg.showDone = true), e.touchDraft())}>
-          {tt('Filtreleri temizle')}
+          {tt("Clear filters")}
         </button>
       </div>
     </div>
@@ -475,7 +475,7 @@ function FieldsPop() {
         <label className="flxg-switch-row is-strong">
           <input type="checkbox" checked={!!cfg.cover} onChange={(ev) => ((cfg.cover = ev.target.checked), e.touchDraft())} />
           <Ic n="image" s={15} />
-          <span>{tt('Kapak görselini göster')}</span>
+          <span>{tt("Show cover image")}</span>
         </label>
       )}
       {type === 'list' && (
@@ -483,23 +483,23 @@ function FieldsPop() {
           <input type="checkbox" checked={!!cfg.wrap} onChange={(ev) => ((cfg.wrap = ev.target.checked), saveViewPart(e, ['wrap']), e.bump())} />
           <Ic n="list" s={15} />
           <span>
-            <b>{tt('Metni sar')}</b>
-            <small>{tt('Uzun metinler en fazla 3 satır görünür, fazlası … ile kısalır.')}</small>
+            <b>{tt("Wrap text")}</b>
+            <small>{tt("Long text shows up to 3 lines, the rest is cut with …")}</small>
           </span>
         </label>
       )}
       {type === 'calendar' && (
         <>
-          <div className="flxg-menu-head">{tt('Takvimde kullanılacak tarih')}</div>
+          <div className="flxg-menu-head">{tt("Date to use in the calendar")}</div>
           {(['due', 'start'] as const).map((k) => (
             <label key={k} className="flxg-switch-row">
               <input type="radio" name="flxg-df" checked={(cfg.dateField || 'due') === k} onChange={() => ((cfg.dateField = k), e.touchDraft())} />
-              <span>{k === 'due' ? tt('Bitiş tarihi') : tt('Başlangıç tarihi')}</span>
+              <span>{k === 'due' ? tt("Due date") : tt("Start date")}</span>
             </label>
           ))}
         </>
       )}
-      <div className="flxg-menu-head">{type === 'list' ? tt('Sütunlar') : tt('Kartta gösterilecek alanlar')}</div>
+      <div className="flxg-menu-head">{type === 'list' ? tt("Columns") : tt("Fields shown on the card")}</div>
       {columnDefs(e).map((d) => {
         const on = vis.includes(d.key);
         return (
@@ -521,9 +521,9 @@ function dropToGroup(e: FlxgEngine, info: DropInfo, groups: Group[], fromKey: st
   const g = groups.find((x) => x.key === info.zone);
   const patch: Record<string, unknown> = { ...(extra ?? {}) };
   if (g && info.zone !== fromKey) {
-    if (!g.patch) return ui?.toast(tt('Bu gruba taşınamaz.'), { error: true });
+    if (!g.patch) return ui?.toast(tt("Can't be moved to this group."), { error: true });
     const p = g.patch(task, fromKey);
-    if (!p) return ui?.toast(tt('Bu listede uygun durum yok.'), { error: true });
+    if (!p) return ui?.toast(tt("No suitable status in this list."), { error: true });
     Object.assign(patch, p);
   }
   const s = e.viewCfg().sort;
@@ -566,7 +566,7 @@ function HeadRow({ cols, onResize }: { cols: Col[]; onResize: () => void }) {
     <span
       className="flxg-col-resize"
       aria-hidden="true"
-      title={tt('Genişliği değiştirmek için sürükleyin, sıfırlamak için çift tıklayın')}
+      title={tt("Drag to resize, double-click to reset")}
       onClick={(ev) => ev.stopPropagation()}
       onDoubleClick={(ev) => {
         ev.stopPropagation();
@@ -603,7 +603,7 @@ function HeadRow({ cols, onResize }: { cols: Col[]; onResize: () => void }) {
     <div className="flxg-row is-head">
       <span />
       <span className="flxg-hcell">
-        <span className="flxg-hcell-label">{e.meetingScope() ? tt('Toplantı') : tt('Görev adı')}</span>
+        <span className="flxg-hcell-label">{e.meetingScope() ? tt("Meeting") : tt("Task name")}</span>
         {grip('title')}
       </span>
       {cols.map((col) => (
@@ -744,7 +744,7 @@ function GroupSection({ g, isCol, onToggle, children }: { g: Group; isCol: boole
   return (
     <section className={'flxg-group' + (isCol ? ' is-collapsed' : '')}>
       <div className="flxg-group-head">
-        <button type="button" className="flxg-caret" aria-label={tt('Daralt')} onClick={onToggle}>
+        <button type="button" className="flxg-caret" aria-label={tt("Collapse")} onClick={onToggle}>
           <Ic n={isCol ? 'chevR' : 'chevD'} s={16} />
         </button>
         <span className="flxg-gpill" style={cv(g.color)}>
@@ -787,7 +787,7 @@ function ListRow(o: { task: T; cols: Col[]; depth: number; parent: number; kids:
       data-depth={depth}
       data-parent={o.parent}
       style={{ '--depth': depth } as CSSProperties}
-      title={task._ctx || o.ctx ? tt('Filtreye uyan alt görevi olduğu için gösteriliyor') : undefined}
+      title={task._ctx || o.ctx ? tt("Shown because it has a subtask that matches the filter") : undefined}
       onClick={() => e.openTask(task.id)}
       onKeyDown={(ev) => ev.key === 'Enter' && e.openTask(task.id)}
     >
@@ -805,7 +805,7 @@ function ListRow(o: { task: T; cols: Col[]; depth: number; parent: number; kids:
       <div className="flxg-cell flxg-title-cell">
         <span className="flxg-subindent" />
         {o.kids > 0 ? (
-          <button type="button" className={'flxg-subcaret' + (o.open ? ' is-open' : '')} aria-expanded={o.open} title={o.open ? tt('Alt görevleri gizle') : tt('Alt görevleri göster')} onPointerDown={(ev) => ev.stopPropagation()} onClick={(ev) => (ev.stopPropagation(), o.toggle())}>
+          <button type="button" className={'flxg-subcaret' + (o.open ? ' is-open' : '')} aria-expanded={o.open} title={o.open ? tt("Hide subtasks") : tt("Show subtasks")} onPointerDown={(ev) => ev.stopPropagation()} onClick={(ev) => (ev.stopPropagation(), o.toggle())}>
             <Ic n="chevR" s={14} />
           </button>
         ) : o.kids === 0 || depth > 0 ? (
@@ -827,18 +827,18 @@ function ListRow(o: { task: T; cols: Col[]; depth: number; parent: number; kids:
         <span className={'flxg-title' + (st.type === 'done' ? ' is-done' : '')}>{task.title}</span>
         <span className="flxg-badges">
           {subCount ? (
-            <span className={'flxg-meta' + (o.kids > 0 ? ' is-btn' : '')} title={tt('Alt görev')} onClick={o.kids > 0 ? (ev) => (ev.stopPropagation(), o.toggle()) : undefined}>
+            <span className={'flxg-meta' + (o.kids > 0 ? ' is-btn' : '')} title={tt("Subtask")} onClick={o.kids > 0 ? (ev) => (ev.stopPropagation(), o.toggle()) : undefined}>
               <Ic n="subtask" s={13} />
               {subCount}
             </span>
           ) : null}
           {task.comments && !o.cols.some((x) => x.key === 'comments') ? <span className="flxg-meta"><Ic n="msg" s={13} />{task.comments}</span> : null}
           {task.files ? <span className="flxg-meta"><Ic n="clip" s={13} />{task.files}</span> : null}
-          {task.hasDesc ? <span className="flxg-meta" title={tt('Açıklama var')}><Ic n="list" s={13} /></span> : null}
+          {task.hasDesc ? <span className="flxg-meta" title={tt("Has description")}><Ic n="list" s={13} /></span> : null}
         </span>
-        {task._outside && <span className="flxg-outside" title={tt('Bu görev artık bu görünümün filtresine uymuyor. Sayfa değişince gizlenir.')}>{tt('Filtre dışı')}</span>}
+        {task._outside && <span className="flxg-outside" title={tt("This task no longer matches this view's filter. It will be hidden when you change page.")}>{tt("Outside filter")}</span>}
         {o.canSub && (
-          <button type="button" className="flxg-row-addsub flxg-nodrag" title={tt('Alt görev ekle')} onPointerDown={(ev) => ev.stopPropagation()} onClick={(ev) => (ev.stopPropagation(), o.addSub())}>
+          <button type="button" className="flxg-row-addsub flxg-nodrag" title={tt("Add subtask")} onPointerDown={(ev) => ev.stopPropagation()} onClick={(ev) => (ev.stopPropagation(), o.addSub())}>
             <Ic n="plus" s={14} />
           </button>
         )}
@@ -869,7 +869,7 @@ function SubAddRow({ parent, depth }: { parent: FlxgTask; depth: number }) {
           className="flxg-input is-sm"
           type="text"
           autoFocus
-          placeholder={tt('Alt görev adı yazıp Enter’a basın')}
+          placeholder={tt("Type a subtask name and press Enter")}
           value={v}
           onChange={(ev) => setV(ev.target.value)}
           onBlur={() => setTimeout(() => !v.trim() && close(), 150)}
@@ -906,7 +906,7 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
       <div className="flxg-inline-add">
         <button type="button" className="flxg-add-btn" onClick={() => setOpen(true)}>
           <Ic n="plus" s={15} />
-          {e.meetingScope() ? tt('Toplantı ekle') : tt('Görev ekle')}
+          {e.meetingScope() ? tt("Add meeting") : tt("Add task")}
         </button>
       </div>
     );
@@ -929,7 +929,7 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
           className="flxg-input"
           type="text"
           autoFocus
-          placeholder={tt('Görev adı yazıp Enter’a basın')}
+          placeholder={tt("Type a task name and press Enter")}
           value={v}
           onChange={(ev) => setV(ev.target.value)}
           onKeyDown={(ev) => {
@@ -948,7 +948,7 @@ function InlineAdd({ g, autoOpen }: { g: Group; autoOpen?: boolean }) {
           </select>
         )}
         <button type="button" className="flxg-btn is-primary is-sm" onMouseDown={(ev) => (ev.preventDefault(), save())}>
-          {tt('Ekle')}
+          {tt("Add")}
         </button>
       </div>
     </div>
@@ -965,10 +965,10 @@ export function EmptyState() {
       <div className="flxg-empty-ic">
         <Ic n={filtered ? 'filter' : 'checklist'} s={34} />
       </div>
-      <p>{filtered ? tt('Filtreye uyan görev yok.') : S.scope?.type === 'home' ? tt('Size atanmış açık görev yok. 🎉') : tt('Bu listede henüz görev yok.')}</p>
+      <p>{filtered ? tt("No tasks match the filter.") : S.scope?.type === 'home' ? tt("You have no open tasks assigned. 🎉") : tt("No tasks in this list yet.")}</p>
       {filtered && (
         <button type="button" className="flxg-btn" onClick={() => ((S.q = ''), (cfg.filters = {}), (cfg.showDone = true), e.touchDraft())}>
-          {tt('Filtreleri temizle')}
+          {tt("Clear filters")}
         </button>
       )}
     </div>
@@ -987,28 +987,28 @@ export function BulkBar() {
   const first = S.tasks[ids[0]!]!;
   return (
     <div className="flxg-bulk">
-      <span className="flxg-bulk-n">{tt('{n} seçili', { n: ids.length })}</span>
+      <span className="flxg-bulk-n">{tt("{n} selected", { n: ids.length })}</span>
       <button type="button" className="flxg-tb-btn" onClick={(ev) => pickStatus(c, ev.currentTarget, first.list, '', (k) => void run({ status: k }))}>
         <Ic n="check" s={15} />
-        <span className="flxg-tb-label">{tt('Durum')}</span>
+        <span className="flxg-tb-label">{tt("Status")}</span>
       </button>
       <button type="button" className="flxg-tb-btn" onClick={(ev) => pickPeople(c, ev.currentTarget, [], (ids2) => void run({ add_assignees: ids2 }), { single: true })}>
         <Ic n="user" s={15} />
-        <span className="flxg-tb-label">{tt('Ata')}</span>
+        <span className="flxg-tb-label">{tt("Assign")}</span>
       </button>
       <button type="button" className="flxg-tb-btn" onClick={(ev) => pickDate(c, ev.currentTarget, '', (v) => void run({ due: v }))}>
         <Ic n="calendar" s={15} />
-        <span className="flxg-tb-label">{tt('Bitiş')}</span>
+        <span className="flxg-tb-label">{tt("Due")}</span>
       </button>
       <button type="button" className="flxg-tb-btn" onClick={(ev) => pickPriority(c, ev.currentTarget, 0, (n) => void run({ priority: n }))}>
         <Ic n="flag" s={15} />
-        <span className="flxg-tb-label">{tt('Öncelik')}</span>
+        <span className="flxg-tb-label">{tt("Priority")}</span>
       </button>
-      <button type="button" className="flxg-tb-btn is-danger" onClick={() => void ui.confirm(tt('Görevleri sil'), tt('{n} görev kalıcı olarak silinecek.', { n: ids.length }), tt('Sil'), true).then((ok) => void (ok && run(null, true)))}>
+      <button type="button" className="flxg-tb-btn is-danger" onClick={() => void ui.confirm(tt("Delete tasks"), tt("{n} tasks will be permanently deleted.", { n: ids.length }), tt("Delete"), true).then((ok) => void (ok && run(null, true)))}>
         <Ic n="trash" s={15} />
-        <span className="flxg-tb-label">{tt('Sil')}</span>
+        <span className="flxg-tb-label">{tt("Delete")}</span>
       </button>
-      <button type="button" className="flxg-icon-btn is-sm" aria-label={tt('Kapat')} onClick={() => ((S.selected = {}), e.bump())}>
+      <button type="button" className="flxg-icon-btn is-sm" aria-label={tt("Close")} onClick={() => ((S.selected = {}), e.bump())}>
         <Ic n="x" s={16} />
       </button>
     </div>
@@ -1088,7 +1088,7 @@ function BoardCol({ g, canAdd }: { g: Group; canAdd: boolean }) {
         <span className="flxg-gcount">{g.tasks.length}</span>
         <span className="flxg-grow" />
         {canAdd && g.patch && (
-          <button type="button" className="flxg-icon-btn is-sm" aria-label={tt('Görev ekle')} onClick={() => setTop(true)}>
+          <button type="button" className="flxg-icon-btn is-sm" aria-label={tt("Add task")} onClick={() => setTop(true)}>
             <Ic n="plus" s={15} />
           </button>
         )}
@@ -1187,7 +1187,7 @@ function CalCell({ d, items, cls, label, max, onAdd, k }: { d: string; items: Fl
               );
             }}
           >
-            {tt('+{n} daha', { n: items.length - max })}
+            {tt("+{n} more", { n: items.length - max })}
           </button>
         )}
       </div>
@@ -1241,13 +1241,13 @@ export function CalendarView({ onQuick }: { onQuick: (extra: Record<string, stri
   const head = (
     <div className="flxg-cal-head">
       <div className="flxg-cal-nav">
-        <button type="button" className="flxg-icon-btn" aria-label={tt('Önceki')} onClick={() => shift(-1)}>
+        <button type="button" className="flxg-icon-btn" aria-label={tt("Previous")} onClick={() => shift(-1)}>
           <Ic n="chevL" s={18} />
         </button>
         <button type="button" className="flxg-btn is-sm" onClick={() => { const n = new Date(); S.cal.y = n.getFullYear(); S.cal.m = n.getMonth(); S.cal.week = null; e.bump(); }}>
-          {tt('Bugün')}
+          {tt("Today")}
         </button>
-        <button type="button" className="flxg-icon-btn" aria-label={tt('Sonraki')} onClick={() => shift(1)}>
+        <button type="button" className="flxg-icon-btn" aria-label={tt("Next")} onClick={() => shift(1)}>
           <Ic n="chevR" s={18} />
         </button>
         <h3 className="flxg-cal-title">{mode === 'week' ? weekTitle() : new Date(S.cal.y, S.cal.m, 1).toLocaleDateString(loc, { month: 'long', year: 'numeric' })}</h3>
@@ -1255,9 +1255,9 @@ export function CalendarView({ onQuick }: { onQuick: (extra: Record<string, stri
       <div className="flxg-seg">
         {(
           [
-            ['month', tt('Ay')],
-            ['week', tt('Hafta')],
-            ['agenda', tt('Ajanda')],
+            ['month', tt("Month")],
+            ['week', tt("Week")],
+            ['agenda', tt("Agenda")],
           ] as const
         ).map((o) => (
           <button key={o[0]} type="button" className={mode === o[0] ? 'is-on' : ''} onClick={() => { S.cal.mode = o[0]; if (o[0] === 'week' && !S.cal.week) S.cal.week = startOfWeek(td); e.bump(); }}>
@@ -1270,10 +1270,10 @@ export function CalendarView({ onQuick }: { onQuick: (extra: Record<string, stri
           type="button"
           className="flxg-btn is-sm is-ghost"
           onClick={(ev) =>
-            ui.menu(ev.currentTarget, [{ head: tt('Tarihsiz görevler') }, ...undated.slice(0, 100).map((x): MenuItem => ({ label: x.title, swatch: e.status(x).color, onClick: () => e.openTask(x.id) }))], { alignRight: true })
+            ui.menu(ev.currentTarget, [{ head: tt("Tasks without a date") }, ...undated.slice(0, 100).map((x): MenuItem => ({ label: x.title, swatch: e.status(x).color, onClick: () => e.openTask(x.id) }))], { alignRight: true })
           }
         >
-          {tt('Tarihsiz: {n}', { n: undated.length })}
+          {tt("No date: {n}", { n: undated.length })}
         </button>
       )}
     </div>
@@ -1286,7 +1286,7 @@ export function CalendarView({ onQuick }: { onQuick: (extra: Record<string, stri
       <>
         {head}
         <div className="flxg-agenda">
-          {!days.length && <div className="flxg-empty-sm">{tt('Bu ay tarihli görev yok.')}</div>}
+          {!days.length && <div className="flxg-empty-sm">{tt("No dated tasks this month.")}</div>}
           {days.map((d) => {
             const dd = parseDay(d)!;
             return (
@@ -1363,7 +1363,7 @@ export function quickCreate(c: Ctx, extra: Record<string, string> = {}) {
   const S = e.S;
   let lists = e.scopeLists().filter((l) => rank(l.role) >= 3);
   if (!lists.length) lists = S.lists.filter((l) => rank(l.role) >= 3);
-  if (!lists.length) return ui.toast(tt('Görev ekleyebileceğiniz liste yok.'), { error: true });
+  if (!lists.length) return ui.toast(tt("There are no lists you can add tasks to."), { error: true });
   const data = {
     list: S.scope?.type === 'list' ? S.scope.id : lists[0]!.id,
     assignees: S.scope?.type === 'home' ? [S.me!.id] : ([] as number[]),
@@ -1380,16 +1380,16 @@ export function quickCreate(c: Ctx, extra: Record<string, string> = {}) {
     else delete body.description;
     const task = await e.createTask(body);
     if (open) e.openTask(task.id);
-    else ui.toast(tt('Görev oluşturuldu'), { action: { label: tt('Aç'), fn: () => e.openTask(task.id) } });
+    else ui.toast(tt("Task created"), { action: { label: tt("Open"), fn: () => e.openTask(task.id) } });
     return true;
   };
   let close = () => {};
   close = ui.modal({
-    title: e.isMeetingList(data.list) ? tt('Yeni toplantı') : tt('Yeni görev'),
+    title: e.isMeetingList(data.list) ? tt("New meeting") : tt("New task"),
     body: <QuickForm c={c} data={data} lists={lists} onEnter={() => void go(false).then((ok) => ok && close())} />,
     actions: [
-      { label: tt('Oluştur ve aç'), onClick: () => go(true) },
-      { label: tt('Oluştur'), primary: true, onClick: () => go(false) },
+      { label: tt("Create and open"), onClick: () => go(true) },
+      { label: tt("Create"), primary: true, onClick: () => go(false) },
     ],
   });
 }
@@ -1401,8 +1401,8 @@ function QuickForm({ c, data, lists, onEnter }: { c: Ctx; data: { list: number; 
   const mt = l.kind === 'meeting';
   return (
     <div className="flxg-qc">
-      <input className="flxg-input is-lg" type="text" autoFocus placeholder={mt ? tt('Toplantı adı') : tt('Görev adı')} onChange={(ev) => (data.title = ev.target.value)} onKeyDown={(ev) => ev.key === 'Enter' && (ev.preventDefault(), onEnter())} />
-      <textarea className="flxg-input" rows={3} placeholder={tt('Açıklama (isteğe bağlı)')} onChange={(ev) => (data.description = ev.target.value)} />
+      <input className="flxg-input is-lg" type="text" autoFocus placeholder={mt ? tt("Meeting name") : tt("Task name")} onChange={(ev) => (data.title = ev.target.value)} onKeyDown={(ev) => ev.key === 'Enter' && (ev.preventDefault(), onEnter())} />
+      <textarea className="flxg-input" rows={3} placeholder={tt("Description (optional)")} onChange={(ev) => (data.description = ev.target.value)} />
       <div className="flxg-qc-row">
         {lists.length > 1 && (
           <button type="button" className="flxg-chip-btn" onClick={(ev) => pickList(c, ev.currentTarget, (id) => ((data.list = id), re()), { current: data.list })}>
@@ -1412,16 +1412,16 @@ function QuickForm({ c, data, lists, onEnter }: { c: Ctx; data: { list: number; 
         )}
         <button type="button" className="flxg-chip-btn" onClick={(ev) => pickPeople(c, ev.currentTarget, data.assignees, (ids) => ((data.assignees = ids), re()))}>
           {data.assignees.length ? <Avatars ids={data.assignees} size={18} /> : <Ic n="user" s={14} />}
-          {data.assignees.length ? null : mt ? tt('Katılımcılar') : tt('Ata')}
+          {data.assignees.length ? null : mt ? tt("Participants") : tt("Assign")}
         </button>
         <button type="button" className="flxg-chip-btn" onClick={(ev) => pickDate(c, ev.currentTarget, data.due, (v) => ((data.due = v), re()))}>
           <Ic n="calendar" s={14} />
-          {data.due ? fmtDue(data.due) : mt ? tt('Tarih') : tt('Bitiş')}
+          {data.due ? fmtDue(data.due) : mt ? tt("Date") : tt("Due")}
         </button>
         {!mt && (
           <button type="button" className="flxg-chip-btn" onClick={(ev) => pickPriority(c, ev.currentTarget, data.priority, (n) => ((data.priority = n), re()))}>
             {data.priority ? <PrioFlag n={data.priority} /> : <Ic n="flag" s={14} />}
-            {data.priority ? e.priority(data.priority)?.label : tt('Öncelik')}
+            {data.priority ? e.priority(data.priority)?.label : tt("Priority")}
           </button>
         )}
       </div>

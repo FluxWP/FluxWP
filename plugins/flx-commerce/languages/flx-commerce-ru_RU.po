@@ -1,0 +1,905 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "Flux Commerce needs WooCommerce. Install and activate WooCommerce."
+msgstr "Flux Commerce нужен WooCommerce. Установите и активируйте WooCommerce."
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Sales dashboard, customers, reports and checkout improvements"
+msgstr "Улучшения панели продаж, клиентов, отчетов и оформления заказов"
+
+msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your order is prepared when the payment is confirmed."
+msgstr "После размещения заказа вы увидите IBAN и свой собственный ссылочный код. После оплаты вы можете загрузить квитанцию ​​на сайт; Ваш заказ будет готов после подтверждения оплаты."
+
+msgid "Recipient"
+msgstr "Получатель"
+
+msgid "Bank"
+msgstr "Банк"
+
+msgid "Amount"
+msgstr "Сумма"
+
+msgid "Reference"
+msgstr "Ссылка"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "Uploading…"
+msgstr "Загрузка..."
+
+msgid "The receipt could not be uploaded. Please try again."
+msgstr "Не удалось загрузить квитанцию. Пожалуйста, попробуйте еще раз."
+
+msgid "We have your receipt. We will let you know once the payment is confirmed."
+msgstr "У нас есть ваша квитанция. Мы сообщим вам, как только оплата будет подтверждена."
+
+msgid "Your order is in, we are waiting for your payment"
+msgstr "Ваш заказ принят, ждем оплаты."
+
+msgid "Make a bank transfer to the account below and write your own reference code in the description."
+msgstr "Сделайте банковский перевод на счет ниже и напишите свой ссылочный код в описании."
+
+msgid "Make the bank transfer"
+msgstr "Сделать банковский перевод"
+
+msgid "Copy %s"
+msgstr "Копировать%s"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "The reference code lets us match your payment to your order."
+msgstr "Ссылочный код позволяет нам сопоставить ваш платеж с вашим заказом."
+
+msgid "Upload your receipt"
+msgstr "Загрузите квитанцию"
+
+msgid "We prepare your order"
+msgstr "Мы готовим ваш заказ"
+
+msgid "You get an e-mail once the payment is confirmed; you can also follow your order under My account › Orders."
+msgstr "Вы получите электронное письмо после подтверждения оплаты; Вы также можете следить за своим заказом в разделе Моя учетная запись › Заказы."
+
+msgid "Bank transfer details"
+msgstr "Детали банковского перевода"
+
+msgid "After paying, upload your receipt:"
+msgstr "После оплаты загрузите чек:"
+
+msgid "Please write the reference above in the transfer description. After paying, upload your receipt:"
+msgstr "Пожалуйста, укажите ссылку выше в описании трансфера. После оплаты загрузите чек:"
+
+msgid "Upload receipt"
+msgstr "Загрузить квитанцию"
+
+msgid "Bank transfer"
+msgstr "Банковский перевод"
+
+msgid "This order was not placed by bank transfer."
+msgstr "Этот заказ не был размещен банковским переводом."
+
+msgid "No receipt uploaded yet."
+msgstr "Квитанция еще не загружена."
+
+msgid "Confirm payment"
+msgstr "Подтвердить платеж"
+
+msgid "Payment confirmed: %1$s · %2$s"
+msgstr "Платеж подтвержден:%1$s·%2$s"
+
+msgid "Bank transfer payment confirmed."
+msgstr "Оплата банковским переводом подтверждена."
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Confirm bank transfer payment"
+msgstr "Подтвердите оплату банковским переводом"
+
+msgid "Transfer"
+msgstr "Трансфер"
+
+msgid "Receipt in"
+msgstr "Квитанция в"
+
+msgid "Awaiting payment"
+msgstr "Ожидание оплаты"
+
+msgid "Confirmed"
+msgstr "Подтверждено"
+
+msgid "Cancelled because no payment arrived within %d days."
+msgstr "Отменено, поскольку платеж не поступил в течение%dдн."
+
+msgid "Add %s more for free shipping."
+msgstr "Добавьте еще%s, чтобы получить бесплатную доставку."
+
+msgid "Free shipping!"
+msgstr "Бесплатная доставка!"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "E-mail"
+msgstr "Электронная почта"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "City"
+msgstr "Город"
+
+msgid "Orders"
+msgstr "Заказы"
+
+msgid "Total spent"
+msgstr "Всего потрачено"
+
+msgid "First order"
+msgstr "Первый заказ"
+
+msgid "Last order"
+msgstr "Последний заказ"
+
+msgid "Note"
+msgstr "Примечание"
+
+msgid "Hello %1$s, your %2$s order (#%3$s) is in.\n\nAmount: %4$s\nRecipient: %5$s\nIBAN: %6$s\nReference: %7$s\n\nAfter paying you can upload the receipt here: %8$s"
+msgstr "Здравствуйте,%1$s, ваш заказ%2$s(#%3$s) принят.\n\nСумма:%4$sПолучатель:%5$sIBAN:%6$sСсылка:%7$sПосле оплаты вы можете загрузить квитанцию здесь:%8$s."
+
+msgid "Bank transfer details sent to the customer by WhatsApp."
+msgstr "Реквизиты банковского перевода отправляются клиенту через WhatsApp."
+
+msgid "Receipt in: order #%1$s · %2$s"
+msgstr "Поступление в: заказ No%1$s·%2$s"
+
+msgid "%1$s uploaded a receipt for order #%2$s.\n\nAmount: %3$s\nReference: %4$s\nFile: %5$s\n\nCheck and confirm: %6$s"
+msgstr "%1$sзагрузил квитанцию по заказу No%2$s.\n\nСумма:%3$sСсылка:%4$sФайл:%5$sПроверьте и подтвердите:%6$s."
+
+msgid "Hello %1$s, the payment for your order #%2$s is confirmed. We are preparing your order. %3$s"
+msgstr "Здравствуйте,%1$s, оплата вашего заказа No%2$sподтверждена. Мы готовим ваш заказ.%3$s"
+
+msgid "New order #%1$s · %2$s\n%3$s\n%4$s\n%5$s"
+msgstr "Новый заказ No%1$s·%2$s%3$s%4$s%5$s"
+
+msgid "No receipt is expected for this order."
+msgstr "Поступления по этому заказу не ожидается."
+
+msgid "At most 5 receipts can be uploaded for an order."
+msgstr "Для заказа можно загрузить не более 5 чеков."
+
+msgid "The file is too large."
+msgstr "Файл слишком большой."
+
+msgid "The file could not be uploaded. Please try again."
+msgstr "Не удалось загрузить файл. Пожалуйста, попробуйте еще раз."
+
+msgid "The file can be at most %s MB."
+msgstr "Размер файла не может превышать%sМБ."
+
+msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
+msgstr "Можно загружать только файлы PDF, JPG, PNG, WEBP или HEIC."
+
+msgid "The file could not be saved."
+msgstr "Файл не удалось сохранить."
+
+msgid "The customer uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
+msgstr "Клиент загрузил чек:%1$s(%2$s). Проверьте оплату и подтвердите ее."
+
+msgid "Add another receipt"
+msgstr "Добавить еще один чек"
+
+msgid "Choose a receipt or drop it here"
+msgstr "Выберите чек или скиньте сюда"
+
+msgid "PDF, JPG or PNG · up to %s MB"
+msgstr "PDF, JPG или PNG · до%sМБ"
+
+msgid "Send receipt"
+msgstr "Отправить квитанцию"
+
+msgid "Order not found."
+msgstr "Заказ не найден."
+
+msgid "Please choose a file."
+msgstr "Пожалуйста, выберите файл."
+
+msgid "We have your receipt. Thank you!"
+msgstr "У нас есть ваша квитанция. Спасибо!"
+
+msgid "No payment"
+msgstr "Нет оплаты"
+
+msgid "Uncategorized"
+msgstr "Без категории"
+
+msgid "%s M"
+msgstr "%sМ"
+
+msgid "%s K"
+msgstr "%sК."
+
+msgid "%s ago"
+msgstr "%sназад"
+
+msgid "Processing"
+msgstr "Обработка"
+
+msgid "On hold"
+msgstr "На удержании"
+
+msgid "Completed"
+msgstr "Завершено"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Refunded"
+msgstr "Возвращено"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "Flux Commerce"
+msgstr "Поток коммерции"
+
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+msgid "Active, version %s"
+msgstr "Активна, версия%s"
+
+msgid "WooCommerce is not installed or not active; Flux Commerce does not work."
+msgstr "WooCommerce не установлен или не активен; Flux Commerce не работает."
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "Off; Flux Donate's bank transfer method is used."
+msgstr "Выкл.; Используется метод банковского перевода Flux Donate."
+
+msgid "Off."
+msgstr "Выкл."
+
+msgid "On but no IBAN; it does not show at checkout."
+msgstr "Включен, но нет IBAN; он не отображается при оформлении заказа."
+
+msgid "Payment method"
+msgstr "Способ оплаты"
+
+msgid "Customer list"
+msgstr "Список клиентов"
+
+msgid "Last full scan: %s"
+msgstr "Последнее полное сканирование:%s."
+
+msgid "Older orders are not scanned yet; press \"Rebuild\" on the Customers page."
+msgstr "Старые заказы еще не сканируются; нажмите «Восстановить» на странице «Клиенты»."
+
+msgid "Customers"
+msgstr "Клиенты"
+
+msgid "Store"
+msgstr "Магазин"
+
+msgid "Overview"
+msgstr "Обзор"
+
+msgid "Sales report"
+msgstr "Отчет о продажах"
+
+msgid "Scanning: %1$s / %2$s orders"
+msgstr "Сканирование: ордера%1$s/%2$s"
+
+msgid "Done. Reloading…"
+msgstr "Готово. Перезагрузка..."
+
+msgid "Something went wrong. Please try again."
+msgstr "Что-то пошло не так. Пожалуйста, попробуйте еще раз."
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "Store · today"
+msgstr "Магазин · сегодня"
+
+msgid "Revenue"
+msgstr "Доход"
+
+msgid "Open the overview"
+msgstr "Открыть обзор"
+
+msgid "Daily revenue"
+msgstr "Ежедневный доход"
+
+msgid "%1$s · %2$s · %3$s orders"
+msgstr "%1$s·%2$s·%3$sзаказы"
+
+msgid "%s pc"
+msgid_plural "%s pcs"
+msgstr[0] "%sПК"
+msgstr[1] "%sшт."
+msgstr[2] "%sшт."
+
+msgid "Customer not found"
+msgstr "Клиент не найден"
+
+msgid "Back to customers"
+msgstr "Вернуться к клиентам"
+
+msgid "Open in WooCommerce"
+msgstr "Открыть в WooCommerce"
+
+msgid "No orders."
+msgstr "Никаких заказов."
+
+msgid "All orders (%s)"
+msgstr "Все заказы (%s)"
+
+msgid "Customer page"
+msgstr "Страница клиента"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Payments"
+msgstr "Платежи"
+
+msgid "Notes"
+msgstr "Примечания"
+
+msgid "Customer since %s"
+msgstr "Клиент с%s"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "%s open orders"
+msgstr "%sоткрытые ордера"
+
+msgid "Average order"
+msgstr "Средний заказ"
+
+msgid "Order frequency"
+msgstr "Частота заказов"
+
+msgid "Every %s days"
+msgstr "Каждые%sдн."
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "User profile"
+msgstr "Профиль пользователя"
+
+msgid "Account"
+msgstr "Аккаунт"
+
+msgid "Registered member"
+msgstr "Зарегистрированный участник"
+
+msgid "Guest"
+msgstr "Гость"
+
+msgid "Timeline"
+msgstr "Хронология"
+
+msgid "Timeline filter"
+msgstr "Фильтр временной шкалы"
+
+msgid "Nothing in this filter."
+msgstr "В этом фильтре ничего нет."
+
+msgid "Show older"
+msgstr "Показать старше"
+
+msgid "%1$s of %2$s entries"
+msgstr "%1$sиз записей%2$s"
+
+msgid "Order #%s"
+msgstr "Заказ No%s"
+
+msgid "New order"
+msgstr "Новый заказ"
+
+msgid "Payment received"
+msgstr "Платеж получен"
+
+msgid "Order #%1$s · %2$s"
+msgstr "Номер заказа%1$s·%2$s"
+
+msgid "Refund issued"
+msgstr "Возврат произведен"
+
+msgid "Note to customer"
+msgstr "Примечание для клиента"
+
+msgid "Order note"
+msgstr "Примечание к заказу"
+
+msgid "Addresses"
+msgstr "Адреса"
+
+msgid "Billing and shipping"
+msgstr "Выставление счетов и доставка"
+
+msgid "Billing"
+msgstr "Биллинг"
+
+msgid "Shipping"
+msgstr "Доставка"
+
+msgid "From the latest order"
+msgstr "Из последнего заказа"
+
+msgid "Frequently bought"
+msgstr "Часто покупают"
+
+msgid "Store note"
+msgstr "Примечание магазина"
+
+msgid "E.g. wants gift wrapping, leave at the door…"
+msgstr "например хочет подарочную упаковку, оставь у двери..."
+
+msgid "Saved when you leave the field."
+msgstr "Сохраняется, когда вы покидаете поле."
+
+msgid "Member"
+msgstr "Член"
+
+msgid "Repeat buyers"
+msgstr "Постоянные покупатели"
+
+msgid "Top 10% spenders"
+msgstr "10% крупнейших тратителей"
+
+msgid "Lapsed"
+msgstr "истекший"
+
+msgid "Download CSV"
+msgstr "Скачать CSV-файл"
+
+msgid "Rebuild"
+msgstr "Восстановить"
+
+msgid "Members and guests, one row per e-mail, with order count and total spent."
+msgstr "Участники и гости, по одной строке на каждое электронное письмо, с указанием количества заказов и общей потраченной суммы."
+
+msgid "Older orders are not scanned yet."
+msgstr "Старые заказы еще не сканируются."
+
+msgid "The list fills itself with new orders. To add older orders, press \"Rebuild\"; the scan runs in batches of 100."
+msgstr "Список пополняется новыми заказами. Чтобы добавить старые заказы, нажмите «Восстановить»; сканирование выполняется партиями по 100."
+
+msgid "%s%%"
+msgstr "%s%%"
+
+msgid "Spend per customer"
+msgstr "Расходы на одного клиента"
+
+msgid "No order in 90 days"
+msgstr "Ни одного заказа за 90 дней."
+
+msgid "New (30 days)"
+msgstr "Новый (30 дней)"
+
+msgid "Lapsed (90 days)"
+msgstr "Истекший (90 дней)"
+
+msgid "Search customers"
+msgstr "Поиск клиентов"
+
+msgid "Name, e-mail, phone, city"
+msgstr "Имя, электронная почта, телефон, город"
+
+msgid "No customer matches the search."
+msgstr "Ни один клиент не соответствует запросу."
+
+msgid "No customers yet."
+msgstr "Клиентов пока нет."
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Repeat"
+msgstr "Повторить"
+
+msgid "Add a note…"
+msgstr "Добавить примечание..."
+
+msgid "Note for %s"
+msgstr "Примечание для%s"
+
+msgid "Today"
+msgstr "Сегодня"
+
+msgid "7 days"
+msgstr "7 дней"
+
+msgid "30 days"
+msgstr "30 дней"
+
+msgid "90 days"
+msgstr "90 дней"
+
+msgid "Period"
+msgstr "Период"
+
+msgid "Sales, orders awaiting payment and stock at a glance."
+msgstr "Продажи, заказы, ожидающие оплаты и наличие на складе."
+
+msgid "Net revenue"
+msgstr "Чистая выручка"
+
+msgid "%s new"
+msgstr "%sновый"
+
+msgid "%1$s – %2$s · compared with %3$s – %4$s"
+msgstr "%1$s–%2$s· по сравнению с%3$s–%4$s"
+
+msgid "Full report"
+msgstr "Полный отчет"
+
+msgid "Pick 7 days or longer for the daily chart."
+msgstr "Для дневного графика выберите 7 дней или дольше."
+
+msgid "No paid orders in this period."
+msgstr "Оплаченных заказов в этот период нет."
+
+msgid "Best sellers"
+msgstr "Бестселлеры"
+
+msgid "pcs"
+msgstr "шт."
+
+msgid "No sales in this period."
+msgstr "В этот период продаж нет."
+
+msgid "Payment methods"
+msgstr "Способы оплаты"
+
+msgid "orders"
+msgstr "заказы"
+
+msgid "Products"
+msgstr "Продукты"
+
+msgid "New product"
+msgstr "Новый продукт"
+
+msgid "Coupons"
+msgstr "Купоны"
+
+msgid "No orders awaiting payment."
+msgstr "Нет заказов, ожидающих оплаты."
+
+msgid "Low stock"
+msgstr "Низкий запас"
+
+msgid "threshold %s"
+msgstr "порог%s"
+
+msgid "No products running low."
+msgstr "Ни один товар не заканчивается."
+
+msgid "Out of stock"
+msgstr "Нет в наличии"
+
+msgid "%s left"
+msgstr "%sслева"
+
+msgid "Paid orders in the period you pick; net amounts after refunds."
+msgstr "Оплаченные заказы в выбранный вами период; чистые суммы после возмещения."
+
+msgid "This month"
+msgstr "В этом месяце"
+
+msgid "Last month"
+msgstr "В прошлом месяце"
+
+msgid "This year"
+msgstr "В этом году"
+
+msgid "From"
+msgstr "От"
+
+msgid "To"
+msgstr "Чтобы"
+
+msgid "Show"
+msgstr "Показать"
+
+msgid "Items sold"
+msgstr "Продано товаров"
+
+msgid "Refunds"
+msgstr "Возвраты"
+
+msgid "Shipping income"
+msgstr "Доход от доставки"
+
+msgid "Product"
+msgstr "Продукт"
+
+msgid "Qty"
+msgstr "Кол-во"
+
+msgid "Net sales"
+msgstr "Чистые продажи"
+
+msgid "Share"
+msgstr "Поделиться"
+
+msgid "Categories"
+msgstr "Категории"
+
+msgid "Counted statuses: %s. Change them in Settings."
+msgstr "Подсчитанные статусы:%s. Измените их в настройках."
+
+msgid "Summary"
+msgstr "Резюме"
+
+msgid "Gross revenue"
+msgstr "Валовой доход"
+
+msgid "Tax"
+msgstr "Налог"
+
+msgid "Discount"
+msgstr "Скидка"
+
+msgid "Day"
+msgstr "День"
+
+msgid "Category"
+msgstr "Категория"
+
+msgid "Dashboard, checkout, bank transfer, product feed and notifications."
+msgstr "Панель управления, оформление заказа, банковский перевод, лента продуктов и уведомления."
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "Dashboard and reports"
+msgstr "Панель управления и отчеты"
+
+msgid "Order statuses counted as revenue"
+msgstr "Статусы заказов учитываются как доход"
+
+msgid "On-hold (bank transfer) orders count once the payment is confirmed."
+msgstr "Заказы, отложенные (банковским переводом), засчитываются после подтверждения оплаты."
+
+msgid "Leave donation orders out of the store statistics"
+msgstr "Убрать заказы на пожертвования из статистики магазина"
+
+msgid "Flux Donate is installed: orders with only donations stay in the Donations dashboard."
+msgstr "Установлен Flux Donate: заказы только с пожертвованиями остаются на панели «Пожертвования»."
+
+msgid "Low stock threshold"
+msgstr "Низкий порог запаса"
+
+msgid "Products whose stock falls to this number or below are listed on the Overview."
+msgstr "Продукты, запасы которых соответствуют этому номеру или ниже, перечислены в обзоре."
+
+msgid "Cart and checkout"
+msgstr "Корзина и оформление заказа"
+
+msgid "Hide the company name field"
+msgstr "Скрыть поле названия компании"
+
+msgid "Hide the second address line"
+msgstr "Скрыть вторую адресную строку"
+
+msgid "Do not ask for an address when the cart only has virtual/downloadable products"
+msgstr "Не запрашивайте адрес, если в корзине есть только виртуальные/загружаемые товары."
+
+msgid "On the classic checkout. Country, name, e-mail and phone stay."
+msgstr "В классической кассе. Страна, имя, адрес электронной почты и телефон пребывания."
+
+msgid "Order notes field"
+msgstr "Поле примечаний к заказу"
+
+msgid "On mobile, keep the \"Place order\" button fixed at the bottom"
+msgstr "На мобильном телефоне не отпускайте кнопку «Оформить заказ» внизу."
+
+msgid "Free shipping bar"
+msgstr "Бесплатная доставка бара"
+
+msgid "\"Add X more for free shipping\" in the cart and at checkout."
+msgstr "«Добавьте еще X для бесплатной доставки» в корзине и при оформлении заказа."
+
+msgid "Free shipping amount"
+msgstr "Сумма бесплатной доставки"
+
+msgid "Empty or 0 = the minimum amount of WooCommerce's \"Free shipping\" method."
+msgstr "Пусто или 0 = минимальная сумма метода «Бесплатная доставка» WooCommerce."
+
+msgid "Empty = from WooCommerce's \"Free shipping\" method: %s"
+msgstr "Пусто = из метода «Бесплатная доставка» WooCommerce:%s."
+
+msgid "Turning the method on, the IBAN and the reference format are in WooCommerce › Settings › Payments › Bank transfer."
+msgstr "При включении метода IBAN и формат ссылки находятся в WooCommerce > Настройки > Платежи > Банковский перевод."
+
+msgid "Open the payment method"
+msgstr "Откройте способ оплаты"
+
+msgid "Hide this method when Flux Donate's bank transfer is on"
+msgstr "Скрыть этот метод, если включен банковский перевод Flux Donate."
+
+msgid "So the checkout does not show two separate \"Bank transfer\" options."
+msgstr "Таким образом, при оформлении заказа не отображаются две отдельные опции «Банковский перевод»."
+
+msgid "Largest receipt (MB)"
+msgstr "Самый большой чек (МБ)"
+
+msgid "Receipt notification e-mail"
+msgstr "Электронная почта с уведомлением о получении"
+
+msgid "Empty = the site admin e-mail."
+msgstr "Пусто = адрес электронной почты администратора сайта."
+
+msgid "Cancel unpaid bank transfers after (days)"
+msgstr "Отменить неоплаченные банковские переводы через (дней)"
+
+msgid "0 = never cancel. Orders with a receipt are not cancelled; stock is restored."
+msgstr "0 = никогда не отменять. Заказы с чеком не аннулируются; сток восстанавливается."
+
+msgid "Product feed (Google Merchant)"
+msgstr "Фид товаров (Google Merchant)"
+
+msgid "Feed on"
+msgstr "Питайтесь дальше"
+
+msgid "Google Merchant Center, Meta catalog and similar services read this address."
+msgstr "Этот адрес читают Google Merchant Center, Мета-каталог и подобные сервисы."
+
+msgid "Feed address"
+msgstr "Адрес фида"
+
+msgid "Brand"
+msgstr "Бренд"
+
+msgid "Empty = site name."
+msgstr "Пусто = имя сайта."
+
+msgid "Notifications"
+msgstr "Уведомления"
+
+msgid "WhatsApp messages go through Flux Mail's WhatsApp connection."
+msgstr "Сообщения WhatsApp передаются через соединение WhatsApp Flux Mail."
+
+msgid "WhatsApp needs Flux Mail and a WhatsApp connection; only e-mail is sent for now."
+msgstr "WhatsApp требуется Flux Mail и соединение с WhatsApp; на данный момент отправляется только электронное письмо."
+
+msgid "Send the bank details and the payment confirmation to the customer by WhatsApp"
+msgstr "Отправьте банковские реквизиты и подтверждение оплаты клиенту через WhatsApp."
+
+msgid "Admin WhatsApp number"
+msgstr "Номер администратора в WhatsApp"
+
+msgid "Gets a message when a receipt arrives (and, if on, for every new order)."
+msgstr "Получает сообщение при поступлении квитанции (и, если включено, для каждого нового заказа)."
+
+msgid "WhatsApp the admin for every new paid order"
+msgstr "WhatsApp администратору по каждому новому оплаченному заказу"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Bank transfer (with receipt upload)"
+msgstr "Банковский перевод (с загрузкой квитанции)"
+
+msgid "The customer pays with an order-specific reference and uploads the receipt on the site. When you confirm the payment the order moves on to processing. Flux Commerce."
+msgstr "Клиент платит, используя ссылку на заказ, и загружает квитанцию на сайт. После подтверждения оплаты заказ переходит в обработку. Флюсовая коммерция."
+
+msgid "Enabled"
+msgstr "Включено"
+
+msgid "Accept payments by bank transfer"
+msgstr "Принимайте оплату банковским переводом"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Empty = \"Bank transfer\" in the site language."
+msgstr "Пусто = «Банковский перевод» на языке сайта."
+
+msgid "Text on the checkout page"
+msgstr "Текст на странице оформления заказа"
+
+msgid "Empty = the default text in the site language."
+msgstr "Пусто = текст по умолчанию на языке сайта."
+
+msgid "Recipient (account holder)"
+msgstr "Получатель (владелец счета)"
+
+msgid "Empty = the first account of WooCommerce's \"Direct bank transfer\"."
+msgstr "Пусто = первый аккаунт «Прямого банковского перевода» WooCommerce."
+
+msgid "Empty = the first account of WooCommerce's \"Direct bank transfer\" (recipient and bank come from it too)."
+msgstr "Пустой = первый аккаунт «Прямого банковского перевода» WooCommerce (от него также берутся получатель и банк)."
+
+msgid "Bank (optional)"
+msgstr "Банк (необязательно)"
+
+msgid "What the customer writes in the transfer description. Placeholders: {kod} (prefix + order no), {siparis}, {ad}, {site}. Empty: {kod} {ad}"
+msgstr "Что пишет заказчик в описании трансфера. Заполнители:{kod}(префикс + номер заказа),{siparis},{ad},{site}. Пусто:{kod}{ad}"
+
+msgid "Code prefix"
+msgstr "Префикс кода"
+
+msgid "Bank transfer: awaiting payment."
+msgstr "Банковский перевод: ожидает оплаты."
+
+msgid "Name, e-mail or phone"
+msgstr "Имя, адрес электронной почты или телефон"
+
+msgid "Call"
+msgstr "Позвонить"
+
+msgid "No receipts waiting"
+msgstr "Никаких квитанций в ожидании"
+
+msgid "This order is not waiting for approval."
+msgstr "Этот заказ не ждет одобрения."
+
+msgid "Receipt"
+msgstr "Квитанция"
+
+msgid "Awaiting a receipt"
+msgstr "Ожидание получения"
+
+msgid "Receipt approval"
+msgstr "Утверждение получения"
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "Bank-transfer orders appear here while payment is pending."
+msgstr "Заказы на банковский перевод отображаются здесь, пока ожидается оплата."
+
+msgid "Customer not found."
+msgstr "Клиент не найден."
+
+msgid "No customers"
+msgstr "Нет клиентов"
+
+msgid "Approve"
+msgstr "Утвердить"
+
+msgid "Sales summary"
+msgstr "Сводка продаж"
+
+msgid "Segment"
+msgstr "Сегмент"
+
+msgid "Customers appear here as orders come in."
+msgstr "Клиенты появляются здесь по мере поступления заказов."
+
+msgid "The order is marked as paid."
+msgstr "Заказ отмечен как оплаченный."
+
+msgid "New"
+msgstr "Новый"
+
+msgid "New customers"
+msgstr "Новые клиенты"
+
+msgid "High spenders"
+msgstr "Высокие траты"
+
+msgid "Payment approved"
+msgstr "Платеж одобрен"
+
+msgid "Approve this payment?"
+msgstr "Одобрить этот платеж?"
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "[['Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.', 'tr']]"
+msgstr "[['Панель продаж для магазина WooCommerce, клиенты, отчеты о продажах, денежный перевод/электронный перевод с загрузкой квитанций, простая страница оплаты, панель бесплатной доставки, лента товаров Google Merchant и уведомления WhatsApp/электронной почты.', 'tr']]"

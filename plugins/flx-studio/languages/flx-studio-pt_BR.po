@@ -1,0 +1,950 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: pt_BR\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "General"
+msgstr "Geral"
+
+msgid "Person (face/identity)"
+msgstr "Pessoa (rosto/identidade)"
+
+msgid "Style"
+msgstr "Estilo"
+
+msgid "Product"
+msgstr "Produto"
+
+msgid "Background"
+msgstr "Plano de fundo"
+
+msgid "Composition"
+msgstr "Composição"
+
+msgid "First frame"
+msgstr "Primeiro quadro"
+
+msgid "Last frame"
+msgstr "Último quadro"
+
+msgid "Auto"
+msgstr "Automático"
+
+msgid "Low"
+msgstr "Baixo"
+
+msgid "Medium"
+msgstr "Médio"
+
+msgid "High"
+msgstr "Alto"
+
+msgid "Theme: system"
+msgstr "Tema: sistema"
+
+msgid "Theme: light"
+msgstr "Tema: luz"
+
+msgid "Theme: dark"
+msgstr "Tema: escuro"
+
+msgid "Opening Studio…"
+msgstr "Abrindo Estúdio..."
+
+msgid "Try again"
+msgstr "Tente novamente"
+
+msgid "Search prompt, title or model"
+msgstr "Prompt de pesquisa, título ou modelo"
+
+msgid "Search"
+msgstr "Pesquisar"
+
+msgid "Menu"
+msgstr "Cardápio"
+
+msgid "Select"
+msgstr "Selecione"
+
+msgid "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI & MCP › Settings › Images and video."
+msgstr "Para gerar imagens e vídeos, insira pelo menos uma chave (fal.ai, EvoLink...) em Flux AI & MCP › Configurações › Imagens e vídeo."
+
+msgid "Flux AI (0.6.0+) is not installed. Generation runs through Flux AI."
+msgstr "Flux AI (0.6.0+) não está instalado. A geração é executada por meio do Flux AI."
+
+msgid "Flux AI settings"
+msgstr "Configurações de IA de fluxo"
+
+msgid "Mine"
+msgstr "Meu"
+
+msgid "Everyone"
+msgstr "Todos"
+
+msgid "Studio"
+msgstr "Estúdio"
+
+msgid "All"
+msgstr "Todos"
+
+msgid "Favorites"
+msgstr "Favoritos"
+
+msgid "Images"
+msgstr "Imagens"
+
+msgid "Videos"
+msgstr "Vídeos"
+
+msgid "Dashboard"
+msgstr "Painel"
+
+msgid "Folders"
+msgstr "Pastas"
+
+msgid "New folder"
+msgstr "Nova pasta"
+
+msgid "Unfiled"
+msgstr "Não arquivado"
+
+msgid "Shared with the team"
+msgstr "Compartilhado com a equipe"
+
+msgid "Folder actions"
+msgstr "Ações de pasta"
+
+msgid "People"
+msgstr "Pessoas"
+
+msgid "Add person"
+msgstr "Adicionar pessoa"
+
+msgid "{name} — add to generation"
+msgstr "{name}— adicionar à geração"
+
+msgid "Add people for face references; use them by typing @name in the prompt."
+msgstr "Adicione pessoas para referências faciais; use-os digitando @name no prompt."
+
+msgid "Manage people"
+msgstr "Gerenciar pessoas"
+
+msgid "Back to dashboard"
+msgstr "Voltar ao painel"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Studio settings"
+msgstr "Configurações do estúdio"
+
+msgid "Flux AI spending limit"
+msgstr "Limite de gastos do Flux AI"
+
+msgid "Folder"
+msgstr "Pasta"
+
+msgid "Subfolder"
+msgstr "Subpasta"
+
+msgid "Create"
+msgstr "Criar"
+
+msgid "Folder created"
+msgstr "Pasta criada"
+
+msgid "Rename"
+msgstr "Renomear"
+
+msgid "Folder name"
+msgstr "Nome da pasta"
+
+msgid "Stop sharing"
+msgstr "Pare de compartilhar"
+
+msgid "Share with team"
+msgstr "Compartilhe com a equipe"
+
+msgid "Folder is shared with the team"
+msgstr "A pasta é compartilhada com a equipe"
+
+msgid "Folder is private"
+msgstr "A pasta é privada"
+
+msgid "Delete folder"
+msgstr "Excluir pasta"
+
+msgid "Delete folder?"
+msgstr "Excluir pasta?"
+
+msgid "Its items and subfolders move up one level; no files are deleted."
+msgstr "Seus itens e subpastas sobem um nível; nenhum arquivo é excluído."
+
+msgid "Delete"
+msgstr "Excluir"
+
+msgid "{n} items moved"
+msgstr "{n}itens movidos"
+
+msgid "Nothing here"
+msgstr "Nada aqui"
+
+msgid "Create your first image"
+msgstr "Crie sua primeira imagem"
+
+msgid "Change the filter or start a new generation below."
+msgstr "Troque o filtro ou inicie uma nova geração abaixo."
+
+msgid "Describe what you want below. Drag in reference images or add people with @."
+msgstr "Descreva o que você deseja abaixo. Arraste imagens de referência ou adicione pessoas com @."
+
+msgid "Remove from favorites"
+msgstr "Remover dos favoritos"
+
+msgid "Add to favorites"
+msgstr "Adicionar aos favoritos"
+
+msgid "Queued"
+msgstr "Na fila"
+
+msgid "Generating"
+msgstr "Gerando"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Cancelled"
+msgstr "Cancelado"
+
+msgid "Failed"
+msgstr "Falha"
+
+msgid "Reuse settings"
+msgstr "Reutilizar configurações"
+
+msgid "{n} selected"
+msgstr "{n}selecionado"
+
+msgid "Tap items to select"
+msgstr "Toque nos itens para selecionar"
+
+msgid "Use as reference"
+msgstr "Usar como referência"
+
+msgid "Move"
+msgstr "Mover"
+
+msgid "Exit selection"
+msgstr "Sair da seleção"
+
+msgid "New folder…"
+msgstr "Nova pasta..."
+
+msgid "Delete {n} items?"
+msgstr "Excluir itens{n}?"
+
+msgid "Delete item?"
+msgstr "Excluir item?"
+
+msgid "Files are deleted from the server. Copies added to the Media Library stay."
+msgstr "Os arquivos são excluídos do servidor. As cópias adicionadas à Biblioteca de Mídia permanecem."
+
+msgid "{n} items ready"
+msgstr "{n}itens prontos"
+
+msgid "Generation ready"
+msgstr "Geração pronta"
+
+msgid "A generation failed"
+msgstr "Uma geração falhou"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Add reference"
+msgstr "Adicionar referência"
+
+msgid "What happens in the video? Subject, motion, camera… (add people with @)"
+msgstr "O que acontece no vídeo? Assunto, movimento, câmera... (adicione pessoas com @)"
+
+msgid "What do you want to create? (add people with @, drop images here)"
+msgstr "O que você deseja criar? (adicione pessoas com @, solte imagens aqui)"
+
+msgid "Image"
+msgstr "Imagem"
+
+msgid "Video"
+msgstr "Vídeo"
+
+msgid "Aspect ratio"
+msgstr "Proporção de aspecto"
+
+msgid "Adaptive"
+msgstr "Adaptativo"
+
+msgid "Resolution"
+msgstr "Resolução"
+
+msgid "Quality"
+msgstr "Qualidade"
+
+msgid "Count"
+msgstr "Contar"
+
+msgid "Duration"
+msgstr "Duração"
+
+msgid "Audio"
+msgstr "Áudio"
+
+msgid "Provider and model"
+msgstr "Provedor e modelo"
+
+msgid "Choose model"
+msgstr "Escolha o modelo"
+
+msgid "No models"
+msgstr "Nenhum modelo"
+
+msgid "Generate (Ctrl/⌘+Enter)"
+msgstr "Gerar (Ctrl/⌘+Enter)"
+
+msgid "Generate"
+msgstr "Gerar"
+
+msgid "Templates"
+msgstr "Modelos"
+
+msgid "Several different prompts from one idea"
+msgstr "Vários prompts diferentes de uma ideia"
+
+msgid "Flux AI text model is not ready"
+msgstr "O modelo de texto Flux AI não está pronto"
+
+msgid "Brainstorm"
+msgstr "Brainstorming"
+
+msgid "Turn the draft into a detailed prompt for the model"
+msgstr "Transforme o rascunho em um prompt detalhado para o modelo"
+
+msgid "Enhance"
+msgstr "Melhorar"
+
+msgid "Provider"
+msgstr "Provedor"
+
+msgid "{n} models"
+msgstr "Modelos{n}"
+
+msgid "no key"
+msgstr "sem chave"
+
+msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
+msgstr "Nenhuma tecla{p}(Flux AI e MCP › Configurações › Imagens e vídeo)."
+
+msgid "This reference is already added"
+msgstr "Esta referência já foi adicionada"
+
+msgid "This model accepts at most {n} references"
+msgstr "Este modelo aceita no máximo referências{n}"
+
+msgid "Save to references"
+msgstr "Salvar nas referências"
+
+msgid "Saved"
+msgstr "Salvo"
+
+msgid "Upload file"
+msgstr "Carregar arquivo"
+
+msgid "Pick from gallery"
+msgstr "Escolher na galeria"
+
+msgid "{n} photos"
+msgstr "Fotos de{n}"
+
+msgid "no photos"
+msgstr "sem fotos"
+
+msgid "Saved references"
+msgstr "Referências salvas"
+
+msgid "Reference"
+msgstr "Referência"
+
+msgid "Only PNG, JPEG, WebP or GIF can be added."
+msgstr "Somente PNG, JPEG, WebP ou GIF podem ser adicionados."
+
+msgid "Pick references from gallery"
+msgstr "Escolha referências da galeria"
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "No images yet."
+msgstr "Ainda não há imagens."
+
+msgid "{name} has no photos; add some in Manage people"
+msgstr "{name}não possui fotos; adicione alguns em Gerenciar pessoas"
+
+msgid "Write a short draft first."
+msgstr "Escreva um pequeno rascunho primeiro."
+
+msgid "Prompt enhanced"
+msgstr "Prompt aprimorado"
+
+msgid "Back to draft"
+msgstr "Voltar ao rascunho"
+
+msgid "Describe what to generate."
+msgstr "Descreva o que gerar."
+
+msgid "References are uploading, one moment…"
+msgstr "As referências estão sendo carregadas, um momento..."
+
+msgid "team"
+msgstr "equipe"
+
+msgid "No templates yet"
+msgstr "Ainda não há modelos"
+
+msgid "Save current settings"
+msgstr "Salvar configurações atuais"
+
+msgid "Delete template…"
+msgstr "Excluir modelo..."
+
+msgid "E.g. Event poster 4:5"
+msgstr "Por exemplo Cartaz do evento 4:5"
+
+msgid "Save as template"
+msgstr "Salvar como modelo"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Prompt, model, ratio, resolution and references are saved."
+msgstr "Prompt, modelo, proporção, resolução e referências são salvos."
+
+msgid "Template saved"
+msgstr "Modelo salvo"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Próximo"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Model"
+msgstr "Modelo"
+
+msgid "Size"
+msgstr "Tamanho"
+
+msgid "Cost"
+msgstr "Custo"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Created by"
+msgstr "Criado por"
+
+msgid "Favorited"
+msgstr "Favorito"
+
+msgid "Favorite"
+msgstr "Favorito"
+
+msgid "Download"
+msgstr "Baixar"
+
+msgid "Added to references"
+msgstr "Adicionado às referências"
+
+msgid "Edit area"
+msgstr "Editar área"
+
+msgid "This model does not support area editing"
+msgstr "Este modelo não suporta edição de área"
+
+msgid "Close comparison"
+msgstr "Comparação aproximada"
+
+msgid "Compare with original"
+msgstr "Compare com o original"
+
+msgid "In library"
+msgstr "Na biblioteca"
+
+msgid "Add to Media Library"
+msgstr "Adicionar à biblioteca de mídia"
+
+msgid "Add title"
+msgstr "Adicionar título"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Copy prompt"
+msgstr "Solicitação de cópia"
+
+msgid "Original draft"
+msgstr "Rascunho original"
+
+msgid "Already in the Media Library"
+msgstr "Já na Biblioteca de Mídia"
+
+msgid "Added to the Media Library"
+msgstr "Adicionado à biblioteca de mídia"
+
+msgid "No model with area editing and a configured key."
+msgstr "Nenhum modelo com edição de área e chave configurada."
+
+msgid "Edit started; the result will appear in the gallery"
+msgstr "Edição iniciada; o resultado aparecerá na galeria"
+
+msgid "Describe the idea: e.g. Instagram post for the 11 November tree planting event"
+msgstr "Descreva a ideia: por ex. Postagem no Instagram para o evento de plantio de árvores em 11 de novembro"
+
+msgid "Number of ideas"
+msgstr "Número de ideias"
+
+msgid "{n} ideas"
+msgstr "{n}ideias"
+
+msgid "YouTube thumbnail"
+msgstr "Miniatura do YouTube"
+
+msgid "Generate ideas"
+msgstr "Gerar ideias"
+
+msgid "Preparing ideas…"
+msgstr "Preparando ideias..."
+
+msgid "Generate selected ({n})"
+msgstr "Gerar selecionado ({n})"
+
+msgid "{n} generations started"
+msgstr "Gerações{n}iniciadas"
+
+msgid "Sending {i}/{n}"
+msgstr "Enviando{i}/{n}"
+
+msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
+msgstr "Cria prompts distintos a partir de uma ideia. Escolha aqueles que você gosta e gere-os de uma só vez. O modelo e a proporção vêm da barra de geração."
+
+msgid "Idea"
+msgstr "Ideia"
+
+msgid "No people yet. Add a person and upload 1-4 clear face photos; typing @name in the prompt sends them as identity references."
+msgstr "Ainda não há pessoas. Adicione uma pessoa e carregue de 1 a 4 fotos nítidas; digitar @name no prompt os envia como referências de identidade."
+
+msgid "Delete photo"
+msgstr "Excluir foto"
+
+msgid "Add photo"
+msgstr "Adicionar foto"
+
+msgid "Person name"
+msgstr "Nome da pessoa"
+
+msgid "Delete person"
+msgstr "Excluir pessoa"
+
+msgid "Delete {name}?"
+msgstr "Excluir{name}?"
+
+msgid "The person and their photos are deleted. Earlier generations stay."
+msgstr "A pessoa e suas fotos são excluídas. As gerações anteriores ficam."
+
+msgid "New person"
+msgstr "Nova pessoa"
+
+msgid "Default image model"
+msgstr "Modelo de imagem padrão"
+
+msgid "Default video model"
+msgstr "Modelo de vídeo padrão"
+
+msgid "Empty: Flux AI default"
+msgstr "Vazio: padrão Flux AI"
+
+msgid "Enhance / Brainstorm text model"
+msgstr "Aprimorar / fazer brainstorming de modelo de texto"
+
+msgid "Max images per request"
+msgstr "Máximo de imagens por solicitação"
+
+msgid "Max brainstorm ideas"
+msgstr "Max debate ideias"
+
+msgid "Share people with all Studio users"
+msgstr "Compartilhe pessoas com todos os usuários do Studio"
+
+msgid "Keys, providers and the spending limit are in Flux AI & MCP › Settings."
+msgstr "Chaves, provedores e limite de gastos estão em Flux AI e MCP › Configurações."
+
+msgid "Settings saved"
+msgstr "Configurações salvas"
+
+msgid "just now"
+msgstr "agora mesmo"
+
+msgid "{n} min ago"
+msgstr "{n}minutos atrás"
+
+msgid "{n} h ago"
+msgstr "{n}horas atrás"
+
+msgid "Server error ({n})."
+msgstr "Erro do servidor ({n})."
+
+msgid "Unexpected response from the server."
+msgstr "Resposta inesperada do servidor."
+
+msgid "Something went wrong."
+msgstr "Algo deu errado."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Copied"
+msgstr "Copiado"
+
+msgid "7 days"
+msgstr "7 dias"
+
+msgid "30 days"
+msgstr "30 dias"
+
+msgid "90 days"
+msgstr "90 dias"
+
+msgid "Spend from Flux AI logs"
+msgstr "Gastos com registros do Flux AI"
+
+msgid "Flux AI logs unavailable; Studio amounts"
+msgstr "Registros do Flux AI indisponíveis; Quantidades de estúdio"
+
+msgid "Refresh"
+msgstr "Atualizar"
+
+msgid "(estimated)"
+msgstr "(estimado)"
+
+msgid "Generations"
+msgstr "Gerações"
+
+msgid "{i} images · {v} videos"
+msgstr "Imagens{i}· Vídeos{v}"
+
+msgid "Spend"
+msgstr "Gastar"
+
+msgid "Image/video {m} · text {x}"
+msgstr "Imagem/vídeo{m}· texto{x}"
+
+msgid "Average"
+msgstr "Média"
+
+msgid "per generation"
+msgstr "por geração"
+
+msgid "{p}% error rate"
+msgstr "{p}% taxa de erro"
+
+msgid "no attempts yet"
+msgstr "ainda não há tentativas"
+
+msgid "Storage {b}"
+msgstr "Armazenamento{b}"
+
+msgid "Daily generations"
+msgstr "Gerações diárias"
+
+msgid "No generations in this period."
+msgstr "Não há gerações neste período."
+
+msgid "Daily spend"
+msgstr "Gasto diário"
+
+msgid "No spend in this period."
+msgstr "Não há gastos neste período."
+
+msgid "Flux AI logs"
+msgstr "Registros de IA do Flux"
+
+msgid "Models"
+msgstr "Modelos"
+
+msgid "Errors"
+msgstr "Erros"
+
+msgid "Amount"
+msgstr "Quantidade"
+
+msgid "No records."
+msgstr "Sem registros."
+
+msgid "Providers"
+msgstr "Provedores"
+
+msgid "Person"
+msgstr "Pessoa"
+
+msgid "Recent errors"
+msgstr "Erros recentes"
+
+msgid "Brush"
+msgstr "Pincel"
+
+msgid "Rectangle"
+msgstr "Retângulo"
+
+msgid "Eraser"
+msgstr "Borracha"
+
+msgid "Brush size"
+msgstr "Tamanho do pincel"
+
+msgid "Undo"
+msgstr "Desfazer"
+
+msgid "Clear"
+msgstr "Limpar"
+
+msgid "What should change in the selected area? E.g. make the T-shirt green, change the text to \"Plant a Tree\""
+msgstr "O que deve mudar na área selecionada? Por exemplo deixe a camiseta verde, mude o texto para \"Plant a Tree\""
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Describe the change."
+msgstr "Descreva a mudança."
+
+msgid "Tool"
+msgstr "Ferramenta"
+
+msgid "Paint the area to change. Unpainted areas are kept."
+msgstr "Pinte a área a ser alterada. As áreas não pintadas são mantidas."
+
+msgid "Change"
+msgstr "Mudança"
+
+msgid "Before"
+msgstr "Antes"
+
+msgid "After"
+msgstr "Depois"
+
+msgid "Studio requires JavaScript."
+msgstr "O estúdio requer JavaScript."
+
+msgid "Flux AI (0.6.0+) is not installed or image generation is off."
+msgstr "Flux AI (0.6.0+) não está instalado ou a geração de imagem está desativada."
+
+msgid "Model not found. Check the keys in Flux AI & MCP › Settings › Images and video."
+msgstr "Modelo não encontrado. Verifique as chaves em Flux AI e MCP › Configurações › Imagens e vídeo."
+
+msgid "Image to edit not found."
+msgstr "Imagem para editar não encontrada."
+
+msgid "This model does not support area editing."
+msgstr "Este modelo não suporta edição de área."
+
+msgid "Mask must be a PNG."
+msgstr "A máscara deve ser um PNG."
+
+msgid "The request may have reached the provider; check the provider's history before sending again."
+msgstr "A solicitação pode ter chegado ao provedor; verifique o histórico do provedor antes de enviar novamente."
+
+msgid "Sending did not complete, please try again."
+msgstr "O envio não foi concluído, tente novamente."
+
+msgid "The provider returned fewer results than requested."
+msgstr "O provedor retornou menos resultados do que o solicitado."
+
+msgid "The file is hosted temporarily by the provider; add it to the Media Library or download it."
+msgstr "O arquivo é hospedado temporariamente pelo provedor; adicione-o à biblioteca de mídia ou baixe-o."
+
+msgid "Cancelled."
+msgstr "Cancelado."
+
+msgid "Generation failed."
+msgstr "A geração falhou."
+
+msgid "Flux AI text model is not ready (Flux AI & MCP › Settings)."
+msgstr "O modelo de texto Flux AI não está pronto (Flux AI e MCP › Configurações)."
+
+msgid "Briefly describe the idea first."
+msgstr "Descreva resumidamente a ideia primeiro."
+
+msgid "The model did not return a valid idea list. Try again."
+msgstr "O modelo não retornou uma lista de ideias válida. Tente novamente."
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Database tables"
+msgstr "Tabelas de banco de dados"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Tabela ausente:%s. Desative e reative o plugin."
+
+msgid "Tables are ready."
+msgstr "As mesas estão prontas."
+
+msgid "File folder"
+msgstr "Pasta de arquivos"
+
+msgid "wp-content/uploads/flx-studio is writable."
+msgstr "wp-content/uploads/flx-studio é gravável."
+
+msgid "wp-content/uploads/flx-studio could not be created or is not writable; references and thumbnails cannot be saved."
+msgstr "wp-content/uploads/flx-studio não pôde ser criado ou não é gravável; referências e miniaturas não podem ser salvas."
+
+msgid "Image and video backend"
+msgstr "Back-end de imagem e vídeo"
+
+msgid "Flux AI 0.6.0 or newer is required (image/video generation runs through Flux AI)."
+msgstr "É necessário Flux AI 0.6.0 ou mais recente (a geração de imagem/vídeo é executada por meio do Flux AI)."
+
+msgid "Plugins"
+msgstr "Plug-ins"
+
+msgid "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI & MCP › Settings › Images and video."
+msgstr "Nenhum modelo tem chave. Insira um fal.ai, EvoLink ou outra chave em Flux AI & MCP › Configurações › Imagens e vídeo."
+
+msgid "Flux AI"
+msgstr "IA de fluxo"
+
+msgid "%1$d models available (%2$s)."
+msgstr "Modelos%1$ddisponíveis (%2$s)."
+
+msgid "Enhance and Brainstorm"
+msgstr "Aprimore e faça brainstorming"
+
+msgid "Flux AI text model is ready."
+msgstr "O modelo de texto Flux AI está pronto."
+
+msgid "Flux AI text model is not ready; prompt enhancement and ideas are unavailable, generation still works."
+msgstr "O modelo de texto Flux AI não está pronto; aprimoramento imediato e ideias não estão disponíveis, a geração ainda funciona."
+
+msgid "Reference images"
+msgstr "Imagens de referência"
+
+msgid "References are sent to the provider by site URL."
+msgstr "As referências são enviadas ao provedor por URL do site."
+
+msgid "The site is not HTTPS; references are sent inline (base64), making requests larger."
+msgstr "O site não é HTTPS; as referências são enviadas inline (base64), tornando as solicitações maiores."
+
+msgid "Studio: generate images/videos"
+msgstr "Estúdio: gerar imagens/vídeos"
+
+msgid "Studio: all galleries and settings"
+msgstr "Estúdio: todas as galerias e configurações"
+
+msgid "The file is empty."
+msgstr "O arquivo está vazio."
+
+msgid "The file exceeds the %d MB limit."
+msgstr "O arquivo excede o limite de%dMB."
+
+msgid "This file type is not supported."
+msgstr "Este tipo de arquivo não é compatível."
+
+msgid "The file could not be saved."
+msgstr "O arquivo não pôde ser salvo."
+
+msgid "Reference image not found."
+msgstr "Imagem de referência não encontrada."
+
+msgid "Person not found."
+msgstr "Pessoa não encontrada."
+
+msgid "At most %d reference images can be used."
+msgstr "No máximo imagens de referência%dpodem ser usadas."
+
+msgid "The file is not on the server."
+msgstr "O arquivo não está no servidor."
+
+msgid "Login required."
+msgstr "Login necessário."
+
+msgid "You do not have access to Studio."
+msgstr "Você não tem acesso ao Studio."
+
+msgid "You are not allowed to do this."
+msgstr "Você não tem permissão para fazer isso."
+
+msgid "Record not found."
+msgstr "Registro não encontrado."
+
+msgid "The file could not be uploaded."
+msgstr "O arquivo não pôde ser carregado."
+
+msgid "No file received."
+msgstr "Nenhum arquivo recebido."
+
+msgid "You cannot move items to this folder."
+msgstr "Você não pode mover itens para esta pasta."
+
+msgid "You are not allowed to add to the Media Library."
+msgstr "Você não tem permissão para adicionar itens à biblioteca de mídia."
+
+msgid "Folder name is required."
+msgstr "O nome da pasta é obrigatório."
+
+msgid "Person name is required."
+msgstr "O nome da pessoa é obrigatório."
+
+msgid "Template name is required."
+msgstr "O nome do modelo é obrigatório."
+
+msgid "Deleted user"
+msgstr "Usuário excluído"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Gallery"
+msgstr "Galeria"
+
+msgid "Gallery is empty"
+msgstr "A galeria está vazia"
+
+msgid "Search the gallery"
+msgstr "Pesquise na galeria"
+
+msgid "Working"
+msgstr "Trabalhando"
+
+msgid "Open in panel"
+msgstr "Abrir no painel"
+
+msgid "Owner"
+msgstr "Proprietário"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Star"
+msgstr "Estrela"
+
+msgid "Starred"
+msgstr "Com estrela"
+
+msgid "Generated images are listed here. The production screen opens in the app later."
+msgstr "As imagens geradas estão listadas aqui. A tela de produção é aberta no aplicativo posteriormente."
+
+msgid "Prompt"
+msgstr "Alerta"
+
+msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
+msgstr "[['Estúdio visual e de vídeo com IA: produção, referências e contatos, edição de campo, Develop e Brainstorm, galeria com pastas. Produção via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"

@@ -56,10 +56,10 @@ function flxg_role_rank( $role ) {
 
 function flxg_roles() {
 	return array(
-		'view'    => __( 'Görüntüler', 'flx-tasks' ),
-		'comment' => __( 'Yorum yapar', 'flx-tasks' ),
-		'edit'    => __( 'Düzenler', 'flx-tasks' ),
-		'admin'   => __( 'Yönetir', 'flx-tasks' ),
+		'view'    => __( 'Can view', 'flx-tasks' ),
+		'comment' => __( 'Can comment', 'flx-tasks' ),
+		'edit'    => __( 'Can edit', 'flx-tasks' ),
+		'admin'   => __( 'Can manage', 'flx-tasks' ),
 	);
 }
 

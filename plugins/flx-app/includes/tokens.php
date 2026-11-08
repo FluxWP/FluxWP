@@ -171,7 +171,7 @@ add_filter(
 			return $result;
 		}
 		if ( '' !== flxapp_request_token() && ! flxapp_current_token() ) {
-			return new WP_Error( 'flxapp_invalid_token', __( 'Belirteç geçersiz ya da süresi dolmuş.', 'flx-app' ), array( 'status' => 401 ) );
+			return new WP_Error( 'flxapp_invalid_token', __( 'The token is invalid or expired.', 'flx-app' ), array( 'status' => 401 ) );
 		}
 		return $result;
 	},

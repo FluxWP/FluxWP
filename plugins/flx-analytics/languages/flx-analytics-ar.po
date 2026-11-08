@@ -1,0 +1,1475 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Mobile app: daily active accounts"
+msgstr "تطبيق الجوال: الحسابات النشطة يوميا"
+
+msgid "UTC day / platform"
+msgstr "يوم UTC / المنصة"
+
+msgid "Consenting accounts"
+msgstr "حسابات الموافقة"
+
+msgid "No eligible totals yet. Both device and site consent are required; cohorts below five accounts per site/platform/day are withheld. Country is the configured site country, not a person’s location. The same person may count on multiple sites or platforms."
+msgstr "لا يوجد إجماليات مؤهلة حتى الآن. موافقة كل من الجهاز والموقع مطلوبة؛ يتم حجب المجموعات النموذجية التي تقل عن خمسة حسابات لكل موقع/منصة/يوم. البلد هو بلد الموقع الذي تم تكوينه، وليس موقع الشخص. قد يعتمد نفس الشخص على مواقع أو منصات متعددة."
+
+msgid "Statistics"
+msgstr "الإحصائيات"
+
+msgid "Site Analytics"
+msgstr "تحليلات الموقع"
+
+msgid "Journeys"
+msgstr "الرحلات"
+
+msgid "Site Analytics settings"
+msgstr "إعدادات تحليلات الموقع"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "You are not allowed to view this page."
+msgstr "غير مسموح لك بمشاهدة هذه الصفحة."
+
+msgid "This screen requires JavaScript."
+msgstr "تتطلب هذه الشاشة جافا سكريبت."
+
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+msgid "All statistics were deleted."
+msgstr "تم حذف جميع الإحصائيات."
+
+msgid "Koko Analytics data imported: %s rows."
+msgstr "تم استيراد بيانات Koko Analytics: صفوف%s."
+
+msgid "%s visit rows processed."
+msgstr "تمت معالجة صفوف زيارة%s."
+
+msgid "Counting"
+msgstr "العد"
+
+msgid "Count visits"
+msgstr "عد الزيارات"
+
+msgid "On"
+msgstr "على"
+
+msgid "No IP address or browser data is stored. A visitor is recognised only within the same day by a random key that is deleted the next day. A cookie is set only for visitors who arrive via a referral link (?r=code); it holds only the code (30 days). Mention in your privacy policy that statistics are collected."
+msgstr "لا يتم تخزين عنوان IP أو بيانات المتصفح. يتم التعرف على الزائر فقط في نفس اليوم عن طريق مفتاح عشوائي يتم حذفه في اليوم التالي. يتم تعيين ملف تعريف الارتباط فقط للزوار الذين يصلون عبر رابط الإحالة (؟r=code)؛ يحمل الرمز فقط (30 يومًا). أذكر في سياسة الخصوصية الخاصة بك أنه يتم جمع الإحصائيات."
+
+msgid "Collection method"
+msgstr "طريقة الجمع"
+
+msgid "Automatic (recommended)"
+msgstr "تلقائي (مستحسن)"
+
+msgid "Fast endpoint (WordPress is not loaded)"
+msgstr "نقطة نهاية سريعة (لم يتم تحميل WordPress)"
+
+msgid "WordPress REST"
+msgstr "راحة ووردبريس"
+
+msgid "Now: fast endpoint"
+msgstr "الآن: نقطة النهاية السريعة"
+
+msgid "Now: REST"
+msgstr "الآن: استرح"
+
+msgid "Automatic: the fast endpoint is tested when this page opens; if it fails, REST is used."
+msgstr "تلقائي: يتم اختبار نقطة النهاية السريعة عند فتح هذه الصفحة؛ إذا فشل، يتم استخدام REST."
+
+msgid "\"Do Not Track\""
+msgstr "\"لا تتبع\""
+
+msgid "Do not count visitors whose browser sends \"Do Not Track\" or GPC"
+msgstr "لا تحسب الزائرين الذين يرسل متصفحهم رسالة \"عدم التتبع\" أو GPC"
+
+msgid "Exclusions"
+msgstr "الاستثناءات"
+
+msgid "Roles"
+msgstr "الأدوار"
+
+msgid "Logged-in people with these roles are not counted. The browser you open this screen in is not counted either (even after logging out)."
+msgstr "لا يتم احتساب الأشخاص الذين قاموا بتسجيل الدخول بهذه الأدوار. ولا يتم احتساب المتصفح الذي تفتح فيه هذه الشاشة أيضًا (حتى بعد تسجيل الخروج)."
+
+msgid "IP addresses"
+msgstr "عناوين IP"
+
+msgid "One address per line, \"*\" or CIDR (e.g. office network)."
+msgstr "عنوان واحد في كل سطر، \"*\" أو CIDR (على سبيل المثال، شبكة المكاتب)."
+
+msgid "Events"
+msgstr "الأحداث"
+
+msgid "Tracked automatically"
+msgstr "تتبع تلقائيا"
+
+msgid "Outbound link clicks"
+msgstr "نقرات الارتباط الصادر"
+
+msgid "File downloads (PDF, ZIP, DOCX…)"
+msgstr "تنزيل الملفات (PDF، ZIP، DOCX...)"
+
+msgid "Phone, email and WhatsApp clicks"
+msgstr "نقرات الهاتف والبريد الإلكتروني وWhatsApp"
+
+msgid "Site searches (search term)"
+msgstr "عمليات البحث في الموقع (مصطلح البحث)"
+
+msgid "Paid donations and orders (WooCommerce; type and amount)"
+msgstr "التبرعات والأوامر المدفوعة (WooCommerce؛ النوع والمبلغ)"
+
+msgid "Your own event: add data-flxan-event=\"name\" (and optional data-flxan-param) to a link, or call flxan.track(\"name\", \"detail\") in JavaScript. PHP: flxan_track_event( \"name\", \"detail\", amount )."
+msgstr "الحدث الخاص بك: قم بإضافة data-flxan-event=\"name\" (و data-flxan-param الاختيارية) إلى رابط، أو اتصل بـ flxan.track(\"name\"، \"detail\") في JavaScript. PHP: flxan_track_event(\"name\"، \"detail\"، المبلغ)."
+
+msgid "Funnels"
+msgstr "مسارات التحويل"
+
+msgid "Shows how far visitors get. Each step can be a page (all pages starting with that path), an event (e.g. the \"Pay\" click) or the site entry. Up to 5 funnels with 10 steps each. Changes apply to new visits; funnel steps can also be picked as goals on the Journeys screen."
+msgstr "يبين مدى وصول الزوار. يمكن أن تكون كل خطوة عبارة عن صفحة (جميع الصفحات التي تبدأ بهذا المسار)، أو حدث (على سبيل المثال، النقر على \"الدفع\") أو إدخال في الموقع. ما يصل إلى 5 مسارات تحويل مع 10 خطوات لكل منها. تنطبق التغييرات على الزيارات الجديدة؛ يمكن أيضًا اختيار خطوات مسار التحويل كأهداف على شاشة الرحلات."
+
+msgid "Display and retention"
+msgstr "العرض والاحتفاظ"
+
+msgid "Admin screens"
+msgstr "شاشات المشرف"
+
+msgid "\"Views\" column in the post and page lists"
+msgstr "عمود \"المشاهدات\" في قوائم المنشورات والصفحات"
+
+msgid "Page views in the admin bar while browsing the site"
+msgstr "مشاهدات الصفحة في شريط الإدارة أثناء تصفح الموقع"
+
+msgid "Retention"
+msgstr "الاحتفاظ"
+
+msgid "months (0 = unlimited)"
+msgstr "أشهر (0 = غير محدود)"
+
+msgid "Daily summaries take little space; keeping them forever is usually fine."
+msgstr "الملخصات اليومية تأخذ مساحة صغيرة؛ عادة ما يكون الاحتفاظ بها إلى الأبد أمرًا جيدًا."
+
+msgid "Telemetry hub"
+msgstr "محور القياس عن بعد"
+
+msgid "Receive data from FluxWP installs"
+msgstr "تلقي البيانات من عمليات تثبيت FluxWP"
+
+msgid "Sites that tick \"Help us improve the product\" in FluxWP Panel send anonymous usage data once a day: which FluxWP plugins are used together, versions, FluxWP PHP errors and setup-wizard progress. IP and site address are not stored; records are kept for 90 days. When enabled, \"Product telemetry\" appears in the menu."
+msgstr "ترسل المواقع التي تحدد \"ساعدنا على تحسين المنتج\" في لوحة FluxWP بيانات استخدام مجهولة المصدر مرة واحدة يوميًا: ما هي مكونات FluxWP الإضافية المستخدمة معًا والإصدارات وأخطاء FluxWP PHP وتقدم معالج الإعداد. لا يتم تخزين عنوان IP وعنوان الموقع؛ يتم الاحتفاظ بالسجلات لمدة 90 يومًا. عند التمكين، يظهر \"قياس المنتج عن بعد\" في القائمة."
+
+msgid "Collection URL (FluxWP Panel › Settings › Telemetry URL):"
+msgstr "عنوان URL للمجموعة (لوحة FluxWP ›الإعدادات ›عنوان URL للقياس عن بعد):"
+
+msgid "Data"
+msgstr "البيانات"
+
+msgid "Last processed %1$s. Waiting in queue: %2$s."
+msgstr "آخر معالجة%1$s. الانتظار في قائمة الانتظار:%2$s."
+
+msgid "No visits processed yet."
+msgstr "لم تتم معالجة أية زيارات حتى الآن."
+
+msgid "Process now"
+msgstr "العملية الآن"
+
+msgid "Download daily totals (CSV)"
+msgstr "تنزيل الإجماليات اليومية (CSV)"
+
+msgid "Download pages (CSV)"
+msgstr "تنزيل الصفحات (CSV)"
+
+msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
+msgstr "تم العثور على بيانات Koko Analytics:%1$sيوم (%2$s–%3$s). يتم استيراد الأيام التي سبقت تثبيت Flux Analytics؛ لم يتم تعديل جداول Koko."
+
+msgid "Import Koko Analytics data"
+msgstr "استيراد بيانات Koko Analytics"
+
+msgid "All statistics will be permanently deleted. Are you sure?"
+msgstr "سيتم حذف جميع الإحصائيات نهائيًا. هل أنت متأكد؟"
+
+msgid "Delete all statistics"
+msgstr "حذف كافة الإحصائيات"
+
+msgid "Shortcodes and AI"
+msgstr "الرموز القصيرة والذكاء الاصطناعي"
+
+msgid "list of the most viewed posts."
+msgstr "قائمة المشاركات الأكثر مشاهدة."
+
+msgid "total views of this page (gun=\"30\" for the last 30 days)."
+msgstr "إجمالي مشاهدات هذه الصفحة (gun=30\" لآخر 30 يومًا)."
+
+msgid "Flux AI chat and MCP clients (Claude and others) read stats with: flxan_summary, flxan_timeseries, flxan_pages, flxan_referrers, flxan_breakdown, flxan_events, flxan_realtime, flxan_page, flxan_compare, flxan_funnel, flxan_journeys, flxan_refs, flxan_ref_save. Access needs the \"View statistics\" capability (flxan_view), which Flux Roles can grant."
+msgstr "يقوم عملاء Flux AI للدردشة وعملاء MCP (كلود وآخرون) بقراءة الإحصائيات باستخدام: flxan_summary، flxan_timeseries، flxan_pages، flxan_referrers، flxan_breakdown، flxan_events، flxan_realtime، flxan_page، flxan_compare، flxan_funnel، flxan_journeys، flxan_refs، flxan_ref_save. يحتاج الوصول إلى إمكانية \"عرض الإحصائيات\" (flxan_view)، والتي يمكن لأدوار Flux منحها."
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Visitors"
+msgstr "الزوار"
+
+msgid "Views"
+msgstr "وجهات النظر"
+
+msgid "Site"
+msgstr "الموقع"
+
+msgid "Channel"
+msgstr "قناة"
+
+msgid "Event"
+msgstr "حدث"
+
+msgid "Detail"
+msgstr "التفاصيل"
+
+msgid "Count"
+msgstr "عد"
+
+msgid "Unique"
+msgstr "فريدة من نوعها"
+
+msgid "Amount"
+msgstr "المبلغ"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "Direct"
+msgstr "مباشر"
+
+msgid "Search engine"
+msgstr "محرك البحث"
+
+msgid "Social media"
+msgstr "وسائل التواصل الاجتماعي"
+
+msgid "AI"
+msgstr "منظمة العفو الدولية"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Ads"
+msgstr "إعلانات"
+
+msgid "Campaign"
+msgstr "حملة"
+
+msgid "Other sites"
+msgstr "مواقع أخرى"
+
+msgid "Referral link"
+msgstr "رابط الإحالة"
+
+msgid "Mobile"
+msgstr "الجوال"
+
+msgid "Tablet"
+msgstr "قرص"
+
+msgid "Desktop"
+msgstr "سطح المكتب"
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "Live visitors"
+msgstr "الزوار الحية"
+
+msgid "Traffic sources and referrals"
+msgstr "مصادر المرور والإحالات"
+
+msgid "Donation funnel"
+msgstr "قمع التبرع"
+
+msgid "Last 14 days"
+msgstr "آخر 14 يومًا"
+
+msgid "%1$s: %2$s visitors, %3$s views"
+msgstr "%1$s: زوار%2$s، مشاهدات%3$s"
+
+msgid "All statistics →"
+msgstr "جميع الإحصائيات →"
+
+msgid "on the site now (last 5 min)"
+msgstr "على الموقع الآن (آخر 5 دقائق)"
+
+msgid "last 30 min · %s views"
+msgstr "آخر 30 دقيقة · مشاهدات%s"
+
+msgid "Pages being viewed now"
+msgstr "الصفحات التي يتم عرضها الآن"
+
+msgid "Referral links"
+msgstr "روابط الإحالة"
+
+msgid "Referring sites"
+msgstr "المواقع المرجعية"
+
+msgid "Nobody right now"
+msgstr "لا أحد الآن"
+
+msgid "today · %s views"
+msgstr "اليوم · مشاهدات%s"
+
+msgid "yesterday"
+msgstr "أمس"
+
+msgid "last 7 days"
+msgstr "آخر 7 أيام"
+
+msgid "Most viewed today"
+msgstr "الأكثر مشاهدة اليوم"
+
+msgid "Last 7 days"
+msgstr "آخر 7 أيام"
+
+msgid "Outside visitors / logged-in users"
+msgstr "الزوار الخارجيون/المستخدمون المسجلون الدخول"
+
+msgid "Outside: %1$s · Logged in: %2$s"
+msgstr "من الخارج:%1$s· تسجيل الدخول:%2$s"
+
+msgid "Channels"
+msgstr "القنوات"
+
+msgid "%s donations"
+msgstr "تبرعات%s"
+
+msgid "No data in this range."
+msgstr "لا توجد بيانات في هذا النطاق."
+
+msgid "No funnel defined."
+msgstr "لم يتم تحديد مسار التحويل."
+
+msgid "%s · last 7 days"
+msgstr "%s· آخر 7 أيام"
+
+msgid "No goal"
+msgstr "لا يوجد هدف"
+
+msgid "Added to cart"
+msgstr "تمت إضافته إلى سلة التسوق"
+
+msgid "Removed from cart"
+msgstr "تمت إزالتها من سلة التسوق"
+
+msgid "Used a coupon"
+msgstr "تستخدم قسيمة"
+
+msgid "Started checkout form"
+msgstr "بدأ نموذج الخروج"
+
+msgid "Clicked \"Place order\""
+msgstr "تم النقر على \"تقديم الطلب\""
+
+msgid "Checkout step"
+msgstr "خطوة الخروج"
+
+msgid "Chose payment method"
+msgstr "اختار طريقة الدفع"
+
+msgid "Order created"
+msgstr "تم إنشاء الطلب"
+
+msgid "Clicked WhatsApp"
+msgstr "تم النقر على الواتساب"
+
+msgid "Clicked phone"
+msgstr "تم النقر على الهاتف"
+
+msgid "Downloaded a file"
+msgstr "تم تنزيل ملف"
+
+msgid "Other pages"
+msgstr "صفحات أخرى"
+
+msgid "Site traffic summary"
+msgstr "ملخص حركة الموقع"
+
+msgid "Daily visitor chart data"
+msgstr "بيانات الرسم البياني اليومي للزائرين"
+
+msgid "Most viewed pages"
+msgstr "الصفحات الأكثر مشاهدة"
+
+msgid "Channel, device, browser breakdown"
+msgstr "انهيار القناة والجهاز والمتصفح"
+
+msgid "Clicks and conversions"
+msgstr "النقرات والتحويلات"
+
+msgid "How many people are on the site now?"
+msgstr "كم عدد الأشخاص الموجودين في الموقع الآن؟"
+
+msgid "Single page statistics"
+msgstr "إحصائيات الصفحة الواحدة"
+
+msgid "Compare two periods"
+msgstr "قارن بين فترتين"
+
+msgid "Donation / checkout funnel"
+msgstr "مسار التبرع/الخروج"
+
+msgid "Visitor journeys"
+msgstr "رحلات الزوار"
+
+msgid "Referral links report"
+msgstr "تقرير روابط الإحالة"
+
+msgid "Traffic by role"
+msgstr "حركة المرور حسب الدور"
+
+msgid "Create / name a referral link"
+msgstr "إنشاء / تسمية رابط الإحالة"
+
+msgid "You are not allowed to edit referral links."
+msgstr "لا يسمح لك بتعديل روابط الإحالة."
+
+msgid "Invalid code. Use letters, digits, - and _."
+msgstr "رمز غير صالح. استخدم الحروف والأرقام و- و_."
+
+msgid "%s views"
+msgstr "%sمشاهدات"
+
+msgid "Last 30 days (Site Analytics)"
+msgstr "آخر 30 يومًا (تحليلات الموقع)"
+
+msgid "Views in the last 30 days"
+msgstr "المشاهدات في آخر 30 يومًا"
+
+msgid "Visitors today"
+msgstr "زوار اليوم"
+
+msgid "Compare this week's traffic with last week"
+msgstr "قارن حركة المرور هذا الأسبوع مع الأسبوع الماضي"
+
+msgid "Where do most visitors come from?"
+msgstr "من أين يأتي معظم الزوار؟"
+
+msgid "How many people reached the donation page, and how many donated?"
+msgstr "كم عدد الأشخاص الذين وصلوا إلى صفحة التبرع، وكم عدد المتبرعين؟"
+
+msgid "Every 5 minutes"
+msgstr "كل 5 دقائق"
+
+msgid "Site entry"
+msgstr "دخول الموقع"
+
+msgid "Donation page"
+msgstr "صفحة التبرع"
+
+msgid "Checkout page"
+msgstr "صفحة الخروج"
+
+msgid "Started filling the form"
+msgstr "بدأت بملء الاستمارة"
+
+msgid "Donation completed"
+msgstr "اكتمل التبرع"
+
+msgid "Donation flow"
+msgstr "تدفق التبرعات"
+
+msgid "Funnel"
+msgstr "قمع"
+
+msgid "First touch on checkout form"
+msgstr "اللمسة الأولى على نموذج الخروج"
+
+msgid "\"Pay\" click"
+msgstr "انقر على \"الدفع\"."
+
+msgid "Add to cart (any product)"
+msgstr "أضف إلى سلة التسوق (أي منتج)"
+
+msgid "Payment method chosen"
+msgstr "تم اختيار طريقة الدفع"
+
+msgid "Order created (before payment)"
+msgstr "تم إنشاء الطلب (قبل الدفع)"
+
+msgid "Paid donation / order"
+msgstr "التبرع المدفوع / الطلب"
+
+msgid "Remove from cart"
+msgstr "إزالة من العربة"
+
+msgid "Coupon used"
+msgstr "القسيمة المستخدمة"
+
+msgid "Today"
+msgstr "اليوم"
+
+msgid "Yesterday"
+msgstr "أمس"
+
+msgid "Last 30 days"
+msgstr "آخر 30 يومًا"
+
+msgid "Last 90 days"
+msgstr "آخر 90 يومًا"
+
+msgid "This month"
+msgstr "هذا الشهر"
+
+msgid "Last month"
+msgstr "الشهر الماضي"
+
+msgid "Last 12 months"
+msgstr "آخر 12 شهرًا"
+
+msgid "This year"
+msgstr "هذا العام"
+
+msgid "Last year"
+msgstr "العام الماضي"
+
+msgid "All time"
+msgstr "كل الوقت"
+
+msgid "Custom range"
+msgstr "نطاق مخصص"
+
+msgid "Device"
+msgstr "الجهاز"
+
+msgid "Browser"
+msgstr "المتصفح"
+
+msgid "Operating system"
+msgstr "نظام التشغيل"
+
+msgid "Browser language"
+msgstr "لغة المتصفح"
+
+msgid "Country"
+msgstr "البلد"
+
+msgid "Campaign source"
+msgstr "مصدر الحملة"
+
+msgid "Campaign medium"
+msgstr "وسيلة الحملة"
+
+msgid "Outbound link click"
+msgstr "النقر على الرابط الصادر"
+
+msgid "File download"
+msgstr "تنزيل الملف"
+
+msgid "Phone click"
+msgstr "انقر فوق الهاتف"
+
+msgid "Email click"
+msgstr "انقر فوق البريد الإلكتروني"
+
+msgid "WhatsApp click"
+msgstr "اضغط واتساب"
+
+msgid "Site search"
+msgstr "بحث الموقع"
+
+msgid "Donation / payment"
+msgstr "التبرع / الدفع"
+
+msgid "Add to cart"
+msgstr "أضف إلى السلة"
+
+msgid "Home page"
+msgstr "الصفحة الرئيسية"
+
+msgid "Outside visitors"
+msgstr "الزوار الخارجيين"
+
+msgid "Total"
+msgstr "المجموع"
+
+msgid "By channel"
+msgstr "بواسطة القناة"
+
+msgid "By referring site"
+msgstr "عن طريق الإشارة إلى الموقع"
+
+msgid "By referral code"
+msgstr "عن طريق رمز الإحالة"
+
+msgid "By role"
+msgstr "حسب الدور"
+
+msgid "By country"
+msgstr "حسب البلد"
+
+msgid "(direct / unknown)"
+msgstr "(مباشر / غير معروف)"
+
+msgid "(no referral)"
+msgstr "(لا يوجد إحالة)"
+
+msgid "(unknown)"
+msgstr "(غير معروف)"
+
+msgid "Statistics tables"
+msgstr "جداول الإحصائيات"
+
+msgid "Tables are not installed. Deactivate and reactivate the plugin."
+msgstr "لم يتم تثبيت الجداول. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "Tables are from an older version; visits cannot be saved."
+msgstr "الجداول من إصدار أقدم؛ لا يمكن حفظ الزيارات."
+
+msgid "Visit counting"
+msgstr "عد الزيارات"
+
+msgid "On. No cookies, no personal data stored."
+msgstr "على. لا توجد ملفات تعريف الارتباط، ولا يتم تخزين البيانات الشخصية."
+
+msgid "Off: visits are not being counted."
+msgstr "إيقاف: لا يتم احتساب الزيارات."
+
+msgid "Data directory"
+msgstr "دليل البيانات"
+
+msgid "wp-content/uploads/flx-analytics is writable and closed to web access."
+msgstr "wp-content/uploads/flx-analytics قابل للكتابة ومغلق للوصول إلى الويب."
+
+msgid "wp-content/uploads/flx-analytics could not be created or is not writable; visits cannot be recorded. Check the directory permissions (755)."
+msgstr "لا يمكن إنشاء wp-content/uploads/flx-analytics أو أنه غير قابل للكتابة؛ لا يمكن تسجيل الزيارات. تحقق من أذونات الدليل (755)."
+
+msgid "Fast endpoint: visits are recorded without loading WordPress."
+msgstr "نقطة نهاية سريعة: يتم تسجيل الزيارات دون تحميل WordPress."
+
+msgid "The fast endpoint failed its test (a security plugin or the server may block PHP in the plugins folder); the REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "فشلت نقطة النهاية السريعة في اختبارها (قد يقوم مكون إضافي للأمان أو الخادم بحظر PHP في مجلد المكونات الإضافية)؛ يتم استخدام نقطة النهاية REST. إنه يعمل، ولكن يتم تحميل WordPress في كل زيارة."
+
+msgid "The REST endpoint is used. It works, but WordPress loads on every visit."
+msgstr "يتم استخدام نقطة النهاية REST. إنه يعمل، ولكن يتم تحميل WordPress في كل زيارة."
+
+msgid "Statistics processing"
+msgstr "معالجة الإحصائيات"
+
+msgid "Last processed %1$s. Waiting: %2$s."
+msgstr "آخر معالجة%1$s. الانتظار:%2$s."
+
+msgid "Processing error"
+msgstr "خطأ في المعالجة"
+
+msgid "Page cache compatibility"
+msgstr "توافق ذاكرة التخزين المؤقت للصفحة"
+
+msgid "A cache plugin is active; the counter runs in the browser, so cached pages are counted too. The counter script is excluded from combining/delaying."
+msgstr "البرنامج المساعد لذاكرة التخزين المؤقت نشط؛ يعمل العداد في المتصفح، لذلك يتم حساب الصفحات المخزنة مؤقتًا أيضًا. يتم استبعاد البرنامج النصي المضاد من الدمج/التأخير."
+
+msgid "The counter runs in the browser; counting continues if a cache plugin is installed."
+msgstr "يعمل العداد في المتصفح. يستمر العد إذا تم تثبيت البرنامج المساعد لذاكرة التخزين المؤقت."
+
+msgid "Process statistics now"
+msgstr "إحصائيات العملية الآن"
+
+msgid "Processes the queued visits into the tables right away."
+msgstr "يعالج الزيارات الموضوعة في قائمة الانتظار في الجداول على الفور."
+
+msgid "Processing is already running; try again in a few seconds."
+msgstr "المعالجة قيد التشغيل بالفعل؛ حاول مرة أخرى خلال بضع ثوان."
+
+msgid "%s rows processed."
+msgstr "تمت معالجة صفوف%s."
+
+msgid "Repair statistics tables"
+msgstr "إصلاح جداول الإحصائيات"
+
+msgid "Adds missing columns and tables and updates keys. No data is deleted."
+msgstr "إضافة الأعمدة والجداول المفقودة ومفاتيح التحديثات. لا يتم حذف أية بيانات."
+
+msgid "outdated"
+msgstr "عفا عليها الزمن"
+
+msgid "Tables could not be updated. The database user needs the ALTER privilege."
+msgstr "لا يمكن تحديث الجداول. يحتاج مستخدم قاعدة البيانات إلى امتياز ALTER."
+
+msgid "Tables updated."
+msgstr "تم تحديث الجداول."
+
+msgid "Unknown"
+msgstr "غير معروف"
+
+msgid "Product telemetry"
+msgstr "القياس عن بعد للمنتج"
+
+msgid "Admin theme"
+msgstr "موضوع المشرف"
+
+msgid "Store"
+msgstr "متجر"
+
+msgid "Nonprofit and donations"
+msgstr "المنظمات غير الربحية والتبرعات"
+
+msgid "%s card"
+msgstr "بطاقة%s"
+
+msgid "(theme)"
+msgstr "(موضوع)"
+
+msgid "Intro"
+msgstr "مقدمة"
+
+msgid "Where to start?"
+msgstr "من أين تبدأ؟"
+
+msgid "Appearance"
+msgstr "المظهر"
+
+msgid "Install"
+msgstr "تثبيت"
+
+msgid "Done"
+msgstr "تم"
+
+msgid "Management"
+msgstr "الإدارة"
+
+msgid "Communication"
+msgstr "الاتصالات"
+
+msgid "Growth"
+msgstr "النمو"
+
+msgid "System"
+msgstr "النظام"
+
+msgid "Plugins: %s"
+msgstr "الإضافات:%s"
+
+msgid "No records in this range."
+msgstr "لا توجد سجلات في هذا النطاق."
+
+msgid "Overview"
+msgstr "نظرة عامة"
+
+msgid "Errors"
+msgstr "أخطاء"
+
+msgid "Setup wizard"
+msgstr "معالج الإعداد"
+
+msgid "%d days"
+msgstr "%dأيام"
+
+msgid "All countries"
+msgstr "جميع البلدان"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "Anonymous data sent once a day by sites that tick \"Help us improve the product\" in FluxWP Panel. IP and site address are not stored; records are kept for 90 days."
+msgstr "يتم إرسال البيانات المجهولة مرة واحدة يوميًا بواسطة المواقع التي تحدد \"ساعدنا على تحسين المنتج\" في لوحة FluxWP. لا يتم تخزين عنوان IP وعنوان الموقع؛ يتم الاحتفاظ بالسجلات لمدة 90 يومًا."
+
+msgid "Reporting sites"
+msgstr "مواقع التبليغ"
+
+msgid "Unique installs"
+msgstr "عمليات التثبيت الفريدة"
+
+msgid "Reports"
+msgstr "التقارير"
+
+msgid "At most one per site per day"
+msgstr "على الأكثر واحد لكل موقع في اليوم الواحد"
+
+msgid "Distinct errors"
+msgstr "أخطاء مميزة"
+
+msgid "%s fatal"
+msgstr "%sقاتلة"
+
+msgid "Error events"
+msgstr "أحداث الخطأ"
+
+msgid "Total occurrences"
+msgstr "إجمالي الأحداث"
+
+msgid "No reports yet."
+msgstr "لا توجد تقارير حتى الآن."
+
+msgid "FluxWP Panel on sites sends to this URL:"
+msgstr "ترسل لوحة FluxWP الموجودة على المواقع إلى عنوان URL هذا:"
+
+msgid "Plugin usage"
+msgstr "استخدام البرنامج المساعد"
+
+msgid "Package"
+msgstr "الحزمة"
+
+msgid "Share"
+msgstr "شارك"
+
+msgid "Common version"
+msgstr "النسخة المشتركة"
+
+msgid "Used together"
+msgstr "تستخدم معا"
+
+msgid "Pair"
+msgstr "زوج"
+
+msgid "FluxWP Panel only"
+msgstr "لوحة FluxWP فقط"
+
+msgid "Most common package sets"
+msgstr "مجموعات الحزم الأكثر شيوعًا"
+
+msgid "Set (excluding FluxWP Panel)"
+msgstr "المجموعة (باستثناء لوحة FluxWP)"
+
+msgid "Version"
+msgstr "الإصدار"
+
+msgid "Site language"
+msgstr "لغة الموقع"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Country comes from the sending site's settings (WooCommerce store country or the Settings › General time zone). IP addresses are never looked up or stored. Click a country to filter every tab by it."
+msgstr "تأتي الدولة من إعدادات موقع الإرسال (بلد متجر WooCommerce أو الإعدادات › المنطقة الزمنية العامة). لا يتم البحث عن عناوين IP أو تخزينها مطلقًا. انقر فوق بلد ما لتصفية كل علامة تبويب به."
+
+msgid "Error record removed. It will reappear if it happens again."
+msgstr "تمت إزالة سجل الخطأ. وسوف تظهر مرة أخرى إذا حدث ذلك مرة أخرى."
+
+msgid "All packages"
+msgstr "جميع الحزم"
+
+msgid "All types"
+msgstr "جميع الأنواع"
+
+msgid "Fatal only"
+msgstr "قاتلة فقط"
+
+msgid "%s records"
+msgstr "سجلات%s"
+
+msgid "No errors in this range."
+msgstr "لا توجد أخطاء في هذا النطاق."
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Last"
+msgstr "الاخير"
+
+msgid "Remove as resolved"
+msgstr "إزالة كما تم حلها"
+
+msgid "Resolved"
+msgstr "تم الحل"
+
+msgid "Delete all error records?"
+msgstr "هل تريد حذف كافة سجلات الأخطاء؟"
+
+msgid "Clear all errors"
+msgstr "مسح كافة الأخطاء"
+
+msgid "Server paths, domain, URLs, emails and IPs are removed from messages. The same error in the same package, version, file and line is one record; \"Sites\" is how many different installs saw it."
+msgstr "تتم إزالة مسارات الخادم والمجال وعناوين URL ورسائل البريد الإلكتروني وعناوين IP من الرسائل. نفس الخطأ في نفس الحزمة والإصدار والملف والسطر هو سجل واحد؛ \"المواقع\" هي عدد عمليات التثبيت المختلفة التي شاهدتها."
+
+msgid "Wizard runs"
+msgstr "يعمل المعالج"
+
+msgid "Latest run per install"
+msgstr "أحدث تشغيل لكل تثبيت"
+
+msgid "Finished"
+msgstr "انتهى"
+
+msgid "sites"
+msgstr "المواقع"
+
+msgid "Skipped"
+msgstr "تم تخطيه"
+
+msgid "Abandoned"
+msgstr "مهجور"
+
+msgid "Median time for finishers: %s min"
+msgstr "متوسط الوقت للانتهاء:%sدقيقة"
+
+msgid "No wizard data yet."
+msgstr "لا توجد بيانات المعالج حتى الآن."
+
+msgid "FluxWP Panel 1.0.11 and later sends the last step and choices when the wizard is finished or closed."
+msgstr "يرسل FluxWP Panel 1.0.11 والإصدارات الأحدث الخطوة الأخيرة والاختيارات عند انتهاء المعالج أو إغلاقه."
+
+msgid "Reached each step"
+msgstr "وصلت إلى كل خطوة"
+
+msgid "Steps"
+msgstr "خطوات"
+
+msgid "skipped"
+msgstr "تم تخطيه"
+
+msgid "closed"
+msgstr "مغلق"
+
+msgid "Where they stopped"
+msgstr "حيث توقفوا"
+
+msgid "Last step"
+msgstr "الخطوة الأخيرة"
+
+msgid "Everyone finished."
+msgstr "انتهى الجميع."
+
+msgid "Card choices"
+msgstr "اختيارات البطاقة"
+
+msgid "Card"
+msgstr "بطاقة"
+
+msgid "Picked"
+msgstr "اختار"
+
+msgid "Picked then removed"
+msgstr "التقطت ثم أزيلت"
+
+msgid "Removed suggestion"
+msgstr "تمت إزالة الاقتراح"
+
+msgid "Preset (finishers)"
+msgstr "الإعداد المسبق (التشطيبات)"
+
+msgid "Colour style (finishers)"
+msgstr "نمط اللون (التشطيبات)"
+
+msgid "Choice"
+msgstr "الاختيار"
+
+msgid "Fast endpoint works"
+msgstr "تعمل نقطة النهاية السريعة"
+
+msgid "Fast endpoint unreachable, REST will be used"
+msgstr "نقطة النهاية السريعة غير قابلة للوصول، سيتم استخدام REST"
+
+msgid "%s s"
+msgstr "%sس"
+
+msgid "%1$s min %2$s s"
+msgstr "%1$sدقيقة%2$sث"
+
+msgid "Copied"
+msgstr "منقول"
+
+msgid "Link"
+msgstr "رابط"
+
+msgid "Date range"
+msgstr "النطاق الزمني"
+
+msgid "Start"
+msgstr "ابدأ"
+
+msgid "End"
+msgstr "نهاية"
+
+msgid "Apply"
+msgstr "تطبيق"
+
+msgid "Download CSV"
+msgstr "قم بتنزيل ملف CSV"
+
+msgid "Visitor type"
+msgstr "نوع الزائر"
+
+msgid "All visitors"
+msgstr "جميع الزوار"
+
+msgid "Logged-in users"
+msgstr "المستخدمين الذين قاموا بتسجيل الدخول"
+
+msgid "Role: %s"
+msgstr "الدور:%s"
+
+msgid "Referral"
+msgstr "الإحالة"
+
+msgid "All sources"
+msgstr "جميع المصادر"
+
+msgid "Referral links only"
+msgstr "روابط الإحالة فقط"
+
+msgid "Visitors: the sum of unique people per day. A person is recognised only within the same day; someone arriving via a referral link is credited to that code for 30 days. Country is derived from the browser time zone, not the IP."
+msgstr "الزوار: مجموع الأشخاص الفريدين في اليوم. يتم التعرف على الشخص فقط في نفس اليوم؛ أي شخص يصل عبر رابط إحالة يُضاف إلى هذا الرمز لمدة 30 يومًا. يتم اشتقاق البلد من المنطقة الزمنية للمتصفح، وليس من عنوان IP."
+
+msgid "Visitors and views chart"
+msgstr "مخطط الزوار والمشاهدات"
+
+msgid "Week of %s"
+msgstr "أسبوع%s"
+
+msgid "Compared with the previous period of equal length"
+msgstr "مقارنة بالفترة السابقة بنفس المدة"
+
+msgid "Previous period: %s"
+msgstr "الفترة السابقة:%s"
+
+msgid "Sessions"
+msgstr "الجلسات"
+
+msgid "Pages / visitor"
+msgstr "الصفحات / زائر"
+
+msgid "Avg. session duration"
+msgstr "متوسط مدة الجلسة"
+
+msgid "Bounce rate"
+msgstr "معدل الارتداد"
+
+msgid "Left after viewing one page"
+msgstr "اليسار بعد عرض صفحة واحدة"
+
+msgid "%1$s min ago: %2$s"
+msgstr "%1$sمنذ دقيقة:%2$s"
+
+msgid "Live"
+msgstr "مباشر"
+
+msgid "Refreshes every 5 s"
+msgstr "يتم التحديث كل 5 ثواني"
+
+msgid "visitors in last %s min"
+msgstr "الزوار في آخر%sدقيقة"
+
+msgid "%s min ago"
+msgstr "%sمنذ دقيقة"
+
+msgid "now"
+msgstr "الآن"
+
+msgid "Pages"
+msgstr "الصفحات"
+
+msgid "Countries"
+msgstr "البلدان"
+
+msgid "See all (%s)"
+msgstr "مشاهدة الكل (%s)"
+
+msgid "Traffic sources"
+msgstr "مصادر المرور"
+
+msgid "not logged in"
+msgstr "لم يتم تسجيل الدخول"
+
+msgid "Click a row to filter the whole screen by that visitor type. For outside traffic only, choose \"Outside visitors\" at the top."
+msgstr "انقر فوق أحد الصفوف لتصفية الشاشة بأكملها حسب نوع الزائر. بالنسبة لحركة المرور الخارجية فقط، اختر \"الزوار الخارجيون\" في الأعلى."
+
+msgid "No visits from other sites yet."
+msgstr "لا توجد زيارات من مواقع أخرى حتى الآن."
+
+msgid "Device and browser"
+msgstr "الجهاز والمتصفح"
+
+msgid "Campaigns (UTM)"
+msgstr "الحملات (UTM)"
+
+msgid "Not found pages (404)"
+msgstr "صفحات غير موجودة (404)"
+
+msgid "Visitors by country"
+msgstr "الزوار حسب البلد"
+
+msgid "World map"
+msgstr "خريطة العالم"
+
+msgid "Few"
+msgstr "قليل"
+
+msgid "Many"
+msgstr "كثير"
+
+msgid "No country data in this range."
+msgstr "لا توجد بيانات قطرية في هذا النطاق."
+
+msgid "Funnel: %s"
+msgstr "مسار التحويل:%s"
+
+msgid "Drop from previous step"
+msgstr "إسقاط من الخطوة السابقة"
+
+msgid "No visits entered the funnel in this range."
+msgstr "لم تدخل أي زيارات إلى مسار التحويل في هذا النطاق."
+
+msgid "Completion"
+msgstr "الانتهاء"
+
+msgid "Counts the furthest step each visitor reached within a day. You can change the steps in Settings › Funnels."
+msgstr "لحساب أبعد خطوة وصل إليها كل زائر خلال يوم واحد. يمكنك تغيير الخطوات في الإعدادات › مسارات التحويل."
+
+msgid "Funnel settings"
+msgstr "إعدادات مسار التحويل"
+
+msgid "New link"
+msgstr "رابط جديد"
+
+msgid "Name (e.g. Ayşe's Instagram)"
+msgstr "الاسم (على سبيل المثال، Instagram الخاص بـ Ayşe)"
+
+msgid "Code (e.g. ayse-ig)"
+msgstr "الرمز (على سبيل المثال، ayse-ig)"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
+msgstr "لا توجد روابط إحالة حتى الآن. أضف ?r=code إلى عنوان الموقع أينما شاركته (على سبيل المثال،%s)؛ أعطه اسمًا هنا وستعرض التقارير هذا الاسم."
+
+msgid "Pages / session"
+msgstr "الصفحات / الجلسة"
+
+msgid "Avg. duration"
+msgstr "متوسط المدة"
+
+msgid "Furthest step"
+msgstr "أبعد خطوة"
+
+msgid "Donations"
+msgstr "التبرعات"
+
+msgid "Show what visitors from this link did"
+msgstr "أظهر ما فعله الزوار من هذا الرابط"
+
+msgid "Copy link"
+msgstr "انسخ الرابط"
+
+msgid "Rename"
+msgstr "إعادة تسمية"
+
+msgid "Remove name"
+msgstr "إزالة الاسم"
+
+msgid "A visitor arriving via the link gets a 30-day cookie; their later pages, later days and donation are credited to that code. Click a row to filter the whole screen to visitors from that link."
+msgstr "يحصل الزائر الذي يصل عبر الرابط على ملف تعريف ارتباط لمدة 30 يومًا؛ تُضاف صفحاتهم اللاحقة والأيام اللاحقة والتبرعات إلى هذا الرمز. انقر فوق أحد الصفوف لتصفية الشاشة بأكملها للزائرين من هذا الرابط."
+
+msgid "Copy"
+msgstr "نسخ"
+
+msgid "Name for \"%s\""
+msgstr "اسم \"%s\""
+
+msgid "Remove the name? Statistics are kept and shown under the code."
+msgstr "هل تريد إزالة الاسم؟ يتم الاحتفاظ بالإحصائيات وتظهر تحت الكود."
+
+msgid "No events in this range. Outbound links, downloads, phone/WhatsApp clicks, searches and donations appear here."
+msgstr "لا توجد أحداث في هذا النطاق. تظهر هنا الروابط الصادرة والتنزيلات ونقرات الهاتف/WhatsApp وعمليات البحث والتبرعات."
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "More"
+msgstr "المزيد"
+
+msgid "Could not load. Try again in a moment."
+msgstr "لا يمكن التحميل. حاول مرة أخرى بعد قليل."
+
+msgid "No data yet."
+msgstr "لا توجد بيانات حتى الآن."
+
+msgid "Open the site in a browser where you are not logged in (or on your phone); the visit appears here within a few minutes."
+msgstr "افتح الموقع في متصفح لم تقم بتسجيل الدخول فيه (أو على هاتفك)؛ تظهر الزيارة هنا خلال بضع دقائق."
+
+msgid "Filter:"
+msgstr "عامل التصفية:"
+
+msgid "Clear filter"
+msgstr "مسح الفلتر"
+
+msgid "Page"
+msgstr "الصفحة"
+
+msgid "The first page of every visit counts"
+msgstr "الصفحة الأولى من كل زيارة لها أهمية"
+
+msgid "Choose an event…"
+msgstr "اختر حدثًا..."
+
+msgid "Type another event…"
+msgstr "اكتب حدثًا آخر..."
+
+msgid "all pages starting with this path"
+msgstr "كافة الصفحات التي تبدأ بهذا المسار"
+
+msgid "Funnel name"
+msgstr "اسم مسار التحويل"
+
+msgid "%s steps"
+msgstr "خطوات%s"
+
+msgid "Delete funnel"
+msgstr "حذف القمع"
+
+msgid "Drag to move"
+msgstr "اسحب للتحرك"
+
+msgid "Step name"
+msgstr "اسم الخطوة"
+
+msgid "Step type"
+msgstr "نوع الخطوة"
+
+msgid "Move up"
+msgstr "تحرك للأعلى"
+
+msgid "Move down"
+msgstr "تحرك للأسفل"
+
+msgid "Delete step"
+msgstr "حذف الخطوة"
+
+msgid "Add step"
+msgstr "أضف خطوة"
+
+msgid "Add preset step"
+msgstr "إضافة خطوة محددة مسبقا"
+
+msgid "Add preset step…"
+msgstr "إضافة خطوة محددة مسبقًا..."
+
+msgid "At most %s steps."
+msgstr "على الأكثر خطوات%s."
+
+msgid "New funnel"
+msgstr "قمع جديد"
+
+msgid "Reset to default donation funnel"
+msgstr "إعادة التعيين إلى مسار تحويل التبرعات الافتراضي"
+
+msgid "Edit as text"
+msgstr "تحرير كنص"
+
+msgid "Event name (e.g. donation_form or checkout:submit):"
+msgstr "اسم الحدث (على سبيل المثال donation_form أو checkout:submit):"
+
+msgid "Delete funnel \"%s\"?"
+msgstr "هل تريد حذف مسار التحويل \"%s\"؟"
+
+msgid "Funnel %s"
+msgstr "قمع%s"
+
+msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
+msgstr "هل تريد استبدال كافة مسارات التحويل بمسار التبرع الافتراضي؟ (يتم تطبيقه عند النقر فوق \"حفظ\".)"
+
+msgid "Back to visual editor"
+msgstr "العودة إلى المحرر المرئي"
+
+msgid "Compare previous period"
+msgstr "مقارنة الفترة السابقة"
+
+msgid "Goal page"
+msgstr "صفحة الهدف"
+
+msgid "Combine sub-pages like /news/… into one box"
+msgstr "اجمع الصفحات الفرعية مثل /news/... في مربع واحد"
+
+msgid "Group pages"
+msgstr "صفحات المجموعة"
+
+msgid "Paths from session start"
+msgstr "المسارات من بداية الجلسة"
+
+msgid "Starts at"
+msgstr "يبدأ في"
+
+msgid "All pages"
+msgstr "جميع الصفحات"
+
+msgid "Ends at"
+msgstr "ينتهي عند"
+
+msgid "Fewer steps"
+msgstr "خطوات أقل"
+
+msgid "More steps"
+msgstr "المزيد من الخطوات"
+
+msgid "Paths shown"
+msgstr "المسارات المعروضة"
+
+msgid "Top %s paths"
+msgstr "أعلى مسارات%s"
+
+msgid "Top paths"
+msgstr "أعلى المسارات"
+
+msgid "Search pages…"
+msgstr "صفحات البحث..."
+
+msgid "Reach goal"
+msgstr "الوصول إلى الهدف"
+
+msgid "Never reach"
+msgstr "لا تصل أبدا"
+
+msgid "Journey: the order of pages in one visit (first 8 steps; refreshing the same page counts once). Events such as add to cart, checkout form, \"Place order\", payment method, order, and WhatsApp/phone clicks show as steps marked ⚡. Only visits with at least 2 pages are listed. The goal is chosen from Settings › Funnels. This screen shows visits after version 0.3.0."
+msgstr "الرحلة: ترتيب الصفحات في زيارة واحدة (أول 8 خطوات؛ تحديث نفس الصفحة يحتسب مرة واحدة). تظهر الأحداث مثل الإضافة إلى عربة التسوق، ونموذج الدفع، و\"تقديم الطلب\"، وطريقة الدفع، والطلب، والنقرات على WhatsApp/الهاتف كخطوات تحمل علامة ⚡. يتم إدراج الزيارات التي تحتوي على صفحتين على الأقل فقط. يتم اختيار الهدف من الإعدادات › مسارات التحويل. تعرض هذه الشاشة الزيارات بعد الإصدار 0.3.0."
+
+msgid "Could not load data. Refresh the page."
+msgstr "لا يمكن تحميل البيانات. قم بتحديث الصفحة."
+
+msgid "%1$s visits · %2$s"
+msgstr "زيارات%1$s·%2$s"
+
+msgid "No data"
+msgstr "لا توجد بيانات"
+
+msgid "Multi-page sessions"
+msgstr "جلسات متعددة الصفحات"
+
+msgid "%s of all visits"
+msgstr "%sلجميع الزيارات"
+
+msgid "Avg path length"
+msgstr "متوسط طول المسار"
+
+msgid "%s pages"
+msgstr "صفحات%s"
+
+msgid "In multi-page sessions"
+msgstr "في جلسات متعددة الصفحات"
+
+msgid "Top entry page"
+msgstr "أعلى صفحة الدخول"
+
+msgid "Top exit after 2+ pages"
+msgstr "الخروج العلوي بعد 2+ صفحات"
+
+msgid "No goal selected"
+msgstr "لم يتم تحديد أي هدف"
+
+msgid "No journeys yet"
+msgstr "لا توجد رحلات بعد"
+
+msgid "No visits with at least 2 pages in the selected period. Widen the filters or wait for new visits."
+msgstr "لا توجد زيارات تحتوي على صفحتين على الأقل في الفترة المحددة. قم بتوسيع عوامل التصفية أو انتظر الزيارات الجديدة."
+
+msgid "Click a box to filter the paths below by that page. Thickness shows the number of visits."
+msgstr "انقر فوق مربع لتصفية المسارات أدناه حسب تلك الصفحة. السماكة توضح عدد الزيارات."
+
+msgid "%s visits"
+msgstr "%sالزيارات"
+
+msgid "Entries"
+msgstr "إدخالات"
+
+msgid "Step %s"
+msgstr "الخطوة%s"
+
+msgid "%s end here"
+msgstr "%sتنتهي هنا"
+
+msgid "all continue"
+msgstr "يستمر كل شيء"
+
+msgid "continues"
+msgstr "يستمر"
+
+msgid "No paths match the search."
+msgstr "لا توجد مسارات تطابق البحث."
+
+msgid "No paths to show."
+msgstr "لا توجد مسارات لإظهارها."
+
+msgid "Path"
+msgstr "المسار"
+
+msgid "vs prev"
+msgstr "مقابل السابق"
+
+msgid "new"
+msgstr "جديد"
+
+msgid "Showing %2$s of %1$s paths."
+msgstr "عرض%2$sلمسارات%1$s."
+
+msgid "30 days"
+msgstr "30 يوما"
+
+msgid "7 days"
+msgstr "7 أيام"
+
+msgid "90 days"
+msgstr "90 يوما"
+
+msgid "Search the address"
+msgstr "ابحث في العنوان"
+
+msgid "Range"
+msgstr "النطاق"
+
+msgid "Pages being viewed"
+msgstr "الصفحات التي يتم عرضها"
+
+msgid "No external sites in this range."
+msgstr "لا توجد مواقع خارجية في هذا النطاق."
+
+msgid "No pages were viewed in this range."
+msgstr "لم يتم عرض أية صفحات في هذا النطاق."
+
+msgid "No channel breakdown in this range."
+msgstr "لا يوجد انهيار قناة في هذا النطاق."
+
+msgid "No channels"
+msgstr "لا توجد قنوات"
+
+msgid "Sources"
+msgstr "المصادر"
+
+msgid "Open in panel"
+msgstr "فتح في اللوحة"
+
+msgid "No pages"
+msgstr "لا توجد صفحات"
+
+msgid "Search sites"
+msgstr "مواقع البحث"
+
+msgid "Sites"
+msgstr "مواقع"
+
+msgid "Last minutes"
+msgstr "الدقائق الأخيرة"
+
+msgid "No referrers"
+msgstr "لا يوجد إحالات"
+
+msgid "Referrers"
+msgstr "المُحيلون"
+
+msgid "Visitors and pageviews"
+msgstr "الزوار ومشاهدات الصفحة"
+
+msgid "Analytics"
+msgstr "التحليلات"
+
+msgid "Right now"
+msgstr "الآن"
+
+msgid "[['Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.', 'tr']]"
+msgstr "[['إحصاءات موقع البيانات الخالية من ملفات تعريف الارتباط وغير الشخصية: الزائرون والمشاهدات والصفحات الأكثر قراءة والمواقع المرجعية والقناة والجهاز/المتصفح والحملة (UTM) وأحداث النقر وتحويلات التبرعات. تبقى البيانات على الموقع. يقرأ باستخدام أدوات الذكاء الاصطناعي Flux AI / Flux AI & MCP.', 'tr']]"

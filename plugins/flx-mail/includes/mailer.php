@@ -254,10 +254,10 @@ function flxi_pre_wp_mail( $return, $atts ) {
 	if ( $ctx['block'] ) {
 		$GLOBALS['flxi_last_block'] = $ctx['block_by'] ? $ctx['block_by'] : 'template';
 		$why = array(
-			'social'    => __( 'Google ile kayıt: gönderilmedi', 'flx-mail' ),
-			'blocklist' => __( 'Kara listede: gönderilmedi', 'flx-mail' ),
+			'social'    => __( 'Google sign-up: not sent', 'flx-mail' ),
+			'blocklist' => __( 'On the blocklist: not sent', 'flx-mail' ),
 		);
-		flxi_log_finish( $log, 'blocked', $why[ $ctx['block_by'] ] ?? __( 'Şablon kapalı: gönderilmedi', 'flx-mail' ) );
+		flxi_log_finish( $log, 'blocked', $why[ $ctx['block_by'] ] ?? __( 'Template disabled: not sent', 'flx-mail' ) );
 		$GLOBALS['flxi_current'] = null;
 		return true;
 	}
@@ -271,7 +271,7 @@ function flxi_pre_wp_mail( $return, $atts ) {
 function flxi_pre_wp_mail_after( $return, $atts ) {
 	$cur = $GLOBALS['flxi_current'];
 	if ( null !== $return && $cur && ! empty( $cur['log'] ) ) {
-		flxi_log_finish( $cur['log'], $return ? 'sent' : 'failed', $return ? '' : __( 'Başka bir e-posta eklentisi gönderemedi.', 'flx-mail' ), 'external' );
+		flxi_log_finish( $cur['log'], $return ? 'sent' : 'failed', $return ? '' : __( 'Another email plugin could not send it.', 'flx-mail' ), 'external' );
 		$GLOBALS['flxi_current'] = null;
 	}
 	return $return;
@@ -407,7 +407,7 @@ function flxi_mail_failed( $error ) {
 	// no-reply hesabı doğrulanamadı: aynı e-postayı bir kez bilgi@ ile yeniden gönder.
 	$retry = $auth && 'noreply' === $cur['account'] && empty( $GLOBALS['flxi_strict_sender'] ) && empty( $GLOBALS['flxi_retrying'] ) && ! empty( $cur['atts'] );
 	if ( $cur && ! empty( $cur['log'] ) ) {
-		flxi_log_finish( $cur['log'], 'failed', $retry ? $msg . ' ' . __( 'bilgi@ ile yeniden gönderildi.', 'flx-mail' ) : $msg );
+		flxi_log_finish( $cur['log'], 'failed', $retry ? $msg . ' ' . __( 'Resent from bilgi@.', 'flx-mail' ) : $msg );
 	}
 	if ( $retry ) {
 		$a = $cur['atts'];
@@ -495,11 +495,11 @@ function flxi_smtp_account_notes() {
 		$out['info'] = array(
 			'level' => 'error',
 			/* translators: 1: account, 2: date, 3: error */
-			'text'  => sprintf( __( '%1$s hesabına giriş yapılamadı (%2$s): %3$s Kullanıcı adını ve şifreyi kontrol edin; hPanel\'de şifre değiştiyse buraya da yazın.', 'flx-mail' ), $s['smtp_user'], flx_date( $info['at'], 'datetime' ), $info['error'] ),
+			'text'  => sprintf( __( 'Could not sign in to %1$s (%2$s): %3$s Check the username and password; if the password changed in hPanel, enter it here too.', 'flx-mail' ), $s['smtp_user'], flx_date( $info['at'], 'datetime' ), $info['error'] ),
 		);
 	} elseif ( $info ) {
 		/* translators: 1: account, 2: date */
-		$out['info'] = array( 'level' => 'ok', 'text' => sprintf( __( '%1$s: giriş başarılı (son gönderim %2$s).', 'flx-mail' ), $s['smtp_user'], flx_date( $info['at'], 'datetime' ) ) );
+		$out['info'] = array( 'level' => 'ok', 'text' => sprintf( __( '%1$s: sign-in OK (last send %2$s).', 'flx-mail' ), $s['smtp_user'], flx_date( $info['at'], 'datetime' ) ) );
 	}
 	if ( '' !== trim( (string) $s['smtp_nr_user'] ) ) {
 		$why = flxi_nr_fallback_reason();
@@ -507,20 +507,20 @@ function flxi_smtp_account_notes() {
 			$out['noreply'] = array(
 				'level' => 'warning',
 				/* translators: 1: no-reply account, 2: info address */
-				'text'  => sprintf( __( '%1$s için şifre girilmemiş; no-reply e-postaları şimdilik %2$s ile gidiyor. Şifreyi girin ya da no-reply@ bilgi@ hesabının takma adıysa kullanıcı alanını boşaltın.', 'flx-mail' ), $s['smtp_nr_user'], $s['from_email'] ),
+				'text'  => sprintf( __( 'No password entered for %1$s; no-reply emails are sent from %2$s for now. Enter the password, or clear the username field if no-reply@ is an alias of the bilgi@ account.', 'flx-mail' ), $s['smtp_nr_user'], $s['from_email'] ),
 			);
 		} elseif ( 'auth' === $why ) {
 			$st = flxi_smtp_auth_status( 'noreply' );
 			$out['noreply'] = array(
 				'level' => 'warning',
 				/* translators: 1: no-reply account, 2: date, 3: error, 4: info address */
-				'text'  => sprintf( __( '%1$s hesabına giriş yapılamadı (%2$s): %3$s no-reply e-postaları şimdilik %4$s ile gidiyor. Şifreyi düzeltip kaydedin (hesap yoksa hPanel\'de açın ya da kullanıcı alanını boşaltın); sonra no-reply@ ile test e-postası gönderin.', 'flx-mail' ), $s['smtp_nr_user'], flx_date( $st['at'], 'datetime' ), $st['error'], $s['from_email'] ),
+				'text'  => sprintf( __( 'Could not sign in to %1$s (%2$s): %3$s no-reply emails are sent from %4$s for now. Fix and save the password (if the account does not exist, create it in hPanel or clear the username field), then send a test email from no-reply@.', 'flx-mail' ), $s['smtp_nr_user'], flx_date( $st['at'], 'datetime' ), $st['error'], $s['from_email'] ),
 			);
 		} else {
 			$st = flxi_smtp_auth_status( 'noreply' );
 			if ( $st ) {
 				/* translators: 1: account, 2: date */
-				$out['noreply'] = array( 'level' => 'ok', 'text' => sprintf( __( '%1$s: giriş başarılı (son gönderim %2$s).', 'flx-mail' ), $s['smtp_nr_user'], flx_date( $st['at'], 'datetime' ) ) );
+				$out['noreply'] = array( 'level' => 'ok', 'text' => sprintf( __( '%1$s: sign-in OK (last send %2$s).', 'flx-mail' ), $s['smtp_nr_user'], flx_date( $st['at'], 'datetime' ) ) );
 			}
 		}
 	}
@@ -529,7 +529,7 @@ function flxi_smtp_account_notes() {
 
 function flxi_fallback_note() {
 	/* translators: 1: no-reply address, 2: info address */
-	return sprintf( __( '%1$s hesabına giriş yapılamadığı için %2$s ile gönderildi.', 'flx-mail' ), flxi_setting( 'smtp_nr_user' ), flxi_setting( 'from_email' ) );
+	return sprintf( __( 'Sent from %2$s because signing in to %1$s failed.', 'flx-mail' ), flxi_setting( 'smtp_nr_user' ), flxi_setting( 'from_email' ) );
 }
 
 /* ------------------------------------------------------------------ */

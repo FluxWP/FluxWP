@@ -18,7 +18,7 @@ add_action(
 				'prefix'      => 'flxcb',
 				'plugin'      => plugin_basename( FLXCB_FILE ),
 				'page'        => 'admin.php?page=flx-chatbot',
-				'description' => __( 'Sitedeki sohbet penceresinin asistanı ve site sohbetleri.', 'flx-chatbot' ),
+				'description' => __( 'The assistant of the chat window on the site, and site chats.', 'flx-chatbot' ),
 			)
 		);
 		flx_ai_settings(
@@ -26,8 +26,8 @@ add_action(
 			array(
 				'model' => array(
 					'type'  => 'model',
-					'label' => __( 'Asistan modeli', 'flx-chatbot' ),
-					'help'  => __( 'Ziyaretçilere cevap veren model. Hızlı ve ucuz bir model önerilir; boşsa Flux AI varsayılanı.', 'flx-chatbot' ),
+					'label' => __( 'Assistant model', 'flx-chatbot' ),
+					'help'  => __( 'The model that answers visitors. A fast, low-cost model is recommended; when empty, the Flux AI default.', 'flx-chatbot' ),
 				),
 			)
 		);
@@ -37,7 +37,7 @@ add_action(
 			'flx-chatbot',
 			'conversations',
 			array(
-				'title'       => __( 'Site sohbetleri', 'flx-chatbot' ),
+				'title'       => __( 'Site chats', 'flx-chatbot' ),
 				'description' => 'Lists recent website chat conversations (AI assistant and live support). Filter by status: open (waiting for or talking to an agent), bot, queued, agent, offline, closed, or empty for all. Optional search in name, email, phone, page title.',
 				'readonly'    => true,
 				'cap'         => $cap,
@@ -86,7 +86,7 @@ add_action(
 			'flx-chatbot',
 			'conversation',
 			array(
-				'title'       => __( 'Site sohbeti dökümü', 'flx-chatbot' ),
+				'title'       => __( 'Site chat transcript', 'flx-chatbot' ),
 				'description' => 'Returns the transcript of one website chat conversation by id (visitor, assistant and agent messages, contact details, assistant handoff note).',
 				'readonly'    => true,
 				'cap'         => $cap,
@@ -98,7 +98,7 @@ add_action(
 				'run'         => function ( array $a ) {
 					$c = flxcb_get_conversation( (int) ( $a['id'] ?? 0 ) );
 					if ( ! $c ) {
-						return new WP_Error( 'flxcb_conv', __( 'Sohbet bulunamadı.', 'flx-chatbot' ) );
+						return new WP_Error( 'flxcb_conv', __( 'Chat not found.', 'flx-chatbot' ) );
 					}
 					return array(
 						'id'         => (int) $c['id'],
@@ -114,7 +114,7 @@ add_action(
 			'flx-chatbot',
 			'stats',
 			array(
-				'title'       => __( 'Sohbet istatistikleri', 'flx-chatbot' ),
+				'title'       => __( 'Chat statistics', 'flx-chatbot' ),
 				'description' => 'Website chat statistics for the last N days: conversations, handed to humans, resolved by the assistant (%), leads, orders after chat, average rating, open conversations.',
 				'readonly'    => true,
 				'cap'         => $cap,
@@ -134,7 +134,7 @@ add_action(
 add_filter(
 	'flxai_purpose_labels',
 	function ( $l ) {
-		$l['chatbot'] = __( 'Site sohbeti', 'flx-chatbot' );
+		$l['chatbot'] = __( 'Site chat', 'flx-chatbot' );
 		return $l;
 	}
 );

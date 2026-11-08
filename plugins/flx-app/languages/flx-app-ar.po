@@ -1,0 +1,1307 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Aggregate mobile app usage"
+msgstr "إجمالي استخدام تطبيقات الهاتف المحمول"
+
+msgid "Optional and off by default. Only accounts that also opt in inside the app are counted. Completed UTC-day iOS/Android totals go to your telemetry hub only for cohorts of at least five accounts. No names, account IDs, content, site URLs or GPS location are included. Country comes from site settings. General usage sharing must also be on. Sign-in and app features do not depend on this choice."
+msgstr "اختياري وإيقاف بشكل افتراضي. يتم احتساب الحسابات التي اشتركت أيضًا داخل التطبيق فقط. تنتقل إجماليات iOS/Android المكتملة لـ UTC-day إلى مركز القياس عن بعد الخاص بك فقط لمجموعات مكونة من خمسة حسابات على الأقل. لا يتم تضمين أي أسماء أو معرفات الحساب أو المحتوى أو عناوين URL للموقع أو موقع GPS. البلد يأتي من إعدادات الموقع. يجب أيضًا تشغيل مشاركة الاستخدام العام. لا تعتمد ميزات تسجيل الدخول والتطبيق على هذا الاختيار."
+
+msgid "Share aggregate mobile app usage"
+msgstr "مشاركة الاستخدام الإجمالي لتطبيقات الهاتف المحمول"
+
+msgid "Application"
+msgstr "التطبيق"
+
+msgid "Menu (all items)"
+msgstr "القائمة (جميع العناصر)"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Notifications"
+msgstr "الإخطارات"
+
+msgid "Accounts"
+msgstr "الحسابات"
+
+msgid "App settings"
+msgstr "إعدادات التطبيق"
+
+msgid "Screens"
+msgstr "شاشات"
+
+msgid "Native modules"
+msgstr "الوحدات الأصلية"
+
+msgid "Admin menu"
+msgstr "قائمة المشرف"
+
+msgid "Primary"
+msgstr "الابتدائية"
+
+msgid "Accent"
+msgstr "لهجة"
+
+msgid "Background"
+msgstr "الخلفية"
+
+msgid "Surface"
+msgstr "السطح"
+
+msgid "Text"
+msgstr "نص"
+
+msgid "Appearance of the desktop and mobile app. Empty colours come from the theme (theme.json) and the Flux Admin colour. Menus are filtered by the user's role: an item they cannot see in the admin does not show in the app either."
+msgstr "مظهر سطح المكتب وتطبيقات الهاتف المحمول. تأتي الألوان الفارغة من السمة (theme.json) ولون Flux Admin. تتم تصفية القوائم حسب دور المستخدم: العنصر الذي لا يمكنه رؤيته في المسؤول لا يظهر في التطبيق أيضًا."
+
+msgid "Theme"
+msgstr "الموضوع"
+
+msgid "Mode"
+msgstr "الوضع"
+
+msgid "Follow device"
+msgstr "اتبع الجهاز"
+
+msgid "On"
+msgstr "على"
+
+msgid "Dark"
+msgstr "الظلام"
+
+msgid "Corners"
+msgstr "زوايا"
+
+msgid "From theme"
+msgstr "من الموضوع"
+
+msgid "Sharp"
+msgstr "حاد"
+
+msgid "Slight"
+msgstr "طفيف"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "Round"
+msgstr "جولة"
+
+msgid "Density"
+msgstr "الكثافة"
+
+msgid "Comfortable"
+msgstr "مريح"
+
+msgid "Compact"
+msgstr "مدمج"
+
+msgid "Font"
+msgstr "الخط"
+
+msgid "Heading font"
+msgstr "خط العنوان"
+
+msgid "From theme (%s)"
+msgstr "من الموضوع (%s)"
+
+msgid "Mobile"
+msgstr "الجوال"
+
+msgid "Navigation"
+msgstr "الملاحة"
+
+msgid "Tab bar + drawer"
+msgstr "شريط علامات التبويب + الدرج"
+
+msgid "Tab bar only"
+msgstr "شريط علامات التبويب فقط"
+
+msgid "Drawer only"
+msgstr "درج فقط"
+
+msgid "Home screen"
+msgstr "الشاشة الرئيسية"
+
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+msgid "Tab bar (up to 5)"
+msgstr "شريط علامات التبويب (حتى 5)"
+
+msgid "If empty, the Flux Admin mobile bottom bar setting is used. Tabs the user cannot open are hidden; \"Menu\" always stays reachable."
+msgstr "إذا كان فارغًا، فسيتم استخدام إعداد الشريط السفلي للهاتف المحمول Flux Admin. علامات التبويب التي لا يمكن للمستخدم فتحها تكون مخفية؛ تظل \"القائمة\" متاحة دائمًا."
+
+msgid "Label"
+msgstr "التسمية"
+
+msgid "Icon (home, chat…)"
+msgstr "أيقونة (الصفحة الرئيسية، الدردشة...)"
+
+msgid "Badge"
+msgstr "شارة"
+
+msgid "Drawer (role menu groups)"
+msgstr "الدرج (مجموعات قائمة الأدوار)"
+
+msgid "Logo in the top bar"
+msgstr "الشعار في الشريط العلوي"
+
+msgid "Site switcher"
+msgstr "مبدل الموقع"
+
+msgid "Top bar"
+msgstr "الشريط العلوي"
+
+msgid "Large title"
+msgstr "عنوان كبير"
+
+msgid "Desktop"
+msgstr "سطح المكتب"
+
+msgid "The sidebar follows the role's Flux Admin menu layout (pins and groups). Shortcuts always shown in the command palette (⌘K):"
+msgstr "يتبع الشريط الجانبي تخطيط قائمة Flux Admin الخاص بالدور (الدبابيس والمجموعات). تظهر الاختصارات دائمًا في لوحة الأوامر (⌘K):"
+
+msgid "A disabled screen does not open natively in the app; that page opens in the web view."
+msgstr "لا يتم فتح الشاشة المعطلة أصلاً في التطبيق؛ يتم فتح هذه الصفحة في عرض الويب."
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Preview"
+msgstr "معاينة"
+
+msgid "Preview uses your role; other roles see their own menus."
+msgstr "تستخدم المعاينة دورك؛ ترى الأدوار الأخرى قوائمها الخاصة."
+
+msgid "Which apps may connect to this site, store links and notifications."
+msgstr "التطبيقات التي قد تتصل بهذا الموقع وتخزن الروابط والإشعارات."
+
+msgid "Main FluxWP app"
+msgstr "التطبيق FluxWP الرئيسي"
+
+msgid "Allow the FluxWP desktop and mobile app (flx-masaustu, flx-mobil)"
+msgstr "السماح لتطبيق FluxWP لسطح المكتب والهاتف المحمول (flx-masaustu، flx-mobil)"
+
+msgid "When off, only the branded apps below can connect; open sessions of the main app end at their next refresh."
+msgstr "عند إيقاف التشغيل، يمكن فقط للتطبيقات ذات العلامات التجارية أدناه الاتصال؛ تنتهي الجلسات المفتوحة للتطبيق الرئيسي عند التحديث التالي."
+
+msgid "Store links"
+msgstr "روابط المتجر"
+
+msgid "Send push notifications to mobile devices (Expo)"
+msgstr "إرسال إشعارات الدفع إلى الأجهزة المحمولة (Expo)"
+
+msgid "Hide content on the lock screen (only the notification type shows)"
+msgstr "إخفاء المحتوى على شاشة القفل (يظهر نوع الإشعار فقط)"
+
+msgid "Saved (type to replace)"
+msgstr "تم الحفظ (اكتب للاستبدال)"
+
+msgid "Expo access token (optional)"
+msgstr "رمز وصول المعرض (اختياري)"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Only needed when enhanced push security is on in the Expo account. The desktop app does not receive push; it shows notifications through sync while open."
+msgstr "مطلوب فقط عند تشغيل أمان الدفع المحسن في حساب Expo. لا يتلقى تطبيق سطح المكتب الدفع؛ يعرض الإشعارات من خلال المزامنة أثناء الفتح."
+
+msgid "Devices: %1$d · notifications on: %2$d"
+msgstr "الأجهزة:%1$d· الإخطارات على:%2$d"
+
+msgid "Last send %1$s: %2$d sent, %3$d failed"
+msgstr "آخر إرسال%1$s: تم إرسال%2$d، وفشل%3$d"
+
+msgid "Web view"
+msgstr "عرض الويب"
+
+msgid "Hide the admin bar on site pages opened in the app"
+msgstr "إخفاء شريط المسؤول في صفحات الموقع المفتوحة في التطبيق"
+
+msgid "Developer mode"
+msgstr "وضع المطور"
+
+msgid "Allow Expo development redirects (exp://…/--/oauth/callback)"
+msgstr "السماح بإعادة توجيه تطوير Expo (exp://.../--/oauth/callback)"
+
+msgid "Turn on only on test sites."
+msgstr "قم بالتشغيل فقط على مواقع الاختبار."
+
+msgid "Branded apps"
+msgstr "التطبيقات ذات العلامات التجارية"
+
+msgid "An app published under the organisation's own name connects to this site only if it is listed here. Usually filled in by the preset."
+msgstr "يتصل التطبيق المنشور تحت اسم المنظمة بهذا الموقع فقط إذا كان مدرجًا هنا. عادة ما يتم ملؤها بواسطة الإعداد المسبق."
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Platform"
+msgstr "منصة"
+
+msgid "Redirect URIs (one per line)"
+msgstr "إعادة توجيه عناوين URI (واحد لكل سطر)"
+
+msgid "Redirect URIs"
+msgstr "إعادة توجيه عناوين URI"
+
+msgid "Connection details"
+msgstr "تفاصيل الاتصال"
+
+msgid "Active preset"
+msgstr "الإعداد المسبق النشط"
+
+msgid "Send me a test notification"
+msgstr "أرسل لي إشعار الاختبار"
+
+msgid "Test notification: this device receives notifications."
+msgstr "إشعار الاختبار: يتلقى هذا الجهاز إشعارات."
+
+msgid "No device is signed in to the app."
+msgstr "لم يتم تسجيل دخول أي جهاز إلى التطبيق."
+
+msgid "User"
+msgstr "المستخدم"
+
+msgid "Device"
+msgstr "الجهاز"
+
+msgid "Last seen"
+msgstr "شوهد آخر مرة"
+
+msgid "Unnamed device"
+msgstr "جهاز لم يذكر اسمه"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Sign this device out?"
+msgstr "هل تريد تسجيل الخروج من هذا الجهاز؟"
+
+msgid "Sign out"
+msgstr "تسجيل الخروج"
+
+msgid "%d screen"
+msgid_plural "%d screens"
+msgstr[0] "شاشات%d"
+msgstr[1] "شاشة%d"
+msgstr[2] "شاشات%d"
+msgstr[3] "شاشات%d"
+msgstr[4] "شاشات%d"
+msgstr[5] "شاشات%d"
+
+msgid "General"
+msgstr "عام"
+
+msgid "Appearance"
+msgstr "المظهر"
+
+msgid "Applications"
+msgstr "التطبيقات"
+
+msgid "Modules"
+msgstr "وحدات"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "OAuth clients"
+msgstr "عملاء OAuth"
+
+msgid "All access"
+msgstr "كل الوصول"
+
+msgid "App access"
+msgstr "الوصول إلى التطبيق"
+
+msgid "You are not allowed to do this."
+msgstr "لا يسمح لك أن تفعل هذا."
+
+msgid "All users"
+msgstr "كافة المستخدمين"
+
+msgid "Users who can edit content"
+msgstr "المستخدمون الذين يمكنهم تحرير المحتوى"
+
+msgid "Administrators only"
+msgstr "المسؤولين فقط"
+
+msgid "Nothing here yet."
+msgstr "لا شيء هنا بعد."
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "Created"
+msgstr "تم إنشاؤها"
+
+msgid "Last used"
+msgstr "آخر استخدام"
+
+msgid "Expires"
+msgstr "تنتهي"
+
+msgid "API key"
+msgstr "مفتاح واجهة برمجة التطبيقات"
+
+msgid "App session"
+msgstr "جلسة التطبيق"
+
+msgid "Never"
+msgstr "أبدا"
+
+msgid "Remove this access?"
+msgstr "هل تريد إزالة حق الوصول هذا؟"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "Copy it now; it will not be shown again."
+msgstr "انسخه الآن؛ لن يتم عرضه مرة أخرى."
+
+msgid "Saved."
+msgstr "تم الحفظ."
+
+msgid "Test notification: %1$d sent, %2$d failed, %3$d skipped."
+msgstr "إشعار الاختبار: تم إرسال%1$d، وفشل%2$d، وتم تخطي%3$d."
+
+msgid "Give the key a name."
+msgstr "أعط المفتاح اسمًا."
+
+msgid "Could not save."
+msgstr "لا يمكن الحفظ."
+
+msgid "Desktop app"
+msgstr "تطبيق سطح المكتب"
+
+msgid "Use the panel as a separate app on your Mac or Windows computer. New versions install themselves."
+msgstr "استخدم اللوحة كتطبيق منفصل على جهاز الكمبيوتر الذي يعمل بنظام التشغيل Mac أو Windows. الإصدارات الجديدة تثبت نفسها."
+
+msgid "Download for macOS"
+msgstr "تنزيل لنظام التشغيل MacOS"
+
+msgid "Download for Windows"
+msgstr "تحميل لنظام التشغيل Windows"
+
+msgid "macOS 11 or later (Apple Silicon and Intel). Windows 10 and 11 (64-bit)."
+msgstr "نظام التشغيل macOS 11 أو الأحدث (Apple Silicon وIntel). ويندوز 10 و11 (64 بت)."
+
+msgid "Windows MSI package (managed deployment)"
+msgstr "حزمة Windows MSI (النشر المُدار)"
+
+msgid "In the Flux Desktop app, press \"Sign in\": you sign in to this site in the browser and approve; the app then works with your permissions. For other tools (MCP clients, scripts) you can create a personal API key."
+msgstr "في تطبيق Flux Desktop، اضغط على \"تسجيل الدخول\": تقوم بتسجيل الدخول إلى هذا الموقع في المتصفح والموافقة؛ ثم يعمل التطبيق مع أذوناتك. بالنسبة للأدوات الأخرى (عملاء MCP والبرامج النصية) يمكنك إنشاء مفتاح API شخصي."
+
+msgid "My devices"
+msgstr "أجهزتي"
+
+msgid "Connected apps"
+msgstr "التطبيقات المتصلة"
+
+msgid "API keys"
+msgstr "مفاتيح واجهة برمجة التطبيقات"
+
+msgid "e.g. Claude MCP"
+msgstr "على سبيل المثال كلود إم سي بي"
+
+msgid "Valid for"
+msgstr "صالحة ل"
+
+msgid "%d days"
+msgstr "%dأيام"
+
+msgid "Create key"
+msgstr "إنشاء مفتاح"
+
+msgid "Usage: send Authorization: Bearer flxak_… to any REST endpoint and MCP (/wp-json/flx-mcp/v1/mcp). The key acts with your permissions."
+msgstr "الاستخدام: أرسل التفويض: Bearer flxak_... إلى أي نقطة نهاية REST وMCP (/wp-json/flx-mcp/v1/mcp). يعمل المفتاح مع أذوناتك."
+
+msgid "Sign-in, session and panel settings for the desktop (macOS, Windows) and mobile (iOS, Android) app."
+msgstr "إعدادات تسجيل الدخول والجلسة واللوحة لسطح المكتب (macOS وWindows) وتطبيق الهاتف المحمول (iOS وAndroid)."
+
+msgid "Access token lifetime"
+msgstr "عمر رمز الوصول"
+
+msgid "minutes"
+msgstr "دقائق"
+
+msgid "Session lifetime (when unused)"
+msgstr "عمر الجلسة (عند عدم استخدامها)"
+
+msgid "days"
+msgstr "أيام"
+
+msgid "The period renews while the app is used; after this many days without use, sign-in is required again."
+msgstr "يتم تجديد الفترة أثناء استخدام التطبيق؛ وبعد هذه الأيام العديدة دون استخدام، يلزم تسجيل الدخول مرة أخرى."
+
+msgid "MCP clients"
+msgstr "عملاء MCP"
+
+msgid "Allow self-registration (MCP clients such as Claude connect via OAuth; every connection still needs your approval)"
+msgstr "السماح بالتسجيل الذاتي (يتصل عملاء MCP مثل Claude عبر OAuth؛ ولا يزال كل اتصال بحاجة إلى موافقتك)"
+
+msgid "Admin session"
+msgstr "جلسة المشرف"
+
+msgid "Let the app open menus without a native screen as admin pages (one-time sign-in link)"
+msgstr "السماح للتطبيق بفتح القوائم بدون شاشة أصلية كصفحات إدارية (رابط تسجيل الدخول لمرة واحدة)"
+
+msgid "Sign in with code"
+msgstr "تسجيل الدخول باستخدام الرمز"
+
+msgid "Let donors sign in to the app with a code sent to their email or phone"
+msgstr "اسمح للمتبرعين بتسجيل الدخول إلى التطبيق باستخدام رمز يتم إرساله إلى بريدهم الإلكتروني أو هواتفهم"
+
+msgid "Create a customer account if none exists but there is a donation with these details"
+msgstr "قم بإنشاء حساب عميل في حالة عدم وجوده ولكن يوجد تبرع بهذه التفاصيل"
+
+msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
+msgstr "السماح للموظفين بتسجيل الدخول باستخدام الرمز أيضًا (غير مستحسن؛ يستخدم الموظفون OAuth في المتصفح)"
+
+msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
+msgstr "يتم إرسال رموز الهاتف عبر مركز اتصال Flux (WhatsApp)؛ وبدون ذلك، البريد الإلكتروني فقط."
+
+msgid "Can create API keys"
+msgstr "يمكن إنشاء مفاتيح API"
+
+msgid "Devices"
+msgstr "الأجهزة"
+
+msgid "Sessions and keys"
+msgstr "الجلسات والمفاتيح"
+
+msgid "Built-in"
+msgstr "مدمج"
+
+msgid "Self-registered (MCP)"
+msgstr "التسجيل الذاتي (MCP)"
+
+msgid "Added manually"
+msgstr "تمت إضافتها يدويًا"
+
+msgid "with secret"
+msgstr "مع سر"
+
+msgid "Delete the application and all of its sessions?"
+msgstr "هل تريد حذف التطبيق وجميع جلساته؟"
+
+msgid "Add application"
+msgstr "إضافة التطبيق"
+
+msgid "Generate a client secret (for server-side apps; not needed for desktop/mobile)"
+msgstr "إنشاء سر العميل (للتطبيقات من جانب الخادم؛ غير مطلوب لسطح المكتب/الهاتف المحمول)"
+
+msgid "Add"
+msgstr "أضف"
+
+msgid "Manifest"
+msgstr "واضح"
+
+msgid "Native screen"
+msgstr "الشاشة الأصلية"
+
+msgid "Plugin screens in the app. Manifest modules are drawn from the same definition on desktop and mobile; native modules open with the app's own screen. A disabled module's menu opens as an admin page in the app. Who sees what follows capabilities and the role menu."
+msgstr "شاشات البرنامج المساعد في التطبيق. يتم استخلاص الوحدات الواضحة من نفس التعريف على سطح المكتب والهاتف المحمول؛ يتم فتح الوحدات الأصلية من خلال شاشة التطبيق الخاصة. يتم فتح قائمة الوحدة المعطلة كصفحة مسؤول في التطبيق. من يرى ما يلي القدرات وقائمة الأدوار."
+
+msgid "No modules registered."
+msgstr "لم يتم تسجيل أي وحدات."
+
+msgid "Module"
+msgstr "الوحدة النمطية"
+
+msgid "In the app"
+msgstr "في التطبيق"
+
+msgid "Capability"
+msgstr "القدرة"
+
+msgid "Version"
+msgstr "الإصدار"
+
+msgid "Manifest error: %s"
+msgstr "خطأ واضح:%s"
+
+msgid "Separate item"
+msgstr "عنصر منفصل"
+
+msgid "The app's side menu is the same as the panel menu for the user's role (order, groups, names, hidden items). Whether each item shows on web, mobile or desktop is chosen in the menu editor. An item with Web off shows only in the app."
+msgstr "القائمة الجانبية للتطبيق هي نفس قائمة اللوحة الخاصة بدور المستخدم (الترتيب، المجموعات، الأسماء، العناصر المخفية). يتم اختيار ما إذا كان سيتم عرض كل عنصر على الويب أو الهاتف المحمول أو سطح المكتب في محرر القائمة. يظهر العنصر الذي يحتوي على Web off في التطبيق فقط."
+
+msgid "Platform selection needs Flux Admin 1.3.0 or later."
+msgstr "يحتاج اختيار النظام الأساسي إلى Flux Admin 1.3.0 أو إصدار أحدث."
+
+msgid "Open menu editor"
+msgstr "فتح محرر القائمة"
+
+msgid "Default"
+msgstr "الافتراضي"
+
+msgid "Items hidden by platform"
+msgstr "العناصر المخفية بواسطة النظام الأساسي"
+
+msgid "None: every item shows everywhere."
+msgstr "لا شيء: يظهر كل عنصر في كل مكان."
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Visible"
+msgstr "مرئية"
+
+msgid "Hidden"
+msgstr "مخفي"
+
+msgid "FluxWP Mobile"
+msgstr "فلوكسوب موبايل"
+
+msgid "No mobile brand client (app_clients) is defined; a branded mobile app cannot connect to this site."
+msgstr "لم يتم تحديد عميل العلامة التجارية للهاتف المحمول (app_clients)؛ لا يمكن لتطبيق جوال يحمل علامة تجارية الاتصال بهذا الموقع."
+
+msgid "No site icon; the store icon needs a 1024 px image."
+msgstr "لا يوجد رمز الموقع. يحتاج رمز المتجر إلى صورة بحجم 1024 بكسل."
+
+msgid "Flux Desktop"
+msgstr "تدفق سطح المكتب"
+
+msgid "A name and at least one redirect URI are required (at most 10)."
+msgstr "مطلوب اسم وURI لإعادة التوجيه واحد على الأقل (10 على الأكثر)."
+
+msgid "Redirect URI rejected: %s (must be https, 127.0.0.1 or an app scheme)."
+msgstr "تم رفض URI لإعادة التوجيه:%s(يجب أن يكون https أو 127.0.0.1 أو مخطط تطبيق)."
+
+msgid "Dynamic client limit reached; delete old ones."
+msgstr "تم الوصول إلى الحد الأقصى للعميل الديناميكي؛ حذف القديمة."
+
+msgid "Comments"
+msgstr "التعليقات"
+
+msgid "Posts"
+msgstr "المشاركات"
+
+msgid "%s drafts"
+msgstr "مسودات%s"
+
+msgid "My drafts"
+msgstr "مسوداتي"
+
+msgid "(no title)"
+msgstr "(بدون عنوان)"
+
+msgid "Pages"
+msgstr "الصفحات"
+
+msgid "Pending comments"
+msgstr "في انتظار التعليقات"
+
+msgid "%s approved"
+msgstr "تمت الموافقة على%s"
+
+msgid "Recent comments"
+msgstr "التعليقات الأخيرة"
+
+msgid "Pending"
+msgstr "في انتظار"
+
+msgid "Media"
+msgstr "وسائل الإعلام"
+
+msgid "Users"
+msgstr "المستخدمين"
+
+msgid "Updates"
+msgstr "التحديثات"
+
+msgid "Today's orders"
+msgstr "طلبات اليوم"
+
+msgid "%s orders"
+msgstr "أوامر%s"
+
+msgid "Awaiting payment"
+msgstr "في انتظار الدفع"
+
+msgid "Recent orders"
+msgstr "الطلبات الأخيرة"
+
+msgid "Web"
+msgstr "ويب"
+
+msgid "Sign-in required."
+msgstr "تسجيل الدخول مطلوب."
+
+msgid "This works only with an app session (OAuth)."
+msgstr "يعمل هذا فقط مع جلسة التطبيق (OAuth)."
+
+msgid "Push token not recognised."
+msgstr "لم يتم التعرف على رمز الدفع."
+
+msgid "Device not found."
+msgstr "لم يتم العثور على الجهاز."
+
+msgid "Manifest not found."
+msgstr "لم يتم العثور على البيان."
+
+msgid "App connection"
+msgstr "اتصال التطبيق"
+
+msgid "← Back to site"
+msgstr "← العودة إلى الموقع"
+
+msgid "Unknown application (client_id)."
+msgstr "تطبيق غير معروف (client_id)."
+
+msgid "This redirect URI is not registered for the application."
+msgstr "لم يتم تسجيل URI لإعادة التوجيه هذا للتطبيق."
+
+msgid "Your session expired. Try again from the app."
+msgstr "انتهت جلستك. حاول مرة أخرى من التطبيق."
+
+msgid "%s wants to access your account"
+msgstr "يريد%sالوصول إلى حسابك"
+
+msgid "Change"
+msgstr "التغيير"
+
+msgid "The app works with your permissions: the menus and actions your role can see."
+msgstr "يعمل التطبيق مع أذوناتك: القوائم والإجراءات التي يمكن لدورك رؤيتها."
+
+msgid "You can revoke access at any time under Users › App access."
+msgstr "يمكنك إلغاء الوصول في أي وقت ضمن المستخدمون › الوصول إلى التطبيق."
+
+msgid "After approval you will return to %s."
+msgstr "بعد الموافقة ستعود إلى%s."
+
+msgid "Deny"
+msgstr "رفض"
+
+msgid "Allow"
+msgstr "السماح"
+
+msgid "Back to site"
+msgstr "العودة إلى الموقع"
+
+msgid "This link has expired. Open it again from the app."
+msgstr "انتهت صلاحية هذا الرابط. افتحه مرة أخرى من التطبيق."
+
+msgid "%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$sهو رمز تسجيل الدخول الخاص بك لتطبيق%2$s. صالحة لمدة 10 دقائق. لا تشارك هذا الرمز مع أي شخص."
+
+msgid "%s sign-in code"
+msgstr "رمز تسجيل الدخول%s"
+
+msgid "Your app sign-in code:"
+msgstr "رمز تسجيل الدخول إلى تطبيقك:"
+
+msgid "The code is valid for 10 minutes. If you did not request it, ignore this email."
+msgstr "الكود صالح لمدة 10 دقائق. إذا لم تطلب ذلك، فتجاهل هذه الرسالة الإلكترونية."
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Sign in with code is turned off."
+msgstr "تم إيقاف تسجيل الدخول باستخدام الرمز."
+
+msgid "Enter a valid email or phone number."
+msgstr "أدخل بريدًا إلكترونيًا صالحًا أو رقم هاتف."
+
+msgid "Too many attempts. Try again in a little while."
+msgstr "محاولات كثيرة جدًا. حاول مرة أخرى بعد قليل."
+
+msgid "The code is wrong or has expired."
+msgstr "الرمز خاطئ أو انتهت صلاحيته."
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "Admin sessions are turned off in settings."
+msgstr "يتم إيقاف جلسات الإدارة في الإعدادات."
+
+msgid "Too many requests. Please wait a moment."
+msgstr "طلبات كثيرة جدًا. من فضلك انتظر لحظة."
+
+msgid "Invalid admin path."
+msgstr "مسار المشرف غير صالح."
+
+msgid "This setting cannot be opened from the app."
+msgstr "لا يمكن فتح هذا الإعداد من التطبيق."
+
+msgid "Invalid value."
+msgstr "قيمة غير صالحة."
+
+msgid "Some fields are invalid."
+msgstr "بعض الحقول غير صالحة."
+
+msgid "Flux App"
+msgstr "تطبيق التدفق"
+
+msgid "Token table"
+msgstr "جدول الرموز"
+
+msgid "Ready."
+msgstr "جاهز."
+
+msgid "Table missing. Deactivate and reactivate the plugin."
+msgstr "الجدول مفقود. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "HTTPS"
+msgstr "HTTPS"
+
+msgid "The site address is https; app sign-in is secure."
+msgstr "عنوان الموقع هو https; تسجيل الدخول إلى التطبيق آمن."
+
+msgid "The site address is not https; OAuth tokens travel unencrypted. Use https in production."
+msgstr "عنوان الموقع ليس https؛ تنتقل رموز OAuth المميزة بشكل غير مشفر. استخدم https في الإنتاج"
+
+msgid "Active access"
+msgstr "الوصول النشط"
+
+msgid "App sessions: %1$s · API keys: %2$s"
+msgstr "جلسات التطبيق:%1$s· مفاتيح API:%2$s"
+
+msgid "Push notifications"
+msgstr "دفع الإخطارات"
+
+msgid "Off."
+msgstr "إيقاف."
+
+msgid "Nothing sent yet. Registered devices: %s"
+msgstr "لم يتم إرسال أي شيء حتى الآن. الأجهزة المسجلة:%s"
+
+msgid "Last send %1$s: %2$s sent, %3$s failed. %4$s"
+msgstr "آخر إرسال%1$s: تم إرسال%2$s، وفشل%3$s.%4$s"
+
+msgid "App screens (manifest)"
+msgstr "شاشات التطبيقات (البيان)"
+
+msgid "Modules with schema errors: %s. They may open in the web view in the app."
+msgstr "الوحدات التي بها أخطاء في المخطط:%s. وقد يتم فتحها في عرض الويب في التطبيق."
+
+msgid "%s modules valid."
+msgstr "وحدات%sصالحة."
+
+msgid "App clients"
+msgstr "عملاء التطبيق"
+
+msgid "Main FluxWP app: %1$s · branded apps: %2$s"
+msgstr "تطبيق FluxWP الرئيسي:%1$s· التطبيقات ذات العلامة التجارية:%2$s"
+
+msgid "on"
+msgstr "على"
+
+msgid "off"
+msgstr "خارج"
+
+msgid "Developer mode is on (exp:// redirects); turn it off on the live site."
+msgstr "وضع المطور قيد التشغيل (exp:// عمليات إعادة التوجيه)؛ قم بإيقاف تشغيله على الموقع المباشر."
+
+msgid "The token is invalid or expired."
+msgstr "الرمز غير صالح أو منتهي الصلاحية."
+
+msgid "Draft"
+msgstr "مسودة"
+
+msgid "Pending review"
+msgstr "في انتظار المراجعة"
+
+msgid "Scheduled"
+msgstr "المقرر"
+
+msgid "Private"
+msgstr "خاص"
+
+msgid "Published"
+msgstr "تم النشر"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Trash"
+msgstr "سلة المهملات"
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Summary"
+msgstr "ملخص"
+
+msgid "Content"
+msgstr "المحتوى"
+
+msgid "Edit formatted content and blocks in the admin."
+msgstr "تحرير المحتوى المنسق والكتل في المشرف."
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Publish date"
+msgstr "تاريخ النشر"
+
+msgid "Categories"
+msgstr "الفئات"
+
+msgid "Tags"
+msgstr "العلامات"
+
+msgid "Featured image"
+msgstr "صورة مميزة"
+
+msgid "Author"
+msgstr "المؤلف"
+
+msgid "Modified"
+msgstr "معدلة"
+
+msgid "Last modified"
+msgstr "آخر تعديل"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "URL"
+msgstr "عنوان URL"
+
+msgid "Saved"
+msgstr "تم الحفظ"
+
+msgid "Quick edit"
+msgstr "تحرير سريع"
+
+msgid "Open in editor"
+msgstr "فتح في المحرر"
+
+msgid "View on site"
+msgstr "عرض على الموقع"
+
+msgid "Publish"
+msgstr "نشر"
+
+msgid "Move to trash"
+msgstr "الانتقال إلى سلة المهملات"
+
+msgid "Moved to trash"
+msgstr "تم النقل إلى سلة المهملات"
+
+msgid "New post"
+msgstr "وظيفة جديدة"
+
+msgid "Search posts"
+msgstr "بحث في المشاركات"
+
+msgid "No posts"
+msgstr "لا توجد مشاركات"
+
+msgid "Add your first post here."
+msgstr "أضف مشاركتك الأولى هنا."
+
+msgid "Move this post to the trash?"
+msgstr "هل تريد نقل هذه المشاركة إلى سلة المهملات؟"
+
+msgid "Page"
+msgstr "الصفحة"
+
+msgid "New page"
+msgstr "صفحة جديدة"
+
+msgid "Search pages"
+msgstr "صفحات البحث"
+
+msgid "No pages"
+msgstr "لا توجد صفحات"
+
+msgid "Add your first page here."
+msgstr "أضف صفحتك الأولى هنا."
+
+msgid "Move this page to the trash?"
+msgstr "هل تريد نقل هذه الصفحة إلى سلة المهملات؟"
+
+msgid "Approved"
+msgstr "تمت الموافقة عليه"
+
+msgid "Spam"
+msgstr "البريد العشوائي"
+
+msgid "Site"
+msgstr "الموقع"
+
+msgid "Search media"
+msgstr "بحث في الوسائط"
+
+msgid "Image"
+msgstr "صورة"
+
+msgid "Video"
+msgstr "فيديو"
+
+msgid "Audio"
+msgstr "الصوت"
+
+msgid "Document"
+msgstr "وثيقة"
+
+msgid "No media"
+msgstr "لا وسائل الإعلام"
+
+msgid "Upload from the camera or gallery."
+msgstr "تحميل من الكاميرا أو المعرض."
+
+msgid "Alt text"
+msgstr "نص بديل"
+
+msgid "Size"
+msgstr "الحجم"
+
+msgid "Uploaded"
+msgstr "تم الرفع"
+
+msgid "A short description for screen readers and search engines."
+msgstr "وصف موجز لقارئات الشاشة ومحركات البحث."
+
+msgid "Caption"
+msgstr "تسمية توضيحية"
+
+msgid "Search comments"
+msgstr "بحث في التعليقات"
+
+msgid "No comments"
+msgstr "لا تعليقات"
+
+msgid "No comments with this status."
+msgstr "لا توجد تعليقات مع هذه الحالة."
+
+msgid "Comment"
+msgstr "التعليق"
+
+msgid "IP"
+msgstr "الملكية الفكرية"
+
+msgid "Name or email"
+msgstr "الاسم أو البريد الإلكتروني"
+
+msgid "Username"
+msgstr "اسم المستخدم"
+
+msgid "Website"
+msgstr "موقع الكتروني"
+
+msgid "Registered"
+msgstr "مسجل"
+
+msgid "Last name"
+msgstr "الاسم الأخير"
+
+msgid "Display name"
+msgstr "اسم العرض"
+
+msgid "Password"
+msgstr "كلمة المرور"
+
+msgid "Leave empty to keep it."
+msgstr "اتركها فارغة للاحتفاظ بها."
+
+msgid "General settings"
+msgstr "الإعدادات العامة"
+
+msgid "Site title"
+msgstr "عنوان الموقع"
+
+msgid "Tagline"
+msgstr "سطر الوصف"
+
+msgid "Administration email"
+msgstr "البريد الإلكتروني للإدارة"
+
+msgid "Timezone"
+msgstr "المنطقة الزمنية"
+
+msgid "Example: Europe/Istanbul"
+msgstr "مثال: أوروبا/اسطنبول"
+
+msgid "Date format"
+msgstr "تنسيق التاريخ"
+
+msgid "Time format"
+msgstr "تنسيق الوقت"
+
+msgid "Week starts on"
+msgstr "يبدأ الأسبوع في"
+
+msgid "Monday"
+msgstr "الاثنين"
+
+msgid "Sunday"
+msgstr "الأحد"
+
+msgid "Saturday"
+msgstr "السبت"
+
+msgid "Reading settings"
+msgstr "إعدادات القراءة"
+
+msgid "Your homepage displays"
+msgstr "يتم عرض صفحتك الرئيسية"
+
+msgid "Latest posts"
+msgstr "أحدث المشاركات"
+
+msgid "A static page"
+msgstr "صفحة ثابتة"
+
+msgid "Homepage"
+msgstr "الصفحة الرئيسية"
+
+msgid "Posts page"
+msgstr "صفحة المشاركات"
+
+msgid "Posts per page"
+msgstr "المشاركات لكل صفحة"
+
+msgid "Discussion settings"
+msgstr "إعدادات المناقشة"
+
+msgid "Comments on new posts"
+msgstr "التعليقات على المشاركات الجديدة"
+
+msgid "Pingbacks"
+msgstr "تنبيهات"
+
+msgid "Plugins"
+msgstr "الإضافات"
+
+msgid "Search plugins"
+msgstr "البحث في الإضافات"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Inactive"
+msgstr "غير نشط"
+
+msgid "Upload"
+msgstr "تحميل"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Share"
+msgstr "شارك"
+
+msgid "Delete permanently"
+msgstr "حذف نهائيا"
+
+msgid "Delete this file permanently?"
+msgstr "هل تريد حذف هذا الملف نهائيًا؟"
+
+msgid "It disappears from the pages that use it."
+msgstr "ويختفي من الصفحات التي تستخدمه."
+
+msgid "Deleted"
+msgstr "تم الحذف"
+
+msgid "Reply"
+msgstr "رد"
+
+msgid "Reply sent"
+msgstr "تم إرسال الرد"
+
+msgid "Open in admin"
+msgstr "فتح في المشرف"
+
+msgid "New user"
+msgstr "مستخدم جديد"
+
+msgid "Activate"
+msgstr "تفعيل"
+
+msgid "Activated"
+msgstr "تفعيلها"
+
+msgid "Deactivate"
+msgstr "إلغاء التنشيط"
+
+msgid "Deactivate this plugin?"
+msgstr "هل تريد إلغاء تنشيط هذا البرنامج المساعد؟"
+
+msgid "Deactivated"
+msgstr "معطل"
+
+msgid "Approve"
+msgstr "موافقة"
+
+msgid "Unapprove"
+msgstr "عدم الموافقة"
+
+msgid "Moved to pending"
+msgstr "تم النقل إلى المعلقة"
+
+msgid "Marked as spam"
+msgstr "تم وضع علامة عليها كرسالة غير مرغوب فيها"
+
+msgid "My donations"
+msgstr "تبرعاتي"
+
+msgid "Total donated"
+msgstr "إجمالي التبرعات"
+
+msgid "Donations"
+msgstr "التبرعات"
+
+msgid "Certificates"
+msgstr "الشهادات"
+
+msgid "No donations yet"
+msgstr "لا توجد تبرعات حتى الآن"
+
+msgid "Your donations show up here."
+msgstr "تبرعاتك تظهر هنا."
+
+msgid "Amount"
+msgstr "المبلغ"
+
+msgid "Items"
+msgstr "العناصر"
+
+msgid "My certificates"
+msgstr "شهاداتي"
+
+msgid "No certificates"
+msgstr "لا شهادات"
+
+msgid "Certificates for your sapling donations show up here."
+msgstr "تظهر شهادات تبرعاتك بالشتلات هنا."
+
+msgid "Donate"
+msgstr "تبرع"
+
+msgid "View order"
+msgstr "عرض الطلب"
+
+msgid "PDF"
+msgstr "قوات الدفاع الشعبي"
+
+msgid "Store"
+msgstr "متجر"
+
+msgid "Orders"
+msgstr "أوامر"
+
+msgid "Order"
+msgstr "النظام"
+
+msgid "Customer"
+msgstr "العميل"
+
+msgid "Order number, name or email"
+msgstr "رقم الطلب أو الاسم أو البريد الإلكتروني"
+
+msgid "Processing"
+msgstr "المعالجة"
+
+msgid "Cancelled"
+msgstr "تم الإلغاء"
+
+msgid "No orders"
+msgstr "لا أوامر"
+
+msgid "No orders with this status."
+msgstr "لا توجد طلبات بهذه الحالة."
+
+msgid "Payment"
+msgstr "الدفع"
+
+msgid "Products"
+msgstr "المنتجات"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Customer note"
+msgstr "ملاحظة العميل"
+
+msgid "Order notes"
+msgstr "ملاحظات الطلب"
+
+msgid "Sent to customer"
+msgstr "تم إرسالها إلى العميل"
+
+msgid "No notes"
+msgstr "لا توجد ملاحظات"
+
+msgid "Product name or SKU"
+msgstr "اسم المنتج أو SKU"
+
+msgid "Stock"
+msgstr "المخزون"
+
+msgid "In stock"
+msgstr "في المخزون"
+
+msgid "Out of stock"
+msgstr "نفاد المخزون"
+
+msgid "On backorder"
+msgstr "على المؤجل"
+
+msgid "Product"
+msgstr "المنتج"
+
+msgid "Price"
+msgstr "السعر"
+
+msgid "Sale price"
+msgstr "سعر البيع"
+
+msgid "Manage stock"
+msgstr "إدارة المخزون"
+
+msgid "Stock status"
+msgstr "حالة المخزون"
+
+msgid "Customers"
+msgstr "العملاء"
+
+msgid "City"
+msgstr "المدينة"
+
+msgid "Completed"
+msgstr "مكتمل"
+
+msgid "Order completed"
+msgstr "اكتمل الطلب"
+
+msgid "Change status"
+msgstr "تغيير الحالة"
+
+msgid "Order status"
+msgstr "حالة الطلب"
+
+msgid "Updated"
+msgstr "تم التحديث"
+
+msgid "Add note"
+msgstr "أضف ملاحظة"
+
+msgid "Order note"
+msgstr "ملاحظة الطلب"
+
+msgid "Note"
+msgstr "ملاحظة"
+
+msgid "Send to customer"
+msgstr "إرسال إلى العميل"
+
+msgid "Note added"
+msgstr "تمت إضافة الملاحظة"
+
+msgid "Notes"
+msgstr "ملاحظات"
+
+msgid "Call"
+msgstr "اتصل"
+
+msgid "\\nYetkiniz yok.\\n"
+msgstr "\\nيتكينيز يوك.\\n"
+
+msgid "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]"
+msgstr "[['جانب الخادم من تطبيق FluxWP لسطح المكتب والجوال: تسجيل الدخول إلى OAuth 2.0 (PKCE)، والأجهزة والدفع، وعرض التطبيق (التكوين)، وعرض المكونات الإضافية (البيان)، وجلسة اللوحة. يتصل عملاء MCP أيضًا عبر OAuth.', 'tr']]"

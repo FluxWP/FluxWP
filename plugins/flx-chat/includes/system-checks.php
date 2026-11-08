@@ -58,13 +58,13 @@ function flxc_system_checks() {
 		);
 		if ( '' !== $tab ) {
 			$c['action_url']   = $set . $tab;
-			$c['action_label'] = '' !== $action ? $action : __( 'Ayarları aç', 'flx-chat' );
+			$c['action_label'] = '' !== $action ? $action : __( 'Open settings', 'flx-chat' );
 		}
 		$out[] = $c;
 	};
-	$g_base = __( 'Çağrı Merkezi · Kurulum', 'flx-chat' );
-	$g_wa   = __( 'Çağrı Merkezi · WhatsApp', 'flx-chat' );
-	$g_ai   = __( 'Çağrı Merkezi · Yapay zekâ', 'flx-chat' );
+	$g_base = __( 'Call Center · Setup', 'flx-chat' );
+	$g_wa   = __( 'Call Center · WhatsApp', 'flx-chat' );
+	$g_ai   = __( 'Call Center · AI', 'flx-chat' );
 
 	/* --- Kurulum --- */
 	global $wpdb;
@@ -77,20 +77,20 @@ function flxc_system_checks() {
 	}
 	if ( $miss ) {
 		/* translators: %s: table names */
-		$add( 'db', $g_base, __( 'Veritabanı tabloları', 'flx-chat' ), 'error', sprintf( __( 'Eksik tablo: %s. Eklentiyi devre dışı bırakıp yeniden etkinleştirin.', 'flx-chat' ), implode( ', ', $miss ) ) );
+		$add( 'db', $g_base, __( 'Database tables', 'flx-chat' ), 'error', sprintf( __( 'Missing table: %s. Deactivate and reactivate the plugin.', 'flx-chat' ), implode( ', ', $miss ) ) );
 	} else {
 		/* translators: %s: db version */
-		$add( 'db', $g_base, __( 'Veritabanı tabloları', 'flx-chat' ), $db_ok ? 'ok' : 'warning', $db_ok ? sprintf( __( 'Tablolar hazır (şema %s).', 'flx-chat' ), FLXC_DB_VERSION ) : __( 'Şema güncellemesi bekliyor; yönetim panelinde bir sayfa açınca tamamlanır.', 'flx-chat' ) );
+		$add( 'db', $g_base, __( 'Database tables', 'flx-chat' ), $db_ok ? 'ok' : 'warning', $db_ok ? sprintf( __( 'Tables ready (schema %s).', 'flx-chat' ), FLXC_DB_VERSION ) : __( 'Schema update pending; it completes when you open a page in the admin panel.', 'flx-chat' ) );
 	}
 
 	$up  = wp_upload_dir( null, false );
 	$dir = trailingslashit( $up['basedir'] ) . 'flx-chat';
 	if ( ! is_dir( $dir ) ? ! wp_is_writable( $up['basedir'] ) : ! wp_is_writable( $dir ) ) {
-		$add( 'media', $g_base, __( 'Medya klasörü', 'flx-chat' ), 'error', __( 'uploads/flx-chat klasörüne yazılamıyor; gelen fotoğraf, ses ve belgeler kaydedilemez. Klasör izinlerini kontrol edin.', 'flx-chat' ) );
+		$add( 'media', $g_base, __( 'Media folder', 'flx-chat' ), 'error', __( 'Cannot write to uploads/flx-chat; incoming photos, voice notes and documents cannot be saved. Check folder permissions.', 'flx-chat' ) );
 	} elseif ( is_dir( $dir ) && ! file_exists( $dir . '/.htaccess' ) ) {
-		$add( 'media', $g_base, __( 'Medya klasörü', 'flx-chat' ), 'warning', __( 'Klasör koruması (.htaccess) yok; ilk medya kaydında oluşturulur.', 'flx-chat' ) );
+		$add( 'media', $g_base, __( 'Media folder', 'flx-chat' ), 'warning', __( 'Folder protection (.htaccess) missing; it is created with the first saved media.', 'flx-chat' ) );
 	} else {
-		$add( 'media', $g_base, __( 'Medya klasörü', 'flx-chat' ), 'ok', __( 'Yazılabilir ve dışarıya kapalı.', 'flx-chat' ) );
+		$add( 'media', $g_base, __( 'Media folder', 'flx-chat' ), 'ok', __( 'Writable and closed to the public.', 'flx-chat' ) );
 	}
 
 	$add(
@@ -98,39 +98,39 @@ function flxc_system_checks() {
 		$g_base,
 		__( 'PHP cURL', 'flx-chat' ),
 		function_exists( 'curl_multi_init' ) ? 'ok' : 'warning',
-		function_exists( 'curl_multi_init' ) ? __( 'Var.', 'flx-chat' ) : __( 'Yok; asistan cevap hazırlarken "yazıyor…" göstergesi yalnız kısa süre görünür.', 'flx-chat' )
+		function_exists( 'curl_multi_init' ) ? __( 'Available.', 'flx-chat' ) : __( 'Missing; while the assistant prepares a reply the "typing…" indicator shows only briefly.', 'flx-chat' )
 	);
 
 	$agents = count_users();
 	$n_ag   = (int) ( $agents['avail_roles']['flxc_agent'] ?? 0 );
 	/* translators: %d: count */
-	$add( 'agents', $g_base, __( 'Temsilciler', 'flx-chat' ), 'info', $n_ag ? sprintf( __( 'Temsilci rolündeki kullanıcı sayısı: %d.', 'flx-chat' ), $n_ag ) : __( 'Temsilci rolünde kullanıcı yok; şimdilik yalnız yöneticiler kullanabilir.', 'flx-chat' ) );
+	$add( 'agents', $g_base, __( 'Agents', 'flx-chat' ), 'info', $n_ag ? sprintf( __( 'Users with the agent role: %d.', 'flx-chat' ), $n_ag ) : __( 'No user has the agent role; only administrators can use it for now.', 'flx-chat' ) );
 
 	$last_sync = (int) get_option( 'flxc_last_sync', 0 );
 	$add(
 		'polling',
 		$g_base,
-		__( 'Panelin canlı güncellemesi', 'flx-chat' ),
+		__( 'Live panel updates', 'flx-chat' ),
 		$last_sync && time() - $last_sync < 15 * MINUTE_IN_SECONDS ? 'ok' : 'info',
 		$last_sync ? sprintf(
 			/* translators: 1: ago, 2: seconds */
-			__( 'Son güncelleme isteği %1$s. Panel açıkken %2$d sn\'de bir yeni mesaj sorulur (arka plandaki sekmede 60 sn).', 'flx-chat' ),
+			__( 'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).', 'flx-chat' ),
 			flxc_ago( $last_sync ),
 			max( 5, (int) flxc_setting( 'poll_interval' ) )
-		) : __( 'Sohbet ekranı henüz hiç açılmadı.', 'flx-chat' ),
+		) : __( 'The chat screen has not been opened yet.', 'flx-chat' ),
 		'genel'
 	);
 
 	/* --- WhatsApp hatları --- */
 	$conns = flxc_connections();
 	if ( ! $conns ) {
-		$add( 'conn', $g_wa, __( 'WhatsApp hattı', 'flx-chat' ), 'error', __( 'Hiç hat eklenmemiş.', 'flx-chat' ), 'baglantilar', __( 'Hat ekle', 'flx-chat' ) );
+		$add( 'conn', $g_wa, __( 'WhatsApp line', 'flx-chat' ), 'error', __( 'No line added.', 'flx-chat' ), 'baglantilar', __( 'Add line', 'flx-chat' ) );
 	}
 	foreach ( $conns as $c ) {
 		$name = '' !== trim( $c['label'] ) ? $c['label'] : $c['id'];
 		$cfg  = flxc_connection_config( $c );
 		/* translators: %s: line name */
-		$lbl = sprintf( __( '%s: bağlantı bilgisi', 'flx-chat' ), $name );
+		$lbl = sprintf( __( '%s: connection details', 'flx-chat' ), $name );
 		if ( is_wp_error( $cfg ) ) {
 			$add( 'conn-' . $c['id'], $g_wa, $lbl, 'error', $cfg->get_error_message(), 'baglantilar' );
 			continue;
@@ -144,102 +144,102 @@ function flxc_system_checks() {
 				}
 			}
 			/* translators: %s: connection name */
-			$add( 'conn-' . $c['id'], $g_wa, $lbl, 'ok', sprintf( __( 'Flux Mail bağlantısı kullanılıyor: %s.', 'flx-chat' ), '' !== $name_flxi ? $name_flxi : '#' . (int) $c['provider_id'] ) );
+			$add( 'conn-' . $c['id'], $g_wa, $lbl, 'ok', sprintf( __( 'Using Flux Mail connection: %s.', 'flx-chat' ), '' !== $name_flxi ? $name_flxi : '#' . (int) $c['provider_id'] ) );
 		} elseif ( 'flxs' === $origin ) {
 			$add(
 				'conn-' . $c['id'],
 				$g_wa,
 				$lbl,
 				flxc_flxi_on() ? 'warning' : 'ok',
-				flxc_flxi_on() ? __( 'Hâlâ Flux Certificates\'daki eski sağlayıcı kullanılıyor; bağlantıyı Flux Mail\'e taşıyıp burada seçin.', 'flx-chat' ) : __( 'Flux Certificates\'daki Evolution sağlayıcısı kullanılıyor.', 'flx-chat' ),
+				flxc_flxi_on() ? __( 'Still using the old provider in Flux Certificates; move the connection to Flux Mail and select it here.', 'flx-chat' ) : __( 'Using the Evolution provider from Flux Certificates.', 'flx-chat' ),
 				flxc_flxi_on() ? 'baglantilar' : ''
 			);
 		} else {
-			$add( 'conn-' . $c['id'], $g_wa, $lbl, 'ok', __( 'API adresi, key ve instance bu eklentide girilmiş.', 'flx-chat' ) );
+			$add( 'conn-' . $c['id'], $g_wa, $lbl, 'ok', __( 'API URL, key and instance are entered in this plugin.', 'flx-chat' ) );
 		}
 
 		$st = flxc_connection_state( $c['id'] );
 		/* translators: %s: line name */
-		$lbl = sprintf( __( '%s: hat durumu', 'flx-chat' ), $name );
+		$lbl = sprintf( __( '%s: line status', 'flx-chat' ), $name );
 		if ( 'open' === $st['state'] ) {
 			/* translators: %s: ago */
-			$add( 'state-' . $c['id'], $g_wa, $lbl, 'ok', sprintf( __( 'Telefon bağlı (son bilgi %s).', 'flx-chat' ), flxc_ago( $st['at'] ) ) );
+			$add( 'state-' . $c['id'], $g_wa, $lbl, 'ok', sprintf( __( 'Phone connected (last seen %s).', 'flx-chat' ), flxc_ago( $st['at'] ) ) );
 		} elseif ( '' === $st['state'] ) {
-			$add( 'state-' . $c['id'], $g_wa, $lbl, 'warning', __( 'Henüz denenmedi. "Bağlantıyı test et" düğmesine basın.', 'flx-chat' ), 'baglantilar', __( 'Test et', 'flx-chat' ) );
+			$add( 'state-' . $c['id'], $g_wa, $lbl, 'warning', __( 'Not tested yet. Press "Test connection".', 'flx-chat' ), 'baglantilar', __( 'Test', 'flx-chat' ) );
 		} else {
 			/* translators: 1: state, 2: ago */
-			$add( 'state-' . $c['id'], $g_wa, $lbl, 'error', sprintf( __( 'Telefon bağlı değil (durum: %1$s, %2$s). "QR ile bağla" ile yeniden bağlayın.', 'flx-chat' ), $st['state'], flxc_ago( $st['at'] ) ), 'baglantilar' );
+			$add( 'state-' . $c['id'], $g_wa, $lbl, 'error', sprintf( __( 'Phone not connected (state: %1$s, %2$s). Reconnect with "Connect with QR".', 'flx-chat' ), $st['state'], flxc_ago( $st['at'] ) ), 'baglantilar' );
 		}
 
 		$ver = flxc_evo_version( $c['id'], false );
 		if ( '' !== $ver && version_compare( $ver, '2.3', '<' ) ) {
 			/* translators: %s: line name */
-			$lbl = sprintf( __( '%s: Evolution API sürümü', 'flx-chat' ), $name );
+			$lbl = sprintf( __( '%s: Evolution API version', 'flx-chat' ), $name );
 			/* translators: %s: Evolution API version */
-			$add( 'evo-ver-' . $c['id'], $g_wa, $lbl, 'warning', sprintf( __( 'Evolution API %s kullanılıyor. Gizli numaralı (@lid) kişilere cevap gitmeyebilir; sunucuyu 2.3 veya üstüne güncelleyin.', 'flx-chat' ), $ver ), 'baglantilar' );
+			$add( 'evo-ver-' . $c['id'], $g_wa, $lbl, 'warning', sprintf( __( 'Evolution API %s is in use. Replies to hidden-number (@lid) contacts may fail; update the server to 2.3 or later.', 'flx-chat' ), $ver ), 'baglantilar' );
 		}
 
 		$wh  = (int) get_option( 'flxc_last_webhook_' . $c['id'] );
 		/* translators: %s: line name */
-		$lbl = sprintf( __( '%s: webhook (gelen mesajlar)', 'flx-chat' ), $name );
+		$lbl = sprintf( __( '%s: webhook (incoming messages)', 'flx-chat' ), $name );
 		if ( ! $wh ) {
-			$add( 'webhook-' . $c['id'], $g_wa, $lbl, 'error', __( 'Evolution\'dan hiç olay gelmedi; gelen mesajlar panele düşmez. "Webhook\'u kur" düğmesine basın.', 'flx-chat' ), 'baglantilar', __( 'Webhook\'u kur', 'flx-chat' ) );
+			$add( 'webhook-' . $c['id'], $g_wa, $lbl, 'error', __( 'No events have arrived from Evolution; incoming messages will not show in the panel. Press "Set up webhook".', 'flx-chat' ), 'baglantilar', __( 'Set up webhook', 'flx-chat' ) );
 		} elseif ( time() - $wh > DAY_IN_SECONDS ) {
 			/* translators: %s: ago */
-			$add( 'webhook-' . $c['id'], $g_wa, $lbl, 'warning', sprintf( __( 'Son olay %s geldi. Hat sessiz olabilir; emin olmak için kendinize mesaj atın ya da webhook\'u yeniden kurun.', 'flx-chat' ), flxc_ago( $wh ) ), 'baglantilar' );
+			$add( 'webhook-' . $c['id'], $g_wa, $lbl, 'warning', sprintf( __( 'Last event arrived %s. The line may just be quiet; send yourself a message or set up the webhook again to be sure.', 'flx-chat' ), flxc_ago( $wh ) ), 'baglantilar' );
 		} else {
 			/* translators: %s: ago */
-			$add( 'webhook-' . $c['id'], $g_wa, $lbl, 'ok', sprintf( __( 'Son olay %s geldi.', 'flx-chat' ), flxc_ago( $wh ) ) );
+			$add( 'webhook-' . $c['id'], $g_wa, $lbl, 'ok', sprintf( __( 'Last event arrived %s.', 'flx-chat' ), flxc_ago( $wh ) ) );
 		}
 	}
 	$add(
 		'flxi',
 		$g_wa,
-		__( 'Flux Mail entegrasyonu', 'flx-chat' ),
+		__( 'Flux Mail integration', 'flx-chat' ),
 		flxc_flxi_on() ? 'ok' : 'info',
-		flxc_flxi_on() ? __( 'Etkin: WhatsApp bağlantıları İletişim › Bağlantılar\'dan alınır.', 'flx-chat' ) : __( 'Flux Mail etkin değil; bağlantılar Flux Certificates\'dan ya da bu eklentiden alınır.', 'flx-chat' )
+		flxc_flxi_on() ? __( 'Active: WhatsApp connections are taken from Communication › Connections.', 'flx-chat' ) : __( 'Flux Mail is not active; connections are taken from Flux Certificates or from this plugin.', 'flx-chat' )
 	);
 	$add(
 		'flxs',
 		$g_wa,
-		__( 'Flux Certificates entegrasyonu', 'flx-chat' ),
+		__( 'Flux Certificates integration', 'flx-chat' ),
 		function_exists( 'flxs_get_provider' ) ? 'ok' : 'info',
-		function_exists( 'flxs_get_provider' ) ? __( 'Etkin: sohbetten sertifika oluşturulup gönderilebilir.', 'flx-chat' ) : __( 'Flux Certificates etkin değil; sohbetten sertifika işlemleri kapalı.', 'flx-chat' )
+		function_exists( 'flxs_get_provider' ) ? __( 'Active: certificates can be created and sent from chats.', 'flx-chat' ) : __( 'Flux Certificates is not active; certificate actions in chats are off.', 'flx-chat' )
 	);
 	$add(
 		'flxb',
 		$g_wa,
-		__( 'Flux Donate entegrasyonu', 'flx-chat' ),
+		__( 'Flux Donate integration', 'flx-chat' ),
 		flxc_flxb_on() ? 'ok' : 'info',
-		flxc_flxb_on() ? __( 'Etkin: sohbetten bağış kaydı, dekont eşleştirme ve asistan kullanılabilir.', 'flx-chat' ) : __( 'Flux Donate etkin değil; bağış kaydı, dekont eşleştirme ve bağış asistanı kapalı.', 'flx-chat' )
+		flxc_flxb_on() ? __( 'Active: donation records, receipt matching and the assistant are available from chats.', 'flx-chat' ) : __( 'Flux Donate is not active; donation records, receipt matching and the donation assistant are off.', 'flx-chat' )
 	);
 
 	/* --- Yapay zekâ --- */
 	$ai_label = 'Flux AI · ' . implode( ' + ', flxc_ai_provider_list() );
 	if ( ! flxc_ai_hub() ) {
-		$add( 'ai', $g_ai, __( 'Yapay zekâ bağlantısı', 'flx-chat' ), flxc_setting( 'bot_enabled' ) ? 'error' : 'warning', __( 'Flux AI & MCP eklentisi kurulu değil; yapay zekâ özellikleri (öneri, asistan, dekont okuma, sesli mesaj, özet) kapalı. Flux AI\'yi kurup anahtarı oraya girin.', 'flx-chat' ), 'ai' );
+		$add( 'ai', $g_ai, __( 'AI connection', 'flx-chat' ), flxc_setting( 'bot_enabled' ) ? 'error' : 'warning', __( 'The Flux AI & MCP plugin is not installed; AI features (suggestions, assistant, receipt reading, voice messages, summaries) are off. Install Flux AI and enter the key there.', 'flx-chat' ), 'ai' );
 	} elseif ( ! flxc_ai_has_key() ) {
-		$add( 'ai', $g_ai, __( 'Yapay zekâ bağlantısı', 'flx-chat' ), 'info', __( 'Flux AI\'de anahtar girilmemiş; mesaj önerisi ve asistan kapalı.', 'flx-chat' ), 'ai' );
+		$add( 'ai', $g_ai, __( 'AI connection', 'flx-chat' ), 'info', __( 'No key has been entered in Flux AI; message suggestions and the assistant are off.', 'flx-chat' ), 'ai' );
 	} elseif ( '' === flxc_ai_model() ) {
-		$add( 'ai', $g_ai, $ai_label, 'warning', __( 'Anahtar var ama model seçilmemiş.', 'flx-chat' ), 'ai' );
+		$add( 'ai', $g_ai, $ai_label, 'warning', __( 'Key saved but no model selected.', 'flx-chat' ), 'ai' );
 	} elseif ( ! flxc_ai_ready() ) {
 		/* translators: %s: model id */
-		$add( 'ai', $g_ai, $ai_label, 'error', sprintf( __( 'Seçili model (%s) için Flux AI\'de sağlayıcının anahtarı girilmemiş.', 'flx-chat' ), flxc_ai_model() ), 'ai' );
+		$add( 'ai', $g_ai, $ai_label, 'error', sprintf( __( 'No provider key has been entered in Flux AI for the selected model (%s).', 'flx-chat' ), flxc_ai_model() ), 'ai' );
 	} else {
 		/* translators: %s: model id */
-		$add( 'ai', $g_ai, $ai_label, 'ok', sprintf( __( 'Anahtar kayıtlı, model: %s. Canlı deneme için "Bağlantıyı test et".', 'flx-chat' ), flxc_ai_model() ), 'ai', __( 'Test et', 'flx-chat' ) );
+		$add( 'ai', $g_ai, $ai_label, 'ok', sprintf( __( 'Key saved, model: %s. Use "Test connection" for a live check.', 'flx-chat' ), flxc_ai_model() ), 'ai', __( 'Test', 'flx-chat' ) );
 	}
 
 	if ( ! flxc_setting( 'bot_enabled' ) ) {
-		$add( 'bot', $g_ai, __( 'Bağış asistanı', 'flx-chat' ), 'info', __( 'Kapalı.', 'flx-chat' ), 'ai' );
+		$add( 'bot', $g_ai, __( 'Donation assistant', 'flx-chat' ), 'info', __( 'Off.', 'flx-chat' ), 'ai' );
 	} else {
-		$problem = ! flxc_ai_ready() ? __( 'Yapay zekâ anahtarı veya modeli eksik.', 'flx-chat' ) : flxc_ai_types_problem();
+		$problem = ! flxc_ai_ready() ? __( 'AI key or model is missing.', 'flx-chat' ) : flxc_ai_types_problem();
 		if ( '' !== $problem ) {
-			$add( 'bot', $g_ai, __( 'Bağış asistanı', 'flx-chat' ), 'error', __( 'Açık ama konuşmuyor: ', 'flx-chat' ) . $problem, 'ai' );
+			$add( 'bot', $g_ai, __( 'Donation assistant', 'flx-chat' ), 'error', __( 'On but not replying: ', 'flx-chat' ) . $problem, 'ai' );
 		} else {
 			$names = wp_list_pluck( flxc_ai_types(), 'title' );
 			/* translators: %s: type names */
-			$add( 'bot', $g_ai, __( 'Bağış asistanı', 'flx-chat' ), 'ok', sprintf( __( 'Açık. Sunulan bağış türleri: %s.', 'flx-chat' ), implode( ', ', $names ) ), 'ai' );
+			$add( 'bot', $g_ai, __( 'Donation assistant', 'flx-chat' ), 'ok', sprintf( __( 'On. Donation types offered: %s.', 'flx-chat' ), implode( ', ', $names ) ), 'ai' );
 
 			// Model araç (tools) destekliyor mu? Yalnız önbellekteki model listesine bakılır.
 			$cache = get_transient( 'flxc_ai_models_all' );
@@ -248,7 +248,7 @@ function flxc_system_checks() {
 				foreach ( $cache as $m ) {
 					if ( $m['id'] === $bm && empty( $m['tools'] ) ) {
 						/* translators: %s: model id */
-						$add( 'bot-tools', $g_ai, __( 'Asistan modeli', 'flx-chat' ), 'error', sprintf( __( '%s araç (tools) desteklemiyor; asistan için araç destekli bir model seçin.', 'flx-chat' ), $bm ), 'ai' );
+						$add( 'bot-tools', $g_ai, __( 'Assistant model', 'flx-chat' ), 'error', sprintf( __( '%s does not support tools; choose a tool-capable model for the assistant.', 'flx-chat' ), $bm ), 'ai' );
 					}
 				}
 			}
@@ -257,7 +257,7 @@ function flxc_system_checks() {
 				foreach ( $cache as $m ) {
 					if ( $m['id'] === $vm && isset( $m['vision'] ) && ! $m['vision'] ) {
 						/* translators: %s: model id */
-						$add( 'bot-vision', $g_ai, __( 'Dekont okuma modeli', 'flx-chat' ), 'warning', sprintf( __( '%s görsel okuyamıyor; dekont ön kontrolü çalışmaz. Görsel destekli bir dekont okuma modeli seçin.', 'flx-chat' ), $vm ), 'ai' );
+						$add( 'bot-vision', $g_ai, __( 'Receipt reading model', 'flx-chat' ), 'warning', sprintf( __( '%s cannot read images; the receipt pre-check will not work. Choose an image-capable receipt reading model.', 'flx-chat' ), $vm ), 'ai' );
 					}
 				}
 			}
@@ -266,17 +266,17 @@ function flxc_system_checks() {
 			$add(
 				'bot-bank',
 				$g_ai,
-				__( 'Asistanın ödeme bilgileri', 'flx-chat' ),
+				__( 'Assistant payment details', 'flx-chat' ),
 				'' !== $acc['holder'] && '' !== $acc['iban'] ? 'ok' : 'error',
-				'' !== $acc['holder'] && '' !== $acc['iban'] ? __( 'Alıcı adı ve IBAN tanımlı.', 'flx-chat' ) : __( 'Alıcı adı veya IBAN eksik; onaydan sonra havale bilgisi gönderilemez.', 'flx-chat' ),
+				'' !== $acc['holder'] && '' !== $acc['iban'] ? __( 'Recipient name and IBAN set.', 'flx-chat' ) : __( 'Recipient name or IBAN missing; bank details cannot be sent after confirmation.', 'flx-chat' ),
 				'ai'
 			);
 			$add(
 				'bot-link',
 				$g_ai,
-				__( 'Bağış sayfası linki', 'flx-chat' ),
+				__( 'Donation page link', 'flx-chat' ),
 				'' !== flxc_donate_url() ? 'ok' : 'warning',
-				'' !== flxc_donate_url() ? flxc_donate_url() : __( 'Bağış sayfası bulunamadı; asistan link göndermez.', 'flx-chat' ),
+				'' !== flxc_donate_url() ? flxc_donate_url() : __( 'Donation page not found; the assistant will not send a link.', 'flx-chat' ),
 				'ai'
 			);
 		}
@@ -285,7 +285,7 @@ function flxc_system_checks() {
 	$lb = get_option( 'flxc_loopback_err' );
 	if ( is_array( $lb ) && (int) $lb['at'] > time() - DAY_IN_SECONDS && (int) $lb['at'] > (int) get_option( 'flxc_loopback_ok', 0 ) ) {
 		/* translators: 1: time ago, 2: error */
-		$add( 'loopback', $g_base, __( 'Arka plan istekleri', 'flx-chat' ), 'warning', sprintf( __( 'Site kendine arka plan isteği atamadı (%1$s: %2$s). Sıradaki cevaplar ve benchmark yavaş ilerleyebilir; güvenlik eklentisi ya da sunucu güvenlik duvarı /wp-json/flx-chat/ isteklerini engelliyor olabilir.', 'flx-chat' ), flxc_ago( (int) $lb['at'] ), (string) $lb['msg'] ) );
+		$add( 'loopback', $g_base, __( 'Background requests', 'flx-chat' ), 'warning', sprintf( __( 'The site could not send a background request to itself (%1$s: %2$s). Queued replies and the benchmark may move slowly; a security plugin or the server firewall may be blocking /wp-json/flx-chat/ requests.', 'flx-chat' ), flxc_ago( (int) $lb['at'] ), (string) $lb['msg'] ) );
 	}
 	return $out;
 }
@@ -300,7 +300,7 @@ function flxc_render_system_checks( array $checks ) {
 	$count = array_count_values( wp_list_pluck( $checks, 'status' ) );
 	?>
 	<div class="flxcs-chk-sum">
-		<?php foreach ( array( 'error' => __( 'hata', 'flx-chat' ), 'warning' => __( 'uyarı', 'flx-chat' ), 'ok' => __( 'tamam', 'flx-chat' ) ) as $k => $l ) : ?>
+		<?php foreach ( array( 'error' => __( 'error', 'flx-chat' ), 'warning' => __( 'warning', 'flx-chat' ), 'ok' => __( 'ok', 'flx-chat' ) ) as $k => $l ) : ?>
 			<span class="flxcs-chk-pill is-<?php echo esc_attr( $k ); ?>"><?php echo (int) ( $count[ $k ] ?? 0 ) . ' ' . esc_html( $l ); ?></span>
 		<?php endforeach; ?>
 	</div>
@@ -312,7 +312,7 @@ function flxc_render_system_checks( array $checks ) {
 					<span class="flxcs-chk-ic" aria-hidden="true"><?php echo esc_html( $icons[ $c['status'] ] ?? 'i' ); ?></span>
 					<div class="flxcs-chk-tx"><strong><?php echo esc_html( $c['label'] ); ?></strong><span><?php echo esc_html( $c['message'] ); ?></span></div>
 					<?php if ( ! empty( $c['action_url'] ) ) : ?>
-						<a class="flxcs-btn flxcs-btn-sm" href="<?php echo esc_url( $c['action_url'] ); ?>"><?php echo esc_html( $c['action_label'] ?? __( 'Aç', 'flx-chat' ) ); ?></a>
+						<a class="flxcs-btn flxcs-btn-sm" href="<?php echo esc_url( $c['action_url'] ); ?>"><?php echo esc_html( $c['action_label'] ?? __( 'Open', 'flx-chat' ) ); ?></a>
 					<?php endif; ?>
 				</li>
 			<?php endforeach; ?>

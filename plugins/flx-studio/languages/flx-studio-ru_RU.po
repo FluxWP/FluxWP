@@ -1,0 +1,950 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "General"
+msgstr "Общий"
+
+msgid "Person (face/identity)"
+msgstr "Человек (лицо/личность)"
+
+msgid "Style"
+msgstr "Стиль"
+
+msgid "Product"
+msgstr "Продукт"
+
+msgid "Background"
+msgstr "Фон"
+
+msgid "Composition"
+msgstr "Состав"
+
+msgid "First frame"
+msgstr "Первый кадр"
+
+msgid "Last frame"
+msgstr "Последний кадр"
+
+msgid "Auto"
+msgstr "Авто"
+
+msgid "Low"
+msgstr "Низкий"
+
+msgid "Medium"
+msgstr "Средний"
+
+msgid "High"
+msgstr "Высокий"
+
+msgid "Theme: system"
+msgstr "Тема: система"
+
+msgid "Theme: light"
+msgstr "Тема: свет"
+
+msgid "Theme: dark"
+msgstr "Тема: темная"
+
+msgid "Opening Studio…"
+msgstr "Открытие студии..."
+
+msgid "Try again"
+msgstr "Попробуйте еще раз"
+
+msgid "Search prompt, title or model"
+msgstr "Поисковая строка, название или модель"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Select"
+msgstr "Выбрать"
+
+msgid "To generate images and videos, enter at least one key (fal.ai, EvoLink…) in Flux AI & MCP › Settings › Images and video."
+msgstr "Для создания изображений и видео введите хотя бы один ключ (fal.ai, EvoLink...) в Flux AI & MCP › Настройки › Изображения и видео."
+
+msgid "Flux AI (0.6.0+) is not installed. Generation runs through Flux AI."
+msgstr "Flux AI (0.6.0+) не установлен. Генерация происходит через Flux AI."
+
+msgid "Flux AI settings"
+msgstr "Настройки Flux AI"
+
+msgid "Mine"
+msgstr "Мой"
+
+msgid "Everyone"
+msgstr "Все"
+
+msgid "Studio"
+msgstr "Студия"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Favorites"
+msgstr "Избранное"
+
+msgid "Images"
+msgstr "Изображения"
+
+msgid "Videos"
+msgstr "Видео"
+
+msgid "Dashboard"
+msgstr "Панель управления"
+
+msgid "Folders"
+msgstr "Папки"
+
+msgid "New folder"
+msgstr "Новая папка"
+
+msgid "Unfiled"
+msgstr "Не подшитый"
+
+msgid "Shared with the team"
+msgstr "Поделился с командой"
+
+msgid "Folder actions"
+msgstr "Действия с папками"
+
+msgid "People"
+msgstr "Люди"
+
+msgid "Add person"
+msgstr "Добавить человека"
+
+msgid "{name} — add to generation"
+msgstr "{name}— добавить в генерацию"
+
+msgid "Add people for face references; use them by typing @name in the prompt."
+msgstr "Добавляйте людей для ссылок на лица; используйте их, набрав @name в командной строке."
+
+msgid "Manage people"
+msgstr "Управляйте людьми"
+
+msgid "Back to dashboard"
+msgstr "Вернуться к панели управления"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "Studio settings"
+msgstr "Настройки студии"
+
+msgid "Flux AI spending limit"
+msgstr "Лимит расходов Flux AI"
+
+msgid "Folder"
+msgstr "Папка"
+
+msgid "Subfolder"
+msgstr "Подпапка"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Folder created"
+msgstr "Папка создана"
+
+msgid "Rename"
+msgstr "Переименовать"
+
+msgid "Folder name"
+msgstr "Имя папки"
+
+msgid "Stop sharing"
+msgstr "Прекратить делиться"
+
+msgid "Share with team"
+msgstr "Поделиться с командой"
+
+msgid "Folder is shared with the team"
+msgstr "Папка доступна всей команде"
+
+msgid "Folder is private"
+msgstr "Папка является частной"
+
+msgid "Delete folder"
+msgstr "Удалить папку"
+
+msgid "Delete folder?"
+msgstr "Удалить папку?"
+
+msgid "Its items and subfolders move up one level; no files are deleted."
+msgstr "Его элементы и подпапки перемещаются на один уровень вверх; никакие файлы не удаляются."
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "{n} items moved"
+msgstr "Элементы{n}перемещены."
+
+msgid "Nothing here"
+msgstr "Здесь ничего"
+
+msgid "Create your first image"
+msgstr "Создайте свое первое изображение"
+
+msgid "Change the filter or start a new generation below."
+msgstr "Измените фильтр или начните новое поколение ниже."
+
+msgid "Describe what you want below. Drag in reference images or add people with @."
+msgstr "Опишите ниже то, что вы хотите. Перетащите эталонные изображения или добавьте людей с помощью @."
+
+msgid "Remove from favorites"
+msgstr "Удалить из избранного"
+
+msgid "Add to favorites"
+msgstr "Добавить в избранное"
+
+msgid "Queued"
+msgstr "В очереди"
+
+msgid "Generating"
+msgstr "Создание"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Failed"
+msgstr "Не удалось"
+
+msgid "Reuse settings"
+msgstr "Повторное использование настроек"
+
+msgid "{n} selected"
+msgstr "{n}выбрано"
+
+msgid "Tap items to select"
+msgstr "Коснитесь элементов, чтобы выбрать"
+
+msgid "Use as reference"
+msgstr "Использовать в качестве ссылки"
+
+msgid "Move"
+msgstr "Переместить"
+
+msgid "Exit selection"
+msgstr "Выход из выбора"
+
+msgid "New folder…"
+msgstr "Новая папка..."
+
+msgid "Delete {n} items?"
+msgstr "Удалить элементы{n}?"
+
+msgid "Delete item?"
+msgstr "Удалить элемент?"
+
+msgid "Files are deleted from the server. Copies added to the Media Library stay."
+msgstr "Файлы удаляются с сервера. Копии, добавленные в Медиатеку, остаются."
+
+msgid "{n} items ready"
+msgstr "{n}элементы готовы"
+
+msgid "Generation ready"
+msgstr "Поколение готово"
+
+msgid "A generation failed"
+msgstr "Поколение потерпело неудачу"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Add reference"
+msgstr "Добавить ссылку"
+
+msgid "What happens in the video? Subject, motion, camera… (add people with @)"
+msgstr "Что происходит на видео? Объект, движение, камера... (добавьте людей с помощью @)"
+
+msgid "What do you want to create? (add people with @, drop images here)"
+msgstr "Что вы хотите создать? (добавьте людей с @, поместите сюда изображения)"
+
+msgid "Image"
+msgstr "Изображение"
+
+msgid "Video"
+msgstr "Видео"
+
+msgid "Aspect ratio"
+msgstr "Соотношение сторон"
+
+msgid "Adaptive"
+msgstr "Адаптивный"
+
+msgid "Resolution"
+msgstr "Разрешение"
+
+msgid "Quality"
+msgstr "Качество"
+
+msgid "Count"
+msgstr "Граф"
+
+msgid "Duration"
+msgstr "Продолжительность"
+
+msgid "Audio"
+msgstr "Аудио"
+
+msgid "Provider and model"
+msgstr "Поставщик и модель"
+
+msgid "Choose model"
+msgstr "Выберите модель"
+
+msgid "No models"
+msgstr "Нет моделей"
+
+msgid "Generate (Ctrl/⌘+Enter)"
+msgstr "Создать (Ctrl/⌘+Enter)"
+
+msgid "Generate"
+msgstr "Генерировать"
+
+msgid "Templates"
+msgstr "Шаблоны"
+
+msgid "Several different prompts from one idea"
+msgstr "Несколько разных подсказок из одной идеи"
+
+msgid "Flux AI text model is not ready"
+msgstr "Текстовая модель Flux AI не готова"
+
+msgid "Brainstorm"
+msgstr "Мозговой штурм"
+
+msgid "Turn the draft into a detailed prompt for the model"
+msgstr "Превратите черновик в подробную подсказку для модели"
+
+msgid "Enhance"
+msgstr "Улучшить"
+
+msgid "Provider"
+msgstr "Поставщик"
+
+msgid "{n} models"
+msgstr "Модели{n}"
+
+msgid "no key"
+msgstr "нет ключа"
+
+msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
+msgstr "Нет ключа{p}(Flux AI & MCP › Настройки › Изображения и видео)."
+
+msgid "This reference is already added"
+msgstr "Эта ссылка уже добавлена"
+
+msgid "This model accepts at most {n} references"
+msgstr "Эта модель принимает максимум{n}."
+
+msgid "Save to references"
+msgstr "Сохранить в ссылки"
+
+msgid "Saved"
+msgstr "Сохранено"
+
+msgid "Upload file"
+msgstr "Загрузить файл"
+
+msgid "Pick from gallery"
+msgstr "Выбрать из галереи"
+
+msgid "{n} photos"
+msgstr "{n}фотографии"
+
+msgid "no photos"
+msgstr "нет фотографий"
+
+msgid "Saved references"
+msgstr "Сохраненные ссылки"
+
+msgid "Reference"
+msgstr "Ссылка"
+
+msgid "Only PNG, JPEG, WebP or GIF can be added."
+msgstr "Можно добавить только PNG, JPEG, WebP или GIF."
+
+msgid "Pick references from gallery"
+msgstr "Выберите ссылки из галереи"
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "No images yet."
+msgstr "Пока нет изображений."
+
+msgid "{name} has no photos; add some in Manage people"
+msgstr "У{name}нет фотографий; добавить немного в Управление людьми"
+
+msgid "Write a short draft first."
+msgstr "Сначала напишите краткий черновик."
+
+msgid "Prompt enhanced"
+msgstr "Расширенное приглашение"
+
+msgid "Back to draft"
+msgstr "Вернуться к черновику"
+
+msgid "Describe what to generate."
+msgstr "Опишите, что генерировать."
+
+msgid "References are uploading, one moment…"
+msgstr "Референсы загружаются, один момент..."
+
+msgid "team"
+msgstr "команда"
+
+msgid "No templates yet"
+msgstr "Шаблонов пока нет"
+
+msgid "Save current settings"
+msgstr "Сохранить текущие настройки"
+
+msgid "Delete template…"
+msgstr "Удалить шаблон..."
+
+msgid "E.g. Event poster 4:5"
+msgstr "например Афиша мероприятия 4:5"
+
+msgid "Save as template"
+msgstr "Сохранить как шаблон"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Prompt, model, ratio, resolution and references are saved."
+msgstr "Подсказка, модель, соотношение сторон, разрешение и ссылки сохраняются."
+
+msgid "Template saved"
+msgstr "Шаблон сохранен."
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Previous"
+msgstr "Предыдущий"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Model"
+msgstr "Модель"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Cost"
+msgstr "Стоимость"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Created by"
+msgstr "Создано"
+
+msgid "Favorited"
+msgstr "Избранное"
+
+msgid "Favorite"
+msgstr "Любимый"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Added to references"
+msgstr "Добавлено в ссылки"
+
+msgid "Edit area"
+msgstr "Редактировать область"
+
+msgid "This model does not support area editing"
+msgstr "Эта модель не поддерживает редактирование области."
+
+msgid "Close comparison"
+msgstr "Близкое сравнение"
+
+msgid "Compare with original"
+msgstr "Сравнить с оригиналом"
+
+msgid "In library"
+msgstr "В библиотеке"
+
+msgid "Add to Media Library"
+msgstr "Добавить в медиатеку"
+
+msgid "Add title"
+msgstr "Добавить заголовок"
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Copy prompt"
+msgstr "Копировать приглашение"
+
+msgid "Original draft"
+msgstr "Оригинальный проект"
+
+msgid "Already in the Media Library"
+msgstr "Уже в Медиатеке"
+
+msgid "Added to the Media Library"
+msgstr "Добавлено в Медиатеку"
+
+msgid "No model with area editing and a configured key."
+msgstr "Нет модели с редактированием области и настроенным ключом."
+
+msgid "Edit started; the result will appear in the gallery"
+msgstr "Редактирование началось; результат появится в галерее"
+
+msgid "Describe the idea: e.g. Instagram post for the 11 November tree planting event"
+msgstr "Опишите идею: например. Пост в Instagram о посадке деревьев 11 ноября"
+
+msgid "Number of ideas"
+msgstr "Количество идей"
+
+msgid "{n} ideas"
+msgstr "{n}идеи"
+
+msgid "YouTube thumbnail"
+msgstr "Миниатюра YouTube"
+
+msgid "Generate ideas"
+msgstr "Генерируйте идеи"
+
+msgid "Preparing ideas…"
+msgstr "Готовим идеи..."
+
+msgid "Generate selected ({n})"
+msgstr "Создать выбранное ({n})"
+
+msgid "{n} generations started"
+msgstr "Начало генерации{n}"
+
+msgid "Sending {i}/{n}"
+msgstr "Отправка{i}/{n}"
+
+msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
+msgstr "Создает четкие подсказки из одной идеи. Выберите те, которые вам нравятся, и создайте их за один раз. Модель и соотношение берутся из панели поколений."
+
+msgid "Idea"
+msgstr "Идея"
+
+msgid "No people yet. Add a person and upload 1-4 clear face photos; typing @name in the prompt sends them as identity references."
+msgstr "Людей пока нет. Добавьте человека и загрузите 1–4 четких фотографии лица; ввод @name в командной строке отправляет их как ссылки на идентификаторы."
+
+msgid "Delete photo"
+msgstr "Удалить фотографию"
+
+msgid "Add photo"
+msgstr "Добавить фото"
+
+msgid "Person name"
+msgstr "Имя человека"
+
+msgid "Delete person"
+msgstr "Удалить человека"
+
+msgid "Delete {name}?"
+msgstr "Удалить{name}?"
+
+msgid "The person and their photos are deleted. Earlier generations stay."
+msgstr "Человек и его фотографии будут удалены. Предыдущие поколения остаются."
+
+msgid "New person"
+msgstr "Новый человек"
+
+msgid "Default image model"
+msgstr "Модель изображения по умолчанию"
+
+msgid "Default video model"
+msgstr "Модель видео по умолчанию"
+
+msgid "Empty: Flux AI default"
+msgstr "Пусто: Flux AI по умолчанию."
+
+msgid "Enhance / Brainstorm text model"
+msgstr "Улучшение/мозговой штурм текстовой модели"
+
+msgid "Max images per request"
+msgstr "Максимальное количество изображений на запрос"
+
+msgid "Max brainstorm ideas"
+msgstr "Макс, идеи мозгового штурма"
+
+msgid "Share people with all Studio users"
+msgstr "Делитесь людьми со всеми пользователями Studio"
+
+msgid "Keys, providers and the spending limit are in Flux AI & MCP › Settings."
+msgstr "Ключи, провайдеры и лимит расходов находятся в Flux AI & MCP › Настройки."
+
+msgid "Settings saved"
+msgstr "Настройки сохранены."
+
+msgid "just now"
+msgstr "только что"
+
+msgid "{n} min ago"
+msgstr "{n}мин назад"
+
+msgid "{n} h ago"
+msgstr "{n}ч. назад"
+
+msgid "Server error ({n})."
+msgstr "Ошибка сервера ({n})."
+
+msgid "Unexpected response from the server."
+msgstr "Неожиданный ответ от сервера."
+
+msgid "Something went wrong."
+msgstr "Что-то пошло не так."
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Copied"
+msgstr "Скопировано"
+
+msgid "7 days"
+msgstr "7 дней"
+
+msgid "30 days"
+msgstr "30 дней"
+
+msgid "90 days"
+msgstr "90 дней"
+
+msgid "Spend from Flux AI logs"
+msgstr "Расходы из журналов Flux AI"
+
+msgid "Flux AI logs unavailable; Studio amounts"
+msgstr "Журналы Flux AI недоступны; Суммы студии"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "(estimated)"
+msgstr "(оценка)"
+
+msgid "Generations"
+msgstr "Поколения"
+
+msgid "{i} images · {v} videos"
+msgstr "{i}изображения ·{v}видео"
+
+msgid "Spend"
+msgstr "Тратить"
+
+msgid "Image/video {m} · text {x}"
+msgstr "Изображение/видео{m}· текст{x}"
+
+msgid "Average"
+msgstr "Средний"
+
+msgid "per generation"
+msgstr "на поколение"
+
+msgid "{p}% error rate"
+msgstr "{p}% ошибок"
+
+msgid "no attempts yet"
+msgstr "пока нет попыток"
+
+msgid "Storage {b}"
+msgstr "Хранилище{b}"
+
+msgid "Daily generations"
+msgstr "Ежедневные поколения"
+
+msgid "No generations in this period."
+msgstr "Никаких поколений в этот период."
+
+msgid "Daily spend"
+msgstr "Ежедневные расходы"
+
+msgid "No spend in this period."
+msgstr "Никаких расходов в этот период."
+
+msgid "Flux AI logs"
+msgstr "Журналы Flux AI"
+
+msgid "Models"
+msgstr "Модели"
+
+msgid "Errors"
+msgstr "Ошибки"
+
+msgid "Amount"
+msgstr "Сумма"
+
+msgid "No records."
+msgstr "Никаких записей."
+
+msgid "Providers"
+msgstr "Провайдеры"
+
+msgid "Person"
+msgstr "Человек"
+
+msgid "Recent errors"
+msgstr "Недавние ошибки"
+
+msgid "Brush"
+msgstr "Кисть"
+
+msgid "Rectangle"
+msgstr "Прямоугольник"
+
+msgid "Eraser"
+msgstr "Ластик"
+
+msgid "Brush size"
+msgstr "Размер кисти"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "What should change in the selected area? E.g. make the T-shirt green, change the text to \"Plant a Tree\""
+msgstr "Что должно измениться в выбранной сфере? Например. сделайте футболку зеленой, измените текст на «Посади дерево»"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Describe the change."
+msgstr "Опишите изменение."
+
+msgid "Tool"
+msgstr "Инструмент"
+
+msgid "Paint the area to change. Unpainted areas are kept."
+msgstr "Закрасьте область, которую нужно изменить. Неокрашенные участки сохраняются."
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "Before"
+msgstr "До"
+
+msgid "After"
+msgstr "После"
+
+msgid "Studio requires JavaScript."
+msgstr "Для студии требуется JavaScript."
+
+msgid "Flux AI (0.6.0+) is not installed or image generation is off."
+msgstr "Flux AI (0.6.0+) не установлен или генерация образа отключена."
+
+msgid "Model not found. Check the keys in Flux AI & MCP › Settings › Images and video."
+msgstr "Модель не найдена. Проверьте ключи в Flux AI & MCP › Настройки › Изображения и видео."
+
+msgid "Image to edit not found."
+msgstr "Изображение для редактирования не найдено."
+
+msgid "This model does not support area editing."
+msgstr "Эта модель не поддерживает редактирование области."
+
+msgid "Mask must be a PNG."
+msgstr "Маска должна быть в формате PNG."
+
+msgid "The request may have reached the provider; check the provider's history before sending again."
+msgstr "Возможно, запрос дошел до провайдера; проверьте историю провайдера перед повторной отправкой."
+
+msgid "Sending did not complete, please try again."
+msgstr "Отправка не завершена, попробуйте еще раз."
+
+msgid "The provider returned fewer results than requested."
+msgstr "Поставщик вернул меньше результатов, чем запрошено."
+
+msgid "The file is hosted temporarily by the provider; add it to the Media Library or download it."
+msgstr "Файл временно размещается у провайдера; добавьте его в медиатеку или загрузите."
+
+msgid "Cancelled."
+msgstr "Отменено."
+
+msgid "Generation failed."
+msgstr "Генерация не удалась."
+
+msgid "Flux AI text model is not ready (Flux AI & MCP › Settings)."
+msgstr "Текстовая модель Flux AI не готова (Flux AI & MCP › Настройки)."
+
+msgid "Briefly describe the idea first."
+msgstr "Сначала кратко опишите идею."
+
+msgid "The model did not return a valid idea list. Try again."
+msgstr "Модель не вернула действительный список идей. Попробуйте еще раз."
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Database tables"
+msgstr "Таблицы базы данных"
+
+msgid "Missing table: %s. Deactivate and reactivate the plugin."
+msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+
+msgid "Tables are ready."
+msgstr "Столы готовы."
+
+msgid "File folder"
+msgstr "Папка с файлами"
+
+msgid "wp-content/uploads/flx-studio is writable."
+msgstr "wp-content/uploads/flx-studio доступен для записи."
+
+msgid "wp-content/uploads/flx-studio could not be created or is not writable; references and thumbnails cannot be saved."
+msgstr "wp-content/uploads/flx-studio не может быть создан или недоступен для записи; ссылки и миниатюры не могут быть сохранены."
+
+msgid "Image and video backend"
+msgstr "Серверная часть изображений и видео"
+
+msgid "Flux AI 0.6.0 or newer is required (image/video generation runs through Flux AI)."
+msgstr "Требуется Flux AI 0.6.0 или новее (генерация изображений/видео выполняется через Flux AI)."
+
+msgid "Plugins"
+msgstr "Плагины"
+
+msgid "No model has a key. Enter a fal.ai, EvoLink or other key in Flux AI & MCP › Settings › Images and video."
+msgstr "Ни одна модель не имеет ключа. Введите fal.ai, EvoLink или другой ключ в Flux AI & MCP › Настройки › Изображения и видео."
+
+msgid "Flux AI"
+msgstr "Поток ИИ"
+
+msgid "%1$d models available (%2$s)."
+msgstr "Доступны модели%1$d(%2$s)."
+
+msgid "Enhance and Brainstorm"
+msgstr "Улучшение и мозговой штурм"
+
+msgid "Flux AI text model is ready."
+msgstr "Текстовая модель Flux AI готова."
+
+msgid "Flux AI text model is not ready; prompt enhancement and ideas are unavailable, generation still works."
+msgstr "Текстовая модель Flux AI не готова; оперативное усовершенствование и идеи недоступны, генерация все еще работает."
+
+msgid "Reference images"
+msgstr "Справочные изображения"
+
+msgid "References are sent to the provider by site URL."
+msgstr "Ссылки отправляются провайдеру по URL сайта."
+
+msgid "The site is not HTTPS; references are sent inline (base64), making requests larger."
+msgstr "Сайт не использует HTTPS; ссылки отправляются встроенными (base64), что увеличивает размер запросов."
+
+msgid "Studio: generate images/videos"
+msgstr "Студия: создание изображений/видео"
+
+msgid "Studio: all galleries and settings"
+msgstr "Студия: все галереи и настройки"
+
+msgid "The file is empty."
+msgstr "Файл пуст."
+
+msgid "The file exceeds the %d MB limit."
+msgstr "Размер файла превышает ограничение%dв МБ."
+
+msgid "This file type is not supported."
+msgstr "Этот тип файла не поддерживается."
+
+msgid "The file could not be saved."
+msgstr "Файл не удалось сохранить."
+
+msgid "Reference image not found."
+msgstr "Эталонное изображение не найдено."
+
+msgid "Person not found."
+msgstr "Человек не найден."
+
+msgid "At most %d reference images can be used."
+msgstr "Можно использовать не более эталонных изображений%d."
+
+msgid "The file is not on the server."
+msgstr "Файла нет на сервере."
+
+msgid "Login required."
+msgstr "Требуется вход."
+
+msgid "You do not have access to Studio."
+msgstr "У вас нет доступа к Студии."
+
+msgid "You are not allowed to do this."
+msgstr "Вам не разрешено это делать."
+
+msgid "Record not found."
+msgstr "Запись не найдена."
+
+msgid "The file could not be uploaded."
+msgstr "Не удалось загрузить файл."
+
+msgid "No file received."
+msgstr "Ни один файл не получен."
+
+msgid "You cannot move items to this folder."
+msgstr "Вы не можете перемещать элементы в эту папку."
+
+msgid "You are not allowed to add to the Media Library."
+msgstr "Вам не разрешено добавлять в Медиатеку."
+
+msgid "Folder name is required."
+msgstr "Укажите имя папки."
+
+msgid "Person name is required."
+msgstr "Требуется имя человека."
+
+msgid "Template name is required."
+msgstr "Укажите название шаблона."
+
+msgid "Deleted user"
+msgstr "Удаленный пользователь"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Gallery"
+msgstr "Галерея"
+
+msgid "Gallery is empty"
+msgstr "Галерея пуста"
+
+msgid "Search the gallery"
+msgstr "Поиск в галерее"
+
+msgid "Working"
+msgstr "Работаю"
+
+msgid "Open in panel"
+msgstr "Открыть на панели"
+
+msgid "Owner"
+msgstr "Владелец"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Star"
+msgstr "Звезда"
+
+msgid "Starred"
+msgstr "Помечено"
+
+msgid "Generated images are listed here. The production screen opens in the app later."
+msgstr "Сгенерированные изображения перечислены здесь. Экран производства откроется в приложении позже."
+
+msgid "Prompt"
+msgstr "Подскажите"
+
+msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
+msgstr "[['Визуальная и видеостудия с ИИ: производство, референсы и контакты, выездной монтаж, разработка и мозговой штурм, галерея с папками. Производство с помощью Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"

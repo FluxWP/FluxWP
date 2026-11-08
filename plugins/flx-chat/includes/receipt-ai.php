@@ -105,7 +105,7 @@ function flxc_bot_receipt_turn( $chat ) {
 		$meta['rcheck'] = $res;
 		flxc_update_message( $m['id'], array( 'meta' => $meta ) );
 		if ( 'not_receipt' !== $res['verdict'] && ! empty( $state['donation'] ) ) {
-			flxc_attach_receipt( $m['id'], 'donation', (int) $state['donation'], false, __( 'Yapay zekâ ön kontrolü', 'flx-chat' ) . ': ' . flxc_rcheck_summary( $res ) );
+			flxc_attach_receipt( $m['id'], 'donation', (int) $state['donation'], false, __( 'AI pre-check', 'flx-chat' ) . ': ' . flxc_rcheck_summary( $res ) );
 		}
 		if ( ! $best || 'not_receipt' === $best['verdict'] ) {
 			$best = $res + array( 'mid' => (int) $m['id'] );
@@ -123,10 +123,10 @@ function flxc_bot_receipt_turn( $chat ) {
 	// 1.15.0: bilgiler uysa bile bağış yetkili onayına kalır. İleride yapay zekâ onayı bu filtreyle açılabilir.
 	$auto = 'match' === $best['verdict'] && ! empty( $state['donation'] ) && apply_filters( 'flxc_receipt_auto_approve', false, $best, $chat, $state );
 	if ( $auto ) {
-		flxc_attach_receipt( (int) $best['mid'], 'donation', (int) $state['donation'], true, __( 'Yapay zekâ onayı', 'flx-chat' ) );
+		flxc_attach_receipt( (int) $best['mid'], 'donation', (int) $state['donation'], true, __( 'AI approval', 'flx-chat' ) );
 		$best['approved'] = true;
 	}
-	flxc_system_message( $chat, __( 'Dekont ön kontrolü (yapay zekâ): ', 'flx-chat' ) . flxc_rcheck_summary( $best ) . ( $auto ? '' : ' · ' . __( 'Yetkili onayı bekliyor', 'flx-chat' ) ) );
+	flxc_system_message( $chat, __( 'Receipt pre-check (AI): ', 'flx-chat' ) . flxc_rcheck_summary( $best ) . ( $auto ? '' : ' · ' . __( 'Awaiting staff approval', 'flx-chat' ) ) );
 	// 1.9.1: asistan kapanmaz (kişi sorularına cevap vermeye devam eder); son onay ekipte, ekibe haber gider.
 	$state            = flxc_bot_state( flxc_get_chat( $chat['id'] ) );
 	$state['receipt'] = array( 'donation' => (int) ( $state['donation'] ?? 0 ), 'verdict' => $best['verdict'], 'at' => time() );
@@ -135,7 +135,7 @@ function flxc_bot_receipt_turn( $chat ) {
 		'texts'  => array( flxc_rcheck_reply( $best ) ),
 		// Tutar farkını kişi düzeltebilir; sahte/tekrar dekont ve yanlış alıcı ekibe hemen haber verir.
 		'notify' => ! ( 'mismatch' === $best['verdict'] && 'amount' === ( $best['why'] ?? '' ) ),
-		'reason' => __( 'Dekont geldi, son kontrol ekipte', 'flx-chat' ),
+		'reason' => __( 'Receipt received, final check by the team', 'flx-chat' ),
 	);
 }
 
@@ -152,7 +152,7 @@ function flxc_receipt_ai_check( $m, array $state ) {
 	);
 	$path = flxc_message_media_path( $m );
 	if ( is_wp_error( $path ) || ! is_readable( $path ) || filesize( $path ) > 8 * MB_IN_BYTES ) {
-		return $base + array( 'note' => __( 'Dosya okunamadı.', 'flx-chat' ) );
+		return $base + array( 'note' => __( 'File could not be read.', 'flx-chat' ) );
 	}
 	$m    = flxc_get_message( $m['id'] );
 	$mime = strtolower( explode( ';', (string) $m['media_mime'] )[0] );
@@ -173,7 +173,7 @@ function flxc_receipt_ai_read( array $base, $data, $mime, $name, $caption, array
 	} elseif ( 'application/pdf' === $mime ) {
 		$part = array( 'type' => 'file', 'file' => array( 'filename' => '' !== $name ? $name : 'dekont.pdf', 'file_data' => $data ) );
 	} else {
-		return array_merge( $base, array( 'verdict' => 'not_receipt', 'note' => __( 'Fotoğraf ya da PDF değil.', 'flx-chat' ) ) );
+		return array_merge( $base, array( 'verdict' => 'not_receipt', 'note' => __( 'Not a photo or PDF.', 'flx-chat' ) ) );
 	}
 	$sys = "Sana bir WhatsApp sohbetinden gelen dosya veriliyor. Bir banka havale/EFT dekontu ya da ödeme ekran görüntüsü olup olmadığını anla ve bilgileri oku. Tahmin etme: okuyamadığın alanı null bırak.\n"
 		. 'Yalnız şu JSON ile cevap ver: {"is_receipt": true|false, "amount": sayı|null, "currency": "TRY", "date": "GG.AA.YYYY"|null, "recipient": "alıcı adı"|null, "iban": "görünen IBAN (maskeli olabilir)"|null, "payer": "gönderen"|null, "dekont_no": "dekont/işlem/referans numarası"|null, "description": "açıklama"|null, "what": "dekont değilse ne olduğu, kısa"}';
@@ -219,7 +219,7 @@ function flxc_receipt_ai_read( array $base, $data, $mime, $name, $caption, array
 		if ( is_array( $j ) ) {
 			break;
 		}
-		$err = __( 'Model dosyayı okuyamadı.', 'flx-chat' );
+		$err = __( 'The model could not read the file.', 'flx-chat' );
 	}
 	if ( ! is_array( $j ) ) {
 		return $base + array( 'note' => $err );
@@ -367,10 +367,10 @@ function flxc_rcheck_summary( array $r ) {
 	} else {
 		if ( isset( $r['amount'] ) ) {
 			/* translators: 1: amount on receipt, 2: expected amount */
-			$parts[] = sprintf( __( 'Tutar %1$s (beklenen %2$s)', 'flx-chat' ), isset( $r['amount'] ) ? flxc_money( $r['amount'], $r['currency'] ?? 'TRY' ) : '?', ! empty( $r['expected'] ) ? flxc_money( $r['expected'], $r['currency'] ?? 'TRY' ) : '-' ) . $mark( $r['amt_ok'] ?? null );
+			$parts[] = sprintf( __( 'Amount %1$s (expected %2$s)', 'flx-chat' ), isset( $r['amount'] ) ? flxc_money( $r['amount'], $r['currency'] ?? 'TRY' ) : '?', ! empty( $r['expected'] ) ? flxc_money( $r['expected'], $r['currency'] ?? 'TRY' ) : '-' ) . $mark( $r['amt_ok'] ?? null );
 		}
 		if ( ! empty( $r['recipient'] ) ) {
-			$parts[] = __( 'Alıcı', 'flx-chat' ) . ': ' . $r['recipient'] . $mark( $r['name_ok'] ?? null );
+			$parts[] = __( 'Recipient', 'flx-chat' ) . ': ' . $r['recipient'] . $mark( $r['name_ok'] ?? null );
 		}
 		if ( ! empty( $r['iban'] ) ) {
 			$parts[] = 'IBAN ' . $r['iban'] . $mark( $r['iban_ok'] ?? null );
@@ -379,13 +379,13 @@ function flxc_rcheck_summary( array $r ) {
 			$parts[] = $r['date'];
 		}
 		if ( ! empty( $r['payer'] ) ) {
-			$parts[] = __( 'Gönderen', 'flx-chat' ) . ': ' . $r['payer'];
+			$parts[] = __( 'Sender', 'flx-chat' ) . ': ' . $r['payer'];
 		}
 		if ( ! empty( $r['dekont_no'] ) ) {
-			$parts[] = __( 'Dekont no', 'flx-chat' ) . ': ' . $r['dekont_no'];
+			$parts[] = __( 'Receipt no', 'flx-chat' ) . ': ' . $r['dekont_no'];
 		}
 		if ( ! empty( $r['dup'] ) ) {
-			$parts[] = '⚠ ' . __( 'Bu dekont daha önce', 'flx-chat' ) . ' ' . flxc_dekont_dup_text( array( 'created_at' => $r['dup']['at'], 'source' => $r['dup']['source'] ) ) . ( ! empty( $r['dup']['donation'] ) ? ' (' . __( 'bağış', 'flx-chat' ) . ' #' . (int) $r['dup']['donation'] . ')' : '' );
+			$parts[] = '⚠ ' . __( 'This receipt was', 'flx-chat' ) . ' ' . flxc_dekont_dup_text( array( 'created_at' => $r['dup']['at'], 'source' => $r['dup']['source'] ) ) . ( ! empty( $r['dup']['donation'] ) ? ' (' . __( 'donation', 'flx-chat' ) . ' #' . (int) $r['dup']['donation'] . ')' : '' );
 		}
 	}
 	if ( ! empty( $r['note'] ) ) {
@@ -396,44 +396,44 @@ function flxc_rcheck_summary( array $r ) {
 
 function flxc_rcheck_labels() {
 	return array(
-		'match'       => __( 'Bağışla uyumlu', 'flx-chat' ),
-		'mismatch'    => __( 'Bağışla uyuşmuyor', 'flx-chat' ),
-		'duplicate'   => __( 'Daha önce yüklenmiş dekont', 'flx-chat' ),
-		'no_donation' => __( 'Dekont, eşleşecek bağış yok', 'flx-chat' ),
-		'not_receipt' => __( 'Dekont değil', 'flx-chat' ),
-		'unclear'     => __( 'Okunamadı', 'flx-chat' ),
-		'skipped'     => __( 'Bakılmadı', 'flx-chat' ),
+		'match'       => __( 'Matches the donation', 'flx-chat' ),
+		'mismatch'    => __( 'Does not match the donation', 'flx-chat' ),
+		'duplicate'   => __( 'Previously uploaded receipt', 'flx-chat' ),
+		'no_donation' => __( 'Receipt, no donation to match', 'flx-chat' ),
+		'not_receipt' => __( 'Not a receipt', 'flx-chat' ),
+		'unclear'     => __( 'Could not read', 'flx-chat' ),
+		'skipped'     => __( 'Not checked', 'flx-chat' ),
 	);
 }
 
 /** Kişiye giden cevap. */
 function flxc_rcheck_reply( array $r ) {
 	$cur    = $r['currency'] ?? 'TRY';
-	$thanks = __( 'Dekontunuzu aldık, teşekkür ederiz 🌱 Ödemenizle ilgili size en kısa zamanda dönüş yapacağız.', 'flx-chat' );
+	$thanks = __( 'We received your receipt, thank you 🌱 We\'ll get back to you about your payment as soon as possible.', 'flx-chat' );
 	switch ( $r['verdict'] ) {
 		case 'match':
 			if ( ! empty( $r['approved'] ) ) {
-				return __( 'Dekontunuzu aldık, teşekkür ederiz 🌱 Bağışınız onaylandı.', 'flx-chat' );
+				return __( 'We received your receipt, thank you 🌱 Your donation is confirmed.', 'flx-chat' );
 			}
 			return $thanks;
 		case 'duplicate':
 			if ( ! empty( $r['dup']['same'] ) ) {
-				return __( 'Bu dekontu daha önce almıştık, teşekkür ederiz 🌱 Ödemenizle ilgili size en kısa zamanda dönüş yapacağız.', 'flx-chat' );
+				return __( 'We had already received this receipt, thank you 🌱 We\'ll get back to you about your payment as soon as possible.', 'flx-chat' );
 			}
-			return __( 'Bu dekont daha önce sistemimize yüklenmiş görünüyor. Aynı dekont ikinci bir bağış için kullanılamaz. Farklı bir ödeme yaptıysanız o ödemenin dekontunu gönderebilirsiniz; ekibimiz de ayrıca kontrol edecek.', 'flx-chat' );
+			return __( 'This receipt seems to have been uploaded to our system before. The same receipt cannot be used for a second donation. If you made a different payment, please send that receipt; our team will also check.', 'flx-chat' );
 		case 'mismatch':
 			if ( 'amount' === ( $r['why'] ?? '' ) ) {
 				/* translators: 1: amount on receipt, 2: expected amount */
-				return sprintf( __( 'Dekontunuzu aldık. Dekonttaki tutar (%1$s) bağışınızın tutarıyla (%2$s) uyuşmuyor gibi görünüyor. Kontrol edebilir misiniz? Farklı bir ödeme yaptıysanız buradan yazabilirsiniz, ekibimiz de ayrıca bakacak.', 'flx-chat' ), flxc_money( $r['amount'], $cur ), flxc_money( $r['expected'], $cur ) );
+				return sprintf( __( 'We received your receipt. The amount on it (%1$s) does not seem to match your donation amount (%2$s). Could you check it? If you made a different payment, you can write here; our team will also take a look.', 'flx-chat' ), flxc_money( $r['amount'], $cur ), flxc_money( $r['expected'], $cur ) );
 			}
 			$bank = flxc_bot_bank_account();
 			if ( '' !== (string) $bank['holder'] ) {
 				/* translators: %s: account holder name */
-				return sprintf( __( 'Dekontunuzu aldık, ancak dekonttaki alıcı derneğimiz değil gibi görünüyor. Bağışlarımız yalnız "%s" adına açılmış hesabımıza yapılır. Kontrol edebilir misiniz? Ekibimiz de ayrıca bakacak.', 'flx-chat' ), $bank['holder'] );
+				return sprintf( __( 'We received your receipt, but the recipient on it does not seem to be our association. Donations are only made to our account in the name of "%s". Could you check? Our team will also take a look.', 'flx-chat' ), $bank['holder'] );
 			}
-			return __( 'Dekontunuzu aldık, ancak dekonttaki alıcı bilgisi bizim hesabımızla eşleşmiyor gibi görünüyor. Kontrol edebilir misiniz? Ekibimiz de ayrıca bakacak.', 'flx-chat' );
+			return __( 'We received your receipt, but the recipient on it does not seem to match our account. Could you check? Our team will also take a look.', 'flx-chat' );
 		case 'not_receipt':
-			return __( 'Gönderdiğiniz dosya bir ödeme dekontuna benzemiyor. Ödemeyi yaptıysanız dekontu ya da ödeme ekranının görüntüsünü buradan gönderebilirsiniz.', 'flx-chat' );
+			return __( 'The file you sent does not look like a payment receipt. If you have paid, you can send the receipt or a screenshot of the payment screen here.', 'flx-chat' );
 	}
 	return $thanks;
 }

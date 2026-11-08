@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Roles
  * Description:       Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.
- * Version:           1.3.0
+ * Version:           1.3.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -14,13 +14,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
 if ( defined( 'FLXR_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXR_VERSION', '1.3.0' );
+define( 'FLXR_VERSION', '1.3.1' );
 define( 'FLXR_DB_VERSION', 3 );
 define( 'FLXR_FILE', __FILE__ );
 define( 'FLXR_DIR', plugin_dir_path( __FILE__ ) );
@@ -71,7 +72,7 @@ function flxr_maybe_upgrade() {
 add_filter(
 	'plugin_action_links_' . plugin_basename( FLXR_FILE ),
 	function ( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( flxr_admin_url() ) . '">' . esc_html__( 'Roller ve erişim', 'flx-roles' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( flxr_admin_url() ) . '">' . esc_html__( 'Roles and access', 'flx-roles' ) . '</a>' );
 		return $links;
 	}
 );

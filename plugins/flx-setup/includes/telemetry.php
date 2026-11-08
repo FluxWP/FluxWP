@@ -592,50 +592,50 @@ final class FLXK_Telemetry {
 		$msg  = isset( $_GET['flxk_tm'] ) ? sanitize_key( wp_unslash( $_GET['flxk_tm'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		?>
 		<div class="card flxk-tm" id="flxk-telemetry" style="max-width:none;margin-top:20px">
-			<h2><?php esc_html_e( 'Anonim kullanım verisi', 'flx-setup' ); ?></h2>
+			<h2><?php esc_html_e( 'Anonymous usage data', 'flx-setup' ); ?></h2>
 			<?php if ( 'sent' === $msg ) : ?>
-				<div class="notice notice-success inline"><p><?php esc_html_e( 'Gönderildi.', 'flx-setup' ); ?></p></div>
+				<div class="notice notice-success inline"><p><?php esc_html_e( 'Sent.', 'flx-setup' ); ?></p></div>
 			<?php elseif ( 'fail' === $msg ) : ?>
-				<div class="notice notice-error inline"><p><?php esc_html_e( 'Gönderilemedi. Adresi ve hedef sitede Flux Analytics telemetri merkezinin açık olduğunu kontrol edin.', 'flx-setup' ); ?></p></div>
+				<div class="notice notice-error inline"><p><?php esc_html_e( 'Could not send. Check the URL and that the Flux Analytics telemetry hub is on at the target site.', 'flx-setup' ); ?></p></div>
 			<?php elseif ( 'saved' === $msg ) : ?>
-				<div class="notice notice-success inline"><p><?php esc_html_e( 'Kaydedildi.', 'flx-setup' ); ?></p></div>
+				<div class="notice notice-success inline"><p><?php esc_html_e( 'Saved.', 'flx-setup' ); ?></p></div>
 			<?php endif; ?>
 			<p>
 				<?php if ( $on ) : ?>
-					<span class="flxu-badge flxu-badge--ok"><?php esc_html_e( 'Açık', 'flx-setup' ); ?></span>
+					<span class="flxu-badge flxu-badge--ok"><?php esc_html_e( 'On', 'flx-setup' ); ?></span>
 					<?php
 					echo esc_html(
 						$last
 							/* translators: %s: süre, ör. "3 saat" */
-							? sprintf( __( 'Son gönderim %s. Günde en fazla bir kez gönderilir.', 'flx-setup' ), flx_time_ago( $last ) )
-							: __( 'Henüz gönderilmedi. Günde en fazla bir kez gönderilir.', 'flx-setup' )
+							? sprintf( __( 'Last sent %s. Sent at most once a day.', 'flx-setup' ), flx_time_ago( $last ) )
+							: __( 'Not sent yet. Sent at most once a day.', 'flx-setup' )
 					);
 					?>
 				<?php else : ?>
-					<span class="flxu-badge"><?php esc_html_e( 'Kapalı', 'flx-setup' ); ?></span>
-					<?php esc_html_e( 'Hiçbir veri gönderilmez. "Ürünü geliştirmemize yardımcı olun" kutusunu işaretlerseniz açılır.', 'flx-setup' ); ?>
+					<span class="flxu-badge"><?php esc_html_e( 'Off', 'flx-setup' ); ?></span>
+					<?php esc_html_e( 'Nothing is sent. Tick "Help us improve the product" to turn it on.', 'flx-setup' ); ?>
 				<?php endif; ?>
 			</p>
-			<p class="description"><?php esc_html_e( 'Gönderilen: rastgele kurulum kimliği, WordPress ve PHP sürümü, site dili, ülke (saat diliminden ya da mağaza ülkesinden), etkin FluxWP eklentileri ve teması, FluxWP kaynaklı PHP hataları (yollar, alan adı, e-posta ve IP silinmiş), kurulum sihirbazında ilerleme ve seçimler. Site adresi, IP, kullanıcı ve içerik gönderilmez.', 'flx-setup' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Sent: a random install ID, WordPress and PHP version, site language, country (from the time zone or store country), active FluxWP plugins and theme, PHP errors from FluxWP (with paths, domain, emails and IPs removed), setup wizard progress and choices. Site address, IP, users and content are never sent.', 'flx-setup' ); ?></p>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="flxk_telemetry">
 				<?php wp_nonce_field( 'flxk_telemetry' ); ?>
 				<table class="form-table" role="presentation"><tr>
-					<th scope="row"><label for="flxk-tm-url"><?php esc_html_e( 'Telemetri adresi', 'flx-setup' ); ?></label></th>
+					<th scope="row"><label for="flxk-tm-url"><?php esc_html_e( 'Telemetry URL', 'flx-setup' ); ?></label></th>
 					<td>
 						<input type="url" class="regular-text code" id="flxk-tm-url" name="url" value="<?php echo esc_attr( (string) get_option( self::URL, '' ) ); ?>" placeholder="<?php echo esc_attr( self::DEFAULT_URL ); ?>">
-						<p class="description"><?php esc_html_e( 'Boş bırakılırsa FluxWP\'ye gider. Kendi merkezinizi kurmak için bir sitede Flux Analytics › Ayarlar › Telemetri merkezi\'ni açın ve oradaki adresi buraya yazın. Yalnız https.', 'flx-setup' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Leave empty to send to FluxWP. To run your own hub, turn on Flux Analytics › Settings › Telemetry hub on one site and paste that address here. https only.', 'flx-setup' ); ?></p>
 					</td>
 				</tr></table>
 				<p>
-					<button class="button button-primary" name="op" value="save"><?php esc_html_e( 'Kaydet', 'flx-setup' ); ?></button>
+					<button class="button button-primary" name="op" value="save"><?php esc_html_e( 'Save', 'flx-setup' ); ?></button>
 					<?php if ( $on ) : ?>
-						<button class="button" name="op" value="send"><?php esc_html_e( 'Şimdi gönder', 'flx-setup' ); ?></button>
+						<button class="button" name="op" value="send"><?php esc_html_e( 'Send now', 'flx-setup' ); ?></button>
 					<?php endif; ?>
 				</p>
 			</form>
 			<details>
-				<summary><?php esc_html_e( 'Gönderilecek veriyi göster', 'flx-setup' ); ?></summary>
+				<summary><?php esc_html_e( 'Show the data that will be sent', 'flx-setup' ); ?></summary>
 				<pre style="max-height:360px;overflow:auto;background:#f6f7f7;padding:10px;white-space:pre-wrap"><?php echo esc_html( wp_json_encode( self::payload( false ), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) ); ?></pre>
 			</details>
 		</div>
@@ -644,7 +644,7 @@ final class FLXK_Telemetry {
 
 	public static function admin_post(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Yetkiniz yok.', 'flx-setup' ), 403 );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-setup' ), 403 );
 		}
 		check_admin_referer( 'flxk_telemetry' );
 		$url = esc_url_raw( trim( (string) wp_unslash( $_POST['url'] ?? '' ) ) );

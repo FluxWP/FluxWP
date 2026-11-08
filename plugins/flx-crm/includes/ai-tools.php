@@ -85,9 +85,9 @@ function flxcrm_tool_cap( array $t ) {
 
 function flxcrm_kind_labels() {
 	return array(
-		'read'        => __( 'Okur', 'flx-crm' ),
-		'write'       => __( 'Düzenler', 'flx-crm' ),
-		'destructive' => __( 'Onaylı', 'flx-crm' ),
+		'read'        => __( 'Reads', 'flx-crm' ),
+		'write'       => __( 'Edits', 'flx-crm' ),
+		'destructive' => __( 'Needs approval', 'flx-crm' ),
 	);
 }
 
@@ -95,7 +95,7 @@ function flxcrm_channel_labels() {
 	return array(
 		'ai'         => 'Flux AI',
 		'mcp'        => 'MCP',
-		'automation' => __( 'Otomasyon', 'flx-crm' ),
+		'automation' => __( 'Automation', 'flx-crm' ),
 		'php'        => 'PHP',
 	);
 }
@@ -492,7 +492,7 @@ function flxcrm_core_tools() {
 	/* --- Okuma --- */
 
 	$t['flxcrm_overview'] = array(
-		'title'       => __( 'CRM özeti', 'flx-crm' ),
+		'title'       => __( 'CRM overview', 'flx-crm' ),
 		'description' => 'CRM overview: contact count, new in 30 days, active, high churn risk, total lifetime value, counts per role, per RFM segment and per source, and saved segments with their sizes.',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -506,7 +506,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_meta'] = array(
-		'title'       => __( 'CRM yapısı ve ayarları', 'flx-crm' ),
+		'title'       => __( 'CRM structure and settings', 'flx-crm' ),
 		'description' => 'Everything needed to edit the CRM correctly: roles (key, label, color, builtin), RFM segments, tags with contact counts, timeline event types (and which can be added by hand), segment rule fields and operators, consent channels, contact sources, bulk actions and current settings. Call this first before editing.',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -541,7 +541,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_find_contacts'] = array(
-		'title'       => __( 'CRM kişisi ara', 'flx-crm' ),
+		'title'       => __( 'Search CRM contacts', 'flx-crm' ),
 		'description' => 'Searches and lists CRM contacts (donors, customers, leads, volunteers…). All filters are optional and combine with AND; "rules" uses the segment rule format. Returns id, name, email, phone, roles, RFM segment, lifetime value, churn risk and last activity, with total and pages.',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -572,7 +572,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_get_contact'] = array(
-		'title'       => __( 'CRM kişi kartı', 'flx-crm' ),
+		'title'       => __( 'CRM contact card', 'flx-crm' ),
 		'description' => 'Full CRM profile of one contact: contact fields, roles, consents, owner, note, totals (donations, orders, lifetime value), RFM scores, churn risk, tags, source links and the latest timeline events.',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -595,7 +595,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_timeline'] = array(
-		'title'       => __( 'Zaman tüneli', 'flx-crm' ),
+		'title'       => __( 'Timeline', 'flx-crm' ),
 		'description' => 'Timeline of one contact, newest first: donations, orders, forms, every WhatsApp message, emails, SMS, notes, calls, meetings, role/segment/consent changes. Filter by event types; page with offset.',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -625,7 +625,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_recent_events'] = array(
-		'title'       => __( 'Son hareketler', 'flx-crm' ),
+		'title'       => __( 'Recent activity', 'flx-crm' ),
 		'description' => 'Latest timeline events across all contacts (who donated, ordered, wrote or filled a form recently).',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -650,7 +650,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_find_duplicates'] = array(
-		'title'       => __( 'Mükerrer kişileri bul', 'flx-crm' ),
+		'title'       => __( 'Find duplicate contacts', 'flx-crm' ),
 		'description' => 'Finds likely duplicate contacts that share the same name (case-insensitive) but have different email/phone. Use with flxcrm_merge_contacts after the user checks them.',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -669,7 +669,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_list_segments'] = array(
-		'title'       => __( 'Kayıtlı segmentler', 'flx-crm' ),
+		'title'       => __( 'Saved segments', 'flx-crm' ),
 		'description' => 'Saved dynamic segments with id, name, description, rules, readable summary and contact count.',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -679,7 +679,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_preview_segment'] = array(
-		'title'       => __( 'Segment önizle', 'flx-crm' ),
+		'title'       => __( 'Preview segment', 'flx-crm' ),
 		'description' => 'Counts contacts matching segment rules without saving: count, readable summary and a sample of top contacts by value.',
 		'kind'        => 'read',
 		'cap'         => $view,
@@ -697,7 +697,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_bulk_preview'] = array(
-		'title'       => __( 'Toplu işlem önizle', 'flx-crm' ),
+		'title'       => __( 'Preview bulk action', 'flx-crm' ),
 		'description' => 'Preview of a bulk action (how many contacts, sample names) and a confirm_token for flxcrm_bulk. Nothing is changed. Same arguments as flxcrm_bulk.',
 		'kind'        => 'read',
 		'cap'         => $manage,
@@ -729,7 +729,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_create_contact'] = array(
-		'title'       => __( 'CRM kişisi ekle', 'flx-crm' ),
+		'title'       => __( 'Add CRM contact', 'flx-crm' ),
 		'description' => 'Creates a contact (email or phone required). If a contact with the same email/phone already exists, it is returned and only its empty fields are filled (existing = true).',
 		'kind'        => 'write',
 		'cap'         => $manage,
@@ -765,7 +765,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_update_contact'] = array(
-		'title'       => __( 'CRM kişisini düzenle', 'flx-crm' ),
+		'title'       => __( 'Edit CRM contact', 'flx-crm' ),
 		'description' => 'Edits a contact. Only the given fields change; an empty string clears a field. roles replaces all roles; add_roles/remove_roles change some. status: active | archived. consent changes are written to the timeline.',
 		'kind'        => 'write',
 		'cap'         => $manage,
@@ -821,7 +821,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_tag_contact'] = array(
-		'title'       => __( 'Kişiye etiket ekle/çıkar', 'flx-crm' ),
+		'title'       => __( 'Add/remove contact tags', 'flx-crm' ),
 		'description' => 'Adds and/or removes tags on one contact. add: tag names (created if missing) or ids; remove: names or ids.',
 		'kind'        => 'write',
 		'cap'         => $manage,
@@ -850,7 +850,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_add_note'] = array(
-		'title'       => __( 'Zaman tüneline kayıt ekle', 'flx-crm' ),
+		'title'       => __( 'Add timeline entry', 'flx-crm' ),
 		'description' => 'Adds a note, call, meeting or sent-email record to a contact timeline. type: note | call | meeting | email_sent. at: optional ISO date (default now).',
 		'kind'        => 'write',
 		'cap'         => $manage,
@@ -889,7 +889,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_save_tag'] = array(
-		'title'       => __( 'Etiket ekle/düzenle', 'flx-crm' ),
+		'title'       => __( 'Add/edit tag', 'flx-crm' ),
 		'description' => 'Creates a tag, or renames / recolors an existing one when id is given. color: hex like #16a34a.',
 		'kind'        => 'write',
 		'cap'         => $manage,
@@ -923,7 +923,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_save_segment'] = array(
-		'title'       => __( 'Segment kaydet', 'flx-crm' ),
+		'title'       => __( 'Save segment', 'flx-crm' ),
 		'description' => 'Creates a saved dynamic segment, or updates it when id is given. Saved segments appear in Flux Mail as recipients (only contacts with consent for the channel receive). Preview first with flxcrm_preview_segment.',
 		'kind'        => 'write',
 		'cap'         => $manage,
@@ -952,7 +952,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_update_settings'] = array(
-		'title'       => __( 'CRM ayarlarını değiştir', 'flx-crm' ),
+		'title'       => __( 'Change CRM settings', 'flx-crm' ),
 		'description' => 'Changes CRM settings. Only the given keys change. Sources on/off: src_donate, src_commerce, src_chat, src_forms, src_users, src_mail (0|1). Role given to new contacts per source: role_donate, role_commerce, role_forms, role_chat, role_users (role key or ""). risk_threshold (10–100), active_days (7–730), base_currency (3 letters or ""), chat_events (0|1). roles: { key: { label, color, delete } } to rename/recolor roles, add custom roles or delete custom ones (builtin roles cannot be deleted). AI/MCP permissions cannot be changed with this tool.',
 		'kind'        => 'write',
 		'cap'         => 'manage_options',
@@ -986,7 +986,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_rescore'] = array(
-		'title'       => __( 'Skorları yeniden hesapla', 'flx-crm' ),
+		'title'       => __( 'Recalculate scores', 'flx-crm' ),
 		'description' => 'Recalculates RFM scores, segments and churn risk for all contacts now (normally daily) and refreshes saved segment counts.',
 		'kind'        => 'write',
 		'cap'         => $manage,
@@ -1000,7 +1000,7 @@ function flxcrm_core_tools() {
 	/* --- Onaylı (yıkıcı / dışa giden) --- */
 
 	$t['flxcrm_delete_event'] = array(
-		'title'       => __( 'Zaman tüneli kaydını sil', 'flx-crm' ),
+		'title'       => __( 'Delete timeline entry', 'flx-crm' ),
 		'description' => 'Deletes a hand-added timeline entry (note, call, meeting, email_sent). Entries that came from a source (donation, order, message) cannot be deleted.',
 		'kind'        => 'destructive',
 		'cap'         => $manage,
@@ -1016,7 +1016,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_delete_tag'] = array(
-		'title'       => __( 'Etiketi sil', 'flx-crm' ),
+		'title'       => __( 'Delete tag', 'flx-crm' ),
 		'description' => 'Deletes a tag everywhere (removes it from all contacts).',
 		'kind'        => 'destructive',
 		'cap'         => $manage,
@@ -1039,7 +1039,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_delete_segment'] = array(
-		'title'       => __( 'Segmenti sil', 'flx-crm' ),
+		'title'       => __( 'Delete segment', 'flx-crm' ),
 		'description' => 'Deletes a saved segment. Contacts are not affected; Flux Mail campaigns using it lose this recipient source.',
 		'kind'        => 'destructive',
 		'cap'         => $manage,
@@ -1061,7 +1061,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_merge_contacts'] = array(
-		'title'       => __( 'Kişileri birleştir', 'flx-crm' ),
+		'title'       => __( 'Merge contacts', 'flx-crm' ),
 		'description' => 'Merges duplicate contacts into primary_id: timeline, source links and tags move to the primary card, empty fields are filled, roles are combined, consents are kept if any card had them, then the duplicates are deleted.',
 		'kind'        => 'destructive',
 		'cap'         => $manage,
@@ -1091,7 +1091,7 @@ function flxcrm_core_tools() {
 	);
 
 	$t['flxcrm_delete_contact'] = array(
-		'title'       => __( 'CRM kişisini sil', 'flx-crm' ),
+		'title'       => __( 'Delete CRM contact', 'flx-crm' ),
 		'description' => 'Permanently deletes a CRM contact with its timeline, tags and source links. Source records (donations, orders, chats) stay. To hide a contact without losing history use flxcrm_update_contact status=archived instead.',
 		'kind'        => 'destructive',
 		'cap'         => $manage,
@@ -1128,7 +1128,7 @@ function flxcrm_core_tools() {
 	$t['flxcrm_bulk_preview']['schema'] = $bulk_schema;
 
 	$t['flxcrm_bulk'] = array(
-		'title'       => __( 'Toplu işlem', 'flx-crm' ),
+		'title'       => __( 'Bulk action', 'flx-crm' ),
 		'description' => 'Bulk action on up to ' . FLXCRM_TOOL_BULK_MAX . ' contacts: add_tag, remove_tag, add_role, remove_role, archive, restore, set_owner, revoke_consent, delete. Always needs confirm_token from flxcrm_bulk_preview (or from a first call without it).',
 		'kind'        => 'destructive',
 		'cap'         => $manage,
@@ -1143,7 +1143,7 @@ function flxcrm_core_tools() {
 
 	if ( function_exists( 'flxi_send_email' ) || function_exists( 'flxi_send_message' ) ) {
 		$t['flxcrm_send_message'] = array(
-			'title'       => __( 'Kişiye mesaj gönder', 'flx-crm' ),
+			'title'       => __( 'Send message to contact', 'flx-crm' ),
 			'description' => 'Sends one email, WhatsApp or SMS to one contact through Flux Mail (logged in Flux Mail and on the timeline). Requires the contact\'s consent for that channel. For campaigns to many people use Flux Mail campaigns with a CRM segment instead.',
 			'kind'        => 'destructive',
 			'cap'         => $manage,

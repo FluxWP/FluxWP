@@ -26,7 +26,7 @@ function flxl_admin_columns( $cols ) {
 	foreach ( $cols as $k => $v ) {
 		$out[ $k ] = $v;
 		if ( 'title' === $k ) {
-			$out['flxl_lang'] = '<span class="dashicons dashicons-translation" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html__( 'Diller', 'flx-lang' ) . '</span>';
+			$out['flxl_lang'] = '<span class="dashicons dashicons-translation" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html__( 'Languages', 'flx-lang' ) . '</span>';
 		}
 	}
 	return $out;
@@ -37,7 +37,7 @@ function flxl_admin_columns( $cols ) {
  */
 function flxl_admin_badges( $post_id ) {
 	if ( flxl_is_shared( $post_id ) ) {
-		return '<span class="flxl-badge is-shared" title="' . esc_attr__( 'Ortak sayfa: her dilde aynı, arayüz ziyaretçinin dilinde.', 'flx-lang' ) . '">' . esc_html__( 'Ortak', 'flx-lang' ) . '</span>';
+		return '<span class="flxl-badge is-shared" title="' . esc_attr__( 'Shared page: the same in every language, interface in the visitor\'s language.', 'flx-lang' ) . '">' . esc_html__( 'Shared', 'flx-lang' ) . '</span>';
 	}
 	$mine = flxl_post_language( $post_id );
 	$tr   = flxl_get_translations( $post_id );
@@ -50,11 +50,11 @@ function flxl_admin_badges( $post_id ) {
 			$st    = get_post_status( $tr[ $code ] );
 			$out  .= '<a class="flxl-badge is-done' . ( 'publish' === $st ? '' : ' is-draft' ) . '" href="' . esc_url( (string) get_edit_post_link( $tr[ $code ] ) ) . '" title="'
 				/* translators: 1: language name, 2: post status */
-				. esc_attr( sprintf( __( '%1$s çevirisi (%2$s)', 'flx-lang' ), $l['name'], get_post_status_object( $st ) ? get_post_status_object( $st )->label : $st ) ) . '">' . esc_html( $label ) . '</a>';
+				. esc_attr( sprintf( __( '%1$s translation (%2$s)', 'flx-lang' ), $l['name'], get_post_status_object( $st ) ? get_post_status_object( $st )->label : $st ) ) . '">' . esc_html( $label ) . '</a>';
 		} elseif ( current_user_can( 'edit_post', $post_id ) ) {
 			$out .= '<a class="flxl-badge is-missing" href="' . esc_url( flxl_translate_link( $post_id, $code ) ) . '" data-flxl-src="' . (int) $post_id . '" data-flxl-lang="' . esc_attr( $code ) . '" title="'
 				/* translators: %s: language name */
-				. esc_attr( sprintf( __( '%s çevirisi oluştur', 'flx-lang' ), $l['name'] ) ) . '">+' . esc_html( $label ) . '</a>';
+				. esc_attr( sprintf( __( 'Create %s translation', 'flx-lang' ), $l['name'] ) ) . '">+' . esc_html( $label ) . '</a>';
 		}
 	}
 	return $out;
@@ -80,7 +80,7 @@ add_action(
 		$code = isset( $_GET['lang'] ) ? sanitize_key( wp_unslash( $_GET['lang'] ) ) : '';
 		check_admin_referer( 'flxl_translate_' . $id );
 		if ( ! current_user_can( 'edit_post', $id ) ) {
-			wp_die( esc_html__( 'Bu işlem için yetkiniz yok.', 'flx-lang' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-lang' ) );
 		}
 		$new = flxl_save_translation( $id, $code );
 		if ( is_wp_error( $new ) ) {
@@ -101,7 +101,7 @@ add_action(
 			return;
 		}
 		$cur = isset( $_GET['flxl_filter'] ) ? sanitize_key( wp_unslash( $_GET['flxl_filter'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
-		echo '<label class="screen-reader-text" for="flxl-filter">' . esc_html__( 'Dile göre süz', 'flx-lang' ) . '</label><select name="flxl_filter" id="flxl-filter"><option value="">' . esc_html__( 'Tüm diller', 'flx-lang' ) . '</option>';
+		echo '<label class="screen-reader-text" for="flxl-filter">' . esc_html__( 'Filter by language', 'flx-lang' ) . '</label><select name="flxl_filter" id="flxl-filter"><option value="">' . esc_html__( 'All languages', 'flx-lang' ) . '</option>';
 		foreach ( flxl_languages() as $code => $l ) {
 			printf( '<option value="%s"%s>%s</option>', esc_attr( $code ), selected( $cur, $code, false ), esc_html( $l['name'] ) );
 		}
@@ -132,7 +132,7 @@ add_action(
 		if ( ! flxl_is_translatable_type( $type ) || count( flxl_languages() ) < 2 ) {
 			return;
 		}
-		add_meta_box( 'flxl-box', __( 'Dil', 'flx-lang' ), 'flxl_meta_box', $type, 'side', 'high' );
+		add_meta_box( 'flxl-box', __( 'Language', 'flx-lang' ), 'flxl_meta_box', $type, 'side', 'high' );
 	},
 	10,
 	2
@@ -141,7 +141,7 @@ add_action(
 function flxl_meta_box( $post ) {
 	wp_nonce_field( 'flxl_box', 'flxl_box_nonce' );
 	if ( flxl_is_shared( $post->ID ) ) {
-		echo '<p>' . esc_html__( 'Ortak sayfa: her dilde aynı, arayüz ziyaretçinin dilinde.', 'flx-lang' ) . '</p>';
+		echo '<p>' . esc_html__( 'Shared page: the same in every language, interface in the visitor\'s language.', 'flx-lang' ) . '</p>';
 		return;
 	}
 	$is_new = 'auto-draft' === $post->post_status;
@@ -149,13 +149,13 @@ function flxl_meta_box( $post ) {
 	if ( $is_new && isset( $_GET['flxl_lang'] ) && flxl_is_language( sanitize_key( wp_unslash( $_GET['flxl_lang'] ) ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 		$mine = sanitize_key( wp_unslash( $_GET['flxl_lang'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 	}
-	echo '<p><label for="flxl-lang"><strong>' . esc_html__( 'Bu içeriğin dili', 'flx-lang' ) . '</strong></label><br><select id="flxl-lang" name="flxl_lang" style="width:100%">';
+	echo '<p><label for="flxl-lang"><strong>' . esc_html__( 'Language of this content', 'flx-lang' ) . '</strong></label><br><select id="flxl-lang" name="flxl_lang" style="width:100%">';
 	foreach ( flxl_languages() as $code => $l ) {
 		printf( '<option value="%s"%s>%s</option>', esc_attr( $code ), selected( $mine, $code, false ), esc_html( trim( $l['flag'] . ' ' . $l['name'] ) ) );
 	}
 	echo '</select></p>';
 	if ( $is_new ) {
-		echo '<p class="description">' . esc_html__( 'Kaydettikten sonra diğer dillere çeviri oluşturabilirsiniz.', 'flx-lang' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'After saving you can create translations in other languages.', 'flx-lang' ) . '</p>';
 		return;
 	}
 	$tr = flxl_get_translations( $post->ID );
@@ -170,19 +170,19 @@ function flxl_meta_box( $post ) {
 			echo '<a href="' . esc_url( (string) get_edit_post_link( $tr[ $code ] ) ) . '">' . esc_html( get_the_title( $tr[ $code ] ) ? get_the_title( $tr[ $code ] ) : '#' . $tr[ $code ] ) . '</a>';
 			echo ' <span class="flxl-st">(' . esc_html( get_post_status_object( $st ) ? get_post_status_object( $st )->label : $st ) . ')</span>';
 			if ( flxl_ai_available() && current_user_can( 'edit_post', $tr[ $code ] ) ) {
-				echo '<br><button type="button" class="button-link flxl-ai" data-flxl-src="' . (int) $post->ID . '" data-flxl-lang="' . esc_attr( $code ) . '" data-flxl-confirm="1">' . esc_html__( 'AI ile yeniden çevir', 'flx-lang' ) . '</button>';
+				echo '<br><button type="button" class="button-link flxl-ai" data-flxl-src="' . (int) $post->ID . '" data-flxl-lang="' . esc_attr( $code ) . '" data-flxl-confirm="1">' . esc_html__( 'Re-translate with AI', 'flx-lang' ) . '</button>';
 			}
 		} else {
-			echo '<a class="button button-small" href="' . esc_url( flxl_translate_link( $post->ID, $code ) ) . '">' . esc_html__( 'Kopyala ve çevir', 'flx-lang' ) . '</a>';
+			echo '<a class="button button-small" href="' . esc_url( flxl_translate_link( $post->ID, $code ) ) . '">' . esc_html__( 'Copy and translate', 'flx-lang' ) . '</a>';
 			if ( flxl_ai_available() ) {
-				echo ' <button type="button" class="button button-small button-primary flxl-ai" data-flxl-src="' . (int) $post->ID . '" data-flxl-lang="' . esc_attr( $code ) . '">' . esc_html__( 'AI ile çevir', 'flx-lang' ) . '</button>';
+				echo ' <button type="button" class="button button-small button-primary flxl-ai" data-flxl-src="' . (int) $post->ID . '" data-flxl-lang="' . esc_attr( $code ) . '">' . esc_html__( 'Translate with AI', 'flx-lang' ) . '</button>';
 			}
 		}
 		echo '</li>';
 	}
 	echo '</ul>';
 	if ( ! flxl_ai_available() ) {
-		echo '<p class="description">' . esc_html__( 'Flux AI kurulursa tek tıkla çeviri yapılır; MCP ile bağlı AI ajanları da flxl_save_translation aracıyla çevirebilir.', 'flx-lang' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'With Flux AI installed, translation is one click; AI agents connected over MCP can also translate with the flxl_save_translation tool.', 'flx-lang' ) . '</p>';
 	}
 }
 
@@ -227,7 +227,7 @@ add_action(
 			$src  = isset( $_POST['src'] ) ? absint( $_POST['src'] ) : 0;
 			$code = isset( $_POST['lang'] ) ? sanitize_key( wp_unslash( $_POST['lang'] ) ) : '';
 			if ( ! current_user_can( 'edit_post', $src ) ) {
-				wp_send_json_error( array( 'message' => __( 'Bu işlem için yetkiniz yok.', 'flx-lang' ) ), 403 );
+				wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-lang' ) ), 403 );
 			}
 			$r = flxl_ai_job_start( $src, $code );
 		} else {
@@ -258,14 +258,14 @@ add_action(
 					'nonce' => wp_create_nonce( 'flxl_ai' ),
 					'ai'    => true,
 					't'     => array(
-						'start'   => __( 'Çeviri hazırlanıyor…', 'flx-lang' ),
+						'start'   => __( 'Preparing translation…', 'flx-lang' ),
 						/* translators: 1: step, 2: total steps */
-						'step'    => __( 'AI çeviriyor: %1$d / %2$d', 'flx-lang' ),
-						'done'    => __( 'Çeviri hazır, düzenleyici açılıyor…', 'flx-lang' ),
-						'partial' => __( 'Bazı bölümler çevrilemedi, Türkçe kaldı. Düzenleyicide kontrol edin.', 'flx-lang' ),
-						'error'   => __( 'Çeviri durdu:', 'flx-lang' ),
-						'confirm' => __( 'Var olan çevirinin başlığı, özeti ve gövdesi AI çevirisiyle değiştirilsin mi?', 'flx-lang' ),
-						'ask'     => __( 'AI ile çevrilsin mi? Hayır derseniz kopya taslak oluşturulur, kendiniz çevirirsiniz.', 'flx-lang' ),
+						'step'    => __( 'AI is translating: %1$d / %2$d', 'flx-lang' ),
+						'done'    => __( 'Translation ready, opening the editor…', 'flx-lang' ),
+						'partial' => __( 'Some sections could not be translated and stayed in Turkish. Check them in the editor.', 'flx-lang' ),
+						'error'   => __( 'Translation stopped:', 'flx-lang' ),
+						'confirm' => __( 'Replace the title, excerpt and body of the existing translation with an AI translation?', 'flx-lang' ),
+						'ask'     => __( 'Translate with AI? If you choose No, a draft copy is created for you to translate yourself.', 'flx-lang' ),
 					),
 				)
 			);

@@ -1,0 +1,179 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
+
+msgid "%d rows"
+msgstr "%dстроки"
+
+msgid "%1$d files, %2$s"
+msgstr "Файлы%1$d,%2$s"
+
+msgid "Content may still use image URLs from this theme; check your pages first."
+msgstr "В контенте по-прежнему могут использоваться URL-адреса изображений из этой темы; сначала проверьте свои страницы."
+
+msgid "%d old settings"
+msgstr "%dстарые настройки"
+
+msgid "Old tables"
+msgstr "Старые столы"
+
+msgid "Backup tables (sample data of the new plugins)"
+msgstr "Резервные таблицы (примеры данных новых плагинов)"
+
+msgid "Old upload folders"
+msgstr "Старые папки загрузки"
+
+msgid "Old plugins (inactive)"
+msgstr "Старые плагины (неактивные)"
+
+msgid "Old themes"
+msgstr "Старые темы"
+
+msgid "Old settings"
+msgstr "Старые настройки"
+
+msgid "Leftovers"
+msgstr "Остатки"
+
+msgid "%d items deleted."
+msgstr "Элементы%dудалены."
+
+msgid "Could not delete:"
+msgstr "Не удалось удалить:"
+
+msgid "No tables, folders, plugins or settings with old names are left."
+msgstr "Никаких таблиц, папок, плагинов или настроек со старыми названиями не осталось."
+
+msgid "What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first."
+msgstr "Что осталось под старыми названиями после миграции. Удалите его, как только убедитесь, что сайт работает с новыми плагинами; удаление невозможно отменить, сначала сделайте резервную копию."
+
+msgid "The selected items will be deleted permanently. Did you take a backup?"
+msgstr "Выбранные элементы будут удалены навсегда. Вы сделали резервную копию?"
+
+msgid "What"
+msgstr "Что"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Delete selected"
+msgstr "Удалить выбранное"
+
+msgid "Finish the migration first."
+msgstr "Сначала завершите миграцию."
+
+msgid "WooCommerce orders"
+msgstr "WooCommerce заказы"
+
+msgid "Order items"
+msgstr "Заказать товары"
+
+msgid "Encrypted settings (passwords, keys)"
+msgstr "Зашифрованные настройки (пароли, ключи)"
+
+msgid "Sodium is missing: encrypted settings could not be moved, enter them again in the panel."
+msgstr "Натрий отсутствует: зашифрованные настройки не удалось переместить, введите их еще раз в панели."
+
+msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
+msgstr "Зашифрованные значения%dне удалось открыть (возможно, изменились ключи сайта); введите их еще раз на панели."
+
+msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
+msgstr "Перемещает данные сайта, сохраненные под старыми именами пакетов (настройки, таблицы, мета, контент, темы, папки загрузки), в имена FluxWP. Карта имен находится в файле map.json."
+
+msgid "%1$s is empty, %2$s was left as it is."
+msgstr "%1$sпуст,%2$sостался как есть."
+
+msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
+msgstr "%1$sне был пустым: он был зарезервирован как%2$sи заменен на%3$s."
+
+msgid "%3$d items from %1$s were moved into %2$s."
+msgstr "Элементы%3$dиз%1$sбыли перемещены в%2$s."
+
+msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
+msgstr "Файлы%2$dв%1$sуже существовали в новой папке; старые копии остались на месте."
+
+msgid "Step"
+msgstr "Шаг"
+
+msgid "The old update-server address and site key were removed. Enter the new server's key under FluxWP Panel › Settings."
+msgstr "Старый адрес сервера обновлений и ключ сайта были удалены. Введите ключ нового сервера в разделе Панель FluxWP › Настройки."
+
+msgid "Migrate"
+msgstr "Мигрировать"
+
+msgid "Migration finished on %s. You can delete this plugin now."
+msgstr "Миграция завершена%s. Вы можете удалить этот плагин сейчас."
+
+msgid "Migration finished. Check that the new plugins are active and clear the cache."
+msgstr "Миграция завершена. Убедитесь, что новые плагины активны, и очистите кеш."
+
+msgid "Settings (options)"
+msgstr "Настройки (опции)"
+
+msgid "Finish"
+msgstr "Готово"
+
+msgid "To change"
+msgstr "Чтобы изменить"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Moves data saved under the old names to the new names. Take a backup first, upload the new plugins and theme (do not activate them), then click \"Scan\" and after that \"Migrate\"."
+msgstr "Перемещает данные, сохраненные под старыми именами, на новые имена. Сначала сделайте резервную копию, загрузите новые плагины и тему (не активируйте их), затем нажмите «Сканировать» и после этого «Мигрировать»."
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "User meta"
+msgstr "Мета пользователя"
+
+msgid "Table contents"
+msgstr "Содержание таблицы"
+
+msgid "Tables"
+msgstr "Таблицы"
+
+msgid "Taxonomies"
+msgstr "Таксономии"
+
+msgid "Done"
+msgstr "Готово"
+
+msgid "Scan"
+msgstr "Сканировать"
+
+msgid "Theme"
+msgstr "Тема"
+
+msgid "Term meta"
+msgstr "Термин мета"
+
+msgid "Data will be moved to the new names. Did you take a backup?"
+msgstr "Данные будут перенесены на новые имена. Вы сделали резервную копию?"
+
+msgid "Post meta"
+msgstr "Мета публикации"
+
+msgid "Posts and pages"
+msgstr "Сообщения и страницы"
+
+msgid "Upload folders"
+msgstr "Загрузить папки"
+
+msgid "Working…"
+msgstr "Работаю..."
+
+msgid "Upload these new packages first (do not activate them):"
+msgstr "Сначала загрузите эти новые пакеты (не активируйте их):"
+
+msgid "[['%drow', 'tr']]"
+msgid_plural "[['%drow', 'tr']]"
+msgstr[0] "[['%dстрока', 'tr']]"
+msgstr[1] "[['%dстрока', 'tr']]"
+msgstr[2] "[['%dстрока', 'tr']]"
+
+msgid "[['%dold setting', 'tr']]"
+msgid_plural "[['%dold setting', 'tr']]"
+msgstr[0] "[['%dстарая настройка', 'tr']]"
+msgstr[1] "[['%dстарая настройка', 'tr']]"
+msgstr[2] "[['%dстарая настройка', 'tr']]"

@@ -61,38 +61,38 @@ abstract class FLXSM_Provider {
 		$gifs = array_filter( $pl['media'], fn( $m ) => 'gif' === $m['kind'] );
 		$vids = array_filter( $pl['media'], fn( $m ) => 'video' === $m['kind'] );
 		if ( '' === $text && ! $pl['media'] ) {
-			$errs[] = __( 'Metin ya da medya gerekli.', 'flx-social' );
+			$errs[] = __( 'Text or media is required.', 'flx-social' );
 		}
 		if ( flxsm_len( $text ) > $c['max_text'] ) {
 			/* translators: 1: max, 2: current */
-			$errs[] = sprintf( __( 'Metin en çok %1$d karakter olabilir (şu an %2$d).', 'flx-social' ), $c['max_text'], flxsm_len( $text ) );
+			$errs[] = sprintf( __( 'Text can be at most %1$d characters (currently %2$d).', 'flx-social' ), $c['max_text'], flxsm_len( $text ) );
 		}
 		if ( $c['needs_media'] && ! $pl['media'] ) {
-			$errs[] = __( 'Bu ağ için görsel ya da video gerekli.', 'flx-social' );
+			$errs[] = __( 'This network requires an image or video.', 'flx-social' );
 		}
 		if ( $imgs && ! $c['image'] ) {
-			$errs[] = __( 'Bu ağ görsel kabul etmiyor.', 'flx-social' );
+			$errs[] = __( 'This network does not accept images.', 'flx-social' );
 		}
 		if ( $gifs && ! $c['gif'] ) {
-			$errs[] = __( 'Bu ağ GIF kabul etmiyor; görsel ya da video kullanın.', 'flx-social' );
+			$errs[] = __( 'This network does not accept GIFs; use an image or video.', 'flx-social' );
 		}
 		if ( $vids && ! $c['video'] ) {
-			$errs[] = __( 'Bu ağ video kabul etmiyor.', 'flx-social' );
+			$errs[] = __( 'This network does not accept video.', 'flx-social' );
 		}
 		if ( count( $imgs ) > $c['max_images'] ) {
 			/* translators: %d: max images */
-			$errs[] = sprintf( __( 'En çok %d görsel.', 'flx-social' ), $c['max_images'] );
+			$errs[] = sprintf( __( 'At most %d images.', 'flx-social' ), $c['max_images'] );
 		}
 		if ( count( $vids ) > $c['max_videos'] ) {
 			/* translators: %d: max videos */
-			$errs[] = sprintf( __( 'En çok %d video.', 'flx-social' ), $c['max_videos'] );
+			$errs[] = sprintf( __( 'At most %d videos.', 'flx-social' ), $c['max_videos'] );
 		}
 		if ( ! $c['mix'] && $vids && ( $imgs || $gifs ) ) {
-			$errs[] = __( 'Görsel ve video aynı gönderide birlikte kullanılamaz.', 'flx-social' );
+			$errs[] = __( 'Images and video cannot be used together in one post.', 'flx-social' );
 		}
 		foreach ( $pl['media'] as $m ) {
 			if ( ! $m['url'] || 0 !== strpos( $m['url'], 'https://' ) ) {
-				$errs[] = __( 'Medya dosyaları herkese açık https adresinden erişilebilir olmalı.', 'flx-social' );
+				$errs[] = __( 'Media files must be reachable at a public https address.', 'flx-social' );
 				break;
 			}
 		}
@@ -103,12 +103,12 @@ abstract class FLXSM_Provider {
 
 	/** Bağlantı başlatma adresi. $ctx: state, verifier (PKCE), for (alt tür). WP_Error dönebilir. */
 	public function auth_url( array $ctx ) {
-		return new WP_Error( 'flxsm_oauth', __( 'Bu ağ OAuth ile bağlanmıyor.', 'flx-social' ) );
+		return new WP_Error( 'flxsm_oauth', __( 'This network does not connect via OAuth.', 'flx-social' ) );
 	}
 
 	/** Callback: belirteci alır, eklenebilecek hesapları döner (dizi). */
 	public function exchange( array $params, array $ctx ) {
-		return new WP_Error( 'flxsm_oauth', __( 'Bu ağ OAuth ile bağlanmıyor.', 'flx-social' ) );
+		return new WP_Error( 'flxsm_oauth', __( 'This network does not connect via OAuth.', 'flx-social' ) );
 	}
 
 	/** Gerekirse belirteci yeniler. Dönüş: güncel hesap ya da WP_Error. */
@@ -135,7 +135,7 @@ abstract class FLXSM_Provider {
 
 	/** Belirteç yenileme: array( token => [], expires => ts ) ya da WP_Error. */
 	public function refresh( array $acc ) {
-		return new WP_Error( 'flxsm_expired', __( 'Bağlantının süresi doldu, yeniden bağlayın.', 'flx-social' ), array( 'auth' => true ) );
+		return new WP_Error( 'flxsm_expired', __( 'The connection expired, please reconnect.', 'flx-social' ), array( 'auth' => true ) );
 	}
 
 	/* ---------------- Yayın ---------------- */
@@ -143,15 +143,15 @@ abstract class FLXSM_Provider {
 	abstract public function publish_step( array $acc, array $pl, array $state );
 
 	public function edit( array $acc, $remote_id, array $pl ) {
-		return new WP_Error( 'flxsm_unsupported', __( 'Bu ağ yayınlanmış gönderiyi düzenlemeye izin vermiyor.', 'flx-social' ) );
+		return new WP_Error( 'flxsm_unsupported', __( 'This network does not allow editing a published post.', 'flx-social' ) );
 	}
 
 	public function delete( array $acc, $remote_id ) {
-		return new WP_Error( 'flxsm_unsupported', __( 'Bu ağ gönderiyi API ile silmeye izin vermiyor; uygulamadan silin.', 'flx-social' ) );
+		return new WP_Error( 'flxsm_unsupported', __( 'This network does not allow deleting posts via the API; delete it in the app.', 'flx-social' ) );
 	}
 
 	public function comment( array $acc, $remote_id, $text ) {
-		return new WP_Error( 'flxsm_unsupported', __( 'Bu ağda ilk yorum desteklenmiyor.', 'flx-social' ) );
+		return new WP_Error( 'flxsm_unsupported', __( 'First comment is not supported on this network.', 'flx-social' ) );
 	}
 
 	/** Hesap metrikleri: array( followers => int, ... ). */
@@ -187,7 +187,7 @@ abstract class FLXSM_Provider {
 	/** Uygulama anahtarları eksikse hata. */
 	protected function need_app( $public_field, $secret_key = '' ) {
 		if ( '' === flxsm_app( $this->app(), $public_field ) || ( $secret_key && ! flxsm_has_secret( $secret_key ) ) ) {
-			return new WP_Error( 'flxsm_app', __( 'Önce Ayarlar › Uygulamalar bölümünde bu ağın anahtarlarını girin.', 'flx-social' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxsm_app', __( 'First enter this network\'s keys under Settings › Apps.', 'flx-social' ), array( 'status' => 400 ) );
 		}
 		return true;
 	}

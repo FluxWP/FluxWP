@@ -164,7 +164,7 @@ final class FLXB_App_Admin {
 	public static function donation( WP_REST_Request $r ) {
 		$row = FLXB_Donations::get( (int) $r['id'] );
 		if ( ! $row ) {
-			return new WP_Error( 'flxb_not_found', __( 'Bağış bulunamadı.', 'flx-donate' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxb_not_found', __( 'Donation not found.', 'flx-donate' ), array( 'status' => 404 ) );
 		}
 		$donor = (int) $row['donor_id'] ? FLXB_Donors::get( (int) $row['donor_id'] ) : null;
 		$row['donor_name']  = $donor ? (string) $donor['name'] : '';
@@ -175,7 +175,7 @@ final class FLXB_App_Admin {
 		foreach ( FLXB_Donations::siblings( $row ) as $line ) {
 			$out['lines'][] = array(
 				'id'           => (int) $line['id'],
-				'title'        => (string) ( $line['option_label'] ? $line['option_label'] : __( 'Bağış', 'flx-donate' ) ),
+				'title'        => (string) ( $line['option_label'] ? $line['option_label'] : __( 'Donation', 'flx-donate' ) ),
 				'quantity'     => max( 1, (int) $line['quantity'] ),
 				'amount_label' => flxb_money( $line['amount'], $line['currency'] ),
 				'status_label' => flxb_status_label( $line['status'] )[1],
@@ -207,7 +207,7 @@ final class FLXB_App_Admin {
 	public static function donor( WP_REST_Request $r ) {
 		$row = FLXB_Donors::get( (int) $r['id'] );
 		if ( ! $row ) {
-			return new WP_Error( 'flxb_not_found', __( 'Bağışçı bulunamadı.', 'flx-donate' ), array( 'status' => 404 ) );
+			return new WP_Error( 'flxb_not_found', __( 'Donor not found.', 'flx-donate' ), array( 'status' => 404 ) );
 		}
 		$row['active_subs'] = 0;
 		$out                = self::donor_out( $row );

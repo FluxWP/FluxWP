@@ -33,7 +33,7 @@ function flxapp_donate_manifest() {
 		'plugin'   => 'flx-donate',
 		'version'  => defined( 'FLXB_VERSION' ) ? FLXB_VERSION : '',
 		'min_app'  => '1.0.0',
-		'title'    => __( 'Bağışlarım', 'flx-app' ),
+		'title'    => __( 'My donations', 'flx-app' ),
 		'icon'     => 'heart',
 		'order'    => 10,
 		'entry'    => 'overview',
@@ -58,16 +58,16 @@ function flxapp_donate_manifest() {
 		'screens'  => array(
 			'overview'     => array(
 				'type'     => 'dashboard',
-				'title'    => __( 'Özet', 'flx-app' ),
+				'title'    => __( 'Summary', 'flx-app' ),
 				'sources'  => array( 'me' ),
 				'sections' => array(
 					array(
 						'type'  => 'stats',
 						'items' => array(
-							array( 'label' => __( 'Toplam bağış', 'flx-app' ), 'value' => '{{data.total_label}}' ),
-							array( 'label' => __( 'Bağış', 'flx-app' ), 'value' => '{{data.donations|number}}', 'onPress' => array( 'target' => 'screen:flxb-donations/donations' ) ),
-							array( 'label' => __( 'Bekleyen', 'flx-app' ), 'value' => '{{data.pending|number}}', 'tone' => 'warn', 'when' => array( 'path' => 'data.pending', 'op' => 'gt', 'value' => 0 ) ),
-							array( 'label' => __( 'Sertifika', 'flx-app' ), 'value' => '{{data.certificates|number}}', 'onPress' => array( 'target' => 'screen:flxb-donations/certificates' ) ),
+							array( 'label' => __( 'Total donated', 'flx-app' ), 'value' => '{{data.total_label}}' ),
+							array( 'label' => __( 'Donations', 'flx-app' ), 'value' => '{{data.donations|number}}', 'onPress' => array( 'target' => 'screen:flxb-donations/donations' ) ),
+							array( 'label' => __( 'Pending', 'flx-app' ), 'value' => '{{data.pending|number}}', 'tone' => 'warn', 'when' => array( 'path' => 'data.pending', 'op' => 'gt', 'value' => 0 ) ),
+							array( 'label' => __( 'Certificates', 'flx-app' ), 'value' => '{{data.certificates|number}}', 'onPress' => array( 'target' => 'screen:flxb-donations/certificates' ) ),
 						),
 					),
 					array( 'type' => 'actions', 'items' => array( 'donate' ) ),
@@ -75,7 +75,7 @@ function flxapp_donate_manifest() {
 			),
 			'donations'    => array(
 				'type'    => 'list',
-				'title'   => __( 'Bağışlarım', 'flx-app' ),
+				'title'   => __( 'My donations', 'flx-app' ),
 				'source'  => 'donations',
 				'item'    => array(
 					'title'    => '{{title}}',
@@ -86,24 +86,24 @@ function flxapp_donate_manifest() {
 				),
 				'onPress' => array( 'target' => 'screen:flxb-donations/donation', 'params' => array( 'id' => '{{id}}' ) ),
 				'actions' => array( 'header' => array( 'donate' ) ),
-				'empty'   => array( 'title' => __( 'Henüz bağış yok', 'flx-app' ), 'body' => __( 'Yaptığınız bağışlar burada görünür.', 'flx-app' ) ),
+				'empty'   => array( 'title' => __( 'No donations yet', 'flx-app' ), 'body' => __( 'Your donations show up here.', 'flx-app' ) ),
 			),
 			'donation'     => array(
 				'type'     => 'detail',
-				'title'    => __( 'Bağış', 'flx-app' ),
+				'title'    => __( 'Donations', 'flx-app' ),
 				'source'   => 'donation',
 				'header'   => array( 'title' => '{{title}}', 'subtitle' => '{{date_label}}', 'badges' => $tone ),
 				'sections' => array(
 					array(
 						'type'  => 'stats',
 						'items' => array(
-							array( 'label' => __( 'Tutar', 'flx-app' ), 'value' => '{{amount_label}}' ),
-							array( 'label' => __( 'Sertifika', 'flx-app' ), 'value' => '{{certificates|number}}' ),
+							array( 'label' => __( 'Amount', 'flx-app' ), 'value' => '{{amount_label}}' ),
+							array( 'label' => __( 'Certificates', 'flx-app' ), 'value' => '{{certificates|number}}' ),
 						),
 					),
 					array(
 						'type'  => 'list',
-						'title' => __( 'Kalemler', 'flx-app' ),
+						'title' => __( 'Items', 'flx-app' ),
 						'path'  => 'lines',
 						'item'  => array( 'title' => '{{title}}', 'subtitle' => '× {{quantity}}', 'meta' => '{{amount_label}}' ),
 					),
@@ -112,7 +112,7 @@ function flxapp_donate_manifest() {
 			),
 			'certificates' => array(
 				'type'    => 'list',
-				'title'   => __( 'Sertifikalarım', 'flx-app' ),
+				'title'   => __( 'My certificates', 'flx-app' ),
 				'source'  => 'certificates',
 				'layout'  => 'cards',
 				'item'    => array(
@@ -124,15 +124,15 @@ function flxapp_donate_manifest() {
 				),
 				'onPress' => array( 'target' => 'url:{{url}}' ),
 				'actions' => array( 'row' => array( 'cert_pdf', 'cert_share' ) ),
-				'empty'   => array( 'title' => __( 'Sertifika yok', 'flx-app' ), 'body' => __( 'Fidan bağışlarınızın sertifikaları burada görünür.', 'flx-app' ) ),
+				'empty'   => array( 'title' => __( 'No certificates', 'flx-app' ), 'body' => __( 'Certificates for your sapling donations show up here.', 'flx-app' ) ),
 			),
 		),
 		'actions'  => array(
-			'donate'            => array( 'label' => __( 'Bağış yap', 'flx-app' ), 'icon' => 'heart', 'open' => '{{me.donate_url|default:site.url}}' ),
-			'order_web'         => array( 'label' => __( 'Siparişi gör', 'flx-app' ), 'icon' => 'globe', 'when' => array( 'path' => 'web_url', 'op' => 'filled' ), 'open' => '{{web_url}}' ),
-			'open_certificates' => array( 'label' => __( 'Sertifikalarım', 'flx-app' ), 'icon' => 'certificate', 'when' => array( 'path' => 'certificates', 'op' => 'gt', 'value' => 0 ), 'navigate' => array( 'target' => 'screen:flxb-donations/certificates' ) ),
+			'donate'            => array( 'label' => __( 'Donate', 'flx-app' ), 'icon' => 'heart', 'open' => '{{me.donate_url|default:site.url}}' ),
+			'order_web'         => array( 'label' => __( 'View order', 'flx-app' ), 'icon' => 'globe', 'when' => array( 'path' => 'web_url', 'op' => 'filled' ), 'open' => '{{web_url}}' ),
+			'open_certificates' => array( 'label' => __( 'My certificates', 'flx-app' ), 'icon' => 'certificate', 'when' => array( 'path' => 'certificates', 'op' => 'gt', 'value' => 0 ), 'navigate' => array( 'target' => 'screen:flxb-donations/certificates' ) ),
 			'cert_pdf'          => array( 'label' => __( 'PDF', 'flx-app' ), 'icon' => 'certificate', 'when' => array( 'path' => 'pdf_url', 'op' => 'filled' ), 'open' => '{{pdf_url}}' ),
-			'cert_share'        => array( 'label' => __( 'Paylaş', 'flx-app' ), 'icon' => 'share', 'when' => array( 'path' => 'url', 'op' => 'filled' ), 'share' => array( 'url' => '{{url}}', 'text' => '{{title}}' ) ),
+			'cert_share'        => array( 'label' => __( 'Share', 'flx-app' ), 'icon' => 'share', 'when' => array( 'path' => 'url', 'op' => 'filled' ), 'share' => array( 'url' => '{{url}}', 'text' => '{{title}}' ) ),
 		),
 	);
 }

@@ -1,0 +1,183 @@
+{
+  "shell": {
+    "tabs": {
+      "home": "首页",
+      "posts": "帖子",
+      "comments": "评论",
+      "menu": "菜单",
+      "more": "菜单"
+    },
+    "status": {
+      "publish": "已发表",
+      "draft": "吃水",
+      "pending": "待定",
+      "future": "预定",
+      "private": "私人"
+    },
+    "switchSite": "切换站点",
+    "offline": "离线:显示已保存的数据",
+    "notFound": "未找到该屏幕。",
+    "demo": "演示",
+    "nav": {
+      "more": "菜单",
+      "accounts": "账户",
+      "settings": "设置",
+      "search": "搜索",
+      "notifications": "通知"
+    },
+    "groups": {
+      "content": "内容"
+    },
+    "openedInWeb": "在网页视图中打开"
+  },
+  "list": {
+    "search": "搜索",
+    "empty": "这里还什么都没有。",
+    "noResults": "没有结果。",
+    "end": "仅此而已",
+    "loadingMore": "加载中..."
+  },
+  "states": {
+    "loading": "加载中...",
+    "errorTitle": "无法加载",
+    "errorBody": "无法访问服务器。检查您的连接并重试。",
+    "forbidden": "您无权访问此屏幕。",
+    "sessionExpired": "您的会话已过期,请重新登录。"
+  },
+  "form": {
+    "required": "此字段为必填字段。",
+    "invalid": "输入有效值。",
+    "min": "值太小。",
+    "max": "值太大了。",
+    "submit": "保存",
+    "saving": "正在保存...",
+    "saved": "已保存。",
+    "minLength": "至少 {{count}} 个字符。",
+    "maxLength": "最多 {{count}} 个字符。",
+    "choose": "选择",
+    "change": "改变",
+    "remove": "删除",
+    "upload": "上传",
+    "uploading": "正在上传...",
+    "search": "搜索"
+  },
+  "action": {
+    "confirmTitle": "你确定吗?",
+    "confirm": "确认",
+    "done": "完成。",
+    "failed": "该操作无法完成。"
+  },
+  "webview": {
+    "loading": "打开仪表板页面...",
+    "error": "该页面无法打开。",
+    "openBrowser": "在浏览器中打开",
+    "reload": "重新加载",
+    "back": "返回",
+    "demoNote": "演示:示例仪表板页面"
+  },
+  "switcher": {
+    "title": "账户",
+    "manage": "管理账户",
+    "remove": "删除帐户",
+    "removeConfirm": "要从此设备中删除 {{site}} 帐户吗?",
+    "current": "往来账户"
+  },
+  "prefs": {
+    "cache": "缓存",
+    "clearCache": "清除缓存",
+    "cacheCleared": "缓存已清除。",
+    "version": "版本 {{version}}"
+  },
+  "core": {
+    "pages": "页数",
+    "post": "邮政",
+    "edit": "编辑",
+    "openInPanel": "在仪表板中打开",
+    "trash": "移至垃圾箱",
+    "trashConfirm": "将此项目移至垃圾箱?",
+    "trashed": "已移至垃圾箱",
+    "title": "标题",
+    "status": "状态",
+    "excerpt": "摘录",
+    "link": "链接",
+    "date": "日期",
+    "author": "作者",
+    "image": "图片",
+    "content": "内容",
+    "newPost": "新帖子",
+    "approve": "批准",
+    "spam": "垃圾邮件",
+    "approved": "已批准",
+    "statusAll": "全部",
+    "statusDraft": "草稿",
+    "statusPending": "待定",
+    "statusHold": "待定",
+    "emptyPosts": "还没有帖子",
+    "emptyComments": "没有评论",
+    "searchPosts": "搜索帖子",
+    "searchComments": "搜索评论",
+    "details": "详情"
+  },
+  "accounts": {
+    "kind": {
+      "otp": "一次性代码",
+      "apppass": "申请密码"
+    }
+  },
+  "auth": {
+    "otpLogin": "使用代码登录",
+    "otpHint": "我们发送一次性代码。它适用于捐赠者和客户。",
+    "sendCode": "发送代码",
+    "otpCode": "代码",
+    "verify": "验证并登录",
+    "codeSent": "如果该帐户存在,则代码正在发送中。",
+    "appPassword": "申请密码"
+  },
+  "desktop": {
+    "selected": "已选择 {{count}}",
+    "clear": "清除",
+    "notifications": "通知",
+    "notificationsEmpty": "还没有通知。",
+    "cancel": "取消",
+    "more": "更多行动",
+    "rowActions": "行动作",
+    "back": "返回",
+    "loading": "加载中...",
+    "offline": "显示保存的数据"
+  },
+  "addSite": {
+    "notAllowed": "该应用程序只能连接到自己的网站。",
+    "browserHint": "您在应用程序的安全浏览器中登录。您的密码永远不会到达应用程序。",
+    "cancelled": "登录已取消。",
+    "title": "连接您的网站",
+    "demo": "尝试模拟账户"
+  },
+  "drawer": {
+    "open": "打开菜单",
+    "close": "关闭菜单",
+    "expand": "切换子菜单"
+  },
+  "tasks": {
+    "engineLabels": {
+      "Status": "状态",
+      "Priority": "优先级",
+      "Assignee": "受让人",
+      "Due date": "截止日期",
+      "Tag": "标签",
+      "List": "列表",
+      "No grouping": "没有分组",
+      "No priority": "无优先权",
+      "Deleted user": "已删除用户",
+      "Unassigned": "未分配",
+      "Overdue": "逾期",
+      "Today": "今天",
+      "Tomorrow": "明天",
+      "This week": "本周",
+      "Later": "后来",
+      "No date": "无日期",
+      "No tag": "无标签",
+      "Empty": "空",
+      "All tasks": "所有任务"
+    }
+  }
+}

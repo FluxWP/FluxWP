@@ -1,0 +1,1430 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: tr_TR\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "\"Discourage search engines from indexing this site\" is checked. Uncheck it on the live site."
+msgstr "\"Arama motorlarının bu siteyi dizine eklemesini engelle\" işaretli. Yayındaki sitede kaldırın."
+
+msgid "%1$d critical issues: %2$s"
+msgstr "%1$d kritik sorun var: %2$s"
+
+msgid "%1$s is active, v%2$s. Flux Donate reads the keys from it."
+msgstr "%1$s etkin, v%2$s. Flux Donate anahtarları buradan okur."
+
+msgid "%1$s (%2$s)."
+msgstr "%1$s (%2$s)."
+
+msgid "%d issues"
+msgstr "%d sorun"
+
+msgid "%s is active."
+msgstr "%s etkin."
+
+msgid "%s is installed but not active. Flux Donate reads the keys from its own Payments settings."
+msgstr "%s kurulu ama etkin değil. Flux Donate anahtarları kendi Ödemeler ayarından okur."
+
+msgid "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
+msgstr "%s. Hostinger › PHP Yapılandırması'ndan 8.1 veya üstünü seçin."
+
+msgid "%s. Choose Istanbul so certificate and donation dates are correct."
+msgstr "%s. Sertifika ve bağış tarihleri için İstanbul seçin."
+
+msgid "(optional)"
+msgstr "(isteğe bağlı)"
+
+msgid "The /projeler/ rewrite rule is missing and may return 404."
+msgstr "/projeler/ adres kuralı yok, 404 verebilir."
+
+msgid "1. Send your donation"
+msgstr "1. Bağışını gönder"
+
+msgid "1. Scope"
+msgstr "1. Kapsam"
+
+msgid "2. Your sapling is planted"
+msgstr "2. Fidanın toprakla buluşsun"
+
+msgid "3. Get your certificate"
+msgstr "3. Sertifikanı al"
+
+msgid "Update your name, email and password."
+msgstr "Ad, e-posta ve şifrenizi güncelleyin."
+
+msgid "A sapling"
+msgstr "Ailen için"
+
+msgid "Plant a Sapling for Your Family"
+msgstr "Ailen İçin Fidan Dik"
+
+msgid "Plant a Sapling for Your Family: plant a sapling in the name of your loved ones and let’s give the future room to breathe."
+msgstr "Ailen İçin Fidan Dik: sevdiklerin adına bir fidan dik, geleceğe birlikte nefes olalım."
+
+msgid "Active Project"
+msgstr "Aktif Proje"
+
+msgid "Active Projects"
+msgstr "Aktif Projeler"
+
+msgid "Active project"
+msgstr "Aktif proje"
+
+msgid "Alanya Ömer Özen Education and Research Station (Forest Camp)"
+msgstr "Alanya Ömer Özen Eğitim ve Araştırma İstasyonu (Orman Kampı)"
+
+msgid "Recipient name"
+msgstr "Alıcı adı"
+
+msgid "Home"
+msgstr "Ana sayfa"
+
+msgid "Search"
+msgstr "Ara"
+
+msgid "The page you are looking for may have been moved or removed. You can search or return to the home page."
+msgstr "Aradığınız sayfa taşınmış ya da kaldırılmış olabilir. Arama yapabilir veya ana sayfaya dönebilirsiniz."
+
+msgid "Search engines"
+msgstr "Arama motorları"
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "On, but no Cookie Policy page is linked."
+msgstr "Açık ama bağlı bir Çerez Politikası sayfası yok."
+
+msgid "On, linked to the Cookie Policy page."
+msgstr "Açık, Çerez Politikası sayfasına bağlı."
+
+msgid "Reference"
+msgstr "Açıklama"
+
+msgid "Trees Planted"
+msgstr "Ağaç Dikildi"
+
+msgid "From tree planting to workshops, from clean-up drives to environmental awareness, let’s take part in many events together."
+msgstr "Ağaç dikimlerinden atölyelere, temizlik hareketlerinden çevre bilincine kadar birçok etkinliğe birlikte katılalım."
+
+msgid "We work to spread the love of trees and forests"
+msgstr "Ağaç ve orman sevgisini yaymak için çalışıyoruz"
+
+msgid "Copy the details below with one click and paste them into your banking app."
+msgstr "Aşağıdaki bilgileri tek tıkla kopyalayıp bankanızın uygulamasına yapıştırabilirsiniz."
+
+msgid "Press Releases"
+msgstr "Basın Bültenleri"
+
+msgid "In the Press"
+msgstr "Basında Biz"
+
+msgid "Donation"
+msgstr "Bağış"
+
+msgid "Donate"
+msgstr "Bağış yap"
+
+msgid "Donation page"
+msgstr "Bağış sayfası"
+
+msgid "Sapling packages and card donations on the donation page"
+msgstr "Bağış sayfasında fidan paketleri ve kartla bağış"
+
+msgid "Donation types, sapling packages, card donations and donors"
+msgstr "Bağış türleri, fidan paketleri, kartla bağış ve bağışçılar"
+
+msgid "Donation and contact forms"
+msgstr "Bağış ve iletişim formları"
+
+msgid "Your donation summary is below. The details have also been sent to your email address."
+msgstr "Bağış özetiniz aşağıda. Ayrıntılar e-posta adresinize de gönderildi."
+
+msgid "Donation, KVKK, Cookie Policy, My Account, Cart and Checkout are published."
+msgstr "Bağış, KVKK, Çerez Politikası, Hesabım, Sepet ve Ödeme yayında."
+
+msgid "Where are my donated saplings planted?"
+msgstr "Bağışladığım fidanlar nereye dikiliyor?"
+
+msgid "Donations"
+msgstr "Bağışlar"
+
+msgid "Back to Donations"
+msgstr "Bağışlar Sayfasına dön"
+
+msgid "Track your donations and manage your addresses and account details in one place."
+msgstr "Bağışlarınızı takip edin, adreslerinizi ve hesap bilgilerinizi tek yerden yönetin."
+
+msgid "See your donations and their status."
+msgstr "Bağışlarınızı ve durumlarını görün."
+
+msgid "Log in to manage your donations, addresses and account details, or create an account in seconds."
+msgstr "Bağışlarınızı, adreslerinizi ve hesap bilgilerinizi yönetmek için giriş yapın ya da birkaç saniyede hesap oluşturun."
+
+msgid "Your donation becomes a sapling at the"
+msgstr "Bağışın, gönüllülerimizle birlikte gerçekleştirdiğimiz"
+
+msgid "With your donation we plant new saplings and protect green spaces."
+msgstr "Bağışınızla yeni fidanlar dikiyor, yeşil alanları koruyoruz."
+
+msgid "Can I donate a sapling on behalf of someone else?"
+msgstr "Başkası adına fidan bağışlayabilir miyim?"
+
+msgid "Has not run for longer than expected (should run every 5 minutes)."
+msgstr "Beklenenden uzun süredir çalışmadı (5 dakikada bir olmalı)."
+
+msgid "Info"
+msgstr "Bilgi"
+
+msgid "Enter your details and complete your order securely."
+msgstr "Bilgilerinizi girin, siparişinizi güvenle tamamlayın."
+
+msgid "One sapling is 150 TL. Just write “fidan bağışı” and your name in the description. 🌿"
+msgstr "Bir fidan 150 TL. Açıklama kısmına “fidan bağışı” ve adınızı yazmanız yeterli. 🌿"
+
+msgid "One sapling is 150 TL. Send a bank transfer to the IBAN above for as many saplings as you like. Write “fidan bağışı” and your name in the description."
+msgstr "Bir fidan 150 TL. Yukarıdaki IBAN’a Havale/EFT ile dilediğin kadar fidan için bağış yap. Açıklamaya “fidan bağışı” ve adını yaz."
+
+msgid "One sapling donation is 150 TL. You can donate for as many saplings as you like; for example 5 saplings are 750 TL and 10 saplings are 1,500 TL."
+msgstr "Bir fidan bağışı 150 TL’dir. Dilediğiniz sayıda fidan için bağış yapabilirsiniz; örneğin 5 fidan 750 TL, 10 fidan 1.500 TL."
+
+msgid "How much is one sapling donation?"
+msgstr "Bir fidan bağışı kaç TL?"
+
+msgid "Let one sapling be yours"
+msgstr "Bir fidan da senden olsun"
+
+msgid "Curious how a sapling is planted? See our"
+msgstr "Bir fidanın nasıl dikildiğini merak ediyorsan"
+
+msgid "A page cache is active (WP_CACHE)."
+msgstr "Bir sayfa önbelleği etkin (WP_CACHE)."
+
+msgid "Together"
+msgstr "Birlikte"
+
+msgid "Together We Make a Bigger Impact"
+msgstr "Birlikte Daha Büyük Bir Etki Yaratıyoruz"
+
+msgid "Who We Are"
+msgstr "Biz Kimiz"
+
+msgid "Who we are"
+msgstr "Biz kimiz"
+
+msgid "News From Us"
+msgstr "Bizden Haberler"
+
+msgid "Contact Us"
+msgstr "Bize Ulaşın"
+
+msgid "Get in touch"
+msgstr "Bize ulaşın"
+
+msgid "Follow Us"
+msgstr "Bizi Takip Edin"
+
+msgid "Water generously; if needed, tie it loosely to a support stake."
+msgstr "Bol can suyu verin; gerekiyorsa bir destek kazığına gevşekçe bağlayın."
+
+msgid "Page not found"
+msgstr "Bu sayfa bulunamadı"
+
+msgid "Send a bank transfer to the IBAN on this page and write “fidan bağışı” and your name in the description."
+msgstr "Bu sayfadaki IBAN’a Havale/EFT ile bağış gönderin, açıklamaya “fidan bağışı” ve adınızı yazın."
+
+msgid "The text of this page will be replaced with the association’s approved policy text."
+msgstr "Bu sayfanın metni derneğin onaylı politika metniyle değiştirilecektir."
+
+msgid "Join Our Newsletter"
+msgstr "Bültenimize Katılın"
+
+msgid "Cron has not run for hours. Check the cron job and command path in Hostinger."
+msgstr "Cron saatlerdir çalışmıyor. Hostinger'daki cron işini ve komut yolunu kontrol edin."
+
+msgid "DISABLE_WP_CRON is on: tasks run from the server cron and do not slow down visitor requests."
+msgstr "DISABLE_WP_CRON açık: görevleri sunucu cron'u çalıştırıyor, ziyaretçi isteklerini yavaşlatmıyor."
+
+msgid "Show more"
+msgstr "Daha fazla göster"
+
+msgid "With more green space, cleaner air and stronger communities, healthy and liveable cities in harmony with nature are possible. Starting today, we work together for tomorrow."
+msgstr "Daha fazla yeşil alan, daha temiz hava ve daha güçlü topluluklarla doğayla uyumlu, sağlıklı ve yaşanabilir şehirler mümkün. Bugünden başlayarak, yarınlar için birlikte çalışıyoruz."
+
+msgid "Stronger community"
+msgstr "Daha güçlü topluluk"
+
+msgid "Cleaner air"
+msgstr "Daha temiz hava"
+
+msgid "For cleaner air, more liveable cities and more resilient forests, we protect nature together and grow green spaces."
+msgstr "Daha temiz hava, daha yaşanabilir şehirler ve daha dirençli ormanlar için doğayı birlikte koruyor, yeşil alanları çoğaltıyoruz."
+
+msgid "For more liveable cities"
+msgstr "Daha yaşanabilir şehirler için"
+
+msgid "A greener Türkiye is possible"
+msgstr "Daha yeşil bir Türkiye mümkün"
+
+msgid "More green space"
+msgstr "Daha çok yeşil alan"
+
+msgid "Our Bylaws"
+msgstr "Dernek Tüzüğümüz"
+
+msgid "Our Association"
+msgstr "Derneğimiz"
+
+msgid "News, announcements and articles from our association."
+msgstr "Derneğimizden haberler, duyurular ve makaleler."
+
+msgid "With your support, help us plant more trees, create cleaner living spaces and build stronger projects."
+msgstr "Desteklerinle daha fazla ağaç, daha temiz yaşam alanları ve daha güçlü projelere katkı sağla."
+
+msgid "Ongoing Events"
+msgstr "Devam Eden Etkinlikler"
+
+msgid "Ongoing Projects"
+msgstr "Devam Eden Projelerimiz"
+
+msgid "Read more"
+msgstr "Devamını oku"
+
+msgid "Language Switcher"
+msgstr "Dil Seçici"
+
+msgid "Language selection"
+msgstr "Dil seçimi"
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "Other events"
+msgstr "Diğer etkinlikler"
+
+msgid "You too can join our work to protect our natural heritage and build a more liveable future."
+msgstr "Doğal mirasımızı korumak ve daha yaşanabilir bir gelecek için çalışmalarımıza sen de katılabilirsin."
+
+msgid "There are many ways to give back to nature"
+msgstr "Doğaya katkının birçok yolu var"
+
+msgid "A city in harmony with nature is possible"
+msgstr "Doğayla uyumlu bir şehir mümkün"
+
+msgid "A properly planted sapling lives for years. Watch the short video step by step."
+msgstr "Doğru dikilen fidan yıllarca yaşar. Kısa videoda adım adım izleyin."
+
+msgid "A properly planted sapling lives for years. Watch the video step by step; in short:"
+msgstr "Doğru dikilen fidan yıllarca yaşar. Videoda adım adım izleyin, kısaca şöyle:"
+
+msgid "A birthday, a newborn, a graduation or the memory of a loved one… Donate a sapling in someone’s name and give a gift that lives for years. Just write the person’s name in the transfer description."
+msgstr "Doğum günü, yeni doğan bir bebek, mezuniyet ya da bir yakının anısı… Sevdiklerin adına fidan bağışlayarak yıllarca yaşayacak bir hediye verebilirsin. Havale açıklamasına fidanın kimin adına dikileceğini yazman yeterli."
+
+msgid "A birth, a wedding, a graduation or a remembrance. Every sapling planted in your loved ones’ name grows in our forests."
+msgstr "Doğum, düğün, mezuniyet ya da bir anma. Sevdiklerinizin adına dikilen her fidan, ormanlarımızda büyür."
+
+msgid "Announcements"
+msgstr "Duyurular"
+
+msgid "Plain (?p=123) addresses are used. Choose \"Post name\"."
+msgstr "Düz (?p=123) adres kullanılıyor. \"Yazı adı\" seçin."
+
+msgid "Fix"
+msgstr "Düzeltme"
+
+msgid "Email"
+msgstr "E-posta"
+
+msgid "Email delivery"
+msgstr "E-posta gönderimi"
+
+msgid "Email and phone"
+msgstr "E-posta ve telefon"
+
+msgid "Team task tracking"
+msgstr "Ekip görev takibi"
+
+msgid "Search plugins"
+msgstr "Eklenti ara"
+
+msgid "Upload plugin"
+msgstr "Eklenti yükle"
+
+msgid "Plugins"
+msgstr "Eklentiler"
+
+msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site is not working; yellow rows are recommended fixes. The page re-checks every time it opens."
+msgstr "Eklentiler, zamanlanmış görevler ve temel ayarlar. Kırmızı satırlar sitenin bir bölümünün çalışmadığını, sarılar önerilen düzeltmeleri gösterir. Sayfa her açılışta yeniden kontrol eder."
+
+msgid "See the status of plugins, cron and settings on the %s screen."
+msgstr "Eklentilerin, cron'un ve ayarların durumunu %s ekranından görebilirsiniz."
+
+msgid "Ecosystem protection"
+msgstr "Ekosistem koruma"
+
+msgid "Missing or not published: %s."
+msgstr "Eksik ya da yayında değil: %s."
+
+msgid "Active, v%1$s. This theme was tested with v%2$s or later; please update."
+msgstr "Etkin, v%1$s. Bu tema en az v%2$s ile test edildi; güncelleyin."
+
+msgid "Active, v%s."
+msgstr "Etkin, v%s."
+
+msgid "Event"
+msgstr "Etkinlik"
+
+msgid "Events Held"
+msgstr "Etkinlik Düzenlendi"
+
+msgid "Stay up to date on our events, new projects and a greener future."
+msgstr "Etkinliklerden, yeni projelerimizden ve yeşil yarınlardan haberdar olun."
+
+msgid "Join an Event"
+msgstr "Etkinliğe Katıl"
+
+msgid "Yes. Your donated saplings are recorded with a certificate issued in your name or the name of the person you specify."
+msgstr "Evet. Bağışladığınız fidanlar, adınıza ya da belirttiğiniz kişinin adına düzenlenen bir fidan sertifikasıyla kayıt altına alınır."
+
+msgid "Yes. Write “fidan bağışı” together with the person’s name in the transfer description. A lovely option for birthdays, memorials or gifts."
+msgstr "Evet. Havale/EFT açıklamasına “fidan bağışı” ile birlikte fidanın adına dikileceği kişinin adını yazmanız yeterli. Doğum günü, anma ya da hediye için güzel bir seçenek."
+
+msgid "Yes. We organise bulk sapling donations and joint tree planting events for institutions, schools and companies. Contact us through our contact page for details."
+msgstr "Evet. Kurumlar, okullar ve şirketler için toplu fidan bağışı ve birlikte fidan dikim etkinliği düzenliyoruz. Detaylar için iletişim sayfamızdan bize ulaşın."
+
+msgid "Education"
+msgstr "Eğitim"
+
+msgid "Our Education Events"
+msgstr "Eğitim Etkinliklerimiz"
+
+msgid "Edit your billing and shipping addresses."
+msgstr "Fatura ve teslimat adreslerinizi düzenleyin."
+
+msgid "Sapling"
+msgstr "Fidan"
+
+msgid "Sapling Donation"
+msgstr "Fidan Bağışı"
+
+msgid "Donate a Sapling"
+msgstr "Fidan Bağışı Yap"
+
+msgid "Our Tree Planting Events"
+msgstr "Fidan Dikim Etkinliklerimiz"
+
+msgid "Our Tree Planting Video"
+msgstr "Fidan Dikim Videomuz"
+
+msgid "How to Plant a Sapling"
+msgstr "Fidan Nasıl Dikilir?"
+
+msgid "Donated saplings are planted with our volunteers at the tree planting events we organise in cities across Türkiye. The date, location and number of saplings for each event are published on"
+msgstr "Fidan bağışları, Türkiye’nin farklı şehirlerinde düzenlediğimiz fidan dikim etkinliklerinde gönüllülerimizle birlikte toprakla buluşur. Her etkinliğin tarihi, konumu ve toplanan fidan sayısı"
+
+msgid "With your sapling donations we plant new saplings, protect green spaces and grow our environmental education."
+msgstr "Fidan bağışlarınızla yeni fidanlar dikiyor, yeşil alanları koruyor ve çevre eğitimlerini büyütüyoruz."
+
+msgid "Sapling donation"
+msgstr "Fidan bağışı"
+
+msgid "Sapling donation FAQ"
+msgstr "Fidan bağışı hakkında sık sorulan sorular"
+
+msgid "Can I get a certificate for my sapling donation?"
+msgstr "Fidan bağışı için sertifika alabilir miyim?"
+
+msgid "How do I donate a sapling?"
+msgstr "Fidan bağışı nasıl yapılır?"
+
+msgid "Donate a sapling"
+msgstr "Fidan bağışı yap"
+
+msgid "Donate a sapling, let one be yours"
+msgstr "Fidan bağışı yap, bir fidan da senden olsun"
+
+msgid "You can plant a sapling, make a donation or join our events."
+msgstr "Fidan dikebilir, bağış yapabilir ya da etkinliklerimize katılabilirsin."
+
+msgid "Children waving at a tree planting site"
+msgstr "Fidan dikim alanında el sallayan çocuklar"
+
+msgid "Sapling certificates and events"
+msgstr "Fidan sertifikaları ve etkinlikler"
+
+msgid "So we can also send your donation and order updates via WhatsApp."
+msgstr "Bağış ve sipariş bildirimlerini WhatsApp’tan da gönderebilmemiz için."
+
+msgid "Where are the saplings planted?"
+msgstr "Fidanlar nerede dikiliyor?"
+
+msgid "Saplings are planted at the tree planting events we organise in cities across Türkiye. Event locations and dates are announced on our events page."
+msgstr "Fidanlar, Türkiye’nin farklı şehirlerinde düzenlediğimiz fidan dikim etkinliklerinde dikilir. Etkinliklerin konumu ve tarihi etkinlikler sayfamızda duyurulur."
+
+msgid "A grandfather and his grandchildren posing with their saplings"
+msgstr "Fidanlarıyla poz veren dede ve torunları"
+
+msgid "Place the sapling upright, with the root collar level with the soil."
+msgstr "Fidanı, kök boğazı toprak seviyesinde kalacak şekilde dik yerleştirin."
+
+msgid "Forms"
+msgstr "Formlar"
+
+msgid "No GA4 measurement ID entered."
+msgstr "GA4 ölçüm kimliği girilmemiş."
+
+msgid "Overdue tasks"
+msgstr "Geciken görev"
+
+msgid "Head Office"
+msgstr "Genel Merkez"
+
+msgid "General settings"
+msgstr "Genel ayarlar"
+
+msgid "Required"
+msgstr "Gerekli"
+
+msgid "Required pages"
+msgstr "Gerekli sayfalar"
+
+msgid "Server cron"
+msgstr "Gerçek cron"
+
+msgid "Log In"
+msgstr "Giriş Yap"
+
+msgid "Log in"
+msgstr "Giriş yap"
+
+msgid "Privacy Agreement"
+msgstr "Gizlilik Sözleşmesi"
+
+msgid "Volunteers"
+msgstr "Gönüllü"
+
+msgid "Volunteer"
+msgstr "Gönüllü Ol"
+
+msgid "Together with our volunteers we organise tree planting events across Türkiye. Check the calendar and save your spot."
+msgstr "Gönüllülerimizle birlikte Türkiye’nin dört bir yanında fidan dikim etkinlikleri düzenliyoruz. Takvimi inceleyin, yerinizi ayırın."
+
+msgid "Volunteering"
+msgstr "Gönüllülük"
+
+msgid "We are here for volunteering, donations, corporate partnerships and all your questions."
+msgstr "Gönüllülük, bağış, kurumsal iş birlikleri ve tüm sorularınız için buradayız."
+
+msgid "Tasks only run when visitors arrive (WP-Cron). With little traffic the certificate queue and recurring donation renewals are delayed. Add this command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
+msgstr "Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken sertifika kuyruğu ve düzenli bağış yenilemeleri gecikir. Hostinger › Gelişmiş › Cron Jobs'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php'ye define( 'DISABLE_WP_CRON', true ); yazın."
+
+msgid "Update"
+msgstr "Güncelle"
+
+msgid "Secure payment · iyzico"
+msgstr "Güvenli ödeme · iyzico"
+
+msgid "Security"
+msgstr "Güvenlik"
+
+msgid "News"
+msgstr "Haberler"
+
+msgid "About Us"
+msgstr "Hakkımızda"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Donate by Bank Transfer"
+msgstr "Havale / EFT ile Bağış"
+
+msgid "Ready-made updates"
+msgstr "Hazır güncellemeler"
+
+msgid "No fixes have been made through MCP yet."
+msgstr "Henüz MCP ile yapılmış bir düzeltme yok."
+
+msgid "No content found yet."
+msgstr "Henüz içerik bulunamadı."
+
+msgid "No content yet."
+msgstr "Henüz içerik yok."
+
+msgid "No record yet. It appears after the first cron run following the theme update; reload this page in a few minutes."
+msgstr "Henüz kayıt yok. Tema güncellemesinden sonraki ilk cron çalışmasında görünür; birkaç dakika sonra bu sayfayı yenileyin."
+
+msgid "All have been applied at least once."
+msgstr "Hepsi en az bir kez uygulandı."
+
+msgid "Every sapling is recorded with a certificate issued in your name or in the name of someone you love."
+msgstr "Her fidan, adına ya da sevdiğin birinin adına düzenlenen bir fidan sertifikasıyla kayıt altına alınır."
+
+msgid "All good"
+msgstr "Her şey yerinde"
+
+msgid "My account"
+msgstr "Hesabım"
+
+msgid "Registration is enabled on My Account."
+msgstr "Hesabım sayfasında Kayıt ol açık."
+
+msgid "Registration is disabled on My Account; only the Login tab is shown."
+msgstr "Hesabım sayfasında kayıt kapalı; yalnızca Giriş sekmesi görünür."
+
+msgid "My Account, cart and checkout pages"
+msgstr "Hesabım, sepet ve ödeme sayfaları"
+
+msgid "Have an account? Log in to track your donations from your account."
+msgstr "Hesabın var mı? Giriş yaparak bağışlarını hesabından takip edebilirsin."
+
+msgid "Account registration"
+msgstr "Hesap oluşturma"
+
+msgid "Account and Cart"
+msgstr "Hesap ve Sepet"
+
+msgid "%1$d updates have never been applied. A fresh install may not need them; apply one if the related page looks outdated. List: %2$s"
+msgstr "Hiç uygulanmamış %1$d güncelleme var. Yeni kurulumda gerekmeyebilir; sitede ilgili sayfa eski görünüyorsa uygulayın. Liste: %2$s"
+
+msgid "Welcome"
+msgstr "Hoş geldiniz"
+
+msgid "Quick Links"
+msgstr "Hızlı Bağlantılar"
+
+msgid "Privacy Notice"
+msgstr "KVKK"
+
+msgid "KVKK Privacy Notice"
+msgstr "KVKK Aydınlatma Metni"
+
+msgid "Accept"
+msgstr "Kabul et"
+
+msgid "Permalinks"
+msgstr "Kalıcı bağlantılar"
+
+msgid "Campaign"
+msgstr "Kampanya"
+
+msgid "Off. If analytics cookies are used, KVKK requires it to be on."
+msgstr "Kapalı. Analiz çerezi kullanılıyorsa KVKK gereği açık olmalı."
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Online card donations for saplings are coming soon."
+msgstr "Kart ile online fidan bağışı çok yakında açılacak."
+
+msgid "Pay by Card"
+msgstr "Kart ile Ödeme"
+
+msgid "Card payments coming soon"
+msgstr "Kart ile ödeme yakında"
+
+msgid "To donate by card, choose a sapling package or an amount in the donation options on this page and complete the payment."
+msgstr "Kartla bağış için bu sayfadaki bağış seçeneklerinden fidan paketini ya da tutarı seçip ödemeyi tamamlayın."
+
+msgid "Ways to Contribute"
+msgstr "Katkı Yolları"
+
+msgid "Enable registration"
+msgstr "Kaydı aç"
+
+msgid "Sign Up"
+msgstr "Kayıt Ol"
+
+msgid "Sign up"
+msgstr "Kayıt ol"
+
+msgid "Manage your saved payment methods."
+msgstr "Kayıtlı ödeme yöntemlerinizi yönetin."
+
+msgid "Our Library"
+msgstr "Kitaplığımız"
+
+msgid "People Trained"
+msgstr "Kişiye Eğitim Verildi"
+
+msgid "Checked: %s"
+msgstr "Kontrol: %s"
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "Copied ✓"
+msgstr "Kopyalandı ✓"
+
+msgid "User"
+msgstr "Kullanıcı"
+
+msgid "Refresh rules"
+msgstr "Kuralları yenile"
+
+msgid "Installed (v%s) but not active."
+msgstr "Kurulu (v%s) ama etkin değil."
+
+msgid "Not installed."
+msgstr "Kurulu değil."
+
+msgid "Can our company or school make a bulk sapling donation?"
+msgstr "Kurum ya da okul olarak toplu fidan bağışı yapabilir miyiz?"
+
+msgid "For bulk sapling donations and joint planting events for companies and schools,"
+msgstr "Kurumlar ve okullar için toplu fidan bağışı ve ortak dikim etkinlikleri için"
+
+msgid "Dig a hole twice as wide and deep as the root ball."
+msgstr "Kök topundan iki kat geniş ve derin bir çukur açın."
+
+msgid "Short video"
+msgstr "Kısa video"
+
+msgid "LiteSpeed Cache is active, but image lazy load is on. The theme already lazy-loads images; with both on, images appear blank on every reload. LiteSpeed Cache › Page Optimization › Media › Lazy Load: Off."
+msgstr "LiteSpeed Cache etkin, ama görsel lazy load açık. Tema görselleri zaten geciktiriyor; açık kalırsa görseller her yenilemede boş görünüp sonradan gelir. LiteSpeed Cache › Sayfa Optimizasyonu › Medya › Lazy Load: Kapalı."
+
+msgid "LiteSpeed Cache is active."
+msgstr "LiteSpeed Cache etkin."
+
+msgid "Articles"
+msgstr "Makaleler"
+
+msgid "Financial Statements"
+msgstr "Mali Tablolar"
+
+msgid "Brand Partnerships"
+msgstr "Marka İş Birlikleri"
+
+msgid "Shop"
+msgstr "Mağaza"
+
+msgid "Hi %s, your donations are saved to your account."
+msgstr "Merhaba %s, bağışların hesabına kaydedilir."
+
+msgid "Hello, %s"
+msgstr "Merhaba, %s"
+
+msgid "Distance Sales Agreement"
+msgstr "Mesafeli Satış Sözleşmesi"
+
+msgid "How Can You Contribute?"
+msgstr "Nasıl Katkı Sağlayabilirsiniz?"
+
+msgid "What are you looking for?"
+msgstr "Ne aramıştınız?"
+
+msgid "At events with schools and families, children learn how to plant a sapling and protect the forest."
+msgstr "Okullar ve ailelerle düzenlediğimiz etkinliklerde çocuklar fidanı toprakla buluşturmayı ve ormanı korumayı öğreniyor."
+
+msgid "We meet schools, organisations and volunteers in the field and turn every planting day into a festival."
+msgstr "Okullar, kurumlar ve gönüllülerle aynı sahada buluşuyor, her dikim gününü bir şenliğe dönüştürüyoruz."
+
+msgid "Reading settings"
+msgstr "Okuma ayarları"
+
+msgid "Confirmation"
+msgstr "Onay"
+
+msgid "Online credit and debit card donations are coming very soon. For now you can donate by bank transfer."
+msgstr "Online kredi ve banka kartı ile bağış altyapımız çok yakında hizmetinizde. Şimdilik Havale/EFT ile bağış yapabilirsiniz."
+
+msgid "Our Organization"
+msgstr "Organizasyon Yapımız"
+
+msgid "Forest"
+msgstr "Orman"
+
+msgid "Forest protection"
+msgstr "Orman koruma"
+
+msgid "A ranger hanging a birdhouse on a tree with children"
+msgstr "Ormanda ağaca kuş yuvası asan görevli ve çocuklar"
+
+msgid "Currency"
+msgstr "Para birimi"
+
+msgid "Write the policy text here."
+msgstr "Politika metnini buraya yazın."
+
+msgid "Popular:"
+msgstr "Popüler:"
+
+msgid "Project ·"
+msgstr "Proje ·"
+
+msgid "Project Partnerships"
+msgstr "Proje İş Birlikleri"
+
+msgid "Search projects, news, events…"
+msgstr "Proje, haber, etkinlik ara…"
+
+msgid "Add projects from the Projects menu; they are listed here automatically."
+msgstr "Projeler menüsünden proje ekleyin; burada otomatik listelenir."
+
+msgid "Our Projects"
+msgstr "Projelerimiz"
+
+msgid "Explore Our Projects"
+msgstr "Projelerimizi Keşfet"
+
+msgid "View project"
+msgstr "Projeyi incele"
+
+msgid "SEO, sitemap, schema and browser cache"
+msgstr "SEO, sitemap, schema ve tarayıcı önbelleği"
+
+msgid "No SMTP plugin. Certificate and donation emails may land in spam; connect the association mailbox with WP Mail SMTP or FluentSMTP."
+msgstr "SMTP eklentisi yok. Sertifika ve bağış e-postaları spam'e düşebilir; WP Mail SMTP veya FluentSMTP ile dernek e-postasını bağlayın."
+
+msgid "Timezone"
+msgstr "Saat dilimi"
+
+msgid "Download the files you purchased."
+msgstr "Satın aldığınız dosyaları indirin."
+
+msgid "Page cache"
+msgstr "Sayfa önbelleği"
+
+msgid "No page cache. Install and enable LiteSpeed Cache on Hostinger; the site gets noticeably faster."
+msgstr "Sayfa önbelleği yok. Hostinger'da LiteSpeed Cache eklentisini kurup açın; site belirgin hızlanır."
+
+msgid "Pages and theme"
+msgstr "Sayfalar ve tema"
+
+msgid "Cart"
+msgstr "Sepet"
+
+msgid "Review your cart; every purchase is a contribution to nature."
+msgstr "Sepetinizi gözden geçirin; her alışveriş doğaya bir katkı."
+
+msgid "Plant a sapling in the name of your loved ones and let’s give the future room to breathe."
+msgstr "Sevdiklerin adına bir fidan dik, geleceğe birlikte nefes olalım."
+
+msgid "Plant a sapling in the name of your loved ones and let’s give the future room to breathe. Watch our project video."
+msgstr "Sevdiklerin adına bir fidan dik, geleceğe birlikte nefes olalım. Projemizin tanıtım videosunu izle."
+
+msgid "Donate a sapling for a loved one"
+msgstr "Sevdiklerin adına fidan bağışı"
+
+msgid "Order steps"
+msgstr "Sipariş adımları"
+
+msgid "System Check"
+msgstr "Sistem Kontrolü"
+
+msgid "The site is visible to Google."
+msgstr "Site Google'a açık."
+
+msgid "Site Setup"
+msgstr "Site Kurulumu"
+
+msgid "Site address uses http. Enable SSL and switch the address to https for payments and login."
+msgstr "Site adresi http. Ödeme ve giriş için SSL açıp adresi https yapın."
+
+msgid "Site address uses https."
+msgstr "Site adresi https."
+
+msgid "Site settings"
+msgstr "Site ayarları"
+
+msgid "Site setup"
+msgstr "Site kurulumu"
+
+msgid "Search the site"
+msgstr "Sitede ara"
+
+msgid "We use essential cookies to make our site work, and analytics cookies to understand visits only if you consent."
+msgstr "Sitemizin düzgün çalışması için zorunlu çerezler, ziyaretleri anlamak için ise yalnızca onay verirseniz analiz çerezleri kullanıyoruz."
+
+msgid "Latest News"
+msgstr "Son Haberler"
+
+msgid "Recent donations"
+msgstr "Son bağışlar"
+
+msgid "Recent fixes (AI / MCP)"
+msgstr "Son düzeltmeler (yapay zekâ / MCP)"
+
+msgid "Last run"
+msgstr "Son çalışma"
+
+msgid "Autumn"
+msgstr "Sonbahar"
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "Result"
+msgstr "Sonuç"
+
+msgid "TRY IBAN"
+msgstr "TL IBAN"
+
+msgid "TR00 0000 0000 0000 0000 0000 00"
+msgstr "TR00 0000 0000 0000 0000 0000 00"
+
+msgid "OK"
+msgstr "Tamam"
+
+msgid "Completed Projects"
+msgstr "Tamamlanan Projelerimiz"
+
+msgid "One-time and Regular Donations"
+msgstr "Tek Seferlik ve Düzenli Bağış"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Add phone"
+msgstr "Telefon ekle"
+
+msgid "Add your phone number to also receive updates via WhatsApp."
+msgstr "Telefon numaranı ekle, bildirimleri WhatsApp’tan da alabilirsin."
+
+msgid "The phone number looks invalid. Example: +90 532 123 45 67"
+msgstr "Telefon numarası geçersiz görünüyor. Örnek: 0532 123 45 67"
+
+msgid "Phone donations and call logs"
+msgstr "Telefonla bağış ve arama kayıtları"
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Theme Settings"
+msgstr "Tema Ayarları"
+
+msgid "Our Core Goals"
+msgstr "Temel Hedeflerimiz"
+
+msgid "Basic setup was never run; pages and menu may be missing."
+msgstr "Temel kurulum hiç çalıştırılmadı; sayfalar ve menü eksik olabilir."
+
+msgid "Basic setup has been run."
+msgstr "Temel kurulum çalıştırıldı."
+
+msgid "Clean-up Drives"
+msgstr "Temizlik Çalışması"
+
+msgid "Delivery and Refund Policy"
+msgstr "Teslimat ve İade Şartları"
+
+msgid "Thank you, your donation has been received"
+msgstr "Teşekkürler, bağışınız alındı"
+
+msgid "From Our Community"
+msgstr "Topluluğumuzdan"
+
+msgid "Shows the languages added with TranslatePress, Polylang or WPML. Hidden when there is only one language."
+msgstr "TranslatePress, Polylang veya WPML ile eklenen dilleri gösterir. Tek dil varsa görünmez."
+
+msgid "All News"
+msgstr "Tüm Haberler"
+
+msgid "All Ways to Contribute"
+msgstr "Tüm Katkı Yolları"
+
+msgid "All Projects"
+msgstr "Tüm Projeler"
+
+msgid "All Our Work"
+msgstr "Tüm Çalışmalarımız"
+
+msgid "View all"
+msgstr "Tümünü gör"
+
+msgid "For Türkiye,"
+msgstr "Türkiye için"
+
+msgid "Warning"
+msgstr "Uyarı"
+
+msgid "%1$d tasks are more than 15 minutes overdue: %2$s"
+msgstr "Vakti 15 dakikadan fazla geçmiş %1$d görev var: %2$s"
+
+msgid "No overdue tasks."
+msgstr "Vakti geçmiş görev yok."
+
+msgid "Tax Exemption"
+msgstr "Vergi Muafiyeti"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Play video"
+msgstr "Videoyu oynat"
+
+msgid "WooCommerce account icon and mini cart. Hidden when WooCommerce is inactive."
+msgstr "WooCommerce hesap simgesi ve mini sepet. WooCommerce kapalıysa görünmez."
+
+msgid "WooCommerce currency is %s. Choose Turkish lira."
+msgstr "WooCommerce para birimi %s. Türk lirası seçin."
+
+msgid "Coming soon"
+msgstr "Yakında"
+
+msgid "Show only these (click again for all)"
+msgstr "Yalnızca bunları göster (tekrar tıklayınca hepsi)"
+
+msgid "Essential only"
+msgstr "Yalnızca zorunlu"
+
+msgid "Publications"
+msgstr "Yayınlar"
+
+msgid "Post name structure; /projeler/ and /etkinlikler/ addresses are registered."
+msgstr "Yazı adı yapısı; /projeler/ ve /etkinlikler/ adresleri tanımlı."
+
+msgid "Add news from the Posts menu; they are listed here automatically."
+msgstr "Yazılar menüsünden haber ekleyin; burada otomatik listelenir."
+
+msgid "Check again"
+msgstr "Yeniden kontrol et"
+
+msgid "Green Library"
+msgstr "Yeşil Kütüphane"
+
+msgid "Watch on YouTube"
+msgstr "YouTube'da izle"
+
+msgid "Loading…"
+msgstr "Yükleniyor…"
+
+msgid "Time"
+msgstr "Zaman"
+
+msgid "Scheduled tasks (cron)"
+msgstr "Zamanlanmış görevler (cron)"
+
+msgid "Has not run for a while because traffic is low."
+msgstr "Ziyaret az olduğu için uzun süredir çalışmadı."
+
+msgid "has begun"
+msgstr "başladı"
+
+msgid "for your family"
+msgstr "bir fidan"
+
+msgid "future"
+msgstr "bir gelecek"
+
+msgid "contact us"
+msgstr "bize ulaşın"
+
+msgid "a greener"
+msgstr "daha yeşil"
+
+msgid "planting season"
+msgstr "dikim dönemi"
+
+msgid "we plant and grow"
+msgstr "dikiyor, birlikte büyütüyoruz"
+
+msgid "nature"
+msgstr "doğayı"
+
+msgid "our events page"
+msgstr "etkinlikler sayfamızda"
+
+msgid "tree planting events"
+msgstr "fidan dikim etkinliklerinde"
+
+msgid "tree planting video"
+msgstr "fidan dikim videomuza"
+
+msgid "how to plant a sapling"
+msgstr "fidan nasıl dikilir"
+
+msgid "we hold with our volunteers."
+msgstr "fidana dönüşür."
+
+msgid "."
+msgstr "yayınlanır."
+
+msgid "No iyzico plugin installed. That is fine: Flux Donate reads the iyzico keys from its own Payments settings."
+msgstr "iyzico eklentisi kurulu değil. Sorun değil: Flux Donate iyzico anahtarlarını kendi Ödemeler ayarından okur."
+
+msgid "Pay with iyzico, Mastercard, Visa, American Express, Troy"
+msgstr "iyzico ile Öde, Mastercard, Visa, American Express, Troy"
+
+msgid "with children"
+msgstr "keşfediyoruz"
+
+msgid "standing"
+msgstr "ormanların"
+
+msgid "guide and our"
+msgstr "rehberimize ve"
+
+msgid "v%s and later add their own checks to this screen."
+msgstr "v%s ve sonrası kendi kontrollerini bu ekrana ekler."
+
+msgid "or"
+msgstr "veya"
+
+msgid "by our forests"
+msgstr "yanındayız"
+
+msgid "Our Work"
+msgstr "Çalışmalarımız"
+
+msgid "Cookie Policy"
+msgstr "Çerez Politikası"
+
+msgid "Cookie banner"
+msgstr "Çerez banner'ı"
+
+msgid "Cookie banner title"
+msgstr "Çerez banner'ı başlığı"
+
+msgid "Cookie banner text"
+msgstr "Çerez banner'ı metni"
+
+msgid "Cookie banner: accept button"
+msgstr "Çerez banner'ı: kabul düğmesi"
+
+msgid "Cookie banner: policy link"
+msgstr "Çerez banner'ı: politika bağlantısı"
+
+msgid "Cookie banner: necessary only button"
+msgstr "Çerez banner'ı: yalnızca zorunlu düğmesi"
+
+msgid "Change cookie preferences"
+msgstr "Çerez tercihlerini değiştir"
+
+msgid "We use cookies"
+msgstr "Çerezleri kullanıyoruz"
+
+msgid "Environmental education"
+msgstr "Çevre eğitimi"
+
+msgid "Child Protection Policy"
+msgstr "Çocuk Koruma Politikası"
+
+msgid "Exploring"
+msgstr "Çocuklarla"
+
+msgid "Planting a sapling together with children"
+msgstr "Çocuklarla birlikte toprağa fidan dikimi"
+
+msgid "Fill the hole with soil and press gently so no air pockets remain."
+msgstr "Çukuru toprakla doldurun, hava boşluğu kalmaması için hafifçe bastırın."
+
+msgid "Log out"
+msgstr "Çıkış yap"
+
+msgid "Checkout"
+msgstr "Ödeme"
+
+msgid "Payments"
+msgstr "Ödemeler"
+
+msgid "Before → After"
+msgstr "Önce → Sonra"
+
+msgid "Previous"
+msgstr "Önceki"
+
+msgid "Featured"
+msgstr "Öne Çıkan"
+
+msgid "Featured Projects"
+msgstr "Öne Çıkan Projeler"
+
+msgid "Membership Fee and Donation"
+msgstr "Üye Aidatı ve Bağış"
+
+msgid "Give nature a sapling in three steps. Your donations become saplings at our tree planting events."
+msgstr "Üç adımda doğaya bir fidan kazandır. Bağışların fidan dikim etkinliklerimizde fidana dönüşür."
+
+msgid "Contact"
+msgstr "İletişim"
+
+msgid "I joined my first tree planting event with my friends. We learned a lot, and watching the saplings we planted grow is an incredible feeling."
+msgstr "İlk fidan dikim etkinliğime arkadaşlarımla katıldım. Hem çok şey öğrendik hem de diktiğimiz fidanların büyüdüğünü görmek inanılmaz bir duygu."
+
+msgid "Our Istanbul Branch and Provincial Office"
+msgstr "İstanbul Şubemiz ve İl Temsilciliği"
+
+msgid "Istanbul Branch"
+msgstr "İstanbul Şubesi"
+
+msgid "Optional"
+msgstr "İsteğe bağlı"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Presets"
+msgstr "Ön ayarlar"
+
+msgid "A preset sets up the site in one step with the organisation profile, plugin settings, colours, header/footer, templates, pages and menus. Changes you make in the panel are never overwritten; updates are applied one by one with your approval."
+msgstr "Ön ayar; kurum profili, eklenti ayarları, renkler, header/footer, şablonlar, sayfalar ve menülerle siteyi tek adımda kurar. Panelden yaptığınız değişikliklerin üzerine yazılmaz; güncellemeler tek tek onayınızla uygulanır."
+
+msgid "Appearance"
+msgstr "Görünüm"
+
+msgid "Site type"
+msgstr "Site türü"
+
+msgid "Shop: Orders, Return to shop"
+msgstr "Mağaza: Siparişler, Mağazaya dön"
+
+msgid "Donation: Donations, Donate button, return to the donation page"
+msgstr "Bağış: Bağışlar, Bağış Yap düğmesi, bağış sayfasına dönüş"
+
+msgid "Sets the wording in My account, the cart and the mobile menu."
+msgstr "Hesabım, sepet ve mobil menüdeki metinleri belirler."
+
+msgid "Save settings"
+msgstr "Ayarları kaydet"
+
+msgid "Log in to manage your orders, addresses and account details, or create an account in seconds."
+msgstr "Siparişlerinizi, adreslerinizi ve hesap bilgilerinizi yönetmek için giriş yapın ya da birkaç saniyede hesap oluşturun."
+
+msgid "Track your orders and manage your addresses and account details in one place."
+msgstr "Siparişlerinizi takip edin, adreslerinizi ve hesap bilgilerinizi tek yerden yönetin."
+
+msgid "Thank you, your order has been received"
+msgstr "Teşekkürler, siparişiniz alındı"
+
+msgid "Your order summary is below. The details were also sent to your email address."
+msgstr "Sipariş özetiniz aşağıda. Ayrıntılar e-posta adresinize de gönderildi."
+
+msgid "Review your cart, then proceed to checkout."
+msgstr "Sepetinizi gözden geçirin, ardından ödemeye geçin."
+
+msgid "Continue donating"
+msgstr "Bağışa devam et"
+
+msgid "Continue shopping"
+msgstr "Alışverişe devam et"
+
+msgid "Go to the shop"
+msgstr "Mağazaya git"
+
+msgid "See your orders and their status."
+msgstr "Siparişlerinizi ve durumlarını görün."
+
+msgid "Recent orders"
+msgstr "Son siparişler"
+
+msgid "Search products, posts, pages…"
+msgstr "Ürün, yazı, sayfa ara…"
+
+msgid "Post name structure."
+msgstr "Yazı adı yapısı."
+
+msgid "My account, Cart and Checkout are published."
+msgstr "Hesabım, Sepet ve Ödeme yayında."
+
+msgid "Theme settings copied (%d fields)."
+msgstr "Tema ayarları kopyalandı (%d alan)."
+
+msgid "Additional CSS copied."
+msgstr "Ek CSS kopyalandı."
+
+msgid "Site Editor records copied (%d templates, parts or styles)."
+msgstr "Site Editor kayıtları kopyalandı (%d şablon, parça ya da stil)."
+
+msgid "There was nothing new to migrate."
+msgstr "Taşınacak yeni bir şey yoktu."
+
+msgid "You are not allowed to do this."
+msgstr "Yetkiniz yok."
+
+msgid "Migrated from the previous theme."
+msgstr "Eski temadan taşındı."
+
+msgid "Migrate from the previous theme"
+msgstr "Eski temadan taşı"
+
+msgid "Copies the previous theme's settings (logo, menus, additional CSS) and the templates, parts and styles you saved in the Site Editor to this theme. The previous theme is left untouched; records with the same name in this theme are not overwritten."
+msgstr "Eski temanın ayarlarını (logo, menüler, ek CSS) ve Site Editor'de kaydettiğiniz şablon, parça ve stilleri bu temaya kopyalar. Eski temaya dokunulmaz; bu temada aynı adlı kayıt varsa üzerine yazılmaz."
+
+msgid "Migrate from %s"
+msgstr "%s temasından taşı"
+
+msgid "Migrate from %1$s again (last: %2$s)"
+msgstr "%1$s temasından yeniden taşı (son: %2$s)"
+
+msgid "FluxWP"
+msgstr "FluxWP"
+
+msgid "New season"
+msgstr "Yeni sezon"
+
+msgid "Simple, quality products for everyday life"
+msgstr "Günlük hayat için sade ve kaliteli ürünler"
+
+msgid "Carefully selected products, fast delivery and easy returns."
+msgstr "Özenle seçilmiş ürünler, hızlı teslimat ve kolay iade."
+
+msgid "Start shopping"
+msgstr "Alışverişe başla"
+
+msgid "Fast delivery"
+msgstr "Hızlı teslimat"
+
+msgid "Your orders are packed with care and shipped quickly."
+msgstr "Siparişleriniz özenle paketlenir ve kısa sürede yola çıkar."
+
+msgid "Easy returns"
+msgstr "Kolay iade"
+
+msgid "Return any product you don't like free of charge within 14 days."
+msgstr "Beğenmediğiniz ürünü 14 gün içinde ücretsiz iade edebilirsiniz."
+
+msgid "Secure payment"
+msgstr "Güvenli ödeme"
+
+msgid "Pay securely by card or bank transfer."
+msgstr "Kartla ya da havale ile güvenle ödeme yapın."
+
+msgid "Featured products"
+msgstr "Öne çıkan ürünler"
+
+msgid "See all →"
+msgstr "Tümünü gör →"
+
+msgid "From the blog"
+msgstr "Blogdan"
+
+msgid "No posts yet."
+msgstr "Henüz yazı yok."
+
+msgid "Recent posts"
+msgstr "Son yazılar"
+
+msgid "All products"
+msgstr "Tüm ürünler"
+
+msgid "Company"
+msgstr "Kurumsal"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgctxt "context_dd7eb423550c"
+msgid "Primary"
+msgstr "Ana renk"
+
+msgctxt "context_dd7eb423550c"
+msgid "Primary dark"
+msgstr "Koyu ana renk"
+
+msgctxt "context_dd7eb423550c"
+msgid "Accent"
+msgstr "Vurgu"
+
+msgctxt "context_dd7eb423550c"
+msgid "Heading"
+msgstr "Başlık"
+
+msgctxt "context_dd7eb423550c"
+msgid "Text"
+msgstr "Metin"
+
+msgctxt "context_dd7eb423550c"
+msgid "Light background"
+msgstr "Açık zemin"
+
+msgctxt "context_dd7eb423550c"
+msgid "Lighter background"
+msgstr "Çok açık zemin"
+
+msgctxt "context_dd7eb423550c"
+msgid "Border"
+msgstr "Çizgi"
+
+msgctxt "context_dd7eb423550c"
+msgid "White"
+msgstr "Beyaz"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Indigo"
+msgstr "İndigo"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Charcoal"
+msgstr "Antrasit"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Blue"
+msgstr "Mavi"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Forest"
+msgstr "Orman"
+
+msgctxt "context_5a4407eb92ce"
+msgid "Petrol"
+msgstr "Petrol"
+
+msgctxt "context_dd7eb423550c"
+msgid "Page background"
+msgstr "Sayfa zemini"
+
+msgid "Store dashboard, customers, sales report and bank transfer with receipt"
+msgstr "Mağaza paneli, müşteriler, satış raporu ve dekontlu Havale/EFT"
+
+msgid "Contact forms"
+msgstr "İletişim formları"
+
+msgid "WhatsApp chats and call logs"
+msgstr "WhatsApp sohbetleri ve arama kayıtları"
+
+msgid "Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
+msgstr "Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken e-postalar ve zamanlanmış işler gecikir. Hostinger › Gelişmiş › Cron Jobs'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php'ye define( 'DISABLE_WP_CRON', true ); yazın."
+
+msgid "%s. Choose Istanbul so order, form and email times are correct."
+msgstr "%s. Sipariş, form ve e-posta saatleri için İstanbul seçin."
+
+msgid "No SMTP plugin. Site emails may land in spam; connect your organization's email with WP Mail SMTP or FluentSMTP."
+msgstr "SMTP eklentisi yok. Site e-postaları spam'e düşebilir; WP Mail SMTP veya FluentSMTP ile kurum e-postanızı bağlayın."
+
+msgid "Pay with iyzico · Mastercard · Visa · American Express · Troy"
+msgstr "iyzico ile Öde · Mastercard · Visa · American Express · Troy"
+
+msgid "Payment methods"
+msgstr "Ödeme yöntemleri"
+
+msgid "Remove"
+msgstr "Kaldır"
+
+msgid "Move left"
+msgstr "Sola al"
+
+msgid "Payment logos"
+msgstr "Ödeme logoları"
+
+msgid "Add logos"
+msgstr "Logoları ekle"
+
+msgid "No logos: the footer shows no payment logos."
+msgstr "Logo yok: footer'da ödeme logosu gösterilmez."
+
+msgid "Logos that virtual POS providers (iyzico, EsnekPOS, etc.) want on the site. Shown in the footer; add them anywhere else with the [flx_odeme_logolari] shortcode."
+msgstr "Sanal POS sağlayıcılarının (iyzico, EsnekPOS vb.) sitede görünmesini istediği logolar. Footer'da gösterilir; başka bir yere [flx_odeme_logolari] kısa koduyla eklenir."
+
+msgid "Logos"
+msgstr "Logolar"
+
+msgid "Upload logo"
+msgstr "Logo yükle"
+
+msgid "Built-in logo"
+msgstr "Hazır logo"
+
+msgid "Add a built-in logo…"
+msgstr "Hazır logo ekle…"
+
+msgid "Back to automatic"
+msgstr "Otomatiğe dön"
+
+msgid "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice."
+msgstr "Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur."
+
+msgid "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins."
+msgstr "Elle seçilmiş liste. \"Otomatiğe dön\" ile iyzico bandı ve etkin sanal POS logolarına döner."
+
+msgid "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer."
+msgstr "SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer'da beyaz kutu içinde gösterilir."
+
+msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
+msgstr "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."

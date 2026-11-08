@@ -272,7 +272,7 @@ function flxc_editor_run_tool( array &$d, array $c, $approved ) {
 		case 'find_chats':
 			$r = flxc_editor_find_chats( $a['query'] ?? '' );
 			/* translators: 1: query, 2: count */
-			$d['view'][] = array( 't' => 'tool', 'text' => sprintf( __( 'Sohbet arandı: "%1$s" (%2$d sonuç)', 'flx-chat' ), (string) ( $a['query'] ?? '' ), count( (array) ( $r['chats'] ?? array() ) ) ) );
+			$d['view'][] = array( 't' => 'tool', 'text' => sprintf( __( 'Chats searched: "%1$s" (%2$d results)', 'flx-chat' ), (string) ( $a['query'] ?? '' ), count( (array) ( $r['chats'] ?? array() ) ) ) );
 			return $r;
 
 		case 'read_chat':
@@ -280,7 +280,7 @@ function flxc_editor_run_tool( array &$d, array $c, $approved ) {
 			if ( ! empty( $r['ok'] ) ) {
 				$d['read'][] = (int) $a['chat_id'];
 				/* translators: 1: chat title, 2: count */
-				$d['view'][] = array( 't' => 'tool', 'text' => sprintf( __( '%1$s sohbetinin son %2$d mesajı okundu', 'flx-chat' ), $r['title'], count( $r['messages'] ) ) );
+				$d['view'][] = array( 't' => 'tool', 'text' => sprintf( __( 'Read the last %2$d messages of %1$s', 'flx-chat' ), $r['title'], count( $r['messages'] ) ) );
 			}
 			return $r;
 
@@ -318,7 +318,7 @@ function flxc_editor_run_tool( array &$d, array $c, $approved ) {
 			$d['test']   = array( 'history' => array_slice( $hist, -40 ), 'state' => $r['state'], 'bg' => $r['bg'] ?? null );
 			flxc_editor_add_usage( $d, $r['usage'] );
 			/* translators: %s: test message */
-			$d['view'][] = array( 't' => 'tool', 'text' => sprintf( __( 'Test edildi: "%s"', 'flx-chat' ), mb_substr( $text, 0, 80 ) ) );
+			$d['view'][] = array( 't' => 'tool', 'text' => sprintf( __( 'Tested: "%s"', 'flx-chat' ), mb_substr( $text, 0, 80 ) ) );
 			$res = array(
 				'ok'      => true,
 				'replies' => $r['replies'],
@@ -349,7 +349,7 @@ function flxc_editor_pending_label( array $c ) {
 	$chat = flxc_get_chat( (int) ( $c['args']['chat_id'] ?? 0 ) );
 	$lim  = max( 1, min( 40, (int) ( $c['args']['limit'] ?? 10 ) ) );
 	/* translators: 1: chat title, 2: count */
-	$l = sprintf( __( '%1$s sohbetinin son %2$d mesajını okumak istiyor.', 'flx-chat' ), $chat ? flxc_chat_title( $chat ) : '#' . (int) ( $c['args']['chat_id'] ?? 0 ), $lim );
+	$l = sprintf( __( 'Wants to read the last %2$d messages of %1$s.', 'flx-chat' ), $chat ? flxc_chat_title( $chat ) : '#' . (int) ( $c['args']['chat_id'] ?? 0 ), $lim );
 	$why = trim( (string) ( $c['args']['why'] ?? '' ) );
 	return '' !== $why ? $l . ' ' . $why : $l;
 }
@@ -412,7 +412,7 @@ function flxc_editor_step( array &$d, $model ) {
 	}
 	if ( ++$d['steps'] > FLXC_EDITOR_MAX_STEPS ) {
 		flxc_editor_cancel_queue( $d, 'Adım sınırı doldu.' );
-		$d['view'][] = array( 't' => 'error', 'text' => __( 'Adım sınırı doldu; devam etmek için bir mesaj yazın.', 'flx-chat' ) );
+		$d['view'][] = array( 't' => 'error', 'text' => __( 'Step limit reached; write a message to continue.', 'flx-chat' ) );
 		return array( 'done' => true );
 	}
 	if ( $d['queue'] ) {
@@ -530,7 +530,7 @@ function flxc_rest_editor_sessions( WP_REST_Request $req ) {
 }
 
 function flxc_rest_editor_not_found() {
-	return new WP_Error( 'flxc_editor', __( 'Oturum bulunamadı.', 'flx-chat' ), array( 'status' => 404 ) );
+	return new WP_Error( 'flxc_editor', __( 'Session not found.', 'flx-chat' ), array( 'status' => 404 ) );
 }
 
 function flxc_rest_editor_session( WP_REST_Request $req ) {
@@ -559,14 +559,14 @@ function flxc_rest_editor_session_update( WP_REST_Request $req ) {
 	if ( 'published' === $draft && null !== $s['data']['draft'] ) {
 		$s['data']['base']   = $s['data']['draft'];
 		$s['data']['draft']  = null;
-		$s['data']['view'][] = array( 't' => 'note', 'text' => __( 'Taslak yayına alındı.', 'flx-chat' ) );
+		$s['data']['view'][] = array( 't' => 'note', 'text' => __( 'Draft published.', 'flx-chat' ) );
 		$s['data']['msgs'][] = array( 'role' => 'user', 'content' => '[Yönetici taslağı onayladı ve yayına aldı.]' );
 		$s['data']['msgs'][] = array( 'role' => 'assistant', 'content' => 'Tamam.' );
 	} elseif ( 'saved' === $draft && null !== $s['data']['draft'] ) {
-		$s['data']['view'][] = array( 't' => 'note', 'text' => __( 'Taslak sürüm olarak kaydedildi.', 'flx-chat' ) );
+		$s['data']['view'][] = array( 't' => 'note', 'text' => __( 'Draft saved as a version.', 'flx-chat' ) );
 	} elseif ( 'discarded' === $draft ) {
 		$s['data']['draft']  = null;
-		$s['data']['view'][] = array( 't' => 'note', 'text' => __( 'Taslaktan vazgeçildi.', 'flx-chat' ) );
+		$s['data']['view'][] = array( 't' => 'note', 'text' => __( 'Draft discarded.', 'flx-chat' ) );
 		$s['data']['msgs'][] = array( 'role' => 'user', 'content' => '[Yönetici taslaktan vazgeçti; yayındaki metin geçerli.]' );
 		$s['data']['msgs'][] = array( 'role' => 'assistant', 'content' => 'Tamam.' );
 	}
@@ -590,7 +590,7 @@ function flxc_rest_editor_session_delete( WP_REST_Request $req ) {
  */
 function flxc_rest_editor_step( WP_REST_Request $req ) {
 	if ( ! flxc_ai_ready() ) {
-		return new WP_Error( 'flxc_ai', __( 'Önce Ayarlar › Yapay zekâ bölümünden anahtar ve model girin.', 'flx-chat' ), array( 'status' => 400 ) );
+		return new WP_Error( 'flxc_ai', __( 'First enter an API key and model under Settings › AI.', 'flx-chat' ), array( 'status' => 400 ) );
 	}
 	$id   = (int) $req->get_param( 'session_id' );
 	$text = trim( (string) $req->get_param( 'text' ) );
@@ -601,7 +601,7 @@ function flxc_rest_editor_step( WP_REST_Request $req ) {
 		}
 	} else {
 		if ( '' === $text ) {
-			return new WP_Error( 'flxc_editor', __( 'Ne değiştirmek istediğinizi yazın.', 'flx-chat' ), array( 'status' => 400 ) );
+			return new WP_Error( 'flxc_editor', __( 'Write what you want to change.', 'flx-chat' ), array( 'status' => 400 ) );
 		}
 		$s = array(
 			'id'     => 0,
@@ -628,7 +628,7 @@ function flxc_rest_editor_step( WP_REST_Request $req ) {
 			}
 		} else {
 			$d['msgs'][] = array( 'role' => 'tool', 'tool_call_id' => $c['id'], 'content' => wp_json_encode( array( 'ok' => false, 'error' => 'Yönetici bu sohbetin okunmasına izin vermedi. Okumadan devam et.' ), JSON_UNESCAPED_UNICODE ) );
-			$d['view'][] = array( 't' => 'tool', 'text' => __( 'Okumaya izin verilmedi', 'flx-chat' ) );
+			$d['view'][] = array( 't' => 'tool', 'text' => __( 'Reading not allowed', 'flx-chat' ) );
 		}
 	}
 	$model = flxc_clean_model_id( $req->get_param( 'model' ) );
@@ -684,7 +684,7 @@ function flxc_bot_sandbox_bg( array $state ) {
 			'id'     => (int) $td['id'],
 			'title'  => (string) $td['title'],
 			'amount' => (string) $td['amount'],
-			'method' => 'card' === $td['method'] ? __( 'Kart', 'flx-chat' ) : ( 'havale' === $td['method'] ? __( 'Havale / EFT', 'flx-chat' ) : __( 'Seçmeli', 'flx-chat' ) ),
+			'method' => 'card' === $td['method'] ? __( 'Card', 'flx-chat' ) : ( 'havale' === $td['method'] ? __( 'Bank transfer', 'flx-chat' ) : __( 'Either', 'flx-chat' ) ),
 			'status' => (string) $td['status'],
 			'date'   => (string) $td['date'],
 			'seed'   => ! empty( $td['seed'] ),

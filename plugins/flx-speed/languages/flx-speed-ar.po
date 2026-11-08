@@ -1,0 +1,1505 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
+
+msgid "Performance"
+msgstr "الأداء"
+
+msgid "Safe"
+msgstr "آمنة"
+
+msgid "Test first"
+msgstr "الاختبار أولا"
+
+msgid "The theme or a preset overrides this feature in code (flxp_pagespeed_enabled); this setting may not take effect."
+msgstr "يتجاوز السمة أو الإعداد المسبق هذه الميزة في التعليمات البرمجية (flxp_pagespeed_enabled)؛ قد لا يصبح هذا الإعداد ساري المفعول."
+
+msgid "Saved. The cache and the LiteSpeed page cache were cleared; browse a few pages to check."
+msgstr "تم الحفظ. تم مسح ذاكرة التخزين المؤقت وذاكرة التخزين المؤقت لصفحة LiteSpeed؛ تصفح بضع صفحات للتحقق."
+
+msgid "PageSpeed cache cleared."
+msgstr "تم مسح ذاكرة التخزين المؤقت لـ PageSpeed."
+
+msgid "Google PageSpeed / Lighthouse suggestions that can be applied without changing the theme. Each one is switched on separately; after enabling a \"Test first\" item, check a few pages of the site (home, a post, donation/checkout)."
+msgstr "اقتراحات Google PageSpeed / Lighthouse التي يمكن تطبيقها دون تغيير المظهر. يتم تشغيل كل واحدة على حدة؛ بعد تمكين عنصر \"الاختبار أولاً\"، قم بفحص بضع صفحات من الموقع (الصفحة الرئيسية، المنشور، التبرع/الخروج)."
+
+msgid "Basics"
+msgstr "الأساسيات"
+
+msgid "Remove the zoom lock"
+msgstr "قم بإزالة قفل التكبير/التصغير"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag so visitors with low vision can zoom in. Directly affects the Accessibility score."
+msgstr "تتم إزالة user-scalable=no وmaximum-scale من علامة viewport حتى يتمكن الزائرون ضعاف البصر من التكبير. ويؤثر ذلك بشكل مباشر على درجة إمكانية الوصول."
+
+msgid "Remove the emoji script"
+msgstr "قم بإزالة البرنامج النصي للرموز التعبيرية"
+
+msgid "WordPress's emoji detection script and style are not loaded. Modern browsers render emoji themselves."
+msgstr "لم يتم تحميل البرنامج النصي والنمط لاكتشاف الرموز التعبيرية في WordPress. المتصفحات الحديثة تعرض الرموز التعبيرية بنفسها."
+
+msgid "Scope"
+msgstr "النطاق"
+
+msgid "Theme CSS only (recommended)"
+msgstr "موضوع CSS فقط (مستحسن)"
+
+msgid "Theme + plugins (all CSS under wp-content)"
+msgstr "السمة + المكونات الإضافية (جميع CSS ضمن محتوى wp)"
+
+msgid "Inline limit"
+msgstr "الحد المضمن"
+
+msgid "Trimmed CSS is written into <head> up to this size; anything beyond is loaded as a separate cached file. 0 = always a file."
+msgstr "تتم كتابة CSS المشذبة في<head>حتى هذا الحجم؛ يتم تحميل أي شيء يتجاوز ذلك كملف منفصل مخبأ. 0 = ملف دائمًا."
+
+msgid "Always keep these classes"
+msgstr "احتفظ دائمًا بهذه الفصول"
+
+msgid "One class or id per line, * as wildcard. If a style added later by JavaScript breaks, add its class here. is-*, has-*, wp-*, swiper-* are always kept."
+msgstr "فئة أو معرف واحد في كل سطر، * كحرف بدل. إذا انكسر أحد الأنماط التي تمت إضافتها لاحقًا بواسطة JavaScript، فأضف فئتها هنا. is-*، has-*، wp-*، swiper-* يتم الاحتفاظ بها دائمًا."
+
+msgid "Remove unused CSS and inline it"
+msgstr "قم بإزالة CSS غير المستخدم وقم بتضمينه"
+
+msgid "Each page's class/id inventory is collected (HTML + the page's scripts); rules with no match on that page are dropped from the CSS file and the rest is written into <head>. The render-blocking CSS request goes away and LCP/FCP improve. Pages with the same inventory share one copy; copies are rebuilt when the file changes, and the full file is used if there are too many different pages."
+msgstr "يتم جمع مخزون الفئة/المعرف الخاص بكل صفحة (HTML + البرامج النصية للصفحة)؛ يتم إسقاط القواعد التي ليس لها تطابق في تلك الصفحة من ملف CSS ويتم كتابة الباقي في<head>. يختفي طلب CSS الذي يحظر العرض ويتحسن LCP/FCP. الصفحات التي لها نفس المخزون تشترك في نسخة واحدة؛ تتم إعادة إنشاء النسخ عندما يتغير الملف، ويتم استخدام الملف الكامل إذا كان هناك عدد كبير جدًا من الصفحات المختلفة."
+
+msgid "Minify CSS files"
+msgstr "تصغير ملفات CSS"
+
+msgid "For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used."
+msgstr "بالنسبة لملفات CSS المحلية غير المصغرة (غير .min)، يتم استخدام نسخة شقيقة .min محدثة أو نسخة بدون تعليقات ومسافات بيضاء."
+
+msgid "Minify JS files"
+msgstr "تصغير ملفات JS"
+
+msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
+msgstr "بالنسبة للنصوص البرمجية للموضوع والمكونات الإضافية، يتم استخدام الشقيق .min إذا كان أحدث من المصدر؛ وإلا فسيتم إنشاء نسخة بدون تعليقات ومسافات بادئة (يتم الاحتفاظ بفواصل الأسطر). يتم ترك الحزم التي تقوم بتحميل الأجزاء المتعلقة بموقعها والبرامج النصية ذات الترجمات بمفردها."
+
+msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "يظل jQuery محظورًا دائمًا (قد تستدعيه البرامج النصية الأقدم المضمنة في الصفحة مباشرة). يقوم WordPress نفسه بإسقاط التأجيل للبرامج النصية التي تحتوي على برنامج نصي مضمن بعدها أو التي يعتمد عليها برنامج نصي للحظر."
+
+msgid "Defer head scripts"
+msgstr "تأجيل البرامج النصية الرئيسية"
+
+msgid "Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts)."
+msgstr "يتم تأجيل البرامج النصية التي تم تحميلها في الصفحة<head>والتي تعيق العرض (على سبيل المثال، اقتراح اللغة، والنصوص التحليلية)."
+
+msgid "Fonts"
+msgstr "الخطوط"
+
+msgid "Remove unused fonts"
+msgstr "إزالة الخطوط غير المستخدمة"
+
+msgid "Font families defined in theme.json but not referenced in the page's CSS (@font-face) are not printed. If usage cannot be determined, nothing is removed."
+msgstr "لا تتم طباعة مجموعات الخطوط المحددة في theme.json ولكن لم تتم الإشارة إليها في CSS للصفحة (@font-face). إذا تعذر تحديد الاستخدام، فلن تتم إزالة أي شيء."
+
+msgid "Preload the above-the-fold font"
+msgstr "قم بتحميل الخط الموجود في الجزء العلوي مسبقًا"
+
+msgid "The regular (400) woff2 of up to two families in use is requested with <link rel=\"preload\"> so text paints sooner. Preloading the wrong weight wastes a download; turn this off if PageSpeed reports an unused preload."
+msgstr "يتم طلب woff2 العادي (400) لما يصل إلى عائلتين قيد الاستخدام مع<link rel=\"preload\">حتى يتم رسم النص عاجلاً. يؤدي التحميل المسبق بالوزن الخاطئ إلى إضاعة عملية التنزيل؛ قم بإيقاف تشغيل هذا إذا أبلغت PageSpeed ​​عن تحميل مسبق غير مستخدم."
+
+msgid "Exclusions"
+msgstr "الاستثناءات"
+
+msgid "Files to leave alone"
+msgstr "الملفات التي يجب تركها بمفردها"
+
+msgid "One handle or part of a URL per line. Trimming, minifying and defer are not applied to these files."
+msgstr "مقبض واحد أو جزء من عنوان URL لكل سطر. لا يتم تطبيق التشذيب والتصغير والتأجيل على هذه الملفات."
+
+msgid "Pages to leave alone"
+msgstr "صفحات لترك وحدها"
+
+msgid "One URL part per line. No PageSpeed optimization runs on these pages."
+msgstr "جزء URL واحد في كل سطر. لا يتم تشغيل تحسين PageSpeed ​​على هذه الصفحات."
+
+msgid "Save and clear cache"
+msgstr "حفظ ومسح ذاكرة التخزين المؤقت"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Cache"
+msgstr "ذاكرة التخزين المؤقت"
+
+msgid "%1$d CSS, %2$d JS copies · %3$s"
+msgstr "نسخ%1$dCSS، نسخ%2$dJS ·%3$s"
+
+msgid "Compare"
+msgstr "قارن"
+
+msgid "Optimized"
+msgstr "الأمثل"
+
+msgid "Off (?flxp_off=1)"
+msgstr "إيقاف (?flxp_off=1)"
+
+msgid "Adding ?flxp_off=1 to a URL opens the page without optimizations; if the page looks different, the cause is here."
+msgstr "تؤدي إضافة ?flxp_off=1 إلى عنوان URL إلى فتح الصفحة بدون تحسينات؛ إذا كانت الصفحة تبدو مختلفة، فإن السبب هنا."
+
+msgid "Measure"
+msgstr "قياس"
+
+msgid "Flux SEO › Site audit"
+msgstr "تدفق كبار المسئولين الاقتصاديين ›تدقيق الموقع"
+
+msgid "The site audit suggests these settings itself and turns them on with one click."
+msgstr "يقترح تدقيق الموقع هذه الإعدادات بنفسه ويقوم بتشغيلها بنقرة واحدة."
+
+msgid "Clear cache"
+msgstr "مسح ذاكرة التخزين المؤقت"
+
+msgid "Animations not running on the GPU"
+msgstr "الرسوم المتحركة لا تعمل على GPU"
+
+msgid "Lighthouse \"non-composited animations\": properties other than transform and opacity (stroke-dashoffset, background, width…) repaint every frame. A setting cannot fix this; the theme or preset must rewrite them with transform/opacity."
+msgstr "المنارة \"الرسوم المتحركة غير المركبة\": خصائص أخرى غير التحويل والعتامة (إزاحة السكتة الدماغية، الخلفية، العرض...) تعيد رسم كل إطار. لا يمكن للإعداد إصلاح هذا الأمر؛ يجب أن يعيد السمة أو الإعداد المسبق كتابتها باستخدام التحويل/التعتيم."
+
+msgid "Animation"
+msgstr "الرسوم المتحركة"
+
+msgid "Properties"
+msgstr "خصائص"
+
+msgid "File"
+msgstr "ملف"
+
+msgid "no prefers-reduced-motion"
+msgstr "لا يفضل انخفاض الحركة"
+
+msgid "All good: animations in the CSS files seen use transform/opacity."
+msgstr "كل شيء جيد: الرسوم المتحركة في ملفات CSS التي تمت مشاهدتها تستخدم التحويل/التعتيم."
+
+msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
+msgstr "تظهر ملفات%1$dCSS الممسوحة ضوئيًا على الواجهة الأمامية (%2$s)."
+
+msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
+msgstr "لم يتم رؤية الواجهة الأمامية بعد، لذلك تم فحص مجلد السمات. بمجرد فتح الموقع، يتم فحص الملفات التي تقوم الصفحة بتحميلها."
+
+msgid "Summary"
+msgstr "ملخص"
+
+msgid "Records"
+msgstr "السجلات"
+
+msgid "Server"
+msgstr "الخادم"
+
+msgid "Database"
+msgstr "قاعدة البيانات"
+
+msgid "System check"
+msgstr "فحص النظام"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Flux Performance"
+msgstr "أداء التدفق"
+
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+msgid "All records deleted."
+msgstr "تم حذف كافة السجلات."
+
+msgid "Custom login URL turned off; login is back on wp-login.php."
+msgstr "تم إيقاف تشغيل عنوان URL المخصص لتسجيل الدخول؛ لقد عاد تسجيل الدخول إلى wp-login.php."
+
+msgid "Cleanup done: %s items."
+msgstr "تم التنظيف: عناصر%s."
+
+msgid "Login URL changed."
+msgstr "تم تغيير عنوان URL لتسجيل الدخول."
+
+msgid "New address:"
+msgstr "العنوان الجديد:"
+
+msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
+msgstr "يتم الآن تسجيل خروجك حتى تتمكن من رؤية العنوان الجديد يعمل؛ ستتم إعادة توجيهك إلى صفحة تسجيل الدخول الجديدة خلال%sثانية. بعد تسجيل الدخول ستعود إلى هذه الشاشة."
+
+msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
+msgstr "توقفت إعادة التوجيه. أنت لا تزال مسجلاً الدخول؛ يتم استخدام العنوان الجديد في المرة التالية التي تقوم فيها بتسجيل الدخول."
+
+msgid "Go now"
+msgstr "اذهب الآن"
+
+msgid "Stay logged in"
+msgstr "البقاء مسجلا الدخول"
+
+msgid "You are not allowed to view this page."
+msgstr "غير مسموح لك بمشاهدة هذه الصفحة."
+
+msgid "Recording is off: only the live panel works."
+msgstr "التسجيل متوقف: اللوحة المباشرة فقط هي التي تعمل."
+
+msgid "All time"
+msgstr "كل الوقت"
+
+msgid "Last hour"
+msgstr "الساعة الأخيرة"
+
+msgid "Last 24 hours"
+msgstr "آخر 24 ساعة"
+
+msgid "Last 7 days"
+msgstr "آخر 7 أيام"
+
+msgid "All flags"
+msgstr "جميع الأعلام"
+
+msgid "All types"
+msgstr "جميع الأنواع"
+
+msgid "Newest"
+msgstr "الأحدث"
+
+msgid "Slowest"
+msgstr "الأبطأ"
+
+msgid "Search URL"
+msgstr "عنوان URL للبحث"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "URL to profile"
+msgstr "عنوان URL للملف الشخصي"
+
+msgid "Profile page"
+msgstr "صفحة الملف الشخصي"
+
+msgid "\"Profile page\" opens the URL as a visitor (bypassing cache) and records it in full detail."
+msgstr "تفتح \"صفحة الملف الشخصي\" عنوان URL كزائر (تجاوز ذاكرة التخزين المؤقت) وتسجله بالتفصيل الكامل."
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid "URL"
+msgstr "عنوان URL"
+
+msgid "Memory"
+msgstr "الذاكرة"
+
+msgid "Queries"
+msgstr "الاستعلامات"
+
+msgid "Errors"
+msgstr "أخطاء"
+
+msgid "Flags"
+msgstr "أعلام"
+
+msgid "No records yet. Slow or failing requests and sampled requests appear here."
+msgstr "لا توجد سجلات حتى الآن. تظهر هنا الطلبات البطيئة أو الفاشلة والطلبات التي تم أخذ عينات منها."
+
+msgid "Records: %s"
+msgstr "السجلات:%s"
+
+msgid "Delete all records?"
+msgstr "هل تريد حذف كافة السجلات؟"
+
+msgid "Delete all records"
+msgstr "حذف كافة السجلات"
+
+msgid "Record not found."
+msgstr "لم يتم العثور على السجل."
+
+msgid "Recorded requests"
+msgstr "الطلبات المسجلة"
+
+msgid "Average time"
+msgstr "متوسط الوقت"
+
+msgid "Longest"
+msgstr "الأطول"
+
+msgid "Times are calculated from recorded requests: sampled requests plus slow/failing ones, so the average may look higher than the real average."
+msgstr "يتم حساب الأوقات من الطلبات المسجلة: الطلبات التي تم أخذ عينات منها بالإضافة إلى الطلبات البطيئة/الفاشلة، لذلك قد يبدو المتوسط أعلى من المتوسط الحقيقي."
+
+msgid "By request type"
+msgstr "حسب نوع الطلب"
+
+msgid "The time visitors wait is the \"Front end\" row. Cron, Ajax and REST are mostly background work (backup step, scheduled task, Heartbeat); when they take long they do not slow pages directly, but they keep the server busy."
+msgstr "الوقت الذي ينتظره الزوار هو صف \"الواجهة الأمامية\". Cron وAjax وREST هي في الغالب أعمال في الخلفية (خطوة احتياطية، مهمة مجدولة، Heartbeat)؛ وعندما تستغرق وقتا طويلا، فإنها لا تؤدي إلى إبطاء الصفحات مباشرة، ولكنها تجعل الخادم مشغولا."
+
+msgid "Type"
+msgstr "اكتب"
+
+msgid "Request"
+msgstr "طلب"
+
+msgid "Average"
+msgstr "متوسط"
+
+msgid "Slowest URLs"
+msgstr "أبطأ عناوين URL"
+
+msgid "Query time by component (per request)"
+msgstr "وقت الاستعلام حسب المكون (لكل طلب)"
+
+msgid "Component"
+msgstr "مكون"
+
+msgid "Per request"
+msgstr "لكل طلب"
+
+msgid "Slow and failed queries"
+msgstr "الاستعلامات البطيئة والفاشلة"
+
+msgid "Count"
+msgstr "عد"
+
+msgid "PHP errors"
+msgstr "أخطاء PHP"
+
+msgid "Level"
+msgstr "المستوى"
+
+msgid "Message"
+msgstr "رسالة"
+
+msgid "HTTP API calls"
+msgstr "مكالمات HTTP API"
+
+msgid "Endpoint"
+msgstr "نقطة النهاية"
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "Last error"
+msgstr "الخطأ الأخير"
+
+msgid "No records."
+msgstr "لا توجد سجلات."
+
+msgid "Suggestions"
+msgstr "اقتراحات"
+
+msgid "Account limit (cgroup)"
+msgstr "حد الحساب (cgroup)"
+
+msgid "Shared hosting: account limit cannot be read"
+msgstr "الاستضافة المشتركة: لا يمكن قراءة حد الحساب"
+
+msgid "Server belongs to this site (VPS/dedicated)"
+msgstr "الخادم ينتمي إلى هذا الموقع (VPS/مخصص)"
+
+msgid "Scanned folder"
+msgstr "المجلد الممسوح ضوئيا"
+
+msgid "Files"
+msgstr "ملفات"
+
+msgid "Calculating…"
+msgstr "جارٍ الحساب..."
+
+msgid "Files and folders (inodes)"
+msgstr "الملفات والمجلدات (inodes)"
+
+msgid "Disk quota"
+msgstr "حصة القرص"
+
+msgid "Not set (Settings)"
+msgstr "غير مضبوط (الإعدادات)"
+
+msgid "Last measured"
+msgstr "آخر قياس"
+
+msgid "refreshing"
+msgstr "منعش"
+
+msgid "Account disk"
+msgstr "قرص الحساب"
+
+msgid "Whole machine (shared, all accounts)"
+msgstr "الجهاز بالكامل (مشترك، جميع الحسابات)"
+
+msgid "CPU cores"
+msgstr "نوى وحدة المعالجة المركزية"
+
+msgid "Load (1/5/15 min)"
+msgstr "تحميل (1/5/15 دقيقة)"
+
+msgid "Disk"
+msgstr "القرص"
+
+msgid "%s free"
+msgstr "%sمجاني"
+
+msgid "Note"
+msgstr "ملاحظة"
+
+msgid "These values belong to every account on the machine; they are not your site's usage or limit."
+msgstr "تنتمي هذه القيم إلى كل حساب على الجهاز؛ فهي ليست استخدامًا أو حدًا لموقعك."
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "No"
+msgstr "لا"
+
+msgid "Operating system"
+msgstr "نظام التشغيل"
+
+msgid "Software"
+msgstr "البرمجيات"
+
+msgid "Hostname"
+msgstr "اسم المضيف"
+
+msgid "IP address"
+msgstr "عنوان IP"
+
+msgid "Port"
+msgstr "ميناء"
+
+msgid "Document root"
+msgstr "جذر المستند"
+
+msgid "Resource values"
+msgstr "قيم الموارد"
+
+msgid "Version"
+msgstr "الإصدار"
+
+msgid "Memory (this request)"
+msgstr "الذاكرة (هذا الطلب)"
+
+msgid "peak"
+msgstr "الذروة"
+
+msgid "Disabled functions"
+msgstr "وظائف معطلة"
+
+msgid "Extensions"
+msgstr "ملحقات"
+
+msgid "On"
+msgstr "على"
+
+msgid "Off"
+msgstr "إيقاف"
+
+msgid "Hit rate"
+msgstr "معدل الضرب"
+
+msgid "Cached files"
+msgstr "الملفات المخزنة مؤقتا"
+
+msgid "Wasted"
+msgstr "ضائع"
+
+msgid "Restarts"
+msgstr "إعادة التشغيل"
+
+msgid "No data (disabled or not allowed by the server)."
+msgstr "لا توجد بيانات (معطلة أو غير مسموح بها من قبل الخادم)."
+
+msgid "Object cache"
+msgstr "ذاكرة التخزين المؤقت للكائن"
+
+msgid "External"
+msgstr "خارجي"
+
+msgid "None"
+msgstr "لا شيء"
+
+msgid "Page cache (WP_CACHE)"
+msgstr "ذاكرة التخزين المؤقت للصفحة (WP_CACHE)"
+
+msgid "Locale"
+msgstr "لغة"
+
+msgid "Timezone"
+msgstr "المنطقة الزمنية"
+
+msgid "Permalinks"
+msgstr "الروابط الدائمة"
+
+msgid "Environment type"
+msgstr "نوع البيئة"
+
+msgid "Theme"
+msgstr "الموضوع"
+
+msgid "undefined"
+msgstr "غير محدد"
+
+msgid "Active plugins"
+msgstr "المكونات الإضافية النشطة"
+
+msgid "Data"
+msgstr "البيانات"
+
+msgid "Index"
+msgstr "الفهرس"
+
+msgid "Free space"
+msgstr "مساحة حرة"
+
+msgid "Table"
+msgstr "الجدول"
+
+msgid "Rows (approx.)"
+msgstr "الصفوف (تقريبا)"
+
+msgid "Open connections"
+msgstr "اتصالات مفتوحة"
+
+msgid "Charset"
+msgstr "مجموعة الأحرف"
+
+msgid "Uptime"
+msgstr "الجهوزية"
+
+msgid "Queries per second"
+msgstr "الاستعلامات في الثانية الواحدة"
+
+msgid "Slow queries (server)"
+msgstr "الاستعلامات البطيئة (الخادم)"
+
+msgid "Max concurrent connections"
+msgstr "الحد الأقصى للاتصالات المتزامنة"
+
+msgid "Running threads"
+msgstr "تشغيل المواضيع"
+
+msgid "Buffer pool hit rate"
+msgstr "معدل ضرب تجمع المخزن المؤقت"
+
+msgid "Temp tables on disk"
+msgstr "الجداول الزمنية على القرص"
+
+msgid "Aborted connects"
+msgstr "اتصالات تم إحباطها"
+
+msgid "Cleanup"
+msgstr "تنظيف"
+
+msgid "Safe jobs only: posts, pages and revisions are never deleted. Limit revisions with WP_POST_REVISIONS in wp-config."
+msgstr "الوظائف الآمنة فقط: لا يتم حذف المنشورات والصفحات والمراجعات أبدًا. قم بتقييد المراجعات باستخدام WP_POST_REVISIONS في wp-config."
+
+msgid "continue?"
+msgstr "هل تستمر؟"
+
+msgid "Clean"
+msgstr "نظيفة"
+
+msgid "Revisions"
+msgstr "المراجعات"
+
+msgid "Trashed posts"
+msgstr "المشاركات المحذوفة"
+
+msgid "All transients"
+msgstr "جميع العابرين"
+
+msgid "Job"
+msgstr "وظيفة"
+
+msgid "Tables"
+msgstr "الجداول"
+
+msgid "Engine"
+msgstr "المحرك"
+
+msgid "Rows"
+msgstr "الصفوف"
+
+msgid "Collation"
+msgstr "الترتيب"
+
+msgid "Autoloaded options"
+msgstr "خيارات التحميل التلقائي"
+
+msgid "Total size"
+msgstr "الحجم الإجمالي"
+
+msgid "These options are loaded from the database on every request. Over 800 KB in total slows pages down; shrink the setting or cache in the plugin that owns the large rows."
+msgstr "يتم تحميل هذه الخيارات من قاعدة البيانات عند كل طلب. يؤدي إجمالي ما يزيد عن 800 كيلو بايت إلى إبطاء الصفحات؛ تقليص الإعداد أو ذاكرة التخزين المؤقت في البرنامج المساعد الذي يمتلك الصفوف الكبيرة."
+
+msgid "Option"
+msgstr "الخيار"
+
+msgid "Owner"
+msgstr "المالك"
+
+msgid "Size"
+msgstr "الحجم"
+
+msgid "Events"
+msgstr "الأحداث"
+
+msgid "Overdue"
+msgstr "تأخرت"
+
+msgid "Last run"
+msgstr "التشغيل الأخير"
+
+msgid "Not seen"
+msgstr "لم أر"
+
+msgid "WordPress cron is disabled: events run only when a server cron job calls wp-cron.php. On Hostinger, add a cron job that calls it every 5 minutes."
+msgstr "تم تعطيل WordPress cron: يتم تشغيل الأحداث فقط عندما تستدعي مهمة cron للخادم wp-cron.php. على Hostinger، أضف وظيفة cron التي تستدعيها كل 5 دقائق."
+
+msgid "Task durations"
+msgstr "فترات المهمة"
+
+msgid "Measured per task each time wp-cron.php runs; sorted by total time. A summary older than a day resets when the task runs again. \"Cut off\": the task hit the time limit and stopped halfway."
+msgstr "يتم قياسها لكل مهمة في كل مرة يتم فيها تشغيل wp-cron.php؛ مرتبة حسب الوقت الإجمالي. تتم إعادة تعيين الملخص الأقدم من يوم عند تشغيل المهمة مرة أخرى. \"قطع\": وصلت المهمة إلى الحد الزمني وتوقفت في منتصف الطريق."
+
+msgid "Hook"
+msgstr "هوك"
+
+msgid "Runs"
+msgstr "أشواط"
+
+msgid "Last"
+msgstr "الاخير"
+
+msgid "Cut off"
+msgstr "قطع"
+
+msgid "Scheduled events"
+msgstr "الأحداث المجدولة"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "Recurrence"
+msgstr "التكرار"
+
+msgid "Args"
+msgstr "الحجج"
+
+msgid "Overdue: due %s"
+msgstr "متأخر: بسبب%s"
+
+msgid "once"
+msgstr "مرة واحدة"
+
+msgid "Recent fixes (AI / MCP)"
+msgstr "الإصلاحات الأخيرة (AI / MCP)"
+
+msgid "User"
+msgstr "المستخدم"
+
+msgid "Fix"
+msgstr "إصلاح"
+
+msgid "Before → After"
+msgstr "قبل → بعد"
+
+msgid "Result"
+msgstr "النتيجة"
+
+msgid "Developer panel"
+msgstr "لوحة المطور"
+
+msgid "Show a summary in the admin bar and a bottom panel to authorized users"
+msgstr "اعرض ملخصًا في شريط الإدارة واللوحة السفلية للمستخدمين المعتمدين"
+
+msgid "Show on the front end too"
+msgstr "تظهر على الواجهة الأمامية أيضًا"
+
+msgid "Collect capability checks"
+msgstr "جمع الشيكات القدرة"
+
+msgid "The panel is visible to administrators and to staff granted \"View performance\" by Flux Roles."
+msgstr "تكون اللوحة مرئية للمسؤولين وللموظفين الذين تم منحهم \"عرض الأداء\" بواسطة Flux الأدوار."
+
+msgid "Recording"
+msgstr "التسجيل"
+
+msgid "Record slow and failing requests"
+msgstr "تسجيل الطلبات البطيئة والفاشلة"
+
+msgid "Also record my own requests while the panel is on (only when something is wrong)"
+msgstr "قم أيضًا بتسجيل طلباتي الخاصة أثناء تشغيل اللوحة (فقط عندما يكون هناك خطأ ما)"
+
+msgid "Sampling"
+msgstr "أخذ العينات"
+
+msgid "This share of requests is collected in detail (with the query list) and recorded. 1-5 is recommended on Hostinger; 0 turns it off."
+msgstr "يتم جمع هذه الحصة من الطلبات بالتفصيل (مع قائمة الاستعلامات) وتسجيلها. يوصى باستخدام 1-5 على Hostinger؛ 0 إيقاف تشغيله."
+
+msgid "Slow request threshold"
+msgstr "عتبة الطلب البطيئة"
+
+msgid "Slow query threshold"
+msgstr "عتبة الاستعلام البطيئة"
+
+msgid "Retention"
+msgstr "الاحتفاظ"
+
+msgid "days"
+msgstr "أيام"
+
+msgid "at most"
+msgstr "على الأكثر"
+
+msgid "records"
+msgstr "السجلات"
+
+msgid "Your shared hosting plan's disk limit (Hostinger: hPanel › Account resources). PHP cannot read it; when set, the Disk card shows account usage as a percentage. Leave empty to show used space only."
+msgstr "الحد الأقصى للأقراص الخاصة بخطة الاستضافة المشتركة الخاصة بك (Hostinger: hPanel ›موارد الحساب). لا يمكن لـ PHP قراءتها؛ عند التعيين، تعرض بطاقة القرص استخدام الحساب كنسبة مئوية. اتركه فارغًا لإظهار المساحة المستخدمة فقط."
+
+msgid "AI (MCP)"
+msgstr "الذكاء الاصطناعي (MCP)"
+
+msgid "The data is read by read-only tools on the Flux AI & MCP server and in Flux AI chat: flxp_summary, flxp_requests, flxp_request, flxp_slow_queries, flxp_php_errors, flxp_http_calls, flxp_environment, flxp_server, flxp_database, flxp_autoload, flxp_cron, flxp_profile_url."
+msgstr "تتم قراءة البيانات بواسطة أدوات للقراءة فقط على خادم Flux AI & MCP وفي دردشة Flux AI: flxp_summary، flxp_requests، flxp_request، flxp_slow_queries، flxp_php_errors، flxp_http_calls، flxp_environment، flxp_server، flxp_database، flxp_autoload، flxp_cron، flxp_profile_url."
+
+msgid "Flux AI & MCP is active: tools are registered."
+msgstr "Flux AI & MCP نشط: الأدوات مسجلة."
+
+msgid "Flux AI & MCP is not active: tools are available in Flux AI chat only."
+msgstr "Flux AI & MCP غير نشطين: الأدوات متوفرة في دردشة Flux AI فقط."
+
+msgid "Admin login URL"
+msgstr "عنوان URL لتسجيل الدخول للمسؤول"
+
+msgid "Opens the login screen at an address of your own instead of wp-login.php. wp-login.php and wp-admin requests from logged-out visitors no longer respond, which cuts bot password guessing and server load."
+msgstr "يفتح شاشة تسجيل الدخول على عنوان خاص بك بدلاً من wp-login.php. لم تعد طلبات wp-login.php وwp-admin من الزائرين الذين قاموا بتسجيل الخروج تستجيب، مما يقلل من تخمين كلمة مرور الروبوت وتحميل الخادم."
+
+msgid "FLXP_LOGIN_DISABLE is defined in wp-config.php: the custom URL is off and login uses wp-login.php. Remove that line once the problem is solved."
+msgstr "تم تعريف FLXP_LOGIN_DISABLE في wp-config.php: عنوان URL المخصص متوقف ويستخدم تسجيل الدخول wp-login.php. قم بإزالة هذا السطر بمجرد حل المشكلة."
+
+msgid "Your login URL"
+msgstr "عنوان URL لتسجيل الدخول الخاص بك"
+
+msgid "Copied"
+msgstr "منقول"
+
+msgid "Copy"
+msgstr "نسخ"
+
+msgid "Bookmark this address and share it with everyone who logs in. If you forget it, use the recovery step below."
+msgstr "قم بوضع إشارة مرجعية على هذا العنوان وشاركه مع كل من يقوم بتسجيل الدخول. إذا نسيته، فاستخدم خطوة الاسترداد أدناه."
+
+msgid "Login URL"
+msgstr "عنوان URL لتسجيل الدخول"
+
+msgid "The address comes from the FLXP_LOGIN_SLUG constant in wp-config.php; edit or remove the constant to change it."
+msgstr "يأتي العنوان من الثابت FLXP_LOGIN_SLUG في wp-config.php؛ قم بتحرير الثابت أو إزالته لتغييره."
+
+msgid "Leave empty to use the standard WordPress address (wp-login.php). 3-40 characters: lowercase letters, digits, hyphen, underscore. Pick something hard to guess (admin and login are not allowed)."
+msgstr "اتركه فارغًا لاستخدام عنوان WordPress القياسي (wp-login.php). 3-40 حرفًا: أحرف صغيرة، أرقام، واصلة، شرطة سفلية. اختر شيئًا يصعب تخمينه (لا يُسمح بالمسؤول وتسجيل الدخول)."
+
+msgid "Visitors to the old addresses"
+msgstr "زوار العناوين القديمة"
+
+msgid "Show the 404 page (recommended)"
+msgstr "عرض صفحة 404 (مستحسن)"
+
+msgid "Redirect to the home page"
+msgstr "إعادة التوجيه إلى الصفحة الرئيسية"
+
+msgid "Applies to wp-login.php and to wp-admin requests from logged-out visitors. admin-ajax.php, admin-post.php, the REST API, wp-cron, WooCommerce My Account login and the Flux App connection are not affected."
+msgstr "ينطبق على wp-login.php وطلبات wp-admin من الزوار الذين قاموا بتسجيل الخروج. لا تتأثر admin-ajax.php وadmin-post.php وREST API وwp-cron وتسجيل الدخول إلى حسابي في WooCommerce واتصال تطبيق Flux."
+
+msgid "Recovery"
+msgstr "التعافي"
+
+msgid "If you forget the address or login won't open: add the line below to wp-config.php using your file manager (Hostinger hPanel › File Manager). Login goes back to wp-login.php; once you're in, fix the address here and remove the line."
+msgstr "إذا نسيت العنوان أو لن يتم فتح تسجيل الدخول: أضف السطر أدناه إلى wp-config.php باستخدام مدير الملفات لديك (Hostinger hPanel ›File Manager). يعود تسجيل الدخول إلى wp-login.php؛ بمجرد دخولك، أصلح العنوان هنا وأزل الخط."
+
+msgid "Deprecated since %1$s. Use instead: %2$s"
+msgstr "تم إهماله منذ%1$s. استخدم بدلاً من ذلك:%2$s"
+
+msgid "%d min"
+msgstr "%d دقيقة"
+
+msgid "%1$d d %2$d h"
+msgstr "%1$dد%2$dح"
+
+msgid "%d h"
+msgstr "%dح"
+
+msgid "Account limit cannot be read"
+msgstr "لا يمكن قراءة حد الحساب"
+
+msgid "%s cores, no account limit"
+msgstr "نوى%s، لا يوجد حد للحساب"
+
+msgid "Account limit %s cores"
+msgstr "حد الحساب%sالنوى"
+
+msgid "%1$d cores · load %2$s"
+msgstr "نوى%1$d· تحميل%2$s"
+
+msgid "Disk (account)"
+msgstr "القرص (الحساب)"
+
+msgid "Scanning the account folder"
+msgstr "مسح مجلد الحساب"
+
+msgid "files %1$s · database %2$s"
+msgstr "ملفات%1$s· قاعدة بيانات%2$s"
+
+msgid "CPU load"
+msgstr "تحميل وحدة المعالجة المركزية"
+
+msgid "CPU (account)"
+msgstr "وحدة المعالجة المركزية (الحساب)"
+
+msgid "Memory (RAM)"
+msgstr "الذاكرة (رام)"
+
+msgid "Memory (account)"
+msgstr "الذاكرة (الحساب)"
+
+msgid "PHP memory (this request)"
+msgstr "ذاكرة PHP (هذا الطلب)"
+
+msgid "Server uptime"
+msgstr "وقت تشغيل الخادم"
+
+msgid "Machine uptime"
+msgstr "وقت تشغيل الآلة"
+
+msgid "CPU and memory are measured against this account's (container/cgroup) limit."
+msgstr "يتم قياس وحدة المعالجة المركزية والذاكرة مقابل الحد الأقصى (الحاوية/مجموعة التحكم) لهذا الحساب."
+
+msgid "Shared hosting: PHP sees the CPU, memory and disk shared by every account on the machine; these are not your values and are not shown. Your account's CPU and memory usage is in the hosting panel (Hostinger: hPanel › Account resources)."
+msgstr "الاستضافة المشتركة: ترى PHP وحدة المعالجة المركزية والذاكرة والقرص المشتركة بين كل حساب على الجهاز؛ هذه ليست قيمك ولا تظهر. استخدام وحدة المعالجة المركزية والذاكرة الخاصة بحسابك موجود في لوحة الاستضافة (Hostinger: hPanel ›موارد الحساب)."
+
+msgid "Enter your hosting plan's disk quota in Settings to see a disk percentage."
+msgstr "أدخل حصة القرص الخاصة بخطة الاستضافة الخاصة بك في الإعدادات لمعرفة النسبة المئوية للقرص."
+
+msgid "Cards refresh every 15 seconds."
+msgstr "يتم تحديث البطاقات كل 15 ثانية."
+
+msgid "p95 time (24 h)"
+msgstr "الوقت p95 (24 ساعة)"
+
+msgid "Failed requests (24 h)"
+msgstr "الطلبات الفاشلة (24 ساعة)"
+
+msgid "Slow requests (24 h)"
+msgstr "الطلبات البطيئة (24 ساعة)"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "The login URL must be 3-40 characters; use only lowercase letters (a-z), digits, hyphens and underscores."
+msgstr "يجب أن يتكون عنوان URL لتسجيل الدخول من 3 إلى 40 حرفًا؛ استخدم فقط الأحرف الصغيرة (a-z) والأرقام والواصلات والشرطات السفلية."
+
+msgid "WordPress already uses this address; pick another name."
+msgstr "يستخدم WordPress هذا العنوان بالفعل؛ اختر اسمًا آخر."
+
+msgid "A page or post already uses this address; pick another name."
+msgstr "هناك صفحة أو منشور يستخدم هذا العنوان بالفعل؛ اختر اسمًا آخر."
+
+msgid "The login URL has changed. Bookmark this page and log in again."
+msgstr "لقد تغير عنوان URL لتسجيل الدخول. قم بوضع إشارة مرجعية على هذه الصفحة وقم بتسجيل الدخول مرة أخرى."
+
+msgid "Performance summary"
+msgstr "ملخص الأداء"
+
+msgid "List recorded requests"
+msgstr "قائمة الطلبات المسجلة"
+
+msgid "Record details"
+msgstr "سجل التفاصيل"
+
+msgid "Outgoing HTTP requests"
+msgstr "طلبات HTTP الصادرة"
+
+msgid "Server and WordPress environment"
+msgstr "بيئة الخادم ووردبريس"
+
+msgid "Server status"
+msgstr "حالة الخادم"
+
+msgid "Database status"
+msgstr "حالة قاعدة البيانات"
+
+msgid "Flux Speed: remove unused CSS and inline it"
+msgstr "سرعة التدفق: قم بإزالة CSS غير المستخدم وقم بتضمينه"
+
+msgid "Drops theme CSS rules the page does not use and writes the rest into <head>, removing the render-blocking CSS request. Check a few pages first; if something breaks, turn it off or add the class to the keep list."
+msgstr "يسقط قواعد CSS للموضوع التي لا تستخدمها الصفحة ويكتب الباقي في<head>، مما يؤدي إلى إزالة طلب CSS الذي يحظر العرض. تحقق من بضع صفحات أولاً؛ إذا تعطل شيء ما، قم بإيقاف تشغيله أو أضف الفصل إلى قائمة الاحتفاظ."
+
+msgid "Flux Speed: minify CSS and JS files"
+msgstr "سرعة التدفق: تصغير ملفات CSS وJS"
+
+msgid "Unminified theme and plugin CSS/JS files are served from an up-to-date .min version or a generated copy."
+msgstr "يتم تقديم ملفات CSS/JS غير المصغّرة للموضوع والمكونات الإضافية من إصدار .min محدث أو من نسخة تم إنشاؤها."
+
+msgid "Flux Speed: defer head scripts"
+msgstr "سرعة التدفق: تأجيل البرامج النصية الرئيسية"
+
+msgid "Blocking scripts at the top of the page are loaded with defer. jQuery and excluded scripts are left alone."
+msgstr "يتم تحميل البرامج النصية للحظر في أعلى الصفحة بالتأجيل. يتم ترك jQuery والبرامج النصية المستبعدة بمفردها."
+
+msgid "Flux Speed: remove the zoom lock"
+msgstr "سرعة التدفق: قم بإزالة قفل التكبير/التصغير"
+
+msgid "user-scalable=no and maximum-scale are removed from the viewport tag."
+msgstr "تتم إزالة user-scalable=no وmaximum-scale من علامة viewport."
+
+msgid "Flux Speed: optimize fonts"
+msgstr "سرعة التدفق: تحسين الخطوط"
+
+msgid "theme.json fonts not used on the page are removed and the above-the-fold font is preloaded."
+msgstr "تتم إزالة خطوط theme.json غير المستخدمة في الصفحة ويتم تحميل الخط الموجود أعلى الصفحة مسبقًا."
+
+msgid "Flux Speed: remove the emoji script"
+msgstr "سرعة التدفق: قم بإزالة نص الرموز التعبيرية"
+
+msgid "WordPress's emoji detection script and style are not loaded; modern browsers render emoji themselves."
+msgstr "لم يتم تحميل البرنامج النصي والنمط لاكتشاف الرموز التعبيرية في WordPress؛ المتصفحات الحديثة تعرض الرموز التعبيرية بنفسها."
+
+msgid "Unknown fix."
+msgstr "إصلاح غير معروف."
+
+msgid "Flux Speed › PageSpeed lists which animation in which file is the problem."
+msgstr "سرعة التدفق › يسرد PageSpeed الرسوم المتحركة التي توجد بها المشكلة في الملف."
+
+msgid "The matching Flux Speed setting is on; clear the cache (LiteSpeed Purge All) and measure again. Whatever remains is up to the theme/preset."
+msgstr "إعداد سرعة التدفق المطابق قيد التشغيل؛ امسح ذاكرة التخزين المؤقت (LiteSpeed ​​Purge All) وقم بالقياس مرة أخرى. كل ما تبقى متروك للموضوع/الإعداد المسبق."
+
+msgid "Turned on. The page cache was cleared; run the site audit or PageSpeed test again."
+msgstr "تم تشغيله. تم مسح ذاكرة التخزين المؤقت للصفحة؛ قم بإجراء تدقيق الموقع أو اختبار PageSpeed ​​مرة أخرى."
+
+msgid "Animations (GPU)"
+msgstr "الرسوم المتحركة (وحدة معالجة الرسومات)"
+
+msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
+msgstr "الرسوم المتحركة لا تعمل على وحدة معالجة الرسومات:%s. يجب إعادة كتابته باستخدام التحويل/التعتيم (السمة/الإعداد المسبق)."
+
+msgid "Animations in the CSS files seen use transform/opacity."
+msgstr "تستخدم الرسوم المتحركة في ملفات CSS التي يتم مشاهدتها التحويل/التعتيم."
+
+msgid "PageSpeed"
+msgstr "سرعة الصفحة"
+
+msgid "PageSpeed cache"
+msgstr "ذاكرة التخزين المؤقت لسرعة الصفحة"
+
+msgid "uploads/flx-speed is writable."
+msgstr "التحميلات/سرعة التدفق قابلة للكتابة."
+
+msgid "The uploads/flx-speed folder is not writable: CSS trimming and minifying will not work, pages load the original files."
+msgstr "مجلد التحميلات/flx-speed غير قابل للكتابة: لن يعمل تقليم CSS وتصغيره، وستقوم الصفحات بتحميل الملفات الأصلية."
+
+msgid "Expired transients"
+msgstr "العابرين منتهية الصلاحية"
+
+msgid "Auto-drafts older than 7 days"
+msgstr "المسودات التلقائية الأقدم من 7 أيام"
+
+msgid "Spam comments"
+msgstr "تعليقات غير مرغوب فيها"
+
+msgid "Trashed comments"
+msgstr "التعليقات المحذوفة"
+
+msgid "Reclaim free space (OPTIMIZE)"
+msgstr "استعادة المساحة الحرة (الأمثل)"
+
+msgid "Unknown cleanup job."
+msgstr "مهمة تنظيف غير معروفة."
+
+msgid "Slow"
+msgstr "بطيء"
+
+msgid "PHP error"
+msgstr "خطأ PHP"
+
+msgid "Fatal error"
+msgstr "خطأ فادح"
+
+msgid "Server error (5xx)"
+msgstr "خطأ في الخادم (5xx)"
+
+msgid "Failed HTTP call"
+msgstr "فشل استدعاء HTTP"
+
+msgid "Slow query"
+msgstr "استعلام بطيء"
+
+msgid "Query error"
+msgstr "خطأ في الاستعلام"
+
+msgid "Error log"
+msgstr "سجل الأخطاء"
+
+msgid "Sample"
+msgstr "عينة"
+
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+msgid "Front end"
+msgstr "الواجهة الأمامية"
+
+msgid "Admin"
+msgstr "المشرف"
+
+msgid "Only URLs on this site can be profiled."
+msgstr "يمكن إنشاء ملف تعريفي لعناوين URL الموجودة على هذا الموقع فقط."
+
+msgid "The records table is not installed."
+msgstr "لم يتم تثبيت جدول السجلات."
+
+msgid "The page loaded but no record was created. It may have been served from cache, or Flux Performance did not load on that request."
+msgstr "تم تحميل الصفحة ولكن لم يتم إنشاء أي سجل. ربما تم تقديمه من ذاكرة التخزين المؤقت، أو لم يتم تحميل Flux Performance على هذا الطلب."
+
+msgid "Records table"
+msgstr "جدول السجلات"
+
+msgid "The table is not installed. Deactivate and reactivate the plugin."
+msgstr "لم يتم تثبيت الجدول. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+
+msgid "Request recording"
+msgstr "طلب التسجيل"
+
+msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
+msgstr "تشغيل:%1$d%% من الطلبات يتم أخذ عينات منها؛ يتم تسجيل الطلبات التي تزيد عن%2$dمللي ثانية والطلبات الفاشلة."
+
+msgid "Off: only the live panel works; AI cannot read history."
+msgstr "إيقاف: تعمل اللوحة المباشرة فقط؛ الذكاء الاصطناعي لا يمكنه قراءة التاريخ."
+
+msgid "Failing requests in the last 24 hours"
+msgstr "الطلبات الفاشلة خلال الـ 24 ساعة الماضية"
+
+msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
+msgstr "طلبات%1$dبها أخطاء PHP/الخادم،%2$dفادحة. انظر السجلات."
+
+msgid "No recorded errors."
+msgstr "لا توجد أخطاء مسجلة."
+
+msgid "Slow requests in the last 24 hours"
+msgstr "الطلبات البطيئة خلال الـ 24 ساعة الماضية"
+
+msgid "%1$d requests exceeded %2$d ms."
+msgstr "تجاوزت طلبات%1$d%2$dمللي ثانية."
+
+msgid "%d recorded requests had external service errors in the last 24 hours."
+msgstr "تحتوي طلبات%dالمسجلة على أخطاء في الخدمة الخارجية خلال الـ 24 ساعة الماضية."
+
+msgid "No recorded external service errors."
+msgstr "لا توجد أخطاء الخدمة الخارجية المسجلة."
+
+msgid "SAVEQUERIES is on in wp-config.php: every request keeps all queries in memory. Flux Performance turns it on itself when needed; remove it from wp-config."
+msgstr "SAVEQUERIES قيد التشغيل في wp-config.php: كل طلب يحفظ جميع الاستعلامات في الذاكرة. يعمل Flux Performance على تشغيل نفسه عند الحاجة؛ قم بإزالته من wp-config."
+
+msgid "AI tools (flxp_*)"
+msgstr "أدوات الذكاء الاصطناعي (flxp_*)"
+
+msgid "MCP and Flux AI chat can read the records."
+msgstr "يمكن لدردشة MCP وFlux AI قراءة السجلات."
+
+msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
+msgstr "Flux AI & MCP غير نشطين أو MCP متوقف عن التشغيل؛ الأدوات غير مرئية."
+
+msgid "%1$d KB (%2$d options) is loaded on every request."
+msgstr "يتم تحميل%1$dKB (خيارات%2$d) عند كل طلب."
+
+msgid "Under 800 KB is recommended; check the largest rows."
+msgstr "يوصى باستخدام أقل من 800 كيلو بايت؛ تحقق من أكبر الصفوف."
+
+msgid "Last run %s."
+msgstr "آخر تشغيل%s."
+
+msgid "Cron has not been seen running yet."
+msgstr "لم يتم رؤية كرون قيد التشغيل بعد."
+
+msgid "%d events overdue."
+msgstr "أحداث%dمتأخرة."
+
+msgid "Scheduled events are running"
+msgstr "الأحداث المجدولة قيد التشغيل"
+
+msgid "Disk space"
+msgstr "مساحة القرص"
+
+msgid "%1$d%% used, %2$s free."
+msgstr "تم استخدام%1$d%%، و%2$sمجاني."
+
+msgid "(account usage / quota from Settings)"
+msgstr "(استخدام الحساب / الحصة من الإعدادات)"
+
+msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
+msgstr "%1$d%% من حد وحدة المعالجة المركزية للحساب قيد الاستخدام (أنوية%2$s)."
+
+msgid "%1$d%% over the last minute (%2$d cores)."
+msgstr "%1$d%% خلال اللحظة الأخيرة (نوى%2$d)."
+
+msgid "On: compiled PHP files are kept in memory."
+msgstr "تشغيل: يتم الاحتفاظ بملفات PHP المجمعة في الذاكرة."
+
+msgid "Looks enabled but its status cannot be read (restricted by the server)."
+msgstr "يبدو ممكنًا ولكن لا يمكن قراءة حالته (مقيدة بواسطة الخادم)."
+
+msgid "Off: PHP files are compiled again on every request. Turn it on in Hostinger › PHP configuration."
+msgstr "إيقاف: يتم تجميع ملفات PHP مرة أخرى عند كل طلب. قم بتشغيله في تكوين Hostinger › PHP."
+
+msgid "%d expired transients are still in the table."
+msgstr "لا تزال العناصر العابرة منتهية الصلاحية%dموجودة في الجدول."
+
+msgid "None."
+msgstr "لا شيء."
+
+msgid "Delete expired transients"
+msgstr "حذف العابرين منتهية الصلاحية"
+
+msgid "%d transients deleted."
+msgstr "تم حذف العابرين%d."
+
+msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
+msgstr "يوضح كل سطر شيئًا يحتاجه الموقع وما إذا كان موجودًا أم لا. أصلح الأخطاء أولاً؛ التحذيرات تستحق نظرة."
+
+msgid "OK"
+msgstr "حسنًا"
+
+msgid "Warning"
+msgstr "تحذير"
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "%1$d OK · %2$d warnings · %3$d errors"
+msgstr "%1$dموافق · تحذيرات%2$d· أخطاء%3$d"
+
+msgid "Check again"
+msgstr "تحقق مرة أخرى"
+
+msgid "Show only these (click again to show all)"
+msgstr "إظهار هذه فقط (انقر مرة أخرى لإظهار الكل)"
+
+msgid "Checked: %s"
+msgstr "تم الفحص:%s"
+
+msgid "Check"
+msgstr "تحقق"
+
+msgid "Source"
+msgstr "المصدر"
+
+msgid "Action"
+msgstr "العمل"
+
+msgid "No checks are registered."
+msgstr "لم يتم تسجيل أي شيكات."
+
+msgid "System check found %d problem(s) that can stop donations or automations."
+msgstr "عثر فحص النظام على مشكلة (مشكلات)%dالتي يمكنها إيقاف التبرعات أو عمليات التشغيل الآلي."
+
+msgid "Open system check"
+msgstr "فتح فحص النظام"
+
+msgid "Hide until the next update"
+msgstr "إخفاء حتى التحديث القادم"
+
+msgid "System: %d error(s)"
+msgstr "النظام: خطأ (أخطاء)%d"
+
+msgid "This check could not run: %s"
+msgstr "تعذر تشغيل هذا الفحص:%s"
+
+msgid "Scheduled tasks (cron)"
+msgstr "المهام المجدولة (كرون)"
+
+msgid "Payments"
+msgstr "المدفوعات"
+
+msgid "Plugins"
+msgstr "الإضافات"
+
+msgid "E-mail"
+msgstr "البريد الإلكتروني"
+
+msgid "Security"
+msgstr "الأمن"
+
+msgid "Forms"
+msgstr "النماذج"
+
+msgid "Other"
+msgstr "أخرى"
+
+msgid "Plugin: %s"
+msgstr "البرنامج المساعد:%s"
+
+msgid "MU plugin: %s"
+msgstr "البرنامج المساعد MU:%s"
+
+msgid "Theme: %s"
+msgstr "الموضوع:%s"
+
+msgid "Drop-in: %s"
+msgstr "الدخول:%s"
+
+msgid "WordPress core"
+msgstr "ووردبريس الأساسية"
+
+msgid "Search…"
+msgstr "بحث..."
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Showing the first 1500 rows; narrow down with search."
+msgstr "عرض أول 1500 صف؛ تضييق مع البحث."
+
+msgid "Call stack"
+msgstr "مكدس المكالمة"
+
+msgid "Fatal"
+msgstr "قاتلة"
+
+msgid "Notice"
+msgstr "إشعار"
+
+msgid "Deprecated"
+msgstr "مهمل"
+
+msgid "Overview"
+msgstr "نظرة عامة"
+
+msgid "Duplicate queries"
+msgstr "استعلامات مكررة"
+
+msgid "By component"
+msgstr "حسب المكون"
+
+msgid "Doing it wrong"
+msgstr "القيام بذلك بشكل خاطئ"
+
+msgid "Cron tasks"
+msgstr "مهام كرون"
+
+msgid "Logs"
+msgstr "سجلات"
+
+msgid "Template"
+msgstr "القالب"
+
+msgid "Capability checks"
+msgstr "فحوصات القدرة"
+
+msgid "Scripts and styles"
+msgstr "البرامج النصية والأنماط"
+
+msgid "Languages"
+msgstr "اللغات"
+
+msgid "Transient updates"
+msgstr "تحديثات عابرة"
+
+msgid "Hooks"
+msgstr "خطافات"
+
+msgid "Peak memory"
+msgstr "ذروة الذاكرة"
+
+msgid "Limit"
+msgstr "الحد"
+
+msgid "Time not measured"
+msgstr "الوقت لا يقاس"
+
+msgid "Total"
+msgstr "المجموع"
+
+msgid "Response"
+msgstr "الاستجابة"
+
+msgid "Query details were not collected for this request (not sampled). Open the page while logged in as an administrator or raise the sampling rate."
+msgstr "لم يتم جمع تفاصيل الاستعلام لهذا الطلب (لم يتم أخذ عينات منها). افتح الصفحة أثناء تسجيل الدخول كمسؤول أو ارفع معدل أخذ العينات."
+
+msgid "Timeline"
+msgstr "الجدول الزمني"
+
+msgid "Visitor"
+msgstr "زائر"
+
+msgid "Collection mode"
+msgstr "وضع التجميع"
+
+msgid "Detailed"
+msgstr "مفصلة"
+
+msgid "Light"
+msgstr "ضوء"
+
+msgid "Duplicates"
+msgstr "التكرارات"
+
+msgid "Only the slowest queries were stored in this record."
+msgstr "تم تخزين الاستعلامات الأبطأ فقط في هذا السجل."
+
+msgid "Caller"
+msgstr "المتصل"
+
+msgid "Callers"
+msgstr "المتصلون"
+
+msgid "Query types"
+msgstr "أنواع الاستعلام"
+
+msgid "Subject"
+msgstr "الموضوع"
+
+msgid "Method"
+msgstr "الطريقة"
+
+msgid "No logs in this request."
+msgstr "لا توجد سجلات في هذا الطلب."
+
+msgid "Packages can write here with do_action( 'flx_log', 'warning', 'message' )."
+msgstr "يمكن أن تكتب الحزم هنا باستخدام do_action( 'flx_log', 'warning', 'message' )."
+
+msgid "Timers"
+msgstr "الموقتات"
+
+msgid "Not stopped"
+msgstr "لم تتوقف"
+
+msgid "Template file"
+msgstr "ملف القالب"
+
+msgid "Parent theme"
+msgstr "موضوع الوالدين"
+
+msgid "Block theme"
+msgstr "موضوع الكتلة"
+
+msgid "Block template"
+msgstr "قالب الكتلة"
+
+msgid "Body classes"
+msgstr "فئات الجسم"
+
+msgid "Template parts"
+msgstr "أجزاء القالب"
+
+msgid "Not found"
+msgstr "لم يتم العثور عليه"
+
+msgid "Request path"
+msgstr "مسار الطلب"
+
+msgid "Matched rule"
+msgstr "القاعدة المتطابقة"
+
+msgid "Matched query"
+msgstr "استعلام مطابق"
+
+msgid "Queried object"
+msgstr "كائن تم الاستعلام عنه"
+
+msgid "Query vars"
+msgstr "فار الاستعلام"
+
+msgid "Conditionals"
+msgstr "الشروط"
+
+msgid "Capability"
+msgstr "القدرة"
+
+msgid "Granted"
+msgstr "منح"
+
+msgid "Denied"
+msgstr "مرفوض"
+
+msgid "Scripts"
+msgstr "البرامج النصية"
+
+msgid "Styles"
+msgstr "الأنماط"
+
+msgid "Dependencies"
+msgstr "التبعيات"
+
+msgid "Missing"
+msgstr "مفقود"
+
+msgid "Position"
+msgstr "الموقف"
+
+msgid "Footer"
+msgstr "تذييل"
+
+msgid "Header"
+msgstr "رأس"
+
+msgid "Loaded"
+msgstr "محملة"
+
+msgid "No file"
+msgstr "لا يوجد ملف"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "No expiry"
+msgstr "لا انتهاء الصلاحية"
+
+msgid "Distinct actions fired in this request"
+msgstr "إجراءات مميزة أطلقت في هذا الطلب"
+
+msgid "Most fired:"
+msgstr "الأكثر طرداً:"
+
+msgid "queries"
+msgstr "الاستعلامات"
+
+msgid "Resize"
+msgstr "تغيير الحجم"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "24 hours"
+msgstr "24 ساعة"
+
+msgid "7 days"
+msgstr "7 أيام"
+
+msgid "No matching requests in this range."
+msgstr "لا توجد طلبات مطابقة في هذا النطاق."
+
+msgid "HTTP"
+msgstr "HTTP"
+
+msgid "No records"
+msgstr "لا توجد سجلات"
+
+msgid "Critical"
+msgstr "حرجة"
+
+msgid "PHP notices"
+msgstr "إشعارات PHP"
+
+msgid "Open in panel"
+msgstr "فتح في اللوحة"
+
+msgid "Query time"
+msgstr "وقت الاستعلام"
+
+msgid "Only slow, failed and sampled PHP requests are recorded. Pages served from cache are not in these numbers."
+msgstr "يتم تسجيل طلبات PHP البطيئة والفاشلة والعينات فقط. الصفحات التي يتم عرضها من ذاكرة التخزين المؤقت ليست بهذه الأرقام."
+
+msgid "Slow requests"
+msgstr "طلبات بطيئة"
+
+msgid "Load"
+msgstr "تحميل"
+
+msgid "p95"
+msgstr "ص95"
+
+msgid "Flag"
+msgstr "العلم"
+
+msgid "[['Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.', 'tr']]"
+msgstr "[['أداء الموقع في مكان واحد: الاستعلامات لكل طلب، وأخطاء PHP، وطلبات HTTP الخارجية (لوحة المطور)، وسجلات الطلبات البطيئة/الخاطئة، والخادم (وحدة المعالجة المركزية، وذاكرة الوصول العشوائي، والقرص، وOPcache)، وقاعدة البيانات، والتحميل التلقائي، والكرون، وفحص النظام. يقرأها الذكاء الاصطناعي جميعًا باستخدام أدوات Flux AI & MCP / Flux AI.', 'tr']]"

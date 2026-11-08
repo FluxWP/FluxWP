@@ -1,5 +1,8 @@
 # Flux Wiki
 
+## 0.2.6
+- Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
+
 ## 0.2.5
 - Support RTL navigation trees, article layout, table of contents, pager, search and AI dialogs with logical CSS; keep code syntax LTR and mirror directional icons only.
 

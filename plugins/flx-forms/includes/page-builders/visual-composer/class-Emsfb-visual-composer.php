@@ -47,18 +47,18 @@ class Emsfb_Visual_Composer_Integration {
 
         $element = [
             'tag' => 'efb_vc_form',
-            'name' => __('Flux Forms', 'flx-forms'),
-            'description' => __('Add forms created with Flux Forms', 'flx-forms'),
+            'name' => __('\\nFlux Forms\\n', 'flx-forms'),
+            'description' => __('[[\'Add forms created with Flux Forms\\n', 'flx-forms'),
             'icon' => $this->get_icon_url(),
             'category' => __('Content', 'flx-forms'),
-            'metaDescription' => __('Display Flux Forms forms on your page', 'flx-forms'),
+            'metaDescription' => __('\\nDisplay Flux Forms forms on your page\\n', 'flx-forms'),
             'editFormSettings' => [
                 [
                     'type' => 'dropdown',
-                    'heading' => __('Select Form', 'flx-forms'),
+                    'heading' => __('\\nSelect Form\\n', 'flx-forms'),
                     'param_name' => 'form_id',
                     'value' => $forms,
-                    'description' => __('Choose the form you want to display', 'flx-forms'),
+                    'description' => __('\\nChoose the form you want to display\\n', 'flx-forms'),
                 ]
             ],
         ];
@@ -79,7 +79,7 @@ class Emsfb_Visual_Composer_Integration {
 
         if (empty($form_id)) {
             if ($is_editor) {
-                return $this->get_editor_placeholder(__('Please select a form from element settings', 'flx-forms'));
+                return $this->get_editor_placeholder(__('\\nPlease select a form from element settings\\n', 'flx-forms'));
             }
             return '';
         }
@@ -87,7 +87,7 @@ class Emsfb_Visual_Composer_Integration {
         if ($is_editor) {
             $form_name = $this->get_form_name($form_id);
             return $this->get_editor_placeholder(
-                sprintf(__('Form: %s (ID: %s)', 'flx-forms'), $form_name, $form_id)
+                sprintf(__('\\nForm:%s(ID:%s)\\n', 'flx-forms'), $form_name, $form_id)
             );
         }
 
@@ -99,7 +99,7 @@ class Emsfb_Visual_Composer_Integration {
     }
 
     private function get_forms_for_dropdown() {
-        $forms = ['' => __('— Select a Form —', 'flx-forms')];
+        $forms = ['' => __('\\n— Select a Form —\\n', 'flx-forms')];
 
         if (class_exists('Emsfb_Widgets_Helper')) {
             $all_forms = Emsfb_Widgets_Helper::get_all_forms(true);
@@ -118,7 +118,7 @@ class Emsfb_Visual_Composer_Integration {
                     }
                 }
             }
-            $forms['tracking'] = __('📍 Confirmation Code Finder (Tracking)', 'flx-forms');
+            $forms['tracking'] = __('\\n📍 Confirmation Code Finder (Tracking)\', \'en\']]', 'flx-forms');
         }
 
         return $forms;
@@ -126,7 +126,7 @@ class Emsfb_Visual_Composer_Integration {
 
     private function get_form_name($form_id) {
         if ($form_id === 'tracking') {
-            return __('Confirmation Code Finder', 'flx-forms');
+            return __('\\nConfirmation Code Finder\\n', 'flx-forms');
         }
 
         if (class_exists('Emsfb_Widgets_Helper')) {
@@ -185,7 +185,7 @@ class Emsfb_Visual_Composer_Integration {
     }
 
     public function add_localization($localizations) {
-        $localizations['easyFormBuilder'] = __('Flux Forms', 'flx-forms');
+        $localizations['easyFormBuilder'] = __('\\nFlux Forms\\n', 'flx-forms');
         return $localizations;
     }
 
@@ -222,9 +222,9 @@ class EFB_Visual_Composer_Widget extends WP_Widget {
     public function __construct() {
         parent::__construct(
             'efb_form_widget',
-            __('🎨 Flux Forms', 'flx-forms'),
+            __('\\n🎨 Flux Forms\\n', 'flx-forms'),
             [
-                'description' => __('Add Flux Forms forms to your page', 'flx-forms'),
+                'description' => __('\\nAdd Flux Forms forms to your page\\n', 'flx-forms'),
                 'classname' => 'efb-form-widget',
             ]
         );
@@ -268,7 +268,7 @@ class EFB_Visual_Composer_Widget extends WP_Widget {
 
             <p>
                 <label for="<?php echo esc_attr($this->get_field_id('form_id')); ?>" style="font-weight: 600;">
-                    <?php esc_html_e('Select Form:', 'flx-forms'); ?>
+                    <?php esc_html_e('\\nSelect Form:\\n', 'flx-forms'); ?>
                 </label>
                 <select
                     class="widefat"
@@ -276,7 +276,7 @@ class EFB_Visual_Composer_Widget extends WP_Widget {
                     name="<?php echo esc_attr($this->get_field_name('form_id')); ?>"
                     style="margin-top: 5px;"
                 >
-                    <option value=""><?php esc_html_e('— Select a Form —', 'flx-forms'); ?></option>
+                    <option value=""><?php esc_html_e('\\n— Select a Form —\\n', 'flx-forms'); ?></option>
                     <?php foreach ($forms as $id => $name) : ?>
                         <option value="<?php echo esc_attr($id); ?>" <?php selected($form_id, $id); ?>>
                             <?php echo esc_html($name); ?>
@@ -287,7 +287,7 @@ class EFB_Visual_Composer_Widget extends WP_Widget {
 
             <p>
                 <label for="<?php echo esc_attr($this->get_field_id('title')); ?>">
-                    <?php esc_html_e('Custom Title (optional):', 'flx-forms'); ?>
+                    <?php esc_html_e('\\nCustom Title (optional):\', \'en\']]', 'flx-forms'); ?>
                 </label>
                 <input
                     class="widefat"
@@ -308,14 +308,14 @@ class EFB_Visual_Composer_Widget extends WP_Widget {
                     <?php checked($show_title, 'yes'); ?>
                 >
                 <label for="<?php echo esc_attr($this->get_field_id('show_title')); ?>">
-                    <?php esc_html_e('Show Form Title', 'flx-forms'); ?>
+                    <?php esc_html_e('\\nShow Form Title\\n', 'flx-forms'); ?>
                 </label>
             </p>
 
             <?php if (!empty($form_id)) : ?>
                 <div style="background: #f0f0f1; padding: 10px; border-radius: 6px; margin-top: 10px;">
                     <small style="color: #666;">
-                        <?php esc_html_e('Shortcode:', 'flx-forms'); ?>
+                        <?php esc_html_e('\\nShortcode:\\n', 'flx-forms'); ?>
                         <code style="background: #fff; padding: 2px 6px; border-radius: 3px;">
                             <?php
                             if ($form_id === 'tracking') {
@@ -363,7 +363,7 @@ class EFB_Visual_Composer_Widget extends WP_Widget {
             }
         }
 
-        $forms['tracking'] = __('📍 Confirmation Code Finder (Tracking)', 'flx-forms');
+        $forms['tracking'] = __('\\n📍 Confirmation Code Finder (Tracking)\', \'en\']]', 'flx-forms');
 
         return $forms;
     }
