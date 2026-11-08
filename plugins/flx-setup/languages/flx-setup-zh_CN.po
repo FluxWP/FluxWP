@@ -1809,58 +1809,6 @@ msgstr "支持和反馈:%s"
 msgid "FluxWP Panel"
 msgstr "FluxWP面板"
 
-msgid "[['%dthere is an update', 'tr']]"
-msgid_plural "[['%dthere is an update', 'tr']]"
-msgstr[0] "[['%d有更新','tr']]"
-
-msgid "[['%dpackage activated.', 'tr']]"
-msgid_plural "[['%dpackage activated.', 'tr']]"
-msgstr[0] "[['%d程序包已激活。', 'tr']]"
-
-msgid "[['%dpackage has been disabled.', 'tr']]"
-msgid_plural "[['%dpackage has been disabled.', 'tr']]"
-msgstr[0] "[['%d程序包已被禁用。', 'tr']]"
-
-msgid "[['%dpackage removed.', 'tr']]"
-msgid_plural "[['%dpackage removed.', 'tr']]"
-msgstr[0] "[['%d包已删除。', 'tr']]"
-
-msgid "[['%dbackup deleted.', 'tr']]"
-msgid_plural "[['%dbackup deleted.', 'tr']]"
-msgstr[0] "[['%d备份已删除。', 'tr']]"
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr "\\n已删除过期的%d备份。已删除过期的%d备份。\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr "\\n已连接·%d包已连接·%d包\\n"
-
-msgid "[['%dday', 'tr']]"
-msgid_plural "[['%dday', 'tr']]"
-msgstr[0] "[['%d天', 'tr']]"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr "\\n当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。\\n"
-
-msgid "[['%sregistration', 'tr']]"
-msgid_plural "[['%sregistration', 'tr']]"
-msgstr[0] "[['%s注册','tr']]"
-
-msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
-msgstr "[[\"FluxWP 的安装和更新插件。第一次启动时的安装向导(介绍、插件选择、外观、安装);将 FluxWP 主题和插件从更新服务器(默认 updater.fluxwp.com)带到 WordPress 的更新屏幕;预设引擎(preset.json)一步设置站点,用批准的补丁替换它,然后回滚。\", 'tr']]"
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr[0] "\\n已删除过期的%d备份。已删除过期的%d备份。\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr[0] "\\n已连接·%d包已连接·%d包\\n"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr[0] "\\n当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。\\n"
-
 msgid "Close preview"
 msgstr "关闭预览"
 
@@ -1881,3 +1829,63 @@ msgstr "目前还没有简短的概述。"
 
 msgid "Preview image %d"
 msgstr "预览图像%d"
+
+msgid "%d package removed."
+msgid_plural "%d packages removed."
+msgstr[0] "%d软件包已删除。"
+
+msgid "%s record"
+msgid_plural "%s records"
+msgstr[0] "%s记录"
+
+msgid "%dthere is an update"
+msgid_plural "%dthere is an update"
+msgstr[0] "%d有更新"
+
+msgid "%dpackage activated."
+msgid_plural "%dpackage activated."
+msgstr[0] "%d程序包已激活。"
+
+msgid "%dpackage has been disabled."
+msgid_plural "%dpackage has been disabled."
+msgstr[0] "%d程序包已被禁用。"
+
+msgid "%dpackage removed."
+msgid_plural "%dpackage removed."
+msgstr[0] "%d包已删除。"
+
+msgid "%dbackup deleted."
+msgid_plural "%dbackup deleted."
+msgstr[0] "%d备份已删除。"
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr "已删除过期的%d备份。已删除过期的%d备份。"
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgstr "已连接·%d包已连接·%d包"
+
+msgid "%dday"
+msgid_plural "%dday"
+msgstr[0] "%d天"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr "当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。"
+
+msgid "%sregistration"
+msgid_plural "%sregistration"
+msgstr[0] "%s注册"
+
+msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
+msgstr "FluxWP 的安装和更新插件。第一次启动时的安装向导(介绍、插件选择、外观、安装);将 FluxWP 主题和插件从更新服务器(默认 updater.fluxwp.com)带到 WordPress 的更新屏幕;预设引擎(preset.json)一步设置站点,用批准的补丁替换它,然后回滚。"
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgid_plural "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[0] "已删除过期的%d备份。已删除过期的%d备份。"
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgid_plural "Connected ·%dpackage Connected ·%dpackage"
+msgstr[0] "已连接·%d包已连接·%d包"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[0] "当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。"

@@ -42,7 +42,7 @@ class FLXF_Automations {
 		register_post_type(
 			self::CPT,
 			array(
-				'label'               => __( '\\nAutomations\\n', 'flx-forms' ),
+				'label'               => __( 'Automations', 'flx-forms' ),
 				'public'              => false,
 				'show_ui'             => false,
 				'show_in_rest'        => false,
@@ -179,7 +179,7 @@ class FLXF_Automations {
 		$cfg = json_decode( (string) $p->post_content, true );
 		$cfg = self::sanitize_flow( is_array( $cfg ) ? $cfg : array() );
 		$cfg['id']       = (int) $p->ID;
-		$cfg['title']    = '' !== $p->post_title ? $p->post_title : __( '\\n(untitled flow)\\n', 'flx-forms' );
+		$cfg['title']    = '' !== $p->post_title ? $p->post_title : __( '(untitled flow)', 'flx-forms' );
 		$cfg['enabled']  = 'publish' === $p->post_status;
 		$cfg['modified'] = $p->post_modified_gmt;
 		$cfg['last_run'] = (int) get_post_meta( $p->ID, '_flxf_last_run', true );
@@ -194,7 +194,7 @@ class FLXF_Automations {
 	public static function save_flow( array $data, $id = 0 ) {
 		$clean = self::sanitize_flow( $data );
 		$title = isset( $data['title'] ) ? sanitize_text_field( wp_unslash( (string) $data['title'] ) ) : '';
-		$title = '' !== trim( $title ) ? mb_substr( $title, 0, 190 ) : __( '\\nNew automation\\n', 'flx-forms' );
+		$title = '' !== trim( $title ) ? mb_substr( $title, 0, 190 ) : __( 'New automation', 'flx-forms' );
 		$json  = wp_json_encode( array_diff_key( $clean, array_flip( array( 'id', 'title', 'enabled', 'modified', 'last_run', 'runs' ) ) ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
 		$post  = array(
 			'post_type'    => self::CPT,
@@ -210,7 +210,7 @@ class FLXF_Automations {
 		if ( $id ) {
 			$existing = get_post( (int) $id );
 			if ( ! $existing || self::CPT !== $existing->post_type ) {
-				return new WP_Error( 'flxf_flow', __( '\\nAutomation not found.\\n', 'flx-forms' ) );
+				return new WP_Error( 'flxf_flow', __( 'Automation not found.', 'flx-forms' ) );
 			}
 			$post['ID'] = (int) $id;
 			$res        = wp_update_post( $post, true );
@@ -454,7 +454,7 @@ class FLXF_Automations {
 
 	public static function form_title( $form_id ) {
 		$forms = self::forms();
-		return isset( $forms[ (int) $form_id ] ) ? $forms[ (int) $form_id ]['title'] : ( $form_id ? '#' . (int) $form_id : __( '\\nAny form\\n', 'flx-forms' ) );
+		return isset( $forms[ (int) $form_id ] ) ? $forms[ (int) $form_id ]['title'] : ( $form_id ? '#' . (int) $form_id : __( 'Any form', 'flx-forms' ) );
 	}
 
 	/** Best guesses for name / phone / email fields (used by the editor and the default flow). */
@@ -676,7 +676,7 @@ class FLXF_Automations {
 				'thankYou'     => $clean( self::seed_text( 'Your donation helps us plant more trees.' ) ),
 				'done'         => $clean( self::seed_text( 'Thank you for your donation!' ) ),
 				'finish'       => $clean( self::seed_text( 'Your sapling donation has been received' ) ),
-				'trackingCode' => __( '\\nConfirmation Code\\n', 'flx-forms' ),
+				'trackingCode' => __( 'Confirmation Code', 'flx-forms' ),
 			),
 			'email_temp'           => '',
 			'getway'               => 'stripe',
@@ -1051,8 +1051,8 @@ class FLXF_Automations {
 			'FLXF_TY',
 			array(
 				'copied'  => __( 'Link copied', 'flx-forms' ),
-				'failed'  => __( '\\nThe certificate preview could not be loaded. You can still open it from the link below.\\n', 'flx-forms' ),
-				'loading' => __( '\\nPreparing your certificate...\\n', 'flx-forms' ),
+				'failed'  => __( 'The certificate preview could not be loaded. You can still open it from the link below.', 'flx-forms' ),
+				'loading' => __( 'Preparing your certificate...', 'flx-forms' ),
 			)
 		);
 	}

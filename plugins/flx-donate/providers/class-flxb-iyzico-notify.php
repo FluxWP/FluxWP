@@ -94,13 +94,13 @@ final class FLXB_Iyzico_Notify {
 	public static function admin_box() {
 		$id  = 'flxb-iyz-notify-' . wp_rand( 100, 999 );
 		$out = '<div class="flxb-iyzurls">';
-		$out .= '<h4 class="flxb-iyzurls__title">' . esc_html__( '\\niyzico panel addresses\\n', 'flx-donate' ) . '</h4>';
-		$out .= '<p class="flxb-help">' . esc_html__( '[[\'In the iyzico merchant panel, open the notification settings, switch payment notifications on and paste this address. iyzico allows one address per merchant; Flux Donate passes WooCommerce notifications on to the iyzico WooCommerce plugin, so the same address serves both.\\n', 'flx-donate' ) . '</p>';
-		$out .= FLXB_Admin::copy_field( $id, __( '\\nMerchant notifications URL (İşyeri Bildirimleri Url)\\n', 'flx-donate' ), self::url() );
-		$out .= '<p class="flxb-help"><strong>' . esc_html__( '\\nSubscription notification URLs (Başarılı / Başarısız Abonelik Bildirimleri Url): not needed, leave them off.\\n', 'flx-donate' ) . '</strong> ' . esc_html__( '\\nThey belong to iyzico\'s own subscription product; Flux Donate renews recurring donations with the saved card and its own scheduled task.\\n', 'flx-donate' ) . '</p>';
-		$out .= '<p class="flxb-help">' . esc_html__( '\\nCallback URL (sent automatically with every payment, nothing to paste):\\n', 'flx-donate' ) . ' <code class="flxb-codeblock">' . esc_html( FLXB_Payment_Iyzico::callback_url() ) . '</code></p>';
+		$out .= '<h4 class="flxb-iyzurls__title">' . esc_html__( 'iyzico panel addresses', 'flx-donate' ) . '</h4>';
+		$out .= '<p class="flxb-help">' . esc_html__( 'In the iyzico merchant panel, open the notification settings, switch payment notifications on and paste this address. iyzico allows one address per merchant; Flux Donate passes WooCommerce notifications on to the iyzico WooCommerce plugin, so the same address serves both.', 'flx-donate' ) . '</p>';
+		$out .= FLXB_Admin::copy_field( $id, __( 'Merchant notifications URL (İşyeri Bildirimleri Url)', 'flx-donate' ), self::url() );
+		$out .= '<p class="flxb-help"><strong>' . esc_html__( 'Subscription notification URLs (Başarılı / Başarısız Abonelik Bildirimleri Url): not needed, leave them off.', 'flx-donate' ) . '</strong> ' . esc_html__( 'They belong to iyzico\'s own subscription product; Flux Donate renews recurring donations with the saved card and its own scheduled task.', 'flx-donate' ) . '</p>';
+		$out .= '<p class="flxb-help">' . esc_html__( 'Callback URL (sent automatically with every payment, nothing to paste):', 'flx-donate' ) . ' <code class="flxb-codeblock">' . esc_html( FLXB_Payment_Iyzico::callback_url() ) . '</code></p>';
 		if ( '' !== self::woo_key() ) {
-			$out .= '<p class="flxb-help">' . esc_html__( '[[\'The iyzico WooCommerce plugin has a webhook key on this site: notifications that are not for Flux Donate are forwarded to it.\\n', 'flx-donate' ) . '</p>';
+			$out .= '<p class="flxb-help">' . esc_html__( 'The iyzico WooCommerce plugin has a webhook key on this site: notifications that are not for Flux Donate are forwarded to it.', 'flx-donate' ) . '</p>';
 		}
 		return $out . '</div>';
 	}

@@ -434,8 +434,8 @@ return array(
   'Note added' => '添加注释',
   'Notes' => '注释',
   'Call' => '致电',
-  '\\nYetkiniz yok.\\n' => '\\nYetkiniz yok。\\n',
-  '[[\'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.\', \'tr\']]' => '[[\'FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。\', \'tr\']]',
+  '\\nYetkiniz yok.\\n' => 'Yetkiniz yok。',
+  '[[\'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.\', \'tr\']]' => 'FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。',
   'Mobil uygulama kullanım toplamları' => '移动应用程序使用情况汇总',
   'İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayrıca izin veren hesaplar sayılır. Her tamamlanmış UTC günü için iOS/Android toplamları, en az beş hesap varsa telemetri merkezinize gönderilir. Kişi adları, hesap kimlikleri, içerik, site adresi ve GPS konumu bu rapora eklenmez. Ülke, sitenin ayarından gelir. Genel kullanım verisi izni de açık olmalıdır. Giriş ve uygulama özellikleri bu seçime bağlı değildir.' => '可选且默认关闭。仅计算在应用程序内选择加入的帐户。仅包含至少五个帐户的群组的完整 UTC 日 iOS/Android 总计才会发送至您的遥测中心。不包含姓名、帐户 ID、内容、站点 URL 或 GPS 位置。国家/地区来自网站设置。还必须启用一般使用共享。登录和应用程序功能不取决于此选择。',
   'Mobil uygulamanın toplam kullanımını paylaş' => '分享移动应用程序的总体使用情况',
@@ -868,7 +868,9 @@ return array(
   'Notlar' => '注释',
   'Ara' => '致电',
   'Siparişleri' => '订单',
-  'Yetkiniz yok.' => '\\nYetkiniz yok。\\n',
-  'FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.' => '[[\'FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。\', \'tr\']]',
+  'Yetkiniz yok.' => 'Yetkiniz yok。',
+  'FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.' => 'FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。',
+  'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.' => 'FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。',
+
  ),
 );

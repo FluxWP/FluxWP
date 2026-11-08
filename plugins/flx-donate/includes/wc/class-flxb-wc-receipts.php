@@ -85,11 +85,11 @@ final class FLXB_WC_Receipts {
 	 */
 	public static function store( WC_Order $order, array $file ) {
 		if ( ! FLXB_WC_Havale::awaiting( $order ) ) {
-			return new WP_Error( 'flxb_state', __( '\\nNo receipt is expected for this donation.\\n', 'flx-donate' ), array( 'status' => 409 ) );
+			return new WP_Error( 'flxb_state', __( 'No receipt is expected for this donation.', 'flx-donate' ), array( 'status' => 409 ) );
 		}
 		$list = self::of( $order );
 		if ( count( $list ) >= self::MAX ) {
-			return new WP_Error( 'flxb_limit', __( '\\nAt most 5 receipts can be uploaded for a donation.\\n', 'flx-donate' ), array( 'status' => 429 ) );
+			return new WP_Error( 'flxb_limit', __( 'At most 5 receipts can be uploaded for a donation.', 'flx-donate' ), array( 'status' => 429 ) );
 		}
 		if ( empty( $file['tmp_name'] ) || ! empty( $file['error'] ) || ! is_uploaded_file( $file['tmp_name'] ) ) {
 			$big = isset( $file['error'] ) && in_array( (int) $file['error'], array( UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE ), true );
@@ -129,7 +129,7 @@ final class FLXB_WC_Receipts {
 		$order->update_meta_data( '_flxb_state', 'uploaded' );
 		$order->save();
 		/* translators: 1: file name, 2: size */
-		$order->add_order_note( sprintf( __( '\\nThe donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it.\\n', 'flx-donate' ), $rec['name'], size_format( $rec['size'] ) ) );
+		$order->add_order_note( sprintf( __( 'The donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it.', 'flx-donate' ), $rec['name'], size_format( $rec['size'] ) ) );
 		if ( ! empty( $rec['dup'] ) ) {
 			$order->add_order_note( self::dup_text( $rec ) );
 		}
@@ -194,16 +194,16 @@ final class FLXB_WC_Receipts {
 	/** Warning for a receipt the ledger has seen before. */
 	public static function dup_text( array $rec ) {
 		$d    = (array) ( $rec['dup'] ?? array() );
-		$from = 'whatsapp' === ( $d['source'] ?? '' ) ? __( 'WhatsApp', 'flx-donate' ) : __( '\\nthe site\\n', 'flx-donate' );
+		$from = 'whatsapp' === ( $d['source'] ?? '' ) ? __( 'WhatsApp', 'flx-donate' ) : __( 'the site', 'flx-donate' );
 		$text = sprintf(
 			/* translators: 1: number of earlier uploads, 2: where (the site / WhatsApp) */
-			_n( '[[\'Warning: this receipt was uploaded before (%1$dtime, via%2$s). Check it before confirming the payment.\', \'en\']]', '[[\'Warning: this receipt was uploaded before (%1$dtimes, via%2$s). Check it before confirming the payment.\', \'en\']]', (int) ( $d['count'] ?? 1 ), 'flx-donate' ),
+			_n( 'Warning: this receipt was uploaded before (%1$d time, via %2$s). Check it before confirming the payment.', 'Warning: this receipt was uploaded before (%1$d times, via %2$s). Check it before confirming the payment.', (int) ( $d['count'] ?? 1 ), 'flx-donate' ),
 			(int) ( $d['count'] ?? 1 ),
 			$from
 		);
 		if ( ! empty( $d['donation_id'] ) ) {
 			/* translators: %d: donation number */
-			$text .= ' ' . sprintf( __( '\\nEarlier donation: #%d.\\n', 'flx-donate' ), (int) $d['donation_id'] );
+			$text .= ' ' . sprintf( __( 'Earlier donation: #%d.', 'flx-donate' ), (int) $d['donation_id'] );
 		}
 		return $text;
 	}

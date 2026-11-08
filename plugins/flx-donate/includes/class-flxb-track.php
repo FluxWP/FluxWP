@@ -62,21 +62,21 @@ final class FLXB_Track {
 	/** Built-in words (generic). key => text. */
 	public static function default_labels() {
 		return array(
-			'menu'         => __( '\\nTracking\\n', 'flx-donate' ),
-			'title'        => __( '\\nTracked items\\n', 'flx-donate' ),
+			'menu'         => __( 'Tracking', 'flx-donate' ),
+			'title'        => __( 'Tracked items', 'flx-donate' ),
 			'item'         => __( 'Record', 'flx-donate' ),
 			'partner'      => __( 'Partner', 'flx-donate' ),
 			'files'        => __( 'Files', 'flx-donate' ),
 			'st_pending'   => __( 'Waiting', 'flx-donate' ),
 			'st_approved'  => __( 'Approved', 'flx-donate' ),
-			'st_sent'      => __( '\\nSent to partner\\n', 'flx-donate' ),
+			'st_sent'      => __( 'Sent to partner', 'flx-donate' ),
 			'st_done'      => __( 'Completed', 'flx-donate' ),
-			'st_delivered' => __( '\\nDelivered to owner\\n', 'flx-donate' ),
-			'st_canceled'  => __( '\\nCanceled\\n', 'flx-donate' ),
-			'do_assign'    => __( '\\nSend to a partner\\n', 'flx-donate' ),
-			'do_revoke'    => __( '\\nTake back from the partner\\n', 'flx-donate' ),
-			'do_done'      => __( '\\nMark completed\\n', 'flx-donate' ),
-			'caption'      => __( '\\nYour gift on behalf of%1$sis completed. Thank you. Code:%2$s\\n', 'flx-donate' ),
+			'st_delivered' => __( 'Delivered to owner', 'flx-donate' ),
+			'st_canceled'  => __( 'Canceled', 'flx-donate' ),
+			'do_assign'    => __( 'Send to a partner', 'flx-donate' ),
+			'do_revoke'    => __( 'Take back from the partner', 'flx-donate' ),
+			'do_done'      => __( 'Mark completed', 'flx-donate' ),
+			'caption'      => __( 'Your gift on behalf of%1$sis completed. Thank you. Code:%2$s', 'flx-donate' ),
 		);
 	}
 
@@ -84,16 +84,16 @@ final class FLXB_Track {
 	public static function label_fields() {
 		return array(
 			'menu'         => __( 'Menu name', 'flx-donate' ),
-			'title'        => __( '\\nPage title\\n', 'flx-donate' ),
-			'item'         => __( '\\nOne item\\n', 'flx-donate' ),
+			'title'        => __( 'Page title', 'flx-donate' ),
+			'item'         => __( 'One item', 'flx-donate' ),
 			'partner'      => __( 'Partner', 'flx-donate' ),
 			'files'        => __( 'Files', 'flx-donate' ),
-			'st_sent'      => __( '\\nStatus: sent to partner\\n', 'flx-donate' ),
-			'st_done'      => __( '\\nStatus: completed\\n', 'flx-donate' ),
-			'do_assign'    => __( '\\nButton: send to partner\\n', 'flx-donate' ),
-			'do_revoke'    => __( '\\nButton: take back\\n', 'flx-donate' ),
-			'do_done'      => __( '\\nButton: mark completed\\n', 'flx-donate' ),
-			'caption'      => __( '\\nWhatsApp text with the file (%1$sname,%2$scode)\\n', 'flx-donate' ),
+			'st_sent'      => __( 'Status: sent to partner', 'flx-donate' ),
+			'st_done'      => __( 'Status: completed', 'flx-donate' ),
+			'do_assign'    => __( 'Button: send to partner', 'flx-donate' ),
+			'do_revoke'    => __( 'Button: take back', 'flx-donate' ),
+			'do_done'      => __( 'Button: mark completed', 'flx-donate' ),
+			'caption'      => __( 'WhatsApp text with the file (%1$sname,%2$scode)', 'flx-donate' ),
 		);
 	}
 
@@ -193,17 +193,17 @@ final class FLXB_Track {
 			'done'      => $l['st_done'],
 			'delivered' => $l['st_delivered'],
 			'canceled'  => $l['st_canceled'],
-			'reset'     => __( '\\nBack to waiting\\n', 'flx-donate' ),
-			'file'      => __( '\\nFile added\\n', 'flx-donate' ),
-			'file_del'  => __( '\\nFile removed\\n', 'flx-donate' ),
-			'file_sent' => __( '\\nFile sent to owner\\n', 'flx-donate' ),
-			'edited'    => __( '\\nDetails changed\\n', 'flx-donate' ),
+			'reset'     => __( 'Back to waiting', 'flx-donate' ),
+			'file'      => __( 'File added', 'flx-donate' ),
+			'file_del'  => __( 'File removed', 'flx-donate' ),
+			'file_sent' => __( 'File sent to owner', 'flx-donate' ),
+			'edited'    => __( 'Details changed', 'flx-donate' ),
 			'note'      => __( 'Note', 'flx-donate' ),
 			'imported'  => __( 'Imported', 'flx-donate' ),
 			/* before 2.11 */
-			'video'      => __( '\\nFile added\\n', 'flx-donate' ),
-			'video_del'  => __( '\\nFile removed\\n', 'flx-donate' ),
-			'video_sent' => __( '\\nFile sent to owner\\n', 'flx-donate' ),
+			'video'      => __( 'File added', 'flx-donate' ),
+			'video_del'  => __( 'File removed', 'flx-donate' ),
+			'video_sent' => __( 'File sent to owner', 'flx-donate' ),
 		);
 	}
 
@@ -456,7 +456,7 @@ final class FLXB_Track {
 			$name = self::place_name( $ref );
 			if ( '' === $name ) {
 				/* translators: %s: what a partner is called, e.g. "Partner" */
-				return array( 'done' => array(), 'skipped' => array(), 'error' => sprintf( __( '\\nChoose:%s.\\n', 'flx-donate' ), self::label( 'partner' ) ) );
+				return array( 'done' => array(), 'skipped' => array(), 'error' => sprintf( __( 'Choose:%s.', 'flx-donate' ), self::label( 'partner' ) ) );
 			}
 		}
 		foreach ( array_unique( array_map( 'intval', $ids ) ) as $id ) {
@@ -470,7 +470,7 @@ final class FLXB_Track {
 			switch ( $action ) {
 				case 'approve':
 					if ( 'pending' !== $st ) {
-						$no = __( '\\nnot waiting\\n', 'flx-donate' );
+						$no = __( 'not waiting', 'flx-donate' );
 						break;
 					}
 					self::upd( $id, array( 'status' => 'approved', 'approved_at' => $now ) );
@@ -478,11 +478,11 @@ final class FLXB_Track {
 					break;
 				case 'assign':
 					if ( ! in_array( $st, array( 'approved', 'sent' ), true ) ) {
-						$no = 'pending' === $st ? __( '\\napprove it first\\n', 'flx-donate' ) : __( '\\nalready completed or canceled\\n', 'flx-donate' );
+						$no = 'pending' === $st ? __( 'approve it first', 'flx-donate' ) : __( 'already completed or canceled', 'flx-donate' );
 						break;
 					}
 					if ( empty( $o['force_paid'] ) && ! self::paid( $it ) ) {
-						$no = __( '\\npayment not received\\n', 'flx-donate' );
+						$no = __( 'payment not received', 'flx-donate' );
 						break;
 					}
 					$block = (string) apply_filters( 'flxb_kurban_assign_block', '', $it, $ref ); // before 2.11
@@ -492,7 +492,7 @@ final class FLXB_Track {
 						break;
 					}
 					if ( 'sent' === $st && $it['place_ref'] === $ref ) {
-						$no = __( '\\nalready with this partner\\n', 'flx-donate' );
+						$no = __( 'already with this partner', 'flx-donate' );
 						break;
 					}
 					if ( 'sent' === $st ) {
@@ -516,7 +516,7 @@ final class FLXB_Track {
 					break;
 				case 'revoke':
 					if ( 'sent' !== $st ) {
-						$no = __( '\\nnot with a partner, or already completed\\n', 'flx-donate' );
+						$no = __( 'not with a partner, or already completed', 'flx-donate' );
 						break;
 					}
 					self::upd( $id, array( 'status' => 'approved', 'place_ref' => '', 'place_name' => '', 'partner_id' => 0, 'cost' => 0, 'cost_currency' => '', 'sent_at' => null ) );
@@ -524,7 +524,7 @@ final class FLXB_Track {
 					break;
 				case 'done':
 					if ( 'sent' !== $st ) {
-						$no = __( '\\nsend it to a partner first\\n', 'flx-donate' );
+						$no = __( 'send it to a partner first', 'flx-donate' );
 						break;
 					}
 					self::upd( $id, array( 'status' => 'done', 'done_at' => $now ) );
@@ -532,7 +532,7 @@ final class FLXB_Track {
 					break;
 				case 'delivered':
 					if ( $at < 2 ) {
-						$no = __( '\\nnot completed yet\\n', 'flx-donate' );
+						$no = __( 'not completed yet', 'flx-donate' );
 						break;
 					}
 					self::upd( $id, array( 'status' => 'delivered', 'notified_at' => $now, 'done_at' => $it['done_at'] ? $it['done_at'] : $now ) );
@@ -540,7 +540,7 @@ final class FLXB_Track {
 					break;
 				case 'cancel':
 					if ( ! in_array( $st, array( 'pending', 'approved' ), true ) ) {
-						$no = 'sent' === $st ? __( '[[\'take it back from the partner first\\n', 'flx-donate' ) : __( '\\ncannot be canceled\\n', 'flx-donate' );
+						$no = 'sent' === $st ? __( 'take it back from the partner first', 'flx-donate' ) : __( 'cannot be canceled', 'flx-donate' );
 						break;
 					}
 					self::upd( $id, array( 'status' => 'canceled' ) );
@@ -548,14 +548,14 @@ final class FLXB_Track {
 					break;
 				case 'reset':
 					if ( ! in_array( $st, array( 'approved', 'canceled' ), true ) ) {
-						$no = __( '\\nonly approved or canceled items\\n', 'flx-donate' );
+						$no = __( 'only approved or canceled items', 'flx-donate' );
 						break;
 					}
 					self::upd( $id, array( 'status' => 'pending', 'approved_at' => null ) );
 					self::log( $id, 'reset', $note );
 					break;
 				default:
-					$no = __( '\\nunknown step\\n', 'flx-donate' );
+					$no = __( 'unknown step', 'flx-donate' );
 			}
 			if ( '' === $no ) {
 				$done[] = $id;
@@ -735,23 +735,23 @@ final class FLXB_Track {
 			return new WP_Error( 'flxb_item', __( 'Item not found.', 'flx-donate' ) );
 		}
 		if ( ! self::can_send() ) {
-			return new WP_Error( 'flxb_wa', __( '\\nFlux Chat is needed to send over WhatsApp.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_wa', __( 'Flux Chat is needed to send over WhatsApp.', 'flx-donate' ) );
 		}
 		$phone = function_exists( 'flxc_normalize_phone' ) ? flxc_normalize_phone( '' !== (string) $phone ? $phone : self::owner_phone( $it ) ) : preg_replace( '/\D/', '', (string) $phone );
 		if ( ! $phone ) {
-			return new WP_Error( 'flxb_phone', __( '\\nThere is no phone number for the owner.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_phone', __( 'There is no phone number for the owner.', 'flx-donate' ) );
 		}
 		$path = get_attached_file( (int) $attachment_id );
 		if ( ! $path || ! is_readable( $path ) ) {
-			return new WP_Error( 'flxb_file', __( '\\nThe file was not found.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_file', __( 'The file was not found.', 'flx-donate' ) );
 		}
 		$conn = flxc_default_connection();
 		if ( ! $conn ) {
-			return new WP_Error( 'flxb_wa', __( '\\nThere is no WhatsApp connection.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_wa', __( 'There is no WhatsApp connection.', 'flx-donate' ) );
 		}
 		$chat = flxc_ensure_chat( $conn['id'], $phone . '@s.whatsapp.net', array( 'name' => (string) $it['beneficiary_name'] ) );
 		if ( ! $chat ) {
-			return new WP_Error( 'flxb_wa', __( '[[\'The WhatsApp chat could not be opened.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_wa', __( 'The WhatsApp chat could not be opened.', 'flx-donate' ) );
 		}
 		$mime = (string) get_post_mime_type( (int) $attachment_id );
 		$kind = 0 === strpos( $mime, 'video/' ) ? 'video' : ( 0 === strpos( $mime, 'image/' ) ? 'image' : ( 0 === strpos( $mime, 'audio/' ) ? 'audio' : 'document' ) );

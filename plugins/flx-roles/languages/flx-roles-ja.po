@@ -317,5 +317,5 @@ msgstr "有効になっているすべての権限が強制されます。"
 msgid "Roles"
 msgstr "役割"
 
-msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
-msgstr "[['スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。', 'tr']]"
+msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
+msgstr "スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。"

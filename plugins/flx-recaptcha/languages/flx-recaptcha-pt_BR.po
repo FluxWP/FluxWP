@@ -421,5 +421,5 @@ msgstr "google.com"
 msgid "recaptcha.net"
 msgstr "recaptcha.net"
 
-msgid "[['It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed \\u200b\\u200bis compatible with custom login address.', 'tr']]"
-msgstr "[['Ele protege login, registro, redefinição de senha, comentários, conta e pagamento WooCommerce, formulário de doação Flux Donate e envios de Formulários Flux contra spam e ataques de bot com Google reCAPTCHA (v3 invisível ou bloco v2). Qual formulário será mantido é ligado e desligado no painel; Flux Speed ​​é compatível com endereço de login personalizado.', 'tr']]"
+msgid "It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address."
+msgstr "Ele protege login, registro, redefinição de senha, comentários, conta e pagamento WooCommerce, formulário de doação Flux Donate e envios de Formulários Flux contra spam e ataques de bot com Google reCAPTCHA (v3 invisível ou bloco v2). Qual formulário será mantido é ligado e desligado no painel; Flux Speed ​​é compatível com endereço de login personalizado."

@@ -1171,5 +1171,5 @@ msgstr "الدفع"
 msgid "Consents"
 msgstr "الموافقات"
 
-msgid "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"
-msgstr "[['الناس والتسويق: المتبرع، العميل، المتطوع والمرشح في بطاقة شخص واحد؛ الجدول الزمني، العلامات، أذونات KVKK، درجة RFM ومخاطر الخسارة، القطاعات الديناميكية. يجمع البيانات من مستخدمي Flux Donate وFlux Commerce وFlux Chat وFlux Forms وWordPress؛ الشحن عبر Flux Mail، AI Flux AI.', 'tr']]"
+msgid "People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI."
+msgstr "الناس والتسويق: المتبرع، العميل، المتطوع والمرشح في بطاقة شخص واحد؛ الجدول الزمني، العلامات، أذونات KVKK، درجة RFM ومخاطر الخسارة، القطاعات الديناميكية. يجمع البيانات من مستخدمي Flux Donate وFlux Commerce وFlux Chat وFlux Forms وWordPress؛ الشحن عبر Flux Mail، AI Flux AI."

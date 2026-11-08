@@ -332,7 +332,7 @@
         "Если оставить пустым, отображаются турецкое имя и описание."
       ],
       "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]": [
-        "[['Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI.', 'tr']]"
+        "Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI."
       ],
       "Diller": [
         "Языки"
@@ -659,7 +659,10 @@
         "Если оставить пустым, отображаются турецкое имя и описание."
       ],
       "Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.": [
-        "[['Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI.', 'tr']]"
+        "Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI."
+      ],
+      "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": [
+        "Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI."
       ]
     }
   }

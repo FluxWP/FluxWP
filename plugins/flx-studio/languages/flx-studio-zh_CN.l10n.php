@@ -318,7 +318,7 @@ return array(
   'Starred' => '已加星标',
   'Generated images are listed here. The production screen opens in the app later.' => '此处列出了生成的图像。稍后会在应用程序中打开生产屏幕。',
   'Prompt' => '提示',
-  '[[\'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).\', \'tr\']]' => '[[\'具有人工智能的视觉和视频工作室:制作、参考和联系人、现场编辑、开发和头脑风暴、带有文件夹的画廊。通过 Flux AI 进行生产(fal.ai、EvoLink、OpenAI、Gemini、OpenRouter)。\', \'tr\']]',
+  '[[\'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).\', \'tr\']]' => '具有人工智能的视觉和视频工作室:制作、参考和联系人、现场编辑、开发和头脑风暴、带有文件夹的画廊。通过 Flux AI 进行生产(fal.ai、EvoLink、OpenAI、Gemini、OpenRouter)。',
   'Genel' => '一般',
   'Kişi (yüz/kimlik)' => '人(面孔/身份)',
   'Stil' => '风格',
@@ -636,6 +636,8 @@ return array(
   'Yıldızlı' => '已加星标',
   'Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır.' => '此处列出了生成的图像。稍后会在应用程序中打开生产屏幕。',
   'İstem' => '提示',
-  'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => '[[\'具有人工智能的视觉和视频工作室:制作、参考和联系人、现场编辑、开发和头脑风暴、带有文件夹的画廊。通过 Flux AI 进行生产(fal.ai、EvoLink、OpenAI、Gemini、OpenRouter)。\', \'tr\']]',
+  'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => '具有人工智能的视觉和视频工作室:制作、参考和联系人、现场编辑、开发和头脑风暴、带有文件夹的画廊。通过 Flux AI 进行生产(fal.ai、EvoLink、OpenAI、Gemini、OpenRouter)。',
+  'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => '具有人工智能的视觉和视频工作室:制作、参考和联系人、现场编辑、开发和头脑风暴、带有文件夹的画廊。通过 Flux AI 进行生产(fal.ai、EvoLink、OpenAI、Gemini、OpenRouter)。',
+
  ),
 );

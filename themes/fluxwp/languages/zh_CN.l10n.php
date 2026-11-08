@@ -473,9 +473,9 @@ return array(
   'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.' => '现在自动:iyzico 乐队和启用的虚拟 POS 插件的徽标。添加或删除徽标后,列表就是您自己的选择。',
   'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.' => '亲手挑选的清单。 “返回自动”返回 iyzico 乐队和启用的虚拟 POS 插件的徽标。',
   'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.' => 'SVG 或透明 PNG 最好;彩色徽标显示在深色页脚上的白色框中。',
-  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '\\n%s。 Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin。\\n',
+  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '%s。 Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin。',
   'Background pattern' => '背景图案',
-  '\\nDots\\n' => '\\n点\\n',
+  '\\nDots\\n' => '点',
   'Leaves' => '叶子',
   'None' => '无',
   'News introduction' => '新闻介绍',
@@ -947,7 +947,8 @@ return array(
   'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.' => '现在自动:iyzico 乐队和启用的虚拟 POS 插件的徽标。添加或删除徽标后,列表就是您自己的选择。',
   'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.' => '亲手挑选的清单。 “返回自动”返回 iyzico 乐队和启用的虚拟 POS 插件的徽标。',
   'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.' => 'SVG 或透明 PNG 最好;彩色徽标显示在深色页脚上的白色框中。',
-  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '\\n%s。 Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin。\\n',
-  'Dots' => '\\n点\\n',
+  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '%s。 Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin。',
+  'Dots' => '点',
+
  ),
 );

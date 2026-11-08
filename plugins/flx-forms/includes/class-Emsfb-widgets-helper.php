@@ -82,7 +82,7 @@ class Emsfb_Widgets_Helper {
 
         array_unshift($forms, [
             'id' => 'tracking',
-            'name' => __('[[\'📍 Confirmation Code Finder (Tracking Form)\\n', 'flx-forms'),
+            'name' => __('📍 Confirmation Code Finder (Tracking Form)', 'flx-forms'),
             'type' => 'tracking'
         ]);
         return $forms;
@@ -93,7 +93,7 @@ class Emsfb_Widgets_Helper {
         $options = [];
 
         if ($include_empty) {
-            $options[''] = __('\\n— Select a Form —\\n', 'flx-forms');
+            $options[''] = __('— Select a Form —', 'flx-forms');
         }
 
         foreach ($forms as $form) {
@@ -117,7 +117,7 @@ class Emsfb_Widgets_Helper {
 
     public static function render_form($form_id) {
         if (empty($form_id)) {
-            return self::render_placeholder_message(__('\\nPlease select a form to display.\\n', 'flx-forms'));
+            return self::render_placeholder_message(__('Please select a form to display.', 'flx-forms'));
         }
 
         $shortcode = self::generate_shortcode($form_id);
@@ -147,7 +147,7 @@ class Emsfb_Widgets_Helper {
 
     public static function get_editor_preview($form_id, $form_name = '') {
         if (empty($form_id)) {
-            return self::render_placeholder_message(__('\\nPlease select a form to display.\\n', 'flx-forms'));
+            return self::render_placeholder_message(__('Please select a form to display.', 'flx-forms'));
         }
 
         if (empty($form_name)) {
@@ -179,7 +179,7 @@ class Emsfb_Widgets_Helper {
             self::BRAND_COLOR_SECONDARY,
             self::BRAND_COLOR_PRIMARY,
             esc_url(EMSFB_PLUGIN_URL . 'includes/admin/assets/image/logo.svg'),
-            esc_html__('\\nSelected Form:\\n', 'flx-forms'),
+            esc_html__('Selected Form:', 'flx-forms'),
             esc_html($form_name),
             esc_html($shortcode)
         );

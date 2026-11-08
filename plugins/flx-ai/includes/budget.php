@@ -149,7 +149,10 @@ function flxai_budget_after_log() {
 		$subject = sprintf( __( 'Flux AI: %2$s%% of the %1$s spending limit used', 'flx-ai' ), $row['label'], number_format_i18n( $row['pct'], 0 ) );
 		$body    = sprintf(
 			/* translators: 1: spent, 2: limit, 3: reset date, 4: url */
-			__( '\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n', 'flx-ai' ),
+			__( 'Spent:%1$s/ Limit:%2$s
+Regeneration:%3$s
+
+Detail:%4$s', 'flx-ai' ),
 			flxai_usd( $row['spent'], 2 ),
 			flxai_usd( $row['limit'], 2 ),
 			flx_date( $row['resets'], 'datetime' ),

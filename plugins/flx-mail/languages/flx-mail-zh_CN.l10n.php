@@ -837,7 +837,7 @@ return array(
   'From or subject' => '来自或主题',
   'WhatsApp' => 'WhatsApp',
   'The reply cannot be empty.' => '回复不能为空。',
-  '[[\'All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.\', \'tr\']]' => '[[\'网站的所有电子邮件集中在一处:发件人姓名/地址(info@/no-reply@)、SMTP、带徽标且适合移动设备的企业模板、查看、编辑、打开/关闭 WordPress + WooCommerce + FluxWP 插件的电子邮件、发送记录、单独和批量发送。 WhatsApp (Evolution API) 和 SMS (Netgsm) 连接也在这里;其他插件将其与公共 API 一起使用。\', \'tr\']]',
+  '[[\'All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.\', \'tr\']]' => '网站的所有电子邮件集中在一处:发件人姓名/地址(info@/no-reply@)、SMTP、带徽标且适合移动设备的企业模板、查看、编辑、打开/关闭 WordPress + WooCommerce + FluxWP 插件的电子邮件、发送记录、单独和批量发送。 WhatsApp (Evolution API) 和 SMS (Netgsm) 连接也在这里;其他插件将其与公共 API 一起使用。',
   'Örnek e-posta' => '示例电子邮件',
   'Kurumsal e-posta görünümü' => '品牌电子邮件布局',
   '<p>Merhaba Ayşe,</p><p>Sitemizden giden bütün e-postalar bu düzende görünür: üstte logomuz, ortada içerik, altta kurum bilgilerimiz ve sosyal medya hesaplarımız.</p>' => '<p>您好 Ayşe,</p><p>从我们网站发送的每封电子邮件都使用此布局:我们的徽标位于顶部,内容位于中间,我们的组织详细信息和社交媒体帐户位于底部。</p>',
@@ -1659,6 +1659,8 @@ return array(
   'Yanıt' => '回复',
   'Yanıt boş olamaz.' => '回复不能为空。',
   'Yanıtla' => '回复',
-  'Sitenin tüm e-postaları tek yerde: gönderen adı/adresi (bilgi@ / no-reply@), SMTP, logolu ve mobil uyumlu kurumsal şablonlar, WordPress + WooCommerce + FluxWP eklentilerinin e-postalarını görme, düzenleme, açma/kapama, gönderim kayıtları, tekil ve toplu gönderim. WhatsApp (Evolution API) ve SMS (Netgsm) bağlantıları da burada; diğer eklentiler ortak API ile kullanır.' => '[[\'网站的所有电子邮件集中在一处:发件人姓名/地址(info@/no-reply@)、SMTP、带徽标且适合移动设备的企业模板、查看、编辑、打开/关闭 WordPress + WooCommerce + FluxWP 插件的电子邮件、发送记录、单独和批量发送。 WhatsApp (Evolution API) 和 SMS (Netgsm) 连接也在这里;其他插件将其与公共 API 一起使用。\', \'tr\']]',
+  'Sitenin tüm e-postaları tek yerde: gönderen adı/adresi (bilgi@ / no-reply@), SMTP, logolu ve mobil uyumlu kurumsal şablonlar, WordPress + WooCommerce + FluxWP eklentilerinin e-postalarını görme, düzenleme, açma/kapama, gönderim kayıtları, tekil ve toplu gönderim. WhatsApp (Evolution API) ve SMS (Netgsm) bağlantıları da burada; diğer eklentiler ortak API ile kullanır.' => '网站的所有电子邮件集中在一处:发件人姓名/地址(info@/no-reply@)、SMTP、带徽标且适合移动设备的企业模板、查看、编辑、打开/关闭 WordPress + WooCommerce + FluxWP 插件的电子邮件、发送记录、单独和批量发送。 WhatsApp (Evolution API) 和 SMS (Netgsm) 连接也在这里;其他插件将其与公共 API 一起使用。',
+  'All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.' => '网站的所有电子邮件集中在一处:发件人姓名/地址(info@/no-reply@)、SMTP、带徽标且适合移动设备的企业模板、查看、编辑、打开/关闭 WordPress + WooCommerce + FluxWP 插件的电子邮件、发送记录、单独和批量发送。 WhatsApp (Evolution API) 和 SMS (Netgsm) 连接也在这里;其他插件将其与公共 API 一起使用。',
+
  ),
 );

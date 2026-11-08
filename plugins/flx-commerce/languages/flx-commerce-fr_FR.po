@@ -900,5 +900,5 @@ msgstr "Approuver ce paiement ?"
 msgid "Contact"
 msgstr "Contacter"
 
-msgid "[['Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.', 'tr']]"
-msgstr "[['Panneau de vente pour la boutique WooCommerce, clients, rapports de ventes, mandat/EFT avec téléchargement de reçus, page de paiement simple, barre de livraison gratuite, flux de produits Google Merchant et notifications WhatsApp/e-mail.', 'tr']]"
+msgid "Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications."
+msgstr "Panneau de vente pour la boutique WooCommerce, clients, rapports de ventes, mandat/EFT avec téléchargement de reçus, page de paiement simple, barre de livraison gratuite, flux de produits Google Merchant et notifications WhatsApp/e-mail."

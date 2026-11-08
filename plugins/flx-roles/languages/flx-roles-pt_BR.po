@@ -318,5 +318,5 @@ msgstr "Todas as permissões habilitadas são aplicadas."
 msgid "Roles"
 msgstr "Funções"
 
-msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
-msgstr "[['Adiciona funções de equipe, administrador e gerente (nova função também é adicionada no painel); Você pode ativar e desativar o acesso a tarefas, certificados, doações, call center, estúdio e relatórios para funções em uma única página. O link de referência pessoal e o número de telefone do usuário (para o assistente do WhatsApp) estão aqui.', 'tr']]"
+msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
+msgstr "Adiciona funções de equipe, administrador e gerente (nova função também é adicionada no painel); Você pode ativar e desativar o acesso a tarefas, certificados, doações, call center, estúdio e relatórios para funções em uma única página. O link de referência pessoal e o número de telefone do usuário (para o assistente do WhatsApp) estão aqui."

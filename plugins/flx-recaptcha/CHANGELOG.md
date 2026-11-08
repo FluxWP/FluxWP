@@ -1,5 +1,10 @@
 # Flux reCAPTCHA
 
+## 0.2.2
+- Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
+- Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.
+
+
 ## 0.2.1
 - Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
 

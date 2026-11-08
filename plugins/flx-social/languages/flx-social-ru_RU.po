@@ -1657,5 +1657,5 @@ msgstr "Новые посты пишутся в медиакомпозиторе
 msgid "Scheduled and published posts show up here."
 msgstr "Здесь отображаются запланированные и опубликованные публикации."
 
-msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
-msgstr "[['Управление социальными сетями на сайте: привязка учетных записей (ключи с панели), контент для каждой учетной записи, планирование, редактирование/удаление сети, календарь, панель мониторинга, помощь в написании Flux AI и инструменты MCP. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
+msgid "Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp."
+msgstr "Управление социальными сетями на сайте: привязка учетных записей (ключи с панели), контент для каждой учетной записи, планирование, редактирование/удаление сети, календарь, панель мониторинга, помощь в написании Flux AI и инструменты MCP. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp."

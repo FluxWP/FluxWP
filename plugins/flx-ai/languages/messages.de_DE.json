@@ -506,11 +506,14 @@
     "High": "Hoch",
     "Effort": "Aufwand",
     "Store request bodies": "Anforderungstexte speichern",
-    "[['%stool updated.', 'tr']]\u0000[['%stool updated.', 'tr']]": "[['%s-Tool aktualisiert.', 'tr']]\u0000[['%s-Tool aktualisiert.', 'tr']]",
-    "[['%splugin', 'tr']]\u0000[['%splugin', 'tr']]": "[['%s-Plugin', 'tr']]\u0000[['%s-Plugin', 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n%dFahrzeug ist registriert.%dFahrzeug ist registriert.', 'tr']]",
-    "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n": "\\nVerbrauch:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n",
-    "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]": "[['Gemeinsamer KI-Hub für alle FluxWP-Plugins: OpenRouter- und Anthropic-Schlüssel, Modellkatalog und Preise, Prompt-Cache, Fahrzeugregistrierung, gemeinsamer MCP-Server, Nutzungsberichte, Abrechnung und Ausgabenlimit; Admin und öffentlicher KI-Chat vor Ort für autorisierte Benutzer.', 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]\u0000\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n%dFahrzeug ist registriert.%dFahrzeug ist registriert.', 'tr']]\u0000\\n%dFahrzeug ist registriert.%dFahrzeug ist registriert.', 'tr']]"
+    "%d tool is registered.\u0000%d tools are registered.": "Das%d-Tool ist registriert.\u0000%d-Tools sind registriert.",
+    "%s tool updated.\u0000%s tools updated.": "%s-Tool aktualisiert.\u0000%s-Tools aktualisiert.",
+    "%s plugin\u0000%s plugins": "%s-Plugin\u0000%s-Plugins",
+    "%stool updated.\u0000%stool updated.": "%s-Tool aktualisiert.\u0000%s-Tool aktualisiert.",
+    "%splugin\u0000%splugin": "%s-Plugin\u0000%s-Plugin",
+    "%dvehicle is registered.%dvehicle is registered.": "%dFahrzeug ist registriert.%dFahrzeug ist registriert.",
+    "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s": "Verbrauch:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s",
+    "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.": "Gemeinsamer KI-Hub für alle FluxWP-Plugins: OpenRouter- und Anthropic-Schlüssel, Modellkatalog und Preise, Prompt-Cache, Fahrzeugregistrierung, gemeinsamer MCP-Server, Nutzungsberichte, Abrechnung und Ausgabenlimit; Admin und öffentlicher KI-Chat vor Ort für autorisierte Benutzer.",
+    "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.": "%dFahrzeug ist registriert.%dFahrzeug ist registriert.\u0000%dFahrzeug ist registriert.%dFahrzeug ist registriert."
   }
 }

@@ -946,5 +946,5 @@ msgstr "此处列出了生成的图像。稍后会在应用程序中打开生产
 msgid "Prompt"
 msgstr "提示"
 
-msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
-msgstr "[['具有人工智能的视觉和视频工作室:制作、参考和联系人、现场编辑、开发和头脑风暴、带有文件夹的画廊。通过 Flux AI 进行生产(fal.ai、EvoLink、OpenAI、Gemini、OpenRouter)。', 'tr']]"
+msgid "Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."
+msgstr "具有人工智能的视觉和视频工作室:制作、参考和联系人、现场编辑、开发和头脑风暴、带有文件夹的画廊。通过 Flux AI 进行生产(fal.ai、EvoLink、OpenAI、Gemini、OpenRouter)。"

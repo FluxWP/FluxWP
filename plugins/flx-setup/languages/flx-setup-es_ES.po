@@ -1819,68 +1819,6 @@ msgstr "Soporte y comentarios:%s"
 msgid "FluxWP Panel"
 msgstr "Panel FluxWP"
 
-msgid "[['%dthere is an update', 'tr']]"
-msgid_plural "[['%dthere is an update', 'tr']]"
-msgstr[0] "[['%dhay una actualización', 'tr']]"
-msgstr[1] "[['%dhay una actualización', 'tr']]"
-
-msgid "[['%dpackage activated.', 'tr']]"
-msgid_plural "[['%dpackage activated.', 'tr']]"
-msgstr[0] "[['Paquete%dactivado.', 'tr']]"
-msgstr[1] "[['Paquete%dactivado.', 'tr']]"
-
-msgid "[['%dpackage has been disabled.', 'tr']]"
-msgid_plural "[['%dpackage has been disabled.', 'tr']]"
-msgstr[0] "[['El paquete%dha sido deshabilitado.', 'tr']]"
-msgstr[1] "[['El paquete%dha sido deshabilitado.', 'tr']]"
-
-msgid "[['%dpackage removed.', 'tr']]"
-msgid_plural "[['%dpackage removed.', 'tr']]"
-msgstr[0] "[[' Paquete%deliminado.', 'tr']]"
-msgstr[1] "[[' Paquete%deliminado.', 'tr']]"
-
-msgid "[['%dbackup deleted.', 'tr']]"
-msgid_plural "[['%dbackup deleted.', 'tr']]"
-msgstr[0] "[[' Copia de seguridad de%deliminada.', 'tr']]"
-msgstr[1] "[[' Copia de seguridad de%deliminada.', 'tr']]"
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr "\\nSe eliminó la copia de seguridad caducada de%d. Se eliminó la copia de seguridad caducada de%d.\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr "\\nConectado · Paquete%dConectado · Paquete%d\\n"
-
-msgid "[['%dday', 'tr']]"
-msgid_plural "[['%dday', 'tr']]"
-msgstr[0] "[['%ddía', 'tr']]"
-msgstr[1] "[['%ddía', 'tr']]"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr "\\nActualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s.\\n"
-
-msgid "[['%sregistration', 'tr']]"
-msgid_plural "[['%sregistration', 'tr']]"
-msgstr[0] "[[' registro%s', 'tr']]"
-msgstr[1] "[[' registro%s', 'tr']]"
-
-msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
-msgstr "[[\"Complemento de instalación y actualización de FluxWP. Asistente de instalación en el primer inicio (introducción, selección de complementos, apariencia, instalación); Trae temas y complementos de FluxWP desde el servidor de actualización (actualizador predeterminado.fluxwp.com) a la pantalla de actualización de WordPress; El motor preestablecido (preset.json) configura el sitio en un solo paso, lo reemplaza con parches aprobados y lo revierte.\", 'tr']]"
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr[0] "\\nSe eliminó la copia de seguridad caducada de%d. Se eliminó la copia de seguridad caducada de%d.\\n"
-msgstr[1] "\\nSe eliminó la copia de seguridad caducada de%d. Se eliminó la copia de seguridad caducada de%d.\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr[0] "\\nConectado · Paquete%dConectado · Paquete%d\\n"
-msgstr[1] "\\nConectado · Paquete%dConectado · Paquete%d\\n"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr[0] "\\nActualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s.\\n"
-msgstr[1] "\\nActualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s.\\n"
-
 msgid "Close preview"
 msgstr "Cerrar vista previa"
 
@@ -1901,3 +1839,75 @@ msgstr "Una breve descripción aún no está disponible."
 
 msgid "Preview image %d"
 msgstr "Imagen previa%d"
+
+msgid "%d package removed."
+msgid_plural "%d packages removed."
+msgstr[0] "Paquete%deliminado."
+msgstr[1] "Paquetes%deliminados."
+
+msgid "%s record"
+msgid_plural "%s records"
+msgstr[0] "registro%s"
+msgstr[1] "Registros%s"
+
+msgid "%dthere is an update"
+msgid_plural "%dthere is an update"
+msgstr[0] "%dhay una actualización"
+msgstr[1] "%dhay una actualización"
+
+msgid "%dpackage activated."
+msgid_plural "%dpackage activated."
+msgstr[0] "Paquete%dactivado."
+msgstr[1] "Paquete%dactivado."
+
+msgid "%dpackage has been disabled."
+msgid_plural "%dpackage has been disabled."
+msgstr[0] "El paquete%dha sido deshabilitado."
+msgstr[1] "El paquete%dha sido deshabilitado."
+
+msgid "%dpackage removed."
+msgid_plural "%dpackage removed."
+msgstr[0] " Paquete%deliminado."
+msgstr[1] " Paquete%deliminado."
+
+msgid "%dbackup deleted."
+msgid_plural "%dbackup deleted."
+msgstr[0] " Copia de seguridad de%deliminada."
+msgstr[1] " Copia de seguridad de%deliminada."
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr "Se eliminó la copia de seguridad caducada de%d. Se eliminó la copia de seguridad caducada de%d."
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgstr "Conectado · Paquete%dConectado · Paquete%d"
+
+msgid "%dday"
+msgid_plural "%dday"
+msgstr[0] "%ddía"
+msgstr[1] "%ddía"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr "Actualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s."
+
+msgid "%sregistration"
+msgid_plural "%sregistration"
+msgstr[0] " registro%s"
+msgstr[1] " registro%s"
+
+msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
+msgstr "Complemento de instalación y actualización de FluxWP. Asistente de instalación en el primer inicio (introducción, selección de complementos, apariencia, instalación); Trae temas y complementos de FluxWP desde el servidor de actualización (actualizador predeterminado.fluxwp.com) a la pantalla de actualización de WordPress; El motor preestablecido (preset.json) configura el sitio en un solo paso, lo reemplaza con parches aprobados y lo revierte."
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgid_plural "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[0] "Se eliminó la copia de seguridad caducada de%d. Se eliminó la copia de seguridad caducada de%d."
+msgstr[1] "Se eliminó la copia de seguridad caducada de%d. Se eliminó la copia de seguridad caducada de%d."
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgid_plural "Connected ·%dpackage Connected ·%dpackage"
+msgstr[0] "Conectado · Paquete%dConectado · Paquete%d"
+msgstr[1] "Conectado · Paquete%dConectado · Paquete%d"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[0] "Actualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s."
+msgstr[1] "Actualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s."

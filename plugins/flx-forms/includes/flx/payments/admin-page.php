@@ -67,16 +67,16 @@ final class FLXF_Payments_Admin {
 			'completed'          => array( 'ok', __( 'Completed', 'flx-forms' ) ),
 			'succeeded'          => array( 'ok', __( 'Completed', 'flx-forms' ) ),
 			'active'             => array( 'ok', __( 'Active', 'flx-forms' ) ),
-			'trialing'           => array( 'ok', __( '\\nTrial\\n', 'flx-forms' ) ),
+			'trialing'           => array( 'ok', __( 'Trial', 'flx-forms' ) ),
 			'pending'            => array( 'pending', __( 'Pending', 'flx-forms' ) ),
 			'processing'         => array( 'pending', __( 'Processing', 'flx-forms' ) ),
 			'failed'             => array( 'failed', __( 'Failed', 'flx-forms' ) ),
-			'canceled'           => array( 'failed', __( '\\nCanceled\\n', 'flx-forms' ) ),
-			'mismatch'           => array( 'failed', __( '\\nAmount mismatch\\n', 'flx-forms' ) ),
+			'canceled'           => array( 'failed', __( 'Canceled', 'flx-forms' ) ),
+			'mismatch'           => array( 'failed', __( 'Amount mismatch', 'flx-forms' ) ),
 			'past_due'           => array( 'failed', __( 'Past due', 'flx-forms' ) ),
-			'unpaid'             => array( 'failed', __( '\\nUnpaid\\n', 'flx-forms' ) ),
-			'incomplete'         => array( 'failed', __( '\\nIncomplete\\n', 'flx-forms' ) ),
-			'incomplete_expired' => array( 'failed', __( '\\nExpired\\n', 'flx-forms' ) ),
+			'unpaid'             => array( 'failed', __( 'Unpaid', 'flx-forms' ) ),
+			'incomplete'         => array( 'failed', __( 'Incomplete', 'flx-forms' ) ),
+			'incomplete_expired' => array( 'failed', __( 'Expired', 'flx-forms' ) ),
 			'refunded'           => array( 'refunded', __( 'Refunded', 'flx-forms' ) ),
 			'partially_refunded' => array( 'refunded', __( 'Partly refunded', 'flx-forms' ) ),
 		);
@@ -104,7 +104,7 @@ final class FLXF_Payments_Admin {
 
 	public static function render() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( '\\nSorry, you are not allowed to access this page.\\n', 'flx-forms' ) );
+			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'flx-forms' ) );
 		}
 		global $wpdb;
 		$rows = array();
@@ -122,17 +122,17 @@ final class FLXF_Payments_Admin {
 
 		echo '<div class="wrap flxfp">';
 		echo '<div class="flxfp-head"><div><h1 class="flxfp-title">' . esc_html__( 'Payments', 'flx-forms' ) . '</h1>';
-		echo '<p class="flxfp-sub">' . esc_html__( '\\nPayments taken through your forms, from every payment provider. API keys and the active provider are set on the plugin Settings page, Payment tab.\\n', 'flx-forms' ) . '</p></div></div>';
+		echo '<p class="flxfp-sub">' . esc_html__( 'Payments taken through your forms, from every payment provider. API keys and the active provider are set on the plugin Settings page, Payment tab.', 'flx-forms' ) . '</p></div></div>';
 		echo '<hr class="wp-header-end">';
 
 		if ( 'saved' === $msg ) {
 			echo '<div class="flxfp-notice flxfp-notice--ok" role="status">' . esc_html__( 'Settings saved.', 'flx-forms' ) . '</div>';
 		} elseif ( 'invalid' === $msg ) {
-			echo '<div class="flxfp-notice flxfp-notice--warn" role="alert">' . self::icon( 'alert' ) . esc_html__( '\\nA Stripe webhook signing secret starts with "whsec_".\\n', 'flx-forms' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="flxfp-notice flxfp-notice--warn" role="alert">' . self::icon( 'alert' ) . esc_html__( 'A Stripe webhook signing secret starts with "whsec_".', 'flx-forms' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		/* Providers + webhooks */
-		echo '<h2 class="flxfp-h2">' . esc_html__( '\\nProviders and webhooks\\n', 'flx-forms' ) . '</h2>';
+		echo '<h2 class="flxfp-h2">' . esc_html__( 'Providers and webhooks', 'flx-forms' ) . '</h2>';
 		echo '<div class="flxfp-cards">';
 		foreach ( $providers as $id => $p ) {
 			$is_active = $id === $active;
@@ -143,13 +143,13 @@ final class FLXF_Payments_Admin {
 				echo '<span class="flxfp-pill flxfp-pill--ok">' . esc_html__( 'Active', 'flx-forms' ) . '</span>';
 			}
 			echo $p->is_configured()
-				? '<span class="flxfp-pill flxfp-pill--soft">' . esc_html__( '\\nConfigured\\n', 'flx-forms' ) . '</span>'
-				: '<span class="flxfp-pill flxfp-pill--pending">' . esc_html__( '\\nNot configured\', \'en\']]', 'flx-forms' ) . '</span>';
+				? '<span class="flxfp-pill flxfp-pill--soft">' . esc_html__( 'Configured', 'flx-forms' ) . '</span>'
+				: '<span class="flxfp-pill flxfp-pill--pending">' . esc_html__( 'Not configured', 'flx-forms' ) . '</span>';
 			echo '</span></div>';
 			if ( method_exists( $p, 'admin_webhook_card' ) ) {
 				$p->admin_webhook_card();
 			} else {
-				echo '<p class="flxfp-muted">' . esc_html__( '\\nWebhook URL for this provider (if it sends payment notifications):\\n', 'flx-forms' ) . '</p>';
+				echo '<p class="flxfp-muted">' . esc_html__( 'Webhook URL for this provider (if it sends payment notifications):', 'flx-forms' ) . '</p>';
 				echo '<p><code class="flxfp-code">' . esc_html( rest_url( 'Emsfb/v1/forms/payment/webhook/' . $id ) ) . '</code></p>';
 			}
 			echo '</section>';
@@ -157,13 +157,13 @@ final class FLXF_Payments_Admin {
 		echo '</div>';
 
 		/* Recent payments */
-		echo '<h2 class="flxfp-h2">' . esc_html__( '\\nRecent payments\\n', 'flx-forms' ) . '</h2>';
+		echo '<h2 class="flxfp-h2">' . esc_html__( 'Recent payments', 'flx-forms' ) . '</h2>';
 		echo '<div class="flxfp-panel">';
 		if ( empty( $rows ) ) {
-			echo '<div class="flxfp-empty">' . self::icon( 'card' ) . '<p>' . esc_html__( '\\nNo payments yet.\\n', 'flx-forms' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="flxfp-empty">' . self::icon( 'card' ) . '<p>' . esc_html__( 'No payments yet.', 'flx-forms' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			echo '<div class="flxfp-table-wrap"><table class="flxfp-table"><thead><tr>';
-			foreach ( array( __( 'Date', 'flx-forms' ), __( 'Form', 'flx-forms' ), __( '\\nConfirmation code\\n', 'flx-forms' ), __( 'Provider', 'flx-forms' ), __( 'Type', 'flx-forms' ), __( 'Amount', 'flx-forms' ), __( 'Status', 'flx-forms' ), __( '\\nTransaction ID\\n', 'flx-forms' ), __( 'Email', 'flx-forms' ) ) as $i => $h ) {
+			foreach ( array( __( 'Date', 'flx-forms' ), __( 'Form', 'flx-forms' ), __( 'Confirmation code', 'flx-forms' ), __( 'Provider', 'flx-forms' ), __( 'Type', 'flx-forms' ), __( 'Amount', 'flx-forms' ), __( 'Status', 'flx-forms' ), __( 'Transaction ID', 'flx-forms' ), __( 'Email', 'flx-forms' ) ) as $i => $h ) {
 				echo '<th scope="col"' . ( 5 === $i ? ' class="num"' : '' ) . '>' . esc_html( $h ) . '</th>';
 			}
 			echo '</tr></thead><tbody>';
@@ -171,7 +171,7 @@ final class FLXF_Payments_Admin {
 				$ts       = $r->created_at ? strtotime( $r->created_at . ' UTC' ) : 0;
 				$st       = self::status( $r->status );
 				$provider = flxf_payment_provider( $r->gateway );
-				$type     = 'subscription' === $r->payment_type ? __( '\\nSubscription\\n', 'flx-forms' ) : __( '[[\'One-time\\n', 'flx-forms' );
+				$type     = 'subscription' === $r->payment_type ? __( 'Subscription', 'flx-forms' ) : __( 'One-time', 'flx-forms' );
 				echo '<tr>';
 				echo '<td>' . ( $ts ? '<time datetime="' . esc_attr( gmdate( 'c', $ts ) ) . '">' . esc_html( flx_date( $ts, 'datetime' ) ) . '</time>' : '' ) . '</td>';
 				echo '<td><span class="flxfp-strong">' . esc_html( (string) $r->form_name ) . '</span> <span class="flxfp-muted">#' . (int) $r->form_id . '</span></td>';
@@ -186,7 +186,7 @@ final class FLXF_Payments_Admin {
 			}
 			echo '</tbody></table></div>';
 			/* translators: %d: number of rows shown */
-			echo '<p class="flxfp-foot flxfp-muted">' . esc_html( sprintf( __( '\\nThe latest%dpayments are shown.\\n', 'flx-forms' ), 50 ) ) . '</p>';
+			echo '<p class="flxfp-foot flxfp-muted">' . esc_html( sprintf( __( 'The latest%dpayments are shown.', 'flx-forms' ), 50 ) ) . '</p>';
 		}
 		echo '</div></div>';
 	}

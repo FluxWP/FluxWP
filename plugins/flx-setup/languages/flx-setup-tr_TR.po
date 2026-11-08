@@ -507,8 +507,8 @@ msgstr "Sunucuya bağlanılamadı."
 
 msgid "%d update available"
 msgid_plural "%d updates available"
-msgstr[0] "%d güncelleme var"
-msgstr[1] "%d güncelleme var"
+msgstr[0] "%dgüncellemesi mevcut"
+msgstr[1] "%dgüncellemeleri mevcut"
 
 msgid "All up to date ✓"
 msgstr "Hepsi güncel ✓"
@@ -788,24 +788,24 @@ msgstr "Site kontrolü HTTP %d döndü; hata sayılmadı."
 
 msgid "%d backup deleted."
 msgid_plural "%d backups deleted."
-msgstr[0] "%d yedek silindi."
-msgstr[1] "%d yedek silindi."
+msgstr[0] "%dyedeklemesi silindi."
+msgstr[1] "%dyedeklemeleri silindi."
 
 msgid "Retention saved and applied to existing update backups."
 msgstr "Saklama süresi kaydedildi; mevcut güncelleme yedeklerine de uygulandı."
 
 msgid "%d expired backup deleted."
 msgid_plural "%d expired backups deleted."
-msgstr[0] "Süresi dolan %d yedek silindi."
-msgstr[1] "Süresi dolan %d yedek silindi."
+msgstr[0] "%dsüresi dolmuş yedekleme silindi."
+msgstr[1] "%dsüresi dolmuş yedeklemeler silindi."
 
 msgid "Update backups are deleted automatically after"
 msgstr "Güncelleme yedekleri"
 
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%d gün"
-msgstr[1] "%d gün"
+msgstr[0] "%dgünü"
+msgstr[1] "%dgün"
 
 msgid "."
 msgstr "sonra otomatik silinir."
@@ -818,8 +818,8 @@ msgstr "Güncelleme yedeklerinin saklama süresi %s sayfasından değiştirilir 
 
 msgid "Currently %1$d update backup, %2$s."
 msgid_plural "Currently %1$d update backups, %2$s."
-msgstr[0] "Şu an %1$d güncelleme yedeği, %2$s."
-msgstr[1] "Şu an %1$d güncelleme yedeği, %2$s."
+msgstr[0] "Şu anda%1$dgüncelleme yedeği,%2$s."
+msgstr[1] "Şu anda%1$dgüncelleme yedeklemeleri,%2$s."
 
 msgid "Delete all unlocked update backups? This cannot be undone."
 msgstr "Kilitli olmayan tüm güncelleme yedekleri silinsin mi? Bu geri alınamaz."
@@ -1196,13 +1196,13 @@ msgstr "Devre dışı"
 
 msgid "%d package activated."
 msgid_plural "%d packages activated."
-msgstr[0] "%d paket etkinleştirildi."
-msgstr[1] "%d paket etkinleştirildi."
+msgstr[0] "%dpaketi etkinleştirildi."
+msgstr[1] "%dpaketleri etkinleştirildi."
 
 msgid "%d package deactivated."
 msgid_plural "%d packages deactivated."
-msgstr[0] "%d paket devre dışı bırakıldı."
-msgstr[1] "%d paket devre dışı bırakıldı."
+msgstr[0] "%dpaketi devre dışı bırakıldı."
+msgstr[1] "%dpaketleri devre dışı bırakıldı."
 
 msgid "%d package deleted."
 msgid_plural "%d packages deleted."
@@ -1819,68 +1819,6 @@ msgstr "Destek ve öneri: %s"
 msgid "FluxWP Panel"
 msgstr "FluxWP Panel"
 
-msgid "[['%dthere is an update', 'tr']]"
-msgid_plural "[['%dthere is an update', 'tr']]"
-msgstr[0] "%d güncelleme var"
-msgstr[1] "%d güncelleme var"
-
-msgid "[['%dpackage activated.', 'tr']]"
-msgid_plural "[['%dpackage activated.', 'tr']]"
-msgstr[0] "%d paket etkinleştirildi."
-msgstr[1] "%d paket etkinleştirildi."
-
-msgid "[['%dpackage has been disabled.', 'tr']]"
-msgid_plural "[['%dpackage has been disabled.', 'tr']]"
-msgstr[0] "%d paket devre dışı bırakıldı."
-msgstr[1] "%d paket devre dışı bırakıldı."
-
-msgid "[['%dpackage removed.', 'tr']]"
-msgid_plural "[['%dpackage removed.', 'tr']]"
-msgstr[0] "%d paket kaldırıldı."
-msgstr[1] "%d paket kaldırıldı."
-
-msgid "[['%dbackup deleted.', 'tr']]"
-msgid_plural "[['%dbackup deleted.', 'tr']]"
-msgstr[0] "%d yedek silindi."
-msgstr[1] "%d yedek silindi."
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr "\\nSüresi dolmuş %d yedekleme silindi. Süresi dolmuş %d yedekleme silindi.\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr "\\nBağlandı · %d paket Bağlandı · %d paket\\n"
-
-msgid "[['%dday', 'tr']]"
-msgid_plural "[['%dday', 'tr']]"
-msgstr[0] "%d gün"
-msgstr[1] "%d gün"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr "\\nŞu anda %1$d güncelleme yedeği: %2$s . Şu anda %1$d güncelleme yedeği: %2$s .\\n"
-
-msgid "[['%sregistration', 'tr']]"
-msgid_plural "[['%sregistration', 'tr']]"
-msgstr[0] "%s kayıt"
-msgstr[1] "%s kayıt"
-
-msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
-msgstr "FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır."
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr[0] "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr[1] "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr[0] "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr[1] "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr[0] "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr[1] "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-
 msgid "Close preview"
 msgstr "Önizlemeyi kapat"
 
@@ -1901,3 +1839,75 @@ msgstr "Henüz kısa bir tanıtım bulunmuyor."
 
 msgid "Preview image %d"
 msgstr "Önizleme görseli %d"
+
+msgid "%d package removed."
+msgid_plural "%d packages removed."
+msgstr[0] "%dpaketi kaldırıldı."
+msgstr[1] "%dpaketleri kaldırıldı."
+
+msgid "%s record"
+msgid_plural "%s records"
+msgstr[0] "%skaydı"
+msgstr[1] "%skayıtları"
+
+msgid "%dthere is an update"
+msgid_plural "%dthere is an update"
+msgstr[0] "%d güncelleme var"
+msgstr[1] "%d güncelleme var"
+
+msgid "%dpackage activated."
+msgid_plural "%dpackage activated."
+msgstr[0] "%d paket etkinleştirildi."
+msgstr[1] "%d paket etkinleştirildi."
+
+msgid "%dpackage has been disabled."
+msgid_plural "%dpackage has been disabled."
+msgstr[0] "%d paket devre dışı bırakıldı."
+msgstr[1] "%d paket devre dışı bırakıldı."
+
+msgid "%dpackage removed."
+msgid_plural "%dpackage removed."
+msgstr[0] "%d paket kaldırıldı."
+msgstr[1] "%d paket kaldırıldı."
+
+msgid "%dbackup deleted."
+msgid_plural "%dbackup deleted."
+msgstr[0] "%d yedek silindi."
+msgstr[1] "%d yedek silindi."
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr "Süresi dolmuş %d yedekleme silindi. Süresi dolmuş %d yedekleme silindi."
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgstr "Bağlandı · %d paket Bağlandı · %d paket"
+
+msgid "%dday"
+msgid_plural "%dday"
+msgstr[0] "%d gün"
+msgstr[1] "%d gün"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr "Şu anda %1$d güncelleme yedeği: %2$s . Şu anda %1$d güncelleme yedeği: %2$s ."
+
+msgid "%sregistration"
+msgid_plural "%sregistration"
+msgstr[0] "%s kayıt"
+msgstr[1] "%s kayıt"
+
+msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
+msgstr "FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır."
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgid_plural "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[0] "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[1] "Expired%dbackup deleted. Expired%dbackup deleted."
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgid_plural "Connected ·%dpackage Connected ·%dpackage"
+msgstr[0] "Connected ·%dpackage Connected ·%dpackage"
+msgstr[1] "Connected ·%dpackage Connected ·%dpackage"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[0] "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[1] "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."

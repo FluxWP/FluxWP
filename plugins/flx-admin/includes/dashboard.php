@@ -85,7 +85,7 @@ function flxa_dash_stats() {
 				'label' => __( 'Donations today', 'flx-admin' ),
 				'value' => flxa_money( $d['today'], $cur ),
 				/* translators: %s: number of donations */
-				'meta'  => sprintf( _n( '[[\'%sdonate\', \'tr\']]', '[[\'%sdonate\', \'tr\']]', $d['today_n'], 'flx-admin' ), number_format_i18n( $d['today_n'] ) ),
+				'meta'  => sprintf( _n( '%s donation', '%s donations', $d['today_n'], 'flx-admin' ), number_format_i18n( $d['today_n'] ) ),
 				'url'   => admin_url( 'admin.php?page=flxb-donations&from=' . wp_date( 'Y-m-d' ) ),
 			);
 			$stats['donations_month'] = array(
@@ -129,7 +129,7 @@ function flxa_dash_stats() {
 			$sum             = flxa_system_summary();
 			$stats['system'] = array(
 				'label' => __( 'System check', 'flx-admin' ),
-				'value' => $sum['error'] ? sprintf( /* translators: %s: count */ _n( '[[\'%seven\', \'sw\']]', '[[\'%seven\', \'sw\']]', $sum['error'], 'flx-admin' ), number_format_i18n( $sum['error'] ) ) : ( $sum['warning'] ? sprintf( /* translators: %s: count */ _n( '[[\'%swarning\', \'tr\']]', '[[\'%swarning\', \'tr\']]', $sum['warning'], 'flx-admin' ), number_format_i18n( $sum['warning'] ) ) : __( 'No problems', 'flx-admin' ) ),
+				'value' => $sum['error'] ? sprintf( /* translators: %s: count */ _n( '%s error', '%s errors', $sum['error'], 'flx-admin' ), number_format_i18n( $sum['error'] ) ) : ( $sum['warning'] ? sprintf( /* translators: %s: count */ _n( '%s warning', '%s warnings', $sum['warning'], 'flx-admin' ), number_format_i18n( $sum['warning'] ) ) : __( 'No problems', 'flx-admin' ) ),
 				/* translators: %s: count */
 				'meta'  => sprintf( __( '%s checks OK', 'flx-admin' ), number_format_i18n( $sum['ok'] ) ),
 				'url'   => (string) apply_filters( 'flx_system_checks_page_url', flxa_settings_url( 'system' ) ),

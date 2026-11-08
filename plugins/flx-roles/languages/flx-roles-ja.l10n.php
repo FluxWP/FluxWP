@@ -108,7 +108,7 @@ return array(
   'Some enabled permissions aren\'t enforced yet; waiting for updates of: %s. Until then these people can\'t see the related screen.' => '一部の有効なアクセス許可はまだ適用されていません。%sの更新を待っています。それまでは、これらの人々は関連画面を見ることができません。',
   'All enabled permissions are enforced.' => '有効になっているすべての権限が強制されます。',
   'Roles' => '役割',
-  '[[\'Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.\', \'tr\']]' => '[[\'スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。\', \'tr\']]',
+  '[[\'Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.\', \'tr\']]' => 'スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。',
   'Roller ve erişim' => '役割とアクセス',
   'Otomatik (ilk erişebildiği: Görevler, Sertifikalar, Bağışlar)' => '自動 (最初に利用可能: タスク、証明書、寄付)',
   'Görevler' => 'タスク',
@@ -213,6 +213,8 @@ return array(
   'Açık ama henüz uygulanmayan yetkiler var; şu eklentilerin güncellemesi bekleniyor: %s. O zamana kadar bu kişiler ilgili ekranı göremez.' => '一部の有効なアクセス許可はまだ適用されていません。%sの更新を待っています。それまでは、これらの人々は関連画面を見ることができません。',
   'Açık yetkilerin hepsi uygulanıyor.' => '有効になっているすべての権限が強制されます。',
   'Roller' => '役割',
-  'Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.' => '[[\'スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。\', \'tr\']]',
+  'Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.' => 'スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。',
+  'Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.' => 'スタッフ、管理者、およびマネージャーの役割を追加します (新しい役割もパネルから追加されます);タスク、証明書、寄付、コールセンター、スタジオ、およびロールのレポートへのアクセスを 1 つのページからオンまたはオフにできます。個人の参照リンクとユーザーの電話番号 (WhatsApp アシスタント用) はここにあります。',
+
  ),
 );

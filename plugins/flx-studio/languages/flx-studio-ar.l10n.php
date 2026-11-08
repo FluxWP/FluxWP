@@ -318,7 +318,7 @@ return array(
   'Starred' => 'المميزة بنجمة',
   'Generated images are listed here. The production screen opens in the app later.' => 'يتم سرد الصور التي تم إنشاؤها هنا. تفتح شاشة الإنتاج في التطبيق لاحقًا.',
   'Prompt' => 'موجه',
-  '[[\'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).\', \'tr\']]' => '[[\'استوديو المرئيات والفيديو باستخدام الذكاء الاصطناعي: الإنتاج والمراجع وجهات الاتصال والتحرير الميداني والتطوير والعصف الذهني والمعرض الذي يحتوي على المجلدات. الإنتاج عبر Flux AI (fal.ai، EvoLink، OpenAI، Gemini، OpenRouter).\', \'tr\']]',
+  '[[\'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).\', \'tr\']]' => 'استوديو المرئيات والفيديو باستخدام الذكاء الاصطناعي: الإنتاج والمراجع وجهات الاتصال والتحرير الميداني والتطوير والعصف الذهني والمعرض الذي يحتوي على المجلدات. الإنتاج عبر Flux AI (fal.ai، EvoLink، OpenAI، Gemini، OpenRouter).',
   'Genel' => 'عام',
   'Kişi (yüz/kimlik)' => 'الشخص (الوجه/الهوية)',
   'Stil' => 'النمط',
@@ -636,6 +636,8 @@ return array(
   'Yıldızlı' => 'المميزة بنجمة',
   'Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır.' => 'يتم سرد الصور التي تم إنشاؤها هنا. تفتح شاشة الإنتاج في التطبيق لاحقًا.',
   'İstem' => 'موجه',
-  'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => '[[\'استوديو المرئيات والفيديو باستخدام الذكاء الاصطناعي: الإنتاج والمراجع وجهات الاتصال والتحرير الميداني والتطوير والعصف الذهني والمعرض الذي يحتوي على المجلدات. الإنتاج عبر Flux AI (fal.ai، EvoLink، OpenAI، Gemini، OpenRouter).\', \'tr\']]',
+  'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => 'استوديو المرئيات والفيديو باستخدام الذكاء الاصطناعي: الإنتاج والمراجع وجهات الاتصال والتحرير الميداني والتطوير والعصف الذهني والمعرض الذي يحتوي على المجلدات. الإنتاج عبر Flux AI (fal.ai، EvoLink، OpenAI، Gemini، OpenRouter).',
+  'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => 'استوديو المرئيات والفيديو باستخدام الذكاء الاصطناعي: الإنتاج والمراجع وجهات الاتصال والتحرير الميداني والتطوير والعصف الذهني والمعرض الذي يحتوي على المجلدات. الإنتاج عبر Flux AI (fal.ai، EvoLink، OpenAI، Gemini، OpenRouter).',
+
  ),
 );

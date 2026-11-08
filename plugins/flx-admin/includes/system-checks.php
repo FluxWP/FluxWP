@@ -59,7 +59,7 @@ function flxa_system_checks( $checks ) {
 		'status'  => 'ok',
 		'message' => $n
 			/* translators: %s: role count */
-			? sprintf( _n( '[[\'%shas a special menu layout for the role; other roles see the default grouped menu.\', \'tr\']]', '[[\'%shas a special menu layout for the role; other roles see the default grouped menu.\', \'tr\']]', $n, 'flx-admin' ), number_format_i18n( $n ) )
+			? sprintf( _n( '%s role has a custom menu layout; other roles use the default grouped menu.', '%s roles have custom menu layouts; other roles use the default grouped menu.', $n, 'flx-admin' ), number_format_i18n( $n ) )
 			: __( 'All roles see the default grouped menu.', 'flx-admin' ),
 		'action_url'   => flxa_settings_url( 'menu' ),
 		'action_label' => __( 'Edit menu', 'flx-admin' ),

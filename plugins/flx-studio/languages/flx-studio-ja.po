@@ -946,5 +946,5 @@ msgstr "生成された画像はここにリストされます。後ほどアプ
 msgid "Prompt"
 msgstr "プロンプト"
 
-msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
-msgstr "[['AI を使用したビジュアルおよびビデオ スタジオ: 制作、参考資料と連絡先、フィールド編集、開発とブレインストーミング、フォルダー付きギャラリー。 Flux AI (fal.ai、EvoLink、OpenAI、Gemini、OpenRouter) によるプロダクション。', 'tr']]"
+msgid "Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."
+msgstr "AI を使用したビジュアルおよびビデオ スタジオ: 制作、参考資料と連絡先、フィールド編集、開発とブレインストーミング、フォルダー付きギャラリー。 Flux AI (fal.ai、EvoLink、OpenAI、Gemini、OpenRouter) によるプロダクション。"

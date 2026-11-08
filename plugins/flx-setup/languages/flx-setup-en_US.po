@@ -1819,68 +1819,6 @@ msgstr "Support and feedback: %s"
 msgid "FluxWP Panel"
 msgstr "FluxWP Panel"
 
-msgid "[['%dthere is an update', 'tr']]"
-msgid_plural "[['%dthere is an update', 'tr']]"
-msgstr[0] "[['%dthere is an update', 'tr']]"
-msgstr[1] "[['%dthere is an update', 'tr']]"
-
-msgid "[['%dpackage activated.', 'tr']]"
-msgid_plural "[['%dpackage activated.', 'tr']]"
-msgstr[0] "[['%dpackage activated.', 'tr']]"
-msgstr[1] "[['%dpackage activated.', 'tr']]"
-
-msgid "[['%dpackage has been disabled.', 'tr']]"
-msgid_plural "[['%dpackage has been disabled.', 'tr']]"
-msgstr[0] "[['%dpackage has been disabled.', 'tr']]"
-msgstr[1] "[['%dpackage has been disabled.', 'tr']]"
-
-msgid "[['%dpackage removed.', 'tr']]"
-msgid_plural "[['%dpackage removed.', 'tr']]"
-msgstr[0] "[['%dpackage removed.', 'tr']]"
-msgstr[1] "[['%dpackage removed.', 'tr']]"
-
-msgid "[['%dbackup deleted.', 'tr']]"
-msgid_plural "[['%dbackup deleted.', 'tr']]"
-msgstr[0] "[['%dbackup deleted.', 'tr']]"
-msgstr[1] "[['%dbackup deleted.', 'tr']]"
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-
-msgid "[['%dday', 'tr']]"
-msgid_plural "[['%dday', 'tr']]"
-msgstr[0] "[['%dday', 'tr']]"
-msgstr[1] "[['%dday', 'tr']]"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-
-msgid "[['%sregistration', 'tr']]"
-msgid_plural "[['%sregistration', 'tr']]"
-msgstr[0] "[['%sregistration', 'tr']]"
-msgstr[1] "[['%sregistration', 'tr']]"
-
-msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
-msgstr "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr[0] "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr[1] "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr[0] "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr[1] "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr[0] "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr[1] "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-
 msgid "Close preview"
 msgstr "Close preview"
 
@@ -1901,3 +1839,75 @@ msgstr "A short overview is not available yet."
 
 msgid "Preview image %d"
 msgstr "Preview image %d"
+
+msgid "%d package removed."
+msgid_plural "%d packages removed."
+msgstr[0] "%d package removed."
+msgstr[1] "%d packages removed."
+
+msgid "%s record"
+msgid_plural "%s records"
+msgstr[0] "%s record"
+msgstr[1] "%s records"
+
+msgid "%dthere is an update"
+msgid_plural "%dthere is an update"
+msgstr[0] "%dthere is an update"
+msgstr[1] "%dthere is an update"
+
+msgid "%dpackage activated."
+msgid_plural "%dpackage activated."
+msgstr[0] "%dpackage activated."
+msgstr[1] "%dpackage activated."
+
+msgid "%dpackage has been disabled."
+msgid_plural "%dpackage has been disabled."
+msgstr[0] "%dpackage has been disabled."
+msgstr[1] "%dpackage has been disabled."
+
+msgid "%dpackage removed."
+msgid_plural "%dpackage removed."
+msgstr[0] "%dpackage removed."
+msgstr[1] "%dpackage removed."
+
+msgid "%dbackup deleted."
+msgid_plural "%dbackup deleted."
+msgstr[0] "%dbackup deleted."
+msgstr[1] "%dbackup deleted."
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr "Expired%dbackup deleted. Expired%dbackup deleted."
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgstr "Connected ·%dpackage Connected ·%dpackage"
+
+msgid "%dday"
+msgid_plural "%dday"
+msgstr[0] "%dday"
+msgstr[1] "%dday"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+
+msgid "%sregistration"
+msgid_plural "%sregistration"
+msgstr[0] "%sregistration"
+msgstr[1] "%sregistration"
+
+msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
+msgstr "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgid_plural "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[0] "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[1] "Expired%dbackup deleted. Expired%dbackup deleted."
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgid_plural "Connected ·%dpackage Connected ·%dpackage"
+msgstr[0] "Connected ·%dpackage Connected ·%dpackage"
+msgstr[1] "Connected ·%dpackage Connected ·%dpackage"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[0] "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[1] "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."

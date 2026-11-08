@@ -772,4 +772,6 @@ return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'İletişim'=>'İletişim',
 'İzinler'=>'İzinler',
 'Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.'=>'Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.',
+
+'People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.' => 'Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.',
 ));

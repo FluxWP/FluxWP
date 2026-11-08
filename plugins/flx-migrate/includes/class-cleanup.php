@@ -43,7 +43,7 @@ final class Flx_Migrate_Cleanup {
 				'group'   => $bak ? 'backup' : 'table',
 				'label'   => $t,
 				/* translators: %d: satır sayısı */
-				'detail'  => sprintf( _n( '[[\'%drow\', \'tr\']]', '[[\'%drow\', \'tr\']]', $rows, 'flx-migrate' ), $rows ),
+				'detail'  => sprintf( _n( '%d row', '%d rows', $rows, 'flx-migrate' ), $rows ),
 				'checked' => true,
 			);
 		}
@@ -106,7 +106,7 @@ final class Flx_Migrate_Cleanup {
 			$out['options:old'] = array(
 				'group'   => 'options',
 				/* translators: %d: ayar sayısı */
-				'label'   => sprintf( _n( '[[\'%dold setting\', \'tr\']]', '[[\'%dold setting\', \'tr\']]', count( $names ), 'flx-migrate' ), count( $names ) ),
+				'label'   => sprintf( _n( '%d legacy setting', '%d legacy settings', count( $names ), 'flx-migrate' ), count( $names ) ),
 				'detail'  => implode( ', ', array_slice( $names, 0, 12 ) ) . ( count( $names ) > 12 ? ', …' : '' ),
 				'checked' => true,
 				'names'   => $names,

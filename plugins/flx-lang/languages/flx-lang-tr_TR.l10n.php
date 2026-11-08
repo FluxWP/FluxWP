@@ -218,4 +218,6 @@ return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'Açıklama (%s)'=>'Açıklama (%s)',
 'Boş bırakılırsa Türkçe ad ve açıklama gösterilir.'=>'Boş bırakılırsa Türkçe ad ve açıklama gösterilir.',
 'Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.'=>'Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.',
+
+'Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.' => 'Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.',
 ));

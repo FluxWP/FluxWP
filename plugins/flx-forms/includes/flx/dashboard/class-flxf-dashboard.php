@@ -145,50 +145,50 @@ class FLXF_Dashboard {
 			'd7'             => __( '7 days', 'flx-forms' ),
 			'd30'            => __( '30 days', 'flx-forms' ),
 			'd90'            => __( '90 days', 'flx-forms' ),
-			'custom'         => __( '\\nCustom\\n', 'flx-forms' ),
+			'custom'         => __( 'Custom', 'flx-forms' ),
 			'range'          => __( 'Date range', 'flx-forms' ),
 			'from'           => __( 'From', 'flx-forms' ),
 			'to'             => __( 'To', 'flx-forms' ),
 			'apply'          => __( 'Apply', 'flx-forms' ),
-			'allForms'       => __( '\\nAll forms\\n', 'flx-forms' ),
+			'allForms'       => __( 'All forms', 'flx-forms' ),
 			'formFilter'     => __( 'Form', 'flx-forms' ),
-			'csv'            => __( '\\nExport CSV\\n', 'flx-forms' ),
-			'csvHint'        => __( '[[\'Download the responses in the selected range and form as a spreadsheet file.\\n', 'flx-forms' ),
+			'csv'            => __( 'Export CSV', 'flx-forms' ),
+			'csvHint'        => __( 'Download the responses in the selected range and form as a spreadsheet file.', 'flx-forms' ),
 			'responses'      => __( 'Responses', 'flx-forms' ),
 			'unread'         => __( 'Unread', 'flx-forms' ),
-			'unreadAll'      => __( '\\n%sunread in total\\n', 'flx-forms' ),
-			'views'          => __( '\\nForm views\\n', 'flx-forms' ),
-			'viewsNone'      => __( '\\nNo view data\\n', 'flx-forms' ),
+			'unreadAll'      => __( '%sunread in total', 'flx-forms' ),
+			'views'          => __( 'Form views', 'flx-forms' ),
+			'viewsNone'      => __( 'No view data', 'flx-forms' ),
 			/* translators: %s: a date */
-			'viewsSince'     => __( '\\nRecorded since%s\\n', 'flx-forms' ),
-			'viewsKept'      => __( '\\nView data is kept for about 8 days\\n', 'flx-forms' ),
-			'conversion'     => __( '\\nConversion rate\\n', 'flx-forms' ),
-			'convHint'       => __( '\\nResponses per form view\\n', 'flx-forms' ),
+			'viewsSince'     => __( 'Recorded since%s', 'flx-forms' ),
+			'viewsKept'      => __( 'View data is kept for about 8 days', 'flx-forms' ),
+			'conversion'     => __( 'Conversion rate', 'flx-forms' ),
+			'convHint'       => __( 'Responses per form view', 'flx-forms' ),
 			/* translators: %s: a date */
-			'convSince'      => __( '\\nResponses per view since%s\\n', 'flx-forms' ),
-			'payments'       => __( '\\nPayments received\\n', 'flx-forms' ),
+			'convSince'      => __( 'Responses per view since%s', 'flx-forms' ),
+			'payments'       => __( 'Payments received', 'flx-forms' ),
 			/* translators: %s: number of payments */
-			'paidCount'      => __( '\\n%spaid\\n', 'flx-forms' ),
+			'paidCount'      => __( '%spaid', 'flx-forms' ),
 			/* translators: %s: list of other currency totals */
-			'otherCur'       => __( '\\nAlso%s\\n', 'flx-forms' ),
-			'noPayments'     => __( '\\nNo payments in this range\\n', 'flx-forms' ),
+			'otherCur'       => __( 'Also%s', 'flx-forms' ),
+			'noPayments'     => __( 'No payments in this range', 'flx-forms' ),
 			/* translators: %d: number of days */
-			'vsPrev'         => __( '\\nvs previous%ddays\\n', 'flx-forms' ),
+			'vsPrev'         => __( 'vs previous%ddays', 'flx-forms' ),
 			'newVal'         => __( 'new', 'flx-forms' ),
 			'noChange'       => __( 'no change', 'flx-forms' ),
-			'up'             => __( '\\nup\\n', 'flx-forms' ),
-			'down'           => __( '\\ndown\\n', 'flx-forms' ),
-			'daily'          => __( '\\nDaily responses\\n', 'flx-forms' ),
-			'thisPeriod'     => __( '\\nSelected period\\n', 'flx-forms' ),
-			'prevPeriod'     => __( '\\nPrevious period\\n', 'flx-forms' ),
-			'byForm'         => __( '\\nResponses by form\\n', 'flx-forms' ),
-			'payStatus'      => __( '\\nPayment status\\n', 'flx-forms' ),
-			'heat'           => __( '\\nWhen responses arrive\\n', 'flx-forms' ),
-			'heatHint'       => __( '\\nDay of week and hour of day\\n', 'flx-forms' ),
-			'heatLess'       => __( '\\nLess\\n', 'flx-forms' ),
+			'up'             => __( 'up', 'flx-forms' ),
+			'down'           => __( 'down', 'flx-forms' ),
+			'daily'          => __( 'Daily responses', 'flx-forms' ),
+			'thisPeriod'     => __( 'Selected period', 'flx-forms' ),
+			'prevPeriod'     => __( 'Previous period', 'flx-forms' ),
+			'byForm'         => __( 'Responses by form', 'flx-forms' ),
+			'payStatus'      => __( 'Payment status', 'flx-forms' ),
+			'heat'           => __( 'When responses arrive', 'flx-forms' ),
+			'heatHint'       => __( 'Day of week and hour of day', 'flx-forms' ),
+			'heatLess'       => __( 'Less', 'flx-forms' ),
 			'heatMore'       => __( 'More', 'flx-forms' ),
-			'recent'         => __( '\\nRecent responses\\n', 'flx-forms' ),
-			'topForms'       => __( '\\nTop forms\\n', 'flx-forms' ),
+			'recent'         => __( 'Recent responses', 'flx-forms' ),
+			'topForms'       => __( 'Top forms', 'flx-forms' ),
 			'colForm'        => __( 'Form', 'flx-forms' ),
 			'colDate'        => __( 'Date', 'flx-forms' ),
 			'colPreview'     => __( 'Preview', 'flx-forms' ),
@@ -196,53 +196,53 @@ class FLXF_Dashboard {
 			'colResponses'   => __( 'Responses', 'flx-forms' ),
 			'colTotal'       => __( 'All time', 'flx-forms' ),
 			'colViews'       => __( 'Views', 'flx-forms' ),
-			'colConv'        => __( '\\nConversion\\n', 'flx-forms' ),
-			'colLast'        => __( '\\nLast response\\n', 'flx-forms' ),
+			'colConv'        => __( 'Conversion', 'flx-forms' ),
+			'colLast'        => __( 'Last response', 'flx-forms' ),
 			'colShare'       => __( 'Share', 'flx-forms' ),
 			'statusUnread'   => __( 'New', 'flx-forms' ),
 			'statusRead'     => __( 'Read', 'flx-forms' ),
 			'open'           => __( 'Open', 'flx-forms' ),
-			'openResponses'  => __( '\\nView responses\\n', 'flx-forms' ),
-			'viewAll'        => __( '\\nOpen panel\\n', 'flx-forms' ),
+			'openResponses'  => __( 'View responses', 'flx-forms' ),
+			'viewAll'        => __( 'Open panel', 'flx-forms' ),
 			'pay_paid'       => __( 'Paid', 'flx-forms' ),
 			'pay_pending'    => __( 'Pending', 'flx-forms' ),
-			'pay_failed'     => __( '\\nFailed or canceled\\n', 'flx-forms' ),
+			'pay_failed'     => __( 'Failed or canceled', 'flx-forms' ),
 			'pay_refunded'   => __( 'Refunded', 'flx-forms' ),
 			/* translators: %s: number of payments */
-			'payN'           => __( '\\n%spayments\\n', 'flx-forms' ),
-			'noData'         => __( '\\nNo responses in this range yet.\\n', 'flx-forms' ),
-			'noForms'        => __( '\\nYou have not created a form yet.\\n', 'flx-forms' ),
-			'createForm'     => __( '\\nCreate a form\\n', 'flx-forms' ),
+			'payN'           => __( '%spayments', 'flx-forms' ),
+			'noData'         => __( 'No responses in this range yet.', 'flx-forms' ),
+			'noForms'        => __( 'You have not created a form yet.', 'flx-forms' ),
+			'createForm'     => __( 'Create a form', 'flx-forms' ),
 			'loading'        => __( 'Loading…', 'flx-forms' ),
-			'error'          => __( '\\nThe dashboard data could not be loaded.\\n', 'flx-forms' ),
+			'error'          => __( 'The dashboard data could not be loaded.', 'flx-forms' ),
 			'retry'          => __( 'Try again', 'flx-forms' ),
 			'never'          => __( 'Never', 'flx-forms' ),
-			'noPreview'      => __( '\\n(empty response)\\n', 'flx-forms' ),
+			'noPreview'      => __( '(empty response)', 'flx-forms' ),
 			'total'          => __( 'Total', 'flx-forms' ),
-			'responsesOn'    => __( '\\nresponses\\n', 'flx-forms' ),
+			'responsesOn'    => __( 'responses', 'flx-forms' ),
 			'tableView'      => __( 'Show as table', 'flx-forms' ),
-			'chartView'      => __( '\\nShow as chart\\n', 'flx-forms' ),
-			'deleted'        => __( '\\nDeleted form\\n', 'flx-forms' ),
+			'chartView'      => __( 'Show as chart', 'flx-forms' ),
+			'deleted'        => __( 'Deleted form', 'flx-forms' ),
 			/* translators: %s: number of forms */
-			'otherForms'     => __( '\\n%sother forms\\n', 'flx-forms' ),
+			'otherForms'     => __( '%sother forms', 'flx-forms' ),
 		);
 	}
 
 	public static function render() {
 		if ( ! self::can() ) {
-			wp_die( esc_html__( '\\nSorry, you are not allowed to access this page.\\n', 'flx-forms' ), 403 );
+			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'flx-forms' ), 403 );
 		}
 		?>
 		<div class="wrap flxfd">
 			<div class="flxfd-head">
 				<div>
 					<h1 class="flxfd-title"><?php esc_html_e( 'Dashboard', 'flx-forms' ); ?></h1>
-					<p class="flxfd-sub"><?php esc_html_e( '\\nResponses, form views, conversion and payments at a glance.\\n', 'flx-forms' ); ?></p>
+					<p class="flxfd-sub"><?php esc_html_e( 'Responses, form views, conversion and payments at a glance.', 'flx-forms' ); ?></p>
 				</div>
 				<div class="flxfd-head__actions">
-					<a class="flxfd-btn" href="<?php echo esc_url( admin_url( 'admin.php?page=Emsfb' ) ); ?>"><?php esc_html_e( '\\nOpen panel\\n', 'flx-forms' ); ?></a>
+					<a class="flxfd-btn" href="<?php echo esc_url( admin_url( 'admin.php?page=Emsfb' ) ); ?>"><?php esc_html_e( 'Open panel', 'flx-forms' ); ?></a>
 					<?php if ( current_user_can( 'Emsfb_create' ) || current_user_can( 'manage_options' ) ) : ?>
-						<a class="flxfd-btn flxfd-btn--primary" href="<?php echo esc_url( admin_url( 'admin.php?page=Emsfb_create' ) ); ?>"><?php esc_html_e( '\\nNew form\\n', 'flx-forms' ); ?></a>
+						<a class="flxfd-btn flxfd-btn--primary" href="<?php echo esc_url( admin_url( 'admin.php?page=Emsfb_create' ) ); ?>"><?php esc_html_e( 'New form', 'flx-forms' ); ?></a>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -250,7 +250,7 @@ class FLXF_Dashboard {
 			<div id="flxfd-app" class="flxfd-app" aria-live="polite">
 				<div class="flxfd-card flxfd-loading"><?php esc_html_e( 'Loading…', 'flx-forms' ); ?></div>
 			</div>
-			<noscript><div class="flxfd-card"><?php esc_html_e( '\\nThe dashboard needs JavaScript.\\n', 'flx-forms' ); ?></div></noscript>
+			<noscript><div class="flxfd-card"><?php esc_html_e( 'The dashboard needs JavaScript.', 'flx-forms' ); ?></div></noscript>
 		</div>
 		<?php
 	}
@@ -368,10 +368,10 @@ class FLXF_Dashboard {
 
 	public static function ajax_stats() {
 		if ( ! check_ajax_referer( self::NONCE, 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( '\\nYour session has expired. Reload the page.\\n', 'flx-forms' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Your session has expired. Reload the page.', 'flx-forms' ) ), 403 );
 		}
 		if ( ! self::can() ) {
-			wp_send_json_error( array( 'message' => __( '\\nSorry, you are not allowed to do that.\\n', 'flx-forms' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Sorry, you are not allowed to do that.', 'flx-forms' ) ), 403 );
 		}
 		list( $from, $to, $form ) = self::request_filters( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification -- verified above.
 		nocache_headers();
@@ -720,7 +720,7 @@ class FLXF_Dashboard {
 			return isset( $c['url'] ) ? (string) $c['url'] : '';
 		}
 		if ( 'esign' === $type ) {
-			return ( is_string( $v ) && 0 === strpos( $v, 'data:' ) ) ? '[' . __( '\\nSignature\\n', 'flx-forms' ) . ']' : (string) $v;
+			return ( is_string( $v ) && 0 === strpos( $v, 'data:' ) ) ? '[' . __( 'Signature', 'flx-forms' ) . ']' : (string) $v;
 		}
 		if ( 'maps' === $type && is_array( $v ) ) {
 			$pts = array();
@@ -775,12 +775,12 @@ class FLXF_Dashboard {
 				continue;
 			}
 			if ( 'w_link' === $type ) {
-				$out[ __( '\\nPage URL\\n', 'flx-forms' ) ] = isset( $c['value'] ) && is_string( $c['value'] ) ? $c['value'] : '';
+				$out[ __( 'Page URL', 'flx-forms' ) ] = isset( $c['value'] ) && is_string( $c['value'] ) ? $c['value'] : '';
 				continue;
 			}
 			if ( 'payment' === $type ) {
-				$out[ __( '\\nPayment ID\', \'en\']]', 'flx-forms' ) ]     = isset( $c['paymentIntent'] ) && is_scalar( $c['paymentIntent'] ) ? (string) $c['paymentIntent'] : '';
-				$out[ __( '\\nPayment amount\\n', 'flx-forms' ) ] = isset( $c['total'] ) && is_scalar( $c['total'] ) ? (string) $c['total'] : '';
+				$out[ __( 'Payment ID', 'flx-forms' ) ]     = isset( $c['paymentIntent'] ) && is_scalar( $c['paymentIntent'] ) ? (string) $c['paymentIntent'] : '';
+				$out[ __( 'Payment amount', 'flx-forms' ) ] = isset( $c['total'] ) && is_scalar( $c['total'] ) ? (string) $c['total'] : '';
 				$out[ __( 'Payment method', 'flx-forms' ) ] = isset( $c['paymentGateway'] ) && is_scalar( $c['paymentGateway'] ) ? (string) $c['paymentGateway'] : '';
 				continue;
 			}
@@ -817,7 +817,7 @@ class FLXF_Dashboard {
 	}
 
 	private static function preview( $items ) {
-		$skip  = array( __( '\\nPage URL\\n', 'flx-forms' ), __( '\\nPayment ID\', \'en\']]', 'flx-forms' ), __( 'Payment method', 'flx-forms' ) );
+		$skip  = array( __( 'Page URL', 'flx-forms' ), __( 'Payment ID', 'flx-forms' ), __( 'Payment method', 'flx-forms' ) );
 		$parts = array();
 		foreach ( self::flatten( $items ) as $label => $v ) {
 			if ( in_array( $label, $skip, true ) || '' === trim( $v ) || '********' === $v || 0 === strpos( $v, 'http' ) ) {
@@ -846,7 +846,7 @@ class FLXF_Dashboard {
 
 	public static function csv() {
 		if ( ! self::can() ) {
-			wp_die( esc_html__( '\\nSorry, you are not allowed to do that.\\n', 'flx-forms' ), 403 );
+			wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'flx-forms' ), 403 );
 		}
 		check_admin_referer( self::CSV_NONCE );
 		global $wpdb;
@@ -854,7 +854,7 @@ class FLXF_Dashboard {
 		$forms = self::forms();
 		$delim = 0 === strpos( strtolower( (string) get_user_locale() ), 'tr' ) ? ';' : ',';
 		$fixed = array(
-			__( '\\nResponse ID\\n', 'flx-forms' ),
+			__( 'Response ID', 'flx-forms' ),
 			__( 'Form', 'flx-forms' ),
 			__( 'Date', 'flx-forms' ),
 			__( 'Tracking code', 'flx-forms' ),

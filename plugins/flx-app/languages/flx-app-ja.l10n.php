@@ -434,8 +434,8 @@ return array(
   'Note added' => '注記を追加しました',
   'Notes' => '注意事項',
   'Call' => '電話をかける',
-  '\\nYetkiniz yok.\\n' => '\\nそれでもいいよ。\\n',
-  '[[\'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.\', \'tr\']]' => '[[\'FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。\', \'tr\']]',
+  '\\nYetkiniz yok.\\n' => 'それでもいいよ。',
+  '[[\'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.\', \'tr\']]' => 'FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。',
   'Mobil uygulama kullanım toplamları' => 'モバイルアプリの使用状況を集計する',
   'İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayrıca izin veren hesaplar sayılır. Her tamamlanmış UTC günü için iOS/Android toplamları, en az beş hesap varsa telemetri merkezinize gönderilir. Kişi adları, hesap kimlikleri, içerik, site adresi ve GPS konumu bu rapora eklenmez. Ülke, sitenin ayarından gelir. Genel kullanım verisi izni de açık olmalıdır. Giriş ve uygulama özellikleri bu seçime bağlı değildir.' => 'オプションで、デフォルトではオフになっています。アプリ内でもオプトインしているアカウントのみがカウントされます。完了した UTC 日の iOS/Android 合計は、少なくとも 5 つのアカウントのコホートについてのみテレメトリ ハブに送られます。名前、アカウント ID、コンテンツ、サイト URL、GPS 位置情報は含まれません。国はサイトの設定から決まります。一般的な使用量の共有もオンにする必要があります。サインインとアプリの機能は、この選択に依存しません。',
   'Mobil uygulamanın toplam kullanımını paylaş' => 'モバイルアプリの総使用量を共有する',
@@ -868,7 +868,9 @@ return array(
   'Notlar' => '注意事項',
   'Ara' => '電話をかける',
   'Siparişleri' => '注文',
-  'Yetkiniz yok.' => '\\nそれでもいいよ。\\n',
-  'FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.' => '[[\'FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。\', \'tr\']]',
+  'Yetkiniz yok.' => 'それでもいいよ。',
+  'FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.' => 'FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。',
+  'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.' => 'FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。',
+
  ),
 );

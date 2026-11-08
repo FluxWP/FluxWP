@@ -127,7 +127,7 @@ final class FLXB_Preselect {
 			$i18n = true;
 			$js  .= 'window.flxbI18n=' . wp_json_encode(
 				array(
-					'choice' => __( '\\nYour choice\\n', 'flx-donate' ),
+					'choice' => __( 'Your choice', 'flx-donate' ),
 					'change' => __( 'Change', 'flx-donate' ),
 				)
 			) . ';';

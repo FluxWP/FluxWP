@@ -434,8 +434,8 @@ return array(
   'Note added' => 'Nota agregada',
   'Notes' => 'Notas',
   'Call' => 'llamar',
-  '\\nYetkiniz yok.\\n' => '\\nYetkiniz yok.\\n',
-  '[[\'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.\', \'tr\']]' => '[[\'Lado del servidor de la aplicación móvil y de escritorio FluxWP: inicio de sesión OAuth 2.0 (PKCE), dispositivos y push, vista de la aplicación (configuración), visualización del complemento (manifiesto), sesión del panel. Los clientes MCP también se conectan a través de OAuth.\', \'tr\']]',
+  '\\nYetkiniz yok.\\n' => 'Yetkiniz yok.',
+  '[[\'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.\', \'tr\']]' => 'Lado del servidor de la aplicación móvil y de escritorio FluxWP: inicio de sesión OAuth 2.0 (PKCE), dispositivos y push, vista de la aplicación (configuración), visualización del complemento (manifiesto), sesión del panel. Los clientes MCP también se conectan a través de OAuth.',
   'Mobil uygulama kullanım toplamları' => 'Uso agregado de aplicaciones móviles',
   'İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayrıca izin veren hesaplar sayılır. Her tamamlanmış UTC günü için iOS/Android toplamları, en az beş hesap varsa telemetri merkezinize gönderilir. Kişi adları, hesap kimlikleri, içerik, site adresi ve GPS konumu bu rapora eklenmez. Ülke, sitenin ayarından gelir. Genel kullanım verisi izni de açık olmalıdır. Giriş ve uygulama özellikleri bu seçime bağlı değildir.' => 'Opcional y desactivado por defecto. Solo se cuentan las cuentas que también optan por registrarse dentro de la aplicación. Los totales completos de iOS/Android en días UTC van a su centro de telemetría solo para cohortes de al menos cinco cuentas. No se incluyen nombres, ID de cuentas, contenido, URL de sitios ni ubicación GPS. El país proviene de la configuración del sitio. El uso compartido general también debe estar activado. Las funciones de inicio de sesión y de la aplicación no dependen de esta elección.',
   'Mobil uygulamanın toplam kullanımını paylaş' => 'Compartir el uso agregado de aplicaciones móviles',
@@ -868,7 +868,9 @@ return array(
   'Notlar' => 'Notas',
   'Ara' => 'llamar',
   'Siparişleri' => 'Órdenes',
-  'Yetkiniz yok.' => '\\nYetkiniz yok.\\n',
-  'FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.' => '[[\'Lado del servidor de la aplicación móvil y de escritorio FluxWP: inicio de sesión OAuth 2.0 (PKCE), dispositivos y push, vista de la aplicación (configuración), visualización del complemento (manifiesto), sesión del panel. Los clientes MCP también se conectan a través de OAuth.\', \'tr\']]',
+  'Yetkiniz yok.' => 'Yetkiniz yok.',
+  'FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.' => 'Lado del servidor de la aplicación móvil y de escritorio FluxWP: inicio de sesión OAuth 2.0 (PKCE), dispositivos y push, vista de la aplicación (configuración), visualización del complemento (manifiesto), sesión del panel. Los clientes MCP también se conectan a través de OAuth.',
+  'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.' => 'Lado del servidor de la aplicación móvil y de escritorio FluxWP: inicio de sesión OAuth 2.0 (PKCE), dispositivos y push, vista de la aplicación (configuración), visualización del complemento (manifiesto), sesión del panel. Los clientes MCP también se conectan a través de OAuth.',
+
  ),
 );

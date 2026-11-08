@@ -189,7 +189,7 @@ function flxs_page_certificates() {
 							<?php if ( $img ) : ?><a href="<?php echo esc_url( $url ); ?>" target="_blank" class="flxs-thumb"><img src="<?php echo esc_url( $img ); ?>" alt="" loading="lazy"></a><?php endif; ?>
 							<div>
 								<strong><a href="<?php echo esc_url( $url ); ?>" target="_blank"><?php echo esc_html( $c['number'] ); ?></a></strong>
-								<div class="flxs-muted"><?php echo esc_html( flxs_date( $c['created_at'] ) ); ?><?php echo ! empty( $c['data']['backdated'] ) ? ' <span class="flxs-pill flxs-pill--muted" title="' . esc_attr( sprintf( __( 'Actually created: %s', 'flx-certificates' ), flxs_date( $c['data']['backdated'] ) ) ) . '">' . esc_html__( 'backdated', 'flx-certificates' ) . '</span>' : ''; ?> · <?php echo esc_html( sprintf( _n( '[[\'%dviews\', \'tr\']]', '[[\'%dviews\', \'tr\']]', (int) $c['views'], 'flx-certificates' ), (int) $c['views'] ) ); ?></div>
+								<div class="flxs-muted"><?php echo esc_html( flxs_date( $c['created_at'] ) ); ?><?php echo ! empty( $c['data']['backdated'] ) ? ' <span class="flxs-pill flxs-pill--muted" title="' . esc_attr( sprintf( __( 'Actually created: %s', 'flx-certificates' ), flxs_date( $c['data']['backdated'] ) ) ) . '">' . esc_html__( 'backdated', 'flx-certificates' ) . '</span>' : ''; ?> · <?php echo esc_html( sprintf( _n( '%d view', '%d views', (int) $c['views'], 'flx-certificates' ), (int) $c['views'] ) ); ?></div>
 							</div>
 						</div>
 					</td>

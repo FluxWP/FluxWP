@@ -2507,5 +2507,5 @@ msgstr "WhatsApp"
 msgid "The reply cannot be empty."
 msgstr "Yanıt boş olamaz."
 
-msgid "[['All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.', 'tr']]"
+msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
 msgstr "Sitenin tüm e-postaları tek yerde: gönderen adı/adresi (bilgi@ / no-reply@), SMTP, logolu ve mobil uyumlu kurumsal şablonlar, WordPress + WooCommerce + FluxWP eklentilerinin e-postalarını görme, düzenleme, açma/kapama, gönderim kayıtları, tekil ve toplu gönderim. WhatsApp (Evolution API) ve SMS (Netgsm) bağlantıları da burada; diğer eklentiler ortak API ile kullanır."

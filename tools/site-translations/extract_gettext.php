@@ -20,11 +20,12 @@ foreach($qa_roots as $root){
    $key=($context!==null?$context.chr(4):'').$single.($plural!==null?chr(0).$plural:'');$result[$root][$domain][$key]=['file'=>substr($path,strlen($root)+1),'line'=>$tokens[$i][2]];
    if($rewrite&&$domain===$qa_input['packages'][$root]['domain']&&isset($qa_input['packages'][$root]['aliases'][$key])){
     $canonical=$qa_input['packages'][$root]['aliases'][$key];$ctx=strpos($canonical,chr(4))!==false?explode(chr(4),$canonical)[0]:null;$body=explode(chr(4),$canonical);$forms=explode(chr(0),end($body));
+    if($pluralArg!==null&&count($forms)!==2){throw new RuntimeException('Invalid canonical plural translation at '.$path.':'.$tokens[$i][2]);}
     $replace=[0=>$forms[0]];if($pluralArg!==null)$replace[$pluralArg]=$forms[1]??$forms[0];if($contextArg!==null&&$ctx!==null)$replace[$contextArg]=$ctx;
     foreach($replace as $arg=>$text){foreach($positions[$arg]??[] as $index){$t=$tokens[$index];if(is_array($t)&&$t[0]===T_CONSTANT_ENCAPSED_STRING&&literal([$t])!==$text){$edits[$offsets[$index]]=[strlen($t[1]),var_export($text,true)];break;}}}
    }
   }
-  if($rewrite&&$edits){krsort($edits);foreach($edits as $start=>[$length,$text])$code=substr_replace($code,$text,$start,$length);file_put_contents($path,$code);}
+  if($rewrite&&$edits){krsort($edits);foreach($edits as $start=>[$length,$text])$code=substr_replace($code,$text,$start,$length);$temp=tempnam(dirname($path),'.flx-i18n-');if($temp===false||file_put_contents($temp,$code)===false){throw new RuntimeException('Could not write normalized source: '.$path);}chmod($temp,fileperms($path)&0777);if(!rename($temp,$path)){unlink($temp);throw new RuntimeException('Could not replace normalized source: '.$path);}}
  }
 }
 echo json_encode($result,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);

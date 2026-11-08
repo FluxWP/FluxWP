@@ -318,5 +318,5 @@ msgstr "Alle aktivierten Berechtigungen werden erzwungen."
 msgid "Roles"
 msgstr "Rollen"
 
-msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
-msgstr "[['Fügt die Rollen „Mitarbeiter“, „Administrator“ und „Manager“ hinzu (neue Rolle wird auch über das Bedienfeld hinzugefügt); Sie können den Aufgaben-, Zertifikats-, Spenden-, Callcenter-, Studio- und Berichtszugriff für Rollen auf einer einzigen Seite aktivieren und deaktivieren. Persönlicher Referenzlink und Benutzertelefonnummer (für WhatsApp-Assistent) finden Sie hier.', 'tr']]"
+msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
+msgstr "Fügt die Rollen „Mitarbeiter“, „Administrator“ und „Manager“ hinzu (neue Rolle wird auch über das Bedienfeld hinzugefügt); Sie können den Aufgaben-, Zertifikats-, Spenden-, Callcenter-, Studio- und Berichtszugriff für Rollen auf einer einzigen Seite aktivieren und deaktivieren. Persönlicher Referenzlink und Benutzertelefonnummer (für WhatsApp-Assistent) finden Sie hier."

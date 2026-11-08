@@ -285,9 +285,9 @@ function emsfb_check_file_access_efb() {
         }
     }
 
-    $success_message = esc_html__('\\nAdd-on directory is ready for file operations\\n', 'flx-forms');
+    $success_message = esc_html__('Add-on directory is ready for file operations', 'flx-forms');
     $error_message = sprintf(
-        esc_html__('[["Cannot install addons:%s\\n', 'flx-forms'),
+        esc_html__('Cannot install addons:%s', 'flx-forms'),
         implode(', ', $error_codes)
     );
 

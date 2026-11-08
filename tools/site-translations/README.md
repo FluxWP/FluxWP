@@ -50,3 +50,7 @@ Docker with the local `php:8.3-cli` image reads existing PHP catalogs and static
 The native catalog build does not depend on Flux Lang. Flux Lang handles site URL prefixes, content relationships and the site's language picker. Site records are generated separately by the preset's `tools/apply-site-catalogs.py`; complete content sets activate only after preset import succeeds. No tool in this folder deploys or merges a PR.
 
 [Language addition and coverage guide](LANGUAGES.md)
+
+### Legacy response artifacts
+
+Older response parsing could leave literal newline escapes or Python list framing in gettext IDs and translations. `repair_transport_artifacts.py --repo /path/to/repo` audits this offline; add `--apply` to repair source literals and native/JSON catalogs. It preserves contexts, plural slots and legacy aliases. The response parser now rejects unsupported API shapes instead of stringifying arrays.

@@ -634,4 +634,6 @@ return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır.'=>'Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır.',
 'İstem'=>'İstem',
 'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).'=>'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).',
+
+'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => 'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).',
 ));

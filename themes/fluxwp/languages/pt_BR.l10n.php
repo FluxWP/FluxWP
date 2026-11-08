@@ -473,9 +473,9 @@ return array(
   'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.' => 'Automático agora: a banda iyzico e os logotipos dos plugins de PDV virtuais habilitados. Depois de adicionar ou remover um logotipo, a lista é sua escolha.',
   'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.' => 'Lista escolhida a dedo. "Voltar ao automático" retorna à banda iyzico e aos logotipos dos plugins de PDV virtuais habilitados.',
   'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.' => 'SVG ou PNG transparente é melhor; logotipos coloridos são mostrados em uma caixa branca em um rodapé escuro.',
-  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 ou configuração atual.\\n',
+  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 ou configuração atual.',
   'Background pattern' => 'Padrão de fundo',
-  '\\nDots\\n' => '\\nPontos\\n',
+  '\\nDots\\n' => 'Pontos',
   'Leaves' => 'Folhas',
   'None' => 'Nenhum',
   'News introduction' => 'Introdução de notícias',
@@ -947,7 +947,8 @@ return array(
   'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.' => 'Automático agora: a banda iyzico e os logotipos dos plugins de PDV virtuais habilitados. Depois de adicionar ou remover um logotipo, a lista é sua escolha.',
   'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.' => 'Lista escolhida a dedo. "Voltar ao automático" retorna à banda iyzico e aos logotipos dos plugins de PDV virtuais habilitados.',
   'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.' => 'SVG ou PNG transparente é melhor; logotipos coloridos são mostrados em uma caixa branca em um rodapé escuro.',
-  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 ou configuração atual.\\n',
-  'Dots' => '\\nPontos\\n',
+  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 ou configuração atual.',
+  'Dots' => 'Pontos',
+
  ),
 );

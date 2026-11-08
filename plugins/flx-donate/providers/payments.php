@@ -218,7 +218,7 @@ final class FLXB_Payments_Rest {
 		if ( $nonce && wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 			return true;
 		}
-		return new WP_Error( 'rest_forbidden', __( '\\nInvalid or expired nonce\\n', 'flx-donate' ), array( 'status' => 403 ) );
+		return new WP_Error( 'rest_forbidden', __( 'Invalid or expired nonce', 'flx-donate' ), array( 'status' => 403 ) );
 	}
 
 	/** {success:true, data:{...}}: the envelope Flux Forms's payment scripts read. */
@@ -254,16 +254,16 @@ final class FLXB_Payments_Rest {
 	 */
 	public static function start( $request, $public, $provider ) {
 		if ( ! $provider ) {
-			return self::reply( array( 'success' => false, 'm' => __( '\\nNo payment provider is available on this site. Please contact the site administrator.\\n', 'flx-donate' ) ) );
+			return self::reply( array( 'success' => false, 'm' => __( 'No payment provider is available on this site. Please contact the site administrator.', 'flx-donate' ) ) );
 		}
 		if ( $provider instanceof FLXB_Payment_Provider_Custom_Start ) {
 			return $provider->start_request( $request, $public );
 		}
 		if ( self::rate_limited( 'start', 20 ) ) {
-			return self::reply( array( 'success' => false, 'm' => __( '\\nToo many payment attempts. Please wait a few minutes and try again.\\n', 'flx-donate' ) ), 429 );
+			return self::reply( array( 'success' => false, 'm' => __( 'Too many payment attempts. Please wait a few minutes and try again.', 'flx-donate' ) ), 429 );
 		}
 		if ( ! self::handler() || ! is_object( $public ) || ! method_exists( $public, 'insert_message_db' ) ) {
-			return self::reply( array( 'success' => false, 'm' => __( '\\nInvalid payment data. Please refresh the page and try again.\\n', 'flx-donate' ) ) );
+			return self::reply( array( 'success' => false, 'm' => __( 'Invalid payment data. Please refresh the page and try again.', 'flx-donate' ) ) );
 		}
 		$params = $request->get_json_params();
 		$check  = \Emsfb\StripeHandlerEfb::validate_card_add( $params, 'stripe' === $provider->id(), $provider->id() );
@@ -271,7 +271,7 @@ final class FLXB_Payments_Rest {
 			return self::reply( array( 'success' => false, 'm' => $check ) );
 		}
 		if ( ! $provider->is_configured() ) {
-			return self::reply( array( 'success' => false, 'm' => __( '\\nThe payment provider is not configured on this site. Please contact the site administrator.\\n', 'flx-donate' ) ) );
+			return self::reply( array( 'success' => false, 'm' => __( 'The payment provider is not configured on this site. Please contact the site administrator.', 'flx-donate' ) ) );
 		}
 		$form_id = absint( $params['id'] );
 		$fs      = \Emsfb\StripeHandlerEfb::load_form_structure( $form_id );
@@ -282,7 +282,7 @@ final class FLXB_Payments_Rest {
 			return self::reply( array( 'success' => false, 'm' => (string) $obj['flxb_error'] ) );
 		}
 		if ( ! is_finite( $amount ) || $amount <= 0 ) {
-			return self::reply( array( 'success' => false, 'm' => __( '\\nNo payment amount detected. Please review your selected items and try again. If the problem persists, contact support.\\n', 'flx-donate' ) ) );
+			return self::reply( array( 'success' => false, 'm' => __( 'No payment amount detected. Please review your selected items and try again. If the problem persists, contact support.', 'flx-donate' ) ) );
 		}
 		$currency = isset( $fs[0]['currency'] ) && strlen( (string) $fs[0]['currency'] ) > 2 ? strtoupper( (string) $fs[0]['currency'] ) : 'USD';
 		$method   = isset( $fs[0]['paymentmethod'] ) ? (string) $fs[0]['paymentmethod'] : 'charge';
@@ -318,10 +318,10 @@ final class FLXB_Payments_Rest {
 			$result = FLXB_Payment_Result::failed( $provider->label() . ': ' . $e->getMessage() );
 		}
 		if ( ! $result instanceof FLXB_Payment_Result ) {
-			$result = FLXB_Payment_Result::failed( __( '\\nThe payment could not be started. Please try again.\\n', 'flx-donate' ) );
+			$result = FLXB_Payment_Result::failed( __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
 		}
 		if ( ! $result->is_ok() ) {
-			return self::reply( array( 'success' => false, 'm' => '' !== $result->message ? $result->message : __( '\\nThe payment could not be started. Please try again.\\n', 'flx-donate' ) ) );
+			return self::reply( array( 'success' => false, 'm' => '' !== $result->message ? $result->message : __( 'The payment could not be started. Please try again.', 'flx-donate' ) ) );
 		}
 
 		$rec      = $result->record;
@@ -411,12 +411,12 @@ final class FLXB_Payments_Rest {
 		$p     = is_array( $p ) ? $p : array();
 		$track = isset( $p['track'] ) && is_scalar( $p['track'] ) ? sanitize_text_field( (string) $p['track'] ) : '';
 		if ( self::rate_limited( 'confirm', 60 ) ) {
-			return self::reply( array( 'success' => false, 'm' => __( '\\nToo many requests. Please wait a moment and try again.\\n', 'flx-donate' ) ), 429 );
+			return self::reply( array( 'success' => false, 'm' => __( 'Too many requests. Please wait a moment and try again.', 'flx-donate' ) ), 429 );
 		}
 		$row      = '' !== $track ? FLXB_Payment_Records::get_by_track( $track ) : null;
 		$provider = $row ? flxf_payment_provider( $row->gateway ) : null;
 		if ( ! $row || ! $provider ) {
-			return self::reply( array( 'success' => false, 'm' => __( '\\nPayment not found.\\n', 'flx-donate' ) ), 404 );
+			return self::reply( array( 'success' => false, 'm' => __( 'Payment not found.', 'flx-donate' ) ), 404 );
 		}
 		$result = $provider->verify( $row, array_diff_key( $p, array( 'track' => 1 ) ) );
 		if ( $result->is_paid() && 'completed' !== $row->status && 'subscription' !== $row->payment_type ) {
@@ -426,7 +426,7 @@ final class FLXB_Payments_Rest {
 			'success' => $result->is_paid(),
 			'status'  => $result->status,
 			'trackid' => $row->track,
-			'm'       => $result->is_paid() ? '' : ( '' !== $result->message ? $result->message : __( '\\nThe payment could not be verified yet.\\n', 'flx-donate' ) ),
+			'm'       => $result->is_paid() ? '' : ( '' !== $result->message ? $result->message : __( 'The payment could not be verified yet.', 'flx-donate' ) ),
 		) );
 	}
 
@@ -466,15 +466,15 @@ final class FLXB_Payments_Rest {
 				$pi    = isset( $p['paymentIntentId'] ) && is_string( $p['paymentIntentId'] ) ? sanitize_text_field( $p['paymentIntentId'] ) : '';
 				$track = isset( $p['trackid'] ) && is_scalar( $p['trackid'] ) ? sanitize_text_field( (string) $p['trackid'] ) : '';
 				if ( ! preg_match( '/^pi_[A-Za-z0-9_]+$/', $pi ) ) {
-					return self::reply( array( 'success' => false, 'm' => __( '[[\'Payment Intent ID is missing\\n', 'flx-donate' ) ), 400 );
+					return self::reply( array( 'success' => false, 'm' => __( 'Payment Intent ID is missing', 'flx-donate' ) ), 400 );
 				}
 				/* Only the PaymentIntent created for this entry counts. */
 				$row = FLXB_Payment_Records::get_by_reference( 'stripe', $pi );
 				if ( ! $row || ! $stripe || ( '' !== $track && (string) $row->track !== $track ) ) {
-					return self::reply( array( 'success' => false, 'm' => __( '\\nPayment not found.\\n', 'flx-donate' ) ), 404 );
+					return self::reply( array( 'success' => false, 'm' => __( 'Payment not found.', 'flx-donate' ) ), 404 );
 				}
 				$ok = $stripe->verify( $row )->is_paid();
-				return self::reply( array( 'success' => $ok, 'paymentIntentId' => $pi, 'trackid' => $row->track, 'm' => $ok ? '' : __( '\\nThe payment could not be verified yet.\\n', 'flx-donate' ) ) );
+				return self::reply( array( 'success' => $ok, 'paymentIntentId' => $pi, 'trackid' => $row->track, 'm' => $ok ? '' : __( 'The payment could not be verified yet.', 'flx-donate' ) ) );
 			case 'stripe_pkey':
 				return self::reply( array( 'key' => $stripe instanceof FLXB_Payment_Stripe ? $stripe->publishable_key() : '' ) );
 			case 'stripe_webhook':
@@ -486,7 +486,7 @@ final class FLXB_Payments_Rest {
 	public static function block_submit() {
 		return self::reply( array(
 			'success' => false,
-			'm'       => __( '\\nYour payment has not been confirmed yet. Please wait a moment and try again. If the problem persists, contact the site administrator.\\n', 'flx-donate' ),
+			'm'       => __( 'Your payment has not been confirmed yet. Please wait a moment and try again. If the problem persists, contact the site administrator.', 'flx-donate' ),
 		) );
 	}
 
@@ -582,7 +582,7 @@ function flxb_payments_wire_scripts() {
 				'provider'    => $id,
 				'label'       => $provider ? $provider->label() : '',
 				'configured'  => $provider && $provider->is_configured(),
-				'unavailable' => __( '\\nOnline payment is not available at the moment. Please try again later or contact us.\\n', 'flx-donate' ),
+				'unavailable' => __( 'Online payment is not available at the moment. Please try again later or contact us.', 'flx-donate' ),
 			)
 		) . ';',
 		'before'

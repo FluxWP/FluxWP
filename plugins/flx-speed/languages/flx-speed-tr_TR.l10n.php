@@ -1002,4 +1002,6 @@ return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'Yük'=>'Yük',
 'İşaret'=>'İşaret',
 'Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.'=>'Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.',
+
+'Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.' => 'Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.',
 ));

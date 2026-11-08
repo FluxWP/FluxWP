@@ -506,11 +506,14 @@
     "High": "عالية",
     "Effort": "جهد",
     "Store request bodies": "هيئات طلب المتجر",
-    "[['%stool updated.', 'tr']]\u0000[['%stool updated.', 'tr']]": "[['تم تحديث أداة%s.', 'tr']]\u0000[['تم تحديث أداة%s.', 'tr']]\u0000[['تم تحديث أداة%s.', 'tr']]\u0000[['تم تحديث أداة%s.', 'tr']]\u0000[['تم تحديث أداة%s.', 'tr']]\u0000[['تم تحديث أداة%s.', 'tr']]",
-    "[['%splugin', 'tr']]\u0000[['%splugin', 'tr']]": "[['الملحق%s'، 'tr']]\u0000[['الملحق%s'، 'tr']]\u0000[['الملحق%s'، 'tr']]\u0000[['الملحق%s'، 'tr']]\u0000[['الملحق%s'، 'tr']]\u0000[['الملحق%s'، 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]",
-    "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n": "\\nالإنفاق:%1$s/ الحد:%2$s\\nالتجديد:%3$s\\n\\nالتفاصيل:%4$s\\n",
-    "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]": "[['مركز الذكاء الاصطناعي المشترك لجميع مكونات FluxWP الإضافية: مفاتيح OpenRouter وAnthropic، وكتالوج النماذج والأسعار، وذاكرة التخزين المؤقت السريعة، وتسجيل المركبات، وخادم MCP المشترك، وتقارير الاستخدام، والحد الأقصى للفوترة والإنفاق؛ الدردشة الإدارية والذكاء الاصطناعي العامة في الموقع للمستخدمين المصرح لهم.', 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]\u0000\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]\u0000\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]\u0000\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]\u0000\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]\u0000\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]\u0000\\n تم تسجيل مركبة%d. تم تسجيل مركبة%d.', 'tr']]"
+    "%d tool is registered.\u0000%d tools are registered.": "تم تسجيل أدوات%d.\u0000تم تسجيل أداة%d.\u0000تم تسجيل أدوات%d.\u0000تم تسجيل أدوات%d.\u0000تم تسجيل أدوات%d.\u0000تم تسجيل أدوات%d.",
+    "%s tool updated.\u0000%s tools updated.": "تم تحديث أدوات%s.\u0000تم تحديث أداة%s.\u0000تم تحديث أدوات%s.\u0000تم تحديث أدوات%s.\u0000تم تحديث أدوات%s.\u0000تم تحديث أدوات%s.",
+    "%s plugin\u0000%s plugins": "الإضافات%s\u0000البرنامج المساعد%s\u0000الإضافات%s\u0000الإضافات%s\u0000الإضافات%s\u0000الإضافات%s",
+    "%stool updated.\u0000%stool updated.": "تم تحديث أداة%s.\u0000تم تحديث أداة%s.\u0000تم تحديث أداة%s.\u0000تم تحديث أداة%s.\u0000تم تحديث أداة%s.\u0000تم تحديث أداة%s.",
+    "%splugin\u0000%splugin": "الملحق%s'، 'tr']]\u0000الملحق%s'، 'tr']]\u0000الملحق%s'، 'tr']]\u0000الملحق%s'، 'tr']]\u0000الملحق%s'، 'tr']]\u0000الملحق%s'، 'tr']]",
+    "%dvehicle is registered.%dvehicle is registered.": " تم تسجيل مركبة%d. تم تسجيل مركبة%d.",
+    "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s": "الإنفاق:%1$s/ الحد:%2$s\nالتجديد:%3$s\n\nالتفاصيل:%4$s",
+    "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.": "مركز الذكاء الاصطناعي المشترك لجميع مكونات FluxWP الإضافية: مفاتيح OpenRouter وAnthropic، وكتالوج النماذج والأسعار، وذاكرة التخزين المؤقت السريعة، وتسجيل المركبات، وخادم MCP المشترك، وتقارير الاستخدام، والحد الأقصى للفوترة والإنفاق؛ الدردشة الإدارية والذكاء الاصطناعي العامة في الموقع للمستخدمين المصرح لهم.",
+    "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.": " تم تسجيل مركبة%d. تم تسجيل مركبة%d.\u0000 تم تسجيل مركبة%d. تم تسجيل مركبة%d.\u0000 تم تسجيل مركبة%d. تم تسجيل مركبة%d.\u0000 تم تسجيل مركبة%d. تم تسجيل مركبة%d.\u0000 تم تسجيل مركبة%d. تم تسجيل مركبة%d.\u0000 تم تسجيل مركبة%d. تم تسجيل مركبة%d."
   }
 }

@@ -76,7 +76,7 @@ class FLXB_WC_Designs {
 		}
 		$d = self::get( $id );
 		if ( ! $d ) {
-			return new WP_Error( 'flxb_design', __( '\\nThis certificate design cannot be chosen any more. Please pick another one.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_design', __( 'This certificate design cannot be chosen any more. Please pick another one.', 'flx-donate' ) );
 		}
 		$raw  = is_array( $in['tpl_values'] ?? null ) ? $in['tpl_values'] : array();
 		$vals = array();
@@ -96,7 +96,7 @@ class FLXB_WC_Designs {
 			}
 			if ( '' === $v && ! empty( $f['required'] ) && 'date' !== $f['type'] && self::SENDER_KEY !== $k ) {
 				/* translators: %s: field label */
-				return new WP_Error( 'flxb_design_field', sprintf( __( '\\nPlease fill in "%s" for the certificate.\\n', 'flx-donate' ), (string) $f['label'] ) );
+				return new WP_Error( 'flxb_design_field', sprintf( __( 'Please fill in "%s" for the certificate.', 'flx-donate' ), (string) $f['label'] ) );
 			}
 			if ( '' !== $v ) {
 				$vals[ $k ] = $v;
@@ -144,7 +144,7 @@ class FLXB_WC_Designs {
 		?>
 		<fieldset class="flxwb-fs flxwb-designs" data-flxwb-designs>
 			<legend class="flxwb-legend"><?php echo esc_html( '' !== $group ? $group : __( 'Certificates', 'flx-donate' ) ); ?></legend>
-			<p class="flxwb-field__help"><?php esc_html_e( '\\nPick the design of your certificate. The donation amount does not change.\\n', 'flx-donate' ); ?></p>
+			<p class="flxwb-field__help"><?php esc_html_e( 'Pick the design of your certificate. The donation amount does not change.', 'flx-donate' ); ?></p>
 			<div class="flxwb-dgrid" role="radiogroup">
 				<?php if ( ! isset( $all[ (int) $type_tpl ] ) ) : ?>
 				<label class="flxwb-dcard2">
@@ -188,7 +188,7 @@ class FLXB_WC_Designs {
 					<textarea name="<?php echo esc_attr( $name ); ?>" rows="3" maxlength="600" placeholder="<?php echo esc_attr( (string) ( $f['placeholder'] ?? '' ) ); ?>"<?php echo $req ? ' data-flxwb-req' : ''; ?>><?php echo esc_textarea( $val ); ?></textarea>
 					<?php elseif ( 'select' === $f['type'] ) : ?>
 					<select name="<?php echo esc_attr( $name ); ?>"<?php echo $req ? ' data-flxwb-req' : ''; ?>>
-						<option value=""><?php esc_html_e( '\\n— Choose —\\n', 'flx-donate' ); ?></option>
+						<option value=""><?php esc_html_e( '— Choose —', 'flx-donate' ); ?></option>
 						<?php foreach ( self::options( $f ) as $o ) : ?>
 						<option value="<?php echo esc_attr( $o ); ?>" <?php selected( $val, $o ); ?>><?php echo esc_html( $o ); ?></option>
 						<?php endforeach; ?>

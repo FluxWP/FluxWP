@@ -35,11 +35,11 @@ final class FLXB_Import {
 	 */
 	public static function read_xlsx( $path, $max_rows = 20000 ) {
 		if ( ! class_exists( 'ZipArchive' ) ) {
-			return new WP_Error( 'flxb_import', __( '\\nThe server has no zip extension; save the file as CSV and upload that.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_import', __( 'The server has no zip extension; save the file as CSV and upload that.', 'flx-donate' ) );
 		}
 		$zip = new ZipArchive();
 		if ( true !== $zip->open( $path ) ) {
-			return new WP_Error( 'flxb_import', __( '[[\'The file could not be opened. Upload Excel (.xlsx) or CSV.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_import', __( 'The file could not be opened. Upload Excel (.xlsx) or CSV.', 'flx-donate' ) );
 		}
 		$prev   = libxml_use_internal_errors( true );
 		$xml    = function ( $name ) use ( $zip ) {
@@ -115,7 +115,7 @@ final class FLXB_Import {
 		}
 		libxml_use_internal_errors( $prev );
 		$zip->close();
-		return $out ? $out : new WP_Error( 'flxb_import', __( '\\nNo sheet to read was found in the file.\\n', 'flx-donate' ) );
+		return $out ? $out : new WP_Error( 'flxb_import', __( 'No sheet to read was found in the file.', 'flx-donate' ) );
 	}
 
 	/** "AB" → 27 (0 based). */
@@ -157,10 +157,10 @@ final class FLXB_Import {
 			array(
 				'created'     => array( __( 'Date', 'flx-donate' ), array( 'tarih', 'zaman damgasi', 'kayit tarihi', 'date', 'created', 'timestamp' ) ),
 				'donor'       => array( __( 'Donor', 'flx-donate' ), array( 'bagisci', 'bagis yapan', 'donor', 'ad soyad', 'adi soyadi', 'isim', 'name' ) ),
-				'donor_phone' => array( __( '\\nDonor phone\\n', 'flx-donate' ), array( 'telefon', 'tel', 'gsm', 'cep', 'phone', 'bagisci telefon' ) ),
+				'donor_phone' => array( __( 'Donor phone', 'flx-donate' ), array( 'telefon', 'tel', 'gsm', 'cep', 'phone', 'bagisci telefon' ) ),
 				'email'       => array( __( 'E-mail', 'flx-donate' ), array( 'e posta', 'eposta', 'email', 'e mail', 'mail' ) ),
 				'name'        => array( __( 'On behalf of', 'flx-donate' ), array( 'kimin adina', 'adina', 'hisse sahibi', 'kurban sahibi', 'sahibi', 'on behalf', 'beneficiary' ) ),
-				'phone'       => array( __( '\\nPhone (on behalf of)\\n', 'flx-donate' ), array( 'adina telefon', 'sahip telefon', 'sahibi telefon', 'beneficiary phone' ) ),
+				'phone'       => array( __( 'Phone (on behalf of)', 'flx-donate' ), array( 'adina telefon', 'sahip telefon', 'sahibi telefon', 'beneficiary phone' ) ),
 				'type'        => array( __( 'Donation type', 'flx-donate' ), array( 'bagis turu', 'turu', 'tur', 'type', 'urun', 'proje', 'kurban turu', 'kurbanin turu' ) ),
 				'option'      => array( __( 'Option', 'flx-donate' ), array( 'secenek', 'paket', 'option' ) ),
 				'quantity'    => array( __( 'Quantity', 'flx-donate' ), array( 'adet', 'sayi', 'quantity', 'qty', 'hisse sayisi' ) ),
@@ -169,8 +169,8 @@ final class FLXB_Import {
 				'paid'        => array( __( 'Payment', 'flx-donate' ), array( 'odeme', 'odendi', 'tahsil', 'tahsilat', 'payment', 'paid' ) ),
 				'status'      => array( __( 'Status', 'flx-donate' ), array( 'durum', 'status', 'asama' ) ),
 				'partner'     => array( FLXB_Track::label( 'partner' ), array( 'kesim yeri', 'dikim alani', 'dikim yeri', 'is ortagi', 'partner', 'kesimhane', 'uygulama yeri' ) ),
-				'source'      => array( __( '\\nBrought in by\\n', 'flx-donate' ), array( 'kurum', 'kaynak', 'sube', 'getiren', 'source' ) ),
-				'target'      => array( __( '\\nTarget date\\n', 'flx-donate' ), array( 'istenen tarih', 'hedef tarih', 'gerceklesmesi istenen', 'kesim tarihi', 'kesilmesi istenen', 'dikim tarihi', 'target' ) ),
+				'source'      => array( __( 'Brought in by', 'flx-donate' ), array( 'kurum', 'kaynak', 'sube', 'getiren', 'source' ) ),
+				'target'      => array( __( 'Target date', 'flx-donate' ), array( 'istenen tarih', 'hedef tarih', 'gerceklesmesi istenen', 'kesim tarihi', 'kesilmesi istenen', 'dikim tarihi', 'target' ) ),
 				'ref'         => array( __( 'Referral', 'flx-donate' ), array( 'referans', 'personel', 'takip eden', 'temsilci', 'referral' ) ),
 				'note'        => array( __( 'Note', 'flx-donate' ), array( 'not', 'aciklama', 'note' ) ),
 			)
@@ -261,7 +261,7 @@ final class FLXB_Import {
 		}
 		list( $sheet, $hrow, $map ) = self::detect( $sheets );
 		if ( '' === $sheet || count( $map ) < 2 ) {
-			return new WP_Error( 'flxb_import', __( '\\nThe header row was not recognised. The first row should name the columns, e.g. "Donor", "Phone", "Donation type", "Amount".\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_import', __( 'The header row was not recognised. The first row should name the columns, e.g. "Donor", "Phone", "Donation type", "Amount".', 'flx-donate' ) );
 		}
 		$types = FLXB_Types::all();
 		$d     = array(
@@ -518,32 +518,32 @@ final class FLXB_Import {
 				$r['currency'] = '';
 			}
 			if ( '' === $r['donor'] && '' === $r['name'] ) {
-				$r['errors'][] = __( '\\nNo donor or name\\n', 'flx-donate' );
+				$r['errors'][] = __( 'No donor or name', 'flx-donate' );
 			}
 			if ( ! $t ) {
-				$r['errors'][] = __( '\\nNo donation type\\n', 'flx-donate' );
+				$r['errors'][] = __( 'No donation type', 'flx-donate' );
 			}
 			if ( null !== $r['amount'] && $r['amount'] <= 0 ) {
-				$r['errors'][] = __( '\\nAmount is not a number\\n', 'flx-donate' );
+				$r['errors'][] = __( 'Amount is not a number', 'flx-donate' );
 			}
 			if ( $t && FLXB_Types::tracks_items( $t ) ) {
 				if ( in_array( $r['status'], array( 'sent', 'done', 'delivered' ), true ) && '0' === (string) $r['partner'] ) {
 					/* translators: %s: what a partner is called */
-					$r['warns'][] = sprintf( __( '\\nNo%s: opened as approved\\n', 'flx-donate' ), FLXB_Track::label( 'partner', $tid ) );
+					$r['warns'][] = sprintf( __( 'No%s: opened as approved', 'flx-donate' ), FLXB_Track::label( 'partner', $tid ) );
 					$r['status']  = 'approved';
 				}
 				if ( in_array( $r['status'], array( 'sent', 'done', 'delivered' ), true ) && ! $r['paid'] ) {
-					$r['warns'][] = __( '\\nNot paid: opened as approved\\n', 'flx-donate' );
+					$r['warns'][] = __( 'Not paid: opened as approved', 'flx-donate' );
 					$r['status']  = 'approved';
 				}
 			} elseif ( $t && 'pending' !== $r['status'] ) {
 				$r['status'] = 'pending'; // the type is not tracked: no steps
 			}
 			if ( '' === $r['target'] && '' !== self::cell( $imp, $row, 'target' ) ) {
-				$r['warns'][] = __( '\\nTarget date could not be read\\n', 'flx-donate' );
+				$r['warns'][] = __( 'Target date could not be read', 'flx-donate' );
 			}
 			if ( '' === $r['created'] && '' !== self::cell( $imp, $row, 'created' ) ) {
-				$r['warns'][] = __( '\\nDate could not be read\\n', 'flx-donate' );
+				$r['warns'][] = __( 'Date could not be read', 'flx-donate' );
 			}
 			if ( isset( $existing[ $r['key'] ] ) || isset( $seen[ $r['key'] ] ) ) {
 				$r['dup'] = true;
@@ -580,7 +580,7 @@ final class FLXB_Import {
 			foreach ( $a['groups'][ $f ] as $k => $g ) {
 				$to = $g['to'];
 				if ( 'new' === $to && '' !== $k ) {
-					$id = FLXB_Partners::save( array( 'name' => trim( $g['raw'] ), $flag => 1, 'is_service' => 'is_service' === $flag ? 1 : 0, 'note' => __( '\\nFrom an Excel import\\n', 'flx-donate' ) ) );
+					$id = FLXB_Partners::save( array( 'name' => trim( $g['raw'] ), $flag => 1, 'is_service' => 'is_service' === $flag ? 1 : 0, 'note' => __( 'From an Excel import', 'flx-donate' ) ) );
 					$to = is_wp_error( $id ) ? '0' : (string) $id;
 				}
 				$imp['res'][ $f ][ $k ] = $to;
@@ -686,14 +686,14 @@ final class FLXB_Import {
 			}
 			$path = array( 'approved' => array( 'approve' ), 'sent' => array( 'approve', 'assign' ), 'done' => array( 'approve', 'assign', 'done' ), 'delivered' => array( 'approve', 'assign', 'done', 'delivered' ), 'canceled' => array( 'cancel' ) );
 			foreach ( $path[ $r['status'] ] ?? array() as $step ) {
-				$o  = array( 'note' => __( '\\nExcel import\\n', 'flx-donate' ), 'force_paid' => $paid );
+				$o  = array( 'note' => __( 'Excel import', 'flx-donate' ), 'force_paid' => $paid );
 				if ( 'assign' === $step ) {
 					$o['place'] = 'pt:' . $place;
 				}
 				$st = FLXB_Track::apply( array( (int) $it['id'] ), $step, $o );
 				if ( empty( $st['done'] ) ) {
 					/* translators: %s: status */
-					return new WP_Error( 'flxb_import_status', sprintf( __( '\\nOpened, but the status "%s" could not be set\\n', 'flx-donate' ), FLXB_Track::statuses( (int) $it['type_id'] )[ $r['status'] ] ?? $r['status'] ) );
+					return new WP_Error( 'flxb_import_status', sprintf( __( 'Opened, but the status "%s" could not be set', 'flx-donate' ), FLXB_Track::statuses( (int) $it['type_id'] )[ $r['status'] ] ?? $r['status'] ) );
 				}
 			}
 		}
@@ -706,7 +706,7 @@ final class FLXB_Import {
 		global $wpdb;
 		$imp = self::get( $id );
 		if ( ! $imp || 'running' !== $imp['state'] ) {
-			return new WP_Error( 'flxb_import', __( '\\nThe import was not found or has finished.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_import', __( 'The import was not found or has finished.', 'flx-donate' ) );
 		}
 		if ( function_exists( 'set_time_limit' ) ) {
 			@set_time_limit( 60 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors

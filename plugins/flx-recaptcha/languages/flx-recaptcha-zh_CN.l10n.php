@@ -143,7 +143,7 @@ return array(
   'Automatic' => '自动',
   'google.com' => '谷歌网站',
   'recaptcha.net' => '验证码网',
-  '[[\'It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed \\u200b\\u200bis compatible with custom login address.\', \'tr\']]' => '[[\'它使用 Google reCAPTCHA(v3 隐形或 v2 磁贴)保护登录、注册、密码重置、评论、WooCommerce 帐户和付款、Flux 捐赠表单和 Flux 表单提交免受垃圾邮件和机器人攻击。从面板上打开和关闭要维护的表单; Flux Speed 与自定义登录地址兼容。\', \'tr\']]',
+  '[[\'It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed \\u200b\\u200bis compatible with custom login address.\', \'tr\']]' => '它使用 Google reCAPTCHA(v3 隐形或 v2 磁贴)保护登录、注册、密码重置、评论、WooCommerce 帐户和付款、Flux 捐赠表单和 Flux 表单提交免受垃圾邮件和机器人攻击。从面板上打开和关闭要维护的表单; Flux Speed 与自定义登录地址兼容。',
   'Ayarlar' => '设置',
   'Formları spam ve bot saldırılarına karşı korur' => '保护表单免受垃圾邮件和机器人攻击',
   'Önce site anahtarını yazın.' => '首先输入站点密钥。',
@@ -282,6 +282,8 @@ return array(
   'Kutucuk boyutu' => '复选框大小',
   'Kutucuk görünümü' => '复选框主题',
   'Otomatik' => '自动',
-  'Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur.' => '[[\'它使用 Google reCAPTCHA(v3 隐形或 v2 磁贴)保护登录、注册、密码重置、评论、WooCommerce 帐户和付款、Flux 捐赠表单和 Flux 表单提交免受垃圾邮件和机器人攻击。从面板上打开和关闭要维护的表单; Flux Speed 与自定义登录地址兼容。\', \'tr\']]',
+  'Google reCAPTCHA (v3 görünmez ya da v2 kutucuk) ile giriş, kayıt, şifre sıfırlama, yorum, WooCommerce hesap ve ödeme, Flux Donate bağış formu ve Flux Forms gönderimlerini spam ve bot saldırılarına karşı korur. Hangi formun korunacağı panelden açılıp kapanır; Flux Speed özel giriş adresiyle uyumludur.' => '它使用 Google reCAPTCHA(v3 隐形或 v2 磁贴)保护登录、注册、密码重置、评论、WooCommerce 帐户和付款、Flux 捐赠表单和 Flux 表单提交免受垃圾邮件和机器人攻击。从面板上打开和关闭要维护的表单; Flux Speed 与自定义登录地址兼容。',
+  'It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address.' => '它使用 Google reCAPTCHA(v3 隐形或 v2 磁贴)保护登录、注册、密码重置、评论、WooCommerce 帐户和付款、Flux 捐赠表单和 Flux 表单提交免受垃圾邮件和机器人攻击。从面板上打开和关闭要维护的表单; Flux Speed 与自定义登录地址兼容。',
+
  ),
 );

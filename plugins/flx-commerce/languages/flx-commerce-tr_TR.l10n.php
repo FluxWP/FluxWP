@@ -603,4 +603,6 @@ return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'Ödeme onaylansın mı?'=>'Ödeme onaylansın mı?',
 'İletişim'=>'İletişim',
 'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.'=>'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.',
+
+'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.' => 'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.',
 ));

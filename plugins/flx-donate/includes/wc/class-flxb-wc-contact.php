@@ -62,7 +62,7 @@ class FLXB_WC_Contact {
 	}
 
 	public static function message() {
-		return __( '\\nPlease write your e-mail or phone number (at least one).\\n', 'flx-donate' );
+		return __( 'Please write your e-mail or phone number (at least one).', 'flx-donate' );
 	}
 
 	/* ---------- Block checkout ---------- */
@@ -82,14 +82,14 @@ class FLXB_WC_Contact {
 				'domain'     => self::domain(),
 				'email'      => __( 'E-mail', 'flx-donate' ),
 				'phone'      => __( 'Phone', 'flx-donate' ),
-				'help'       => __( '\\nWrite at least one. We send your receipt and certificate there.\\n', 'flx-donate' ),
+				'help'       => __( 'Write at least one. We send your receipt and certificate there.', 'flx-donate' ),
 				'need'       => self::message(),
-				'badEmail'   => __( '\\nPlease enter a valid e-mail address.\\n', 'flx-donate' ),
-				'badPhone'   => __( '\\nPlease enter a valid phone number.\\n', 'flx-donate' ),
+				'badEmail'   => __( 'Please enter a valid e-mail address.', 'flx-donate' ),
+				'badPhone'   => __( 'Please enter a valid phone number.', 'flx-donate' ),
 				'phoneHolder' => '0532 123 45 67',
 				'support'    => FLXB_WC::support_html(),
 				'total'      => __( 'Total', 'flx-donate' ),
-				'pay'        => __( '\\nContinue to payment\\n', 'flx-donate' ),
+				'pay'        => __( 'Continue to payment', 'flx-donate' ),
 			)
 		);
 	}

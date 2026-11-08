@@ -62,31 +62,31 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 
 	public function settings_fields() {
 		return array(
-			array( 'key' => 'iyzicoApiKey', 'label' => __( 'API key', 'flx-donate' ), 'type' => 'text', 'help' => __( '\\niyzico merchant panel › Settings › Merchant settings. Sandbox keys start with "sandbox-".\\n', 'flx-donate' ) ),
+			array( 'key' => 'iyzicoApiKey', 'label' => __( 'API key', 'flx-donate' ), 'type' => 'text', 'help' => __( 'iyzico merchant panel › Settings › Merchant settings. Sandbox keys start with "sandbox-".', 'flx-donate' ) ),
 			array( 'key' => 'iyzicoSecretKey', 'label' => __( 'Secret key', 'flx-donate' ), 'type' => 'password' ),
-			array( 'key' => 'iyzicoSandbox', 'label' => __( '\\nSandbox (test) mode\\n', 'flx-donate' ), 'type' => 'checkbox', 'default' => '1', 'help' => __( '\\nUses sandbox-api.iyzipay.com; no real money is taken. Turn off with live keys.\\n', 'flx-donate' ) ),
+			array( 'key' => 'iyzicoSandbox', 'label' => __( 'Sandbox (test) mode', 'flx-donate' ), 'type' => 'checkbox', 'default' => '1', 'help' => __( 'Uses sandbox-api.iyzipay.com; no real money is taken. Turn off with live keys.', 'flx-donate' ) ),
 			array(
 				'key'     => 'iyzicoMode',
-				'label'   => __( '\\nPayment page\\n', 'flx-donate' ),
+				'label'   => __( 'Payment page', 'flx-donate' ),
 				'type'    => 'select',
 				'default' => 'popup',
 				'options' => array(
-					'popup'    => __( '\\nPopup window (recommended: the form stays open)\\n', 'flx-donate' ),
-					'redirect' => __( '\\nSame tab (redirect to iyzico and back)\\n', 'flx-donate' ),
+					'popup'    => __( 'Popup window (recommended: the form stays open)', 'flx-donate' ),
+					'redirect' => __( 'Same tab (redirect to iyzico and back)', 'flx-donate' ),
 				),
-				'help'    => __( '\\nWith "popup" the donor returns to the open form and the form is sent as usual. When the browser blocks the popup, the same tab is used.\\n', 'flx-donate' ),
+				'help'    => __( 'With "popup" the donor returns to the open form and the form is sent as usual. When the browser blocks the popup, the same tab is used.', 'flx-donate' ),
 			),
-			array( 'key' => 'iyzicoCurrencies', 'label' => __( '\\nOther currencies\\n', 'flx-donate' ), 'type' => 'text', 'help' => __( '\\nTRY is always accepted. Add others your iyzico account accepts, comma separated (e.g. USD,EUR).\\n', 'flx-donate' ) ),
+			array( 'key' => 'iyzicoCurrencies', 'label' => __( 'Other currencies', 'flx-donate' ), 'type' => 'text', 'help' => __( 'TRY is always accepted. Add others your iyzico account accepts, comma separated (e.g. USD,EUR).', 'flx-donate' ) ),
 			array(
 				'key'     => 'iyzicoNoCard',
-				'label'   => __( '\\nRecurring gift without a saved card\', \'en\']]', 'flx-donate' ),
+				'label'   => __( 'Recurring gift without a saved card', 'flx-donate' ),
 				'type'    => 'select',
 				'default' => 'keep',
 				'options' => array(
-					'keep'   => __( '\\nKeep the payment as a one-time donation\\n', 'flx-donate' ),
-					'cancel' => __( '\\nCancel the payment (like the iyzico Subscription plugin)\\n', 'flx-donate' ),
+					'keep'   => __( 'Keep the payment as a one-time donation', 'flx-donate' ),
+					'cancel' => __( 'Cancel the payment (like the iyzico Subscription plugin)', 'flx-donate' ),
 				),
-				'help'    => __( '\\nIf iyzico does not return a stored card for the first payment of a recurring gift, it cannot be charged again.\\n', 'flx-donate' ),
+				'help'    => __( 'If iyzico does not return a stored card for the first payment of a recurring gift, it cannot be charged again.', 'flx-donate' ),
 			),
 		);
 	}
@@ -98,10 +98,10 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		}
 		$c = FLXB_Iyzico_Api::credentials();
 		if ( 'woocommerce' === $c['source'] ) {
-			return __( '\\nRead from the iyzico WooCommerce plugin (WooCommerce › Settings › Payments › iyzico). Values here are used only when that plugin has no keys.\\n', 'flx-donate' );
+			return __( 'Read from the iyzico WooCommerce plugin (WooCommerce › Settings › Payments › iyzico). Values here are used only when that plugin has no keys.', 'flx-donate' );
 		}
 		if ( 'woocommerce-subscription' === $c['source'] ) {
-			return __( '\\nRead from the iyzico WooCommerce Subscription plugin. Values here are used only when it has no keys.\\n', 'flx-donate' );
+			return __( 'Read from the iyzico WooCommerce Subscription plugin. Values here are used only when it has no keys.', 'flx-donate' );
 		}
 		return '';
 	}
@@ -124,18 +124,18 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 						'flxfPayIyzico' => array(
 							'mode'      => $this->mode(),
 							'sandbox'   => (bool) FLXB_Iyzico_Api::credentials()['sandbox'],
-							'note'      => __( '\\nYou will enter your card on iyzico\'s secure payment page. It opens in a new window when you press Pay.\\n', 'flx-donate' ),
-							'noteTab'   => __( '\\nYou will enter your card on iyzico\'s secure payment page and then come back here.\\n', 'flx-donate' ),
-							'recurring' => __( '\\nFor a recurring donation, keep "Save my card" ticked on the iyzico page so the next payments can be taken automatically.\\n', 'flx-donate' ),
-							'sandboxNote' => __( '\\nTEST MODE (iyzico sandbox): no real money is taken.\\n', 'flx-donate' ),
-							'waiting'   => __( '\\nComplete the payment in the iyzico window...\\n', 'flx-donate' ),
-							'focus'     => __( '\\nShow the payment window\\n', 'flx-donate' ),
-							'loading'   => __( '\\nOpening the secure payment page...\\n', 'flx-donate' ),
-							'closed'    => __( '\\nThe payment was not completed. You can try again.\\n', 'flx-donate' ),
-							'done'      => __( '\\nThank you! Your donation has been received.\\n', 'flx-donate' ),
-							'code'      => __( '\\nConfirmation code\\n', 'flx-donate' ),
-							'again'     => __( '\\nMake another donation\\n', 'flx-donate' ),
-							'failed'    => __( '\\nThe payment could not be completed. Please try again or use another card.\\n', 'flx-donate' ),
+							'note'      => __( 'You will enter your card on iyzico\'s secure payment page. It opens in a new window when you press Pay.', 'flx-donate' ),
+							'noteTab'   => __( 'You will enter your card on iyzico\'s secure payment page and then come back here.', 'flx-donate' ),
+							'recurring' => __( 'For a recurring donation, keep "Save my card" ticked on the iyzico page so the next payments can be taken automatically.', 'flx-donate' ),
+							'sandboxNote' => __( 'TEST MODE (iyzico sandbox): no real money is taken.', 'flx-donate' ),
+							'waiting'   => __( 'Complete the payment in the iyzico window...', 'flx-donate' ),
+							'focus'     => __( 'Show the payment window', 'flx-donate' ),
+							'loading'   => __( 'Opening the secure payment page...', 'flx-donate' ),
+							'closed'    => __( 'The payment was not completed. You can try again.', 'flx-donate' ),
+							'done'      => __( 'Thank you! Your donation has been received.', 'flx-donate' ),
+							'code'      => __( 'Confirmation code', 'flx-donate' ),
+							'again'     => __( 'Make another donation', 'flx-donate' ),
+							'failed'    => __( 'The payment could not be completed. Please try again or use another card.', 'flx-donate' ),
 						),
 					),
 				),
@@ -154,12 +154,12 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 	public function create_payment( $amount, $currency, array $meta ) {
 		$api = FLXB_Iyzico_Api::make();
 		if ( ! $api ) {
-			return FLXB_Payment_Result::failed( __( '[[\'iyzico is not configured on this site. Please contact the site administrator.\\n', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( 'iyzico is not configured on this site. Please contact the site administrator.', 'flx-donate' ) );
 		}
 		$currency = strtoupper( (string) $currency );
 		$method   = (string) ( $meta['method'] ?? 'charge' );
 		if ( ! $this->supports( $currency, $method ) ) {
-			return FLXB_Payment_Result::failed( __( '[[\'The currency of this form is not supported.\\n', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( 'The currency of this form is not supported.', 'flx-donate' ) );
 		}
 		$is_sub  = 'charge' !== $method;
 		$ref     = (string) ( $meta['reference'] ?? '' );
@@ -189,7 +189,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		}
 		if ( ! FLXB_Iyzico_Api::ok( $r ) || empty( $r['token'] ) || empty( $r['paymentPageUrl'] ) ) {
 			$err = FLXB_Iyzico_Api::error_text( $r );
-			return FLXB_Payment_Result::failed( '' !== $err ? 'iyzico: ' . $err : __( '\\nThe payment could not be started. Please try again.\\n', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( '' !== $err ? 'iyzico: ' . $err : __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
 		}
 		$token  = sanitize_text_field( (string) $r['token'] );
 		$record = array(
@@ -245,14 +245,14 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 	public function finalize( $row, $source = 'callback' ) {
 		$out = array( 'ok' => false, 'final' => false, 'message' => '', 'notice' => '' );
 		if ( ! is_object( $row ) || 'iyzico' !== $row->gateway ) {
-			$out['message'] = __( '\\nPayment not found.\\n', 'flx-donate' );
+			$out['message'] = __( 'Payment not found.', 'flx-donate' );
 			return $out;
 		}
 		if ( self::is_paid_row( $row ) ) {
 			return array_merge( $out, array( 'ok' => true, 'final' => true, 'notice' => (string) ( self::row_meta( $row )['notice'] ?? '' ) ) );
 		}
 		if ( 'pending' !== $row->status ) {
-			return array_merge( $out, array( 'final' => true, 'message' => (string) ( self::row_meta( $row )['error'] ?? __( '\\nThe payment could not be completed. Please try again or use another card.\\n', 'flx-donate' ) ) ) );
+			return array_merge( $out, array( 'final' => true, 'message' => (string) ( self::row_meta( $row )['error'] ?? __( 'The payment could not be completed. Please try again or use another card.', 'flx-donate' ) ) ) );
 		}
 		/* One request at a time per payment (iyzico posts the callback; the browser confirms). */
 		$lock = 'flxb_iyz_lock_' . (int) $row->id;
@@ -265,7 +265,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 						return $this->finalize( $again, $source );
 					}
 				}
-				$out['message'] = __( '\\nThe payment could not be verified yet.\\n', 'flx-donate' );
+				$out['message'] = __( 'The payment could not be verified yet.', 'flx-donate' );
 				return $out;
 			}
 			update_option( $lock, time(), false );
@@ -282,7 +282,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		$api = FLXB_Iyzico_Api::make();
 		$m   = self::row_meta( $row );
 		if ( ! $api ) {
-			$out['message'] = __( '[[\'iyzico is not configured on this site. Please contact the site administrator.\\n', 'flx-donate' );
+			$out['message'] = __( 'iyzico is not configured on this site. Please contact the site administrator.', 'flx-donate' );
 			return $out;
 		}
 		try {
@@ -300,10 +300,10 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		if ( ! FLXB_Iyzico_Api::ok( $r ) || 'SUCCESS' !== $status ) {
 			if ( 'FAILURE' === $status || ( FLXB_Iyzico_Api::ok( $r ) && '' !== $status ) ) {
 				$err = FLXB_Iyzico_Api::error_text( $r );
-				return $fail( 'failed', '' !== $err ? $err : __( '\\nThe payment could not be completed. Please try again or use another card.\\n', 'flx-donate' ) );
+				return $fail( 'failed', '' !== $err ? $err : __( 'The payment could not be completed. Please try again or use another card.', 'flx-donate' ) );
 			}
 			/* Not paid (yet): the donor has not finished, or iyzico could not answer. */
-			$out['message'] = __( '\\nThe payment could not be verified yet.\\n', 'flx-donate' );
+			$out['message'] = __( 'The payment could not be verified yet.', 'flx-donate' );
 			return $out;
 		}
 		/* Paid at iyzico: count it only for this payment and for the stored server amount. */
@@ -318,7 +318,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 			&& -1 !== (int) ( $r['fraudStatus'] ?? 1 );
 		$iyz = FLXB_Iyzico_Api::payment_info( $r );
 		if ( ! $match ) {
-			return $fail( 'mismatch', __( '\\nThe payment could not be verified. Please contact the site administrator.\\n', 'flx-donate' ), array( 'iyzico' => $iyz ) );
+			return $fail( 'mismatch', __( 'The payment could not be verified. Please contact the site administrator.', 'flx-donate' ), array( 'iyzico' => $iyz ) );
 		}
 		$upd    = array( 'status' => 'completed', 'capture_id' => $iyz['paymentId'] );
 		$is_sub = 'subscription' === $row->payment_type;
@@ -333,9 +333,9 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 				} catch ( FLXB_Iyzico_Error $e ) {
 					$c = null;
 				}
-				$msg = __( '\\nYour card could not be saved for the recurring donation, so the payment was canceled and no money was taken. Please try again and keep "Save my card" ticked.\\n', 'flx-donate' );
+				$msg = __( 'Your card could not be saved for the recurring donation, so the payment was canceled and no money was taken. Please try again and keep "Save my card" ticked.', 'flx-donate' );
 				if ( ! FLXB_Iyzico_Api::ok( $c ) ) {
-					$msg = __( '\\nYour card could not be saved for the recurring donation. Please contact us; the payment will be refunded.\\n', 'flx-donate' );
+					$msg = __( 'Your card could not be saved for the recurring donation. Please contact us; the payment will be refunded.', 'flx-donate' );
 					$m['cancel_failed'] = FLXB_Iyzico_Api::error_text( $c );
 				}
 				return $fail( 'canceled', $msg, array( 'iyzico' => $iyz ) );
@@ -345,7 +345,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 				$upd['subscription_id'] = '';
 				$upd['interval_unit']   = '';
 				$m['recurring_not_saved'] = true;
-				$m['notice'] = __( '\\nYour donation was received, but your card was not saved, so it will not repeat automatically.\\n', 'flx-donate' );
+				$m['notice'] = __( 'Your donation was received, but your card was not saved, so it will not repeat automatically.', 'flx-donate' );
 			}
 		}
 		unset( $m['error'] );
@@ -370,7 +370,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 	}
 
 	public function verify( $record, array $params = array() ) {
-		$no = FLXB_Payment_Result::failed( __( '\\nThe payment could not be verified yet.\\n', 'flx-donate' ) );
+		$no = FLXB_Payment_Result::failed( __( 'The payment could not be verified yet.', 'flx-donate' ) );
 		if ( ! is_object( $record ) || 'iyzico' !== $record->gateway ) {
 			return $no;
 		}
@@ -379,10 +379,10 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		}
 		if ( 'pending' !== $record->status ) {
 			$m = self::row_meta( $record );
-			return FLXB_Payment_Result::failed( (string) ( $m['error'] ?? __( '\\nThe payment could not be completed. Please try again or use another card.\\n', 'flx-donate' ) ) );
+			return FLXB_Payment_Result::failed( (string) ( $m['error'] ?? __( 'The payment could not be completed. Please try again or use another card.', 'flx-donate' ) ) );
 		}
 		$res = $this->finalize( $record );
-		return $res['ok'] ? FLXB_Payment_Result::completed( (string) $record->transaction_id ) : FLXB_Payment_Result::failed( '' !== $res['message'] ? $res['message'] : __( '\\nThe payment could not be verified yet.\\n', 'flx-donate' ) );
+		return $res['ok'] ? FLXB_Payment_Result::completed( (string) $record->transaction_id ) : FLXB_Payment_Result::failed( '' !== $res['message'] ? $res['message'] : __( 'The payment could not be verified yet.', 'flx-donate' ) );
 	}
 
 	/**
@@ -416,10 +416,10 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		$row   = '' !== $token ? FLXB_Payment_Records::get_by_reference( 'iyzico', $token ) : null;
 		$p     = flxf_payment_provider( 'iyzico' );
 		if ( ! $row || ! $p instanceof self ) {
-			return self::html( self::page( false, __( '\\nPayment not found.\\n', 'flx-donate' ), home_url( '/' ), '', '' ) );
+			return self::html( self::page( false, __( 'Payment not found.', 'flx-donate' ), home_url( '/' ), '', '' ) );
 		}
 		if ( FLXB_Payments_Rest::rate_limited( 'iyzico_callback', 60 ) ) {
-			return self::html( self::page( false, __( '\\nToo many requests. Please wait a moment and try again.\\n', 'flx-donate' ), home_url( '/' ), '', '' ), 429 );
+			return self::html( self::page( false, __( 'Too many requests. Please wait a moment and try again.', 'flx-donate' ), home_url( '/' ), '', '' ), 429 );
 		}
 		$res = $p->finalize( $row );
 		if ( ! $res['ok'] && ! $res['final'] ) {
@@ -427,7 +427,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 			sleep( 1 );
 			$res = $p->finalize( FLXB_Payment_Records::get( (int) $row->id ) );
 		}
-		$msg = $res['ok'] ? ( '' !== $res['notice'] ? $res['notice'] : __( '\\nThank you! Your donation has been received.\\n', 'flx-donate' ) ) : ( '' !== $res['message'] ? $res['message'] : __( '\\nThe payment could not be completed. Please try again or use another card.\\n', 'flx-donate' ) );
+		$msg = $res['ok'] ? ( '' !== $res['notice'] ? $res['notice'] : __( 'Thank you! Your donation has been received.', 'flx-donate' ) ) : ( '' !== $res['message'] ? $res['message'] : __( 'The payment could not be completed. Please try again or use another card.', 'flx-donate' ) );
 		return self::html( self::page( $res['ok'], $msg, self::return_url( $row, $res['ok'] ), (string) $row->track, $res['ok'] ? '' : $msg, $res['ok'] ? $res['notice'] : '' ) );
 	}
 
@@ -452,11 +452,11 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		$origin  = ( $h['scheme'] ?? 'https' ) . '://' . ( $h['host'] ?? '' ) . ( isset( $h['port'] ) ? ':' . (int) $h['port'] : '' );
 		$body    = '<p class="m">' . esc_html( $message ) . '</p>';
 		if ( $ok && '' !== $track ) {
-			$body .= '<p class="c">' . esc_html__( '\\nConfirmation code\\n', 'flx-donate' ) . ': <b>' . esc_html( $track ) . '</b></p>';
+			$body .= '<p class="c">' . esc_html__( 'Confirmation code', 'flx-donate' ) . ': <b>' . esc_html( $track ) . '</b></p>';
 		}
-		$body  .= '<p><a class="b" href="' . esc_url( $back ) . '">' . esc_html__( '\\nBack to the form\\n', 'flx-donate' ) . '</a></p>';
+		$body  .= '<p><a class="b" href="' . esc_url( $back ) . '">' . esc_html__( 'Back to the form', 'flx-donate' ) . '</a></p>';
 		$script = '(function(){var d=' . wp_json_encode( $payload ) . ',b=' . wp_json_encode( esc_url_raw( $back ) ) . ',o=null;try{o=window.opener&&!window.opener.closed?window.opener:null;if(o){o.postMessage(d,' . wp_json_encode( $origin ) . ');}}catch(e){o=null;}if(o){setTimeout(function(){window.close();},1500);}else{setTimeout(function(){location.replace(b);},' . ( $ok ? 1200 : 2500 ) . ');}})();';
-		return FLXB_Iyzico_Recurring::page_html( $ok ? __( 'Payment received', 'flx-donate' ) : __( '\\nPayment not completed\\n', 'flx-donate' ), $body, $ok, $script );
+		return FLXB_Iyzico_Recurring::page_html( $ok ? __( 'Payment received', 'flx-donate' ) : __( 'Payment not completed', 'flx-donate' ), $body, $ok, $script );
 	}
 
 	/* ------------------------------------------------------------------
@@ -479,7 +479,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 	public function money( $op, $record, $donation = null, $amount = null ) {
 		$api = FLXB_Iyzico_Api::make();
 		if ( ! $api ) {
-			return FLXB_Payment_Result::failed( __( '\\niyzico is not configured on this site.\', \'en\']]', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( 'iyzico is not configured on this site.', 'flx-donate' ) );
 		}
 		if ( ! $donation && is_object( $record ) && (int) $record->id ) {
 			global $wpdb;
@@ -494,7 +494,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		/* A renewal's own payment lives in the donation; a first payment in both. */
 		$iyz = ! empty( $dmeta['iyzico']['paymentId'] ) ? $dmeta['iyzico'] : ( $rmeta['iyzico'] ?? array() );
 		if ( empty( $iyz['paymentId'] ) ) {
-			return FLXB_Payment_Result::failed( __( '\\nThis payment cannot be refunded from the site.\\n', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( 'This payment cannot be refunded from the site.', 'flx-donate' ) );
 		}
 		if ( $record && $donation && ! empty( $dmeta['renewal'] ) ) {
 			$record = null; // the pay row belongs to the first payment
@@ -538,10 +538,10 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 		}
 		$want = null === $amount ? $left : FLXB_Iyzico_Api::minor( $amount );
 		if ( $left <= 0 ) {
-			return FLXB_Payment_Result::failed( __( '\\nThis payment has already been refunded.\\n', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( 'This payment has already been refunded.', 'flx-donate' ) );
 		}
 		if ( $want <= 0 || $want > $left ) {
-			return FLXB_Payment_Result::failed( sprintf( /* translators: %s: amount */ __( '\\nEnter an amount up to%s.\\n', 'flx-donate' ), flxb_money( $left / 100, $currency ) ) );
+			return FLXB_Payment_Result::failed( sprintf( /* translators: %s: amount */ __( 'Enter an amount up to%s.', 'flx-donate' ), flxb_money( $left / 100, $currency ) ) );
 		}
 		$done  = 0;
 		$error = '';
@@ -572,7 +572,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 			}
 		}
 		if ( '' !== $error ) {
-			return FLXB_Payment_Result::failed( $done > 0 ? sprintf( /* translators: 1: refunded amount, 2: error */ __( '\\n%1$swas refunded, then iyzico stopped:%2$s\\n', 'flx-donate' ), flxb_money( $done / 100, $currency ), $error ) : $error );
+			return FLXB_Payment_Result::failed( $done > 0 ? sprintf( /* translators: 1: refunded amount, 2: error */ __( '%1$swas refunded, then iyzico stopped:%2$s', 'flx-donate' ), flxb_money( $done / 100, $currency ), $error ) : $error );
 		}
 		return FLXB_Payment_Result::completed( $iyz['paymentId'], array( 'record' => array( 'status' => $done >= $left ? 'refunded' : 'partially_refunded', 'meta' => array( 'amount' => round( $done / 100, 2 ) ) ) ) );
 	}
@@ -581,7 +581,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 	public function cancel_subscription( $subscription_id ) {
 		$s = FLXB_Subscriptions::get_by_ref( 'iyzico', (string) $subscription_id );
 		if ( ! $s ) {
-			return FLXB_Payment_Result::failed( __( '\\nRecurring donation not found.\\n', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( 'Recurring donation not found.', 'flx-donate' ) );
 		}
 		FLXB_Iyzico_Recurring::cancel( (int) $s['id'], 'admin' );
 		return FLXB_Payment_Result::completed( (string) $subscription_id );

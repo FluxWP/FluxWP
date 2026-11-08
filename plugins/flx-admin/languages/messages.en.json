@@ -386,10 +386,14 @@
     "Update FluxWP themes and plugins from the update server": "Update FluxWP themes and plugins from the update server",
     "Theme settings and presets": "Theme settings and presets",
     "Setup wizard, presets and FluxWP package updates": "Setup wizard, presets and FluxWP package updates",
-    "\\nOkunmamış WhatsApp\\n": "\\nOkunmamış WhatsApp\\n",
-    "[['%sdonate', 'tr']]\u0000[['%sdonate', 'tr']]": "[['%sdonate', 'tr']]\u0000[['%sdonate', 'tr']]",
-    "[['%seven', 'sw']]\u0000[['%seven', 'sw']]": "[['%seven', 'sw']]\u0000[['%seven', 'sw']]",
-    "[['%swarning', 'tr']]\u0000[['%swarning', 'tr']]": "[['%swarning', 'tr']]\u0000[['%swarning', 'tr']]",
-    "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]\u0000[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]": "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]\u0000[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]"
+    "%s donation\u0000%s donations": "%s donation\u0000%s donations",
+    "%s error\u0000%s errors": "%s error\u0000%s errors",
+    "%s warning\u0000%s warnings": "%s warning\u0000%s warnings",
+    "%s role has a custom menu layout; other roles use the default grouped menu.\u0000%s roles have custom menu layouts; other roles use the default grouped menu.": "%s role has a custom menu layout; other roles use the default grouped menu.\u0000%s roles have custom menu layouts; other roles use the default grouped menu.",
+    "Okunmamış WhatsApp": "Okunmamış WhatsApp",
+    "%sdonate\u0000%sdonate": "%sdonate\u0000%sdonate",
+    "%seven\u0000%seven": "%seven\u0000%seven",
+    "%swarning\u0000%swarning": "%swarning\u0000%swarning",
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu."
   }
 }

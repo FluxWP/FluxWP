@@ -915,7 +915,7 @@ return array(
   'New meeting' => 'Nouvelle réunion',
   'New task' => 'Nouvelle tâche',
   'Create and open' => 'Créer et ouvrir',
-  '[[\'ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.\', \'tr\']]' => '[[Suivi des tâches de type ClickUp : projets, dossiers, listes ; vues de liste, de tableau (kanban) et de calendrier, vues filtrées enregistrées, champs personnalisés, commentaires et pièces jointes, notifications, autorisations de liste, tableau de bord d\'administration, serveur MCP et intelligence artificielle avec OpenRouter.\', \'tr\']]',
+  '[[\'ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.\', \'tr\']]' => '[[Suivi des tâches de type ClickUp : projets, dossiers, listes ; vues de liste, de tableau (kanban) et de calendrier, vues filtrées enregistrées, champs personnalisés, commentaires et pièces jointes, notifications, autorisations de liste, tableau de bord d\'administration, serveur MCP et intelligence artificielle avec OpenRouter.',
   'Görevler' => 'Tâches',
   'Kullanım panosu' => 'Tableau de bord d\'utilisation',
   'Görev Ayarları' => 'Paramètres de tâche',
@@ -1832,6 +1832,8 @@ return array(
   'Yeni toplantı' => 'Nouvelle réunion',
   'Yeni görev' => 'Nouvelle tâche',
   'Oluştur ve aç' => 'Créer et ouvrir',
-  'ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu, MCP sunucusu ve OpenRouter ile yapay zekâ.' => '[[Suivi des tâches de type ClickUp : projets, dossiers, listes ; vues de liste, de tableau (kanban) et de calendrier, vues filtrées enregistrées, champs personnalisés, commentaires et pièces jointes, notifications, autorisations de liste, tableau de bord d\'administration, serveur MCP et intelligence artificielle avec OpenRouter.\', \'tr\']]',
+  'ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu, MCP sunucusu ve OpenRouter ile yapay zekâ.' => '[[Suivi des tâches de type ClickUp : projets, dossiers, listes ; vues de liste, de tableau (kanban) et de calendrier, vues filtrées enregistrées, champs personnalisés, commentaires et pièces jointes, notifications, autorisations de liste, tableau de bord d\'administration, serveur MCP et intelligence artificielle avec OpenRouter.',
+  'ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.' => '[[Suivi des tâches de type ClickUp : projets, dossiers, listes ; vues de liste, de tableau (kanban) et de calendrier, vues filtrées enregistrées, champs personnalisés, commentaires et pièces jointes, notifications, autorisations de liste, tableau de bord d\'administration, serveur MCP et intelligence artificielle avec OpenRouter.',
+
  ),
 );

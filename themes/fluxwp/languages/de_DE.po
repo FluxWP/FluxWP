@@ -1426,14 +1426,8 @@ msgstr "Handverlesene Liste. „Zurück zur Automatik“ kehrt zum iyzico-Band u
 msgid "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer."
 msgstr "SVG oder transparentes PNG ist am besten; Farbige Logos werden in einem weißen Feld auf einer dunklen Fußzeile angezeigt."
 
-msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
-msgstr "\\n%s. Hostinger › PHP-Version 8.2 ist in der letzten Sekunde verfügbar.\\n"
-
 msgid "Background pattern"
 msgstr "Hintergrundmuster"
-
-msgid "\\nDots\\n"
-msgstr "\\nPunkte\\n"
 
 msgid "Leaves"
 msgstr "Blätter"
@@ -1446,3 +1440,9 @@ msgstr "Einführung in die Neuigkeiten"
 
 msgid "Latest news, updates and articles."
 msgstr "Aktuelle Nachrichten, Updates und Artikel."
+
+msgid "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
+msgstr "%s. Hostinger › PHP-Version 8.2 ist in der letzten Sekunde verfügbar."
+
+msgid "Dots"
+msgstr "Punkte"

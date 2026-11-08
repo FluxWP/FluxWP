@@ -529,5 +529,5 @@ msgstr "aç"
 msgid "close"
 msgstr "kapat"
 
-msgid "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"
+msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
 msgstr "Sitede /wiki altında geliştirici wiki'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude'da aç. Flux AI ile \"Wiki'ye sor\" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir."

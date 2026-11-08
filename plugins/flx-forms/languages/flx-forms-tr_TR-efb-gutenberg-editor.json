@@ -14,8 +14,8 @@
         "Alanlar"
       ],
       "Form": [
-        "Form",
-        "Forms"
+        "formu",
+        "Formlar"
       ],
       "Form submissions appear here.": [
         "Form gönderimleri burada görünür."
@@ -5309,8 +5309,8 @@
         "%d runs failed in the last 7 days; see the run log."
       ],
       "\\nKeys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA.\\n": [
-        "\\nKeys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA.\\n",
-        "\\nKeys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA.\\n"
+        "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA.",
+        "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
       ],
       "[['%dform has reCAPTCHA on but the site key or secret key is missing; the form is not shown.', 'en']]": [
         "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown.",
@@ -11648,8 +11648,8 @@
         "Bu formda doldurulabilir alan bulunamadı"
       ],
       "field": [
-        "field",
-        "fields"
+        "alan",
+        "alanlar"
       ],
       "API Field Name": [
         "API Alan Adı"
@@ -13620,8 +13620,8 @@
         "Flux Donate etkin değil; Flux Forms ödemeleri kendisi %s ile alıyor."
       ],
       "Flux Donate is not active and the Stripe keys are missing: %d payment form shows \"Online payment is unavailable\".": [
-        "Flux Donate is not active and the Stripe keys are missing: %d payment form shows \"Online payment is unavailable\".",
-        "Flux Donate is not active and the Stripe keys are missing: %d payment forms show \"Online payment is unavailable\"."
+        "Flux Donate aktif değil ve Stripe anahtarları eksik:%dödeme formunda \"Çevrimiçi ödeme kullanılamıyor\" ifadesi görünüyor.",
+        "Flux Donate aktif değil ve Stripe anahtarları eksik:%dödeme formlarında \"Çevrimiçi ödeme kullanılamıyor\" ifadesi görünüyor."
       ],
       "Flux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected.": [
         "Flux Donate etkin değil ve Stripe anahtarı girilmemiş. Ödeme formu olmadığı için bir şey etkilenmiyor."
@@ -13642,8 +13642,8 @@
         "Sürüm %1$s etkin; sertifika otomasyonları %2$s veya üstünü istiyor."
       ],
       "Not active, but %d active automation creates or sends certificates; it will fail.": [
-        "Not active, but %d active automation creates or sends certificates; it will fail.",
-        "Not active, but %d active automations create or send certificates; they will fail."
+        "Etkin değil ancak%detkin otomasyon, sertifikaları oluşturur veya gönderir; başarısız olacak.",
+        "Etkin değil ancak%detkin otomasyonlar sertifikaları oluşturur veya gönderir; başarısız olacaklar."
       ],
       "Not active. Needed only for certificate automations.": [
         "Etkin değil. Yalnızca sertifika otomasyonları için gerekli."
@@ -13655,19 +13655,20 @@
         "Açık otomasyon yok. Form veya ödemeden sonra otomatik hiçbir şey çalışmaz (sertifika, e-posta, webhook)."
       ],
       "%d automation is on.": [
-        "%d automation is on.",
-        "%d automations are on."
+        "%dotomasyonu açık.",
+        "%dotomasyonları açık."
       ],
       "%d run failed in the last 7 days; see the run log.": [
-        "%d run failed in the last 7 days; see the run log.",
-        "%d runs failed in the last 7 days; see the run log."
+        "%dçalıştırması son 7 günde başarısız oldu; çalıştırma günlüğüne bakın.",
+        "%dçalıştırmaları son 7 günde başarısız oldu; çalıştırma günlüğüne bakın."
       ],
       "Keys are set; %d form uses reCAPTCHA.": [
-        "\\nAnahtarlar ayarlandı; %d formu reCAPTCHA'yı kullanıyor. %d formda reCAPTCHA kullanılıyor.\\n"
+        "Anahtarlar ayarlandı;%dformu reCAPTCHA'yı kullanır.",
+        "Anahtarlar ayarlandı;%dformları reCAPTCHA'yı kullanır."
       ],
       "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown.": [
-        "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown.",
-        "%d forms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
+        "%dformunda reCAPTCHA açık ancak site anahtarı veya gizli anahtar eksik; form gösterilmiyor.",
+        "%dformlarında reCAPTCHA var ancak site anahtarı veya gizli anahtar eksik; gösterilmiyorlar."
       ],
       "Uploads folder": [
         "Yüklemeler klasörü"
@@ -15305,8 +15306,8 @@
         "Aktif Bağlantılar"
       ],
       "%d service account connected": [
-        "%d service account connected",
-        "%d service accounts connected"
+        "%dhizmet hesabı bağlandı",
+        "%dhizmet hesapları bağlandı"
       ],
       "No service account connected yet": [
         "Henüz bağlı hizmet hesabı yok"
@@ -15609,8 +15610,8 @@
         "Bu alanı dahil et"
       ],
       "%d column will be written to the sheet.": [
-        "%d column will be written to the sheet.",
-        "%d columns will be written to the sheet."
+        "Sayfaya%dsütunu yazılacaktır.",
+        "%dsütunları sayfaya yazılacaktır."
       ],
       "Sheet Style": [
         "Tablo Stili"
@@ -15679,8 +15680,8 @@
         "Senkronizasyon kaldırıldı — Google Tablonuza ve verilerine dokunulmadı."
       ],
       "Remove ALL %d binding? Syncing stops for every form. Your Google Sheets are not deleted.": [
-        "Remove ALL %d binding? Syncing stops for every form. Your Google Sheets are not deleted.",
-        "Remove ALL %d bindings? Syncing stops for every form. Your Google Sheets are not deleted."
+        "TÜM%dbağlaması kaldırılsın mı? Her form için senkronizasyon durakları. Google E-Tablolarınız silinmez.",
+        "TÜM%dbağlamaları kaldırılsın mı? Her form için senkronizasyon durakları. Google E-Tablolarınız silinmez."
       ],
       "All bindings removed. Your Google Sheets are untouched.": [
         "Tüm bağlantılar kaldırıldı. Google Tablolarınıza dokunulmadı."
@@ -16820,8 +16821,8 @@
         "Otomatik Flux Forms e-posta teslimat testi başarıyla tamamlandı."
       ],
       "You can attach up to %1$d file here. Please wait about %2$d minutes before trying again.": [
-        "You can attach up to %1$d file here. Please wait about %2$d minutes before trying again.",
-        "You can attach up to %1$d files here. Please wait about %2$d minutes before trying again."
+        "Buraya en fazla%1$ddosyasını ekleyebilirsiniz. Tekrar denemeden önce lütfen%2$ddakika kadar bekleyin.",
+        "Buraya en fazla%1$ddosyası ekleyebilirsiniz. Tekrar denemeden önce lütfen%2$ddakika kadar bekleyin."
       ],
       "This file is too large. The maximum size for this field is %s.": [
         "Bu dosya çok büyük. Bu alan için izin verilen en büyük boyut %s."
@@ -17071,6 +17072,741 @@
       ],
       "Stripe API error (HTTP %d).": [
         "Stripe API error (HTTP %d)."
+      ],
+      "Cannot install addons:%s": [
+        "Eklentiler yüklenemiyor: %s"
+      ],
+      "%scomplete": [
+        "%s tamamlandı"
+      ],
+      "Help us speak your language! Translate Flux Forms on the%1$sWordPress.org translation portal%2$sand make it accessible to your community.": [
+        "Dilinizi konuşmamıza yardım edin! Flux Forms'u %1$sWordPress.org çeviri portalında%2$s çevirin ve topluluğunuz için erişilebilir kılın."
+      ],
+      "Type your reply...": [
+        "Yanıtınızı yazın&hellip;"
+      ],
+      "%swidth": [
+        "%s genişliği"
+      ],
+      "%sLabel Position": [
+        "%s Etiket Konumu"
+      ],
+      "%sLabel size": [
+        "%s Etiket boyutu"
+      ],
+      "%sLabel | Align": [
+        "%s Etiket | Hizalama"
+      ],
+      "%sDescription | Align": [
+        "%s Açıklama | Hizalama"
+      ],
+      "%sButtons | Align": [
+        "%s Düğmeler | Hizalama"
+      ],
+      "%sChecked Color": [
+        "%s Seçili Rengi"
+      ],
+      "Switch%s": [
+        "Anahtar %s"
+      ],
+      "%scolor": [
+        "%s rengi"
+      ],
+      "height": [
+        "Yükseklik"
+      ],
+      "KeepPro": [
+        "Pro'yu koru"
+      ],
+      "Checking email delivery...": [
+        "E-posta teslimi kontrol ediliyor…"
+      ],
+      "A test email was sent. Waiting for delivery confirmation...": [
+        "Test e-postası gönderildi. Teslim onayı bekleniyor…"
+      ],
+      "Your test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again.": [
+        "Test e-postanız teslim edildi ancak teslim edilebilirlik puanı 100 üzerinden yalnızca %1$s (%2$s altında). Formlarınızın gönderdiği e-postalar büyük olasılıkla spam olarak filtrelenecektir. SMTP'yi kurun ve kontrolü yeniden çalıştırın."
+      ],
+      "Custom%sMessage": [
+        "Özel %s Mesajı"
+      ],
+      "Leave empty to use default%s": [
+        "Varsayılan %s kullanmak için boş bırakın"
+      ],
+      "If your language translation is not available yet, translate it and get a%3$slifetime discount! Contribute via the%1$sWordPress.org translation portal%2$s.": [
+        "Dil çevirisi henüz mevcut değilse, çevirin ve %3$s ömür boyu indirim kazanın! %1$sWordPress.org çeviri portalı%2$s üzerinden katkıda bulunun."
+      ],
+      "Adds your form activity totals – forms, views and submissions – to the weekly email your site sends the main administrator. These totals are read on your own site and are never sent to WhiteStudio.": [
+        "Form etkinliği toplamlarınızı &ndash; formlar, görüntülemeler ve gönderimler &ndash; sitenizin ana yöneticiye gönderdiği haftalık e-postaya ekler. Bu toplamlar kendi sitenizde okunur ve asla WhiteStudio'ya gönderilmez."
+      ],
+      "Upgrade to Pro for just%1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s": [
+        "Yılda yalnızca %1$s%2$s%3$s karşılığında Pro'ya yükseltin ve gelişmiş form alanları, ödeme entegrasyonları, koşullu mantık, çok adımlı formlar, dosya yükleme, Güvenlik ve Spam Koruması ile öncelikli destek dahil güçlü özelliklere erişin.%4$sPro Özelliklerini Görüntüle%5$s"
+      ],
+      "You can create up to%1$s%2$son your current plan. Upgrade to Pro for unlimited access.": [
+        "Mevcut planınızda en fazla %1$s %2$s oluşturabilirsiniz. Sınırsız erişim için Pro'ya yükseltin."
+      ],
+      "A value is written to this field while another rule hides or disables it — hidden and disabled fields are not saved with the entry.": [
+        "Bu alana bir değer yazılıyor, başka bir kural ise onu gizliyor veya devre dışı bırakıyor &mdash; gizli ve devre dışı alanlar yanıtla birlikte kaydedilmez."
+      ],
+      "Message...": [
+        "Mesaj&hellip;"
+      ],
+      "hide": [
+        "Gizle"
+      ],
+      "Uploading recording...": [
+        "Kayıt yükleniyor…"
+      ],
+      "Your hosting accepts uploads up to%sMB.": [
+        "Barındırmanız en fazla %s MB'a kadar yüklemeyi kabul ediyor."
+      ],
+      "This is larger than the hosting upload limit (%sMB); uploads will fail.": [
+        "Bu, barındırma yükleme sınırından (%s MB) büyük; yüklemeler başarısız olur."
+      ],
+      "%sFailures": [
+        "%s Hata"
+      ],
+      "%sError Log": [
+        "%s Hata Günlüğü"
+      ],
+      "%sDetails": [
+        "%s Ayrıntıları"
+      ],
+      "The confirmation code for this message is%s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply.": [
+        "Bu mesajın onay kodu %s. Aşağıdaki düğmeye tıklayarak mesajları takip edebilir ve alınan yanıtları görüntüleyebilirsiniz. Gerekirse yeni bir yanıt da gönderebilirsiniz."
+      ],
+      "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s.": [
+        "E-posta yapılandırmaları, form oluşturma seçenekleri ve diğer özellikler dahil Flux Forms'un tüm işlevlerini ve ayarlarını keşfetmek için %1$s dokümantasyonumuza %2$s göz atmanız yeterli."
+      ],
+      "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings%1$sLearn how to fix email delivery issues%2$sor%3$scontact Flux Forms support%4$s.": [
+        "Test e-postaları spam klasörünüze düşebilir. E-postalar iletilmiyorsa bu genellikle barındırma veya e-posta sunucusu yapılandırmanızla ilgilidir. sunucu ayarları %1$sE-posta teslim sorunlarını nasıl çözeceğinizi öğrenin%2$s veya %3$sYT Form desteğiyle iletişime geçin%4$s."
+      ],
+      "I have read and agree to%1$sthe terms and conditions%2$s": [
+        "%1$sŞartlar ve koşulları%2$s okudum ve kabul ediyorum"
+      ],
+      "Valid formats:%s": [
+        "Geçerli biçimler: %s"
+      ],
+      "The%1$spages are currently unavailable. It looks like another plugin is causing a conflict with%1$s. To fix this issue,%2$scontact%1$ssupport%3$sfor assistance or try disabling your plugins one at a time to identify the one causing the conflict.": [
+        "%1$s sayfaları şu anda kullanılamıyor. Başka bir eklenti %1$s ile çakışıyor gibi görünüyor. Bu sorunu çözmek için yardım almak üzere %2$s %1$s desteğiyle iletişime geçin %3$s veya çakışmaya neden olanı bulmak için eklentilerinizi tek tek devre dışı bırakmayı deneyin."
+      ],
+      "%scopied!": [
+        "%s kopyalandı!"
+      ],
+      "Enable%s": [
+        "%s etkinleştir"
+      ],
+      "Upload the%sfile": [
+        "%s dosyasını yükleyin"
+      ],
+      "The%shas been successfully completed": [
+        "%s başarıyla tamamlandı"
+      ],
+      "%snot found": [
+        "%s bulunamadı"
+      ],
+      "%sLocation": [
+        "%s Konumu"
+      ],
+      "The%shave been deleted.": [
+        "%s silindi."
+      ],
+      "The%sfield must be correctly filled out to proceed.": [
+        "Devam etmek için %s alanı doğru şekilde doldurulmalıdır."
+      ],
+      "Learn more about%sor watch the video tutorial.": [
+        "%s hakkında daha fazla bilgi edinin veya video eğitimini izleyin."
+      ],
+      "Learn more%s": [
+        "Daha fazla bilgi: %s"
+      ],
+      "Your request was completed successfully.%1$s%2$s": [
+        "İsteğiniz başarıyla tamamlandı. %1$s %2$s"
+      ],
+      "To use%1$sfeatures in your forms, you need to get your%2$skeys.": [
+        "Formlarınızda %1$s özelliklerini kullanmak için %2$s anahtarlarınızı almanız gerekir."
+      ],
+      "Go to the add-ons page in the Flux Forms plugin, install the%sadd-on, and try again.": [
+        "Flux Forms eklentisindeki eklentiler sayfasına gidin, %s eklentisini yükleyin ve tekrar deneyin."
+      ],
+      "To create a payment form to collect online payments, install a payment add-on such as the%sAdd-on first.": [
+        "Çevrimiçi ödeme toplayan bir ödeme formu oluşturmak için önce %s Eklentisi gibi bir ödeme eklentisi yükleyin."
+      ],
+      "The%splugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the%ssettings.": [
+        "%s eklentisi Flux Forms formlarının işleyişini etkileyebilir. Formlarda sorun yaşarsanız %s ayarlarından Flux Forms eklentisi için önbelleği devre dışı bırakın."
+      ],
+      "Got it, don't show it again": [
+        "Anladım, bir daha gösterme"
+      ],
+      "The value of the%1$sfield does not match the pattern and must be at least%2$scharacters.": [
+        "%1$s alanının değeri desene uymuyor ve en az %2$s karakter olmalıdır."
+      ],
+      "The value of the%1$sfield does not match the pattern and must be at most%2$scharacters.": [
+        "%1$s alanının değeri desene uymuyor ve en fazla %2$s karakter olmalıdır."
+      ],
+      "Please enter valid value for the%sfield.": [
+        "Lütfen %s alanı için geçerli bir değer girin."
+      ],
+      "%slist": [
+        "%s listesi"
+      ],
+      "The uploaded file exceeds the allowable limit of%sMB.": [
+        "Yüklenen dosya izin verilen %s MB sınırını aşıyor."
+      ],
+      "The uploaded file is below the required minimum size of%sMB.": [
+        "Yüklenen dosya gereken %s MB minimum boyutunun altında."
+      ],
+      "Review the entered values in the%stab. This message appeared because an error was detected.": [
+        "%s sekmesindeki girilen değerleri gözden geçirin. Bir hata algılandığı için bu mesaj görüntülendi."
+      ],
+      "We are sorry, the booking time for the%soption has expired. Please choose from the other available options.": [
+        "Üzgünüz, %s seçeneği için rezervasyon süresi doldu. Lütfen diğer uygun seçeneklerden birini seçin."
+      ],
+      "We are sorry, the%soption is currently at full capacity. Please choose from the other available options.": [
+        "Üzgünüz, %s seçeneği şu anda tam kapasitede. Lütfen diğer uygun seçeneklerden birini seçin."
+      ],
+      "%sPayment Add-on": [
+        "%s Ödeme Eklentisi"
+      ],
+      "The%sadd-on for Flux Forms enables you to integrate your WordPress site with%sfor payment processing, donations, and online orders.": [
+        "Flux Forms için %s eklentisi, WordPress sitenizi ödeme işleme, bağışlar ve çevrimiçi siparişler için %s ile entegre etmenizi sağlar."
+      ],
+      "Found%s%sfor: \"%s\"": [
+        "Şunun için %s %s bulundu: \"%s\""
+      ],
+      "Found%1$s%2$sfor": [
+        "%1$s %2$s bulundu, aranan:"
+      ],
+      "%sDay": [
+        "%s Gün"
+      ],
+      "%sDays": [
+        "%s Gün"
+      ],
+      "Choose the style for the%s.": [
+        "%s için stili seçin."
+      ],
+      "%1$s+%2$s": [
+        "%1$s + %2$s"
+      ],
+      "%1$s%2$s&%3$s": [
+        "%1$s %2$s & %3$s"
+      ],
+      "%sunsaved changes": [
+        "%s kaydedilmemiş değişiklik"
+      ],
+      "Your text here...": [
+        "Metniniz burada…"
+      ],
+      "Dismiss%s": [
+        "%s öğesini kapat"
+      ],
+      "The test email was delivered with a deliverability score of%1$sout of 100. Under%2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them.": [
+        "Test e-postası 100 üzerinden %1$s teslim edilebilirlik puanıyla teslim edildi. %2$s altında çoğu posta kutusu mesajları spam klasörüne koyar; bu nedenle formlarınızı dolduran kişiler onları hiç göremeyebilir."
+      ],
+      "Your email server is working. A detailed HTML report has been sent to%s.": [
+        "E-posta sunucunuz çalışıyor. Ayrıntılı bir HTML raporu %s adresine gönderildi."
+      ],
+      "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to%swithin the next few minutes.": [
+        "Spam puanınız, teslim edilebilirlik ayrıntıları ve önerileri içeren eksiksiz bir e-posta sağlık raporu önümüzdeki birkaç dakika içinde %s adresine gönderilecek."
+      ],
+      "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is%s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed.": [
+        "Bu formun e-posta bildirimi özelliği etkin ancak e-posta teslimatı doğrulanmadı ve son spam puanı %s/100. Form kaydedildi, ancak SMTP/e-posta teslimatı düzeltilene kadar yönetici bildirim e-postaları size ulaşmayabilir."
+      ],
+      "%sof 5 steps done": [
+        "5 adımdan %s tanesi tamamlandı"
+      ],
+      "Step%sof 5": [
+        "Adım %s / 5"
+      ],
+      "Score:%s": [
+        "Puan: %s"
+      ],
+      "Waiting for the test email to arrive...": [
+        "Test e-postasının ulaşması bekleniyor…"
+      ],
+      "Still checking — please wait a moment...": [
+        "Hâlâ kontrol ediliyor — lütfen biraz bekleyin…"
+      ],
+      "Starting email delivery test...": [
+        "E-posta teslimat testi başlatılıyor…"
+      ],
+      "WordPress accepted and sent the message. Waiting for it to arrive...": [
+        "WordPress mesajı kabul etti ve gönderdi. Ulaşması bekleniyor…"
+      ],
+      "Connection error. Please refresh the page and try again. (Code:%s)": [
+        "Bağlantı hatası. Lütfen sayfayı yenileyip tekrar deneyin. (Kod: %s)"
+      ],
+      "turkey": [
+        "Hintçe"
+      ],
+      "bug report": [
+        "Hata bildirimi"
+      ],
+      "kosher": [
+        "Koşer"
+      ],
+      "banner": [
+        "Afiş"
+      ],
+      "Installing add-ons...": [
+        "Eklentiler yükleniyor…"
+      ],
+      "Error: server (%s) responded with an invalid request. responded code:%s": [
+        "Hata: sunucu (%s) geçersiz bir istekle yanıt verdi. Yanıt kodu: %s"
+      ],
+      "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the%sserver": [
+        "Flux Forms eklentileri kurulamıyor çünkü eklenti %s sunucusuna bağlanamıyor"
+      ],
+      "To fix this, sign in to your%s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin.": [
+        "Bunu düzeltmek için %s hesabınızda oturum açın, İndirmeler bölümünden Add-ons Handler eklentisini indirin, ardından kurup etkinleştirin. Sonra ihtiyacınız olan eklentileri Add-ons Handler eklentisinden etkinleştirin."
+      ],
+      "Your server could not reach%1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at%2$sand download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers.": [
+        "Sunucunuz %1$s adresine ulaşamadığı için eklenti indirilemedi. Bu hemen hemen her zaman lisansınızla ilgili bir sorun değil, barındırmanızdaki bir güvenlik duvarının giden isteği engellemesidir. Eklentileri hiç indirmeden yüklemek için %2$s adresinde oturum açın, Flux Forms Add-ons Handler eklentisini indirin ve diğer eklentiler gibi yükleyin. Lisansınızın kapsadığı tüm eklentileri içerir."
+      ],
+      "If you would rather fix the connection, ask your hosting provider why outgoing requests from%sare being blocked.": [
+        "Bağlantıyı düzeltmeyi tercih ederseniz, barındırma sağlayıcınıza %s adresinden giden isteklerin neden engellendiğini sorun."
+      ],
+      "Add-on affected:%s": [
+        "Etkilenen eklenti: %s"
+      ],
+      "Action needed: Flux Forms Pro is paused on%s": [
+        "İşlem gerekli: Flux Forms Pro, %s sitesinde duraklatıldı"
+      ],
+      "Flux Forms could not confirm your Pro licence for%1$sdays in a row, so the Pro features on%2$sare paused for now.": [
+        "Flux Forms, %1$s gün üst üste Pro lisansınızı doğrulayamadı; bu nedenle %2$s sitesindeki Pro özellikleri şimdilik duraklatıldı."
+      ],
+      "Your forms, entries and settings are untouched, every free feature keeps working, and your activation code is still stored — nothing was deleted.": [
+        "Formlarınıza, girdilerinize ve ayarlarınıza dokunulmadı, tüm ücretsiz özellikler çalışmaya devam ediyor ve etkinleştirme kodunuz hâlâ saklanıyor &mdash; hiçbir şey silinmedi."
+      ],
+      "Open%1$sYT Form → Settings%2$sand press%1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute.": [
+        "%1$sYT Form &rarr; Ayarlar%2$s sayfasını açın ve %1$sKaydet%2$s düğmesine basın. Bu, lisansı hemen yeniden kontrol eder; bağlantı geri geldiyse Pro bir dakika içinde açılır."
+      ],
+      "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to%s— a firewall, proxy or regional block is the usual cause — then repeat step 1.": [
+        "Hâlâ duraklatılmış mı? Barındırma sağlayıcınızdan %s adresine giden HTTPS bağlantılarına izin vermesini isteyin &mdash; genellikle nedeni bir güvenlik duvarı, proxy veya bölgesel engeldir &mdash; ardından 1. adımı tekrarlayın."
+      ],
+      "If your subscription has expired, or you moved this website to a new domain,%1$srenew or re-activate your licence%2$sand paste the new code into Settings.": [
+        "Aboneliğinizin süresi dolduysa veya bu web sitesini yeni bir alan adına taşıdıysanız, %1$slisansınızı yenileyin veya yeniden etkinleştirin%2$s ve yeni kodu Ayarlar'a yapıştırın."
+      ],
+      "grace period": [
+        "Ek süre"
+      ],
+      "Still stuck? Send the details above to%1$sour support team%2$sand we will take it from there.": [
+        "Hâlâ çözemediniz mi? Yukarıdaki ayrıntıları %1$sdestek ekibimize%2$s gönderin, gerisini biz hallederiz."
+      ],
+      "Your website could not reach the licence server — almost always a network, firewall or DNS restriction on the hosting side.": [
+        "Web siteniz lisans sunucusuna ulaşamadı &mdash; neredeyse her zaman barındırma tarafındaki bir ağ, güvenlik duvarı veya DNS kısıtlamasıdır."
+      ],
+      "The licence server’s answer arrived damaged, usually because a security plugin, proxy or CDN changed it on the way.": [
+        "Lisans sunucusu&rsquo;nun yanıtı bozuk ulaştı; genellikle bir güvenlik eklentisi, proxy veya CDN onu yolda değiştirmiştir."
+      ],
+      "Your Easy Form Builder Pro subscription has expired. To continue using the%sadd-on and all Pro features, please renew your subscription.": [
+        "Flux Forms Pro aboneliğinizin süresi doldu. %s eklentisini ve tüm Pro özelliklerini kullanmaya devam etmek için lütfen aboneliğinizi yenileyin."
+      ],
+      "The%sadd-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality.": [
+        "%s eklentisi bir Pro özelliğidir. Bu işlevselliğe erişmek için lütfen Flux Forms Pro'ya yükseltin."
+      ],
+      "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running,%1$sRenew your subscription now.%2$s": [
+        "Flux Forms Pro aboneliğinizin süresi doldu. Tüm Pro özelliklerinin keyfini çıkarmaya devam etmek ve formlarınızı çalışır durumda tutmak için %1$sAboneliğinizi şimdi yenileyin.%2$s"
+      ],
+      "The latest%dpayments are shown.": [
+        "Son %d ödeme gösteriliyor."
+      ],
+      "%ssettings": [
+        "%s ayarları"
+      ],
+      "Flux Forms replaces%s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin.": [
+        "Flux Forms, %s eklentisinin yerini aldı; eski eklenti devre dışı bırakıldı. Formlarınız, gelen yanıtlar ve ayarlarınız yerinde duruyor. Eski eklentiyi silebilirsiniz."
+      ],
+      "Updating amount...": [
+        "Tutar güncelleniyor…"
+      ],
+      "%sunread in total": [
+        "Toplam %s okunmamış"
+      ],
+      "Recorded since%s": [
+        "%s tarihinden beri kaydediliyor"
+      ],
+      "Responses per view since%s": [
+        "%s tarihinden beri görüntüleme başına yanıt"
+      ],
+      "%spaid": [
+        "%s ödendi"
+      ],
+      "Also%s": [
+        "Ayrıca %s"
+      ],
+      "vs previous%ddays": [
+        "önceki %d güne göre"
+      ],
+      "%spayments": [
+        "%s ödeme"
+      ],
+      "%sother forms": [
+        "%s diğer form"
+      ],
+      "Flux Donate is not active; Flux Forms takes payments itself with%s.": [
+        "Flux Donate etkin değil; Flux Forms ödemeleri kendisi %s ile alıyor."
+      ],
+      "Flux Donate is not active and the Stripe keys are missing:%dpayment form shows \"Online payment is unavailable\".": [
+        "Flux Donate is not active and the Stripe keys are missing: %d payment form shows \"Online payment is unavailable\".",
+        "Flux Donate is not active and the Stripe keys are missing: %d payment forms show \"Online payment is unavailable\"."
+      ],
+      "Version%sis active; certificate automations can run.": [
+        "Sürüm %s etkin; sertifika otomasyonları çalışabilir."
+      ],
+      "Version%1$sis active; certificate automations need%2$sor later.": [
+        "Sürüm %1$s etkin; sertifika otomasyonları %2$s veya üstünü istiyor."
+      ],
+      "Not active, but%dactive automation creates or sends certificates; it will fail.": [
+        "Not active, but %d active automation creates or sends certificates; it will fail.",
+        "Not active, but %d active automations create or send certificates; they will fail."
+      ],
+      "%dautomation is on.": [
+        "%d automation is on.",
+        "%d automations are on."
+      ],
+      "%drun failed in the last 7 days; see the run log.": [
+        "%d run failed in the last 7 days; see the run log.",
+        "%d runs failed in the last 7 days; see the run log."
+      ],
+      "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA.": [
+        "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA.",
+        "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
+      ],
+      "%dform has reCAPTCHA on but the site key or secret key is missing; the form is not shown.": [
+        "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown.",
+        "%d forms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
+      ],
+      "The uploads folder is not available:%s": [
+        "Yüklemeler klasörü kullanılamıyor: %s"
+      ],
+      "Not writable:%s. File fields in forms cannot save uploads; ask the host to fix the folder permissions.": [
+        "Yazılamıyor: %s. Formlardaki dosya alanları yüklemeleri kaydedemez; sunucudan klasör izinlerini düzeltmesini isteyin."
+      ],
+      "Donation form:%s": [
+        "Bağış formu: %s"
+      ],
+      "The latest%druns are kept.": [
+        "Son %d çalıştırma saklanır."
+      ],
+      "Preparing your certificate...": [
+        "Sertifikanız hazırlanıyor…"
+      ],
+      "Certificate%1$sfor%2$s(%3$s)": [
+        "%2$s için %1$s sertifikası (%3$s)"
+      ],
+      "Queued:%s": [
+        "Kuyruğa alındı: %s"
+      ],
+      "New submission:%s": [
+        "Yeni gönderim: %s"
+      ],
+      "Search elements...": [
+        "Eleman ara…"
+      ],
+      "Create a bot using%s": [
+        "%s kullanarak bir bot oluşturun"
+      ],
+      "Find your Chat ID using%s": [
+        "%s kullanarak Chat ID'nizi bulun"
+      ],
+      "Enter your test message here...": [
+        "Test mesajınızı buraya girin&hellip;"
+      ],
+      "Type your message here...": [
+        "Mesajınızı buraya yazın&hellip;"
+      ],
+      "Protection is paused: required PHP functions are disabled on this server:%s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then.": [
+        "Koruma duraklatıldı: gerekli PHP işlevleri bu sunucuda devre dışı: %s. Barındırıcınızdan bunları php.ini içindeki disable_functions satırından kaldırmasını isteyin. O zamana kadar formlarınız korumasız çalışmaya devam eder."
+      ],
+      "Security log export is unavailable because this server has disabled a required PHP function:%s. Ask your hosting provider to enable it.": [
+        "Güvenlik günlüğü dışa aktarımı kullanılamıyor çünkü bu sunucu gerekli bir PHP işlevini devre dışı bırakmış: %s. Barındırma sağlayıcınızdan etkinleştirmesini isteyin."
+      ],
+      "Security log export is unavailable because this server has disabled required PHP functions:%s. Ask your hosting provider to enable them.": [
+        "Güvenlik günlüğü dışa aktarımı kullanılamıyor çünkü bu sunucu gerekli PHP işlevlerini devre dışı bırakmış: %s. Barındırma sağlayıcınızdan etkinleştirmesini isteyin."
+      ],
+      "Testing connection...": [
+        "Bağlantı test ediliyor…"
+      ],
+      "Saving...": [
+        "Kaydediliyor&hellip;"
+      ],
+      "API returned error:%d": [
+        "API hata döndürdü: %d"
+      ],
+      "Loading...": [
+        "Yükleniyor&hellip;"
+      ],
+      "PayPal%s": [
+        "PayPal %s"
+      ],
+      "Stripe%s": [
+        "Stripe %s"
+      ],
+      "Manage and track all%stransactions. View payment details, process refunds, and export records.": [
+        "Tüm %s işlemlerini yönetin ve takip edin. Ödeme ayrıntılarını görüntüleyin, iade işleyin ve kayıtları dışa aktarın."
+      ],
+      "%dservice account connected": [
+        "%d service account connected",
+        "%d service accounts connected"
+      ],
+      "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the%sPHP extension, then reload this page.": [
+        "Etkinleştirilene kadar Google E-Tablolar senkronizasyonu çalışmaz. Lütfen hosting sağlayıcınızdan %s PHP eklentisini etkinleştirmesini isteyin, ardından bu sayfayı yeniden yükleyin."
+      ],
+      "To sync an<strong>existing</strong>sheet: open it in Google Sheets →<strong>Share</strong>→ paste the email above → set role to<strong>Editor</strong>. To create a<strong>new</strong>sheet, just use Form Bindings — no sharing needed.": [
+        "<strong>Mevcut</strong> bir tabloyu senkronize etmek için: tabloyu Google E-Tablolar'da açın &rarr; <strong>Paylaş</strong> &rarr; yukarıdaki e-postayı yapıştırın &rarr; rolü <strong>Düzenleyen</strong> yapın. <strong>Yeni</strong> bir tablo oluşturmak için Form Bağlantıları'nı kullanmanız yeterli — paylaşım gerekmez."
+      ],
+      "Any sheet the plugin<strong>creates</strong>is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account.": [
+        "Eklentinin <strong>oluşturduğu</strong> her tablo otomatik olarak bu adresle paylaşılır ve kendi Google Drive'ınızda “Benimle paylaşılanlar” altında görünür. Bu adres olmadan yeni tablolar hizmet hesabının içinde gizli kalır."
+      ],
+      "Go to<a href=\"https://console.cloud.google.com/\" target=\"_blank\" rel=\"noopener noreferrer\">console.cloud.google.com</a>→ Project dropdown (top-left) → New Project → name it → Create": [
+        "<a href=\"https://console.cloud.google.com/\" target=\"_blank\" rel=\"noopener noreferrer\">console.cloud.google.com</a> adresine gidin &rarr; Proje açılır menüsü (sol üst) &rarr; Yeni Proje &rarr; bir ad verin &rarr; Oluştur"
+      ],
+      "APIs & Services → Library → enable<strong>Google Sheets API</strong><em>and</em><strong>Google Drive API</strong>": [
+        "APIs &amp; Services &rarr; Library &rarr; <strong>Google Sheets API</strong> <em>ve</em> <strong>Google Drive API</strong>'yi etkinleştirin"
+      ],
+      "APIs & Services → Credentials → Create Credentials → Service Account → name it → Done": [
+        "APIs &amp; Services &rarr; Credentials &rarr; Create Credentials &rarr; Service Account &rarr; bir ad verin &rarr; Done"
+      ],
+      "Open the service account → Keys tab → Add Key → Create New Key → JSON (downloads automatically)": [
+        "Hizmet hesabını açın &rarr; Keys sekmesi &rarr; Add Key &rarr; Create New Key &rarr; JSON (otomatik iner)"
+      ],
+      "Add<strong>Your Google email</strong>above so created sheets land in your Drive": [
+        "Oluşturulan tabloların Drive'ınıza düşmesi için yukarıya <strong>Google e-postanızı</strong> ekleyin"
+      ],
+      "Could not read file:%s": [
+        "Dosya okunamadı: %s"
+      ],
+      "Connecting service account...": [
+        "Hizmet hesabı bağlanıyor…"
+      ],
+      "Saved. New sheets created by the plugin will be shared to%sautomatically.": [
+        "Kaydedildi. Eklentinin oluşturduğu yeni tablolar otomatik olarak %s ile paylaşılacak."
+      ],
+      "tab": [
+        "Sekme"
+      ],
+      "Loading your spreadsheets...": [
+        "Tablolarınız yükleniyor…"
+      ],
+      "Click<strong>“Browse My Sheets”</strong>to list spreadsheets this service account can already access, or<strong>“Create New Sheet”</strong>to make a fresh one.": [
+        "Bu hizmet hesabının erişebildiği tabloları listelemek için <strong>“Tablolarıma Göz At”</strong>a, yeni bir tablo oluşturmak için <strong>“Yeni Tablo Oluştur”</strong>a tıklayın."
+      ],
+      "<strong>No spreadsheets are accessible to this service account yet.</strong>You have two options:": [
+        "<strong>Bu hizmet hesabının erişebildiği tablo henüz yok.</strong> İki seçeneğiniz var:"
+      ],
+      "<strong>Easiest:</strong>click<em>“Create New Sheet”</em>above — it is made for you and shared to your email automatically.": [
+        "<strong>En kolayı:</strong> yukarıdaki <em>“Yeni Tablo Oluştur”</em>a tıklayın — sizin için oluşturulur ve e-postanızla otomatik paylaşılır."
+      ],
+      "<strong>Use an existing sheet:</strong>open it in Google Sheets → Share → paste": [
+        "<strong>Mevcut bir tabloyu kullanın:</strong> Google E-Tablolar'da açın &rarr; Paylaş &rarr; şunu yapıştırın:"
+      ],
+      "→ Editor, then click<em>Browse My Sheets</em>again.": [
+        "&rarr; Düzenleyen yapın, ardından <em>Tablolarıma Göz At</em>'a tekrar tıklayın."
+      ],
+      "Creating...": [
+        "Oluşturuluyor…"
+      ],
+      "Creating spreadsheet...": [
+        "Tablo oluşturuluyor…"
+      ],
+      "Loading worksheet tabs...": [
+        "Çalışma sayfası sekmeleri yükleniyor…"
+      ],
+      "Reading this form’s fields...": [
+        "Bu formun alanları okunuyor…"
+      ],
+      "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry —<strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you.": [
+        "Bu formun alanlarını otomatik okuyamadık, bu nedenle sütun eşleme kullanılamıyor. Endişelenmeyin — <strong>gönderilen her alan yine de otomatik olarak senkronize edilir</strong>; her biri kendi sütununda, gönderim sırasına göre yer alır. Başlık satırı sizin için oluşturulur ve güncel tutulur."
+      ],
+      "Drag rows (or use ▲▼) to set the<strong>column order</strong>. Rename any<strong>header</strong>. Turn a field off to skip its column. The letter (A, B, C...) shows where each field lands.": [
+        "<strong>Sütun sırasını</strong> belirlemek için satırları sürükleyin (veya ▲▼ kullanın). İstediğiniz <strong>başlığı</strong> yeniden adlandırın. Bir alanın sütununu atlamak için alanı kapatın. Harf (A, B, C…) her alanın nereye düştüğünü gösterir."
+      ],
+      "%dcolumn will be written to the sheet.": [
+        "%d column will be written to the sheet.",
+        "%d columns will be written to the sheet."
+      ],
+      "Applying...": [
+        "Uygulanıyor…"
+      ],
+      "%dmapped": [
+        "%d eşlendi"
+      ],
+      "Remove ALL%dbinding? Syncing stops for every form. Your Google Sheets are not deleted.": [
+        "Remove ALL %d binding? Syncing stops for every form. Your Google Sheets are not deleted.",
+        "Remove ALL %d bindings? Syncing stops for every form. Your Google Sheets are not deleted."
+      ],
+      "Open console.cloud.google.com and log in → click the Project dropdown (top-left) → New Project (or pick an existing one) → enter a name → Create": [
+        "console.cloud.google.com adresini açıp giriş yapın &rarr; Proje açılır menüsüne (sol üst) tıklayın &rarr; Yeni Proje (veya mevcut birini seçin) &rarr; bir ad girin &rarr; Oluştur"
+      ],
+      "APIs & Services → Library → enable<strong>Google Sheets API</strong>and<strong>Google Drive API</strong>(both are required — Drive lists and creates the files)": [
+        "APIs &amp; Services &rarr; Library &rarr; <strong>Google Sheets API</strong> ve <strong>Google Drive API</strong>'yi etkinleştirin (ikisi de gereklidir — Drive dosyaları listeler ve oluşturur)"
+      ],
+      "APIs & Services → Credentials → Create Credentials → Service Account → enter a name → Done": [
+        "APIs &amp; Services &rarr; Credentials &rarr; Create Credentials &rarr; Service Account &rarr; bir ad girin &rarr; Done"
+      ],
+      "Open the service account → Keys tab → Add Key → Create New Key → choose JSON (file downloads automatically)": [
+        "Hizmet hesabını açın &rarr; Keys sekmesi &rarr; Add Key &rarr; Create New Key &rarr; JSON'u seçin (dosya otomatik iner)"
+      ],
+      "Form Bindings → pick a form →<strong>Create New Sheet</strong>→ Save. No manual sharing needed — this is the easiest path": [
+        "Form Bağlantıları &rarr; bir form seçin &rarr; <strong>Yeni Tablo Oluştur</strong> &rarr; Kaydet. Elle paylaşım gerekmez — en kolay yol budur"
+      ],
+      "...or use an existing sheet": [
+        "…veya mevcut bir tabloyu kullanın"
+      ],
+      "Prefer your own sheet? Open it → Share → paste the service account email (copy button on its card) → Editor → then Browse My Sheets in the wizard": [
+        "Kendi tablonuzu mu tercih ediyorsunuz? Açın &rarr; Paylaş &rarr; hizmet hesabı e-postasını yapıştırın (kartındaki kopyala düğmesi) &rarr; Düzenleyen &rarr; ardından sihirbazda Tablolarıma Göz At'ı kullanın"
+      ],
+      "It must be shared with the service account’s email first: open the sheet → Share → paste the email (use the copy button on the connection card) → set Editor → Share. Then click “Browse My Sheets” again.": [
+        "Önce hizmet hesabının e-postasıyla paylaşılmalıdır: tabloyu açın &rarr; Paylaş &rarr; e-postayı yapıştırın (bağlantı kartındaki kopyala düğmesini kullanın) &rarr; Düzenleyen yapın &rarr; Paylaş. Ardından “Tablolarıma Göz At”a tekrar tıklayın."
+      ],
+      "Open Google Cloud Console for the same project → APIs & Services → Library, and enable BOTH “Google Sheets API” and “Google Drive API”. Wait a minute, then retest.": [
+        "Aynı proje için Google Cloud Console'u açın &rarr; APIs &amp; Services &rarr; Library ve HEM “Google Sheets API” HEM DE “Google Drive API”yi etkinleştirin. Bir dakika bekleyin, ardından tekrar test edin."
+      ],
+      "Yes. In the binding wizard’s<strong>Columns & Fields</strong>step, drag rows (or use ▲▼) to set the order, rename each column header, and toggle any field off to skip it. The A/B/C badge shows exactly where each field lands.": [
+        "Evet. Bağlantı sihirbazının <strong>Sütunlar &amp; Alanlar</strong> adımında satırları sürükleyerek (veya ▲▼ kullanarak) sırayı belirleyin, her sütun başlığını yeniden adlandırın ve atlamak istediğiniz alanı kapatın. A/B/C rozeti her alanın tam olarak nereye düştüğünü gösterir."
+      ],
+      "Yes. The<strong>Style & Save</strong>step offers Google-Sheets themes (colored header, frozen top row, alternating row colors). Pick one and it’s applied on the first sync, or click “Apply style now”.": [
+        "Evet. <strong>Stil &amp; Kaydet</strong> adımı Google E-Tablolar temaları sunar (renkli başlık, sabitlenmiş üst satır, dönüşümlü satır renkleri). Birini seçin; ilk senkronizasyonda uygulanır veya “Stili şimdi uygula”ya tıklayın."
+      ],
+      "synchronized": [
+        "Senkronize edildi"
+      ],
+      "%sis currently unavailable.": [
+        "%s şu anda kullanılamıyor."
+      ],
+      "disabled in php.ini:%s": [
+        "php.ini'de devre dışı: %s"
+      ],
+      "not provided by PHP or its required extension:%s": [
+        "PHP veya gerekli eklentisi tarafından sağlanmıyor: %s"
+      ],
+      "%1$scannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini.": [
+        "Gerekli PHP işlevleri kullanılamadığı için %1$s çalışamıyor (%2$s). Hosting sağlayıcınızdan gerekli PHP eklentisini etkinleştirmesini isteyin veya listelenen işlevleri php.ini içindeki disable_functions değerinden kaldırın."
+      ],
+      "Error: server (%s) responded with an invalid request. responded code :%s": [
+        "Hata: sunucu (%s) geçersiz bir istekle yanıt verdi. Yanıt kodu: %s "
+      ],
+      "Email delivery failed:%s": [
+        "E-posta teslimi başarısız: %s"
+      ],
+      "Go to the<a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>": [
+        "<a href=\"%s\" style=\"font-weight:600;\">Flux Forms Paneli</a>'ne gidin"
+      ],
+      "%snotification": [
+        "%s bildirimi"
+      ],
+      "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the%sfeature, please ensure it is enabled.": [
+        "Bu özelliği devre dışı bırakmak Flux Forms'un düzgün çalışmasını etkileyebilir. %s özelliğini kullanmayı planlıyorsanız lütfen etkin olduğundan emin olun."
+      ],
+      "Checked%s": [
+        "%s kontrol edildi"
+      ],
+      "Checking add-on installation capabilities...": [
+        "Eklenti kurulum yetenekleri denetleniyor&hellip;"
+      ],
+      "Built with%sYT Form%sby%sWordPress form plugin by whitestudio.team%s": [
+        "%sYT Form%s ile oluşturuldu, %sWordPress form eklentisi whitestudio.team%s"
+      ],
+      "Powered by%1$sYT Form%2$s.%3$sbest Form plugin for Wordpress%4$s.": [
+        "%1$sYT Form%2$s tarafından desteklenmektedir. %3$sWordPress için en iyi form eklentisi%4$s."
+      ],
+      "Loading forms...": [
+        "Formlar yükleniyor&hellip;"
+      ],
+      "Form:%s(ID:%s)": [
+        "Form: %s (ID: %s)"
+      ],
+      "The last delivery check scored%sout of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this.": [
+        "Son teslimat kontrolü 100 üzerinden %s puan aldı. Mesajlarınız siteden çıkıyor, ancak çoğu posta kutusu bunları spam olarak sınıflandırıyor; bu yüzden formlarınızı dolduranlar bunları görmeyecek. Çözüm, bir SMTP hizmeti üzerinden göndermek ve alan adınız için SPF ve DKIM kayıtları eklemektir."
+      ],
+      "Weekly Flux Forms report for%s": [
+        "%s için haftalık Flux Forms raporu"
+      ],
+      "Here is your weekly snapshot for%s.": [
+        "İşte %s için haftalık özetiniz."
+      ],
+      "Report generated%s": [
+        "Rapor oluşturulma zamanı: %s"
+      ],
+      "The test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s), so the emails your forms send are very likely to be rejected or filtered as spam.": [
+        "Test e-postası teslim edildi, ancak teslim edilebilirlik puanı 100 üzerinden yalnızca %1$s (%2$s altında); bu nedenle formlarınızın gönderdiği e-postaların reddedilmesi veya spam olarak filtrelenmesi çok olasıdır."
+      ],
+      "grade%s": [
+        "not: %s"
+      ],
+      "Run the email check again until the score is above%s.": [
+        "Puan %s üzerine çıkana kadar e-posta kontrolünü tekrar çalıştırın."
+      ],
+      "You have%1$sforms:%2$sactive and%3$sinactive.": [
+        "Toplam %1$s formunuz var: %2$s aktif, %3$s pasif."
+      ],
+      "You can attach up to%1$dfile here. Please wait about%2$dminutes before trying again.": [
+        "You can attach up to %1$d file here. Please wait about %2$d minutes before trying again.",
+        "You can attach up to %1$d files here. Please wait about %2$d minutes before trying again."
+      ],
+      "This file is too large. The maximum size for this field is%s.": [
+        "Bu dosya çok büyük. Bu alan için izin verilen en büyük boyut %s."
+      ],
+      "If your emails are not being delivered, try using an SMTP plugin. For more information,%1$sclick here%2$sor contact our%3$ssupport team%4$s.": [
+        "E-postalarınız teslim edilmiyorsa bir SMTP eklentisi kullanmayı deneyin. Daha fazla bilgi için %1$s buraya tıklayın %2$s veya %3$s destek ekibimizle %4$s iletişime geçin."
+      ],
+      "Built with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s": [
+        "%3$sWhiteStudio.team%4$s tarafından %1$sYT Form%2$s ile oluşturuldu"
+      ],
+      "Drag-and-drop form builder: multi-step forms, Stripe payments, conditional logic, dashboard, automations and Flux Certificates integration. Fork based on Easy Form Builder (WhiteStudio, GPL).": [
+        "Sürükle-bırak form oluşturucu: çok adımlı formlar, Stripe ödemeleri, koşullu mantık, dashboard, otomasyonlar ve Flux Certificates entegrasyonu. Easy Form Builder (WhiteStudio, GPL) tabanlı fork."
+      ],
+      "Could not connect to Stripe:%s": [
+        "Could not connect to Stripe: %s"
+      ],
+      "Stripe API error (HTTP%d).": [
+        "Stripe API error (HTTP %d)."
+      ],
+      "field\\x00fields": [
+        "field",
+        "fields"
+      ],
+      "Flux Donate is not active and the Stripe keys are missing:%dpayment form shows \"Online payment is unavailable\".\\x00Flux Donate is not active and the Stripe keys are missing:%dpayment forms show \"Online payment is unavailable\".": [
+        "Flux Donate is not active and the Stripe keys are missing: %d payment form shows \"Online payment is unavailable\".",
+        "Flux Donate is not active and the Stripe keys are missing: %d payment forms show \"Online payment is unavailable\"."
+      ],
+      "Not active, but%dactive automation creates or sends certificates; it will fail.\\x00Not active, but%dactive automations create or send certificates; they will fail.": [
+        "Not active, but %d active automation creates or sends certificates; it will fail.",
+        "Not active, but %d active automations create or send certificates; they will fail."
+      ],
+      "%dautomation is on.\\x00%dautomations are on.": [
+        "%d automation is on.",
+        "%d automations are on."
+      ],
+      "%drun failed in the last 7 days; see the run log.\\x00%druns failed in the last 7 days; see the run log.": [
+        "%d run failed in the last 7 days; see the run log.",
+        "%d runs failed in the last 7 days; see the run log."
+      ],
+      "%dform has reCAPTCHA on but the site key or secret key is missing; the form is not shown.\\x00%dforms have reCAPTCHA on but the site key or secret key is missing; they are not shown.": [
+        "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown.",
+        "%d forms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
+      ],
+      "Form\\x00Forms": [
+        "Form",
+        "Forms"
+      ],
+      "%dservice account connected\\x00%dservice accounts connected": [
+        "%d service account connected",
+        "%d service accounts connected"
+      ],
+      "%dcolumn will be written to the sheet.\\x00%dcolumns will be written to the sheet.": [
+        "%d column will be written to the sheet.",
+        "%d columns will be written to the sheet."
+      ],
+      "Remove ALL%dbinding? Syncing stops for every form. Your Google Sheets are not deleted.\\x00Remove ALL%dbindings? Syncing stops for every form. Your Google Sheets are not deleted.": [
+        "Remove ALL %d binding? Syncing stops for every form. Your Google Sheets are not deleted.",
+        "Remove ALL %d bindings? Syncing stops for every form. Your Google Sheets are not deleted."
+      ],
+      "You can attach up to%1$dfile here. Please wait about%2$dminutes before trying again.\\x00You can attach up to%1$dfiles here. Please wait about%2$dminutes before trying again.": [
+        "You can attach up to %1$d file here. Please wait about %2$d minutes before trying again.",
+        "You can attach up to %1$d files here. Please wait about %2$d minutes before trying again."
       ]
     }
   }

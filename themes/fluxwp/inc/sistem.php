@@ -301,7 +301,7 @@ function flx_sk_checks_site() {
 
 	$out[] = version_compare( PHP_VERSION, '8.1', '>=' )
 		? flx_sk_item( 'theme.site.php', $g, 'PHP', 'ok', PHP_VERSION )
-		: flx_sk_item( 'theme.site.php', $g, 'PHP', 'warning', sprintf( /* translators: %s: PHP version */ __( '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n', 'fluxwp' ), PHP_VERSION ) );
+		: flx_sk_item( 'theme.site.php', $g, 'PHP', 'warning', sprintf( /* translators: %s: PHP version */ __( '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.', 'fluxwp' ), PHP_VERSION ) );
 	return $out;
 }
 

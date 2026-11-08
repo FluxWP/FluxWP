@@ -473,9 +473,9 @@ return array(
   'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.' => 'تلقائي الآن: نطاق iyzico وشعارات المكونات الإضافية الافتراضية لنقاط البيع. بمجرد إضافة شعار أو إزالته، تصبح القائمة من اختيارك.',
   'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.' => 'قائمة مختارة بعناية. يعود "العودة إلى الوضع التلقائي" إلى نطاق iyzico وشعارات المكونات الإضافية لنقاط البيع الافتراضية الممكّنة.',
   'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.' => 'SVG أو PNG الشفاف هو الأفضل؛ تظهر الشعارات الملونة في مربع أبيض على تذييل داكن.',
-  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '\\n %s . Hostinger › PHP الإصدار 8.2 متاح الآن.\\n',
+  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => ' %s . Hostinger › PHP الإصدار 8.2 متاح الآن.',
   'Background pattern' => 'نمط الخلفية',
-  '\\nDots\\n' => '\\nالنقاط\\n',
+  '\\nDots\\n' => 'النقاط',
   'Leaves' => 'أوراق',
   'None' => 'لا شيء',
   'News introduction' => 'مقدمة الأخبار',
@@ -947,7 +947,8 @@ return array(
   'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.' => 'تلقائي الآن: نطاق iyzico وشعارات المكونات الإضافية الافتراضية لنقاط البيع. بمجرد إضافة شعار أو إزالته، تصبح القائمة من اختيارك.',
   'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.' => 'قائمة مختارة بعناية. يعود "العودة إلى الوضع التلقائي" إلى نطاق iyzico وشعارات المكونات الإضافية لنقاط البيع الافتراضية الممكّنة.',
   'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.' => 'SVG أو PNG الشفاف هو الأفضل؛ تظهر الشعارات الملونة في مربع أبيض على تذييل داكن.',
-  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '\\n %s . Hostinger › PHP الإصدار 8.2 متاح الآن.\\n',
-  'Dots' => '\\nالنقاط\\n',
+  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => ' %s . Hostinger › PHP الإصدار 8.2 متاح الآن.',
+  'Dots' => 'النقاط',
+
  ),
 );

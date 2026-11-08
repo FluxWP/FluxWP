@@ -105,7 +105,7 @@ function flxs_system_checks() {
 	$tpls = flxs_list_templates( true );
 	if ( $tpls ) {
 		/* translators: %d: number of templates */
-		$add( 'templates', $g_set, __( 'Certificate templates', 'flx-certificates' ), 'ok', sprintf( _n( '\\n There is active template%d. There is active template%d.\\n', '\\n There is active template%d. There is active template%d.\\n', count( $tpls ), 'flx-certificates' ), count( $tpls ) ) );
+		$add( 'templates', $g_set, __( 'Certificate templates', 'flx-certificates' ), 'ok', sprintf( _n( 'There is %d active template.', 'There are %d active templates.', count( $tpls ), 'flx-certificates' ), count( $tpls ) ) );
 	} else {
 		$add( 'templates', $g_set, __( 'Certificate templates', 'flx-certificates' ), 'error', __( 'No active template; certificates cannot be created.', 'flx-certificates' ), $page( 'flxs-sablonlar' ), __( 'Templates', 'flx-certificates' ) );
 	}
@@ -141,7 +141,7 @@ function flxs_system_checks() {
 		$add( 'cron', $g_snd, __( 'Sending queue (cron)', 'flx-certificates' ), 'error', __( 'The per-minute queue task is not scheduled. Reload any admin page; if it persists, reactivate the plugin.', 'flx-certificates' ), $page( 'flxs-kuyruk' ), __( 'Queue', 'flx-certificates' ) );
 	} elseif ( $waiting ) {
 		/* translators: 1: number of messages, 2: queue runner name, 3: "x mins ago" or "never" */
-		$add( 'cron', $g_snd, __( 'Sending queue (cron)', 'flx-certificates' ), 'error', sprintf( _n( '\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n', '\\n%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.\\n', $waiting, 'flx-certificates' ), $waiting, $runner, $last ? flxs_ago( $last ) : __( 'never', 'flx-certificates' ) ) . ( $no_cron ? ' ' . __( 'WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel.', 'flx-certificates' ) : '' ), $page( 'flxs-kuyruk' ), __( 'Queue', 'flx-certificates' ) );
+		$add( 'cron', $g_snd, __( 'Sending queue (cron)', 'flx-certificates' ), 'error', sprintf( _n( '%1$d message has been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s.', '%1$d messages have been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s.', $waiting, 'flx-certificates' ), $waiting, $runner, $last ? flxs_ago( $last ) : __( 'never', 'flx-certificates' ) ) . ( $no_cron ? ' ' . __( 'WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php must be set in the hosting panel.', 'flx-certificates' ) : '' ), $page( 'flxs-kuyruk' ), __( 'Queue', 'flx-certificates' ) );
 	} elseif ( $last && time() - $last > 3 * HOUR_IN_SECONDS ) {
 		/* translators: 1: queue runner name, 2: "x hours ago" */
 		$add( 'cron', $g_snd, __( 'Sending queue (cron)', 'flx-certificates' ), 'warning', sprintf( __( 'Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended.', 'flx-certificates' ), $runner, flxs_ago( $last ) ) );
@@ -153,11 +153,11 @@ function flxs_system_checks() {
 	$failed = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE status = 'failed' AND updated_at >= %s", gmdate( 'Y-m-d H:i:s', time() - DAY_IN_SECONDS ) ) ); // phpcs:ignore
 	if ( $failed ) {
 		/* translators: %d: number of failed messages */
-		$add( 'failed', $g_snd, __( 'Sending in the last 24 hours', 'flx-certificates' ), 'warning', sprintf( _n( '[[\'%dmessage could not be sent.\', \'tr\']]', '[[\'%dmessage could not be sent.\', \'tr\']]', $failed, 'flx-certificates' ), $failed ), add_query_arg( 'status', 'failed', $page( 'flxs-kuyruk' ) ), __( 'View failed', 'flx-certificates' ) );
+		$add( 'failed', $g_snd, __( 'Sending in the last 24 hours', 'flx-certificates' ), 'warning', sprintf( _n( '%d message could not be sent.', '%d messages could not be sent.', $failed, 'flx-certificates' ), $failed ), add_query_arg( 'status', 'failed', $page( 'flxs-kuyruk' ) ), __( 'View failed', 'flx-certificates' ) );
 	} else {
 		$sent = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE status = 'sent' AND sent_at >= %s", gmdate( 'Y-m-d H:i:s', time() - DAY_IN_SECONDS ) ) ); // phpcs:ignore
 		/* translators: %d: number of sent messages */
-		$add( 'failed', $g_snd, __( 'Sending in the last 24 hours', 'flx-certificates' ), 'ok', sprintf( _n( '[[\'%dmessage sent, no failure.\', \'tr\']]', '[[\'%dmessage sent, no failure.\', \'tr\']]', $sent, 'flx-certificates' ), $sent ) );
+		$add( 'failed', $g_snd, __( 'Sending in the last 24 hours', 'flx-certificates' ), 'ok', sprintf( _n( '%d message sent without failures.', '%d messages sent without failures.', $sent, 'flx-certificates' ), $sent ) );
 	}
 
 	if ( ! wp_next_scheduled( 'flxs_daily' ) ) {
@@ -220,7 +220,7 @@ function flxs_system_checks() {
 			$add( 'events', $g_ste, __( 'Ongoing events', 'flx-certificates' ), 'warning', sprintf( __( 'Open event without a published page: %s. Fix it with "Publish on site" in the event edit screen.', 'flx-certificates' ), implode( ', ', $off ) ), $page( 'flxs-etkinlikler' ), __( 'Events', 'flx-certificates' ) );
 		} else {
 			/* translators: %d: number of open events */
-			$add( 'events', $g_ste, __( 'Ongoing events', 'flx-certificates' ), 'ok', sprintf( _n( '[[\'%dhas an open event, its page is live on the site.\', \'tr\']]', '[[\'%dhas open events, its pages are live on the site.\', \'tr\']]', count( $open ), 'flx-certificates' ), count( $open ) ) );
+			$add( 'events', $g_ste, __( 'Ongoing events', 'flx-certificates' ), 'ok', sprintf( _n( '%d open event has a published page.', '%d open events have published pages.', count( $open ), 'flx-certificates' ), count( $open ) ) );
 		}
 	}
 

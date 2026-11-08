@@ -946,5 +946,5 @@ msgstr "As imagens geradas estão listadas aqui. A tela de produção é aberta 
 msgid "Prompt"
 msgstr "Alerta"
 
-msgid "[['Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
-msgstr "[['Estúdio visual e de vídeo com IA: produção, referências e contatos, edição de campo, Develop e Brainstorm, galeria com pastas. Produção via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).', 'tr']]"
+msgid "Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."
+msgstr "Estúdio visual e de vídeo com IA: produção, referências e contatos, edição de campo, Develop e Brainstorm, galeria com pastas. Produção via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter)."

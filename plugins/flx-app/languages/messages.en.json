@@ -435,7 +435,7 @@
     "Note added": "Note added",
     "Notes": "Notes",
     "Call": "Call",
-    "\\nYetkiniz yok.\\n": "\\nYetkiniz yok.\\n",
-    "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]": "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]"
+    "Yetkiniz yok.": "Yetkiniz yok.",
+    "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.": "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
   }
 }

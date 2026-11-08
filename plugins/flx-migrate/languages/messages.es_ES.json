@@ -61,7 +61,9 @@
     "Upload folders": "Subir carpetas",
     "Working…": "Trabajando...",
     "Upload these new packages first (do not activate them):": "Cargue estos nuevos paquetes primero (no los active):",
-    "[['%drow', 'tr']]\u0000[['%drow', 'tr']]": "[['%dfila', 'tr']]\u0000[['%dfila', 'tr']]",
-    "[['%dold setting', 'tr']]\u0000[['%dold setting', 'tr']]": "[['%dconfiguración antigua', 'tr']]\u0000[['%dconfiguración antigua', 'tr']]"
+    "%d row\u0000%d rows": "fila%d\u0000%dfilas",
+    "%d legacy setting\u0000%d legacy settings": "Configuración heredada%d\u0000%dconfiguración heredada",
+    "%drow\u0000%drow": "%dfila\u0000%dfila",
+    "%dold setting\u0000%dold setting": "%dconfiguración antigua\u0000%dconfiguración antigua"
   }
 }

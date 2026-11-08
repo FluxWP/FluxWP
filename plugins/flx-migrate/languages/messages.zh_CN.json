@@ -61,7 +61,9 @@
     "Upload folders": "上传文件夹",
     "Working…": "工作...",
     "Upload these new packages first (do not activate them):": "首先上传这些新包(不要激活它们):",
-    "[['%drow', 'tr']]\u0000[['%drow', 'tr']]": "[['%d行','tr']]",
-    "[['%dold setting', 'tr']]\u0000[['%dold setting', 'tr']]": "[['%d旧设置', 'tr']]"
+    "%d row\u0000%d rows": "%d行",
+    "%d legacy setting\u0000%d legacy settings": "%d旧设置",
+    "%drow\u0000%drow": "%d行",
+    "%dold setting\u0000%dold setting": "%d旧设置"
   }
 }

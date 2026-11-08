@@ -127,7 +127,7 @@ class FLXB_WC_FLXForm {
 		$token = sanitize_text_field( wp_unslash( $_GET['flxb_wc_handoff'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$data  = get_transient( self::key( $token ) );
 		if ( ! is_array( $data ) || empty( $data['lines'] ) ) {
-			wc_add_notice( __( '\\nThis payment link has expired. Please fill in the form again.\\n', 'flx-donate' ), 'error' );
+			wc_add_notice( __( 'This payment link has expired. Please fill in the form again.', 'flx-donate' ), 'error' );
 			wp_safe_redirect( wc_get_cart_url() );
 			exit;
 		}
@@ -234,7 +234,7 @@ class FLXB_WC_FLXForm {
 			);
 			$rows = self::finish_entry( $track, (array) ( $m['rows'] ?? array() ), $order );
 			/* translators: %s: Flux Forms tracking code */
-			$order->add_order_note( sprintf( __( '\\nFlux Forms entry%scompleted by this payment.\\n', 'flx-donate' ), $track ) );
+			$order->add_order_note( sprintf( __( 'Flux Forms entry%scompleted by this payment.', 'flx-donate' ), $track ) );
 			$ctx = array(
 				'event_type'                => 'payment',
 				'track_code'                => $track,

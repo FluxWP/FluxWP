@@ -388,10 +388,14 @@
     "Update FluxWP themes and plugins from the update server": "Atualize temas e plugins FluxWP do servidor de atualização",
     "Theme settings and presets": "Configurações e predefinições de tema",
     "Setup wizard, presets and FluxWP package updates": "Assistente de configuração, predefinições e atualizações de pacotes FluxWP",
-    "\\nOkunmamış WhatsApp\\n": "\\nOkunmamış WhatsApp\\n",
-    "[['%sdonate', 'tr']]\u0000[['%sdonate', 'tr']]": "[['%sdoar', 'tr']]\u0000[['%sdoar', 'tr']]",
-    "[['%seven', 'sw']]\u0000[['%seven', 'sw']]": "[['%spar', 'sw']]\u0000[['%spar', 'sw']]",
-    "[['%swarning', 'tr']]\u0000[['%swarning', 'tr']]": "[['Aviso%s', 'tr']]\u0000[['Aviso%s', 'tr']]",
-    "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]\u0000[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]": "[['%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.', 'tr']]\u0000[['%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.', 'tr']]"
+    "%s donation\u0000%s donations": "Doação%s\u0000Doações%s",
+    "%s error\u0000%s errors": "Erro%s\u0000Erros%s",
+    "%s warning\u0000%s warnings": "Aviso%s\u0000Avisos%s",
+    "%s role has a custom menu layout; other roles use the default grouped menu.\u0000%s roles have custom menu layouts; other roles use the default grouped menu.": "A função%spossui um layout de menu personalizado; outras funções usam o menu agrupado padrão.\u0000As funções%spossuem layouts de menu personalizados; outras funções usam o menu agrupado padrão.",
+    "Okunmamış WhatsApp": "Okunmamış WhatsApp",
+    "%sdonate\u0000%sdonate": "%sdoar\u0000%sdoar",
+    "%seven\u0000%seven": "%spar\u0000%spar",
+    "%swarning\u0000%swarning": "Aviso%s\u0000Aviso%s",
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.\u0000%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão."
   }
 }

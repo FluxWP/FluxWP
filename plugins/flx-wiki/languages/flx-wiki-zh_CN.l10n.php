@@ -177,7 +177,7 @@ return array(
   'select' => '选择',
   'open' => '打开',
   'close' => '关闭',
-  '[[\'Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. "Ask the Wiki" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.\', \'tr\']]' => '[[\'/wiki 下网站上的开发人员 wiki:Markdown 页面、部分、页面树和目录、详细的即时搜索、SEO 友好的输出。 LLM 友好:每个页面都打开并复制为 .md、/wiki/llms.txt 和 llms-full.txt,在 ChatGPT / Claude 中打开。使用 Flux AI 的“询问 Wiki”和 MCP 工具(搜索、读取、列出、写入)。它附带了编写插件和主题以及使插件由人工智能驱动的指南。\', \'tr\']]',
+  '[[\'Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. "Ask the Wiki" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.\', \'tr\']]' => '/wiki 下网站上的开发人员 wiki:Markdown 页面、部分、页面树和目录、详细的即时搜索、SEO 友好的输出。 LLM 友好:每个页面都打开并复制为 .md、/wiki/llms.txt 和 llms-full.txt,在 ChatGPT / Claude 中打开。使用 Flux AI 的“询问 Wiki”和 MCP 工具(搜索、读取、列出、写入)。它附带了编写插件和主题以及使插件由人工智能驱动的指南。',
   'Ayarlar' => '设置',
   'Wiki\'yi aç' => '打开维基',
   'Geliştirici wiki\'si: Markdown sayfalar, arama, LLM ve MCP desteği' => '开发者维基:Markdown 页面、搜索、LLM 和 MCP 支持',
@@ -350,6 +350,8 @@ return array(
   'seç' => '选择',
   'aç' => '打开',
   'kapat' => '关闭',
-  'Sitede /wiki altında geliştirici wiki\'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude\'da aç. Flux AI ile "Wiki\'ye sor" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir.' => '[[\'/wiki 下网站上的开发人员 wiki:Markdown 页面、部分、页面树和目录、详细的即时搜索、SEO 友好的输出。 LLM 友好:每个页面都打开并复制为 .md、/wiki/llms.txt 和 llms-full.txt,在 ChatGPT / Claude 中打开。使用 Flux AI 的“询问 Wiki”和 MCP 工具(搜索、读取、列出、写入)。它附带了编写插件和主题以及使插件由人工智能驱动的指南。\', \'tr\']]',
+  'Sitede /wiki altında geliştirici wiki\'si: Markdown sayfalar, bölümler, sayfa ağacı ve içindekiler, ayrıntılı anlık arama, SEO uyumlu çıktı. LLM dostu: her sayfa .md olarak açılır ve kopyalanır, /wiki/llms.txt ve llms-full.txt, ChatGPT / Claude\'da aç. Flux AI ile "Wiki\'ye sor" ve MCP araçları (ara, oku, listele, yaz). Eklenti ve tema yazma, eklentileri AI destekli yapma rehberleriyle gelir.' => '/wiki 下网站上的开发人员 wiki:Markdown 页面、部分、页面树和目录、详细的即时搜索、SEO 友好的输出。 LLM 友好:每个页面都打开并复制为 .md、/wiki/llms.txt 和 llms-full.txt,在 ChatGPT / Claude 中打开。使用 Flux AI 的“询问 Wiki”和 MCP 工具(搜索、读取、列出、写入)。它附带了编写插件和主题以及使插件由人工智能驱动的指南。',
+  'Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. "Ask the Wiki" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.' => '/wiki 下网站上的开发人员 wiki:Markdown 页面、部分、页面树和目录、详细的即时搜索、SEO 友好的输出。 LLM 友好:每个页面都打开并复制为 .md、/wiki/llms.txt 和 llms-full.txt,在 ChatGPT / Claude 中打开。使用 Flux AI 的“询问 Wiki”和 MCP 工具(搜索、读取、列出、写入)。它附带了编写插件和主题以及使插件由人工智能驱动的指南。',
+
  ),
 );

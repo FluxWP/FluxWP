@@ -200,7 +200,7 @@ function flxs_pagination( $total, $per_page, $current ) {
 			'next_text' => '›',
 		)
 	);
-	echo '<span class="flxs-pages__total">' . esc_html( sprintf( _n( '[[\'%dregistration\', \'tr\']]', '[[\'%dregistration\', \'tr\']]', (int) $total, 'flx-certificates' ), (int) $total ) ) . '</span></div>';
+	echo '<span class="flxs-pages__total">' . esc_html( sprintf( _n( '%d record', '%d records', (int) $total, 'flx-certificates' ), (int) $total ) ) . '</span></div>';
 }
 
 function flxs_status_badge( $status ) {

@@ -79,7 +79,7 @@ final class FLXF_System_Checks {
 
 	public static function render() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( '\\nSorry, you are not allowed to access this page.\\n', 'flx-forms' ) );
+			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'flx-forms' ) );
 		}
 		echo '<div class="wrap"><h1>' . esc_html__( 'System check', 'flx-forms' ) . '</h1><hr class="wp-header-end">';
 		flx_system_checks_render( array( 'recheck_url' => self::url() ) );
@@ -172,8 +172,8 @@ final class FLXF_System_Checks {
 			$delegated = function_exists( 'flxb_owns_payments' ) && flxb_owns_payments();
 			return array(
 				$delegated
-					? self::c( 'handoff', 'Payments', __( '\\nPayment hand-off\\n', 'flx-forms' ), 'ok', __( '\\nFlux Donate handles payments (providers, keys, webhooks): Donations › Payments.\\n', 'flx-forms' ) )
-					: self::c( 'handoff', 'Payments', __( '\\nPayment hand-off\\n', 'flx-forms' ), 'warning', __( '[[\'Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms uses its own Stripe settings.\\n', 'flx-forms' ) ),
+					? self::c( 'handoff', 'Payments', __( 'Payment hand-off', 'flx-forms' ), 'ok', __( 'Flux Donate handles payments (providers, keys, webhooks): Donations › Payments.', 'flx-forms' ) )
+					: self::c( 'handoff', 'Payments', __( 'Payment hand-off', 'flx-forms' ), 'warning', __( 'Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms uses its own Stripe settings.', 'flx-forms' ) ),
 			);
 		}
 		if ( ! function_exists( 'flxf_payment_active_provider' ) ) {
@@ -183,7 +183,7 @@ final class FLXF_System_Checks {
 		$url = admin_url( 'admin.php?page=Emsfb' );
 		if ( $p && $p->is_configured() ) {
 			/* translators: %s: provider name */
-			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'ok', sprintf( __( '\\nFlux Donate is not active; Flux Forms takes payments itself with%s.\\n', 'flx-forms' ), $p->label() ) ) );
+			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'ok', sprintf( __( 'Flux Donate is not active; Flux Forms takes payments itself with%s.', 'flx-forms' ), $p->label() ) ) );
 		}
 		return array(
 			self::c(
@@ -193,10 +193,10 @@ final class FLXF_System_Checks {
 				$pay ? 'error' : 'info',
 				( $pay
 					/* translators: %d: number of payment forms */
-					? sprintf( _n( '[[\'Flux Donate is not active and the Stripe keys are missing:%dpayment form shows "Online payment is unavailable".\', \'en\']]', '[[\'Flux Donate is not active and the Stripe keys are missing:%dpayment forms show "Online payment is unavailable".\', \'en\']]', $pay, 'flx-forms' ), $pay )
-					: __( '\\nFlux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected.\\n', 'flx-forms' ) ),
+					? sprintf( _n( 'Flux Donate is not active and the Stripe keys are missing: %d payment form shows "Online payment is unavailable".', 'Flux Donate is not active and the Stripe keys are missing: %d payment forms show "Online payment is unavailable".', $pay, 'flx-forms' ), $pay )
+					: __( 'Flux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected.', 'flx-forms' ) ),
 				$url,
-				__( '\\nPanel › Settings › Payment\\n', 'flx-forms' )
+				__( 'Panel › Settings › Payment', 'flx-forms' )
 			),
 		);
 	}
@@ -204,21 +204,21 @@ final class FLXF_System_Checks {
 	private static function plugins() {
 		$out = array();
 		if ( ! self::flxb() ) {
-			$out[] = self::c( 'flxb', 'Plugins', 'Flux Donate', 'info', __( '\\nNot active. Forms work; donations are not tracked and recurring iyzico payments are not available.\\n', 'flx-forms' ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-forms' ) );
+			$out[] = self::c( 'flxb', 'Plugins', 'Flux Donate', 'info', __( 'Not active. Forms work; donations are not tracked and recurring iyzico payments are not available.', 'flx-forms' ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-forms' ) );
 		}
 		$cert = self::cert_flows();
 		if ( defined( 'FLXS_VERSION' ) ) {
 			$v     = (string) FLXS_VERSION;
 			$out[] = version_compare( $v, self::MIN_FLXS, '>=' )
 				/* translators: %s: version */
-				? self::c( 'flxs', 'Plugins', __( '\\nFlux Certificates (automations)\\n', 'flx-forms' ), 'ok', sprintf( __( '\\nVersion%sis active; certificate automations can run.\\n', 'flx-forms' ), $v ) )
+				? self::c( 'flxs', 'Plugins', __( 'Flux Certificates (automations)', 'flx-forms' ), 'ok', sprintf( __( 'Version%sis active; certificate automations can run.', 'flx-forms' ), $v ) )
 				/* translators: 1: installed version, 2: required version */
-				: self::c( 'flxs', 'Plugins', __( '\\nFlux Certificates (automations)\\n', 'flx-forms' ), 'warning', sprintf( __( '\\nVersion%1$sis active; certificate automations need%2$sor later.\\n', 'flx-forms' ), $v, self::MIN_FLXS ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-forms' ) );
+				: self::c( 'flxs', 'Plugins', __( 'Flux Certificates (automations)', 'flx-forms' ), 'warning', sprintf( __( 'Version%1$sis active; certificate automations need%2$sor later.', 'flx-forms' ), $v, self::MIN_FLXS ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-forms' ) );
 		} else {
 			$out[] = $cert
 				/* translators: %d: number of flows */
-				? self::c( 'flxs', 'Plugins', __( '\\nFlux Certificates (automations)\\n', 'flx-forms' ), 'error', sprintf( _n( '[[\'Not active, but%dactive automation creates or sends certificates; it will fail.\', \'en\']]', '[[\'Not active, but%dactive automations create or send certificates; they will fail.\', \'en\']]', $cert, 'flx-forms' ), $cert ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-forms' ) )
-				: self::c( 'flxs', 'Plugins', __( '\\nFlux Certificates (automations)\\n', 'flx-forms' ), 'info', __( '\\nNot active. Needed only for certificate automations.\\n', 'flx-forms' ) );
+				? self::c( 'flxs', 'Plugins', __( 'Flux Certificates (automations)', 'flx-forms' ), 'error', sprintf( _n( 'Not active, but %d active automation creates or sends certificates; it will fail.', 'Not active, but %d active automations create or send certificates; they will fail.', $cert, 'flx-forms' ), $cert ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-forms' ) )
+				: self::c( 'flxs', 'Plugins', __( 'Flux Certificates (automations)', 'flx-forms' ), 'info', __( 'Not active. Needed only for certificate automations.', 'flx-forms' ) );
 		}
 		return $out;
 	}
@@ -247,7 +247,7 @@ final class FLXF_System_Checks {
 		$url   = admin_url( 'admin.php?page=flxf_automations' );
 		$flows = FLXF_Automations::get_flows( true );
 		if ( ! $flows ) {
-			return array( self::c( 'automations', 'Forms', __( '\\nAutomations\\n', 'flx-forms' ), 'info', __( '\\nNo automation is on. After a form or payment nothing runs automatically (certificate, e-mail, webhook).\\n', 'flx-forms' ), $url, __( '\\nAutomations\\n', 'flx-forms' ) ) );
+			return array( self::c( 'automations', 'Forms', __( 'Automations', 'flx-forms' ), 'info', __( 'No automation is on. After a form or payment nothing runs automatically (certificate, e-mail, webhook).', 'flx-forms' ), $url, __( 'Automations', 'flx-forms' ) ) );
 		}
 		$since = time() - 7 * DAY_IN_SECONDS;
 		$bad   = 0;
@@ -258,12 +258,12 @@ final class FLXF_System_Checks {
 			}
 		}
 		/* translators: %d: number of flows */
-		$msg = sprintf( _n( '[[\'%dautomation is on.\', \'en\']]', '[[\'%dautomations are on.\', \'en\']]', count( $flows ), 'flx-forms' ), count( $flows ) );
+		$msg = sprintf( _n( '%d automation is on.', '%d automations are on.', count( $flows ), 'flx-forms' ), count( $flows ) );
 		if ( $bad ) {
 			/* translators: %d: number of failed runs */
-			$msg .= ' ' . sprintf( _n( '[[\'%drun failed in the last 7 days; see the run log.\', \'en\']]', '[[\'%druns failed in the last 7 days; see the run log.\', \'en\']]', $bad, 'flx-forms' ), $bad );
+			$msg .= ' ' . sprintf( _n( '%d run failed in the last 7 days; see the run log.', '%d runs failed in the last 7 days; see the run log.', $bad, 'flx-forms' ), $bad );
 		}
-		return array( self::c( 'automations', 'Forms', __( '\\nAutomations\\n', 'flx-forms' ), $bad ? 'warning' : 'ok', $msg, $url, __( '\\nAutomations\\n', 'flx-forms' ) ) );
+		return array( self::c( 'automations', 'Forms', __( 'Automations', 'flx-forms' ), $bad ? 'warning' : 'ok', $msg, $url, __( 'Automations', 'flx-forms' ) ) );
 	}
 
 	private static function security() {
@@ -278,9 +278,9 @@ final class FLXF_System_Checks {
 		return array(
 			$ok
 				/* translators: %d: number of forms */
-				? self::c( 'recaptcha', 'Security', 'Google reCAPTCHA', 'ok', sprintf( _n( '\\nKeys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA.\\n', '\\nKeys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA.\\n', $n, 'flx-forms' ), $n ) )
+				? self::c( 'recaptcha', 'Security', 'Google reCAPTCHA', 'ok', sprintf( _n( 'Keys are set; %d form uses reCAPTCHA.', 'Keys are set; %d forms use reCAPTCHA.', $n, 'flx-forms' ), $n ) )
 				/* translators: %d: number of forms */
-				: self::c( 'recaptcha', 'Security', 'Google reCAPTCHA', 'error', sprintf( _n( '[[\'%dform has reCAPTCHA on but the site key or secret key is missing; the form is not shown.\', \'en\']]', '[[\'%dforms have reCAPTCHA on but the site key or secret key is missing; they are not shown.\', \'en\']]', $n, 'flx-forms' ), $n ), $url, __( 'Settings', 'flx-forms' ) ),
+				: self::c( 'recaptcha', 'Security', 'Google reCAPTCHA', 'error', sprintf( _n( '%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown.', '%d forms have reCAPTCHA on but the site key or secret key is missing; they are not shown.', $n, 'flx-forms' ), $n ), $url, __( 'Settings', 'flx-forms' ) ),
 		);
 	}
 
@@ -288,13 +288,13 @@ final class FLXF_System_Checks {
 		$u = wp_upload_dir( null, false );
 		if ( ! empty( $u['error'] ) ) {
 			/* translators: %s: error */
-			return array( self::c( 'uploads', 'Config', __( '\\nUploads folder\\n', 'flx-forms' ), 'error', sprintf( __( '\\nThe uploads folder is not available:%s\\n', 'flx-forms' ), wp_strip_all_tags( (string) $u['error'] ) ) ) );
+			return array( self::c( 'uploads', 'Config', __( 'Uploads folder', 'flx-forms' ), 'error', sprintf( __( 'The uploads folder is not available:%s', 'flx-forms' ), wp_strip_all_tags( (string) $u['error'] ) ) ) );
 		}
 		return array(
 			wp_is_writable( $u['basedir'] )
-				? self::c( 'uploads', 'Config', __( '\\nUploads folder\\n', 'flx-forms' ), 'ok', __( '\\nWritable; files sent with forms can be saved.\\n', 'flx-forms' ) )
+				? self::c( 'uploads', 'Config', __( 'Uploads folder', 'flx-forms' ), 'ok', __( 'Writable; files sent with forms can be saved.', 'flx-forms' ) )
 				/* translators: %s: folder path */
-				: self::c( 'uploads', 'Config', __( '\\nUploads folder\\n', 'flx-forms' ), 'error', sprintf( __( '\\nNot writable:%s. File fields in forms cannot save uploads; ask the host to fix the folder permissions.\\n', 'flx-forms' ), $u['basedir'] ) ),
+				: self::c( 'uploads', 'Config', __( 'Uploads folder', 'flx-forms' ), 'error', sprintf( __( 'Not writable:%s. File fields in forms cannot save uploads; ask the host to fix the folder permissions.', 'flx-forms' ), $u['basedir'] ) ),
 		);
 	}
 }

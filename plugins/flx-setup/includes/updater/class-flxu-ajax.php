@@ -29,7 +29,7 @@ final class FLXU_Ajax {
 			$summary = __( 'Could not connect to the server.', 'flx-setup' );
 		} elseif ( $pending ) {
 			/* translators: %d: number of updates */
-			$summary = sprintf( _n( '[[\'%dthere is an update\', \'tr\']]', '[[\'%dthere is an update\', \'tr\']]', $pending, 'flx-setup' ), $pending );
+			$summary = sprintf( _n( '%d update available', '%d updates available', $pending, 'flx-setup' ), $pending );
 		} else {
 			$summary = __( 'All up to date ✓', 'flx-setup' );
 		}

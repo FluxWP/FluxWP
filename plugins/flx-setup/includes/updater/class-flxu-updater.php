@@ -214,7 +214,7 @@ final class FLXU_Updater {
 	private static function texts( $v ): array {
 		$out = array();
 		foreach ( is_array( $v ) ? $v : array() as $lang => $s ) {
-			if ( is_string( $s ) && '' !== trim( $s ) && preg_match( '/^[a-z]{2}$/', (string) $lang ) ) {
+			if ( is_string( $s ) && '' !== trim( $s ) && preg_match( '/^[a-z]{2,3}(?:-[a-z0-9]{2,8}){0,2}$/D', (string) $lang ) ) {
 				$out[ $lang ] = sanitize_text_field( $s );
 			}
 		}
@@ -226,8 +226,22 @@ final class FLXU_Updater {
 		$out = array();
 		foreach ( $keys as $k ) {
 			$u = is_array( $v ) ? (string) ( $v[ $k ] ?? '' ) : '';
-			if ( '' !== $u && strtolower( (string) wp_parse_url( $u, PHP_URL_HOST ) ) === $host ) {
-				$out[ $k ] = esc_url_raw( $u );
+			$parts = wp_parse_url( $u );
+			if ( is_array( $parts ) && 'https' === ( $parts['scheme'] ?? '' ) && strtolower( (string) ( $parts['host'] ?? '' ) ) === $host && empty( $parts['user'] ) && empty( $parts['pass'] ) ) {
+				$out[ $k ] = esc_url_raw( $u, array( 'https' ) );
+			}
+		}
+		return $out;
+	}
+
+	/** Gallery images remain on the trusted updater host; preserve regional locale keys. */
+	private static function gallery( $value, string $host ): array {
+		$out = array();
+		foreach ( is_array( $value ) ? $value : array() as $locale => $urls ) {
+			if ( ! preg_match( '/^[a-z]{2,3}(?:-[a-z0-9]{2,8}){0,2}$/D', (string) $locale ) || ! is_array( $urls ) ) { continue; }
+			foreach ( array_slice( $urls, 0, 12 ) as $url ) {
+				$parts = is_string( $url ) ? wp_parse_url( $url ) : false;
+				if ( is_array( $parts ) && 'https' === ( $parts['scheme'] ?? '' ) && strtolower( $parts['host'] ?? '' ) === $host && empty( $parts['user'] ) && empty( $parts['pass'] ) ) { $out[ $locale ][] = esc_url_raw( $url, array( 'https' ) ); }
 			}
 		}
 		return $out;
@@ -246,7 +260,7 @@ final class FLXU_Updater {
 		$text = static function ( $v ): array {
 			$out = array();
 			foreach ( is_array( $v ) ? $v : array( 'en' => $v ) as $lang => $s ) {
-				if ( is_string( $s ) && preg_match( '/^[a-z]{2}$/', (string) $lang ) ) {
+				if ( is_string( $s ) && preg_match( '/^[a-z]{2,3}(?:-[a-z0-9]{2,8}){0,2}$/D', (string) $lang ) ) {
 					$out[ $lang ] = sanitize_text_field( $s );
 				}
 			}
@@ -367,7 +381,9 @@ final class FLXU_Updater {
 				'rec'              => ! empty( $p['rec'] ),
 				'desc'             => self::texts( $p['desc'] ?? array() ),
 				'icons'            => self::media_list( $p['icons'] ?? array(), $host, array( 'svg', 'pastel' ) ),
-				'shots'            => self::media_list( $p['shots'] ?? array(), $host, array( 'tr', 'en' ) ),
+				'shots'            => self::media_list( $p['shots'] ?? array(), $host, array_keys( self::texts( $p['shots'] ?? array() ) ) ),
+				'gallery'          => self::gallery( $p['gallery'] ?? array(), $host ),
+				'website'          => self::texts( $p['website'] ?? array() ),
 			);
 		}
 		if ( $is_main ) {
@@ -644,9 +660,8 @@ final class FLXU_Updater {
 	}
 
 	/**
-	 * Paketin logosu: güncelleme sunucusunun verdiği (paketin kendi assets/icon.svg'si, sürüm başına önbellekli),
-	 * sunucu vermediyse kurulu paketin kendi dosyası. FluxWP Panel hiçbir paketin logosunu kendi içinde taşımaz.
-	 * Başka bir paket kendi logosunu `flxu_package_icons` filtresiyle verebilir.
+	 * Package icons come only from the updater's GitHub mirror.
+	 * Missing metadata leaves the standard placeholder. Explicit filters may customize existing server icons.
 	 */
 	public static function icons( string $slug ): array {
 		$icons  = array();
@@ -659,19 +674,7 @@ final class FLXU_Updater {
 			$url = (string) $remote['pastel'];
 		} elseif ( ! empty( $remote['svg'] ) ) {
 			$url = (string) $remote['svg'];
-		} elseif ( '' !== $slug ) {
-			// Sunucu vermediyse kurulu eklentinin ya da temanın kendi logosu (assets/icon.svg / icon-pastel.svg).
-			$dirs = array(
-				array( WP_PLUGIN_DIR . '/' . $slug, plugins_url( $slug ) ),
-				array( get_theme_root() . '/' . $slug, get_theme_root_uri() . '/' . $slug ),
-			);
-			foreach ( $dirs as $d ) {
-				foreach ( $pastel ? array( 'icon-pastel.svg', 'icon.svg' ) : array( 'icon.svg' ) as $f ) {
-					if ( '' === $url && is_readable( $d[0] . '/assets/' . $f ) ) {
-						$url = $d[1] . '/assets/' . $f . '?ver=' . filemtime( $d[0] . '/assets/' . $f );
-					}
-				}
-			}
+
 		}
 		if ( $url ) {
 			$icons = array(
@@ -680,7 +683,8 @@ final class FLXU_Updater {
 				'2x'  => $url,
 			);
 		}
-		return (array) apply_filters( 'flxu_package_icons', $icons, $slug );
+		// Missing server metadata stays a generic placeholder; installed-package filters do not reintroduce local fallbacks.
+		return $icons ? (array) apply_filters( 'flxu_package_icons', $icons, $slug ) : array();
 	}
 
 	public function inject_plugins( $transient ) {

@@ -122,9 +122,9 @@ function flxs_n( $n ) {
 function flxs_fidan_word( $n, $closed ) {
 	return $closed
 		/* translators: sayının yanındaki ifade, örn. "250 fidan dikildi" */
-		? _n( '[[\'saplings were planted\', \'tr\']]', '[[\'saplings were planted\', \'tr\']]', (int) $n, 'flx-certificates' )
+		? _n( 'sapling planted', 'saplings planted', (int) $n, 'flx-certificates' )
 		/* translators: sayının yanındaki ifade, örn. "250 fidan toplandı" */
-		: _n( '[[\'saplings were collected\', \'tr\']]', '[[\'saplings were collected\', \'tr\']]', (int) $n, 'flx-certificates' );
+		: _n( 'sapling collected', 'saplings collected', (int) $n, 'flx-certificates' );
 }
 
 /** Konum bloğu (açıklanmadıysa bilgi notu) */
@@ -165,7 +165,7 @@ function flxs_event_panel_html( $e ) {
 	$h      = '<section class="flxs-ev-panel' . ( $closed ? ' is-closed' : '' ) . '">';
 	$h     .= '<div class="flxs-ev-panel__hero"><div class="flxs-ev-panel__main">';
 	$h     .= '<span class="flxs-ev-pill">' . flxs_ico( 'tree' ) . ' ' . esc_html( $closed ? __( 'Completed event', 'flx-certificates' ) : __( 'Sapling counter', 'flx-certificates' ) ) . '</span>';
-	$h     .= '<div class="flxs-ev-panel__count"><div class="flxs-ev-panel__num" data-count="' . (int) $p['fidan'] . '">' . flxs_n( $p['fidan'] ) . '</div><div class="flxs-ev-panel__lbl">' . esc_html( $closed ? __( 'saplings planted', 'flx-certificates' ) : flxs_fidan_word( $p['fidan'], false ) ) . ( $p['people'] ? '<small>' . sprintf( /* translators: %s: kişi sayısı */ esc_html( _n( '[[\'%scontributed by\', \'tr\']]', '[[\'%scontributed by\', \'tr\']]', (int) $p['people'], 'flx-certificates' ) ), flxs_n( $p['people'] ) ) . '</small>' : '' ) . '</div></div>';
+	$h     .= '<div class="flxs-ev-panel__count"><div class="flxs-ev-panel__num" data-count="' . (int) $p['fidan'] . '">' . flxs_n( $p['fidan'] ) . '</div><div class="flxs-ev-panel__lbl">' . esc_html( $closed ? __( 'saplings planted', 'flx-certificates' ) : flxs_fidan_word( $p['fidan'], false ) ) . ( $p['people'] ? '<small>' . sprintf( /* translators: %s: kişi sayısı */ esc_html( _n( '%s person contributed', '%s people contributed', (int) $p['people'], 'flx-certificates' ) ), flxs_n( $p['people'] ) ) . '</small>' : '' ) . '</div></div>';
 	$h     .= flxs_progress_html( $p );
 	$h     .= '</div><img class="flxs-ev-panel__art" src="' . esc_url( FLXS_URL . 'assets/img/fidan.svg' ) . '" alt="" width="240" height="220" aria-hidden="true"></div>';
 	$h     .= '<div class="flxs-ev-facts">';

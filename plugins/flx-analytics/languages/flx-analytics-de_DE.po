@@ -1471,5 +1471,5 @@ msgstr "Analytik"
 msgid "Right now"
 msgstr "Gerade jetzt"
 
-msgid "[['Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.', 'tr']]"
-msgstr "[['Cookie-freie, keine personenbezogenen Daten enthaltende Website-Statistiken: Besucher, Aufrufe, meistgelesene Seiten, verweisende Websites, Kanal, Gerät/Browser, Kampagne (UTM), Klickereignisse und Spendenkonvertierungen. Die Daten verbleiben auf der Website; Liest mit künstlicher Intelligenz Flux AI / Flux AI & MCP-Tools.', 'tr']]"
+msgid "Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools."
+msgstr "Cookie-freie, keine personenbezogenen Daten enthaltende Website-Statistiken: Besucher, Aufrufe, meistgelesene Seiten, verweisende Websites, Kanal, Gerät/Browser, Kampagne (UTM), Klickereignisse und Spendenkonvertierungen. Die Daten verbleiben auf der Website; Liest mit künstlicher Intelligenz Flux AI / Flux AI & MCP-Tools."

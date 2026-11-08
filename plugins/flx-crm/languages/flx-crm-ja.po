@@ -1161,5 +1161,5 @@ msgstr "支払い中"
 msgid "Consents"
 msgstr "同意"
 
-msgid "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"
-msgstr "[['人々とマーケティング: 寄付者、顧客、ボランティア、候補者を 1 人の人物カードにまとめました。タイムライン、タグ、KVKK 権限、RFM スコアと損失リスク、動的セグメント。 Flux Donate、Flux Commerce、Flux Chat、Flux Forms、WordPress ユーザーからデータを収集します。 Flux Mail、AI Flux AI 経由で発送します。', 'tr']]"
+msgid "People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI."
+msgstr "人々とマーケティング: 寄付者、顧客、ボランティア、候補者を 1 人の人物カードにまとめました。タイムライン、タグ、KVKK 権限、RFM スコアと損失リスク、動的セグメント。 Flux Donate、Flux Commerce、Flux Chat、Flux Forms、WordPress ユーザーからデータを収集します。 Flux Mail、AI Flux AI 経由で発送します。"

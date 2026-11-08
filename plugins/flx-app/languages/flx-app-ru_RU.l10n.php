@@ -434,8 +434,8 @@ return array(
   'Note added' => 'Примечание добавлено',
   'Notes' => 'Примечания',
   'Call' => 'Позвонить',
-  '\\nYetkiniz yok.\\n' => '\\nЕткиниз йок.\\n',
-  '[[\'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.\', \'tr\']]' => '[[\'Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth.\', \'tr\']]',
+  '\\nYetkiniz yok.\\n' => 'Еткиниз йок.',
+  '[[\'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.\', \'tr\']]' => 'Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth.',
   'Mobil uygulama kullanım toplamları' => 'Совокупное использование мобильных приложений',
   'İsteğe bağlıdır ve varsayılan kapalıdır. Yalnız uygulamada ayrıca izin veren hesaplar sayılır. Her tamamlanmış UTC günü için iOS/Android toplamları, en az beş hesap varsa telemetri merkezinize gönderilir. Kişi adları, hesap kimlikleri, içerik, site adresi ve GPS konumu bu rapora eklenmez. Ülke, sitenin ayarından gelir. Genel kullanım verisi izni de açık olmalıdır. Giriş ve uygulama özellikleri bu seçime bağlı değildir.' => 'Необязательно и отключено по умолчанию. Учитываются только учетные записи, которые также дали согласие на использование приложения. Завершенные итоговые данные iOS/Android за UTC-день передаются в ваш центр телеметрии только для групп, состоящих как минимум из пяти учетных записей. Никакие имена, идентификаторы учетных записей, контент, URL-адреса сайтов или местоположение GPS не включены. Страна задается из настроек сайта. Общий доступ к использованию также должен быть включен. Функции входа и приложения не зависят от этого выбора.',
   'Mobil uygulamanın toplam kullanımını paylaş' => 'Поделитесь совокупным использованием мобильных приложений',
@@ -868,7 +868,9 @@ return array(
   'Notlar' => 'Примечания',
   'Ara' => 'Позвонить',
   'Siparişleri' => 'Заказы',
-  'Yetkiniz yok.' => '\\nЕткиниз йок.\\n',
-  'FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.' => '[[\'Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth.\', \'tr\']]',
+  'Yetkiniz yok.' => 'Еткиниз йок.',
+  'FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır.' => 'Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth.',
+  'Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.' => 'Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth.',
+
  ),
 );

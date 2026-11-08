@@ -84,7 +84,7 @@ class Dashboard_Widget {
 
         wp_add_dashboard_widget(
             'efb_stats_dashboard_widget',
-            '<span class="efb-dw-title"><img src="' . esc_url(EMSFB_PLUGIN_URL . 'includes/admin/assets/image/logo-gray.png') . '" alt="" style="width:18px;height:18px;vertical-align:middle;margin-inline-end:6px;">' . esc_html__('\\nFlux Forms\\n', 'flx-forms') . '</span>',
+            '<span class="efb-dw-title"><img src="' . esc_url(EMSFB_PLUGIN_URL . 'includes/admin/assets/image/logo-gray.png') . '" alt="" style="width:18px;height:18px;vertical-align:middle;margin-inline-end:6px;">' . esc_html__('Flux Forms', 'flx-forms') . '</span>',
             [$this, 'render_widget']
         );
     }

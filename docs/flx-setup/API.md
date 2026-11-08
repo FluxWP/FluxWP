@@ -1,33 +1,29 @@
 # FluxWP Panel preview metadata
 
-The Packages screen opens a read-only native dialog from a package name or icon. Installation/update controls keep their existing behavior. Short descriptions and up to three example images are selected by the WordPress administrator locale; missing languages fall back to English. No Flux Lang dependency, AI request, download token or package download URL is needed to open the preview.
+The Packages screen opens a native, read-only dialog from a package name or icon. All descriptions, icons, gallery images and publisher links come from the configured updater catalog. There are no bundled client introductions, raw repository URLs, or inferred publisher links. An older server without metadata produces an empty introduction with the existing localized unavailable state.
 
-The catalog's `desc` and `shots` fields take precedence. Bundled public-package metadata supplies concise README introductions and existing documentation image URLs if the catalog has no preview. Unknown/private packages do not inherit public repository URLs or marketing links. Images are requested by the browser only after the user opens a preview, without a referrer. Missing/failed images leave the description and publisher link usable.
+`POST /v1/check` includes these authorized package fields:
 
-## `flxu_package_preview`
-
-Filter arguments: `(array $preview, string $slug, array $catalog_package)`.
-
-Return `name` (plain text), `description` (plain text, limited to 420 characters), `images` (up to three HTTPS image URLs) and `website` (HTTPS publisher page URL or an empty string). Other keys are discarded. Script/HTTP URLs and URLs with embedded credentials are rejected. A private package can explicitly supply its own publisher link through this filter; no public link is inferred for it.
-
-```php
-add_filter( 'flxu_package_preview', function ( $preview, $slug ) {
-    if ( 'my-package' === $slug ) {
-        $preview['description'] = __( 'A short overview of this package.', 'my-package' );
-        $preview['website'] = 'https://example.com/products/my-package/';
-    }
-    return $preview;
-}, 10, 2 );
+```json
+{
+  "desc": { "en": "Short introduction", "pt-br": "Breve apresentação" },
+  "website": { "en": "https://publisher.example/product/" },
+  "gallery": { "en": ["https://updates.example/v1/media/package/image.webp?expires=...&site=...&sig=..."] },
+  "shots": { "en": "https://updates.example/v1/media/package/image.webp?expires=...&site=...&sig=..." }
+}
 ```
 
-## Refresh public introductions and example images
+`shots` remains a first-image alias for older clients. Locale keys use lowercase BCP 47 forms, including `pt-br`. WordPress administrator locale determines exact locale, base language, English, then Turkish fallback; Flux Lang is not required. Up to twelve images are accepted. Gallery transport accepts HTTPS images on the configured updater host only; script URLs and embedded credentials are rejected. Publisher links must be HTTPS and are rendered only if explicitly supplied.
 
-```sh
-python3 tools/readme-media/export-panel-previews.py
-python3 tools/readme-media/export-panel-previews.py --translate
-```
+Images are loaded only when the dialog opens, without a referrer. Image failure leaves the introduction and publisher link available. Download keys and GitHub credentials never enter the dialog. Updater media URLs expire after seven days; disabling a site, removing its package permission or removing an image revokes access at the server. Refresh the package list to obtain new URLs.
 
-The first command is offline and retains translations whose English source did not change. The explicit `--translate` option uses the developer translation service to fill missing descriptions; it is never run by WordPress. Source files are the public package README files, tracked documentation images and existing media capture configurations. The generator excludes the internal migration package and never reads private preset files. Refresh native gettext packs separately with the translation workflow in `tools/site-translations/LANGUAGES.md`.
+Manage descriptions, publisher links, SVG/pastel icon references and galleries in `catalog/packages.json` in the owning GitHub repository. The updater reads that manifest from the default branch, mirrors verified Git blobs lazily and distributes every URL from its own host. There is no updater-side content editor or upload/import step. The authenticated updater panel exposes synchronization status and a refresh action. Private repository credentials and paths are never sent to sites.
+
+## Developer workflow
+
+Use `tools/readme-media/setup-docker.py`, `capture-package.py` and `export-updater-previews.py`; see the media guide. The exporter writes package-owned `docs/previews/` WebP derivatives and the repository's `catalog/packages.json`. Icon references point to the package's tracked SVG assets. Commit both catalog and media to the owning repository; updater synchronization handles distribution. `--private-root` writes a separate catalog only in that private repository. `--translate` fills missing short descriptions during development, never from WordPress.
+
+The existing `flxu_package_preview` filter remains an explicit integration override with `(array $preview, string $slug, array $catalog_package)`. Its four display fields are sanitized: `name`, `description` (420 characters), `images` (twelve HTTPS URLs), `website` (HTTPS or empty). Other fields are discarded. No runtime fallback is installed through this filter.
 
 ## Maintainers
 

@@ -1163,5 +1163,5 @@ msgstr "Pagando"
 msgid "Consents"
 msgstr "Consentimentos"
 
-msgid "[['People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.', 'tr']]"
-msgstr "[['Pessoas e marketing: doador, cliente, voluntário e candidato em um cartão individual; linha do tempo, tags, permissões KVKK, pontuação RFM e risco de perda, segmentos dinâmicos. Coleta dados de usuários do Flux Donate, Flux Commerce, Flux Chat, Flux Forms e WordPress; envio via Flux Mail, AI Flux AI.', 'tr']]"
+msgid "People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI."
+msgstr "Pessoas e marketing: doador, cliente, voluntário e candidato em um cartão individual; linha do tempo, tags, permissões KVKK, pontuação RFM e risco de perda, segmentos dinâmicos. Coleta dados de usuários do Flux Donate, Flux Commerce, Flux Chat, Flux Forms e WordPress; envio via Flux Mail, AI Flux AI."

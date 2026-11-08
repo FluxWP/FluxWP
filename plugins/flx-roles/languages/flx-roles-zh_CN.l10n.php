@@ -108,7 +108,7 @@ return array(
   'Some enabled permissions aren\'t enforced yet; waiting for updates of: %s. Until then these people can\'t see the related screen.' => '一些已启用的权限尚未强制执行;等待更新:%s。在此之前这些人无法看到相关屏幕。',
   'All enabled permissions are enforced.' => '所有启用的权限都会被强制执行。',
   'Roles' => '角色',
-  '[[\'Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.\', \'tr\']]' => '[[\'添加员工、管理员和经理角色(新角色也是从面板添加的);您可以从单个页面打开和关闭角色的任务、证书、捐赠、呼叫中心、工作室和报告访问权限。个人参考链接和用户电话号码(WhatsApp 助手)位于此处。\', \'tr\']]',
+  '[[\'Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.\', \'tr\']]' => '添加员工、管理员和经理角色(新角色也是从面板添加的);您可以从单个页面打开和关闭角色的任务、证书、捐赠、呼叫中心、工作室和报告访问权限。个人参考链接和用户电话号码(WhatsApp 助手)位于此处。',
   'Roller ve erişim' => '角色和访问权限',
   'Otomatik (ilk erişebildiği: Görevler, Sertifikalar, Bağışlar)' => '自动(首先可用:任务、证书、捐赠)',
   'Görevler' => '任务',
@@ -213,6 +213,8 @@ return array(
   'Açık ama henüz uygulanmayan yetkiler var; şu eklentilerin güncellemesi bekleniyor: %s. O zamana kadar bu kişiler ilgili ekranı göremez.' => '一些已启用的权限尚未强制执行;等待更新:%s。在此之前这些人无法看到相关屏幕。',
   'Açık yetkilerin hepsi uygulanıyor.' => '所有启用的权限都会被强制执行。',
   'Roller' => '角色',
-  'Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.' => '[[\'添加员工、管理员和经理角色(新角色也是从面板添加的);您可以从单个页面打开和关闭角色的任务、证书、捐赠、呼叫中心、工作室和报告访问权限。个人参考链接和用户电话号码(WhatsApp 助手)位于此处。\', \'tr\']]',
+  'Personel, İdareci ve Yönetici rollerini ekler (panelden yeni rol de eklenir); rollerin Görev, Sertifika, Bağış, Çağrı Merkezi, Stüdyo ve rapor erişimini tek sayfadan açıp kapatırsınız. Kişisel referans linki ve kullanıcı telefonu (WhatsApp asistanı için) burada.' => '添加员工、管理员和经理角色(新角色也是从面板添加的);您可以从单个页面打开和关闭角色的任务、证书、捐赠、呼叫中心、工作室和报告访问权限。个人参考链接和用户电话号码(WhatsApp 助手)位于此处。',
+  'Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.' => '添加员工、管理员和经理角色(新角色也是从面板添加的);您可以从单个页面打开和关闭角色的任务、证书、捐赠、呼叫中心、工作室和报告访问权限。个人参考链接和用户电话号码(WhatsApp 助手)位于此处。',
+
  ),
 );

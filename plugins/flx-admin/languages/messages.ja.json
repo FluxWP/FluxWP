@@ -388,10 +388,14 @@
     "Update FluxWP themes and plugins from the update server": "FluxWP テーマとプラグインを更新サーバーから更新します",
     "Theme settings and presets": "テーマの設定とプリセット",
     "Setup wizard, presets and FluxWP package updates": "セットアップ ウィザード、プリセット、FluxWP パッケージのアップデート",
-    "\\nOkunmamış WhatsApp\\n": "\\nオクンマムシュ WhatsApp\\n",
-    "[['%sdonate', 'tr']]\u0000[['%sdonate', 'tr']]": "[['%s寄付', 'tr']]",
-    "[['%seven', 'sw']]\u0000[['%seven', 'sw']]": "[['%s偶数', 'sw']]",
-    "[['%swarning', 'tr']]\u0000[['%swarning', 'tr']]": "[['%s警告', 'tr']]",
-    "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]\u0000[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]": "[['%sには、ロール用の特別なメニュー レイアウトがあります。他のロールについては、デフォルトのグループ化されたメニューを参照してください。', 'tr']]"
+    "%s donation\u0000%s donations": "%sの寄付",
+    "%s error\u0000%s errors": "%sエラー",
+    "%s warning\u0000%s warnings": "%sの警告",
+    "%s role has a custom menu layout; other roles use the default grouped menu.\u0000%s roles have custom menu layouts; other roles use the default grouped menu.": "%sロールにはカスタム メニュー レイアウトがあります。他のロールは、デフォルトのグループ化されたメニューを使用します。",
+    "Okunmamış WhatsApp": "オクンマムシュ WhatsApp",
+    "%sdonate\u0000%sdonate": "%s寄付",
+    "%seven\u0000%seven": "%s偶数",
+    "%swarning\u0000%swarning": "%s警告",
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%sには、ロール用の特別なメニュー レイアウトがあります。他のロールについては、デフォルトのグループ化されたメニューを参照してください。"
   }
 }

@@ -473,9 +473,9 @@ return array(
   'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.' => 'Automatique désormais : le groupe iyzico et les logos des plugins de point de vente virtuel activés. Une fois que vous ajoutez ou supprimez un logo, la liste est votre propre choix.',
   'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.' => 'Liste triée sur le volet. "Retour à l\'automatique" revient au groupe iyzico et aux logos des plugins de point de vente virtuel activés.',
   'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.' => 'SVG ou PNG transparent sont les meilleurs ; les logos colorés sont affichés dans un cadre blanc sur un pied de page sombre.',
-  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '\\n %s . Hostinger › PHP installé 8.2 et installé.\\n',
+  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => ' %s . Hostinger › PHP installé 8.2 et installé.',
   'Background pattern' => 'Motif de fond',
-  '\\nDots\\n' => '\\nPoints\\n',
+  '\\nDots\\n' => 'Points',
   'Leaves' => 'Feuilles',
   'None' => 'Aucun',
   'News introduction' => 'Présentation de l\'actualité',
@@ -947,7 +947,8 @@ return array(
   'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.' => 'Automatique désormais : le groupe iyzico et les logos des plugins de point de vente virtuel activés. Une fois que vous ajoutez ou supprimez un logo, la liste est votre propre choix.',
   'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.' => 'Liste triée sur le volet. "Retour à l\'automatique" revient au groupe iyzico et aux logos des plugins de point de vente virtuel activés.',
   'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.' => 'SVG ou PNG transparent sont les meilleurs ; les logos colorés sont affichés dans un cadre blanc sur un pied de page sombre.',
-  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '\\n %s . Hostinger › PHP installé 8.2 et installé.\\n',
-  'Dots' => '\\nPoints\\n',
+  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => ' %s . Hostinger › PHP installé 8.2 et installé.',
+  'Dots' => 'Points',
+
  ),
 );

@@ -325,5 +325,5 @@ msgstr "Descrição (%s)"
 msgid "If left empty, the Turkish name and description are shown."
 msgstr "Se deixado em branco, o nome e a descrição em turco serão mostrados."
 
-msgid "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]"
-msgstr "[['Torna o site multilíngue: endereços de idiomas como /en/, tradução por página, postagem, projeto e evento, visual específico do idioma, hreflang e canônico, recomendação em inglês para quem vem de fora da Turquia, seletor de idioma; Suporte de idioma para ferramentas Flux AI e MCP e Flux AI.', 'tr']]"
+msgid "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
+msgstr "Torna o site multilíngue: endereços de idiomas como /en/, tradução por página, postagem, projeto e evento, visual específico do idioma, hreflang e canônico, recomendação em inglês para quem vem de fora da Turquia, seletor de idioma; Suporte de idioma para ferramentas Flux AI e MCP e Flux AI."

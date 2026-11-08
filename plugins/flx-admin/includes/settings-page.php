@@ -237,7 +237,7 @@ function flxa_settings_render() {
 			'donations_today' => __( 'Donations today', 'flx-admin' ),
 			'donations_month' => __( 'This month', 'flx-admin' ),
 			'pending'         => __( 'Donation awaiting approval', 'flx-admin' ),
-			'whatsapp'        => __( '\\nOkunmamış WhatsApp\\n', 'flx-admin' ),
+			'whatsapp'        => __( 'Okunmamış WhatsApp', 'flx-admin' ),
 			'tasks'           => __( 'My open tasks', 'flx-admin' ),
 			'system'          => __( 'System check', 'flx-admin' ),
 		);

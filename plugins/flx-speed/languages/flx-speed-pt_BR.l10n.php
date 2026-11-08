@@ -503,7 +503,7 @@ return array(
   'Load' => 'Carregar',
   'p95' => 'pág.95',
   'Flag' => 'Bandeira',
-  '[[\'Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.\', \'tr\']]' => '[[\'Desempenho do site em um só lugar: consultas por solicitação, erros de PHP, solicitações HTTP externas (painel do desenvolvedor), logs de solicitações lentas/errôneas, servidor (CPU, RAM, disco, OPcache), banco de dados, carregamento automático, cron e verificação do sistema. A IA lê todos eles com as ferramentas Flux AI e MCP / Flux AI.\', \'tr\']]',
+  '[[\'Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.\', \'tr\']]' => 'Desempenho do site em um só lugar: consultas por solicitação, erros de PHP, solicitações HTTP externas (painel do desenvolvedor), logs de solicitações lentas/errôneas, servidor (CPU, RAM, disco, OPcache), banco de dados, carregamento automático, cron e verificação do sistema. A IA lê todos eles com as ferramentas Flux AI e MCP / Flux AI.',
   'Performans' => 'Desempenho',
   'Güvenli' => 'Seguro',
   'Önce deneyin' => 'Teste primeiro',
@@ -1004,6 +1004,8 @@ return array(
   'Yavaş istekler' => 'Solicitações lentas',
   'Yük' => 'Carregar',
   'İşaret' => 'Bandeira',
-  'Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.' => '[[\'Desempenho do site em um só lugar: consultas por solicitação, erros de PHP, solicitações HTTP externas (painel do desenvolvedor), logs de solicitações lentas/errôneas, servidor (CPU, RAM, disco, OPcache), banco de dados, carregamento automático, cron e verificação do sistema. A IA lê todos eles com as ferramentas Flux AI e MCP / Flux AI.\', \'tr\']]',
+  'Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.' => 'Desempenho do site em um só lugar: consultas por solicitação, erros de PHP, solicitações HTTP externas (painel do desenvolvedor), logs de solicitações lentas/errôneas, servidor (CPU, RAM, disco, OPcache), banco de dados, carregamento automático, cron e verificação do sistema. A IA lê todos eles com as ferramentas Flux AI e MCP / Flux AI.',
+  'Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.' => 'Desempenho do site em um só lugar: consultas por solicitação, erros de PHP, solicitações HTTP externas (painel do desenvolvedor), logs de solicitações lentas/errôneas, servidor (CPU, RAM, disco, OPcache), banco de dados, carregamento automático, cron e verificação do sistema. A IA lê todos eles com as ferramentas Flux AI e MCP / Flux AI.',
+
  ),
 );

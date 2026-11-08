@@ -234,7 +234,7 @@ if ( ! class_exists( '\Emsfb\StripePayment' ) ) {
 
 		public function handle_save_settings() {
 			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_die( esc_html__( '\\nYou do not have permission to do this.\\n', 'flx-forms' ), 403 );
+				wp_die( esc_html__( 'You do not have permission to do this.', 'flx-forms' ), 403 );
 			}
 			check_admin_referer( 'emsfb_stripe_save' );
 			$secret = isset( $_POST['emsfb_stripe_webhook_secret'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['emsfb_stripe_webhook_secret'] ) ) ) : '';
@@ -269,34 +269,34 @@ if ( ! class_exists( '\Emsfb\StripePayment' ) ) {
 				<?php if ( 'saved' === $msg ) : ?>
 					<div class="notice notice-success"><p><?php esc_html_e( 'Settings saved.', 'flx-forms' ); ?></p></div>
 				<?php elseif ( 'invalid' === $msg ) : ?>
-					<div class="notice notice-error"><p><?php esc_html_e( '\\nA Stripe webhook signing secret starts with "whsec_".\\n', 'flx-forms' ); ?></p></div>
+					<div class="notice notice-error"><p><?php esc_html_e( 'A Stripe webhook signing secret starts with "whsec_".', 'flx-forms' ); ?></p></div>
 				<?php endif; ?>
 				<p><?php esc_html_e( 'The publishable and secret API keys are set on the plugin Settings page, Payment tab.', 'flx-forms' ); ?></p>
-				<h2><?php esc_html_e( '\\nWebhook\\n', 'flx-forms' ); ?></h2>
-				<p><?php esc_html_e( '\\nOptional but recommended: in the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.updated and customer.subscription.deleted, then paste its signing secret below.\\n', 'flx-forms' ); ?></p>
+				<h2><?php esc_html_e( 'Webhook', 'flx-forms' ); ?></h2>
+				<p><?php esc_html_e( 'Optional but recommended: in the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.updated and customer.subscription.deleted, then paste its signing secret below.', 'flx-forms' ); ?></p>
 				<p><code><?php echo esc_html( $hook ); ?></code></p>
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 					<input type="hidden" name="action" value="emsfb_stripe_save">
 					<?php wp_nonce_field( 'emsfb_stripe_save' ); ?>
 					<table class="form-table" role="presentation">
 						<tr>
-							<th scope="row"><label for="emsfb_stripe_webhook_secret"><?php esc_html_e( '\\nWebhook signing secret\\n', 'flx-forms' ); ?></label></th>
+							<th scope="row"><label for="emsfb_stripe_webhook_secret"><?php esc_html_e( 'Webhook signing secret', 'flx-forms' ); ?></label></th>
 							<td>
-								<input type="password" class="regular-text" autocomplete="off" id="emsfb_stripe_webhook_secret" name="emsfb_stripe_webhook_secret" value="" placeholder="<?php echo esc_attr( $has ? __( '\\nSaved - leave empty to keep it\\n', 'flx-forms' ) : 'whsec_...' ); ?>">
+								<input type="password" class="regular-text" autocomplete="off" id="emsfb_stripe_webhook_secret" name="emsfb_stripe_webhook_secret" value="" placeholder="<?php echo esc_attr( $has ? __( 'Saved - leave empty to keep it', 'flx-forms' ) : 'whsec_...' ); ?>">
 								<?php if ( $has ) : ?>
-									<label><input type="checkbox" name="emsfb_stripe_webhook_clear" value="1"> <?php esc_html_e( '\\nRemove the saved secret\\n', 'flx-forms' ); ?></label>
+									<label><input type="checkbox" name="emsfb_stripe_webhook_clear" value="1"> <?php esc_html_e( 'Remove the saved secret', 'flx-forms' ); ?></label>
 								<?php endif; ?>
 							</td>
 						</tr>
 					</table>
 					<?php submit_button( __( 'Save', 'flx-forms' ) ); ?>
 				</form>
-				<h2><?php esc_html_e( '\\nRecent payments\\n', 'flx-forms' ); ?></h2>
+				<h2><?php esc_html_e( 'Recent payments', 'flx-forms' ); ?></h2>
 				<table class="widefat striped">
 					<thead><tr>
 						<th><?php esc_html_e( 'Date (UTC)', 'flx-forms' ); ?></th>
 						<th><?php esc_html_e( 'Form', 'flx-forms' ); ?></th>
-						<th><?php esc_html_e( '\\nConfirmation code\\n', 'flx-forms' ); ?></th>
+						<th><?php esc_html_e( 'Confirmation code', 'flx-forms' ); ?></th>
 						<th><?php esc_html_e( 'Type', 'flx-forms' ); ?></th>
 						<th><?php esc_html_e( 'Amount', 'flx-forms' ); ?></th>
 						<th><?php esc_html_e( 'Status', 'flx-forms' ); ?></th>
@@ -305,7 +305,7 @@ if ( ! class_exists( '\Emsfb\StripePayment' ) ) {
 					</tr></thead>
 					<tbody>
 					<?php if ( empty( $rows ) ) : ?>
-						<tr><td colspan="8"><?php esc_html_e( '\\nNo payments yet.\\n', 'flx-forms' ); ?></td></tr>
+						<tr><td colspan="8"><?php esc_html_e( 'No payments yet.', 'flx-forms' ); ?></td></tr>
 					<?php else : foreach ( $rows as $r ) : ?>
 						<tr>
 							<td><?php echo esc_html( (string) $r->created_at ); ?></td>

@@ -388,10 +388,14 @@
     "Update FluxWP themes and plugins from the update server": "Обновите темы и плагины FluxWP с сервера обновлений.",
     "Theme settings and presets": "Настройки и пресеты темы",
     "Setup wizard, presets and FluxWP package updates": "Мастер настройки, пресеты и обновления пакета FluxWP",
-    "\\nOkunmamış WhatsApp\\n": "\\nОкунмамиш WhatsApp\\n",
-    "[['%sdonate', 'tr']]\u0000[['%sdonate', 'tr']]": "[['%sпожертвовать', 'tr']]\u0000[['%sпожертвовать', 'tr']]\u0000[['%sпожертвовать', 'tr']]",
-    "[['%seven', 'sw']]\u0000[['%seven', 'sw']]": "[['%sдаже', 'sw']]\u0000[['%sдаже', 'sw']]\u0000[['%sдаже', 'sw']]",
-    "[['%swarning', 'tr']]\u0000[['%swarning', 'tr']]": "[['Предупреждение%s', 'tr']]\u0000[['Предупреждение%s', 'tr']]\u0000[['Предупреждение%s', 'tr']]",
-    "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]\u0000[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]": "[['%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.', 'tr']]\u0000[['%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.', 'tr']]\u0000[['%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.', 'tr']]"
+    "%s donation\u0000%s donations": "%sпожертвование\u0000%sпожертвования\u0000%sпожертвования",
+    "%s error\u0000%s errors": "Ошибка%s\u0000Ошибки%s\u0000Ошибки%s",
+    "%s warning\u0000%s warnings": "Предупреждение%s\u0000Предупреждения%s\u0000Предупреждения%s",
+    "%s role has a custom menu layout; other roles use the default grouped menu.\u0000%s roles have custom menu layouts; other roles use the default grouped menu.": "Роль%sимеет собственный макет меню; другие роли используют сгруппированное меню по умолчанию.\u0000Роли%sимеют настраиваемый макет меню; другие роли используют сгруппированное меню по умолчанию.\u0000Роли%sимеют настраиваемый макет меню; другие роли используют сгруппированное меню по умолчанию.",
+    "Okunmamış WhatsApp": "Окунмамиш WhatsApp",
+    "%sdonate\u0000%sdonate": "%sпожертвовать\u0000%sпожертвовать\u0000%sпожертвовать",
+    "%seven\u0000%seven": "%sдаже\u0000%sдаже\u0000%sдаже",
+    "%swarning\u0000%swarning": "Предупреждение%s\u0000Предупреждение%s\u0000Предупреждение%s",
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.\u0000%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.\u0000%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию."
   }
 }

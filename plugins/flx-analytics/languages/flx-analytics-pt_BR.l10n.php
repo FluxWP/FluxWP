@@ -493,7 +493,7 @@ return array(
   'Visitors and pageviews' => 'Visitantes e visualizações de página',
   'Analytics' => 'Análise',
   'Right now' => 'Agora mesmo',
-  '[[\'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.\', \'tr\']]' => '[[\'Estatísticas do site sem dados pessoais e sem cookies: visitantes, visualizações, páginas mais lidas, sites de referência, canal, dispositivo/navegador, campanha (UTM), eventos de clique e conversões de doações. Os dados permanecem no site; Lê com ferramentas de inteligência artificial Flux AI / Flux AI e MCP.\', \'tr\']]',
+  '[[\'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.\', \'tr\']]' => 'Estatísticas do site sem dados pessoais e sem cookies: visitantes, visualizações, páginas mais lidas, sites de referência, canal, dispositivo/navegador, campanha (UTM), eventos de clique e conversões de doações. Os dados permanecem no site; Lê com ferramentas de inteligência artificial Flux AI / Flux AI e MCP.',
   'Mobil uygulama: günlük aktif hesaplar' => 'Aplicativo móvel: contas ativas diariamente',
   'UTC gün / platform' => 'Dia/plataforma UTC',
   'İzin veren hesaplar' => 'Consentindo contas',
@@ -986,6 +986,8 @@ return array(
   'Ziyaretçi ve görüntülenme' => 'Visitantes e visualizações de página',
   'İstatistik' => 'Análise',
   'Şu an' => 'Agora mesmo',
-  'Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.' => '[[\'Estatísticas do site sem dados pessoais e sem cookies: visitantes, visualizações, páginas mais lidas, sites de referência, canal, dispositivo/navegador, campanha (UTM), eventos de clique e conversões de doações. Os dados permanecem no site; Lê com ferramentas de inteligência artificial Flux AI / Flux AI e MCP.\', \'tr\']]',
+  'Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.' => 'Estatísticas do site sem dados pessoais e sem cookies: visitantes, visualizações, páginas mais lidas, sites de referência, canal, dispositivo/navegador, campanha (UTM), eventos de clique e conversões de doações. Os dados permanecem no site; Lê com ferramentas de inteligência artificial Flux AI / Flux AI e MCP.',
+  'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.' => 'Estatísticas do site sem dados pessoais e sem cookies: visitantes, visualizações, páginas mais lidas, sites de referência, canal, dispositivo/navegador, campanha (UTM), eventos de clique e conversões de doações. Os dados permanecem no site; Lê com ferramentas de inteligência artificial Flux AI / Flux AI e MCP.',
+
  ),
 );

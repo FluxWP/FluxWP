@@ -899,5 +899,5 @@ msgstr "この支払いを承認しますか?"
 msgid "Contact"
 msgstr "お問い合わせ"
 
-msgid "[['Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.', 'tr']]"
-msgstr "[['WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。', 'tr']]"
+msgid "Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications."
+msgstr "WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。"

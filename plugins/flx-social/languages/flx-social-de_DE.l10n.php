@@ -555,7 +555,7 @@ return array(
   'Deleted' => 'Gelöscht',
   'New posts are composed in the media composer.' => 'Neue Beiträge werden im Media Composer verfasst.',
   'Scheduled and published posts show up here.' => 'Geplante und veröffentlichte Beiträge werden hier angezeigt.',
-  '[[\'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.\', \'tr\']]' => '[[\'Social-Media-Verwaltung innerhalb der Website: Kontoverknüpfung (Tasten aus dem Panel), Inhalte pro Konto, Planung, Netzwerkbearbeitung/-löschung, Kalender, Dashboard, Flux AI-Schreibunterstützung und MCP-Tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.\', \'tr\']]',
+  '[[\'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.\', \'tr\']]' => 'Social-Media-Verwaltung innerhalb der Website: Kontoverknüpfung (Tasten aus dem Panel), Inhalte pro Konto, Planung, Netzwerkbearbeitung/-löschung, Kalender, Dashboard, Flux AI-Schreibunterstützung und MCP-Tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.',
   'Taslak' => 'Entwurf',
   'Onay bekliyor' => 'Warten auf Genehmigung',
   'Zamanlandı' => 'Geplant',
@@ -1114,6 +1114,8 @@ return array(
   'Yayında' => 'Veröffentlicht',
   'Yeni gönderi medya yazarıyla hazırlanır.' => 'Neue Beiträge werden im Media Composer verfasst.',
   'Zamanlanan ve yayımlanan gönderiler burada görünür.' => 'Geplante und veröffentlichte Beiträge werden hier angezeigt.',
-  'Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.' => '[[\'Social-Media-Verwaltung innerhalb der Website: Kontoverknüpfung (Tasten aus dem Panel), Inhalte pro Konto, Planung, Netzwerkbearbeitung/-löschung, Kalender, Dashboard, Flux AI-Schreibunterstützung und MCP-Tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.\', \'tr\']]',
+  'Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.' => 'Social-Media-Verwaltung innerhalb der Website: Kontoverknüpfung (Tasten aus dem Panel), Inhalte pro Konto, Planung, Netzwerkbearbeitung/-löschung, Kalender, Dashboard, Flux AI-Schreibunterstützung und MCP-Tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.',
+  'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.' => 'Social-Media-Verwaltung innerhalb der Website: Kontoverknüpfung (Tasten aus dem Panel), Inhalte pro Konto, Planung, Netzwerkbearbeitung/-löschung, Kalender, Dashboard, Flux AI-Schreibunterstützung und MCP-Tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.',
+
  ),
 );

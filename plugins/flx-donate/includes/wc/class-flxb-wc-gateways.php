@@ -108,13 +108,13 @@ class FLXB_WC_Gateways {
 	/** Capability keys and their labels (table columns). */
 	public static function cap_labels() {
 		return array(
-			'blocks'       => __( '\\nBlock checkout\\n', 'flx-donate' ),
-			'no_cart'      => __( '\\nPayment link\\n', 'flx-donate' ),
-			'no_address'   => __( '\\nNo address\\n', 'flx-donate' ),
-			'verified'     => __( '\\nServer check\\n', 'flx-donate' ),
-			'installments' => __( '\\nInstallments\\n', 'flx-donate' ),
-			'tokenization' => __( '\\nSaved cards\\n', 'flx-donate' ),
-			'refunds'      => __( '\\nRefund from site\\n', 'flx-donate' ),
+			'blocks'       => __( 'Block checkout', 'flx-donate' ),
+			'no_cart'      => __( 'Payment link', 'flx-donate' ),
+			'no_address'   => __( 'No address', 'flx-donate' ),
+			'verified'     => __( 'Server check', 'flx-donate' ),
+			'installments' => __( 'Installments', 'flx-donate' ),
+			'tokenization' => __( 'Saved cards', 'flx-donate' ),
+			'refunds'      => __( 'Refund from site', 'flx-donate' ),
 			'monthly'      => __( 'Monthly', 'flx-donate' ),
 		);
 	}
@@ -122,14 +122,14 @@ class FLXB_WC_Gateways {
 	/** Column help (title attribute and the legend). */
 	public static function cap_help() {
 		return array(
-			'blocks'       => __( '\\nShown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method.\\n', 'flx-donate' ),
-			'no_cart'      => __( '\\nPays an existing order from its payment link (call center, "pay again"), without a cart.\\n', 'flx-donate' ),
-			'no_address'   => __( '[["Works on our checkout that asks no address: Flux Donate fills the organisation\'s city and address in.\\n', 'flx-donate' ),
-			'verified'     => __( '\\nThe payment is confirmed with the provider from the server before the order is marked paid.\\n', 'flx-donate' ),
-			'installments' => __( '\\nThe donor can pay in installments.\\n', 'flx-donate' ),
-			'tokenization' => __( '\\nThe donor can save a card for the next donation.\\n', 'flx-donate' ),
-			'refunds'      => __( '\\nThe Refund button on the order sends the refund to the provider.\\n', 'flx-donate' ),
-			'monthly'      => __( '\\nMonthly donations charge a stored card every month. Only Flux Donate iyzico does this.\\n', 'flx-donate' ),
+			'blocks'       => __( 'Shown on a checkout page built with the Checkout block. The classic checkout ([woocommerce_checkout]) shows every method.', 'flx-donate' ),
+			'no_cart'      => __( 'Pays an existing order from its payment link (call center, "pay again"), without a cart.', 'flx-donate' ),
+			'no_address'   => __( 'Works on our checkout that asks no address: Flux Donate fills the organisation\'s city and address in.', 'flx-donate' ),
+			'verified'     => __( 'The payment is confirmed with the provider from the server before the order is marked paid.', 'flx-donate' ),
+			'installments' => __( 'The donor can pay in installments.', 'flx-donate' ),
+			'tokenization' => __( 'The donor can save a card for the next donation.', 'flx-donate' ),
+			'refunds'      => __( 'The Refund button on the order sends the refund to the provider.', 'flx-donate' ),
+			'monthly'      => __( 'Monthly donations charge a stored card every month. Only Flux Donate iyzico does this.', 'flx-donate' ),
 		);
 	}
 
@@ -228,24 +228,24 @@ class FLXB_WC_Gateways {
 		$caps      = array();
 
 		if ( in_array( $id, $block_ids, true ) ) {
-			$caps['blocks'] = $ours ? array( 'flux', __( '\\nAdded by Flux Donate (the plugin has no block support).\\n', 'flx-donate' ) ) : array( 'yes', '' );
+			$caps['blocks'] = $ours ? array( 'flux', __( 'Added by Flux Donate (the plugin has no block support).', 'flx-donate' ) ) : array( 'yes', '' );
 		} elseif ( self::can_fallback( $gw ) ) {
 			$caps['blocks'] = FLXB_WC::setting( 'block_fallback' )
-				? array( 'flux', __( '\\nAdded by Flux Donate once the method is enabled.\\n', 'flx-donate' ) )
-				: array( 'no', __( '\\nTurn on "Show other payment plugins on the checkout block".\', \'en\']]', 'flx-donate' ) );
+				? array( 'flux', __( 'Added by Flux Donate once the method is enabled.', 'flx-donate' ) )
+				: array( 'no', __( 'Turn on "Show other payment plugins on the checkout block".', 'flx-donate' ) );
 		} else {
-			$caps['blocks'] = array( 'no', __( '\\nThe plugin shows its own card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support.\\n', 'flx-donate' ) );
+			$caps['blocks'] = array( 'no', __( 'The plugin shows its own card fields only on the classic checkout. Use the classic checkout page or ask the provider for block support.', 'flx-donate' ) );
 		}
-		$caps['no_cart']      = array( 'unknown', __( '\\nMost plugins work; try a payment link once.\\n', 'flx-donate' ) );
+		$caps['no_cart']      = array( 'unknown', __( 'Most plugins work; try a payment link once.', 'flx-donate' ) );
 		$caps['no_address']   = array( 'flux', '' );
-		$caps['verified']     = array( 'unknown', __( '\\nDepends on the plugin; ask the provider.\\n', 'flx-donate' ) );
+		$caps['verified']     = array( 'unknown', __( 'Depends on the plugin; ask the provider.', 'flx-donate' ) );
 		$caps['installments'] = $gw->has_fields
 			? array( 'unknown', '' )
-			: array( 'page', __( '\\nIf the provider offers it, on its payment page.\\n', 'flx-donate' ) );
+			: array( 'page', __( 'If the provider offers it, on its payment page.', 'flx-donate' ) );
 		$caps['tokenization'] = $gw->supports( 'tokenization' ) ? array( 'yes', '' ) : array( 'no', '' );
 		$caps['refunds']      = $gw->supports( 'refunds' ) && self::overrides( $gw, 'process_refund' )
 			? array( 'yes', '' )
-			: array( 'no', __( '\\nRefund in the provider\'s panel, then mark the order refunded.\\n', 'flx-donate' ) );
+			: array( 'no', __( 'Refund in the provider\'s panel, then mark the order refunded.', 'flx-donate' ) );
 		$caps['monthly']      = array( 'no', '' );
 
 		if ( FLXB_WC_Iyzico::ID === $id ) {
@@ -264,7 +264,7 @@ class FLXB_WC_Gateways {
 				$caps,
 				array(
 					'no_cart'      => array( 'yes', '' ),
-					'verified'     => array( 'page', __( '[[\'Confirmed by hand after the receipt.\\n', 'flx-donate' ) ),
+					'verified'     => array( 'page', __( 'Confirmed by hand after the receipt.', 'flx-donate' ) ),
 					'installments' => array( 'no', '' ),
 				)
 			);
@@ -285,7 +285,7 @@ class FLXB_WC_Gateways {
 	public static function problems( WC_Payment_Gateway $gw, array $caps, $block_checkout ) {
 		$out = array();
 		if ( $block_checkout && 'no' === $caps['blocks'][0] ) {
-			$out[] = __( '\\nnot shown on the block checkout page\\n', 'flx-donate' );
+			$out[] = __( 'not shown on the block checkout page', 'flx-donate' );
 		}
 		return $out;
 	}
@@ -322,8 +322,8 @@ class FLXB_WC_Gateways {
 	private static function state_html( array $c ) {
 		$map = array(
 			'yes'     => array( '✓', 'ok', __( 'Yes', 'flx-donate' ) ),
-			'flux'    => array( '✓', 'ok', __( '\\nYes, by Flux Donate\\n', 'flx-donate' ) ),
-			'page'    => array( '↗', 'recurring', __( '\\nOn the provider\\\'s page\\n', 'flx-donate' ) ),
+			'flux'    => array( '✓', 'ok', __( 'Yes, by Flux Donate', 'flx-donate' ) ),
+			'page'    => array( '↗', 'recurring', __( 'On the provider\'s page', 'flx-donate' ) ),
 			'no'      => array( '✕', 'failed', __( 'No', 'flx-donate' ) ),
 			'unknown' => array( '?', 'pending', __( 'Unknown', 'flx-donate' ) ),
 		);
@@ -339,14 +339,14 @@ class FLXB_WC_Gateways {
 		$help   = self::cap_help();
 		$bids   = self::block_ids();
 		$block  = self::block_checkout();
-		echo '<section class="flxb-card flxb-gw"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Payment methods', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nEvery WooCommerce payment plugin (virtual POS) works on the donation checkout: install it, enter its settings in WooCommerce › Settings › Payments and enable it. This table shows what each one can do here.\\n', 'flx-donate' ) . '</p></div>';
-		echo '<div class="flxb-gw__links"><a class="flxb-btn flxb-btn--sm" href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ) . '">' . esc_html__( '\\nWooCommerce payments\\n', 'flx-donate' ) . '</a>';
+		echo '<section class="flxb-card flxb-gw"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Payment methods', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Every WooCommerce payment plugin (virtual POS) works on the donation checkout: install it, enter its settings in WooCommerce › Settings › Payments and enable it. This table shows what each one can do here.', 'flx-donate' ) . '</p></div>';
+		echo '<div class="flxb-gw__links"><a class="flxb-btn flxb-btn--sm" href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ) . '">' . esc_html__( 'WooCommerce payments', 'flx-donate' ) . '</a>';
 		if ( function_exists( 'flx_pay_logos_admin' ) ) {
-			echo ' <a class="flxb-btn flxb-btn--sm" href="' . esc_url( admin_url( 'themes.php?page=flx-ayarlar#flx-odeme-logolari' ) ) . '">' . esc_html__( '\\nPayment logos on the site\\n', 'flx-donate' ) . '</a>';
+			echo ' <a class="flxb-btn flxb-btn--sm" href="' . esc_url( admin_url( 'themes.php?page=flx-ayarlar#flx-odeme-logolari' ) ) . '">' . esc_html__( 'Payment logos on the site', 'flx-donate' ) . '</a>';
 		}
 		echo '</div></div>';
 		/* translators: %s: classic or block */
-		echo '<p class="flxb-help">' . esc_html( sprintf( __( '\\nCheckout page:%s.\\n', 'flx-donate' ), $block ? __( '\\nCheckout block\\n', 'flx-donate' ) : __( '\\nclassic\\n', 'flx-donate' ) ) ) . '</p>';
+		echo '<p class="flxb-help">' . esc_html( sprintf( __( 'Checkout page:%s.', 'flx-donate' ), $block ? __( 'Checkout block', 'flx-donate' ) : __( 'classic', 'flx-donate' ) ) ) . '</p>';
 		echo '<div class="flxb-tablewrap"><table class="flxb-table flxb-gw__table"><thead><tr><th scope="col">' . esc_html__( 'Method', 'flx-donate' ) . '</th>';
 		foreach ( $labels as $k => $l ) {
 			echo '<th scope="col" title="' . esc_attr( $help[ $k ] ) . '">' . esc_html( $l ) . '</th>';
@@ -358,7 +358,7 @@ class FLXB_WC_Gateways {
 			$name = wp_strip_all_tags( (string) ( $gw->get_method_title() ? $gw->get_method_title() : $gw->get_title() ) );
 			echo '<tr class="' . ( $on ? '' : 'is-off' ) . '"><th scope="row"><a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . $id ) ) . '">' . esc_html( $name ) . '</a> <span class="flxb-pill flxb-pill--' . ( $on ? 'ok' : 'muted' ) . '">' . esc_html( $on ? __( 'On', 'flx-donate' ) : __( 'Off', 'flx-donate' ) ) . '</span>';
 			if ( $on && self::hidden_by_card_method( $id ) ) {
-				echo ' <span class="flxb-pill flxb-pill--pending" title="' . esc_attr__( '\\nOnly one card method is shown to donors. Change it under Cart and checkout › Card payment method.\\n', 'flx-donate' ) . '">' . esc_html__( '\\nHidden at checkout\\n', 'flx-donate' ) . '</span>';
+				echo ' <span class="flxb-pill flxb-pill--pending" title="' . esc_attr__( 'Only one card method is shown to donors. Change it under Cart and checkout › Card payment method.', 'flx-donate' ) . '">' . esc_html__( 'Hidden at checkout', 'flx-donate' ) . '</span>';
 			}
 			$a = self::adapters()[ $id ] ?? null;
 			if ( is_array( $a ) && ! empty( $a['note'] ) ) {
@@ -371,7 +371,7 @@ class FLXB_WC_Gateways {
 			echo '</tr>';
 		}
 		echo '</tbody></table></div>';
-		echo '<p class="flxb-help flxb-gw__legend">' . self::state_html( array( 'yes', '' ) ) . ' ' . esc_html__( 'yes', 'flx-donate' ) . ' &nbsp; ' . self::state_html( array( 'page', '' ) ) . ' ' . esc_html__( '\\non the provider\'s page\\n', 'flx-donate' ) . ' &nbsp; ' . self::state_html( array( 'no', '' ) ) . ' ' . esc_html__( 'no', 'flx-donate' ) . ' &nbsp; ' . self::state_html( array( 'unknown', '' ) ) . ' ' . esc_html__( '\\nunknown, test it\\n', 'flx-donate' ) . '. ' . esc_html__( '\\nPoint at a mark for details.\\n', 'flx-donate' ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<p class="flxb-help flxb-gw__legend">' . self::state_html( array( 'yes', '' ) ) . ' ' . esc_html__( 'yes', 'flx-donate' ) . ' &nbsp; ' . self::state_html( array( 'page', '' ) ) . ' ' . esc_html__( 'on the provider\'s page', 'flx-donate' ) . ' &nbsp; ' . self::state_html( array( 'no', '' ) ) . ' ' . esc_html__( 'no', 'flx-donate' ) . ' &nbsp; ' . self::state_html( array( 'unknown', '' ) ) . ' ' . esc_html__( 'unknown, test it', 'flx-donate' ) . '. ' . esc_html__( 'Point at a mark for details.', 'flx-donate' ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</section>';
 	}
 }

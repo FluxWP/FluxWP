@@ -61,7 +61,9 @@
     "Upload folders": "フォルダーをアップロードする",
     "Working…": "働いています...",
     "Upload these new packages first (do not activate them):": "最初にこれらの新しいパッケージをアップロードします (アクティブ化しないでください)。",
-    "[['%drow', 'tr']]\u0000[['%drow', 'tr']]": "[['%d行', 'tr']]",
-    "[['%dold setting', 'tr']]\u0000[['%dold setting', 'tr']]": "[['%dの古い設定', 'tr']]"
+    "%d row\u0000%d rows": "%d行",
+    "%d legacy setting\u0000%d legacy settings": "%dの従来の設定",
+    "%drow\u0000%drow": "%d行",
+    "%dold setting\u0000%dold setting": "%dの古い設定"
   }
 }

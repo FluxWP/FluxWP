@@ -1295,8 +1295,8 @@ msgstr "注意事項"
 msgid "Call"
 msgstr "電話をかける"
 
-msgid "\\nYetkiniz yok.\\n"
-msgstr "\\nそれでもいいよ。\\n"
+msgid "Yetkiniz yok."
+msgstr "それでもいいよ。"
 
-msgid "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]"
-msgstr "[['FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。', 'tr']]"
+msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
+msgstr "FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。"

@@ -1471,5 +1471,5 @@ msgstr "分析"
 msgid "Right now"
 msgstr "现在"
 
-msgid "[['Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.', 'tr']]"
-msgstr "[['无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。', 'tr']]"
+msgid "Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools."
+msgstr "无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。"

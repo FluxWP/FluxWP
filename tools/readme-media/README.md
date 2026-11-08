@@ -4,7 +4,42 @@ Her paketin `README.md` (EN) + `README.tr.md`, `docs/demo.gif`, `docs/demo-tr.gi
 `docs/images/<ad>-en|tr.jpg` dosyaları buradaki betiklerle üretilir. Paket güncellenince ekranları ve GIF'i
 tek komutla yeniden çekmek için.
 
-## Hızlı kullanım
+## Güncel, izole çekim akışı
+
+Host PHP veya SQLite gerekmez. Docker, Bun ve FFmpeg kullanılır. `setup-docker.py` yalnız kendine ait bir Docker projesi ve yerel veritabanı oluşturur; kaynak paketleri salt okunur bağlar. Yapay örnek veriler kullanın. `demo-guard.php` gerçek e-posta gönderimini ve yerel mock sunucuları dışındaki HTTP isteklerini engeller.
+
+```sh
+bun install --frozen-lockfile
+python3 tools/readme-media/setup-docker.py --work /absolute/shared/capture-work
+# Oluşan capture-work/php sarmalayıcısıyla gerekli seed/*.php örnek verilerini hazırlayın.
+# Pillow yalnız görsel dışa aktarma/dönüştürme için gerekir:
+uv run --with pillow tools/readme-media/env/demo-certificates/gen.py /absolute/shared/capture-work/site/wp-content/uploads/demo-certs
+python3 tools/readme-media/capture-package.py tools/readme-media/cfg/flx-ai.json --env /absolute/shared/capture-work/capture-env.json
+```
+
+`capture-package.py` EN/TR masaüstü, mobil, koyu ekranları ve gerçek tarayıcı gezintisini yeniler. README metinlerine dokunmaz; kritik hata/izinsiz ekran veya eksik çekimde durur. Her çekim bağlamının dili ayrı cookie ile belirlenir; paralel EN/TR işleri birbirinin dilini değiştirmez. `--language en`, `--no-shots`, `--no-tour`, `--repo` ve `--area themes` seçenekleri vardır. `--no-shots` yalnız aynı oturumda doğrulanmış ekranlar için kullanılmalıdır.
+
+Mock sunucular gerekiyorsa test WordPress container'ında `env/mock-update/router.php` için `127.0.0.1:8091`, `env/mock-evolution/router.php` için `127.0.0.1:8092` üzerinde PHP sunucusu başlatın. Test sitesinde `seed/users.php`, `seed-site.php`, `seed-posts.php`, `seed-sosyal.php`, `seed-bagis.php`, `seed-commerce.php`, `seed-cagri.php`, `seed-form.php` gibi tarifte belirtilen seed'leri sırayla çalıştırın. Tema için FluxWP'nin `flux-demo` ön ayarını uygulayın. Ön ayar çekimlerini veritabanı yedeğiyle birbirinden ayırın.
+
+### GitHub → Updater → site
+
+```sh
+uv run --with pillow tools/readme-media/export-updater-previews.py --repo /absolute/FluxWP --translate
+# --private-root /absolute/private-repo: yalnız o private deponun kendi kataloğunu üretir.
+# --site-preset /absolute/site-preset: ilk public katalogda mevcut ürün sayfası bağlantılarını seçer.
+```
+
+Kaynak dosya her deponun `catalog/packages.json` dosyasıdır. Açıklama ve site bağlantılarını dil bazında burada düzenleyin. Dışa aktarıcı mevcut metin/bağlantı düzenlemelerini korur; eksik dilleri `--translate` tamamlar. Görsellerden paket içi `docs/previews/*.webp` türevleri üretir ve ikon/görsel dosyalarının Git blob özetlerini kataloğa yazar. Kataloğu ve yeni medyayı aynı commit'te ilgili GitHub deposuna gönderin.
+
+Updater, yapılandırılmış depoların varsayılan dalından kataloğu okur; medya ilk kullanımda GitHub'dan alınır, doğrulanır ve updater'ın kendi adresinden dağıtılır. Updater'da ayrı içerik düzenleme veya ZIP içe aktarma yoktur. **GitHub package previews** alanı eşitleme durumunu ve yeniden eşitleme düğmesini gösterir. Private dosyalar yalnız kendi private deposuna commit edilir; public kataloğa karışmaz. FluxWP Panel tarafında yerel tanıtım, ikon veya bağlantı tahmini bulunmaz.
+
+Mevcut site sayfalarının çeviri metinlerini koruyarak türevleri yenilemek için `uv run --with pillow tools/readme-media/refresh-site-media.py /absolute/site-preset` kullanın. Ardından preset'in `tools/plugin-pages-og.mjs` betiğiyle paylaşım görsellerini yenileyin.
+
+## Eski akış (host PHP / SQLite)
+
+Aşağıdaki betikler eski kurulumlar içindir; güncel toplu yenilemelerde yukarıdaki Docker akışını kullanın. `run.sh` README metinlerini de yeniden ürettiği için elle eklenmiş bölümleri korumaz.
+
+## Eski hızlı kullanım
 
 ```bash
 # 1) Bir kez: yerel test sitesi (WP 6.8.3 + SQLite + WooCommerce + repodaki tüm paketler symlink)

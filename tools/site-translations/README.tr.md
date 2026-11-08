@@ -34,3 +34,7 @@ Her paket kendi PO/MO/PHP/JSON dosyalarını taşır. **Flux Lang kurulması ger
 Flux Lang; site adreslerini, içerik çeviri ilişkilerini ve dil seçiciyi yönetir. Preset içindeki site aktarım aracı ayrı çalışır; içerik seti eksiksiz aktarılınca yeni dilleri açar. Araçlar canlıya yayınlama veya PR merge işlemi yapmaz.
 
 [Dil ekleme ve kapsam rehberi](LANGUAGES.tr.md)
+
+### Eski aktarım kalıntıları
+
+Eski yanıt ayrıştırması gettext anahtarlarında ve çevirilerde düz metin olarak yeni satır işaretleri veya Python liste sarmalayıcıları bırakabiliyordu. `repair_transport_artifacts.py --repo /depo/yolu` çevrimdışı tarar; `--apply` kaynak metinleri ve dil dosyalarını düzeltir. Bağlamlar, çoğul sayıları ve eski anahtar uyumluluğu korunur. Yanıt ayrıştırıcısı artık desteklenmeyen API biçimlerini metne dönüştürmek yerine reddeder.

@@ -111,6 +111,6 @@
     "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen.": "لم يتم فرض بعض الأذونات الممكّنة بعد؛ في انتظار تحديثات:%s. وحتى ذلك الحين، لا يستطيع هؤلاء الأشخاص رؤية الشاشة ذات الصلة.",
     "All enabled permissions are enforced.": "يتم فرض كافة الأذونات الممكّنة.",
     "Roles": "الأدوار",
-    "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]": "[['يضيف أدوار الموظفين والمسؤول والمدير (يُضاف دور جديد أيضًا من اللوحة)؛ يمكنك تشغيل وإيقاف الوصول إلى المهام والشهادات والتبرعات ومركز الاتصال والاستوديو والوصول إلى التقارير للأدوار من صفحة واحدة. الرابط المرجعي الشخصي ورقم هاتف المستخدم (لمساعد WhatsApp) موجودان هنا.', 'tr']]"
+    "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.": "يضيف أدوار الموظفين والمسؤول والمدير (يُضاف دور جديد أيضًا من اللوحة)؛ يمكنك تشغيل وإيقاف الوصول إلى المهام والشهادات والتبرعات ومركز الاتصال والاستوديو والوصول إلى التقارير للأدوار من صفحة واحدة. الرابط المرجعي الشخصي ورقم هاتف المستخدم (لمساعد WhatsApp) موجودان هنا."
   }
 }

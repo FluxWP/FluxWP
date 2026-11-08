@@ -25,8 +25,8 @@ class FLXF_Automations_Admin {
 	public static function menu() {
 		self::$hook = (string) add_submenu_page(
 			'Emsfb',
-			__( '\\nAutomations\\n', 'flx-forms' ),
-			__( '\\nAutomations\\n', 'flx-forms' ),
+			__( 'Automations', 'flx-forms' ),
+			__( 'Automations', 'flx-forms' ),
 			FLXF_Automations::capability(),
 			self::SLUG,
 			array( __CLASS__, 'render' )
@@ -67,7 +67,7 @@ class FLXF_Automations_Admin {
 			'FLXF_FORM_TPL',
 			array(
 				'title'     => FLXF_Automations::seed_text( 'Sapling Donation' ),
-				'desc'      => __( '\\nDonation form with sapling packages, card payment and a certificate automation.\\n', 'flx-forms' ),
+				'desc'      => __( 'Donation form with sapling packages, card payment and a certificate automation.', 'flx-forms' ),
 				'structure' => FLXF_Automations::donation_form_structure(),
 			)
 		);
@@ -117,110 +117,110 @@ class FLXF_Automations_Admin {
 		return array(
 			'trigger'           => __( 'Trigger', 'flx-forms' ),
 			'when'              => __( 'When', 'flx-forms' ),
-			'form_submitted'    => __( '\\nA form is submitted\\n', 'flx-forms' ),
-			'payment_completed' => __( '\\nA payment is completed\\n', 'flx-forms' ),
-			'paymentHint'       => __( '\\nRuns only after the payment gateway has confirmed the payment.\\n', 'flx-forms' ),
+			'form_submitted'    => __( 'A form is submitted', 'flx-forms' ),
+			'payment_completed' => __( 'A payment is completed', 'flx-forms' ),
+			'paymentHint'       => __( 'Runs only after the payment gateway has confirmed the payment.', 'flx-forms' ),
 			'form'              => __( 'Form', 'flx-forms' ),
-			'anyForm'           => __( '\\nAny form\\n', 'flx-forms' ),
-			'conditions'        => __( '\\nConditions\\n', 'flx-forms' ),
-			'noConditions'      => __( '\\nNo conditions: runs for every submission.\', \'en\']]', 'flx-forms' ),
-			'addCondition'      => __( '\\nAdd condition\\n', 'flx-forms' ),
-			'matchAll'          => __( '\\nAll conditions must match\\n', 'flx-forms' ),
-			'matchAny'          => __( '\\nAny condition may match\\n', 'flx-forms' ),
-			'pickFormFirst'     => __( '\\nChoose a form to use its fields.\\n', 'flx-forms' ),
+			'anyForm'           => __( 'Any form', 'flx-forms' ),
+			'conditions'        => __( 'Conditions', 'flx-forms' ),
+			'noConditions'      => __( 'No conditions: runs for every submission.', 'flx-forms' ),
+			'addCondition'      => __( 'Add condition', 'flx-forms' ),
+			'matchAll'          => __( 'All conditions must match', 'flx-forms' ),
+			'matchAny'          => __( 'Any condition may match', 'flx-forms' ),
+			'pickFormFirst'     => __( 'Choose a form to use its fields.', 'flx-forms' ),
 			'field'             => __( 'Field', 'flx-forms' ),
 			'value'             => __( 'Value', 'flx-forms' ),
-			'op_eq'             => __( '\\nequals\\n', 'flx-forms' ),
-			'op_neq'            => __( '\\ndoes not equal\', \'en\']]', 'flx-forms' ),
+			'op_eq'             => __( 'equals', 'flx-forms' ),
+			'op_neq'            => __( 'does not equal', 'flx-forms' ),
 			'op_contains'       => __( 'contains', 'flx-forms' ),
-			'op_gt'             => __( '\\nis greater than\\n', 'flx-forms' ),
-			'op_lt'             => __( '\\nis less than\\n', 'flx-forms' ),
-			'op_filled'         => __( '\\nis filled\\n', 'flx-forms' ),
-			'op_empty'          => __( '\\nis empty\\n', 'flx-forms' ),
+			'op_gt'             => __( 'is greater than', 'flx-forms' ),
+			'op_lt'             => __( 'is less than', 'flx-forms' ),
+			'op_filled'         => __( 'is filled', 'flx-forms' ),
+			'op_empty'          => __( 'is empty', 'flx-forms' ),
 			'addStep'           => __( 'Add step', 'flx-forms' ),
-			'insertStep'        => __( '\\nInsert a step here\\n', 'flx-forms' ),
+			'insertStep'        => __( 'Insert a step here', 'flx-forms' ),
 			'step'              => __( 'Step', 'flx-forms' ),
 			'moveUp'            => __( 'Move up', 'flx-forms' ),
 			'moveDown'          => __( 'Move down', 'flx-forms' ),
 			'remove'            => __( 'Delete step', 'flx-forms' ),
-			'collapse'          => __( '\\nShow / hide settings\\n', 'flx-forms' ),
-			'confirmRemove'     => __( '\\nDelete this step?\\n', 'flx-forms' ),
-			'noSteps'           => __( '\\nNo steps yet. Add the first one below.\\n', 'flx-forms' ),
+			'collapse'          => __( 'Show / hide settings', 'flx-forms' ),
+			'confirmRemove'     => __( 'Delete this step?', 'flx-forms' ),
+			'noSteps'           => __( 'No steps yet. Add the first one below.', 'flx-forms' ),
 			'end'               => __( 'End', 'flx-forms' ),
-			'flowName'          => __( '\\nAutomation name\\n', 'flx-forms' ),
+			'flowName'          => __( 'Automation name', 'flx-forms' ),
 			'enabled'           => __( 'Enabled', 'flx-forms' ),
 			'save'              => __( 'Save', 'flx-forms' ),
 			'saving'            => __( 'Saving…', 'flx-forms' ),
 			'saved'             => __( 'Saved.', 'flx-forms' ),
-			'saveError'         => __( '\\nCould not save. Please try again.\\n', 'flx-forms' ),
+			'saveError'         => __( 'Could not save. Please try again.', 'flx-forms' ),
 			'unsaved'           => __( 'You have unsaved changes.', 'flx-forms' ),
-			'back'              => __( '\\nAll automations\\n', 'flx-forms' ),
+			'back'              => __( 'All automations', 'flx-forms' ),
 			'none'              => __( '— none —', 'flx-forms' ),
-			'certOff'           => __( '\\nFlux Certificates is not active: certificate steps are disabled.\\n', 'flx-forms' ),
-			'needsCert'         => __( '\\nNeeds a "Create certificate" step before it.\\n', 'flx-forms' ),
+			'certOff'           => __( 'Flux Certificates is not active: certificate steps are disabled.', 'flx-forms' ),
+			'needsCert'         => __( 'Needs a "Create certificate" step before it.', 'flx-forms' ),
 			// Action types
 			'a_create_certificate'      => __( 'Create certificate', 'flx-forms' ),
-			'a_create_certificate_desc' => __( '\\nCreates a certificate from a Flux Certificates template.\\n', 'flx-forms' ),
-			'a_send_certificate'        => __( '\\nSend certificate\\n', 'flx-forms' ),
-			'a_send_certificate_desc'   => __( '\\nSends the certificate link by e-mail, SMS or WhatsApp.\\n', 'flx-forms' ),
-			'a_show_on_thankyou'        => __( '\\nShow on thank-you screen\\n', 'flx-forms' ),
-			'a_show_on_thankyou_desc'   => __( '\\nShows a certificate card right after the submission.\\n', 'flx-forms' ),
-			'a_send_email'              => __( '\\nSend e-mail\\n', 'flx-forms' ),
-			'a_send_email_desc'         => __( '\\nSends a notification e-mail.\\n', 'flx-forms' ),
-			'a_webhook'                 => __( '\\nWebhook\\n', 'flx-forms' ),
-			'a_webhook_desc'            => __( '\\nPOSTs the submission as JSON to a URL.\\n', 'flx-forms' ),
+			'a_create_certificate_desc' => __( 'Creates a certificate from a Flux Certificates template.', 'flx-forms' ),
+			'a_send_certificate'        => __( 'Send certificate', 'flx-forms' ),
+			'a_send_certificate_desc'   => __( 'Sends the certificate link by e-mail, SMS or WhatsApp.', 'flx-forms' ),
+			'a_show_on_thankyou'        => __( 'Show on thank-you screen', 'flx-forms' ),
+			'a_show_on_thankyou_desc'   => __( 'Shows a certificate card right after the submission.', 'flx-forms' ),
+			'a_send_email'              => __( 'Send e-mail', 'flx-forms' ),
+			'a_send_email_desc'         => __( 'Sends a notification e-mail.', 'flx-forms' ),
+			'a_webhook'                 => __( 'Webhook', 'flx-forms' ),
+			'a_webhook_desc'            => __( 'POSTs the submission as JSON to a URL.', 'flx-forms' ),
 			// create_certificate
 			'template'          => __( 'Certificate template', 'flx-forms' ),
 			'chooseTemplate'    => __( 'Choose a template', 'flx-forms' ),
-			'person'            => __( '\\nCertificate owner\\n', 'flx-forms' ),
-			'nameField'         => __( '\\nName field\\n', 'flx-forms' ),
-			'surnameField'      => __( '\\nSurname field (optional)\\n', 'flx-forms' ),
-			'phoneField'        => __( '\\nPhone field\\n', 'flx-forms' ),
-			'emailField'        => __( '\\nE-mail field\\n', 'flx-forms' ),
-			'variables'         => __( '\\nTemplate variables\\n', 'flx-forms' ),
-			'nameFromPerson'    => __( '[["Filled from the owner name above.\\n', 'flx-forms' ),
-			'm_default'         => __( '\\nTemplate default\\n', 'flx-forms' ),
-			'm_field'           => __( '[[\'Form field\\n', 'flx-forms' ),
-			'm_fixed'           => __( '\\nFixed value\\n', 'flx-forms' ),
-			'm_amount_div'      => __( '\\nPayment amount ÷ unit price\\n', 'flx-forms' ),
-			'm_option_qty'      => __( '\\nNumber in the selected option (e.g. “5 saplings” → 5)\\n', 'flx-forms' ),
-			'unitPrice'         => __( '\\nUnit price\\n', 'flx-forms' ),
-			'amountHint'        => __( '[[\'Verified paid amount divided by the unit price, rounded down, at least 1.\\n', 'flx-forms' ),
-			'event'             => __( '[[\'Event (optional)\\n', 'flx-forms' ),
+			'person'            => __( 'Certificate owner', 'flx-forms' ),
+			'nameField'         => __( 'Name field', 'flx-forms' ),
+			'surnameField'      => __( 'Surname field (optional)', 'flx-forms' ),
+			'phoneField'        => __( 'Phone field', 'flx-forms' ),
+			'emailField'        => __( 'E-mail field', 'flx-forms' ),
+			'variables'         => __( 'Template variables', 'flx-forms' ),
+			'nameFromPerson'    => __( 'Filled from the owner name above.', 'flx-forms' ),
+			'm_default'         => __( 'Template default', 'flx-forms' ),
+			'm_field'           => __( 'Form field', 'flx-forms' ),
+			'm_fixed'           => __( 'Fixed value', 'flx-forms' ),
+			'm_amount_div'      => __( 'Payment amount ÷ unit price', 'flx-forms' ),
+			'm_option_qty'      => __( 'Number in the selected option (e.g. “5 saplings” → 5)', 'flx-forms' ),
+			'unitPrice'         => __( 'Unit price', 'flx-forms' ),
+			'amountHint'        => __( 'Verified paid amount divided by the unit price, rounded down, at least 1.', 'flx-forms' ),
+			'event'             => __( 'Event (optional)', 'flx-forms' ),
 			'noEvent'           => __( 'No event', 'flx-forms' ),
-			'defaultIs'         => __( '\\ndefault:\\n', 'flx-forms' ),
-			'autoDetected'      => __( '\\nauto-detected\\n', 'flx-forms' ),
+			'defaultIs'         => __( 'default:', 'flx-forms' ),
+			'autoDetected'      => __( 'auto-detected', 'flx-forms' ),
 			// send_certificate
 			'channelsLabel'     => __( 'Channels', 'flx-forms' ),
 			'provider'          => __( 'Provider', 'flx-forms' ),
-			'defaultProvider'   => __( '\\nDefault provider\\n', 'flx-forms' ),
-			'noProvider'        => __( '\\nNo active provider for this channel yet (Flux Certificates › Providers).\\n', 'flx-forms' ),
+			'defaultProvider'   => __( 'Default provider', 'flx-forms' ),
+			'noProvider'        => __( 'No active provider for this channel yet (Flux Certificates › Providers).', 'flx-forms' ),
 			// show_on_thankyou
-			'cardTitle'         => __( '[[\'Card title\\n', 'flx-forms' ),
+			'cardTitle'         => __( 'Card title', 'flx-forms' ),
 			'message'           => __( 'Message', 'flx-forms' ),
 			'tags'              => __( 'Tags', 'flx-forms' ),
-			'showPreview'       => __( '\\nShow the certificate itself on the screen\\n', 'flx-forms' ),
-			'btnShare'          => __( '\\n“Share” button\\n', 'flx-forms' ),
+			'showPreview'       => __( 'Show the certificate itself on the screen', 'flx-forms' ),
+			'btnShare'          => __( '“Share” button', 'flx-forms' ),
 			'Share'             => FLXF_Automations::seed_text( 'Share' ),
-			'btnView'           => __( '\\n“View certificate” link\\n', 'flx-forms' ),
-			'btnPdf'            => __( '\\n“Download PDF” button\\n', 'flx-forms' ),
+			'btnView'           => __( '“View certificate” link', 'flx-forms' ),
+			'btnPdf'            => __( '“Download PDF” button', 'flx-forms' ),
 			'label'             => __( 'Label', 'flx-forms' ),
-			'redirect'          => __( '\\nOpen the certificate page automatically after (seconds, 0 = off)\\n', 'flx-forms' ),
-			'View certificate'  => __( '\\nView certificate\\n', 'flx-forms' ),
+			'redirect'          => __( 'Open the certificate page automatically after (seconds, 0 = off)', 'flx-forms' ),
+			'View certificate'  => __( 'View certificate', 'flx-forms' ),
 			'Download PDF'      => __( 'Download PDF', 'flx-forms' ),
-			'Your certificate is ready' => __( '\\nYour certificate is ready\\n', 'flx-forms' ),
+			'Your certificate is ready' => __( 'Your certificate is ready', 'flx-forms' ),
 			// send_email
 			'to'                => __( 'To', 'flx-forms' ),
-			'toAdmin'           => __( '\\nSite administrator\\n', 'flx-forms' ),
-			'toField'           => __( '\\nE-mail from a form field\', \'en\']]', 'flx-forms' ),
-			'toCustom'          => __( '[[\'Custom addresses\\n', 'flx-forms' ),
+			'toAdmin'           => __( 'Site administrator', 'flx-forms' ),
+			'toField'           => __( 'E-mail from a form field', 'flx-forms' ),
+			'toCustom'          => __( 'Custom addresses', 'flx-forms' ),
 			'subject'           => __( 'Subject', 'flx-forms' ),
-			'body'              => __( '\\nBody\\n', 'flx-forms' ),
+			'body'              => __( 'Body', 'flx-forms' ),
 			// webhook
-			'url'               => __( '\\nURL (https only)\\n', 'flx-forms' ),
-			'secret'            => __( '\\nSigning secret (optional)\\n', 'flx-forms' ),
-			'secretHint'        => __( '\\nAdds an X-FLXF-Signature: sha256=HMAC header.\\n', 'flx-forms' ),
-			'httpsOnly'         => __( '\\nOnly https:// URLs to public hosts are allowed.\\n', 'flx-forms' ),
+			'url'               => __( 'URL (https only)', 'flx-forms' ),
+			'secret'            => __( 'Signing secret (optional)', 'flx-forms' ),
+			'secretHint'        => __( 'Adds an X-FLXF-Signature: sha256=HMAC header.', 'flx-forms' ),
+			'httpsOnly'         => __( 'Only https:// URLs to public hosts are allowed.', 'flx-forms' ),
 		);
 	}
 
@@ -230,7 +230,7 @@ class FLXF_Automations_Admin {
 
 	public static function render() {
 		if ( ! FLXF_Automations::can() ) {
-			wp_die( esc_html__( '\\nSorry, you are not allowed to access this page.\\n', 'flx-forms' ) );
+			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'flx-forms' ) );
 		}
 		FLXF_Automations::maybe_seed();
 		$tab  = isset( $_GET['tab'] ) && 'runs' === $_GET['tab'] ? 'runs' : 'flows'; // phpcs:ignore WordPress.Security.NonceVerification
@@ -238,20 +238,20 @@ class FLXF_Automations_Admin {
 		echo '<div class="wrap flxfa">';
 		if ( '' !== $flow ) {
 			echo '<div id="flxfa-editor" class="flxfa-editor"><p class="flxfa-loading">' . esc_html__( 'Loading…', 'flx-forms' ) . '</p></div>';
-			echo '<noscript>' . esc_html__( '\\nThe flow editor needs JavaScript.\\n', 'flx-forms' ) . '</noscript>';
+			echo '<noscript>' . esc_html__( 'The flow editor needs JavaScript.', 'flx-forms' ) . '</noscript>';
 			echo '</div>';
 			return;
 		}
-		echo '<div class="flxfa-head"><div><h1 class="flxfa-title">' . esc_html__( '\\nAutomations\\n', 'flx-forms' ) . '</h1>';
-		echo '<p class="flxfa-sub">' . esc_html__( '\\nRun steps automatically after a form is submitted or a payment is completed: create and send certificates, show them on the thank-you screen, e-mail, webhook.\\n', 'flx-forms' ) . '</p></div>';
-		echo '<div class="flxfa-head__actions"><a class="flxfa-btn flxfa-btn--primary" href="' . esc_url( self::url( array( 'flow' => 'new' ) ) ) . '">' . self::icon( 'plus' ) . esc_html__( '\\nNew automation\\n', 'flx-forms' ) . '</a></div></div>';
+		echo '<div class="flxfa-head"><div><h1 class="flxfa-title">' . esc_html__( 'Automations', 'flx-forms' ) . '</h1>';
+		echo '<p class="flxfa-sub">' . esc_html__( 'Run steps automatically after a form is submitted or a payment is completed: create and send certificates, show them on the thank-you screen, e-mail, webhook.', 'flx-forms' ) . '</p></div>';
+		echo '<div class="flxfa-head__actions"><a class="flxfa-btn flxfa-btn--primary" href="' . esc_url( self::url( array( 'flow' => 'new' ) ) ) . '">' . self::icon( 'plus' ) . esc_html__( 'New automation', 'flx-forms' ) . '</a></div></div>';
 		echo '<hr class="wp-header-end">';
 		if ( ! FLXF_Automations::certificates_available() ) {
-			echo '<div class="flxfa-notice flxfa-notice--warn">' . self::icon( 'alert' ) . '<div><strong>' . esc_html__( 'Flux Certificates is not active.', 'flx-forms' ) . '</strong> ' . esc_html__( '\\nCertificate steps are disabled until the Flux Certificates plugin is activated. E-mail and webhook steps keep working.\\n', 'flx-forms' ) . '</div></div>';
+			echo '<div class="flxfa-notice flxfa-notice--warn">' . self::icon( 'alert' ) . '<div><strong>' . esc_html__( 'Flux Certificates is not active.', 'flx-forms' ) . '</strong> ' . esc_html__( 'Certificate steps are disabled until the Flux Certificates plugin is activated. E-mail and webhook steps keep working.', 'flx-forms' ) . '</div></div>';
 		}
-		echo '<nav class="flxfa-tabs" aria-label="' . esc_attr__( '\\nAutomations\\n', 'flx-forms' ) . '">';
-		echo '<a class="flxfa-tab' . ( 'flows' === $tab ? ' is-active' : '' ) . '" href="' . esc_url( self::url() ) . '"' . ( 'flows' === $tab ? ' aria-current="page"' : '' ) . '>' . esc_html__( '\\nFlows\\n', 'flx-forms' ) . '</a>';
-		echo '<a class="flxfa-tab' . ( 'runs' === $tab ? ' is-active' : '' ) . '" href="' . esc_url( self::url( array( 'tab' => 'runs' ) ) ) . '"' . ( 'runs' === $tab ? ' aria-current="page"' : '' ) . '>' . esc_html__( '\\nRun log\\n', 'flx-forms' ) . ' <span class="flxfa-count">' . esc_html( number_format_i18n( count( FLXF_Automations::get_runs() ) ) ) . '</span></a>';
+		echo '<nav class="flxfa-tabs" aria-label="' . esc_attr__( 'Automations', 'flx-forms' ) . '">';
+		echo '<a class="flxfa-tab' . ( 'flows' === $tab ? ' is-active' : '' ) . '" href="' . esc_url( self::url() ) . '"' . ( 'flows' === $tab ? ' aria-current="page"' : '' ) . '>' . esc_html__( 'Flows', 'flx-forms' ) . '</a>';
+		echo '<a class="flxfa-tab' . ( 'runs' === $tab ? ' is-active' : '' ) . '" href="' . esc_url( self::url( array( 'tab' => 'runs' ) ) ) . '"' . ( 'runs' === $tab ? ' aria-current="page"' : '' ) . '>' . esc_html__( 'Run log', 'flx-forms' ) . ' <span class="flxfa-count">' . esc_html( number_format_i18n( count( FLXF_Automations::get_runs() ) ) ) . '</span></a>';
 		echo '</nav>';
 		if ( 'runs' === $tab ) {
 			self::render_runs();
@@ -279,10 +279,10 @@ class FLXF_Automations_Admin {
 	private static function step_summary( $flow ) {
 		$labels = array(
 			'create_certificate' => __( 'Create certificate', 'flx-forms' ),
-			'send_certificate'   => __( '\\nSend certificate\\n', 'flx-forms' ),
-			'show_on_thankyou'   => __( '\\nShow on thank-you screen\\n', 'flx-forms' ),
-			'send_email'         => __( '\\nSend e-mail\\n', 'flx-forms' ),
-			'webhook'            => __( '\\nWebhook\\n', 'flx-forms' ),
+			'send_certificate'   => __( 'Send certificate', 'flx-forms' ),
+			'show_on_thankyou'   => __( 'Show on thank-you screen', 'flx-forms' ),
+			'send_email'         => __( 'Send e-mail', 'flx-forms' ),
+			'webhook'            => __( 'Webhook', 'flx-forms' ),
 		);
 		$out = array();
 		foreach ( $flow['actions'] as $a ) {
@@ -297,7 +297,7 @@ class FLXF_Automations_Admin {
 		$donation_form = FLXF_Automations::find_donation_form();
 		echo '<div class="flxfa-panel" data-nonce="' . esc_attr( $nonce ) . '" data-ajax="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '" id="flxfa-list">';
 		if ( ! $flows ) {
-			echo '<div class="flxfa-empty">' . self::icon( 'bolt' ) . '<p>' . esc_html__( '\\nNo automations yet.\\n', 'flx-forms' ) . '</p></div>';
+			echo '<div class="flxfa-empty">' . self::icon( 'bolt' ) . '<p>' . esc_html__( 'No automations yet.', 'flx-forms' ) . '</p></div>';
 		} else {
 			echo '<div class="flxfa-table-wrap"><table class="flxfa-table"><thead><tr>';
 			echo '<th scope="col">' . esc_html__( 'Enabled', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Automation', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Trigger', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Form', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Last run', 'flx-forms' ) . '</th><th scope="col" class="num">' . esc_html__( 'Runs', 'flx-forms' ) . '</th><th scope="col"><span class="screen-reader-text">' . esc_html__( 'Actions', 'flx-forms' ) . '</span></th>';
@@ -305,19 +305,19 @@ class FLXF_Automations_Admin {
 			foreach ( $flows as $f ) {
 				$edit = self::url( array( 'flow' => $f['id'] ) );
 				echo '<tr data-id="' . esc_attr( $f['id'] ) . '">';
-				echo '<td><label class="flxfa-switch"><input type="checkbox" class="flxfa-toggle" ' . checked( $f['enabled'], true, false ) . ' aria-label="' . esc_attr( sprintf( /* translators: %s: automation name */ __( '\\nEnable%s\\n', 'flx-forms' ), $f['title'] ) ) . '"><span></span></label></td>';
+				echo '<td><label class="flxfa-switch"><input type="checkbox" class="flxfa-toggle" ' . checked( $f['enabled'], true, false ) . ' aria-label="' . esc_attr( sprintf( /* translators: %s: automation name */ __( 'Enable%s', 'flx-forms' ), $f['title'] ) ) . '"><span></span></label></td>';
 				echo '<td><a class="flxfa-name" href="' . esc_url( $edit ) . '">' . esc_html( $f['title'] ) . '</a><div class="flxfa-steps">';
 				foreach ( self::step_summary( $f ) as $i => $s ) {
 					echo ( $i ? '<span class="flxfa-arrow" aria-hidden="true">→</span>' : '' ) . '<span class="flxfa-chip">' . esc_html( $s ) . '</span>';
 				}
 				echo '</div></td>';
-				echo '<td>' . ( 'payment_completed' === $f['trigger']['type'] ? self::icon( 'card' ) . esc_html__( '\\nPayment completed\\n', 'flx-forms' ) : self::icon( 'form' ) . esc_html__( '\\nForm submitted\\n', 'flx-forms' ) ) . '</td>';
+				echo '<td>' . ( 'payment_completed' === $f['trigger']['type'] ? self::icon( 'card' ) . esc_html__( 'Payment completed', 'flx-forms' ) : self::icon( 'form' ) . esc_html__( 'Form submitted', 'flx-forms' ) ) . '</td>';
 				echo '<td>' . esc_html( FLXF_Automations::form_title( $f['trigger']['form_id'] ) ) . '</td>';
 				echo '<td>' . ( $f['last_run'] ? '<time datetime="' . esc_attr( gmdate( 'c', $f['last_run'] ) ) . '">' . esc_html( flx_date( $f['last_run'], 'datetime' ) ) . '</time>' : '<span class="flxfa-muted">—</span>' ) . '</td>';
 				echo '<td class="num">' . esc_html( number_format_i18n( $f['runs'] ) ) . '</td>';
 				echo '<td class="flxfa-row-actions"><a class="flxfa-icon-btn" href="' . esc_url( $edit ) . '" title="' . esc_attr__( 'Edit', 'flx-forms' ) . '">' . self::icon( 'edit' ) . '<span class="screen-reader-text">' . esc_html__( 'Edit', 'flx-forms' ) . '</span></a>';
 				echo '<button type="button" class="flxfa-icon-btn flxfa-dup" title="' . esc_attr__( 'Duplicate', 'flx-forms' ) . '">' . self::icon( 'copy' ) . '<span class="screen-reader-text">' . esc_html__( 'Duplicate', 'flx-forms' ) . '</span></button>';
-				echo '<button type="button" class="flxfa-icon-btn flxfa-icon-btn--danger flxfa-del" title="' . esc_attr__( 'Delete', 'flx-forms' ) . '" data-confirm="' . esc_attr__( '\\nDelete this automation? This cannot be undone.\\n', 'flx-forms' ) . '">' . self::icon( 'trash' ) . '<span class="screen-reader-text">' . esc_html__( 'Delete', 'flx-forms' ) . '</span></button></td>';
+				echo '<button type="button" class="flxfa-icon-btn flxfa-icon-btn--danger flxfa-del" title="' . esc_attr__( 'Delete', 'flx-forms' ) . '" data-confirm="' . esc_attr__( 'Delete this automation? This cannot be undone.', 'flx-forms' ) . '">' . self::icon( 'trash' ) . '<span class="screen-reader-text">' . esc_html__( 'Delete', 'flx-forms' ) . '</span></button></td>';
 				echo '</tr>';
 			}
 			echo '</tbody></table></div>';
@@ -325,15 +325,15 @@ class FLXF_Automations_Admin {
 		echo '</div>';
 
 		echo '<div class="flxfa-panel flxfa-starter">';
-		echo '<div class="flxfa-starter__icon">' . self::icon( 'tree' ) . '</div><div class="flxfa-starter__body"><h2>' . esc_html__( '\\nReady-made: sapling donation certificate\\n', 'flx-forms' ) . '</h2>';
-		echo '<p>' . esc_html__( '\\nAfter a verified payment on the donation form: create a “Fidan Bağış Sertifikası” (sapling count = amount ÷ unit price), send it by WhatsApp and e-mail, and show it on the thank-you screen.\\n', 'flx-forms' ) . '</p>';
+		echo '<div class="flxfa-starter__icon">' . self::icon( 'tree' ) . '</div><div class="flxfa-starter__body"><h2>' . esc_html__( 'Ready-made: sapling donation certificate', 'flx-forms' ) . '</h2>';
+		echo '<p>' . esc_html__( 'After a verified payment on the donation form: create a “Fidan Bağış Sertifikası” (sapling count = amount ÷ unit price), send it by WhatsApp and e-mail, and show it on the thank-you screen.', 'flx-forms' ) . '</p>';
 		echo '<div class="flxfa-starter__actions">';
-		echo '<button type="button" class="flxfa-btn" id="flxfa-default">' . self::icon( 'bolt' ) . esc_html__( '[[\'Create default flow\\n', 'flx-forms' ) . '</button>';
+		echo '<button type="button" class="flxfa-btn" id="flxfa-default">' . self::icon( 'bolt' ) . esc_html__( 'Create default flow', 'flx-forms' ) . '</button>';
 		if ( $donation_form ) {
 			/* translators: %s: form name */
-			echo '<span class="flxfa-muted">' . esc_html( sprintf( __( '\\nDonation form:%s\\n', 'flx-forms' ), FLXF_Automations::form_title( $donation_form ) ) ) . '</span>';
+			echo '<span class="flxfa-muted">' . esc_html( sprintf( __( 'Donation form:%s', 'flx-forms' ), FLXF_Automations::form_title( $donation_form ) ) ) . '</span>';
 		} else {
-			echo '<button type="button" class="flxfa-btn flxfa-btn--ghost" id="flxfa-donation-form">' . self::icon( 'form' ) . esc_html__( '\\nCreate the “Sapling Donation” form\\n', 'flx-forms' ) . '</button>';
+			echo '<button type="button" class="flxfa-btn flxfa-btn--ghost" id="flxfa-donation-form">' . self::icon( 'form' ) . esc_html__( 'Create the “Sapling Donation” form', 'flx-forms' ) . '</button>';
 		}
 		echo '</div></div></div>';
 	}
@@ -342,25 +342,25 @@ class FLXF_Automations_Admin {
 		$runs   = FLXF_Automations::get_runs();
 		$labels = array(
 			'create_certificate' => __( 'Create certificate', 'flx-forms' ),
-			'send_certificate'   => __( '\\nSend certificate\\n', 'flx-forms' ),
-			'show_on_thankyou'   => __( '\\nShow on thank-you screen\\n', 'flx-forms' ),
-			'send_email'         => __( '\\nSend e-mail\\n', 'flx-forms' ),
-			'webhook'            => __( '\\nWebhook\\n', 'flx-forms' ),
+			'send_certificate'   => __( 'Send certificate', 'flx-forms' ),
+			'show_on_thankyou'   => __( 'Show on thank-you screen', 'flx-forms' ),
+			'send_email'         => __( 'Send e-mail', 'flx-forms' ),
+			'webhook'            => __( 'Webhook', 'flx-forms' ),
 		);
 		$status = array(
 			'ok'      => __( 'Done', 'flx-forms' ),
-			'partial' => __( '\\nPartly done\\n', 'flx-forms' ),
+			'partial' => __( 'Partly done', 'flx-forms' ),
 			'error'   => __( 'Error', 'flx-forms' ),
 			'skipped' => __( 'Skipped', 'flx-forms' ),
 			'running' => __( 'Running', 'flx-forms' ),
 		);
 		echo '<div class="flxfa-panel" id="flxfa-runs" data-nonce="' . esc_attr( wp_create_nonce( self::NONCE ) ) . '" data-ajax="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '">';
 		if ( ! $runs ) {
-			echo '<div class="flxfa-empty">' . self::icon( 'bolt' ) . '<p>' . esc_html__( '[[\'No runs yet. Runs appear here after a matching submission.\\n', 'flx-forms' ) . '</p></div></div>';
+			echo '<div class="flxfa-empty">' . self::icon( 'bolt' ) . '<p>' . esc_html__( 'No runs yet. Runs appear here after a matching submission.', 'flx-forms' ) . '</p></div></div>';
 			return;
 		}
 		/* translators: %d: maximum number of runs kept */
-		echo '<div class="flxfa-runs-head"><p class="flxfa-muted">' . esc_html( sprintf( __( '\\nThe latest%druns are kept.\\n', 'flx-forms' ), FLXF_Automations::MAX_RUNS ) ) . '</p><button type="button" class="flxfa-btn" id="flxfa-clear-runs" data-confirm="' . esc_attr__( '\\nClear the run log?\\n', 'flx-forms' ) . '">' . esc_html__( 'Clear log', 'flx-forms' ) . '</button></div>';
+		echo '<div class="flxfa-runs-head"><p class="flxfa-muted">' . esc_html( sprintf( __( 'The latest%druns are kept.', 'flx-forms' ), FLXF_Automations::MAX_RUNS ) ) . '</p><button type="button" class="flxfa-btn" id="flxfa-clear-runs" data-confirm="' . esc_attr__( 'Clear the run log?', 'flx-forms' ) . '">' . esc_html__( 'Clear log', 'flx-forms' ) . '</button></div>';
 		echo '<div class="flxfa-table-wrap"><table class="flxfa-table flxfa-runs"><thead><tr><th scope="col">' . esc_html__( 'Time', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Automation', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Form', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Tracking code', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Steps', 'flx-forms' ) . '</th></tr></thead><tbody>';
 		foreach ( $runs as $r ) {
 			$st = $r['status'] ?? 'running';
@@ -395,10 +395,10 @@ class FLXF_Automations_Admin {
 
 	private static function guard() {
 		if ( ! FLXF_Automations::can() ) {
-			wp_send_json_error( array( 'message' => __( '\\nSorry, you are not allowed to do that.\\n', 'flx-forms' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Sorry, you are not allowed to do that.', 'flx-forms' ) ), 403 );
 		}
 		if ( ! check_ajax_referer( self::NONCE, 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( '\\nThe link has expired. Reload the page and try again.\\n', 'flx-forms' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'The link has expired. Reload the page and try again.', 'flx-forms' ) ), 403 );
 		}
 	}
 
@@ -407,7 +407,7 @@ class FLXF_Automations_Admin {
 		$raw  = isset( $_POST['flow'] ) ? wp_unslash( $_POST['flow'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput -- JSON, sanitised field by field in sanitize_flow().
 		$data = json_decode( (string) $raw, true );
 		if ( ! is_array( $data ) ) {
-			wp_send_json_error( array( 'message' => __( '\\nInvalid data.\\n', 'flx-forms' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Invalid data.', 'flx-forms' ) ), 400 );
 		}
 		$id  = absint( $data['id'] ?? 0 );
 		$res = FLXF_Automations::save_flow( $data, $id );
@@ -421,7 +421,7 @@ class FLXF_Automations_Admin {
 		self::guard();
 		$flow = FLXF_Automations::get_flow( absint( $_POST['id'] ?? 0 ) );
 		if ( ! $flow ) {
-			wp_send_json_error( array( 'message' => __( '\\nAutomation not found.\\n', 'flx-forms' ) ), 404 );
+			wp_send_json_error( array( 'message' => __( 'Automation not found.', 'flx-forms' ) ), 404 );
 		}
 		$flow['enabled'] = ! empty( $_POST['enabled'] ) && '0' !== $_POST['enabled'];
 		$res             = FLXF_Automations::save_flow( $flow, $flow['id'] );
@@ -430,14 +430,14 @@ class FLXF_Automations_Admin {
 
 	public static function ajax_delete() {
 		self::guard();
-		FLXF_Automations::delete_flow( absint( $_POST['id'] ?? 0 ) ) ? wp_send_json_success() : wp_send_json_error( array( 'message' => __( '\\nAutomation not found.\\n', 'flx-forms' ) ), 404 );
+		FLXF_Automations::delete_flow( absint( $_POST['id'] ?? 0 ) ) ? wp_send_json_success() : wp_send_json_error( array( 'message' => __( 'Automation not found.', 'flx-forms' ) ), 404 );
 	}
 
 	public static function ajax_duplicate() {
 		self::guard();
 		$flow = FLXF_Automations::get_flow( absint( $_POST['id'] ?? 0 ) );
 		if ( ! $flow ) {
-			wp_send_json_error( array( 'message' => __( '\\nAutomation not found.\\n', 'flx-forms' ) ), 404 );
+			wp_send_json_error( array( 'message' => __( 'Automation not found.', 'flx-forms' ) ), 404 );
 		}
 		/* translators: %s: automation name */
 		$flow['title']   = sprintf( __( '%s (copy)', 'flx-forms' ), $flow['title'] );
@@ -456,14 +456,14 @@ class FLXF_Automations_Admin {
 	public static function ajax_donation_form() {
 		self::guard();
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( '\\nSorry, you are not allowed to do that.\\n', 'flx-forms' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Sorry, you are not allowed to do that.', 'flx-forms' ) ), 403 );
 		}
 		$form_id = FLXF_Automations::find_donation_form();
 		if ( ! $form_id ) {
 			$form_id = FLXF_Automations::create_donation_form();
 		}
 		if ( ! $form_id ) {
-			wp_send_json_error( array( 'message' => __( '\\nThe form could not be created.\\n', 'flx-forms' ) ), 500 );
+			wp_send_json_error( array( 'message' => __( 'The form could not be created.', 'flx-forms' ) ), 500 );
 		}
 		$fresh = FLXF_Automations::default_flow_data( $form_id );
 		foreach ( FLXF_Automations::get_flows() as $f ) {
