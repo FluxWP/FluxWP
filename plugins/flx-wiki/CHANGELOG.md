@@ -1,5 +1,8 @@
 # Flux Wiki
 
+## 0.2.5
+- Support RTL navigation trees, article layout, table of contents, pager, search and AI dialogs with logical CSS; keep code syntax LTR and mirror directional icons only.
+
 ## 0.2.4
 
 - Redesign the documentation home with a start guide, full-width search, responsive section cards and quieter recent/AI resource panels.

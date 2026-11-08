@@ -53,7 +53,7 @@ function flxl_switcher( $args = array() ) {
 				$label = esc_html( strtoupper( $i['code'] ) );
 		}
 		$out .= sprintf(
-			'<a href="%1$s" hreflang="%2$s" lang="%2$s" title="%3$s" data-flxl="%4$s"%5$s>%6$s</a>',
+			'<a href="%1$s" hreflang="%2$s" lang="%2$s" dir="auto" title="%3$s" data-flxl="%4$s"%5$s>%6$s</a>',
 			esc_url( $i['url'] ),
 			esc_attr( flxl_hreflang( $i['code'] ) ),
 			esc_attr( $i['name'] ),
