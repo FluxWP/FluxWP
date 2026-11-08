@@ -1,5 +1,13 @@
 # Flux Wiki
 
+## 0.2.4
+
+- Redesign the documentation home with a start guide, full-width search, responsive section cards and quieter recent/AI resource panels.
+- Fix missing section translation metadata being treated as manual edits during preset upgrades.
+- Search every configured content language for Ask Wiki, with spelling correction and bounded query translation for weak matches.
+- Restrict AI context to public, password-free documents; isolate untrusted page data, disable tools, validate clickable citation URLs and handle empty results without generating an unsupported answer.
+- Serialize requests per visitor and enforce a fixed hourly quota; validate question length before calling Flux AI.
+
 ## 0.2.3
 
 - Flux Lang integration for wiki pages and preset language/translation pairs.

@@ -257,6 +257,9 @@ msgstr "Wiki draft"
 msgid "Flux AI hazır değil."
 msgstr "Flux AI is not ready."
 
+msgid "Bu soruyu yanıtlayan bir rehber bulamadım. Eklenti adını ya da yapmak istediğiniz işlemi yazarak tekrar deneyin."
+msgstr "I could not find a guide answering this question. Try again with the plugin name or the task you want to complete."
+
 msgid "Cevap alınamadı. Biraz sonra tekrar deneyin."
 msgstr "Could not get an answer. Try again in a moment."
 
@@ -421,6 +424,9 @@ msgstr "The question is too short."
 msgid "Bu saat için soru sınırına ulaştınız. Biraz sonra tekrar deneyin."
 msgstr "You have reached the question limit for this hour. Try again later."
 
+msgid "Önceki sorunuz yanıtlanıyor. Biraz sonra tekrar deneyin."
+msgstr "Your previous question is still being answered. Please try again shortly."
+
 msgid "Wiki adresleri"
 msgstr "Wiki addresses"
 
@@ -455,6 +461,15 @@ msgstr "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
 msgid "Wiki'de ara…"
 msgstr "Search the wiki…"
 
+msgid "Dokümantasyon"
+msgstr "Documentation"
+
+msgid "Buradan başlayın"
+msgstr "Start here"
+
+msgid "Rehberleri keşfedin"
+msgstr "Explore the guides"
+
 msgid "Henüz yayımlanmış sayfa yok."
 msgstr "No published pages yet."
 
@@ -469,9 +484,6 @@ msgstr "For LLMs and AI agents"
 
 msgid "Her sayfa adresin sonuna .md eklenerek düz Markdown olarak açılır. Ajanlar dizini llms.txt'den, tüm içeriği tek dosyada llms-full.txt'den okur."
 msgstr "Add .md to any page address to open it as plain Markdown. Agents read the index from llms.txt and the whole content in one file from llms-full.txt."
-
-msgid "MCP: Flux AI sunucusundaki flxwk_search, flxwk_get_page ve flxwk_list_pages araçlarıyla wiki doğrudan okunur."
-msgstr "MCP: agents read the wiki directly with the flxwk_search, flxwk_get_page and flxwk_list_pages tools on the Flux AI server."
 
 msgid "Arama"
 msgstr "Search"

@@ -22,3 +22,9 @@ detailed instant search (Ctrl/⌘ + K) and SEO-friendly output. Built for humans
 Developer notes: [docs/flx-wiki/API.md](../../docs/flx-wiki/API.md).
 
 Türkçe: [README.tr.md](README.tr.md)
+
+## Ask the wiki controls
+
+Questions search all active content languages, including spelling correction. Weak matches can use one short query translation through Flux AI. Only published, password-free Wiki pages are sent as context; no tools are executed. Answers cite the supplied sources, with sanitized output and restricted clickable links. These controls reduce risk; they do not guarantee that a model answer is correct.
+
+The default allowance is 20 questions per clock hour per user or salted IP identity, with one request in progress per visitor. Administrators are exempt from the hourly allowance. Flux AI spending limits still apply. Access can be disabled, limited to signed-in users (default), or opened to everyone in Wiki settings.

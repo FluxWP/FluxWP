@@ -49,20 +49,24 @@ add_action(
 					return flxwk_can_ask() ? true : new WP_Error( 'flxwk_ask_off', __( 'Soru sormak için giriş yapın.', 'flx-wiki' ), array( 'status' => 403 ) );
 				},
 				'args'                => array(
-					'q'    => array( 'type' => 'string', 'required' => true ),
-					'page' => array( 'type' => 'integer', 'default' => 0 ),
+					'q'    => array( 'type' => 'string', 'required' => true, 'maxLength' => 1000 ),
+					'page' => array( 'type' => 'integer', 'default' => 0, 'minimum' => 0 ),
 				),
 				'callback'            => function ( WP_REST_Request $r ) {
 					$q = trim( sanitize_textarea_field( (string) $r['q'] ) );
 					if ( mb_strlen( $q ) < 3 ) {
 						return new WP_Error( 'flxwk_short', __( 'Soru çok kısa.', 'flx-wiki' ), array( 'status' => 400 ) );
 					}
-					$limit = flxwk_rate_hit();
-					if ( is_wp_error( $limit ) ) {
-						return $limit;
+					$lock = flxwk_ask_lock();
+					if ( is_wp_error( $lock ) ) { return $lock; }
+					try {
+						$limit = flxwk_rate_hit();
+						if ( is_wp_error( $limit ) ) { return $limit; }
+						$res = flxwk_ask( $q, (int) $r['page'] );
+						return is_wp_error( $res ) ? $res : rest_ensure_response( $res );
+					} finally {
+						delete_option( $lock );
 					}
-					$res = flxwk_ask( mb_substr( $q, 0, 1000 ), (int) $r['page'] );
-					return is_wp_error( $res ) ? $res : rest_ensure_response( $res );
 				},
 			)
 		);
@@ -91,12 +95,33 @@ function flxwk_rate_hit() {
 	if ( current_user_can( 'manage_options' ) ) {
 		return true;
 	}
-	$who = get_current_user_id() ? 'u' . get_current_user_id() : 'ip' . md5( (string) ( $_SERVER['REMOTE_ADDR'] ?? '' ) . wp_salt() ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-	$key = 'flxwk_rl_' . substr( md5( $who ), 0, 20 );
+	$key = 'flxwk_rl_' . flxwk_ask_identity() . '_' . (int) floor( time() / HOUR_IN_SECONDS );
 	$n   = (int) get_transient( $key );
 	if ( $n >= $max ) {
 		return new WP_Error( 'flxwk_rate', __( 'Bu saat için soru sınırına ulaştınız. Biraz sonra tekrar deneyin.', 'flx-wiki' ), array( 'status' => 429 ) );
 	}
 	set_transient( $key, $n + 1, HOUR_IN_SECONDS );
 	return true;
+}
+
+/** Raw IPs are never persisted; ignore spoofable forwarded headers. */
+function flxwk_ask_identity() {
+	$who = get_current_user_id() ? 'u' . get_current_user_id() : 'ip' . (string) ( $_SERVER['REMOTE_ADDR'] ?? '' );
+	return substr( hash_hmac( 'sha256', $who, wp_salt() ), 0, 32 );
+}
+
+/** Atomic per-visitor in-flight gate also serializes quota updates. */
+function flxwk_ask_lock() {
+	global $wpdb;
+	$key = 'flxwk_ask_lock_' . flxwk_ask_identity();
+	$old = get_option( $key );
+	if ( $old && (int) $old < time() ) {
+		// Compare-and-delete prevents an expired reader removing a newly acquired lock.
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name = %s AND option_value = %s", $key, (string) $old ) );
+		wp_cache_delete( $key, 'options' );
+	}
+	if ( ! add_option( $key, time() + 90, '', false ) ) {
+		return new WP_Error( 'flxwk_busy', __( 'Önceki sorunuz yanıtlanıyor. Biraz sonra tekrar deneyin.', 'flx-wiki' ), array( 'status' => 429 ) );
+	}
+	return $key;
 }

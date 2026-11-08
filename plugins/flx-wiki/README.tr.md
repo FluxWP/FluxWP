@@ -22,3 +22,9 @@ ayrıntılı anlık arama (Ctrl/⌘ + K) ve SEO uyumlu çıktı. Hem insanlar he
 Geliştirici notları: [docs/flx-wiki/API.md](../../docs/flx-wiki/API.md).
 
 English: [README.md](README.md)
+
+## Wiki asistanının kontrolleri
+
+Sorular, yazım düzeltmesiyle birlikte etkin içerik dillerinin tamamında aranır. Zayıf eşleşmeler için Flux AI üzerinden bir kısa sorgu çevirisi yapılabilir. Yalnız yayımlanmış, parolasız Wiki sayfaları bağlam olarak gönderilir; araç çalıştırılmaz. Cevaplar verilen kaynaklara bağlantı verir; çıktı temizlenir ve tıklanabilir bağlantılar kaynaklarla sınırlandırılır. Bu kontroller riski azaltır; model cevabının doğruluğunu garanti etmez.
+
+Varsayılan sınır kullanıcı veya tuzlanmış IP kimliği başına saatlik 20 sorudur; aynı ziyaretçinin bir isteği sürerken yenisi kabul edilmez. Yöneticiler saatlik sınırdan muaftır. Flux AI harcama sınırları geçerlidir. Wiki ayarlarından erişim kapatılabilir, giriş yapmış kullanıcılara sınırlandırılabilir (varsayılan) veya herkese açılabilir.

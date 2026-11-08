@@ -69,109 +69,65 @@ function flxwk_search_form( $big = false, $value = '' ) {
 /* ------------------------------------------------------------------ */
 
 function flxwk_view_home() {
-	$tree   = flxwk_tree();
-	$recent = get_posts(
-		array(
-			'post_type'      => FLXWK_PT,
-			'post_status'    => 'publish',
-			'posts_per_page' => 6,
-			'orderby'        => 'modified',
-			'has_password'   => false,
-		)
-	);
-	$count  = count( flxwk_all_pages() );
+	$tree = flxwk_tree();
+	$pages = flxwk_all_pages();
+	$recent = $pages;
+	usort( $recent, fn( $a, $b ) => strcmp( $b->post_modified_gmt, $a->post_modified_gmt ) );
+	$recent = array_slice( $recent, 0, 5 );
+	$start = $tree ? ( $tree[0]['items'][0]['post'] ?? null ) : null;
 	?>
+	<div class="flxwk-portal">
 	<section class="flxwk-hero">
-		<p class="flxwk-eyebrow"><?php echo flxwk_icon( 'book' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?></p>
-		<h1 class="flxwk-hero__title"><?php echo esc_html( flxwk_title() ); ?></h1>
-		<p class="flxwk-hero__lead"><?php echo esc_html( flxwk_intro() ); ?></p>
-		<?php flxwk_search_form( true ); ?>
-		<p class="flxwk-hero__meta">
-			<?php
-			/* translators: %s: sayfa sayısı */
-			echo esc_html( sprintf( _n( '%s sayfa', '%s sayfa', $count, 'flx-wiki' ), number_format_i18n( $count ) ) );
-			?>
-			<span aria-hidden="true">·</span>
-			<a href="<?php echo esc_url( home_url( '/' . flxwk_base() . '/llms.txt' ) ); ?>">llms.txt</a>
-			<span aria-hidden="true">·</span>
-			<a href="<?php echo esc_url( home_url( '/' . flxwk_base() . '/llms-full.txt' ) ); ?>">llms-full.txt</a>
-			<?php if ( flxwk_can_ask() ) : ?>
-				<span aria-hidden="true">·</span>
-				<button type="button" class="flxwk-link" data-flxwk-ask><?php echo flxwk_icon( 'spark' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php esc_html_e( 'Wiki\'ye sor', 'flx-wiki' ); ?></button>
-			<?php endif; ?>
-		</p>
-	</section>
-
-	<div class="flxwk-home">
-		<?php if ( ! $tree ) : ?>
-			<p class="flxwk-empty"><?php esc_html_e( 'Henüz yayımlanmış sayfa yok.', 'flx-wiki' ); ?></p>
-		<?php endif; ?>
-		<div class="flxwk-cards">
-			<?php foreach ( $tree as $g ) : ?>
-				<section class="flxwk-card">
-					<h2 class="flxwk-card__title">
-						<?php if ( $g['term'] ) : ?>
-							<a href="<?php echo esc_url( get_term_link( $g['term'] ) ); ?>"><?php echo esc_html( $g['term']->name ); ?></a>
-						<?php else : ?>
-							<?php esc_html_e( 'Diğer sayfalar', 'flx-wiki' ); ?>
-						<?php endif; ?>
-					</h2>
-					<?php if ( $g['term'] && $g['term']->description ) : ?>
-						<p class="flxwk-card__desc"><?php echo esc_html( $g['term']->description ); ?></p>
-					<?php endif; ?>
-					<ul class="flxwk-card__list">
-						<?php
-						$rows = array();
-						foreach ( $g['items'] as $n ) {
-							$rows[] = array( $n['post'], false, count( $n['children'] ) );
-							foreach ( $n['children'] as $c ) {
-								$rows[] = array( $c['post'], true, count( $c['children'] ) );
-							}
-						}
-						?>
-						<?php foreach ( array_slice( $rows, 0, 8 ) as $row ) : ?>
-							<li<?php echo $row[1] ? ' class="is-sub"' : ''; ?>>
-								<a href="<?php echo esc_url( get_permalink( $row[0] ) ); ?>"><?php echo esc_html( get_the_title( $row[0] ) ); ?></a>
-								<?php if ( $row[2] ) : ?>
-									<span class="flxwk-count"><?php echo esc_html( number_format_i18n( $row[2] ) ); ?></span>
-								<?php endif; ?>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-					<?php if ( count( $rows ) > 8 && $g['term'] ) : ?>
-						<a class="flxwk-more" href="<?php echo esc_url( get_term_link( $g['term'] ) ); ?>"><?php esc_html_e( 'Tümünü gör', 'flx-wiki' ); ?> <?php echo flxwk_icon( 'right' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></a>
-					<?php endif; ?>
-				</section>
-			<?php endforeach; ?>
+		<div class="flxwk-hero__copy">
+			<p class="flxwk-eyebrow"><?php echo flxwk_icon( 'book' ); ?> <?php esc_html_e( 'Dokümantasyon', 'flx-wiki' ); ?></p>
+			<h1 class="flxwk-hero__title"><?php echo esc_html( flxwk_title() ); ?></h1>
+			<p class="flxwk-hero__lead"><?php echo esc_html( flxwk_intro() ); ?></p>
+			<p class="flxwk-hero__meta">
+				<?php echo esc_html( sprintf( _n( '%s sayfa', '%s sayfa', count( $pages ), 'flx-wiki' ), number_format_i18n( count( $pages ) ) ) ); ?>
+				<?php if ( flxwk_can_ask() ) : ?>
+					<span aria-hidden="true">/</span><button type="button" class="flxwk-link" data-flxwk-ask><?php echo flxwk_icon( 'spark' ); ?> <?php esc_html_e( 'Wiki\'ye sor', 'flx-wiki' ); ?></button>
+				<?php endif; ?>
+			</p>
 		</div>
-
+		<?php if ( $start ) : ?>
+			<a class="flxwk-start" href="<?php echo esc_url( get_permalink( $start ) ); ?>">
+				<span class="flxwk-start__label"><?php echo flxwk_icon( 'spark' ); ?> <?php esc_html_e( 'Buradan başlayın', 'flx-wiki' ); ?></span>
+				<span class="flxwk-start__title"><?php echo esc_html( get_the_title( $start ) ); ?> <?php echo flxwk_icon( 'right' ); ?></span>
+				<span class="flxwk-start__desc"><?php echo esc_html( flxwk_excerpt( $start, 180 ) ); ?></span>
+			</a>
+		<?php endif; ?>
+	</section>
+	<div class="flxwk-portal__search"><?php flxwk_search_form( true ); ?></div>
+	<div class="flxwk-home">
+		<div class="flxwk-home__heading"><h2><?php esc_html_e( 'Rehberleri keşfedin', 'flx-wiki' ); ?></h2><?php echo flxwk_icon( 'list' ); ?></div>
+		<?php if ( ! $tree ) : ?><p class="flxwk-empty"><?php esc_html_e( 'Henüz yayımlanmış sayfa yok.', 'flx-wiki' ); ?></p><?php endif; ?>
+		<div class="flxwk-cards">
+		<?php foreach ( $tree as $i => $g ) : ?>
+			<section class="flxwk-card">
+				<div class="flxwk-card__header"><span class="flxwk-card__number" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
+				<h3 class="flxwk-card__title"><?php if ( $g['term'] ) : ?><a href="<?php echo esc_url( get_term_link( $g['term'] ) ); ?>"><?php echo esc_html( $g['term']->name ); ?></a><?php else : ?><?php esc_html_e( 'Diğer sayfalar', 'flx-wiki' ); ?><?php endif; ?></h3></div>
+				<?php if ( $g['term'] && $g['term']->description ) : ?><p class="flxwk-card__desc"><?php echo esc_html( $g['term']->description ); ?></p><?php endif; ?>
+				<ul class="flxwk-card__list">
+				<?php foreach ( array_slice( $g['items'], 0, 6 ) as $n ) : ?>
+					<li><a href="<?php echo esc_url( get_permalink( $n['post'] ) ); ?>"><span><?php echo esc_html( get_the_title( $n['post'] ) ); ?></span><?php if ( $n['children'] ) : ?><span class="flxwk-count"><?php echo esc_html( number_format_i18n( count( $n['children'] ) ) ); ?></span><?php endif; ?><?php echo flxwk_icon( 'right' ); ?></a></li>
+				<?php endforeach; ?>
+				</ul>
+				<?php if ( $g['term'] ) : ?><a class="flxwk-more" href="<?php echo esc_url( get_term_link( $g['term'] ) ); ?>"><?php esc_html_e( 'Tümünü gör', 'flx-wiki' ); ?> <?php echo flxwk_icon( 'right' ); ?></a><?php endif; ?>
+			</section>
+		<?php endforeach; ?>
+		</div>
 		<div class="flxwk-home__row">
 			<?php if ( $recent ) : ?>
-				<section class="flxwk-recent">
-					<h2><?php esc_html_e( 'Son güncellenenler', 'flx-wiki' ); ?></h2>
-					<ul>
-						<?php foreach ( $recent as $p ) : ?>
-							<li>
-								<a href="<?php echo esc_url( get_permalink( $p ) ); ?>"><?php echo esc_html( get_the_title( $p ) ); ?></a>
-								<span><?php echo esc_html( flxwk_ago( get_post_modified_time( 'U', true, $p ) ) ); ?></span>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-				</section>
+			<section class="flxwk-recent"><h2><?php echo flxwk_icon( 'clock' ); ?> <?php esc_html_e( 'Son güncellenenler', 'flx-wiki' ); ?></h2><ul>
+			<?php foreach ( $recent as $p ) : ?><li><a href="<?php echo esc_url( get_permalink( $p ) ); ?>"><?php echo esc_html( get_the_title( $p ) ); ?></a><span><?php echo esc_html( flxwk_ago( get_post_modified_time( 'U', true, $p ) ) ); ?></span></li><?php endforeach; ?>
+			</ul></section>
 			<?php endif; ?>
-			<section class="flxwk-llm">
-				<h2><?php echo flxwk_icon( 'bot' ); // phpcs:ignore WordPress.Security.EscapeOutput ?> <?php esc_html_e( 'LLM ve AI ajanları için', 'flx-wiki' ); ?></h2>
-				<p><?php esc_html_e( 'Her sayfa adresin sonuna .md eklenerek düz Markdown olarak açılır. Ajanlar dizini llms.txt\'den, tüm içeriği tek dosyada llms-full.txt\'den okur.', 'flx-wiki' ); ?></p>
-				<ul class="flxwk-llm__links">
-					<li><a href="<?php echo esc_url( home_url( '/' . flxwk_base() . '/llms.txt' ) ); ?>"><code>/<?php echo esc_html( flxwk_base() ); ?>/llms.txt</code></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/' . flxwk_base() . '/llms-full.txt' ) ); ?>"><code>/<?php echo esc_html( flxwk_base() ); ?>/llms-full.txt</code></a></li>
-					<li><a href="<?php echo esc_url( flxwk_home_url( 'index.md' ) ); ?>"><code>/<?php echo esc_html( flxwk_base() ); ?>/index.md</code></a></li>
-				</ul>
-				<?php if ( function_exists( 'flxai_mcp_enabled' ) && flxai_mcp_enabled() ) : ?>
-					<p class="flxwk-llm__mcp"><?php esc_html_e( 'MCP: Flux AI sunucusundaki flxwk_search, flxwk_get_page ve flxwk_list_pages araçlarıyla wiki doğrudan okunur.', 'flx-wiki' ); ?></p>
-				<?php endif; ?>
+			<section class="flxwk-llm"><span class="flxwk-llm__icon"><?php echo flxwk_icon( 'bot' ); ?></span><h2><?php esc_html_e( 'LLM ve AI ajanları için', 'flx-wiki' ); ?></h2>
+			<p><?php esc_html_e( 'Her sayfa adresin sonuna .md eklenerek düz Markdown olarak açılır. Ajanlar dizini llms.txt\'den, tüm içeriği tek dosyada llms-full.txt\'den okur.', 'flx-wiki' ); ?></p>
+			<ul class="flxwk-llm__links"><?php foreach ( array( 'llms.txt', 'llms-full.txt', 'index.md' ) as $file ) : ?><li><a href="<?php echo esc_url( flxwk_home_url( $file ) ); ?>"><code><?php echo esc_html( $file ); ?></code><?php echo flxwk_icon( 'right' ); ?></a></li><?php endforeach; ?></ul>
 			</section>
 		</div>
+	</div>
 	</div>
 	<?php
 }
