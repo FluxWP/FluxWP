@@ -28,3 +28,9 @@ The existing `flxu_package_preview` filter remains an explicit integration overr
 ## Maintainers
 
 Ahmet Yılmaz ([@sharkpaw](https://github.com/sharkpaw)).
+
+## Selected preset operations
+
+`flxk_apply_preset($id, $mode = 'apply', $force = [], $only = null)` accepts an optional fourth argument containing exact plan target strings. The same `only` option is accepted by `flxk_execute()`, `flxk_apply_migration()` and `flxk_patch_apply()`. `null` preserves full-apply behaviour for onboarding, synchronisation and existing callers; an empty array is rejected. The panel submits the explicit selected target list, with protected overwrites also present in `force`.
+
+Unknown targets and absent unchecked media/content dependencies are rejected before execution. Selecting a target does not itself bypass manual/fill protection. Unchecked targets are not written or adopted as preset-owned, and unchecked profile fields do not enter placeholder resolution. Selected base applies do not silently run migrations. A partial migration or patch remains pending until every target matches; selected apply results include `remaining`. Run history/undo remain available for each actual write.

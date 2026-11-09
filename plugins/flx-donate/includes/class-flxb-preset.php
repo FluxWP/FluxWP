@@ -108,8 +108,9 @@ final class FLXB_Preset {
 		if ( ! $t ) {
 			return array();
 		}
-		$keys = array_keys( FLXB_Types::clean_meta( array( 'requires_proxy' => 0, 'meat_to_needy' => 0, 'intention' => '', 'track_items' => 0, 'file_completes' => 0, 'labels' => array(), 'lock_preselect' => 0, 'grouping' => 'none', 'min_by_currency' => array(), 'presets_by_currency' => array(), 'i18n' => array() ) ) );
-		$meta = array_intersect_key( (array) $t['meta'], array_flip( $keys ) );
+		// Use the same live sanitizer as type_data(), including extension-owned fields.
+		// A synthetic whitelist lost icon/subtitle/in_form and made every apply differ forever.
+		$meta = FLXB_Types::clean_meta( (array) $t['meta'] );
 		return self::type_data(
 			array(
 				'title'           => $t['title'],

@@ -42,3 +42,7 @@ Flux Donate 2.11.0, Flux Setup ön ayarlarının `content` listesinde dört tür
 
 ## Dışa aktarım
 "Bu siteden şablon çıkar" türleri, iş ortaklarını, sitenin kendi raporlarını ve sekmelerini ekler; option'lardan `flxb_track_labels`, `flxb_track_early_days`, `flxb_categories`.
+
+### Metadata comparison
+
+`FLXB_Preset::type_data()` and `type_read()` both use `FLXB_Types::clean_meta()` with the current `flxb_type_meta_clean` extensions. New supported metadata fields must not be maintained in a second importer whitelist. Runtime fields such as `wc_product_id` remain excluded by the sanitizer. This preserves icons, subtitles, form visibility, currency settings and extension fields on repeated apply.

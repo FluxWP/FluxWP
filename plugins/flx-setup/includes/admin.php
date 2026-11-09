@@ -34,6 +34,7 @@ add_action(
 			return;
 		}
 		wp_enqueue_style( 'flxk-admin', FLXK_URL . 'assets/admin.css', array(), FLXK_VERSION );
+		wp_enqueue_script( 'flxk-selection', FLXK_URL . 'assets/selection.js', array(), FLXK_VERSION, true );
 	}
 );
 
@@ -136,13 +137,14 @@ function flxk_handle_post() {
 	$mode = 'fill' === ( $_POST['mode'] ?? '' ) ? 'fill' : 'apply';
 	// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	$force = array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['force'] ?? array() ) );
+	$only = isset( $_POST['selection_present'] ) ? array_values( array_unique( array_merge( array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['selected'] ?? array() ) ), $force ) ) ) : null;
 	$mig   = sanitize_text_field( wp_unslash( $_POST['migration'] ?? '' ) );
 	$res   = null;
 	$back  = flxk_admin_url();
 
 	switch ( $do ) {
 		case 'apply':
-			$res = flxk_apply_preset( $id, $mode, $force );
+			$res = flxk_apply_preset( $id, $mode, $force, $only );
 			$q   = array_diff( (array) get_option( 'flxk_install_queue', array() ), array( $id ) );
 			update_option( 'flxk_install_queue', array_values( $q ), false );
 			break;
@@ -153,6 +155,7 @@ function flxk_handle_post() {
 				array(
 					'mode'  => 'apply',
 					'force' => $force,
+					'only'  => $only,
 				)
 			);
 			break;
@@ -173,7 +176,7 @@ function flxk_handle_post() {
 			$res = flxk_revert_run( sanitize_text_field( wp_unslash( $_POST['run'] ?? '' ) ) );
 			break;
 		case 'patch_apply':
-			$res = flxk_patch_apply( sanitize_key( wp_unslash( $_POST['patch'] ?? '' ) ), 'panel', '', array( 'force' => $force ) );
+			$res = flxk_patch_apply( sanitize_key( wp_unslash( $_POST['patch'] ?? '' ) ), 'panel', '', array( 'force' => $force, 'only' => $only ) );
 			break;
 		case 'patch_reject':
 			flxk_patch_reject( sanitize_key( wp_unslash( $_POST['patch'] ?? '' ) ) );
@@ -562,6 +565,14 @@ function flxk_render_preview( $id, $mode, $mig, $patch_id ) {
 			)
 		);
 	}
+	$n = (int) ( $counts['add'] ?? 0 ) + (int) ( $counts['change'] ?? 0 );
+	echo '<input type="hidden" name="selection_present" value="1"><div class="flxk-selection">';
+	echo '<label><input type="checkbox" data-flxk-all="selected" checked> ' . esc_html__( 'Select all changes', 'flx-setup' ) . '</label>';
+	if ( ! empty( $counts['manual'] ) || ! empty( $counts['keep'] ) ) {
+		echo '<label><input type="checkbox" data-flxk-all="force"> ' . esc_html__( 'Select all protected values (overwrite)', 'flx-setup' ) . '</label>';
+	}
+	flxk_selection_button( $n );
+	echo '</div>';
 	$by = array();
 	foreach ( $plan['ops'] as $op ) {
 		$by[ $op['section'] ][] = $op;
@@ -582,7 +593,12 @@ function flxk_render_preview( $id, $mode, $mig, $patch_id ) {
 			$what = 'content' === $sec ? $op['label'] . ': ' . $op['key'] : preg_replace( '/^(profile|wp|option|media):/', '', $op['target'] );
 			$old  = 'content' === $sec ? ( $op['id'] ? '#' . $op['id'] : '—' ) : flxk_preview_value( $op['old'] );
 			$new  = 'content' === $sec ? flxk_preview_value( $op['new']['title'] ?? ( $op['new']['name'] ?? '' ), 80 ) : flxk_preview_value( $op['new'] );
-			echo '<tr><td><code>' . esc_html( $what ) . '</code></td><td data-label="' . esc_attr__( 'Now', 'flx-setup' ) . '">' . esc_html( $old ) . '</td><td data-label="' . esc_attr( $patch_id ? __( 'Patch', 'flx-setup' ) : __( 'Preset', 'flx-setup' ) ) . '">' . esc_html( $new ) . '</td><td><span class="flxk-st flxk-st--' . esc_attr( $op['status'] ) . '">' . esc_html( flxk_status_label( $op['status'] ) ) . '</span>';
+			echo '<tr><td>';
+			if ( in_array( $op['status'], array( 'add', 'change' ), true ) ) {
+				/* translators: %s: preset target */
+				echo '<input type="checkbox" name="selected[]" data-flxk-select="selected" checked value="' . esc_attr( $op['target'] ) . '" aria-label="' . esc_attr( sprintf( __( 'Select %s', 'flx-setup' ), $what ) ) . '"> ';
+			}
+			echo '<code>' . esc_html( $what ) . '</code></td><td data-label="' . esc_attr__( 'Now', 'flx-setup' ) . '">' . esc_html( $old ) . '</td><td data-label="' . esc_attr( $patch_id ? __( 'Patch', 'flx-setup' ) : __( 'Preset', 'flx-setup' ) ) . '">' . esc_html( $new ) . '</td><td><span class="flxk-st flxk-st--' . esc_attr( $op['status'] ) . '">' . esc_html( flxk_status_label( $op['status'] ) ) . '</span>';
 			if ( ! empty( $op['conflict'] ) ) {
 				$other = flxk_preset_label( $op['conflict'] );
 				if ( $patch_id ) {
@@ -595,7 +611,7 @@ function flxk_render_preview( $id, $mode, $mig, $patch_id ) {
 				echo '<br><span class="flxk-muted">' . esc_html( $msg ) . '</span>';
 			}
 			if ( in_array( $op['status'], array( 'manual', 'keep' ), true ) ) {
-				echo '<br><label class="flxk-muted"><input type="checkbox" name="force[]" value="' . esc_attr( $op['target'] ) . '"> ' . esc_html__( 'Apply anyway', 'flx-setup' ) . '</label>';
+				echo '<br><label class="flxk-muted"><input type="checkbox" name="force[]" data-flxk-select="force" value="' . esc_attr( $op['target'] ) . '"> ' . esc_html__( 'Apply anyway', 'flx-setup' ) . '</label>';
 			}
 			echo '</td></tr>';
 		}
@@ -604,12 +620,18 @@ function flxk_render_preview( $id, $mode, $mig, $patch_id ) {
 	$n = (int) ( $counts['add'] ?? 0 ) + (int) ( $counts['change'] ?? 0 );
 	echo '<p class="flxk-actions">';
 	/* translators: %d: sayı */
-	echo '<button class="button button-primary button-hero">' . esc_html( sprintf( __( 'Apply (%d changes)', 'flx-setup' ), $n ) ) . '</button> ';
+	flxk_selection_button( $n );
 	if ( ! $show_same ) {
 		// phpcs:ignore WordPress.Security.NonceVerification
 		printf( '<a href="%1$s">%2$s</a>', esc_url( add_query_arg( 'same', 1 ) ), esc_html__( 'Show unchanged rows too', 'flx-setup' ) );
 	}
 	echo '</p></form></section>';
+}
+
+function flxk_selection_button( $count ) {
+	/* translators: %d: selected change count */
+	$label = __( 'Apply selected changes (%d)', 'flx-setup' );
+	echo '<button class="button button-primary" data-flxk-apply data-label="' . esc_attr( $label ) . '" ' . disabled( 0, $count, false ) . '>' . esc_html( sprintf( $label, $count ) ) . '</button> ';
 }
 
 function flxk_render_profile() {

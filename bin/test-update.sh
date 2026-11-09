@@ -17,6 +17,7 @@ set -uo pipefail
 
 dir="${1%/}"; new_zip="$2"; prev_zip="${3:-}"
 here="$(cd "$(dirname "$0")" && pwd)"
+source "$here/lib/smoke-response.sh"
 eval "$("$here/package-info.sh" "$dir")"
 
 WP="${WP_CLI:-wp} --allow-root --quiet"
@@ -97,7 +98,7 @@ check_page() { # check_page <yol> [cookie]
   local out code
   out="$(mktemp)"
   code="$(curl -s -o "$out" -w '%{http_code}' --max-time 60 ${2:+-H "Cookie: $2"} "$URL$1")"
-  if [ "$code" -ge 500 ] || grep -qiE 'critical error|kritik bir hata|Fatal error|Parse error' "$out"; then
+  if flx_test_response_failed "$code" "$out"; then
     # Karar smoke() sonunda: hata paketten mi, bağımlılıktan (ör. WooCommerce) mı?
     BAD_PAGES="$BAD_PAGES $1→$code"
     log "$1 → $code (hata)"

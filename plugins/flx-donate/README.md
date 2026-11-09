@@ -115,3 +115,5 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/bagis-eklentisi/KURULUM.md) 
 Flux Donation Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
+
+Preset metadata uses the same sanitizer on read and save, including card icons, subtitles, form visibility and extension fields. Reapplying an unchanged preset produces no new changes; runtime WooCommerce product IDs do not take part in comparisons.

@@ -44,6 +44,7 @@ Our packages live in a private GitHub repository and are not on WordPress.org. W
 - Install: one row per package (finished rows sharp, upcoming ones blurred), a console log and progress. Required plugins such as WooCommerce come from WordPress.org. Failed steps are listed at the end.
 
 ### Presets
+- Choose rows before applying. **Select all changes** selects normal changes; a separate **Select all protected values (overwrite)** checkbox explicitly opts into overwriting manual values. Apply buttons are available above and below the table. Only selected targets are written; incomplete patches and migrations remain pending.
 - One `preset.json` sets up the organisation profile, plugin settings, colours and fonts, header/footer, templates, pages, menus and media.
 - Preview, apply and undo; your manual edits are kept; preset migrations are applied one by one. Several presets on one site.
 - Export the site as a preset; AI and MCP tools (`preset_schema`, `preset_export`, `preset_patch_preview`, `preset_patch_apply`, `preset_revert`).

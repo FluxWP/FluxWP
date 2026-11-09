@@ -6,6 +6,7 @@
 .flxk-badge--ok{background:color-mix(in srgb, #1a7f37 12%, var(--flxa-surface, #fff));color:color-mix(in srgb, #1a7f37 85%, var(--flxa-text, #000))}
 .flxk-badge--err{background:var(--flxa-error-soft, #fcf0f1);color:var(--flxa-error, #b32d2e)}
 .flxk-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 0}
+.flxk-selection{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:14px 0;border-block:1px solid var(--flxa-border,#dcdcde);margin-block:18px}.flxk-selection label{display:inline-flex;gap:6px;align-items:center}.flxk-selection .button{margin-inline-start:auto}
 .flxk-inline{display:inline}
 .flxk-danger{color:var(--flxa-error, #b32d2e)!important}
 .flxk-muted{color:var(--flxa-muted, #646970);font-size:12px}

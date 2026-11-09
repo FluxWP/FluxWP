@@ -396,6 +396,13 @@ function flxk_plan( $preset_id, array $p, array $opts = array() ) {
 		}
 	}
 
+	if ( isset( $opts['only'] ) ) {
+		foreach ( $ops as &$op ) {
+			$op['selected'] = in_array( $op['target'], (array) $opts['only'], true );
+			$op['apply'] = $op['apply'] && $op['selected'];
+		}
+		unset( $op );
+	}
 	return array(
 		'ops'      => $ops,
 		'warnings' => array_values( array_unique( array_merge( $warn, flxk_validate_warnings() ) ) ),
@@ -420,6 +427,43 @@ function flxk_plan_counts( array $plan ) {
  * @return array|WP_Error run özeti
  */
 function flxk_execute( $preset_id, array $p, array $opts = array(), array $meta = array() ) {
+	$full_p = $p;
+	if ( isset( $opts['only'] ) && ! $opts['only'] ) {
+		return new WP_Error( 'selection', __( 'Select at least one change.', 'flx-setup' ) );
+	}
+	if ( isset( $opts['only'] ) ) {
+		// Do not use an unchecked profile value when resolving selected content.
+		$profile = array();
+		foreach ( flxk_flatten( (array) ( $p['profile'] ?? array() ) ) as $path => $value ) {
+			if ( in_array( 'profile:' . $path, $opts['only'], true ) ) {
+				$profile = flxk_path_set( $profile, $path, $value );
+			}
+		}
+		$p['profile'] = $profile;
+		$check = flxk_plan( $preset_id, $p, $opts );
+		$known = array_column( $check['ops'], 'target' );
+		if ( array_diff( $opts['only'], $known ) ) {
+			return new WP_Error( 'selection', __( 'The selected changes are no longer available. Refresh the preview.', 'flx-setup' ) );
+		}
+		$check_ctx = flxk_context( $p, $preset_id );
+		$missing = array();
+		foreach ( $check['ops'] as $op ) {
+			if ( empty( $op['apply'] ) ) { continue; }
+			$values = array( $op['item'] ?? $op['new'] );
+			array_walk_recursive( $values, static function ( $value ) use ( &$missing, &$check_ctx, $opts ) {
+				if ( ! is_string( $value ) ) { return; }
+				preg_match_all( '/(?:^@|(?:url|id):@)([a-z_]+):([A-Za-z0-9_\-\/]+)/', $value, $refs, PREG_SET_ORDER );
+				foreach ( $refs as $ref ) {
+					$target = 'media' === $ref[1] ? 'media:' . $ref[2] : 'content:' . $ref[1] . ':' . $ref[2];
+					if ( ! flxk_ref_id( $ref[1], $ref[2], $check_ctx ) && ! in_array( $target, $opts['only'], true ) ) { $missing[] = $target; }
+				}
+			} );
+		}
+		if ( $missing ) {
+			/* translators: %s: required preset targets */
+			return new WP_Error( 'selection', sprintf( __( 'Also select the required items: %s', 'flx-setup' ), implode( ', ', array_unique( $missing ) ) ) );
+		}
+	}
 	$st  = flxk_state( $preset_id ) + array(
 		'owned'      => array(),
 		'migrations' => array(),
@@ -461,7 +505,15 @@ function flxk_execute( $preset_id, array $p, array $opts = array(), array $meta 
 	if ( ! empty( $p['version'] ) ) {
 		$st['ver'] = (string) $p['version'];
 	}
-	if ( 'migration' === $run['kind'] && ! empty( $meta['migration'] ) ) {
+	$remaining = 0;
+	if ( isset( $opts['only'] ) ) {
+		flxk_save_state( $preset_id, $st );
+		$after = flxk_plan( $preset_id, $full_p, array( 'mode' => $opts['mode'] ?? 'apply' ) );
+		foreach ( $after['ops'] as $op ) {
+			if ( 'same' !== $op['status'] ) { ++$remaining; }
+		}
+	}
+	if ( 'migration' === $run['kind'] && ! empty( $meta['migration'] ) && ! $remaining ) {
 		$st['migrations'][ $meta['migration'] ] = array(
 			'at'     => current_time( 'mysql' ),
 			'status' => 'applied',
@@ -479,6 +531,7 @@ function flxk_execute( $preset_id, array $p, array $opts = array(), array $meta 
 		'written' => count( $run['written'] ),
 		'counts'  => $counts,
 		'errors'  => $run['errors'],
+		'remaining' => $remaining,
 	);
 	flxk_log( $summary );
 	if ( function_exists( 'wp_cache_flush' ) ) {
@@ -497,8 +550,9 @@ function flxk_execute_ops( array $ops, array $p, array &$ctx, array &$run, array
 
 	foreach ( $ops as $op ) {
 		$t = $op['target'];
-		if ( 'same' === $op['status'] && ! isset( $st['owned'][ $t ] ) ) {
-			$st['owned'][ $t ] = flxk_target_hash( $t ); // Aynı değer: artık bu ön ayarın sayılır.
+		if ( 'same' === $op['status'] && ( ! isset( $op['selected'] ) || $op['selected'] ) ) {
+			// Reconcile older importer shapes only when the full current value matches the preset.
+			$st['owned'][ $t ] = flxk_target_hash( $t );
 		}
 		if ( 'content' === $op['section'] && $op['id'] ) {
 			$ctx['refs'][ $op['type'] ][ $op['key'] ] = $op['id'];
@@ -600,7 +654,7 @@ function flxk_execute_ops( array $ops, array $p, array &$ctx, array &$run, array
  *
  * @param string $mode apply | fill
  */
-function flxk_apply_preset( $id, $mode = 'apply', $force = array() ) {
+function flxk_apply_preset( $id, $mode = 'apply', $force = array(), $only = null ) {
 	$p = flxk_get_preset( $id );
 	if ( ! $p ) {
 		return new WP_Error( 'preset', __( 'Preset not found.', 'flx-setup' ) );
@@ -612,15 +666,23 @@ function flxk_apply_preset( $id, $mode = 'apply', $force = array() ) {
 		array(
 			'mode'  => $mode,
 			'force' => $force,
+			'only'  => $only,
 		),
 		array(
 			'kind'  => 'base',
 			'title' => $p['name'],
 		)
 	);
+	if ( is_wp_error( $res ) ) {
+		return $res;
+	}
 	$st = flxk_state( $id );
 	if ( empty( $st['mode'] ) ) {
 		$st['mode'] = $mode;
+	}
+	if ( null !== $only ) {
+		flxk_save_state( $id, $st );
+		return $res; // A selected-only apply never runs unchecked migrations.
 	}
 	// İlk kurulumda mevcut migration'lar tabanın parçası sayılır: sırayla uygulanır.
 	foreach ( (array) ( $p['migrations'] ?? array() ) as $m ) {
