@@ -282,6 +282,8 @@ function flxs_install_tables() {
 		loc_address text,
 		loc_map varchar(500) NOT NULL DEFAULT '',
 		loc_announce date DEFAULT NULL,
+		loc_hits_qr int(11) NOT NULL DEFAULT 0,
+		loc_hits_web int(11) NOT NULL DEFAULT 0,
 		note text,
 		status varchar(20) NOT NULL DEFAULT 'open',
 		created_by bigint(20) unsigned NOT NULL DEFAULT 0,

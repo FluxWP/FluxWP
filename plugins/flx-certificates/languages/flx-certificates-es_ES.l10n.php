@@ -3,6 +3,12 @@ return array(
  'language' => 'es_ES',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+'Location opened: %1$s via QR, %2$s from the site'=>'Ubicación abierta: %1$s por QR, %2$s desde el sitio',
+'Download QR (SVG)'=>'Descargar QR (SVG)',
+'Location link for QR codes'=>'Enlace de ubicación para códigos QR',
+'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.'=>'Use este enlace (o el QR) en carteles y portadas en lugar del enlace del mapa. Los visitantes llegan primero a su sitio, se cuenta la visita y luego se les envía al mapa. Puede cambiar el mapa más tarde sin reimprimir.',
+'Opened %1$s times via QR, %2$s times from the site.'=>'Abierto %1$s veces por QR y %2$s veces desde el sitio.',
+'No map yet: the link opens the event page until a location is entered.'=>'Aún no hay mapa: el enlace abre la página del evento hasta que se introduzca una ubicación.',
   'Sapling goal progress' => 'Progreso del objetivo de retoño',
   'No record' => 'Sin registro',
   'Certificate not found' => 'Certificado no encontrado',

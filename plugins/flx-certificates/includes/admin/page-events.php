@@ -109,7 +109,7 @@ function flxs_page_events() {
 		if ( $e['target'] ) {
 			echo '<div class="flxs-event__goal"><div class="flxs-event__bar"><span style="width:' . (float) $pct . '%"></span></div><small>Hedef ' . esc_html( flxs_n( $e['target'] ) ) . ' fidan · %' . (int) $pct . '</small></div>';
 		}
-		echo '<div class="flxs-event__loc">' . ( trim( $e['loc_name'] . $e['loc_address'] . $e['loc_map'] ) ? '📍 ' . esc_html( $e['loc_name'] ? $e['loc_name'] : wp_trim_words( $e['loc_address'], 8 ) ) : '<span class="flxs-muted">📍 Konum henüz girilmedi</span>' ) . '</div>';
+		echo '<div class="flxs-event__loc">' . ( trim( $e['loc_name'] . $e['loc_address'] . $e['loc_map'] ) ? '📍 ' . esc_html( $e['loc_name'] ? $e['loc_name'] : wp_trim_words( $e['loc_address'], 8 ) ) : '<span class="flxs-muted">📍 Konum henüz girilmedi</span>' ) . flxs_event_location_hits_html( $e ) . '</div>';
 		if ( $e['note'] ) {
 			echo '<p class="flxs-event__note">' . esc_html( $e['note'] ) . '</p>';
 		}
@@ -192,6 +192,7 @@ function flxs_event_form( $e ) {
 			</div>
 			<label class="flxs-field"><span>Adres / tarif</span><textarea name="loc_address" rows="2" placeholder="Mahalle, ilçe; buluşma noktası, otopark vb."><?php echo esc_textarea( (string) $e['loc_address'] ); ?></textarea></label>
 			<label class="flxs-field"><span>Harita linki ya da koordinat</span><input type="text" name="loc_map" value="<?php echo esc_attr( (string) $e['loc_map'] ); ?>" placeholder="Google Maps linki ya da 41.1612, 28.9271"></label>
+			<?php flxs_event_location_qr_box( $e ); ?>
 		</section>
 		</div>
 		<div>
@@ -270,5 +271,56 @@ function flxs_site_settings_form() {
 		<p class="description">Kısa kodlar: <code>[flxs_etkinlikler]</code> bölüm, <code>[flxs_etkinlikler arsiv="1"]</code> arşiv dahil, <code>[flxs_etkinlik id="3"]</code> tek etkinlik paneli, <code>[flxs_fidan_sayaci etkinlik="3"]</code> sayı.</p>
 		<p><button class="button button-primary">Kaydet</button></p>
 	</form>
+	<?php
+}
+
+/** Liste satırı: konum linki tıklamaları (QR / site) */
+function flxs_event_location_hits_html( $e ) {
+	$qr  = (int) ( $e['loc_hits_qr'] ?? 0 );
+	$web = (int) ( $e['loc_hits_web'] ?? 0 );
+	if ( ! $qr && ! $web ) {
+		return '';
+	}
+	/* translators: 1: QR ile açılma sayısı, 2: siteden tıklama sayısı */
+	return ' <span class="flxs-muted">· ' . esc_html( sprintf( __( 'Location opened: %1$s via QR, %2$s from the site', 'flx-certificates' ), flxs_n( $qr ), flxs_n( $web ) ) ) . '</span>';
+}
+
+/** Düzenleme formu: takipli konum linki, QR ve sayılar */
+function flxs_event_location_qr_box( $e ) {
+	if ( ! (int) $e['id'] ) {
+		return;
+	}
+	$e += array( 'loc_hits_qr' => 0, 'loc_hits_web' => 0 );
+	$link = flxs_event_location_link( $e, 'qr' );
+	$svg  = '';
+	if ( ! class_exists( 'TCPDF2DBarcode' ) && function_exists( 'flxs_load_tcpdf' ) ) {
+		flxs_load_tcpdf();
+	}
+	if ( class_exists( 'TCPDF2DBarcode' ) ) {
+		$bc  = new TCPDF2DBarcode( $link, 'QRCODE,M' );
+		$svg = $bc->getBarcodeSVGcode( 6, 6, 'black' );
+		$svg = preg_replace( '/^<\?xml[^>]*>\s*(<!DOCTYPE[^>]*>\s*)?/i', '', (string) $svg );
+	}
+	$has = '' !== flxs_event_map_target( $e );
+	?>
+	<div class="flxs-locqr">
+		<?php if ( $svg ) : ?>
+			<a class="flxs-locqr__img" href="<?php echo esc_attr( 'data:image/svg+xml;base64,' . base64_encode( $svg ) ); ?>" download="<?php echo esc_attr( 'konum-qr-' . (int) $e['id'] . '.svg' ); ?>" title="<?php esc_attr_e( 'Download QR (SVG)', 'flx-certificates' ); ?>"><?php echo $svg; // phpcs:ignore WordPress.Security.EscapeOutput -- TCPDF çıktısı ?></a>
+		<?php endif; ?>
+		<div>
+			<strong><?php esc_html_e( 'Location link for QR codes', 'flx-certificates' ); ?></strong>
+			<p class="description"><?php esc_html_e( 'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.', 'flx-certificates' ); ?></p>
+			<p><code><?php echo esc_html( $link ); ?></code></p>
+			<p class="flxs-muted">
+				<?php
+				/* translators: 1: QR ile açılma sayısı, 2: siteden tıklama sayısı */
+				echo esc_html( sprintf( __( 'Opened %1$s times via QR, %2$s times from the site.', 'flx-certificates' ), flxs_n( (int) $e['loc_hits_qr'] ), flxs_n( (int) $e['loc_hits_web'] ) ) );
+				if ( ! $has ) {
+					echo ' ' . esc_html__( 'No map yet: the link opens the event page until a location is entered.', 'flx-certificates' );
+				}
+				?>
+			</p>
+		</div>
+	</div>
 	<?php
 }

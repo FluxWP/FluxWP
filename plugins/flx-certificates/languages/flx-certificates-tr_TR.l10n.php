@@ -1,5 +1,11 @@
 <?php
 return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);','messages'=>array(
+'Location opened: %1$s via QR, %2$s from the site'=>'Konum açılma: QR ile %1$s, siteden %2$s',
+'Download QR (SVG)'=>'QR indir (SVG)',
+'Location link for QR codes'=>'QR için konum linki',
+'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.'=>'Afiş ve kapaklarda harita linki yerine bu linki (ya da QR\'ı) kullanın. Ziyaretçi önce sitenize gelir, açılma sayılır, sonra haritaya yönlendirilir. Haritayı sonradan değiştirseniz de baskıyı yenilemeniz gerekmez.',
+'Opened %1$s times via QR, %2$s times from the site.'=>'QR ile %1$s, siteden %2$s kez açıldı.',
+'No map yet: the link opens the event page until a location is entered.'=>'Harita henüz yok: konum girilene kadar link etkinlik sayfasını açar.',
 'Sapling goal progress'=>'Fidan hedefi ilerlemesi',
 'No record'=>'Kayıt yok',
 'Certificate not found'=>'Sertifika bulunamadı',

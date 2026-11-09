@@ -947,3 +947,21 @@ msgstr[0] " 有活动模板%d。有活动模板%d。"
 msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgid_plural "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgstr[0] "%1$d消息已等待超过 10 分钟;队列可能无法正常工作。处理程序:%2$s,上次运行:%3$s。%1$d消息挂起时间超过 10 分钟;队列可能无法正常工作。处理程序:%2$s,上次运行:%3$s。"
+
+msgid "Location opened: %1$s via QR, %2$s from the site"
+msgstr "位置打开次数:二维码 %1$s 次,网站 %2$s 次"
+
+msgid "Download QR (SVG)"
+msgstr "下载二维码 (SVG)"
+
+msgid "Location link for QR codes"
+msgstr "用于二维码的位置链接"
+
+msgid "Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting."
+msgstr "请在海报和封面上使用此链接(或二维码)代替地图链接。访客先进入您的网站并被计数,然后跳转到地图。之后更换地图也无需重新印刷。"
+
+msgid "Opened %1$s times via QR, %2$s times from the site."
+msgstr "通过二维码打开 %1$s 次,从网站打开 %2$s 次。"
+
+msgid "No map yet: the link opens the event page until a location is entered."
+msgstr "尚无地图:在填写位置之前,该链接会打开活动页面。"

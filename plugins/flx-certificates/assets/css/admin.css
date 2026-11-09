@@ -472,3 +472,9 @@ html.flxa-dark .flxs-wrap{--gd:var(--flxa-accent-strong);--ink:var(--flxa-text);
 .is-ok .flxs-sys__ico{background:#e3f4ea;color:#0a6b46}.is-warning .flxs-sys__ico{background:#fff4d6;color:#8a5a00}.is-error .flxs-sys__ico{background:#fde8e8;color:#a32020}.is-info .flxs-sys__ico{background:#e8f0fb;color:#24508a}
 .flxs-sys__body{flex:1;min-width:0}.flxs-sys__body p{margin:2px 0 0;color:var(--flxa-muted,#5b6b75)}
 .flxs-sys__item .button{flex:none;align-self:center}
+.flxs-locqr{display:flex;gap:16px;align-items:flex-start;margin-top:12px;padding:12px;border:1px dashed var(--line,#dcdcde);border-radius:10px}
+.flxs-locqr__img{flex:none;display:block;width:132px;height:132px;background:#fff;padding:6px;border-radius:8px}
+.flxs-locqr__img svg{display:block;width:100%;height:100%}
+.flxs-locqr code{word-break:break-all;user-select:all}
+.flxs-locqr p{margin:6px 0}
+@media (max-width:600px){.flxs-locqr{flex-direction:column}}

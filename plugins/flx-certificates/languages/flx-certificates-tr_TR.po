@@ -972,3 +972,21 @@ msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not 
 msgid_plural "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgstr[0] "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgstr[1] "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
+
+msgid "Location opened: %1$s via QR, %2$s from the site"
+msgstr "Konum açılma: QR ile %1$s, siteden %2$s"
+
+msgid "Download QR (SVG)"
+msgstr "QR indir (SVG)"
+
+msgid "Location link for QR codes"
+msgstr "QR için konum linki"
+
+msgid "Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting."
+msgstr "Afiş ve kapaklarda harita linki yerine bu linki (ya da QR'ı) kullanın. Ziyaretçi önce sitenize gelir, açılma sayılır, sonra haritaya yönlendirilir. Haritayı sonradan değiştirseniz de baskıyı yenilemeniz gerekmez."
+
+msgid "Opened %1$s times via QR, %2$s times from the site."
+msgstr "QR ile %1$s, siteden %2$s kez açıldı."
+
+msgid "No map yet: the link opens the event page until a location is entered."
+msgstr "Harita henüz yok: konum girilene kadar link etkinlik sayfasını açar."
