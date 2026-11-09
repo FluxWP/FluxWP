@@ -131,6 +131,19 @@ function flxc_evo_send_reaction( $conn, $remote_jid, $from_me, $wa_id, $emoji ) 
 	);
 }
 
+/** 1.38.0: WhatsApp "herkesten sil" (Evolution v2 DELETE /chat/deleteMessageForEveryone). */
+function flxc_evo_delete_for_everyone( $conn, $remote_jid, $wa_id, $participant = '' ) {
+	$body = array(
+		'id'        => (string) $wa_id,
+		'remoteJid' => (string) $remote_jid,
+		'fromMe'    => true,
+	);
+	if ( '' !== $participant ) {
+		$body['participant'] = (string) $participant;
+	}
+	return flxc_evo( $conn, 'DELETE', '/chat/deleteMessageForEveryone/{instance}', $body, 15 );
+}
+
 function flxc_evo_mark_read( $conn, $remote_jid, array $wa_ids ) {
 	$list = array();
 	foreach ( $wa_ids as $id ) {

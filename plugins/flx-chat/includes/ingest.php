@@ -489,14 +489,11 @@ function flxc_apply_reaction( $conn_id, $target_wa, $side, $emoji ) {
 
 function flxc_mark_deleted( $conn_id, $wa_id ) {
 	$t = flxc_find_message_by_wa( $conn_id, $wa_id );
-	if ( ! $t || 'deleted' === $t['type'] ) {
+	if ( ! $t ) {
 		return;
 	}
-	$meta = flxc_decode( $t['meta'] );
-	// Denetim için asıl içerik saklanır; arayüzde "Bu mesaj silindi" görünür.
-	$meta['deleted_type'] = $t['type'];
-	$meta['deleted_body'] = $t['body'];
-	flxc_update_message( $t['id'], array( 'type' => 'deleted', 'body' => '', 'meta' => $meta ) );
+	// Denetim için asıl içerik saklanır; arayüzde "Bu mesaj silindi" görünür, tıklayınca açılır.
+	flxc_soft_delete_message( $t, 'in' === $t['direction'] ? 'contact' : 'phone' );
 }
 
 function flxc_ingest_presence( $conn_id, array $d ) {

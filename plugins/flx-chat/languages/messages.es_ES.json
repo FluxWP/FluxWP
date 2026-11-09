@@ -1586,6 +1586,27 @@
     "This channel is not available right now.": "Este canal no está disponible en este momento.",
     "Site chat": "Chat del sitio",
     "All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left.": "Todos los mensajes de WhatsApp, chat del sitio y otros canales aparecen aquí en vivo. Elige un chat a la izquierda.",
-    "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.": "Centro de llamadas de WhatsApp (Evolution API): vea mensajes entrantes y salientes en vivo, inicie un nuevo chat, respuestas predeterminadas, etiquetas, tareas, notas internas, respuestas automáticas; Registro de donación (Flux Donate) y certificado (Flux Certificates) desde el chat, cotejo de recibos. Sugerencia de respuesta de inteligencia artificial y asistente de donación automática con OpenRouter."
+    "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.": "Centro de llamadas de WhatsApp (Evolution API): vea mensajes entrantes y salientes en vivo, inicie un nuevo chat, respuestas predeterminadas, etiquetas, tareas, notas internas, respuestas automáticas; Registro de donación (Flux Donate) y certificado (Flux Certificates) desde el chat, cotejo de recibos. Sugerencia de respuesta de inteligencia artificial y asistente de donación automática con OpenRouter.",
+    "Hide": "Ocultar",
+    "Show": "Mostrar",
+    "Deleted for everyone": "Eliminado para todos",
+    "Hidden in the panel": "Oculto en el panel",
+    "Delete for everyone": "Eliminar para todos",
+    "Hide in the panel only": "Ocultar solo en el panel",
+    "WhatsApp doesn't allow deleting a received message for everyone; it stays on the contact's phone and is only hidden in the panel.": "WhatsApp no permite eliminar para todos un mensaje recibido; se queda en el teléfono del contacto y solo se oculta en el panel.",
+    "Delete for everyone is turned off in the settings; the message is only hidden in the panel and stays on the contact's phone.": "Eliminar para todos está desactivado en los ajustes; el mensaje solo se oculta en el panel y se queda en el teléfono del contacto.",
+    "This channel doesn't support delete for everyone; the message is only hidden in the panel and stays on the contact's phone.": "Este canal no admite eliminar para todos; el mensaje solo se oculta en el panel y se queda en el teléfono del contacto.",
+    "The time limit for delete for everyone has passed (WhatsApp allows about {h} hours after sending). The message stays on the contact's phone and is only hidden in the panel.": "Ha pasado el límite para eliminar para todos (WhatsApp permite unas {h} horas tras el envío). El mensaje se queda en el teléfono del contacto y solo se oculta en el panel.",
+    "Only the sender or an administrator can delete this message for everyone; you can hide it in the panel.": "Solo el remitente o un administrador puede eliminar este mensaje para todos; usted puede ocultarlo en el panel.",
+    "If deleted for everyone, the message also turns into \"This message was deleted\" on the contact's phone. Time left: about {n} hours.": "Si se elimina para todos, en el teléfono del contacto también aparecerá «Se eliminó este mensaje». Tiempo restante: unas {n} horas.",
+    "Deleted messages are kept on the server: the chat shows a \"This message was deleted\" line and the team can click it to see the content. AI does not read deleted messages.": "Los mensajes eliminados se guardan en el servidor: el chat muestra «Se eliminó este mensaje» y el equipo puede pulsar para ver el contenido. La IA no lee los mensajes eliminados.",
+    "Message not found.": "Mensaje no encontrado.",
+    "This message was already deleted.": "Este mensaje ya se eliminó.",
+    "Only the sender or an administrator can delete this message for everyone.": "Solo el remitente o un administrador puede eliminar este mensaje para todos.",
+    "This message can't be deleted for everyone on this channel. You can hide it in the panel instead.": "Este mensaje no se puede eliminar para todos en este canal. Puede ocultarlo en el panel.",
+    "The time limit for deleting for everyone has passed. You can hide it in the panel instead.": "Ha pasado el límite para eliminar para todos. Puede ocultarlo en el panel.",
+    "WhatsApp did not delete the message.": "WhatsApp no eliminó el mensaje.",
+    "Delete for everyone time limit (hours)": "Límite para eliminar para todos (horas)",
+    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp solo permite eliminar para todos un mensaje enviado durante unos 2 días y 12 horas (60 horas). Pasado ese límite, o en los mensajes recibidos, el mensaje solo se oculta en el panel y se queda en el teléfono del contacto. 0 desactiva eliminar para todos. Los mensajes eliminados nunca se borran del servidor; el equipo aún puede abrirlos."
   }
 }

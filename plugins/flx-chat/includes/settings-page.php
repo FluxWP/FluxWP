@@ -298,6 +298,10 @@ function flxc_settings_tab_genel( $s ) {
 		<label class="flxcs-check"><input type="checkbox" name="restrict_agents" value="1" <?php checked( $s['restrict_agents'] ); ?>> <?php esc_html_e( 'Agents see only chats assigned to them and unassigned chats (admins see all)', 'flx-chat' ); ?></label>
 		<label class="flxcs-check"><input type="checkbox" name="show_groups" value="1" <?php checked( $s['show_groups'] ); ?>> <?php esc_html_e( 'Also show WhatsApp group messages', 'flx-chat' ); ?></label>
 		<label class="flxcs-check"><input type="checkbox" name="ui_flux" value="1" <?php checked( $s['ui_flux'] ); ?> <?php disabled( ! file_exists( FLXC_DIR . 'assets/flux/flux-modules.js' ) ); ?>> <?php esc_html_e( 'New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app', 'flx-chat' ); ?></label>
+		<label class="flxcs-field flxcs-narrow"><span><?php esc_html_e( 'Delete for everyone time limit (hours)', 'flx-chat' ); ?></span>
+			<input type="number" min="0" max="60" name="delete_everyone_hours" value="<?php echo (int) $s['delete_everyone_hours']; ?>">
+			<small><?php esc_html_e( 'WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact\'s phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.', 'flx-chat' ); ?></small>
+		</label>
 		<label class="flxcs-field flxcs-narrow"><span><?php esc_html_e( 'Live update interval (sec)', 'flx-chat' ); ?></span>
 			<input type="number" min="3" max="60" name="poll_interval" value="<?php echo (int) $s['poll_interval']; ?>">
 			<small><?php esc_html_e( 'The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.', 'flx-chat' ); ?></small>
@@ -724,6 +728,7 @@ function flxc_save_settings() {
 		$upd['ui_flux']         = empty( $in['ui_flux'] ) ? 0 : 1;
 		$upd['delete_data']     = empty( $in['delete_data'] ) ? 0 : 1;
 		$upd['poll_interval']   = min( 60, max( 3, (int) ( $in['poll_interval'] ?? 10 ) ) );
+		$upd['delete_everyone_hours'] = min( 60, max( 0, (int) ( $in['delete_everyone_hours'] ?? 60 ) ) );
 	} elseif ( 'otomatik' === $tab ) {
 		$upd['welcome_enabled'] = empty( $in['welcome_enabled'] ) ? 0 : 1;
 		$upd['welcome_text']    = sanitize_textarea_field( $in['welcome_text'] ?? '' );

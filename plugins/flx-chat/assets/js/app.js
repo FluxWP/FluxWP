@@ -296,7 +296,7 @@
 		me: {}, agents: [], labels: [], conns: [], channels: [], replies: [], ai: null,
 		chats: new Map(), order: [], filter: store('filter') || 'all', label: '', channel: '', q: '',
 		active: 0, msgs: new Map(), rev: 0, unread: 0, quoted: null, note: false,
-		info: false, loadingList: false, listMore: false, notified: new Set(), sections: {}, fresh: {}
+		info: false, loadingList: false, listMore: false, notified: new Set(), sections: {}, fresh: {}, delOpen: new Set(), delHours: 60
 	};
 
 	/* ---------- iskelet ---------- */
@@ -1300,12 +1300,14 @@
 			return h('div', { class: 'flxc-sys', 'data-mid': m.id }, h('span', { text: m.body + ' · ' + fmtTime.format(m.ts) }));
 		}
 		var isNote = m.dir === 'note';
+		// 1.38.0: silinen mesaj kapalı satır olarak görünür; içerik sunucuda saklı, tıklayınca açılır.
+		if (m.deleted && (!S.delOpen.has(m.id) || (m.del && m.del.empty))) return deletedRow(m);
 		var row = h('div', {
 			class: 'flxc-m flxc-m-' + (isNote ? 'note' : m.dir) + (first ? ' is-first' : '') + (m.tmp ? ' is-tmp' : '') + (m.status === 'failed' ? ' is-failed' : '') + (m.type === 'sticker' ? ' is-sticker' : '') + (m.deleted ? ' is-deleted' : ''),
 			'data-mid': m.id
 		});
 		var b = h('div', { class: 'flxc-b' });
-		if (m.deleted) b.appendChild(h('div', { class: 'flxc-b-del', title: t('Yapay zekâ bu mesajı okumaz.') }, icon('close'), m.dir === 'in' ? t('Kişi bu mesajı sildi') : t('Telefondan silindi')));
+		if (m.deleted) b.appendChild(h('button', { type: 'button', class: 'flxc-b-del', title: t('Gizle'), onclick: function () { toggleDeleted(m); } }, icon('block'), delLabel(m), h('span', { class: 'flxc-b-del-x' }, icon('down'))));
 		var tag = isNote ? t('Dahili not · {n}', { n: m.user || '' }) : sourceTag(m);
 		if (tag) b.appendChild(h('div', { class: 'flxc-b-tag' }, isNote ? icon('note') : null, tag));
 		if (m.sender && m.dir === 'in') b.appendChild(h('div', { class: 'flxc-b-sender', text: m.sender }));
@@ -1324,7 +1326,7 @@
 		if (rx.length) row.classList.add('has-react');
 		row.appendChild(b);
 		if (rx.length) row.appendChild(h('span', { class: 'flxc-react', text: rx.join('') }));
-		if (!m.tmp) {
+		if (!m.tmp && !m.deleted) {
 			var mb = h('button', { type: 'button', class: 'flxc-m-menu', 'aria-label': t('Mesaj menüsü'), onclick: function (e) { e.stopPropagation(); msgMenu(m, e.currentTarget); } }, icon('down'));
 			b.appendChild(mb);
 			longPress(b, function () { msgMenu(m, b); });
@@ -1335,6 +1337,37 @@
 			if (m.error) row.appendChild(h('div', { class: 'flxc-err', text: m.error }));
 		}
 		return row;
+	}
+
+	function delLabel(m) {
+		var d = m.del || {};
+		var what = {
+			contact: t('Kişi bu mesajı sildi'),
+			phone: t('Telefondan silindi'),
+			everyone: t('Herkesten silindi'),
+			panel: t('Panelde gizlendi')
+		}[d.scope] || t('Bu mesaj silindi');
+		return [what, d.by, d.ago].filter(Boolean).join(' · ');
+	}
+	function deletedRow(m) {
+		var d = m.del || {};
+		var canOpen = !d.empty;
+		var tip = [delLabel(m), d.atText, t('Yapay zekâ bu mesajı okumaz.')].filter(Boolean).join('\n');
+		var row = h('div', { class: 'flxc-m flxc-m-' + (m.dir === 'note' ? 'note' : m.dir) + ' is-deleted is-folded', 'data-mid': m.id });
+		var b = h(canOpen ? 'button' : 'div', { type: canOpen ? 'button' : null, class: 'flxc-b flxc-b-folded', title: tip, 'aria-expanded': canOpen ? 'false' : null, onclick: canOpen ? function () { toggleDeleted(m); } : null },
+			h('span', { class: 'flxc-deleted' }, icon('block'), t('Bu mesaj silindi'), canOpen ? h('small', { class: 'flxc-del-show', text: t('Göster') }) : null),
+			metaLine(m)
+		);
+		row.appendChild(b);
+		return row;
+	}
+	function toggleDeleted(m) {
+		if (S.delOpen.has(m.id)) S.delOpen.delete(m.id); else S.delOpen.add(m.id);
+		var node = el.inner && el.inner.querySelector('[data-mid="' + m.id + '"]');
+		if (!node) return;
+		var first = node.classList.contains('is-first');
+		var nb = bubble(m, first);
+		node.replaceWith(nb);
 	}
 
 	function content(m) {
@@ -1461,6 +1494,7 @@
 		if (m.status === 'failed') items.push({ icon: 'reopen', label: t('Tekrar gönder'), fn: function () { retry(m); } });
 		if (recOn() && m.dir === 'in' && (m.type === 'image' || m.type === 'document')) items.push({ icon: 'receipt', label: t('Dekont olarak eşleştir'), fn: function () { openReceipt(m); } });
 		if (m.dir === 'note' && (m.userId === S.me.id || S.me.manage)) items.push({ icon: 'trash', label: t('Notu sil'), danger: true, fn: function () { deleteNote(m); } });
+		if ((m.dir === 'in' || m.dir === 'out') && m.type !== 'deleted' && m.status !== 'pending') items.push({ icon: 'trash', label: t('Sil'), danger: true, fn: function () { openDelete(m); } });
 		items.push({ sep: 1 });
 		items.push({ node: h('div', { class: 'flxc-menu-info' }, fmtLong.format(m.ts) + ' ' + fmtTime.format(m.ts) + (m.dir === 'out' ? ' · ' + statusLabel(m.status) : '')) });
 		menu(anchor, items, { noFocus: true });
@@ -1483,9 +1517,49 @@
 		api('messages/' + m.id + '/retry', { method: 'POST' }).then(function (r) { applyMessages([r.message]); }).catch(function (e) { toast(e.message, 'err'); });
 	}
 	function deleteNote(m) {
-		api('messages/' + m.id, { method: 'DELETE' }).then(function () {
-			applyMessages([Object.assign({}, m, { type: 'deleted', body: '', rev: m.rev + 1 })]);
+		api('messages/' + m.id, { method: 'DELETE', query: { scope: 'panel' } }).then(function (r) {
+			applyMessages([r.message]);
 		}).catch(function (e) { toast(e.message, 'err'); });
+	}
+
+	/* 1.38.0: WhatsApp gibi "Herkesten sil" / "Yalnız panelde gizle". Satır ve dosya sunucuda kalır. */
+	function openDelete(m) {
+		var now = Date.now();
+		var mine = m.userId === S.me.id || S.me.manage;
+		var until = m.revokeUntil || 0;
+		var canAll = m.dir === 'out' && until > now && mine;
+		var why;
+		if (m.dir === 'in') why = t('Gelen mesajı WhatsApp karşı taraftan silmeye izin vermez; mesaj kişinin telefonunda kalır, yalnız panelde gizlenir.');
+		else if (!S.delHours) why = t('Herkesten silme ayarlarda kapalı; mesaj yalnız panelde gizlenir, kişinin telefonunda kalır.');
+		else if (!until) why = t('Bu kanalda herkesten silme desteklenmiyor; mesaj yalnız panelde gizlenir, kişinin telefonunda kalır.');
+		else if (until <= now) why = t('Herkesten silme süresi doldu (WhatsApp gönderimden sonra yaklaşık {h} saat izin verir). Mesaj kişinin telefonunda kalır, yalnız panelde gizlenir.', { h: S.delHours });
+		else if (!mine) why = t('Bu mesajı yalnız gönderen ya da yönetici herkesten silebilir; siz panelde gizleyebilirsiniz.');
+		else {
+			var left = Math.max(1, Math.round((until - now) / 3600000));
+			why = t('Herkesten silinirse mesaj kişinin telefonunda da "Bu mesaj silindi" olur. Kalan süre: yaklaşık {n} saat.', { n: left });
+		}
+		var busy = false;
+		var go = function (scope, b) {
+			if (busy) return;
+			busy = true; b.disabled = true;
+			api('messages/' + m.id, { method: 'DELETE', query: { scope: scope } }).then(function (r) {
+				dlg.close();
+				applyMessages([r.message]);
+				toast(scope === 'everyone' ? t('Herkesten silindi') : t('Panelde gizlendi'));
+			}).catch(function (e) { busy = false; b.disabled = false; toast(e.message, 'err'); });
+		};
+		var all = canAll ? h('button', { type: 'button', class: 'flxc-btn flxc-btn-block flxc-btn-danger' }, icon('trash'), t('Herkesten sil')) : null;
+		var hide = h('button', { type: 'button', class: 'flxc-btn flxc-btn-block' + (canAll ? ' flxc-btn-ghost flxc-del-hide' : ' flxc-btn-danger') }, icon('block'), t('Yalnız panelde gizle'));
+		if (all) all.addEventListener('click', function () { go('everyone', all); });
+		hide.addEventListener('click', function () { go('panel', hide); });
+		var dlg = modal({
+			cls: 'flxc-exp flxc-del-dlg', title: t('Mesajı sil'),
+			body: [
+				h('p', { class: canAll ? 'flxc-help' : 'flxc-warn', text: why }),
+				h('p', { class: 'flxc-help', text: t('Silinen mesaj sunucuda saklanır: sohbette "Bu mesaj silindi" satırı görünür, ekip tıklayıp içeriği açabilir. Yapay zekâ silinen mesajı okumaz.') }),
+				h('div', { class: 'flxc-del-acts' }, all, hide)
+			]
+		});
 	}
 
 	function markRead() {
@@ -3070,7 +3144,7 @@
 	buildShell();
 	setView('list');
 	api('bootstrap').then(function (b) {
-		S.me = b.me; S.agents = b.agents; S.labels = b.labels; S.conns = b.connections; S.channels = b.channels || []; S.replies = b.replies; S.ai = b.ai; S.bot = !!b.bot; S.unread = b.unread; S.rev = b.rev; S.rec = b.records || {}; S.staff = b.staff || [];
+		S.me = b.me; S.agents = b.agents; S.labels = b.labels; S.conns = b.connections; S.channels = b.channels || []; S.replies = b.replies; S.ai = b.ai; S.bot = !!b.bot; S.unread = b.unread; S.rev = b.rev; S.rec = b.records || {}; S.staff = b.staff || []; S.delHours = b.delHours == null ? 60 : +b.delHours;
 		renderSideActions();
 		renderMe(); renderConn(); renderFilters();
 		if (!S.active && multiChannel()) renderEmptyMain(); // kanal bilgisiyle boş ekran metni
