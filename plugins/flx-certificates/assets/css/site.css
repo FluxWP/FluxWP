@@ -122,3 +122,4 @@
 .flxs-ev-cta__note{font-size:.88rem;color:var(--e-tx)}
 @media (max-width:600px){.flxs-ev-panel__hero{grid-template-columns:1fr 96px}.flxs-ev-panel__num{font-size:2.4rem}.flxs-ev-cta .flxs-ev-btn{width:100%}}
 @media (max-width:600px){.flxs-ev-panel__hero{grid-template-columns:1fr}.flxs-ev-panel__art{position:absolute;top:.4rem;right:.4rem;width:96px}.flxs-ev-panel__main .flxs-ev-panel__count{padding-right:0}.flxs-ev-panel__main .flxs-ev-pill{margin-bottom:2.2rem}}
+.flxs-ev-locname{color:inherit;text-decoration:underline;text-decoration-color:var(--e-pri);text-underline-offset:3px}.flxs-ev-locname:hover{color:var(--e-pri)}

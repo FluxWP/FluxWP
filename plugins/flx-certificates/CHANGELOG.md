@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.1
+- The location name on the event page, event cards and (via the shared helper) other event blocks links to the tracked `/konum/` redirect, so clicking it opens the map and counts as a site visit. New helper `flxs_event_loc_label_html()`.
+
 ## 1.9.0
 - Tracked event location link: `/konum/{event date or id}` counts the visit (QR or site), then redirects to the map. The address can be changed later without reprinting posters. Bots and link previews are not counted.
 - Event edit screen shows the link, a downloadable QR (SVG) and the open counts; the events list shows the counts.
