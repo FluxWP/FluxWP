@@ -1297,8 +1297,8 @@ msgstr "Примечания"
 msgid "Call"
 msgstr "Позвонить"
 
-msgid "\\nYetkiniz yok.\\n"
-msgstr "\\nЕткиниз йок.\\n"
+msgid "Yetkiniz yok."
+msgstr "Еткиниз йок."
 
-msgid "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]"
-msgstr "[['Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth.', 'tr']]"
+msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
+msgstr "Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth."

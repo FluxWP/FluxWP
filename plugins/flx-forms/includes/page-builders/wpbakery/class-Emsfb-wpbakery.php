@@ -42,47 +42,47 @@ class Emsfb_WPBakery_Integration {
         }
 
         vc_map([
-            'name' => __('\\nFlux Forms\\n', 'flx-forms'),
+            'name' => __('Flux Forms', 'flx-forms'),
             'base' => 'efb_wpbakery_form',
             'category' => __('Content', 'flx-forms'),
             'icon' => Emsfb_Widgets_Helper::get_logo_url(),
-            'description' => __('\\nDisplay an Flux Forms form\\n', 'flx-forms'),
+            'description' => __('Display an Flux Forms form', 'flx-forms'),
             'class' => 'efb-wpbakery-element',
             'weight' => 100,
             'show_settings_on_create' => true,
             'params' => [
                 [
                     'type' => 'dropdown',
-                    'heading' => __('\\nSelect Form\\n', 'flx-forms'),
+                    'heading' => __('Select Form', 'flx-forms'),
                     'param_name' => 'form_id',
                     'value' => $this->get_forms_for_dropdown(),
-                    'description' => __('\\nChoose a form to display. The tracking form allows users to find submissions by confirmation code.\\n', 'flx-forms'),
+                    'description' => __('Choose a form to display. The tracking form allows users to find submissions by confirmation code.', 'flx-forms'),
                     'save_always' => true,
                     'admin_label' => true,
-                    'group' => __('\\nForm Settings\\n', 'flx-forms'),
+                    'group' => __('Form Settings', 'flx-forms'),
                 ],
                 [
                     'type' => 'checkbox',
-                    'heading' => __('\\nShow Form Title\\n', 'flx-forms'),
+                    'heading' => __('Show Form Title', 'flx-forms'),
                     'param_name' => 'show_title',
                     'value' => [
                         __('Yes', 'flx-forms') => 'yes'
                     ],
-                    'description' => __('\\nDisplay the form name as a heading above the form.\\n', 'flx-forms'),
-                    'group' => __('\\nForm Settings\\n', 'flx-forms'),
+                    'description' => __('Display the form name as a heading above the form.', 'flx-forms'),
+                    'group' => __('Form Settings', 'flx-forms'),
                 ],
                 [
                     'type' => 'textfield',
-                    'heading' => __('\\nExtra Class Name\\n', 'flx-forms'),
+                    'heading' => __('Extra Class Name', 'flx-forms'),
                     'param_name' => 'extra_class',
-                    'description' => __('\\nAdd custom CSS classes for styling.\', \'en\']]', 'flx-forms'),
-                    'group' => __('\\nDesign\\n', 'flx-forms'),
+                    'description' => __('Add custom CSS classes for styling.', 'flx-forms'),
+                    'group' => __('Design', 'flx-forms'),
                 ],
                 [
                     'type' => 'css_editor',
-                    'heading' => __('\\nCSS\\n', 'flx-forms'),
+                    'heading' => __('CSS', 'flx-forms'),
                     'param_name' => 'css',
-                    'group' => __('\\nDesign\\n', 'flx-forms'),
+                    'group' => __('Design', 'flx-forms'),
                 ],
             ],
         ]);
@@ -92,7 +92,7 @@ class Emsfb_WPBakery_Integration {
 
     private function get_forms_for_dropdown() {
         $forms_array = [
-            __('\\n— Select a Form —\\n', 'flx-forms') => ''
+            __('— Select a Form —', 'flx-forms') => ''
         ];
 
         if (class_exists('Emsfb_Widgets_Helper')) {
@@ -199,8 +199,8 @@ class Emsfb_WPBakery_Integration {
             self::BRAND_SECONDARY,
             self::BRAND_PRIMARY,
             esc_url(Emsfb_Widgets_Helper::get_logo_url()),
-            esc_html__('\\nSelect a form from the element settings.\\n', 'flx-forms'),
-            esc_html__('\\n✏️ Click to edit and choose a form\\n', 'flx-forms')
+            esc_html__('Select a form from the element settings.', 'flx-forms'),
+            esc_html__('✏️ Click to edit and choose a form', 'flx-forms')
         );
     }
 

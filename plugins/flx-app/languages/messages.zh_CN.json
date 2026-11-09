@@ -437,7 +437,7 @@
     "Note added": "添加注释",
     "Notes": "注释",
     "Call": "致电",
-    "\\nYetkiniz yok.\\n": "\\nYetkiniz yok。\\n",
-    "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]": "[['FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。', 'tr']]"
+    "Yetkiniz yok.": "Yetkiniz yok。",
+    "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.": "FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。"
   }
 }

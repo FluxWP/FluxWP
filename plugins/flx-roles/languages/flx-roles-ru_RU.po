@@ -319,5 +319,5 @@ msgstr "Все включенные разрешения применяются.
 msgid "Roles"
 msgstr "Роли"
 
-msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
-msgstr "[['Добавляет роли «Сотрудник», «Администратор» и «Менеджер» (новая роль также добавляется из панели); Вы можете включать и отключать задачу, сертификат, пожертвование, колл-центр, студию и доступ к отчетам для ролей на одной странице. Персональная ссылка и номер телефона пользователя (для помощника WhatsApp) находятся здесь.', 'tr']]"
+msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
+msgstr "Добавляет роли «Сотрудник», «Администратор» и «Менеджер» (новая роль также добавляется из панели); Вы можете включать и отключать задачу, сертификат, пожертвование, колл-центр, студию и доступ к отчетам для ролей на одной странице. Персональная ссылка и номер телефона пользователя (для помощника WhatsApp) находятся здесь."

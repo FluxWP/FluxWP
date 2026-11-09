@@ -584,11 +584,11 @@ final class FLXU_Admin {
 				delete_transient( 'flxu_manage_' . get_current_user_id() );
 				$labels = array(
 					/* translators: %d: number of packages */
-					'activate'   => _n( '[[\'%dpackage activated.\', \'tr\']]', '[[\'%dpackage activated.\', \'tr\']]', (int) $mr['done'], 'flx-setup' ),
+					'activate'   => _n( '%d package activated.', '%d packages activated.', (int) $mr['done'], 'flx-setup' ),
 					/* translators: %d: number of packages */
-					'deactivate' => _n( '[[\'%dpackage has been disabled.\', \'tr\']]', '[[\'%dpackage has been disabled.\', \'tr\']]', (int) $mr['done'], 'flx-setup' ),
+					'deactivate' => _n( '%d package deactivated.', '%d packages deactivated.', (int) $mr['done'], 'flx-setup' ),
 					/* translators: %d: number of packages */
-					'delete'     => _n( '[[\'%dpackage removed.\', \'tr\']]', '[[\'%dpackage removed.\', \'tr\']]', (int) $mr['done'], 'flx-setup' ),
+					'delete'     => _n( '%d package removed.', '%d packages removed.', (int) $mr['done'], 'flx-setup' ),
 				);
 				?>
 				<div class="notice notice-<?php echo $mr['fail'] ? 'warning' : 'success'; ?> is-dismissible"><p>
@@ -604,13 +604,13 @@ final class FLXU_Admin {
 				<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Updates checked.', 'flx-setup' ); ?></p></div>
 			<?php elseif ( 'bk_deleted' === $msg ) : ?>
 				<?php $n = isset( $_GET['flxu_n'] ) ? absint( $_GET['flxu_n'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification ?>
-				<div class="notice notice-success is-dismissible"><p><?php echo esc_html( sprintf( _n( '[[\'%dbackup deleted.\', \'tr\']]', '[[\'%dbackup deleted.\', \'tr\']]', $n, 'flx-setup' ), $n ) ); ?></p></div>
+				<div class="notice notice-success is-dismissible"><p><?php echo esc_html( sprintf( _n( '%d backup deleted.', '%d backups deleted.', $n, 'flx-setup' ), $n ) ); ?></p></div>
 			<?php elseif ( 'keep_saved' === $msg ) : ?>
 				<?php $n = isset( $_GET['flxu_n'] ) ? absint( $_GET['flxu_n'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification ?>
 				<div class="notice notice-success is-dismissible"><p><?php
 					esc_html_e( 'Retention saved and applied to existing update backups.', 'flx-setup' );
 					if ( $n ) {
-						echo ' ' . esc_html( sprintf( _n( '\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n', '\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n', $n, 'flx-setup' ), $n ) );
+						echo ' ' . esc_html( sprintf( _n( '%d expired backup deleted.', '%d expired backups deleted.', $n, 'flx-setup' ), $n ) );
 					}
 				?></p></div>
 			<?php endif; ?>
@@ -687,12 +687,6 @@ final class FLXU_Admin {
 							<td class="flxu-pkg">
 								<?php
 								$icon = FLXU_Updater::icons( $row['slug'] );
-								if ( empty( $icon['svg'] ) && 'theme' === $row['type'] && wp_get_theme( $row['slug'] )->exists() ) {
-									$shot = wp_get_theme( $row['slug'] )->get_screenshot();
-									if ( $shot ) {
-										$icon['svg'] = $shot;
-									}
-								}
 								?>
 								<?php if ( ! empty( $icon['svg'] ) ) : ?>
 									<?php // Sunucudaki ikon açılmazsa standart yer tutucu. ?>
@@ -846,7 +840,7 @@ final class FLXU_Admin {
 				return '<span class="flxu-src-st is-err">' . esc_html( FLXU_Updater::status_message( $st, '' !== (string) ( $s['key'] ?? '' ), FLXU_Sources::host( $s ) ) ) . '</span>';
 			}
 			/* translators: %d: package count */
-			return '<span class="flxu-src-st is-ok">' . esc_html( sprintf( _n( '\\nConnected ·%dpackage Connected ·%dpackage\\n', '\\nConnected ·%dpackage Connected ·%dpackage\\n', (int) $st['count'], 'flx-setup' ), (int) $st['count'] ) ) . '</span>';
+			return '<span class="flxu-src-st is-ok">' . esc_html( sprintf( _n( 'Connected · %d package', 'Connected · %d packages', (int) $st['count'], 'flx-setup' ), (int) $st['count'] ) ) . '</span>';
 		};
 		$main = FLXU_Sources::main();
 		?>
@@ -1141,7 +1135,7 @@ final class FLXU_Admin {
 					<label for="flxu-keep-days"><?php esc_html_e( 'Update backups are deleted automatically after', 'flx-setup' ); ?></label>
 					<select id="flxu-keep-days" name="keep_days">
 						<?php foreach ( $choices as $c ) : ?>
-							<option value="<?php echo esc_attr( (string) $c ); ?>" <?php selected( $days, $c ); ?>><?php echo esc_html( sprintf( _n( '[[\'%dday\', \'tr\']]', '[[\'%dday\', \'tr\']]', $c, 'flx-setup' ), $c ) ); ?></option>
+							<option value="<?php echo esc_attr( (string) $c ); ?>" <?php selected( $days, $c ); ?>><?php echo esc_html( sprintf( _n( '%d day', '%d days', $c, 'flx-setup' ), $c ) ); ?></option>
 						<?php endforeach; ?>
 					</select>
 					<?php esc_html_e( '.', 'flx-setup' ); ?>
@@ -1152,7 +1146,7 @@ final class FLXU_Admin {
 					printf( esc_html__( 'Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here).', 'flx-setup' ), '<a href="' . esc_url( admin_url( 'admin.php?page=flx-backup-settings' ) ) . '">' . esc_html__( 'Flux Backup settings', 'flx-setup' ) . '</a>' );
 					?>
 				<?php endif; ?>
-				<small><?php echo esc_html( sprintf( _n( '\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n', '\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n', count( $list ), 'flx-setup' ), count( $list ), size_format( $total, 1 ) ) ); ?></small>
+				<small><?php echo esc_html( sprintf( _n( 'Currently %1$d update backup, %2$s.', 'Currently %1$d update backups, %2$s.', count( $list ), 'flx-setup' ), count( $list ), size_format( $total, 1 ) ) ); ?></small>
 			</span>
 			<?php if ( $list ) : ?>
 				<button type="submit" name="flxu_bk" value="all" class="button button-link-delete flxu-confirm" data-confirm="<?php echo esc_attr__( 'Delete all unlocked update backups? This cannot be undone.', 'flx-setup' ); ?>"><?php esc_html_e( 'Delete all', 'flx-setup' ); ?></button>
@@ -1269,7 +1263,7 @@ final class FLXU_Admin {
 				</div>
 			<?php endif; ?>
 			<div class="tablenav-pages<?php echo $pages < 2 ? ' one-page' : ''; ?>">
-				<span class="displaying-num"><?php echo esc_html( sprintf( _n( '[[\'%sregistration\', \'tr\']]', '[[\'%sregistration\', \'tr\']]', $total, 'flx-setup' ), number_format_i18n( $total ) ) ); ?></span>
+				<span class="displaying-num"><?php echo esc_html( sprintf( _n( '%s record', '%s records', $total, 'flx-setup' ), number_format_i18n( $total ) ) ); ?></span>
 				<?php if ( $pages > 1 ) : ?>
 					<span class="pagination-links">
 						<?php if ( $page > 1 ) : ?>

@@ -61,7 +61,9 @@
     "Upload folders": "Ordner hochladen",
     "Working…": "Arbeiten...",
     "Upload these new packages first (do not activate them):": "Laden Sie zuerst diese neuen Pakete hoch (aktivieren Sie sie nicht):",
-    "[['%drow', 'tr']]\u0000[['%drow', 'tr']]": "[['%drow', 'tr']]\u0000[['%drow', 'tr']]",
-    "[['%dold setting', 'tr']]\u0000[['%dold setting', 'tr']]": "[['%dalte Einstellung', 'tr']]\u0000[['%dalte Einstellung', 'tr']]"
+    "%d row\u0000%d rows": "Zeile%d\u0000%dZeilen",
+    "%d legacy setting\u0000%d legacy settings": "%dLegacy-Einstellung\u0000%dLegacy-Einstellungen",
+    "%drow\u0000%drow": "%drow\u0000%drow",
+    "%dold setting\u0000%dold setting": "%dalte Einstellung\u0000%dalte Einstellung"
   }
 }

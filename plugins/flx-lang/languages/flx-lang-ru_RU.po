@@ -325,5 +325,5 @@ msgstr "Описание (%s)"
 msgid "If left empty, the Turkish name and description are shown."
 msgstr "Если оставить пустым, отображаются турецкое имя и описание."
 
-msgid "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]"
-msgstr "[['Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI.', 'tr']]"
+msgid "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools."
+msgstr "Делает сайт многоязычным: языковые адреса, такие как /en/, перевод на страницу, публикацию, проект и событие, визуальное оформление для конкретного языка, hreflang и канонический, рекомендации по английскому для тех, кто приезжает из-за пределов Турции, выбор языка; Языковая поддержка инструментов Flux AI & MCP и Flux AI."

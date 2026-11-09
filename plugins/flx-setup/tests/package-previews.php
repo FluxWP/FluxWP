@@ -7,9 +7,10 @@ function preview_check( $condition, $name ) { if ( ! $condition ) { throw new Ex
 $preview_locale = 'fr_CA';
 add_filter( 'determine_locale', static function () { return $GLOBALS['preview_locale']; } );
 $row = array( 'name' => 'Flux Forms' );
-$data = FLXU_Previews::data( 'flx-forms', $row, array() );
-preview_check( false !== strpos( $data['website'], '/fr/plugins/flux-forms/' ), 'Regional admin locale selects the publisher language' );
-preview_check( ! empty( $data['images'] ) && '' !== $data['description'], 'Public package fallback has a short introduction and existing screenshots' );
+$remote = array( 'desc' => array( 'en' => 'Server introduction', 'fr' => 'Présentation du serveur' ), 'website' => array( 'fr' => 'https://publisher.example/fr/forms/', 'pt-br' => 'https://publisher.example/pt-br/forms/' ), 'gallery' => array( 'fr' => array( 'https://updates.example/first.jpg', 'https://updates.example/second.jpg' ) ) );
+$data = FLXU_Previews::data( 'flx-forms', $row, $remote );
+preview_check( false !== strpos( $data['website'], '/fr/forms/' ), 'Regional admin locale selects the publisher language' );
+preview_check( ! empty( $data['images'] ) && '' !== $data['description'], 'Remote introduction and gallery are displayed' );
 $private = FLXU_Previews::data( 'flx-forms', $row, array( 'public' => false, 'desc' => array( 'fr' => 'Description privée' ), 'package' => 'https://example.test/download?key=do-not-expose' ) );
 preview_check( '' === $private['website'] && ! $private['images'] && 'Description privée' === $private['description'], 'Private package never inherits public links/images' );
 preview_check( false === strpos( wp_json_encode( $private ), 'do-not-expose' ), 'Download credentials stay out of client metadata' );
@@ -22,4 +23,20 @@ preview_check( array( 'https://example.test/valid.jpg' ) === $safe['images'] && 
 preview_check( 'Plain title' === $safe['name'] && 'Plain text' === $safe['description'] && ! isset( $safe['secret'] ), 'Metadata is plain text and limited to four display fields' );
 remove_filter( 'flxu_package_preview', $filter );
 $preview_locale = 'pt_BR';
-preview_check( false !== strpos( FLXU_Previews::data( 'flx-forms', $row, array() )['website'], '/pt-br/' ), 'Brazilian Portuguese locale keeps its publisher prefix' );
+preview_check( false !== strpos( FLXU_Previews::data( 'flx-forms', $row, $remote )['website'], '/pt-br/' ), 'Brazilian Portuguese locale keeps its publisher prefix' );
+
+$empty = FLXU_Previews::data( 'flx-forms', $row, array() );
+preview_check( '' === $empty['website'] && '' === $empty['description'] && ! $empty['images'], 'Known packages never invent metadata when updater has none' );
+
+$previous = get_site_option( 'flxu_catalog_last', array() );
+$fallback = static function ( $icons ) { return $icons ?: array( 'svg' => 'https://local.example/bundled.svg' ); };
+try {
+	add_filter( 'flxu_package_icons', $fallback, 99 );
+	update_site_option( 'flxu_catalog_last', array( 'flx-forms' => array() ) );
+	preview_check( array() === FLXU_Updater::icons( 'flx-forms' ), 'Installed packages cannot reintroduce bundled icon fallbacks' );
+	update_site_option( 'flxu_catalog_last', array( 'flx-forms' => array( 'icons' => array( 'svg' => 'https://updates.example/icon.svg' ) ) ) );
+	preview_check( 'https://updates.example/icon.svg' === ( FLXU_Updater::icons( 'flx-forms' )['svg'] ?? '' ), 'Updater icons retain precedence over installed package assets' );
+} finally {
+	remove_filter( 'flxu_package_icons', $fallback, 99 );
+	update_site_option( 'flxu_catalog_last', $previous );
+}

@@ -111,7 +111,7 @@ return array(
   'Name (%s)' => 'الاسم (%s)',
   'Description (%s)' => 'الوصف (%s)',
   'If left empty, the Turkish name and description are shown.' => 'إذا تركت فارغة، يظهر الاسم والوصف التركي.',
-  '[[\'Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.\', \'tr\']]' => '[[\'يجعل الموقع متعدد اللغات: عناوين لغة مثل /en/، ترجمة لكل صفحة، منشور، مشروع وحدث، مرئيات خاصة باللغة، hreflang وcanonical، توصية باللغة الإنجليزية لأولئك القادمين من خارج تركيا، محدد اللغة؛ دعم اللغة لأدوات Flux AI وMCP وFlux AI.\', \'tr\']]',
+  '[[\'Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.\', \'tr\']]' => 'يجعل الموقع متعدد اللغات: عناوين لغة مثل /en/، ترجمة لكل صفحة، منشور، مشروع وحدث، مرئيات خاصة باللغة، hreflang وcanonical، توصية باللغة الإنجليزية لأولئك القادمين من خارج تركيا، محدد اللغة؛ دعم اللغة لأدوات Flux AI وMCP وFlux AI.',
   'Diller' => 'اللغات',
   'Ortak sayfa: her dilde aynı, arayüz ziyaretçinin dilinde.' => 'الصفحة المشتركة: هي نفسها بكل لغة، والواجهة بلغة الزائر.',
   'Ortak' => 'مشترك',
@@ -220,6 +220,8 @@ return array(
   'Ad (%s)' => 'الاسم (%s)',
   'Açıklama (%s)' => 'الوصف (%s)',
   'Boş bırakılırsa Türkçe ad ve açıklama gösterilir.' => 'إذا تركت فارغة، يظهر الاسم والوصف التركي.',
-  'Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.' => '[[\'يجعل الموقع متعدد اللغات: عناوين لغة مثل /en/، ترجمة لكل صفحة، منشور، مشروع وحدث، مرئيات خاصة باللغة، hreflang وcanonical، توصية باللغة الإنجليزية لأولئك القادمين من خارج تركيا، محدد اللغة؛ دعم اللغة لأدوات Flux AI وMCP وFlux AI.\', \'tr\']]',
+  'Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.' => 'يجعل الموقع متعدد اللغات: عناوين لغة مثل /en/، ترجمة لكل صفحة، منشور، مشروع وحدث، مرئيات خاصة باللغة، hreflang وcanonical، توصية باللغة الإنجليزية لأولئك القادمين من خارج تركيا، محدد اللغة؛ دعم اللغة لأدوات Flux AI وMCP وFlux AI.',
+  'Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.' => 'يجعل الموقع متعدد اللغات: عناوين لغة مثل /en/، ترجمة لكل صفحة، منشور، مشروع وحدث، مرئيات خاصة باللغة، hreflang وcanonical، توصية باللغة الإنجليزية لأولئك القادمين من خارج تركيا، محدد اللغة؛ دعم اللغة لأدوات Flux AI وMCP وFlux AI.',
+
  ),
 );

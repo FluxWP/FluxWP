@@ -65,13 +65,13 @@ class Emsfb_Gutenberg_Block {
             'pluginUrl' => EMSFB_PLUGIN_URL,
             'logoUrl' => Emsfb_Widgets_Helper::get_logo_url(),
             'strings' => [
-                'selectForm' => __('\\n— Select a Form —\\n', 'flx-forms'),
-                'blockTitle' => __('\\nFlux Forms\\n', 'flx-forms'),
-                'selectFormHelp' => __('\\nSelect a form to display from the dropdown below.\\n', 'flx-forms'),
-                'selectedForm' => __('\\nSelected Form:\\n', 'flx-forms'),
-                'formPreviewText' => __('\\nForm will be displayed here on the frontend.\\n', 'flx-forms'),
-                'loadingForms' => __('\\nLoading forms...\\n', 'flx-forms'),
-                'trackingForm' => __('[[\'📍 Confirmation Code Finder (Tracking Form)\\n', 'flx-forms')
+                'selectForm' => __('— Select a Form —', 'flx-forms'),
+                'blockTitle' => __('Flux Forms', 'flx-forms'),
+                'selectFormHelp' => __('Select a form to display from the dropdown below.', 'flx-forms'),
+                'selectedForm' => __('Selected Form:', 'flx-forms'),
+                'formPreviewText' => __('Form will be displayed here on the frontend.', 'flx-forms'),
+                'loadingForms' => __('Loading forms...', 'flx-forms'),
+                'trackingForm' => __('📍 Confirmation Code Finder (Tracking Form)', 'flx-forms')
             ]
         ]));
 

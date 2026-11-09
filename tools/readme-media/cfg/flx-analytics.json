@@ -1,0 +1,76 @@
+{
+  "slug": "flx-analytics",
+  "shots": [
+    {
+      "name": "overview",
+      "url": "admin.php?page=flx-analytics",
+      "vh": 1000
+    },
+    {
+      "name": "journeys",
+      "url": "admin.php?page=flx-analytics-journeys",
+      "vh": 1000
+    },
+    {
+      "name": "settings",
+      "url": "admin.php?page=flx-analytics-settings",
+      "vh": 1000
+    },
+    {
+      "name": "map",
+      "url": "admin.php?page=flx-analytics",
+      "eval": "document.querySelector(\"#flxan-p-map\").scrollIntoView({block:\"center\"})",
+      "vh": 1050
+    },
+    {
+      "name": "funnel",
+      "url": "admin.php?page=flx-analytics",
+      "eval": "document.querySelector(\"#flxan-p-funnel\").scrollIntoView({block:\"center\"})",
+      "vh": 1050
+    },
+    {
+      "name": "referrals",
+      "url": "admin.php?page=flx-analytics",
+      "eval": "document.querySelector(\"#flxan-p-codes\").scrollIntoView({block:\"center\"})",
+      "vh": 1050
+    },
+    {
+      "name": "pages",
+      "url": "admin.php?page=flx-analytics",
+      "eval": "document.querySelector(\"#flxan-p-pages\").scrollIntoView({block:\"center\"})",
+      "vh": 1050
+    },
+    {
+      "name": "events",
+      "url": "admin.php?page=flx-analytics",
+      "eval": "document.querySelector(\"#flxan-p-events\").scrollIntoView({block:\"center\"})",
+      "vh": 1050
+    },
+    {
+      "name": "funnel-editor",
+      "url": "admin.php?page=flx-analytics-settings#flxan-funnels",
+      "vh": 1000
+    },
+    {
+      "name": "dashboard-widgets",
+      "url": "index.php",
+      "vh": 1100
+    }
+  ],
+  "mobile": [
+    {
+      "name": "mobile",
+      "url": "admin.php?page=flx-analytics"
+    },
+    {
+      "name": "mobile-journeys",
+      "url": "admin.php?page=flx-analytics-journeys"
+    }
+  ],
+  "dark": [
+    {
+      "name": "dark",
+      "url": "admin.php?page=flx-analytics"
+    }
+  ]
+}

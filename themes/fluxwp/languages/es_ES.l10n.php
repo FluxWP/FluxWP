@@ -473,9 +473,9 @@ return array(
   'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.' => 'Automático ahora: la banda iyzico y los logotipos de los complementos de TPV virtuales habilitados. Una vez que agrega o elimina un logotipo, la lista es su propia elección.',
   'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.' => 'Lista cuidadosamente seleccionada. "Volver a automático" regresa a la banda iyzico y a los logos de los complementos de TPV virtuales habilitados.',
   'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.' => 'SVG o PNG transparente es mejor; Los logotipos de colores se muestran en un cuadro blanco en un pie de página oscuro.',
-  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 o ya üstünü seçin.\\n',
+  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 o ya üstünü seçin.',
   'Background pattern' => 'Patrón de fondo',
-  '\\nDots\\n' => '\\nPuntos\\n',
+  '\\nDots\\n' => 'Puntos',
   'Leaves' => 'hojas',
   'None' => 'Ninguno',
   'News introduction' => 'Introducción de noticias',
@@ -947,7 +947,8 @@ return array(
   'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.' => 'Automático ahora: la banda iyzico y los logotipos de los complementos de TPV virtuales habilitados. Una vez que agrega o elimina un logotipo, la lista es su propia elección.',
   'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.' => 'Lista cuidadosamente seleccionada. "Volver a automático" regresa a la banda iyzico y a los logos de los complementos de TPV virtuales habilitados.',
   'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.' => 'SVG o PNG transparente es mejor; Los logotipos de colores se muestran en un cuadro blanco en un pie de página oscuro.',
-  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 o ya üstünü seçin.\\n',
-  'Dots' => '\\nPuntos\\n',
+  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 o ya üstünü seçin.',
+  'Dots' => 'Puntos',
+
  ),
 );

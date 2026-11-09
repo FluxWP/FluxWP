@@ -526,5 +526,5 @@ msgstr "開く"
 msgid "close"
 msgstr "閉じる"
 
-msgid "[['Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered.', 'tr']]"
-msgstr "[['/wiki の下のサイト上の開発者 wiki: マークダウン ページ、セクション、ページ ツリーと目次、詳細なインスタント検索、SEO に優しい出力。 LLM フレンドリー: 各ページを開いて .md、/wiki/llms.txt、llms-full.txt としてコピーし、ChatGPT / Claude で開きます。 Flux AI を使用した「Ask the Wiki」および MCP ツール (検索、読み取り、リスト、書き込み)。プラグインとテーマを作成し、プラグインを AI 搭載にするためのガイドが付属しています。', 'tr']]"
+msgid "Developer wiki on site under /wiki: Markdown pages, sections, page tree and table of contents, detailed instant search, SEO friendly output. LLM friendly: each page is opened and copied as .md, /wiki/llms.txt and llms-full.txt, open in ChatGPT / Claude. \"Ask the Wiki\" and MCP tools (search, read, list, write) with Flux AI. It comes with guides for writing plugins and themes, and making plugins AI-powered."
+msgstr "/wiki の下のサイト上の開発者 wiki: マークダウン ページ、セクション、ページ ツリーと目次、詳細なインスタント検索、SEO に優しい出力。 LLM フレンドリー: 各ページを開いて .md、/wiki/llms.txt、llms-full.txt としてコピーし、ChatGPT / Claude で開きます。 Flux AI を使用した「Ask the Wiki」および MCP ツール (検索、読み取り、リスト、書き込み)。プラグインとテーマを作成し、プラグインを AI 搭載にするためのガイドが付属しています。"

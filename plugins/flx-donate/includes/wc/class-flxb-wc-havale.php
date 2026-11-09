@@ -51,7 +51,7 @@ final class FLXB_WC_Havale {
 	}
 
 	public static function default_description() {
-		return __( '\\nAfter you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed.\\n', 'flx-donate' );
+		return __( 'After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed.', 'flx-donate' );
 	}
 
 	/** Gateway settings (read even when the method is off). */
@@ -183,8 +183,8 @@ final class FLXB_WC_Havale {
 	<header class="flxwb-havale__head">
 		<span class="flxwb-havale__icon"><?php echo FLXB_WC::icon( 'bank' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 		<div>
-			<h2 class="flxwb-havale__title"><?php esc_html_e( '\\nYour pre-registration is in\\n', 'flx-donate' ); ?></h2>
-			<p class="flxwb-havale__lead"><?php esc_html_e( '\\nTo complete your donation, make a bank transfer to the account below. Please write your own reference code in the description.\\n', 'flx-donate' ); ?></p>
+			<h2 class="flxwb-havale__title"><?php esc_html_e( 'Your pre-registration is in', 'flx-donate' ); ?></h2>
+			<p class="flxwb-havale__lead"><?php esc_html_e( 'To complete your donation, make a bank transfer to the account below. Please write your own reference code in the description.', 'flx-donate' ); ?></p>
 		</div>
 	</header>
 	<?php endif; ?>
@@ -205,7 +205,7 @@ final class FLXB_WC_Havale {
 					</div>
 					<?php endforeach; ?>
 				</dl>
-				<p class="flxwb-hint"><?php esc_html_e( '\\nThe reference code lets us match your payment to your donation.\\n', 'flx-donate' ); ?></p>
+				<p class="flxwb-hint"><?php esc_html_e( 'The reference code lets us match your payment to your donation.', 'flx-donate' ); ?></p>
 			</div>
 		</li>
 		<li class="flxwb-step">
@@ -219,18 +219,18 @@ final class FLXB_WC_Havale {
 			<span class="flxwb-step__no">3</span>
 			<div class="flxwb-step__body">
 				<?php if ( self::order_has_certificate( $order ) ) : ?>
-				<p class="flxwb-step__title"><?php esc_html_e( '[[\'Receive your certificate\\n', 'flx-donate' ); ?></p>
-				<p class="flxwb-hint"><?php esc_html_e( '\\nOnce the payment is confirmed your certificate is sent by WhatsApp and e-mail; it also appears under My account › Orders.\\n', 'flx-donate' ); ?></p>
+				<p class="flxwb-step__title"><?php esc_html_e( 'Receive your certificate', 'flx-donate' ); ?></p>
+				<p class="flxwb-hint"><?php esc_html_e( 'Once the payment is confirmed your certificate is sent by WhatsApp and e-mail; it also appears under My account › Orders.', 'flx-donate' ); ?></p>
 				<?php else : ?>
-				<p class="flxwb-step__title"><?php esc_html_e( '\\nWe confirm your donation\\n', 'flx-donate' ); ?></p>
-				<p class="flxwb-hint"><?php esc_html_e( '\\nOnce the payment is confirmed the order is completed and you get an e-mail; it also appears under My account › Orders.\\n', 'flx-donate' ); ?></p>
+				<p class="flxwb-step__title"><?php esc_html_e( 'We confirm your donation', 'flx-donate' ); ?></p>
+				<p class="flxwb-hint"><?php esc_html_e( 'Once the payment is confirmed the order is completed and you get an e-mail; it also appears under My account › Orders.', 'flx-donate' ); ?></p>
 				<?php endif; ?>
 			</div>
 		</li>
 	</ol>
 	<?php echo FLXB_WC::support_html(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 	<?php if ( 'thankyou' === $context && is_user_logged_in() ) : ?>
-	<p class="flxwb-havale__foot"><a href="<?php echo esc_url( wc_get_account_endpoint_url( FLXB_WC_Account::ENDPOINT ) ); ?>"><?php echo FLXB_WC::icon( 'clock' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( '\\nMy pending donations\\n', 'flx-donate' ); ?></a></p>
+	<p class="flxwb-havale__foot"><a href="<?php echo esc_url( wc_get_account_endpoint_url( FLXB_WC_Account::ENDPOINT ) ); ?>"><?php echo FLXB_WC::icon( 'clock' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'My pending donations', 'flx-donate' ); ?></a></p>
 	<?php endif; ?>
 </section>
 		<?php

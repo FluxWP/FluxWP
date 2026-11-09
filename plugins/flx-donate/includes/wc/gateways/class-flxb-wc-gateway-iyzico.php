@@ -20,8 +20,8 @@ class FLXB_WC_Gateway_Iyzico extends WC_Payment_Gateway {
 
 	public function __construct() {
 		$this->id                 = FLXB_WC_Iyzico::ID;
-		$this->method_title       = __( '\\nCard (iyzico) - Flux Donate\\n', 'flx-donate' );
-		$this->method_description = __( '\\nCard payments on iyzico\'s secure page. Required for monthly donations (the card is stored by iyzico and charged each month); also used for one-time donations when the official iyzico plugin is not active.\\n', 'flx-donate' );
+		$this->method_title       = __( 'Card (iyzico) - Flux Donate', 'flx-donate' );
+		$this->method_description = __( 'Card payments on iyzico\'s secure page. Required for monthly donations (the card is stored by iyzico and charged each month); also used for one-time donations when the official iyzico plugin is not active.', 'flx-donate' );
 		$this->has_fields         = FLXB_WC_Iyzico_Card::on();
 		$this->supports           = array( 'products', 'refunds' );
 		$this->init_form_fields();
@@ -39,13 +39,13 @@ class FLXB_WC_Gateway_Iyzico extends WC_Payment_Gateway {
 			'enabled'     => array(
 				'title'   => __( 'Enable', 'flx-donate' ),
 				'type'    => 'checkbox',
-				'label'   => __( '\\nCard payments through Flux Donate (iyzico)\\n', 'flx-donate' ),
+				'label'   => __( 'Card payments through Flux Donate (iyzico)', 'flx-donate' ),
 				'default' => 'yes',
 			),
 			'title'       => array(
 				'title'   => __( 'Title', 'flx-donate' ),
 				'type'    => 'text',
-				'default' => __( '\\nCredit / debit card (iyzico)\\n', 'flx-donate' ),
+				'default' => __( 'Credit / debit card (iyzico)', 'flx-donate' ),
 			),
 			'description' => array(
 				'title'   => __( 'Description', 'flx-donate' ),
@@ -61,7 +61,7 @@ class FLXB_WC_Gateway_Iyzico extends WC_Payment_Gateway {
 	}
 
 	public static function default_description() {
-		return __( '\\nYou will pay on iyzico\'s secure page. For monthly donations your card is stored by iyzico and charged once a month; you can cancel at any time.\\n', 'flx-donate' );
+		return __( 'You will pay on iyzico\'s secure page. For monthly donations your card is stored by iyzico and charged once a month; you can cancel at any time.', 'flx-donate' );
 	}
 
 	/** 2.1.0: our own card fields (setting "Card payment screen"). */

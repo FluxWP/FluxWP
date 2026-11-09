@@ -302,7 +302,7 @@ return array(
   'Payment approved' => '付款已批准',
   'Approve this payment?' => '批准这笔付款吗?',
   'Contact' => '联系方式',
-  '[[\'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.\', \'tr\']]' => '[[\'WooCommerce 商店的销售面板、客户、销售报告、带有收据上传的汇票/电子转帐、简单付款页面、免费送货栏、Google Merchant 产品 Feed 和 WhatsApp/电子邮件通知。\', \'tr\']]',
+  '[[\'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.\', \'tr\']]' => 'WooCommerce 商店的销售面板、客户、销售报告、带有收据上传的汇票/电子转帐、简单付款页面、免费送货栏、Google Merchant 产品 Feed 和 WhatsApp/电子邮件通知。',
   'Flux Commerce çalışmak için WooCommerce ister. WooCommerce\'i kurup etkinleştirin.' => 'Flux Commerce 需要 WooCommerce。安装并激活 WooCommerce。',
   'Ayarlar' => '设置',
   'Satış paneli, müşteriler, raporlar ve ödeme iyileştirmeleri' => '销售仪表板、客户、报告和结帐改进',
@@ -605,6 +605,8 @@ return array(
   'Ödeme onaylandı' => '付款已批准',
   'Ödeme onaylansın mı?' => '批准这笔付款吗?',
   'İletişim' => '联系方式',
-  'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.' => '[[\'WooCommerce 商店的销售面板、客户、销售报告、带有收据上传的汇票/电子转帐、简单付款页面、免费送货栏、Google Merchant 产品 Feed 和 WhatsApp/电子邮件通知。\', \'tr\']]',
+  'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.' => 'WooCommerce 商店的销售面板、客户、销售报告、带有收据上传的汇票/电子转帐、简单付款页面、免费送货栏、Google Merchant 产品 Feed 和 WhatsApp/电子邮件通知。',
+  'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.' => 'WooCommerce 商店的销售面板、客户、销售报告、带有收据上传的汇票/电子转帐、简单付款页面、免费送货栏、Google Merchant 产品 Feed 和 WhatsApp/电子邮件通知。',
+
  ),
 );

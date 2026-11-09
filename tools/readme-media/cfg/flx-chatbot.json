@@ -1,0 +1,27 @@
+{
+  "slug": "flx-chatbot",
+  "shots": [
+    {
+      "name": "wizard",
+      "url": "admin.php?page=flx-chatbot",
+      "vh": 1000
+    },
+    {
+      "name": "inbox",
+      "url": "admin.php?page=flx-chatbot-inbox",
+      "vh": 1000
+    }
+  ],
+  "mobile": [
+    {
+      "name": "mobile",
+      "url": "admin.php?page=flx-chatbot"
+    }
+  ],
+  "dark": [
+    {
+      "name": "dark",
+      "url": "admin.php?page=flx-chatbot"
+    }
+  ]
+}

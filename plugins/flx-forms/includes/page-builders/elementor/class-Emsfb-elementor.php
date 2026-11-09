@@ -45,7 +45,7 @@ class Emsfb_Elementor_Integration {
         $elements_manager->add_category(
             'easy-form-builder',
             [
-                'title' => __('\\nFlux Forms\\n', 'flx-forms'),
+                'title' => __('Flux Forms', 'flx-forms'),
                 'icon' => 'eicon-form-horizontal'
             ]
         );

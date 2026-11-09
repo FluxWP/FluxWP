@@ -506,11 +506,14 @@
     "High": "高",
     "Effort": "努力",
     "Store request bodies": "存储请求体",
-    "[['%stool updated.', 'tr']]\u0000[['%stool updated.', 'tr']]": "[['%s工具已更新。', 'tr']]",
-    "[['%splugin', 'tr']]\u0000[['%splugin', 'tr']]": "[['%s插件','tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n%d车辆已注册。%d车辆已注册。', 'tr']]",
-    "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n": "\\n已用:%1$s/ 限制:%2$s\\n重新生成:%3$s\\n\\n详细信息:%4$s\\n",
-    "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]": "[['所有 FluxWP 插件的通用 AI 中心:OpenRouter 和 Anthropic 密钥、模型目录和价格、提示缓存、车辆注册、通用 MCP 服务器、使用报告、计费和支出限制;管理员和公共人工智能在现场为授权用户聊天。', 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]\u0000\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n%d车辆已注册。%d车辆已注册。', 'tr']]"
+    "%d tool is registered.\u0000%d tools are registered.": "%d工具已注册。",
+    "%s tool updated.\u0000%s tools updated.": "%s工具已更新。",
+    "%s plugin\u0000%s plugins": "%s插件",
+    "%stool updated.\u0000%stool updated.": "%s工具已更新。",
+    "%splugin\u0000%splugin": "%s插件",
+    "%dvehicle is registered.%dvehicle is registered.": "%d车辆已注册。%d车辆已注册。",
+    "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s": "已用:%1$s/ 限制:%2$s\n重新生成:%3$s\n\n详细信息:%4$s",
+    "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.": "所有 FluxWP 插件的通用 AI 中心:OpenRouter 和 Anthropic 密钥、模型目录和价格、提示缓存、车辆注册、通用 MCP 服务器、使用报告、计费和支出限制;管理员和公共人工智能在现场为授权用户聊天。",
+    "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.": "%d车辆已注册。%d车辆已注册。"
   }
 }

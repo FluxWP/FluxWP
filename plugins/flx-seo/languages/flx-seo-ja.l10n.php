@@ -405,7 +405,7 @@ return array(
   'The server\'s PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel.' => 'サーバーの PHP には既知のホールに対するパッチが適用されていないか、サポートされていません。ホスティング パネルから PHP を現在のパッチ リリースにアップグレードします。',
   'session.upload_progress is on' => 'session.upload_progress がオンになっています',
   'WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel.' => 'WordPress はこの PHP 機能を使用しません。これは、PHP2Shell などのホールの悪用パスです。 php.ini またはホスティング パネルで session.upload_progress.enabled = Off を設定します。',
-  '[[\'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).\', \'tr\']]' => '[[\'メタ タイトル/説明、正規、オープン グラフ、スキーマ (組織、Web サイト、パンくずリスト、記事)、サイトマップ設定、ファビコン、および SEO コントロール。 AI アシスタント用のコンテンツおよび SEO ツール (MCP サーバー Flux AI 上)。\', \'tr\']]',
+  '[[\'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).\', \'tr\']]' => 'メタ タイトル/説明、正規、オープン グラフ、スキーマ (組織、Web サイト、パンくずリスト、記事)、サイトマップ設定、ファビコン、および SEO コントロール。 AI アシスタント用のコンテンツおよび SEO ツール (MCP サーバー Flux AI 上)。',
   'Sayfalar' => 'ページ',
   'Son yazılar' => '最近の投稿',
   'Ürünler' => '製品',
@@ -804,6 +804,8 @@ return array(
   'Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP\'yi güncel yama sürümüne yükseltin.' => 'サーバーの PHP には既知のホールに対するパッチが適用されていないか、サポートされていません。ホスティング パネルから PHP を現在のパッチ リリースにアップグレードします。',
   'session.upload_progress açık' => 'session.upload_progress がオンになっています',
   'WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın.' => 'WordPress はこの PHP 機能を使用しません。これは、PHP2Shell などのホールの悪用パスです。 php.ini またはホスティング パネルで session.upload_progress.enabled = Off を設定します。',
-  'Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI\'da).' => '[[\'メタ タイトル/説明、正規、オープン グラフ、スキーマ (組織、Web サイト、パンくずリスト、記事)、サイトマップ設定、ファビコン、および SEO コントロール。 AI アシスタント用のコンテンツおよび SEO ツール (MCP サーバー Flux AI 上)。\', \'tr\']]',
+  'Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI\'da).' => 'メタ タイトル/説明、正規、オープン グラフ、スキーマ (組織、Web サイト、パンくずリスト、記事)、サイトマップ設定、ファビコン、および SEO コントロール。 AI アシスタント用のコンテンツおよび SEO ツール (MCP サーバー Flux AI 上)。',
+  'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).' => 'メタ タイトル/説明、正規、オープン グラフ、スキーマ (組織、Web サイト、パンくずリスト、記事)、サイトマップ設定、ファビコン、および SEO コントロール。 AI アシスタント用のコンテンツおよび SEO ツール (MCP サーバー Flux AI 上)。',
+
  ),
 );

@@ -493,7 +493,7 @@ return array(
   'Visitors and pageviews' => '访问者和页面浏览量',
   'Analytics' => '分析',
   'Right now' => '现在',
-  '[[\'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.\', \'tr\']]' => '[[\'无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。\', \'tr\']]',
+  '[[\'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.\', \'tr\']]' => '无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。',
   'Mobil uygulama: günlük aktif hesaplar' => '移动应用程序:每日活跃账户',
   'UTC gün / platform' => 'UTC 日/平台',
   'İzin veren hesaplar' => '同意账户',
@@ -986,6 +986,8 @@ return array(
   'Ziyaretçi ve görüntülenme' => '访问者和页面浏览量',
   'İstatistik' => '分析',
   'Şu an' => '现在',
-  'Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.' => '[[\'无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。\', \'tr\']]',
+  'Çerezsiz, kişisel veri tutmayan site istatistikleri: ziyaretçi, görüntülenme, en çok okunan sayfalar, yönlendiren siteler, kanal, cihaz/tarayıcı, kampanya (UTM), tıklama olayları ve bağış dönüşümleri. Veriler sitede kalır; yapay zekâ Flux AI / Flux AI & MCP araçlarıyla okur.' => '无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。',
+  'Cookie-free, no-personal data site statistics: visitors, views, most read pages, referring sites, channel, device/browser, campaign (UTM), click events and donation conversions. The data remains on the site; Reads with artificial intelligence Flux AI / Flux AI & MCP tools.' => '无 Cookie、无个人数据的网站统计信息:访问者、浏览量、最多阅读的页面、推荐网站、渠道、设备/浏览器、活动 (UTM)、点击事件和捐赠转化。数据保留在网站上;使用人工智能 Flux AI / Flux AI 和 MCP 工具进行读取。',
+
  ),
 );

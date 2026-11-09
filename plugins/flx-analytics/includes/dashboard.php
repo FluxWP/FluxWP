@@ -76,7 +76,7 @@ add_action(
 			'/dashboard',
 			array(
 				'methods'             => 'GET',
-				'permission_callback' => 'flxan_can_view',
+				'permission_callback' => static function () { return flxan_can_view(); },
 				'args'                => array( 'w' => array( 'type' => 'string', 'default' => '' ) ),
 				'callback'            => function ( WP_REST_Request $r ) {
 					FLXAN_Aggregator::maybe_run( 5 );

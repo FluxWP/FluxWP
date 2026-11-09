@@ -505,11 +505,14 @@
     "High": "Yüksek",
     "Effort": "Çaba",
     "Store request bodies": "İstek içeriğini kaydet",
-    "[['%stool updated.', 'tr']]\u0000[['%stool updated.', 'tr']]": "%s araç güncellendi.\u0000%s araç güncellendi.",
-    "[['%splugin', 'tr']]\u0000[['%splugin', 'tr']]": "%s eklenti\u0000%s eklenti",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n %d araç kayıtlı. %d araç kayıtlı.', 'tr']]",
-    "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n": "Harcanan: %1$s / Sınır: %2$s\nYenilenme: %3$s\n\nAyrıntı: %4$s",
-    "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]": "Tüm FluxWP eklentileri için ortak yapay zekâ merkezi: OpenRouter ve Anthropic anahtarları, model kataloğu ve fiyatlar, prompt önbelleği, araç kaydı, ortak MCP sunucusu, kullanım raporları, faturalandırma ve harcama sınırı; yetkili kullanıcılar için admin ve sitede ortak AI sohbeti.",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]\u0000\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]\u0000\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+    "%d tool is registered.\u0000%d tools are registered.": "%d araç kayıtlı.\u0000%d araç kayıtlı.",
+    "%s tool updated.\u0000%s tools updated.": "%saracı güncellendi.\u0000%saraçları güncellendi.",
+    "%s plugin\u0000%s plugins": "%seklentisi\u0000%seklentileri",
+    "%stool updated.\u0000%stool updated.": "%s araç güncellendi.\u0000%s araç güncellendi.",
+    "%splugin\u0000%splugin": "%s eklenti\u0000%s eklenti",
+    "%dvehicle is registered.%dvehicle is registered.": " %d araç kayıtlı. %d araç kayıtlı.",
+    "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s": "Harcanan: %1$s / Sınır: %2$s\nYenilenme: %3$s\n\nAyrıntı: %4$s",
+    "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.": "Tüm FluxWP eklentileri için ortak yapay zekâ merkezi: OpenRouter ve Anthropic anahtarları, model kataloğu ve fiyatlar, prompt önbelleği, araç kaydı, ortak MCP sunucusu, kullanım raporları, faturalandırma ve harcama sınırı; yetkili kullanıcılar için admin ve sitede ortak AI sohbeti.",
+    "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.": "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered."
   }
 }

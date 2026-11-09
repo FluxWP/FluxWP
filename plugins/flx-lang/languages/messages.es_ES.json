@@ -114,6 +114,6 @@
     "Name (%s)": "Nombre (%s)",
     "Description (%s)": "Descripción (%s)",
     "If left empty, the Turkish name and description are shown.": "Si se deja vacío, se muestran el nombre y la descripción en turco.",
-    "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]": "[['Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI.', 'tr']]"
+    "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": "Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI."
   }
 }

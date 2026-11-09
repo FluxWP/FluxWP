@@ -1583,7 +1583,7 @@ return array(
   'This channel is not available right now.' => '该频道目前不可用。',
   'Site chat' => '现场聊天',
   'All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left.' => '来自 WhatsApp、网站聊天和其他渠道的所有消息都会实时显示在这里。选择左侧的聊天。',
-  '[[\'WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.\', \'tr\']]' => '[[\'WhatsApp(Evolution API)呼叫中心:查看实时传入和传出消息、开始新聊天、预设回复、标签、作业、内部注释、自动回复;通过聊天注册捐赠(Flux Donate)和证书(Flux Certificates),收据匹配。 OpenRouter 的人工智能响应建议和自动捐赠助手。\', \'tr\']]',
+  '[[\'WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.\', \'tr\']]' => 'WhatsApp(Evolution API)呼叫中心:查看实时传入和传出消息、开始新聊天、预设回复、标签、作业、内部注释、自动回复;通过聊天注册捐赠(Flux Donate)和证书(Flux Certificates),收据匹配。 OpenRouter 的人工智能响应建议和自动捐赠助手。',
   'Çağrı Merkezi' => '呼叫中心',
   'Sohbetler' => '聊天记录',
   'AI asistan' => '人工智能助手',
@@ -3168,6 +3168,8 @@ return array(
   'Bu kanal şu an kullanılamıyor.' => '该频道目前不可用。',
   'Site sohbeti' => '现场聊天',
   'WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.' => '来自 WhatsApp、网站聊天和其他渠道的所有消息都会实时显示在这里。选择左侧的聊天。',
-  'WhatsApp (Evolution API) çağrı merkezi: gelen ve giden mesajları canlı görün, yeni sohbet başlatın, hazır cevaplar, etiketler, atama, dahili notlar, otomatik yanıtlar; sohbetten bağış (Flux Donate) ve sertifika (Flux Certificates) kaydı, dekont eşleştirme. OpenRouter ile yapay zekâ cevap önerisi ve otomatik bağış asistanı.' => '[[\'WhatsApp(Evolution API)呼叫中心:查看实时传入和传出消息、开始新聊天、预设回复、标签、作业、内部注释、自动回复;通过聊天注册捐赠(Flux Donate)和证书(Flux Certificates),收据匹配。 OpenRouter 的人工智能响应建议和自动捐赠助手。\', \'tr\']]',
+  'WhatsApp (Evolution API) çağrı merkezi: gelen ve giden mesajları canlı görün, yeni sohbet başlatın, hazır cevaplar, etiketler, atama, dahili notlar, otomatik yanıtlar; sohbetten bağış (Flux Donate) ve sertifika (Flux Certificates) kaydı, dekont eşleştirme. OpenRouter ile yapay zekâ cevap önerisi ve otomatik bağış asistanı.' => 'WhatsApp(Evolution API)呼叫中心:查看实时传入和传出消息、开始新聊天、预设回复、标签、作业、内部注释、自动回复;通过聊天注册捐赠(Flux Donate)和证书(Flux Certificates),收据匹配。 OpenRouter 的人工智能响应建议和自动捐赠助手。',
+  'WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.' => 'WhatsApp(Evolution API)呼叫中心:查看实时传入和传出消息、开始新聊天、预设回复、标签、作业、内部注释、自动回复;通过聊天注册捐赠(Flux Donate)和证书(Flux Certificates),收据匹配。 OpenRouter 的人工智能响应建议和自动捐赠助手。',
+
  ),
 );

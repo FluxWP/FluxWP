@@ -1,0 +1,63 @@
+{
+  "slug": "flx-wiki",
+  "shots": [
+    {
+      "name": "home",
+      "url": {
+        "en": "/en/wiki/",
+        "tr": "/wiki/"
+      },
+      "vh": 1000
+    },
+    {
+      "name": "page",
+      "url": {
+        "en": "/en/wiki/capture-quick-start-en/",
+        "tr": "/wiki/capture-quick-start-tr/"
+      },
+      "vh": 1000
+    },
+    {
+      "name": "search",
+      "url": {
+        "en": "/en/wiki/",
+        "tr": "/wiki/"
+      },
+      "click": ".flxwk-sbox.is-big [data-flxwk-q]",
+      "type": {
+        "en": "setup",
+        "tr": "kurulum"
+      },
+      "afterType": 1800,
+      "vh": 1000
+    },
+    {
+      "name": "wizard",
+      "url": "edit.php?post_type=flx_wiki",
+      "vh": 1000
+    },
+    {
+      "name": "settings",
+      "url": "edit.php?post_type=flx_wiki&page=flx-wiki",
+      "vh": 1000
+    }
+  ],
+  "mobile": [
+    {
+      "name": "mobile",
+      "url": {
+        "en": "/en/wiki/",
+        "tr": "/wiki/"
+      }
+    }
+  ],
+  "dark": [
+    {
+      "name": "dark",
+      "url": {
+        "en": "/en/wiki/",
+        "tr": "/wiki/"
+      }
+    }
+  ]
+}

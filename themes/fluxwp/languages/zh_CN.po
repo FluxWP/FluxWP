@@ -1426,14 +1426,8 @@ msgstr "亲手挑选的清单。 “返回自动”返回 iyzico 乐队和启用
 msgid "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer."
 msgstr "SVG 或透明 PNG 最好;彩色徽标显示在深色页脚上的白色框中。"
 
-msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
-msgstr "\\n%s。 Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin。\\n"
-
 msgid "Background pattern"
 msgstr "背景图案"
-
-msgid "\\nDots\\n"
-msgstr "\\n点\\n"
 
 msgid "Leaves"
 msgstr "叶子"
@@ -1446,3 +1440,9 @@ msgstr "新闻介绍"
 
 msgid "Latest news, updates and articles."
 msgstr "最新新闻、更新和文章。"
+
+msgid "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
+msgstr "%s。 Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin。"
+
+msgid "Dots"
+msgstr "点"

@@ -37,14 +37,14 @@ final class FLXB_Page_Payments {
 		$map = array(
 			'completed' => array( 'ok', __( 'Completed', 'flx-donate' ) ),
 			'active'    => array( 'ok', __( 'Active', 'flx-donate' ) ),
-			'trialing'  => array( 'ok', __( '\\nTrial\\n', 'flx-donate' ) ),
+			'trialing'  => array( 'ok', __( 'Trial', 'flx-donate' ) ),
 			'pending'   => array( 'pending', __( 'Pending', 'flx-donate' ) ),
 			'processing' => array( 'pending', __( 'Processing', 'flx-donate' ) ),
-			'mismatch'  => array( 'failed', __( '\\nAmount mismatch\\n', 'flx-donate' ) ),
+			'mismatch'  => array( 'failed', __( 'Amount mismatch', 'flx-donate' ) ),
 			'past_due'  => array( 'failed', __( 'Past due', 'flx-donate' ) ),
-			'canceled'  => array( 'failed', __( '\\nCanceled\\n', 'flx-donate' ) ),
+			'canceled'  => array( 'failed', __( 'Canceled', 'flx-donate' ) ),
 			'failed'    => array( 'failed', __( 'Failed', 'flx-donate' ) ),
-			'incomplete' => array( 'failed', __( '\\nIncomplete\\n', 'flx-donate' ) ),
+			'incomplete' => array( 'failed', __( 'Incomplete', 'flx-donate' ) ),
 			'refunded'  => array( 'refunded', __( 'Refunded', 'flx-donate' ) ),
 			'partially_refunded' => array( 'refunded', __( 'Partly refunded', 'flx-donate' ) ),
 		);
@@ -66,7 +66,7 @@ final class FLXB_Page_Payments {
 		}
 		$providers = flxf_payment_providers();
 		$active    = flxf_payment_active_provider_id();
-		FLXB_Admin::header( __( 'Payments', 'flx-donate' ), __( '\\nPayment providers that take the money on your forms, and every payment they recorded.\\n', 'flx-donate' ) );
+		FLXB_Admin::header( __( 'Payments', 'flx-donate' ), __( 'Payment providers that take the money on your forms, and every payment they recorded.', 'flx-donate' ) );
 
 		echo '<div class="flxb-pcards">';
 		foreach ( $providers as $id => $p ) {
@@ -76,7 +76,7 @@ final class FLXB_Page_Payments {
 			if ( $is_active ) {
 				echo '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Active', 'flx-donate' ) . '</span>';
 			}
-			echo $p->is_configured() ? '<span class="flxb-pill">' . esc_html__( '\\nConfigured\\n', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--pending">' . esc_html__( '\\nNot configured\', \'en\']]', 'flx-donate' ) . '</span>';
+			echo $p->is_configured() ? '<span class="flxb-pill">' . esc_html__( 'Configured', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--pending">' . esc_html__( 'Not configured', 'flx-donate' ) . '</span>';
 			echo '</span></div>';
 
 			echo '<form class="flxb-form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxb_pay_save"><input type="hidden" name="provider" value="' . esc_attr( $id ) . '">';
@@ -104,9 +104,9 @@ final class FLXB_Page_Payments {
 						echo '</select>';
 					} elseif ( 'password' === $type ) {
 						/* Secrets are never printed; an empty input keeps the saved value. */
-						echo '<input type="password" id="' . esc_attr( $fid ) . '" name="f[' . esc_attr( $key ) . ']" value="" autocomplete="new-password" placeholder="' . esc_attr( '' !== $src ? __( '\\nSaved, leave empty to keep it\\n', 'flx-donate' ) : '' ) . '">';
+						echo '<input type="password" id="' . esc_attr( $fid ) . '" name="f[' . esc_attr( $key ) . ']" value="" autocomplete="new-password" placeholder="' . esc_attr( '' !== $src ? __( 'Saved, leave empty to keep it', 'flx-donate' ) : '' ) . '">';
 						if ( 'own' === $src ) {
-							echo '<label class="flxb-check flxb-help"><input type="checkbox" name="clear[]" value="' . esc_attr( $key ) . '"> ' . esc_html__( '\\nRemove the saved value\\n', 'flx-donate' ) . '</label>';
+							echo '<label class="flxb-check flxb-help"><input type="checkbox" name="clear[]" value="' . esc_attr( $key ) . '"> ' . esc_html__( 'Remove the saved value', 'flx-donate' ) . '</label>';
 						}
 					} else {
 						echo '<input type="text" id="' . esc_attr( $fid ) . '" name="f[' . esc_attr( $key ) . ']" value="' . esc_attr( 'own' === $src ? $val : '' ) . '" placeholder="' . esc_attr( 'flxform' === $src ? $val : '' ) . '" autocomplete="off">';
@@ -115,24 +115,24 @@ final class FLXB_Page_Payments {
 				if ( '' !== $inh ) {
 					echo '<p class="flxb-help flxb-help--inherited">' . esc_html( $inh ) . '</p>';
 				} elseif ( 'flxform' === $src ) {
-					echo '<p class="flxb-help">' . esc_html__( '\\nUsing the value saved in Flux Forms\\\'s settings. Enter a value here to replace it.\\n', 'flx-donate' ) . '</p>';
+					echo '<p class="flxb-help">' . esc_html__( 'Using the value saved in Flux Forms\'s settings. Enter a value here to replace it.', 'flx-donate' ) . '</p>';
 				} elseif ( ! empty( $f['help'] ) ) {
 					echo '<p class="flxb-help">' . esc_html( (string) $f['help'] ) . '</p>';
 				}
 				echo '</div>';
 			}
 			if ( ! $is_active ) {
-				echo '<label class="flxb-check"><input type="checkbox" name="activate" value="1"> ' . esc_html__( '\\nTake payments with this provider\\n', 'flx-donate' ) . '</label>';
+				echo '<label class="flxb-check"><input type="checkbox" name="activate" value="1"> ' . esc_html__( 'Take payments with this provider', 'flx-donate' ) . '</label>';
 			}
 			echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Save', 'flx-donate' ) . '</button></div></form>';
 
 			if ( $p instanceof FLXB_Payment_Iyzico ) {
 				$c = FLXB_Iyzico_Api::credentials();
-				echo '<div class="flxb-webhook"><span class="flxb-label">' . esc_html__( 'Environment', 'flx-donate' ) . '</span> ' . ( '' === $c['source'] ? '<span class="flxb-pill flxb-pill--pending">' . esc_html__( '\\nNo keys\\n', 'flx-donate' ) . '</span>' : ( $c['sandbox'] ? '<span class="flxb-pill flxb-pill--pending">' . esc_html__( '\\nSandbox (test)\\n', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Live', 'flx-donate' ) . '</span>' ) ) . '</div>';
+				echo '<div class="flxb-webhook"><span class="flxb-label">' . esc_html__( 'Environment', 'flx-donate' ) . '</span> ' . ( '' === $c['source'] ? '<span class="flxb-pill flxb-pill--pending">' . esc_html__( 'No keys', 'flx-donate' ) . '</span>' : ( $c['sandbox'] ? '<span class="flxb-pill flxb-pill--pending">' . esc_html__( 'Sandbox (test)', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Live', 'flx-donate' ) . '</span>' ) ) . '</div>';
 				echo FLXB_Iyzico_Notify::admin_box(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside.
 				$last = get_option( 'flxb_iyzico_last_run' );
 				$next = wp_next_scheduled( FLXB_Iyzico_Recurring::HOOK );
-				echo '<div class="flxb-webhook"><span class="flxb-label">' . esc_html__( '\\nRecurring charges\\n', 'flx-donate' ) . '</span><p class="flxb-help">' . esc_html( sprintf( /* translators: 1: next run, 2: last run */ __( '\\nCharged by Flux Donate\\\'s hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s.\\n', 'flx-donate' ), $next ? flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) : '—', is_array( $last ) && ! empty( $last['time'] ) ? flxb_date( gmdate( 'Y-m-d H:i:s', (int) $last['time'] ) ) : '—' ) ) . '</p></div>';
+				echo '<div class="flxb-webhook"><span class="flxb-label">' . esc_html__( 'Recurring charges', 'flx-donate' ) . '</span><p class="flxb-help">' . esc_html( sprintf( /* translators: 1: next run, 2: last run */ __( 'Charged by Flux Donate\'s hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s.', 'flx-donate' ), $next ? flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) : '—', is_array( $last ) && ! empty( $last['time'] ) ? flxb_date( gmdate( 'Y-m-d H:i:s', (int) $last['time'] ) ) : '—' ) ) . '</p></div>';
 			}
 			if ( 'iyzico' === $id ) {
 				echo '</section>';
@@ -140,7 +140,7 @@ final class FLXB_Page_Payments {
 			}
 			echo '<div class="flxb-webhook"><span class="flxb-label">' . esc_html__( 'Webhook URL', 'flx-donate' ) . '</span><code class="flxb-code">' . esc_html( rest_url( 'Emsfb/v1/forms/payment/webhook/' . $id ) ) . '</code>';
 			if ( 'stripe' === $id ) {
-				echo '<p class="flxb-help">' . esc_html__( '[[\'In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working.\', \'en\']]', 'flx-donate' ) . '</p>';
+				echo '<p class="flxb-help">' . esc_html__( 'In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working.', 'flx-donate' ) . '</p>';
 			}
 			echo '</div></section>';
 		}
@@ -150,9 +150,9 @@ final class FLXB_Page_Payments {
 		$page  = max( 1, absint( FLXB_Admin::q( 'paged', '1' ) ) );
 		$rows  = FLXB_Payment_Records::recent( self::PER_PAGE, ( $page - 1 ) * self::PER_PAGE );
 		$total = FLXB_Payment_Records::count();
-		echo '<section class="flxb-card flxb-panel" style="margin-top:18px"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( '\\nPayment records\\n', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nEvery payment started on a form, including unfinished ones. Completed ones are also listed under Donations.\\n', 'flx-donate' ) . '</p></div></div>';
+		echo '<section class="flxb-card flxb-panel" style="margin-top:18px"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Payment records', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Every payment started on a form, including unfinished ones. Completed ones are also listed under Donations.', 'flx-donate' ) . '</p></div></div>';
 		if ( ! $rows ) {
-			echo '<p class="flxb-empty">' . esc_html__( '\\nNo payments yet.\\n', 'flx-donate' ) . '</p></section>';
+			echo '<p class="flxb-empty">' . esc_html__( 'No payments yet.', 'flx-donate' ) . '</p></section>';
 			FLXB_Admin::footer();
 			return;
 		}
@@ -162,7 +162,7 @@ final class FLXB_Page_Payments {
 		foreach ( (array) $wpdb->get_results( 'SELECT id, pay_id FROM ' . flxb_table( 'donations' ) . ' WHERE pay_id IN (' . implode( ',', $ids ) . ')', ARRAY_A ) as $d ) { // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$known[ (int) $d['pay_id'] ] = (int) $d['id'];
 		}
-		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr><th scope="col">' . esc_html__( 'Date', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Form', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Provider', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( '\\nConfirmation code\\n', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( '\\nProvider reference\\n', 'flx-donate' ) . '</th><th scope="col"><span class="screen-reader-text">' . esc_html__( 'Donation', 'flx-donate' ) . '</span></th></tr></thead><tbody>';
+		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr><th scope="col">' . esc_html__( 'Date', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Form', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Provider', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Confirmation code', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Provider reference', 'flx-donate' ) . '</th><th scope="col"><span class="screen-reader-text">' . esc_html__( 'Donation', 'flx-donate' ) . '</span></th></tr></thead><tbody>';
 		foreach ( $rows as $r ) {
 			$st   = self::status( $r->status );
 			$prov = flxf_payment_provider( $r->gateway );
@@ -172,13 +172,13 @@ final class FLXB_Page_Payments {
 			echo '<td data-label="' . esc_attr__( 'Provider', 'flx-donate' ) . '"><span>' . esc_html( $prov ? $prov->label() : flxb_provider_label( (string) $r->gateway ) ) . '</span></td>';
 			echo '<td class="num" data-label="' . esc_attr__( 'Amount', 'flx-donate' ) . '"><span>' . esc_html( flxb_money( $r->amount, $r->currency ) ) . '</span></td>';
 			echo '<td data-label="' . esc_attr__( 'Status', 'flx-donate' ) . '"><span><span class="flxb-pill flxb-pill--' . esc_attr( $st[0] ) . '">' . esc_html( $st[1] ) . '</span></span></td>';
-			echo '<td data-label="' . esc_attr__( '\\nConfirmation code\\n', 'flx-donate' ) . '"><span><code>' . esc_html( (string) $r->track ) . '</code></span></td>';
-			echo '<td data-label="' . esc_attr__( '\\nProvider reference\\n', 'flx-donate' ) . '"><span><code class="flxb-id">' . esc_html( '' !== (string) $r->subscription_id ? (string) $r->subscription_id : (string) $r->transaction_id ) . '</code></span></td>';
+			echo '<td data-label="' . esc_attr__( 'Confirmation code', 'flx-donate' ) . '"><span><code>' . esc_html( (string) $r->track ) . '</code></span></td>';
+			echo '<td data-label="' . esc_attr__( 'Provider reference', 'flx-donate' ) . '"><span><code class="flxb-id">' . esc_html( '' !== (string) $r->subscription_id ? (string) $r->subscription_id : (string) $r->transaction_id ) . '</code></span></td>';
 			echo '<td class="flxb-col-act">' . ( isset( $known[ (int) $r->id ] ) ? '<a class="flxb-btn flxb-btn--sm" href="' . esc_url( FLXB_Admin_Url::donation( $known[ (int) $r->id ] ) ) . '">' . esc_html__( 'Donation', 'flx-donate' ) . '</a>' : '' );
 			self::money_form( $r, null, FLXB_Admin_Url::page( 'flxb-payments', $page > 1 ? array( 'paged' => $page ) : array() ) );
 			echo '</td></tr>';
 		}
-		echo '</tbody></table></div><div class="flxb-tablefoot"><span>' . esc_html( sprintf( /* translators: %s: number of records */ _n( '[[\'%srecord\', \'en\']]', '[[\'%srecords\', \'en\']]', $total, 'flx-donate' ), number_format_i18n( $total ) ) ) . '</span>';
+		echo '</tbody></table></div><div class="flxb-tablefoot"><span>' . esc_html( sprintf( /* translators: %s: number of records */ _n( '%s record', '%s records', $total, 'flx-donate' ), number_format_i18n( $total ) ) ) . '</span>';
 		echo FLXB_Admin::pagination( $total, self::PER_PAGE, $page, array( 'page' => 'flxb-payments' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</div></section>';
 		FLXB_Admin::footer();
@@ -231,11 +231,11 @@ final class FLXB_Page_Payments {
 			$sk  = (string) ( $o['fields']['stripeSKey'] ?? '' );
 			$wh  = (string) ( $o['fields']['stripeWebhookSecret'] ?? '' );
 			if ( '' !== $pk && ! preg_match( '/^pk_(live|test)_[A-Za-z0-9]+$/', $pk ) ) {
-				$err = __( '\\nA Stripe publishable key starts with pk_live_ or pk_test_.\\n', 'flx-donate' );
+				$err = __( 'A Stripe publishable key starts with pk_live_ or pk_test_.', 'flx-donate' );
 			} elseif ( '' !== $sk && ! preg_match( '/^(sk|rk)_(live|test)_[A-Za-z0-9]+$/', $sk ) ) {
-				$err = __( '\\nA Stripe secret key starts with sk_live_, sk_test_ or rk_.\\n', 'flx-donate' );
+				$err = __( 'A Stripe secret key starts with sk_live_, sk_test_ or rk_.', 'flx-donate' );
 			} elseif ( '' !== $wh && 0 !== strpos( $wh, 'whsec_' ) ) {
-				$err = __( '\\nA Stripe webhook signing secret starts with whsec_.\\n', 'flx-donate' );
+				$err = __( 'A Stripe webhook signing secret starts with whsec_.', 'flx-donate' );
 			}
 			if ( '' !== $err ) {
 				FLXB_Admin::redirect( 'flxb-payments', array( 'flxb_msg' => 'error', 'flxb_err' => $err ) );
@@ -291,19 +291,19 @@ final class FLXB_Page_Payments {
 		}
 		$cur = $donation ? $donation['currency'] : $row->currency;
 		$key = $donation ? 'd' . (int) $donation['id'] : 'p' . (int) $row->id;
-		echo '<details class="flxb-money"><summary class="flxb-btn flxb-btn--sm">' . esc_html__( '\\nRefund / cancel\\n', 'flx-donate' ) . '</summary><div class="flxb-money__body">';
+		echo '<details class="flxb-money"><summary class="flxb-btn flxb-btn--sm">' . esc_html__( 'Refund / cancel', 'flx-donate' ) . '</summary><div class="flxb-money__body">';
 		if ( $refund ) {
-			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr__( '\\nRefund this amount to the donor through the payment provider?\\n', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_refund"><input type="hidden" name="op" value="refund"><input type="hidden" name="back" value="' . esc_attr( $back ) . '">';
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr__( 'Refund this amount to the donor through the payment provider?', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_refund"><input type="hidden" name="op" value="refund"><input type="hidden" name="back" value="' . esc_attr( $back ) . '">';
 			echo $donation ? '<input type="hidden" name="id" value="' . (int) $donation['id'] . '">' : '<input type="hidden" name="pay" value="' . (int) $row->id . '">';
 			wp_nonce_field( 'flxb_refund_' . $key );
-			echo '<label class="flxb-money__label" for="flxb-ra-' . esc_attr( $key ) . '">' . esc_html( sprintf( /* translators: %s: amount */ __( '\\nAmount (up to%s)\\n', 'flx-donate' ), flxb_money( $left, $cur, 2 ) ) ) . '</label>';
-			echo '<span class="flxb-money__row"><input type="number" class="flxb-input" id="flxb-ra-' . esc_attr( $key ) . '" name="amount" step="0.01" min="0.01" max="' . esc_attr( number_format( $left, 2, '.', '' ) ) . '" value="' . esc_attr( number_format( $left, 2, '.', '' ) ) . '"> <button type="submit" class="flxb-btn flxb-btn--sm">' . esc_html__( '\\nRefund\\n', 'flx-donate' ) . '</button></span></form>';
+			echo '<label class="flxb-money__label" for="flxb-ra-' . esc_attr( $key ) . '">' . esc_html( sprintf( /* translators: %s: amount */ __( 'Amount (up to%s)', 'flx-donate' ), flxb_money( $left, $cur, 2 ) ) ) . '</label>';
+			echo '<span class="flxb-money__row"><input type="number" class="flxb-input" id="flxb-ra-' . esc_attr( $key ) . '" name="amount" step="0.01" min="0.01" max="' . esc_attr( number_format( $left, 2, '.', '' ) ) . '" value="' . esc_attr( number_format( $left, 2, '.', '' ) ) . '"> <button type="submit" class="flxb-btn flxb-btn--sm">' . esc_html__( 'Refund', 'flx-donate' ) . '</button></span></form>';
 		}
 		if ( $void ) {
-			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr__( '\\nCancel this payment at iyzico? This works only on the day of the payment, before it is settled; the whole amount is released to the donor.\\n', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_refund"><input type="hidden" name="op" value="cancel"><input type="hidden" name="back" value="' . esc_attr( $back ) . '">';
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr__( 'Cancel this payment at iyzico? This works only on the day of the payment, before it is settled; the whole amount is released to the donor.', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_refund"><input type="hidden" name="op" value="cancel"><input type="hidden" name="back" value="' . esc_attr( $back ) . '">';
 			echo $donation ? '<input type="hidden" name="id" value="' . (int) $donation['id'] . '">' : '<input type="hidden" name="pay" value="' . (int) $row->id . '">';
 			wp_nonce_field( 'flxb_refund_' . $key );
-			echo '<p class="flxb-help">' . esc_html__( '\\nSame day only: cancel the payment instead of refunding it.\\n', 'flx-donate' ) . '</p><button type="submit" class="flxb-linkbtn flxb-linkbtn--danger">' . esc_html__( '\\nCancel payment\\n', 'flx-donate' ) . '</button></form>';
+			echo '<p class="flxb-help">' . esc_html__( 'Same day only: cancel the payment instead of refunding it.', 'flx-donate' ) . '</p><button type="submit" class="flxb-linkbtn flxb-linkbtn--danger">' . esc_html__( 'Cancel payment', 'flx-donate' ) . '</button></form>';
 		}
 		echo '</div></details>';
 	}

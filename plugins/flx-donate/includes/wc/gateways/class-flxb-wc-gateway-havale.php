@@ -16,8 +16,8 @@ class FLXB_WC_Gateway_Havale extends WC_Payment_Gateway {
 	public function __construct() {
 		$this->id                 = FLXB_WC_Havale::ID;
 		$this->has_fields         = false;
-		$this->method_title       = __( '\\nBank transfer (donation)\\n', 'flx-donate' );
-		$this->method_description = __( '\\nThe donor transfers the money with an order-specific reference and uploads the receipt on the site. The certificate is issued when you confirm the payment.\\n', 'flx-donate' );
+		$this->method_title       = __( 'Bank transfer (donation)', 'flx-donate' );
+		$this->method_description = __( 'The donor transfers the money with an order-specific reference and uploads the receipt on the site. The certificate is issued when you confirm the payment.', 'flx-donate' );
 		$this->supports           = array( 'products' );
 		$this->init_form_fields();
 		$this->init_settings();
@@ -31,7 +31,7 @@ class FLXB_WC_Gateway_Havale extends WC_Payment_Gateway {
 			'enabled'     => array(
 				'title'   => __( 'Enabled', 'flx-donate' ),
 				'type'    => 'checkbox',
-				'label'   => __( '\\nTake donations by bank transfer\\n', 'flx-donate' ),
+				'label'   => __( 'Take donations by bank transfer', 'flx-donate' ),
 				'default' => 'yes',
 			),
 			'title'       => array(
@@ -51,13 +51,13 @@ class FLXB_WC_Gateway_Havale extends WC_Payment_Gateway {
 			'holder'      => array(
 				'title'       => __( 'Recipient (account holder)', 'flx-donate' ),
 				'type'        => 'text',
-				'description' => __( '\\nEmpty = the holder of the bank account below or, without an IBAN here, of WooCommerce\\\'s "Direct bank transfer" account (else the theme settings).\\n', 'flx-donate' ),
+				'description' => __( 'Empty = the holder of the bank account below or, without an IBAN here, of WooCommerce\'s "Direct bank transfer" account (else the theme settings).', 'flx-donate' ),
 				'default'     => '',
 			),
 			'iban'        => array(
 				'title'       => 'IBAN',
 				'type'        => 'text',
-				'description' => __( '\\nThe account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce\\\'s "Direct bank transfer", else the theme settings; recipient and bank then come from that account too.\\n', 'flx-donate' ),
+				'description' => __( 'The account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce\'s "Direct bank transfer", else the theme settings; recipient and bank then come from that account too.', 'flx-donate' ),
 				'default'     => '',
 			),
 			'bank'        => array(
@@ -68,7 +68,7 @@ class FLXB_WC_Gateway_Havale extends WC_Payment_Gateway {
 			'ref_format'  => array(
 				'title'       => __( 'Reference', 'flx-donate' ),
 				'type'        => 'text',
-				'description' => __( '\\nWhat the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}\\n', 'flx-donate' ),
+				'description' => __( 'What the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}', 'flx-donate' ),
 				'default'     => '',
 				'placeholder' => '{tur} {kod} {ad}',
 			),
@@ -87,7 +87,7 @@ class FLXB_WC_Gateway_Havale extends WC_Payment_Gateway {
 		}
 		FLXB_WC_Havale::reference( $order );
 		$order->update_meta_data( '_flxb_state', 'awaiting' );
-		$order->update_status( 'on-hold', __( '\\nBank transfer pre-registration: waiting for the payment.\\n', 'flx-donate' ) );
+		$order->update_status( 'on-hold', __( 'Bank transfer pre-registration: waiting for the payment.', 'flx-donate' ) );
 		wc_maybe_reduce_stock_levels( $order_id );
 		if ( WC()->cart ) {
 			WC()->cart->empty_cart();

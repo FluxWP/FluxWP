@@ -1,0 +1,22 @@
+{
+  "slug": "flx-recaptcha",
+  "shots": [
+    {
+      "name": "wizard",
+      "url": "admin.php?page=flx-recaptcha",
+      "vh": 1000
+    }
+  ],
+  "mobile": [
+    {
+      "name": "mobile",
+      "url": "admin.php?page=flx-recaptcha"
+    }
+  ],
+  "dark": [
+    {
+      "name": "dark",
+      "url": "admin.php?page=flx-recaptcha"
+    }
+  ]
+}

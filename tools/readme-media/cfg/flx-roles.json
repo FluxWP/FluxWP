@@ -1,91 +1,97 @@
 {
- "slug": "flx-roles",
- "shots": [
-  {
-   "name": "roles",
-   "url": "users.php?page=flx-roles",
-   "vh": 1000
-  },
-  {
-   "name": "capabilities",
-   "url": "users.php?page=flx-roles",
-   "eval": "window.scrollTo(0,900)",
-   "vh": 900
-  },
-  {
-   "name": "people",
-   "url": "users.php?page=flx-roles",
-   "eval": "window.scrollTo(0,document.body.scrollHeight)",
-   "vh": 900
-  }
- ],
- "mobile": [
-  {
-   "name": "mobile",
-   "url": "users.php?page=flx-roles"
-  }
- ],
- "gif": [
-  {
-   "goto": "users.php?page=flx-roles",
-   "wait": 2200
-  },
-  {
-   "move": [
-    500,
-    200
-   ]
-  },
-  {
-   "move": [
-    900,
-    330
-   ],
-   "wait": 800
-  },
-  {
-   "scroll": 500,
-   "wait": 1200
-  },
-  {
-   "move": [
-    1010,
-    420
-   ],
-   "wait": 500
-  },
-  {
-   "scroll": 1300,
-   "wait": 1500
-  },
-  {
-   "move": [
-    1150,
-    500
-   ],
-   "wait": 600
-  },
-  {
-   "scroll": 2600,
-   "wait": 1500
-  },
-  {
-   "move": [
-    700,
-    500
-   ],
-   "wait": 800
-  },
-  {
-   "scroll": 99999,
-   "wait": 1500
-  },
-  {
-   "move": [
-    600,
-    600
-   ],
-   "wait": 1200
-  }
- ]
+  "slug": "flx-roles",
+  "shots": [
+    {
+      "name": "roles",
+      "url": "users.php?page=flx-roles",
+      "vh": 1000
+    },
+    {
+      "name": "capabilities",
+      "url": "users.php?page=flx-roles",
+      "eval": "window.scrollTo(0,900)",
+      "vh": 900
+    },
+    {
+      "name": "people",
+      "url": "users.php?page=flx-roles",
+      "eval": "window.scrollTo(0,document.body.scrollHeight)",
+      "vh": 900
+    }
+  ],
+  "mobile": [
+    {
+      "name": "mobile",
+      "url": "users.php?page=flx-roles"
+    }
+  ],
+  "gif": [
+    {
+      "goto": "users.php?page=flx-roles",
+      "wait": 2200
+    },
+    {
+      "move": [
+        500,
+        200
+      ]
+    },
+    {
+      "move": [
+        900,
+        330
+      ],
+      "wait": 800
+    },
+    {
+      "scroll": 500,
+      "wait": 1200
+    },
+    {
+      "move": [
+        1010,
+        420
+      ],
+      "wait": 500
+    },
+    {
+      "scroll": 1300,
+      "wait": 1500
+    },
+    {
+      "move": [
+        1150,
+        500
+      ],
+      "wait": 600
+    },
+    {
+      "scroll": 2600,
+      "wait": 1500
+    },
+    {
+      "move": [
+        700,
+        500
+      ],
+      "wait": 800
+    },
+    {
+      "scroll": 99999,
+      "wait": 1500
+    },
+    {
+      "move": [
+        600,
+        600
+      ],
+      "wait": 1200
+    }
+  ],
+  "dark": [
+    {
+      "name": "dark",
+      "url": "users.php?page=flx-roles"
+    }
+  ]
 }

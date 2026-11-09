@@ -555,7 +555,7 @@ return array(
   'Deleted' => 'تم الحذف',
   'New posts are composed in the media composer.' => 'وتتألف المشاركات الجديدة في الملحن وسائل الإعلام.',
   'Scheduled and published posts show up here.' => 'تظهر هنا المشاركات المجدولة والمنشورة.',
-  '[[\'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.\', \'tr\']]' => '[[\'إدارة الوسائط الاجتماعية داخل الموقع: ربط الحساب (مفاتيح من اللوحة)، والمحتوى لكل حساب، والجدولة، وتحرير/حذف الشبكة، والتقويم، ولوحة المعلومات، ومساعدة الكتابة Flux AI وأدوات MCP. Facebook، Instagram، YouTube، X، LinkedIn، TikTok، Pinterest، Google Business، WhatsApp.\', \'tr\']]',
+  '[[\'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.\', \'tr\']]' => 'إدارة الوسائط الاجتماعية داخل الموقع: ربط الحساب (مفاتيح من اللوحة)، والمحتوى لكل حساب، والجدولة، وتحرير/حذف الشبكة، والتقويم، ولوحة المعلومات، ومساعدة الكتابة Flux AI وأدوات MCP. Facebook، Instagram، YouTube، X، LinkedIn، TikTok، Pinterest، Google Business، WhatsApp.',
   'Taslak' => 'مسودة',
   'Onay bekliyor' => 'في انتظار الموافقة',
   'Zamanlandı' => 'المقرر',
@@ -1114,6 +1114,8 @@ return array(
   'Yayında' => 'تم النشر',
   'Yeni gönderi medya yazarıyla hazırlanır.' => 'وتتألف المشاركات الجديدة في الملحن وسائل الإعلام.',
   'Zamanlanan ve yayımlanan gönderiler burada görünür.' => 'تظهر هنا المشاركات المجدولة والمنشورة.',
-  'Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.' => '[[\'إدارة الوسائط الاجتماعية داخل الموقع: ربط الحساب (مفاتيح من اللوحة)، والمحتوى لكل حساب، والجدولة، وتحرير/حذف الشبكة، والتقويم، ولوحة المعلومات، ومساعدة الكتابة Flux AI وأدوات MCP. Facebook، Instagram، YouTube، X، LinkedIn، TikTok، Pinterest، Google Business، WhatsApp.\', \'tr\']]',
+  'Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.' => 'إدارة الوسائط الاجتماعية داخل الموقع: ربط الحساب (مفاتيح من اللوحة)، والمحتوى لكل حساب، والجدولة، وتحرير/حذف الشبكة، والتقويم، ولوحة المعلومات، ومساعدة الكتابة Flux AI وأدوات MCP. Facebook، Instagram، YouTube، X، LinkedIn، TikTok، Pinterest، Google Business، WhatsApp.',
+  'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.' => 'إدارة الوسائط الاجتماعية داخل الموقع: ربط الحساب (مفاتيح من اللوحة)، والمحتوى لكل حساب، والجدولة، وتحرير/حذف الشبكة، والتقويم، ولوحة المعلومات، ومساعدة الكتابة Flux AI وأدوات MCP. Facebook، Instagram، YouTube، X، LinkedIn، TikTok، Pinterest، Google Business، WhatsApp.',
+
  ),
 );

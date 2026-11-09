@@ -59,7 +59,9 @@
     "Upload folders": "Upload folders",
     "Working…": "Working…",
     "Upload these new packages first (do not activate them):": "Upload these new packages first (do not activate them):",
-    "[['%drow', 'tr']]\u0000[['%drow', 'tr']]": "[['%drow', 'tr']]\u0000[['%drow', 'tr']]",
-    "[['%dold setting', 'tr']]\u0000[['%dold setting', 'tr']]": "[['%dold setting', 'tr']]\u0000[['%dold setting', 'tr']]"
+    "%d row\u0000%d rows": "%d row\u0000%d rows",
+    "%d legacy setting\u0000%d legacy settings": "%d legacy setting\u0000%d legacy settings",
+    "%drow\u0000%drow": "%drow\u0000%drow",
+    "%dold setting\u0000%dold setting": "%dold setting\u0000%dold setting"
   }
 }

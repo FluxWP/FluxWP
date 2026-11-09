@@ -473,9 +473,9 @@ return array(
   'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.' => '自動化されました: iyzico バンドと有効な仮想 POS プラグインのロゴ。ロゴを追加または削除すると、リストは自由に選択できます。',
   'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.' => '厳選したリスト。 「自動に戻る」は、iyzico バンドと有効な仮想 POS プラグインのロゴに戻ります。',
   'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.' => 'SVG または透過 PNG が最適です。色付きのロゴは、暗いフッター上の白いボックスに表示されます。',
-  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '\\n%s。 Hostinger › PHP ヤプラン 8.2 は最新のセキュリティを備えています。\\n',
+  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '%s。 Hostinger › PHP ヤプラン 8.2 は最新のセキュリティを備えています。',
   'Background pattern' => '背景パターン',
-  '\\nDots\\n' => '\\nドット\\n',
+  '\\nDots\\n' => 'ドット',
   'Leaves' => '葉',
   'None' => 'なし',
   'News introduction' => 'ニュース紹介',
@@ -947,7 +947,8 @@ return array(
   'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.' => '自動化されました: iyzico バンドと有効な仮想 POS プラグインのロゴ。ロゴを追加または削除すると、リストは自由に選択できます。',
   'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.' => '厳選したリスト。 「自動に戻る」は、iyzico バンドと有効な仮想 POS プラグインのロゴに戻ります。',
   'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.' => 'SVG または透過 PNG が最適です。色付きのロゴは、暗いフッター上の白いボックスに表示されます。',
-  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '\\n%s。 Hostinger › PHP ヤプラン 8.2 は最新のセキュリティを備えています。\\n',
-  'Dots' => '\\nドット\\n',
+  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '%s。 Hostinger › PHP ヤプラン 8.2 は最新のセキュリティを備えています。',
+  'Dots' => 'ドット',
+
  ),
 );

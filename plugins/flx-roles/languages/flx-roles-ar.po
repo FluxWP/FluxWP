@@ -322,5 +322,5 @@ msgstr "يتم فرض كافة الأذونات الممكّنة."
 msgid "Roles"
 msgstr "الأدوار"
 
-msgid "[['Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here.', 'tr']]"
-msgstr "[['يضيف أدوار الموظفين والمسؤول والمدير (يُضاف دور جديد أيضًا من اللوحة)؛ يمكنك تشغيل وإيقاف الوصول إلى المهام والشهادات والتبرعات ومركز الاتصال والاستوديو والوصول إلى التقارير للأدوار من صفحة واحدة. الرابط المرجعي الشخصي ورقم هاتف المستخدم (لمساعد WhatsApp) موجودان هنا.', 'tr']]"
+msgid "Adds Staff, Administrator and Manager roles (new role is also added from the panel); You can turn on and off Task, Certificate, Donation, Call Center, Studio and report access for roles from a single page. Personal reference link and user phone number (for WhatsApp assistant) are here."
+msgstr "يضيف أدوار الموظفين والمسؤول والمدير (يُضاف دور جديد أيضًا من اللوحة)؛ يمكنك تشغيل وإيقاف الوصول إلى المهام والشهادات والتبرعات ومركز الاتصال والاستوديو والوصول إلى التقارير للأدوار من صفحة واحدة. الرابط المرجعي الشخصي ورقم هاتف المستخدم (لمساعد WhatsApp) موجودان هنا."

@@ -1501,5 +1501,5 @@ msgstr "p95"
 msgid "Flag"
 msgstr "Drapeau"
 
-msgid "[['Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.', 'tr']]"
-msgstr "[['Performances du site en un seul endroit : requêtes par requête, erreurs PHP, requêtes HTTP externes (panneau de développement), journaux de requêtes lentes/erronées, serveur (CPU, RAM, disque, OPcache), base de données, chargement automatique, cron et vérification du système. L'IA les lit tous avec les outils Flux AI et MCP / Flux AI.', 'tr']]"
+msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
+msgstr "Performances du site en un seul endroit : requêtes par requête, erreurs PHP, requêtes HTTP externes (panneau de développement), journaux de requêtes lentes/erronées, serveur (CPU, RAM, disque, OPcache), base de données, chargement automatique, cron et vérification du système. L'IA les lit tous avec les outils Flux AI et MCP / Flux AI."

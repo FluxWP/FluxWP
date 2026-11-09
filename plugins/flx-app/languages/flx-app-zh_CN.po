@@ -1295,8 +1295,8 @@ msgstr "注释"
 msgid "Call"
 msgstr "致电"
 
-msgid "\\nYetkiniz yok.\\n"
-msgstr "\\nYetkiniz yok。\\n"
+msgid "Yetkiniz yok."
+msgstr "Yetkiniz yok。"
 
-msgid "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]"
-msgstr "[['FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。', 'tr']]"
+msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
+msgstr "FluxWP 桌面和移动应用程序的服务器端:OAuth 2.0 (PKCE) 登录、设备和推送、应用程序视图(配置)、插件显示(清单)、面板会话。 MCP 客户端也通过 OAuth 连接。"

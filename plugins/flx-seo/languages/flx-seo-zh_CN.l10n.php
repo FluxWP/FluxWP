@@ -405,7 +405,7 @@ return array(
   'The server\'s PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel.' => '服务器的 PHP 未针对已知漏洞进行修补或不再受支持。从托管面板将 PHP 升级到当前补丁版本。',
   'session.upload_progress is on' => 'session.upload_progress 已开启',
   'WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel.' => 'WordPress 不使用此 PHP 功能;它是 PHP2Shell 等漏洞的利用路径。在 php.ini 或托管面板中设置 session.upload_progress.enabled = Off。',
-  '[[\'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).\', \'tr\']]' => '[[\'元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。\', \'tr\']]',
+  '[[\'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).\', \'tr\']]' => '元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。',
   'Sayfalar' => '页数',
   'Son yazılar' => '最近的帖子',
   'Ürünler' => '产品展示',
@@ -804,6 +804,8 @@ return array(
   'Sunucudaki PHP bilinen bir açığa karşı yamasız ya da artık desteklenmiyor. Hosting panelinden PHP\'yi güncel yama sürümüne yükseltin.' => '服务器的 PHP 未针对已知漏洞进行修补或不再受支持。从托管面板将 PHP 升级到当前补丁版本。',
   'session.upload_progress açık' => 'session.upload_progress 已开启',
   'WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın.' => 'WordPress 不使用此 PHP 功能;它是 PHP2Shell 等漏洞的利用路径。在 php.ini 或托管面板中设置 session.upload_progress.enabled = Off。',
-  'Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI\'da).' => '[[\'元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。\', \'tr\']]',
+  'Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI\'da).' => '元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。',
+  'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).' => '元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。',
+
  ),
 );

@@ -332,7 +332,7 @@
         "Wenn es leer bleibt, werden der türkische Name und die Beschreibung angezeigt."
       ],
       "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]": [
-        "[['Macht die Website mehrsprachig: Sprachadressen wie /en/, Übersetzung pro Seite, Beitrag, Projekt und Veranstaltung, sprachspezifische visuelle Darstellung, Hreflang und kanonisch, Englischempfehlung für diejenigen, die von außerhalb der Türkei kommen, Sprachauswahl; Sprachunterstützung für Flux AI & MCP und Flux AI-Tools.', 'tr']]"
+        "Macht die Website mehrsprachig: Sprachadressen wie /en/, Übersetzung pro Seite, Beitrag, Projekt und Veranstaltung, sprachspezifische visuelle Darstellung, Hreflang und kanonisch, Englischempfehlung für diejenigen, die von außerhalb der Türkei kommen, Sprachauswahl; Sprachunterstützung für Flux AI & MCP und Flux AI-Tools."
       ],
       "Diller": [
         "Sprachen"
@@ -659,7 +659,10 @@
         "Wenn es leer bleibt, werden der türkische Name und die Beschreibung angezeigt."
       ],
       "Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.": [
-        "[['Macht die Website mehrsprachig: Sprachadressen wie /en/, Übersetzung pro Seite, Beitrag, Projekt und Veranstaltung, sprachspezifische visuelle Darstellung, Hreflang und kanonisch, Englischempfehlung für diejenigen, die von außerhalb der Türkei kommen, Sprachauswahl; Sprachunterstützung für Flux AI & MCP und Flux AI-Tools.', 'tr']]"
+        "Macht die Website mehrsprachig: Sprachadressen wie /en/, Übersetzung pro Seite, Beitrag, Projekt und Veranstaltung, sprachspezifische visuelle Darstellung, Hreflang und kanonisch, Englischempfehlung für diejenigen, die von außerhalb der Türkei kommen, Sprachauswahl; Sprachunterstützung für Flux AI & MCP und Flux AI-Tools."
+      ],
+      "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": [
+        "Macht die Website mehrsprachig: Sprachadressen wie /en/, Übersetzung pro Seite, Beitrag, Projekt und Veranstaltung, sprachspezifische visuelle Darstellung, Hreflang und kanonisch, Englischempfehlung für diejenigen, die von außerhalb der Türkei kommen, Sprachauswahl; Sprachunterstützung für Flux AI & MCP und Flux AI-Tools."
       ]
     }
   }

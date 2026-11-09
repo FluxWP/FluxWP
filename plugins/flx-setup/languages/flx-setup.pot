@@ -1819,68 +1819,6 @@ msgstr ""
 msgid "FluxWP Panel"
 msgstr ""
 
-msgid "[['%dthere is an update', 'tr']]"
-msgid_plural "[['%dthere is an update', 'tr']]"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "[['%dpackage activated.', 'tr']]"
-msgid_plural "[['%dpackage activated.', 'tr']]"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "[['%dpackage has been disabled.', 'tr']]"
-msgid_plural "[['%dpackage has been disabled.', 'tr']]"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "[['%dpackage removed.', 'tr']]"
-msgid_plural "[['%dpackage removed.', 'tr']]"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "[['%dbackup deleted.', 'tr']]"
-msgid_plural "[['%dbackup deleted.', 'tr']]"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr ""
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr ""
-
-msgid "[['%dday', 'tr']]"
-msgid_plural "[['%dday', 'tr']]"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr ""
-
-msgid "[['%sregistration', 'tr']]"
-msgid_plural "[['%sregistration', 'tr']]"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
-msgstr ""
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Close preview"
 msgstr ""
 
@@ -1901,3 +1839,75 @@ msgstr ""
 
 msgid "Preview image %d"
 msgstr ""
+
+msgid "%d package removed."
+msgid_plural "%d packages removed."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s record"
+msgid_plural "%s records"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dthere is an update"
+msgid_plural "%dthere is an update"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dpackage activated."
+msgid_plural "%dpackage activated."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dpackage has been disabled."
+msgid_plural "%dpackage has been disabled."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dpackage removed."
+msgid_plural "%dpackage removed."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%dbackup deleted."
+msgid_plural "%dbackup deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr ""
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgstr ""
+
+msgid "%dday"
+msgid_plural "%dday"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr ""
+
+msgid "%sregistration"
+msgid_plural "%sregistration"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
+msgstr ""
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgid_plural "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgid_plural "Connected ·%dpackage Connected ·%dpackage"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[0] ""
+msgstr[1] ""

@@ -1207,5 +1207,5 @@ msgstr "session.upload_progress está activado"
 msgid "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel."
 msgstr "WordPress no utiliza esta característica de PHP; es la ruta de explotación para agujeros como PHP2Shell. Establezca session.upload_progress.enabled = Desactivado en php.ini o en el panel de alojamiento."
 
-msgid "[['Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).', 'tr']]"
-msgstr "[['Meta título/descripción, canónico, Open Graph, esquema (Organización, Sitio web, Ruta de navegación, Artículo), configuración del mapa del sitio, favicon y control SEO. Herramientas de contenido y SEO para asistentes de IA (en el servidor MCP Flux AI).', 'tr']]"
+msgid "Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI)."
+msgstr "Meta título/descripción, canónico, Open Graph, esquema (Organización, Sitio web, Ruta de navegación, Artículo), configuración del mapa del sitio, favicon y control SEO. Herramientas de contenido y SEO para asistentes de IA (en el servidor MCP Flux AI)."

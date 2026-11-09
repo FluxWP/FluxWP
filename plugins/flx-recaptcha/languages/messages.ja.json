@@ -146,6 +146,6 @@
     "Automatic": "自動",
     "google.com": "google.com",
     "recaptcha.net": "recaptcha.net",
-    "[['It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed \\u200b\\u200bis compatible with custom login address.', 'tr']]": "[['Google reCAPTCHA (v3 非表示または v2 タイル) を使用して、ログイン、登録、パスワード リセット、コメント、WooCommerce アカウントと支払い、Flux Donate 寄付フォーム、および Flux Forms の送信をスパムやボット攻撃から保護します。どのフォームを維持するかはパネルからオン/オフを切り替えます。 Flux Speed はカスタム ログイン アドレスと互換性があります。', 'tr']]"
+    "It protects login, registration, password reset, comment, WooCommerce account and payment, Flux Donate donation form and Flux Forms submissions against spam and bot attacks with Google reCAPTCHA (v3 invisible or v2 tile). Which form will be maintained is switched on and off from the panel; Flux Speed ​​is compatible with custom login address.": "Google reCAPTCHA (v3 非表示または v2 タイル) を使用して、ログイン、登録、パスワード リセット、コメント、WooCommerce アカウントと支払い、Flux Donate 寄付フォーム、および Flux Forms の送信をスパムやボット攻撃から保護します。どのフォームを維持するかはパネルからオン/オフを切り替えます。 Flux Speed はカスタム ログイン アドレスと互換性があります。"
   }
 }

@@ -191,7 +191,7 @@ class FLXB_WC_Addresses {
 		$place  = implode( ' / ', array_filter( array( $a['city'], $state ) ) );
 		$name   = trim( $a['first_name'] . ' ' . $a['last_name'] );
 		$line   = implode( ', ', array_filter( array( $name, trim( $a['address_1'] . ' ' . $a['address_2'] ), $place ) ) );
-		$label  = '' !== $a['label'] ? $a['label'] : ( ! empty( $a['default'] ) ? __( '[[\'Default address\\n', 'flx-donate' ) : '' );
+		$label  = '' !== $a['label'] ? $a['label'] : ( ! empty( $a['default'] ) ? __( 'Default address', 'flx-donate' ) : '' );
 		return '' !== $label ? $label . ' · ' . $line : $line;
 	}
 
@@ -204,7 +204,7 @@ class FLXB_WC_Addresses {
 			return;
 		}
 		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_flxb_addr'] ?? '' ) ), self::NONCE ) ) {
-			wc_add_notice( __( '\\nThe page has expired. Please try again.\\n', 'flx-donate' ), 'error' );
+			wc_add_notice( __( 'The page has expired. Please try again.', 'flx-donate' ), 'error' );
 			return;
 		}
 		$uid    = get_current_user_id();
@@ -216,16 +216,16 @@ class FLXB_WC_Addresses {
 				$in[ $k ] = wp_unslash( $_POST[ 'flxb_' . $k ] ?? '' );
 			}
 			if ( ! self::is_complete( self::clean( $in ) ) || '' === trim( (string) $in['first_name'] ) ) {
-				wc_add_notice( __( '\\nPlease fill in the name, address and city.\\n', 'flx-donate' ), 'error' );
+				wc_add_notice( __( 'Please fill in the name, address and city.', 'flx-donate' ), 'error' );
 				$GLOBALS['flxb_addr_old'] = $in;
 				return;
 			}
 			self::add( $uid, $in );
 			wc_add_notice( __( 'Address saved.', 'flx-donate' ) );
 		} elseif ( 'delete' === $action ) {
-			self::delete( $uid, $id ) && wc_add_notice( __( '\\nAddress deleted.\\n', 'flx-donate' ) );
+			self::delete( $uid, $id ) && wc_add_notice( __( 'Address deleted.', 'flx-donate' ) );
 		} elseif ( 'default' === $action ) {
-			self::make_default( $uid, $id ) && wc_add_notice( __( '\\nDefault address changed.\\n', 'flx-donate' ) );
+			self::make_default( $uid, $id ) && wc_add_notice( __( 'Default address changed.', 'flx-donate' ) );
 		}
 		wp_safe_redirect( wc_get_account_endpoint_url( 'edit-address' ) );
 		exit;
@@ -241,8 +241,8 @@ class FLXB_WC_Addresses {
 		$c   = WC()->countries;
 		?>
 <section class="flxb-ab" id="adres-defteri">
-	<h2 class="flxb-ab__title"><?php esc_html_e( '\\nAddress book\\n', 'flx-donate' ); ?></h2>
-	<p class="flxb-ab__help"><?php esc_html_e( '\\nSaved addresses are offered in a list at the checkout. The default one is filled in automatically.\\n', 'flx-donate' ); ?></p>
+	<h2 class="flxb-ab__title"><?php esc_html_e( 'Address book', 'flx-donate' ); ?></h2>
+	<p class="flxb-ab__help"><?php esc_html_e( 'Saved addresses are offered in a list at the checkout. The default one is filled in automatically.', 'flx-donate' ); ?></p>
 	<?php if ( $all ) : ?>
 	<ul class="flxb-ab__list">
 		<?php foreach ( $all as $id => $a ) : ?>
@@ -256,7 +256,7 @@ class FLXB_WC_Addresses {
 			<div class="flxb-ab__actions">
 				<form method="post"><?php wp_nonce_field( self::NONCE, '_flxb_addr' ); ?><input type="hidden" name="flxb_addr_id" value="<?php echo esc_attr( $id ); ?>">
 					<button type="submit" name="flxb_addr_action" value="default" class="button flxb-ab__btn"><?php esc_html_e( 'Make default', 'flx-donate' ); ?></button>
-					<button type="submit" name="flxb_addr_action" value="delete" class="button flxb-ab__btn flxb-ab__btn--del" onclick="return confirm(this.dataset.confirm)" data-confirm="<?php esc_attr_e( '\\nDelete this address?\\n', 'flx-donate' ); ?>"><?php esc_html_e( 'Delete', 'flx-donate' ); ?></button>
+					<button type="submit" name="flxb_addr_action" value="delete" class="button flxb-ab__btn flxb-ab__btn--del" onclick="return confirm(this.dataset.confirm)" data-confirm="<?php esc_attr_e( 'Delete this address?', 'flx-donate' ); ?>"><?php esc_html_e( 'Delete', 'flx-donate' ); ?></button>
 				</form>
 			</div>
 			<?php endif; ?>
@@ -265,13 +265,13 @@ class FLXB_WC_Addresses {
 	</ul>
 	<?php endif; ?>
 	<details class="flxb-ab__new"<?php echo $old || ! $all ? ' open' : ''; ?>>
-		<summary class="button"><?php esc_html_e( '\\n+ Add a new address\\n', 'flx-donate' ); ?></summary>
+		<summary class="button"><?php esc_html_e( '+ Add a new address', 'flx-donate' ); ?></summary>
 		<form method="post" class="flxb-ab__form">
 			<?php wp_nonce_field( self::NONCE, '_flxb_addr' ); ?>
 			<input type="hidden" name="flxb_addr_action" value="add">
 			<?php
 			$country = (string) ( $old['country'] ?? ( $c->get_base_country() ? $c->get_base_country() : 'TR' ) );
-			woocommerce_form_field( 'flxb_label', array( 'label' => __( '\\nAddress name\\n', 'flx-donate' ), 'placeholder' => __( '\\ne.g. Home, Office\\n', 'flx-donate' ), 'class' => array( 'form-row-wide' ) ), (string) ( $old['label'] ?? '' ) );
+			woocommerce_form_field( 'flxb_label', array( 'label' => __( 'Address name', 'flx-donate' ), 'placeholder' => __( 'e.g. Home, Office', 'flx-donate' ), 'class' => array( 'form-row-wide' ) ), (string) ( $old['label'] ?? '' ) );
 			foreach ( $c->get_address_fields( $country, 'flxb_' ) as $key => $field ) {
 				woocommerce_form_field( $key, $field, (string) ( $old[ substr( $key, 5 ) ] ?? ( 'flxb_country' === $key ? $country : '' ) ) );
 			}
@@ -324,10 +324,10 @@ class FLXB_WC_Addresses {
 			'FLXBAddr',
 			array(
 				'rows'    => $rows,
-				'label'   => __( '\\nSaved address\\n', 'flx-donate' ),
-				'newText' => __( '\\n+ Add a new address\\n', 'flx-donate' ),
-				'newHelp' => __( '\\nWrite the new address below; it is saved to your address book with the order.\\n', 'flx-donate' ),
-				'manage'  => __( '\\nManage addresses\\n', 'flx-donate' ),
+				'label'   => __( 'Saved address', 'flx-donate' ),
+				'newText' => __( '+ Add a new address', 'flx-donate' ),
+				'newHelp' => __( 'Write the new address below; it is saved to your address book with the order.', 'flx-donate' ),
+				'manage'  => __( 'Manage addresses', 'flx-donate' ),
 				'url'     => wc_get_account_endpoint_url( 'edit-address' ) . '#adres-defteri',
 			)
 		);

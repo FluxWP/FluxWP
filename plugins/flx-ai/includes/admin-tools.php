@@ -109,7 +109,7 @@ function flxai_page_tools() {
 	if ( isset( $_GET['saved'] ) ) {
 		$msg = isset( $_GET['bulk'] )
 			/* translators: %s: number of tools */
-			? sprintf( _n( '[[\'%stool updated.\', \'tr\']]', '[[\'%stool updated.\', \'tr\']]', (int) $_GET['bulk'], 'flx-ai' ), number_format_i18n( (int) $_GET['bulk'] ) )
+			? sprintf( _n( '%s tool updated.', '%s tools updated.', (int) $_GET['bulk'], 'flx-ai' ), number_format_i18n( (int) $_GET['bulk'] ) )
 			: ( isset( $_GET['picked'] )
 				/* translators: %s: tool name */
 				? sprintf( __( 'The plugin used for %s was changed.', 'flx-ai' ), sanitize_text_field( wp_unslash( $_GET['picked'] ) ) )
@@ -135,7 +135,7 @@ function flxai_page_tools() {
 	uasort( $by_src, fn( $a, $b ) => $b['n'] <=> $a['n'] ?: strcmp( $a['label'], $b['label'] ) );
 
 	echo '<div class="flxai-kpis flxai-tools-kpis">';
-	flxai_kpi( __( 'Tool', 'flx-ai' ), number_format_i18n( count( $active ) ), sprintf( /* translators: %s: number of plugins */ _n( '[[\'%splugin\', \'tr\']]', '[[\'%splugin\', \'tr\']]', count( $by_src ), 'flx-ai' ), number_format_i18n( count( $by_src ) ) ) );
+	flxai_kpi( __( 'Tool', 'flx-ai' ), number_format_i18n( count( $active ) ), sprintf( /* translators: %s: number of plugins */ _n( '%s plugin', '%s plugins', count( $by_src ), 'flx-ai' ), number_format_i18n( count( $by_src ) ) ) );
 	flxai_kpi( __( 'On', 'flx-ai' ), number_format_i18n( $n_on ), sprintf( /* translators: %s: number of tools */ __( '%s off', 'flx-ai' ), number_format_i18n( count( $active ) - $n_on ) ) );
 	flxai_kpi( __( 'Name conflicts', 'flx-ai' ), number_format_i18n( $n_dupe ), $n_dupe ? __( 'Only one is on per name', 'flx-ai' ) : __( 'None', 'flx-ai' ), null, $n_dupe > 0 );
 	flxai_kpi( __( 'Unprefixed names', 'flx-ai' ), number_format_i18n( $n_noprfx ), __( 'Tools without a plugin prefix', 'flx-ai' ) );

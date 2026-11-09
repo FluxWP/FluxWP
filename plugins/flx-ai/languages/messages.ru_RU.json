@@ -506,11 +506,14 @@
     "High": "Высокий",
     "Effort": "Усилие",
     "Store request bodies": "Сохранять тела запросов",
-    "[['%stool updated.', 'tr']]\u0000[['%stool updated.', 'tr']]": "[[' Инструмент%sобновлен.', 'tr']]\u0000[[' Инструмент%sобновлен.', 'tr']]\u0000[[' Инструмент%sобновлен.', 'tr']]",
-    "[['%splugin', 'tr']]\u0000[['%splugin', 'tr']]": "[[' Плагин%s', 'tr']]\u0000[[' Плагин%s', 'tr']]\u0000[[' Плагин%s', 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано.', 'tr']]",
-    "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n": "\\nПотрачено:%1$s/ Лимит:%2$s\\nРегенерация:%3$s\\n\\nПодробнее:%4$s\\n",
-    "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]": "[['Общий центр AI для всех плагинов FluxWP: ключи OpenRouter и Anthropic, каталог моделей и цены, кеш подсказок, регистрация транспортных средств, общий сервер MCP, отчеты об использовании, выставление счетов и лимит расходов; Администратор и публичный AI-чат на сайте для авторизованных пользователей.', 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]\u0000\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано.', 'tr']]\u0000\\n Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано.', 'tr']]\u0000\\n Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано.', 'tr']]"
+    "%d tool is registered.\u0000%d tools are registered.": "Инструмент%dзарегистрирован.\u0000Инструменты%dзарегистрированы.\u0000Инструменты%dзарегистрированы.",
+    "%s tool updated.\u0000%s tools updated.": "Инструмент%sобновлен.\u0000Инструменты%sобновлены.\u0000Инструменты%sобновлены.",
+    "%s plugin\u0000%s plugins": "Плагин%s\u0000Плагины%s\u0000Плагины%s",
+    "%stool updated.\u0000%stool updated.": " Инструмент%sобновлен.\u0000 Инструмент%sобновлен.\u0000 Инструмент%sобновлен.",
+    "%splugin\u0000%splugin": " Плагин%s\u0000 Плагин%s\u0000 Плагин%s",
+    "%dvehicle is registered.%dvehicle is registered.": " Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано.",
+    "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s": "Потрачено:%1$s/ Лимит:%2$s\nРегенерация:%3$s\n\nПодробнее:%4$s",
+    "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.": "Общий центр AI для всех плагинов FluxWP: ключи OpenRouter и Anthropic, каталог моделей и цены, кеш подсказок, регистрация транспортных средств, общий сервер MCP, отчеты об использовании, выставление счетов и лимит расходов; Администратор и публичный AI-чат на сайте для авторизованных пользователей.",
+    "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.": " Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано.\u0000 Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано.\u0000 Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано."
   }
 }

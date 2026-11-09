@@ -42,7 +42,7 @@ abstract class FLXF_Payment_Provider_Base implements FLXF_Payment_Provider {
 		if ( is_object( $record ) && 'completed' === $record->status ) {
 			return FLXF_Payment_Result::completed( (string) $record->transaction_id );
 		}
-		return FLXF_Payment_Result::failed( __( '\\nThe payment could not be verified yet.\\n', 'flx-forms' ) );
+		return FLXF_Payment_Result::failed( __( 'The payment could not be verified yet.', 'flx-forms' ) );
 	}
 
 	public function handle_webhook( $request ) {
@@ -50,7 +50,7 @@ abstract class FLXF_Payment_Provider_Base implements FLXF_Payment_Provider {
 	}
 
 	public function refund( $record, $amount = null ) {
-		return FLXF_Payment_Result::failed( __( '\\nThis payment provider does not support refunds from the site.\\n', 'flx-forms' ) );
+		return FLXF_Payment_Result::failed( __( 'This payment provider does not support refunds from the site.', 'flx-forms' ) );
 	}
 
 	/** Read one of this provider's stored settings ('' when missing). */

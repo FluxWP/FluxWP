@@ -1,0 +1,499 @@
+[
+  {
+    "package": "flx-ai",
+    "forms": [
+      "%s tool updated.",
+      "%s tools updated."
+    ]
+  },
+  {
+    "package": "flx-ai",
+    "forms": [
+      "%s plugin",
+      "%s plugins"
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "%d view",
+      "%d views"
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "%d record",
+      "%d records"
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "There is %d active template.",
+      "There are %d active templates."
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "%1$d message has been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s.",
+      "%1$d messages have been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s."
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "%d message could not be sent.",
+      "%d messages could not be sent."
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "%d message sent without failures.",
+      "%d messages sent without failures."
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "%d open event has a published page.",
+      "%d open events have published pages."
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "sapling planted",
+      "saplings planted"
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "sapling collected",
+      "saplings collected"
+    ]
+  },
+  {
+    "package": "flx-certificates",
+    "forms": [
+      "%s person contributed",
+      "%s people contributed"
+    ]
+  },
+  {
+    "package": "flx-migrate",
+    "forms": [
+      "%d row",
+      "%d rows"
+    ]
+  },
+  {
+    "package": "flx-migrate",
+    "forms": [
+      "%d legacy setting",
+      "%d legacy settings"
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "field",
+      "fields"
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "Flux Donate is not active and the Stripe keys are missing: %d payment form shows \"Online payment is unavailable\".",
+      "Flux Donate is not active and the Stripe keys are missing: %d payment forms show \"Online payment is unavailable\"."
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "Not active, but %d active automation creates or sends certificates; it will fail.",
+      "Not active, but %d active automations create or send certificates; they will fail."
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "%d automation is on.",
+      "%d automations are on."
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "%d run failed in the last 7 days; see the run log.",
+      "%d runs failed in the last 7 days; see the run log."
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "Keys are set; %d form uses reCAPTCHA.",
+      "Keys are set; %d forms use reCAPTCHA."
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown.",
+      "%d forms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "Form",
+      "Forms"
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "%d service account connected",
+      "%d service accounts connected"
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "%d column will be written to the sheet.",
+      "%d columns will be written to the sheet."
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "Remove ALL %d binding? Syncing stops for every form. Your Google Sheets are not deleted.",
+      "Remove ALL %d bindings? Syncing stops for every form. Your Google Sheets are not deleted."
+    ]
+  },
+  {
+    "package": "flx-forms",
+    "forms": [
+      "You can attach up to %1$d file here. Please wait about %2$d minutes before trying again.",
+      "You can attach up to %1$d files here. Please wait about %2$d minutes before trying again."
+    ]
+  },
+  {
+    "package": "flx-admin",
+    "forms": [
+      "%s donation",
+      "%s donations"
+    ]
+  },
+  {
+    "package": "flx-admin",
+    "forms": [
+      "%s error",
+      "%s errors"
+    ]
+  },
+  {
+    "package": "flx-admin",
+    "forms": [
+      "%s warning",
+      "%s warnings"
+    ]
+  },
+  {
+    "package": "flx-admin",
+    "forms": [
+      "%s role has a custom menu layout; other roles use the default grouped menu.",
+      "%s roles have custom menu layouts; other roles use the default grouped menu."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s recurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed.",
+      "%s recurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s donor",
+      "%s donors"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "and %s more",
+      "and %s more"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "Import %s row",
+      "Import %s rows"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%1$s donation · %2$s received",
+      "%1$s donations · %2$s received"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s donation moved to the trash.",
+      "%s donations moved to the trash."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s donation restored.",
+      "%s donations restored."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s donation deleted permanently.",
+      "%s donations deleted permanently."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%1$s paid gift · %2$s",
+      "%1$s paid gifts · %2$s"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s waiting",
+      "%s waiting"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%d certificate made. Check it, then press \"Send the certificates\".",
+      "%d certificates made. Check them, then press \"Send the certificates\"."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%d item updated.",
+      "%d items updated."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s record",
+      "%s records"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%d without a price",
+      "%d without a price"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "Used by %s type",
+      "Used by %s types"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%d field",
+      "%d fields"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s recurring donation",
+      "%s recurring donations"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "Please write at most %s name (one per share).",
+      "Please write at most %s names (one per share)."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "Your certificate is ready",
+      "Your certificates are ready"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "Donation of %1$s sapling. %2$s plants it for you and sends an online certificate in your name. Pay by card or bank transfer.",
+      "Donation of %1$s saplings. %2$s plants them for you and sends an online certificate in your name. Pay by card or bank transfer."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s Sapling",
+      "%s Saplings"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "Warning: this receipt was uploaded before (%1$d time, via %2$s). Check it before confirming the payment.",
+      "Warning: this receipt was uploaded before (%1$d times, via %2$s). Check it before confirming the payment."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%s donation is awaiting payment",
+      "%s donations are awaiting payment"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "donor",
+      "donors"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "day left",
+      "days left"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%1$d task is more than 15 minutes late: %2$s.",
+      "%1$d tasks are more than 15 minutes late: %2$s."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%d recurring donation stopped after its card was declined 3 times.",
+      "%d recurring donations stopped after their cards were declined 3 times."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%d donation type is open and priced.",
+      "%d donation types are open and priced."
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%d bank account is listed for bank transfer gifts.",
+      "%d bank accounts are listed for bank transfer gifts."
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "%d update available",
+      "%d updates available"
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "%d package activated.",
+      "%d packages activated."
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "%d package deactivated.",
+      "%d packages deactivated."
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "%d package removed.",
+      "%d packages removed."
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "%d backup deleted.",
+      "%d backups deleted."
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "%d expired backup deleted.",
+      "%d expired backups deleted."
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "%d day",
+      "%d days"
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "Currently %1$d update backup, %2$s.",
+      "Currently %1$d update backups, %2$s."
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "%s record",
+      "%s records"
+    ]
+  },
+  {
+    "package": "flx-ai",
+    "forms": [
+      "%d tool is registered.",
+      "%d tools are registered."
+    ]
+  },
+  {
+    "package": "flx-setup",
+    "forms": [
+      "Connected · %d package",
+      "Connected · %d packages"
+    ]
+  },
+  {
+    "package": "flx-donate",
+    "forms": [
+      "%d active type has its hidden WooCommerce product.",
+      "%d active types have their hidden WooCommerce products."
+    ]
+  }
+]

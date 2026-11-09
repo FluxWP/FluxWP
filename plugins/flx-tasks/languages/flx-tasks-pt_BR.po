@@ -2737,5 +2737,5 @@ msgstr "Nova tarefa"
 msgid "Create and open"
 msgstr "Criar e abrir"
 
-msgid "[['ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.', 'tr']]"
-msgstr "[['Rastreamento de tarefas do tipo ClickUp: projetos, pastas, listas; visualizações de lista, quadro (kanban) e calendário, visualizações filtradas salvas, campos personalizados, anexos de comentários e arquivos, notificações, autorizações de lista, painel de administração, servidor MCP e inteligência artificial com OpenRouter.', 'tr']]"
+msgid "ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter."
+msgstr "Rastreamento de tarefas do tipo ClickUp: projetos, pastas, listas; visualizações de lista, quadro (kanban) e calendário, visualizações filtradas salvas, campos personalizados, anexos de comentários e arquivos, notificações, autorizações de lista, painel de administração, servidor MCP e inteligência artificial com OpenRouter."

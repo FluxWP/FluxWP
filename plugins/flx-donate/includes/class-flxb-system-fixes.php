@@ -23,8 +23,8 @@ final class FLXB_System_Fixes {
 		$fixes = (array) $fixes;
 
 		$fixes['flxb.org_name'] = array(
-			'label'       => __( '\\nSet the organisation name\\n', 'flx-donate' ),
-			'description' => __( '\\nThe name shown on receipts and donor e-mails (max. 190 characters).\\n', 'flx-donate' ),
+			'label'       => __( 'Set the organisation name', 'flx-donate' ),
+			'description' => __( 'The name shown on receipts and donor e-mails (max. 190 characters).', 'flx-donate' ),
 			'source'      => self::SOURCE,
 			'checks'      => array( 'flxb.cfg.org' ),
 			'value'       => array( 'type' => 'string' ),
@@ -34,17 +34,17 @@ final class FLXB_System_Fixes {
 			'run'         => function ( $value ) {
 				$name = mb_substr( sanitize_text_field( (string) $value ), 0, 190 );
 				if ( '' === trim( $name ) ) {
-					throw new Exception( __( '\\nThe organisation name cannot be empty.\\n', 'flx-donate' ) );
+					throw new Exception( __( 'The organisation name cannot be empty.', 'flx-donate' ) );
 				}
 				self::save_setting( 'org_name', $name );
 				/* translators: %s: organisation name */
-				return sprintf( __( '\\nOrganisation name saved:%s\\n', 'flx-donate' ), $name );
+				return sprintf( __( 'Organisation name saved:%s', 'flx-donate' ), $name );
 			},
 		);
 
 		$fixes['flxb.currency'] = array(
-			'label'       => __( '\\nSet the default currency\\n', 'flx-donate' ),
-			'description' => __( '\\nUsed for new donation types and manual entries.\\n', 'flx-donate' ),
+			'label'       => __( 'Set the default currency', 'flx-donate' ),
+			'description' => __( 'Used for new donation types and manual entries.', 'flx-donate' ),
 			'source'      => self::SOURCE,
 			'checks'      => array( 'flxb.cfg.currency' ),
 			'value'       => array( 'type' => 'string', 'enum' => self::CURRENCIES ),
@@ -53,11 +53,11 @@ final class FLXB_System_Fixes {
 			},
 			'run'         => function ( $value ) {
 				if ( ! in_array( $value, self::CURRENCIES, true ) ) {
-					throw new Exception( __( '\\nUnsupported currency.\\n', 'flx-donate' ) );
+					throw new Exception( __( 'Unsupported currency.', 'flx-donate' ) );
 				}
 				self::save_setting( 'currency', $value );
 				/* translators: %s: currency code */
-				return sprintf( __( '\\nDefault currency:%s\\n', 'flx-donate' ), $value );
+				return sprintf( __( 'Default currency:%s', 'flx-donate' ), $value );
 			},
 		);
 
@@ -70,8 +70,8 @@ final class FLXB_System_Fixes {
 		}
 		if ( $closed ) {
 			$fixes['flxb.type_open'] = array(
-				'label'       => __( '\\nOpen a donation type\\n', 'flx-donate' ),
-				'description' => __( '\\nSets a closed donation type that already has a price (or a free amount) to active. Value: the type slug.\\n', 'flx-donate' ),
+				'label'       => __( 'Open a donation type', 'flx-donate' ),
+				'description' => __( 'Sets a closed donation type that already has a price (or a free amount) to active. Value: the type slug.', 'flx-donate' ),
 				'source'      => self::SOURCE,
 				'checks'      => array( 'flxb.cfg.types' ),
 				'value'       => array( 'type' => 'string', 'enum' => $closed ),
@@ -82,18 +82,18 @@ final class FLXB_System_Fixes {
 				'run'         => function ( $value ) {
 					$t = self::type( $value );
 					if ( ! self::sellable( $t ) ) {
-						throw new Exception( __( '\\nThis type has no option with a price and no free amount; set a price first.\\n', 'flx-donate' ) );
+						throw new Exception( __( 'This type has no option with a price and no free amount; set a price first.', 'flx-donate' ) );
 					}
 					self::save_type( $t, array( 'status' => 'active' ) );
 					/* translators: %s: donation type title */
-					return sprintf( __( '\\nDonation type opened:%s\\n', 'flx-donate' ), $t['title'] );
+					return sprintf( __( 'Donation type opened:%s', 'flx-donate' ), $t['title'] );
 				},
 			);
 		}
 
 		$fixes['flxb.type_unit_price'] = array(
-			'label'       => __( '\\nSet a donation type\'s unit price\\n', 'flx-donate' ),
-			'description' => __( '\\nValue "slug=price", e.g. "fidan=150". Every active option gets price × its units (1 sapling 150, 5 saplings 750). Linked forms update automatically.\\n', 'flx-donate' ),
+			'label'       => __( 'Set a donation type\'s unit price', 'flx-donate' ),
+			'description' => __( 'Value "slug=price", e.g. "fidan=150". Every active option gets price × its units (1 sapling 150, 5 saplings 750). Linked forms update automatically.', 'flx-donate' ),
 			'source'      => self::SOURCE,
 			'checks'      => array( 'flxb.cfg.types' ),
 			'value'       => array( 'type' => 'string', 'pattern' => '^[a-z0-9-]+=[0-9]+([.,][0-9]{1,2})?$' ),
@@ -114,7 +114,7 @@ final class FLXB_System_Fixes {
 				$t     = self::type( $p[0] );
 				$price = round( (float) str_replace( ',', '.', $p[1] ), 2 );
 				if ( $price <= 0 || $price > 1000000 ) {
-					throw new Exception( __( '\\nThe price must be greater than 0.\\n', 'flx-donate' ) );
+					throw new Exception( __( 'The price must be greater than 0.', 'flx-donate' ) );
 				}
 				$opts = $t['options'];
 				$n    = 0;
@@ -125,20 +125,20 @@ final class FLXB_System_Fixes {
 					}
 				}
 				if ( ! $n ) {
-					throw new Exception( __( '\\nThis type has no active option; add one on the Donation types page.\\n', 'flx-donate' ) );
+					throw new Exception( __( 'This type has no active option; add one on the Donation types page.', 'flx-donate' ) );
 				}
 				self::save_type( $t, array( 'options' => $opts ) );
 				/* translators: 1: donation type title, 2: price, 3: currency */
-				return sprintf( __( '\\nUnit price of%1$sset to%2$s%3$s.\\n', 'flx-donate' ), $t['title'], number_format_i18n( $price, 2 ), $t['currency'] );
+				return sprintf( __( 'Unit price of%1$sset to%2$s%3$s.', 'flx-donate' ), $t['title'], number_format_i18n( $price, 2 ), $t['currency'] );
 			},
 		);
 
 		$forms = flxb_forms();
 		if ( $forms ) {
 			$fixes['flxb.type_link_form'] = array(
-				'label'       => __( '\\nLink a form to a donation type\\n', 'flx-donate' ),
+				'label'       => __( 'Link a form to a donation type', 'flx-donate' ),
 				/* translators: %s: list of "id: title" */
-				'description' => sprintf( __( '\\nValue "slug=form id", e.g. "fidan=3". Forms:%s\\n', 'flx-donate' ), implode( ', ', array_slice( array_map( function ( $id, $f ) { return $id . ': ' . $f['title']; }, array_keys( $forms ), $forms ), 0, 20 ) ) ),
+				'description' => sprintf( __( 'Value "slug=form id", e.g. "fidan=3". Forms:%s', 'flx-donate' ), implode( ', ', array_slice( array_map( function ( $id, $f ) { return $id . ': ' . $f['title']; }, array_keys( $forms ), $forms ), 0, 20 ) ) ),
 				'source'      => self::SOURCE,
 				'checks'      => array( 'flxb.cfg.type_forms' ),
 				'value'       => array( 'type' => 'string', 'pattern' => '^[a-z0-9-]+=[0-9]+$' ),
@@ -152,18 +152,18 @@ final class FLXB_System_Fixes {
 					$t   = self::type( $p[0] );
 					$fid = absint( $p[1] );
 					if ( ! isset( $forms[ $fid ] ) ) {
-						throw new Exception( __( '\\nNo form with this id.\\n', 'flx-donate' ) );
+						throw new Exception( __( 'No form with this id.', 'flx-donate' ) );
 					}
 					if ( in_array( $fid, $t['form_ids'], true ) ) {
-						return __( '\\nThe form is already linked.\\n', 'flx-donate' );
+						return __( 'The form is already linked.', 'flx-donate' );
 					}
 					self::save_type( $t, array( 'form_ids' => array_merge( $t['form_ids'], array( $fid ) ) ) );
 					$t = FLXB_Types::get( (int) $t['id'] );
 					if ( ! in_array( $fid, $t['form_ids'], true ) ) {
-						throw new Exception( implode( ' ', FLXB_Types::$notices ) ?: __( '\\nThe form could not be linked.\\n', 'flx-donate' ) );
+						throw new Exception( implode( ' ', FLXB_Types::$notices ) ?: __( 'The form could not be linked.', 'flx-donate' ) );
 					}
 					/* translators: 1: form title, 2: donation type title */
-					return sprintf( __( '\\nForm "%1$s" linked to%2$s.\\n', 'flx-donate' ), $forms[ $fid ]['title'], $t['title'] );
+					return sprintf( __( 'Form "%1$s" linked to%2$s.', 'flx-donate' ), $forms[ $fid ]['title'], $t['title'] );
 				},
 			);
 		}
@@ -196,7 +196,7 @@ final class FLXB_System_Fixes {
 	private static function pair( $value, $strict = true ) {
 		if ( ! is_string( $value ) || ! preg_match( '/^([a-z0-9-]+)=([0-9]+(?:[.,][0-9]{1,2})?)$/', trim( $value ), $m ) ) {
 			if ( $strict ) {
-				throw new Exception( __( '\\nUse the form "slug=value".\\n', 'flx-donate' ) );
+				throw new Exception( __( 'Use the form "slug=value".', 'flx-donate' ) );
 			}
 			return null;
 		}
@@ -206,7 +206,7 @@ final class FLXB_System_Fixes {
 	private static function type( $slug ) {
 		$t = FLXB_Types::get_by_slug( (string) $slug );
 		if ( ! $t || 'archived' === $t['status'] ) {
-			throw new Exception( __( '\\nNo donation type with this slug.\\n', 'flx-donate' ) );
+			throw new Exception( __( 'No donation type with this slug.', 'flx-donate' ) );
 		}
 		return $t;
 	}

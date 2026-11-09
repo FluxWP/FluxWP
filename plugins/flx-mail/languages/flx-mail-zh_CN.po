@@ -2505,5 +2505,5 @@ msgstr "WhatsApp"
 msgid "The reply cannot be empty."
 msgstr "回复不能为空。"
 
-msgid "[['All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.', 'tr']]"
-msgstr "[['网站的所有电子邮件集中在一处:发件人姓名/地址(info@/no-reply@)、SMTP、带徽标且适合移动设备的企业模板、查看、编辑、打开/关闭 WordPress + WooCommerce + FluxWP 插件的电子邮件、发送记录、单独和批量发送。 WhatsApp (Evolution API) 和 SMS (Netgsm) 连接也在这里;其他插件将其与公共 API 一起使用。', 'tr']]"
+msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
+msgstr "网站的所有电子邮件集中在一处:发件人姓名/地址(info@/no-reply@)、SMTP、带徽标且适合移动设备的企业模板、查看、编辑、打开/关闭 WordPress + WooCommerce + FluxWP 插件的电子邮件、发送记录、单独和批量发送。 WhatsApp (Evolution API) 和 SMS (Netgsm) 连接也在这里;其他插件将其与公共 API 一起使用。"

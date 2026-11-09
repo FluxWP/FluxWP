@@ -504,11 +504,14 @@
     "High": "High",
     "Effort": "Effort",
     "Store request bodies": "Store request bodies",
-    "[['%stool updated.', 'tr']]\u0000[['%stool updated.', 'tr']]": "[['%stool updated.', 'tr']]\u0000[['%stool updated.', 'tr']]",
-    "[['%splugin', 'tr']]\u0000[['%splugin', 'tr']]": "[['%splugin', 'tr']]\u0000[['%splugin', 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]",
-    "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n": "\\nSpent:%1$s/ Limit:%2$s\\nRegeneration:%3$s\\n\\nDetail:%4$s\\n",
-    "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]": "[['Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.', 'tr']]",
-    "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]\u0000\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]": "\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]\u0000\\n%dvehicle is registered.%dvehicle is registered.', 'tr']]"
+    "%d tool is registered.\u0000%d tools are registered.": "%d tool is registered.\u0000%d tools are registered.",
+    "%s tool updated.\u0000%s tools updated.": "%s tool updated.\u0000%s tools updated.",
+    "%s plugin\u0000%s plugins": "%s plugin\u0000%s plugins",
+    "%stool updated.\u0000%stool updated.": "%stool updated.\u0000%stool updated.",
+    "%splugin\u0000%splugin": "%splugin\u0000%splugin",
+    "%dvehicle is registered.%dvehicle is registered.": "%dvehicle is registered.%dvehicle is registered.",
+    "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s": "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s",
+    "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.": "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.",
+    "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.": "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered."
   }
 }

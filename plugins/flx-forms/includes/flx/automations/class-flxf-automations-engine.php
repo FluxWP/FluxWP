@@ -490,7 +490,7 @@ class FLXF_Automations_Engine {
 			case 'amount_div':
 				$amount = $ctx['payment']['amount'] ?? null;
 				if ( null === $amount ) {
-					return new WP_Error( 'flxf_amount', __( '\\nNo verified payment amount for this submission.\\n', 'flx-forms' ) );
+					return new WP_Error( 'flxf_amount', __( 'No verified payment amount for this submission.', 'flx-forms' ) );
 				}
 				$unit = (float) $map['unit_price'] > 0 ? (float) $map['unit_price'] : 1;
 				/* A companion plugin that owns the prices (Flux Donate) may supply the unit price actually paid. */
@@ -586,19 +586,19 @@ class FLXF_Automations_Engine {
 			}
 		}
 		/* translators: 1: certificate number, 2: person name, 3: template variables */
-		$msg = sprintf( __( '\\nCertificate%1$sfor%2$s(%3$s)\\n', 'flx-forms' ), $cert['number'], $person['name'], implode( ', ', $vals ) );
+		$msg = sprintf( __( 'Certificate%1$sfor%2$s(%3$s)', 'flx-forms' ), $cert['number'], $person['name'], implode( ', ', $vals ) );
 		return array( 'status' => 'ok', 'message' => $msg . ( $notes ? ' · ' . implode( ' · ', $notes ) : '' ) );
 	}
 
 	private static function act_send_certificate( array $a, array &$run ) {
 		if ( empty( $run['state']['cert'] ) ) {
-			return array( 'status' => 'skipped', 'message' => __( '\\nNo certificate was created in an earlier step.\\n', 'flx-forms' ) );
+			return array( 'status' => 'skipped', 'message' => __( 'No certificate was created in an earlier step.', 'flx-forms' ) );
 		}
 		if ( ! function_exists( 'flxs_send_certificate' ) ) {
 			return array( 'status' => 'error', 'message' => __( 'Flux Certificates is not active.', 'flx-forms' ) );
 		}
 		if ( empty( $a['channels'] ) ) {
-			return array( 'status' => 'skipped', 'message' => __( '\\nNo channel selected.\\n', 'flx-forms' ) );
+			return array( 'status' => 'skipped', 'message' => __( 'No channel selected.', 'flx-forms' ) );
 		}
 		$providers = array_filter( (array) $a['providers'] );
 		$res       = flxs_send_certificate( (int) $run['state']['cert']['id'], $a['channels'], $providers, 'flxf_automation' );
@@ -615,20 +615,20 @@ class FLXF_Automations_Engine {
 		if ( $ok && function_exists( 'flxs_kick_queue' ) ) {
 			flxs_kick_queue();
 		}
-		$msg = ( $ok ? sprintf( /* translators: %s: channel list */ __( '\\nQueued:%s\\n', 'flx-forms' ), implode( ', ', $ok ) ) : '' ) . ( $ok && $err ? ' · ' : '' ) . implode( ' · ', $err );
+		$msg = ( $ok ? sprintf( /* translators: %s: channel list */ __( 'Queued:%s', 'flx-forms' ), implode( ', ', $ok ) ) : '' ) . ( $ok && $err ? ' · ' : '' ) . implode( ' · ', $err );
 		return array( 'status' => $err ? ( $ok ? 'partial' : 'error' ) : 'ok', 'message' => $msg );
 	}
 
 	private static function act_show( array $a, array &$run ) {
 		$cert = $run['state']['cert'] ?? null;
 		if ( ! $cert || ! function_exists( 'flxs_certificate_url' ) ) {
-			return array( 'status' => 'skipped', 'message' => __( '\\nNo certificate was created in an earlier step.\\n', 'flx-forms' ) );
+			return array( 'status' => 'skipped', 'message' => __( 'No certificate was created in an earlier step.', 'flx-forms' ) );
 		}
 		$url     = flxs_certificate_url( $cert );
 		$pdf     = function_exists( 'flxs_certificate_pdf_url' ) ? flxs_certificate_pdf_url( $cert ) : '';
-		$title   = self::fill( '' !== $a['title'] ? $a['title'] : __( '\\nYour certificate is ready\\n', 'flx-forms' ), $run['ctx'], $run['state'] );
+		$title   = self::fill( '' !== $a['title'] ? $a['title'] : __( 'Your certificate is ready', 'flx-forms' ), $run['ctx'], $run['state'] );
 		$msg     = self::fill( $a['message'], $run['ctx'], $run['state'] );
-		$view    = '' !== $a['view_label'] ? $a['view_label'] : __( '\\nView certificate\\n', 'flx-forms' );
+		$view    = '' !== $a['view_label'] ? $a['view_label'] : __( 'View certificate', 'flx-forms' );
 		$pdfl    = '' !== $a['pdf_label'] ? $a['pdf_label'] : __( 'Download PDF', 'flx-forms' );
 		$sharel  = '' !== ( $a['share_label'] ?? '' ) ? $a['share_label'] : FLXF_Automations::seed_text( 'Share' );
 		$preview = ! array_key_exists( 'preview', $a ) || ! empty( $a['preview'] );
@@ -768,9 +768,9 @@ class FLXF_Automations_Engine {
 			$to = array_filter( array_map( 'trim', explode( ',', $a['to_custom'] ) ), 'is_email' );
 		}
 		if ( ! $to ) {
-			return array( 'status' => 'error', 'message' => __( '\\nNo valid recipient address.\\n', 'flx-forms' ) );
+			return array( 'status' => 'error', 'message' => __( 'No valid recipient address.', 'flx-forms' ) );
 		}
-		$subject = '' !== $a['subject'] ? $a['subject'] : sprintf( /* translators: %s: form title */ __( '\\nNew submission:%s\\n', 'flx-forms' ), '{form_title}' );
+		$subject = '' !== $a['subject'] ? $a['subject'] : sprintf( /* translators: %s: form title */ __( 'New submission:%s', 'flx-forms' ), '{form_title}' );
 		$subject = wp_strip_all_tags( str_replace( array( "\r", "\n" ), ' ', self::fill( $subject, $ctx, $run['state'] ) ) );
 		$body    = self::fill( '' !== $a['body'] ? $a['body'] : "{all_fields}\n\n{track}", $ctx, $run['state'] );
 		if ( class_exists( 'FLXF_Iletisim' ) && FLXF_Iletisim::active() ) {
@@ -784,17 +784,17 @@ class FLXF_Automations_Engine {
 		}
 		return $sent
 			? array( 'status' => 'ok', 'message' => implode( ', ', $to ) )
-			: array( 'status' => 'error', 'message' => __( '\\nwp_mail() could not send the e-mail.\\n', 'flx-forms' ) );
+			: array( 'status' => 'error', 'message' => __( 'wp_mail() could not send the e-mail.', 'flx-forms' ) );
 	}
 
 	private static function act_webhook( array $a, array &$run ) {
 		$url = (string) $a['url'];
 		if ( '' === $url || 0 !== stripos( $url, 'https://' ) ) {
-			return array( 'status' => 'error', 'message' => __( '[[\'Webhook URL must start with https://\', \'en\']]', 'flx-forms' ) );
+			return array( 'status' => 'error', 'message' => __( 'Webhook URL must start with https://', 'flx-forms' ) );
 		}
 		/* SSRF guard: refuses private / loopback / reserved hosts. */
 		if ( ! wp_http_validate_url( $url ) || ! self::public_host( $url ) ) {
-			return array( 'status' => 'error', 'message' => __( '\\nWebhook URL points to a private or invalid address.\\n', 'flx-forms' ) );
+			return array( 'status' => 'error', 'message' => __( 'Webhook URL points to a private or invalid address.', 'flx-forms' ) );
 		}
 		$ctx  = $run['ctx'];
 		$cert = $run['state']['cert'] ?? null;

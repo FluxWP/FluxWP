@@ -1657,5 +1657,5 @@ msgstr "وتتألف المشاركات الجديدة في الملحن وسا�
 msgid "Scheduled and published posts show up here."
 msgstr "تظهر هنا المشاركات المجدولة والمنشورة."
 
-msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
-msgstr "[['إدارة الوسائط الاجتماعية داخل الموقع: ربط الحساب (مفاتيح من اللوحة)، والمحتوى لكل حساب، والجدولة، وتحرير/حذف الشبكة، والتقويم، ولوحة المعلومات، ومساعدة الكتابة Flux AI وأدوات MCP. Facebook، Instagram، YouTube، X، LinkedIn، TikTok، Pinterest، Google Business، WhatsApp.', 'tr']]"
+msgid "Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp."
+msgstr "إدارة الوسائط الاجتماعية داخل الموقع: ربط الحساب (مفاتيح من اللوحة)، والمحتوى لكل حساب، والجدولة، وتحرير/حذف الشبكة، والتقويم، ولوحة المعلومات، ومساعدة الكتابة Flux AI وأدوات MCP. Facebook، Instagram، YouTube، X، LinkedIn، TikTok، Pinterest، Google Business، WhatsApp."

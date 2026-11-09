@@ -5,9 +5,9 @@ set -e
 H=$(cd "$(dirname "$0")" && pwd); REPO=$(cd "$H/../.." && pwd); W=${WPENV:-/tmp/wpenv}; S=$W/site
 mkdir -p "$W"; cd "$W"
 [ -d "$S/wp-includes" ] || git clone --depth 1 --branch 6.8.3 https://github.com/WordPress/WordPress.git "$S"
-# SQLite eklentisi (wordpress.org kapali olabilir; npm paketindeki zip kullanilir)
+# SQLite eklentisi (wordpress.org kapali olabilir; Bun paketindeki zip kullanilir)
 if [ ! -d "$S/wp-content/plugins/sqlite-database-integration" ]; then
-  [ -f node_modules/@wp-playground/cli/sqlite-database-integration.zip ] || npm i --silent @wp-playground/cli
+  [ -f node_modules/@wp-playground/cli/sqlite-database-integration.zip ] || bun add --silent @wp-playground/cli
   unzip -q node_modules/@wp-playground/cli/sqlite-database-integration.zip -d "$S/wp-content/plugins/"
   # yeni zip surumleri klasoru plugin-sqlite-database-integration adiyla acar
   [ -d "$S/wp-content/plugins/plugin-sqlite-database-integration" ] && mv "$S/wp-content/plugins/plugin-sqlite-database-integration" "$S/wp-content/plugins/sqlite-database-integration"

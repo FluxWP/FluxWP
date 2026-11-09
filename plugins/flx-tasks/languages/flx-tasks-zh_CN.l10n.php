@@ -915,7 +915,7 @@ return array(
   'New meeting' => '新会议',
   'New task' => '新任务',
   'Create and open' => '创建并打开',
-  '[[\'ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.\', \'tr\']]' => '[[\'类似 ClickUp 的任务跟踪:项目、文件夹、列表;列表、看板(看板)和日历视图、保存的筛选视图、自定义字段、评论和文件附件、通知、列表授权、管理仪表板、MCP 服务器和 OpenRouter 人工智能。\', \'tr\']]',
+  '[[\'ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.\', \'tr\']]' => '类似 ClickUp 的任务跟踪:项目、文件夹、列表;列表、看板(看板)和日历视图、保存的筛选视图、自定义字段、评论和文件附件、通知、列表授权、管理仪表板、MCP 服务器和 OpenRouter 人工智能。',
   'Görevler' => '任务',
   'Kullanım panosu' => '使用情况仪表板',
   'Görev Ayarları' => '任务设置',
@@ -1832,6 +1832,8 @@ return array(
   'Yeni toplantı' => '新会议',
   'Yeni görev' => '新任务',
   'Oluştur ve aç' => '创建并打开',
-  'ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu, MCP sunucusu ve OpenRouter ile yapay zekâ.' => '[[\'类似 ClickUp 的任务跟踪:项目、文件夹、列表;列表、看板(看板)和日历视图、保存的筛选视图、自定义字段、评论和文件附件、通知、列表授权、管理仪表板、MCP 服务器和 OpenRouter 人工智能。\', \'tr\']]',
+  'ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu, MCP sunucusu ve OpenRouter ile yapay zekâ.' => '类似 ClickUp 的任务跟踪:项目、文件夹、列表;列表、看板(看板)和日历视图、保存的筛选视图、自定义字段、评论和文件附件、通知、列表授权、管理仪表板、MCP 服务器和 OpenRouter 人工智能。',
+  'ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.' => '类似 ClickUp 的任务跟踪:项目、文件夹、列表;列表、看板(看板)和日历视图、保存的筛选视图、自定义字段、评论和文件附件、通知、列表授权、管理仪表板、MCP 服务器和 OpenRouter 人工智能。',
+
  ),
 );

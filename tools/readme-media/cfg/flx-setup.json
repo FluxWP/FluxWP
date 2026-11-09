@@ -1,96 +1,133 @@
 {
- "slug": "flx-setup",
- "shots": [
-  {
-   "name": "packages",
-   "url": "admin.php?page=flx-setup",
-   "vh": 1000
-  },
-  {
-   "name": "settings",
-   "url": "admin.php?page=flx-setup-settings",
-   "vh": 900
-  },
-  {
-   "name": "wp-updates",
-   "url": "update-core.php",
-   "vh": 900
-  }
- ],
- "mobile": [
-  {
-   "name": "mobile",
-   "url": "admin.php?page=flx-setup"
-  }
- ],
- "gif": [
-  {
-   "goto": "admin.php?page=flx-setup",
-   "wait": 2200
-  },
-  {
-   "move": [
-    700,
-    250
-   ]
-  },
-  {
-   "move": [
-    1150,
-    95
-   ],
-   "wait": 600
-  },
-  {
-   "click": "button:has-text('test'), a:has-text('test'), button:has-text('Test')",
-   "css": true,
-   "wait": 2500
-  },
-  {
-   "move": [
-    1100,
-    250
-   ],
-   "wait": 800
-  },
-  {
-   "scroll": 500,
-   "wait": 1500
-  },
-  {
-   "move": [
-    1150,
-    420
-   ],
-   "wait": 900
-  },
-  {
-   "scroll": 0,
-   "wait": 900
-  },
-  {
-   "click": "a[href*='page=flx-setup-settings']",
-   "css": true,
-   "in": "#wpbody-content, #adminmenu",
-   "nav": true
-  },
-  {
-   "move": [
-    700,
-    400
-   ],
-   "wait": 1500
-  },
-  {
-   "goto": "update-core.php",
-   "wait": 2000
-  },
-  {
-   "move": [
-    700,
-    500
-   ],
-   "wait": 1200
-  }
- ]
+  "slug": "flx-setup",
+  "shots": [
+    {
+      "name": "packages",
+      "url": "admin.php?page=flx-setup",
+      "vh": 1000
+    },
+    {
+      "name": "details",
+      "url": "admin.php?page=flx-setup",
+      "click": ".flxu-preview-open[data-slug=\"flx-forms\"]",
+      "after": 2000,
+      "vh": 1000
+    },
+    {
+      "name": "settings",
+      "url": "admin.php?page=flx-setup-settings",
+      "vh": 900
+    },
+    {
+      "name": "wp-updates",
+      "url": "update-core.php",
+      "vh": 900
+    },
+    {
+      "name": "wizard-base",
+      "url": "admin.php?page=flx-setup-wizard",
+      "wizard": "base",
+      "vh": 1000
+    },
+    {
+      "name": "wizard-plugins",
+      "url": "admin.php?page=flx-setup-wizard",
+      "wizard": "plugins",
+      "vh": 1000
+    },
+    {
+      "name": "wizard-appearance",
+      "url": "admin.php?page=flx-setup-wizard",
+      "wizard": "appearance",
+      "vh": 1000
+    },
+    {
+      "name": "wizard-install",
+      "url": "admin.php?page=flx-setup-wizard",
+      "wizard": "install",
+      "vh": 1000
+    }
+  ],
+  "mobile": [
+    {
+      "name": "mobile",
+      "url": "admin.php?page=flx-setup"
+    }
+  ],
+  "gif": [
+    {
+      "goto": "admin.php?page=flx-setup",
+      "wait": 2200
+    },
+    {
+      "move": [
+        700,
+        250
+      ]
+    },
+    {
+      "move": [
+        1150,
+        95
+      ],
+      "wait": 600
+    },
+    {
+      "click": "button:has-text('test'), a:has-text('test'), button:has-text('Test')",
+      "css": true,
+      "wait": 2500
+    },
+    {
+      "move": [
+        1100,
+        250
+      ],
+      "wait": 800
+    },
+    {
+      "scroll": 500,
+      "wait": 1500
+    },
+    {
+      "move": [
+        1150,
+        420
+      ],
+      "wait": 900
+    },
+    {
+      "scroll": 0,
+      "wait": 900
+    },
+    {
+      "click": "a[href*='page=flx-setup-settings']",
+      "css": true,
+      "in": "#wpbody-content, #adminmenu",
+      "nav": true
+    },
+    {
+      "move": [
+        700,
+        400
+      ],
+      "wait": 1500
+    },
+    {
+      "goto": "update-core.php",
+      "wait": 2000
+    },
+    {
+      "move": [
+        700,
+        500
+      ],
+      "wait": 1200
+    }
+  ],
+  "dark": [
+    {
+      "name": "dark",
+      "url": "admin.php?page=flx-setup"
+    }
+  ]
 }

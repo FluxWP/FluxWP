@@ -1501,5 +1501,5 @@ msgstr "ص95"
 msgid "Flag"
 msgstr "العلم"
 
-msgid "[['Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.', 'tr']]"
-msgstr "[['أداء الموقع في مكان واحد: الاستعلامات لكل طلب، وأخطاء PHP، وطلبات HTTP الخارجية (لوحة المطور)، وسجلات الطلبات البطيئة/الخاطئة، والخادم (وحدة المعالجة المركزية، وذاكرة الوصول العشوائي، والقرص، وOPcache)، وقاعدة البيانات، والتحميل التلقائي، والكرون، وفحص النظام. يقرأها الذكاء الاصطناعي جميعًا باستخدام أدوات Flux AI & MCP / Flux AI.', 'tr']]"
+msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
+msgstr "أداء الموقع في مكان واحد: الاستعلامات لكل طلب، وأخطاء PHP، وطلبات HTTP الخارجية (لوحة المطور)، وسجلات الطلبات البطيئة/الخاطئة، والخادم (وحدة المعالجة المركزية، وذاكرة الوصول العشوائي، والقرص، وOPcache)، وقاعدة البيانات، والتحميل التلقائي، والكرون، وفحص النظام. يقرأها الذكاء الاصطناعي جميعًا باستخدام أدوات Flux AI & MCP / Flux AI."

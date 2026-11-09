@@ -1583,7 +1583,7 @@ return array(
   'This channel is not available right now.' => 'このチャンネルは現在利用できません。',
   'Site chat' => 'サイトチャット',
   'All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left.' => 'WhatsApp、サイトチャット、その他のチャネルからのすべてのメッセージがここにライブで表示されます。左側にあるチャットを選択します。',
-  '[[\'WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.\', \'tr\']]' => '[[\'WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。\', \'tr\']]',
+  '[[\'WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.\', \'tr\']]' => 'WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。',
   'Çağrı Merkezi' => 'コールセンター',
   'Sohbetler' => 'チャット',
   'AI asistan' => 'AIアシスタント',
@@ -3168,6 +3168,8 @@ return array(
   'Bu kanal şu an kullanılamıyor.' => 'このチャンネルは現在利用できません。',
   'Site sohbeti' => 'サイトチャット',
   'WhatsApp, site sohbeti ve diğer kanallardan gelen tüm mesajlar burada canlı görünür. Soldan bir sohbet seçin.' => 'WhatsApp、サイトチャット、その他のチャネルからのすべてのメッセージがここにライブで表示されます。左側にあるチャットを選択します。',
-  'WhatsApp (Evolution API) çağrı merkezi: gelen ve giden mesajları canlı görün, yeni sohbet başlatın, hazır cevaplar, etiketler, atama, dahili notlar, otomatik yanıtlar; sohbetten bağış (Flux Donate) ve sertifika (Flux Certificates) kaydı, dekont eşleştirme. OpenRouter ile yapay zekâ cevap önerisi ve otomatik bağış asistanı.' => '[[\'WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。\', \'tr\']]',
+  'WhatsApp (Evolution API) çağrı merkezi: gelen ve giden mesajları canlı görün, yeni sohbet başlatın, hazır cevaplar, etiketler, atama, dahili notlar, otomatik yanıtlar; sohbetten bağış (Flux Donate) ve sertifika (Flux Certificates) kaydı, dekont eşleştirme. OpenRouter ile yapay zekâ cevap önerisi ve otomatik bağış asistanı.' => 'WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。',
+  'WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.' => 'WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。',
+
  ),
 );

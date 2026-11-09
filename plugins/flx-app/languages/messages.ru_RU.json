@@ -437,7 +437,7 @@
     "Note added": "Примечание добавлено",
     "Notes": "Примечания",
     "Call": "Позвонить",
-    "\\nYetkiniz yok.\\n": "\\nЕткиниз йок.\\n",
-    "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]": "[['Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth.', 'tr']]"
+    "Yetkiniz yok.": "Еткиниз йок.",
+    "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.": "Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth."
   }
 }

@@ -1426,14 +1426,8 @@ msgstr "厳選したリスト。 「自動に戻る」は、iyzico バンドと�
 msgid "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer."
 msgstr "SVG または透過 PNG が最適です。色付きのロゴは、暗いフッター上の白いボックスに表示されます。"
 
-msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
-msgstr "\\n%s。 Hostinger › PHP ヤプラン 8.2 は最新のセキュリティを備えています。\\n"
-
 msgid "Background pattern"
 msgstr "背景パターン"
-
-msgid "\\nDots\\n"
-msgstr "\\nドット\\n"
 
 msgid "Leaves"
 msgstr "葉"
@@ -1446,3 +1440,9 @@ msgstr "ニュース紹介"
 
 msgid "Latest news, updates and articles."
 msgstr "最新のニュース、更新情報、記事。"
+
+msgid "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
+msgstr "%s。 Hostinger › PHP ヤプラン 8.2 は最新のセキュリティを備えています。"
+
+msgid "Dots"
+msgstr "ドット"

@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.7.15
+- Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
+- Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.
+
+
 ## 0.7.14
 - Default title bands, navigation and consent cards to a neutral dot pattern. Let presets and Theme Settings select dots, leaves or no decoration.
 - Use a generic translated news introduction, with an optional preset-specific override.

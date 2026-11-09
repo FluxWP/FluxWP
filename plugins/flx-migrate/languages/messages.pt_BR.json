@@ -61,7 +61,9 @@
     "Upload folders": "Carregar pastas",
     "Working…": "Trabalhando...",
     "Upload these new packages first (do not activate them):": "Faça upload desses novos pacotes primeiro (não os ative):",
-    "[['%drow', 'tr']]\u0000[['%drow', 'tr']]": "[['%dlinha', 'tr']]\u0000[['%dlinha', 'tr']]",
-    "[['%dold setting', 'tr']]\u0000[['%dold setting', 'tr']]": "[['%dconfiguração antiga', 'tr']]\u0000[['%dconfiguração antiga', 'tr']]"
+    "%d row\u0000%d rows": "Linha%d\u0000Linhas%d",
+    "%d legacy setting\u0000%d legacy settings": "Configuração legada%d\u0000Configurações legadas%d",
+    "%drow\u0000%drow": "%dlinha\u0000%dlinha",
+    "%dold setting\u0000%dold setting": "%dconfiguração antiga\u0000%dconfiguração antiga"
   }
 }

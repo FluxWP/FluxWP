@@ -46,7 +46,7 @@ class FLXB_WC_Callcenter {
 	public static function create_order( array $a ) {
 		$lines = isset( $a['lines'] ) && is_array( $a['lines'] ) ? $a['lines'] : array();
 		if ( ! $lines ) {
-			return new WP_Error( 'flxb_lines', __( '\\nNo donation lines.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_lines', __( 'No donation lines.', 'flx-donate' ) );
 		}
 		$billing = wp_parse_args( (array) ( $a['billing'] ?? array() ), array( 'first_name' => '', 'last_name' => '', 'email' => '', 'phone' => '' ) );
 		$cust    = (int) ( $a['customer_id'] ?? 0 );
@@ -78,13 +78,13 @@ class FLXB_WC_Callcenter {
 				$t = FLXB_Types::get( absint( $l['type_id'] ?? 0 ) );
 				if ( ! $t ) {
 					$order->delete( true );
-					return new WP_Error( 'flxb_type', __( '\\nUnknown donation type.\\n', 'flx-donate' ) );
+					return new WP_Error( 'flxb_type', __( 'Unknown donation type.', 'flx-donate' ) );
 				}
 				$pid  = FLXB_WC_Products::product_id( $t );
 				$prod = $pid ? wc_get_product( $pid ) : null;
 				if ( ! $prod ) {
 					$order->delete( true );
-					return new WP_Error( 'flxb_product', __( '\\nThe donation product could not be created.\\n', 'flx-donate' ) );
+					return new WP_Error( 'flxb_product', __( 'The donation product could not be created.', 'flx-donate' ) );
 				}
 				$key    = sanitize_key( (string) ( $l['option'] ?? '' ) );
 				$opt    = '' !== $key ? FLXB_Types::option( $t, $key ) : null;
@@ -225,7 +225,7 @@ class FLXB_WC_Callcenter {
 					'status'         => 'completed' === $row['status'] ? 'completed' : 'pending',
 					'created_via'    => self::VIA,
 					/* translators: %d: donation id */
-					'note'           => sprintf( __( '\\nRecorded in Flux Chat (donation #%d).\\n', 'flx-donate' ), (int) $id ),
+					'note'           => sprintf( __( 'Recorded in Flux Chat (donation #%d).', 'flx-donate' ), (int) $id ),
 					'emails'         => (bool) apply_filters( 'flxb_wc_callcenter_emails', false, $id ),
 				)
 			);
@@ -262,18 +262,18 @@ class FLXB_WC_Callcenter {
 					break;
 				case 'canceled':
 					if ( ! $order->has_status( array( 'cancelled', 'refunded' ) ) ) {
-						$order->update_status( 'cancelled', __( '\\nCanceled in Flux Donate.\\n', 'flx-donate' ) );
+						$order->update_status( 'cancelled', __( 'Canceled in Flux Donate.', 'flx-donate' ) );
 					}
 					break;
 				case 'pending':
 					/* 2.14.0: put on hold by hand in Flux Donate (also a gift that was marked paid). */
 					if ( ! empty( $upd['manual'] ) && ! $order->has_status( array( 'on-hold', 'pending', 'refunded' ) ) ) {
-						$order->update_status( 'on-hold', __( '\\nPut on hold in Flux Donate.\\n', 'flx-donate' ) );
+						$order->update_status( 'on-hold', __( 'Put on hold in Flux Donate.', 'flx-donate' ) );
 					}
 					break;
 				case 'failed':
 					if ( ! $order->is_paid() ) {
-						$order->update_status( 'failed', __( '\\nMarked as failed in Flux Donate.\\n', 'flx-donate' ) );
+						$order->update_status( 'failed', __( 'Marked as failed in Flux Donate.', 'flx-donate' ) );
 					}
 					break;
 			}

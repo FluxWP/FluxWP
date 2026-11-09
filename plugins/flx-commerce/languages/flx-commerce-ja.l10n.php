@@ -302,7 +302,7 @@ return array(
   'Payment approved' => '支払いが承認されました',
   'Approve this payment?' => 'この支払いを承認しますか?',
   'Contact' => 'お問い合わせ',
-  '[[\'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.\', \'tr\']]' => '[[\'WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。\', \'tr\']]',
+  '[[\'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.\', \'tr\']]' => 'WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。',
   'Flux Commerce çalışmak için WooCommerce ister. WooCommerce\'i kurup etkinleştirin.' => 'Flux Commerce には WooCommerce が必要です。 WooCommerce をインストールしてアクティブ化します。',
   'Ayarlar' => '設定',
   'Satış paneli, müşteriler, raporlar ve ödeme iyileştirmeleri' => '販売ダッシュボード、顧客、レポート、チェックアウトの改善',
@@ -605,6 +605,8 @@ return array(
   'Ödeme onaylandı' => '支払いが承認されました',
   'Ödeme onaylansın mı?' => 'この支払いを承認しますか?',
   'İletişim' => 'お問い合わせ',
-  'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.' => '[[\'WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。\', \'tr\']]',
+  'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.' => 'WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。',
+  'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.' => 'WooCommerce ストアの販売パネル、顧客、販売レポート、領収書のアップロード付き郵便為替/EFT、簡単な支払いページ、送料無料バー、Google 販売者の商品フィード、WhatsApp/メール通知。',
+
  ),
 );

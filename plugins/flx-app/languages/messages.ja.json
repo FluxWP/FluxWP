@@ -437,7 +437,7 @@
     "Note added": "注記を追加しました",
     "Notes": "注意事項",
     "Call": "電話をかける",
-    "\\nYetkiniz yok.\\n": "\\nそれでもいいよ。\\n",
-    "[['Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.', 'tr']]": "[['FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。', 'tr']]"
+    "Yetkiniz yok.": "それでもいいよ。",
+    "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth.": "FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。"
   }
 }

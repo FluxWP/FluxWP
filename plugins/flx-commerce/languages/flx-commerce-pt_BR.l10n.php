@@ -302,7 +302,7 @@ return array(
   'Payment approved' => 'Pagamento aprovado',
   'Approve this payment?' => 'Aprovar este pagamento?',
   'Contact' => 'Contato',
-  '[[\'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.\', \'tr\']]' => '[[\'Painel de vendas para loja WooCommerce, clientes, relatórios de vendas, ordem de pagamento/EFT com upload de recibo, página de pagamento simples, barra de frete grátis, feed de produtos do Google Merchant e notificações por WhatsApp/e-mail.\', \'tr\']]',
+  '[[\'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.\', \'tr\']]' => 'Painel de vendas para loja WooCommerce, clientes, relatórios de vendas, ordem de pagamento/EFT com upload de recibo, página de pagamento simples, barra de frete grátis, feed de produtos do Google Merchant e notificações por WhatsApp/e-mail.',
   'Flux Commerce çalışmak için WooCommerce ister. WooCommerce\'i kurup etkinleştirin.' => 'Flux Commerce precisa de WooCommerce. Instale e ative o WooCommerce.',
   'Ayarlar' => 'Configurações',
   'Satış paneli, müşteriler, raporlar ve ödeme iyileştirmeleri' => 'Painel de vendas, clientes, relatórios e melhorias no checkout',
@@ -605,6 +605,8 @@ return array(
   'Ödeme onaylandı' => 'Pagamento aprovado',
   'Ödeme onaylansın mı?' => 'Aprovar este pagamento?',
   'İletişim' => 'Contato',
-  'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.' => '[[\'Painel de vendas para loja WooCommerce, clientes, relatórios de vendas, ordem de pagamento/EFT com upload de recibo, página de pagamento simples, barra de frete grátis, feed de produtos do Google Merchant e notificações por WhatsApp/e-mail.\', \'tr\']]',
+  'WooCommerce mağazası için satış paneli, müşteriler, satış raporları, dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu, Google Merchant ürün feed\'i ve WhatsApp/e-posta bildirimleri.' => 'Painel de vendas para loja WooCommerce, clientes, relatórios de vendas, ordem de pagamento/EFT com upload de recibo, página de pagamento simples, barra de frete grátis, feed de produtos do Google Merchant e notificações por WhatsApp/e-mail.',
+  'Sales panel for WooCommerce store, customers, sales reports, Money Order/EFT with receipt upload, simple payment page, free shipping bar, Google Merchant product feed and WhatsApp/email notifications.' => 'Painel de vendas para loja WooCommerce, clientes, relatórios de vendas, ordem de pagamento/EFT com upload de recibo, página de pagamento simples, barra de frete grátis, feed de produtos do Google Merchant e notificações por WhatsApp/e-mail.',
+
  ),
 );

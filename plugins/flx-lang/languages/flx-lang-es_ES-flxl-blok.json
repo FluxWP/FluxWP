@@ -332,7 +332,7 @@
         "Si se deja vacío, se muestran el nombre y la descripción en turco."
       ],
       "[['Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.', 'tr']]": [
-        "[['Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI.', 'tr']]"
+        "Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI."
       ],
       "Diller": [
         "Idiomas"
@@ -659,7 +659,10 @@
         "Si se deja vacío, se muestran el nombre y la descripción en turco."
       ],
       "Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.": [
-        "[['Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI.', 'tr']]"
+        "Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI."
+      ],
+      "Makes the site multilingual: language addresses like /en/, translation per page, post, project and event, language-specific visual, hreflang and canonical, English recommendation for those coming from outside Turkey, language selector; Language support for Flux AI & MCP and Flux AI tools.": [
+        "Hace que el sitio sea multilingüe: direcciones de idiomas como /en/, traducción por página, publicación, proyecto y evento, visual, hreflang y canónico específico del idioma, recomendación en inglés para aquellos que vienen de fuera de Turquía, selector de idioma; Soporte de idiomas para Flux AI y MCP y herramientas Flux AI."
       ]
     }
   }

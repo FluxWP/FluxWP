@@ -1657,5 +1657,5 @@ msgstr "新帖子是在媒体编辑器中编写的。"
 msgid "Scheduled and published posts show up here."
 msgstr "已安排和已发布的帖子显示在此处。"
 
-msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
-msgstr "[['网站内的社交媒体管理:帐户链接(面板上的按键)、每个帐户的内容、日程安排、网络编辑/删除、日历、仪表板、Flux AI 写作辅助和 MCP 工具。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google Business、WhatsApp。', 'tr']]"
+msgid "Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp."
+msgstr "网站内的社交媒体管理:帐户链接(面板上的按键)、每个帐户的内容、日程安排、网络编辑/删除、日历、仪表板、Flux AI 写作辅助和 MCP 工具。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google Business、WhatsApp。"

@@ -1,0 +1,22 @@
+{
+  "slug": "flx-migrate",
+  "shots": [
+    {
+      "name": "overview",
+      "url": "tools.php?page=flx-migrate",
+      "vh": 1000
+    }
+  ],
+  "mobile": [
+    {
+      "name": "mobile",
+      "url": "tools.php?page=flx-migrate"
+    }
+  ],
+  "dark": [
+    {
+      "name": "dark",
+      "url": "tools.php?page=flx-migrate"
+    }
+  ]
+}

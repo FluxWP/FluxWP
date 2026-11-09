@@ -1426,14 +1426,8 @@ msgstr "قائمة مختارة بعناية. يعود \"العودة إلى ا�
 msgid "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer."
 msgstr "SVG أو PNG الشفاف هو الأفضل؛ تظهر الشعارات الملونة في مربع أبيض على تذييل داكن."
 
-msgid "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n"
-msgstr "\\n %s . Hostinger › PHP الإصدار 8.2 متاح الآن.\\n"
-
 msgid "Background pattern"
 msgstr "نمط الخلفية"
-
-msgid "\\nDots\\n"
-msgstr "\\nالنقاط\\n"
 
 msgid "Leaves"
 msgstr "أوراق"
@@ -1446,3 +1440,9 @@ msgstr "مقدمة الأخبار"
 
 msgid "Latest news, updates and articles."
 msgstr "آخر الأخبار والتحديثات والمقالات."
+
+msgid "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
+msgstr " %s . Hostinger › PHP الإصدار 8.2 متاح الآن."
+
+msgid "Dots"
+msgstr "النقاط"

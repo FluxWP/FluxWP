@@ -664,13 +664,13 @@ class Emsfb_Logic_Validator {
 
 	public static function public_strings() {
 		return array(
-			'submitBlocked' => __( '\\nSubmission is not allowed for the current answers.\\n', 'flx-forms' ),
+			'submitBlocked' => __( 'Submission is not allowed for the current answers.', 'flx-forms' ),
 		);
 	}
 
 	public static function admin_strings() {
 		return array(
-			'title'          => __( '\\nConditional Logic\\n', 'flx-forms' ),
+			'title'          => __( 'Conditional Logic', 'flx-forms' ),
 			'intro'          => __( 'Show or hide fields and steps based on the answers to other fields. Rules run from the lowest priority number to the highest; when two rules change the same field, the later one wins. A field targeted by a "Show field" action stays hidden until its rule matches. Hidden fields are skipped by validation and their values are discarded on the server.', 'flx-forms' ),
 			'noRules'        => __( 'No rules yet. Click "Add rule" to create your first IF / THEN rule.', 'flx-forms' ),
 			'noFields'       => __( 'Add some fields to the form first; rules read and change form fields.', 'flx-forms' ),
@@ -679,15 +679,15 @@ class Emsfb_Logic_Validator {
 			'ruleName'       => __( 'Rule name', 'flx-forms' ),
 			'enabled'        => __( 'Enabled', 'flx-forms' ),
 			'priority'       => __( 'Priority', 'flx-forms' ),
-			'stopProcessing' => __( '\\nStop after this rule matches\\n', 'flx-forms' ),
+			'stopProcessing' => __( 'Stop after this rule matches', 'flx-forms' ),
 			'duplicate'      => __( 'Duplicate', 'flx-forms' ),
 			'delete'         => __( 'Delete', 'flx-forms' ),
-			'if'             => __( '\\nIF\\n', 'flx-forms' ),
-			'then'           => __( '\\nTHEN\\n', 'flx-forms' ),
+			'if'             => __( 'IF', 'flx-forms' ),
+			'then'           => __( 'THEN', 'flx-forms' ),
 			'matchAll'       => __( 'All of these are true (AND)', 'flx-forms' ),
 			'matchAny'       => __( 'Any of these is true (OR)', 'flx-forms' ),
 			'group'          => __( 'Group', 'flx-forms' ),
-			'addCondition'   => __( '\\nAdd condition\\n', 'flx-forms' ),
+			'addCondition'   => __( 'Add condition', 'flx-forms' ),
 			'addGroup'       => __( 'Add group', 'flx-forms' ),
 			'addAction'      => __( 'Add action', 'flx-forms' ),
 			'remove'         => __( 'Remove', 'flx-forms' ),
@@ -702,7 +702,7 @@ class Emsfb_Logic_Validator {
 			'yes'            => __( 'Yes', 'flx-forms' ),
 			'no'             => __( 'No', 'flx-forms' ),
 			'srcField'       => __( 'Field', 'flx-forms' ),
-			'srcQuery'       => __( '\\nURL parameter\\n', 'flx-forms' ),
+			'srcQuery'       => __( 'URL parameter', 'flx-forms' ),
 			'srcLoggedIn'    => __( 'Visitor is logged in', 'flx-forms' ),
 			'srcRole'        => __( 'Visitor role', 'flx-forms' ),
 			'paramName'      => __( 'Parameter name', 'flx-forms' ),
@@ -710,13 +710,13 @@ class Emsfb_Logic_Validator {
 			'op_is_not'      => __( 'is not', 'flx-forms' ),
 			'op_contains'    => __( 'contains', 'flx-forms' ),
 			'op_not_contains'=> __( 'does not contain', 'flx-forms' ),
-			'op_starts_with' => __( '\\nstarts with\\n', 'flx-forms' ),
-			'op_ends_with'   => __( '\\nends with\\n', 'flx-forms' ),
-			'op_is_empty'    => __( '\\nis empty\\n', 'flx-forms' ),
+			'op_starts_with' => __( 'starts with', 'flx-forms' ),
+			'op_ends_with'   => __( 'ends with', 'flx-forms' ),
+			'op_is_empty'    => __( 'is empty', 'flx-forms' ),
 			'op_is_not_empty'=> __( 'is not empty', 'flx-forms' ),
-			'op_gt'          => __( '\\nis greater than\\n', 'flx-forms' ),
+			'op_gt'          => __( 'is greater than', 'flx-forms' ),
 			'op_gte'         => __( 'is greater than or equal to', 'flx-forms' ),
-			'op_lt'          => __( '\\nis less than\\n', 'flx-forms' ),
+			'op_lt'          => __( 'is less than', 'flx-forms' ),
 			'op_lte'         => __( 'is less than or equal to', 'flx-forms' ),
 			'op_between'     => __( 'is between', 'flx-forms' ),
 			'op_not_between' => __( 'is not between', 'flx-forms' ),

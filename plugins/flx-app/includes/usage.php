@@ -116,7 +116,7 @@ function flxapp_usage_settings() {
 
 function flxapp_usage_save_consent() {
 	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_die( esc_html__( '\\nYetkiniz yok.\\n', 'flx-app' ) );
+		wp_die( esc_html__( 'Yetkiniz yok.', 'flx-app' ) );
 	}
 	check_admin_referer( 'flxapp_usage_consent' );
 	update_option( 'flxapp_usage_share', ! empty( $_POST['share'] ) ? '1' : '0', false );

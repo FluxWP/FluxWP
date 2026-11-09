@@ -1,0 +1,22 @@
+<?php
+/** Generic public documentation fixtures, independent of organization presets. */
+require ( getenv( 'WPENV' ) ?: '/tmp/wpenv' ) . '/site/wp-load.php'; wp_set_current_user( 1 );
+$section = get_term_by( 'slug', 'capture-start', FLXWK_TAX );
+if ( ! $section ) { $term = wp_insert_term( 'Getting started', FLXWK_TAX, array( 'slug' => 'capture-start', 'description' => 'Install, configure and start building.' ) ); $section = get_term( $term['term_id'], FLXWK_TAX ); }
+update_term_meta( $section->term_id, '_flxwk_translations', array( 'en' => array( 'name' => 'Getting started', 'description' => 'Install, configure and start building.' ), 'tr' => array( 'name' => 'Başlangıç', 'description' => 'Kurun, ayarlayın ve geliştirmeye başlayın.' ) ) );
+$articles = array(
+	array( 'quick-start', 'Quick start', "# Install FluxWP\n\nStart with FluxWP Panel to choose the packages your site needs.\n\n## 1. Upload FluxWP Panel\n\nIn WordPress, open **Plugins → Add New → Upload Plugin**, upload the Flux Setup ZIP and activate it.\n\n## 2. Complete the setup wizard\n\nOpen **FluxWP Panel** and follow the site, package and appearance steps. Select a preset or start with a blank site.\n\n## 3. Keep your packages updated\n\nCheck your update source in the Panel settings. Public packages do not require a private site key.\n", 'Hızlı başlangıç', "# FluxWP kurulumu\n\nSitenizin ihtiyaç duyduğu paketleri FluxWP Panel üzerinden seçin.\n\n## 1. FluxWP Panel'i yükleyin\n\nWordPress'te **Eklentiler → Yeni Ekle → Eklenti Yükle** bölümünden Flux Setup ZIP dosyasını yükleyip etkinleştirin.\n\n## 2. Kurulum sihirbazını tamamlayın\n\n**FluxWP Panel** içindeki site, paket ve görünüm adımlarını izleyin. Bir ön ayar seçin veya boş bir siteyle başlayın.\n\n## 3. Paketleri güncel tutun\n\nPanel ayarlarından güncelleme kaynağınızı kontrol edin. Public paketler özel site anahtarı gerektirmez.\n" ),
+	array( 'choose-packages', 'Choose your packages', "# Choose your packages\n\nUse the package list to install the tools your site needs.\n\n- **Flux Forms:** create forms and collect responses.\n- **Flux Tasks:** organize projects and daily work.\n- **Flux Wiki:** publish searchable documentation.\n\nClick a package name to view its introduction, screenshots and publisher link. The updater mirrors this information from GitHub.\n", 'Paketlerinizi seçin', "# Paketlerinizi seçin\n\nSitenizin ihtiyaç duyduğu araçları paket listesinden kurun.\n\n- **Flux Forms:** formlar oluşturun ve yanıtları toplayın.\n- **Flux Tasks:** projeleri ve günlük işleri düzenleyin.\n- **Flux Wiki:** aranabilir dokümantasyon yayımlayın.\n\nTanıtım, ekran görüntüleri ve site bağlantısı için paket adına tıklayın. Updater bu bilgileri GitHub'dan alır.\n" ),
+	array( 'write-documentation', 'Write your first guide', "# Write your first guide\n\nCreate a wiki page, add a title and write your content in Markdown.\n\n## Keep guides easy to scan\n\nUse clear headings, short steps and working links. Wiki search can find page titles, headings and body text.\n\n## Publish in multiple languages\n\nGive each translation its own language and connect the translated pages. Readers can use the same documentation structure in their preferred language.\n", 'İlk rehberinizi yazın', "# İlk rehberinizi yazın\n\nBir wiki sayfası oluşturun, başlık ekleyin ve içeriğinizi Markdown ile yazın.\n\n## Rehberleri okunabilir tutun\n\nAçık başlıklar, kısa adımlar ve çalışan bağlantılar kullanın. Wiki araması başlıkları ve içerikleri bulur.\n\n## Birden fazla dilde yayımlayın\n\nHer çeviriye kendi dilini atayın ve sayfaları bağlayın. Okuyucular dokümantasyonu tercih ettikleri dilde gezebilir.\n" ),
+);
+foreach ( $articles as $index => $article ) {
+	$ids = array();
+	foreach ( array( 'en' => array( $article[1], $article[2] ), 'tr' => array( $article[3], $article[4] ) ) as $lang => $text ) {
+		$slug = 'capture-' . $article[0] . '-' . $lang; $existing = get_page_by_path( $slug, OBJECT, FLXWK_PT );
+		$id = flxwk_save_page( array( 'id' => $existing ? $existing->ID : 0, 'title' => $text[0], 'slug' => $slug, 'md' => $text[1], 'status' => 'publish', 'menu_order' => $index, 'section' => 'capture-start' ) );
+		if ( is_wp_error( $id ) ) { throw new RuntimeException( $id->get_error_message() ); }
+		update_post_meta( $id, '_flxwk_language', $lang ); flxl_set_post_language( $id, $lang ); $ids[ $lang ] = $id;
+	}
+	flxl_link_translations( $ids );
+}
+flush_rewrite_rules();echo "Generic EN/TR wiki guides ready\n";

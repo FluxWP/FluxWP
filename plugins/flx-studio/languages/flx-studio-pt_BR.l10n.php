@@ -318,7 +318,7 @@ return array(
   'Starred' => 'Com estrela',
   'Generated images are listed here. The production screen opens in the app later.' => 'As imagens geradas estão listadas aqui. A tela de produção é aberta no aplicativo posteriormente.',
   'Prompt' => 'Alerta',
-  '[[\'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).\', \'tr\']]' => '[[\'Estúdio visual e de vídeo com IA: produção, referências e contatos, edição de campo, Develop e Brainstorm, galeria com pastas. Produção via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).\', \'tr\']]',
+  '[[\'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).\', \'tr\']]' => 'Estúdio visual e de vídeo com IA: produção, referências e contatos, edição de campo, Develop e Brainstorm, galeria com pastas. Produção via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).',
   'Genel' => 'Geral',
   'Kişi (yüz/kimlik)' => 'Pessoa (rosto/identidade)',
   'Stil' => 'Estilo',
@@ -636,6 +636,8 @@ return array(
   'Yıldızlı' => 'Com estrela',
   'Üretilen görseller burada listelenir. Üretim paneli uygulamada sonra açılır.' => 'As imagens geradas estão listadas aqui. A tela de produção é aberta no aplicativo posteriormente.',
   'İstem' => 'Alerta',
-  'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => '[[\'Estúdio visual e de vídeo com IA: produção, referências e contatos, edição de campo, Develop e Brainstorm, galeria com pastas. Produção via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).\', \'tr\']]',
+  'Yapay zekâ ile görsel ve video stüdyosu: üretim, referanslar ve kişiler, alan düzenleme, Geliştir ve Beyin fırtınası, klasörlü galeri. Üretim Flux AI üzerinden (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => 'Estúdio visual e de vídeo com IA: produção, referências e contatos, edição de campo, Develop e Brainstorm, galeria com pastas. Produção via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).',
+  'Visual and video studio with AI: production, references and contacts, field editing, Develop and Brainstorm, gallery with folders. Production via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).' => 'Estúdio visual e de vídeo com IA: produção, referências e contatos, edição de campo, Develop e Brainstorm, galeria com pastas. Produção via Flux AI (fal.ai, EvoLink, OpenAI, Gemini, OpenRouter).',
+
  ),
 );

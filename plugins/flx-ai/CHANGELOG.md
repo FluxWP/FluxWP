@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.9.4
+- Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
+- Preserve singular/plural message boundaries and printf arguments in English source IDs and all native language packs; prevent count labels from breaking populated screens.
+- Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.
+- Repair the registered-tool count plural message on the MCP server screen.
+
+
 ## 0.9.3
 - Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
 

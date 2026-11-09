@@ -1,33 +1,37 @@
 # Flux Migrate
 
-Eski paket adlarıyla kurulmuş bir siteyi FluxWP adlarına geçirir. Ad eşlemesi `map.json`'dadır, eklenti kodunda sabit ad yoktur.
+Switches a site established with old package names to FluxWP names. The name mapping is in `map.json` , there is no fixed name in the plugin code.
 
-## Kullanım
+## Usage
 
-1. Tam yedek alın (veritabanı + `wp-content/uploads`).
-2. Yeni FluxWP eklentilerini ve temasını yükleyin, **etkinleştirmeyin**.
-3. Bu eklentiyi kurup etkinleştirin: **Araçlar › Flux Migrate**.
-4. **Tara**: hiçbir şeyi değiştirmeden her adımda kaç kayıt değişeceğini gösterir.
-5. **Aktar**: verileri taşır. Etkin eklenti listesi ve tema da yeni adlara geçer.
-6. FluxWP Panel › Ayarlar'da yeni güncelleme sunucusunun site anahtarını girin (eski sunucunun adresi ve anahtarı aktarımda silinir).
-7. Siteyi kontrol edin, sonra aynı ekrandaki **Eski kalıntılar** bölümünden eski tabloları, klasörleri, eklentileri ve ayarları seçip silin.
-8. Eski eklentileri silin, önbelleği temizleyin (LiteSpeed › Purge All), bu eklentiyi silin.
+1. Take a full backup (database + `wp-content/uploads` ).
+2. Install the new FluxWP plugins and theme, **do not activate**.
+3. Install and activate this plugin: **Tools › Flux Migrate**.
+4. **Scan**: shows how many records will be changed at each step without changing anything.
+5. **Transfer**: moves data. The active plugin list and theme also switch to new names.
+6. Enter the site key of the new update server in the FluxWP Panel › Settings (the address and key of the old server are deleted on transfer).
+7. Check the site, then select and delete old tables, folders, plugins and settings from the **Old remnants** section on the same screen.
+8. Delete old plugins, clear cache (LiteSpeed ​​› Purge All), delete this plugin.
 
-WP-CLI: `wp flx-migrate scan` ve `wp flx-migrate run`.
+WP-CLI: `wp flx-migrate scan` and `wp flx-migrate run` .
 
-## Neyi taşır
+## What does it carry
 
-| Adım | Ne yapar |
+| Step | What does |
 |---|---|
-| Tablolar | `{prefix}<eski>` tablolarını yeni adla yeniden adlandırır (hedef doluysa `<ad>_bakAAGG` adıyla yedekler) |
-| Tablo içerikleri | Bu tabloların metin sütunlarındaki eski tanımlayıcılar |
-| Ayarlar | Option adları ve değerleri (serileştirilmiş/JSON değerler içinde de), etkin eklentiler, roller ve yetkiler, cron kancaları; eski geçici veriler (transient) silinir |
-| Tema | `stylesheet`/`template` ve `theme_mods_*` |
-| Meta | post/user/term meta anahtarları ve değerleri |
-| Yazılar | Yazı türleri; içerikteki blok adları, kısa kodlar, class/id/data öznitelikleri, `wp-content/...` yolları |
-| Taksonomiler | Taksonomi adları, blok şablonlarının tema terimi |
-| WooCommerce | HPOS sipariş meta verileri, ödeme yöntemi, sipariş kalemi meta verileri |
-| Yükleme klasörleri | `uploads/<eski>` → `uploads/<yeni>` |
-| Şifreli ayarlar | Eski anahtarla şifrelenmiş parola ve jetonlar yeni anahtarla yeniden şifrelenir (Mail, AI, Social, iyzico) |
+| Tables |  Renames `{prefix}<eski>` tables to new name (backs up as `<ad>_bakAAGG` if target is full) |
+| Table contents | Legacy identifiers in text columns of these tables |
+| Settings | Option names and values ​​(also in serialized/JSON values), active plugins, roles and permissions, cron hooks; old transient data is deleted |
+| Theme | `stylesheet` / `template` and `theme_mods_*` |
+| Meta | post/user/term meta keys and values ​​|
+| Articles | Post types; block names, shortcodes, class/id/data attributes, `wp-content/...` paths in the content |
+| Taxonomies | Taxonomy names, theme term of block templates |
+| WooCommerce | HPOS order metadata, payment method, order item metadata |
+| Upload folders | `uploads/<eski>` → `uploads/<yeni>` |
+| Encrypted settings | Passwords and tokens encrypted with the old key are re-encrypted with the new key (Mail, AI, Social, iyzico) |
 
-Her adım tekrar çalıştırılabilir; ikinci çalıştırmada değişecek bir şey kalmaz.
+Each step can be run again; There is nothing left to change on the second run.
+
+## Maintainers
+
+Ahmet Yılmaz ([@sharkpaw](https://github.com/sharkpaw)).

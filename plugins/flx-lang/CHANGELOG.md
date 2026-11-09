@@ -1,5 +1,10 @@
 # Flux Lang
 
+## 0.2.4
+- Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
+- Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.
+
+
 ## 0.2.3
 - Match regional browser languages, use country hints only when no supported browser language exists, preserve explicit language URLs and keep the configured fallback available in the panel.
 - Center the dropdown chevron with a fixed SVG box so alignment stays consistent across fonts, languages and text directions.

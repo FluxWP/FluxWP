@@ -23,20 +23,20 @@ class FLXB_Payment_Test extends FLXB_Payment_Provider_Base {
 	}
 
 	public function label() {
-		return __( '\\nTest provider (development only)\\n', 'flx-donate' );
+		return __( 'Test provider (development only)', 'flx-donate' );
 	}
 
 	public function settings_fields() {
 		return array(
 			array(
 				'key'     => 'flxfTestPayOutcome',
-				'label'   => __( '[[\'Test outcome\\n', 'flx-donate' ),
+				'label'   => __( 'Test outcome', 'flx-donate' ),
 				'type'    => 'select',
 				'options' => array(
-					'approve' => __( '\\nApprove every payment\\n', 'flx-donate' ),
-					'decline' => __( '\\nDecline every payment\\n', 'flx-donate' ),
+					'approve' => __( 'Approve every payment', 'flx-donate' ),
+					'decline' => __( 'Decline every payment', 'flx-donate' ),
 				),
-				'help'    => __( '\\nNo money is taken. Development only.\\n', 'flx-donate' ),
+				'help'    => __( 'No money is taken. Development only.', 'flx-donate' ),
 			),
 		);
 	}
@@ -47,7 +47,7 @@ class FLXB_Payment_Test extends FLXB_Payment_Provider_Base {
 				'flxf-pay-test' => array(
 					'src'  => FLXB_URL . 'providers/assets/flxf-pay-test.js',
 					'ver'  => flxb_payments_asset_ver( 'flxf-pay-test.js' ),
-					'data' => array( 'flxfPayTestI18n' => array( 'note' => __( '\\nTEST MODE: no card is charged.\\n', 'flx-donate' ) ) ),
+					'data' => array( 'flxfPayTestI18n' => array( 'note' => __( 'TEST MODE: no card is charged.', 'flx-donate' ) ) ),
 				),
 			),
 		);
@@ -55,7 +55,7 @@ class FLXB_Payment_Test extends FLXB_Payment_Provider_Base {
 
 	public function create_payment( $amount, $currency, array $meta ) {
 		if ( 'decline' === $this->setting( 'flxfTestPayOutcome', 'approve' ) ) {
-			return FLXB_Payment_Result::failed( __( '\\nTest provider: the payment was declined.\\n', 'flx-donate' ) );
+			return FLXB_Payment_Result::failed( __( 'Test provider: the payment was declined.', 'flx-donate' ) );
 		}
 		return FLXB_Payment_Result::completed( 'test_' . strtolower( wp_generate_password( 16, false, false ) ), array( 'record' => array( 'meta' => array( 'test' => true ) ) ) );
 	}

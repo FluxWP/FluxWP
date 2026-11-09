@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.4.4
+- Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
+- Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.
+- Check the current user in the dashboard REST permission callback instead of passing a request object as a user.
+
+
 ## 0.4.3
 - Add native WordPress language packs for German, Spanish, French, Brazilian Portuguese, Japanese, Simplified Chinese, Arabic and Russian. English-keyed JSON catalogs preserve legacy gettext compatibility; no Flux Lang dependency.
 

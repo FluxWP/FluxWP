@@ -2505,5 +2505,5 @@ msgstr "ワッツアップ"
 msgid "The reply cannot be empty."
 msgstr "返信を空にすることはできません。"
 
-msgid "[['All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API.', 'tr']]"
-msgstr "[['サイトのすべてのメールを 1 か所に: 送信者名/アドレス (info@ / no-reply@)、SMTP、ロゴ付きおよびモバイル対応の企業テンプレート、WordPress + WooCommerce + FluxWP プラグインのメールの表示、編集、開閉、送信記録、個別および一括送信。 WhatsApp (Evolution API) および SMS (Netgsm) 接続もここにあります。他のプラグインはパブリック API でそれを使用します。', 'tr']]"
+msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
+msgstr "サイトのすべてのメールを 1 か所に: 送信者名/アドレス (info@ / no-reply@)、SMTP、ロゴ付きおよびモバイル対応の企業テンプレート、WordPress + WooCommerce + FluxWP プラグインのメールの表示、編集、開閉、送信記録、個別および一括送信。 WhatsApp (Evolution API) および SMS (Netgsm) 接続もここにあります。他のプラグインはパブリック API でそれを使用します。"

@@ -1657,5 +1657,5 @@ msgstr "Las nuevas publicaciones se componen en el compositor de medios."
 msgid "Scheduled and published posts show up here."
 msgstr "Las publicaciones programadas y publicadas aparecen aquí."
 
-msgid "[['Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
-msgstr "[['Gestión de redes sociales dentro del sitio: vinculación de cuentas (claves del panel), contenido por cuenta, programación, edición/eliminación de red, calendario, panel, asistencia de escritura Flux AI y herramientas MCP. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.', 'tr']]"
+msgid "Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp."
+msgstr "Gestión de redes sociales dentro del sitio: vinculación de cuentas (claves del panel), contenido por cuenta, programación, edición/eliminación de red, calendario, panel, asistencia de escritura Flux AI y herramientas MCP. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp."

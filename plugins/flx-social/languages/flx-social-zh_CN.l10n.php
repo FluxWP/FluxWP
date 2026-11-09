@@ -555,7 +555,7 @@ return array(
   'Deleted' => '已删除',
   'New posts are composed in the media composer.' => '新帖子是在媒体编辑器中编写的。',
   'Scheduled and published posts show up here.' => '已安排和已发布的帖子显示在此处。',
-  '[[\'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.\', \'tr\']]' => '[[\'网站内的社交媒体管理:帐户链接(面板上的按键)、每个帐户的内容、日程安排、网络编辑/删除、日历、仪表板、Flux AI 写作辅助和 MCP 工具。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google Business、WhatsApp。\', \'tr\']]',
+  '[[\'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.\', \'tr\']]' => '网站内的社交媒体管理:帐户链接(面板上的按键)、每个帐户的内容、日程安排、网络编辑/删除、日历、仪表板、Flux AI 写作辅助和 MCP 工具。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google Business、WhatsApp。',
   'Taslak' => '吃水',
   'Onay bekliyor' => '等待批准',
   'Zamanlandı' => '预定',
@@ -1114,6 +1114,8 @@ return array(
   'Yayında' => '已发表',
   'Yeni gönderi medya yazarıyla hazırlanır.' => '新帖子是在媒体编辑器中编写的。',
   'Zamanlanan ve yayımlanan gönderiler burada görünür.' => '已安排和已发布的帖子显示在此处。',
-  'Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.' => '[[\'网站内的社交媒体管理:帐户链接(面板上的按键)、每个帐户的内容、日程安排、网络编辑/删除、日历、仪表板、Flux AI 写作辅助和 MCP 工具。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google Business、WhatsApp。\', \'tr\']]',
+  'Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.' => '网站内的社交媒体管理:帐户链接(面板上的按键)、每个帐户的内容、日程安排、网络编辑/删除、日历、仪表板、Flux AI 写作辅助和 MCP 工具。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google Business、WhatsApp。',
+  'Social media management within the site: account linking (keys from panel), content per account, scheduling, network edit/delete, calendar, dashboard, Flux AI writing assistance and MCP tools. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google Business, WhatsApp.' => '网站内的社交媒体管理:帐户链接(面板上的按键)、每个帐户的内容、日程安排、网络编辑/删除、日历、仪表板、Flux AI 写作辅助和 MCP 工具。 Facebook、Instagram、YouTube、X、LinkedIn、TikTok、Pinterest、Google Business、WhatsApp。',
+
  ),
 );

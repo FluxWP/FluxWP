@@ -4741,5 +4741,5 @@ msgstr "サイトチャット"
 msgid "All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left."
 msgstr "WhatsApp、サイトチャット、その他のチャネルからのすべてのメッセージがここにライブで表示されます。左側にあるチャットを選択します。"
 
-msgid "[['WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.', 'tr']]"
-msgstr "[['WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。', 'tr']]"
+msgid "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter."
+msgstr "WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。"

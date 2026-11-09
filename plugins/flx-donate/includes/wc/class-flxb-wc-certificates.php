@@ -126,7 +126,7 @@ final class FLXB_WC_Certificates {
 			$tpl_id   = FLXB_WC_Designs::template_for( $line, $t ); // 2.0.7: the design the donor picked
 			$template = $tpl_id ? flxs_get_template( $tpl_id ) : null;
 			if ( ! $template ) {
-				$order->add_order_note( __( '\\nThe certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce).\\n', 'flx-donate' ) );
+				$order->add_order_note( __( 'The certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce).', 'flx-donate' ) );
 				break;
 			}
 			list( $n ) = FLXB_WC_Cart::units( $line, (int) $item->get_quantity() );
@@ -142,15 +142,15 @@ final class FLXB_WC_Certificates {
 				$cert = self::make_one( $order, $item, $line, $template, (int) $tpl_id, $rc['name'], $rc['count'], $phone, $email, $billing );
 				if ( is_wp_error( $cert ) ) {
 					/* translators: %s: error */
-					$order->add_order_note( sprintf( __( '\\nThe certificate could not be made:%s\\n', 'flx-donate' ), $cert->get_error_message() ) );
+					$order->add_order_note( sprintf( __( 'The certificate could not be made:%s', 'flx-donate' ), $cert->get_error_message() ) );
 					continue;
 				}
 				$ids[]   = (int) $cert['id'];
 				$nos[]   = (string) $cert['number'];
 				$codes[] = (string) $cert['code'];
-				$sent    = $args['send'] ? self::send( $order, $cert, $line, $dphone, $demail ) : __( '\\nNot sent yet.\\n', 'flx-donate' );
+				$sent    = $args['send'] ? self::send( $order, $cert, $line, $dphone, $demail ) : __( 'Not sent yet.', 'flx-donate' );
 				/* translators: 1: certificate number, 2: name, 3: delivery summary */
-				$order->add_order_note( sprintf( __( '\\nCertificate made:%1$s(%2$s).%3$s\\n', 'flx-donate' ), $cert['number'], $rc['name'], $sent ) );
+				$order->add_order_note( sprintf( __( 'Certificate made:%1$s(%2$s).%3$s', 'flx-donate' ), $cert['number'], $rc['name'], $sent ) );
 				$made[] = $cert;
 			}
 			if ( ! $ids ) {
@@ -298,7 +298,7 @@ final class FLXB_WC_Certificates {
 		delete_transient( 'flxb_cert_lock_' . $order->get_id() );
 		$made = self::issue( $order, array( 'send' => false, 'force' => true ) );
 		/* translators: %d: number of certificates */
-		$order->add_order_note( sprintf( __( '\\nCertificates made again (%d); the old ones were revoked.\\n', 'flx-donate' ), count( $made ) ) );
+		$order->add_order_note( sprintf( __( 'Certificates made again (%d); the old ones were revoked.', 'flx-donate' ), count( $made ) ) );
 		return $made;
 	}
 
@@ -318,7 +318,7 @@ final class FLXB_WC_Certificates {
 		$sum = implode( ' · ', $out );
 		if ( $out ) {
 			/* translators: %s: summary */
-			$order->add_order_note( sprintf( __( '\\nCertificates sent:%s\\n', 'flx-donate' ), $sum ) );
+			$order->add_order_note( sprintf( __( 'Certificates sent:%s', 'flx-donate' ), $sum ) );
 		}
 		return $sum;
 	}
@@ -327,7 +327,7 @@ final class FLXB_WC_Certificates {
 	public static function send( WC_Order $order, array $cert, array $line, $dphone, $demail ) {
 		$channels = array_values( array_intersect( (array) FLXB_WC::setting( 'cert_channels' ), array( 'whatsapp', 'sms', 'email' ) ) );
 		if ( ! $channels || ! function_exists( 'flxs_send_certificate' ) ) {
-			return __( '\\nNo delivery channel is chosen.\\n', 'flx-donate' );
+			return __( 'No delivery channel is chosen.', 'flx-donate' );
 		}
 		/* With both WhatsApp and SMS chosen, SMS is used only when there is no WhatsApp provider. */
 		if ( in_array( 'whatsapp', $channels, true ) && in_array( 'sms', $channels, true ) && function_exists( 'flxs_resolve_provider' ) && flxs_resolve_provider( 'whatsapp' ) ) {
@@ -365,9 +365,9 @@ final class FLXB_WC_Certificates {
 			flxs_kick_queue();
 		}
 		/* translators: %s: channel list */
-		$msg = $ok ? sprintf( __( '\\nQueued:%s.\\n', 'flx-donate' ), implode( ', ', $ok ) ) : '';
+		$msg = $ok ? sprintf( __( 'Queued:%s.', 'flx-donate' ), implode( ', ', $ok ) ) : '';
 		/* translators: %s: channel list */
-		$msg .= $copies ? ' ' . sprintf( __( '\\nCopy to the donor:%s.\\n', 'flx-donate' ), implode( ', ', $copies ) ) : '';
+		$msg .= $copies ? ' ' . sprintf( __( 'Copy to the donor:%s.', 'flx-donate' ), implode( ', ', $copies ) ) : '';
 		return trim( $msg . ( $err ? ' ' . implode( ' · ', $err ) : '' ) );
 	}
 
@@ -455,14 +455,14 @@ final class FLXB_WC_Certificates {
 			'FLXB_WC_CERT',
 			array(
 				'copied' => __( 'Link copied', 'flx-donate' ),
-				'failed' => __( '\\nThe preview could not be drawn. You can open it with "View certificate".\\n', 'flx-donate' ),
+				'failed' => __( 'The preview could not be drawn. You can open it with "View certificate".', 'flx-donate' ),
 			)
 		);
 		$preview = 'thankyou' === $context || 1 === count( $certs );
 		ob_start();
 		?>
 <section class="flxwb-certs flxwb-certs--<?php echo esc_attr( $context ); ?>">
-	<h2 class="flxwb-certs__title"><?php echo esc_html( _n( '[[\'Your certificate is ready\', \'en\']]', '[[\'Your certificates are ready\', \'en\']]', count( $certs ), 'flx-donate' ) ); ?></h2>
+	<h2 class="flxwb-certs__title"><?php echo esc_html( _n( 'Your certificate is ready', 'Your certificates are ready', count( $certs ), 'flx-donate' ) ); ?></h2>
 		<?php
 		foreach ( $certs as $cert ) :
 			$d     = $preview ? self::preview_data( $cert ) : null;
@@ -480,7 +480,7 @@ final class FLXB_WC_Certificates {
 			<span class="flxwb-cert__icon"><?php echo FLXB_WC::icon( 'award' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 			<div>
 				<p class="flxwb-cert__name"><?php echo esc_html( $name ); ?></p>
-				<p class="flxwb-cert__meta"><?php echo esc_html( $title ); ?><?php echo $fidan ? ' · ' . esc_html( FLXB_WC::units_text( $fidan, 'fidan' ) ) : ''; ?> · <?php /* translators: %s: certificate number */ echo esc_html( sprintf( __( '\\nNo:%s\\n', 'flx-donate' ), $cert['number'] ) ); ?></p>
+				<p class="flxwb-cert__meta"><?php echo esc_html( $title ); ?><?php echo $fidan ? ' · ' . esc_html( FLXB_WC::units_text( $fidan, 'fidan' ) ) : ''; ?> · <?php /* translators: %s: certificate number */ echo esc_html( sprintf( __( 'No:%s', 'flx-donate' ), $cert['number'] ) ); ?></p>
 			</div>
 		</div>
 			<?php
@@ -500,7 +500,7 @@ final class FLXB_WC_Certificates {
 			<?php if ( $pdf ) : ?>
 			<a class="flxwb-btn flxwb-btn--primary" data-flxwb-pdf href="<?php echo esc_url( $pdf ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Download PDF', 'flx-donate' ); ?></a>
 			<?php endif; ?>
-			<a class="flxwb-btn" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( '\\nView certificate\\n', 'flx-donate' ); ?></a>
+			<a class="flxwb-btn" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'View certificate', 'flx-donate' ); ?></a>
 			<a class="flxwb-btn" data-flxwb-share data-url="<?php echo esc_attr( $url ); ?>" data-title="<?php echo esc_attr( $title ); ?>" href="<?php echo esc_url( 'https://wa.me/?text=' . rawurlencode( $title . ' ' . $url ) ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Share', 'flx-donate' ); ?></a>
 		</div>
 	</article>
@@ -513,7 +513,7 @@ final class FLXB_WC_Certificates {
 	/** Paid but the certificate is not made yet (e.g. the payment notice is late). */
 	public static function pending_html() {
 		FLXB_WC_Form::enqueue();
-		return '<p class="flxwb-note flxwb-note--info">' . FLXB_WC::icon( 'clock' ) . '<span>' . esc_html__( '\\nYour certificate is being prepared. It will be sent by WhatsApp and e-mail in a few minutes; you can also refresh this page to see it.\\n', 'flx-donate' ) . '</span></p>';
+		return '<p class="flxwb-note flxwb-note--info">' . FLXB_WC::icon( 'clock' ) . '<span>' . esc_html__( 'Your certificate is being prepared. It will be sent by WhatsApp and e-mail in a few minutes; you can also refresh this page to see it.', 'flx-donate' ) . '</span></p>';
 	}
 
 	/* Thank-you page: certificate cards for a paid donation. */

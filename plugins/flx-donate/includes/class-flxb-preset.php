@@ -374,7 +374,7 @@ final class FLXB_Preset {
 			},
 		);
 		$t['flxb_detail_tab'] = array(
-			'label'   => __( '\\nExtra tab\\n', 'flx-donate' ),
+			'label'   => __( 'Extra tab', 'flx-donate' ),
 			'find'    => function ( array $item ) {
 				$k = sanitize_key( (string) ( $item['key'] ?? '' ) );
 				return self::tab_raw( $k ) ? self::nid( 'tab', $k ) : 0;

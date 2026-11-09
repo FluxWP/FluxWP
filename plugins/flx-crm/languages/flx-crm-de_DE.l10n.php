@@ -389,7 +389,7 @@ return array(
   'repeat' => 'wiederholen',
   'Paying' => 'Bezahlen',
   'Consents' => 'Einwilligungen',
-  '[[\'People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.\', \'tr\']]' => '[[\'Menschen und Marketing: Spender, Kunde, Freiwilliger und Kandidat in einer Personenkarte; Zeitleiste, Tags, KVKK-Berechtigungen, RFM-Score und Verlustrisiko, dynamische Segmente. Sammelt Daten von Flux Donate-, Flux Commerce-, Flux Chat-, Flux Forms- und WordPress-Benutzern; Versand per Flux Mail, AI Flux AI.\', \'tr\']]',
+  '[[\'People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.\', \'tr\']]' => 'Menschen und Marketing: Spender, Kunde, Freiwilliger und Kandidat in einer Personenkarte; Zeitleiste, Tags, KVKK-Berechtigungen, RFM-Score und Verlustrisiko, dynamische Segmente. Sammelt Daten von Flux Donate-, Flux Commerce-, Flux Chat-, Flux Forms- und WordPress-Benutzern; Versand per Flux Mail, AI Flux AI.',
   'Ayarlar' => 'Einstellungen',
   'Kişiler, roller, segmentler ve pazarlama' => 'Kontakte, Rollen, Segmente und Marketing',
   'Okur' => 'Liest',
@@ -774,6 +774,8 @@ return array(
   'Ödeme yapan' => 'Bezahlen',
   'İletişim' => 'Kontakt',
   'İzinler' => 'Einwilligungen',
-  'Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.' => '[[\'Menschen und Marketing: Spender, Kunde, Freiwilliger und Kandidat in einer Personenkarte; Zeitleiste, Tags, KVKK-Berechtigungen, RFM-Score und Verlustrisiko, dynamische Segmente. Sammelt Daten von Flux Donate-, Flux Commerce-, Flux Chat-, Flux Forms- und WordPress-Benutzern; Versand per Flux Mail, AI Flux AI.\', \'tr\']]',
+  'Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.' => 'Menschen und Marketing: Spender, Kunde, Freiwilliger und Kandidat in einer Personenkarte; Zeitleiste, Tags, KVKK-Berechtigungen, RFM-Score und Verlustrisiko, dynamische Segmente. Sammelt Daten von Flux Donate-, Flux Commerce-, Flux Chat-, Flux Forms- und WordPress-Benutzern; Versand per Flux Mail, AI Flux AI.',
+  'People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.' => 'Menschen und Marketing: Spender, Kunde, Freiwilliger und Kandidat in einer Personenkarte; Zeitleiste, Tags, KVKK-Berechtigungen, RFM-Score und Verlustrisiko, dynamische Segmente. Sammelt Daten von Flux Donate-, Flux Commerce-, Flux Chat-, Flux Forms- und WordPress-Benutzern; Versand per Flux Mail, AI Flux AI.',
+
  ),
 );

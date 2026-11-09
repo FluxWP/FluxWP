@@ -135,7 +135,7 @@ final class FLXB_Partners {
 		global $wpdb;
 		$name = mb_substr( sanitize_text_field( (string) ( $d['name'] ?? '' ) ), 0, 191 );
 		if ( '' === $name ) {
-			return new WP_Error( 'flxb_partner', __( '\\nEnter a name.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_partner', __( 'Enter a name.', 'flx-donate' ) );
 		}
 		$cur = strtoupper( sanitize_key( (string) ( $d['currency'] ?? flxb_default_currency() ) ) );
 		$row = array(
@@ -190,7 +190,7 @@ final class FLXB_Partners {
 			'note'       => mb_substr( sanitize_text_field( (string) ( $d['note'] ?? '' ) ), 0, 191 ),
 		);
 		if ( ! $row['partner_id'] ) {
-			return new WP_Error( 'flxb_price', __( '\\nPartner not found.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_price', __( 'Partner not found.', 'flx-donate' ) );
 		}
 		$t = flxb_table( 'partner_prices' );
 		if ( $id ) {

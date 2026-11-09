@@ -388,10 +388,14 @@
     "Update FluxWP themes and plugins from the update server": "Mettre à jour les thèmes et plugins FluxWP depuis le serveur de mise à jour",
     "Theme settings and presets": "Paramètres et préréglages du thème",
     "Setup wizard, presets and FluxWP package updates": "Assistant de configuration, préréglages et mises à jour du package FluxWP",
-    "\\nOkunmamış WhatsApp\\n": "\\nOkunmamış WhatsApp\\n",
-    "[['%sdonate', 'tr']]\u0000[['%sdonate', 'tr']]": "[['%sfaire un don', 'tr']]\u0000[['%sfaire un don', 'tr']]",
-    "[['%seven', 'sw']]\u0000[['%seven', 'sw']]": "[['%smême', 'sw']]\u0000[['%smême', 'sw']]",
-    "[['%swarning', 'tr']]\u0000[['%swarning', 'tr']]": "[[' Avertissement%s', 'tr']]\u0000[[' Avertissement%s', 'tr']]",
-    "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]\u0000[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]": "[['%sa une disposition de menu spéciale pour le rôle ; les autres rôles voient le menu groupé par défaut.', 'tr']]\u0000[['%sa une disposition de menu spéciale pour le rôle ; les autres rôles voient le menu groupé par défaut.', 'tr']]"
+    "%s donation\u0000%s donations": "%sdon\u0000%sdons",
+    "%s error\u0000%s errors": "Erreur%s\u0000Erreurs%s",
+    "%s warning\u0000%s warnings": "Avertissement%s\u0000Avertissements%s",
+    "%s role has a custom menu layout; other roles use the default grouped menu.\u0000%s roles have custom menu layouts; other roles use the default grouped menu.": "Le rôle%sa une disposition de menu personnalisée ; les autres rôles utilisent le menu groupé par défaut.\u0000Les rôles%sont des présentations de menu personnalisées ; les autres rôles utilisent le menu groupé par défaut.",
+    "Okunmamış WhatsApp": "Okunmamış WhatsApp",
+    "%sdonate\u0000%sdonate": "%sfaire un don\u0000%sfaire un don",
+    "%seven\u0000%seven": "%smême\u0000%smême",
+    "%swarning\u0000%swarning": " Avertissement%s\u0000 Avertissement%s",
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%sa une disposition de menu spéciale pour le rôle ; les autres rôles voient le menu groupé par défaut.\u0000%sa une disposition de menu spéciale pour le rôle ; les autres rôles voient le menu groupé par défaut."
   }
 }

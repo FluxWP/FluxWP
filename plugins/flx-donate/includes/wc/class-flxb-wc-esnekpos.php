@@ -101,13 +101,13 @@ class FLXB_WC_Esnekpos {
 			$fields['esnekpos_password']['type'] = 'password';
 		}
 		if ( isset( $fields['esnekpos_tdmode'] ) ) {
-			$fields['esnekpos_tdmode']['description'] = __( '\\nFlux Donate always uses EsnekPOS\'s secure payment page; the bank asks for 3D Secure there when needed.\\n', 'flx-donate' );
+			$fields['esnekpos_tdmode']['description'] = __( 'Flux Donate always uses EsnekPOS\'s secure payment page; the bank asks for 3D Secure there when needed.', 'flx-donate' );
 		}
 		$note = array(
 			'flxb_note' => array(
-				'title'       => __( '\\nFlux Donate\\n', 'flx-donate' ),
+				'title'       => __( 'Flux Donate', 'flx-donate' ),
 				'type'        => 'title',
-				'description' => __( '\\nFlux Donate runs this payment method: classic and block checkout, payment links without a cart, and every payment is confirmed with EsnekPOS from the server before the order is marked paid. For a test, enter merchant TEST1234 and the test merchant key from EsnekPOS\\\'s developer page.\\n', 'flx-donate' ),
+				'description' => __( 'Flux Donate runs this payment method: classic and block checkout, payment links without a cart, and every payment is confirmed with EsnekPOS from the server before the order is marked paid. For a test, enter merchant TEST1234 and the test merchant key from EsnekPOS\'s developer page.', 'flx-donate' ),
 			),
 		);
 		return $note + (array) $fields;
@@ -184,7 +184,7 @@ class FLXB_WC_Esnekpos {
 		}
 		if ( ! $out || abs( $sum - $total ) > 0.009 ) {
 			/* translators: %d: order number */
-			$name = sprintf( __( '\\nDonation #%d\\n', 'flx-donate' ), $order->get_id() );
+			$name = sprintf( __( 'Donation #%d', 'flx-donate' ), $order->get_id() );
 			$out  = array(
 				array(
 					'PRODUCT_ID'          => 'o' . $order->get_id(),
@@ -224,7 +224,7 @@ class FLXB_WC_Esnekpos {
 		$j = json_decode( (string) wp_remote_retrieve_body( $r ), true );
 		if ( ! is_array( $j ) ) {
 			/* translators: %d: HTTP status */
-			return new WP_Error( 'flxb_esn', sprintf( __( '\\nEsnekPOS did not answer (HTTP%d).\\n', 'flx-donate' ), (int) wp_remote_retrieve_response_code( $r ) ) );
+			return new WP_Error( 'flxb_esn', sprintf( __( 'EsnekPOS did not answer (HTTP%d).', 'flx-donate' ), (int) wp_remote_retrieve_response_code( $r ) ) );
 		}
 		return $j;
 	}
@@ -254,11 +254,11 @@ class FLXB_WC_Esnekpos {
 	public static function start( WC_Order $order ) {
 		$c = self::credentials();
 		if ( '' === $c['merchant'] || '' === $c['key'] ) {
-			return new WP_Error( 'flxb_esn', __( '\\nCard payments are not configured on this site. Please choose another payment method.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_esn', __( 'Card payments are not configured on this site. Please choose another payment method.', 'flx-donate' ) );
 		}
 		$total = (float) $order->get_total();
 		if ( $total <= 0 ) {
-			return new WP_Error( 'flxb_esn', __( '\\nThe amount must be greater than zero.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_esn', __( 'The amount must be greater than zero.', 'flx-donate' ) );
 		}
 		FLXB_WC_Cart::fill_address( $order ); // EsnekPOS wants a city and an address; our checkout asks none
 		$ref   = substr( $order->get_id() . '-' . base_convert( (string) time(), 10, 36 ), 0, 24 );
@@ -295,15 +295,15 @@ class FLXB_WC_Esnekpos {
 		unset( $body );
 		if ( is_wp_error( $r ) ) {
 			/* translators: %s: error */
-			$order->add_order_note( sprintf( __( '\\nEsnekPOS payment could not start:%s\\n', 'flx-donate' ), $r->get_error_message() ) );
-			return new WP_Error( 'flxb_esn', __( '\\nThe payment could not be started. Please try again.\\n', 'flx-donate' ) );
+			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start:%s', 'flx-donate' ), $r->get_error_message() ) );
+			return new WP_Error( 'flxb_esn', __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
 		}
 		$url = (string) ( $r['URL_3DS'] ?? '' );
 		if ( ! self::ok( $r ) || ! preg_match( '#^' . ( 0 === strpos( self::base_url(), 'http://' ) ? 'https?' : 'https' ) . '://#', $url ) ) { // http only against a local test service
 			$err = self::message( $r );
 			/* translators: 1: EsnekPOS message, 2: test or live */
-			$order->add_order_note( sprintf( __( '\\nEsnekPOS payment could not start:%1$s(%2$s).\\n', 'flx-donate' ), '' !== $err ? $err : '-', $c['test'] ? __( '\\ntest mode\\n', 'flx-donate' ) : __( '\\nlive\\n', 'flx-donate' ) ) );
-			return new WP_Error( 'flxb_esn', '' !== $err ? 'EsnekPOS: ' . $err : __( '\\nThe payment could not be started. Please try again.\\n', 'flx-donate' ) );
+			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start:%1$s(%2$s).', 'flx-donate' ), '' !== $err ? $err : '-', $c['test'] ? __( 'test mode', 'flx-donate' ) : __( 'live', 'flx-donate' ) ) );
+			return new WP_Error( 'flxb_esn', '' !== $err ? 'EsnekPOS: ' . $err : __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
 		}
 		$order->update_meta_data( self::REF, $ref );
 		$order->update_meta_data( '_flxb_esnek_test', $c['test'] ? 1 : 0 );
@@ -390,7 +390,7 @@ class FLXB_WC_Esnekpos {
 		} elseif ( $order->is_paid() ) {
 			wp_safe_redirect( $order->get_checkout_order_received_url() );
 		} else {
-			wp_safe_redirect( add_query_arg( self::ERR, rawurlencode( '' !== $err ? $err : __( '\\nThe payment could not be completed. Please try again or use another card.\\n', 'flx-donate' ) ), $order->get_checkout_payment_url() ) );
+			wp_safe_redirect( add_query_arg( self::ERR, rawurlencode( '' !== $err ? $err : __( 'The payment could not be completed. Please try again or use another card.', 'flx-donate' ) ), $order->get_checkout_payment_url() ) );
 		}
 		exit;
 	}
@@ -403,7 +403,7 @@ class FLXB_WC_Esnekpos {
 	private static function settle( WC_Order $order, $ref, $posted_ok, $posted_msg ) {
 		$lock = 'flxb_wc_esn_lock_' . $order->get_id();
 		if ( ! add_option( $lock, time(), '', false ) && time() - (int) get_option( $lock ) < 60 ) {
-			return __( '\\nThe payment is being checked. Please wait a moment and refresh the page.\\n', 'flx-donate' );
+			return __( 'The payment is being checked. Please wait a moment and refresh the page.', 'flx-donate' );
 		}
 		update_option( $lock, time(), false );
 		try {
@@ -414,8 +414,8 @@ class FLXB_WC_Esnekpos {
 			$q = self::query( $ref );
 			if ( is_wp_error( $q ) ) {
 				/* translators: %s: error */
-				$order->add_order_note( sprintf( __( '\\nEsnekPOS payment could not be checked:%s\\n', 'flx-donate' ), $q->get_error_message() ) );
-				return __( '\\nThe payment could not be verified yet. If money was taken from your card, please contact us before trying again.\\n', 'flx-donate' );
+				$order->add_order_note( sprintf( __( 'EsnekPOS payment could not be checked:%s', 'flx-donate' ), $q->get_error_message() ) );
+				return __( 'The payment could not be verified yet. If money was taken from your card, please contact us before trying again.', 'flx-donate' );
 			}
 			if ( self::verified( $q, $ref, $order ) ) {
 				$refno  = sanitize_text_field( (string) ( $q['REFNO'] ?? '' ) );
@@ -433,7 +433,7 @@ class FLXB_WC_Esnekpos {
 				);
 				$order->save_meta_data();
 				/* translators: 1: EsnekPOS reference, 2: installments, 3: amount charged */
-				$order->add_order_note( sprintf( __( '\\nEsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged.\\n', 'flx-donate' ), '' !== $refno ? $refno : $ref, $inst, FLXB_WC::money_text( $amount, $order->get_currency() ) ) );
+				$order->add_order_note( sprintf( __( 'EsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged.', 'flx-donate' ), '' !== $refno ? $refno : $ref, $inst, FLXB_WC::money_text( $amount, $order->get_currency() ) ) );
 				$order->payment_complete( '' !== $refno ? $refno : $ref );
 				do_action( 'flxb_wc_esnekpos_paid', $order, $q );
 				return '';
@@ -441,16 +441,16 @@ class FLXB_WC_Esnekpos {
 			$msg = self::message( $q );
 			if ( self::ok( $q ) ) {
 				/* translators: %s: EsnekPOS reference */
-				$order->update_status( 'on-hold', sprintf( __( '\\nEsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything.\\n', 'flx-donate' ), $ref ) );
-				return __( '\\nThe payment could not be verified yet. If money was taken from your card, please contact us before trying again.\\n', 'flx-donate' );
+				$order->update_status( 'on-hold', sprintf( __( 'EsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything.', 'flx-donate' ), $ref ) );
+				return __( 'The payment could not be verified yet. If money was taken from your card, please contact us before trying again.', 'flx-donate' );
 			}
 			$why = '' !== $posted_msg ? $posted_msg : ( '' !== $msg ? $msg : '-' );
 			if ( $posted_ok ) { // also an old return URL without the order key: only a note, the status stays
 				/* translators: %s: EsnekPOS message */
-				$order->add_order_note( sprintf( __( '\\nEsnekPOS return said success but EsnekPOS did not confirm the payment:%s\\n', 'flx-donate' ), '' !== $msg ? $msg : '-' ) );
+				$order->add_order_note( sprintf( __( 'EsnekPOS return said success but EsnekPOS did not confirm the payment:%s', 'flx-donate' ), '' !== $msg ? $msg : '-' ) );
 			} else {
 				/* translators: %s: EsnekPOS message */
-				$order->update_status( 'failed', sprintf( __( '\\nEsnekPOS: the payment was not completed (%s).\\n', 'flx-donate' ), $why ) );
+				$order->update_status( 'failed', sprintf( __( 'EsnekPOS: the payment was not completed (%s).', 'flx-donate' ), $why ) );
 			}
 			return '-' !== $why ? 'EsnekPOS: ' . $why : '';
 		} finally {
@@ -477,13 +477,13 @@ class FLXB_WC_Esnekpos {
 		$a[ self::ID ] = array(
 			'label' => 'EsnekPOS',
 			'logo'  => self::logo_url(),
-			'note'  => $c['test'] ? __( '\\nTest mode (merchant TEST1234).\\n', 'flx-donate' ) : '',
+			'note'  => $c['test'] ? __( 'Test mode (merchant TEST1234).', 'flx-donate' ) : '',
 			'caps'  => array(
-				'no_cart'      => array( 'flux', __( '\\nFlux Donate sends the order lines, no cart needed.\\n', 'flx-donate' ) ),
-				'verified'     => array( 'flux', __( '\\nFlux Donate asks EsnekPOS (ProcessQuery) before the order is marked paid.\\n', 'flx-donate' ) ),
-				'installments' => array( 'page', __( '\\nOn EsnekPOS\\\'s payment page, as set in the EsnekPOS panel.\\n', 'flx-donate' ) ),
+				'no_cart'      => array( 'flux', __( 'Flux Donate sends the order lines, no cart needed.', 'flx-donate' ) ),
+				'verified'     => array( 'flux', __( 'Flux Donate asks EsnekPOS (ProcessQuery) before the order is marked paid.', 'flx-donate' ) ),
+				'installments' => array( 'page', __( 'On EsnekPOS\'s payment page, as set in the EsnekPOS panel.', 'flx-donate' ) ),
 				'tokenization' => array( 'no', '' ),
-				'refunds'      => array( 'no', __( '\\nRefund in the EsnekPOS panel, then mark the order refunded.\\n', 'flx-donate' ) ),
+				'refunds'      => array( 'no', __( 'Refund in the EsnekPOS panel, then mark the order refunded.', 'flx-donate' ) ),
 			),
 		);
 		return $a;

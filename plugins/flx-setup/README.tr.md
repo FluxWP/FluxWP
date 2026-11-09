@@ -134,3 +134,5 @@ FluxWP Panel, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licen
 FluxWP tarafından geliştirilmiştir.
 
 Paketler ekranında eklenti adına veya ikonuna tıklayın: kısa tanıtım, örnek ekran görüntüleri ve ayrıntılar için “Sitede aç” bağlantısı gösterilir. Kurulum/güncelleme düğmeleri ayrı çalışır.
+
+Açıklama, SVG ikon, galeri ve site bağlantıları her GitHub deposunun `catalog/packages.json` dosyasından yönetilir. Updater bunları önbelleğe alıp dağıtır; sitelerde gömülü tanıtım kataloğu tutulmaz.

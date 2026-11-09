@@ -473,9 +473,9 @@ return array(
   'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.' => 'Теперь автоматически: полоса iyzico и логотипы включенных виртуальных POS-плагинов. После того как вы добавите или удалите логотип, список будет выбран вами самостоятельно.',
   'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.' => 'Список, подобранный вручную. «Назад к автоматическому режиму» возвращает полосу iyzico и логотипы включенных виртуальных POS-плагинов.',
   'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.' => 'SVG or transparent PNG is best; цветные логотипы показаны в белой рамке в темном нижнем колонтитуле.',
-  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '\\n%s. Hostinger › Версия PHP 8.2 будет установлена.\\n',
+  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '%s. Hostinger › Версия PHP 8.2 будет установлена.',
   'Background pattern' => 'Фоновый узор',
-  '\\nDots\\n' => '\\nТочки\\n',
+  '\\nDots\\n' => 'Точки',
   'Leaves' => 'Листья',
   'None' => 'Нет',
   'News introduction' => 'Введение новостей',
@@ -947,7 +947,8 @@ return array(
   'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.' => 'Теперь автоматически: полоса iyzico и логотипы включенных виртуальных POS-плагинов. После того как вы добавите или удалите логотип, список будет выбран вами самостоятельно.',
   'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.' => 'Список, подобранный вручную. «Назад к автоматическому режиму» возвращает полосу iyzico и логотипы включенных виртуальных POS-плагинов.',
   'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.' => 'SVG or transparent PNG is best; цветные логотипы показаны в белой рамке в темном нижнем колонтитуле.',
-  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '\\n%s. Hostinger › Версия PHP 8.2 будет установлена.\\n',
-  'Dots' => '\\nТочки\\n',
+  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '%s. Hostinger › Версия PHP 8.2 будет установлена.',
+  'Dots' => 'Точки',
+
  ),
 );

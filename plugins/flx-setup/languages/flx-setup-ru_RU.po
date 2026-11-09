@@ -1829,78 +1829,6 @@ msgstr "Поддержка и обратная связь:%s"
 msgid "FluxWP Panel"
 msgstr "Панель FluxWP"
 
-msgid "[['%dthere is an update', 'tr']]"
-msgid_plural "[['%dthere is an update', 'tr']]"
-msgstr[0] "[['%dесть обновление', 'tr']]"
-msgstr[1] "[['%dесть обновление', 'tr']]"
-msgstr[2] "[['%dесть обновление', 'tr']]"
-
-msgid "[['%dpackage activated.', 'tr']]"
-msgid_plural "[['%dpackage activated.', 'tr']]"
-msgstr[0] "[[' Пакет%dактивирован.', 'tr']]"
-msgstr[1] "[[' Пакет%dактивирован.', 'tr']]"
-msgstr[2] "[[' Пакет%dактивирован.', 'tr']]"
-
-msgid "[['%dpackage has been disabled.', 'tr']]"
-msgid_plural "[['%dpackage has been disabled.', 'tr']]"
-msgstr[0] "[['Пакет%dотключен.', 'tr']]"
-msgstr[1] "[['Пакет%dотключен.', 'tr']]"
-msgstr[2] "[['Пакет%dотключен.', 'tr']]"
-
-msgid "[['%dpackage removed.', 'tr']]"
-msgid_plural "[['%dpackage removed.', 'tr']]"
-msgstr[0] "[[' Пакет%dудален.', 'tr']]"
-msgstr[1] "[[' Пакет%dудален.', 'tr']]"
-msgstr[2] "[[' Пакет%dудален.', 'tr']]"
-
-msgid "[['%dbackup deleted.', 'tr']]"
-msgid_plural "[['%dbackup deleted.', 'tr']]"
-msgstr[0] "[[' Резервная копия%dудалена.', 'tr']]"
-msgstr[1] "[[' Резервная копия%dудалена.', 'tr']]"
-msgstr[2] "[[' Резервная копия%dудалена.', 'tr']]"
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr "\\nРезервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена.\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr "\\nПодключено · Пакет%dПодключено · Пакет%d\\n"
-
-msgid "[['%dday', 'tr']]"
-msgid_plural "[['%dday', 'tr']]"
-msgstr[0] "[['%dдень', 'tr']]"
-msgstr[1] "[['%dдень', 'tr']]"
-msgstr[2] "[['%dдень', 'tr']]"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
-
-msgid "[['%sregistration', 'tr']]"
-msgid_plural "[['%sregistration', 'tr']]"
-msgstr[0] "[['Регистрация%s', 'tr']]"
-msgstr[1] "[['Регистрация%s', 'tr']]"
-msgstr[2] "[['Регистрация%s', 'tr']]"
-
-msgid "[[\"FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.\", 'tr']]"
-msgstr "[[\"Плагин установки и обновления FluxWP. Мастер установки при первом запуске (введение, выбор плагина, внешний вид, установка); Переносит темы и плагины FluxWP с сервера обновлений (по умолчанию updater.fluxwp.com) на экран обновлений WordPress; Механизм предустановок (preset.json) настраивает сайт за один шаг, заменяет его одобренными исправлениями и откатывает его.\", 'tr']]"
-
-msgid "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgid_plural "\\nExpired%dbackup deleted. Expired%dbackup deleted.\\n"
-msgstr[0] "\\nРезервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена.\\n"
-msgstr[1] "\\nРезервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена.\\n"
-msgstr[2] "\\nРезервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена.\\n"
-
-msgid "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgid_plural "\\nConnected ·%dpackage Connected ·%dpackage\\n"
-msgstr[0] "\\nПодключено · Пакет%dПодключено · Пакет%d\\n"
-msgstr[1] "\\nПодключено · Пакет%dПодключено · Пакет%d\\n"
-msgstr[2] "\\nПодключено · Пакет%dПодключено · Пакет%d\\n"
-
-msgid "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgid_plural "\\nCurrently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\\n"
-msgstr[0] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
-msgstr[1] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
-msgstr[2] "\\nВ настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s.\\n"
-
 msgid "Close preview"
 msgstr "Закрыть предварительный просмотр"
 
@@ -1921,3 +1849,87 @@ msgstr "Краткий обзор пока недоступен."
 
 msgid "Preview image %d"
 msgstr "Изображение для предварительного просмотра%d"
+
+msgid "%d package removed."
+msgid_plural "%d packages removed."
+msgstr[0] "Пакет%dудален."
+msgstr[1] "Пакеты%dудалены."
+msgstr[2] "Пакеты%dудалены."
+
+msgid "%s record"
+msgid_plural "%s records"
+msgstr[0] "%sзапись"
+msgstr[1] "%sзаписи"
+msgstr[2] "%sзаписи"
+
+msgid "%dthere is an update"
+msgid_plural "%dthere is an update"
+msgstr[0] "%dесть обновление"
+msgstr[1] "%dесть обновление"
+msgstr[2] "%dесть обновление"
+
+msgid "%dpackage activated."
+msgid_plural "%dpackage activated."
+msgstr[0] " Пакет%dактивирован."
+msgstr[1] " Пакет%dактивирован."
+msgstr[2] " Пакет%dактивирован."
+
+msgid "%dpackage has been disabled."
+msgid_plural "%dpackage has been disabled."
+msgstr[0] "Пакет%dотключен."
+msgstr[1] "Пакет%dотключен."
+msgstr[2] "Пакет%dотключен."
+
+msgid "%dpackage removed."
+msgid_plural "%dpackage removed."
+msgstr[0] " Пакет%dудален."
+msgstr[1] " Пакет%dудален."
+msgstr[2] " Пакет%dудален."
+
+msgid "%dbackup deleted."
+msgid_plural "%dbackup deleted."
+msgstr[0] " Резервная копия%dудалена."
+msgstr[1] " Резервная копия%dудалена."
+msgstr[2] " Резервная копия%dудалена."
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr "Резервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена."
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgstr "Подключено · Пакет%dПодключено · Пакет%d"
+
+msgid "%dday"
+msgid_plural "%dday"
+msgstr[0] "%dдень"
+msgstr[1] "%dдень"
+msgstr[2] "%dдень"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr "В настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s."
+
+msgid "%sregistration"
+msgid_plural "%sregistration"
+msgstr[0] "Регистрация%s"
+msgstr[1] "Регистрация%s"
+msgstr[2] "Регистрация%s"
+
+msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
+msgstr "Плагин установки и обновления FluxWP. Мастер установки при первом запуске (введение, выбор плагина, внешний вид, установка); Переносит темы и плагины FluxWP с сервера обновлений (по умолчанию updater.fluxwp.com) на экран обновлений WordPress; Механизм предустановок (preset.json) настраивает сайт за один шаг, заменяет его одобренными исправлениями и откатывает его."
+
+msgid "Expired%dbackup deleted. Expired%dbackup deleted."
+msgid_plural "Expired%dbackup deleted. Expired%dbackup deleted."
+msgstr[0] "Резервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена."
+msgstr[1] "Резервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена."
+msgstr[2] "Резервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена."
+
+msgid "Connected ·%dpackage Connected ·%dpackage"
+msgid_plural "Connected ·%dpackage Connected ·%dpackage"
+msgstr[0] "Подключено · Пакет%dПодключено · Пакет%d"
+msgstr[1] "Подключено · Пакет%dПодключено · Пакет%d"
+msgstr[2] "Подключено · Пакет%dПодключено · Пакет%d"
+
+msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+msgstr[0] "В настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s."
+msgstr[1] "В настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s."
+msgstr[2] "В настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s."

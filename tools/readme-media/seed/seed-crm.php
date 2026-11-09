@@ -5,7 +5,7 @@ require ( getenv( 'WPENV' ) ?: '/tmp/wpenv' ) . '/site/wp-load.php';
 global $wpdb; mt_srand( 23 ); wp_set_current_user( 1 );
 foreach ( array( 'contacts', 'links', 'events', 'tags', 'contact_tags', 'segments' ) as $t ) {
 	$wpdb->query( 'DELETE FROM ' . flxcrm_table( $t ) );
-	$wpdb->query( "DELETE FROM sqlite_sequence WHERE name = '" . flxcrm_table( $t ) . "'" ); // Sabit id'ler (cfg adresleri).
+	if ( defined( 'DB_ENGINE' ) && 'sqlite' === DB_ENGINE ) { $wpdb->query( "DELETE FROM sqlite_sequence WHERE name = '" . flxcrm_table( $t ) . "'" ); } else { $wpdb->query( 'ALTER TABLE ' . flxcrm_table( $t ) . ' AUTO_INCREMENT = 1' ); } // Sabit id'ler (cfg adresleri).
 }
 delete_option( 'flxcrm_segments_seeded' );
 

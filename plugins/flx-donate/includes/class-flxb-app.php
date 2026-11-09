@@ -169,7 +169,7 @@ final class FLXB_App {
 
 	public static function routes() {
 		$auth = function () {
-			return is_user_logged_in() ? true : new WP_Error( 'rest_not_logged_in', __( '\\nPlease sign in.\\n', 'flx-donate' ), array( 'status' => 401 ) );
+			return is_user_logged_in() ? true : new WP_Error( 'rest_not_logged_in', __( 'Please sign in.', 'flx-donate' ), array( 'status' => 401 ) );
 		};
 		register_rest_route( self::NS, '/me', array( 'methods' => 'GET', 'permission_callback' => $auth, 'callback' => array( __CLASS__, 'rest_me' ) ) );
 		register_rest_route(

@@ -388,10 +388,14 @@
     "Update FluxWP themes and plugins from the update server": "从更新服务器更新 FluxWP 主题和插件",
     "Theme settings and presets": "主题设置和预设",
     "Setup wizard, presets and FluxWP package updates": "设置向导、预设和 FluxWP 包更新",
-    "\\nOkunmamış WhatsApp\\n": "\\nOkunmamış WhatsApp\\n",
-    "[['%sdonate', 'tr']]\u0000[['%sdonate', 'tr']]": "[['%s捐赠', 'tr']]",
-    "[['%seven', 'sw']]\u0000[['%seven', 'sw']]": "[['%s偶','sw']]",
-    "[['%swarning', 'tr']]\u0000[['%swarning', 'tr']]": "[['%s警告','tr']]",
-    "[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]\u0000[['%shas a special menu layout for the role; other roles see the default grouped menu.', 'tr']]": "[['%s对该角色有特殊的菜单布局;其他角色参见默认分组菜单。', 'tr']]"
+    "%s donation\u0000%s donations": "%s捐款",
+    "%s error\u0000%s errors": "%s错误",
+    "%s warning\u0000%s warnings": "%s警告",
+    "%s role has a custom menu layout; other roles use the default grouped menu.\u0000%s roles have custom menu layouts; other roles use the default grouped menu.": "%s角色具有自定义菜单布局;其他角色使用默认的分组菜单。",
+    "Okunmamış WhatsApp": "Okunmamış WhatsApp",
+    "%sdonate\u0000%sdonate": "%s捐赠",
+    "%seven\u0000%seven": "%s偶",
+    "%swarning\u0000%swarning": "%s警告",
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%s对该角色有特殊的菜单布局;其他角色参见默认分组菜单。"
   }
 }

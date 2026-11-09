@@ -88,15 +88,15 @@ class FLXB_WC_Iyzico {
 		switch ( $c['source'] ) {
 			case 'woocommerce':
 			case 'woocommerce-subscription':
-				$t = __( '\\nKeys are read from the iyzico WooCommerce plugin settings.\\n', 'flx-donate' );
+				$t = __( 'Keys are read from the iyzico WooCommerce plugin settings.', 'flx-donate' );
 				break;
 			case 'own':
-				$t = __( '\\nKeys are read from Donations › Settings › Payments › iyzico.\\n', 'flx-donate' );
+				$t = __( 'Keys are read from Donations › Settings › Payments › iyzico.', 'flx-donate' );
 				break;
 			default:
-				return __( '\\nNo iyzico keys found. Enter them in the iyzico WooCommerce plugin or in Donations › Settings › Payments › iyzico.\\n', 'flx-donate' );
+				return __( 'No iyzico keys found. Enter them in the iyzico WooCommerce plugin or in Donations › Settings › Payments › iyzico.', 'flx-donate' );
 		}
-		return $t . ' ' . ( $c['sandbox'] ? __( '\\nEnvironment: sandbox (test).\\n', 'flx-donate' ) : __( '\\nEnvironment: live.\\n', 'flx-donate' ) );
+		return $t . ' ' . ( $c['sandbox'] ? __( 'Environment: sandbox (test).', 'flx-donate' ) : __( 'Environment: live.', 'flx-donate' ) );
 	}
 
 	/**
@@ -203,11 +203,11 @@ class FLXB_WC_Iyzico {
 	public static function start( WC_Order $order ) {
 		$api = FLXB_Iyzico_Api::make();
 		if ( ! $api ) {
-			return new WP_Error( 'flxb_iyz', __( '\\nCard payments are not configured on this site. Please choose another payment method.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_iyz', __( 'Card payments are not configured on this site. Please choose another payment method.', 'flx-donate' ) );
 		}
 		$amount = (float) $order->get_total();
 		if ( $amount <= 0 ) {
-			return new WP_Error( 'flxb_iyz', __( '\\nThe amount must be greater than zero.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_iyz', __( 'The amount must be greater than zero.', 'flx-donate' ) );
 		}
 		$conv    = 'flxbwc-' . $order->get_id();
 		$contact = array(
@@ -242,7 +242,7 @@ class FLXB_WC_Iyzico {
 		}
 		if ( ! FLXB_Iyzico_Api::ok( $r ) || empty( $r['token'] ) || empty( $r['paymentPageUrl'] ) ) {
 			$err = FLXB_Iyzico_Api::error_text( $r );
-			return new WP_Error( 'flxb_iyz', '' !== $err ? 'iyzico: ' . $err : __( '\\nThe payment could not be started. Please try again.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_iyz', '' !== $err ? 'iyzico: ' . $err : __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
 		}
 		$order->update_meta_data( '_flxb_iyz_token', sanitize_text_field( (string) $r['token'] ) );
 		$order->update_meta_data( '_flxb_iyz_sandbox', FLXB_Iyzico_Api::credentials()['sandbox'] ? 1 : 0 );
@@ -320,8 +320,8 @@ class FLXB_WC_Iyzico {
 			if ( 'FAILURE' === $status || ( FLXB_Iyzico_Api::ok( $r ) && '' !== $status ) ) {
 				$err = FLXB_Iyzico_Api::error_text( $r );
 				/* translators: %s: iyzico error */
-				$order->update_status( 'failed', sprintf( __( '\\niyzico: the payment was not completed (%s).\\n', 'flx-donate' ), '' !== $err ? $err : $status ) );
-				$order->update_meta_data( '_flxb_iyz_error', '' !== $err ? $err : __( '\\nThe payment could not be completed. Please try again or use another card.\\n', 'flx-donate' ) );
+				$order->update_status( 'failed', sprintf( __( 'iyzico: the payment was not completed (%s).', 'flx-donate' ), '' !== $err ? $err : $status ) );
+				$order->update_meta_data( '_flxb_iyz_error', '' !== $err ? $err : __( 'The payment could not be completed. Please try again or use another card.', 'flx-donate' ) );
 				$order->save_meta_data();
 			}
 			return false;
@@ -349,7 +349,7 @@ class FLXB_WC_Iyzico {
 		if ( ! $match ) {
 			$order->save_meta_data();
 			/* translators: %s: iyzico payment id */
-			$order->update_status( 'on-hold', sprintf( __( '\\niyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything.\\n', 'flx-donate' ), $info['paymentId'] ) );
+			$order->update_status( 'on-hold', sprintf( __( 'iyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything.', 'flx-donate' ), $info['paymentId'] ) );
 			return false;
 		}
 		$k = (string) ( $r['cardUserKey'] ?? '' );
@@ -364,7 +364,7 @@ class FLXB_WC_Iyzico {
 		$order->delete_meta_data( '_flxb_iyz_error' );
 		$order->save_meta_data();
 		/* translators: 1: card, 2: iyzico payment id, 3: callback | webhook */
-		$order->add_order_note( sprintf( __( '\\niyzico payment received:%1$s, payment id%2$s(%3$s).\\n', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'], $source ) );
+		$order->add_order_note( sprintf( __( 'iyzico payment received:%1$s, payment id%2$s(%3$s).', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'], $source ) );
 		$order->payment_complete( $info['paymentId'] );
 		do_action( 'flxb_wc_iyzico_paid', $order, $r );
 		return true;
@@ -380,7 +380,7 @@ class FLXB_WC_Iyzico {
 			$to = $order->get_checkout_order_received_url();
 		} elseif ( $order ) {
 			$err = (string) $order->get_meta( '_flxb_iyz_error' );
-			$to  = add_query_arg( 'flxb_iyz_error', rawurlencode( '' !== $err ? $err : __( '\\nThe payment could not be completed. Please try again or use another card.\\n', 'flx-donate' ) ), $order->get_checkout_payment_url() );
+			$to  = add_query_arg( 'flxb_iyz_error', rawurlencode( '' !== $err ? $err : __( 'The payment could not be completed. Please try again or use another card.', 'flx-donate' ) ), $order->get_checkout_payment_url() );
 		} else {
 			$to = function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : home_url( '/' );
 		}
@@ -402,14 +402,14 @@ class FLXB_WC_Iyzico {
 		$amount = round( (float) $amount, 2 );
 		$info   = $order->get_meta( '_flxb_iyzico' );
 		if ( $amount <= 0 ) {
-			return new WP_Error( 'flxb_iyz', __( '\\nEnter an amount to refund.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_iyz', __( 'Enter an amount to refund.', 'flx-donate' ) );
 		}
 		if ( ! is_array( $info ) || empty( $info['items'] ) ) {
-			return new WP_Error( 'flxb_iyz', __( '\\nThis order has no iyzico transaction to refund.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_iyz', __( 'This order has no iyzico transaction to refund.', 'flx-donate' ) );
 		}
 		$api = FLXB_Iyzico_Api::make();
 		if ( ! $api ) {
-			return new WP_Error( 'flxb_iyz', __( '\\niyzico is not configured on this site.\', \'en\']]', 'flx-donate' ) );
+			return new WP_Error( 'flxb_iyz', __( 'iyzico is not configured on this site.', 'flx-donate' ) );
 		}
 		$left = FLXB_Iyzico_Api::minor( $amount );
 		$room = 0;
@@ -417,7 +417,7 @@ class FLXB_WC_Iyzico {
 			$room += max( 0, FLXB_Iyzico_Api::minor( $it['paid'] ) - FLXB_Iyzico_Api::minor( $it['refunded'] ?? 0 ) );
 		}
 		if ( $left > $room ) {
-			return new WP_Error( 'flxb_iyz', __( '\\nThe amount is more than what is left to refund at iyzico.\\n', 'flx-donate' ) );
+			return new WP_Error( 'flxb_iyz', __( 'The amount is more than what is left to refund at iyzico.', 'flx-donate' ) );
 		}
 		$ip = (string) $order->get_customer_ip_address();
 		$ip = '' !== $ip ? $ip : '127.0.0.1';
@@ -440,7 +440,7 @@ class FLXB_WC_Iyzico {
 				$order->update_meta_data( '_flxb_iyzico', $info );
 				$order->save_meta_data();
 				/* translators: %s: iyzico error */
-				return new WP_Error( 'flxb_iyz', sprintf( __( '\\niyzico refused the refund:%s\\n', 'flx-donate' ), isset( $err ) ? $err : FLXB_Iyzico_Api::error_text( $r ) ) );
+				return new WP_Error( 'flxb_iyz', sprintf( __( 'iyzico refused the refund:%s', 'flx-donate' ), isset( $err ) ? $err : FLXB_Iyzico_Api::error_text( $r ) ) );
 			}
 			$info['items'][ $i ]['refunded'] = round( (float) ( $it['refunded'] ?? 0 ) + $now / 100, 2 );
 			$left                           -= $now;
@@ -448,7 +448,7 @@ class FLXB_WC_Iyzico {
 		$order->update_meta_data( '_flxb_iyzico', $info );
 		$order->save_meta_data();
 		/* translators: 1: amount, 2: reason */
-		$order->add_order_note( sprintf( __( '\\nRefunded at iyzico:%1$s.%2$s\\n', 'flx-donate' ), FLXB_WC::money_text( $amount, $order->get_currency() ), (string) $reason ) );
+		$order->add_order_note( sprintf( __( 'Refunded at iyzico:%1$s.%2$s', 'flx-donate' ), FLXB_WC::money_text( $amount, $order->get_currency() ), (string) $reason ) );
 		return true;
 	}
 }

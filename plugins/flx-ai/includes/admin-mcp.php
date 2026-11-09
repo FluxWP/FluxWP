@@ -54,7 +54,7 @@ function flxai_page_mcp() {
 			<p class="flxai-note">
 				<?php
 				/* translators: %d: tool count */
-				echo esc_html( sprintf( _n( '\\n%dvehicle is registered.%dvehicle is registered.\', \'tr\']]', '\\n%dvehicle is registered.%dvehicle is registered.\', \'tr\']]', count( $tools ), 'flx-ai' ), count( $tools ) ) );
+				echo esc_html( sprintf( _n( '%d tool is registered.', '%d tools are registered.', count( $tools ), 'flx-ai' ), count( $tools ) ) );
 				?>
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=flx-ai-tools' ) ); ?>"><?php esc_html_e( 'Tools', 'flx-ai' ); ?></a>
 			</p>

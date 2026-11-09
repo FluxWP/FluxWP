@@ -99,7 +99,7 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 			if ( $nonce && wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 				return true;
 			}
-			return new \WP_Error( 'rest_forbidden', __( '\\nInvalid or expired nonce\\n', 'flx-forms' ), array( 'status' => 403 ) );
+			return new \WP_Error( 'rest_forbidden', __( 'Invalid or expired nonce', 'flx-forms' ), array( 'status' => 403 ) );
 		}
 
 		/* ------------------------------------------------------------------
@@ -224,14 +224,14 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 		 * @return true|string True or an error message.
 		 */
 		public static function validate_card_add( $params, $require_token = true, $provider = 'stripe' ) {
-			$invalid = __( '\\nInvalid payment data. Please refresh the page and try again.\\n', 'flx-forms' );
+			$invalid = __( 'Invalid payment data. Please refresh the page and try again.', 'flx-forms' );
 			if ( ! is_array( $params ) ) {
 				return $invalid;
 			}
 			$form_id = isset( $params['id'] ) && is_scalar( $params['id'] ) ? absint( $params['id'] ) : 0;
 			$fs      = self::load_form_structure( $form_id );
 			if ( null === $fs ) {
-				return __( '\\nForm not found.\\n', 'flx-forms' );
+				return __( 'Form not found.', 'flx-forms' );
 			}
 			/* is_stripe_form() = the form has EFB's card payment box, whichever
 			 * Flux Forms provider takes the payment. */
@@ -242,22 +242,22 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 			}
 			$method = isset( $fs[0]['paymentmethod'] ) ? (string) $fs[0]['paymentmethod'] : 'charge';
 			if ( isset( $fs[0]['currency'] ) && strlen( (string) $fs[0]['currency'] ) > 2 && ! preg_match( '/^[A-Za-z]{3}$/', (string) $fs[0]['currency'] ) ) {
-				return __( '[[\'The currency of this form is not supported.\\n', 'flx-forms' );
+				return __( 'The currency of this form is not supported.', 'flx-forms' );
 			}
 			if ( 'stripe' === $provider ) {
 				if ( ! in_array( $method, self::PAYMENT_METHODS, true ) ) {
-					return __( '\\nThe payment method of this form is not supported.\\n', 'flx-forms' );
+					return __( 'The payment method of this form is not supported.', 'flx-forms' );
 				}
 			} else {
 				$p        = function_exists( 'flxf_payment_provider' ) ? flxf_payment_provider( $provider ) : null;
 				$currency = isset( $fs[0]['currency'] ) && strlen( (string) $fs[0]['currency'] ) > 2 ? strtoupper( (string) $fs[0]['currency'] ) : 'USD';
 				if ( ! $p ) {
-					return __( '\\nThe payment method of this form is not supported.\\n', 'flx-forms' );
+					return __( 'The payment method of this form is not supported.', 'flx-forms' );
 				}
 				if ( ! $p->supports( $currency, $method ) ) {
 					return in_array( $method, self::PAYMENT_METHODS, true ) && $p->supports( $currency, 'charge' )
-						? __( '\\nThe payment method of this form is not supported.\\n', 'flx-forms' )
-						: __( '[[\'The currency of this form is not supported.\\n', 'flx-forms' );
+						? __( 'The payment method of this form is not supported.', 'flx-forms' )
+						: __( 'The currency of this form is not supported.', 'flx-forms' );
 				}
 			}
 			if ( 'stripe' === $provider && 'charge' !== $method && $require_token ) {
@@ -329,14 +329,14 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 		/** The original Stripe card/add (validation, then the core creates the PaymentIntent). */
 		public static function card_add_stripe( $request, $public ) {
 			if ( self::rate_limited() ) {
-				self::fail( __( '\\nToo many payment attempts. Please wait a few minutes and try again.\\n', 'flx-forms' ), 429 );
+				self::fail( __( 'Too many payment attempts. Please wait a few minutes and try again.', 'flx-forms' ), 429 );
 			}
 			$check = self::validate_card_add( $request->get_json_params() );
 			if ( true !== $check ) {
 				self::fail( $check );
 			}
 			if ( '' === self::secret_key() ) {
-				self::fail( __( '\\nStripe is not configured on this site. Please contact the site administrator.\\n', 'flx-forms' ) );
+				self::fail( __( 'Stripe is not configured on this site. Please contact the site administrator.', 'flx-forms' ) );
 			}
 			return $public->pay_stripe_sub_Emsfb_api( $request );
 		}
@@ -357,7 +357,7 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 		public static function quote( $request, $public ) {
 			$no_cache = array( 'Cache-Control' => 'no-store' );
 			if ( self::rate_limited( 'quote' ) ) {
-				return new \WP_REST_Response( array( 'success' => false, 'm' => __( '\\nToo many requests. Please wait a moment and try again.\\n', 'flx-forms' ) ), 429, $no_cache );
+				return new \WP_REST_Response( array( 'success' => false, 'm' => __( 'Too many requests. Please wait a moment and try again.', 'flx-forms' ) ), 429, $no_cache );
 			}
 			$params   = $request->get_json_params();
 			$provider = function_exists( 'flxf_payment_active_provider_id' ) ? flxf_payment_active_provider_id() : 'stripe';
@@ -368,7 +368,7 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 			$fs   = self::load_form_structure( absint( $params['id'] ) );
 			$rows = json_decode( str_replace( '\\', '', sanitize_text_field( $params['value'] ) ), true );
 			if ( ! is_object( $public ) || ! method_exists( $public, 'fun_validation_pay_elements_efb' ) || ! is_array( $rows ) || null === $fs ) {
-				return new \WP_REST_Response( array( 'success' => false, 'm' => __( '\\nInvalid payment data. Please refresh the page and try again.\\n', 'flx-forms' ) ), 400, $no_cache );
+				return new \WP_REST_Response( array( 'success' => false, 'm' => __( 'Invalid payment data. Please refresh the page and try again.', 'flx-forms' ) ), 400, $no_cache );
 			}
 			$obj    = self::server_amount( $public, $rows, $fs, true, absint( $params['id'] ) );
 			if ( is_array( $obj ) && ! empty( $obj['error'] ) && is_string( $obj['error'] ) ) {
@@ -378,7 +378,7 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 			$amount   = round( (float) ( is_array( $obj ) && isset( $obj['price_total'] ) ? $obj['price_total'] : 0 ), 2 );
 			$currency = isset( $fs[0]['currency'] ) && strlen( (string) $fs[0]['currency'] ) > 2 ? strtoupper( (string) $fs[0]['currency'] ) : 'USD';
 			if ( ! is_finite( $amount ) || $amount < 0 ) {
-				return new \WP_REST_Response( array( 'success' => false, 'm' => __( '\\nInvalid payment data. Please refresh the page and try again.\\n', 'flx-forms' ) ), 400, $no_cache );
+				return new \WP_REST_Response( array( 'success' => false, 'm' => __( 'Invalid payment data. Please refresh the page and try again.', 'flx-forms' ) ), 400, $no_cache );
 			}
 			if ( ! class_exists( '\Emsfb\Formbuilder' ) && defined( 'EMSFB_PLUGIN_DIRECTORY' ) && is_readable( EMSFB_PLUGIN_DIRECTORY . 'includes/class-Emsfb-formbuilder.php' ) ) {
 				require_once EMSFB_PLUGIN_DIRECTORY . 'includes/class-Emsfb-formbuilder.php';
@@ -554,14 +554,14 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 			$track = isset( $p['trackid'] ) && is_scalar( $p['trackid'] ) ? sanitize_text_field( (string) $p['trackid'] ) : '';
 
 			if ( ! preg_match( '/^pi_[A-Za-z0-9]+$/', $pi_id ) ) {
-				wp_send_json_success( array( 'success' => false, 'm' => __( '[[\'Payment Intent ID is missing\\n', 'flx-forms' ) ), 400 );
+				wp_send_json_success( array( 'success' => false, 'm' => __( 'Payment Intent ID is missing', 'flx-forms' ) ), 400 );
 				return;
 			}
 			/* Only the PaymentIntent the server itself created for this entry
 			 * counts - never "any succeeded intent" sent with a track code. */
 			$row = StripePayment::get_by_transaction( $pi_id );
 			if ( ! $row || ( '' !== $track && (string) $row->track !== $track ) ) {
-				wp_send_json_success( array( 'success' => false, 'm' => __( '\\nPayment not found.\\n', 'flx-forms' ) ), 404 );
+				wp_send_json_success( array( 'success' => false, 'm' => __( 'Payment not found.', 'flx-forms' ) ), 404 );
 				return;
 			}
 			$ok = self::verify_payment_row( $row, $reason );
@@ -569,7 +569,7 @@ if ( ! class_exists( '\Emsfb\StripeHandlerEfb' ) ) {
 				'success'         => $ok,
 				'paymentIntentId' => $pi_id,
 				'trackid'         => $row->track,
-				'm'               => $ok ? '' : __( '\\nThe payment could not be verified yet.\\n', 'flx-forms' ),
+				'm'               => $ok ? '' : __( 'The payment could not be verified yet.', 'flx-forms' ),
 			), 200 );
 		}
 

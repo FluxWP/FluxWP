@@ -473,9 +473,9 @@ return array(
   'Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.' => 'Jetzt automatisch: das iyzico-Band und die Logos der aktivierten virtuellen POS-Plugins. Sobald Sie ein Logo hinzufügen oder entfernen, können Sie die Liste selbst auswählen.',
   'Hand-picked list. "Back to automatic" returns to the iyzico band and the logos of enabled virtual POS plugins.' => 'Handverlesene Liste. „Zurück zur Automatik“ kehrt zum iyzico-Band und den Logos der aktivierten virtuellen POS-Plugins zurück.',
   'SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.' => 'SVG oder transparentes PNG ist am besten; Farbige Logos werden in einem weißen Feld auf einer dunklen Fußzeile angezeigt.',
-  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '\\n%s. Hostinger › PHP-Version 8.2 ist in der letzten Sekunde verfügbar.\\n',
+  '\\n%s. Hostinger › PHP Yapılandırması\\\'ndan 8.2 veya üstünü seçin.\\n' => '%s. Hostinger › PHP-Version 8.2 ist in der letzten Sekunde verfügbar.',
   'Background pattern' => 'Hintergrundmuster',
-  '\\nDots\\n' => '\\nPunkte\\n',
+  '\\nDots\\n' => 'Punkte',
   'Leaves' => 'Blätter',
   'None' => 'Keine',
   'News introduction' => 'Einführung in die Neuigkeiten',
@@ -947,7 +947,8 @@ return array(
   'Şu an otomatik: iyzico bandı ve etkin sanal POS eklentilerinin logoları. Bir logo ekleyip kaldırdığınızda liste sizin seçiminiz olur.' => 'Jetzt automatisch: das iyzico-Band und die Logos der aktivierten virtuellen POS-Plugins. Sobald Sie ein Logo hinzufügen oder entfernen, können Sie die Liste selbst auswählen.',
   'Elle seçilmiş liste. "Otomatiğe dön" ile iyzico bandı ve etkin sanal POS logolarına döner.' => 'Handverlesene Liste. „Zurück zur Automatik“ kehrt zum iyzico-Band und den Logos der aktivierten virtuellen POS-Plugins zurück.',
   'SVG ya da şeffaf PNG önerilir; renkli logolar koyu footer\'da beyaz kutu içinde gösterilir.' => 'SVG oder transparentes PNG ist am besten; Farbige Logos werden in einem weißen Feld auf einer dunklen Fußzeile angezeigt.',
-  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '\\n%s. Hostinger › PHP-Version 8.2 ist in der letzten Sekunde verfügbar.\\n',
-  'Dots' => '\\nPunkte\\n',
+  '%s. Hostinger › PHP Yapılandırması\'ndan 8.2 veya üstünü seçin.' => '%s. Hostinger › PHP-Version 8.2 ist in der letzten Sekunde verfügbar.',
+  'Dots' => 'Punkte',
+
  ),
 );

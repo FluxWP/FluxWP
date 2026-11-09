@@ -1,0 +1,27 @@
+{
+  "slug": "fluxwp",
+  "shots": [
+    {
+      "name": "home",
+      "url": "/",
+      "vh": 1000
+    },
+    {
+      "name": "customizer",
+      "url": "customize.php",
+      "vh": 1000
+    }
+  ],
+  "mobile": [
+    {
+      "name": "mobile",
+      "url": "/"
+    }
+  ],
+  "dark": [
+    {
+      "name": "dark",
+      "url": "/"
+    }
+  ]
+}

@@ -474,12 +474,12 @@
     "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.": "Automatic now: the iyzico band and the logos of enabled virtual POS plugins. Once you add or remove a logo, the list is your own choice.",
     "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins.": "Hand-picked list. \"Back to automatic\" returns to the iyzico band and the logos of enabled virtual POS plugins.",
     "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.": "SVG or transparent PNG is best; colored logos are shown in a white box on a dark footer.",
-    "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n": "\\n%s. Hostinger › PHP Yapılandırması\\'ndan 8.2 veya üstünü seçin.\\n",
     "Background pattern": "Background pattern",
-    "\\nDots\\n": "\\nDots\\n",
     "Leaves": "Leaves",
     "None": "None",
     "News introduction": "News introduction",
-    "Latest news, updates and articles.": "Latest news, updates and articles."
+    "Latest news, updates and articles.": "Latest news, updates and articles.",
+    "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin.": "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin.",
+    "Dots": "Dots"
   }
 }

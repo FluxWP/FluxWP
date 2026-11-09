@@ -201,7 +201,7 @@ abstract class FLXB_Payment_Provider_Base implements FLXB_Payment_Provider {
 		if ( is_object( $record ) && 'completed' === $record->status ) {
 			return FLXB_Payment_Result::completed( (string) $record->transaction_id );
 		}
-		return FLXB_Payment_Result::failed( __( '\\nThe payment could not be verified yet.\\n', 'flx-donate' ) );
+		return FLXB_Payment_Result::failed( __( 'The payment could not be verified yet.', 'flx-donate' ) );
 	}
 
 	public function handle_webhook( $request ) {
@@ -209,7 +209,7 @@ abstract class FLXB_Payment_Provider_Base implements FLXB_Payment_Provider {
 	}
 
 	public function refund( $record, $amount = null ) {
-		return FLXB_Payment_Result::failed( __( '\\nThis payment provider does not support refunds from the site.\\n', 'flx-donate' ) );
+		return FLXB_Payment_Result::failed( __( 'This payment provider does not support refunds from the site.', 'flx-donate' ) );
 	}
 
 	/** One of this provider's stored settings ('' when missing). */

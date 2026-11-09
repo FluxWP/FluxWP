@@ -46,6 +46,21 @@ CURLY_KEYS = [
     '{link}', '{email}', '{privacy_url}'
 ]
 
+def translation_text(parsed):
+    """Decode supported Google response shapes; never turn transport arrays into translated text."""
+    if isinstance(parsed, str):
+        return parsed
+    if isinstance(parsed, list) and parsed:
+        if isinstance(parsed[0], str):
+            return parsed[0]
+        rows = parsed[0]
+        if isinstance(rows, list) and rows and isinstance(rows[0], list):
+            if all(isinstance(row, list) and row and isinstance(row[0], str) for row in rows):
+                return ''.join(row[0] for row in rows)
+        if all(isinstance(row, list) and row and isinstance(row[0], str) for row in parsed):
+            return ''.join(row[0] for row in parsed)
+    raise ValueError('Unsupported translation response shape')
+
 def call_translation_api(text, tl):
     endpoints = [
         f'https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl={SOURCE_LANGUAGE}&tl={tl}',
@@ -62,14 +77,7 @@ def call_translation_api(text, tl):
             with urllib.request.urlopen(req, timeout=25) as res:
                 body = res.read().decode('utf-8')
                 parsed = json.loads(body)
-                if isinstance(parsed, list):
-                    if len(parsed) > 0 and isinstance(parsed[0], list) and len(parsed[0]) > 0 and isinstance(parsed[0][0], list):
-                        return ''.join([part[0] for part in parsed[0] if part and part[0]])
-                    elif len(parsed) > 0 and isinstance(parsed[0], str):
-                        return parsed[0]
-                elif isinstance(parsed, str):
-                    return parsed
-                return str(parsed)
+                return translation_text(parsed)
         except Exception:
             if attempt == 7:
                 raise

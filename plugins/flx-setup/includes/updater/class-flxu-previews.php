@@ -28,41 +28,21 @@ final class FLXU_Previews {
 
 	/** @return array{name:string,description:string,images:array,website:string} */
 	public static function data( string $slug, array $row, array $package ): array {
-		static $builtins = null;
-		if ( null === $builtins ) {
-			$file = FLXU_DIR . 'assets/package-previews.json';
-			$builtins = is_readable( $file ) ? json_decode( file_get_contents( $file ), true ) : array();
-			$builtins = is_array( $builtins ) ? $builtins : array();
-		}
-		// Private and unknown packages never inherit public marketing links or repository image URLs.
-		$public = ! isset( $package['public'] ) || ! empty( $package['public'] );
-		$builtin = $public ? (array) ( $builtins[ $slug ] ?? array() ) : array();
 		$description = self::text( $package['desc'] ?? array() );
-		if ( '' === trim( $description ) ) { $description = self::text( $builtin['description'] ?? array() ); }
 		$images = array();
-		$remote = self::text( $package['shots'] ?? array() );
-		if ( '' !== $remote ) { $images[] = $remote; }
 		foreach ( self::languages() as $language ) {
-			if ( ! empty( $builtin['images'][ $language ] ) ) {
-				$images = array_merge( $images, $builtin['images'][ $language ] );
-				break;
-			}
+			if ( ! empty( $package['gallery'][ $language ] ) && is_array( $package['gallery'][ $language ] ) ) { $images = $package['gallery'][ $language ]; break; }
 		}
-		$website = '';
-		if ( ! empty( $builtin['website'] ) ) {
-			$prefix = '';
-			foreach ( self::languages() as $language ) {
-				if ( in_array( $language, array( 'en', 'tr', 'de', 'es', 'fr', 'pt-br', 'ja', 'zh', 'ar', 'ru' ), true ) ) { $prefix = 'en' === $language ? '' : '/' . $language; break; }
-			}
-			$website = 'https://fluxwp.com' . $prefix . $builtin['website'];
-		}
+		if ( ! $images ) { $remote = self::text( $package['shots'] ?? array() ); if ( '' !== $remote ) { $images[] = $remote; } }
+		$website = self::text( $package['website'] ?? array() );
+
 		/** Customize a package's brief preview; return only name, description, images and website. */
 		$preview = (array) apply_filters( 'flxu_package_preview', array( 'name' => $row['name'], 'description' => $description, 'images' => $images, 'website' => $website ), $slug, $package );
 		$images = array_values( array_unique( array_filter( array_map( array( self::class, 'url' ), (array) ( $preview['images'] ?? array() ) ) ) ) );
 		return array(
 			'name' => sanitize_text_field( (string) ( $preview['name'] ?? $row['name'] ) ),
 			'description' => wp_html_excerpt( wp_strip_all_tags( (string) ( $preview['description'] ?? '' ) ), 420, '…' ),
-			'images' => array_slice( $images, 0, 3 ),
+			'images' => array_slice( $images, 0, 12 ),
 			'website' => self::url( $preview['website'] ?? '' ),
 		);
 	}

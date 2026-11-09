@@ -72,6 +72,7 @@ for($day=59;$day>=0;$day--){
   }
 }
 if(mt_rand(0,1)||true){ $rows[]=['k'=>'p','t'=>$now-3000,'d'=>wp_date('Y-m-d'),'h'=>'404x','p'=>'/eski-kampanya/','i'=>0,'r'=>'','u'=>$uas[2][0],'w'=>1536,'l'=>'tr','z'=>'Europe/Istanbul','x'=>1]; }
+foreach ($rows as &$row) { $row['t'] = min( $row['t'], $now - 1 ); } unset($row);
 usort($rows,fn($a,$b)=>$a['t']<=>$b['t']);
 FLXAN_Aggregator::reset(); $byd=[]; foreach($rows as $r) $byd[$r["d"]][]=$r; foreach($byd as $c) FLXAN_Aggregator::process($c);
 echo count($rows)," rows\n";

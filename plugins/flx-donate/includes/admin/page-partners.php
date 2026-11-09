@@ -65,13 +65,13 @@ final class FLXB_Page_Partners {
 		}
 		$partner = FLXB_Track::label( 'partner' );
 		FLXB_Admin::header(
-			__( '\\nPartners\\n', 'flx-donate' ),
+			__( 'Partners', 'flx-donate' ),
 			/* translators: %s: what a partner is called on this site */
-			sprintf( __( '\\nWho brings gifts in and who carries the work out (%s), their agreed prices and payments.\\n', 'flx-donate' ), $partner ),
-			flxb_can_manage() ? array( array( 'label' => __( '\\nNew partner\\n', 'flx-donate' ), 'url' => self::url( array( 'tab' => 'edit' ) ), 'primary' => true, 'icon' => 'plus' ) ) : array()
+			sprintf( __( 'Who brings gifts in and who carries the work out (%s), their agreed prices and payments.', 'flx-donate' ), $partner ),
+			flxb_can_manage() ? array( array( 'label' => __( 'New partner', 'flx-donate' ), 'url' => self::url( array( 'tab' => 'edit' ) ), 'primary' => true, 'icon' => 'plus' ) ) : array()
 		);
 		echo '<nav class="flxb-tabs">';
-		foreach ( array( 'list' => __( '\\nPartners\\n', 'flx-donate' ), 'settle' => __( '\\nSettlement\\n', 'flx-donate' ) ) as $k => $label ) {
+		foreach ( array( 'list' => __( 'Partners', 'flx-donate' ), 'settle' => __( 'Settlement', 'flx-donate' ) ) as $k => $label ) {
 			echo '<a class="flxb-tab' . ( $k === $tab ? ' is-active' : '' ) . '" href="' . esc_url( self::url( array( 'tab' => $k ) ) ) . '">' . esc_html( $label ) . '</a>';
 		}
 		echo '</nav>';
@@ -87,34 +87,34 @@ final class FLXB_Page_Partners {
 		$all = FLXB_Partners::all();
 		echo '<div class="flxb-panel">';
 		if ( ! $all ) {
-			echo '<div class="flxb-emptystate">' . FLXB_Admin::icon( 'users', 32 ) . '<h2>' . esc_html__( '\\nNo partners yet\\n', 'flx-donate' ) . '</h2><p>' . esc_html__( '\\nAdd the places or organisations that carry the work out, and the offices that bring gifts in.\\n', 'flx-donate' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="flxb-emptystate">' . FLXB_Admin::icon( 'users', 32 ) . '<h2>' . esc_html__( 'No partners yet', 'flx-donate' ) . '</h2><p>' . esc_html__( 'Add the places or organisations that carry the work out, and the offices that bring gifts in.', 'flx-donate' ) . '</p></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			return;
 		}
 		$types = array();
 		foreach ( FLXB_Types::all() as $t ) {
 			$types[ (int) $t['id'] ] = $t['title'];
 		}
-		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr><th scope="col">' . esc_html__( 'Name', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Role', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Donation types', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( '\\nAgreement\\n', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Contact', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th></tr></thead><tbody>';
+		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr><th scope="col">' . esc_html__( 'Name', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Role', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Donation types', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Agreement', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Contact', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th></tr></thead><tbody>';
 		foreach ( $all as $id => $p ) {
 			$roles = array();
 			if ( (int) $p['is_service'] ) {
 				$roles[] = FLXB_Track::label( 'partner' );
 			}
 			if ( (int) $p['is_source'] ) {
-				$roles[] = __( '\\nBring gifts in\\n', 'flx-donate' );
+				$roles[] = __( 'Bring gifts in', 'flx-donate' );
 			}
 			$tn = array();
 			foreach ( FLXB_Partners::type_ids( $p ) as $tid ) {
 				$tn[] = $types[ $tid ] ?? '#' . $tid;
 			}
 			$ps  = FLXB_Partners::price_state( $id );
-			$psl = array( 'none' => '—', 'on' => __( 'Active', 'flx-donate' ), 'off' => __( '\\nAll off\\n', 'flx-donate' ) );
+			$psl = array( 'none' => '—', 'on' => __( 'Active', 'flx-donate' ), 'off' => __( 'All off', 'flx-donate' ) );
 			echo '<tr><td class="flxb-col-main"><a href="' . esc_url( self::url( array( 'id' => $id ) ) ) . '">' . esc_html( $p['name'] ) . '</a>' . ( '' !== (string) $p['group_name'] ? '<span class="flxb-sub2">' . esc_html( $p['group_name'] ) . '</span>' : '' ) . '</td>';
 			echo '<td data-label="' . esc_attr__( 'Role', 'flx-donate' ) . '"><span>' . esc_html( implode( ', ', $roles ) ) . '</span></td>';
 			echo '<td data-label="' . esc_attr__( 'Donation types', 'flx-donate' ) . '"><span>' . esc_html( $tn ? implode( ', ', $tn ) : __( 'All', 'flx-donate' ) ) . '</span></td>';
-			echo '<td data-label="' . esc_attr__( '\\nAgreement\\n', 'flx-donate' ) . '"><span>' . esc_html( $psl[ $ps ] ) . '</span></td>';
+			echo '<td data-label="' . esc_attr__( 'Agreement', 'flx-donate' ) . '"><span>' . esc_html( $psl[ $ps ] ) . '</span></td>';
 			echo '<td data-label="' . esc_attr__( 'Contact', 'flx-donate' ) . '"><span>' . esc_html( trim( $p['contact_name'] . ' ' . ( '' !== (string) $p['phone'] ? flxb_format_phone( $p['phone'] ) : '' ) ) ) . '</span></td>';
-			echo '<td data-label="' . esc_attr__( 'Status', 'flx-donate' ) . '"><span>' . ( (int) $p['active'] ? '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Active', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--muted">' . esc_html__( '\\nPassive\\n', 'flx-donate' ) . '</span>' ) . '</span></td></tr>';
+			echo '<td data-label="' . esc_attr__( 'Status', 'flx-donate' ) . '"><span>' . ( (int) $p['active'] ? '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Active', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--muted">' . esc_html__( 'Passive', 'flx-donate' ) . '</span>' ) . '</span></td></tr>';
 		}
 		echo '</tbody></table></div></div>';
 	}
@@ -125,26 +125,26 @@ final class FLXB_Page_Partners {
 		$p      = $p ? $p : array( 'id' => 0, 'name' => '', 'pkey' => '', 'group_name' => '', 'is_source' => 0, 'is_service' => 1, 'type_ids' => '', 'contact_name' => '', 'phone' => '', 'email' => '', 'currency' => flxb_default_currency(), 'active' => 1, 'sort_order' => 0, 'note' => '' );
 		$types  = FLXB_Types::all();
 		$chosen = FLXB_Partners::type_ids( $p );
-		FLXB_Admin::header( $id ? (string) $p['name'] : __( '\\nNew partner\\n', 'flx-donate' ), '', array(), array( __( '\\nPartners\\n', 'flx-donate' ), self::url() ) );
+		FLXB_Admin::header( $id ? (string) $p['name'] : __( 'New partner', 'flx-donate' ), '', array(), array( __( 'Partners', 'flx-donate' ), self::url() ) );
 
 		echo '<div class="flxb-grid flxb-grid--1-1"><section class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Partner', 'flx-donate' ) . '</h2></div>';
 		echo self::form( 'save' ) . '<input type="hidden" name="id" value="' . (int) $id . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-pn">' . esc_html__( 'Name', 'flx-donate' ) . '</label><input id="flxb-pn" type="text" name="name" maxlength="190" required value="' . esc_attr( $p['name'] ) . '"></div>';
-		echo '<div class="flxb-field"><label for="flxb-pg">' . esc_html__( 'Group', 'flx-donate' ) . '</label><input id="flxb-pg" type="text" name="group_name" maxlength="190" value="' . esc_attr( $p['group_name'] ) . '"><p class="flxb-help">' . esc_html__( '\\nOptional, for reports (e.g. country or region).\\n', 'flx-donate' ) . '</p></div></div>';
+		echo '<div class="flxb-field"><label for="flxb-pg">' . esc_html__( 'Group', 'flx-donate' ) . '</label><input id="flxb-pg" type="text" name="group_name" maxlength="190" value="' . esc_attr( $p['group_name'] ) . '"><p class="flxb-help">' . esc_html__( 'Optional, for reports (e.g. country or region).', 'flx-donate' ) . '</p></div></div>';
 		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Role', 'flx-donate' ) . '</span>';
-		echo '<input type="hidden" name="is_service" value="0"><label class="flxb-switch"><input type="checkbox" name="is_service" value="1"' . checked( (int) $p['is_service'], 1, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html( sprintf( /* translators: %s: what a partner is called */ __( '\\nCarries the work out (%s)\\n', 'flx-donate' ), FLXB_Track::label( 'partner' ) ) ) . '</label>';
-		echo '<input type="hidden" name="is_source" value="0"><label class="flxb-switch"><input type="checkbox" name="is_source" value="1"' . checked( (int) $p['is_source'], 1, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( '\\nBrings gifts in (office, organization)\\n', 'flx-donate' ) . '</label></div>';
+		echo '<input type="hidden" name="is_service" value="0"><label class="flxb-switch"><input type="checkbox" name="is_service" value="1"' . checked( (int) $p['is_service'], 1, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html( sprintf( /* translators: %s: what a partner is called */ __( 'Carries the work out (%s)', 'flx-donate' ), FLXB_Track::label( 'partner' ) ) ) . '</label>';
+		echo '<input type="hidden" name="is_source" value="0"><label class="flxb-switch"><input type="checkbox" name="is_source" value="1"' . checked( (int) $p['is_source'], 1, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Brings gifts in (office, organization)', 'flx-donate' ) . '</label></div>';
 		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Donation types', 'flx-donate' ) . '</span><div class="flxb-checks">';
 		foreach ( $types as $t ) {
 			echo '<label class="flxb-check"><input type="checkbox" name="type_ids[]" value="' . (int) $t['id'] . '"' . checked( in_array( (int) $t['id'], $chosen, true ), true, false ) . '> ' . esc_html( $t['title'] ) . '</label>';
 		}
-		echo '</div><p class="flxb-help">' . esc_html__( '\\nNone ticked = all types.\\n', 'flx-donate' ) . '</p></div>';
-		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-pc">' . esc_html__( '\\nContact person\', \'en\']]', 'flx-donate' ) . '</label><input id="flxb-pc" type="text" name="contact_name" maxlength="190" value="' . esc_attr( $p['contact_name'] ) . '"></div>';
+		echo '</div><p class="flxb-help">' . esc_html__( 'None ticked = all types.', 'flx-donate' ) . '</p></div>';
+		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-pc">' . esc_html__( 'Contact person', 'flx-donate' ) . '</label><input id="flxb-pc" type="text" name="contact_name" maxlength="190" value="' . esc_attr( $p['contact_name'] ) . '"></div>';
 		echo '<div class="flxb-field"><label for="flxb-pp">' . esc_html__( 'Phone (WhatsApp)', 'flx-donate' ) . '</label><input id="flxb-pp" type="tel" name="phone" maxlength="32" value="' . esc_attr( $p['phone'] ) . '"></div></div>';
 		echo '<div class="flxb-fields-amount"><div class="flxb-field"><label for="flxb-pe">' . esc_html__( 'E-mail', 'flx-donate' ) . '</label><input id="flxb-pe" type="email" name="email" maxlength="190" value="' . esc_attr( $p['email'] ) . '"></div>';
 		echo '<div class="flxb-field"><label>' . esc_html__( 'Currency', 'flx-donate' ) . self::cur_select( 'currency', $p['currency'] ) . '</label></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="flxb-field"><label for="flxb-pnote">' . esc_html__( 'Note', 'flx-donate' ) . '</label><textarea id="flxb-pnote" name="note" rows="2">' . esc_textarea( (string) $p['note'] ) . '</textarea></div>';
-		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-pk">' . esc_html__( 'Key', 'flx-donate' ) . '</label><input id="flxb-pk" type="text" name="pkey" maxlength="64" value="' . esc_attr( $p['pkey'] ) . '"><p class="flxb-help">' . esc_html__( '\\nOptional. Presets and imports find the partner by it.\\n', 'flx-donate' ) . '</p></div>';
+		echo '<div class="flxb-fields-2"><div class="flxb-field"><label for="flxb-pk">' . esc_html__( 'Key', 'flx-donate' ) . '</label><input id="flxb-pk" type="text" name="pkey" maxlength="64" value="' . esc_attr( $p['pkey'] ) . '"><p class="flxb-help">' . esc_html__( 'Optional. Presets and imports find the partner by it.', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-field"><input type="hidden" name="active" value="0"><label class="flxb-switch" style="margin-top:28px"><input type="checkbox" name="active" value="1"' . checked( (int) $p['active'], 1, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Active', 'flx-donate' ) . '</label></div></div>';
 		if ( $can ) {
 			echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Save', 'flx-donate' ) . '</button></div>';
@@ -159,13 +159,13 @@ final class FLXB_Page_Partners {
 
 		/* Payments */
 		$pays = FLXB_Partners::payments( $id );
-		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Payments', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nMoney paid to the partner, or received from it. The settlement subtracts it.\\n', 'flx-donate' ) . '</p></div></div>';
+		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Payments', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Money paid to the partner, or received from it. The settlement subtracts it.', 'flx-donate' ) . '</p></div></div>';
 		if ( $pays ) {
-			echo '<div class="flxb-tablewrap flxb-tablewrap--mid"><table class="flxb-table flxb-table--compact"><thead><tr><th scope="col">' . esc_html__( 'Date', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( '\\nDirection\\n', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Note', 'flx-donate' ) . '</th><th></th></tr></thead><tbody>';
+			echo '<div class="flxb-tablewrap flxb-tablewrap--mid"><table class="flxb-table flxb-table--compact"><thead><tr><th scope="col">' . esc_html__( 'Date', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Direction', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Note', 'flx-donate' ) . '</th><th></th></tr></thead><tbody>';
 			foreach ( $pays as $py ) {
-				echo '<tr><td>' . esc_html( flx_date( strtotime( $py['paid_at'] ), 'j M Y' ) ) . '</td><td>' . esc_html( 'in' === $py['direction'] ? __( '\\nReceived\\n', 'flx-donate' ) : __( 'Paid', 'flx-donate' ) ) . '</td><td class="num">' . esc_html( flxb_money( $py['amount'], $py['currency'] ) ) . '</td><td>' . esc_html( $py['note'] ) . '</td><td>';
+				echo '<tr><td>' . esc_html( flx_date( strtotime( $py['paid_at'] ), 'j M Y' ) ) . '</td><td>' . esc_html( 'in' === $py['direction'] ? __( 'Received', 'flx-donate' ) : __( 'Paid', 'flx-donate' ) ) . '</td><td class="num">' . esc_html( flxb_money( $py['amount'], $py['currency'] ) ) . '</td><td>' . esc_html( $py['note'] ) . '</td><td>';
 				if ( $can ) {
-					echo self::form( 'pay_delete', ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( '\\nDelete this payment?\\n', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="id" value="' . (int) $py['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo self::form( 'pay_delete', ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Delete this payment?', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="id" value="' . (int) $py['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				echo '</td></tr>';
 			}
@@ -173,9 +173,9 @@ final class FLXB_Page_Partners {
 		}
 		if ( $can ) {
 			echo self::form( 'pay_save' ) . '<input type="hidden" name="partner_id" value="' . (int) $id . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<div class="flxb-fields-2"><div class="flxb-field"><label>' . esc_html__( '\\nDirection\\n', 'flx-donate' ) . '<select name="direction"><option value="out">' . esc_html__( '\\nWe paid\\n', 'flx-donate' ) . '</option><option value="in">' . esc_html__( '\\nWe received\\n', 'flx-donate' ) . '</option></select></label></div><div class="flxb-field"><label>' . esc_html__( 'Date', 'flx-donate' ) . '<input type="date" name="paid_at" value="' . esc_attr( wp_date( 'Y-m-d' ) ) . '"></label></div></div>';
+			echo '<div class="flxb-fields-2"><div class="flxb-field"><label>' . esc_html__( 'Direction', 'flx-donate' ) . '<select name="direction"><option value="out">' . esc_html__( 'We paid', 'flx-donate' ) . '</option><option value="in">' . esc_html__( 'We received', 'flx-donate' ) . '</option></select></label></div><div class="flxb-field"><label>' . esc_html__( 'Date', 'flx-donate' ) . '<input type="date" name="paid_at" value="' . esc_attr( wp_date( 'Y-m-d' ) ) . '"></label></div></div>';
 			echo '<div class="flxb-fields-amount"><div class="flxb-field"><label>' . esc_html__( 'Amount', 'flx-donate' ) . '<input type="text" inputmode="decimal" name="amount" required></label></div><div class="flxb-field"><label>' . esc_html__( 'Currency', 'flx-donate' ) . self::cur_select( 'currency', $p['currency'] ) . '</label></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<div class="flxb-field"><label>' . esc_html__( 'Note', 'flx-donate' ) . '<input type="text" name="note" maxlength="190"></label></div><div class="flxb-formactions"><button type="submit" class="flxb-btn">' . esc_html__( '\\nAdd payment\\n', 'flx-donate' ) . '</button></div></form>';
+			echo '<div class="flxb-field"><label>' . esc_html__( 'Note', 'flx-donate' ) . '<input type="text" name="note" maxlength="190"></label></div><div class="flxb-formactions"><button type="submit" class="flxb-btn">' . esc_html__( 'Add payment', 'flx-donate' ) . '</button></div></form>';
 		}
 		echo '</section></div>';
 
@@ -184,22 +184,22 @@ final class FLXB_Page_Partners {
 		foreach ( $types as $t ) {
 			$tmap[ (int) $t['id'] ] = $t;
 		}
-		echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( '\\nAgreements\\n', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( '\\nAgreed cost per type and option. The price valid on the day an item is sent is kept on the item. A partner whose agreements for a type are all switched off gets no new work for it.\\n', 'flx-donate' ) . '</p></div></div>';
+		echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Agreements', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Agreed cost per type and option. The price valid on the day an item is sent is kept on the item. A partner whose agreements for a type are all switched off gets no new work for it.', 'flx-donate' ) . '</p></div></div>';
 		$prices = FLXB_Partners::prices( $id );
 		if ( $prices ) {
-			echo '<div class="flxb-tablewrap flxb-tablewrap--mid"><table class="flxb-table flxb-table--compact"><thead><tr><th scope="col">' . esc_html__( 'Donation type', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Option', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Price', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( '\\nValid from\\n', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Note', 'flx-donate' ) . '</th><th></th></tr></thead><tbody>';
+			echo '<div class="flxb-tablewrap flxb-tablewrap--mid"><table class="flxb-table flxb-table--compact"><thead><tr><th scope="col">' . esc_html__( 'Donation type', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Option', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Price', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Valid from', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Note', 'flx-donate' ) . '</th><th></th></tr></thead><tbody>';
 			foreach ( $prices as $a ) {
 				$t   = $tmap[ (int) $a['type_id'] ] ?? null;
 				$opt = $t && '' !== (string) $a['option_key'] ? FLXB_Types::option( $t, (string) $a['option_key'] ) : null;
 				echo '<tr><td>' . esc_html( $t ? $t['title'] : __( 'All', 'flx-donate' ) ) . '</td><td>' . esc_html( $opt ? $opt['label'] : ( '' !== (string) $a['option_key'] ? $a['option_key'] : __( 'All', 'flx-donate' ) ) ) . '</td><td class="num">' . esc_html( flxb_money( $a['price'], $a['currency'] ) ) . '</td><td>' . esc_html( flx_date( strtotime( $a['valid_from'] ), 'j M Y' ) ) . '</td><td>';
 				if ( $can ) {
-					echo self::form( 'price_save', ' style="display:inline"' ) . '<input type="hidden" name="id" value="' . (int) $a['id'] . '"><input type="hidden" name="toggle" value="1"><button class="flxb-linkbtn" type="submit">' . ( (int) $a['active'] ? '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Active', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--muted">' . esc_html__( '\\nPassive\\n', 'flx-donate' ) . '</span>' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo self::form( 'price_save', ' style="display:inline"' ) . '<input type="hidden" name="id" value="' . (int) $a['id'] . '"><input type="hidden" name="toggle" value="1"><button class="flxb-linkbtn" type="submit">' . ( (int) $a['active'] ? '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Active', 'flx-donate' ) . '</span>' : '<span class="flxb-pill flxb-pill--muted">' . esc_html__( 'Passive', 'flx-donate' ) . '</span>' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				} else {
-					echo (int) $a['active'] ? esc_html__( 'Active', 'flx-donate' ) : esc_html__( '\\nPassive\\n', 'flx-donate' );
+					echo (int) $a['active'] ? esc_html__( 'Active', 'flx-donate' ) : esc_html__( 'Passive', 'flx-donate' );
 				}
 				echo '</td><td>' . esc_html( $a['note'] ) . '</td><td>';
 				if ( $can ) {
-					echo self::form( 'price_delete', ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( '\\nDelete this agreement? Items already sent keep their price.\\n', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="id" value="' . (int) $a['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo self::form( 'price_delete', ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Delete this agreement? Items already sent keep their price.', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="id" value="' . (int) $a['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				echo '</td></tr>';
 			}
@@ -207,16 +207,16 @@ final class FLXB_Page_Partners {
 		}
 		if ( $can ) {
 			echo self::form( 'price_save' ) . '<input type="hidden" name="partner_id" value="' . (int) $id . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<div class="flxb-fields-2"><div class="flxb-field"><label>' . esc_html__( '\\nDonation type and option\\n', 'flx-donate' ) . '<select name="type_opt"><option value="0|">' . esc_html__( 'All types', 'flx-donate' ) . '</option>';
+			echo '<div class="flxb-fields-2"><div class="flxb-field"><label>' . esc_html__( 'Donation type and option', 'flx-donate' ) . '<select name="type_opt"><option value="0|">' . esc_html__( 'All types', 'flx-donate' ) . '</option>';
 			foreach ( $types as $t ) {
-				echo '<option value="' . (int) $t['id'] . '|">' . esc_html( $t['title'] ) . ' — ' . esc_html__( '\\nall options\\n', 'flx-donate' ) . '</option>';
+				echo '<option value="' . (int) $t['id'] . '|">' . esc_html( $t['title'] ) . ' — ' . esc_html__( 'all options', 'flx-donate' ) . '</option>';
 				foreach ( (array) $t['options'] as $o ) {
 					echo '<option value="' . (int) $t['id'] . '|' . esc_attr( $o['key'] ) . '">' . esc_html( $t['title'] . ' — ' . $o['label'] ) . '</option>';
 				}
 			}
-			echo '</select></label></div><div class="flxb-field"><label>' . esc_html__( '\\nValid from\\n', 'flx-donate' ) . '<input type="date" name="valid_from" value="' . esc_attr( wp_date( 'Y-m-d' ) ) . '"></label></div></div>';
+			echo '</select></label></div><div class="flxb-field"><label>' . esc_html__( 'Valid from', 'flx-donate' ) . '<input type="date" name="valid_from" value="' . esc_attr( wp_date( 'Y-m-d' ) ) . '"></label></div></div>';
 			echo '<div class="flxb-fields-amount"><div class="flxb-field"><label>' . esc_html__( 'Price', 'flx-donate' ) . '<input type="text" inputmode="decimal" name="price" required></label></div><div class="flxb-field"><label>' . esc_html__( 'Currency', 'flx-donate' ) . self::cur_select( 'currency', $p['currency'] ) . '</label></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<div class="flxb-field"><label>' . esc_html__( 'Note', 'flx-donate' ) . '<input type="text" name="note" maxlength="190"></label></div><div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( '\\nAdd agreement\\n', 'flx-donate' ) . '</button></div></form>';
+			echo '<div class="flxb-field"><label>' . esc_html__( 'Note', 'flx-donate' ) . '<input type="text" name="note" maxlength="190"></label></div><div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Add agreement', 'flx-donate' ) . '</button></div></form>';
 		}
 		echo '</section>';
 		FLXB_Admin::footer();
@@ -244,7 +244,7 @@ final class FLXB_Page_Partners {
 
 		echo '<div class="flxb-seg">';
 		/* translators: %s: what a partner is called */
-		foreach ( array( 'service' => sprintf( __( '\\n%s(cost)\\n', 'flx-donate' ), $label ), 'source' => __( '\\nBrought in (gift price)\\n', 'flx-donate' ) ) as $k => $l ) {
+		foreach ( array( 'service' => sprintf( __( '%s(cost)', 'flx-donate' ), $label ), 'source' => __( 'Brought in (gift price)', 'flx-donate' ) ) as $k => $l ) {
 			echo '<a class="' . ( $k === $kind ? 'is-on' : '' ) . '" href="' . esc_url( self::url( array( 'tab' => 'settle', 'kind' => $k, 'month' => preg_match( '/^\d{4}-\d{2}$/', $period ) ? $period : '' ) ) ) . '">' . esc_html( $l ) . '</a>';
 		}
 		echo '</div>';
@@ -258,7 +258,7 @@ final class FLXB_Page_Partners {
 
 		echo '<form class="flxb-filters" method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '"><input type="hidden" name="page" value="' . esc_attr( self::SLUG ) . '"><input type="hidden" name="tab" value="settle"><input type="hidden" name="kind" value="' . esc_attr( $kind ) . '">';
 		echo '<label>' . esc_html__( 'From', 'flx-donate' ) . ' <input type="date" name="from" value="' . esc_attr( $from ) . '"></label><label>' . esc_html__( 'To', 'flx-donate' ) . ' <input type="date" name="to" value="' . esc_attr( $to ) . '"></label>';
-		echo '<label><select name="partner"><option value="">' . esc_html__( '\\nAll partners\\n', 'flx-donate' ) . '</option>';
+		echo '<label><select name="partner"><option value="">' . esc_html__( 'All partners', 'flx-donate' ) . '</option>';
 		foreach ( FLXB_Partners::all() as $i => $p ) {
 			if ( 'service' === $kind ? (int) $p['is_service'] : (int) $p['is_source'] ) {
 				echo '<option value="' . (int) $i . '"' . selected( $pid, $i, false ) . '>' . esc_html( $p['name'] ) . '</option>';
@@ -269,11 +269,11 @@ final class FLXB_Page_Partners {
 		$res = FLXB_Partners::settlement( $kind, $period, $pid, (bool) $pid );
 		echo '<div class="flxb-panel">';
 		if ( ! $res ) {
-			echo '<div class="flxb-emptystate"><h2>' . esc_html__( '\\nNothing in this period\\n', 'flx-donate' ) . '</h2></div></div>';
+			echo '<div class="flxb-emptystate"><h2>' . esc_html__( 'Nothing in this period', 'flx-donate' ) . '</h2></div></div>';
 			return;
 		}
 		$service = 'service' === $kind;
-		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr><th scope="col">' . esc_html__( 'Partner', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Records', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html( $service ? __( 'Cost', 'flx-donate' ) : __( '\\nGift price\\n', 'flx-donate' ) ) . '</th><th scope="col" class="num">' . esc_html( $service ? __( 'Paid', 'flx-donate' ) : __( '\\nReceived\\n', 'flx-donate' ) ) . '</th><th scope="col" class="num">' . esc_html__( 'Open', 'flx-donate' ) . '</th></tr></thead><tbody>';
+		echo '<div class="flxb-tablewrap"><table class="flxb-table"><thead><tr><th scope="col">' . esc_html__( 'Partner', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Records', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html( $service ? __( 'Cost', 'flx-donate' ) : __( 'Gift price', 'flx-donate' ) ) . '</th><th scope="col" class="num">' . esc_html( $service ? __( 'Paid', 'flx-donate' ) : __( 'Received', 'flx-donate' ) ) . '</th><th scope="col" class="num">' . esc_html__( 'Open', 'flx-donate' ) . '</th></tr></thead><tbody>';
 		foreach ( $res as $id => $r ) {
 			$moved = $service ? $r['paid'] : $r['received'];
 			$open  = $r['sum'];
@@ -286,7 +286,7 @@ final class FLXB_Page_Partners {
 					return abs( $v ) > 0.004;
 				}
 			);
-			echo '<tr><td class="flxb-col-main"><a href="' . esc_url( self::url( $base + array( 'partner' => $id, 'from' => $from, 'to' => $to ) ) ) . '">' . esc_html( $r['name'] ) . '</a>' . ( $r['uncosted'] ? '<span class="flxb-sub2">' . esc_html( sprintf( /* translators: %d: items without a price */ _n( '[[\'%dwithout a price\', \'en\']]', '[[\'%dwithout a price\', \'en\']]', $r['uncosted'], 'flx-donate' ), $r['uncosted'] ) ) . '</span>' : '' ) . '</td>';
+			echo '<tr><td class="flxb-col-main"><a href="' . esc_url( self::url( $base + array( 'partner' => $id, 'from' => $from, 'to' => $to ) ) ) . '">' . esc_html( $r['name'] ) . '</a>' . ( $r['uncosted'] ? '<span class="flxb-sub2">' . esc_html( sprintf( /* translators: %d: items without a price */ _n( '%d without a price', '%d without a price', $r['uncosted'], 'flx-donate' ), $r['uncosted'] ) ) . '</span>' : '' ) . '</td>';
 			echo '<td class="num">' . esc_html( number_format_i18n( $r['n'] ) ) . '</td><td class="num">' . esc_html( self::money_list( $r['sum'] ) ) . '</td><td class="num">' . esc_html( self::money_list( $moved ) ) . '</td><td class="num"><b>' . esc_html( self::money_list( $open ) ) . '</b></td></tr>';
 		}
 		echo '</tbody></table></div></div>';
@@ -294,7 +294,7 @@ final class FLXB_Page_Partners {
 		if ( $pid && isset( $res[ $pid ] ) && $res[ $pid ]['rows'] ) {
 			echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html( $res[ $pid ]['name'] ) . '</h2>';
 			if ( $service && $res[ $pid ]['uncosted'] && flxb_can_manage() ) {
-				echo self::form( 'reprice' ) . '<input type="hidden" name="partner_id" value="' . (int) $pid . '"><input type="hidden" name="period" value="' . esc_attr( $period ) . '"><button class="flxb-btn flxb-btn--sm" type="submit">' . esc_html__( '\\nRe-read prices from the agreements\\n', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo self::form( 'reprice' ) . '<input type="hidden" name="partner_id" value="' . (int) $pid . '"><input type="hidden" name="period" value="' . esc_attr( $period ) . '"><button class="flxb-btn flxb-btn--sm" type="submit">' . esc_html__( 'Re-read prices from the agreements', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			echo '</div><div class="flxb-tablewrap"><table class="flxb-table flxb-table--compact"><thead><tr><th scope="col">' . esc_html__( 'Date', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Code', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Option', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-donate' ) . '</th><th scope="col" class="num">' . esc_html__( 'Price', 'flx-donate' ) . '</th></tr></thead><tbody>';
 			foreach ( $res[ $pid ]['rows'] as $r ) {

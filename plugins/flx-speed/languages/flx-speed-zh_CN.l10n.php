@@ -503,7 +503,7 @@ return array(
   'Load' => '负载',
   'p95' => 'p95',
   'Flag' => '旗帜',
-  '[[\'Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.\', \'tr\']]' => '[[\'站点性能集中于一处:每个请求查询、PHP 错误、外部 HTTP 请求(开发人员面板)、缓慢/错误请求日志、服务器(CPU、RAM、磁盘、OPcache)、数据库、自动加载、cron 和系统检查。 AI 使用 Flux AI 和 MCP / Flux AI 工具读取所有内容。\', \'tr\']]',
+  '[[\'Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.\', \'tr\']]' => '站点性能集中于一处:每个请求查询、PHP 错误、外部 HTTP 请求(开发人员面板)、缓慢/错误请求日志、服务器(CPU、RAM、磁盘、OPcache)、数据库、自动加载、cron 和系统检查。 AI 使用 Flux AI 和 MCP / Flux AI 工具读取所有内容。',
   'Performans' => '性能',
   'Güvenli' => '安全',
   'Önce deneyin' => '先测试一下',
@@ -1004,6 +1004,8 @@ return array(
   'Yavaş istekler' => '请求缓慢',
   'Yük' => '负载',
   'İşaret' => '旗帜',
-  'Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.' => '[[\'站点性能集中于一处:每个请求查询、PHP 错误、外部 HTTP 请求(开发人员面板)、缓慢/错误请求日志、服务器(CPU、RAM、磁盘、OPcache)、数据库、自动加载、cron 和系统检查。 AI 使用 Flux AI 和 MCP / Flux AI 工具读取所有内容。\', \'tr\']]',
+  'Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur.' => '站点性能集中于一处:每个请求查询、PHP 错误、外部 HTTP 请求(开发人员面板)、缓慢/错误请求日志、服务器(CPU、RAM、磁盘、OPcache)、数据库、自动加载、cron 和系统检查。 AI 使用 Flux AI 和 MCP / Flux AI 工具读取所有内容。',
+  'Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools.' => '站点性能集中于一处:每个请求查询、PHP 错误、外部 HTTP 请求(开发人员面板)、缓慢/错误请求日志、服务器(CPU、RAM、磁盘、OPcache)、数据库、自动加载、cron 和系统检查。 AI 使用 Flux AI 和 MCP / Flux AI 工具读取所有内容。',
+
  ),
 );

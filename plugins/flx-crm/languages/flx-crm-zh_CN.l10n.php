@@ -389,7 +389,7 @@ return array(
   'repeat' => '重复',
   'Paying' => '付费',
   'Consents' => '同意书',
-  '[[\'People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.\', \'tr\']]' => '[[\'人员与营销:一张人卡中的捐赠者、客户、志愿者和候选人;时间线、标签、KVKK 权限、RFM 评分和损失风险、动态片段。从 Flux Donate、Flux Commerce、Flux Chat、Flux Forms 和 WordPress 用户收集数据;通过 Flux Mail、AI Flux AI 发货。\', \'tr\']]',
+  '[[\'People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.\', \'tr\']]' => '人员与营销:一张人卡中的捐赠者、客户、志愿者和候选人;时间线、标签、KVKK 权限、RFM 评分和损失风险、动态片段。从 Flux Donate、Flux Commerce、Flux Chat、Flux Forms 和 WordPress 用户收集数据;通过 Flux Mail、AI Flux AI 发货。',
   'Ayarlar' => '设置',
   'Kişiler, roller, segmentler ve pazarlama' => '联系人、角色、细分市场和营销',
   'Okur' => '读',
@@ -774,6 +774,8 @@ return array(
   'Ödeme yapan' => '付费',
   'İletişim' => '联系方式',
   'İzinler' => '同意书',
-  'Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.' => '[[\'人员与营销:一张人卡中的捐赠者、客户、志愿者和候选人;时间线、标签、KVKK 权限、RFM 评分和损失风险、动态片段。从 Flux Donate、Flux Commerce、Flux Chat、Flux Forms 和 WordPress 用户收集数据;通过 Flux Mail、AI Flux AI 发货。\', \'tr\']]',
+  'Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.' => '人员与营销:一张人卡中的捐赠者、客户、志愿者和候选人;时间线、标签、KVKK 权限、RFM 评分和损失风险、动态片段。从 Flux Donate、Flux Commerce、Flux Chat、Flux Forms 和 WordPress 用户收集数据;通过 Flux Mail、AI Flux AI 发货。',
+  'People and marketing: donor, customer, volunteer and candidate in one person card; timeline, tags, KVKK permissions, RFM score and loss risk, dynamic segments. Collects data from Flux Donate, Flux Commerce, Flux Chat, Flux Forms and WordPress users; shipping via Flux Mail, AI Flux AI.' => '人员与营销:一张人卡中的捐赠者、客户、志愿者和候选人;时间线、标签、KVKK 权限、RFM 评分和损失风险、动态片段。从 Flux Donate、Flux Commerce、Flux Chat、Flux Forms 和 WordPress 用户收集数据;通过 Flux Mail、AI Flux AI 发货。',
+
  ),
 );
