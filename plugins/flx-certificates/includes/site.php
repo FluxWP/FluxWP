@@ -127,6 +127,17 @@ function flxs_fidan_word( $n, $closed ) {
 		: _n( 'sapling collected', 'saplings collected', (int) $n, 'flx-certificates' );
 }
 
+/** Konum adı; harita varsa takipli /konum/ linki olur (yeni sekmede açılır). */
+function flxs_event_loc_label_html( $p ) {
+	$txt = $p['loc_name'] ? $p['loc_name'] : wp_trim_words( $p['loc_addr'], 6 );
+	if ( '' === $txt ) {
+		$txt = __( 'Event site', 'flx-certificates' );
+	}
+	return $p['loc_link']
+		? '<a class="flxs-ev-locname" href="' . esc_url( $p['loc_link'] ) . '" target="_blank" rel="noopener">' . esc_html( $txt ) . '</a>'
+		: esc_html( $txt );
+}
+
 /** Konum bloğu (açıklanmadıysa bilgi notu) */
 function flxs_event_location_html( $p, $with_map = true ) {
 	if ( ! $p['has_loc'] ) {
@@ -138,7 +149,7 @@ function flxs_event_location_html( $p, $with_map = true ) {
 		return '<div class="flxs-ev-loc is-pending">' . flxs_ico( 'pin' ) . '<div><strong>' . esc_html__( 'Location coming soon', 'flx-certificates' ) . '</strong><span>' . $txt . '</span></div></div>';
 	}
 	$h  = '<div class="flxs-ev-loc">' . flxs_ico( 'pin' ) . '<div>';
-	$h .= $p['loc_name'] ? '<strong>' . esc_html( $p['loc_name'] ) . '</strong>' : '<strong>' . esc_html__( 'Event site', 'flx-certificates' ) . '</strong>';
+	$h .= '<strong>' . ( $p['loc_name'] ? flxs_event_loc_label_html( $p ) : ( $p['loc_link'] ? flxs_event_loc_label_html( $p ) : esc_html__( 'Event site', 'flx-certificates' ) ) ) . '</strong>';
 	$h .= $p['loc_addr'] ? '<span>' . nl2br( esc_html( $p['loc_addr'] ) ) . '</span>' : '';
 	$dir = $p['loc_link'];
 	$h .= $dir ? '<a class="flxs-ev-link" href="' . esc_url( $dir ) . '" target="_blank" rel="noopener">' . esc_html__( 'Get directions', 'flx-certificates' ) . ' ' . flxs_ico( 'go' ) . '</a>' : '';
@@ -218,7 +229,7 @@ function flxs_event_card_html( $p ) {
 	$h .= $p['summary'] ? '<p>' . esc_html( wp_trim_words( $p['summary'], 26 ) ) . '</p>' : '';
 	$h .= '<div class="flxs-ev-card__meta">';
 	$h .= $d ? '<span>' . flxs_ico( 'cal' ) . esc_html( flxs_tr_date( $p['date'], _x( 'F j, Y', 'context_a104e4060425', 'flx-certificates' ) ) . ( $p['time'] ? ' · ' . $p['time'] : '' ) ) . '</span>' : '';
-	$h .= '<span>' . flxs_ico( 'pin' ) . ( $p['has_loc'] ? esc_html( $p['loc_name'] ? $p['loc_name'] : wp_trim_words( $p['loc_addr'], 6 ) ) : esc_html__( 'Location to be announced', 'flx-certificates' ) ) . '</span>';
+	$h .= '<span>' . flxs_ico( 'pin' ) . ( $p['has_loc'] ? flxs_event_loc_label_html( $p ) : esc_html__( 'Location to be announced', 'flx-certificates' ) ) . '</span>';
 	$h .= '</div>';
 	$h .= '<div class="flxs-ev-card__count">' . flxs_ico( 'sprout' ) . '<b>' . flxs_n( $p['fidan'] ) . '</b> ' . esc_html( flxs_fidan_word( $p['fidan'], 'closed' === $p['status'] ) ) . '</div>';
 	$h .= flxs_progress_html( $p );
