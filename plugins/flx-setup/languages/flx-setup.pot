@@ -1911,3 +1911,24 @@ msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "Select at least one change."
+msgstr ""
+
+msgid "The selected changes are no longer available. Refresh the preview."
+msgstr ""
+
+msgid "Also select the required items: %s"
+msgstr ""
+
+msgid "Select all changes"
+msgstr ""
+
+msgid "Select all protected values (overwrite)"
+msgstr ""
+
+msgid "Select %s"
+msgstr ""
+
+msgid "Apply selected changes (%d)"
+msgstr ""

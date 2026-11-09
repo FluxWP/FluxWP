@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.1.11
+- Add per-row selection and top/bottom apply controls to preset, migration and patch previews. Select normal changes or explicitly overwrite protected values in separate groups.
+- Execute only submitted targets, reject empty/stale selections and missing unchecked dependencies, and keep partial migrations/patches pending. Existing API callers retain their full-apply behaviour.
+
 ## 1.1.10
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Preserve singular/plural message boundaries and printf arguments in English source IDs and all native language packs; prevent count labels from breaking populated screens.

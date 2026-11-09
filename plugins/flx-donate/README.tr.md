@@ -115,3 +115,5 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/bagis-eklentisi/KURULUM.m
 Flux Donate, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
+
+Ön ayar karşılaştırması okuma ve kaydetmede aynı temizleyiciyi kullanır; kart ikonu, alt başlık, formda görünürlük ve eklenti alanları korunur. Değişmeyen ön ayarı yeniden uygulamak yeni fark üretmez; WooCommerce ürün kimliği gibi çalışma verileri karşılaştırmaya katılmaz.

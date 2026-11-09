@@ -625,6 +625,13 @@
     "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.": "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.",
     "Expired%dbackup deleted. Expired%dbackup deleted.\u0000Expired%dbackup deleted. Expired%dbackup deleted.": "Expired%dbackup deleted. Expired%dbackup deleted.\u0000Expired%dbackup deleted. Expired%dbackup deleted.",
     "Connected ·%dpackage Connected ·%dpackage\u0000Connected ·%dpackage Connected ·%dpackage": "Connected ·%dpackage Connected ·%dpackage\u0000Connected ·%dpackage Connected ·%dpackage",
-    "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.": "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+    "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.": "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.",
+    "Select at least one change.": "Select at least one change.",
+    "The selected changes are no longer available. Refresh the preview.": "The selected changes are no longer available. Refresh the preview.",
+    "Also select the required items: %s": "Also select the required items: %s",
+    "Select all changes": "Select all changes",
+    "Select all protected values (overwrite)": "Select all protected values (overwrite)",
+    "Select %s": "Select %s",
+    "Apply selected changes (%d)": "Apply selected changes (%d)"
   }
 }

@@ -121,7 +121,7 @@ function flxk_patch_apply( $id_or_patch, $source = 'panel', $note = '', array $o
 		)
 	);
 	if ( $pid && ! is_wp_error( $res ) ) {
-		$all[ $pid ]['status'] = 'applied';
+		$all[ $pid ]['status'] = empty( $res['remaining'] ) ? 'applied' : 'pending';
 		$all[ $pid ]['run']    = $res['run'];
 		flxk_save_patches( $all );
 	}

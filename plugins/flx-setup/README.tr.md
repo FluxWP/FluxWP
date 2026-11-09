@@ -136,3 +136,7 @@ FluxWP tarafından geliştirilmiştir.
 Paketler ekranında eklenti adına veya ikonuna tıklayın: kısa tanıtım, örnek ekran görüntüleri ve ayrıntılar için “Sitede aç” bağlantısı gösterilir. Kurulum/güncelleme düğmeleri ayrı çalışır.
 
 Açıklama, SVG ikon, galeri ve site bağlantıları her GitHub deposunun `catalog/packages.json` dosyasından yönetilir. Updater bunları önbelleğe alıp dağıtır; sitelerde gömülü tanıtım kataloğu tutulmaz.
+
+### Ön ayar değişikliklerini seçme
+
+Ön izlemede satırları tek tek ya da üstteki **Tüm değişiklikleri seç** kutusuyla işaretleyin. Elle değiştirilmiş alanlar ayrı **Korunan değerlerin tümünü seç (üzerine yaz)** kutusuyla seçilir. Üstteki ve alttaki düğme yalnızca seçilen satırları uygular. Eksik bağımlılıklar bildirilir; kısmen uygulanan yamalar ve güncellemeler beklemede kalır.

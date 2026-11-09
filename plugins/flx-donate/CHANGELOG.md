@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.17.3
+- Fix recurring preset changes: compare donation metadata through the same current sanitizer used when saving, including card icons, subtitles, form visibility and extension fields.
+- Preserve runtime WooCommerce IDs outside the preset comparison; repeated apply retains prices and options without false changes.
+
 ## 2.17.2
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Preserve singular/plural message boundaries and printf arguments in English source IDs and all native language packs; prevent count labels from breaking populated screens.

@@ -626,6 +626,13 @@
     "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.": "FluxWP'nin kurulum ve güncelleme eklentisi. İlk açılışta kurulum sihirbazı (tanıtım, eklenti seçimi, görünüm, kurulum); FluxWP tema ve eklentilerini güncelleme sunucusundan (varsayılan updater.fluxwp.com) WordPress'in güncelleme ekranına getirir; ön ayar motoru (preset.json) siteyi tek adımda kurar, onaylı yamalarla değiştirir, geri alır.",
     "Expired%dbackup deleted. Expired%dbackup deleted.\u0000Expired%dbackup deleted. Expired%dbackup deleted.": "Expired%dbackup deleted. Expired%dbackup deleted.\u0000Expired%dbackup deleted. Expired%dbackup deleted.",
     "Connected ·%dpackage Connected ·%dpackage\u0000Connected ·%dpackage Connected ·%dpackage": "Connected ·%dpackage Connected ·%dpackage\u0000Connected ·%dpackage Connected ·%dpackage",
-    "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.": "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
+    "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.": "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.",
+    "Select at least one change.": "En az bir değişiklik seçin.",
+    "The selected changes are no longer available. Refresh the preview.": "Seçilen değişiklikler artık bulunamıyor. Ön izlemeyi yenileyin.",
+    "Also select the required items: %s": "Gerekli öğeleri de seçin: %s",
+    "Select all changes": "Tüm değişiklikleri seç",
+    "Select all protected values (overwrite)": "Korunan değerlerin tümünü seç (üzerine yaz)",
+    "Select %s": "%s seç",
+    "Apply selected changes (%d)": "Seçilen değişiklikleri uygula (%d)"
   }
 }
