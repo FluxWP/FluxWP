@@ -54,6 +54,9 @@ jobs:
           chmod +x /usr/local/bin/wp
           php -v | head -1
 
+      - name: Yayın testi hata algılama kontrolleri
+        run: bash bin/tests/test-smoke-response.sh
+
       - name: Sürümü değişenleri test et ve yayınla
         env:
           GH_TOKEN: ${{ github.token }}
