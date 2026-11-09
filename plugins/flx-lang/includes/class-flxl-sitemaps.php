@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
 class FLXL_Sitemaps extends WP_Sitemaps_Posts {
 	public function __construct() {
 		parent::__construct();
-		$this->name = 'flxlang';
+		$this->name = 'posts';
 	}
 
 	public function get_object_subtypes() {

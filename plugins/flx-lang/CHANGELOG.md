@@ -1,5 +1,9 @@
 # Flux Lang
 
+## 0.2.6
+- List language sitemap subtypes under the existing WordPress posts provider, such as `/wp-sitemap-posts-page-ar-1.xml`, without an extra `flxlang` or `translations` name. Retain language grouping and delegate native content subtypes unchanged.
+- Permanently redirect valid previously submitted `flxlang` sitemap URLs to their new equivalents; respect pagination, disabled languages, SEO exclusions and the global sitemap switch.
+
 ## 0.2.5
 - Add paginated core sitemap children for indexable shared pages and missing static home roots in every active nondefault language; physical post, page and wiki translations remain in their native sitemaps.
 - Respect core post type/query exclusions and Flux SEO noindex; omit private, draft and password-protected shared pages, and keep default shared URLs independent of the request language.

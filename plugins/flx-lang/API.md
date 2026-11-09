@@ -80,13 +80,17 @@ metni çevir (blok yapısını koru) → `flxl_save_translation source_id lang=e
 
 ## Multilingual sitemap / Çok dilli sitemap
 
-WordPress keeps published physical translations (posts, pages and custom post types such as `flx_wiki`) in its native `posts` provider. Flux Lang also registers the `flxlang` provider: `/wp-sitemap-flxlang-page-ar-1.xml`, for example, lists the Arabic URLs of shared pages. These children appear in `/wp-sitemap.xml` automatically. The default language stays in the native provider; new active languages require no code changes, and disabled languages have no shared-page child.
+WordPress keeps published physical translations (posts, pages and custom post types such as `flx_wiki`) in its native `posts` provider. Flux Lang augments this existing provider with language subtypes: `/wp-sitemap-posts-page-ar-1.xml`, for example, lists the Arabic URLs of shared pages. Default-language pages remain at `/wp-sitemap-posts-page-1.xml`. These children appear in `/wp-sitemap.xml` automatically, without a separate `flxlang` or `translations` provider. New active languages require no code changes, and disabled languages have no shared-page child. Native subtype queries and entries delegate unchanged to the original posts provider.
 
 `flxl_shared_post_ids` declares pages that really serve every active language. Merely enabling fallback does not create sitemap entries for untranslated articles or wiki pages. Shared IDs with an explicit translation group remain physical translations, preventing duplicate URLs. Missing static-home translations can contribute a language home root; existing physical home translations remain native.
 
 The provider reuses `wp_sitemaps_post_types`, `wp_sitemaps_posts_query_args` and `wp_sitemaps_posts_entry`, including Flux SEO noindex/shop exclusions and lastmod. Core `wp_sitemaps_max_urls` pagination applies. Unpublished and password-protected shared records are excluded. No rewrite flush or separate language sitemap submission is required.
 
-Türkçe: Yayımlanmış yazı, sayfa ve wiki çevirileri mevcut WordPress sitemap'lerinde kalır. Paylaşılan sayfaların her etkin dildeki adresleri `flxlang` alt sitemap'leriyle ana dizine eklenir; sonradan eklenen diller de otomatik kapsanır. Çevirisiz normal içerik için yedek adres üretilmez. SEO hariç tutmaları ve sayfalama korunur.
+Türkçe: Yayımlanmış yazı, sayfa ve wiki çevirileri mevcut WordPress sitemap'lerinde kalır. Paylaşılan sayfaların her etkin dildeki adresleri `posts-page-<dil>` alt sitemap'leriyle ana dizine eklenir; sonradan eklenen diller de otomatik kapsanır. Çevirisiz normal içerik için yedek adres üretilmez. SEO hariç tutmaları ve sayfalama korunur.
+
+Legacy `/wp-sitemap-flxlang-<type>-<language>-<page>.xml` URLs redirect with HTTP 301 to the corresponding `posts` URL only while that language/type/page is enabled and nonempty. The old name is not registered as a provider and does not appear in the index. The generic WordPress routing rules already accept both names; no rewrite flush is needed.
+
+Türkçe: Eski `flxlang` adresleri, geçerli ve etkin karşılıkları varsa 301 ile standart `posts` adresine gider; ana dizinde yalnız yeni ad listelenir. Dil kapsamı ve gruplama değişmez.
 
 Regression test (disposable WP with Flux Lang, Flux SEO and Flux Wiki; writable MU plugin directory):
 
