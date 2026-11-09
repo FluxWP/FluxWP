@@ -19,6 +19,12 @@
 - The `[products]` shortcode works inside templates and patterns.
 - Dark mode, cookie banner, system check, Turkish and English.
 
+## Coming soon
+
+Choose **Appearance › Theme Settings › Site visibility › Coming soon: entire site** to show a branded holding page on public pages, searches, missing URLs and feeds. Administrators and shop managers can still work. Signed-in customers see the holding page. Title, message and an optional public contact email are editable; empty copy uses native English/Turkish translations. The page follows the site logo, palette and dark-mode preference and sends HTTP 503, Retry-After, noindex and no-store headers.
+
+**Live / follow WooCommerce** restores the normal theme gate. WooCommerce keeps its own visibility scope: *store pages only* leaves other pages visible. Its restricted pages use the shared design and its private preview links still work. Admin, login, REST/AJAX and payment callbacks keep their normal handlers; this is a frontend holding page, not a replacement for access controls or private media storage. Saving visibility/content clears supported page caches.
+
 ## Presets
 
 With [FluxWP Panel](../../plugins/flx-setup) active, **Appearance › Theme Settings › Presets** applies a preset (`flx-preset/1`): profile, settings, templates, header, footer, patterns, pages, products and menus. A preset can rebuild the whole site, for example a preset from [FluxWP Extras](https://github.com/FluxWP/wp-extras) turns this theme into an association site. Your own edits are never overwritten by preset updates.

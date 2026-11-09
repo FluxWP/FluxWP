@@ -1446,3 +1446,45 @@ msgstr "%s. Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin."
 
 msgid "Dots"
 msgstr "Dots"
+
+msgid "Site visibility"
+msgstr "Site görünürlüğü"
+
+msgid "Visibility"
+msgstr "Görünürlük"
+
+msgid "Live / follow WooCommerce"
+msgstr "Yayında / WooCommerce ayarını izle"
+
+msgid "Coming soon: entire site"
+msgstr "Yakında: tüm site"
+
+msgid "Entire-site mode hides public pages from visitors, including signed-in customers. Administrators and shop managers can keep working. Automatic mode keeps WooCommerce visibility settings and private preview links unchanged."
+msgstr "Tüm site modu, giriş yapmış müşteriler dahil ziyaretçilerden sayfaları gizler. Yöneticiler ve mağaza yöneticileri çalışmaya devam edebilir. Otomatik mod, WooCommerce görünürlük ayarlarını ve özel ön izleme bağlantılarını korur."
+
+msgid "Coming-soon title"
+msgstr "Yakında sayfası başlığı"
+
+msgid "Coming-soon message"
+msgstr "Yakında sayfası mesajı"
+
+msgid "Something good is on its way."
+msgstr "Güzel bir başlangıç çok yakında."
+
+msgid "We're putting the finishing touches on our website. Please check back soon."
+msgstr "Web sitemizde son hazırlıkları yapıyoruz. Çok yakında yeniden görüşmek üzere."
+
+msgid "Leave the title and message empty to use the translated defaults."
+msgstr "Varsayılan çevrilmiş metinleri kullanmak için başlığı ve mesajı boş bırakın."
+
+msgid "Public contact email"
+msgstr "Herkese açık iletişim e-postası"
+
+msgid "Optional. Only this address is shown; the administrator email stays private."
+msgstr "İsteğe bağlı. Yalnızca bu adres gösterilir; yönetici e-postası gizli kalır."
+
+msgid "Site coming soon"
+msgstr "Site yakında"
+
+msgid "Staff sign in"
+msgstr "Ekip girişi"

@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.7.16
+- Add a shared, responsive coming-soon page with site branding, light/dark colours and translated copy.
+- Add whole-site coming-soon mode to Theme Settings, independent of WooCommerce. Managers can work while guests and customers see a no-cache 503 page.
+- Keep native WooCommerce store-only scope, exclusions and private preview links while using the same holding-page design.
+
 ## 0.7.15
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

@@ -1446,3 +1446,45 @@ msgstr ""
 
 msgid "Dots"
 msgstr ""
+
+msgid "Site visibility"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""
+
+msgid "Live / follow WooCommerce"
+msgstr ""
+
+msgid "Coming soon: entire site"
+msgstr ""
+
+msgid "Entire-site mode hides public pages from visitors, including signed-in customers. Administrators and shop managers can keep working. Automatic mode keeps WooCommerce visibility settings and private preview links unchanged."
+msgstr ""
+
+msgid "Coming-soon title"
+msgstr ""
+
+msgid "Coming-soon message"
+msgstr ""
+
+msgid "Something good is on its way."
+msgstr ""
+
+msgid "We're putting the finishing touches on our website. Please check back soon."
+msgstr ""
+
+msgid "Leave the title and message empty to use the translated defaults."
+msgstr ""
+
+msgid "Public contact email"
+msgstr ""
+
+msgid "Optional. Only this address is shown; the administrator email stays private."
+msgstr ""
+
+msgid "Site coming soon"
+msgstr ""
+
+msgid "Staff sign in"
+msgstr ""
