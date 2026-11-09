@@ -113,3 +113,5 @@ Flux Lang, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses
 FluxWP tarafından geliştirilmiştir.
 
 Paylaşılan sayfaların tüm etkin dil adresleri ve yayımlanmış yazı/wiki çevirileri `/wp-sitemap.xml` üzerinden keşfedilir. Yeni etkin diller otomatik kapsanır; noindex ve mağaza özel sayfa hariç tutmaları korunur. Ayrıntılar: [API.md](API.md#multilingual-sitemap--çok-dilli-sitemap).
+
+Dil sitemap dosyaları `/wp-sitemap-posts-page-ar-1.xml` gibi standart WordPress adlarını kullanır; ek sağlayıcı adı bulunmaz. Eski `flxlang` adresleri geçerli yeni karşılıklarına kalıcı yönlenir.
