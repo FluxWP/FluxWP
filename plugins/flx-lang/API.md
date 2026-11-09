@@ -77,3 +77,21 @@ metni çevir (blok yapısını koru) → `flxl_save_translation source_id lang=e
 - E-posta/WhatsApp metni ziyaretçinin dilinde: `flxl_switch_language( flxl_order_language( $order ) )` … `flxl_restore_language()`.
 - Kendi önbellek anahtarınızda dil: `flxl_current_language()`.
 - `home_url()` ön yüzde istek dilinin önekini taşır; dilsiz adres gerekiyorsa `flxl_raw( fn )`.
+
+## Multilingual sitemap / Çok dilli sitemap
+
+WordPress keeps published physical translations (posts, pages and custom post types such as `flx_wiki`) in its native `posts` provider. Flux Lang also registers the `flxlang` provider: `/wp-sitemap-flxlang-page-ar-1.xml`, for example, lists the Arabic URLs of shared pages. These children appear in `/wp-sitemap.xml` automatically. The default language stays in the native provider; new active languages require no code changes, and disabled languages have no shared-page child.
+
+`flxl_shared_post_ids` declares pages that really serve every active language. Merely enabling fallback does not create sitemap entries for untranslated articles or wiki pages. Shared IDs with an explicit translation group remain physical translations, preventing duplicate URLs. Missing static-home translations can contribute a language home root; existing physical home translations remain native.
+
+The provider reuses `wp_sitemaps_post_types`, `wp_sitemaps_posts_query_args` and `wp_sitemaps_posts_entry`, including Flux SEO noindex/shop exclusions and lastmod. Core `wp_sitemaps_max_urls` pagination applies. Unpublished and password-protected shared records are excluded. No rewrite flush or separate language sitemap submission is required.
+
+Türkçe: Yayımlanmış yazı, sayfa ve wiki çevirileri mevcut WordPress sitemap'lerinde kalır. Paylaşılan sayfaların her etkin dildeki adresleri `flxlang` alt sitemap'leriyle ana dizine eklenir; sonradan eklenen diller de otomatik kapsanır. Çevirisiz normal içerik için yedek adres üretilmez. SEO hariç tutmaları ve sayfalama korunur.
+
+Regression test (disposable WP with Flux Lang, Flux SEO and Flux Wiki; writable MU plugin directory):
+
+```sh
+wp eval-file plugins/flx-lang/tests/sitemaps.php
+```
+
+The test creates and removes its own content, settings and temporary MU fixture. It uses a fresh WP process to respect the shared-ID request cache. Do not run fixture tests on production.

@@ -1,5 +1,9 @@
 # Flux Lang
 
+## 0.2.5
+- Add paginated core sitemap children for indexable shared pages and missing static home roots in every active nondefault language; physical post, page and wiki translations remain in their native sitemaps.
+- Respect core post type/query exclusions and Flux SEO noindex; omit private, draft and password-protected shared pages, and keep default shared URLs independent of the request language.
+
 ## 0.2.4
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

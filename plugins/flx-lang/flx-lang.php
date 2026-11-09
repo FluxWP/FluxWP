@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Lang
  * Description:       Siteyi çok dilli yapar: /en/ gibi dil adresleri, sayfa, yazı, proje ve etkinlik başına çeviri, dile özgü görsel, hreflang ve canonical, Türkiye dışından gelene İngilizce önerisi, dil seçici; Flux AI & MCP ve Flux AI araçlarına dil desteği.
- * Version:           0.2.4
+ * Version:           0.2.5
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -21,7 +21,7 @@ if ( defined( 'FLXL_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXL_VERSION', '0.2.4' );
+define( 'FLXL_VERSION', '0.2.5' );
 define( 'FLXL_FILE', __FILE__ );
 define( 'FLXL_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXL_URL', plugin_dir_url( __FILE__ ) );
@@ -32,6 +32,7 @@ require_once FLXL_DIR . 'includes/direction.php';
 require_once FLXL_DIR . 'includes/icerik.php';
 require_once FLXL_DIR . 'includes/baglanti.php';
 require_once FLXL_DIR . 'includes/seo.php';
+require_once FLXL_DIR . 'includes/sitemap.php';
 require_once FLXL_DIR . 'includes/secici.php';
 require_once FLXL_DIR . 'includes/oneri.php';
 require_once FLXL_DIR . 'includes/gorsel.php';

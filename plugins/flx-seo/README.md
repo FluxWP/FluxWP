@@ -124,3 +124,5 @@ Adding tools from your own plugin: [Flux AI API.md › MCP](../../docs/flx-ai/AP
 Flux SEO Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
+
+Conventional child names such as `/category-sitemap.xml` redirect to enabled, nonempty WordPress sitemaps. Unknown, excluded and out-of-range children remain 404.

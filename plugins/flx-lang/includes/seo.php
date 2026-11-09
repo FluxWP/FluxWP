@@ -139,6 +139,10 @@ add_filter(
 				}
 			);
 		}
+		// Shared links normally follow the visitor language. Sitemap roots must not.
+		if ( flxl_is_shared( $post->ID ) ) {
+			$entry['loc'] = flxl_url_for_language( $entry['loc'], flxl_default_language() );
+		}
 		return $entry;
 	},
 	20,

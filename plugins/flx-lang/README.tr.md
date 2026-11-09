@@ -111,3 +111,5 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-lang/KURULUM.md) · A
 Flux Lang, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
+
+Paylaşılan sayfaların tüm etkin dil adresleri ve yayımlanmış yazı/wiki çevirileri `/wp-sitemap.xml` üzerinden keşfedilir. Yeni etkin diller otomatik kapsanır; noindex ve mağaza özel sayfa hariç tutmaları korunur. Ayrıntılar: [API.md](API.md#multilingual-sitemap--çok-dilli-sitemap).

@@ -111,3 +111,5 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-lang/KURULUM.md) · API 
 Flux Language Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
+
+Shared pages in every active language and published post/wiki translations are discoverable through `/wp-sitemap.xml`. Newly enabled languages are included automatically; noindex and shop exclusions are preserved. See [API.md](API.md#multilingual-sitemap--çok-dilli-sitemap).

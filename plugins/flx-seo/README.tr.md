@@ -121,3 +121,5 @@ Kendi eklentinizden araç eklemek: [Flux AI API.md › MCP](../../docs/flx-ai/AP
 Flux SEO, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
+
+`/category-sitemap.xml` gibi alışılmış alt sitemap adresleri, yalnız etkin ve dolu WordPress sitemap’ine yönlendirilir. Bilinmeyen, hariç tutulan ve aralık dışı adresler 404 kalır.
