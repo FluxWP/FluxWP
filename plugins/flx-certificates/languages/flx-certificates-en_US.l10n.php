@@ -1,5 +1,11 @@
 <?php
 return array('language'=>'en_US','plural-forms'=>'nplurals=2; plural=(n != 1);','messages'=>array(
+'Location opened: %1$s via QR, %2$s from the site'=>'Location opened: %1$s via QR, %2$s from the site',
+'Download QR (SVG)'=>'Download QR (SVG)',
+'Location link for QR codes'=>'Location link for QR codes',
+'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.'=>'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.',
+'Opened %1$s times via QR, %2$s times from the site.'=>'Opened %1$s times via QR, %2$s times from the site.',
+'No map yet: the link opens the event page until a location is entered.'=>'No map yet: the link opens the event page until a location is entered.',
 'Sapling goal progress'=>'Sapling goal progress',
 'No record'=>'No record',
 'Certificate not found'=>'Certificate not found',

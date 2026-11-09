@@ -3,6 +3,12 @@ return array(
  'language' => 'zh_CN',
  'plural-forms' => 'nplurals=1; plural=0;',
  'messages' => array(
+'Location opened: %1$s via QR, %2$s from the site'=>'位置打开次数:二维码 %1$s 次,网站 %2$s 次',
+'Download QR (SVG)'=>'下载二维码 (SVG)',
+'Location link for QR codes'=>'用于二维码的位置链接',
+'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.'=>'请在海报和封面上使用此链接(或二维码)代替地图链接。访客先进入您的网站并被计数,然后跳转到地图。之后更换地图也无需重新印刷。',
+'Opened %1$s times via QR, %2$s times from the site.'=>'通过二维码打开 %1$s 次,从网站打开 %2$s 次。',
+'No map yet: the link opens the event page until a location is entered.'=>'尚无地图:在填写位置之前,该链接会打开活动页面。',
   'Sapling goal progress' => '树苗目标进度',
   'No record' => '无记录',
   'Certificate not found' => '未找到证书',

@@ -168,6 +168,75 @@ function flxs_event_map_url( $v ) {
 	return preg_match( '#^https?://#i', $v ) ? $v : '';
 }
 
+/** Takipli konum yönlendirmesinin yolu: /konum/{etkinlik tarihi | id} (filtre flxs_location_slug) */
+function flxs_location_slug() {
+	$slug = sanitize_title( (string) apply_filters( 'flxs_location_slug', 'konum' ) );
+	return $slug ? $slug : 'konum';
+}
+
+/**
+ * Etkinliğin takipli konum linki. QR ve sitedeki "Yol tarifi" bu linki kullanır;
+ * tıklama sayılır, sonra harita adresine yönlendirilir.
+ *
+ * @param array  $e   Etkinlik satırı.
+ * @param string $src qr | web
+ */
+function flxs_event_location_link( $e, $src = 'qr' ) {
+	$key = $e['event_date'] && 1 === flxs_events_on_date( $e['event_date'] ) ? $e['event_date'] : (string) (int) $e['id'];
+	$url = home_url( '/' . flxs_location_slug() . '/' . $key . '/' );
+	return 'qr' === $src ? $url : add_query_arg( 'k', 'web', $url );
+}
+
+/** O tarihteki etkinlik sayısı (tarihli link yalnız tekse kullanılır) */
+function flxs_events_on_date( $ymd ) {
+	global $wpdb;
+	return (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxs_table( 'events' ) . ' WHERE event_date = %s', $ymd ) );
+}
+
+/** Konumun gerçek harita adresi (takipsiz) */
+function flxs_event_map_target( $e ) {
+	if ( $e['loc_map'] ) {
+		return (string) $e['loc_map'];
+	}
+	$q = flxs_event_map_query( $e );
+	return $q ? 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $q ) : '';
+}
+
+/** /konum/{anahtar}: tıklamayı say, haritaya (konum yoksa etkinlik sayfasına) yönlendir */
+function flxs_location_redirect( $key ) {
+	global $wpdb;
+	$e = null;
+	if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', $key ) ) {
+		$e = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxs_table( 'events' ) . ' WHERE event_date = %s ORDER BY id DESC LIMIT 1', $key ), ARRAY_A );
+	} else {
+		$e = flxs_get_event( (int) $key );
+	}
+	nocache_headers();
+	if ( ! $e ) {
+		wp_safe_redirect( home_url( '/' ), 302 );
+		return;
+	}
+	$src    = isset( $_GET['k'] ) && 'web' === $_GET['k'] ? 'web' : 'qr'; // phpcs:ignore WordPress.Security.NonceVerification
+	$target = flxs_event_map_target( $e );
+	$ua     = isset( $_SERVER['HTTP_USER_AGENT'] ) ? (string) $_SERVER['HTTP_USER_AGENT'] : ''; // phpcs:ignore
+	$bot    = '' === $ua || preg_match( '/bot|crawl|spider|slurp|preview|facebookexternalhit|whatsapp|telegram|curl|wget/i', $ua );
+	if ( $target && ! $bot ) {
+		$col = 'web' === $src ? 'loc_hits_web' : 'loc_hits_qr';
+		$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxs_table( 'events' ) . " SET $col = $col + 1 WHERE id = %d", (int) $e['id'] ) ); // phpcs:ignore
+		if ( function_exists( 'flxan_track_event' ) ) {
+			flxan_track_event( 'event_location', $e['name'] . ' · ' . $src );
+		}
+		do_action( 'flxs_location_hit', $e, $src );
+	}
+	if ( ! $target ) {
+		$post = (int) $e['post_id'] && 'publish' === get_post_status( (int) $e['post_id'] ) ? get_permalink( (int) $e['post_id'] ) : home_url( '/' );
+		wp_safe_redirect( $post, 302 );
+		return;
+	}
+	// Harita adresi dış site (Google Maps vb.); panelden giriliyor ve kayıtta doğrulanıyor.
+	wp_redirect( esc_url_raw( $target ), 302 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
+}
+
 /** Haritada gösterilecek sorgu: koordinat varsa o, yoksa adres */
 function flxs_event_map_query( $e ) {
 	$q = '';
@@ -220,6 +289,7 @@ function flxs_event_public( $e ) {
 		'map_q'     => flxs_event_map_query( $e ),
 		'announce'  => $ann,
 		'has_loc'   => '' !== trim( $e['loc_name'] . $e['loc_address'] . $e['loc_map'] ),
+		'loc_link'  => flxs_event_map_target( $e ) ? flxs_event_location_link( $e, 'web' ) : '',
 	);
 }
 

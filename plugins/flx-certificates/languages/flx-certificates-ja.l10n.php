@@ -3,6 +3,12 @@ return array(
  'language' => 'ja',
  'plural-forms' => 'nplurals=1; plural=0;',
  'messages' => array(
+'Location opened: %1$s via QR, %2$s from the site'=>'場所の表示: QR %1$s 回、サイト %2$s 回',
+'Download QR (SVG)'=>'QRをダウンロード (SVG)',
+'Location link for QR codes'=>'QRコード用の場所リンク',
+'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.'=>'ポスターやカバー画像には地図リンクの代わりにこのリンク(またはQR)を使ってください。訪問者はまずサイトに来て、カウントされた後に地図へ移動します。地図は後から変更でき、刷り直しは不要です。',
+'Opened %1$s times via QR, %2$s times from the site.'=>'QRで %1$s 回、サイトから %2$s 回開かれました。',
+'No map yet: the link opens the event page until a location is entered.'=>'地図はまだありません: 場所が入力されるまで、リンクはイベントページを開きます。',
   'Sapling goal progress' => '苗木の目標進捗状況',
   'No record' => '記録なし',
   'Certificate not found' => '証明書が見つかりません',

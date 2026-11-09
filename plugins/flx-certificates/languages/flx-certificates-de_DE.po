@@ -972,3 +972,21 @@ msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not 
 msgid_plural "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgstr[0] "%1$d-Nachricht wartet seit mehr als 10 Minuten; Die Warteschlange funktioniert möglicherweise nicht. Handler:%2$s, letzter Lauf:%3$s.%1$d-Nachricht steht seit mehr als 10 Minuten aus; Die Warteschlange funktioniert möglicherweise nicht. Handler:%2$s, letzter Lauf:%3$s."
 msgstr[1] "%1$d-Nachricht wartet seit mehr als 10 Minuten; Die Warteschlange funktioniert möglicherweise nicht. Handler:%2$s, letzter Lauf:%3$s.%1$d-Nachricht steht seit mehr als 10 Minuten aus; Die Warteschlange funktioniert möglicherweise nicht. Handler:%2$s, letzter Lauf:%3$s."
+
+msgid "Location opened: %1$s via QR, %2$s from the site"
+msgstr "Standort geöffnet: %1$s per QR, %2$s über die Website"
+
+msgid "Download QR (SVG)"
+msgstr "QR herunterladen (SVG)"
+
+msgid "Location link for QR codes"
+msgstr "Standortlink für QR-Codes"
+
+msgid "Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting."
+msgstr "Verwenden Sie diesen Link (oder den QR-Code) auf Plakaten und Titelbildern statt des Kartenlinks. Besucher landen zuerst auf Ihrer Website, der Aufruf wird gezählt, dann geht es zur Karte. Die Karte lässt sich später ändern, ohne neu zu drucken."
+
+msgid "Opened %1$s times via QR, %2$s times from the site."
+msgstr "%1$s-mal per QR, %2$s-mal über die Website geöffnet."
+
+msgid "No map yet: the link opens the event page until a location is entered."
+msgstr "Noch keine Karte: Der Link öffnet die Veranstaltungsseite, bis ein Standort eingetragen ist."

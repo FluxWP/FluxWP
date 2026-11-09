@@ -3,6 +3,12 @@ return array(
  'language' => 'ar',
  'plural-forms' => 'nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);',
  'messages' => array(
+'Location opened: %1$s via QR, %2$s from the site'=>'فتح الموقع: %1$s عبر QR، و%2$s من الموقع',
+'Download QR (SVG)'=>'تنزيل QR (SVG)',
+'Location link for QR codes'=>'رابط الموقع لرموز QR',
+'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.'=>'استخدم هذا الرابط (أو رمز QR) في الملصقات والأغلفة بدلاً من رابط الخريطة. يصل الزائر أولاً إلى موقعك، وتُحتسب الزيارة، ثم يُحوَّل إلى الخريطة. يمكنك تغيير الخريطة لاحقاً دون إعادة الطباعة.',
+'Opened %1$s times via QR, %2$s times from the site.'=>'فُتح %1$s مرة عبر QR و%2$s مرة من الموقع.',
+'No map yet: the link opens the event page until a location is entered.'=>'لا توجد خريطة بعد: يفتح الرابط صفحة الفعالية حتى يُدخَل موقع.',
   'Sapling goal progress' => 'تقدم هدف الشتلة',
   'No record' => 'لا يوجد سجل',
   'Certificate not found' => 'لم يتم العثور على الشهادة',

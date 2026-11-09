@@ -3,6 +3,12 @@ return array(
  'language' => 'ru_RU',
  'plural-forms' => 'nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);',
  'messages' => array(
+'Location opened: %1$s via QR, %2$s from the site'=>'Открытия места: %1$s по QR, %2$s с сайта',
+'Download QR (SVG)'=>'Скачать QR (SVG)',
+'Location link for QR codes'=>'Ссылка на место для QR-кодов',
+'Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.'=>'Используйте эту ссылку (или QR) на афишах и обложках вместо ссылки на карту. Посетитель сначала попадает на ваш сайт, переход засчитывается, затем открывается карта. Карту можно сменить позже без перепечатки.',
+'Opened %1$s times via QR, %2$s times from the site.'=>'Открыто %1$s раз по QR и %2$s раз с сайта.',
+'No map yet: the link opens the event page until a location is entered.'=>'Карты пока нет: до указания места ссылка открывает страницу мероприятия.',
   'Sapling goal progress' => 'Прогресс цели саженца',
   'No record' => 'Нет записи',
   'Certificate not found' => 'Сертификат не найден',

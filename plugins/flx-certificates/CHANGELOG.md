@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.9.0
+- Tracked event location link: `/konum/{event date or id}` counts the visit (QR or site), then redirects to the map. The address can be changed later without reprinting posters. Bots and link previews are not counted.
+- Event edit screen shows the link, a downloadable QR (SVG) and the open counts; the events list shows the counts.
+- The "Get directions" link on the event page uses the tracked link. Flux Analytics (if active) receives an `event_location` event.
+- New filters/actions: `flxs_location_slug`, `flxs_location_hit`. Database version 5 (`loc_hits_qr`, `loc_hits_web`).
+
 ## 1.8.12
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Preserve singular/plural message boundaries and printf arguments in English source IDs and all native language packs; prevent count labels from breaking populated screens.

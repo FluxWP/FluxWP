@@ -140,7 +140,7 @@ function flxs_event_location_html( $p, $with_map = true ) {
 	$h  = '<div class="flxs-ev-loc">' . flxs_ico( 'pin' ) . '<div>';
 	$h .= $p['loc_name'] ? '<strong>' . esc_html( $p['loc_name'] ) . '</strong>' : '<strong>' . esc_html__( 'Event site', 'flx-certificates' ) . '</strong>';
 	$h .= $p['loc_addr'] ? '<span>' . nl2br( esc_html( $p['loc_addr'] ) ) . '</span>' : '';
-	$dir = $p['loc_map'] ? $p['loc_map'] : ( $p['map_q'] ? 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $p['map_q'] ) : '' );
+	$dir = $p['loc_link'];
 	$h .= $dir ? '<a class="flxs-ev-link" href="' . esc_url( $dir ) . '" target="_blank" rel="noopener">' . esc_html__( 'Get directions', 'flx-certificates' ) . ' ' . flxs_ico( 'go' ) . '</a>' : '';
 	$h .= '</div></div>';
 	if ( $with_map && $p['map_q'] ) {

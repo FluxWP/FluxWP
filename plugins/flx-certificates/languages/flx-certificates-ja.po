@@ -947,3 +947,21 @@ msgstr[0] " アクティブなテンプレート%dがあります。アクティ
 msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgid_plural "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgstr[0] "%1$dメッセージは 10 分以上待機しています。キューが機能していない可能性があります。ハンドラー:%2$s、最後の実行:%3$s。%1$dメッセージが 10 分以上保留されています。キューが機能していない可能性があります。ハンドラ:%2$s、最後の実行:%3$s。"
+
+msgid "Location opened: %1$s via QR, %2$s from the site"
+msgstr "場所の表示: QR %1$s 回、サイト %2$s 回"
+
+msgid "Download QR (SVG)"
+msgstr "QRをダウンロード (SVG)"
+
+msgid "Location link for QR codes"
+msgstr "QRコード用の場所リンク"
+
+msgid "Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting."
+msgstr "ポスターやカバー画像には地図リンクの代わりにこのリンク(またはQR)を使ってください。訪問者はまずサイトに来て、カウントされた後に地図へ移動します。地図は後から変更でき、刷り直しは不要です。"
+
+msgid "Opened %1$s times via QR, %2$s times from the site."
+msgstr "QRで %1$s 回、サイトから %2$s 回開かれました。"
+
+msgid "No map yet: the link opens the event page until a location is entered."
+msgstr "地図はまだありません: 場所が入力されるまで、リンクはイベントページを開きます。"

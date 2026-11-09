@@ -11,6 +11,7 @@ add_filter(
 	function ( $v ) {
 		$v[] = 'flxs_kod';
 		$v[] = 'flxs_pdf';
+		$v[] = 'flxs_konum';
 		return $v;
 	}
 );
@@ -19,6 +20,8 @@ function flxs_register_rewrites() {
 	$slug = preg_quote( flxs_slug(), '#' );
 	add_rewrite_rule( '^' . $slug . '/([A-Za-z0-9]{6,40})/pdf/?$', 'index.php?flxs_kod=$matches[1]&flxs_pdf=1', 'top' );
 	add_rewrite_rule( '^' . $slug . '/([A-Za-z0-9]{6,40})/?$', 'index.php?flxs_kod=$matches[1]', 'top' );
+	$loc = preg_quote( flxs_location_slug(), '#' );
+	add_rewrite_rule( '^' . $loc . '/([0-9]{1,10}|[0-9]{4}-[0-9]{2}-[0-9]{2})/?$', 'index.php?flxs_konum=$matches[1]', 'top' );
 }
 
 /** Şu an gösterilen sertifika (sayfa isteği boyunca) */
@@ -33,6 +36,10 @@ function flxs_current_certificate( $set = null ) {
 add_action( 'template_redirect', 'flxs_template_redirect', 1 );
 
 function flxs_template_redirect() {
+	if ( '' !== (string) get_query_var( 'flxs_konum' ) ) {
+		flxs_location_redirect( (string) get_query_var( 'flxs_konum' ) );
+		exit;
+	}
 	$code = get_query_var( 'flxs_kod' );
 	if ( ! $code ) {
 		return;
