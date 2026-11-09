@@ -3,13 +3,13 @@ on:
   pull_request:
     paths:
       - 'tools/site-translations/**'
-      - 'tools/readme-media/tests/**'
+      - 'tools/readme-media/**'
       - '.github/workflows/translation-regressions.yml'
   push:
     branches: [main]
     paths:
       - 'tools/site-translations/**'
-      - 'tools/readme-media/tests/**'
+      - 'tools/readme-media/**'
 permissions:
   contents: read
 jobs:
@@ -20,4 +20,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - run: python3 tools/readme-media/capture-package.py --help
       - run: python3 -m unittest discover -s tools/readme-media/tests -p 'test_*.py'

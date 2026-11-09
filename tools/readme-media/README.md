@@ -1,117 +1,84 @@
-# Tanıtım medyası ve README üretici
+# Refresh package screenshots and walkthroughs
 
-Her paketin `README.md` (EN) + `README.tr.md`, `docs/demo.gif`, `docs/demo-tr.gif`, `docs/thumb.gif` ve
-`docs/images/<ad>-en|tr.jpg` dosyaları buradaki betiklerle üretilir. Paket güncellenince ekranları ve GIF'i
-tek komutla yeniden çekmek için.
+**English** · [Türkçe](README.tr.md)
 
-## Güncel, izole çekim akışı
+Use this pipeline whenever a plugin or theme changes. It captures the actual current UI and refreshes existing documentation, the Updater catalog and website examples without rewriting README prose or translated marketing copy.
 
-Host PHP veya SQLite gerekmez. Docker, Bun ve FFmpeg kullanılır. `setup-docker.py` yalnız kendine ait bir Docker projesi ve yerel veritabanı oluşturur; kaynak paketleri salt okunur bağlar. Yapay örnek veriler kullanın. `demo-guard.php` gerçek e-posta gönderimini ve yerel mock sunucuları dışındaki HTTP isteklerini engeller.
+**English is the default capture language.** Turkish screenshots are retained. Request `--language tr` to refresh them too. Website examples always use English screenshots and walkthroughs; the native FluxWP Panel selects English/Turkish previews from the WordPress administrator's locale, with English fallback.
+
+## 1. Prepare the local capture site
+
+Requirements: Docker, Bun, Python 3, FFmpeg, and Pillow for image conversion (`uv run --with pillow` can supply it).
+
+From the repository root:
 
 ```sh
 bun install --frozen-lockfile
+bunx playwright install chromium
 python3 tools/readme-media/setup-docker.py --work /absolute/shared/capture-work
-# Oluşan capture-work/php sarmalayıcısıyla gerekli seed/*.php örnek verilerini hazırlayın.
-# Pillow yalnız görsel dışa aktarma/dönüştürme için gerekir:
-uv run --with pillow tools/readme-media/env/demo-certificates/gen.py /absolute/shared/capture-work/site/wp-content/uploads/demo-certs
-python3 tools/readme-media/capture-package.py tools/readme-media/cfg/flx-ai.json --env /absolute/shared/capture-work/capture-env.json
 ```
 
-`capture-package.py` EN/TR masaüstü, mobil, koyu ekranları ve gerçek tarayıcı gezintisini yeniler. README metinlerine dokunmaz; kritik hata/izinsiz ekran veya eksik çekimde durur. Her çekim bağlamının dili ayrı cookie ile belirlenir; paralel EN/TR işleri birbirinin dilini değiştirmez. `--language en`, `--no-shots`, `--no-tour`, `--repo` ve `--area themes` seçenekleri vardır. `--no-shots` yalnız aynı oturumda doğrulanmış ekranlar için kullanılmalıdır.
+The generated `capture-env.json` records the local URL, working directory and container PHP wrapper. Source repositories are mounted read-only; WordPress and MariaDB live in a separate Docker project. On macOS the work directory must be shared with Docker Desktop. Use a separate project/port for parallel fixtures.
 
-Mock sunucular gerekiyorsa test WordPress container'ında `env/mock-update/router.php` için `127.0.0.1:8091`, `env/mock-evolution/router.php` için `127.0.0.1:8092` üzerinde PHP sunucusu başlatın. Test sitesinde `seed/users.php`, `seed-site.php`, `seed-posts.php`, `seed-sosyal.php`, `seed-bagis.php`, `seed-commerce.php`, `seed-cagri.php`, `seed-form.php` gibi tarifte belirtilen seed'leri sırayla çalıştırın. Tema için FluxWP'nin `flux-demo` ön ayarını uygulayın. Ön ayar çekimlerini veritabanı yedeğiyle birbirinden ayırın.
+Prepare the recipe's `seed` files using `capture-work/php`, then populate related fixtures as needed (`seed/users.php`, `seed-site.php`, `seed-posts.php`, `seed-form.php`, and the package-specific seeds). Activate the FluxWP demo preset for theme captures. The scripts in `env/mock-update` and `env/mock-evolution` provide local service fixtures; `env/connect-mocks.php` configures those local connections. Never copy production databases, keys or customer records into screenshots.
 
-### GitHub → Updater → site
+`demo-guard.php` blocks real email and external WordPress HTTP requests. Browser requests also stay local. Public package captures must use a public-only fixture; use `--private-root` only in a separate private fixture. Snapshot/restore the local database between preset captures so one preset cannot change another's examples.
+
+## 2. Recapture an updated package
 
 ```sh
-uv run --with pillow tools/readme-media/export-updater-previews.py --repo /absolute/FluxWP --translate
-# --private-root /absolute/private-repo: yalnız o private deponun kendi kataloğunu üretir.
-# --site-preset /absolute/site-preset: ilk public katalogda mevcut ürün sayfası bağlantılarını seçer.
+# Default: refresh English screenshots, mobile/dark views and walkthrough GIF.
+python3 tools/readme-media/capture-package.py tools/readme-media/cfg/flx-forms.json --env /absolute/shared/capture-work/capture-env.json
+
+# Explicitly refresh both languages (required for a brand-new package).
+python3 tools/readme-media/capture-package.py tools/readme-media/cfg/flx-forms.json --env /absolute/shared/capture-work/capture-env.json --language en --language tr
 ```
 
-Kaynak dosya her deponun `catalog/packages.json` dosyasıdır. Açıklama ve site bağlantılarını dil bazında burada düzenleyin. Dışa aktarıcı mevcut metin/bağlantı düzenlemelerini korur; eksik dilleri `--translate` tamamlar. Görsellerden paket içi `docs/previews/*.webp` türevleri üretir ve ikon/görsel dosyalarının Git blob özetlerini kataloğa yazar. Kataloğu ve yeni medyayı aynı commit'te ilgili GitHub deposuna gönderin.
+Other options: `--no-tour` for screenshots only, `--repo /absolute/repository` for another owning repository, and `--area themes` for a theme. Private recipes belong in their private repository. `--no-shots` is only for screenshots already verified in the same session.
 
-Updater, yapılandırılmış depoların varsayılan dalından kataloğu okur; medya ilk kullanımda GitHub'dan alınır, doğrulanır ve updater'ın kendi adresinden dağıtılır. Updater'da ayrı içerik düzenleme veya ZIP içe aktarma yoktur. **GitHub package previews** alanı eşitleme durumunu ve yeniden eşitleme düğmesini gösterir. Private dosyalar yalnız kendi private deposuna commit edilir; public kataloğa karışmaz. FluxWP Panel tarafında yerel tanıtım, ikon veya bağlantı tahmini bulunmaz.
+Outputs belong to the package:
 
-Mevcut site sayfalarının çeviri metinlerini koruyarak türevleri yenilemek için `uv run --with pillow tools/readme-media/refresh-site-media.py /absolute/site-preset` kullanın. Ardından preset'in `tools/plugin-pages-og.mjs` betiğiyle paylaşım görsellerini yenileyin.
-
-## Eski akış (host PHP / SQLite)
-
-Aşağıdaki betikler eski kurulumlar içindir; güncel toplu yenilemelerde yukarıdaki Docker akışını kullanın. `run.sh` README metinlerini de yeniden ürettiği için elle eklenmiş bölümleri korumaz.
-
-## Eski hızlı kullanım
-
-```bash
-# 1) Bir kez: yerel test sitesi (WP 6.8.3 + SQLite + WooCommerce + repodaki tüm paketler symlink)
-bash tools/readme-media/setup.sh            # WPENV=/tmp/wpenv varsayılan
-
-# 2) Her oturumda (setup zaten çağırır): site 8080, sahte güncelleme sunucusu 8091, sahte Evolution 8092
-bash tools/readme-media/serve.sh
-
-# 3) Bir paketi baştan üret: seed → EN/TR ekranlar → EN/TR GIF → docs/ → README'ler → zip kontrolü → kök tablo
-bash tools/readme-media/run.sh flx-ai                 # plugins/flx-ai
-bash tools/readme-media/run.sh fluxwp themes   # tema
-bash tools/readme-media/run.sh flx-seo plugins --no-gif   # yalnız ekranlar + README
-```
-
-Sonra `git diff --stat plugins/<slug>` ile bakın, görselleri kontrol edin, commit + PR.
-Yalnız metin değiştiyse: `python3 tools/readme-media/gen.py tools/readme-media/text/<slug>.py`.
-
-Gereken: php (sqlite3, gd/imagick), node + Playwright (Chromium), ffmpeg, python3. Giriş `admin / admin12345` (yalnız yerel).
-
-## Dosyalar
-
-| Yol | Ne |
+| Output | Purpose |
 |---|---|
-| `cfg/<slug>.json` | Çekim tarifi: `seed` (çalıştırılacak seed'ler), `css` (gizlenecekler), `shots` (masaüstü), `dark`, `mobile`, `gif` (adımlar) |
-| `text/<slug>.py` | README metni EN + TR: tagline, desc, badges, why, features, shots, req, first, note, mcp, dev, roadmap |
-| `seed/*.php` | Demo verisi (bağışlar, sohbetler, AI kayıtları, Stüdyo galerisi…). Gerçek kişi/anahtar yok |
-| `shoot.js` | `node shoot.js cfg/x.json en|tr <çıktı>`: ekran görüntüleri (2x, JPEG) |
-| `gif.js` + `mkgif.sh` | Fare imleçli video kaydı → GIF (800 px, 7 fps) |
-| `place.sh` | Logo (c2pa metadata silinir), görseller ve GIF'leri `docs/` altına koyar, `thumb.gif` üretir, `.distignore`'a ekler |
-| `gen.py` | `text/<slug>.py` → `README.md` + `README.tr.md` |
-| `sheet.py` | Önizleme için görselleri tek sayfada toplar |
-| `env/` | wp-config, mu-plugin'ler (SQLite uyumu, ön yüz dili, yapay yük, harf avatar, WC uyarıları kapalı, demo sertifika arka planları), sahte sunucular (güncelleme + FluxWP Extras kaynağı, Evolution), `connect-mocks.php` |
-| `env/demo-images/` | Demo site görselleri (Sosyal, Stüdyo, yazı kapakları). Kurum logosu yok |
-| `env/demo-certificates/gen.py` | Flux Certificates hazır şablonları için logosuz "Örnek Vakfı" arka planları (setup üretir) |
-| `legacy-flx-analytics/` | Flux Analytics'in ilk (eski) çekim betikleri |
+| `docs/images/<scene>-en.jpg`, `*-tr.jpg` | Full desktop, mobile and dark screenshots |
+| `docs/demo.gif`, `docs/demo-tr.gif` | Actual browser walkthroughs |
+| `docs/thumb.gif` | README gallery thumbnail |
+| `docs/previews/*.webp` | Updater derivatives generated in the next step |
 
-## cfg alanları
+Critical errors, denied pages, failed HTTP responses or missing required screenshots fail the capture. Review the images before committing. The pipeline preserves README prose and existing Turkish media during an English-only refresh.
 
-```jsonc
-{
- "seed": ["seed-ai.php"],
- "slug": "flx-ai",
- "css": "#flxai-host{display:none!important}",        // tüm çekimlerde
- "shots": [
-  {"name":"overview","url":"admin.php?page=flx-ai","vh":1000,"after":1500},
-  {"name":"chat","url":"admin.php?page=flx-ai","click":["#flxai-host .bubble"],"css":"html body #flxai-host{display:block!important}"},
-  {"name":"editor","url":"post.php?post=12&action=edit","wait":5000}
- ],
- "dark":   [{"name":"dark","url":"...","vh":900}],    // Flux Admin koyu tema
- "mobile": [{"name":"mobile","url":"..."}],           // 390 px
- "gif": [{"goto":"admin.php?page=flx-ai","wait":2500},{"move":[700,420],"wait":700},
-         {"click":"text=90","css":true,"wait":1500},{"scroll":350,"wait":1200}]
-}
+## 3. Refresh distribution files
+
+```sh
+uv run --with pillow tools/readme-media/export-updater-previews.py --repo /absolute/FluxWP --site-preset /absolute/site-preset
+uv run --with pillow tools/readme-media/refresh-site-media.py /absolute/site-preset --package flx-forms
+NODE_PATH=/absolute/FluxWP/node_modules bun /absolute/site-preset/tools/plugin-pages-og.mjs flx-forms
 ```
 
-Adreslerde `{post:Başlık}` o yazının/sayfanın kimliğine çevrilir (seed sonrası kimlikler değişir).
+For private media, add `--private-root /absolute/private-repository` to the catalog exporter. It writes a separate catalog only into that repository. `--translate` is optional and fills missing short descriptions; existing copy and publisher links are preserved.
 
-Diğer çekim anahtarları: `eval` (sayfada JS), `keys`, `type` (`{"en":…, "tr":…}`), `hover`, `sel` (yalnız seçilen öğeler, `pad`), `clip`, `full` (tam sayfa).
+`catalog/packages.json` owns localized descriptions, publisher links and Git blob references to the icons/gallery images. Commit the catalog and referenced assets together. Updater reads the default branch, verifies and caches those blobs, and distributes signed URLs from its own host. There is no second upload/editor in Updater and no bundled preview fallback in the Panel.
 
-## Bilinen tuzaklar
+The website converter preserves all translated page text. Localized share cards retain their translated titles/captions while using the English screenshot. Turkish source screenshots and native Panel galleries remain available.
 
-- 120 sn'den uzun işleri arka planda çalıştırın (GIF kaydı 2–4 dk).
-- SPA'larda (Sosyal) hash değişimi sayfayı yenilemez: URL'ye `&r=1` gibi sahte parametre ekleyin.
-- Flux AI sohbet düğmesi `#flxai-host` açık kalırsa sonraki çekimlere taşar: genelde gizli, yalnız sohbet çekiminde açık.
-- Seed sonrası kayıt kimlikleri değişebilir; cfg'de `post={post:Başlık}` kullanın, diğer `id` değerlerini kontrol edin.
-- Demo site genel "Örnek Vakfı" (example.org): sayfalar ve menü `seed/seed-site.php`, formlar `seed-form.php`, yedekler `seed-backup.php`. Kurum logosu/içeriği kullanmayın.
-- WP çekirdeğinin TR dil paketi yok: WP menüleri TR ekranlarda da İngilizce kalır.
-- `.distignore` yorumunda kesme işareti olmasın (`build.sh` xargs ile bozulur). Zip'te `docs/` ve README olmamalı.
-- Çekim sonrası ekran görüntülerini Ahmet'e göstermek için `/mnt/project-files/<paket>/` altına koyun.
+## 4. Verify and publish
 
-## Kök README (FluxWP Suite)
+- Check desktop/mobile and light/dark screenshots. English capture UI must be English; Turkish capture UI must be Turkish. Use fictional sample data.
+- Verify English website examples under EN/TR/RTL page languages and native Panel EN/TR gallery selection.
+- Run `tests/english-media.php` in the site preset against a disposable WordPress fixture (`FLX_TEST_SITE=1`).
+- Check `git diff`, bump the changed package version/changelog, build its ZIP, and open a PR. Documentation/preview images must stay out of installation ZIPs.
+- After review/merge, the owning repository's catalog reaches Updater. A changed screenshot needs new catalog blob references even when its filename stays the same.
 
-- `README.md` (EN) ve `README.tr.md` (TR) elle yazılır; aradaki galeri + sürüm tablosu `bin/readme-table.sh README.md` / `README.tr.md` ile üretilir (EN ad ve açıklamalar `bin/readme-desc.en.tsv`, TR `bin/readme-desc.tsv`). Release workflow'u ikisini de günceller.
-- Hero kolajı: `node tools/readme-media/suite/hero.js en docs/suite/hero.jpg` ve `... tr docs/suite/hero-tr.jpg` (paket ekranlarından üretilir; ekranlar değişince yeniden çalıştırın).
-- Yeni paket: iki TSV'ye satır ekleyin, kök README'lerde uygun çözüm grubuna bir satır ekleyin.
+A future request can be: “Refresh screenshots for Flux Forms using this guide. Use English by default, keep Turkish copies, update the catalog and website derivatives, and show desktop/mobile light/dark previews.”
+
+## Recipes and legacy tools
+
+`cfg/<slug>.json` defines `shots`, `mobile`, `dark`, and optional `seed`/CSS/actions. URLs may have `{post:Title}` placeholders (resolved from the local database) or `{ "en": "…", "tr": "…" }` language-specific values. Actions include `click`, `keys`, `type`, `hover`, `eval`, `sel`, `clip`, and `full`. `shoot.js` takes screenshots; `tour.js` records non-destructive navigation. Update the recipe when a feature's route or selector changes.
+
+The old `run.sh`, `setup.sh` (host PHP/SQLite), `gen.py` and `place.sh` are legacy tools. **Do not use `run.sh` for a normal media refresh:** it can regenerate README prose and overwrite manual additions. Use `capture-package.py` above.
+
+Root README galleries can be refreshed with `bin/readme-table.sh README.md en` and `bin/readme-table.sh README.tr.md tr`; release automation also maintains them.
+
+## Maintainers
+
+Ahmet Yılmaz · [@sharkpaw](https://github.com/sharkpaw)

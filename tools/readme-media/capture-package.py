@@ -4,12 +4,12 @@ import argparse,json,os,shutil,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];TOOLS=Path(__file__).resolve().parent
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('config',type=Path);p.add_argument('--env',type=Path,required=True);p.add_argument('--repo',type=Path,default=ROOT);p.add_argument('--area',choices=['plugins','themes'],default='plugins');p.add_argument('--language',choices=['en','tr'],action='append');p.add_argument('--no-shots',action='store_true');p.add_argument('--no-tour',action='store_true');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('config',type=Path);p.add_argument('--env',type=Path,required=True);p.add_argument('--repo',type=Path,default=ROOT);p.add_argument('--area',choices=['plugins','themes'],default='plugins');p.add_argument('--language',choices=['en','tr'],action='append',help='Capture language (default: en); repeat for both. Existing Turkish files are retained.');p.add_argument('--no-shots',action='store_true');p.add_argument('--no-tour',action='store_true');a=p.parse_args()
  env={**os.environ,**json.loads(a.env.read_text())};cfg=json.loads(a.config.read_text());w=Path(env['WPENV']);slug=cfg['slug'];out=w/'out'/slug;package=a.repo/a.area/slug;docs=package/'docs';images=docs/'images'
  if not package.is_dir():p.error('Package folder does not exist')
  if not __import__('re').fullmatch(r'[a-z0-9][a-z0-9-]*',slug):p.error('Invalid package slug')
  images.mkdir(parents=True,exist_ok=True)
- for lang in a.language or ['en','tr']:
+ for lang in a.language or ['en']:
   if not a.no_shots:subprocess.run(['bun',str(TOOLS/'shoot.js'),str(a.config.resolve()),lang,str(out)],env=env,check=True)
   expected=[out/f'{s["name"]}-{lang}.jpg' for group in ['shots','mobile','dark'] for s in cfg.get(group,[])]
   if not expected or not all(x.exists() for x in expected):raise FileNotFoundError('A required fresh screenshot is missing; refusing to replace package media')
