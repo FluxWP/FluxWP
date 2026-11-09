@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.8.5
+- Redirect conventional child names such as `/category-sitemap.xml` and `/page-sitemap2.xml` to existing core sitemap URLs. Preserve unknown, excluded, empty and out-of-range sitemap 404s and honor the global sitemap switch.
+
 ## 1.8.4
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

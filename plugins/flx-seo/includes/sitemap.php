@@ -77,16 +77,44 @@ add_filter(
 	2
 );
 
-/**
- * /sitemap.xml ve /sitemap_index.xml → /wp-sitemap.xml (alışılmış adresler 404 vermesin).
- */
+/** Resolve conventional sitemap aliases only to enabled, nonempty core sitemaps. */
+function flxseo_sitemap_alias( $path ) {
+	$server = wp_sitemaps_get_server();
+	if ( ! $server->sitemaps_enabled() ) {
+		return '';
+	}
+	$root = trim( (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH ), '/' );
+	$path = trim( $path, '/' );
+	if ( $root && 0 === strpos( $path, $root . '/' ) ) {
+		$path = substr( $path, strlen( $root ) + 1 );
+	}
+	if ( in_array( $path, array( 'sitemap.xml', 'sitemap_index.xml' ), true ) ) {
+		return home_url( '/wp-sitemap.xml' );
+	}
+	if ( ! preg_match( '/^([a-z0-9_-]+?)-sitemap([1-9][0-9]*)?\.xml$/', $path, $match ) ) {
+		return '';
+	}
+	$page = isset( $match[2] ) ? (int) $match[2] : 1;
+	foreach ( array( 'posts', 'taxonomies' ) as $name ) {
+		$provider = $server->registry->get_provider( $name );
+		if ( $provider && isset( $provider->get_object_subtypes()[ $match[1] ] ) && $page <= $provider->get_max_num_pages( $match[1] ) ) {
+			return $provider->get_sitemap_url( $match[1], $page );
+		}
+	}
+	return '';
+}
+
+/** Conventional sitemap names redirect to the canonical index/child, without masking real routes. */
 add_action(
 	'template_redirect',
 	function () {
 		$path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		if ( is_404() && in_array( $path, array( 'sitemap.xml', 'sitemap_index.xml' ), true ) ) {
-			wp_safe_redirect( home_url( '/wp-sitemap.xml' ), 301 );
-			exit;
+		if ( is_404() ) {
+			$target = flxseo_sitemap_alias( $path );
+			if ( $target ) {
+				wp_safe_redirect( $target, 301 );
+				exit;
+			}
 		}
 	},
 	1
