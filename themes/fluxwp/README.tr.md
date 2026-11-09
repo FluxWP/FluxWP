@@ -19,6 +19,12 @@
 - `[products]` kısa kodu şablon ve desenlerin içinde de çalışır.
 - Karanlık mod, çerez bandı, sistem kontrolü, Türkçe ve İngilizce.
 
+## Yakında sayfası
+
+**Görünüm › Tema Ayarları › Site görünürlüğü › Yakında: tüm site** seçeneği; genel sayfalarda, aramada, bulunamayan adreslerde ve akışlarda site logolu bekleme sayfası gösterir. Yöneticiler ve mağaza yöneticileri çalışmaya devam eder; giriş yapmış müşteriler sayfaları göremez. Başlık, mesaj ve isteğe bağlı herkese açık iletişim e-postası panelden değişir. Boş metinler Türkçe/İngilizce çevirileri kullanır. Logo, renkler ve koyu mod siteyi izler; yanıt HTTP 503, Retry-After, noindex ve no-store başlıkları taşır.
+
+**Yayında / WooCommerce ayarını izle** seçeneği tema engelini kaldırır. WooCommerce'in *yalnızca mağaza sayfaları* seçeneği diğer sayfaları açık bırakır; kısıtlanan sayfalar ortak tasarımı kullanır, özel ön izleme bağlantıları çalışır. Yönetim, giriş, REST/AJAX ve ödeme bildirimleri normal çalışır. Bu özellik ön yüz bekleme sayfasıdır; özel dosya saklama veya erişim yetkilendirmesinin yerine geçmez. Görünürlük ve metin kaydedilince desteklenen sayfa önbellekleri temizlenir.
+
 ## Ön ayarlar
 
 [FluxWP Panel](../../plugins/flx-setup/README.tr.md) etkinken **Görünüm › Tema Ayarları › Ön ayarlar** bir ön ayar (`flx-preset/1`) uygular: kurum profili, ayarlar, şablonlar, header, footer, desenler, sayfalar, ürünler ve menüler. Ön ayar tüm siteyi yeniden kurabilir; örneğin [FluxWP Extras](https://github.com/FluxWP/wp-extras) ön ayarları bu temayı dernek sitesine çevirir. Ön ayar güncellemeleri elle yaptığınız değişikliklerin üzerine yazmaz.

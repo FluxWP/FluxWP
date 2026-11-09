@@ -27,6 +27,10 @@ function flx_ayar_defaults() {
 		'news_intro' => '',
 		'animasyon'       => 'on',
 		'sayfalama'       => 'sonsuz',
+		'site_visibility' => 'auto',
+		'coming_soon_title' => '',
+		'coming_soon_text' => '',
+		'coming_soon_email' => '',
 		'site_mod'        => 'shop',
 		'aktif_kart'      => 'on',
 		'aktif_kampanya'  => 0,
@@ -186,6 +190,10 @@ function flx_ayar_sanitize( $in ) {
 	}
 	unset( $in['_form'] );
 	$out = array(
+		'site_visibility' => 'coming-soon' === ( $in['site_visibility'] ?? 'auto' ) ? 'coming-soon' : 'auto',
+		'coming_soon_title' => sanitize_text_field( $in['coming_soon_title'] ?? '' ),
+		'coming_soon_text' => sanitize_textarea_field( $in['coming_soon_text'] ?? '' ),
+		'coming_soon_email' => sanitize_email( $in['coming_soon_email'] ?? '' ),
 		'decoration_pattern' => in_array( $in['decoration_pattern'] ?? '', array( 'dots', 'leaves', 'none' ), true ) ? $in['decoration_pattern'] : 'dots',
 		'news_intro' => sanitize_text_field( $in['news_intro'] ?? '' ),
 		'cookie_enabled'  => $on( $in['cookie_enabled'] ?? 0 ) ? 1 : 0,
@@ -258,6 +266,7 @@ function flx_ayar_page() {
 		<form method="post" action="options.php">
 			<?php settings_fields( 'flx_ayarlar' ); ?>
 			<input type="hidden" name="flx_ayarlar[_form]" value="1">
+			<?php flx_coming_soon_settings( $o ); ?>
 			<h2 class="title"><?php esc_html_e( 'Appearance', 'fluxwp' ); ?></h2>
 			<table class="form-table" role="presentation">
 				<tr><th scope="row"><?php esc_html_e( 'Site type', 'fluxwp' ); ?></th><td>
@@ -508,6 +517,10 @@ add_filter(
 			) + $extra;
 		};
 		$fields           = array(
+			'site_visibility' => $f( 'enum', 'auto follows WooCommerce (or live without it); coming-soon gates the entire public site.', array( 'enum' => array( 'auto', 'coming-soon' ) ) ),
+			'coming_soon_title' => $f( 'string', 'Optional coming-soon heading. Empty uses the translated default.' ),
+			'coming_soon_text' => $f( 'string', 'Optional plain-text coming-soon message.' ),
+			'coming_soon_email' => $f( 'string', 'Optional explicitly public contact email.' ),
 			'decoration_pattern' => $f( 'enum', 'Background decoration for title bands, menus and consent cards.', array( 'enum' => array( 'dots', 'leaves', 'none' ) ) ),
 			'news_intro' => $f( 'string', 'Optional news archive introduction. Empty uses the translated generic theme text.' ),
 			'cookie_enabled'  => $f( 'bool', 'Show the cookie consent banner on the first visit.' ),
