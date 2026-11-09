@@ -13,6 +13,7 @@ function flxc_default_settings() {
 		'brand_name'       => '',
 		'poll_interval'    => 10,
 		'send_read'        => 1,
+		'delete_everyone_hours' => 60, // 1.38.0: WhatsApp "herkesten sil" sınırı ~2 gün 12 saat
 		'show_groups'      => 0,
 		'agent_signature'  => 0,
 		'restrict_agents'  => 0,

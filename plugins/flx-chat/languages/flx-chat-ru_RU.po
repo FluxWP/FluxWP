@@ -4743,3 +4743,66 @@ msgstr "Все сообщения из WhatsApp, чата сайта и друг
 
 msgid "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter."
 msgstr "Колл-центр WhatsApp (Evolution API): просмотр входящих и исходящих сообщений в реальном времени, запуск нового чата, готовые ответы, теги, назначения, внутренние заметки, автоответы; Регистрация пожертвований (Flux Donate) и сертификатов (Flux Certificates) из чата, сопоставление квитанций. Предложение ответа искусственного интеллекта и автоматический помощник по пожертвованиям с OpenRouter."
+
+msgid "Hide"
+msgstr "Скрыть"
+
+msgid "Show"
+msgstr "Показать"
+
+msgid "Deleted for everyone"
+msgstr "Удалено у всех"
+
+msgid "Hidden in the panel"
+msgstr "Скрыто в панели"
+
+msgid "Delete for everyone"
+msgstr "Удалить у всех"
+
+msgid "Hide in the panel only"
+msgstr "Скрыть только в панели"
+
+msgid "WhatsApp doesn't allow deleting a received message for everyone; it stays on the contact's phone and is only hidden in the panel."
+msgstr "WhatsApp не позволяет удалить полученное сообщение у всех; оно останется на телефоне контакта и будет скрыто только в панели."
+
+msgid "Delete for everyone is turned off in the settings; the message is only hidden in the panel and stays on the contact's phone."
+msgstr "Удаление у всех отключено в настройках; сообщение будет скрыто только в панели и останется на телефоне контакта."
+
+msgid "This channel doesn't support delete for everyone; the message is only hidden in the panel and stays on the contact's phone."
+msgstr "Этот канал не поддерживает удаление у всех; сообщение будет скрыто только в панели и останется на телефоне контакта."
+
+msgid "The time limit for delete for everyone has passed (WhatsApp allows about {h} hours after sending). The message stays on the contact's phone and is only hidden in the panel."
+msgstr "Срок удаления у всех истёк (WhatsApp позволяет около {h} ч после отправки). Сообщение останется на телефоне контакта и будет скрыто только в панели."
+
+msgid "Only the sender or an administrator can delete this message for everyone; you can hide it in the panel."
+msgstr "Удалить это сообщение у всех может только отправитель или администратор; вы можете скрыть его в панели."
+
+msgid "If deleted for everyone, the message also turns into \"This message was deleted\" on the contact's phone. Time left: about {n} hours."
+msgstr "При удалении у всех на телефоне контакта тоже появится «Это сообщение удалено». Осталось: около {n} ч."
+
+msgid "Deleted messages are kept on the server: the chat shows a \"This message was deleted\" line and the team can click it to see the content. AI does not read deleted messages."
+msgstr "Удалённые сообщения хранятся на сервере: в чате видна строка «Это сообщение удалено», команда может нажать и увидеть содержимое. ИИ не читает удалённые сообщения."
+
+msgid "Message not found."
+msgstr "Сообщение не найдено."
+
+msgid "This message was already deleted."
+msgstr "Это сообщение уже удалено."
+
+msgid "Only the sender or an administrator can delete this message for everyone."
+msgstr "Удалить это сообщение у всех может только отправитель или администратор."
+
+msgid "This message can't be deleted for everyone on this channel. You can hide it in the panel instead."
+msgstr "В этом канале сообщение нельзя удалить у всех. Вместо этого его можно скрыть в панели."
+
+msgid "The time limit for deleting for everyone has passed. You can hide it in the panel instead."
+msgstr "Срок удаления у всех истёк. Вместо этого сообщение можно скрыть в панели."
+
+msgid "WhatsApp did not delete the message."
+msgstr "WhatsApp не удалил сообщение."
+
+msgid "Delete for everyone time limit (hours)"
+msgstr "Срок удаления у всех (часы)"
+
+msgid "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them."
+msgstr "WhatsApp позволяет удалить отправленное сообщение у всех только в течение примерно 2 дней и 12 часов (60 часов). После этого срока, а также для полученных сообщений, сообщение только скрывается в панели и остаётся на телефоне контакта. 0 отключает удаление у всех. Удалённые сообщения никогда не удаляются с сервера; команда может их открыть."

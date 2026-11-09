@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.38.0
+- Message deletion: every message menu now has "Delete". Sent messages can be deleted for everyone (WhatsApp turns them into "This message was deleted" on the contact's phone) within WhatsApp's limit of about 2 days and 12 hours. After the limit, for received messages, on channels without support (Cloud API, site chat) or for agents deleting someone else's message, the dialog says why and offers "Hide in the panel only"; the message stays on the contact's phone.
+- New setting (General › Behavior): "Delete for everyone time limit (hours)", default and maximum 60, 0 turns delete for everyone off.
+- Nothing is hard-deleted: the row and its media file stay in the database, the original type/text are kept in the message meta with `deleted_scope` (contact, phone, everyone, panel), `deleted_by` and `deleted_at`. Notes deleted from now on keep their text too.
+- Chat view: deleted messages (by the contact, from the phone or from the panel) are folded into a single "This message was deleted · Show" line; clicking it opens the original content with who/when it was deleted, the header folds it back. AI still never reads deleted messages.
+- Developer: REST `DELETE messages/{id}?scope=everyone|panel`, `flxc_soft_delete_message()`, `flxc_evo_delete_for_everyone()`, filter `flxc_conn_can_revoke`, action `flxc_message_deleted`; messages carry `del` ({scope, by, at, atText, ago}) and `revokeUntil` (ms).
+
 ## 1.37.4
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

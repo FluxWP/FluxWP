@@ -1586,6 +1586,27 @@
     "This channel is not available right now.": "Этот канал сейчас недоступен.",
     "Site chat": "Чат на сайте",
     "All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left.": "Все сообщения из WhatsApp, чата сайта и других каналов отображаются здесь в прямом эфире. Выберите чат слева.",
-    "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.": "Колл-центр WhatsApp (Evolution API): просмотр входящих и исходящих сообщений в реальном времени, запуск нового чата, готовые ответы, теги, назначения, внутренние заметки, автоответы; Регистрация пожертвований (Flux Donate) и сертификатов (Flux Certificates) из чата, сопоставление квитанций. Предложение ответа искусственного интеллекта и автоматический помощник по пожертвованиям с OpenRouter."
+    "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.": "Колл-центр WhatsApp (Evolution API): просмотр входящих и исходящих сообщений в реальном времени, запуск нового чата, готовые ответы, теги, назначения, внутренние заметки, автоответы; Регистрация пожертвований (Flux Donate) и сертификатов (Flux Certificates) из чата, сопоставление квитанций. Предложение ответа искусственного интеллекта и автоматический помощник по пожертвованиям с OpenRouter.",
+    "Hide": "Скрыть",
+    "Show": "Показать",
+    "Deleted for everyone": "Удалено у всех",
+    "Hidden in the panel": "Скрыто в панели",
+    "Delete for everyone": "Удалить у всех",
+    "Hide in the panel only": "Скрыть только в панели",
+    "WhatsApp doesn't allow deleting a received message for everyone; it stays on the contact's phone and is only hidden in the panel.": "WhatsApp не позволяет удалить полученное сообщение у всех; оно останется на телефоне контакта и будет скрыто только в панели.",
+    "Delete for everyone is turned off in the settings; the message is only hidden in the panel and stays on the contact's phone.": "Удаление у всех отключено в настройках; сообщение будет скрыто только в панели и останется на телефоне контакта.",
+    "This channel doesn't support delete for everyone; the message is only hidden in the panel and stays on the contact's phone.": "Этот канал не поддерживает удаление у всех; сообщение будет скрыто только в панели и останется на телефоне контакта.",
+    "The time limit for delete for everyone has passed (WhatsApp allows about {h} hours after sending). The message stays on the contact's phone and is only hidden in the panel.": "Срок удаления у всех истёк (WhatsApp позволяет около {h} ч после отправки). Сообщение останется на телефоне контакта и будет скрыто только в панели.",
+    "Only the sender or an administrator can delete this message for everyone; you can hide it in the panel.": "Удалить это сообщение у всех может только отправитель или администратор; вы можете скрыть его в панели.",
+    "If deleted for everyone, the message also turns into \"This message was deleted\" on the contact's phone. Time left: about {n} hours.": "При удалении у всех на телефоне контакта тоже появится «Это сообщение удалено». Осталось: около {n} ч.",
+    "Deleted messages are kept on the server: the chat shows a \"This message was deleted\" line and the team can click it to see the content. AI does not read deleted messages.": "Удалённые сообщения хранятся на сервере: в чате видна строка «Это сообщение удалено», команда может нажать и увидеть содержимое. ИИ не читает удалённые сообщения.",
+    "Message not found.": "Сообщение не найдено.",
+    "This message was already deleted.": "Это сообщение уже удалено.",
+    "Only the sender or an administrator can delete this message for everyone.": "Удалить это сообщение у всех может только отправитель или администратор.",
+    "This message can't be deleted for everyone on this channel. You can hide it in the panel instead.": "В этом канале сообщение нельзя удалить у всех. Вместо этого его можно скрыть в панели.",
+    "The time limit for deleting for everyone has passed. You can hide it in the panel instead.": "Срок удаления у всех истёк. Вместо этого сообщение можно скрыть в панели.",
+    "WhatsApp did not delete the message.": "WhatsApp не удалил сообщение.",
+    "Delete for everyone time limit (hours)": "Срок удаления у всех (часы)",
+    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp позволяет удалить отправленное сообщение у всех только в течение примерно 2 дней и 12 часов (60 часов). После этого срока, а также для полученных сообщений, сообщение только скрывается в панели и остаётся на телефоне контакта. 0 отключает удаление у всех. Удалённые сообщения никогда не удаляются с сервера; команда может их открыть."
   }
 }

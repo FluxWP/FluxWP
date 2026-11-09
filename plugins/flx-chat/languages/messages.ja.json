@@ -1586,6 +1586,27 @@
     "This channel is not available right now.": "このチャンネルは現在利用できません。",
     "Site chat": "サイトチャット",
     "All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left.": "WhatsApp、サイトチャット、その他のチャネルからのすべてのメッセージがここにライブで表示されます。左側にあるチャットを選択します。",
-    "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.": "WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。"
+    "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.": "WhatsApp (Evolution API) コールセンター: ライブの送受信メッセージの表示、新しいチャットの開始、返信定型文、タグ、割り当て、社内メモ、自動返信。チャットからの寄付(Flux Donate)と証明書(Flux Certificates)の登録、レシート照合。 OpenRouter による人工知能の応答提案と自動寄付アシスタント。",
+    "Hide": "隠す",
+    "Show": "表示",
+    "Deleted for everyone": "全員から削除済み",
+    "Hidden in the panel": "パネルで非表示",
+    "Delete for everyone": "全員から削除",
+    "Hide in the panel only": "パネルでのみ非表示",
+    "WhatsApp doesn't allow deleting a received message for everyone; it stays on the contact's phone and is only hidden in the panel.": "WhatsAppでは受信したメッセージを全員から削除できません。メッセージは相手の端末に残り、パネルでのみ非表示になります。",
+    "Delete for everyone is turned off in the settings; the message is only hidden in the panel and stays on the contact's phone.": "「全員から削除」は設定でオフになっています。メッセージはパネルでのみ非表示になり、相手の端末に残ります。",
+    "This channel doesn't support delete for everyone; the message is only hidden in the panel and stays on the contact's phone.": "このチャネルは「全員から削除」に対応していません。メッセージはパネルでのみ非表示になり、相手の端末に残ります。",
+    "The time limit for delete for everyone has passed (WhatsApp allows about {h} hours after sending). The message stays on the contact's phone and is only hidden in the panel.": "「全員から削除」の期限を過ぎました（WhatsAppでは送信後約{h}時間まで）。メッセージは相手の端末に残り、パネルでのみ非表示になります。",
+    "Only the sender or an administrator can delete this message for everyone; you can hide it in the panel.": "このメッセージを全員から削除できるのは送信者または管理者のみです。パネルで非表示にできます。",
+    "If deleted for everyone, the message also turns into \"This message was deleted\" on the contact's phone. Time left: about {n} hours.": "全員から削除すると、相手の端末でも「このメッセージは削除されました」と表示されます。残り時間：約{n}時間。",
+    "Deleted messages are kept on the server: the chat shows a \"This message was deleted\" line and the team can click it to see the content. AI does not read deleted messages.": "削除したメッセージはサーバーに保存されます。チャットには「このメッセージは削除されました」と表示され、チームはクリックして内容を確認できます。AIは削除されたメッセージを読みません。",
+    "Message not found.": "メッセージが見つかりません。",
+    "This message was already deleted.": "このメッセージはすでに削除されています。",
+    "Only the sender or an administrator can delete this message for everyone.": "このメッセージを全員から削除できるのは送信者または管理者のみです。",
+    "This message can't be deleted for everyone on this channel. You can hide it in the panel instead.": "このチャネルではこのメッセージを全員から削除できません。代わりにパネルで非表示にできます。",
+    "The time limit for deleting for everyone has passed. You can hide it in the panel instead.": "「全員から削除」の期限を過ぎました。代わりにパネルで非表示にできます。",
+    "WhatsApp did not delete the message.": "WhatsAppでメッセージを削除できませんでした。",
+    "Delete for everyone time limit (hours)": "「全員から削除」の期限（時間）",
+    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsAppで送信済みメッセージを全員から削除できるのは約2日と12時間（60時間）までです。期限後や受信メッセージは、パネルでのみ非表示になり、相手の端末に残ります。0にすると「全員から削除」をオフにします。削除したメッセージはサーバーから消えず、チームは引き続き開けます。"
   }
 }

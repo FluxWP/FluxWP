@@ -462,6 +462,61 @@ function flxc_update_message( $id, array $fields ) {
 	}
 }
 
+/**
+ * 1.38.0: mesaj silme hiçbir zaman satırı veya dosyayı kaldırmaz (hard delete yok).
+ * type 'deleted' olur; asıl tür/metin meta'da saklanır, kim/ne zaman/nasıl silindiği yazılır.
+ * $scope: contact (kişi sildi), phone (bağlı telefondan silindi), everyone (panelden herkesten silindi), panel (yalnız panelde gizlendi).
+ */
+function flxc_soft_delete_message( $m, $scope, $user_id = 0 ) {
+	if ( ! is_array( $m ) ) {
+		$m = flxc_get_message( (int) $m );
+	}
+	if ( ! $m ) {
+		return false;
+	}
+	$meta = flxc_decode( $m['meta'] );
+	if ( 'deleted' !== $m['type'] ) {
+		$meta['deleted_type'] = $m['type'];
+		$meta['deleted_body'] = $m['body'];
+	} elseif ( ! empty( $meta['deleted_scope'] ) && ! in_array( $scope, array( 'everyone', 'panel' ), true ) ) {
+		return true; // Zaten silinmiş; webhook yankısı mevcut kaydı ezmez.
+	}
+	$meta['deleted_scope'] = (string) $scope;
+	$meta['deleted_by']    = (int) $user_id;
+	$meta['deleted_at']    = time();
+	flxc_update_message( $m['id'], array( 'type' => 'deleted', 'body' => '', 'meta' => $meta ) );
+	return true;
+}
+
+/** WhatsApp "herkesten sil" süresi (saat). WhatsApp sınırı yaklaşık 2 gün 12 saat; daha uzun ayar anlamsız. */
+function flxc_revoke_limit_hours() {
+	return (int) min( 60, max( 0, (int) flxc_setting( 'delete_everyone_hours' ) ) );
+}
+
+/** Bu bağlantıda karşı taraftan silme destekleniyor mu (yalnız Evolution hattı; Cloud API ve site sohbeti desteklemez). */
+function flxc_conn_can_revoke( $conn_id ) {
+	static $cache = array();
+	$conn_id = (string) $conn_id;
+	if ( ! isset( $cache[ $conn_id ] ) ) {
+		$ok = '' !== $conn_id && ! flxc_is_virtual_conn( $conn_id );
+		if ( $ok ) {
+			$cfg = flxc_connection_config( $conn_id );
+			$ok  = ! is_wp_error( $cfg ) && empty( $cfg['wacloud'] );
+		}
+		$cache[ $conn_id ] = (bool) apply_filters( 'flxc_conn_can_revoke', $ok, $conn_id );
+	}
+	return $cache[ $conn_id ];
+}
+
+/** Herkesten silinebileceği son an (ms), olmuyorsa 0. */
+function flxc_revoke_until( $m ) {
+	$h = flxc_revoke_limit_hours();
+	if ( ! $h || 'out' !== $m['direction'] || '' === (string) $m['wa_id'] || 'deleted' === $m['type'] || 'failed' === $m['status'] || ! flxc_conn_can_revoke( $m['conn'] ) ) {
+		return 0;
+	}
+	return (int) $m['ts'] + $h * HOUR_IN_SECONDS * 1000;
+}
+
 /** Durum yalnız ileri gider: pending < sent < delivered < read < played. */
 function flxc_status_rank( $s ) {
 	$r = array( 'failed' => -1, '' => 0, 'pending' => 1, 'sent' => 2, 'delivered' => 3, 'read' => 4, 'played' => 5 );
@@ -612,8 +667,28 @@ function flxc_message_for_js( $r, $q = null ) {
 		'edited'  => ! empty( $meta['edited'] ),
 		'sender'  => (string) ( $meta['sender'] ?? '' ),
 	);
-	if ( $del ) {
+	if ( $del || 'deleted' === $r['type'] ) {
 		$out['deleted'] = true;
+		$scope          = (string) ( $meta['deleted_scope'] ?? ( 'in' === $r['direction'] ? 'contact' : ( 'note' === $r['direction'] ? 'panel' : 'phone' ) ) );
+		$at             = (int) ( $meta['deleted_at'] ?? 0 );
+		$uloc           = static function () {
+			return get_user_locale();
+		}; // REST site dilinde çalışır; tarih panel kullanıcısının dilinde olsun.
+		add_filter( 'flx_lang_locale', $uloc );
+		$out['del']     = array(
+			'scope'  => $scope,
+			'by'     => ! empty( $meta['deleted_by'] ) ? flxc_user_name( (int) $meta['deleted_by'] ) : '',
+			'at'     => $at * 1000,
+			'atText' => $at ? flx_date( $at, 'datetime' ) : '',
+			'ago'    => $at ? flx_time_ago( $at ) : '',
+			'empty'  => ! $del, // 1.38.0 öncesi silinen not: içerik saklanmamış.
+		);
+		remove_filter( 'flx_lang_locale', $uloc );
+	} else {
+		$until = flxc_revoke_until( $r );
+		if ( $until ) {
+			$out['revokeUntil'] = $until;
+		}
 	}
 	if ( ! empty( $meta['lp'] ) ) {
 		$out['lp'] = $meta['lp'];

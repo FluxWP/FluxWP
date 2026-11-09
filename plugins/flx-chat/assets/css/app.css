@@ -332,6 +332,18 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 #flxc-app .flxc-b-del { display: flex; align-items: center; gap: 4px; font-size: 11.5px; font-style: italic; font-weight: 600; color: #d9534f; margin-bottom: 2px; }
 #flxc-app .flxc-b-del .flxc-i { width: 13px; height: 13px; }
 #flxc-app .flxc-deleted .flxc-i { width: 16px; height: 16px; }
+/* 1.38.0: silinen mesaj kapalı satır; tıklayınca açılır */
+#flxc-app .flxc-b-folded { display: flex; align-items: flex-end; gap: 12px; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; }
+#flxc-app div.flxc-b-folded { cursor: default; }
+#flxc-app .flxc-m.is-folded .flxc-b { outline-style: dashed; }
+#flxc-app .flxc-b-folded .flxc-deleted { padding-right: 0; }
+#flxc-app .flxc-b-folded .flxc-meta { position: static; float: none; margin: 0 0 -2px auto; }
+#flxc-app .flxc-del-show { font-style: normal; font-size: 11.5px; font-weight: 600; color: var(--flxc-accent-ink, var(--flxc-accent)); margin-left: 4px; }
+#flxc-app button.flxc-b-folded:hover .flxc-del-show { text-decoration: underline; }
+#flxc-app button.flxc-b-del { background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; text-align: left; width: 100%; }
+#flxc-app .flxc-b-del-x { margin-left: auto; display: inline-flex; transform: rotate(180deg); opacity: .7; }
+#flxc-app .flxc-del-acts { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+#flxc-app .flxc-del-acts .flxc-btn-ghost { margin-right: 0; }
 
 #flxc-app .flxc-img { display: block; width: 330px; max-width: 100%; border-radius: 6px; overflow: hidden; background: rgba(134, 150, 160, .2) center/cover no-repeat; margin: -3px -4px 4px -6px; width: calc(100% + 10px); min-width: 220px; max-height: 420px; position: relative; }
 #flxc-app .flxc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }

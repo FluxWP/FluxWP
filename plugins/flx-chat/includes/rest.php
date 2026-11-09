@@ -58,7 +58,7 @@ function flxc_register_rest() {
 		array( '/chats/(?P<id>\d+)/export', 'POST', 'flxc_rest_export', $use ),
 		array( '/messages/(?P<id>\d+)/retry', 'POST', 'flxc_rest_retry', $use ),
 		array( '/messages/(?P<id>\d+)/react', 'POST', 'flxc_rest_react', $use ),
-		array( '/messages/(?P<id>\d+)', 'DELETE', 'flxc_rest_delete_note', $use ),
+		array( '/messages/(?P<id>\d+)', 'DELETE', 'flxc_rest_delete_message', $use ),
 		array( '/media/(?P<id>\d+)', 'GET', 'flxc_rest_media', $use ),
 		array( '/check-number', 'POST', 'flxc_rest_check_number', $use ),
 		array( '/link-preview', 'GET', 'flxc_rest_link_preview', $use ),
@@ -128,6 +128,7 @@ function flxc_rest_bootstrap() {
 			'name'   => $u->display_name,
 			'manage' => flxc_can_manage(),
 		),
+		'delHours'    => flxc_revoke_limit_hours(),
 		'agents'      => flxc_agents(),
 		'labels'      => flxc_labels_for_js(),
 		'connections' => flxc_connections_for_js(),
@@ -517,15 +518,51 @@ function flxc_rest_react( WP_REST_Request $req ) {
 	return array( 'message' => flxc_messages_for_js( array( flxc_get_message( $m['id'] ) ) )[0] );
 }
 
-function flxc_rest_delete_note( WP_REST_Request $req ) {
-	global $wpdb;
+/**
+ * 1.38.0: mesaj silme. scope=everyone WhatsApp'ta karşı taraftan da siler (yalnız giden mesaj, süre sınırı içinde);
+ * scope=panel yalnız panelde "Bu mesaj silindi" yapar. Her iki durumda da satır ve dosya sunucuda kalır.
+ */
+function flxc_rest_delete_message( WP_REST_Request $req ) {
 	$m = flxc_get_message( (int) $req['id'] );
-	if ( ! $m || 'note' !== $m['direction'] || ( (int) $m['user_id'] !== get_current_user_id() && ! flxc_can_manage() ) ) {
-		return new WP_Error( 'flxc_del', __( 'You can only delete your own notes.', 'flx-chat' ), array( 'status' => 403 ) );
+	if ( ! $m || 'system' === $m['direction'] ) {
+		return new WP_Error( 'flxc_del', __( 'Message not found.', 'flx-chat' ), array( 'status' => 404 ) );
 	}
-	flxc_update_message( $m['id'], array( 'type' => 'deleted', 'body' => '' ) );
-	unset( $wpdb );
-	return array( 'ok' => true );
+	$chat = flxc_rest_chat_or_error( $m['chat_id'] );
+	if ( is_wp_error( $chat ) ) {
+		return $chat;
+	}
+	if ( 'deleted' === $m['type'] ) {
+		return new WP_Error( 'flxc_del', __( 'This message was already deleted.', 'flx-chat' ), array( 'status' => 400 ) );
+	}
+	$me    = get_current_user_id();
+	$own   = (int) $m['user_id'] === $me;
+	$scope = 'everyone' === $req->get_param( 'scope' ) ? 'everyone' : 'panel';
+	if ( 'note' === $m['direction'] ) {
+		if ( ! $own && ! flxc_can_manage() ) {
+			return new WP_Error( 'flxc_del', __( 'You can only delete your own notes.', 'flx-chat' ), array( 'status' => 403 ) );
+		}
+		$scope = 'panel';
+	}
+	if ( 'everyone' === $scope ) {
+		if ( ! $own && ! flxc_can_manage() ) {
+			return new WP_Error( 'flxc_del', __( 'Only the sender or an administrator can delete this message for everyone.', 'flx-chat' ), array( 'status' => 403 ) );
+		}
+		$until = flxc_revoke_until( $m );
+		if ( ! $until ) {
+			return new WP_Error( 'flxc_del', __( 'This message can\'t be deleted for everyone on this channel. You can hide it in the panel instead.', 'flx-chat' ), array( 'status' => 400 ) );
+		}
+		if ( time() * 1000 > $until ) {
+			return new WP_Error( 'flxc_del', __( 'The time limit for deleting for everyone has passed. You can hide it in the panel instead.', 'flx-chat' ), array( 'status' => 400 ) );
+		}
+		$r = flxc_evo_delete_for_everyone( $chat['conn'], $chat['jid'], $m['wa_id'] );
+		if ( ! $r['ok'] ) {
+			return new WP_Error( 'flxc_del', $r['error'] ? $r['error'] : __( 'WhatsApp did not delete the message.', 'flx-chat' ), array( 'status' => 400 ) );
+		}
+	}
+	flxc_soft_delete_message( $m, $scope, $me );
+	/** 1.38.0: mesaj silindikten sonra (satır sunucuda kalır). */
+	do_action( 'flxc_message_deleted', (int) $m['id'], $scope, $me );
+	return array( 'message' => flxc_messages_for_js( array( flxc_get_message( $m['id'] ) ) )[0] );
 }
 
 function flxc_rest_read( WP_REST_Request $req ) {

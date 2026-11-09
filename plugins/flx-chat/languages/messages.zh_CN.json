@@ -1586,6 +1586,27 @@
     "This channel is not available right now.": "该频道目前不可用。",
     "Site chat": "现场聊天",
     "All messages from WhatsApp, site chat and other channels appear here live. Pick a chat on the left.": "来自 WhatsApp、网站聊天和其他渠道的所有消息都会实时显示在这里。选择左侧的聊天。",
-    "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.": "WhatsApp(Evolution API)呼叫中心:查看实时传入和传出消息、开始新聊天、预设回复、标签、作业、内部注释、自动回复;通过聊天注册捐赠(Flux Donate)和证书(Flux Certificates),收据匹配。 OpenRouter 的人工智能响应建议和自动捐赠助手。"
+    "WhatsApp (Evolution API) call center: see live incoming and outgoing messages, start new chat, canned replies, tags, assignment, internal notes, auto-replies; Donation (Flux Donate) and certificate (Flux Certificates) registration from chat, receipt matching. Artificial intelligence response suggestion and automatic donation assistant with OpenRouter.": "WhatsApp(Evolution API)呼叫中心:查看实时传入和传出消息、开始新聊天、预设回复、标签、作业、内部注释、自动回复;通过聊天注册捐赠(Flux Donate)和证书(Flux Certificates),收据匹配。 OpenRouter 的人工智能响应建议和自动捐赠助手。",
+    "Hide": "隐藏",
+    "Show": "显示",
+    "Deleted for everyone": "已对所有人删除",
+    "Hidden in the panel": "已在面板中隐藏",
+    "Delete for everyone": "对所有人删除",
+    "Hide in the panel only": "仅在面板中隐藏",
+    "WhatsApp doesn't allow deleting a received message for everyone; it stays on the contact's phone and is only hidden in the panel.": "WhatsApp 不允许对所有人删除收到的消息；消息仍保留在联系人手机上，仅在面板中隐藏。",
+    "Delete for everyone is turned off in the settings; the message is only hidden in the panel and stays on the contact's phone.": "设置中已关闭“对所有人删除”；消息仅在面板中隐藏，仍保留在联系人手机上。",
+    "This channel doesn't support delete for everyone; the message is only hidden in the panel and stays on the contact's phone.": "此渠道不支持“对所有人删除”；消息仅在面板中隐藏，仍保留在联系人手机上。",
+    "The time limit for delete for everyone has passed (WhatsApp allows about {h} hours after sending). The message stays on the contact's phone and is only hidden in the panel.": "已超过“对所有人删除”的时限（WhatsApp 允许在发送后约 {h} 小时内删除）。消息仍保留在联系人手机上，仅在面板中隐藏。",
+    "Only the sender or an administrator can delete this message for everyone; you can hide it in the panel.": "只有发送者或管理员可以对所有人删除此消息；您可以在面板中隐藏它。",
+    "If deleted for everyone, the message also turns into \"This message was deleted\" on the contact's phone. Time left: about {n} hours.": "若对所有人删除，联系人手机上的消息也会变为“此消息已删除”。剩余时间：约 {n} 小时。",
+    "Deleted messages are kept on the server: the chat shows a \"This message was deleted\" line and the team can click it to see the content. AI does not read deleted messages.": "已删除的消息保留在服务器上：聊天中显示“此消息已删除”，团队点击即可查看内容。AI 不会读取已删除的消息。",
+    "Message not found.": "未找到消息。",
+    "This message was already deleted.": "此消息已被删除。",
+    "Only the sender or an administrator can delete this message for everyone.": "只有发送者或管理员可以对所有人删除此消息。",
+    "This message can't be deleted for everyone on this channel. You can hide it in the panel instead.": "此渠道无法对所有人删除此消息。您可以改为在面板中隐藏。",
+    "The time limit for deleting for everyone has passed. You can hide it in the panel instead.": "已超过“对所有人删除”的时限。您可以改为在面板中隐藏。",
+    "WhatsApp did not delete the message.": "WhatsApp 未删除该消息。",
+    "Delete for everyone time limit (hours)": "“对所有人删除”时限（小时）",
+    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp 仅允许在约 2 天 12 小时（60 小时）内对所有人删除已发送的消息。超过时限或对于收到的消息，消息仅在面板中隐藏，仍保留在联系人手机上。设为 0 将关闭“对所有人删除”。已删除的消息永远不会从服务器移除，团队仍可打开查看。"
   }
 }
