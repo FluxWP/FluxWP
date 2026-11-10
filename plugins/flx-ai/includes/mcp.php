@@ -4,8 +4,9 @@
  *
  * Adres: site.com/mcp (kısa adres, filtre flx_mcp_short_path) ve /wp-json/flx-mcp/v1/mcp (ikisi aynı sunucu).
  * Kimlik: OAuth 2.1 (oauth.php; istemci yalnız adresle bağlanır, WordPress girişi + onay),
- *         "Authorization: Bearer <anahtar>" (Flux AI & MCP › MCP), X-MCP-Key başlığı, ?key= ya da
- *         WordPress Uygulama Parolası (Basic). Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır;
+ *         "Authorization: Bearer <anahtar>" (Flux AI & MCP › MCP), X-MCP-Key başlığı ya da
+ *         WordPress Uygulama Parolası (Basic). Anahtar yalnız bu rotanın permission_callback'inde
+ *         kullanıcı olur; sorgu dizesinden okunmaz. Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır;
  *         anahtara araç listesi verildiyse yalnız o araçlar görünür ve çalışır.
  *
  * Eklentiler araçlarını `flx_mcp_tools` filtresiyle kaydeder (eski ad `flxseo_mcp_tools` da çalışır).
@@ -69,13 +70,6 @@ function flxai_request_rel_path() {
 function flxai_mcp_is_short_request() {
 	$short = flxai_mcp_short_path();
 	return '' !== $short && $short === flxai_request_rel_path();
-}
-
-/** Bu istek MCP sunucusuna mı (kısa adres, REST adresi ya da ?rest_route=)? */
-function flxai_mcp_is_request() {
-	$uri = (string) wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$rr  = (string) wp_unslash( $_GET['rest_route'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification
-	return false !== strpos( $uri, 'flx-mcp/v1' ) || 0 === strpos( $rr, '/flx-mcp/v1' ) || flxai_mcp_is_short_request();
 }
 
 /*
@@ -185,8 +179,13 @@ function flxai_mcp_allowed( $name ) {
 
 function flxai_mcp_request_key( WP_REST_Request $req ) {
 	$auth = $req->get_header( 'authorization' );
-	if ( ! $auth && isset( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) ) {
-		$auth = sanitize_text_field( wp_unslash( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) );
+	if ( ! $auth ) {
+		// CGI/LiteSpeed Authorization'ı PHP'ye iletmez. WordPress uygulama parolalarıyla aynı sıra.
+		if ( ! empty( $_SERVER['HTTP_AUTHORIZATION'] ) ) {
+			$auth = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ) );
+		} elseif ( ! empty( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) ) {
+			$auth = sanitize_text_field( wp_unslash( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) );
+		}
 	}
 	if ( $auth && 0 === stripos( $auth, 'Bearer ' ) ) {
 		return trim( substr( $auth, 7 ) );
@@ -194,8 +193,7 @@ function flxai_mcp_request_key( WP_REST_Request $req ) {
 	if ( $req->get_header( 'x_mcp_key' ) ) {
 		return trim( $req->get_header( 'x_mcp_key' ) );
 	}
-	// Başlık eklenemeyen istemciler (ör. bazı web bağlayıcıları) için gizli adres: ?key=...
-	return (string) $req->get_param( 'key' );
+	return '';
 }
 
 /* ---------------------------------------------------------------------------
@@ -248,23 +246,6 @@ function flxai_mcp_instructions() {
 /* ---------------------------------------------------------------------------
  * REST
  * ------------------------------------------------------------------------- */
-
-/**
- * Bearer anahtarı olan istekte WordPress'in Basic/çerez kimliğini aramasına gerek yok.
- */
-add_filter(
-	'determine_current_user',
-	function ( $user_id ) {
-		if ( $user_id || flxai_mcp_legacy() || ! flxai_mcp_is_request() ) {
-			return $user_id;
-		}
-		$auth = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '' ) );
-		$key  = 0 === stripos( $auth, 'Bearer ' ) ? trim( substr( $auth, 7 ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_MCP_KEY'] ?? $_GET['key'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification
-		$k    = flxai_mcp_find_key( $key );
-		return $k ? (int) $k['user'] : $user_id;
-	},
-	30
-);
 
 add_action(
 	'rest_api_init',

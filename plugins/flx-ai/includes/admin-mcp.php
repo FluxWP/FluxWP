@@ -128,9 +128,9 @@ function flxai_page_mcp() {
 		<pre class="flxai-code"><?php echo esc_html( $json ); ?></pre>
 		<p><strong>Claude Code</strong>:</p>
 		<pre class="flxai-code">claude mcp add --transport http <?php echo esc_html( $slug . ' ' . $url ); ?> --header "Authorization: Bearer <?php echo esc_html( $key_show ); ?>"</pre>
-		<p><strong>Claude.ai › <?php esc_html_e( 'Connectors › Add custom connector', 'flx-ai' ); ?></strong> — <?php esc_html_e( 'URL with the key, for places where headers can\'t be added; don\'t share it:', 'flx-ai' ); ?></p>
-		<pre class="flxai-code"><?php echo esc_html( add_query_arg( 'key', $key_show, $url ) ); ?></pre>
-		<p class="flxai-note"><?php esc_html_e( 'On Apache, if you see "Invalid key", add SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL.', 'flx-ai' ); ?></p>
+		<p><strong><?php esc_html_e( 'Other clients', 'flx-ai' ); ?></strong> — <?php esc_html_e( 'Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL.', 'flx-ai' ); ?></p>
+		<pre class="flxai-code"><?php echo esc_html( 'Authorization: Bearer ' . $key_show ); ?></pre>
+		<p class="flxai-note"><?php esc_html_e( 'On Apache or LiteSpeed, if you see "Invalid key", add SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1 to .htaccess.', 'flx-ai' ); ?></p>
 	</section>
 
 	<?php if ( $log ) : ?>
