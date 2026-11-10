@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.8 — 2026-11-10
+- Store the shared operational log in one table tagged by plugin and defer a background batch when fewer than 5 seconds remain before the 45-second request deadline.
+
 ## 1.9.4 — 2026-11-10
 - Bundle the shared bounded operational journal to trace worker/PDF/message jobs, timeouts and safe error metadata.
 

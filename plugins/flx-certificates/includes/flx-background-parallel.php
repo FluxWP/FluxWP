@@ -30,6 +30,7 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 			return true;
 		}
 		private static function submit( $id ) {
+			if ( flx_bg_time_left() < 5 ) { return false; }
 			// A separate hook avoids blocking or deleting the package's next batch.
 			$command = array( PHP_BINARY, self::executable(), '--path=' . untrailingslashit( ABSPATH ), '--url=' . home_url(), 'flx', 'background-task', $id, '--quiet' );
 			if ( function_exists( 'posix_geteuid' ) && 0 === posix_geteuid() ) { $command[] = '--allow-root'; }
@@ -63,19 +64,27 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 						if ( class_exists( 'WP_CLI' ) ) { WP_CLI::warning( 'A background batch stopped; its watchdog will retry within the configured attempt limit.' ); }
 					}
 				}
-				if ( $wait && ! $finished && self::$running ) { usleep( 50000 ); }
+				if ( $wait && ! $finished && self::$running ) {
+					if ( flx_bg_time_left() < 1 ) { return; }
+					usleep( 50000 );
+				}
 			} while ( $wait && ! $finished && self::$running );
 		}
 		public static function finish() {
 			// Start children after the coordinator has finished consuming cron events.
 			// Only our serialized scheduling helpers mutate cron during this phase.
 			while ( self::$pending || self::$running ) {
+				if ( flx_bg_time_left() < 5 ) {
+					if ( self::$running && flx_bg_time_left() >= 1 ) { self::reap( true ); }
+					break;
+				}
 				foreach ( self::$pending as $index => $entry ) {
-					if ( count( self::$running ) >= self::limit() ) { break; }
+					if ( flx_bg_time_left() < 5 || count( self::$running ) >= self::limit() ) { break; }
 					if ( self::active( $entry['plugin'] ) >= self::plugin_limit( $entry['plugin'] ) ) { continue; }
 					unset( self::$pending[ $index ] ); $id = $entry['id'];
 					if ( ! self::submit( $id ) && self::run( $id ) ) { self::cleanup( $id ); }
 				}
+				if ( flx_bg_time_left() < 1 ) { break; }
 				self::reap( true );
 			}
 		}
@@ -99,6 +108,7 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 			}
 			if ( ! $slot_owner ) { flx_background_unlock( 'plugin-slot-' . $plugin . '-' . $plugin_slot, $plugin_owner ); flx_background_unlock( 'dispatch-' . $id, $owner ); return false; }
 			try {
+				if ( flx_bg_time_left() < 5 ) { return false; }
 				$task = self::fresh( $id );
 				if ( 'done' === ( $task['status'] ?? '' ) ) { return true; }
 				if ( (int) $task['attempts'] >= 3 ) { return false; }
@@ -106,7 +116,7 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 				update_option( self::key( $id ), $task, false );
 				$started = microtime( true );
 				flx_background_log( 'job.started', array( 'plugin' => $plugin, 'hook' => $task['hook'], 'job' => $id, 'attempt' => $task['attempts'] ) );
-				if ( function_exists( 'set_time_limit' ) ) { @set_time_limit( 120 ); }
+				if ( function_exists( 'set_time_limit' ) ) { @set_time_limit( max( 1, min( 120, (int) flx_bg_time_left() ) ) ); }
 				self::$executing = true;
 				do_action_ref_array( $task['hook'], $task['args'] );
 				$task['status'] = 'done'; update_option( self::key( $id ), $task, false );
@@ -132,6 +142,7 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 				self::cleanup( $id ); return;
 			}
 			if ( flx_background_should_defer() ) { flx_background_schedule( 'flx_background_watchdog', array( $id ), 60 ); return; }
+			if ( flx_bg_time_left() < 5 ) { flx_background_schedule( 'flx_background_watchdog', array( $id ), 60 ); return; }
 			flx_background_log( 'job.retry', array( 'plugin' => self::$hooks[ $task['hook'] ], 'hook' => $task['hook'], 'job' => $id, 'attempt' => (int) $task['attempts'] + 1 ) );
 			// A retry can run synchronously; only an ordinary cron worker creates a pool.
 			if ( self::run( $id ) ) { self::cleanup( $id ); }

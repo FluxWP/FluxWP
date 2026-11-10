@@ -4,6 +4,17 @@
  */
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
+global $wpdb;
+$flxs_log = $wpdb->prefix . 'flx_background_log';
+$flxs_log_found = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $flxs_log ) ) );
+if ( $flxs_log_found === $flxs_log ) {
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$flxs_log} WHERE plugin = %s", 'flx-certificates' ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	if ( null === $wpdb->get_var( "SELECT id FROM {$flxs_log} LIMIT 1" ) ) { // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$wpdb->query( "DROP TABLE IF EXISTS {$flxs_log}" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		delete_option( 'flx_background_log_db' );
+	}
+}
+
 $flxs_settings = get_option( 'flxs_settings', array() );
 if ( empty( $flxs_settings['delete_on_uninstall'] ) ) {
 	return;

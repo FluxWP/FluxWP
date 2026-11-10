@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.19 — 2026-11-10
+- Store the shared operational log in one table tagged by plugin and defer a background batch when fewer than 5 seconds remain before the 45-second request deadline.
+
 ## 1.13.15 — 2026-11-10
 - Batch Netgsm recipients in REST v2 packets, persist provider job IDs, reconcile per-recipient delivery reports and avoid resending uncertain submissions.
 - Add a live delivery queue, local stopping, future Netgsm scheduling/cancellation, protected REST actions and ten native locale catalogs.
