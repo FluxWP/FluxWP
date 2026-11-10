@@ -5,6 +5,7 @@
  * İşleyici: WooCommerce varsa Action Scheduler, yoksa WP-Cron (dakikada bir) + panel açıkken tarayıcı "pump".
  */
 defined( 'ABSPATH' ) || exit;
+FLX_Background_Pool::register( 'flxs_run_queue', 'flx-certificates' );
 
 add_action( 'flxs_run_queue', 'flxs_run_queue' );
 add_action( 'flxs_queue_tick', 'flxs_run_queue' );
@@ -233,24 +234,17 @@ function flxs_release_lock() {
  */
 function flxs_run_queue( $budget = null ) {
 	global $wpdb;
-	if ( flx_background_should_defer() ) {
-		flxs_kick_queue();
-		return array( 'processed' => 0, 'sent' => 0, 'failed' => 0, 'pending' => true, 'deferred' => true );
-	}
 	$t = flxs_table( 'messages' );
 	if ( null === $budget || ! is_numeric( $budget ) ) {
 		$budget = wp_doing_cron() ? 45 : 20;
 	}
-	if ( ! flxs_acquire_lock( (int) $budget + 30 ) ) {
-		return array( 'locked' => true, 'processed' => 0 );
-	}
-	try {
+	return flx_background_run( 'certificate-messages', function () use ( $budget, $wpdb, $t ) {
 		flxs_mark_queue_run();
 		if ( function_exists( 'set_time_limit' ) ) {
 			@set_time_limit( (int) $budget + 60 ); // phpcs:ignore
 		}
 		// Takılı kalan "gönderiliyor" kayıtlarını geri al
-		$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'queued', locked_at = NULL WHERE status = 'processing' AND locked_at < %s", gmdate( 'Y-m-d H:i:s', time() - 600 ) ) );
+		$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = CASE WHEN attempts >= max_attempts THEN 'failed' ELSE 'queued' END, locked_at = NULL WHERE status = 'processing' AND locked_at < %s", gmdate( 'Y-m-d H:i:s', time() - 600 ) ) );
 
 		$start     = microtime( true );
 		$processed = 0;
@@ -286,10 +280,17 @@ function flxs_run_queue( $budget = null ) {
 		if ( $next ) {
 			flxs_kick_queue( strtotime( $next . ' UTC' ) );
 		}
-		return array( 'processed' => $processed, 'sent' => $sent, 'failed' => $failed, 'pending' => (bool) $next );
-	} finally {
-		flxs_release_lock();
-	}
+		$processing = $wpdb->get_var( "SELECT MIN(locked_at) FROM $t WHERE status = 'processing'" );
+		if ( $processing ) { flxs_kick_queue( max( time() + 30, strtotime( $processing . ' UTC' ) + 600 ) ); }
+		return array( 'processed' => $processed, 'sent' => $sent, 'failed' => $failed, 'pending' => (bool) ( $next || $processing ) );
+	}, array(
+		'ttl' => (int) $budget + 30,
+		'hook' => 'flxs_run_queue',
+		'on_defer' => static function () {
+			flxs_kick_queue();
+			return array( 'processed' => 0, 'sent' => 0, 'failed' => 0, 'pending' => true, 'deferred' => true );
+		},
+	) );
 }
 
 function flxs_process_message( $row ) {

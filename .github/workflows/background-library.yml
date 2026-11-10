@@ -1,0 +1,35 @@
+name: Background library
+on:
+  pull_request:
+    paths:
+      - 'tools/background/**'
+      - 'plugins/**/includes/flx-background*.php'
+      - 'themes/**/includes/flx-background*.php'
+      - '.github/workflows/background-library.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/background/**'
+      - 'plugins/**/includes/flx-background*.php'
+      - 'themes/**/includes/flx-background*.php'
+      - '.github/workflows/background-library.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify shared bundles and PHP syntax
+        run: |
+          python3 tools/background/sync.py --check
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          files = list(Path('tools/background').rglob('*.php'))
+          for area in ('plugins', 'themes'):
+              files += list(Path(area).glob('*/includes/flx-background*.php'))
+          for path in files:
+              subprocess.run(['php', '-l', str(path)], check=True)
+          PY
+          python3 tools/background/tests/load-order.py

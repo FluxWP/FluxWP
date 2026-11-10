@@ -12,6 +12,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+FLX_Background_Pool::register( 'flxy_job_tick', 'flx-backup' );
 
 final class FLXY_Runner {
 
@@ -155,9 +156,7 @@ final class FLXY_Runner {
 	}
 
 	private static function schedule_tick(): void {
-		if ( ! wp_next_scheduled( self::CRON_TICK ) ) {
-			wp_schedule_single_event( time() + 60, self::CRON_TICK );
-		}
+		flx_background_schedule( self::CRON_TICK, array(), flx_background_worker_active() ? 1 : 60 );
 	}
 
 	/** Engellemeyen loopback: bir sonraki adımı ayrı bir istekte başlatır. */
@@ -485,6 +484,8 @@ final class FLXY_Runner {
 	}
 
 	public static function cron_tick(): void {
+		$current = self::current();
+		if ( $current && ! self::is_finished( $current ) && 'backup' === $current['kind'] && FLX_Background_Pool::dispatch( self::CRON_TICK ) ) { return; }
 		$deadline = microtime( true ) + 40;
 		do {
 			$before = self::current();

@@ -136,3 +136,7 @@ Campaign queues automatically prefer a healthy FluxWP Docker worker. Without a w
 ## Maintainers
 
 Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)
+
+## Sending verification
+
+A 1,000-recipient Netgsm campaign was exercised through the real queue with HTTP intercepted: normalized recipient deduplication, Turkish encoding, the selected IYS filter, a temporary rate-limit rejection/retry and permanent authentication failure. WhatsApp response parsing, configured spacing and HTTP 429 retry were also checked; email quotas remain enforced. This verifies application behavior, not live provider credentials or handset delivery. Netgsm campaigns currently submit one recipient per API request; API acceptance is not a delivery receipt. Confirm a live test through the existing connection test UI and check provider delivery reports before a large campaign.

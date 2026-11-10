@@ -6,6 +6,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+FLX_Background_Pool::register( 'flxi_run_queue', 'flx-mail' );
 
 /** Alıcı kaynakları (gönderim ekranındaki seçimler). */
 function flxi_recipient_sources() {
@@ -195,9 +196,7 @@ function flxi_cancel_campaign( $id ) {
 
 /** Kuyruk işleyicisini planlar (WP-Cron; kuyruk sayfası açıksa tarayıcı da tetikler). */
 function flxi_kick_queue() {
-	if ( ! wp_next_scheduled( 'flxi_run_queue' ) ) {
-		wp_schedule_single_event( time() + 5, 'flxi_run_queue' );
-	}
+	flx_background_schedule( 'flxi_run_queue', array(), flx_background_worker_active() ? 1 : 5 );
 }
 
 add_action(
@@ -214,16 +213,12 @@ add_action(
  */
 function flxi_run_queue( $budget = 20 ) {
 	global $wpdb;
-	if ( flx_background_should_defer() ) {
-		flxi_kick_queue();
-		return array( 'processed' => 0, 'sent' => 0, 'failed' => 0, 'left' => (int) $wpdb->get_var( 'SELECT COUNT(*) FROM ' . flxi_table( 'queue' ) . " WHERE status = 'queued'" ), 'deferred' => true );
-	}
-	$token = flx_background_lock( 'mail-campaigns', $budget + 90 );
-	if ( ! $token ) {
-		return array( 'locked' => true, 'processed' => 0 );
-	}
-	try {
+	return flx_background_run( 'mail-campaigns', function () use ( $budget, $wpdb ) {
 		$t      = flxi_table( 'queue' );
+		$cutoff = gmdate( 'Y-m-d H:i:s', time() - 600 );
+		$interrupted = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT campaign_id FROM $t WHERE status = 'processing' AND scheduled_at <= %s", $cutoff ) );
+		$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = CASE WHEN attempts >= 3 THEN 'failed' ELSE 'queued' END, scheduled_at = %s WHERE status = 'processing' AND scheduled_at <= %s", flxi_now(), $cutoff ) );
+		foreach ( $interrupted as $cid ) { flxi_refresh_campaign( (int) $cid ); }
 		$start  = microtime( true );
 		$limit  = max( 1, (int) flxi_setting( 'bulk_per_run' ) );
 		$stats  = array( 'processed' => 0, 'sent' => 0, 'failed' => 0 );
@@ -255,7 +250,7 @@ function flxi_run_queue( $budget = 20 ) {
 					break;
 				}
 			}
-			$claimed = $wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'processing', attempts = attempts + 1 WHERE id = %d AND status = 'queued'", $row['id'] ) );
+			$claimed = $wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'processing', attempts = attempts + 1, scheduled_at = %s WHERE id = %d AND status = 'queued'", flxi_now(), $row['id'] ) );
 			if ( 1 !== (int) $claimed ) {
 				continue;
 			}
@@ -287,15 +282,20 @@ function flxi_run_queue( $budget = 20 ) {
 		$stats['left'] = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t WHERE status = 'queued'" ); // phpcs:ignore
 		if ( $stats['left'] ) {
 			$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" ); // phpcs:ignore
-			$when = max( time() + 30, $next ? strtotime( $next . ' UTC' ) : time() + 60 );
-			if ( ! wp_next_scheduled( 'flxi_run_queue' ) ) {
-				wp_schedule_single_event( $when, 'flxi_run_queue' );
-			}
+			$when = max( time() + ( flx_background_worker_active() ? 1 : 30 ), $next ? strtotime( $next . ' UTC' ) : time() + 60 );
+			flx_background_schedule( 'flxi_run_queue', array(), $when - time() );
 		}
+		$processing = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'processing'" );
+		if ( $processing ) { flx_background_schedule( 'flxi_run_queue', array(), max( 30, strtotime( $processing . ' UTC' ) + 600 - time() ) ); }
 		return $stats;
-	} finally {
-		flx_background_unlock( 'mail-campaigns', $token );
-	}
+	}, array(
+		'ttl' => $budget + 90,
+		'hook' => 'flxi_run_queue',
+		'on_defer' => static function () use ( $wpdb ) {
+			flxi_kick_queue();
+			return array( 'processed' => 0, 'sent' => 0, 'failed' => 0, 'left' => (int) $wpdb->get_var( 'SELECT COUNT(*) FROM ' . flxi_table( 'queue' ) . " WHERE status = 'queued'" ), 'deferred' => true );
+		},
+	) );
 }
 
 function flxi_refresh_campaign( $cid ) {

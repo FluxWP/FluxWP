@@ -1,0 +1,5 @@
+[
+  "plugins/flx-backup",
+  "plugins/flx-certificates",
+  "plugins/flx-mail"
+]

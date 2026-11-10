@@ -58,6 +58,7 @@ switch ( $operation ) {
 		flx_bg_test_assert( ! get_option( 'flx_bg_test_fixture' ) && ! FLXY_Runner::busy(), 'Fixture already exists or a backup is busy' );
 		$f = array( 'saved' => array(), 'campaigns' => array(), 'certificates' => array(), 'backups' => array() );
 		foreach ( array( 'flx_background_worker', 'flxi_settings', 'flxi_quota', 'flxi_quota_paused', 'flxy_job', 'flxy_indicator', 'cron', 'active_plugins' ) as $key ) { $f['saved'][ $key ] = get_option( $key ); }
+		$f['saved']['flx_docker_bootstrap'] = get_option( 'flx_docker_bootstrap' );
 		foreach ( array( 'mail' => flxi_table( 'queue' ), 'cert' => flxs_table( 'messages' ) ) as $name => $table ) {
 			$f['old_' . $name] = $wpdb->get_results( "SELECT id,status FROM $table WHERE status IN ('queued','processing')", ARRAY_A );
 			$wpdb->query( "UPDATE $table SET status = 'cancelled' WHERE status IN ('queued','processing')" );
@@ -155,6 +156,25 @@ switch ( $operation ) {
 		$wpdb->update( flxi_table( 'queue' ), array( 'scheduled_at' => flxi_now() ), array( 'campaign_id' => $cid ) );
 		$r = flxi_run_queue( 6 ); flx_bg_test_output( array( 'sent' => $r['sent'] ) );
 		break;
+	case 'interrupted':
+		$t = flxi_table( 'queue' ); $cid = flx_bg_test_enqueue_mail();
+		$wpdb->update( $t, array( 'status' => 'processing', 'attempts' => 1, 'scheduled_at' => flxi_now() ), array( 'campaign_id' => $cid ) );
+		wp_clear_scheduled_hook( 'flxi_run_queue' ); flxi_run_queue( 6 );
+		$mail_pending = (bool) wp_next_scheduled( 'flxi_run_queue' );
+		$wpdb->update( $t, array( 'scheduled_at' => gmdate( 'Y-m-d H:i:s', time() - 601 ) ), array( 'campaign_id' => $cid ) );
+		$r = flxi_run_queue( 6 ); $mail_resumed = 1 === $r['sent'];
+		$wpdb->update( $t, array( 'status' => 'processing', 'attempts' => 3, 'scheduled_at' => gmdate( 'Y-m-d H:i:s', time() - 601 ) ), array( 'campaign_id' => $cid ) );
+		flxi_run_queue( 6 ); $mail_stopped = 'failed' === $wpdb->get_var( $wpdb->prepare( "SELECT status FROM $t WHERE campaign_id=%d", $cid ) );
+		$t = flxs_table( 'messages' ); $id = (int) $wpdb->get_var( "SELECT MAX(id) FROM $t WHERE recipient='worker-qa@example.invalid'" );
+		$wpdb->update( $t, array( 'status' => 'processing', 'attempts' => 1, 'locked_at' => flxs_now() ), array( 'id' => $id ) );
+		wp_clear_scheduled_hook( 'flxs_run_queue' ); flxs_run_queue( 6 );
+		$cert_pending = (bool) wp_next_scheduled( 'flxs_run_queue' ) || ( function_exists( 'as_has_scheduled_action' ) && as_has_scheduled_action( 'flxs_run_queue', array(), 'flx-certificates' ) );
+		$wpdb->update( $t, array( 'locked_at' => gmdate( 'Y-m-d H:i:s', time() - 601 ) ), array( 'id' => $id ) );
+		$r = flxs_run_queue( 6 ); $cert_resumed = 1 === $r['sent'];
+		$wpdb->query( $wpdb->prepare( "UPDATE $t SET status='processing', attempts=max_attempts, locked_at=%s WHERE id=%d", gmdate( 'Y-m-d H:i:s', time() - 601 ), $id ) );
+		flxs_run_queue( 6 ); $cert_stopped = 'failed' === $wpdb->get_var( $wpdb->prepare( "SELECT status FROM $t WHERE id=%d", $id ) );
+		flx_bg_test_output( array( 'scheduled' => $mail_pending && $cert_pending, 'resumed' => $mail_resumed && $cert_resumed, 'bounded' => $mail_stopped && $cert_stopped ) );
+		break;
 	case 'pdf-retry':
 		$c = flx_bg_test_certificate();
 		$unwritable = function ( $name, $ext, $dir ) {
@@ -196,10 +216,231 @@ switch ( $operation ) {
 		flx_background_unlock( 'qa-lock', $b ); delete_option( $key );
 		flx_bg_test_output( array( 'owner_locks' => true ) );
 		break;
+	case 'library':
+		delete_option( 'flx_background_worker' );
+		$hook = 'flx_bg_test_guard'; $args = array( 17 ); $calls = 0;
+		$callback = function () use ( &$calls ) { ++$calls; return 'finished'; };
+		$owner = flx_background_lock( 'qa-guard', 60 );
+		$r = flx_background_run( 'qa-guard', $callback, array( 'hook' => $hook, 'args' => $args ) );
+		$blocked = ! empty( $r['locked'] ) && 0 === $calls && (bool) wp_next_scheduled( $hook, $args );
+		flx_background_unlock( 'qa-guard', $owner );
+		$failed = false;
+		try { flx_background_run( 'qa-guard', function () { throw new RuntimeException( 'guard-test' ); } ); }
+		catch ( RuntimeException $e ) { $failed = 'guard-test' === $e->getMessage(); }
+		$completed = 'finished' === flx_background_run( 'qa-guard', $callback ) && 1 === $calls;
+		$key = 'flx_bg_lock_' . md5( 'qa-corrupt' ); update_option( $key, '{broken', false );
+		$token = flx_background_lock( 'qa-corrupt', 60 );
+		$recovered = (bool) $token; flx_background_unlock( 'qa-corrupt', $token );
+		wp_clear_scheduled_hook( $hook, $args );
+		flx_bg_test_output( array( 'blocked' => $blocked, 'exception_released' => $failed && $completed, 'corrupt_recovered' => $recovered ) );
+		break;
+	case 'pool-setup':
+		$mu = <<<'QA'
+<?php
+    add_filter( 'pre_wp_mail', static function ( $return, $atts ) {
+        if ( getenv( 'FLX_BACKGROUND_CHILD' ) && in_array( 'worker-qa@example.invalid', (array) $atts['to'], true ) ) {
+            global $wpdb;
+            $wpdb->query( "UPDATE {$wpdb->options} SET option_value = CAST(option_value AS UNSIGNED) + 1 WHERE option_name = 'flx_bg_test_deliveries'" );
+            wp_cache_delete( 'flx_bg_test_deliveries', 'options' );
+        }
+        return true;
+    }, 0, 2 );
+    add_filter( 'pre_http_request', static function () { return new WP_Error( 'worker_qa_offline', 'External HTTP disabled in worker QA.' ); }, PHP_INT_MAX );
+add_action( 'init', static function () {
+    if ( ! class_exists( 'FLX_Background_Pool' ) ) { return; } // core is-installed may skip ordinary plugins.
+    FLX_Background_Pool::register( 'flx_bg_qa_sleep', 'flx-background-qa' );
+    FLX_Background_Pool::register( 'flx_bg_qa_fail', 'flx-background-qa' );
+    FLX_Background_Pool::register( 'flx_bg_qa_hang', 'flx-background-qa' );
+    FLX_Background_Pool::register( 'flx_bg_qa_other', 'flx-background-qa-other' );
+} );
+foreach ( array( 'flx_bg_qa_sleep', 'flx_bg_qa_fail', 'flx_bg_qa_hang', 'flx_bg_qa_other' ) as $hook ) {
+    add_action( $hook, static function ( $id ) use ( $hook ) {
+        if ( FLX_Background_Pool::dispatch( $hook, array( $id ) ) ) { return; }
+        $started = microtime( true );
+        if ( 'flx_bg_qa_fail' === $hook ) { throw new RuntimeException( 'QA callback failed' ); }
+        if ( 'flx_bg_qa_hang' === $hook ) { sleep( 20 ); }
+        else { sleep( 2 ); }
+        update_option( 'flx_bg_qa_pool_' . $id, array( 'start' => $started, 'end' => microtime( true ), 'pid' => getmypid() ), false );
+        flx_background_schedule( 'flx_bg_qa_followup', array( $id ), 120 );
+    } );
+}
+QA;
+		file_put_contents( WPMU_PLUGIN_DIR . '/flx-background-qa.php', $mu );
+		flx_bg_test_output( array( 'setup' => true ) );
+		break;
+	case 'pool':
+		defined( 'DOING_CRON' ) || define( 'DOING_CRON', true );
+		for ( $i = 0; $i < 6; ++$i ) { do_action( 'flx_bg_qa_sleep', $i ); }
+		FLX_Background_Pool::finish();
+		$rows = array(); for ( $i = 0; $i < 6; ++$i ) { $rows[] = get_option( 'flx_bg_qa_pool_' . $i ); }
+		$scheduled = 0; wp_cache_delete( 'cron', 'options' );
+		for ( $i = 0; $i < 6; ++$i ) { $scheduled += (int) (bool) wp_next_scheduled( 'flx_bg_qa_followup', array( $i ) ); }
+		flx_bg_test_output( array( 'rows' => $rows, 'followups' => $scheduled ) );
+		break;
+	case 'pool-failure':
+		defined( 'DOING_CRON' ) || define( 'DOING_CRON', true );
+		add_filter( 'flx_background_timeout', static function () { return 1; } );
+		do_action( 'flx_bg_qa_fail', 'fail' ); do_action( 'flx_bg_qa_hang', 'hang' );
+		FLX_Background_Pool::finish();
+		$names = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE 'flx_bg_task_%'" );
+		$recoverable = count( $names ) === 2;
+		for ( $i = 0; $i < FLX_Background_Pool::limit(); ++$i ) { delete_option( 'flx_bg_lock_' . md5( 'process-slot-' . $i ) ); }
+		for ( $i = 0; $i < FLX_Background_Pool::plugin_limit( 'flx-background-qa' ); ++$i ) { delete_option( 'flx_bg_lock_' . md5( 'plugin-slot-flx-background-qa-' . $i ) ); }
+		foreach ( $names as $name ) {
+			$id = substr( $name, strlen( 'flx_bg_task_' ) );
+			$recoverable = $recoverable && (bool) wp_next_scheduled( 'flx_background_watchdog', array( $id ) );
+			// Emulate the lease expiry after the killed test process, without waiting.
+			delete_option( 'flx_bg_lock_' . md5( 'dispatch-' . $id ) );
+			$task = get_option( $name ); $task['hook'] = 'flx_bg_qa_sleep'; $task['args'] = array( $id ); update_option( $name, $task, false );
+			FLX_Background_Pool::watchdog( $id );
+			$recoverable = $recoverable && ! get_option( $name ) && (bool) get_option( 'flx_bg_qa_pool_' . $id );
+		}
+		flx_bg_test_output( array( 'recovered' => $recoverable ) );
+		break;
+	case 'pool-slots':
+		defined( 'DOING_CRON' ) || define( 'DOING_CRON', true );
+		$slots = array(); for ( $i = 0; $i < FLX_Background_Pool::limit(); ++$i ) { $slots[ $i ] = flx_background_lock( 'process-slot-' . $i, 180 ); }
+		try {
+			do_action( 'flx_bg_qa_sleep', 'slots' ); FLX_Background_Pool::finish();
+			$names = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE 'flx_bg_task_%'" );
+			$blocked = count( $names ) === 1 && ! get_option( 'flx_bg_qa_pool_slots' );
+		} finally { foreach ( $slots as $i => $owner ) { flx_background_unlock( 'process-slot-' . $i, $owner ); } }
+		$id = substr( $names[0], strlen( 'flx_bg_task_' ) ); FLX_Background_Pool::watchdog( $id );
+		$recovered = ! get_option( $names[0] ) && (bool) get_option( 'flx_bg_qa_pool_slots' );
+		// A permanently failing dispatch must terminate rather than retry forever.
+		$id = wp_generate_uuid4(); $name = 'flx_bg_task_' . $id;
+		add_option( $name, array( 'hook' => 'flx_bg_qa_fail', 'args' => array( 'max' ), 'attempts' => 3, 'status' => 'failed' ), '', false );
+		$failed = 0; add_action( 'flx_background_failed', function () use ( &$failed ) { ++$failed; } );
+		FLX_Background_Pool::watchdog( $id );
+		flx_bg_test_output( array( 'global_limit' => $blocked && $recovered, 'bounded_retry' => 1 === $failed && ! get_option( $name ) ) );
+		break;
+	case 'parallel-prepare':
+		$settings = flxi_settings(); $settings['limit_daily'] = 100; update_option( 'flxi_settings', $settings, false );
+		update_option( 'flxi_quota', array(), false ); delete_option( 'flxi_quota_paused' );
+		$f = get_option( 'flx_bg_test_fixture' ); $f['parallel_before'] = (int) get_option( 'flx_bg_test_deliveries' ); update_option( 'flx_bg_test_fixture', $f, false );
+		flx_bg_test_enqueue_mail(); flx_bg_test_certificate(); flx_bg_test_backup();
+		flxs_enqueue( array( 'channel' => 'email', 'recipient' => 'worker-qa@example.invalid', 'subject' => 'Parallel certificate QA', 'body' => 'QA', 'provider_id' => $f['provider'] ) );
+		flx_bg_test_output( array( 'prepared' => true ) );
+		break;
+	case 'pool-native-prepare':
+		for ( $i = 0; $i < 6; ++$i ) { flx_background_schedule( 'flx_bg_qa_sleep', array( 'native' . $i ), 1 ); }
+		flx_bg_test_output( array( 'prepared' => true ) );
+		break;
+	case 'pool-native-results':
+		$rows = array(); for ( $i = 0; $i < 6; ++$i ) { $rows[] = get_option( 'flx_bg_qa_pool_native' . $i ); }
+		flx_bg_test_output( array( 'rows' => $rows ) );
+		break;
+	case 'pool-groups':
+		defined( 'DOING_CRON' ) || define( 'DOING_CRON', true );
+		for ( $i = 0; $i < 3; ++$i ) { do_action( 'flx_bg_qa_sleep', 'group-a-' . $i ); do_action( 'flx_bg_qa_other', 'group-b-' . $i ); }
+		FLX_Background_Pool::finish(); $rows = array();
+		foreach ( array( 'a', 'b' ) as $group ) { for ( $i = 0; $i < 3; ++$i ) { $row = get_option( 'flx_bg_qa_pool_group-' . $group . '-' . $i ); $row['group'] = $group; $rows[] = $row; } }
+		flx_bg_test_output( array( 'rows' => $rows, 'global' => FLX_Background_Pool::limit(), 'plugin' => FLX_Background_Pool::plugin_limit( 'flx-background-qa' ) ) );
+		break;
+	case 'wake-check':
+		delete_option( 'flx_background_worker' ); flx_background_schedule( 'flx_bg_test_inactive_signal', array(), 12345 );
+		$t = wp_next_scheduled( 'flx_bg_test_inactive_signal' );
+		$inactive = ! file_exists( WP_CONTENT_DIR . '/.flx-background-wake/' . $t );
+		update_option( 'flx_background_worker', array( 'seen_at' => time(), 'expires_at' => time() + 300, 'wake' => false ), false );
+		flx_background_schedule( 'flx_bg_test_legacy_signal', array(), 12346 ); $legacy = wp_next_scheduled( 'flx_bg_test_legacy_signal' );
+		$unsupported = ! file_exists( WP_CONTENT_DIR . '/.flx-background-wake/' . $legacy );
+		update_option( 'flx_background_worker', array( 'seen_at' => time(), 'expires_at' => time() + 300, 'wake' => true ), false );
+		flx_background_schedule( 'flx_bg_test_signal', array(), 2 ); $t = wp_next_scheduled( 'flx_bg_test_signal' );
+		$signal = WP_CONTENT_DIR . '/.flx-background-wake/' . $t;
+		flx_bg_test_output( array( 'inactive' => $inactive, 'unsupported' => $unsupported, 'signaled' => is_file( $signal ) && 0 === filesize( $signal ) ) );
+		break;
+	case 'wake-prepare':
+		$excluded = array();
+		foreach ( _get_cron_array() as $events ) { foreach ( $events as $hook => $items ) { $excluded[ $hook ] = true; } }
+		foreach ( array( 'wp_version_check', 'wp_update_plugins', 'wp_update_themes', 'wp_maybe_auto_update', 'action_scheduler_run_queue' ) as $hook ) { $excluded[ $hook ] = true; }
+		unset( $excluded['flx_bg_qa_sleep'] );
+		update_option( 'cron', array( 'version' => 2 ), false ); update_option( 'flx_docker_bootstrap', 'done', false );
+		foreach ( glob( WP_CONTENT_DIR . '/.flx-background-wake/[0-9]*' ) ?: array() as $signal ) { @unlink( $signal ); }
+		flx_bg_test_output( array( 'prepared' => true, 'excluded' => implode( ',', array_keys( $excluded ) ) ) );
+		break;
+	case 'channels':
+		$f = get_option( 'flx_bg_test_fixture' ); $f['connections'] = array();
+		$id = flxi_save_connection( 0, 'netgsm', 'Background SMS QA', array( 'username' => 'qa', 'password' => 'not-a-real-credential', 'header' => 'FLXQA', 'iysfilter' => '11', 'encoding' => 'TR', 'delay' => 0 ), true, false );
+		flx_bg_test_assert( ! is_wp_error( $id ), 'Test SMS connection failed' ); $f['connections'][] = $id; update_option( 'flx_bg_test_fixture', $f, false );
+		$manual = array(); for ( $i = 0; $i < 1000; ++$i ) { $manual[] = sprintf( 'QA %d, +90 555 %07d', $i, $i ); }
+		$manual[] = 'Duplicate, 05550000000'; $manual[] = 'invalid-number';
+		$recipients = flxi_collect_recipients( array(), implode( "\n", $manual ), 'sms' );
+		$cid = flxi_create_campaign( array( 'name' => 'Background SMS QA', 'channel' => 'sms', 'connection_id' => $id, 'text' => 'Merhaba {ad}, bağışınız için teşekkürler.' ), $recipients );
+		flx_bg_test_assert( ! is_wp_error( $cid ), 'Test SMS campaign failed' );
+		$f = get_option( 'flx_bg_test_fixture' ); $f['campaigns'][] = $cid; update_option( 'flx_bg_test_fixture', $f, false );
+		$seen = array(); $accepted = array(); $payload_ok = true; $auth_error = false; $wa_limited = false;
+		$mock = function ( $pre, $request, $url ) use ( &$seen, &$accepted, &$payload_ok, &$auth_error, &$wa_limited ) {
+			if ( 'https://api.netgsm.com.tr/sms/rest/v2/send' === $url ) {
+				$p = json_decode( $request['body'], true ); $message = $p['messages'][0]; $number = $message['no'];
+				$payload_ok = $payload_ok && 'FLXQA' === $p['msgheader'] && 'TR' === $p['encoding'] && '11' === $p['iysfilter'] && (bool) preg_match( '/^555[0-9]{7}$/D', $number ) && false !== strpos( $message['msg'], 'teşekkürler' );
+				$seen[ $number ] = ( $seen[ $number ] ?? 0 ) + 1;
+				$code = $auth_error ? '30' : ( '5550000000' === $number && 1 === $seen[ $number ] ? '80' : '00' );
+				if ( '00' === $code ) { $accepted[ $number ] = ( $accepted[ $number ] ?? 0 ) + 1; }
+				return array( 'headers' => array(), 'body' => wp_json_encode( array( 'code' => $code, 'jobid' => 'qa-' . $number ) ), 'response' => array( 'code' => 200, 'message' => 'OK' ), 'cookies' => array() );
+			}
+			if ( 0 === strpos( $url, 'https://example.invalid/message/sendText/' ) ) {
+				if ( $wa_limited ) { return array( 'headers' => array(), 'body' => '{"message":"Rate limited"}', 'response' => array( 'code' => 429, 'message' => 'Too Many Requests' ), 'cookies' => array() ); }
+				return array( 'headers' => array(), 'body' => '{"key":{"id":"qa-whatsapp"}}', 'response' => array( 'code' => 200, 'message' => 'OK' ), 'cookies' => array() );
+			}
+			return new WP_Error( 'worker_qa_offline', 'External HTTP disabled in worker QA.' );
+		};
+		add_filter( 'pre_http_request', $mock, PHP_INT_MAX, 3 );
+		for ( $i = 0; $i < 20; ++$i ) { $r = flxi_run_queue( 8 ); if ( ! $r['processed'] ) { break; } }
+		$t = flxi_table( 'queue' );
+		$row = $wpdb->get_row( $wpdb->prepare( "SELECT status,attempts,scheduled_at FROM $t WHERE campaign_id=%d AND recipient='905550000000'", $cid ), ARRAY_A );
+		$backoff = 'queued' === $row['status'] && 1 === (int) $row['attempts'] && strtotime( $row['scheduled_at'] . ' UTC' ) > time();
+		$wpdb->update( $t, array( 'scheduled_at' => flxi_now() ), array( 'campaign_id' => $cid, 'status' => 'queued' ) );
+		flxi_run_queue( 8 );
+		$sent = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE campaign_id=%d AND status='sent'", $cid ) );
+		$auth_error = true; $connection = flxi_get_connection( $id );
+		$error = flxi_netgsm_send( $connection['config'], array( 'recipient' => '905550000000', 'body' => 'teşekkürler' ) );
+		$wa = flxi_save_connection( 0, 'evolution', 'Background WhatsApp QA', array( 'base_url' => 'https://example.invalid', 'api_key' => 'not-a-real-credential', 'instance' => 'qa', 'delay' => 4, 'typing' => 0 ), true, false );
+		flx_bg_test_assert( ! is_wp_error( $wa ), 'Test WhatsApp connection failed' ); $f = get_option( 'flx_bg_test_fixture' ); $f['connections'][] = $wa; update_option( 'flx_bg_test_fixture', $f, false );
+		$wc = flxi_create_campaign( array( 'name' => 'Background WhatsApp QA', 'channel' => 'whatsapp', 'connection_id' => $wa, 'text' => 'Worker QA' ), array_slice( $recipients, 0, 3 ) );
+		$f = get_option( 'flx_bg_test_fixture' ); $f['campaigns'][] = $wc; update_option( 'flx_bg_test_fixture', $f, false );
+		$dates = $wpdb->get_col( $wpdb->prepare( "SELECT scheduled_at FROM $t WHERE campaign_id=%d ORDER BY id", $wc ) );
+		$r = flxi_run_queue( 8 );
+		$wa_sent = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE campaign_id=%d AND status='sent'", $wc ) );
+		$wa_limited = true; $limited = flxi_send_message( 'whatsapp', '905550000000', 'Worker QA', array( 'connection_id' => $wa, 'log' => false ) );
+		flx_bg_test_output( array( 'recipients' => count( $recipients ), 'sent' => $sent, 'unique_accepted' => count( $accepted ), 'no_duplicate' => $accepted && 1 === max( $accepted ), 'payload' => $payload_ok, 'backoff' => $backoff, 'auth_permanent' => ! $error['ok'] && ! $error['retry'], 'whatsapp_retry' => ! $limited['ok'] && $limited['retry'], 'whatsapp' => 1 === $wa_sent && strtotime( $dates[1] ) - strtotime( $dates[0] ) === 4 && strtotime( $dates[2] ) - strtotime( $dates[1] ) === 4 ) );
+		remove_filter( 'pre_http_request', $mock, PHP_INT_MAX );
+		break;
+	case 'wake-enqueue':
+		flx_background_schedule( 'flx_bg_qa_sleep', array( 'wake' ), 1 );
+		flx_bg_test_output( array( 'enqueued' => microtime( true ) ) );
+		break;
+	case 'wake-result':
+		flx_bg_test_output( array( 'row' => get_option( 'flx_bg_qa_pool_wake' ) ) );
+		break;
+	case 'parallel-real':
+		defined( 'DOING_CRON' ) || define( 'DOING_CRON', true );
+		$f = get_option( 'flx_bg_test_fixture' ); $id = end( $f['certificates'] );
+		do_action( 'flxi_run_queue' ); do_action( 'flxs_run_queue' ); do_action( 'flxs_render_files', $id ); do_action( 'flxy_job_tick' );
+		FLX_Background_Pool::finish();
+		$c = flxs_get_certificate( $id ); $s = FLXY_Runner::current();
+		wp_cache_delete( 'flx_bg_test_deliveries', 'options' );
+		$cid = end( $f['campaigns'] );
+		flx_bg_test_output( array( 'delivered' => (int) get_option( 'flx_bg_test_deliveries' ) - $f['parallel_before'], 'pdf' => ! empty( $c['pdf_file'] ), 'backup' => $s['phase'], 'campaign' => $wpdb->get_col( $wpdb->prepare( 'SELECT status FROM ' . flxi_table( 'queue' ) . ' WHERE campaign_id=%d', $cid ) ), 'cert' => $wpdb->get_col( "SELECT status FROM " . flxs_table( 'messages' ) . " WHERE recipient='worker-qa@example.invalid'" ) ) );
+		break;
 	case 'race':
+		$barrier = (float) get_option( 'flx_bg_test_barrier' );
+		while ( microtime( true ) < $barrier ) { usleep( 500 ); }
 		flx_bg_test_output( array( 'claimed' => (bool) flx_background_lock( 'qa-race', 60 ) ) );
 		break;
+	case 'race-prepare':
+		update_option( 'flx_bg_test_barrier', microtime( true ) + 3, false );
+		flx_bg_test_output( array( 'prepared' => true ) );
+		break;
 	case 'cleanup':
+		@unlink( WPMU_PLUGIN_DIR . '/flx-background-qa.php' );
+		foreach ( $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE 'flx_bg_qa_pool_%' OR option_name LIKE 'flx_bg_task_%'" ) as $name ) {
+			if ( 0 === strpos( $name, 'flx_bg_task_' ) ) { delete_option( 'flx_bg_lock_' . md5( 'dispatch-' . substr( $name, strlen( 'flx_bg_task_' ) ) ) ); }
+			delete_option( $name );
+		}
+		for ( $i = 0; $i < 64; ++$i ) { delete_option( 'flx_bg_lock_' . md5( 'process-slot-' . $i ) ); }
+		for ( $i = 0; $i < 16; ++$i ) { delete_option( 'flx_bg_lock_' . md5( 'plugin-slot-flx-background-qa-' . $i ) ); }
+		foreach ( glob( WP_CONTENT_DIR . '/.flx-background-wake/[0-9]*' ) ?: array() as $signal ) { @unlink( $signal ); }
+		@rmdir( WP_CONTENT_DIR . '/.flx-background-wake' );
 		$f = get_option( 'flx_bg_test_fixture' );
 		if ( $f ) {
 			foreach ( $f['backups'] as $id ) { FLXY_Storage::delete( $id ); }
@@ -210,6 +451,7 @@ switch ( $operation ) {
 				if ( $c && function_exists( 'flxs_delete_certificate' ) ) { flxs_delete_certificate( $id ); }
 			}
 			foreach ( $f['campaigns'] as $id ) { $wpdb->delete( flxi_table( 'queue' ), array( 'campaign_id' => $id ) ); $wpdb->delete( flxi_table( 'campaigns' ), array( 'id' => $id ) ); }
+			foreach ( $f['connections'] ?? array() as $id ) { flxi_delete_connection( $id ); }
 			$wpdb->query( "DELETE FROM " . flxs_table( 'messages' ) . " WHERE recipient = 'worker-qa@example.invalid'" );
 			$wpdb->delete( flxs_table( 'providers' ), array( 'id' => $f['provider'] ) ); $wpdb->delete( flxs_table( 'templates' ), array( 'id' => $f['template'] ) );
 			foreach ( array( 'mail' => flxi_table( 'queue' ), 'cert' => flxs_table( 'messages' ) ) as $name => $table ) { foreach ( $f['old_' . $name] as $r ) { $wpdb->update( $table, array( 'status' => $r['status'] ), array( 'id' => $r['id'] ) ); } }
@@ -217,6 +459,7 @@ switch ( $operation ) {
 		}
 		@unlink( WP_CONTENT_DIR . '/uploads/flx-background-qa/probe.txt' ); @rmdir( WP_CONTENT_DIR . '/uploads/flx-background-qa' );
 		delete_option( 'flx_bg_lock_' . md5( 'qa-race' ) ); delete_option( 'flx_bg_test_fixture' ); delete_option( 'flx_bg_test_deliveries' );
+		delete_option( 'flx_bg_test_barrier' );
 		flx_bg_test_output( array( 'cleaned' => true ) );
 		break;
 	default: throw new RuntimeException( 'Unknown test operation' );

@@ -1,5 +1,6 @@
 <?php
 defined( 'ABSPATH' ) || exit;
+FLX_Background_Pool::register( 'flxs_render_files', 'flx-certificates' );
 
 /**
  * Sunucuda çizim: PDF (TCPDF + FPDI), sertifika görseli ve 1200x630 paylaşım görseli (GD).
@@ -32,6 +33,7 @@ function flxs_render_schedule( $cert, $delay = 60 ) {
 }
 
 function flxs_render_files_job( $id ) {
+	if ( FLX_Background_Pool::dispatch( 'flxs_render_files', array( (int) $id ) ) ) { return; }
 	$cert = flxs_get_certificate( (int) $id );
 	if ( $cert ) {
 		$result = flxs_render_certificate_files( $cert );

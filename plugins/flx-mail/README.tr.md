@@ -136,3 +136,7 @@ Kampanya kuyruğu sağlıklı FluxWP Docker worker varsa otomatik olarak orada �
 ## Maintainers
 
 Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)
+
+## Gönderim doğrulaması
+
+Gerçek kuyruk üzerinden 1.000 alıcılı Netgsm kampanyası HTTP istekleri test içinde karşılanarak doğrulandı: numara tekilleştirme, Türkçe karakterler, seçilen İYS filtresi, geçici limit reddinden sonra yeniden deneme ve kalıcı kimlik doğrulama hatası. WhatsApp yanıtı, ayarlı gönderim aralığı ve HTTP 429 yeniden denemesi de kontrol edildi; e-posta kotaları korunur. Bu test canlı hesap bilgilerini veya telefona teslimatı doğrulamaz. Netgsm kampanyalarında şu anda her alıcı için ayrı API isteği yapılır; API kabulü teslim raporu değildir. Büyük kampanyadan önce mevcut bağlantı testi ekranından canlı bir deneme yapıp sağlayıcının teslim raporunu kontrol edin.
