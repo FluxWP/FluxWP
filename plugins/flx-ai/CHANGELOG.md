@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.10.3
+- MCP bağlantısı `edit_posts` yerine `flxai_mcp` yetkisi ister (rota, OAuth onay/belirteç/yenileme). `edit_posts` olan roller ve WordPress yöneticisi bu yetkiyi varsayılan taşır; Flux Roles'tan başka rollere de verilir. Araçlar kapalı liste, anahtar kapsamı, aracın `cap` değeri (yoksa `edit_posts`) ve `flx_mcp_tool_allowed` filtresine göre süzülür. Yetkisi kalkan kullanıcının anahtarı MCP ekranında uyarılır.
+
 ## 0.10.1
 - MCP anahtarı artık yalnız MCP rotasının izin kontrolünde kullanıcı olur (`/wp-json/flx-mcp/v1/mcp` ve aynı sunucuya düşen kısa adres). Adresin başka bir yerine ad alanı metni eklemek o kullanıcıyı yapmaz; MCP kapalıysa ve araç kapsamı da burada uygulanır.
 - Sorgu dizesindeki anahtar (`?key=`) kabul edilmez. Anahtar yalnız `Authorization: Bearer` veya `X-MCP-Key` başlığından okunur. Apache/LiteSpeed'de `REDIRECT_HTTP_AUTHORIZATION` okunmaya devam eder.

@@ -241,7 +241,7 @@ function flxai_chat_registry( $fresh = false ) {
 			'description' => '',
 			'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
 			'readonly'    => false,
-			'cap'         => 'read',
+			'cap'         => 'edit_posts',
 			'source'      => '',
 			'confirm'     => false,
 			'aliases'     => array(),
