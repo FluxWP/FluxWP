@@ -162,6 +162,11 @@ final class FLXY_Runner {
 
 	/** Engellemeyen loopback: bir sonraki adımı ayrı bir istekte başlatır. */
 	public static function spawn( string $token ): void {
+		$state = self::current();
+		if ( $state && 'backup' === $state['kind'] && flx_background_worker_active() ) {
+			self::schedule_tick();
+			return;
+		}
 		/** Loopback kapatılabilir (yalnız cron ve yönetim ekranı sürer). */
 		if ( ! apply_filters( 'flxy_use_loopback', true ) ) {
 			return;
@@ -217,6 +222,10 @@ final class FLXY_Runner {
 	public static function run_step( bool $interactive = false ): ?array {
 		$state = self::current();
 		if ( ! $state || self::is_finished( $state ) ) {
+			return $state;
+		}
+		if ( 'backup' === $state['kind'] && ! self::cancel_requested( $state ) && flx_background_should_defer() ) {
+			self::schedule_tick();
 			return $state;
 		}
 		if ( ! self::lock() ) {
@@ -476,7 +485,14 @@ final class FLXY_Runner {
 	}
 
 	public static function cron_tick(): void {
-		$state = self::run_step( false );
+		$deadline = microtime( true ) + 40;
+		do {
+			$before = self::current();
+			$state = self::run_step( false );
+			if ( $before === $state ) {
+				break; // Another process owns the step, or web execution is deferred.
+			}
+		} while ( flx_background_worker_context() && $state && 'backup' === $state['kind'] && ! self::is_finished( $state ) && microtime( true ) < $deadline );
 		if ( $state && ! self::is_finished( $state ) ) {
 			self::spawn( $state['token'] );
 		}

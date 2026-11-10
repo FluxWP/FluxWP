@@ -119,3 +119,13 @@ Tam başvuru: [API.md](../../docs/yedek-eklentisi/API.md).
 Flux Backup, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
+
+## Arka plan işleri
+
+Asenkron yedekler sağlıklı FluxWP Docker worker varsa otomatik olarak orada çalışır; yönetim ekranı yalnız ilerlemeyi izler. Worker yoksa mevcut cron, loopback ve yönetim ekranı işleyicileri devam eder. Geri yükleme ve güncelleme öncesi senkron yedekler mevcut akışını korur.
+
+[Worker ve yedek çalışma düzeni](../../tools/background/README.tr.md).
+
+## Maintainers
+
+Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)

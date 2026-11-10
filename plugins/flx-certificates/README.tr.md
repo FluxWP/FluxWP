@@ -122,3 +122,13 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/sertifika-sistemi/KURULUM
 Flux Certificates, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
+
+## Arka plan işleri
+
+Sertifika gönderim kuyruğu ve sunucuda üretilen PDF/görseller sağlıklı FluxWP Docker worker varsa otomatik olarak orada çalışır. Normal kurulumlarda hazır Action Scheduler veya WordPress cron kullanılır. Tarayıcıdaki canlı önizleme ve dosya yükleme çalışmaya devam eder; eksik dosyalar sınırlı yeniden denemeyle workera aktarılır.
+
+[Worker ve yedek çalışma düzeni](../../tools/background/README.tr.md).
+
+## Maintainers
+
+Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)

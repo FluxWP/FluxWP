@@ -126,3 +126,13 @@ Flux Mail sitenin MCP sunucusuna (**Flux SEO**) ve **Flux AI** sohbetine araçla
 Flux Mail, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
+
+## Arka plan işleri
+
+Kampanya kuyruğu sağlıklı FluxWP Docker worker varsa otomatik olarak orada çalışır. Worker yoksa mevcut WordPress cron ve istekle tetiklenen kuyruk çalışmaya devam eder. Posta kutusu kotası, parti boyutu ve yeniden deneme sınırları korunur. Tekil e-posta API’leri ve test gönderimleri senkron kalır.
+
+[Worker ve yedek çalışma düzeni](../../tools/background/README.tr.md).
+
+## Maintainers
+
+Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.13 — 2026-11-10
+- Prefer the detected Docker WP-CLI worker for campaign queues; retain native WordPress execution when no worker is available.
+- Use owner-bound queue leases and atomic message claims; release locks and retry temporary transport failures while preserving daily quotas.
+
 ## 1.13.12
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

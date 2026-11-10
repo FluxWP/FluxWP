@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.9.2 — 2026-11-10
+- Hand queued certificate delivery and server PDF/image generation to a healthy Docker worker; preserve Action Scheduler and native cron fallbacks.
+- Prevent concurrent or stale file generation, retry temporary render errors, and report queued bulk file repairs accurately.
+
 ## 1.9.1
 - The location name on the event page, event cards and (via the shared helper) other event blocks links to the tracked `/konum/` redirect, so clicking it opens the map and counts as a site visit. New helper `flxs_event_loc_label_html()`.
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.4 — 2026-11-10
+- Run asynchronous backup steps on a detected Docker worker without web polling or loopback work while its heartbeat is healthy.
+- Retain ordinary WordPress execution, cancellation, restores and synchronous pre-update snapshots.
+
 ## 1.4.3
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

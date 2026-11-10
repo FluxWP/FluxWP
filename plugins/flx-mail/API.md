@@ -168,3 +168,8 @@ Kişinin kendisiyle yazışma gibi istisnalarda `flxi_send_message( …, array( 
 `flxi/v1/preview`, `test-email`, `queue/run`, `recipients`, `connection-test` (`{id, to}` ya da senaryo: `{id, to, scenario, text?, caption?, template?}`), `log/{id}`, `dns`, `preview-pdf` (önizleme alanları + `dark`; `{name, data}` base64 PDF).
 WhatsApp: `flxi/v1/wa/{id}/state` (GET, `?fresh=1`), `wa/{id}/connect` (POST `{number?}` → `{state, qr (data URI), pairing}`; instance sunucuda yoksa oluşturur), `wa/{id}/restart`, `wa/{id}/logout`, `wa/{id}/instances` (GET, sunucudaki instance'lar), `wa/{id}/server` (GET/POST, yalnız flxwpapi; `{publicUrl, keepAlive, db, test}`), `wacloud/{id}/setup`, `wacloud/{id}/templates`. API key ve parolalar tarayıcıya gelmez.
 Posta kutusu: `flxi/v1/mailbox/` altında `list`, `item/{id}`, `item/{id}/mark`, `item/{id}/attachment`, `sync`, `test`, `drafts`, `draft`, `draft/{id}`, `draft/{id}/send`, `draft/{id}/delete`, `new-draft`, `reply`, `preview`, `ai`, `layouts`, `layout`, `layout/{id}/delete`.
+
+
+## Portable background execution
+
+See the [shared worker contract](../../docs/background-workers/API.md) for automatic Docker worker detection, heartbeat expiry and ordinary WordPress fallback. Campaign queues prefer the worker; single-email APIs remain synchronous.

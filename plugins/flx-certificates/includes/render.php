@@ -17,22 +17,34 @@ function flxs_render_available() {
 }
 
 /** Yeni sertifika: dosyaları bir dakika sonra arka planda üret (panelde oluşturan tarayıcı bu arada yüklemiş olur). */
-function flxs_render_schedule( $cert ) {
+function flxs_render_schedule( $cert, $delay = 60 ) {
 	if ( ! flxs_render_available() || empty( $cert['id'] ) ) {
 		return;
 	}
 	$args = array( (int) $cert['id'] );
-	if ( function_exists( 'as_schedule_single_action' ) ) {
-		as_schedule_single_action( time() + 60, 'flxs_render_files', $args, 'flx-certificates' );
+	if ( ! flx_background_worker_active() && function_exists( 'as_schedule_single_action' ) && did_action( 'action_scheduler_init' ) ) {
+		if ( ! function_exists( 'as_has_scheduled_action' ) || ! as_has_scheduled_action( 'flxs_render_files', $args, 'flx-certificates' ) ) {
+			as_schedule_single_action( time() + max( 1, (int) $delay ), 'flxs_render_files', $args, 'flx-certificates' );
+		}
 	} else {
-		wp_schedule_single_event( time() + 60, 'flxs_render_files', $args );
+		flx_background_schedule( 'flxs_render_files', $args, $delay );
 	}
 }
 
 function flxs_render_files_job( $id ) {
 	$cert = flxs_get_certificate( (int) $id );
 	if ( $cert ) {
-		flxs_render_certificate_files( $cert );
+		$result = flxs_render_certificate_files( $cert );
+		$key = 'flxs_render_retry_' . (int) $id;
+		if ( is_wp_error( $result ) && 'flxs_render_busy' !== $result->get_error_code() ) {
+			$attempts = (int) get_transient( $key ) + 1;
+			set_transient( $key, $attempts, DAY_IN_SECONDS );
+			if ( $attempts < 3 ) {
+				flxs_render_schedule( $cert, 60 * $attempts );
+			}
+		} elseif ( ! is_wp_error( $result ) ) {
+			delete_transient( $key );
+		}
 	}
 }
 
@@ -49,20 +61,36 @@ function flxs_render_certificate_files( $cert, $types = null ) {
 	if ( ! $types ) {
 		return array();
 	}
-	$lock = 'flxs_render_' . (int) $cert['id'];
-	if ( get_transient( $lock ) ) {
+	if ( flx_background_should_defer() ) {
+		flxs_render_schedule( $cert, 1 );
 		return new WP_Error( 'flxs_render_busy', __( 'This certificate\'s files are being prepared right now.', 'flx-certificates' ) );
 	}
-	set_transient( $lock, 1, 120 );
+	$lock = 'certificate-files-' . (int) $cert['id'];
+	$token = flx_background_lock( $lock, 180 );
+	if ( ! $token ) {
+		flxs_render_schedule( $cert, 30 );
+		return new WP_Error( 'flxs_render_busy', __( 'This certificate\'s files are being prepared right now.', 'flx-certificates' ) );
+	}
 	if ( function_exists( 'set_time_limit' ) ) {
 		@set_time_limit( 120 ); // phpcs:ignore
 	}
 	try {
+		$fresh = flxs_get_certificate( (int) $cert['id'] );
+		if ( ! $fresh ) {
+			return array();
+		}
+		// Another request may have stored files between the initial read and this lease.
+		$cert = $fresh;
+		$types = array_intersect( $types, flxs_certificate_missing_files( $cert ) );
+		if ( ! $types ) {
+			return array();
+		}
 		$out = flxs_render_certificate_files_now( $cert, $types );
 	} catch ( \Throwable $e ) {
 		$out = new WP_Error( 'flxs_render', $e->getMessage() );
+	} finally {
+		flx_background_unlock( $lock, $token );
 	}
-	delete_transient( $lock );
 	if ( is_wp_error( $out ) ) {
 		flxs_log( 'files_render_failed', 'certificate', $cert['id'], $cert['number'], array( 'error' => $out->get_error_message() ) );
 	}
@@ -183,8 +211,14 @@ function flxs_certificates_missing_files( $limit = 0 ) {
 function flxs_render_missing( $limit = 25 ) {
 	$ok   = 0;
 	$fail = 0;
+	$queued = 0;
 	foreach ( flxs_certificates_missing_files( $limit ) as $id ) {
 		$cert = flxs_get_certificate( $id );
+		if ( $cert && flx_background_should_defer() ) {
+			flxs_render_schedule( $cert, 1 );
+			++$queued;
+			continue;
+		}
 		$res  = $cert ? flxs_render_certificate_files( $cert ) : null;
 		if ( is_wp_error( $res ) || ! $cert ) {
 			++$fail;
@@ -192,7 +226,7 @@ function flxs_render_missing( $limit = 25 ) {
 			++$ok;
 		}
 	}
-	return array( $ok, $fail );
+	return array( $ok, $fail, $queued );
 }
 
 /** Font id => TTF yolu (renderer.js gibi bilinmeyen font Nunito'ya düşer). */

@@ -126,3 +126,13 @@ Passwords and API keys are never readable or writable through any tool.
 Flux Contact Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
+
+## Background jobs
+
+Campaign queues automatically prefer a healthy FluxWP Docker worker. Without a worker, the existing WordPress cron and request-driven queue continue to work. Mailbox quotas, batch sizes and retry limits still apply. Single-email APIs and diagnostic sends remain synchronous.
+
+[Worker contract and fallback](../../docs/background-workers/API.md).
+
+## Maintainers
+
+Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)

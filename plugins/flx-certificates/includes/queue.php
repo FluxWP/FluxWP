@@ -188,6 +188,10 @@ function flxs_create_batch( $name, $channel, $source, $meta = array() ) {
 
 function flxs_kick_queue( $when = 0 ) {
 	$when = max( time(), (int) $when );
+	if ( flx_background_worker_active() ) {
+		flx_background_schedule( 'flxs_run_queue', array(), max( 1, $when - time() ) );
+		return 'wp-cron';
+	}
 	if ( function_exists( 'as_schedule_single_action' ) && function_exists( 'as_has_scheduled_action' ) && did_action( 'action_scheduler_init' ) ) {
 		if ( ! as_has_scheduled_action( 'flxs_run_queue', array(), 'flx-certificates' ) ) {
 			as_schedule_single_action( $when, 'flxs_run_queue', array(), 'flx-certificates' );
@@ -211,20 +215,16 @@ function flxs_queue_runner_name() {
 }
 
 function flxs_acquire_lock( $ttl = 90 ) {
-	$now = time();
-	if ( add_option( 'flxs_queue_lock', $now + $ttl, '', false ) ) {
-		return true;
+	$token = flx_background_lock( 'certificate-messages', $ttl );
+	if ( $token ) {
+		$GLOBALS['flxs_queue_owner'] = $token;
 	}
-	$until = (int) get_option( 'flxs_queue_lock' );
-	if ( $until < $now ) {
-		delete_option( 'flxs_queue_lock' );
-		return add_option( 'flxs_queue_lock', $now + $ttl, '', false );
-	}
-	return false;
+	return (bool) $token;
 }
 
 function flxs_release_lock() {
-	delete_option( 'flxs_queue_lock' );
+	flx_background_unlock( 'certificate-messages', $GLOBALS['flxs_queue_owner'] ?? '' );
+	unset( $GLOBALS['flxs_queue_owner'] );
 }
 
 /**
@@ -233,6 +233,10 @@ function flxs_release_lock() {
  */
 function flxs_run_queue( $budget = null ) {
 	global $wpdb;
+	if ( flx_background_should_defer() ) {
+		flxs_kick_queue();
+		return array( 'processed' => 0, 'sent' => 0, 'failed' => 0, 'pending' => true, 'deferred' => true );
+	}
 	$t = flxs_table( 'messages' );
 	if ( null === $budget || ! is_numeric( $budget ) ) {
 		$budget = wp_doing_cron() ? 45 : 20;
@@ -240,49 +244,52 @@ function flxs_run_queue( $budget = null ) {
 	if ( ! flxs_acquire_lock( (int) $budget + 30 ) ) {
 		return array( 'locked' => true, 'processed' => 0 );
 	}
-	flxs_mark_queue_run();
-	if ( function_exists( 'set_time_limit' ) ) {
-		@set_time_limit( (int) $budget + 60 ); // phpcs:ignore
-	}
-	// Takılı kalan "gönderiliyor" kayıtlarını geri al
-	$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'queued', locked_at = NULL WHERE status = 'processing' AND locked_at < %s", gmdate( 'Y-m-d H:i:s', time() - 600 ) ) );
-
-	$start     = microtime( true );
-	$processed = 0;
-	$sent      = 0;
-	$failed    = 0;
-	$limit     = max( 1, (int) flxs_setting( 'queue_batch' ) );
-	while ( $processed < $limit ) {
-		$left = $budget - ( microtime( true ) - $start );
-		if ( $left < 3 ) {
-			break;
+	try {
+		flxs_mark_queue_run();
+		if ( function_exists( 'set_time_limit' ) ) {
+			@set_time_limit( (int) $budget + 60 ); // phpcs:ignore
 		}
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE status = 'queued' AND scheduled_at <= %s ORDER BY scheduled_at ASC, id ASC LIMIT 1", flxs_now() ), ARRAY_A );
-		if ( ! $row ) {
-			$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" );
-			$wait = $next ? strtotime( $next . ' UTC' ) - time() : 999;
-			if ( $wait > 0 && $wait < $left - 3 ) {
-				sleep( (int) $wait );
+		// Takılı kalan "gönderiliyor" kayıtlarını geri al
+		$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'queued', locked_at = NULL WHERE status = 'processing' AND locked_at < %s", gmdate( 'Y-m-d H:i:s', time() - 600 ) ) );
+
+		$start     = microtime( true );
+		$processed = 0;
+		$sent      = 0;
+		$failed    = 0;
+		$limit     = max( 1, (int) flxs_setting( 'queue_batch' ) );
+		while ( $processed < $limit ) {
+			$left = $budget - ( microtime( true ) - $start );
+			if ( $left < 3 ) {
+				break;
+			}
+			$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE status = 'queued' AND scheduled_at <= %s ORDER BY scheduled_at ASC, id ASC LIMIT 1", flxs_now() ), ARRAY_A );
+			if ( ! $row ) {
+				$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" );
+				$wait = $next ? strtotime( $next . ' UTC' ) - time() : 999;
+				if ( $wait > 0 && $wait < $left - 3 ) {
+					sleep( (int) $wait );
+					continue;
+				}
+				break;
+			}
+			$claimed = $wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'processing', locked_at = %s, attempts = attempts + 1, updated_at = %s WHERE id = %d AND status = 'queued'", flxs_now(), flxs_now(), $row['id'] ) );
+			if ( 1 !== (int) $claimed ) {
 				continue;
 			}
-			break;
+			$row['attempts'] = (int) $row['attempts'] + 1;
+			$r               = flxs_process_message( $row );
+			++$processed;
+			$r ? ++$sent : ++$failed;
 		}
-		$claimed = $wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'processing', locked_at = %s, attempts = attempts + 1, updated_at = %s WHERE id = %d AND status = 'queued'", flxs_now(), flxs_now(), $row['id'] ) );
-		if ( 1 !== (int) $claimed ) {
-			continue;
-		}
-		$row['attempts'] = (int) $row['attempts'] + 1;
-		$r               = flxs_process_message( $row );
-		++$processed;
-		$r ? ++$sent : ++$failed;
-	}
-	flxs_release_lock();
 
-	$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" );
-	if ( $next ) {
-		flxs_kick_queue( strtotime( $next . ' UTC' ) );
+		$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" );
+		if ( $next ) {
+			flxs_kick_queue( strtotime( $next . ' UTC' ) );
+		}
+		return array( 'processed' => $processed, 'sent' => $sent, 'failed' => $failed, 'pending' => (bool) $next );
+	} finally {
+		flxs_release_lock();
 	}
-	return array( 'processed' => $processed, 'sent' => $sent, 'failed' => $failed, 'pending' => (bool) $next );
 }
 
 function flxs_process_message( $row ) {
