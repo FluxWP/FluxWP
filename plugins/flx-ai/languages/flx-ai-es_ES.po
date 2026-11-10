@@ -76,15 +76,6 @@ msgstr "Revocar"
 msgid "3. Connect an assistant"
 msgstr "3. Conecta un asistente"
 
-msgid "Connectors › Add custom connector"
-msgstr "Conectores › Agregar conector personalizado"
-
-msgid "URL with the key, for places where headers can't be added; don't share it:"
-msgstr "URL con la clave, para lugares donde no se pueden agregar encabezados; no lo compartas:"
-
-msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
-msgstr "En Apache, si ve una \"Clave no válida\", agregue SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 a .htaccess, o use la URL con clave."
-
 msgid "Recent activity"
 msgstr "Actividad reciente"
 
@@ -964,20 +955,8 @@ msgstr "El MCP está apagado. Actívelo en Flux AI & MCP › MCP."
 msgid "Invalid or missing MCP key."
 msgstr "Clave MCP no válida o faltante."
 
-msgid "This user can't edit content."
-msgstr "Este usuario no puede editar contenido."
-
 msgid "Unknown tool: %s"
 msgstr "Herramienta desconocida:%s"
-
-msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
-msgstr "Esta herramienta está desactivada (Flux AI & MCP › Herramientas):%s"
-
-msgid "This key can't use this tool: %s"
-msgstr "Esta clave no puede usar esta herramienta:%s"
-
-msgid "You don't have permission for this."
-msgstr "No tienes permiso para esto."
 
 msgid "Unauthorized."
 msgstr "No autorizado."
@@ -1539,3 +1518,34 @@ msgid "%dvehicle is registered.%dvehicle is registered."
 msgid_plural "%dvehicle is registered.%dvehicle is registered."
 msgstr[0] " El vehículo%destá registrado. El vehículo%destá registrado."
 msgstr[1] " El vehículo%destá registrado. El vehículo%destá registrado."
+
+msgid "AI & MCP"
+msgstr "IA y MCP"
+
+msgid "Connects assistants over MCP (only tools their own permissions allow)"
+msgstr "Conecta asistentes por MCP (solo las herramientas que permiten sus propios permisos)"
+
+msgid "No MCP access"
+msgstr "Sin acceso MCP"
+
+msgid "On Apache or LiteSpeed, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess."
+msgstr "En Apache o LiteSpeed, si ve \"Clave no válida\", agregue SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 a .htaccess."
+
+msgid "Other clients"
+msgstr "Otros clientes"
+
+msgid "Roles and access"
+msgstr "Roles y acceso"
+
+msgid "Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL."
+msgstr "Envíe la clave en el encabezado Authorization: Bearer o en el encabezado X-MCP-Key. No ponga la clave en la URL."
+
+msgid "This user can't use MCP."
+msgstr "Este usuario no puede usar MCP."
+
+msgid "Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do."
+msgstr "Quién puede conectar: usuarios con la capacidad flxai_mcp. Los roles que pueden editar entradas la tienen de forma predeterminada, y los administradores siempre."
+
+msgid "Your account can't connect an assistant (the MCP capability is required)."
+msgstr "Su cuenta no puede conectar un asistente (se requiere la capacidad MCP)."
+

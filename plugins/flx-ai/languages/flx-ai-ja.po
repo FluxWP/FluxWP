@@ -76,15 +76,6 @@ msgstr "取り消し"
 msgid "3. Connect an assistant"
 msgstr "3. アシスタントを接続する"
 
-msgid "Connectors › Add custom connector"
-msgstr "コネクタ › カスタム コネクタの追加"
-
-msgid "URL with the key, for places where headers can't be added; don't share it:"
-msgstr "ヘッダーを追加できない場所のキーを含む URL。共有しないでください:"
-
-msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
-msgstr "Apache で「無効なキー」が表示された場合は、SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 を .htaccess に追加するか、キー付き URL を使用します。"
-
 msgid "Recent activity"
 msgstr "最近の活動"
 
@@ -964,20 +955,8 @@ msgstr "MCPはオフです。 Flux AI & MCP › MCP でオンにします。"
 msgid "Invalid or missing MCP key."
 msgstr "MCP キーが無効または欠落しています。"
 
-msgid "This user can't edit content."
-msgstr "このユーザーはコンテンツを編集できません。"
-
 msgid "Unknown tool: %s"
 msgstr "不明なツール:%s"
-
-msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
-msgstr "このツールはオフになっています (Flux AI と MCP › ツール):%s"
-
-msgid "This key can't use this tool: %s"
-msgstr "このキーはこのツールを使用できません:%s"
-
-msgid "You don't have permission for this."
-msgstr "これには許可がありません。"
 
 msgid "Unauthorized."
 msgstr "無許可。"
@@ -1533,3 +1512,34 @@ msgstr "すべての FluxWP プラグインの共通 AI ハブ: OpenRouter お�
 msgid "%dvehicle is registered.%dvehicle is registered."
 msgid_plural "%dvehicle is registered.%dvehicle is registered."
 msgstr[0] "%d車両が登録されています。%d車両が登録されています。"
+
+msgid "AI & MCP"
+msgstr "AI と MCP"
+
+msgid "Connects assistants over MCP (only tools their own permissions allow)"
+msgstr "アシスタントを MCP で接続します（各自の権限が許すツールだけ）"
+
+msgid "No MCP access"
+msgstr "MCP アクセスなし"
+
+msgid "On Apache or LiteSpeed, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess."
+msgstr "Apache または LiteSpeed で「無効なキー」と出たら、.htaccess に SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 を追加します。"
+
+msgid "Other clients"
+msgstr "その他のクライアント"
+
+msgid "Roles and access"
+msgstr "権限とアクセス"
+
+msgid "Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL."
+msgstr "キーは Authorization: Bearer ヘッダー、または X-MCP-Key ヘッダーで送ってください。キーを URL に入れないでください。"
+
+msgid "This user can't use MCP."
+msgstr "このユーザーは MCP を使えません。"
+
+msgid "Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do."
+msgstr "接続できる人: flxai_mcp 権限を持つユーザー。投稿を編集できる権限グループは既定で持ち、管理者は常に持ちます。"
+
+msgid "Your account can't connect an assistant (the MCP capability is required)."
+msgstr "このアカウントではアシスタントを接続できません（MCP 権限が必要です）。"
+
