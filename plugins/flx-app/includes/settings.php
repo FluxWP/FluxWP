@@ -7,7 +7,7 @@ function flxapp_defaults() {
 	return array(
 		'access_minutes'  => 60,
 		'refresh_days'    => 60,
-		'dynamic_clients' => 1,
+		'dynamic_clients' => 0,
 		'web_session'     => 1,
 		'keys_cap'        => 'read',
 		'otp_enabled'     => 1,

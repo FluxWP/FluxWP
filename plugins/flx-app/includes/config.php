@@ -213,6 +213,7 @@ add_filter(
 				'push_enabled'  => array( 'type' => 'bool', 'default' => 1 ),
 				'push_hide'     => array( 'type' => 'bool', 'default' => 0, 'desc' => 'Hide notification body on the lock screen.' ),
 				'web_session'   => array( 'type' => 'bool', 'default' => 1 ),
+				'dynamic_clients' => array( 'type' => 'bool', 'default' => 0, 'desc' => 'Allow OAuth dynamic client registration (RFC 7591). Built-in clients stay available when this is off.' ),
 				'otp_enabled'   => array( 'type' => 'bool', 'default' => 1 ),
 				'store_ios'     => array( 'type' => 'url', 'default' => '' ),
 				'store_android' => array( 'type' => 'url', 'default' => '' ),

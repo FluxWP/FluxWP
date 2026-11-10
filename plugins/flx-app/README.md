@@ -37,7 +37,7 @@ A phone or desktop app for a WordPress site usually means application passwords 
 
 ### Sign-in
 - OAuth 2.0 authorisation code + PKCE (S256) with rotating refresh tokens and revoke; built-in client "Flux Desktop" (`flxmasaustu://` and loopback redirects).
-- RFC 8414 / 9728 metadata and dynamic client registration for MCP clients; the Flux SEO endpoint accepts these tokens.
+- RFC 8414 / 9728 metadata and dynamic client registration for MCP clients (off by default; turn it on under Application settings). The Flux SEO endpoint accepts these tokens when the token's scope includes `mcp`.
 - Personal API keys (`Bearer flxak_…`), with or without expiry.
 - **Donor sign-in** with a one-time code by WhatsApp (Flux Call Center) or e-mail; a customer account is created for donors who have orders.
 - One-time admin session from the app (`/session`), and `X-FluxWP-Token` fallback for hosts that drop the `Authorization` header.
@@ -80,9 +80,9 @@ Requirements: WordPress 6.4+, PHP 7.4+. The FluxWP desktop/mobile app or an MCP 
 
 **First steps**
 
-1. Activate Flux App; **Application** appears in the admin menu. The defaults work: access 60 min, session 60 days, MCP self-registration on.
+1. Activate Flux App; **Application** appears in the admin menu. The defaults work: access 60 min, session 60 days, MCP self-registration off.
 2. In the app, enter the site address and press **Log in**: the site's login and consent screen open, press **Allow**.
-3. For Claude and other MCP clients, give them `https://your-site/wp-json/flx-mcp/v1/mcp` and sign in, or create an API key.
+3. For Claude and other MCP clients, turn on self-registration, give them `https://your-site/wp-json/flx-mcp/v1/mcp` and sign in, or create an API key.
 
 > ℹ️ Resetting a password or deleting a user closes all of that person's app sessions and keys. If LiteSpeed caches the `.well-known/oauth-*` URLs, purge the cache.
 

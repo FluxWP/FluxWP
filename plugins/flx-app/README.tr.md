@@ -37,7 +37,7 @@ Bir WordPress sitesi için telefon ya da masaüstü uygulaması genelde elle yap
 
 ### Giriş
 - Dönen yenileme belirteçli ve iptalli OAuth 2.0 yetkilendirme kodu + PKCE (S256); yerleşik "Flux Masaüstü" istemcisi (`flxmasaustu://` ve loopback yönlendirme).
-- MCP istemcileri için RFC 8414 / 9728 metadata ve dinamik istemci kaydı; Flux SEO uç noktası bu belirteçleri kabul eder.
+- MCP istemcileri için RFC 8414 / 9728 metadata ve dinamik istemci kaydı (varsayılan kapalı; Uygulama ayarlarından açılır). Flux SEO uç noktası, belirtecin kapsamında `mcp` varsa bu belirteçleri kabul eder.
 - Süreli ya da süresiz kişisel API anahtarları (`Bearer flxak_…`).
 - **Bağışçı girişi:** WhatsApp (Flux Chat) ya da e-postayla tek kullanımlık kod; siparişi olan bağışçıya müşteri hesabı açılır.
 - Uygulamadan tek seferlik panel oturumu (`/session`); `Authorization` başlığını düşüren sunucular için `X-FluxWP-Token`.
@@ -80,9 +80,9 @@ Gereksinimler: WordPress 6.4+, PHP 7.4+. FluxWP masaüstü/mobil uygulaması ya 
 
 **İlk adımlar**
 
-1. Flux App'yı etkinleştirin; panel menüsünde **Uygulama** çıkar. Varsayılanlar yeterli: erişim 60 dk, oturum 60 gün, MCP kendini kaydedebilir.
+1. Flux App'yı etkinleştirin; panel menüsünde **Uygulama** çıkar. Varsayılanlar yeterli: erişim 60 dk, oturum 60 gün, MCP kendini kaydedemez.
 2. Uygulamada site adresini girip **Giriş yap**'a basın: sitenin giriş ve izin ekranı açılır, **İzin ver** deyin.
-3. Claude ve diğer MCP istemcilerine `https://siteniz/wp-json/flx-mcp/v1/mcp` adresini verip giriş yapın ya da bir API anahtarı oluşturun.
+3. Claude ve diğer MCP istemcileri için kendini kaydetmeyi açın, `https://siteniz/wp-json/flx-mcp/v1/mcp` adresini verip giriş yapın ya da bir API anahtarı oluşturun.
 
 > ℹ️ Parola sıfırlanınca ya da kullanıcı silinince o kişinin tüm uygulama oturumları ve anahtarları kapanır. LiteSpeed `.well-known/oauth-*` adreslerini önbelleğe alırsa önbelleği temizleyin.
 
