@@ -17,7 +17,6 @@ function flxg_default_settings() {
 		'ai_temperature'  => 0.4,
 		'ai_instructions' => '',
 		'ai_roles'        => array( 'administrator', 'editor', 'author' ),
-		'mcp_enabled'     => 1,
 		'delete_data'     => 0,
 	);
 }

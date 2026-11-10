@@ -4,6 +4,8 @@
  */
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
+delete_option( 'flxg_mcp_keys' );
+
 $flxg_settings = get_option( 'flxg_settings', array() );
 if ( empty( $flxg_settings['delete_data'] ) ) {
 	return;
@@ -12,7 +14,7 @@ global $wpdb;
 foreach ( array( 'spaces', 'folders', 'lists', 'members', 'tasks', 'assignees', 'watchers', 'tags', 'task_tags', 'fields', 'values', 'views', 'comments', 'files', 'activity', 'notifications', 'docs', 'doc_pages', 'doc_blocks', 'doc_revs', 'doc_presence' ) as $flxg_t ) {
 	$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'flxg_' . $flxg_t ); // phpcs:ignore
 }
-foreach ( array( 'flxg_settings', 'flxg_db_version', 'flxg_seeded', 'flxg_struct_rev', 'flxg_mcp_keys', 'flxg_ai_usage' ) as $flxg_o ) {
+foreach ( array( 'flxg_settings', 'flxg_db_version', 'flxg_seeded', 'flxg_struct_rev', 'flxg_ai_usage' ) as $flxg_o ) {
 	delete_option( $flxg_o );
 }
 delete_transient( 'flxg_ai_models' ); // eski sürümlerden kalan önbellek

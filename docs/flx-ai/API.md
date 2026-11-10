@@ -185,6 +185,10 @@ add_filter( 'flx_mcp_tools', function ( $tools ) {
 - Eski filtre **`flxseo_mcp_tools` aynen çalışır** (yeni filtreden sonra uygulanır); mevcut eklentilerin değişmesi gerekmez.
 - Araç adı benzersiz ve eklenti önekli olsun (`flxm_…`, `flxcrm_…`). Sonuç dizi ise `structuredContent` olarak da döner.
 
+### Flux Tasks (0.8.16)
+
+Flux Tasks kendi MCP rotasını çalıştırmaz. Araçlar `flx_mcp_tools` ile `flxg_` önekiyle kaydolur: `flxg_list_projects`, `flxg_list_users`, `flxg_search_tasks`, `flxg_get_task`, `flxg_create_task`, `flxg_update_task`, `flxg_add_comment`, `flxg_list_fields`, `flxg_create_list`, `flxg_delete_task`, `flxg_list_notifications`, `flxg_list_docs`, `flxg_get_doc_page`, `flxg_edit_doc_page`, `flxg_create_doc`, `flxg_create_doc_page`. Eski sunucunun öneksiz adları `aliases` ile çalışmaya devam eder. `cap` ve aracın kendi kontrolü `flxg_use`; liste ve görev yetkisi aracın içinde kalır. Aynı kayıt ortak sohbete de gider; ayrı bir `flxai_tools` kaydı yoktur. MCP rotasının kendisi `edit_posts` ister: yalnız `flxg_use` olan kullanıcı araca ulaşamaz.
+
 ### Diğer filtreler
 | Filtre | Ne |
 |---|---|
