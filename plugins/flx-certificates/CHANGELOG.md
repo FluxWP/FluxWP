@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.5 — 2026-11-10
+- Saving a certificate with `person.id` now checks the same people scope as the directory (`flxs_can_see_person`). An id outside that scope returns 404 and is not updated. Managers, and staff without `flxs_own_ref`, are unchanged.
+
 ## 1.9.4 — 2026-11-10
 - Bundle the shared bounded operational journal to trace worker/PDF/message jobs, timeouts and safe error metadata.
 
