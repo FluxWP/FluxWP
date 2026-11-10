@@ -263,29 +263,183 @@ function flxcb_store_upload( array $f ) {
 		/* translators: %d: megabytes */
 		return new WP_Error( 'flxcb_file', sprintf( __( 'Files can be up to %d MB.', 'flx-chatbot' ), (int) flxcb_setting( 'upload_mb' ) ), array( 'status' => 413 ) );
 	}
-	$check = wp_check_filetype_and_ext( $f['tmp_name'], (string) $f['name'] );
-	$mime  = (string) ( $check['type'] ?? '' );
-	if ( '' === $mime && function_exists( 'mime_content_type' ) ) {
-		$mime = (string) mime_content_type( $f['tmp_name'] );
+	$typed = flxcb_upload_type( $f['tmp_name'], (string) $f['name'] );
+	if ( is_wp_error( $typed ) ) {
+		return $typed;
 	}
-	if ( ! isset( flxcb_allowed_mimes()[ $mime ] ) ) {
-		return new WP_Error( 'flxcb_file', __( 'This file type can\'t be sent. Send an image, PDF or office document.', 'flx-chatbot' ), array( 'status' => 415 ) );
-	}
-	return flxcb_store_bytes( file_get_contents( $f['tmp_name'] ), $mime, sanitize_file_name( (string) $f['name'] ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+	return flxcb_store_bytes( file_get_contents( $f['tmp_name'] ), $typed['mime'], (string) $f['name'] ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 }
 
-/** Ham baytları yükleme klasörüne yazar. */
+/**
+ * Ziyaretçi dosyasının MIME'i. Uzantı istemci adından değil, içerikten ve izin listesinden gelir.
+ *
+ * @param string $tmp         Geçici dosya.
+ * @param string $client_name Tarayıcının verdiği ad (uzantı için kullanılmaz).
+ * @return array|WP_Error { mime }
+ */
+function flxcb_upload_type( $tmp, $client_name ) {
+	$fail    = new WP_Error( 'flxcb_file', __( 'This file type can\'t be sent. Send an image, PDF or office document.', 'flx-chatbot' ), array( 'status' => 415 ) );
+	$allowed = flxcb_allowed_mimes();
+	$real    = flxcb_finfo_mime( $tmp );
+	if ( flxcb_mime_dangerous( $real ) ) {
+		return $fail;
+	}
+	$check = wp_check_filetype_and_ext( $tmp, (string) $client_name );
+	$mime  = strtolower( (string) ( $check['type'] ?? '' ) );
+	if ( isset( $allowed[ $mime ] ) && '' !== flxcb_ext_for_mime( $mime ) ) {
+		return array( 'mime' => $mime );
+	}
+	// Ad izinli bir tür vermedi (ör. .php). Yalnız tespit edilen içerik, kendi adımızla doğrulanır.
+	if ( '' === $real || ! isset( $allowed[ $real ] ) ) {
+		return $fail;
+	}
+	$ext = flxcb_ext_for_mime( $real );
+	if ( '' === $ext ) {
+		return $fail;
+	}
+	$again = wp_check_filetype_and_ext( $tmp, 'upload.' . $ext );
+	$mime2 = strtolower( (string) ( $again['type'] ?? '' ) );
+	if ( $mime2 !== $real || '' === (string) ( $again['ext'] ?? '' ) ) {
+		return $fail;
+	}
+	return array( 'mime' => $mime2 );
+}
+
+/** finfo / mime_content_type. Boş olabilir. */
+function flxcb_finfo_mime( $path ) {
+	$mime = '';
+	if ( function_exists( 'finfo_open' ) ) {
+		$fi = finfo_open( FILEINFO_MIME_TYPE );
+		if ( $fi ) {
+			$mime = (string) finfo_file( $fi, $path );
+			finfo_close( $fi );
+		}
+	}
+	if ( '' === $mime && function_exists( 'mime_content_type' ) ) {
+		$mime = (string) mime_content_type( $path );
+	}
+	return flxcb_mime_base( $mime );
+}
+
+/** MIME başlığından parametreleri atar. */
+function flxcb_mime_base( $mime ) {
+	$mime = strtolower( trim( (string) $mime ) );
+	$semi = strpos( $mime, ';' );
+	if ( false !== $semi ) {
+		$mime = trim( substr( $mime, 0, $semi ) );
+	}
+	return $mime;
+}
+
+/** Betik / HTML gibi çalıştırılabilir türler. */
+function flxcb_mime_dangerous( $mime ) {
+	$mime = flxcb_mime_base( $mime );
+	if ( '' === $mime ) {
+		return false;
+	}
+	if ( false !== strpos( $mime, 'php' ) || false !== strpos( $mime, 'javascript' ) ) {
+		return true;
+	}
+	return in_array( $mime, array( 'text/html', 'application/xhtml+xml', 'image/svg+xml' ), true );
+}
+
+/** Saklanmaması gereken uzantılar. */
+function flxcb_ext_blocked( $ext ) {
+	return in_array(
+		strtolower( (string) $ext ),
+		array( 'php', 'phtml', 'phar', 'php3', 'php4', 'php5', 'php7', 'php8', 'cgi', 'pl', 'asp', 'aspx', 'js', 'mjs', 'html', 'htm', 'shtml', 'svg', 'exe', 'sh', 'py', 'htaccess' ),
+		true
+	);
+}
+
+/**
+ * İzinli MIME → saklanan uzantı. Listede yoksa boş (istemci adına düşülmez).
+ *
+ * @param string $mime MIME.
+ */
+function flxcb_ext_for_mime( $mime ) {
+	$mime = flxcb_mime_base( $mime );
+	$map  = array(
+		'image/jpeg'      => 'jpg',
+		'image/png'       => 'png',
+		'image/gif'       => 'gif',
+		'image/webp'      => 'webp',
+		'application/pdf' => 'pdf',
+		'text/plain'      => 'txt',
+		'application/msword' => 'doc',
+		'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'docx',
+		'application/vnd.ms-excel' => 'xls',
+		'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'xlsx',
+	);
+	if ( isset( $map[ $mime ] ) ) {
+		return $map[ $mime ];
+	}
+	if ( ! isset( flxcb_allowed_mimes()[ $mime ] ) || ! function_exists( 'wp_get_default_extension_for_mime_type' ) ) {
+		return '';
+	}
+	$ext = strtolower( (string) wp_get_default_extension_for_mime_type( $mime ) );
+	if ( ! preg_match( '/^[a-z0-9]{1,5}$/', $ext ) || flxcb_ext_blocked( $ext ) ) {
+		return '';
+	}
+	return $ext;
+}
+
+/** Temsilci medyası (ses vb.) için MIME → güvenli uzantı. Ziyaretçi listesinde yok. */
+function flxcb_ext_for_agent_mime( $mime ) {
+	$mime = flxcb_mime_base( $mime );
+	$map  = array(
+		'audio/ogg'  => 'ogg',
+		'audio/mpeg' => 'mp3',
+		'audio/mp4'  => 'm4a',
+		'audio/webm' => 'weba',
+		'video/mp4'  => 'mp4',
+		'video/webm' => 'webm',
+		'video/ogg'  => 'ogv',
+	);
+	if ( isset( $map[ $mime ] ) ) {
+		return $map[ $mime ];
+	}
+	if ( ! function_exists( 'wp_get_default_extension_for_mime_type' ) ) {
+		return '';
+	}
+	$ext = strtolower( (string) wp_get_default_extension_for_mime_type( $mime ) );
+	if ( ! preg_match( '/^[a-z0-9]{1,5}$/', $ext ) || flxcb_ext_blocked( $ext ) ) {
+		return '';
+	}
+	return $ext;
+}
+
+/** Ham baytları yükleme klasörüne yazar. Uzantı MIME'den gelir, dosya adından değil. */
 function flxcb_store_bytes( $bin, $mime, $name ) {
-	$ext  = strtolower( pathinfo( (string) $name, PATHINFO_EXTENSION ) );
-	$ext  = preg_match( '/^[a-z0-9]{1,5}$/', $ext ) ? $ext : 'bin';
+	$mime = flxcb_mime_base( $mime );
+	if ( flxcb_mime_dangerous( $mime ) ) {
+		return new WP_Error( 'flxcb_file', __( 'This file type can\'t be sent. Send an image, PDF or office document.', 'flx-chatbot' ), array( 'status' => 415 ) );
+	}
+	$ext = flxcb_ext_for_mime( $mime );
+	if ( '' === $ext && ! isset( flxcb_allowed_mimes()[ $mime ] ) ) {
+		// Temsilci medyası (ses vb.). Ziyaretçi yüklemesi izinli MIME ile buraya gelmez.
+		$ext = flxcb_ext_for_agent_mime( $mime );
+		if ( '' === $ext ) {
+			$from = strtolower( pathinfo( sanitize_file_name( (string) $name ), PATHINFO_EXTENSION ) );
+			if ( preg_match( '/^[a-z0-9]{1,5}$/', $from ) && ! flxcb_ext_blocked( $from ) ) {
+				$ext = $from;
+			}
+		}
+	}
+	if ( '' === $ext || flxcb_ext_blocked( $ext ) ) {
+		return new WP_Error( 'flxcb_file', __( 'This file type can\'t be sent. Send an image, PDF or office document.', 'flx-chatbot' ), array( 'status' => 415 ) );
+	}
+	$base = pathinfo( sanitize_file_name( (string) $name ), PATHINFO_FILENAME );
+	$base = '' !== $base ? $base : 'file';
 	$path = gmdate( 'Ymd' ) . '-' . wp_generate_password( 20, false, false ) . '.' . $ext;
 	// phpcs:ignore WordPress.WP.AlternativeFunctions
 	if ( false === file_put_contents( flxcb_upload_dir() . '/' . $path, $bin ) ) {
 		return new WP_Error( 'flxcb_file', __( 'Could not save the file.', 'flx-chatbot' ), array( 'status' => 500 ) );
 	}
+	$display = mb_substr( $base, 0, 180 ) . '.' . $ext;
 	return array(
 		'path' => $path,
-		'name' => '' !== (string) $name ? mb_substr( (string) $name, 0, 190 ) : $path,
+		'name' => $display,
 		'mime' => (string) $mime,
 		'size' => strlen( (string) $bin ),
 	);
