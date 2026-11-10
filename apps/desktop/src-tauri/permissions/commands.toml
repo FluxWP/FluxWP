@@ -1,0 +1,9 @@
+[[permission]]
+identifier = "allow-secure-store"
+description = "Read and write this app's OS credential store."
+commands.allow = ["secure_get", "secure_set", "secure_remove"]
+
+[[permission]]
+identifier = "allow-shell-commands"
+description = "OAuth loopback, embedded webview and reload. Not the credential store."
+commands.allow = ["oauth_listen", "oauth_cancel", "webview_reload", "embed_open", "embed_message"]

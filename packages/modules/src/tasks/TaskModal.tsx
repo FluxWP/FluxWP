@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useReducer, useRef, useState, type ReactNode, type DragEvent as RDragEvent } from 'react';
 import type { FlxgActivity, FlxgComment, FlxgField, FlxgFile, FlxgTask, FlxgTaskDetail, FlxgUser } from '@fluxwp/core';
 import { trimEnd } from '@fluxwp/core';
+import { openSanitizedLink, sanitizeHtml } from '@fluxwp/ui';
 import { useHost } from '../host';
 import { between, norm, rank, store } from './engine';
 import { tt } from './i18n';
@@ -953,7 +954,7 @@ function DescEditor({ task }: { task: Detail }) {
   useLayoutEffect(() => {
     const el = ed.current!;
     if (document.activeElement === el) return;
-    const html = task.description || '';
+    const html = sanitizeHtml(task.description || '');
     if (html === original.current && el.innerHTML) return;
     el.innerHTML = html;
     original.current = clean();
@@ -966,7 +967,7 @@ function DescEditor({ task }: { task: Detail }) {
     const el = ed.current;
     if (!el) return;
     el.querySelectorAll('ul[data-checklist] > li').forEach((li) => !li.hasAttribute('data-checked') && li.setAttribute('data-checked', '0'));
-    let html = clean();
+    let html = sanitizeHtml(clean());
     if (html === '<br>' || html === '<p><br></p>') html = '';
     if (html === original.current) return;
     original.current = html;
@@ -1066,6 +1067,10 @@ function DescEditor({ task }: { task: Detail }) {
           commit();
         }}
         onClick={(ev) => {
+          if ((ev.target as HTMLElement).closest('a')) {
+            if (!edit) openSanitizedLink(ev);
+            return;
+          }
           const li = (ev.target as HTMLElement).closest('ul[data-checklist] > li');
           if (!li || !edit) return;
           const r = li.getBoundingClientRect();
@@ -2008,7 +2013,7 @@ function CommentNode({ cm, task }: { cm: FlxgComment; task: Detail }) {
             </div>
           </div>
         ) : (
-          cm.body && <div className="flxg-cmt-body flxg-prose" dangerouslySetInnerHTML={{ __html: richText(cm.body, e.S.users, e.S.me?.id ?? 0) }} />
+          cm.body && <div className="flxg-cmt-body flxg-prose" onClick={openSanitizedLink} dangerouslySetInnerHTML={{ __html: sanitizeHtml(richText(cm.body, e.S.users, e.S.me?.id ?? 0)) }} />
         )}
         {cm.files?.length > 0 && (
           <div className="flxg-cmt-files">
@@ -2513,14 +2518,14 @@ function AiPanel({ task }: { task: Detail }) {
       );
   } else if (st.action === 'description') {
     if (!st.applied) {
-      body = <div className="flxg-prose flxg-ai-preview" dangerouslySetInnerHTML={{ __html: r.html ?? '' }} />;
+      body = <div className="flxg-prose flxg-ai-preview" onClick={openSanitizedLink} dangerouslySetInnerHTML={{ __html: sanitizeHtml(r.html ?? '') }} />;
       foot = (
         <>
-          <button type="button" className="flxg-btn is-primary is-sm" onClick={() => void save({ description: r.html }).then(() => applied(tt("Description updated."), () => void save({ description: oldD })))}>
+          <button type="button" className="flxg-btn is-primary is-sm" onClick={() => void save({ description: sanitizeHtml(r.html ?? '') }).then(() => applied(tt("Description updated."), () => void save({ description: oldD })))}>
             {oldD ? tt("Replace") : tt("Apply")}
           </button>
           {oldD && (
-            <button type="button" className="flxg-btn is-sm" onClick={() => void save({ description: oldD + (r.html ?? '') }).then(() => applied(tt("Added to the end of the description."), () => void save({ description: oldD })))}>
+            <button type="button" className="flxg-btn is-sm" onClick={() => void save({ description: sanitizeHtml(oldD + (r.html ?? '')) }).then(() => applied(tt("Added to the end of the description."), () => void save({ description: oldD })))}>
               {tt("Append")}
             </button>
           )}
@@ -2560,7 +2565,7 @@ function AiPanel({ task }: { task: Detail }) {
         </button>
       );
   } else {
-    body = <div className="flxg-prose flxg-ai-preview" dangerouslySetInnerHTML={{ __html: richText(r.text ?? '', e.S.users, e.S.me?.id ?? 0) }} />;
+    body = <div className="flxg-prose flxg-ai-preview" onClick={openSanitizedLink} dangerouslySetInnerHTML={{ __html: sanitizeHtml(richText(r.text ?? '', e.S.users, e.S.me?.id ?? 0)) }} />;
     foot = (
       <>
         <button type="button" className="flxg-btn is-sm" onClick={() => copyText(c, r.text ?? '')}>

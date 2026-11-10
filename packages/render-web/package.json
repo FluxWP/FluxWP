@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/render-web",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "description": "DOM renderer for flx-app manifests: lists (table + master-detail, virtual scroll), details, forms and actions. Draws @fluxwp/runtime controllers. No data logic.",
