@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.9.4 — 2026-11-10
+- Bundle the shared bounded operational journal to trace worker/PDF/message jobs, timeouts and safe error metadata.
+
+## 1.9.3 — 2026-11-10
+- Share the reusable background execution guard and recover malformed abandoned leases; verify standalone and mixed bundle loading in CI.
+- Retain recovery events for interrupted delivery claims and enforce their attempt limits.
+- Signal due work to compatible Docker workers for lightweight fast wake; keep native scheduling for older images and ordinary WordPress.
+- Run independent worker cron jobs in a bounded subprocess pool (default 3 per plugin, configurable total 9), retaining resource locks, serialized scheduling, durable watchdog recovery and ordinary WordPress fallback.
+
+## 1.9.2 — 2026-11-10
+- Hand queued certificate delivery and server PDF/image generation to a healthy Docker worker; preserve Action Scheduler and native cron fallbacks.
+- Prevent concurrent or stale file generation, retry temporary render errors, and report queued bulk file repairs accurately.
+
 ## 1.9.1
 - The location name on the event page, event cards and (via the shared helper) other event blocks links to the tracked `/konum/` redirect, so clicking it opens the map and counts as a site visit. New helper `flxs_event_loc_label_html()`.
 

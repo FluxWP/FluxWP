@@ -176,3 +176,8 @@ Dizin `flxy_backups` seçeneğindedir (autoload kapalı). Kaybolursa (ör. verit
 ## Sistem kontrolü
 
 `flx_system_checks` filtresine satırlar (ortak sözleşme): `flxy.storage`, `flxy.zip`, `flxy.quota` (>%80 uyarı, >%95 hata), `flxy.last`, `flxy.pre_update` (grup "Yedekleme") ve `flxy.cron` (grup `Cron`).
+
+
+## Portable background execution
+
+See the [shared worker contract](../../docs/background-workers/API.md) for automatic Docker worker detection, heartbeat expiry and ordinary WordPress fallback. Asynchronous backups prefer the worker. Restores and synchronous pre-update snapshots retain their existing execution path.

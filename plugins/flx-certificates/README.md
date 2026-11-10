@@ -122,3 +122,13 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/sertifika-sistemi/KURULUM.md
 Flux Certificate Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
+
+## Background jobs
+
+Queued certificate delivery and server-generated PDF/image files automatically prefer a healthy FluxWP Docker worker. Ordinary installations keep Action Scheduler (when initialized) or native WordPress cron. Live browser previews and file uploads continue to work; missing files are queued for the worker with bounded retries.
+
+[Worker contract and fallback](../../docs/background-workers/API.md).
+
+## Maintainers
+
+Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)

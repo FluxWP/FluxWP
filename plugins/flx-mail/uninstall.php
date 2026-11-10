@@ -20,6 +20,8 @@ $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'flxi\\_wac\\
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '\_transient\_%flxi\_wacm\_%'" ); // phpcs:ignore
 wp_clear_scheduled_hook( 'flxi_daily' );
 wp_clear_scheduled_hook( 'flxi_run_queue' );
+wp_clear_scheduled_hook( 'flxi_netgsm_poll' );
+$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'flxi_netgsm_' ) . '%' ) );
 wp_clear_scheduled_hook( 'flxi_mailbox_sync' );
 $flxi_role = get_role( 'administrator' );
 if ( $flxi_role ) {

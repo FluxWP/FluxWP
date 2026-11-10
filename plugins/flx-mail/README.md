@@ -126,3 +126,23 @@ Passwords and API keys are never readable or writable through any tool.
 Flux Contact Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
+
+## Background jobs
+
+Campaign queues automatically prefer a healthy FluxWP Docker worker. Without a worker, the existing WordPress cron and request-driven queue continue to work. Mailbox quotas, batch sizes and retry limits still apply. Single-email APIs and diagnostic sends remain synchronous.
+
+[Worker contract and fallback](../../docs/background-workers/API.md).
+
+## Maintainers
+
+Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)
+
+## Sending verification
+
+A 1,000-recipient Netgsm campaign was exercised through the real queue with HTTP intercepted: normalized recipient deduplication, Turkish encoding, the selected IYS filter, a temporary rate-limit rejection/retry and permanent authentication failure. WhatsApp response parsing, configured spacing and HTTP 429 retry were also checked; email quotas remain enforced. This verifies application behavior, not live provider credentials or handset delivery. Netgsm campaigns currently submit one recipient per API request; API acceptance is not a delivery receipt. Confirm a live test through the existing connection test UI and check provider delivery reports before a large campaign.
+
+### Live delivery queue
+
+Communication › Queue shows email, WhatsApp and SMS progress, recipient statuses, provider job IDs and recent operational history. Netgsm campaigns batch 1,000 recipients per request by default and reconcile delivery reports; provider acceptance is displayed separately from actual delivery. Reports do not resend messages. Ambiguous submissions require review rather than an automatic resend.
+
+Stop queued messages locally, or request cancellation of a future scheduled Netgsm batch. Immediate or delivered SMS cannot be recalled. Optional scheduled sending uses the WordPress time zone. Background diagnostics exclude message content and credentials and retain at most the latest 2,000 events / 14 days by default. Native language packs follow WordPress's locale without Flux Lang.

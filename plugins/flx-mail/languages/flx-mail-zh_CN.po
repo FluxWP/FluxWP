@@ -2507,3 +2507,138 @@ msgstr "回复不能为空。"
 
 msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
 msgstr "网站的所有电子邮件集中在一处:发件人姓名/地址(info@/no-reply@)、SMTP、带徽标且适合移动设备的企业模板、查看、编辑、打开/关闭 WordPress + WooCommerce + FluxWP 插件的电子邮件、发送记录、单独和批量发送。 WhatsApp (Evolution API) 和 SMS (Netgsm) 连接也在这里;其他插件将其与公共 API 一起使用。"
+
+msgid "Accepted; awaiting delivery report"
+msgstr "已接受，等待送达报告"
+
+msgid "Action unavailable."
+msgstr "此操作不可用。"
+
+msgid "All sends"
+msgstr "所有发送"
+
+msgid "Attempts"
+msgstr "尝试次数"
+
+msgid "Awaiting delivery reports"
+msgstr "正在等待送达报告"
+
+msgid "Batch not found."
+msgstr "未找到批次。"
+
+msgid "Campaign"
+msgstr "发送任务"
+
+msgid "Campaign not found."
+msgstr "未找到发送任务。"
+
+msgid "Cancelled"
+msgstr "已取消"
+
+msgid "Check delivery reports"
+msgstr "查询送达报告"
+
+msgid "Choose a scheduled time at least one minute in the future."
+msgstr "请选择至少一分钟后的发送时间。"
+
+msgid "Continue with this action?"
+msgstr "是否继续此操作？"
+
+msgid "Could not refresh. Retrying shortly."
+msgstr "无法刷新，稍后将重试。"
+
+msgid "Delivered"
+msgstr "已送达"
+
+msgid "Delivery acceptance is unknown. Check Netgsm before sending again."
+msgstr "无法确认发送是否已被接受。重新发送前请检查Netgsm。"
+
+msgid "Delivery queue"
+msgstr "发送队列"
+
+msgid "Duplicate recipient"
+msgstr "重复收件人"
+
+msgid "Last report"
+msgstr "最新报告"
+
+msgid "Live email, WhatsApp and SMS progress. Acceptance by a provider is not proof of delivery."
+msgstr "实时查看电子邮件、WhatsApp和短信进度。服务商接受请求不代表消息已送达。"
+
+msgid "Needs review"
+msgstr "需要检查"
+
+msgid "Netgsm only supports cancellation of future scheduled sends. Delivered messages cannot be recalled."
+msgstr "Netgsm仅支持取消尚未开始的定时发送。已送达的消息无法撤回。"
+
+msgid "Next"
+msgstr "下一页"
+
+msgid "No final delivery report received. Check Netgsm."
+msgstr "未收到最终送达报告。请检查Netgsm。"
+
+msgid "No queue entries yet."
+msgstr "队列中暂无记录。"
+
+msgid "Operational history"
+msgstr "操作历史"
+
+msgid "Previous"
+msgstr "上一页"
+
+msgid "Processing"
+msgstr "处理中"
+
+msgid "Provider job ID"
+msgstr "服务商任务ID"
+
+msgid "Queue"
+msgstr "队列"
+
+msgid "Ready recipients are grouped in one API request. Default: 1000; maximum: 50000."
+msgstr "将就绪的收件人合并到一次API请求中。默认：1000；上限：50000。"
+
+msgid "Recent background events across plugins. Message content and credentials are excluded. Detailed delivery records remain in Log."
+msgstr "各插件最近的后台事件。不包含消息内容和访问凭据。详细发送记录见日志。"
+
+msgid "Recipients per Netgsm request"
+msgstr "每次Netgsm请求的收件人数"
+
+msgid "Request Netgsm cancellation"
+msgstr "请求Netgsm取消发送"
+
+msgid "Scheduled send (optional)"
+msgstr "定时发送（可选）"
+
+msgid "Skipped"
+msgstr "已跳过"
+
+msgid "Stop queued messages"
+msgstr "停止等待中的消息"
+
+msgid "Stopping the local queue does not recall messages already accepted by a provider. Netgsm cancellation is available only for future scheduled sends."
+msgstr "停止本地队列不会撤回服务商已接受的消息。Netgsm仅允许取消尚未开始的定时发送。"
+
+msgid "The cancellation window has closed."
+msgstr "可取消的时间窗口已结束。"
+
+msgid "The original Netgsm connection is unavailable."
+msgstr "原Netgsm连接不可用。"
+
+msgid "The queue is busy. Try again shortly."
+msgstr "队列正忙，请稍后重试。"
+
+msgid "Updated"
+msgstr "已更新"
+
+msgid "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts."
+msgstr "使用WordPress时区。Netgsm定时发送可在开始前取消。"
+
+msgid "View delivery queue"
+msgstr "查看发送队列"
+
+msgid "WordPress background processing"
+msgstr "WordPress后台处理"
+
+msgid "Worker active"
+msgstr "Worker正在运行"

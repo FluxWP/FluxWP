@@ -6,6 +6,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+FLX_Background_Pool::register( 'flxi_run_queue', 'flx-mail' );
 
 /** Alıcı kaynakları (gönderim ekranındaki seçimler). */
 function flxi_recipient_sources() {
@@ -124,6 +125,12 @@ function flxi_create_campaign( array $data, array $recipients ) {
 			return new WP_Error( 'flxi_conn', __( 'There is no active connection for this channel. Add one in Communication › Connections.', 'flx-mail' ) );
 		}
 	}
+	$send_at = 0;
+	if ( ! empty( $data['send_at'] ) ) {
+		$date = DateTimeImmutable::createFromFormat( '!Y-m-d\TH:i', (string) $data['send_at'], wp_timezone() );
+		if ( ! $date || $date->format( 'Y-m-d\TH:i' ) !== $data['send_at'] || $date->getTimestamp() <= time() + 60 ) { return new WP_Error( 'flxi_schedule', __( 'Choose a scheduled time at least one minute in the future.', 'flx-mail' ) ); }
+		$send_at = $date->getTimestamp();
+	}
 	$name = sanitize_text_field( $data['name'] ?? '' );
 	if ( '' === $name ) {
 		$name = 'email' === $channel ? sanitize_text_field( $data['subject'] ) : mb_substr( sanitize_text_field( $data['text'] ), 0, 60 );
@@ -135,6 +142,7 @@ function flxi_create_campaign( array $data, array $recipients ) {
 			'channel'    => $channel,
 			'data'       => flxi_json(
 				array(
+					'send_at'       => $send_at,
 					'subject'       => sanitize_text_field( $data['subject'] ?? '' ),
 					'heading'       => sanitize_text_field( $data['heading'] ?? '' ),
 					'body'          => wp_kses_post( $data['body'] ?? '' ),
@@ -160,7 +168,8 @@ function flxi_create_campaign( array $data, array $recipients ) {
 		$conn  = flxi_resolve_connection( $channel, (int) ( $data['connection_id'] ?? 0 ) );
 		$delay = max( 0, (float) ( $conn['config']['delay'] ?? 0 ) );
 	}
-	$t     = time();
+	$t = $send_at ?: time();
+	if ( 'sms' === $channel && isset( $conn ) && 'netgsm' === $conn['type'] ) { $t = time(); $delay = 0; }
 	$rows  = array();
 	$table = flxi_table( 'queue' );
 	foreach ( $recipients as $i => $r ) {
@@ -174,6 +183,7 @@ function flxi_create_campaign( array $data, array $recipients ) {
 	if ( $rows ) {
 		$wpdb->query( "INSERT INTO $table (campaign_id,channel,recipient,name,status,scheduled_at) VALUES " . implode( ',', $rows ) ); // phpcs:ignore
 	}
+	flx_background_log( 'campaign.created', array( 'plugin' => 'flx-mail', 'campaign' => $cid, 'count' => count( $recipients ) ) );
 	flxi_kick_queue();
 	return $cid;
 }
@@ -190,14 +200,15 @@ function flxi_get_campaign( $id ) {
 function flxi_cancel_campaign( $id ) {
 	global $wpdb;
 	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxi_table( 'queue' ) . " SET status = 'cancelled' WHERE campaign_id = %d AND status = 'queued'", (int) $id ) ); // phpcs:ignore
-	$wpdb->update( flxi_table( 'campaigns' ), array( 'status' => 'cancelled', 'finished_at' => flxi_now() ), array( 'id' => (int) $id ) );
+	$c = flxi_get_campaign( $id );
+	if ( $c ) { $c['data']['stopped'] = true; $wpdb->update( flxi_table( 'campaigns' ), array( 'data' => flxi_json( $c['data'] ) ), array( 'id' => (int) $id ) ); }
+	flxi_refresh_campaign( $id );
+	flx_background_log( 'campaign.queue.cancelled', array( 'plugin' => 'flx-mail', 'campaign' => (int) $id ) );
 }
 
 /** Kuyruk işleyicisini planlar (WP-Cron; kuyruk sayfası açıksa tarayıcı da tetikler). */
 function flxi_kick_queue() {
-	if ( ! wp_next_scheduled( 'flxi_run_queue' ) ) {
-		wp_schedule_single_event( time() + 5, 'flxi_run_queue' );
-	}
+	flx_background_schedule( 'flxi_run_queue', array(), flx_background_worker_active() ? 1 : 5 );
 }
 
 add_action(
@@ -214,76 +225,101 @@ add_action(
  */
 function flxi_run_queue( $budget = 20 ) {
 	global $wpdb;
-	$now = time();
-	if ( ! add_option( 'flxi_queue_lock', $now + $budget + 30, '', false ) ) {
-		if ( (int) get_option( 'flxi_queue_lock' ) > $now ) {
-			return array( 'locked' => true, 'processed' => 0 );
-		}
-		update_option( 'flxi_queue_lock', $now + $budget + 30, false );
-	}
-	$t      = flxi_table( 'queue' );
-	$start  = microtime( true );
-	$limit  = max( 1, (int) flxi_setting( 'bulk_per_run' ) );
-	$stats  = array( 'processed' => 0, 'sent' => 0, 'failed' => 0 );
-	$camps  = array();
-	$emails = 0;
-	while ( microtime( true ) - $start < $budget - 3 ) {
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE status = 'queued' AND scheduled_at <= %s ORDER BY scheduled_at ASC, id ASC LIMIT 1", flxi_now() ), ARRAY_A ); // phpcs:ignore
-		if ( ! $row ) {
-			break;
-		}
-		if ( 'email' === $row['channel'] && $emails >= $limit ) {
-			break;
-		}
-		$cid = (int) $row['campaign_id'];
-		if ( ! isset( $camps[ $cid ] ) ) {
-			$camps[ $cid ] = flxi_get_campaign( $cid );
-			if ( $camps[ $cid ] && 'queued' === $camps[ $cid ]['status'] ) {
-				$wpdb->update( flxi_table( 'campaigns' ), array( 'status' => 'running' ), array( 'id' => $cid ) );
-			}
-		}
-		// Posta kutusu günlük sınırı: toplu e-posta yedek payı tekil e-postalara bırakır, hak açılınca devam eder.
-		if ( 'email' === $row['channel'] ) {
-			$snd = ( $camps[ $cid ]['data']['sender'] ?? 'info' ) === 'noreply' ? 'noreply' : 'info';
-			if ( ! flxi_quota_bulk_allowed( $snd ) ) {
-				$when = gmdate( 'Y-m-d H:i:s', flxi_quota_next_free( flxi_quota_mailbox( $snd ) ) + 60 );
-				$wpdb->query( $wpdb->prepare( "UPDATE $t SET scheduled_at = %s WHERE status = 'queued' AND channel = 'email' AND scheduled_at < %s", $when, $when ) ); // phpcs:ignore
-				update_option( 'flxi_quota_paused', strtotime( $when . ' UTC' ), false );
-				$stats['paused_until'] = strtotime( $when . ' UTC' );
+	return flx_background_run( 'mail-campaigns', function () use ( $budget, $wpdb ) {
+		$t      = flxi_table( 'queue' );
+		$cutoff = gmdate( 'Y-m-d H:i:s', time() - 600 );
+		$interrupted = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT campaign_id FROM $t WHERE status = 'processing' AND scheduled_at <= %s", $cutoff ) );
+		flxi_netgsm_recover_processing( $cutoff );
+		$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = CASE WHEN attempts >= 3 THEN 'failed' ELSE 'queued' END, scheduled_at = %s WHERE status = 'processing' AND scheduled_at <= %s", flxi_now(), $cutoff ) );
+		foreach ( $interrupted as $cid ) { flxi_refresh_campaign( (int) $cid ); }
+		$start  = microtime( true );
+		$limit  = max( 1, (int) flxi_setting( 'bulk_per_run' ) );
+		$stats  = array( 'processed' => 0, 'sent' => 0, 'failed' => 0 );
+		$camps  = array();
+		$emails = 0;
+		while ( microtime( true ) - $start < $budget - 3 ) {
+			$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE status = 'queued' AND scheduled_at <= %s ORDER BY scheduled_at ASC, id ASC LIMIT 1", flxi_now() ), ARRAY_A ); // phpcs:ignore
+			if ( ! $row ) {
 				break;
 			}
+			if ( 'email' === $row['channel'] && $emails >= $limit ) {
+				break;
+			}
+			$cid = (int) $row['campaign_id'];
+			if ( ! isset( $camps[ $cid ] ) ) {
+				$camps[ $cid ] = flxi_get_campaign( $cid );
+				if ( $camps[ $cid ] && 'queued' === $camps[ $cid ]['status'] ) {
+					$wpdb->update( flxi_table( 'campaigns' ), array( 'status' => 'running' ), array( 'id' => $cid ) );
+				}
+			}
+			// Posta kutusu günlük sınırı: toplu e-posta yedek payı tekil e-postalara bırakır, hak açılınca devam eder.
+			if ( 'email' === $row['channel'] ) {
+				$snd = ( $camps[ $cid ]['data']['sender'] ?? 'info' ) === 'noreply' ? 'noreply' : 'info';
+				if ( ! flxi_quota_bulk_allowed( $snd ) ) {
+					$when = gmdate( 'Y-m-d H:i:s', flxi_quota_next_free( flxi_quota_mailbox( $snd ) ) + 60 );
+					$wpdb->query( $wpdb->prepare( "UPDATE $t SET scheduled_at = %s WHERE status = 'queued' AND channel = 'email' AND scheduled_at < %s", $when, $when ) ); // phpcs:ignore
+					update_option( 'flxi_quota_paused', strtotime( $when . ' UTC' ), false );
+					$stats['paused_until'] = strtotime( $when . ' UTC' );
+					break;
+				}
+			}
+			if ( $camps[ $cid ] && empty( $camps[ $cid ]['data']['stopped'] ) && 'sms' === $row['channel'] ) {
+				$conn = flxi_resolve_connection( 'sms', (int) $camps[ $cid ]['data']['connection_id'] );
+				$type = $conn ? ( flxi_connection_types()[ $conn['type'] ] ?? array() ) : array();
+				if ( is_callable( $type['queue_batch'] ?? null ) ) {
+					$res = call_user_func( $type['queue_batch'], $row, $camps[ $cid ] );
+					if ( is_array( $res ) ) { foreach ( array( 'processed', 'sent', 'failed', 'submitted' ) as $key ) { $stats[ $key ] = ( $stats[ $key ] ?? 0 ) + (int) ( $res[ $key ] ?? 0 ); } if ( empty( $res['processed'] ) ) { break; } continue; }
+				}
+			}
+			$claimed = $wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'processing', attempts = attempts + 1, scheduled_at = %s WHERE id = %d AND status = 'queued'", flxi_now(), $row['id'] ) );
+			if ( 1 !== (int) $claimed ) {
+				continue;
+			}
+			flx_background_log( 'message.claimed', array( 'plugin' => 'flx-mail', 'campaign' => $cid, 'item' => (int) $row['id'], 'attempt' => (int) $row['attempts'] + 1 ) );
+			try {
+				$res = flxi_send_queue_item( $row, flxi_get_campaign( $cid ) );
+			} catch ( Throwable $error ) {
+				flx_background_log( 'message.exception', array( 'plugin' => 'flx-mail', 'campaign' => $cid, 'item' => (int) $row['id'], 'error_class' => get_class( $error ), 'error_file' => basename( $error->getFile() ), 'error_line' => $error->getLine() ) );
+				$res = array( 'ok' => false, 'error' => $error->getMessage(), 'retry' => true );
+			}
+			$stats['processed']++;
+			if ( 'email' === $row['channel'] ) {
+				$emails++;
+			}
+			if ( $res['ok'] ) {
+				$stats['sent']++;
+				$wpdb->update( $t, array( 'status' => 'sent', 'sent_at' => flxi_now(), 'error' => '' ), array( 'id' => $row['id'] ) );
+			} elseif ( ! empty( $res['skip'] ) ) {
+				$wpdb->update( $t, array( 'status' => 'skipped', 'error' => mb_substr( (string) $res['error'], 0, 500 ) ), array( 'id' => $row['id'] ) );
+			} elseif ( ! empty( $res['retry'] ) && (int) $row['attempts'] < 2 ) {
+				$wpdb->update( $t, array( 'status' => 'queued', 'error' => mb_substr( (string) $res['error'], 0, 500 ), 'scheduled_at' => gmdate( 'Y-m-d H:i:s', time() + 120 ) ), array( 'id' => $row['id'] ) );
+			} else {
+				$stats['failed']++;
+				$wpdb->update( $t, array( 'status' => 'failed', 'error' => mb_substr( (string) $res['error'], 0, 500 ) ), array( 'id' => $row['id'] ) );
+			}
+			flx_background_log( 'message.result', array( 'plugin' => 'flx-mail', 'campaign' => $cid, 'item' => (int) $row['id'], 'state' => $wpdb->get_var( $wpdb->prepare( "SELECT status FROM $t WHERE id=%d", $row['id'] ) ), 'attempt' => (int) $row['attempts'] + 1 ) );
 		}
-		$wpdb->update( $t, array( 'status' => 'processing', 'attempts' => (int) $row['attempts'] + 1 ), array( 'id' => $row['id'] ) );
-		$res = flxi_send_queue_item( $row, $camps[ $cid ] );
-		$stats['processed']++;
-		if ( 'email' === $row['channel'] ) {
-			$emails++;
+		foreach ( array_keys( $camps ) as $cid ) {
+			flxi_refresh_campaign( $cid );
 		}
-		if ( $res['ok'] ) {
-			$stats['sent']++;
-			$wpdb->update( $t, array( 'status' => 'sent', 'sent_at' => flxi_now(), 'error' => '' ), array( 'id' => $row['id'] ) );
-		} elseif ( ! empty( $res['skip'] ) ) {
-			$wpdb->update( $t, array( 'status' => 'skipped', 'error' => mb_substr( (string) $res['error'], 0, 500 ) ), array( 'id' => $row['id'] ) );
-		} elseif ( ! empty( $res['retry'] ) && (int) $row['attempts'] < 2 ) {
-			$wpdb->update( $t, array( 'status' => 'queued', 'error' => mb_substr( (string) $res['error'], 0, 500 ), 'scheduled_at' => gmdate( 'Y-m-d H:i:s', time() + 120 ) ), array( 'id' => $row['id'] ) );
-		} else {
-			$stats['failed']++;
-			$wpdb->update( $t, array( 'status' => 'failed', 'error' => mb_substr( (string) $res['error'], 0, 500 ) ), array( 'id' => $row['id'] ) );
+
+		$stats['left'] = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t WHERE status = 'queued'" ); // phpcs:ignore
+		if ( $stats['left'] ) {
+			$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" ); // phpcs:ignore
+			$when = max( time() + ( flx_background_worker_active() ? 1 : 30 ), $next ? strtotime( $next . ' UTC' ) : time() + 60 );
+			flx_background_schedule( 'flxi_run_queue', array(), $when - time() );
 		}
-	}
-	foreach ( array_keys( $camps ) as $cid ) {
-		flxi_refresh_campaign( $cid );
-	}
-	delete_option( 'flxi_queue_lock' );
-	$stats['left'] = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t WHERE status = 'queued'" ); // phpcs:ignore
-	if ( $stats['left'] ) {
-		$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" ); // phpcs:ignore
-		$when = max( time() + 30, $next ? strtotime( $next . ' UTC' ) : time() + 60 );
-		if ( ! wp_next_scheduled( 'flxi_run_queue' ) ) {
-			wp_schedule_single_event( $when, 'flxi_run_queue' );
-		}
-	}
-	return $stats;
+		$processing = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'processing'" );
+		if ( $processing ) { flx_background_schedule( 'flxi_run_queue', array(), max( 30, strtotime( $processing . ' UTC' ) + 600 - time() ) ); }
+		return $stats;
+	}, array(
+		'ttl' => $budget + 90,
+		'hook' => 'flxi_run_queue',
+		'on_defer' => static function () use ( $wpdb ) {
+			flxi_kick_queue();
+			return array( 'processed' => 0, 'sent' => 0, 'failed' => 0, 'left' => (int) $wpdb->get_var( 'SELECT COUNT(*) FROM ' . flxi_table( 'queue' ) . " WHERE status = 'queued'" ), 'deferred' => true );
+		},
+	) );
 }
 
 function flxi_refresh_campaign( $cid ) {
@@ -295,22 +331,16 @@ function flxi_refresh_campaign( $cid ) {
 		$by[ $r['status'] ] = (int) $r['n'];
 	}
 	$open = ( $by['queued'] ?? 0 ) + ( $by['processing'] ?? 0 );
-	$data = array(
-		'sent'    => $by['sent'] ?? 0,
-		'failed'  => $by['failed'] ?? 0,
-		'skipped' => $by['skipped'] ?? 0,
-	);
 	$c = flxi_get_campaign( $cid );
-	if ( ! $open && $c && in_array( $c['status'], array( 'queued', 'running' ), true ) ) {
-		$data['status']      = 'done';
-		$data['finished_at'] = flxi_now();
-	}
+	$state = $open ? 'running' : ( ! empty( $by['submitted'] ) ? 'reporting' : ( ! empty( $by['unknown'] ) ? 'review' : ( ! empty( $c['data']['stopped'] ) ? 'cancelled' : 'done' ) ) );
+	$data = array( 'sent' => ( $by['sent'] ?? 0 ) + ( $by['delivered'] ?? 0 ), 'failed' => $by['failed'] ?? 0, 'skipped' => $by['skipped'] ?? 0, 'status' => $state, 'finished_at' => in_array( $state, array( 'done', 'cancelled' ), true ) ? flxi_now() : null );
+
 	$wpdb->update( flxi_table( 'campaigns' ), $data, array( 'id' => (int) $cid ) );
 }
 
 /** Tek kuyruk satırını gönderir. */
 function flxi_send_queue_item( $row, $camp ) {
-	if ( ! $camp || 'cancelled' === $camp['status'] ) {
+	if ( ! $camp || 'cancelled' === $camp['status'] || ! empty( $camp['data']['stopped'] ) ) {
 		return array( 'ok' => false, 'error' => __( 'Sending was canceled.', 'flx-mail' ), 'retry' => false );
 	}
 	$d    = $camp['data'];

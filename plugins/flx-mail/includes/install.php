@@ -9,6 +9,8 @@ defined( 'ABSPATH' ) || exit;
 
 function flxi_activate() {
 	flxi_install_tables();
+	flxi_kick_queue();
+	flxi_netgsm_resume();
 	$role = get_role( 'administrator' );
 	if ( $role ) {
 		$role->add_cap( 'flxi_manage' );
@@ -21,6 +23,7 @@ function flxi_activate() {
 function flxi_deactivate() {
 	wp_clear_scheduled_hook( 'flxi_daily' );
 	wp_clear_scheduled_hook( 'flxi_run_queue' );
+	wp_clear_scheduled_hook( 'flxi_netgsm_poll' );
 	wp_clear_scheduled_hook( 'flxi_mailbox_sync' );
 }
 
@@ -140,6 +143,6 @@ add_action(
 		$days = max( 1, (int) flxi_setting( 'log_days' ) );
 		$cut  = gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS );
 		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxi_table( 'log' ) . ' WHERE created_at < %s LIMIT 5000', $cut ) ); // phpcs:ignore
-		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxi_table( 'queue' ) . " WHERE status IN ('sent','skipped','failed','cancelled') AND scheduled_at < %s LIMIT 5000", $cut ) ); // phpcs:ignore
+		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . flxi_table( 'queue' ) . " WHERE status IN ('sent','delivered','skipped','failed','cancelled') AND scheduled_at < %s LIMIT 5000", $cut ) ); // phpcs:ignore
 	}
 );

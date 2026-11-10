@@ -119,3 +119,13 @@ Full reference: [API.md](../../docs/yedek-eklentisi/API.md).
 Flux Backup Released under the [GNU General Public License v2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
 Made by FluxWP.
+
+## Background jobs
+
+Asynchronous backups automatically prefer a healthy FluxWP Docker worker; admin polling reports progress without doing backup work. Without a worker, native cron, loopbacks and admin polling retain their existing behavior. Restores and synchronous pre-update snapshots keep their current execution path.
+
+[Worker contract and fallback](../../docs/background-workers/API.md).
+
+## Maintainers
+
+Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)

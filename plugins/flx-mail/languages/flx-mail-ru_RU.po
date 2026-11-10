@@ -2511,3 +2511,138 @@ msgstr "Ответ не может быть пустым."
 
 msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
 msgstr "Все письма сайта в одном месте: имя/адрес отправителя (info@/no-reply@), SMTP, корпоративные шаблоны с логотипом и мобильной версией, просмотр, редактирование, открытие/закрытие писем плагинов WordPress + WooCommerce + FluxWP, записи об отправке, индивидуальная и массовая рассылка. Здесь также есть соединения WhatsApp (Evolution API) и SMS (Netgsm); Другие плагины используют его с общедоступным API."
+
+msgid "Accepted; awaiting delivery report"
+msgstr "Принято; ожидается отчёт о доставке"
+
+msgid "Action unavailable."
+msgstr "Действие недоступно."
+
+msgid "All sends"
+msgstr "Все рассылки"
+
+msgid "Attempts"
+msgstr "Попытки"
+
+msgid "Awaiting delivery reports"
+msgstr "Ожидаются отчёты о доставке"
+
+msgid "Batch not found."
+msgstr "Пакет не найден."
+
+msgid "Campaign"
+msgstr "Кампания"
+
+msgid "Campaign not found."
+msgstr "Кампания не найдена."
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Check delivery reports"
+msgstr "Проверить отчёты о доставке"
+
+msgid "Choose a scheduled time at least one minute in the future."
+msgstr "Выберите время отправки как минимум на минуту позже текущего."
+
+msgid "Continue with this action?"
+msgstr "Продолжить это действие?"
+
+msgid "Could not refresh. Retrying shortly."
+msgstr "Не удалось обновить. Скоро повторим попытку."
+
+msgid "Delivered"
+msgstr "Доставлено"
+
+msgid "Delivery acceptance is unknown. Check Netgsm before sending again."
+msgstr "Неизвестно, принята ли отправка. Проверьте Netgsm перед повторной отправкой."
+
+msgid "Delivery queue"
+msgstr "Очередь отправки"
+
+msgid "Duplicate recipient"
+msgstr "Повторяющийся получатель"
+
+msgid "Last report"
+msgstr "Последний отчёт"
+
+msgid "Live email, WhatsApp and SMS progress. Acceptance by a provider is not proof of delivery."
+msgstr "Текущий статус электронной почты, WhatsApp и SMS. Принятие провайдером не подтверждает доставку."
+
+msgid "Needs review"
+msgstr "Требуется проверка"
+
+msgid "Netgsm only supports cancellation of future scheduled sends. Delivered messages cannot be recalled."
+msgstr "Netgsm поддерживает отмену только будущих запланированных отправок. Доставленные сообщения отозвать нельзя."
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "No final delivery report received. Check Netgsm."
+msgstr "Итоговый отчёт о доставке не получен. Проверьте Netgsm."
+
+msgid "No queue entries yet."
+msgstr "В очереди пока нет записей."
+
+msgid "Operational history"
+msgstr "История операций"
+
+msgid "Previous"
+msgstr "Назад"
+
+msgid "Processing"
+msgstr "Обработка"
+
+msgid "Provider job ID"
+msgstr "ID задания провайдера"
+
+msgid "Queue"
+msgstr "Очередь"
+
+msgid "Ready recipients are grouped in one API request. Default: 1000; maximum: 50000."
+msgstr "Готовые получатели объединяются в один API-запрос. По умолчанию: 1000; максимум: 50000."
+
+msgid "Recent background events across plugins. Message content and credentials are excluded. Detailed delivery records remain in Log."
+msgstr "Последние фоновые события плагинов. Содержимое сообщений и учётные данные исключены. Подробные записи отправки находятся в журнале."
+
+msgid "Recipients per Netgsm request"
+msgstr "Получателей на запрос Netgsm"
+
+msgid "Request Netgsm cancellation"
+msgstr "Запросить отмену в Netgsm"
+
+msgid "Scheduled send (optional)"
+msgstr "Отправка по расписанию (необязательно)"
+
+msgid "Skipped"
+msgstr "Пропущено"
+
+msgid "Stop queued messages"
+msgstr "Остановить ожидающие сообщения"
+
+msgid "Stopping the local queue does not recall messages already accepted by a provider. Netgsm cancellation is available only for future scheduled sends."
+msgstr "Остановка локальной очереди не отзывает уже принятые сообщения. Netgsm разрешает отменять только будущие запланированные отправки."
+
+msgid "The cancellation window has closed."
+msgstr "Время для отмены истекло."
+
+msgid "The original Netgsm connection is unavailable."
+msgstr "Исходное подключение Netgsm недоступно."
+
+msgid "The queue is busy. Try again shortly."
+msgstr "Очередь занята. Повторите попытку чуть позже."
+
+msgid "Updated"
+msgstr "Обновлено"
+
+msgid "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts."
+msgstr "Используется часовой пояс WordPress. Будущие отправки Netgsm можно отменить до начала."
+
+msgid "View delivery queue"
+msgstr "Открыть очередь отправки"
+
+msgid "WordPress background processing"
+msgstr "Фоновая обработка WordPress"
+
+msgid "Worker active"
+msgstr "Worker активен"

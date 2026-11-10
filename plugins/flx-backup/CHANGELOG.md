@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.4.6 — 2026-11-10
+- Record backup phase transitions and bundle correlated worker diagnostics in the bounded shared operational journal.
+
+## 1.4.5 — 2026-11-10
+- Share the reusable background execution guard and recover malformed abandoned leases; verify standalone and mixed bundle loading in CI.
+- Signal due work to compatible Docker workers for lightweight fast wake; keep native scheduling for older images and ordinary WordPress.
+- Run independent worker cron jobs in a bounded subprocess pool (default 3 per plugin, configurable total 9), retaining resource locks, serialized scheduling, durable watchdog recovery and ordinary WordPress fallback.
+
+## 1.4.4 — 2026-11-10
+- Run asynchronous backup steps on a detected Docker worker without web polling or loopback work while its heartbeat is healthy.
+- Retain ordinary WordPress execution, cancellation, restores and synchronous pre-update snapshots.
+
 ## 1.4.3
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

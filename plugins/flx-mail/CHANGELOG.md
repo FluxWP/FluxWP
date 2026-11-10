@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.13.15 — 2026-11-10
+- Batch Netgsm recipients in REST v2 packets, persist provider job IDs, reconcile per-recipient delivery reports and avoid resending uncertain submissions.
+- Add a live delivery queue, local stopping, future Netgsm scheduling/cancellation, protected REST actions and ten native locale catalogs.
+- Add a bounded shared operational journal for correlated worker, delivery and error diagnostics without message content or credentials.
+
+## 1.13.14 — 2026-11-10
+- Verify a 1,000-recipient Netgsm campaign with mocked transport; preserve encoding, consent-filter selection, deduplication and provider error backoff. Retry WhatsApp HTTP 429 and resume ready worker batches promptly.
+- Share the reusable background execution guard and recover malformed abandoned leases; verify standalone and mixed bundle loading in CI.
+- Retain recovery events for interrupted delivery claims and enforce their attempt limits.
+- Signal due work to compatible Docker workers for lightweight fast wake; keep native scheduling for older images and ordinary WordPress.
+- Run independent worker cron jobs in a bounded subprocess pool (default 3 per plugin, configurable total 9), retaining resource locks, serialized scheduling, durable watchdog recovery and ordinary WordPress fallback.
+
+## 1.13.13 — 2026-11-10
+- Prefer the detected Docker WP-CLI worker for campaign queues; retain native WordPress execution when no worker is available.
+- Use owner-bound queue leases and atomic message claims; release locks and retry temporary transport failures while preserving daily quotas.
+
 ## 1.13.12
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

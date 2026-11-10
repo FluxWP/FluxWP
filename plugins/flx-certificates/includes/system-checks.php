@@ -268,7 +268,10 @@ function flxs_system_fixes( $fixes ) {
 			return flxs_certificates_missing_files();
 		},
 		'run'         => function () {
-			list( $ok, $fail ) = flxs_render_missing( 25 );
+			list( $ok, $fail, $queued ) = flxs_render_missing( 25 );
+			if ( $queued ) {
+				return __( 'Queued', 'flx-certificates' ) . ': ' . number_format_i18n( $queued );
+			}
 			/* translators: 1: done count, 2: failed count */
 			return sprintf( __( 'Files created for %1$d certificates, %2$d errors.', 'flx-certificates' ), $ok, $fail );
 		},
@@ -282,10 +285,13 @@ function flxs_handle_render_missing() {
 	if ( ! current_user_can( 'flxs_manage' ) && ! current_user_can( 'manage_options' ) ) {
 		wp_die( esc_html__( 'Not allowed', 'flx-certificates' ) );
 	}
-	list( $ok, $fail ) = flxs_render_missing( 25 );
+	list( $ok, $fail, $queued ) = flxs_render_missing( 25 );
 	$left = flxs_certificates_missing_files();
 	/* translators: 1: done count, 2: failed count */
 	$msg = sprintf( __( 'Files created for %1$d certificates, %2$d errors.', 'flx-certificates' ), $ok, $fail );
+	if ( $queued ) {
+		$msg = __( 'Queued', 'flx-certificates' ) . ': ' . number_format_i18n( $queued );
+	}
 	if ( $left && $ok ) {
 		/* translators: %d: remaining count */
 		$msg .= ' ' . sprintf( __( '%d certificates left, press again.', 'flx-certificates' ), $left );

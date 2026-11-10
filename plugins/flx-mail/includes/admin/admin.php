@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/page-templates.php';
 require_once __DIR__ . '/page-send.php';
+require_once __DIR__ . '/page-queue.php';
 require_once __DIR__ . '/page-log.php';
 require_once __DIR__ . '/page-connections.php';
 require_once __DIR__ . '/page-settings.php';
@@ -24,6 +25,7 @@ add_action(
 		add_menu_page( __( 'Communication', 'flx-mail' ), __( 'Communication', 'flx-mail' ), $cap, 'flxi', 'flxi_page_templates', 'none', 58 );
 		add_submenu_page( 'flxi', __( 'Email templates', 'flx-mail' ), __( 'Emails', 'flx-mail' ), $cap, 'flxi', 'flxi_page_templates' );
 		add_submenu_page( 'flxi', __( 'Send', 'flx-mail' ), __( 'Send', 'flx-mail' ), $cap, 'flxi-gonder', 'flxi_page_send' );
+		add_submenu_page( 'flxi', __( 'Delivery queue', 'flx-mail' ), __( 'Queue', 'flx-mail' ), $cap, 'flxi-kuyruk', 'flxi_page_queue' );
 		add_submenu_page( 'flxi', __( 'Log', 'flx-mail' ), __( 'Log', 'flx-mail' ), $cap, 'flxi-kayitlar', 'flxi_page_log' );
 		add_submenu_page( 'flxi', __( 'WhatsApp and SMS connections', 'flx-mail' ), __( 'Connections', 'flx-mail' ), $cap, 'flxi-baglantilar', 'flxi_page_connections' );
 		add_submenu_page( 'flxi', __( 'Communication settings', 'flx-mail' ), __( 'Settings', 'flx-mail' ), $cap, 'flxi-ayarlar', 'flxi_page_settings' );
@@ -66,6 +68,11 @@ add_action(
 			wp_enqueue_style( 'flxi-mailbox', FLXI_URL . 'assets/css/mailbox.css', array( 'flxi-admin' ), FLXI_VERSION );
 			wp_enqueue_script( 'flxi-mailbox', FLXI_URL . 'assets/js/mailbox.js', array(), FLXI_VERSION, true );
 			wp_localize_script( 'flxi-mailbox', 'FLXIMB', flxi_mailbox_boot() );
+		}
+		if ( 'flxi-kuyruk' === $page ) {
+			wp_enqueue_style( 'flxi-queue', FLXI_URL . 'assets/css/queue.css', array( 'flxi-admin' ), FLXI_VERSION );
+			wp_enqueue_script( 'flxi-queue', FLXI_URL . 'assets/js/queue.js', array(), FLXI_VERSION, true );
+			wp_localize_script( 'flxi-queue', 'FLXIQ', array( 'rest' => esc_url_raw( rest_url( 'flxi/v1/' ) ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'labels' => flxi_queue_labels(), 'channels' => flxi_channels(), 'i18n' => flxi_queue_ui_strings() ) );
 		}
 		wp_enqueue_script( 'flxi-admin', FLXI_URL . 'assets/js/admin.js', array(), FLXI_VERSION, true );
 		wp_localize_script(
@@ -208,6 +215,7 @@ function flxi_page_head( $title, $sub = '', $tabs_on = true ) {
 	$tabs  = array(
 		'flxi'             => __( 'Emails', 'flx-mail' ),
 		'flxi-gonder'      => __( 'Send', 'flx-mail' ),
+		'flxi-kuyruk'      => __( 'Queue', 'flx-mail' ),
 		'flxi-kayitlar'    => __( 'Log', 'flx-mail' ),
 		'flxi-baglantilar' => __( 'Connections', 'flx-mail' ),
 		'flxi-ayarlar'     => __( 'Settings', 'flx-mail' ),

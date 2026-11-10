@@ -2507,3 +2507,138 @@ msgstr "返信を空にすることはできません。"
 
 msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
 msgstr "サイトのすべてのメールを 1 か所に: 送信者名/アドレス (info@ / no-reply@)、SMTP、ロゴ付きおよびモバイル対応の企業テンプレート、WordPress + WooCommerce + FluxWP プラグインのメールの表示、編集、開閉、送信記録、個別および一括送信。 WhatsApp (Evolution API) および SMS (Netgsm) 接続もここにあります。他のプラグインはパブリック API でそれを使用します。"
+
+msgid "Accepted; awaiting delivery report"
+msgstr "受付済み・配信結果待ち"
+
+msgid "Action unavailable."
+msgstr "この操作は利用できません。"
+
+msgid "All sends"
+msgstr "すべての送信"
+
+msgid "Attempts"
+msgstr "試行回数"
+
+msgid "Awaiting delivery reports"
+msgstr "配信結果を待っています"
+
+msgid "Batch not found."
+msgstr "バッチが見つかりません。"
+
+msgid "Campaign"
+msgstr "キャンペーン"
+
+msgid "Campaign not found."
+msgstr "キャンペーンが見つかりません。"
+
+msgid "Cancelled"
+msgstr "キャンセル済み"
+
+msgid "Check delivery reports"
+msgstr "配信結果を確認"
+
+msgid "Choose a scheduled time at least one minute in the future."
+msgstr "送信時刻を現在より1分以上先に設定してください。"
+
+msgid "Continue with this action?"
+msgstr "この操作を続行しますか？"
+
+msgid "Could not refresh. Retrying shortly."
+msgstr "更新できませんでした。まもなく再試行します。"
+
+msgid "Delivered"
+msgstr "配信済み"
+
+msgid "Delivery acceptance is unknown. Check Netgsm before sending again."
+msgstr "送信が受け付けられたか不明です。再送前にNetgsmで確認してください。"
+
+msgid "Delivery queue"
+msgstr "送信キュー"
+
+msgid "Duplicate recipient"
+msgstr "重複した宛先"
+
+msgid "Last report"
+msgstr "最新のレポート"
+
+msgid "Live email, WhatsApp and SMS progress. Acceptance by a provider is not proof of delivery."
+msgstr "メール・WhatsApp・SMSの進捗をリアルタイムで表示します。プロバイダーの受付は配信完了を意味しません。"
+
+msgid "Needs review"
+msgstr "確認が必要"
+
+msgid "Netgsm only supports cancellation of future scheduled sends. Delivered messages cannot be recalled."
+msgstr "Netgsmでキャンセルできるのは未来の予約送信のみです。配信済みのメッセージは取り消せません。"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "No final delivery report received. Check Netgsm."
+msgstr "最終配信結果を取得できませんでした。Netgsmで確認してください。"
+
+msgid "No queue entries yet."
+msgstr "キューにはまだ項目がありません。"
+
+msgid "Operational history"
+msgstr "処理履歴"
+
+msgid "Previous"
+msgstr "前へ"
+
+msgid "Processing"
+msgstr "処理中"
+
+msgid "Provider job ID"
+msgstr "プロバイダーのジョブID"
+
+msgid "Queue"
+msgstr "キュー"
+
+msgid "Ready recipients are grouped in one API request. Default: 1000; maximum: 50000."
+msgstr "送信可能な宛先を1回のAPIリクエストにまとめます。既定：1000、最大：50000。"
+
+msgid "Recent background events across plugins. Message content and credentials are excluded. Detailed delivery records remain in Log."
+msgstr "各プラグインの最近のバックグラウンドイベントです。メッセージ本文と認証情報は含みません。詳細な送信記録はログにあります。"
+
+msgid "Recipients per Netgsm request"
+msgstr "Netgsmリクエストあたりの宛先数"
+
+msgid "Request Netgsm cancellation"
+msgstr "Netgsmにキャンセルを依頼"
+
+msgid "Scheduled send (optional)"
+msgstr "予約送信（任意）"
+
+msgid "Skipped"
+msgstr "スキップ済み"
+
+msgid "Stop queued messages"
+msgstr "待機中のメッセージを停止"
+
+msgid "Stopping the local queue does not recall messages already accepted by a provider. Netgsm cancellation is available only for future scheduled sends."
+msgstr "ローカルキューを停止しても受付済みのメッセージは取り消されません。Netgsmでキャンセルできるのは未来の予約送信のみです。"
+
+msgid "The cancellation window has closed."
+msgstr "キャンセル可能な時間を過ぎました。"
+
+msgid "The original Netgsm connection is unavailable."
+msgstr "元のNetgsm接続は利用できません。"
+
+msgid "The queue is busy. Try again shortly."
+msgstr "キューが処理中です。少し待って再試行してください。"
+
+msgid "Updated"
+msgstr "更新済み"
+
+msgid "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts."
+msgstr "WordPressのタイムゾーンを使用します。Netgsmの予約送信は開始前にキャンセルできます。"
+
+msgid "View delivery queue"
+msgstr "送信キューを表示"
+
+msgid "WordPress background processing"
+msgstr "WordPressのバックグラウンド処理"
+
+msgid "Worker active"
+msgstr "Worker稼働中"

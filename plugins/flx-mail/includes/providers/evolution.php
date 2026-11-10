@@ -102,7 +102,7 @@ function flxi_evolution_send( $config, $msg, $conn = array() ) {
 		if ( false !== strpos( (string) $detail, '"exists":false' ) ) {
 			$detail = __( 'This number does not have WhatsApp.', 'flx-mail' );
 		}
-		$retry = $r['code'] >= 500 || 404 === $r['code'];
+		$retry = $r['code'] >= 500 || in_array( $r['code'], array( 404, 429 ), true );
 		return array( 'ok' => false, 'error' => 'Evolution HTTP ' . $r['code'] . ( $detail ? ': ' . mb_substr( (string) $detail, 0, 300 ) : '' ), 'retry' => $retry, 'response' => $resp );
 	}
 	$external = (string) ( $json['key']['id'] ?? '' );

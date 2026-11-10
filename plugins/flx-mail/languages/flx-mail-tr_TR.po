@@ -2509,3 +2509,138 @@ msgstr "Yanıt boş olamaz."
 
 msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
 msgstr "Sitenin tüm e-postaları tek yerde: gönderen adı/adresi (bilgi@ / no-reply@), SMTP, logolu ve mobil uyumlu kurumsal şablonlar, WordPress + WooCommerce + FluxWP eklentilerinin e-postalarını görme, düzenleme, açma/kapama, gönderim kayıtları, tekil ve toplu gönderim. WhatsApp (Evolution API) ve SMS (Netgsm) bağlantıları da burada; diğer eklentiler ortak API ile kullanır."
+
+msgid "Accepted; awaiting delivery report"
+msgstr "Kabul edildi; teslim raporu bekleniyor"
+
+msgid "Action unavailable."
+msgstr "İşlem kullanılamıyor."
+
+msgid "All sends"
+msgstr "Tüm gönderimler"
+
+msgid "Attempts"
+msgstr "Deneme sayısı"
+
+msgid "Awaiting delivery reports"
+msgstr "Teslim raporları bekleniyor"
+
+msgid "Batch not found."
+msgstr "Paket bulunamadı."
+
+msgid "Campaign"
+msgstr "Gönderim"
+
+msgid "Campaign not found."
+msgstr "Gönderim bulunamadı."
+
+msgid "Cancelled"
+msgstr "İptal edildi"
+
+msgid "Check delivery reports"
+msgstr "Teslim raporlarını kontrol et"
+
+msgid "Choose a scheduled time at least one minute in the future."
+msgstr "En az bir dakika sonrasına bir gönderim zamanı seçin."
+
+msgid "Continue with this action?"
+msgstr "Bu işleme devam edilsin mi?"
+
+msgid "Could not refresh. Retrying shortly."
+msgstr "Yenilenemedi. Birazdan tekrar denenecek."
+
+msgid "Delivered"
+msgstr "Teslim edildi"
+
+msgid "Delivery acceptance is unknown. Check Netgsm before sending again."
+msgstr "Gönderimin kabul edilip edilmediği bilinmiyor. Yeniden göndermeden önce Netgsm'i kontrol edin."
+
+msgid "Delivery queue"
+msgstr "Gönderim kuyruğu"
+
+msgid "Duplicate recipient"
+msgstr "Tekrarlanan alıcı"
+
+msgid "Last report"
+msgstr "Son rapor"
+
+msgid "Live email, WhatsApp and SMS progress. Acceptance by a provider is not proof of delivery."
+msgstr "E-posta, WhatsApp ve SMS durumunu canlı izleyin. Sağlayıcının kabul etmesi, teslim edildiği anlamına gelmez."
+
+msgid "Needs review"
+msgstr "İnceleme gerekiyor"
+
+msgid "Netgsm only supports cancellation of future scheduled sends. Delivered messages cannot be recalled."
+msgstr "Netgsm yalnız ileri tarihli gönderimleri iptal etmeyi destekler. Teslim edilmiş mesajlar geri alınamaz."
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "No final delivery report received. Check Netgsm."
+msgstr "Nihai teslim raporu alınamadı. Netgsm'i kontrol edin."
+
+msgid "No queue entries yet."
+msgstr "Henüz kuyruk kaydı yok."
+
+msgid "Operational history"
+msgstr "İşlem geçmişi"
+
+msgid "Previous"
+msgstr "Önceki"
+
+msgid "Processing"
+msgstr "İşleniyor"
+
+msgid "Provider job ID"
+msgstr "Sağlayıcı iş kimliği"
+
+msgid "Queue"
+msgstr "Kuyruk"
+
+msgid "Ready recipients are grouped in one API request. Default: 1000; maximum: 50000."
+msgstr "Hazır alıcılar tek API isteğinde gruplanır. Varsayılan: 1000; en fazla: 50000."
+
+msgid "Recent background events across plugins. Message content and credentials are excluded. Detailed delivery records remain in Log."
+msgstr "Eklentilerin son arka plan olayları. Mesaj içeriği ve erişim bilgileri dahil edilmez. Ayrıntılı gönderim kayıtları Kayıtlar bölümündedir."
+
+msgid "Recipients per Netgsm request"
+msgstr "Netgsm isteği başına alıcı"
+
+msgid "Request Netgsm cancellation"
+msgstr "Netgsm'den iptal iste"
+
+msgid "Scheduled send (optional)"
+msgstr "Zamanlanmış gönderim (isteğe bağlı)"
+
+msgid "Skipped"
+msgstr "Atlandı"
+
+msgid "Stop queued messages"
+msgstr "Bekleyen mesajları durdur"
+
+msgid "Stopping the local queue does not recall messages already accepted by a provider. Netgsm cancellation is available only for future scheduled sends."
+msgstr "Yerel kuyruğu durdurmak, sağlayıcının kabul ettiği mesajları geri almaz. Netgsm iptali yalnız ileri tarihli gönderimlerde kullanılabilir."
+
+msgid "The cancellation window has closed."
+msgstr "İptal süresi doldu."
+
+msgid "The original Netgsm connection is unavailable."
+msgstr "İlk kullanılan Netgsm bağlantısına erişilemiyor."
+
+msgid "The queue is busy. Try again shortly."
+msgstr "Kuyruk meşgul. Birazdan tekrar deneyin."
+
+msgid "Updated"
+msgstr "Güncellendi"
+
+msgid "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts."
+msgstr "WordPress saat dilimini kullanır. İleri tarihli Netgsm gönderimleri başlamadan önce iptal edilebilir."
+
+msgid "View delivery queue"
+msgstr "Gönderim kuyruğunu görüntüle"
+
+msgid "WordPress background processing"
+msgstr "WordPress arka plan işlemleri"
+
+msgid "Worker active"
+msgstr "Worker etkin"

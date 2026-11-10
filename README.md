@@ -67,8 +67,8 @@ flowchart LR
 | [Flux AI](plugins/flx-ai) | One AI hub for every package: keys, models, spending limits and a shared AI chat. | Plugin | [0.9.4](https://github.com/FluxWP/FluxWP/releases/tag/flx-ai-v0.9.4) | 2026-11-09 | [flx-ai.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-ai-v0.9.4/flx-ai.zip) |
 | [Flux Site Analytics](plugins/flx-analytics) | Cookie-free site analytics that keep visitor data on your site. Sources, donation funnel and journeys. | Plugin | [0.4.4](https://github.com/FluxWP/FluxWP/releases/tag/flx-analytics-v0.4.4) | 2026-11-09 | [flx-analytics.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-analytics-v0.4.4/flx-analytics.zip) |
 | [Flux App](plugins/flx-app) | Sign-in for the desktop and mobile app: OAuth 2.0 (PKCE), API keys and a role-based menu. | Plugin | [0.4.4](https://github.com/FluxWP/FluxWP/releases/tag/flx-app-v0.4.4) | 2026-11-09 | [flx-app.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-app-v0.4.4/flx-app.zip) |
-| [Flux Backup](plugins/flx-backup) | Automatic backups before updates, scheduled full backups and selective restore. | Plugin | [1.4.3](https://github.com/FluxWP/FluxWP/releases/tag/flx-backup-v1.4.3) | 2026-11-09 | [flx-backup.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-backup-v1.4.3/flx-backup.zip) |
-| [Flux Certificate](plugins/flx-certificates) | Certificate templates, live PDF preview and /certificate/{code} verification. Sent by e-mail, SMS and WhatsApp. | Plugin | [1.9.1](https://github.com/FluxWP/FluxWP/releases/tag/flx-certificates-v1.9.1) | 2026-11-09 | [flx-certificates.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-certificates-v1.9.1/flx-certificates.zip) |
+| [Flux Backup](plugins/flx-backup) | Automatic backups before updates, scheduled full backups and selective restore. | Plugin | [1.4.6](https://github.com/FluxWP/FluxWP/releases/tag/flx-backup-v1.4.6) | 2026-11-10 | [flx-backup.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-backup-v1.4.6/flx-backup.zip) |
+| [Flux Certificate](plugins/flx-certificates) | Certificate templates, live PDF preview and /certificate/{code} verification. Sent by e-mail, SMS and WhatsApp. | Plugin | [1.9.4](https://github.com/FluxWP/FluxWP/releases/tag/flx-certificates-v1.9.4) | 2026-11-10 | [flx-certificates.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-certificates-v1.9.4/flx-certificates.zip) |
 | [Flux Call Center](plugins/flx-chat) | A WhatsApp inbox with canned replies, tags and assignment. An AI assistant that records donations and certificates. | Plugin | [1.38.0](https://github.com/FluxWP/FluxWP/releases/tag/flx-chat-v1.38.0) | 2026-11-09 | [flx-chat.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-chat-v1.38.0/flx-chat.zip) |
 | [Flux AI Chatbot](plugins/flx-chatbot) | AI chat window for your site: answers from your content and products with Flux AI and hands over to a live agent in Flux Chat. Color, position, avatar and texts are set in the panel with a live preview. | Plugin | [0.1.3](https://github.com/FluxWP/FluxWP/releases/tag/flx-chatbot-v0.1.3) | 2026-11-09 | [flx-chatbot.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-chatbot-v0.1.3/flx-chatbot.zip) |
 | [Flux Commerce](plugins/flx-commerce) | A sales dashboard, customers and sales reports for any WooCommerce store. Bank transfer with receipt upload, a leaner checkout, a free-shipping bar and a Google Merchant feed. | Plugin | [0.2.6](https://github.com/FluxWP/FluxWP/releases/tag/flx-commerce-v0.2.6) | 2026-11-09 | [flx-commerce.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-commerce-v0.2.6/flx-commerce.zip) |
@@ -76,7 +76,7 @@ flowchart LR
 | [Flux Donation](plugins/flx-donate) | Sapling and campaign donations on WooCommerce with card, bank transfer and monthly giving. A certificate for every gift. | Plugin | [2.17.3](https://github.com/FluxWP/FluxWP/releases/tag/flx-donate-v2.17.3) | 2026-11-09 | [flx-donate.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-donate-v2.17.3/flx-donate.zip) |
 | [Flux Forms](plugins/flx-forms) | Drag-and-drop form builder with multi-step forms, payments, conditional logic and automations. | Plugin | [2.1.17](https://github.com/FluxWP/FluxWP/releases/tag/flx-forms-v2.1.17) | 2026-11-09 | [flx-forms.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-forms-v2.1.17/flx-forms.zip) |
 | [Flux Language](plugins/flx-lang) | Makes the site multilingual: /en/ addresses, per-post translations, hreflang and a language switcher. | Plugin | [0.2.6](https://github.com/FluxWP/FluxWP/releases/tag/flx-lang-v0.2.6) | 2026-11-10 | [flx-lang.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-lang-v0.2.6/flx-lang.zip) |
-| [Flux Contact](plugins/flx-mail) | Every e-mail the site sends, a mailbox and delivery logs in one place. WhatsApp and SMS lines shared with other packages. | Plugin | [1.13.12](https://github.com/FluxWP/FluxWP/releases/tag/flx-mail-v1.13.12) | 2026-11-09 | [flx-mail.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-mail-v1.13.12/flx-mail.zip) |
+| [Flux Contact](plugins/flx-mail) | Every e-mail the site sends, a mailbox and delivery logs in one place. WhatsApp and SMS lines shared with other packages. | Plugin | [1.13.15](https://github.com/FluxWP/FluxWP/releases/tag/flx-mail-v1.13.15) | 2026-11-10 | [flx-mail.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-mail-v1.13.15/flx-mail.zip) |
 | [Flux Migrate](plugins/flx-migrate) | Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. | Plugin | [0.1.8](https://github.com/FluxWP/FluxWP/releases/tag/flx-migrate-v0.1.8) | 2026-11-09 | [flx-migrate.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-migrate-v0.1.8/flx-migrate.zip) |
 | [Flux reCAPTCHA](plugins/flx-recaptcha) | Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA v3 or v2. Pick the forms to protect in the panel. | Plugin | [0.2.2](https://github.com/FluxWP/FluxWP/releases/tag/flx-recaptcha-v0.2.2) | 2026-11-09 | [flx-recaptcha.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-recaptcha-v0.2.2/flx-recaptcha.zip) |
 | [Flux Roles](plugins/flx-roles) | Staff, Manager and Admin roles; every package's capabilities on one page. Personal referral links. | Plugin | [1.3.2](https://github.com/FluxWP/FluxWP/releases/tag/flx-roles-v1.3.2) | 2026-11-09 | [flx-roles.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-roles-v1.3.2/flx-roles.zip) |
@@ -170,26 +170,26 @@ Percentage of English source entries with a nonempty, structurally valid transla
 | flx-analytics | 491 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-app | 433 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-backup | 344 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| flx-certificates | 306 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| flx-chat | 1581 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-certificates | 312 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-chat | 1602 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-chatbot | 398 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-commerce | 300 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-crm | 387 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-donate | 1814 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-forms | 3049 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-lang | 109 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| flx-mail | 835 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-mail | 880 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-migrate | 59 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-recaptcha | 141 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-roles | 106 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-seo | 403 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| flx-setup | 622 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-setup | 629 | 100% | 98.9% | 98.9% | 98.9% | 98.9% | 98.9% | 98.9% | 98.9% | 98.9% |
 | flx-social | 553 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-speed | 501 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-studio | 316 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-tasks | 913 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-wiki | 175 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| fluxwp | 477 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| fluxwp | 491 | 100% | 97.1% | 97.1% | 97.1% | 97.1% | 97.1% | 97.1% | 97.1% | 97.1% |
 
 ```sh
 python3 tools/site-translations/coverage.py --repo . --scan-source --write-readme

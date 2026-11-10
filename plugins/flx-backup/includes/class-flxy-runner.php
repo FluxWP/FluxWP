@@ -12,6 +12,7 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+FLX_Background_Pool::register( 'flxy_job_tick', 'flx-backup' );
 
 final class FLXY_Runner {
 
@@ -146,6 +147,7 @@ final class FLXY_Runner {
 		$state['token']   = wp_generate_password( 32, false, false );
 		$state['touched'] = time();
 		self::save( $state );
+		flx_background_log( 'backup.started', array( 'plugin' => 'flx-backup', 'job' => $state['id'], 'state' => $state['phase'] ) );
 		self::flag( $state );
 		self::schedule_tick();
 		if ( ! $interactive ) {
@@ -155,13 +157,16 @@ final class FLXY_Runner {
 	}
 
 	private static function schedule_tick(): void {
-		if ( ! wp_next_scheduled( self::CRON_TICK ) ) {
-			wp_schedule_single_event( time() + 60, self::CRON_TICK );
-		}
+		flx_background_schedule( self::CRON_TICK, array(), flx_background_worker_active() ? 1 : 60 );
 	}
 
 	/** Engellemeyen loopback: bir sonraki adımı ayrı bir istekte başlatır. */
 	public static function spawn( string $token ): void {
+		$state = self::current();
+		if ( $state && 'backup' === $state['kind'] && flx_background_worker_active() ) {
+			self::schedule_tick();
+			return;
+		}
 		/** Loopback kapatılabilir (yalnız cron ve yönetim ekranı sürer). */
 		if ( ! apply_filters( 'flxy_use_loopback', true ) ) {
 			return;
@@ -219,6 +224,10 @@ final class FLXY_Runner {
 		if ( ! $state || self::is_finished( $state ) ) {
 			return $state;
 		}
+		if ( 'backup' === $state['kind'] && ! self::cancel_requested( $state ) && flx_background_should_defer() ) {
+			self::schedule_tick();
+			return $state;
+		}
 		if ( ! self::lock() ) {
 			return $state;
 		}
@@ -235,6 +244,7 @@ final class FLXY_Runner {
 		}
 		FLXY_Backup::raise_limits();
 		ignore_user_abort( true );
+		$previous_phase = $state['phase'];
 		$deadline = microtime( true ) + self::budget( $interactive );
 		if ( 'restore' === $state['kind'] ) {
 			$state = FLXY_Restore::step( $state, $deadline );
@@ -246,6 +256,7 @@ final class FLXY_Runner {
 		if ( ! self::is_finished( $state ) && self::cancel_requested( $state ) ) {
 			$state = self::apply_cancel( $state );
 		}
+		if ( $state['phase'] !== $previous_phase ) { flx_background_log( 'backup.phase', array( 'plugin' => 'flx-backup', 'job' => $state['id'], 'state' => $state['phase'] ) ); }
 		self::unlock();
 		if ( ! self::is_finished( $state ) ) {
 			self::schedule_tick();
@@ -476,7 +487,16 @@ final class FLXY_Runner {
 	}
 
 	public static function cron_tick(): void {
-		$state = self::run_step( false );
+		$current = self::current();
+		if ( $current && ! self::is_finished( $current ) && 'backup' === $current['kind'] && FLX_Background_Pool::dispatch( self::CRON_TICK ) ) { return; }
+		$deadline = microtime( true ) + 40;
+		do {
+			$before = self::current();
+			$state = self::run_step( false );
+			if ( $before === $state ) {
+				break; // Another process owns the step, or web execution is deferred.
+			}
+		} while ( flx_background_worker_context() && $state && 'backup' === $state['kind'] && ! self::is_finished( $state ) && microtime( true ) < $deadline );
 		if ( $state && ! self::is_finished( $state ) ) {
 			self::spawn( $state['token'] );
 		}

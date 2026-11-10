@@ -194,6 +194,7 @@ function flxi_rest_test_email( WP_REST_Request $r ) {
 
 function flxi_rest_queue_run( WP_REST_Request $r ) {
 	$stats = flxi_run_queue( 15 );
+	if ( ! flx_background_worker_active() ) { flxi_netgsm_poll(); }
 	$cid   = (int) $r['campaign'];
 	if ( $cid ) {
 		$c              = flxi_get_campaign( $cid );

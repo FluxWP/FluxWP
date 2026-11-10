@@ -126,3 +126,23 @@ Flux Mail sitenin MCP sunucusuna (**Flux SEO**) ve **Flux AI** sohbetine araçla
 Flux Mail, [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licenses/gpl-2.0.html) ile yayınlanır.
 
 FluxWP tarafından geliştirilmiştir.
+
+## Arka plan işleri
+
+Kampanya kuyruğu sağlıklı FluxWP Docker worker varsa otomatik olarak orada çalışır. Worker yoksa mevcut WordPress cron ve istekle tetiklenen kuyruk çalışmaya devam eder. Posta kutusu kotası, parti boyutu ve yeniden deneme sınırları korunur. Tekil e-posta API’leri ve test gönderimleri senkron kalır.
+
+[Worker ve yedek çalışma düzeni](../../tools/background/README.tr.md).
+
+## Maintainers
+
+Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)
+
+## Gönderim doğrulaması
+
+Gerçek kuyruk üzerinden 1.000 alıcılı Netgsm kampanyası HTTP istekleri test içinde karşılanarak doğrulandı: numara tekilleştirme, Türkçe karakterler, seçilen İYS filtresi, geçici limit reddinden sonra yeniden deneme ve kalıcı kimlik doğrulama hatası. WhatsApp yanıtı, ayarlı gönderim aralığı ve HTTP 429 yeniden denemesi de kontrol edildi; e-posta kotaları korunur. Bu test canlı hesap bilgilerini veya telefona teslimatı doğrulamaz. Netgsm kampanyalarında şu anda her alıcı için ayrı API isteği yapılır; API kabulü teslim raporu değildir. Büyük kampanyadan önce mevcut bağlantı testi ekranından canlı bir deneme yapıp sağlayıcının teslim raporunu kontrol edin.
+
+### Canlı gönderim kuyruğu
+
+İletişim › Kuyruk ekranında e-posta, WhatsApp ve SMS ilerlemesi, alıcı durumları, sağlayıcı iş kimliği ve son işlem geçmişi görünür. Netgsm gönderimleri varsayılan olarak istekte 1.000 alıcıyla gruplanır; kabul edildi ve teslim edildi ayrı durumlar olarak takip edilir. Rapor sorgulamak yeniden SMS göndermez. Kabul durumu belirsiz gönderimler otomatik tekrar yerine incelemeye ayrılır.
+
+Bekleyen mesajlar yerelde durdurulabilir; ileri tarihli Netgsm paketleri için sağlayıcıdan iptal istenebilir. Anlık veya teslim edilmiş SMS geri alınamaz. İsteğe bağlı zamanlanmış gönderim WordPress saat dilimini kullanır. Ortak teknik geçmişe mesaj içeriği ve erişim bilgileri yazılmaz; varsayılan saklama son 2.000 olay / 14 gündür. Dil dosyaları Flux Lang gerektirmeden WordPress dilini izler.

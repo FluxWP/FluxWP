@@ -10,3 +10,8 @@ Yetki: `manage_options`. Önbellek yok.
 | `POST /wp-json/flx-backup/v1/backups/<id>/delete` | Kaydı siler; süren işse iptal ister. |
 
 Geri yükleme panelde (`admin.php?page=flx-backup`) kalır.
+
+
+## Portable background execution
+
+See the [shared worker contract](../background-workers/API.md) for automatic Docker worker detection, heartbeat expiry and ordinary WordPress fallback. Asynchronous backups prefer the worker. Restores and synchronous pre-update snapshots retain their existing execution path.
