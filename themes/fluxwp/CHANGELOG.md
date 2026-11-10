@@ -1,7 +1,7 @@
 # Değişiklikler
 
 ## 0.7.17
-- New palette colour "Table header" (`table-head`, light grey #EAEBEE) in every style variation; core tables, WooCommerce tables and Flux Wiki header cells use it. Dark mode derives its own tone.
+- New palette colour "Table header" (`table-head`, light grey #F1F2F4) in every style variation; core tables, WooCommerce tables and Flux Wiki header cells use it. Dark mode derives its own tone. Table rows use the surface colour (white) instead of the page background.
 - Theme Settings › Appearance: "Table header background" colour picker; empty keeps the style colour. Also in `flx_settings_schema` for presets.
 
 ## 0.7.16

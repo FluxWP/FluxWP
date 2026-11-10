@@ -18,7 +18,7 @@
         { "slug": "mint-soft", "name": "Çok açık zemin", "color": "#F8F5F0" },
         { "slug": "line", "name": "Çizgi", "color": "#E6E0D6" },
         { "slug": "base", "name": "Sayfa zemini", "color": "#FBF9F6" },
-        { "slug": "table-head", "name": "Tablo başlığı", "color": "#EAEBEE" },
+        { "slug": "table-head", "name": "Tablo başlığı", "color": "#F1F2F4" },
         { "slug": "white", "name": "Beyaz", "color": "#FFFFFF" }
       ]
     },

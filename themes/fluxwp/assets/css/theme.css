@@ -47,7 +47,7 @@
   --flx-mint:var(--wp--preset--color--mint);
   --flx-mint-soft:var(--wp--preset--color--mint-soft);
   --flx-line:var(--wp--preset--color--line);
-  --flx-table-head:var(--wp--preset--color--table-head,#EAEBEE);
+  --flx-table-head:var(--wp--preset--color--table-head,#F1F2F4);
   --flx-radius:var(--wp--custom--radius--card,16px);
   --flx-radius-media:var(--wp--custom--radius--media,24px);
   --flx-shadow:var(--wp--custom--shadow--card,0 10px 30px color-mix(in srgb,var(--flx-shade) 8%,transparent));
@@ -647,6 +647,7 @@ html.has-modal-open .flx-header-part{z-index:100000}
 /* Tablo başlıkları: palet "Tablo başlığı" ya da Tema Ayarları › Görünüm. */
 .wp-block-table :where(th,td){border-color:var(--flx-line)}
 .wp-block-table thead{border-bottom-color:var(--flx-line)}
+.wp-block-table table{background:var(--flx-surface)}
 .wp-block-table :where(th){background:var(--flx-table-head);color:var(--flx-ink);font-weight:700}
 
 /* ---------- v0.3.6: Çerez banner'ı ---------- */
@@ -957,7 +958,7 @@ html.has-modal-open .flx-header-part{z-index:100000}
 .flx-status--cancelled,.flx-status--failed,.flx-status--refunded{background:#FDECEA;color:#B23A2E}
 
 /* Tablolar (siparişler, sipariş detayı, indirmeler) */
-.woocommerce table.shop_table{width:100%;margin:0 0 1.5rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);border-collapse:separate;border-spacing:0;overflow:hidden;font-size:var(--wp--preset--font-size--small)}
+.woocommerce table.shop_table{background:var(--flx-surface);width:100%;margin:0 0 1.5rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);border-collapse:separate;border-spacing:0;overflow:hidden;font-size:var(--wp--preset--font-size--small)}
 .woocommerce table.shop_table :where(th,td){padding:.9rem 1rem;border:0;border-top:1px solid var(--flx-line);text-align:start;vertical-align:middle}
 .woocommerce table.shop_table thead th{border-top:0;background:var(--flx-table-head);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--flx-text)}
 .woocommerce table.shop_table tbody tr:hover>*{background:color-mix(in srgb,var(--flx-mint-soft) 60%,transparent)}
