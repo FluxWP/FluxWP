@@ -2,8 +2,9 @@
 /**
  * Ortak MCP sunucusu (Model Context Protocol, Streamable HTTP, durumsuz).
  *
- * Adres: /wp-json/flx-mcp/v1/mcp
- * Kimlik: "Authorization: Bearer <anahtar>" (Flux AI & MCP › MCP), X-MCP-Key başlığı, ?key= ya da
+ * Adres: site.com/mcp (kısa adres, filtre flx_mcp_short_path) ve /wp-json/flx-mcp/v1/mcp (ikisi aynı sunucu).
+ * Kimlik: OAuth 2.1 (oauth.php; istemci yalnız adresle bağlanır, WordPress girişi + onay),
+ *         "Authorization: Bearer <anahtar>" (Flux AI & MCP › MCP), X-MCP-Key başlığı, ?key= ya da
  *         WordPress Uygulama Parolası (Basic). Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır;
  *         anahtara araç listesi verildiyse yalnız o araçlar görünür ve çalışır.
  *
@@ -25,9 +26,101 @@ function flxai_mcp_legacy() {
 	return function_exists( 'flxseo_mcp_handle' );
 }
 
+/** Sunucu adresi: kalıcı bağlantılar açıksa kısa adres (site.com/mcp), değilse REST adresi. */
 function flxai_mcp_url() {
+	$short = flxai_mcp_short_path();
+	if ( '' !== $short && get_option( 'permalink_structure' ) && ! flxai_mcp_legacy() ) {
+		return home_url( '/' . $short );
+	}
+	return flxai_mcp_rest_url();
+}
+
+function flxai_mcp_rest_url() {
 	return rest_url( 'flx-mcp/v1/mcp' );
 }
+
+/**
+ * Kısa adresin yolu (varsayılan "mcp"). Sitede aynı adlı sayfa varsa filtreyle değiştirilir ya da '' ile kapatılır.
+ */
+function flxai_mcp_short_path() {
+	static $path = null;
+	if ( null === $path || ! did_action( 'plugins_loaded' ) ) {
+		$path = trim( (string) apply_filters( 'flx_mcp_short_path', 'mcp' ), '/' );
+		$path = preg_match( '#^[A-Za-z0-9_\-/]{1,60}$#', $path ) ? $path : '';
+	}
+	return $path;
+}
+
+/** Site kökünün yolu (alt klasör kurulumunda "/wp"), sonda / yok. */
+function flxai_home_path() {
+	return untrailingslashit( (string) wp_parse_url( home_url(), PHP_URL_PATH ) );
+}
+
+/** İsteğin site köküne göre yolu, baştaki ve sondaki / olmadan (ör. "mcp", ".well-known/oauth-protected-resource/mcp"). */
+function flxai_request_rel_path() {
+	$uri  = (string) wp_parse_url( (string) wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_PATH ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$base = flxai_home_path();
+	if ( '' !== $base && 0 === strpos( $uri, $base . '/' ) ) {
+		$uri = substr( $uri, strlen( $base ) );
+	}
+	return trim( rawurldecode( $uri ), '/' );
+}
+
+function flxai_mcp_is_short_request() {
+	$short = flxai_mcp_short_path();
+	return '' !== $short && $short === flxai_request_rel_path();
+}
+
+/** Bu istek MCP sunucusuna mı (kısa adres, REST adresi ya da ?rest_route=)? */
+function flxai_mcp_is_request() {
+	$uri = (string) wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+	$rr  = (string) wp_unslash( $_GET['rest_route'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification
+	return false !== strpos( $uri, 'flx-mcp/v1' ) || 0 === strpos( $rr, '/flx-mcp/v1' ) || flxai_mcp_is_short_request();
+}
+
+/*
+ * site.com/mcp → REST sunucusu. Yeniden yazma kuralı yok (flush gerekmez): istek WordPress'e ulaştığında
+ * rest_route verilir, WordPress isteği REST olarak işler. Kimlik aranmadan önce (plugins_loaded) ayarlanır.
+ */
+add_action(
+	'plugins_loaded',
+	function () {
+		if ( flxai_mcp_legacy() || ! flxai_mcp_is_short_request() ) {
+			return;
+		}
+		$_GET['rest_route']     = '/flx-mcp/v1/mcp';
+		$_REQUEST['rest_route'] = '/flx-mcp/v1/mcp';
+	},
+	0
+);
+
+/* .well-known (OAuth keşfi): Flux App'ten önce (init 0) yanıt verir; Flux App kendi uçları için devam eder. */
+add_action(
+	'init',
+	function () {
+		$rel = flxai_request_rel_path();
+		if ( 0 !== strpos( $rel, '.well-known/oauth-' ) || ! function_exists( 'flxai_oauth_owns' ) ) {
+			return;
+		}
+		$rest = substr( $rel, strlen( '.well-known/' ) );
+		if ( ! flxai_oauth_owns( $rest ) ) {
+			return;
+		}
+		header( 'Access-Control-Allow-Origin: *' );
+		header( 'Access-Control-Allow-Headers: Authorization, Content-Type, MCP-Protocol-Version' );
+		if ( 'OPTIONS' === ( $_SERVER['REQUEST_METHOD'] ?? '' ) ) {
+			exit;
+		}
+		nocache_headers();
+		header( 'Content-Type: application/json; charset=utf-8' );
+		$data = 0 === strpos( $rest, 'oauth-authorization-server' )
+			? flxai_oauth_metadata()
+			: flxai_oauth_resource_metadata( (string) substr( $rest, strlen( 'oauth-protected-resource' ) ) );
+		echo wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+		exit;
+	},
+	0
+);
 
 function flxai_mcp_admin_url() {
 	return admin_url( 'admin.php?page=flx-ai-mcp' );
@@ -64,6 +157,9 @@ function flxai_mcp_find_key( $key ) {
 	$hash = hash( 'sha256', $key );
 	foreach ( flxai_mcp_keys() as $id => $k ) {
 		if ( ! empty( $k['hash'] ) && hash_equals( $k['hash'], $hash ) ) {
+			if ( 'oauth' === ( $k['type'] ?? '' ) && (int) ( $k['exp'] ?? 0 ) < time() ) {
+				return null; // Süresi dolmuş erişim belirteci: istemci yenileme belirteciyle yenisini alır.
+			}
 			return array( 'id' => $id ) + $k;
 		}
 	}
@@ -159,7 +255,7 @@ function flxai_mcp_instructions() {
 add_filter(
 	'determine_current_user',
 	function ( $user_id ) {
-		if ( $user_id || flxai_mcp_legacy() || empty( $_SERVER['REQUEST_URI'] ) || false === strpos( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ), 'flx-mcp/v1' ) ) {
+		if ( $user_id || flxai_mcp_legacy() || ! flxai_mcp_is_request() ) {
 			return $user_id;
 		}
 		$auth = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '' ) );
@@ -449,7 +545,12 @@ add_action(
 		$do   = sanitize_key( $_POST['do'] ?? '' );
 		$keys = flxai_mcp_keys();
 		if ( 'toggle' === $do ) {
-			flxai_update_settings( array( 'mcp_enabled' => empty( $_POST['mcp_enabled'] ) ? 0 : 1 ) );
+			flxai_update_settings(
+				array(
+					'mcp_enabled' => empty( $_POST['mcp_enabled'] ) ? 0 : 1,
+					'mcp_oauth'   => empty( $_POST['mcp_oauth'] ) ? 0 : 1,
+				)
+			);
 		} elseif ( 'create' === $do ) {
 			$key         = 'flxmcp_' . wp_generate_password( 40, false, false );
 			$id          = wp_generate_uuid4();

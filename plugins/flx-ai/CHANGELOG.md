@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.10.0
+- **Kısa MCP adresi `site.com/mcp`.** Aynı sunucu `/wp-json/flx-mcp/v1/mcp` adresinde de çalışır; yeniden yazma kuralı yok. Sitede `mcp` adlı sayfa varsa `flx_mcp_short_path` filtresiyle değiştirilir ya da `''` ile kapatılır.
+- **MCP için OAuth 2.1 girişi Flux AI & MCP'de** (Flux App gerekmez). claude.ai, Claude Desktop, ChatGPT, Cursor, VS Code yalnız adresle bağlanır: 401 + `WWW-Authenticate`, `/.well-known/oauth-protected-resource` (RFC 9728), `/.well-known/oauth-authorization-server` (RFC 8414), dinamik istemci kaydı (RFC 7591), `site.com/mcp/authorize` onay ekranı (WordPress girişi, PKCE S256 zorunlu), belirteç / yenileme (dönüşümlü; kullanılmış yenileme belirteci tekrar gelirse bağlantı kapanır) ve iptal (RFC 7009) uçları `/wp-json/flx-mcp/v1/oauth/*`.
+- Onaylanan bağlantılar Flux AI & MCP › MCP'deki listede "OAuth" etiketiyle görünür ve oradan iptal edilir. Erişim belirteci 1 saat, kullanılmayan bağlantı 90 gün (filtreler `flx_mcp_oauth_access_ttl`, `flx_mcp_oauth_refresh_ttl`). Ekranda "OAuth ile giriş" aç/kapa (MCP açıkken varsayılan açık).
+- Anahtarla bağlanma aynen çalışır (Bearer, `X-MCP-Key`, `?key=`, Uygulama Parolası); kısa adreste de.
+- Flux App kuruluysa `.well-known` keşfine MCP için Flux AI yanıt verir; Flux App'in kendi uçları ve uygulama girişi değişmez, Flux App belirteçleri MCP'de çalışmaya devam eder.
+
 ## 0.9.4
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Preserve singular/plural message boundaries and printf arguments in English source IDs and all native language packs; prevent count labels from breaking populated screens.
