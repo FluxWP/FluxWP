@@ -990,3 +990,7 @@ msgstr "Aberto %1$s vezes via QR e %2$s vezes pelo site."
 
 msgid "No map yet: the link opens the event page until a location is entered."
 msgstr "Ainda sem mapa: o link abre a página do evento até que um local seja informado."
+
+msgid "Person not found."
+msgstr "Pessoa não encontrada."
+

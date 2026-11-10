@@ -1015,3 +1015,7 @@ msgstr "Открыто %1$s раз по QR и %2$s раз с сайта."
 
 msgid "No map yet: the link opens the event page until a location is entered."
 msgstr "Карты пока нет: до указания места ссылка открывает страницу мероприятия."
+
+msgid "Person not found."
+msgstr "Персона не найдена."
+
