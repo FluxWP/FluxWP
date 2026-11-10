@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.16 — 2026-11-10
+- Security (WhatsApp Cloud API): require App Secret on `wacloud` connections and reject webhook `POST` requests with `403` (`no_secret`) when App Secret is empty, before parsing payloads or firing `flxi_wacloud_event` / `flxi_whatsapp_event`. Show webhook status in Connections, Setup and System Check when App Secret is missing.
+- Security (Google sign-in): mark accounts as verified (`flxi_social`, `flxi_email_verified`, `flxi_verified_meta`) and suppress registration/password emails only when a supported social-login plugin has recorded a Google login for the user (or via `flxi_user_is_social`), never from request parameters or Referer alone.
+
 ## 1.13.15 — 2026-11-10
 - Batch Netgsm recipients in REST v2 packets, persist provider job IDs, reconcile per-recipient delivery reports and avoid resending uncertain submissions.
 - Add a live delivery queue, local stopping, future Netgsm scheduling/cancellation, protected REST actions and ten native locale catalogs.

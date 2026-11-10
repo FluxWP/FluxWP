@@ -4,8 +4,9 @@
  * "parolanızı belirleyin" (WordPress) ve "hesabınız oluşturuldu" (WooCommerce) e-postaları gitmez,
  * hesap "e-postası doğrulanmış" olarak işaretlenir.
  *
- * Hangi eklentiyle giriş yapıldığından bağımsız çalışır: kayıt isteğinde Google OAuth izleri aranır
- * (Nextend Social Login, Site Kit "Google ile oturum aç", Super Socializer, miniOrange, WooCommerce Social Login vb.).
+ * Yalnız sosyal giriş eklentisinin kullanıcıya ait kendi kaydı ya da OAuth tamamlandıktan sonra tetiklediği
+ * kanca varsa uygulanır (Nextend Social Login, Site Kit, Super Socializer, Heateor, miniOrange vb.).
+ * İstek parametreleri / Referer (`flxi_is_google_request()`) tek başına doğrulama ya da e-posta bastırma hakkı vermez.
  *
  * @package flx-mail
  */
@@ -43,7 +44,12 @@ function flxi_active_social_plugins() {
 	return $out;
 }
 
-/** Bu istek bir Google (OAuth) giriş/kayıt isteği mi? */
+/**
+ * Bu istek bir Google (OAuth) giriş/kayıt isteğine benziyor mu?
+ *
+ * İstek parametreleri ve Referer'a dayalı sezgisel kontroldür; ziyaretçi tarafından taklit edilebileceği için
+ * kullanıcıyı doğrulanmış işaretlemek ya da kayıt/doğrulama e-postalarını bastırmak için kullanılmaz.
+ */
 function flxi_is_google_request() {
 	static $res = null;
 	if ( null !== $res ) {
@@ -73,14 +79,14 @@ function flxi_is_google_request() {
 	return $res;
 }
 
-/** Kullanıcı Google ile mi oluşturuldu? Kayıt sırasında işaretlenir; eklentilerin kendi meta kayıtlarına da bakılır. */
-function flxi_user_is_social( $user_id ) {
+/**
+ * Sosyal giriş eklentisinin bu kullanıcı için kendi Google kaydı (meta / tablo) var mı?
+ * (`flxi_social` bayrağının kendisi hariç tutulur.)
+ */
+function flxi_user_has_social_provider_record( $user_id ) {
 	$user_id = (int) $user_id;
 	if ( ! $user_id ) {
 		return false;
-	}
-	if ( get_user_meta( $user_id, 'flxi_social', true ) ) {
-		return true;
 	}
 	global $wpdb;
 	$known_meta = array( 'googlesitekit_siwg_google_user_hid', $wpdb->prefix . 'googlesitekit_siwg_google_user_hid', 'thechamp_provider', 'heateor_ss_provider', 'mo_openid_user_profile' );
@@ -98,24 +104,104 @@ function flxi_user_is_social( $user_id ) {
 			return true;
 		}
 	}
+	return false;
+}
+
+/** Kullanıcı Google ile mi oluşturuldu? Doğrulanmış sağlayıcı kaydı, `flxi_social` veya `flxi_user_is_social` filtresi. */
+function flxi_user_is_social( $user_id ) {
+	$user_id = (int) $user_id;
+	if ( ! $user_id ) {
+		return false;
+	}
+	if ( get_user_meta( $user_id, 'flxi_social', true ) ) {
+		return true;
+	}
+	if ( flxi_user_has_social_provider_record( $user_id ) ) {
+		return true;
+	}
 	return (bool) apply_filters( 'flxi_user_is_social', false, $user_id );
 }
 
-/** Kayıt anında işaretle ve "e-posta doğrulandı" bilgisini yaz. */
+/**
+ * Sağlayıcı kanıtı varsa (veya `$trusted` ile OAuth tamamlanma kancasından çağrıldıysa)
+ * kullanıcıyı Google ile giriş yapmış ve doğrulanmış olarak işaretler.
+ */
+function flxi_maybe_mark_social_user( $user_id, $trusted = false ) {
+	$user_id = (int) $user_id;
+	if ( ! $user_id ) {
+		return false;
+	}
+	if ( ! $trusted && ! flxi_user_is_social( $user_id ) ) {
+		return false;
+	}
+	if ( ! get_user_meta( $user_id, 'flxi_social', true ) ) {
+		update_user_meta( $user_id, 'flxi_social', 'google' );
+	}
+	if ( ! get_user_meta( $user_id, 'flxi_social_at', true ) ) {
+		update_user_meta( $user_id, 'flxi_social_at', time() );
+	}
+	if ( flxi_setting( 'social_verified' ) && ! get_user_meta( $user_id, 'flxi_email_verified', true ) ) {
+		flxi_mark_email_verified( $user_id );
+	}
+	return true;
+}
+
+/**
+ * Kayıt ve ilk giriş anında sağlayıcı kaydını kontrol et.
+ * Sosyal giriş eklentileri kendi meta/tablo kayıtlarını çoğu zaman `user_register` sonrasında,
+ * aynı istekte kullanıcıyı oturuma sokarken (`wp_login`) yazar. Her istekte çalışan bir kanca bilerek yok.
+ */
 add_action(
 	'user_register',
 	function ( $user_id ) {
-		if ( ! flxi_is_google_request() ) {
-			return;
-		}
-		update_user_meta( $user_id, 'flxi_social', 'google' );
-		update_user_meta( $user_id, 'flxi_social_at', time() );
-		if ( flxi_setting( 'social_verified' ) ) {
-			flxi_mark_email_verified( $user_id );
+		flxi_maybe_mark_social_user( $user_id );
+	},
+	999
+);
+
+add_action(
+	'wp_login',
+	function ( $user_login, $user ) {
+		if ( $user instanceof WP_User ) {
+			flxi_maybe_mark_social_user( $user->ID );
 		}
 	},
-	1
+	10,
+	2
 );
+
+add_action(
+	'added_user_meta',
+	function ( $meta_id, $user_id, $meta_key ) {
+		if ( false !== strpos( (string) $meta_key, 'googlesitekit_siwg' ) || in_array( $meta_key, array( 'thechamp_provider', 'heateor_ss_provider', 'mo_openid_user_profile' ), true ) ) {
+			flxi_maybe_mark_social_user( $user_id );
+		}
+	},
+	10,
+	3
+);
+
+add_action(
+	'updated_user_meta',
+	function ( $meta_id, $user_id, $meta_key ) {
+		if ( false !== strpos( (string) $meta_key, 'googlesitekit_siwg' ) || in_array( $meta_key, array( 'thechamp_provider', 'heateor_ss_provider', 'mo_openid_user_profile' ), true ) ) {
+			flxi_maybe_mark_social_user( $user_id );
+		}
+	},
+	10,
+	3
+);
+
+/** Nextend Social Login: Google OAuth tamamlanıp kullanıcı bağlandığında/oluşturulduğunda tetiklenir. */
+foreach ( array( 'nsl_google_register_new_user', 'nsl_google_login' ) as $flxi_nsl_hook ) {
+	add_action(
+		$flxi_nsl_hook,
+		function ( $user_id ) {
+			flxi_maybe_mark_social_user( $user_id, true );
+		}
+	);
+}
+unset( $flxi_nsl_hook );
 
 /** Yaygın doğrulama eklentilerinin "doğrulandı" kayıtları. */
 function flxi_mark_email_verified( $user_id ) {
@@ -150,7 +236,7 @@ function flxi_mark_email_verified( $user_id ) {
 add_filter(
 	'wp_new_user_notification_email',
 	function ( $email, $user ) {
-		if ( flxi_setting( 'social_block_core' ) && ( flxi_is_google_request() || flxi_user_is_social( $user->ID ) ) ) {
+		if ( flxi_setting( 'social_block_core' ) && flxi_maybe_mark_social_user( $user->ID ) ) {
 			$lines            = flxi_header_lines( $email['headers'] ?? array() );
 			$lines[]          = 'X-FLXI-Social: 1';
 			$email['headers'] = $lines;
@@ -167,7 +253,7 @@ add_filter(
 	function ( $enabled, $object ) {
 		if ( $enabled && flxi_setting( 'social_block_wc' ) ) {
 			$uid = $object instanceof WP_User ? $object->ID : 0;
-			if ( flxi_is_google_request() || ( $uid && flxi_user_is_social( $uid ) && time() - (int) get_user_meta( $uid, 'flxi_social_at', true ) < 600 ) ) {
+			if ( $uid && flxi_maybe_mark_social_user( $uid ) && time() - (int) get_user_meta( $uid, 'flxi_social_at', true ) < 600 ) {
 				return false;
 			}
 		}

@@ -23,7 +23,7 @@ add_filter(
 				array( 'key' => 'phone_id', 'label' => __( 'Phone Number ID', 'flx-mail' ), 'type' => 'text', 'required' => true, 'placeholder' => '1234567890' ),
 				array( 'key' => 'waba_id', 'label' => __( 'WhatsApp Business account ID (WABA)', 'flx-mail' ), 'type' => 'text', 'placeholder' => '1234567890', 'help' => __( 'Needed for the template list.', 'flx-mail' ) ),
 				array( 'key' => 'token', 'label' => __( 'Permanent access token (System User token)', 'flx-mail' ), 'type' => 'password', 'required' => true ),
-				array( 'key' => 'app_secret', 'label' => __( 'App Secret', 'flx-mail' ), 'type' => 'password', 'help' => __( 'Verifies that incoming webhooks come from Meta. If empty, the signature isn\'t checked (not recommended).', 'flx-mail' ) ),
+				array( 'key' => 'app_secret', 'label' => __( 'App Secret', 'flx-mail' ), 'type' => 'password', 'required' => true, 'help' => __( 'Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered.', 'flx-mail' ) ),
 				array( 'key' => 'graph', 'label' => __( 'Graph API version', 'flx-mail' ), 'type' => 'text', 'default' => 'v23.0', 'placeholder' => 'v23.0' ),
 				array( 'key' => 'link_preview', 'label' => __( 'Show link preview', 'flx-mail' ), 'type' => 'checkbox', 'default' => 1 ),
 				array( 'key' => 'delay', 'label' => __( 'Delay between messages in bulk send (sec)', 'flx-mail' ), 'type' => 'number', 'default' => 1 ),
@@ -296,14 +296,16 @@ function flxi_wacloud_webhook( WP_REST_Request $req ) {
 		}
 		return new WP_Error( 'flxi_wac', 'Forbidden', array( 'status' => 403 ) );
 	}
-	$raw    = (string) $req->get_body();
 	$secret = (string) ( $c['config']['app_secret'] ?? '' );
-	if ( $secret ) {
-		$sig = (string) $req->get_header( 'x_hub_signature_256' );
-		if ( ! $sig || ! hash_equals( 'sha256=' . hash_hmac( 'sha256', $raw, $secret ), $sig ) ) {
-			flxi_wacloud_hook_seen( $id, 'bad_signature' );
-			return new WP_Error( 'flxi_wac', 'Bad signature', array( 'status' => 401 ) );
-		}
+	if ( '' === $secret ) {
+		flxi_wacloud_hook_seen( $id, 'no_secret' );
+		return new WP_Error( 'flxi_wac', 'App Secret not configured', array( 'status' => 403 ) );
+	}
+	$raw = (string) $req->get_body();
+	$sig = (string) $req->get_header( 'x_hub_signature_256' );
+	if ( ! $sig || ! hash_equals( 'sha256=' . hash_hmac( 'sha256', $raw, $secret ), $sig ) ) {
+		flxi_wacloud_hook_seen( $id, 'bad_signature' );
+		return new WP_Error( 'flxi_wac', 'Bad signature', array( 'status' => 401 ) );
 	}
 	$payload = json_decode( $raw, true );
 	if ( ! is_array( $payload ) ) {
