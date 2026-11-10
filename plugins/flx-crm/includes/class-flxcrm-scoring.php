@@ -9,8 +9,9 @@
  * - Kayıp riski kişinin kendi ritmine göre: min(100, 100 × geçen gün / max(ortalama aralık × 1,5; 30)).
  *   Tek ödemesi olanın aralığı 365 gün sayılır.
  *
- * Gece cron ile ve "Yeniden hesapla" düğmesiyle çalışır. Segment değişince `flxcrm_segment_changed` eylemi
- * ve zaman tüneline olay (ilk hesaplamada olay yazılmaz).
+ * Gece cron ile ve "Yeniden hesapla" düğmesiyle çalışır. Bir çalışma yaklaşık 20 saniye sürer
+ * ve `flxcrm_score_cursor` içindeki kişi kimliğinden devam eder. Segment değişince
+ * `flxcrm_segment_changed` eylemi ve zaman tüneline olay (ilk hesaplamada olay yazılmaz).
  *
  * @package FLX_CRM
  */
@@ -21,6 +22,7 @@ final class FLXCRM_Scoring {
 
 	public static function init() {
 		add_action( 'flxcrm_daily', array( __CLASS__, 'run' ) );
+		add_action( 'flxcrm_score_resume', array( __CLASS__, 'run' ) );
 	}
 
 	/** Kişinin kendi ritmine göre kayıp riski (0–100). */
@@ -63,27 +65,56 @@ final class FLXCRM_Scoring {
 	}
 
 	/**
-	 * Tüm kişileri skorlar.
+	 * Skorları hesaplar. Beşte bölme bütün ödeyen kişilere bakmayı gerektirir; yazma
+	 * 100'lik CASE grupları halindedir ve yaklaşık 20 saniyede durur.
 	 *
-	 * @return array scored, changed
+	 * @return array{scored:int,changed:int,done:bool,total:int}
 	 */
 	public static function run() {
 		global $wpdb;
-		$t    = flxcrm_table( 'contacts' );
-		$rows = $wpdb->get_results( "SELECT id, paid_days, ltv, last_paid_at, avg_gap_days, segment, scored_at FROM $t WHERE paid_days > 0", ARRAY_A ); // phpcs:ignore WordPress.DB
-		$now  = time();
-		$data = array();
-		foreach ( (array) $rows as $r ) {
-			$last = $r['last_paid_at'] ? strtotime( $r['last_paid_at'] . ' UTC' ) : $now;
-			$data[ (int) $r['id'] ] = array(
-				'rec'   => max( 0, (int) floor( ( $now - $last ) / DAY_IN_SECONDS ) ),
-				'f'     => (int) $r['paid_days'],
-				'm'     => (float) $r['ltv'],
-				'gap'   => (int) $r['avg_gap_days'],
-				'seg'   => (string) $r['segment'],
-				'first' => empty( $r['scored_at'] ),
-			);
+		$t        = flxcrm_table( 'contacts' );
+		$deadline = microtime( true ) + 20;
+		$state    = get_option( 'flxcrm_score_cursor', array() );
+		$cursor   = 0;
+		$now      = time();
+		$carry    = 0;
+		// Bir günden eski imleç bırakılır: yarım kalan tur eski "şimdi" ile sürmesin.
+		if ( is_array( $state ) && ! empty( $state['now'] ) && time() - (int) $state['now'] < DAY_IN_SECONDS ) {
+			$cursor = (int) ( $state['id'] ?? 0 );
+			$now    = (int) $state['now'];
+			$carry  = (int) ( $state['changed'] ?? 0 );
 		}
+
+		$data  = array();
+		$after = 0;
+		while ( true ) {
+			$rows = $wpdb->get_results(
+				$wpdb->prepare( "SELECT id, paid_days, ltv, last_paid_at, avg_gap_days, segment, scored_at, r_score, f_score, m_score, churn FROM $t WHERE paid_days > 0 AND id > %d ORDER BY id ASC LIMIT 500", $after ), // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				ARRAY_A
+			);
+			if ( ! $rows ) {
+				break;
+			}
+			foreach ( $rows as $r ) {
+				$last = $r['last_paid_at'] ? strtotime( $r['last_paid_at'] . ' UTC' ) : $now;
+				$id   = (int) $r['id'];
+				$data[ $id ] = array(
+					'rec'     => max( 0, (int) floor( ( $now - $last ) / DAY_IN_SECONDS ) ),
+					'f'       => (int) $r['paid_days'],
+					'm'       => (float) $r['ltv'],
+					'gap'     => (int) $r['avg_gap_days'],
+					'seg'     => (string) $r['segment'],
+					'first'   => empty( $r['scored_at'] ),
+					'r_score' => (int) $r['r_score'],
+					'f_score' => (int) $r['f_score'],
+					'm_score' => (int) $r['m_score'],
+					'churn'   => (int) $r['churn'],
+				);
+				$after = $id;
+			}
+			unset( $rows );
+		}
+
 		/* R: az gün = iyi → büyükten küçüğe sırala. F ve M: küçükten büyüğe. Eşitlikte id. */
 		$ids = array_keys( $data );
 		$by  = static function ( $key, $desc ) use ( $data, $ids ) {
@@ -106,53 +137,152 @@ final class FLXCRM_Scoring {
 		$ms = self::ntile( $by( 'm', false ) );
 
 		$changed = 0;
+		$walked  = 0;
 		$stamp   = flxcrm_now();
+		$pending = array();
+		$last    = $cursor;
+		$stop    = false;
+		$allow   = true;
+		sort( $ids, SORT_NUMERIC );
 		FLXCRM_Events::$defer_recalc = true;
-		foreach ( $data as $id => $d ) {
+		foreach ( $ids as $id ) {
+			if ( $id <= $cursor ) {
+				continue;
+			}
+			if ( ! $allow && microtime( true ) >= $deadline ) {
+				$stop = true;
+				break;
+			}
+			$allow = false;
+			$d     = $data[ $id ];
 			/* Tek ödeme yapan herkes en alt F diliminde değil: ham gün sayısı 1 ise F en fazla 1. */
-			$f   = 1 === $d['f'] ? 1 : $fs[ $id ];
-			$seg = self::segment_for( $rs[ $id ], $f, $d['f'] );
-			$wpdb->update( // phpcs:ignore WordPress.DB
-				$t,
-				array(
-					'r_score'   => $rs[ $id ],
-					'f_score'   => $f,
-					'm_score'   => $ms[ $id ],
-					'segment'   => $seg,
-					'churn'     => self::churn( $d['rec'], $d['gap'] ),
-					'scored_at' => $stamp,
-				),
-				array( 'id' => $id )
+			$f     = 1 === $d['f'] ? 1 : $fs[ $id ];
+			$seg   = self::segment_for( $rs[ $id ], $f, $d['f'] );
+			$churn = self::churn( $d['rec'], $d['gap'] );
+			$last  = $id;
+			++$walked;
+			if ( $d['r_score'] === (int) $rs[ $id ] && $d['f_score'] === (int) $f && $d['m_score'] === (int) $ms[ $id ] && $d['seg'] === $seg && $d['churn'] === (int) $churn ) {
+				continue;
+			}
+			$pending[] = array(
+				'id'    => $id,
+				'r'     => (int) $rs[ $id ],
+				'f'     => (int) $f,
+				'm'     => (int) $ms[ $id ],
+				'seg'   => $seg,
+				'churn' => (int) $churn,
+				'from'  => $d['seg'],
+				'first' => $d['first'],
 			);
-			if ( $seg !== $d['seg'] ) {
-				++$changed;
-				FLXCRM_Contacts::forget( $id );
-				if ( ! $d['first'] && '' !== $d['seg'] ) {
-					FLXCRM_Events::add(
-						$id,
-						'segment_entered',
-						array(
-							'title' => flxcrm_segment_label( $d['seg'] ) . ' → ' . flxcrm_segment_label( $seg ),
-							'data'  => array( 'from' => $d['seg'], 'to' => $seg ),
-						)
-					);
-				}
-				/**
-				 * Kişi yeni bir RFM segmentine girdi.
-				 *
-				 * @param int    $id   Kişi.
-				 * @param string $seg  Yeni segment.
-				 * @param string $from Eski segment ('' = ilk hesaplama).
-				 */
-				do_action( 'flxcrm_segment_changed', $id, $seg, $d['seg'] );
+			if ( count( $pending ) >= 100 ) {
+				$changed += self::write_score_batch( $t, $pending, $stamp );
+				$pending  = array();
 			}
 		}
+		if ( $pending ) {
+			$changed += self::write_score_batch( $t, $pending, $stamp );
+		}
 		FLXCRM_Events::$defer_recalc = false;
+
+		$changed += $carry;
+		if ( $stop ) {
+			$cursor_row = array(
+				'id'      => $last,
+				'now'     => $now,
+				'changed' => $changed,
+			);
+			if ( false === get_option( 'flxcrm_score_cursor', false ) ) {
+				add_option( 'flxcrm_score_cursor', $cursor_row, '', false );
+			} else {
+				update_option( 'flxcrm_score_cursor', $cursor_row, false );
+			}
+			// Cron'da yarım kaldıysa ertesi günü beklemeden sürdür.
+			if ( wp_doing_cron() && ! wp_next_scheduled( 'flxcrm_score_resume' ) ) {
+				wp_schedule_single_event( time() + MINUTE_IN_SECONDS, 'flxcrm_score_resume' );
+			}
+			return array(
+				'scored'  => $walked,
+				'changed' => $changed,
+				'done'    => false,
+				'total'   => count( $data ),
+			);
+		}
+
+		delete_option( 'flxcrm_score_cursor' );
 		/* Ödemesi kalmayan (iade) kişilerin skoru sıfırlanır. */
 		$wpdb->query( "UPDATE $t SET r_score = 0, f_score = 0, m_score = 0, segment = '', churn = 0 WHERE paid_days = 0 AND segment <> ''" ); // phpcs:ignore WordPress.DB
 		update_option( 'flxcrm_scored_at', time(), false );
 		FLXCRM_Contacts::flush_stats();
 		FLXCRM_Segments::recount_all();
-		return array( 'scored' => count( $data ), 'changed' => $changed );
+		return array(
+			'scored'  => count( $data ),
+			'changed' => $changed,
+			'done'    => true,
+			'total'   => count( $data ),
+		);
+	}
+
+	/**
+	 * Değişen skorları tek UPDATE ile yazar ve segment olayını yalnızca değişende üretir.
+	 *
+	 * @param array<int,array<string,mixed>> $rows
+	 */
+	private static function write_score_batch( $table, array $rows, $stamp ) {
+		global $wpdb;
+		if ( ! $rows ) {
+			return 0;
+		}
+		$allowed = array( 'new', 'champion', 'loyal', 'promising', 'at_risk', 'lost', 'hibernating' );
+		$r_sql   = array();
+		$f_sql   = array();
+		$m_sql   = array();
+		$s_sql   = array();
+		$c_sql   = array();
+		$ids     = array();
+		foreach ( $rows as $row ) {
+			$id    = (int) $row['id'];
+			$ids[] = $id;
+			$r_sql[] = 'WHEN ' . $id . ' THEN ' . (int) $row['r'];
+			$f_sql[] = 'WHEN ' . $id . ' THEN ' . (int) $row['f'];
+			$m_sql[] = 'WHEN ' . $id . ' THEN ' . (int) $row['m'];
+			$name    = in_array( $row['seg'], $allowed, true ) ? $row['seg'] : '';
+			$s_sql[] = 'WHEN ' . $id . " THEN '" . esc_sql( $name ) . "'";
+			$c_sql[] = 'WHEN ' . $id . ' THEN ' . (int) $row['churn'];
+		}
+		$sql = "UPDATE $table SET r_score = CASE id " . implode( ' ', $r_sql )
+			. ' END, f_score = CASE id ' . implode( ' ', $f_sql )
+			. ' END, m_score = CASE id ' . implode( ' ', $m_sql )
+			. ' END, segment = CASE id ' . implode( ' ', $s_sql )
+			. ' END, churn = CASE id ' . implode( ' ', $c_sql )
+			. ' END, scored_at = %s WHERE id IN (' . implode( ',', $ids ) . ')';
+		$wpdb->query( $wpdb->prepare( $sql, $stamp ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$changed = 0;
+		foreach ( $rows as $row ) {
+			if ( $row['seg'] === $row['from'] ) {
+				continue;
+			}
+			++$changed;
+			$id = (int) $row['id'];
+			FLXCRM_Contacts::forget( $id );
+			if ( ! $row['first'] && '' !== $row['from'] ) {
+				FLXCRM_Events::add(
+					$id,
+					'segment_entered',
+					array(
+						'title' => flxcrm_segment_label( $row['from'] ) . ' → ' . flxcrm_segment_label( $row['seg'] ),
+						'data'  => array( 'from' => $row['from'], 'to' => $row['seg'] ),
+					)
+				);
+			}
+			/**
+			 * Kişi yeni bir RFM segmentine girdi.
+			 *
+			 * @param int    $id   Kişi.
+			 * @param string $seg  Yeni segment.
+			 * @param string $from Eski segment ('' = ilk hesaplama).
+			 */
+			do_action( 'flxcrm_segment_changed', $id, $row['seg'], $row['from'] );
+		}
+		return $changed;
 	}
 }
