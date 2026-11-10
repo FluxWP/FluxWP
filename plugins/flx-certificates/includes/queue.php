@@ -236,12 +236,12 @@ function flxs_run_queue( $budget = null ) {
 	global $wpdb;
 	$t = flxs_table( 'messages' );
 	if ( null === $budget || ! is_numeric( $budget ) ) {
-		$budget = wp_doing_cron() ? 45 : 20;
+		$budget = wp_doing_cron() ? 25 : 20;
 	}
 	return flx_background_run( 'certificate-messages', function () use ( $budget, $wpdb, $t ) {
 		flxs_mark_queue_run();
 		if ( function_exists( 'set_time_limit' ) ) {
-			@set_time_limit( (int) $budget + 60 ); // phpcs:ignore
+			@set_time_limit( min( 50, (int) $budget + 10 ) ); // phpcs:ignore
 		}
 		// Takılı kalan "gönderiliyor" kayıtlarını geri al
 		$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = CASE WHEN attempts >= max_attempts THEN 'failed' ELSE 'queued' END, locked_at = NULL WHERE status = 'processing' AND locked_at < %s", gmdate( 'Y-m-d H:i:s', time() - 600 ) ) );
@@ -253,14 +253,15 @@ function flxs_run_queue( $budget = null ) {
 		$limit     = max( 1, (int) flxs_setting( 'queue_batch' ) );
 		while ( $processed < $limit ) {
 			$left = $budget - ( microtime( true ) - $start );
-			if ( $left < 3 ) {
+			$timeout = (int) floor( $left - 5 );
+			if ( $timeout < 5 ) {
 				break;
 			}
 			$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE status = 'queued' AND scheduled_at <= %s ORDER BY scheduled_at ASC, id ASC LIMIT 1", flxs_now() ), ARRAY_A );
 			if ( ! $row ) {
 				$next = $wpdb->get_var( "SELECT MIN(scheduled_at) FROM $t WHERE status = 'queued'" );
 				$wait = $next ? strtotime( $next . ' UTC' ) - time() : 999;
-				if ( $wait > 0 && $wait < $left - 3 ) {
+				if ( $wait > 0 && $wait < $timeout - 5 ) {
 					sleep( (int) $wait );
 					continue;
 				}
@@ -272,7 +273,12 @@ function flxs_run_queue( $budget = null ) {
 			}
 			flx_background_log( 'certificate.message.claimed', array( 'plugin' => 'flx-certificates', 'item' => (int) $row['id'], 'attempt' => (int) $row['attempts'] + 1 ) );
 			$row['attempts'] = (int) $row['attempts'] + 1;
-			$r               = flxs_process_message( $row );
+			$GLOBALS['flxs_queue_timeout'] = min( 20, $timeout );
+			try {
+				$r = flxs_process_message( $row );
+			} finally {
+				unset( $GLOBALS['flxs_queue_timeout'] );
+			}
 			flx_background_log( 'certificate.message.result', array( 'plugin' => 'flx-certificates', 'item' => (int) $row['id'], 'attempt' => (int) $row['attempts'], 'state' => $wpdb->get_var( $wpdb->prepare( "SELECT status FROM $t WHERE id=%d", $row['id'] ) ) ) );
 			++$processed;
 			$r ? ++$sent : ++$failed;
