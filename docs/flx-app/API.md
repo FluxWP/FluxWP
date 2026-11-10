@@ -227,6 +227,8 @@ Eski alanlar (`user, site, auth, menu, modules, counts, bottom, web_session, lay
 
 Kart ve liste öğelerinde `open` §6 hedefidir (`screen:core/posts`, `screen:woo/orders`, `web:update-core.php`…), öğelerde `params` (`{id}`). Eski `mod:<id>` → `module:<id>`, çıplak slug → `menu:<slug>`; `open` yoksa `url`'den `web:<admin yolu>`. `url` korunur (hedefi olmayan uygulama web görünümünde açar).
 
+WooCommerce bugünkü ciro (`wc_get_is_paid_statuses`, yerel gün başından itibaren `date_created_gmt` / `post_date_gmt`) ve ödeme bekleyen adedi (`wc-on-hold`, `wc-pending`) SQL toplamıdır. HPOS açıksa `wc_orders`, değilse yazı + `_order_total`. `view-orders` türleri girer; iade satırının eksi toplamı da toplanır. Sorgu hata verirse eski nesne döngüsüne düşülür (bugün en çok 500). Sonuç 60 sn sabit transient'lerde: `flxapp_dash_wc_paid` (değerde gün başı) ve `flxapp_dash_wc_wait` (tarih aralığı yok).
+
 ## `GET /sync?since=<unix>`
 
 ```json

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.7
+- Başlangıçtaki bugünkü sipariş tutarı ve adedi ile ödeme bekleyen sayısı sipariş nesnesi yüklemeden hesaplanır. HPOS tablosu ya da yazı + postmeta kullanılır; sorgu hata verirse eski döngüye düşülür. 500 sipariş sınırı kalkar. Sonuç 60 saniye `flxapp_dash_wc_paid` ve `flxapp_dash_wc_wait` transient'lerinde durur; günün başlangıcı anahtarda değil değerde tutulur.
+
 ## 0.4.6
 - OAuth belirtecinin kayıtlı kapsamı uygulanır. `flx` uygulama uçlarını ve sitenin diğer REST uçlarını (panel oturumu dahil) açar; `mcp` yalnız `/flx-mcp/`. `offline_access` yenileme içindir, tek başına uç açmaz. Kapsamı boş kayıtlı belirteç tüm uçlara erişir. Kapsam yetmezse yanıt 403 `insufficient_scope` ve `WWW-Authenticate: Bearer error="insufficient_scope"`.
 - MCP istemcisinin kendini kaydetmesi varsayılan kapalıdır (Uygulama ayarlarındaki mevcut kutu). Açıkken dönüş adresleri eskisi gibi doğrulanır. Kodla gelen istemciler kayıt kapalıyken çalışır.
