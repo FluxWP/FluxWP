@@ -562,9 +562,6 @@ msgstr "Google はすでに電子メール アドレスを検証しているた�
 msgid "Detected plugin: %s"
 msgstr "検出されたプラグイン:%s"
 
-msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
-msgstr "既知の Google サインイン プラグインは検出されませんでした。 Google のリターンもリクエストから認識されます。"
-
 msgid "Do not send the WordPress \"login details / set password\" email"
 msgstr "WordPress の「ログイン詳細/パスワード設定」メールを送信しないでください"
 
@@ -1170,9 +1167,6 @@ msgstr "Google に登録した人には、パスワード設定メールが届�
 
 msgid "Setting"
 msgstr "設定"
-
-msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
-msgstr "有効な既知の Google サインイン プラグインはありません。別のプラグインを使用している場合でも、Google リターンが検出され、パスワード メールの送信が停止されます。"
 
 msgid "No %s connection."
 msgstr "%s接続がありません。"
@@ -2304,9 +2298,6 @@ msgstr "不正な署名を含むリクエスト"
 msgid "Open 24-hour windows"
 msgstr "24時間営業の窓口"
 
-msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
-msgstr "アプリ シークレットが入力されていません: 受信リクエストはメタからのものとして検証されていません。 「編集」の下に追加します。"
-
 msgid "Approved templates"
 msgstr "承認されたテンプレート"
 
@@ -2336,9 +2327,6 @@ msgstr "永続的なアクセス トークン (システム ユーザー トー�
 
 msgid "App Secret"
 msgstr "アプリの秘密"
-
-msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
-msgstr "受信 Webhook が Meta からのものであることを検証します。空の場合、署名はチェックされません (推奨されません)。"
 
 msgid "Graph API version"
 msgstr "グラフAPIのバージョン"
@@ -2642,3 +2630,22 @@ msgstr "WordPressのバックグラウンド処理"
 
 msgid "Worker active"
 msgstr "Worker稼働中"
+
+msgid "App Secret missing · webhook off"
+msgstr "アプリ シークレットが未入力 · Webhook オフ"
+
+msgid "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit."
+msgstr "アプリ シークレットが入力されていません: 入力されるまで受信 Webhook は拒否されます。「編集」から追加してください。"
+
+msgid "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "有効な既知の Google サインイン プラグインはありません。確認とパスワードメールの抑止は、対応するサインイン プラグインが Google ログインを記録したとき（または flxi_user_is_social フィルター経由）に適用されます。"
+
+msgid "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "既知の Google サインイン プラグインは検出されませんでした。確認は、対応プラグインが Google ログインを記録したとき（または flxi_user_is_social フィルター経由）に適用されます。"
+
+msgid "Rejected (App Secret missing)"
+msgstr "拒否（アプリ シークレットが未入力）"
+
+msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
+msgstr "受信 Webhook が Meta からのものであることを検証します。入力されるまで受信イベントは拒否されます。"
+

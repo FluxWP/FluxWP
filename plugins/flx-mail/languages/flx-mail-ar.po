@@ -562,9 +562,6 @@ msgstr "نظرًا لأن Google قد تحققت بالفعل من عنوان ا
 msgid "Detected plugin: %s"
 msgstr "البرنامج المساعد المكتشف:%s"
 
-msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
-msgstr "لم يتم اكتشاف أي مكون إضافي معروف لتسجيل الدخول إلى Google؛ يتم أيضًا التعرف على عائد Google من الطلب."
-
 msgid "Do not send the WordPress \"login details / set password\" email"
 msgstr "لا ترسل بريدًا إلكترونيًا بعنوان \"تفاصيل تسجيل الدخول / تعيين كلمة المرور\" لـ WordPress"
 
@@ -1170,9 +1167,6 @@ msgstr "يتلقى الأشخاص الذين قاموا بالتسجيل في Go
 
 msgid "Setting"
 msgstr "الإعداد"
-
-msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
-msgstr "لا يوجد مكون إضافي معروف لتسجيل الدخول إلى Google نشط. إذا كنت تستخدم مكونًا إضافيًا آخر، فسيتم اكتشاف إرجاع Google وسيتم إيقاف البريد الإلكتروني لكلمة المرور."
 
 msgid "No %s connection."
 msgstr "لا يوجد اتصال%s."
@@ -2314,9 +2308,6 @@ msgstr "الطلب بتوقيع سيء"
 msgid "Open 24-hour windows"
 msgstr "فتح النوافذ على مدار 24 ساعة"
 
-msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
-msgstr "لم يتم إدخال سر التطبيق: لم يتم التحقق من أن الطلبات الواردة واردة من Meta. أضفه تحت تحرير."
-
 msgid "Approved templates"
 msgstr "القوالب المعتمدة"
 
@@ -2346,9 +2337,6 @@ msgstr "رمز الوصول الدائم (الرمز المميز لمستخدم
 
 msgid "App Secret"
 msgstr "سر التطبيق"
-
-msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
-msgstr "التحقق من أن خطافات الويب الواردة تأتي من Meta. إذا كان فارغًا، فلن يتم تحديد التوقيع (غير مستحسن)."
 
 msgid "Graph API version"
 msgstr "إصدار واجهة برمجة التطبيقات للرسم البياني"
@@ -2652,3 +2640,22 @@ msgstr "معالجة WordPress في الخلفية"
 
 msgid "Worker active"
 msgstr "Worker نشط"
+
+msgid "App Secret missing · webhook off"
+msgstr "سر التطبيق غير موجود · خطاف الويب متوقف"
+
+msgid "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit."
+msgstr "لم يتم إدخال سر التطبيق: تُرفض خطافات الويب الواردة إلى أن يُدخل. أضفه تحت تحرير."
+
+msgid "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "لا يوجد مكون إضافي معروف لتسجيل الدخول إلى Google نشط. يسري التحقق وإيقاف بريد كلمة المرور عندما يسجّل مكون دخول مدعوم دخولاً عبر Google (أو عبر المرشح flxi_user_is_social)."
+
+msgid "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "لم يُكتشف مكون إضافي معروف لتسجيل الدخول إلى Google؛ يسري التحقق عندما يسجّل مكون مدعوم دخولاً عبر Google (أو عبر المرشح flxi_user_is_social)."
+
+msgid "Rejected (App Secret missing)"
+msgstr "مرفوض (سر التطبيق غير موجود)"
+
+msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
+msgstr "يتحقق من أن خطافات الويب الواردة تأتي من Meta. تُرفض الأحداث الواردة إلى أن يُدخل."
+

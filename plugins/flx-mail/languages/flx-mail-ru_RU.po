@@ -562,9 +562,6 @@ msgstr "Поскольку Google уже подтвердил адрес эле�
 msgid "Detected plugin: %s"
 msgstr "Обнаруженный плагин:%s."
 
-msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
-msgstr "Ни один известный плагин для входа в Google не обнаружен; возврат Google также распознается по запросу."
-
 msgid "Do not send the WordPress \"login details / set password\" email"
 msgstr "Не отправляйте электронное письмо WordPress «данные для входа/установки пароля»."
 
@@ -1170,9 +1167,6 @@ msgstr "Люди, зарегистрировавшиеся в Google, получ
 
 msgid "Setting"
 msgstr "Настройка"
-
-msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
-msgstr "Ни один из известных плагинов для входа в Google не активен. Если вы используете другой плагин, возврат Google все равно обнаруживается, а электронное письмо с паролем останавливается."
 
 msgid "No %s connection."
 msgstr "Нет соединения%s."
@@ -2308,9 +2302,6 @@ msgstr "Запрос с плохой подписью"
 msgid "Open 24-hour windows"
 msgstr "Открытые круглосуточно окна"
 
-msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
-msgstr "Секрет приложения не введен: входящие запросы не проверяются как поступающие из Meta. Добавьте его в разделе «Редактировать»."
-
 msgid "Approved templates"
 msgstr "Утвержденные шаблоны"
 
@@ -2340,9 +2331,6 @@ msgstr "Токен постоянного доступа (токен польз�
 
 msgid "App Secret"
 msgstr "Секрет приложения"
-
-msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
-msgstr "Проверяет, что входящие вебхуки исходят из Meta. Если пусто, подпись не проверяется (не рекомендуется)."
 
 msgid "Graph API version"
 msgstr "Версия графического API"
@@ -2646,3 +2634,22 @@ msgstr "Фоновая обработка WordPress"
 
 msgid "Worker active"
 msgstr "Worker активен"
+
+msgid "App Secret missing · webhook off"
+msgstr "Секрет приложения не задан · вебхук выключен"
+
+msgid "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit."
+msgstr "Секрет приложения не введен: входящие вебхуки отклоняются, пока он не введен. Добавьте его в разделе «Редактировать»."
+
+msgid "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "Ни один из известных плагинов входа через Google не активен. Проверка и подавление письма с паролем применяются, когда поддерживаемый плагин входа фиксирует вход через Google (или через фильтр flxi_user_is_social)."
+
+msgid "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "Известный плагин входа через Google не обнаружен; проверка применяется, когда поддерживаемый плагин фиксирует вход через Google (или через фильтр flxi_user_is_social)."
+
+msgid "Rejected (App Secret missing)"
+msgstr "Отклонено (секрет приложения не задан)"
+
+msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
+msgstr "Проверяет, что входящие вебхуки исходят из Meta. Входящие события отклоняются, пока он не введен."
+

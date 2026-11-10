@@ -967,7 +967,6 @@ return array(
   'Also show WhatsApp group messages' => '还显示 WhatsApp 群组消息',
   'New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app' => '新界面(实验性):聊天页面打开时与桌面和移动应用程序在同一屏幕上',
   'Live update interval (sec)' => '实时更新间隔(秒)',
-  'The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.' => '打开的选项卡按此时间间隔检查新消息(建议 10 次)。在后台选项卡中,它每分钟检查一次,出现错误后检查频率会降低。',
   'Agents' => '代理商',
   'Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access.' => '授予用户%s角色;他们只能看到聊天屏幕,无法打开设置。管理员始终具有访问权限。',
   'Add new user' => '添加新用户',
@@ -1493,7 +1492,6 @@ return array(
   'Users with the agent role: %d.' => '具有代理角色的用户:%d。',
   'No user has the agent role; only administrators can use it for now.' => '没有用户具有代理角色;目前只有管理员可以使用它。',
   'Live panel updates' => '实时面板更新',
-  'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).' => '最后更新请求%1$s。当面板打开时,它会每隔%2$d秒(在后台选项卡中为 60 秒)检查新消息。',
   'The chat screen has not been opened yet.' => '聊天屏幕尚未打开。',
   'WhatsApp line' => 'WhatsApp专线',
   'No line added.' => '没有添加任何行。',
@@ -3191,5 +3189,7 @@ return array(
 'WhatsApp did not delete the message.'=>'WhatsApp 未删除该消息。',
 'Delete for everyone time limit (hours)'=>'“对所有人删除”时限（小时）',
 'WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact\'s phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.'=>'WhatsApp 仅允许在约 2 天 12 小时（60 小时）内对所有人删除已发送的消息。超过时限或对于收到的消息，消息仅在面板中隐藏，仍保留在联系人手机上。设为 0 将关闭“对所有人删除”。已删除的消息永远不会从服务器移除，团队仍可打开查看。',
+'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.'=>'最后更新请求 %1$s。面板打开时，每隔 %2$d 秒检查新消息（回复传输中为 3 秒，没有变化时最多 15 秒），后台标签页则每分钟一次。',
+'The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.'=>'打开的标签页按此间隔检查新消息（建议 10），回复传输中每 3 秒一次，没有变化时最多 15 秒。后台标签页每分钟检查一次。出错后退避时间最长到 60 秒。',
 ),
 );

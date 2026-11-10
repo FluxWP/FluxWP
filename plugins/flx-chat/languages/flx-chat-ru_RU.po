@@ -2893,9 +2893,6 @@ msgstr "Новый интерфейс (экспериментальный): ст
 msgid "Live update interval (sec)"
 msgstr "Интервал обновления в реальном времени (сек)"
 
-msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
-msgstr "Открытая вкладка проверяет наличие новых сообщений через этот интервал (рекомендуется 10). В фоновой вкладке проверяется раз в минуту, а после ошибок реже."
-
 msgid "Agents"
 msgstr "Агенты"
 
@@ -4471,9 +4468,6 @@ msgstr "Ни один пользователь не имеет роли аген
 msgid "Live panel updates"
 msgstr "Обновления панели в реальном времени"
 
-msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
-msgstr "Последний запрос на обновление%1$s. Пока панель открыта, она проверяет наличие новых сообщений каждые%2$d(60 секунд на фоновой вкладке)."
-
 msgid "The chat screen has not been opened yet."
 msgstr "Экран чата еще не открыт."
 
@@ -4806,3 +4800,10 @@ msgstr "Срок удаления у всех (часы)"
 
 msgid "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them."
 msgstr "WhatsApp позволяет удалить отправленное сообщение у всех только в течение примерно 2 дней и 12 часов (60 часов). После этого срока, а также для полученных сообщений, сообщение только скрывается в панели и остаётся на телефоне контакта. 0 отключает удаление у всех. Удалённые сообщения никогда не удаляются с сервера; команда может их открыть."
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab."
+msgstr "Последний запрос на обновление %1$s. Пока панель открыта, она проверяет новые сообщения каждые %2$d с (3 с, пока идёт поток ответа, и до 15 с, если ничего не меняется) и раз в минуту на фоновой вкладке."
+
+msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
+msgstr "Открытая вкладка проверяет новые сообщения с этим интервалом (рекомендуется 10), каждые 3 с, пока идёт поток ответа, и до 15 с, если ничего не меняется. Фоновая вкладка проверяет раз в минуту. После ошибок интервал увеличивается до 60 с."
+
