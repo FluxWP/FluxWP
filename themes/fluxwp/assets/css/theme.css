@@ -47,6 +47,7 @@
   --flx-mint:var(--wp--preset--color--mint);
   --flx-mint-soft:var(--wp--preset--color--mint-soft);
   --flx-line:var(--wp--preset--color--line);
+  --flx-table-head:var(--wp--preset--color--table-head,#F1F2F4);
   --flx-radius:var(--wp--custom--radius--card,16px);
   --flx-radius-media:var(--wp--custom--radius--media,24px);
   --flx-shadow:var(--wp--custom--shadow--card,0 10px 30px color-mix(in srgb,var(--flx-shade) 8%,transparent));
@@ -62,6 +63,7 @@
   --flx-tint:var(--wp--custom--color--tint,color-mix(in srgb,var(--wp--preset--color--primary) 25%,#fff));
   --flx-menu-icon:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231F2937' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21v-9'/%3E%3Cpath d='M12 12C7 12 5 9 5 5c5 0 7 3 7 7z'/%3E%3Cpath d='M12 10c4 0 7-2 7-6-4 0-7 2-7 6z'/%3E%3C/svg%3E");
   /* Koyu mod */
+  --flx-d-table-head:var(--wp--custom--dark--table-head,color-mix(in srgb,var(--flx-d-ink) 8%,var(--flx-d-surface)));
   --flx-d-bg:var(--wp--custom--dark--bg,color-mix(in srgb,var(--wp--preset--color--ink) 38%,#000));
   --flx-d-surface:var(--wp--custom--dark--surface,color-mix(in srgb,var(--wp--preset--color--ink) 55%,#000));
   --flx-d-ink:var(--wp--custom--dark--ink,color-mix(in srgb,var(--wp--preset--color--primary) 8%,#fff));
@@ -642,6 +644,11 @@ html.has-modal-open .flx-header-part{z-index:100000}
 .flx-legal-table td:first-child{font-weight:700;color:var(--flx-ink);white-space:nowrap;width:1%}
 .flx-legal-table.is-style-stripes tbody tr:nth-child(odd){background:var(--flx-mint-soft)}
 @media (max-width:600px){.flx-legal-table td:first-child{white-space:normal}}
+/* Tablo başlıkları: palet "Tablo başlığı" ya da Tema Ayarları › Görünüm. */
+.wp-block-table :where(th,td){border-color:var(--flx-line)}
+.wp-block-table thead{border-bottom-color:var(--flx-line)}
+.wp-block-table table{background:var(--flx-surface)}
+.wp-block-table :where(th){background:var(--flx-table-head);color:var(--flx-ink);font-weight:700}
 
 /* ---------- v0.3.6: Çerez banner'ı ---------- */
 .flx-cookie-open{display:none}
@@ -712,6 +719,8 @@ html.has-modal-open .flx-header-part{z-index:100000}
     --flx-mint:var(--flx-d-mint);
     --flx-mint-soft:var(--flx-d-mint-soft);
     --flx-line:var(--flx-d-line);
+    --wp--preset--color--table-head:var(--flx-d-table-head);
+    --flx-table-head:var(--flx-d-table-head);
     --flx-surface:var(--flx-d-surface);
     --flx-surface-glass:color-mix(in srgb,var(--flx-surface) 94%,transparent);
     --flx-shadow:0 10px 30px rgba(0,0,0,.35);
@@ -949,11 +958,11 @@ html.has-modal-open .flx-header-part{z-index:100000}
 .flx-status--cancelled,.flx-status--failed,.flx-status--refunded{background:#FDECEA;color:#B23A2E}
 
 /* Tablolar (siparişler, sipariş detayı, indirmeler) */
-.woocommerce table.shop_table{width:100%;margin:0 0 1.5rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);border-collapse:separate;border-spacing:0;overflow:hidden;font-size:var(--wp--preset--font-size--small)}
+.woocommerce table.shop_table{background:var(--flx-surface);width:100%;margin:0 0 1.5rem;border:1.5px solid var(--flx-line);border-radius:var(--flx-radius);border-collapse:separate;border-spacing:0;overflow:hidden;font-size:var(--wp--preset--font-size--small)}
 .woocommerce table.shop_table :where(th,td){padding:.9rem 1rem;border:0;border-top:1px solid var(--flx-line);text-align:start;vertical-align:middle}
-.woocommerce table.shop_table thead th{border-top:0;background:var(--flx-mint-soft);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--flx-text)}
+.woocommerce table.shop_table thead th{border-top:0;background:var(--flx-table-head);font-family:var(--wp--preset--font-family--heading);font-weight:800;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--flx-text)}
 .woocommerce table.shop_table tbody tr:hover>*{background:color-mix(in srgb,var(--flx-mint-soft) 60%,transparent)}
-.woocommerce table.shop_table tfoot :where(th,td){background:var(--flx-mint-soft)}
+.woocommerce table.shop_table tfoot :where(th,td){background:var(--flx-table-head)}
 .woocommerce table.shop_table tfoot tr:last-child :where(th,td){font-weight:800;color:var(--flx-ink)}
 .woocommerce-orders-table__cell-order-number a{font-family:var(--wp--preset--font-family--heading);font-weight:800;color:var(--flx-ink)!important;text-decoration:none}
 .woocommerce-orders-table__cell-order-actions{text-align:end!important}

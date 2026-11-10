@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.7.17
+- New palette colour "Table header" (`table-head`, light grey #F1F2F4) in every style variation; core tables, WooCommerce tables and Flux Wiki header cells use it. Dark mode derives its own tone. Table rows use the surface colour (white) instead of the page background.
+- Theme Settings › Appearance: "Table header background" colour picker; empty keeps the style colour. Also in `flx_settings_schema` for presets.
+
 ## 0.7.16
 - Add a shared, responsive coming-soon page with site branding, light/dark colours and translated copy.
 - Add whole-site coming-soon mode to Theme Settings, independent of WooCommerce. Managers can work while guests and customers see a no-cache 503 page.

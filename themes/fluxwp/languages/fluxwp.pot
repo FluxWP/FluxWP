@@ -1488,3 +1488,9 @@ msgstr ""
 
 msgid "Staff sign in"
 msgstr ""
+
+msgid "Table header background"
+msgstr ""
+
+msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
+msgstr ""

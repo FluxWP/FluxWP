@@ -24,6 +24,7 @@ function flx_ayar_defaults() {
 		'ga_mode'         => 'consent',
 		'dark_mode'       => 'auto',
 		'decoration_pattern' => 'dots',
+		'table_head'      => '',
 		'news_intro' => '',
 		'animasyon'       => 'on',
 		'sayfalama'       => 'sonsuz',
@@ -163,6 +164,32 @@ function flx_ayar_menu() {
 }
 add_action( 'admin_menu', 'flx_ayar_menu' );
 
+/** Tema Ayarları: renk alanları için WordPress renk seçici. */
+function flx_ayar_assets( $hook ) {
+	if ( 'appearance_page_flx-ayarlar' !== $hook ) {
+		return;
+	}
+	wp_enqueue_style( 'wp-color-picker' );
+	wp_enqueue_script( 'wp-color-picker' );
+	wp_add_inline_script( 'wp-color-picker', 'jQuery(function($){$(".flx-color").wpColorPicker();});' );
+}
+add_action( 'admin_enqueue_scripts', 'flx_ayar_assets' );
+
+/**
+ * Tema Ayarları'ndaki tablo başlığı rengi: palet değişkenini ezer (boşsa stil/palet rengi).
+ * Koyu modda theme.css kendi tonlarını kullanır.
+ */
+function flx_ayar_colors_css() {
+	$css = '';
+	foreach ( array( 'table_head' => 'table-head' ) as $key => $slug ) {
+		$hex = sanitize_hex_color( (string) flx_ayar( $key ) );
+		if ( $hex ) {
+			$css .= '--wp--preset--color--' . $slug . ':' . $hex . ';';
+		}
+	}
+	return $css ? ':root:root{' . $css . '}' : ''; // global-styles'tan sonra/önce basılmasından bağımsız kazansın.
+}
+
 function flx_ayar_register() {
 	register_setting(
 		'flx_ayarlar',
@@ -196,6 +223,7 @@ function flx_ayar_sanitize( $in ) {
 		'coming_soon_email' => sanitize_email( $in['coming_soon_email'] ?? '' ),
 		'decoration_pattern' => in_array( $in['decoration_pattern'] ?? '', array( 'dots', 'leaves', 'none' ), true ) ? $in['decoration_pattern'] : 'dots',
 		'news_intro' => sanitize_text_field( $in['news_intro'] ?? '' ),
+		'table_head'      => (string) sanitize_hex_color( $in['table_head'] ?? '' ),
 		'cookie_enabled'  => $on( $in['cookie_enabled'] ?? 0 ) ? 1 : 0,
 		'cookie_title'    => sanitize_text_field( $in['cookie_title'] ?? $d['cookie_title'] ),
 		'cookie_text'     => wp_kses_post( $in['cookie_text'] ?? $d['cookie_text'] ),
@@ -275,6 +303,8 @@ function flx_ayar_page() {
 					<p class="description"><?php esc_html_e( 'Sets the wording in My account, the cart and the mobile menu.', 'fluxwp' ); ?></p></td></tr>
 				<tr><th scope="row"><?php esc_html_e( 'Background pattern', 'fluxwp' ); ?></th><td><select name="<?php echo esc_attr( $n ); ?>[decoration_pattern]">
                     <?php foreach ( array( 'dots' => __( 'Dots', 'fluxwp' ), 'leaves' => __( 'Leaves', 'fluxwp' ), 'none' => __( 'None', 'fluxwp' ) ) as $value => $label ) : ?><option value="<?php echo esc_attr( $value ); ?>" <?php selected( $o['decoration_pattern'], $value ); ?>><?php echo esc_html( $label ); ?></option><?php endforeach; ?></select></td></tr>
+				<tr><th scope="row"><label for="flx-table-head"><?php esc_html_e( 'Table header background', 'fluxwp' ); ?></label></th><td><input id="flx-table-head" class="flx-color" name="<?php echo esc_attr( $n ); ?>[table_head]" value="<?php echo esc_attr( $o['table_head'] ); ?>" data-default-color="#F1F2F4">
+					<p class="description"><?php esc_html_e( 'Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour.', 'fluxwp' ); ?></p></td></tr>
                 <tr><th scope="row"><?php esc_html_e( 'News introduction', 'fluxwp' ); ?></th><td><input class="large-text" name="<?php echo esc_attr( $n ); ?>[news_intro]" value="<?php echo esc_attr( $o['news_intro'] ); ?>" placeholder="<?php esc_attr_e( 'Latest news, updates and articles.', 'fluxwp' ); ?>"></td></tr>
 				<tr><th scope="row">Dark mode</th><td>
 					<label><input type="radio" name="<?php echo esc_attr( $n ); ?>[dark_mode]" value="auto" <?php checked( $o['dark_mode'], 'auto' ); ?>> Otomatik: cihaz koyu moddaysa site de koyu</label><br>
@@ -523,6 +553,7 @@ add_filter(
 			'coming_soon_email' => $f( 'string', 'Optional explicitly public contact email.' ),
 			'decoration_pattern' => $f( 'enum', 'Background decoration for title bands, menus and consent cards.', array( 'enum' => array( 'dots', 'leaves', 'none' ) ) ),
 			'news_intro' => $f( 'string', 'Optional news archive introduction. Empty uses the translated generic theme text.' ),
+			'table_head'      => $f( 'string', 'Table header cell background hex colour (#RRGGBB), used by core tables, Flux Wiki and WooCommerce. Empty uses the palette "table-head" colour (default light grey).' ),
 			'cookie_enabled'  => $f( 'bool', 'Show the cookie consent banner on the first visit.' ),
 			'cookie_title'    => $f( 'string', 'Banner title (Flux Lang: texts.<lang>.tema_cookie_title).' ),
 			'cookie_text'     => $f( 'html', 'Banner text; links allowed (Flux Lang: tema_cookie_text).' ),
