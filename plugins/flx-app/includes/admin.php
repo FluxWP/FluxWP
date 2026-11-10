@@ -141,9 +141,10 @@ function flxapp_handle_settings() {
 			'refresh_days'    => max( 1, min( 365, absint( $_POST['refresh_days'] ?? 60 ) ) ),
 			'dynamic_clients' => empty( $_POST['dynamic_clients'] ) ? 0 : 1,
 			'web_session'     => empty( $_POST['web_session'] ) ? 0 : 1,
-			'otp_enabled'     => empty( $_POST['otp_enabled'] ) ? 0 : 1,
-			'otp_create'      => empty( $_POST['otp_create'] ) ? 0 : 1,
-			'otp_staff'       => empty( $_POST['otp_staff'] ) ? 0 : 1,
+			'otp_enabled'       => empty( $_POST['otp_enabled'] ) ? 0 : 1,
+			'otp_create'        => empty( $_POST['otp_create'] ) ? 0 : 1,
+			'otp_staff'         => empty( $_POST['otp_staff'] ) ? 0 : 1,
+			'phone_self_verify' => empty( $_POST['phone_self_verify'] ) ? 0 : 1,
 			'keys_cap'        => in_array( $cap, $caps, true ) ? $cap : 'read',
 			)
 		),
@@ -335,6 +336,9 @@ function flxapp_render_settings_page() {
 			. '<label><input type="checkbox" name="otp_create" value="1"' . checked( $s['otp_create'], 1, false ) . '> ' . esc_html__( 'Create a customer account for an email after its sign-in code is confirmed', 'flx-app' ) . '</label><br>'
 			. '<label><input type="checkbox" name="otp_staff" value="1"' . checked( $s['otp_staff'], 1, false ) . '> ' . esc_html__( 'Let staff sign in with a code too (not recommended; staff use OAuth in the browser)', 'flx-app' ) . '</label>'
 			. '<p class="description">' . esc_html__( 'Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account.', 'flx-app' ) . '</p></td></tr>';
+		echo '<tr><th>' . esc_html__( 'Own phone number', 'flx-app' ) . '</th><td>'
+			. '<label><input type="checkbox" name="phone_self_verify" value="1"' . checked( $s['phone_self_verify'], 1, false ) . '> ' . esc_html__( 'Let a signed-in donor confirm a phone number and save it on their account', 'flx-app' ) . '</label>'
+			. '<p class="description">' . esc_html__( 'The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on.', 'flx-app' ) . '</p></td></tr>';
 		echo '<tr><th><label for="flxapp-kc">' . esc_html__( 'Can create API keys', 'flx-app' ) . '</label></th><td><select id="flxapp-kc" name="keys_cap">';
 		foreach ( flxapp_key_cap_choices() as $k => $l ) {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( $s['keys_cap'], $k, false ) . '>' . esc_html( $l ) . '</option>';

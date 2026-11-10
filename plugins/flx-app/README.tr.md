@@ -40,6 +40,7 @@ Bir WordPress sitesi için telefon ya da masaüstü uygulaması genelde elle yap
 - MCP istemcileri için RFC 8414 / 9728 metadata ve dinamik istemci kaydı (varsayılan kapalı; Uygulama ayarlarından açılır). Flux SEO uç noktası, belirtecin kapsamında `mcp` varsa bu belirteçleri kabul eder.
 - Süreli ya da süresiz kişisel API anahtarları (`Bearer flxak_…`).
 - **Bağışçı girişi:** WhatsApp (Flux Chat) ya da e-postayla tek kullanımlık kod; siparişi olan bağışçıya müşteri hesabı açılır.
+- **Kendi telefonu:** giriş yapmış bağışçı, yalnız o numaraya giden kodla numarayı kanıtlar ve hesabına kaydeder. Personelin numarasını yönetici yazar.
 - Uygulamadan tek seferlik panel oturumu (`/session`); `Authorization` başlığını düşüren sunucular için `X-FluxWP-Token`.
 
 ### Uygulama ne gösterir
@@ -92,14 +93,14 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-app/KURULUM.md) · AP
 
 - Yerel ekran kaydı: `title`, `menu`, `api`, `icon`, `version` ile `add_filter( 'flxapp_modules', … )`.
 - Uygulama ekranlarını JSON ile kaydetme: `flxapp_manifest_file()` ile `add_filter( 'flxapp_manifest', … )`; bildirim: `do_action( 'flxapp_push', $user_ids, $message )`.
-- Uçlar `/flxapp/v1/app/bootstrap`, `/config`, `/manifest`, `/me`, `/sync`, `/prefs`, `/devices`, `/session`, `/settings/<option>`, `/otp/*`, `/oauth/*`; bkz. [API.md](../../docs/flx-app/API.md).
+- Uçlar `/flxapp/v1/app/bootstrap`, `/config`, `/manifest`, `/me`, `/me/phone`, `/sync`, `/prefs`, `/devices`, `/session`, `/settings/<option>`, `/otp/*`, `/oauth/*`; bkz. [API.md](../../docs/flx-app/API.md).
 
 ## Yol haritası
 
 | | |
 |---|---|
 | ✅ | OAuth 2.0 + PKCE, API anahtarları ve MCP keşfi |
-| ✅ | Tek kullanımlık kodla bağışçı girişi (kayıtlı telefon ya da kendi e-postası; sipariş hesap açmaz) |
+| ✅ | Tek kullanımlık kodla bağışçı girişi (kayıtlı telefon ya da kendi e-postası; sipariş hesap açmaz). Giriş yapmış bağışçı telefonunu kanıtlayıp kaydedebilir |
 | ✅ | Rol bazlı menü ve yerel modüller |
 | ✅ | Platforma göre menü ve Uygulama sayfası |
 | ⬜ | Anlık bildirimler |

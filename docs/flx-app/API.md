@@ -25,6 +25,7 @@ Sözleşme kaynağı: `docs/mobile-app-plan.md` (proje deposu) ve kanonik şemal
 | `GET /app/brand` | `manage_options` | White-label taslağı (`brand.json` önerisi) |
 | `POST /oauth/token`, `/oauth/revoke`, `/oauth/register`, `GET /oauth/metadata` | herkes (oran sınırlı) | OAuth 2.0 |
 | `POST /otp/start`, `/otp/verify` | herkes (oran sınırlı) | Kodla giriş (bağışçı) |
+| `GET /me/phone`, `POST /me/phone/start`, `POST /me/phone/verify`, `DELETE /me/phone` | giriş | Bağışçı kendi telefonunu kanıtlar ve kaydeder |
 | `wp-login.php?action=flxapp_authorize` | tarayıcı | Yetkilendirme + onay ekranı |
 | `wp-login.php?action=flxapp_sso` (eşdeğeri `flxapp_session`) | tarayıcı | Oturum devri iniş noktası |
 | `/.well-known/oauth-authorization-server`, `/.well-known/oauth-protected-resource[/…]` | herkes | RFC 8414 / 9728 |
@@ -75,7 +76,7 @@ Genel şemalar (`fluxwp`, `fluxapp`, `flxmasaustu`) ve `javascript:`/`data:` vb.
 4. İptal: `POST /oauth/revoke` `token&client_id` (RFC 7009).
 5. Dinamik kayıt: `POST /oauth/register` (RFC 7591, MCP). Varsayılan kapalı (`flxapp_settings.dynamic_clients`, Uygulama ayarları). Açıkken dönüş adresleri eskisi gibi doğrulanır, saatte 10/IP. Kodla gelen istemciler (`flx-mobil`, `flx-masaustu`, marka `app_clients`) kayıt kapalıyken de yetkilendirilir.
 
-İstenen `scope` bilinen listeyle süzülür (`flx`, `mcp`, `offline_access`; bilinmeyen atılır, hiçbiri kalmazsa `flx`) ve onay ekranında eskisi gibi gösterilir. Kayıtlı kapsamı olan erişim belirteci: `flx` uygulama uçlarını (`/me`, `/counts`, `/config`, `/manifest`, `/dashboard`, `/sync`, `/prefs`, `/devices`, `/session`, `/session/end`, `/logout`, `/settings`, `/app/brand`) ve sitenin diğer REST uçlarını açar; `mcp` yalnız `/flx-mcp/`; `offline_access` yenileme içindir, tek başına uç açmaz. Kayıtlı kapsamı boş olan belirteç kısıtlanmaz. Yetmeyen kapsam `403` `insufficient_scope` ve `WWW-Authenticate: Bearer error="insufficient_scope", scope="<gerekli>"`.
+İstenen `scope` bilinen listeyle süzülür (`flx`, `mcp`, `offline_access`; bilinmeyen atılır, hiçbiri kalmazsa `flx`) ve onay ekranında eskisi gibi gösterilir. Kayıtlı kapsamı olan erişim belirteci: `flx` uygulama uçlarını (`/me`, `/me/phone`, `/counts`, `/config`, `/manifest`, `/dashboard`, `/sync`, `/prefs`, `/devices`, `/session`, `/session/end`, `/logout`, `/settings`, `/app/brand`) ve sitenin diğer REST uçlarını açar; `mcp` yalnız `/flx-mcp/`; `offline_access` yenileme içindir, tek başına uç açmaz. Kayıtlı kapsamı boş olan belirteç kısıtlanmaz. Yetmeyen kapsam `403` `insufficient_scope` ve `WWW-Authenticate: Bearer error="insufficient_scope", scope="<gerekli>"`.
 
 Flux App olmayan site için uygulama WordPress Application Passwords (`authorize-application.php`) ile sınırlı moda düşer (plan §4.3); bu eklentinin işi değildir.
 
@@ -88,6 +89,23 @@ Giriş yalnız mevcut hesaba yapılır. E-posta: kodun gittiği adres hesabın a
 `otp_create` varsayılan kapalı. Açıkken hesap, e-postaya giden kod doğrulandıktan sonra yalnız o adres için açılır (telefonla hesap açılmaz, `wc_update_new_customer_past_orders` çağrılmaz, `flxapp_otp_customer_created` ateşlenmez). `otp_enabled` varsayılan açıktır.
 
 Gönderim sınırı: çağıranın IP'si (10 dk'da 6) ve hedef e-posta/telefon (10 dk'da 3, IP'den bağımsız); hesap bulunursa hesaba da 3. Doğrulama sınırı: IP (10 dk'da 20) ve hedef (10 dk'da 5); kod bir hesaba yazılıysa o hesaba da 5. Başarısız deneme hedefe ve koda yazılır, yeni kod isteği sayacı sıfırlamaz. Personel varsayılan olarak kodla giremez (`flxapp_otp_allowed`). Ayrıntı: aşağıdaki "Filtreler".
+
+### Kendi telefonunu kaydetme (0.4.8)
+
+Girişli bağışçı, kayıtlı numarası olmasa da bir numarayı kanıtlayıp hesabına yazabilir. Personel (`edit_posts`) giremez; `otp_staff` açıksa kodla giriş kuralı (`flxapp_otp_allowed`) geçerli olur ve numara yönetici yönetiminde kalmaz. Ayar `flxapp_settings.phone_self_verify`, varsayılan açık. Uygulama › Ayarlar'da kutu.
+
+| Uç | Gövde | Başarı | Hata |
+|---|---|---|---|
+| `GET /me/phone` | — | `200 {phone, available, self_verified}`. `phone` maskeli (8+ hanede son 4, daha kısada son 2); numara yoksa `""`. `available` ayar, bağışçı kuralı ve telefon kanalı birlikte açıksa true. | `401` giriş yok |
+| `POST /me/phone/start` | `{phone}` | `200 {sent:true, via, via_label, ttl}`. `ttl` 600. | `400 flxapp_phone` geçersiz numara. `403 flxapp_phone_unavailable` ayar kapalı, personel, Flux Roles yok ya da telefon kanalı yok. `429 flxapp_rate` sınır |
+| `POST /me/phone/verify` | `{phone, code}` | `200 {saved:true, phone}` maskeli. Numara `flxr_set_user_phone` ile `flx_phone` + `flx_phone_key` olur; `flx_phone_self_at` (unix) ve `flx_phone_self_key` yazılır. | `400 flxapp_phone_code` yanlış, süresi geçmiş ya da numara başka hesapta (aynı gövde; hesap varlığı sızmaz). `400 flxapp_phone` geçersiz numara. `403` yukarıdaki. `429` sınır. `500 flxapp_phone` kayıt yazılamadı |
+| `DELETE /me/phone` | — | `200 {removed:true}` yalnız kendi kanıtladığı numarayı siler | `404 flxapp_phone_none` numara yok. `403 flxapp_phone_admin` numarayı yönetici yazmış. `403 flxapp_phone_unavailable` akış kapalı |
+
+Kod 6 hane, 10 dakika, tek kullanım. Özet `hash_hmac('sha256', user_id|telefon|kod)` ve `hash_equals`. Başka kullanıcıya ya da başka numaraya uymaz. 5 başarısız deneme kodu düşürür. Sayaç kullanıcıya, numaraya ve çağıranın IP'sine ayrı yazılır; yeni kod sayacı sıfırlamaz. Gönderim: IP 10 dk'da 6, numara 10 dk'da 3, kullanıcı 10 dk'da 3. Doğrulama: IP 10 dk'da 20, numara 10 dk'da 5, kullanıcı 10 dk'da 5.
+
+Kanal: `flxapp_otp_send` (dönüş `email` ise yok sayılır) ya da Flux Chat `flxc_send_private_text` (yoksa `flxc_send_text`). E-postaya kod gitmez. Kanal yoksa `start` `403` döner ve `GET` `available: false` der. Başarıda `flxapp_phone_self_verified` (kullanıcı id, tam numara) ateşlenir. Hesabın e-postasına kısa uyarı gider (eklendi, değişti, silindi); metinde yalnız son haneler vardır, kod yoktur.
+
+Manifest sözlüğü tek adımlı formdur (bir `submit`, alanlar). İki adımlı kod akışı anlatılamaz; istemci bu dört ucu kendisi çağırır. `GET` maskeli numarayı ve `available` / `self_verified` bayraklarını gösterir, `start` kod ister, `verify` kaydeder, `DELETE` yalnız `self_verified` numarayı siler.
 
 ## `GET /app/bootstrap` (herkese açık)
 
@@ -304,6 +322,7 @@ Sekmeler: Genel, **Görünüm** (tema: mod, köşe, yoğunluk, yazı tipleri, a�
 | `flxapp_grant_revoked( $grant )`, `flxapp_user_revoked( $user_id )`, `flxapp_device_registered( $id, $user_id )` | aksiyon | Oturum ve cihaz olayları |
 | `flxapp_dashboard( $d, $user )`, `flxapp_counts`, `flxapp_user_menu`, `flxapp_menu_icon_url`, `flxapp_me_caps`, `flxapp_site_preset` | filtre | `/me`, başlangıç |
 | `flxapp_otp_*`, `flxapp_brand_logo`, `flxapp_oauth_metadata`, `flxapp_desktop_*` | filtre | Önceki sürümlerden |
+| `flxapp_phone_self_verified( $user_id, $phone )` | aksiyon | Bağışçı kendi numarasını kanıtlayıp kaydetti |
 
 ## Plandan sapmalar (0.4.0)
 
