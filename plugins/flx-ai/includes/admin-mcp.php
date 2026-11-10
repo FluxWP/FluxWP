@@ -47,10 +47,24 @@ function flxai_page_mcp() {
 		<section class="flxai-card">
 			<h2><?php esc_html_e( '1. Server', 'flx-ai' ); ?></h2>
 			<?php
-			$form( 'toggle', '<label class="flxai-check"><input type="checkbox" name="mcp_enabled" value="1"' . checked( $on, true, false ) . '> ' . esc_html__( 'MCP server enabled', 'flx-ai' ) . '</label>', __( 'Save', 'flx-ai' ), 'button button-primary' );
+			$oauth_set = get_option( 'flxai_settings', array() );
+			$oauth_on  = ! is_array( $oauth_set ) || ! array_key_exists( 'mcp_oauth', $oauth_set ) || ! empty( $oauth_set['mcp_oauth'] );
+			$form(
+				'toggle',
+				'<label class="flxai-check"><input type="checkbox" name="mcp_enabled" value="1"' . checked( $on, true, false ) . '> ' . esc_html__( 'MCP server enabled', 'flx-ai' ) . '</label>'
+				. '<label class="flxai-check"><input type="checkbox" name="mcp_oauth" value="1"' . checked( $oauth_on, true, false ) . '> <span class="flxai-check-text">' . esc_html__( 'Sign in with OAuth: assistants connect with only the URL; the user signs in to WordPress and approves each connection', 'flx-ai' ) . '</span></label>',
+				__( 'Save', 'flx-ai' ),
+				'button button-primary'
+			);
 			?>
 			<p><?php esc_html_e( 'Server URL', 'flx-ai' ); ?>: <code><?php echo esc_html( $url ); ?></code>
-				<span class="flxai-pill<?php echo $on ? ' is-ok' : ''; ?>"><?php echo $on ? esc_html__( 'on', 'flx-ai' ) : esc_html__( 'off', 'flx-ai' ); ?></span></p>
+				<span class="flxai-pill<?php echo $on ? ' is-ok' : ''; ?>"><?php echo $on ? esc_html__( 'on', 'flx-ai' ) : esc_html__( 'off', 'flx-ai' ); ?></span>
+				<?php if ( $on && flxai_oauth_enabled() ) : ?>
+					<span class="flxai-pill is-ok">OAuth</span>
+				<?php endif; ?></p>
+			<?php if ( flxai_mcp_rest_url() !== $url ) : ?>
+				<p class="flxai-note"><?php esc_html_e( 'The same server also answers at:', 'flx-ai' ); ?> <code><?php echo esc_html( flxai_mcp_rest_url() ); ?></code></p>
+			<?php endif; ?>
 			<p class="flxai-note">
 				<?php
 				/* translators: %d: tool count */
@@ -61,7 +75,7 @@ function flxai_page_mcp() {
 		</section>
 
 		<section class="flxai-card">
-			<h2><?php esc_html_e( '2. Keys', 'flx-ai' ); ?></h2>
+			<h2><?php esc_html_e( '2. Connections and keys', 'flx-ai' ); ?></h2>
 			<p class="flxai-note"><?php esc_html_e( 'The assistant works with the permissions of the user who created the key. New content is created as a draft; deleting only moves to trash.', 'flx-ai' ); ?></p>
 			<?php if ( $new ) : ?>
 				<div class="notice notice-success inline"><p><strong><?php esc_html_e( 'New key (shown only now, copy it):', 'flx-ai' ); ?></strong></p><p><code class="flxai-key"><?php echo esc_html( $new ); ?></code></p></div>
@@ -84,7 +98,12 @@ function flxai_page_mcp() {
 					<?php foreach ( $keys as $id => $k ) : ?>
 						<?php $u = get_userdata( (int) ( $k['user'] ?? 0 ) ); ?>
 						<tr>
-							<td><?php echo esc_html( $k['name'] ?? '' ); ?> <code>…<?php echo esc_html( $k['hint'] ?? '' ); ?></code></td>
+							<td><?php echo esc_html( $k['name'] ?? '' ); ?>
+								<?php if ( 'oauth' === ( $k['type'] ?? '' ) ) : ?>
+									<span class="flxai-pill"><?php esc_html_e( 'OAuth', 'flx-ai' ); ?></span>
+								<?php else : ?>
+									<code>…<?php echo esc_html( $k['hint'] ?? '' ); ?></code>
+								<?php endif; ?></td>
 							<td><?php echo esc_html( $u ? $u->user_login : '?' ); ?></td>
 							<td><?php echo empty( $k['tools'] ) ? esc_html__( 'All', 'flx-ai' ) : '<code>' . esc_html( implode( ', ', (array) $k['tools'] ) ) . '</code>'; ?></td>
 							<td><?php echo esc_html( flx_date( (int) ( $k['created'] ?? 0 ), 'datetime' ) ); ?></td>
@@ -100,6 +119,11 @@ function flxai_page_mcp() {
 
 	<section class="flxai-card">
 		<h2><?php esc_html_e( '3. Connect an assistant', 'flx-ai' ); ?></h2>
+		<?php if ( flxai_oauth_enabled() ) : ?>
+			<p><strong>Claude.ai, Claude Desktop, ChatGPT, Cursor, VS Code</strong> — <?php esc_html_e( 'add a custom connector / MCP server with only this URL. You will sign in to WordPress and approve; no key needed:', 'flx-ai' ); ?></p>
+			<pre class="flxai-code"><?php echo esc_html( $url ); ?></pre>
+			<p class="flxai-note"><?php esc_html_e( 'With a key instead (clients without OAuth, devices, scripts):', 'flx-ai' ); ?></p>
+		<?php endif; ?>
 		<p><strong>Claude Desktop / Cursor</strong> (claude_desktop_config.json › mcpServers):</p>
 		<pre class="flxai-code"><?php echo esc_html( $json ); ?></pre>
 		<p><strong>Claude Code</strong>:</p>

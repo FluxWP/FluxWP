@@ -12,7 +12,7 @@ global $wpdb;
 foreach ( array( 'log', 'log_body', 'chats', 'media' ) as $flxai_t ) {
 	$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'flxai_' . $flxai_t ); // phpcs:ignore
 }
-foreach ( array( 'flxai_settings', 'flxai_db_version', 'flxai_budget_notified', 'flxai_or_credits', 'flxai_mcp_keys', 'flxai_mcp_log' ) as $flxai_o ) {
+foreach ( array( 'flxai_settings', 'flxai_db_version', 'flxai_budget_notified', 'flxai_or_credits', 'flxai_mcp_keys', 'flxai_mcp_log', 'flxai_oauth_clients' ) as $flxai_o ) {
 	delete_option( $flxai_o );
 }
 foreach ( array( 'flxai_models_all', 'flxai_models_anthropic', 'flxai_models_openrouter', 'flxai_prune' ) as $flxai_o ) {
