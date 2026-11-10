@@ -1489,9 +1489,6 @@ msgstr ""
 msgid "Staff sign in"
 msgstr ""
 
-msgid "Background colour of all pages. Leave empty to use the style colour (Appearance › Editor › Styles › Colours › Page background)."
-msgstr ""
-
 msgid "Table header background"
 msgstr ""
 

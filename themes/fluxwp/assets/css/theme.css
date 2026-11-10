@@ -47,7 +47,7 @@
   --flx-mint:var(--wp--preset--color--mint);
   --flx-mint-soft:var(--wp--preset--color--mint-soft);
   --flx-line:var(--wp--preset--color--line);
-  --flx-table-head:var(--wp--preset--color--table-head,#F3F4F6);
+  --flx-table-head:var(--wp--preset--color--table-head,#EAEBEE);
   --flx-radius:var(--wp--custom--radius--card,16px);
   --flx-radius-media:var(--wp--custom--radius--media,24px);
   --flx-shadow:var(--wp--custom--shadow--card,0 10px 30px color-mix(in srgb,var(--flx-shade) 8%,transparent));

@@ -1,9 +1,8 @@
 # Değişiklikler
 
 ## 0.7.17
-- White page background by default (Antrasit palette `base` #FFFFFF instead of beige).
-- New palette colour "Table header" (`table-head`, light grey #F3F4F6) in every style variation; core tables, WooCommerce tables and Flux Wiki header cells use it. Dark mode derives its own tone.
-- Theme Settings › Appearance: "Page background" and "Table header background" colour pickers; empty keeps the style colour. Both are in the `flx_settings_schema` for presets.
+- New palette colour "Table header" (`table-head`, light grey #EAEBEE) in every style variation; core tables, WooCommerce tables and Flux Wiki header cells use it. Dark mode derives its own tone.
+- Theme Settings › Appearance: "Table header background" colour picker; empty keeps the style colour. Also in `flx_settings_schema` for presets.
 
 ## 0.7.16
 - Add a shared, responsive coming-soon page with site branding, light/dark colours and translated copy.

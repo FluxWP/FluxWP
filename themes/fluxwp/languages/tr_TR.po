@@ -1489,9 +1489,6 @@ msgstr "Site yakında"
 msgid "Staff sign in"
 msgstr "Ekip girişi"
 
-msgid "Background colour of all pages. Leave empty to use the style colour (Appearance › Editor › Styles › Colours › Page background)."
-msgstr "Tüm sayfaların arka plan rengi. Boş bırakılırsa stil rengi kullanılır (Görünüm › Düzenleyici › Stiller › Renkler › Sayfa zemini)."
-
 msgid "Table header background"
 msgstr "Tablo başlığı zemini"
 
