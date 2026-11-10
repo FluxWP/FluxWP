@@ -7,9 +7,13 @@
  *   metrics { mobile|desktop: { lcp, cls, tbt, fcp, si } }, psi_time, items [[id, priority, title]], new [id], fixed [id].
  *
  * Zamanlama (flxseo ayarları audit_freq daily|weekly|off, audit_day 1–7 (Pazartesi=1), audit_hour 0–23, audit_psi, audit_mail):
- * Hostinger'da WP-Cron güvenilir değil; üç tetik birlikte çalışır: saatlik WP-Cron olayı, herhangi bir PHP isteğinin
- * sonunda (yanıt gönderildikten sonra) kontrol ve adımlar arası kendini çağıran admin-ajax isteği. Her adım tek iş
- * (PageSpeed mobil, PageSpeed masaüstü, site içi denetim) yapar; böylece 60 sn PHP sınırına takılmaz.
+ * Hostinger'da WP-Cron güvenilir değil; üç tetik birlikte çalışır: saatlik WP-Cron olayı, herhangi bir PHP
+ * isteğinin sonunda (yanıt gönderildikten sonra) kontrol ve adımlar arası kendini çağıran admin-ajax isteği.
+ * İstek sonu adımı çalıştırmaz; işi açar ve belirteçli loopback gönderir. Saatlik cron olayı adımı kendi yürütür
+ * (loopback'in engelli olduğu sunucuda denetim yine ilerlesin). Ajax herkese açık değildir: yönetici nonce'u ya da
+ * denetim başlarken üretilen belirteç.
+ * Her adım tek iş yapar (PageSpeed mobil, PageSpeed masaüstü, site içi denetim). Web isteğinde PageSpeed en çok 40 sn
+ * bekler; zaman aşımı o adımı atlar, kilit iki adımın aynı anda çalışmasını engeller.
  *
  * @package flx-seo
  */
@@ -140,6 +144,51 @@ function flxseo_audit_steps() {
 	return $steps;
 }
 
+/** Denetim işini ve loopback belirtecini açar. Belirteç iş bitince seçenekle birlikte silinir. */
+function flxseo_audit_open_job() {
+	$existing = get_option( 'flxseo_audit_job' );
+	if ( is_array( $existing ) && ! empty( $existing['token'] ) ) {
+		return $existing;
+	}
+	$job = array(
+		'steps'   => flxseo_audit_steps(),
+		'started' => time(),
+		'errors'  => array(),
+		'token'   => bin2hex( random_bytes( 16 ) ),
+	);
+	update_option( 'flxseo_audit_job', $job, false );
+	return $job;
+}
+
+/**
+ * Aynı adımın iki kez yürümesini engeller. Seçenek tablosu (add_option) tek birincil yazıcıda atomiktir.
+ * Süreç ölürse kilit 5 dk sonra düşer.
+ *
+ * @return bool Kilidi bu istek aldıysa true.
+ */
+function flxseo_audit_lock() {
+	$now = time();
+	$row = get_option( 'flxseo_audit_lock', null );
+	if ( is_array( $row ) && (int) ( $row['until'] ?? 0 ) > $now ) {
+		return false;
+	}
+	if ( null !== $row ) {
+		delete_option( 'flxseo_audit_lock' );
+	}
+	return (bool) add_option(
+		'flxseo_audit_lock',
+		array(
+			'until' => $now + 5 * MINUTE_IN_SECONDS,
+		),
+		'',
+		false
+	);
+}
+
+function flxseo_audit_unlock() {
+	delete_option( 'flxseo_audit_lock' );
+}
+
 /**
  * Zamanı geldiyse bir adım çalıştırır. Kilitli: aynı anda tek adım.
  *
@@ -152,34 +201,36 @@ function flxseo_audit_tick( $force = false ) {
 		if ( ! $force && ( ! $next || time() < $next ) ) {
 			return 'idle';
 		}
-		$job = array(
-			'steps'   => flxseo_audit_steps(),
-			'started' => time(),
-			'errors'  => array(),
-		);
-		update_option( 'flxseo_audit_job', $job, false );
+		$job = flxseo_audit_open_job();
 	}
-	if ( get_transient( 'flxseo_audit_lock' ) ) {
+	if ( ! flxseo_audit_lock() ) {
 		return 'locked';
 	}
+	$fresh = get_option( 'flxseo_audit_job' );
+	if ( ! is_array( $fresh ) ) {
+		flxseo_audit_unlock();
+		return 'idle';
+	}
+	$job = $fresh;
 	// Takılmış iş (ör. sunucu yeniden başladı): 2 saat sonra bırakılır.
 	if ( time() - (int) $job['started'] > 2 * HOUR_IN_SECONDS ) {
 		delete_option( 'flxseo_audit_job' );
 		update_option( 'flxseo_audit_last_auto', time(), false );
+		flxseo_audit_unlock();
 		return 'idle';
 	}
-	set_transient( 'flxseo_audit_lock', 1, 5 * MINUTE_IN_SECONDS );
 	if ( function_exists( 'set_time_limit' ) ) {
-		@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+		@set_time_limit( flxseo_psi_http_timeout() + 10 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 	}
 	$step = array_shift( $job['steps'] );
 	$res  = 'local' === $step ? flxseo_audit_run_local() : flxseo_psi_run( $step );
 	if ( is_wp_error( $res ) ) {
+		// Zaman aşımı dahil: adım kayda geçer, kilit açılır, sonraki adım devam eder.
 		$job['errors'][] = $step . ': ' . $res->get_error_message();
 	}
 	if ( $job['steps'] ) {
 		update_option( 'flxseo_audit_job', $job, false );
-		delete_transient( 'flxseo_audit_lock' );
+		flxseo_audit_unlock();
 		flxseo_audit_kick();
 		return 'step:' . $step;
 	}
@@ -188,32 +239,61 @@ function flxseo_audit_tick( $force = false ) {
 	update_option( 'flxseo_audit_last_errors', $job['errors'], false );
 	$entry = flxseo_audit_snapshot( 'auto' );
 	flxseo_audit_mail( $entry );
-	delete_transient( 'flxseo_audit_lock' );
+	flxseo_audit_unlock();
 	return 'done';
 }
 
-/** Bir sonraki adımı hemen başlatmak için engellemesiz istek. */
+/** Bir sonraki adımı hemen başlatmak için engellemesiz istek. Belirteç gövdede gider, adreste değil. */
 function flxseo_audit_kick() {
+	$job = get_option( 'flxseo_audit_job' );
+	if ( ! is_array( $job ) || empty( $job['token'] ) ) {
+		return;
+	}
 	wp_remote_post(
-		admin_url( 'admin-ajax.php?action=flxseo_audit_tick' ),
+		admin_url( 'admin-ajax.php' ),
 		array(
 			'timeout'   => 0.01,
 			'blocking'  => false,
 			'sslverify' => false,
+			'body'      => array(
+				'action' => 'flxseo_audit_tick',
+				'token'  => $job['token'],
+			),
 		)
 	);
 }
 
-/* Herkese açık uç: yalnız zamanı gelmişse ve kilit yoksa iş yapar. */
+/**
+ * Ajax adımı: (a) denetim ekranının yetkisi + nonce, ya da (b) süren işin belirteci.
+ * Girişsiz loopback (b) için nopriv kancası durur; belirteç yoksa iş yapılmaz.
+ */
 add_action( 'wp_ajax_nopriv_flxseo_audit_tick', 'flxseo_audit_tick_endpoint' );
 add_action( 'wp_ajax_flxseo_audit_tick', 'flxseo_audit_tick_endpoint' );
+function flxseo_audit_tick_authorized() {
+	if ( is_user_logged_in() && current_user_can( 'manage_options' ) && check_ajax_referer( 'flxseo_audit_tick', false, false ) ) {
+		return true;
+	}
+	$job   = get_option( 'flxseo_audit_job' );
+	$given = isset( $_POST['token'] ) ? (string) wp_unslash( $_POST['token'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$have  = is_array( $job ) ? (string) ( $job['token'] ?? '' ) : '';
+	if ( '' === $have || strlen( $given ) !== strlen( $have ) ) {
+		return false;
+	}
+	return hash_equals( $have, $given );
+}
 function flxseo_audit_tick_endpoint() {
+	if ( ! flxseo_audit_tick_authorized() ) {
+		wp_die( '', '', array( 'response' => 403 ) );
+	}
 	ignore_user_abort( true );
 	flxseo_audit_tick();
 	wp_die( '', '', array( 'response' => 204 ) );
 }
 
-/* WP-Cron: saatlik kontrol. */
+/*
+ * WP-Cron: saatlik kontrol. Olay yalnız zamanı gelince çalışır (dışarıdan istendiği kadar değil), bu yüzden adımı
+ * kendi yürütür; loopback'in engelli olduğu sunucuda denetim saatte bir adım ilerler.
+ */
 add_action( 'flxseo_audit_cron', 'flxseo_audit_tick' );
 add_action(
 	'init',
@@ -248,6 +328,10 @@ add_action(
 		$next = flxseo_audit_next_run();
 		if ( ! is_array( $job ) && ( ! $next || time() < $next ) ) {
 			return;
+		}
+		// Ziyaretçi isteğinde PageSpeed çalışmaz: iş ve belirteç yazılır, adım loopback'te yürür.
+		if ( ! is_array( $job ) ) {
+			flxseo_audit_open_job();
 		}
 		flxseo_audit_kick();
 	},
