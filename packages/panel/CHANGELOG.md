@@ -1,5 +1,8 @@
 # @fluxwp/panel
 
+## 0.3.4
+- The open panel reads `/me` and the counters from the shared runtime queries, so the legacy hooks no longer start a second poll.
+
 ## 0.3.3
 - Support ten shared locales, English translation keys and Arabic direction for WordPress embeds and shared screens.
 

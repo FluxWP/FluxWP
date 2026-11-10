@@ -9,6 +9,7 @@ import { brand, createClient, createI18n, setPlatform, memoryStore, trimEnd } fr
 import type { BrandColors } from '@fluxwp/tokens';
 import { toCssVars } from '@fluxwp/tokens';
 import { ModuleHostProvider, moduleScreens, type ModuleHost } from '@fluxwp/modules';
+import { mountManifest, type ManifestMountOptions } from './manifest';
 import '@fluxwp/ui/src/styles.css';
 import './embed.css';
 
@@ -117,4 +118,19 @@ export function setNonce(n: string) {
 }
 
 export const modules = Object.keys(moduleScreens);
-export { mountManifest, type ManifestMountOptions } from './manifest';
+export { mountManifest, type ManifestMountOptions };
+
+declare global {
+  interface Window {
+    FluxModules?: {
+      mount: typeof mount;
+      setNonce: typeof setNonce;
+      modules: typeof modules;
+      mountManifest: typeof mountManifest;
+    };
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.FluxModules = { mount, setNonce, modules, mountManifest };
+}

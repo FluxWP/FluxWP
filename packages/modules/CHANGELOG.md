@@ -1,5 +1,8 @@
 # @fluxwp/modules
 
+## 0.3.4
+- Each module screen loads with `import()` when it opens, so the shell chunk does not include every screen.
+
 ## 0.3.3
 - Task descriptions, comments and AI previews are sanitised before they are rendered as HTML.
 
