@@ -234,7 +234,7 @@ function flx_wc_hero( $html, $block, $instance = null ) {
 	<?php
 	return ob_get_clean();
 }
-add_filter( 'render_block', 'flx_wc_hero', 20, 3 );
+add_filter( 'render_block_core/post-title', 'flx_wc_hero', 20, 3 );
 
 /**
  * Hesabım: sol kolon (profil kartı + menü + bağış kartı).
