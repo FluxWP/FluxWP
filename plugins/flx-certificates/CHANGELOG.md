@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.6 — 2026-11-10
+- Quote log CSV cells that would open as a spreadsheet formula. Numeric cells, including negatives, stay numbers.
+
 ## 1.9.4 — 2026-11-10
 - Bundle the shared bounded operational journal to trace worker/PDF/message jobs, timeouts and safe error metadata.
 
