@@ -1,5 +1,8 @@
 # Flux Wiki
 
+## 0.2.8
+- Table header cells follow the theme's table header colour (FluxWP palette `table-head` or Theme Settings), falling back to the soft surface tone on other themes.
+
 ## 0.2.7
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

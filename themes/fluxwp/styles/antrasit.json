@@ -48,7 +48,12 @@
 				{
 					"slug": "base",
 					"name": "Sayfa zemini",
-					"color": "#FBF9F6"
+					"color": "#FFFFFF"
+				},
+				{
+					"slug": "table-head",
+					"name": "Tablo başlığı",
+					"color": "#F3F4F6"
 				},
 				{
 					"slug": "white",

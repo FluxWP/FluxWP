@@ -1488,3 +1488,12 @@ msgstr "Site coming soon"
 
 msgid "Staff sign in"
 msgstr "Staff sign in"
+
+msgid "Background colour of all pages. Leave empty to use the style colour (Appearance › Editor › Styles › Colours › Page background)."
+msgstr "Background colour of all pages. Leave empty to use the style colour (Appearance › Editor › Styles › Colours › Page background)."
+
+msgid "Table header background"
+msgstr "Table header background"
+
+msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
+msgstr "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."

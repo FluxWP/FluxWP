@@ -8,6 +8,7 @@
   --wk-soft:var(--wp--preset--color--mint-soft,#F8FAFC);
   --wk-tint:var(--wp--preset--color--mint,#F1F5F9);
   --wk-surface:var(--flx-surface,#fff);
+  --wk-table-head:var(--flx-table-head,var(--wp--preset--color--table-head,var(--wk-soft)));
   --wk-muted:color-mix(in srgb,var(--wk-text) 72%,transparent);
   --wk-code-bg:#151b26;
   --wk-radius:14px;
@@ -176,7 +177,7 @@
 .flxwk-table{overflow-x:auto;margin:1.2em 0 1.4em;border:1px solid var(--wk-line);border-radius:12px}
 .flxwk-table table{border-collapse:collapse;width:100%;font-size:.92rem;margin:0}
 .flxwk-table th,.flxwk-table td{padding:9px 12px;border-bottom:1px solid var(--wk-line);text-align:start;vertical-align:top}
-.flxwk-table th{background:var(--wk-soft);color:var(--wk-ink);font-weight:650}
+.flxwk-table th{background:var(--wk-table-head);color:var(--wk-ink);font-weight:650}
 .flxwk-table tr:last-child td{border-bottom:0}
 .flxwk-missing{color:#b91c1c;border-bottom:1px dashed currentColor;cursor:help}
 .flxwk-callout{--c:#2563eb;margin:1.3em 0;padding:12px 16px;border-radius:12px;border:1px solid color-mix(in srgb,var(--c) 30%,transparent);background:color-mix(in srgb,var(--c) 8%,transparent)}

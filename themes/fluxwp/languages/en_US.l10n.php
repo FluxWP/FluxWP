@@ -961,4 +961,8 @@ return array('language'=>'en_US','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'Optional. Only this address is shown; the administrator email stays private.'=>'Optional. Only this address is shown; the administrator email stays private.',
 'Site coming soon'=>'Site coming soon',
 'Staff sign in'=>'Staff sign in',
+'Page background'=>'Page background',
+'Background colour of all pages. Leave empty to use the style colour (Appearance › Editor › Styles › Colours › Page background).'=>'Background colour of all pages. Leave empty to use the style colour (Appearance › Editor › Styles › Colours › Page background).',
+'Table header background'=>'Table header background',
+'Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour.'=>'Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour.',
 ));

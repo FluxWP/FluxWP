@@ -960,4 +960,8 @@ return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'Optional. Only this address is shown; the administrator email stays private.'=>'İsteğe bağlı. Yalnızca bu adres gösterilir; yönetici e-postası gizli kalır.',
 'Site coming soon'=>'Site yakında',
 'Staff sign in'=>'Ekip girişi',
+'Page background'=>'Sayfa zemini',
+'Background colour of all pages. Leave empty to use the style colour (Appearance › Editor › Styles › Colours › Page background).'=>'Tüm sayfaların arka plan rengi. Boş bırakılırsa stil rengi kullanılır (Görünüm › Düzenleyici › Stiller › Renkler › Sayfa zemini).',
+'Table header background'=>'Tablo başlığı zemini',
+'Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour.'=>'Sayfalardaki, Wiki\'deki ve WooCommerce\'teki tabloların başlık hücreleri. Sayfa zemininden biraz koyu bir ton seçin. Boş bırakılırsa stil rengi kullanılır.',
 ));

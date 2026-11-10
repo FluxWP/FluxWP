@@ -51,6 +51,11 @@
 					"color": "#FFFFFF"
 				},
 				{
+					"slug": "table-head",
+					"name": "Tablo başlığı",
+					"color": "#F3F4F6"
+				},
+				{
 					"slug": "white",
 					"name": "Beyaz",
 					"color": "#FFFFFF"

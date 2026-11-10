@@ -1488,3 +1488,12 @@ msgstr "Site yakında"
 
 msgid "Staff sign in"
 msgstr "Ekip girişi"
+
+msgid "Background colour of all pages. Leave empty to use the style colour (Appearance › Editor › Styles › Colours › Page background)."
+msgstr "Tüm sayfaların arka plan rengi. Boş bırakılırsa stil rengi kullanılır (Görünüm › Düzenleyici › Stiller › Renkler › Sayfa zemini)."
+
+msgid "Table header background"
+msgstr "Tablo başlığı zemini"
+
+msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
+msgstr "Sayfalardaki, Wiki'deki ve WooCommerce'teki tabloların başlık hücreleri. Sayfa zemininden biraz koyu bir ton seçin. Boş bırakılırsa stil rengi kullanılır."

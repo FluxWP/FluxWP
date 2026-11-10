@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/inc/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLX_VERSION', '0.7.16' ); // style.css Version ile aynı tutulur (CSS/JS önbelleği bununla yenilenir).
+define( 'FLX_VERSION', '0.7.17' ); // style.css Version ile aynı tutulur (CSS/JS önbelleği bununla yenilenir).
 
 /**
  * Theme supports.
@@ -45,6 +45,7 @@ function flx_assets() {
 	$css = file_exists( get_theme_file_path( 'assets/css/theme.min.css' ) ) ? 'assets/css/theme.min.css' : 'assets/css/theme.css';
 	wp_enqueue_style( 'fluxwp', get_theme_file_uri( $css ), array(), FLX_VERSION );
 	wp_add_inline_style( 'fluxwp', flx_palette_css() );
+	wp_add_inline_style( 'fluxwp', flx_ayar_colors_css() );
 	wp_enqueue_script( 'fluxwp', get_theme_file_uri( 'assets/js/main.js' ), array(), FLX_VERSION, array( 'strategy' => 'defer', 'in_footer' => true ) );
 
 	// Swiper yalnızca sayfada slider varsa yüklenir (bkz. flx_enqueue_slider).
