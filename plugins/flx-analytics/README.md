@@ -28,11 +28,11 @@ A privacy-first analytics plugin for WordPress: visitors, pages, sources, a dona
 
 Google Analytics is heavy, needs a cookie banner and sends your visitors' data to a third party. Simple counters stop at page views. A non-profit needs something in between: *how many people came, from where, and how many of them actually donated?*
 
-- 🔒 **No personal data.** No IP address or browser fingerprint is stored. A visitor is recognised only within the same day by a random key that is deleted the next day. No cookie banner needed.
+- 🔒 **No personal data.** No IP address or browser fingerprint is stored. A visitor is recognised only within the same day by a random key that is deleted the next day. A forwarded address is read only when the connection comes from Cloudflare. No cookie banner needed.
 - 💚 **Built around donations.** A ready-made funnel follows each visit from the first page to the donation page, the checkout form, the "Place order" click and the thank-you page.
 - 🧭 **Journeys, not just counts.** See the order in which people browse, where they drop out and which paths reach the goal.
 - 🔗 **Referral links for volunteers.** Give each volunteer or campaign a `?r=code` link and see their visitors, sessions and donations.
-- ⚡ **Fast and cache-friendly.** A ~2 KB beacon and a collection endpoint that doesn't even load WordPress. Works behind LiteSpeed and other page caches.
+- ⚡ **Fast and cache-friendly.** A ~2 KB beacon and a collection endpoint that doesn't even load WordPress. Works behind LiteSpeed and other page caches. The beacon carries a short-lived token (12-hour window; the previous window still counts) so a copied Referer is not enough to submit hits.
 - 🤖 **Ready for AI.** 15 MCP tools let Flux AI, Claude or any MCP client answer "where did our donors come from this month?".
 - 🌐 **English and Turkish**, following each user's WordPress language.
 
