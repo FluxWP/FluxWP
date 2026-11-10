@@ -10,6 +10,7 @@ parser.add_argument('--check', action='store_true')
 parser.add_argument('--add', action='append', default=[], metavar='PACKAGE')
 args = parser.parse_args()
 sources = {'flx-background.php': (root / 'tools/background/runner.php').read_bytes(), 'flx-background-parallel.php': (root / 'tools/background/flx-background-parallel.php').read_bytes()}
+sources['flx-background-log.php'] = (root / 'tools/background/flx-background-log.php').read_bytes()
 manifest = root / 'tools/background/consumers.json'
 packages = set(json.loads(manifest.read_text())) | set(args.add)
 targets = set()

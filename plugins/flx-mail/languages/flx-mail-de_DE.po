@@ -2509,3 +2509,138 @@ msgstr "Die Antwort darf nicht leer sein."
 
 msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
 msgstr "Alle E-Mails der Website an einem Ort: Absendername/-adresse (info@ / no-reply@), SMTP, Unternehmensvorlagen mit Logo und mobilfreundlich, Anzeigen, Bearbeiten, Öffnen/Schließen von E-Mails von WordPress + WooCommerce + FluxWP-Plugins, Senden von Datensätzen, Einzel- und Massenversand. WhatsApp- (Evolution API) und SMS-Verbindungen (Netgsm) sind ebenfalls vorhanden. Andere Plugins verwenden es mit öffentlicher API."
+
+msgid "Accepted; awaiting delivery report"
+msgstr "Angenommen; Zustellbericht ausstehend"
+
+msgid "Action unavailable."
+msgstr "Aktion nicht verfügbar."
+
+msgid "All sends"
+msgstr "Alle Sendungen"
+
+msgid "Attempts"
+msgstr "Versuche"
+
+msgid "Awaiting delivery reports"
+msgstr "Zustellberichte ausstehend"
+
+msgid "Batch not found."
+msgstr "Paket nicht gefunden."
+
+msgid "Campaign"
+msgstr "Kampagne"
+
+msgid "Campaign not found."
+msgstr "Kampagne nicht gefunden."
+
+msgid "Cancelled"
+msgstr "Abgebrochen"
+
+msgid "Check delivery reports"
+msgstr "Zustellberichte prüfen"
+
+msgid "Choose a scheduled time at least one minute in the future."
+msgstr "Wählen Sie einen Versandzeitpunkt mindestens eine Minute in der Zukunft."
+
+msgid "Continue with this action?"
+msgstr "Mit dieser Aktion fortfahren?"
+
+msgid "Could not refresh. Retrying shortly."
+msgstr "Aktualisierung fehlgeschlagen. Erneuter Versuch folgt."
+
+msgid "Delivered"
+msgstr "Zugestellt"
+
+msgid "Delivery acceptance is unknown. Check Netgsm before sending again."
+msgstr "Annahme der Sendung unklar. Prüfen Sie Netgsm vor einem erneuten Versand."
+
+msgid "Delivery queue"
+msgstr "Versandwarteschlange"
+
+msgid "Duplicate recipient"
+msgstr "Doppelter Empfänger"
+
+msgid "Last report"
+msgstr "Letzter Bericht"
+
+msgid "Live email, WhatsApp and SMS progress. Acceptance by a provider is not proof of delivery."
+msgstr "Live-Status für E-Mail, WhatsApp und SMS. Die Annahme durch den Anbieter bestätigt keine Zustellung."
+
+msgid "Needs review"
+msgstr "Prüfung erforderlich"
+
+msgid "Netgsm only supports cancellation of future scheduled sends. Delivered messages cannot be recalled."
+msgstr "Netgsm unterstützt nur den Abbruch zukünftig geplanter Sendungen. Zugestellte Nachrichten können nicht zurückgerufen werden."
+
+msgid "Next"
+msgstr "Weiter"
+
+msgid "No final delivery report received. Check Netgsm."
+msgstr "Kein endgültiger Zustellbericht erhalten. Prüfen Sie Netgsm."
+
+msgid "No queue entries yet."
+msgstr "Noch keine Warteschlangeneinträge."
+
+msgid "Operational history"
+msgstr "Betriebsverlauf"
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Processing"
+msgstr "In Bearbeitung"
+
+msgid "Provider job ID"
+msgstr "Auftrags-ID des Anbieters"
+
+msgid "Queue"
+msgstr "Warteschlange"
+
+msgid "Ready recipients are grouped in one API request. Default: 1000; maximum: 50000."
+msgstr "Bereite Empfänger werden in einer API-Anfrage gebündelt. Standard: 1000; Maximum: 50000."
+
+msgid "Recent background events across plugins. Message content and credentials are excluded. Detailed delivery records remain in Log."
+msgstr "Letzte Hintergrundereignisse aller Plugins. Nachrichteninhalte und Zugangsdaten sind ausgeschlossen. Detaillierte Versanddaten stehen im Protokoll."
+
+msgid "Recipients per Netgsm request"
+msgstr "Empfänger pro Netgsm-Anfrage"
+
+msgid "Request Netgsm cancellation"
+msgstr "Abbruch bei Netgsm anfordern"
+
+msgid "Scheduled send (optional)"
+msgstr "Geplanter Versand (optional)"
+
+msgid "Skipped"
+msgstr "Übersprungen"
+
+msgid "Stop queued messages"
+msgstr "Wartende Nachrichten stoppen"
+
+msgid "Stopping the local queue does not recall messages already accepted by a provider. Netgsm cancellation is available only for future scheduled sends."
+msgstr "Das Stoppen der lokalen Warteschlange ruft bereits angenommene Nachrichten nicht zurück. Netgsm erlaubt den Abbruch nur bei zukünftig geplanten Sendungen."
+
+msgid "The cancellation window has closed."
+msgstr "Das Zeitfenster für den Abbruch ist geschlossen."
+
+msgid "The original Netgsm connection is unavailable."
+msgstr "Die ursprüngliche Netgsm-Verbindung ist nicht verfügbar."
+
+msgid "The queue is busy. Try again shortly."
+msgstr "Die Warteschlange ist beschäftigt. Versuchen Sie es gleich erneut."
+
+msgid "Updated"
+msgstr "Aktualisiert"
+
+msgid "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts."
+msgstr "Verwendet die WordPress-Zeitzone. Zukünftige Netgsm-Sendungen können vor Versandbeginn abgebrochen werden."
+
+msgid "View delivery queue"
+msgstr "Versandwarteschlange anzeigen"
+
+msgid "WordPress background processing"
+msgstr "WordPress-Hintergrundverarbeitung"
+
+msgid "Worker active"
+msgstr "Worker aktiv"

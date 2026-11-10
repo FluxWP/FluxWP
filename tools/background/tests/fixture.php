@@ -57,7 +57,7 @@ switch ( $operation ) {
 	case 'setup':
 		flx_bg_test_assert( ! get_option( 'flx_bg_test_fixture' ) && ! FLXY_Runner::busy(), 'Fixture already exists or a backup is busy' );
 		$f = array( 'saved' => array(), 'campaigns' => array(), 'certificates' => array(), 'backups' => array() );
-		foreach ( array( 'flx_background_worker', 'flxi_settings', 'flxi_quota', 'flxi_quota_paused', 'flxy_job', 'flxy_indicator', 'cron', 'active_plugins' ) as $key ) { $f['saved'][ $key ] = get_option( $key ); }
+		foreach ( array( 'flx_background_worker', 'flxi_settings', 'flxi_quota', 'flxi_quota_paused', 'flxi_netgsm_active', 'flxy_job', 'flxy_indicator', 'cron', 'active_plugins' ) as $key ) { $f['saved'][ $key ] = get_option( $key ); }
 		$f['saved']['flx_docker_bootstrap'] = get_option( 'flx_docker_bootstrap' );
 		foreach ( array( 'mail' => flxi_table( 'queue' ), 'cert' => flxs_table( 'messages' ) ) as $name => $table ) {
 			$f['old_' . $name] = $wpdb->get_results( "SELECT id,status FROM $table WHERE status IN ('queued','processing')", ARRAY_A );
@@ -65,6 +65,7 @@ switch ( $operation ) {
 		}
 		update_option( 'flx_bg_test_fixture', $f, false );
 		delete_option( 'flx_background_worker' );
+		update_option( 'flxi_netgsm_active', array(), false );
 		update_option( 'flxi_quota', array(), false );
 		$settings = flxi_settings(); $settings['bulk_per_run'] = 1; $settings['limit_daily'] = 100; $settings['limit_reserve'] = 0;
 		update_option( 'flxi_settings', $settings, false );
@@ -359,51 +360,7 @@ QA;
 		flx_bg_test_output( array( 'prepared' => true, 'excluded' => implode( ',', array_keys( $excluded ) ) ) );
 		break;
 	case 'channels':
-		$f = get_option( 'flx_bg_test_fixture' ); $f['connections'] = array();
-		$id = flxi_save_connection( 0, 'netgsm', 'Background SMS QA', array( 'username' => 'qa', 'password' => 'not-a-real-credential', 'header' => 'FLXQA', 'iysfilter' => '11', 'encoding' => 'TR', 'delay' => 0 ), true, false );
-		flx_bg_test_assert( ! is_wp_error( $id ), 'Test SMS connection failed' ); $f['connections'][] = $id; update_option( 'flx_bg_test_fixture', $f, false );
-		$manual = array(); for ( $i = 0; $i < 1000; ++$i ) { $manual[] = sprintf( 'QA %d, +90 555 %07d', $i, $i ); }
-		$manual[] = 'Duplicate, 05550000000'; $manual[] = 'invalid-number';
-		$recipients = flxi_collect_recipients( array(), implode( "\n", $manual ), 'sms' );
-		$cid = flxi_create_campaign( array( 'name' => 'Background SMS QA', 'channel' => 'sms', 'connection_id' => $id, 'text' => 'Merhaba {ad}, bağışınız için teşekkürler.' ), $recipients );
-		flx_bg_test_assert( ! is_wp_error( $cid ), 'Test SMS campaign failed' );
-		$f = get_option( 'flx_bg_test_fixture' ); $f['campaigns'][] = $cid; update_option( 'flx_bg_test_fixture', $f, false );
-		$seen = array(); $accepted = array(); $payload_ok = true; $auth_error = false; $wa_limited = false;
-		$mock = function ( $pre, $request, $url ) use ( &$seen, &$accepted, &$payload_ok, &$auth_error, &$wa_limited ) {
-			if ( 'https://api.netgsm.com.tr/sms/rest/v2/send' === $url ) {
-				$p = json_decode( $request['body'], true ); $message = $p['messages'][0]; $number = $message['no'];
-				$payload_ok = $payload_ok && 'FLXQA' === $p['msgheader'] && 'TR' === $p['encoding'] && '11' === $p['iysfilter'] && (bool) preg_match( '/^555[0-9]{7}$/D', $number ) && false !== strpos( $message['msg'], 'teşekkürler' );
-				$seen[ $number ] = ( $seen[ $number ] ?? 0 ) + 1;
-				$code = $auth_error ? '30' : ( '5550000000' === $number && 1 === $seen[ $number ] ? '80' : '00' );
-				if ( '00' === $code ) { $accepted[ $number ] = ( $accepted[ $number ] ?? 0 ) + 1; }
-				return array( 'headers' => array(), 'body' => wp_json_encode( array( 'code' => $code, 'jobid' => 'qa-' . $number ) ), 'response' => array( 'code' => 200, 'message' => 'OK' ), 'cookies' => array() );
-			}
-			if ( 0 === strpos( $url, 'https://example.invalid/message/sendText/' ) ) {
-				if ( $wa_limited ) { return array( 'headers' => array(), 'body' => '{"message":"Rate limited"}', 'response' => array( 'code' => 429, 'message' => 'Too Many Requests' ), 'cookies' => array() ); }
-				return array( 'headers' => array(), 'body' => '{"key":{"id":"qa-whatsapp"}}', 'response' => array( 'code' => 200, 'message' => 'OK' ), 'cookies' => array() );
-			}
-			return new WP_Error( 'worker_qa_offline', 'External HTTP disabled in worker QA.' );
-		};
-		add_filter( 'pre_http_request', $mock, PHP_INT_MAX, 3 );
-		for ( $i = 0; $i < 20; ++$i ) { $r = flxi_run_queue( 8 ); if ( ! $r['processed'] ) { break; } }
-		$t = flxi_table( 'queue' );
-		$row = $wpdb->get_row( $wpdb->prepare( "SELECT status,attempts,scheduled_at FROM $t WHERE campaign_id=%d AND recipient='905550000000'", $cid ), ARRAY_A );
-		$backoff = 'queued' === $row['status'] && 1 === (int) $row['attempts'] && strtotime( $row['scheduled_at'] . ' UTC' ) > time();
-		$wpdb->update( $t, array( 'scheduled_at' => flxi_now() ), array( 'campaign_id' => $cid, 'status' => 'queued' ) );
-		flxi_run_queue( 8 );
-		$sent = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE campaign_id=%d AND status='sent'", $cid ) );
-		$auth_error = true; $connection = flxi_get_connection( $id );
-		$error = flxi_netgsm_send( $connection['config'], array( 'recipient' => '905550000000', 'body' => 'teşekkürler' ) );
-		$wa = flxi_save_connection( 0, 'evolution', 'Background WhatsApp QA', array( 'base_url' => 'https://example.invalid', 'api_key' => 'not-a-real-credential', 'instance' => 'qa', 'delay' => 4, 'typing' => 0 ), true, false );
-		flx_bg_test_assert( ! is_wp_error( $wa ), 'Test WhatsApp connection failed' ); $f = get_option( 'flx_bg_test_fixture' ); $f['connections'][] = $wa; update_option( 'flx_bg_test_fixture', $f, false );
-		$wc = flxi_create_campaign( array( 'name' => 'Background WhatsApp QA', 'channel' => 'whatsapp', 'connection_id' => $wa, 'text' => 'Worker QA' ), array_slice( $recipients, 0, 3 ) );
-		$f = get_option( 'flx_bg_test_fixture' ); $f['campaigns'][] = $wc; update_option( 'flx_bg_test_fixture', $f, false );
-		$dates = $wpdb->get_col( $wpdb->prepare( "SELECT scheduled_at FROM $t WHERE campaign_id=%d ORDER BY id", $wc ) );
-		$r = flxi_run_queue( 8 );
-		$wa_sent = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $t WHERE campaign_id=%d AND status='sent'", $wc ) );
-		$wa_limited = true; $limited = flxi_send_message( 'whatsapp', '905550000000', 'Worker QA', array( 'connection_id' => $wa, 'log' => false ) );
-		flx_bg_test_output( array( 'recipients' => count( $recipients ), 'sent' => $sent, 'unique_accepted' => count( $accepted ), 'no_duplicate' => $accepted && 1 === max( $accepted ), 'payload' => $payload_ok, 'backoff' => $backoff, 'auth_permanent' => ! $error['ok'] && ! $error['retry'], 'whatsapp_retry' => ! $limited['ok'] && $limited['retry'], 'whatsapp' => 1 === $wa_sent && strtotime( $dates[1] ) - strtotime( $dates[0] ) === 4 && strtotime( $dates[2] ) - strtotime( $dates[1] ) === 4 ) );
-		remove_filter( 'pre_http_request', $mock, PHP_INT_MAX );
+		require __DIR__ . '/netgsm.php';
 		break;
 	case 'wake-enqueue':
 		flx_background_schedule( 'flx_bg_qa_sleep', array( 'wake' ), 1 );
@@ -431,6 +388,17 @@ QA;
 		update_option( 'flx_bg_test_barrier', microtime( true ) + 3, false );
 		flx_bg_test_output( array( 'prepared' => true ) );
 		break;
+	case 'journal':
+		$limit = static function () { return 100; }; add_filter( 'flx_background_log_limit', $limit );
+		for ( $i = 0; $i < 105; ++$i ) { flx_background_log( 'qa.bounded', array( 'count' => $i ) ); }
+		update_option( 'flx_background_journal_pruned', 0, false ); flx_background_log( 'qa.prune' );
+		$count = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'flx_background_event_' ) . '%' ) );
+		$autoload = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE %s AND autoload IN ('yes','on','auto-on')", $wpdb->esc_like( 'flx_background_event_' ) . '%' ) );
+		$old_key = 'flx_background_event_' . ( time() - 20 * DAY_IN_SECONDS ) . '_old'; add_option( $old_key, array( 'event' => 'old' ), '', false );
+		update_option( 'flx_background_journal_pruned', 0, false ); flx_background_log( 'qa.age' ); wp_cache_delete( $old_key, 'options' );
+		$expired = false === get_option( $old_key ); remove_filter( 'flx_background_log_limit', $limit );
+		flx_bg_test_output( array( 'bounded' => $count <= 100, 'not_autoloaded' => 0 === $autoload, 'expired' => $expired ) );
+		break;
 	case 'cleanup':
 		@unlink( WPMU_PLUGIN_DIR . '/flx-background-qa.php' );
 		foreach ( $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE 'flx_bg_qa_pool_%' OR option_name LIKE 'flx_bg_task_%'" ) as $name ) {
@@ -443,6 +411,11 @@ QA;
 		@rmdir( WP_CONTENT_DIR . '/.flx-background-wake' );
 		$f = get_option( 'flx_bg_test_fixture' );
 		if ( $f ) {
+			foreach ( $wpdb->get_col( $wpdb->prepare( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'flxi_netgsm_batch_' ) . '%' ) ) as $key ) {
+				$batch = get_option( $key );
+				if ( is_array( $batch ) && ( in_array( (int) $batch['campaign'], array_map( 'intval', $f['campaigns'] ), true ) || in_array( (int) $batch['connection'], array_map( 'intval', $f['connections'] ?? array() ), true ) ) ) { delete_option( $key ); }
+			}
+			delete_option( 'flxi_netgsm_report_rate_' . hash( 'sha256', 'qa' ) );
 			foreach ( $f['backups'] as $id ) { FLXY_Storage::delete( $id ); }
 			foreach ( $f['certificates'] as $id ) {
 				if ( function_exists( 'as_unschedule_all_actions' ) ) { as_unschedule_all_actions( 'flxs_render_files', array( (int) $id ), 'flx-certificates' ); }
@@ -450,6 +423,7 @@ QA;
 				$c = flxs_get_certificate( $id );
 				if ( $c && function_exists( 'flxs_delete_certificate' ) ) { flxs_delete_certificate( $id ); }
 			}
+			foreach ( $f['direct_rows'] ?? array() as $id ) { $wpdb->delete( flxi_table( 'queue' ), array( 'id' => $id ) ); }
 			foreach ( $f['campaigns'] as $id ) { $wpdb->delete( flxi_table( 'queue' ), array( 'campaign_id' => $id ) ); $wpdb->delete( flxi_table( 'campaigns' ), array( 'id' => $id ) ); }
 			foreach ( $f['connections'] ?? array() as $id ) { flxi_delete_connection( $id ); }
 			$wpdb->query( "DELETE FROM " . flxs_table( 'messages' ) . " WHERE recipient = 'worker-qa@example.invalid'" );

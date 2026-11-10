@@ -147,6 +147,7 @@ final class FLXY_Runner {
 		$state['token']   = wp_generate_password( 32, false, false );
 		$state['touched'] = time();
 		self::save( $state );
+		flx_background_log( 'backup.started', array( 'plugin' => 'flx-backup', 'job' => $state['id'], 'state' => $state['phase'] ) );
 		self::flag( $state );
 		self::schedule_tick();
 		if ( ! $interactive ) {
@@ -243,6 +244,7 @@ final class FLXY_Runner {
 		}
 		FLXY_Backup::raise_limits();
 		ignore_user_abort( true );
+		$previous_phase = $state['phase'];
 		$deadline = microtime( true ) + self::budget( $interactive );
 		if ( 'restore' === $state['kind'] ) {
 			$state = FLXY_Restore::step( $state, $deadline );
@@ -254,6 +256,7 @@ final class FLXY_Runner {
 		if ( ! self::is_finished( $state ) && self::cancel_requested( $state ) ) {
 			$state = self::apply_cancel( $state );
 		}
+		if ( $state['phase'] !== $previous_phase ) { flx_background_log( 'backup.phase', array( 'plugin' => 'flx-backup', 'job' => $state['id'], 'state' => $state['phase'] ) ); }
 		self::unlock();
 		if ( ! self::is_finished( $state ) ) {
 			self::schedule_tick();

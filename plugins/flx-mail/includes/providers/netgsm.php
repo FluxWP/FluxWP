@@ -41,9 +41,11 @@ add_filter(
 				),
 				array( 'key' => 'partnercode', 'label' => __( 'Partner code (optional)', 'flx-mail' ), 'type' => 'text' ),
 				array( 'key' => 'delay', 'label' => __( 'Delay between messages in bulk send (sec)', 'flx-mail' ), 'type' => 'number', 'default' => 0 ),
+				array( 'key' => 'batch_size', 'label' => __( 'Recipients per Netgsm request', 'flx-mail' ), 'type' => 'number', 'default' => 1000, 'help' => __( 'Ready recipients are grouped in one API request. Default: 1000; maximum: 50000.', 'flx-mail' ) ),
 			),
 			'send'    => 'flxi_netgsm_send',
 			'test'    => 'flxi_netgsm_test',
+			'queue_batch' => 'flxi_netgsm_queue_batch',
 		);
 		return $types;
 	}
@@ -75,49 +77,62 @@ function flxi_netgsm_number( $phone ) {
 }
 
 function flxi_netgsm_send( $config, $msg, $conn = array() ) {
-	$phone = flxi_normalize_phone( $msg['recipient'] );
-	if ( ! $phone ) {
+	if ( ! empty( $conn['id'] ) ) { return flxi_netgsm_dispatch( $config, array( $msg ), $conn ); }
+	return flxi_netgsm_send_batch( $config, array( $msg ) );
+}
+
+function flxi_netgsm_request( $config, $endpoint, $payload ) {
+	if ( ! in_array( $endpoint, array( 'send', 'report', 'cancel' ), true ) ) { return array( 'ok' => false, 'code' => 0, 'error' => 'Invalid endpoint', 'json' => null, 'body' => '' ); }
+	return flxi_http( 'POST', 'https://api.netgsm.com.tr/sms/rest/v2/' . $endpoint, array(
+		'headers' => array( 'Content-Type' => 'application/json', 'Authorization' => 'Basic ' . base64_encode( $config['username'] . ':' . $config['password'] ) ),
+		'body' => flxi_json( $payload ), 'timeout' => 20,
+	) );
+}
+
+/** Provider acceptance is distinct from a delivery receipt. */
+function flxi_netgsm_send_batch( $config, $messages, $options = array() ) {
+	$list = array(); $seen = array();
+	foreach ( $messages as $msg ) {
+		$phone = flxi_normalize_phone( $msg['recipient'] );
+		if ( ! $phone || isset( $seen[ $phone ] ) ) {
 		/* translators: %s: telefon */
 		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid phone: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );
+		}
+		$seen[ $phone ] = true; $list[] = array( 'msg' => (string) $msg['body'], 'no' => flxi_netgsm_number( $phone ) );
 	}
 	$payload = array(
 		'msgheader' => (string) $config['header'],
-		'messages'  => array( array( 'msg' => (string) $msg['body'], 'no' => flxi_netgsm_number( $phone ) ) ),
+		'messages'  => $list,
 		'encoding'  => (string) ( $config['encoding'] ?? 'TR' ),
 		'iysfilter' => (string) ( $config['iysfilter'] ?? '0' ),
 		'appname'   => 'flx-mail',
 	);
+	if ( ! empty( $options['reference'] ) ) { $payload['referansID'] = $options['reference']; }
+	if ( (int) ( $options['send_at'] ?? 0 ) > time() ) {
+		$payload['startdate'] = ( new DateTimeImmutable( '@' . (int) $options['send_at'] ) )->setTimezone( new DateTimeZone( 'Europe/Istanbul' ) )->format( 'dmYHi' );
+	}
 	if ( ! empty( $config['partnercode'] ) ) {
 		$payload['partnercode'] = (string) $config['partnercode'];
 	}
 	if ( '' === $payload['encoding'] ) {
 		unset( $payload['encoding'] );
 	}
-	$r     = flxi_http(
-		'POST',
-		'https://api.netgsm.com.tr/sms/rest/v2/send',
-		array(
-			'headers' => array(
-				'Content-Type'  => 'application/json',
-				'Authorization' => 'Basic ' . base64_encode( $config['username'] . ':' . $config['password'] ),
-			),
-			'body'    => flxi_json( $payload ),
-		)
-	);
+	$r = flxi_netgsm_request( $config, 'send', $payload );
 	$json  = is_array( $r['json'] ) ? $r['json'] : array();
 	$code  = isset( $json['code'] ) ? (string) $json['code'] : '';
 	$codes = flxi_netgsm_codes();
 	$resp  = array( 'http' => $r['code'], 'body' => $json ? $json : $r['body'] );
 
-	if ( '00' === $code ) {
-		return array( 'ok' => true, 'external_id' => (string) ( $json['jobid'] ?? '' ), 'response' => $resp );
+	if ( in_array( $code, array( '00', '01', '02' ), true ) && ! empty( $json['jobid'] ) ) {
+		return array( 'ok' => true, 'external_id' => (string) $json['jobid'], 'response' => $resp, 'code' => $code );
 	}
 	if ( $r['error'] ) {
-		return array( 'ok' => false, 'error' => __( 'Connection error:', 'flx-mail' ) . ' ' . $r['error'], 'retry' => true, 'response' => $resp );
+		return array( 'ok' => false, 'error' => __( 'Delivery acceptance is unknown. Check Netgsm before sending again.', 'flx-mail' ), 'retry' => false, 'uncertain' => true, 'response' => $resp, 'code' => 'transport' );
 	}
 	$text  = $code ? ( 'Netgsm ' . $code . ': ' . ( $codes[ $code ] ?? ( $json['description'] ?? '?' ) ) ) : ( 'HTTP ' . $r['code'] . ': ' . mb_substr( $r['body'], 0, 200 ) );
-	$retry = in_array( $code, array( '80', '85', '100', '101', '5000', '' ), true );
-	return array( 'ok' => false, 'error' => $text, 'retry' => $retry, 'response' => $resp );
+	$uncertain = ! empty( $json['jobid'] ) || ( '' === $code && ( $r['code'] >= 500 || 200 === $r['code'] ) ) || ( '00' === $code && empty( $json['jobid'] ) );
+	$retry = ! $uncertain && ( 429 === $r['code'] || in_array( $code, array( '80', '85', '100', '101', '5000' ), true ) );
+	return array( 'ok' => false, 'error' => $uncertain ? __( 'Delivery acceptance is unknown. Check Netgsm before sending again.', 'flx-mail' ) : $text, 'retry' => $retry, 'uncertain' => $uncertain, 'response' => $resp, 'code' => $code ?: (string) $r['code'] );
 }
 
 function flxi_netgsm_test( $config, $to, $conn ) {

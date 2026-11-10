@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.15 — 2026-11-10
+- Batch Netgsm recipients in REST v2 packets, persist provider job IDs, reconcile per-recipient delivery reports and avoid resending uncertain submissions.
+- Add a live delivery queue, local stopping, future Netgsm scheduling/cancellation, protected REST actions and ten native locale catalogs.
+- Add a bounded shared operational journal for correlated worker, delivery and error diagnostics without message content or credentials.
+
 ## 1.13.14 — 2026-11-10
 - Verify a 1,000-recipient Netgsm campaign with mocked transport; preserve encoding, consent-filter selection, deduplication and provider error backoff. Retry WhatsApp HTTP 429 and resume ready worker batches promptly.
 - Share the reusable background execution guard and recover malformed abandoned leases; verify standalone and mixed bundle loading in CI.

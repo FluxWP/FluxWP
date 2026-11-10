@@ -12,38 +12,7 @@ function flxi_page_send() {
 	$cid = isset( $_GET['campaign'] ) ? (int) $_GET['campaign'] : 0; // phpcs:ignore
 	flxi_page_head( __( 'Send', 'flx-mail' ), __( 'Send an email, WhatsApp or SMS message to one person or a list using the branded template. Bulk sends are processed in the background, one after another.', 'flx-mail' ) );
 
-	if ( $cid ) {
-		$c = flxi_get_campaign( $cid );
-		if ( $c ) {
-			$open = in_array( $c['status'], array( 'queued', 'running' ), true );
-			echo '<div class="flxi-card flxi-progress" data-campaign="' . (int) $cid . '" data-open="' . ( $open ? '1' : '0' ) . '">';
-			echo '<h2 class="flxi-card__title">' . esc_html( $c['name'] ) . ' ' . flxi_badge( flxi_channels()[ $c['channel'] ] ?? $c['channel'] ) . '</h2>'; // phpcs:ignore
-			$pct = $c['total'] ? round( 100 * ( $c['sent'] + $c['failed'] + $c['skipped'] ) / $c['total'] ) : 0;
-			echo '<div class="flxi-bar"><span style="width:' . (int) $pct . '%"></span></div>';
-			/* translators: 1: gönderilen, 2: toplam, 3: hatalı */
-			echo '<p data-progress-text>' . esc_html( sprintf( __( '%1$s / %2$s sent · %3$s failed', 'flx-mail' ), number_format_i18n( $c['sent'] ), number_format_i18n( $c['total'] ), number_format_i18n( $c['failed'] ) ) ) . '</p>';
-			if ( $open ) {
-				$paused = (int) get_option( 'flxi_quota_paused' );
-				$ptext  = '';
-				if ( 'email' === $c['channel'] && $paused > time() ) {
-					/* translators: %s: time */
-					$ptext = sprintf( __( 'The mailbox\'s daily sending limit has been reached. Sending will resume automatically around %s.', 'flx-mail' ), flx_date( $paused, 'time' ) . ', ' . flx_date( $paused, 'short' ) );
-				}
-				echo '<p class="flxi-notice-inline" data-quota-paused' . ( $ptext ? '' : ' hidden' ) . '>' . esc_html( $ptext ) . '</p>';
-				echo '<p class="flxi-muted">' . esc_html__( 'Sending is faster while this page is open; if you close it, it continues in the background.', 'flx-mail' ) . '</p>';
-				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
-				wp_nonce_field( 'flxi_cancel_campaign' );
-				echo '<input type="hidden" name="action" value="flxi_cancel_campaign"><input type="hidden" name="id" value="' . (int) $cid . '"><button class="button">' . esc_html__( 'Stop', 'flx-mail' ) . '</button></form>';
-			}
-			echo ' <a class="button" href="' . esc_url( flxi_admin_url( 'flxi-kayitlar', array( 'campaign' => $cid ) ) ) . '">' . esc_html__( 'View log', 'flx-mail' ) . '</a></div>';
-		}
-	}
-
-	if ( flxi_limits()['daily'] ) {
-		echo '<details class="flxi-card flxi-quota-card"><summary class="flxi-card__title">' . esc_html__( 'Daily email allowance', 'flx-mail' ) . '</summary>';
-		echo flxi_quota_meter_html(); // phpcs:ignore
-		echo '<a href="' . esc_url( flxi_admin_url( 'flxi-ayarlar' ) . '#sinirlar' ) . '">' . esc_html__( 'Mailbox limits', 'flx-mail' ) . '</a></details>';
-	}
+	if ( $cid ) { echo '<p><a class="button button-primary" href="' . esc_url( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $cid ) ) ) . '">' . esc_html__( 'View delivery queue', 'flx-mail' ) . '</a></p>'; }
 
 	$sources = flxi_recipient_sources();
 	$conns   = array( 'whatsapp' => flxi_connection_choices( 'whatsapp' ), 'sms' => flxi_connection_choices( 'sms' ) );
@@ -73,6 +42,7 @@ function flxi_page_send() {
 	}
 	echo '<p class="flxi-count" data-recipient-count aria-live="polite"></p></div>';
 
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Scheduled send (optional)', 'flx-mail' ) . '</span><input type="datetime-local" name="send_at"><small>' . esc_html__( 'Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.', 'flx-mail' ) . '</small></label>';
 	// E-posta alanları
 	echo '<div data-for-channel="email">';
 	echo '<label class="flxi-field"><span>' . esc_html__( 'Subject', 'flx-mail' ) . '</span><input type="text" name="subject" data-preview data-insert-target></label>';
@@ -133,10 +103,12 @@ function flxi_page_send() {
 			'running'   => __( 'Sending', 'flx-mail' ),
 			'done'      => __( 'Done', 'flx-mail' ),
 			'cancelled' => __( 'Stopped', 'flx-mail' ),
+			'reporting' => __( 'Awaiting delivery reports', 'flx-mail' ),
+			'review' => __( 'Needs review', 'flx-mail' ),
 		);
 		echo '<div class="flxi-card"><h2 class="flxi-card__title">' . esc_html__( 'Recent sends', 'flx-mail' ) . '</h2><div class="flxi-tablewrap"><table class="flxi-table"><thead><tr><th>' . esc_html__( 'First name', 'flx-mail' ) . '</th><th>' . esc_html__( 'Channel', 'flx-mail' ) . '</th><th>' . esc_html__( 'Status', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Sent', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Failed', 'flx-mail' ) . '</th><th>' . esc_html__( 'Date', 'flx-mail' ) . '</th></tr></thead><tbody>';
 		foreach ( $rows as $r ) {
-			echo '<tr><td><a href="' . esc_url( flxi_admin_url( 'flxi-gonder', array( 'campaign' => $r['id'] ) ) ) . '">' . esc_html( $r['name'] ) . '</a></td><td>' . esc_html( flxi_channels()[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $st[ $r['status'] ] ?? $r['status'] ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['sent'] ) . ' / ' . number_format_i18n( $r['total'] ) ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['failed'] ) ) . '</td><td>' . esc_html( flx_date( $r['created_at'], 'datetime' ) ) . '</td></tr>';
+			echo '<tr><td><a href="' . esc_url( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $r['id'] ) ) ) . '">' . esc_html( $r['name'] ) . '</a></td><td>' . esc_html( flxi_channels()[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $st[ $r['status'] ] ?? $r['status'] ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['sent'] ) . ' / ' . number_format_i18n( $r['total'] ) ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['failed'] ) ) . '</td><td>' . esc_html( flx_date( $r['created_at'], 'datetime' ) ) . '</td></tr>';
 		}
 		echo '</tbody></table></div></div>';
 	}
@@ -153,6 +125,7 @@ add_action(
 		$id      = flxi_create_campaign(
 			array(
 				'name'          => $in['name'] ?? '',
+				'send_at'       => sanitize_text_field( $in['send_at'] ?? '' ),
 				'channel'       => $channel,
 				'subject'       => $in['subject'] ?? '',
 				'heading'       => $in['heading'] ?? '',
@@ -174,7 +147,7 @@ add_action(
 			flxi_run_queue( 15 );
 		}
 		/* translators: %s: alıcı sayısı */
-		flxi_redirect( flxi_admin_url( 'flxi-gonder', array( 'campaign' => $id ) ), sprintf( __( 'Sending started for %s recipients.', 'flx-mail' ), number_format_i18n( count( $list ) ) ) );
+		flxi_redirect( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $id ) ), sprintf( __( 'Sending started for %s recipients.', 'flx-mail' ), number_format_i18n( count( $list ) ) ) );
 	}
 );
 
@@ -184,6 +157,6 @@ add_action(
 		flxi_check( 'flxi_cancel_campaign' );
 		$id = (int) ( $_POST['id'] ?? 0 );
 		flxi_cancel_campaign( $id );
-		flxi_redirect( flxi_admin_url( 'flxi-gonder', array( 'campaign' => $id ) ), __( 'Sending stopped.', 'flx-mail' ) );
+		flxi_redirect( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $id ) ), __( 'Sending stopped.', 'flx-mail' ) );
 	}
 );

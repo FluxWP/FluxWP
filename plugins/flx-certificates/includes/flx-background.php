@@ -123,8 +123,16 @@ if ( ! function_exists( 'flx_background_run' ) ) {
 			$handoff();
 			return isset( $options['on_locked'] ) ? call_user_func( $options['on_locked'] ) : array( 'processed' => 0, 'locked' => true );
 		}
+		$started = microtime( true );
+		$context = array( 'plugin' => FLX_Background_Pool::plugin_for( $options['hook'] ?? '' ), 'hook' => $options['hook'] ?? '', 'job' => getenv( 'FLX_BACKGROUND_JOB_ID' ) ?: wp_generate_uuid4() );
+		flx_background_log( 'batch.started', $context );
 		try {
-			return $callback();
+			$result = $callback();
+			flx_background_log( 'batch.finished', $context + array( 'elapsed_ms' => (int) ( 1000 * ( microtime( true ) - $started ) ), 'count' => is_array( $result ) ? (int) ( $result['processed'] ?? 0 ) : 0 ) );
+			return $result;
+		} catch ( Throwable $error ) {
+			flx_background_log( 'batch.failed', $context + array( 'error_class' => get_class( $error ), 'error_file' => basename( $error->getFile() ), 'error_line' => $error->getLine() ) );
+			throw $error;
 		} finally {
 			flx_background_unlock( $name, $token );
 		}
@@ -151,4 +159,5 @@ if ( ! function_exists( 'flx_background_cron_lock' ) ) {
 		finally { flx_background_unlock( 'cron-schedule', $owner ); }
 	}
 }
+require_once __DIR__ . '/flx-background-log.php';
 require_once __DIR__ . '/flx-background-parallel.php';

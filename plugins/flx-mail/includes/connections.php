@@ -192,6 +192,9 @@ function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 		return array( 'ok' => false, 'error' => 'Unknown type: ' . $conn['type'], 'retry' => false );
 	}
 	$msg = array(
+		'log' => ! isset( $args['log'] ) || $args['log'],
+		'campaign_id' => (int) ( $args['campaign_id'] ?? 0 ),
+		'source' => (string) ( $args['source'] ?? '' ),
 		'recipient' => $to,
 		'body'      => (string) $text,
 		'media'     => (string) ( $args['media'] ?? '' ),
@@ -205,7 +208,7 @@ function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 	}
 	$r                  = wp_parse_args( $r, array( 'ok' => false, 'external_id' => '', 'response' => null, 'error' => '', 'retry' => true ) );
 	$r['connection_id'] = $conn['id'];
-	if ( ! isset( $args['log'] ) || $args['log'] ) {
+	if ( empty( $r['logged'] ) && ( ! isset( $args['log'] ) || $args['log'] ) ) {
 		flxi_log_message(
 			$channel,
 			$to,
@@ -259,7 +262,7 @@ function flxi_http( $method, $url, $args = array() ) {
 		'ok'    => $code >= 200 && $code < 300,
 		'code'  => $code,
 		'body'  => mb_substr( $body, 0, 4000 ),
-		'json'  => json_decode( $body, true ),
+		'json'  => json_decode( $body, true, 512, JSON_BIGINT_AS_STRING ),
 		'error' => '',
 	);
 }

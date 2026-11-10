@@ -44,3 +44,9 @@ The existing Docker cron coordinator now runs registered independent jobs in a b
 Deployment controls: `WP_BACKGROUND_WORKERS_PER_PLUGIN=3`, `WP_BACKGROUND_MAX_PROCESSES=9`; the updated Docker worker uses `WP_BACKGROUND_POLL_INTERVAL=2` for low-cost due-time wake checks and retains `WP_CRON_INTERVAL=60` as fallback. Update/recreate the worker image for fast wake; older images keep native cron. Signals contain no job payload. The integration test also needs the sibling docker-wordpress checkout (or `--worker-script`) and serializes access to its disposable fixture.
 
 The integration suite also exercises 1,000 synthetic SMS recipients against an intercepted Netgsm REST v2 response, permanent/transient provider errors and WhatsApp spacing/rate limits. No real SMS, WhatsApp or email messages are sent.
+
+## Operational history
+
+The shared journal correlates dispatch/start/finish, duration, timeouts, retries and safe error metadata. Backup phase transitions use the backup ID. Communication › Queue displays shared history and campaign-specific events. Operational entries exclude message content, recipients and credentials; existing detailed delivery logs remain separate.
+
+Default retention is the latest 2,000 events / 14 days, pruned at most once per minute and stored without autoload. `flx_background_log_limit` and `flx_background_log_days` adjust these limits. This is bounded diagnostic history rather than a permanent audit archive. Logging errors never interrupt delivery. See the API contract for the whitelist and optional sink hook.

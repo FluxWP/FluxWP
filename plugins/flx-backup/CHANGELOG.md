@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.6 — 2026-11-10
+- Record backup phase transitions and bundle correlated worker diagnostics in the bounded shared operational journal.
+
 ## 1.4.5 — 2026-11-10
 - Share the reusable background execution guard and recover malformed abandoned leases; verify standalone and mixed bundle loading in CI.
 - Signal due work to compatible Docker workers for lightweight fast wake; keep native scheduling for older images and ordinary WordPress.

@@ -205,11 +205,16 @@ try:
     result = run('parallel-real', cli=True)
     check(result['delivered'] == 2 and result['pdf'] and result['backup'] == 'done', 'Real campaign, certificate delivery, PDF and backup hooks finish through the shared subprocess pool: ' + json.dumps(result))
     result = run('channels', cli=True)
-    check(result['recipients'] == 1000 and result['sent'] == 1000 and result['unique_accepted'] == 1000 and result['no_duplicate'], 'A 1000-recipient Netgsm campaign drains once per normalized recipient with HTTP fully mocked')
-    check(result['payload'] and result['backoff'], 'Netgsm REST v2 preserves Turkish encoding and IYS choice, backing off rejected rate-limited requests')
+    check(result['recipients'] == 1000 and result['accepted'], '1000 normalized recipients are submitted in one provider packet and remain pending until delivery reports')
+    check(result['payload'] and result['backoff'], 'Netgsm packets preserve personalization, Turkish encoding, IYS choice and rejected rate-limit backoff')
+    check(result['partial']['delivered'] == 990 and result['partial']['submitted'] == 6 and result['final']['delivered'] == 995 and result['final']['failed'] == 5, 'Partial and missing reports remain pending; final recipient receipts reconcile delivery and failures')
+    for key in ('rate_safe','no_resend','uncertain','schedule','cancel_rejected','cancelled','immediate_not_cancellable','local_cancel','recovered','redacted','resume','expiry','direct_retry','permission','read_only'):
+        check(result[key], 'Netgsm queue contract: ' + key)
     check(result['auth_permanent'], 'A permanent Netgsm authentication error is not blindly retried')
     check(result['whatsapp'], 'Queued WhatsApp keeps its configured spacing and accepts the mocked Evolution response')
     check(result['whatsapp_retry'], 'WhatsApp HTTP 429 is treated as a retryable rate limit rather than a permanent failure')
+    result = run('journal', cli=True)
+    check(result['bounded'] and result['not_autoloaded'] and result['expired'], 'Operational journal prunes by count and age without autoloading diagnostic entries')
     run('race-prepare')
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         race = list(pool.map(lambda _: run('race', cli=True), range(2)))

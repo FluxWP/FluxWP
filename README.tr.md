@@ -67,8 +67,8 @@ flowchart LR
 | [Flux AI & MCP](plugins/flx-ai/README.tr.md) | Tüm FluxWP eklentileri için ortak yapay zekâ merkezi. Anahtarlar, modeller, harcama sınırı ve ortak AI sohbeti burada. | Eklenti | [0.9.4](https://github.com/FluxWP/FluxWP/releases/tag/flx-ai-v0.9.4) | 2026-11-09 | [flx-ai.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-ai-v0.9.4/flx-ai.zip) |
 | [Flux Analytics](plugins/flx-analytics/README.tr.md) | Çerezsiz, kişisel veri tutmayan site istatistikleri. Ziyaretçiler, kaynaklar, bağış hunisi ve yolculuklar sitede kalır. | Eklenti | [0.4.4](https://github.com/FluxWP/FluxWP/releases/tag/flx-analytics-v0.4.4) | 2026-11-09 | [flx-analytics.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-analytics-v0.4.4/flx-analytics.zip) |
 | [Flux App](plugins/flx-app/README.tr.md) | Masaüstü ve mobil uygulama için giriş: OAuth 2.0 (PKCE), API anahtarları ve rol bazlı menü. | Eklenti | [0.4.4](https://github.com/FluxWP/FluxWP/releases/tag/flx-app-v0.4.4) | 2026-11-09 | [flx-app.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-app-v0.4.4/flx-app.zip) |
-| [Flux Backup](plugins/flx-backup/README.tr.md) | Güncellemelerden önce otomatik yedek, zamanlanmış tam yedekler ve seçerek geri yükleme. | Eklenti | [1.4.5](https://github.com/FluxWP/FluxWP/releases/tag/flx-backup-v1.4.5) | 2026-11-10 | [flx-backup.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-backup-v1.4.5/flx-backup.zip) |
-| [Flux Certificates](plugins/flx-certificates/README.tr.md) | Sertifika şablonları, canlı PDF önizleme ve /sertifika/{kod} doğrulama. E-posta, SMS ve WhatsApp ile gönderim. | Eklenti | [1.9.3](https://github.com/FluxWP/FluxWP/releases/tag/flx-certificates-v1.9.3) | 2026-11-10 | [flx-certificates.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-certificates-v1.9.3/flx-certificates.zip) |
+| [Flux Backup](plugins/flx-backup/README.tr.md) | Güncellemelerden önce otomatik yedek, zamanlanmış tam yedekler ve seçerek geri yükleme. | Eklenti | [1.4.6](https://github.com/FluxWP/FluxWP/releases/tag/flx-backup-v1.4.6) | 2026-11-10 | [flx-backup.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-backup-v1.4.6/flx-backup.zip) |
+| [Flux Certificates](plugins/flx-certificates/README.tr.md) | Sertifika şablonları, canlı PDF önizleme ve /sertifika/{kod} doğrulama. E-posta, SMS ve WhatsApp ile gönderim. | Eklenti | [1.9.4](https://github.com/FluxWP/FluxWP/releases/tag/flx-certificates-v1.9.4) | 2026-11-10 | [flx-certificates.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-certificates-v1.9.4/flx-certificates.zip) |
 | [Flux Chat](plugins/flx-chat/README.tr.md) | WhatsApp çağrı merkezi: sohbetler, hazır cevaplar, etiketler ve atama. Sohbetten bağış ve sertifika kaydı, AI asistanı. | Eklenti | [1.38.0](https://github.com/FluxWP/FluxWP/releases/tag/flx-chat-v1.38.0) | 2026-11-09 | [flx-chat.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-chat-v1.38.0/flx-chat.zip) |
 | [Flux AI Chatbot, Live Chat & Customer Support](plugins/flx-chatbot/README.tr.md) | Siteye yapay zekâ sohbet penceresi: Flux AI ile içerikten ve ürünlerden cevap, gerekince Flux Chat'teki canlı temsilciye devir. Renk, konum, avatar ve metinler panelden canlı önizlemeyle özelleştirilir. | Eklenti | [0.1.3](https://github.com/FluxWP/FluxWP/releases/tag/flx-chatbot-v0.1.3) | 2026-11-09 | [flx-chatbot.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-chatbot-v0.1.3/flx-chatbot.zip) |
 | [Flux Commerce](plugins/flx-commerce/README.tr.md) | WooCommerce mağazası için satış paneli, müşteriler ve satış raporları. Dekont yüklemeli Havale/EFT, sade ödeme sayfası, ücretsiz kargo çubuğu ve Google Merchant feed'i. | Eklenti | [0.2.6](https://github.com/FluxWP/FluxWP/releases/tag/flx-commerce-v0.2.6) | 2026-11-09 | [flx-commerce.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-commerce-v0.2.6/flx-commerce.zip) |
@@ -76,7 +76,7 @@ flowchart LR
 | [Flux Donate](plugins/flx-donate/README.tr.md) | WooCommerce üzerinde fidan ve kampanya bağışları; kart, havale ve aylık bağış. Her bağışa kişi başına sertifika. | Eklenti | [2.17.3](https://github.com/FluxWP/FluxWP/releases/tag/flx-donate-v2.17.3) | 2026-11-09 | [flx-donate.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-donate-v2.17.3/flx-donate.zip) |
 | [Flux Forms](plugins/flx-forms/README.tr.md) | Sürükle-bırak form oluşturucu: çok adımlı formlar, ödemeler, koşullu mantık ve otomasyonlar. Gelen kayıtlar tek panelde. | Eklenti | [2.1.17](https://github.com/FluxWP/FluxWP/releases/tag/flx-forms-v2.1.17) | 2026-11-09 | [flx-forms.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-forms-v2.1.17/flx-forms.zip) |
 | [Flux Lang](plugins/flx-lang/README.tr.md) | Siteyi çok dilli yapar: /en/ adresleri, içerik başına çeviri, hreflang ve dil seçici. | Eklenti | [0.2.6](https://github.com/FluxWP/FluxWP/releases/tag/flx-lang-v0.2.6) | 2026-11-10 | [flx-lang.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-lang-v0.2.6/flx-lang.zip) |
-| [Flux Mail](plugins/flx-mail/README.tr.md) | Sitenin tüm e-postaları, posta kutusu ve gönderim kayıtları tek yerde. WhatsApp ve SMS bağlantıları diğer eklentilere ortak API ile açılır. | Eklenti | [1.13.14](https://github.com/FluxWP/FluxWP/releases/tag/flx-mail-v1.13.14) | 2026-11-10 | [flx-mail.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-mail-v1.13.14/flx-mail.zip) |
+| [Flux Mail](plugins/flx-mail/README.tr.md) | Sitenin tüm e-postaları, posta kutusu ve gönderim kayıtları tek yerde. WhatsApp ve SMS bağlantıları diğer eklentilere ortak API ile açılır. | Eklenti | [1.13.15](https://github.com/FluxWP/FluxWP/releases/tag/flx-mail-v1.13.15) | 2026-11-10 | [flx-mail.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-mail-v1.13.15/flx-mail.zip) |
 | [Flux Migrate](plugins/flx-migrate/README.tr.md) | Eski paket adlarıyla kaydedilmiş site verilerini (ayarlar, tablolar, meta, içerik, tema, yükleme klasörleri) FluxWP adlarına taşır. | Eklenti | [0.1.8](https://github.com/FluxWP/FluxWP/releases/tag/flx-migrate-v0.1.8) | 2026-11-09 | [flx-migrate.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-migrate-v0.1.8/flx-migrate.zip) |
 | [Flux reCAPTCHA](plugins/flx-recaptcha/README.tr.md) | Giriş, kayıt, yorum, ödeme, bağış ve form gönderimlerini Google reCAPTCHA v3 ya da v2 ile botlara karşı korur. Hangi formun korunacağı panelden seçilir. | Eklenti | [0.2.2](https://github.com/FluxWP/FluxWP/releases/tag/flx-recaptcha-v0.2.2) | 2026-11-09 | [flx-recaptcha.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-recaptcha-v0.2.2/flx-recaptcha.zip) |
 | [Flux Roles](plugins/flx-roles/README.tr.md) | Personel, İdareci ve Yönetici rolleri; paketlerin yetkileri tek sayfadan açılıp kapanır. Kişisel referans linki burada. | Eklenti | [1.3.2](https://github.com/FluxWP/FluxWP/releases/tag/flx-roles-v1.3.2) | 2026-11-09 | [flx-roles.zip](https://github.com/FluxWP/FluxWP/releases/download/flx-roles-v1.3.2/flx-roles.zip) |
@@ -181,26 +181,26 @@ Tüm paketler [GNU Genel Kamu Lisansı v2 veya üzeri](https://www.gnu.org/licen
 | flx-analytics | 491 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-app | 433 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-backup | 344 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| flx-certificates | 306 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| flx-chat | 1581 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-certificates | 312 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-chat | 1602 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-chatbot | 398 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-commerce | 300 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-crm | 387 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-donate | 1814 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-forms | 3049 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-lang | 109 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| flx-mail | 835 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-mail | 880 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-migrate | 59 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-recaptcha | 141 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-roles | 106 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-seo | 403 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| flx-setup | 622 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| flx-setup | 629 | 100% | 98.9% | 98.9% | 98.9% | 98.9% | 98.9% | 98.9% | 98.9% | 98.9% |
 | flx-social | 553 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-speed | 501 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-studio | 316 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-tasks | 913 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
 | flx-wiki | 175 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
-| fluxwp | 477 | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| fluxwp | 491 | 100% | 97.1% | 97.1% | 97.1% | 97.1% | 97.1% | 97.1% | 97.1% | 97.1% |
 
 ```sh
 python3 tools/site-translations/coverage.py --repo . --scan-source --write-readme

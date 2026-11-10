@@ -44,3 +44,9 @@ Mevcut Docker cron worker bağımsız işleri sınırlı bir havuzda çalıştı
 Dağıtım ayarları: `WP_BACKGROUND_WORKERS_PER_PLUGIN=3`, `WP_BACKGROUND_MAX_PROCESSES=9`. Güncel Docker worker hafif uyandırma kontrolü için `WP_BACKGROUND_POLL_INTERVAL=2`, yedek tetikleme için `WP_CRON_INTERVAL=60` kullanır. Hızlı uyandırma için worker imajını güncelleyip yeniden oluşturun; eski imajda normal cron devam eder. Bildirimlerde iş içeriği taşınmaz. Entegrasyon testi için kardeş docker-wordpress deposu veya `--worker-script` gerekir; atılabilir test ortamına aynı anda iki test giremez.
 
 Entegrasyon testi ayrıca 1.000 yapay SMS alıcısını Netgsm REST v2 yanıtı test içinde karşılanarak, kalıcı/geçici sağlayıcı hatalarını ve WhatsApp aralık/limit davranışını doğrular. Gerçek SMS, WhatsApp veya e-posta gönderilmez.
+
+## İşlem geçmişi
+
+Ortak kütüphane iş kimliği, başlama/bitiş, süre, timeout, yeniden deneme ve güvenli hata bilgilerini kaydeder. Yedekleme aşamaları yedek kimliğiyle ilişkilendirilir. İletişim › Kuyruk ekranında ortak geçmiş ve gönderime özel olaylar görülebilir. Teknik kayıtlara mesaj içeriği, alıcı listesi, şifre veya token alınmaz; mevcut ayrıntılı gönderim kayıtları ayrıca korunur.
+
+Varsayılan saklama son 2.000 olay / 14 gündür; dakikada en fazla bir temizlik yapılır. Kayıtlar otomatik yüklenen WordPress ayarlarına eklenmez. `flx_background_log_limit` ve `flx_background_log_days` filtreleri sınırları değiştirir. Bu, kalıcı denetim arşivi değil, sınırlı bir teşhis geçmişidir. Kayıt hatası gönderimi durdurmaz.

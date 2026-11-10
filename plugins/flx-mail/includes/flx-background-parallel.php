@@ -8,6 +8,7 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 		private static $pending = array();
 		private static $executing = false;
 		public static function register( $hook, $plugin = 'shared' ) { self::$hooks[ $hook ] = sanitize_key( $plugin ); }
+		public static function plugin_for( $hook ) { return self::$hooks[ $hook ] ?? 'shared'; }
 		private static function configuration( $name, $default ) { $value = getenv( $name ); return false === $value || '' === $value ? $default : (int) $value; }
 		public static function limit() { return max( 1, min( 64, (int) apply_filters( 'flx_background_concurrency', self::configuration( 'WP_BACKGROUND_MAX_PROCESSES', 9 ) ) ) ); }
 		public static function plugin_limit( $plugin ) { return max( 1, min( 16, (int) apply_filters( 'flx_background_plugin_concurrency', self::configuration( 'WP_BACKGROUND_WORKERS_PER_PLUGIN', 3 ), $plugin ) ) ); }
@@ -25,15 +26,19 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 			add_option( self::key( $id ), array( 'hook' => $hook, 'args' => $args, 'plugin' => self::$hooks[ $hook ], 'attempts' => 0, 'status' => 'queued' ), '', false );
 			if ( ! flx_background_schedule( 'flx_background_watchdog', array( $id ), 210 ) ) { self::cleanup( $id ); return false; }
 			self::$pending[] = array( 'id' => $id, 'plugin' => self::$hooks[ $hook ] );
+			flx_background_log( 'job.queued', array( 'plugin' => self::$hooks[ $hook ], 'hook' => $hook, 'job' => $id ) );
 			return true;
 		}
 		private static function submit( $id ) {
 			// A separate hook avoids blocking or deleting the package's next batch.
 			$command = array( PHP_BINARY, self::executable(), '--path=' . untrailingslashit( ABSPATH ), '--url=' . home_url(), 'flx', 'background-task', $id, '--quiet' );
 			if ( function_exists( 'posix_geteuid' ) && 0 === posix_geteuid() ) { $command[] = '--allow-root'; }
-			$previous = getenv( 'FLX_BACKGROUND_CHILD' ); putenv( 'FLX_BACKGROUND_CHILD=1' );
+			$previous = getenv( 'FLX_BACKGROUND_CHILD' ); $previous_job = getenv( 'FLX_BACKGROUND_JOB_ID' ); putenv( 'FLX_BACKGROUND_CHILD=1' ); putenv( 'FLX_BACKGROUND_JOB_ID=' . $id );
 			try { $process = proc_open( $command, array( 0 => array( 'file', '/dev/null', 'r' ), 1 => array( 'file', '/dev/null', 'w' ), 2 => array( 'file', '/dev/null', 'w' ) ), $pipes, ABSPATH ); }
-			finally { false === $previous ? putenv( 'FLX_BACKGROUND_CHILD' ) : putenv( 'FLX_BACKGROUND_CHILD=' . $previous ); }
+			finally {
+				false === $previous ? putenv( 'FLX_BACKGROUND_CHILD' ) : putenv( 'FLX_BACKGROUND_CHILD=' . $previous );
+				false === $previous_job ? putenv( 'FLX_BACKGROUND_JOB_ID' ) : putenv( 'FLX_BACKGROUND_JOB_ID=' . $previous_job );
+			}
 			if ( ! is_resource( $process ) ) { return false; }
 			$task = self::fresh( $id );
 			self::$running[ $id ] = array( 'process' => $process, 'plugin' => self::$hooks[ $task['hook'] ], 'started' => microtime( true ), 'timeout' => max( 1, min( 120, (int) apply_filters( 'flx_background_timeout', 120 ) ) ) );
@@ -46,13 +51,17 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 					$status = proc_get_status( $entry['process'] );
 					if ( $status['running'] && microtime( true ) - $entry['started'] > $entry['timeout'] ) {
 						proc_terminate( $entry['process'], 9 );
+						flx_background_log( 'job.timeout', array( 'plugin' => $entry['plugin'], 'job' => $id, 'code' => 'wall_timeout' ) );
 						$status['running'] = false;
 					}
 					if ( $status['running'] ) { continue; }
 					proc_close( $entry['process'] ); unset( self::$running[ $id ] ); $finished = true;
 					$task = self::fresh( $id );
 					if ( 'done' === ( $task['status'] ?? '' ) ) { self::cleanup( $id ); }
-					elseif ( class_exists( 'WP_CLI' ) ) { WP_CLI::warning( 'A background batch stopped; its watchdog will retry within the configured attempt limit.' ); }
+					else {
+						flx_background_log( 'job.stopped', array( 'plugin' => $entry['plugin'], 'job' => $id, 'state' => $task['status'] ?? 'unknown', 'code' => (int) ( $status['exitcode'] ?? -1 ) ) );
+						if ( class_exists( 'WP_CLI' ) ) { WP_CLI::warning( 'A background batch stopped; its watchdog will retry within the configured attempt limit.' ); }
+					}
 				}
 				if ( $wait && ! $finished && self::$running ) { usleep( 50000 ); }
 			} while ( $wait && ! $finished && self::$running );
@@ -95,13 +104,17 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 				if ( (int) $task['attempts'] >= 3 ) { return false; }
 				$task['attempts']++; $task['status'] = 'running';
 				update_option( self::key( $id ), $task, false );
+				$started = microtime( true );
+				flx_background_log( 'job.started', array( 'plugin' => $plugin, 'hook' => $task['hook'], 'job' => $id, 'attempt' => $task['attempts'] ) );
 				if ( function_exists( 'set_time_limit' ) ) { @set_time_limit( 120 ); }
 				self::$executing = true;
 				do_action_ref_array( $task['hook'], $task['args'] );
 				$task['status'] = 'done'; update_option( self::key( $id ), $task, false );
+				flx_background_log( 'job.finished', array( 'plugin' => $plugin, 'hook' => $task['hook'], 'job' => $id, 'elapsed_ms' => (int) ( 1000 * ( microtime( true ) - $started ) ) ) );
 				return true;
 			} catch ( Throwable $error ) {
 				$task['status'] = 'failed'; update_option( self::key( $id ), $task, false );
+				flx_background_log( 'job.failed', array( 'plugin' => $plugin, 'hook' => $task['hook'], 'job' => $id, 'error_class' => get_class( $error ), 'error_file' => basename( $error->getFile() ), 'error_line' => $error->getLine() ) );
 				return false;
 			} finally {
 				self::$executing = false;
@@ -115,9 +128,11 @@ if ( ! class_exists( 'FLX_Background_Pool', false ) ) {
 			if ( ! $task ) { return; }
 			if ( 'done' === ( $task['status'] ?? '' ) || (int) $task['attempts'] >= 3 || ! isset( self::$hooks[ $task['hook'] ?? '' ] ) ) {
 				if ( 'done' !== ( $task['status'] ?? '' ) ) { do_action( 'flx_background_failed', $task['hook'], $id ); }
+				if ( 'done' !== ( $task['status'] ?? '' ) ) { flx_background_log( 'job.exhausted', array( 'plugin' => self::$hooks[ $task['hook'] ] ?? 'shared', 'hook' => $task['hook'], 'job' => $id, 'attempt' => $task['attempts'] ) ); }
 				self::cleanup( $id ); return;
 			}
 			if ( flx_background_should_defer() ) { flx_background_schedule( 'flx_background_watchdog', array( $id ), 60 ); return; }
+			flx_background_log( 'job.retry', array( 'plugin' => self::$hooks[ $task['hook'] ], 'hook' => $task['hook'], 'job' => $id, 'attempt' => (int) $task['attempts'] + 1 ) );
 			// A retry can run synchronously; only an ordinary cron worker creates a pool.
 			if ( self::run( $id ) ) { self::cleanup( $id ); }
 			else { flx_background_schedule( 'flx_background_watchdog', array( $id ), 210 ); }

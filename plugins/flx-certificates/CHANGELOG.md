@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.4 — 2026-11-10
+- Bundle the shared bounded operational journal to trace worker/PDF/message jobs, timeouts and safe error metadata.
+
 ## 1.9.3 — 2026-11-10
 - Share the reusable background execution guard and recover malformed abandoned leases; verify standalone and mixed bundle loading in CI.
 - Retain recovery events for interrupted delivery claims and enforce their attempt limits.

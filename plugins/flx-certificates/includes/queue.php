@@ -270,8 +270,10 @@ function flxs_run_queue( $budget = null ) {
 			if ( 1 !== (int) $claimed ) {
 				continue;
 			}
+			flx_background_log( 'certificate.message.claimed', array( 'plugin' => 'flx-certificates', 'item' => (int) $row['id'], 'attempt' => (int) $row['attempts'] + 1 ) );
 			$row['attempts'] = (int) $row['attempts'] + 1;
 			$r               = flxs_process_message( $row );
+			flx_background_log( 'certificate.message.result', array( 'plugin' => 'flx-certificates', 'item' => (int) $row['id'], 'attempt' => (int) $row['attempts'], 'state' => $wpdb->get_var( $wpdb->prepare( "SELECT status FROM $t WHERE id=%d", $row['id'] ) ) ) );
 			++$processed;
 			$r ? ++$sent : ++$failed;
 		}

@@ -93,3 +93,11 @@ Source edits must be synchronized with `python3 tools/background/sync.py`; verif
 ## Maintainers
 
 Ahmet Yılmaz — [@sharkpaw](https://github.com/sharkpaw)
+
+## Operational journal
+
+Every bundle provides `flx_background_log($event, $context)` and `flx_background_events($limit = 100, $campaign = 0)`. Worker handoff, starts, completion, timeouts, bounded retries and exceptions share a dispatch UUID; inline guards generate their own UUID. Backup phase transitions retain the backup job ID. Flux Mail's Queue screen includes the cross-plugin journal and campaign-filtered diagnostics.
+
+The context whitelist is `plugin`, `hook`, `job`, `batch`, `campaign`, `item`, `state`, `code`, `attempt`, `count`, `elapsed_ms`, `delivered`, `failed`, `pending`, `page`, `error_class`, `error_file`, `error_line`. Never pass message bodies, recipients, tokens, credentials or complete provider responses. Exceptions record class/file/line, not arbitrary exception messages. Entries are non-autoload options, pruned at most once per minute to the most recent 2,000 events / 14 days. Filters `flx_background_log_limit` (100–10,000) and `flx_background_log_days` adjust retention. Logging failures do not interrupt domain work. `flx_background_logged` is an optional sink hook; it receives only the filtered event.
+
+This journal supplements the package's authoritative queue and message/backup records. It is bounded diagnostic history, not a permanent audit ledger or a delivery guarantee. It does not enable WordPress debug logging, log every web request, or collect secrets.
