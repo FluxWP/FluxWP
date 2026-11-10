@@ -996,6 +996,7 @@ class FLXP_Admin {
 			}
 		}
 		update_option( 'flxp_settings', $out, false );
+		FLXP_Collector::sync_marker( ! empty( $out['panel'] ) );
 		if ( $out['login_slug'] !== $prev ) {
 			flxp_login_slug_changed();
 		}
