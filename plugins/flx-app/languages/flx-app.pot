@@ -447,16 +447,7 @@ msgstr ""
 msgid "Sign in with code"
 msgstr ""
 
-msgid "Let donors sign in to the app with a code sent to their email or phone"
-msgstr ""
-
-msgid "Create a customer account if none exists but there is a donation with these details"
-msgstr ""
-
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
-msgstr ""
-
-msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
 msgstr ""
 
 msgid "Can create API keys"
@@ -1301,3 +1292,61 @@ msgstr ""
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr ""
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr ""
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr ""
+
+msgid "A phone number was added to your %s account"
+msgstr ""
+
+msgid "An administrator manages this phone number."
+msgstr ""
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr ""
+
+msgid "Enter a valid phone number."
+msgstr ""
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr ""
+
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr ""
+
+msgid "No phone number is saved on this account."
+msgstr ""
+
+msgid "Own phone number"
+msgstr ""
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr ""
+
+msgid "Phone confirmation is not available."
+msgstr ""
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+msgstr ""
+
+msgid "The phone number could not be saved."
+msgstr ""
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr ""
+
+msgid "The phone number on your %s account was changed"
+msgstr ""
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr ""
+
+msgid "The phone number was removed from your %s account"
+msgstr ""
+
+msgid "The token does not include the scope this request needs."
+msgstr ""
+

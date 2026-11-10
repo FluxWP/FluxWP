@@ -451,17 +451,8 @@ msgstr "السماح للتطبيق بفتح القوائم بدون شاشة أ
 msgid "Sign in with code"
 msgstr "تسجيل الدخول باستخدام الرمز"
 
-msgid "Let donors sign in to the app with a code sent to their email or phone"
-msgstr "اسمح للمتبرعين بتسجيل الدخول إلى التطبيق باستخدام رمز يتم إرساله إلى بريدهم الإلكتروني أو هواتفهم"
-
-msgid "Create a customer account if none exists but there is a donation with these details"
-msgstr "قم بإنشاء حساب عميل في حالة عدم وجوده ولكن يوجد تبرع بهذه التفاصيل"
-
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
 msgstr "السماح للموظفين بتسجيل الدخول باستخدام الرمز أيضًا (غير مستحسن؛ يستخدم الموظفون OAuth في المتصفح)"
-
-msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
-msgstr "يتم إرسال رموز الهاتف عبر مركز اتصال Flux (WhatsApp)؛ وبدون ذلك، البريد الإلكتروني فقط."
 
 msgid "Can create API keys"
 msgstr "يمكن إنشاء مفاتيح API"
@@ -1305,3 +1296,61 @@ msgstr "يتكينيز يوك."
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr "جانب الخادم من تطبيق FluxWP لسطح المكتب والجوال: تسجيل الدخول إلى OAuth 2.0 (PKCE)، والأجهزة والدفع، وعرض التطبيق (التكوين)، وعرض المكونات الإضافية (البيان)، وجلسة اللوحة. يتصل عملاء MCP أيضًا عبر OAuth."
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$s هو رمزك لتأكيد رقم الهاتف على %2$s. صالح لمدة 10 دقائق. لا تشارك هذا الرمز مع أحد."
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr "أُضيف إلى حسابك رقم هاتف ينتهي بـ %s. إذا لم تفعل ذلك، فاتصل بمدير الموقع."
+
+msgid "A phone number was added to your %s account"
+msgstr "أُضيف رقم هاتف إلى حسابك على %s"
+
+msgid "An administrator manages this phone number."
+msgstr "يدير أحد المسؤولين رقم الهاتف هذا."
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr "إنشاء حساب عميل لبريد بعد تأكيد رمز الدخول"
+
+msgid "Enter a valid phone number."
+msgstr "أدخل رقم هاتف صالحًا."
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr "اسمح لمتبرع مسجّل الدخول بتأكيد رقم هاتف وحفظه في حسابه"
+
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr "اسمح للمتبرعين بتسجيل الدخول برمز يُرسل إلى بريدهم أو إلى رقم الهاتف المحفوظ في حسابهم"
+
+msgid "No phone number is saved on this account."
+msgstr "لا يوجد رقم هاتف محفوظ في هذا الحساب."
+
+msgid "Own phone number"
+msgstr "رقم الهاتف الخاص"
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr "تخرج رموز الهاتف عبر مركز اتصال Flux (WhatsApp) عندما تكون تلك القناة متاحة؛ وإلا يُرسل الرمز بالبريد إلى الحساب. رمز الهاتف يسجّل الدخول فقط إلى الحساب الذي رقمه المحفوظ هو ذلك الرقم الكامل بعينه. التبرعات والطلبات لا تفتح حسابًا ولا تطالب به أبدًا."
+
+msgid "Phone confirmation is not available."
+msgstr "تأكيد الهاتف غير متاح."
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+msgstr "يُرسل الرمز فقط إلى ذلك الهاتف (WhatsApp أو مزود SMS)، وليس بالبريد أبدًا. من يستطيع تحرير المقالات يحتفظ برقم يديره مسؤول ما لم يُفعَّل دخول الموظفين بالرمز."
+
+msgid "The phone number could not be saved."
+msgstr "تعذر حفظ رقم الهاتف."
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr "أُزيل من حسابك رقم الهاتف المنتهي بـ %s. إذا لم تفعل ذلك، فاتصل بمدير الموقع."
+
+msgid "The phone number on your %s account was changed"
+msgstr "تغيّر رقم الهاتف في حسابك على %s"
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr "رقم الهاتف في حسابك ينتهي الآن بـ %s. إذا لم تفعل ذلك، فاتصل بمدير الموقع."
+
+msgid "The phone number was removed from your %s account"
+msgstr "أُزيل رقم الهاتف من حسابك على %s"
+
+msgid "The token does not include the scope this request needs."
+msgstr "الرمز المميز لا يتضمن النطاق الذي يتطلبه هذا الطلب."
+

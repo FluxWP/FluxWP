@@ -448,17 +448,8 @@ msgstr "Разрешить приложению открывать меню бе
 msgid "Sign in with code"
 msgstr "Войти с помощью кода"
 
-msgid "Let donors sign in to the app with a code sent to their email or phone"
-msgstr "Разрешите донорам войти в приложение с помощью кода, отправленного на их электронную почту или телефон."
-
-msgid "Create a customer account if none exists but there is a donation with these details"
-msgstr "Создайте учетную запись клиента, если ее не существует, но есть пожертвование с этими данными."
-
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
 msgstr "Разрешить сотрудникам также входить в систему с помощью кода (не рекомендуется; сотрудники используют OAuth в браузере)."
-
-msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
-msgstr "Телефонные коды отправляются через колл-центр Flux (WhatsApp); без него только электронная почта."
 
 msgid "Can create API keys"
 msgstr "Можно создавать ключи API"
@@ -1302,3 +1293,61 @@ msgstr "Еткиниз йок."
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr "Серверная часть настольного и мобильного приложения FluxWP: вход в систему OAuth 2.0 (PKCE), устройства и push-уведомления, просмотр приложения (конфигурация), отображение плагинов (манифест), сеанс панели. Клиенты MCP также подключаются через OAuth."
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$s — ваш код для подтверждения номера телефона на %2$s. Действует 10 минут. Никому не сообщайте этот код."
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr "К вашей учётной записи добавлен номер телефона, оканчивающийся на %s. Если это были не вы, свяжитесь с администратором сайта."
+
+msgid "A phone number was added to your %s account"
+msgstr "К вашей учётной записи %s добавлен номер телефона"
+
+msgid "An administrator manages this phone number."
+msgstr "Этим номером телефона управляет администратор."
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr "Создать учётную запись клиента для адреса почты после подтверждения кода входа"
+
+msgid "Enter a valid phone number."
+msgstr "Введите действительный номер телефона."
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr "Разрешить вошедшему жертвователю подтвердить номер телефона и сохранить его в учётной записи"
+
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr "Разрешить жертвователям входить по коду, отправленному на почту или на номер телефона, сохранённый в учётной записи"
+
+msgid "No phone number is saved on this account."
+msgstr "В этой учётной записи не сохранён номер телефона."
+
+msgid "Own phone number"
+msgstr "Свой номер телефона"
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr "Коды на телефон уходят через колл-центр Flux (WhatsApp), когда этот канал доступен; иначе код отправляется на почту учётной записи. Код с телефона входит только в ту учётную запись, чей сохранённый номер точно совпадает с этим полным номером. Пожертвования и заказы никогда не открывают и не забирают учётную запись."
+
+msgid "Phone confirmation is not available."
+msgstr "Подтверждение телефона недоступно."
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+msgstr "Код уходит только на этот телефон (WhatsApp или SMS-провайдер), никогда по почте. Те, кто может редактировать записи, сохраняют номер под управлением администратора, пока вход сотрудников по коду не включён."
+
+msgid "The phone number could not be saved."
+msgstr "Не удалось сохранить номер телефона."
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr "Номер телефона, оканчивающийся на %s, удалён из вашей учётной записи. Если это были не вы, свяжитесь с администратором сайта."
+
+msgid "The phone number on your %s account was changed"
+msgstr "Номер телефона в вашей учётной записи %s изменён"
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr "Номер телефона в вашей учётной записи теперь оканчивается на %s. Если это были не вы, свяжитесь с администратором сайта."
+
+msgid "The phone number was removed from your %s account"
+msgstr "Номер телефона удалён из вашей учётной записи %s"
+
+msgid "The token does not include the scope this request needs."
+msgstr "Токен не включает область доступа, которую требует этот запрос."
+
