@@ -99,7 +99,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-app/KURULUM.md) · AP
 | | |
 |---|---|
 | ✅ | OAuth 2.0 + PKCE, API anahtarları ve MCP keşfi |
-| ✅ | Tek kullanımlık kodla bağışçı girişi |
+| ✅ | Tek kullanımlık kodla bağışçı girişi (kayıtlı telefon ya da kendi e-postası; sipariş hesap açmaz) |
 | ✅ | Rol bazlı menü ve yerel modüller |
 | ✅ | Platforma göre menü ve Uygulama sayfası |
 | ⬜ | Anlık bildirimler |

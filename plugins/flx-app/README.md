@@ -99,7 +99,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-app/KURULUM.md) · API r
 | | |
 |---|---|
 | ✅ | OAuth 2.0 + PKCE, API keys and MCP discovery |
-| ✅ | Donor sign-in with one-time codes |
+| ✅ | Donor sign-in with one-time codes (saved phone or own email; orders do not open an account) |
 | ✅ | Role-based menu and native modules |
 | ✅ | Menu per platform and the Application page |
 | ⬜ | Push notifications |

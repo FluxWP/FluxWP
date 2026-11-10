@@ -3,7 +3,7 @@
  * Kullanıcı telefonu ve numaradan kişi/yetki bulma.
  *
  * WhatsApp asistanı (Flux Chat) yazan numarayı site kullanıcısıyla eşleştirip rolün yetkilerine göre araç açar.
- * Numara user meta flx_phone (ülke kodlu rakamlar, ör. 905301234567) ve eşleştirme anahtarı flx_phone_key (son 10 hane).
+ * Numara user meta flx_phone ve eşleştirme anahtarı flx_phone_key: ikisi de ülke kodlu tam rakam (ör. 905301234567). Son hanelerle eşleşmez.
  * Numarayı yalnız kullanıcı düzenleme yetkisi olan (promote_users) yazar; kişi kendi numarasını değiştiremez, çünkü numara kimliktir.
  */
 
@@ -29,10 +29,9 @@ function flxr_normalize_phone( $raw ) {
 	return strlen( $d ) >= 10 && strlen( $d ) <= 15 ? $d : '';
 }
 
-/** Eşleştirme anahtarı: son 10 hane (ülke kodu farklı yazılsa da eşleşsin). */
+/** Eşleştirme anahtarı: ülke kodlu tam numara. İki farklı tam numara eşit değildir. */
 function flxr_phone_key( $raw ) {
-	$d = flxr_normalize_phone( $raw );
-	return '' === $d ? '' : substr( $d, -10 );
+	return flxr_normalize_phone( $raw );
 }
 
 function flxr_user_phone( $user_id ) {
@@ -63,11 +62,14 @@ function flxr_set_user_phone( $user_id, $raw ) {
 		);
 	}
 	update_user_meta( $user_id, FLXR_PHONE_META, $d );
-	update_user_meta( $user_id, FLXR_PHONE_KEY, substr( $d, -10 ) );
+	update_user_meta( $user_id, FLXR_PHONE_KEY, $d );
 	return true;
 }
 
-/** Numaradan kullanıcı (WP_User|null). Filtre: flx_user_by_phone. */
+/**
+ * Numaradan kullanıcı (WP_User|null). Yalnız kayıtlı tam numara eşitse.
+ * Filtre `flx_user_by_phone` başka kullanıcı döndürse de kayıtlı numarası bu tam numaraysa kabul edilir.
+ */
 function flxr_user_by_phone( $raw ) {
 	$key  = flxr_phone_key( $raw );
 	$user = null;
@@ -77,13 +79,19 @@ function flxr_user_by_phone( $raw ) {
 				'meta_key'   => FLXR_PHONE_KEY, // phpcs:ignore WordPress.DB.SlowDBQuery
 				'meta_value' => $key, // phpcs:ignore WordPress.DB.SlowDBQuery
 				'fields'     => 'ID',
-				'number'     => 1,
+				'number'     => 2,
 			)
 		);
-		$user = $ids ? get_userdata( (int) $ids[0] ) : null;
+		// Aynı tam numarada birden fazla kayıt varsa kimseye bağlama.
+		if ( 1 === count( $ids ) ) {
+			$user = get_userdata( (int) $ids[0] );
+		}
 	}
 	$user = apply_filters( 'flx_user_by_phone', $user, (string) $raw );
-	return $user instanceof WP_User ? $user : null;
+	if ( '' === $key || ! $user instanceof WP_User ) {
+		return null;
+	}
+	return flxr_normalize_phone( flxr_user_phone( $user->ID ) ) === $key ? $user : null;
 }
 
 /**

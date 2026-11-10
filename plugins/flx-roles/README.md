@@ -30,7 +30,7 @@ WordPress roles are built for blogs: Editor, Author, Contributor. A foundation n
 - 🎚️ **One table, real permissions.** Each row is a real WordPress capability. Switching it off removes the menu *and* blocks the address.
 - 👥 **Roles that match the organisation:** Staff, Manager and Director, plus any role you add (Volunteer, Accounting…).
 - 🔗 **Personal referral links** for everyone who may refer donors; donations through the link are credited to them.
-- 📱 **WhatsApp-aware:** a staff member's phone number lets the call-center assistant recognise them and act within their role.
+- 📱 **WhatsApp-aware:** a staff member's phone number lets the call-center assistant recognise them and act within their role. The match is the full number with country code, not the last digits.
 - 🧩 **Grows with the other packages:** new FluxWP packages register their capabilities here automatically.
 
 ## Features
