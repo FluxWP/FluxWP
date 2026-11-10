@@ -403,6 +403,7 @@
     "Handoffs go to the plugin inbox.": "ハンドオフはプラグインの受信箱に送られます。",
     "Order placed: #%1$s (%2$s)": "発注済み: #%1$s(%2$s)",
     "Placed after site chat #%d": "サイトチャット #%dの後に配置",
-    "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.": "人工知能がサポートするサイトへのチャット ウィンドウ: Flux AI を使用すると、サイトのコンテンツや製品、潜在顧客のコレクション、WooCommerce 情報からの 24 時間年中無休の応答、ライブ担当者 (Flux Chat 受信箱またはプラグイン独自の受信箱) へのワンクリック転送、ファイル共有、開封確認、チャット終了スコアリング、時間外メッセージの残すことができます。色、位置、アバター、テキスト、可視性はパネルからカスタマイズされます。"
+    "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel.": "人工知能がサポートするサイトへのチャット ウィンドウ: Flux AI を使用すると、サイトのコンテンツや製品、潜在顧客のコレクション、WooCommerce 情報からの 24 時間年中無休の応答、ライブ担当者 (Flux Chat 受信箱またはプラグイン独自の受信箱) へのワンクリック転送、ファイル共有、開封確認、チャット終了スコアリング、時間外メッセージの残すことができます。色、位置、アバター、テキスト、可視性はパネルからカスタマイズされます。",
+    "Still answering. Please wait a moment.": "まだ回答しています。しばらくお待ちください。"
   }
 }
