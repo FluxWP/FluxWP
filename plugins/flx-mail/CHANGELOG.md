@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.17 — 2026-11-10
+- Campaign progress and the delivery queue pause while the tab is hidden and poll immediately when it is visible again. The short interval (1.5 s on the campaign screen, 5 s on the queue) stays only while the result is changing; otherwise the wait steps up to 15 s. A quota pause still waits 5 min. Errors and HTTP 429 back off exponentially up to 60 s, and a loop never overlaps its previous request.
+
 ## 1.13.16 — 2026-11-10
 - Security (WhatsApp Cloud API): require App Secret on `wacloud` connections and reject webhook `POST` requests with `403` (`no_secret`) when App Secret is empty, before parsing payloads or firing `flxi_wacloud_event` / `flxi_whatsapp_event`. Show webhook status in Connections, Setup and System Check when App Secret is missing.
 - Security (Google sign-in): mark accounts as verified (`flxi_social`, `flxi_email_verified`, `flxi_verified_meta`) and suppress registration/password emails only when a supported social-login plugin has recorded a Google login for the user (or via `flxi_user_is_social`), never from request parameters or Referer alone.
