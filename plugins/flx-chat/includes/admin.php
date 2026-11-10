@@ -67,9 +67,65 @@ function flxc_is_app_screen() {
 /**
  * Yeni arayüz (deneysel, 1.35.0): Sohbetler sayfası eski app.js yerine FluxWP ile ortak React ekranını
  * (assets/flux/, tools/fluxapp/embed-sync.sh üretir) açar. Dosyalar yoksa eski arayüz.
+ * 1.38.2: chunks.json mode=chunks ise giriş ES modülü olarak yüklenir; manifest yoksa klasik tek dosya.
  */
 function flxc_flux_ui() {
 	return (bool) flxc_setting( 'ui_flux' ) && file_exists( FLXC_DIR . 'assets/flux/flux-modules.js' ) && (bool) apply_filters( 'flxc_flux_ui', true );
+}
+
+/**
+ * Parça derlemesinin manifesti. Yoksa veya mode başka bir şeyse null (klasik kuyruk).
+ *
+ * @return array<string,mixed>|null
+ */
+function flxc_flux_chunk_manifest() {
+	static $read = false;
+	static $manifest = null;
+	if ( $read ) {
+		return $manifest;
+	}
+	$read = true;
+	$file = FLXC_DIR . 'assets/flux/chunks.json';
+	if ( ! is_readable( $file ) ) {
+		return null;
+	}
+	$data = json_decode( (string) file_get_contents( $file ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	if ( is_array( $data ) && isset( $data['mode'] ) && 'chunks' === $data['mode'] ) {
+		$manifest = $data;
+	}
+	return $manifest;
+}
+
+/**
+ * WP 6.4'te script module API yok (6.5+). Bu tutamağa type=module eklenir; filtre yalnız flxc-flux için.
+ *
+ * @param string $tag
+ * @param string $handle
+ * @return string
+ */
+function flxc_flux_module_tag( $tag, $handle ) {
+	if ( 'flxc-flux' !== $handle ) {
+		return $tag;
+	}
+	// $tag satır içi "before" betiğini de taşır; yalnız src'li etiket modül olur, var olan type değişir.
+	return (string) preg_replace_callback(
+		'/<script\b[^>]*\ssrc=[^>]*>/',
+		static function ( $m ) {
+			$open = (string) preg_replace( '/\stype=("|\')[^"\']*\1/', '', $m[0] );
+			return (string) preg_replace( '/^<script\b/', '<script type="module"', $open );
+		},
+		$tag,
+		1
+	);
+}
+
+/**
+ * Seçenekler modül çalışmadan window'da durur. Giriş önce veya sonra gelse de bağlama bir kez olur.
+ *
+ * @param array<string,mixed> $opts
+ */
+function flxc_flux_module_boot( $opts ) {
+	return '(function(){var slot=window.FluxModulesOptions||(window.FluxModulesOptions={});slot.id="flxc-flux";slot.opts=' . wp_json_encode( $opts ) . ';function go(){if(slot.done||!window.FluxModules)return;var el=document.getElementById(slot.id);if(!el)return;slot.done=true;try{window.FluxModules.mount(el,slot.opts);}catch(e){el.textContent=String(e&&e.message||e);}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);go();})();';
 }
 
 /* WP emoji betiği dinamik mesajlardaki emojileri <img>'ye çeviriyor, bazı ağlarda kırık simge çıkıyordu. Uygulamada sistem emojisi kullanılır. */
@@ -101,6 +157,12 @@ function flxc_admin_assets() {
 			'nonce'  => wp_create_nonce( 'wp_rest' ),
 			'locale' => get_user_locale(),
 		);
+		if ( flxc_flux_chunk_manifest() ) {
+			// Sürüm sorgusu yalnız girişte (yukarıdaki wp_enqueue_script). Parça adları hash taşır.
+			add_filter( 'script_loader_tag', 'flxc_flux_module_tag', 10, 2 );
+			wp_add_inline_script( 'flxc-flux', flxc_flux_module_boot( $opts ), 'before' );
+			return;
+		}
 		wp_add_inline_script(
 			'flxc-flux',
 			'(function(){var el=document.getElementById("flxc-flux");if(el&&window.FluxModules){try{window.FluxModules.mount(el,' . wp_json_encode( $opts ) . ');}catch(e){el.textContent=String(e&&e.message||e);}}})();'

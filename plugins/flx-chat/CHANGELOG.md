@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.38.2
+- Experimental Flux panel: when `assets/flux/chunks.json` marks a chunk build, the chat screen loads `flux-modules.js` as an ES module and each module screen as its own hashed file. Mount options are stored before the module runs and the screen mounts once. Without the manifest, the page still loads the single classic script.
+
 ## 1.38.0
 - Message deletion: every message menu now has "Delete". Sent messages can be deleted for everyone (WhatsApp turns them into "This message was deleted" on the contact's phone) within WhatsApp's limit of about 2 days and 12 hours. After the limit, for received messages, on channels without support (Cloud API, site chat) or for agents deleting someone else's message, the dialog says why and offers "Hide in the panel only"; the message stays on the contact's phone.
 - New setting (General › Behavior): "Delete for everyone time limit (hours)", default and maximum 60, 0 turns delete for everyone off.
