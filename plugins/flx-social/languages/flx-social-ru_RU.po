@@ -71,7 +71,7 @@ msgid "Settings"
 msgstr "Настройки"
 
 msgid "{n} posts with errors"
-msgstr "{n}сообщения с ошибками"
+msgstr "{n} сообщения с ошибками"
 
 msgid "Theme"
 msgstr "Тема"
@@ -155,7 +155,7 @@ msgid "The post is removed from the list."
 msgstr "Пост будет удален из списка."
 
 msgid "Also delete from the networks it was published on ({n} accounts)"
-msgstr "Также удалить из сетей, в которых он был опубликован (аккаунты{n})."
+msgstr "Также удалить из сетей, в которых он был опубликован (аккаунты {n})."
 
 msgid "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
 msgstr "Посты в Instagram и TikTok нельзя удалить через API; удалите их там вручную."
@@ -194,7 +194,7 @@ msgid "Posts prepared by people without publishing permission. Once approved the
 msgstr "Посты подготовлены людьми без разрешения на публикацию. После одобрения они публикуются в нужное время (или сразу)."
 
 msgid "{n} selected"
-msgstr "{n}выбрано"
+msgstr "{n} выбрано"
 
 msgid "Schedule"
 msgstr "Расписание"
@@ -218,7 +218,7 @@ msgid "Select"
 msgstr "Выбрать"
 
 msgid "every {n} days"
-msgstr "каждые{n}дней"
+msgstr "каждые {n} дней"
 
 msgid "Actions"
 msgstr "Действия"
@@ -248,16 +248,16 @@ msgid "Today"
 msgstr "Сегодня"
 
 msgid "Time zone: {tz}"
-msgstr "Часовой пояс:{tz}"
+msgstr "Часовой пояс: {tz}"
 
 msgid "Post on this day"
 msgstr "Публикация в этот день"
 
 msgid "+{n} more"
-msgstr "+{n}еще"
+msgstr "+{n} еще"
 
 msgid "New time: {t}"
-msgstr "Новое время:{t}"
+msgstr "Новое время: {t}"
 
 msgid "No posts this month."
 msgstr "В этом месяце нет публикаций."
@@ -269,7 +269,7 @@ msgid "Account added."
 msgstr "Аккаунт добавлен."
 
 msgid "{n} account connections refreshed."
-msgstr "{n}подключения к учетной записи обновлены."
+msgstr "{n} подключения к учетной записи обновлены."
 
 msgid "No accounts yet"
 msgstr "Аккаунтов пока нет"
@@ -284,10 +284,10 @@ msgid "App keys"
 msgstr "Ключи приложения"
 
 msgid "{n} characters"
-msgstr "Символы{n}"
+msgstr "Символы {n}"
 
 msgid "{n} images"
-msgstr "{n}изображения"
+msgstr "{n} изображения"
 
 msgid "video"
 msgstr "видео"
@@ -371,7 +371,7 @@ msgid "Removed."
 msgstr "Удален."
 
 msgid "Enter keys first: {app}"
-msgstr "Сначала введите ключи:{app}"
+msgstr "Сначала введите ключи: {app}"
 
 msgid "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
 msgstr "Откроется страница входа в сеть; после того, как вы разрешите доступ, вы вернетесь сюда. Если страниц/каналов несколько, вы сами выбираете, какие добавить."
@@ -380,7 +380,7 @@ msgid "Choose accounts to add"
 msgstr "Выберите аккаунты для добавления"
 
 msgid "{n} accounts added."
-msgstr "Добавлены аккаунты{n}."
+msgstr "Добавлены аккаунты {n}."
 
 msgid "Add"
 msgstr "Добавить"
@@ -392,7 +392,7 @@ msgid "The connection comes from the Evolution line in Flux Mail. Status: the li
 msgstr "Соединение происходит по линии Evolution в Flux Mail. Статус: статус линии в WhatsApp (24 часа). Группа: группы, членом которых является линия."
 
 msgid "{n} members"
-msgstr "Участники{n}"
+msgstr "Участники {n}"
 
 msgid "added"
 msgstr "добавлено"
@@ -602,7 +602,7 @@ msgid "Text or media is required."
 msgstr "Требуется текст или медиа."
 
 msgid "Text is {n} characters too long (limit {max})."
-msgstr "Текст содержит слишком длинные символы{n}(ограничение{max})."
+msgstr "Текст содержит слишком длинные символы {n}(ограничение {max})."
 
 msgid "This network requires an image or video."
 msgstr "Для этой сети требуется изображение или видео."
@@ -617,10 +617,10 @@ msgid "GIF is not supported."
 msgstr "GIF не поддерживается."
 
 msgid "At most {n} images."
-msgstr "Максимум изображений{n}."
+msgstr "Максимум изображений {n}."
 
 msgid "At most {n} videos."
-msgstr "Максимум{n}видео."
+msgstr "Максимум {n} видео."
 
 msgid "Images and video cannot be sent together."
 msgstr "Изображения и видео нельзя отправлять вместе."
@@ -656,10 +656,10 @@ msgid "Edit post"
 msgstr "Редактировать сообщение"
 
 msgid "The approver left a note: {n}"
-msgstr "Утверждающий оставил примечание:{n}."
+msgstr "Утверждающий оставил примечание: {n}."
 
 msgid "Published on {n} accounts; to change it there use Details › Edit on network."
-msgstr "Опубликовано на аккаунтах{n}; чтобы изменить его там, используйте Подробности › Редактировать в сети."
+msgstr "Опубликовано на аккаунтах {n}; чтобы изменить его там, используйте Подробности › Редактировать в сети."
 
 msgid "Preview"
 msgstr "Предварительный просмотр"
@@ -686,7 +686,7 @@ msgid "Separate image/video for this account"
 msgstr "Отдельное изображение/видео для этого аккаунта"
 
 msgid "{net} options"
-msgstr "Варианты{net}"
+msgstr "Варианты {net}"
 
 msgid "Direct post: the video is published on TikTok with the chosen visibility."
 msgstr "Прямая публикация: видео публикуется в TikTok с выбранной видимостью."
@@ -755,7 +755,7 @@ msgid "Select an account to see the preview here."
 msgstr "Выберите учетную запись, чтобы просмотреть предварительный просмотр здесь."
 
 msgid "+{n} more accounts; check the tabs."
-msgstr "+{n}дополнительные аккаунты; проверьте вкладки."
+msgstr "+{n} дополнительные аккаунты; проверьте вкладки."
 
 msgid "No image/video"
 msgstr "Нет изображения/видео"
@@ -767,10 +767,10 @@ msgid "(untitled)"
 msgstr "(без названия)"
 
 msgid "Limit exceeded: {n} characters over"
-msgstr "Превышен лимит: символов{n}больше"
+msgstr "Превышен лимит: символов {n} больше"
 
 msgid "{n} issues"
-msgstr "Проблемы с{n}"
+msgstr "Проблемы с {n}"
 
 msgid "Share time"
 msgstr "Делитесь временем"
@@ -806,7 +806,7 @@ msgid "Draft saved."
 msgstr "Черновик сохранен."
 
 msgid "Scheduled: {t}"
-msgstr "Запланировано:{t}"
+msgstr "Запланировано: {t}"
 
 msgid "Saved."
 msgstr "Сохранено."
@@ -836,7 +836,7 @@ msgid "Downloading…"
 msgstr "Загрузка..."
 
 msgid "Uploading {n} files…"
-msgstr "Загрузка файлов{n}..."
+msgstr "Загрузка файлов {n}..."
 
 msgid "Choose image / video"
 msgstr "Выберите изображение/видео"
@@ -866,7 +866,7 @@ msgid "Delete from network"
 msgstr "Удалить из сети"
 
 msgid "Delete the post on {n}?"
-msgstr "Удалить сообщение на{n}?"
+msgstr "Удалить сообщение на {n}?"
 
 msgid "The post on the network is deleted permanently."
 msgstr "Пост в сети удаляется безвозвратно."
@@ -893,10 +893,10 @@ msgid "just now"
 msgstr "только что"
 
 msgid "{n} min ago"
-msgstr "{n}мин назад"
+msgstr "{n} мин назад"
 
 msgid "{n} h ago"
-msgstr "{n}ч. назад"
+msgstr "{n} ч. назад"
 
 msgid "Server error ({n})."
 msgstr "Ошибка сервера ({n})."
@@ -917,25 +917,25 @@ msgid "Daily posts"
 msgstr "Ежедневные публикации"
 
 msgid "Total: {n}"
-msgstr "Итого:{n}"
+msgstr "Итого: {n}"
 
 msgid "{n} days"
-msgstr "{n}дней"
+msgstr "{n} дней"
 
 msgid "Update metrics now"
 msgstr "Обновить показатели сейчас"
 
 msgid "{n} records updated."
-msgstr "Записи{n}обновлены."
+msgstr "Записи {n} обновлены."
 
 msgid "No accounts connected yet. Enter the app keys first, then connect accounts."
 msgstr "Аккаунты пока не подключены. Сначала введите ключи приложения, затем подключите учетные записи."
 
 msgid "Success {n}%"
-msgstr "Успех{n}%"
+msgstr "Успех {n}%"
 
 msgid "last {n} days"
-msgstr "последние{n}дней"
+msgstr "последние {n} дней"
 
 msgid "Engagement"
 msgstr "Помолвка"
@@ -956,10 +956,10 @@ msgid "no change"
 msgstr "без изменений"
 
 msgid "{n} awaiting approval"
-msgstr "{n}ожидает одобрения"
+msgstr "{n} ожидает одобрения"
 
 msgid "{n} drafts"
-msgstr "{n}черновики"
+msgstr "{n} черновики"
 
 msgid "details below"
 msgstr "подробности ниже"
@@ -998,7 +998,7 @@ msgid "Recent errors"
 msgstr "Недавние ошибки"
 
 msgid "Metrics last updated: {t}"
-msgstr "Последнее обновление показателей:{t}."
+msgstr "Последнее обновление показателей: {t}."
 
 msgid "Metrics not collected yet (once a day, at night)."
 msgstr "Метрики пока не собираются (раз в день, ночью)."
@@ -1127,7 +1127,7 @@ msgid "Monthly post limit (0 = unlimited)"
 msgstr "Ежемесячный лимит публикаций (0 = неограниченно)"
 
 msgid "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
-msgstr "Отправлено в этом месяце:{n}. При достижении лимита новые X сообщений отклоняются (чтобы оставаться в пределах квоты уровня)."
+msgstr "Отправлено в этом месяце: {n}. При достижении лимита новые X сообщений отклоняются (чтобы оставаться в пределах квоты уровня)."
 
 msgid "Draft (lands in the TikTok app)"
 msgstr "Черновик (появляется в приложении TikTok)"
@@ -1196,7 +1196,7 @@ msgid "Text template"
 msgstr "Текстовый шаблон"
 
 msgid "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
-msgstr "Доступно:{title}{excerpt}{link}{site}{author}{category}{tags}. Ссылка создает карточку предварительного просмотра сети."
+msgstr "Доступно: {title}{excerpt}{link}{site}{author}{category}{tags}. Ссылка создает карточку предварительного просмотра сети."
 
 msgid "Add the featured image"
 msgstr "Добавьте избранное изображение"
@@ -1232,7 +1232,7 @@ msgid "Database tables"
 msgstr "Таблицы базы данных"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+msgstr "Отсутствует таблица: %s. Деактивируйте и повторно активируйте плагин."
 
 msgid "Tables are ready."
 msgstr "Столы готовы."
@@ -1250,7 +1250,7 @@ msgid "Network apps"
 msgstr "Сетевые приложения"
 
 msgid "Keys entered: %s."
-msgstr "Введены ключи:%s."
+msgstr "Введены ключи: %s."
 
 msgid "No network app keys entered. Social Media › Settings › Apps."
 msgstr "Ключи сетевых приложений не введены. Социальные сети › Настройки › Приложения."
@@ -1262,16 +1262,16 @@ msgid "No accounts connected yet."
 msgstr "Аккаунты пока не подключены."
 
 msgid "Accounts that need reconnecting: %s."
-msgstr "Учетные записи, которые необходимо переподключить:%s."
+msgstr "Учетные записи, которые необходимо переподключить: %s."
 
 msgid "%d accounts connected and active."
-msgstr "Аккаунты%dподключены и активны."
+msgstr "Аккаунты %d подключены и активны."
 
 msgid "External per-minute trigger is running."
 msgstr "Внешний поминутный триггер работает."
 
 msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
-msgstr "Сообщения%dожидаются более 5 минут. Добавьте URL-адрес триггера из «Настройки» > «Основные» на cron-job.org (каждую минуту)."
+msgstr "Сообщения %d ожидаются более 5 минут. Добавьте URL-адрес триггера из «Настройки» > «Основные» на cron-job.org (каждую минуту)."
 
 msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
 msgstr "Сообщения обрабатываются через WP-Cron и фоновые запросы; Чтобы публиковать вовремя, рекомендуется добавлять URL-адрес триггера из «Настройки» › «Основные» на cron-job.org (каждую минуту)."
@@ -1286,7 +1286,7 @@ msgid "Failed shares"
 msgstr "Неудачные акции"
 
 msgid "%d shares failed in the last 7 days. Posts › Failed."
-msgstr "Акции%dпровалились за последние 7 дней. Сообщения › Не удалось."
+msgstr "Акции %d провалились за последние 7 дней. Сообщения › Не удалось."
 
 msgid "No failed shares in the last 7 days."
 msgstr "Ни одной неудачной акции за последние 7 дней."
@@ -1328,7 +1328,7 @@ msgid "The connection expired; reconnect it under Accounts."
 msgstr "Срок соединения истек; переподключите его в разделе «Аккаунты»."
 
 msgid "The post was published but the first comment could not be added: %s"
-msgstr "Сообщение было опубликовано, но не удалось добавить первый комментарий:%s."
+msgstr "Сообщение было опубликовано, но не удалось добавить первый комментарий: %s."
 
 msgid "Only a failed target can be retried."
 msgstr "Только неудачная цель может быть повторена."
@@ -1466,16 +1466,16 @@ msgid "%s: the connection expired, reconnect it under Accounts."
 msgstr "%s: срок действия соединения истек, повторно подключите его в разделе «Учетные записи»."
 
 msgid "Text can be at most %1$d characters (currently %2$d)."
-msgstr "Текст может содержать не более символов%1$d(в настоящее время%2$d)."
+msgstr "Текст может содержать не более символов %1$d(в настоящее время %2$d)."
 
 msgid "This network does not accept GIFs; use an image or video."
 msgstr "Эта сеть не принимает GIF-файлы; используйте изображение или видео."
 
 msgid "At most %d images."
-msgstr "Максимум изображений%d."
+msgstr "Максимум изображений %d."
 
 msgid "At most %d videos."
-msgstr "Максимум%dвидео."
+msgstr "Максимум %d видео."
 
 msgid "Images and video cannot be used together in one post."
 msgstr "Изображения и видео не могут использоваться вместе в одном сообщении."
@@ -1601,7 +1601,7 @@ msgid "X: a video or GIF is shared on its own."
 msgstr "X: видео или GIF публикуются отдельно."
 
 msgid "The monthly limit of %d posts set for X has been reached."
-msgstr "Достигнут месячный лимит публикаций%d, установленный для X."
+msgstr "Достигнут месячный лимит публикаций %d, установленный для X."
 
 msgid "First enter the API Key and API Key Secret under Settings › Apps › X."
 msgstr "Сначала введите ключ API и секретный ключ API в разделе «Настройки» > «Приложения» > «X»."

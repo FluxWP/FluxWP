@@ -1,5 +1,8 @@
 # Flux Wiki
 
+## 0.2.9
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.2.8
 - Table header cells follow the theme's table header colour (FluxWP palette `table-head` or Theme Settings), falling back to the soft surface tone on other themes. Table rows sit on the surface colour (white; dark surface in dark mode).
 

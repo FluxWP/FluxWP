@@ -215,7 +215,7 @@ msgid "Satisfaction"
 msgstr "الرضا"
 
 msgid "%s ratings"
-msgstr "تقييمات%s"
+msgstr "تقييمات %s"
 
 msgid "no ratings yet"
 msgstr "لا يوجد تقييمات حتى الآن"
@@ -305,7 +305,7 @@ msgid "Outside working hours now"
 msgstr "خارج أوقات العمل الآن"
 
 msgid "Working hours: %s"
-msgstr "ساعات العمل:%s"
+msgstr "ساعات العمل: %s"
 
 msgid "Working hours come from the Flux Chat settings."
 msgstr "ساعات العمل تأتي من إعدادات Flux Chat."
@@ -899,7 +899,7 @@ msgid "Would you like to talk to a person?"
 msgstr "هل ترغب في التحدث مع شخص؟"
 
 msgid "Your place in line: %d"
-msgstr "مكانك في الطابور:%d"
+msgstr "مكانك في الطابور: %d"
 
 msgid "Seen"
 msgstr "شوهد"
@@ -1019,10 +1019,10 @@ msgid "No agents are online right now. Leave a message and we'll get back to you
 msgstr "لا يوجد وكلاء على الانترنت في الوقت الحالي. اترك رسالة وسنقوم بالرد عليك عبر البريد الإلكتروني."
 
 msgid "Weekdays %s"
-msgstr "أيام الأسبوع%s"
+msgstr "أيام الأسبوع %s"
 
 msgid "Every day %s"
-msgstr "كل يوم%s"
+msgstr "كل يوم %s"
 
 msgid "Mon"
 msgstr "الاثنين"
@@ -1070,7 +1070,7 @@ msgid "Connecting you to an agent…"
 msgstr "جارٍ توصيلك بوكيل..."
 
 msgid "%s joined the chat"
-msgstr "انضم%sإلى الدردشة"
+msgstr "انضم %s إلى الدردشة"
 
 msgid "You ended the chat."
 msgstr "لقد أنهيت الدردشة."
@@ -1085,10 +1085,10 @@ msgid "Site chat #%d"
 msgstr "دردشة الموقع #%d"
 
 msgid "[%1$s] Message from site chat: %2$s"
-msgstr "[%1$s] رسالة من دردشة الموقع:%2$s"
+msgstr "[%1$s] رسالة من دردشة الموقع: %2$s"
 
 msgid "[%1$s] Site chat waiting for an agent: %2$s"
-msgstr "[%1$s] دردشة الموقع في انتظار الوكيل:%2$s"
+msgstr "[%1$s] دردشة الموقع في انتظار الوكيل: %2$s"
 
 msgid "To reply:"
 msgstr "للرد:"
@@ -1103,7 +1103,7 @@ msgid "The file could not be uploaded."
 msgstr "لا يمكن تحميل الملف."
 
 msgid "Files can be up to %d MB."
-msgstr "يمكن أن يصل حجم الملفات إلى%dميغابايت."
+msgstr "يمكن أن يصل حجم الملفات إلى %d ميغابايت."
 
 msgid "This file type can't be sent. Send an image, PDF or office document."
 msgstr "لا يمكن إرسال هذا النوع من الملفات. أرسل صورة أو PDF أو مستند مكتبي."
@@ -1157,19 +1157,19 @@ msgid "File not found."
 msgstr "لم يتم العثور على الملف."
 
 msgid "Visitor rating: %1$s %2$s"
-msgstr "تقييم الزوار:%1$s%2$s"
+msgstr "تقييم الزوار: %1$s%2$s"
 
 msgid "Visitor #%d"
 msgstr "الزائر #%d"
 
 msgid "%d chat is waiting for a reply."
 msgid_plural "%d chats are waiting for a reply."
-msgstr[0] "محادثات%dتنتظر الرد."
-msgstr[1] "دردشة%dتنتظر الرد."
-msgstr[2] "محادثات%dتنتظر الرد."
-msgstr[3] "محادثات%dتنتظر الرد."
-msgstr[4] "محادثات%dتنتظر الرد."
-msgstr[5] "محادثات%dتنتظر الرد."
+msgstr[0] "محادثات %d تنتظر الرد."
+msgstr[1] "دردشة %d تنتظر الرد."
+msgstr[2] "محادثات %d تنتظر الرد."
+msgstr[3] "محادثات %d تنتظر الرد."
+msgstr[4] "محادثات %d تنتظر الرد."
+msgstr[5] "محادثات %d تنتظر الرد."
 
 msgid "Site chat window"
 msgstr "نافذة دردشة الموقع"
@@ -1203,4 +1203,3 @@ msgstr "نافذة دردشة مدعومة بالذكاء الاصطناعي إ�
 
 msgid "Still answering. Please wait a moment."
 msgstr "ما زال يجيب. من فضلك انتظر لحظة."
-

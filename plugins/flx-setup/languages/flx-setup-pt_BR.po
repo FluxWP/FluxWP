@@ -17,10 +17,10 @@ msgid "Preset applied to the empty site."
 msgstr "Predefinição aplicada ao site vazio."
 
 msgid "%s preset is ready. It was not applied automatically because the site has content: preview and apply it."
-msgstr "A predefinição%sestá pronta. Não foi aplicado automaticamente porque o site possui conteúdo: visualize e aplique."
+msgstr "A predefinição %s está pronta. Não foi aplicado automaticamente porque o site possui conteúdo: visualize e aplique."
 
 msgid "Presets: %1$d pending updates, %2$d patches awaiting approval."
-msgstr "Predefinições: atualizações pendentes%1$d, patches%2$daguardando aprovação."
+msgstr "Predefinições: atualizações pendentes %1$d, patches %2$d aguardando aprovação."
 
 msgid "You are not allowed to do this."
 msgstr "Você não tem permissão para fazer isso."
@@ -29,13 +29,13 @@ msgid "Done."
 msgstr "Feito."
 
 msgid "Applied: %d changes."
-msgstr "Aplicado: alterações%d."
+msgstr "Aplicado: alterações %d."
 
 msgid "%d manually changed values were kept."
-msgstr "%dOs valores alterados manualmente foram mantidos."
+msgstr "%d Os valores alterados manualmente foram mantidos."
 
 msgid "Undone: %1$d. Left untouched because they changed later: %2$d."
-msgstr "Desfeito:%1$d. Deixados intocados porque foram alterados posteriormente:%2$d."
+msgstr "Desfeito: %1$d. Deixados intocados porque foram alterados posteriormente: %2$d."
 
 msgid "\"%s\" imported. You can preview and apply it."
 msgstr "\"%s\" importado. Você pode visualizá-lo e aplicá-lo."
@@ -71,7 +71,7 @@ msgid "Not applied"
 msgstr "Não aplicado"
 
 msgid "Missing: %s. These parts are skipped."
-msgstr "Faltando:%s. Essas partes são ignoradas."
+msgstr "Faltando: %s. Essas partes são ignoradas."
 
 msgid "Preview and apply"
 msgstr "Visualizar e aplicar"
@@ -110,7 +110,7 @@ msgid "Site patches"
 msgstr "Patches de site"
 
 msgid "theme %s"
-msgstr "tema%s"
+msgstr "tema %s"
 
 msgid "Will be added"
 msgstr "Será adicionado"
@@ -173,16 +173,16 @@ msgid "Status"
 msgstr "Estado"
 
 msgid "Value of the %s preset. Once applied, that preset's updates will not overwrite it."
-msgstr "Valor da predefinição%s. Uma vez aplicada, as atualizações dessa predefinição não a substituirão."
+msgstr "Valor da predefinição %s. Uma vez aplicada, as atualizações dessa predefinição não a substituirão."
 
 msgid "Conflict: %s also writes this value; the last one applied wins."
-msgstr "Conflito:%stambém grava este valor; o último aplicado vence."
+msgstr "Conflito: %s também grava este valor; o último aplicado vence."
 
 msgid "Apply anyway"
 msgstr "Inscreva-se mesmo assim"
 
 msgid "Apply (%d changes)"
-msgstr "Aplicar (alterações%d)"
+msgstr "Aplicar (alterações %d)"
 
 msgid "Show unchanged rows too"
 msgstr "Mostrar linhas inalteradas também"
@@ -269,10 +269,10 @@ msgid "More closing comments than opening ones."
 msgstr "Mais comentários finais do que iniciais."
 
 msgid "Unregistered block: %s"
-msgstr "Bloco não registrado:%s"
+msgstr "Bloco não registrado: %s"
 
 msgid "Media file missing: %s"
-msgstr "Arquivo de mídia ausente:%s"
+msgstr "Arquivo de mídia ausente: %s"
 
 msgid "Media needs \"file\" or \"url\"."
 msgstr "A mídia precisa de “arquivo” ou “url”."
@@ -284,7 +284,7 @@ msgid "\"%s\" cannot be written, skipped."
 msgstr "\"%s\" não pode ser escrito, ignorado."
 
 msgid "The %s language pack is not installed; the site language was not set (Settings › General)."
-msgstr "O pacote de idiomas%snão está instalado; o idioma do site não foi definido (Configurações › Geral)."
+msgstr "O pacote de idiomas %s não está instalado; o idioma do site não foi definido (Configurações › Geral)."
 
 msgid "Migration not found."
 msgstr "Migração não encontrada."
@@ -293,7 +293,7 @@ msgid "Record not found."
 msgstr "Registro não encontrado."
 
 msgid "Exported from %1$s on %2$s."
-msgstr "Exportado de%1$sem%2$s."
+msgstr "Exportado de %1$s em %2$s."
 
 msgid "Page"
 msgstr "Página"
@@ -305,7 +305,7 @@ msgid "Term"
 msgstr "Prazo"
 
 msgid "Taxonomy not found: %s"
-msgstr "Taxonomia não encontrada:%s"
+msgstr "Taxonomia não encontrada: %s"
 
 msgid "Menu"
 msgstr "Cardápio"
@@ -395,13 +395,13 @@ msgid "Could not read the preset file."
 msgstr "Não foi possível ler o arquivo predefinido."
 
 msgid "The preset is not valid JSON: %s"
-msgstr "A predefinição não é JSON válida:%s"
+msgstr "A predefinição não é JSON válida: %s"
 
 msgid "Not valid JSON: %s"
-msgstr "JSON inválido:%s"
+msgstr "JSON inválido: %s"
 
 msgid "File not found: %s"
-msgstr "Arquivo não encontrado:%s"
+msgstr "Arquivo não encontrado: %s"
 
 msgid "\"format\" must be \"%s\"."
 msgstr "\"formato\" deve ser \"%s\"."
@@ -440,7 +440,7 @@ msgid "Package not found."
 msgstr "Pacote não encontrado."
 
 msgid "Installing %s"
-msgstr "Instalando%s"
+msgstr "Instalando %s"
 
 msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org. New versions appear on Dashboard › Updates as usual."
 msgstr "Os temas e plug-ins do FluxWP são atualizados a partir do seu próprio servidor de atualização em vez do wordpress.org. Novas versões aparecem em Dashboard › Atualizações normalmente."
@@ -452,7 +452,7 @@ msgid "Updates checked."
 msgstr "Atualizações verificadas."
 
 msgid "Connected to the server as \"%1$s\". Last check: %2$s ago."
-msgstr "Conectado ao servidor como \"%1$s\". Última verificação:%2$satrás."
+msgstr "Conectado ao servidor como \"%1$s\". Última verificação: %2$s atrás."
 
 msgid "Packages"
 msgstr "Pacotes"
@@ -497,7 +497,7 @@ msgid "Check for updates"
 msgstr "Verifique se há atualizações"
 
 msgid "Last check: %s"
-msgstr "Última verificação:%s"
+msgstr "Última verificação: %s"
 
 msgid "Checking…"
 msgstr "Verificando..."
@@ -507,8 +507,8 @@ msgstr "Não foi possível conectar-se ao servidor."
 
 msgid "%d update available"
 msgid_plural "%d updates available"
-msgstr[0] "Atualização%ddisponível"
-msgstr[1] "Atualizações%ddisponíveis"
+msgstr[0] "Atualização %d disponível"
+msgstr[1] "Atualizações %d disponíveis"
 
 msgid "All up to date ✓"
 msgstr "Tudo atualizado ✓"
@@ -556,13 +556,13 @@ msgid "No site key entered."
 msgstr "Nenhuma chave de site inserida."
 
 msgid "Could not reach the server: %s"
-msgstr "Não foi possível acessar o servidor:%s"
+msgstr "Não foi possível acessar o servidor: %s"
 
 msgid "Invalid site key. Compare it with config.php on the server."
 msgstr "Chave de site inválida. Compare-o com config.php no servidor."
 
 msgid "The server returned an unexpected response (HTTP %d)."
-msgstr "O servidor retornou uma resposta inesperada (HTTP%d)."
+msgstr "O servidor retornou uma resposta inesperada (HTTP %d)."
 
 msgid "No notes for this version."
 msgstr "Não há notas para esta versão."
@@ -580,7 +580,7 @@ msgid "Not checked yet."
 msgstr "Ainda não verificado."
 
 msgid "Server connection works. Last check: %s."
-msgstr "A conexão do servidor funciona. Última verificação:%s."
+msgstr "A conexão do servidor funciona. Última verificação: %s."
 
 msgid "Update server"
 msgstr "Servidor de atualização"
@@ -589,7 +589,7 @@ msgid "FluxWP package updates"
 msgstr "Atualizações do pacote FluxWP"
 
 msgid "Waiting for update: %s"
-msgstr "Aguardando atualização:%s"
+msgstr "Aguardando atualização: %s"
 
 msgid "Updates"
 msgstr "Atualizações"
@@ -616,10 +616,10 @@ msgid "Connect to the server with \"Test connection\"."
 msgstr "Conecte-se ao servidor com \"Testar conexão\"."
 
 msgid "Last check: %s ago"
-msgstr "Última verificação:%satrás"
+msgstr "Última verificação: %s atrás"
 
 msgid "%1$d packages, %2$d updates"
-msgstr "Pacotes%1$d, atualizações%2$d"
+msgstr "Pacotes %1$d, atualizações %2$d"
 
 msgid "Test connection"
 msgstr "Conexão de teste"
@@ -640,7 +640,7 @@ msgid "Updating themes"
 msgstr "Atualizando temas"
 
 msgid "Installing %1$s version %2$s"
-msgstr "Instalando%1$sversão%2$s"
+msgstr "Instalando %1$s versão %2$s"
 
 msgid "No records."
 msgstr "Sem registros."
@@ -748,7 +748,7 @@ msgid "Open backup"
 msgstr "Abrir backup"
 
 msgid "Install version %2$s of %1$s?"
-msgstr "Instalar a versão%2$sdo%1$s?"
+msgstr "Instalar a versão %2$s do %1$s?"
 
 msgid "Package did not change; the installation may have failed."
 msgstr "O pacote não mudou; a instalação pode ter falhado."
@@ -769,43 +769,43 @@ msgid "Package is not installed on this site."
 msgstr "O pacote não está instalado neste site."
 
 msgid "Before %1$s %2$s → %3$s"
-msgstr "Antes de%1$s%2$s→%3$s"
+msgstr "Antes de %1$s %2$s → %3$s"
 
 msgid "Backup failed, nothing was changed: %s"
-msgstr "Falha no backup, nada foi alterado:%s"
+msgstr "Falha no backup, nada foi alterado: %s"
 
 msgid "Installation failed."
 msgstr "A instalação falhou."
 
 msgid "The site failed after the update (HTTP 500: %s)."
-msgstr "O site falhou após a atualização (HTTP 500:%s)."
+msgstr "O site falhou após a atualização (HTTP 500: %s)."
 
 msgid "Site check could not run (no connection)."
 msgstr "A verificação do site não pôde ser executada (sem conexão)."
 
 msgid "Site check returned HTTP %d; not treated as a failure."
-msgstr "A verificação do site retornou HTTP%d; não tratado como um fracasso."
+msgstr "A verificação do site retornou HTTP %d; não tratado como um fracasso."
 
 msgid "%d backup deleted."
 msgid_plural "%d backups deleted."
-msgstr[0] "Backup%dexcluído."
-msgstr[1] "Backups%dexcluídos."
+msgstr[0] "Backup %d excluído."
+msgstr[1] "Backups %d excluídos."
 
 msgid "Retention saved and applied to existing update backups."
 msgstr "Retenção salva e aplicada aos backups de atualização existentes."
 
 msgid "%d expired backup deleted."
 msgid_plural "%d expired backups deleted."
-msgstr[0] "%dbackup expirado excluído."
-msgstr[1] "%dbackups expirados excluídos."
+msgstr[0] "%d backup expirado excluído."
+msgstr[1] "%d backups expirados excluídos."
 
 msgid "Update backups are deleted automatically after"
 msgstr "Os backups de atualização são excluídos automaticamente após"
 
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%ddia"
-msgstr[1] "%ddias"
+msgstr[0] "%d dia"
+msgstr[1] "%d dias"
 
 msgid "."
 msgstr "."
@@ -814,12 +814,12 @@ msgid "Flux Backup settings"
 msgstr "Configurações de backup do Flux"
 
 msgid "Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here)."
-msgstr "A retenção de backup de atualização é definida na página%s(com Flux Backup 1.2.0 você também pode alterá-la aqui)."
+msgstr "A retenção de backup de atualização é definida na página %s(com Flux Backup 1.2.0 você também pode alterá-la aqui)."
 
 msgid "Currently %1$d update backup, %2$s."
 msgid_plural "Currently %1$d update backups, %2$s."
-msgstr[0] "Atualmente%1$datualiza backup,%2$s."
-msgstr[1] "Atualmente%1$datualiza backups,%2$s."
+msgstr[0] "Atualmente %1$d atualiza backup, %2$s."
+msgstr[1] "Atualmente %1$d atualiza backups, %2$s."
 
 msgid "Delete all unlocked update backups? This cannot be undone."
 msgstr "Excluir todos os backups de atualização desbloqueados? Isto não pode ser desfeito."
@@ -837,7 +837,7 @@ msgid "Locked"
 msgstr "Bloqueado"
 
 msgid "Deleted on %s"
-msgstr "Excluído em%s"
+msgstr "Excluído em %s"
 
 msgid "Open"
 msgstr "Abrir"
@@ -853,8 +853,8 @@ msgstr "Excluir backups selecionados"
 
 msgid "%s item"
 msgid_plural "%s items"
-msgstr[0] "item%s"
-msgstr[1] "Itens%s"
+msgstr[0] "item %s"
+msgstr[1] "Itens %s"
 
 msgid "First page"
 msgstr "Primeira página"
@@ -869,7 +869,7 @@ msgid "Last page"
 msgstr "Última página"
 
 msgid "%1$d of %2$d"
-msgstr "%1$dde%2$d"
+msgstr "%1$d de %2$d"
 
 msgid "Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone."
 msgstr "Excluir este backup? Ele também mantém o backup dos outros pacotes na mesma atualização em massa. Isto não pode ser desfeito."
@@ -878,7 +878,7 @@ msgid "No package selected to install or update."
 msgstr "Nenhum pacote selecionado para instalação ou atualização."
 
 msgid "installed %s"
-msgstr "instalado%s"
+msgstr "instalado %s"
 
 msgid "install failed"
 msgstr "falha na instalação"
@@ -905,7 +905,7 @@ msgid "Installed, inactive"
 msgstr "Instalado, inativo"
 
 msgid "%1$s requires %2$s (%3$s)."
-msgstr "%1$srequer%2$s(%3$s)."
+msgstr "%1$s requer %2$s(%3$s)."
 
 msgid "not installed"
 msgstr "não instalado"
@@ -914,7 +914,7 @@ msgid "installed, inactive"
 msgstr "instalado, inativo"
 
 msgid "Add %s too"
-msgstr "Adicione%stambém"
+msgstr "Adicione %s também"
 
 msgid "Will also be installed / activated:"
 msgstr "Também serão instalados/ativados:"
@@ -926,10 +926,10 @@ msgid "Remove"
 msgstr "Remover"
 
 msgid "%1$s was deselected: it does not work without %2$s."
-msgstr "%1$sfoi desmarcado: não funciona sem%2$s."
+msgstr "%1$s foi desmarcado: não funciona sem %2$s."
 
 msgid "For %1$s these will also be installed and activated: %2$s. Continue?"
-msgstr "Para%1$sestes também serão instalados e ativados:%2$s. Continuar?"
+msgstr "Para %1$s estes também serão instalados e ativados: %2$s. Continuar?"
 
 msgid "Preparing…"
 msgstr "Preparando..."
@@ -953,7 +953,7 @@ msgid "Nothing to do."
 msgstr "Nada para fazer."
 
 msgid "Done: %1$d succeeded, %2$d failed."
-msgstr "Concluído:%1$dfoi bem-sucedido,%2$dfalhou."
+msgstr "Concluído: %1$d foi bem-sucedido, %2$d falhou."
 
 msgid "The server did not respond (%s). Check the history and system checks."
 msgstr "O servidor não respondeu (%s). Verifique o histórico e as verificações do sistema."
@@ -962,19 +962,19 @@ msgid "An install/update is running. Leaving the page may interrupt it."
 msgstr "Uma instalação/atualização está em execução. Sair da página pode interrompê-la."
 
 msgid "Installing %s…"
-msgstr "Instalando%s..."
+msgstr "Instalando %s..."
 
 msgid "Installing %s from wordpress.org…"
-msgstr "Instalando%sdo wordpress.org..."
+msgstr "Instalando %s do wordpress.org..."
 
 msgid "Activating %s…"
-msgstr "Ativando%s..."
+msgstr "Ativando %s..."
 
 msgid "Updating %s (backup first)…"
-msgstr "Atualizando%s(backup primeiro)..."
+msgstr "Atualizando %s(backup primeiro)..."
 
 msgid "Changing the version of %s (backup first)…"
-msgstr "Alterando a versão do%s(backup primeiro)..."
+msgstr "Alterando a versão do %s(backup primeiro)..."
 
 msgid "Installing…"
 msgstr "Instalando..."
@@ -995,25 +995,25 @@ msgid "Done"
 msgstr "Concluído"
 
 msgid "(required by %s)"
-msgstr "(exigido por%s)"
+msgstr "(exigido por %s)"
 
 msgid "%1$s installed%2$s."
-msgstr "%1$sinstalado%2$s."
+msgstr "%1$s instalado%2$s."
 
 msgid "%1$s was not activated: %2$s must be installed and active first."
-msgstr "%1$snão foi ativado:%2$sdeve ser instalado e ativado primeiro."
+msgstr "%1$s não foi ativado: %2$s deve ser instalado e ativado primeiro."
 
 msgid "%1$s could not be activated: %2$s"
-msgstr "%1$snão pôde ser ativado:%2$s"
+msgstr "%1$s não pôde ser ativado: %2$s"
 
 msgid "%s activated."
-msgstr "%sativado."
+msgstr "%s ativado."
 
 msgid "%s: you are not allowed to install."
 msgstr "%s: você não tem permissão para instalar."
 
 msgid "Could not download %1$s from wordpress.org: %2$s"
-msgstr "Não foi possível baixar%1$sdo wordpress.org:%2$s"
+msgstr "Não foi possível baixar %1$s do wordpress.org: %2$s"
 
 msgid "no download link"
 msgstr "sem link para download"
@@ -1022,25 +1022,25 @@ msgid "unknown error"
 msgstr "erro desconhecido"
 
 msgid "%1$s could not be installed: %2$s"
-msgstr "%1$snão pôde ser instalado:%2$s"
+msgstr "%1$s não pôde ser instalado: %2$s"
 
 msgid "%s is already installed."
-msgstr "%sjá está instalado."
+msgstr "%s já está instalado."
 
 msgid "%1$s %2$s installed."
-msgstr "%1$s%2$sinstalado."
+msgstr "%1$s %2$s instalado."
 
 msgid "This plugin is not required by any FluxWP package."
 msgstr "Este plugin não é exigido por nenhum pacote FluxWP."
 
 msgid "%s was installed from wordpress.org."
-msgstr "%sfoi instalado em wordpress.org."
+msgstr "%s foi instalado em wordpress.org."
 
 msgid "%s is not installed, so it could not be activated."
-msgstr "%snão está instalado, portanto não pôde ser ativado."
+msgstr "%s não está instalado, portanto não pôde ser ativado."
 
 msgid "%s is already active."
-msgstr "%sjá está ativo."
+msgstr "%s já está ativo."
 
 msgid "Unknown action."
 msgstr "Ação desconhecida."
@@ -1049,13 +1049,13 @@ msgid "The package is not installed."
 msgstr "O pacote não está instalado."
 
 msgid "%s was not updated: WordPress sees no update for it. Click \"Check for updates\" and try again."
-msgstr "%snão foi atualizado: o WordPress não vê nenhuma atualização para ele. Clique em “Verificar atualizações” e tente novamente."
+msgstr "%s não foi atualizado: o WordPress não vê nenhuma atualização para ele. Clique em “Verificar atualizações” e tente novamente."
 
 msgid "Source: %s"
-msgstr "Fonte:%s"
+msgstr "Fonte: %s"
 
 msgid "available from %d sources"
-msgstr "disponível nas fontes%d"
+msgstr "disponível nas fontes %d"
 
 msgid "Remove this source? Packages installed from it stay on the site; they just stop receiving updates."
 msgstr "Remover esta fonte? Os pacotes instalados a partir dele permanecem no site; eles simplesmente param de receber atualizações."
@@ -1065,8 +1065,8 @@ msgstr "Desligado"
 
 msgid "Connected · %d package"
 msgid_plural "Connected · %d packages"
-msgstr[0] "Conectado · Pacote%d"
-msgstr[1] "Conectado · Pacotes%d"
+msgstr[0] "Conectado · Pacote %d"
+msgstr[1] "Conectado · Pacotes %d"
 
 msgid "Other sources"
 msgstr "Outras fontes"
@@ -1075,7 +1075,7 @@ msgid "Packages are collected from these sources as well as the main server. If 
 msgstr "Os pacotes são coletados dessas fontes, bem como do servidor principal. Se um pacote estiver em mais de uma fonte, ele será atualizado a partir da fonte de onde foi instalado; se não estiver instalado, a fonte mais alta na lista vence."
 
 msgid "Source not added: %s"
-msgstr "Fonte não adicionada:%s"
+msgstr "Fonte não adicionada: %s"
 
 msgid "Source added and its packages loaded."
 msgstr "Fonte adicionada e seus pacotes carregados."
@@ -1132,25 +1132,25 @@ msgid "Test and add"
 msgstr "Teste e adicione"
 
 msgid "Could not reach %1$s: %2$s Its packages are shown from the last known data."
-msgstr "Não foi possível acessar%1$s:%2$sSeus pacotes são mostrados a partir dos últimos dados conhecidos."
+msgstr "Não foi possível acessar %1$s: %2$s Seus pacotes são mostrados a partir dos últimos dados conhecidos."
 
 msgid "Sources"
 msgstr "Fontes"
 
 msgid "Update source: %s"
-msgstr "Fonte de atualização:%s"
+msgstr "Fonte de atualização: %s"
 
 msgid "The GitHub address is not in owner/repo form."
 msgstr "O endereço do GitHub não está no formato proprietário/repositório."
 
 msgid "Could not reach the source: %s"
-msgstr "Não foi possível acessar a fonte:%s"
+msgstr "Não foi possível acessar a fonte: %s"
 
 msgid "Repository not found or not public."
 msgstr "Repositório não encontrado ou não público."
 
 msgid "GitHub returned an unexpected response (HTTP %d)."
-msgstr "GitHub retornou uma resposta inesperada (HTTP%d)."
+msgstr "GitHub retornou uma resposta inesperada (HTTP %d)."
 
 msgid "The address must start with https://."
 msgstr "O endereço deve começar com https://."
@@ -1196,24 +1196,24 @@ msgstr "Inativo"
 
 msgid "%d package activated."
 msgid_plural "%d packages activated."
-msgstr[0] "Pacote%dativado."
-msgstr[1] "Pacotes%dativados."
+msgstr[0] "Pacote %d ativado."
+msgstr[1] "Pacotes %d ativados."
 
 msgid "%d package deactivated."
 msgid_plural "%d packages deactivated."
-msgstr[0] "Pacote%ddesativado."
-msgstr[1] "Pacotes%ddesativados."
+msgstr[0] "Pacote %d desativado."
+msgstr[1] "Pacotes %d desativados."
 
 msgid "%d package deleted."
 msgid_plural "%d packages deleted."
-msgstr[0] "Pacote%dexcluído."
-msgstr[1] "Pacotes%dexcluídos."
+msgstr[0] "Pacote %d excluído."
+msgstr[1] "Pacotes %d excluídos."
 
 msgid "Skipped (already in that state, active theme or FluxWP Panel): %s."
-msgstr "Ignorado (já nesse estado, tema ativo ou Painel FluxWP):%s."
+msgstr "Ignorado (já nesse estado, tema ativo ou Painel FluxWP): %s."
 
 msgid "Failed: %s."
-msgstr "Falha:%s."
+msgstr "Falha: %s."
 
 msgid "Delete these packages from the site? Their files will be removed. %s"
 msgstr "Excluir esses pacotes do site? Seus arquivos serão removidos.%s"
@@ -1282,7 +1282,7 @@ msgid "Go to the Packages screen."
 msgstr "Vá para a tela Pacotes."
 
 msgid "Site name: %s"
-msgstr "Nome do site:%s"
+msgstr "Nome do site: %s"
 
 msgid "The FluxWP theme is not installed."
 msgstr "O tema FluxWP não está instalado."
@@ -1306,7 +1306,7 @@ msgid "Preset not found. If the package is installed, apply it under Appearance 
 msgstr "Predefinição não encontrada. Se o pacote estiver instalado, aplique-o em Aparência › Predefinições."
 
 msgid "%s preset applied."
-msgstr "Predefinição%saplicada."
+msgstr "Predefinição %s aplicada."
 
 msgid "Setup finished."
 msgstr "Configuração concluída."
@@ -1324,16 +1324,16 @@ msgid "The active theme does not support colour styles."
 msgstr "O tema ativo não oferece suporte a estilos de cores."
 
 msgid "The theme has no %s colour style."
-msgstr "O tema não possui estilo de cor%s."
+msgstr "O tema não possui estilo de cor %s."
 
 msgid "Could not create the global styles record."
 msgstr "Não foi possível criar o registro de estilos globais."
 
 msgid "Colour style: %s"
-msgstr "Estilo de cor:%s"
+msgstr "Estilo de cor: %s"
 
 msgid "Step %1$s of %2$s"
-msgstr "Etapa%1$sde%2$s"
+msgstr "Etapa %1$s de %2$s"
 
 msgid "Welcome to FluxWP"
 msgstr "Bem-vindo ao FluxWP"
@@ -1342,7 +1342,7 @@ msgid "Let's set up your site in three steps. Pick the plugins, choose the look,
 msgstr "Vamos configurar seu site em três etapas. Escolha os plugins, escolha a aparência e o FluxWP Panel instala o resto."
 
 msgid "%d plugins"
-msgstr "Plug-ins%d"
+msgstr "Plug-ins %d"
 
 msgid "Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin."
 msgstr "Doações, formulários, WhatsApp, e-mail, SEO e backups funcionam em um único administrador."
@@ -1387,7 +1387,7 @@ msgid "FluxWP Panel was updated. Reopening the wizard on the new version…"
 msgstr "Painel FluxWP foi atualizado. Reabrindo o assistente na nova versão..."
 
 msgid "Updates could not be completed: %s Setup does not continue until the updates are done."
-msgstr "Não foi possível concluir as atualizações:%sA configuração não continua até que as atualizações sejam concluídas."
+msgstr "Não foi possível concluir as atualizações: %s A configuração não continua até que as atualizações sejam concluídas."
 
 msgid "Try again"
 msgstr "Tente novamente"
@@ -1480,10 +1480,10 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "%s plugins + FluxWP theme"
-msgstr "Plug-ins%s+ tema FluxWP"
+msgstr "Plug-ins %s+ tema FluxWP"
 
 msgid "%s plugins"
-msgstr "Plug-ins%s"
+msgstr "Plug-ins %s"
 
 msgid "Keep this tab open."
 msgstr "Mantenha esta aba aberta."
@@ -1570,10 +1570,10 @@ msgid "Other FluxWP packages."
 msgstr "Outros pacotes FluxWP."
 
 msgid "Plugins · %1$s of %2$s"
-msgstr "Plug-ins ·%1$sde%2$s"
+msgstr "Plug-ins ·%1$s de %2$s"
 
 msgid "%s packages queued"
-msgstr "Pacotes%senfileirados"
+msgstr "Pacotes %s enfileirados"
 
 msgid "activating"
 msgstr "ativando"
@@ -1603,7 +1603,7 @@ msgid "Upload a PNG, JPG, WebP or GIF."
 msgstr "Carregue um PNG, JPG, WebP ou GIF."
 
 msgid "Tagline: %s"
-msgstr "Slogan:%s"
+msgstr "Slogan: %s"
 
 msgid "Could not set the logo."
 msgstr "Não foi possível definir o logotipo."
@@ -1615,7 +1615,7 @@ msgid "You are not allowed to create pages."
 msgstr "Você não tem permissão para criar páginas."
 
 msgid "Page: %s"
-msgstr "Página:%s"
+msgstr "Página: %s"
 
 msgid "No new pages."
 msgstr "Sem novas páginas."
@@ -1676,7 +1676,7 @@ msgid "Contact"
 msgstr "Contato"
 
 msgid "I accept the %1$s and %2$s; I have read the %3$s."
-msgstr "Aceito%1$se%2$s; Eu li o%3$s."
+msgstr "Aceito %1$s e %2$s; Eu li o %3$s."
 
 msgid "Terms of Use"
 msgstr "Termos de Uso"
@@ -1736,7 +1736,7 @@ msgid "Saved."
 msgstr "Salvo."
 
 msgid "Last sent %s. Sent at most once a day."
-msgstr "Último enviado%s. Enviado no máximo uma vez por dia."
+msgstr "Último enviado %s. Enviado no máximo uma vez por dia."
 
 msgid "Telemetry URL"
 msgstr "URL de telemetria"
@@ -1775,13 +1775,13 @@ msgid "Not needed"
 msgstr "Não é necessário"
 
 msgid "Could not download %s from wordpress.org."
-msgstr "Não foi possível baixar%sdo wordpress.org."
+msgstr "Não foi possível baixar %s do wordpress.org."
 
 msgid "Try from Plugins › Add New"
 msgstr "Experimente em Plugins › Adicionar novo"
 
 msgid "Next attempt: %s."
-msgstr "Próxima tentativa:%s."
+msgstr "Próxima tentativa: %s."
 
 msgid "Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on."
 msgstr "A distribuição de atualizações está temporariamente pausada no servidor. Não há nada de errado com o seu site; as atualizações serão retomadas quando a distribuição for reativada."
@@ -1799,7 +1799,7 @@ msgid "The site key is disabled on the server and keyless updates are off, so no
 msgstr "A chave do site está desabilitada no servidor e as atualizações sem chave estão desativadas, portanto, nenhum pacote está disponível. Peça ao administrador do servidor para reativar a chave."
 
 msgid "The server cannot respond right now (HTTP %d)."
-msgstr "O servidor não pode responder agora (HTTP%d)."
+msgstr "O servidor não pode responder agora (HTTP %d)."
 
 msgid "Distribution paused"
 msgstr "Distribuição pausada"
@@ -1814,7 +1814,7 @@ msgid "Site key disabled"
 msgstr "Chave do site desativada"
 
 msgid "Support and feedback: %s"
-msgstr "Suporte e feedback:%s"
+msgstr "Suporte e feedback: %s"
 
 msgid "FluxWP Panel"
 msgstr "Painel FluxWP"
@@ -1838,17 +1838,17 @@ msgid "A short overview is not available yet."
 msgstr "Uma breve visão geral ainda não está disponível."
 
 msgid "Preview image %d"
-msgstr "Imagem de visualização%d"
+msgstr "Imagem de visualização %d"
 
 msgid "%d package removed."
 msgid_plural "%d packages removed."
-msgstr[0] "Pacote%dremovido."
-msgstr[1] "Pacotes%dremovidos."
+msgstr[0] "Pacote %d removido."
+msgstr[1] "Pacotes %d removidos."
 
 msgid "%s record"
 msgid_plural "%s records"
-msgstr[0] "Registro%s"
-msgstr[1] "Registros%s"
+msgstr[0] "Registro %s"
+msgstr[1] "Registros %s"
 
 msgid "%dthere is an update"
 msgid_plural "%dthere is an update"
@@ -1857,29 +1857,29 @@ msgstr[1] "%dhá uma atualização"
 
 msgid "%dpackage activated."
 msgid_plural "%dpackage activated."
-msgstr[0] " Pacote%dativado."
-msgstr[1] " Pacote%dativado."
+msgstr[0] " Pacote %dativado."
+msgstr[1] " Pacote %dativado."
 
 msgid "%dpackage has been disabled."
 msgid_plural "%dpackage has been disabled."
-msgstr[0] " O pacote%dfoi desativado."
-msgstr[1] " O pacote%dfoi desativado."
+msgstr[0] " O pacote %dfoi desativado."
+msgstr[1] " O pacote %dfoi desativado."
 
 msgid "%dpackage removed."
 msgid_plural "%dpackage removed."
-msgstr[0] " Pacote%dremovido."
-msgstr[1] " Pacote%dremovido."
+msgstr[0] " Pacote %dremovido."
+msgstr[1] " Pacote %dremovido."
 
 msgid "%dbackup deleted."
 msgid_plural "%dbackup deleted."
-msgstr[0] "Backup%dexcluído."
-msgstr[1] "Backup%dexcluído."
+msgstr[0] "Backup %dexcluído."
+msgstr[1] "Backup %dexcluído."
 
 msgid "Expired%dbackup deleted. Expired%dbackup deleted."
 msgstr "Backup%dexpirado excluído. Backup%dexpirado excluído."
 
 msgid "Connected ·%dpackage Connected ·%dpackage"
-msgstr "Conectado · Pacote%dConectado · Pacote%d"
+msgstr "Conectado · Pacote %dConectado · Pacote %d"
 
 msgid "%dday"
 msgid_plural "%dday"
@@ -1891,8 +1891,8 @@ msgstr "Atualmente, o backup de atualização do%1$dé%2$s. Atualmente, o backup
 
 msgid "%sregistration"
 msgid_plural "%sregistration"
-msgstr[0] "Registro%s"
-msgstr[1] "Registro%s"
+msgstr[0] "Registro %s"
+msgstr[1] "Registro %s"
 
 msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
 msgstr "Plugin de instalação e atualização do FluxWP. Assistente de instalação na primeira inicialização (introdução, seleção do plug-in, aparência, instalação); Traz temas e plug-ins do FluxWP do servidor de atualização (padrão updater.fluxwp.com) para a tela de atualização do WordPress; O mecanismo predefinido (preset.json) configura o site em uma única etapa, substitui-o por patches aprovados e o reverte."
@@ -1904,8 +1904,8 @@ msgstr[1] "Backup%dexpirado excluído. Backup%dexpirado excluído."
 
 msgid "Connected ·%dpackage Connected ·%dpackage"
 msgid_plural "Connected ·%dpackage Connected ·%dpackage"
-msgstr[0] "Conectado · Pacote%dConectado · Pacote%d"
-msgstr[1] "Conectado · Pacote%dConectado · Pacote%d"
+msgstr[0] "Conectado · Pacote %dConectado · Pacote %d"
+msgstr[1] "Conectado · Pacote %dConectado · Pacote %d"
 
 msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."

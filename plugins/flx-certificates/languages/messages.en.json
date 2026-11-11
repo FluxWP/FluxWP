@@ -158,7 +158,7 @@
     "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended.": "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended.",
     "Permalinks": "Permalinks",
     "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page.": "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page.",
-    "Certificates open at %s{code}.": "Certificates open at %s{code}.",
+    "Certificates open at %s {code}.": "Certificates open at %s {code}.",
     "Certificate templates": "Certificate templates",
     "%d active template.\u0000%d active templates.": "%d active template.\u0000%d active templates.",
     "No active template; certificates cannot be created.": "No active template; certificates cannot be created.",

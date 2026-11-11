@@ -14,7 +14,7 @@ msgid "Collapse / expand menu ([)"
 msgstr "Свернуть/развернуть меню ([)"
 
 msgid "Store: %s"
-msgstr "Магазин:%s"
+msgstr "Магазин: %s"
 
 msgid "WordPress updates"
 msgstr "Обновления WordPress"
@@ -344,7 +344,7 @@ msgid "l, F j, Y"
 msgstr "л, Ф ж, Й"
 
 msgid "%1$s, %2$s"
-msgstr "%1$s,%2$s"
+msgstr "%1$s, %2$s"
 
 msgid "Edit modules"
 msgstr "Редактировать модули"
@@ -362,13 +362,13 @@ msgid "Donations today"
 msgstr "Пожертвования сегодня"
 
 msgid "%s donations"
-msgstr "%sпожертвования"
+msgstr "%s пожертвования"
 
 msgid "This month"
 msgstr "В этом месяце"
 
 msgid "%1$s donations · %2$s donors"
-msgstr "Пожертвования%1$s· Жертвователи%2$s"
+msgstr "Пожертвования %1$s· Жертвователи %2$s"
 
 msgid "Awaiting approval"
 msgstr "Ожидает одобрения"
@@ -392,16 +392,16 @@ msgid "System check"
 msgstr "Проверка системы"
 
 msgid "%s errors"
-msgstr "Ошибки%s"
+msgstr "Ошибки %s"
 
 msgid "%s warnings"
-msgstr "Предупреждения%s"
+msgstr "Предупреждения %s"
 
 msgid "No problems"
 msgstr "Нет проблем"
 
 msgid "%s checks OK"
-msgstr "%sпроверяет ОК"
+msgstr "%s проверяет ОК"
 
 msgid "Donations"
 msgstr "Пожертвования"
@@ -626,7 +626,7 @@ msgid "Live counter interval"
 msgstr "Интервал живого счетчика"
 
 msgid "%d s"
-msgstr "%dс"
+msgstr "%d с"
 
 msgid "Badges (WhatsApp, tasks, pending donations, updates) ride on the WordPress Heartbeat request; no extra requests. 60 s is recommended for Hostinger."
 msgstr "Значки (WhatsApp, задачи, ожидающие пожертвования, обновления) передаются по запросу WordPress Heartbeat; никаких дополнительных запросов. Для Hostinger рекомендуется 60 с."
@@ -756,9 +756,9 @@ msgstr "Ролевое меню"
 
 msgid "%s role has a custom menu layout; other roles see the default grouped menu."
 msgid_plural "%s roles have a custom menu layout; other roles see the default grouped menu."
-msgstr[0] "Роль%sимеет собственный макет меню; другие роли видят сгруппированное меню по умолчанию."
-msgstr[1] "Роли%sимеют собственный макет меню; другие роли видят сгруппированное меню по умолчанию."
-msgstr[2] "Роли%sимеют собственный макет меню; другие роли видят сгруппированное меню по умолчанию."
+msgstr[0] "Роль %s имеет собственный макет меню; другие роли видят сгруппированное меню по умолчанию."
+msgstr[1] "Роли %s имеют собственный макет меню; другие роли видят сгруппированное меню по умолчанию."
+msgstr[2] "Роли %s имеют собственный макет меню; другие роли видят сгруппированное меню по умолчанию."
 
 msgid "All roles see the default grouped menu."
 msgstr "Все роли видят сгруппированное меню по умолчанию."
@@ -773,10 +773,10 @@ msgid "Live counters"
 msgstr "Живые счетчики"
 
 msgid "Heartbeat is %s s; Hostinger may temporarily block the IP under heavy load. 60 s is recommended."
-msgstr "Heartbeat — это%ss; Hostinger может временно заблокировать IP при большой нагрузке. Рекомендуется 60 с."
+msgstr "Heartbeat — это %s s; Hostinger может временно заблокировать IP при большой нагрузке. Рекомендуется 60 с."
 
 msgid "Badges refresh every %s s via WordPress Heartbeat (no extra requests)."
-msgstr "Значки обновляются каждые%sчерез WordPress Heartbeat (без дополнительных запросов)."
+msgstr "Значки обновляются каждые %s через WordPress Heartbeat (без дополнительных запросов)."
 
 msgid "Turn the admin theme on/off"
 msgstr "Включить/выключить тему администратора"
@@ -794,7 +794,7 @@ msgid "Seconds (30, 60 or 120)."
 msgstr "Секунды (30, 60 или 120)."
 
 msgid "Interval set to %s s."
-msgstr "Интервал установлен на%sс."
+msgstr "Интервал установлен на %s с."
 
 msgid "PWA (install as an app)"
 msgstr "PWA (установить как приложение)"
@@ -815,7 +815,7 @@ msgid "Role key (e.g. editor)."
 msgstr "Ролевой ключ (например, редактор)."
 
 msgid "%s menu reset to default."
-msgstr "Меню%sсброшено к состоянию по умолчанию."
+msgstr "Меню %s сброшено к состоянию по умолчанию."
 
 msgid "Background"
 msgstr "Фон"
@@ -998,7 +998,7 @@ msgid "No breakdown"
 msgstr "Нет поломки"
 
 msgid "last %d days"
-msgstr "последние%dдней"
+msgstr "последние %d дней"
 
 msgid "Daily donation totals"
 msgstr "Сумма ежедневных пожертвований"
@@ -1016,7 +1016,7 @@ msgid "Anonymous"
 msgstr "Анонимный"
 
 msgid "%d items"
-msgstr "%dэлементы"
+msgstr "%d элементы"
 
 msgid "No donations yet."
 msgstr "Пожертвований пока нет."
@@ -1046,7 +1046,7 @@ msgid "Pagination"
 msgstr "Пагинация"
 
 msgid "%1$s–%2$s of %3$s"
-msgstr "%1$s–%2$sиз%3$s"
+msgstr "%1$s–%2$s из %3$s"
 
 msgid "Previous page"
 msgstr "Предыдущая страница"
@@ -1152,27 +1152,27 @@ msgstr "Мастер настройки, пресеты и обновления 
 
 msgid "%s donation"
 msgid_plural "%s donations"
-msgstr[0] "%sпожертвование"
-msgstr[1] "%sпожертвования"
-msgstr[2] "%sпожертвования"
+msgstr[0] "%s пожертвование"
+msgstr[1] "%s пожертвования"
+msgstr[2] "%s пожертвования"
 
 msgid "%s error"
 msgid_plural "%s errors"
-msgstr[0] "Ошибка%s"
-msgstr[1] "Ошибки%s"
-msgstr[2] "Ошибки%s"
+msgstr[0] "Ошибка %s"
+msgstr[1] "Ошибки %s"
+msgstr[2] "Ошибки %s"
 
 msgid "%s warning"
 msgid_plural "%s warnings"
-msgstr[0] "Предупреждение%s"
-msgstr[1] "Предупреждения%s"
-msgstr[2] "Предупреждения%s"
+msgstr[0] "Предупреждение %s"
+msgstr[1] "Предупреждения %s"
+msgstr[2] "Предупреждения %s"
 
 msgid "%s role has a custom menu layout; other roles use the default grouped menu."
 msgid_plural "%s roles have custom menu layouts; other roles use the default grouped menu."
-msgstr[0] "Роль%sимеет собственный макет меню; другие роли используют сгруппированное меню по умолчанию."
-msgstr[1] "Роли%sимеют настраиваемый макет меню; другие роли используют сгруппированное меню по умолчанию."
-msgstr[2] "Роли%sимеют настраиваемый макет меню; другие роли используют сгруппированное меню по умолчанию."
+msgstr[0] "Роль %s имеет собственный макет меню; другие роли используют сгруппированное меню по умолчанию."
+msgstr[1] "Роли %s имеют настраиваемый макет меню; другие роли используют сгруппированное меню по умолчанию."
+msgstr[2] "Роли %s имеют настраиваемый макет меню; другие роли используют сгруппированное меню по умолчанию."
 
 msgid "Okunmamış WhatsApp"
 msgstr "Окунмамиш WhatsApp"
@@ -1191,9 +1191,9 @@ msgstr[2] "%sдаже"
 
 msgid "%swarning"
 msgid_plural "%swarning"
-msgstr[0] "Предупреждение%s"
-msgstr[1] "Предупреждение%s"
-msgstr[2] "Предупреждение%s"
+msgstr[0] "Предупреждение %s"
+msgstr[1] "Предупреждение %s"
+msgstr[2] "Предупреждение %s"
 
 msgid "%shas a special menu layout for the role; other roles see the default grouped menu."
 msgid_plural "%shas a special menu layout for the role; other roles see the default grouped menu."

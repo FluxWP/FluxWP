@@ -215,7 +215,7 @@ msgid "Satisfaction"
 msgstr "Satisfação"
 
 msgid "%s ratings"
-msgstr "Classificações%s"
+msgstr "Classificações %s"
 
 msgid "no ratings yet"
 msgstr "ainda não há avaliações"
@@ -305,7 +305,7 @@ msgid "Outside working hours now"
 msgstr "Fora do horário de trabalho agora"
 
 msgid "Working hours: %s"
-msgstr "Horário de funcionamento:%s"
+msgstr "Horário de funcionamento: %s"
 
 msgid "Working hours come from the Flux Chat settings."
 msgstr "O horário de trabalho vem das configurações do Flux Chat."
@@ -899,7 +899,7 @@ msgid "Would you like to talk to a person?"
 msgstr "Você gostaria de falar com uma pessoa?"
 
 msgid "Your place in line: %d"
-msgstr "Seu lugar na fila:%d"
+msgstr "Seu lugar na fila: %d"
 
 msgid "Seen"
 msgstr "Visto"
@@ -1019,10 +1019,10 @@ msgid "No agents are online right now. Leave a message and we'll get back to you
 msgstr "Nenhum agente está online no momento. Deixe uma mensagem e retornaremos por e-mail."
 
 msgid "Weekdays %s"
-msgstr "Dias da semana%s"
+msgstr "Dias da semana %s"
 
 msgid "Every day %s"
-msgstr "Todos os dias%s"
+msgstr "Todos os dias %s"
 
 msgid "Mon"
 msgstr "segunda-feira"
@@ -1070,7 +1070,7 @@ msgid "Connecting you to an agent…"
 msgstr "Conectando você a um agente..."
 
 msgid "%s joined the chat"
-msgstr "%sentrou no bate-papo"
+msgstr "%s entrou no bate-papo"
 
 msgid "You ended the chat."
 msgstr "Você encerrou o bate-papo."
@@ -1085,10 +1085,10 @@ msgid "Site chat #%d"
 msgstr "Bate-papo no site #%d"
 
 msgid "[%1$s] Message from site chat: %2$s"
-msgstr "[%1$s] Mensagem do chat do site:%2$s"
+msgstr "[%1$s] Mensagem do chat do site: %2$s"
 
 msgid "[%1$s] Site chat waiting for an agent: %2$s"
-msgstr "[%1$s] Chat do site aguardando um agente:%2$s"
+msgstr "[%1$s] Chat do site aguardando um agente: %2$s"
 
 msgid "To reply:"
 msgstr "Para responder:"
@@ -1103,7 +1103,7 @@ msgid "The file could not be uploaded."
 msgstr "O arquivo não pôde ser carregado."
 
 msgid "Files can be up to %d MB."
-msgstr "Os arquivos podem ter até%dMB."
+msgstr "Os arquivos podem ter até %d MB."
 
 msgid "This file type can't be sent. Send an image, PDF or office document."
 msgstr "Este tipo de arquivo não pode ser enviado. Envie uma imagem, PDF ou documento do Office."
@@ -1157,15 +1157,15 @@ msgid "File not found."
 msgstr "Arquivo não encontrado."
 
 msgid "Visitor rating: %1$s %2$s"
-msgstr "Avaliação do visitante:%1$s%2$s"
+msgstr "Avaliação do visitante: %1$s%2$s"
 
 msgid "Visitor #%d"
 msgstr "Visitante #%d"
 
 msgid "%d chat is waiting for a reply."
 msgid_plural "%d chats are waiting for a reply."
-msgstr[0] "O bate-papo%destá aguardando uma resposta."
-msgstr[1] "Os bate-papos%destão aguardando uma resposta."
+msgstr[0] "O bate-papo %d está aguardando uma resposta."
+msgstr[1] "Os bate-papos %d estão aguardando uma resposta."
 
 msgid "Site chat window"
 msgstr "Janela de bate-papo do site"
@@ -1199,4 +1199,3 @@ msgstr "Janela de bate-papo com suporte de inteligência artificial para o site:
 
 msgid "Still answering. Please wait a moment."
 msgstr "Ainda está respondendo. Por favor, espere um momento."
-

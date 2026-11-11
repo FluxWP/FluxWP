@@ -59,7 +59,7 @@ msgid "Flux Call Center: AI features (suggestions, assistant, receipt reading, v
 msgstr "Centro de llamadas Flux: las funciones de IA (sugerencias, asistente, lectura de recibos, mensajes de voz, resúmenes) necesitan el complemento Flux AI y MCP. Instálelo y actívelo; Las claves guardadas en el Call Center se mueven allí automáticamente."
 
 msgid "Flux Call Center: a different %s key is already saved in Flux AI and is the one in use. The old Call Center key was not moved and is no longer used."
-msgstr "Flux Call Center: una clave%sdiferente ya está guardada en Flux AI y es la que está en uso. La antigua clave del Call Center no se movió y ya no se utiliza."
+msgstr "Flux Call Center: una clave %s diferente ya está guardada en Flux AI y es la que está en uso. La antigua clave del Call Center no se movió y ya no se utiliza."
 
 msgid "Flux Call Center: AI keys were moved to Flux AI. From now on keys, spending limits and logs are managed in Flux AI; model choices stay in the Call Center."
 msgstr "Centro de llamadas Flux: las claves AI se trasladaron a Flux AI. A partir de ahora, las claves, los límites de gasto y los registros se gestionan en Flux AI; Las opciones de modelos permanecen en el Call Center."
@@ -407,7 +407,7 @@ msgid "Built-in text"
 msgstr "Texto incorporado"
 
 msgid "Version %s"
-msgstr "Versión%s"
+msgstr "Versión %s"
 
 msgid "Live instructions (%s)"
 msgstr "Instrucciones en vivo (%s)"
@@ -419,7 +419,7 @@ msgid "No scenarios to run."
 msgstr "No hay escenarios para ejecutar."
 
 msgid "The run could not be saved (database: %s). Refresh the page and try again."
-msgstr "No se pudo guardar la ejecución (base de datos:%s). Actualiza la página y vuelve a intentarlo."
+msgstr "No se pudo guardar la ejecución (base de datos: %s). Actualiza la página y vuelve a intentarlo."
 
 msgid "Run not found."
 msgstr "Ejecutar no encontrado."
@@ -434,10 +434,10 @@ msgid "The chat was handed to the team; the remaining messages were not sent."
 msgstr "El chat fue entregado al equipo; los mensajes restantes no fueron enviados."
 
 msgid "Start (test): %s"
-msgstr "Inicio (prueba):%s"
+msgstr "Inicio (prueba): %s"
 
 msgid "Writing as staff: %s"
-msgstr "Escribiendo como personal:%s"
+msgstr "Escribiendo como personal: %s"
 
 msgid "No user with staff tools (Flux Roles, Profile › WhatsApp number); played as a donor."
 msgstr "Ningún usuario con herramientas de personal (Roles Flux, Perfil › Número de WhatsApp); jugó como donante."
@@ -449,7 +449,7 @@ msgid "no"
 msgstr "no"
 
 msgid "Expected: %1$s, actual: %2$s"
-msgstr "Esperado:%1$s, real:%2$s"
+msgstr "Esperado: %1$s, real: %2$s"
 
 msgid "disabled on this site, not checked"
 msgstr "deshabilitado en este sitio, no marcado"
@@ -509,7 +509,7 @@ msgid "Claude cache"
 msgstr "caché de claude"
 
 msgid "%1$d tokens read, %2$d written"
-msgstr "Tokens%1$dleídos,%2$descritos"
+msgstr "Tokens %1$d leídos, %2$d escritos"
 
 msgid "savings"
 msgstr "ahorros"
@@ -542,7 +542,7 @@ msgid "Handoff accuracy"
 msgstr "Precisión de transferencia"
 
 msgid "correct handoff %1$d, correct no-handoff %2$d, unnecessary handoff %3$d, missed handoff %4$d"
-msgstr "traspaso correcto%1$d, traspaso correcto%2$d, traspaso innecesario%3$d, traspaso perdido%4$d"
+msgstr "traspaso correcto %1$d, traspaso correcto %2$d, traspaso innecesario %3$d, traspaso perdido %4$d"
 
 msgid "Instructions (full text)"
 msgstr "Instrucciones (texto completo)"
@@ -617,34 +617,34 @@ msgid "(no name)"
 msgstr "(sin nombre)"
 
 msgid "Hello {ad} 🌱 {bagisci} made a donation in your name: {bagis}. Your certificate is below."
-msgstr "Hola{ad}🌱{bagisci}hizo una donación a tu nombre:{bagis}. Su certificado está a continuación."
+msgstr "Hola {ad}🌱{bagisci} hizo una donación a tu nombre: {bagis}. Su certificado está a continuación."
 
 msgid "One of our donors"
 msgstr "Uno de nuestros donantes"
 
 msgid "Flux Chat: certificate %1$s was sent on WhatsApp to the person the donation was made for (%2$s, %3$s)."
-msgstr "Flux Chat: el certificado%1$sfue enviado por WhatsApp a la persona para la cual se realizó la donación (%2$s,%3$s)."
+msgstr "Flux Chat: el certificado %1$s fue enviado por WhatsApp a la persona para la cual se realizó la donación (%2$s, %3$s)."
 
 msgid "Flux Chat: certificate %1$s could not be sent to the person the donation was made for (%2$s, %3$s)."
-msgstr "Flux Chat: el certificado%1$sno se pudo enviar a la persona para la que se realizó la donación (%2$s,%3$s)."
+msgstr "Flux Chat: el certificado %1$s no se pudo enviar a la persona para la que se realizó la donación (%2$s, %3$s)."
 
 msgid "✅ Certificates for {bagisci}'s donation are ready: {bagis}. They were also sent to the donor."
-msgstr "✅ Ya están listos los certificados de donación de{bagisci}:{bagis}. También fueron enviados al donante."
+msgstr "✅ Ya están listos los certificados de donación de {bagisci}: {bagis}. También fueron enviados al donante."
 
 msgid "Your donor"
 msgstr "Tu donante"
 
 msgid "Flux Call Center: certificates %1$s were sent to the referring staff member on WhatsApp (%2$s)."
-msgstr "Flux Call Center: los certificados%1$sse enviaron al miembro del personal remitente en WhatsApp (%2$s)."
+msgstr "Flux Call Center: los certificados %1$s se enviaron al miembro del personal remitente en WhatsApp (%2$s)."
 
 msgid "Flux Call Center: certificates %1$s could not be sent to the referring staff member (%2$s)."
-msgstr "Flux Call Center: los certificados%1$sno se pudieron enviar al miembro del personal remitente (%2$s)."
+msgstr "Flux Call Center: los certificados %1$s no se pudieron enviar al miembro del personal remitente (%2$s)."
 
 msgid "Phone or email is required."
 msgstr "Se requiere teléfono o correo electrónico."
 
 msgid "Contact added to the blocklist: %s"
-msgstr "Contacto agregado a la lista de bloqueo:%s"
+msgstr "Contacto agregado a la lista de bloqueo: %s"
 
 msgid "Chat not found."
 msgstr "Chat no encontrado."
@@ -677,34 +677,34 @@ msgid "Validity (minutes)"
 msgstr "Validez (minutos)"
 
 msgid "Your verification code: {kod}"
-msgstr "Su código de verificación:{kod}"
+msgstr "Su código de verificación: {kod}"
 
 msgid "Your verification code"
 msgstr "Tu código de verificación"
 
 msgid "<p>You asked from WhatsApp about donations made with this email address. Enter the code in the WhatsApp chat:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>The code is valid for {dk} minutes. If you did not request this, ignore the email.</p>"
-msgstr "<p>Preguntaste desde WhatsApp sobre las donaciones realizadas con esta dirección de correo electrónico. Ingresa el código en el chat de WhatsApp:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>El código es válido por minutos{dk}. Si no solicitó esto, ignore el correo electrónico.</p>"
+msgstr "<p>Preguntaste desde WhatsApp sobre las donaciones realizadas con esta dirección de correo electrónico. Ingresa el código en el chat de WhatsApp:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>El código es válido por minutos {dk}. Si no solicitó esto, ignore el correo electrónico.</p>"
 
 msgid "Your verification code: %s"
-msgstr "Su código de verificación:%s"
+msgstr "Su código de verificación: %s"
 
 msgid "Type this code in the WhatsApp chat: %s"
-msgstr "Escribe este código en el chat de WhatsApp:%s"
+msgstr "Escribe este código en el chat de WhatsApp: %s"
 
 msgid "The code is valid for %d minutes."
-msgstr "El código es válido por minutos%d."
+msgstr "El código es válido por minutos %d."
 
 msgid "Chats searched: \"%1$s\" (%2$d results)"
-msgstr "Chats buscados: \"%1$s\" (resultados%2$d)"
+msgstr "Chats buscados: \"%1$s\" (resultados %2$d)"
 
 msgid "Read the last %2$d messages of %1$s"
-msgstr "Leer los últimos mensajes%2$dde%1$s"
+msgstr "Leer los últimos mensajes %2$d de %1$s"
 
 msgid "Tested: \"%s\""
 msgstr "Probado: \"%s\""
 
 msgid "Wants to read the last %2$d messages of %1$s."
-msgstr "Quiere leer los últimos mensajes%2$dde%1$s."
+msgstr "Quiere leer los últimos mensajes %2$d de %1$s."
 
 msgid "Step limit reached; write a message to continue."
 msgstr "Límite de pasos alcanzado; escribe un mensaje para continuar."
@@ -830,22 +830,22 @@ msgid "Shall I cancel *{bagis}* ({tutar})? Please confirm."
 msgstr "¿Debo cancelar *{bagis}* ({tutar})? Por favor confirme."
 
 msgid "%1$s · %2$d pcs"
-msgstr "%1$s·%2$dpiezas"
+msgstr "%1$s · %2$d piezas"
 
 msgid "The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation."
 msgstr "La persona pidió por WhatsApp cancelar; el asistente lo canceló después de la confirmación."
 
 msgid "Reason: %s"
-msgstr "Razón:%s"
+msgstr "Razón: %s"
 
 msgid "The assistant cancelled the donation: %1$s (#%2$s)"
-msgstr "El asistente canceló la donación:%1$s(#%2$s)"
+msgstr "El asistente canceló la donación: %1$s(#%2$s)"
 
 msgid "Your certificate 🌱 %1$s (%2$s)"
 msgstr "Tu certificado 🌱%1$s(%2$s)"
 
 msgid "The assistant resent certificate %1$s (%2$s)."
-msgstr "El asistente reenvía el certificado%1$s(%2$s)."
+msgstr "El asistente reenvía el certificado %1$s(%2$s)."
 
 msgid "e-mail"
 msgstr "correo electrónico"
@@ -860,7 +860,7 @@ msgid "I'm passing you to a colleague from our team, they will get back to you h
 msgstr "Se lo paso a un colega de nuestro equipo, se comunicará con usted aquí en breve 🌱"
 
 msgid "The assistant handed the chat to the team: %s"
-msgstr "El asistente entregó el chat al equipo:%s"
+msgstr "El asistente entregó el chat al equipo: %s"
 
 msgid "unit"
 msgstr "unidad"
@@ -896,13 +896,13 @@ msgid "Your donation is confirmed automatically once the payment goes through. T
 msgstr "Su donación se confirma automáticamente una vez que se realiza el pago. Muchas gracias por su apoyo 🤲"
 
 msgid "Your payment page is ready: %s"
-msgstr "Su página de pago está lista:%s"
+msgstr "Su página de pago está lista: %s"
 
 msgid "On this page you can pay by card or choose bank transfer. If you prefer a bank transfer, the details are below; press and hold each one to copy 👇"
 msgstr "En esta página puedes pagar con tarjeta o elegir transferencia bancaria. Si prefiere una transferencia bancaria, los detalles se encuentran a continuación; mantén presionado cada uno para copiar 👇"
 
 msgid "The bank transfer details of your donation are on this page: %s"
-msgstr "Los detalles de la transferencia bancaria de su donación se encuentran en esta página:%s"
+msgstr "Los detalles de la transferencia bancaria de su donación se encuentran en esta página: %s"
 
 msgid "They are also below; press and hold each one to copy 👇"
 msgstr "También están debajo; mantén presionado cada uno para copiar 👇"
@@ -911,7 +911,7 @@ msgid "You can pay by bank transfer."
 msgstr "Puedes pagar mediante transferencia bancaria."
 
 msgid "Our donation page: %s"
-msgstr "Nuestra página de donaciones:%s"
+msgstr "Nuestra página de donaciones: %s"
 
 msgid "Bank details are below; long-press each one to copy 👇"
 msgstr "Los datos bancarios se encuentran a continuación; mantén presionado cada uno para copiar 👇"
@@ -947,7 +947,7 @@ msgid "via the website"
 msgstr "a través del sitio web"
 
 msgid "uploaded %2$s on %1$s"
-msgstr "subido%2$sen%1$s"
+msgstr "subido %2$s en %1$s"
 
 msgid "This number is not on WhatsApp."
 msgstr "Este número no está en WhatsApp."
@@ -1016,13 +1016,13 @@ msgid "WhatsApp chats"
 msgstr "chats de WhatsApp"
 
 msgid "Export: %1$s · %2$d chats"
-msgstr "Exportar: chats%1$s·%2$d"
+msgstr "Exportar: chats %1$s · %2$d"
 
 msgid "phones and emails masked"
 msgstr "teléfonos y correos electrónicos enmascarados"
 
 msgid "Chat history cleared (%1$d messages, %2$s)."
-msgstr "Historial de chat borrado (mensajes%1$d,%2$s)."
+msgstr "Historial de chat borrado (mensajes %1$d, %2$s)."
 
 msgid "Confirmation text is wrong."
 msgstr "El texto de confirmación es incorrecto."
@@ -1046,16 +1046,16 @@ msgid "Please take over the chat"
 msgstr "Por favor toma el control del chat"
 
 msgid "Could not send the notification to the team group: %s"
-msgstr "No se pudo enviar la notificación al grupo del equipo:%s"
+msgstr "No se pudo enviar la notificación al grupo del equipo: %s"
 
 msgid "Handoff notification sent to the team group."
 msgstr "Notificación de traspaso enviada al grupo del equipo."
 
 msgid "WhatsApp notification sent to the team: %s"
-msgstr "Notificación de WhatsApp enviada al equipo:%s"
+msgstr "Notificación de WhatsApp enviada al equipo: %s"
 
 msgid "Team notification could not be sent: %s"
-msgstr "No se pudo enviar la notificación del equipo:%s"
+msgstr "No se pudo enviar la notificación del equipo: %s"
 
 msgid "New"
 msgstr "Nuevo"
@@ -1070,7 +1070,7 @@ msgid "Call Center Agent"
 msgstr "Agente del centro de llamadas"
 
 msgid "Hello! Your message has reached the %s team. An agent will get back to you shortly."
-msgstr "¡Hola! Su mensaje ha llegado al equipo de%s. Un agente se comunicará con usted en breve."
+msgstr "¡Hola! Su mensaje ha llegado al equipo de %s. Un agente se comunicará con usted en breve."
 
 msgid "Hello, we are currently outside business hours. We received your message and will reply on the next business day."
 msgstr "Hola, actualmente estamos fuera del horario comercial. Recibimos su mensaje y le responderemos el siguiente día hábil."
@@ -1079,7 +1079,7 @@ msgid "Greeting"
 msgstr "Saludo"
 
 msgid "Hello {first_name}, this is {agent}. How can I help you?"
-msgstr "Hola{first_name}, soy{agent}. ¿Le puedo ayudar en algo?"
+msgstr "Hola {first_name}, soy {agent}. ¿Le puedo ayudar en algo?"
 
 msgid "General"
 msgstr "generales"
@@ -1109,13 +1109,13 @@ msgid "Website"
 msgstr "Sitio web"
 
 msgid "You can find all the details on our website: {site}"
-msgstr "Puedes encontrar todos los detalles en nuestra web:{site}"
+msgstr "Puedes encontrar todos los detalles en nuestra web: {site}"
 
 msgid "Thanks"
 msgstr "gracias"
 
 msgid "Thank you for reaching out {first_name}, have a nice day! 🌱"
-msgstr "Gracias por comunicarte con{first_name}, ¡que tengas un buen día! 🌱"
+msgstr "Gracias por comunicarte con {first_name}, ¡que tengas un buen día! 🌱"
 
 msgid "Closing"
 msgstr "Cierre"
@@ -1127,7 +1127,7 @@ msgid "Other"
 msgstr "Otro"
 
 msgid "Your receipt has reached us and your donation is confirmed ({donation}, {amount}). Thank you."
-msgstr "Su recibo nos ha llegado y su donación está confirmada ({donation},{amount}). Gracias."
+msgstr "Su recibo nos ha llegado y su donación está confirmada ({donation}, {amount}). Gracias."
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -1151,7 +1151,7 @@ msgid "The donation could not be saved."
 msgstr "La donación no se pudo salvar."
 
 msgid "Donation record created: %1$s · %2$s"
-msgstr "Registro de donación creado:%1$s·%2$s"
+msgstr "Registro de donación creado: %1$s · %2$s"
 
 msgid "You are not allowed to do this."
 msgstr "No tienes permitido hacer esto."
@@ -1169,7 +1169,7 @@ msgid "You are not allowed to create certificates."
 msgstr "No está permitido crear certificados."
 
 msgid "Certificate created: %s"
-msgstr "Certificado creado:%s"
+msgstr "Certificado creado: %s"
 
 msgid "Certificate not found."
 msgstr "Certificado no encontrado."
@@ -1181,7 +1181,7 @@ msgid "This receipt was"
 msgstr "Este recibo fue"
 
 msgid "Receipt matched: %s"
-msgstr "Recibo coincidente:%s"
+msgstr "Recibo coincidente: %s"
 
 msgid "You are not allowed to view this file."
 msgstr "No tiene permiso para ver este archivo."
@@ -1247,13 +1247,13 @@ msgid "No connection"
 msgstr "Sin conexión"
 
 msgid "{n} lines connected"
-msgstr "Líneas{n}conectadas"
+msgstr "Líneas {n} conectadas"
 
 msgid "WhatsApp connected"
 msgstr "WhatsApp conectado"
 
 msgid "{n}/{m} lines connected"
-msgstr "Líneas{n}/{m}conectadas"
+msgstr "Líneas {n}/{m} conectadas"
 
 msgid "WhatsApp not connected"
 msgstr "WhatsApp no conectado"
@@ -1295,7 +1295,7 @@ msgid "No chats yet."
 msgstr "Aún no hay chats."
 
 msgid "Start a chat with {p}"
-msgstr "Iniciar un chat con{p}"
+msgstr "Iniciar un chat con {p}"
 
 msgid "recording audio…"
 msgstr "grabando audio..."
@@ -1307,7 +1307,7 @@ msgid "Assistant is typing…"
 msgstr "El asistente está escribiendo..."
 
 msgid "Assigned: {n}"
-msgstr "Asignado:{n}"
+msgstr "Asignado: {n}"
 
 msgid "Chat menu"
 msgstr "Menú de chat"
@@ -1466,16 +1466,16 @@ msgid "Delete history permanently"
 msgstr "Eliminar el historial permanentemente"
 
 msgid "{n} messages deleted"
-msgstr "Mensajes{n}eliminados"
+msgstr "Mensajes {n} eliminados"
 
 msgid "All messages and files in the {c} chat are permanently deleted from this panel. Messages on the contact's phone and on the connected WhatsApp phone are not deleted. This cannot be undone."
-msgstr "Todos los mensajes y archivos del chat{c}se eliminan permanentemente de este panel. Los mensajes en el teléfono del contacto y en el teléfono de WhatsApp conectado no se eliminan. Esto no se puede deshacer."
+msgstr "Todos los mensajes y archivos del chat {c} se eliminan permanentemente de este panel. Los mensajes en el teléfono del contacto y en el teléfono de WhatsApp conectado no se eliminan. Esto no se puede deshacer."
 
 msgid "The copy on the Evolution server will not be imported again; the assistant starts fresh in this chat. You may want to export the chat first."
 msgstr "La copia en el servidor Evolution no se volverá a importar; el asistente comienza de nuevo en este chat. Es posible que desees exportar el chat primero."
 
 msgid "Type {w} to confirm"
-msgstr "Escriba{w}para confirmar"
+msgstr "Escriba {w} para confirmar"
 
 msgid "assistant"
 msgstr "asistente"
@@ -1496,13 +1496,13 @@ msgid "Attach"
 msgstr "Adjuntar"
 
 msgid "{n} items · about {t} tokens · the assistant reads them on every reply"
-msgstr "Elementos{n}· sobre tokens{t}· el asistente los lee en cada respuesta"
+msgstr "Elementos {n}· sobre tokens {t}· el asistente los lee en cada respuesta"
 
 msgid "Contact memory is turned off in settings; items are not sent to the assistant."
 msgstr "La memoria de contactos está desactivada en la configuración; Los artículos no se envían al asistente."
 
 msgid "Last summary: {s}"
-msgstr "Último resumen:{s}"
+msgstr "Último resumen: {s}"
 
 msgid "queued"
 msgstr "en cola"
@@ -1535,10 +1535,10 @@ msgid "Delete all"
 msgstr "eliminar todo"
 
 msgid "Delete all memory items for {c}?"
-msgstr "¿Eliminar todos los elementos de la memoria para{c}?"
+msgstr "¿Eliminar todos los elementos de la memoria para {c}?"
 
 msgid "If the contact asks, the assistant deletes the items itself. When the chat has been quiet for {h} hours, the conversation is summarized and important details are written here with date and time."
-msgstr "Si el contacto lo solicita, el asistente elimina los elementos. Cuando el chat ha estado en silencio durante{h}horas, la conversación se resume y los detalles importantes se escriben aquí con fecha y hora."
+msgstr "Si el contacto lo solicita, el asistente elimina los elementos. Cuando el chat ha estado en silencio durante {h} horas, la conversación se resume y los detalles importantes se escriben aquí con fecha y hora."
 
 msgid "Loading…"
 msgstr "Cargando…"
@@ -1553,7 +1553,7 @@ msgid "Added to blocklist"
 msgstr "Agregado a la lista de bloqueo"
 
 msgid "From now on no WhatsApp, email or SMS will be sent to {c}, and the assistant will not talk to them. Their messages still arrive in the panel."
-msgstr "A partir de ahora no se enviará ningún WhatsApp, correo electrónico o SMS a{c}, y el asistente no hablará con ellos. Sus mensajes todavía llegan al panel."
+msgstr "A partir de ahora no se enviará ningún WhatsApp, correo electrónico o SMS a {c}, y el asistente no hablará con ellos. Sus mensajes todavía llegan al panel."
 
 msgid "Removed from blocklist"
 msgstr "Eliminado de la lista de bloqueo"
@@ -1571,7 +1571,7 @@ msgid "Remove"
 msgstr "Quitar"
 
 msgid "{n} contacts in total"
-msgstr "{n}contactos en total"
+msgstr "{n} contactos en total"
 
 msgid "Added manually"
 msgstr "Agregado manualmente"
@@ -1589,7 +1589,7 @@ msgid "Finished"
 msgstr "Terminado"
 
 msgid "{n} reminders"
-msgstr "Recordatorios{n}"
+msgstr "Recordatorios {n}"
 
 msgid "Reminders are turned off in the settings; due ones are not sent."
 msgstr "Los recordatorios están desactivados en la configuración; los vencidos no se envían."
@@ -1598,10 +1598,10 @@ msgid "No reminders. They show up here when a person asks the assistant somethin
 msgstr "Sin recordatorios. Aparecen aquí cuando una persona le pregunta al asistente algo como \"recuérdamelo todos los meses\"."
 
 msgid "Next: {d}"
-msgstr "Siguiente:{d}"
+msgstr "Siguiente: {d}"
 
 msgid "sent {n} times"
-msgstr "enviado{n}veces"
+msgstr "enviado {n} veces"
 
 msgid "Go to chat"
 msgstr "ir a chatear"
@@ -1637,7 +1637,7 @@ msgid "Output tokens"
 msgstr "Fichas de salida"
 
 msgid "{n} requests"
-msgstr "Solicitudes{n}"
+msgstr "Solicitudes {n}"
 
 msgid "Daily reply limit per chat"
 msgstr "Límite diario de respuestas por chat"
@@ -1685,7 +1685,7 @@ msgid "Remove assignment"
 msgstr "Eliminar tarea"
 
 msgid "Older messages could not be fetched from the WhatsApp line: {e}"
-msgstr "No se pudieron recuperar mensajes más antiguos de la línea de WhatsApp:{e}"
+msgstr "No se pudieron recuperar mensajes más antiguos de la línea de WhatsApp: {e}"
 
 msgid "Messages in this chat are visible only to authorized agents. Customers never see internal notes."
 msgstr "Los mensajes en este chat son visibles solo para los agentes autorizados. Los clientes nunca ven notas internas."
@@ -1862,7 +1862,7 @@ msgid "Caption"
 msgstr "Subtítulo"
 
 msgid "Send {n} files"
-msgstr "Enviar archivos{n}"
+msgstr "Enviar archivos {n}"
 
 msgid "This browser does not support audio recording."
 msgstr "Este navegador no admite la grabación de audio."
@@ -1898,7 +1898,7 @@ msgid "Search quick replies"
 msgstr "Buscar respuestas rápidas"
 
 msgid "Used {n} times"
-msgstr "Horarios{n}usados"
+msgstr "Horarios {n} usados"
 
 msgid "No quick replies found."
 msgstr "No se encontraron respuestas rápidas."
@@ -1955,16 +1955,16 @@ msgid "Invalid number"
 msgstr "Número no válido"
 
 msgid "{p} uses WhatsApp"
-msgstr "{p}usa WhatsApp"
+msgstr "{p} usa WhatsApp"
 
 msgid "{p} is not on WhatsApp"
-msgstr "{p}no está en WhatsApp"
+msgstr "{p} no está en WhatsApp"
 
 msgid "{p} — WhatsApp could not be checked, you can still try."
 msgstr "{p}— No se pudo verificar WhatsApp, aún puedes intentarlo."
 
 msgid "A chat with this contact already exists: {n}"
-msgstr "Ya existe un chat con este contacto:{n}"
+msgstr "Ya existe un chat con este contacto: {n}"
 
 msgid "Phone number"
 msgstr "Número de teléfono"
@@ -1997,7 +1997,7 @@ msgid "Insert into message"
 msgstr "Insertar en mensaje"
 
 msgid "WhatsApp name: {n}"
-msgstr "Nombre de WhatsApp:{n}"
+msgstr "Nombre de WhatsApp: {n}"
 
 msgid "Copy number"
 msgstr "Número de copia"
@@ -2018,7 +2018,7 @@ msgid "Pin chat"
 msgstr "Fijar chat"
 
 msgid "First contact: {d}"
-msgstr "Primer contacto:{d}"
+msgstr "Primer contacto: {d}"
 
 msgid "AI pre-check. The team makes the final check."
 msgstr "Comprobación previa de la IA. El equipo hace el control final."
@@ -2072,13 +2072,13 @@ msgid "Quantity"
 msgstr "Cantidad"
 
 msgid "Total: {a}"
-msgstr "Total:{a}"
+msgstr "Total: {a}"
 
 msgid "This option has no price."
 msgstr "Esta opción no tiene precio."
 
 msgid "Donation saved: {d}"
-msgstr "Donación guardada:{d}"
+msgstr "Donación guardada: {d}"
 
 msgid "Donation record from receipt"
 msgstr "Registro de donación desde el recibo"
@@ -2102,7 +2102,7 @@ msgid "Full name"
 msgstr "nombre completo"
 
 msgid "Variables such as {donation}, {amount} and {bank} are filled in when sending."
-msgstr "Variables como{donation},{amount}y{bank}se completan al enviar."
+msgstr "Variables como {donation}, {amount} y {bank} se completan al enviar."
 
 msgid "No active certificate template."
 msgstr "No hay plantilla de certificado activa."
@@ -2120,7 +2120,7 @@ msgid "Full name is required."
 msgstr "Se requiere nombre completo."
 
 msgid "Certificate created: {n}"
-msgstr "Certificado creado:{n}"
+msgstr "Certificado creado: {n}"
 
 msgid "Template"
 msgstr "Plantilla"
@@ -2147,7 +2147,7 @@ msgid "Match"
 msgstr "partido"
 
 msgid "{n} receipts"
-msgstr "recibos{n}"
+msgstr "recibos {n}"
 
 msgid "Pending donations"
 msgstr "Donaciones pendientes"
@@ -2186,7 +2186,7 @@ msgid "No records yet."
 msgstr "Aún no hay registros."
 
 msgid "{n} pcs"
-msgstr "{n}piezas"
+msgstr "{n} piezas"
 
 msgid "Receipt"
 msgstr "Recibo"
@@ -2258,7 +2258,7 @@ msgid "The AI summary could not be read."
 msgstr "No se pudo leer el resumen de AI."
 
 msgid "%1$d incoming messages summarized, %2$d items written."
-msgstr "%1$dmensajes entrantes resumidos,%2$delementos escritos."
+msgstr "%1$d mensajes entrantes resumidos, %2$d elementos escritos."
 
 msgid "Key and value are required."
 msgstr "Se requieren clave y valor."
@@ -2297,13 +2297,13 @@ msgid "Choose a model"
 msgstr "Elige un modelo"
 
 msgid "Search {n} models…"
-msgstr "Buscar modelos{n}..."
+msgstr "Buscar modelos {n}..."
 
 msgid "Default"
 msgstr "Predeterminado"
 
 msgid "{n} context"
-msgstr "Contexto{n}"
+msgstr "Contexto {n}"
 
 msgid "tools"
 msgstr "herramientas"
@@ -2312,10 +2312,10 @@ msgid "vision"
 msgstr "visión"
 
 msgid "{n} more models; narrow your search."
-msgstr "{n}más modelos; limita tu búsqueda."
+msgstr "{n} más modelos; limita tu búsqueda."
 
 msgid "Use: {id}"
-msgstr "Uso:{id}"
+msgstr "Uso: {id}"
 
 msgid "Not in the list, ID entered manually"
 msgstr "No está en la lista, ID ingresado manualmente"
@@ -2354,7 +2354,7 @@ msgid "The model could not read the file."
 msgstr "El modelo no pudo leer el archivo."
 
 msgid "Amount %1$s (expected %2$s)"
-msgstr "Importe%1$s(%2$sesperado)"
+msgstr "Importe %1$s(%2$s esperado)"
 
 msgid "Recipient"
 msgstr "Destinatario"
@@ -2426,28 +2426,28 @@ msgid "Once"
 msgstr "una vez"
 
 msgid "Every day at %s"
-msgstr "Todos los días en%s"
+msgstr "Todos los días en %s"
 
 msgid "Every week on %1$s at %2$s"
-msgstr "Cada semana en%1$sen%2$s"
+msgstr "Cada semana en %1$s en %2$s"
 
 msgid "Every month on day %1$d at %2$s"
-msgstr "Cada mes el día%1$da%2$s"
+msgstr "Cada mes el día %1$d a %2$s"
 
 msgid "Every year on %1$s at %2$s"
-msgstr "Cada año en%1$sen%2$s"
+msgstr "Cada año en %1$s en %2$s"
 
 msgid "%1$s: %2$s"
-msgstr "%1$s:%2$s"
+msgstr "%1$s: %2$s"
 
 msgid "First: %s"
-msgstr "Primero:%s"
+msgstr "Primero: %s"
 
 msgid "The person stopped the reminder: %s"
-msgstr "La persona detuvo el recordatorio:%s"
+msgstr "La persona detuvo el recordatorio: %s"
 
 msgid "The assistant set a reminder: %1$s (%2$s)"
-msgstr "El asistente estableció un recordatorio:%1$s(%2$s)"
+msgstr "El asistente estableció un recordatorio: %1$s(%2$s)"
 
 msgid "Did not run on time, skipped."
 msgstr "No llegó a tiempo, se saltó."
@@ -2465,7 +2465,7 @@ msgid "The message could not be sent."
 msgstr "No se pudo enviar el mensaje."
 
 msgid "Reminder sent: %s"
-msgstr "Recordatorio enviado:%s"
+msgstr "Recordatorio enviado: %s"
 
 msgid "The reminder could not be updated."
 msgstr "El recordatorio no se pudo actualizar."
@@ -2492,19 +2492,19 @@ msgid "Donation report"
 msgstr "Informe de donación"
 
 msgid "Hello %s,"
-msgstr "Hola%s,"
+msgstr "Hola %s,"
 
 msgid "✅ Paid: %1$d donations · %2$s (%3$d units)"
-msgstr "✅ Pagado: donaciones%1$d·%2$s(unidades%3$d)"
+msgstr "✅ Pagado: donaciones %1$d · %2$s(unidades %3$d)"
 
 msgid "⏳ Awaiting payment: %1$d · %2$s"
-msgstr "⏳ En espera de pago:%1$d·%2$s"
+msgstr "⏳ En espera de pago: %1$d · %2$s"
 
 msgid "❌ Cancelled: %d"
-msgstr "❌ Cancelado:%d"
+msgstr "❌ Cancelado: %d"
 
 msgid "• %1$s: %2$d paid (%3$s), %4$d pending"
-msgstr "•%1$s:%2$dpagado (%3$s),%4$dpendiente"
+msgstr "•%1$s: %2$d pagado (%3$s), %4$d pendiente"
 
 msgid "Staff"
 msgstr "Personal"
@@ -2513,7 +2513,7 @@ msgid "No donations linked to you in this period."
 msgstr "No hay donaciones vinculadas a usted en este período."
 
 msgid "📅 This month: %1$d donations · %2$s"
-msgstr "📅 Este mes: donaciones%1$d·%2$s"
+msgstr "📅 Este mes: donaciones %1$d · %2$s"
 
 msgid "WhatsApp reports"
 msgstr "informes whatsapp"
@@ -2534,7 +2534,7 @@ msgid "Saved."
 msgstr "Guardado."
 
 msgid "%d messages sent."
-msgstr "Mensajes%denviados."
+msgstr "Mensajes %d enviados."
 
 msgid "Reports need Flux Roles 1.1.0 and Flux Donations."
 msgstr "Los informes necesitan Flux Roles 1.1.0 y Flux Donations."
@@ -2585,10 +2585,10 @@ msgid "Motivational lines (one per line; one is added at random to each report)"
 msgstr "Líneas de motivación (una por línea; una se agrega al azar a cada informe)"
 
 msgid "%d recipients (with a registered number and permission)."
-msgstr "Destinatarios%d(con número registrado y permiso)."
+msgstr "Destinatarios %d(con número registrado y permiso)."
 
 msgid "Last sent: %s."
-msgstr "Último enviado:%s."
+msgstr "Último enviado: %s."
 
 msgid "Preview (for you)"
 msgstr "Vista previa (para ti)"
@@ -2618,19 +2618,19 @@ msgid "First add a WhatsApp connection under Settings › Connections."
 msgstr "Primero agregue una conexión de WhatsApp en Configuración>Conexiones."
 
 msgid "%1$s assigned the chat to %2$s"
-msgstr "%1$sasignó el chat a%2$s"
+msgstr "%1$s asignó el chat a %2$s"
 
 msgid "%s removed the chat assignment"
-msgstr "%seliminó la asignación de chat"
+msgstr "%s eliminó la asignación de chat"
 
 msgid "%s closed the chat"
-msgstr "%scerró el chat"
+msgstr "%s cerró el chat"
 
 msgid "%s reopened the chat"
-msgstr "%sreabrió el chat"
+msgstr "%s reabrió el chat"
 
 msgid "File is too large (max %s)."
-msgstr "El archivo es demasiado grande (max%s)."
+msgstr "El archivo es demasiado grande (max %s)."
 
 msgid "This file type cannot be sent."
 msgstr "Este tipo de archivo no se puede enviar."
@@ -2663,7 +2663,7 @@ msgid "Message could not be saved."
 msgstr "No se pudo guardar el mensaje."
 
 msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API (version %s) could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
-msgstr "Este contacto escribe desde un número oculto de WhatsApp (@lid) y Evolution API (versión%s) no pudo enviar a esta dirección. Actualice el servidor API de Evolution a 2.3 o posterior; si llega el número real del contacto, el complemento lo envía allí."
+msgstr "Este contacto escribe desde un número oculto de WhatsApp (@lid) y Evolution API (versión %s) no pudo enviar a esta dirección. Actualice el servidor API de Evolution a 2.3 o posterior; si llega el número real del contacto, el complemento lo envía allí."
 
 msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
 msgstr "Este contacto escribe desde un número oculto de WhatsApp (@lid) y Evolution API no pudo enviar a esta dirección. Actualice el servidor API de Evolution a 2.3 o posterior; si llega el número real del contacto, el complemento lo envía allí."
@@ -2675,13 +2675,13 @@ msgid "Connected ✓"
 msgstr "Conectado ✓"
 
 msgid "Not connected (state: %s). Connect with QR."
-msgstr "No conectado (estado:%s). Conéctate con QR."
+msgstr "No conectado (estado: %s). Conéctate con QR."
 
 msgid "Webhook points to this site ✓"
 msgstr "Webhook apunta a este sitio ✓"
 
 msgid "Evolution API version: %s"
-msgstr "Versión de la API de evolución:%s"
+msgstr "Versión de la API de evolución: %s"
 
 msgid "(old: replies to hidden-number (@lid) contacts may fail, update to 2.3 or later)"
 msgstr "(antiguo: las respuestas a contactos con números ocultos (@lid) pueden fallar; actualice a 2.3 o posterior)"
@@ -2696,13 +2696,13 @@ msgid "Importing recent chats, this may take a while…"
 msgstr "Importando chats recientes, esto puede tardar un poco..."
 
 msgid "Messages stored in Evolution: %s"
-msgstr "Mensajes almacenados en Evolution:%s"
+msgstr "Mensajes almacenados en Evolution: %s"
 
 msgid "Evolution does not store messages, so older messages cannot be loaded. On the Evolution server set DATABASE_SAVE_DATA_NEW_MESSAGE and DATABASE_SAVE_DATA_HISTORIC to true; for older conversations, keep \"Sync full history\" on in the instance settings when you reconnect the line with QR."
 msgstr "Evolution no almacena mensajes, por lo que no se pueden cargar mensajes más antiguos. En el servidor Evolution, configure DATABASE_SAVE_DATA_NEW_MESSAGE y DATABASE_SAVE_DATA_HISTORIC en verdadero; para conversaciones más antiguas, mantenga activado \"Sincronizar historial completo\" en la configuración de la instancia cuando vuelva a conectar la línea con QR."
 
 msgid "%1$s chats, %2$s messages imported ✓"
-msgstr "Chats%1$s, mensajes%2$simportados ✓"
+msgstr "Chats %1$s, mensajes %2$s importados ✓"
 
 msgid "Scan this code via WhatsApp › Linked devices › Link a device."
 msgstr "Escanea este código vía WhatsApp › Dispositivos vinculados › Vincula un dispositivo."
@@ -2726,7 +2726,7 @@ msgid "Asking the AI…"
 msgstr "Preguntando a la IA..."
 
 msgid "Working ✓ (%2$s ms): %1$s"
-msgstr "Trabajando ✓ (%2$sms):%1$s"
+msgstr "Trabajando ✓ (%2$s ms): %1$s"
 
 msgid "Save the key and model first."
 msgstr "Guarde la clave y el modelo primero."
@@ -2801,13 +2801,13 @@ msgid "unreachable"
 msgstr "inalcanzable"
 
 msgid "Flux Mail connection: %s"
-msgstr "Conexión de correo Flux:%s"
+msgstr "Conexión de correo Flux: %s"
 
 msgid "Flux Mail connection #%d (not found or disabled)"
 msgstr "Conexión de Flux Mail #%d(no encontrada o deshabilitada)"
 
 msgid "Use Flux Certificates provider: %s"
-msgstr "Utilice el proveedor de certificados Flux:%s"
+msgstr "Utilice el proveedor de certificados Flux: %s"
 
 msgid "Enter separate Evolution API details"
 msgstr "Ingrese detalles separados de la API de Evolution"
@@ -2837,7 +2837,7 @@ msgid "Regenerate secret key"
 msgstr "Regenerar clave secreta"
 
 msgid "Last webhook: %s"
-msgstr "Último webhook:%s"
+msgstr "Último webhook: %s"
 
 msgid "No webhook received yet."
 msgstr "Aún no se ha recibido ningún webhook."
@@ -2867,7 +2867,7 @@ msgid "Panel title"
 msgstr "Título del panel"
 
 msgid "Site name if empty. The {brand} variable uses this too."
-msgstr "Nombre del sitio si está vacío. La variable{brand}también usa esto."
+msgstr "Nombre del sitio si está vacío. La variable {brand} también usa esto."
 
 msgid "Accent color"
 msgstr "Color de acento"
@@ -2897,7 +2897,7 @@ msgid "Agents"
 msgstr "Agentes"
 
 msgid "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access."
-msgstr "Asigne a un usuario el rol%s; solo ven la pantalla de chat y no pueden abrir la configuración. Los administradores siempre tienen acceso."
+msgstr "Asigne a un usuario el rol %s; solo ven la pantalla de chat y no pueden abrir la configuración. Los administradores siempre tienen acceso."
 
 msgid "Add new user"
 msgstr "Agregar nuevo usuario"
@@ -2957,7 +2957,7 @@ msgid "At most once per contact every (hours)"
 msgstr "Como máximo una vez por contacto cada (horas)"
 
 msgid "Timezone: %1$s. Now: %2$s."
-msgstr "Zona horaria:%1$s. Ahora:%2$s."
+msgstr "Zona horaria: %1$s. Ahora: %2$s."
 
 msgid "within business hours"
 msgstr "dentro del horario comercial"
@@ -2966,7 +2966,7 @@ msgid "outside business hours"
 msgstr "fuera del horario comercial"
 
 msgid "The {first_name}, {name}, {brand}, {site}, {date} variables can be used in the texts."
-msgstr "En los textos se pueden utilizar las variables{first_name},{name},{brand},{site},{date}."
+msgstr "En los textos se pueden utilizar las variables {first_name}, {name}, {brand}, {site}, {date}."
 
 msgid "Chat labels"
 msgstr "Etiquetas de chat"
@@ -3020,7 +3020,7 @@ msgid "If empty, the account in WooCommerce › Payments › Bank transfer is us
 msgstr "Si está vacía, se utiliza la cuenta en WooCommerce › Pagos › Transferencia bancaria."
 
 msgid "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
-msgstr "Variables:{first_name},{name},{donation},{amount},{quantity},{bank},{certificate_link},{agent},{brand},{date}."
+msgstr "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
 
 msgid "AI connection"
 msgstr "Conexión de IA"
@@ -3059,7 +3059,7 @@ msgid "If the selected model cannot read images, a cheap vision model is used au
 msgstr "Si el modelo seleccionado no puede leer imágenes, se utiliza automáticamente un modelo de visión económico."
 
 msgid "This month (%1$s): %2$s requests, %3$s tokens, about $%4$s."
-msgstr "Este mes (%1$s): solicitudes%2$s, tokens%3$s, alrededor de $%4$s."
+msgstr "Este mes (%1$s): solicitudes %2$s, tokens %3$s, alrededor de $%4$s."
 
 msgid "Reply suggestions"
 msgstr "Sugerencias de respuesta"
@@ -3158,7 +3158,7 @@ msgid "Transfer description"
 msgstr "Descripción de la transferencia"
 
 msgid "Variables: {type}, {name}, {amount}, {quantity}"
-msgstr "Variables:{type},{name},{amount},{quantity}"
+msgstr "Variables: {type}, {name}, {amount}, {quantity}"
 
 msgid "Donation page URL"
 msgstr "URL de la página de donación"
@@ -3173,7 +3173,7 @@ msgid "Donation cancellation question"
 msgstr "Pregunta de cancelación de donación."
 
 msgid "The assistant cancels only unpaid donations, with the person's confirmation. Empty = default text. Variables: {bagis}, {tutar}."
-msgstr "El asistente cancela únicamente donaciones no pagadas, con la confirmación de la persona. Vacío = texto predeterminado. Variables:{bagis},{tutar}."
+msgstr "El asistente cancela únicamente donaciones no pagadas, con la confirmación de la persona. Vacío = texto predeterminado. Variables: {bagis}, {tutar}."
 
 msgid "Message sent when the daily limit is reached"
 msgstr "Mensaje enviado cuando se alcanza el límite diario"
@@ -3293,7 +3293,7 @@ msgid "Message sent before the certificate"
 msgstr "Mensaje enviado antes del certificado."
 
 msgid "Then the WhatsApp certificate message from Flux Certificates is sent. Variables: {ad}, {bagisci}, {bagis}, {brand}."
-msgstr "Luego se envía el mensaje de certificado de WhatsApp de Flux Certificates. Variables:{ad},{bagisci},{bagis},{brand}."
+msgstr "Luego se envía el mensaje de certificado de WhatsApp de Flux Certificates. Variables: {ad}, {bagisci}, {bagis}, {brand}."
 
 msgid "If a person asks, the assistant sets up a reminder (e.g. \"remind me of sapling planting every month\", \"send me your latest projects every month\", \"ask me for a sapling every month\"); when it is due, the assistant writes and sends the message"
 msgstr "Si una persona pregunta, el asistente configura un recordatorio (por ejemplo, \"recuérdame cómo plantar un árbol cada mes\", \"envíame tus últimos proyectos cada mes\", \"pídeme un árbol cada mes\"); cuando llega el momento, el asistente escribe y envía el mensaje"
@@ -3320,10 +3320,10 @@ msgid "First message to the donor for a donation opened by staff"
 msgstr "Primer mensaje al donante para una donación abierta por el personal"
 
 msgid "Hello {ad} 🌱 Your {bagis} donation request via {personel} has been received. You can pay with the details below."
-msgstr "Hola{ad}🌱 Se recibió tu solicitud de donación{bagis}a través de{personel}. Puedes pagar con los detalles a continuación."
+msgstr "Hola {ad}🌱 Se recibió tu solicitud de donación {bagis} a través de {personel}. Puedes pagar con los detalles a continuación."
 
 msgid "The payment link and bank details follow. Variables: {ad}, {adsoyad}, {personel}, {bagis}."
-msgstr "A continuación se muestran el enlace de pago y los datos bancarios. Variables:{ad},{adsoyad},{personel},{bagis}."
+msgstr "A continuación se muestran el enlace de pago y los datos bancarios. Variables: {ad}, {adsoyad}, {personel}, {bagis}."
 
 msgid "When a donation referred by a staff member is paid and its certificates are made, send them to the staff member on WhatsApp too (just like the donor)"
 msgstr "Cuando se paga una donación referida por un miembro del personal y se emiten sus certificados, envíalos también al miembro del personal por WhatsApp (al igual que el donante)"
@@ -3332,7 +3332,7 @@ msgid "Message sent to the staff member before the certificate"
 msgstr "Mensaje enviado al miembro del personal antes del certificado."
 
 msgid "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
-msgstr "Variables:{ad},{bagisci},{bagis},{no},{brand}."
+msgstr "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
 
 msgid "How many times staff can resend a donation's certificate"
 msgstr "¿Cuántas veces el personal puede reenviar el certificado de donación?"
@@ -3377,7 +3377,7 @@ msgid "WhatsApp/SMS code message"
 msgstr "Mensaje de código WhatsApp/SMS"
 
 msgid "Default text if empty. Variables: {kod}, {dk}, {marka}. The e-mail text is edited in Flux Mail › E-mail templates."
-msgstr "Texto predeterminado si está vacío. Variables:{kod},{dk},{marka}. El texto del correo electrónico se edita en Flux Mail › Plantillas de correo electrónico."
+msgstr "Texto predeterminado si está vacío. Variables: {kod}, {dk}, {marka}. El texto del correo electrónico se edita en Flux Mail › Plantillas de correo electrónico."
 
 msgid "Site content"
 msgstr "Contenido del sitio"
@@ -3440,22 +3440,22 @@ msgid "Do not let the assistant share this content"
 msgstr "No dejes que el asistente comparta este contenido."
 
 msgid "Corrected by staff member %1$s; #%2$d was opened instead."
-msgstr "Corregido por el miembro del personal%1$s; En su lugar, se abrió #%2$d."
+msgstr "Corregido por el miembro del personal %1$s; En su lugar, se abrió #%2$d."
 
 msgid "Donation #%1$d was cancelled and #%2$d opened instead."
-msgstr "La donación #%1$dfue cancelada y en su lugar se abrió #%2$d."
+msgstr "La donación #%1$d fue cancelada y en su lugar se abrió #%2$d."
 
 msgid "Created by staff member %s via the WhatsApp assistant."
-msgstr "Creado por el miembro del personal%sa través del asistente de WhatsApp."
+msgstr "Creado por el miembro del personal %s a través del asistente de WhatsApp."
 
 msgid "Donation opened via staff member %1$s: %2$s (#%3$d)"
-msgstr "Donación abierta a través del miembro del personal%1$s:%2$s(#%3$d)"
+msgstr "Donación abierta a través del miembro del personal %1$s: %2$s(#%3$d)"
 
 msgid "Your certificate 🌱"
 msgstr "Tu certificado 🌱"
 
 msgid "Staff member %1$s resent the certificate on WhatsApp: %2$s"
-msgstr "El miembro del personal%1$sreenvía el certificado en WhatsApp:%2$s"
+msgstr "El miembro del personal %1$s reenvía el certificado en WhatsApp: %2$s"
 
 msgid "✅ Your donor paid: *%1$s* · %2$s #%3$d"
 msgstr "✅ Tu donante pagó: *%1$s* ·%2$s#%3$d"
@@ -3473,7 +3473,7 @@ msgid "Unsupported message"
 msgstr "Mensaje no admitido"
 
 msgid "{a} lines added, {d} lines removed"
-msgstr "Se agregaron líneas{a}, se eliminaron líneas{d}"
+msgstr "Se agregaron líneas {a}, se eliminaron líneas {d}"
 
 msgid "No AI key or model has been entered."
 msgstr "No se ha ingresado ninguna clave o modelo de IA."
@@ -3515,7 +3515,7 @@ msgid "Receipts read · ✓{a} ✕{b}"
 msgstr "Recibos leídos · ✓{a}✕{b}"
 
 msgid "Memory tokens · {p} contacts"
-msgstr "Tokens de memoria · Contactos{p}"
+msgstr "Tokens de memoria · Contactos {p}"
 
 msgid "Opted out (blocklist)"
 msgstr "Optar por no participar (lista de bloqueo)"
@@ -3524,13 +3524,13 @@ msgid "Reminders sent"
 msgstr "Recordatorios enviados"
 
 msgid "Codes sent · e-mail {e} · WhatsApp {w} · SMS {s}"
-msgstr "Códigos enviados · correo electrónico{e}· WhatsApp{w}· SMS{s}"
+msgstr "Códigos enviados · correo electrónico {e}· WhatsApp {w}· SMS {s}"
 
 msgid "Verified · phone {p} · e-mail {e}"
-msgstr "Verificado · teléfono{p}· correo electrónico{e}"
+msgstr "Verificado · teléfono {p}· correo electrónico {e}"
 
 msgid "Code issues · wrong {w} · expired {x} · not delivered {f}"
-msgstr "Problemas con el código ·{w}incorrecto ·{x}caducado ·{f}no entregado"
+msgstr "Problemas con el código ·{w} incorrecto ·{x} caducado ·{f} no entregado"
 
 msgid "Not verified, team notified"
 msgstr "No verificado, equipo notificado"
@@ -3545,19 +3545,19 @@ msgid "Payment links resent"
 msgstr "Enlaces de pago resentido"
 
 msgid "Tokens: {i} input / {o} output · {c} requests · {m} messages sent"
-msgstr "Tokens: entrada{i}/ salida{o}· Solicitudes{c}· Mensajes{m}enviados"
+msgstr "Tokens: entrada {i}/ salida {o}· Solicitudes {c}· Mensajes {m} enviados"
 
 msgid "{n} donations awaiting payment"
-msgstr "{n}donaciones pendientes de pago"
+msgstr "{n} donaciones pendientes de pago"
 
 msgid "{n} errors"
-msgstr "Errores{n}"
+msgstr "Errores {n}"
 
 msgid "{n} chats summarized"
-msgstr "Chats{n}resumidos"
+msgstr "Chats {n} resumidos"
 
 msgid "Counters since {d}"
-msgstr "Contadores desde{d}"
+msgstr "Contadores desde {d}"
 
 msgid "Refreshes every 30 s"
 msgstr "Se actualiza cada 30 s."
@@ -3599,16 +3599,16 @@ msgid "Load more"
 msgstr "Cargar más"
 
 msgid "Address: {h}"
-msgstr "Dirección:{h}"
+msgstr "Dirección: {h}"
 
 msgid "{n} assistant messages"
-msgstr "{n}mensajes del asistente"
+msgstr "{n} mensajes del asistente"
 
 msgid "Donation #{id}"
 msgstr "Donación #{id}"
 
 msgid "Version {id}"
-msgstr "Versión{id}"
+msgstr "Versión {id}"
 
 msgid "Change note (e.g. Added sacrifice question)"
 msgstr "Nota de cambio (por ejemplo, pregunta sobre sacrificio agregado)"
@@ -3617,7 +3617,7 @@ msgid "Assistant instructions"
 msgstr "Instrucciones del asistente"
 
 msgid "The main text describing how the assistant talks and the flow. Prices, donation types, bank details and what is known about the contact are added automatically on every reply. {brand} becomes the organisation name and {{belge:kisa-ad}} becomes that document's content."
-msgstr "El texto principal describe cómo habla el asistente y el flujo. Los precios, los tipos de donación, los datos bancarios y lo que se sabe sobre el contacto se añaden automáticamente en cada respuesta.{brand}se convierte en el nombre de la organización y {{belge:kisa-ad}} se convierte en el contenido de ese documento."
+msgstr "El texto principal describe cómo habla el asistente y el flujo. Los precios, los tipos de donación, los datos bancarios y lo que se sabe sobre el contacto se añaden automáticamente en cada respuesta.{brand} se convierte en el nombre de la organización y {{belge:kisa-ad}} se convierte en el contenido de ese documento."
 
 msgid "Publish now"
 msgstr "Publicar ahora"
@@ -3713,10 +3713,10 @@ msgid "out"
 msgstr "fuera"
 
 msgid "cache {r} read, {w} written"
-msgstr "caché{r}leído,{w}escrito"
+msgstr "caché {r} leído, {w} escrito"
 
 msgid "saved {c}"
-msgstr "guardado{c}"
+msgstr "guardado {c}"
 
 msgid "first write +{c}"
 msgstr "primero escribe +{c}"
@@ -3728,7 +3728,7 @@ msgid "Cache: from settings ({m})"
 msgstr "Caché: desde la configuración ({m})"
 
 msgid "Cache: {m}"
-msgstr "Caché:{m}"
+msgstr "Caché: {m}"
 
 msgid "Cache savings"
 msgstr "Ahorro de caché"
@@ -3857,7 +3857,7 @@ msgid "Verification code (not sent, shown only here)"
 msgstr "Código de verificación (no enviado, solo se muestra aquí)"
 
 msgid "until {h}"
-msgstr "hasta{h}"
+msgstr "hasta {h}"
 
 msgid "Test donations"
 msgstr "Donaciones de prueba"
@@ -3929,13 +3929,13 @@ msgid "Up to 5 files can be attached."
 msgstr "Se pueden adjuntar hasta 5 archivos."
 
 msgid "{f} is too large (max {n} MB)."
-msgstr "{f}es demasiado grande (máximo{n}MB)."
+msgstr "{f} es demasiado grande (máximo {n} MB)."
 
 msgid "receipt pre-check"
 msgstr "verificación previa del recibo"
 
 msgid "Turn {n} · {t}"
-msgstr "Girar{n}·{t}"
+msgstr "Girar {n} · {t}"
 
 msgid "File read"
 msgstr "Lectura de archivo"
@@ -3998,22 +3998,22 @@ msgid "Last update"
 msgstr "Última actualización"
 
 msgid "Contact memory: {c}"
-msgstr "Memoria de contactos:{c}"
+msgstr "Memoria de contactos: {c}"
 
 msgid "{n} items · about {t} tokens"
-msgstr "Artículos{n}· sobre tokens{t}"
+msgstr "Artículos {n}· sobre tokens {t}"
 
 msgid "To edit or delete, open the chat and use ⋮ › Contact memory."
 msgstr "Para editar o eliminar, abre el chat y usa ⋮ › Memoria de contactos."
 
 msgid "{n} chats queued"
-msgstr "{n}chats en cola"
+msgstr "{n} chats en cola"
 
 msgid "Contact memory is off; summary jobs do not run."
 msgstr "La memoria de contactos está apagada; Los trabajos de resumen no se ejecutan."
 
 msgid "Summaries paused for 30 minutes: {r}"
-msgstr "Resúmenes en pausa durante 30 minutos:{r}"
+msgstr "Resúmenes en pausa durante 30 minutos: {r}"
 
 msgid "Running workers"
 msgstr "trabajadores corriendo"
@@ -4040,7 +4040,7 @@ msgid "Scan now"
 msgstr "Escanear ahora"
 
 msgid "People who are writing are answered first; no summary starts while someone is being answered or waiting. Chats quiet for {h} hours are summarized only between {w}. At most {m} jobs run at once, {r} workers are reserved for replies (a benchmark counts as one). Refreshes every 5 s."
-msgstr "A las personas que escriben se les responde primero; ningún resumen comienza mientras alguien recibe respuesta o espera. Los chats en silencio durante las horas{h}se resumen solo entre{w}. En la mayoría de los trabajos{m}que se ejecutan a la vez, los trabajadores{r}están reservados para las respuestas (un punto de referencia cuenta como uno). Se actualiza cada 5 s."
+msgstr "A las personas que escriben se les responde primero; ningún resumen comienza mientras alguien recibe respuesta o espera. Los chats en silencio durante las horas {h} se resumen solo entre {w}. En la mayoría de los trabajos {m} que se ejecutan a la vez, los trabajadores {r} están reservados para las respuestas (un punto de referencia cuenta como uno). Se actualiza cada 5 s."
 
 msgid "No jobs yet."
 msgstr "Aún no hay trabajos."
@@ -4052,7 +4052,7 @@ msgid "manual"
 msgstr "manuales"
 
 msgid "attempt {n}"
-msgstr "intento{n}"
+msgstr "intento {n}"
 
 msgid "Job"
 msgstr "Trabajo"
@@ -4082,13 +4082,13 @@ msgid "All benchmarks"
 msgstr "Todos los puntos de referencia"
 
 msgid "Live · {n} running"
-msgstr "En vivo ·{n}ejecutándose"
+msgstr "En vivo ·{n} ejecutándose"
 
 msgid "Total spend"
 msgstr "Gasto total"
 
 msgid "{n} scenario results"
-msgstr "Resultados del escenario{n}"
+msgstr "Resultados del escenario {n}"
 
 msgid "No runs yet."
 msgstr "Aún no hay carreras."
@@ -4103,7 +4103,7 @@ msgid "Success is attributed to the assistant model. Runs before 1.6.3 did not s
 msgstr "El éxito se atribuye al modelo asistente. Las ejecuciones anteriores a 1.6.3 no separaban al asistente y al juez, por lo que se mostraban como \"Asistente + juez\"."
 
 msgid "Run {n} scenarios"
-msgstr "Ejecutar escenarios{n}"
+msgstr "Ejecutar escenarios {n}"
 
 msgid "Loading model prices for the cost estimate…"
 msgstr "Cargando precios de modelos para la estimación de costes..."
@@ -4115,13 +4115,13 @@ msgid "Estimated cost: ~{c}"
 msgstr "Costo estimado: ~{c}"
 
 msgid "assistant {a} + judge {j}"
-msgstr "asistente{a}+ juez{j}"
+msgstr "asistente {a}+ juez {j}"
 
 msgid "Based on average token usage of {n} past scenario results; actual cost per scenario may vary."
-msgstr "Basado en el uso promedio de tokens de los resultados de escenarios anteriores{n}; El costo real por escenario puede variar."
+msgstr "Basado en el uso promedio de tokens de los resultados de escenarios anteriores {n}; El costo real por escenario puede variar."
 
 msgid "No runs yet; default estimate: ~{i} input / {o} output tokens per donor message."
-msgstr "Aún no hay carreras; Estimación predeterminada: ~ tokens de entrada{i}/ salida{o}por mensaje de donante."
+msgstr "Aún no hay carreras; Estimación predeterminada: ~ tokens de entrada {i}/ salida {o} por mensaje de donante."
 
 msgid "The estimate exceeds the cost limit; the run stops when the limit is reached."
 msgstr "La estimación excede el límite de costo; la ejecución se detiene cuando se alcanza el límite."
@@ -4157,10 +4157,10 @@ msgid "Download report (.md)"
 msgstr "Descargar informe (.md)"
 
 msgid "of {n} scenarios"
-msgstr "de escenarios{n}"
+msgstr "de escenarios {n}"
 
 msgid "{r} read, {w} written"
-msgstr "{r}leído,{w}escrito"
+msgstr "{r} leído, {w} escrito"
 
 msgid "The AI service rejected requests; the benchmark stopped."
 msgstr "El servicio de IA rechazó las solicitudes; el punto de referencia se detuvo."
@@ -4226,7 +4226,7 @@ msgid "Restore built-in scenarios"
 msgstr "Restaurar escenarios integrados"
 
 msgid "In messages {tur} = \"{a}\", {birim} = \"{b}\", {brand} = \"{c}\"."
-msgstr "En mensajes{tur}= \"{a}\",{birim}= \"{b}\",{brand}= \"{c}\"."
+msgstr "En mensajes {tur}= \"{a}\", {birim}= \"{b}\", {brand}= \"{c}\"."
 
 msgid "Must contain"
 msgstr "debe contener"
@@ -4259,10 +4259,10 @@ msgid "Staff writes"
 msgstr "El personal escribe"
 
 msgid "Start: {n}"
-msgstr "Inicio:{n}"
+msgstr "Inicio: {n}"
 
 msgid "{n} messages"
-msgstr "Mensajes{n}"
+msgstr "Mensajes {n}"
 
 msgid "Edit with AI"
 msgstr "Editar con IA"
@@ -4295,7 +4295,7 @@ msgid "Messages (in order)"
 msgstr "Mensajes (en orden)"
 
 msgid "{tur}, {birim} and {brand} can be used. If there are only customer messages, the assistant replies to each in turn. If you add assistant messages it becomes a continuation scenario: the written history is given as-is and the assistant replies only to the last customer message."
-msgstr "Se pueden utilizar{tur},{birim}y{brand}. Si solo hay mensajes de clientes, el asistente responde a cada uno por turno. Si agrega mensajes del asistente, se convierte en un escenario de continuación: el historial escrito se proporciona tal cual y el asistente responde solo al último mensaje del cliente."
+msgstr "Se pueden utilizar {tur}, {birim} y {brand}. Si solo hay mensajes de clientes, el asistente responde a cada uno por turno. Si agrega mensajes del asistente, se convierte en un escenario de continuación: el historial escrito se proporciona tal cual y el asistente responde solo al último mensaje del cliente."
 
 msgid "E.g. payment_info, cancel_donation, receipt_check. Tools disabled on this site are not checked."
 msgstr "Por ej. información_pago, cancelar_donación, recibo_cheque. Las herramientas deshabilitadas en este sitio no están marcadas."
@@ -4307,7 +4307,7 @@ msgid "Starting state (test)"
 msgstr "Estado inicial (prueba)"
 
 msgid "The scenario runs isolated like the test chat; what you select here exists only in this test. In a customer message, {kod} becomes the verification code from the test panel."
-msgstr "El escenario se ejecuta aislado como el chat de prueba; Lo que seleccione aquí existe sólo en esta prueba. En un mensaje de cliente,{kod}se convierte en el código de verificación del panel de prueba."
+msgstr "El escenario se ejecuta aislado como el chat de prueba; Lo que seleccione aquí existe sólo en esta prueba. En un mensaje de cliente, {kod} se convierte en el código de verificación del panel de prueba."
 
 msgid "End state"
 msgstr "Estado final"
@@ -4412,7 +4412,7 @@ msgid "Interrupted"
 msgstr "interrumpido"
 
 msgid "%s ago"
-msgstr "Hace%s"
+msgstr "Hace %s"
 
 msgid "Open settings"
 msgstr "Abrir configuración"
@@ -4430,10 +4430,10 @@ msgid "Database tables"
 msgstr "tablas de base de datos"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Falta tabla:%s. Desactiva y reactiva el complemento."
+msgstr "Falta tabla: %s. Desactiva y reactiva el complemento."
 
 msgid "Tables ready (schema %s)."
-msgstr "Tablas listas (esquema%s)."
+msgstr "Tablas listas (esquema %s)."
 
 msgid "Schema update pending; it completes when you open a page in the admin panel."
 msgstr "Actualización del esquema pendiente; se completa cuando abres una página en el panel de administración."
@@ -4460,7 +4460,7 @@ msgid "Missing; while the assistant prepares a reply the \"typing…\" indicator
 msgstr "Desaparecido; Mientras el asistente prepara una respuesta, el indicador \"escribiendo...\" se muestra sólo brevemente."
 
 msgid "Users with the agent role: %d."
-msgstr "Usuarios con rol de agente:%d."
+msgstr "Usuarios con rol de agente: %d."
 
 msgid "No user has the agent role; only administrators can use it for now."
 msgstr "Ningún usuario tiene el rol de agente; sólo los administradores pueden usarlo por ahora."
@@ -4481,7 +4481,7 @@ msgid "%s: connection details"
 msgstr "%s: detalles de conexión"
 
 msgid "Using Flux Mail connection: %s."
-msgstr "Usando la conexión de Flux Mail:%s."
+msgstr "Usando la conexión de Flux Mail: %s."
 
 msgid "Still using the old provider in Flux Certificates; move the connection to Flux Mail and select it here."
 msgstr "Sigo usando el antiguo proveedor en Certificados Flux; mueva la conexión a Flux Mail y selecciónela aquí."
@@ -4496,19 +4496,19 @@ msgid "%s: line status"
 msgstr "%s: estado de la línea"
 
 msgid "Phone connected (last seen %s)."
-msgstr "Teléfono conectado (visto por última vez%s)."
+msgstr "Teléfono conectado (visto por última vez %s)."
 
 msgid "Not tested yet. Press \"Test connection\"."
 msgstr "Aún no probado. Pulsa \"Probar conexión\"."
 
 msgid "Phone not connected (state: %1$s, %2$s). Reconnect with \"Connect with QR\"."
-msgstr "Teléfono no conectado (estado:%1$s,%2$s). Vuelva a conectarse con \"Conectar con QR\"."
+msgstr "Teléfono no conectado (estado: %1$s, %2$s). Vuelva a conectarse con \"Conectar con QR\"."
 
 msgid "%s: Evolution API version"
 msgstr "%s: Versión de la API de evolución"
 
 msgid "Evolution API %s is in use. Replies to hidden-number (@lid) contacts may fail; update the server to 2.3 or later."
-msgstr "La API de Evolution%sestá en uso. Las respuestas a contactos con números ocultos (@lid) pueden fallar; actualice el servidor a 2.3 o posterior."
+msgstr "La API de Evolution %s está en uso. Las respuestas a contactos con números ocultos (@lid) pueden fallar; actualice el servidor a 2.3 o posterior."
 
 msgid "%s: webhook (incoming messages)"
 msgstr "%s: webhook (mensajes entrantes)"
@@ -4517,10 +4517,10 @@ msgid "No events have arrived from Evolution; incoming messages will not show in
 msgstr "No han llegado eventos de Evolution; Los mensajes entrantes no se mostrarán en el panel. Presione \"Configurar webhook\"."
 
 msgid "Last event arrived %s. The line may just be quiet; send yourself a message or set up the webhook again to be sure."
-msgstr "Llegó el último evento%s. Es posible que la línea esté simplemente en silencio; envíate un mensaje o configura el webhook nuevamente para estar seguro."
+msgstr "Llegó el último evento %s. Es posible que la línea esté simplemente en silencio; envíate un mensaje o configura el webhook nuevamente para estar seguro."
 
 msgid "Last event arrived %s."
-msgstr "Llegó el último evento%s."
+msgstr "Llegó el último evento %s."
 
 msgid "Flux Mail integration"
 msgstr "Integración de correo Flux"
@@ -4562,7 +4562,7 @@ msgid "No provider key has been entered in Flux AI for the selected model (%s)."
 msgstr "No se ha ingresado ninguna clave de proveedor en Flux AI para el modelo seleccionado (%s)."
 
 msgid "Key saved, model: %s. Use \"Test connection\" for a live check."
-msgstr "Clave guardada, modelo:%s. Utilice \"Probar conexión\" para una verificación en vivo."
+msgstr "Clave guardada, modelo: %s. Utilice \"Probar conexión\" para una verificación en vivo."
 
 msgid "Donation assistant"
 msgstr "asistente de donación"
@@ -4577,16 +4577,16 @@ msgid "On but not replying: "
 msgstr "Encendido pero sin responder:"
 
 msgid "On. Donation types offered: %s."
-msgstr "Encendido. Tipos de donación ofrecidos:%s."
+msgstr "Encendido. Tipos de donación ofrecidos: %s."
 
 msgid "%s does not support tools; choose a tool-capable model for the assistant."
-msgstr "%sno admite herramientas; Elija un modelo con capacidad para herramientas para el asistente."
+msgstr "%s no admite herramientas; Elija un modelo con capacidad para herramientas para el asistente."
 
 msgid "Receipt reading model"
 msgstr "Modelo de lectura de recibos"
 
 msgid "%s cannot read images; the receipt pre-check will not work. Choose an image-capable receipt reading model."
-msgstr "%sno puede leer imágenes; la verificación previa del recibo no funcionará. Elija un modelo de lectura de recibos con capacidad de imagen."
+msgstr "%s no puede leer imágenes; la verificación previa del recibo no funcionará. Elija un modelo de lectura de recibos con capacidad de imagen."
 
 msgid "Assistant payment details"
 msgstr "Detalles de pago del asistente"
@@ -4607,7 +4607,7 @@ msgid "Background requests"
 msgstr "Solicitudes de antecedentes"
 
 msgid "The site could not send a background request to itself (%1$s: %2$s). Queued replies and the benchmark may move slowly; a security plugin or the server firewall may be blocking /wp-json/flx-chat/ requests."
-msgstr "El sitio no pudo enviarse una solicitud en segundo plano (%1$s:%2$s). Las respuestas en cola y el punto de referencia pueden moverse lentamente; un complemento de seguridad o el firewall del servidor pueden estar bloqueando las solicitudes /wp-json/flx-chat/."
+msgstr "El sitio no pudo enviarse una solicitud en segundo plano (%1$s: %2$s). Las respuestas en cola y el punto de referencia pueden moverse lentamente; un complemento de seguridad o el firewall del servidor pueden estar bloqueando las solicitudes /wp-json/flx-chat/."
 
 msgid "error"
 msgstr "error"
@@ -4619,16 +4619,16 @@ msgid "ok"
 msgstr "bien"
 
 msgid "Your {marka} verification code: {kod}"
-msgstr "Su código de verificación{marka}:{kod}"
+msgstr "Su código de verificación {marka}: {kod}"
 
 msgid "The code is valid for {dk} minutes. Type it in your WhatsApp chat with us. If you did not ask for it, ignore this message."
-msgstr "El código es válido por minutos{dk}. Escríbelo en tu chat de WhatsApp con nosotros. Si no lo solicitaste, ignora este mensaje."
+msgstr "El código es válido por minutos {dk}. Escríbelo en tu chat de WhatsApp con nosotros. Si no lo solicitaste, ignora este mensaje."
 
 msgid "Something went wrong; our team will contact you as soon as possible 🌱 Meanwhile, feel free to ask anything else."
 msgstr "Algo salió mal; nuestro equipo se pondrá en contacto contigo lo antes posible 🌱 Mientras tanto, no dudes en preguntar cualquier otra cosa."
 
 msgid "Verification attempt failed (%1$d/%2$d): %3$s"
-msgstr "Intento de verificación fallido (%1$d/%2$d):%3$s"
+msgstr "Intento de verificación fallido (%1$d/%2$d): %3$s"
 
 msgid "The person wanted to see their records but could not be verified; someone from the team should get in touch"
 msgstr "La persona quería ver sus registros pero no pudo ser verificada; alguien del equipo debería ponerse en contacto"
@@ -4637,7 +4637,7 @@ msgid "e-mail could not be sent (check Flux Mail › SMTP settings)"
 msgstr "No se pudo enviar el correo electrónico (verifique Flux Mail › Configuración SMTP)"
 
 msgid "The assistant sent a verification code for %1$s (%2$s)."
-msgstr "El asistente envió un código de verificación para%1$s(%2$s)."
+msgstr "El asistente envió un código de verificación para %1$s(%2$s)."
 
 msgid "code expired"
 msgstr "código caducado"
@@ -4646,7 +4646,7 @@ msgid "wrong code"
 msgstr "código incorrecto"
 
 msgid "The person verified the code for %s; it is added to their record lookups."
-msgstr "La persona verificó el código de%s; se agrega a sus búsquedas de registros."
+msgstr "La persona verificó el código de %s; se agrega a sus búsquedas de registros."
 
 msgid "Claude models cannot read audio; choose an audio-capable OpenRouter model in Settings › AI › Voice message model."
 msgstr "Los modelos Claude no pueden leer audio; elija un modelo OpenRouter con capacidad de audio en Configuración › AI › Modelo de mensaje de voz."
@@ -4658,10 +4658,10 @@ msgid "The audio file could not be read."
 msgstr "No se pudo leer el archivo de audio."
 
 msgid "Voice message (%1$s) transcribed: %2$s"
-msgstr "Mensaje de voz (%1$s) transcrito:%2$s"
+msgstr "Mensaje de voz (%1$s) transcrito: %2$s"
 
 msgid "Voice message (%1$s) could not be processed: %2$s"
-msgstr "No se pudo procesar el mensaje de voz (%1$s):%2$s"
+msgstr "No se pudo procesar el mensaje de voz (%1$s): %2$s"
 
 msgid "This action is not available on an official WhatsApp Cloud API line."
 msgstr "Esta acción no está disponible en una línea API oficial de WhatsApp Cloud."
@@ -4694,10 +4694,10 @@ msgid "The assistant's image could not be sent: "
 msgstr "No se pudo enviar la imagen del asistente:"
 
 msgid "Hello {first_name}, we have created your donation record: {donation}, total {amount}.\n\n{bank}\n\nAfter paying, you can send the receipt here. Thank you."
-msgstr "Hola{first_name}, hemos creado tu registro de donación:{donation}, total{amount}.{bank}Después de pagar, puedes enviar el recibo aquí. Gracias."
+msgstr "Hola {first_name}, hemos creado tu registro de donación: {donation}, total {amount}.{bank} Después de pagar, puedes enviar el recibo aquí. Gracias."
 
 msgid "Hello {first_name}, your donation has been recorded: {donation}, total {amount}.\n\nThank you for your support."
-msgstr "Hola{first_name}, tu donación ha quedado registrada:{donation}, total{amount}.\n\nGracias por su apoyo."
+msgstr "Hola {first_name}, tu donación ha quedado registrada: {donation}, total {amount}.\n\nGracias por su apoyo."
 
 msgid "The plugin that would run this scenario is inactive."
 msgstr "El complemento que ejecutaría este escenario está inactivo."
@@ -4706,10 +4706,10 @@ msgid "This user is not allowed to use the staff tools."
 msgstr "Este usuario no tiene permiso para utilizar las herramientas del personal."
 
 msgid "%1$s linked this chat to staff member %2$s"
-msgstr "%1$svinculó este chat con el miembro del personal%2$s"
+msgstr "%1$s vinculó este chat con el miembro del personal %2$s"
 
 msgid "%s removed the staff link of this chat"
-msgstr "%seliminó el enlace del personal de este chat."
+msgstr "%s eliminó el enlace del personal de este chat."
 
 msgid "Chat linked to staff member"
 msgstr "Chat vinculado a un miembro del personal"

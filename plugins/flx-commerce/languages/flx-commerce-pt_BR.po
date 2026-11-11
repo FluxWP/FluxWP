@@ -47,7 +47,7 @@ msgid "Make the bank transfer"
 msgstr "Faça a transferência bancária"
 
 msgid "Copy %s"
-msgstr "Copiar%s"
+msgstr "Copiar %s"
 
 msgid "Copy"
 msgstr "Copiar"
@@ -89,7 +89,7 @@ msgid "Confirm payment"
 msgstr "Confirmar pagamento"
 
 msgid "Payment confirmed: %1$s · %2$s"
-msgstr "Pagamento confirmado:%1$s·%2$s"
+msgstr "Pagamento confirmado: %1$s · %2$s"
 
 msgid "Bank transfer payment confirmed."
 msgstr "Pagamento por transferência bancária confirmado."
@@ -113,10 +113,10 @@ msgid "Confirmed"
 msgstr "Confirmado"
 
 msgid "Cancelled because no payment arrived within %d days."
-msgstr "Cancelado porque nenhum pagamento foi recebido dentro de%ddias."
+msgstr "Cancelado porque nenhum pagamento foi recebido dentro de %d dias."
 
 msgid "Add %s more for free shipping."
-msgstr "Adicione mais%spara frete grátis."
+msgstr "Adicione mais %s para frete grátis."
 
 msgid "Free shipping!"
 msgstr "Frete grátis!"
@@ -149,22 +149,22 @@ msgid "Note"
 msgstr "Nota"
 
 msgid "Hello %1$s, your %2$s order (#%3$s) is in.\n\nAmount: %4$s\nRecipient: %5$s\nIBAN: %6$s\nReference: %7$s\n\nAfter paying you can upload the receipt here: %8$s"
-msgstr "Olá%1$s, seu pedido%2$s(#%3$s) foi entregue.\n\nQuantidade:%4$sDestinatário:%5$sIBAN:%6$sReferência:%7$sDepois de pagar você pode fazer upload do recibo aqui:%8$s"
+msgstr "Olá %1$s, seu pedido %2$s(#%3$s) foi entregue.\n\nQuantidade: %4$s Destinatário: %5$s IBAN: %6$s Referência: %7$s Depois de pagar você pode fazer upload do recibo aqui: %8$s"
 
 msgid "Bank transfer details sent to the customer by WhatsApp."
 msgstr "Dados da transferência bancária enviados ao cliente por WhatsApp."
 
 msgid "Receipt in: order #%1$s · %2$s"
-msgstr "Recebimento em: pedido #%1$s·%2$s"
+msgstr "Recebimento em: pedido #%1$s · %2$s"
 
 msgid "%1$s uploaded a receipt for order #%2$s.\n\nAmount: %3$s\nReference: %4$s\nFile: %5$s\n\nCheck and confirm: %6$s"
-msgstr "%1$scarregou um recibo do pedido no%2$s.\n\nQuantidade:%3$sReferência:%4$sArquivo:%5$sVerifique e confirme:%6$s"
+msgstr "%1$s carregou um recibo do pedido no %2$s.\n\nQuantidade: %3$s Referência: %4$s Arquivo: %5$s Verifique e confirme: %6$s"
 
 msgid "Hello %1$s, the payment for your order #%2$s is confirmed. We are preparing your order. %3$s"
-msgstr "Olá%1$s, o pagamento do seu pedido #%2$sestá confirmado. Estamos preparando seu pedido.%3$s"
+msgstr "Olá %1$s, o pagamento do seu pedido #%2$s está confirmado. Estamos preparando seu pedido.%3$s"
 
 msgid "New order #%1$s · %2$s\n%3$s\n%4$s\n%5$s"
-msgstr "Novo pedido #%1$s·%2$s%3$s%4$s%5$s"
+msgstr "Novo pedido #%1$s · %2$s %3$s%4$s %5$s"
 
 msgid "No receipt is expected for this order."
 msgstr "Nenhum recebimento é esperado para este pedido."
@@ -179,7 +179,7 @@ msgid "The file could not be uploaded. Please try again."
 msgstr "O arquivo não pôde ser carregado. Por favor, tente novamente."
 
 msgid "The file can be at most %s MB."
-msgstr "O arquivo pode ter no máximo%sMB."
+msgstr "O arquivo pode ter no máximo %s MB."
 
 msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
 msgstr "Somente arquivos PDF, JPG, PNG, WEBP ou HEIC podem ser carregados."
@@ -188,7 +188,7 @@ msgid "The file could not be saved."
 msgstr "O arquivo não pôde ser salvo."
 
 msgid "The customer uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
-msgstr "O cliente carregou um recibo:%1$s(%2$s). Verifique o pagamento e confirme-o."
+msgstr "O cliente carregou um recibo: %1$s(%2$s). Verifique o pagamento e confirme-o."
 
 msgid "Add another receipt"
 msgstr "Adicionar outro recibo"
@@ -197,7 +197,7 @@ msgid "Choose a receipt or drop it here"
 msgstr "Escolha um recibo ou deixe-o aqui"
 
 msgid "PDF, JPG or PNG · up to %s MB"
-msgstr "PDF, JPG ou PNG · até%sMB"
+msgstr "PDF, JPG ou PNG · até %s MB"
 
 msgid "Send receipt"
 msgstr "Enviar recibo"
@@ -218,13 +218,13 @@ msgid "Uncategorized"
 msgstr "Sem categoria"
 
 msgid "%s M"
-msgstr "%sM"
+msgstr "%s M"
 
 msgid "%s K"
-msgstr "%sK"
+msgstr "%s K"
 
 msgid "%s ago"
-msgstr "%satrás"
+msgstr "%s atrás"
 
 msgid "Processing"
 msgstr "Processamento"
@@ -251,7 +251,7 @@ msgid "WooCommerce"
 msgstr "WooCommerce"
 
 msgid "Active, version %s"
-msgstr "Ativo, versão%s"
+msgstr "Ativo, versão %s"
 
 msgid "WooCommerce is not installed or not active; Flux Commerce does not work."
 msgstr "WooCommerce não está instalado ou não está ativo; O Flux Commerce não funciona."
@@ -275,7 +275,7 @@ msgid "Customer list"
 msgstr "Lista de clientes"
 
 msgid "Last full scan: %s"
-msgstr "Última verificação completa:%s"
+msgstr "Última verificação completa: %s"
 
 msgid "Older orders are not scanned yet; press \"Rebuild\" on the Customers page."
 msgstr "Pedidos mais antigos ainda não foram verificados; pressione \"Reconstruir\" na página Clientes."
@@ -293,7 +293,7 @@ msgid "Sales report"
 msgstr "Relatório de vendas"
 
 msgid "Scanning: %1$s / %2$s orders"
-msgstr "Digitalização: pedidos%1$s/%2$s"
+msgstr "Digitalização: pedidos %1$s/%2$s"
 
 msgid "Done. Reloading…"
 msgstr "Feito. Recarregando..."
@@ -317,12 +317,12 @@ msgid "Daily revenue"
 msgstr "Receita diária"
 
 msgid "%1$s · %2$s · %3$s orders"
-msgstr "Pedidos%1$s·%2$s·%3$s"
+msgstr "Pedidos %1$s · %2$s · %3$s"
 
 msgid "%s pc"
 msgid_plural "%s pcs"
-msgstr[0] "%scomputador"
-msgstr[1] "%speças"
+msgstr[0] "%s computador"
+msgstr[1] "%s peças"
 
 msgid "Customer not found"
 msgstr "Cliente não encontrado"
@@ -352,13 +352,13 @@ msgid "Notes"
 msgstr "Notas"
 
 msgid "Customer since %s"
-msgstr "Cliente desde%s"
+msgstr "Cliente desde %s"
 
 msgid "WhatsApp"
 msgstr "WhatsApp"
 
 msgid "%s open orders"
-msgstr "%sordens abertas"
+msgstr "%s ordens abertas"
 
 msgid "Average order"
 msgstr "Pedido médio"
@@ -367,7 +367,7 @@ msgid "Order frequency"
 msgstr "Frequência do pedido"
 
 msgid "Every %s days"
-msgstr "A cada%sdias"
+msgstr "A cada %s dias"
 
 msgid "Details"
 msgstr "Detalhes"
@@ -397,7 +397,7 @@ msgid "Show older"
 msgstr "Mostrar mais antigo"
 
 msgid "%1$s of %2$s entries"
-msgstr "%1$sde entradas%2$s"
+msgstr "%1$s de entradas %2$s"
 
 msgid "Order #%s"
 msgstr "Pedido #%s"
@@ -409,7 +409,7 @@ msgid "Payment received"
 msgstr "Pagamento recebido"
 
 msgid "Order #%1$s · %2$s"
-msgstr "Pedido #%1$s·%2$s"
+msgstr "Pedido #%1$s · %2$s"
 
 msgid "Refund issued"
 msgstr "Reembolso emitido"
@@ -511,7 +511,7 @@ msgid "Add a note…"
 msgstr "Adicione uma nota..."
 
 msgid "Note for %s"
-msgstr "Nota para%s"
+msgstr "Nota para %s"
 
 msgid "Today"
 msgstr "Hoje"
@@ -535,10 +535,10 @@ msgid "Net revenue"
 msgstr "Receita líquida"
 
 msgid "%s new"
-msgstr "%snovo"
+msgstr "%s novo"
 
 msgid "%1$s – %2$s · compared with %3$s – %4$s"
-msgstr "%1$s–%2$s· comparado com%3$s–%4$s"
+msgstr "%1$s–%2$s· comparado com %3$s–%4$s"
 
 msgid "Full report"
 msgstr "Relatório completo"
@@ -580,7 +580,7 @@ msgid "Low stock"
 msgstr "Estoque baixo"
 
 msgid "threshold %s"
-msgstr "limite%s"
+msgstr "limite %s"
 
 msgid "No products running low."
 msgstr "Nenhum produto acabando."
@@ -589,7 +589,7 @@ msgid "Out of stock"
 msgstr "Fora de estoque"
 
 msgid "%s left"
-msgstr "%sesquerda"
+msgstr "%s esquerda"
 
 msgid "Paid orders in the period you pick; net amounts after refunds."
 msgstr "Pedidos pagos no período que você escolher; valores líquidos após reembolsos."
@@ -637,7 +637,7 @@ msgid "Categories"
 msgstr "Categorias"
 
 msgid "Counted statuses: %s. Change them in Settings."
-msgstr "Status contados:%s. Altere-os em Configurações."
+msgstr "Status contados: %s. Altere-os em Configurações."
 
 msgid "Summary"
 msgstr "Resumo"
@@ -718,7 +718,7 @@ msgid "Empty or 0 = the minimum amount of WooCommerce's \"Free shipping\" method
 msgstr "Vazio ou 0 = o valor mínimo do método \"Frete grátis\" do WooCommerce."
 
 msgid "Empty = from WooCommerce's \"Free shipping\" method: %s"
-msgstr "Vazio = do método \"Frete grátis\" do WooCommerce:%s"
+msgstr "Vazio = do método \"Frete grátis\" do WooCommerce: %s"
 
 msgid "Turning the method on, the IBAN and the reference format are in WooCommerce › Settings › Payments › Bank transfer."
 msgstr "Ativando o método, o IBAN e o formato de referência estão em WooCommerce › Configurações › Pagamentos › Transferência bancária."
@@ -826,7 +826,7 @@ msgid "Bank (optional)"
 msgstr "Banco (opcional)"
 
 msgid "What the customer writes in the transfer description. Placeholders: {kod} (prefix + order no), {siparis}, {ad}, {site}. Empty: {kod} {ad}"
-msgstr "O que o cliente escreve na descrição da transferência. Espaços reservados:{kod}(prefixo + número do pedido),{siparis},{ad},{site}. Vazio:{kod}{ad}"
+msgstr "O que o cliente escreve na descrição da transferência. Espaços reservados: {kod}(prefixo + número do pedido), {siparis}, {ad}, {site}. Vazio: {kod}{ad}"
 
 msgid "Code prefix"
 msgstr "Prefixo de código"

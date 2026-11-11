@@ -1157,13 +1157,13 @@ msgstr[1] "%s-Spenden dauerhaft gelöscht."
 
 msgid "%1$s paid gift · %2$s"
 msgid_plural "%1$s paid gifts · %2$s"
-msgstr[0] "%1$sbezahltes Geschenk ·%2$s"
-msgstr[1] "%1$sbezahlte Geschenke ·%2$s"
+msgstr[0] "%1$s bezahltes Geschenk ·%2$s"
+msgstr[1] "%1$s bezahlte Geschenke ·%2$s"
 
 msgid "%s waiting"
 msgid_plural "%s waiting"
-msgstr[0] "%swartet"
-msgstr[1] "%swartet"
+msgstr[0] "%s wartet"
+msgstr[1] "%s wartet"
 
 msgid "%d certificate made. Check it, then press \"Send the certificates\"."
 msgid_plural "%d certificates made. Check them, then press \"Send the certificates\"."
@@ -4240,7 +4240,7 @@ msgid "These types get their hidden WooCommerce product the first time they are 
 msgstr "Diese Typen erhalten ihr verstecktes WooCommerce-Produkt, wenn sie zum ersten Mal gespendet oder gespeichert werden: %s"
 
 msgid "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
-msgstr " Der aktive Typ%dhat sein verstecktes WooCommerce-Produkt. Aktive%d-Typen haben ihre versteckten WooCommerce-Produkte."
+msgstr " Der aktive Typ %dhat sein verstecktes WooCommerce-Produkt. Aktive %d-Typen haben ihre versteckten WooCommerce-Produkte."
 
 msgid "No page with the donation options block is selected."
 msgstr "Es ist keine Seite mit dem Spendenoptionsblock ausgewählt."
@@ -5185,7 +5185,7 @@ msgid "Overdue scheduled tasks"
 msgstr "Überfällige geplante Aufgaben"
 
 msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
-msgstr "%1$d-Aufgabe ist mehr als 15 Minuten zu spät:%2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät:%2$s."
+msgstr "%1$d-Aufgabe ist mehr als 15 Minuten zu spät: %2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät: %2$s."
 
 msgid "A few late tasks right after a quiet period are normal; many mean cron is not running."
 msgstr "Ein paar verspätete Aufgaben direkt nach einer Ruhephase sind normal; Viele meinen, dass Cron nicht läuft."
@@ -5442,13 +5442,13 @@ msgstr[1] "%1$sbezahltes Geschenk ·%2$s%1$sbezahltes Geschenk ·%2$s"
 
 msgid "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
 msgid_plural "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
-msgstr[0] " Der aktive Typ%dhat sein verstecktes WooCommerce-Produkt. Aktive%d-Typen haben ihre versteckten WooCommerce-Produkte."
-msgstr[1] " Der aktive Typ%dhat sein verstecktes WooCommerce-Produkt. Aktive%d-Typen haben ihre versteckten WooCommerce-Produkte."
+msgstr[0] " Der aktive Typ %dhat sein verstecktes WooCommerce-Produkt. Aktive %d-Typen haben ihre versteckten WooCommerce-Produkte."
+msgstr[1] " Der aktive Typ %dhat sein verstecktes WooCommerce-Produkt. Aktive %d-Typen haben ihre versteckten WooCommerce-Produkte."
 
 msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
-msgstr[0] "%1$d-Aufgabe ist mehr als 15 Minuten zu spät:%2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät:%2$s."
-msgstr[1] "%1$d-Aufgabe ist mehr als 15 Minuten zu spät:%2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät:%2$s."
+msgstr[0] "%1$d-Aufgabe ist mehr als 15 Minuten zu spät: %2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät: %2$s."
+msgstr[1] "%1$d-Aufgabe ist mehr als 15 Minuten zu spät: %2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät: %2$s."
 
 msgid "Donation lookup code"
 msgstr "Code für die Spendenabfrage"

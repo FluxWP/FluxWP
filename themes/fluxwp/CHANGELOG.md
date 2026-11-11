@@ -1,8 +1,11 @@
 # Değişiklikler
 
-## 0.7.19
+## 0.7.21
 - Ödeme sayfası rozeti: telefonda kart sağlayıcısının adı (EsnekPOS…) ikinci satırda.
 - Ödeme sayfası başlığındaki "Güvenli ödeme" rozeti etkin ödeme sağlayıcısını yazar (filtre `flx_secure_badge_provider`; boşsa yalnız "Güvenli ödeme").
+
+## 0.7.20
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 
 ## 0.7.18
 - Layout saves (template, part, menu, styles) purge supported page caches once per request, on shutdown. The object cache is no longer flushed; WordPress already drops the saved post and there is no persistent object cache.

@@ -122,7 +122,7 @@ msgid "Not tested"
 msgstr "لم يتم اختباره"
 
 msgid "Get your keys %s: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry."
-msgstr "احصل على مفاتيحك%s: اختر نوع reCAPTCHA وأضف المجال الخاص بك. يجب أن ينتمي مفتاح الموقع والمفتاح السري إلى نفس الإدخال."
+msgstr "احصل على مفاتيحك %s: اختر نوع reCAPTCHA وأضف المجال الخاص بك. يجب أن ينتمي مفتاح الموقع والمفتاح السري إلى نفس الإدخال."
 
 msgid "from the Google reCAPTCHA console"
 msgstr "من وحدة تحكم Google reCAPTCHA"
@@ -167,7 +167,7 @@ msgid "Runs a real check with Google; if it passes, the keys are saved and prote
 msgstr "يجري فحصًا حقيقيًا مع Google؛ إذا تم تمريره، فسيتم حفظ المفاتيح وتشغيل الحماية."
 
 msgid "Last test: %1$s · %2$s"
-msgstr "الاختبار الأخير:%1$s·%2$s"
+msgstr "الاختبار الأخير: %1$s · %2$s"
 
 msgid "Last 30 days: passed / blocked"
 msgstr "آخر 30 يومًا: تم تمريرها/تم حظرها"
@@ -233,7 +233,7 @@ msgid "IP addresses that skip the check"
 msgstr "عناوين IP التي تتخطى عملية التحقق"
 
 msgid "One IP or range (CIDR) per line. For your office, tests and monitoring services. Your current IP address: %s"
-msgstr "IP واحد أو نطاق (CIDR) لكل سطر. لمكتبك والاختبارات وخدمات المراقبة. عنوان IP الحالي الخاص بك:%s"
+msgstr "IP واحد أو نطاق (CIDR) لكل سطر. لمكتبك والاختبارات وخدمات المراقبة. عنوان IP الحالي الخاص بك: %s"
 
 msgid "If you get locked out of the login screen, add define( 'FLXRC_DISABLE', true ); to wp-config.php; protection turns off completely."
 msgstr "إذا تم منعك من الدخول إلى شاشة تسجيل الدخول، أضف تعريف( 'FLXRC_DISABLE', true ); إلى wp-config.php؛ يتم إيقاف الحماية تمامًا."
@@ -260,7 +260,7 @@ msgid "JavaScript must be enabled in your browser to send this form."
 msgstr "يجب تفعيل JavaScript في متصفحك لإرسال هذا النموذج."
 
 msgid "This form is protected by reCAPTCHA and the Google %1$s and %2$s apply."
-msgstr "هذا النموذج محمي بواسطة reCAPTCHA وينطبق Google%1$sو%2$s."
+msgstr "هذا النموذج محمي بواسطة reCAPTCHA وينطبق Google %1$s و %2$s."
 
 msgid "Privacy Policy"
 msgstr "سياسة الخصوصية"
@@ -278,7 +278,7 @@ msgid "The security check failed. Refresh the page and try again."
 msgstr "فشل فحص الأمان. قم بتحديث الصفحة وحاول مرة أخرى."
 
 msgid "Could not reach Google: %s"
-msgstr "لا يمكن الوصول إلى Google:%s"
+msgstr "لا يمكن الوصول إلى Google: %s"
 
 msgid "Google returned an unexpected response."
 msgstr "أعادت Google استجابة غير متوقعة."
@@ -293,10 +293,10 @@ msgid "Could not verify (%s)."
 msgstr "تعذر التحقق (%s)."
 
 msgid "The keys work. Score: %1$s, domain: %2$s"
-msgstr "المفاتيح تعمل. النتيجة:%1$s، المجال:%2$s"
+msgstr "المفاتيح تعمل. النتيجة: %1$s، المجال: %2$s"
 
 msgid "The keys work. Domain: %s"
-msgstr "المفاتيح تعمل. النطاق:%s"
+msgstr "المفاتيح تعمل. النطاق: %s"
 
 msgid "Login"
 msgstr "تسجيل الدخول"
@@ -389,13 +389,13 @@ msgid "No form is selected."
 msgstr "لم يتم تحديد أي نموذج."
 
 msgid "Not protected: %s"
-msgstr "غير محمي:%s"
+msgstr "غير محمي: %s"
 
 msgid "Google verification"
 msgstr "التحقق من جوجل"
 
 msgid "%1$s: %2$s. Test the keys again; if Google is unreachable, set Settings > Google host to recaptcha.net."
-msgstr "%1$s:%2$s. اختبر المفاتيح مرة أخرى؛ إذا تعذر الوصول إلى Google، فاضبط الإعدادات > Google host على recaptcha.net."
+msgstr "%1$s: %2$s. اختبر المفاتيح مرة أخرى؛ إذا تعذر الوصول إلى Google، فاضبط الإعدادات > Google host على recaptcha.net."
 
 msgid "Test"
 msgstr "اختبار"

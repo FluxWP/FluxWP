@@ -65,19 +65,19 @@ msgid "WordPress and PHP version"
 msgstr "Версия WordPress и PHP"
 
 msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
-msgstr "WordPress%1$s, PHP%2$s. Требуется: WordPress 6.5+, PHP 7.4+."
+msgstr "WordPress %1$s, PHP %2$s. Требуется: WordPress 6.5+, PHP 7.4+."
 
 msgid "Database tables"
 msgstr "Таблицы базы данных"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+msgstr "Отсутствует таблица: %s. Деактивируйте и повторно активируйте плагин."
 
 msgid "Plugins"
 msgstr "Плагины"
 
 msgid "Tables are ready (schema %s)."
-msgstr "Таблицы готовы (схема%s)."
+msgstr "Таблицы готовы (схема %s)."
 
 msgid "File folder"
 msgstr "Папка с файлами"
@@ -95,7 +95,7 @@ msgid "Upload limit"
 msgstr "Лимит загрузки"
 
 msgid "Effective limit %1$s (server limit %2$s)."
-msgstr "Действующий лимит%1$s(лимит сервера%2$s)."
+msgstr "Действующий лимит %1$s(лимит сервера %2$s)."
 
 msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
 msgstr "Значение параметра превышает лимит сервера; upload_max_filesize и post_max_size можно поднять в панели хостинга."
@@ -110,10 +110,10 @@ msgid "Not scheduled: overdue/upcoming task notifications and old temporary file
 msgstr "Не запланировано: уведомления о просроченных/предстоящих задачах и очистка старых временных файлов не будут запускаться. Однократное открытие страницы «Задачи» приводит к ее перепланированию."
 
 msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
-msgstr "Запланированное задание задерживается (из-за%s). Возможно, WP-Cron не запускается (если сайт посещается мало, рекомендуется использовать настоящий cron на панели хостинга)."
+msgstr "Запланированное задание задерживается (из-за %s). Возможно, WP-Cron не запускается (если сайт посещается мало, рекомендуется использовать настоящий cron на панели хостинга)."
 
 msgid "Next run: %s."
-msgstr "Следующий запуск:%s."
+msgstr "Следующий запуск: %s."
 
 msgid "WP-Cron mode"
 msgstr "Режим WP-Cron"
@@ -128,7 +128,7 @@ msgid "Update interval"
 msgstr "Интервал обновления"
 
 msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
-msgstr "10 секунд при отображении на экране,%dчерез 2 минуты бездействия; фоновые вкладки не отправляют запросы."
+msgstr "10 секунд при отображении на экране, %d через 2 минуты бездействия; фоновые вкладки не отправляют запросы."
 
 msgid "API cache"
 msgstr "Кэш API"
@@ -158,7 +158,7 @@ msgid "AI"
 msgstr "ИИ"
 
 msgid "Via Flux AI, model: %s."
-msgstr "Через Flux AI, модель:%s."
+msgstr "Через Flux AI, модель: %s."
 
 msgid "Flux AI"
 msgstr "Поток ИИ"
@@ -215,7 +215,7 @@ msgid "Add page to document"
 msgstr "Добавить страницу в документ"
 
 msgid "Document: %s"
-msgstr "Документ:%s"
+msgstr "Документ: %s"
 
 msgid "Improve"
 msgstr "Улучшить"
@@ -395,16 +395,16 @@ msgid "Track tasks in list, board and calendar views. Add new lists or folders f
 msgstr "Отслеживайте задачи в виде списка, доски и календаря. Добавляйте новые списки или папки из меню слева, а также настраивайте настраиваемые поля и разрешения в настройках списка."
 
 msgid "%s assigned you to a task"
-msgstr "%sназначил вам задачу"
+msgstr "%s назначил вам задачу"
 
 msgid "%s mentioned you in a comment"
-msgstr "%sупомянул вас в комментарии"
+msgstr "%s упомянул вас в комментарии"
 
 msgid "%s wrote a comment"
-msgstr "%sнаписал комментарий"
+msgstr "%s написал комментарий"
 
 msgid "%1$s changed the status to \"%2$s\""
-msgstr "%1$sизменил статус на «%2$s»"
+msgstr "%1$s изменил статус на «%2$s»"
 
 msgid "Due tomorrow"
 msgstr "Срок завтра"
@@ -458,16 +458,16 @@ msgid "Sent when someone assigns you to a task."
 msgstr "Отправляется, когда кто-то назначает вам задачу."
 
 msgid "{kisi} assigned you to a task: {gorev}"
-msgstr "{kisi}назначил вам задачу:{gorev}"
+msgstr "{kisi} назначил вам задачу: {gorev}"
 
 msgid "New task: {gorev}"
-msgstr "Новая задача:{gorev}."
+msgstr "Новая задача: {gorev}."
 
 msgid "Hi {ad},"
-msgstr "Привет,{ad},"
+msgstr "Привет, {ad},"
 
 msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
-msgstr "{kisi}назначил вам<strong>{gorev}</strong>в списке<strong>{liste}</strong>."
+msgstr "{kisi} назначил вам<strong>{gorev}</strong>в списке<strong>{liste}</strong>."
 
 msgid "Open task"
 msgstr "Открыть задачу"
@@ -479,10 +479,10 @@ msgid "Sent when someone @mentions you in a comment."
 msgstr "Отправляется, когда кто-то @упоминает вас в комментарии."
 
 msgid "{kisi} mentioned you in a comment: {gorev}"
-msgstr "{kisi}упомянул вас в комментарии:{gorev}"
+msgstr "{kisi} упомянул вас в комментарии: {gorev}"
 
 msgid "{kisi} mentioned you"
-msgstr "{kisi}упомянул вас"
+msgstr "{kisi} упомянул вас"
 
 msgid "Comment on <strong>{gorev}</strong>:"
 msgstr "Комментарий к<strong>{gorev}</strong>:"
@@ -497,10 +497,10 @@ msgid "Sent one day before the due date of a task assigned to you."
 msgstr "Отправляется за день до срока выполнения назначенной вам задачи."
 
 msgid "Due tomorrow: {gorev}"
-msgstr "Срок сдачи завтра:{gorev}"
+msgstr "Срок сдачи завтра: {gorev}"
 
 msgid "<strong>{gorev}</strong> is due on {tarih}."
-msgstr "<strong>{gorev}</strong>подлежит оплате{tarih}."
+msgstr "<strong>{gorev}</strong>подлежит оплате {tarih}."
 
 msgid "Can view"
 msgstr "Можно просмотреть"
@@ -617,7 +617,7 @@ msgid "A task cannot be moved under its own subtask."
 msgstr "Задачу нельзя переместить в отдельную подзадачу."
 
 msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
-msgstr "Подзадачи в этом проекте могут быть вложены на большинстве уровней%d. Изменить лимит можно в настройках проекта."
+msgstr "Подзадачи в этом проекте могут быть вложены на большинстве уровней %d. Изменить лимит можно в настройках проекта."
 
 msgid "Task name cannot be empty."
 msgstr "Название задачи не может быть пустым."
@@ -680,10 +680,10 @@ msgid "Loading"
 msgstr "Загрузка"
 
 msgid "{n} failed"
-msgstr "Ошибка{n}"
+msgstr "Ошибка {n}"
 
 msgid "{n} in progress"
-msgstr "{n}в процессе"
+msgstr "{n} в процессе"
 
 msgid "server busy, waiting"
 msgstr "сервер занят, жду"
@@ -704,7 +704,7 @@ msgid "Close"
 msgstr "Закрыть"
 
 msgid "Uploading: {n}"
-msgstr "Загрузка:{n}"
+msgstr "Загрузка: {n}"
 
 msgid "Upload timed out."
 msgstr "Время загрузки истекло."
@@ -830,13 +830,13 @@ msgid "Delete page"
 msgstr "Удалить страницу"
 
 msgid "\"{p}\" and its {n} subpages will be deleted."
-msgstr "«{p}» и его подстраницы{n}будут удалены."
+msgstr "«{p}» и его подстраницы {n} будут удалены."
 
 msgid "\"{p}\" will be deleted."
 msgstr "«{p}» будет удален."
 
 msgid "Last edited by {n}, {t}"
-msgstr "Последний раз редактировалось{n},{t}."
+msgstr "Последний раз редактировалось {n}, {t}."
 
 msgid "typing"
 msgstr "печатание"
@@ -1226,7 +1226,7 @@ msgid "Add as tasks ({n})"
 msgstr "Добавить как задачи ({n})"
 
 msgid "{n} tasks added to \"{l}\"."
-msgstr "Задачи{n}добавлены в «{l}»."
+msgstr "Задачи {n} добавлены в «{l}»."
 
 msgid "Open list"
 msgstr "Открыть список"
@@ -1313,7 +1313,7 @@ msgid "Tags"
 msgstr "Теги"
 
 msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
-msgstr "Теги{n}связаны по имени в целевом проекте:{e}уже существует,{c}будет создан."
+msgstr "Теги {n} связаны по имени в целевом проекте: {e} уже существует, {c} будет создан."
 
 msgid "People who will lose access"
 msgstr "Люди, которые потеряют доступ"
@@ -1448,16 +1448,16 @@ msgid "The view \"{n}\" will be deleted. Tasks are not affected."
 msgstr "Представление «{n}» будет удалено. Задачи не затрагиваются."
 
 msgid "{n} assigned you to a task"
-msgstr "{n}назначил вам задачу"
+msgstr "{n} назначил вам задачу"
 
 msgid "{n} mentioned you in a comment"
-msgstr "{n}упомянул вас в комментарии"
+msgstr "{n} упомянул вас в комментарии"
 
 msgid "{n} wrote a comment"
-msgstr "{n}написал комментарий"
+msgstr "{n} написал комментарий"
 
 msgid "{n} changed the status to \"{s}\""
-msgstr "{n}изменил статус на «{s}»"
+msgstr "{n} изменил статус на «{s}»"
 
 msgid "All"
 msgstr "Все"
@@ -1487,16 +1487,16 @@ msgid "File storage"
 msgstr "Хранение файлов"
 
 msgid "{n} files"
-msgstr "Файлы{n}"
+msgstr "Файлы {n}"
 
 msgid "previews {s}"
-msgstr "превью{s}"
+msgstr "превью {s}"
 
 msgid "Open tasks"
 msgstr "Открытые задачи"
 
 msgid "{n} completed"
-msgstr "{n}завершено"
+msgstr "{n} завершено"
 
 msgid "open tasks past their due date"
 msgstr "открытые задачи с истекшим сроком выполнения"
@@ -1505,19 +1505,19 @@ msgid "Last 30 days"
 msgstr "Последние 30 дней"
 
 msgid "{n} tasks completed"
-msgstr "{n}задачи выполнены"
+msgstr "{n} задачи выполнены"
 
 msgid "Comments"
 msgstr "Комментарии"
 
 msgid "{n} active users (30 days)"
-msgstr "{n}активных пользователей (30 дней)"
+msgstr "{n} активных пользователей (30 дней)"
 
 msgid "Structure"
 msgstr "Структура"
 
 msgid "projects / lists · {n} users"
-msgstr "проекты/списки · Пользователи{n}"
+msgstr "проекты/списки · Пользователи {n}"
 
 msgid "PDF"
 msgstr "PDF"
@@ -1634,10 +1634,10 @@ msgid "Info"
 msgstr "Информация"
 
 msgid "{n} problem(s)"
-msgstr "{n}проблемы"
+msgstr "{n} проблемы"
 
 msgid "{n} warning(s)"
-msgstr "Предупреждения{n}"
+msgstr "Предупреждения {n}"
 
 msgid "Everything is in place"
 msgstr "Все на месте"
@@ -1649,10 +1649,10 @@ msgid "Check again"
 msgstr "Проверьте еще раз"
 
 msgid "{n} item(s)"
-msgstr "{n}элемент(ы)"
+msgstr "{n} элемент(ы)"
 
 msgid "Flux AI default: {m}"
-msgstr "По умолчанию Flux AI:{m}"
+msgstr "По умолчанию Flux AI: {m}"
 
 msgid "Flux AI default"
 msgstr "Поток AI по умолчанию"
@@ -1718,7 +1718,7 @@ msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. W
 msgstr "например Стамбульский филиал Ассоциации. Добавляйте тег «Событие» к ивент-задачам. Даты записывайте в формате день.месяц.год."
 
 msgid "This month: {c} requests, {t} tokens, ${m}"
-msgstr "В этом месяце: запросы{c}, токены{t}, ${m}."
+msgstr "В этом месяце: запросы {c}, токены {t}, ${m}."
 
 msgid "Data"
 msgstr "Данные"
@@ -1928,7 +1928,7 @@ msgid "Permissions saved"
 msgstr "Разрешения сохранены."
 
 msgid "List settings: {n}"
-msgstr "Настройки списка:{n}."
+msgstr "Настройки списка: {n}."
 
 msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
 msgstr "Что ты хочешь сделать? например «Показать задачи в этом списке, которые должны быть выполнены завтра» или «Открыть плакат с заданием для Айше, срок выполнения в пятницу»"
@@ -2066,7 +2066,7 @@ msgid "Complete"
 msgstr "Завершить"
 
 msgid "Completed: {d}"
-msgstr "Завершено:{d}"
+msgstr "Завершено: {d}"
 
 msgid "You can only comment"
 msgstr "Вы можете только комментировать"
@@ -2111,7 +2111,7 @@ msgid "Show less"
 msgstr "Показать меньше"
 
 msgid "{n} more fields"
-msgstr "{n}дополнительные поля"
+msgstr "{n} дополнительные поля"
 
 msgid "Participants"
 msgstr "Участники"
@@ -2192,7 +2192,7 @@ msgid "Owner"
 msgstr "Владелец"
 
 msgid "Report: {d} · {n}"
-msgstr "Отчет:{d}·{n}"
+msgstr "Отчет: {d} · {n}"
 
 msgid "Add subtask…"
 msgstr "Добавить подзадачу..."
@@ -2222,10 +2222,10 @@ msgid "Drag files here or choose"
 msgstr "Перетащите файлы сюда или выберите"
 
 msgid "Up to {s}"
-msgstr "До{s}"
+msgstr "До {s}"
 
 msgid "{n} is too large (up to {s})."
-msgstr "{n}слишком велик (вплоть до{s})."
+msgstr "{n} слишком велик (вплоть до {s})."
 
 msgid "Upload new image"
 msgstr "Загрузить новое изображение"
@@ -2255,13 +2255,13 @@ msgid "removed the priority"
 msgstr "удалил приоритет"
 
 msgid "set the due date to {d}"
-msgstr "установите срок выполнения{d}"
+msgstr "установите срок выполнения {d}"
 
 msgid "removed the due date"
 msgstr "удалил срок сдачи"
 
 msgid "set the start date to {d}"
-msgstr "установите дату начала{d}"
+msgstr "установите дату начала {d}"
 
 msgid "removed the start date"
 msgstr "удалил дату начала"
@@ -2270,10 +2270,10 @@ msgid "took the task"
 msgstr "взял задание"
 
 msgid "assigned {n}"
-msgstr "назначен{n}"
+msgstr "назначен {n}"
 
 msgid "unassigned {n}"
-msgstr "неназначенный{n}"
+msgstr "неназначенный {n}"
 
 msgid "added a tag:"
 msgstr "добавил тег:"
@@ -2399,7 +2399,7 @@ msgid "Added to the end of the description."
 msgstr "Добавлено в конец описания."
 
 msgid "{n} subtasks created"
-msgstr "{n}созданы подзадачи"
+msgstr "{n} созданы подзадачи"
 
 msgid "Create subtasks"
 msgstr "Создание подзадач"
@@ -2438,7 +2438,7 @@ msgid "Search or create a tag…"
 msgstr "Найдите или создайте тег..."
 
 msgid "Create: {n}"
-msgstr "Создать:{n}"
+msgstr "Создать: {n}"
 
 msgid "No tags yet. Type to create one."
 msgstr "Тегов пока нет. Введите, чтобы создать его."
@@ -2459,7 +2459,7 @@ msgid "Group"
 msgstr "Группа"
 
 msgid "Group: {n}"
-msgstr "Группа:{n}"
+msgstr "Группа: {n}"
 
 msgid "Manual order"
 msgstr "Ручной заказ"
@@ -2579,7 +2579,7 @@ msgid "This task no longer matches this view's filter. It will be hidden when yo
 msgstr "Эта задача больше не соответствует фильтру этого представления. Он будет скрыт при смене страницы."
 
 msgid "Assigned: {n}"
-msgstr "Назначено:{n}"
+msgstr "Назначено: {n}"
 
 msgid "Outside filter"
 msgstr "Внешний фильтр"
@@ -2618,7 +2618,7 @@ msgid "No tasks in this list yet."
 msgstr "В этом списке пока нет задач."
 
 msgid "{n} selected"
-msgstr "{n}выбрано"
+msgstr "{n} выбрано"
 
 msgid "Assign"
 msgstr "Назначить"
@@ -2627,13 +2627,13 @@ msgid "Delete tasks"
 msgstr "Удаление задач"
 
 msgid "{n} tasks will be permanently deleted along with their comments and files."
-msgstr "Задачи{n}будут безвозвратно удалены вместе с их комментариями и файлами."
+msgstr "Задачи {n} будут безвозвратно удалены вместе с их комментариями и файлами."
 
 msgid "Clear selection"
 msgstr "Очистить выбор"
 
 msgid "{n} tasks updated"
-msgstr "Задачи{n}обновлены."
+msgstr "Задачи {n} обновлены."
 
 msgid "Previous"
 msgstr "Предыдущий"
@@ -2645,7 +2645,7 @@ msgid "Week"
 msgstr "неделя"
 
 msgid "No date: {n}"
-msgstr "Без даты:{n}"
+msgstr "Без даты: {n}"
 
 msgid "Tasks without a date"
 msgstr "Задачи без даты"
@@ -2654,7 +2654,7 @@ msgid "No dated tasks this month."
 msgstr "В этом месяце нет датированных задач."
 
 msgid "+{n} more"
-msgstr "+{n}еще"
+msgstr "+{n} еще"
 
 msgid "Meeting name"
 msgstr "Название встречи"
@@ -2688,4 +2688,3 @@ msgstr "Инструментам Flux Tasks нужен Flux AI & MCP."
 
 msgid "MCP"
 msgstr "MCP"
-

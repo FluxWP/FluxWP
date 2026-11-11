@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.15
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 1.7.14
 - PWA sign-in checks pause while the tab is hidden and run immediately when it returns. The two-minute watch starts at 2 s and steps out to 15 s when the answer does not change. Errors and HTTP 429 back off exponentially up to 60 s, with one request in flight.
 

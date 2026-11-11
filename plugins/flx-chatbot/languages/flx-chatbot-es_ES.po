@@ -215,7 +215,7 @@ msgid "Satisfaction"
 msgstr "Satisfacción"
 
 msgid "%s ratings"
-msgstr "Calificaciones%s"
+msgstr "Calificaciones %s"
 
 msgid "no ratings yet"
 msgstr "aún no hay calificaciones"
@@ -305,7 +305,7 @@ msgid "Outside working hours now"
 msgstr "Fuera del horario laboral ahora"
 
 msgid "Working hours: %s"
-msgstr "Horas de trabajo:%s"
+msgstr "Horas de trabajo: %s"
 
 msgid "Working hours come from the Flux Chat settings."
 msgstr "Las horas de trabajo provienen de la configuración de Flux Chat."
@@ -899,7 +899,7 @@ msgid "Would you like to talk to a person?"
 msgstr "¿Te gustaría hablar con una persona?"
 
 msgid "Your place in line: %d"
-msgstr "Tu lugar en la fila:%d"
+msgstr "Tu lugar en la fila: %d"
 
 msgid "Seen"
 msgstr "Visto"
@@ -1019,10 +1019,10 @@ msgid "No agents are online right now. Leave a message and we'll get back to you
 msgstr "No hay agentes en línea en este momento. Deje un mensaje y nos comunicaremos con usted por correo electrónico."
 
 msgid "Weekdays %s"
-msgstr "Días laborables%s"
+msgstr "Días laborables %s"
 
 msgid "Every day %s"
-msgstr "Todos los días%s"
+msgstr "Todos los días %s"
 
 msgid "Mon"
 msgstr "lun"
@@ -1070,7 +1070,7 @@ msgid "Connecting you to an agent…"
 msgstr "Conectándote con un agente..."
 
 msgid "%s joined the chat"
-msgstr "%sse unió al chat"
+msgstr "%s se unió al chat"
 
 msgid "You ended the chat."
 msgstr "Terminaste el chat."
@@ -1085,10 +1085,10 @@ msgid "Site chat #%d"
 msgstr "Chat del sitio #%d"
 
 msgid "[%1$s] Message from site chat: %2$s"
-msgstr "[%1$s] Mensaje del chat del sitio:%2$s"
+msgstr "[%1$s] Mensaje del chat del sitio: %2$s"
 
 msgid "[%1$s] Site chat waiting for an agent: %2$s"
-msgstr "[%1$s] Chat del sitio esperando un agente:%2$s"
+msgstr "[%1$s] Chat del sitio esperando un agente: %2$s"
 
 msgid "To reply:"
 msgstr "Para responder:"
@@ -1103,7 +1103,7 @@ msgid "The file could not be uploaded."
 msgstr "No se pudo cargar el archivo."
 
 msgid "Files can be up to %d MB."
-msgstr "Los archivos pueden tener hasta%dMB."
+msgstr "Los archivos pueden tener hasta %d MB."
 
 msgid "This file type can't be sent. Send an image, PDF or office document."
 msgstr "Este tipo de archivo no se puede enviar. Envía una imagen, PDF o documento office."
@@ -1157,15 +1157,15 @@ msgid "File not found."
 msgstr "Archivo no encontrado."
 
 msgid "Visitor rating: %1$s %2$s"
-msgstr "Calificación de visitantes:%1$s%2$s"
+msgstr "Calificación de visitantes: %1$s%2$s"
 
 msgid "Visitor #%d"
 msgstr "Visitante #%d"
 
 msgid "%d chat is waiting for a reply."
 msgid_plural "%d chats are waiting for a reply."
-msgstr[0] "El chat%destá esperando respuesta."
-msgstr[1] "Los chats%destán esperando respuesta."
+msgstr[0] "El chat %d está esperando respuesta."
+msgstr[1] "Los chats %d están esperando respuesta."
 
 msgid "Site chat window"
 msgstr "Ventana de chat del sitio"
@@ -1199,4 +1199,3 @@ msgstr "Ventana de chat para el sitio basada en inteligencia artificial: con Flu
 
 msgid "Still answering. Please wait a moment."
 msgstr "Todavía está respondiendo. Espere un momento."
-

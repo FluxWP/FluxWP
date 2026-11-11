@@ -2688,4 +2688,3 @@ msgstr "Flux Tasks 工具需要 Flux AI & MCP。"
 
 msgid "MCP"
 msgstr "MCP"
-

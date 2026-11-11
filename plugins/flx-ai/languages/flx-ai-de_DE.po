@@ -134,16 +134,16 @@ msgid "This plugin declares no settings with the Flux AI SDK; only on/off and th
 msgstr "Dieses Plugin deklariert keine Einstellungen mit dem Flux AI SDK; nur ein/aus und das Modell kann eingestellt werden."
 
 msgid "Flux AI SDK %s loaded."
-msgstr "Flux AI SDK%sgeladen."
+msgstr "Flux AI SDK %s geladen."
 
 msgid "Tools that plugins offer to AI: the shared chat and the MCP server. A tool turned off is unavailable in both; tools that change data ask for approval every time."
 msgstr "Tools, die Plugins der KI bieten: der gemeinsame Chat und der MCP-Server. Ein ausgeschaltetes Werkzeug ist in beiden Fällen nicht verfügbar; Tools, die Daten ändern, verlangen jedes Mal eine Genehmigung."
 
 msgid "The plugin used for %s was changed."
-msgstr "Das für%sverwendete Plugin wurde geändert."
+msgstr "Das für %s verwendete Plugin wurde geändert."
 
 msgid "%s off"
-msgstr "%saus"
+msgstr "%s aus"
 
 msgid "Name conflicts"
 msgstr "Namenskonflikte"
@@ -218,10 +218,10 @@ msgid "Avg. time"
 msgstr "Durchschn. Zeit"
 
 msgid "Conflict: off, %s is used"
-msgstr "Konflikt: aus,%swird verwendet"
+msgstr "Konflikt: aus, %s wird verwendet"
 
 msgid "Conflict: this one is on, %s is off"
-msgstr "Konflikt: Dieser ist eingeschaltet,%sist ausgeschaltet"
+msgstr "Konflikt: Dieser ist eingeschaltet, %s ist ausgeschaltet"
 
 msgid "The name does not start with a plugin prefix; it may clash with another plugin's tool."
 msgstr "Der Name beginnt nicht mit einem Plugin-Präfix; Es kann zu Konflikten mit dem Tool eines anderen Plugins kommen."
@@ -230,16 +230,16 @@ msgid "unprefixed"
 msgstr "ohne Präfix"
 
 msgid "Old name: %s"
-msgstr "Alter Name:%s"
+msgstr "Alter Name: %s"
 
 msgid "Use this one"
 msgstr "Verwenden Sie dieses"
 
 msgid "%s on"
-msgstr "%sein"
+msgstr "%s ein"
 
 msgid "Select %s"
-msgstr "Wählen Sie%s"
+msgstr "Wählen Sie %s"
 
 msgid "Chat"
 msgstr "Chatten"
@@ -257,7 +257,7 @@ msgid "There are unsaved changes."
 msgstr "Es gibt nicht gespeicherte Änderungen."
 
 msgid "Plugins add tools with the Flux AI SDK (<code>flx_ai_tool</code>) or the <code>flx_mcp_tools</code> / <code>flxai_tools</code> filters. If two plugins register the same name, the first stays on and the other waits turned off; switch with \"Use this one\". Plugin settings: %s."
-msgstr "Plugins fügen Tools mit dem Flux AI SDK (<code>flx_ai_tool</code>) oder den Filtern<code>flx_mcp_tools</code>/<code>flxai_tools</code>hinzu. Wenn zwei Plugins denselben Namen registrieren, bleibt das erste eingeschaltet und das andere bleibt ausgeschaltet; Wechseln Sie mit „Dieses verwenden“. Plugin-Einstellungen:%s."
+msgstr "Plugins fügen Tools mit dem Flux AI SDK (<code>flx_ai_tool</code>) oder den Filtern<code>flx_mcp_tools</code>/<code>flxai_tools</code>hinzu. Wenn zwei Plugins denselben Namen registrieren, bleibt das erste eingeschaltet und das andere bleibt ausgeschaltet; Wechseln Sie mit „Dieses verwenden“. Plugin-Einstellungen: %s."
 
 msgid "%s tools updated."
 msgstr "%s-Tools aktualisiert."
@@ -278,7 +278,7 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 msgid "Limit %1$s · resets %2$s"
-msgstr "%1$sbegrenzen ·%2$szurücksetzen"
+msgstr "%1$s begrenzen ·%2$s zurücksetzen"
 
 msgid "No limit"
 msgstr "Keine Begrenzung"
@@ -290,13 +290,13 @@ msgid "No API key entered yet."
 msgstr "Noch kein API-Schlüssel eingegeben."
 
 msgid "%d days"
-msgstr "%dTage"
+msgstr "%d Tage"
 
 msgid "Cost"
 msgstr "Kosten"
 
 msgid "Cache savings %s"
-msgstr "Cache-Einsparungen%s"
+msgstr "Cache-Einsparungen %s"
 
 msgid "Model requests"
 msgstr "Modelanfragen"
@@ -308,13 +308,13 @@ msgid "Tokens"
 msgstr "Token"
 
 msgid "Input %1$s · output %2$s · from cache %3$s"
-msgstr "Eingabe%1$s· Ausgabe%2$s· aus Cache%3$s"
+msgstr "Eingabe %1$s· Ausgabe %2$s· aus Cache %3$s"
 
 msgid "Total time"
 msgstr "Gesamtzeit"
 
 msgid "Model/thinking %1$s%% · tools %2$s%%"
-msgstr "Modell/Denken%1$s%% · Werkzeuge%2$s%%"
+msgstr "Modell/Denken %1$s%% · Werkzeuge %2$s%%"
 
 msgid "Errors"
 msgstr "Fehler"
@@ -413,7 +413,7 @@ msgid "Content"
 msgstr "Inhalt"
 
 msgid "Page %1$s / %2$s"
-msgstr "Seite%1$s/%2$s"
+msgstr "Seite %1$s/%2$s"
 
 msgid "Cache column: tokens read / written. \"~\" is estimated from the price list. Content: last outgoing messages and the incoming reply, shortened; e-mail, phone, IBAN and keys are masked."
 msgstr "Cache-Spalte: Gelesene/geschriebene Token. „~“ wird anhand der Preisliste geschätzt. Inhalt: letzte ausgehende Nachrichten und die eingehende Antwort, gekürzt; E-Mail, Telefon, IBAN und Schlüssel werden maskiert."
@@ -461,7 +461,7 @@ msgid "Total"
 msgstr "Insgesamt"
 
 msgid "%s without cache"
-msgstr "%sohne Cache"
+msgstr "%s ohne Cache"
 
 msgid "Cache savings"
 msgstr "Cache-Einsparungen"
@@ -689,7 +689,7 @@ msgid "Plugins that generate images and video (Flux Studio etc.) use these keys.
 msgstr "Plugins, die Bilder und Videos generieren (Flux Studio usw.), verwenden diese Schlüssel. Im Automatikmodus wird der erste Anbieter mit einem Schlüssel für das Modell verwendet; Eine eventuell kostenpflichtige Anfrage wird niemals erneut an einen anderen Anbieter weitergeleitet. Auch hier gelten das Ausgabenlimit und die Protokolle."
 
 msgid "%s API key"
-msgstr "%sAPI-Schlüssel"
+msgstr "%s API-Schlüssel"
 
 msgid "OpenRouter"
 msgstr "OpenRouter"
@@ -803,7 +803,7 @@ msgid "I couldn't produce an answer, could you try again?"
 msgstr "Ich konnte keine Antwort liefern. Könnten Sie es bitte noch einmal versuchen?"
 
 msgid "Tool not found or not permitted: %s"
-msgstr "Werkzeug nicht gefunden oder nicht zulässig:%s"
+msgstr "Werkzeug nicht gefunden oder nicht zulässig: %s"
 
 msgid "Stopped by the user; not run."
 msgstr "Vom Benutzer gestoppt; nicht laufen."
@@ -815,7 +815,7 @@ msgid "Message not found."
 msgstr "Nachricht nicht gefunden."
 
 msgid "AI is off for %s (Flux AI & MCP › Connected systems)."
-msgstr "AI ist für%sausgeschaltet (Flux AI & MCP › Verbundene Systeme)."
+msgstr "AI ist für %s ausgeschaltet (Flux AI & MCP › Verbundene Systeme)."
 
 msgid "No AI model selected (Flux AI & MCP › Settings)."
 msgstr "Kein KI-Modell ausgewählt (Flux AI & MCP › Einstellungen)."
@@ -830,13 +830,13 @@ msgid "Monthly"
 msgstr "Monatlich"
 
 msgid "%1$s AI spending limit (%2$s) reached. It resets %3$s; you can change it in Flux AI & MCP › Settings."
-msgstr "%1$sAI-Ausgabenlimit (%2$s) erreicht. Es setzt%3$szurück; Sie können es in Flux AI & MCP › Einstellungen ändern."
+msgstr "%1$s AI-Ausgabenlimit (%2$s) erreicht. Es setzt %3$s zurück; Sie können es in Flux AI & MCP › Einstellungen ändern."
 
 msgid "Flux AI: %2$s%% of the %1$s spending limit used"
-msgstr "Flux AI:%2$s%% des verwendeten Ausgabenlimits%1$s"
+msgstr "Flux AI: %2$s%% des verwendeten Ausgabenlimits %1$s"
 
 msgid "%1$s spending: %2$s / %3$s (%4$s%%)."
-msgstr "%1$s-Ausgaben:%2$s/%3$s(%4$s%%)."
+msgstr "%1$s-Ausgaben: %2$s/%3$s(%4$s%%)."
 
 msgid "AI requests are stopped."
 msgstr "KI-Anfragen werden gestoppt."
@@ -845,13 +845,13 @@ msgid "AI keys"
 msgstr "KI-Schlüssel"
 
 msgid "Connected providers: %s."
-msgstr "Verbundene Anbieter:%s."
+msgstr "Verbundene Anbieter: %s."
 
 msgid "No OpenRouter or Anthropic key entered; AI features will not work."
 msgstr "Kein OpenRouter- oder Anthropic-Schlüssel eingegeben; KI-Funktionen funktionieren nicht."
 
 msgid "Using %s."
-msgstr "Mit%s."
+msgstr "Mit %s."
 
 msgid "The selected model's provider has no key, or no model is selected."
 msgstr "Der Anbieter des ausgewählten Modells hat keinen Schlüssel, oder es ist kein Modell ausgewählt."
@@ -863,7 +863,7 @@ msgid "Set a limit"
 msgstr "Setzen Sie ein Limit"
 
 msgid "%1$s: %2$s / %3$s."
-msgstr "%1$s:%2$s/%3$s."
+msgstr "%1$s: %2$s/%3$s."
 
 msgid "Limit reached, AI requests stopped."
 msgstr "Limit erreicht, AI-Anfragen gestoppt."
@@ -881,7 +881,7 @@ msgid "MCP server"
 msgstr "MCP-Server"
 
 msgid "%1$s %2$d tools registered; Flux AI chat uses them too, and tools that change data ask for approval."
-msgstr "%1$s%2$dTools registriert; Auch der Flux AI-Chat verwendet sie, und Tools, die Daten ändern, fragen nach einer Genehmigung."
+msgstr "%1$s %2$d Tools registriert; Auch der Flux AI-Chat verwendet sie, und Tools, die Daten ändern, fragen nach einer Genehmigung."
 
 msgid "MCP server is on."
 msgstr "Der MCP-Server ist eingeschaltet."
@@ -893,7 +893,7 @@ msgid "Visual renderer (WhatsApp/email)"
 msgstr "Visueller Renderer (WhatsApp/E-Mail)"
 
 msgid "%s AI spending limit (USD)"
-msgstr "%sKI-Ausgabenlimit (USD)"
+msgstr "%s KI-Ausgabenlimit (USD)"
 
 msgid "0 = unlimited. When reached, AI requests stop (or only warn, per setting)."
 msgstr "0 = unbegrenzt. Bei Erreichen werden die KI-Anfragen gestoppt (oder nur eine Warnung ausgegeben, je nach Einstellung)."
@@ -902,7 +902,7 @@ msgid "Enter a valid amount (0 or a positive number)."
 msgstr "Geben Sie einen gültigen Betrag ein (0 oder eine positive Zahl)."
 
 msgid "Limit saved as %s."
-msgstr "Limit als%sgespeichert."
+msgstr "Limit als %s gespeichert."
 
 msgid "What can I do on this page?"
 msgstr "Was kann ich auf dieser Seite tun?"
@@ -929,10 +929,10 @@ msgid "saved (…%s)"
 msgstr "gespeichert (...%s)"
 
 msgid "%s ms"
-msgstr "%sms"
+msgstr "%s ms"
 
 msgid "%s s"
-msgstr "%ss"
+msgstr "%s s"
 
 msgid "chat"
 msgstr "chatten"
@@ -956,7 +956,7 @@ msgid "Invalid or missing MCP key."
 msgstr "Ungültiger oder fehlender MCP-Schlüssel."
 
 msgid "Unknown tool: %s"
-msgstr "Unbekanntes Tool:%s"
+msgstr "Unbekanntes Tool: %s"
 
 msgid "Unauthorized."
 msgstr "Nicht autorisiert."
@@ -968,22 +968,22 @@ msgid "This provider does not offer the selected model."
 msgstr "Dieser Anbieter bietet das ausgewählte Modell nicht an."
 
 msgid "%s key is not set (Flux AI & MCP › Settings › Image and video)."
-msgstr "Die Taste%sist nicht gesetzt (Flux AI & MCP › Einstellungen › Bild und Video)."
+msgstr "Die Taste %s ist nicht gesetzt (Flux AI & MCP › Einstellungen › Bild und Video)."
 
 msgid "This model needs one of these keys: %s (Flux AI & MCP › Settings › Image and video)."
-msgstr "Dieses Modell benötigt einen dieser Schlüssel:%s(Flux AI & MCP › Einstellungen › Bild und Video)."
+msgstr "Dieses Modell benötigt einen dieser Schlüssel: %s(Flux AI & MCP › Einstellungen › Bild und Video)."
 
 msgid "A prompt is required (up to 20,000 characters)."
 msgstr "Eine Eingabeaufforderung ist erforderlich (bis zu 20.000 Zeichen)."
 
 msgid "This model accepts at most %d reference images."
-msgstr "Dieses Modell akzeptiert höchstens%d-Referenzbilder."
+msgstr "Dieses Modell akzeptiert höchstens %d-Referenzbilder."
 
 msgid "This model does not support this aspect ratio."
 msgstr "Dieses Modell unterstützt dieses Seitenverhältnis nicht."
 
 msgid "Duration must be %1$d–%2$d seconds."
-msgstr "Die Dauer muss%1$d–%2$dSekunden betragen."
+msgstr "Die Dauer muss %1$d–%2$d Sekunden betragen."
 
 msgid "Pick 1 or 2 images for the first/last frame."
 msgstr "Wählen Sie 1 oder 2 Bilder für das erste/letzte Bild."
@@ -1004,7 +1004,7 @@ msgid "Could not download the reference."
 msgstr "Die Referenz konnte nicht heruntergeladen werden."
 
 msgid "No response from %1$s (%2$s). The request may have been charged; check the provider's history before sending again."
-msgstr "Keine Antwort von%1$s(%2$s). Die Anfrage wurde möglicherweise in Rechnung gestellt; Überprüfen Sie den Verlauf des Anbieters, bevor Sie erneut senden."
+msgstr "Keine Antwort von %1$s(%2$s). Die Anfrage wurde möglicherweise in Rechnung gestellt; Überprüfen Sie den Verlauf des Anbieters, bevor Sie erneut senden."
 
 msgid "Unsupported provider."
 msgstr "Nicht unterstützter Anbieter."
@@ -1073,7 +1073,7 @@ msgid "→ Flux AI & MCP › Settings › \"Anthropic workspace ID\": paste the 
 msgstr "→ Flux AI & MCP › Einstellungen › „Anthropic Workspace ID“: Fügen Sie die ID (wrkspc_...) von console.anthropic.com › Einstellungen › Arbeitsbereiche ein."
 
 msgid "AI error (%1$d): %2$s"
-msgstr "AI-Fehler (%1$d):%2$s"
+msgstr "AI-Fehler (%1$d): %2$s"
 
 msgid "unknown error"
 msgstr "unbekannter Fehler"
@@ -1085,7 +1085,7 @@ msgid "No OpenRouter API key entered (Flux AI & MCP › Settings)."
 msgstr "Kein OpenRouter-API-Schlüssel eingegeben (Flux AI & MCP › Einstellungen)."
 
 msgid "Could not reach the AI service: %s"
-msgstr "Der AI-Dienst konnte nicht erreicht werden:%s"
+msgstr "Der AI-Dienst konnte nicht erreicht werden: %s"
 
 msgid "The AI returned an empty answer."
 msgstr "Die KI gab eine leere Antwort zurück."
@@ -1136,19 +1136,19 @@ msgid "No visual renderer on the server (Imagick with SVG support or a Gotenberg
 msgstr "Kein visueller Renderer auf dem Server (Imagick mit SVG-Unterstützung oder eine Gotenberg-Adresse ist erforderlich)."
 
 msgid "Could not reach the visual renderer: %s"
-msgstr "Der visuelle Renderer konnte nicht erreicht werden:%s"
+msgstr "Der visuelle Renderer konnte nicht erreicht werden: %s"
 
 msgid "The image renderer rejected the username or password."
 msgstr "Der Bildrenderer hat den Benutzernamen oder das Passwort abgelehnt."
 
 msgid "Could not convert the visual (HTTP %d)."
-msgstr "Das Bild konnte nicht konvertiert werden (HTTP%d)."
+msgstr "Das Bild konnte nicht konvertiert werden (HTTP %d)."
 
 msgid "Could not convert SVG: %s"
-msgstr "SVG:%skonnte nicht konvertiert werden"
+msgstr "SVG: %s konnte nicht konvertiert werden"
 
 msgid "%1$s min %2$s s"
-msgstr "%1$smin%2$ss"
+msgstr "%1$s min %2$s s"
 
 msgid "No data in this range."
 msgstr "Keine Daten in diesem Bereich."
@@ -1166,13 +1166,13 @@ msgid "Average time"
 msgstr "Durchschnittliche Zeit"
 
 msgid "%1$s calls · longest %2$s"
-msgstr "%1$s-Aufrufe · längstes%2$s"
+msgstr "%1$s-Aufrufe · längstes %2$s"
 
 msgid "Testing…"
 msgstr "Testen..."
 
 msgid "%s KB"
-msgstr "%sKB"
+msgstr "%s KB"
 
 msgid "Outgoing · user"
 msgstr "Ausgehender · Benutzer"
@@ -1193,7 +1193,7 @@ msgid "Showing %s tools"
 msgstr "%s-Tools werden angezeigt"
 
 msgid "%s selected"
-msgstr "%sausgewählt"
+msgstr "%s ausgewählt"
 
 msgid "Preparing visual…"
 msgstr "Visuelle Vorbereitung..."
@@ -1238,10 +1238,10 @@ msgid "Dock right"
 msgstr "Rechts andocken"
 
 msgid "Your approval is needed: %s"
-msgstr "Ihre Zustimmung ist erforderlich:%s"
+msgstr "Ihre Zustimmung ist erforderlich: %s"
 
 msgid "%s running…"
-msgstr "%släuft..."
+msgstr "%s läuft..."
 
 msgid "Thinking…"
 msgstr "Denken..."
@@ -1280,7 +1280,7 @@ msgid "Working"
 msgstr "Arbeiten"
 
 msgid "Thought for %s"
-msgstr "Gedacht für%s"
+msgstr "Gedacht für %s"
 
 msgid "The model is preparing an answer…"
 msgstr "Das Model bereitet eine Antwort vor..."
@@ -1310,7 +1310,7 @@ msgid "Data to be sent"
 msgstr "Zu sendende Daten"
 
 msgid "%1$s / %2$s decided"
-msgstr "%1$s/%2$sentschieden"
+msgstr "%1$s/%2$s entschieden"
 
 msgid "Reject all"
 msgstr "Alles ablehnen"
@@ -1482,7 +1482,7 @@ msgstr "Anforderungstexte speichern"
 
 msgid "%d tool is registered."
 msgid_plural "%d tools are registered."
-msgstr[0] "Das%d-Tool ist registriert."
+msgstr[0] "Das %d-Tool ist registriert."
 msgstr[1] "%d-Tools sind registriert."
 
 msgid "%s tool updated."
@@ -1508,8 +1508,8 @@ msgstr[1] "%s-Plugin"
 msgid "%dvehicle is registered.%dvehicle is registered."
 msgstr "%dFahrzeug ist registriert.%dFahrzeug ist registriert."
 
-msgid "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s"
-msgstr "Verbrauch:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s"
+msgid "Spent: %1$s/ Limit: %2$s\nRegeneration: %3$s\n\nDetail: %4$s"
+msgstr "Verbrauch: %1$s/ Limit: %2$s\nRegeneration: %3$s\n\nDetail: %4$s"
 
 msgid "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users."
 msgstr "Gemeinsamer KI-Hub für alle FluxWP-Plugins: OpenRouter- und Anthropic-Schlüssel, Modellkatalog und Preise, Prompt-Cache, Fahrzeugregistrierung, gemeinsamer MCP-Server, Nutzungsberichte, Abrechnung und Ausgabenlimit; Admin und öffentlicher KI-Chat vor Ort für autorisierte Benutzer."
@@ -1548,4 +1548,3 @@ msgstr "Wer sich verbinden kann: Benutzer mit der Fähigkeit flxai_mcp. Rollen, 
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr "Ihr Konto kann keinen Assistenten verbinden (die MCP-Fähigkeit ist erforderlich)."
-

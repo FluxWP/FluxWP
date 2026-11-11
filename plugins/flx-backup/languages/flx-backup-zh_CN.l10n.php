@@ -693,5 +693,6 @@ return array(
   'İlerleme' => '进展',
   'Şimdi yedekle' => '立即备份',
   'Şimdi yedekle ile ilk yedeği alın. Geri yükleme panelde yapılır.' => '使用“立即备份”进行第一次备份。恢复是在面板中完成的。',
+
  ),
 );

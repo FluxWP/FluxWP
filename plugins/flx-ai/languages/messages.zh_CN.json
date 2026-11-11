@@ -505,7 +505,7 @@
     "%stool updated.\u0000%stool updated.": "%s工具已更新。",
     "%splugin\u0000%splugin": "%s插件",
     "%dvehicle is registered.%dvehicle is registered.": "%d车辆已注册。%d车辆已注册。",
-    "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s": "已用:%1$s/ 限制:%2$s\n重新生成:%3$s\n\n详细信息:%4$s",
+    "Spent: %1$s/ Limit: %2$s\nRegeneration: %3$s\n\nDetail: %4$s": "已用:%1$s/ 限制:%2$s\n重新生成:%3$s\n\n详细信息:%4$s",
     "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.": "所有 FluxWP 插件的通用 AI 中心:OpenRouter 和 Anthropic 密钥、模型目录和价格、提示缓存、车辆注册、通用 MCP 服务器、使用报告、计费和支出限制;管理员和公共人工智能在现场为授权用户聊天。",
     "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.": "%d车辆已注册。%d车辆已注册。",
     "AI & MCP": "AI 与 MCP",

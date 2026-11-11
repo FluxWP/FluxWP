@@ -209,10 +209,10 @@ msgid "Only needed when enhanced push security is on in the Expo account. The de
 msgstr "Требуется только в том случае, если в учетной записи Expo включена повышенная безопасность push-уведомлений. Настольное приложение не получает push-уведомлений; он показывает уведомления через синхронизацию, когда он открыт."
 
 msgid "Devices: %1$d · notifications on: %2$d"
-msgstr "Устройства:%1$d· уведомления:%2$d"
+msgstr "Устройства: %1$d· уведомления: %2$d"
 
 msgid "Last send %1$s: %2$d sent, %3$d failed"
-msgstr "Последняя отправка%1$s:%2$dотправлен,%3$dне выполнен."
+msgstr "Последняя отправка %1$s: %2$d отправлен, %3$d не выполнен."
 
 msgid "Web view"
 msgstr "Веб-просмотр"
@@ -285,9 +285,9 @@ msgstr "Выйти"
 
 msgid "%d screen"
 msgid_plural "%d screens"
-msgstr[0] "Экран%d"
-msgstr[1] "Экраны%d"
-msgstr[2] "Экраны%d"
+msgstr[0] "Экран %d"
+msgstr[1] "Экраны %d"
+msgstr[2] "Экраны %d"
 
 msgid "General"
 msgstr "Общий"
@@ -362,7 +362,7 @@ msgid "Saved."
 msgstr "Сохранено."
 
 msgid "Test notification: %1$d sent, %2$d failed, %3$d skipped."
-msgstr "Уведомление о тестировании:%1$dотправлено,%2$dне выполнено,%3$dпропущено."
+msgstr "Уведомление о тестировании: %1$d отправлено, %2$d не выполнено, %3$d пропущено."
 
 msgid "Give the key a name."
 msgstr "Дайте ключу имя."
@@ -407,7 +407,7 @@ msgid "Valid for"
 msgstr "Действительно для"
 
 msgid "%d days"
-msgstr "%dдней"
+msgstr "%d дней"
 
 msgid "Create key"
 msgstr "Создать ключ"
@@ -509,7 +509,7 @@ msgid "Version"
 msgstr "Версия"
 
 msgid "Manifest error: %s"
-msgstr "Ошибка манифеста:%s."
+msgstr "Ошибка манифеста: %s."
 
 msgid "Separate item"
 msgstr "Отдельный пункт"
@@ -557,7 +557,7 @@ msgid "A name and at least one redirect URI are required (at most 10)."
 msgstr "Требуется имя и хотя бы один URI перенаправления (не более 10)."
 
 msgid "Redirect URI rejected: %s (must be https, 127.0.0.1 or an app scheme)."
-msgstr "URI перенаправления отклонен:%s(должен быть https, 127.0.0.1 или схема приложения)."
+msgstr "URI перенаправления отклонен: %s(должен быть https, 127.0.0.1 или схема приложения)."
 
 msgid "Dynamic client limit reached; delete old ones."
 msgstr "Достигнут динамический лимит клиентов; удалить старые."
@@ -569,7 +569,7 @@ msgid "Posts"
 msgstr "Сообщения"
 
 msgid "%s drafts"
-msgstr "%sчерновики"
+msgstr "%s черновики"
 
 msgid "My drafts"
 msgstr "Мои черновики"
@@ -584,7 +584,7 @@ msgid "Pending comments"
 msgstr "Ожидаемые комментарии"
 
 msgid "%s approved"
-msgstr "%sодобрен"
+msgstr "%s одобрен"
 
 msgid "Recent comments"
 msgstr "Последние комментарии"
@@ -605,7 +605,7 @@ msgid "Today's orders"
 msgstr "Сегодняшние заказы"
 
 msgid "%s orders"
-msgstr "%sзаказы"
+msgstr "%s заказы"
 
 msgid "Awaiting payment"
 msgstr "Ожидание оплаты"
@@ -647,7 +647,7 @@ msgid "Your session expired. Try again from the app."
 msgstr "Срок действия вашей сессии истек. Попробуйте еще раз из приложения."
 
 msgid "%s wants to access your account"
-msgstr "%sхочет получить доступ к вашей учетной записи"
+msgstr "%s хочет получить доступ к вашей учетной записи"
 
 msgid "Change"
 msgstr "Изменить"
@@ -659,7 +659,7 @@ msgid "You can revoke access at any time under Users › App access."
 msgstr "Вы можете отозвать доступ в любое время в разделе «Пользователи» > «Доступ к приложению»."
 
 msgid "After approval you will return to %s."
-msgstr "После одобрения вы вернетесь на%s."
+msgstr "После одобрения вы вернетесь на %s."
 
 msgid "Deny"
 msgstr "Запретить"
@@ -674,10 +674,10 @@ msgid "This link has expired. Open it again from the app."
 msgstr "Срок действия этой ссылки истек. Откройте его снова из приложения."
 
 msgid "%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone."
-msgstr "%1$s— это ваш код входа в приложение%2$s. Действует в течение 10 минут. Не передавайте этот код никому."
+msgstr "%1$s— это ваш код входа в приложение %2$s. Действует в течение 10 минут. Не передавайте этот код никому."
 
 msgid "%s sign-in code"
-msgstr "%sкод входа"
+msgstr "%s код входа"
 
 msgid "Your app sign-in code:"
 msgstr "Ваш код входа в приложение:"
@@ -746,7 +746,7 @@ msgid "Active access"
 msgstr "Активный доступ"
 
 msgid "App sessions: %1$s · API keys: %2$s"
-msgstr "Сеансы приложения:%1$s· Ключи API:%2$s"
+msgstr "Сеансы приложения: %1$s· Ключи API: %2$s"
 
 msgid "Push notifications"
 msgstr "Push-уведомления"
@@ -755,25 +755,25 @@ msgid "Off."
 msgstr "Выкл."
 
 msgid "Nothing sent yet. Registered devices: %s"
-msgstr "Еще ничего не отправлено. Зарегистрированные устройства:%s."
+msgstr "Еще ничего не отправлено. Зарегистрированные устройства: %s."
 
 msgid "Last send %1$s: %2$s sent, %3$s failed. %4$s"
-msgstr "Последняя отправка%1$s:%2$sотправлен,%3$sне удалось.%4$s"
+msgstr "Последняя отправка %1$s: %2$s отправлен, %3$s не удалось.%4$s"
 
 msgid "App screens (manifest)"
 msgstr "Экраны приложений (манифест)"
 
 msgid "Modules with schema errors: %s. They may open in the web view in the app."
-msgstr "Модули с ошибками схемы:%s. Они могут открываться в веб-версии приложения."
+msgstr "Модули с ошибками схемы: %s. Они могут открываться в веб-версии приложения."
 
 msgid "%s modules valid."
-msgstr "Модули%sдействительны."
+msgstr "Модули %s действительны."
 
 msgid "App clients"
 msgstr "Клиенты приложений"
 
 msgid "Main FluxWP app: %1$s · branded apps: %2$s"
-msgstr "Основное приложение FluxWP:%1$s· фирменные приложения:%2$s"
+msgstr "Основное приложение FluxWP: %1$s· фирменные приложения: %2$s"
 
 msgid "on"
 msgstr "на"
@@ -1350,4 +1350,3 @@ msgstr "Номер телефона удалён из вашей учётной 
 
 msgid "The token does not include the scope this request needs."
 msgstr "Токен не включает область доступа, которую требует этот запрос."
-

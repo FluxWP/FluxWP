@@ -30,6 +30,7 @@ PH = r'(?:%(?:\d\$)?[sd]|\{[a-z_]+\})'
 L = r'[^\W\d_ـ]'
 TOUCH = re.compile(L + r'[,:;.)]?' + PH + r'(?!\})|' + PH + L + r'|' + PH + r'\(|' + PH + r'[·→×]|[·→×]' + PH, re.U)
 NO_SPACE = {'ja', 'zh_CN'}
+SPACE_TR = False  # --tr: also space the Turkish catalogs (machine-made ones lost the spaces too)
 LOCALES = [('en_US', 'en', 2, '(n != 1)'), ('tr_TR', 'tr', 2, '(n != 1)')] + list(LANGS.values())
 
 
@@ -167,7 +168,8 @@ def rekey(messages, aliases, source, locale, translations):
             prefix, forms = split_key(key)
             if prefix + '\x00'.join(fix_form(f, {}) for f in forms) in source and key not in source:
                 continue  # stale broken copy of a key that the source already has fixed
-            out.setdefault(key, value)
+            if key not in out:
+                out[key] = respace(value, key.split('\x04')[-1], locale)
             continue
         if target in out and target != key:
             continue
@@ -176,11 +178,18 @@ def rekey(messages, aliases, source, locale, translations):
             value = translations[locale][target]
         elif locale == 'en_US':
             value = english
-        elif locale != 'tr_TR' and locale not in NO_SPACE:
-            eforms = english.split('\x00')
-            value = '\x00'.join(space_translation(v, eforms[min(i, len(eforms) - 1)]) for i, v in enumerate(value.split('\x00')))
+        else:
+            value = respace(value, english, locale)
         out[target] = value
     return out
+
+
+def respace(value, english, locale):
+    """Space placeholders in a translation (every form) the way the English source spaces them."""
+    if locale == 'en_US' or locale in NO_SPACE or (locale == 'tr_TR' and not SPACE_TR):
+        return value
+    eforms = english.split('\x00')
+    return '\x00'.join(space_translation(v, eforms[min(i, len(eforms) - 1)]) for i, v in enumerate(value.split('\x00')))
 
 
 def apply(pkg, now, aliases, translations):
@@ -192,7 +201,11 @@ def apply(pkg, now, aliases, translations):
     natives = php_export([str(f.resolve()) for f in folder.glob('*.l10n.php')])
     for locale, _, n, plural in LOCALES:
         jp = folder / ('messages.' + ('en' if locale == 'en_US' else locale) + '.json')
-        lf = (folder / f'{domain}-{locale}.l10n.php').resolve()
+        stem = f'{domain}-{locale}'
+        lf = (folder / f'{stem}.l10n.php').resolve()
+        if str(lf) not in natives:  # themes name their catalogs by locale alone
+            stem = locale
+            lf = (folder / f'{stem}.l10n.php').resolve()
         if not jp.exists() or str(lf) not in natives:
             continue
         data = json.loads(jp.read_text(encoding='utf-8'))
@@ -211,8 +224,8 @@ def apply(pkg, now, aliases, translations):
             else:
                 text += ' ' + phpstr(key) + ' => ' + php_value(value) + ',\n'
         lf.write_text(text + ');\n', encoding='utf-8')
-        (folder / f'{domain}-{locale}.mo').write_bytes(mo(native, locale, n, plural))
-        (folder / f'{domain}-{locale}.po').write_text(po(data['messages'], locale, n, plural), encoding='utf-8')
+        (folder / f'{stem}.mo').write_bytes(mo(native, locale, n, plural))
+        (folder / f'{stem}.po').write_text(po(data['messages'], locale, n, plural), encoding='utf-8')
         if locale == 'en_US':
             (folder / f'{domain}.pot').write_text(po(data['messages'], 'en_US', 2, '(n != 1)', True), encoding='utf-8')
         print('Repaired', domain, locale, flush=True)
@@ -224,8 +237,11 @@ def main():
     p.add_argument('--base', required=True, help='git revision from before the batch translation step')
     p.add_argument('--batch', help='git revision of the batch translation step (for same-line word changes)')
     p.add_argument('--overrides', type=Path, help='JSON: {"source": {broken key: fixed key}, "translations": {locale: {fixed key: value}}}')
+    p.add_argument('--tr', action='store_true', help='also repair tr_TR translations (off for packages whose Turkish is hand-written)')
     p.add_argument('--apply', action='store_true')
     a = p.parse_args()
+    global SPACE_TR
+    SPACE_TR = a.tr
     ov = json.loads(a.overrides.read_text(encoding='utf-8')) if a.overrides else {}
     now, aliases = plan(a.package, a.base, a.batch, ov.get('source', {}))
     for k, v in aliases.items():

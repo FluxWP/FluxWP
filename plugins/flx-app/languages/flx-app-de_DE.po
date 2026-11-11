@@ -209,10 +209,10 @@ msgid "Only needed when enhanced push security is on in the Expo account. The de
 msgstr "Wird nur benötigt, wenn die erweiterte Push-Sicherheit im Expo-Konto aktiviert ist. Die Desktop-App empfängt keinen Push; Es zeigt Benachrichtigungen durch Synchronisierung an, während es geöffnet ist."
 
 msgid "Devices: %1$d · notifications on: %2$d"
-msgstr "Geräte:%1$d· Benachrichtigungen über:%2$d"
+msgstr "Geräte: %1$d· Benachrichtigungen über: %2$d"
 
 msgid "Last send %1$s: %2$d sent, %3$d failed"
-msgstr "Letzter Versand%1$s:%2$dgesendet,%3$dfehlgeschlagen"
+msgstr "Letzter Versand %1$s: %2$d gesendet, %3$d fehlgeschlagen"
 
 msgid "Web view"
 msgstr "Webansicht"
@@ -361,7 +361,7 @@ msgid "Saved."
 msgstr "Gespeichert."
 
 msgid "Test notification: %1$d sent, %2$d failed, %3$d skipped."
-msgstr "Testbenachrichtigung:%1$dgesendet,%2$dfehlgeschlagen,%3$dübersprungen."
+msgstr "Testbenachrichtigung: %1$d gesendet, %2$d fehlgeschlagen, %3$d übersprungen."
 
 msgid "Give the key a name."
 msgstr "Geben Sie dem Schlüssel einen Namen."
@@ -406,7 +406,7 @@ msgid "Valid for"
 msgstr "Gültig für"
 
 msgid "%d days"
-msgstr "%dTage"
+msgstr "%d Tage"
 
 msgid "Create key"
 msgstr "Schlüssel erstellen"
@@ -508,7 +508,7 @@ msgid "Version"
 msgstr "Version"
 
 msgid "Manifest error: %s"
-msgstr "Offensichtlicher Fehler:%s"
+msgstr "Offensichtlicher Fehler: %s"
 
 msgid "Separate item"
 msgstr "Separater Artikel"
@@ -556,7 +556,7 @@ msgid "A name and at least one redirect URI are required (at most 10)."
 msgstr "Ein Name und mindestens ein Weiterleitungs-URI sind erforderlich (höchstens 10)."
 
 msgid "Redirect URI rejected: %s (must be https, 127.0.0.1 or an app scheme)."
-msgstr "Umleitungs-URI abgelehnt:%s(muss https, 127.0.0.1 oder ein App-Schema sein)."
+msgstr "Umleitungs-URI abgelehnt: %s(muss https, 127.0.0.1 oder ein App-Schema sein)."
 
 msgid "Dynamic client limit reached; delete old ones."
 msgstr "Dynamisches Client-Limit erreicht; alte löschen."
@@ -583,7 +583,7 @@ msgid "Pending comments"
 msgstr "Ausstehende Kommentare"
 
 msgid "%s approved"
-msgstr "%sgenehmigt"
+msgstr "%s genehmigt"
 
 msgid "Recent comments"
 msgstr "Aktuelle Kommentare"
@@ -646,7 +646,7 @@ msgid "Your session expired. Try again from the app."
 msgstr "Ihre Sitzung ist abgelaufen. Versuchen Sie es erneut über die App."
 
 msgid "%s wants to access your account"
-msgstr "%smöchte auf Ihr Konto zugreifen"
+msgstr "%s möchte auf Ihr Konto zugreifen"
 
 msgid "Change"
 msgstr "Veränderung"
@@ -658,7 +658,7 @@ msgid "You can revoke access at any time under Users › App access."
 msgstr "Sie können den Zugriff jederzeit unter Benutzer › App-Zugriff widerrufen."
 
 msgid "After approval you will return to %s."
-msgstr "Nach der Genehmigung kehren Sie zu%szurück."
+msgstr "Nach der Genehmigung kehren Sie zu %s zurück."
 
 msgid "Deny"
 msgstr "Leugnen"
@@ -673,7 +673,7 @@ msgid "This link has expired. Open it again from the app."
 msgstr "Dieser Link ist abgelaufen. Öffnen Sie es erneut über die App."
 
 msgid "%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone."
-msgstr "%1$sist Ihr Anmeldecode für die%2$s-App. Gültig für 10 Minuten. Geben Sie diesen Code nicht an Dritte weiter."
+msgstr "%1$s ist Ihr Anmeldecode für die %2$s-App. Gültig für 10 Minuten. Geben Sie diesen Code nicht an Dritte weiter."
 
 msgid "%s sign-in code"
 msgstr "%s-Anmeldecode"
@@ -745,7 +745,7 @@ msgid "Active access"
 msgstr "Aktiver Zugriff"
 
 msgid "App sessions: %1$s · API keys: %2$s"
-msgstr "App-Sitzungen:%1$s· API-Schlüssel:%2$s"
+msgstr "App-Sitzungen: %1$s· API-Schlüssel: %2$s"
 
 msgid "Push notifications"
 msgstr "Push-Benachrichtigungen"
@@ -754,16 +754,16 @@ msgid "Off."
 msgstr "Aus."
 
 msgid "Nothing sent yet. Registered devices: %s"
-msgstr "Noch nichts gesendet. Registrierte Geräte:%s"
+msgstr "Noch nichts gesendet. Registrierte Geräte: %s"
 
 msgid "Last send %1$s: %2$s sent, %3$s failed. %4$s"
-msgstr "Letzter Versand%1$s:%2$sgesendet,%3$sfehlgeschlagen.%4$s"
+msgstr "Letzter Versand %1$s: %2$s gesendet, %3$s fehlgeschlagen.%4$s"
 
 msgid "App screens (manifest)"
 msgstr "App-Bildschirme (Manifest)"
 
 msgid "Modules with schema errors: %s. They may open in the web view in the app."
-msgstr "Module mit Schemafehlern:%s. Sie können in der Webansicht der App geöffnet werden."
+msgstr "Module mit Schemafehlern: %s. Sie können in der Webansicht der App geöffnet werden."
 
 msgid "%s modules valid."
 msgstr "%s-Module gültig."
@@ -772,7 +772,7 @@ msgid "App clients"
 msgstr "App-Clients"
 
 msgid "Main FluxWP app: %1$s · branded apps: %2$s"
-msgstr "Haupt-FluxWP-App:%1$s· Marken-Apps:%2$s"
+msgstr "Haupt-FluxWP-App: %1$s· Marken-Apps: %2$s"
 
 msgid "on"
 msgstr "auf"
@@ -1349,4 +1349,3 @@ msgstr "Die Telefonnummer wurde aus Ihrem %s-Konto entfernt"
 
 msgid "The token does not include the scope this request needs."
 msgstr "Das Token enthält nicht den Bereich, den diese Anfrage benötigt."
-

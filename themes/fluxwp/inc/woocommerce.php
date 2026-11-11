@@ -455,7 +455,7 @@ add_filter(
 			/* translators: %s: payment provider, e.g. EsnekPOS */
 			$parts = explode( "\x01", sprintf( __( 'Güvenli ödeme · %s', 'fluxwp' ), "\x01" ), 2 );
 			$lead  = (string) preg_replace( '/[\s·•|:\-–]+$/u', '', $parts[0] );
-			/* 0.7.19: the provider is its own span, so on a phone it goes to the second line. */
+			/* 0.7.21: the provider is its own span, so on a phone it goes to the second line. */
 			$inner = '<span class="flx-secure-badge__t"><span>' . esc_html( $lead ) . '</span><span class="flx-secure-badge__p">' . esc_html( $provider ) . '</span>' . ( isset( $parts[1] ) && '' !== trim( $parts[1] ) ? '<span>' . esc_html( $parts[1] ) . '</span>' : '' ) . '</span>';
 		}
 		return (string) preg_replace( '#(<p\b[^>]*>).*?(</p>)#s', '$1' . str_replace( array( '\\', '$' ), array( '\\\\', '\\$' ), $inner ) . '$2', $html, 1 );

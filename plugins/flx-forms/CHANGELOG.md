@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.1.19
+- İngilizce kaynak metinlerde 154 yer tutucu boşluğu geri geldi ("Version %s is active", "The latest %d payments are shown", "%s settings" …); toplu çeviri öncesindeki metinler esas alındı.
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 2.1.18
 - Survey charts read submissions 500 at a time and keep the finished result for 120 seconds, one cache entry per form. Storing a new submission drops that form's cache. A second request does not recompute while the first still holds the 60 second lock; it reuses the cached result when there is one.
 - New admin e-mail keys are 128 bits from a CSPRNG. Keys already stored, and the links sent with them, keep working.

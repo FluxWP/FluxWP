@@ -131,7 +131,7 @@ function flxf_efb_conflict_notice( $own_file ) {
 		esc_html(
 			sprintf(
 				/* translators: %s: plugin names, comma separated */
-				__( 'Flux Forms replaces%s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin.', 'flx-forms' ),
+				__( 'Flux Forms replaces %s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin.', 'flx-forms' ),
 				implode( ', ', (array) $names )
 			)
 		)

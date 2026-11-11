@@ -1212,4 +1212,3 @@ msgstr "メタ タイトル/説明、正規、オープン グラフ、スキー
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "PageSpeed がタイムアウトしました。この手順はスキップされました。"
-

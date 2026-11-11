@@ -466,7 +466,7 @@ msgstr "パーマリンク"
 msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
 msgstr "証明書 URL ルールが登録されていません。リンクは 404 を返す場合があります。パーマリンク ページで [変更を保存] をクリックします。"
 
-msgid "Certificates open at %s{code}."
+msgid "Certificates open at %s {code}."
 msgstr "証明書は%s{code}で開きます。"
 
 msgid "Certificate templates"
@@ -968,4 +968,3 @@ msgstr "地図はまだありません: 場所が入力されるまで、リン�
 
 msgid "Person not found."
 msgstr "人物が見つかりません。"
-

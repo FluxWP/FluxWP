@@ -186,7 +186,7 @@ final class FLXF_Payments_Admin {
 			}
 			echo '</tbody></table></div>';
 			/* translators: %d: number of rows shown */
-			echo '<p class="flxfp-foot flxfp-muted">' . esc_html( sprintf( __( 'The latest%dpayments are shown.', 'flx-forms' ), 50 ) ) . '</p>';
+			echo '<p class="flxfp-foot flxfp-muted">' . esc_html( sprintf( __( 'The latest %d payments are shown.', 'flx-forms' ), 50 ) ) . '</p>';
 		}
 		echo '</div></div>';
 	}

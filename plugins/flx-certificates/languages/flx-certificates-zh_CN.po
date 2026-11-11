@@ -466,7 +466,7 @@ msgstr "固定链接"
 msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
 msgstr "证书URL规则未注册;链接可能会返回 404。按“永久链接”页面上的“保存更改”。"
 
-msgid "Certificates open at %s{code}."
+msgid "Certificates open at %s {code}."
 msgstr "证书在%s{code}处打开。"
 
 msgid "Certificate templates"
@@ -968,4 +968,3 @@ msgstr "尚无地图:在填写位置之前,该链接会打开活动页面。"
 
 msgid "Person not found."
 msgstr "未找到此人。"
-

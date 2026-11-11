@@ -16,6 +16,9 @@
 - "Bir sorun mu var? WhatsApp'tan yazın" ayrı, açık yeşil bir kutu; tıklayınca WhatsApp "Merhaba" yazılı açılır (filtre flxb_support_wa_text).
 - Fidan ürün görseli artık gerçek fidan fotoğrafı; eski hazır ikon görseli kendiliğinden değişir (elle seçilen görsele dokunulmaz). Görseli olmayan kalemde özet gri yer tutucu yerine fidan ikonu gösterir.
 
+## 2.20.2
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 2.20.1
 - İngilizce metinlerde yer tutucuların yanındaki silinmiş boşluklar geri geldi ("of %s goal", "Thank you, {ad}", "Your {aralik} donation of {tutar} is set up" ve 189 metin daha); kaynak, .pot ve 10 dilin .po/.mo/.l10n.php/JSON paketleri güncellendi. Makine çevirilerindeki aynı boşluk hataları da düzeltildi.
 - Toplu çeviride bozulan birkaç kelime geri alındı: "Basket" (basketball), "Kurban share", "Healing", "— not set", "%1$d · %2$d sent", "Brings gifts in", kart son kullanma alanının çeviri bağlamı ve "…".

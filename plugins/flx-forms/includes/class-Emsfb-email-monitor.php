@@ -349,7 +349,7 @@ class Email_Monitor {
             $body = null !== $verdict['score']
                 ? sprintf(
                     /* translators: %s: deliverability score out of 100. */
-                    __('The last delivery check scored%sout of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this.', 'flx-forms'),
+                    __('The last delivery check scored %s out of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this.', 'flx-forms'),
                     number_format_i18n($verdict['score'])
                 )
                 : __('The last delivery check found that your messages do leave the site, but mailboxes file them as spam. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this.', 'flx-forms');
@@ -1016,7 +1016,7 @@ class Email_Monitor {
         }
         $subject = sprintf(
             /* translators: %s: site name. */
-            __('Weekly Flux Forms report for%s', 'flx-forms'),
+            __('Weekly Flux Forms report for %s', 'flx-forms'),
             wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES)
         );
 
@@ -1054,7 +1054,7 @@ class Email_Monitor {
         $generated_at = flx_date( time(), 'datetime' );
         $intro = sprintf(
             /* translators: %s: site name. */
-            __('Here is your weekly snapshot for%s.', 'flx-forms'),
+            __('Here is your weekly snapshot for %s.', 'flx-forms'),
             $site_name
         );
 
@@ -1071,7 +1071,7 @@ class Email_Monitor {
         $html .= '<p style="margin:0 0 4px 0;font-size:16px;line-height:24px;font-weight:700;text-align:' . esc_attr($align) . ';">' . esc_html($intro) . '</p>';
         $html .= '<p style="margin:0 0 22px 0;font-size:12px;line-height:18px;color:#6b7280;text-align:' . esc_attr($align) . ';">' . sprintf(
             /* translators: %s: report generation date and time. */
-            esc_html__('Report generated%s', 'flx-forms'),
+            esc_html__('Report generated %s', 'flx-forms'),
             esc_html($generated_at)
         ) . '</p>';
 
@@ -1265,7 +1265,7 @@ class Email_Monitor {
     public static function get_low_score_message($score) {
         return sprintf(
             /* translators: 1: measured deliverability score, 2: minimum acceptable score. */
-            __('The test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s), so the emails your forms send are very likely to be rejected or filtered as spam.', 'flx-forms'),
+            __('The test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s), so the emails your forms send are very likely to be rejected or filtered as spam.', 'flx-forms'),
             number_format_i18n((float) $score),
             number_format_i18n(self::MIN_DELIVERY_SCORE)
         );
@@ -1499,7 +1499,7 @@ class Email_Monitor {
                 // unit positioned right after the sentence, in every direction.
                 $title .= ' <span dir="ltr" style="unicode-bidi:embed;white-space:nowrap;">&mdash; ' . sprintf(
                     /* translators: %s: deliverability grade such as A or D. */
-                    esc_html__('grade%s', 'flx-forms'),
+                    esc_html__('grade %s', 'flx-forms'),
                     esc_html($grade)
                 ) . '</span>';
             }
@@ -1610,7 +1610,7 @@ class Email_Monitor {
                 __('Add the SPF and DKIM records to your domain settings.', 'flx-forms'),
                 sprintf(
                     /* translators: %s: the healthy score threshold, such as 70. */
-                    __('Run the email check again until the score is above%s.', 'flx-forms'),
+                    __('Run the email check again until the score is above %s.', 'flx-forms'),
                     number_format_i18n(self::HEALTHY_SCORE)
                 ),
             ];
@@ -1715,7 +1715,7 @@ class Email_Monitor {
     private static function build_forms_summary_line($activity, $direction, $align) {
         $sentence = sprintf(
             /* translators: 1: total forms, 2: active forms, 3: inactive forms. */
-            esc_html__('You have%1$sforms:%2$sactive and%3$sinactive.', 'flx-forms'),
+            esc_html__('You have %1$s forms: %2$s active and %3$s inactive.', 'flx-forms'),
             '<span style="color:#111827;font-weight:700;">' . esc_html(number_format_i18n((int) $activity['forms_total'])) . '</span>',
             '<span style="color:#0f9d58;font-weight:700;">' . esc_html(number_format_i18n((int) $activity['forms_active'])) . '</span>',
             '<span style="color:#9aa1af;font-weight:700;">' . esc_html(number_format_i18n((int) $activity['forms_inactive'])) . '</span>'

@@ -5,22 +5,22 @@ msgid "\"Discourage search engines from indexing this site\" is checked. Uncheck
 msgstr "تم تحديد \"تثبيط محركات البحث عن فهرسة هذا الموقع\". قم بإلغاء تحديده على الموقع المباشر."
 
 msgid "%1$d critical issues: %2$s"
-msgstr "القضايا الحرجة في%1$d:%2$s"
+msgstr "القضايا الحرجة في %1$d: %2$s"
 
 msgid "%1$s is active, v%2$s. Flux Donate reads the keys from it."
-msgstr "%1$sنشط، v%2$s. يقرأ Flux Donate المفاتيح منه."
+msgstr "%1$s نشط، v%2$s. يقرأ Flux Donate المفاتيح منه."
 
 msgid "%1$s (%2$s)."
 msgstr "%1$s(%2$s)."
 
 msgid "%d issues"
-msgstr "قضايا%d"
+msgstr "قضايا %d"
 
 msgid "%s is active."
-msgstr "%sنشط."
+msgstr "%s نشط."
 
 msgid "%s is installed but not active. Flux Donate reads the keys from its own Payments settings."
-msgstr "تم تثبيت%sولكنه غير نشط. يقرأ Flux Donate المفاتيح من إعدادات المدفوعات الخاصة به."
+msgstr "تم تثبيت %s ولكنه غير نشط. يقرأ Flux Donate المفاتيح من إعدادات المدفوعات الخاصة به."
 
 msgid "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
 msgstr "%s. اختر 8.1 أو الأحدث ضمن Hostinger › PHP Configuration."
@@ -353,16 +353,16 @@ msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site
 msgstr "المكونات الإضافية والمهام المجدولة والإعدادات الرئيسية. تعني الصفوف الحمراء أن جزءًا من الموقع لا يعمل؛ يوصى بالصفوف الصفراء للإصلاحات. يتم إعادة فحص الصفحة في كل مرة يتم فتحها."
 
 msgid "See the status of plugins, cron and settings on the %s screen."
-msgstr "اطلع على حالة المكونات الإضافية والكرون والإعدادات على شاشة%s."
+msgstr "اطلع على حالة المكونات الإضافية والكرون والإعدادات على شاشة %s."
 
 msgid "Ecosystem protection"
 msgstr "حماية النظام البيئي"
 
 msgid "Missing or not published: %s."
-msgstr "مفقود أو لم يتم نشره:%s."
+msgstr "مفقود أو لم يتم نشره: %s."
 
 msgid "Active, v%1$s. This theme was tested with v%2$s or later; please update."
-msgstr "نشط، الخامس%1$s. تم اختبار هذا المظهر باستخدام الإصدار v%2$sأو الإصدارات الأحدث؛ يرجى التحديث."
+msgstr "نشط، الخامس%1$s. تم اختبار هذا المظهر باستخدام الإصدار v%2$s أو الإصدارات الأحدث؛ يرجى التحديث."
 
 msgid "Active, v%s."
 msgstr "نشط، الخامس%s."
@@ -512,7 +512,7 @@ msgid "We are here for volunteering, donations, corporate partnerships and all y
 msgstr "نحن هنا للعمل التطوعي والتبرعات وشراكات الشركات وجميع أسئلتك."
 
 msgid "Tasks only run when visitors arrive (WP-Cron). With little traffic the certificate queue and recurring donation renewals are delayed. Add this command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
-msgstr "يتم تشغيل المهام فقط عند وصول الزوار (WP-Cron). مع قلة حركة المرور، يتم تأخير قائمة انتظار الشهادات وتجديد التبرعات المتكررة. أضف هذا الأمر ضمن Hostinger › متقدم › Cron Jobs، كل 5 دقائق:%sثم قم بإضافةتعريف( 'DISABLE_WP_CRON', true ); إلى wp-config.php."
+msgstr "يتم تشغيل المهام فقط عند وصول الزوار (WP-Cron). مع قلة حركة المرور، يتم تأخير قائمة انتظار الشهادات وتجديد التبرعات المتكررة. أضف هذا الأمر ضمن Hostinger › متقدم › Cron Jobs، كل 5 دقائق: %s ثم قم بإضافةتعريف( 'DISABLE_WP_CRON', true ); إلى wp-config.php."
 
 msgid "Update"
 msgstr "تحديث"
@@ -581,7 +581,7 @@ msgid "Account and Cart"
 msgstr "الحساب والعربة"
 
 msgid "%1$d updates have never been applied. A fresh install may not need them; apply one if the related page looks outdated. List: %2$s"
-msgstr "لم يتم تطبيق تحديثات%1$dمطلقًا. التثبيت الجديد قد لا يحتاج إليها؛ قم بتطبيق واحدة إذا كانت الصفحة ذات الصلة تبدو قديمة. القائمة:%2$s"
+msgstr "لم يتم تطبيق تحديثات %1$d مطلقًا. التثبيت الجديد قد لا يحتاج إليها؛ قم بتطبيق واحدة إذا كانت الصفحة ذات الصلة تبدو قديمة. القائمة: %2$s"
 
 msgid "Welcome"
 msgstr "مرحبًا"
@@ -644,7 +644,7 @@ msgid "People Trained"
 msgstr "الناس المدربين"
 
 msgid "Checked: %s"
-msgstr "تم الفحص:%s"
+msgstr "تم الفحص: %s"
 
 msgid "Copy"
 msgstr "نسخ"
@@ -695,10 +695,10 @@ msgid "Shop"
 msgstr "تسوق"
 
 msgid "Hi %s, your donations are saved to your account."
-msgstr "مرحبًا%s، تم حفظ تبرعاتك في حسابك."
+msgstr "مرحبًا %s، تم حفظ تبرعاتك في حسابك."
 
 msgid "Hello, %s"
-msgstr "مرحبًا،%s"
+msgstr "مرحبًا، %s"
 
 msgid "Distance Sales Agreement"
 msgstr "اتفاقية البيع عن بعد"
@@ -935,7 +935,7 @@ msgid "Warning"
 msgstr "تحذير"
 
 msgid "%1$d tasks are more than 15 minutes overdue: %2$s"
-msgstr "تأخرت مهام%1$dلأكثر من 15 دقيقة:%2$s"
+msgstr "تأخرت مهام %1$d لأكثر من 15 دقيقة: %2$s"
 
 msgid "No overdue tasks."
 msgstr "لا توجد مهام متأخرة."
@@ -953,7 +953,7 @@ msgid "WooCommerce account icon and mini cart. Hidden when WooCommerce is inacti
 msgstr "أيقونة حساب WooCommerce والعربة الصغيرة. مخفي عندما يكون WooCommerce غير نشط."
 
 msgid "WooCommerce currency is %s. Choose Turkish lira."
-msgstr "عملة WooCommerce هي%s. اختر الليرة التركية."
+msgstr "عملة WooCommerce هي %s. اختر الليرة التركية."
 
 msgid "Coming soon"
 msgstr "قريبا"
@@ -1052,7 +1052,7 @@ msgid "guide and our"
 msgstr "دليل ولدينا"
 
 msgid "v%s and later add their own checks to this screen."
-msgstr "v%sوقاموا لاحقًا بإضافة الشيكات الخاصة بهم إلى هذه الشاشة."
+msgstr "v%s وقاموا لاحقًا بإضافة الشيكات الخاصة بهم إلى هذه الشاشة."
 
 msgid "or"
 msgstr "أو"
@@ -1214,13 +1214,13 @@ msgid "My account, Cart and Checkout are published."
 msgstr "تم نشر حسابي وسلة التسوق والخروج."
 
 msgid "Theme settings copied (%d fields)."
-msgstr "تم نسخ إعدادات السمة (حقول%d)."
+msgstr "تم نسخ إعدادات السمة (حقول %d)."
 
 msgid "Additional CSS copied."
 msgstr "تم نسخ CSS الإضافي."
 
 msgid "Site Editor records copied (%d templates, parts or styles)."
-msgstr "تم نسخ سجلات محرر الموقع (قوالب أو أجزاء أو أنماط%d)."
+msgstr "تم نسخ سجلات محرر الموقع (قوالب أو أجزاء أو أنماط %d)."
 
 msgid "There was nothing new to migrate."
 msgstr "ولم يكن هناك جديد للهجرة."
@@ -1238,10 +1238,10 @@ msgid "Copies the previous theme's settings (logo, menus, additional CSS) and th
 msgstr "ينسخ إعدادات السمة السابقة (الشعار والقوائم وCSS الإضافية) والقوالب والأجزاء والأنماط التي حفظتها في محرر الموقع إلى هذه السمة. الموضوع السابق لم يمس؛ لا تتم الكتابة فوق السجلات التي تحمل نفس الاسم في هذا الموضوع."
 
 msgid "Migrate from %s"
-msgstr "الترحيل من%s"
+msgstr "الترحيل من %s"
 
 msgid "Migrate from %1$s again (last: %2$s)"
-msgstr "الترحيل من%1$sمرة أخرى (الأخير:%2$s)"
+msgstr "الترحيل من %1$s مرة أخرى (الأخير: %2$s)"
 
 msgid "FluxWP"
 msgstr "فلوكسوب"
@@ -1370,7 +1370,7 @@ msgid "WhatsApp chats and call logs"
 msgstr "محادثات الواتساب وسجلات المكالمات"
 
 msgid "Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
-msgstr "يتم تشغيل المهام فقط عند وصول الزوار (WP-Cron). مع انخفاض حركة المرور، يتم تأخير رسائل البريد الإلكتروني والمهام المجدولة. أضف هذا الأمر كل 5 دقائق ضمن Hostinger › متقدم › Cron Jobs:%sثم أضف Define( 'DISABLE_WP_CRON', true ); إلى wp-config.php."
+msgstr "يتم تشغيل المهام فقط عند وصول الزوار (WP-Cron). مع انخفاض حركة المرور، يتم تأخير رسائل البريد الإلكتروني والمهام المجدولة. أضف هذا الأمر كل 5 دقائق ضمن Hostinger › متقدم › Cron Jobs: %s ثم أضف Define( 'DISABLE_WP_CRON', true ); إلى wp-config.php."
 
 msgid "%s. Choose Istanbul so order, form and email times are correct."
 msgstr "%s. اختر إسطنبول بحيث تكون أوقات الطلب والنموذج والبريد الإلكتروني صحيحة."

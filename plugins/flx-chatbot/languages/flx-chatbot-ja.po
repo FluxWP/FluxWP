@@ -1198,4 +1198,3 @@ msgstr "人工知能がサポートするサイトへのチャット ウィン�
 
 msgid "Still answering. Please wait a moment."
 msgstr "まだ回答しています。しばらくお待ちください。"
-

@@ -1157,13 +1157,13 @@ msgstr[1] "%s bağış kalıcı olarak silindi."
 
 msgid "%1$s paid gift · %2$s"
 msgid_plural "%1$s paid gifts · %2$s"
-msgstr[0] "%1$sücretli hediye ·%2$s"
-msgstr[1] "%1$sücretli hediyeler ·%2$s"
+msgstr[0] "%1$s ücretli hediye ·%2$s"
+msgstr[1] "%1$s ücretli hediyeler ·%2$s"
 
 msgid "%s waiting"
 msgid_plural "%s waiting"
-msgstr[0] "%sbekliyor"
-msgstr[1] "%sbekliyor"
+msgstr[0] "%s bekliyor"
+msgstr[1] "%s bekliyor"
 
 msgid "%d certificate made. Check it, then press \"Send the certificates\"."
 msgid_plural "%d certificates made. Check them, then press \"Send the certificates\"."
@@ -5447,8 +5447,8 @@ msgstr[1] "%dactive type has its hidden WooCommerce product.%dactive types have 
 
 msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
-msgstr[0] "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
-msgstr[1] "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
+msgstr[0] "%1$dtask is more than 15 minutes late: %2$s.%1$dtasks are more than 15 minutes late: %2$s."
+msgstr[1] "%1$dtask is more than 15 minutes late: %2$s.%1$dtasks are more than 15 minutes late: %2$s."
 
 msgid "Donation lookup code"
 msgstr "Bağış sorgulama kodu"

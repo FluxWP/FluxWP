@@ -5,22 +5,22 @@ msgid "\"Discourage search engines from indexing this site\" is checked. Uncheck
 msgstr "\"Dissuader les moteurs de recherche d'indexer ce site\" est coché. Décochez-le sur le site en direct."
 
 msgid "%1$d critical issues: %2$s"
-msgstr "Problèmes critiques%1$d:%2$s"
+msgstr "Problèmes critiques %1$d: %2$s"
 
 msgid "%1$s is active, v%2$s. Flux Donate reads the keys from it."
-msgstr "%1$sest actif, v%2$s. Flux Donate en lit les clés."
+msgstr "%1$s est actif, v%2$s. Flux Donate en lit les clés."
 
 msgid "%1$s (%2$s)."
 msgstr "%1$s (%2$s)."
 
 msgid "%d issues"
-msgstr "Problèmes%d"
+msgstr "Problèmes %d"
 
 msgid "%s is active."
-msgstr "%sest actif."
+msgstr "%s est actif."
 
 msgid "%s is installed but not active. Flux Donate reads the keys from its own Payments settings."
-msgstr "%sest installé mais n'est pas actif. Flux Donate lit les clés à partir de ses propres paramètres de paiement."
+msgstr "%s est installé mais n'est pas actif. Flux Donate lit les clés à partir de ses propres paramètres de paiement."
 
 msgid "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
 msgstr "%s. FLXTOK0FIN . Choisissez 8.1 ou version ultérieure sous Hostinger › Configuration PHP."
@@ -353,16 +353,16 @@ msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site
 msgstr "Plugins, tâches planifiées et paramètres clés. Les lignes rouges signifient qu’une partie du site ne fonctionne pas ; les lignes jaunes sont des correctifs recommandés. La page est revérifiée à chaque fois qu'elle s'ouvre."
 
 msgid "See the status of plugins, cron and settings on the %s screen."
-msgstr "Consultez l'état des plugins, du cron et des paramètres sur l'écran%s."
+msgstr "Consultez l'état des plugins, du cron et des paramètres sur l'écran %s."
 
 msgid "Ecosystem protection"
 msgstr "Protection des écosystèmes"
 
 msgid "Missing or not published: %s."
-msgstr "Manquant ou non publié :%s."
+msgstr "Manquant ou non publié : %s."
 
 msgid "Active, v%1$s. This theme was tested with v%2$s or later; please update."
-msgstr "Actif, v%1$s. Ce thème a été testé avec v%2$sou version ultérieure ; veuillez mettre à jour."
+msgstr "Actif, v%1$s. Ce thème a été testé avec v%2$s ou version ultérieure ; veuillez mettre à jour."
 
 msgid "Active, v%s."
 msgstr "Actif, v%s."
@@ -512,7 +512,7 @@ msgid "We are here for volunteering, donations, corporate partnerships and all y
 msgstr "Nous sommes là pour le bénévolat, les dons, les partenariats corporatifs et toutes vos questions."
 
 msgid "Tasks only run when visitors arrive (WP-Cron). With little traffic the certificate queue and recurring donation renewals are delayed. Add this command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
-msgstr "Les tâches ne s'exécutent que lorsque les visiteurs arrivent (WP-Cron). Avec peu de trafic, la file d'attente des certificats et les renouvellements de dons récurrents sont retardés. Ajoutez cette commande sous Hostinger › Advanced › Cron Jobs, toutes les 5 minutes :%sAjoutez ensuite definition( 'DISABLE_WP_CRON', true ); vers wp-config.php."
+msgstr "Les tâches ne s'exécutent que lorsque les visiteurs arrivent (WP-Cron). Avec peu de trafic, la file d'attente des certificats et les renouvellements de dons récurrents sont retardés. Ajoutez cette commande sous Hostinger › Advanced › Cron Jobs, toutes les 5 minutes : %s Ajoutez ensuite definition( 'DISABLE_WP_CRON', true ); vers wp-config.php."
 
 msgid "Update"
 msgstr "Mise à jour"
@@ -581,7 +581,7 @@ msgid "Account and Cart"
 msgstr "Compte et panier"
 
 msgid "%1$d updates have never been applied. A fresh install may not need them; apply one if the related page looks outdated. List: %2$s"
-msgstr "Les mises à jour%1$dn'ont jamais été appliquées. Une nouvelle installation n’en aura peut-être pas besoin ; appliquez-en un si la page associée semble obsolète. Liste :%2$s"
+msgstr "Les mises à jour %1$d n'ont jamais été appliquées. Une nouvelle installation n’en aura peut-être pas besoin ; appliquez-en un si la page associée semble obsolète. Liste : %2$s"
 
 msgid "Welcome"
 msgstr "Bienvenue"
@@ -644,7 +644,7 @@ msgid "People Trained"
 msgstr "Personnes formées"
 
 msgid "Checked: %s"
-msgstr "Vérifié :%s"
+msgstr "Vérifié : %s"
 
 msgid "Copy"
 msgstr "Copier"
@@ -695,10 +695,10 @@ msgid "Shop"
 msgstr "Boutique"
 
 msgid "Hi %s, your donations are saved to your account."
-msgstr "Bonjour%s, vos dons sont enregistrés sur votre compte."
+msgstr "Bonjour %s, vos dons sont enregistrés sur votre compte."
 
 msgid "Hello, %s"
-msgstr "Bonjour,%s"
+msgstr "Bonjour, %s"
 
 msgid "Distance Sales Agreement"
 msgstr "Contrat de vente à distance"
@@ -935,7 +935,7 @@ msgid "Warning"
 msgstr "Avertissement"
 
 msgid "%1$d tasks are more than 15 minutes overdue: %2$s"
-msgstr "Les tâches%1$dsont en retard de plus de 15 minutes :%2$s"
+msgstr "Les tâches %1$d sont en retard de plus de 15 minutes : %2$s"
 
 msgid "No overdue tasks."
 msgstr "Aucune tâche en retard."
@@ -953,7 +953,7 @@ msgid "WooCommerce account icon and mini cart. Hidden when WooCommerce is inacti
 msgstr "Icône de compte WooCommerce et mini panier. Masqué lorsque WooCommerce est inactif."
 
 msgid "WooCommerce currency is %s. Choose Turkish lira."
-msgstr "La devise WooCommerce est%s. Choisissez la livre turque."
+msgstr "La devise WooCommerce est %s. Choisissez la livre turque."
 
 msgid "Coming soon"
 msgstr "Bientôt disponible"
@@ -1052,7 +1052,7 @@ msgid "guide and our"
 msgstr "guide et notre"
 
 msgid "v%s and later add their own checks to this screen."
-msgstr "v%set versions ultérieures ajoutent leurs propres contrôles à cet écran."
+msgstr "v%s et versions ultérieures ajoutent leurs propres contrôles à cet écran."
 
 msgid "or"
 msgstr "ou"
@@ -1214,13 +1214,13 @@ msgid "My account, Cart and Checkout are published."
 msgstr "Mon compte, mon panier et mon paiement sont publiés."
 
 msgid "Theme settings copied (%d fields)."
-msgstr "Paramètres du thème copiés (champs%d)."
+msgstr "Paramètres du thème copiés (champs %d)."
 
 msgid "Additional CSS copied."
 msgstr "CSS supplémentaire copié."
 
 msgid "Site Editor records copied (%d templates, parts or styles)."
-msgstr "Enregistrements de l'éditeur de site copiés (modèles, pièces ou styles%d)."
+msgstr "Enregistrements de l'éditeur de site copiés (modèles, pièces ou styles %d)."
 
 msgid "There was nothing new to migrate."
 msgstr "Il n’y avait rien de nouveau à migrer."
@@ -1238,10 +1238,10 @@ msgid "Copies the previous theme's settings (logo, menus, additional CSS) and th
 msgstr "Copie les paramètres du thème précédent (logo, menus, CSS supplémentaire) et les modèles, parties et styles que vous avez enregistrés dans l'éditeur de site dans ce thème. Le thème précédent reste inchangé ; les enregistrements portant le même nom dans ce thème ne sont pas écrasés."
 
 msgid "Migrate from %s"
-msgstr "Migrer depuis%s"
+msgstr "Migrer depuis %s"
 
 msgid "Migrate from %1$s again (last: %2$s)"
-msgstr "Migrez à nouveau depuis%1$s(dernier :%2$s)"
+msgstr "Migrez à nouveau depuis %1$s(dernier : %2$s)"
 
 msgid "FluxWP"
 msgstr "FluxWP"
@@ -1370,7 +1370,7 @@ msgid "WhatsApp chats and call logs"
 msgstr "Chats WhatsApp et journaux d'appels"
 
 msgid "Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
-msgstr "Les tâches s'exécutent uniquement à l'arrivée des visiteurs (WP-Cron). Avec un faible trafic, les e-mails et les tâches planifiées sont retardés. Ajoutez cette commande toutes les 5 minutes sous Hostinger › Avancé › Tâches Cron :%sAjoutez ensuite definition( 'DISABLE_WP_CRON', true ); vers wp-config.php."
+msgstr "Les tâches s'exécutent uniquement à l'arrivée des visiteurs (WP-Cron). Avec un faible trafic, les e-mails et les tâches planifiées sont retardés. Ajoutez cette commande toutes les 5 minutes sous Hostinger › Avancé › Tâches Cron : %s Ajoutez ensuite definition( 'DISABLE_WP_CRON', true ); vers wp-config.php."
 
 msgid "%s. Choose Istanbul so order, form and email times are correct."
 msgstr "%s. FLXTOK0FIN . Choisissez Istanbul pour que les délais de commande, de formulaire et de courrier électronique soient corrects."

@@ -1,0 +1,7 @@
+{
+ "source": {
+  "Open%1$sYT Form → Settings%2$sand press%1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute.": "Open %1$sYT Form → Settings%2$s and press %1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute.",
+  "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to%s— a firewall, proxy or regional block is the usual cause — then repeat step 1.": "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to %s — a firewall, proxy or regional block is the usual cause — then repeat step 1.",
+  "Powered by%1$sYT Form%2$s.%3$sbest Form plugin for Wordpress%4$s.": "Powered by %1$sYT Form%2$s. %3$sbest Form plugin for Wordpress%4$s."
+ }
+}

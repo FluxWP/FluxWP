@@ -87,7 +87,7 @@ class Emsfb_Visual_Composer_Integration {
         if ($is_editor) {
             $form_name = $this->get_form_name($form_id);
             return $this->get_editor_placeholder(
-                sprintf(__('Form:%s(ID:%s)', 'flx-forms'), $form_name, $form_id)
+                sprintf(__('Form: %s (ID: %s)', 'flx-forms'), $form_name, $form_id)
             );
         }
 

@@ -125,7 +125,7 @@ msgid "Cache"
 msgstr "ذاكرة التخزين المؤقت"
 
 msgid "%1$d CSS, %2$d JS copies · %3$s"
-msgstr "نسخ%1$dCSS، نسخ%2$dJS ·%3$s"
+msgstr "نسخ %1$d CSS، نسخ %2$d JS ·%3$s"
 
 msgid "Compare"
 msgstr "قارن"
@@ -173,7 +173,7 @@ msgid "All good: animations in the CSS files seen use transform/opacity."
 msgstr "كل شيء جيد: الرسوم المتحركة في ملفات CSS التي تمت مشاهدتها تستخدم التحويل/التعتيم."
 
 msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
-msgstr "تظهر ملفات%1$dCSS الممسوحة ضوئيًا على الواجهة الأمامية (%2$s)."
+msgstr "تظهر ملفات %1$d CSS الممسوحة ضوئيًا على الواجهة الأمامية (%2$s)."
 
 msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
 msgstr "لم يتم رؤية الواجهة الأمامية بعد، لذلك تم فحص مجلد السمات. بمجرد فتح الموقع، يتم فحص الملفات التي تقوم الصفحة بتحميلها."
@@ -209,7 +209,7 @@ msgid "Custom login URL turned off; login is back on wp-login.php."
 msgstr "تم إيقاف تشغيل عنوان URL المخصص لتسجيل الدخول؛ لقد عاد تسجيل الدخول إلى wp-login.php."
 
 msgid "Cleanup done: %s items."
-msgstr "تم التنظيف: عناصر%s."
+msgstr "تم التنظيف: عناصر %s."
 
 msgid "Login URL changed."
 msgstr "تم تغيير عنوان URL لتسجيل الدخول."
@@ -218,7 +218,7 @@ msgid "New address:"
 msgstr "العنوان الجديد:"
 
 msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
-msgstr "يتم الآن تسجيل خروجك حتى تتمكن من رؤية العنوان الجديد يعمل؛ ستتم إعادة توجيهك إلى صفحة تسجيل الدخول الجديدة خلال%sثانية. بعد تسجيل الدخول ستعود إلى هذه الشاشة."
+msgstr "يتم الآن تسجيل خروجك حتى تتمكن من رؤية العنوان الجديد يعمل؛ ستتم إعادة توجيهك إلى صفحة تسجيل الدخول الجديدة خلال %s ثانية. بعد تسجيل الدخول ستعود إلى هذه الشاشة."
 
 msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
 msgstr "توقفت إعادة التوجيه. أنت لا تزال مسجلاً الدخول؛ يتم استخدام العنوان الجديد في المرة التالية التي تقوم فيها بتسجيل الدخول."
@@ -296,7 +296,7 @@ msgid "No records yet. Slow or failing requests and sampled requests appear here
 msgstr "لا توجد سجلات حتى الآن. تظهر هنا الطلبات البطيئة أو الفاشلة والطلبات التي تم أخذ عينات منها."
 
 msgid "Records: %s"
-msgstr "السجلات:%s"
+msgstr "السجلات: %s"
 
 msgid "Delete all records?"
 msgstr "هل تريد حذف كافة السجلات؟"
@@ -428,7 +428,7 @@ msgid "Disk"
 msgstr "القرص"
 
 msgid "%s free"
-msgstr "%sمجاني"
+msgstr "%s مجاني"
 
 msgid "Note"
 msgstr "ملاحظة"
@@ -677,7 +677,7 @@ msgid "Args"
 msgstr "الحجج"
 
 msgid "Overdue: due %s"
-msgstr "متأخر: بسبب%s"
+msgstr "متأخر: بسبب %s"
 
 msgid "once"
 msgstr "مرة واحدة"
@@ -809,28 +809,28 @@ msgid "If you forget the address or login won't open: add the line below to wp-c
 msgstr "إذا نسيت العنوان أو لن يتم فتح تسجيل الدخول: أضف السطر أدناه إلى wp-config.php باستخدام مدير الملفات لديك (Hostinger hPanel ›File Manager). يعود تسجيل الدخول إلى wp-login.php؛ بمجرد دخولك، أصلح العنوان هنا وأزل الخط."
 
 msgid "Deprecated since %1$s. Use instead: %2$s"
-msgstr "تم إهماله منذ%1$s. استخدم بدلاً من ذلك:%2$s"
+msgstr "تم إهماله منذ %1$s. استخدم بدلاً من ذلك: %2$s"
 
 msgid "%d min"
 msgstr "%d دقيقة"
 
 msgid "%1$d d %2$d h"
-msgstr "%1$dد%2$dح"
+msgstr "%1$d د %2$d ح"
 
 msgid "%d h"
-msgstr "%dح"
+msgstr "%d ح"
 
 msgid "Account limit cannot be read"
 msgstr "لا يمكن قراءة حد الحساب"
 
 msgid "%s cores, no account limit"
-msgstr "نوى%s، لا يوجد حد للحساب"
+msgstr "نوى %s، لا يوجد حد للحساب"
 
 msgid "Account limit %s cores"
-msgstr "حد الحساب%sالنوى"
+msgstr "حد الحساب %s النوى"
 
 msgid "%1$d cores · load %2$s"
-msgstr "نوى%1$d· تحميل%2$s"
+msgstr "نوى %1$d· تحميل %2$s"
 
 msgid "Disk (account)"
 msgstr "القرص (الحساب)"
@@ -839,7 +839,7 @@ msgid "Scanning the account folder"
 msgstr "مسح مجلد الحساب"
 
 msgid "files %1$s · database %2$s"
-msgstr "ملفات%1$s· قاعدة بيانات%2$s"
+msgstr "ملفات %1$s· قاعدة بيانات %2$s"
 
 msgid "CPU load"
 msgstr "تحميل وحدة المعالجة المركزية"
@@ -971,7 +971,7 @@ msgid "Animations (GPU)"
 msgstr "الرسوم المتحركة (وحدة معالجة الرسومات)"
 
 msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
-msgstr "الرسوم المتحركة لا تعمل على وحدة معالجة الرسومات:%s. يجب إعادة كتابته باستخدام التحويل/التعتيم (السمة/الإعداد المسبق)."
+msgstr "الرسوم المتحركة لا تعمل على وحدة معالجة الرسومات: %s. يجب إعادة كتابته باستخدام التحويل/التعتيم (السمة/الإعداد المسبق)."
 
 msgid "Animations in the CSS files seen use transform/opacity."
 msgstr "تستخدم الرسوم المتحركة في ملفات CSS التي يتم مشاهدتها التحويل/التعتيم."
@@ -1061,7 +1061,7 @@ msgid "Request recording"
 msgstr "طلب التسجيل"
 
 msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
-msgstr "تشغيل:%1$d%% من الطلبات يتم أخذ عينات منها؛ يتم تسجيل الطلبات التي تزيد عن%2$dمللي ثانية والطلبات الفاشلة."
+msgstr "تشغيل: %1$d%% من الطلبات يتم أخذ عينات منها؛ يتم تسجيل الطلبات التي تزيد عن %2$d مللي ثانية والطلبات الفاشلة."
 
 msgid "Off: only the live panel works; AI cannot read history."
 msgstr "إيقاف: تعمل اللوحة المباشرة فقط؛ الذكاء الاصطناعي لا يمكنه قراءة التاريخ."
@@ -1070,7 +1070,7 @@ msgid "Failing requests in the last 24 hours"
 msgstr "الطلبات الفاشلة خلال الـ 24 ساعة الماضية"
 
 msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
-msgstr "طلبات%1$dبها أخطاء PHP/الخادم،%2$dفادحة. انظر السجلات."
+msgstr "طلبات %1$d بها أخطاء PHP/الخادم، %2$d فادحة. انظر السجلات."
 
 msgid "No recorded errors."
 msgstr "لا توجد أخطاء مسجلة."
@@ -1079,10 +1079,10 @@ msgid "Slow requests in the last 24 hours"
 msgstr "الطلبات البطيئة خلال الـ 24 ساعة الماضية"
 
 msgid "%1$d requests exceeded %2$d ms."
-msgstr "تجاوزت طلبات%1$d%2$dمللي ثانية."
+msgstr "تجاوزت طلبات %1$d%2$d مللي ثانية."
 
 msgid "%d recorded requests had external service errors in the last 24 hours."
-msgstr "تحتوي طلبات%dالمسجلة على أخطاء في الخدمة الخارجية خلال الـ 24 ساعة الماضية."
+msgstr "تحتوي طلبات %d المسجلة على أخطاء في الخدمة الخارجية خلال الـ 24 ساعة الماضية."
 
 msgid "No recorded external service errors."
 msgstr "لا توجد أخطاء الخدمة الخارجية المسجلة."
@@ -1100,19 +1100,19 @@ msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
 msgstr "Flux AI & MCP غير نشطين أو MCP متوقف عن التشغيل؛ الأدوات غير مرئية."
 
 msgid "%1$d KB (%2$d options) is loaded on every request."
-msgstr "يتم تحميل%1$dKB (خيارات%2$d) عند كل طلب."
+msgstr "يتم تحميل %1$d KB (خيارات %2$d) عند كل طلب."
 
 msgid "Under 800 KB is recommended; check the largest rows."
 msgstr "يوصى باستخدام أقل من 800 كيلو بايت؛ تحقق من أكبر الصفوف."
 
 msgid "Last run %s."
-msgstr "آخر تشغيل%s."
+msgstr "آخر تشغيل %s."
 
 msgid "Cron has not been seen running yet."
 msgstr "لم يتم رؤية كرون قيد التشغيل بعد."
 
 msgid "%d events overdue."
-msgstr "أحداث%dمتأخرة."
+msgstr "أحداث %d متأخرة."
 
 msgid "Scheduled events are running"
 msgstr "الأحداث المجدولة قيد التشغيل"
@@ -1121,16 +1121,16 @@ msgid "Disk space"
 msgstr "مساحة القرص"
 
 msgid "%1$d%% used, %2$s free."
-msgstr "تم استخدام%1$d%%، و%2$sمجاني."
+msgstr "تم استخدام %1$d%%، و %2$s مجاني."
 
 msgid "(account usage / quota from Settings)"
 msgstr "(استخدام الحساب / الحصة من الإعدادات)"
 
 msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
-msgstr "%1$d%% من حد وحدة المعالجة المركزية للحساب قيد الاستخدام (أنوية%2$s)."
+msgstr "%1$d%% من حد وحدة المعالجة المركزية للحساب قيد الاستخدام (أنوية %2$s)."
 
 msgid "%1$d%% over the last minute (%2$d cores)."
-msgstr "%1$d%% خلال اللحظة الأخيرة (نوى%2$d)."
+msgstr "%1$d%% خلال اللحظة الأخيرة (نوى %2$d)."
 
 msgid "On: compiled PHP files are kept in memory."
 msgstr "تشغيل: يتم الاحتفاظ بملفات PHP المجمعة في الذاكرة."
@@ -1142,7 +1142,7 @@ msgid "Off: PHP files are compiled again on every request. Turn it on in Hosting
 msgstr "إيقاف: يتم تجميع ملفات PHP مرة أخرى عند كل طلب. قم بتشغيله في تكوين Hostinger › PHP."
 
 msgid "%d expired transients are still in the table."
-msgstr "لا تزال العناصر العابرة منتهية الصلاحية%dموجودة في الجدول."
+msgstr "لا تزال العناصر العابرة منتهية الصلاحية %d موجودة في الجدول."
 
 msgid "None."
 msgstr "لا شيء."
@@ -1151,7 +1151,7 @@ msgid "Delete expired transients"
 msgstr "حذف العابرين منتهية الصلاحية"
 
 msgid "%d transients deleted."
-msgstr "تم حذف العابرين%d."
+msgstr "تم حذف العابرين %d."
 
 msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
 msgstr "يوضح كل سطر شيئًا يحتاجه الموقع وما إذا كان موجودًا أم لا. أصلح الأخطاء أولاً؛ التحذيرات تستحق نظرة."
@@ -1166,7 +1166,7 @@ msgid "Info"
 msgstr "معلومات"
 
 msgid "%1$d OK · %2$d warnings · %3$d errors"
-msgstr "%1$dموافق · تحذيرات%2$d· أخطاء%3$d"
+msgstr "%1$d موافق · تحذيرات %2$d· أخطاء %3$d"
 
 msgid "Check again"
 msgstr "تحقق مرة أخرى"
@@ -1175,7 +1175,7 @@ msgid "Show only these (click again to show all)"
 msgstr "إظهار هذه فقط (انقر مرة أخرى لإظهار الكل)"
 
 msgid "Checked: %s"
-msgstr "تم الفحص:%s"
+msgstr "تم الفحص: %s"
 
 msgid "Check"
 msgstr "تحقق"
@@ -1190,7 +1190,7 @@ msgid "No checks are registered."
 msgstr "لم يتم تسجيل أي شيكات."
 
 msgid "System check found %d problem(s) that can stop donations or automations."
-msgstr "عثر فحص النظام على مشكلة (مشكلات)%dالتي يمكنها إيقاف التبرعات أو عمليات التشغيل الآلي."
+msgstr "عثر فحص النظام على مشكلة (مشكلات)%d التي يمكنها إيقاف التبرعات أو عمليات التشغيل الآلي."
 
 msgid "Open system check"
 msgstr "فتح فحص النظام"
@@ -1202,7 +1202,7 @@ msgid "System: %d error(s)"
 msgstr "النظام: خطأ (أخطاء)%d"
 
 msgid "This check could not run: %s"
-msgstr "تعذر تشغيل هذا الفحص:%s"
+msgstr "تعذر تشغيل هذا الفحص: %s"
 
 msgid "Scheduled tasks (cron)"
 msgstr "المهام المجدولة (كرون)"
@@ -1226,16 +1226,16 @@ msgid "Other"
 msgstr "أخرى"
 
 msgid "Plugin: %s"
-msgstr "البرنامج المساعد:%s"
+msgstr "البرنامج المساعد: %s"
 
 msgid "MU plugin: %s"
-msgstr "البرنامج المساعد MU:%s"
+msgstr "البرنامج المساعد MU: %s"
 
 msgid "Theme: %s"
-msgstr "الموضوع:%s"
+msgstr "الموضوع: %s"
 
 msgid "Drop-in: %s"
-msgstr "الدخول:%s"
+msgstr "الدخول: %s"
 
 msgid "WordPress core"
 msgstr "ووردبريس الأساسية"

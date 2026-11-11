@@ -2280,7 +2280,7 @@
 
 	function  free_plus_efb_powered_by($texts) {
 
-		$text = esc_html__('Built with%sYT Form%sby%sWordPress form plugin by whitestudio.team%s', 'flx-forms');
+		$text = esc_html__('Built with %sYT Form%s by %sWordPress form plugin by whitestudio.team%s', 'flx-forms');
 		$text = sprintf($text, '<a href="https://wordpress.org/plugins/easy-form-builder/" target="_blank">', '</a>', '<a href="https://whitestudio.team" target="_blank">', '</a>');
 		$copyRight = '<!-- texts -->';
 		$efb = esc_html__('Flux Forms', 'flx-forms');
@@ -2300,7 +2300,7 @@
 							  <h2 class="efb fs-8" style="' . $style . '">' .
 								/* translators: %1$s: opening link tag to plugin page, %2$s: closing link tag, %3$s: opening link tag to developer website, %4$s: closing link tag */
 								sprintf(
-									esc_html__('Powered by%1$sYT Form%2$s.%3$sbest Form plugin for Wordpress%4$s.', 'flx-forms'),
+									esc_html__('Powered by %1$sYT Form%2$s. %3$sbest Form plugin for Wordpress%4$s.', 'flx-forms'),
 									'<a href="https://wordpress.org/plugins/easy-form-builder/" title="' . esc_attr__('Flux Forms WordPress Plugin', 'flx-forms') . '" rel="sponsored">',
 									'</a>',
 									'<a href="https://whitestudio.team" rel="sponsored">',
@@ -3515,7 +3515,7 @@ public function check_error_console_efb(){
 		'dismiss'     => esc_html__('Dismiss', 'flx-forms'),
 		'dismissAll'  => esc_html__('Dismiss All', 'flx-forms'),
 		/* translators: %s: item label */
-		'dismissItem' => esc_html__('Dismiss%s', 'flx-forms'),
+		'dismissItem' => esc_html__('Dismiss %s', 'flx-forms'),
 		'noErrors'    => esc_html__('No errors detected', 'flx-forms'),
 		'warning'     => esc_html__('These errors may interfere with forms built using Flux Forms.', 'flx-forms'),
 		'adminOnly'   => esc_html__('This panel is only visible to site administrators.', 'flx-forms'),

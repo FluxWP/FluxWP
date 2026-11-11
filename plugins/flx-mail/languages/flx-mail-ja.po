@@ -2648,4 +2648,3 @@ msgstr "拒否（アプリ シークレットが未入力）"
 
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr "受信 Webhook が Meta からのものであることを検証します。入力されるまで受信イベントは拒否されます。"
-

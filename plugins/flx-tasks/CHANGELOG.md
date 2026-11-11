@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.17
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.8.16
 - Flux Tasks no longer runs its own MCP server or key store. The tools register once on Flux AI & MCP through `flx_mcp_tools` under their `flxg_` names (the old unprefixed names stay as aliases) and the shared chat uses that same registration, so each tool appears once. Profile shows where to open that screen. The Tasks MCP switch is gone.
 

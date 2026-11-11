@@ -41,10 +41,10 @@ msgid "All statistics were deleted."
 msgstr "تم حذف جميع الإحصائيات."
 
 msgid "Koko Analytics data imported: %s rows."
-msgstr "تم استيراد بيانات Koko Analytics: صفوف%s."
+msgstr "تم استيراد بيانات Koko Analytics: صفوف %s."
 
 msgid "%s visit rows processed."
-msgstr "تمت معالجة صفوف زيارة%s."
+msgstr "تمت معالجة صفوف زيارة %s."
 
 msgid "Counting"
 msgstr "العد"
@@ -167,7 +167,7 @@ msgid "Data"
 msgstr "البيانات"
 
 msgid "Last processed %1$s. Waiting in queue: %2$s."
-msgstr "آخر معالجة%1$s. الانتظار في قائمة الانتظار:%2$s."
+msgstr "آخر معالجة %1$s. الانتظار في قائمة الانتظار: %2$s."
 
 msgid "No visits processed yet."
 msgstr "لم تتم معالجة أية زيارات حتى الآن."
@@ -182,7 +182,7 @@ msgid "Download pages (CSV)"
 msgstr "تنزيل الصفحات (CSV)"
 
 msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
-msgstr "تم العثور على بيانات Koko Analytics:%1$sيوم (%2$s–%3$s). يتم استيراد الأيام التي سبقت تثبيت Flux Analytics؛ لم يتم تعديل جداول Koko."
+msgstr "تم العثور على بيانات Koko Analytics: %1$s يوم (%2$s–%3$s). يتم استيراد الأيام التي سبقت تثبيت Flux Analytics؛ لم يتم تعديل جداول Koko."
 
 msgid "Import Koko Analytics data"
 msgstr "استيراد بيانات Koko Analytics"
@@ -296,7 +296,7 @@ msgid "Last 14 days"
 msgstr "آخر 14 يومًا"
 
 msgid "%1$s: %2$s visitors, %3$s views"
-msgstr "%1$s: زوار%2$s، مشاهدات%3$s"
+msgstr "%1$s: زوار %2$s، مشاهدات %3$s"
 
 msgid "All statistics →"
 msgstr "جميع الإحصائيات →"
@@ -305,7 +305,7 @@ msgid "on the site now (last 5 min)"
 msgstr "على الموقع الآن (آخر 5 دقائق)"
 
 msgid "last 30 min · %s views"
-msgstr "آخر 30 دقيقة · مشاهدات%s"
+msgstr "آخر 30 دقيقة · مشاهدات %s"
 
 msgid "Pages being viewed now"
 msgstr "الصفحات التي يتم عرضها الآن"
@@ -320,7 +320,7 @@ msgid "Nobody right now"
 msgstr "لا أحد الآن"
 
 msgid "today · %s views"
-msgstr "اليوم · مشاهدات%s"
+msgstr "اليوم · مشاهدات %s"
 
 msgid "yesterday"
 msgstr "أمس"
@@ -338,13 +338,13 @@ msgid "Outside visitors / logged-in users"
 msgstr "الزوار الخارجيون/المستخدمون المسجلون الدخول"
 
 msgid "Outside: %1$s · Logged in: %2$s"
-msgstr "من الخارج:%1$s· تسجيل الدخول:%2$s"
+msgstr "من الخارج: %1$s· تسجيل الدخول: %2$s"
 
 msgid "Channels"
 msgstr "القنوات"
 
 msgid "%s donations"
-msgstr "تبرعات%s"
+msgstr "تبرعات %s"
 
 msgid "No data in this range."
 msgstr "لا توجد بيانات في هذا النطاق."
@@ -440,7 +440,7 @@ msgid "Invalid code. Use letters, digits, - and _."
 msgstr "رمز غير صالح. استخدم الحروف والأرقام و- و_."
 
 msgid "%s views"
-msgstr "%sمشاهدات"
+msgstr "%s مشاهدات"
 
 msgid "Last 30 days (Site Analytics)"
 msgstr "آخر 30 يومًا (تحليلات الموقع)"
@@ -659,7 +659,7 @@ msgid "Statistics processing"
 msgstr "معالجة الإحصائيات"
 
 msgid "Last processed %1$s. Waiting: %2$s."
-msgstr "آخر معالجة%1$s. الانتظار:%2$s."
+msgstr "آخر معالجة %1$s. الانتظار: %2$s."
 
 msgid "Processing error"
 msgstr "خطأ في المعالجة"
@@ -683,7 +683,7 @@ msgid "Processing is already running; try again in a few seconds."
 msgstr "المعالجة قيد التشغيل بالفعل؛ حاول مرة أخرى خلال بضع ثوان."
 
 msgid "%s rows processed."
-msgstr "تمت معالجة صفوف%s."
+msgstr "تمت معالجة صفوف %s."
 
 msgid "Repair statistics tables"
 msgstr "إصلاح جداول الإحصائيات"
@@ -716,7 +716,7 @@ msgid "Nonprofit and donations"
 msgstr "المنظمات غير الربحية والتبرعات"
 
 msgid "%s card"
-msgstr "بطاقة%s"
+msgstr "بطاقة %s"
 
 msgid "(theme)"
 msgstr "(موضوع)"
@@ -749,7 +749,7 @@ msgid "System"
 msgstr "النظام"
 
 msgid "Plugins: %s"
-msgstr "الإضافات:%s"
+msgstr "الإضافات: %s"
 
 msgid "No records in this range."
 msgstr "لا توجد سجلات في هذا النطاق."
@@ -764,7 +764,7 @@ msgid "Setup wizard"
 msgstr "معالج الإعداد"
 
 msgid "%d days"
-msgstr "%dأيام"
+msgstr "%d أيام"
 
 msgid "All countries"
 msgstr "جميع البلدان"
@@ -791,7 +791,7 @@ msgid "Distinct errors"
 msgstr "أخطاء مميزة"
 
 msgid "%s fatal"
-msgstr "%sقاتلة"
+msgstr "%s قاتلة"
 
 msgid "Error events"
 msgstr "أحداث الخطأ"
@@ -857,7 +857,7 @@ msgid "Fatal only"
 msgstr "قاتلة فقط"
 
 msgid "%s records"
-msgstr "سجلات%s"
+msgstr "سجلات %s"
 
 msgid "No errors in this range."
 msgstr "لا توجد أخطاء في هذا النطاق."
@@ -902,7 +902,7 @@ msgid "Abandoned"
 msgstr "مهجور"
 
 msgid "Median time for finishers: %s min"
-msgstr "متوسط الوقت للانتهاء:%sدقيقة"
+msgstr "متوسط الوقت للانتهاء: %s دقيقة"
 
 msgid "No wizard data yet."
 msgstr "لا توجد بيانات المعالج حتى الآن."
@@ -962,10 +962,10 @@ msgid "Fast endpoint unreachable, REST will be used"
 msgstr "نقطة النهاية السريعة غير قابلة للوصول، سيتم استخدام REST"
 
 msgid "%s s"
-msgstr "%sس"
+msgstr "%s س"
 
 msgid "%1$s min %2$s s"
-msgstr "%1$sدقيقة%2$sث"
+msgstr "%1$s دقيقة %2$s ث"
 
 msgid "Copied"
 msgstr "منقول"
@@ -998,7 +998,7 @@ msgid "Logged-in users"
 msgstr "المستخدمين الذين قاموا بتسجيل الدخول"
 
 msgid "Role: %s"
-msgstr "الدور:%s"
+msgstr "الدور: %s"
 
 msgid "Referral"
 msgstr "الإحالة"
@@ -1016,13 +1016,13 @@ msgid "Visitors and views chart"
 msgstr "مخطط الزوار والمشاهدات"
 
 msgid "Week of %s"
-msgstr "أسبوع%s"
+msgstr "أسبوع %s"
 
 msgid "Compared with the previous period of equal length"
 msgstr "مقارنة بالفترة السابقة بنفس المدة"
 
 msgid "Previous period: %s"
-msgstr "الفترة السابقة:%s"
+msgstr "الفترة السابقة: %s"
 
 msgid "Sessions"
 msgstr "الجلسات"
@@ -1040,7 +1040,7 @@ msgid "Left after viewing one page"
 msgstr "اليسار بعد عرض صفحة واحدة"
 
 msgid "%1$s min ago: %2$s"
-msgstr "%1$sمنذ دقيقة:%2$s"
+msgstr "%1$s منذ دقيقة: %2$s"
 
 msgid "Live"
 msgstr "مباشر"
@@ -1049,10 +1049,10 @@ msgid "Refreshes every 5 s"
 msgstr "يتم التحديث كل 5 ثواني"
 
 msgid "visitors in last %s min"
-msgstr "الزوار في آخر%sدقيقة"
+msgstr "الزوار في آخر %s دقيقة"
 
 msgid "%s min ago"
-msgstr "%sمنذ دقيقة"
+msgstr "%s منذ دقيقة"
 
 msgid "now"
 msgstr "الآن"
@@ -1103,7 +1103,7 @@ msgid "No country data in this range."
 msgstr "لا توجد بيانات قطرية في هذا النطاق."
 
 msgid "Funnel: %s"
-msgstr "مسار التحويل:%s"
+msgstr "مسار التحويل: %s"
 
 msgid "Drop from previous step"
 msgstr "إسقاط من الخطوة السابقة"
@@ -1133,7 +1133,7 @@ msgid "Save"
 msgstr "حفظ"
 
 msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
-msgstr "لا توجد روابط إحالة حتى الآن. أضف ?r=code إلى عنوان الموقع أينما شاركته (على سبيل المثال،%s)؛ أعطه اسمًا هنا وستعرض التقارير هذا الاسم."
+msgstr "لا توجد روابط إحالة حتى الآن. أضف ?r=code إلى عنوان الموقع أينما شاركته (على سبيل المثال، %s)؛ أعطه اسمًا هنا وستعرض التقارير هذا الاسم."
 
 msgid "Pages / session"
 msgstr "الصفحات / الجلسة"
@@ -1220,7 +1220,7 @@ msgid "Funnel name"
 msgstr "اسم مسار التحويل"
 
 msgid "%s steps"
-msgstr "خطوات%s"
+msgstr "خطوات %s"
 
 msgid "Delete funnel"
 msgstr "حذف القمع"
@@ -1253,7 +1253,7 @@ msgid "Add preset step…"
 msgstr "إضافة خطوة محددة مسبقًا..."
 
 msgid "At most %s steps."
-msgstr "على الأكثر خطوات%s."
+msgstr "على الأكثر خطوات %s."
 
 msgid "New funnel"
 msgstr "قمع جديد"
@@ -1271,7 +1271,7 @@ msgid "Delete funnel \"%s\"?"
 msgstr "هل تريد حذف مسار التحويل \"%s\"؟"
 
 msgid "Funnel %s"
-msgstr "قمع%s"
+msgstr "قمع %s"
 
 msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
 msgstr "هل تريد استبدال كافة مسارات التحويل بمسار التبرع الافتراضي؟ (يتم تطبيقه عند النقر فوق \"حفظ\".)"
@@ -1313,7 +1313,7 @@ msgid "Paths shown"
 msgstr "المسارات المعروضة"
 
 msgid "Top %s paths"
-msgstr "أعلى مسارات%s"
+msgstr "أعلى مسارات %s"
 
 msgid "Top paths"
 msgstr "أعلى المسارات"
@@ -1334,7 +1334,7 @@ msgid "Could not load data. Refresh the page."
 msgstr "لا يمكن تحميل البيانات. قم بتحديث الصفحة."
 
 msgid "%1$s visits · %2$s"
-msgstr "زيارات%1$s·%2$s"
+msgstr "زيارات %1$s · %2$s"
 
 msgid "No data"
 msgstr "لا توجد بيانات"
@@ -1343,13 +1343,13 @@ msgid "Multi-page sessions"
 msgstr "جلسات متعددة الصفحات"
 
 msgid "%s of all visits"
-msgstr "%sلجميع الزيارات"
+msgstr "%s لجميع الزيارات"
 
 msgid "Avg path length"
 msgstr "متوسط طول المسار"
 
 msgid "%s pages"
-msgstr "صفحات%s"
+msgstr "صفحات %s"
 
 msgid "In multi-page sessions"
 msgstr "في جلسات متعددة الصفحات"
@@ -1373,16 +1373,16 @@ msgid "Click a box to filter the paths below by that page. Thickness shows the n
 msgstr "انقر فوق مربع لتصفية المسارات أدناه حسب تلك الصفحة. السماكة توضح عدد الزيارات."
 
 msgid "%s visits"
-msgstr "%sالزيارات"
+msgstr "%s الزيارات"
 
 msgid "Entries"
 msgstr "إدخالات"
 
 msgid "Step %s"
-msgstr "الخطوة%s"
+msgstr "الخطوة %s"
 
 msgid "%s end here"
-msgstr "%sتنتهي هنا"
+msgstr "%s تنتهي هنا"
 
 msgid "all continue"
 msgstr "يستمر كل شيء"
@@ -1406,7 +1406,7 @@ msgid "new"
 msgstr "جديد"
 
 msgid "Showing %2$s of %1$s paths."
-msgstr "عرض%2$sلمسارات%1$s."
+msgstr "عرض %2$s لمسارات %1$s."
 
 msgid "30 days"
 msgstr "30 يوما"

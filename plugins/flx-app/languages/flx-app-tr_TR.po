@@ -1349,4 +1349,3 @@ msgstr "%s hesabınızdan telefon numarası kaldırıldı"
 
 msgid "The token does not include the scope this request needs."
 msgstr "Belirteç, bu isteğin gerektirdiği kapsamı içermiyor."
-

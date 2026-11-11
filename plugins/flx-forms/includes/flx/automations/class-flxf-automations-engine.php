@@ -586,7 +586,7 @@ class FLXF_Automations_Engine {
 			}
 		}
 		/* translators: 1: certificate number, 2: person name, 3: template variables */
-		$msg = sprintf( __( 'Certificate%1$sfor%2$s(%3$s)', 'flx-forms' ), $cert['number'], $person['name'], implode( ', ', $vals ) );
+		$msg = sprintf( __( 'Certificate %1$s for %2$s (%3$s)', 'flx-forms' ), $cert['number'], $person['name'], implode( ', ', $vals ) );
 		return array( 'status' => 'ok', 'message' => $msg . ( $notes ? ' · ' . implode( ' · ', $notes ) : '' ) );
 	}
 
@@ -615,7 +615,7 @@ class FLXF_Automations_Engine {
 		if ( $ok && function_exists( 'flxs_kick_queue' ) ) {
 			flxs_kick_queue();
 		}
-		$msg = ( $ok ? sprintf( /* translators: %s: channel list */ __( 'Queued:%s', 'flx-forms' ), implode( ', ', $ok ) ) : '' ) . ( $ok && $err ? ' · ' : '' ) . implode( ' · ', $err );
+		$msg = ( $ok ? sprintf( /* translators: %s: channel list */ __( 'Queued: %s', 'flx-forms' ), implode( ', ', $ok ) ) : '' ) . ( $ok && $err ? ' · ' : '' ) . implode( ' · ', $err );
 		return array( 'status' => $err ? ( $ok ? 'partial' : 'error' ) : 'ok', 'message' => $msg );
 	}
 
@@ -770,7 +770,7 @@ class FLXF_Automations_Engine {
 		if ( ! $to ) {
 			return array( 'status' => 'error', 'message' => __( 'No valid recipient address.', 'flx-forms' ) );
 		}
-		$subject = '' !== $a['subject'] ? $a['subject'] : sprintf( /* translators: %s: form title */ __( 'New submission:%s', 'flx-forms' ), '{form_title}' );
+		$subject = '' !== $a['subject'] ? $a['subject'] : sprintf( /* translators: %s: form title */ __( 'New submission: %s', 'flx-forms' ), '{form_title}' );
 		$subject = wp_strip_all_tags( str_replace( array( "\r", "\n" ), ' ', self::fill( $subject, $ctx, $run['state'] ) ) );
 		$body    = self::fill( '' !== $a['body'] ? $a['body'] : "{all_fields}\n\n{track}", $ctx, $run['state'] );
 		if ( class_exists( 'FLXF_Iletisim' ) && FLXF_Iletisim::active() ) {
