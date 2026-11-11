@@ -1605,6 +1605,21 @@
     "Delete for everyone time limit (hours)": "Delete for everyone time limit (hours)",
     "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.",
     "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.": "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.",
-    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
+    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.",
+    "Flux Donate is not active.": "Flux Donate is not active.",
+    "Donor's earlier referral": "Donor's earlier referral",
+    "Referral": "Referral",
+    "Order": "Order",
+    "Confirmation code": "Confirmation code",
+    "Recorded from": "Recorded from",
+    "Entered by": "Entered by",
+    "Items": "Items",
+    "On behalf of: {n}": "On behalf of: {n}",
+    "Receipts": "Receipts",
+    "Revoked": "Revoked",
+    "{n} paid gifts · {m}": "{n} paid gifts · {m}",
+    "No contact details.": "No contact details.",
+    "No referral.": "No referral.",
+    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
   }
 }

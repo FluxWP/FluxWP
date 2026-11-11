@@ -1886,6 +1886,10 @@
     "Receipts awaiting approval": "Квитанции ждут подтверждения",
     "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "Жертвователь прислал квитанцию. Откройте её, проверьте банковский счёт, затем подтвердите или отклоните.",
     "Show in the list": "Показать в списке",
-    "Review": "Проверить"
+    "Review": "Проверить",
+    "Paid gifts": "Оплаченные пожертвования",
+    "Open chat": "Открыть чат",
+    "This gift has no referral.": "У этого пожертвования нет реферала.",
+    "The donor's earlier gifts came through %s.": "Прежние пожертвования этого жертвователя пришли через %s."
   }
 }

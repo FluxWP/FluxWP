@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 2.20.0
+- Bağış detay sayfası yeniden tasarlandı: üstte tutar ve özet şeridi (durum, bağışçı, referans, ödeme, tür, ne zaman geldiği), solda sipariş, kalemler, ödeme ve kayıtlar, sağda bağışçı, referans ve işlemler kartları. Bağışçı kartında ödenmiş bağış sayısı, toplam, bekleyen ve "Sohbeti aç".
+- Referans her yerde görünür: listede referans sütunu, bağışın referansı yoksa bağışçının önceki bağışlarındaki referansı soluk gösterir. Detayda referans kartı (ad, telefon, e-posta), yetkili için düzenleme.
+- Yeni API: FLXB_Refs::donor_ref() / donor_refs(), flxb_donation_state().
+
 ## 2.19.0
 - Bağışlar listesinde satıra tıklayınca bağış detayı açılır (toplu işlem formu tıklamayı yutuyordu). Bağışçı adı da detayı açar. Bağışçı kartına detaydaki addan gidilir.
 - Listenin üstünde "Dekont onayı bekleyenler" kutusu: dekont gelen bağışlar sayısıyla, tek tıkla detayda dekont ve Onayla / Reddet.

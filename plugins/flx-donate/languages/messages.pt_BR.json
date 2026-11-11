@@ -1886,6 +1886,10 @@
     "Receipts awaiting approval": "Comprovantes aguardando aprovação",
     "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "O doador enviou um comprovante. Abra, confira a conta bancária e depois aprove ou recuse.",
     "Show in the list": "Mostrar na lista",
-    "Review": "Revisar"
+    "Review": "Revisar",
+    "Paid gifts": "Doações pagas",
+    "Open chat": "Abrir conversa",
+    "This gift has no referral.": "Esta doação não tem indicação.",
+    "The donor's earlier gifts came through %s.": "As doações anteriores do doador vieram por meio de %s."
   }
 }

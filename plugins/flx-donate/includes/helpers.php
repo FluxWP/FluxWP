@@ -267,6 +267,27 @@ function flxb_status_label( $status ) {
 	return $map[ $s ] ?? array( 'muted', $s );
 }
 
+/**
+ * 2.20.0: status of one gift as people should read it: a pending gift says what it waits for
+ * ("Receipt awaiting approval" / "Awaiting payment"). For other plugins too (Flux Chat).
+ *
+ * @return array { tone, label, stage ('receipt' | 'payment' | '') }
+ */
+function flxb_donation_state( array $d ) {
+	if ( ! class_exists( 'FLXB_Approval' ) ) {
+		require_once FLXB_DIR . 'includes/admin/class-flxb-approval.php';
+	}
+	$stage = FLXB_Approval::stage( $d );
+	if ( 'receipt' === $stage ) {
+		return array( 'receipt', __( 'Receipt awaiting approval', 'flx-donate' ), 'receipt' );
+	}
+	if ( 'payment' === $stage ) {
+		return array( 'pending', __( 'Awaiting payment', 'flx-donate' ), 'payment' );
+	}
+	$l = flxb_status_label( $d['status'] ?? '' );
+	return array( $l[0], $l[1], '' );
+}
+
 function flxb_type_label( $type ) {
 	return 'recurring' === $type ? __( 'Recurring', 'flx-donate' ) : __( 'One-time', 'flx-donate' );
 }

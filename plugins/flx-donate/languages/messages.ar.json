@@ -1886,6 +1886,10 @@
     "Receipts awaiting approval": "إيصالات بانتظار الموافقة",
     "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "أرسل المتبرع إيصالاً. افتحه وتحقق من الحساب البنكي ثم وافق أو ارفض.",
     "Show in the list": "عرض في القائمة",
-    "Review": "مراجعة"
+    "Review": "مراجعة",
+    "Paid gifts": "تبرعات مدفوعة",
+    "Open chat": "فتح المحادثة",
+    "This gift has no referral.": "لا يوجد مُحيل لهذا التبرع.",
+    "The donor's earlier gifts came through %s.": "وصلت تبرعات المتبرع السابقة عن طريق %s."
   }
 }

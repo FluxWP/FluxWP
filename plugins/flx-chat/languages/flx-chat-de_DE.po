@@ -4807,3 +4807,47 @@ msgstr "Letzte Aktualisierungsanforderung %1$s. Während das Panel geöffnet ist
 msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 msgstr "Der geöffnete Tab sucht in diesem Intervall nach neuen Nachrichten (10 empfohlen), alle 3 s während eine Antwort gestreamt wird und bis zu 15 s, wenn sich nichts ändert. Ein Hintergrundtab prüft einmal pro Minute. Bei Fehlern wird der Abstand auf bis zu 60 s gedehnt."
 
+msgid "Flux Donate is not active."
+msgstr "Flux Donate ist nicht aktiv."
+
+msgid "Donor's earlier referral"
+msgstr "Frühere Empfehlung des Spenders"
+
+msgid "Referral"
+msgstr "Empfehlung"
+
+msgid "Order"
+msgstr "Bestellung"
+
+msgid "Confirmation code"
+msgstr "Bestätigungscode"
+
+msgid "Recorded from"
+msgstr "Erfasst über"
+
+msgid "Entered by"
+msgstr "Erfasst von"
+
+msgid "Items"
+msgstr "Positionen"
+
+msgid "On behalf of: {n}"
+msgstr "Im Namen von: {n}"
+
+msgid "Receipts"
+msgstr "Belege"
+
+msgid "Revoked"
+msgstr "Widerrufen"
+
+msgid "{n} paid gifts · {m}"
+msgstr "{n} bezahlte Spenden · {m}"
+
+msgid "No contact details."
+msgstr "Keine Kontaktdaten."
+
+msgid "No referral."
+msgstr "Keine Empfehlung."
+
+msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+msgstr "Ist die Zahlung auf dem Konto eingegangen? Nach der Bestätigung wird die Urkunde erstellt und an den Spender gesendet."

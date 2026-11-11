@@ -4807,3 +4807,47 @@ msgstr "最后更新请求 %1$s。面板打开时，每隔 %2$d 秒检查新消�
 msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 msgstr "打开的标签页按此间隔检查新消息（建议 10），回复传输中每 3 秒一次，没有变化时最多 15 秒。后台标签页每分钟检查一次。出错后退避时间最长到 60 秒。"
 
+msgid "Flux Donate is not active."
+msgstr "Flux Donate 未启用。"
+
+msgid "Donor's earlier referral"
+msgstr "捐赠者之前的推荐人"
+
+msgid "Referral"
+msgstr "推荐人"
+
+msgid "Order"
+msgstr "订单"
+
+msgid "Confirmation code"
+msgstr "确认码"
+
+msgid "Recorded from"
+msgstr "记录来源"
+
+msgid "Entered by"
+msgstr "录入人"
+
+msgid "Items"
+msgstr "明细"
+
+msgid "On behalf of: {n}"
+msgstr "代表：{n}"
+
+msgid "Receipts"
+msgstr "凭证"
+
+msgid "Revoked"
+msgstr "已撤销"
+
+msgid "{n} paid gifts · {m}"
+msgstr "已付款 {n} 笔 · {m}"
+
+msgid "No contact details."
+msgstr "没有联系方式。"
+
+msgid "No referral."
+msgstr "无推荐人。"
+
+msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+msgstr "款项已到账了吗？确认后将生成证书并发送给捐赠者。"

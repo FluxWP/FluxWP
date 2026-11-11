@@ -5765,3 +5765,15 @@ msgid "%s more"
 msgid_plural "%s more"
 msgstr[0] "%s tane daha"
 msgstr[1] "%s tane daha"
+
+msgid "Paid gifts"
+msgstr "Ödenmiş bağış"
+
+msgid "Open chat"
+msgstr "Sohbeti aç"
+
+msgid "This gift has no referral."
+msgstr "Bu bağışın referansı yok."
+
+msgid "The donor's earlier gifts came through %s."
+msgstr "Bağışçının önceki bağışları %s aracılığıyla geldi."

@@ -1885,6 +1885,10 @@
     "Receipts awaiting approval": "Dekont onayı bekleyenler",
     "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "Bağışçı dekont gönderdi. Açın, banka hesabını kontrol edin, sonra onaylayın ya da reddedin.",
     "Show in the list": "Listede göster",
-    "Review": "İncele"
+    "Review": "İncele",
+    "Paid gifts": "Ödenmiş bağış",
+    "Open chat": "Sohbeti aç",
+    "This gift has no referral.": "Bu bağışın referansı yok.",
+    "The donor's earlier gifts came through %s.": "Bağışçının önceki bağışları %s aracılığıyla geldi."
   }
 }

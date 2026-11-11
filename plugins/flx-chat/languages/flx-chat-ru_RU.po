@@ -4807,3 +4807,47 @@ msgstr "Последний запрос на обновление %1$s. Пока
 msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 msgstr "Открытая вкладка проверяет новые сообщения с этим интервалом (рекомендуется 10), каждые 3 с, пока идёт поток ответа, и до 15 с, если ничего не меняется. Фоновая вкладка проверяет раз в минуту. После ошибок интервал увеличивается до 60 с."
 
+msgid "Flux Donate is not active."
+msgstr "Flux Donate не активен."
+
+msgid "Donor's earlier referral"
+msgstr "Прежний реферал жертвователя"
+
+msgid "Referral"
+msgstr "Реферал"
+
+msgid "Order"
+msgstr "Заказ"
+
+msgid "Confirmation code"
+msgstr "Код подтверждения"
+
+msgid "Recorded from"
+msgstr "Источник записи"
+
+msgid "Entered by"
+msgstr "Внёс"
+
+msgid "Items"
+msgstr "Позиции"
+
+msgid "On behalf of: {n}"
+msgstr "От имени: {n}"
+
+msgid "Receipts"
+msgstr "Квитанции"
+
+msgid "Revoked"
+msgstr "Отозван"
+
+msgid "{n} paid gifts · {m}"
+msgstr "Оплачено пожертвований: {n} · {m}"
+
+msgid "No contact details."
+msgstr "Нет контактных данных."
+
+msgid "No referral."
+msgstr "Нет реферала."
+
+msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+msgstr "Платёж поступил на счёт? После подтверждения сертификат будет создан и отправлен жертвователю."

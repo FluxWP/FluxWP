@@ -1886,6 +1886,10 @@
     "Receipts awaiting approval": "待审核的凭证",
     "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "捐赠者已发送转账凭证。请打开查看并核对银行账户，然后批准或拒绝。",
     "Show in the list": "在列表中显示",
-    "Review": "查看"
+    "Review": "查看",
+    "Paid gifts": "已付款捐赠",
+    "Open chat": "打开聊天",
+    "This gift has no referral.": "此捐赠没有推荐人。",
+    "The donor's earlier gifts came through %s.": "该捐赠者此前的捐赠来自 %s。"
   }
 }

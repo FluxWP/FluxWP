@@ -1886,6 +1886,10 @@
     "Receipts awaiting approval": "承認待ちの振込明細",
     "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "寄付者が振込明細を送信しました。開いて口座を確認し、承認または却下してください。",
     "Show in the list": "一覧で表示",
-    "Review": "確認"
+    "Review": "確認",
+    "Paid gifts": "支払い済みの寄付",
+    "Open chat": "チャットを開く",
+    "This gift has no referral.": "この寄付には紹介者がいません。",
+    "The donor's earlier gifts came through %s.": "この寄付者の以前の寄付は %s 経由でした。"
   }
 }
