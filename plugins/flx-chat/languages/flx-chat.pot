@@ -4884,3 +4884,84 @@ msgstr ""
 
 msgid "The contact gave their full name in the chat"
 msgstr ""
+
+msgid "The assistant updated the reminder: %1$s (%2$s)"
+msgstr ""
+
+msgid "The assistant marked the chat as completed (the person said goodbye). It continues normally if they write again."
+msgstr ""
+
+msgid "Let the assistant react to messages with an emoji (👍 for \"okay\", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell"
+msgstr ""
+
+msgid "same person and donation, not a copy"
+msgstr ""
+
+msgid "Closing, reactions and reminders"
+msgstr ""
+
+msgid "Chat already marked completed (goodbyes said)"
+msgstr ""
+
+msgid "Site search returns a sample event with a location"
+msgstr ""
+
+msgid "Chat marked completed"
+msgstr ""
+
+msgid "Emoji reaction left"
+msgstr ""
+
+msgid "No text reply to the last message"
+msgstr ""
+
+msgid "Reminder is one-time"
+msgstr ""
+
+msgid "Exactly one reminder"
+msgstr ""
+
+msgid "(no text, reacted to the message: {e})"
+msgstr ""
+
+msgid "(no text: the chat is completed, stayed silent)"
+msgstr ""
+
+msgid "(reacted to the message: {e})"
+msgstr ""
+
+msgid "Reminder request: set at once"
+msgstr ""
+
+msgid "Event location and time"
+msgstr ""
+
+msgid "Continuation: own receipt sent again, asks if it arrived"
+msgstr ""
+
+msgid "Thanks after help: one short farewell"
+msgstr ""
+
+msgid "Goodbye loop: no repeated farewells"
+msgstr ""
+
+msgid "New topic after goodbye gets a normal reply"
+msgstr ""
+
+msgid "Question after goodbye is answered"
+msgstr ""
+
+msgid "Short \"okay\" after goodbye: reaction only"
+msgstr ""
+
+msgid "Continuation: prayer gets a prayer reaction"
+msgstr ""
+
+msgid "Continuation: \"you will remind me\" sets the reminder at once"
+msgstr ""
+
+msgid "Changes the day afterwards: same reminder updated"
+msgstr ""
+
+msgid "Monthly reminder turned into one-time"
+msgstr ""

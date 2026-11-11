@@ -79,7 +79,7 @@ function flxc_site_item( $p ) {
 			}
 		}
 	}
-	return array(
+	$item = array(
 		'title'   => html_entity_decode( get_the_title( $p ), ENT_QUOTES, 'UTF-8' ),
 		'type'    => flxc_site_types()[ $p->post_type ] ?? $p->post_type,
 		'date'    => get_the_date( 'd.m.Y', $p ),
@@ -87,6 +87,57 @@ function flxc_site_item( $p ) {
 		'terms'   => array_slice( array_unique( $terms ), 0, 6 ),
 		'excerpt' => wp_trim_words( html_entity_decode( $text, ENT_QUOTES, 'UTF-8' ), 45, '…' ),
 	);
+	// 1.42.0: etkinlik yazısının tarihi, saati ve yeri yazı metninde değil etkinlik kaydında durur (sayfaya sonradan
+	// eklenir); asistan "etkinlik nerede" sorusuna bu yüzden cevap veremiyordu.
+	$event = flxc_site_event( $p );
+	if ( $event ) {
+		$item['event'] = $event;
+	}
+	/**
+	 * Asistanın site aramasında bir içerik için gördüğü alanlar. Başka eklentiler kendi verisini ekleyebilir
+	 * (düz metin; adresler otomatik olarak link işaretine çevrilir).
+	 */
+	return (array) apply_filters( 'flxc_site_item', $item, $p );
+}
+
+/**
+ * Yazıya bağlı etkinliğin (Flux Certificates) herkese açık bilgisi: tarih, saat, yer, yol tarifi.
+ * Yer girilmediyse "henüz açıklanmadı" ve varsa açıklanacağı tarih döner (sitedeki etkinlik panelindeki gibi).
+ *
+ * @return array|null
+ */
+function flxc_site_event( $p ) {
+	if ( ! function_exists( 'flxs_event_by_post' ) || ! function_exists( 'flxs_event_public' ) ) {
+		return null;
+	}
+	$e = flxs_event_by_post( (int) $p->ID );
+	if ( ! $e ) {
+		return null;
+	}
+	$pub = flxs_event_public( $e );
+	$out = array( 'status' => 'closed' === $pub['status'] ? 'tamamlandı' : 'açık' );
+	if ( '' !== (string) $pub['date'] ) {
+		$ts          = strtotime( $pub['date'] . ' 12:00:00' );
+		$out['date'] = $ts ? flx_date( $ts, 'j F Y, l' ) : (string) $pub['date'];
+	}
+	if ( '' !== (string) $pub['time'] ) {
+		$out['time'] = (string) $pub['time'];
+	}
+	if ( $pub['has_loc'] ) {
+		$loc = array_filter( array( 'name' => trim( (string) $pub['loc_name'] ), 'address' => trim( preg_replace( '/\s+/', ' ', (string) $pub['loc_addr'] ) ) ) );
+		// Takipli /konum/ linki: tıklama sayılır, haritaya yönlendirir (sitedeki "Yol tarifi" ile aynı).
+		if ( '' !== (string) $pub['loc_link'] ) {
+			$loc['map'] = (string) $pub['loc_link'];
+		}
+		$out['location'] = $loc;
+	} else {
+		$ann             = '' !== (string) $pub['announce'] ? strtotime( $pub['announce'] . ' 12:00:00' ) : 0;
+		$out['location'] = 'henüz açıklanmadı' . ( $ann && $ann > time() ? '; ' . flx_date( $ann, 'j F' ) . ' civarında etkinlik sayfasında paylaşılacak' : '; açıklanınca etkinlik sayfasında paylaşılacak' );
+	}
+	if ( (int) $pub['fidan'] > 0 ) {
+		$out['saplings'] = (int) $pub['fidan'];
+	}
+	return $out;
 }
 
 /**
@@ -164,7 +215,7 @@ function flxc_site_tool_def( $f ) {
 	$types = flxc_site_types();
 	return $f(
 		'search_site',
-		'Sitemizde yayında olan içeriklerde (' . implode( ', ', $types ) . ') arar: kişi bir proje, etkinlik, haber ya da gönderi sorarsa ("… geçen bir gönderiniz var mı", "hangi projeler var"). query boşsa en yenileri verir. Yalnız dönen bilgileri ve linkleri kullan.',
+		'Sitemizde yayında olan içeriklerde (' . implode( ', ', $types ) . ') arar: kişi bir proje, etkinlik, haber ya da gönderi sorarsa ("… geçen bir gönderiniz var mı", "hangi projeler var", "etkinlik nerede, saat kaçta"). query boşsa en yenileri verir. Etkinliklerde event alanı tarih, saat ve yeri (konum adı, adres, yol tarifi linki) verir. Yalnız dönen bilgileri ve linkleri kullan.',
 		array(
 			'query' => array( 'type' => 'string', 'description' => 'Aranacak kelimeler' ),
 			'type'  => array( 'type' => 'string', 'enum' => array_keys( $types ) ),
@@ -172,9 +223,36 @@ function flxc_site_tool_def( $f ) {
 	);
 }
 
-function flxc_site_tool( array $a ) {
+function flxc_site_tool( array $a, array $sandbox_state = array() ) {
+	// Benchmark / test sohbeti: senaryo örnek bir etkinlikle başladıysa (kurulum "Örnek etkinlik") arama onu döndürür.
+	if ( ! empty( $sandbox_state['test_event'] ) ) {
+		return array( 'ok' => true, 'items' => array( flxc_site_sample_event() ) );
+	}
 	$items = flxc_site_search( (string) ( $a['query'] ?? '' ), (string) ( $a['type'] ?? '' ) );
 	return $items ? array( 'ok' => true, 'items' => $items ) : array( 'ok' => true, 'items' => array(), 'note' => 'Sitede bununla ilgili yayında bir içerik bulunamadı; uydurma, kişiye bulamadığını söyle.' );
+}
+
+/** Benchmark ve test sohbeti için örnek etkinlik (gerçek kayıt değildir). */
+function flxc_site_sample_event() {
+	$ts = time() + 9 * DAY_IN_SECONDS;
+	return array(
+		'title'   => 'Örnek Fidan Dikimi Etkinliği',
+		'type'    => 'Etkinlik',
+		'date'    => wp_date( 'd.m.Y' ),
+		'url'     => home_url( '/etkinlikler/ornek-fidan-dikimi/' ),
+		'terms'   => array(),
+		'excerpt' => 'Gönüllülerimizle birlikte fidan dikiyoruz. Katılım ücretsizdir.',
+		'event'   => array(
+			'status'   => 'açık',
+			'date'     => flx_date( $ts, 'j F Y, l' ),
+			'time'     => '10:30',
+			'location' => array(
+				'name'    => 'Örnek Kent Ormanı Dikim Alanı',
+				'address' => 'Orman Yolu Cd. No: 12, Örnekköy',
+				'map'     => home_url( '/konum/ornek/' ),
+			),
+		),
+	);
 }
 
 /* ---------- İçerik düzenleme ekranı: "Asistan paylaşmasın" ---------- */

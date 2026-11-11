@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.42.0
+- Hatırlatıcı sormadan kurulur: kişi "önümüzdeki ay hatırlatın", "ayın 15'inde hatırlat" deyince asistan onay ve gün sormaz, hatırlatıcıyı hemen kurar ve hangi gün yazacağını söyler. Gün verilmemişse ayın 1'i (tek seferlikte gelecek ayın 1'i). Kişi sonradan farklı gün/saat/sıklık söylerse yeni hatırlatıcı açılmaz, aynı kayıt güncellenir. `reminder_set` aracında `confirmed` kalktı.
+- Sohbet tamamlandı durumu (yumuşak kapanış): vedalaşma bitince asistan sohbeti "tamamlandı" işaretler (`close_chat`). Sonraki "iyi günler", "her zaman", "Allah razı olsun" gibi mesajlara yeniden veda yazmaz; ilk ikisine emoji tepkisi bırakır, sonra sessiz kalır. Kişi soru ya da yeni bir konu yazarsa durum kalkar, asistan normal devam eder. Sohbete asistan dışı bir mesaj gidince de (sertifika, bağış onayı, temsilci ya da telefondan yazılan mesaj) durum sıfırlanır. Ek olarak 12 saat sonra kendiliğinden kalkar. Sonraki kapanış mesajlarında model çağrılmaz (maliyet yok).
+- Emoji tepkisi: asistan mesaja tepki bırakabilir (`react`): "tamam" için 👍, teşekkür ve dua için 🤲. Ayarlar › AI asistan'da açılıp kapanır (varsayılan açık). İzinli emojiler 👍 🤲 🙏 ❤️ 🌱.
+- Etkinlik konumu: site aramasında etkinlik sonuçları artık Flux Certificates etkinlik kaydından tarih, saat, konum adı, adres ve harita linkiyle gelir. Konum girilmemişse asistan "henüz açıklanmadı" der, uydurmaz. Önceden konum yazı içeriğinde olmadığı için soru cevapsız kalıyordu.
+- Dekont: kişinin siteden yüklediği dekontu WhatsApp'tan yeniden göndermesi artık "daha önce yüklenmiş" uyarısı vermez (aynı kişi, aynı bağış). Sohbette bağış seçili değilse kişinin ödeme bekleyen kendi bağışı esas alınır, tutar onunla karşılaştırılır. Aynı dekont başka bir bağış ya da başka kişi için gelirse uyarı sürer.
+- Asistan her mesajda hitabı tekrarlamaz; etkinlik tarih/saat/konum sorularında site aramasını kullanır.
+- Benchmark: yeni grup "Kapanış, tepki ve hatırlatıcı" ve 12 yeni senaryo (veda döngüsü, sessiz kapanış, dua/tamam tepkisi, kapanıştan sonra yeni soru, sormadan hatırlatıcı, gün güncelleme, etkinlik konumu, kendi dekontu). Eski `t7` yerine `t9`. Test sohbeti ve benchmark tepkiyi ve kapanışı gösterir.
+- Yeni filtreler: `flxc_bot_react_emojis`, `flxc_bot_closed_ttl`, `flxc_bot_closer_emoji`, `flxc_site_item`. Yeni ayar `bot_reactions`.
+
 ## 1.41.0
 - İsimsiz sohbetlere ad: sohbet açılırken ya da daha önce isimsiz açılmış sohbete bağış/sertifika gönderilirken ad otomatik dolar (gönderen kaydın adı; yoksa numaraya göre Flux Certificates kişi kaydı, Flux CRM kişisi, Flux Donate bağışçısı). Elle girilmiş ad ezilmez.
 - Tek seferlik güncelleme: adı boş, numarası bağış/sertifika kayıtlarında olan mevcut sohbetler 200'erli parçalarla adlandırılır (admin sayfası açılınca ve arka plan işinde).

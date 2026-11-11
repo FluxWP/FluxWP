@@ -564,6 +564,7 @@ function flxc_settings_tab_ai( $s ) {
 		</div>
 
 		<h3 class="flxcs-h3"><?php esc_html_e( 'Voice message', 'flx-chat' ); ?></h3>
+		<label class="flxcs-check"><input type="checkbox" name="bot_reactions" value="1" <?php checked( $s['bot_reactions'] ); ?>> <?php esc_html_e( 'Let the assistant react to messages with an emoji (👍 for "okay", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell', 'flx-chat' ); ?></label>
 		<label class="flxcs-check"><input type="checkbox" name="bot_voice" value="1" <?php checked( $s['bot_voice'] ); ?>> <?php esc_html_e( 'When someone sends a voice message, the assistant turns it into text and replies (the text also appears in the panel as a system line)', 'flx-chat' ); ?></label>
 		<div class="flxcs-grid flxcs-grid-3">
 			<label class="flxcs-field"><span><?php esc_html_e( 'Longest voice message (sec)', 'flx-chat' ); ?></span><input type="number" min="10" max="300" name="bot_voice_max" value="<?php echo (int) $s['bot_voice_max']; ?>"><small><?php esc_html_e( 'For longer messages the assistant says "the voice message was too long for us to listen to".', 'flx-chat' ); ?></small></label>
@@ -822,6 +823,7 @@ function flxc_save_settings() {
 		$upd['staff_cert_max']    = min( 20, max( 0, (int) ( $in['staff_cert_max'] ?? 3 ) ) );
 		$upd['bot_widgets']     = empty( $in['bot_widgets'] ) ? 0 : 1;
 		$upd['bot_voice']       = empty( $in['bot_voice'] ) ? 0 : 1;
+		$upd['bot_reactions']   = empty( $in['bot_reactions'] ) ? 0 : 1;
 		$upd['bot_voice_max']   = min( 300, max( 10, (int) ( $in['bot_voice_max'] ?? 60 ) ) );
 		$upd['mirror_group']    = preg_match( '/^[0-9-]+@g\.us$/', (string) ( $in['mirror_group'] ?? '' ) ) ? (string) $in['mirror_group'] : '';
 		foreach ( array( 'bot_price_footer', 'bank_holder', 'bank_desc', 'bot_after_payment', 'bot_handoff_text', 'bot_limit_text', 'staff_donor_text', 'benef_cert_text', 'ref_cert_text', 'bot_optout_text', 'bot_site_exclude', 'bot_fallback_text' ) as $f ) {

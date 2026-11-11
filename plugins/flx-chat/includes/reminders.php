@@ -1,9 +1,11 @@
 <?php
 /**
  * 1.8.0: kişinin asistana kurdurduğu hatırlatıcılar ("her ay bana fidan dikimini hatırlat", "her ay son
- * projelerinizi gönderin", "her ay benden bir fidan iste"). Asistan özeti gösterip onay alana kadar
- * revize eder; zamanı gelince arka plan işi (jobs.php) asistanı bu görevle çalıştırır ve mesaj kişiye gider.
- * Saat söylenmezse ayardaki saat (09:00), ay günü söylenmezse ayın 1'i.
+ * projelerinizi gönderin", "her ay benden bir fidan iste"). Zamanı gelince arka plan işi (jobs.php) asistanı
+ * bu görevle çalıştırır ve mesaj kişiye gider. Saat söylenmezse ayardaki saat (09:00), ay günü söylenmezse ayın 1'i.
+ * 1.42.0 (Ahmet): onay sorulmaz. Kişi "hatırlatırsınız" dediği an hatırlatıcı kurulur ve kişiye ne zaman
+ * hatırlatılacağı söylenir; kişi sonradan gün/saat/sıklık değiştirirse aynı kayıt güncellenir. Tek seferlikte
+ * tarih söylenmediyse gelecek ayın 1'i.
  *
  * @package FLX_Cagri
  */
@@ -223,8 +225,15 @@ function flxc_rem_build( array $a, array $base = array() ) {
 	if ( '' === trim( $r['title'] ) ) {
 		$r['title'] = mb_substr( $r['task'], 0, 80 );
 	}
-	if ( 'once' === $r['freq'] && '' === $r['once_date'] ) {
-		return new WP_Error( 'date', 'Bir kezlik hatırlatıcı için date (YYYY-AA-GG) ver.' );
+	if ( 'once' === $r['freq'] ) {
+		// Tekrarlı kayıt tek seferliğe çevriliyor ("her ay değil, bir kez"): tarih eski düzenin bir sonraki günü.
+		if ( '' === $r['once_date'] && empty( $a['day'] ) && empty( $a['month'] ) && ! empty( $base['freq'] ) && 'once' !== $base['freq'] ) {
+			$nx = flxc_rem_next( array_merge( $r, array( 'freq' => $base['freq'] ) ) );
+			if ( $nx ) {
+				$r['once_date'] = wp_date( 'Y-m-d', $nx );
+			}
+		}
+		$r['once_date'] = flxc_rem_once_date( $r['once_date'], $a, ! empty( $a['date'] ) && $r['once_date'] === (string) $a['date'] );
 	}
 	unset( $r['id'], $r['status'] );
 	$r['next_at'] = flxc_rem_next( $r );
@@ -232,6 +241,46 @@ function flxc_rem_build( array $a, array $base = array() ) {
 		return new WP_Error( 'past', 'Bu tarih geçmiş. Kişiden ileri bir tarih iste.' );
 	}
 	return $r;
+}
+
+/**
+ * 1.42.0: tek seferlik hatırlatıcının tarihi. Kişi tarih söylemediyse sorulmaz: gelecek ayın 1'i (ay söylendiyse
+ * o ayın bir sonraki gelişi; gün söylendiyse o gün). Var olan tarihte yalnız gün/ay değişirse ("10'u olsun") uygulanır.
+ *
+ * @param string $cur      Şimdiki tarih (YYYY-AA-GG) ya da ''.
+ * @param array  $a        Araç girdisi (day, month).
+ * @param bool   $explicit Tarihi bu çağrıda model verdi; gün/ay ile ezilmez.
+ */
+function flxc_rem_once_date( $cur, array $a, $explicit = false ) {
+	$cur = preg_match( '/^\d{4}-\d{2}-\d{2}$/', (string) $cur ) ? (string) $cur : '';
+	if ( $explicit && '' !== $cur ) {
+		return $cur;
+	}
+	$day = (int) ( $a['day'] ?? 0 );
+	$mon = (int) ( $a['month'] ?? 0 );
+	if ( '' !== $cur && ! $day && ! $mon ) {
+		return $cur;
+	}
+	$tz    = wp_timezone();
+	$today = new DateTimeImmutable( 'now', $tz );
+	$fit   = function ( $y, $m, $d ) use ( $tz ) {
+		$max = (int) ( new DateTimeImmutable( sprintf( '%04d-%02d-01', $y, $m ), $tz ) )->format( 't' );
+		return sprintf( '%04d-%02d-%02d', $y, $m, max( 1, min( $max, $d ) ) );
+	};
+	if ( '' !== $cur ) {
+		// Kayıtlı tarihte gün ya da ay değişiyor; geçmişe düşerse bir yıl ileri.
+		$y   = (int) substr( $cur, 0, 4 );
+		$out = $fit( $y, $mon ? max( 1, min( 12, $mon ) ) : (int) substr( $cur, 5, 2 ), $day ? $day : (int) substr( $cur, 8, 2 ) );
+		return $out <= $today->format( 'Y-m-d' ) ? $fit( $y + 1, (int) substr( $out, 5, 2 ), (int) substr( $out, 8, 2 ) ) : $out;
+	}
+	if ( $mon ) {
+		$mon = max( 1, min( 12, $mon ) );
+		$y   = (int) $today->format( 'Y' );
+		$out = $fit( $y, $mon, $day ? $day : 1 );
+		return $out <= $today->format( 'Y-m-d' ) ? $fit( $y + 1, $mon, $day ? $day : 1 ) : $out;
+	}
+	$next = $today->modify( 'first day of next month' );
+	return $fit( (int) $next->format( 'Y' ), (int) $next->format( 'n' ), $day ? $day : 1 );
 }
 
 function flxc_rem_summary( array $r ) {
@@ -320,23 +369,21 @@ function flxc_rem_tools( $f ) {
 	return array(
 		$f(
 			'reminder_set',
-			'Kişinin istediği hatırlatıcıyı hazırlar ya da düzenler. Önce confirmed=false ile çağır, dönen özeti kişiye göster; kişi değişiklik isterse yeniden çağır; kişi açıkça onaylayınca confirmed=true ile kaydet. Saat söylenmezse boş bırak (varsayılan saat), "her ay" deyip gün söylemezse day boş (ayın 1\'i). Kişi "her ay benden bir fidan iste" gibi bir bağış hatırlatıcısı isterse type_id/option/quantity de ver.',
+			'Hatırlatıcıyı HEMEN kurar ya da var olanı günceller; onay sorma, özet gösterip bekleme. Kişi ileri bir tarihte bir şey yapacağını söyleyip hatırlatılmasını isterse ya da hatırlatma teklifini kabul ederse ("hatırlatırsınız", "olur", "haber verin") gün/saat sormadan çağır. Söylenmeyenler varsayılan: saat boş (varsayılan saat), "her ay" ve gün yoksa ayın 1\'i, tek seferlik ve tarih yoksa gelecek ayın 1\'i. "Önümüzdeki ay", "aralıkta", "haftaya" gibi tek bir zaman tek seferliktir (freq=once); yalnız kişi "her ay / her hafta / düzenli" derse tekrarlı kur. Kişi sonradan günü, saati ya da sıklığı değiştirirse aynı hatırlatıcıyı id ile yeniden çağır (yeni kayıt açma). Kişi "her ay benden bir fidan iste" gibi bir bağış hatırlatıcısı isterse type_id/option/quantity de ver.',
 			array(
-				'id'        => array( 'type' => 'integer', 'description' => 'Var olan hatırlatıcıyı düzenlemek için' ),
-				'title'     => array( 'type' => 'string', 'description' => 'Kısa ad' ),
-				'task'      => array( 'type' => 'string', 'description' => 'Zamanı gelince ne yapılacak (ör. "Fidan dikimini hatırlat", "Son projelerimizi ve sosyal medya içeriklerimizi gönder", "Bu ayki 1 fidan bağışını sor")' ),
-				'freq'      => array( 'type' => 'string', 'enum' => array_keys( flxc_rem_freqs() ) ),
-				'day'       => array( 'type' => 'integer', 'description' => 'Ayın günü (aylık/yıllık)' ),
+				'id'        => array( 'type' => 'integer', 'description' => 'Var olan hatırlatıcıyı güncellemek için (Hatırlatıcılar listesindeki # no)' ),
+				'title'     => array( 'type' => 'string', 'description' => 'Kısa ad (kişiye "siz" diye hitap etmeden, ör. "Baba adına fidan bağışı")' ),
+				'task'      => array( 'type' => 'string', 'description' => 'Zamanı gelince ne yapılacak (ör. "Fidan dikimini hatırlat", "Babası adına yapmak istediği fidan bağışını hatırlat", "Bu ayki 1 fidan bağışını sor")' ),
+				'freq'      => array( 'type' => 'string', 'enum' => array_keys( flxc_rem_freqs() ), 'description' => 'once: tek seferlik (önümüzdeki ay, aralıkta); monthly vb. yalnız kişi düzenli istediyse' ),
+				'day'       => array( 'type' => 'integer', 'description' => 'Ayın günü (aylık/yıllık; tek seferlikte tarih yerine yalnız gün söylendiyse)' ),
 				'weekday'   => array( 'type' => 'integer', 'description' => '1 Pazartesi … 7 Pazar (haftalık)' ),
-				'month'     => array( 'type' => 'integer', 'description' => '1-12 (yıllık)' ),
-				'date'      => array( 'type' => 'string', 'description' => 'YYYY-AA-GG (bir kez)' ),
+				'month'     => array( 'type' => 'integer', 'description' => '1-12 (yıllık; tek seferlikte yalnız ay söylendiyse, ör. "aralıkta" = 12)' ),
+				'date'      => array( 'type' => 'string', 'description' => 'YYYY-AA-GG (tek seferlik, kişi belirli bir gün söylediyse; söylemediyse boş bırak)' ),
 				'time'      => array( 'type' => 'string', 'description' => 'SS:DD; söylenmediyse boş' ),
 				'type_id'   => array( 'type' => 'integer', 'enum' => $types ),
 				'option'    => array( 'type' => 'string' ),
 				'quantity'  => array( 'type' => 'integer' ),
-				'confirmed' => array( 'type' => 'boolean' ),
-			),
-			array( 'confirmed' )
+			)
 		),
 		$f( 'reminder_list', 'Kişinin etkin hatırlatıcılarını listeler.' ),
 		$f(
@@ -384,37 +431,52 @@ function flxc_rem_tool( $name, array $a, $chat, array &$state, $sandbox ) {
 			$id   = (int) ( $a['id'] ?? 0 );
 			$base = $id ? $find( $id ) : null;
 			if ( $id && ! $base ) {
-				return array( 'ok' => false, 'error' => 'Bu kişide böyle bir hatırlatıcı yok.' );
+				return array( 'ok' => false, 'error' => 'Bu kişide böyle bir hatırlatıcı yok; id vermeden ya da Hatırlatıcılar listesindeki no ile çağır.' );
 			}
-			// Onay beklenen taslak: kişi revize ettikçe üzerine yazılır.
-			if ( ! $base && ! empty( $state['rem_draft'] ) && (int) ( $state['rem_draft']['id'] ?? 0 ) === $id ) {
+			// 1.42.0: model id vermeden "10'u olsun" gibi bir düzeltme gönderirse az önce kurulan kayıt güncellenir
+			// (aynı konu için ikinci hatırlatıcı açılmasın): konu/başlık verilmediyse ya da aynıysa son kurulan.
+			if ( ! $base && $list ) {
+				$last = end( $list );
+				$same = '' === trim( (string) ( $a['task'] ?? '' ) ) || flxc_bot_lower( trim( (string) ( $a['task'] ?? '' ) ) ) === flxc_bot_lower( (string) $last['task'] ) || ( '' !== trim( (string) ( $a['title'] ?? '' ) ) && flxc_bot_lower( trim( (string) $a['title'] ) ) === flxc_bot_lower( (string) $last['title'] ) );
+				if ( $same && empty( $a['type_id'] ) === empty( $last['donation'] ) ) {
+					$base = $last;
+					$id   = (int) $last['id'];
+				}
+			}
+			// Eski sürümden kalan onay bekleyen taslak varsa değerleri temel alınır.
+			if ( ! $base && ! empty( $state['rem_draft'] ) ) {
 				$base = $state['rem_draft'];
 			}
 			$r = flxc_rem_build( $a, $base ? $base : array() );
 			if ( is_wp_error( $r ) ) {
 				return array( 'ok' => false, 'error' => $r->get_error_message() );
 			}
-			if ( empty( $a['confirmed'] ) ) {
-				$state['rem_draft'] = $r + array( 'id' => $id );
-				return array(
-					'ok'      => true,
-					'summary' => flxc_rem_summary( $r ),
-					'note'    => 'Henüz kaydedilmedi. Bu özeti kişiye göster ve onay iste; değişiklik isterse reminder_set\'i yeniden çağır. Kişi başka konuya geçerse zorlamadan o konuya devam et, onayı tekrar tekrar sorma.',
-				);
-			}
 			if ( ! $id && count( $list ) >= max( 1, (int) flxc_setting( 'rem_max' ) ) ) {
 				return array( 'ok' => false, 'error' => 'Kişinin etkin hatırlatıcı sınırı doldu; önce birini durdurmasını öner.' );
 			}
 			unset( $state['rem_draft'] );
+			$edit = (bool) $id;
 			if ( $sandbox ) {
 				$id                   = $id ? $id : 900 + count( (array) ( $state['rems'] ?? array() ) ) + 1;
 				$state['rems'][ $id ] = array_merge( $r, array( 'id' => $id, 'status' => 'active' ) );
 			} else {
 				$id = flxc_rem_save( $chat, $r, $id );
-				/* translators: 1: title, 2: when */
-				flxc_system_message( $chat, sprintf( __( 'The assistant set a reminder: %1$s (%2$s)', 'flx-chat' ), $r['title'], flxc_rem_when( $r ) ) );
+				flxc_system_message(
+					$chat,
+					$edit
+						/* translators: 1: title, 2: when */
+						? sprintf( __( 'The assistant updated the reminder: %1$s (%2$s)', 'flx-chat' ), $r['title'], flxc_rem_when( $r ) )
+						/* translators: 1: title, 2: when */
+						: sprintf( __( 'The assistant set a reminder: %1$s (%2$s)', 'flx-chat' ), $r['title'], flxc_rem_when( $r ) )
+				);
 			}
-			return array( 'ok' => true, 'id' => $id, 'summary' => flxc_rem_summary( $r ), 'note' => 'Kaydedildi. Kişiye kısaca bildir; istediği zaman "hatırlatıcıyı durdur" yazabileceğini söyle.' );
+			return array(
+				'ok'      => true,
+				'id'      => $id,
+				'summary' => flxc_rem_summary( $r ),
+				'first'   => flx_date( (int) $r['next_at'], 'datetime' ),
+				'note'    => ( $edit ? 'Güncellendi.' : 'Kuruldu, onay sorma.' ) . ' Kişiye tek kısa mesajla ne zaman hatırlatacağını (first) söyle; farklı bir gün ya da saat isterse yazmasının yeterli olduğunu ekle. Özeti satır satır yazma, "kaydedelim mi" diye sorma. Kişi değişiklik isterse reminder_set\'i id=' . $id . ' ile yeniden çağır.',
+			);
 	}
 	return array( 'ok' => false, 'error' => 'Bilinmeyen araç.' );
 }
@@ -422,12 +484,13 @@ function flxc_rem_tool( $name, array $a, $chat, array &$state, $sandbox ) {
 /** Sistem talimatına: kişinin hatırlatıcıları ve onay bekleyen taslak. */
 function flxc_rem_prompt( $chat, array $state ) {
 	$list = empty( $chat['id'] ) ? array_values( (array) ( $state['rems'] ?? array() ) ) : flxc_rem_for_chat( (int) $chat['id'] );
-	$out  = array( '## Hatırlatıcılar', '- Kişi düzenli bir hatırlatma ya da gönderim isterse (her ay hatırlat, her ay projelerinizi gönderin, her ay benden bir fidan iste) reminder_set kullan: özet → onay → kayıt. Adet, tür ya da saat sormadan hemen reminder_set (confirmed=false) çağır; söylenmeyen saat varsayılan, "her ay" ve gün yoksa ayın 1\'i.' );
+	$out  = array(
+		'## Hatırlatıcılar',
+		'- Kişi ileri bir tarihte bağış yapacağını ya da bir şey isteyeceğini söylerse ("önümüzdeki ay babam için", "maaşım yatınca", "bayramda") baskı yapmadan tek cümleyle hatırlatmayı teklif et. Kişi hatırlatma isterse ya da teklifi kabul ederse ("hatırlatırsınız", "olur", "haber verin", "unutmam inşallah ama siz de yazın") HEMEN reminder_set çağır: gün, saat, tür ya da adet sorma, onay isteme. Söylenmeyen gün ayın 1\'i, saat varsayılandır; kişiye ne zaman hatırlatacağını tek cümleyle söyle, isterse günü değiştirebileceğini ekle.',
+		'- Tek bir zaman ("önümüzdeki ay", "aralıkta") tek seferliktir (freq=once); "her ay", "düzenli" denirse tekrarlı. Kişi sonradan "10\'u olsun", "her ay değil bir kez" gibi düzeltirse aynı hatırlatıcıyı id ile güncelle ve yeni zamanı kısaca söyle.',
+	);
 	foreach ( $list as $r ) {
 		$out[] = '- #' . (int) $r['id'] . ' ' . $r['title'] . ' · ' . flxc_rem_when( $r );
-	}
-	if ( ! empty( $state['rem_draft'] ) ) {
-		$out[] = '- Onay bekleyen taslak: ' . str_replace( "\n", ' · ', flxc_rem_summary( $state['rem_draft'] ) ) . ' (kişi başka konudaysa üstelemeden devam et)';
 	}
 	return implode( "\n", $out );
 }
@@ -578,8 +641,9 @@ function flxc_rem_run( $rid, $deadline ) {
 	if ( ! $sent ) {
 		return $res( 'error', __( 'The message could not be sent.', 'flx-chat' ), $usage );
 	}
-	$st       = flxc_bot_state( flxc_get_chat( $chat['id'] ) );
-	$st['ai'] = 1;
+	$st           = flxc_bot_state( flxc_get_chat( $chat['id'] ) );
+	$st['ai']     = 1;
+	$st['closed'] = 0; // 1.42.0: asistan konuşmayı yeniden açtı; kişinin cevabı normal karşılanır.
 	flxc_bot_save_state( $chat['id'], $st );
 	/* translators: %s: title */
 	flxc_system_message( $chat, sprintf( __( 'Reminder sent: %s', 'flx-chat' ), $r['title'] ) );
