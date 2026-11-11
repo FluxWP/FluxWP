@@ -865,3 +865,42 @@ function flx_secret_open( string $stored, string $context, array $legacy = array
 		return '';
 	}
 }
+
+if ( ! function_exists( 'flx_job_sig' ) ) {
+	/** HMAC of "$action|$id" with the auth salt. Same bytes an in-flight loopback already carries. */
+	function flx_job_sig( string $action, $id ): string {
+		return hash_hmac( 'sha256', $action . '|' . $id, wp_salt( 'auth' ) );
+	}
+}
+
+if ( ! function_exists( 'flx_job_kick' ) ) {
+	/** Signed admin-ajax loopback that does not wait for the job. */
+	function flx_job_kick( string $action, $id ): bool {
+		$res = wp_remote_post(
+			admin_url( 'admin-ajax.php' ),
+			array(
+				'blocking'  => false,
+				'timeout'   => 0.5,
+				'sslverify' => apply_filters( 'https_local_ssl_verify', false ),
+				'body'      => array(
+					'action' => $action,
+					'id'     => $id,
+					'sig'    => flx_job_sig( $action, $id ),
+				),
+			)
+		);
+		return ! is_wp_error( $res );
+	}
+}
+
+if ( ! function_exists( 'flx_job_check' ) ) {
+	/** Posted job id when the signature matches, otherwise 0. The caller answers 403. */
+	function flx_job_check( string $action ): int {
+		$id  = isset( $_POST['id'] ) ? (int) $_POST['id'] : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$sig = isset( $_POST['sig'] ) && is_string( $_POST['sig'] ) ? $_POST['sig'] : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( $id && hash_equals( flx_job_sig( $action, $id ), $sig ) ) {
+			return $id;
+		}
+		return 0;
+	}
+}

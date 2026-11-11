@@ -34,3 +34,4 @@ jobs:
           php tools/brand/tests/nocache.php
           php tools/brand/tests/phone.php
           php tools/brand/tests/secret.php
+          php tools/brand/tests/job.php
