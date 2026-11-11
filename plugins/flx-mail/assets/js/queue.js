@@ -4,7 +4,12 @@
   const root = document.getElementById('flxi-queue');
   if (!root || typeof FLXIQ === 'undefined') return;
   const $ = selector => root.querySelector(selector), t = FLXIQ.i18n;
-  let campaign = Number(root.dataset.campaign) || 0, page = 1, pages = 1, timer, failures = 0, busy = false, worker = true, pending = false, pumping = false;
+  let campaign = Number(root.dataset.campaign) || 0, page = 1, pages = 1, timer, failures = 0, busy = false, worker = true, pending = false, pumping = false, quiet = 0, snap = '';
+  const delay = () => {
+    if (failures) return Math.min(60000, 5000 * 2 ** Math.min(6, failures));
+    if (pending || !quiet) return 5000;
+    return Math.min(15000, 5000 + Math.min(quiet, 2) * 5000);
+  };
   const label = state => FLXIQ.labels[state] || state;
   const el = (tag, text, cls) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (cls) node.className = cls; return node; };
   async function request(path, data) {
@@ -45,14 +50,25 @@
   }
   async function refresh() {
     clearTimeout(timer); if (busy || document.hidden) return; busy = true;
-    try { render(await request(`queue?campaign=${campaign}&page=${page}`)); failures = 0; void pump(); }
-    catch (error) { ++failures; $('[data-health]').textContent = t.error; }
-    finally { busy = false; timer = setTimeout(refresh, Math.min(30000, 5000 * (failures + 1))); }
+    let wait = 5000;
+    try {
+      const data = await request(`queue?campaign=${campaign}&page=${page}`);
+      render(data);
+      const sig = Object.entries(data.counts).map(([key, count]) => `${key}:${count}`).join(',');
+      const changed = sig !== snap;
+      if (changed) { snap = sig; quiet = 0; }
+      failures = 0;
+      wait = delay();
+      if (!changed) quiet = Math.min(4, quiet + 1);
+      void pump();
+    } catch (error) { ++failures; wait = delay(); $('[data-health]').textContent = t.error; }
+    finally { busy = false; if (!document.hidden) timer = setTimeout(refresh, wait); }
   }
   $('[data-campaign-picker]').addEventListener('change', event => { campaign = Number(event.target.value); page = 1; const url = new URL(location.href); url.searchParams.set('campaign', campaign); history.replaceState(null, '', url); void refresh(); });
   $('[data-stop]').addEventListener('click', () => action({ action: 'stop', campaign }));
   $('[data-prev]').addEventListener('click', () => { if (page > 1) { --page; void refresh(); } });
   $('[data-next]').addEventListener('click', () => { if (page < pages) { ++page; void refresh(); } });
-  document.addEventListener('visibilitychange', () => { clearTimeout(timer); if (!document.hidden) void refresh(); });
+  document.addEventListener('visibilitychange', () => { clearTimeout(timer); if (document.hidden) return; quiet = 0; void refresh(); });
+  root.addEventListener('pointerdown', () => { if (!quiet || failures || busy || document.hidden) return; quiet = 0; clearTimeout(timer); timer = setTimeout(refresh, 5000); });
   void refresh();
 })();

@@ -252,6 +252,9 @@ function flxi_test_connection( $id, $to = '' ) {
 /** HTTP isteği; yanıtı kayda uygun biçimde döner. */
 function flxi_http( $method, $url, $args = array() ) {
 	$args = wp_parse_args( $args, array( 'timeout' => 20, 'method' => $method ) );
+	if ( isset( $GLOBALS['flxi_queue_timeout'] ) ) {
+		$args['timeout'] = min( (int) $args['timeout'], (int) $GLOBALS['flxi_queue_timeout'] );
+	}
 	$res  = wp_remote_request( $url, $args );
 	if ( is_wp_error( $res ) ) {
 		return array( 'ok' => false, 'code' => 0, 'body' => '', 'json' => null, 'error' => $res->get_error_message() );

@@ -109,7 +109,6 @@ class FLXP_Login_URL {
 	public static function detect() {
 		global $pagenow;
 		$path = self::request_path();
-		$base = strtolower( basename( $path ) );
 		$slug = self::slug();
 
 		$is_slug = strtolower( $path ) === strtolower( self::login_path() );
@@ -129,15 +128,48 @@ class FLXP_Login_URL {
 			return;
 		}
 
-		$legacy = array( 'wp-login.php', 'wp-register.php' );
-		if ( ! is_multisite() ) {
-			$legacy[] = 'wp-signup.php';
-			$legacy[] = 'wp-activate.php';
-		}
-		if ( in_array( $base, $legacy, true ) && ! self::passthrough() ) {
+		// basename(REQUEST_URI) /wp-login.php/x yolunda "x" döner. Betiğin kendisine bak.
+		if ( self::is_legacy_login() && ! self::passthrough() ) {
 			self::$blocked = true;
 			$pagenow       = 'index.php'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 		}
+	}
+
+	/**
+	 * Çalışan betik varsayılan giriş dosyası mı.
+	 * PATH_INFO (/wp-login.php/x), sondaki eğik çizgi, çift eğik çizgi, büyük/küçük harf ve alt klasör.
+	 */
+	private static function is_legacy_login() {
+		$names = array( 'wp-login.php', 'wp-register.php' );
+		if ( ! is_multisite() ) {
+			$names[] = 'wp-signup.php';
+			$names[] = 'wp-activate.php';
+		}
+		$raw = array();
+		foreach ( array( 'SCRIPT_NAME', 'PHP_SELF', 'SCRIPT_FILENAME' ) as $key ) {
+			if ( ! empty( $_SERVER[ $key ] ) ) { // phpcs:ignore
+				$raw[] = (string) wp_unslash( $_SERVER[ $key ] ); // phpcs:ignore
+			}
+		}
+		global $pagenow;
+		if ( is_string( $pagenow ) && '' !== $pagenow ) {
+			$raw[] = $pagenow;
+		}
+		$uri  = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore
+		$path = (string) wp_parse_url( rawurldecode( $uri ), PHP_URL_PATH );
+		if ( '' !== $path ) {
+			$raw[] = $path;
+		}
+		foreach ( $raw as $item ) {
+			$item = strtolower( str_replace( '\\', '/', $item ) );
+			$item = preg_replace( '#/+#', '/', $item );
+			foreach ( $names as $name ) {
+				if ( preg_match( '#(^|/)' . preg_quote( $name, '#' ) . '(/|$)#', $item ) ) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**

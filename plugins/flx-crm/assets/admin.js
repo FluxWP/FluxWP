@@ -115,17 +115,25 @@
 			var p = progressFor( btn );
 			lockAll( true );
 			say( p, t.scoring );
-			ajax( 'flxcrm_score', {} )
-				.then( function ( r ) {
-					say( p, fmt( t.scored, num( r.scored || 0 ) ) );
-					window.setTimeout( function () {
-						window.location.reload();
-					}, 700 );
-				} )
-				.catch( function () {
-					say( p, t.fail, true );
-					lockAll( false );
-				} );
+			var left = 40;
+			( function run() {
+				ajax( 'flxcrm_score', {} )
+					.then( function ( r ) {
+						if ( r && r.done === false && left > 0 ) {
+							left -= 1;
+							run();
+							return;
+						}
+						say( p, fmt( t.scored, num( r.scored || 0 ) ) );
+						window.setTimeout( function () {
+							window.location.reload();
+						}, 700 );
+					} )
+					.catch( function () {
+						say( p, t.fail, true );
+						lockAll( false );
+					} );
+			} )();
 		} );
 	} );
 

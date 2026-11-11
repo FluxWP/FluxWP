@@ -987,11 +987,14 @@ function flxcrm_core_tools() {
 
 	$t['flxcrm_rescore'] = array(
 		'title'       => __( 'Recalculate scores', 'flx-crm' ),
-		'description' => 'Recalculates RFM scores, segments and churn risk for all contacts now (normally daily) and refreshes saved segment counts.',
+		'description' => 'Recalculates RFM scores, segments and churn risk. One call runs for about 20 seconds and resumes from the same cursor on the next call or the daily job.',
 		'kind'        => 'write',
 		'cap'         => $manage,
 		'run'         => function () {
 			$r = FLXCRM_Scoring::run();
+			if ( is_array( $r ) && empty( $r['done'] ) ) {
+				return $r;
+			}
 			FLXCRM_Segments::recount_all();
 			return is_array( $r ) ? $r : array( 'done' => true );
 		},

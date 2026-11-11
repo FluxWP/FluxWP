@@ -56,6 +56,20 @@ class FLXAN_Aggregator {
 		self::run( 8 );
 	}
 
+	/**
+	 * Schedule the existing aggregate hook when it is missing.
+	 * A report request must not run the queue itself.
+	 */
+	public static function nudge() {
+		if ( time() - (int) get_option( 'flxan_last_agg', 0 ) < MINUTE_IN_SECONDS ) {
+			return;
+		}
+		if ( wp_next_scheduled( 'flxan_aggregate' ) ) {
+			return;
+		}
+		wp_schedule_single_event( time() + 15, 'flxan_aggregate' );
+	}
+
 	/** Son çalışma 60 sn'den eskiyse çalıştırır (panel ve anlık görünüm). */
 	public static function maybe_run( $min_age = 60 ) {
 		if ( time() - (int) get_option( 'flxan_last_agg', 0 ) >= $min_age ) {

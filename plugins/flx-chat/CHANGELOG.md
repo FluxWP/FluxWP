@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.38.1
+- Live inbox polling still checks once a minute in a background tab (so new-message notifications keep working) and checks immediately when the tab is visible again. The 3 s interval stays only while a reply is changing; otherwise the wait steps up to 15 s. Errors and HTTP 429 back off exponentially up to 60 s, and a sync never overlaps the previous request.
+
 ## 1.38.0
 - Message deletion: every message menu now has "Delete". Sent messages can be deleted for everyone (WhatsApp turns them into "This message was deleted" on the contact's phone) within WhatsApp's limit of about 2 days and 12 hours. After the limit, for received messages, on channels without support (Cloud API, site chat) or for agents deleting someone else's message, the dialog says why and offers "Hide in the panel only"; the message stays on the contact's phone.
 - New setting (General › Behavior): "Delete for everyone time limit (hours)", default and maximum 60, 0 turns delete for everyone off.

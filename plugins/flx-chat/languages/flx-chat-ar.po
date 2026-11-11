@@ -2893,9 +2893,6 @@ msgstr "الواجهة الجديدة (تجريبية): تفتح صفحة الد
 msgid "Live update interval (sec)"
 msgstr "الفاصل الزمني للتحديث المباشر (ثانية)"
 
-msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
-msgstr "تقوم علامة التبويب المفتوحة بالتحقق من الرسائل الجديدة في هذه الفترة (يوصى بـ 10 رسائل). في علامة تبويب الخلفية، يتم التحقق مرة واحدة في الدقيقة، وبشكل أقل بعد الأخطاء."
-
 msgid "Agents"
 msgstr "الوكلاء"
 
@@ -4471,9 +4468,6 @@ msgstr "لا يوجد مستخدم لديه دور الوكيل؛ يمكن لل�
 msgid "Live panel updates"
 msgstr "تحديثات اللوحة الحية"
 
-msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
-msgstr "طلب التحديث الأخير%1$s. عندما تكون اللوحة مفتوحة، فإنها تتحقق من وجود رسائل جديدة كل%2$dثانية (60 ثانية في علامة تبويب الخلفية)."
-
 msgid "The chat screen has not been opened yet."
 msgstr "شاشة الدردشة لم تفتح بعد."
 
@@ -4806,3 +4800,10 @@ msgstr "مهلة الحذف لدى الجميع (ساعات)"
 
 msgid "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them."
 msgstr "يسمح واتساب بحذف رسالة مرسلة لدى الجميع خلال نحو يومين و12 ساعة (60 ساعة) فقط. بعد هذه المهلة، أو في الرسائل المستلمة، تُخفى الرسالة في اللوحة فقط وتبقى على هاتف جهة الاتصال. القيمة 0 توقف الحذف لدى الجميع. لا تُزال الرسائل المحذوفة من الخادم أبدًا؛ ويمكن للفريق فتحها."
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab."
+msgstr "طلب التحديث الأخير %1$s. عندما تكون اللوحة مفتوحة تتحقق من الرسائل الجديدة كل %2$d ث (3 ث أثناء بث الرد، وحتى 15 ث إن لم يتغير شيء) ومرة كل دقيقة في علامة تبويب خلفية."
+
+msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
+msgstr "تتحقق علامة التبويب المفتوحة من الرسائل الجديدة في هذه الفترة (يُوصى بـ 10)، كل 3 ث أثناء بث الرد، وحتى 15 ث إن لم يتغير شيء. علامة التبويب الخلفية تتحقق مرة كل دقيقة. عند الأخطاء تمتد المهلة حتى 60 ث."
+

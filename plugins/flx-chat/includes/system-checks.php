@@ -114,7 +114,7 @@ function flxc_system_checks() {
 		$last_sync && time() - $last_sync < 15 * MINUTE_IN_SECONDS ? 'ok' : 'info',
 		$last_sync ? sprintf(
 			/* translators: 1: ago, 2: seconds */
-			__( 'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).', 'flx-chat' ),
+			__( 'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.', 'flx-chat' ),
 			flxc_ago( $last_sync ),
 			max( 5, (int) flxc_setting( 'poll_interval' ) )
 		) : __( 'The chat screen has not been opened yet.', 'flx-chat' ),

@@ -2893,9 +2893,6 @@ msgstr "Yeni arayüz (deneysel): Sohbetler sayfası masaüstü ve mobil uygulama
 msgid "Live update interval (sec)"
 msgstr "Canlı güncelleme sıklığı (sn)"
 
-msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
-msgstr "Açık sekmede bu aralıkla yeni mesaj kontrol edilir (önerilen 10). Sekme arka plandayken dakikada bir, hata olursa giderek seyrekleşir."
-
 msgid "Agents"
 msgstr "Temsilciler"
 
@@ -4471,9 +4468,6 @@ msgstr "Temsilci rolünde kullanıcı yok; şimdilik yalnız yöneticiler kullan
 msgid "Live panel updates"
 msgstr "Panelin canlı güncellemesi"
 
-msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
-msgstr "Son güncelleme isteği %1$s. Panel açıkken %2$d sn'de bir yeni mesaj sorulur (arka plandaki sekmede 60 sn)."
-
 msgid "The chat screen has not been opened yet."
 msgstr "Sohbet ekranı henüz hiç açılmadı."
 
@@ -4806,3 +4800,10 @@ msgstr "Herkesten silme süresi (saat)"
 
 msgid "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them."
 msgstr "WhatsApp gönderilen mesajı herkesten silmeye yalnız yaklaşık 2 gün 12 saat (60 saat) izin verir. Bu süre geçince ya da gelen mesajlarda mesaj yalnız panelde gizlenir, kişinin telefonunda kalır. 0 herkesten silmeyi kapatır. Silinen mesajlar sunucudan hiç kaldırılmaz; ekip yine açıp görebilir."
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab."
+msgstr "Son güncelleme isteği %1$s. Panel açıkken %2$d sn'de bir yeni mesaj sorulur (cevap akarken 3 sn, değişiklik yoksa 15 sn'ye kadar) ve arka plandaki sekmede dakikada bir."
+
+msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
+msgstr "Açık sekmede bu aralıkla yeni mesaj kontrol edilir (önerilen 10); cevap akarken 3 sn'de bir, değişiklik yoksa 15 sn'ye kadar. Arka plandaki sekme dakikada bir bakar. Hatalarda aralık 60 sn'ye kadar seyrekleşir."
+

@@ -317,6 +317,7 @@
     "Location link for QR codes": "用于二维码的位置链接",
     "Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.": "请在海报和封面上使用此链接(或二维码)代替地图链接。访客先进入您的网站并被计数,然后跳转到地图。之后更换地图也无需重新印刷。",
     "Opened %1$s times via QR, %2$s times from the site.": "通过二维码打开 %1$s 次,从网站打开 %2$s 次。",
-    "No map yet: the link opens the event page until a location is entered.": "尚无地图:在填写位置之前,该链接会打开活动页面。"
+    "No map yet: the link opens the event page until a location is entered.": "尚无地图:在填写位置之前,该链接会打开活动页面。",
+    "Person not found.": "未找到此人。"
   }
 }

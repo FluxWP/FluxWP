@@ -181,7 +181,7 @@ function flxi_system_checks( $checks ) {
 		$msg .= $s['social_block_core'] ? __( 'People who sign up with Google do not receive the set-password email, and their emails are treated as verified.', 'flx-mail' ) : __( 'People who sign up with Google receive the set-password email (setting is off).', 'flx-mail' );
 		$add( 'social', 'Plugins', __( 'Google sign-in', 'flx-mail' ), $s['social_block_core'] ? 'ok' : 'warning', $msg, $set . '#google', __( 'Setting', 'flx-mail' ) );
 	} else {
-		$add( 'social', 'Plugins', __( 'Google sign-in', 'flx-mail' ), 'info', __( 'No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped.', 'flx-mail' ), $set . '#google', __( 'Setting', 'flx-mail' ) );
+		$add( 'social', 'Plugins', __( 'Google sign-in', 'flx-mail' ), 'info', __( 'No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter).', 'flx-mail' ), $set . '#google', __( 'Setting', 'flx-mail' ) );
 	}
 
 	// Bağlantılar
@@ -194,6 +194,10 @@ function flxi_system_checks( $checks ) {
 			continue;
 		}
 		foreach ( $list as $c ) {
+			if ( 'wacloud' === $c['type'] && '' === (string) ( $c['config']['app_secret'] ?? '' ) ) {
+				$add( 'conn.' . $c['id'], 'Config', $label . ' · ' . $c['name'], 'warning', __( 'App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit.', 'flx-mail' ), flxi_admin_url( 'flxi-baglantilar', array( 'edit' => $c['id'] ) ), __( 'Edit', 'flx-mail' ) );
+				continue;
+			}
 			$t = $tests[ $c['id'] ] ?? null;
 			if ( ! $t ) {
 				$add( 'conn.' . $c['id'], 'Config', $label . ' · ' . $c['name'], 'info', __( 'Settings entered, not tested yet.', 'flx-mail' ), flxi_admin_url( 'flxi-baglantilar' ), __( 'Test', 'flx-mail' ) );

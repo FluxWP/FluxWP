@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.8.6
+- The scheduled-audit step (`admin-ajax.php?action=flxseo_audit_tick`) is no longer public. It runs for a logged-in user with `manage_options` and the `flxseo_audit_tick` nonce, or for this site's loopback carrying the per-audit token stored on the job. The token is created when the audit starts, checked with `hash_equals`, and deleted with the job. A lock still stops two ticks from running the same step. The shutdown nudge only opens a due job and sends that loopback, so the audit still advances after the screen is closed; the hourly WP-Cron event still runs a step itself, so the audit also advances where loopback requests are blocked.
+- PageSpeed inside a web request waits at most 40 seconds (`set_time_limit` follows that budget). A timeout is stored as a failed step and the audit continues with the next step. CLI keeps the 90 second wait.
+
 ## 1.8.5
 - Redirect conventional child names such as `/category-sitemap.xml` and `/page-sitemap2.xml` to existing core sitemap URLs. Preserve unknown, excluded, empty and out-of-range sitemap 404s and honor the global sitemap switch.
 

@@ -656,5 +656,6 @@ return array(
   'fidan toplandı\\x00fidan toplandı' . chr(0) . 'fidan toplandı\\x00fidan toplandı' => 'تم جمع الشتلات' . chr(0) . 'تم جمع الشتلات' . chr(0) . 'تم جمع الشتلات' . chr(0) . 'تم جمع الشتلات' . chr(0) . 'تم جمع الشتلات' . chr(0) . 'تم جمع الشتلات',
   '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' . chr(0) . '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' => 'مساهمة%sبواسطة' . chr(0) . 'مساهمة%sبواسطة' . chr(0) . 'مساهمة%sبواسطة' . chr(0) . 'مساهمة%sبواسطة' . chr(0) . 'مساهمة%sبواسطة' . chr(0) . 'مساهمة%sبواسطة',
 
+'Person not found.'=>'لم يُعثر على الشخص.',
  ),
 );

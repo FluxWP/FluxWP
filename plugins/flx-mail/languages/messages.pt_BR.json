@@ -193,7 +193,6 @@
     "Appearance changes are applied to all emails when you save.": "As alterações de aparência são aplicadas a todos os e-mails quando você salva.",
     "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified.": "Como o Google já verificou o endereço de e-mail, as pessoas que se inscrevem no Google não recebem o e-mail \"defina sua senha/detalhes de login\" e suas contas são tratadas como verificadas.",
     "Detected plugin: %s": "Plug-in detectado:%s",
-    "No known Google sign-in plugin was detected; a Google return is also recognized from the request.": "Nenhum plug-in de login do Google conhecido foi detectado; uma devolução do Google também é reconhecida na solicitação.",
     "Do not send the WordPress \"login details / set password\" email": "Não envie o e-mail \"detalhes de login/definir senha\" do WordPress",
     "Do not send the WooCommerce \"your account has been created\" email": "Não envie o e-mail WooCommerce “sua conta foi criada”",
     "Mark the email as verified (for verification plugins)": "Marcar o e-mail como verificado (para plug-ins de verificação)",
@@ -396,7 +395,6 @@
     "People who sign up with Google do not receive the set-password email, and their emails are treated as verified.": "As pessoas que se inscrevem no Google não recebem o e-mail com a senha definida e seus e-mails são tratados como verificados.",
     "People who sign up with Google receive the set-password email (setting is off).": "As pessoas que se inscrevem no Google recebem o e-mail com a senha definida (a configuração está desativada).",
     "Setting": "Configuração",
-    "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped.": "Nenhum plug-in de login do Google conhecido está ativo. Se você usar outro plugin, um retorno do Google ainda será detectado e o e-mail de senha será interrompido.",
     "No %s connection.": "Nenhuma conexão%s.",
     "Settings entered, not tested yet.": "Configurações inseridas, ainda não testadas.",
     "Test successful (%s).": "Teste bem-sucedido (%s).",
@@ -773,7 +771,6 @@
     "Last incoming event": "Último evento recebido",
     "Request with a bad signature": "Solicitação com assinatura incorreta",
     "Open 24-hour windows": "Janelas abertas 24 horas",
-    "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit.": "Segredo do aplicativo não inserido: as solicitações recebidas não são verificadas como provenientes do Meta. Adicione-o em Editar.",
     "Approved templates": "Modelos aprovados",
     "WABA ID is required for templates.": "O ID WABA é necessário para modelos.",
     "No templates. Add them in WhatsApp Manager › Message templates.": "Sem modelos. Adicione-os em Gerenciador do WhatsApp › Modelos de mensagens.",
@@ -784,7 +781,6 @@
     "Needed for the template list.": "Necessário para a lista de modelos.",
     "Permanent access token (System User token)": "Token de acesso permanente (token de usuário do sistema)",
     "App Secret": "Segredo do aplicativo",
-    "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended).": "Verifica se os webhooks recebidos vêm do Meta. Se estiver vazio, a assinatura não será verificada (não recomendado).",
     "Graph API version": "Versão da API gráfica",
     "Couldn't reach Meta:": "Não foi possível acessar Meta:",
     "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent.": "Janela de 24 horas fechada: a pessoa não escreveu nas últimas 24 horas. Apenas um modelo aprovado pode ser enviado.",
@@ -885,6 +881,12 @@
     "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.": "Usa o fuso horário do WordPress. Envios futuros do Netgsm podem ser cancelados antes de começar.",
     "View delivery queue": "Ver fila de envios",
     "WordPress background processing": "Processamento em segundo plano do WordPress",
-    "Worker active": "Worker ativo"
+    "Worker active": "Worker ativo",
+    "App Secret missing · webhook off": "Segredo do aplicativo ausente · webhook desligado",
+    "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit.": "Segredo do aplicativo não inserido: os webhooks recebidos são recusados até que ele seja informado. Adicione-o em Editar.",
+    "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter).": "Nenhum plug-in de login do Google conhecido está ativo. A verificação e a supressão do e-mail de senha valem quando um plug-in de login compatível registra um login do Google (ou pelo filtro flxi_user_is_social).",
+    "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter).": "Nenhum plug-in de login do Google conhecido foi detectado; a verificação vale quando um plug-in compatível registra um login do Google (ou pelo filtro flxi_user_is_social).",
+    "Rejected (App Secret missing)": "Recusado (segredo do aplicativo ausente)",
+    "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered.": "Verifica se os webhooks recebidos vêm do Meta. Os eventos recebidos são recusados até que ele seja informado."
   }
 }

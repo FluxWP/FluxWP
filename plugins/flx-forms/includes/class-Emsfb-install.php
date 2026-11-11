@@ -184,7 +184,8 @@ class Install {
 			$s = false;
 
 			$v = $wpdb->get_var( $wpdb->prepare( "SELECT setting FROM %i ORDER BY id DESC LIMIT 1", $table_name_stng ) );
-			$rand = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'), 0, 10);
+			// 128 bits from a CSPRNG. Used only when this is the first settings row.
+			$rand = bin2hex( random_bytes( 16 ) );
 			// smtp (the "This site can send emails" switch) always starts OFF on a new
 			// install: no notification email is sent until the admin verifies delivery
 			// and turns it on. See Email_Monitor::mark_email_ready().

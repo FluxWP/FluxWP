@@ -1209,3 +1209,7 @@ msgstr "WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda isti
 
 msgid "Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI)."
 msgstr "Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI'da)."
+
+msgid "PageSpeed timed out; this step was skipped."
+msgstr "PageSpeed zaman aşımına uğradı; bu adım atlandı."
+
