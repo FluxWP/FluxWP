@@ -1,0 +1,6 @@
+[
+  "plugins/flx-donate/includes/flx-system-checks.php",
+  "plugins/flx-forms/includes/flx/system-checks/flx-system-checks.php",
+  "plugins/flx-mail/includes/flx-system-checks.php",
+  "plugins/flx-speed/includes/flx-system-checks.php"
+]
