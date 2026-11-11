@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.14.0 — 2026-11-11
+- Gönder ekranında WhatsApp ve SMS önizlemesi: mesaj telefon ekranındaki gibi görünür, değişkenler örnek kişiyle doldurulur. SMS'te karakter ve SMS adedi Netgsm kurallarına göre sayılır (Türkçe karakter açıkken 155 / parça başına 146, kapalıyken 160 / 153; ç ğ ı ş Ğ İ Ş iki karakter), toplam SMS kredisi, desteklenmeyen karakterler (emoji) ve İYS filtresi gösterilir. WhatsApp'ta *kalın* / _italik_ biçimli görünür, 4.096 karakter sınırı ve Cloud API'nin 24 saat kuralı hatırlatılır.
+- Alıcı listeleri hizalı iki sütun. Seçilen listeden kişi gelmiyorsa nedeni altında yazar: kaç kişinin e-posta adresi / telefonu yok, kaçı bu kanala izin vermemiş, kaçı zaten listede. Yeni filtre `flxi_recipient_source_info`.
+- Zamanlanmış gönderim alanının yanında sitenin şu anki saati ve saat dilimi (saniye saniye ilerler).
+- E-postaların üstündeki logo artık sitenin kendi logosu: Flux Mail ayarındaki logo, yoksa kurum profili / Flux SEO / temanın Site Logosu, o da yoksa site simgesi ve site adı. Eklentiyle gelen FluxWP logosu kullanılmaz. Ön ayarlar `flxi_site_logos` filtresiyle PNG logo verir. WooCommerce e-posta başlığına yazılmış FluxWP logosu bir kez düzeltilir.
+- E-postalar sayfası yana kaymıyor: "Gönderen" kartındaki ad ve adres sığmazsa "…" ile kesilir.
+
 ## 1.13.22
 - SMTP, IMAP ve bağlantı parolaları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse parolaları yeniden girin.
 

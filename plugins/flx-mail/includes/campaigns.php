@@ -36,19 +36,29 @@ function flxi_recipient_sources() {
  * @param array  $sources Kaynak anahtarları.
  * @param string $manual  Elle yazılan liste: her satırda "e-posta", "telefon", "Ad Soyad <e-posta>" ya da "Ad Soyad, e-posta, telefon".
  * @param string $channel email|whatsapp|sms
+ * @param array|null $report Verilirse kaynak başına döküm yazılır: [ kaynak => [ found, added, no_address, duplicate, no_consent ] ]
+ *                           ve 'unsubscribed' (e-postada abonelikten çıkanlar). Gönder ekranı "neden alıcı yok" sorusunu bununla yanıtlar.
  * @return array [ ['to' => …, 'name' => …], … ] (tekrarsız, abonelikten çıkanlar hariç)
  */
-function flxi_collect_recipients( array $sources, $manual, $channel ) {
+function flxi_collect_recipients( array $sources, $manual, $channel, &$report = null ) {
 	$list = array();
-	$add  = function ( $name, $email, $phone ) use ( &$list, $channel ) {
+	$stat = array( 'found' => 0, 'added' => 0, 'no_address' => 0, 'duplicate' => 0, 'no_consent' => 0 );
+	$cur  = $stat;
+	$add  = function ( $name, $email, $phone ) use ( &$list, &$cur, $channel ) {
+		++$cur['found'];
 		$to = 'email' === $channel ? strtolower( trim( (string) $email ) ) : flxi_normalize_phone( $phone );
 		if ( ! $to || ( 'email' === $channel && ! is_email( $to ) ) ) {
+			++$cur['no_address'];
 			return;
 		}
-		if ( ! isset( $list[ $to ] ) ) {
-			$list[ $to ] = array( 'to' => $to, 'name' => trim( (string) $name ) );
+		if ( isset( $list[ $to ] ) ) {
+			++$cur['duplicate'];
+			return;
 		}
+		++$cur['added'];
+		$list[ $to ] = array( 'to' => $to, 'name' => trim( (string) $name ) );
 	};
+	$by_source = array();
 	foreach ( preg_split( '/\r\n|\r|\n/', (string) $manual ) as $line ) {
 		$line = trim( $line );
 		if ( '' === $line ) {
@@ -74,7 +84,9 @@ function flxi_collect_recipients( array $sources, $manual, $channel ) {
 		}
 		$add( $name, $email, $phone );
 	}
+	$by_source['manual'] = $cur;
 	foreach ( $sources as $src ) {
+		$cur = $stat;
 		if ( 0 === strpos( $src, 'role:' ) ) {
 			$users = get_users( array( 'role' => substr( $src, 5 ), 'number' => 20000, 'fields' => array( 'ID', 'user_email', 'display_name' ) ) );
 			foreach ( array_chunk( $users, 500 ) as $chunk ) {
@@ -95,11 +107,25 @@ function flxi_collect_recipients( array $sources, $manual, $channel ) {
 			foreach ( (array) apply_filters( 'flxi_recipients_from_source', array(), $src, $channel ) as $r ) {
 				$add( $r['name'] ?? '', $r['email'] ?? '', $r['phone'] ?? '' );
 			}
+			/**
+			 * Kaynak, bu kanal için eleyip hiç döndürmediği kişileri bildirir (ör. Flux CRM: izin vermeyenler).
+			 * Dönüş: [ 'total' => kaynaktaki kişi sayısı, 'no_consent' => kanala izin vermediği için alınmayanlar ].
+			 */
+			$info = (array) apply_filters( 'flxi_recipient_source_info', array(), $src, $channel );
+			if ( $info ) {
+				$cur['no_consent'] = max( 0, (int) ( $info['no_consent'] ?? 0 ) );
+				$cur['found']      = max( $cur['found'] + $cur['no_consent'], (int) ( $info['total'] ?? 0 ) );
+			}
 		}
+		$by_source[ $src ] = $cur;
 	}
+	$before = count( $list );
 	if ( 'email' === $channel ) {
 		$unsub = flxi_unsubscribed();
 		$list  = array_diff_key( $list, array_flip( $unsub ) );
+	}
+	if ( null !== $report ) {
+		$report = array( 'sources' => $by_source, 'unsubscribed' => $before - count( $list ) );
 	}
 	return array_values( $list );
 }

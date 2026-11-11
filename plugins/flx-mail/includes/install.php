@@ -15,6 +15,20 @@ function flxi_activate() {
 	if ( $role ) {
 		$role->add_cap( 'flxi_manage' );
 	}
+	// 1.14.0: WooCommerce e-posta başlığına eklentiyle gelen FluxWP logosu yazılmışsa sitenin kendi logosuna çevir (yoksa boş: WooCommerce site adını yazar).
+	if ( ! get_option( 'flxi_wc_logo_1140' ) ) {
+		add_action(
+			'init',
+			function () {
+				$h = get_option( 'woocommerce_email_header_image' );
+				if ( is_string( $h ) && false !== strpos( $h, '/assets/img/logo.png' ) && false !== strpos( $h, 'flx-mail' ) ) {
+					update_option( 'woocommerce_email_header_image', flxi_brand()['logo'] );
+				}
+				update_option( 'flxi_wc_logo_1140', 1, false );
+			},
+			20
+		);
+	}
 	if ( ! wp_next_scheduled( 'flxi_daily' ) ) {
 		wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', 'flxi_daily' );
 	}
@@ -44,6 +58,20 @@ function flxi_maybe_upgrade() {
 			update_option( 'flxi_settings', $opt );
 		}
 		update_option( 'flxi_art_160', 1, false );
+	}
+	// 1.14.0: WooCommerce e-posta başlığına eklentiyle gelen FluxWP logosu yazılmışsa sitenin kendi logosuna çevir (yoksa boş: WooCommerce site adını yazar).
+	if ( ! get_option( 'flxi_wc_logo_1140' ) ) {
+		add_action(
+			'init',
+			function () {
+				$h = get_option( 'woocommerce_email_header_image' );
+				if ( is_string( $h ) && false !== strpos( $h, '/assets/img/logo.png' ) && false !== strpos( $h, 'flx-mail' ) ) {
+					update_option( 'woocommerce_email_header_image', flxi_brand()['logo'] );
+				}
+				update_option( 'flxi_wc_logo_1140', 1, false );
+			},
+			20
+		);
 	}
 	if ( ! wp_next_scheduled( 'flxi_daily' ) ) {
 		wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', 'flxi_daily' );
