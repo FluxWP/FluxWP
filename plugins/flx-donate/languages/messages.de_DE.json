@@ -1819,6 +1819,11 @@
     "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\u0000%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived": "%1$s-Spende ·%2$serhielt%1$s-Spenden ·%2$serhielt\u0000%1$s-Spende ·%2$serhielt%1$s-Spenden ·%2$serhielt",
     "%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\u0000%1$spaid gift ·%2$s%1$spaid gifts ·%2$s": "%1$sbezahltes Geschenk ·%2$s%1$sbezahltes Geschenk ·%2$s\u0000%1$sbezahltes Geschenk ·%2$s%1$sbezahltes Geschenk ·%2$s",
     "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\u0000%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.": " Der aktive Typ%dhat sein verstecktes WooCommerce-Produkt. Aktive%d-Typen haben ihre versteckten WooCommerce-Produkte.\u0000 Der aktive Typ%dhat sein verstecktes WooCommerce-Produkt. Aktive%d-Typen haben ihre versteckten WooCommerce-Produkte.",
-    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": "%1$d-Aufgabe ist mehr als 15 Minuten zu spät:%2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät:%2$s.\u0000%1$d-Aufgabe ist mehr als 15 Minuten zu spät:%2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät:%2$s."
+    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": "%1$d-Aufgabe ist mehr als 15 Minuten zu spät:%2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät:%2$s.\u0000%1$d-Aufgabe ist mehr als 15 Minuten zu spät:%2$s.%1$d-Aufgaben sind mehr als 15 Minuten zu spät:%2$s.",
+    "Receipt awaiting approval": "Beleg wartet auf Freigabe",
+    "Receipts awaiting approval": "Belege warten auf Freigabe",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "Der Spender hat einen Beleg geschickt. Öffnen, Bankkonto prüfen, dann freigeben oder ablehnen.",
+    "Show in the list": "In der Liste zeigen",
+    "Review": "Prüfen"
   }
 }

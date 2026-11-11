@@ -1819,6 +1819,11 @@
     "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\u0000%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived": "%1$sの寄付 ·%2$sを受け取りました%1$sの寄付を受け取りました ·%2$sを受け取りました",
     "%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\u0000%1$spaid gift ·%2$s%1$spaid gifts ·%2$s": "%1$s有料ギフト ·%2$s%1$s有料ギフト ·%2$s",
     "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\u0000%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.": "%dアクティブ タイプには、非表示の WooCommerce 製品があります。%dアクティブ タイプには、非表示の WooCommerce 製品があります。",
-    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": "%1$dタスクは 15 分以上遅れています:%2$s。%1$dタスクが 15 分以上遅れています:%2$s。"
+    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": "%1$dタスクは 15 分以上遅れています:%2$s。%1$dタスクが 15 分以上遅れています:%2$s。",
+    "Receipt awaiting approval": "振込明細の承認待ち",
+    "Receipts awaiting approval": "承認待ちの振込明細",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "寄付者が振込明細を送信しました。開いて口座を確認し、承認または却下してください。",
+    "Show in the list": "一覧で表示",
+    "Review": "確認"
   }
 }

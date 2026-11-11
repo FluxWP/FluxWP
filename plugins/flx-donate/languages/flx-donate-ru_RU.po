@@ -5617,3 +5617,24 @@ msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than
 msgstr[0] " Задача%1$dзадерживается более чем на 15 минут:%2$s. Задачи%1$dзадерживаются более чем на 15 минут:%2$s."
 msgstr[1] " Задача%1$dзадерживается более чем на 15 минут:%2$s. Задачи%1$dзадерживаются более чем на 15 минут:%2$s."
 msgstr[2] " Задача%1$dзадерживается более чем на 15 минут:%2$s. Задачи%1$dзадерживаются более чем на 15 минут:%2$s."
+
+msgid "Receipt awaiting approval"
+msgstr "Квитанция ждёт подтверждения"
+
+msgid "Receipts awaiting approval"
+msgstr "Квитанции ждут подтверждения"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "Жертвователь прислал квитанцию. Откройте её, проверьте банковский счёт, затем подтвердите или отклоните."
+
+msgid "Show in the list"
+msgstr "Показать в списке"
+
+msgid "Review"
+msgstr "Проверить"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "ещё %s"
+msgstr[1] "ещё %s"
+msgstr[2] "ещё %s"

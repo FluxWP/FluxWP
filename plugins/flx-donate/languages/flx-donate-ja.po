@@ -5501,3 +5501,22 @@ msgstr[0] "%dアクティブ タイプには、非表示の WooCommerce 製品�
 msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgstr[0] "%1$dタスクは 15 分以上遅れています:%2$s。%1$dタスクが 15 分以上遅れています:%2$s。"
+
+msgid "Receipt awaiting approval"
+msgstr "振込明細の承認待ち"
+
+msgid "Receipts awaiting approval"
+msgstr "承認待ちの振込明細"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "寄付者が振込明細を送信しました。開いて口座を確認し、承認または却下してください。"
+
+msgid "Show in the list"
+msgstr "一覧で表示"
+
+msgid "Review"
+msgstr "確認"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "他 %s 件"

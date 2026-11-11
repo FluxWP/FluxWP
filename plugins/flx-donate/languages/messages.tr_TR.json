@@ -1818,6 +1818,11 @@
     "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\u0000%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived": "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\u0000%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived",
     "%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\u0000%1$spaid gift ·%2$s%1$spaid gifts ·%2$s": "%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\u0000%1$spaid gift ·%2$s%1$spaid gifts ·%2$s",
     "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\u0000%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.": "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\u0000%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.",
-    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
+    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.",
+    "Receipt awaiting approval": "Dekont onayı bekliyor",
+    "Receipts awaiting approval": "Dekont onayı bekleyenler",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "Bağışçı dekont gönderdi. Açın, banka hesabını kontrol edin, sonra onaylayın ya da reddedin.",
+    "Show in the list": "Listede göster",
+    "Review": "İncele"
   }
 }

@@ -3588,6 +3588,11 @@ return array(
   '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' . chr(0) . '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' => ' Регулярное пожертвование%dпрекращено после того, как его карта была отклонена 3 раза.' . chr(0) . '%dпрекратили регулярные пожертвования после того, как их карты были отклонены 3 раза.' . chr(0) . '%dпрекратили регулярные пожертвования после того, как их карты были отклонены 3 раза.',
   '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' . chr(0) . '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' => ' Тип пожертвования%dявляется открытым и платным.' . chr(0) . ' Типы пожертвований%dоткрыты и платны.' . chr(0) . ' Типы пожертвований%dоткрыты и платны.',
   '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' . chr(0) . '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' => ' Банковский счет%dуказан для подарков банковским переводом.' . chr(0) . ' Банковские счета%dуказаны для подарков банковским переводом.' . chr(0) . ' Банковские счета%dуказаны для подарков банковским переводом.',
-
- ),
+'Receipt awaiting approval'=>'Квитанция ждёт подтверждения',
+'Receipts awaiting approval'=>'Квитанции ждут подтверждения',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'Жертвователь прислал квитанцию. Откройте её, проверьте банковский счёт, затем подтвердите или отклоните.',
+'Show in the list'=>'Показать в списке',
+'Review'=>'Проверить',
+'%s more' . chr(0) . '%s more'=>'ещё %s' . chr(0) . 'ещё %s' . chr(0) . 'ещё %s',
+),
 );

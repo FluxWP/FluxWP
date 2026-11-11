@@ -5791,3 +5791,27 @@ msgstr[2] " تأخرت مهمة%1$dبأكثر من 15 دقيقة:%2$s. تأخر�
 msgstr[3] " تأخرت مهمة%1$dبأكثر من 15 دقيقة:%2$s. تأخرت مهام%1$dلأكثر من 15 دقيقة:%2$s."
 msgstr[4] " تأخرت مهمة%1$dبأكثر من 15 دقيقة:%2$s. تأخرت مهام%1$dلأكثر من 15 دقيقة:%2$s."
 msgstr[5] " تأخرت مهمة%1$dبأكثر من 15 دقيقة:%2$s. تأخرت مهام%1$dلأكثر من 15 دقيقة:%2$s."
+
+msgid "Receipt awaiting approval"
+msgstr "إيصال بانتظار الموافقة"
+
+msgid "Receipts awaiting approval"
+msgstr "إيصالات بانتظار الموافقة"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "أرسل المتبرع إيصالاً. افتحه وتحقق من الحساب البنكي ثم وافق أو ارفض."
+
+msgid "Show in the list"
+msgstr "عرض في القائمة"
+
+msgid "Review"
+msgstr "مراجعة"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "%s أخرى"
+msgstr[1] "%s أخرى"
+msgstr[2] "%s أخرى"
+msgstr[3] "%s أخرى"
+msgstr[4] "%s أخرى"
+msgstr[5] "%s أخرى"

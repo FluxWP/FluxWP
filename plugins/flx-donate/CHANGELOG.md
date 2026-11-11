@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.19.0
+- Bağışlar listesinde satıra tıklayınca bağış detayı açılır (toplu işlem formu tıklamayı yutuyordu). Bağışçı adı da detayı açar. Bağışçı kartına detaydaki addan gidilir.
+- Listenin üstünde "Dekont onayı bekleyenler" kutusu: dekont gelen bağışlar sayısıyla, tek tıkla detayda dekont ve Onayla / Reddet.
+- "Bekliyor" yerine net durum: dekont geldiyse "Dekont onayı bekliyor", gelmediyse "Ödeme bekleniyor". Durum filtresinde de bu ikisi ayrı seçilir. Detaydaki onay kartı başlığı da aynı ("Dekont onayı bekliyor").
+- Varsayılan sıra: bekleyen bağışlar başta, sonra tarihe göre (yeni önce).
+- Mobil kart görünümünde uzun durum etiketi tutarı ve Ayrıntılar düğmesini dışarı itmez.
+
 ## 2.17.4
 - Partner settlement and report CSV cells are quoted when they would open as a spreadsheet formula. A real number, including a negative amount, stays a number. The donations export uses the same helper.
 

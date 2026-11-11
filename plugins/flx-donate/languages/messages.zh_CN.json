@@ -1819,6 +1819,11 @@
     "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\u0000%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived": "%1$s捐赠 ·%2$s收到%1$s捐赠 ·%2$s收到",
     "%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\u0000%1$spaid gift ·%2$s%1$spaid gifts ·%2$s": "%1$s付费礼物 ·%2$s%1$s付费礼物 ·%2$s",
     "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\u0000%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.": "%d活动类型具有其隐藏的 WooCommerce 产品。%d活动类型具有隐藏的 WooCommerce 产品。",
-    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": "%1$d任务迟到超过 15 分钟:%2$s。%1$d任务延迟超过 15 分钟:%2$s。"
+    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": "%1$d任务迟到超过 15 分钟:%2$s。%1$d任务延迟超过 15 分钟:%2$s。",
+    "Receipt awaiting approval": "凭证待审核",
+    "Receipts awaiting approval": "待审核的凭证",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "捐赠者已发送转账凭证。请打开查看并核对银行账户，然后批准或拒绝。",
+    "Show in the list": "在列表中显示",
+    "Review": "查看"
   }
 }

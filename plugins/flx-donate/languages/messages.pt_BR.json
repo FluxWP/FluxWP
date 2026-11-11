@@ -1819,6 +1819,11 @@
     "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\u0000%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived": " Doação%1$s·%2$srecebeu doações%1$s·%2$srecebida\u0000 Doação%1$s·%2$srecebeu doações%1$s·%2$srecebida",
     "%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\u0000%1$spaid gift ·%2$s%1$spaid gifts ·%2$s": "%1$spresente pago ·%2$s%1$spresentes pagos ·%2$s\u0000%1$spresente pago ·%2$s%1$spresentes pagos ·%2$s",
     "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\u0000%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.": " O tipo ativo%dtem seu produto WooCommerce oculto. Os tipos ativos%dtêm seus produtos WooCommerce ocultos.\u0000 O tipo ativo%dtem seu produto WooCommerce oculto. Os tipos ativos%dtêm seus produtos WooCommerce ocultos.",
-    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": " A tarefa%1$destá com mais de 15 minutos de atraso:%2$s. As tarefas%1$destão com mais de 15 minutos de atraso:%2$s.\u0000 A tarefa%1$destá com mais de 15 minutos de atraso:%2$s. As tarefas%1$destão com mais de 15 minutos de atraso:%2$s."
+    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": " A tarefa%1$destá com mais de 15 minutos de atraso:%2$s. As tarefas%1$destão com mais de 15 minutos de atraso:%2$s.\u0000 A tarefa%1$destá com mais de 15 minutos de atraso:%2$s. As tarefas%1$destão com mais de 15 minutos de atraso:%2$s.",
+    "Receipt awaiting approval": "Comprovante aguardando aprovação",
+    "Receipts awaiting approval": "Comprovantes aguardando aprovação",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "O doador enviou um comprovante. Abra, confira a conta bancária e depois aprove ou recuse.",
+    "Show in the list": "Mostrar na lista",
+    "Review": "Revisar"
   }
 }

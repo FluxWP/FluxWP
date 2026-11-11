@@ -3588,6 +3588,11 @@ return array(
   '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' . chr(0) . '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' => '%dの定期的な寄付は、カードが 3 回拒否された後停止されました。',
   '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' . chr(0) . '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' => '%d寄付タイプはオープンで価格も設定されています。',
   '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' . chr(0) . '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' => '%d銀行口座は銀行振込ギフト用にリストされています。',
-
- ),
+'Receipt awaiting approval'=>'振込明細の承認待ち',
+'Receipts awaiting approval'=>'承認待ちの振込明細',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'寄付者が振込明細を送信しました。開いて口座を確認し、承認または却下してください。',
+'Show in the list'=>'一覧で表示',
+'Review'=>'確認',
+'%s more' . chr(0) . '%s more'=>'他 %s 件',
+),
 );

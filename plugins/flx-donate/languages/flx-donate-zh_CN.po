@@ -5501,3 +5501,22 @@ msgstr[0] "%d活动类型具有其隐藏的 WooCommerce 产品。%d活动类型�
 msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgstr[0] "%1$d任务迟到超过 15 分钟:%2$s。%1$d任务延迟超过 15 分钟:%2$s。"
+
+msgid "Receipt awaiting approval"
+msgstr "凭证待审核"
+
+msgid "Receipts awaiting approval"
+msgstr "待审核的凭证"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "捐赠者已发送转账凭证。请打开查看并核对银行账户，然后批准或拒绝。"
+
+msgid "Show in the list"
+msgstr "在列表中显示"
+
+msgid "Review"
+msgstr "查看"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "还有 %s 条"

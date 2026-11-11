@@ -3588,6 +3588,11 @@ return array(
   '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' . chr(0) . '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' => ' Le don récurrent%ds\'est arrêté après que sa carte ait été refusée 3 fois.' . chr(0) . '%dles dons récurrents ont été arrêtés après que leurs cartes aient été refusées 3 fois.',
   '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' . chr(0) . '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' => ' Le type de don%dest ouvert et tarifé.' . chr(0) . ' Les types de dons%dsont ouverts et tarifés.',
   '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' . chr(0) . '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' => 'Le compte bancaire%dest répertorié pour les cadeaux par virement bancaire.' . chr(0) . ' Les comptes bancaires%dsont répertoriés pour les cadeaux par virement bancaire.',
-
- ),
+'Receipt awaiting approval'=>'Justificatif en attente de validation',
+'Receipts awaiting approval'=>'Justificatifs en attente de validation',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'Le donateur a envoyé un justificatif. Ouvrez-le, vérifiez le compte bancaire, puis validez ou refusez.',
+'Show in the list'=>'Afficher dans la liste',
+'Review'=>'Examiner',
+'%s more' . chr(0) . '%s more'=>'%s de plus' . chr(0) . '%s de plus',
+),
 );

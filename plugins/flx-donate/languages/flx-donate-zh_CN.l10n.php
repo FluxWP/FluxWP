@@ -3588,6 +3588,11 @@ return array(
   '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' . chr(0) . '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' => '%d经常性捐款在其卡被拒绝 3 次后停止。',
   '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' . chr(0) . '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' => '%d捐赠类型开放并定价。',
   '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' . chr(0) . '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' => '%d银行账户已列出用于银行转账礼物。',
-
- ),
+'Receipt awaiting approval'=>'凭证待审核',
+'Receipts awaiting approval'=>'待审核的凭证',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'捐赠者已发送转账凭证。请打开查看并核对银行账户，然后批准或拒绝。',
+'Show in the list'=>'在列表中显示',
+'Review'=>'查看',
+'%s more' . chr(0) . '%s more'=>'还有 %s 条',
+),
 );

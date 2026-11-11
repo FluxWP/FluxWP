@@ -5559,3 +5559,23 @@ msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 min
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgstr[0] " A tarefa%1$destá com mais de 15 minutos de atraso:%2$s. As tarefas%1$destão com mais de 15 minutos de atraso:%2$s."
 msgstr[1] " A tarefa%1$destá com mais de 15 minutos de atraso:%2$s. As tarefas%1$destão com mais de 15 minutos de atraso:%2$s."
+
+msgid "Receipt awaiting approval"
+msgstr "Comprovante aguardando aprovação"
+
+msgid "Receipts awaiting approval"
+msgstr "Comprovantes aguardando aprovação"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "O doador enviou um comprovante. Abra, confira a conta bancária e depois aprove ou recuse."
+
+msgid "Show in the list"
+msgstr "Mostrar na lista"
+
+msgid "Review"
+msgstr "Revisar"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "mais %s"
+msgstr[1] "mais %s"

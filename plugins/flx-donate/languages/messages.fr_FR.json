@@ -1819,6 +1819,11 @@
     "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\u0000%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived": " Don%1$s·%2$sa reçu des dons%1$s·%2$sa reçu\u0000 Don%1$s·%2$sa reçu des dons%1$s·%2$sa reçu",
     "%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\u0000%1$spaid gift ·%2$s%1$spaid gifts ·%2$s": "%1$scadeau payant ·%2$s%1$scadeaux payants ·%2$s\u0000%1$scadeau payant ·%2$s%1$scadeaux payants ·%2$s",
     "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\u0000%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.": " Le type actif%da son produit WooCommerce caché. Les types actifs%dont leurs produits WooCommerce cachés.\u0000 Le type actif%da son produit WooCommerce caché. Les types actifs%dont leurs produits WooCommerce cachés.",
-    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": " La tâche%1$da plus de 15 minutes de retard :%2$s. Les tâches%1$dont plus de 15 minutes de retard :%2$s.\u0000 La tâche%1$da plus de 15 minutes de retard :%2$s. Les tâches%1$dont plus de 15 minutes de retard :%2$s."
+    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": " La tâche%1$da plus de 15 minutes de retard :%2$s. Les tâches%1$dont plus de 15 minutes de retard :%2$s.\u0000 La tâche%1$da plus de 15 minutes de retard :%2$s. Les tâches%1$dont plus de 15 minutes de retard :%2$s.",
+    "Receipt awaiting approval": "Justificatif en attente de validation",
+    "Receipts awaiting approval": "Justificatifs en attente de validation",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "Le donateur a envoyé un justificatif. Ouvrez-le, vérifiez le compte bancaire, puis validez ou refusez.",
+    "Show in the list": "Afficher dans la liste",
+    "Review": "Examiner"
   }
 }

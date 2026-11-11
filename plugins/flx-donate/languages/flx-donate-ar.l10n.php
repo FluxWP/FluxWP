@@ -3588,6 +3588,11 @@ return array(
   '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' . chr(0) . '%drecurring donation stopped after its card was declined 3 times.\\x00%drecurring donations stopped after their cards were declined 3 times.' => 'توقفت التبرعات المتكررة لـ%dبعد أن تم رفض بطاقاتهم 3 مرات.' . chr(0) . 'توقف التبرع المتكرر لـ%dبعد رفض بطاقته 3 مرات.' . chr(0) . 'توقفت التبرعات المتكررة لـ%dبعد أن تم رفض بطاقاتهم 3 مرات.' . chr(0) . 'توقفت التبرعات المتكررة لـ%dبعد أن تم رفض بطاقاتهم 3 مرات.' . chr(0) . 'توقفت التبرعات المتكررة لـ%dبعد أن تم رفض بطاقاتهم 3 مرات.' . chr(0) . 'توقفت التبرعات المتكررة لـ%dبعد أن تم رفض بطاقاتهم 3 مرات.',
   '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' . chr(0) . '%ddonation type is open and priced.\\x00%ddonation types are open and priced.' => 'أنواع التبرعات لـ%dمفتوحة ومسعرة.' . chr(0) . 'نوع التبرع%dمفتوح وسعره.' . chr(0) . 'أنواع التبرعات لـ%dمفتوحة ومسعرة.' . chr(0) . 'أنواع التبرعات لـ%dمفتوحة ومسعرة.' . chr(0) . 'أنواع التبرعات لـ%dمفتوحة ومسعرة.' . chr(0) . 'أنواع التبرعات لـ%dمفتوحة ومسعرة.',
   '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' . chr(0) . '%dbank account is listed for bank transfer gifts.\\x00%dbank accounts are listed for bank transfer gifts.' => 'حسابات%dالبنكية مدرجة لهدايا التحويل البنكي.' . chr(0) . 'الحساب البنكي%dمدرج لهدايا التحويل البنكي.' . chr(0) . 'حسابات%dالبنكية مدرجة لهدايا التحويل البنكي.' . chr(0) . 'حسابات%dالبنكية مدرجة لهدايا التحويل البنكي.' . chr(0) . 'حسابات%dالبنكية مدرجة لهدايا التحويل البنكي.' . chr(0) . 'حسابات%dالبنكية مدرجة لهدايا التحويل البنكي.',
-
- ),
+'Receipt awaiting approval'=>'إيصال بانتظار الموافقة',
+'Receipts awaiting approval'=>'إيصالات بانتظار الموافقة',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'أرسل المتبرع إيصالاً. افتحه وتحقق من الحساب البنكي ثم وافق أو ارفض.',
+'Show in the list'=>'عرض في القائمة',
+'Review'=>'مراجعة',
+'%s more' . chr(0) . '%s more'=>'%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى',
+),
 );

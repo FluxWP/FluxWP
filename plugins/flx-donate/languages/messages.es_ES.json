@@ -1819,6 +1819,11 @@
     "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived\u0000%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived": " Donación%1$s·%2$srecibida Donaciones%1$s·%2$srecibida\u0000 Donación%1$s·%2$srecibida Donaciones%1$s·%2$srecibida",
     "%1$spaid gift ·%2$s%1$spaid gifts ·%2$s\u0000%1$spaid gift ·%2$s%1$spaid gifts ·%2$s": "%1$sregalo pagado ·%2$s%1$sregalos pagados ·%2$s\u0000%1$sregalo pagado ·%2$s%1$sregalos pagados ·%2$s",
     "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.\u0000%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products.": " El tipo activo%dtiene su producto WooCommerce oculto.%dlos tipos activos tienen sus productos WooCommerce ocultos.\u0000 El tipo activo%dtiene su producto WooCommerce oculto.%dlos tipos activos tienen sus productos WooCommerce ocultos.",
-    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": " La tarea%1$dtiene más de 15 minutos de retraso:%2$s. Las tareas%1$dtienen más de 15 minutos de retraso:%2$s.\u0000 La tarea%1$dtiene más de 15 minutos de retraso:%2$s. Las tareas%1$dtienen más de 15 minutos de retraso:%2$s."
+    "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.\u0000%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s.": " La tarea%1$dtiene más de 15 minutos de retraso:%2$s. Las tareas%1$dtienen más de 15 minutos de retraso:%2$s.\u0000 La tarea%1$dtiene más de 15 minutos de retraso:%2$s. Las tareas%1$dtienen más de 15 minutos de retraso:%2$s.",
+    "Receipt awaiting approval": "Comprobante pendiente de aprobación",
+    "Receipts awaiting approval": "Comprobantes pendientes de aprobación",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "El donante envió un comprobante. Ábrelo, revisa la cuenta bancaria y luego aprueba o rechaza.",
+    "Show in the list": "Mostrar en la lista",
+    "Review": "Revisar"
   }
 }
