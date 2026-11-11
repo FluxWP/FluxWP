@@ -3650,5 +3650,11 @@ return array(
 'Create the page'=>'إنشاء الصفحة',
 'Donors can see their donations on %s with a code sent by e-mail or phone.'=>'يمكن للمتبرعين رؤية تبرعاتهم في %s برمز يصل عبر البريد الإلكتروني أو الهاتف.',
 'The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.'=>'الصفحة %s تعمل بالبريد الإلكتروني فقط: لا يوجد اتصال واتساب أو رسائل نصية لرموز الهاتف.',
- ),
+'Receipt awaiting approval'=>'إيصال بانتظار الموافقة',
+'Receipts awaiting approval'=>'إيصالات بانتظار الموافقة',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'أرسل المتبرع إيصالاً. افتحه وتحقق من الحساب البنكي ثم وافق أو ارفض.',
+'Show in the list'=>'عرض في القائمة',
+'Review'=>'مراجعة',
+'%s more' . chr(0) . '%s more'=>'%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى',
+),
 );

@@ -3650,5 +3650,11 @@ return array(
 'Create the page'=>'创建页面',
 'Donors can see their donations on %s with a code sent by e-mail or phone.'=>'捐赠者可在 %s 通过邮件或电话收到的验证码查看捐赠。',
 'The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.'=>'页面 %s 仅支持邮件：没有用于电话验证码的 WhatsApp 或短信连接。',
- ),
+'Receipt awaiting approval'=>'凭证待审核',
+'Receipts awaiting approval'=>'待审核的凭证',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'捐赠者已发送转账凭证。请打开查看并核对银行账户，然后批准或拒绝。',
+'Show in the list'=>'在列表中显示',
+'Review'=>'查看',
+'%s more' . chr(0) . '%s more'=>'还有 %s 条',
+),
 );

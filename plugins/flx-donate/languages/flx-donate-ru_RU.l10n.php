@@ -3650,5 +3650,11 @@ return array(
 'Create the page'=>'Создать страницу',
 'Donors can see their donations on %s with a code sent by e-mail or phone.'=>'Жертвователи могут видеть свои пожертвования на %s по коду из письма или сообщения.',
 'The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.'=>'Страница %s работает только с почтой: нет подключения WhatsApp или SMS для кодов на телефон.',
- ),
+'Receipt awaiting approval'=>'Квитанция ждёт подтверждения',
+'Receipts awaiting approval'=>'Квитанции ждут подтверждения',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'Жертвователь прислал квитанцию. Откройте её, проверьте банковский счёт, затем подтвердите или отклоните.',
+'Show in the list'=>'Показать в списке',
+'Review'=>'Проверить',
+'%s more' . chr(0) . '%s more'=>'ещё %s' . chr(0) . 'ещё %s' . chr(0) . 'ещё %s',
+),
 );

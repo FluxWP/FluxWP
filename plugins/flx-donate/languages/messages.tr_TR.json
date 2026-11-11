@@ -1880,6 +1880,11 @@
     "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode.": "Bağışçılar henüz bağışlarını sorgulayamıyor: [flx_bagislarim] kısa kodlu yayımlanmış bir sayfa yok.",
     "Create the page": "Sayfayı oluştur",
     "Donors can see their donations on %s with a code sent by e-mail or phone.": "Bağışçılar %s sayfasında e-posta ya da telefona gelen kodla bağışlarını görebiliyor.",
-    "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.": "%s sayfası yalnız e-postayla çalışıyor: telefon kodları için WhatsApp ya da SMS bağlantısı yok."
+    "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.": "%s sayfası yalnız e-postayla çalışıyor: telefon kodları için WhatsApp ya da SMS bağlantısı yok.",
+    "Receipt awaiting approval": "Dekont onayı bekliyor",
+    "Receipts awaiting approval": "Dekont onayı bekleyenler",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "Bağışçı dekont gönderdi. Açın, banka hesabını kontrol edin, sonra onaylayın ya da reddedin.",
+    "Show in the list": "Listede göster",
+    "Review": "İncele"
   }
 }

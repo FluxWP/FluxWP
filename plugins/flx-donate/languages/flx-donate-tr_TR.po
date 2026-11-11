@@ -5745,3 +5745,23 @@ msgstr "Bağışçılar %s sayfasında e-posta ya da telefona gelen kodla bağı
 
 msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
 msgstr "%s sayfası yalnız e-postayla çalışıyor: telefon kodları için WhatsApp ya da SMS bağlantısı yok."
+
+msgid "Receipt awaiting approval"
+msgstr "Dekont onayı bekliyor"
+
+msgid "Receipts awaiting approval"
+msgstr "Dekont onayı bekleyenler"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "Bağışçı dekont gönderdi. Açın, banka hesabını kontrol edin, sonra onaylayın ya da reddedin."
+
+msgid "Show in the list"
+msgstr "Listede göster"
+
+msgid "Review"
+msgstr "İncele"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "%s tane daha"
+msgstr[1] "%s tane daha"

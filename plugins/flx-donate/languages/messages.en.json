@@ -1879,6 +1879,11 @@
     "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode.": "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode.",
     "Create the page": "Create the page",
     "Donors can see their donations on %s with a code sent by e-mail or phone.": "Donors can see their donations on %s with a code sent by e-mail or phone.",
-    "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.": "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
+    "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.": "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.",
+    "Receipt awaiting approval": "Receipt awaiting approval",
+    "Receipts awaiting approval": "Receipts awaiting approval",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "The donor sent a receipt. Open it, check the bank account, then approve or reject.",
+    "Show in the list": "Show in the list",
+    "Review": "Review"
   }
 }

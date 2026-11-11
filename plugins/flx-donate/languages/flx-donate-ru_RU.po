@@ -5803,3 +5803,24 @@ msgstr "Жертвователи могут видеть свои пожертв
 
 msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
 msgstr "Страница %s работает только с почтой: нет подключения WhatsApp или SMS для кодов на телефон."
+
+msgid "Receipt awaiting approval"
+msgstr "Квитанция ждёт подтверждения"
+
+msgid "Receipts awaiting approval"
+msgstr "Квитанции ждут подтверждения"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "Жертвователь прислал квитанцию. Откройте её, проверьте банковский счёт, затем подтвердите или отклоните."
+
+msgid "Show in the list"
+msgstr "Показать в списке"
+
+msgid "Review"
+msgstr "Проверить"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "ещё %s"
+msgstr[1] "ещё %s"
+msgstr[2] "ещё %s"

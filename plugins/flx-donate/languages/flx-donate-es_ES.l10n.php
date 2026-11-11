@@ -3650,5 +3650,11 @@ return array(
 'Create the page'=>'Crear la página',
 'Donors can see their donations on %s with a code sent by e-mail or phone.'=>'Los donantes pueden ver sus donaciones en %s con un código enviado por correo o teléfono.',
 'The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.'=>'La página %s solo funciona por correo: no hay conexión de WhatsApp ni SMS para códigos por teléfono.',
- ),
+'Receipt awaiting approval'=>'Comprobante pendiente de aprobación',
+'Receipts awaiting approval'=>'Comprobantes pendientes de aprobación',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'El donante envió un comprobante. Ábrelo, revisa la cuenta bancaria y luego aprueba o rechaza.',
+'Show in the list'=>'Mostrar en la lista',
+'Review'=>'Revisar',
+'%s more' . chr(0) . '%s more'=>'%s más' . chr(0) . '%s más',
+),
 );
