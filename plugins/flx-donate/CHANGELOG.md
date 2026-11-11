@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.22.0
+- Bağışı ya da düzenli bağışı olan kişi "kullanımda" sayılır (`flx_person_in_use`), Flux CRM silmez; Flux CRM iki kişiyi birleştirince bağışlar ve düzenli bağışlar kalan kişiye taşınır, toplamlar yeniden hesaplanır.
+- Bağışçılar ortak FluxWP kişi tablosunda (`{prefix}flx_people`, flx-brand 1.3.0): bağışçı numarası = kişi numarası. Aynı kişi Flux CRM, Flux Certificates, Flux Mail ve Flux Chat'te tek kayıt.
+- Eski `{prefix}flxb_donors` bir kez taşınır: Flux CRM'in zaten tanıdığı bağışçı (donate / donor:<id> bağı) ya da aynı telefon, sonra e-postalı kişi tekrar kullanılır, yalnız boş alanları dolar; yoksa numara boşsa korunur. Bağış ve düzenli bağış kayıtları yeni numaraları izler, toplamlar yeniden hesaplanır, tam kopyadan sonra eski tablo silinir.
+- Yeni bağışçı `flx_person_ensure()` ile açılır (Flux CRM eşleştirmesi çalışır); telefon ortak biçimde (+ olmadan E.164) saklanır, ekranda yine +90 532 … görünür. Bağışçılar listesi yalnız Flux Donate kişilerini gösterir.
+- Bağışçı notu ortak kişi notunda (`note`).
+- Artık Flux CRM gerekli (`Requires Plugins: woocommerce, flx-crm`).
 ## 2.21.1
 - Kayıtlı kart referansları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse kartı yeniden bağlayın.
 - Telefon biçimi ortak yardımcıyı kullanır. Yazılan numara eskisi gibi +90… olur.

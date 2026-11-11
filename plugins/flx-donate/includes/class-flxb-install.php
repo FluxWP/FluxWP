@@ -105,26 +105,6 @@ final class FLXB_Install {
 		$itm = flxb_table( 'items' );
 
 		$sql   = array();
-		$sql[] = "CREATE TABLE {$don} (
-  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  name varchar(191) NOT NULL DEFAULT '',
-  email varchar(191) NOT NULL DEFAULT '',
-  phone varchar(32) NOT NULL DEFAULT '',
-  first_donation_at datetime NULL DEFAULT NULL,
-  last_donation_at datetime NULL DEFAULT NULL,
-  total_amount decimal(20,4) NOT NULL DEFAULT 0,
-  donation_count int(11) unsigned NOT NULL DEFAULT 0,
-  consent_kvkk tinyint(1) NOT NULL DEFAULT 0,
-  consent_email tinyint(1) NOT NULL DEFAULT 0,
-  consent_sms tinyint(1) NOT NULL DEFAULT 0,
-  notes text NULL,
-  created_at datetime NOT NULL,
-  updated_at datetime NOT NULL,
-  PRIMARY KEY  (id),
-  KEY email (email),
-  KEY phone (phone),
-  KEY last_donation_at (last_donation_at)
-) {$c};";
 		$sql[] = "CREATE TABLE {$dn} (
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   uniq varchar(191) NOT NULL,

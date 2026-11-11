@@ -66,6 +66,7 @@ final class FLXCRM_Page_Contacts {
 				$actions .= '<input type="hidden" name="' . esc_attr( 'sid' === $k ? 'segment_id' : $k ) . '" value="' . esc_attr( (string) $v ) . '">';
 			}
 			$actions .= '<button class="button">' . flxcrm_icon( 'download', 15 ) . ' ' . esc_html__( 'CSV', 'flx-crm' ) . '</button></form>';
+			$actions .= '<a class="button" href="' . esc_url( flxcrm_admin_url( 'contacts', array( 'view' => 'duplicates' ) ) ) . '">' . flxcrm_icon( 'users', 15 ) . ' ' . esc_html__( 'Possible duplicates', 'flx-crm' ) . '</a>';
 			$actions .= '<a class="button button-primary" href="' . esc_url( flxcrm_admin_url( 'contacts', array( 'action' => 'new' ) ) ) . '">' . flxcrm_icon( 'plus', 15 ) . ' ' . esc_html__( 'Add contact', 'flx-crm' ) . '</a>';
 		}
 		$title = __( 'Contacts', 'flx-crm' );

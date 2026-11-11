@@ -201,7 +201,8 @@ final class FLXCRM_REST {
 	}
 
 	public static function delete_contact( WP_REST_Request $r ) {
-		return array( 'deleted' => FLXCRM_Contacts::delete( (int) $r['id'] ) );
+		$res = FLXCRM_Contacts::delete( (int) $r['id'] );
+		return is_wp_error( $res ) ? new WP_Error( $res->get_error_code(), $res->get_error_message(), array( 'status' => 409 ) ) : array( 'deleted' => $res );
 	}
 
 	/** Elle olay: note | call | meeting | email_sent. */

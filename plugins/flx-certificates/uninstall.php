@@ -24,7 +24,12 @@ global $wpdb;
 foreach ( array( 'people', 'templates', 'certificates', 'batches', 'messages', 'providers', 'logs', 'events' ) as $flxs_t ) {
 	$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'flxs_' . $flxs_t ); // phpcs:ignore
 }
-foreach ( array( 'flxs_settings', 'flxs_custom_fonts', 'flxs_db_version', 'flxs_defaults_installed', 'flxs_flush_rewrite', 'flxs_queue_lock', 'flxs_recipients', 'flxs_tpl_migration', 'flxs_site', 'flxs_caps_dashboard' ) as $flxs_o ) {
+// People live in the shared FluxWP table (2.0.0) and stay for the other packages; only the Certificates tie goes.
+$flxs_links = $wpdb->prefix . 'flx_people_links';
+if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $flxs_links ) ) ) === $flxs_links ) {
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$flxs_links} WHERE source = %s", 'certificates' ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+}
+foreach ( array( 'flxs_settings', 'flxs_people_shared', 'flxs_events_shared', 'flxs_custom_fonts', 'flxs_db_version', 'flxs_defaults_installed', 'flxs_flush_rewrite', 'flxs_queue_lock', 'flxs_recipients', 'flxs_tpl_migration', 'flxs_site', 'flxs_caps_dashboard' ) as $flxs_o ) {
 	delete_option( $flxs_o );
 }
 $wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'flxs\_slot\_%' OR option_name LIKE '\_transient\_flxs\_%' OR option_name LIKE '\_transient\_timeout\_flxs\_%'" ); // phpcs:ignore

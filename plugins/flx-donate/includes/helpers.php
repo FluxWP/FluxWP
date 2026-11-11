@@ -15,6 +15,13 @@ const FLXB_CAP_VIEW = 'flx_bagis_view';
 /** Full table name: donors | donations | subscriptions | types | items. */
 function flxb_table( $name ) {
 	global $wpdb;
+	if ( 'donors' === $name ) {
+		// 2.22.0: donors are rows of the shared FluxWP people table (flx-brand people.php); donor id = person id.
+		if ( function_exists( 'flx_people_ready' ) && did_action( 'after_setup_theme' ) ) {
+			flx_people_ready();
+		}
+		return $wpdb->prefix . 'flx_people';
+	}
 	return $wpdb->prefix . 'flxb_' . $name;
 }
 
@@ -134,9 +141,17 @@ function flxb_normalize_phone( $raw ) {
 	return flx_phone_normalize( $raw, 'tr' );
 }
 
-/** +905321234567 → +90 532 123 45 67 */
+/** Phone as the shared people table stores it: E.164 digits without "+" (905321234567). */
+function flxb_person_phone( $raw ) {
+	return ltrim( flxb_normalize_phone( $raw ), '+' );
+}
+
+/** +905321234567 (or 905321234567 from the shared people table) → +90 532 123 45 67 */
 function flxb_format_phone( $e164 ) {
 	$e164 = (string) $e164;
+	if ( preg_match( '/^\d{8,15}$/', $e164 ) ) {
+		$e164 = '+' . $e164;
+	}
 	if ( preg_match( '/^\+90(\d{3})(\d{3})(\d{2})(\d{2})$/', $e164, $m ) ) {
 		return '+90 ' . $m[1] . ' ' . $m[2] . ' ' . $m[3] . ' ' . $m[4];
 	}

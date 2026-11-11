@@ -13,6 +13,13 @@ const FLXCRM_CAP_MANAGE = 'flxcrm_manage';
 
 function flxcrm_table( $name ) {
 	global $wpdb;
+	// Kişiler ve kaynak bağlantıları ortak FluxWP tablosunda (flx-brand people.php); diğerleri CRM'in kendi tablosu.
+	if ( 'contacts' === $name ) {
+		return $wpdb->prefix . 'flx_people';
+	}
+	if ( 'links' === $name ) {
+		return $wpdb->prefix . 'flx_people_links';
+	}
 	return $wpdb->prefix . 'flxcrm_' . $name;
 }
 

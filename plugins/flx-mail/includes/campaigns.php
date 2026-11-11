@@ -18,7 +18,15 @@ function flxi_recipient_sources() {
 			$out[ 'role:' . $role ] = sprintf( __( 'Members: %1$s (%2$s)', 'flx-mail' ), translate_user_role( $name ), number_format_i18n( $count ) );
 		}
 	}
-	if ( function_exists( 'flxs_table' ) ) {
+	if ( function_exists( 'flx_people_query' ) ) {
+		// 1.15.0: shared FluxWP people table (one record per person across CRM, Certificates, Donate, Commerce…).
+		/* translators: %s: number of people */
+		$out['flx_people'] = sprintf( __( 'All people, who allowed this channel (%s)', 'flx-mail' ), number_format_i18n( flx_people_query( array( 'count' => true ) ) ) );
+		if ( function_exists( 'flxs_table' ) ) {
+			/* translators: %s: number of people */
+			$out['flxs_people'] = sprintf( __( 'Flux Certificates contacts (%s)', 'flx-mail' ), number_format_i18n( flx_people_query( array( 'count' => true, 'source' => 'certificates' ) ) ) );
+		}
+	} elseif ( function_exists( 'flxs_table' ) ) {
 		global $wpdb;
 		$t = flxs_table( 'people' );
 		if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $t ) ) === $t ) { // phpcs:ignore
@@ -97,9 +105,25 @@ function flxi_collect_recipients( array $sources, $manual, $channel, &$report = 
 					$add( $first ? $first : $u->display_name, $u->user_email, $phone );
 				}
 			}
+		} elseif ( 'flx_people' === $src && function_exists( 'flx_people_query' ) ) {
+			// Everyone in the shared table who allowed this channel; the others are counted as "no consent".
+			$consent = 'email' === $channel ? 'email' : ( 'sms' === $channel ? 'sms' : 'whatsapp' );
+			$all     = flx_people_query( array( 'count' => true ) );
+			for ( $pg = 1; $pg <= 100; $pg++ ) {
+				$rows = flx_people_query( array( 'consent' => $consent, 'per_page' => 500, 'page' => $pg, 'orderby' => 'id', 'order' => 'asc' ) );
+				foreach ( $rows as $r ) {
+					$add( $r['name'], $r['email'], $r['phone'] );
+				}
+				if ( count( $rows ) < 500 ) {
+					break;
+				}
+			}
+			$cur['no_consent'] = max( 0, $all - $cur['found'] );
+			$cur['found']     += $cur['no_consent'];
 		} elseif ( 'flxs_people' === $src && function_exists( 'flxs_table' ) ) {
 			global $wpdb;
-			$rows = $wpdb->get_results( 'SELECT name, email, phone FROM ' . flxs_table( 'people' ) . ' LIMIT 50000', ARRAY_A ); // phpcs:ignore
+			$mine = function_exists( 'flxs_people_mine_sql' ) ? ' WHERE ' . flxs_people_mine_sql( 'p' ) : '';
+			$rows = $wpdb->get_results( 'SELECT p.name, p.email, p.phone FROM ' . flxs_table( 'people' ) . ' p' . $mine . ' LIMIT 50000', ARRAY_A ); // phpcs:ignore
 			foreach ( (array) $rows as $r ) {
 				$add( $r['name'], $r['email'], $r['phone'] );
 			}

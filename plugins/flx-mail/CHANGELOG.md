@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.15.0
+- New recipient source "All people, who allowed this channel": the shared FluxWP people table (one record per person across Flux CRM, Certificates, Donate, Commerce). Flux CRM is not needed. People without consent for the channel are left out and counted under "no consent" in the recipient breakdown.
+- "Flux Certificates contacts" counts and sends only to people Flux Certificates uses (the people table is shared since Certificates 2.0.0).
+
 ## 1.14.0 — 2026-11-11
 - Gönder ekranında WhatsApp ve SMS önizlemesi: mesaj telefon ekranındaki gibi görünür, değişkenler örnek kişiyle doldurulur. SMS'te karakter ve SMS adedi Netgsm kurallarına göre sayılır (Türkçe karakter açıkken 155 / parça başına 146, kapalıyken 160 / 153; ç ğ ı ş Ğ İ Ş iki karakter), toplam SMS kredisi, desteklenmeyen karakterler (emoji) ve İYS filtresi gösterilir. WhatsApp'ta *kalın* / _italik_ biçimli görünür, 4.096 karakter sınırı ve Cloud API'nin 24 saat kuralı hatırlatılır.
 - Alıcı listeleri hizalı iki sütun. Seçilen listeden kişi gelmiyorsa nedeni altında yazar: kaç kişinin e-posta adresi / telefonu yok, kaçı bu kanala izin vermemiş, kaçı zaten listede. Yeni filtre `flxi_recipient_source_info`.

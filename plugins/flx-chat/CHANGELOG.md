@@ -1,5 +1,7 @@
 # Changelog
 
+## 1.43.0
+- Contact names come from the shared FluxWP people table (one record across Flux CRM, Certificates, Donate and Commerce). Without it the old order stays: Certificates person, CRM contact, Donate donor.
 ## 1.42.1
 - Kendi WhatsApp hattının API anahtarı ve webhook gizli anahtarı artık şifreli saklanır. Eski kayıtlar çalışır ve bir sonraki kayıtta mühürlenir. WordPress tuzları değişirse anahtarı yeniden girin.
 - Sertifika eklentisi yokken telefon kuralı onunla aynıdır. Geçerli numaralar aynı kalır; eksik ya da bozuk Türkiye numarası artık kabul edilmez.

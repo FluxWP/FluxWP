@@ -904,3 +904,9 @@ if ( ! function_exists( 'flx_job_check' ) ) {
 		return 0;
 	}
 }
+
+/* Shared people table and API (1.3.0): one person record for every FluxWP package. */
+require_once __DIR__ . '/people.php';
+
+/* Shared events table and API (1.4.0): one event record for every FluxWP package. */
+require_once __DIR__ . '/events.php';

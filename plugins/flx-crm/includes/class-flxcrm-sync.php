@@ -44,7 +44,10 @@ final class FLXCRM_Sync {
 		$page = max( 1, (int) $page );
 		if ( isset( $sources[ $step ] ) ) {
 			FLXCRM_Events::$defer_recalc = true;
-			$r = call_user_func( array( $sources[ $step ][1], $sources[ $step ][2] ?? 'backfill' ), $page, self::CHUNK );
+			// Yerleşik kaynak: [ ad, sınıf, yöntem ]; kayıtlı (dış) kaynak: [ ad, callable ].
+			$cb = is_string( $sources[ $step ][1] ) && class_exists( $sources[ $step ][1] ) ? array( $sources[ $step ][1], $sources[ $step ][2] ?? 'backfill' ) : $sources[ $step ][1];
+			$r  = is_callable( $cb ) ? (array) call_user_func( $cb, $page, self::CHUNK ) : array( 'done' => true );
+			$r += array( 'done' => true );
 			FLXCRM_Events::$defer_recalc = false;
 			$label = $sources[ $step ][0];
 		} elseif ( 'recalc' === $step ) {

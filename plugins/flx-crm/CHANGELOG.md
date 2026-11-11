@@ -1,5 +1,17 @@
 # Değişiklikler
 
+## 0.4.0
+- New Contacts › Possible duplicates: cards with the same name or the same last 10 phone digits are listed with the packages that use them; pick the one to keep and merge. Grouping can be extended with `flxcrm_duplicate_groups`.
+- A contact that still has records in another package (`flx_person_in_use`: certificates, donations…) is not deleted; the card says where and suggests merging. Merging moves those records through `flx_person_merged`.
+- New CRM › Events: the one screen for the events of every FluxWP package, on the shared events table (`wp_flx_events`, flx-brand 1.4.0). Open / archive tabs, create, edit, close, reopen, delete, create or publish the site page, and an event page listing everyone tied to it with a link to their contact card.
+- The screen hardcodes no package. Fields come from `flx_event_fields` (section, translated label, type), numbers from `flx_event_stats`, buttons from `flx_event_actions`, people from `flx_event_people`, extra form parts from `flx_event_form_after` / `flx_events_screen_after`. Flux Certificates adds saplings, its links, the location QR and its site settings this way; a new package adds itself without a CRM update.
+- `flxcrm_events_url()` for packages that link or redirect here (Flux Certificates › Events redirects when CRM is active).
+
+## 0.3.0
+- Contacts now live in the shared FluxWP people table (`wp_flx_people`, links in `wp_flx_people_links`) instead of CRM's own table. Every FluxWP package reads and writes the same person through `flx_person_ensure()`, `flx_person_find()`, `flx_person_update()`, whether or not Flux CRM is installed; install order does not matter. With CRM active those calls run CRM's own rules (matching, roles, timeline, hooks), so that logic stays in one place.
+- Upgrade moves the 0.2.x tables by itself: contact ids, links, timeline and tags are kept. If another package already created people, rows are matched by site user, e-mail or phone and merged.
+- CRM adds only its own columns (owner, UTM, totals, RFM, segment, churn) to the shared table. Uninstalling CRM no longer deletes people.
+- Extension points, so another plugin can plug in without a CRM update: `flxcrm_register_sources` (a source gets its on/off switch and role in Settings, a step in "Sync everything" and a name on contact links), `flxcrm_source_on()`, `flxcrm_source_role()`; contact changes are also announced as `flx_person_created`, `flx_person_updated`, `flx_person_merged`, `flx_person_deleting`.
 ## 0.2.10
 - Flux Mail › Gönder ekranında CRM segmenti ya da rolü seçildiğinde kaç kişinin o kanala (e-posta, WhatsApp, SMS) izin vermediği için alınmadığı bildirilir (Flux Mail 1.14.0+, `flxi_recipient_source_info`).
 

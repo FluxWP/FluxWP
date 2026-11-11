@@ -81,24 +81,38 @@ function flxs_upsert_person( $name, $phone_raw, $email_raw, $person_id = 0 ) {
 		if ( $update ) {
 			$update['updated_at'] = flxs_now();
 			$wpdb->update( flxs_table( 'people' ), $update, array( 'id' => $person['id'] ) );
+			do_action( 'flx_person_updated', (int) $person['id'], $update, $person );
 			flxs_log( 'person_updated', 'person', $person['id'], $name, array( 'before' => array_intersect_key( $person, $update ), 'after' => $update ) );
 			$person = flxs_get_person( $person['id'] );
 		}
+		flxs_person_mark( (int) $person['id'] );
 		return array( 'person' => $person, 'created' => false, 'notes' => $notes );
 	}
 
-	$wpdb->insert(
-		flxs_table( 'people' ),
-		array(
-			'name'       => $name,
-			'phone'      => $phone ? $phone : null,
-			'email'      => $email ? $email : null,
-			'created_by' => get_current_user_id(),
-			'created_at' => flxs_now(),
-			'updated_at' => flxs_now(),
-		)
-	);
-	$id = (int) $wpdb->insert_id;
+	$id = 0;
+	if ( function_exists( 'flx_person_ensure' ) ) {
+		// Shared create: with Flux CRM active its matching, roles and scoring run here too.
+		$id = (int) flx_person_ensure( array( 'name' => $name, 'phone' => $phone, 'email' => $email, 'source' => 'certificates', 'allow_empty' => true ) );
+	}
+	if ( ! $id ) {
+		$wpdb->insert(
+			flxs_table( 'people' ),
+			array(
+				'name'       => $name,
+				'phone'      => $phone ? $phone : '',
+				'email'      => $email ? $email : '',
+				'source'     => 'certificates',
+				'created_at' => flxs_now(),
+				'updated_at' => flxs_now(),
+			)
+		);
+		$id = (int) $wpdb->insert_id;
+	}
+	if ( ! $id ) {
+		return new WP_Error( 'flxs_person_db', __( 'The person could not be saved.', 'flx-certificates' ) );
+	}
+	$wpdb->update( flxs_table( 'people' ), array( 'created_by' => get_current_user_id() ), array( 'id' => $id ) );
+	flxs_person_mark( $id );
 	flxs_log( 'person_created', 'person', $id, $name, array( 'phone' => $phone, 'email' => $email ) );
 	return array( 'person' => flxs_get_person( $id ), 'created' => true, 'notes' => $notes );
 }
@@ -139,7 +153,23 @@ function flxs_delete_person( $id ) {
 	if ( $certs ) {
 		return new WP_Error( 'flxs_has_certs', 'Bu kişinin sertifikaları var; önce sertifikaları silin.' );
 	}
+	// Shared person: other packages may use the same row. Then only the Certificates tie is removed.
+	$others = array();
+	if ( function_exists( 'flx_person_links' ) ) {
+		foreach ( flx_person_links( $id ) as $l ) {
+			if ( 'certificates' !== $l['source'] ) {
+				$others[] = $l['source'];
+			}
+		}
+	}
 	$p = flxs_get_person( $id );
+	if ( $others || ( $p && (int) $p['user_id'] ) ) {
+		$wpdb->delete( $wpdb->prefix . 'flx_people_links', array( 'contact_id' => (int) $id, 'source' => 'certificates' ) );
+		flxs_log( 'person_unlinked', 'person', $id, $p ? $p['name'] : '' );
+		return true;
+	}
+	do_action( 'flx_person_deleting', (int) $id );
+	$wpdb->delete( $wpdb->prefix . 'flx_people_links', array( 'contact_id' => (int) $id ) );
 	$wpdb->delete( flxs_table( 'people' ), array( 'id' => $id ) );
 	flxs_log( 'person_deleted', 'person', $id, $p ? $p['name'] : '' );
 	return true;
