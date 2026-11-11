@@ -8,6 +8,7 @@
 - Tüm form alanları ortak bileşeni kullanır (flx-brand 1.5.0 `flx_field` / `flx_check`): ikon, etiket, alan altı hata mesajı, biçimleme. Kart formu, iletişim alanı ve ödeme sayfası alanları aynı görünümde; yazı dikeyde ortalı ve daha büyük.
 - Kartla ödeme ilk sırada, havale sonra (ayar).
 - Telefonda alta sabit toplam / düğme çubuğu ayarla kapatılabilir (form ve ödeme sayfası).
+- "Kendim için / Başkası adına" telefonda da yan yana.
 - Yeni ayarlar: kupon kutusu (yalnız bağış olan sepette kapatılabilir), adres defteri (kapalıyken Hesabım'da "Adresler" de gizlenir).
 - Adres düzenleme ekranında "Kapat" ve "Vazgeç", yeni adres formunda "Vazgeç".
 - Geliştirici: `flxb_takes_free`, `flxb_min_free` filtreleri; `flxb_look` yeni alanları `flx_settings_schema`'da.

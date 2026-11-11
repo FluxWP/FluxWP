@@ -347,3 +347,13 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 
 /* 2.23.0 · Appearance › no fixed bar at the bottom on phones: the total sits in the flow of the form. */
 .flxwb.flxwb--nostick .flxwb-bar { position: static; }
+
+/* 2.23.0 · "For me / In someone's name" stay side by side on phones too. */
+@media (max-width: 560px) {
+	.flxwb .flxwb-who .flxwb-seg { grid-template-columns: 1fr 1fr; }
+	.flxwb .flxwb-who .flxwb-seg__opt span { padding: 8px 6px; gap: 6px; font-size: .95rem; text-align: center; }
+}
+@media (max-width: 360px) {
+	.flxwb .flxwb-who .flxwb-seg__opt span { font-size: .85rem; white-space: nowrap; gap: 4px; }
+	.flxwb .flxwb-who .flxwb-seg__opt svg { width: 16px; height: 16px; }
+}
