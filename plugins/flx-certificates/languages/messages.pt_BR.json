@@ -317,6 +317,7 @@
     "Location link for QR codes": "Link de local para QR codes",
     "Put this link (or the QR) on posters and covers instead of the map link. Visitors land on your site first, the visit is counted, then they are sent to the map. You can change the map later without reprinting.": "Use este link (ou o QR) em cartazes e capas no lugar do link do mapa. Os visitantes chegam primeiro ao seu site, a visita é contada e depois são enviados ao mapa. Você pode mudar o mapa depois sem reimprimir.",
     "Opened %1$s times via QR, %2$s times from the site.": "Aberto %1$s vezes via QR e %2$s vezes pelo site.",
-    "No map yet: the link opens the event page until a location is entered.": "Ainda sem mapa: o link abre a página do evento até que um local seja informado."
+    "No map yet: the link opens the event page until a location is entered.": "Ainda sem mapa: o link abre a página do evento até que um local seja informado.",
+    "Person not found.": "Pessoa não encontrada."
   }
 }

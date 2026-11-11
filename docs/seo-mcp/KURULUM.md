@@ -36,8 +36,9 @@ Flux SEO 1.5.0'dan beri MCP sunucusu **Flux AI**'da (0.7.0+); Flux SEO araçlar�
 3. Bağlantı (sayfadaki hazır kodları kopyalayabilirsiniz):
    - **Claude Code**: `claude mcp add --transport http sitem https://example.org/wp-json/flx-mcp/v1/mcp --header "Authorization: Bearer ANAHTAR"`
    - **Claude Desktop / Cursor**: `npx mcp-remote` ile (config sayfada hazır).
-   - **Claude.ai** › Ayarlar › Bağlayıcılar › Özel bağlayıcı: `https://example.org/wp-json/flx-mcp/v1/mcp?key=ANAHTAR` (bu adresi kimseyle paylaşmayın).
-4. Apache'de "Geçersiz anahtar" çıkarsa `.htaccess`'e: `SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1` ya da `?key=` adresi.
+   - **Claude.ai** › Ayarlar › Bağlayıcılar › Özel bağlayıcı: yalnız adres (`https://example.org/wp-json/flx-mcp/v1/mcp`). WordPress'e giriş yapıp onaylarsınız, anahtar gerekmez. Anahtar adrese yazılmaz.
+   - Diğer istemciler: anahtar `Authorization: Bearer ANAHTAR` ya da `X-MCP-Key` başlığında gider.
+4. Apache veya LiteSpeed'de "Geçersiz anahtar" çıkarsa `.htaccess`'e: `SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1`.
 
 Araçlar: site_info, list_content, get_content, create_content (markdown/HTML › blok, tema kalıpları), update_content, delete_content (çöpe), set_seo, seo_audit, list_patterns, get_pattern, upload_media, list_media, set_image_alt, list_terms, update_term, update_site_seo.
 Hazır komutlar: `seo_duzelt`, `haber_yaz`, `sayfa_kur`.

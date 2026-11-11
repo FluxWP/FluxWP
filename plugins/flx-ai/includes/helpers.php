@@ -293,3 +293,19 @@ add_filter(
 	10,
 	2
 );
+
+/** CSV cell: quote a formula, leave a real number (including a negative) as a number. */
+function flxai_csv_cell( $v ) {
+	if ( is_int( $v ) || is_float( $v ) ) {
+		return $v;
+	}
+	$s = (string) $v;
+	if ( preg_match( '/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/', $s ) ) {
+		return $s;
+	}
+	$probe = preg_replace( '/^[\x00-\x08\x0A-\x0C\x0E-\x20]*/', '', $s );
+	if ( is_string( $probe ) && isset( $probe[0] ) && false !== strpos( "=+-@\t\r", $probe[0] ) ) {
+		return "'" . $s;
+	}
+	return $s;
+}

@@ -807,5 +807,6 @@ return array(
   'Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI\'da).' => 'عنوان/وصف تعريفي، أساسي، رسم بياني مفتوح، مخطط (المؤسسة، موقع الويب، مسار التنقل، المقالة)، إعدادات خريطة الموقع، الرمز المفضل والتحكم في تحسين محركات البحث. أدوات المحتوى وتحسين محركات البحث لمساعدي الذكاء الاصطناعي (على خادم MCP Flux AI).',
   'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).' => 'عنوان/وصف تعريفي، أساسي، رسم بياني مفتوح، مخطط (المؤسسة، موقع الويب، مسار التنقل، المقالة)، إعدادات خريطة الموقع، الرمز المفضل والتحكم في تحسين محركات البحث. أدوات المحتوى وتحسين محركات البحث لمساعدي الذكاء الاصطناعي (على خادم MCP Flux AI).',
 
+'PageSpeed timed out; this step was skipped.'=>'انتهت مهلة PageSpeed؛ تم تخطي هذه الخطوة.',
  ),
 );

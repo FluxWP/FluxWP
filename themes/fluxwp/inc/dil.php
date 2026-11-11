@@ -139,7 +139,10 @@ function flx_i18n_render_block( $html, $block ) {
 	}
 	return $html;
 }
-add_filter( 'render_block', 'flx_i18n_render_block', 5, 2 );
+foreach ( array( 'core/paragraph', 'core/heading', 'core/button', 'core/list-item', 'core/image', 'core/table', 'core/details', 'core/pullquote', 'core/verse', 'core/quote', 'core/post-title' ) as $flx_i18n_block ) {
+	add_filter( 'render_block_' . $flx_i18n_block, 'flx_i18n_render_block', 5, 2 );
+}
+unset( $flx_i18n_block );
 
 /**
  * main.js metinleri.

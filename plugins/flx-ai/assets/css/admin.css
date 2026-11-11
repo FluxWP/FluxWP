@@ -228,3 +228,4 @@ html.flxa-dark .flxai-chip.is-on { color: #0d0e13; }
 	.flxai-tools tr.is-sel { background: var(--a-brand-soft); }
 	.flxai-tools tr.is-dupe .flxai-col-where { display: none; }
 }
+.flxai-check-text { flex: 1 1 0; min-width: 0; }

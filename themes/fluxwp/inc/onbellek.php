@@ -11,10 +11,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Aynı istekte birkaç kayıt (şablon, parça, menü) gelse bile sayfa önbelleği
+ * bir kez, shutdown'da temizlenir. Nesne önbelleği boşaltılmaz: kalıcı
+ * nesne önbelleği yok ve çekirdek kaydedilen yazıyı zaten düşürür.
+ */
 function flx_purge_page_cache() {
-	if ( function_exists( 'wp_cache_flush' ) ) {
-		wp_cache_flush();
+	static $queued = false;
+	if ( $queued ) {
+		return;
 	}
+	$queued = true;
+	if ( did_action( 'shutdown' ) ) {
+		flx_purge_page_cache_run();
+		return;
+	}
+	add_action( 'shutdown', 'flx_purge_page_cache_run', 0 );
+}
+
+function flx_purge_page_cache_run() {
 	do_action( 'litespeed_purge_all' );                     // LiteSpeed Cache.
 	do_action( 'cloudflare_purge_everything' );             // Cloudflare eklentisi (destekleyen sürümler).
 	if ( function_exists( 'rocket_clean_domain' ) ) {       // WP Rocket.

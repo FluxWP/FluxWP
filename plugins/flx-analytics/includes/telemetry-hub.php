@@ -159,12 +159,56 @@ class FLXAN_Telemetry_Hub {
 		}
 		self::maybe_install();
 		$status = self::record( $b );
+		if ( 'refused' === $status ) {
+			return new WP_Error( 'flxan_tm_cap', 'Too many reports', array( 'status' => 429 ) );
+		}
 		$res    = new WP_REST_Response( array( 'ok' => true, 'status' => $status ) );
 		$res->header( 'Cache-Control', 'no-store' );
 		return $res;
 	}
 
-	/** Doğrulanmış gövdeyi kaydeder. Döner: ok | throttled. */
+	/**
+	 * New install ids: at most 60 per hour, and at most 5000 rows.
+	 * The counter lives in one option (`flxan_tm_newcap`); the window id is inside the value.
+	 * A full table drops its 200 least recently seen rows first (ids that reported once and never again go before active installs).
+	 * Returns false when the new id must not be stored.
+	 */
+	private static function allow_new_install() {
+		global $wpdb;
+		$window = 3600;
+		$cap    = 60;
+		$max    = 5000;
+		$state  = get_option( 'flxan_tm_newcap', null );
+		$missing = null === $state;
+		if ( ! is_array( $state ) ) {
+			$state = array();
+		}
+		$win = intdiv( time(), $window );
+		if ( (int) ( $state['win'] ?? -1 ) !== $win ) {
+			$state = array( 'win' => $win, 'n' => 0 );
+		}
+		if ( (int) $state['n'] >= $cap ) {
+			return false;
+		}
+		$table = self::t( 'installs' );
+		$count = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$table}" ); // phpcs:ignore WordPress.DB.PreparedSQL
+		if ( $count >= $max ) {
+			$wpdb->query( "DELETE FROM {$table} ORDER BY last_ts ASC LIMIT 200" ); // phpcs:ignore WordPress.DB.PreparedSQL
+			$count = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$table}" ); // phpcs:ignore WordPress.DB.PreparedSQL
+			if ( $count >= $max ) {
+				return false;
+			}
+		}
+		$state['n'] = (int) $state['n'] + 1;
+		if ( $missing ) {
+			add_option( 'flxan_tm_newcap', $state, '', false );
+		} else {
+			update_option( 'flxan_tm_newcap', $state, false );
+		}
+		return true;
+	}
+
+	/** Doğrulanmış gövdeyi kaydeder. Döner: ok | throttled | refused. */
 	public static function record( array $b ) {
 		global $wpdb;
 		$now = time();
@@ -173,6 +217,10 @@ class FLXAN_Telemetry_Hub {
 		$cur = $wpdb->get_row( $wpdb->prepare( "SELECT first_ts, last_ts, n, ob, ob_ts FROM {$ti} WHERE iid = %s", $iid ), ARRAY_A ); // phpcs:ignore WordPress.DB
 		if ( $cur && $now - (int) $cur['last_ts'] < self::MIN_INTERVAL ) {
 			return 'throttled';
+		}
+		// A new client id does not get a row when the hourly cap or the table cap is full.
+		if ( ! $cur && ! self::allow_new_install() ) {
+			return 'refused';
 		}
 		$pk = array_merge( self::pkgs( $b['plugins'] ?? array(), 80 ), self::pkgs( $b['themes'] ?? array(), 4, 'theme:' ) );
 		$ob = isset( $b['onboarding'] ) && is_array( $b['onboarding'] ) ? self::funnel( $b['onboarding'] ) : null;

@@ -38,7 +38,7 @@ When every plugin brings its own AI connection, you end up with keys in five set
 ### Hub for other plugins
 - `flxai_chat()` / `flxai_complete()` with tools, streaming, prompt caching (Claude) and model fallback; `flxai_ready()`, `flxai_model_for()`, `flxai_budget_status()`.
 - **Connected systems:** each plugin with status, model, 30-day requests, tokens, cost, errors and last use; on/off per system; per-plugin model in Settings.
-- **MCP server:** `/wp-json/flx-mcp/v1/mcp` for Claude Desktop, Claude Code, Cursor and claude.ai; per-user keys that can be limited to chosen tools, last use and recent activity. Every FluxWP plugin (SEO, CRM, Mail, Speed, Analytics, Social…) registers its tools here with `flx_mcp_tools`.
+- **MCP server:** `site.com/mcp` (also `/wp-json/flx-mcp/v1/mcp`) for claude.ai, Claude Desktop, Claude Code, ChatGPT, Cursor and VS Code. Built-in OAuth 2.1 sign-in: clients connect with only the URL, the user signs in to WordPress and approves. Per-user keys that can be limited to chosen tools, last use and recent activity. Every FluxWP plugin (SEO, CRM, Mail, Speed, Analytics, Social…) registers its tools here with `flx_mcp_tools`.
 - **Tools:** every tool registered through `flx_mcp_tools` or `flxai_tools`, with source, reads/writes, approval flag, capability, 30-day calls and average time; on/off per tool.
 - Images in answers: ```widget / ```mermaid blocks rendered to PNG through Gotenberg or Imagick.
 - Image and video generation for Flux Studio through fal.ai, EvoLink, OpenAI, Gemini and OpenRouter (`flxai_media_submit`).

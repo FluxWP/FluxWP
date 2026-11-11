@@ -38,7 +38,7 @@ Her eklenti kendi AI bağlantısını getirince anahtarlar beş ayar sayfasına 
 ### Diğer eklentiler için merkez
 - Araçlı, akışlı, prompt önbellekli (Claude) ve yedek modelli `flxai_chat()` / `flxai_complete()`; `flxai_ready()`, `flxai_model_for()`, `flxai_budget_status()`.
 - **Bağlı sistemler:** her eklentinin durumu, modeli, 30 günlük isteği, token'ı, maliyeti, hatası ve son kullanımı; sistem başına aç/kapa; Ayarlar'da eklenti başına model.
-- **MCP sunucusu:** Claude Desktop, Claude Code, Cursor ve claude.ai için `/wp-json/flx-mcp/v1/mcp`; araçlarla sınırlanabilen kullanıcıya özel anahtarlar, son kullanım ve son işlemler. Her FluxWP eklentisi (SEO, CRM, Mail, Speed, Analytics, Social…) araçlarını `flx_mcp_tools` ile buraya kaydeder.
+- **MCP sunucusu:** claude.ai, Claude Desktop, Claude Code, ChatGPT, Cursor ve VS Code için `site.com/mcp` (ya da `/wp-json/flx-mcp/v1/mcp`). Yerleşik OAuth 2.1 girişi: istemci yalnız adresle bağlanır, kullanıcı WordPress'e girip onaylar. Ayrıca araçlarla sınırlanabilen kullanıcıya özel anahtarlar, son kullanım ve son işlemler. Her FluxWP eklentisi (SEO, CRM, Mail, Speed, Analytics, Social…) araçlarını `flx_mcp_tools` ile buraya kaydeder.
 - **Araçlar:** `flx_mcp_tools` ya da `flxai_tools` ile kaydedilen her araç; kaynak, okur/yazar, onay, yetki, 30 günlük çağrı ve ortalama süre; araç başına aç/kapa.
 - Cevapta görsel: ```widget / ```mermaid blokları Gotenberg ya da Imagick ile PNG'ye çevrilir.
 - Flux Studio için fal.ai, EvoLink, OpenAI, Gemini ve OpenRouter ile görsel ve video üretimi (`flxai_media_submit`).

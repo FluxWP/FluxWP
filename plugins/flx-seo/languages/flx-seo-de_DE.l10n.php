@@ -807,5 +807,6 @@ return array(
   'Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI\'da).' => 'Metatitel/-beschreibung, kanonisch, Open Graph, Schema (Organisation, Website, Breadcrumb, Artikel), Sitemap-Einstellungen, Favicon und SEO-Kontrolle. Inhalts- und SEO-Tools für KI-Assistenten (auf dem MCP-Server Flux AI).',
   'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).' => 'Metatitel/-beschreibung, kanonisch, Open Graph, Schema (Organisation, Website, Breadcrumb, Artikel), Sitemap-Einstellungen, Favicon und SEO-Kontrolle. Inhalts- und SEO-Tools für KI-Assistenten (auf dem MCP-Server Flux AI).',
 
+'PageSpeed timed out; this step was skipped.'=>'PageSpeed hat das Zeitlimit überschritten; dieser Schritt wurde übersprungen.',
  ),
 );

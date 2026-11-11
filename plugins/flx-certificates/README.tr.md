@@ -104,6 +104,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/sertifika-sistemi/KURULUM
 - Bağışçının seçebileceği tasarımlar: `flxs_donor_templates()` (filtre `flxs_donor_templates`).
 - Kısa kodlar: `[flxs_etkinlikler]`, `[flxs_etkinlik id="3"]`, `[flxs_fidan_sayaci]`, `[flx_sertifika_sorgula]`.
 - `flxs_manage`, `flxs_dashboard`, `flxs_own_ref` yetkileri Flux Roles'e, kontroller `flx_system_checks`'e kayıtlıdır.
+- `POST /flx-certificates/v1/certificates` içindeki `person.id` yalnız `flxs_can_see_person()` izin verirse güncellenir (Kişiler listesiyle aynı kapsam). Kapsam dışı kimlik 404 döner ve kayıt değişmez. Yöneticiler kısıtlanmaz.
 
 ## Yol haritası
 

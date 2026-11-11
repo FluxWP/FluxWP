@@ -6,7 +6,7 @@
  *  - off:   hiçbir şey toplanmaz (kayıt kapalı ve kimse giriş yapmamış).
  *  - light: ucuz kancalar (PHP hatası, HTTP, doing-it-wrong, log, süre/bellek). Her istekte.
  *  - full:  ayrıca SAVEQUERIES + sorgu başına bileşen, şablon, istek, dil, transient.
- *           Örneklenen isteklerde, giriş yapmış kullanıcıda (panel) ve profil isteğinde.
+ *           Örneklenen isteklerde, imzalı panel çerezi olan yetkili istekte ve profil isteğinde.
  *
  * @package flx-speed
  */
@@ -17,8 +17,15 @@ class FLXP_Collector {
 
 	const MAX_ITEMS = 200;
 
+	/** İmza çerezinin ömrü (sn). Bütçe değil; panel açıkken wp-admin her istekte yeniler. */
+	const MARKER_TTL = 1800;
+
+	const MARKER_COOKIE = 'flxp_mark';
+
 	public static $mode      = 'off';
 	public static $panel     = false;
+	public static $marker    = false;
+	public static $marker_uid = 0;
 	public static $sampled   = false;
 	public static $profile   = false;
 	public static $sq_preset = false;
@@ -46,6 +53,7 @@ class FLXP_Collector {
 			return;
 		}
 		self::$start = isset( $_SERVER['REQUEST_TIME_FLOAT'] ) ? (float) $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true );
+		add_action( 'admin_init', array( __CLASS__, 'sync_marker' ) );
 
 		$s = flxp_settings();
 		// Profil isteği: MCP aracı flxp_profile_url kendi sitesine tek kullanımlık jetonla istek atar.
@@ -54,12 +62,15 @@ class FLXP_Collector {
 			self::$profile = true;
 			delete_transient( 'flxp_prof_' . md5( $tok ) );
 		}
-		$logged_in     = defined( 'LOGGED_IN_COOKIE' ) && ! empty( $_COOKIE[ LOGGED_IN_COOKIE ] );
 		self::$sampled = $s['record'] && $s['sample'] > 0 && mt_rand( 1, 100 ) <= (int) $s['sample']; // phpcs:ignore -- wp_rand henüz yüklü değil (pluggable).
+		self::read_marker();
+		// Tam profil: örnek, tek kullanımlık ölçüm, ya da wp-admin'de verilmiş imzalı çerez.
+		// Giriş çerezi yetmez; kullanıcı henüz bilinmez, çerez HMAC + süre ile doğrulanır.
+		$panel_full = self::$marker && $s['panel'] && ( is_admin() || $s['panel_front'] );
 
-		if ( self::$profile || self::$sampled || ( $logged_in && $s['panel'] ) ) {
+		if ( self::$profile || self::$sampled || $panel_full ) {
 			self::$mode = 'full';
-		} elseif ( $s['record'] || $logged_in ) {
+		} elseif ( $s['record'] ) {
 			self::$mode = 'light';
 		} else {
 			return;
@@ -136,19 +147,143 @@ class FLXP_Collector {
 		add_action( $new_hooks ? 'set_site_transient' : 'setted_site_transient', array( __CLASS__, 'on_transient' ), 10, 3 );
 	}
 
-	/** Kullanıcı belli olunca panel kararı. */
+	/** Kullanıcı belli olunca panel kararı. Çerez uyuşmuyorsa toplanan profili at. */
 	public static function on_init() {
-		$s = flxp_settings();
-		if ( 'full' !== self::$mode || ! $s['panel'] || ! is_user_logged_in() || ! flxp_can_view() ) {
+		if ( ! self::$marker ) {
 			return;
 		}
-		if ( ! is_admin() && ! $s['panel_front'] ) {
+		$s        = flxp_settings();
+		$allowed  = is_user_logged_in() && get_current_user_id() === (int) self::$marker_uid && flxp_can_view() && $s['panel'];
+		$in_scope = $allowed && ( is_admin() || $s['panel_front'] );
+		if ( ! $allowed ) {
+			self::downgrade();
+			self::clear_marker_cookie();
+			return;
+		}
+		if ( ! $in_scope ) {
+			self::downgrade();
 			return;
 		}
 		self::$panel = true;
 		if ( $s['caps'] ) {
 			add_filter( 'user_has_cap', array( __CLASS__, 'on_cap' ), PHP_INT_MAX, 4 );
 		}
+	}
+
+	/**
+	 * wp-admin: paneli gören kullanıcıya imzalı çerez verir. wp_salt() bu kadar erken yok;
+	 * anahtar wp_salt( 'auth' ) ile aynı malzemedir (AUTH_KEY . AUTH_SALT).
+	 *
+	 * @param bool|null $panel_on null ise kayıtlı ayar.
+	 */
+	public static function sync_marker( $panel_on = null ) {
+		if ( headers_sent() || ! is_user_logged_in() ) {
+			return;
+		}
+		if ( null === $panel_on ) {
+			$panel_on = (bool) flxp_settings( 'panel' );
+		}
+		if ( $panel_on && flxp_can_view() ) {
+			self::send_marker_cookie();
+			return;
+		}
+		if ( isset( $_COOKIE[ self::MARKER_COOKIE ] ) ) { // phpcs:ignore
+			self::clear_marker_cookie();
+		}
+	}
+
+	/** Çerezi oku. Geçersizse profil açılmaz. */
+	private static function read_marker() {
+		self::$marker     = false;
+		self::$marker_uid = 0;
+		$raw              = isset( $_COOKIE[ self::MARKER_COOKIE ] ) ? (string) wp_unslash( $_COOKIE[ self::MARKER_COOKIE ] ) : ''; // phpcs:ignore
+		$parts            = explode( '.', $raw );
+		if ( 3 !== count( $parts ) ) {
+			return;
+		}
+		list( $exp, $uid, $sig ) = $parts;
+		if ( ! preg_match( '/^\d{1,12}$/', $exp ) || ! preg_match( '/^\d{1,20}$/', $uid ) || ! preg_match( '/^[a-f0-9]{64}$/', $sig ) ) {
+			return;
+		}
+		if ( (int) $exp < time() ) {
+			return;
+		}
+		$key = self::marker_key();
+		if ( '' === $key ) {
+			return;
+		}
+		$expect = hash_hmac( 'sha256', $exp . '|' . $uid, $key );
+		if ( ! hash_equals( $expect, $sig ) ) {
+			return;
+		}
+		self::$marker     = true;
+		self::$marker_uid = (int) $uid;
+	}
+
+	/** @return string Boşsa imza üretilemez. */
+	private static function marker_key() {
+		$material = ( defined( 'AUTH_KEY' ) ? (string) AUTH_KEY : '' ) . ( defined( 'AUTH_SALT' ) ? (string) AUTH_SALT : '' );
+		if ( '' === $material ) {
+			return '';
+		}
+		return hash( 'sha256', $material . '|flxp-profile' );
+	}
+
+	private static function send_marker_cookie() {
+		$key = self::marker_key();
+		$uid = get_current_user_id();
+		if ( '' === $key || $uid <= 0 ) {
+			return;
+		}
+		$exp = time() + self::MARKER_TTL;
+		$sig = hash_hmac( 'sha256', $exp . '|' . $uid, $key );
+		self::plant_cookie( $exp . '.' . $uid . '.' . $sig, $exp );
+	}
+
+	private static function clear_marker_cookie() {
+		self::plant_cookie( '', time() - HOUR_IN_SECONDS );
+	}
+
+	private static function plant_cookie( $value, $expires ) {
+		if ( headers_sent() ) {
+			return;
+		}
+		$domain = defined( 'COOKIE_DOMAIN' ) && is_string( COOKIE_DOMAIN ) ? COOKIE_DOMAIN : '';
+		$secure = function_exists( 'is_ssl' ) ? is_ssl() : false;
+		foreach ( self::cookie_paths() as $path ) {
+			setcookie(
+				self::MARKER_COOKIE,
+				$value,
+				array(
+					'expires'  => (int) $expires,
+					'path'     => $path,
+					'domain'   => $domain,
+					'secure'   => $secure,
+					'httponly' => true,
+					'samesite' => 'Lax',
+				)
+			);
+		}
+	}
+
+	/** @return string[] */
+	private static function cookie_paths() {
+		$paths = array();
+		foreach ( array( 'COOKIEPATH', 'SITECOOKIEPATH' ) as $name ) {
+			if ( defined( $name ) && is_string( constant( $name ) ) && '' !== constant( $name ) ) {
+				$paths[] = constant( $name );
+			}
+		}
+		return $paths ? array_values( array_unique( $paths ) ) : array( '/' );
+	}
+
+	/** Yetkisiz istekte sorgu dökümünü kayda ve panele yazma. */
+	private static function downgrade() {
+		self::$panel = false;
+		if ( self::$sampled || self::$profile ) {
+			return;
+		}
+		self::$mode = flxp_settings( 'record' ) ? 'light' : 'off';
 	}
 
 	/* ---------------------------------------------------------------- PHP hataları */

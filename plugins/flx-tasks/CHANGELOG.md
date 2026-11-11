@@ -1,5 +1,9 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.15
+- An MCP key now signs in only inside the MCP route permission check (`/flx-tasks/v1/mcp`). Putting the namespace text on any other REST address no longer runs the request as that user. The "MCP enabled" check stays on that route.
+- The key is no longer read from `?key=`. Send `Authorization: Bearer` or `X-MCP-Key`. Apache/LiteSpeed `REDIRECT_HTTP_AUTHORIZATION` is still read.
+
 ## 0.8.14
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

@@ -50,7 +50,7 @@ Donations live in Flux Donate, orders in WooCommerce, messages in Flux Chat and 
 
 ### RFM scoring
 - Recency, frequency (distinct paid days) and value in quintiles: New, Champion, Loyal, Promising, At risk, Hibernating, Lost.
-- Churn risk follows the person's own payment gap: a monthly donor is at risk after 45 days, a yearly one is not. Recalculated daily.
+- Churn risk follows the person's own payment gap: a monthly donor is at risk after 45 days, a yearly one is not. Recalculated daily, about 20 seconds at a time, continuing from the last contact.
 
 ### Segments
 - Rule editor with a live count and sample contacts: role, tag, RFM, value, paid days, last payment, last activity, churn, consent, source, city.
