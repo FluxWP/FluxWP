@@ -178,7 +178,7 @@ final class FLXB_Page_Settings {
 				echo '<ul class="flxb-list">';
 				foreach ( array_reverse( (array) $all ) as $v ) {
 					/* translators: 1: version number, 2: date */
-					echo '<li>' . esc_html( sprintf( __( 'Version%1$s·%2$s', 'flx-donate' ), number_format_i18n( (int) $v['version'] ), flxb_date( $v['created_at'] ) ) ) . '</li>';
+					echo '<li>' . esc_html( sprintf( __( 'Version %1$s · %2$s', 'flx-donate' ), number_format_i18n( (int) $v['version'] ), flxb_date( $v['created_at'] ) ) ) . '</li>';
 				}
 				echo '</ul>';
 			}
@@ -241,7 +241,7 @@ final class FLXB_Page_Settings {
 		if ( ! empty( $last['time'] ) ) {
 			$r = (array) ( $last['result'] ?? array() );
 			/* translators: 1: date, 2: checked, 3: imported */
-			echo '<p class="flxb-muted" style="margin-top:12px">' . esc_html( sprintf( __( 'Last run%1$s:%2$spayments checked,%3$simported.', 'flx-donate' ), flx_date( (int) $last['time'], 'datetime' ), number_format_i18n( (int) ( $r['seen'] ?? 0 ) ), number_format_i18n( (int) ( $r['imported'] ?? 0 ) ) ) ) . '</p>';
+			echo '<p class="flxb-muted" style="margin-top:12px">' . esc_html( sprintf( __( 'Last run %1$s: %2$s payments checked, %3$s imported.', 'flx-donate' ), flx_date( (int) $last['time'], 'datetime' ), number_format_i18n( (int) ( $r['seen'] ?? 0 ) ), number_format_i18n( (int) ( $r['imported'] ?? 0 ) ) ) ) . '</p>';
 		}
 		echo '</section>';
 	}

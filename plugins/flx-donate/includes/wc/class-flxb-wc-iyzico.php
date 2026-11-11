@@ -364,7 +364,7 @@ class FLXB_WC_Iyzico {
 		$order->delete_meta_data( '_flxb_iyz_error' );
 		$order->save_meta_data();
 		/* translators: 1: card, 2: iyzico payment id, 3: callback | webhook */
-		$order->add_order_note( sprintf( __( 'iyzico payment received:%1$s, payment id%2$s(%3$s).', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'], $source ) );
+		$order->add_order_note( sprintf( __( 'iyzico payment received: %1$s, payment id %2$s (%3$s).', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'], $source ) );
 		$order->payment_complete( $info['paymentId'] );
 		do_action( 'flxb_wc_iyzico_paid', $order, $r );
 		return true;
@@ -440,7 +440,7 @@ class FLXB_WC_Iyzico {
 				$order->update_meta_data( '_flxb_iyzico', $info );
 				$order->save_meta_data();
 				/* translators: %s: iyzico error */
-				return new WP_Error( 'flxb_iyz', sprintf( __( 'iyzico refused the refund:%s', 'flx-donate' ), isset( $err ) ? $err : FLXB_Iyzico_Api::error_text( $r ) ) );
+				return new WP_Error( 'flxb_iyz', sprintf( __( 'iyzico refused the refund: %s', 'flx-donate' ), isset( $err ) ? $err : FLXB_Iyzico_Api::error_text( $r ) ) );
 			}
 			$info['items'][ $i ]['refunded'] = round( (float) ( $it['refunded'] ?? 0 ) + $now / 100, 2 );
 			$left                           -= $now;
@@ -448,7 +448,7 @@ class FLXB_WC_Iyzico {
 		$order->update_meta_data( '_flxb_iyzico', $info );
 		$order->save_meta_data();
 		/* translators: 1: amount, 2: reason */
-		$order->add_order_note( sprintf( __( 'Refunded at iyzico:%1$s.%2$s', 'flx-donate' ), FLXB_WC::money_text( $amount, $order->get_currency() ), (string) $reason ) );
+		$order->add_order_note( sprintf( __( 'Refunded at iyzico: %1$s. %2$s', 'flx-donate' ), FLXB_WC::money_text( $amount, $order->get_currency() ), (string) $reason ) );
 		return true;
 	}
 }

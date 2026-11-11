@@ -374,7 +374,7 @@ final class FLXB_Iyzico_Recurring {
 		if ( ! $s || 'iyzico' !== $s['provider'] || ! hash_equals( self::cancel_key( $s ), $key ) ) {
 			return $res( self::page_html( __( 'Link not valid', 'flx-donate' ), '<p class="m">' . esc_html__( 'This link is not valid. Please contact us to cancel your recurring donation.', 'flx-donate' ) . '</p>', false ), 404 );
 		}
-		$what = esc_html( sprintf( /* translators: 1: amount, 2: interval (Monthly…) */ __( '%1$s·%2$s', 'flx-donate' ), flxb_money( $s['amount'], $s['currency'] ), flxb_interval_label( $s['interval_unit'] ) ) );
+		$what = esc_html( sprintf( /* translators: 1: amount, 2: interval (Monthly…) */ __( '%1$s · %2$s', 'flx-donate' ), flxb_money( $s['amount'], $s['currency'] ), flxb_interval_label( $s['interval_unit'] ) ) );
 		if ( 'canceled' === $s['status'] ) {
 			return $res( self::page_html( __( 'Recurring donation canceled', 'flx-donate' ), '<p class="m">' . esc_html__( 'This recurring donation is canceled. No further payments will be taken.', 'flx-donate' ) . '</p><p class="c">' . $what . '</p>', true ) );
 		}

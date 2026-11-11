@@ -1317,8 +1317,8 @@ msgstr "Link not valid"
 msgid "This link is not valid. Please contact us to cancel your recurring donation."
 msgstr "This link is not valid. Please contact us to cancel your recurring donation."
 
-msgid "%1$s·%2$s"
-msgstr "%1$s·%2$s"
+msgid "%1$s · %2$s"
+msgstr "%1$s · %2$s"
 
 msgid "Recurring donation canceled"
 msgstr "Recurring donation canceled"
@@ -1338,11 +1338,6 @@ msgstr "Cancel my recurring donation"
 msgid "Cancel recurring donation"
 msgstr "Cancel recurring donation"
 
-msgid "%srecurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed."
-msgid_plural "%srecurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
-msgstr[0] "%srecurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed."
-msgstr[1] "%srecurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
-
 msgid "Show them"
 msgstr "Show them"
 
@@ -1352,8 +1347,8 @@ msgstr "Turkey"
 msgid "iyzico could not be reached. Please try again."
 msgstr "iyzico could not be reached. Please try again."
 
-msgid "iyzico gave an unexpected answer (HTTP%d)."
-msgstr "iyzico gave an unexpected answer (HTTP%d)."
+msgid "iyzico gave an unexpected answer (HTTP %d)."
+msgstr "iyzico gave an unexpected answer (HTTP %d)."
 
 msgid "iyzico panel addresses"
 msgstr "iyzico panel addresses"
@@ -1379,11 +1374,11 @@ msgstr "The iyzico WooCommerce plugin has a webhook key on this site: notificati
 msgid "The Stripe secret key is not configured."
 msgstr "The Stripe secret key is not configured."
 
-msgid "Could not connect to Stripe:%s"
-msgstr "Could not connect to Stripe:%s"
+msgid "Could not connect to Stripe: %s"
+msgstr "Could not connect to Stripe: %s"
 
-msgid "Stripe API error (HTTP%d)."
-msgstr "Stripe API error (HTTP%d)."
+msgid "Stripe API error (HTTP %d)."
+msgstr "Stripe API error (HTTP %d)."
 
 msgid "Invalid or expired nonce"
 msgstr "Invalid or expired nonce"
@@ -1493,14 +1488,14 @@ msgstr "For a recurring donation, keep \"Save my card\" ticked on the iyzico pag
 msgid "TEST MODE (iyzico sandbox): no real money is taken."
 msgstr "TEST MODE (iyzico sandbox): no real money is taken."
 
-msgid "Complete the payment in the iyzico window..."
-msgstr "Complete the payment in the iyzico window..."
+msgid "Complete the payment in the iyzico window…"
+msgstr "Complete the payment in the iyzico window…"
 
 msgid "Show the payment window"
 msgstr "Show the payment window"
 
-msgid "Opening the secure payment page..."
-msgstr "Opening the secure payment page..."
+msgid "Opening the secure payment page…"
+msgstr "Opening the secure payment page…"
 
 msgid "The payment was not completed. You can try again."
 msgstr "The payment was not completed. You can try again."
@@ -1547,11 +1542,11 @@ msgstr "iyzico is not configured on this site."
 msgid "This payment has already been refunded."
 msgstr "This payment has already been refunded."
 
-msgid "Enter an amount up to%s."
-msgstr "Enter an amount up to%s."
+msgid "Enter an amount up to %s."
+msgstr "Enter an amount up to %s."
 
-msgid "%1$swas refunded, then iyzico stopped:%2$s"
-msgstr "%1$swas refunded, then iyzico stopped:%2$s"
+msgid "%1$s was refunded, then iyzico stopped: %2$s"
+msgstr "%1$s was refunded, then iyzico stopped: %2$s"
 
 msgid "Recurring donation not found."
 msgstr "Recurring donation not found."
@@ -1592,8 +1587,8 @@ msgstr "No donation type"
 msgid "Amount is not a number"
 msgstr "Amount is not a number"
 
-msgid "No%s: opened as approved"
-msgstr "No%s: opened as approved"
+msgid "No %s: opened as approved"
+msgstr "No %s: opened as approved"
 
 msgid "Not paid: opened as approved"
 msgstr "Not paid: opened as approved"
@@ -1622,8 +1617,8 @@ msgstr "This form and its donation type use different currencies, so the payment
 msgid "Your choice"
 msgstr "Your choice"
 
-msgid "Donations for this cause open on%s."
-msgstr "Donations for this cause open on%s."
+msgid "Donations for this cause open on %s."
+msgstr "Donations for this cause open on %s."
 
 msgid "Donations for this cause have ended."
 msgstr "Donations for this cause have ended."
@@ -1652,11 +1647,11 @@ msgstr "Adak"
 msgid "Akika"
 msgstr "Akika"
 
-msgid "healing"
-msgstr "healing"
+msgid "Healing"
+msgstr "Healing"
 
-msgid "You can choose at most%s."
-msgstr "You can choose at most%s."
+msgid "You can choose at most %s."
+msgstr "You can choose at most %s."
 
 msgid "This option is not open for donations at the moment."
 msgstr "This option is not open for donations at the moment."
@@ -1718,8 +1713,8 @@ msgstr "Please write the donor's name."
 msgid "Please give the donor's phone number or e-mail address."
 msgstr "Please give the donor's phone number or e-mail address."
 
-msgid "Donation request opened by%s."
-msgstr "Donation request opened by%s."
+msgid "Donation request opened by %s."
+msgstr "Donation request opened by %s."
 
 msgid "People who gave through you. Totals count only the gifts you referred."
 msgstr "People who gave through you. Totals count only the gifts you referred."
@@ -1739,8 +1734,8 @@ msgstr "Latest gift"
 msgid "Number of gifts"
 msgstr "Number of gifts"
 
-msgid "Name, e-mail or phone..."
-msgstr "Name, e-mail or phone..."
+msgid "Name, e-mail or phone…"
+msgstr "Name, e-mail or phone…"
 
 msgid "Sort by"
 msgstr "Sort by"
@@ -1754,19 +1749,14 @@ msgstr "Gifts"
 msgid "Open card"
 msgstr "Open card"
 
-msgid "%sdonor"
-msgid_plural "%sdonors"
-msgstr[0] "%sdonor"
-msgstr[1] "%sdonors"
-
 msgid "Donor not found"
 msgstr "Donor not found"
 
 msgid "Donor card"
 msgstr "Donor card"
 
-msgid "Donor since%s"
-msgstr "Donor since%s"
+msgid "Donor since %s"
+msgstr "Donor since %s"
 
 msgid "Average gift"
 msgstr "Average gift"
@@ -1774,8 +1764,8 @@ msgstr "Average gift"
 msgid "All gifts"
 msgstr "All gifts"
 
-msgid "See all%sgifts"
-msgstr "See all%sgifts"
+msgid "See all %s gifts"
+msgstr "See all %s gifts"
 
 msgid "No gifts yet."
 msgstr "No gifts yet."
@@ -1785,11 +1775,6 @@ msgstr "Recurring donations"
 
 msgid "No recurring donation."
 msgstr "No recurring donation."
-
-msgid "and%smore"
-msgid_plural "and%smore"
-msgstr[0] "and%smore"
-msgstr[1] "and%smore"
 
 msgid "No certificate yet."
 msgstr "No certificate yet."
@@ -1833,11 +1818,11 @@ msgstr "Import from Excel"
 msgid "Donation settings"
 msgstr "Donation settings"
 
-msgid "Delete%sdonations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
-msgstr "Delete%sdonations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
+msgid "Delete %s donations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
+msgstr "Delete %s donations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
 
-msgid "Move%sdonations to the trash? Their WooCommerce orders go to the trash too."
-msgstr "Move%sdonations to the trash? Their WooCommerce orders go to the trash too."
+msgid "Move %s donations to the trash? Their WooCommerce orders go to the trash too."
+msgstr "Move %s donations to the trash? Their WooCommerce orders go to the trash too."
 
 msgid "The data could not be loaded."
 msgstr "The data could not be loaded."
@@ -1866,8 +1851,8 @@ msgstr "vs previous period"
 msgid "no gifts in the previous period"
 msgstr "no gifts in the previous period"
 
-msgid "all time:%sdonors"
-msgstr "all time:%sdonors"
+msgid "all time: %s donors"
+msgstr "all time: %s donors"
 
 msgid "first gift in this period"
 msgstr "first gift in this period"
@@ -1875,8 +1860,8 @@ msgstr "first gift in this period"
 msgid "per gift"
 msgstr "per gift"
 
-msgid "%spast due"
-msgstr "%spast due"
+msgid "%s past due"
+msgstr "%s past due"
 
 msgid "monthly value of active ones"
 msgstr "monthly value of active ones"
@@ -1938,8 +1923,8 @@ msgstr "Payment approved. The certificate is made and sent to the donor."
 msgid "Payment rejected."
 msgstr "Payment rejected."
 
-msgid "Import finished:%1$spayments checked,%2$simported,%3$salready known."
-msgstr "Import finished:%1$spayments checked,%2$simported,%3$salready known."
+msgid "Import finished: %1$s payments checked, %2$s imported, %3$s already known."
+msgstr "Import finished: %1$s payments checked, %2$s imported, %3$s already known."
 
 msgid "Sorry, you are not allowed to access this page."
 msgstr "Sorry, you are not allowed to access this page."
@@ -1965,8 +1950,8 @@ msgstr "Earlier imports"
 msgid "None yet."
 msgstr "None yet."
 
-msgid "%1$srows,%2$swritten"
-msgstr "%1$srows,%2$swritten"
+msgid "%1$s rows, %2$s written"
+msgstr "%1$s rows, %2$s written"
 
 msgid "Check the columns and the matches, then start."
 msgstr "Check the columns and the matches, then start."
@@ -2007,13 +1992,8 @@ msgstr "Each different value in the file is matched once."
 msgid "Apply and check again"
 msgstr "Apply and check again"
 
-msgid "Import%srow"
-msgid_plural "Import%srows"
-msgstr[0] "Import%srow"
-msgstr[1] "Import%srows"
-
-msgid "Showing rows with a problem first;%srows in all."
-msgstr "Showing rows with a problem first;%srows in all."
+msgid "Showing rows with a problem first; %s rows in all."
+msgstr "Showing rows with a problem first; %s rows in all."
 
 msgid "Discard this file"
 msgstr "Discard this file"
@@ -2024,8 +2004,8 @@ msgstr "Finished."
 msgid "Importing... Keep this page open; if it closes, opening it again continues where it stopped."
 msgstr "Importing... Keep this page open; if it closes, opening it again continues where it stopped."
 
-msgid "%1$s/%2$srows"
-msgstr "%1$s/%2$srows"
+msgid "%1$s / %2$s rows"
+msgstr "%1$s / %2$s rows"
 
 msgid "Written"
 msgstr "Written"
@@ -2060,8 +2040,8 @@ msgstr "Try a wider date range or clear the filters."
 msgid "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived"
 msgstr "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived"
 
-msgid "Name, e-mail, phone, code..."
-msgstr "Name, e-mail, phone, code..."
+msgid "Name, e-mail, phone, code…"
+msgstr "Name, e-mail, phone, code…"
 
 msgid "All forms"
 msgstr "All forms"
@@ -2078,23 +2058,8 @@ msgstr "Detailed filter"
 msgid "Donation type / form"
 msgstr "Donation type / form"
 
-msgid "Select the donation of%s"
-msgstr "Select the donation of%s"
-
-msgid "%sdonation moved to the trash."
-msgid_plural "%sdonations moved to the trash."
-msgstr[0] "%sdonation moved to the trash."
-msgstr[1] "%sdonations moved to the trash."
-
-msgid "%sdonation restored."
-msgid_plural "%sdonations restored."
-msgstr[0] "%sdonation restored."
-msgstr[1] "%sdonations restored."
-
-msgid "%sdonation deleted permanently."
-msgid_plural "%sdonations deleted permanently."
-msgstr[0] "%sdonation deleted permanently."
-msgstr[1] "%sdonations deleted permanently."
+msgid "Select the donation of %s"
+msgstr "Select the donation of %s"
 
 msgid "Receipt no."
 msgstr "Receipt no."
@@ -2102,8 +2067,8 @@ msgstr "Receipt no."
 msgid "Kind"
 msgstr "Kind"
 
-msgid "Donation receipt ·%s"
-msgstr "Donation receipt ·%s"
+msgid "Donation receipt · %s"
+msgstr "Donation receipt · %s"
 
 msgid "Donation receipt"
 msgstr "Donation receipt"
@@ -2126,14 +2091,14 @@ msgstr "call center"
 msgid "Receipt linked"
 msgstr "Receipt linked"
 
-msgid "Payment rejected:%s"
-msgstr "Payment rejected:%s"
+msgid "Payment rejected: %s"
+msgstr "Payment rejected: %s"
 
-msgid "Status changed:%1$s→%2$s"
-msgstr "Status changed:%1$s→%2$s"
+msgid "Status changed: %1$s → %2$s"
+msgstr "Status changed: %1$s → %2$s"
 
-msgid "Refunded%s"
-msgstr "Refunded%s"
+msgid "Refunded %s"
+msgstr "Refunded %s"
 
 msgid "Payment canceled at the provider"
 msgstr "Payment canceled at the provider"
@@ -2141,14 +2106,14 @@ msgstr "Payment canceled at the provider"
 msgid "Names on whose behalf changed"
 msgstr "Names on whose behalf changed"
 
-msgid "Referral changed:%1$s→%2$s"
-msgstr "Referral changed:%1$s→%2$s"
+msgid "Referral changed: %1$s → %2$s"
+msgstr "Referral changed: %1$s → %2$s"
 
 msgid "Donation not found"
 msgstr "Donation not found"
 
-msgid "Donation of%s"
-msgstr "Donation of%s"
+msgid "Donation of %s"
+msgstr "Donation of %s"
 
 msgid "Print receipt"
 msgstr "Print receipt"
@@ -2171,14 +2136,14 @@ msgstr "revoked"
 msgid "Different price"
 msgstr "Different price"
 
-msgid "type price%1$s·%2$s"
-msgstr "type price%1$s·%2$s"
+msgid "type price %1$s · %2$s"
+msgstr "type price %1$s · %2$s"
 
 msgid "Proxy consent"
 msgstr "Proxy consent"
 
-msgid "version%1$s·%2$s"
-msgstr "version%1$s·%2$s"
+msgid "version %1$s · %2$s"
+msgstr "version %1$s · %2$s"
 
 msgid "Entered by"
 msgstr "Entered by"
@@ -2242,8 +2207,8 @@ msgstr "Status changed to \"%s\"."
 msgid "The status was not changed."
 msgstr "The status was not changed."
 
-msgid "basketball"
-msgstr "basketball"
+msgid "Basket"
+msgstr "Basket"
 
 msgid "WooCommerce order #%s"
 msgstr "WooCommerce order #%s"
@@ -2263,16 +2228,11 @@ msgstr "Send the certificates"
 msgid "Send the certificates to the donor now?"
 msgstr "Send the certificates to the donor now?"
 
-msgid "Certificates sent:%s"
-msgstr "Certificates sent:%s"
+msgid "Certificates sent: %s"
+msgstr "Certificates sent: %s"
 
 msgid "There is no certificate to send."
 msgstr "There is no certificate to send."
-
-msgid "%dcertificate made. Check it, then press \"Send the certificates\"."
-msgid_plural "%dcertificates made. Check them, then press \"Send the certificates\"."
-msgstr[0] "%dcertificate made. Check it, then press \"Send the certificates\"."
-msgstr[1] "%dcertificates made. Check them, then press \"Send the certificates\"."
 
 msgid "No certificate could be made; see the order notes."
 msgstr "No certificate could be made; see the order notes."
@@ -2280,8 +2240,8 @@ msgstr "No certificate could be made; see the order notes."
 msgid "Unit price"
 msgstr "Unit price"
 
-msgid "Sacrifice share"
-msgstr "Sacrifice share"
+msgid "Kurban share"
+msgstr "Kurban share"
 
 msgid "Save names"
 msgstr "Save names"
@@ -2328,13 +2288,8 @@ msgstr "Mark delivered to owner"
 msgid "Back to waiting"
 msgstr "Back to waiting"
 
-msgid "%ditem updated."
-msgid_plural "%ditems updated."
-msgstr[0] "%ditem updated."
-msgstr[1] "%ditems updated."
-
-msgid "Skipped:%s"
-msgstr "Skipped:%s"
+msgid "Skipped: %s"
+msgstr "Skipped: %s"
 
 msgid "due"
 msgstr "due"
@@ -2348,8 +2303,8 @@ msgstr "New record"
 msgid "Every item with its code, payment, partner, target date and files. Open one to see its whole flow."
 msgstr "Every item with its code, payment, partner, target date and files. Open one to see its whole flow."
 
-msgid "Code, name, phone, donation no..."
-msgstr "Code, name, phone, donation no..."
+msgid "Code, name, phone, donation no…"
+msgstr "Code, name, phone, donation no…"
 
 msgid "Any payment"
 msgstr "Any payment"
@@ -2369,8 +2324,8 @@ msgstr "An item is created for every unit of a donation type that is tracked one
 msgid "Selected"
 msgstr "Selected"
 
-msgid "%1$d·%2$dcents"
-msgstr "%1$d·%2$dcents"
+msgid "%1$d · %2$d sent"
+msgstr "%1$d · %2$d sent"
 
 msgid "This item is canceled."
 msgstr "This item is canceled."
@@ -2417,11 +2372,11 @@ msgstr "Files stay on the item."
 msgid "No file yet."
 msgstr "No file yet."
 
-msgid "Sent to%1$s·%2$s"
-msgstr "Sent to%1$s·%2$s"
+msgid "Sent to %1$s · %2$s"
+msgstr "Sent to %1$s · %2$s"
 
-msgid "Send this file to%sover WhatsApp?"
-msgstr "Send this file to%sover WhatsApp?"
+msgid "Send this file to %s over WhatsApp?"
+msgstr "Send this file to %s over WhatsApp?"
 
 msgid "Send to owner"
 msgstr "Send to owner"
@@ -2435,8 +2390,8 @@ msgstr "Install Flux Chat to send files over WhatsApp."
 msgid "There is no phone number for the owner. Add one above to send the file."
 msgstr "There is no phone number for the owner. Add one above to send the file."
 
-msgid "%1$s(moved from%2$s)"
-msgstr "%1$s(moved from%2$s)"
+msgid "%1$s (moved from %2$s)"
+msgstr "%1$s (moved from %2$s)"
 
 msgid "Select at least one item."
 msgstr "Select at least one item."
@@ -2486,8 +2441,8 @@ msgstr "Sandbox (test)"
 msgid "Recurring charges"
 msgstr "Recurring charges"
 
-msgid "Charged by Flux Donate's hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s."
-msgstr "Charged by Flux Donate's hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s."
+msgid "Charged by Flux Donate's hourly WP-Cron job. Next run: %1$s. Last charge run: %2$s."
+msgstr "Charged by Flux Donate's hourly WP-Cron job. Next run: %1$s. Last charge run: %2$s."
 
 msgid "In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working."
 msgstr "In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working."
@@ -2500,11 +2455,6 @@ msgstr "Every payment started on a form, including unfinished ones. Completed on
 
 msgid "No payments yet."
 msgstr "No payments yet."
-
-msgid "%srecord"
-msgid_plural "%srecords"
-msgstr[0] "%srecord"
-msgstr[1] "%srecords"
 
 msgid "A Stripe publishable key starts with pk_live_ or pk_test_."
 msgstr "A Stripe publishable key starts with pk_live_ or pk_test_."
@@ -2521,8 +2471,8 @@ msgstr "Refund / cancel"
 msgid "Refund this amount to the donor through the payment provider?"
 msgstr "Refund this amount to the donor through the payment provider?"
 
-msgid "Amount (up to%s)"
-msgstr "Amount (up to%s)"
+msgid "Amount (up to %s)"
+msgstr "Amount (up to %s)"
 
 msgid "Refund"
 msgstr "Refund"
@@ -2572,20 +2522,20 @@ msgstr "Bank transfer confirmed (%s)."
 msgid "Please write a reason."
 msgstr "Please write a reason."
 
-msgid "Payment rejected; the donor was told by%s."
-msgstr "Payment rejected; the donor was told by%s."
+msgid "Payment rejected; the donor was told by %s."
+msgstr "Payment rejected; the donor was told by %s."
 
-msgid "Payment rejected by%1$s. Reason:%2$s"
-msgstr "Payment rejected by%1$s. Reason:%2$s"
+msgid "Payment rejected by %1$s. Reason: %2$s"
+msgstr "Payment rejected by %1$s. Reason: %2$s"
 
-msgid "Rejection sent to the donor:%s"
-msgstr "Rejection sent to the donor:%s"
+msgid "Rejection sent to the donor: %s"
+msgstr "Rejection sent to the donor: %s"
 
 msgid "Hello,"
 msgstr "Hello,"
 
-msgid "We could not confirm the payment of your%sdonation."
-msgstr "We could not confirm the payment of your%sdonation."
+msgid "We could not confirm the payment of your %s donation."
+msgstr "We could not confirm the payment of your %s donation."
 
 msgid "If you think this is a mistake, please reply to this message. Thank you."
 msgstr "If you think this is a mistake, please reply to this message. Thank you."
@@ -2605,8 +2555,8 @@ msgstr "Custom dates"
 msgid "Nothing in this period"
 msgstr "Nothing in this period"
 
-msgid "Only the first%srows are shown. The CSV has the same rows."
-msgstr "Only the first%srows are shown. The CSV has the same rows."
+msgid "Only the first %s rows are shown. The CSV has the same rows."
+msgstr "Only the first %s rows are shown. The CSV has the same rows."
 
 msgid "Report (JSON)"
 msgstr "Report (JSON)"
@@ -2653,8 +2603,8 @@ msgstr "For a free amount. With an option the amount is quantity × unit price."
 msgid "One name per line, one per unit. Units without a name are given on behalf of the donor."
 msgstr "One name per line, one per unit. Units without a name are given on behalf of the donor."
 
-msgid "The donor accepted the proxy (vekâlet) text, version%s"
-msgstr "The donor accepted the proxy (vekâlet) text, version%s"
+msgid "The donor accepted the proxy (vekâlet) text, version %s"
+msgstr "The donor accepted the proxy (vekâlet) text, version %s"
 
 msgid "Matched to an existing donor card on phone number or e-mail address."
 msgstr "Matched to an existing donor card on phone number or e-mail address."
@@ -2710,8 +2660,8 @@ msgstr "The donor pays by card or bank transfer on the payment page. You are tol
 msgid "Create request"
 msgstr "Create request"
 
-msgid "Hello%1$s, we have received your donation request (%2$s). You can pay here:%3$s"
-msgstr "Hello%1$s, we have received your donation request (%2$s). You can pay here:%3$s"
+msgid "Hello %1$s, we have received your donation request (%2$s). You can pay here: %3$s"
+msgstr "Hello %1$s, we have received your donation request (%2$s). You can pay here: %3$s"
 
 msgid "Request created"
 msgstr "Request created"
@@ -2743,8 +2693,8 @@ msgstr "Add the places or organisations that carry the work out, and the offices
 msgid "Agreement"
 msgstr "Agreement"
 
-msgid "Bring gifts in"
-msgstr "Bring gifts in"
+msgid "Brings gifts in"
+msgstr "Brings gifts in"
 
 msgid "All off"
 msgstr "All off"
@@ -2812,8 +2762,8 @@ msgstr "all options"
 msgid "Add agreement"
 msgstr "Add agreement"
 
-msgid "%s(cost)"
-msgstr "%s(cost)"
+msgid "%s (cost)"
+msgstr "%s (cost)"
 
 msgid "Brought in (gift price)"
 msgstr "Brought in (gift price)"
@@ -2823,11 +2773,6 @@ msgstr "All partners"
 
 msgid "Gift price"
 msgstr "Gift price"
-
-msgid "%dwithout a price"
-msgid_plural "%dwithout a price"
-msgstr[0] "%dwithout a price"
-msgstr[1] "%dwithout a price"
 
 msgid "Re-read prices from the agreements"
 msgstr "Re-read prices from the agreements"
@@ -2940,11 +2885,6 @@ msgstr "Group donation types, e.g. Sacrifice, Ramadan, General. The key is store
 msgid "Save categories"
 msgstr "Save categories"
 
-msgid "Used by%stype"
-msgid_plural "Used by%stypes"
-msgstr[0] "Used by%stype"
-msgstr[1] "Used by%stypes"
-
 msgid "Remove category"
 msgstr "Remove category"
 
@@ -2972,8 +2912,8 @@ msgstr "Proxy text versions"
 msgid "No text yet. Donations of types that require a proxy cannot be paid until a text is saved."
 msgstr "No text yet. Donations of types that require a proxy cannot be paid until a text is saved."
 
-msgid "Version%1$s·%2$s"
-msgstr "Version%1$s·%2$s"
+msgid "Version %1$s · %2$s"
+msgstr "Version %1$s · %2$s"
 
 msgid "Add your own tabs with fields to tracked records (\"on\": \"item\") or donations (\"on\": \"donation\"), for all or some donation types. Leave it empty if you do not need any."
 msgstr "Add your own tabs with fields to tracked records (\"on\": \"item\") or donations (\"on\": \"donation\"), for all or some donation types. Leave it empty if you do not need any."
@@ -2986,11 +2926,6 @@ msgstr "Tabs in use"
 
 msgid "Record page"
 msgstr "Record page"
-
-msgid "%dfield"
-msgid_plural "%dfields"
-msgstr[0] "%dfield"
-msgstr[1] "%dfields"
 
 msgid "from a plugin"
 msgstr "from a plugin"
@@ -3010,8 +2945,8 @@ msgstr "Importing..."
 msgid "Import now"
 msgstr "Import now"
 
-msgid "Last run%1$s:%2$spayments checked,%3$simported."
-msgstr "Last run%1$s:%2$spayments checked,%3$simported."
+msgid "Last run %1$s: %2$s payments checked, %3$s imported."
+msgstr "Last run %1$s: %2$s payments checked, %3$s imported."
 
 msgid "Upcoming (%s)"
 msgstr "Upcoming (%s)"
@@ -3046,8 +2981,8 @@ msgstr "(inactive)"
 msgid "(price not set)"
 msgstr "(price not set)"
 
-msgid "free amount (min.%s)"
-msgstr "free amount (min.%s)"
+msgid "free amount (min. %s)"
+msgstr "free amount (min. %s)"
 
 msgid "free amount"
 msgstr "free amount"
@@ -3058,8 +2993,8 @@ msgstr "quantity"
 msgid "recurring"
 msgstr "recurring"
 
-msgid "%1$sof%2$s(%3$s%%)"
-msgstr "%1$sof%2$s(%3$s%%)"
+msgid "%1$s of %2$s (%3$s%%)"
+msgstr "%1$s of %2$s (%3$s%%)"
 
 msgid "Open-ended"
 msgstr "Open-ended"
@@ -3145,8 +3080,8 @@ msgstr "Gifts through these Flux Forms forms count for this type. Map each price
 msgid "No payment form found in Flux Forms yet."
 msgstr "No payment form found in Flux Forms yet."
 
-msgid "also linked to:%s"
-msgstr "also linked to:%s"
+msgid "also linked to: %s"
+msgstr "also linked to: %s"
 
 msgid "Save after choosing a form to map its choices."
 msgstr "Save after choosing a form to map its choices."
@@ -3196,8 +3131,8 @@ msgstr "from the name"
 msgid "Remove option"
 msgstr "Remove option"
 
-msgid "— note set"
-msgstr "— note set"
+msgid "— not set"
+msgstr "— not set"
 
 msgid "Units per choice"
 msgstr "Units per choice"
@@ -3214,8 +3149,8 @@ msgstr "Translations"
 msgid "Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names."
 msgstr "Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names."
 
-msgid "Option:%s"
-msgstr "Option:%s"
+msgid "Option: %s"
+msgstr "Option: %s"
 
 msgid "Each unit of a gift becomes its own item with a 7-digit code: approved, sent to a partner, completed, delivered to the owner, with files and history."
 msgstr "Each unit of a gift becomes its own item with a 7-digit code: approved, sent to a partner, completed, delivered to the owner, with files and history."
@@ -3253,8 +3188,8 @@ msgstr "All of the meat goes to people in need"
 msgid "Mapping for “%s”"
 msgstr "Mapping for “%s”"
 
-msgid "This form charges in%1$sbut the donation type is in%2$s: its payments are stopped until both use the same currency."
-msgstr "This form charges in%1$sbut the donation type is in%2$s: its payments are stopped until both use the same currency."
+msgid "This form charges in %1$s but the donation type is in %2$s: its payments are stopped until both use the same currency."
+msgstr "This form charges in %1$s but the donation type is in %2$s: its payments are stopped until both use the same currency."
 
 msgid "This form has no priced choices to map."
 msgstr "This form has no priced choices to map."
@@ -3265,8 +3200,8 @@ msgstr "Form choice"
 msgid "Units"
 msgstr "Units"
 
-msgid "form price:%s"
-msgstr "form price:%s"
+msgid "form price: %s"
+msgstr "form price: %s"
 
 msgid "Not mapped (form price)"
 msgstr "Not mapped (form price)"
@@ -3289,8 +3224,8 @@ msgstr "Proxy consent field"
 msgid "Monthly, weekly or yearly gifts charged automatically by the payment provider."
 msgstr "Monthly, weekly or yearly gifts charged automatically by the payment provider."
 
-msgid "Name, e-mail, phone, reference..."
-msgstr "Name, e-mail, phone, reference..."
+msgid "Name, e-mail, phone, reference…"
+msgstr "Name, e-mail, phone, reference…"
 
 msgid "No recurring donations yet"
 msgstr "No recurring donations yet"
@@ -3298,22 +3233,17 @@ msgstr "No recurring donations yet"
 msgid "A recurring donation is created when a payment form is set to charge every day, week, month or year."
 msgstr "A recurring donation is created when a payment form is set to charge every day, week, month or year."
 
-msgid "%srecurring donation"
-msgid_plural "%srecurring donations"
-msgstr[0] "%srecurring donation"
-msgstr[1] "%srecurring donations"
-
 msgid "Interval"
 msgstr "Interval"
 
 msgid "Next charge"
 msgstr "Next charge"
 
-msgid "Attempt%1$sof%2$sfailed:%3$s"
-msgstr "Attempt%1$sof%2$sfailed:%3$s"
+msgid "Attempt %1$s of %2$s failed: %3$s"
+msgstr "Attempt %1$s of %2$s failed: %3$s"
 
-msgid "canceled%s"
-msgstr "canceled%s"
+msgid "canceled %s"
+msgstr "canceled %s"
 
 msgid "Cancel this recurring donation at the payment provider? No further charges will be made."
 msgstr "Cancel this recurring donation at the payment provider? No further charges will be made."
@@ -3324,8 +3254,8 @@ msgstr "Card payments: the official iyzico plugin is enabled."
 msgid "Card payments: Flux Donate iyzico (the official iyzico plugin is not enabled)."
 msgstr "Card payments: Flux Donate iyzico (the official iyzico plugin is not enabled)."
 
-msgid "Card payments:%s."
-msgstr "Card payments:%s."
+msgid "Card payments: %s."
+msgstr "Card payments: %s."
 
 msgid "No card method is enabled (WooCommerce › Settings › Payments)."
 msgstr "No card method is enabled (WooCommerce › Settings › Payments)."
@@ -3405,8 +3335,8 @@ msgstr "A short message to the donor's phone when a transfer is registered (thro
 msgid "WhatsApp text"
 msgstr "WhatsApp text"
 
-msgid "Placeholders:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}"
-msgstr "Placeholders:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}"
+msgid "Placeholders: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site}"
+msgstr "Placeholders: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site}"
 
 msgid "SMS text"
 msgstr "SMS text"
@@ -3465,8 +3395,8 @@ msgstr "iyzico"
 msgid "Show every enabled card method"
 msgstr "Show every enabled card method"
 
-msgid "Donors see one card method; now:%s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
-msgstr "Donors see one card method; now:%s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
+msgid "Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
+msgstr "Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
 
 msgid "all"
 msgstr "all"
@@ -3555,8 +3485,8 @@ msgstr "Preset amounts (free amount)"
 msgid "Separated by spaces, e.g. 250 500 1000."
 msgstr "Separated by spaces, e.g. 250 500 1000."
 
-msgid "Preset amounts in%s"
-msgstr "Preset amounts in%s"
+msgid "Preset amounts in %s"
+msgstr "Preset amounts in %s"
 
 msgid "Page address"
 msgstr "Page address"
@@ -3564,8 +3494,8 @@ msgstr "Page address"
 msgid "Optional: where its product page and the product XML link go. Empty = the donation page in the WooCommerce settings."
 msgstr "Optional: where its product page and the product XML link go. Empty = the donation page in the WooCommerce settings."
 
-msgid "WooCommerce product #%d(hidden from the shop)."
-msgstr "WooCommerce product #%d(hidden from the shop)."
+msgid "WooCommerce product #%d (hidden from the shop)."
+msgstr "WooCommerce product #%d (hidden from the shop)."
 
 msgid "This order has no donation line."
 msgstr "This order has no donation line."
@@ -3600,8 +3530,8 @@ msgstr "Order line not found."
 msgid "Enter an amount up to what is left to refund."
 msgstr "Enter an amount up to what is left to refund."
 
-msgid "Refunded from Flux Donate by%s"
-msgstr "Refunded from Flux Donate by%s"
+msgid "Refunded from Flux Donate by %s"
+msgstr "Refunded from Flux Donate by %s"
 
 msgid "No donation lines."
 msgstr "No donation lines."
@@ -3627,8 +3557,8 @@ msgstr "Marked as failed in Flux Donate."
 msgid "This payment link has expired. Please fill in the form again."
 msgstr "This payment link has expired. Please fill in the form again."
 
-msgid "Flux Forms entry%scompleted by this payment."
-msgstr "Flux Forms entry%scompleted by this payment."
+msgid "Flux Forms entry %s completed by this payment."
+msgstr "Flux Forms entry %s completed by this payment."
 
 msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed."
 msgstr "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed."
@@ -3666,7 +3596,7 @@ msgstr "Name on the card"
 msgid "Expiry (MM/YY)"
 msgstr "Expiry (MM/YY)"
 
-msgctxt "context_def6e4575e04"
+msgctxt "card expiry placeholder"
 msgid "MM/YY"
 msgstr "MM/YY"
 
@@ -3694,8 +3624,8 @@ msgstr "Installments"
 msgid "Single payment"
 msgstr "Single payment"
 
-msgid "%1$sinstallments ×%2$s(total%3$s)"
-msgstr "%1$sinstallments ×%2$s(total%3$s)"
+msgid "%1$s installments × %2$s (total %3$s)"
+msgstr "%1$s installments × %2$s (total %3$s)"
 
 msgid "Installment options appear after the card number."
 msgstr "Installment options appear after the card number."
@@ -3736,8 +3666,8 @@ msgstr "This saved card cannot be used any more. Please enter the card."
 msgid "This installment option is not available for the card. Please choose another."
 msgstr "This installment option is not available for the card. Please choose another."
 
-msgid "Card payment could not start:%1$s(card%2$s,%3$s)."
-msgstr "Card payment could not start:%1$s(card%2$s,%3$s)."
+msgid "Card payment could not start: %1$s (card %2$s, %3$s)."
+msgstr "Card payment could not start: %1$s (card %2$s, %3$s)."
 
 msgid "test mode"
 msgstr "test mode"
@@ -3745,11 +3675,11 @@ msgstr "test mode"
 msgid "live"
 msgstr "live"
 
-msgid "Card payment started:%1$sinstallments,%2$scharged by the bank."
-msgstr "Card payment started:%1$sinstallments,%2$scharged by the bank."
+msgid "Card payment started: %1$s installments, %2$s charged by the bank."
+msgstr "Card payment started: %1$s installments, %2$s charged by the bank."
 
-msgid "iyzico 3D Secure:%s"
-msgstr "iyzico 3D Secure:%s"
+msgid "iyzico 3D Secure: %s"
+msgstr "iyzico 3D Secure: %s"
 
 msgid "The bank did not confirm the 3D Secure code. Please try again."
 msgstr "The bank did not confirm the 3D Secure code. Please try again."
@@ -3823,8 +3753,8 @@ msgstr "Environment: live."
 msgid "iyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything."
 msgstr "iyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything."
 
-msgid "iyzico payment received:%1$s, payment id%2$s(%3$s)."
-msgstr "iyzico payment received:%1$s, payment id%2$s(%3$s)."
+msgid "iyzico payment received: %1$s, payment id %2$s (%3$s)."
+msgstr "iyzico payment received: %1$s, payment id %2$s (%3$s)."
 
 msgid "Enter an amount to refund."
 msgstr "Enter an amount to refund."
@@ -3835,11 +3765,11 @@ msgstr "This order has no iyzico transaction to refund."
 msgid "The amount is more than what is left to refund at iyzico."
 msgstr "The amount is more than what is left to refund at iyzico."
 
-msgid "iyzico refused the refund:%s"
-msgstr "iyzico refused the refund:%s"
+msgid "iyzico refused the refund: %s"
+msgstr "iyzico refused the refund: %s"
 
-msgid "Refunded at iyzico:%1$s.%2$s"
-msgstr "Refunded at iyzico:%1$s.%2$s"
+msgid "Refunded at iyzico: %1$s. %2$s"
+msgstr "Refunded at iyzico: %1$s. %2$s"
 
 msgid "Classic"
 msgstr "Classic"
@@ -3973,17 +3903,17 @@ msgstr "Empty or 0 = no fee for that method (for example bank transfer). Fee = d
 msgid "Please choose what you would like to donate for."
 msgstr "Please choose what you would like to donate for."
 
-msgid "This option cannot be donated in%s. Please choose another currency."
-msgstr "This option cannot be donated in%s. Please choose another currency."
+msgid "This option cannot be donated in %s. Please choose another currency."
+msgstr "This option cannot be donated in %s. Please choose another currency."
 
 msgid "This option cannot be donated online at the moment."
 msgstr "This option cannot be donated online at the moment."
 
-msgid "The number must be between 1 and%s."
-msgstr "The number must be between 1 and%s."
+msgid "The number must be between 1 and %s."
+msgstr "The number must be between 1 and %s."
 
-msgid "The amount must be at least%s."
-msgstr "The amount must be at least%s."
+msgid "The amount must be at least %s."
+msgstr "The amount must be at least %s."
 
 msgid "For this amount please get in touch with us."
 msgstr "For this amount please get in touch with us."
@@ -4006,11 +3936,6 @@ msgstr "This donation needs a proxy (vekâlet) consent, but it is not set up yet
 msgid "The proxy (vekâlet) text has been updated. Please read it again and accept it."
 msgstr "The proxy (vekâlet) text has been updated. Please read it again and accept it."
 
-msgid "Please write at most%sname (one per share)."
-msgid_plural "Please write at most%snames (one per share)."
-msgstr[0] "Please write at most%sname (one per share)."
-msgstr[1] "Please write at most%snames (one per share)."
-
 msgid "The phone number does not look right. Example: 0532 123 45 67"
 msgstr "The phone number does not look right. Example: 0532 123 45 67"
 
@@ -4023,8 +3948,8 @@ msgstr "This cause does not take monthly donations."
 msgid "Monthly donations are not available at the moment."
 msgstr "Monthly donations are not available at the moment."
 
-msgid "Donations in%scannot be paid here at the moment."
-msgstr "Donations in%scannot be paid here at the moment."
+msgid "Donations in %s cannot be paid here at the moment."
+msgstr "Donations in %s cannot be paid here at the moment."
 
 msgid "The donation product could not be found."
 msgstr "The donation product could not be found."
@@ -4032,8 +3957,8 @@ msgstr "The donation product could not be found."
 msgid "It could not be added to the cart."
 msgstr "It could not be added to the cart."
 
-msgid "A donation in your cart cannot be paid in%sand was removed."
-msgstr "A donation in your cart cannot be paid in%sand was removed."
+msgid "A donation in your cart cannot be paid in %s and was removed."
+msgstr "A donation in your cart cannot be paid in %s and was removed."
 
 msgid "A donation in your cart is no longer available and was removed."
 msgstr "A donation in your cart is no longer available and was removed."
@@ -4041,8 +3966,8 @@ msgstr "A donation in your cart is no longer available and was removed."
 msgid "Printed certificates can only be paid in the store currency; your certificate will be sent online."
 msgstr "Printed certificates can only be paid in the store currency; your certificate will be sent online."
 
-msgid "Products in your cart can only be paid in%1$s.<a href=\"%2$s\">Switch to%1$s</a>"
-msgstr "Products in your cart can only be paid in%1$s.<a href=\"%2$s\">Switch to%1$s</a>"
+msgid "Products in your cart can only be paid in %1$s. <a href=\"%2$s\">Switch to %1$s</a>"
+msgstr "Products in your cart can only be paid in %1$s. <a href=\"%2$s\">Switch to %1$s</a>"
 
 msgid "Printed certificate delivery"
 msgstr "Printed certificate delivery"
@@ -4068,14 +3993,14 @@ msgstr "copy to me"
 msgid "Postal address"
 msgstr "Postal address"
 
-msgid "accepted (text version%s)"
-msgstr "accepted (text version%s)"
+msgid "accepted (text version %s)"
+msgstr "accepted (text version %s)"
 
 msgid "Online + printed"
 msgstr "Online + printed"
 
-msgid "%sSapling Donation"
-msgstr "%sSapling Donation"
+msgid "%s Sapling Donation"
+msgstr "%s Sapling Donation"
 
 msgid "Certificate no"
 msgstr "Certificate no"
@@ -4083,14 +4008,14 @@ msgstr "Certificate no"
 msgid "The certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce)."
 msgstr "The certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce)."
 
-msgid "The certificate could not be made:%s"
-msgstr "The certificate could not be made:%s"
+msgid "The certificate could not be made: %s"
+msgstr "The certificate could not be made: %s"
 
 msgid "Not sent yet."
 msgstr "Not sent yet."
 
-msgid "Certificate made:%1$s(%2$s).%3$s"
-msgstr "Certificate made:%1$s(%2$s).%3$s"
+msgid "Certificate made: %1$s (%2$s). %3$s"
+msgstr "Certificate made: %1$s (%2$s). %3$s"
 
 msgid "Certificates made again (%d); the old ones were revoked."
 msgstr "Certificates made again (%d); the old ones were revoked."
@@ -4098,17 +4023,17 @@ msgstr "Certificates made again (%d); the old ones were revoked."
 msgid "No delivery channel is chosen."
 msgstr "No delivery channel is chosen."
 
-msgid "Queued:%s."
-msgstr "Queued:%s."
+msgid "Queued: %s."
+msgstr "Queued: %s."
 
-msgid "Copy to the donor:%s."
-msgstr "Copy to the donor:%s."
+msgid "Copy to the donor: %s."
+msgstr "Copy to the donor: %s."
 
 msgid "The preview could not be drawn. You can open it with \"View certificate\"."
 msgstr "The preview could not be drawn. You can open it with \"View certificate\"."
 
-msgid "No:%s"
-msgstr "No:%s"
+msgid "No: %s"
+msgstr "No: %s"
 
 msgid "View certificate"
 msgstr "View certificate"
@@ -4134,17 +4059,17 @@ msgstr "\"%1$s\" repeats monthly (recurring donation #%2$d); the card is stored 
 msgid "Card (iyzico), monthly"
 msgstr "Card (iyzico), monthly"
 
-msgid "Monthly renewal of recurring donation #%1$d(first order #%2$s)."
-msgstr "Monthly renewal of recurring donation #%1$d(first order #%2$s)."
+msgid "Monthly renewal of recurring donation #%1$d (first order #%2$s)."
+msgstr "Monthly renewal of recurring donation #%1$d (first order #%2$s)."
 
-msgid "Monthly charge accepted by iyzico:%1$s, payment id%2$s."
-msgstr "Monthly charge accepted by iyzico:%1$s, payment id%2$s."
+msgid "Monthly charge accepted by iyzico: %1$s, payment id %2$s."
+msgstr "Monthly charge accepted by iyzico: %1$s, payment id %2$s."
 
-msgid "Monthly charge failed after the last attempt:%s"
-msgstr "Monthly charge failed after the last attempt:%s"
+msgid "Monthly charge failed after the last attempt: %s"
+msgstr "Monthly charge failed after the last attempt: %s"
 
-msgid "Monthly charge failed, it will be retried:%s"
-msgstr "Monthly charge failed, it will be retried:%s"
+msgid "Monthly charge failed, it will be retried: %s"
+msgstr "Monthly charge failed, it will be retried: %s"
 
 msgid "Flux Donate always uses EsnekPOS's secure payment page; the bank asks for 3D Secure there when needed."
 msgstr "Flux Donate always uses EsnekPOS's secure payment page; the bank asks for 3D Secure there when needed."
@@ -4158,32 +4083,32 @@ msgstr "Flux Donate runs this payment method: classic and block checkout, paymen
 msgid "Donation #%d"
 msgstr "Donation #%d"
 
-msgid "EsnekPOS did not answer (HTTP%d)."
-msgstr "EsnekPOS did not answer (HTTP%d)."
+msgid "EsnekPOS did not answer (HTTP %d)."
+msgstr "EsnekPOS did not answer (HTTP %d)."
 
-msgid "EsnekPOS payment could not start:%s"
-msgstr "EsnekPOS payment could not start:%s"
+msgid "EsnekPOS payment could not start: %s"
+msgstr "EsnekPOS payment could not start: %s"
 
-msgid "EsnekPOS payment could not start:%1$s(%2$s)."
-msgstr "EsnekPOS payment could not start:%1$s(%2$s)."
+msgid "EsnekPOS payment could not start: %1$s (%2$s)."
+msgstr "EsnekPOS payment could not start: %1$s (%2$s)."
 
 msgid "The payment is being checked. Please wait a moment and refresh the page."
 msgstr "The payment is being checked. Please wait a moment and refresh the page."
 
-msgid "EsnekPOS payment could not be checked:%s"
-msgstr "EsnekPOS payment could not be checked:%s"
+msgid "EsnekPOS payment could not be checked: %s"
+msgstr "EsnekPOS payment could not be checked: %s"
 
 msgid "The payment could not be verified yet. If money was taken from your card, please contact us before trying again."
 msgstr "The payment could not be verified yet. If money was taken from your card, please contact us before trying again."
 
-msgid "EsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged."
-msgstr "EsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged."
+msgid "EsnekPOS payment received: reference %1$s, %2$s installment(s), %3$s charged."
+msgstr "EsnekPOS payment received: reference %1$s, %2$s installment(s), %3$s charged."
 
 msgid "EsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything."
 msgstr "EsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything."
 
-msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment:%s"
-msgstr "EsnekPOS return said success but EsnekPOS did not confirm the payment:%s"
+msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment: %s"
+msgstr "EsnekPOS return said success but EsnekPOS did not confirm the payment: %s"
 
 msgid "EsnekPOS: the payment was not completed (%s)."
 msgstr "EsnekPOS: the payment was not completed (%s)."
@@ -4203,16 +4128,11 @@ msgstr "On EsnekPOS's payment page, as set in the EsnekPOS panel."
 msgid "Refund in the EsnekPOS panel, then mark the order refunded."
 msgstr "Refund in the EsnekPOS panel, then mark the order refunded."
 
-msgid "Donation of%1$ssapling.%2$splants it for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgid_plural "Donation of%1$ssaplings.%2$splants them for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgstr[0] "Donation of%1$ssapling.%2$splants it for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgstr[1] "Donation of%1$ssaplings.%2$splants them for you and sends an online certificate in your name. Pay by card or bank transfer."
-
 msgid "Donation packages"
 msgstr "Donation packages"
 
-msgid "Donation >%s"
-msgstr "Donation >%s"
+msgid "Donation > %s"
+msgstr "Donation > %s"
 
 msgid "I will also cover the transaction fee"
 msgstr "I will also cover the transaction fee"
@@ -4238,26 +4158,26 @@ msgstr "Most popular"
 msgid "Family pack"
 msgstr "Family pack"
 
-msgid "Hello{ad}, your donation of{tutar}is registered. IBAN:{iban}Reference:{aciklama}Upload your receipt:{link}"
-msgstr "Hello{ad}, your donation of{tutar}is registered. IBAN:{iban}Reference:{aciklama}Upload your receipt:{link}"
+msgid "Hello {ad}, your donation of {tutar} is registered. IBAN: {iban} Reference: {aciklama} Upload your receipt: {link}"
+msgstr "Hello {ad}, your donation of {tutar} is registered. IBAN: {iban} Reference: {aciklama} Upload your receipt: {link}"
 
-msgid "Hello{ad}🌱\n\nYour donation of *{tutar}* is registered (No:{siparis}).\n\nBank transfer details:\nRecipient:{alici}\nIBAN:{iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
-msgstr "Hello{ad}🌱\n\nYour donation of *{tutar}* is registered (No:{siparis}).\n\nBank transfer details:\nRecipient:{alici}\nIBAN:{iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
+msgid "Hello {ad} 🌱\n\nYour donation of *{tutar}* is registered (No: {siparis}).\n\nBank transfer details:\nRecipient: {alici}\nIBAN: {iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
+msgstr "Hello {ad} 🌱\n\nYour donation of *{tutar}* is registered (No: {siparis}).\n\nBank transfer details:\nRecipient: {alici}\nIBAN: {iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
 
-msgid "Pending transfer notification sent:%s."
-msgstr "Pending transfer notification sent:%s."
+msgid "Pending transfer notification sent: %s."
+msgstr "Pending transfer notification sent: %s."
 
 msgid "WooCommerce checks"
 msgstr "WooCommerce checks"
 
-msgid "Version%1$sis active. Flux Donate was checked up to%2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
-msgstr "Version%1$sis active. Flux Donate was checked up to%2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
+msgid "Version %1$s is active. Flux Donate was checked up to %2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
+msgstr "Version %1$s is active. Flux Donate was checked up to %2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
 
-msgid "Active, version%s. Donations are paid through the WooCommerce cart and checkout."
-msgstr "Active, version%s. Donations are paid through the WooCommerce cart and checkout."
+msgid "Active, version %s. Donations are paid through the WooCommerce cart and checkout."
+msgstr "Active, version %s. Donations are paid through the WooCommerce cart and checkout."
 
-msgid "One-time card payments are taken by%s; iyzico is not shown at the checkout."
-msgstr "One-time card payments are taken by%s; iyzico is not shown at the checkout."
+msgid "One-time card payments are taken by %s; iyzico is not shown at the checkout."
+msgstr "One-time card payments are taken by %s; iyzico is not shown at the checkout."
 
 msgid "One-time card payments are taken by the official iyzico WooCommerce plugin."
 msgstr "One-time card payments are taken by the official iyzico WooCommerce plugin."
@@ -4268,8 +4188,8 @@ msgstr "Card payments use our own card fields on the checkout (iyzico 3D Secure,
 msgid "One-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled)."
 msgstr "One-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled)."
 
-msgid "Card payments are taken by:%s."
-msgstr "Card payments are taken by:%s."
+msgid "Card payments are taken by: %s."
+msgstr "Card payments are taken by: %s."
 
 msgid "No card method is enabled; donations can only be paid by bank transfer."
 msgstr "No card method is enabled; donations can only be paid by bank transfer."
@@ -4304,20 +4224,20 @@ msgstr "Two bank transfer methods"
 msgid "WooCommerce's own \"Direct bank transfer\" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable \"Direct bank transfer\"."
 msgstr "WooCommerce's own \"Direct bank transfer\" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable \"Direct bank transfer\"."
 
-msgid "The shop currency is%1$s; these types use another currency and are charged in%1$sat the same number:%2$s"
-msgstr "The shop currency is%1$s; these types use another currency and are charged in%1$sat the same number:%2$s"
+msgid "The shop currency is %1$s; these types use another currency and are charged in %1$s at the same number: %2$s"
+msgstr "The shop currency is %1$s; these types use another currency and are charged in %1$s at the same number: %2$s"
 
 msgid "WooCommerce settings"
 msgstr "WooCommerce settings"
 
-msgid "Donation types and the shop use%s."
-msgstr "Donation types and the shop use%s."
+msgid "Donation types and the shop use %s."
+msgstr "Donation types and the shop use %s."
 
 msgid "Donation products"
 msgstr "Donation products"
 
-msgid "These types get their hidden WooCommerce product the first time they are donated to or saved:%s"
-msgstr "These types get their hidden WooCommerce product the first time they are donated to or saved:%s"
+msgid "These types get their hidden WooCommerce product the first time they are donated to or saved: %s"
+msgstr "These types get their hidden WooCommerce product the first time they are donated to or saved: %s"
 
 msgid "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
 msgstr "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
@@ -4328,11 +4248,11 @@ msgstr "No page with the donation options block is selected."
 msgid "Other payment plugins"
 msgstr "Other payment plugins"
 
-msgid "Check these on the donation checkout:%s. Details: Donations › Settings › WooCommerce › Payment methods."
-msgstr "Check these on the donation checkout:%s. Details: Donations › Settings › WooCommerce › Payment methods."
+msgid "Check these on the donation checkout: %s. Details: Donations › Settings › WooCommerce › Payment methods."
+msgstr "Check these on the donation checkout: %s. Details: Donations › Settings › WooCommerce › Payment methods."
 
-msgid "Enabled and shown on the donation checkout:%s."
-msgstr "Enabled and shown on the donation checkout:%s."
+msgid "Enabled and shown on the donation checkout: %s."
+msgstr "Enabled and shown on the donation checkout: %s."
 
 msgid "Certificates after payment"
 msgstr "Certificates after payment"
@@ -4346,8 +4266,8 @@ msgstr "Flux Certificates has no active template."
 msgid "Product XML"
 msgstr "Product XML"
 
-msgid "%1$slists%2$ddonation packages (Google Merchant format, e.g. for iyzico)."
-msgstr "%1$slists%2$ddonation packages (Google Merchant format, e.g. for iyzico)."
+msgid "%1$s lists %2$d donation packages (Google Merchant format, e.g. for iyzico)."
+msgstr "%1$s lists %2$d donation packages (Google Merchant format, e.g. for iyzico)."
 
 msgid "Payment forms on the checkout"
 msgstr "Payment forms on the checkout"
@@ -4355,8 +4275,8 @@ msgstr "Payment forms on the checkout"
 msgid "Donation forms send their choice to the WooCommerce cart; \"Payment completed\" automations run when the order is paid."
 msgstr "Donation forms send their choice to the WooCommerce cart; \"Payment completed\" automations run when the order is paid."
 
-msgid "Flux Forms%sis active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
-msgstr "Flux Forms%sis active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
+msgid "Flux Forms %s is active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
+msgstr "Flux Forms %s is active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
 
 msgid "Donation e-mails"
 msgstr "Donation e-mails"
@@ -4385,8 +4305,8 @@ msgstr "Empty = the holder of the bank account below or, without an IBAN here, o
 msgid "The account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce's \"Direct bank transfer\", else the theme settings; recipient and bank then come from that account too."
 msgstr "The account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce's \"Direct bank transfer\", else the theme settings; recipient and bank then come from that account too."
 
-msgid "What the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}"
-msgstr "What the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}"
+msgid "What the donor writes in the transfer description. Placeholders: {tur} (sapling donation / donation), {kod} (prefix + order no), {siparis}, {ad}. Empty: {tur} {kod} {ad}"
+msgstr "What the donor writes in the transfer description. Placeholders: {tur} (sapling donation / donation), {kod} (prefix + order no), {siparis}, {ad}. Empty: {tur} {kod} {ad}"
 
 msgid "Bank transfer pre-registration: waiting for the payment."
 msgstr "Bank transfer pre-registration: waiting for the payment."
@@ -4448,13 +4368,8 @@ msgstr "Please write at most one name per share."
 msgid "/ month"
 msgstr "/ month"
 
-msgid "(up to%s)"
-msgstr "(up to%s)"
-
-msgid "%sSapling"
-msgid_plural "%sSaplings"
-msgstr[0] "%sSapling"
-msgstr[1] "%sSaplings"
+msgid "(up to %s)"
+msgstr "(up to %s)"
 
 msgid "Who is this donation for?"
 msgstr "Who is this donation for?"
@@ -4522,8 +4437,8 @@ msgstr "Go to cart"
 msgid "Your donation"
 msgstr "Your donation"
 
-msgid "from%s"
-msgstr "from%s"
+msgid "from %s"
+msgstr "from %s"
 
 msgid "Payments are taken securely by iyzico."
 msgstr "Payments are taken securely by iyzico."
@@ -4543,8 +4458,8 @@ msgstr "Another amount"
 msgid "Or write another amount"
 msgstr "Or write another amount"
 
-msgid "At least%s"
-msgstr "At least%s"
+msgid "At least %s"
+msgstr "At least %s"
 
 msgid "On whose behalf?"
 msgstr "On whose behalf?"
@@ -4558,14 +4473,14 @@ msgstr "Shares without a name are given in the name from the checkout. With a ph
 msgid "Shares without a name are given in the name from the checkout."
 msgstr "Shares without a name are given in the name from the checkout."
 
-msgid "Read the proxy (vekâlet) text (version%s)"
-msgstr "Read the proxy (vekâlet) text (version%s)"
+msgid "Read the proxy (vekâlet) text (version %s)"
+msgstr "Read the proxy (vekâlet) text (version %s)"
 
 msgid "I give my proxy (vekâlet) for the sacrifice according to this text."
 msgstr "I give my proxy (vekâlet) for the sacrifice according to this text."
 
-msgid "Share%s"
-msgstr "Share%s"
+msgid "Share %s"
+msgstr "Share %s"
 
 msgid "Apply to all"
 msgstr "Apply to all"
@@ -4579,16 +4494,11 @@ msgstr "No receipt is expected for this donation."
 msgid "At most 5 receipts can be uploaded for a donation."
 msgstr "At most 5 receipts can be uploaded for a donation."
 
-msgid "The donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it."
-msgstr "The donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it."
+msgid "The donor uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
+msgstr "The donor uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
 
 msgid "the site"
 msgstr "the site"
-
-msgid "Warning: this receipt was uploaded before (%1$dtime, via%2$s). Check it before confirming the payment."
-msgid_plural "Warning: this receipt was uploaded before (%1$dtimes, via%2$s). Check it before confirming the payment."
-msgstr[0] "Warning: this receipt was uploaded before (%1$dtime, via%2$s). Check it before confirming the payment."
-msgstr[1] "Warning: this receipt was uploaded before (%1$dtimes, via%2$s). Check it before confirming the payment."
 
 msgid "Earlier donation: #%d."
 msgstr "Earlier donation: #%d."
@@ -4623,11 +4533,6 @@ msgstr "Your bank transfer donations. If you have made the payment, upload your 
 msgid "Donation #%s"
 msgstr "Donation #%s"
 
-msgid "%sdonation is awaiting payment"
-msgid_plural "%sdonations are awaiting payment"
-msgstr[0] "%sdonation is awaiting payment"
-msgstr[1] "%sdonations are awaiting payment"
-
 msgid "If you have made the transfer, upload your receipt."
 msgstr "If you have made the transfer, upload your receipt."
 
@@ -4640,8 +4545,8 @@ msgstr "Write at least one. We send your receipt and certificate there."
 msgid "Continue to payment"
 msgstr "Continue to payment"
 
-msgid "I have read and accept the%1$sprivacy policy%2$sand the%3$sdonation agreement%4$s."
-msgstr "I have read and accept the%1$sprivacy policy%2$sand the%3$sdonation agreement%4$s."
+msgid "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s."
+msgstr "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s."
 
 msgid "Make payment"
 msgstr "Make payment"
@@ -4655,8 +4560,8 @@ msgstr "Donation terms"
 msgid "Privacy policy"
 msgstr "Privacy policy"
 
-msgid "These terms apply to donations made on this site to%s."
-msgstr "These terms apply to donations made on this site to%s."
+msgid "These terms apply to donations made on this site to %s."
+msgstr "These terms apply to donations made on this site to %s."
 
 msgid "A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose."
 msgstr "A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose."
@@ -4679,14 +4584,14 @@ msgstr "If a donation was made by mistake (wrong amount or a double payment), wr
 msgid "Your name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details."
 msgstr "Your name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details."
 
-msgid "For any question about your donation, write to us on WhatsApp:%s"
-msgstr "For any question about your donation, write to us on WhatsApp:%s"
+msgid "For any question about your donation, write to us on WhatsApp: %s"
+msgstr "For any question about your donation, write to us on WhatsApp: %s"
 
 msgid "For any question about your donation, write to us through the contact page."
 msgstr "For any question about your donation, write to us through the contact page."
 
-msgid "%sprocesses your personal data under the Turkish Personal Data Protection Law (KVKK)."
-msgstr "%sprocesses your personal data under the Turkish Personal Data Protection Law (KVKK)."
+msgid "%s processes your personal data under the Turkish Personal Data Protection Law (KVKK)."
+msgstr "%s processes your personal data under the Turkish Personal Data Protection Law (KVKK)."
 
 msgid "What we collect"
 msgstr "What we collect"
@@ -4787,8 +4692,8 @@ msgstr "WooCommerce payments"
 msgid "Payment logos on the site"
 msgstr "Payment logos on the site"
 
-msgid "Checkout page:%s."
-msgstr "Checkout page:%s."
+msgid "Checkout page: %s."
+msgstr "Checkout page: %s."
 
 msgid "Checkout block"
 msgstr "Checkout block"
@@ -4814,8 +4719,8 @@ msgstr "Point at a mark for details."
 msgid "Donation type not found."
 msgstr "Donation type not found."
 
-msgid "of%sgoal"
-msgstr "of%sgoal"
+msgid "of %s goal"
+msgstr "of %s goal"
 
 msgid "Goal progress"
 msgstr "Goal progress"
@@ -4835,17 +4740,17 @@ msgstr "Each tab must be a JSON object."
 msgid "A tab needs an \"id\"."
 msgstr "A tab needs an \"id\"."
 
-msgid "Tab%1$s: \"on\" must be item or donation, not%2$s."
-msgstr "Tab%1$s: \"on\" must be item or donation, not%2$s."
+msgid "Tab %1$s: \"on\" must be item or donation, not %2$s."
+msgstr "Tab %1$s: \"on\" must be item or donation, not %2$s."
 
-msgid "Tab%s: every field needs a \"key\"."
-msgstr "Tab%s: every field needs a \"key\"."
+msgid "Tab %s: every field needs a \"key\"."
+msgstr "Tab %s: every field needs a \"key\"."
 
-msgid "Tab%1$s, field%2$s: unknown type%3$s."
-msgstr "Tab%1$s, field%2$s: unknown type%3$s."
+msgid "Tab %1$s, field %2$s: unknown type %3$s."
+msgstr "Tab %1$s, field %2$s: unknown type %3$s."
 
-msgid "The JSON could not be read:%s"
-msgstr "The JSON could not be read:%s"
+msgid "The JSON could not be read: %s"
+msgstr "The JSON could not be read: %s"
 
 msgid "Tracked items"
 msgstr "Tracked items"
@@ -4865,8 +4770,8 @@ msgstr "Take back from the partner"
 msgid "Mark completed"
 msgstr "Mark completed"
 
-msgid "Your gift on behalf of%1$sis completed. Thank you. Code:%2$s"
-msgstr "Your gift on behalf of%1$sis completed. Thank you. Code:%2$s"
+msgid "Your gift on behalf of %1$s is completed. Thank you. Code: %2$s"
+msgstr "Your gift on behalf of %1$s is completed. Thank you. Code: %2$s"
 
 msgid "Page title"
 msgstr "Page title"
@@ -4889,8 +4794,8 @@ msgstr "Button: take back"
 msgid "Button: mark completed"
 msgstr "Button: mark completed"
 
-msgid "WhatsApp text with the file (%1$sname,%2$scode)"
-msgstr "WhatsApp text with the file (%1$sname,%2$scode)"
+msgid "WhatsApp text with the file (%1$s name, %2$s code)"
+msgstr "WhatsApp text with the file (%1$s name, %2$s code)"
 
 msgid "File added"
 msgstr "File added"
@@ -4904,8 +4809,8 @@ msgstr "File sent to owner"
 msgid "Details changed"
 msgstr "Details changed"
 
-msgid "Choose:%s."
-msgstr "Choose:%s."
+msgid "Choose: %s."
+msgstr "Choose: %s."
 
 msgid "not waiting"
 msgstr "not waiting"
@@ -4961,8 +4866,8 @@ msgstr "The WhatsApp chat could not be opened."
 msgid "Please sign in."
 msgstr "Please sign in."
 
-msgid "received%s"
-msgstr "received%s"
+msgid "received %s"
+msgstr "received %s"
 
 msgid "Recurring donation started"
 msgstr "Recurring donation started"
@@ -4973,8 +4878,8 @@ msgstr "Sent to the donor when a monthly (card) donation is set up."
 msgid "Donor name"
 msgstr "Donor name"
 
-msgid "Interval (monthly...)"
-msgstr "Interval (monthly...)"
+msgid "Interval (monthly…)"
+msgstr "Interval (monthly…)"
 
 msgid "Date of the next payment"
 msgstr "Date of the next payment"
@@ -4985,14 +4890,14 @@ msgstr "Cancel link"
 msgid "monthly"
 msgstr "monthly"
 
-msgid "Your recurring donation to{kurum}"
-msgstr "Your recurring donation to{kurum}"
+msgid "Your recurring donation to {kurum}"
+msgstr "Your recurring donation to {kurum}"
 
-msgid "Thank you,{ad}"
-msgstr "Thank you,{ad}"
+msgid "Thank you, {ad}"
+msgstr "Thank you, {ad}"
 
-msgid "Your{aralik}donation of{tutar}is set up. The next payment will be taken on{sonraki}."
-msgstr "Your{aralik}donation of{tutar}is set up. The next payment will be taken on{sonraki}."
+msgid "Your {aralik} donation of {tutar} is set up. The next payment will be taken on {sonraki}."
+msgstr "Your {aralik} donation of {tutar} is set up. The next payment will be taken on {sonraki}."
 
 msgid "You can cancel your recurring donation at any time with the button below."
 msgstr "You can cancel your recurring donation at any time with the button below."
@@ -5006,17 +4911,17 @@ msgstr "Sent to the donor when the card was declined on every attempt and the re
 msgid "Number of attempts"
 msgstr "Number of attempts"
 
-msgid "We could not take your donation to{kurum}"
-msgstr "We could not take your donation to{kurum}"
+msgid "We could not take your donation to {kurum}"
+msgstr "We could not take your donation to {kurum}"
 
 msgid "Your recurring donation is paused"
 msgstr "Your recurring donation is paused"
 
-msgid "Dear{ad},"
-msgstr "Dear{ad},"
+msgid "Dear {ad},"
+msgstr "Dear {ad},"
 
-msgid "We tried{deneme}times but could not charge your card for your{aralik}donation of{tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
-msgstr "We tried{deneme}times but could not charge your card for your{aralik}donation of{tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
+msgid "We tried {deneme} times but could not charge your card for your {aralik} donation of {tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
+msgstr "We tried {deneme} times but could not charge your card for your {aralik} donation of {tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
 
 msgid "Donate again"
 msgstr "Donate again"
@@ -5039,20 +4944,20 @@ msgstr "File name"
 msgid "Order link (admin)"
 msgstr "Order link (admin)"
 
-msgid "Receipt uploaded: donation #{siparis}({ad})"
-msgstr "Receipt uploaded: donation #{siparis}({ad})"
+msgid "Receipt uploaded: donation #{siparis} ({ad})"
+msgstr "Receipt uploaded: donation #{siparis} ({ad})"
 
 msgid "A transfer receipt was uploaded"
 msgstr "A transfer receipt was uploaded"
 
-msgid "Amount:{tutar}"
-msgstr "Amount:{tutar}"
+msgid "Amount: {tutar}"
+msgstr "Amount: {tutar}"
 
-msgid "Reference:{aciklama}"
-msgstr "Reference:{aciklama}"
+msgid "Reference: {aciklama}"
+msgstr "Reference: {aciklama}"
 
-msgid "File:{dosya}"
-msgstr "File:{dosya}"
+msgid "File: {dosya}"
+msgstr "File: {dosya}"
 
 msgid "Check the payment at the bank and press \"Confirm payment\" on the order; the certificate is then issued and sent automatically."
 msgstr "Check the payment at the bank and press \"Confirm payment\" on the order; the certificate is then issued and sent automatically."
@@ -5069,14 +4974,14 @@ msgstr "We could not confirm your donation payment"
 msgid "We could not confirm your payment"
 msgstr "We could not confirm your payment"
 
-msgid "Hello{ad},"
-msgstr "Hello{ad},"
+msgid "Hello {ad},"
+msgstr "Hello {ad},"
 
-msgid "We could not confirm the payment of your{tutar}donation."
-msgstr "We could not confirm the payment of your{tutar}donation."
+msgid "We could not confirm the payment of your {tutar} donation."
+msgstr "We could not confirm the payment of your {tutar} donation."
 
-msgid "Reason:{aciklama}"
-msgstr "Reason:{aciklama}"
+msgid "Reason: {aciklama}"
+msgstr "Reason: {aciklama}"
 
 msgid "If you think this is a mistake, please reply to this e-mail. Thank you."
 msgstr "If you think this is a mistake, please reply to this e-mail. Thank you."
@@ -5090,8 +4995,8 @@ msgstr "The name shown on receipts and donor e-mails (max. 190 characters)."
 msgid "The organisation name cannot be empty."
 msgstr "The organisation name cannot be empty."
 
-msgid "Organisation name saved:%s"
-msgstr "Organisation name saved:%s"
+msgid "Organisation name saved: %s"
+msgstr "Organisation name saved: %s"
 
 msgid "Set the default currency"
 msgstr "Set the default currency"
@@ -5102,8 +5007,8 @@ msgstr "Used for new donation types and manual entries."
 msgid "Unsupported currency."
 msgstr "Unsupported currency."
 
-msgid "Default currency:%s"
-msgstr "Default currency:%s"
+msgid "Default currency: %s"
+msgstr "Default currency: %s"
 
 msgid "Open a donation type"
 msgstr "Open a donation type"
@@ -5114,8 +5019,8 @@ msgstr "Sets a closed donation type that already has a price (or a free amount) 
 msgid "This type has no option with a price and no free amount; set a price first."
 msgstr "This type has no option with a price and no free amount; set a price first."
 
-msgid "Donation type opened:%s"
-msgstr "Donation type opened:%s"
+msgid "Donation type opened: %s"
+msgstr "Donation type opened: %s"
 
 msgid "Set a donation type's unit price"
 msgstr "Set a donation type's unit price"
@@ -5129,14 +5034,14 @@ msgstr "The price must be greater than 0."
 msgid "This type has no active option; add one on the Donation types page."
 msgstr "This type has no active option; add one on the Donation types page."
 
-msgid "Unit price of%1$sset to%2$s%3$s."
-msgstr "Unit price of%1$sset to%2$s%3$s."
+msgid "Unit price of %1$s set to %2$s %3$s."
+msgstr "Unit price of %1$s set to %2$s %3$s."
 
 msgid "Link a form to a donation type"
 msgstr "Link a form to a donation type"
 
-msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms:%s"
-msgstr "Value \"slug=form id\", e.g. \"fidan=3\". Forms:%s"
+msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms: %s"
+msgstr "Value \"slug=form id\", e.g. \"fidan=3\". Forms: %s"
 
 msgid "No form with this id."
 msgstr "No form with this id."
@@ -5147,8 +5052,8 @@ msgstr "The form is already linked."
 msgid "The form could not be linked."
 msgstr "The form could not be linked."
 
-msgid "Form \"%1$s\" linked to%2$s."
-msgstr "Form \"%1$s\" linked to%2$s."
+msgid "Form \"%1$s\" linked to %2$s."
+msgstr "Form \"%1$s\" linked to %2$s."
 
 msgid "Use the form \"slug=value\"."
 msgstr "Use the form \"slug=value\"."
@@ -5177,20 +5082,20 @@ msgstr "The report must be a JSON object."
 msgid "The report needs an \"id\" (letters, digits, dash)."
 msgstr "The report needs an \"id\" (letters, digits, dash)."
 
-msgid "Unknown \"source\":%s. Use donations or items."
-msgstr "Unknown \"source\":%s. Use donations or items."
+msgid "Unknown \"source\": %s. Use donations or items."
+msgstr "Unknown \"source\": %s. Use donations or items."
 
-msgid "Unknown \"group\" value:%s"
-msgstr "Unknown \"group\" value:%s"
+msgid "Unknown \"group\" value: %s"
+msgstr "Unknown \"group\" value: %s"
 
 msgid "Group by at most two dimensions."
 msgstr "Group by at most two dimensions."
 
-msgid "Unknown \"metrics\" value:%s"
-msgstr "Unknown \"metrics\" value:%s"
+msgid "Unknown \"metrics\" value: %s"
+msgstr "Unknown \"metrics\" value: %s"
 
-msgid "\"sort\" must be one of the group or metrics values:%s"
-msgstr "\"sort\" must be one of the group or metrics values:%s"
+msgid "\"sort\" must be one of the group or metrics values: %s"
+msgstr "\"sort\" must be one of the group or metrics values: %s"
 
 msgid "piece"
 msgstr "piece"
@@ -5225,14 +5130,14 @@ msgstr "Yearly"
 msgid "Test provider"
 msgstr "Test provider"
 
-msgid "%1$s(%2$s)"
-msgstr "%1$s(%2$s)"
+msgid "%1$s (%2$s)"
+msgstr "%1$s (%2$s)"
 
-msgid "Last test%1$s:%2$s"
-msgstr "Last test%1$s:%2$s"
+msgid "Last test %1$s: %2$s"
+msgstr "Last test %1$s: %2$s"
 
-msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls%severy 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
-msgstr "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls%severy 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
+msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls %s every 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
+msgstr "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls %s every 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
 
 msgid "Scheduled tasks are running, so a server cron is in place."
 msgstr "Scheduled tasks are running, so a server cron is in place."
@@ -5249,14 +5154,14 @@ msgstr "ALTERNATE_WP_CRON is on."
 msgid "Flux Donate hourly task"
 msgstr "Flux Donate hourly task"
 
-msgid "Last run:%s. Recurring iyzico charges are checked every hour."
-msgstr "Last run:%s. Recurring iyzico charges are checked every hour."
+msgid "Last run: %s. Recurring iyzico charges are checked every hour."
+msgstr "Last run: %s. Recurring iyzico charges are checked every hour."
 
-msgid "Not run yet; the first run is scheduled for%s."
-msgstr "Not run yet; the first run is scheduled for%s."
+msgid "Not run yet; the first run is scheduled for %s."
+msgstr "Not run yet; the first run is scheduled for %s."
 
-msgid "Last run:%s, more than 2 hours ago."
-msgstr "Last run:%s, more than 2 hours ago."
+msgid "Last run: %s, more than 2 hours ago."
+msgstr "Last run: %s, more than 2 hours ago."
 
 msgid "It has never run."
 msgstr "It has never run."
@@ -5267,8 +5172,8 @@ msgstr "WP-Cron is off, so a server cron job must call wp-cron.php. It seems to 
 msgid "WP-Cron only runs on visits and may be blocked by the host or a security plugin. Use \"Test cron\" or add a server cron job."
 msgstr "WP-Cron only runs on visits and may be blocked by the host or a security plugin. Use \"Test cron\" or add a server cron job."
 
-msgid "Next scheduled:%s."
-msgstr "Next scheduled:%s."
+msgid "Next scheduled: %s."
+msgstr "Next scheduled: %s."
 
 msgid "The task is not scheduled; it is added again on the next page load."
 msgstr "The task is not scheduled; it is added again on the next page load."
@@ -5303,11 +5208,11 @@ msgstr "No payment provider is available."
 msgid "Payment settings"
 msgstr "Payment settings"
 
-msgid "Card payments are taken with%s."
-msgstr "Card payments are taken with%s."
+msgid "Card payments are taken with %s."
+msgstr "Card payments are taken with %s."
 
-msgid "%sis the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
-msgstr "%sis the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
+msgid "%s is the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
+msgstr "%s is the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
 
 msgid "Enter keys"
 msgstr "Enter keys"
@@ -5333,11 +5238,11 @@ msgstr "Use \"Test connection\" to check the keys with iyzico."
 msgid "iyzico keys"
 msgstr "iyzico keys"
 
-msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url):%s. Subscription notification URLs are not needed."
-msgstr "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url):%s. Subscription notification URLs are not needed."
+msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url): %s. Subscription notification URLs are not needed."
+msgstr "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url): %s. Subscription notification URLs are not needed."
 
-msgid "Last notification received:%s."
-msgstr "Last notification received:%s."
+msgid "Last notification received: %s."
+msgstr "Last notification received: %s."
 
 msgid "No notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made)."
 msgstr "No notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made)."
@@ -5353,11 +5258,6 @@ msgstr "Show addresses"
 
 msgid "Failed recurring charges"
 msgstr "Failed recurring charges"
-
-msgid "%drecurring donation stopped after its card was declined 3 times."
-msgid_plural "%drecurring donations stopped after their cards were declined 3 times."
-msgstr[0] "%drecurring donation stopped after its card was declined 3 times."
-msgstr[1] "%drecurring donations stopped after their cards were declined 3 times."
 
 msgid "Stripe keys"
 msgstr "Stripe keys"
@@ -5380,23 +5280,23 @@ msgstr "Webhook signing secret is missing: refunds and renewals made in Stripe w
 msgid "Flux Forms is not active. Donation forms and card payments need it."
 msgstr "Flux Forms is not active. Donation forms and card payments need it."
 
-msgid "Active, version%s."
-msgstr "Active, version%s."
+msgid "Active, version %s."
+msgstr "Active, version %s."
 
-msgid "Version%1$sis active; Flux Donate needs%2$sor later for payments and prices to work together."
-msgstr "Version%1$sis active; Flux Donate needs%2$sor later for payments and prices to work together."
+msgid "Version %1$s is active; Flux Donate needs %2$s or later for payments and prices to work together."
+msgstr "Version %1$s is active; Flux Donate needs %2$s or later for payments and prices to work together."
 
-msgid "Active, version%s. Certificates can be sent after donations."
-msgstr "Active, version%s. Certificates can be sent after donations."
+msgid "Active, version %s. Certificates can be sent after donations."
+msgstr "Active, version %s. Certificates can be sent after donations."
 
-msgid "Version%1$sis active;%2$sor later is recommended."
-msgstr "Version%1$sis active;%2$sor later is recommended."
+msgid "Version %1$s is active; %2$s or later is recommended."
+msgstr "Version %1$s is active; %2$s or later is recommended."
 
 msgid "Not active. Donations are recorded, but no certificate is created or sent."
 msgstr "Not active. Donations are recorded, but no certificate is created or sent."
 
-msgid "WooCommerce is older than%s. Flux Donate 2.0 takes donations through WooCommerce; update it."
-msgstr "WooCommerce is older than%s. Flux Donate 2.0 takes donations through WooCommerce; update it."
+msgid "WooCommerce is older than %s. Flux Donate 2.0 takes donations through WooCommerce; update it."
+msgstr "WooCommerce is older than %s. Flux Donate 2.0 takes donations through WooCommerce; update it."
 
 msgid "WooCommerce is not active. Flux Donate 2.0 takes donations through the WooCommerce cart and checkout; until it is active, only the older Flux Forms payment layer works."
 msgstr "WooCommerce is not active. Flux Donate 2.0 takes donations through the WooCommerce cart and checkout; until it is active, only the older Flux Forms payment layer works."
@@ -5425,36 +5325,26 @@ msgstr "WooCommerce and iyzico plugins"
 msgid "Open donation types"
 msgstr "Open donation types"
 
-msgid "%ddonation type is open and priced."
-msgid_plural "%ddonation types are open and priced."
-msgstr[0] "%ddonation type is open and priced."
-msgstr[1] "%ddonation types are open and priced."
-
 msgid "No donation type is open with a price (or free amount), so forms cannot take donations."
 msgstr "No donation type is open with a price (or free amount), so forms cannot take donations."
 
 msgid "Forms of open donation types"
 msgstr "Forms of open donation types"
 
-msgid "No (existing) form is linked to:%s. Visitors cannot give to these types online."
-msgstr "No (existing) form is linked to:%s. Visitors cannot give to these types online."
+msgid "No (existing) form is linked to: %s. Visitors cannot give to these types online."
+msgstr "No (existing) form is linked to: %s. Visitors cannot give to these types online."
 
 msgid "Every open donation type has a form."
 msgstr "Every open donation type has a form."
 
-msgid "Default currency:%s."
-msgstr "Default currency:%s."
+msgid "Default currency: %s."
+msgstr "Default currency: %s."
 
 msgid "iyzico is not set up for this currency (Donations › Payments › iyzico › currencies)."
 msgstr "iyzico is not set up for this currency (Donations › Payments › iyzico › currencies)."
 
 msgid "Bank accounts (transfer)"
 msgstr "Bank accounts (transfer)"
-
-msgid "%dbank account is listed for bank transfer gifts."
-msgid_plural "%dbank accounts are listed for bank transfer gifts."
-msgstr[0] "%dbank account is listed for bank transfer gifts."
-msgstr[1] "%dbank accounts are listed for bank transfer gifts."
 
 msgid "No bank account is listed. They come from the theme (filter flxb_bank_accounts) and are used when recording bank transfer gifts."
 msgstr "No bank account is listed. They come from the theme (filter flxb_bank_accounts) and are used when recording bank transfer gifts."
@@ -5468,8 +5358,8 @@ msgstr "Not set; receipts and e-mails use the site title \"%s\"."
 msgid "E-mail sending"
 msgstr "E-mail sending"
 
-msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to%s."
-msgstr "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to%s."
+msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to %s."
+msgstr "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to %s."
 
 msgid "Send test e-mail"
 msgstr "Send test e-mail"
@@ -5492,8 +5382,8 @@ msgstr "The site address is not HTTPS. Card payments and payment callbacks need 
 msgid "WordPress security keys (salts)"
 msgstr "WordPress security keys (salts)"
 
-msgid "Missing or weak in wp-config.php:%s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
-msgstr "Missing or weak in wp-config.php:%s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
+msgid "Missing or weak in wp-config.php: %s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
+msgstr "Missing or weak in wp-config.php: %s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
 
 msgid "Set in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working."
 msgstr "Set in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working."
@@ -5501,8 +5391,8 @@ msgstr "Set in wp-config.php. Saved iyzico cards are encrypted with them: do not
 msgid "Up to date (%s)."
 msgstr "Up to date (%s)."
 
-msgid "Tables are at version%1$s, expected%2$s. Deactivate and activate Flux Donate to update them."
-msgstr "Tables are at version%1$s, expected%2$s. Deactivate and activate Flux Donate to update them."
+msgid "Tables are at version %1$s, expected %2$s. Deactivate and activate Flux Donate to update them."
+msgstr "Tables are at version %1$s, expected %2$s. Deactivate and activate Flux Donate to update them."
 
 msgid "No iyzico keys to test."
 msgstr "No iyzico keys to test."
@@ -5513,8 +5403,8 @@ msgstr "sandbox"
 msgid "Connected; iyzico accepted the keys (%s)."
 msgstr "Connected; iyzico accepted the keys (%s)."
 
-msgid "iyzico refused the keys (%1$s):%2$s. Check that the keys belong to this environment."
-msgstr "iyzico refused the keys (%1$s):%2$s. Check that the keys belong to this environment."
+msgid "iyzico refused the keys (%1$s): %2$s. Check that the keys belong to this environment."
+msgstr "iyzico refused the keys (%1$s): %2$s. Check that the keys belong to this environment."
 
 msgid "This server could not reach its own wp-cron.php (%s). WP-Cron cannot start from visits; add a server cron job."
 msgstr "This server could not reach its own wp-cron.php (%s). WP-Cron cannot start from visits; add a server cron job."
@@ -5522,8 +5412,8 @@ msgstr "This server could not reach its own wp-cron.php (%s). WP-Cron cannot sta
 msgid "wp-cron.php answered; WP-Cron can start."
 msgstr "wp-cron.php answered; WP-Cron can start."
 
-msgid "wp-cron.php answered with HTTP%d(blocked by the host or a security plugin?). Add a server cron job."
-msgstr "wp-cron.php answered with HTTP%d(blocked by the host or a security plugin?). Add a server cron job."
+msgid "wp-cron.php answered with HTTP %d (blocked by the host or a security plugin?). Add a server cron job."
+msgstr "wp-cron.php answered with HTTP %d (blocked by the host or a security plugin?). Add a server cron job."
 
 msgid "[%s] Test e-mail from Flux Donate"
 msgstr "[%s] Test e-mail from Flux Donate"
@@ -5531,11 +5421,11 @@ msgstr "[%s] Test e-mail from Flux Donate"
 msgid "This is a test from Donations › Settings › System check. If you can read it, donor e-mails can be sent."
 msgstr "This is a test from Donations › Settings › System check. If you can read it, donor e-mails can be sent."
 
-msgid "Sent to%s. Check that it arrived (and not in spam)."
-msgstr "Sent to%s. Check that it arrived (and not in spam)."
+msgid "Sent to %s. Check that it arrived (and not in spam)."
+msgstr "Sent to %s. Check that it arrived (and not in spam)."
 
-msgid "Sending failed:%s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
-msgstr "Sending failed:%s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
+msgid "Sending failed: %s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
+msgstr "Sending failed: %s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
 
 msgid "Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış."
 msgstr "Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış."
@@ -5745,3 +5635,35 @@ msgstr "Donors can see their donations on %s with a code sent by e-mail or phone
 
 msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
 msgstr "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
+
+msgid "Receipt awaiting approval"
+msgstr "Receipt awaiting approval"
+
+msgid "Receipts awaiting approval"
+msgstr "Receipts awaiting approval"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+
+msgid "Show in the list"
+msgstr "Show in the list"
+
+msgid "Review"
+msgstr "Review"
+
+msgid "Paid gifts"
+msgstr "Paid gifts"
+
+msgid "Open chat"
+msgstr "Open chat"
+
+msgid "This gift has no referral."
+msgstr "This gift has no referral."
+
+msgid "The donor's earlier gifts came through %s."
+msgstr "The donor's earlier gifts came through %s."
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "%s more"
+msgstr[1] "%s more"

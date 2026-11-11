@@ -213,7 +213,7 @@ class FLXB_WC_Recurring {
 		$order->calculate_totals( false );
 		$order->set_status( 'pending' );
 		/* translators: 1: recurring donation id, 2: parent order number */
-		$order->add_order_note( sprintf( __( 'Monthly renewal of recurring donation #%1$d(first order #%2$s).', 'flx-donate' ), (int) $s['id'], $parent ? $parent->get_order_number() : '-' ) );
+		$order->add_order_note( sprintf( __( 'Monthly renewal of recurring donation #%1$d (first order #%2$s).', 'flx-donate' ), (int) $s['id'], $parent ? $parent->get_order_number() : '-' ) );
 		$order->save();
 		$open[ $period ] = (int) $order->get_id();
 		FLXB_Subscriptions::update( (int) $s['id'], array( 'wc_renewal' => array_slice( $open, -6, null, true ) ) );
@@ -235,7 +235,7 @@ class FLXB_WC_Recurring {
 			$order->update_meta_data( '_flxb_iyzico', $info );
 			$order->save_meta_data();
 			/* translators: 1: card, 2: payment id */
-			$order->add_order_note( sprintf( __( 'Monthly charge accepted by iyzico:%1$s, payment id%2$s.', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'] ) );
+			$order->add_order_note( sprintf( __( 'Monthly charge accepted by iyzico: %1$s, payment id %2$s.', 'flx-donate' ), '' !== $info['card'] ? $info['card'] : '-', $info['paymentId'] ) );
 			$order->payment_complete( $info['paymentId'] );
 		}
 		$ids = FLXB_WC_Ledger::sync( wc_get_order( $order->get_id() ) );
@@ -254,10 +254,10 @@ class FLXB_WC_Recurring {
 		}
 		if ( $final ) {
 			/* translators: %s: error */
-			$order->update_status( 'failed', sprintf( __( 'Monthly charge failed after the last attempt:%s', 'flx-donate' ), $error ) );
+			$order->update_status( 'failed', sprintf( __( 'Monthly charge failed after the last attempt: %s', 'flx-donate' ), $error ) );
 		} else {
 			/* translators: %s: error */
-			$order->add_order_note( sprintf( __( 'Monthly charge failed, it will be retried:%s', 'flx-donate' ), $error ) );
+			$order->add_order_note( sprintf( __( 'Monthly charge failed, it will be retried: %s', 'flx-donate' ), $error ) );
 		}
 	}
 }

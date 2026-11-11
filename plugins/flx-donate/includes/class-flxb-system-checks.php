@@ -151,7 +151,7 @@ final class FLXB_System_Checks {
 
 	private static function when( $ts ) {
 		/* translators: 1: date and time, 2: "5 minutes" */
-		return sprintf( __( '%1$s(%2$s)', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', (int) $ts ) ), flx_time_ago( (int) $ts ) );
+		return sprintf( __( '%1$s (%2$s)', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', (int) $ts ) ), flx_time_ago( (int) $ts ) );
 	}
 
 	/** Result of a "Test" button, or null. */
@@ -165,7 +165,7 @@ final class FLXB_System_Checks {
 			return '';
 		}
 		/* translators: 1: date, 2: result */
-		return "\n" . sprintf( __( 'Last test%1$s:%2$s', 'flx-donate' ), self::when( (int) $r['at'] ), (string) $r['message'] );
+		return "\n" . sprintf( __( 'Last test %1$s: %2$s', 'flx-donate' ), self::when( (int) $r['at'] ), (string) $r['message'] );
 	}
 
 	/* ------------------------------------------------------------------
@@ -199,7 +199,7 @@ final class FLXB_System_Checks {
 				__( 'WP-Cron mode', 'flx-donate' ),
 				$fresh ? 'ok' : 'warning',
 				/* translators: %s: wp-cron.php URL */
-				sprintf( __( 'WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls%severy 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run.', 'flx-donate' ), $cron_url )
+				sprintf( __( 'WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls %s every 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run.', 'flx-donate' ), $cron_url )
 				. ( $fresh ? ' ' . __( 'Scheduled tasks are running, so a server cron is in place.', 'flx-donate' ) : ' ' . __( 'Scheduled tasks have not run recently: check the server cron job (Hostinger: hPanel › Advanced › Cron Jobs).', 'flx-donate' ) )
 			);
 		} else {
@@ -216,19 +216,19 @@ final class FLXB_System_Checks {
 		$next = wp_next_scheduled( FLXB_Iyzico_Recurring::HOOK );
 		if ( $fresh ) {
 			/* translators: %s: last run */
-			$out[] = self::c( 'cron.heartbeat', 'Cron', __( 'Flux Donate hourly task', 'flx-donate' ), 'ok', sprintf( __( 'Last run:%s. Recurring iyzico charges are checked every hour.', 'flx-donate' ), self::when( $beat ) ) );
+			$out[] = self::c( 'cron.heartbeat', 'Cron', __( 'Flux Donate hourly task', 'flx-donate' ), 'ok', sprintf( __( 'Last run: %s. Recurring iyzico charges are checked every hour.', 'flx-donate' ), self::when( $beat ) ) );
 		} elseif ( ! $beat && $next && $next > time() && (int) get_option( 'flxb_cron_first_seen', 0 ) > time() - 2 * HOUR_IN_SECONDS ) {
 			/* translators: %s: date */
-			$out[] = self::c( 'cron.heartbeat', 'Cron', __( 'Flux Donate hourly task', 'flx-donate' ), 'info', sprintf( __( 'Not run yet; the first run is scheduled for%s.', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) ) );
+			$out[] = self::c( 'cron.heartbeat', 'Cron', __( 'Flux Donate hourly task', 'flx-donate' ), 'info', sprintf( __( 'Not run yet; the first run is scheduled for %s.', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) ) );
 		} else {
 			$msg   = $beat
 				/* translators: %s: last run */
-				? sprintf( __( 'Last run:%s, more than 2 hours ago.', 'flx-donate' ), self::when( $beat ) )
+				? sprintf( __( 'Last run: %s, more than 2 hours ago.', 'flx-donate' ), self::when( $beat ) )
 				: __( 'It has never run.', 'flx-donate' );
 			$msg  .= ' ' . ( $disabled
 				? __( 'WP-Cron is off, so a server cron job must call wp-cron.php. It seems to be missing or failing.', 'flx-donate' )
 				: __( 'WP-Cron only runs on visits and may be blocked by the host or a security plugin. Use "Test cron" or add a server cron job.', 'flx-donate' ) );
-			$msg  .= $next ? ' ' . sprintf( /* translators: %s: date */ __( 'Next scheduled:%s.', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) ) : ' ' . __( 'The task is not scheduled; it is added again on the next page load.', 'flx-donate' );
+			$msg  .= $next ? ' ' . sprintf( /* translators: %s: date */ __( 'Next scheduled: %s.', 'flx-donate' ), flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) ) : ' ' . __( 'The task is not scheduled; it is added again on the next page load.', 'flx-donate' );
 			$out[] = self::c( 'cron.heartbeat', 'Cron', __( 'Flux Donate hourly task', 'flx-donate' ), 'warning', $msg, self::test_url( 'cron' ), __( 'Test cron', 'flx-donate' ) );
 		}
 
@@ -281,9 +281,9 @@ final class FLXB_System_Checks {
 		}
 		$out[] = $p->is_configured()
 			/* translators: %s: provider name */
-			? self::c( 'pay.provider', 'Payments', __( 'Card payment provider', 'flx-donate' ), 'ok', sprintf( __( 'Card payments are taken with%s.', 'flx-donate' ), $p->label() ), $page, __( 'Payment settings', 'flx-donate' ) )
+			? self::c( 'pay.provider', 'Payments', __( 'Card payment provider', 'flx-donate' ), 'ok', sprintf( __( 'Card payments are taken with %s.', 'flx-donate' ), $p->label() ), $page, __( 'Payment settings', 'flx-donate' ) )
 			/* translators: %s: provider name */
-			: self::c( 'pay.provider', 'Payments', __( 'Card payment provider', 'flx-donate' ), 'error', sprintf( __( '%sis the active provider but its keys are missing, so donation forms show "Online payment is unavailable".', 'flx-donate' ), $p->label() ), $page, __( 'Enter keys', 'flx-donate' ) );
+			: self::c( 'pay.provider', 'Payments', __( 'Card payment provider', 'flx-donate' ), 'error', sprintf( __( '%s is the active provider but its keys are missing, so donation forms show "Online payment is unavailable".', 'flx-donate' ), $p->label() ), $page, __( 'Enter keys', 'flx-donate' ) );
 
 		$iyz = flxf_payment_provider( 'iyzico' );
 		if ( $iyz && ( 'iyzico' === $active || $iyz->is_configured() ) ) {
@@ -311,10 +311,10 @@ final class FLXB_System_Checks {
 			$last  = get_option( FLXB_Iyzico_Notify::LAST_OPT );
 			$hit   = is_array( $last ) && ! empty( $last['at'] ) && time() - (int) $last['at'] <= 30 * DAY_IN_SECONDS ? (int) $last['at'] : 0;
 			/* translators: %s: notification URL */
-			$msg   = sprintf( __( 'Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url):%s. Subscription notification URLs are not needed.', 'flx-donate' ), FLXB_Iyzico_Notify::url() );
+			$msg   = sprintf( __( 'Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url): %s. Subscription notification URLs are not needed.', 'flx-donate' ), FLXB_Iyzico_Notify::url() );
 			$msg  .= ' ' . ( $hit
 				/* translators: %s: date */
-				? sprintf( __( 'Last notification received:%s.', 'flx-donate' ), self::when( $hit ) )
+				? sprintf( __( 'Last notification received: %s.', 'flx-donate' ), self::when( $hit ) )
 				: __( 'No notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made).', 'flx-donate' ) );
 			if ( '' !== FLXB_Iyzico_Notify::woo_key() ) {
 				$msg .= ' ' . __( 'Notifications for WooCommerce orders are forwarded to the iyzico WooCommerce plugin.', 'flx-donate' );
@@ -369,18 +369,18 @@ final class FLXB_System_Checks {
 			$v     = defined( 'FLXF_FORK_VERSION' ) ? (string) FLXF_FORK_VERSION : '';
 			$out[] = '' !== $v && version_compare( $v, self::MIN_FLXFORM, '>=' )
 				/* translators: %s: version */
-				? self::c( 'plugin.flxform', 'Plugins', 'Flux Forms', 'ok', sprintf( __( 'Active, version%s.', 'flx-donate' ), $v ) )
+				? self::c( 'plugin.flxform', 'Plugins', 'Flux Forms', 'ok', sprintf( __( 'Active, version %s.', 'flx-donate' ), $v ) )
 				/* translators: 1: installed version, 2: required version */
-				: self::c( 'plugin.flxform', 'Plugins', 'Flux Forms', 'warning', sprintf( __( 'Version%1$sis active; Flux Donate needs%2$sor later for payments and prices to work together.', 'flx-donate' ), '' !== $v ? $v : '?', self::MIN_FLXFORM ), $plugins, __( 'Plugins', 'flx-donate' ) );
+				: self::c( 'plugin.flxform', 'Plugins', 'Flux Forms', 'warning', sprintf( __( 'Version %1$s is active; Flux Donate needs %2$s or later for payments and prices to work together.', 'flx-donate' ), '' !== $v ? $v : '?', self::MIN_FLXFORM ), $plugins, __( 'Plugins', 'flx-donate' ) );
 		}
 
 		if ( defined( 'FLXS_VERSION' ) ) {
 			$v     = (string) FLXS_VERSION;
 			$out[] = version_compare( $v, self::MIN_FLXS, '>=' )
 				/* translators: %s: version */
-				? self::c( 'plugin.flxs', 'Plugins', 'Flux Certificates', 'ok', sprintf( __( 'Active, version%s. Certificates can be sent after donations.', 'flx-donate' ), $v ) )
+				? self::c( 'plugin.flxs', 'Plugins', 'Flux Certificates', 'ok', sprintf( __( 'Active, version %s. Certificates can be sent after donations.', 'flx-donate' ), $v ) )
 				/* translators: 1: installed version, 2: required version */
-				: self::c( 'plugin.flxs', 'Plugins', 'Flux Certificates', 'warning', sprintf( __( 'Version%1$sis active;%2$sor later is recommended.', 'flx-donate' ), $v, self::MIN_FLXS ), $plugins, __( 'Plugins', 'flx-donate' ) );
+				: self::c( 'plugin.flxs', 'Plugins', 'Flux Certificates', 'warning', sprintf( __( 'Version %1$s is active; %2$s or later is recommended.', 'flx-donate' ), $v, self::MIN_FLXS ), $plugins, __( 'Plugins', 'flx-donate' ) );
 		} else {
 			$out[] = self::c( 'plugin.flxs', 'Plugins', 'Flux Certificates', 'warning', __( 'Not active. Donations are recorded, but no certificate is created or sent.', 'flx-donate' ), $plugins, __( 'Plugins', 'flx-donate' ) );
 		}
@@ -391,7 +391,7 @@ final class FLXB_System_Checks {
 		if ( ! $wc || ! class_exists( 'FLXB_WC' ) || ! FLXB_WC::active() ) {
 			$out[] = self::c( 'plugin.wc', 'Plugins', 'WooCommerce', 'error', $wc
 				/* translators: %s: version */
-				? sprintf( __( 'WooCommerce is older than%s. Flux Donate 2.0 takes donations through WooCommerce; update it.', 'flx-donate' ), class_exists( 'FLXB_WC' ) ? FLXB_WC::MIN_WC : '8.0' )
+				? sprintf( __( 'WooCommerce is older than %s. Flux Donate 2.0 takes donations through WooCommerce; update it.', 'flx-donate' ), class_exists( 'FLXB_WC' ) ? FLXB_WC::MIN_WC : '8.0' )
 				: __( 'WooCommerce is not active. Flux Donate 2.0 takes donations through the WooCommerce cart and checkout; until it is active, only the older Flux Forms payment layer works.', 'flx-donate' ), $plugins, __( 'Plugins', 'flx-donate' ) );
 		}
 		if ( defined( 'FLXWB_VERSION' ) ) {
@@ -445,14 +445,14 @@ final class FLXB_System_Checks {
 		if ( $types ) {
 			$out[] = $unlinked
 				/* translators: %s: donation type names */
-				? self::c( 'cfg.type_forms', 'Config', __( 'Forms of open donation types', 'flx-donate' ), 'warning', sprintf( __( 'No (existing) form is linked to:%s. Visitors cannot give to these types online.', 'flx-donate' ), implode( ', ', array_slice( $unlinked, 0, 6 ) ) . ( count( $unlinked ) > 6 ? '…' : '' ) ), $tpage, __( 'Donation types', 'flx-donate' ) )
+				? self::c( 'cfg.type_forms', 'Config', __( 'Forms of open donation types', 'flx-donate' ), 'warning', sprintf( __( 'No (existing) form is linked to: %s. Visitors cannot give to these types online.', 'flx-donate' ), implode( ', ', array_slice( $unlinked, 0, 6 ) ) . ( count( $unlinked ) > 6 ? '…' : '' ) ), $tpage, __( 'Donation types', 'flx-donate' ) )
 				: self::c( 'cfg.type_forms', 'Config', __( 'Forms of open donation types', 'flx-donate' ), 'ok', __( 'Every open donation type has a form.', 'flx-donate' ) );
 		}
 
 		$cur   = flxb_default_currency();
 		$st    = 'ok';
 		/* translators: %s: currency code */
-		$msg   = sprintf( __( 'Default currency:%s.', 'flx-donate' ), $cur );
+		$msg   = sprintf( __( 'Default currency: %s.', 'flx-donate' ), $cur );
 		if ( function_exists( 'flxf_payment_active_provider_id' ) && 'iyzico' === flxf_payment_active_provider_id() && ( $iyz = flxf_payment_provider( 'iyzico' ) ) && ! in_array( $cur, (array) $iyz->currencies(), true ) ) {
 			$st   = 'warning';
 			$msg .= ' ' . __( 'iyzico is not set up for this currency (Donations › Payments › iyzico › currencies).', 'flx-donate' );
@@ -479,7 +479,7 @@ final class FLXB_System_Checks {
 			__( 'E-mail sending', 'flx-donate' ),
 			$r ? ( $r['ok'] ? 'ok' : 'error' ) : 'info',
 			/* translators: %s: e-mail address */
-			( $r ? '' : sprintf( __( 'Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to%s.', 'flx-donate' ), get_option( 'admin_email' ) ) ) . ltrim( self::result_line( $r ) ),
+			( $r ? '' : sprintf( __( 'Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to %s.', 'flx-donate' ), get_option( 'admin_email' ) ) ) . ltrim( self::result_line( $r ) ),
 			self::test_url( 'mail' ),
 			__( 'Send test e-mail', 'flx-donate' )
 		);
@@ -505,7 +505,7 @@ final class FLXB_System_Checks {
 		}
 		$out[] = $weak
 			/* translators: %s: constant names */
-			? self::c( 'sec.salts', 'Security', __( 'WordPress security keys (salts)', 'flx-donate' ), 'warning', sprintf( __( 'Missing or weak in wp-config.php:%s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working.', 'flx-donate' ), implode( ', ', $weak ) ) )
+			? self::c( 'sec.salts', 'Security', __( 'WordPress security keys (salts)', 'flx-donate' ), 'warning', sprintf( __( 'Missing or weak in wp-config.php: %s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working.', 'flx-donate' ), implode( ', ', $weak ) ) )
 			: self::c( 'sec.salts', 'Security', __( 'WordPress security keys (salts)', 'flx-donate' ), 'ok', __( 'Set in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working.', 'flx-donate' ) );
 
 		$db    = (string) get_option( FLXB_Install::DB_OPTION, '' );
@@ -513,7 +513,7 @@ final class FLXB_System_Checks {
 			/* translators: %s: version */
 			? self::c( 'cfg.db', 'Config', __( 'Database tables', 'flx-donate' ), 'ok', sprintf( __( 'Up to date (%s).', 'flx-donate' ), $db ) )
 			/* translators: 1: stored version, 2: expected version */
-			: self::c( 'cfg.db', 'Config', __( 'Database tables', 'flx-donate' ), 'error', sprintf( __( 'Tables are at version%1$s, expected%2$s. Deactivate and activate Flux Donate to update them.', 'flx-donate' ), '' !== $db ? $db : '—', FLXB_Install::DB_VERSION ), $plugins = admin_url( 'plugins.php' ), __( 'Plugins', 'flx-donate' ) );
+			: self::c( 'cfg.db', 'Config', __( 'Database tables', 'flx-donate' ), 'error', sprintf( __( 'Tables are at version %1$s, expected %2$s. Deactivate and activate Flux Donate to update them.', 'flx-donate' ), '' !== $db ? $db : '—', FLXB_Install::DB_VERSION ), $plugins = admin_url( 'plugins.php' ), __( 'Plugins', 'flx-donate' ) );
 		return $out;
 	}
 
@@ -568,7 +568,7 @@ final class FLXB_System_Checks {
 			return array( 'ok' => true, 'message' => sprintf( __( 'Connected; iyzico accepted the keys (%s).', 'flx-donate' ), $env ), 'sig' => self::key_sig( $c ) );
 		}
 		/* translators: 1: sandbox or live, 2: iyzico error */
-		return array( 'ok' => false, 'message' => sprintf( __( 'iyzico refused the keys (%1$s):%2$s. Check that the keys belong to this environment.', 'flx-donate' ), $env, FLXB_Iyzico_Api::error_text( $res ) ), 'sig' => self::key_sig( $c ) );
+		return array( 'ok' => false, 'message' => sprintf( __( 'iyzico refused the keys (%1$s): %2$s. Check that the keys belong to this environment.', 'flx-donate' ), $env, FLXB_Iyzico_Api::error_text( $res ) ), 'sig' => self::key_sig( $c ) );
 	}
 
 	private static function test_cron() {
@@ -589,7 +589,7 @@ final class FLXB_System_Checks {
 		return 200 === $code
 			? array( 'ok' => true, 'message' => __( 'wp-cron.php answered; WP-Cron can start.', 'flx-donate' ) )
 			/* translators: %d: HTTP status */
-			: array( 'ok' => false, 'message' => sprintf( __( 'wp-cron.php answered with HTTP%d(blocked by the host or a security plugin?). Add a server cron job.', 'flx-donate' ), $code ) );
+			: array( 'ok' => false, 'message' => sprintf( __( 'wp-cron.php answered with HTTP %d (blocked by the host or a security plugin?). Add a server cron job.', 'flx-donate' ), $code ) );
 	}
 
 	private static function test_mail() {
@@ -604,9 +604,9 @@ final class FLXB_System_Checks {
 		remove_action( 'wp_mail_failed', $catch );
 		return $sent
 			/* translators: %s: e-mail address */
-			? array( 'ok' => true, 'message' => sprintf( __( 'Sent to%s. Check that it arrived (and not in spam).', 'flx-donate' ), $to ) )
+			? array( 'ok' => true, 'message' => sprintf( __( 'Sent to %s. Check that it arrived (and not in spam).', 'flx-donate' ), $to ) )
 			/* translators: %s: error */
-			: array( 'ok' => false, 'message' => sprintf( __( 'Sending failed:%s. Set up SMTP (e.g. an SMTP plugin with your mail account).', 'flx-donate' ), '' !== $error ? $error : __( 'unknown error', 'flx-donate' ) ) );
+			: array( 'ok' => false, 'message' => sprintf( __( 'Sending failed: %s. Set up SMTP (e.g. an SMTP plugin with your mail account).', 'flx-donate' ), '' !== $error ? $error : __( 'unknown error', 'flx-donate' ) ) );
 	}
 
 	/* ------------------------------------------------------------------

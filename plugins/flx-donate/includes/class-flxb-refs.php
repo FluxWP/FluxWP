@@ -364,7 +364,7 @@ final class FLXB_Refs {
 				'created_via' => 'flxb-ref',
 				'ref_user_id' => $ref,
 				/* translators: %s: staff member */
-				'note'        => trim( sprintf( __( 'Donation request opened by%s.', 'flx-donate' ), $staff ? $staff->display_name : '#' . $ref ) . "\n" . sanitize_textarea_field( (string) ( $a['note'] ?? '' ) ) ),
+				'note'        => trim( sprintf( __( 'Donation request opened by %s.', 'flx-donate' ), $staff ? $staff->display_name : '#' . $ref ) . "\n" . sanitize_textarea_field( (string) ( $a['note'] ?? '' ) ) ),
 			)
 		);
 		if ( is_wp_error( $order ) ) {

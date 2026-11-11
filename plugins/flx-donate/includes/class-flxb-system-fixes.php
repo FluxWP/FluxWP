@@ -38,7 +38,7 @@ final class FLXB_System_Fixes {
 				}
 				self::save_setting( 'org_name', $name );
 				/* translators: %s: organisation name */
-				return sprintf( __( 'Organisation name saved:%s', 'flx-donate' ), $name );
+				return sprintf( __( 'Organisation name saved: %s', 'flx-donate' ), $name );
 			},
 		);
 
@@ -57,7 +57,7 @@ final class FLXB_System_Fixes {
 				}
 				self::save_setting( 'currency', $value );
 				/* translators: %s: currency code */
-				return sprintf( __( 'Default currency:%s', 'flx-donate' ), $value );
+				return sprintf( __( 'Default currency: %s', 'flx-donate' ), $value );
 			},
 		);
 
@@ -86,7 +86,7 @@ final class FLXB_System_Fixes {
 					}
 					self::save_type( $t, array( 'status' => 'active' ) );
 					/* translators: %s: donation type title */
-					return sprintf( __( 'Donation type opened:%s', 'flx-donate' ), $t['title'] );
+					return sprintf( __( 'Donation type opened: %s', 'flx-donate' ), $t['title'] );
 				},
 			);
 		}
@@ -129,7 +129,7 @@ final class FLXB_System_Fixes {
 				}
 				self::save_type( $t, array( 'options' => $opts ) );
 				/* translators: 1: donation type title, 2: price, 3: currency */
-				return sprintf( __( 'Unit price of%1$sset to%2$s%3$s.', 'flx-donate' ), $t['title'], number_format_i18n( $price, 2 ), $t['currency'] );
+				return sprintf( __( 'Unit price of %1$s set to %2$s %3$s.', 'flx-donate' ), $t['title'], number_format_i18n( $price, 2 ), $t['currency'] );
 			},
 		);
 
@@ -138,7 +138,7 @@ final class FLXB_System_Fixes {
 			$fixes['flxb.type_link_form'] = array(
 				'label'       => __( 'Link a form to a donation type', 'flx-donate' ),
 				/* translators: %s: list of "id: title" */
-				'description' => sprintf( __( 'Value "slug=form id", e.g. "fidan=3". Forms:%s', 'flx-donate' ), implode( ', ', array_slice( array_map( function ( $id, $f ) { return $id . ': ' . $f['title']; }, array_keys( $forms ), $forms ), 0, 20 ) ) ),
+				'description' => sprintf( __( 'Value "slug=form id", e.g. "fidan=3". Forms: %s', 'flx-donate' ), implode( ', ', array_slice( array_map( function ( $id, $f ) { return $id . ': ' . $f['title']; }, array_keys( $forms ), $forms ), 0, 20 ) ) ),
 				'source'      => self::SOURCE,
 				'checks'      => array( 'flxb.cfg.type_forms' ),
 				'value'       => array( 'type' => 'string', 'pattern' => '^[a-z0-9-]+=[0-9]+$' ),
@@ -163,7 +163,7 @@ final class FLXB_System_Fixes {
 						throw new Exception( implode( ' ', FLXB_Types::$notices ) ?: __( 'The form could not be linked.', 'flx-donate' ) );
 					}
 					/* translators: 1: form title, 2: donation type title */
-					return sprintf( __( 'Form "%1$s" linked to%2$s.', 'flx-donate' ), $forms[ $fid ]['title'], $t['title'] );
+					return sprintf( __( 'Form "%1$s" linked to %2$s.', 'flx-donate' ), $forms[ $fid ]['title'], $t['title'] );
 				},
 			);
 		}

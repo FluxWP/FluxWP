@@ -171,7 +171,7 @@ final class FLXB_Reports {
 		$source = (string) ( $r['source'] ?? 'donations' );
 		if ( ! isset( self::sources()[ $source ] ) ) {
 			/* translators: %s: value given */
-			$errors[] = sprintf( __( 'Unknown "source":%s. Use donations or items.', 'flx-donate' ), $source );
+			$errors[] = sprintf( __( 'Unknown "source": %s. Use donations or items.', 'flx-donate' ), $source );
 			$source   = 'donations';
 		}
 		$dims  = self::dims( $source );
@@ -180,7 +180,7 @@ final class FLXB_Reports {
 			$g = (string) $g;
 			if ( ! isset( $dims[ $g ] ) ) {
 				/* translators: %s: value given */
-				$errors[] = sprintf( __( 'Unknown "group" value:%s', 'flx-donate' ), $g );
+				$errors[] = sprintf( __( 'Unknown "group" value: %s', 'flx-donate' ), $g );
 			} elseif ( ! in_array( $g, $group, true ) ) {
 				$group[] = $g;
 			}
@@ -195,7 +195,7 @@ final class FLXB_Reports {
 			$m = (string) $m;
 			if ( ! isset( $mets[ $m ] ) ) {
 				/* translators: %s: value given */
-				$errors[] = sprintf( __( 'Unknown "metrics" value:%s', 'flx-donate' ), $m );
+				$errors[] = sprintf( __( 'Unknown "metrics" value: %s', 'flx-donate' ), $m );
 			} elseif ( ! in_array( $m, $metrics, true ) ) {
 				$metrics[] = $m;
 			}
@@ -229,7 +229,7 @@ final class FLXB_Reports {
 		$sk     = ltrim( $sort, '-' );
 		if ( '' !== $sort && ! in_array( $sk, $group, true ) && ! in_array( $sk, $metrics, true ) ) {
 			/* translators: %s: value given */
-			$errors[] = sprintf( __( '"sort" must be one of the group or metrics values:%s', 'flx-donate' ), $sort );
+			$errors[] = sprintf( __( '"sort" must be one of the group or metrics values: %s', 'flx-donate' ), $sort );
 			$sort     = '';
 		}
 		$date = (string) ( $r['date'] ?? 'created' );
@@ -341,7 +341,7 @@ final class FLXB_Reports {
 		$raw = is_array( $json ) ? $json : json_decode( (string) $json, true );
 		if ( null === $raw ) {
 			/* translators: %s: JSON error message */
-			return new WP_Error( 'flxb_json', sprintf( __( 'The JSON could not be read:%s', 'flx-donate' ), json_last_error_msg() ) );
+			return new WP_Error( 'flxb_json', sprintf( __( 'The JSON could not be read: %s', 'flx-donate' ), json_last_error_msg() ) );
 		}
 		$e = array();
 		$r = self::clean( $raw, $e );

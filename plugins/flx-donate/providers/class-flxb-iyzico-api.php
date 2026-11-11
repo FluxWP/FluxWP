@@ -271,7 +271,7 @@ final class FLXB_Iyzico_Api {
 		}
 		$data = json_decode( (string) wp_remote_retrieve_body( $res ), true );
 		if ( ! is_array( $data ) ) {
-			throw new FLXB_Iyzico_Error( sprintf( /* translators: %d: HTTP status code */ __( 'iyzico gave an unexpected answer (HTTP%d).', 'flx-donate' ), (int) wp_remote_retrieve_response_code( $res ) ) );
+			throw new FLXB_Iyzico_Error( sprintf( /* translators: %d: HTTP status code */ __( 'iyzico gave an unexpected answer (HTTP %d).', 'flx-donate' ), (int) wp_remote_retrieve_response_code( $res ) ) );
 		}
 		return $data;
 	}

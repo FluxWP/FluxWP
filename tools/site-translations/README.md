@@ -54,3 +54,7 @@ The native catalog build does not depend on Flux Lang. Flux Lang handles site UR
 ### Legacy response artifacts
 
 Older response parsing could leave literal newline escapes or Python list framing in gettext IDs and translations. `repair_transport_artifacts.py --repo /path/to/repo` audits this offline; add `--apply` to repair source literals and native/JSON catalogs. It preserves contexts, plural slots and legacy aliases. The response parser now rejects unsupported API shapes instead of stringifying arrays.
+
+### Lost spaces around placeholders
+
+The batch translation step removed spaces next to placeholders in some English IDs (`of%sgoal`, `Thank you,{ad}`). `repair_spacing.py --package plugins/<slug> --base <rev before the batch> --batch <batch rev>` restores them from the older source, adds one space where a placeholder still touches a letter (link wrappers like `%1$sprivacy policy%2$s` are kept), and rewrites source literals plus every JSON/PHP/PO/MO/POT catalog; space-separated machine translations get the same fix. Word changes and hand translations go in `--overrides` (`overrides/flx-donate-spacing.json`). Without `--apply` it only prints the plan.

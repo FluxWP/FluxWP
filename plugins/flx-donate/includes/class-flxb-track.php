@@ -76,7 +76,7 @@ final class FLXB_Track {
 			'do_assign'    => __( 'Send to a partner', 'flx-donate' ),
 			'do_revoke'    => __( 'Take back from the partner', 'flx-donate' ),
 			'do_done'      => __( 'Mark completed', 'flx-donate' ),
-			'caption'      => __( 'Your gift on behalf of%1$sis completed. Thank you. Code:%2$s', 'flx-donate' ),
+			'caption'      => __( 'Your gift on behalf of %1$s is completed. Thank you. Code: %2$s', 'flx-donate' ),
 		);
 	}
 
@@ -93,7 +93,7 @@ final class FLXB_Track {
 			'do_assign'    => __( 'Button: send to partner', 'flx-donate' ),
 			'do_revoke'    => __( 'Button: take back', 'flx-donate' ),
 			'do_done'      => __( 'Button: mark completed', 'flx-donate' ),
-			'caption'      => __( 'WhatsApp text with the file (%1$sname,%2$scode)', 'flx-donate' ),
+			'caption'      => __( 'WhatsApp text with the file (%1$s name, %2$s code)', 'flx-donate' ),
 		);
 	}
 
@@ -456,7 +456,7 @@ final class FLXB_Track {
 			$name = self::place_name( $ref );
 			if ( '' === $name ) {
 				/* translators: %s: what a partner is called, e.g. "Partner" */
-				return array( 'done' => array(), 'skipped' => array(), 'error' => sprintf( __( 'Choose:%s.', 'flx-donate' ), self::label( 'partner' ) ) );
+				return array( 'done' => array(), 'skipped' => array(), 'error' => sprintf( __( 'Choose: %s.', 'flx-donate' ), self::label( 'partner' ) ) );
 			}
 		}
 		foreach ( array_unique( array_map( 'intval', $ids ) ) as $id ) {

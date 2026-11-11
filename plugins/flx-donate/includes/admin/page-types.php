@@ -108,7 +108,7 @@ final class FLXB_Page_Types {
 					$prices[] = '…';
 				}
 				if ( $t['allow_free'] ) {
-					$prices[] = (float) $t['min_amount'] > 0 ? sprintf( /* translators: %s: minimum */ __( 'free amount (min.%s)', 'flx-donate' ), flxb_money( $t['min_amount'], $t['currency'] ) ) : __( 'free amount', 'flx-donate' );
+					$prices[] = (float) $t['min_amount'] > 0 ? sprintf( /* translators: %s: minimum */ __( 'free amount (min. %s)', 'flx-donate' ), flxb_money( $t['min_amount'], $t['currency'] ) ) : __( 'free amount', 'flx-donate' );
 				}
 				$flags = array();
 				if ( $t['allow_quantity'] ) {
@@ -122,7 +122,7 @@ final class FLXB_Page_Types {
 				if ( $p['goal'] > 0 ) {
 					echo '<div class="flxb-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' . esc_attr( (string) $p['percent'] ) . '"><span style="width:' . esc_attr( (string) $p['percent'] ) . '%"></span></div>';
 					/* translators: 1: raised, 2: goal, 3: percent */
-					echo '<small>' . esc_html( sprintf( __( '%1$sof%2$s(%3$s%%)', 'flx-donate' ), flxb_money( $p['raised'], $t['currency'] ), flxb_money( $p['goal'], $t['currency'] ), number_format_i18n( $p['percent'], 0 ) ) ) . '</small>';
+					echo '<small>' . esc_html( sprintf( __( '%1$s of %2$s (%3$s%%)', 'flx-donate' ), flxb_money( $p['raised'], $t['currency'] ), flxb_money( $p['goal'], $t['currency'] ), number_format_i18n( $p['percent'], 0 ) ) ) . '</small>';
 				} else {
 					/* translators: %s: number of donors */
 					echo '<strong>' . esc_html( flxb_money( $p['raised'], $t['currency'] ) ) . '</strong><small>' . esc_html( sprintf( _n( '%s donor', '%s donors', $p['donors'], 'flx-donate' ), number_format_i18n( $p['donors'] ) ) ) . '</small>';
@@ -261,7 +261,7 @@ final class FLXB_Page_Types {
 				echo '<label class="flxb-check"><input type="checkbox" name="form_ids[]" value="' . (int) $fid . '"' . checked( in_array( (int) $fid, $t['form_ids'], true ), true, false ) . '> ' . esc_html( $f['title'] ) . ' <span class="flxb-muted">#' . (int) $fid . '</span>';
 				if ( ! empty( $others[ (int) $fid ] ) ) {
 					/* translators: %s: donation type titles */
-					echo ' <span class="flxb-pill flxb-pill--pending">' . esc_html( sprintf( __( 'also linked to:%s', 'flx-donate' ), implode( ', ', $others[ (int) $fid ] ) ) ) . '</span>';
+					echo ' <span class="flxb-pill flxb-pill--pending">' . esc_html( sprintf( __( 'also linked to: %s', 'flx-donate' ), implode( ', ', $others[ (int) $fid ] ) ) ) . '</span>';
 				}
 				echo '</label>';
 			}
@@ -338,7 +338,7 @@ final class FLXB_Page_Types {
 		echo '<label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Price', 'flx-donate' ) . ' (' . esc_html( $sym ) . ')</span><input type="number" min="0" step="0.01" name="options[' . $i . '][price]" value="' . esc_attr( '' === $o['price'] ? '' : (string) (float) $o['price'] ) . '"></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<button type="button" class="flxb-iconbtn flxb-iconbtn--danger" data-remove aria-label="' . esc_attr__( 'Remove option', 'flx-donate' ) . '">×</button>';
 		echo '<div class="flxb-optrow__more"><label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Unit', 'flx-donate' ) . '</span><select name="options[' . $i . '][unit]">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<option value="">' . esc_html__( '— note set', 'flx-donate' ) . '</option>';
+		echo '<option value="">' . esc_html__( '— not set', 'flx-donate' ) . '</option>';
 		$units = flxb_units();
 		if ( '' !== (string) $o['unit'] && ! isset( $units[ (string) $o['unit'] ] ) ) {
 			$units[ (string) $o['unit'] ] = array( (string) $o['unit'] ); // a custom unit stored earlier
@@ -398,7 +398,7 @@ final class FLXB_Page_Types {
 						continue;
 					}
 					/* translators: %s: option name in the default language */
-					echo '<div class="flxb-field"><label for="' . $id . '-o-' . esc_attr( $o['key'] ) . '">' . esc_html( sprintf( __( 'Option:%s', 'flx-donate' ), $o['label'] ) ) . '</label><input type="text" id="' . $id . '-o-' . esc_attr( $o['key'] ) . '" name="' . $pre . '[options][' . esc_attr( $o['key'] ) . ']" maxlength="120" value="' . esc_attr( (string) ( $tr['options'][ $o['key'] ] ?? '' ) ) . '" placeholder="' . esc_attr( $o['label'] ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<div class="flxb-field"><label for="' . $id . '-o-' . esc_attr( $o['key'] ) . '">' . esc_html( sprintf( __( 'Option: %s', 'flx-donate' ), $o['label'] ) ) . '</label><input type="text" id="' . $id . '-o-' . esc_attr( $o['key'] ) . '" name="' . $pre . '[options][' . esc_attr( $o['key'] ) . ']" maxlength="120" value="' . esc_attr( (string) ( $tr['options'][ $o['key'] ] ?? '' ) ) . '" placeholder="' . esc_attr( $o['label'] ) . '"></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				echo '</div>';
 			}
@@ -451,7 +451,7 @@ final class FLXB_Page_Types {
 		$fc  = strtoupper( (string) ( $fs[0]['currency'] ?? 'USD' ) );
 		if ( $fc !== strtoupper( (string) $t['currency'] ) ) {
 			/* translators: 1: form currency, 2: type currency */
-			echo '<div class="flxb-notice flxb-notice--warn">' . esc_html( sprintf( __( 'This form charges in%1$sbut the donation type is in%2$s: its payments are stopped until both use the same currency.', 'flx-donate' ), $fc, $t['currency'] ) ) . '</div>';
+			echo '<div class="flxb-notice flxb-notice--warn">' . esc_html( sprintf( __( 'This form charges in %1$s but the donation type is in %2$s: its payments are stopped until both use the same currency.', 'flx-donate' ), $fc, $t['currency'] ) ) . '</div>';
 		}
 		if ( ! $ch['options'] && ! $ch['prices'] ) {
 			echo '<p class="flxb-muted">' . esc_html__( 'This form has no priced choices to map.', 'flx-donate' ) . '</p></fieldset>';
@@ -461,7 +461,7 @@ final class FLXB_Page_Types {
 			echo '<div class="flxb-tablewrap"><table class="flxb-table flxb-table--compact"><thead><tr><th scope="col">' . esc_html__( 'Form choice', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Option', 'flx-donate' ) . '</th><th scope="col">' . esc_html__( 'Units', 'flx-donate' ) . '</th></tr></thead><tbody>';
 			foreach ( $ch['options'] as $el => $c ) {
 				$cur = $map['opts'][ $el ] ?? array( 'opt' => '', 'units' => 1 );
-				echo '<tr><td class="flxb-col-main">' . esc_html( $c['label'] ) . '<span class="flxb-sub2">' . esc_html( sprintf( /* translators: %s: price set in the form */ __( 'form price:%s', 'flx-donate' ), flxb_money( $c['price'], $t['currency'] ) ) ) . '</span></td>';
+				echo '<tr><td class="flxb-col-main">' . esc_html( $c['label'] ) . '<span class="flxb-sub2">' . esc_html( sprintf( /* translators: %s: price set in the form */ __( 'form price: %s', 'flx-donate' ), flxb_money( $c['price'], $t['currency'] ) ) ) . '</span></td>';
 				echo '<td data-label="' . esc_attr__( 'Option', 'flx-donate' ) . '"><select name="form_map[' . (int) $fid . '][opts][' . esc_attr( $el ) . '][opt]"><option value="">' . esc_html__( 'Not mapped (form price)', 'flx-donate' ) . '</option>';
 				foreach ( $t['options'] as $o ) {
 					echo '<option value="' . esc_attr( $o['key'] ) . '"' . selected( $cur['opt'], $o['key'], false ) . '>' . esc_html( $o['label'] . ' — ' . flxb_money( $o['price'], $t['currency'] ) ) . '</option>';

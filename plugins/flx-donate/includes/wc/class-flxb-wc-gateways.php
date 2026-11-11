@@ -346,7 +346,7 @@ class FLXB_WC_Gateways {
 		}
 		echo '</div></div>';
 		/* translators: %s: classic or block */
-		echo '<p class="flxb-help">' . esc_html( sprintf( __( 'Checkout page:%s.', 'flx-donate' ), $block ? __( 'Checkout block', 'flx-donate' ) : __( 'classic', 'flx-donate' ) ) ) . '</p>';
+		echo '<p class="flxb-help">' . esc_html( sprintf( __( 'Checkout page: %s.', 'flx-donate' ), $block ? __( 'Checkout block', 'flx-donate' ) : __( 'classic', 'flx-donate' ) ) ) . '</p>';
 		echo '<div class="flxb-tablewrap"><table class="flxb-table flxb-gw__table"><thead><tr><th scope="col">' . esc_html__( 'Method', 'flx-donate' ) . '</th>';
 		foreach ( $labels as $k => $l ) {
 			echo '<th scope="col" title="' . esc_attr( $help[ $k ] ) . '">' . esc_html( $l ) . '</th>';

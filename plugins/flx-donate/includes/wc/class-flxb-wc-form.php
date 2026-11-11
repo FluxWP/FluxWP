@@ -138,7 +138,7 @@ final class FLXB_WC_Form {
 					'monthly'     => __( '/ month', 'flx-donate' ),
 					'needOption'  => __( 'Please choose an option.', 'flx-donate' ),
 					/* translators: %s: amount */
-					'feeUpTo'     => __( '(up to%s)', 'flx-donate' ),
+					'feeUpTo'     => __( '(up to %s)', 'flx-donate' ),
 					'feeLine'     => __( 'Transaction fee', 'flx-donate' ),
 					/* translators: %s: number of saplings */
 					'sapling1'    => _n( '%s Sapling', '%s Saplings', 1, 'flx-donate' ),
@@ -599,7 +599,7 @@ final class FLXB_WC_Form {
 		}
 		$min = min( $p );
 		/* translators: %s: lowest price */
-		return count( array_unique( $p ) ) > 1 ? sprintf( __( 'from%s', 'flx-donate' ), wc_price( $min ) ) : wc_price( $min );
+		return count( array_unique( $p ) ) > 1 ? sprintf( __( 'from %s', 'flx-donate' ), wc_price( $min ) ) : wc_price( $min );
 	}
 
 	/** 2.16.0: inside of a type tab; the layouts show the parts they need (classic: icon + title). */
@@ -735,7 +735,7 @@ final class FLXB_WC_Form {
 					<span class="flxwb-money__sym"><?php echo esc_html( html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' ) ); ?></span>
 				</span>
 				<?php if ( $min > 0 ) : ?>
-				<span class="flxwb-field__help"><?php /* translators: %s: lowest amount */ echo esc_html( sprintf( __( 'At least%s', 'flx-donate' ), FLXB_WC::money_text( $min ) ) ); ?></span>
+				<span class="flxwb-field__help"><?php /* translators: %s: lowest amount */ echo esc_html( sprintf( __( 'At least %s', 'flx-donate' ), FLXB_WC::money_text( $min ) ) ); ?></span>
 				<?php endif; ?>
 			</label>
 		</fieldset>
@@ -775,7 +775,7 @@ final class FLXB_WC_Form {
 			<template data-flxwb-share-tpl><?php echo self::share_card( $id, '__N__', '', '', $phones ); // phpcs:ignore WordPress.Security.EscapeOutput ?></template>
 			<?php if ( $text ) : ?>
 			<details class="flxwb-proxy__text">
-				<summary><?php /* translators: %s: version */ echo esc_html( sprintf( __( 'Read the proxy (vekâlet) text (version%s)', 'flx-donate' ), number_format_i18n( (int) $text['version'] ) ) ); ?></summary>
+				<summary><?php /* translators: %s: version */ echo esc_html( sprintf( __( 'Read the proxy (vekâlet) text (version %s)', 'flx-donate' ), number_format_i18n( (int) $text['version'] ) ) ); ?></summary>
 				<div><?php echo wp_kses_post( wpautop( (string) $text['text'] ) ); ?></div>
 			</details>
 			<label class="flxwb-check flxwb-proxy__ok"><input type="checkbox" name="proxy[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( (int) $text['version'] ); ?>" required data-flxwb-consent <?php checked( ! empty( $old['proxy'][ $id ] ) ); ?>> <?php esc_html_e( 'I give my proxy (vekâlet) for the sacrifice according to this text.', 'flx-donate' ); ?></label>
@@ -791,7 +791,7 @@ final class FLXB_WC_Form {
 		$no  = '__N__' === $i ? '__NO__' : number_format_i18n( (int) $i + 1 );
 		$nid = 'flxwb-own-' . $type_id . '-' . $i;
 		/* translators: %s: share number */
-		$h  = '<div class="flxwb-share" data-flxwb-share><div class="flxwb-share__head"><span class="flxwb-share__no" data-flxwb-share-no>' . esc_html( sprintf( __( 'Share%s', 'flx-donate' ), $no ) ) . '</span>';
+		$h  = '<div class="flxwb-share" data-flxwb-share><div class="flxwb-share__head"><span class="flxwb-share__no" data-flxwb-share-no>' . esc_html( sprintf( __( 'Share %s', 'flx-donate' ), $no ) ) . '</span>';
 		$h .= '<button type="button" class="flxwb-share__all" data-flxwb-apply-all hidden>' . FLXB_WC::icon( 'copy' ) . '<span>' . esc_html__( 'Apply to all', 'flx-donate' ) . '</span></button></div>';
 		$h .= '<div class="flxwb-share__fields' . ( $phones ? '' : ' is-single' ) . '"><label class="flxwb-field" for="' . esc_attr( $nid ) . '"><span class="flxwb-field__label">' . esc_html__( 'Name', 'flx-donate' ) . '</span><input type="text" id="' . esc_attr( $nid ) . '" name="owners[' . esc_attr( $type_id ) . '][]" maxlength="80" autocomplete="off" value="' . esc_attr( $name ) . '" placeholder="' . esc_attr__( 'e.g. Ali Yılmaz', 'flx-donate' ) . '" data-flxwb-owner-name></label>';
 		if ( $phones ) {

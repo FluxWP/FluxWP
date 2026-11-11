@@ -224,7 +224,7 @@ class FLXB_WC_Esnekpos {
 		$j = json_decode( (string) wp_remote_retrieve_body( $r ), true );
 		if ( ! is_array( $j ) ) {
 			/* translators: %d: HTTP status */
-			return new WP_Error( 'flxb_esn', sprintf( __( 'EsnekPOS did not answer (HTTP%d).', 'flx-donate' ), (int) wp_remote_retrieve_response_code( $r ) ) );
+			return new WP_Error( 'flxb_esn', sprintf( __( 'EsnekPOS did not answer (HTTP %d).', 'flx-donate' ), (int) wp_remote_retrieve_response_code( $r ) ) );
 		}
 		return $j;
 	}
@@ -295,14 +295,14 @@ class FLXB_WC_Esnekpos {
 		unset( $body );
 		if ( is_wp_error( $r ) ) {
 			/* translators: %s: error */
-			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start:%s', 'flx-donate' ), $r->get_error_message() ) );
+			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start: %s', 'flx-donate' ), $r->get_error_message() ) );
 			return new WP_Error( 'flxb_esn', __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
 		}
 		$url = (string) ( $r['URL_3DS'] ?? '' );
 		if ( ! self::ok( $r ) || ! preg_match( '#^' . ( 0 === strpos( self::base_url(), 'http://' ) ? 'https?' : 'https' ) . '://#', $url ) ) { // http only against a local test service
 			$err = self::message( $r );
 			/* translators: 1: EsnekPOS message, 2: test or live */
-			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start:%1$s(%2$s).', 'flx-donate' ), '' !== $err ? $err : '-', $c['test'] ? __( 'test mode', 'flx-donate' ) : __( 'live', 'flx-donate' ) ) );
+			$order->add_order_note( sprintf( __( 'EsnekPOS payment could not start: %1$s (%2$s).', 'flx-donate' ), '' !== $err ? $err : '-', $c['test'] ? __( 'test mode', 'flx-donate' ) : __( 'live', 'flx-donate' ) ) );
 			return new WP_Error( 'flxb_esn', '' !== $err ? 'EsnekPOS: ' . $err : __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
 		}
 		$order->update_meta_data( self::REF, $ref );
@@ -414,7 +414,7 @@ class FLXB_WC_Esnekpos {
 			$q = self::query( $ref );
 			if ( is_wp_error( $q ) ) {
 				/* translators: %s: error */
-				$order->add_order_note( sprintf( __( 'EsnekPOS payment could not be checked:%s', 'flx-donate' ), $q->get_error_message() ) );
+				$order->add_order_note( sprintf( __( 'EsnekPOS payment could not be checked: %s', 'flx-donate' ), $q->get_error_message() ) );
 				return __( 'The payment could not be verified yet. If money was taken from your card, please contact us before trying again.', 'flx-donate' );
 			}
 			if ( self::verified( $q, $ref, $order ) ) {
@@ -433,7 +433,7 @@ class FLXB_WC_Esnekpos {
 				);
 				$order->save_meta_data();
 				/* translators: 1: EsnekPOS reference, 2: installments, 3: amount charged */
-				$order->add_order_note( sprintf( __( 'EsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged.', 'flx-donate' ), '' !== $refno ? $refno : $ref, $inst, FLXB_WC::money_text( $amount, $order->get_currency() ) ) );
+				$order->add_order_note( sprintf( __( 'EsnekPOS payment received: reference %1$s, %2$s installment(s), %3$s charged.', 'flx-donate' ), '' !== $refno ? $refno : $ref, $inst, FLXB_WC::money_text( $amount, $order->get_currency() ) ) );
 				$order->payment_complete( '' !== $refno ? $refno : $ref );
 				do_action( 'flxb_wc_esnekpos_paid', $order, $q );
 				return '';
@@ -447,7 +447,7 @@ class FLXB_WC_Esnekpos {
 			$why = '' !== $posted_msg ? $posted_msg : ( '' !== $msg ? $msg : '-' );
 			if ( $posted_ok ) { // also an old return URL without the order key: only a note, the status stays
 				/* translators: %s: EsnekPOS message */
-				$order->add_order_note( sprintf( __( 'EsnekPOS return said success but EsnekPOS did not confirm the payment:%s', 'flx-donate' ), '' !== $msg ? $msg : '-' ) );
+				$order->add_order_note( sprintf( __( 'EsnekPOS return said success but EsnekPOS did not confirm the payment: %s', 'flx-donate' ), '' !== $msg ? $msg : '-' ) );
 			} else {
 				/* translators: %s: EsnekPOS message */
 				$order->update_status( 'failed', sprintf( __( 'EsnekPOS: the payment was not completed (%s).', 'flx-donate' ), $why ) );

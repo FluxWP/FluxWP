@@ -119,7 +119,7 @@ final class FLXB_App_Review {
 	private static function waiting( $utc ) {
 		$ts = strtotime( $utc . ' UTC' );
 		/* translators: %s: relative time, e.g. "2 days ago" */
-		return $ts ? sprintf( __( 'received%s', 'flx-donate' ), flx_time_ago( $ts ) ) : '';
+		return $ts ? sprintf( __( 'received %s', 'flx-donate' ), flx_time_ago( $ts ) ) : '';
 	}
 
 	/** One gift in the app's shape. */

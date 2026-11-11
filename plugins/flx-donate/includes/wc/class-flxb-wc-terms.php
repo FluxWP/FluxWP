@@ -60,7 +60,7 @@ class FLXB_WC_Terms {
 		$p = $link( (int) get_option( 'wp_page_for_privacy_policy' ) );
 		$t = $link( function_exists( 'wc_terms_and_conditions_page_id' ) ? wc_terms_and_conditions_page_id() : (int) get_option( 'woocommerce_terms_page_id' ) );
 		/* translators: 1, 2: privacy policy link; 3, 4: donation agreement link */
-		$txt = sprintf( __( 'I have read and accept the%1$sprivacy policy%2$sand the%3$sdonation agreement%4$s.', 'flx-donate' ), $p[0], $p[1], $t[0], $t[1] );
+		$txt = sprintf( __( 'I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.', 'flx-donate' ), $p[0], $p[1], $t[0], $t[1] );
 		return (string) apply_filters( 'flxb_terms_text', $txt );
 	}
 
@@ -153,7 +153,7 @@ class FLXB_WC_Terms {
 		return self::blocks(
 			array(
 				/* translators: %s: association name */
-				array( 'p', sprintf( __( 'These terms apply to donations made on this site to%s.', 'flx-donate' ), $org ) ),
+				array( 'p', sprintf( __( 'These terms apply to donations made on this site to %s.', 'flx-donate' ), $org ) ),
 				array( 'h', __( 'Your donation', 'flx-donate' ) ),
 				array( 'p', __( 'A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose.', 'flx-donate' ) ),
 				array( 'h', __( 'Payment', 'flx-donate' ) ),
@@ -167,7 +167,7 @@ class FLXB_WC_Terms {
 				array( 'h', __( 'Personal data', 'flx-donate' ) ),
 				array( 'p', __( 'Your name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details.', 'flx-donate' ) ),
 				array( 'h', __( 'Contact', 'flx-donate' ) ),
-						array( 'p', '' !== FLXB_WC::support_wa()[0] ? sprintf( /* translators: %s: WhatsApp number */ __( 'For any question about your donation, write to us on WhatsApp:%s', 'flx-donate' ), FLXB_WC::support_wa()[0] ) : __( 'For any question about your donation, write to us through the contact page.', 'flx-donate' ) ),
+						array( 'p', '' !== FLXB_WC::support_wa()[0] ? sprintf( /* translators: %s: WhatsApp number */ __( 'For any question about your donation, write to us on WhatsApp: %s', 'flx-donate' ), FLXB_WC::support_wa()[0] ) : __( 'For any question about your donation, write to us through the contact page.', 'flx-donate' ) ),
 			)
 		);
 	}
@@ -177,7 +177,7 @@ class FLXB_WC_Terms {
 		return self::blocks(
 			array(
 				/* translators: %s: association name */
-				array( 'p', sprintf( __( '%sprocesses your personal data under the Turkish Personal Data Protection Law (KVKK).', 'flx-donate' ), $org ) ),
+				array( 'p', sprintf( __( '%s processes your personal data under the Turkish Personal Data Protection Law (KVKK).', 'flx-donate' ), $org ) ),
 				array( 'h', __( 'What we collect', 'flx-donate' ) ),
 				array( 'p', __( 'Name, e-mail address, phone number and the details of your donation. Card details are entered on the payment institution and are not stored by us.', 'flx-donate' ) ),
 				array( 'h', __( 'Why', 'flx-donate' ) ),

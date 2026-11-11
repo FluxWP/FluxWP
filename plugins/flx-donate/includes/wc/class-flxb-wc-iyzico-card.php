@@ -72,7 +72,7 @@ class FLXB_WC_Iyzico_Card {
 				'number'     => __( 'Card number', 'flx-donate' ),
 				'name'       => __( 'Name on the card', 'flx-donate' ),
 				'exp'        => __( 'Expiry (MM/YY)', 'flx-donate' ),
-				'expHolder'  => _x( 'MM/YY', 'context_def6e4575e04', 'flx-donate' ),
+				'expHolder'  => _x( 'MM/YY', 'card expiry placeholder', 'flx-donate' ),
 				'cvc'        => __( 'CVC', 'flx-donate' ),
 				'save'       => __( 'Save my card for next time', 'flx-donate' ),
 				'saveHelp'   => __( 'iyzico keeps the card; this site never stores card numbers.', 'flx-donate' ),
@@ -82,7 +82,7 @@ class FLXB_WC_Iyzico_Card {
 				'inst'       => __( 'Installments', 'flx-donate' ),
 				'single'     => __( 'Single payment', 'flx-donate' ),
 				/* translators: 1: number of installments, 2: amount of one installment, 3: total */
-				'instRow'    => __( '%1$sinstallments ×%2$s(total%3$s)', 'flx-donate' ),
+				'instRow'    => __( '%1$s installments × %2$s (total %3$s)', 'flx-donate' ),
 				'instHint'   => __( 'Installment options appear after the card number.', 'flx-donate' ),
 				'badNumber'  => __( 'Please check the card number.', 'flx-donate' ),
 				'badName'    => __( 'Please write the name on the card.', 'flx-donate' ),
@@ -438,7 +438,7 @@ class FLXB_WC_Iyzico_Card {
 		if ( ! FLXB_Iyzico_Api::ok( $r ) || empty( $r['threeDSHtmlContent'] ) ) {
 			$err = FLXB_Iyzico_Api::error_text( $r );
 			/* translators: 1: iyzico error, 2: card (first 6 and last 4 digits), 3: test or live */
-			$order->add_order_note( sprintf( __( 'Card payment could not start:%1$s(card%2$s,%3$s).', 'flx-donate' ), '' !== $err ? $err : '-', $masked, FLXB_Iyzico_Api::credentials()['sandbox'] ? __( 'test mode', 'flx-donate' ) : __( 'live', 'flx-donate' ) ) );
+			$order->add_order_note( sprintf( __( 'Card payment could not start: %1$s (card %2$s, %3$s).', 'flx-donate' ), '' !== $err ? $err : '-', $masked, FLXB_Iyzico_Api::credentials()['sandbox'] ? __( 'test mode', 'flx-donate' ) : __( 'live', 'flx-donate' ) ) );
 			return new WP_Error( 'flxb_iyz', '' !== $err ? 'iyzico: ' . $err : __( 'The payment could not be started. Please try again.', 'flx-donate' ) );
 		}
 		$html = base64_decode( (string) $r['threeDSHtmlContent'], true );
@@ -459,7 +459,7 @@ class FLXB_WC_Iyzico_Card {
 		$order->update_meta_data( '_flxb_iyz_sandbox', FLXB_Iyzico_Api::credentials()['sandbox'] ? 1 : 0 );
 		if ( $inst > 1 ) {
 			/* translators: 1: installments, 2: amount charged */
-			$order->add_order_note( sprintf( __( 'Card payment started:%1$sinstallments,%2$scharged by the bank.', 'flx-donate' ), $inst, FLXB_WC::money_text( $paid, $order->get_currency() ) ) );
+			$order->add_order_note( sprintf( __( 'Card payment started: %1$s installments, %2$s charged by the bank.', 'flx-donate' ), $inst, FLXB_WC::money_text( $paid, $order->get_currency() ) ) );
 		}
 		$order->save();
 		return add_query_arg( self::QUERY, $page, home_url( '/' ) );
@@ -499,7 +499,7 @@ class FLXB_WC_Iyzico_Card {
 			} else {
 				$err = self::md_text( (string) $r->get_param( 'mdStatus' ) );
 				/* translators: %s: reason */
-				$order->update_status( 'failed', sprintf( __( 'iyzico 3D Secure:%s', 'flx-donate' ), $err ) );
+				$order->update_status( 'failed', sprintf( __( 'iyzico 3D Secure: %s', 'flx-donate' ), $err ) );
 			}
 		}
 		$order = $order ? wc_get_order( $order->get_id() ) : null;

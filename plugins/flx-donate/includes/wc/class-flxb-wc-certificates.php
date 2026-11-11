@@ -142,7 +142,7 @@ final class FLXB_WC_Certificates {
 				$cert = self::make_one( $order, $item, $line, $template, (int) $tpl_id, $rc['name'], $rc['count'], $phone, $email, $billing );
 				if ( is_wp_error( $cert ) ) {
 					/* translators: %s: error */
-					$order->add_order_note( sprintf( __( 'The certificate could not be made:%s', 'flx-donate' ), $cert->get_error_message() ) );
+					$order->add_order_note( sprintf( __( 'The certificate could not be made: %s', 'flx-donate' ), $cert->get_error_message() ) );
 					continue;
 				}
 				$ids[]   = (int) $cert['id'];
@@ -150,7 +150,7 @@ final class FLXB_WC_Certificates {
 				$codes[] = (string) $cert['code'];
 				$sent    = $args['send'] ? self::send( $order, $cert, $line, $dphone, $demail ) : __( 'Not sent yet.', 'flx-donate' );
 				/* translators: 1: certificate number, 2: name, 3: delivery summary */
-				$order->add_order_note( sprintf( __( 'Certificate made:%1$s(%2$s).%3$s', 'flx-donate' ), $cert['number'], $rc['name'], $sent ) );
+				$order->add_order_note( sprintf( __( 'Certificate made: %1$s (%2$s). %3$s', 'flx-donate' ), $cert['number'], $rc['name'], $sent ) );
 				$made[] = $cert;
 			}
 			if ( ! $ids ) {
@@ -318,7 +318,7 @@ final class FLXB_WC_Certificates {
 		$sum = implode( ' · ', $out );
 		if ( $out ) {
 			/* translators: %s: summary */
-			$order->add_order_note( sprintf( __( 'Certificates sent:%s', 'flx-donate' ), $sum ) );
+			$order->add_order_note( sprintf( __( 'Certificates sent: %s', 'flx-donate' ), $sum ) );
 		}
 		return $sum;
 	}
@@ -365,9 +365,9 @@ final class FLXB_WC_Certificates {
 			flxs_kick_queue();
 		}
 		/* translators: %s: channel list */
-		$msg = $ok ? sprintf( __( 'Queued:%s.', 'flx-donate' ), implode( ', ', $ok ) ) : '';
+		$msg = $ok ? sprintf( __( 'Queued: %s.', 'flx-donate' ), implode( ', ', $ok ) ) : '';
 		/* translators: %s: channel list */
-		$msg .= $copies ? ' ' . sprintf( __( 'Copy to the donor:%s.', 'flx-donate' ), implode( ', ', $copies ) ) : '';
+		$msg .= $copies ? ' ' . sprintf( __( 'Copy to the donor: %s.', 'flx-donate' ), implode( ', ', $copies ) ) : '';
 		return trim( $msg . ( $err ? ' ' . implode( ' · ', $err ) : '' ) );
 	}
 
@@ -480,7 +480,7 @@ final class FLXB_WC_Certificates {
 			<span class="flxwb-cert__icon"><?php echo FLXB_WC::icon( 'award' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 			<div>
 				<p class="flxwb-cert__name"><?php echo esc_html( $name ); ?></p>
-				<p class="flxwb-cert__meta"><?php echo esc_html( $title ); ?><?php echo $fidan ? ' · ' . esc_html( FLXB_WC::units_text( $fidan, 'fidan' ) ) : ''; ?> · <?php /* translators: %s: certificate number */ echo esc_html( sprintf( __( 'No:%s', 'flx-donate' ), $cert['number'] ) ); ?></p>
+				<p class="flxwb-cert__meta"><?php echo esc_html( $title ); ?><?php echo $fidan ? ' · ' . esc_html( FLXB_WC::units_text( $fidan, 'fidan' ) ) : ''; ?> · <?php /* translators: %s: certificate number */ echo esc_html( sprintf( __( 'No: %s', 'flx-donate' ), $cert['number'] ) ); ?></p>
 			</div>
 		</div>
 			<?php

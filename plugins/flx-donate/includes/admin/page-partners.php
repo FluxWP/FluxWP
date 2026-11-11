@@ -101,7 +101,7 @@ final class FLXB_Page_Partners {
 				$roles[] = FLXB_Track::label( 'partner' );
 			}
 			if ( (int) $p['is_source'] ) {
-				$roles[] = __( 'Bring gifts in', 'flx-donate' );
+				$roles[] = __( 'Brings gifts in', 'flx-donate' );
 			}
 			$tn = array();
 			foreach ( FLXB_Partners::type_ids( $p ) as $tid ) {
@@ -244,7 +244,7 @@ final class FLXB_Page_Partners {
 
 		echo '<div class="flxb-seg">';
 		/* translators: %s: what a partner is called */
-		foreach ( array( 'service' => sprintf( __( '%s(cost)', 'flx-donate' ), $label ), 'source' => __( 'Brought in (gift price)', 'flx-donate' ) ) as $k => $l ) {
+		foreach ( array( 'service' => sprintf( __( '%s (cost)', 'flx-donate' ), $label ), 'source' => __( 'Brought in (gift price)', 'flx-donate' ) ) as $k => $l ) {
 			echo '<a class="' . ( $k === $kind ? 'is-on' : '' ) . '" href="' . esc_url( self::url( array( 'tab' => 'settle', 'kind' => $k, 'month' => preg_match( '/^\d{4}-\d{2}$/', $period ) ? $period : '' ) ) ) . '">' . esc_html( $l ) . '</a>';
 		}
 		echo '</div>';

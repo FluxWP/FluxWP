@@ -1286,7 +1286,7 @@ msgstr "リンクが無効です"
 msgid "This link is not valid. Please contact us to cancel your recurring donation."
 msgstr "このリンクは無効です。定期的な寄付をキャンセルするには、お問い合わせください。"
 
-msgid "%1$s·%2$s"
+msgid "%1$s · %2$s"
 msgstr "%1$s·%2$s"
 
 msgid "Recurring donation canceled"
@@ -1307,10 +1307,6 @@ msgstr "定期的な寄付をキャンセルします"
 msgid "Cancel recurring donation"
 msgstr "定期的な寄付をキャンセルします"
 
-msgid "%srecurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed."
-msgid_plural "%srecurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
-msgstr[0] "%sの定期的な寄付は、すべての試みの後、iyzico を通じて請求できず、現在期限を過ぎています。寄付者には電子メールが送信されました。"
-
 msgid "Show them"
 msgstr "表示してください"
 
@@ -1320,7 +1316,7 @@ msgstr "トルコ"
 msgid "iyzico could not be reached. Please try again."
 msgstr "iyzico に到達できませんでした。もう一度試してください。"
 
-msgid "iyzico gave an unexpected answer (HTTP%d)."
+msgid "iyzico gave an unexpected answer (HTTP %d)."
 msgstr "iyzico は予期しない答えを返しました (HTTP%d)。"
 
 msgid "iyzico panel addresses"
@@ -1347,10 +1343,10 @@ msgstr "iyzico WooCommerce プラグインには、このサイトに Webhook �
 msgid "The Stripe secret key is not configured."
 msgstr "Stripe 秘密キーが構成されていません。"
 
-msgid "Could not connect to Stripe:%s"
+msgid "Could not connect to Stripe: %s"
 msgstr "ストライプに接続できませんでした:%s"
 
-msgid "Stripe API error (HTTP%d)."
+msgid "Stripe API error (HTTP %d)."
 msgstr "ストライプ API エラー (HTTP%d)."
 
 msgid "Invalid or expired nonce"
@@ -1461,13 +1457,13 @@ msgstr "定期的な寄付の場合は、iyzico ページで [カードを保存
 msgid "TEST MODE (iyzico sandbox): no real money is taken."
 msgstr "テスト モード (iyzico サンドボックス): リアルマネーはかかりません。"
 
-msgid "Complete the payment in the iyzico window..."
+msgid "Complete the payment in the iyzico window…"
 msgstr "iyzico ウィンドウで支払いを完了してください..."
 
 msgid "Show the payment window"
 msgstr "支払いウィンドウを表示"
 
-msgid "Opening the secure payment page..."
+msgid "Opening the secure payment page…"
 msgstr "安全な支払いページを開いています..."
 
 msgid "The payment was not completed. You can try again."
@@ -1515,10 +1511,10 @@ msgstr "iyzico はこのサイトでは設定されていません。"
 msgid "This payment has already been refunded."
 msgstr "この支払いはすでに返金されています。"
 
-msgid "Enter an amount up to%s."
+msgid "Enter an amount up to %s."
 msgstr "%sまでの金額を入力してください。"
 
-msgid "%1$swas refunded, then iyzico stopped:%2$s"
+msgid "%1$s was refunded, then iyzico stopped: %2$s"
 msgstr "%1$sが返金され、iyzico が停止されました:%2$s"
 
 msgid "Recurring donation not found."
@@ -1560,7 +1556,7 @@ msgstr "寄付の種類はありません"
 msgid "Amount is not a number"
 msgstr "金額は数値ではありません"
 
-msgid "No%s: opened as approved"
+msgid "No %s: opened as approved"
 msgstr "%sはありません: 承認済みとしてオープンされました"
 
 msgid "Not paid: opened as approved"
@@ -1590,7 +1586,7 @@ msgstr "このフォームとその寄付の種類では異なる通貨が使用
 msgid "Your choice"
 msgstr "あなたの選択"
 
-msgid "Donations for this cause open on%s."
+msgid "Donations for this cause open on %s."
 msgstr "この目的への寄付は%sから受け付けられます。"
 
 msgid "Donations for this cause have ended."
@@ -1620,10 +1616,10 @@ msgstr "アダック"
 msgid "Akika"
 msgstr "アキカ"
 
-msgid "healing"
-msgstr "治癒"
+msgid "Healing"
+msgstr "癒し"
 
-msgid "You can choose at most%s."
+msgid "You can choose at most %s."
 msgstr "最大で%sを選択できます。"
 
 msgid "This option is not open for donations at the moment."
@@ -1686,7 +1682,7 @@ msgstr "寄付者の名前を書いてください。"
 msgid "Please give the donor's phone number or e-mail address."
 msgstr "寄付者の電話番号または電子メール アドレスをお知らせください。"
 
-msgid "Donation request opened by%s."
+msgid "Donation request opened by %s."
 msgstr "寄付リクエストは%sによってオープンされました。"
 
 msgid "People who gave through you. Totals count only the gifts you referred."
@@ -1707,7 +1703,7 @@ msgstr "最新のギフト"
 msgid "Number of gifts"
 msgstr "ギフトの数"
 
-msgid "Name, e-mail or phone..."
+msgid "Name, e-mail or phone…"
 msgstr "名前、電子メール、または電話番号..."
 
 msgid "Sort by"
@@ -1722,17 +1718,13 @@ msgstr "ギフト"
 msgid "Open card"
 msgstr "カードを開く"
 
-msgid "%sdonor"
-msgid_plural "%sdonors"
-msgstr[0] "%s寄付者"
-
 msgid "Donor not found"
 msgstr "ドナーが見つかりません"
 
 msgid "Donor card"
 msgstr "ドナーカード"
 
-msgid "Donor since%s"
+msgid "Donor since %s"
 msgstr "%s以降の寄付者です"
 
 msgid "Average gift"
@@ -1741,7 +1733,7 @@ msgstr "平均的なギフト"
 msgid "All gifts"
 msgstr "すべてのギフト"
 
-msgid "See all%sgifts"
+msgid "See all %s gifts"
 msgstr "すべての%sギフトを見る"
 
 msgid "No gifts yet."
@@ -1752,10 +1744,6 @@ msgstr "定期的な寄付"
 
 msgid "No recurring donation."
 msgstr "定期的な寄付はありません。"
-
-msgid "and%smore"
-msgid_plural "and%smore"
-msgstr[0] "さらに%s"
 
 msgid "No certificate yet."
 msgstr "証明書がまだありません。"
@@ -1799,10 +1787,10 @@ msgstr "Excel からインポート"
 msgid "Donation settings"
 msgstr "寄付の設定"
 
-msgid "Delete%sdonations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
+msgid "Delete %s donations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
 msgstr "%s寄付を完全に削除しますか?彼らの WooCommerce 注文も削除されます。これを元に戻すことはできません。"
 
-msgid "Move%sdonations to the trash? Their WooCommerce orders go to the trash too."
+msgid "Move %s donations to the trash? Their WooCommerce orders go to the trash too."
 msgstr "[[「%sの寄付をゴミ箱に移動しますか?」 WooCommerce の注文もゴミ箱行きです。"
 
 msgid "The data could not be loaded."
@@ -1832,7 +1820,7 @@ msgstr "前の期間との比較"
 msgid "no gifts in the previous period"
 msgstr "前の期間にギフトはありませんでした"
 
-msgid "all time:%sdonors"
+msgid "all time: %s donors"
 msgstr "いつも:%s寄付者"
 
 msgid "first gift in this period"
@@ -1841,7 +1829,7 @@ msgstr "この期間の最初のギフト"
 msgid "per gift"
 msgstr "ギフトごと"
 
-msgid "%spast due"
+msgid "%s past due"
 msgstr "%s期限切れ"
 
 msgid "monthly value of active ones"
@@ -1904,7 +1892,7 @@ msgstr "支払いが承認されました。証明書が作成され、寄付者
 msgid "Payment rejected."
 msgstr "支払いが拒否されました。"
 
-msgid "Import finished:%1$spayments checked,%2$simported,%3$salready known."
+msgid "Import finished: %1$s payments checked, %2$s imported, %3$s already known."
 msgstr "インポートが完了しました:%1$sの支払いが確認され、%2$sがインポートされ、%3$sはすでに認識されています。"
 
 msgid "Sorry, you are not allowed to access this page."
@@ -1931,7 +1919,7 @@ msgstr "以前のインポート"
 msgid "None yet."
 msgstr "まだ何もありません。"
 
-msgid "%1$srows,%2$swritten"
+msgid "%1$s rows, %2$s written"
 msgstr "%1$s行、%2$sが書き込まれました"
 
 msgid "Check the columns and the matches, then start."
@@ -1973,11 +1961,7 @@ msgstr "ファイル内の異なる値はそれぞれ 1 回照合されます。
 msgid "Apply and check again"
 msgstr "適用して再度確認してください"
 
-msgid "Import%srow"
-msgid_plural "Import%srows"
-msgstr[0] "%s行をインポート"
-
-msgid "Showing rows with a problem first;%srows in all."
+msgid "Showing rows with a problem first; %s rows in all."
 msgstr "最初に問題のある行を表示します。合計%s行。"
 
 msgid "Discard this file"
@@ -1989,7 +1973,7 @@ msgstr "完了しました。"
 msgid "Importing... Keep this page open; if it closes, opening it again continues where it stopped."
 msgstr "インポート中... このページを開いたままにしてください。閉じた場合は、再度開くと、停止したところから続行されます。"
 
-msgid "%1$s/%2$srows"
+msgid "%1$s / %2$s rows"
 msgstr "%1$s/%2$s行"
 
 msgid "Written"
@@ -2025,7 +2009,7 @@ msgstr "より広い日付範囲を試すか、フィルタをクリアしてく
 msgid "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived"
 msgstr "%1$sの寄付 ·%2$sを受け取りました%1$sの寄付を受け取りました ·%2$sを受け取りました"
 
-msgid "Name, e-mail, phone, code..."
+msgid "Name, e-mail, phone, code…"
 msgstr "名前、電子メール、電話番号、コード..."
 
 msgid "All forms"
@@ -2043,20 +2027,8 @@ msgstr "詳細フィルター"
 msgid "Donation type / form"
 msgstr "寄付の種類 / フォーム"
 
-msgid "Select the donation of%s"
+msgid "Select the donation of %s"
 msgstr "%sの寄付を選択してください"
-
-msgid "%sdonation moved to the trash."
-msgid_plural "%sdonations moved to the trash."
-msgstr[0] "%sの寄付はゴミ箱に移動されました。"
-
-msgid "%sdonation restored."
-msgid_plural "%sdonations restored."
-msgstr[0] "%sの寄付が回復されました。"
-
-msgid "%sdonation deleted permanently."
-msgid_plural "%sdonations deleted permanently."
-msgstr[0] "%sの寄付は完全に削除されました。"
 
 msgid "Receipt no."
 msgstr "受付番号"
@@ -2064,7 +2036,7 @@ msgstr "受付番号"
 msgid "Kind"
 msgstr "親切"
 
-msgid "Donation receipt ·%s"
+msgid "Donation receipt · %s"
 msgstr "寄付の領収書 ·%s"
 
 msgid "Donation receipt"
@@ -2088,13 +2060,13 @@ msgstr "コールセンター"
 msgid "Receipt linked"
 msgstr "領収書がリンクされました"
 
-msgid "Payment rejected:%s"
+msgid "Payment rejected: %s"
 msgstr "支払いが拒否されました:%s"
 
-msgid "Status changed:%1$s→%2$s"
+msgid "Status changed: %1$s → %2$s"
 msgstr "ステータス変更:%1$s→%2$s"
 
-msgid "Refunded%s"
+msgid "Refunded %s"
 msgstr "返金された%s"
 
 msgid "Payment canceled at the provider"
@@ -2103,13 +2075,13 @@ msgstr "プロバイダーで支払いがキャンセルされました"
 msgid "Names on whose behalf changed"
 msgstr "代わりに変更された名前"
 
-msgid "Referral changed:%1$s→%2$s"
+msgid "Referral changed: %1$s → %2$s"
 msgstr "変更された参照:%1$s→%2$s"
 
 msgid "Donation not found"
 msgstr "寄付が見つかりません"
 
-msgid "Donation of%s"
+msgid "Donation of %s"
 msgstr "%sの寄付"
 
 msgid "Print receipt"
@@ -2133,13 +2105,13 @@ msgstr "取り消されました"
 msgid "Different price"
 msgstr "価格が異なります"
 
-msgid "type price%1$s·%2$s"
+msgid "type price %1$s · %2$s"
 msgstr "価格を入力%1$s·%2$s"
 
 msgid "Proxy consent"
 msgstr "代理の同意"
 
-msgid "version%1$s·%2$s"
+msgid "version %1$s · %2$s"
 msgstr "バージョン%1$s·%2$s"
 
 msgid "Entered by"
@@ -2203,8 +2175,8 @@ msgstr "ステータスが「%s」に変更されました。"
 msgid "The status was not changed."
 msgstr "ステータスは変更されませんでした。"
 
-msgid "basketball"
-msgstr "バスケットボール"
+msgid "Basket"
+msgstr "寄付かご"
 
 msgid "WooCommerce order #%s"
 msgstr "WooCommerce 注文 #%s"
@@ -2224,15 +2196,11 @@ msgstr "証明書を送信します"
 msgid "Send the certificates to the donor now?"
 msgstr "今すぐ寄付者に証明書を送りますか?"
 
-msgid "Certificates sent:%s"
+msgid "Certificates sent: %s"
 msgstr "送信された証明書:%s"
 
 msgid "There is no certificate to send."
 msgstr "送信する証明書がありません。"
-
-msgid "%dcertificate made. Check it, then press \"Send the certificates\"."
-msgid_plural "%dcertificates made. Check them, then press \"Send the certificates\"."
-msgstr[0] "%d証明書が作成されました。チェックを入れて「証明書を送信する」を押してください。"
 
 msgid "No certificate could be made; see the order notes."
 msgstr "証明書を作成できませんでした。注文メモを参照してください。"
@@ -2240,8 +2208,8 @@ msgstr "証明書を作成できませんでした。注文メモを参照して
 msgid "Unit price"
 msgstr "単価"
 
-msgid "Sacrifice share"
-msgstr "犠牲の分け前"
+msgid "Kurban share"
+msgstr "クルバンの持ち分"
 
 msgid "Save names"
 msgstr "名前を保存"
@@ -2288,11 +2256,7 @@ msgstr "マークは所有者に届けられました"
 msgid "Back to waiting"
 msgstr "待機に戻ります"
 
-msgid "%ditem updated."
-msgid_plural "%ditems updated."
-msgstr[0] "%dアイテムが更新されました。"
-
-msgid "Skipped:%s"
+msgid "Skipped: %s"
 msgstr "スキップ:%s"
 
 msgid "due"
@@ -2307,7 +2271,7 @@ msgstr "新しいレコード"
 msgid "Every item with its code, payment, partner, target date and files. Open one to see its whole flow."
 msgstr "すべてのアイテムとそのコード、支払い、パートナー、対象日、およびファイル。 1 つを開いて全体の流れを確認します。"
 
-msgid "Code, name, phone, donation no..."
+msgid "Code, name, phone, donation no…"
 msgstr "コード、名前、電話番号、寄付番号..."
 
 msgid "Any payment"
@@ -2328,8 +2292,8 @@ msgstr "アイテムは寄付タイプの単位ごとに作成され、1 つず�
 msgid "Selected"
 msgstr "選択済み"
 
-msgid "%1$d·%2$dcents"
-msgstr "%1$d·%2$dセント"
+msgid "%1$d · %2$d sent"
+msgstr "%1$d · %2$d 件送信済み"
 
 msgid "This item is canceled."
 msgstr "このアイテムはキャンセルされました。"
@@ -2376,10 +2340,10 @@ msgstr "ファイルはアイテム上に残ります。"
 msgid "No file yet."
 msgstr "まだファイルがありません。"
 
-msgid "Sent to%1$s·%2$s"
+msgid "Sent to %1$s · %2$s"
 msgstr "%1$s·%2$sに送信"
 
-msgid "Send this file to%sover WhatsApp?"
+msgid "Send this file to %s over WhatsApp?"
 msgstr "このファイルを WhatsApp 経由で%sに送信しますか?"
 
 msgid "Send to owner"
@@ -2394,7 +2358,7 @@ msgstr "WhatsApp 経由でファイルを送信するには、Flux Chat をイ�
 msgid "There is no phone number for the owner. Add one above to send the file."
 msgstr "所有者の電話番号はありません。ファイルを送信するには、上に 1 つを追加します。"
 
-msgid "%1$s(moved from%2$s)"
+msgid "%1$s (moved from %2$s)"
 msgstr "%1$s(%2$sから移動)"
 
 msgid "Select at least one item."
@@ -2445,7 +2409,7 @@ msgstr "サンドボックス (テスト)"
 msgid "Recurring charges"
 msgstr "定期的な料金"
 
-msgid "Charged by Flux Donate's hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s."
+msgid "Charged by Flux Donate's hourly WP-Cron job. Next run: %1$s. Last charge run: %2$s."
 msgstr "Flux Donate\\ の時間単位の WP-Cron ジョブによって課金されます。次の実行:%1$s。最後の充電実行:%2$s。"
 
 msgid "In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working."
@@ -2459,10 +2423,6 @@ msgstr "未完了のものを含め、すべての支払いはフォームで始
 
 msgid "No payments yet."
 msgstr "まだ支払いがありません。"
-
-msgid "%srecord"
-msgid_plural "%srecords"
-msgstr[0] "%sレコード"
 
 msgid "A Stripe publishable key starts with pk_live_ or pk_test_."
 msgstr "Stripe 公開可能キーは pk_live_ または pk_test_ で始まります。"
@@ -2479,7 +2439,7 @@ msgstr "返金/キャンセル"
 msgid "Refund this amount to the donor through the payment provider?"
 msgstr "この金額を決済プロバイダーを通じて寄付者に返金しますか?"
 
-msgid "Amount (up to%s)"
+msgid "Amount (up to %s)"
 msgstr "金額 (最大%s)"
 
 msgid "Refund"
@@ -2530,19 +2490,19 @@ msgstr "銀行振込が確認されました (%s)。"
 msgid "Please write a reason."
 msgstr "理由を書いてください。"
 
-msgid "Payment rejected; the donor was told by%s."
+msgid "Payment rejected; the donor was told by %s."
 msgstr "支払いが拒否されました。ドナーは%sによって通知されました。"
 
-msgid "Payment rejected by%1$s. Reason:%2$s"
+msgid "Payment rejected by %1$s. Reason: %2$s"
 msgstr "支払いは%1$sによって拒否されました。理由:%2$s"
 
-msgid "Rejection sent to the donor:%s"
+msgid "Rejection sent to the donor: %s"
 msgstr "拒否がドナーに送信されました:%s"
 
 msgid "Hello,"
 msgstr "こんにちは、"
 
-msgid "We could not confirm the payment of your%sdonation."
+msgid "We could not confirm the payment of your %s donation."
 msgstr "%s寄付金の支払いを確認できませんでした。"
 
 msgid "If you think this is a mistake, please reply to this message. Thank you."
@@ -2563,7 +2523,7 @@ msgstr "カスタム日付"
 msgid "Nothing in this period"
 msgstr "この期間には何もありません"
 
-msgid "Only the first%srows are shown. The CSV has the same rows."
+msgid "Only the first %s rows are shown. The CSV has the same rows."
 msgstr "最初の%s行のみが表示されます。 CSV には同じ行があります。"
 
 msgid "Report (JSON)"
@@ -2611,7 +2571,7 @@ msgstr "無料の金額です。オプションの場合、金額は数量 × �
 msgid "One name per line, one per unit. Units without a name are given on behalf of the donor."
 msgstr "1 行に 1 つの名前、ユニットごとに 1 つの名前。名前のないユニットは寄付者に代わって提供されます。"
 
-msgid "The donor accepted the proxy (vekâlet) text, version%s"
+msgid "The donor accepted the proxy (vekâlet) text, version %s"
 msgstr "寄付者は代理 (vekâlet) テキスト、バージョン%sを受け入れました "
 
 msgid "Matched to an existing donor card on phone number or e-mail address."
@@ -2668,7 +2628,7 @@ msgstr "寄付者は支払いページでカードまたは銀行振込で支払
 msgid "Create request"
 msgstr "リクエストを作成"
 
-msgid "Hello%1$s, we have received your donation request (%2$s). You can pay here:%3$s"
+msgid "Hello %1$s, we have received your donation request (%2$s). You can pay here: %3$s"
 msgstr "%1$sさん、こんにちは。寄付リクエスト (%2$s) を受け取りました。ここでお支払いいただけます:%3$s"
 
 msgid "Request created"
@@ -2701,8 +2661,8 @@ msgstr "作業を実施する場所や組織、贈り物を持ち込む事務所
 msgid "Agreement"
 msgstr "同意"
 
-msgid "Bring gifts in"
-msgstr "ギフトを持ち込んでください"
+msgid "Brings gifts in"
+msgstr "寄付を集める"
 
 msgid "All off"
 msgstr "すべてオフ"
@@ -2770,7 +2730,7 @@ msgstr "オプション"
 msgid "Add agreement"
 msgstr "契約を追加"
 
-msgid "%s(cost)"
+msgid "%s (cost)"
 msgstr "%s(コスト)"
 
 msgid "Brought in (gift price)"
@@ -2781,10 +2741,6 @@ msgstr "すべてのパートナー"
 
 msgid "Gift price"
 msgstr "ギフトの価格"
-
-msgid "%dwithout a price"
-msgid_plural "%dwithout a price"
-msgstr[0] " 価格なしの%d"
 
 msgid "Re-read prices from the agreements"
 msgstr "契約書から価格を再読み込みします"
@@ -2897,10 +2853,6 @@ msgstr "グループ寄付のタイプ (例:犠牲、ラマダン、将軍。キ
 msgid "Save categories"
 msgstr "カテゴリを保存"
 
-msgid "Used by%stype"
-msgid_plural "Used by%stypes"
-msgstr[0] "%sタイプで使用"
-
 msgid "Remove category"
 msgstr "カテゴリを削除"
 
@@ -2928,7 +2880,7 @@ msgstr "プロキシ テキストのバージョン"
 msgid "No text yet. Donations of types that require a proxy cannot be paid until a text is saved."
 msgstr "まだテキストがありません。代理人が必要なタイプの寄付は、テキストが保存されるまで支払うことができません。"
 
-msgid "Version%1$s·%2$s"
+msgid "Version %1$s · %2$s"
 msgstr "バージョン%1$s·%2$s"
 
 msgid "Add your own tabs with fields to tracked records (\"on\": \"item\") or donations (\"on\": \"donation\"), for all or some donation types. Leave it empty if you do not need any."
@@ -2942,10 +2894,6 @@ msgstr "使用中のタブ"
 
 msgid "Record page"
 msgstr "レコードページ"
-
-msgid "%dfield"
-msgid_plural "%dfields"
-msgstr[0] "%dフィールド"
 
 msgid "from a plugin"
 msgstr "プラグインから"
@@ -2965,7 +2913,7 @@ msgstr "インポート中..."
 msgid "Import now"
 msgstr "今すぐインポート"
 
-msgid "Last run%1$s:%2$spayments checked,%3$simported."
+msgid "Last run %1$s: %2$s payments checked, %3$s imported."
 msgstr "最後の実行%1$s:%2$sの支払いがチェックされ、%3$sがインポートされました。"
 
 msgid "Upcoming (%s)"
@@ -3001,7 +2949,7 @@ msgstr "(非アクティブ)"
 msgid "(price not set)"
 msgstr "(価格は設定されていません)"
 
-msgid "free amount (min.%s)"
+msgid "free amount (min. %s)"
 msgstr "無料金額 (最小%s)"
 
 msgid "free amount"
@@ -3013,7 +2961,7 @@ msgstr "数量"
 msgid "recurring"
 msgstr "繰り返し"
 
-msgid "%1$sof%2$s(%3$s%%)"
+msgid "%1$s of %2$s (%3$s%%)"
 msgstr "%1$s/%2$s(%3$s%%)"
 
 msgid "Open-ended"
@@ -3100,7 +3048,7 @@ msgstr "これらの Flux Forms フォームを介したギフトは、このタ
 msgid "No payment form found in Flux Forms yet."
 msgstr "Flux Forms には支払いフォームがまだ見つかりません。"
 
-msgid "also linked to:%s"
+msgid "also linked to: %s"
 msgstr "次にもリンクされています:%s"
 
 msgid "Save after choosing a form to map its choices."
@@ -3151,8 +3099,8 @@ msgstr "名前から"
 msgid "Remove option"
 msgstr "オプションを削除"
 
-msgid "— note set"
-msgstr "— ノートセット"
+msgid "— not set"
+msgstr "— 未設定"
 
 msgid "Units per choice"
 msgstr "選択肢ごとの単位"
@@ -3169,7 +3117,7 @@ msgstr "翻訳"
 msgid "Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names."
 msgstr "寄付ページ、カート、チェックアウトにその言語 (Flux Lang) で表示されます。空のフィールドには上記のテキストが使用されます。記録には上記のテキストが残っています。名前を翻訳するオプションを追加した後、一度保存します。"
 
-msgid "Option:%s"
+msgid "Option: %s"
 msgstr "オプション:%s"
 
 msgid "Each unit of a gift becomes its own item with a 7-digit code: approved, sent to a partner, completed, delivered to the owner, with files and history."
@@ -3208,7 +3156,7 @@ msgstr "すべての肉は困っている人々に寄付されます"
 msgid "Mapping for “%s”"
 msgstr "「%s」のマッピング"
 
-msgid "This form charges in%1$sbut the donation type is in%2$s: its payments are stopped until both use the same currency."
+msgid "This form charges in %1$s but the donation type is in %2$s: its payments are stopped until both use the same currency."
 msgstr "このフォームの料金は%1$sですが、寄付タイプは%2$sです。両方が同じ通貨を使用するまで支払いは停止されます。"
 
 msgid "This form has no priced choices to map."
@@ -3220,7 +3168,7 @@ msgstr "フォームの選択"
 msgid "Units"
 msgstr "単位"
 
-msgid "form price:%s"
+msgid "form price: %s"
 msgstr "形式価格:%s"
 
 msgid "Not mapped (form price)"
@@ -3244,7 +3192,7 @@ msgstr "プロキシ同意フィールド"
 msgid "Monthly, weekly or yearly gifts charged automatically by the payment provider."
 msgstr "毎月、毎週、または毎年のギフトは、決済プロバイダーによって自動的に請求されます。"
 
-msgid "Name, e-mail, phone, reference..."
+msgid "Name, e-mail, phone, reference…"
 msgstr "名前、電子メール、電話番号、参照先..."
 
 msgid "No recurring donations yet"
@@ -3253,20 +3201,16 @@ msgstr "定期的な寄付はまだありません"
 msgid "A recurring donation is created when a payment form is set to charge every day, week, month or year."
 msgstr "定期的な寄付は、支払いフォームが毎日、毎週、毎月、または毎年請求されるように設定されている場合に作成されます。"
 
-msgid "%srecurring donation"
-msgid_plural "%srecurring donations"
-msgstr[0] "%s定期的な寄付"
-
 msgid "Interval"
 msgstr "間隔"
 
 msgid "Next charge"
 msgstr "次の充電"
 
-msgid "Attempt%1$sof%2$sfailed:%3$s"
+msgid "Attempt %1$s of %2$s failed: %3$s"
 msgstr "%2$sの%1$sの試行が失敗しました:%3$s"
 
-msgid "canceled%s"
+msgid "canceled %s"
 msgstr "キャンセルされました%s"
 
 msgid "Cancel this recurring donation at the payment provider? No further charges will be made."
@@ -3278,7 +3222,7 @@ msgstr "カード支払い: 公式 iyzico プラグインが有効になって�
 msgid "Card payments: Flux Donate iyzico (the official iyzico plugin is not enabled)."
 msgstr "カード支払い: Flux Donate iyzico (公式 iyzico プラグインは有効になっていません)。"
 
-msgid "Card payments:%s."
+msgid "Card payments: %s."
 msgstr "カード支払い:%s。"
 
 msgid "No card method is enabled (WooCommerce › Settings › Payments)."
@@ -3359,7 +3303,7 @@ msgstr "(Flux Mail または Flux Certificates のプロバイダー経由で) �
 msgid "WhatsApp text"
 msgstr "WhatsApp のテキスト"
 
-msgid "Placeholders:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}"
+msgid "Placeholders: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site}"
 msgstr "プレースホルダー:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}"
 
 msgid "SMS text"
@@ -3419,7 +3363,7 @@ msgstr "iyzico"
 msgid "Show every enabled card method"
 msgstr "有効なカード メソッドをすべて表示"
 
-msgid "Donors see one card method; now:%s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
+msgid "Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
 msgstr "寄付者には 1 つのカード方式が表示されます。現在:%s。毎月の寄付には常に Flux Donate iyzico を使用します (カードを保存します)。銀行振込は常に表示されます。"
 
 msgid "all"
@@ -3509,7 +3453,7 @@ msgstr "プリセット金額 (無料金額)"
 msgid "Separated by spaces, e.g. 250 500 1000."
 msgstr "スペースで区切ります。例: 250 500 1000。"
 
-msgid "Preset amounts in%s"
+msgid "Preset amounts in %s"
 msgstr "%sのプリセット量 "
 
 msgid "Page address"
@@ -3518,7 +3462,7 @@ msgstr "ページアドレス"
 msgid "Optional: where its product page and the product XML link go. Empty = the donation page in the WooCommerce settings."
 msgstr "オプション: 製品ページと製品 XML リンクの場所。空 = WooCommerce 設定の寄付ページ。"
 
-msgid "WooCommerce product #%d(hidden from the shop)."
+msgid "WooCommerce product #%d (hidden from the shop)."
 msgstr "WooCommerce 製品番号%d(ショップでは非表示)。"
 
 msgid "This order has no donation line."
@@ -3554,7 +3498,7 @@ msgstr "注文明細行が見つかりません。"
 msgid "Enter an amount up to what is left to refund."
 msgstr "払い戻し可能な残額までの金額を入力してください。"
 
-msgid "Refunded from Flux Donate by%s"
+msgid "Refunded from Flux Donate by %s"
 msgstr "%sによる Flux Donate から返金されました "
 
 msgid "No donation lines."
@@ -3581,7 +3525,7 @@ msgstr "Flux Donate で失敗としてマークされました。"
 msgid "This payment link has expired. Please fill in the form again."
 msgstr "この支払いリンクの有効期限が切れています。フォームにもう一度入力してください。"
 
-msgid "Flux Forms entry%scompleted by this payment."
+msgid "Flux Forms entry %s completed by this payment."
 msgstr "この支払いにより、Flux Forms エントリ%sが完了しました。"
 
 msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed."
@@ -3620,7 +3564,7 @@ msgstr "カード上の名前"
 msgid "Expiry (MM/YY)"
 msgstr "有効期限 (MM/YY)"
 
-msgctxt "context_def6e4575e04"
+msgctxt "card expiry placeholder"
 msgid "MM/YY"
 msgstr "MM/YY"
 
@@ -3648,7 +3592,7 @@ msgstr "分割払い"
 msgid "Single payment"
 msgstr "一括支払い"
 
-msgid "%1$sinstallments ×%2$s(total%3$s)"
+msgid "%1$s installments × %2$s (total %3$s)"
 msgstr "%1$s分割払い ×%2$s(合計%3$s)"
 
 msgid "Installment options appear after the card number."
@@ -3690,7 +3634,7 @@ msgstr "この保存されたカードはもう使用できません。カード
 msgid "This installment option is not available for the card. Please choose another."
 msgstr "このカードではこの分割払いオプションは利用できません。別のものを選択してください。"
 
-msgid "Card payment could not start:%1$s(card%2$s,%3$s)."
+msgid "Card payment could not start: %1$s (card %2$s, %3$s)."
 msgstr "カード支払いを開始できませんでした:%1$s(カード%2$s、%3$s)。"
 
 msgid "test mode"
@@ -3699,10 +3643,10 @@ msgstr "テストモード"
 msgid "live"
 msgstr "ライブ"
 
-msgid "Card payment started:%1$sinstallments,%2$scharged by the bank."
+msgid "Card payment started: %1$s installments, %2$s charged by the bank."
 msgstr "カード支払いが開始されました:%1$s分割払い、銀行によって%2$s請求されます。"
 
-msgid "iyzico 3D Secure:%s"
+msgid "iyzico 3D Secure: %s"
 msgstr "iyzico 3D セキュア:%s"
 
 msgid "The bank did not confirm the 3D Secure code. Please try again."
@@ -3777,7 +3721,7 @@ msgstr "環境: ライブ。"
 msgid "iyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything."
 msgstr "iyzico は、この注文 (金額、通貨、またはバスケット) と一致しない支払い (%s) を報告しました。何かを行う前に、iyzico パネルで確認してください。"
 
-msgid "iyzico payment received:%1$s, payment id%2$s(%3$s)."
+msgid "iyzico payment received: %1$s, payment id %2$s (%3$s)."
 msgstr "iyzico 支払いを受け取りました:%1$s、支払い ID%2$s(%3$s)。"
 
 msgid "Enter an amount to refund."
@@ -3789,10 +3733,10 @@ msgstr "この注文には返金する iyzico トランザクションがあり�
 msgid "The amount is more than what is left to refund at iyzico."
 msgstr "金額が iyzico で返金できる残額を超えています。"
 
-msgid "iyzico refused the refund:%s"
+msgid "iyzico refused the refund: %s"
 msgstr "iyzico が払い戻しを拒否しました:%s"
 
-msgid "Refunded at iyzico:%1$s.%2$s"
+msgid "Refunded at iyzico: %1$s. %2$s"
 msgstr "iyzico で返金:%1$s。%2$s"
 
 msgid "Classic"
@@ -3927,16 +3871,16 @@ msgstr "空または 0 = その方法 (銀行振込など) の手数料はかか
 msgid "Please choose what you would like to donate for."
 msgstr "寄付したいものを選択してください。"
 
-msgid "This option cannot be donated in%s. Please choose another currency."
+msgid "This option cannot be donated in %s. Please choose another currency."
 msgstr "このオプションは%sでは寄付できません。別の通貨を選択してください。"
 
 msgid "This option cannot be donated online at the moment."
 msgstr "このオプションは現時点ではオンラインで寄付できません。"
 
-msgid "The number must be between 1 and%s."
+msgid "The number must be between 1 and %s."
 msgstr "数値は 1 ~%sの間である必要があります。"
 
-msgid "The amount must be at least%s."
+msgid "The amount must be at least %s."
 msgstr "金額は少なくとも%sである必要があります。"
 
 msgid "For this amount please get in touch with us."
@@ -3960,10 +3904,6 @@ msgstr "この寄付には代理人 (vekâlet) の同意が必要ですが、ま
 msgid "The proxy (vekâlet) text has been updated. Please read it again and accept it."
 msgstr "プロキシ (vekâlet) テキストが更新されました。もう一度読んで同意してください。"
 
-msgid "Please write at most%sname (one per share)."
-msgid_plural "Please write at most%snames (one per share)."
-msgstr[0] "%s名は最大でも 1 つずつ書いてください (シェアごとに 1 つ)。"
-
 msgid "The phone number does not look right. Example: 0532 123 45 67"
 msgstr "電話番号が正しくありません。例: 0532 123 45 67"
 
@@ -3976,7 +3916,7 @@ msgstr "この活動には毎月の寄付は必要ありません。"
 msgid "Monthly donations are not available at the moment."
 msgstr "現在、毎月の寄付はご利用いただけません。"
 
-msgid "Donations in%scannot be paid here at the moment."
+msgid "Donations in %s cannot be paid here at the moment."
 msgstr "%sでの寄付は、現時点ではここでお支払いいただけません。"
 
 msgid "The donation product could not be found."
@@ -3985,7 +3925,7 @@ msgstr "寄付製品が見つかりませんでした。"
 msgid "It could not be added to the cart."
 msgstr "カートに追加できませんでした。"
 
-msgid "A donation in your cart cannot be paid in%sand was removed."
+msgid "A donation in your cart cannot be paid in %s and was removed."
 msgstr "カート内の寄付は%sで支払うことができないため、削除されました。"
 
 msgid "A donation in your cart is no longer available and was removed."
@@ -3994,7 +3934,7 @@ msgstr "カート内の寄付は利用できなくなったため、削除され
 msgid "Printed certificates can only be paid in the store currency; your certificate will be sent online."
 msgstr "印刷された証明書はストア通貨でのみ支払うことができます。証明書はオンラインで送信されます。"
 
-msgid "Products in your cart can only be paid in%1$s.<a href=\"%2$s\">Switch to%1$s</a>"
+msgid "Products in your cart can only be paid in %1$s. <a href=\"%2$s\">Switch to %1$s</a>"
 msgstr "カート内の商品は%1$sでのみお支払いいただけます。<a href=\"%2$s\">%1$s</a>に切り替えます "
 
 msgid "Printed certificate delivery"
@@ -4021,13 +3961,13 @@ msgstr "私にコピーしてください"
 msgid "Postal address"
 msgstr "郵便番号"
 
-msgid "accepted (text version%s)"
+msgid "accepted (text version %s)"
 msgstr "受け入れられました (テキスト バージョン%s)"
 
 msgid "Online + printed"
 msgstr "オンライン + 印刷"
 
-msgid "%sSapling Donation"
+msgid "%s Sapling Donation"
 msgstr "%s苗木の寄付"
 
 msgid "Certificate no"
@@ -4036,13 +3976,13 @@ msgstr "証明書がありません"
 msgid "The certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce)."
 msgstr "証明書を作成できませんでした。Flux 証明書テンプレートが見つかりませんでした (寄付 › 設定 › WooCommerce)。"
 
-msgid "The certificate could not be made:%s"
+msgid "The certificate could not be made: %s"
 msgstr "証明書を作成できませんでした:%s"
 
 msgid "Not sent yet."
 msgstr "まだ送信されていません。"
 
-msgid "Certificate made:%1$s(%2$s).%3$s"
+msgid "Certificate made: %1$s (%2$s). %3$s"
 msgstr "作成された証明書:%1$s(%2$s)。%3$s"
 
 msgid "Certificates made again (%d); the old ones were revoked."
@@ -4051,16 +3991,16 @@ msgstr "証明書が再度作成されました (%d);古いものは取り消さ
 msgid "No delivery channel is chosen."
 msgstr "配信チャネルが選択されていません。"
 
-msgid "Queued:%s."
+msgid "Queued: %s."
 msgstr "キューに登録されました:%s。"
 
-msgid "Copy to the donor:%s."
+msgid "Copy to the donor: %s."
 msgstr "寄付者にコピーします:%s。"
 
 msgid "The preview could not be drawn. You can open it with \"View certificate\"."
 msgstr "プレビューを描画できませんでした。 「証明書の表示」で開くことができます。"
 
-msgid "No:%s"
+msgid "No: %s"
 msgstr "いいえ:%s"
 
 msgid "View certificate"
@@ -4087,16 +4027,16 @@ msgstr "「%1$s」は毎月繰り返されます (定期的な寄付 #%2$d)。�
 msgid "Card (iyzico), monthly"
 msgstr "カード (iyzico)、毎月"
 
-msgid "Monthly renewal of recurring donation #%1$d(first order #%2$s)."
+msgid "Monthly renewal of recurring donation #%1$d (first order #%2$s)."
 msgstr "定期的な寄付 #%1$dの毎月の更新 (最初の注文 #%2$s)。"
 
-msgid "Monthly charge accepted by iyzico:%1$s, payment id%2$s."
+msgid "Monthly charge accepted by iyzico: %1$s, payment id %2$s."
 msgstr "iyzico が受け入れた月額料金:%1$s、支払い ID%2$s。"
 
-msgid "Monthly charge failed after the last attempt:%s"
+msgid "Monthly charge failed after the last attempt: %s"
 msgstr "最後の試行後に月額請求が失敗しました:%s"
 
-msgid "Monthly charge failed, it will be retried:%s"
+msgid "Monthly charge failed, it will be retried: %s"
 msgstr "月額請求に失敗しました。再試行されます:%s"
 
 msgid "Flux Donate always uses EsnekPOS's secure payment page; the bank asks for 3D Secure there when needed."
@@ -4111,31 +4051,31 @@ msgstr "Flux Donate は、この支払い方法を実行します。クラシッ
 msgid "Donation #%d"
 msgstr "寄付 #%d"
 
-msgid "EsnekPOS did not answer (HTTP%d)."
+msgid "EsnekPOS did not answer (HTTP %d)."
 msgstr "EsnekPOS が応答しませんでした (HTTP%d)。"
 
-msgid "EsnekPOS payment could not start:%s"
+msgid "EsnekPOS payment could not start: %s"
 msgstr "EsnekPOS 支払いを開始できませんでした:%s"
 
-msgid "EsnekPOS payment could not start:%1$s(%2$s)."
+msgid "EsnekPOS payment could not start: %1$s (%2$s)."
 msgstr "EsnekPOS 支払いを開始できませんでした:%1$s(%2$s)。"
 
 msgid "The payment is being checked. Please wait a moment and refresh the page."
 msgstr "支払いを確認中です。しばらく待ってからページを更新してください。"
 
-msgid "EsnekPOS payment could not be checked:%s"
+msgid "EsnekPOS payment could not be checked: %s"
 msgstr "EsnekPOS 支払いを確認できませんでした:%s"
 
 msgid "The payment could not be verified yet. If money was taken from your card, please contact us before trying again."
 msgstr "支払いはまだ確認できませんでした。カードからお金が引き落とされた場合は、再試行する前に当社にご連絡ください。"
 
-msgid "EsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged."
+msgid "EsnekPOS payment received: reference %1$s, %2$s installment(s), %3$s charged."
 msgstr "EsnekPOS 支払いを受け取りました: 参照%1$s、%2$s分割払い、%3$sが請求されました。"
 
 msgid "EsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything."
 msgstr "EsnekPOS は、この注文 (金額または参照) と一致しない支払い (%s) を報告しました。何かを行う前に、EsnekPOS パネルで確認してください。"
 
-msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment:%s"
+msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment: %s"
 msgstr "EsnekPOS 返品は成功と表示されましたが、EsnekPOS は支払いを確認しませんでした:%s"
 
 msgid "EsnekPOS: the payment was not completed (%s)."
@@ -4156,14 +4096,10 @@ msgstr "EsnekPOS パネルで設定された EsnekPOS の支払いページ。"
 msgid "Refund in the EsnekPOS panel, then mark the order refunded."
 msgstr "EsnekPOS パネルで返金し、注文に返金済みのマークを付けます。"
 
-msgid "Donation of%1$ssapling.%2$splants it for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgid_plural "Donation of%1$ssaplings.%2$splants them for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgstr[0] "%1$sの苗木の寄付。%2$sはあなたのためにそれらを植え、あなたの名前でオンライン証明書を送信します。カードまたは銀行振込でお支払いください。"
-
 msgid "Donation packages"
 msgstr "寄付パッケージ"
 
-msgid "Donation >%s"
+msgid "Donation > %s"
 msgstr "寄付 >%s"
 
 msgid "I will also cover the transaction fee"
@@ -4190,25 +4126,25 @@ msgstr "最も人気のある'、'en']]"
 msgid "Family pack"
 msgstr "ファミリー パック"
 
-msgid "Hello{ad}, your donation of{tutar}is registered. IBAN:{iban}Reference:{aciklama}Upload your receipt:{link}"
+msgid "Hello {ad}, your donation of {tutar} is registered. IBAN: {iban} Reference: {aciklama} Upload your receipt: {link}"
 msgstr "こんにちは{ad}さん。{tutar}の寄付が登録されました。 IBAN:{iban}参照:{aciklama}領収書のアップロード:{link}"
 
-msgid "Hello{ad}🌱\n\nYour donation of *{tutar}* is registered (No:{siparis}).\n\nBank transfer details:\nRecipient:{alici}\nIBAN:{iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
+msgid "Hello {ad} 🌱\n\nYour donation of *{tutar}* is registered (No: {siparis}).\n\nBank transfer details:\nRecipient: {alici}\nIBAN: {iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
 msgstr "こんにちは{ad}🌱\n\nあなたの *{tutar}* の寄付が登録されました (いいえ:{siparis})。\n\n銀行振込の詳細:\n受取人:{alici}\nIBAN:{iban}\n参照: *{aciklama}*\n\n送金後、ここに領収書をアップロードできます:\n{link}\n\nありがとうございます。\n{site}"
 
-msgid "Pending transfer notification sent:%s."
+msgid "Pending transfer notification sent: %s."
 msgstr "送信された保留中の転送通知:%s。"
 
 msgid "WooCommerce checks"
 msgstr "WooCommerce チェック"
 
-msgid "Version%1$sis active. Flux Donate was checked up to%2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
+msgid "Version %1$s is active. Flux Donate was checked up to %2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
 msgstr "バージョン%1$sはアクティブです。 Flux Donate は%2$sまでチェックされました。安定した公開 WooCommerce 機能のみを使用しますが、WooCommerce の大幅な更新後に寄付をテストします。"
 
-msgid "Active, version%s. Donations are paid through the WooCommerce cart and checkout."
+msgid "Active, version %s. Donations are paid through the WooCommerce cart and checkout."
 msgstr "アクティブ、バージョン%s。寄付は、WooCommerce カートとチェックアウトを通じて支払われます。"
 
-msgid "One-time card payments are taken by%s; iyzico is not shown at the checkout."
+msgid "One-time card payments are taken by %s; iyzico is not shown at the checkout."
 msgstr "1 回限りのカード支払いは%sによって行われます。 iyzico はチェックアウト時に表示されません。"
 
 msgid "One-time card payments are taken by the official iyzico WooCommerce plugin."
@@ -4220,7 +4156,7 @@ msgstr "カード支払いでは、チェックアウト時に独自のカード
 msgid "One-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled)."
 msgstr "1 回限りのカード支払いは Flux Donate iyzico によって行われます (公式 iyzico プラグインは有効になっていません)。"
 
-msgid "Card payments are taken by:%s."
+msgid "Card payments are taken by: %s."
 msgstr "カード支払いは%sによって行われます。"
 
 msgid "No card method is enabled; donations can only be paid by bank transfer."
@@ -4256,19 +4192,19 @@ msgstr "2 つの銀行振込方法"
 msgid "WooCommerce's own \"Direct bank transfer\" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable \"Direct bank transfer\"."
 msgstr "WooCommerce\\ 独自の「直接銀行振込」は寄付銀行振込の隣で有効になります。寄付者には同様の 2 つの選択肢が表示され、領収書のアップロードは寄付の場合にのみ機能します。 「直接銀行振込」を無効にします。"
 
-msgid "The shop currency is%1$s; these types use another currency and are charged in%1$sat the same number:%2$s"
+msgid "The shop currency is %1$s; these types use another currency and are charged in %1$s at the same number: %2$s"
 msgstr "ショップ通貨は%1$sです。これらのタイプは別の通貨を使用し、同じ番号%1$sで請求されます:%2$s"
 
 msgid "WooCommerce settings"
 msgstr "WooCommerce 設定"
 
-msgid "Donation types and the shop use%s."
+msgid "Donation types and the shop use %s."
 msgstr "寄付の種類とショップでは%sを使用します。"
 
 msgid "Donation products"
 msgstr "寄付商品"
 
-msgid "These types get their hidden WooCommerce product the first time they are donated to or saved:%s"
+msgid "These types get their hidden WooCommerce product the first time they are donated to or saved: %s"
 msgstr "これらのタイプは、初めて寄付または保存されたときに非表示の WooCommerce 製品を取得します:%s"
 
 msgid "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
@@ -4280,10 +4216,10 @@ msgstr "寄付オプション ブロックのあるページが選択されて�
 msgid "Other payment plugins"
 msgstr "その他の支払いプラグイン"
 
-msgid "Check these on the donation checkout:%s. Details: Donations › Settings › WooCommerce › Payment methods."
+msgid "Check these on the donation checkout: %s. Details: Donations › Settings › WooCommerce › Payment methods."
 msgstr "寄付チェックアウトでこれらをチェックしてください:%s。詳細: 寄付 › 設定 › WooCommerce › 支払い方法。"
 
-msgid "Enabled and shown on the donation checkout:%s."
+msgid "Enabled and shown on the donation checkout: %s."
 msgstr "有効化され、寄付チェックアウトに表示されます:%s。"
 
 msgid "Certificates after payment"
@@ -4298,7 +4234,7 @@ msgstr "Flux 証明書にはアクティブなテンプレートがありませ�
 msgid "Product XML"
 msgstr "プロダクト XML"
 
-msgid "%1$slists%2$ddonation packages (Google Merchant format, e.g. for iyzico)."
+msgid "%1$s lists %2$d donation packages (Google Merchant format, e.g. for iyzico)."
 msgstr "%1$sには%2$d寄付パッケージのリストが表示されます (Google Merchant 形式、iyzico など)。"
 
 msgid "Payment forms on the checkout"
@@ -4307,7 +4243,7 @@ msgstr "チェックアウト時の支払いフォーム"
 msgid "Donation forms send their choice to the WooCommerce cart; \"Payment completed\" automations run when the order is paid."
 msgstr "寄付フォームは選択内容を WooCommerce カートに送信します。注文の支払いが完了すると、「支払い完了」の自動化が実行されます。"
 
-msgid "Flux Forms%sis active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
+msgid "Flux Forms %s is active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
 msgstr "Flux フォーム%sがアクティブです。フォームの支払いはチェックアウト時に行われますが、「支払い完了」の自動化には Flux Forms 2.1.0 以降が必要です。"
 
 msgid "Donation e-mails"
@@ -4337,7 +4273,7 @@ msgstr "空 = 以下の銀行口座の所有者、またはここで IBAN を持
 msgid "The account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce's \"Direct bank transfer\", else the theme settings; recipient and bank then come from that account too."
 msgstr "アカウントはあらゆる場所 (寄付ページ、チェックアウト、コールセンター) に表示されます。空 = WooCommerce の「直接銀行振込」の最初のアカウント、それ以外の場合はテーマ設定。受信者と銀行もその口座から取得されます。"
 
-msgid "What the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}"
+msgid "What the donor writes in the transfer description. Placeholders: {tur} (sapling donation / donation), {kod} (prefix + order no), {siparis}, {ad}. Empty: {tur} {kod} {ad}"
 msgstr "寄付者が譲渡説明に記入する内容。プレースホルダー:{tur}(苗木寄付 / 寄付)、{kod}(プレフィックス + 注文番号)、{siparis}、{ad}。空:{tur}{kod}{ad}"
 
 msgid "Bank transfer pre-registration: waiting for the payment."
@@ -4400,12 +4336,8 @@ msgstr "1 つの共有につき最大 1 つの名前を入力してください�
 msgid "/ month"
 msgstr "/月"
 
-msgid "(up to%s)"
+msgid "(up to %s)"
 msgstr "(%sまで)"
-
-msgid "%sSapling"
-msgid_plural "%sSaplings"
-msgstr[0] "%s苗木"
 
 msgid "Who is this donation for?"
 msgstr "この寄付は誰のためのものですか?"
@@ -4473,7 +4405,7 @@ msgstr "カートに移動"
 msgid "Your donation"
 msgstr "あなたの寄付"
 
-msgid "from%s"
+msgid "from %s"
 msgstr "%sから "
 
 msgid "Payments are taken securely by iyzico."
@@ -4494,7 +4426,7 @@ msgstr "別の金額"
 msgid "Or write another amount"
 msgstr "または別の金額を記入してください"
 
-msgid "At least%s"
+msgid "At least %s"
 msgstr "少なくとも%s"
 
 msgid "On whose behalf?"
@@ -4509,13 +4441,13 @@ msgstr "名前のない共有には、チェックアウト時の名前が付け
 msgid "Shares without a name are given in the name from the checkout."
 msgstr "名前のない共有には、チェックアウト時の名前が付けられます。"
 
-msgid "Read the proxy (vekâlet) text (version%s)"
+msgid "Read the proxy (vekâlet) text (version %s)"
 msgstr "プロキシ (vekâlet) テキストを読み取ります (バージョン%s)"
 
 msgid "I give my proxy (vekâlet) for the sacrifice according to this text."
 msgstr "このテキストに従って、私は犠牲の代理人 (vekâlet) を捧げます。"
 
-msgid "Share%s"
+msgid "Share %s"
 msgstr "%sを共有"
 
 msgid "Apply to all"
@@ -4530,15 +4462,11 @@ msgstr "この寄付には領収書は必要ありません。"
 msgid "At most 5 receipts can be uploaded for a donation."
 msgstr "寄付のためにアップロードできる領収書は最大 5 枚です。"
 
-msgid "The donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it."
+msgid "The donor uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
 msgstr "寄付者が領収書をアップロードしました:%1$s(%2$s)。支払いを確認して確定します。"
 
 msgid "the site"
 msgstr "サイト"
-
-msgid "Warning: this receipt was uploaded before (%1$dtime, via%2$s). Check it before confirming the payment."
-msgid_plural "Warning: this receipt was uploaded before (%1$dtimes, via%2$s). Check it before confirming the payment."
-msgstr[0] "警告: この領収書は以前 (%1$d回、%2$s経由) にアップロードされました。支払いを確認する前に必ずご確認ください。"
 
 msgid "Earlier donation: #%d."
 msgstr "以前の寄付: #%d。"
@@ -4573,10 +4501,6 @@ msgstr "銀行振込による寄付。支払いを完了した場合は、領収
 msgid "Donation #%s"
 msgstr "寄付 #%s"
 
-msgid "%sdonation is awaiting payment"
-msgid_plural "%sdonations are awaiting payment"
-msgstr[0] "%sの寄付は支払いを待っています"
-
 msgid "If you have made the transfer, upload your receipt."
 msgstr "送金を行った場合は、領収書をアップロードしてください。"
 
@@ -4589,7 +4513,7 @@ msgstr "少なくとも 1 つ書き込んでください。領収書と証明書
 msgid "Continue to payment"
 msgstr "支払いを続行"
 
-msgid "I have read and accept the%1$sprivacy policy%2$sand the%3$sdonation agreement%4$s."
+msgid "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s."
 msgstr "%1$sプライバシー ポリシー%2$sおよび%3$s寄付契約%4$sを読み、同意します。"
 
 msgid "Make payment"
@@ -4604,7 +4528,7 @@ msgstr "寄付条件"
 msgid "Privacy policy"
 msgstr "プライバシー ポリシー"
 
-msgid "These terms apply to donations made on this site to%s."
+msgid "These terms apply to donations made on this site to %s."
 msgstr "これらの規約は、このサイトで%sに行われた寄付に適用されます。"
 
 msgid "A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose."
@@ -4628,13 +4552,13 @@ msgstr "寄付が誤って行われた場合(金額の間違いまたは二重�
 msgid "Your name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details."
 msgstr "あなたの名前と連絡先の詳細は、寄付の記録、領収書と証明書の送付、寄付に関する連絡に使用されます。詳細については、プライバシー ポリシーを参照してください。"
 
-msgid "For any question about your donation, write to us on WhatsApp:%s"
+msgid "For any question about your donation, write to us on WhatsApp: %s"
 msgstr "寄付に関するご質問は、WhatsApp:%sまでお問い合わせください "
 
 msgid "For any question about your donation, write to us through the contact page."
 msgstr "寄付に関するご質問は、お問い合わせページからご連絡ください。"
 
-msgid "%sprocesses your personal data under the Turkish Personal Data Protection Law (KVKK)."
+msgid "%s processes your personal data under the Turkish Personal Data Protection Law (KVKK)."
 msgstr "%sは、トルコ個人データ保護法 (KVKK) に基づいてお客様の個人データを処理します。"
 
 msgid "What we collect"
@@ -4736,7 +4660,7 @@ msgstr "WooCommerce での支払い"
 msgid "Payment logos on the site"
 msgstr "サイト上の支払いロゴ"
 
-msgid "Checkout page:%s."
+msgid "Checkout page: %s."
 msgstr "チェックアウト ページ:%s。"
 
 msgid "Checkout block"
@@ -4763,7 +4687,7 @@ msgstr "詳細については、マークをポイントしてください。"
 msgid "Donation type not found."
 msgstr "寄付の種類が見つかりません。"
 
-msgid "of%sgoal"
+msgid "of %s goal"
 msgstr "%sゴール"
 
 msgid "Goal progress"
@@ -4784,16 +4708,16 @@ msgstr "各タブは JSON オブジェクトである必要があります。"
 msgid "A tab needs an \"id\"."
 msgstr "タブには「ID」が必要です。"
 
-msgid "Tab%1$s: \"on\" must be item or donation, not%2$s."
+msgid "Tab %1$s: \"on\" must be item or donation, not %2$s."
 msgstr "Tab%1$s: \"on\" は%2$sではなく、アイテムまたは寄付である必要があります。"
 
-msgid "Tab%s: every field needs a \"key\"."
+msgid "Tab %s: every field needs a \"key\"."
 msgstr "タブ%s: すべてのフィールドには「キー」が必要です。"
 
-msgid "Tab%1$s, field%2$s: unknown type%3$s."
+msgid "Tab %1$s, field %2$s: unknown type %3$s."
 msgstr "タブ%1$s、フィールド%2$s: 不明なタイプ%3$s."
 
-msgid "The JSON could not be read:%s"
+msgid "The JSON could not be read: %s"
 msgstr "JSON を読み取れませんでした:%s"
 
 msgid "Tracked items"
@@ -4814,7 +4738,7 @@ msgstr "パートナーから取り戻す"
 msgid "Mark completed"
 msgstr "完了としてマークを付ける"
 
-msgid "Your gift on behalf of%1$sis completed. Thank you. Code:%2$s"
+msgid "Your gift on behalf of %1$s is completed. Thank you. Code: %2$s"
 msgstr "%1$sを代表するギフトが完了しました。ありがとう。コード:%2$s"
 
 msgid "Page title"
@@ -4838,7 +4762,7 @@ msgstr "ボタン: 取り戻す"
 msgid "Button: mark completed"
 msgstr "ボタン: 完了マークを付けます"
 
-msgid "WhatsApp text with the file (%1$sname,%2$scode)"
+msgid "WhatsApp text with the file (%1$s name, %2$s code)"
 msgstr "WhatsApp テキストとファイル (%1$s名、%2$sコード)"
 
 msgid "File added"
@@ -4853,7 +4777,7 @@ msgstr "ファイルは所有者に送信されました"
 msgid "Details changed"
 msgstr "詳細が変更されました"
 
-msgid "Choose:%s."
+msgid "Choose: %s."
 msgstr "選択:%s。"
 
 msgid "not waiting"
@@ -4910,7 +4834,7 @@ msgstr "WhatsApp チャットを開けませんでした。"
 msgid "Please sign in."
 msgstr "サインインしてください。"
 
-msgid "received%s"
+msgid "received %s"
 msgstr "%sを受信しました"
 
 msgid "Recurring donation started"
@@ -4922,7 +4846,7 @@ msgstr "毎月(カード)寄付が設定されると寄付者に送信されま�
 msgid "Donor name"
 msgstr "寄付者の名前"
 
-msgid "Interval (monthly...)"
+msgid "Interval (monthly…)"
 msgstr "間隔 (毎月...)"
 
 msgid "Date of the next payment"
@@ -4934,13 +4858,13 @@ msgstr "リンクをキャンセル"
 msgid "monthly"
 msgstr "毎月"
 
-msgid "Your recurring donation to{kurum}"
+msgid "Your recurring donation to {kurum}"
 msgstr "{kurum}への定期的な寄付 "
 
-msgid "Thank you,{ad}"
+msgid "Thank you, {ad}"
 msgstr "ありがとう、{ad}"
 
-msgid "Your{aralik}donation of{tutar}is set up. The next payment will be taken on{sonraki}."
+msgid "Your {aralik} donation of {tutar} is set up. The next payment will be taken on {sonraki}."
 msgstr "{tutar}の{aralik}寄付が設定されました。次の支払いは{sonraki}に行われます。"
 
 msgid "You can cancel your recurring donation at any time with the button below."
@@ -4955,16 +4879,16 @@ msgstr "カードがすべての試行で拒否され、定期的な寄付が一
 msgid "Number of attempts"
 msgstr "試行回数"
 
-msgid "We could not take your donation to{kurum}"
+msgid "We could not take your donation to {kurum}"
 msgstr "あなたの寄付を{kurum}', 'en' に受け取ることができませんでした]]"
 
 msgid "Your recurring donation is paused"
 msgstr "定期的な寄付は一時停止されています"
 
-msgid "Dear{ad},"
+msgid "Dear {ad},"
 msgstr "{ad}様"
 
-msgid "We tried{deneme}times but could not charge your card for your{aralik}donation of{tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
+msgid "We tried {deneme} times but could not charge your card for your {aralik} donation of {tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
 msgstr "{deneme}回試しましたが、{tutar}の{aralik}寄付をカードに請求できなかったため、一時停止されています。継続をご希望の場合は、当社の Web サイトで新たに寄付を行うか、当社までご連絡ください。"
 
 msgid "Donate again"
@@ -4988,19 +4912,19 @@ msgstr "ファイル名"
 msgid "Order link (admin)"
 msgstr "注文リンク (管理者)"
 
-msgid "Receipt uploaded: donation #{siparis}({ad})"
+msgid "Receipt uploaded: donation #{siparis} ({ad})"
 msgstr "領収書のアップロード: 寄付 #{siparis}({ad})"
 
 msgid "A transfer receipt was uploaded"
 msgstr "振込受領書がアップロードされました"
 
-msgid "Amount:{tutar}"
+msgid "Amount: {tutar}"
 msgstr "金額:{tutar}"
 
-msgid "Reference:{aciklama}"
+msgid "Reference: {aciklama}"
 msgstr "参照:{aciklama}"
 
-msgid "File:{dosya}"
+msgid "File: {dosya}"
 msgstr "ファイル:{dosya}"
 
 msgid "Check the payment at the bank and press \"Confirm payment\" on the order; the certificate is then issued and sent automatically."
@@ -5018,13 +4942,13 @@ msgstr "寄付金の支払いを確認できませんでした"
 msgid "We could not confirm your payment"
 msgstr "お支払いを確認できませんでした"
 
-msgid "Hello{ad},"
+msgid "Hello {ad},"
 msgstr "{ad}さん、こんにちは。"
 
-msgid "We could not confirm the payment of your{tutar}donation."
+msgid "We could not confirm the payment of your {tutar} donation."
 msgstr "{tutar}寄付金の支払いを確認できませんでした。"
 
-msgid "Reason:{aciklama}"
+msgid "Reason: {aciklama}"
 msgstr "理由:{aciklama}"
 
 msgid "If you think this is a mistake, please reply to this e-mail. Thank you."
@@ -5039,7 +4963,7 @@ msgstr "領収書および寄付者の電子メールに表示される名前 (�
 msgid "The organisation name cannot be empty."
 msgstr "組織名を空にすることはできません。"
 
-msgid "Organisation name saved:%s"
+msgid "Organisation name saved: %s"
 msgstr "保存された組織名:%s"
 
 msgid "Set the default currency"
@@ -5051,7 +4975,7 @@ msgstr "新しい寄付タイプと手動入力に使用されます。"
 msgid "Unsupported currency."
 msgstr "サポートされていない通貨です。"
 
-msgid "Default currency:%s"
+msgid "Default currency: %s"
 msgstr "デフォルトの通貨:%s"
 
 msgid "Open a donation type"
@@ -5063,7 +4987,7 @@ msgstr "すでに価格 (または無料金額) が設定されているクロ�
 msgid "This type has no option with a price and no free amount; set a price first."
 msgstr "このタイプには、価格や無料金額のオプションはありません。最初に価格を設定してください。"
 
-msgid "Donation type opened:%s"
+msgid "Donation type opened: %s"
 msgstr "オープンした寄付タイプ:%s"
 
 msgid "Set a donation type's unit price"
@@ -5078,13 +5002,13 @@ msgstr "価格は 0 より大きくなければなりません。"
 msgid "This type has no active option; add one on the Donation types page."
 msgstr "このタイプにはアクティブなオプションがありません。寄付の種類ページに追加してください。"
 
-msgid "Unit price of%1$sset to%2$s%3$s."
-msgstr "%1$sの単価が%2$s%3$sに設定されました。"
+msgid "Unit price of %1$s set to %2$s %3$s."
+msgstr "%1$sの単価が%2$s %3$sに設定されました。"
 
 msgid "Link a form to a donation type"
 msgstr "フォームを寄付タイプにリンクする"
 
-msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms:%s"
+msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms: %s"
 msgstr "値「slug=フォームID」、例: 「フィダン=3」。フォーム:%s"
 
 msgid "No form with this id."
@@ -5096,7 +5020,7 @@ msgstr "フォームはすでにリンクされています。"
 msgid "The form could not be linked."
 msgstr "フォームをリンクできませんでした。"
 
-msgid "Form \"%1$s\" linked to%2$s."
+msgid "Form \"%1$s\" linked to %2$s."
 msgstr "フォーム「%1$s」は%2$sにリンクされています。"
 
 msgid "Use the form \"slug=value\"."
@@ -5126,19 +5050,19 @@ msgstr "レポートは JSON オブジェクトである必要があります。
 msgid "The report needs an \"id\" (letters, digits, dash)."
 msgstr "レポートには「ID」(文字、数字、ダッシュ) が必要です。"
 
-msgid "Unknown \"source\":%s. Use donations or items."
+msgid "Unknown \"source\": %s. Use donations or items."
 msgstr "不明な「ソース」:%s。寄付またはアイテムを使用してください。"
 
-msgid "Unknown \"group\" value:%s"
+msgid "Unknown \"group\" value: %s"
 msgstr "不明な「グループ」値:%s"
 
 msgid "Group by at most two dimensions."
 msgstr "最大でも 2 つの次元でグループ化します。"
 
-msgid "Unknown \"metrics\" value:%s"
+msgid "Unknown \"metrics\" value: %s"
 msgstr "不明な「メトリクス」値:%s"
 
-msgid "\"sort\" must be one of the group or metrics values:%s"
+msgid "\"sort\" must be one of the group or metrics values: %s"
 msgstr "「sort」はグループ値またはメトリック値のいずれかである必要があります:%s"
 
 msgid "piece"
@@ -5174,13 +5098,13 @@ msgstr "毎年"
 msgid "Test provider"
 msgstr "テストプロバイダ"
 
-msgid "%1$s(%2$s)"
+msgid "%1$s (%2$s)"
 msgstr "%1$s(%2$s)"
 
-msgid "Last test%1$s:%2$s"
+msgid "Last test %1$s: %2$s"
 msgstr "最後のテスト%1$s:%2$s"
 
-msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls%severy 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
+msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls %s every 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
 msgstr "WP-Cron は wp-config.php (DISABLE_WP_CRON) でオフになっています。これは、サーバー cron ジョブが 5 ~ 15 分ごとに%sを呼び出す場合にのみ問題ありません。これがないと、定期的な料金、再試行、その他のスケジュールされたタスクは実行されません。"
 
 msgid "Scheduled tasks are running, so a server cron is in place."
@@ -5198,13 +5122,13 @@ msgstr "ALTERNATE_WP_CRON がオンになっています。"
 msgid "Flux Donate hourly task"
 msgstr "Flux 時間単位のタスクを寄付"
 
-msgid "Last run:%s. Recurring iyzico charges are checked every hour."
+msgid "Last run: %s. Recurring iyzico charges are checked every hour."
 msgstr "最終実行:%s。 iyzico の定期的な料金は 1 時間ごとにチェックされます。"
 
-msgid "Not run yet; the first run is scheduled for%s."
+msgid "Not run yet; the first run is scheduled for %s."
 msgstr "まだ実行されていません。最初の実行は%sにスケジュールされています。"
 
-msgid "Last run:%s, more than 2 hours ago."
+msgid "Last run: %s, more than 2 hours ago."
 msgstr "最終実行:%s、2 時間以上前。"
 
 msgid "It has never run."
@@ -5216,7 +5140,7 @@ msgstr "WP-Cron がオフになっているため、サーバー cron ジョブ�
 msgid "WP-Cron only runs on visits and may be blocked by the host or a security plugin. Use \"Test cron\" or add a server cron job."
 msgstr "WP-Cron は訪問時にのみ実行され、ホストまたはセキュリティ プラグインによってブロックされる可能性があります。 「Test cron」を使用するか、サーバー cron ジョブを追加します。"
 
-msgid "Next scheduled:%s."
+msgid "Next scheduled: %s."
 msgstr "次のスケジュール:%s。"
 
 msgid "The task is not scheduled; it is added again on the next page load."
@@ -5252,10 +5176,10 @@ msgstr "利用可能な支払いプロバイダーがありません。"
 msgid "Payment settings"
 msgstr "支払い設定"
 
-msgid "Card payments are taken with%s."
+msgid "Card payments are taken with %s."
 msgstr "カード支払いは%sで行われます。"
 
-msgid "%sis the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
+msgid "%s is the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
 msgstr "%sはアクティブなプロバイダですが、そのキーが見つからないため、寄付フォームには「オンライン支払いは利用できません」と表示されます。"
 
 msgid "Enter keys"
@@ -5282,10 +5206,10 @@ msgstr "「接続のテスト」を使用して、iyzico でキーを確認し�
 msgid "iyzico keys"
 msgstr "iyzico キー"
 
-msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url):%s. Subscription notification URLs are not needed."
+msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url): %s. Subscription notification URLs are not needed."
 msgstr "iyzico パネルに貼り付けます › 販売者通知 URL (İşyeri Bildirimleri Url):%s。サブスクリプション通知 URL は必要ありません。"
 
-msgid "Last notification received:%s."
+msgid "Last notification received: %s."
 msgstr "最後に受信した通知:%s。"
 
 msgid "No notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made)."
@@ -5302,10 +5226,6 @@ msgstr "アドレスを表示"
 
 msgid "Failed recurring charges"
 msgstr "定期的な請求が失敗しました"
-
-msgid "%drecurring donation stopped after its card was declined 3 times."
-msgid_plural "%drecurring donations stopped after their cards were declined 3 times."
-msgstr[0] "%dの定期的な寄付は、カードが 3 回拒否された後停止されました。"
 
 msgid "Stripe keys"
 msgstr "ストライプ キー"
@@ -5328,22 +5248,22 @@ msgstr "Webhook 署名シークレットがありません: Stripe で行われ�
 msgid "Flux Forms is not active. Donation forms and card payments need it."
 msgstr "Flux フォームはアクティブではありません。寄付フォームとカード支払いが必要です。"
 
-msgid "Active, version%s."
+msgid "Active, version %s."
 msgstr "アクティブ、バージョン%s。"
 
-msgid "Version%1$sis active; Flux Donate needs%2$sor later for payments and prices to work together."
+msgid "Version %1$s is active; Flux Donate needs %2$s or later for payments and prices to work together."
 msgstr "バージョン%1$sはアクティブです。 Flux Donate で支払いと価格を連携するには%2$s以降が必要です。"
 
-msgid "Active, version%s. Certificates can be sent after donations."
+msgid "Active, version %s. Certificates can be sent after donations."
 msgstr "アクティブ、バージョン%s。寄付後に証明書を送信できます。"
 
-msgid "Version%1$sis active;%2$sor later is recommended."
+msgid "Version %1$s is active; %2$s or later is recommended."
 msgstr "バージョン%1$sはアクティブです。%2$s以降を推奨します。"
 
 msgid "Not active. Donations are recorded, but no certificate is created or sent."
 msgstr "アクティブではありません。寄付は記録されますが、証明書の作成や送信は行われません。"
 
-msgid "WooCommerce is older than%s. Flux Donate 2.0 takes donations through WooCommerce; update it."
+msgid "WooCommerce is older than %s. Flux Donate 2.0 takes donations through WooCommerce; update it."
 msgstr "WooCommerce は%sよりも古いです。 Flux Donate 2.0 は WooCommerce を通じて寄付を受け付けています。更新してください。"
 
 msgid "WooCommerce is not active. Flux Donate 2.0 takes donations through the WooCommerce cart and checkout; until it is active, only the older Flux Forms payment layer works."
@@ -5373,23 +5293,19 @@ msgstr "WooCommerce および iyzico プラグイン"
 msgid "Open donation types"
 msgstr "寄付タイプを開く"
 
-msgid "%ddonation type is open and priced."
-msgid_plural "%ddonation types are open and priced."
-msgstr[0] "%d寄付タイプはオープンで価格も設定されています。"
-
 msgid "No donation type is open with a price (or free amount), so forms cannot take donations."
 msgstr "価格 (または無料金額) が公開されている寄付タイプがないため、フォームで寄付を受け付けることはできません。"
 
 msgid "Forms of open donation types"
 msgstr "オープンな寄付タイプのフォーム"
 
-msgid "No (existing) form is linked to:%s. Visitors cannot give to these types online."
+msgid "No (existing) form is linked to: %s. Visitors cannot give to these types online."
 msgstr "(既存の) フォームが%sにリンクされていません。訪問者はこれらのタイプにオンラインで寄付することはできません。"
 
 msgid "Every open donation type has a form."
 msgstr "すべてのオープンな寄付タイプにはフォームがあります。"
 
-msgid "Default currency:%s."
+msgid "Default currency: %s."
 msgstr "デフォルトの通貨:%s。"
 
 msgid "iyzico is not set up for this currency (Donations › Payments › iyzico › currencies)."
@@ -5397,10 +5313,6 @@ msgstr "iyzico はこの通貨に設定されていません (寄付 › 支払�
 
 msgid "Bank accounts (transfer)"
 msgstr "銀行口座 (振込)"
-
-msgid "%dbank account is listed for bank transfer gifts."
-msgid_plural "%dbank accounts are listed for bank transfer gifts."
-msgstr[0] "%d銀行口座は銀行振込ギフト用にリストされています。"
 
 msgid "No bank account is listed. They come from the theme (filter flxb_bank_accounts) and are used when recording bank transfer gifts."
 msgstr "銀行口座がリストされていません。これらはテーマ (フィルター flxb_bank_accounts) から取得され、銀行振込ギフトを記録するときに使用されます。"
@@ -5414,7 +5326,7 @@ msgstr "設定されていません。領収書と電子メールでは、サイ
 msgid "E-mail sending"
 msgstr "電子メール送信"
 
-msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to%s."
+msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to %s."
 msgstr "テストされていません。寄付者の電子メール (定期的な寄付が開始され、カードが拒否されました) は wp_mail で送信されます。テストは 1 つのメッセージを%sに送信します。"
 
 msgid "Send test e-mail"
@@ -5438,7 +5350,7 @@ msgstr "サイトのアドレスは HTTPS ではありません。カード支�
 msgid "WordPress security keys (salts)"
 msgstr "WordPress セキュリティ キー (ソルト)"
 
-msgid "Missing or weak in wp-config.php:%s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
+msgid "Missing or weak in wp-config.php: %s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
 msgstr "wp-config.php:%sが欠落しているか弱い。保存された iyzico カードはこれらのキーで暗号化されます。一意の値を一度設定 (https://api.wordpress.org/secret-key/1.1/salt/) し、その後は変更しないでください。変更しないと、保存されたカードが機能しなくなります。"
 
 msgid "Set in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working."
@@ -5447,7 +5359,7 @@ msgstr "wp-config.php で設定します。保存された iyzico カードは�
 msgid "Up to date (%s)."
 msgstr "最新の状態 (%s)。"
 
-msgid "Tables are at version%1$s, expected%2$s. Deactivate and activate Flux Donate to update them."
+msgid "Tables are at version %1$s, expected %2$s. Deactivate and activate Flux Donate to update them."
 msgstr "テーブルのバージョンは%1$sですが、%2$sが必要です。 Flux Donate を非アクティブにしてからアクティブにして更新してください。"
 
 msgid "No iyzico keys to test."
@@ -5459,7 +5371,7 @@ msgstr "サンドボックス"
 msgid "Connected; iyzico accepted the keys (%s)."
 msgstr "接続されました; iyzico はキー (%s) を受け入れました。"
 
-msgid "iyzico refused the keys (%1$s):%2$s. Check that the keys belong to this environment."
+msgid "iyzico refused the keys (%1$s): %2$s. Check that the keys belong to this environment."
 msgstr "iyzico はキー (%1$s) を拒否しました:%2$s。キーがこの環境に属していることを確認してください。"
 
 msgid "This server could not reach its own wp-cron.php (%s). WP-Cron cannot start from visits; add a server cron job."
@@ -5468,7 +5380,7 @@ msgstr "このサーバーは独自の wp-cron.php (%s) にアクセスできま
 msgid "wp-cron.php answered; WP-Cron can start."
 msgstr "wp-cron.php が答えました。 WP-Cron を開始できます。"
 
-msgid "wp-cron.php answered with HTTP%d(blocked by the host or a security plugin?). Add a server cron job."
+msgid "wp-cron.php answered with HTTP %d (blocked by the host or a security plugin?). Add a server cron job."
 msgstr "wp-cron.php は HTTP%dで応答しました (ホストまたはセキュリティ プラグインによってブロックされました?)。サーバー cron ジョブを追加します。"
 
 msgid "[%s] Test e-mail from Flux Donate"
@@ -5477,10 +5389,10 @@ msgstr "[%s] Flux Donate からのテスト電子メール"
 msgid "This is a test from Donations › Settings › System check. If you can read it, donor e-mails can be sent."
 msgstr "これは、「寄付」 > 「設定」 > 「システムチェック」からのテストです。読むことができれば、寄付者の電子メールを送信できます。"
 
-msgid "Sent to%s. Check that it arrived (and not in spam)."
+msgid "Sent to %s. Check that it arrived (and not in spam)."
 msgstr "%sに送信されます。受信したことを確認してください (スパムではないこと)。"
 
-msgid "Sending failed:%s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
+msgid "Sending failed: %s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
 msgstr "送信に失敗しました:%s。 SMTP をセットアップします (メール アカウントを使用した SMTP プラグインなど)。"
 
 msgid "Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış."
@@ -5703,10 +5615,6 @@ msgstr "一覧で表示"
 msgid "Review"
 msgstr "確認"
 
-msgid "%s more"
-msgid_plural "%s more"
-msgstr[0] "他 %s 件"
-
 msgid "Paid gifts"
 msgstr "支払い済みの寄付"
 
@@ -5718,3 +5626,7 @@ msgstr "この寄付には紹介者がいません。"
 
 msgid "The donor's earlier gifts came through %s."
 msgstr "この寄付者の以前の寄付は %s 経由でした。"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "他 %s 件"
