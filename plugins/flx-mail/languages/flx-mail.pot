@@ -2650,3 +2650,106 @@ msgstr ""
 
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr ""
+
+msgid "Site time now:"
+msgstr ""
+
+msgid "Typed list"
+msgstr ""
+
+msgid "%s has no email address"
+msgid_plural "%s have no email address"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s has no valid phone number"
+msgid_plural "%s have no valid phone number"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "email"
+msgstr ""
+
+msgid "%1$s has not given %2$s permission"
+msgid_plural "%1$s have not given %2$s permission"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "%s is already on the list"
+msgid_plural "%s are already on the list"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "this list is empty"
+msgstr ""
+
+msgid "%1$s: %2$s of %3$s added (%4$s)."
+msgstr ""
+
+msgid "%s person unsubscribed earlier and was left out."
+msgid_plural "%s people unsubscribed earlier and were left out."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Write the message to see how it will look."
+msgstr ""
+
+msgid "Ayşe Yılmaz"
+msgstr ""
+
+msgid "Variables are shown filled in for %s; the length changes with each name."
+msgstr ""
+
+msgid "Text message"
+msgstr ""
+
+msgid "%1$s / %2$s characters · %3$s SMS"
+msgstr ""
+
+msgid "This message is sent and billed as %1$s SMS. Keep it under %2$s characters for a single SMS."
+msgstr ""
+
+msgid "Longer than 6 SMS: Netgsm rejects messages over its maximum length (code 20). Shorten the text."
+msgstr ""
+
+msgid "%1$s recipients × %2$s SMS = %3$s SMS credits."
+msgstr ""
+
+msgid "Not supported in SMS and may arrive as \"?\" or be dropped: %s"
+msgstr ""
+
+msgid "Turkish characters are on: one SMS holds 155 characters, longer messages 146 per part. ç ğ ı ş Ğ İ Ş count as two characters."
+msgstr ""
+
+msgid "Turkish characters are off: ş, ğ, ı, ç, ö, ü are sent as s, g, i, c, o, u. One SMS holds 160 characters, longer messages 153 per part."
+msgstr ""
+
+msgid "Sent as an informational message (no İYS check). For promotional content turn on the İYS filter in the Netgsm connection."
+msgstr ""
+
+msgid "Commercial message: Netgsm does not deliver to numbers without İYS consent."
+msgstr ""
+
+msgid "%1$s / %2$s characters"
+msgstr ""
+
+msgid "WhatsApp accepts at most 4,096 characters in one message. Shorten the text."
+msgstr ""
+
+msgid "WhatsApp Cloud API: free text only reaches people who wrote to you in the last 24 hours. Others need an approved template."
+msgstr ""
+
+msgid "This WhatsApp account is not connected right now. Connect it under Connections before sending."
+msgstr ""
+
+msgid "Bulk messages to people who have not saved your number can get the number restricted by WhatsApp. Send to people who expect your message and keep a delay between messages."
+msgstr ""
+
+msgid "*bold*, _italic_, ~strikethrough~ and ```monospace``` are shown formatted. Links become clickable."
+msgstr ""
+
+msgid "PNG or JPG (email clients do not display SVG). Default: the site's own logo (organisation profile, Flux SEO or the theme's Site Logo). Without a logo the site name is written."
+msgstr ""
+
+msgid "Shown in dark mode (Apple Mail, iOS). Default: the light logo from the organisation profile; without one the normal logo stays."
+msgstr ""

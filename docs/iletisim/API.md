@@ -125,6 +125,8 @@ Test senaryoları: `flxi_test_scenario( $id, 'check'|'text'|'image'|'audio'|'doc
 | `flxi_verified_meta` | `flxi_mark_email_verified( $user_id )` tarafından yazılacak doğrulama meta anahtarları |
 | `flxi_connection_types` | Yeni WhatsApp/SMS sağlayıcısı |
 | `flxi_recipient_sources`, `flxi_recipients_from_source` | Toplu gönderimde yeni alıcı kaynağı |
+| `flxi_recipient_source_info` ( `array $info, string $kaynak, string $kanal` ) | 1.14.0+. Kaynak, o kanal için eleyip hiç döndürmediği kişileri bildirir: `[ 'total' => listedeki kişi, 'no_consent' => kanala izin vermediği için alınmayan ]`. Gönder ekranı "43 kişiden 0 kişi eklendi (43 kişi e-posta izni vermemiş)" satırını bununla yazar. Adresi olmayanları ve tekrarları Flux Mail kendisi sayar. |
+| `flxi_site_logos` ( `array{logo,logo_white,icon}` ) | 1.14.0+. Flux Mail ayarında logo seçilmemişse e-postada kullanılan site logoları (PNG/JPG; SVG olmaz). Varsayılan sıra: Flux SEO kurum logosu, kurum profili logosu, temanın Site Logosu. Ön ayarlar kendi PNG logosunu buradan verir. Hepsi boşsa site simgesi ve site adı yazılır. |
 | `flxi_certificate_background` | Sertifika önizlemesi için temiz arka plan görseli |
 | `flxi_mail_logged`, `flxi_message_sent`, `flxi_template_saved`, `flxi_email_verified` | Eylemler |
 | `flxi_mailbox_ai_context` ($text, $mail) | AI cevabına eklenecek kurum bilgisi |

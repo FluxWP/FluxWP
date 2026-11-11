@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.8
+- Flux Mail › Gönder ekranında CRM segmenti ya da rolü seçildiğinde kaç kişinin o kanala (e-posta, WhatsApp, SMS) izin vermediği için alınmadığı bildirilir (Flux Mail 1.14.0+, `flxi_recipient_source_info`).
+
 ## 0.2.7
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

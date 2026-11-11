@@ -30,9 +30,10 @@ function flxi_page_templates() {
 	printf( '<a class="flxi-stat%s" href="%s"><span class="flxi-stat__n">%s</span><span class="flxi-stat__l">%s</span></a>', $sum['failed'] ? ' flxi-stat--bad' : '', esc_url( flxi_admin_url( 'flxi-kayitlar', array( 'status' => 'failed' ) ) ), esc_html( number_format_i18n( $sum['failed'] ) ), esc_html__( 'failed', 'flx-mail' ) );
 	printf( '<a class="flxi-stat" href="%s"><span class="flxi-stat__n">%s</span><span class="flxi-stat__l">%s</span></a>', esc_url( flxi_admin_url( 'flxi-kayitlar', array( 'status' => 'blocked' ) ) ), esc_html( number_format_i18n( $sum['blocked'] ) ), esc_html__( 'not sent because disabled', 'flx-mail' ) );
 	printf(
-		'<a class="flxi-stat flxi-stat--wide%s" href="%s"><span class="flxi-stat__l">%s</span><span class="flxi-stat__v">%s &lt;%s&gt;</span><span class="flxi-stat__l">%s</span></a>',
+		'<a class="flxi-stat flxi-stat--wide%s" href="%s" title="%s"><span class="flxi-stat__l">%s</span><span class="flxi-stat__v">%s</span><span class="flxi-stat__e">%s</span><span class="flxi-stat__l flxi-stat__m">%s</span></a>',
 		flxi_smtp_ready() || flxi_other_smtp_plugin() ? '' : ' flxi-stat--warn',
 		esc_url( flxi_admin_url( 'flxi-ayarlar' ) ),
+		esc_attr( $s['from_name'] . ' <' . $s['from_email'] . '> · ' . $method ),
 		esc_html__( 'Sender', 'flx-mail' ),
 		esc_html( $s['from_name'] ),
 		esc_html( $s['from_email'] ),

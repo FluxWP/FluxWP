@@ -85,7 +85,7 @@ function flxi_render_email( array $a ) {
 		. '@media (prefers-color-scheme:dark){'
 		. '.flxi-bg{background:#0F1A16!important}.flxi-card{background:#16231E!important;border-color:#24382F!important}'
 		. '.flxi-h1,.flxi-body,.flxi-body h2,.flxi-body h3,.flxi-fact-v{color:#E8F1EC!important}.flxi-muted,.flxi-fact-l{color:#A9BDB3!important}'
-		. '.flxi-logo-l,.flxi-art-l{display:none!important}.flxi-logo-d,.flxi-art-d{display:block!important;max-height:none!important;overflow:visible!important}'
+		. '.flxi-brandname{color:#E8F1EC!important}.flxi-logo-l,.flxi-art-l{display:none!important}.flxi-logo-d,.flxi-art-d{display:block!important;max-height:none!important;overflow:visible!important}'
 		. '.flxi-body blockquote,.flxi-facts{background:#1D2D27!important;color:#D6E4DC!important}.flxi-body a,.flxi-link{color:#7FD3A8!important}'
 		. '}'
 		. '</style>';
@@ -100,10 +100,7 @@ function flxi_render_email( array $a ) {
 	$o .= '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;border-collapse:separate;">';
 
 	// Logo (işbirliği şablonunda: bizim logomuz × firmanın logosu)
-	$logo = '<a href="' . esc_url( home_url( '/' ) ) . '" target="_blank" style="text-decoration:none;display:block">'
-		. '<img class="flxi-logo-l" src="' . esc_url( $b['logo'] ) . '" width="' . (int) $b['logo_width'] . '" alt="' . esc_attr( $b['org'] ) . '" style="display:block;width:' . (int) $b['logo_width'] . 'px;max-width:100%;height:auto;">'
-		. '<!--[if !mso]><!--><img class="flxi-logo-d" src="' . esc_url( $b['logo_white'] ) . '" width="' . (int) $b['logo_width'] . '" alt="' . esc_attr( $b['org'] ) . '" style="display:none;width:' . (int) $b['logo_width'] . 'px;max-width:100%;height:auto;max-height:0;overflow:hidden;"><!--<![endif]-->'
-		. '</a>';
+	$logo = '<a href="' . esc_url( home_url( '/' ) ) . '" target="_blank" style="text-decoration:none;display:block">' . flxi_logo_markup( $b, (int) $b['logo_width'], $head ) . '</a>';
 	if ( ! empty( $a['partner']['logo'] ) || ! empty( $a['partner']['name'] ) ) {
 		$logo = flxi_partner_header( $logo, $a['partner'], $b, $font );
 	}
@@ -336,13 +333,13 @@ function flxi_render_letter( array $a ) {
 	$o    = '<!DOCTYPE html><html lang="' . esc_attr( $lang ) . '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">';
 	$o   .= '<meta name="color-scheme" content="light dark"><meta name="supported-color-schemes" content="light dark"><title>' . esc_html( $a['subject'] ) . '</title>';
 	$o   .= '<style>body{margin:0;padding:0}p{margin:0 0 14px}a{color:' . $b['primary'] . '}img{max-width:100%;height:auto}'
-		. '@media (prefers-color-scheme:dark){body,.flxi-l{background:#0F1A16!important;color:#E8F1EC!important}.flxi-muted{color:#A9BDB3!important}a{color:#7FD3A8!important}.flxi-logo-l{display:none!important}.flxi-logo-d{display:block!important;max-height:none!important}}'
+		. '@media (prefers-color-scheme:dark){body,.flxi-l{background:#0F1A16!important;color:#E8F1EC!important}.flxi-muted{color:#A9BDB3!important}a{color:#7FD3A8!important}.flxi-brandname{color:#E8F1EC!important}.flxi-logo-l{display:none!important}.flxi-logo-d{display:block!important;max-height:none!important}}'
 		. '</style></head>';
 	$o   .= '<body class="flxi-l" style="margin:0;padding:0;background:#ffffff;">';
 	$o   .= '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="flxi-l" style="background:#ffffff;"><tr><td style="padding:20px 16px;">';
 	$o   .= '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:640px;"><tr><td class="flxi-l" style="font-family:' . $font . ';font-size:15px;line-height:1.6;color:#1F2D35;">';
 	if ( ! empty( $a['partner']['logo'] ) || ! empty( $a['partner']['name'] ) ) {
-		$logo = '<img class="flxi-logo-l" src="' . esc_url( $b['logo'] ) . '" width="' . (int) $b['logo_width'] . '" alt="' . esc_attr( $b['org'] ) . '" style="display:block;width:' . (int) $b['logo_width'] . 'px;height:auto;">';
+		$logo = flxi_logo_markup( array_merge( $b, array( 'logo_white' => '' ) ), (int) $b['logo_width'], $font );
 		$o   .= '<div style="padding-bottom:18px;">' . flxi_partner_header( $logo, $a['partner'], $b, $font ) . '</div>';
 	}
 	if ( $a['heading'] ) {
@@ -360,8 +357,7 @@ function flxi_render_letter( array $a ) {
 	}
 	$w   = min( 130, (int) $b['logo_width'] );
 	$o  .= '<a href="' . esc_url( $b['website'] ) . '" target="_blank" style="display:block;text-decoration:none;padding-bottom:6px;">'
-		. '<img class="flxi-logo-l" src="' . esc_url( $b['logo'] ) . '" width="' . $w . '" alt="' . esc_attr( $b['org'] ) . '" style="display:block;width:' . $w . 'px;height:auto;">'
-		. '<!--[if !mso]><!--><img class="flxi-logo-d" src="' . esc_url( $b['logo_white'] ) . '" width="' . $w . '" alt="" style="display:none;width:' . $w . 'px;height:auto;max-height:0;overflow:hidden;"><!--<![endif]-->'
+		. flxi_logo_markup( $b, $w, $font )
 		. '</a>';
 	$o .= '<strong style="color:#1F2D35;" class="flxi-l">' . esc_html( $b['org'] ) . '</strong><br>';
 	$line = array();
