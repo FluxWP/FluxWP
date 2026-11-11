@@ -718,7 +718,6 @@ final class FLXU_Admin {
 					<thead><tr>
 						<td class="check-column"><input type="checkbox" id="flxu-check-all" aria-label="<?php esc_attr_e( 'Select all', 'flx-setup' ); ?>"></td>
 						<th><?php esc_html_e( 'Package', 'flx-setup' ); ?></th>
-						<th><?php esc_html_e( 'Type', 'flx-setup' ); ?></th>
 						<th><?php esc_html_e( 'Installed', 'flx-setup' ); ?></th>
 						<th><?php esc_html_e( 'Latest version', 'flx-setup' ); ?></th>
 						<th class="flxu-c-auto"><?php esc_html_e( 'Auto-update', 'flx-setup' ); ?></th>
@@ -745,7 +744,23 @@ final class FLXU_Admin {
 						$can_ins = current_user_can( 'theme' === $row['type'] ? 'install_themes' : 'install_plugins' );
 						$req     = FLXU_Updater::requires_plugins( $row['slug'], $catalog[ $row['slug'] ] ?? array() );
 						?>
-						<tr class="flxu-row flxu-row--<?php echo esc_attr( $row['state'] ); ?>" data-slug="<?php echo esc_attr( $row['slug'] ); ?>" data-group="flux" data-search="<?php echo esc_attr( strtolower( $row['name'] . ' ' . $row['slug'] . ' fluxwp' ) ); ?>">
+						<tr class="flxu-row flxu-row--<?php echo esc_attr( $row['state'] ); ?>" data-slug="<?php echo esc_attr( $row['slug'] ); ?>" data-group="flux" data-search="<?php echo esc_attr( strtolower( $row['name'] . ' ' . $row['slug'] . ' fluxwp ' . FLXU_WP::category_label( (string) ( $catalog[ $row['slug'] ]['category'] ?? '' ) ) ) ); ?>" data-info="<?php
+						echo esc_attr(
+							FLXU_WP::info_attr(
+								'',
+								'',
+								array(
+									array( 'theme' === $row['type'] ? __( 'Folder', 'flx-setup' ) : __( 'Slug', 'flx-setup' ), $row['slug'] ),
+									array( __( 'Type', 'flx-setup' ), 'theme' === $row['type'] ? __( 'Theme', 'flx-setup' ) : __( 'Plugin', 'flx-setup' ) ),
+									array( __( 'Category', 'flx-setup' ), FLXU_WP::category_label( (string) ( $catalog[ $row['slug'] ]['category'] ?? '' ) ) ),
+									array( __( 'Installed', 'flx-setup' ), $row['installed'] ),
+									array( __( 'Latest version', 'flx-setup' ), $row['latest'] ),
+									array( __( 'Released', 'flx-setup' ), $row['released'] ? flx_date( strtotime( $row['released'] ) ) : '' ),
+									array( __( 'Source', 'flx-setup' ), (string) ( $catalog[ $row['slug'] ]['source_name'] ?? '' ) ),
+								)
+							)
+						);
+						?>">
 							<th class="check-column" scope="row">
 								<?php if ( ( 'update' === $row['state'] && $can ) || ( 'missing' === $row['state'] && $can_ins ) || ( 'current' === $row['state'] && self::can_manage( $row['type'] ) ) ) : ?>
 									<input type="checkbox" name="flxu_slugs[]" value="<?php echo esc_attr( $row['slug'] ); ?>" class="flxu-check" data-state="<?php echo esc_attr( $row['state'] ); ?>" aria-label="<?php echo esc_attr( $row['name'] ); ?>">
@@ -761,7 +776,16 @@ final class FLXU_Admin {
 								<?php else : ?>
 									<span class="flxu-pkg__ph dashicons <?php echo 'theme' === $row['type'] ? 'dashicons-admin-appearance' : 'dashicons-admin-plugins'; ?>"></span>
 								<?php endif; ?>
-								<span><strong><button type="button" class="flxu-preview-open" data-slug="<?php echo esc_attr( $row['slug'] ); ?>" aria-haspopup="dialog" aria-controls="flxu-preview"><?php echo esc_html( $row['name'] ); ?></button></strong><br><code><?php echo esc_html( $row['slug'] ); ?></code>
+								<span class="flxu-pkg__main"><strong><button type="button" class="flxu-preview-open" data-slug="<?php echo esc_attr( $row['slug'] ); ?>" aria-haspopup="dialog" aria-controls="flxu-preview"><?php echo esc_html( $row['name'] ); ?></button></strong>
+									<?php
+									$cat = FLXU_WP::category_label( (string) ( $catalog[ $row['slug'] ]['category'] ?? '' ) );
+									echo FLXU_WP::tags_html( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										array(
+											array( 'FluxWP', 'flux' ),
+											array( '' !== $cat ? $cat : ( 'theme' === $row['type'] ? __( 'Theme', 'flx-setup' ) : '' ), 'cat' ),
+										)
+									);
+									?>
 									<?php
 									$src_n = count( (array) ( $catalog[ $row['slug'] ]['sources'] ?? array() ) );
 									if ( 'main' !== ( $catalog[ $row['slug'] ]['source'] ?? 'main' ) || $src_n > 1 ) :
@@ -790,7 +814,6 @@ final class FLXU_Admin {
 									<?php endif; ?>
 								</span>
 							</td>
-							<td class="flxu-c-type"><?php echo 'theme' === $row['type'] ? esc_html__( 'Theme', 'flx-setup' ) : esc_html__( 'Plugin', 'flx-setup' ); ?></td>
 							<td class="flxu-c-inst"><?php echo $row['installed'] ? esc_html( $row['installed'] ) : '—'; ?>
 								<?php if ( $row['installed'] && ! $row['active'] && 'plugin' === $row['type'] ) : ?>
 									<br><small class="flxu-off"><?php esc_html_e( 'Inactive', 'flx-setup' ); ?></small>
@@ -1438,6 +1461,16 @@ final class FLXU_Admin {
 			.flxu-row[hidden],.flxu-none[hidden]{display:none!important}
 			.flxu-none td{color:var(--flxa-muted,#646970);padding:18px 10px!important}
 			.flxu-pkg img.flxu-pkg__shot{object-fit:cover;border-radius:8px}
+			.flxu-tags{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 1px}
+			.flxu-tag{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11px;font-weight:600;line-height:17px;white-space:nowrap;background:var(--flxa-surface-2,#f0f0f1);color:var(--flxa-muted,#50575e);border:1px solid var(--flxa-border,#dcdcde)}
+			.flxu-tag--flux{background:var(--flxa-accent-soft,#e5effa);color:var(--flxa-accent-strong,#135e96);border-color:transparent}
+			.flxu-tag--cat{background:transparent;color:var(--flxa-text,#1d2327)}
+			.flxu-tag--general{background:var(--flxa-surface-3,#e6e7ea);color:var(--flxa-muted,#50575e);border-color:transparent}
+			.flxu-tag--type{background:transparent}
+			.flxu-pkg__main .flxu-src{display:block}
+			.flxu-preview__meta{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:0;padding:0 28px 24px;font-size:13px}
+			.flxu-preview__meta dt{color:var(--flxa-muted,#646970)}.flxu-preview__meta dd{margin:0;color:var(--flxa-text,#1d2327);word-break:break-word}
+			.flxu-preview__meta code{font-size:12px}
 			.flxu-table th.flxu-c-auto,.flxu-table td.flxu-c-auto{width:96px;white-space:nowrap}
 			.flxu-auto{display:inline-flex;align-items:center;gap:7px;border:0;background:none;padding:2px 0;font:inherit;font-size:12px;color:var(--flxa-muted,#646970);cursor:pointer}
 			.flxu-auto:disabled{cursor:default;opacity:.6}

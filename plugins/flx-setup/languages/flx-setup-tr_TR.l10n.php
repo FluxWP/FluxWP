@@ -1312,5 +1312,12 @@ return array(
   'On for all FluxWP packages (FluxWP Panel › Settings).' => 'Tüm FluxWP paketlerinde açık (FluxWP Panel › Ayarlar).',
   'Automatic updates are turned off for this site.' => 'Bu sitede otomatik güncellemeler kapalı.',
   'Retry failed ones' => 'Hatalıları tekrar dene',
+  'General' => 'Genel',
+  'Folder' => 'Klasör',
+  'File' => 'Dosya',
+  'Author' => 'Geliştirici',
+  'Slug' => 'Kimlik',
+  'Category' => 'Kategori',
+  'Released' => 'Yayın tarihi',
  ),
 );

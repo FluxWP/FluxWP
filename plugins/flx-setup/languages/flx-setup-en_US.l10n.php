@@ -1312,5 +1312,12 @@ return array(
   'On for all FluxWP packages (FluxWP Panel › Settings).' => 'On for all FluxWP packages (FluxWP Panel › Settings).',
   'Automatic updates are turned off for this site.' => 'Automatic updates are turned off for this site.',
   'Retry failed ones' => 'Retry failed ones',
+  'General' => 'General',
+  'Folder' => 'Folder',
+  'File' => 'File',
+  'Author' => 'Author',
+  'Slug' => 'Slug',
+  'Category' => 'Category',
+  'Released' => 'Released',
  ),
 );
