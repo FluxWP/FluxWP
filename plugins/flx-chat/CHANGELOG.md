@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.38.2
+- Experimental Flux panel: when `assets/flux/chunks.json` marks a chunk build, the chat screen loads `flux-modules.js` as an ES module and each module screen as its own hashed file. Mount options are stored before the module runs and the screen mounts once. Without the manifest, the page still loads the single classic script.
+
 ## 1.38.1
 - Live inbox polling still checks once a minute in a background tab (so new-message notifications keep working) and checks immediately when the tab is visible again. The 3 s interval stays only while a reply is changing; otherwise the wait steps up to 15 s. Errors and HTTP 429 back off exponentially up to 60 s, and a sync never overlaps the previous request.
 
