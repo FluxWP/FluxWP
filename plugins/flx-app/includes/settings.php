@@ -111,13 +111,7 @@ function flxapp_issuer() {
  */
 function flxapp_rate( $key, $max = 30, $window = 60, $bind_ip = true ) {
 	$id = $bind_ip ? $key . '|' . flxapp_ip() : 'id|' . $key;
-	$k  = 'flxapp_rl_' . md5( $id );
-	$n  = (int) get_transient( $k );
-	if ( $n >= $max ) {
-		return false;
-	}
-	set_transient( $k, $n + 1, $window );
-	return true;
+	return flx_rate_limit( 'flxapp|' . $id, (int) $max, (int) $window );
 }
 
 /** Değişken veri dönen yanıtlar önbelleğe girmesin (LiteSpeed/CDN). */

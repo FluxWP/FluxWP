@@ -30,3 +30,4 @@ jobs:
           python3 tools/brand/sync.py --check
           php tools/brand/tests/csv.php
           php tools/brand/tests/files.php
+          php tools/brand/tests/rate.php

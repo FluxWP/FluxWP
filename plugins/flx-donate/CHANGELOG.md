@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.20.5
+- Ödeme ve bağış sorgulama deneme sınırları ortak sayacı kullanır. Adres güvenilen vekilden okunur; e-posta ve telefon sınırları aynı kalır.
+
 ## 2.20.4
 - Dekont klasörü doğrudan web erişimine kapalı kalır (Apache 2.2 ve 2.4).
 

@@ -614,3 +614,137 @@ function flx_send_file( string $path, array $args = array() ) {
 	readfile( $path );
 	return true;
 }
+
+/** True when $ip sits inside one of the CIDR ranges. */
+function flx_ip_in_cidrs( $ip, array $cidrs ) {
+	$a = @inet_pton( (string) $ip ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	if ( false === $a ) {
+		return false;
+	}
+	foreach ( $cidrs as $cidr ) {
+		$cidr = (string) $cidr;
+		if ( false === strpos( $cidr, '/' ) ) {
+			continue;
+		}
+		list( $net, $bits ) = explode( '/', $cidr, 2 );
+		$b = @inet_pton( $net ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		if ( false === $b || strlen( $a ) !== strlen( $b ) ) {
+			continue;
+		}
+		$bits  = max( 0, min( strlen( $a ) * 8, (int) $bits ) );
+		$bytes = intdiv( $bits, 8 );
+		if ( substr( $a, 0, $bytes ) !== substr( $b, 0, $bytes ) ) {
+			continue;
+		}
+		$rest = $bits % 8;
+		if ( ! $rest || ( ( ord( $a[ $bytes ] ) ^ ord( $b[ $bytes ] ) ) & ( 0xFF << ( 8 - $rest ) ) & 0xFF ) === 0 ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/** Cloudflare published ranges (ips-v4 / ips-v6, 2026-11-10), the same list Flux Analytics uses. */
+function flx_cloudflare_cidrs() {
+	return array(
+		'173.245.48.0/20',
+		'103.21.244.0/22',
+		'103.22.200.0/22',
+		'103.31.4.0/22',
+		'141.101.64.0/18',
+		'108.162.192.0/18',
+		'190.93.240.0/20',
+		'188.114.96.0/20',
+		'197.234.240.0/22',
+		'198.41.128.0/17',
+		'162.158.0.0/15',
+		'104.16.0.0/13',
+		'104.24.0.0/14',
+		'172.64.0.0/13',
+		'131.0.72.0/22',
+		'2400:cb00::/32',
+		'2606:4700::/32',
+		'2803:f800::/32',
+		'2405:b500::/32',
+		'2405:8100::/32',
+		'2a06:98c0::/29',
+		'2c0f:f248::/32',
+	);
+}
+
+/** Caller address for rate limits. Forwarded headers count only from a private or loopback peer, or from Cloudflare. */
+function flx_client_ip(): string {
+	$remote = isset( $_SERVER['REMOTE_ADDR'] ) ? trim( (string) $_SERVER['REMOTE_ADDR'] ) : '';
+	if ( ! filter_var( $remote, FILTER_VALIDATE_IP ) ) {
+		$remote = '';
+	}
+	$trust = false;
+	$cloud = false;
+	if ( '' !== $remote && ! filter_var( $remote, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+		$trust = true;
+	} elseif ( '' !== $remote && flx_ip_in_cidrs( $remote, flx_cloudflare_cidrs() ) ) {
+		$trust = true;
+		$cloud = true;
+	}
+	$ip = $remote;
+	if ( $trust ) {
+		$picked = '';
+		if ( $cloud && ! empty( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
+			$cand = trim( explode( ',', (string) $_SERVER['HTTP_CF_CONNECTING_IP'] )[0] );
+			if ( filter_var( $cand, FILTER_VALIDATE_IP ) ) {
+				$picked = $cand;
+			}
+		}
+		if ( '' === $picked && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			foreach ( explode( ',', (string) $_SERVER['HTTP_X_FORWARDED_FOR'] ) as $part ) {
+				$part = trim( $part );
+				if ( filter_var( $part, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+					$picked = $part;
+				}
+			}
+		}
+		if ( '' === $picked && ! empty( $_SERVER['HTTP_X_REAL_IP'] ) ) {
+			$cand = trim( explode( ',', (string) $_SERVER['HTTP_X_REAL_IP'] )[0] );
+			if ( filter_var( $cand, FILTER_VALIDATE_IP ) ) {
+				$picked = $cand;
+			}
+		}
+		if ( '' !== $picked ) {
+			$ip = $picked;
+		}
+	}
+	return (string) apply_filters( 'flx_client_ip', $ip );
+}
+
+/** Count this hit. True while $key stays within $max hits per fixed $window seconds. Prefix $key with the plugin (keys are shared site-wide). */
+function flx_rate_limit( string $key, int $max, int $window ): bool {
+	if ( $max <= 0 || $window <= 0 ) {
+		return true;
+	}
+	global $wpdb;
+	$now  = time();
+	$end  = $now - ( $now % $window ) + $window;
+	$name = '_flx_rl_' . sprintf( '%010d', $end ) . '_' . md5( $window . '|' . $key );
+	$wpdb->query(
+		$wpdb->prepare(
+			"INSERT INTO {$wpdb->options} (option_name, option_value, autoload) VALUES (%s, '1', 'off') ON DUPLICATE KEY UPDATE option_value = option_value + 1",
+			$name
+		)
+	);
+	$n = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT option_value FROM {$wpdb->options} WHERE option_name = %s",
+			$name
+		)
+	);
+	if ( 1 === wp_rand( 1, 50 ) ) {
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s AND option_name < %s",
+				$wpdb->esc_like( '_flx_rl_' ) . '%',
+				'_flx_rl_' . sprintf( '%010d', $now )
+			)
+		);
+	}
+	return $n <= $max;
+}

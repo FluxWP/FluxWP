@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.1.21
+- Ödeme deneme sınırı (10 dakikada 20 başlatma, 60 onay) ortak sayacı kullanır. Adres yalnız güvenilen vekilden okunur; istemci kendi kovasını seçemez.
+
 ## 2.1.20
 - Yanıt CSV'sinde formül gibi açılacak hücreler tek tırnakla korunur. Sütunlar, ayırıcı ve satır sonları aynı kalır.
 

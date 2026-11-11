@@ -78,10 +78,17 @@ try {
 	$key = flxwk_ask_lock(); check( ! is_wp_error( $key ), 'First in-flight request accepted' );
 	check( is_wp_error( flxwk_ask_lock() ), 'Second simultaneous request blocked' ); delete_option( $key );
 	update_option( 'flxwk_settings', array( 'ask' => 'all', 'ask_limit' => 2 ) );
-	$quota = 'flxwk_rl_' . flxwk_ask_identity() . '_' . (int) floor( time() / HOUR_IN_SECONDS ); delete_transient( $quota );
+	$clear = static function () {
+		global $wpdb;
+		$now  = time();
+		$end  = $now - ( $now % HOUR_IN_SECONDS ) + HOUR_IN_SECONDS;
+		$name = '_flx_rl_' . sprintf( '%010d', $end ) . '_' . md5( flxwk_ask_identity() );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name = %s", $name ) );
+	};
+	$clear();
 	check( true === flxwk_rate_hit() && true === flxwk_rate_hit(), 'Configured hourly quota accepted' );
 	$over = flxwk_rate_hit(); check( is_wp_error( $over ) && 429 === $over->get_error_data()['status'], 'Hourly quota enforced with 429' );
-	delete_transient( $quota );
+	$clear();
 	update_option( 'flxwk_settings', array( 'ask' => 'users' ) );
 	$r = new WP_REST_Request( 'POST', '/flx-wiki/v1/ask' ); $r->set_param( 'q', 'kurulum' );
 	check( 403 === rest_do_request( $r )->get_status(), 'Anonymous requests rejected when sign-in required' );

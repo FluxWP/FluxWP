@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.10.6
+- MCP OAuth istek sınırı (dakikada 120, kayıt saatte 20) ortak sayacı kullanır. Adres, güvenilen vekilin ilettiği ziyaretçi adresidir; herkes tek kovada birleşmez.
+
 ## 0.10.5
 - Kullanım CSV'si ortak dışa aktarmayı kullanır. Sütunlar, virgül ayırıcı ve Excel BOM aynı kalır.
 

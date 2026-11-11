@@ -189,7 +189,7 @@ final class FLXB_Lookup {
 	/* ---------- Rate limits ---------- */
 
 	private static function ip() {
-		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+		$ip = flx_client_ip();
 		return '' !== $ip ? $ip : '0';
 	}
 
@@ -199,13 +199,7 @@ final class FLXB_Lookup {
 
 	/** Counts a hit; false when the limit is reached. */
 	private static function rate( $key, $max, $window ) {
-		$k = 'flxb_lkr_' . self::h( $key );
-		$n = (int) get_transient( $k );
-		if ( $n >= $max ) {
-			return false;
-		}
-		set_transient( $k, $n + 1, $window );
-		return true;
+		return flx_rate_limit( 'flxb_lk|' . $key, (int) $max, (int) $window );
 	}
 
 	/** Daily cap per channel (Hostinger: 100 e-mails a day for the whole site). */

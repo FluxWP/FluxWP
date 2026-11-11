@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.10
+- Giriş, kod ve oturum istek sınırları ortak sayacı kullanır. Sınırlar aynıdır: IP ve hedef ayrıdır, yanlış kod sayacı yeni kod isteğiyle silinmez.
+
 ## 0.4.9
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

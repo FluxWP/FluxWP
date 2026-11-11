@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.12
+- Herkese açık sertifika sorgusu (saatte 10, aynı adrese 15 dakika) ortak sayacı kullanır. Adres güvenilen vekilden okunur.
+
 ## 1.9.11
 - Sertifika PDF, Excel ve e-kart zip indirmesi aynı başlıklarla gider. Yazı tipi klasörü web'den açılmaz.
 

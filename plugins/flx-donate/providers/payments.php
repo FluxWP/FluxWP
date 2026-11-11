@@ -231,14 +231,7 @@ final class FLXB_Payments_Rest {
 		if ( $limit <= 0 ) {
 			return false;
 		}
-		$ip    = function_exists( 'flxf_client_ip' ) ? flxf_client_ip() : ( isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '' );
-		$key   = 'flxb_pay_' . $bucket . '_' . md5( $ip );
-		$count = (int) get_transient( $key );
-		if ( $count >= $limit ) {
-			return true;
-		}
-		set_transient( $key, $count + 1, 10 * MINUTE_IN_SECONDS );
-		return false;
+		return ! flx_rate_limit( 'flxb_pay_' . $bucket . '|' . flx_client_ip(), $limit, 10 * MINUTE_IN_SECONDS );
 	}
 
 	private static function handler() {
