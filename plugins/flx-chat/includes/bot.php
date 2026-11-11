@@ -1154,13 +1154,14 @@ function flxc_bot_tools() {
 	$list = array(
 		$f(
 			'save_details',
-			'Kişinin hitabını, ad soyadını ve/veya e-postasını kaydeder. Adını vermek istemezse no_name=true. Yeni e-posta önce kişiye doğrulatılır: need_confirm dönerse adresi aynen yazıp sor, kişi onaylayınca confirmed=true ile yeniden çağır.',
+			'Kişinin hitabını, ad soyadını ve/veya e-postasını kaydeder. Kişi kendi adını söylediğinde ("benim adım X", "ben X") hemen çağır: kişi kaydındaki ad boşsa bu adla dolar; kayıttaki adı düzeltiyorsa correct_name=true ver. Başkası adına (sertifika, yakını) verilen isimleri buraya yazma. Adını vermek istemezse no_name=true. Yeni e-posta önce kişiye doğrulatılır: need_confirm dönerse adresi aynen yazıp sor, kişi onaylayınca confirmed=true ile yeniden çağır.',
 			array(
 				'name'      => array( 'type' => 'string', 'description' => 'Kişinin istediği hitap, olduğu gibi (ör. Ahmet, Ayşe Hanım, Patron)' ),
 				'full_name' => array( 'type' => 'string', 'description' => 'Ad soyad (bağış kaydı ve sertifikada yazar)' ),
 				'email'     => array( 'type' => 'string', 'description' => 'E-posta; ilk çağrıda kaydedilmez, kişiye doğrulatılır (need_confirm)' ),
-				'no_name'   => array( 'type' => 'boolean' ),
-				'confirmed' => array( 'type' => 'boolean', 'description' => 'Kişi e-posta adresinin doğru olduğunu onayladıktan sonra true' ),
+				'no_name'      => array( 'type' => 'boolean' ),
+				'confirmed'    => array( 'type' => 'boolean', 'description' => 'Kişi e-posta adresinin doğru olduğunu onayladıktan sonra true' ),
+				'correct_name' => array( 'type' => 'boolean', 'description' => 'Kişi KENDİ adının kayıtta yanlış/eksik olduğunu açıkça söyleyip düzelttiyse true (ör. "adım Ayşe değil Ayşegül", "soyadım yanlış yazılmış"). Başkası adına bağışta verilen isimler için ASLA kullanma.' ),
 			)
 		),
 		$f(
@@ -1253,6 +1254,48 @@ function flxc_bot_tools() {
 	return $list;
 }
 
+/** 1.41.0: "Selma", "Ayşe Nur" gibi düz ad mı (hitap, lakap, unvan değil)? */
+function flxc_bot_plain_name( $name ) {
+	$name = trim( (string) $name );
+	if ( ! preg_match( '/^[\p{L}\'\- ]{2,40}$/u', $name ) || count( explode( ' ', $name ) ) > 3 ) {
+		return false;
+	}
+	$words = array( 'bey', 'hanım', 'hanim', 'abi', 'abla', 'hoca', 'hocam', 'patron', 'amca', 'teyze', 'dayı', 'hacı', 'haci', 'usta', 'efendi', 'kardeş', 'kardes', 'dr', 'av', 'mr', 'mrs', 'ms', 'sir' );
+	foreach ( explode( ' ', flxc_bot_lower( $name ) ) as $w ) {
+		if ( in_array( $w, $words, true ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
+ * 1.41.0: kişinin kendi söylediği ad kişi kaydına (sohbet adı) yazılır ve değişiklik geçmişine "Asistan" olarak düşer.
+ * Ad boşsa doldurulur; kayıttaki ad yalnız ilk ad ise ("Selma" → "Selma Öztürk") tamamlanır; başka bir adın
+ * üzerine yalnız kişi açıkça düzelttiyse ($correct) yazılır. Personel sohbetinde ad kullanıcı hesabından gelir, değişmez.
+ */
+function flxc_bot_set_contact_name( $chat, $name, $correct = false ) {
+	$fresh = flxc_get_chat( (int) $chat['id'] );
+	if ( ! $fresh || ! function_exists( 'flxc_fill_chat_name' ) ) {
+		return false;
+	}
+	if ( function_exists( 'flxc_staff_identity' ) && flxc_staff_identity( $fresh, flxc_bot_state( $fresh ) ) ) {
+		return false;
+	}
+	$cur   = trim( (string) $fresh['name'] );
+	$lower = flxc_bot_lower( $cur );
+	$new   = flxc_bot_lower( trim( (string) $name ) );
+	$grow  = '' !== $cur && 0 === strpos( $new, $lower . ' ' );
+	if ( '' !== $cur && ! $grow && ! $correct ) {
+		return false;
+	}
+	if ( '' !== $cur && 0 === strpos( $lower . ' ', $new . ' ' ) ) {
+		return false; // Kayıtta zaten daha uzun hali var ("Selma Öztürk" varken "Selma").
+	}
+	$note = '' === $cur ? __( 'The contact said their name in the chat', 'flx-chat' ) : ( $correct ? __( 'The contact corrected their name in the chat', 'flx-chat' ) : __( 'The contact gave their full name in the chat', 'flx-chat' ) );
+	return flxc_fill_chat_name( $fresh, $name, array( 'source' => 'ai', 'user_id' => 0, 'note' => $note ), true );
+}
+
 function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 	// Test sohbetinde durum istemcide tutulur; hiçbir kayıt açılmaz, mesaj gitmez.
 	$sandbox = ! empty( $ctx['sandbox'] );
@@ -1272,6 +1315,10 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			if ( ! empty( $a['name'] ) ) {
 				$state['name']    = mb_substr( sanitize_text_field( (string) $a['name'] ), 0, 60 );
 				$state['no_name'] = 0;
+				// 1.41.0: yalnız ad ("benim adım Selma") da kişi adı boşsa kayda geçer; hitap/lakap geçmez.
+				if ( ! $sandbox && empty( $a['full_name'] ) && flxc_bot_plain_name( $state['name'] ) ) {
+					flxc_bot_set_contact_name( $chat, $state['name'], ! empty( $a['correct_name'] ) );
+				}
 			} elseif ( ! empty( $a['no_name'] ) ) {
 				$state['no_name'] = 1;
 			}
@@ -1280,8 +1327,8 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 				// Yalnız ad soyada benzeyen metin kabul edilir (2-5 kelime, harf); sohbet adı boşsa o da olur.
 				if ( preg_match( '/^[\p{L}\.\'\- ]{3,70}$/u', $full ) && count( explode( ' ', $full ) ) >= 2 && count( explode( ' ', $full ) ) <= 5 ) {
 					$state['full'] = $full;
-					if ( ! $sandbox && '' === (string) $chat['name'] ) {
-						flxc_update_chat( $chat['id'], array( 'name' => $full ) );
+					if ( ! $sandbox ) {
+						flxc_bot_set_contact_name( $chat, $full, ! empty( $a['correct_name'] ) );
 					}
 				} else {
 					return array( 'ok' => false, 'error' => 'Ad soyad anlaşılamadı; kişiden adını ve soyadını yazmasını kibarca iste.' );

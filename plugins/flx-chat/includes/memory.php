@@ -55,7 +55,9 @@ function flxc_mem_set( $chat, $k, $v, $source = 'bot', $kind = 'fact', $at = 0 )
 		return false;
 	}
 	if ( 'fact' === $kind ) {
-		$id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $t WHERE who = %s AND kind = 'fact' AND k = %s LIMIT 1", $who, $k ) ); // phpcs:ignore
+		$cur = $wpdb->get_row( $wpdb->prepare( "SELECT id, v FROM $t WHERE who = %s AND kind = 'fact' AND k = %s LIMIT 1", $who, $k ), ARRAY_A ); // phpcs:ignore
+		$id  = $cur ? (int) $cur['id'] : 0;
+		flxc_mem_log( $chat, $k, $cur ? (string) $cur['v'] : '', $v, $source );
 		if ( $id ) {
 			$wpdb->update( $t, array( 'v' => $v, 'source' => $source, 'updated_at' => $now, 'chat_id' => (int) $chat['id'] ), array( 'id' => $id ) );
 			return $id;
@@ -89,15 +91,46 @@ function flxc_mem_forget( $chat, $k = '' ) {
 	global $wpdb;
 	$t   = flxc_table( 'memory' );
 	$who = flxc_mem_who( $chat );
+	$src = get_current_user_id() ? 'agent' : 'bot';
 	if ( '' === (string) $k ) {
+		foreach ( (array) $wpdb->get_results( $wpdb->prepare( "SELECT k, v FROM $t WHERE who = %s AND kind = 'fact'", $who ), ARRAY_A ) as $r ) { // phpcs:ignore
+			flxc_mem_log( $chat, $r['k'], $r['v'], '', $src );
+		}
 		return (int) $wpdb->query( $wpdb->prepare( "DELETE FROM $t WHERE who = %s", $who ) ); // phpcs:ignore
 	}
-	$k = flxc_mem_key( $k );
-	$n = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM $t WHERE who = %s AND kind = 'fact' AND k = %s", $who, $k ) ); // phpcs:ignore
+	$k    = flxc_mem_key( $k );
+	$rows = (array) $wpdb->get_results( $wpdb->prepare( "SELECT k, v FROM $t WHERE who = %s AND kind = 'fact' AND k = %s", $who, $k ), ARRAY_A ); // phpcs:ignore
+	$n    = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM $t WHERE who = %s AND kind = 'fact' AND k = %s", $who, $k ) ); // phpcs:ignore
 	if ( ! $n && mb_strlen( $k ) >= 3 ) {
-		$n = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM $t WHERE who = %s AND kind = 'fact' AND k LIKE %s", $who, '%' . $wpdb->esc_like( $k ) . '%' ) ); // phpcs:ignore
+		$like = '%' . $wpdb->esc_like( $k ) . '%';
+		$rows = (array) $wpdb->get_results( $wpdb->prepare( "SELECT k, v FROM $t WHERE who = %s AND kind = 'fact' AND k LIKE %s", $who, $like ), ARRAY_A ); // phpcs:ignore
+		$n    = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM $t WHERE who = %s AND kind = 'fact' AND k LIKE %s", $who, $like ) ); // phpcs:ignore
+	}
+	if ( $n ) {
+		foreach ( $rows as $r ) {
+			flxc_mem_log( $chat, $r['k'], $r['v'], '', $src );
+		}
 	}
 	return $n;
+}
+
+/** 1.41.0: a remembered fact about the contact changed; written to the contact change log. */
+function flxc_mem_log( $chat, $k, $old, $new, $source ) {
+	if ( ! function_exists( 'flxc_clog_add' ) || empty( $chat['id'] ) || (string) $old === (string) $new ) {
+		return;
+	}
+	$staff = 'agent' === $source || 'staff' === $source;
+	flxc_clog_add(
+		(int) $chat['id'],
+		'memory',
+		$old,
+		$new,
+		array(
+			'source'  => $staff ? 'staff' : ( 'summary' === $source ? 'ai' : ( 'bot' === $source ? 'ai' : 'system' ) ),
+			'user_id' => $staff ? get_current_user_id() : 0,
+			'note'    => (string) $k,
+		)
+	);
 }
 
 function flxc_mem_when( $ts ) {
@@ -474,6 +507,9 @@ add_action(
 								$wpdb->query( $wpdb->prepare( "DELETE FROM $t WHERE who = %s AND kind = 'fact' AND k = %s AND id <> %d", $row['who'], $k, $item ) ); // phpcs:ignore
 							}
 							$wpdb->update( $t, array( 'k' => 'summary' === $row['kind'] ? $row['k'] : $k, 'v' => $v, 'source' => 'agent', 'updated_at' => time() ), array( 'id' => $item ) );
+							if ( 'fact' === $row['kind'] ) {
+								flxc_mem_log( $chat, $k, $k !== $row['k'] ? $row['k'] . ': ' . $row['v'] : $row['v'], $v, 'agent' );
+							}
 						} else {
 							flxc_mem_set( $chat, $k, $v, 'agent' );
 						}
@@ -529,6 +565,9 @@ add_action(
 					}
 					$wpdb->delete( $t, array( 'id' => (int) $row['id'] ) );
 					$chat = flxc_get_chat( (int) $row['chat_id'] );
+					if ( $chat && 'fact' === $row['kind'] ) {
+						flxc_mem_log( $chat, $row['k'], $row['v'], '', 'agent' );
+					}
 					return $chat ? flxc_mem_for_js( $chat ) : array( 'ok' => true );
 				},
 			)

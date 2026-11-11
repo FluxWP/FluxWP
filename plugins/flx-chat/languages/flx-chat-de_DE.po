@@ -4851,3 +4851,36 @@ msgstr "Keine Empfehlung."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "Ist die Zahlung auf dem Konto eingegangen? Nach der Bestätigung wird die Urkunde erstellt und an den Spender gesendet."
+
+msgid "Change history"
+msgstr "Änderungsverlauf"
+
+msgid "Assistant memory"
+msgstr "Assistenten-Gedächtnis"
+
+msgid "Note updated"
+msgstr "Notiz aktualisiert"
+
+msgid "Show less"
+msgstr "Weniger anzeigen"
+
+msgid "Show all ({n})"
+msgstr "Alle anzeigen ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Aus Spenden- und Zertifikatsdaten übernommen (einmalige Aktualisierung)"
+
+msgid "Name given by the sending record"
+msgstr "Name aus dem sendenden Datensatz"
+
+msgid "Filled from donation and certificate records"
+msgstr "Aus Spenden- und Zertifikatsdaten übernommen"
+
+msgid "The contact said their name in the chat"
+msgstr "Der Kontakt hat seinen Namen im Chat genannt"
+
+msgid "The contact corrected their name in the chat"
+msgstr "Der Kontakt hat seinen Namen im Chat korrigiert"
+
+msgid "The contact gave their full name in the chat"
+msgstr "Der Kontakt hat seinen vollständigen Namen im Chat genannt"

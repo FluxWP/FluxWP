@@ -92,6 +92,22 @@ function flxc_ensure_chat( $conn, $jid, $data = array() ) {
 			flxc_update_chat( $chat['id'], $upd );
 			$chat = array_merge( $chat, $upd );
 		}
+		// 1.41.0: a chat opened earlier without a name (e.g. by an incoming message) takes the name a plugin
+		// sends with (donor, certificate owner); otherwise the name known from records for this number.
+		if ( '' === (string) $chat['name'] && ! flxc_is_group_jid( $jid ) ) {
+			$name = trim( (string) ( $data['name'] ?? '' ) );
+			$note = __( 'Name given by the sending record', 'flx-chat' );
+			if ( '' === $name && '' !== (string) $chat['phone'] && ! get_transient( 'flxc_noname_' . $chat['phone'] ) ) {
+				$name = flxc_lookup_contact_name( $chat['phone'] );
+				$note = __( 'Filled from donation and certificate records', 'flx-chat' );
+				if ( '' === $name ) {
+					set_transient( 'flxc_noname_' . $chat['phone'], 1, HOUR_IN_SECONDS ); // Incoming messages do not look it up every time.
+				}
+			}
+			if ( '' !== $name && flxc_fill_chat_name( $chat, $name, array_merge( flxc_clog_default_by(), array( 'note' => $note ) ) ) ) {
+				$chat = flxc_get_chat( $chat['id'] );
+			}
+		}
 		return $chat;
 	}
 	$row = array(
@@ -107,8 +123,10 @@ function flxc_ensure_chat( $conn, $jid, $data = array() ) {
 		'created_at' => flxc_now(),
 		'meta'       => '{}',
 	);
+	$name_note = '' !== $row['name'] ? __( 'Name given by the sending record', 'flx-chat' ) : '';
 	if ( '' === $row['name'] && $row['phone'] ) {
 		$row['name'] = flxc_lookup_contact_name( $row['phone'] );
+		$name_note   = __( 'Filled from donation and certificate records', 'flx-chat' );
 	}
 	$wpdb->insert( flxc_table( 'chats' ), $row );
 	$row['id'] = (int) $wpdb->insert_id;
@@ -118,6 +136,9 @@ function flxc_ensure_chat( $conn, $jid, $data = array() ) {
 		if ( $chat ) {
 			return $chat;
 		}
+	}
+	if ( '' !== $row['name'] && $row['id'] && function_exists( 'flxc_clog_add' ) ) {
+		flxc_clog_add( $row['id'], 'name', '', $row['name'], array_merge( flxc_clog_default_by(), array( 'note' => $name_note ) ) );
 	}
 	do_action( 'flxc_chat_created', $row );
 	return array_merge(
@@ -136,22 +157,48 @@ function flxc_ensure_chat( $conn, $jid, $data = array() ) {
 	);
 }
 
-/** Bilinen kişi adı: Flux Certificates'nın kişi kaydında bu telefon varsa oradaki ad. */
+/**
+ * Bilinen kişi adı, sırayla: Flux Certificates kişi kaydı, Flux CRM kişisi, Flux Donate bağışçısı (1.41.0).
+ * Filtre: flxc_contact_name.
+ */
 function flxc_lookup_contact_name( $phone ) {
-	$name = '';
+	global $wpdb;
+	$phone = preg_replace( '/\D+/', '', (string) $phone );
+	$name  = '';
+	if ( '' === $phone ) {
+		return (string) apply_filters( 'flxc_contact_name', '', $phone );
+	}
 	if ( function_exists( 'flxs_table' ) ) {
-		global $wpdb;
 		$t = flxs_table( 'people' );
 		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$name = (string) $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $t WHERE phone = %s ORDER BY id DESC LIMIT 1", $phone ) );
+		$name = (string) $wpdb->get_var( $wpdb->prepare( "SELECT name FROM $t WHERE phone = %s AND name <> '' ORDER BY id DESC LIMIT 1", $phone ) );
+	}
+	if ( '' === $name && class_exists( 'FLXCRM_Contacts' ) && function_exists( 'flxcrm_contact_for' ) ) {
+		$c    = FLXCRM_Contacts::get( flxcrm_contact_for( array( 'phone' => $phone ) ) );
+		$name = $c ? trim( (string) $c['name'] ) : '';
+	}
+	if ( '' === $name && class_exists( 'FLXB_Donors' ) ) {
+		$d    = FLXB_Donors::find( '+' . $phone, '' );
+		$name = $d ? trim( (string) $d['name'] ) : '';
 	}
 	return (string) apply_filters( 'flxc_contact_name', $name, $phone );
 }
 
-function flxc_update_chat( $id, array $fields ) {
+/**
+ * @param array $by 1.41.0: who makes the change (source staff|ai|system|contact, user_id, note) for the
+ *                  contact change log. Default: the logged-in user, otherwise the system.
+ */
+function flxc_update_chat( $id, array $fields, array $by = array() ) {
 	global $wpdb;
+	$before = null;
+	if ( function_exists( 'flxc_clog_diff' ) && array_intersect( array_keys( $fields ), flxc_clog_fields() ) ) {
+		$before = flxc_get_chat( (int) $id );
+	}
 	$fields['rev'] = flxc_rev();
 	$wpdb->update( flxc_table( 'chats' ), $fields, array( 'id' => (int) $id ) );
+	if ( $before ) {
+		flxc_clog_diff( $before, $fields, $by );
+	}
 }
 
 function flxc_chat_title( $chat ) {

@@ -9,7 +9,7 @@ if ( empty( $flxc_s['delete_data'] ) ) {
 	return;
 }
 global $wpdb;
-foreach ( array( 'chats', 'messages', 'replies', 'receipts', 'bench_runs', 'bench_results', 'memory', 'jobs', 'blocklist', 'reminders', 'editor_sessions', 'dekonts' ) as $flxc_t ) {
+foreach ( array( 'chats', 'messages', 'replies', 'receipts', 'bench_runs', 'bench_results', 'memory', 'jobs', 'blocklist', 'reminders', 'editor_sessions', 'dekonts', 'contact_log' ) as $flxc_t ) {
 	$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'flxc_' . $flxc_t ); // phpcs:ignore
 }
 foreach ( array( 'flxc_settings', 'flxc_db_version', 'flxc_replies_seeded', 'flxc_conn_state', 'flxc_conn_rev', 'flxc_bot_bench', 'flxc_bot_prompt', 'flxc_bot_docs', 'flxc_ai_usage', 'flxc_bot_stats', 'flxc_bot_donations', 'flxc_bench_key', 'flxc_notify_sent', 'flxc_jobs_lock', 'flxc_mirror_lock', 'flxc_mirror_last', 'flxc_mirror_error' ) as $flxc_o ) {

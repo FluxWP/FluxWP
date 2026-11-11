@@ -3207,5 +3207,16 @@ return array(
   'No referral.' => 'No referral.',
   'Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.' => 'Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.',
 
+  'Change history' => 'Change history',
+  'Assistant memory' => 'Assistant memory',
+  'Note updated' => 'Note updated',
+  'Show less' => 'Show less',
+  'Show all ({n})' => 'Show all ({n})',
+  'Filled from donation and certificate records (one-off update)' => 'Filled from donation and certificate records (one-off update)',
+  'Name given by the sending record' => 'Name given by the sending record',
+  'Filled from donation and certificate records' => 'Filled from donation and certificate records',
+  'The contact said their name in the chat' => 'The contact said their name in the chat',
+  'The contact corrected their name in the chat' => 'The contact corrected their name in the chat',
+  'The contact gave their full name in the chat' => 'The contact gave their full name in the chat',
  ),
 );

@@ -103,7 +103,7 @@ function flxc_block_add( $phone, $email = '', $reason = '', $source = 'agent', $
 	);
 	$id = (int) $wpdb->insert_id;
 	flxc_block_index( true );
-	flxc_block_touch_chats( $phone, $jid );
+	flxc_block_touch_chats( $phone, $jid, true, array( 'source' => 'bot' === $source ? 'ai' : 'staff', 'user_id' => 'bot' === $source ? 0 : get_current_user_id(), 'note' => (string) $reason ) );
 	do_action( 'flx_contact_block_changed', $phone, $email, true );
 	return $id;
 }
@@ -116,18 +116,24 @@ function flxc_block_remove( $id ) {
 	}
 	$wpdb->delete( flxc_table( 'blocklist' ), array( 'id' => (int) $id ) );
 	flxc_block_index( true );
-	flxc_block_touch_chats( $row['phone'], $row['jid'] );
+	flxc_block_touch_chats( $row['phone'], $row['jid'], false );
 	do_action( 'flx_contact_block_changed', $row['phone'], $row['email'], false );
 	return true;
 }
 
-/** Panel listesi yenilensin diye ilgili sohbetlerin rev'i artar. */
-function flxc_block_touch_chats( $phone, $jid ) {
+/**
+ * Panel listesi yenilensin diye ilgili sohbetlerin rev'i artar.
+ * 1.41.0: $blocked verilirse kişi değişiklik geçmişine yazılır (null: yalnız yenile).
+ */
+function flxc_block_touch_chats( $phone, $jid, $blocked = null, array $by = array() ) {
 	global $wpdb;
 	$ct  = flxc_table( 'chats' );
 	$ids = '' !== (string) $phone ? $wpdb->get_col( $wpdb->prepare( "SELECT id FROM $ct WHERE phone = %s", $phone ) ) : $wpdb->get_col( $wpdb->prepare( "SELECT id FROM $ct WHERE jid = %s", $jid ) ); // phpcs:ignore
 	foreach ( (array) $ids as $cid ) {
 		flxc_update_chat( (int) $cid, array() );
+		if ( null !== $blocked && function_exists( 'flxc_clog_add' ) ) {
+			flxc_clog_add( (int) $cid, 'blocked', $blocked ? '0' : '1', $blocked ? '1' : '0', $by );
+		}
 	}
 }
 

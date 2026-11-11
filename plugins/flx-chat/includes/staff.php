@@ -152,6 +152,9 @@ function flxc_staff_link_chat( $chat, $user_id ) {
 		unset( $meta['staff_user'] );
 	}
 	flxc_update_chat( (int) $chat['id'], array( 'meta' => flxc_json( $meta ) ) );
+	if ( function_exists( 'flxc_clog_add' ) ) {
+		flxc_clog_add( (int) $chat['id'], 'staff_user', $old ? (string) $old : '', $user_id ? (string) $user_id : '' );
+	}
 	$me = flxc_user_name( get_current_user_id() );
 	/* translators: 1: manager, 2: staff user */
 	// 1.36.1: the line carries staff_link so the assistant sees in the history when it was linked (flxc_bot_messages).

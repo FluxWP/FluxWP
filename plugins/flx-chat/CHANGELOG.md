@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.41.0
+- İsimsiz sohbetlere ad: sohbet açılırken ya da daha önce isimsiz açılmış sohbete bağış/sertifika gönderilirken ad otomatik dolar (gönderen kaydın adı; yoksa numaraya göre Flux Certificates kişi kaydı, Flux CRM kişisi, Flux Donate bağışçısı). Elle girilmiş ad ezilmez.
+- Tek seferlik güncelleme: adı boş, numarası bağış/sertifika kayıtlarında olan mevcut sohbetler 200'erli parçalarla adlandırılır (admin sayfası açılınca ve arka plan işinde).
+- Asistan: kişi "benim adım X" derse ad kayda geçer (boşsa doldurur, yalnız ad varsa "Selma" → "Selma Öztürk" tamamlar). Kayıttaki ad yalnız kişi kendi adını açıkça düzeltirse değişir (`save_details` `correct_name`). Hitap/lakap (Hacı Abi, Ayşe Hanım) kişi adı olmaz; başkası adına verilen isimler yazılmaz; personel sohbetinde ad değişmez.
+- Kişi değişiklik geçmişi: ad, notlar, etiketler, atanan temsilci, telefon, personel bağlantısı, kara liste ve asistan hafızasındaki her değişiklik kim (personel adı / Asistan / Sistem), ne zaman, eski → yeni olarak kaydedilir; Kişi bilgisi panelinde "Değişiklik geçmişi" bölümünde görünür. Not yazarken aynı kişinin 10 dk içindeki düzeltmeleri tek satırda birleşir.
+- Yeni tablo `flxc_contact_log` (DB sürümü 10), eylem `flxc_contact_changed( $chat_id, $field, $old, $new, $by )`; `flxc_update_chat()` üçüncü parametre `$by` (source staff|ai|system|contact, user_id, note).
+
 ## 1.40.1
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 
