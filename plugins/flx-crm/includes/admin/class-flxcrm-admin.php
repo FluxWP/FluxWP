@@ -12,6 +12,7 @@ require_once FLXCRM_DIR . 'includes/admin/page-contacts.php';
 require_once FLXCRM_DIR . 'includes/admin/page-contact.php';
 require_once FLXCRM_DIR . 'includes/admin/page-segments.php';
 require_once FLXCRM_DIR . 'includes/admin/page-events.php';
+require_once FLXCRM_DIR . 'includes/admin/page-duplicates.php';
 require_once FLXCRM_DIR . 'includes/admin/page-settings.php';
 
 final class FLXCRM_Admin {
@@ -19,6 +20,7 @@ final class FLXCRM_Admin {
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 55 );
 		FLXCRM_Page_Events::init();
+		FLXCRM_Page_Duplicates::init();
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		foreach ( array( 'contact_save', 'contact_delete', 'event_add', 'event_delete', 'tag_add', 'tag_remove', 'segment_save', 'segment_delete', 'settings_save', 'csv', 'bulk' ) as $a ) {
 			add_action( 'admin_post_flxcrm_' . $a, array( __CLASS__, 'post_' . $a ) );
@@ -51,6 +53,10 @@ final class FLXCRM_Admin {
 	}
 
 	public static function route_contacts() {
+		if ( isset( $_GET['view'] ) && 'duplicates' === $_GET['view'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			FLXCRM_Page_Duplicates::render();
+			return;
+		}
 		// phpcs:ignore WordPress.Security.NonceVerification
 		if ( ! empty( $_GET['id'] ) || ( isset( $_GET['action'] ) && 'new' === $_GET['action'] ) ) {
 			FLXCRM_Page_Contact::render();
