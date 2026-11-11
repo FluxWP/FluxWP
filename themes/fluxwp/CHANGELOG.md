@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.7.21
+- Ödeme sayfası rozeti: telefonda kart sağlayıcısının adı (EsnekPOS…) ikinci satırda.
+- Ödeme sayfası başlığındaki "Güvenli ödeme" rozeti etkin ödeme sağlayıcısını yazar (filtre `flx_secure_badge_provider`; boşsa yalnız "Güvenli ödeme").
+
 ## 0.7.20
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

@@ -21,6 +21,7 @@ final class FLXB_WC_Products {
 
 	public static function init() {
 		add_action( 'flxb_type_saved', array( __CLASS__, 'on_type_saved' ), 20, 1 );
+		add_action( 'admin_init', array( __CLASS__, 'refresh_images' ) );
 		add_action( 'template_redirect', array( __CLASS__, 'redirect_product_page' ) );
 		add_filter( 'woocommerce_is_purchasable', array( __CLASS__, 'purchasable' ), 10, 2 );
 	}
@@ -121,6 +122,38 @@ final class FLXB_WC_Products {
 	}
 
 	/** Product image: the type image, else the bundled sapling / donation picture. */
+	/** 2.21.0: the bundled sapling picture is a photo (it was an icon); the version marks the attachment it made. */
+	const BUNDLED_IMG = '2';
+
+	/**
+	 * Is this product picture the 2.17 and earlier bundled icon (fidan-bagisi.jpg attached to the product,
+	 * no marker)? Then it is swapped for the photo. A picture the site owner chose is never touched.
+	 */
+	private static function old_bundled( $att, $product_id, $file ) {
+		if ( 'fidan-bagisi.jpg' !== $file || (int) wp_get_post_parent_id( $att ) !== (int) $product_id ) {
+			return false;
+		}
+		$mark = (string) get_post_meta( $att, '_flxb_bundled', true );
+		if ( '' !== $mark ) {
+			return $mark !== self::BUNDLED_IMG;
+		}
+		return 0 === strpos( wp_basename( (string) get_attached_file( $att ) ), 'fidan-bagisi' );
+	}
+
+	/** One pass after the update: the products of sapling types get the photo. */
+	public static function refresh_images() {
+		if ( get_option( 'flxb_bundled_img' ) === self::BUNDLED_IMG || ! class_exists( 'FLXB_Types' ) ) {
+			return;
+		}
+		update_option( 'flxb_bundled_img', self::BUNDLED_IMG, false );
+		foreach ( FLXB_Types::all() as $t ) {
+			$pid = (int) FLXB_Types::meta( $t, 'wc_product_id', 0 );
+			if ( $pid ) {
+				self::image( $pid, $t );
+			}
+		}
+	}
+
 	public static function image( $id, array $t ) {
 		$p = wc_get_product( $id );
 		if ( ! $p ) {
@@ -133,10 +166,11 @@ final class FLXB_WC_Products {
 			}
 			return;
 		}
-		if ( $p->get_image_id() ) {
+		$file = 'fidan' === ( $t['options'][0]['unit'] ?? '' ) ? 'fidan-bagisi.jpg' : 'genel-bagis.jpg';
+		$cur  = (int) $p->get_image_id();
+		if ( $cur && ! self::old_bundled( $cur, $id, $file ) ) {
 			return;
 		}
-		$file = 'fidan' === ( $t['options'][0]['unit'] ?? '' ) ? 'fidan-bagisi.jpg' : 'genel-bagis.jpg';
 		$src  = FLXB_DIR . 'assets/wc/img/' . $file;
 		if ( ! is_readable( $src ) ) {
 			return;
@@ -149,6 +183,7 @@ final class FLXB_WC_Products {
 		$att = wp_insert_attachment( array( 'post_mime_type' => 'image/jpeg', 'post_title' => $p->get_name(), 'post_status' => 'inherit' ), $up['file'], $id );
 		if ( $att && ! is_wp_error( $att ) ) {
 			wp_update_attachment_metadata( $att, wp_generate_attachment_metadata( $att, $up['file'] ) );
+			update_post_meta( $att, '_flxb_bundled', self::BUNDLED_IMG );
 			$p->set_image_id( $att );
 			$p->save();
 		}

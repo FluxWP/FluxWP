@@ -1446,3 +1446,7 @@ msgstr "%s。 Hostinger › PHP Yapılandırması'ndan 8.2 veya üstünü seçin
 
 msgid "Dots"
 msgstr "点"
+
+#, php-format
+msgid "Güvenli ödeme · %s"
+msgstr "安全支付·%s"

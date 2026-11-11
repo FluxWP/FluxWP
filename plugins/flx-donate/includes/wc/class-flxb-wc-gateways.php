@@ -45,6 +45,32 @@ class FLXB_WC_Gateways {
 		add_action( 'woocommerce_blocks_payment_method_type_registration', array( __CLASS__, 'blocks' ), 99 );
 		add_filter( 'flx_pay_logos_builtin', array( __CLASS__, 'pay_logos' ), 20 );
 		add_filter( 'woocommerce_available_payment_gateways', array( __CLASS__, 'one_card' ), 60 );
+		add_filter( 'flx_secure_badge_provider', array( __CLASS__, 'badge_provider' ), 10 );
+	}
+
+	/**
+	 * 2.21.0: provider name on the theme's "Secure payment" badge = the card method donors see now
+	 * (EsnekPOS, iyzico…); '' when several card methods are shown or none is enabled.
+	 */
+	public static function badge_provider( $name ) {
+		if ( '' !== (string) $name || FLXB_WC_Iyzico::context_monthly() ) {
+			return '' !== (string) $name ? $name : 'iyzico';
+		}
+		$cm = self::card_method();
+		if ( 'all' === $cm ) {
+			return '';
+		}
+		if ( 'iyzico' === $cm ) {
+			foreach ( array( FLXB_WC_Iyzico::ID, FLXB_WC_Iyzico::OFFICIAL ) as $id ) {
+				$gw = self::all()[ $id ] ?? null;
+				if ( $gw && 'yes' === $gw->enabled ) {
+					return 'iyzico';
+				}
+			}
+			return '';
+		}
+		$ad = (array) apply_filters( 'flxb_gateway_adapters', array() );
+		return (string) ( $ad[ $cm ]['label'] ?? ( self::third_party_enabled()[ $cm ] ?? '' ) );
 	}
 
 	/** Card methods: iyzico (ours, official) and third-party POSes. */
