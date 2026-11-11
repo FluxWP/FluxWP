@@ -395,22 +395,7 @@ function flxi_admin_url( $page = 'flxi', $args = array() ) {
 
 /** Telefonu uluslararası rakam biçimine çevirir: 0532 123 45 67 → 905321234567. Flux Certificates ile aynı kural. */
 function flxi_normalize_phone( $raw ) {
-	if ( function_exists( 'flxs_normalize_phone' ) ) {
-		return flxs_normalize_phone( $raw );
-	}
-	$d = preg_replace( '/\D+/', '', (string) $raw );
-	if ( '' === $d ) {
-		return '';
-	}
-	if ( 0 === strpos( $d, '00' ) ) {
-		$d = substr( $d, 2 );
-	}
-	if ( 10 === strlen( $d ) && '5' === $d[0] ) {
-		$d = '90' . $d;
-	} elseif ( 11 === strlen( $d ) && '0' === $d[0] ) {
-		$d = '90' . substr( $d, 1 );
-	}
-	return strlen( $d ) >= 10 && strlen( $d ) <= 15 ? $d : '';
+	return flx_phone_digits( $raw, 'tr' );
 }
 
 /** Alt kısım çizimleri (e-postanın en altındaki ağaç silüeti). */

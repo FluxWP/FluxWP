@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.20.7
+- Telefon biçimi ortak yardımcıyı kullanır. Yazılan numara eskisi gibi +90… olur.
+- İçe aktarmada telefon aynı ortak kuralla okunur (`0090…` ve `+90 0532…` yazımları düzelir); tanınmayan numara yazıldığı gibi kalır.
+
 ## 2.20.6
 - Bağış sorgulama ve yönetim listeleri ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
 

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.12
+- Telefon numaraları tüm eklentilerde aynı kuralla okunur: `+90 0532…` yazımındaki fazla sıfır atılır, ülke kodu ve baştaki sıfır olmadan yazılan 10 haneli sabit hat (212…) 90 ile tamamlanır, hane sayısı ya da alan kodu tutmayan Türkiye numarası geçersiz sayılır. Geçersiz numaralı siparişe WhatsApp bildirimi denenmez.
+
 ## 0.2.11
 - Ticaret listeleri ortak önbelleksiz başlıkları kullanır. Dekont ucunun kendi başlığı durur.
 

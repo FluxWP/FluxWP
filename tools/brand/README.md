@@ -33,6 +33,8 @@ One phone input for every package: flag country picker with search, preferred co
 flx_phone_enqueue();
 echo flx_phone_field( array( 'name' => 'phone', 'value' => '+4915123456789', 'required' => true, 'label' => __( 'Phone', 'my-domain' ) ) );
 $e164 = flx_phone_normalize( $_POST['phone'], 'de' ); // '' when not a number
+$digits = flx_phone_digits( $e164, 'de' );          // 4915123456789, '' when not a number
+flx_phone_equal( '0532 123 45 67', '+90 532 123 45 67', 'tr' ); // both valid and the same E.164
 ```
 
 - The form posts the E.164 value (`+4915123456789`) under `name`; without JS the typed text is posted.

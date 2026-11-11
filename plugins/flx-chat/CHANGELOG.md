@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.40.3
+- Sertifika eklentisi yokken telefon kuralı onunla aynıdır. Geçerli numaralar aynı kalır; eksik ya da bozuk Türkiye numarası artık kabul edilmez.
+
 ## 1.40.2
 - Sohbet API yanıtları ve dışa aktarma ortak önbelleksiz başlıkları kullanır. Kendi önbellek başlığı olan uçlar aynı kalır.
 

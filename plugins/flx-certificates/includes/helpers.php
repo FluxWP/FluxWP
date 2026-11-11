@@ -79,40 +79,7 @@ function flxs_slug() {
  * şeklinde yazılabilir; boşluk, tire, parantez ve nokta yok sayılır. assets/js/admin.js normPhone ile aynı.
  */
 function flxs_normalize_phone( $raw ) {
-	$raw = trim( (string) $raw );
-	if ( '' === $raw ) {
-		return '';
-	}
-	$digits = preg_replace( '/\D+/', '', $raw );
-	$intl   = 0 === strpos( $raw, '+' ) || 0 === strpos( $digits, '00' );
-	if ( '' === $digits ) {
-		return '';
-	}
-	if ( $intl ) {
-		$digits = ltrim( $digits, '0' );                 // 0090… → 90…
-	} elseif ( '0' === $digits[0] ) {
-		$digits = '0' . ltrim( $digits, '0' );           // 00535… → 0535…
-	}
-	// "+90 0535…" / "90 0535…" → fazladan 0'ı at.
-	if ( 0 === strpos( $digits, '900' ) && 13 === strlen( $digits ) ) {
-		$digits = '90' . substr( $digits, 3 );
-	}
-	if ( ! $intl ) {
-		$len = strlen( $digits );
-		if ( 11 === $len && '0' === $digits[0] ) {
-			$digits = '90' . substr( $digits, 1 );          // 0535 011 37 64
-		} elseif ( 10 === $len && '0' !== $digits[0] ) {
-			$digits = '90' . $digits;                        // 535 011 37 64, 212 …
-		}
-	}
-	$digits = ltrim( $digits, '0' );
-	if ( strlen( $digits ) < 10 || strlen( $digits ) > 15 ) {
-		return '';
-	}
-	if ( 0 === strpos( $digits, '90' ) && ( 12 !== strlen( $digits ) || ! in_array( $digits[2], array( '2', '3', '4', '5', '8' ), true ) ) ) {
-		return '';
-	}
-	return $digits;
+	return flx_phone_digits( $raw, 'tr' );
 }
 
 /** 905321234567 => +90 532 123 45 67 */

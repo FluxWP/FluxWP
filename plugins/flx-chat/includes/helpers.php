@@ -169,36 +169,7 @@ function flxc_normalize_phone( $raw ) {
 	if ( function_exists( 'flxs_normalize_phone' ) ) {
 		return flxs_normalize_phone( $raw );
 	}
-	$raw = trim( (string) $raw );
-	if ( '' === $raw ) {
-		return '';
-	}
-	$digits = preg_replace( '/\D+/', '', $raw );
-	if ( '' === $digits ) {
-		return '';
-	}
-	$intl = 0 === strpos( $raw, '+' ) || 0 === strpos( $digits, '00' );
-	if ( $intl ) {
-		$digits = ltrim( $digits, '0' );
-	} elseif ( '0' === $digits[0] ) {
-		$digits = '0' . ltrim( $digits, '0' );
-	}
-	if ( 0 === strpos( $digits, '900' ) && 13 === strlen( $digits ) ) {
-		$digits = '90' . substr( $digits, 3 );
-	}
-	if ( ! $intl ) {
-		$len = strlen( $digits );
-		if ( 11 === $len && '0' === $digits[0] ) {
-			$digits = '90' . substr( $digits, 1 );
-		} elseif ( 10 === $len && '0' !== $digits[0] ) {
-			$digits = '90' . $digits;
-		}
-	}
-	$digits = ltrim( $digits, '0' );
-	if ( strlen( $digits ) < 8 || strlen( $digits ) > 15 ) {
-		return '';
-	}
-	return $digits;
+	return flx_phone_digits( $raw, 'tr' );
 }
 
 /** 905321234567 => +90 532 123 45 67 */

@@ -483,7 +483,10 @@ function flx_phone_field( array $args ) {
 
 /**
  * Numarayı E.164'e çevirir (+905321234567). Ülke kodsuz yazılmışsa $country (iso2, boş = varsayılan ülke) eklenir.
- * Sunucu tarafı yalnız biçim ve uzunluk denetler (8–15 hane); asıl doğrulama alandaki libphonenumber'dadır.
+ * Türkiye (tr): başında + ya da 00 olmayan numarada baştaki sıfırlar atılır (N). N tam 10 haneyse 90 eklenir,
+ * 10'dan uzunsa N olduğu gibi kalır, daha kısaysa geçersizdir. Her yolda 900 + 10 hane (13) fazladan 0'ı düşer;
+ * 90 ile başlayan sonuç yalnız 12 hane ve üçüncü hanesi 2, 3, 4, 5 ya da 8 ise geçerlidir.
+ * Diğer ülkeler: yalnız biçim ve uzunluk (8–15 hane).
  *
  * @return string '' = geçersiz ya da boş.
  */
@@ -493,12 +496,42 @@ function flx_phone_normalize( $raw, $country = '' ) {
 	if ( '' === $dg ) {
 		return '';
 	}
+	$cc = '' !== $country ? strtolower( (string) $country ) : flx_phone_country();
+	if ( 'tr' === $cc ) {
+		$intl = '+' === substr( $raw, 0, 1 ) || 0 === strpos( $dg, '00' );
+		if ( $intl ) {
+			$dg = ltrim( $dg, '0' );
+		} elseif ( '0' === $dg[0] ) {
+			$dg = '0' . ltrim( $dg, '0' );
+		}
+		if ( '' === $dg ) {
+			return '';
+		}
+		if ( 0 === strpos( $dg, '900' ) && 13 === strlen( $dg ) ) {
+			$dg = '90' . substr( $dg, 3 );
+		}
+		if ( ! $intl ) {
+			$len = strlen( $dg );
+			if ( 11 === $len && '0' === $dg[0] ) {
+				$dg = '90' . substr( $dg, 1 );
+			} elseif ( 10 === $len && '0' !== $dg[0] ) {
+				$dg = '90' . $dg;
+			}
+		}
+		$dg = ltrim( $dg, '0' );
+		if ( strlen( $dg ) < 10 || strlen( $dg ) > 15 ) {
+			return '';
+		}
+		if ( 0 === strpos( $dg, '90' ) && ( 12 !== strlen( $dg ) || ! in_array( $dg[2], array( '2', '3', '4', '5', '8' ), true ) ) ) {
+			return '';
+		}
+		return '+' . $dg;
+	}
 	if ( '+' === substr( $raw, 0, 1 ) ) {
 		$out = $dg;
 	} elseif ( 0 === strpos( $dg, '00' ) ) {
 		$out = substr( $dg, 2 );
 	} else {
-		$cc   = '' !== $country ? strtolower( $country ) : flx_phone_country();
 		$dial = array( 'tr' => '90', 'de' => '49', 'at' => '43', 'ch' => '41', 'nl' => '31', 'be' => '32', 'fr' => '33', 'gb' => '44', 'us' => '1', 'it' => '39', 'es' => '34', 'se' => '46', 'dk' => '45', 'no' => '47', 'az' => '994' );
 		$dial = (array) apply_filters( 'flx_phone_dial_codes', $dial );
 		if ( ! isset( $dial[ $cc ] ) ) {
@@ -510,6 +543,19 @@ function flx_phone_normalize( $raw, $country = '' ) {
 		}
 	}
 	return strlen( $out ) >= 8 && strlen( $out ) <= 15 ? '+' . $out : '';
+}
+
+/** Same number as flx_phone_normalize(), without the leading + (905321234567). '' when invalid. */
+function flx_phone_digits( $raw, $country = '' ) {
+	$n = flx_phone_normalize( $raw, $country );
+	return '' === $n ? '' : substr( $n, 1 );
+}
+
+/** True when both values are valid and the same E.164. Trailing digits are not compared; empty or invalid values are not equal. */
+function flx_phone_equal( $a, $b, $country = '' ) {
+	$a = flx_phone_normalize( $a, $country );
+	$b = flx_phone_normalize( $b, $country );
+	return '' !== $a && $a === $b;
 }
 
 /** Quote a CSV cell that opens as a spreadsheet formula; leave a real number, including a negative, as a number. */

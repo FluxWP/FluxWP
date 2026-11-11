@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.14
+- Telefon biçimi ortak yardımcıyı kullanır. Kayıtlı rakamlar aynı kalır (905…).
+
 ## 1.9.13
 - Uygulama listeleri ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
 
