@@ -5687,3 +5687,22 @@ msgstr "捐赠者可在 %s 通过邮件或电话收到的验证码查看捐赠�
 
 msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
 msgstr "页面 %s 仅支持邮件：没有用于电话验证码的 WhatsApp 或短信连接。"
+
+msgid "Receipt awaiting approval"
+msgstr "凭证待审核"
+
+msgid "Receipts awaiting approval"
+msgstr "待审核的凭证"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "捐赠者已发送转账凭证。请打开查看并核对银行账户，然后批准或拒绝。"
+
+msgid "Show in the list"
+msgstr "在列表中显示"
+
+msgid "Review"
+msgstr "查看"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "还有 %s 条"

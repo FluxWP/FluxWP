@@ -5745,3 +5745,23 @@ msgstr "Spender können ihre Spenden auf %s mit einem Code per E-Mail oder Telef
 
 msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
 msgstr "Die Seite %s funktioniert nur mit E-Mail: Für Telefoncodes gibt es keine WhatsApp- oder SMS-Verbindung."
+
+msgid "Receipt awaiting approval"
+msgstr "Beleg wartet auf Freigabe"
+
+msgid "Receipts awaiting approval"
+msgstr "Belege warten auf Freigabe"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "Der Spender hat einen Beleg geschickt. Öffnen, Bankkonto prüfen, dann freigeben oder ablehnen."
+
+msgid "Show in the list"
+msgstr "In der Liste zeigen"
+
+msgid "Review"
+msgstr "Prüfen"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "%s weiterer"
+msgstr[1] "%s weitere"

@@ -3650,5 +3650,11 @@ return array(
 'Create the page'=>'ページを作成',
 'Donors can see their donations on %s with a code sent by e-mail or phone.'=>'寄付者は %s でメールまたは電話に届くコードを使って寄付を確認できます。',
 'The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.'=>'ページ %s はメールのみで動作します: 電話用のWhatsAppまたはSMS接続がありません。',
- ),
+'Receipt awaiting approval'=>'振込明細の承認待ち',
+'Receipts awaiting approval'=>'承認待ちの振込明細',
+'The donor sent a receipt. Open it, check the bank account, then approve or reject.'=>'寄付者が振込明細を送信しました。開いて口座を確認し、承認または却下してください。',
+'Show in the list'=>'一覧で表示',
+'Review'=>'確認',
+'%s more' . chr(0) . '%s more'=>'他 %s 件',
+),
 );

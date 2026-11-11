@@ -5745,3 +5745,23 @@ msgstr "Los donantes pueden ver sus donaciones en %s con un código enviado por 
 
 msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
 msgstr "La página %s solo funciona por correo: no hay conexión de WhatsApp ni SMS para códigos por teléfono."
+
+msgid "Receipt awaiting approval"
+msgstr "Comprobante pendiente de aprobación"
+
+msgid "Receipts awaiting approval"
+msgstr "Comprobantes pendientes de aprobación"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "El donante envió un comprobante. Ábrelo, revisa la cuenta bancaria y luego aprueba o rechaza."
+
+msgid "Show in the list"
+msgstr "Mostrar en la lista"
+
+msgid "Review"
+msgstr "Revisar"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "%s más"
+msgstr[1] "%s más"

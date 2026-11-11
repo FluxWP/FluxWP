@@ -255,6 +255,21 @@ final class FLXB_Donations {
 		} else {
 			$where[] = "x.status <> 'trash'"; // 2.5.0: the trash is shown only when asked for
 		}
+		if ( isset( $a['stage'] ) && is_array( $a['stage'] ) ) {
+			// 2.19.0: pending gifts with (or without) a receipt; the lists come from FLXB_Approval::stage_filter().
+			$o     = array_filter( array_map( 'intval', (array) ( $a['stage']['orders'] ?? array() ) ) );
+			$i     = array_filter( array_map( 'intval', (array) ( $a['stage']['ids'] ?? array() ) ) );
+			$parts = array();
+			if ( $o ) {
+				$parts[] = 'x.wc_order_id IN (' . implode( ',', $o ) . ')';
+			}
+			if ( $i ) {
+				$parts[] = '(x.wc_order_id = 0 AND x.id IN (' . implode( ',', $i ) . '))';
+			}
+			$in      = $parts ? '(' . implode( ' OR ', $parts ) . ')' : '0=1';
+			$where[] = "x.status = 'pending'";
+			$where[] = empty( $a['stage']['not'] ) ? $in : 'NOT ' . $in;
+		}
 		if ( ! empty( $a['type'] ) && in_array( $a['type'], array( 'one_time', 'recurring' ), true ) ) {
 			$where[] = 'x.type = %s';
 			$prm[]   = $a['type'];
@@ -293,8 +308,9 @@ final class FLXB_Donations {
 		$cols  = array( 'created_at', 'amount' );
 		$ob    = in_array( $a['orderby'], $cols, true ) ? 'x.' . $a['orderby'] : 'x.created_at';
 		$order = 'ASC' === strtoupper( (string) $a['order'] ) ? 'ASC' : 'DESC';
+		$open  = ! empty( $a['open_first'] ) ? "CASE WHEN x.status = 'pending' THEN 0 ELSE 1 END, " : '';
 		$limit = (int) $a['per_page'] > 0 ? $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] ) : '';
-		$sql   = "SELECT x.*, d.name AS donor_name, d.email AS donor_email, d.phone AS donor_phone {$from} ORDER BY {$ob} {$order}, x.id DESC" . $limit;
+		$sql   = "SELECT x.*, d.name AS donor_name, d.email AS donor_email, d.phone AS donor_phone {$from} ORDER BY {$open}{$ob} {$order}, x.id DESC" . $limit;
 		$items = $prm ? $wpdb->get_results( $wpdb->prepare( $sql, $prm ), ARRAY_A ) : $wpdb->get_results( $sql, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
 		return array( 'items' => (array) $items, 'total' => $total, 'sum' => (float) $sum );
 	}
@@ -320,9 +336,10 @@ final class FLXB_Donations {
 		};
 		$total = (int) $run( "SELECT COUNT(DISTINCT {$g}) {$from}" );
 		$ob    = 'amount' === $a['orderby'] ? 'g_amount' : 'g_created';
+		$open  = ! empty( $a['open_first'] ) ? 'g_open DESC, ' : ''; // 2.19.0: gifts still waiting for something come first
 		$order = 'ASC' === strtoupper( (string) $a['order'] ) ? 'ASC' : 'DESC';
 		$limit = (int) $a['per_page'] > 0 ? $wpdb->prepare( ' LIMIT %d OFFSET %d', (int) $a['per_page'], ( max( 1, (int) $a['page'] ) - 1 ) * (int) $a['per_page'] ) : '';
-		$heads = (array) $run( "SELECT MIN(x.id) AS g_id, SUM(x.amount) AS g_amount, COUNT(*) AS g_lines, GROUP_CONCAT(DISTINCT x.status) AS g_statuses, MAX(x.created_at) AS g_created {$from} GROUP BY {$g} ORDER BY {$ob} {$order}, g_id DESC" . $limit, 'get_results' );
+		$heads = (array) $run( "SELECT MIN(x.id) AS g_id, SUM(x.amount) AS g_amount, COUNT(*) AS g_lines, GROUP_CONCAT(DISTINCT x.status) AS g_statuses, MAX(x.created_at) AS g_created, MAX(CASE WHEN x.status = 'pending' THEN 1 ELSE 0 END) AS g_open {$from} GROUP BY {$g} ORDER BY {$open}{$ob} {$order}, g_id DESC" . $limit, 'get_results' );
 		$items = array();
 		if ( $heads ) {
 			$ids  = implode( ',', array_map( 'intval', wp_list_pluck( $heads, 'g_id' ) ) );

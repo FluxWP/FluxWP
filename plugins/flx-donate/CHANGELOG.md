@@ -9,6 +9,12 @@
 - Giriş yapmış bağışçının e-posta ve telefonu salt okunur gelir (Hesabım'dan değişir); ad boşsa hesaptaki ad yazılır. Misafir "Hesap oluştur" kutusunu işaretleyebilir (şifre bağlantısı e-postayla gider; yalnız e-posta yazılınca görünür).
 - Bağış formu: adet seçeneğinin altında hızlı seçim düğmeleri (1, 5, 10, 25, 50; filtre flxb_quick_qty). A düzeni geniş yerleşir, tek bağış türü varken "Bağış türü" adımı gizlenir. "1Fidan" yazımı "1 fidan" oldu.
 - Fidan ürün görseli artık gerçek fidan fotoğrafı; eski hazır ikon görseli kendiliğinden değişir (elle seçilen görsele dokunulmaz). Görseli olmayan kalemde özet gri yer tutucu yerine fidan ikonu gösterir.
+## 2.19.0
+- Bağışlar listesinde satıra tıklayınca bağış detayı açılır (toplu işlem formu tıklamayı yutuyordu). Bağışçı adı da detayı açar. Bağışçı kartına detaydaki addan gidilir.
+- Listenin üstünde "Dekont onayı bekleyenler" kutusu: dekont gelen bağışlar sayısıyla, tek tıkla detayda dekont ve Onayla / Reddet.
+- "Bekliyor" yerine net durum: dekont geldiyse "Dekont onayı bekliyor", gelmediyse "Ödeme bekleniyor". Durum filtresinde de bu ikisi ayrı seçilir. Detaydaki onay kartı başlığı da aynı ("Dekont onayı bekliyor").
+- Varsayılan sıra: bekleyen bağışlar başta, sonra tarihe göre (yeni önce).
+- Mobil kart görünümünde uzun durum etiketi tutarı ve Ayrıntılar düğmesini dışarı itmez.
 
 ## 2.18.0
 - Yeni **Bağışlarım** sayfası (`[flx_bagislarim]`): hesabı olmayan bağışçı e-posta ya da telefonunu girer, tek kullanımlık 6 haneli kodla doğrulanır; bağışlarını (tutar, durum, kalemler) ve sertifikalarını görür, PDF indirir. Havale bekleyen bağışta ödeme bilgileri (IBAN + dekont) bağlantısı. Giriş yapmış kullanıcı kodsuz görür.

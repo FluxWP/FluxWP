@@ -216,6 +216,8 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 .flxb-pill--failed { background: #FCEDED; color: var(--flxb-down); box-shadow: inset 0 0 0 1px #F2C9C9; }
 .flxb-pill--recurring { background: #E8F0F7; color: #234E73; box-shadow: inset 0 0 0 1px #CADCEB; }
 .flxb-pill--muted { background: #EEF1F2; color: #4B5563; }
+.flxb-pill--receipt { background: #E7F0FB; color: #1C4F86; box-shadow: inset 0 0 0 1px #B9D2EE; }
+.flxb-pill--receipt::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #2F6FA3; }
 
 /* pagination */
 .flxb-pages { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
@@ -371,7 +373,7 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 	.flxb-table .flxb-col-act { text-align: left !important; padding-top: 6px !important; }
 	.flxb-tablefoot { padding: 10px 14px; }
 	/* 2.3.1: donation list as cards: name and amount on top, purpose, status, date and an arrow */
-	.flxb-table--list tbody tr { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; grid-template-areas: "main main main amount" "where where where where" "status type ref ref" "date date date act"; align-items: center; gap: 4px 8px; padding: 14px 16px; }
+	.flxb-table--list tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "main main amount" "where where ref" "status status type" "date date act"; /* 2.19.0: a long status ("Receipt awaiting approval") no longer pushes the amount out */ align-items: center; gap: 4px 8px; padding: 14px 16px; }
 	.flxb-table--list td { padding: 0 !important; width: auto; }
 	.flxb-table--list td[data-label]::before { display: none; }
 	.flxb-table--list td[data-label] { display: block; }
@@ -508,7 +510,7 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 .flxb-bulkbar select { min-height: 36px; }
 .flxb-filters__trash { color: var(--flxb-muted) !important; }
 @media (max-width: 782px) {
-	.flxb-table--list.flxb-table--bulk tbody tr { grid-template-columns: 28px auto auto minmax(0, 1fr) auto; grid-template-areas: "check main main main amount" "check where where where where" "check status type ref ref" "check date date date act"; }
+	.flxb-table--list.flxb-table--bulk tbody tr { grid-template-columns: 28px minmax(0, 1fr) auto auto; grid-template-areas: "check main main amount" "check where where ref" "check status status type" "check date date act"; }
 	.flxb-table--list .flxb-c-check { grid-area: check; display: block; align-self: start; width: auto; padding-top: 2px !important; }
 	.flxb-table--list thead .flxb-c-check { display: none; }
 	.flxb-table--list tr.is-selected { background: #EEF7F1; }
@@ -665,3 +667,28 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 .flxb-manage__status select{min-width:180px}
 .flxb-manage__status label{font-weight:600}
 @media (max-width:600px){.flxb-manage__row form,.flxb-manage__status select{width:100%}.flxb-manage__row .flxb-btn{flex:1}}
+
+/* 2.19.0: receipts awaiting approval, above the donation list. */
+.flxb-awaiting { margin-bottom: 16px; border-color: var(--flxb-warn-line); box-shadow: inset 4px 0 0 #E2A33B, 0 1px 2px rgba(20, 50, 74, .04); }
+.flxb-awaiting .flxb-card__head { align-items: flex-start; }
+.flxb-awaiting__n { display: inline-grid; place-items: center; min-width: 24px; height: 24px; margin-left: 6px; padding: 0 7px; border-radius: 99px; background: #E2A33B; color: #fff; font-size: 12.5px; font-weight: 800; vertical-align: 2px; }
+.flxb-awaiting__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.flxb-awaiting__list li { margin: 0; }
+.flxb-awaiting__item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--flxb-line); border-radius: 12px; background: var(--flxb-soft); color: var(--flxb-ink); text-decoration: none; min-height: 56px; }
+.flxb .flxb-awaiting__item { color: var(--flxb-ink); }
+.flxb-awaiting__item:hover, .flxb-awaiting__item:focus-visible { border-color: #E2A33B; background: var(--flxb-warn-bg); }
+.flxb-awaiting__icon { flex: 0 0 auto; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 9px; background: var(--flxb-warn-bg); color: var(--flxb-warn-ink); border: 1px solid var(--flxb-warn-line); }
+.flxb-awaiting__who { flex: 1 1 auto; min-width: 0; display: grid; gap: 2px; }
+.flxb-awaiting__who strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+.flxb-awaiting__who small { color: var(--flxb-muted); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxb-awaiting__amt { flex: 0 0 auto; font-weight: 800; font-variant-numeric: tabular-nums; }
+.flxb-awaiting__go { flex: 0 0 auto; font-size: 12.5px; font-weight: 700; color: var(--flxb-primary); }
+.flxb-awaiting__go span { margin-left: 4px; }
+.flxb-awaiting__more { margin-top: 8px; }
+.flxb-awaiting__more summary { cursor: pointer; font-weight: 700; color: var(--flxb-primary); padding: 6px 2px; }
+.flxb-awaiting__more .flxb-awaiting__list { margin-top: 6px; }
+@media (max-width: 600px) {
+	.flxb-awaiting__list { grid-template-columns: 1fr; }
+	.flxb-awaiting__go { display: none; }
+	.flxb-awaiting .flxb-card__head { flex-wrap: wrap; }
+}

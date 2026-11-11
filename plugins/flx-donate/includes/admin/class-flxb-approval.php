@@ -63,6 +63,141 @@ final class FLXB_Approval {
 		);
 	}
 
+	/** 2.19.0: group keys (o<order id> / d<donation id>) of pending gifts that have a receipt. */
+	private static $receipt_keys = null;
+
+	/**
+	 * 2.19.0: pending gifts that carry a receipt, as group keys. Two cheap reads instead of one per
+	 * row: open WooCommerce orders with uploaded receipts, and donations with receipts from Flux Chat.
+	 *
+	 * @return array key => true ('o12' = order 12, 'd34' = donation 34 without an order)
+	 */
+	public static function receipt_keys() {
+		if ( null !== self::$receipt_keys ) {
+			return self::$receipt_keys;
+		}
+		global $wpdb;
+		$keys = array();
+		if ( function_exists( 'wc_get_order' ) && class_exists( 'FLXB_WC_Receipts' ) ) {
+			$hpos = class_exists( 'Automattic\\WooCommerce\\Utilities\\OrderUtil' ) && \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
+			if ( $hpos ) {
+				$ids = wc_get_orders(
+					array(
+						'status'     => array( 'pending', 'on-hold' ),
+						'limit'      => 300,
+						'return'     => 'ids',
+						'meta_query' => array( array( 'key' => '_flxb_receipts', 'compare' => 'EXISTS' ) ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+					)
+				);
+			} else {
+				// The posts order store does not take meta_query: read the order meta directly.
+				$ids = $wpdb->get_col( "SELECT p.ID FROM {$wpdb->posts} p INNER JOIN {$wpdb->postmeta} m ON m.post_id = p.ID AND m.meta_key = '_flxb_receipts' WHERE p.post_type = 'shop_order' AND p.post_status IN ('wc-pending','wc-on-hold') ORDER BY p.ID DESC LIMIT 300" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			}
+			foreach ( array_map( 'intval', (array) $ids ) as $oid ) {
+				$o = wc_get_order( $oid );
+				if ( $o && FLXB_WC_Receipts::of( $o ) ) {
+					$keys[ 'o' . $oid ] = true;
+				}
+			}
+		}
+		$t    = flxb_table( 'donations' );
+		$rows = (array) $wpdb->get_results( "SELECT id, wc_order_id, meta FROM {$t} WHERE status = 'pending' AND meta LIKE '%\"receipts\"%' ORDER BY id DESC LIMIT 300", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		foreach ( $rows as $r ) {
+			$m  = FLXB_Donations::meta( $r );
+			$ok = false;
+			foreach ( (array) ( $m['receipts'] ?? array() ) as $rc ) {
+				if ( is_array( $rc ) && preg_match( '#^https?://#i', (string) ( $rc['url'] ?? '' ) ) ) {
+					$ok = true;
+					break;
+				}
+			}
+			if ( ! $ok ) {
+				continue;
+			}
+			$oid = (int) $r['wc_order_id'];
+			if ( ! $oid ) {
+				$keys[ 'd' . (int) $r['id'] ] = true;
+			} elseif ( ! isset( $keys[ 'o' . $oid ] ) && self::open_order( $r ) ) {
+				$keys[ 'o' . $oid ] = true;
+			}
+		}
+		self::$receipt_keys = $keys;
+		return $keys;
+	}
+
+	/** Group key of a donation row: its order, or the donation itself. */
+	public static function key( array $d ) {
+		return (int) $d['wc_order_id'] ? 'o' . (int) $d['wc_order_id'] : 'd' . (int) $d['id'];
+	}
+
+	/**
+	 * 2.19.0: what a pending gift waits for. 'receipt' = a receipt is in and waits for a manager,
+	 * 'payment' = no payment or receipt has come in yet, '' = not pending.
+	 */
+	public static function stage( array $d ) {
+		if ( 'pending' !== ( $d['status'] ?? '' ) ) {
+			return '';
+		}
+		return isset( self::receipt_keys()[ self::key( $d ) ] ) ? 'receipt' : 'payment';
+	}
+
+	/** 2.19.0: status pill that says what a pending gift waits for. */
+	public static function pill( array $d ) {
+		$stage = self::stage( $d );
+		if ( 'receipt' === $stage ) {
+			return '<span class="flxb-pill flxb-pill--receipt">' . esc_html__( 'Receipt awaiting approval', 'flx-donate' ) . '</span>';
+		}
+		if ( 'payment' === $stage ) {
+			return '<span class="flxb-pill flxb-pill--pending">' . esc_html__( 'Awaiting payment', 'flx-donate' ) . '</span>';
+		}
+		return FLXB_Admin::pill( $d['status'] );
+	}
+
+	/**
+	 * 2.19.0: list filter for one stage: the orders and donations with a receipt, and whether to
+	 * keep them ('receipt') or leave them out ('payment'). Read by FLXB_Donations::where().
+	 */
+	public static function stage_filter( $stage ) {
+		$o = array();
+		$i = array();
+		foreach ( array_keys( self::receipt_keys() ) as $k ) {
+			if ( 'o' === $k[0] ) {
+				$o[] = (int) substr( $k, 1 );
+			} else {
+				$i[] = (int) substr( $k, 1 );
+			}
+		}
+		return array( 'orders' => $o, 'ids' => $i, 'not' => 'payment' === $stage );
+	}
+
+	/**
+	 * 2.19.0: pending gifts with a receipt for the list's "Receipts awaiting approval" box, newest
+	 * first, one entry per order.
+	 *
+	 * @param int $ref_user Only this referral's gifts (staff who see only their own); 0 = all.
+	 * @return array[] donation rows with donor_name/email/phone, group_amount and group_lines
+	 */
+	public static function awaiting( $ref_user = 0 ) {
+		if ( ! self::receipt_keys() ) {
+			return array();
+		}
+		$res = FLXB_Donations::query(
+			array_filter(
+				array(
+					'stage'       => self::stage_filter( 'receipt' ),
+					'ref_user_id' => $ref_user ? (string) (int) $ref_user : '',
+					'per_page'    => 100,
+					'page'        => 1,
+					'group'       => true,
+				),
+				function ( $v ) {
+					return '' !== $v;
+				}
+			)
+		);
+		return $res['items'];
+	}
+
 	/**
 	 * Receipts from both places: uploaded on the site (order meta) and linked from Flux Chat
 	 * (donation meta.receipts).
@@ -125,7 +260,7 @@ final class FLXB_Approval {
 			/* translators: %s: order number */
 			$bits[] = sprintf( __( 'order #%s', 'flx-donate' ), $order->get_order_number() );
 		}
-		echo '<section class="flxb-card flxb-approve" aria-labelledby="flxb-approve-title"><div class="flxb-card__head"><div><h2 class="flxb-card__title" id="flxb-approve-title">' . esc_html__( 'Payment awaiting approval', 'flx-donate' ) . '</h2>';
+		echo '<section class="flxb-card flxb-approve" aria-labelledby="flxb-approve-title"><div class="flxb-card__head"><div><h2 class="flxb-card__title" id="flxb-approve-title">' . esc_html( $p['receipts'] ? __( 'Receipt awaiting approval', 'flx-donate' ) : __( 'Awaiting payment', 'flx-donate' ) ) . '</h2>'; // 2.19.0: says what it waits for
 		echo '<p class="flxb-card__hint">' . esc_html( implode( ' · ', array_filter( $bits ) ) ) . '</p></div>';
 		if ( self::can( $d ) ) {
 			echo '<div class="flxb-approve__actions">';

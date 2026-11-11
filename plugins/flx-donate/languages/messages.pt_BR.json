@@ -1881,6 +1881,11 @@
     "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode.": "Os doadores ainda não podem consultar suas doações: nenhuma página publicada tem o shortcode [flx_bagislarim].",
     "Create the page": "Criar a página",
     "Donors can see their donations on %s with a code sent by e-mail or phone.": "Os doadores podem ver suas doações em %s com um código enviado por e-mail ou telefone.",
-    "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.": "A página %s funciona só por e-mail: não há conexão de WhatsApp ou SMS para códigos por telefone."
+    "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes.": "A página %s funciona só por e-mail: não há conexão de WhatsApp ou SMS para códigos por telefone.",
+    "Receipt awaiting approval": "Comprovante aguardando aprovação",
+    "Receipts awaiting approval": "Comprovantes aguardando aprovação",
+    "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "O doador enviou um comprovante. Abra, confira a conta bancária e depois aprove ou recuse.",
+    "Show in the list": "Mostrar na lista",
+    "Review": "Revisar"
   }
 }

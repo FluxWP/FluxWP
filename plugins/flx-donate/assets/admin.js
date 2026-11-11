@@ -152,7 +152,10 @@
 			if (e.target.tagName !== 'INPUT') { var cb = chk.querySelector('input'); if (cb) { cb.checked = !cb.checked; cb.dispatchEvent(new Event('change', { bubbles: true })); } }
 			return;
 		}
-		var inner = e.target.closest('a,button,input,select,textarea,label,form');
+		// 2.19.0: only controls inside the row count; the list sits in the bulk-action <form>, which
+		// used to swallow every row click.
+		var inner = e.target.closest('a,button,input,select,textarea,label');
+		if (inner && !tr.contains(inner)) inner = null;
 		if (inner && !(window.matchMedia('(max-width: 782px)').matches && inner.closest('.flxb-col-main'))) return;
 		if (window.getSelection && String(window.getSelection())) return;
 		var href = safeUrl(tr.getAttribute('data-href'));

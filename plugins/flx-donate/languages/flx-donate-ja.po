@@ -5687,3 +5687,22 @@ msgstr "寄付者は %s でメールまたは電話に届くコードを使っ�
 
 msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
 msgstr "ページ %s はメールのみで動作します: 電話用のWhatsAppまたはSMS接続がありません。"
+
+msgid "Receipt awaiting approval"
+msgstr "振込明細の承認待ち"
+
+msgid "Receipts awaiting approval"
+msgstr "承認待ちの振込明細"
+
+msgid "The donor sent a receipt. Open it, check the bank account, then approve or reject."
+msgstr "寄付者が振込明細を送信しました。開いて口座を確認し、承認または却下してください。"
+
+msgid "Show in the list"
+msgstr "一覧で表示"
+
+msgid "Review"
+msgstr "確認"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "他 %s 件"
