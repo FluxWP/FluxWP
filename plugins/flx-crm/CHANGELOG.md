@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## 0.4.0
+- New Contacts › Possible duplicates: cards with the same name or the same last 10 phone digits are listed with the packages that use them; pick the one to keep and merge. Grouping can be extended with `flxcrm_duplicate_groups`.
 - A contact that still has records in another package (`flx_person_in_use`: certificates, donations…) is not deleted; the card says where and suggests merging. Merging moves those records through `flx_person_merged`.
 - New CRM › Events: the one screen for the events of every FluxWP package, on the shared events table (`wp_flx_events`, flx-brand 1.4.0). Open / archive tabs, create, edit, close, reopen, delete, create or publish the site page, and an event page listing everyone tied to it with a link to their contact card.
 - The screen hardcodes no package. Fields come from `flx_event_fields` (section, translated label, type), numbers from `flx_event_stats`, buttons from `flx_event_actions`, people from `flx_event_people`, extra form parts from `flx_event_form_after` / `flx_events_screen_after`. Flux Certificates adds saplings, its links, the location QR and its site settings this way; a new package adds itself without a CRM update.
