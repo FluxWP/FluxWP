@@ -84,6 +84,14 @@ final class FLXU_Ajax {
 
 		// Kurulumun/güncellemenin yazdırdığı her şey JSON'u bozmasın.
 		ob_start();
+		if ( in_array( $kind, array( 'wp_plugin', 'wp_theme', 'wp_lang' ), true ) ) {
+			// 3. parti eklenti/tema/çeviri: kimlik eklenti dosyası ya da tema klasörü (FLXU_WP doğrular).
+			$res = FLXU_WP::run_step( $kind, sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) ) );
+			ob_end_clean();
+			$res['row']     = null;
+			$res['pending'] = FLXU_Admin::pending_count();
+			wp_send_json_success( $res );
+		}
 		$res = self::run_step( $kind, $slug, $version );
 		ob_end_clean();
 

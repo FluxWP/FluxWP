@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.2.0
+- Paketler ekranı artık sitedeki her şeyi gösteriyor: FluxWP paketlerinin yanında 3. parti eklentiler, temalar, çeviriler ve WordPress çekirdeği. Güncellemesi olanlar en üstte.
+- Sekmeler (Tümü / FluxWP / Eklentiler / Temalar / WordPress ve çeviriler) her sekmede satır ve güncelleme sayısıyla; canlı arama kutusu ve "Yalnız güncellemeler" süzgeci.
+- 3. parti eklenti, tema ve çeviri güncellemeleri sayfadan çıkmadan tek tek, seçerek ya da "Tümünü güncelle" ile yapılır (WordPress'in kendi yükleyicisi). Çekirdek güncellemesi WordPress'in kendi ekranında.
+- "Güncellemeleri kontrol et" WordPress çekirdeği ve çevirileri de yeniler.
+
 ## 1.1.12
 - Paketler ekranında "18güncellemeleri mevcut" yerine "18 güncelleme mevcut"; yedek/paket sayısı metinleri doğal Türkçe tekil ("%d paket etkinleştirildi", "%d yedek silindi").
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

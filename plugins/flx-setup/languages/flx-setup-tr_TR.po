@@ -1932,3 +1932,65 @@ msgstr "%s seç"
 
 msgid "Apply selected changes (%d)"
 msgstr "Seçilen değişiklikleri uygula (%d)"
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "FluxWP"
+msgstr "FluxWP"
+
+msgid "Themes"
+msgstr "Temalar"
+
+msgid "WordPress & translations"
+msgstr "WordPress ve çeviriler"
+
+msgid "Translations"
+msgstr "Çeviriler"
+
+msgid "New translations: %s"
+msgstr "Yeni çeviriler: %s"
+
+msgid "All translations are up to date."
+msgstr "Tüm çeviriler güncel."
+
+msgid "%d update"
+msgid_plural "%d updates"
+msgstr[0] "%d güncelleme"
+msgstr[1] "%d güncelleme"
+
+msgid "Core"
+msgstr "Çekirdek"
+
+msgid "Translation"
+msgstr "Çeviri"
+
+msgid "No download available"
+msgstr "İndirme bağlantısı yok"
+
+msgid "%s updated."
+msgstr "%s güncellendi."
+
+msgid "Filter packages"
+msgstr "Paketleri süz"
+
+msgid "Updates available"
+msgstr "Güncellemesi olanlar"
+
+msgid "Search plugins and themes"
+msgstr "Eklenti ve tema ara"
+
+msgid "Search plugins and themes…"
+msgstr "Eklenti ve tema ara…"
+
+msgid "Only updates"
+msgstr "Yalnız güncellemeler"
+
+msgid "Plugins, themes and updates"
+msgstr "Eklentiler, temalar ve güncellemeler"
+
+msgid "Nothing matches this filter."
+msgstr "Bu süzgece uyan bir şey yok."
+
+msgid "Updating %s…"
+msgstr "%s güncelleniyor…"

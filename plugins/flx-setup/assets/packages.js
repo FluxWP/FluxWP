@@ -43,6 +43,47 @@
 			return b.getAttribute('data-state') !== 'missing';
 		});
 	}
+	/** Seçili 3. parti satırları (eklenti/tema/çeviri) → adımlar. */
+	function wpSelected() {
+		return Array.prototype.map.call(form().querySelectorAll('.flxu-wpcheck:checked'), function (b) {
+			return { kind: b.getAttribute('data-kind'), slug: b.value, id: b.getAttribute('data-id'), name: b.getAttribute('data-name') };
+		});
+	}
+	function wpAll() {
+		try { return JSON.parse(form().getAttribute('data-wp-all') || '[]'); } catch (e) { return []; }
+	}
+
+	/* ---------------- Sekme + arama ---------------- */
+	var filt = { tab: 'all', q: '', only: false };
+	function norm(s) { return String(s || '').toLocaleLowerCase('tr').replace(/ı/g, 'i').normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+	function applyFilter() {
+		var f = form(); if (!f) { return; }
+		var q = norm(filt.q).trim(), shown = 0, counts = {};
+		f.querySelectorAll('tr.flxu-row').forEach(function (tr) {
+			var g = tr.getAttribute('data-group') || 'flux';
+			var up = tr.classList.contains('flxu-row--update');
+			var hit = !q || norm(tr.getAttribute('data-search')).indexOf(q) > -1;
+			['all', g].forEach(function (k) {
+				counts[k] = counts[k] || [0, 0];
+				if (hit && !tr.classList.contains('flxu-row--empty')) { counts[k][0]++; if (up) { counts[k][1]++; } }
+			});
+			var on = hit && (filt.tab === 'all' || filt.tab === g) && (!filt.only || up);
+			tr.hidden = !on;
+			if (on) { shown++; }
+		});
+		var none = document.getElementById('flxu-none');
+		if (none) { none.hidden = shown > 0; }
+		document.querySelectorAll('#flxu-filter .flxu-tab').forEach(function (b) {
+			var k = b.getAttribute('data-tab'), c = counts[k] || [0, 0], on = k === filt.tab;
+			b.classList.toggle('is-active', on);
+			b.setAttribute('aria-selected', on ? 'true' : 'false');
+			b.querySelector('.flxu-tab__n').textContent = c[0];
+			var u = b.querySelector('.flxu-tab__up');
+			u.textContent = c[1];
+			u.hidden = !c[1];
+		});
+	}
+
 	function name(slug) {
 		return (data.pk[slug] && data.pk[slug].name) || (data.pl[slug] && data.pl[slug].name) || slug;
 	}
@@ -101,7 +142,7 @@
 		var f = form(); if (!f) { return; }
 		var sel = selected();
 		var btn = document.getElementById('flxu-do-selected');
-		if (btn) { btn.disabled = busy || !sel.length; }
+		if (btn) { btn.disabled = busy || !(sel.length || wpSelected().length); }
 		var mb = document.getElementById('flxu-do-manage'), op = document.getElementById('flxu-bulk-op');
 		if (mb) { mb.disabled = busy || !op || !op.value || !selectedInstalled().length; }
 		var panel = document.getElementById('flxu-deps');
@@ -127,9 +168,10 @@
 		panel.hidden = !html;
 		// Satırdaki "Gerekli:" işaretleri.
 		f.querySelectorAll('.flxu-row').forEach(function (tr) {
-			var b = tr.querySelector('.flxu-check');
+			var b = tr.querySelector('.flxu-check, .flxu-wpcheck');
 			tr.classList.toggle('flxu-row--sel', !!(b && b.checked));
 		});
+		applyFilter();
 	}
 
 	/* ---------------- Sayfadan çıkmadan çalıştırma ---------------- */
@@ -323,9 +365,11 @@
 		log.start(title || L.preparing);
 		stay.show();
 		var okN = 0, errN = 0;
-		var planP = params.steps ? Promise.resolve({ steps: params.steps }) : post(params);
+		var tail = params.extra || [];
+		delete params.extra;
+		var planP = params.steps ? Promise.resolve({ steps: params.steps }) : (params.action ? post(params) : Promise.resolve({ steps: [] }));
 		planP.then(function (res) {
-			var steps = res.steps || [];
+			var steps = (res.steps || []).concat(tail);
 			if (!steps.length) { log.line(L.nothing, 'ok'); return; }
 			log.title(L.working);
 			steps.forEach(function (st) { rowQueued(st.slug); });
@@ -337,7 +381,7 @@
 				var li = log.line(fmt((L.kind && L.kind[st.kind]) || '%s', st.name) + (st.why ? ' (' + st.why + ')' : ''), 'run');
 				stay.step(fmt((L.kind && L.kind[st.kind]) || '%s', st.name), i, steps.length);
 				rowRun(st.slug, st.kind);
-				return post({ action: 'flxu_step', kind: st.kind, slug: st.slug, version: st.version || '' }).then(function (r) {
+				return post({ action: 'flxu_step', kind: st.kind, slug: st.slug, id: st.id || '', version: st.version || '' }).then(function (r) {
 					(r.lines || []).forEach(function (l) { log.sub(li, l.text, l.ok); });
 					li.className = 'flxu-log__line is-' + (r.ok ? 'ok' : 'err');
 					r.ok ? okN++ : errN++;
@@ -472,7 +516,8 @@
 	document.addEventListener('change', function (e) {
 		var f = form(); if (!f || !f.contains(e.target)) { return; }
 		if (e.target.id === 'flxu-check-all') {
-			f.querySelectorAll('.flxu-check').forEach(function (b) { b.checked = e.target.checked; });
+			/* Yalnız görünen (sekme/arama süzgecinden geçen) satırlar. */
+			f.querySelectorAll('.flxu-check, .flxu-wpcheck').forEach(function (b) { if (!b.closest('tr').hidden) { b.checked = e.target.checked; } });
 			if (!e.target.checked) { extra = []; }
 		} else if (e.target.classList.contains('flxu-check') && !e.target.checked) {
 			dropDependents(e.target.value);
@@ -533,10 +578,16 @@
 			return;
 		}
 		if (b.value === 'all') {
-			run({ action: 'flxu_plan', all: 1, activate: activate });
+			run({ action: 'flxu_plan', all: 1, activate: activate, extra: wpAll() });
 			return;
 		}
+		if (b.value === 'wp') {
+			run({ steps: [{ kind: b.getAttribute('data-kind'), slug: b.getAttribute('data-slug'), id: b.getAttribute('data-id'), name: b.getAttribute('data-name') }] });
+			return;
+		}
+		var wsel = b.value === 'one' ? [] : wpSelected();
 		var sel = b.value === 'one' ? [b.getAttribute('data-slug')] : selected();
+		if (!sel.length && wsel.length) { run({ extra: wsel }); return; }
 		if (!sel.length) { return; }
 		// Eksik gerekli eklentiler: kullanıcıya sor, kabul ederse birlikte kur.
 		var need = [], by = [];
@@ -548,8 +599,28 @@
 			});
 		});
 		if (need.length && !window.confirm(fmt(L.confirmDeps, by.map(name).join(', '), need.map(name).join(', ')))) { return; }
-		run({ action: 'flxu_plan', slugs: sel, activate: b.value === 'one' ? 1 : activate });
+		run({ action: 'flxu_plan', slugs: sel, activate: b.value === 'one' ? 1 : activate, extra: wsel });
 	});
+
+	/* Sekme ve arama (sekme seçimi oturum boyunca hatırlanır). */
+	document.addEventListener('click', function (e) {
+		var t = e.target.closest && e.target.closest('#flxu-filter .flxu-tab');
+		if (!t) { return; }
+		filt.tab = t.getAttribute('data-tab');
+		try { sessionStorage.setItem('flxu-tab', filt.tab); } catch (err) { /* yok */ }
+		applyFilter();
+	});
+	document.addEventListener('input', function (e) {
+		if (e.target.id === 'flxu-search') { filt.q = e.target.value; applyFilter(); }
+	});
+	document.addEventListener('change', function (e) {
+		if (e.target.id === 'flxu-only-updates') { filt.only = e.target.checked; applyFilter(); }
+	});
+	document.addEventListener('keydown', function (e) {
+		var s = document.getElementById('flxu-search');
+		if (e.key === 'Escape' && document.activeElement === s && s.value) { s.value = ''; filt.q = ''; applyFilter(); }
+	});
+	try { var st0 = sessionStorage.getItem('flxu-tab'); if (st0 && document.querySelector('#flxu-filter .flxu-tab[data-tab="' + st0 + '"]')) { filt.tab = st0; } } catch (err) { /* yok */ }
 
 	window.addEventListener('beforeunload', function (e) {
 		if (busy) { e.preventDefault(); e.returnValue = L.leave; return L.leave; }

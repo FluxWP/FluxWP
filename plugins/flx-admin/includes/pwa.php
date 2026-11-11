@@ -179,6 +179,7 @@ function flxa_pwa_sw() {
 		'offline' => add_query_arg( array( 'action' => 'flxa_offline', 'v' => FLXA_VERSION ), admin_url( 'admin-ajax.php' ) ),
 		'splash'  => add_query_arg( array( 'action' => 'flxa_splash', 'v' => FLXA_VERSION ), admin_url( 'admin-ajax.php' ) ),
 		'pre'     => array(
+			FLXA_URL . 'assets/css/tokens.css?ver=' . FLXA_VERSION,
 			FLXA_URL . 'assets/css/admin.css?ver=' . FLXA_VERSION,
 			FLXA_URL . 'assets/js/admin.js?ver=' . FLXA_VERSION,
 			FLXA_URL . 'assets/icons/icon-192.png?v=' . FLXA_VERSION,
