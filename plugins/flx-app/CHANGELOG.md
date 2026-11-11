@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.4.5
+- Kodla giriş yalnız kodun gittiği e-postanın hesabına ya da kayıtlı WhatsApp numarası o tam numara olan hesaba açılır. Sipariş veya fatura bilgisinden hesap açılmaz ve bağlanmaz.
+- Hesap açma (`otp_create`) varsayılan kapalı. Açıkken yalnız doğrulanmış e-posta için yeni müşteri açılır; eski siparişler bağlanmaz.
+- Gönderim ve doğrulama sınırları hem çağıranın IP'sine hem hedef telefon, e-posta ve hesaba bağlıdır. Yanlış kod denemesi yeni kod isteyince sıfırlanmaz. Kodlar sabit sürede karşılaştırılır.
+
 ## 0.4.4
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

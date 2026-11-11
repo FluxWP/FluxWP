@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.3.3
+- Telefon kimliği son 10 haneyle değil, ülke kodlu tam numarayla eşleşir. Ülke kodu yazılmayan yerel numara varsayılan 90 ile tamamlanır; iki farklı tam numara aynı kullanıcıya bağlanmaz.
+
 ## 1.3.2
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

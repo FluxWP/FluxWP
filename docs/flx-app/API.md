@@ -79,7 +79,13 @@ Flux App olmayan site için uygulama WordPress Application Passwords (`authorize
 
 ### Kodla giriş (bağışçı)
 
-`POST /otp/start {login, client_id}` → `{sent, via, via_label, ttl}` (hesap varlığı belli edilmez). `POST /otp/verify {login, code, client_id[, app_id]}` → token cevabı. Kod 6 hane, 10 dk, 5 deneme. Personel varsayılan olarak kodla giremez (`flxapp_otp_allowed`). Ayrıntı: aşağıdaki "Filtreler".
+`POST /otp/start {login, client_id}` → `{sent, via, via_label, ttl}` (hesap varlığı belli edilmez). `POST /otp/verify {login, code, client_id[, app_id]}` → token cevabı. Kod 6 hane, 10 dk, 5 başarısız deneme. Özet `hash_hmac` ile saklanır, `hash_equals` ile karşılaştırılır.
+
+Giriş yalnız mevcut hesaba yapılır. E-posta: kodun gittiği adres hesabın adresidir. Telefon: kodun gittiği numara, hesabın kayıtlı WhatsApp numarasına (`flx_phone`, ülke kodlu tam rakam; Flux Roles `flxr_normalize_phone`) eşittir. Fatura telefonu, sipariş e-postası ve eski siparişler hesap açmaz ve hesaba bağlanmaz. `flxapp_otp_find_user` filtresi de bu kuralın dışındaki kullanıcıyı yok sayar.
+
+`otp_create` varsayılan kapalı. Açıkken hesap, e-postaya giden kod doğrulandıktan sonra yalnız o adres için açılır (telefonla hesap açılmaz, `wc_update_new_customer_past_orders` çağrılmaz, `flxapp_otp_customer_created` ateşlenmez). `otp_enabled` varsayılan açıktır.
+
+Gönderim sınırı: çağıranın IP'si (10 dk'da 6) ve hedef e-posta/telefon (10 dk'da 3, IP'den bağımsız); hesap bulunursa hesaba da 3. Doğrulama sınırı: IP (10 dk'da 20) ve hedef (10 dk'da 5); kod bir hesaba yazılıysa o hesaba da 5. Başarısız deneme hedefe ve koda yazılır, yeni kod isteği sayacı sıfırlamaz. Personel varsayılan olarak kodla giremez (`flxapp_otp_allowed`). Ayrıntı: aşağıdaki "Filtreler".
 
 ## `GET /app/bootstrap` (herkese açık)
 
