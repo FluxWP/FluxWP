@@ -139,7 +139,7 @@ final class FLXCRM_Admin {
 	private static function card_url( $id ) {
 		$ret = (string) self::post( '_flxcrm_return' );
 		if ( '' !== $ret && 0 === strpos( $ret, admin_url() ) ) {
-			return remove_query_arg( array( 'flxcrm_msg', 'flxcrm_err' ), wp_validate_redirect( $ret, flxcrm_contact_url( $id ) ) );
+			return remove_query_arg( array( 'flxcrm_msg', 'flxcrm_err', 'flxcrm_edit' ), wp_validate_redirect( $ret, flxcrm_contact_url( $id ) ) );
 		}
 		return flxcrm_contact_url( $id );
 	}
@@ -188,7 +188,11 @@ final class FLXCRM_Admin {
 		}
 		$res = FLXCRM_Contacts::update( $id, $data );
 		FLXCRM_Contacts::flush_stats();
-		self::back( self::card_url( $id ), is_wp_error( $res ) ? '' : 'saved', is_wp_error( $res ) ? $res->get_error_message() : '' );
+		if ( is_wp_error( $res ) ) {
+			// Hata: kart düzenleme açık döner (Bilgiler formu).
+			self::back( add_query_arg( 'flxcrm_edit', 1, self::card_url( $id ) ), '', $res->get_error_message() );
+		}
+		self::back( self::card_url( $id ), 'saved' );
 	}
 
 	public static function post_contact_delete() {

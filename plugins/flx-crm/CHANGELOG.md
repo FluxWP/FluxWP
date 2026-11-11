@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.4.1
+- Contact card › Details is read-only by default: name, e-mail, phone, organisation, city, roles, consents, owner and note as text, with an Edit button that opens the form (Save / Cancel). If saving fails, the card comes back with the form open.
+- The phone field uses the shared FluxWP phone field (flx-brand `flx_phone_field`): country picker with flags, live check, saved as E.164. The form is not sent while the number is invalid.
+
 ## 0.4.0
 - New Contacts › Possible duplicates: cards with the same name or the same last 10 phone digits are listed with the packages that use them; pick the one to keep and merge. Grouping can be extended with `flxcrm_duplicate_groups`.
 - A contact that still has records in another package (`flx_person_in_use`: certificates, donations…) is not deleted; the card says where and suggests merging. Merging moves those records through `flx_person_merged`.

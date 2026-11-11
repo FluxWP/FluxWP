@@ -12,6 +12,8 @@ return array(
   'Same phone number' => 'Aynı telefon numarası',
   'No likely duplicates.' => 'Olası mükerrer kişi yok.',
   'The same person can arrive twice, e.g. once with only a phone and later with only an e-mail. Pick the card to keep: the others are merged into it, and every package moves its records (certificates, donations…) to it.' => 'Aynı kişi iki kez gelebilir; ör. önce yalnız telefonla, sonra yalnız e-postayla. Kalacak kartı seçin: diğerleri ona birleşir, her paket kendi kayıtlarını (sertifika, bağış…) ona taşır.',
+  'allowed' => 'izin var',
+  'not allowed' => 'izin yok',
   'Possible duplicates' => 'Olası mükerrer kişiler',
   'This contact still has records in: %s. Merge it into another contact instead of deleting it.' => 'Bu kişinin şurada hâlâ kaydı var: %s. Silmek yerine başka bir kişiyle birleştirin.',
   '— Not linked —' => '— Bağlı değil —',

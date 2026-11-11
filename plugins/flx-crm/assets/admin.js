@@ -487,4 +487,65 @@
 		}
 		watch();
 	} );
+
+	/* Kişi kartı › Bilgiler: salt okunur görünüm, "Düzenle" ile form; hatalı telefonla kaydetmez. */
+	document.querySelectorAll( '[data-flxcrm-details]' ).forEach( function ( card ) {
+		var btn = card.querySelector( '[data-flxcrm-edit]' );
+		var view = card.querySelector( '.flxcrm-details__view' );
+		var form = card.querySelector( '.flxcrm-details__form' );
+		if ( ! btn || ! view || ! form ) {
+			return;
+		}
+		function mode( edit ) {
+			card.classList.toggle( 'is-editing', edit );
+			view.hidden = edit;
+			form.hidden = ! edit;
+			btn.hidden = edit;
+			btn.setAttribute( 'aria-expanded', edit ? 'true' : 'false' );
+			if ( edit ) {
+				var first = form.querySelector( 'input:not([type=hidden]),select,textarea' );
+				if ( first ) {
+					first.focus();
+				}
+			} else {
+				btn.focus();
+			}
+		}
+		btn.addEventListener( 'click', function () {
+			mode( true );
+		} );
+		var cancel = form.querySelector( '[data-flxcrm-cancel]' );
+		if ( cancel ) {
+			cancel.addEventListener( 'click', function () {
+				/* Değişiklik varsa (telefon bileşeni dahil) sayfa yeniden yüklenir; yoksa yalnız görünüme dönülür. */
+				if ( dirty ) {
+					window.location.reload();
+					return;
+				}
+				mode( false );
+			} );
+		}
+		var dirty = false;
+		form.addEventListener( 'input', function () {
+			dirty = true;
+		} );
+		form.addEventListener( 'change', function () {
+			dirty = true;
+		} );
+		form.addEventListener( 'keydown', function ( e ) {
+			if ( 'Escape' === e.key && ! e.defaultPrevented && cancel && ! form.querySelector( '.flx-ph.is-open' ) ) {
+				cancel.click();
+			}
+		} );
+		form.addEventListener( 'submit', function ( e ) {
+			var bad = form.querySelector( '.flx-ph.is-bad' );
+			if ( bad ) {
+				e.preventDefault();
+				var num = bad.querySelector( '.flx-ph__num' );
+				if ( num ) {
+					num.focus();
+				}
+			}
+		} );
+	} );
 } )();
