@@ -507,17 +507,47 @@
 		}
 	}
 
-	/* Toplu gönderim ilerlemesi: açık sekme kuyruğu da iter (cron'a ek) */
+	/* Toplu gönderim ilerlemesi: açık sekme kuyruğu da iter (cron'a ek).
+	   Gizli sekmede durur. Gönderim ilerlerken 1,5 sn; aynı yanıtta 15 sn'ye çıkar.
+	   Kota molası 5 dk. Hata ve HTTP 429 katlanarak en çok 60 sn. Tek istek uçuşta. */
 	var prog = $( '.flxi-progress[data-campaign]' );
 	if ( prog && prog.getAttribute( 'data-open' ) === '1' ) {
 		var cid = parseInt( prog.getAttribute( 'data-campaign' ), 10 );
 		var txt = $( '[data-progress-text]', prog );
 		var bar = $( '.flxi-bar span', prog );
 		var tpl = txt ? txt.textContent : '';
+		var progBusy = false, progFails = 0, progQuiet = 0, progTimer = 0, progSnap = '', progHold = false, progDone = false, progWake = false;
+		var progDelay = function () {
+			if ( progFails ) {
+				return Math.min( 60000, 1500 * Math.pow( 2, Math.min( 6, progFails ) ) );
+			}
+			if ( progHold ) {
+				return 300000;
+			}
+			if ( ! progQuiet ) {
+				return 1500;
+			}
+			return Math.min( 15000, 1500 + Math.min( progQuiet, 3 ) * 4500 );
+		};
+		var progArm = function ( ms ) {
+			clearTimeout( progTimer );
+			progTimer = 0;
+			if ( document.hidden ) {
+				return;
+			}
+			progTimer = setTimeout( tick, ms );
+		};
 		var tick = function () {
+			progTimer = 0;
+			if ( document.hidden || progBusy ) {
+				return;
+			}
+			progBusy = true;
 			api( 'queue/run', { campaign: cid } ).then( function ( r ) {
+				progFails = 0;
 				var c = r.campaign;
 				if ( ! c ) {
+					progDone = true;
 					return;
 				}
 				var done = ( +c.sent ) + ( +c.failed ) + ( +c.skipped );
@@ -538,21 +568,61 @@
 					note.textContent = r.paused_text || '';
 					note.hidden = false;
 				}
-				if ( r.paused_until && ( c.status === 'running' || c.status === 'queued' ) ) {
-					// Sınır doldu: sayfa açık kalsa da sunucuyu yormadan seyrek kontrol et.
-					setTimeout( tick, 300000 );
-				} else if ( c.status === 'running' || c.status === 'queued' ) {
-					setTimeout( tick, 1500 );
-				} else {
+				var active = c.status === 'running' || c.status === 'queued';
+				if ( ! active ) {
+					progDone = true;
 					prog.classList.add( 'is-done' );
 					setTimeout( function () {
 						window.location.reload();
 					}, 900 );
+					return;
 				}
+				var snap = [ c.status, c.sent, c.failed, c.skipped, c.total, r.paused_until || 0 ].join( ':' );
+				var changed = snap !== progSnap;
+				if ( changed ) {
+					progSnap = snap;
+					progQuiet = 0;
+				}
+				progHold = !!( r.paused_until && active );
+				var wait = progDelay();
+				if ( ! changed && ! progHold ) {
+					progQuiet = Math.min( 6, progQuiet + 1 );
+				}
+				progArm( wait );
 			} ).catch( function () {
-				setTimeout( tick, 5000 );
+				progFails = Math.min( 8, progFails + 1 );
+				progHold = false;
+				progArm( progDelay() );
+			} ).then( function () {
+				progBusy = false;
+				if ( progWake && ! progDone && ! document.hidden && ! progTimer ) {
+					progWake = false;
+					tick();
+				}
+				progWake = false;
 			} );
 		};
+		document.addEventListener( 'visibilitychange', function () {
+			clearTimeout( progTimer );
+			progTimer = 0;
+			if ( document.hidden ) {
+				progWake = false;
+				return;
+			}
+			progQuiet = 0;
+			if ( progBusy ) {
+				progWake = true;
+				return;
+			}
+			tick();
+		} );
+		document.addEventListener( 'pointerdown', function () {
+			if ( ! progQuiet || progFails || progBusy || progHold || document.hidden ) {
+				return;
+			}
+			progQuiet = 0;
+			progArm( 1500 );
+		} );
 		tick();
 	}
 

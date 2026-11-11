@@ -87,7 +87,7 @@ Requirements: WordPress 6.4+, PHP 7.4+. A WhatsApp line through Flux Contact (Ev
 3. Add quick replies and labels under **Settings**, and turn on the assistant under **Settings › AI and assistant** once Flux AI has a key.
 4. Open **Call Center › Chats** and answer the first message.
 
-> ⚠️ On Hostinger the live refresh runs every 10 seconds to stay inside the rate limit. Keep the webhook secret private: anyone with the address could post fake messages, so regenerate it if it leaks.
+> ⚠️ On Hostinger the live refresh runs every 10 seconds (3 s while a reply is streaming, up to 15 s when nothing changes, once a minute in a background tab) to stay inside the rate limit. Keep the webhook secret private: anyone with the address could post fake messages, so regenerate it if it leaks.
 
 Full setup notes (Turkish): [KURULUM.md](../../docs/cagri-merkezi/KURULUM.md) · Release notes: [CHANGELOG.md](CHANGELOG.md)
 

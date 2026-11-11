@@ -87,7 +87,7 @@ Gereksinimler: WordPress 6.4+, PHP 7.4+. Flux Mail üzerinden bir WhatsApp hatt�
 3. **Ayarlar**'da hazır cevapları ve etiketleri ekleyin; Flux AI'de anahtar varsa asistanı **Ayarlar › Yapay zekâ ve asistan**'dan açın.
 4. **Çağrı Merkezi › Sohbetler**'i açıp ilk mesaja cevap verin.
 
-> ⚠️ Hostinger'da hız sınırına takılmamak için canlı yenileme 10 saniyede bir çalışır. Webhook'taki gizli anahtarı paylaşmayın: adresi bilen sahte mesaj gönderebilir, sızarsa anahtarı yenileyin.
+> ⚠️ Hostinger'da hız sınırına takılmamak için canlı yenileme 10 saniyede bir çalışır (cevap akarken 3 sn, değişiklik yoksa 15 sn'ye kadar; arka plandaki sekme dakikada bir bakar). Webhook'taki gizli anahtarı paylaşmayın: adresi bilen sahte mesaj gönderebilir, sızarsa anahtarı yenileyin.
 
 Ayrıntılı kurulum notları: [KURULUM.md](../../docs/cagri-merkezi/KURULUM.md) · Sürüm notları: [CHANGELOG.md](CHANGELOG.md)
 

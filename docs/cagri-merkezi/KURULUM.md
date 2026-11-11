@@ -96,7 +96,7 @@ Flux Donate ve/veya Flux Certificates kuruluysa çağrı merkezi ekranından ayr
 Başka bir sitede marka adı ve renk ayarlardan değiştirilir; kodda kuruma özel bir şey yoktur.
 
 ## 8. Hosting notu (Hostinger)
-Canlı güncelleme uzun süre açık kalan bağlantı kullanmaz. Açık sekme varsayılan olarak 10 saniyede bir hafif bir istek gönderir; aynı anda tek istek uçuşta olur, 20 sn'de yanıt gelmezse bırakılır. Sekme arka plandayken dakikada bir bakılır (bildirim için), sekmeye dönülünce hemen eşitlenir. Hata olursa aralık katlanarak 2 dakikaya kadar uzar. Hostinger hız sınırına (IP'nin birkaç dakika kesilmesi) takılırsanız **Ayarlar › Genel › Canlı güncelleme sıklığı (sn)** değerini 15–20 yapın ve aynı kişide çok sayıda açık sekme bırakmayın.
+Canlı güncelleme uzun süre açık kalan bağlantı kullanmaz. Açık sekme varsayılan olarak 10 saniyede bir hafif bir istek gönderir; asistan cevap yazarken ve yanıt değişirken 3 saniyeye iner, değişiklik yoksa 15 saniyeye kadar seyrekleşir. Aynı anda tek istek uçuşta olur, 20 sn'de yanıt gelmezse bırakılır. Sekme arka plandayken dakikada bir bakılır (bildirim için), sekmeye dönülünce hemen eşitlenir. Hata veya HTTP 429 olursa aralık katlanarak 60 saniyeye kadar uzar. Hostinger hız sınırına takılırsanız **Ayarlar › Genel › Canlı güncelleme sıklığı (sn)** değerini 15–20 yapın ve aynı kişide çok sayıda açık sekme bırakmayın.
 
 LiteSpeed Cache kullanıyorsanız `/wp-json/flx-chat/` yolu önbelleğe alınmamalıdır. REST istekleri oturum açmış kullanıcıya ait olduğu için varsayılan ayarda zaten önbelleğe alınmaz.
 

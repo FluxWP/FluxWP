@@ -304,7 +304,7 @@ function flxc_settings_tab_genel( $s ) {
 		</label>
 		<label class="flxcs-field flxcs-narrow"><span><?php esc_html_e( 'Live update interval (sec)', 'flx-chat' ); ?></span>
 			<input type="number" min="3" max="60" name="poll_interval" value="<?php echo (int) $s['poll_interval']; ?>">
-			<small><?php esc_html_e( 'The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.', 'flx-chat' ); ?></small>
+			<small><?php esc_html_e( 'The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.', 'flx-chat' ); ?></small>
 		</label>
 	</section>
 	<section class="flxcs-card">
