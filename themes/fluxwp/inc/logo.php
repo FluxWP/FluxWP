@@ -133,7 +133,7 @@ function flx_site_logo_fallback( $content, $block ) {
 	}
 	return $content;
 }
-add_filter( 'render_block', 'flx_site_logo_fallback', 10, 2 );
+add_filter( 'render_block_core/site-logo', 'flx_site_logo_fallback', 10, 2 );
 
 /**
  * Favicon sırası: WordPress site simgesi > kurum profilindeki simge > FluxWP simgesi.
