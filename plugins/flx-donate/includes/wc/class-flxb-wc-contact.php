@@ -90,7 +90,36 @@ class FLXB_WC_Contact {
 				'support'    => FLXB_WC::support_html(),
 				'total'      => __( 'Total', 'flx-donate' ),
 				'pay'        => __( 'Continue to payment', 'flx-donate' ),
+				'user'       => self::signed_in(),
+				'signupHint' => __( 'We e-mail you a link to set your password. Your donations and certificates are then under My account.', 'flx-donate' ),
 			)
+		);
+	}
+
+	/**
+	 * 2.21.0: a signed-in donor's e-mail and phone are shown read-only (they are changed under My account).
+	 * Empty ones stay editable.
+	 */
+	private static function signed_in() {
+		if ( ! is_user_logged_in() ) {
+			return null;
+		}
+		$u     = wp_get_current_user();
+		$email = is_email( $u->user_email ) && ! self::is_placeholder( $u->user_email ) ? $u->user_email : '';
+		$phone = (string) get_user_meta( $u->ID, 'billing_phone', true );
+		$name  = trim( $u->first_name . ' ' . $u->last_name );
+		$acct  = function_exists( 'wc_get_account_endpoint_url' ) ? wc_get_account_endpoint_url( 'edit-account' ) : admin_url( 'profile.php' );
+		return array(
+			'email'  => $email,
+			'phone'  => self::phone_ok( $phone ) ? $phone : '',
+			'first'  => (string) $u->first_name,
+			'last'   => (string) $u->last_name,
+			/* translators: %s: the donor's name or e-mail */
+			'who'    => sprintf( __( 'Signed in as %s.', 'flx-donate' ), '' !== $name ? $name : ( '' !== $email ? $email : $u->display_name ) ),
+			'edit'   => __( 'Change in My account', 'flx-donate' ),
+			'editUrl' => $acct,
+			'out'    => __( 'Not you? Log out', 'flx-donate' ),
+			'outUrl' => wp_logout_url( wc_get_checkout_url() ),
 		);
 	}
 

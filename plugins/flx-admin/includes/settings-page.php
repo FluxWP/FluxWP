@@ -192,7 +192,7 @@ function flxa_settings_render() {
 					<td><input type="text" class="regular-text" id="flxa-subtitle" name="s[subtitle]" value="<?php echo esc_attr( $s['subtitle'] ); ?>" placeholder="<?php esc_attr_e( 'Admin', 'flx-admin' ); ?>"></td></tr>
 				<tr><th scope="row"><?php esc_html_e( 'Logo', 'flx-admin' ); ?></th>
 					<td class="flxa-logo-field"><img src="<?php echo esc_url( flxa_logo_url( 96 ) ); ?>" alt="" width="48" height="48" data-flxa-logo-preview>
-						<input type="hidden" name="s[logo_id]" value="<?php echo (int) $logo; ?>" data-flxa-logo-id>
+						<input type="hidden" name="s[logo_id]" value="<?php echo (int) $logo; ?>" data-flxa-logo-id data-fallback="<?php echo esc_url( flxa_logo_fallback_url( 96 ) ); ?>">
 						<button type="button" class="button" data-flxa-logo-pick><?php esc_html_e( 'Choose logo', 'flx-admin' ); ?></button>
 						<button type="button" class="button-link" data-flxa-logo-clear<?php echo $logo ? '' : ' hidden'; ?>><?php esc_html_e( 'Remove', 'flx-admin' ); ?></button>
 						<p class="description"><?php esc_html_e( 'If empty, the site icon is used; if there is none, the Flux Admin icon.', 'flx-admin' ); ?></p></td></tr>

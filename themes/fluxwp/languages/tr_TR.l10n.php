@@ -3,6 +3,7 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Güvenli ödeme · %s' => 'Güvenli ödeme · %s',
   '"Discourage search engines from indexing this site" is checked. Uncheck it on the live site.' => '"Arama motorlarının bu siteyi dizine eklemesini engelle" işaretli. Yayındaki sitede kaldırın.',
   '%1$d critical issues: %2$s' => '%1$d kritik sorun var: %2$s',
   '%1$s is active, v%2$s. Flux Donate reads the keys from it.' => '%1$s etkin, v%2$s. Flux Donate anahtarları buradan okur.',

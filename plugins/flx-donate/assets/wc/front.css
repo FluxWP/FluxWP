@@ -433,9 +433,12 @@ body.flx-dark .flxwb-dcard__icon--wa { background: rgba(26, 158, 81, .18); color
 .flxwb .flxwb-pkgs > .flxwb-pkg--qty { grid-column: 1 / -1; }
 
 /* 2.0.4: support WhatsApp line (checkout, transfer panel). */
-.flxwb-support { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: .92rem; }
-.flxwb-support .flxwb-ic { flex: none; width: 20px; height: 20px; color: #1e9e57; }
-.flxwb-support a { font-weight: 700; white-space: nowrap; }
+.flxwb-support { display: flex; align-items: center; gap: 10px; margin: 12px 0 0; padding: 12px 14px; border: 1px solid #A7E3BF; border-radius: 12px; background: #E9F8EF; color: #14532D; font-size: .92rem; line-height: 1.4; text-decoration: none !important; transition: background .15s; }
+.flxwb-support:hover, .flxwb-support:focus-visible { background: #DBF3E4; }
+.flxwb-support .flxwb-ic { flex: none; width: 22px; height: 22px; color: #1E9E57; }
+.flxwb-support__t { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.flxwb-support__t strong { font-weight: 700; }
+.flxwb-support__n { color: #1E9E57; font-weight: 700; white-space: nowrap; }
 
 /* ---------- 2.0.5: compact form, "Repeat every month" as one row, total + Continue always on screen ---------- */
 .flxwb-form { gap: 18px; }
@@ -479,3 +482,10 @@ body.flx-dark .flxwb-dcard__icon--wa { background: rgba(26, 158, 81, .18); color
 .flxwb-dfields { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; padding: 14px; border: 1px solid var(--w-line); border-radius: var(--w-r3); background: var(--w-mint-soft); }
 .flxwb-dfields select { width: 100%; min-height: 46px; }
 @media (max-width: 560px) { .flxwb-dgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* 2.21.0: quick quantity buttons under a quantity option */
+.flxwb-quick { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; }
+.flxwb-quick button { min-width: 52px; min-height: 40px; padding: 6px 14px; border: 1px solid var(--w-line, #DDE2E7); border-radius: 999px; background: var(--w-surface, #fff); color: var(--w-ink, #111827); font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer; transition: border-color .15s, background .15s; }
+.flxwb-quick button:hover { border-color: var(--w-primary, #1F2937); }
+.flxwb-quick button[aria-pressed="true"] { border-color: var(--w-primary, #1F2937); background: var(--w-primary, #1F2937); color: #fff; }
+.flxwb-pkg__count { white-space: nowrap; }

@@ -344,6 +344,38 @@ final class FLXB_WC_Form {
 	 * @param array $args tab (type slug or id), align, types (slugs / ids, comma separated; empty = the
 	 *                    types marked "Show in the Donation options block").
 	 */
+	/**
+	 * 2.21.0: a photo band over the form (A · steps layout; Appearance › "Photo band over the form").
+	 * Picture: the type's image, else its product's image. Skipped when the page already opens with a cover block.
+	 */
+	private static function hero( array $t ) {
+		if ( 'steps' !== FLXB_WC_Look::get( 'form_style' ) || ! FLXB_WC_Look::get( 'hero' ) ) {
+			return '';
+		}
+		$post = get_post();
+		if ( $post && has_block( 'core/cover', $post ) ) {
+			return '';
+		}
+		$img = (int) ( $t['image_id'] ?? 0 );
+		if ( ! $img ) {
+			$pid = (int) FLXB_Types::meta( $t, 'wc_product_id', 0 );
+			$img = $pid ? (int) get_post_thumbnail_id( $pid ) : 0;
+		}
+		$url = $img ? (string) wp_get_attachment_image_url( $img, 'full' ) : '';
+		if ( '' === $url ) {
+			$url = FLXB_URL . 'assets/wc/img/fidan-bagisi.jpg';
+		}
+		$title = $post ? get_the_title( $post ) : (string) $t['title'];
+		$desc  = trim( strtok( (string) ( $t['description'] ?? '' ), "\n" ) );
+		$html  = '<div class="flxwb-hero" style="--flxwb-hero:url(' . esc_url( $url ) . ')"><div class="flxwb-hero__in">';
+		$html .= '<span class="flxwb-hero__pill">' . FLXB_WC::icon( 'sprout' ) . esc_html( (string) $t['title'] ) . '</span>';
+		$html .= '<h1 class="flxwb-hero__title">' . esc_html( '' !== $title ? $title : (string) $t['title'] ) . '</h1>';
+		if ( '' !== $desc ) {
+			$html .= '<p class="flxwb-hero__desc">' . esc_html( $desc ) . '</p>';
+		}
+		return $html . '</div></div>';
+	}
+
 	public static function render( $args = array() ) {
 		if ( ! function_exists( 'WC' ) ) {
 			return '';
@@ -510,6 +542,7 @@ final class FLXB_WC_Form {
 		<span><?php esc_html_e( 'Your donation was added to the cart.', 'flx-donate' ); ?> <a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php esc_html_e( 'Go to cart', 'flx-donate' ); ?></a></span>
 	</div>
 	<?php endif; ?>
+	<?php echo self::hero( $types[ $cur ] ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside ?>
 	<?php if ( ! empty( self::$waiting[ $cur ] ) ) : ?><noscript><style>.flxwb.is-await .flxwb-sec,.flxwb.is-await .flxwb-end{display:block!important}</style></noscript><?php endif; ?>
 	<form class="flxwb-form" method="post" action="" novalidate>
 		<input type="hidden" name="flxb_action" value="add">
@@ -700,6 +733,17 @@ final class FLXB_WC_Form {
 					<?php endif; ?>
 					<span class="flxwb-pkg__tick" aria-hidden="true"><?php echo FLXB_WC::icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				</label>
+				<?php
+				/* 2.21.0: quick quantity buttons under a quantity option (filter flxb_quick_qty; empty list = none). */
+				$quick = $qty ? array_values( array_filter( array_map( 'intval', (array) apply_filters( 'flxb_quick_qty', array( 3, 5, 10, 25, 50 ), $t, $o ) ), static function ( $q ) use ( $d ) { return $q >= 1 && $q <= (int) $d['max']; } ) ) : array();
+				if ( count( $quick ) > 1 ) :
+					?>
+				<div class="flxwb-quick" role="group" aria-label="<?php esc_attr_e( 'Quick choice', 'flx-donate' ); ?>">
+					<?php foreach ( $quick as $qn ) : ?>
+					<button type="button" data-flxwb-quick="<?php echo esc_attr( (string) $qn ); ?>" aria-controls="<?php echo esc_attr( $cid ); ?>" aria-pressed="<?php echo (int) $units === $qn ? 'true' : 'false'; ?>"><?php echo esc_html( number_format_i18n( $qn * $n ) ); ?></button>
+					<?php endforeach; ?>
+				</div>
+				<?php endif; ?>
 			<?php endforeach; ?>
 			<?php if ( $t['allow_free'] ) : ?>
 				<label class="flxwb-pkg flxwb-pkg--free">

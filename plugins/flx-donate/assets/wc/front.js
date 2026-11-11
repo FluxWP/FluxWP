@@ -267,6 +267,34 @@
 		form.addEventListener('change', update);
 		form.addEventListener('input', update);
 
+		/* 2.21.0: the photo band opens the page; the theme's "Have an account?" line moves under it. */
+		var hero = form.closest('.flxwb') && form.closest('.flxwb').querySelector('.flxwb-hero');
+		var acct = hero ? document.querySelector('.flx-hesap-satiri') : null;
+		if (acct && (acct.compareDocumentPosition(hero) & Node.DOCUMENT_POSITION_FOLLOWING)) { hero.parentNode.insertBefore(acct, hero.nextSibling); acct.classList.add('flxwb-acct'); }
+
+		/* 2.21.0: quick quantity buttons (1 / 5 / 10 …) under a quantity option. */
+		var quick = function () {
+			form.querySelectorAll('.flxwb-quick').forEach(function (g) {
+				var b0 = g.querySelector('[data-flxwb-quick]'), c = b0 ? document.getElementById(b0.getAttribute('aria-controls')) : null;
+				if (!c) return;
+				g.querySelectorAll('[data-flxwb-quick]').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.getAttribute('data-flxwb-quick') === (parseInt(c.value, 10) || 0))); });
+			});
+		};
+		form.addEventListener('click', function (e) {
+			var b = e.target.closest && e.target.closest('[data-flxwb-quick]');
+			if (!b) return;
+			var c = document.getElementById(b.getAttribute('aria-controls'));
+			if (!c) return;
+			var r = c.closest('label') && c.closest('label').querySelector('input[type="radio"]');
+			if (r && !r.checked) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+			c.value = b.getAttribute('data-flxwb-quick');
+			c.dispatchEvent(new Event('input', { bubbles: true }));
+			c.dispatchEvent(new Event('change', { bubbles: true }));
+		});
+		form.addEventListener('input', quick);
+		form.addEventListener('change', quick);
+		form.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('[data-flxwb-step]')) setTimeout(quick, 0); });
+
 		form.querySelectorAll('[data-flxwb-tab]').forEach(function (b, i, all) {
 			b.addEventListener('click', function () {
 				var t = b.getAttribute('data-flxwb-tab');

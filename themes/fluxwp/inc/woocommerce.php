@@ -436,3 +436,30 @@ add_filter(
 		return false !== strpos( $content, '[' ) ? do_shortcode( $content ) : $content;
 	}
 );
+
+/**
+ * Ödeme sayfası başlığındaki "Güvenli ödeme" rozeti: sağlayıcı adı sabit yazılmaz, o an kartları
+ * alan ödeme yönteminden gelir (EsnekPOS, iyzico…). Eski şablonlarda kalmış "· iyzico" metni de düzelir.
+ * Sağlayıcı adı: filtre flx_secure_badge_provider (Flux Donate / Flux POS doldurur; boş = yalnız "Güvenli ödeme").
+ */
+add_filter(
+	'render_block_core/paragraph',
+	function ( $html, $block ) {
+		if ( false === strpos( ' ' . ( $block['attrs']['className'] ?? '' ) . ' ', ' flx-secure-badge ' ) ) {
+			return $html;
+		}
+		$provider = trim( wp_strip_all_tags( (string) apply_filters( 'flx_secure_badge_provider', '' ) ) );
+		if ( '' === $provider ) {
+			$inner = esc_html__( 'Güvenli ödeme', 'fluxwp' );
+		} else {
+			/* translators: %s: payment provider, e.g. EsnekPOS */
+			$parts = explode( "\x01", sprintf( __( 'Güvenli ödeme · %s', 'fluxwp' ), "\x01" ), 2 );
+			$lead  = (string) preg_replace( '/[\s·•|:\-–]+$/u', '', $parts[0] );
+			/* 0.7.21: the provider is its own span, so on a phone it goes to the second line. */
+			$inner = '<span class="flx-secure-badge__t"><span>' . esc_html( $lead ) . '</span><span class="flx-secure-badge__p">' . esc_html( $provider ) . '</span>' . ( isset( $parts[1] ) && '' !== trim( $parts[1] ) ? '<span>' . esc_html( $parts[1] ) . '</span>' : '' ) . '</span>';
+		}
+		return (string) preg_replace( '#(<p\b[^>]*>).*?(</p>)#s', '$1' . str_replace( array( '\\', '$' ), array( '\\\\', '\\$' ), $inner ) . '$2', $html, 1 );
+	},
+	20,
+	2
+);

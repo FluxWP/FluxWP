@@ -1494,3 +1494,7 @@ msgstr "Table header background"
 
 msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
 msgstr "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
+
+#, php-format
+msgid "Güvenli ödeme · %s"
+msgstr "Secure payment · %s"

@@ -1217,8 +1217,8 @@ msgstr[1] "%1$s fidan bağışı. %2$s fidanları sizin için diker ve adınıza
 
 msgid "%s Sapling"
 msgid_plural "%s Saplings"
-msgstr[0] "%s Fidan"
-msgstr[1] "%s Fidan"
+msgstr[0] "%s fidan"
+msgstr[1] "%s fidan"
 
 msgid "Warning: this receipt was uploaded before (%1$d time, via %2$s). Check it before confirming the payment."
 msgid_plural "Warning: this receipt was uploaded before (%1$d times, via %2$s). Check it before confirming the payment."
@@ -5667,3 +5667,180 @@ msgid "%s more"
 msgid_plural "%s more"
 msgstr[0] "%s tane daha"
 msgstr[1] "%s tane daha"
+
+msgid "Card fields on the checkout"
+msgstr "Ödeme sayfasında kart alanları"
+
+msgid "Card fields"
+msgstr "Kart alanları"
+
+msgid "Take the card on the checkout and open 3D Secure in a window on the same page"
+msgstr "Kartı ödeme sayfasında al, 3D Secure'u aynı sayfada pencerede aç"
+
+msgid "The card goes to EsnekPOS through this site over HTTPS; it is not saved. Off: donors go to EsnekPOS's payment page."
+msgstr "Kart bu site üzerinden HTTPS ile EsnekPOS'a gider; kaydedilmez. Kapalıysa bağışçı EsnekPOS'un ödeme sayfasına gider."
+
+msgid "Offer installments once the card is known"
+msgstr "Kart belli olunca taksit seçeneklerini göster"
+
+msgid "Installment difference"
+msgstr "Taksit farkı"
+
+msgid "The donor pays it (added to the order as a separate line)"
+msgstr "Bağışçı öder (siparişe ayrı satır olarak eklenir)"
+
+msgid "We pay it (the donor pays the same amount)"
+msgstr "Biz öderiz (bağışçı aynı tutarı öder)"
+
+msgid "Public token"
+msgstr "Public token"
+
+msgid "MERCHANT_PUBLIC_TOKEN from the EsnekPOS panel, used for the installment rates."
+msgstr "EsnekPOS panelindeki MERCHANT_PUBLIC_TOKEN; taksit oranları için kullanılır."
+
+msgid "CVV"
+msgstr "CVV"
+
+msgid "Name on card"
+msgstr "Kart üzerindeki ad"
+
+msgid "Mobile phone"
+msgstr "Cep telefonu"
+
+msgid "Card payments need a phone number."
+msgstr "Kartla ödemede telefon gerekli; bankanız onay kodunu bu numaraya gönderir."
+
+msgid "%d installments"
+msgstr "%d taksit"
+
+msgid "%1$s × installment · total %2$s"
+msgstr "%1$s × taksit · toplam %2$s"
+
+msgid "Installment options appear once the card number is entered."
+msgstr "Kart numarasını girince taksit seçenekleri görünür."
+
+msgid "This card can be used for a single payment."
+msgstr "Bu kartla tek çekim yapılabilir."
+
+msgid "Protected by 3D Secure: your bank confirms the payment with a code sent to your phone."
+msgstr "Bankanız ödemeyi telefonunuza gelen kodla onaylar."
+
+msgid "Your card details are sent encrypted and are not stored on this site."
+msgstr "Kart bilgileriniz şifreli gönderilir, bu sitede saklanmaz."
+
+msgid "Please check the expiry date (MM/YY)."
+msgstr "Son kullanma tarihini kontrol edin (AA/YY)."
+
+msgid "This card has expired."
+msgstr "Bu kartın süresi dolmuş."
+
+msgid "Please enter the 3 or 4 digit security code on the back of the card."
+msgstr "Kartın arkasındaki 3 ya da 4 haneli güvenlik kodunu yazın."
+
+msgid "Please enter a valid mobile phone number, e.g. 0532 123 45 67."
+msgstr "Geçerli bir cep telefonu yazın, ör. 0532 123 45 67."
+
+msgid "3D Secure verification"
+msgstr "3D Secure doğrulama"
+
+msgid "This window is your bank's page. You do not need to leave this page."
+msgstr "Bu pencere bankanızın sayfasıdır. Sayfadan ayrılmanıza gerek yok."
+
+msgid "Opening your bank's page…"
+msgstr "Bankanızın sayfası açılıyor…"
+
+msgid "Page empty? Open it in this window"
+msgstr "Sayfa boş mu? Bu pencerede açın"
+
+msgid "Stop the verification? Your card will not be charged."
+msgstr "Doğrulama durdurulsun mu? Kartınızdan para çekilmez."
+
+msgid "Checking the payment…"
+msgstr "Ödeme kontrol ediliyor…"
+
+msgid "3D Secure verification was not completed, so no payment was taken from your card. You can try again."
+msgstr "3D Secure doğrulaması tamamlanmadı, kartınızdan para çekilmedi. Tekrar deneyebilirsiniz."
+
+msgid "Payment not received"
+msgstr "Ödeme alınamadı"
+
+msgid "Card payments need a phone number. Please write your phone number and try again."
+msgstr "Kartla ödemede telefon gerekli. Telefon numaranızı yazıp tekrar deneyin."
+
+msgid "This card cannot be paid in the chosen installments. Please choose another option."
+msgstr "Bu kartla seçilen taksitte ödeme yapılamıyor. Başka bir seçenek seçin."
+
+msgid "Installment difference (%d installments)"
+msgstr "Taksit farkı (%d taksit)"
+
+msgid "We could not reach the payment service. No payment was taken. Please try again in a moment."
+msgstr "Ödeme servisine ulaşılamadı. Para çekilmedi. Biraz sonra tekrar deneyin."
+
+msgid "No payment was taken from your card. You can try another card or choose bank transfer."
+msgstr "Kartınızdan para çekilmedi. Başka bir kartla deneyebilir ya da Havale/EFT seçebilirsiniz."
+
+msgid "Your bank did not approve the payment."
+msgstr "Bankanız ödemeyi onaylamadı."
+
+msgid "Your bank did not approve the payment: %s."
+msgstr "Bankanız ödemeyi onaylamadı: %s."
+
+msgid "Pay %s"
+msgstr "%s öde"
+
+msgid "Pay"
+msgstr "Öde"
+
+msgid "Please accept the terms to continue."
+msgstr "Devam etmek için şartları kabul edin."
+
+msgid "Secure, encrypted payment. Card details are not stored on this site."
+msgstr "Güvenli, şifreli ödeme. Kart bilgileri bu sitede saklanmaz."
+
+msgid "We e-mail you a link to set your password. Your donations and certificates are then under My account."
+msgstr "Şifrenizi belirlemeniz için e-posta ile bağlantı göndeririz. Bağışlarınız ve sertifikalarınız Hesabım'da görünür."
+
+msgid "Signed in as %s."
+msgstr "%s olarak giriş yaptınız."
+
+msgid "Change in My account"
+msgstr "Hesabım'dan değiştir"
+
+msgid "Not you? Log out"
+msgstr "Siz değil misiniz? Çıkış yapın"
+
+msgid "Two columns"
+msgstr "İki sütun"
+
+msgid "Contact and payment as cards on the left; the summary, the terms box and the pay button on the right. On phones one column with a pay bar at the bottom."
+msgstr "Solda kart görünümünde iletişim ve ödeme; sağda özet, şartlar onayı ve Öde düğmesi. Telefonda tek sütun ve altta ödeme çubuğu."
+
+msgid "Checkout page layout"
+msgstr "Ödeme sayfası düzeni"
+
+msgid "Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)"
+msgstr "Misafir bağışçı girdiği bilgilerle ödeme sayfasında hesap açabilir (şifre e-postayla gönderilir)"
+
+msgid "A · Steps: photo band with the page title over the form (the type picture)"
+msgstr "A · Adım adım: formun üstünde sayfa başlığıyla fotoğraf bandı (bağış türü görseli)"
+
+msgid "Quick choice"
+msgstr "Hızlı seçim"
+
+msgid "Hello"
+msgstr "Merhaba"
+
+msgid "Any trouble? Write to us on WhatsApp"
+msgstr "Bir sorun mu var? WhatsApp'tan yazın"
+
+msgid "Show \"Add a note to your order\" at the checkout"
+msgstr "Ödeme sayfasında \"Siparişinize not ekleyin\" kutusu görünsün"
+
+msgid "%1$s × %3$s = %2$s"
+msgstr "%1$s × %3$s = %2$s"
+
+msgid "Expiry"
+msgstr "Son kullanma"
+
+msgid "Create my %s account with the details I entered"
+msgstr "Girdiğim bilgilerle %s hesabımı oluştur"

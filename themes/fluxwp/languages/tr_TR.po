@@ -1494,3 +1494,7 @@ msgstr "Tablo başlığı zemini"
 
 msgid "Header cells of tables in pages, Wiki and WooCommerce. Pick a tone slightly darker than the page background. Leave empty to use the style colour."
 msgstr "Sayfalardaki, Wiki'deki ve WooCommerce'teki tabloların başlık hücreleri. Sayfa zemininden biraz koyu bir ton seçin. Boş bırakılırsa stil rengi kullanılır."
+
+#, php-format
+msgid "Güvenli ödeme · %s"
+msgstr "Güvenli ödeme · %s"
