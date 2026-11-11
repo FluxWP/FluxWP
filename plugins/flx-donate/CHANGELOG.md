@@ -10,7 +10,7 @@
 - Telefonda alta sabit toplam / düğme çubuğu ayarla kapatılabilir (form ve ödeme sayfası).
 - "Kendim için / Başkası adına" telefonda da yan yana.
 - "Kendim için" seçiliyken ad alanı yok (ödeme sayfasındaki ad kullanılır); ad yalnız "Başkası adına"da sorulur.
-- Sertifika gönderim kartlarında WhatsApp / E-posta ikonu başlığın solunda, alan tam genişlikte.
+- Sertifika gönderim kartlarında WhatsApp / E-posta ikonu başlığın solunda, alan tam genişlikte; e-posta kutusu telefon kutusu gibi tam çerçeveli.
 - Yeni ayarlar: kupon kutusu (yalnız bağış olan sepette kapatılabilir), adres defteri (kapalıyken Hesabım'da "Adresler" de gizlenir).
 - Adres düzenleme ekranında "Kapat" ve "Vazgeç", yeni adres formunda "Vazgeç".
 - Geliştirici: `flxb_takes_free`, `flxb_min_free` filtreleri; `flxb_look` yeni alanları `flx_settings_schema`'da.
