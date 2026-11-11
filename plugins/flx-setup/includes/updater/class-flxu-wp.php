@@ -44,6 +44,7 @@ final class FLXU_WP {
 		}
 		$pu      = get_site_transient( 'update_plugins' );
 		$presp   = is_object( $pu ) && ! empty( $pu->response ) ? (array) $pu->response : array();
+		$pnone   = is_object( $pu ) && ! empty( $pu->no_update ) ? (array) $pu->no_update : array();
 		$can_pl  = current_user_can( 'update_plugins' );
 		foreach ( get_plugins() as $file => $d ) {
 			if ( isset( $flux_files[ $file ] ) || self::is_flux_dir( dirname( $file ) ) ) {
@@ -53,6 +54,15 @@ final class FLXU_WP {
 			$latest = $u && ! empty( $u->new_version ) ? (string) $u->new_version : '';
 			$update = '' !== $latest && version_compare( $latest, (string) $d['Version'], '>' );
 			$icons  = $u && ! empty( $u->icons ) ? (array) $u->icons : array();
+			if ( ! $icons && isset( $pnone[ $file ] ) ) {
+				// Güncellemesi olmayan eklentinin ikonu da WordPress'in kaydında durur.
+				$nu    = (object) $pnone[ $file ];
+				$icons = ! empty( $nu->icons ) ? (array) $nu->icons : array();
+			}
+			$icon = (string) ( $icons['svg'] ?? $icons['2x'] ?? $icons['1x'] ?? $icons['default'] ?? '' );
+			if ( '' === $icon ) {
+				$icon = self::local_icon( $file );
+			}
 			$rows[] = array(
 				'key'       => 'p:' . $file,
 				'group'     => 'plugins',
@@ -67,7 +77,7 @@ final class FLXU_WP {
 				'latest'    => $update ? $latest : (string) $d['Version'],
 				'active'    => is_plugin_active( $file ) || ( is_multisite() && is_plugin_active_for_network( $file ) ),
 				'state'     => $update ? 'update' : 'current',
-				'icon'      => (string) ( $icons['svg'] ?? $icons['2x'] ?? $icons['1x'] ?? '' ),
+				'icon'      => (string) apply_filters( 'flxu_wp_plugin_icon', $icon, $file, $d ),
 				'ph'        => 'dashicons-admin-plugins',
 				'can'       => $can_pl && ( ! $u || ! empty( $u->package ) ),
 			);
@@ -173,10 +183,54 @@ final class FLXU_WP {
 			$rows,
 			static function ( $a, $b ) {
 				$g = array( 'core' => 0, 'plugins' => 1, 'themes' => 2 );
-				return array( 'update' === $a['state'] ? 0 : 1, $g[ $a['group'] ], strtolower( $a['name'] ) ) <=> array( 'update' === $b['state'] ? 0 : 1, $g[ $b['group'] ], strtolower( $b['name'] ) );
+				return array( self::sort_rank( $a['state'], $a['active'] ), $g[ $a['group'] ], strtolower( $a['name'] ) ) <=> array( self::sort_rank( $b['state'], $b['active'] ), $g[ $b['group'] ], strtolower( $b['name'] ) );
 			}
 		);
 		return $rows;
+	}
+
+	/**
+	 * Listedeki yer: 0 güncellemesi var, 1 etkin, 2 kurulu değil, 3 devre dışı (hep en sonda).
+	 */
+	public static function sort_rank( string $state, bool $active ): int {
+		if ( 'update' === $state ) {
+			return 0;
+		}
+		if ( 'missing' === $state ) {
+			return 2;
+		}
+		return $active ? 1 : 3;
+	}
+
+	/**
+	 * WordPress.org kaydında ikonu olmayan (ücretli/özel) eklentinin kendi klasöründeki ikon dosyası.
+	 */
+	private static function local_icon( string $file ): string {
+		$dir = dirname( $file );
+		if ( '.' === $dir ) {
+			return '';
+		}
+		$base = trailingslashit( WP_PLUGIN_DIR ) . $dir . '/';
+		$slug = basename( $dir );
+		$try  = array();
+		foreach ( array( '', 'assets/', 'assets/images/', 'assets/img/', 'assets/icons/', 'images/', 'img/', '.wordpress-org/' ) as $sub ) {
+			foreach ( array( 'icon.svg', 'icon-256x256.png', 'icon-128x128.png', 'icon.png', 'logo.svg', 'logo.png', $slug . '.svg', $slug . '-icon.svg', $slug . '-icon.png', $slug . '-logo.svg', $slug . '-logo.png' ) as $name ) {
+				$try[] = $sub . $name;
+			}
+		}
+		foreach ( $try as $rel ) {
+			if ( is_file( $base . $rel ) ) {
+				return plugins_url( $dir . '/' . $rel );
+			}
+		}
+		return '';
+	}
+
+	/** İkonu olmayan satır için harfli yer tutucu (ada göre sabit renk). */
+	private static function letter_ph( string $name ): string {
+		$name   = trim( $name );
+		$letter = '' !== $name ? ( function_exists( 'mb_substr' ) ? mb_substr( $name, 0, 1 ) : substr( $name, 0, 1 ) ) : '?';
+		return '<span class="flxu-pkg__ph flxu-pkg__ph--letter" style="--flxu-h:' . ( crc32( $name ) % 360 ) . '" aria-hidden="true">' . esc_html( $letter ) . '</span>';
 	}
 
 	/** FluxWP paketi klasörü mü (katalog gelmese de 3. parti sayılmasın). */
@@ -365,10 +419,15 @@ final class FLXU_WP {
 				<?php endif; ?>
 			</th>
 			<td class="flxu-pkg">
+				<?php
+				$ph = $third
+					? self::letter_ph( (string) $r['name'] )
+					: '<span class="flxu-pkg__ph dashicons ' . esc_attr( $r['ph'] ) . '"></span>';
+				?>
 				<?php if ( '' !== $r['icon'] ) : ?>
-					<img src="<?php echo esc_url( $r['icon'] ); ?>" width="40" height="40" alt="" loading="lazy" referrerpolicy="no-referrer" class="<?php echo 'wp_theme' === $r['kind'] ? 'flxu-pkg__shot' : ''; ?>" onerror="this.onerror=null;this.outerHTML='&lt;span class=&quot;flxu-pkg__ph dashicons <?php echo esc_attr( $r['ph'] ); ?>&quot;&gt;&lt;/span&gt;'">
+					<img src="<?php echo esc_url( $r['icon'] ); ?>" width="40" height="40" alt="" loading="lazy" referrerpolicy="no-referrer" class="<?php echo 'wp_theme' === $r['kind'] ? 'flxu-pkg__shot' : ''; ?>" data-ph="<?php echo esc_attr( $ph ); ?>" onerror="this.onerror=null;this.outerHTML=this.getAttribute('data-ph')">
 				<?php else : ?>
-					<span class="flxu-pkg__ph dashicons <?php echo esc_attr( $r['ph'] ); ?>"></span>
+					<?php echo $ph; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<?php endif; ?>
 				<span class="flxu-pkg__main"><strong><button type="button" class="flxu-preview-open" data-slug="<?php echo esc_attr( $r['key'] ); ?>" aria-haspopup="dialog" aria-controls="flxu-preview"><?php echo esc_html( $r['name'] ); ?></button></strong>
 					<?php
