@@ -119,7 +119,7 @@ msgid "Settings saved."
 msgstr "Paramètres enregistrés."
 
 msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
-msgstr "Guides importés :%1$dnouveau,%2$dmis à jour,%3$dignoré (édité à la main ou à jour)."
+msgstr "Guides importés : %1$d nouveau, %2$d mis à jour, %3$d ignoré (édité à la main ou à jour)."
 
 msgid "Wiki"
 msgstr "Wiki"
@@ -230,13 +230,13 @@ msgid "Bundled guides"
 msgstr "Guides groupés"
 
 msgid "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
-msgstr "Le plugin contient des guides%d: écriture de plugins et de thèmes, plugins compatibles IA, outils MCP, schéma de paramètres, traduction, versions et versions. Les pages manquantes sont ajoutées ; les pages que vous n'avez pas modifiées sont mises à jour vers la nouvelle version."
+msgstr "Le plugin contient des guides %d: écriture de plugins et de thèmes, plugins compatibles IA, outils MCP, schéma de paramètres, traduction, versions et versions. Les pages manquantes sont ajoutées ; les pages que vous n'avez pas modifiées sont mises à jour vers la nouvelle version."
 
 msgid "Import / update guides"
 msgstr "Guides d'importation/mise à jour"
 
 msgid "%d published pages."
-msgstr "%dpages publiées."
+msgstr "%d pages publiées."
 
 msgid "You are not allowed to do this."
 msgstr "Vous n'êtes pas autorisé à faire cela."
@@ -258,8 +258,8 @@ msgstr "Impossible d'obtenir une réponse. Réessayez dans un instant."
 
 msgid "%1$s result for \"%2$s\""
 msgid_plural "%1$s results for \"%2$s\""
-msgstr[0] "%1$srésultat pour \"%2$s\""
-msgstr[1] "%1$srésultats pour \"%2$s\""
+msgstr[0] "%1$s résultat pour \"%2$s\""
+msgstr[1] "%1$s résultats pour \"%2$s\""
 
 msgid "Copied"
 msgstr "Copié"
@@ -280,7 +280,7 @@ msgid "Type to search"
 msgstr "Tapez pour rechercher"
 
 msgid "%d results"
-msgstr "Résultats%d"
+msgstr "Résultats %d"
 
 msgid "Ask AI"
 msgstr "Demandez à l'IA"
@@ -304,7 +304,7 @@ msgid "No results for \"%1$s\"; showing results for \"%2$s\"."
 msgstr "Aucun résultat pour «%1$s» ; affichant les résultats pour \"%2$s\"."
 
 msgid "See all %d results"
-msgstr "Voir tous les résultats%d"
+msgstr "Voir tous les résultats %d"
 
 msgid "Wiki search for \"%s\""
 msgstr "Recherche wiki pour \"%s\""
@@ -322,10 +322,10 @@ msgid "Last updated"
 msgstr "Dernière mise à jour"
 
 msgid "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
-msgstr "Ajoutez .md à n’importe quelle adresse de page pour obtenir son Markdown. Tout le wiki dans un seul fichier :%1$s"
+msgstr "Ajoutez .md à n’importe quelle adresse de page pour obtenir son Markdown. Tout le wiki dans un seul fichier : %1$s"
 
 msgid "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
-msgstr "Serveur MCP (clé requise) :%s, outils flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgstr "Serveur MCP (clé requise) : %s, outils flxwk_search, flxwk_get_page, flxwk_list_pages."
 
 msgid "Other pages"
 msgstr "Autres pages"
@@ -424,7 +424,7 @@ msgid "Wiki addresses"
 msgstr "Adresses wiki"
 
 msgid "The wiki is at %s; .md and llms.txt addresses work."
-msgstr "Le wiki est à%s; Les adresses .md et llms.txt fonctionnent."
+msgstr "Le wiki est à %s; Les adresses .md et llms.txt fonctionnent."
 
 msgid "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
 msgstr "Les permaliens sont définis sur « Plain » ; Les adresses /wiki, .md et llms.txt ne fonctionnent pas. Choisissez « Nom de la publication » dans Paramètres > Permaliens."
@@ -445,8 +445,8 @@ msgstr[1] "%s FLXTOK0FIN de pages"
 
 msgid "%s min read"
 msgid_plural "%s min read"
-msgstr[0] "%slecture minimale"
-msgstr[1] "%slecture minimale"
+msgstr[0] "%s lecture minimale"
+msgstr[1] "%s lecture minimale"
 
 msgid "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
 msgstr "Que cherchez-vous ? Par ex. Outil MCP, flx_settings_schema, thème…"
@@ -485,7 +485,7 @@ msgid "Subpages"
 msgstr "Sous-pages"
 
 msgid "Updated %s"
-msgstr "%smis à jour"
+msgstr "%s mis à jour"
 
 msgid "Previous and next page"
 msgstr "Page précédente et suivante"
@@ -500,7 +500,7 @@ msgid "Markdown"
 msgstr "Démarquage"
 
 msgid "Read the document at %s, then answer my questions about it."
-msgstr "Lisez le document à%s, puis répondez à mes questions à ce sujet."
+msgstr "Lisez le document à %s, puis répondez à mes questions à ce sujet."
 
 msgid "Copy Markdown"
 msgstr "Copier la démarque"

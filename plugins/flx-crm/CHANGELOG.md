@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.7
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.2.6
 - Daily RFM scoring reads contacts 500 at a time, skips a row whose score did not change, and writes the rest in batches of 100. A run stops after about 20 seconds and resumes from `flxcrm_score_cursor` on the next run. Quintiles still use every paying contact.
 

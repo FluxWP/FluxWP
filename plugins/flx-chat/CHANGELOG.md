@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.40.1
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 1.40.0
 - Assistant stays on for new contacts: certificates, donation approval messages, tracking files and other plugin sends no longer pause the assistant. Only a message an agent writes (typed, quick reply, AI suggestion, record message) or a message typed on the phone pauses it. Blocklist, handoff and the per-chat off switch work as before.
 - Chats that were paused only by such automatic sends are turned back on once after the update.

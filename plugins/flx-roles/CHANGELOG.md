@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.3.4
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 1.3.3
 - Telefon kimliği son 10 haneyle değil, ülke kodlu tam numarayla eşleşir. Ülke kodu yazılmayan yerel numara varsayılan 90 ile tamamlanır; iki farklı tam numara aynı kullanıcıya bağlanmaz.
 

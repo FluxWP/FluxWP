@@ -146,7 +146,7 @@ class EfbAddonPhrases {
             "quick_tips" => $state && isset($ac->text->quick_tips) ? $ac->text->quick_tips : esc_html__('Quick Tips', 'flx-forms'),
 
             /* translators: Tip 1 = first tip, contains %s placeholder for @BotFather link */
-            "tip_1" => $state && isset($ac->text->tip_1) ? $ac->text->tip_1 : esc_html__('Create a bot using%s', 'flx-forms'),
+            "tip_1" => $state && isset($ac->text->tip_1) ? $ac->text->tip_1 : esc_html__('Create a bot using %s', 'flx-forms'),
 
             /* translators: Tip 2 = second tip */
             "tip_2" => $state && isset($ac->text->tip_2) ? $ac->text->tip_2 : esc_html__('Add your bot to the target chat', 'flx-forms'),
@@ -158,7 +158,7 @@ class EfbAddonPhrases {
             "tip_4" => $state && isset($ac->text->tip_4) ? $ac->text->tip_4 : esc_html__('Monitor activity for troubleshooting', 'flx-forms'),
 
             /* translators: Tip 5 = fifth tip, contains %s placeholder for Chat ID finder link */
-            "tip_5" => $state && isset($ac->text->tip_5) ? $ac->text->tip_5 : esc_html__('Find your Chat ID using%s', 'flx-forms'),
+            "tip_5" => $state && isset($ac->text->tip_5) ? $ac->text->tip_5 : esc_html__('Find your Chat ID using %s', 'flx-forms'),
 
             /* translators: @BotFather = clickable link text (not translatable) */
             "botfather_link" => '@BotFather',
@@ -506,7 +506,7 @@ If you receive this message, your Telegram integration is working correctly!', '
             /* translators: Fallback message shown if the admin panel JavaScript throws an error while rendering */
             "hsRenderFailed" => $state && isset($ac->text->hsRenderFailed) ? $ac->text->hsRenderFailed : __('The Security & Spam Protection panel failed to render. Reload the page or check the browser console.', 'flx-forms'),
             /* translators: %s = comma-separated list of disabled PHP function names. Banner shown when required PHP functions are missing */
-            "hsMissingRequired" => $state && isset($ac->text->hsMissingRequired) ? $ac->text->hsMissingRequired : __('Protection is paused: required PHP functions are disabled on this server:%s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then.', 'flx-forms'),
+            "hsMissingRequired" => $state && isset($ac->text->hsMissingRequired) ? $ac->text->hsMissingRequired : __('Protection is paused: required PHP functions are disabled on this server: %s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then.', 'flx-forms'),
             /* translators: Banner shown when the add-on's database tables could not be created */
             "hsMissingTables" => $state && isset($ac->text->hsMissingTables) ? $ac->text->hsMissingTables : __('Protection is paused: the add-on database tables could not be created. Check that the database user can CREATE tables, then reload this page.', 'flx-forms'),
             /* translators: Banner shown when the WordPress REST API is unavailable on this site */
@@ -783,9 +783,9 @@ If you receive this message, your Telegram integration is working correctly!', '
             "hsTabsAriaLabel" => $state && isset($ac->text->hsTabsAriaLabel) ? $ac->text->hsTabsAriaLabel : __('Security & Spam Protection tabs', 'flx-forms'),
 
             /* translators: %s = comma-separated list of missing PHP function names. CSV export error, singular (paired with hsExportMissingFnPlural via _n()) */
-            "hsExportMissingFnSingular" => $state && isset($ac->text->hsExportMissingFnSingular) ? $ac->text->hsExportMissingFnSingular : __('Security log export is unavailable because this server has disabled a required PHP function:%s. Ask your hosting provider to enable it.', 'flx-forms'),
+            "hsExportMissingFnSingular" => $state && isset($ac->text->hsExportMissingFnSingular) ? $ac->text->hsExportMissingFnSingular : __('Security log export is unavailable because this server has disabled a required PHP function: %s. Ask your hosting provider to enable it.', 'flx-forms'),
             /* translators: %s = comma-separated list of missing PHP function names. CSV export error, plural (paired with hsExportMissingFnSingular via _n()) */
-            "hsExportMissingFnPlural" => $state && isset($ac->text->hsExportMissingFnPlural) ? $ac->text->hsExportMissingFnPlural : __('Security log export is unavailable because this server has disabled required PHP functions:%s. Ask your hosting provider to enable them.', 'flx-forms'),
+            "hsExportMissingFnPlural" => $state && isset($ac->text->hsExportMissingFnPlural) ? $ac->text->hsExportMissingFnPlural : __('Security log export is unavailable because this server has disabled required PHP functions: %s. Ask your hosting provider to enable them.', 'flx-forms'),
         ];
     }
 
@@ -1160,7 +1160,7 @@ If you receive this message, your Telegram integration is working correctly!', '
             "no_matching_data" => $state && isset($ac->text->no_matching_data) ? $ac->text->no_matching_data : esc_html__('No matching data found', 'flx-forms'),
 
             /* translators: API returned error = error message with status code */
-            "api_returned_error" => $state && isset($ac->text->api_returned_error) ? $ac->text->api_returned_error : esc_html__('API returned error:%d', 'flx-forms'),
+            "api_returned_error" => $state && isset($ac->text->api_returned_error) ? $ac->text->api_returned_error : esc_html__('API returned error: %d', 'flx-forms'),
 
             /* translators: Failed to update form = error message */
             "failed_to_update_form" => $state && isset($ac->text->failed_to_update_form) ? $ac->text->failed_to_update_form : esc_html__('Failed to update form', 'flx-forms'),
@@ -1437,10 +1437,10 @@ If you receive this message, your Telegram integration is working correctly!', '
         return [
 
             /* translators: %s = form title. Shown as the PayPal tab label for a specific form */
-            "paypals" => $state && isset($ac->text->paypals) ? $ac->text->paypals : esc_html__('PayPal%s', 'flx-forms'),
+            "paypals" => $state && isset($ac->text->paypals) ? $ac->text->paypals : esc_html__('PayPal %s', 'flx-forms'),
 
             /* translators: %s = form title. Shown as the Stripe tab label for a specific form */
-            "stripes" => $state && isset($ac->text->stripes) ? $ac->text->stripes : esc_html__('Stripe%s', 'flx-forms'),
+            "stripes" => $state && isset($ac->text->stripes) ? $ac->text->stripes : esc_html__('Stripe %s', 'flx-forms'),
 
             /* translators: Payments = admin page title */
             "pay_payments" => $state && isset($ac->text->pay_payments) ? $ac->text->pay_payments : esc_html__('Payments', 'flx-forms'),
@@ -1648,7 +1648,7 @@ If you receive this message, your Telegram integration is working correctly!', '
             "pay_headerSubtitle" => $state && isset($ac->text->pay_headerSubtitle) ? $ac->text->pay_headerSubtitle : esc_html__('Payment Management Dashboard', 'flx-forms'),
 
             /* translators: %s = gateway name (PayPal/Stripe). Header description */
-            "pay_headerDesc" => $state && isset($ac->text->pay_headerDesc) ? $ac->text->pay_headerDesc : esc_html__('Manage and track all%stransactions. View payment details, process refunds, and export records.', 'flx-forms'),
+            "pay_headerDesc" => $state && isset($ac->text->pay_headerDesc) ? $ac->text->pay_headerDesc : esc_html__('Manage and track all %s transactions. View payment details, process refunds, and export records.', 'flx-forms'),
 
             /* translators: Secure = feature badge in header */
             "pay_secure" => $state && isset($ac->text->pay_secure) ? $ac->text->pay_secure : esc_html__('Secure', 'flx-forms'),
@@ -1769,7 +1769,7 @@ If you receive this message, your Telegram integration is working correctly!', '
             /* translators: OpenSSL missing banner — bold lead */
             "gs_opensslMissingLead" => $state && isset($ac->text->gs_opensslMissingLead) ? $ac->text->gs_opensslMissingLead : esc_html__('Your server is missing the PHP OpenSSL extension.', 'flx-forms'),
             /* translators: OpenSSL missing banner — body. %s = the literal "openssl" code tag */
-            "gs_opensslMissingBody" => $state && isset($ac->text->gs_opensslMissingBody) ? $ac->text->gs_opensslMissingBody : esc_html__('Google Sheet sync cannot work until it is enabled. Please ask your host to enable the%sPHP extension, then reload this page.', 'flx-forms'),
+            "gs_opensslMissingBody" => $state && isset($ac->text->gs_opensslMissingBody) ? $ac->text->gs_opensslMissingBody : esc_html__('Google Sheet sync cannot work until it is enabled. Please ask your host to enable the %s PHP extension, then reload this page.', 'flx-forms'),
             /* translators: Connection test status — not tested */
             "gs_notTested" => $state && isset($ac->text->gs_notTested) ? $ac->text->gs_notTested : esc_html__('Not tested', 'flx-forms'),
             /* translators: Connection test status — failed */
@@ -1795,7 +1795,7 @@ If you receive this message, your Telegram integration is working correctly!', '
             /* translators: Optional field marker */
             "gs_recommended" => $state && isset($ac->text->gs_recommended) ? $ac->text->gs_recommended : esc_html__('(recommended)', 'flx-forms'),
             /* translators: Your Google email field hint (HTML allowed) */
-            "gs_yourGoogleEmailHint" => $state && isset($ac->text->gs_yourGoogleEmailHint) ? $ac->text->gs_yourGoogleEmailHint : __('Any sheet the plugin<strong>creates</strong>is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account.', 'flx-forms'),
+            "gs_yourGoogleEmailHint" => $state && isset($ac->text->gs_yourGoogleEmailHint) ? $ac->text->gs_yourGoogleEmailHint : __('Any sheet the plugin <strong>creates</strong> is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account.', 'flx-forms'),
             /* translators: Enable integration toggle title */
             "gs_enableIntegration" => $state && isset($ac->text->gs_enableIntegration) ? $ac->text->gs_enableIntegration : esc_html__('Enable Google Sheet Integration', 'flx-forms'),
             /* translators: Enable integration toggle subtitle */
@@ -1819,17 +1819,17 @@ If you receive this message, your Telegram integration is working correctly!', '
             /* translators: Setup tip 5 */
             "gs_tip5" => $state && isset($ac->text->gs_tip5) ? $ac->text->gs_tip5 : esc_html__('Drag that downloaded file into the box on the left — it is tested automatically', 'flx-forms'),
             /* translators: Setup tip 6 (HTML allowed) */
-            "gs_tip6" => $state && isset($ac->text->gs_tip6) ? $ac->text->gs_tip6 : __('Add<strong>Your Google email</strong>above so created sheets land in your Drive', 'flx-forms'),
+            "gs_tip6" => $state && isset($ac->text->gs_tip6) ? $ac->text->gs_tip6 : __('Add <strong>Your Google email</strong> above so created sheets land in your Drive', 'flx-forms'),
             /* translators: Invalid JSON file alert */
             "gs_chooseValidJson" => $state && isset($ac->text->gs_chooseValidJson) ? $ac->text->gs_chooseValidJson : esc_html__('Please choose a valid .json key file.', 'flx-forms'),
             /* translators: File read error alert. %s = file name */
-            "gs_couldNotReadFile" => $state && isset($ac->text->gs_couldNotReadFile) ? $ac->text->gs_couldNotReadFile : esc_html__('Could not read file:%s', 'flx-forms'),
+            "gs_couldNotReadFile" => $state && isset($ac->text->gs_couldNotReadFile) ? $ac->text->gs_couldNotReadFile : esc_html__('Could not read file: %s', 'flx-forms'),
             /* translators: Connecting service account status */
             "gs_connectingAccount" => $state && isset($ac->text->gs_connectingAccount) ? $ac->text->gs_connectingAccount : esc_html__('Connecting service account...', 'flx-forms'),
             /* translators: Service account added fallback message */
             "gs_accountAdded" => $state && isset($ac->text->gs_accountAdded) ? $ac->text->gs_accountAdded : esc_html__('Service account added.', 'flx-forms'),
             /* translators: My-email saved message. %s = email address */
-            "gs_emailSaved" => $state && isset($ac->text->gs_emailSaved) ? $ac->text->gs_emailSaved : esc_html__('Saved. New sheets created by the plugin will be shared to%sautomatically.', 'flx-forms'),
+            "gs_emailSaved" => $state && isset($ac->text->gs_emailSaved) ? $ac->text->gs_emailSaved : esc_html__('Saved. New sheets created by the plugin will be shared to %s automatically.', 'flx-forms'),
             /* translators: My-email cleared message */
             "gs_emailCleared" => $state && isset($ac->text->gs_emailCleared) ? $ac->text->gs_emailCleared : esc_html__('Email cleared. New sheets will stay inside the service account until you share them.', 'flx-forms'),
             /* translators: Confirm remove service account */
@@ -1899,11 +1899,11 @@ If you receive this message, your Telegram integration is working correctly!', '
             /* translators: Loading spreadsheets status */
             "gs_loadingSheets" => $state && isset($ac->text->gs_loadingSheets) ? $ac->text->gs_loadingSheets : esc_html__('Loading your spreadsheets...', 'flx-forms'),
             /* translators: Browse/create hint (HTML allowed) */
-            "gs_browseOrCreateHint" => $state && isset($ac->text->gs_browseOrCreateHint) ? $ac->text->gs_browseOrCreateHint : __('Click<strong>“Browse My Sheets”</strong>to list spreadsheets this service account can already access, or<strong>“Create New Sheet”</strong>to make a fresh one.', 'flx-forms'),
+            "gs_browseOrCreateHint" => $state && isset($ac->text->gs_browseOrCreateHint) ? $ac->text->gs_browseOrCreateHint : __('Click <strong>“Browse My Sheets”</strong> to list spreadsheets this service account can already access, or <strong>“Create New Sheet”</strong> to make a fresh one.', 'flx-forms'),
             /* translators: No accessible sheets message — lead (HTML allowed) */
-            "gs_noSheetsLead" => $state && isset($ac->text->gs_noSheetsLead) ? $ac->text->gs_noSheetsLead : __('<strong>No spreadsheets are accessible to this service account yet.</strong>You have two options:', 'flx-forms'),
+            "gs_noSheetsLead" => $state && isset($ac->text->gs_noSheetsLead) ? $ac->text->gs_noSheetsLead : __('<strong>No spreadsheets are accessible to this service account yet.</strong> You have two options:', 'flx-forms'),
             /* translators: No accessible sheets — easiest option (HTML allowed) */
-            "gs_noSheetsEasiest" => $state && isset($ac->text->gs_noSheetsEasiest) ? $ac->text->gs_noSheetsEasiest : __('<strong>Easiest:</strong>click<em>“Create New Sheet”</em>above — it is made for you and shared to your email automatically.', 'flx-forms'),
+            "gs_noSheetsEasiest" => $state && isset($ac->text->gs_noSheetsEasiest) ? $ac->text->gs_noSheetsEasiest : __('<strong>Easiest:</strong> click <em>“Create New Sheet”</em> above — it is made for you and shared to your email automatically.', 'flx-forms'),
             /* translators: No accessible sheets — existing option prefix (HTML allowed) */
             "gs_noSheetsExisting" => $state && isset($ac->text->gs_noSheetsExisting) ? $ac->text->gs_noSheetsExisting : __('<strong>Use an existing sheet:</strong>open it in Google Sheets → Share → paste', 'flx-forms'),
             /* translators: No accessible sheets — existing option suffix (HTML allowed) */
@@ -1961,7 +1961,7 @@ If you receive this message, your Telegram integration is working correctly!', '
             /* translators: Reading form fields status */
             "gs_readingFields" => $state && isset($ac->text->gs_readingFields) ? $ac->text->gs_readingFields : esc_html__('Reading this form’s fields...', 'flx-forms'),
             /* translators: Fields unreadable message (HTML allowed) */
-            "gs_fieldsUnreadable" => $state && isset($ac->text->gs_fieldsUnreadable) ? $ac->text->gs_fieldsUnreadable : __('We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry —<strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you.', 'flx-forms'),
+            "gs_fieldsUnreadable" => $state && isset($ac->text->gs_fieldsUnreadable) ? $ac->text->gs_fieldsUnreadable : __('We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry — <strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you.', 'flx-forms'),
             /* translators: Try again button */
             "gs_tryAgain" => $state && isset($ac->text->gs_tryAgain) ? $ac->text->gs_tryAgain : esc_html__('Try again', 'flx-forms'),
             /* translators: Column mapping intro (HTML allowed) */
@@ -2019,7 +2019,7 @@ If you receive this message, your Telegram integration is working correctly!', '
             /* translators: Summary — columns */
             "gs_summaryColumns" => $state && isset($ac->text->gs_summaryColumns) ? $ac->text->gs_summaryColumns : esc_html__('Columns:', 'flx-forms'),
             /* translators: Summary — columns mapped suffix. %d = count */
-            "gs_summaryMapped" => $state && isset($ac->text->gs_summaryMapped) ? $ac->text->gs_summaryMapped : esc_html__('%dmapped', 'flx-forms'),
+            "gs_summaryMapped" => $state && isset($ac->text->gs_summaryMapped) ? $ac->text->gs_summaryMapped : esc_html__('%d mapped', 'flx-forms'),
             /* translators: Summary — all submitted fields (auto) */
             "gs_summaryAllFields" => $state && isset($ac->text->gs_summaryAllFields) ? $ac->text->gs_summaryAllFields : esc_html__('all submitted fields (auto)', 'flx-forms'),
             /* translators: Summary — style */

@@ -95,7 +95,7 @@ msgid "Send message to contact"
 msgstr "Enviar mensagem para contato"
 
 msgid "Source: %s"
-msgstr "Fonte:%s"
+msgstr "Fonte: %s"
 
 msgid "Contact not found."
 msgstr "Contato não encontrado."
@@ -218,16 +218,16 @@ msgid "contains"
 msgstr "contém"
 
 msgid "%1$s: more than %2$s days ago"
-msgstr "%1$s: há mais de%2$sdias"
+msgstr "%1$s: há mais de %2$s dias"
 
 msgid "%1$s: in the last %2$s days"
-msgstr "%1$s: nos últimos%2$sdias"
+msgstr "%1$s: nos últimos %2$s dias"
 
 msgid "no %s consent"
-msgstr "sem consentimento%s"
+msgstr "sem consentimento %s"
 
 msgid "has %s consent"
-msgstr "tem consentimento%s"
+msgstr "tem consentimento %s"
 
 msgid "or"
 msgstr "ou"
@@ -401,19 +401,19 @@ msgid "Site account"
 msgstr "Conta do site"
 
 msgid "%s M"
-msgstr "%sM"
+msgstr "%s M"
 
 msgid "%s K"
-msgstr "%sK"
+msgstr "%s K"
 
 msgid "(unnamed contact)"
 msgstr "(contato sem nome)"
 
 msgid "CRM segment: %1$s (%2$s)"
-msgstr "Segmento CRM:%1$s(%2$s)"
+msgstr "Segmento CRM: %1$s(%2$s)"
 
 msgid "CRM role: %1$s (%2$s)"
-msgstr "Função do CRM:%1$s(%2$s)"
+msgstr "Função do CRM: %1$s(%2$s)"
 
 msgid "CRM"
 msgstr "CRM"
@@ -437,7 +437,7 @@ msgid "First sync"
 msgstr "Primeira sincronização"
 
 msgid "Last full sync: %s"
-msgstr "Última sincronização completa:%s"
+msgstr "Última sincronização completa: %s"
 
 msgid "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
 msgstr "Doações, pedidos e bate-papos anteriores ainda não foram importados. CRM › Configurações › \"Sincronizar tudo\"."
@@ -452,16 +452,16 @@ msgid "Not calculated yet."
 msgstr "Ainda não foi calculado."
 
 msgid "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
-msgstr "Último%scalculado. O trabalho diário (WP-Cron) pode não estar em execução; adicione um cron do servidor ou recalcule manualmente."
+msgstr "Último %s calculado. O trabalho diário (WP-Cron) pode não estar em execução; adicione um cron do servidor ou recalcule manualmente."
 
 msgid "Last calculated: %s"
-msgstr "Último cálculo:%s"
+msgstr "Último cálculo: %s"
 
 msgid "Foreign currency payments"
 msgstr "Pagamentos em moeda estrangeira"
 
 msgid "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
-msgstr "Os pagamentos%1$ssão feitos em uma moeda diferente de%2$se não possuem taxa de câmbio; eles contam para a frequência, mas não para o valor total. Use o filtro `flxcrm_fx_rate` para fornecer uma taxa."
+msgstr "Os pagamentos %1$s são feitos em uma moeda diferente de %2$s e não possuem taxa de câmbio; eles contam para a frequência, mas não para o valor total. Use o filtro `flxcrm_fx_rate` para fornecer uma taxa."
 
 msgid "Overview"
 msgstr "Visão geral"
@@ -476,7 +476,7 @@ msgid "CRM settings"
 msgstr "Configurações de CRM"
 
 msgid "%1$s: %2$s / %3$s"
-msgstr "%1$s:%2$s/%3$s"
+msgstr "%1$s: %2$s/%3$s"
 
 msgid "Done. Reloading the page…"
 msgstr "Feito. Recarregando a página..."
@@ -488,7 +488,7 @@ msgid "Are you sure? This cannot be undone."
 msgstr "Você tem certeza? Isto não pode ser desfeito."
 
 msgid "%s contacts match"
-msgstr "Correspondência de contatos%s"
+msgstr "Correspondência de contatos %s"
 
 msgid "Counting…"
 msgstr "Contando..."
@@ -497,10 +497,10 @@ msgid "Calculating…"
 msgstr "Calculando..."
 
 msgid "%s contacts scored. Reloading the page…"
-msgstr "Contatos%spontuados. Recarregando a página..."
+msgstr "Contatos %s pontuados. Recarregando a página..."
 
 msgid "%s contacts selected"
-msgstr "Contatos%sselecionados"
+msgstr "Contatos %s selecionados"
 
 msgid "Remove rule"
 msgstr "Remover regra"
@@ -563,10 +563,10 @@ msgid "A contact with this e-mail or phone already exists; their card is open."
 msgstr "Já existe um contato com este e-mail ou telefone; o cartão deles está aberto."
 
 msgid "%s contacts updated."
-msgstr "Contatos%satualizados."
+msgstr "Contatos %s atualizados."
 
 msgid "Churn risk %s%%"
-msgstr "Risco de rotatividade%s%%"
+msgstr "Risco de rotatividade %s%%"
 
 msgid "All"
 msgstr "Todos"
@@ -593,7 +593,7 @@ msgid "Archived"
 msgstr "Arquivado"
 
 msgid "Since %1$s · %2$s"
-msgstr "Desde%1$s·%2$s"
+msgstr "Desde %1$s · %2$s"
 
 msgid "WhatsApp chat"
 msgstr "Bate-papo do WhatsApp"
@@ -608,7 +608,7 @@ msgid "First payment"
 msgstr "Primeiro pagamento"
 
 msgid "once every %s days on average"
-msgstr "uma vez a cada%sdias em média"
+msgstr "uma vez a cada %s dias em média"
 
 msgid "RFM"
 msgstr "RFM"
@@ -671,7 +671,7 @@ msgid "Contact consents"
 msgstr "Consentimentos de contato"
 
 msgid "Last changed: %s"
-msgstr "Última alteração:%s"
+msgstr "Última alteração: %s"
 
 msgid "Owner"
 msgstr "Proprietário"
@@ -692,7 +692,7 @@ msgid "No tags."
 msgstr "Sem tags."
 
 msgid "Remove the %s tag"
-msgstr "Remova a tag%s"
+msgstr "Remova a tag %s"
 
 msgid "Add tags (comma for several)"
 msgstr "Adicionar tags (vírgula para várias)"
@@ -726,13 +726,13 @@ msgstr "Cancelar"
 
 msgid "%s donation"
 msgid_plural "%s donations"
-msgstr[0] "Doação%s"
-msgstr[1] "Doações%s"
+msgstr[0] "Doação %s"
+msgstr[1] "Doações %s"
 
 msgid "%s order"
 msgid_plural "%s orders"
-msgstr[0] "Ordem%s"
-msgstr[1] "Pedidos%s"
+msgstr[0] "Ordem %s"
+msgstr[1] "Pedidos %s"
 
 msgid "CSV"
 msgstr "CSV"
@@ -807,7 +807,7 @@ msgid "Import your past data."
 msgstr "Importe seus dados anteriores."
 
 msgid "New records arrive on their own. To link older ones to contacts too, sync: %s."
-msgstr "Novos registros chegam por conta própria. Para vincular também os mais antigos aos contatos, sincronize:%s."
+msgstr "Novos registros chegam por conta própria. Para vincular também os mais antigos aos contatos, sincronize: %s."
 
 msgid "No source brings in contacts; you can add them by hand."
 msgstr "Nenhuma fonte traz contatos; você pode adicioná-los manualmente."
@@ -816,34 +816,34 @@ msgid "Sync everything"
 msgstr "Sincronize tudo"
 
 msgid "%s have paid"
-msgstr "%spagou"
+msgstr "%s pagou"
 
 msgid "New in the last 30 days"
 msgstr "Novidades nos últimos 30 dias"
 
 msgid "%s against the previous 30 days"
-msgstr "%sem relação aos 30 dias anteriores"
+msgstr "%s em relação aos 30 dias anteriores"
 
 msgid "Active"
 msgstr "Ativo"
 
 msgid "with activity in the last %s days"
-msgstr "com atividade nos últimos%sdias"
+msgstr "com atividade nos últimos %s dias"
 
 msgid "High churn risk"
 msgstr "Alto risco de rotatividade"
 
 msgid "risk %s%% and above"
-msgstr "risco%s%% e acima"
+msgstr "risco %s%% e acima"
 
 msgid "%s per contact"
-msgstr "%spor contato"
+msgstr "%s por contato"
 
 msgid "RFM segments"
 msgstr "Segmentos RFM"
 
 msgid "Calculated: %s"
-msgstr "Calculado:%s"
+msgstr "Calculado: %s"
 
 msgid "Recalculate"
 msgstr "Recalcular"
@@ -858,7 +858,7 @@ msgid "No valuable contacts with a high churn risk."
 msgstr "Nenhum contato valioso com alto risco de rotatividade."
 
 msgid "last payment %s"
-msgstr "último pagamento%s"
+msgstr "último pagamento %s"
 
 msgid "Donations, orders, forms and WhatsApp activity appear here."
 msgstr "Doações, pedidos, formulários e atividades no WhatsApp aparecem aqui."
@@ -1041,7 +1041,7 @@ msgid "Approval actions: delete, merge, bulk actions, sending messages"
 msgstr "Ações de aprovação: exclusão, mesclagem, ações em massa, envio de mensagens"
 
 msgid "Tools: %1$d / %2$d on"
-msgstr "Ferramentas:%1$d/%2$dativado"
+msgstr "Ferramentas: %1$d/%2$d ativado"
 
 msgid "Tool"
 msgstr "Ferramenta"

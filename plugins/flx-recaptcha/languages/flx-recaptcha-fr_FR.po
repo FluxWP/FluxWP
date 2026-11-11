@@ -122,7 +122,7 @@ msgid "Not tested"
 msgstr "Non testé"
 
 msgid "Get your keys %s: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry."
-msgstr "Récupérez vos clés%s: choisissez le type reCAPTCHA et ajoutez votre domaine. La clé du site et la clé secrète doivent appartenir à la même entrée."
+msgstr "Récupérez vos clés %s: choisissez le type reCAPTCHA et ajoutez votre domaine. La clé du site et la clé secrète doivent appartenir à la même entrée."
 
 msgid "from the Google reCAPTCHA console"
 msgstr "depuis la console Google reCAPTCHA"
@@ -167,7 +167,7 @@ msgid "Runs a real check with Google; if it passes, the keys are saved and prote
 msgstr "Effectue une véritable vérification auprès de Google ; s'il réussit, les clés sont enregistrées et la protection s'active."
 
 msgid "Last test: %1$s · %2$s"
-msgstr "Dernier test :%1$s·%2$s"
+msgstr "Dernier test : %1$s · %2$s"
 
 msgid "Last 30 days: passed / blocked"
 msgstr "30 derniers jours : réussi / bloqué"
@@ -233,7 +233,7 @@ msgid "IP addresses that skip the check"
 msgstr "Adresses IP qui ignorent la vérification"
 
 msgid "One IP or range (CIDR) per line. For your office, tests and monitoring services. Your current IP address: %s"
-msgstr "Une adresse IP ou plage (CIDR) par ligne. Pour votre bureau, services de tests et de surveillance. Votre adresse IP actuelle :%s"
+msgstr "Une adresse IP ou plage (CIDR) par ligne. Pour votre bureau, services de tests et de surveillance. Votre adresse IP actuelle : %s"
 
 msgid "If you get locked out of the login screen, add define( 'FLXRC_DISABLE', true ); to wp-config.php; protection turns off completely."
 msgstr "Si vous ne pouvez plus accéder à l'écran de connexion, ajoutez finish( 'FLXRC_DISABLE', true ); vers wp-config.php ; la protection s'éteint complètement."
@@ -260,7 +260,7 @@ msgid "JavaScript must be enabled in your browser to send this form."
 msgstr "JavaScript doit être activé dans votre navigateur pour envoyer ce formulaire."
 
 msgid "This form is protected by reCAPTCHA and the Google %1$s and %2$s apply."
-msgstr "Ce formulaire est protégé par reCAPTCHA et les Google%1$set%2$ss'appliquent."
+msgstr "Ce formulaire est protégé par reCAPTCHA et les Google %1$s et %2$s s'appliquent."
 
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
@@ -278,7 +278,7 @@ msgid "The security check failed. Refresh the page and try again."
 msgstr "Le contrôle de sécurité a échoué. Actualisez la page et réessayez."
 
 msgid "Could not reach Google: %s"
-msgstr "Impossible de joindre Google :%s"
+msgstr "Impossible de joindre Google : %s"
 
 msgid "Google returned an unexpected response."
 msgstr "Google a renvoyé une réponse inattendue."
@@ -293,10 +293,10 @@ msgid "Could not verify (%s)."
 msgstr "Impossible de vérifier (%s)."
 
 msgid "The keys work. Score: %1$s, domain: %2$s"
-msgstr "Les clés fonctionnent. Score :%1$s, domaine :%2$s"
+msgstr "Les clés fonctionnent. Score : %1$s, domaine : %2$s"
 
 msgid "The keys work. Domain: %s"
-msgstr "Les clés fonctionnent. Domaine :%s"
+msgstr "Les clés fonctionnent. Domaine : %s"
 
 msgid "Login"
 msgstr "Connexion"
@@ -389,7 +389,7 @@ msgid "No form is selected."
 msgstr "Aucun formulaire n'est sélectionné."
 
 msgid "Not protected: %s"
-msgstr "Non protégé :%s"
+msgstr "Non protégé : %s"
 
 msgid "Google verification"
 msgstr "Vérification Google"

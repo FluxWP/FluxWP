@@ -41,10 +41,10 @@ msgid "All statistics were deleted."
 msgstr "Alle Statistiken wurden gelöscht."
 
 msgid "Koko Analytics data imported: %s rows."
-msgstr "Importierte Koko Analytics-Daten:%s-Zeilen."
+msgstr "Importierte Koko Analytics-Daten: %s-Zeilen."
 
 msgid "%s visit rows processed."
-msgstr "%sBesuchszeilen verarbeitet."
+msgstr "%s Besuchszeilen verarbeitet."
 
 msgid "Counting"
 msgstr "Zählen"
@@ -167,7 +167,7 @@ msgid "Data"
 msgstr "Daten"
 
 msgid "Last processed %1$s. Waiting in queue: %2$s."
-msgstr "Zuletzt verarbeitet%1$s. Warten in der Warteschlange:%2$s."
+msgstr "Zuletzt verarbeitet %1$s. Warten in der Warteschlange: %2$s."
 
 msgid "No visits processed yet."
 msgstr "Es wurden noch keine Besuche verarbeitet."
@@ -182,7 +182,7 @@ msgid "Download pages (CSV)"
 msgstr "Seiten herunterladen (CSV)"
 
 msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
-msgstr "Koko Analytics-Daten gefunden:%1$sTage (%2$s–%3$s). Tage vor der Installation von Flux Analytics werden importiert; Koko-Tische werden nicht verändert."
+msgstr "Koko Analytics-Daten gefunden: %1$s Tage (%2$s–%3$s). Tage vor der Installation von Flux Analytics werden importiert; Koko-Tische werden nicht verändert."
 
 msgid "Import Koko Analytics data"
 msgstr "Importieren Sie Koko Analytics-Daten"
@@ -296,7 +296,7 @@ msgid "Last 14 days"
 msgstr "Letzte 14 Tage"
 
 msgid "%1$s: %2$s visitors, %3$s views"
-msgstr "%1$s:%2$sBesucher,%3$sAufrufe"
+msgstr "%1$s: %2$s Besucher, %3$s Aufrufe"
 
 msgid "All statistics →"
 msgstr "Alle Statistiken →"
@@ -320,7 +320,7 @@ msgid "Nobody right now"
 msgstr "Im Moment niemand"
 
 msgid "today · %s views"
-msgstr "heute ·%sAufrufe"
+msgstr "heute ·%s Aufrufe"
 
 msgid "yesterday"
 msgstr "gestern"
@@ -338,13 +338,13 @@ msgid "Outside visitors / logged-in users"
 msgstr "Externe Besucher/eingeloggte Benutzer"
 
 msgid "Outside: %1$s · Logged in: %2$s"
-msgstr "Draußen:%1$s· Angemeldet:%2$s"
+msgstr "Draußen: %1$s· Angemeldet: %2$s"
 
 msgid "Channels"
 msgstr "Kanäle"
 
 msgid "%s donations"
-msgstr "%sSpenden"
+msgstr "%s Spenden"
 
 msgid "No data in this range."
 msgstr "Keine Daten in diesem Bereich."
@@ -659,7 +659,7 @@ msgid "Statistics processing"
 msgstr "Statistikverarbeitung"
 
 msgid "Last processed %1$s. Waiting: %2$s."
-msgstr "Zuletzt verarbeitet%1$s. Warten:%2$s."
+msgstr "Zuletzt verarbeitet %1$s. Warten: %2$s."
 
 msgid "Processing error"
 msgstr "Verarbeitungsfehler"
@@ -683,7 +683,7 @@ msgid "Processing is already running; try again in a few seconds."
 msgstr "Die Verarbeitung läuft bereits; Versuchen Sie es in ein paar Sekunden noch einmal."
 
 msgid "%s rows processed."
-msgstr "%sZeilen verarbeitet."
+msgstr "%s Zeilen verarbeitet."
 
 msgid "Repair statistics tables"
 msgstr "Statistiktabellen reparieren"
@@ -749,7 +749,7 @@ msgid "System"
 msgstr "System"
 
 msgid "Plugins: %s"
-msgstr "Plugins:%s"
+msgstr "Plugins: %s"
 
 msgid "No records in this range."
 msgstr "Keine Datensätze in diesem Bereich."
@@ -764,7 +764,7 @@ msgid "Setup wizard"
 msgstr "Einrichtungsassistent"
 
 msgid "%d days"
-msgstr "%dTage"
+msgstr "%d Tage"
 
 msgid "All countries"
 msgstr "Alle Länder"
@@ -791,7 +791,7 @@ msgid "Distinct errors"
 msgstr "Deutliche Fehler"
 
 msgid "%s fatal"
-msgstr "%sfatal"
+msgstr "%s fatal"
 
 msgid "Error events"
 msgstr "Fehlerereignisse"
@@ -902,7 +902,7 @@ msgid "Abandoned"
 msgstr "Verlassen"
 
 msgid "Median time for finishers: %s min"
-msgstr "Mittlere Zeit für Finisher:%smin"
+msgstr "Mittlere Zeit für Finisher: %s min"
 
 msgid "No wizard data yet."
 msgstr "Noch keine Assistentendaten."
@@ -962,10 +962,10 @@ msgid "Fast endpoint unreachable, REST will be used"
 msgstr "Schneller Endpunkt nicht erreichbar, REST wird verwendet"
 
 msgid "%s s"
-msgstr "%ss"
+msgstr "%s s"
 
 msgid "%1$s min %2$s s"
-msgstr "%1$smin%2$ss"
+msgstr "%1$s min %2$s s"
 
 msgid "Copied"
 msgstr "Kopiert"
@@ -998,7 +998,7 @@ msgid "Logged-in users"
 msgstr "Angemeldete Benutzer"
 
 msgid "Role: %s"
-msgstr "Rolle:%s"
+msgstr "Rolle: %s"
 
 msgid "Referral"
 msgstr "Empfehlung"
@@ -1016,13 +1016,13 @@ msgid "Visitors and views chart"
 msgstr "Besucher- und Aufrufdiagramm"
 
 msgid "Week of %s"
-msgstr "Woche von%s"
+msgstr "Woche von %s"
 
 msgid "Compared with the previous period of equal length"
 msgstr "Im Vergleich zur vorherigen Periode gleicher Länge"
 
 msgid "Previous period: %s"
-msgstr "Vorheriger Zeitraum:%s"
+msgstr "Vorheriger Zeitraum: %s"
 
 msgid "Sessions"
 msgstr "Sitzungen"
@@ -1040,7 +1040,7 @@ msgid "Left after viewing one page"
 msgstr "Nach dem Anzeigen einer Seite verlassen"
 
 msgid "%1$s min ago: %2$s"
-msgstr "%1$svor einer Minute:%2$s"
+msgstr "%1$s vor einer Minute: %2$s"
 
 msgid "Live"
 msgstr "Lebe"
@@ -1049,10 +1049,10 @@ msgid "Refreshes every 5 s"
 msgstr "Wird alle 5 s aktualisiert"
 
 msgid "visitors in last %s min"
-msgstr "Besucher in den letzten%sMin"
+msgstr "Besucher in den letzten %s Min"
 
 msgid "%s min ago"
-msgstr "%svor einer Minute"
+msgstr "%s vor einer Minute"
 
 msgid "now"
 msgstr "jetzt"
@@ -1103,7 +1103,7 @@ msgid "No country data in this range."
 msgstr "Keine Länderdaten in diesem Bereich."
 
 msgid "Funnel: %s"
-msgstr "Trichter:%s"
+msgstr "Trichter: %s"
 
 msgid "Drop from previous step"
 msgstr "Verlassen Sie den vorherigen Schritt"
@@ -1253,7 +1253,7 @@ msgid "Add preset step…"
 msgstr "Voreingestellten Schritt hinzufügen..."
 
 msgid "At most %s steps."
-msgstr "Höchstens%s-Schritte."
+msgstr "Höchstens %s-Schritte."
 
 msgid "New funnel"
 msgstr "Neuer Trichter"
@@ -1271,7 +1271,7 @@ msgid "Delete funnel \"%s\"?"
 msgstr "Trichter „%s“ löschen?"
 
 msgid "Funnel %s"
-msgstr "Trichter%s"
+msgstr "Trichter %s"
 
 msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
 msgstr "Alle Trichter durch den Standard-Spendentrichter ersetzen? (Wird angewendet, wenn Sie auf „Speichern“ klicken.)"
@@ -1313,7 +1313,7 @@ msgid "Paths shown"
 msgstr "Wege angezeigt"
 
 msgid "Top %s paths"
-msgstr "Top%s-Pfade"
+msgstr "Top %s-Pfade"
 
 msgid "Top paths"
 msgstr "Top-Wege"
@@ -1334,7 +1334,7 @@ msgid "Could not load data. Refresh the page."
 msgstr "Daten konnten nicht geladen werden. Aktualisieren Sie die Seite."
 
 msgid "%1$s visits · %2$s"
-msgstr "%1$sBesuche ·%2$s"
+msgstr "%1$s Besuche ·%2$s"
 
 msgid "No data"
 msgstr "Keine Daten"
@@ -1343,7 +1343,7 @@ msgid "Multi-page sessions"
 msgstr "Mehrseitige Sitzungen"
 
 msgid "%s of all visits"
-msgstr "%saller Besuche"
+msgstr "%s aller Besuche"
 
 msgid "Avg path length"
 msgstr "Durchschnittliche Pfadlänge"
@@ -1373,16 +1373,16 @@ msgid "Click a box to filter the paths below by that page. Thickness shows the n
 msgstr "Klicken Sie auf ein Feld, um die Pfade unten nach dieser Seite zu filtern. Die Dicke zeigt die Anzahl der Besuche an."
 
 msgid "%s visits"
-msgstr "%sBesuche"
+msgstr "%s Besuche"
 
 msgid "Entries"
 msgstr "Einträge"
 
 msgid "Step %s"
-msgstr "Schritt%s"
+msgstr "Schritt %s"
 
 msgid "%s end here"
-msgstr "%sendet hier"
+msgstr "%s endet hier"
 
 msgid "all continue"
 msgstr "alles geht weiter"
@@ -1406,7 +1406,7 @@ msgid "new"
 msgstr "neu"
 
 msgid "Showing %2$s of %1$s paths."
-msgstr "Zeigt%2$svon%1$s-Pfaden an."
+msgstr "Zeigt %2$s von %1$s-Pfaden an."
 
 msgid "30 days"
 msgstr "30 Tage"

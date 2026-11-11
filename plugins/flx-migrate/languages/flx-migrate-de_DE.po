@@ -2,16 +2,16 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%d rows"
-msgstr "%dZeilen"
+msgstr "%d Zeilen"
 
 msgid "%1$d files, %2$s"
-msgstr "%1$d-Dateien,%2$s"
+msgstr "%1$d-Dateien, %2$s"
 
 msgid "Content may still use image URLs from this theme; check your pages first."
 msgstr "Der Inhalt verwendet möglicherweise weiterhin Bild-URLs aus diesem Thema. Überprüfen Sie zuerst Ihre Seiten."
 
 msgid "%d old settings"
-msgstr "%dalte Einstellungen"
+msgstr "%d alte Einstellungen"
 
 msgid "Old tables"
 msgstr "Alte Tische"
@@ -74,22 +74,22 @@ msgid "Sodium is missing: encrypted settings could not be moved, enter them agai
 msgstr "Natrium fehlt: Verschlüsselte Einstellungen konnten nicht verschoben werden, geben Sie sie erneut in das Panel ein."
 
 msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
-msgstr "Mit%dverschlüsselte Werte konnten nicht geöffnet werden (die Site-Schlüssel haben sich möglicherweise geändert); Geben Sie diese erneut in das Panel ein."
+msgstr "Mit %d verschlüsselte Werte konnten nicht geöffnet werden (die Site-Schlüssel haben sich möglicherweise geändert); Geben Sie diese erneut in das Panel ein."
 
 msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
 msgstr "Verschiebt Site-Daten, die unter den alten Paketnamen gespeichert sind (Einstellungen, Tabellen, Meta, Inhalt, Thema, Upload-Ordner) in die FluxWP-Namen. Der Name „map“ befindet sich in „map.json“."
 
 msgid "%1$s is empty, %2$s was left as it is."
-msgstr "%1$sist leer,%2$swurde so belassen."
+msgstr "%1$s ist leer, %2$s wurde so belassen."
 
 msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
-msgstr "%1$swar nicht leer: Es wurde als%2$sgesichert und durch%3$sersetzt."
+msgstr "%1$s war nicht leer: Es wurde als %2$s gesichert und durch %3$s ersetzt."
 
 msgid "%3$d items from %1$s were moved into %2$s."
-msgstr "%3$d-Elemente von%1$swurden nach%2$sverschoben."
+msgstr "%3$d-Elemente von %1$s wurden nach %2$s verschoben."
 
 msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
-msgstr "%2$d-Dateien in%1$swaren bereits im neuen Ordner vorhanden; die alten Kopien wurden an Ort und Stelle belassen."
+msgstr "%2$d-Dateien in %1$s waren bereits im neuen Ordner vorhanden; die alten Kopien wurden an Ort und Stelle belassen."
 
 msgid "Step"
 msgstr "Schritt"
@@ -101,7 +101,7 @@ msgid "Migrate"
 msgstr "Migrieren"
 
 msgid "Migration finished on %s. You can delete this plugin now."
-msgstr "Die Migration wurde am%sabgeschlossen. Sie können dieses Plugin jetzt löschen."
+msgstr "Die Migration wurde am %s abgeschlossen. Sie können dieses Plugin jetzt löschen."
 
 msgid "Migration finished. Check that the new plugins are active and clear the cache."
 msgstr "Migration abgeschlossen. Überprüfen Sie, ob die neuen Plugins aktiv sind und leeren Sie den Cache."
@@ -168,13 +168,13 @@ msgstr "Laden Sie zuerst diese neuen Pakete hoch (aktivieren Sie sie nicht):"
 
 msgid "%d row"
 msgid_plural "%d rows"
-msgstr[0] "Zeile%d"
-msgstr[1] "%dZeilen"
+msgstr[0] "Zeile %d"
+msgstr[1] "%d Zeilen"
 
 msgid "%d legacy setting"
 msgid_plural "%d legacy settings"
-msgstr[0] "%dLegacy-Einstellung"
-msgstr[1] "%dLegacy-Einstellungen"
+msgstr[0] "%d Legacy-Einstellung"
+msgstr[1] "%d Legacy-Einstellungen"
 
 msgid "%drow"
 msgid_plural "%drow"

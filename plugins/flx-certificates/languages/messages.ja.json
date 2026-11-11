@@ -160,7 +160,7 @@
     "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended.": "パーマリンクは「プレーン」に設定されています。証明書リンクは ?flxs_kod= として機能します。 「投稿名」がおすすめです。",
     "Permalinks": "パーマリンク",
     "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page.": "証明書 URL ルールが登録されていません。リンクは 404 を返す場合があります。パーマリンク ページで [変更を保存] をクリックします。",
-    "Certificates open at %s{code}.": "証明書は%s{code}で開きます。",
+    "Certificates open at %s {code}.": "証明書は%s{code}で開きます。",
     "Certificate templates": "証明書テンプレート",
     "%d active template.\u0000%d active templates.": "%dアクティブなテンプレート。",
     "No active template; certificates cannot be created.": "アクティブなテンプレートはありません。証明書を作成できません。",

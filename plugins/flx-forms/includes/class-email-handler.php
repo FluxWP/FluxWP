@@ -49,9 +49,9 @@ class EmsfbEmailHandler {
 
     private function get_fallback_text($key) {
         $fallbacks = [
-            'msgdml' => __('To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s.', 'flx-forms'),
-            'mlntip' => __('If your emails are not being delivered, try using an SMTP plugin. For more information,%1$sclick here%2$sor contact our%3$ssupport team%4$s.', 'flx-forms'),
-            'msgnml' => __('To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s.', 'flx-forms'),
+            'msgdml' => __('To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s .', 'flx-forms'),
+            'mlntip' => __('If your emails are not being delivered, try using an SMTP plugin. For more information, %1$s click here %2$s or contact our %3$s support team %4$s.', 'flx-forms'),
+            'msgnml' => __('To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s .', 'flx-forms'),
             'serverEmailAble' => __('Email Server Status', 'flx-forms'),
             'vmgs' => __('View Messages', 'flx-forms'),
             'getProVersion' => __('Activate Pro version', 'flx-forms'),
@@ -62,7 +62,7 @@ class EmsfbEmailHandler {
             'createdBy' => __('Created by', 'flx-forms'),
             'newMessageReceived' => __('New message received', 'flx-forms'),
             'goodJob' => __('Good Job', 'flx-forms'),
-            'yFreeVEnPro' => __('Upgrade to Pro for just%1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s', 'flx-forms'),
+            'yFreeVEnPro' => __('Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s', 'flx-forms'),
             'WeRecivedUrM' => __('We received your message', 'flx-forms'),
         ];
 
@@ -498,7 +498,7 @@ class EmsfbEmailHandler {
                 $footer = "<div style='text-align:center;'>
                     " . $footer . "<br>
                     <p>" . sprintf(
-                        __('Built with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s', 'flx-forms'),
+                        __('Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s', 'flx-forms'),
                         "<a href='https://wordpress.org/plugins/easy-form-builder/' target='_blank' class='subtle-link' style='color:#888;text-decoration:none;'>",
                         "</a>",
                         "<a href='".$l."' target='_blank' class='subtle-link' style='color:#888;text-decoration:none;'>",
@@ -510,7 +510,7 @@ class EmsfbEmailHandler {
                 $footer = "<div style='text-align:center;'>
                         " . $footer . "<br>
                         <p>" . sprintf(
-                            __('Built with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s', 'flx-forms'),
+                            __('Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s', 'flx-forms'),
                             "<a href='https://wordpress.org/plugins/easy-form-builder/' target='_blank' class='subtle-link' style='color:#888;text-decoration:none;'>",
                             "</a>",
                             "<a href='".$l."' target='_blank' class='subtle-link' style='color:#888;text-decoration:none;'>",

@@ -215,7 +215,7 @@ msgid "Satisfaction"
 msgstr "Удовлетворение"
 
 msgid "%s ratings"
-msgstr "%sрейтинги"
+msgstr "%s рейтинги"
 
 msgid "no ratings yet"
 msgstr "пока нет оценок"
@@ -305,7 +305,7 @@ msgid "Outside working hours now"
 msgstr "Сейчас вне рабочего времени"
 
 msgid "Working hours: %s"
-msgstr "Рабочее время:%s"
+msgstr "Рабочее время: %s"
 
 msgid "Working hours come from the Flux Chat settings."
 msgstr "Рабочее время берется из настроек Flux Chat."
@@ -899,7 +899,7 @@ msgid "Would you like to talk to a person?"
 msgstr "Хотели бы вы поговорить с человеком?"
 
 msgid "Your place in line: %d"
-msgstr "Ваше место в очереди:%d"
+msgstr "Ваше место в очереди: %d"
 
 msgid "Seen"
 msgstr "видел"
@@ -1019,10 +1019,10 @@ msgid "No agents are online right now. Leave a message and we'll get back to you
 msgstr "В данный момент агентов нет в сети. Оставьте сообщение, и мы свяжемся с вами по электронной почте."
 
 msgid "Weekdays %s"
-msgstr "Будние дни%s"
+msgstr "Будние дни %s"
 
 msgid "Every day %s"
-msgstr "Каждый день%s"
+msgstr "Каждый день %s"
 
 msgid "Mon"
 msgstr "Пн."
@@ -1070,7 +1070,7 @@ msgid "Connecting you to an agent…"
 msgstr "Соединение вас с агентом..."
 
 msgid "%s joined the chat"
-msgstr "%sприсоединился к чату"
+msgstr "%s присоединился к чату"
 
 msgid "You ended the chat."
 msgstr "Вы завершили чат."
@@ -1085,10 +1085,10 @@ msgid "Site chat #%d"
 msgstr "Чат сайта #%d"
 
 msgid "[%1$s] Message from site chat: %2$s"
-msgstr "[%1$s] Сообщение из чата сайта:%2$s"
+msgstr "[%1$s] Сообщение из чата сайта: %2$s"
 
 msgid "[%1$s] Site chat waiting for an agent: %2$s"
-msgstr "[%1$s] Чат сайта ожидает агента:%2$s"
+msgstr "[%1$s] Чат сайта ожидает агента: %2$s"
 
 msgid "To reply:"
 msgstr "Чтобы ответить:"
@@ -1103,7 +1103,7 @@ msgid "The file could not be uploaded."
 msgstr "Не удалось загрузить файл."
 
 msgid "Files can be up to %d MB."
-msgstr "Размер файлов может достигать%dМБ."
+msgstr "Размер файлов может достигать %d МБ."
 
 msgid "This file type can't be sent. Send an image, PDF or office document."
 msgstr "Этот тип файла не может быть отправлен. Отправьте изображение, PDF или офисный документ."
@@ -1157,16 +1157,16 @@ msgid "File not found."
 msgstr "Файл не найден."
 
 msgid "Visitor rating: %1$s %2$s"
-msgstr "Рейтинг посетителей:%1$s%2$s"
+msgstr "Рейтинг посетителей: %1$s%2$s"
 
 msgid "Visitor #%d"
-msgstr "Посетитель No%d"
+msgstr "Посетитель No %d"
 
 msgid "%d chat is waiting for a reply."
 msgid_plural "%d chats are waiting for a reply."
-msgstr[0] "Чат%dожидает ответа."
-msgstr[1] "Чаты%dждут ответа."
-msgstr[2] "Чаты%dждут ответа."
+msgstr[0] "Чат %d ожидает ответа."
+msgstr[1] "Чаты %d ждут ответа."
+msgstr[2] "Чаты %d ждут ответа."
 
 msgid "Site chat window"
 msgstr "Окно чата на сайте"
@@ -1200,4 +1200,3 @@ msgstr "Окно чата на сайте с поддержкой искусст
 
 msgid "Still answering. Please wait a moment."
 msgstr "Ответ ещё готовится. Пожалуйста, подождите немного."
-

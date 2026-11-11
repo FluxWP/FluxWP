@@ -17,10 +17,10 @@ msgid "Preset applied to the empty site."
 msgstr "تم تطبيق الإعداد المسبق على الموقع الفارغ."
 
 msgid "%s preset is ready. It was not applied automatically because the site has content: preview and apply it."
-msgstr "الإعداد المسبق لـ%sجاهز. لم يتم تطبيقه تلقائيًا لأن الموقع يحتوي على محتوى: قم بمعاينته وتطبيقه."
+msgstr "الإعداد المسبق لـ%s جاهز. لم يتم تطبيقه تلقائيًا لأن الموقع يحتوي على محتوى: قم بمعاينته وتطبيقه."
 
 msgid "Presets: %1$d pending updates, %2$d patches awaiting approval."
-msgstr "الإعدادات المسبقة: تحديثات%1$dالمعلقة، وتصحيحات%2$dفي انتظار الموافقة."
+msgstr "الإعدادات المسبقة: تحديثات %1$d المعلقة، وتصحيحات %2$d في انتظار الموافقة."
 
 msgid "You are not allowed to do this."
 msgstr "لا يسمح لك أن تفعل هذا."
@@ -29,13 +29,13 @@ msgid "Done."
 msgstr "تم."
 
 msgid "Applied: %d changes."
-msgstr "تم التطبيق: تغييرات%d."
+msgstr "تم التطبيق: تغييرات %d."
 
 msgid "%d manually changed values were kept."
-msgstr "تم الاحتفاظ بالقيم التي تم تغييرها يدويًا في%d."
+msgstr "تم الاحتفاظ بالقيم التي تم تغييرها يدويًا في %d."
 
 msgid "Undone: %1$d. Left untouched because they changed later: %2$d."
-msgstr "تم التراجع:%1$d. تُركت على حالها لأنها تغيرت لاحقًا:%2$d."
+msgstr "تم التراجع: %1$d. تُركت على حالها لأنها تغيرت لاحقًا: %2$d."
 
 msgid "\"%s\" imported. You can preview and apply it."
 msgstr "تم استيراد \"%s\". يمكنك معاينة وتطبيقه."
@@ -71,7 +71,7 @@ msgid "Not applied"
 msgstr "لم يتم تطبيقه"
 
 msgid "Missing: %s. These parts are skipped."
-msgstr "مفقود:%s. يتم تخطي هذه الأجزاء."
+msgstr "مفقود: %s. يتم تخطي هذه الأجزاء."
 
 msgid "Preview and apply"
 msgstr "معاينة وتطبيق"
@@ -110,7 +110,7 @@ msgid "Site patches"
 msgstr "بقع الموقع"
 
 msgid "theme %s"
-msgstr "موضوع%s"
+msgstr "موضوع %s"
 
 msgid "Will be added"
 msgstr "سيتم إضافتها"
@@ -173,16 +173,16 @@ msgid "Status"
 msgstr "الحالة"
 
 msgid "Value of the %s preset. Once applied, that preset's updates will not overwrite it."
-msgstr "قيمة الإعداد المسبق%s. بمجرد تطبيقه، لن تحل تحديثات هذا الإعداد المسبق محله."
+msgstr "قيمة الإعداد المسبق %s. بمجرد تطبيقه، لن تحل تحديثات هذا الإعداد المسبق محله."
 
 msgid "Conflict: %s also writes this value; the last one applied wins."
-msgstr "الصراع: يكتب%sهذه القيمة أيضًا؛ آخر تطبيق يفوز."
+msgstr "الصراع: يكتب %s هذه القيمة أيضًا؛ آخر تطبيق يفوز."
 
 msgid "Apply anyway"
 msgstr "تقدم بطلبك على أي حال"
 
 msgid "Apply (%d changes)"
-msgstr "تطبيق (تغييرات%d)"
+msgstr "تطبيق (تغييرات %d)"
 
 msgid "Show unchanged rows too"
 msgstr "إظهار الصفوف التي لم تتغير أيضًا"
@@ -269,10 +269,10 @@ msgid "More closing comments than opening ones."
 msgstr "التعليقات الختامية أكثر من التعليقات الافتتاحية."
 
 msgid "Unregistered block: %s"
-msgstr "كتلة غير مسجلة:%s"
+msgstr "كتلة غير مسجلة: %s"
 
 msgid "Media file missing: %s"
-msgstr "ملف الوسائط مفقود:%s"
+msgstr "ملف الوسائط مفقود: %s"
 
 msgid "Media needs \"file\" or \"url\"."
 msgstr "تحتاج الوسائط إلى \"ملف\" أو \"عنوان url\"."
@@ -284,7 +284,7 @@ msgid "\"%s\" cannot be written, skipped."
 msgstr "لا يمكن كتابة \"%s\" أو تخطيها."
 
 msgid "The %s language pack is not installed; the site language was not set (Settings › General)."
-msgstr "لم يتم تثبيت حزمة اللغة%s؛ لم يتم ضبط لغة الموقع (الإعدادات › عام)."
+msgstr "لم يتم تثبيت حزمة اللغة %s؛ لم يتم ضبط لغة الموقع (الإعدادات › عام)."
 
 msgid "Migration not found."
 msgstr "لم يتم العثور على الهجرة."
@@ -293,7 +293,7 @@ msgid "Record not found."
 msgstr "لم يتم العثور على السجل."
 
 msgid "Exported from %1$s on %2$s."
-msgstr "تم التصدير من%1$sعلى%2$s."
+msgstr "تم التصدير من %1$s على %2$s."
 
 msgid "Page"
 msgstr "الصفحة"
@@ -305,7 +305,7 @@ msgid "Term"
 msgstr "مصطلح"
 
 msgid "Taxonomy not found: %s"
-msgstr "لم يتم العثور على التصنيف:%s"
+msgstr "لم يتم العثور على التصنيف: %s"
 
 msgid "Menu"
 msgstr "القائمة"
@@ -395,13 +395,13 @@ msgid "Could not read the preset file."
 msgstr "لا يمكن قراءة الملف المحدد مسبقا."
 
 msgid "The preset is not valid JSON: %s"
-msgstr "الإعداد المسبق غير صالح لـ JSON:%s"
+msgstr "الإعداد المسبق غير صالح لـ JSON: %s"
 
 msgid "Not valid JSON: %s"
-msgstr "JSON غير صالح:%s"
+msgstr "JSON غير صالح: %s"
 
 msgid "File not found: %s"
-msgstr "لم يتم العثور على الملف:%s"
+msgstr "لم يتم العثور على الملف: %s"
 
 msgid "\"format\" must be \"%s\"."
 msgstr "\"التنسيق\" يجب أن يكون \"%s\"."
@@ -440,7 +440,7 @@ msgid "Package not found."
 msgstr "لم يتم العثور على الحزمة."
 
 msgid "Installing %s"
-msgstr "تثبيت%s"
+msgstr "تثبيت %s"
 
 msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org. New versions appear on Dashboard › Updates as usual."
 msgstr "يتم تحديث سمات FluxWP والمكونات الإضافية من خادم التحديث الخاص بك بدلاً من wordpress.org. تظهر الإصدارات الجديدة على لوحة المعلومات › التحديثات كالمعتاد."
@@ -452,7 +452,7 @@ msgid "Updates checked."
 msgstr "تم فحص التحديثات."
 
 msgid "Connected to the server as \"%1$s\". Last check: %2$s ago."
-msgstr "متصل بالخادم باسم \"%1$s\". آخر فحص: منذ%2$s."
+msgstr "متصل بالخادم باسم \"%1$s\". آخر فحص: منذ %2$s."
 
 msgid "Packages"
 msgstr "الحزم"
@@ -497,7 +497,7 @@ msgid "Check for updates"
 msgstr "التحقق من وجود تحديثات"
 
 msgid "Last check: %s"
-msgstr "الفحص الأخير:%s"
+msgstr "الفحص الأخير: %s"
 
 msgid "Checking…"
 msgstr "جارٍ التحقق..."
@@ -507,12 +507,12 @@ msgstr "تعذر الاتصال بالخادم."
 
 msgid "%d update available"
 msgid_plural "%d updates available"
-msgstr[0] "تتوفر تحديثات%d"
-msgstr[1] "يتوفر تحديث%d"
-msgstr[2] "تتوفر تحديثات%d"
-msgstr[3] "تتوفر تحديثات%d"
-msgstr[4] "تتوفر تحديثات%d"
-msgstr[5] "تتوفر تحديثات%d"
+msgstr[0] "تتوفر تحديثات %d"
+msgstr[1] "يتوفر تحديث %d"
+msgstr[2] "تتوفر تحديثات %d"
+msgstr[3] "تتوفر تحديثات %d"
+msgstr[4] "تتوفر تحديثات %d"
+msgstr[5] "تتوفر تحديثات %d"
 
 msgid "All up to date ✓"
 msgstr "كل ما يصل إلى التاريخ ✓"
@@ -560,13 +560,13 @@ msgid "No site key entered."
 msgstr "لم يتم إدخال مفتاح الموقع."
 
 msgid "Could not reach the server: %s"
-msgstr "تعذر الوصول إلى الخادم:%s"
+msgstr "تعذر الوصول إلى الخادم: %s"
 
 msgid "Invalid site key. Compare it with config.php on the server."
 msgstr "مفتاح الموقع غير صالح. قارنه مع config.php على الخادم."
 
 msgid "The server returned an unexpected response (HTTP %d)."
-msgstr "أعاد الخادم استجابة غير متوقعة (HTTP%d)."
+msgstr "أعاد الخادم استجابة غير متوقعة (HTTP %d)."
 
 msgid "No notes for this version."
 msgstr "لا توجد ملاحظات لهذا الإصدار."
@@ -584,7 +584,7 @@ msgid "Not checked yet."
 msgstr "لم يتم التحقق بعد."
 
 msgid "Server connection works. Last check: %s."
-msgstr "اتصال الخادم يعمل. الفحص الأخير:%s."
+msgstr "اتصال الخادم يعمل. الفحص الأخير: %s."
 
 msgid "Update server"
 msgstr "تحديث الخادم"
@@ -593,7 +593,7 @@ msgid "FluxWP package updates"
 msgstr "تحديثات حزمة FluxWP"
 
 msgid "Waiting for update: %s"
-msgstr "في انتظار التحديث:%s"
+msgstr "في انتظار التحديث: %s"
 
 msgid "Updates"
 msgstr "التحديثات"
@@ -620,10 +620,10 @@ msgid "Connect to the server with \"Test connection\"."
 msgstr "اتصل بالخادم من خلال \"اختبار الاتصال\"."
 
 msgid "Last check: %s ago"
-msgstr "آخر فحص: منذ%s"
+msgstr "آخر فحص: منذ %s"
 
 msgid "%1$d packages, %2$d updates"
-msgstr "حزم%1$d، تحديثات%2$d"
+msgstr "حزم %1$d، تحديثات %2$d"
 
 msgid "Test connection"
 msgstr "اتصال الاختبار"
@@ -644,7 +644,7 @@ msgid "Updating themes"
 msgstr "تحديث المواضيع"
 
 msgid "Installing %1$s version %2$s"
-msgstr "تثبيت الإصدار%1$s%2$s"
+msgstr "تثبيت الإصدار %1$s %2$s"
 
 msgid "No records."
 msgstr "لا توجد سجلات."
@@ -752,7 +752,7 @@ msgid "Open backup"
 msgstr "فتح النسخة الاحتياطية"
 
 msgid "Install version %2$s of %1$s?"
-msgstr "هل تريد تثبيت الإصدار%2$sمن%1$s؟"
+msgstr "هل تريد تثبيت الإصدار %2$s من %1$s؟"
 
 msgid "Package did not change; the installation may have failed."
 msgstr "الحزمة لم تتغير. ربما فشل التثبيت."
@@ -773,27 +773,27 @@ msgid "Package is not installed on this site."
 msgstr "لم يتم تثبيت الحزمة على هذا الموقع."
 
 msgid "Before %1$s %2$s → %3$s"
-msgstr "قبل%1$s%2$s→%3$s"
+msgstr "قبل %1$s %2$s → %3$s"
 
 msgid "Backup failed, nothing was changed: %s"
-msgstr "فشل النسخ الاحتياطي، ولم يتغير شيء:%s"
+msgstr "فشل النسخ الاحتياطي، ولم يتغير شيء: %s"
 
 msgid "Installation failed."
 msgstr "فشل التثبيت."
 
 msgid "The site failed after the update (HTTP 500: %s)."
-msgstr "فشل الموقع بعد التحديث (HTTP 500:%s)."
+msgstr "فشل الموقع بعد التحديث (HTTP 500: %s)."
 
 msgid "Site check could not run (no connection)."
 msgstr "تعذر تشغيل فحص الموقع (لا يوجد اتصال)."
 
 msgid "Site check returned HTTP %d; not treated as a failure."
-msgstr "تم إرجاع فحص الموقع HTTP%d؛ لا تعامل على أنها فاشلة."
+msgstr "تم إرجاع فحص الموقع HTTP %d؛ لا تعامل على أنها فاشلة."
 
 msgid "%d backup deleted."
 msgid_plural "%d backups deleted."
 msgstr[0] "تم حذف النسخ الاحتياطية لـ%d."
-msgstr[1] "تم حذف النسخة الاحتياطية%d."
+msgstr[1] "تم حذف النسخة الاحتياطية %d."
 msgstr[2] "تم حذف النسخ الاحتياطية لـ%d."
 msgstr[3] "تم حذف النسخ الاحتياطية لـ%d."
 msgstr[4] "تم حذف النسخ الاحتياطية لـ%d."
@@ -816,12 +816,12 @@ msgstr "يتم حذف النسخ الاحتياطية للتحديث تلقائ�
 
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%dأيام"
-msgstr[1] "يوم%d"
-msgstr[2] "%dأيام"
-msgstr[3] "%dأيام"
-msgstr[4] "%dأيام"
-msgstr[5] "%dأيام"
+msgstr[0] "%d أيام"
+msgstr[1] "يوم %d"
+msgstr[2] "%d أيام"
+msgstr[3] "%d أيام"
+msgstr[4] "%d أيام"
+msgstr[5] "%d أيام"
 
 msgid "."
 msgstr "."
@@ -830,16 +830,16 @@ msgid "Flux Backup settings"
 msgstr "إعدادات النسخ الاحتياطي التدفق"
 
 msgid "Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here)."
-msgstr "يتم تعيين الاحتفاظ بالنسخ الاحتياطي للتحديث على صفحة%s(مع Flux Backup 1.2.0 يمكنك أيضًا تغييره هنا)."
+msgstr "يتم تعيين الاحتفاظ بالنسخ الاحتياطي للتحديث على صفحة %s(مع Flux Backup 1.2.0 يمكنك أيضًا تغييره هنا)."
 
 msgid "Currently %1$d update backup, %2$s."
 msgid_plural "Currently %1$d update backups, %2$s."
-msgstr[0] "النسخ الاحتياطية لتحديث%1$dحاليًا،%2$s."
-msgstr[1] "النسخ الاحتياطي لتحديث%1$dحاليًا،%2$s."
-msgstr[2] "النسخ الاحتياطية لتحديث%1$dحاليًا،%2$s."
-msgstr[3] "النسخ الاحتياطية لتحديث%1$dحاليًا،%2$s."
-msgstr[4] "النسخ الاحتياطية لتحديث%1$dحاليًا،%2$s."
-msgstr[5] "النسخ الاحتياطية لتحديث%1$dحاليًا،%2$s."
+msgstr[0] "النسخ الاحتياطية لتحديث %1$d حاليًا، %2$s."
+msgstr[1] "النسخ الاحتياطي لتحديث %1$d حاليًا، %2$s."
+msgstr[2] "النسخ الاحتياطية لتحديث %1$d حاليًا، %2$s."
+msgstr[3] "النسخ الاحتياطية لتحديث %1$d حاليًا، %2$s."
+msgstr[4] "النسخ الاحتياطية لتحديث %1$d حاليًا، %2$s."
+msgstr[5] "النسخ الاحتياطية لتحديث %1$d حاليًا، %2$s."
 
 msgid "Delete all unlocked update backups? This cannot be undone."
 msgstr "هل تريد حذف جميع النسخ الاحتياطية للتحديثات غير المؤمنة؟ لا يمكن التراجع عن هذا."
@@ -857,7 +857,7 @@ msgid "Locked"
 msgstr "مغلق"
 
 msgid "Deleted on %s"
-msgstr "تم الحذف في%s"
+msgstr "تم الحذف في %s"
 
 msgid "Open"
 msgstr "مفتوح"
@@ -873,12 +873,12 @@ msgstr "حذف النسخ الاحتياطية المحددة"
 
 msgid "%s item"
 msgid_plural "%s items"
-msgstr[0] "%sالعناصر"
-msgstr[1] "عنصر%s"
-msgstr[2] "%sالعناصر"
-msgstr[3] "%sالعناصر"
-msgstr[4] "%sالعناصر"
-msgstr[5] "%sالعناصر"
+msgstr[0] "%s العناصر"
+msgstr[1] "عنصر %s"
+msgstr[2] "%s العناصر"
+msgstr[3] "%s العناصر"
+msgstr[4] "%s العناصر"
+msgstr[5] "%s العناصر"
 
 msgid "First page"
 msgstr "الصفحة الأولى"
@@ -893,7 +893,7 @@ msgid "Last page"
 msgstr "الصفحة الأخيرة"
 
 msgid "%1$d of %2$d"
-msgstr "%1$dمن%2$d"
+msgstr "%1$d من %2$d"
 
 msgid "Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone."
 msgstr "هل تريد حذف هذه النسخة الاحتياطية؟ كما أنه يحتفظ بنسخة احتياطية من الحزم الأخرى في نفس التحديث المجمع. لا يمكن التراجع عن هذا."
@@ -902,7 +902,7 @@ msgid "No package selected to install or update."
 msgstr "لم يتم تحديد أي حزمة للتثبيت أو التحديث."
 
 msgid "installed %s"
-msgstr "تم تثبيت%s"
+msgstr "تم تثبيت %s"
 
 msgid "install failed"
 msgstr "فشل التثبيت"
@@ -929,7 +929,7 @@ msgid "Installed, inactive"
 msgstr "مثبت، غير نشط"
 
 msgid "%1$s requires %2$s (%3$s)."
-msgstr "يتطلب%1$s%2$s(%3$s)."
+msgstr "يتطلب %1$s %2$s(%3$s)."
 
 msgid "not installed"
 msgstr "غير مثبت"
@@ -938,7 +938,7 @@ msgid "installed, inactive"
 msgstr "مثبتة وغير نشطة"
 
 msgid "Add %s too"
-msgstr "أضف%sأيضًا"
+msgstr "أضف %s أيضًا"
 
 msgid "Will also be installed / activated:"
 msgstr "سيتم أيضًا تثبيت/تنشيط:"
@@ -950,10 +950,10 @@ msgid "Remove"
 msgstr "إزالة"
 
 msgid "%1$s was deselected: it does not work without %2$s."
-msgstr "تم إلغاء تحديد%1$s: فهو لا يعمل بدون%2$s."
+msgstr "تم إلغاء تحديد %1$s: فهو لا يعمل بدون %2$s."
 
 msgid "For %1$s these will also be installed and activated: %2$s. Continue?"
-msgstr "بالنسبة لـ%1$s، سيتم أيضًا تثبيت وتنشيط هذه العناصر:%2$s. يكمل؟"
+msgstr "بالنسبة لـ%1$s، سيتم أيضًا تثبيت وتنشيط هذه العناصر: %2$s. يكمل؟"
 
 msgid "Preparing…"
 msgstr "جارٍ التحضير..."
@@ -977,7 +977,7 @@ msgid "Nothing to do."
 msgstr "لا شيء للقيام به."
 
 msgid "Done: %1$d succeeded, %2$d failed."
-msgstr "تم: نجح%1$d، وفشل%2$d."
+msgstr "تم: نجح %1$d، وفشل %2$d."
 
 msgid "The server did not respond (%s). Check the history and system checks."
 msgstr "الخادم لم يستجب (%s). التحقق من التاريخ وفحوصات النظام."
@@ -986,19 +986,19 @@ msgid "An install/update is running. Leaving the page may interrupt it."
 msgstr "جاري التثبيت/التحديث. قد يؤدي ترك الصفحة إلى مقاطعتها."
 
 msgid "Installing %s…"
-msgstr "جارٍ تثبيت%s..."
+msgstr "جارٍ تثبيت %s..."
 
 msgid "Installing %s from wordpress.org…"
-msgstr "جارٍ تثبيت%sمن wordpress.org..."
+msgstr "جارٍ تثبيت %s من wordpress.org..."
 
 msgid "Activating %s…"
-msgstr "تفعيل%s..."
+msgstr "تفعيل %s..."
 
 msgid "Updating %s (backup first)…"
-msgstr "جارٍ تحديث%s(النسخ الاحتياطي أولاً)..."
+msgstr "جارٍ تحديث %s(النسخ الاحتياطي أولاً)..."
 
 msgid "Changing the version of %s (backup first)…"
-msgstr "تغيير إصدار%s(النسخ الاحتياطي أولاً)..."
+msgstr "تغيير إصدار %s(النسخ الاحتياطي أولاً)..."
 
 msgid "Installing…"
 msgstr "جارٍ التثبيت..."
@@ -1019,25 +1019,25 @@ msgid "Done"
 msgstr "تم"
 
 msgid "(required by %s)"
-msgstr "(مطلوب بواسطة%s)"
+msgstr "(مطلوب بواسطة %s)"
 
 msgid "%1$s installed%2$s."
-msgstr "تم تثبيت%1$sعلى%2$s."
+msgstr "تم تثبيت %1$s على%2$s."
 
 msgid "%1$s was not activated: %2$s must be installed and active first."
-msgstr "لم يتم تنشيط%1$s: يجب تثبيت%2$sوتنشيطه أولاً."
+msgstr "لم يتم تنشيط %1$s: يجب تثبيت %2$s وتنشيطه أولاً."
 
 msgid "%1$s could not be activated: %2$s"
-msgstr "لا يمكن تفعيل%1$s:%2$s"
+msgstr "لا يمكن تفعيل %1$s: %2$s"
 
 msgid "%s activated."
-msgstr "تم تفعيل%s."
+msgstr "تم تفعيل %s."
 
 msgid "%s: you are not allowed to install."
 msgstr "%s: غير مسموح لك بالتثبيت."
 
 msgid "Could not download %1$s from wordpress.org: %2$s"
-msgstr "تعذر تنزيل%1$sمن wordpress.org:%2$s"
+msgstr "تعذر تنزيل %1$s من wordpress.org: %2$s"
 
 msgid "no download link"
 msgstr "لا يوجد رابط التحميل"
@@ -1046,25 +1046,25 @@ msgid "unknown error"
 msgstr "خطأ غير معروف"
 
 msgid "%1$s could not be installed: %2$s"
-msgstr "تعذر تثبيت%1$s:%2$s"
+msgstr "تعذر تثبيت %1$s: %2$s"
 
 msgid "%s is already installed."
-msgstr "تم تثبيت%sبالفعل."
+msgstr "تم تثبيت %s بالفعل."
 
 msgid "%1$s %2$s installed."
-msgstr "تم تثبيت%1$s%2$s."
+msgstr "تم تثبيت %1$s %2$s."
 
 msgid "This plugin is not required by any FluxWP package."
 msgstr "هذا البرنامج المساعد غير مطلوب من قبل أي حزمة FluxWP."
 
 msgid "%s was installed from wordpress.org."
-msgstr "تم تثبيت%sمن wordpress.org."
+msgstr "تم تثبيت %s من wordpress.org."
 
 msgid "%s is not installed, so it could not be activated."
-msgstr "لم يتم تثبيت%s، لذا لا يمكن تنشيطه."
+msgstr "لم يتم تثبيت %s، لذا لا يمكن تنشيطه."
 
 msgid "%s is already active."
-msgstr "%sنشط بالفعل."
+msgstr "%s نشط بالفعل."
 
 msgid "Unknown action."
 msgstr "عمل غير معروف."
@@ -1073,13 +1073,13 @@ msgid "The package is not installed."
 msgstr "لم يتم تثبيت الحزمة."
 
 msgid "%s was not updated: WordPress sees no update for it. Click \"Check for updates\" and try again."
-msgstr "لم يتم تحديث%s: لا يرى WordPress أي تحديث له. انقر فوق \"التحقق من وجود تحديثات\" وحاول مرة أخرى."
+msgstr "لم يتم تحديث %s: لا يرى WordPress أي تحديث له. انقر فوق \"التحقق من وجود تحديثات\" وحاول مرة أخرى."
 
 msgid "Source: %s"
-msgstr "المصدر:%s"
+msgstr "المصدر: %s"
 
 msgid "available from %d sources"
-msgstr "متاح من مصادر%d"
+msgstr "متاح من مصادر %d"
 
 msgid "Remove this source? Packages installed from it stay on the site; they just stop receiving updates."
 msgstr "هل تريد إزالة هذا المصدر؟ الحزم المثبتة منه تبقى على الموقع؛ يتوقفون فقط عن تلقي التحديثات."
@@ -1089,12 +1089,12 @@ msgstr "إيقاف"
 
 msgid "Connected · %d package"
 msgid_plural "Connected · %d packages"
-msgstr[0] "متصل · حزم%d"
-msgstr[1] "متصل · حزمة%d"
-msgstr[2] "متصل · حزم%d"
-msgstr[3] "متصل · حزم%d"
-msgstr[4] "متصل · حزم%d"
-msgstr[5] "متصل · حزم%d"
+msgstr[0] "متصل · حزم %d"
+msgstr[1] "متصل · حزمة %d"
+msgstr[2] "متصل · حزم %d"
+msgstr[3] "متصل · حزم %d"
+msgstr[4] "متصل · حزم %d"
+msgstr[5] "متصل · حزم %d"
 
 msgid "Other sources"
 msgstr "مصادر أخرى"
@@ -1103,7 +1103,7 @@ msgid "Packages are collected from these sources as well as the main server. If 
 msgstr "يتم جمع الحزم من هذه المصادر بالإضافة إلى الخادم الرئيسي. إذا كانت الحزمة موجودة في أكثر من مصدر، فسيتم تحديثها من المصدر الذي تم تثبيتها منه؛ إذا لم يتم تثبيته، يفوز المصدر الأعلى في القائمة."
 
 msgid "Source not added: %s"
-msgstr "لم تتم إضافة المصدر:%s"
+msgstr "لم تتم إضافة المصدر: %s"
 
 msgid "Source added and its packages loaded."
 msgstr "تمت إضافة المصدر وتحميل حزمه."
@@ -1160,25 +1160,25 @@ msgid "Test and add"
 msgstr "اختبار وإضافة"
 
 msgid "Could not reach %1$s: %2$s Its packages are shown from the last known data."
-msgstr "لا يمكن الوصول إلى%1$s:%2$sتظهر حزمه من آخر البيانات المعروفة."
+msgstr "لا يمكن الوصول إلى %1$s: %2$s تظهر حزمه من آخر البيانات المعروفة."
 
 msgid "Sources"
 msgstr "المصادر"
 
 msgid "Update source: %s"
-msgstr "مصدر التحديث:%s"
+msgstr "مصدر التحديث: %s"
 
 msgid "The GitHub address is not in owner/repo form."
 msgstr "عنوان GitHub ليس في نموذج المالك/الريبو."
 
 msgid "Could not reach the source: %s"
-msgstr "لا يمكن الوصول إلى المصدر:%s"
+msgstr "لا يمكن الوصول إلى المصدر: %s"
 
 msgid "Repository not found or not public."
 msgstr "لم يتم العثور على المستودع أو أنه غير عام."
 
 msgid "GitHub returned an unexpected response (HTTP %d)."
-msgstr "أعاد GitHub استجابة غير متوقعة (HTTP%d)."
+msgstr "أعاد GitHub استجابة غير متوقعة (HTTP %d)."
 
 msgid "The address must start with https://."
 msgstr "يجب أن يبدأ العنوان بـ https://."
@@ -1224,36 +1224,36 @@ msgstr "غير نشط"
 
 msgid "%d package activated."
 msgid_plural "%d packages activated."
-msgstr[0] "تم تفعيل حزم%d."
-msgstr[1] "تم تفعيل حزمة%d."
-msgstr[2] "تم تفعيل حزم%d."
-msgstr[3] "تم تفعيل حزم%d."
-msgstr[4] "تم تفعيل حزم%d."
-msgstr[5] "تم تفعيل حزم%d."
+msgstr[0] "تم تفعيل حزم %d."
+msgstr[1] "تم تفعيل حزمة %d."
+msgstr[2] "تم تفعيل حزم %d."
+msgstr[3] "تم تفعيل حزم %d."
+msgstr[4] "تم تفعيل حزم %d."
+msgstr[5] "تم تفعيل حزم %d."
 
 msgid "%d package deactivated."
 msgid_plural "%d packages deactivated."
-msgstr[0] "تم إلغاء تنشيط حزم%d."
-msgstr[1] "تم إلغاء تنشيط حزمة%d."
-msgstr[2] "تم إلغاء تنشيط حزم%d."
-msgstr[3] "تم إلغاء تنشيط حزم%d."
-msgstr[4] "تم إلغاء تنشيط حزم%d."
-msgstr[5] "تم إلغاء تنشيط حزم%d."
+msgstr[0] "تم إلغاء تنشيط حزم %d."
+msgstr[1] "تم إلغاء تنشيط حزمة %d."
+msgstr[2] "تم إلغاء تنشيط حزم %d."
+msgstr[3] "تم إلغاء تنشيط حزم %d."
+msgstr[4] "تم إلغاء تنشيط حزم %d."
+msgstr[5] "تم إلغاء تنشيط حزم %d."
 
 msgid "%d package deleted."
 msgid_plural "%d packages deleted."
-msgstr[0] "تم حذف حزم%d."
-msgstr[1] "تم حذف حزمة%d."
-msgstr[2] "تم حذف حزم%d."
-msgstr[3] "تم حذف حزم%d."
-msgstr[4] "تم حذف حزم%d."
-msgstr[5] "تم حذف حزم%d."
+msgstr[0] "تم حذف حزم %d."
+msgstr[1] "تم حذف حزمة %d."
+msgstr[2] "تم حذف حزم %d."
+msgstr[3] "تم حذف حزم %d."
+msgstr[4] "تم حذف حزم %d."
+msgstr[5] "تم حذف حزم %d."
 
 msgid "Skipped (already in that state, active theme or FluxWP Panel): %s."
-msgstr "تم تخطيه (في تلك الحالة بالفعل، السمة النشطة أو لوحة FluxWP):%s."
+msgstr "تم تخطيه (في تلك الحالة بالفعل، السمة النشطة أو لوحة FluxWP): %s."
 
 msgid "Failed: %s."
-msgstr "فشل:%s."
+msgstr "فشل: %s."
 
 msgid "Delete these packages from the site? Their files will be removed. %s"
 msgstr "هل تريد حذف هذه الحزم من الموقع؟ ستتم إزالة ملفاتهم.%s"
@@ -1322,7 +1322,7 @@ msgid "Go to the Packages screen."
 msgstr "انتقل إلى شاشة الحزم."
 
 msgid "Site name: %s"
-msgstr "اسم الموقع:%s"
+msgstr "اسم الموقع: %s"
 
 msgid "The FluxWP theme is not installed."
 msgstr "لم يتم تثبيت سمة FluxWP."
@@ -1346,7 +1346,7 @@ msgid "Preset not found. If the package is installed, apply it under Appearance 
 msgstr "لم يتم العثور على الإعداد المسبق. إذا تم تثبيت الحزمة، فقم بتطبيقها ضمن المظهر › الإعدادات المسبقة."
 
 msgid "%s preset applied."
-msgstr "تم تطبيق الإعداد المسبق%s."
+msgstr "تم تطبيق الإعداد المسبق %s."
 
 msgid "Setup finished."
 msgstr "انتهى الإعداد."
@@ -1364,16 +1364,16 @@ msgid "The active theme does not support colour styles."
 msgstr "السمة النشطة لا تدعم أنماط الألوان."
 
 msgid "The theme has no %s colour style."
-msgstr "السمة ليس لها نمط ألوان%s."
+msgstr "السمة ليس لها نمط ألوان %s."
 
 msgid "Could not create the global styles record."
 msgstr "لا يمكن إنشاء سجل الأنماط العامة."
 
 msgid "Colour style: %s"
-msgstr "نمط اللون:%s"
+msgstr "نمط اللون: %s"
 
 msgid "Step %1$s of %2$s"
-msgstr "الخطوة%1$sمن%2$s"
+msgstr "الخطوة %1$s من %2$s"
 
 msgid "Welcome to FluxWP"
 msgstr "مرحبًا بك في FluxWP"
@@ -1382,7 +1382,7 @@ msgid "Let's set up your site in three steps. Pick the plugins, choose the look,
 msgstr "لنقم بإعداد موقعك في ثلاث خطوات. اختر المكونات الإضافية، واختر المظهر، وستقوم لوحة FluxWP بتثبيت الباقي."
 
 msgid "%d plugins"
-msgstr "الإضافات%d"
+msgstr "الإضافات %d"
 
 msgid "Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin."
 msgstr "تعمل التبرعات والنماذج وواتساب والبريد الإلكتروني وتحسين محركات البحث والنسخ الاحتياطية من مسؤول واحد."
@@ -1427,7 +1427,7 @@ msgid "FluxWP Panel was updated. Reopening the wizard on the new version…"
 msgstr "تم تحديث لوحة FluxWP. إعادة فتح المعالج على الإصدار الجديد..."
 
 msgid "Updates could not be completed: %s Setup does not continue until the updates are done."
-msgstr "تعذر إكمال التحديثات: لا يستمر إعداد%sحتى تنتهي التحديثات."
+msgstr "تعذر إكمال التحديثات: لا يستمر إعداد %s حتى تنتهي التحديثات."
 
 msgid "Try again"
 msgstr "حاول مرة أخرى"
@@ -1520,10 +1520,10 @@ msgid "Cancel"
 msgstr "إلغاء"
 
 msgid "%s plugins + FluxWP theme"
-msgstr "ملحقات%s+ سمة FluxWP"
+msgstr "ملحقات %s+ سمة FluxWP"
 
 msgid "%s plugins"
-msgstr "الإضافات%s"
+msgstr "الإضافات %s"
 
 msgid "Keep this tab open."
 msgstr "أبقِ علامة التبويب هذه مفتوحة."
@@ -1610,10 +1610,10 @@ msgid "Other FluxWP packages."
 msgstr "حزم FluxWP الأخرى."
 
 msgid "Plugins · %1$s of %2$s"
-msgstr "الإضافات ·%1$sمن%2$s"
+msgstr "الإضافات ·%1$s من %2$s"
 
 msgid "%s packages queued"
-msgstr "حزم%sفي قائمة الانتظار"
+msgstr "حزم %s في قائمة الانتظار"
 
 msgid "activating"
 msgstr "تفعيل"
@@ -1643,7 +1643,7 @@ msgid "Upload a PNG, JPG, WebP or GIF."
 msgstr "قم بتحميل PNG أو JPG أو WebP أو GIF."
 
 msgid "Tagline: %s"
-msgstr "الشعار:%s"
+msgstr "الشعار: %s"
 
 msgid "Could not set the logo."
 msgstr "لا يمكن تعيين الشعار."
@@ -1655,7 +1655,7 @@ msgid "You are not allowed to create pages."
 msgstr "غير مسموح لك بإنشاء صفحات."
 
 msgid "Page: %s"
-msgstr "الصفحة:%s"
+msgstr "الصفحة: %s"
 
 msgid "No new pages."
 msgstr "لا توجد صفحات جديدة."
@@ -1716,7 +1716,7 @@ msgid "Contact"
 msgstr "الاتصال"
 
 msgid "I accept the %1$s and %2$s; I have read the %3$s."
-msgstr "أقبل%1$sو%2$s؛ لقد قرأت%3$s."
+msgstr "أقبل %1$s و %2$s؛ لقد قرأت %3$s."
 
 msgid "Terms of Use"
 msgstr "شروط الاستخدام"
@@ -1776,7 +1776,7 @@ msgid "Saved."
 msgstr "تم الحفظ."
 
 msgid "Last sent %s. Sent at most once a day."
-msgstr "آخر إرسال%s. يتم إرسالها مرة واحدة على الأكثر يوميًا."
+msgstr "آخر إرسال %s. يتم إرسالها مرة واحدة على الأكثر يوميًا."
 
 msgid "Telemetry URL"
 msgstr "عنوان URL للقياس عن بعد"
@@ -1815,13 +1815,13 @@ msgid "Not needed"
 msgstr "ليست هناك حاجة"
 
 msgid "Could not download %s from wordpress.org."
-msgstr "تعذر تنزيل%sمن wordpress.org."
+msgstr "تعذر تنزيل %s من wordpress.org."
 
 msgid "Try from Plugins › Add New"
 msgstr "جرب من المكونات الإضافية › إضافة جديد"
 
 msgid "Next attempt: %s."
-msgstr "المحاولة التالية:%s."
+msgstr "المحاولة التالية: %s."
 
 msgid "Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on."
 msgstr "تم إيقاف توزيع التحديث مؤقتًا على الخادم. لا يوجد شيء خاطئ في موقعك؛ سيتم استئناف التحديثات عند إعادة تشغيل التوزيع."
@@ -1839,7 +1839,7 @@ msgid "The site key is disabled on the server and keyless updates are off, so no
 msgstr "تم تعطيل مفتاح الموقع على الخادم وإيقاف التحديثات بدون مفتاح، لذلك لا تتوفر أي حزم. اطلب من مسؤول الخادم إعادة تمكين المفتاح."
 
 msgid "The server cannot respond right now (HTTP %d)."
-msgstr "لا يمكن للخادم الاستجابة الآن (HTTP%d)."
+msgstr "لا يمكن للخادم الاستجابة الآن (HTTP %d)."
 
 msgid "Distribution paused"
 msgstr "توقف التوزيع مؤقتا"
@@ -1854,7 +1854,7 @@ msgid "Site key disabled"
 msgstr "تم تعطيل مفتاح الموقع"
 
 msgid "Support and feedback: %s"
-msgstr "الدعم والتعليقات:%s"
+msgstr "الدعم والتعليقات: %s"
 
 msgid "FluxWP Panel"
 msgstr "لوحة فلوكسوب"
@@ -1878,25 +1878,25 @@ msgid "A short overview is not available yet."
 msgstr "نظرة عامة قصيرة ليست متاحة بعد."
 
 msgid "Preview image %d"
-msgstr "معاينة الصورة%d"
+msgstr "معاينة الصورة %d"
 
 msgid "%d package removed."
 msgid_plural "%d packages removed."
-msgstr[0] "تمت إزالة حزم%d."
-msgstr[1] "تمت إزالة حزمة%d."
-msgstr[2] "تمت إزالة حزم%d."
-msgstr[3] "تمت إزالة حزم%d."
-msgstr[4] "تمت إزالة حزم%d."
-msgstr[5] "تمت إزالة حزم%d."
+msgstr[0] "تمت إزالة حزم %d."
+msgstr[1] "تمت إزالة حزمة %d."
+msgstr[2] "تمت إزالة حزم %d."
+msgstr[3] "تمت إزالة حزم %d."
+msgstr[4] "تمت إزالة حزم %d."
+msgstr[5] "تمت إزالة حزم %d."
 
 msgid "%s record"
 msgid_plural "%s records"
-msgstr[0] "سجلات%s"
-msgstr[1] "سجل%s"
-msgstr[2] "سجلات%s"
-msgstr[3] "سجلات%s"
-msgstr[4] "سجلات%s"
-msgstr[5] "سجلات%s"
+msgstr[0] "سجلات %s"
+msgstr[1] "سجل %s"
+msgstr[2] "سجلات %s"
+msgstr[3] "سجلات %s"
+msgstr[4] "سجلات %s"
+msgstr[5] "سجلات %s"
 
 msgid "%dthere is an update"
 msgid_plural "%dthere is an update"
@@ -1909,30 +1909,30 @@ msgstr[5] "%dهناك تحديث'، 'tr']]"
 
 msgid "%dpackage activated."
 msgid_plural "%dpackage activated."
-msgstr[0] "تم تفعيل حزمة%d."
-msgstr[1] "تم تفعيل حزمة%d."
-msgstr[2] "تم تفعيل حزمة%d."
-msgstr[3] "تم تفعيل حزمة%d."
-msgstr[4] "تم تفعيل حزمة%d."
-msgstr[5] "تم تفعيل حزمة%d."
+msgstr[0] "تم تفعيل حزمة %d."
+msgstr[1] "تم تفعيل حزمة %d."
+msgstr[2] "تم تفعيل حزمة %d."
+msgstr[3] "تم تفعيل حزمة %d."
+msgstr[4] "تم تفعيل حزمة %d."
+msgstr[5] "تم تفعيل حزمة %d."
 
 msgid "%dpackage has been disabled."
 msgid_plural "%dpackage has been disabled."
-msgstr[0] "تم تعطيل حزمة%d."
-msgstr[1] "تم تعطيل حزمة%d."
-msgstr[2] "تم تعطيل حزمة%d."
-msgstr[3] "تم تعطيل حزمة%d."
-msgstr[4] "تم تعطيل حزمة%d."
-msgstr[5] "تم تعطيل حزمة%d."
+msgstr[0] "تم تعطيل حزمة %d."
+msgstr[1] "تم تعطيل حزمة %d."
+msgstr[2] "تم تعطيل حزمة %d."
+msgstr[3] "تم تعطيل حزمة %d."
+msgstr[4] "تم تعطيل حزمة %d."
+msgstr[5] "تم تعطيل حزمة %d."
 
 msgid "%dpackage removed."
 msgid_plural "%dpackage removed."
-msgstr[0] "تمت إزالة حزمة%d."
-msgstr[1] "تمت إزالة حزمة%d."
-msgstr[2] "تمت إزالة حزمة%d."
-msgstr[3] "تمت إزالة حزمة%d."
-msgstr[4] "تمت إزالة حزمة%d."
-msgstr[5] "تمت إزالة حزمة%d."
+msgstr[0] "تمت إزالة حزمة %d."
+msgstr[1] "تمت إزالة حزمة %d."
+msgstr[2] "تمت إزالة حزمة %d."
+msgstr[3] "تمت إزالة حزمة %d."
+msgstr[4] "تمت إزالة حزمة %d."
+msgstr[5] "تمت إزالة حزمة %d."
 
 msgid "%dbackup deleted."
 msgid_plural "%dbackup deleted."
@@ -1947,7 +1947,7 @@ msgid "Expired%dbackup deleted. Expired%dbackup deleted."
 msgstr "تم حذف نسخة%dالاحتياطية منتهية الصلاحية. تم حذف النسخة الاحتياطية منتهية الصلاحية لـ%d."
 
 msgid "Connected ·%dpackage Connected ·%dpackage"
-msgstr "متصل · حزمة%dمتصلة · حزمة%d"
+msgstr "متصل · حزمة %dمتصلة · حزمة %d"
 
 msgid "%dday"
 msgid_plural "%dday"
@@ -1963,12 +1963,12 @@ msgstr "النسخة الاحتياطية لتحديث%1$dحاليًا هي%2$s.
 
 msgid "%sregistration"
 msgid_plural "%sregistration"
-msgstr[0] "تسجيل%s"
-msgstr[1] "تسجيل%s"
-msgstr[2] "تسجيل%s"
-msgstr[3] "تسجيل%s"
-msgstr[4] "تسجيل%s"
-msgstr[5] "تسجيل%s"
+msgstr[0] "تسجيل %s"
+msgstr[1] "تسجيل %s"
+msgstr[2] "تسجيل %s"
+msgstr[3] "تسجيل %s"
+msgstr[4] "تسجيل %s"
+msgstr[5] "تسجيل %s"
 
 msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
 msgstr "مكون FluxWP للتثبيت والتحديث. معالج التثبيت عند بدء التشغيل لأول مرة (المقدمة، اختيار المكون الإضافي، المظهر، التثبيت)؛ جلب سمات FluxWP والمكونات الإضافية من خادم التحديث (التحديث الافتراضي.fluxwp.com) إلى شاشة تحديث WordPress؛ يقوم المحرك المحدد مسبقًا (preset.json) بإعداد الموقع في خطوة واحدة، واستبداله بالتصحيحات المعتمدة، وإعادته مرة أخرى."
@@ -1984,12 +1984,12 @@ msgstr[5] "تم حذف نسخة%dالاحتياطية منتهية الصلاح�
 
 msgid "Connected ·%dpackage Connected ·%dpackage"
 msgid_plural "Connected ·%dpackage Connected ·%dpackage"
-msgstr[0] "متصل · حزمة%dمتصلة · حزمة%d"
-msgstr[1] "متصل · حزمة%dمتصلة · حزمة%d"
-msgstr[2] "متصل · حزمة%dمتصلة · حزمة%d"
-msgstr[3] "متصل · حزمة%dمتصلة · حزمة%d"
-msgstr[4] "متصل · حزمة%dمتصلة · حزمة%d"
-msgstr[5] "متصل · حزمة%dمتصلة · حزمة%d"
+msgstr[0] "متصل · حزمة %dمتصلة · حزمة %d"
+msgstr[1] "متصل · حزمة %dمتصلة · حزمة %d"
+msgstr[2] "متصل · حزمة %dمتصلة · حزمة %d"
+msgstr[3] "متصل · حزمة %dمتصلة · حزمة %d"
+msgstr[4] "متصل · حزمة %dمتصلة · حزمة %d"
+msgstr[5] "متصل · حزمة %dمتصلة · حزمة %d"
 
 msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."

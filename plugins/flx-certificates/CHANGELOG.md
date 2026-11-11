@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.9.9
+- "Certificates open at %s {code}." metninde boşluk geri geldi.
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 1.9.8 — 2026-11-10
 - Store the shared operational log in one table tagged by plugin and defer a background batch when fewer than 5 seconds remain before the 45-second request deadline.
 

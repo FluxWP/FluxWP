@@ -71,7 +71,7 @@ msgid "Settings"
 msgstr "Configuración"
 
 msgid "{n} posts with errors"
-msgstr "{n}publicaciones con errores"
+msgstr "{n} publicaciones con errores"
 
 msgid "Theme"
 msgstr "Tema"
@@ -155,7 +155,7 @@ msgid "The post is removed from the list."
 msgstr "La publicación se elimina de la lista."
 
 msgid "Also delete from the networks it was published on ({n} accounts)"
-msgstr "Eliminar también de las redes en las que se publicó (cuentas{n})"
+msgstr "Eliminar también de las redes en las que se publicó (cuentas {n})"
 
 msgid "Instagram and TikTok posts cannot be deleted via the API; delete them there manually."
 msgstr "Las publicaciones de Instagram y TikTok no se pueden eliminar a través de la API; elimínelos allí manualmente."
@@ -194,7 +194,7 @@ msgid "Posts prepared by people without publishing permission. Once approved the
 msgstr "Publicaciones preparadas por personas sin permiso de publicación. Una vez aprobados se comparten en su momento (o de inmediato)."
 
 msgid "{n} selected"
-msgstr "{n}seleccionado"
+msgstr "{n} seleccionado"
 
 msgid "Schedule"
 msgstr "Horario"
@@ -218,7 +218,7 @@ msgid "Select"
 msgstr "Seleccionar"
 
 msgid "every {n} days"
-msgstr "cada{n}días"
+msgstr "cada {n} días"
 
 msgid "Actions"
 msgstr "Acciones"
@@ -248,16 +248,16 @@ msgid "Today"
 msgstr "hoy"
 
 msgid "Time zone: {tz}"
-msgstr "Zona horaria:{tz}"
+msgstr "Zona horaria: {tz}"
 
 msgid "Post on this day"
 msgstr "Publicar en este día"
 
 msgid "+{n} more"
-msgstr "+{n}más"
+msgstr "+{n} más"
 
 msgid "New time: {t}"
-msgstr "Nueva hora:{t}"
+msgstr "Nueva hora: {t}"
 
 msgid "No posts this month."
 msgstr "No hay publicaciones este mes."
@@ -269,7 +269,7 @@ msgid "Account added."
 msgstr "Cuenta agregada."
 
 msgid "{n} account connections refreshed."
-msgstr "Conexiones de cuenta{n}actualizadas."
+msgstr "Conexiones de cuenta {n} actualizadas."
 
 msgid "No accounts yet"
 msgstr "Aún no hay cuentas"
@@ -284,10 +284,10 @@ msgid "App keys"
 msgstr "Teclas de aplicación"
 
 msgid "{n} characters"
-msgstr "Caracteres{n}"
+msgstr "Caracteres {n}"
 
 msgid "{n} images"
-msgstr "Imágenes{n}"
+msgstr "Imágenes {n}"
 
 msgid "video"
 msgstr "video"
@@ -371,7 +371,7 @@ msgid "Removed."
 msgstr "Eliminado."
 
 msgid "Enter keys first: {app}"
-msgstr "Ingrese las claves primero:{app}"
+msgstr "Ingrese las claves primero: {app}"
 
 msgid "The network's sign-in page opens; after you allow access you come back here. If there are several pages/channels you choose which to add."
 msgstr "Se abre la página de inicio de sesión de la red; Después de permitir el acceso, regresa aquí. Si hay varias páginas/canales, elige cuál agregar."
@@ -380,7 +380,7 @@ msgid "Choose accounts to add"
 msgstr "Elija cuentas para agregar"
 
 msgid "{n} accounts added."
-msgstr "Se agregaron cuentas{n}."
+msgstr "Se agregaron cuentas {n}."
 
 msgid "Add"
 msgstr "Añadir"
@@ -392,7 +392,7 @@ msgid "The connection comes from the Evolution line in Flux Mail. Status: the li
 msgstr "La conexión proviene de la línea Evolution en Flux Mail. Estado: Estado de WhatsApp de la línea (24 horas). Grupo: grupos a los que pertenece la línea."
 
 msgid "{n} members"
-msgstr "Miembros{n}"
+msgstr "Miembros {n}"
 
 msgid "added"
 msgstr "añadido"
@@ -602,7 +602,7 @@ msgid "Text or media is required."
 msgstr "Se requiere texto o medios."
 
 msgid "Text is {n} characters too long (limit {max})."
-msgstr "El texto tiene caracteres{n}demasiado largos (limite{max})."
+msgstr "El texto tiene caracteres {n} demasiado largos (limite {max})."
 
 msgid "This network requires an image or video."
 msgstr "Esta red requiere una imagen o un vídeo."
@@ -617,10 +617,10 @@ msgid "GIF is not supported."
 msgstr "No se admiten GIF."
 
 msgid "At most {n} images."
-msgstr "Como máximo imágenes{n}."
+msgstr "Como máximo imágenes {n}."
 
 msgid "At most {n} videos."
-msgstr "En la mayoría de los vídeos{n}."
+msgstr "En la mayoría de los vídeos {n}."
 
 msgid "Images and video cannot be sent together."
 msgstr "Las imágenes y el vídeo no se pueden enviar juntos."
@@ -656,10 +656,10 @@ msgid "Edit post"
 msgstr "Editar publicación"
 
 msgid "The approver left a note: {n}"
-msgstr "El aprobador dejó una nota:{n}"
+msgstr "El aprobador dejó una nota: {n}"
 
 msgid "Published on {n} accounts; to change it there use Details › Edit on network."
-msgstr "Publicado en cuentas{n}; para cambiarlo allí use Detalles › Editar en la red."
+msgstr "Publicado en cuentas {n}; para cambiarlo allí use Detalles › Editar en la red."
 
 msgid "Preview"
 msgstr "Vista previa"
@@ -686,7 +686,7 @@ msgid "Separate image/video for this account"
 msgstr "Imagen/video separado para esta cuenta"
 
 msgid "{net} options"
-msgstr "Opciones de{net}"
+msgstr "Opciones de {net}"
 
 msgid "Direct post: the video is published on TikTok with the chosen visibility."
 msgstr "Publicación directa: el vídeo se publica en TikTok con la visibilidad elegida."
@@ -755,7 +755,7 @@ msgid "Select an account to see the preview here."
 msgstr "Seleccione una cuenta para ver la vista previa aquí."
 
 msgid "+{n} more accounts; check the tabs."
-msgstr "+{n}más cuentas; revisa las pestañas."
+msgstr "+{n} más cuentas; revisa las pestañas."
 
 msgid "No image/video"
 msgstr "Sin imagen/vídeo"
@@ -767,10 +767,10 @@ msgid "(untitled)"
 msgstr "(sin título)"
 
 msgid "Limit exceeded: {n} characters over"
-msgstr "Límite excedido: caracteres{n}excedidos"
+msgstr "Límite excedido: caracteres {n} excedidos"
 
 msgid "{n} issues"
-msgstr "Problemas con{n}"
+msgstr "Problemas con {n}"
 
 msgid "Share time"
 msgstr "compartir tiempo"
@@ -806,7 +806,7 @@ msgid "Draft saved."
 msgstr "Borrador guardado."
 
 msgid "Scheduled: {t}"
-msgstr "Programado:{t}"
+msgstr "Programado: {t}"
 
 msgid "Saved."
 msgstr "Guardado."
@@ -836,7 +836,7 @@ msgid "Downloading…"
 msgstr "Descargando..."
 
 msgid "Uploading {n} files…"
-msgstr "Subiendo archivos{n}..."
+msgstr "Subiendo archivos {n}..."
 
 msgid "Choose image / video"
 msgstr "Elige imagen/vídeo"
@@ -866,7 +866,7 @@ msgid "Delete from network"
 msgstr "Eliminar de la red"
 
 msgid "Delete the post on {n}?"
-msgstr "¿Eliminar la publicación en{n}?"
+msgstr "¿Eliminar la publicación en {n}?"
 
 msgid "The post on the network is deleted permanently."
 msgstr "La publicación en la red se elimina permanentemente."
@@ -893,10 +893,10 @@ msgid "just now"
 msgstr "justo ahora"
 
 msgid "{n} min ago"
-msgstr "{n}hace minutos"
+msgstr "{n} hace minutos"
 
 msgid "{n} h ago"
-msgstr "{n}hace h"
+msgstr "{n} hace h"
 
 msgid "Server error ({n})."
 msgstr "Error del servidor ({n})."
@@ -917,25 +917,25 @@ msgid "Daily posts"
 msgstr "Publicaciones diarias"
 
 msgid "Total: {n}"
-msgstr "Total:{n}"
+msgstr "Total: {n}"
 
 msgid "{n} days"
-msgstr "{n}días"
+msgstr "{n} días"
 
 msgid "Update metrics now"
 msgstr "Actualizar métricas ahora"
 
 msgid "{n} records updated."
-msgstr "Registros{n}actualizados."
+msgstr "Registros {n} actualizados."
 
 msgid "No accounts connected yet. Enter the app keys first, then connect accounts."
 msgstr "Aún no hay cuentas conectadas. Primero ingrese las claves de la aplicación, luego conecte las cuentas."
 
 msgid "Success {n}%"
-msgstr "Éxito{n}%"
+msgstr "Éxito {n}%"
 
 msgid "last {n} days"
-msgstr "últimos días{n}"
+msgstr "últimos días {n}"
 
 msgid "Engagement"
 msgstr "Compromiso"
@@ -956,10 +956,10 @@ msgid "no change"
 msgstr "sin cambios"
 
 msgid "{n} awaiting approval"
-msgstr "{n}pendiente de aprobación"
+msgstr "{n} pendiente de aprobación"
 
 msgid "{n} drafts"
-msgstr "{n}borradores"
+msgstr "{n} borradores"
 
 msgid "details below"
 msgstr "detalles a continuación"
@@ -998,7 +998,7 @@ msgid "Recent errors"
 msgstr "Errores recientes"
 
 msgid "Metrics last updated: {t}"
-msgstr "Métricas actualizadas por última vez:{t}"
+msgstr "Métricas actualizadas por última vez: {t}"
 
 msgid "Metrics not collected yet (once a day, at night)."
 msgstr "Métricas aún no recopiladas (una vez al día, por la noche)."
@@ -1127,7 +1127,7 @@ msgid "Monthly post limit (0 = unlimited)"
 msgstr "Límite de publicaciones mensuales (0 = ilimitado)"
 
 msgid "Sent this month: {n}. When the limit is reached new X posts are refused (to stay within the tier quota)."
-msgstr "Enviado este mes:{n}. Cuando se alcanza el límite, se rechazan nuevas publicaciones X (para permanecer dentro de la cuota de nivel)."
+msgstr "Enviado este mes: {n}. Cuando se alcanza el límite, se rechazan nuevas publicaciones X (para permanecer dentro de la cuota de nivel)."
 
 msgid "Draft (lands in the TikTok app)"
 msgstr "Borrador (aterriza en la aplicación TikTok)"
@@ -1196,7 +1196,7 @@ msgid "Text template"
 msgstr "plantilla de texto"
 
 msgid "Available: {title} {excerpt} {link} {site} {author} {category} {tags}. The link creates the network's preview card."
-msgstr "Disponible:{title}{excerpt}{link}{site}{author}{category}{tags}. El enlace crea la tarjeta de vista previa de la red."
+msgstr "Disponible: {title}{excerpt}{link}{site}{author}{category}{tags}. El enlace crea la tarjeta de vista previa de la red."
 
 msgid "Add the featured image"
 msgstr "Añade la imagen destacada"
@@ -1232,7 +1232,7 @@ msgid "Database tables"
 msgstr "tablas de base de datos"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Falta tabla:%s. Desactiva y reactiva el complemento."
+msgstr "Falta tabla: %s. Desactiva y reactiva el complemento."
 
 msgid "Tables are ready."
 msgstr "Las mesas están listas."
@@ -1250,7 +1250,7 @@ msgid "Network apps"
 msgstr "Aplicaciones de red"
 
 msgid "Keys entered: %s."
-msgstr "Claves ingresadas:%s."
+msgstr "Claves ingresadas: %s."
 
 msgid "No network app keys entered. Social Media › Settings › Apps."
 msgstr "No se ingresaron claves de aplicaciones de red. Redes sociales › Configuración › Aplicaciones."
@@ -1262,16 +1262,16 @@ msgid "No accounts connected yet."
 msgstr "Aún no hay cuentas conectadas."
 
 msgid "Accounts that need reconnecting: %s."
-msgstr "Cuentas que necesitan volver a conectarse:%s."
+msgstr "Cuentas que necesitan volver a conectarse: %s."
 
 msgid "%d accounts connected and active."
-msgstr "%dcuentas conectadas y activas."
+msgstr "%d cuentas conectadas y activas."
 
 msgid "External per-minute trigger is running."
 msgstr "El disparador externo por minuto se está ejecutando."
 
 msgid "%d posts have been waiting for more than 5 minutes. Add the trigger URL from Settings › General to cron-job.org (every minute)."
-msgstr "Las publicaciones%dhan estado esperando por más de 5 minutos. Agregue la URL de activación desde Configuración > General a cron-job.org (cada minuto)."
+msgstr "Las publicaciones %d han estado esperando por más de 5 minutos. Agregue la URL de activación desde Configuración > General a cron-job.org (cada minuto)."
 
 msgid "Posts are processed via WP-Cron and background requests; to publish on time, adding the trigger URL from Settings › General to cron-job.org (every minute) is recommended."
 msgstr "Las publicaciones se procesan a través de WP-Cron y solicitudes en segundo plano; Para publicar a tiempo, se recomienda agregar la URL de activación desde Configuración > General a cron-job.org (cada minuto)."
@@ -1286,7 +1286,7 @@ msgid "Failed shares"
 msgstr "acciones fallidas"
 
 msgid "%d shares failed in the last 7 days. Posts › Failed."
-msgstr "Las acciones de%dfracasaron en los últimos 7 días. Publicaciones › Error."
+msgstr "Las acciones de %d fracasaron en los últimos 7 días. Publicaciones › Error."
 
 msgid "No failed shares in the last 7 days."
 msgstr "No hay acciones fallidas en los últimos 7 días."
@@ -1328,7 +1328,7 @@ msgid "The connection expired; reconnect it under Accounts."
 msgstr "La conexión expiró; Vuelva a conectarlo en Cuentas."
 
 msgid "The post was published but the first comment could not be added: %s"
-msgstr "La publicación fue publicada pero no se pudo agregar el primer comentario:%s"
+msgstr "La publicación fue publicada pero no se pudo agregar el primer comentario: %s"
 
 msgid "Only a failed target can be retried."
 msgstr "Sólo se puede volver a intentar un objetivo fallido."
@@ -1466,16 +1466,16 @@ msgid "%s: the connection expired, reconnect it under Accounts."
 msgstr "%s: la conexión expiró, vuelva a conectarla en Cuentas."
 
 msgid "Text can be at most %1$d characters (currently %2$d)."
-msgstr "El texto puede tener como máximo caracteres%1$d(actualmente%2$d)."
+msgstr "El texto puede tener como máximo caracteres %1$d(actualmente %2$d)."
 
 msgid "This network does not accept GIFs; use an image or video."
 msgstr "Esta red no acepta GIF; Utilice una imagen o un vídeo."
 
 msgid "At most %d images."
-msgstr "Como máximo imágenes%d."
+msgstr "Como máximo imágenes %d."
 
 msgid "At most %d videos."
-msgstr "En la mayoría de los vídeos%d."
+msgstr "En la mayoría de los vídeos %d."
 
 msgid "Images and video cannot be used together in one post."
 msgstr "Las imágenes y el video no se pueden usar juntos en una sola publicación."
@@ -1601,7 +1601,7 @@ msgid "X: a video or GIF is shared on its own."
 msgstr "X: un vídeo o GIF se comparte solo."
 
 msgid "The monthly limit of %d posts set for X has been reached."
-msgstr "Se ha alcanzado el límite mensual de publicaciones%destablecido para X."
+msgstr "Se ha alcanzado el límite mensual de publicaciones %d establecido para X."
 
 msgid "First enter the API Key and API Key Secret under Settings › Apps › X."
 msgstr "Primero ingrese la clave API y el secreto de la clave API en Configuración>Aplicaciones>X."

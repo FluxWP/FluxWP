@@ -733,7 +733,7 @@ class Upload_Guard {
     public static function size_message($max_bytes) {
         return sprintf(
             /* translators: %s: human-readable maximum file size, e.g. "8 MB". */
-            esc_html__('This file is too large. The maximum size for this field is%s.', 'flx-forms'),
+            esc_html__('This file is too large. The maximum size for this field is %s.', 'flx-forms'),
             function_exists('size_format') ? size_format((int) $max_bytes) : ((int) round($max_bytes / 1048576) . ' MB')
         );
     }

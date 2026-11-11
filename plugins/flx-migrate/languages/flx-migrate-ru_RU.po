@@ -2,16 +2,16 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ru_RU\nPlural-Forms: nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);\n"
 
 msgid "%d rows"
-msgstr "%dстроки"
+msgstr "%d строки"
 
 msgid "%1$d files, %2$s"
-msgstr "Файлы%1$d,%2$s"
+msgstr "Файлы %1$d, %2$s"
 
 msgid "Content may still use image URLs from this theme; check your pages first."
 msgstr "В контенте по-прежнему могут использоваться URL-адреса изображений из этой темы; сначала проверьте свои страницы."
 
 msgid "%d old settings"
-msgstr "%dстарые настройки"
+msgstr "%d старые настройки"
 
 msgid "Old tables"
 msgstr "Старые столы"
@@ -35,7 +35,7 @@ msgid "Leftovers"
 msgstr "Остатки"
 
 msgid "%d items deleted."
-msgstr "Элементы%dудалены."
+msgstr "Элементы %d удалены."
 
 msgid "Could not delete:"
 msgstr "Не удалось удалить:"
@@ -74,22 +74,22 @@ msgid "Sodium is missing: encrypted settings could not be moved, enter them agai
 msgstr "Натрий отсутствует: зашифрованные настройки не удалось переместить, введите их еще раз в панели."
 
 msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
-msgstr "Зашифрованные значения%dне удалось открыть (возможно, изменились ключи сайта); введите их еще раз на панели."
+msgstr "Зашифрованные значения %d не удалось открыть (возможно, изменились ключи сайта); введите их еще раз на панели."
 
 msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
 msgstr "Перемещает данные сайта, сохраненные под старыми именами пакетов (настройки, таблицы, мета, контент, темы, папки загрузки), в имена FluxWP. Карта имен находится в файле map.json."
 
 msgid "%1$s is empty, %2$s was left as it is."
-msgstr "%1$sпуст,%2$sостался как есть."
+msgstr "%1$s пуст, %2$s остался как есть."
 
 msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
-msgstr "%1$sне был пустым: он был зарезервирован как%2$sи заменен на%3$s."
+msgstr "%1$s не был пустым: он был зарезервирован как %2$s и заменен на %3$s."
 
 msgid "%3$d items from %1$s were moved into %2$s."
-msgstr "Элементы%3$dиз%1$sбыли перемещены в%2$s."
+msgstr "Элементы %3$d из %1$s были перемещены в %2$s."
 
 msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
-msgstr "Файлы%2$dв%1$sуже существовали в новой папке; старые копии остались на месте."
+msgstr "Файлы %2$d в %1$s уже существовали в новой папке; старые копии остались на месте."
 
 msgid "Step"
 msgstr "Шаг"
@@ -101,7 +101,7 @@ msgid "Migrate"
 msgstr "Мигрировать"
 
 msgid "Migration finished on %s. You can delete this plugin now."
-msgstr "Миграция завершена%s. Вы можете удалить этот плагин сейчас."
+msgstr "Миграция завершена %s. Вы можете удалить этот плагин сейчас."
 
 msgid "Migration finished. Check that the new plugins are active and clear the cache."
 msgstr "Миграция завершена. Убедитесь, что новые плагины активны, и очистите кеш."
@@ -168,15 +168,15 @@ msgstr "Сначала загрузите эти новые пакеты (не �
 
 msgid "%d row"
 msgid_plural "%d rows"
-msgstr[0] "%dстрока"
-msgstr[1] "%dстроки"
-msgstr[2] "%dстроки"
+msgstr[0] "%d строка"
+msgstr[1] "%d строки"
+msgstr[2] "%d строки"
 
 msgid "%d legacy setting"
 msgid_plural "%d legacy settings"
-msgstr[0] "%dустаревшая настройка"
-msgstr[1] "%dустаревшие настройки"
-msgstr[2] "%dустаревшие настройки"
+msgstr[0] "%d устаревшая настройка"
+msgstr[1] "%d устаревшие настройки"
+msgstr[2] "%d устаревшие настройки"
 
 msgid "%drow"
 msgid_plural "%drow"

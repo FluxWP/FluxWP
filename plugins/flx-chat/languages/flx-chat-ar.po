@@ -59,7 +59,7 @@ msgid "Flux Call Center: AI features (suggestions, assistant, receipt reading, v
 msgstr "مركز اتصال Flux: تحتاج ميزات الذكاء الاصطناعي (الاقتراحات والمساعد وقراءة الإيصالات والرسائل الصوتية والملخصات) إلى البرنامج الإضافي Flux AI & MCP. تثبيته وتفعيله؛ يتم نقل المفاتيح المحفوظة في مركز الاتصال هناك تلقائيًا."
 
 msgid "Flux Call Center: a different %s key is already saved in Flux AI and is the one in use. The old Call Center key was not moved and is no longer used."
-msgstr "مركز اتصال Flux: تم بالفعل حفظ مفتاح%sمختلف في Flux AI وهو المفتاح المستخدم. لم يتم نقل مفتاح مركز الاتصال القديم ولم يعد مستخدمًا."
+msgstr "مركز اتصال Flux: تم بالفعل حفظ مفتاح %s مختلف في Flux AI وهو المفتاح المستخدم. لم يتم نقل مفتاح مركز الاتصال القديم ولم يعد مستخدمًا."
 
 msgid "Flux Call Center: AI keys were moved to Flux AI. From now on keys, spending limits and logs are managed in Flux AI; model choices stay in the Call Center."
 msgstr "مركز اتصال Flux: تم نقل مفاتيح الذكاء الاصطناعي إلى Flux AI. من الآن فصاعدًا، تتم إدارة المفاتيح وحدود الإنفاق والسجلات في Flux AI؛ تبقى خيارات النماذج في مركز الاتصال."
@@ -407,7 +407,7 @@ msgid "Built-in text"
 msgstr "نص مدمج"
 
 msgid "Version %s"
-msgstr "الإصدار%s"
+msgstr "الإصدار %s"
 
 msgid "Live instructions (%s)"
 msgstr "التعليمات المباشرة (%s)"
@@ -419,7 +419,7 @@ msgid "No scenarios to run."
 msgstr "لا توجد سيناريوهات للتشغيل."
 
 msgid "The run could not be saved (database: %s). Refresh the page and try again."
-msgstr "تعذر حفظ التشغيل (قاعدة البيانات:%s). قم بتحديث الصفحة وحاول مرة أخرى."
+msgstr "تعذر حفظ التشغيل (قاعدة البيانات: %s). قم بتحديث الصفحة وحاول مرة أخرى."
 
 msgid "Run not found."
 msgstr "لم يتم العثور على تشغيل."
@@ -434,10 +434,10 @@ msgid "The chat was handed to the team; the remaining messages were not sent."
 msgstr "تم تسليم الدردشة للفريق. ولم يتم إرسال الرسائل المتبقية."
 
 msgid "Start (test): %s"
-msgstr "البداية (الاختبار):%s"
+msgstr "البداية (الاختبار): %s"
 
 msgid "Writing as staff: %s"
-msgstr "الكتابة كموظفين:%s"
+msgstr "الكتابة كموظفين: %s"
 
 msgid "No user with staff tools (Flux Roles, Profile › WhatsApp number); played as a donor."
 msgstr "لا يوجد مستخدم لديه أدوات الموظفين (أدوار التدفق، الملف الشخصي ›رقم WhatsApp)؛ لعبت كمتبرع."
@@ -449,7 +449,7 @@ msgid "no"
 msgstr "لا"
 
 msgid "Expected: %1$s, actual: %2$s"
-msgstr "المتوقع:%1$s، الفعلي:%2$s"
+msgstr "المتوقع: %1$s، الفعلي: %2$s"
 
 msgid "disabled on this site, not checked"
 msgstr "تعطيل على هذا الموقع، لم يتم تحديدها"
@@ -509,7 +509,7 @@ msgid "Claude cache"
 msgstr "كلود كاش"
 
 msgid "%1$d tokens read, %2$d written"
-msgstr "قراءة رموز%1$d، كتابة%2$d"
+msgstr "قراءة رموز %1$d، كتابة %2$d"
 
 msgid "savings"
 msgstr "المدخرات"
@@ -542,7 +542,7 @@ msgid "Handoff accuracy"
 msgstr "دقة التسليم"
 
 msgid "correct handoff %1$d, correct no-handoff %2$d, unnecessary handoff %3$d, missed handoff %4$d"
-msgstr "عملية تسليم صحيحة%1$d، عملية تسليم صحيحة%2$d، عملية تسليم غير ضرورية%3$d، عملية تسليم غير ضرورية%4$d"
+msgstr "عملية تسليم صحيحة %1$d، عملية تسليم صحيحة %2$d، عملية تسليم غير ضرورية %3$d، عملية تسليم غير ضرورية %4$d"
 
 msgid "Instructions (full text)"
 msgstr "التعليمات (النص الكامل)"
@@ -617,34 +617,34 @@ msgid "(no name)"
 msgstr "(بدون اسم)"
 
 msgid "Hello {ad} 🌱 {bagisci} made a donation in your name: {bagis}. Your certificate is below."
-msgstr "مرحبًا{ad}🌱{bagisci}قدمت تبرعًا باسمك:{bagis}. شهادتك أدناه."
+msgstr "مرحبًا {ad}🌱{bagisci} قدمت تبرعًا باسمك: {bagis}. شهادتك أدناه."
 
 msgid "One of our donors"
 msgstr "أحد المانحين لدينا"
 
 msgid "Flux Chat: certificate %1$s was sent on WhatsApp to the person the donation was made for (%2$s, %3$s)."
-msgstr "Flux Chat: تم إرسال شهادة%1$sعبر الواتساب إلى الشخص الذي تم التبرع من أجله (%2$s,%3$s)."
+msgstr "Flux Chat: تم إرسال شهادة %1$s عبر الواتساب إلى الشخص الذي تم التبرع من أجله (%2$s, %3$s)."
 
 msgid "Flux Chat: certificate %1$s could not be sent to the person the donation was made for (%2$s, %3$s)."
-msgstr "Flux Chat: تعذر إرسال شهادة%1$sإلى الشخص الذي تم التبرع من أجله (%2$s,%3$s)."
+msgstr "Flux Chat: تعذر إرسال شهادة %1$s إلى الشخص الذي تم التبرع من أجله (%2$s, %3$s)."
 
 msgid "✅ Certificates for {bagisci}'s donation are ready: {bagis}. They were also sent to the donor."
-msgstr "✅ شهادات التبرع بـ{bagisci}جاهزة:{bagis}. كما تم إرسالها إلى الجهة المانحة."
+msgstr "✅ شهادات التبرع بـ{bagisci} جاهزة: {bagis}. كما تم إرسالها إلى الجهة المانحة."
 
 msgid "Your donor"
 msgstr "المتبرع الخاص بك"
 
 msgid "Flux Call Center: certificates %1$s were sent to the referring staff member on WhatsApp (%2$s)."
-msgstr "مركز اتصال Flux: تم إرسال شهادات%1$sإلى الموظف المُحيل على WhatsApp (%2$s)."
+msgstr "مركز اتصال Flux: تم إرسال شهادات %1$s إلى الموظف المُحيل على WhatsApp (%2$s)."
 
 msgid "Flux Call Center: certificates %1$s could not be sent to the referring staff member (%2$s)."
-msgstr "مركز اتصال Flux: لا يمكن إرسال شهادات%1$sإلى الموظف المُحيل (%2$s)."
+msgstr "مركز اتصال Flux: لا يمكن إرسال شهادات %1$s إلى الموظف المُحيل (%2$s)."
 
 msgid "Phone or email is required."
 msgstr "مطلوب الهاتف أو البريد الإلكتروني."
 
 msgid "Contact added to the blocklist: %s"
-msgstr "تمت إضافة جهة الاتصال إلى قائمة الحظر:%s"
+msgstr "تمت إضافة جهة الاتصال إلى قائمة الحظر: %s"
 
 msgid "Chat not found."
 msgstr "لم يتم العثور على الدردشة."
@@ -677,34 +677,34 @@ msgid "Validity (minutes)"
 msgstr "الصلاحية (بالدقائق)"
 
 msgid "Your verification code: {kod}"
-msgstr "رمز التحقق الخاص بك:{kod}"
+msgstr "رمز التحقق الخاص بك: {kod}"
 
 msgid "Your verification code"
 msgstr "رمز التحقق الخاص بك"
 
 msgid "<p>You asked from WhatsApp about donations made with this email address. Enter the code in the WhatsApp chat:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>The code is valid for {dk} minutes. If you did not request this, ignore the email.</p>"
-msgstr "<p>لقد سألت من WhatsApp عن التبرعات المقدمة باستخدام عنوان البريد الإلكتروني هذا. أدخل الرمز في دردشة الواتساب:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>الرمز صالح لمدة{dk}دقيقة. إذا لم تطلب ذلك، فتجاهل البريد الإلكتروني.</p>"
+msgstr "<p>لقد سألت من WhatsApp عن التبرعات المقدمة باستخدام عنوان البريد الإلكتروني هذا. أدخل الرمز في دردشة الواتساب:</p><p style=\"font-size:28px;font-weight:700;letter-spacing:6px\">{kod}</p><p>الرمز صالح لمدة {dk} دقيقة. إذا لم تطلب ذلك، فتجاهل البريد الإلكتروني.</p>"
 
 msgid "Your verification code: %s"
-msgstr "رمز التحقق الخاص بك:%s"
+msgstr "رمز التحقق الخاص بك: %s"
 
 msgid "Type this code in the WhatsApp chat: %s"
-msgstr "اكتب هذا الرمز في دردشة الواتساب:%s"
+msgstr "اكتب هذا الرمز في دردشة الواتساب: %s"
 
 msgid "The code is valid for %d minutes."
-msgstr "الرمز صالح لمدة%dدقيقة."
+msgstr "الرمز صالح لمدة %d دقيقة."
 
 msgid "Chats searched: \"%1$s\" (%2$d results)"
-msgstr "الدردشات التي تم البحث عنها: \"%1$s\" ( نتائج%2$d)"
+msgstr "الدردشات التي تم البحث عنها: \"%1$s\" ( نتائج %2$d)"
 
 msgid "Read the last %2$d messages of %1$s"
-msgstr "اقرأ آخر رسائل%2$dالخاصة بـ%1$s"
+msgstr "اقرأ آخر رسائل %2$d الخاصة بـ%1$s"
 
 msgid "Tested: \"%s\""
 msgstr "تم الاختبار: \"%s\""
 
 msgid "Wants to read the last %2$d messages of %1$s."
-msgstr "يريد قراءة رسائل%2$dالأخيرة من%1$s."
+msgstr "يريد قراءة رسائل %2$d الأخيرة من %1$s."
 
 msgid "Step limit reached; write a message to continue."
 msgstr "تم الوصول إلى حد الخطوة؛ اكتب رسالة للمتابعة."
@@ -830,22 +830,22 @@ msgid "Shall I cancel *{bagis}* ({tutar})? Please confirm."
 msgstr "هل يجب علي إلغاء *{bagis}* ({tutar})؟ يرجى التأكيد."
 
 msgid "%1$s · %2$d pcs"
-msgstr "%1$s· أجهزة الكمبيوتر%2$d"
+msgstr "%1$s· أجهزة الكمبيوتر %2$d"
 
 msgid "The person asked on WhatsApp to cancel; the assistant cancelled it after confirmation."
 msgstr "طلب الشخص عبر الواتساب الإلغاء؛ قام المساعد بإلغائه بعد التأكيد."
 
 msgid "Reason: %s"
-msgstr "السبب:%s"
+msgstr "السبب: %s"
 
 msgid "The assistant cancelled the donation: %1$s (#%2$s)"
-msgstr "قام المساعد بإلغاء التبرع:%1$s(#%2$s)"
+msgstr "قام المساعد بإلغاء التبرع: %1$s(#%2$s)"
 
 msgid "Your certificate 🌱 %1$s (%2$s)"
 msgstr "شهادتك 🌱%1$s(%2$s)"
 
 msgid "The assistant resent certificate %1$s (%2$s)."
-msgstr "استاء المساعد من شهادة%1$s(%2$s)."
+msgstr "استاء المساعد من شهادة %1$s(%2$s)."
 
 msgid "e-mail"
 msgstr "البريد الإلكتروني"
@@ -860,7 +860,7 @@ msgid "I'm passing you to a colleague from our team, they will get back to you h
 msgstr "سأنقلك إلى زميل من فريقنا، وسيعودون إليك هنا قريبًا 🌱"
 
 msgid "The assistant handed the chat to the team: %s"
-msgstr "قام المساعد بتسليم الدردشة للفريق:%s"
+msgstr "قام المساعد بتسليم الدردشة للفريق: %s"
 
 msgid "unit"
 msgstr "وحدة"
@@ -896,13 +896,13 @@ msgid "Your donation is confirmed automatically once the payment goes through. T
 msgstr "يتم تأكيد تبرعك تلقائيًا بمجرد إتمام عملية الدفع. شكرا جزيلا لدعمكم 🤲"
 
 msgid "Your payment page is ready: %s"
-msgstr "صفحة الدفع الخاصة بك جاهزة:%s"
+msgstr "صفحة الدفع الخاصة بك جاهزة: %s"
 
 msgid "On this page you can pay by card or choose bank transfer. If you prefer a bank transfer, the details are below; press and hold each one to copy 👇"
 msgstr "في هذه الصفحة يمكنك الدفع عن طريق البطاقة أو اختيار التحويل المصرفي. إذا كنت تفضل التحويل البنكي، فالتفاصيل أدناه؛ اضغط مع الاستمرار على كل واحدة للنسخ 👇"
 
 msgid "The bank transfer details of your donation are on this page: %s"
-msgstr "تفاصيل التحويل البنكي لتبرعك موجودة على هذه الصفحة:%s"
+msgstr "تفاصيل التحويل البنكي لتبرعك موجودة على هذه الصفحة: %s"
 
 msgid "They are also below; press and hold each one to copy 👇"
 msgstr "هم أيضا أدناه؛ اضغط مع الاستمرار على كل واحدة للنسخ 👇"
@@ -911,7 +911,7 @@ msgid "You can pay by bank transfer."
 msgstr "يمكنك الدفع عن طريق التحويل المصرفي."
 
 msgid "Our donation page: %s"
-msgstr "صفحة التبرع الخاصة بنا:%s"
+msgstr "صفحة التبرع الخاصة بنا: %s"
 
 msgid "Bank details are below; long-press each one to copy 👇"
 msgstr "تفاصيل البنك أدناه؛ اضغط لفترة طويلة على كل واحد للنسخ 👇"
@@ -947,7 +947,7 @@ msgid "via the website"
 msgstr "عبر الموقع الإلكتروني"
 
 msgid "uploaded %2$s on %1$s"
-msgstr "تم تحميل%2$sعلى%1$s"
+msgstr "تم تحميل %2$s على %1$s"
 
 msgid "This number is not on WhatsApp."
 msgstr "هذا الرقم غير موجود على الواتساب."
@@ -1016,13 +1016,13 @@ msgid "WhatsApp chats"
 msgstr "محادثات واتس اب"
 
 msgid "Export: %1$s · %2$d chats"
-msgstr "تصدير:%1$s· دردشات%2$d"
+msgstr "تصدير: %1$s· دردشات %2$d"
 
 msgid "phones and emails masked"
 msgstr "الهواتف ورسائل البريد الإلكتروني ملثمين"
 
 msgid "Chat history cleared (%1$d messages, %2$s)."
-msgstr "تم مسح سجل الدردشة (رسائل%1$d،%2$s)."
+msgstr "تم مسح سجل الدردشة (رسائل %1$d، %2$s)."
 
 msgid "Confirmation text is wrong."
 msgstr "نص التأكيد خاطئ."
@@ -1046,16 +1046,16 @@ msgid "Please take over the chat"
 msgstr "يرجى تولي الدردشة"
 
 msgid "Could not send the notification to the team group: %s"
-msgstr "تعذر إرسال الإشعار إلى مجموعة الفريق:%s"
+msgstr "تعذر إرسال الإشعار إلى مجموعة الفريق: %s"
 
 msgid "Handoff notification sent to the team group."
 msgstr "تم إرسال إشعار التسليم إلى مجموعة الفريق."
 
 msgid "WhatsApp notification sent to the team: %s"
-msgstr "تم إرسال إشعار WhatsApp إلى الفريق:%s"
+msgstr "تم إرسال إشعار WhatsApp إلى الفريق: %s"
 
 msgid "Team notification could not be sent: %s"
-msgstr "تعذر إرسال إشعار الفريق:%s"
+msgstr "تعذر إرسال إشعار الفريق: %s"
 
 msgid "New"
 msgstr "جديد"
@@ -1070,7 +1070,7 @@ msgid "Call Center Agent"
 msgstr "وكيل مركز الاتصال"
 
 msgid "Hello! Your message has reached the %s team. An agent will get back to you shortly."
-msgstr "مرحبا! لقد وصلت رسالتك إلى فريق%s. سيعود إليك الوكيل قريبًا."
+msgstr "مرحبا! لقد وصلت رسالتك إلى فريق %s. سيعود إليك الوكيل قريبًا."
 
 msgid "Hello, we are currently outside business hours. We received your message and will reply on the next business day."
 msgstr "مرحبا، نحن حاليا خارج ساعات العمل. لقد تلقينا رسالتك وسوف نقوم بالرد في يوم العمل التالي."
@@ -1079,7 +1079,7 @@ msgid "Greeting"
 msgstr "تحية"
 
 msgid "Hello {first_name}, this is {agent}. How can I help you?"
-msgstr "مرحبًا{first_name}، أنا{agent}. كيف يمكنني مساعدك؟"
+msgstr "مرحبًا {first_name}، أنا {agent}. كيف يمكنني مساعدك؟"
 
 msgid "General"
 msgstr "عام"
@@ -1109,13 +1109,13 @@ msgid "Website"
 msgstr "موقع الكتروني"
 
 msgid "You can find all the details on our website: {site}"
-msgstr "يمكنك العثور على كافة التفاصيل على موقعنا:{site}"
+msgstr "يمكنك العثور على كافة التفاصيل على موقعنا: {site}"
 
 msgid "Thanks"
 msgstr "شكرا"
 
 msgid "Thank you for reaching out {first_name}, have a nice day! 🌱"
-msgstr "شكرًا لك على التواصل مع{first_name}، أتمنى لك يومًا سعيدًا! 🌱"
+msgstr "شكرًا لك على التواصل مع {first_name}، أتمنى لك يومًا سعيدًا! 🌱"
 
 msgid "Closing"
 msgstr "إغلاق"
@@ -1127,7 +1127,7 @@ msgid "Other"
 msgstr "أخرى"
 
 msgid "Your receipt has reached us and your donation is confirmed ({donation}, {amount}). Thank you."
-msgstr "لقد وصل إلينا إيصالك وتم تأكيد تبرعك ({donation},{amount}). شكرًا لك."
+msgstr "لقد وصل إلينا إيصالك وتم تأكيد تبرعك ({donation}, {amount}). شكرًا لك."
 
 msgid "Cancel"
 msgstr "إلغاء"
@@ -1151,7 +1151,7 @@ msgid "The donation could not be saved."
 msgstr "لا يمكن حفظ التبرع."
 
 msgid "Donation record created: %1$s · %2$s"
-msgstr "تم إنشاء سجل التبرع:%1$s·%2$s"
+msgstr "تم إنشاء سجل التبرع: %1$s · %2$s"
 
 msgid "You are not allowed to do this."
 msgstr "لا يسمح لك أن تفعل هذا."
@@ -1169,7 +1169,7 @@ msgid "You are not allowed to create certificates."
 msgstr "غير مسموح لك بإنشاء شهادات."
 
 msgid "Certificate created: %s"
-msgstr "تم إنشاء الشهادة:%s"
+msgstr "تم إنشاء الشهادة: %s"
 
 msgid "Certificate not found."
 msgstr "لم يتم العثور على الشهادة."
@@ -1181,7 +1181,7 @@ msgid "This receipt was"
 msgstr "وكان هذا الإيصال"
 
 msgid "Receipt matched: %s"
-msgstr "الإيصال المطابق:%s"
+msgstr "الإيصال المطابق: %s"
 
 msgid "You are not allowed to view this file."
 msgstr "غير مسموح لك بمشاهدة هذا الملف."
@@ -1247,13 +1247,13 @@ msgid "No connection"
 msgstr "لا يوجد اتصال"
 
 msgid "{n} lines connected"
-msgstr "خطوط{n}متصلة"
+msgstr "خطوط {n} متصلة"
 
 msgid "WhatsApp connected"
 msgstr "متصل واتساب"
 
 msgid "{n}/{m} lines connected"
-msgstr "خطوط{n}/{m}متصلة"
+msgstr "خطوط {n}/{m} متصلة"
 
 msgid "WhatsApp not connected"
 msgstr "واتساب غير متصل"
@@ -1295,7 +1295,7 @@ msgid "No chats yet."
 msgstr "لا توجد محادثات بعد."
 
 msgid "Start a chat with {p}"
-msgstr "ابدأ محادثة مع{p}"
+msgstr "ابدأ محادثة مع {p}"
 
 msgid "recording audio…"
 msgstr "تسجيل الصوت..."
@@ -1307,7 +1307,7 @@ msgid "Assistant is typing…"
 msgstr "المساعد يكتب..."
 
 msgid "Assigned: {n}"
-msgstr "المعينة:{n}"
+msgstr "المعينة: {n}"
 
 msgid "Chat menu"
 msgstr "قائمة الدردشة"
@@ -1466,16 +1466,16 @@ msgid "Delete history permanently"
 msgstr "حذف التاريخ نهائيا"
 
 msgid "{n} messages deleted"
-msgstr "تم حذف رسائل{n}"
+msgstr "تم حذف رسائل {n}"
 
 msgid "All messages and files in the {c} chat are permanently deleted from this panel. Messages on the contact's phone and on the connected WhatsApp phone are not deleted. This cannot be undone."
-msgstr "يتم حذف جميع الرسائل والملفات الموجودة في دردشة{c}نهائيًا من هذه اللوحة. لا يتم حذف الرسائل الموجودة على هاتف جهة الاتصال وعلى هاتف WhatsApp المتصل. لا يمكن التراجع عن هذا."
+msgstr "يتم حذف جميع الرسائل والملفات الموجودة في دردشة {c} نهائيًا من هذه اللوحة. لا يتم حذف الرسائل الموجودة على هاتف جهة الاتصال وعلى هاتف WhatsApp المتصل. لا يمكن التراجع عن هذا."
 
 msgid "The copy on the Evolution server will not be imported again; the assistant starts fresh in this chat. You may want to export the chat first."
 msgstr "لن يتم استيراد النسخة الموجودة على خادم Evolution مرة أخرى؛ يبدأ المساعد من جديد في هذه الدردشة. قد ترغب في تصدير الدردشة أولاً."
 
 msgid "Type {w} to confirm"
-msgstr "اكتب{w}للتأكيد"
+msgstr "اكتب {w} للتأكيد"
 
 msgid "assistant"
 msgstr "مساعد"
@@ -1496,13 +1496,13 @@ msgid "Attach"
 msgstr "نعلق"
 
 msgid "{n} items · about {t} tokens · the assistant reads them on every reply"
-msgstr "عناصر{n}· حول رموز{t}· يقرأها المساعد في كل رد"
+msgstr "عناصر {n}· حول رموز {t}· يقرأها المساعد في كل رد"
 
 msgid "Contact memory is turned off in settings; items are not sent to the assistant."
 msgstr "تم إيقاف تشغيل ذاكرة الاتصال في الإعدادات؛ لا يتم إرسال العناصر إلى المساعد."
 
 msgid "Last summary: {s}"
-msgstr "الملخص الأخير:{s}"
+msgstr "الملخص الأخير: {s}"
 
 msgid "queued"
 msgstr "في قائمة الانتظار"
@@ -1538,7 +1538,7 @@ msgid "Delete all memory items for {c}?"
 msgstr "هل تريد حذف كافة عناصر الذاكرة لـ{c}؟"
 
 msgid "If the contact asks, the assistant deletes the items itself. When the chat has been quiet for {h} hours, the conversation is summarized and important details are written here with date and time."
-msgstr "إذا طلبت جهة الاتصال ذلك، يقوم المساعد بحذف العناصر بنفسه. عندما تكون الدردشة هادئة لمدة{h}ساعات، يتم تلخيص المحادثة وتكتب التفاصيل المهمة هنا مع التاريخ والوقت."
+msgstr "إذا طلبت جهة الاتصال ذلك، يقوم المساعد بحذف العناصر بنفسه. عندما تكون الدردشة هادئة لمدة {h} ساعات، يتم تلخيص المحادثة وتكتب التفاصيل المهمة هنا مع التاريخ والوقت."
 
 msgid "Loading…"
 msgstr "جارٍ التحميل..."
@@ -1553,7 +1553,7 @@ msgid "Added to blocklist"
 msgstr "تمت الإضافة إلى قائمة الحظر"
 
 msgid "From now on no WhatsApp, email or SMS will be sent to {c}, and the assistant will not talk to them. Their messages still arrive in the panel."
-msgstr "من الآن فصاعدًا، لن يتم إرسال WhatsApp أو بريد إلكتروني أو رسائل نصية قصيرة إلى{c}، ولن يتحدث المساعد معهم. لا تزال رسائلهم تصل إلى اللوحة."
+msgstr "من الآن فصاعدًا، لن يتم إرسال WhatsApp أو بريد إلكتروني أو رسائل نصية قصيرة إلى {c}، ولن يتحدث المساعد معهم. لا تزال رسائلهم تصل إلى اللوحة."
 
 msgid "Removed from blocklist"
 msgstr "تمت الإزالة من قائمة الحظر"
@@ -1571,7 +1571,7 @@ msgid "Remove"
 msgstr "إزالة"
 
 msgid "{n} contacts in total"
-msgstr "{n}جهات الاتصال في المجموع"
+msgstr "{n} جهات الاتصال في المجموع"
 
 msgid "Added manually"
 msgstr "تمت إضافتها يدويًا"
@@ -1589,7 +1589,7 @@ msgid "Finished"
 msgstr "انتهى"
 
 msgid "{n} reminders"
-msgstr "تذكيرات{n}"
+msgstr "تذكيرات {n}"
 
 msgid "Reminders are turned off in the settings; due ones are not sent."
 msgstr "تم إيقاف تشغيل التذكيرات في الإعدادات؛ لا يتم إرسال المستحقة."
@@ -1598,10 +1598,10 @@ msgid "No reminders. They show up here when a person asks the assistant somethin
 msgstr "لا توجد تذكيرات. تظهر هنا عندما يسأل أحد الأشخاص المساعد شيئًا مثل \"ذكّرني كل شهر\"."
 
 msgid "Next: {d}"
-msgstr "التالي:{d}"
+msgstr "التالي: {d}"
 
 msgid "sent {n} times"
-msgstr "تم إرسال{n}مرات"
+msgstr "تم إرسال {n} مرات"
 
 msgid "Go to chat"
 msgstr "اذهب إلى الدردشة"
@@ -1637,7 +1637,7 @@ msgid "Output tokens"
 msgstr "رموز الإخراج"
 
 msgid "{n} requests"
-msgstr "طلبات{n}"
+msgstr "طلبات {n}"
 
 msgid "Daily reply limit per chat"
 msgstr "حد الرد اليومي لكل دردشة"
@@ -1685,7 +1685,7 @@ msgid "Remove assignment"
 msgstr "إزالة المهمة"
 
 msgid "Older messages could not be fetched from the WhatsApp line: {e}"
-msgstr "لا يمكن جلب الرسائل القديمة من خط WhatsApp:{e}"
+msgstr "لا يمكن جلب الرسائل القديمة من خط WhatsApp: {e}"
 
 msgid "Messages in this chat are visible only to authorized agents. Customers never see internal notes."
 msgstr "الرسائل في هذه الدردشة مرئية فقط للوكلاء المعتمدين. لا يرى العملاء الملاحظات الداخلية مطلقًا."
@@ -1862,7 +1862,7 @@ msgid "Caption"
 msgstr "تسمية توضيحية"
 
 msgid "Send {n} files"
-msgstr "إرسال ملفات{n}"
+msgstr "إرسال ملفات {n}"
 
 msgid "This browser does not support audio recording."
 msgstr "هذا المتصفح لا يدعم التسجيل الصوتي."
@@ -1898,7 +1898,7 @@ msgid "Search quick replies"
 msgstr "البحث عن ردود سريعة"
 
 msgid "Used {n} times"
-msgstr "تستخدم مرات{n}"
+msgstr "تستخدم مرات {n}"
 
 msgid "No quick replies found."
 msgstr "لم يتم العثور على ردود سريعة."
@@ -1955,16 +1955,16 @@ msgid "Invalid number"
 msgstr "رقم غير صالح"
 
 msgid "{p} uses WhatsApp"
-msgstr "يستخدم{p}الواتساب"
+msgstr "يستخدم {p} الواتساب"
 
 msgid "{p} is not on WhatsApp"
-msgstr "{p}ليس موجودًا على WhatsApp"
+msgstr "{p} ليس موجودًا على WhatsApp"
 
 msgid "{p} — WhatsApp could not be checked, you can still try."
 msgstr "{p}— تعذر التحقق من WhatsApp، لا يزال بإمكانك المحاولة."
 
 msgid "A chat with this contact already exists: {n}"
-msgstr "توجد محادثة مع جهة الاتصال هذه بالفعل:{n}"
+msgstr "توجد محادثة مع جهة الاتصال هذه بالفعل: {n}"
 
 msgid "Phone number"
 msgstr "رقم الهاتف"
@@ -1997,7 +1997,7 @@ msgid "Insert into message"
 msgstr "إدراج في الرسالة"
 
 msgid "WhatsApp name: {n}"
-msgstr "اسم الواتساب:{n}"
+msgstr "اسم الواتساب: {n}"
 
 msgid "Copy number"
 msgstr "نسخ الرقم"
@@ -2018,7 +2018,7 @@ msgid "Pin chat"
 msgstr "دبوس الدردشة"
 
 msgid "First contact: {d}"
-msgstr "جهة الاتصال الأولى:{d}"
+msgstr "جهة الاتصال الأولى: {d}"
 
 msgid "AI pre-check. The team makes the final check."
 msgstr "فحص مسبق بالذكاء الاصطناعي. يقوم الفريق بإجراء الفحص النهائي."
@@ -2072,13 +2072,13 @@ msgid "Quantity"
 msgstr "الكمية"
 
 msgid "Total: {a}"
-msgstr "الإجمالي:{a}"
+msgstr "الإجمالي: {a}"
 
 msgid "This option has no price."
 msgstr "هذا الخيار ليس له ثمن."
 
 msgid "Donation saved: {d}"
-msgstr "تم حفظ التبرع:{d}"
+msgstr "تم حفظ التبرع: {d}"
 
 msgid "Donation record from receipt"
 msgstr "سجل التبرع من الاستلام"
@@ -2102,7 +2102,7 @@ msgid "Full name"
 msgstr "الاسم الكامل"
 
 msgid "Variables such as {donation}, {amount} and {bank} are filled in when sending."
-msgstr "تتم تعبئة المتغيرات مثل{donation}و{amount}و{bank}عند الإرسال."
+msgstr "تتم تعبئة المتغيرات مثل {donation} و {amount} و {bank} عند الإرسال."
 
 msgid "No active certificate template."
 msgstr "لا يوجد قالب شهادة نشط."
@@ -2120,7 +2120,7 @@ msgid "Full name is required."
 msgstr "الاسم الكامل مطلوب."
 
 msgid "Certificate created: {n}"
-msgstr "تم إنشاء الشهادة:{n}"
+msgstr "تم إنشاء الشهادة: {n}"
 
 msgid "Template"
 msgstr "القالب"
@@ -2147,7 +2147,7 @@ msgid "Match"
 msgstr "مباراة"
 
 msgid "{n} receipts"
-msgstr "إيصالات{n}"
+msgstr "إيصالات {n}"
 
 msgid "Pending donations"
 msgstr "التبرعات في انتظار"
@@ -2186,7 +2186,7 @@ msgid "No records yet."
 msgstr "لا توجد سجلات حتى الآن."
 
 msgid "{n} pcs"
-msgstr "جهاز كمبيوتر شخصى{n}"
+msgstr "جهاز كمبيوتر شخصى {n}"
 
 msgid "Receipt"
 msgstr "استلام"
@@ -2258,7 +2258,7 @@ msgid "The AI summary could not be read."
 msgstr "تعذرت قراءة ملخص الذكاء الاصطناعي."
 
 msgid "%1$d incoming messages summarized, %2$d items written."
-msgstr "تلخيص الرسائل الواردة%1$d، وكتابة عناصر%2$d."
+msgstr "تلخيص الرسائل الواردة %1$d، وكتابة عناصر %2$d."
 
 msgid "Key and value are required."
 msgstr "المفتاح والقيمة مطلوبة."
@@ -2297,13 +2297,13 @@ msgid "Choose a model"
 msgstr "اختر نموذجًا"
 
 msgid "Search {n} models…"
-msgstr "ابحث عن موديلات{n}..."
+msgstr "ابحث عن موديلات {n}..."
 
 msgid "Default"
 msgstr "الافتراضي"
 
 msgid "{n} context"
-msgstr "سياق{n}"
+msgstr "سياق {n}"
 
 msgid "tools"
 msgstr "أدوات"
@@ -2312,10 +2312,10 @@ msgid "vision"
 msgstr "الرؤية"
 
 msgid "{n} more models; narrow your search."
-msgstr "{n}المزيد من النماذج؛ تضييق نطاق البحث."
+msgstr "{n} المزيد من النماذج؛ تضييق نطاق البحث."
 
 msgid "Use: {id}"
-msgstr "الاستخدام:{id}"
+msgstr "الاستخدام: {id}"
 
 msgid "Not in the list, ID entered manually"
 msgstr "ليس في القائمة، أدخلت الهوية يدويا"
@@ -2354,7 +2354,7 @@ msgid "The model could not read the file."
 msgstr "لم يتمكن النموذج من قراءة الملف."
 
 msgid "Amount %1$s (expected %2$s)"
-msgstr "المبلغ%1$s(المتوقع%2$s)"
+msgstr "المبلغ %1$s(المتوقع %2$s)"
 
 msgid "Recipient"
 msgstr "المستلم"
@@ -2426,28 +2426,28 @@ msgid "Once"
 msgstr "مرة واحدة"
 
 msgid "Every day at %s"
-msgstr "كل يوم في%s"
+msgstr "كل يوم في %s"
 
 msgid "Every week on %1$s at %2$s"
-msgstr "كل أسبوع على%1$sفي%2$s"
+msgstr "كل أسبوع على %1$s في %2$s"
 
 msgid "Every month on day %1$d at %2$s"
-msgstr "كل شهر في يوم%1$dفي%2$s"
+msgstr "كل شهر في يوم %1$d في %2$s"
 
 msgid "Every year on %1$s at %2$s"
-msgstr "كل عام على%1$sفي%2$s"
+msgstr "كل عام على %1$s في %2$s"
 
 msgid "%1$s: %2$s"
-msgstr "%1$s:%2$s"
+msgstr "%1$s: %2$s"
 
 msgid "First: %s"
-msgstr "أولاً:%s"
+msgstr "أولاً: %s"
 
 msgid "The person stopped the reminder: %s"
-msgstr "أوقف الشخص التذكير:%s"
+msgstr "أوقف الشخص التذكير: %s"
 
 msgid "The assistant set a reminder: %1$s (%2$s)"
-msgstr "قام المساعد بتعيين تذكير:%1$s(%2$s)"
+msgstr "قام المساعد بتعيين تذكير: %1$s(%2$s)"
 
 msgid "Did not run on time, skipped."
 msgstr "لم تعمل في الوقت المحدد، تخطي."
@@ -2465,7 +2465,7 @@ msgid "The message could not be sent."
 msgstr "لا يمكن إرسال الرسالة."
 
 msgid "Reminder sent: %s"
-msgstr "تم إرسال التذكير:%s"
+msgstr "تم إرسال التذكير: %s"
 
 msgid "The reminder could not be updated."
 msgstr "لا يمكن تحديث التذكير."
@@ -2492,19 +2492,19 @@ msgid "Donation report"
 msgstr "تقرير التبرع"
 
 msgid "Hello %s,"
-msgstr "مرحبًا%s،"
+msgstr "مرحبًا %s،"
 
 msgid "✅ Paid: %1$d donations · %2$s (%3$d units)"
-msgstr "✅ المدفوعة: تبرعات%1$d·%2$s(وحدات%3$d)"
+msgstr "✅ المدفوعة: تبرعات %1$d · %2$s(وحدات %3$d)"
 
 msgid "⏳ Awaiting payment: %1$d · %2$s"
-msgstr "⏳ في انتظار الدفع:%1$d·%2$s"
+msgstr "⏳ في انتظار الدفع: %1$d · %2$s"
 
 msgid "❌ Cancelled: %d"
-msgstr "❌ تم الإلغاء:%d"
+msgstr "❌ تم الإلغاء: %d"
 
 msgid "• %1$s: %2$d paid (%3$s), %4$d pending"
-msgstr "•%1$s:%2$dمدفوع (%3$s)،%4$dمعلق"
+msgstr "•%1$s: %2$d مدفوع (%3$s)، %4$d معلق"
 
 msgid "Staff"
 msgstr "الموظفين"
@@ -2513,7 +2513,7 @@ msgid "No donations linked to you in this period."
 msgstr "لا توجد تبرعات مرتبطة بك في هذه الفترة."
 
 msgid "📅 This month: %1$d donations · %2$s"
-msgstr "📅 هذا الشهر: تبرعات%1$d·%2$s"
+msgstr "📅 هذا الشهر: تبرعات %1$d · %2$s"
 
 msgid "WhatsApp reports"
 msgstr "تقارير واتس اب"
@@ -2534,7 +2534,7 @@ msgid "Saved."
 msgstr "تم الحفظ."
 
 msgid "%d messages sent."
-msgstr "تم إرسال رسائل%d."
+msgstr "تم إرسال رسائل %d."
 
 msgid "Reports need Flux Roles 1.1.0 and Flux Donations."
 msgstr "تحتاج التقارير إلى Flux أدوار 1.1.0 وتبرعات Flux."
@@ -2585,10 +2585,10 @@ msgid "Motivational lines (one per line; one is added at random to each report)"
 msgstr "خطوط تحفيزية (واحد في كل سطر، ويتم إضافة واحد عشوائيًا إلى كل تقرير)"
 
 msgid "%d recipients (with a registered number and permission)."
-msgstr "مستلمو%d(برقم مسجل وإذن)."
+msgstr "مستلمو %d(برقم مسجل وإذن)."
 
 msgid "Last sent: %s."
-msgstr "آخر إرسال:%s."
+msgstr "آخر إرسال: %s."
 
 msgid "Preview (for you)"
 msgstr "المعاينة (لك)"
@@ -2618,16 +2618,16 @@ msgid "First add a WhatsApp connection under Settings › Connections."
 msgstr "قم أولاً بإضافة اتصال WhatsApp ضمن الإعدادات › الاتصالات."
 
 msgid "%1$s assigned the chat to %2$s"
-msgstr "قام%1$sبتعيين الدردشة إلى%2$s"
+msgstr "قام %1$s بتعيين الدردشة إلى %2$s"
 
 msgid "%s removed the chat assignment"
-msgstr "قام%sبإزالة مهمة الدردشة"
+msgstr "قام %s بإزالة مهمة الدردشة"
 
 msgid "%s closed the chat"
-msgstr "أغلق%sالدردشة"
+msgstr "أغلق %s الدردشة"
 
 msgid "%s reopened the chat"
-msgstr "أعاد%sفتح الدردشة"
+msgstr "أعاد %s فتح الدردشة"
 
 msgid "File is too large (max %s)."
 msgstr "الملف كبير جدًا (الحد الأقصى لـ%s)."
@@ -2663,7 +2663,7 @@ msgid "Message could not be saved."
 msgstr "لا يمكن حفظ الرسالة."
 
 msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API (version %s) could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
-msgstr "تكتب جهة الاتصال هذه من رقم WhatsApp مخفي (@lid) ولا يمكن إرسال Evolution API (الإصدار%s) إلى هذا العنوان. قم بتحديث خادم Evolution API إلى الإصدار 2.3 أو الأحدث؛ إذا وصل الرقم الحقيقي لجهة الاتصال، يرسل البرنامج المساعد هناك."
+msgstr "تكتب جهة الاتصال هذه من رقم WhatsApp مخفي (@lid) ولا يمكن إرسال Evolution API (الإصدار %s) إلى هذا العنوان. قم بتحديث خادم Evolution API إلى الإصدار 2.3 أو الأحدث؛ إذا وصل الرقم الحقيقي لجهة الاتصال، يرسل البرنامج المساعد هناك."
 
 msgid "This contact writes from a hidden WhatsApp number (@lid) and Evolution API could not send to this address. Update the Evolution API server to 2.3 or later; if the contact's real number arrives, the plugin sends there."
 msgstr "تكتب جهة الاتصال هذه من رقم WhatsApp مخفي (@lid) ولا يمكن لـ Evolution API الإرسال إلى هذا العنوان. قم بتحديث خادم Evolution API إلى الإصدار 2.3 أو الأحدث؛ إذا وصل الرقم الحقيقي لجهة الاتصال، يرسل البرنامج المساعد هناك."
@@ -2675,13 +2675,13 @@ msgid "Connected ✓"
 msgstr "متصل ✓"
 
 msgid "Not connected (state: %s). Connect with QR."
-msgstr "غير متصل (الحالة:%s). تواصل مع QR."
+msgstr "غير متصل (الحالة: %s). تواصل مع QR."
 
 msgid "Webhook points to this site ✓"
 msgstr "يشير Webhook إلى هذا الموقع ✓"
 
 msgid "Evolution API version: %s"
-msgstr "إصدار واجهة برمجة تطبيقات التطور:%s"
+msgstr "إصدار واجهة برمجة تطبيقات التطور: %s"
 
 msgid "(old: replies to hidden-number (@lid) contacts may fail, update to 2.3 or later)"
 msgstr "(قديم: قد تفشل الردود على جهات الاتصال ذات الرقم المخفي (@lid)، قم بالتحديث إلى الإصدار 2.3 أو الأحدث)"
@@ -2696,13 +2696,13 @@ msgid "Importing recent chats, this may take a while…"
 msgstr "جارٍ استيراد الدردشات الأخيرة، قد يستغرق ذلك بعض الوقت..."
 
 msgid "Messages stored in Evolution: %s"
-msgstr "الرسائل المخزنة في Evolution:%s"
+msgstr "الرسائل المخزنة في Evolution: %s"
 
 msgid "Evolution does not store messages, so older messages cannot be loaded. On the Evolution server set DATABASE_SAVE_DATA_NEW_MESSAGE and DATABASE_SAVE_DATA_HISTORIC to true; for older conversations, keep \"Sync full history\" on in the instance settings when you reconnect the line with QR."
 msgstr "لا يقوم Evolution بتخزين الرسائل، لذا لا يمكن تحميل الرسائل الأقدم. على خادم Evolution، قم بتعيين DATABASE_SAVE_DATA_NEW_MESSAGE وDATABASE_SAVE_DATA_HISTORIC على true؛ بالنسبة للمحادثات القديمة، احتفظ بميزة \"مزامنة السجل الكامل\" في إعدادات المثيل عند إعادة توصيل الخط باستخدام QR."
 
 msgid "%1$s chats, %2$s messages imported ✓"
-msgstr "دردشات%1$s، استيراد رسائل%2$s✓"
+msgstr "دردشات %1$s، استيراد رسائل %2$s✓"
 
 msgid "Scan this code via WhatsApp › Linked devices › Link a device."
 msgstr "امسح هذا الرمز ضوئيًا عبر WhatsApp › الأجهزة المرتبطة › ربط جهاز."
@@ -2726,7 +2726,7 @@ msgid "Asking the AI…"
 msgstr "سؤال للذكاء الاصطناعي..."
 
 msgid "Working ✓ (%2$s ms): %1$s"
-msgstr "العمل ✓ (%2$sمللي ثانية):%1$s"
+msgstr "العمل ✓ (%2$s مللي ثانية): %1$s"
 
 msgid "Save the key and model first."
 msgstr "احفظ المفتاح والطراز أولاً."
@@ -2801,13 +2801,13 @@ msgid "unreachable"
 msgstr "لا يمكن الوصول إليه"
 
 msgid "Flux Mail connection: %s"
-msgstr "اتصال البريد الجريان:%s"
+msgstr "اتصال البريد الجريان: %s"
 
 msgid "Flux Mail connection #%d (not found or disabled)"
 msgstr "اتصال Flux Mail #%d(غير موجود أو معطل)"
 
 msgid "Use Flux Certificates provider: %s"
-msgstr "استخدم موفر شهادات التدفق:%s"
+msgstr "استخدم موفر شهادات التدفق: %s"
 
 msgid "Enter separate Evolution API details"
 msgstr "أدخل تفاصيل Evolution API المنفصلة"
@@ -2837,7 +2837,7 @@ msgid "Regenerate secret key"
 msgstr "إعادة إنشاء المفتاح السري"
 
 msgid "Last webhook: %s"
-msgstr "آخر خطاف ويب:%s"
+msgstr "آخر خطاف ويب: %s"
 
 msgid "No webhook received yet."
 msgstr "لم يتم استلام الرد التلقائي على الويب حتى الآن."
@@ -2867,7 +2867,7 @@ msgid "Panel title"
 msgstr "عنوان اللوحة"
 
 msgid "Site name if empty. The {brand} variable uses this too."
-msgstr "اسم الموقع إذا كان فارغا. يستخدم المتغير{brand}هذا أيضًا."
+msgstr "اسم الموقع إذا كان فارغا. يستخدم المتغير {brand} هذا أيضًا."
 
 msgid "Accent color"
 msgstr "لون مميز"
@@ -2897,7 +2897,7 @@ msgid "Agents"
 msgstr "الوكلاء"
 
 msgid "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access."
-msgstr "منح المستخدم دور%s؛ لا يرون سوى شاشة الدردشة ولا يمكنهم فتح الإعدادات. يتمتع المسؤولون دائمًا بإمكانية الوصول."
+msgstr "منح المستخدم دور %s؛ لا يرون سوى شاشة الدردشة ولا يمكنهم فتح الإعدادات. يتمتع المسؤولون دائمًا بإمكانية الوصول."
 
 msgid "Add new user"
 msgstr "إضافة مستخدم جديد"
@@ -2957,7 +2957,7 @@ msgid "At most once per contact every (hours)"
 msgstr "مرة واحدة على الأكثر لكل جهة اتصال كل (ساعات)"
 
 msgid "Timezone: %1$s. Now: %2$s."
-msgstr "المنطقة الزمنية:%1$s. الآن:%2$s."
+msgstr "المنطقة الزمنية: %1$s. الآن: %2$s."
 
 msgid "within business hours"
 msgstr "خلال ساعات العمل"
@@ -2966,7 +2966,7 @@ msgid "outside business hours"
 msgstr "خارج ساعات العمل"
 
 msgid "The {first_name}, {name}, {brand}, {site}, {date} variables can be used in the texts."
-msgstr "يمكن استخدام متغيرات{first_name}و{name}و{brand}و{site}و{date}في النصوص."
+msgstr "يمكن استخدام متغيرات {first_name} و {name} و {brand} و {site} و {date} في النصوص."
 
 msgid "Chat labels"
 msgstr "تسميات الدردشة"
@@ -3020,7 +3020,7 @@ msgid "If empty, the account in WooCommerce › Payments › Bank transfer is us
 msgstr "إذا كان فارغًا، فسيتم استخدام الحساب في WooCommerce › المدفوعات › التحويل البنكي."
 
 msgid "Variables: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
-msgstr "المتغيرات:{first_name},{name},{donation},{amount},{quantity},{bank},{certificate_link},{agent},{brand},{date}."
+msgstr "المتغيرات: {first_name}, {name}, {donation}, {amount}, {quantity}, {bank}, {certificate_link}, {agent}, {brand}, {date}."
 
 msgid "AI connection"
 msgstr "اتصال الذكاء الاصطناعي"
@@ -3059,7 +3059,7 @@ msgid "If the selected model cannot read images, a cheap vision model is used au
 msgstr "إذا لم يتمكن النموذج المحدد من قراءة الصور، فسيتم استخدام نموذج رؤية رخيص تلقائيًا."
 
 msgid "This month (%1$s): %2$s requests, %3$s tokens, about $%4$s."
-msgstr "هذا الشهر (%1$s): طلبات%2$s، رموز%3$s، حوالي%4$sدولار."
+msgstr "هذا الشهر (%1$s): طلبات %2$s، رموز %3$s، حوالي %4$s دولار."
 
 msgid "Reply suggestions"
 msgstr "الرد على الاقتراحات"
@@ -3158,7 +3158,7 @@ msgid "Transfer description"
 msgstr "وصف النقل"
 
 msgid "Variables: {type}, {name}, {amount}, {quantity}"
-msgstr "المتغيرات:{type}،{name}،{amount}،{quantity}"
+msgstr "المتغيرات: {type}، {name}، {amount}، {quantity}"
 
 msgid "Donation page URL"
 msgstr "عنوان URL لصفحة التبرع"
@@ -3173,7 +3173,7 @@ msgid "Donation cancellation question"
 msgstr "سؤال إلغاء التبرع"
 
 msgid "The assistant cancels only unpaid donations, with the person's confirmation. Empty = default text. Variables: {bagis}, {tutar}."
-msgstr "يقوم المساعد بإلغاء التبرعات غير المدفوعة فقط، مع تأكيد الشخص. فارغ = النص الافتراضي. المتغيرات:{bagis}،{tutar}."
+msgstr "يقوم المساعد بإلغاء التبرعات غير المدفوعة فقط، مع تأكيد الشخص. فارغ = النص الافتراضي. المتغيرات: {bagis}، {tutar}."
 
 msgid "Message sent when the daily limit is reached"
 msgstr "يتم إرسال الرسالة عند الوصول إلى الحد اليومي"
@@ -3293,7 +3293,7 @@ msgid "Message sent before the certificate"
 msgstr "الرسالة المرسلة قبل الشهادة"
 
 msgid "Then the WhatsApp certificate message from Flux Certificates is sent. Variables: {ad}, {bagisci}, {bagis}, {brand}."
-msgstr "ثم يتم إرسال رسالة شهادة WhatsApp من شهادات Flux. المتغيرات:{ad},{bagisci},{bagis},{brand}."
+msgstr "ثم يتم إرسال رسالة شهادة WhatsApp من شهادات Flux. المتغيرات: {ad}, {bagisci}, {bagis}, {brand}."
 
 msgid "If a person asks, the assistant sets up a reminder (e.g. \"remind me of sapling planting every month\", \"send me your latest projects every month\", \"ask me for a sapling every month\"); when it is due, the assistant writes and sends the message"
 msgstr "إذا سأل شخص ما، يقوم المساعد بإعداد تذكير (على سبيل المثال، \"ذكرني بزراعة شتلات كل شهر\"، \"أرسل لي أحدث مشاريعك كل شهر\"، \"اسألني عن شتلة كل شهر\")؛ عندما يحين موعدها، يقوم المساعد بكتابة الرسالة وإرسالها"
@@ -3320,10 +3320,10 @@ msgid "First message to the donor for a donation opened by staff"
 msgstr "الرسالة الأولى إلى المتبرع بالتبرع يفتحها الموظفون"
 
 msgid "Hello {ad} 🌱 Your {bagis} donation request via {personel} has been received. You can pay with the details below."
-msgstr "مرحبًا{ad}🌱 لقد تم استلام طلب التبرع بـ{bagis}عبر{personel}. يمكنك الدفع بالتفاصيل أدناه."
+msgstr "مرحبًا {ad}🌱 لقد تم استلام طلب التبرع بـ{bagis} عبر {personel}. يمكنك الدفع بالتفاصيل أدناه."
 
 msgid "The payment link and bank details follow. Variables: {ad}, {adsoyad}, {personel}, {bagis}."
-msgstr "اتبع رابط الدفع والتفاصيل المصرفية. المتغيرات:{ad},{adsoyad},{personel},{bagis}."
+msgstr "اتبع رابط الدفع والتفاصيل المصرفية. المتغيرات: {ad}, {adsoyad}, {personel}, {bagis}."
 
 msgid "When a donation referred by a staff member is paid and its certificates are made, send them to the staff member on WhatsApp too (just like the donor)"
 msgstr "عند دفع التبرع المحول من أحد الموظفين وإصدار شهاداته، أرسلها إلى الموظف على الواتساب أيضًا (تمامًا مثل المتبرع)"
@@ -3332,7 +3332,7 @@ msgid "Message sent to the staff member before the certificate"
 msgstr "الرسالة المرسلة للموظف قبل الشهادة"
 
 msgid "Variables: {ad}, {bagisci}, {bagis}, {no}, {brand}."
-msgstr "المتغيرات:{ad},{bagisci},{bagis},{no},{brand}."
+msgstr "المتغيرات: {ad}, {bagisci}, {bagis}, {no}, {brand}."
 
 msgid "How many times staff can resend a donation's certificate"
 msgstr "كم مرة يمكن للموظفين إعادة إرسال شهادة التبرع"
@@ -3377,7 +3377,7 @@ msgid "WhatsApp/SMS code message"
 msgstr "رسالة رمز WhatsApp/SMS"
 
 msgid "Default text if empty. Variables: {kod}, {dk}, {marka}. The e-mail text is edited in Flux Mail › E-mail templates."
-msgstr "النص الافتراضي إذا كان فارغا. المتغيرات:{kod}،{dk}،{marka}. يتم تحرير نص البريد الإلكتروني في Flux Mail › قوالب البريد الإلكتروني."
+msgstr "النص الافتراضي إذا كان فارغا. المتغيرات: {kod}، {dk}، {marka}. يتم تحرير نص البريد الإلكتروني في Flux Mail › قوالب البريد الإلكتروني."
 
 msgid "Site content"
 msgstr "محتوى الموقع"
@@ -3440,22 +3440,22 @@ msgid "Do not let the assistant share this content"
 msgstr "لا تسمح للمساعد بمشاركة هذا المحتوى"
 
 msgid "Corrected by staff member %1$s; #%2$d was opened instead."
-msgstr "تم التصحيح بواسطة الموظف%1$s؛ # تم فتح%2$dبدلاً من ذلك."
+msgstr "تم التصحيح بواسطة الموظف %1$s؛ # تم فتح %2$d بدلاً من ذلك."
 
 msgid "Donation #%1$d was cancelled and #%2$d opened instead."
-msgstr "تم إلغاء التبرع #%1$dوتم فتح #%2$dبدلاً منه."
+msgstr "تم إلغاء التبرع #%1$d وتم فتح #%2$d بدلاً منه."
 
 msgid "Created by staff member %s via the WhatsApp assistant."
-msgstr "تم إنشاؤه بواسطة الموظف%sعبر مساعد WhatsApp."
+msgstr "تم إنشاؤه بواسطة الموظف %s عبر مساعد WhatsApp."
 
 msgid "Donation opened via staff member %1$s: %2$s (#%3$d)"
-msgstr "تم فتح التبرع عن طريق الموظف%1$s:%2$s(#%3$d)"
+msgstr "تم فتح التبرع عن طريق الموظف %1$s: %2$s(#%3$d)"
 
 msgid "Your certificate 🌱"
 msgstr "شهادتك 🌱"
 
 msgid "Staff member %1$s resent the certificate on WhatsApp: %2$s"
-msgstr "استاء عضو فريق العمل%1$sمن الشهادة على WhatsApp:%2$s"
+msgstr "استاء عضو فريق العمل %1$s من الشهادة على WhatsApp: %2$s"
 
 msgid "✅ Your donor paid: *%1$s* · %2$s #%3$d"
 msgstr "✅ دفع المتبرع الخاص بك: *%1$s* ·%2$s#%3$d"
@@ -3473,7 +3473,7 @@ msgid "Unsupported message"
 msgstr "رسالة غير مدعومة"
 
 msgid "{a} lines added, {d} lines removed"
-msgstr "تمت إضافة خطوط{a}، وإزالة خطوط{d}"
+msgstr "تمت إضافة خطوط {a}، وإزالة خطوط {d}"
 
 msgid "No AI key or model has been entered."
 msgstr "لم يتم إدخال أي مفتاح أو نموذج AI."
@@ -3515,7 +3515,7 @@ msgid "Receipts read · ✓{a} ✕{b}"
 msgstr "قراءة الإيصالات · ✓{a}✕{b}"
 
 msgid "Memory tokens · {p} contacts"
-msgstr "رموز الذاكرة · جهات اتصال{p}"
+msgstr "رموز الذاكرة · جهات اتصال {p}"
 
 msgid "Opted out (blocklist)"
 msgstr "تم التعطيل (القائمة المحظورة)"
@@ -3524,13 +3524,13 @@ msgid "Reminders sent"
 msgstr "تم إرسال التذكيرات"
 
 msgid "Codes sent · e-mail {e} · WhatsApp {w} · SMS {s}"
-msgstr "تم إرسال الرموز · البريد الإلكتروني{e}· WhatsApp{w}· الرسائل القصيرة{s}"
+msgstr "تم إرسال الرموز · البريد الإلكتروني {e}· WhatsApp {w}· الرسائل القصيرة {s}"
 
 msgid "Verified · phone {p} · e-mail {e}"
-msgstr "تم التحقق منه · الهاتف{p}· البريد الإلكتروني{e}"
+msgstr "تم التحقق منه · الهاتف {p}· البريد الإلكتروني {e}"
 
 msgid "Code issues · wrong {w} · expired {x} · not delivered {f}"
-msgstr "مشاكل في الكود · خطأ{w}· انتهت صلاحية{x}· لم يتم التسليم{f}"
+msgstr "مشاكل في الكود · خطأ {w}· انتهت صلاحية {x}· لم يتم التسليم {f}"
 
 msgid "Not verified, team notified"
 msgstr "لم يتم التحقق، تم إخطار الفريق"
@@ -3545,19 +3545,19 @@ msgid "Payment links resent"
 msgstr "روابط الدفع مستاءة"
 
 msgid "Tokens: {i} input / {o} output · {c} requests · {m} messages sent"
-msgstr "الرموز: إدخال{i}/ إخراج{o}· طلبات{c}· إرسال رسائل{m}"
+msgstr "الرموز: إدخال {i}/ إخراج {o}· طلبات {c}· إرسال رسائل {m}"
 
 msgid "{n} donations awaiting payment"
-msgstr "تبرعات{n}في انتظار الدفع"
+msgstr "تبرعات {n} في انتظار الدفع"
 
 msgid "{n} errors"
-msgstr "أخطاء{n}"
+msgstr "أخطاء {n}"
 
 msgid "{n} chats summarized"
-msgstr "تلخيص محادثات{n}"
+msgstr "تلخيص محادثات {n}"
 
 msgid "Counters since {d}"
-msgstr "عدادات منذ{d}"
+msgstr "عدادات منذ {d}"
 
 msgid "Refreshes every 30 s"
 msgstr "يتم تحديثه كل 30 ثانية"
@@ -3599,16 +3599,16 @@ msgid "Load more"
 msgstr "تحميل المزيد"
 
 msgid "Address: {h}"
-msgstr "العنوان:{h}"
+msgstr "العنوان: {h}"
 
 msgid "{n} assistant messages"
-msgstr "رسائل مساعد{n}"
+msgstr "رسائل مساعد {n}"
 
 msgid "Donation #{id}"
 msgstr "التبرع #{id}"
 
 msgid "Version {id}"
-msgstr "الإصدار{id}"
+msgstr "الإصدار {id}"
 
 msgid "Change note (e.g. Added sacrifice question)"
 msgstr "تغيير الملاحظة (على سبيل المثال، سؤال التضحية المضافة)"
@@ -3617,7 +3617,7 @@ msgid "Assistant instructions"
 msgstr "تعليمات مساعد"
 
 msgid "The main text describing how the assistant talks and the flow. Prices, donation types, bank details and what is known about the contact are added automatically on every reply. {brand} becomes the organisation name and {{belge:kisa-ad}} becomes that document's content."
-msgstr "النص الرئيسي يصف كيفية تحدث المساعد وتدفقه. تتم إضافة الأسعار وأنواع التبرعات والتفاصيل المصرفية وما هو معروف عن جهة الاتصال تلقائيًا عند كل رد.  يصبح{brand}اسم المؤسسة ويصبح {{belge:kisa-ad}} محتوى ذلك المستند."
+msgstr "النص الرئيسي يصف كيفية تحدث المساعد وتدفقه. تتم إضافة الأسعار وأنواع التبرعات والتفاصيل المصرفية وما هو معروف عن جهة الاتصال تلقائيًا عند كل رد.  يصبح {brand} اسم المؤسسة ويصبح {{belge:kisa-ad}} محتوى ذلك المستند."
 
 msgid "Publish now"
 msgstr "انشر الآن"
@@ -3713,10 +3713,10 @@ msgid "out"
 msgstr "خارج"
 
 msgid "cache {r} read, {w} written"
-msgstr "قراءة ذاكرة التخزين المؤقت{r}، كتابة{w}"
+msgstr "قراءة ذاكرة التخزين المؤقت {r}، كتابة {w}"
 
 msgid "saved {c}"
-msgstr "تم حفظ{c}"
+msgstr "تم حفظ {c}"
 
 msgid "first write +{c}"
 msgstr "اكتب أولاً +{c}"
@@ -3728,7 +3728,7 @@ msgid "Cache: from settings ({m})"
 msgstr "ذاكرة التخزين المؤقت: من الإعدادات ({m})"
 
 msgid "Cache: {m}"
-msgstr "ذاكرة التخزين المؤقت:{m}"
+msgstr "ذاكرة التخزين المؤقت: {m}"
 
 msgid "Cache savings"
 msgstr "وفورات ذاكرة التخزين المؤقت"
@@ -3857,7 +3857,7 @@ msgid "Verification code (not sent, shown only here)"
 msgstr "رمز التحقق (لم يتم الإرسال، يظهر هنا فقط)"
 
 msgid "until {h}"
-msgstr "حتى{h}"
+msgstr "حتى {h}"
 
 msgid "Test donations"
 msgstr "التبرعات الاختبارية"
@@ -3929,13 +3929,13 @@ msgid "Up to 5 files can be attached."
 msgstr "يمكن إرفاق ما يصل إلى 5 ملفات."
 
 msgid "{f} is too large (max {n} MB)."
-msgstr "{f}كبير جدًا (بحد أقصى{n}ميجابايت)."
+msgstr "{f} كبير جدًا (بحد أقصى {n} ميجابايت)."
 
 msgid "receipt pre-check"
 msgstr "فحص مسبق للاستلام"
 
 msgid "Turn {n} · {t}"
-msgstr "أدر{n}·{t}"
+msgstr "أدر {n} · {t}"
 
 msgid "File read"
 msgstr "قراءة الملف"
@@ -3998,22 +3998,22 @@ msgid "Last update"
 msgstr "التحديث الأخير"
 
 msgid "Contact memory: {c}"
-msgstr "ذاكرة الاتصال:{c}"
+msgstr "ذاكرة الاتصال: {c}"
 
 msgid "{n} items · about {t} tokens"
-msgstr "عناصر{n}· حول رموز{t}"
+msgstr "عناصر {n}· حول رموز {t}"
 
 msgid "To edit or delete, open the chat and use ⋮ › Contact memory."
 msgstr "للتعديل أو الحذف، افتح الدردشة واستخدم ⋮ › ذاكرة جهات الاتصال."
 
 msgid "{n} chats queued"
-msgstr "تم وضع محادثات{n}في قائمة الانتظار"
+msgstr "تم وضع محادثات {n} في قائمة الانتظار"
 
 msgid "Contact memory is off; summary jobs do not run."
 msgstr "ذاكرة الاتصال معطلة؛ لا يتم تشغيل المهام الموجزة."
 
 msgid "Summaries paused for 30 minutes: {r}"
-msgstr "تم إيقاف الملخصات مؤقتًا لمدة 30 دقيقة:{r}"
+msgstr "تم إيقاف الملخصات مؤقتًا لمدة 30 دقيقة: {r}"
 
 msgid "Running workers"
 msgstr "تشغيل العمال"
@@ -4040,7 +4040,7 @@ msgid "Scan now"
 msgstr "مسح الآن"
 
 msgid "People who are writing are answered first; no summary starts while someone is being answered or waiting. Chats quiet for {h} hours are summarized only between {w}. At most {m} jobs run at once, {r} workers are reserved for replies (a benchmark counts as one). Refreshes every 5 s."
-msgstr "يتم الرد على الأشخاص الذين يكتبون أولاً؛ لا يبدأ أي ملخص أثناء الرد على شخص ما أو انتظاره. يتم تلخيص الدردشات الهادئة لمدة{h}ساعات فقط بين{w}. في معظم مهام{m}التي يتم تشغيلها مرة واحدة، يتم حجز عمال{r}للردود (يتم احتساب المعيار كواحد). يتم التحديث كل 5 ثواني"
+msgstr "يتم الرد على الأشخاص الذين يكتبون أولاً؛ لا يبدأ أي ملخص أثناء الرد على شخص ما أو انتظاره. يتم تلخيص الدردشات الهادئة لمدة {h} ساعات فقط بين {w}. في معظم مهام {m} التي يتم تشغيلها مرة واحدة، يتم حجز عمال {r} للردود (يتم احتساب المعيار كواحد). يتم التحديث كل 5 ثواني"
 
 msgid "No jobs yet."
 msgstr "لا توجد وظائف حتى الآن."
@@ -4052,7 +4052,7 @@ msgid "manual"
 msgstr "دليل"
 
 msgid "attempt {n}"
-msgstr "محاولة{n}"
+msgstr "محاولة {n}"
 
 msgid "Job"
 msgstr "وظيفة"
@@ -4082,13 +4082,13 @@ msgid "All benchmarks"
 msgstr "جميع المعايير"
 
 msgid "Live · {n} running"
-msgstr "مباشر · تشغيل{n}"
+msgstr "مباشر · تشغيل {n}"
 
 msgid "Total spend"
 msgstr "إجمالي الإنفاق"
 
 msgid "{n} scenario results"
-msgstr "نتائج السيناريو{n}"
+msgstr "نتائج السيناريو {n}"
 
 msgid "No runs yet."
 msgstr "لا يوجد أشواط حتى الآن."
@@ -4103,7 +4103,7 @@ msgid "Success is attributed to the assistant model. Runs before 1.6.3 did not s
 msgstr "ويعزى النجاح إلى النموذج المساعد. لم يفصل التشغيل قبل الإصدار 1.6.3 بين المساعد والحكم، لذا يظهران كـ \"مساعد + حكم\"."
 
 msgid "Run {n} scenarios"
-msgstr "قم بتشغيل سيناريوهات{n}"
+msgstr "قم بتشغيل سيناريوهات {n}"
 
 msgid "Loading model prices for the cost estimate…"
 msgstr "جارٍ تحميل الأسعار النموذجية لتقدير التكلفة..."
@@ -4115,13 +4115,13 @@ msgid "Estimated cost: ~{c}"
 msgstr "التكلفة المقدرة: ~{c}"
 
 msgid "assistant {a} + judge {j}"
-msgstr "مساعد{a}+ القاضي{j}"
+msgstr "مساعد {a}+ القاضي {j}"
 
 msgid "Based on average token usage of {n} past scenario results; actual cost per scenario may vary."
 msgstr "استنادًا إلى متوسط ​​استخدام الرمز المميز لنتائج السيناريو السابق لـ{n}؛ قد تختلف التكلفة الفعلية لكل سيناريو."
 
 msgid "No runs yet; default estimate: ~{i} input / {o} output tokens per donor message."
-msgstr "لا يوجد تشغيل بعد؛ التقدير الافتراضي: ~ رموز الإدخال{i}/ رموز الإخراج{o}لكل رسالة مانحة."
+msgstr "لا يوجد تشغيل بعد؛ التقدير الافتراضي: ~ رموز الإدخال {i}/ رموز الإخراج {o} لكل رسالة مانحة."
 
 msgid "The estimate exceeds the cost limit; the run stops when the limit is reached."
 msgstr "يتجاوز التقدير حد التكلفة؛ يتوقف التشغيل عند الوصول إلى الحد الأقصى."
@@ -4157,10 +4157,10 @@ msgid "Download report (.md)"
 msgstr "تنزيل التقرير (.md)"
 
 msgid "of {n} scenarios"
-msgstr "من سيناريوهات{n}"
+msgstr "من سيناريوهات {n}"
 
 msgid "{r} read, {w} written"
-msgstr "قراءة{r}، كتابة{w}"
+msgstr "قراءة {r}، كتابة {w}"
 
 msgid "The AI service rejected requests; the benchmark stopped."
 msgstr "رفضت خدمة الذكاء الاصطناعي الطلبات؛ توقف المؤشر."
@@ -4226,7 +4226,7 @@ msgid "Restore built-in scenarios"
 msgstr "استعادة السيناريوهات المضمنة"
 
 msgid "In messages {tur} = \"{a}\", {birim} = \"{b}\", {brand} = \"{c}\"."
-msgstr "في الرسائل{tur}= \"{a}\"،{birim}= \"{b}\"،{brand}= \"{c}\"."
+msgstr "في الرسائل {tur}= \"{a}\"، {birim}= \"{b}\"، {brand}= \"{c}\"."
 
 msgid "Must contain"
 msgstr "يجب أن تحتوي"
@@ -4259,10 +4259,10 @@ msgid "Staff writes"
 msgstr "يكتب الموظفون"
 
 msgid "Start: {n}"
-msgstr "البداية:{n}"
+msgstr "البداية: {n}"
 
 msgid "{n} messages"
-msgstr "رسائل{n}"
+msgstr "رسائل {n}"
 
 msgid "Edit with AI"
 msgstr "تحرير مع الذكاء الاصطناعي"
@@ -4295,7 +4295,7 @@ msgid "Messages (in order)"
 msgstr "الرسائل (بالترتيب)"
 
 msgid "{tur}, {birim} and {brand} can be used. If there are only customer messages, the assistant replies to each in turn. If you add assistant messages it becomes a continuation scenario: the written history is given as-is and the assistant replies only to the last customer message."
-msgstr "يمكن استخدام{tur}و{birim}و{brand}. إذا كانت هناك رسائل العملاء فقط، يقوم المساعد بالرد على كل منها بدوره. إذا قمت بإضافة رسائل مساعد، فسيصبح ذلك سيناريو استمرارًا: يتم تقديم السجل المكتوب كما هو ولا يرد المساعد إلا على آخر رسالة للعميل."
+msgstr "يمكن استخدام {tur} و {birim} و {brand}. إذا كانت هناك رسائل العملاء فقط، يقوم المساعد بالرد على كل منها بدوره. إذا قمت بإضافة رسائل مساعد، فسيصبح ذلك سيناريو استمرارًا: يتم تقديم السجل المكتوب كما هو ولا يرد المساعد إلا على آخر رسالة للعميل."
 
 msgid "E.g. payment_info, cancel_donation, receipt_check. Tools disabled on this site are not checked."
 msgstr "على سبيل المثال معلومات الدفع، إلغاء_التبرع، استلام_التحقق. لم يتم التحقق من الأدوات المعطلة على هذا الموقع."
@@ -4307,7 +4307,7 @@ msgid "Starting state (test)"
 msgstr "حالة البداية (الاختبار)"
 
 msgid "The scenario runs isolated like the test chat; what you select here exists only in this test. In a customer message, {kod} becomes the verification code from the test panel."
-msgstr "يتم تنفيذ السيناريو بشكل معزول مثل الدردشة التجريبية؛ ما تحدده هنا موجود فقط في هذا الاختبار. في رسالة العميل، يصبح{kod}هو رمز التحقق من لوحة الاختبار."
+msgstr "يتم تنفيذ السيناريو بشكل معزول مثل الدردشة التجريبية؛ ما تحدده هنا موجود فقط في هذا الاختبار. في رسالة العميل، يصبح {kod} هو رمز التحقق من لوحة الاختبار."
 
 msgid "End state"
 msgstr "نهاية الحالة"
@@ -4412,7 +4412,7 @@ msgid "Interrupted"
 msgstr "تمت مقاطعته"
 
 msgid "%s ago"
-msgstr "منذ%s"
+msgstr "منذ %s"
 
 msgid "Open settings"
 msgstr "افتح الإعدادات"
@@ -4430,10 +4430,10 @@ msgid "Database tables"
 msgstr "جداول قاعدة البيانات"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "الجدول المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+msgstr "الجدول المفقود: %s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
 
 msgid "Tables ready (schema %s)."
-msgstr "الجداول جاهزة (مخطط%s)."
+msgstr "الجداول جاهزة (مخطط %s)."
 
 msgid "Schema update pending; it completes when you open a page in the admin panel."
 msgstr "تحديث المخطط معلق؛ يكتمل عند فتح صفحة في لوحة الإدارة."
@@ -4460,7 +4460,7 @@ msgid "Missing; while the assistant prepares a reply the \"typing…\" indicator
 msgstr "مفقود؛ بينما يقوم المساعد بإعداد الرد، يظهر مؤشر \"الكتابة...\" لفترة وجيزة فقط."
 
 msgid "Users with the agent role: %d."
-msgstr "المستخدمون الذين لديهم دور الوكيل:%d."
+msgstr "المستخدمون الذين لديهم دور الوكيل: %d."
 
 msgid "No user has the agent role; only administrators can use it for now."
 msgstr "لا يوجد مستخدم لديه دور الوكيل؛ يمكن للمسؤولين فقط استخدامه في الوقت الحالي."
@@ -4481,7 +4481,7 @@ msgid "%s: connection details"
 msgstr "%s: تفاصيل الاتصال"
 
 msgid "Using Flux Mail connection: %s."
-msgstr "استخدام اتصال Flux Mail:%s."
+msgstr "استخدام اتصال Flux Mail: %s."
 
 msgid "Still using the old provider in Flux Certificates; move the connection to Flux Mail and select it here."
 msgstr "لا تزال تستخدم الموفر القديم في شهادات التدفق؛ انقل الاتصال إلى Flux Mail وحدده هنا."
@@ -4496,19 +4496,19 @@ msgid "%s: line status"
 msgstr "%s: حالة الخط"
 
 msgid "Phone connected (last seen %s)."
-msgstr "الهاتف متصل (شوهد آخر مرة%s)."
+msgstr "الهاتف متصل (شوهد آخر مرة %s)."
 
 msgid "Not tested yet. Press \"Test connection\"."
 msgstr "لم يتم اختباره بعد. اضغط على \"اختبار الاتصال\"."
 
 msgid "Phone not connected (state: %1$s, %2$s). Reconnect with \"Connect with QR\"."
-msgstr "الهاتف غير متصل (الحالة:%1$s،%2$s). أعد الاتصال بـ \"الاتصال بـ QR\"."
+msgstr "الهاتف غير متصل (الحالة: %1$s، %2$s). أعد الاتصال بـ \"الاتصال بـ QR\"."
 
 msgid "%s: Evolution API version"
 msgstr "%s: إصدار Evolution API"
 
 msgid "Evolution API %s is in use. Replies to hidden-number (@lid) contacts may fail; update the server to 2.3 or later."
-msgstr "Evolution API%sقيد الاستخدام. قد تفشل الردود على جهات الاتصال ذات الرقم المخفي (@lid)؛ تحديث الخادم إلى 2.3 أو الأحدث."
+msgstr "Evolution API %s قيد الاستخدام. قد تفشل الردود على جهات الاتصال ذات الرقم المخفي (@lid)؛ تحديث الخادم إلى 2.3 أو الأحدث."
 
 msgid "%s: webhook (incoming messages)"
 msgstr "%s: خطاف الويب (الرسائل الواردة)"
@@ -4517,10 +4517,10 @@ msgid "No events have arrived from Evolution; incoming messages will not show in
 msgstr "لم تصل أي أحداث من التطور؛ لن تظهر الرسائل الواردة في اللوحة. اضغط على \"إعداد خطاف الويب\"."
 
 msgid "Last event arrived %s. The line may just be quiet; send yourself a message or set up the webhook again to be sure."
-msgstr "الحدث الأخير وصل%s. قد يكون الخط هادئًا فحسب؛ أرسل لنفسك رسالة أو قم بإعداد خطاف الويب مرة أخرى للتأكد."
+msgstr "الحدث الأخير وصل %s. قد يكون الخط هادئًا فحسب؛ أرسل لنفسك رسالة أو قم بإعداد خطاف الويب مرة أخرى للتأكد."
 
 msgid "Last event arrived %s."
-msgstr "الحدث الأخير وصل%s."
+msgstr "الحدث الأخير وصل %s."
 
 msgid "Flux Mail integration"
 msgstr "تكامل البريد الجريان"
@@ -4562,7 +4562,7 @@ msgid "No provider key has been entered in Flux AI for the selected model (%s)."
 msgstr "لم يتم إدخال أي مفتاح موفر في Flux AI للنموذج المحدد (%s)."
 
 msgid "Key saved, model: %s. Use \"Test connection\" for a live check."
-msgstr "تم حفظ المفتاح، الموديل:%s. استخدم \"اختبار الاتصال\" لإجراء فحص مباشر."
+msgstr "تم حفظ المفتاح، الموديل: %s. استخدم \"اختبار الاتصال\" لإجراء فحص مباشر."
 
 msgid "Donation assistant"
 msgstr "مساعد التبرع"
@@ -4577,16 +4577,16 @@ msgid "On but not replying: "
 msgstr "قيد التشغيل ولكن لا يرد:"
 
 msgid "On. Donation types offered: %s."
-msgstr "على. أنواع التبرعات المقدمة:%s."
+msgstr "على. أنواع التبرعات المقدمة: %s."
 
 msgid "%s does not support tools; choose a tool-capable model for the assistant."
-msgstr "%sلا يدعم الأدوات؛ اختر نموذجًا قادرًا على استخدام الأدوات للمساعد."
+msgstr "%s لا يدعم الأدوات؛ اختر نموذجًا قادرًا على استخدام الأدوات للمساعد."
 
 msgid "Receipt reading model"
 msgstr "نموذج قراءة الإيصال"
 
 msgid "%s cannot read images; the receipt pre-check will not work. Choose an image-capable receipt reading model."
-msgstr "لا يستطيع%sقراءة الصور؛ لن يعمل الفحص المسبق للاستلام. اختر نموذجًا لقراءة الإيصالات مزودًا بالصور."
+msgstr "لا يستطيع %s قراءة الصور؛ لن يعمل الفحص المسبق للاستلام. اختر نموذجًا لقراءة الإيصالات مزودًا بالصور."
 
 msgid "Assistant payment details"
 msgstr "تفاصيل الدفع للمساعد"
@@ -4607,7 +4607,7 @@ msgid "Background requests"
 msgstr "طلبات الخلفية"
 
 msgid "The site could not send a background request to itself (%1$s: %2$s). Queued replies and the benchmark may move slowly; a security plugin or the server firewall may be blocking /wp-json/flx-chat/ requests."
-msgstr "تعذر على الموقع إرسال طلب خلفية إلى نفسه (%1$s:%2$s). الردود الموجودة في قائمة الانتظار وقد يتحرك المؤشر ببطء؛ قد يقوم مكون إضافي للأمان أو جدار حماية الخادم بحظر طلبات /wp-json/flx-chat/."
+msgstr "تعذر على الموقع إرسال طلب خلفية إلى نفسه (%1$s: %2$s). الردود الموجودة في قائمة الانتظار وقد يتحرك المؤشر ببطء؛ قد يقوم مكون إضافي للأمان أو جدار حماية الخادم بحظر طلبات /wp-json/flx-chat/."
 
 msgid "error"
 msgstr "خطأ"
@@ -4619,16 +4619,16 @@ msgid "ok"
 msgstr "حسنا"
 
 msgid "Your {marka} verification code: {kod}"
-msgstr "رمز التحقق{marka}الخاص بك:{kod}"
+msgstr "رمز التحقق {marka} الخاص بك: {kod}"
 
 msgid "The code is valid for {dk} minutes. Type it in your WhatsApp chat with us. If you did not ask for it, ignore this message."
-msgstr "الرمز صالح لمدة{dk}دقيقة. اكتبه في دردشة الواتساب الخاصة بك معنا. إذا لم تطلب ذلك، تجاهل هذه الرسالة."
+msgstr "الرمز صالح لمدة {dk} دقيقة. اكتبه في دردشة الواتساب الخاصة بك معنا. إذا لم تطلب ذلك، تجاهل هذه الرسالة."
 
 msgid "Something went wrong; our team will contact you as soon as possible 🌱 Meanwhile, feel free to ask anything else."
 msgstr "حدث خطأ ما؛ سيقوم فريقنا بالتواصل معك في أقرب وقت ممكن 🌱 وفي الوقت نفسه، لا تتردد في سؤال أي شيء آخر."
 
 msgid "Verification attempt failed (%1$d/%2$d): %3$s"
-msgstr "فشلت محاولة التحقق (%1$d/%2$d):%3$s"
+msgstr "فشلت محاولة التحقق (%1$d/%2$d): %3$s"
 
 msgid "The person wanted to see their records but could not be verified; someone from the team should get in touch"
 msgstr "أراد الشخص رؤية سجلاته ولكن لم يتمكن من التحقق منها؛ يجب أن يتصل بك أحد أعضاء الفريق"
@@ -4646,7 +4646,7 @@ msgid "wrong code"
 msgstr "رمز خاطئ"
 
 msgid "The person verified the code for %s; it is added to their record lookups."
-msgstr "قام الشخص بالتحقق من رمز%s؛ تتم إضافته إلى عمليات البحث عن السجلات الخاصة بهم."
+msgstr "قام الشخص بالتحقق من رمز %s؛ تتم إضافته إلى عمليات البحث عن السجلات الخاصة بهم."
 
 msgid "Claude models cannot read audio; choose an audio-capable OpenRouter model in Settings › AI › Voice message model."
 msgstr "لا تستطيع نماذج كلود قراءة الصوت؛ اختر طراز OpenRouter مزودًا بإمكانيات الصوت في الإعدادات › AI › نموذج الرسالة الصوتية."
@@ -4658,10 +4658,10 @@ msgid "The audio file could not be read."
 msgstr "لا يمكن قراءة الملف الصوتي."
 
 msgid "Voice message (%1$s) transcribed: %2$s"
-msgstr "الرسالة الصوتية (%1$s) مكتوبة:%2$s"
+msgstr "الرسالة الصوتية (%1$s) مكتوبة: %2$s"
 
 msgid "Voice message (%1$s) could not be processed: %2$s"
-msgstr "لا يمكن معالجة الرسالة الصوتية (%1$s):%2$s"
+msgstr "لا يمكن معالجة الرسالة الصوتية (%1$s): %2$s"
 
 msgid "This action is not available on an official WhatsApp Cloud API line."
 msgstr "هذا الإجراء غير متاح على خط WhatsApp Cloud API الرسمي."
@@ -4694,10 +4694,10 @@ msgid "The assistant's image could not be sent: "
 msgstr "لا يمكن إرسال صورة المساعد:"
 
 msgid "Hello {first_name}, we have created your donation record: {donation}, total {amount}.\n\n{bank}\n\nAfter paying, you can send the receipt here. Thank you."
-msgstr "مرحبًا{first_name}، لقد أنشأنا سجل التبرع الخاص بك:{donation}، إجمالي{amount}.{bank}بعد الدفع، يمكنك إرسال الإيصال هنا. شكرًا لك."
+msgstr "مرحبًا {first_name}، لقد أنشأنا سجل التبرع الخاص بك: {donation}، إجمالي {amount}.{bank} بعد الدفع، يمكنك إرسال الإيصال هنا. شكرًا لك."
 
 msgid "Hello {first_name}, your donation has been recorded: {donation}, total {amount}.\n\nThank you for your support."
-msgstr "مرحبًا{first_name}، تم تسجيل تبرعك:{donation}، إجمالي{amount}.\n\nشكرا لدعمكم."
+msgstr "مرحبًا {first_name}، تم تسجيل تبرعك: {donation}، إجمالي {amount}.\n\nشكرا لدعمكم."
 
 msgid "The plugin that would run this scenario is inactive."
 msgstr "البرنامج المساعد الذي سيقوم بتشغيل هذا السيناريو غير نشط."
@@ -4706,10 +4706,10 @@ msgid "This user is not allowed to use the staff tools."
 msgstr "لا يسمح لهذا المستخدم باستخدام أدوات الموظفين."
 
 msgid "%1$s linked this chat to staff member %2$s"
-msgstr "ربطت%1$sهذه الدردشة بالموظف%2$s"
+msgstr "ربطت %1$s هذه الدردشة بالموظف %2$s"
 
 msgid "%s removed the staff link of this chat"
-msgstr "قام%sبإزالة رابط الموظفين الخاص بهذه الدردشة"
+msgstr "قام %s بإزالة رابط الموظفين الخاص بهذه الدردشة"
 
 msgid "Chat linked to staff member"
 msgstr "الدردشة مرتبطة بالموظف"

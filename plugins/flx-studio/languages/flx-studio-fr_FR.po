@@ -182,7 +182,7 @@ msgid "Delete"
 msgstr "Supprimer"
 
 msgid "{n} items moved"
-msgstr "{n}éléments déplacés"
+msgstr "{n} éléments déplacés"
 
 msgid "Nothing here"
 msgstr "Rien ici"
@@ -221,7 +221,7 @@ msgid "Reuse settings"
 msgstr "Réutiliser les paramètres"
 
 msgid "{n} selected"
-msgstr "{n}sélectionné"
+msgstr "{n} sélectionné"
 
 msgid "Tap items to select"
 msgstr "Appuyez sur les éléments à sélectionner"
@@ -239,7 +239,7 @@ msgid "New folder…"
 msgstr "Nouveau dossier..."
 
 msgid "Delete {n} items?"
-msgstr "Supprimer les éléments{n}?"
+msgstr "Supprimer les éléments {n}?"
 
 msgid "Delete item?"
 msgstr "Supprimer l'élément ?"
@@ -248,7 +248,7 @@ msgid "Files are deleted from the server. Copies added to the Media Library stay
 msgstr "Les fichiers sont supprimés du serveur. Les exemplaires ajoutés à la Médiathèque restent."
 
 msgid "{n} items ready"
-msgstr "{n}éléments prêts"
+msgstr "{n} éléments prêts"
 
 msgid "Generation ready"
 msgstr "Génération prête"
@@ -332,19 +332,19 @@ msgid "Provider"
 msgstr "Fournisseur"
 
 msgid "{n} models"
-msgstr "Modèles{n}"
+msgstr "Modèles {n}"
 
 msgid "no key"
 msgstr "pas de clé"
 
 msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
-msgstr "Pas de touche{p}(Flux AI & MCP › Paramètres › Images et vidéo)."
+msgstr "Pas de touche {p}(Flux AI & MCP › Paramètres › Images et vidéo)."
 
 msgid "This reference is already added"
 msgstr "Cette référence est déjà ajoutée"
 
 msgid "This model accepts at most {n} references"
-msgstr "Ce modèle accepte au maximum les références{n}"
+msgstr "Ce modèle accepte au maximum les références {n}"
 
 msgid "Save to references"
 msgstr "Enregistrer dans les références"
@@ -359,7 +359,7 @@ msgid "Pick from gallery"
 msgstr "Choisissez dans la galerie"
 
 msgid "{n} photos"
-msgstr "{n}photos"
+msgstr "{n} photos"
 
 msgid "no photos"
 msgstr "pas de photos"
@@ -383,7 +383,7 @@ msgid "No images yet."
 msgstr "Aucune image pour l'instant."
 
 msgid "{name} has no photos; add some in Manage people"
-msgstr "{name}n’a pas de photo ; ajoutez-en dans Gérer les personnes"
+msgstr "{name} n’a pas de photo ; ajoutez-en dans Gérer les personnes"
 
 msgid "Write a short draft first."
 msgstr "Rédigez d’abord un court brouillon."
@@ -515,7 +515,7 @@ msgid "Number of ideas"
 msgstr "Nombre d'idées"
 
 msgid "{n} ideas"
-msgstr "Idées{n}"
+msgstr "Idées {n}"
 
 msgid "YouTube thumbnail"
 msgstr "Miniature YouTube"
@@ -530,10 +530,10 @@ msgid "Generate selected ({n})"
 msgstr "Générer la sélection ({n})"
 
 msgid "{n} generations started"
-msgstr "Les générations{n}ont commencé"
+msgstr "Les générations {n} ont commencé"
 
 msgid "Sending {i}/{n}"
-msgstr "Envoi de{i}/{n}"
+msgstr "Envoi de {i}/{n}"
 
 msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
 msgstr "Crée des invites distinctes à partir d’une idée. Choisissez ceux que vous aimez et générez-les en une seule fois. Le modèle et le rapport proviennent de la barre de génération."
@@ -557,7 +557,7 @@ msgid "Delete person"
 msgstr "Supprimer une personne"
 
 msgid "Delete {name}?"
-msgstr "Supprimer{name}?"
+msgstr "Supprimer {name}?"
 
 msgid "The person and their photos are deleted. Earlier generations stay."
 msgstr "La personne et ses photos sont supprimées. Les générations précédentes restent."
@@ -596,10 +596,10 @@ msgid "just now"
 msgstr "juste maintenant"
 
 msgid "{n} min ago"
-msgstr "{n}il y a 1 minute"
+msgstr "{n} il y a 1 minute"
 
 msgid "{n} h ago"
-msgstr "{n}il y a h"
+msgstr "{n} il y a h"
 
 msgid "Server error ({n})."
 msgstr "Erreur de serveur ({n})."
@@ -641,13 +641,13 @@ msgid "Generations"
 msgstr "Générations"
 
 msgid "{i} images · {v} videos"
-msgstr "Images{i}· Vidéos{v}"
+msgstr "Images {i}· Vidéos {v}"
 
 msgid "Spend"
 msgstr "Dépenser"
 
 msgid "Image/video {m} · text {x}"
-msgstr "Image/vidéo{m}· texte{x}"
+msgstr "Image/vidéo {m}· texte {x}"
 
 msgid "Average"
 msgstr "Moyenne"
@@ -662,7 +662,7 @@ msgid "no attempts yet"
 msgstr "aucune tentative pour l'instant"
 
 msgid "Storage {b}"
-msgstr "Stockage{b}"
+msgstr "Stockage {b}"
 
 msgid "Daily generations"
 msgstr "Générations quotidiennes"
@@ -794,7 +794,7 @@ msgid "Database tables"
 msgstr "Tableaux de base de données"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Table manquante :%s. Désactivez et réactivez le plugin."
+msgstr "Table manquante : %s. Désactivez et réactivez le plugin."
 
 msgid "Tables are ready."
 msgstr "Les tables sont prêtes."
@@ -824,7 +824,7 @@ msgid "Flux AI"
 msgstr "Flux IA"
 
 msgid "%1$d models available (%2$s)."
-msgstr "Modèles%1$ddisponibles (%2$s)."
+msgstr "Modèles %1$d disponibles (%2$s)."
 
 msgid "Enhance and Brainstorm"
 msgstr "Améliorer et réfléchir"
@@ -854,7 +854,7 @@ msgid "The file is empty."
 msgstr "Le fichier est vide."
 
 msgid "The file exceeds the %d MB limit."
-msgstr "Le fichier dépasse la limite%dMo."
+msgstr "Le fichier dépasse la limite %d Mo."
 
 msgid "This file type is not supported."
 msgstr "Ce type de fichier n'est pas pris en charge."
@@ -869,7 +869,7 @@ msgid "Person not found."
 msgstr "Personne non trouvée."
 
 msgid "At most %d reference images can be used."
-msgstr "La plupart des images de référence%dpeuvent être utilisées."
+msgstr "La plupart des images de référence %d peuvent être utilisées."
 
 msgid "The file is not on the server."
 msgstr "Le fichier n'est pas sur le serveur."

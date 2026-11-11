@@ -507,8 +507,8 @@ msgstr "Sunucuya bağlanılamadı."
 
 msgid "%d update available"
 msgid_plural "%d updates available"
-msgstr[0] "%dgüncellemesi mevcut"
-msgstr[1] "%dgüncellemeleri mevcut"
+msgstr[0] "%d güncelleme mevcut"
+msgstr[1] "%d güncelleme mevcut"
 
 msgid "All up to date ✓"
 msgstr "Hepsi güncel ✓"
@@ -788,24 +788,24 @@ msgstr "Site kontrolü HTTP %d döndü; hata sayılmadı."
 
 msgid "%d backup deleted."
 msgid_plural "%d backups deleted."
-msgstr[0] "%dyedeklemesi silindi."
-msgstr[1] "%dyedeklemeleri silindi."
+msgstr[0] "%d yedek silindi."
+msgstr[1] "%d yedek silindi."
 
 msgid "Retention saved and applied to existing update backups."
 msgstr "Saklama süresi kaydedildi; mevcut güncelleme yedeklerine de uygulandı."
 
 msgid "%d expired backup deleted."
 msgid_plural "%d expired backups deleted."
-msgstr[0] "%dsüresi dolmuş yedekleme silindi."
-msgstr[1] "%dsüresi dolmuş yedeklemeler silindi."
+msgstr[0] "Süresi dolmuş %d yedek silindi."
+msgstr[1] "Süresi dolmuş %d yedek silindi."
 
 msgid "Update backups are deleted automatically after"
 msgstr "Güncelleme yedekleri"
 
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%dgünü"
-msgstr[1] "%dgün"
+msgstr[0] "%d gün"
+msgstr[1] "%d gün"
 
 msgid "."
 msgstr "sonra otomatik silinir."
@@ -818,8 +818,8 @@ msgstr "Güncelleme yedeklerinin saklama süresi %s sayfasından değiştirilir 
 
 msgid "Currently %1$d update backup, %2$s."
 msgid_plural "Currently %1$d update backups, %2$s."
-msgstr[0] "Şu anda%1$dgüncelleme yedeği,%2$s."
-msgstr[1] "Şu anda%1$dgüncelleme yedeklemeleri,%2$s."
+msgstr[0] "Şu anda %1$d güncelleme yedeği var, %2$s."
+msgstr[1] "Şu anda %1$d güncelleme yedeği var, %2$s."
 
 msgid "Delete all unlocked update backups? This cannot be undone."
 msgstr "Kilitli olmayan tüm güncelleme yedekleri silinsin mi? Bu geri alınamaz."
@@ -1196,13 +1196,13 @@ msgstr "Devre dışı"
 
 msgid "%d package activated."
 msgid_plural "%d packages activated."
-msgstr[0] "%dpaketi etkinleştirildi."
-msgstr[1] "%dpaketleri etkinleştirildi."
+msgstr[0] "%d paket etkinleştirildi."
+msgstr[1] "%d paket etkinleştirildi."
 
 msgid "%d package deactivated."
 msgid_plural "%d packages deactivated."
-msgstr[0] "%dpaketi devre dışı bırakıldı."
-msgstr[1] "%dpaketleri devre dışı bırakıldı."
+msgstr[0] "%d paket devre dışı bırakıldı."
+msgstr[1] "%d paket devre dışı bırakıldı."
 
 msgid "%d package deleted."
 msgid_plural "%d packages deleted."
@@ -1842,13 +1842,13 @@ msgstr "Önizleme görseli %d"
 
 msgid "%d package removed."
 msgid_plural "%d packages removed."
-msgstr[0] "%dpaketi kaldırıldı."
-msgstr[1] "%dpaketleri kaldırıldı."
+msgstr[0] "%d paket kaldırıldı."
+msgstr[1] "%d paket kaldırıldı."
 
 msgid "%s record"
 msgid_plural "%s records"
-msgstr[0] "%skaydı"
-msgstr[1] "%skayıtları"
+msgstr[0] "%s kayıt"
+msgstr[1] "%s kayıt"
 
 msgid "%dthere is an update"
 msgid_plural "%dthere is an update"

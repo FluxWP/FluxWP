@@ -95,7 +95,7 @@ msgid "Send message to contact"
 msgstr "Отправить сообщение контакту"
 
 msgid "Source: %s"
-msgstr "Источник:%s"
+msgstr "Источник: %s"
 
 msgid "Contact not found."
 msgstr "Контакт не найден."
@@ -218,16 +218,16 @@ msgid "contains"
 msgstr "содержит"
 
 msgid "%1$s: more than %2$s days ago"
-msgstr "%1$s: более%2$sдней назад"
+msgstr "%1$s: более %2$s дней назад"
 
 msgid "%1$s: in the last %2$s days"
-msgstr "%1$s: за последние%2$sдни."
+msgstr "%1$s: за последние %2$s дни."
 
 msgid "no %s consent"
-msgstr "нет согласия%s"
+msgstr "нет согласия %s"
 
 msgid "has %s consent"
-msgstr "имеет согласие%s"
+msgstr "имеет согласие %s"
 
 msgid "or"
 msgstr "или"
@@ -401,19 +401,19 @@ msgid "Site account"
 msgstr "Аккаунт сайта"
 
 msgid "%s M"
-msgstr "%sМ"
+msgstr "%s М"
 
 msgid "%s K"
-msgstr "%sК."
+msgstr "%s К."
 
 msgid "(unnamed contact)"
 msgstr "(неназванный контакт)"
 
 msgid "CRM segment: %1$s (%2$s)"
-msgstr "Сегмент CRM:%1$s(%2$s)"
+msgstr "Сегмент CRM: %1$s(%2$s)"
 
 msgid "CRM role: %1$s (%2$s)"
-msgstr "Роль CRM:%1$s(%2$s)"
+msgstr "Роль CRM: %1$s(%2$s)"
 
 msgid "CRM"
 msgstr "CRM"
@@ -437,7 +437,7 @@ msgid "First sync"
 msgstr "Первая синхронизация"
 
 msgid "Last full sync: %s"
-msgstr "Последняя полная синхронизация:%s."
+msgstr "Последняя полная синхронизация: %s."
 
 msgid "Past donations, orders and chats have not been imported yet. CRM › Settings › \"Sync everything\"."
 msgstr "Прошлые пожертвования, заказы и чаты еще не импортированы. CRM › Настройки › «Синхронизировать всё»."
@@ -452,16 +452,16 @@ msgid "Not calculated yet."
 msgstr "Еще не рассчитано."
 
 msgid "Last calculated %s. The daily job (WP-Cron) may not be running; add a server cron or recalculate by hand."
-msgstr "Последний вычисленный%s. Возможно, ежедневное задание (WP-Cron) не запущено; добавьте cron сервера или пересчитайте вручную."
+msgstr "Последний вычисленный %s. Возможно, ежедневное задание (WP-Cron) не запущено; добавьте cron сервера или пересчитайте вручную."
 
 msgid "Last calculated: %s"
-msgstr "Последний расчет:%s."
+msgstr "Последний расчет: %s."
 
 msgid "Foreign currency payments"
 msgstr "Платежи в иностранной валюте"
 
 msgid "%1$s payments are in a currency other than %2$s and have no exchange rate; they count towards frequency but not towards total value. Use the `flxcrm_fx_rate` filter to supply a rate."
-msgstr "Платежи%1$sосуществляются в валюте, отличной от%2$s, и не имеют обменного курса; они учитываются в частоте, но не в общей стоимости. Используйте фильтр `flxcrm_fx_rate` , чтобы указать тариф."
+msgstr "Платежи %1$s осуществляются в валюте, отличной от %2$s, и не имеют обменного курса; они учитываются в частоте, но не в общей стоимости. Используйте фильтр `flxcrm_fx_rate` , чтобы указать тариф."
 
 msgid "Overview"
 msgstr "Обзор"
@@ -476,7 +476,7 @@ msgid "CRM settings"
 msgstr "настройки CRM"
 
 msgid "%1$s: %2$s / %3$s"
-msgstr "%1$s:%2$s/%3$s"
+msgstr "%1$s: %2$s/%3$s"
 
 msgid "Done. Reloading the page…"
 msgstr "Готово. Перезагружаем страницу..."
@@ -488,7 +488,7 @@ msgid "Are you sure? This cannot be undone."
 msgstr "Вы уверены? Это невозможно отменить."
 
 msgid "%s contacts match"
-msgstr "Контакты%sсовпадают"
+msgstr "Контакты %s совпадают"
 
 msgid "Counting…"
 msgstr "Подсчет..."
@@ -497,10 +497,10 @@ msgid "Calculating…"
 msgstr "Расчет..."
 
 msgid "%s contacts scored. Reloading the page…"
-msgstr "Контакты%sзабиты. Перезагружаем страницу..."
+msgstr "Контакты %s забиты. Перезагружаем страницу..."
 
 msgid "%s contacts selected"
-msgstr "%sвыбраны контакты"
+msgstr "%s выбраны контакты"
 
 msgid "Remove rule"
 msgstr "Удалить правило"
@@ -563,10 +563,10 @@ msgid "A contact with this e-mail or phone already exists; their card is open."
 msgstr "Контакт с таким адресом электронной почты или телефоном уже существует; их карта открыта."
 
 msgid "%s contacts updated."
-msgstr "Контакты%sобновлены."
+msgstr "Контакты %s обновлены."
 
 msgid "Churn risk %s%%"
-msgstr "Риск оттока%s%%"
+msgstr "Риск оттока %s%%"
 
 msgid "All"
 msgstr "Все"
@@ -593,7 +593,7 @@ msgid "Archived"
 msgstr "В архиве"
 
 msgid "Since %1$s · %2$s"
-msgstr "Поскольку%1$s·%2$s"
+msgstr "Поскольку %1$s · %2$s"
 
 msgid "WhatsApp chat"
 msgstr "WhatsApp чат"
@@ -608,7 +608,7 @@ msgid "First payment"
 msgstr "Первый платеж"
 
 msgid "once every %s days on average"
-msgstr "в среднем раз в%sдней"
+msgstr "в среднем раз в %s дней"
 
 msgid "RFM"
 msgstr "РФМ"
@@ -671,7 +671,7 @@ msgid "Contact consents"
 msgstr "Контактные согласия"
 
 msgid "Last changed: %s"
-msgstr "Последнее изменение:%s."
+msgstr "Последнее изменение: %s."
 
 msgid "Owner"
 msgstr "Владелец"
@@ -692,7 +692,7 @@ msgid "No tags."
 msgstr "Никаких тегов."
 
 msgid "Remove the %s tag"
-msgstr "Удалите тег%s."
+msgstr "Удалите тег %s."
 
 msgid "Add tags (comma for several)"
 msgstr "Добавить теги (несколько запятых)"
@@ -726,15 +726,15 @@ msgstr "Отмена"
 
 msgid "%s donation"
 msgid_plural "%s donations"
-msgstr[0] "%sпожертвование"
-msgstr[1] "%sпожертвования"
-msgstr[2] "%sпожертвования"
+msgstr[0] "%s пожертвование"
+msgstr[1] "%s пожертвования"
+msgstr[2] "%s пожертвования"
 
 msgid "%s order"
 msgid_plural "%s orders"
-msgstr[0] "%sзаказ"
-msgstr[1] "%sзаказы"
-msgstr[2] "%sзаказы"
+msgstr[0] "%s заказ"
+msgstr[1] "%s заказы"
+msgstr[2] "%s заказы"
 
 msgid "CSV"
 msgstr "CSV-файл"
@@ -809,7 +809,7 @@ msgid "Import your past data."
 msgstr "Импортируйте свои прошлые данные."
 
 msgid "New records arrive on their own. To link older ones to contacts too, sync: %s."
-msgstr "Новые пластинки приходят сами собой. Чтобы связать более старые контакты с контактами, синхронизируйте:%s."
+msgstr "Новые пластинки приходят сами собой. Чтобы связать более старые контакты с контактами, синхронизируйте: %s."
 
 msgid "No source brings in contacts; you can add them by hand."
 msgstr "Ни один источник не приводит контактов; вы можете добавить их вручную."
@@ -818,34 +818,34 @@ msgid "Sync everything"
 msgstr "Синхронизировать все"
 
 msgid "%s have paid"
-msgstr "%sзаплатили"
+msgstr "%s заплатили"
 
 msgid "New in the last 30 days"
 msgstr "Новое за последние 30 дней"
 
 msgid "%s against the previous 30 days"
-msgstr "%sза предыдущие 30 дней"
+msgstr "%s за предыдущие 30 дней"
 
 msgid "Active"
 msgstr "Активный"
 
 msgid "with activity in the last %s days"
-msgstr "с активностью за последние%sдни"
+msgstr "с активностью за последние %s дни"
 
 msgid "High churn risk"
 msgstr "Высокий риск оттока"
 
 msgid "risk %s%% and above"
-msgstr "риск%s%% и выше"
+msgstr "риск %s%% и выше"
 
 msgid "%s per contact"
-msgstr "%sза контакт"
+msgstr "%s за контакт"
 
 msgid "RFM segments"
 msgstr "RFM-сегменты"
 
 msgid "Calculated: %s"
-msgstr "Рассчитано:%s"
+msgstr "Рассчитано: %s"
 
 msgid "Recalculate"
 msgstr "Пересчитать"
@@ -860,7 +860,7 @@ msgid "No valuable contacts with a high churn risk."
 msgstr "Нет ценных контактов с высоким риском оттока."
 
 msgid "last payment %s"
-msgstr "последний платеж%s"
+msgstr "последний платеж %s"
 
 msgid "Donations, orders, forms and WhatsApp activity appear here."
 msgstr "Здесь отображаются пожертвования, заказы, формы и активность в WhatsApp."
@@ -1043,7 +1043,7 @@ msgid "Approval actions: delete, merge, bulk actions, sending messages"
 msgstr "Действия по утверждению: удаление, объединение, массовые действия, отправка сообщений."
 
 msgid "Tools: %1$d / %2$d on"
-msgstr "Инструменты:%1$d/%2$dвкл."
+msgstr "Инструменты: %1$d/%2$d вкл."
 
 msgid "Tool"
 msgstr "Инструмент"
@@ -1082,10 +1082,10 @@ msgid "WhatsApp message"
 msgstr "сообщение WhatsApp"
 
 msgid "Order #%s"
-msgstr "Заказ No%s"
+msgstr "Заказ No %s"
 
 msgid "Form #%d"
-msgstr "Форма No%d"
+msgstr "Форма No %d"
 
 msgid "SMS sent"
 msgstr "СМС отправлено"

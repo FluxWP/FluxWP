@@ -168,13 +168,13 @@ msgstr "Önce şu yeni paketleri yükleyin (etkinleştirmeyin):"
 
 msgid "%d row"
 msgid_plural "%d rows"
-msgstr[0] "%dsatırı"
-msgstr[1] "%dsatırları"
+msgstr[0] "%d satırı"
+msgstr[1] "%d satırları"
 
 msgid "%d legacy setting"
 msgid_plural "%d legacy settings"
-msgstr[0] "%deski ayar"
-msgstr[1] "%deski ayarlar"
+msgstr[0] "%d eski ayar"
+msgstr[1] "%d eski ayarlar"
 
 msgid "%drow"
 msgid_plural "%drow"

@@ -468,7 +468,7 @@ msgstr ""
 msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
 msgstr ""
 
-msgid "Certificates open at %s{code}."
+msgid "Certificates open at %s {code}."
 msgstr ""
 
 msgid "Certificate templates"
@@ -993,4 +993,3 @@ msgstr ""
 
 msgid "Person not found."
 msgstr ""
-

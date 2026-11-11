@@ -663,7 +663,7 @@ class Admin {
         $fallback_max_attempts = 2;
         $attempt = 0;
         $success = false;
-        $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code :%s', 'flx-forms');
+        $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
         $error_message = sprintf($error_message, $domain, 'not_success');
         $switch_to_fallback = function($reason, $context = []) use (&$domain, &$u, &$attempt, &$max_attempts, &$remaining_endpoints, &$using_iran_url, $fallback_max_attempts, $build_addon_url, $post_value) {
             while (!empty($remaining_endpoints)) {
@@ -718,7 +718,7 @@ class Admin {
             if (is_wp_error($request)) {
                 $attempt++;
                 $error_message = sprintf(
-                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to connect to the%sserver', 'flx-forms'),
+                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to connect to the %s server', 'flx-forms'),
                     wp_parse_url($domain, PHP_URL_HOST)
                 );
                 $this->addon_install_log_efb('remote_request_wp_error', [
@@ -764,7 +764,7 @@ class Admin {
             // blocking, which is exactly what we want to catch on Persian hosts.
             if ($response_code != 200) {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code :%s', 'flx-forms');
+                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, $response_code);
                 $this->addon_install_log_efb('remote_response_invalid_code', [
                     'requested_addon' => $post_value,
@@ -810,7 +810,7 @@ class Admin {
             $data = json_decode($body);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code :%s', 'flx-forms');
+                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, 'invalid_json');
                 $this->addon_install_log_efb('remote_response_invalid_json', [
                     'requested_addon' => $post_value,
@@ -839,7 +839,7 @@ class Admin {
 
             if ($data == null) {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code :%s', 'flx-forms');
+                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, 'invalid_data');
                 $this->addon_install_log_efb('remote_response_empty_data', [
                     'requested_addon' => $post_value,
@@ -912,7 +912,7 @@ class Admin {
 
                     // Entitled locally: treat the verdict as an endpoint problem
                     // and give the other server a turn before giving up.
-                    $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code :%s', 'flx-forms');
+                    $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
                     $error_message = sprintf($error_message, $domain, 'plan_mismatch');
                     $attempt++;
                     if ($attempt >= $max_attempts) {
@@ -948,7 +948,7 @@ class Admin {
                     wp_send_json_error($response, 200);
                     return;
                 }
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code :%s', 'flx-forms');
+                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, 'invalid_status');
                 if ($is_persian_locale) {
                     $attempt++;
@@ -1090,7 +1090,7 @@ class Admin {
                 ]);
             } else {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code :%s', 'flx-forms');
+                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code : %s ', 'flx-forms');
                 $error_message = sprintf($error_message, $domain, 'download_unavailable');
                 $this->addon_install_log_efb('download_flag_false', [
                     'requested_addon' => $post_value,
@@ -2547,7 +2547,7 @@ class Admin {
         if (!empty($test_result['delivery']['failure_reason'])) {
             $failure_reason = sanitize_text_field($test_result['delivery']['failure_reason']);
             $status_data['message']['description'] = sprintf(
-                esc_html__('Email delivery failed:%s', 'flx-forms'),
+                esc_html__('Email delivery failed: %s', 'flx-forms'),
                 $failure_reason
             );
             $status_data['details']['failure_reason'] = $failure_reason;
@@ -3437,7 +3437,7 @@ function admin_notices_efb () {
                                 </p>
                                 <p style="margin:0 0 8px 0;color:#555;"><?php esc_html_e('To receive email notifications from your forms, verify your email server by following these steps:', 'flx-forms'); ?></p>
                                 <ol style="margin:0 0 10px 0;padding-left:22px;line-height:2;color:#333;">
-                                    <li><?php printf( wp_kses( __('Go to the<a href="%s" style="font-weight:600;">Flux Forms Panel</a>', 'flx-forms'), ['a' => ['href' => [], 'style' => []]] ), esc_url($panel_url) ); ?></li>
+                                    <li><?php printf( wp_kses( __('Go to the <a href="%s" style="font-weight:600;">Flux Forms Panel</a>', 'flx-forms'), ['a' => ['href' => [], 'style' => []]] ), esc_url($panel_url) ); ?></li>
                                     <li><?php esc_html_e('Click Settings from the top menu', 'flx-forms'); ?></li>
                                     <li><?php esc_html_e('Select the Email Settings tab', 'flx-forms'); ?></li>
                                     <li><?php esc_html_e('Click "Check Email Server" and wait for the test to finish', 'flx-forms'); ?></li>
@@ -3470,12 +3470,12 @@ function admin_notices_efb () {
 
             }
             $email_notifi = sprintf(
-                esc_html__('%snotification', 'flx-forms'),
+                esc_html__('%s notification', 'flx-forms'),
                 esc_html__('Email', 'flx-forms')
             );
 
             $warning =' '. sprintf(
-                esc_html__('Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the%sfeature, please ensure it is enabled.', 'flx-forms'),
+                esc_html__('Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the %s feature, please ensure it is enabled.', 'flx-forms'),
                 $email_notifi
             );
 

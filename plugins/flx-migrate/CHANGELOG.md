@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.1.9
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.1.8
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Preserve singular/plural message boundaries and printf arguments in English source IDs and all native language packs; prevent count labels from breaking populated screens.

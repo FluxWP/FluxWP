@@ -24,8 +24,8 @@ msgstr "Profil"
 
 msgid "%s person"
 msgid_plural "%s people"
-msgstr[0] "%sPerson"
-msgstr[1] "%sLeute"
+msgstr[0] "%s Person"
+msgstr[1] "%s Leute"
 
 msgid "You are not allowed to do this."
 msgstr "Dies ist Ihnen nicht gestattet."
@@ -85,13 +85,13 @@ msgid "Access"
 msgstr "Zugang"
 
 msgid "%s is not installed"
-msgstr "%sist nicht installiert"
+msgstr "%s ist nicht installiert"
 
 msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
 msgstr "Die Einstellung wird gespeichert; Sie wird wirksam, sobald das Plugin auf eine Version aktualisiert wird, die diese Berechtigung erzwingt."
 
 msgid "Waiting for %s update"
-msgstr "Warten auf das%s-Update"
+msgstr "Warten auf das %s-Update"
 
 msgid "broad access"
 msgstr "breiter Zugang"
@@ -268,7 +268,7 @@ msgid "Invalid phone number. Write it with the country code or as 05xx."
 msgstr "Ungültige Telefonnummer. Schreiben Sie es mit dem Ländercode oder als 05xx."
 
 msgid "This number belongs to another user: %s."
-msgstr "Diese Nummer gehört einem anderen Benutzer:%s."
+msgstr "Diese Nummer gehört einem anderen Benutzer: %s."
 
 msgid "WhatsApp number"
 msgstr "WhatsApp-Nummer"
@@ -286,7 +286,7 @@ msgid "Donations from visitors who come through this link show you as the referr
 msgstr "Spenden von Besuchern, die über diesen Link kommen, zeigen Sie als Empfehlungsgeber."
 
 msgid "To share another page, add %s to the end of its address."
-msgstr "Um eine andere Seite zu teilen, fügen Sie%sam Ende ihrer Adresse hinzu."
+msgstr "Um eine andere Seite zu teilen, fügen Sie %s am Ende ihrer Adresse hinzu."
 
 msgid "Flux Roles"
 msgstr "Flux-Rollen"
@@ -295,7 +295,7 @@ msgid "FluxWP roles"
 msgstr "FluxWP-Rollen"
 
 msgid "Missing role: %s. Deactivate and reactivate the plugin."
-msgstr "Fehlende Rolle:%s. Deaktivieren Sie das Plugin und aktivieren Sie es erneut."
+msgstr "Fehlende Rolle: %s. Deaktivieren Sie das Plugin und aktivieren Sie es erneut."
 
 msgid "Staff WhatsApp numbers"
 msgstr "Mitarbeiter-WhatsApp-Nummern"
@@ -310,7 +310,7 @@ msgid "Plugins enforcing role permissions"
 msgstr "Plugins zur Durchsetzung von Rollenberechtigungen"
 
 msgid "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen."
-msgstr "Einige aktivierte Berechtigungen werden noch nicht erzwungen; Warten auf Updates von:%s. Bis dahin können diese Personen den entsprechenden Bildschirm nicht sehen."
+msgstr "Einige aktivierte Berechtigungen werden noch nicht erzwungen; Warten auf Updates von: %s. Bis dahin können diese Personen den entsprechenden Bildschirm nicht sehen."
 
 msgid "All enabled permissions are enforced."
 msgstr "Alle aktivierten Berechtigungen werden erzwungen."

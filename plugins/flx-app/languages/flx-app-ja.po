@@ -1348,4 +1348,3 @@ msgstr "%s アカウントから電話番号が削除されました"
 
 msgid "The token does not include the scope this request needs."
 msgstr "トークンに、このリクエストが必要とするスコープが含まれていません。"
-

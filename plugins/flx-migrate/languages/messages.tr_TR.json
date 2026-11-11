@@ -60,8 +60,8 @@
     "Upload folders": "Yükleme klasörleri",
     "Working…": "Çalışıyor…",
     "Upload these new packages first (do not activate them):": "Önce şu yeni paketleri yükleyin (etkinleştirmeyin):",
-    "%d row\u0000%d rows": "%dsatırı\u0000%dsatırları",
-    "%d legacy setting\u0000%d legacy settings": "%deski ayar\u0000%deski ayarlar",
+    "%d row\u0000%d rows": "%d satırı\u0000%d satırları",
+    "%d legacy setting\u0000%d legacy settings": "%d eski ayar\u0000%d eski ayarlar",
     "%drow\u0000%drow": "%d satır\u0000%d satır",
     "%dold setting\u0000%dold setting": "%d eski ayar\u0000%d eski ayar"
   }

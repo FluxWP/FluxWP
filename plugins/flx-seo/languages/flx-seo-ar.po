@@ -98,7 +98,7 @@ msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Pr
 msgstr "أقسام PageSpeed Insights الخمسة (الأداء، وإمكانية الوصول، وأفضل الممارسات، وتحسين محركات البحث، والتصفح الوكيل) حسب الأولوية. لا تحتاج عملية التدقيق في الموقع إلى مفتاح ويتم تشغيلها من تلقاء نفسها كل يوم؛ يضيف تشغيل PageSpeed ​​نتيجة Lighthouse الحقيقية لـ Google."
 
 msgid "On-site audit: %1$s · %2$s"
-msgstr "التدقيق في الموقع:%1$s·%2$s"
+msgstr "التدقيق في الموقع: %1$s · %2$s"
 
 msgid "No audit has run yet."
 msgstr "لم يتم تشغيل أي تدقيق حتى الآن."
@@ -155,7 +155,7 @@ msgid "How to fix:"
 msgstr "كيفية الإصلاح:"
 
 msgid "Where to fix: %s"
-msgstr "مكان الإصلاح:%s"
+msgstr "مكان الإصلاح: %s"
 
 msgid "Fix"
 msgstr "إصلاح"
@@ -680,16 +680,16 @@ msgid "If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are bl
 msgstr "إذا تم حظر برامج الزحف مثل GPTBot، وClaudeBot، وGoogle-Extending، وPerplexityBot، فلن يظهر المحتوى الخاص بك في إجابات الذكاء الاصطناعي. قم بإزالتها من ملف robots.txt إلا إذا قمت بحظرها عن قصد."
 
 msgid "Returned HTTP %d."
-msgstr "تم إرجاع HTTP%d."
+msgstr "تم إرجاع HTTP %d."
 
 msgid "Settings › Reading: search engines discouraged"
 msgstr "الإعدادات › القراءة: محركات البحث محبطة"
 
 msgid "%d characters."
-msgstr "أحرف%d."
+msgstr "أحرف %d."
 
 msgid "%d H1 headings."
-msgstr "عناوين%dH1."
+msgstr "عناوين %d H1."
 
 msgid "JSON-LD could not be parsed."
 msgstr "لا يمكن تحليل JSON-LD."
@@ -698,19 +698,19 @@ msgid "not found"
 msgstr "لم يتم العثور عليه"
 
 msgid "%d render-blocking CSS/JS requests in <head>."
-msgstr "%dطلبات CSS/JS التي تحظر العرض في<head>."
+msgstr "%d طلبات CSS/JS التي تحظر العرض في<head>."
 
 msgid "%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed."
-msgstr "%dطلبات CSS/JS التي تحظر العرض في<head>. قم بقياس التوفير المقدر باستخدام PageSpeed."
+msgstr "%d طلبات CSS/JS التي تحظر العرض في<head>. قم بقياس التوفير المقدر باستخدام PageSpeed."
 
 msgid "The page has %s elements."
-msgstr "تحتوي الصفحة على عناصر%s."
+msgstr "تحتوي الصفحة على عناصر %s."
 
 msgid "Response measured from the server: %d ms (may bypass the cache)."
-msgstr "الاستجابة المقاسة من الخادم:%dمللي ثانية (قد تتجاوز ذاكرة التخزين المؤقت)."
+msgstr "الاستجابة المقاسة من الخادم: %d مللي ثانية (قد تتجاوز ذاكرة التخزين المؤقت)."
 
 msgid "HTML is %s."
-msgstr "HTML هو%s."
+msgstr "HTML هو %s."
 
 msgid "The HTTPS page loads content over http://."
 msgstr "تقوم صفحة HTTPS بتحميل المحتوى عبر http://."
@@ -719,7 +719,7 @@ msgid "No Content-Security-Policy header."
 msgstr "لا يوجد رأس سياسة أمان المحتوى."
 
 msgid "Missing directive: %s."
-msgstr "التوجيه المفقود:%s."
+msgstr "التوجيه المفقود: %s."
 
 msgid "first line is not \"# Title\""
 msgstr "السطر الأول ليس \"# Title\""
@@ -743,7 +743,7 @@ msgid "Not run yet. Check performance, accessibility, SEO, security and agent re
 msgstr "لم يتم تشغيله بعد. التحقق من الأداء وإمكانية الوصول وتحسين محركات البحث والأمان وجاهزية الوكيل."
 
 msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
-msgstr "توصيات%1$dالحرجة، و%2$dالعالية، و%3$dالمتوسطة، وتوصيات%4$dالمنخفضة."
+msgstr "توصيات %1$d الحرجة، و %2$d العالية، و %3$d المتوسطة، وتوصيات %4$d المنخفضة."
 
 msgid "Site build guide"
 msgstr "دليل بناء الموقع"
@@ -794,16 +794,16 @@ msgid "Sunday"
 msgstr "الأحد"
 
 msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
-msgstr "[%1$s] تدقيق الموقع:%2$dتوصيات هامة/عالية جديدة"
+msgstr "[%1$s] تدقيق الموقع: %2$d توصيات هامة/عالية جديدة"
 
 msgid "The automatic site audit found new recommendations:"
 msgstr "عثر التدقيق التلقائي للموقع على توصيات جديدة:"
 
 msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
-msgstr "الإجمالي:%1$dالحرج،%2$dالعالي،%3$dالمتوسط،%4$dالمنخفض."
+msgstr "الإجمالي: %1$d الحرج، %2$d العالي، %3$d المتوسط، %4$d المنخفض."
 
 msgid "Resolved since the previous audit: %d."
-msgstr "تم حلها منذ المراجعة السابقة:%d."
+msgstr "تم حلها منذ المراجعة السابقة: %d."
 
 msgid "Details and fixes:"
 msgstr "التفاصيل والإصلاحات:"
@@ -824,7 +824,7 @@ msgid "Report history"
 msgstr "تقرير التاريخ"
 
 msgid "Next automatic audit: %s"
-msgstr "التدقيق التلقائي التالي:%s"
+msgstr "التدقيق التلقائي التالي: %s"
 
 msgid "Automatic audit is off."
 msgstr "التدقيق التلقائي معطل."
@@ -902,7 +902,7 @@ msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpe
 msgstr "لا يوجد تقرير مع تشغيل PageSpeed حتى الآن. أدخل مفتاح API وقم بتشغيل PageSpeed ​​في التدقيق التلقائي."
 
 msgid "%s PageSpeed scores over time"
-msgstr "عشرات%sPageSpeed مع مرور الوقت"
+msgstr "عشرات %s PageSpeed مع مرور الوقت"
 
 msgid "Site audit and agent readiness"
 msgstr "تدقيق الموقع وجاهزية الوكيل"
@@ -914,7 +914,7 @@ msgid "No URLs to submit."
 msgstr "لا توجد عناوين URL لتقديمها."
 
 msgid "IndexNow returned %d."
-msgstr "عاد IndexNow%d."
+msgstr "عاد IndexNow %d."
 
 msgid "Not allowed."
 msgstr "غير مسموح."
@@ -923,7 +923,7 @@ msgid "IndexNow is off or the site is hidden from search engines (Settings › R
 msgstr "تم إيقاف IndexNow أو تم إخفاء الموقع عن محركات البحث (الإعدادات > القراءة)."
 
 msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
-msgstr "يتم إرسال عناوين URL الخاصة بـ%dإلى Bing وYandex ومحركات بحث IndexNow الأخرى."
+msgstr "يتم إرسال عناوين URL الخاصة بـ%d إلى Bing وYandex ومحركات بحث IndexNow الأخرى."
 
 msgid "Open Search Console"
 msgstr "افتح وحدة تحكم البحث"
@@ -944,7 +944,7 @@ msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexin
 msgstr "إضافة موقع › علامة التعريف. بعد التحقق، أضف عنوان URL لخريطة الموقع ضمن الفهرسة › ملفات Sitemap."
 
 msgid "%1$s · %2$d URLs · HTTP %3$d"
-msgstr "%1$s· عناوين URL لـ%2$d· HTTP%3$d"
+msgstr "%1$s· عناوين URL لـ%2$d· HTTP %3$d"
 
 msgid "key file could not be verified"
 msgstr "لا يمكن التحقق من ملف المفتاح"
@@ -1031,7 +1031,7 @@ msgid "Bing and Yandex"
 msgstr "بنج وياندكس"
 
 msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
-msgstr "لا يوجد رمز التحقق:%s. أضف الموقع إلى لوحات مشرفي المواقع لمحركات البحث هذه (لا يحتاج استيراد Bing من Google Search Console إلى أي كود)."
+msgstr "لا يوجد رمز التحقق: %s. أضف الموقع إلى لوحات مشرفي المواقع لمحركات البحث هذه (لا يحتاج استيراد Bing من Google Search Console إلى أي كود)."
 
 msgid "Bing and Yandex verification codes are set."
 msgstr "تم تعيين رموز التحقق Bing وYandex."
@@ -1175,13 +1175,13 @@ msgid "llms.txt"
 msgstr "llms.txt"
 
 msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
-msgstr "لم يتم تصحيح PHP%1$sمقابل%2$s. قم بالتحديث إلى%3$sعلى الأقل (لوحة الاستضافة ›إصدار PHP). قد تحمل حزمة التوزيع الإصلاح دون تغيير رقم الإصدار؛ اسأل مزود الخدمة الخاص بك إذا لم تكن متأكدًا."
+msgstr "لم يتم تصحيح PHP %1$s مقابل %2$s. قم بالتحديث إلى %3$s على الأقل (لوحة الاستضافة ›إصدار PHP). قد تحمل حزمة التوزيع الإصلاح دون تغيير رقم الإصدار؛ اسأل مزود الخدمة الخاص بك إذا لم تكن متأكدًا."
 
 msgid "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
-msgstr "لم يعد PHP%1$sيحصل على إصلاحات أمنية؛ تظل الثقوب مثل%2$sمفتوحة. انتقل إلى PHP%3$sأو إصدار أحدث مصحح آخر."
+msgstr "لم يعد PHP %1$s يحصل على إصلاحات أمنية؛ تظل الثقوب مثل %2$s مفتوحة. انتقل إلى PHP %3$s أو إصدار أحدث مصحح آخر."
 
 msgid "PHP %1$s is patched against %2$s."
-msgstr "تم تصحيح PHP%1$sمقابل%2$s."
+msgstr "تم تصحيح PHP %1$s مقابل %2$s."
 
 msgid "Security"
 msgstr "الأمن"
@@ -1212,4 +1212,3 @@ msgstr "عنوان/وصف تعريفي، أساسي، رسم بياني مفتو
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "انتهت مهلة PageSpeed؛ تم تخطي هذه الخطوة."
-

@@ -119,7 +119,7 @@ msgid "Settings saved."
 msgstr "Configuración guardada."
 
 msgid "Guides imported: %1$d new, %2$d updated, %3$d skipped (edited by hand or up to date)."
-msgstr "Guías importadas:%1$dnueva,%2$dactualizada,%3$domitida (editada a mano o actualizada)."
+msgstr "Guías importadas: %1$d nueva, %2$d actualizada, %3$d omitida (editada a mano o actualizada)."
 
 msgid "Wiki"
 msgstr "wiki"
@@ -230,13 +230,13 @@ msgid "Bundled guides"
 msgstr "guías incluidas"
 
 msgid "The plugin ships %d guides: writing plugins and themes, AI-enabled plugins, MCP tools, settings schema, translation, versions and releases. Missing pages are added; pages you have not edited are updated to the new version."
-msgstr "El complemento incluye guías%d: redacción de complementos y temas, complementos habilitados para IA, herramientas MCP, esquema de configuración, traducción, versiones y lanzamientos. Se agregan las páginas que faltan; Las páginas que no has editado se actualizan a la nueva versión."
+msgstr "El complemento incluye guías %d: redacción de complementos y temas, complementos habilitados para IA, herramientas MCP, esquema de configuración, traducción, versiones y lanzamientos. Se agregan las páginas que faltan; Las páginas que no has editado se actualizan a la nueva versión."
 
 msgid "Import / update guides"
 msgstr "Importar/actualizar guías"
 
 msgid "%d published pages."
-msgstr "%dpáginas publicadas."
+msgstr "%d páginas publicadas."
 
 msgid "You are not allowed to do this."
 msgstr "No tienes permitido hacer esto."
@@ -258,8 +258,8 @@ msgstr "No se pudo obtener una respuesta. Inténtalo de nuevo en un momento."
 
 msgid "%1$s result for \"%2$s\""
 msgid_plural "%1$s results for \"%2$s\""
-msgstr[0] "resultado%1$spara \"%2$s\""
-msgstr[1] "%1$sresultados para \"%2$s\""
+msgstr[0] "resultado %1$s para \"%2$s\""
+msgstr[1] "%1$s resultados para \"%2$s\""
 
 msgid "Copied"
 msgstr "Copiado"
@@ -280,7 +280,7 @@ msgid "Type to search"
 msgstr "Escribe para buscar"
 
 msgid "%d results"
-msgstr "Resultados%d"
+msgstr "Resultados %d"
 
 msgid "Ask AI"
 msgstr "Pregúntale a la IA"
@@ -304,7 +304,7 @@ msgid "No results for \"%1$s\"; showing results for \"%2$s\"."
 msgstr "No hay resultados para \"%1$s\"; mostrando resultados para \"%2$s\"."
 
 msgid "See all %d results"
-msgstr "Ver todos los resultados de%d"
+msgstr "Ver todos los resultados de %d"
 
 msgid "Wiki search for \"%s\""
 msgstr "Búsqueda Wiki para \"%s\""
@@ -322,10 +322,10 @@ msgid "Last updated"
 msgstr "Última actualización"
 
 msgid "Add .md to any page address to get its Markdown. The whole wiki in one file: %1$s"
-msgstr "Agregue .md a la dirección de cualquier página para obtener su Markdown. Toda la wiki en un solo archivo:%1$s"
+msgstr "Agregue .md a la dirección de cualquier página para obtener su Markdown. Toda la wiki en un solo archivo: %1$s"
 
 msgid "MCP server (key required): %s, tools flxwk_search, flxwk_get_page, flxwk_list_pages."
-msgstr "Servidor MCP (se requiere clave):%s, herramientas flxwk_search, flxwk_get_page, flxwk_list_pages."
+msgstr "Servidor MCP (se requiere clave): %s, herramientas flxwk_search, flxwk_get_page, flxwk_list_pages."
 
 msgid "Other pages"
 msgstr "Otras paginas"
@@ -424,7 +424,7 @@ msgid "Wiki addresses"
 msgstr "Direcciones wiki"
 
 msgid "The wiki is at %s; .md and llms.txt addresses work."
-msgstr "La wiki está en%s; Las direcciones .md y llms.txt funcionan."
+msgstr "La wiki está en %s; Las direcciones .md y llms.txt funcionan."
 
 msgid "Permalinks are set to \"Plain\"; /wiki, .md and llms.txt addresses do not work. Choose \"Post name\" in Settings › Permalinks."
 msgstr "Los enlaces permanentes están configurados como \"Simples\"; Las direcciones /wiki, .md y llms.txt no funcionan. Elija \"Nombre de la publicación\" en Configuración › Enlaces permanentes."
@@ -440,13 +440,13 @@ msgstr "Flux AI no está instalado, no tiene clave o el sistema Flux Wiki está 
 
 msgid "%s page"
 msgid_plural "%s pages"
-msgstr[0] "%spágina"
-msgstr[1] "%spáginas"
+msgstr[0] "%s página"
+msgstr[1] "%s páginas"
 
 msgid "%s min read"
 msgid_plural "%s min read"
-msgstr[0] "%slectura mínima"
-msgstr[1] "%slectura mínima"
+msgstr[0] "%s lectura mínima"
+msgstr[1] "%s lectura mínima"
 
 msgid "What are you looking for? E.g. MCP tool, flx_settings_schema, theme…"
 msgstr "¿Qué estás buscando? P.ej. Herramienta MCP, flx_settings_schema, tema…"
@@ -485,7 +485,7 @@ msgid "Subpages"
 msgstr "Subpáginas"
 
 msgid "Updated %s"
-msgstr "Actualizado%s"
+msgstr "Actualizado %s"
 
 msgid "Previous and next page"
 msgstr "Página anterior y siguiente"
@@ -500,7 +500,7 @@ msgid "Markdown"
 msgstr "Rebaja"
 
 msgid "Read the document at %s, then answer my questions about it."
-msgstr "Lea el documento en%sy luego responda mis preguntas al respecto."
+msgstr "Lea el documento en %s y luego responda mis preguntas al respecto."
 
 msgid "Copy Markdown"
 msgstr "Copiar rebajas"

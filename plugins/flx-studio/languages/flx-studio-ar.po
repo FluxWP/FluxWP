@@ -182,7 +182,7 @@ msgid "Delete"
 msgstr "حذف"
 
 msgid "{n} items moved"
-msgstr "تم نقل عناصر{n}"
+msgstr "تم نقل عناصر {n}"
 
 msgid "Nothing here"
 msgstr "لا شيء هنا"
@@ -221,7 +221,7 @@ msgid "Reuse settings"
 msgstr "إعادة استخدام الإعدادات"
 
 msgid "{n} selected"
-msgstr "تم تحديد{n}"
+msgstr "تم تحديد {n}"
 
 msgid "Tap items to select"
 msgstr "اضغط على العناصر لتحديدها"
@@ -239,7 +239,7 @@ msgid "New folder…"
 msgstr "مجلد جديد..."
 
 msgid "Delete {n} items?"
-msgstr "هل تريد حذف عناصر{n}؟"
+msgstr "هل تريد حذف عناصر {n}؟"
 
 msgid "Delete item?"
 msgstr "هل تريد حذف العنصر؟"
@@ -248,7 +248,7 @@ msgid "Files are deleted from the server. Copies added to the Media Library stay
 msgstr "يتم حذف الملفات من الخادم. تمت إضافة النسخ إلى مكتبة الوسائط."
 
 msgid "{n} items ready"
-msgstr "عناصر{n}جاهزة"
+msgstr "عناصر {n} جاهزة"
 
 msgid "Generation ready"
 msgstr "جيل جاهز"
@@ -332,19 +332,19 @@ msgid "Provider"
 msgstr "مزود"
 
 msgid "{n} models"
-msgstr "نماذج{n}"
+msgstr "نماذج {n}"
 
 msgid "no key"
 msgstr "لا يوجد مفتاح"
 
 msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
-msgstr "لا يوجد مفتاح{p}(Flux AI & MCP ›الإعدادات› الصور والفيديو)."
+msgstr "لا يوجد مفتاح {p}(Flux AI & MCP ›الإعدادات› الصور والفيديو)."
 
 msgid "This reference is already added"
 msgstr "تمت إضافة هذا المرجع بالفعل"
 
 msgid "This model accepts at most {n} references"
-msgstr "يقبل هذا النموذج معظم مراجع{n}"
+msgstr "يقبل هذا النموذج معظم مراجع {n}"
 
 msgid "Save to references"
 msgstr "حفظ إلى المراجع"
@@ -359,7 +359,7 @@ msgid "Pick from gallery"
 msgstr "اختر من المعرض"
 
 msgid "{n} photos"
-msgstr "صور{n}"
+msgstr "صور {n}"
 
 msgid "no photos"
 msgstr "لا توجد صور"
@@ -383,7 +383,7 @@ msgid "No images yet."
 msgstr "لا توجد صور بعد."
 
 msgid "{name} has no photos; add some in Manage people"
-msgstr "{name}ليس لديه صور. أضف بعضًا منها في إدارة الأشخاص"
+msgstr "{name} ليس لديه صور. أضف بعضًا منها في إدارة الأشخاص"
 
 msgid "Write a short draft first."
 msgstr "اكتب مسودة قصيرة أولاً."
@@ -515,7 +515,7 @@ msgid "Number of ideas"
 msgstr "عدد الأفكار"
 
 msgid "{n} ideas"
-msgstr "أفكار{n}"
+msgstr "أفكار {n}"
 
 msgid "YouTube thumbnail"
 msgstr "يوتيوب الصورة المصغرة"
@@ -530,10 +530,10 @@ msgid "Generate selected ({n})"
 msgstr "إنشاء المحدد ({n})"
 
 msgid "{n} generations started"
-msgstr "بدأت أجيال{n}"
+msgstr "بدأت أجيال {n}"
 
 msgid "Sending {i}/{n}"
-msgstr "إرسال{i}/{n}"
+msgstr "إرسال {i}/{n}"
 
 msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
 msgstr "يخلق مطالبات متميزة من فكرة واحدة. اختر ما يعجبك وقم بإنشائه دفعة واحدة. النموذج والنسبة يأتيان من شريط التوليد."
@@ -557,7 +557,7 @@ msgid "Delete person"
 msgstr "حذف الشخص"
 
 msgid "Delete {name}?"
-msgstr "حذف{name}؟"
+msgstr "حذف {name}؟"
 
 msgid "The person and their photos are deleted. Earlier generations stay."
 msgstr "يتم حذف الشخص وصورته. تبقى الأجيال السابقة."
@@ -596,10 +596,10 @@ msgid "just now"
 msgstr "الآن فقط"
 
 msgid "{n} min ago"
-msgstr "{n}منذ دقيقة"
+msgstr "{n} منذ دقيقة"
 
 msgid "{n} h ago"
-msgstr "{n}منذ ح"
+msgstr "{n} منذ ح"
 
 msgid "Server error ({n})."
 msgstr "خطأ في الخادم ({n})."
@@ -641,13 +641,13 @@ msgid "Generations"
 msgstr "أجيال"
 
 msgid "{i} images · {v} videos"
-msgstr "صور{i}· مقاطع فيديو{v}"
+msgstr "صور {i}· مقاطع فيديو {v}"
 
 msgid "Spend"
 msgstr "انفق"
 
 msgid "Image/video {m} · text {x}"
-msgstr "صورة/فيديو{m}· نص{x}"
+msgstr "صورة/فيديو {m}· نص {x}"
 
 msgid "Average"
 msgstr "متوسط"
@@ -656,13 +656,13 @@ msgid "per generation"
 msgstr "لكل جيل"
 
 msgid "{p}% error rate"
-msgstr "{p}معدل الخطأ %"
+msgstr "{p} معدل الخطأ %"
 
 msgid "no attempts yet"
 msgstr "لا توجد محاولات حتى الآن"
 
 msgid "Storage {b}"
-msgstr "تخزين{b}"
+msgstr "تخزين {b}"
 
 msgid "Daily generations"
 msgstr "الأجيال اليومية"
@@ -794,7 +794,7 @@ msgid "Database tables"
 msgstr "جداول قاعدة البيانات"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "الجدول المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+msgstr "الجدول المفقود: %s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
 
 msgid "Tables are ready."
 msgstr "الجداول جاهزة."
@@ -824,7 +824,7 @@ msgid "Flux AI"
 msgstr "تدفق منظمة العفو الدولية"
 
 msgid "%1$d models available (%2$s)."
-msgstr "موديلات%1$dمتاحة (%2$s)."
+msgstr "موديلات %1$d متاحة (%2$s)."
 
 msgid "Enhance and Brainstorm"
 msgstr "تعزيز والعصف الذهني"
@@ -854,7 +854,7 @@ msgid "The file is empty."
 msgstr "الملف فارغ."
 
 msgid "The file exceeds the %d MB limit."
-msgstr "يتجاوز الملف حد%dميغابايت."
+msgstr "يتجاوز الملف حد %d ميغابايت."
 
 msgid "This file type is not supported."
 msgstr "نوع الملف هذا غير مدعوم."
@@ -869,7 +869,7 @@ msgid "Person not found."
 msgstr "لم يتم العثور على الشخص."
 
 msgid "At most %d reference images can be used."
-msgstr "يمكن استخدام الصور المرجعية لـ%dعلى الأكثر."
+msgstr "يمكن استخدام الصور المرجعية لـ%d على الأكثر."
 
 msgid "The file is not on the server."
 msgstr "الملف ليس على الخادم."

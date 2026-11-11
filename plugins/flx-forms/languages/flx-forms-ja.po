@@ -1339,10 +1339,10 @@ msgstr[0] "ここには最大%1$dファイルを添付できます。%2$d分ほ�
 msgid "Add-on directory is ready for file operations"
 msgstr "アドオン ディレクトリはファイル操作の準備ができています"
 
-msgid "Cannot install addons:%s"
+msgid "Cannot install addons: %s"
 msgstr "アドオンをインストールできません:%s"
 
-msgid "%scomplete"
+msgid "%s complete"
 msgstr "%sが完了しました"
 
 msgid "Copy and paste this shortcode to add the confirmation code finder to any page or post."
@@ -1384,7 +1384,7 @@ msgstr "(ビデオまたはオーディオ)"
 msgid "Localization"
 msgstr "ローカリゼーション"
 
-msgid "Help us speak your language! Translate Flux Forms on the%1$sWordPress.org translation portal%2$sand make it accessible to your community."
+msgid "Help us speak your language! Translate Flux Forms on the %1$sWordPress.org translation portal%2$s and make it accessible to your community."
 msgstr "あなたの言語を話すのにご協力ください!%1$sWordPress.org 翻訳ポータル%2$sで Flux Forms を翻訳し、コミュニティがアクセスできるようにします。"
 
 msgid "You can translate Flux Forms into your preferred language by translating the following sentences. WARNING: If your WordPress site is multilingual, do not change the values below."
@@ -1783,22 +1783,22 @@ msgstr "ラベルの位置"
 msgid "Align"
 msgstr "整列"
 
-msgid "%swidth"
+msgid "%s width"
 msgstr "%s幅"
 
-msgid "%sLabel Position"
+msgid "%s Label Position"
 msgstr "%sラベルの位置"
 
-msgid "%sLabel size"
+msgid "%s Label size"
 msgstr "%sラベル サイズ"
 
-msgid "%sLabel | Align"
+msgid "%s Label | Align"
 msgstr "%sラベル |整列"
 
-msgid "%sDescription | Align"
+msgid "%s Description | Align"
 msgstr "%s説明 |整列"
 
-msgid "%sButtons | Align"
+msgid "%s Buttons | Align"
 msgstr "%sボタン |整列"
 
 msgid "CSS Classes"
@@ -1819,7 +1819,7 @@ msgstr "ボタンの色"
 msgid "red"
 msgstr "赤"
 
-msgid "%sChecked Color"
+msgid "%s Checked Color"
 msgstr "%sチェックされた色"
 
 msgid "Slider Button"
@@ -1828,13 +1828,13 @@ msgstr "スライダー ボタン"
 msgid "Value Text"
 msgstr "値のテキスト"
 
-msgid "Switch%s"
+msgid "Switch %s"
 msgstr "スイッチ%s"
 
 msgid "Handle"
 msgstr "ハンドル"
 
-msgid "%scolor"
+msgid "%s color"
 msgstr "%s色"
 
 msgid "Border Color"
@@ -1954,7 +1954,7 @@ msgstr "フォームで使用される高度な機能と高度なフィールド
 msgid "Your Pro activation code will be removed from this site. Advanced features, Pro fields and add-ons will be unavailable until you upgrade again. Your forms, entries and settings will not be deleted."
 msgstr "Pro アクティベーション コードはこのサイトから削除されます。高度な機能、Pro フィールド、アドオンは、再度アップグレードするまで利用できません。フォーム、エントリ、設定は削除されません。"
 
-msgid "KeepPro"
+msgid "Keep Pro"
 msgstr "KeepPro"
 
 msgid "Keep Free Plus"
@@ -2020,7 +2020,7 @@ msgstr "テストメールは送信されましたが、配信はまだ確認さ
 msgid "We could not verify delivery. Your email address was saved; please check your mail configuration in General Settings."
 msgstr "[[「配送が確認できませんでした。あなたの電子メールアドレスは保存されました。一般設定でメール設定を確認してください。"
 
-msgid "Your test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
+msgid "Your test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
 msgstr "テストメールは配信されましたが、配信スコアは 100 点中%1$sのみです (%2$s未満)。フォームから送信される電子メールは、スパムとしてフィルターされる可能性が高くなります。 SMTP を設定し、チェックを再度実行してください。"
 
 msgid "Finish setup"
@@ -2344,10 +2344,10 @@ msgstr "正常に送信されました"
 msgid "This field is required."
 msgstr "このフィールドは必須です。"
 
-msgid "Custom%sMessage"
+msgid "Custom %s Message"
 msgstr "カスタム%sメッセージ"
 
-msgid "Leave empty to use default%s"
+msgid "Leave empty to use default %s"
 msgstr "デフォルトの%sを使用するには空のままにしておきます "
 
 msgid "Thank you"
@@ -2371,7 +2371,7 @@ msgstr "設定が見つかりません"
 msgid "Please navigate to the Flux Forms Panel, then go to Settings and click on Google Keys to configure the keys for Google reCAPTCHA."
 msgstr "Flux Forms パネルに移動し、[設定] に移動して [Google キー] をクリックして、Google reCAPTCHA のキーを構成してください。"
 
-msgid "If your language translation is not available yet, translate it and get a%3$slifetime discount! Contribute via the%1$sWordPress.org translation portal%2$s."
+msgid "If your language translation is not available yet, translate it and get a %3$s lifetime discount! Contribute via the %1$sWordPress.org translation portal%2$s."
 msgstr "言語翻訳がまだ利用できない場合は、翻訳して%3$s生涯割引を受けてください!%1$sWordPress.org 翻訳ポータル%2$sを通じて貢献してください。"
 
 msgid "OFF"
@@ -2776,7 +2776,7 @@ msgstr "ペルシアでの支払い"
 msgid "Unlock Pro Features Today"
 msgstr "Pro 機能のロックを今すぐ解除してください"
 
-msgid "Upgrade to Pro for just%1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
+msgid "Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
 msgstr "%1$s%2$s%3$s/ 年だけで Pro にアップグレードすると、高度なフォーム フィールド、支払い統合、条件付きロジック、マルチステップ フォーム、ファイル アップロード、セキュリティとスパム保護、優先サポートなどの強力な機能にアクセスできます。%4$sプロの機能を表示%5$s"
 
 msgid "Add-on"
@@ -3088,7 +3088,7 @@ msgstr "一致しません"
 msgid "No fields found."
 msgstr "フィールドが見つかりません。"
 
-msgid "You can create up to%1$s%2$son your current plan. Upgrade to Pro for unlimited access."
+msgid "You can create up to %1$s %2$s on your current plan. Upgrade to Pro for unlimited access."
 msgstr "現在のプランでは%1$s%2$sまで作成できます。 Pro にアップグレードすると、無制限にアクセスできます。"
 
 msgid "Inspector"
@@ -3490,10 +3490,10 @@ msgstr "プレビューに透かしを表示"
 msgid "Let the user download a copy of the recording"
 msgstr "ユーザーが録画のコピーをダウンロードできるようにします"
 
-msgid "Your hosting accepts uploads up to%sMB."
+msgid "Your hosting accepts uploads up to %s MB."
 msgstr "ホスティングでは%sMB までのアップロードを受け入れます。"
 
-msgid "This is larger than the hosting upload limit (%sMB); uploads will fail."
+msgid "This is larger than the hosting upload limit (%s MB); uploads will fail."
 msgstr "これはホスティングのアップロード制限 (%sMB) を超えています。アップロードは失敗します。"
 
 msgid "Cities Drop-Down"
@@ -3577,13 +3577,13 @@ msgstr "提出物"
 msgid "Emails sent"
 msgstr "送信されたメール"
 
-msgid "%sFailures"
+msgid "%s Failures"
 msgstr "%sの失敗"
 
-msgid "%sError Log"
+msgid "%s Error Log"
 msgstr "%sエラー ログ"
 
-msgid "%sDetails"
+msgid "%s Details"
 msgstr "%sの詳細"
 
 msgid "No data available for this period"
@@ -3598,16 +3598,16 @@ msgstr "エラー: 1 ページにフォームが 1 つだけあることを確�
 msgid "Your activation code has been verified. Enjoy all Pro features of Flux Forms."
 msgstr "アクティベーション コードが確認されました。 Flux Forms のすべての Pro 機能をお楽しみください。"
 
-msgid "The confirmation code for this message is%s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
+msgid "The confirmation code for this message is %s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
 msgstr "このメッセージの確認コードは%sです。下のボタンをクリックすると、メッセージを追跡し、受信した応答を表示できます。必要に応じて、新しい返信を送信することもできます。"
 
-msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s."
+msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s ."
 msgstr "電子メール構成、フォーム作成オプション、その他の機能を含む、Flux Forms の完全な機能と設定を調べるには、%1$sドキュメント%2$sを詳しく調べてください。"
 
 msgid "Responses & Confirmation"
 msgstr "応答と確認"
 
-msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings%1$sLearn how to fix email delivery issues%2$sor%3$scontact Flux Forms support%4$s."
+msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings %1$sLearn how to fix email delivery issues%2$s or %3$scontact Flux Forms support%4$s."
 msgstr "テストメールがスパムフォルダに入る可能性があります。電子メールが配信されない場合、これは通常、ホスティングまたは電子メール サーバーの設定に関連しています。サーバー設定%1$s電子メール配信の問題を修正する方法をご覧ください。%2$sまたは%3$sFLUX Forms サポートにお問い合わせください。%4$s。"
 
 msgid "From Address"
@@ -3637,7 +3637,7 @@ msgstr "有効にすると、PayPal およびその他のサービスにサン�
 msgid "After changing the Development Mode (Sandbox) option, save the settings, then deactivate and reactivate Flux Forms plugin from the Plugins page for the changes to take effect."
 msgstr "開発モード (サンドボックス) オプションを変更した後、設定を保存し、変更を有効にするには、プラグイン ページから Flux Forms プラグインを非アクティブ化し、再度アクティブ化します。"
 
-msgid "I have read and agree to%1$sthe terms and conditions%2$s"
+msgid "I have read and agree to %1$sthe terms and conditions%2$s"
 msgstr "%1$sの利用規約%2$sを読んで同意します "
 
 msgid "Terms"
@@ -3652,7 +3652,7 @@ msgstr "最大日付"
 msgid "Minimum date"
 msgstr "最小日付"
 
-msgid "Valid formats:%s"
+msgid "Valid formats: %s"
 msgstr "有効な形式:%s"
 
 msgid "Zoom"
@@ -3676,13 +3676,13 @@ msgstr "Telegram 通知アドオンを使用すると、新しいメッセージ
 msgid "Enter a location name"
 msgstr "場所の名前を入力してください"
 
-msgid "The%1$spages are currently unavailable. It looks like another plugin is causing a conflict with%1$s. To fix this issue,%2$scontact%1$ssupport%3$sfor assistance or try disabling your plugins one at a time to identify the one causing the conflict."
+msgid "The %1$s pages are currently unavailable. It looks like another plugin is causing a conflict with %1$s . To fix this issue, %2$s contact %1$s support %3$s for assistance or try disabling your plugins one at a time to identify the one causing the conflict."
 msgstr "%1$sページは現在利用できません。別のプラグインが%1$sとの競合を引き起こしているようです。この問題を解決するには、%2$sが%1$sサポート%3$sに問い合わせるか、プラグインを 1 つずつ無効にして競合の原因となっているプラグインを特定してみてください。"
 
 msgid "Send email with submitted form content only"
 msgstr "送信されたフォームの内容のみを含むメールを送信"
 
-msgid "%scopied!"
+msgid "%s copied!"
 msgstr "%sがコピーされました!"
 
 msgid "The website is not responding; please refresh and try again—saving or submitting is not available until it is restored."
@@ -3703,7 +3703,7 @@ msgstr "メールアドレスを入力してパスワードをリセットして
 msgid "If your email is valid, a password reset link has been sent to your email address."
 msgstr "メールアドレスが有効であれば、パスワードリセットリンクがメールアドレスに送信されています。"
 
-msgid "Enable%s"
+msgid "Enable %s"
 msgstr "%sを有効にする "
 
 msgid "Auto-Populate"
@@ -3772,28 +3772,28 @@ msgstr "外部 API 接続"
 msgid "Add API Connection"
 msgstr "API 接続を追加"
 
-msgid "Upload the%sfile"
+msgid "Upload the %s file"
 msgstr "%sファイルをアップロードします"
 
 msgid "Dataset"
 msgstr "データセット"
 
-msgid "The%shas been successfully completed"
+msgid "The %s has been successfully completed"
 msgstr "%sは正常に完了しました"
 
-msgid "%snot found"
+msgid "%s not found"
 msgstr "%sが見つかりません"
 
-msgid "%sLocation"
+msgid "%s Location"
 msgstr "%sの場所"
 
 msgid "installation"
 msgstr "インストール"
 
-msgid "The%shave been deleted."
+msgid "The %s have been deleted."
 msgstr "%sは削除されました。"
 
-msgid "The%sfield must be correctly filled out to proceed."
+msgid "The %s field must be correctly filled out to proceed."
 msgstr "続行するには、%sフィールドに正しく入力する必要があります。"
 
 msgid "Submitted Form"
@@ -3802,10 +3802,10 @@ msgstr "送信されたフォーム"
 msgid "You can't add reCAPTCHA to payment forms."
 msgstr "reCAPTCHA を支払いフォームに追加することはできません。"
 
-msgid "Learn more about%sor watch the video tutorial."
+msgid "Learn more about %s or watch the video tutorial."
 msgstr "%sの詳細については、ビデオ チュートリアルをご覧ください。"
 
-msgid "Learn more%s"
+msgid "Learn more %s"
 msgstr "詳細%s"
 
 msgid "Google reCAPTCHA"
@@ -3820,25 +3820,25 @@ msgstr "[[「利用可能なフォームの自動保存バージョンがあり�
 msgid "SMS notification could not be sent. Check if the SMS plugin is installed and configured properly."
 msgstr "SMS 通知を送信できませんでした。 SMS プラグインがインストールされ、正しく構成されているかどうかを確認してください。"
 
-msgid "Your request was completed successfully.%1$s%2$s"
+msgid "Your request was completed successfully. %1$s %2$s"
 msgstr "リクエストは正常に完了しました。%1$s%2$s"
 
 msgid "PayPal"
 msgstr "ペイパル"
 
-msgid "To use%1$sfeatures in your forms, you need to get your%2$skeys."
+msgid "To use %1$s features in your forms, you need to get your %2$s keys."
 msgstr "フォームで%1$s機能を使用するには、%2$sキーを取得する必要があります。"
 
-msgid "Go to the add-ons page in the Flux Forms plugin, install the%sadd-on, and try again."
+msgid "Go to the add-ons page in the Flux Forms plugin, install the %s add-on, and try again."
 msgstr "Flux Forms プラグインのアドオン ページに移動し、%sアドオンをインストールして、再試行してください。"
 
-msgid "To create a payment form to collect online payments, install a payment add-on such as the%sAdd-on first."
+msgid "To create a payment form to collect online payments, install a payment add-on such as the %s Add-on first."
 msgstr "オンライン支払いを受け取るための支払いフォームを作成するには、まず%sアドオンなどの支払いアドオンをインストールします。"
 
 msgid "Thank"
 msgstr "ありがとう"
 
-msgid "The%splugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the%ssettings."
+msgid "The %s plugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the %s settings."
 msgstr "%sプラグインは、Flux Forms のフォーム機能に干渉する可能性があります。フォームで問題が発生した場合は、%s設定で Flux Forms プラグインのキャッシュを無効にしてください。"
 
 msgid "Remind me later"
@@ -3847,40 +3847,40 @@ msgstr "後で通知する"
 msgid "Got it, don't show it again"
 msgstr "[[「わかりました、もう表示しないでください"
 
-msgid "The value of the%1$sfield does not match the pattern and must be at least%2$scharacters."
+msgid "The value of the %1$s field does not match the pattern and must be at least %2$s characters."
 msgstr "%1$sフィールドの値はパターンと一致しません。少なくとも%2$s文字である必要があります。"
 
-msgid "The value of the%1$sfield does not match the pattern and must be at most%2$scharacters."
+msgid "The value of the %1$s field does not match the pattern and must be at most %2$s characters."
 msgstr "%1$sフィールドの値はパターンと一致しません。最大でも%2$s文字である必要があります。"
 
-msgid "Please enter valid value for the%sfield."
+msgid "Please enter valid value for the %s field."
 msgstr "%sフィールドに有効な値を入力してください。"
 
-msgid "%slist"
+msgid "%s list"
 msgstr "%sリスト"
 
-msgid "The uploaded file exceeds the allowable limit of%sMB."
+msgid "The uploaded file exceeds the allowable limit of %s MB."
 msgstr "アップロードされたファイルは、許容制限%sMB を超えています。"
 
-msgid "The uploaded file is below the required minimum size of%sMB."
+msgid "The uploaded file is below the required minimum size of %s MB."
 msgstr "アップロードされたファイルは必要な最小サイズ%sMB を下回っています。"
 
-msgid "Review the entered values in the%stab. This message appeared because an error was detected."
+msgid "Review the entered values in the %s tab. This message appeared because an error was detected."
 msgstr "%sタブに入力した値を確認してください。このメッセージは、エラーが検出されたために表示されました。"
 
 msgid "Are you sure you want to duplicate the \"%s\" ?"
 msgstr "「%s」を複製してもよろしいですか?"
 
-msgid "We are sorry, the booking time for the%soption has expired. Please choose from the other available options."
+msgid "We are sorry, the booking time for the %s option has expired. Please choose from the other available options."
 msgstr "申し訳ありませんが、%sオプションの予約期限が切れました。他の利用可能なオプションから選択してください。"
 
-msgid "We are sorry, the%soption is currently at full capacity. Please choose from the other available options."
+msgid "We are sorry, the %s option is currently at full capacity. Please choose from the other available options."
 msgstr "申し訳ありませんが、%sオプションは現在フル容量です。他の利用可能なオプションから選択してください。"
 
-msgid "%sPayment Add-on"
+msgid "%s Payment Add-on"
 msgstr "%s支払いアドオン"
 
-msgid "The%sadd-on for Flux Forms enables you to integrate your WordPress site with%sfor payment processing, donations, and online orders."
+msgid "The %s add-on for Flux Forms enables you to integrate your WordPress site with %s for payment processing, donations, and online orders."
 msgstr "Flux Forms の%sアドオンを使用すると、支払い処理、寄付、オンライン注文のために WordPress サイトを%sと統合できます。"
 
 msgid "Activation Code"
@@ -3907,7 +3907,7 @@ msgstr "制限のないすべての機能とサポートが含まれています
 msgid "Search Results"
 msgstr "検索結果"
 
-msgid "Found%s%sfor: \"%s\""
+msgid "Found %s %s for: \"%s\""
 msgstr "次の%s%sが見つかりました: \"%s\""
 
 msgid "results"
@@ -3916,7 +3916,7 @@ msgstr "結果"
 msgid "No results found for:"
 msgstr "次の結果は見つかりませんでした:"
 
-msgid "Found%1$s%2$sfor"
+msgid "Found %1$s %2$s for"
 msgstr "%1$s%2$sが見つかりました"
 
 msgid "Session Duration"
@@ -3925,22 +3925,22 @@ msgstr "セッション期間"
 msgid "Set how long form security tokens remain valid. Longer durations provide better user experience but may reduce security."
 msgstr "フォーム セキュリティ トークンが有効な期間を設定します。期間を長くすると、ユーザー エクスペリエンスは向上しますが、セキュリティが低下する可能性があります。"
 
-msgid "%sDay"
+msgid "%s Day"
 msgstr "%s日"
 
-msgid "%sDays"
+msgid "%s Days"
 msgstr "%s日"
 
 msgid "Select Duration"
 msgstr "期間を選択"
 
-msgid "Choose the style for the%s."
+msgid "Choose the style for the %s."
 msgstr "%sのスタイルを選択します。"
 
-msgid "%1$s+%2$s"
+msgid "%1$s + %2$s"
 msgstr "%1$s+%2$s"
 
-msgid "%1$s%2$s&%3$s"
+msgid "%1$s %2$s & %3$s"
 msgstr "%1$s%2$s&%3$s"
 
 msgid "Letters"
@@ -4057,7 +4057,7 @@ msgstr "すべてが保存されました"
 msgid "1 unsaved change"
 msgstr "1 件の変更が保存されていません"
 
-msgid "%sunsaved changes"
+msgid "%s unsaved changes"
 msgstr "%s変更が保存されていません"
 
 msgid "Buttons, icons, field labels"
@@ -4459,7 +4459,7 @@ msgstr "キャッシュの互換性について詳しく読む"
 msgid "Dismiss All"
 msgstr "すべてを却下"
 
-msgid "Dismiss%s"
+msgid "Dismiss %s"
 msgstr "%sを無視"
 
 msgid "Security Plugin Detected"
@@ -4519,13 +4519,13 @@ msgstr "メールは届きますが、スパムに分類される可能性が高
 msgid "Delivery itself works - the test message reached us. What is missing is trust: sending through an SMTP service and adding SPF and DKIM records for your domain is what moves your emails from the spam folder to the inbox."
 msgstr "配信自体は機能します - テスト メッセージが届きました。欠けているのは信頼です。SMTP サービス経由で送信し、ドメインの SPF レコードと DKIM レコードを追加すると、メールがスパム フォルダから受信箱に移動されます。"
 
-msgid "The test email was delivered with a deliverability score of%1$sout of 100. Under%2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
+msgid "The test email was delivered with a deliverability score of %1$s out of 100. Under %2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
 msgstr "テスト メールは、100 点中%1$sの到達性スコアで配信されました。%2$sでは、ほとんどのメールボックスでメッセージがスパム フォルダに保存されるため、フォームに入力するユーザーにはメッセージが表示されない可能性があります。"
 
 msgid "Step-by-step SMTP setup guide"
 msgstr "ステップバイステップの SMTP セットアップ ガイド"
 
-msgid "Your email server is working. A detailed HTML report has been sent to%s."
+msgid "Your email server is working. A detailed HTML report has been sent to %s."
 msgstr "電子メール サーバーは動作しています。詳細な HTML レポートが%sに送信されました。"
 
 msgid "your admin email address"
@@ -4534,13 +4534,13 @@ msgstr "管理者の電子メール アドレス"
 msgid "Spam Score Report on the Way!"
 msgstr "スパム スコア レポートを作成中です!"
 
-msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to%swithin the next few minutes."
+msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to %s within the next few minutes."
 msgstr "スパム スコア、到達性の詳細、推奨事項を含む完全な電子メール ヘルス レポートが、数分以内に%sに送信されます。"
 
 msgid "Email notifications may not be delivered"
 msgstr "電子メール通知が配信されない可能性があります"
 
-msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is%s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
+msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is %s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
 msgstr "このフォームの電子メール通知機能は有効になっていますが、電子メールの配信は確認されておらず、最新のスパム スコアは%s/100 です。フォームは保存されましたが、SMTP/メール配信が修正されるまで管理通知メールが届かない可能性があります。"
 
 msgid "Notification emails are turned off"
@@ -4594,10 +4594,10 @@ msgstr "完全な診断を含む詳細な HTML レポートが準備されてお
 msgid "Needs attention"
 msgstr "注意が必要です"
 
-msgid "%sof 5 steps done"
+msgid "%s of 5 steps done"
 msgstr " 5 つのステップのうち%sが完了しました"
 
-msgid "Step%sof 5"
+msgid "Step %s of 5"
 msgstr "ステップ%s/5"
 
 msgid "/ 100"
@@ -4714,7 +4714,7 @@ msgstr "考えられる原因"
 msgid "What to check next"
 msgstr "次に確認すること"
 
-msgid "Score:%s"
+msgid "Score: %s"
 msgstr "スコア:%s"
 
 msgid "Upgrade"
@@ -4741,7 +4741,7 @@ msgstr "メール配信テストを開始しています..."
 msgid "WordPress accepted and sent the message. Waiting for it to arrive..."
 msgstr "WordPress はメッセージを受け入れて送信しました。到着を待っています..."
 
-msgid "Connection error. Please refresh the page and try again. (Code:%s)"
+msgid "Connection error. Please refresh the page and try again. (Code: %s)"
 msgstr "接続エラー。ページを更新して、もう一度お試しください。 (コード:%s)"
 
 msgid "Email Address"
@@ -5080,10 +5080,10 @@ msgstr "アドオンはすでにインストールされています。"
 msgid "File access status not checked yet. Please wait."
 msgstr "ファイル アクセス ステータスがまだチェックされていません。お待ちください。"
 
-msgid "Error: server (%s) responded with an invalid request. responded code:%s"
+msgid "Error: server (%s) responded with an invalid request. responded code: %s"
 msgstr "エラー: サーバー (%s) が無効なリクエストで応答しました。応答されたコード:%s"
 
-msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the%sserver"
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the %s server"
 msgstr "プラグインが%sサーバーに接続できないため、Flux Forms のアドオンをインストールできません"
 
 msgid "Your Easy Form Builder Pro subscription has expired, so the Pro add-ons could not be downloaded. The plugin keeps working without them. Renew your subscription to restore all Pro features:"
@@ -5104,7 +5104,7 @@ msgstr "プラグインがダウンロードしたファイルを移動できな
 msgid "Cannot install add-ons of Flux Forms because the plugin is not able to unzip files"
 msgstr "プラグインがファイルを解凍できないため、Flux Forms のアドオンをインストールできません"
 
-msgid "To fix this, sign in to your%s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
+msgid "To fix this, sign in to your %s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
 msgstr "これを修正するには、%sにサインインし、ダウンロード セクションからアドオン ハンドラー プラグインをダウンロードして、インストールしてアクティブ化します。その後、アドオン ハンドラー プラグインから必要なアドオンをアクティブ化します。"
 
 msgid "WhiteStudio dashboard"
@@ -5125,16 +5125,16 @@ msgstr "アドオン サーバーはダウンロード URL を提供しません
 msgid "The add-on download URL is not an approved Flux Forms source."
 msgstr "アドオンのダウンロード URL は承認された Flux Forms ソースではありません。"
 
-msgid "Your server could not reach%1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at%2$sand download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
+msgid "Your server could not reach %1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at %2$s and download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
 msgstr "サーバーが%1$sに到達できなかったため、アドオンをダウンロードできませんでした。これはほとんどの場合、ホスティング上のファイアウォールが送信リクエストをブロックしているためであり、ライセンスの問題ではありません。ダウンロードをまったく行わずにアドオンをインストールするには、%2$sでサインインし、Flux Forms Add-ons Handler プラグインをダウンロードし、他のプラグインと同様にインストールします。ライセンスがカバーするすべてのアドオンが含まれています。"
 
-msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from%sare being blocked."
+msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from %s are being blocked."
 msgstr "接続を修正したい場合は、%sからの送信リクエストがブロックされている理由をホスティング プロバイダーに問い合わせてください。"
 
 msgid "Flux Forms: add-on downloads are being blocked"
 msgstr "Flux Forms: アドオンのダウンロードがブロックされています"
 
-msgid "Add-on affected:%s"
+msgid "Add-on affected: %s"
 msgstr "影響を受けるアドオン:%s"
 
 msgid "No response was recorded for this add-on."
@@ -5224,22 +5224,22 @@ msgstr "問題が発生した場合は、フォームが公開されているペ
 msgid "Sent by"
 msgstr "送信者"
 
-msgid "Action needed: Flux Forms Pro is paused on%s"
+msgid "Action needed: Flux Forms Pro is paused on %s"
 msgstr "必要なアクション: Flux Forms Pro は%sで一時停止されています "
 
-msgid "Flux Forms could not confirm your Pro licence for%1$sdays in a row, so the Pro features on%2$sare paused for now."
+msgid "Flux Forms could not confirm your Pro licence for %1$s days in a row, so the Pro features on %2$s are paused for now."
 msgstr "Flux Forms は%1$s日連続で Pro ライセンスを確認できなかったため、%2$sの Pro 機能は一時停止されています。"
 
 msgid "Your forms, entries and settings are untouched, every free feature keeps working, and your activation code is still stored — nothing was deleted."
 msgstr "フォーム、エントリ、設定は変更されず、すべての無料機能は引き続き動作し、アクティベーション コードは引き続き保存され、何も削除されません。"
 
-msgid "Open%1$sYT Form → Settings%2$sand press%1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
+msgid "Open %1$sYT Form → Settings%2$s and press %1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
 msgstr "%1$sYT フォーム → 設定%2$sを開き、%1$sを押して%2$sを保存します。これにより、すぐにライセンスが再度チェックされます。接続が回復すると、Pro は 1 分以内にオンになります。"
 
-msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to%s— a firewall, proxy or regional block is the usual cause — then repeat step 1."
+msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to %s — a firewall, proxy or regional block is the usual cause — then repeat step 1."
 msgstr "まだ一時停止していますか?ホスティング プロバイダに、%sへの送信 HTTPS 接続を許可するよう依頼してください。通常はファイアウォール、プロキシ、または地域ブロックが原因です。その後、ステップ 1 を繰り返します。"
 
-msgid "If your subscription has expired, or you moved this website to a new domain,%1$srenew or re-activate your licence%2$sand paste the new code into Settings."
+msgid "If your subscription has expired, or you moved this website to a new domain, %1$srenew or re-activate your licence%2$s and paste the new code into Settings."
 msgstr "サブスクリプションの有効期限が切れた場合、またはこの Web サイトを新しいドメインに移動した場合は、%1$sライセンスを更新または再アクティブ化%2$sし、新しいコードを設定に貼り付けてください。"
 
 msgid "First failed check"
@@ -5260,7 +5260,7 @@ msgstr "Pro を戻す方法"
 msgid "Check my licence now"
 msgstr "今すぐライセンスを確認してください"
 
-msgid "Still stuck? Send the details above to%1$sour support team%2$sand we will take it from there."
+msgid "Still stuck? Send the details above to %1$sour support team%2$s and we will take it from there."
 msgstr "まだ行き詰まっていますか?上記の詳細を%1$sサポート チーム%2$sに送信してください。そこから対応させていただきます。"
 
 msgid "The licence server answered with an error and could not confirm your licence."
@@ -5278,7 +5278,7 @@ msgstr "ライセンス チェックを完了できませんでした。"
 msgid "Your activation code has expired!"
 msgstr "[[「アクティベーション コードの有効期限が切れています!"
 
-msgid "Your Easy Form Builder Pro subscription has expired. To continue using the%sadd-on and all Pro features, please renew your subscription."
+msgid "Your Easy Form Builder Pro subscription has expired. To continue using the %s add-on and all Pro features, please renew your subscription."
 msgstr "Easy Form Builder Pro サブスクリプションの有効期限が切れました。%sアドオンとすべての Pro 機能を引き続き使用するには、サブスクリプションを更新してください。"
 
 msgid "Renew Subscription"
@@ -5287,10 +5287,10 @@ msgstr "サブスクリプションを更新"
 msgid "Pro Version Required"
 msgstr "プロ バージョンが必要です"
 
-msgid "The%sadd-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
+msgid "The %s add-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
 msgstr "%sアドオンは Pro の機能です。この機能にアクセスするには、Flux Forms Pro にアップグレードしてください。"
 
-msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running,%1$sRenew your subscription now.%2$s"
+msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running, %1$sRenew your subscription now.%2$s"
 msgstr "Easy Form Builder Pro サブスクリプションの有効期限が切れました。すべての Pro 機能を引き続きお楽しみいただき、フォームを実行し続けるには、%1$s今すぐサブスクリプションを更新してください。%2$s"
 
 msgid "The payment could not be verified yet."
@@ -5356,7 +5356,7 @@ msgstr "サブスクリプション"
 msgid "One-time"
 msgstr "1回限り"
 
-msgid "The latest%dpayments are shown."
+msgid "The latest %d payments are shown."
 msgstr "最新の%d支払いが表示されます。"
 
 msgid "Test provider (development only)"
@@ -5443,10 +5443,10 @@ msgstr "支払いフォームでは、このプロバイダを通じてカード
 msgid "Saved — leave empty to keep"
 msgstr "保存済み — 保存するには空のままにしておきます"
 
-msgid "%ssettings"
+msgid "%s settings"
 msgstr "%s設定"
 
-msgid "Flux Forms replaces%s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
+msgid "Flux Forms replaces %s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
 msgstr "Flux Forms は、非アクティブ化された%sを置き換えます。フォーム、エントリ、設定はそのまま残ります。古いプラグインは削除できます。"
 
 msgid "Updating amount..."
@@ -5560,7 +5560,7 @@ msgstr "CSV をエクスポート"
 msgid "Download the responses in the selected range and form as a spreadsheet file."
 msgstr "選択した範囲の回答をスプレッドシート ファイルとしてダウンロードします。"
 
-msgid "%sunread in total"
+msgid "%s unread in total"
 msgstr "%sが合計で未読です"
 
 msgid "Form views"
@@ -5569,7 +5569,7 @@ msgstr "フォーム ビュー"
 msgid "No view data"
 msgstr "ビュー データがありません"
 
-msgid "Recorded since%s"
+msgid "Recorded since %s"
 msgstr "Recorded since%s"
 
 msgid "View data is kept for about 8 days"
@@ -5581,22 +5581,22 @@ msgstr "コンバージョン率"
 msgid "Responses per form view"
 msgstr "フォーム ビューごとの応答"
 
-msgid "Responses per view since%s"
+msgid "Responses per view since %s"
 msgstr "%s以降のビューごとの応答 "
 
 msgid "Payments received"
 msgstr "支払いを受け取りました"
 
-msgid "%spaid"
+msgid "%s paid"
 msgstr "%sが支払われました"
 
-msgid "Also%s"
+msgid "Also %s"
 msgstr "%sも"
 
 msgid "No payments in this range"
 msgstr "この範囲ではお支払いはできません"
 
-msgid "vs previous%ddays"
+msgid "vs previous %d days"
 msgstr "前の%d日間との比較"
 
 msgid "up"
@@ -5650,7 +5650,7 @@ msgstr "パネルを開く"
 msgid "Failed or canceled"
 msgstr "失敗またはキャンセルされました"
 
-msgid "%spayments"
+msgid "%s payments"
 msgstr "%sの支払い"
 
 msgid "No responses in this range yet."
@@ -5677,7 +5677,7 @@ msgstr "グラフとして表示"
 msgid "Deleted form"
 msgstr "削除されたフォーム"
 
-msgid "%sother forms"
+msgid "%s other forms"
 msgstr "%s他のフォーム"
 
 msgid "Responses, form views, conversion and payments at a glance."
@@ -5716,12 +5716,8 @@ msgstr "Flux Donate は支払い (プロバイダー、キー、Webhook) を処�
 msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms uses its own Stripe settings."
 msgstr "Flux Donate はアクティブですが、支払いは引き継がれませんでした (フィルター flxb_own_payments がオフになっていますか?)。 Flux Forms は独自の Stripe 設定を使用します。"
 
-msgid "Flux Donate is not active; Flux Forms takes payments itself with%s."
+msgid "Flux Donate is not active; Flux Forms takes payments itself with %s."
 msgstr "Flux Donate はアクティブではありません。 Flux Forms は、%sを使用して支払い自体を受け取ります。"
-
-msgid "Flux Donate is not active and the Stripe keys are missing:%dpayment form shows \"Online payment is unavailable\"."
-msgid_plural "Flux Donate is not active and the Stripe keys are missing:%dpayment forms show \"Online payment is unavailable\"."
-msgstr[0] "Flux Donate がアクティブではなく、Stripe キーが見つかりません:%d支払いフォームに「オンライン支払いは利用できません」と表示されます。"
 
 msgid "Flux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected."
 msgstr "Flux Donate がアクティブではないため、Stripe キーが設定されていません。支払いフォームが存在しないため、何も影響を受けません。"
@@ -5735,15 +5731,11 @@ msgstr "アクティブではありません。フォームは機能します。
 msgid "Flux Certificates (automations)"
 msgstr "Flux 証明書 (自動化)"
 
-msgid "Version%sis active; certificate automations can run."
+msgid "Version %s is active; certificate automations can run."
 msgstr "バージョン%sはアクティブです。証明書の自動化を実行できます。"
 
-msgid "Version%1$sis active; certificate automations need%2$sor later."
+msgid "Version %1$s is active; certificate automations need %2$s or later."
 msgstr "バージョン%1$sはアクティブです。証明書の自動化には%2$s以降が必要です。"
-
-msgid "Not active, but%dactive automation creates or sends certificates; it will fail."
-msgid_plural "Not active, but%dactive automations create or send certificates; they will fail."
-msgstr[0] "アクティブではありませんが、%dアクティブ オートメーションが証明書を作成または送信します。彼らは失敗するでしょう。"
 
 msgid "Not active. Needed only for certificate automations."
 msgstr "アクティブではありません。証明書の自動化にのみ必要です。"
@@ -5754,31 +5746,19 @@ msgstr "オートメーション"
 msgid "No automation is on. After a form or payment nothing runs automatically (certificate, e-mail, webhook)."
 msgstr "オートメーションはオンになっていません。フォームまたは支払いの後は、何も自動的に実行されません (証明書、電子メール、Webhook)。"
 
-msgid "%dautomation is on."
-msgid_plural "%dautomations are on."
-msgstr[0] "%dオートメーションがオンになっています。"
-
-msgid "%drun failed in the last 7 days; see the run log."
-msgid_plural "%druns failed in the last 7 days; see the run log."
-msgstr[0] " 過去 7 日間に%dの実行が失敗しました。実行ログを参照してください。"
-
 msgid "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
 msgstr "キーが設定されました。%dフォームは reCAPTCHA を使用します。%dフォームは reCAPTCHA を使用します。"
-
-msgid "%dform has reCAPTCHA on but the site key or secret key is missing; the form is not shown."
-msgid_plural "%dforms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
-msgstr[0] "%dフォームには reCAPTCHA がオンになっていますが、サイト キーまたは秘密キーがありません。それらは表示されません。"
 
 msgid "Uploads folder"
 msgstr "アップロード フォルダ"
 
-msgid "The uploads folder is not available:%s"
+msgid "The uploads folder is not available: %s"
 msgstr "アップロード フォルダは使用できません:%s"
 
 msgid "Writable; files sent with forms can be saved."
 msgstr "書き込み可能;フォームと一緒に送信されたファイルは保存できます。"
 
-msgid "Not writable:%s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
+msgid "Not writable: %s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
 msgstr "書き込み不可:%s。フォームのファイル フィールドではアップロードを保存できません。ホストにフォルダの権限を修正するよう依頼してください。"
 
 msgid "Donation form with sapling packages, card payment and a certificate automation."
@@ -6024,7 +6004,7 @@ msgstr "寄付フォームでの支払いが確認された後: 「Fidan Bağı�
 msgid "Create default flow"
 msgstr "デフォルトのフローを作成"
 
-msgid "Donation form:%s"
+msgid "Donation form: %s"
 msgstr "寄付フォーム:%s"
 
 msgid "Create the “Sapling Donation” form"
@@ -6036,7 +6016,7 @@ msgstr "部分的に完了しました"
 msgid "No runs yet. Runs appear here after a matching submission."
 msgstr "[[「まだ実行されていません。一致する送信後に実行がここに表示されます。"
 
-msgid "The latest%druns are kept."
+msgid "The latest %d runs are kept."
 msgstr "最新の%d実行が保持されます。"
 
 msgid "Clear the run log?"
@@ -6066,7 +6046,7 @@ msgstr "証明書を準備しています..."
 msgid "No verified payment amount for this submission."
 msgstr "この送信に対する支払い金額は確認されていません。"
 
-msgid "Certificate%1$sfor%2$s(%3$s)"
+msgid "Certificate %1$s for %2$s (%3$s)"
 msgstr "%2$s(%3$s) の証明書%1$s"
 
 msgid "No certificate was created in an earlier step."
@@ -6075,13 +6055,13 @@ msgstr "前の手順で証明書が作成されていません。"
 msgid "No channel selected."
 msgstr "チャンネルが選択されていません。"
 
-msgid "Queued:%s"
+msgid "Queued: %s"
 msgstr "キューに登録されました:%s"
 
 msgid "No valid recipient address."
 msgstr "有効な受信者アドレスがありません。"
 
-msgid "New submission:%s"
+msgid "New submission: %s"
 msgstr "新しい提出物:%s"
 
 msgid "wp_mail() could not send the e-mail."
@@ -6162,7 +6142,7 @@ msgstr "テスト メッセージを送信"
 msgid "Quick Tips"
 msgstr "簡単なヒント"
 
-msgid "Create a bot using%s"
+msgid "Create a bot using %s"
 msgstr "%sを使用してボットを作成します"
 
 msgid "Add your bot to the target chat"
@@ -6174,7 +6154,7 @@ msgstr "テスト機能を使用してセットアップを確認します"
 msgid "Monitor activity for troubleshooting"
 msgstr "トラブルシューティングのためにアクティビティを監視します"
 
-msgid "Find your Chat ID using%s"
+msgid "Find your Chat ID using %s"
 msgstr "%sを使用してチャット ID を検索します"
 
 msgid "Enter your test message here..."
@@ -6450,7 +6430,7 @@ msgstr "セキュリティとスパム対策の管理データをロードでき
 msgid "The Security & Spam Protection panel failed to render. Reload the page or check the browser console."
 msgstr "セキュリティとスパム対策パネルをレンダリングできませんでした。ページを再ロードするか、ブラウザ コンソールを確認してください。"
 
-msgid "Protection is paused: required PHP functions are disabled on this server:%s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
+msgid "Protection is paused: required PHP functions are disabled on this server: %s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
 msgstr "保護が一時停止されています: このサーバーでは必要な PHP 機能が無効になっています:%s。ホストに、php.ini の disable_functions 行からそれらを削除するように依頼してください。それまで、フォームは保護なしで機能し続けます。"
 
 msgid "Protection is paused: the add-on database tables could not be created. Check that the database user can CREATE tables, then reload this page."
@@ -6813,10 +6793,10 @@ msgstr "必要な PHP 関数が無効になっている場合は、php.ini disab
 msgid "Security & Spam Protection tabs"
 msgstr "セキュリティとスパム対策タブ"
 
-msgid "Security log export is unavailable because this server has disabled a required PHP function:%s. Ask your hosting provider to enable it."
+msgid "Security log export is unavailable because this server has disabled a required PHP function: %s. Ask your hosting provider to enable it."
 msgstr "このサーバーでは必要な PHP 関数%sが無効になっているため、セキュリティ ログのエクスポートは利用できません。ホスティング プロバイダに有効にするよう依頼してください。"
 
-msgid "Security log export is unavailable because this server has disabled required PHP functions:%s. Ask your hosting provider to enable them."
+msgid "Security log export is unavailable because this server has disabled required PHP functions: %s. Ask your hosting provider to enable them."
 msgstr "このサーバーが必要な PHP 機能を無効にしているため、セキュリティ ログのエクスポートは利用できません:%s。ホスティング プロバイダに有効にするよう依頼してください。"
 
 msgid "Auto-Populate Dataset"
@@ -7128,7 +7108,7 @@ msgstr "フォーム構造が無効です"
 msgid "No matching data found"
 msgstr "一致するデータが見つかりません"
 
-msgid "API returned error:%d"
+msgid "API returned error: %d"
 msgstr "API がエラーを返しました:%d"
 
 msgid "Failed to update form"
@@ -7263,10 +7243,10 @@ msgstr "フォーム データが見つかりません。ページを更新し�
 msgid "Auto-filled via External API"
 msgstr "外部 API 経由で自動入力"
 
-msgid "PayPal%s"
+msgid "PayPal %s"
 msgstr "PayPal%s"
 
-msgid "Stripe%s"
+msgid "Stripe %s"
 msgstr "ストライプ%s"
 
 msgid "All Statuses"
@@ -7356,7 +7336,7 @@ msgstr "サブスクリプションが正常に再アクティブ化されまし
 msgid "Payment Management Dashboard"
 msgstr "支払い管理ダッシュボード"
 
-msgid "Manage and track all%stransactions. View payment details, process refunds, and export records."
+msgid "Manage and track all %s transactions. View payment details, process refunds, and export records."
 msgstr "すべての%sトランザクションを管理および追跡します。支払いの詳細を表示し、返金を処理し、記録をエクスポートします。"
 
 msgid "Secure"
@@ -7401,10 +7381,6 @@ msgstr "Google シートの設定"
 msgid "Active Bindings"
 msgstr "アクティブなバインディング"
 
-msgid "%dservice account connected"
-msgid_plural "%dservice accounts connected"
-msgstr[0] "%dサービス アカウントが接続されました"
-
 msgid "No service account connected yet"
 msgstr "まだサービス アカウントが接続されていません"
 
@@ -7429,7 +7405,7 @@ msgstr "1 つ以上の Google サービス アカウントを接続します - �
 msgid "Your server is missing the PHP OpenSSL extension."
 msgstr "サーバーには PHP OpenSSL 拡張機能がありません。"
 
-msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the%sPHP extension, then reload this page."
+msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the %s PHP extension, then reload this page."
 msgstr "Google シートの同期は有効になるまで機能しません。%sPHP 拡張機能を有効にするようホストに依頼してから、このページをリロードしてください。"
 
 msgid "Copy this email"
@@ -7459,7 +7435,7 @@ msgstr "Google メールアドレス"
 msgid "(recommended)"
 msgstr "(推奨)"
 
-msgid "Any sheet the plugin<strong>creates</strong>is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
+msgid "Any sheet the plugin <strong>creates</strong> is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
 msgstr "プラグイン<strong></strong>が作成するシートはすべて、このアドレスに自動的に共有されるため、自分の Google ドライブの [共有] の下に表示されます。これがないと、新しいシートはサービス アカウント内に隠されたままになります。"
 
 msgid "Enable Google Sheet Integration"
@@ -7495,13 +7471,13 @@ msgstr "サービス アカウントを開く → [キー] タブ → キーの�
 msgid "Drag that downloaded file into the box on the left — it is tested automatically"
 msgstr "ダウンロードしたファイルを左側のボックスにドラッグします。自動的にテストされます"
 
-msgid "Add<strong>Your Google email</strong>above so created sheets land in your Drive"
+msgid "Add <strong>Your Google email</strong> above so created sheets land in your Drive"
 msgstr "上記の Google メール</strong><strong>を追加すると、作成されたシートがドライブに配置されます"
 
 msgid "Please choose a valid .json key file."
 msgstr "有効な .json キー ファイルを選択してください。"
 
-msgid "Could not read file:%s"
+msgid "Could not read file: %s"
 msgstr "ファイルを読み取れませんでした:%s"
 
 msgid "Connecting service account..."
@@ -7510,7 +7486,7 @@ msgstr "サービス アカウントを接続中..."
 msgid "Service account added."
 msgstr "サービス アカウントが追加されました。"
 
-msgid "Saved. New sheets created by the plugin will be shared to%sautomatically."
+msgid "Saved. New sheets created by the plugin will be shared to %s automatically."
 msgstr "保存されました。プラグインによって作成された新しいシートは%sに自動的に共有されます。"
 
 msgid "Email cleared. New sheets will stay inside the service account until you share them."
@@ -7582,13 +7558,13 @@ msgstr "サービス アカウント"
 msgid "Loading your spreadsheets..."
 msgstr "スプレッドシートをロードしています..."
 
-msgid "Click<strong>“Browse My Sheets”</strong>to list spreadsheets this service account can already access, or<strong>“Create New Sheet”</strong>to make a fresh one."
+msgid "Click <strong>“Browse My Sheets”</strong> to list spreadsheets this service account can already access, or <strong>“Create New Sheet”</strong> to make a fresh one."
 msgstr "<strong>[シートの参照]</strong>をクリックしてこのサービス アカウントが既にアクセスできるスプレッドシートを一覧表示するか、<strong>[新しいシートの作成]</strong>をクリックして新しいシートを作成します。"
 
-msgid "<strong>No spreadsheets are accessible to this service account yet.</strong>You have two options:"
+msgid "<strong>No spreadsheets are accessible to this service account yet.</strong> You have two options:"
 msgstr "<strong>このサービス アカウントにアクセスできるスプレッドシートはまだありません。</strong>2 つのオプションがあります:"
 
-msgid "<strong>Easiest:</strong>click<em>“Create New Sheet”</em>above — it is made for you and shared to your email automatically."
+msgid "<strong>Easiest:</strong> click <em>“Create New Sheet”</em> above — it is made for you and shared to your email automatically."
 msgstr "<strong>最も簡単:</strong>上の<em>[新しいシートを作成]</em>をクリックします。シートが作成され、自動的にメールに共有されます。"
 
 msgid "<strong>Use an existing sheet:</strong>open it in Google Sheets → Share → paste"
@@ -7669,7 +7645,7 @@ msgstr "バインディングを削除せずに一時停止することを無効
 msgid "Reading this form’s fields..."
 msgstr "このフォームのフィールドを読み取り中..."
 
-msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry —<strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
+msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry — <strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
 msgstr "このフォームのフィールドを自動的に読み取ることができなかったため、列マッピングは使用できません。心配しないでください。<strong>送信されたすべてのフィールドは、送信順にそれぞれ独自の列で自動的に</strong>と同期されます。ヘッダー行が作成され、最新の状態に保たれます。"
 
 msgid "Drag rows (or use ▲▼) to set the<strong>column order</strong>. Rename any<strong>header</strong>. Turn a field off to skip its column. The letter (A, B, C...) shows where each field lands."
@@ -7702,10 +7678,6 @@ msgstr "列ヘッダー"
 msgid "Include this field"
 msgstr "このフィールドを含めます"
 
-msgid "%dcolumn will be written to the sheet."
-msgid_plural "%dcolumns will be written to the sheet."
-msgstr[0] "%d列がシートに書き込まれます。"
-
 msgid "Sheet Style"
 msgstr "シート スタイル"
 
@@ -7733,7 +7705,7 @@ msgstr "タブ:"
 msgid "Columns:"
 msgstr "列:"
 
-msgid "%dmapped"
+msgid "%d mapped"
 msgstr "%dがマッピングされました"
 
 msgid "all submitted fields (auto)"
@@ -7771,10 +7743,6 @@ msgstr "このバインディングを削除しますか? Syncing stops for this
 
 msgid "Sync removed — your Google Sheet and its data are untouched."
 msgstr "同期が削除されました - Google シートとそのデータはそのままです。"
-
-msgid "Remove ALL%dbinding? Syncing stops for every form. Your Google Sheets are not deleted."
-msgid_plural "Remove ALL%dbindings? Syncing stops for every form. Your Google Sheets are not deleted."
-msgstr[0] "すべての%dバインディングを削除しますか?同期はフォームごとに停止します。 Google スプレッドシートは削除されていません。"
 
 msgid "All bindings removed. Your Google Sheets are untouched."
 msgstr "すべてのバインディングが削除されました。 Google スプレッドシートは変更されていません。"
@@ -7941,22 +7909,22 @@ msgstr "日没"
 msgid "Grape"
 msgstr "ブドウ"
 
-msgid "%sis currently unavailable."
+msgid "%s is currently unavailable."
 msgstr "%sは現在使用できません。"
 
-msgid "disabled in php.ini:%s"
+msgid "disabled in php.ini: %s"
 msgstr "php.ini で無効になっています:%s"
 
-msgid "not provided by PHP or its required extension:%s"
+msgid "not provided by PHP or its required extension: %s"
 msgstr "PHP またはその必要な拡張機能によって提供されていません:%s"
 
-msgid "%1$scannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini."
+msgid "%1$s cannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini."
 msgstr " 必要な PHP 関数が使用できないため、%1$sを実行できません (%2$s)。ホスティング プロバイダに、必要な PHP 拡張機能を有効にするか、php.ini のdisabled_functions からリストされた関数を削除するように依頼してください。"
 
 msgid "This add-on is not included in Flux Forms."
 msgstr "このアドオンは Flux Forms には含まれていません。"
 
-msgid "Error: server (%s) responded with an invalid request. responded code :%s"
+msgid "Error: server (%s) responded with an invalid request. responded code : %s "
 msgstr "エラー: サーバー (%s) が無効なリクエストで応答しました。応答されたコード :%s"
 
 msgid "Your Easy Form Builder Pro subscription has expired, so this add-on cannot be downloaded."
@@ -8064,7 +8032,7 @@ msgstr "あなたのメールはスパムに配信されています"
 msgid "WordPress sent the test email, but delivery has not been confirmed yet."
 msgstr "WordPress はテストメールを送信しましたが、配信はまだ確認されていません。"
 
-msgid "Email delivery failed:%s"
+msgid "Email delivery failed: %s"
 msgstr "電子メールの配信に失敗しました:%s"
 
 msgid "No file was received. Please choose a file and try again."
@@ -8079,7 +8047,7 @@ msgstr "電子メール通知機能を有効にする"
 msgid "To receive email notifications from your forms, verify your email server by following these steps:"
 msgstr "フォームから電子メール通知を受信するには、次の手順に従って電子メール サーバーを確認してください:"
 
-msgid "Go to the<a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
+msgid "Go to the <a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
 msgstr "<a href=\"%s\" style=\"font-weight:600;\">Flux フォーム パネル</a>に移動します "
 
 msgid "Click Settings from the top menu"
@@ -8097,10 +8065,10 @@ msgstr "スコアが 70 を超えている場合 — [このサイトは電子�
 msgid "Otherwise, follow the instructions shown in the test results"
 msgstr "それ以外の場合は、テスト結果に示された指示に従ってください"
 
-msgid "%snotification"
+msgid "%s notification"
 msgstr "%s通知"
 
-msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the%sfeature, please ensure it is enabled."
+msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the %s feature, please ensure it is enabled."
 msgstr "この機能を無効にすると、Flux Forms の適切な機能に影響を与える可能性があります。%s機能を使用する予定がある場合は、それが有効になっていることを確認してください。"
 
 msgid "Email system is working properly."
@@ -8223,7 +8191,7 @@ msgstr "アドオンのインストールの問題"
 msgid "Technical Details"
 msgstr "技術的な詳細"
 
-msgid "Checked%s"
+msgid "Checked %s"
 msgstr "%sをチェックしました "
 
 msgid "System Ready"
@@ -8262,13 +8230,13 @@ msgstr "このメッセージが表示される場合は、次のいずれかの
 msgid "Please also ensure that you have a stable internet connection and try again."
 msgstr "インターネット接続が安定していることも確認して、もう一度お試しください。"
 
-msgid "Built with%sYT Form%sby%sWordPress form plugin by whitestudio.team%s"
+msgid "Built with %sYT Form%s by %sWordPress form plugin by whitestudio.team%s"
 msgstr "%sによる%sYT フォーム%sで構築されました。whitestudio.team%sによる WordPress フォーム プラグインで構築されました "
 
 msgid "Free WordPress form plugin"
 msgstr "無料の WordPress フォーム プラグイン"
 
-msgid "Powered by%1$sYT Form%2$s.%3$sbest Form plugin for Wordpress%4$s."
+msgid "Powered by %1$sYT Form%2$s. %3$sbest Form plugin for Wordpress%4$s."
 msgstr "%1$sYT フォーム%2$sを利用しています。%3$sWordpress に最適なフォーム プラグイン%4$s。"
 
 msgid "Flux Forms WordPress Plugin"
@@ -8745,7 +8713,7 @@ msgstr "表示するフォームを選択してください"
 msgid "Please select a form from element settings"
 msgstr "要素設定からフォームを選択してください"
 
-msgid "Form:%s(ID:%s)"
+msgid "Form: %s (ID: %s)"
 msgstr "フォーム:%s(ID:%s)"
 
 msgid "📍 Confirmation Code Finder (Tracking)"
@@ -8769,7 +8737,7 @@ msgstr "ショートコード:"
 msgid "Run the email check"
 msgstr "メールチェックを実行します"
 
-msgid "The last delivery check scored%sout of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
+msgid "The last delivery check scored %s out of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
 msgstr "最後の配信チェックのスコアは 100 点中%sでした。メッセージはサイトから送信されますが、ほとんどのメールボックスはメッセージをスパムとしてファイルするため、フォームに記入する人にはメッセージが表示されません。 SMTP サービス経由で送信し、ドメインに SPF レコードと DKIM レコードを追加すると、この問題は解決します。"
 
 msgid "The last delivery check found that your messages do leave the site, but mailboxes file them as spam. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
@@ -8820,13 +8788,13 @@ msgstr "WordPress は自動テスト電子メールを送信できませんで�
 msgid "The email delivery test timed out before confirmation was received."
 msgstr "確認を受信する前に電子メール配信テストがタイムアウトしました。"
 
-msgid "Weekly Flux Forms report for%s"
+msgid "Weekly Flux Forms report for %s"
 msgstr "%sの週次 Flux Forms レポート"
 
-msgid "Here is your weekly snapshot for%s."
+msgid "Here is your weekly snapshot for %s."
 msgstr "これは%sの週次スナップショットです。"
 
-msgid "Report generated%s"
+msgid "Report generated %s"
 msgstr "レポート生成%s"
 
 msgid "Detailed analysis"
@@ -8838,7 +8806,7 @@ msgstr "メールが失敗しました"
 msgid "You can turn these reports off in Flux Forms settings."
 msgstr "これらのレポートは Flux Forms 設定でオフにできます。"
 
-msgid "The test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
+msgid "The test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
 msgstr "テストメールは配信されましたが、その配信スコアは 100 点中%1$sのみ (%2$s未満) であるため、フォームから送信されたメールは拒否されるか、スパムとしてフィルタされる可能性が非常に高くなります。"
 
 msgid "Run the email check so you can be sure the messages your forms send are actually reaching people. The check sends a real message through the new WhiteStudio delivery service and reports back what arrived."
@@ -8871,7 +8839,7 @@ msgstr "あなたのメールはスパムになる可能性があります"
 msgid "Your emails are not reaching anybody"
 msgstr "あなたのメールは誰にも届きません"
 
-msgid "grade%s"
+msgid "grade %s"
 msgstr "グレード%s"
 
 msgid "What you should do"
@@ -8886,10 +8854,10 @@ msgstr "SMTP プラグインをインストールし、電子メール サービ
 msgid "Add the SPF and DKIM records to your domain settings."
 msgstr "SPF レコードと DKIM レコードをドメイン設定に追加します。"
 
-msgid "Run the email check again until the score is above%s."
+msgid "Run the email check again until the score is above %s."
 msgstr "スコアが%sを超えるまで、電子メール チェックを再度実行します。"
 
-msgid "You have%1$sforms:%2$sactive and%3$sinactive."
+msgid "You have %1$s forms: %2$s active and %3$s inactive."
 msgstr "%1$sフォームがあります:%2$sがアクティブで、%3$sが非アクティブです。"
 
 msgid "Renew Flux Forms Pro"
@@ -8913,11 +8881,7 @@ msgstr "電子メール配信は機能しています"
 msgid "The automated Flux Forms email delivery test completed successfully."
 msgstr "自動化された Flux Forms 電子メール配信テストは正常に完了しました。"
 
-msgid "You can attach up to%1$dfile here. Please wait about%2$dminutes before trying again."
-msgid_plural "You can attach up to%1$dfiles here. Please wait about%2$dminutes before trying again."
-msgstr[0] "ここには%1$dファイルまで添付できます。%2$d分ほど待ってから再試行してください。"
-
-msgid "This file is too large. The maximum size for this field is%s."
+msgid "This file is too large. The maximum size for this field is %s."
 msgstr "このファイルは大きすぎます。このフィールドの最大サイズは%sです。"
 
 msgid "This file type is not accepted here. Please attach one of the file types listed on the field."
@@ -9055,7 +9019,7 @@ msgstr "パスワードは正常に変更されました!"
 msgid "Invalid payment selection. Please review your choices and try again. If the problem persists, contact the site administrator."
 msgstr "支払いの選択が無効です。選択内容を確認して、再試行してください。問題が解決しない場合は、サイト管理者に問い合わせてください。"
 
-msgid "If your emails are not being delivered, try using an SMTP plugin. For more information,%1$sclick here%2$sor contact our%3$ssupport team%4$s."
+msgid "If your emails are not being delivered, try using an SMTP plugin. For more information, %1$s click here %2$s or contact our %3$s support team %4$s."
 msgstr "メールが配信されない場合は、SMTP プラグインを使用してみてください。詳細については、%1$sここをクリック%2$sするか、%3$sサポート チーム%4$sにお問い合わせください。"
 
 msgid "View Messages"
@@ -9076,7 +9040,7 @@ msgstr "あなたのメッセージを受け取りました"
 msgid "This email was sent automatically. Please do not reply."
 msgstr "このメールは自動的に送信されました。返信しないでください。"
 
-msgid "Built with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s"
+msgid "Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s"
 msgstr "%3$sWhiteStudio.team%4$sにより%1$sYT フォーム%2$sで構築されました "
 
 msgid "Weekly Flux Forms report"
@@ -9164,8 +9128,8 @@ msgstr "このフォームの通貨はサポートされていません。"
 msgid "The Stripe secret key is not configured."
 msgstr "Stripe 秘密キーが構成されていません。"
 
-msgid "Could not connect to Stripe:%s"
+msgid "Could not connect to Stripe: %s"
 msgstr "ストライプに接続できませんでした:%s"
 
-msgid "Stripe API error (HTTP%d)."
+msgid "Stripe API error (HTTP %d)."
 msgstr "ストライプ API エラー (HTTP%d)."

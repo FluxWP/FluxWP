@@ -1811,11 +1811,11 @@ return array(
   'Yeni görev' => '新任务',
   'Oluştur ve aç' => '创建并打开',
   'ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.' => '类似 ClickUp 的任务跟踪:项目、文件夹、列表;列表、看板(看板)和日历视图、保存的筛选视图、自定义字段、评论和文件附件、通知、列表授权、管理仪表板、MCP 服务器和 OpenRouter 人工智能。',
+  'ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ.' => '类似 ClickUp 的任务跟踪：项目、文件夹、列表；列表、看板和日历视图，保存的筛选视图，自定义字段，评论和文件附件，通知，列表权限，管理仪表板，以及通过 Flux AI & MCP 的人工智能。',
+  'Flux AI & MCP' => 'Flux AI & MCP',
+  'Flux Tasks tools are available through Flux AI & MCP.' => 'Flux Tasks 工具通过 Flux AI & MCP 提供。',
+  'Flux Tasks tools require Flux AI & MCP.' => 'Flux Tasks 工具需要 Flux AI & MCP。',
+  'MCP' => 'MCP',
 
-'ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ.'=>'类似 ClickUp 的任务跟踪：项目、文件夹、列表；列表、看板和日历视图，保存的筛选视图，自定义字段，评论和文件附件，通知，列表权限，管理仪表板，以及通过 Flux AI & MCP 的人工智能。',
-'Flux AI & MCP'=>'Flux AI & MCP',
-'Flux Tasks tools are available through Flux AI & MCP.'=>'Flux Tasks 工具通过 Flux AI & MCP 提供。',
-'Flux Tasks tools require Flux AI & MCP.'=>'Flux Tasks 工具需要 Flux AI & MCP。',
-'MCP'=>'MCP',
  ),
 );

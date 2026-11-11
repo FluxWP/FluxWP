@@ -59,7 +59,7 @@ msgid "Summary"
 msgstr "Резюме"
 
 msgid "Step %1$s of %2$s"
-msgstr "Шаг%1$sиз%2$s"
+msgstr "Шаг %1$s из %2$s"
 
 msgid "Create"
 msgstr "Создать"
@@ -389,7 +389,7 @@ msgid "Medium"
 msgstr "Средний"
 
 msgid "Last check: %s"
-msgstr "Последняя проверка:%s"
+msgstr "Последняя проверка: %s"
 
 msgid "Actions"
 msgstr "Действия"
@@ -524,7 +524,7 @@ msgid "Total"
 msgstr "Итого"
 
 msgid "%s views"
-msgstr "Просмотры%s"
+msgstr "Просмотры %s"
 
 msgid "Page"
 msgstr "Страница"
@@ -710,7 +710,7 @@ msgid "Reason"
 msgstr "Причина"
 
 msgid "%s days"
-msgstr "%sдней"
+msgstr "%s дней"
 
 msgid "Completed"
 msgstr "Завершено"
@@ -821,7 +821,7 @@ msgid "Info"
 msgstr "Информация"
 
 msgid "%1$d OK · %2$d warnings · %3$d errors"
-msgstr "%1$dOK · Предупреждения%2$d· Ошибки%3$d"
+msgstr "%1$d OK · Предупреждения %2$d· Ошибки %3$d"
 
 msgid "Check again"
 msgstr "Проверьте еще раз"
@@ -830,7 +830,7 @@ msgid "Show only these (click again to show all)"
 msgstr "Показать только эти (нажмите еще раз, чтобы показать все)"
 
 msgid "Checked: %s"
-msgstr "Проверено:%s"
+msgstr "Проверено: %s"
 
 msgid "Check"
 msgstr "Проверить"
@@ -845,7 +845,7 @@ msgid "No checks are registered."
 msgstr "Никакие чеки не регистрируются."
 
 msgid "System check found %d problem(s) that can stop donations or automations."
-msgstr "Проверка системы выявила проблемы%d, которые могут остановить пожертвования или автоматизацию."
+msgstr "Проверка системы выявила проблемы %d, которые могут остановить пожертвования или автоматизацию."
 
 msgid "Open system check"
 msgstr "Открытая проверка системы"
@@ -854,10 +854,10 @@ msgid "Hide until the next update"
 msgstr "Скрыть до следующего обновления"
 
 msgid "System: %d error(s)"
-msgstr "Система: ошибки%d"
+msgstr "Система: ошибки %d"
 
 msgid "This check could not run: %s"
-msgstr "Эту проверку не удалось выполнить:%s."
+msgstr "Эту проверку не удалось выполнить: %s."
 
 msgid "Scheduled tasks (cron)"
 msgstr "Запланированные задачи (cron)"
@@ -1296,39 +1296,39 @@ msgstr[2] "поля"
 
 msgid "Flux Donate is not active and the Stripe keys are missing: %d payment form shows \"Online payment is unavailable\"."
 msgid_plural "Flux Donate is not active and the Stripe keys are missing: %d payment forms show \"Online payment is unavailable\"."
-msgstr[0] "Flux Donate не активен, а ключи Stripe отсутствуют: в форме оплаты%dотображается сообщение «Онлайн-платеж недоступен»."
-msgstr[1] "Flux Donate не активен, а ключи Stripe отсутствуют: в формах оплаты%dотображается сообщение «Онлайн-платеж недоступен»."
-msgstr[2] "Flux Donate не активен, а ключи Stripe отсутствуют: в формах оплаты%dотображается сообщение «Онлайн-платеж недоступен»."
+msgstr[0] "Flux Donate не активен, а ключи Stripe отсутствуют: в форме оплаты %d отображается сообщение «Онлайн-платеж недоступен»."
+msgstr[1] "Flux Donate не активен, а ключи Stripe отсутствуют: в формах оплаты %d отображается сообщение «Онлайн-платеж недоступен»."
+msgstr[2] "Flux Donate не активен, а ключи Stripe отсутствуют: в формах оплаты %d отображается сообщение «Онлайн-платеж недоступен»."
 
 msgid "Not active, but %d active automation creates or sends certificates; it will fail."
 msgid_plural "Not active, but %d active automations create or send certificates; they will fail."
-msgstr[0] "Не активно, но активная автоматизация%dсоздает или отправляет сертификаты; это потерпит неудачу."
-msgstr[1] "Неактивно, но активные средства автоматизации%dсоздают или отправляют сертификаты; они потерпят неудачу."
-msgstr[2] "Неактивно, но активные средства автоматизации%dсоздают или отправляют сертификаты; они потерпят неудачу."
+msgstr[0] "Не активно, но активная автоматизация %d создает или отправляет сертификаты; это потерпит неудачу."
+msgstr[1] "Неактивно, но активные средства автоматизации %d создают или отправляют сертификаты; они потерпят неудачу."
+msgstr[2] "Неактивно, но активные средства автоматизации %d создают или отправляют сертификаты; они потерпят неудачу."
 
 msgid "%d automation is on."
 msgid_plural "%d automations are on."
-msgstr[0] "%dавтоматизация включена."
-msgstr[1] "%dавтоматизация включена."
-msgstr[2] "%dавтоматизация включена."
+msgstr[0] "%d автоматизация включена."
+msgstr[1] "%d автоматизация включена."
+msgstr[2] "%d автоматизация включена."
 
 msgid "%d run failed in the last 7 days; see the run log."
 msgid_plural "%d runs failed in the last 7 days; see the run log."
-msgstr[0] "Запуск%dзавершился неудачно за последние 7 дней; посмотрите журнал пробега."
-msgstr[1] "За последние 7 дней не удалось выполнить%d; посмотрите журнал пробега."
-msgstr[2] "За последние 7 дней не удалось выполнить%d; посмотрите журнал пробега."
+msgstr[0] "Запуск %d завершился неудачно за последние 7 дней; посмотрите журнал пробега."
+msgstr[1] "За последние 7 дней не удалось выполнить %d; посмотрите журнал пробега."
+msgstr[2] "За последние 7 дней не удалось выполнить %d; посмотрите журнал пробега."
 
 msgid "Keys are set; %d form uses reCAPTCHA."
 msgid_plural "Keys are set; %d forms use reCAPTCHA."
-msgstr[0] "Ключи установлены;  Форма%dиспользует reCAPTCHA."
-msgstr[1] "Ключи установлены;  Формы%dиспользуют reCAPTCHA."
-msgstr[2] "Ключи установлены;  Формы%dиспользуют reCAPTCHA."
+msgstr[0] "Ключи установлены;  Форма %d использует reCAPTCHA."
+msgstr[1] "Ключи установлены;  Формы %d используют reCAPTCHA."
+msgstr[2] "Ключи установлены;  Формы %d используют reCAPTCHA."
 
 msgid "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown."
 msgid_plural "%d forms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
-msgstr[0] "В форме%dвключена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; форма не отображается."
-msgstr[1] "В формах%dвключена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; они не показаны."
-msgstr[2] "В формах%dвключена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; они не показаны."
+msgstr[0] "В форме %d включена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; форма не отображается."
+msgstr[1] "В формах %d включена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; они не показаны."
+msgstr[2] "В формах %d включена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; они не показаны."
 
 msgid "Form"
 msgid_plural "Forms"
@@ -1338,36 +1338,36 @@ msgstr[2] "Формы"
 
 msgid "%d service account connected"
 msgid_plural "%d service accounts connected"
-msgstr[0] "%dсервисный аккаунт подключен"
-msgstr[1] "%dподключены сервисные аккаунты"
-msgstr[2] "%dподключены сервисные аккаунты"
+msgstr[0] "%d сервисный аккаунт подключен"
+msgstr[1] "%d подключены сервисные аккаунты"
+msgstr[2] "%d подключены сервисные аккаунты"
 
 msgid "%d column will be written to the sheet."
 msgid_plural "%d columns will be written to the sheet."
-msgstr[0] "Столбец%dбудет записан на лист."
-msgstr[1] "Столбцы%dбудут записаны на лист."
-msgstr[2] "Столбцы%dбудут записаны на лист."
+msgstr[0] "Столбец %d будет записан на лист."
+msgstr[1] "Столбцы %d будут записаны на лист."
+msgstr[2] "Столбцы %d будут записаны на лист."
 
 msgid "Remove ALL %d binding? Syncing stops for every form. Your Google Sheets are not deleted."
 msgid_plural "Remove ALL %d bindings? Syncing stops for every form. Your Google Sheets are not deleted."
-msgstr[0] "Удалить привязку ALL%d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не будут удалены."
-msgstr[1] "Удалить ВСЕ привязки%d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не будут удалены."
-msgstr[2] "Удалить ВСЕ привязки%d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не будут удалены."
+msgstr[0] "Удалить привязку ALL %d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не будут удалены."
+msgstr[1] "Удалить ВСЕ привязки %d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не будут удалены."
+msgstr[2] "Удалить ВСЕ привязки %d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не будут удалены."
 
 msgid "You can attach up to %1$d file here. Please wait about %2$d minutes before trying again."
 msgid_plural "You can attach up to %1$d files here. Please wait about %2$d minutes before trying again."
-msgstr[0] "Здесь вы можете прикрепить файл%1$d. Прежде чем повторить попытку, подождите около%2$dминут."
-msgstr[1] "Здесь вы можете прикрепить файлы до%1$d. Прежде чем повторить попытку, подождите около%2$dминут."
-msgstr[2] "Здесь вы можете прикрепить файлы до%1$d. Прежде чем повторить попытку, подождите около%2$dминут."
+msgstr[0] "Здесь вы можете прикрепить файл %1$d. Прежде чем повторить попытку, подождите около %2$d минут."
+msgstr[1] "Здесь вы можете прикрепить файлы до %1$d. Прежде чем повторить попытку, подождите около %2$d минут."
+msgstr[2] "Здесь вы можете прикрепить файлы до %1$d. Прежде чем повторить попытку, подождите около %2$d минут."
 
 msgid "Add-on directory is ready for file operations"
 msgstr "Каталог надстройки готов для файловых операций"
 
-msgid "Cannot install addons:%s"
-msgstr "Невозможно установить дополнения:%s"
+msgid "Cannot install addons: %s"
+msgstr "Невозможно установить дополнения: %s"
 
-msgid "%scomplete"
-msgstr "%sзавершен"
+msgid "%s complete"
+msgstr "%s завершен"
 
 msgid "Copy and paste this shortcode to add the confirmation code finder to any page or post."
 msgstr "Скопируйте и вставьте этот короткий код, чтобы добавить средство поиска кода подтверждения на любую страницу или публикацию."
@@ -1408,8 +1408,8 @@ msgstr "(Видео или аудио)"
 msgid "Localization"
 msgstr "Локализация"
 
-msgid "Help us speak your language! Translate Flux Forms on the%1$sWordPress.org translation portal%2$sand make it accessible to your community."
-msgstr "Помогите нам говорить на вашем языке! Переведите формы Flux на портале переводов WordPress.org%1$s%2$sи сделайте их доступными для вашего сообщества."
+msgid "Help us speak your language! Translate Flux Forms on the %1$sWordPress.org translation portal%2$s and make it accessible to your community."
+msgstr "Помогите нам говорить на вашем языке! Переведите формы Flux на портале переводов WordPress.org %1$s%2$s и сделайте их доступными для вашего сообщества."
 
 msgid "You can translate Flux Forms into your preferred language by translating the following sentences. WARNING: If your WordPress site is multilingual, do not change the values below."
 msgstr "Вы можете перевести Flux Forms на предпочитаемый вами язык, переведя следующие предложения. ВНИМАНИЕ: Если ваш сайт WordPress многоязычный, не меняйте приведенные ниже значения."
@@ -1807,23 +1807,23 @@ msgstr "Положение метки"
 msgid "Align"
 msgstr "Выровнять"
 
-msgid "%swidth"
-msgstr " Ширина%s"
+msgid "%s width"
+msgstr " Ширина %s"
 
-msgid "%sLabel Position"
-msgstr "%sПоложение метки"
+msgid "%s Label Position"
+msgstr "%s Положение метки"
 
-msgid "%sLabel size"
-msgstr "%sРазмер этикетки"
+msgid "%s Label size"
+msgstr "%s Размер этикетки"
 
-msgid "%sLabel | Align"
-msgstr " Ярлык%s| Выровнять"
+msgid "%s Label | Align"
+msgstr " Ярлык %s| Выровнять"
 
-msgid "%sDescription | Align"
-msgstr "%sОписание | Выровнять"
+msgid "%s Description | Align"
+msgstr "%s Описание | Выровнять"
 
-msgid "%sButtons | Align"
-msgstr " Кнопки%s| Выровнять"
+msgid "%s Buttons | Align"
+msgstr " Кнопки %s| Выровнять"
 
 msgid "CSS Classes"
 msgstr "CSS-классы"
@@ -1843,8 +1843,8 @@ msgstr "Цвет кнопки"
 msgid "red"
 msgstr "красный"
 
-msgid "%sChecked Color"
-msgstr "%sПроверенный цвет"
+msgid "%s Checked Color"
+msgstr "%s Проверенный цвет"
 
 msgid "Slider Button"
 msgstr "Кнопка-ползунок"
@@ -1852,14 +1852,14 @@ msgstr "Кнопка-ползунок"
 msgid "Value Text"
 msgstr "Текст значения"
 
-msgid "Switch%s"
-msgstr "Переключить%s"
+msgid "Switch %s"
+msgstr "Переключить %s"
 
 msgid "Handle"
 msgstr "Дескриптор"
 
-msgid "%scolor"
-msgstr " Цвет%s"
+msgid "%s color"
+msgstr " Цвет %s"
 
 msgid "Border Color"
 msgstr "Цвет границы"
@@ -1978,7 +1978,7 @@ msgstr "Расширенные функции и дополнительные п
 msgid "Your Pro activation code will be removed from this site. Advanced features, Pro fields and add-ons will be unavailable until you upgrade again. Your forms, entries and settings will not be deleted."
 msgstr "Ваш код активации Pro будет удален с этого сайта. Расширенные функции, поля Pro и надстройки будут недоступны, пока вы не обновитесь снова. Ваши формы, записи и настройки не будут удалены."
 
-msgid "KeepPro"
+msgid "Keep Pro"
 msgstr "KeepPro"
 
 msgid "Keep Free Plus"
@@ -2044,8 +2044,8 @@ msgstr "Ваше тестовое письмо было отправлено, н
 msgid "We could not verify delivery. Your email address was saved; please check your mail configuration in General Settings."
 msgstr "Нам не удалось проверить доставку. Ваш адрес электронной почты был сохранен; пожалуйста, проверьте конфигурацию вашей почты в общих настройках."
 
-msgid "Your test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
-msgstr "Ваше тестовое письмо было доставлено, но его показатель доставляемости составляет всего%1$sиз 100 (ниже%2$s). Письма, отправляемые вашими формами, скорее всего, будут отфильтрованы как спам. Настройте SMTP и запустите проверку еще раз."
+msgid "Your test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
+msgstr "Ваше тестовое письмо было доставлено, но его показатель доставляемости составляет всего %1$s из 100 (ниже %2$s). Письма, отправляемые вашими формами, скорее всего, будут отфильтрованы как спам. Настройте SMTP и запустите проверку еще раз."
 
 msgid "Finish setup"
 msgstr "Завершить настройку"
@@ -2368,11 +2368,11 @@ msgstr "Отправлено успешно"
 msgid "This field is required."
 msgstr "Это поле является обязательным."
 
-msgid "Custom%sMessage"
-msgstr "Пользовательское сообщение%s"
+msgid "Custom %s Message"
+msgstr "Пользовательское сообщение %s"
 
-msgid "Leave empty to use default%s"
-msgstr "Оставьте пустым, чтобы использовать%sпо умолчанию "
+msgid "Leave empty to use default %s"
+msgstr "Оставьте пустым, чтобы использовать %s по умолчанию "
 
 msgid "Thank you"
 msgstr "Спасибо"
@@ -2395,8 +2395,8 @@ msgstr "Настройки не найдены"
 msgid "Please navigate to the Flux Forms Panel, then go to Settings and click on Google Keys to configure the keys for Google reCAPTCHA."
 msgstr "Перейдите на панель форм Flux, затем перейдите в «Настройки» и нажмите «Ключи Google», чтобы настроить ключи для Google reCAPTCHA."
 
-msgid "If your language translation is not available yet, translate it and get a%3$slifetime discount! Contribute via the%1$sWordPress.org translation portal%2$s."
-msgstr "Если ваш языковой перевод еще недоступен, переведите его и получите пожизненную скидку%3$s! Внесите свой вклад через портал переводов%1$sWordPress.org%2$s."
+msgid "If your language translation is not available yet, translate it and get a %3$s lifetime discount! Contribute via the %1$sWordPress.org translation portal%2$s."
+msgstr "Если ваш языковой перевод еще недоступен, переведите его и получите пожизненную скидку %3$s! Внесите свой вклад через портал переводов %1$sWordPress.org%2$s."
 
 msgid "OFF"
 msgstr "ВЫКЛ"
@@ -2800,8 +2800,8 @@ msgstr "Персидский платеж"
 msgid "Unlock Pro Features Today"
 msgstr "Разблокируйте функции Pro сегодня"
 
-msgid "Upgrade to Pro for just%1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
-msgstr "Обновите версию Pro всего за%1$s%2$s%3$sв год и получите доступ к мощным функциям, включая расширенные поля форм, интеграцию платежей, условную логику, многошаговые формы, загрузку файлов, безопасность и защиту от спама, а также приоритетную поддержку.%4$sВозможности View Pro%5$s"
+msgid "Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
+msgstr "Обновите версию Pro всего за %1$s%2$s %3$s в год и получите доступ к мощным функциям, включая расширенные поля форм, интеграцию платежей, условную логику, многошаговые формы, загрузку файлов, безопасность и защиту от спама, а также приоритетную поддержку.%4$sВозможности View Pro%5$s"
 
 msgid "Add-on"
 msgstr "Дополнение"
@@ -3112,8 +3112,8 @@ msgstr "Не совпадает"
 msgid "No fields found."
 msgstr "Поля не найдены."
 
-msgid "You can create up to%1$s%2$son your current plan. Upgrade to Pro for unlimited access."
-msgstr "В текущем плане вы можете создать до%1$s%2$s. Обновите версию до версии Pro, чтобы получить неограниченный доступ."
+msgid "You can create up to %1$s %2$s on your current plan. Upgrade to Pro for unlimited access."
+msgstr "В текущем плане вы можете создать до %1$s%2$s. Обновите версию до версии Pro, чтобы получить неограниченный доступ."
 
 msgid "Inspector"
 msgstr "Инспектор"
@@ -3514,11 +3514,11 @@ msgstr "Показывать водяной знак при предварите
 msgid "Let the user download a copy of the recording"
 msgstr "Разрешить пользователю загрузить копию записи"
 
-msgid "Your hosting accepts uploads up to%sMB."
-msgstr "Ваш хостинг принимает загрузки размером до%sМБ."
+msgid "Your hosting accepts uploads up to %s MB."
+msgstr "Ваш хостинг принимает загрузки размером до %s МБ."
 
-msgid "This is larger than the hosting upload limit (%sMB); uploads will fail."
-msgstr "Это превышает лимит загрузки хостинга (%sМБ); загрузка не удастся."
+msgid "This is larger than the hosting upload limit (%s MB); uploads will fail."
+msgstr "Это превышает лимит загрузки хостинга (%s МБ); загрузка не удастся."
 
 msgid "Cities Drop-Down"
 msgstr "Раскрывающийся список «Города»"
@@ -3601,14 +3601,14 @@ msgstr "Представленные материалы"
 msgid "Emails sent"
 msgstr "Письма отправлены"
 
-msgid "%sFailures"
-msgstr " Сбои%s"
+msgid "%s Failures"
+msgstr " Сбои %s"
 
-msgid "%sError Log"
-msgstr " Журнал ошибок%s"
+msgid "%s Error Log"
+msgstr " Журнал ошибок %s"
 
-msgid "%sDetails"
-msgstr "%sПодробности"
+msgid "%s Details"
+msgstr "%s Подробности"
 
 msgid "No data available for this period"
 msgstr "Нет данных за этот период"
@@ -3622,17 +3622,17 @@ msgstr "Ошибка: убедитесь, что на странице имее�
 msgid "Your activation code has been verified. Enjoy all Pro features of Flux Forms."
 msgstr "Ваш код активации проверен. Наслаждайтесь всеми функциями Flux Forms Pro."
 
-msgid "The confirmation code for this message is%s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
-msgstr "Код подтверждения для этого сообщения:%s. Нажав кнопку ниже, вы сможете отслеживать сообщения и просматривать полученные ответы. При необходимости вы также можете отправить новый ответ."
+msgid "The confirmation code for this message is %s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
+msgstr "Код подтверждения для этого сообщения: %s. Нажав кнопку ниже, вы сможете отслеживать сообщения и просматривать полученные ответы. При необходимости вы также можете отправить новый ответ."
 
-msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s."
-msgstr "Чтобы изучить все функциональные возможности и настройки Flux Forms, включая настройки электронной почты, параметры создания форм и другие функции, просто воспользуйтесь нашей документацией%1$s%2$s."
+msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s ."
+msgstr "Чтобы изучить все функциональные возможности и настройки Flux Forms, включая настройки электронной почты, параметры создания форм и другие функции, просто воспользуйтесь нашей документацией %1$s%2$s."
 
 msgid "Responses & Confirmation"
 msgstr "Ответы и подтверждение"
 
-msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings%1$sLearn how to fix email delivery issues%2$sor%3$scontact Flux Forms support%4$s."
-msgstr "Тестовые письма могут попасть в папку со спамом. Если электронные письма не доставляются, это обычно связано с конфигурацией вашего хостинга или почтового сервера. Настройки сервера%1$sУзнайте, как устранить проблемы с доставкой электронной почты%2$sили%3$sОбратитесь в службу поддержки Flux Forms%4$s."
+msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings %1$sLearn how to fix email delivery issues%2$s or %3$scontact Flux Forms support%4$s."
+msgstr "Тестовые письма могут попасть в папку со спамом. Если электронные письма не доставляются, это обычно связано с конфигурацией вашего хостинга или почтового сервера. Настройки сервера %1$sУзнайте, как устранить проблемы с доставкой электронной почты%2$s или %3$sОбратитесь в службу поддержки Flux Forms%4$s."
 
 msgid "From Address"
 msgstr "От адреса"
@@ -3661,8 +3661,8 @@ msgstr "Если этот параметр включен, используют�
 msgid "After changing the Development Mode (Sandbox) option, save the settings, then deactivate and reactivate Flux Forms plugin from the Plugins page for the changes to take effect."
 msgstr "После изменения параметра «Режим разработки (песочница)» сохраните настройки, затем деактивируйте и повторно активируйте плагин Flux Forms на странице «Плагины», чтобы изменения вступили в силу."
 
-msgid "I have read and agree to%1$sthe terms and conditions%2$s"
-msgstr "Я прочитал%1$sусловия использования%2$sи согласен с ними "
+msgid "I have read and agree to %1$sthe terms and conditions%2$s"
+msgstr "Я прочитал %1$sусловия использования%2$s и согласен с ними "
 
 msgid "Terms"
 msgstr "Условия"
@@ -3676,8 +3676,8 @@ msgstr "Максимальная дата"
 msgid "Minimum date"
 msgstr "Минимальная дата"
 
-msgid "Valid formats:%s"
-msgstr "Действительные форматы:%s"
+msgid "Valid formats: %s"
+msgstr "Действительные форматы: %s"
 
 msgid "Zoom"
 msgstr "Масштаб"
@@ -3700,14 +3700,14 @@ msgstr "Дополнение уведомлений Telegram позволяет 
 msgid "Enter a location name"
 msgstr "Введите название местоположения"
 
-msgid "The%1$spages are currently unavailable. It looks like another plugin is causing a conflict with%1$s. To fix this issue,%2$scontact%1$ssupport%3$sfor assistance or try disabling your plugins one at a time to identify the one causing the conflict."
-msgstr "Страницы%1$sв настоящее время недоступны. Похоже, другой плагин вызывает конфликт с%1$s. Чтобы устранить эту проблему,%2$sобратитесь в службу поддержки%1$s%3$sза помощью или попробуйте отключить плагины по одному, чтобы определить тот, который вызывает конфликт."
+msgid "The %1$s pages are currently unavailable. It looks like another plugin is causing a conflict with %1$s . To fix this issue, %2$s contact %1$s support %3$s for assistance or try disabling your plugins one at a time to identify the one causing the conflict."
+msgstr "Страницы %1$s в настоящее время недоступны. Похоже, другой плагин вызывает конфликт с %1$s. Чтобы устранить эту проблему, %2$s обратитесь в службу поддержки %1$s%3$s за помощью или попробуйте отключить плагины по одному, чтобы определить тот, который вызывает конфликт."
 
 msgid "Send email with submitted form content only"
 msgstr "Отправлять электронное письмо только с отправленным содержимым формы"
 
-msgid "%scopied!"
-msgstr "%sскопировано!"
+msgid "%s copied!"
+msgstr "%s скопировано!"
 
 msgid "The website is not responding; please refresh and try again—saving or submitting is not available until it is restored."
 msgstr "Веб-сайт не отвечает; обновите страницу и повторите попытку — сохранение или отправка будут недоступны до тех пор, пока они не будут восстановлены."
@@ -3727,8 +3727,8 @@ msgstr "Введите адрес электронной почты, чтобы 
 msgid "If your email is valid, a password reset link has been sent to your email address."
 msgstr "Если ваш адрес электронной почты действителен, на ваш адрес электронной почты была отправлена ссылка для сброса пароля."
 
-msgid "Enable%s"
-msgstr "Включить%s"
+msgid "Enable %s"
+msgstr "Включить %s"
 
 msgid "Auto-Populate"
 msgstr "Автозаполнение"
@@ -3796,29 +3796,29 @@ msgstr "Внешние API-соединения"
 msgid "Add API Connection"
 msgstr "Добавить соединение API"
 
-msgid "Upload the%sfile"
-msgstr "Загрузите файл%s"
+msgid "Upload the %s file"
+msgstr "Загрузите файл %s"
 
 msgid "Dataset"
 msgstr "Набор данных"
 
-msgid "The%shas been successfully completed"
-msgstr "%sуспешно завершен"
+msgid "The %s has been successfully completed"
+msgstr "%s успешно завершен"
 
-msgid "%snot found"
-msgstr "%sне найден"
+msgid "%s not found"
+msgstr "%s не найден"
 
-msgid "%sLocation"
-msgstr "%sМестоположение"
+msgid "%s Location"
+msgstr "%s Местоположение"
 
 msgid "installation"
 msgstr "установка"
 
-msgid "The%shave been deleted."
-msgstr "%sудален."
+msgid "The %s have been deleted."
+msgstr "%s удален."
 
-msgid "The%sfield must be correctly filled out to proceed."
-msgstr "Для продолжения поле%sдолжно быть правильно заполнено."
+msgid "The %s field must be correctly filled out to proceed."
+msgstr "Для продолжения поле %s должно быть правильно заполнено."
 
 msgid "Submitted Form"
 msgstr "Отправленная форма"
@@ -3826,11 +3826,11 @@ msgstr "Отправленная форма"
 msgid "You can't add reCAPTCHA to payment forms."
 msgstr "Вы не можете добавить reCAPTCHA в формы оплаты."
 
-msgid "Learn more about%sor watch the video tutorial."
-msgstr "Узнайте больше о%sили посмотрите видеоруководство."
+msgid "Learn more about %s or watch the video tutorial."
+msgstr "Узнайте больше о %s или посмотрите видеоруководство."
 
-msgid "Learn more%s"
-msgstr "Подробнее%s"
+msgid "Learn more %s"
+msgstr "Подробнее %s"
 
 msgid "Google reCAPTCHA"
 msgstr "Google reCAPTCHA"
@@ -3844,26 +3844,26 @@ msgstr "Доступна автоматически сохраняемая ве�
 msgid "SMS notification could not be sent. Check if the SMS plugin is installed and configured properly."
 msgstr "Не удалось отправить SMS-уведомление. Проверьте, правильно ли установлен и настроен плагин SMS."
 
-msgid "Your request was completed successfully.%1$s%2$s"
-msgstr "Ваш запрос успешно выполнен.%1$s%2$s"
+msgid "Your request was completed successfully. %1$s %2$s"
+msgstr "Ваш запрос успешно выполнен.%1$s %2$s"
 
 msgid "PayPal"
 msgstr "PayPal"
 
-msgid "To use%1$sfeatures in your forms, you need to get your%2$skeys."
-msgstr "Чтобы использовать функции%1$sв своих формах, вам необходимо получить ключи%2$s."
+msgid "To use %1$s features in your forms, you need to get your %2$s keys."
+msgstr "Чтобы использовать функции %1$s в своих формах, вам необходимо получить ключи %2$s."
 
-msgid "Go to the add-ons page in the Flux Forms plugin, install the%sadd-on, and try again."
-msgstr "Перейдите на страницу надстроек в плагине Flux Forms, установите надстройку%sи повторите попытку."
+msgid "Go to the add-ons page in the Flux Forms plugin, install the %s add-on, and try again."
+msgstr "Перейдите на страницу надстроек в плагине Flux Forms, установите надстройку %s и повторите попытку."
 
-msgid "To create a payment form to collect online payments, install a payment add-on such as the%sAdd-on first."
-msgstr "Чтобы создать платежную форму для сбора онлайн-платежей, сначала установите надстройку для оплаты, например надстройку%s."
+msgid "To create a payment form to collect online payments, install a payment add-on such as the %s Add-on first."
+msgstr "Чтобы создать платежную форму для сбора онлайн-платежей, сначала установите надстройку для оплаты, например надстройку %s."
 
 msgid "Thank"
 msgstr "Спасибо"
 
-msgid "The%splugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the%ssettings."
-msgstr "Плагин%sможет мешать работе форм Flux Forms. Если у вас возникли проблемы с формами, отключите кеширование для плагина Flux Forms в настройках%s."
+msgid "The %s plugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the %s settings."
+msgstr "Плагин %s может мешать работе форм Flux Forms. Если у вас возникли проблемы с формами, отключите кеширование для плагина Flux Forms в настройках %s."
 
 msgid "Remind me later"
 msgstr "Напомни мне позже"
@@ -3871,41 +3871,41 @@ msgstr "Напомни мне позже"
 msgid "Got it, don't show it again"
 msgstr "Понятно, больше не показывать"
 
-msgid "The value of the%1$sfield does not match the pattern and must be at least%2$scharacters."
-msgstr "Значение поля%1$sне соответствует шаблону и должно содержать не менее символов%2$s."
+msgid "The value of the %1$s field does not match the pattern and must be at least %2$s characters."
+msgstr "Значение поля %1$s не соответствует шаблону и должно содержать не менее символов %2$s."
 
-msgid "The value of the%1$sfield does not match the pattern and must be at most%2$scharacters."
-msgstr "Значение поля%1$sне соответствует шаблону и должно содержать не более символов%2$s."
+msgid "The value of the %1$s field does not match the pattern and must be at most %2$s characters."
+msgstr "Значение поля %1$s не соответствует шаблону и должно содержать не более символов %2$s."
 
-msgid "Please enter valid value for the%sfield."
-msgstr "Пожалуйста, введите допустимое значение в поле%s."
+msgid "Please enter valid value for the %s field."
+msgstr "Пожалуйста, введите допустимое значение в поле %s."
 
-msgid "%slist"
-msgstr " Список%s"
+msgid "%s list"
+msgstr " Список %s"
 
-msgid "The uploaded file exceeds the allowable limit of%sMB."
-msgstr "Загруженный файл превышает допустимый лимит%sМБ."
+msgid "The uploaded file exceeds the allowable limit of %s MB."
+msgstr "Загруженный файл превышает допустимый лимит %s МБ."
 
-msgid "The uploaded file is below the required minimum size of%sMB."
-msgstr "Размер загруженного файла меньше требуемого минимального размера%sМБ."
+msgid "The uploaded file is below the required minimum size of %s MB."
+msgstr "Размер загруженного файла меньше требуемого минимального размера %s МБ."
 
-msgid "Review the entered values in the%stab. This message appeared because an error was detected."
-msgstr "Проверьте введенные значения на вкладке%s. Это сообщение появилось, потому что была обнаружена ошибка."
+msgid "Review the entered values in the %s tab. This message appeared because an error was detected."
+msgstr "Проверьте введенные значения на вкладке %s. Это сообщение появилось, потому что была обнаружена ошибка."
 
 msgid "Are you sure you want to duplicate the \"%s\" ?"
 msgstr "Вы уверены, что хотите дублировать «%s»?"
 
-msgid "We are sorry, the booking time for the%soption has expired. Please choose from the other available options."
-msgstr "К сожалению, время бронирования опции%sистекло. Пожалуйста, выберите один из других доступных вариантов."
+msgid "We are sorry, the booking time for the %s option has expired. Please choose from the other available options."
+msgstr "К сожалению, время бронирования опции %s истекло. Пожалуйста, выберите один из других доступных вариантов."
 
-msgid "We are sorry, the%soption is currently at full capacity. Please choose from the other available options."
-msgstr "Приносим извинения, опция%sв настоящее время загружена на полную мощность. Пожалуйста, выберите один из других доступных вариантов."
+msgid "We are sorry, the %s option is currently at full capacity. Please choose from the other available options."
+msgstr "Приносим извинения, опция %s в настоящее время загружена на полную мощность. Пожалуйста, выберите один из других доступных вариантов."
 
-msgid "%sPayment Add-on"
-msgstr "%sПлатежное дополнение"
+msgid "%s Payment Add-on"
+msgstr "%s Платежное дополнение"
 
-msgid "The%sadd-on for Flux Forms enables you to integrate your WordPress site with%sfor payment processing, donations, and online orders."
-msgstr "Дополнение%sдля Flux Forms позволяет интегрировать ваш сайт WordPress с%sдля обработки платежей, пожертвований и онлайн-заказов."
+msgid "The %s add-on for Flux Forms enables you to integrate your WordPress site with %s for payment processing, donations, and online orders."
+msgstr "Дополнение %s для Flux Forms позволяет интегрировать ваш сайт WordPress с %s для обработки платежей, пожертвований и онлайн-заказов."
 
 msgid "Activation Code"
 msgstr "Код активации"
@@ -3931,8 +3931,8 @@ msgstr "Все функции без ограничений и поддержк�
 msgid "Search Results"
 msgstr "Результаты поиска"
 
-msgid "Found%s%sfor: \"%s\""
-msgstr "Найдено%s%sдля: \"%s\""
+msgid "Found %s %s for: \"%s\""
+msgstr "Найдено %s%s для: \"%s\""
 
 msgid "results"
 msgstr "результаты"
@@ -3940,8 +3940,8 @@ msgstr "результаты"
 msgid "No results found for:"
 msgstr "По запросу:', 'en']] результатов не найдено"
 
-msgid "Found%1$s%2$sfor"
-msgstr "Найдено%1$s%2$sдля"
+msgid "Found %1$s %2$s for"
+msgstr "Найдено %1$s%2$s для"
 
 msgid "Session Duration"
 msgstr "Продолжительность сеанса"
@@ -3949,23 +3949,23 @@ msgstr "Продолжительность сеанса"
 msgid "Set how long form security tokens remain valid. Longer durations provide better user experience but may reduce security."
 msgstr "Установите, как долго токены безопасности формы остаются действительными. Более длительная продолжительность обеспечивает лучший пользовательский опыт, но может снизить безопасность."
 
-msgid "%sDay"
-msgstr "%sДень"
+msgid "%s Day"
+msgstr "%s День"
 
-msgid "%sDays"
-msgstr "%sдней"
+msgid "%s Days"
+msgstr "%s дней"
 
 msgid "Select Duration"
 msgstr "Выберите продолжительность"
 
-msgid "Choose the style for the%s."
-msgstr "Выберите стиль для%s."
+msgid "Choose the style for the %s."
+msgstr "Выберите стиль для %s."
 
-msgid "%1$s+%2$s"
+msgid "%1$s + %2$s"
 msgstr "%1$s+%2$s"
 
-msgid "%1$s%2$s&%3$s"
-msgstr "%1$s%2$sи%3$s"
+msgid "%1$s %2$s & %3$s"
+msgstr "%1$s %2$s и %3$s"
 
 msgid "Letters"
 msgstr "Буквы"
@@ -4081,8 +4081,8 @@ msgstr "Все сохраняется"
 msgid "1 unsaved change"
 msgstr "1 несохраненное изменение"
 
-msgid "%sunsaved changes"
-msgstr "%sнесохраненные изменения"
+msgid "%s unsaved changes"
+msgstr "%s несохраненные изменения"
 
 msgid "Buttons, icons, field labels"
 msgstr "Кнопки, значки, метки полей"
@@ -4483,8 +4483,8 @@ msgstr "Подробнее о совместимости кэша"
 msgid "Dismiss All"
 msgstr "Отклонить все"
 
-msgid "Dismiss%s"
-msgstr "Отклонить%s"
+msgid "Dismiss %s"
+msgstr "Отклонить %s"
 
 msgid "Security Plugin Detected"
 msgstr "Обнаружен плагин безопасности"
@@ -4543,14 +4543,14 @@ msgstr "Ваши письма доходят, но, скорее всего, п�
 msgid "Delivery itself works - the test message reached us. What is missing is trust: sending through an SMTP service and adding SPF and DKIM records for your domain is what moves your emails from the spam folder to the inbox."
 msgstr "Сама доставка работает - до нас дошло тестовое сообщение. Чего не хватает, так это доверия: отправка через службу SMTP и добавление записей SPF и DKIM для вашего домена — вот что перемещает ваши электронные письма из папки со спамом в папку «Входящие»."
 
-msgid "The test email was delivered with a deliverability score of%1$sout of 100. Under%2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
-msgstr "Тестовое электронное письмо было доставлено с оценкой доставляемости%1$sиз 100. При использовании%2$sбольшинство почтовых ящиков отправляют сообщения в папку «Спам», поэтому люди, заполняющие ваши формы, могут их никогда не увидеть."
+msgid "The test email was delivered with a deliverability score of %1$s out of 100. Under %2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
+msgstr "Тестовое электронное письмо было доставлено с оценкой доставляемости %1$s из 100. При использовании %2$s большинство почтовых ящиков отправляют сообщения в папку «Спам», поэтому люди, заполняющие ваши формы, могут их никогда не увидеть."
 
 msgid "Step-by-step SMTP setup guide"
 msgstr "Пошаговое руководство по настройке SMTP"
 
-msgid "Your email server is working. A detailed HTML report has been sent to%s."
-msgstr "Ваш почтовый сервер работает. Подробный отчет в формате HTML отправлен на адрес%s."
+msgid "Your email server is working. A detailed HTML report has been sent to %s."
+msgstr "Ваш почтовый сервер работает. Подробный отчет в формате HTML отправлен на адрес %s."
 
 msgid "your admin email address"
 msgstr "\\ваш адрес электронной почты администратора"
@@ -4558,13 +4558,13 @@ msgstr "\\ваш адрес электронной почты администр
 msgid "Spam Score Report on the Way!"
 msgstr "Отчет о спаме уже в пути!"
 
-msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to%swithin the next few minutes."
-msgstr "Полный отчет о состоянии электронной почты, включая оценку спама, сведения о доставляемости и рекомендации, будет отправлен на адрес%sв течение следующих нескольких минут."
+msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to %s within the next few minutes."
+msgstr "Полный отчет о состоянии электронной почты, включая оценку спама, сведения о доставляемости и рекомендации, будет отправлен на адрес %s в течение следующих нескольких минут."
 
 msgid "Email notifications may not be delivered"
 msgstr "Уведомления по электронной почте могут не доставляться"
 
-msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is%s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
+msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is %s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
 msgstr "Функция уведомления по электронной почте в этой форме включена, но доставка электронной почты не проверена, а последняя оценка спама —%s/100. Форма была сохранена, но электронные письма с уведомлениями администратора могут не дойти до вас, пока доставка SMTP/электронной почты не будет исправлена."
 
 msgid "Notification emails are turned off"
@@ -4618,11 +4618,11 @@ msgstr "Подготовленный отчет в формате HTML с пол
 msgid "Needs attention"
 msgstr "Требует внимания"
 
-msgid "%sof 5 steps done"
-msgstr "%sиз 5 шагов выполнено"
+msgid "%s of 5 steps done"
+msgstr "%s из 5 шагов выполнено"
 
-msgid "Step%sof 5"
-msgstr "Шаг%sиз 5"
+msgid "Step %s of 5"
+msgstr "Шаг %s из 5"
 
 msgid "/ 100"
 msgstr "/ 100"
@@ -4738,8 +4738,8 @@ msgstr "Возможные причины"
 msgid "What to check next"
 msgstr "Что проверить дальше"
 
-msgid "Score:%s"
-msgstr "Оценка:%s"
+msgid "Score: %s"
+msgstr "Оценка: %s"
 
 msgid "Upgrade"
 msgstr "Обновить"
@@ -4765,8 +4765,8 @@ msgstr "Начинаем тест доставки электронной поч
 msgid "WordPress accepted and sent the message. Waiting for it to arrive..."
 msgstr "WordPress принял и отправил сообщение. Ждем его прибытия..."
 
-msgid "Connection error. Please refresh the page and try again. (Code:%s)"
-msgstr "Ошибка подключения. Пожалуйста, обновите страницу и повторите попытку. (Код:%s)"
+msgid "Connection error. Please refresh the page and try again. (Code: %s)"
+msgstr "Ошибка подключения. Пожалуйста, обновите страницу и повторите попытку. (Код: %s)"
 
 msgid "Email Address"
 msgstr "Адрес электронной почты"
@@ -5104,11 +5104,11 @@ msgstr "Дополнение уже установлено."
 msgid "File access status not checked yet. Please wait."
 msgstr "Состояние доступа к файлу еще не проверено. Пожалуйста, подождите."
 
-msgid "Error: server (%s) responded with an invalid request. responded code:%s"
-msgstr "Ошибка: сервер (%s) ответил неверным запросом. код ответа:%s"
+msgid "Error: server (%s) responded with an invalid request. responded code: %s"
+msgstr "Ошибка: сервер (%s) ответил неверным запросом. код ответа: %s"
 
-msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the%sserver"
-msgstr "Невозможно установить дополнения Flux Forms, поскольку плагин не может подключиться к серверу%s"
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the %s server"
+msgstr "Невозможно установить дополнения Flux Forms, поскольку плагин не может подключиться к серверу %s"
 
 msgid "Your Easy Form Builder Pro subscription has expired, so the Pro add-ons could not be downloaded. The plugin keeps working without them. Renew your subscription to restore all Pro features:"
 msgstr "Срок действия вашей подписки на Easy Form Builder Pro истек, поэтому дополнения Pro невозможно загрузить. Плагин продолжает работать и без них. Продлите подписку, чтобы восстановить все функции Pro:"
@@ -5128,8 +5128,8 @@ msgstr "Невозможно установить дополнения Flux Form
 msgid "Cannot install add-ons of Flux Forms because the plugin is not able to unzip files"
 msgstr "Невозможно установить дополнения Flux Forms, поскольку плагин не может разархивировать файлы"
 
-msgid "To fix this, sign in to your%s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
-msgstr "Чтобы это исправить, войдите в свою учетную запись%s, загрузите плагин Add-ons Handler из раздела «Загрузки», затем установите и активируйте его. После этого активируйте нужные вам надстройки с помощью плагина Add-ons Handler."
+msgid "To fix this, sign in to your %s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
+msgstr "Чтобы это исправить, войдите в свою учетную запись %s, загрузите плагин Add-ons Handler из раздела «Загрузки», затем установите и активируйте его. После этого активируйте нужные вам надстройки с помощью плагина Add-ons Handler."
 
 msgid "WhiteStudio dashboard"
 msgstr "Панель управления WhiteStudio"
@@ -5149,17 +5149,17 @@ msgstr "Сервер дополнений не предоставил URL-адр
 msgid "The add-on download URL is not an approved Flux Forms source."
 msgstr "URL-адрес загрузки дополнения не является одобренным источником Flux Forms."
 
-msgid "Your server could not reach%1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at%2$sand download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
-msgstr "Ваш сервер не смог связаться с%1$s, поэтому дополнение не удалось загрузить. Почти всегда это брандмауэр на вашем хостинге, блокирующий исходящий запрос, а не проблема с вашей лицензией. Чтобы установить надстройки вообще без какой-либо загрузки, войдите в систему на%2$sи загрузите плагин Flux Forms Add-ons Handler, а затем установите его, как любой другой плагин. Он содержит все дополнения, на которые распространяется ваша лицензия."
+msgid "Your server could not reach %1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at %2$s and download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
+msgstr "Ваш сервер не смог связаться с %1$s, поэтому дополнение не удалось загрузить. Почти всегда это брандмауэр на вашем хостинге, блокирующий исходящий запрос, а не проблема с вашей лицензией. Чтобы установить надстройки вообще без какой-либо загрузки, войдите в систему на %2$s и загрузите плагин Flux Forms Add-ons Handler, а затем установите его, как любой другой плагин. Он содержит все дополнения, на которые распространяется ваша лицензия."
 
-msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from%sare being blocked."
-msgstr "Если вы предпочитаете исправить соединение, узнайте у своего хостинг-провайдера, почему блокируются исходящие запросы от%s."
+msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from %s are being blocked."
+msgstr "Если вы предпочитаете исправить соединение, узнайте у своего хостинг-провайдера, почему блокируются исходящие запросы от %s."
 
 msgid "Flux Forms: add-on downloads are being blocked"
 msgstr "Flux Forms: загрузка дополнений блокируется"
 
-msgid "Add-on affected:%s"
-msgstr "Затронуто дополнение:%s"
+msgid "Add-on affected: %s"
+msgstr "Затронуто дополнение: %s"
 
 msgid "No response was recorded for this add-on."
 msgstr "Для этого дополнения не было записано ни одного ответа."
@@ -5248,23 +5248,23 @@ msgstr "Если у вас возникли какие-либо проблемы
 msgid "Sent by"
 msgstr "Отправлено"
 
-msgid "Action needed: Flux Forms Pro is paused on%s"
-msgstr "Требуется действие: Flux Forms Pro приостановлен на%s"
+msgid "Action needed: Flux Forms Pro is paused on %s"
+msgstr "Требуется действие: Flux Forms Pro приостановлен на %s"
 
-msgid "Flux Forms could not confirm your Pro licence for%1$sdays in a row, so the Pro features on%2$sare paused for now."
-msgstr "Flux Forms не может подтвердить вашу лицензию Pro в течение%1$sдней подряд, поэтому функции Pro на%2$sна данный момент приостановлены."
+msgid "Flux Forms could not confirm your Pro licence for %1$s days in a row, so the Pro features on %2$s are paused for now."
+msgstr "Flux Forms не может подтвердить вашу лицензию Pro в течение %1$s дней подряд, поэтому функции Pro на %2$s на данный момент приостановлены."
 
 msgid "Your forms, entries and settings are untouched, every free feature keeps working, and your activation code is still stored — nothing was deleted."
 msgstr "Ваши формы, записи и настройки не тронуты, все бесплатные функции продолжают работать, а ваш код активации по-прежнему сохраняется — ничего не было удалено."
 
-msgid "Open%1$sYT Form → Settings%2$sand press%1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
-msgstr "Откройте форму%1$sYT → Настройки%2$sи нажмите%1$sСохранить%2$s. Это немедленно проверяет лицензию еще раз; если соединение восстановится, Pro включится через минуту."
+msgid "Open %1$sYT Form → Settings%2$s and press %1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
+msgstr "Откройте форму %1$sYT → Настройки%2$s и нажмите %1$sСохранить%2$s. Это немедленно проверяет лицензию еще раз; если соединение восстановится, Pro включится через минуту."
 
-msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to%s— a firewall, proxy or regional block is the usual cause — then repeat step 1."
-msgstr "Все еще приостановлено? Попросите своего хостинг-провайдера разрешить исходящие HTTPS-соединения к%s(обычной причиной является брандмауэр, прокси-сервер или региональная блокировка), а затем повторите шаг 1."
+msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to %s — a firewall, proxy or regional block is the usual cause — then repeat step 1."
+msgstr "Все еще приостановлено? Попросите своего хостинг-провайдера разрешить исходящие HTTPS-соединения к %s(обычной причиной является брандмауэр, прокси-сервер или региональная блокировка), а затем повторите шаг 1."
 
-msgid "If your subscription has expired, or you moved this website to a new domain,%1$srenew or re-activate your licence%2$sand paste the new code into Settings."
-msgstr "Если срок вашей подписки истек или вы переместили этот веб-сайт в новый домен,%1$sпродлите или повторно активируйте лицензию%2$sи вставьте новый код в настройки."
+msgid "If your subscription has expired, or you moved this website to a new domain, %1$srenew or re-activate your licence%2$s and paste the new code into Settings."
+msgstr "Если срок вашей подписки истек или вы переместили этот веб-сайт в новый домен, %1$sпродлите или повторно активируйте лицензию%2$s и вставьте новый код в настройки."
 
 msgid "First failed check"
 msgstr "Первая неудачная проверка"
@@ -5284,8 +5284,8 @@ msgstr "Как вернуть Pro"
 msgid "Check my licence now"
 msgstr "Проверьте мою лицензию сейчас"
 
-msgid "Still stuck? Send the details above to%1$sour support team%2$sand we will take it from there."
-msgstr "Все еще застрял? Отправьте приведенную выше информацию%1$sв нашу службу поддержки%2$s, и мы примем меры."
+msgid "Still stuck? Send the details above to %1$sour support team%2$s and we will take it from there."
+msgstr "Все еще застрял? Отправьте приведенную выше информацию %1$sв нашу службу поддержки%2$s, и мы примем меры."
 
 msgid "The licence server answered with an error and could not confirm your licence."
 msgstr "Сервер лицензий ответил с ошибкой и не смог подтвердить вашу лицензию."
@@ -5302,8 +5302,8 @@ msgstr "Проверку лицензии не удалось завершить
 msgid "Your activation code has expired!"
 msgstr "Срок действия вашего кода активации истек!"
 
-msgid "Your Easy Form Builder Pro subscription has expired. To continue using the%sadd-on and all Pro features, please renew your subscription."
-msgstr "Срок действия вашей подписки на Easy Form Builder Pro истек. Чтобы продолжить использование дополнения%sи всех функций версии Pro, продлите подписку."
+msgid "Your Easy Form Builder Pro subscription has expired. To continue using the %s add-on and all Pro features, please renew your subscription."
+msgstr "Срок действия вашей подписки на Easy Form Builder Pro истек. Чтобы продолжить использование дополнения %s и всех функций версии Pro, продлите подписку."
 
 msgid "Renew Subscription"
 msgstr "Обновить подписку"
@@ -5311,11 +5311,11 @@ msgstr "Обновить подписку"
 msgid "Pro Version Required"
 msgstr "Требуется Pro-версия"
 
-msgid "The%sadd-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
-msgstr "Дополнение%s— это функция Pro. Пожалуйста, обновите Flux Forms Pro, чтобы получить доступ к этой функции."
+msgid "The %s add-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
+msgstr "Дополнение %s— это функция Pro. Пожалуйста, обновите Flux Forms Pro, чтобы получить доступ к этой функции."
 
-msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running,%1$sRenew your subscription now.%2$s"
-msgstr "Срок действия вашей подписки на Easy Form Builder Pro истек. Чтобы и дальше пользоваться всеми функциями версии Pro и поддерживать работоспособность форм,%1$sпродлите подписку прямо сейчас.%2$s"
+msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running, %1$sRenew your subscription now.%2$s"
+msgstr "Срок действия вашей подписки на Easy Form Builder Pro истек. Чтобы и дальше пользоваться всеми функциями версии Pro и поддерживать работоспособность форм, %1$sпродлите подписку прямо сейчас.%2$s"
 
 msgid "The payment could not be verified yet."
 msgstr "Платеж пока не удалось подтвердить."
@@ -5380,8 +5380,8 @@ msgstr "Подписка"
 msgid "One-time"
 msgstr "Одноразовый"
 
-msgid "The latest%dpayments are shown."
-msgstr "Отображаются последние платежи%d."
+msgid "The latest %d payments are shown."
+msgstr "Отображаются последние платежи %d."
 
 msgid "Test provider (development only)"
 msgstr "Поставщик тестов (только для разработки)"
@@ -5467,11 +5467,11 @@ msgstr "Платежные формы принимают платежи по к�
 msgid "Saved — leave empty to keep"
 msgstr "Сохранено — оставьте пустым, чтобы сохранить"
 
-msgid "%ssettings"
-msgstr " Настройки%s"
+msgid "%s settings"
+msgstr " Настройки %s"
 
-msgid "Flux Forms replaces%s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
-msgstr "Flux Forms заменяет%s, который был деактивирован. Ваши формы, записи и настройки останутся на месте. Вы можете удалить старый плагин."
+msgid "Flux Forms replaces %s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
+msgstr "Flux Forms заменяет %s, который был деактивирован. Ваши формы, записи и настройки останутся на месте. Вы можете удалить старый плагин."
 
 msgid "Updating amount..."
 msgstr "Обновление суммы..."
@@ -5584,8 +5584,8 @@ msgstr "Экспортировать CSV"
 msgid "Download the responses in the selected range and form as a spreadsheet file."
 msgstr "Загрузить ответы в выбранном диапазоне и сформировать в виде файла электронной таблицы."
 
-msgid "%sunread in total"
-msgstr "%sвсего непрочитано"
+msgid "%s unread in total"
+msgstr "%s всего непрочитано"
 
 msgid "Form views"
 msgstr "Представления форм"
@@ -5593,8 +5593,8 @@ msgstr "Представления форм"
 msgid "No view data"
 msgstr "Нет данных просмотра"
 
-msgid "Recorded since%s"
-msgstr "Записано с%s"
+msgid "Recorded since %s"
+msgstr "Записано с %s"
 
 msgid "View data is kept for about 8 days"
 msgstr "Данные просмотра хранятся около 8 дней"
@@ -5605,23 +5605,23 @@ msgstr "Коэффициент конверсии"
 msgid "Responses per form view"
 msgstr "Ответов на просмотр формы"
 
-msgid "Responses per view since%s"
-msgstr "Ответов на просмотр с момента%s"
+msgid "Responses per view since %s"
+msgstr "Ответов на просмотр с момента %s"
 
 msgid "Payments received"
 msgstr "Платежи получены"
 
-msgid "%spaid"
-msgstr "%sоплачен"
+msgid "%s paid"
+msgstr "%s оплачен"
 
-msgid "Also%s"
-msgstr "Также%s"
+msgid "Also %s"
+msgstr "Также %s"
 
 msgid "No payments in this range"
 msgstr "В этом диапазоне нет платежей"
 
-msgid "vs previous%ddays"
-msgstr "по сравнению с предыдущими днями%d"
+msgid "vs previous %d days"
+msgstr "по сравнению с предыдущими днями %d"
 
 msgid "up"
 msgstr "up"
@@ -5674,8 +5674,8 @@ msgstr "Открыть панель"
 msgid "Failed or canceled"
 msgstr "Не удалось или отменено"
 
-msgid "%spayments"
-msgstr "%sплатежи"
+msgid "%s payments"
+msgstr "%s платежи"
 
 msgid "No responses in this range yet."
 msgstr "В этом диапазоне ответов пока нет."
@@ -5701,8 +5701,8 @@ msgstr "Показать в виде диаграммы"
 msgid "Deleted form"
 msgstr "Удалена форма"
 
-msgid "%sother forms"
-msgstr "%sдругие формы"
+msgid "%s other forms"
+msgstr "%s другие формы"
 
 msgid "Responses, form views, conversion and payments at a glance."
 msgstr "Ответы, просмотры форм, конверсии и платежи."
@@ -5740,14 +5740,8 @@ msgstr "Flux Donate обрабатывает платежи (провайдер�
 msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms uses its own Stripe settings."
 msgstr "Flux Donate активен, но не принимает платежи (фильтр flxb_own_pays отключен?). Flux Forms использует собственные настройки Stripe."
 
-msgid "Flux Donate is not active; Flux Forms takes payments itself with%s."
-msgstr "Flux Donate не активен; Flux Forms сам принимает платежи с помощью%s."
-
-msgid "Flux Donate is not active and the Stripe keys are missing:%dpayment form shows \"Online payment is unavailable\"."
-msgid_plural "Flux Donate is not active and the Stripe keys are missing:%dpayment forms show \"Online payment is unavailable\"."
-msgstr[0] "Flux Donate не активен и ключи Stripe отсутствуют: форма оплаты%dпоказывает «Онлайн-платеж недоступен»."
-msgstr[1] "Flux Donate не активен, а ключи Stripe отсутствуют: в формах оплаты%dотображается сообщение «Онлайн-платеж недоступен»."
-msgstr[2] "Flux Donate не активен, а ключи Stripe отсутствуют: в формах оплаты%dотображается сообщение «Онлайн-платеж недоступен»."
+msgid "Flux Donate is not active; Flux Forms takes payments itself with %s."
+msgstr "Flux Donate не активен; Flux Forms сам принимает платежи с помощью %s."
 
 msgid "Flux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected."
 msgstr "Flux Donate не активен, и ключи Stripe не установлены. Форма оплаты не существует, поэтому это ни на что не повлияет."
@@ -5761,17 +5755,11 @@ msgstr "Не активно. Формы работают; пожертвован
 msgid "Flux Certificates (automations)"
 msgstr "Сертификаты Flux (автоматизация)"
 
-msgid "Version%sis active; certificate automations can run."
-msgstr "Версия%sактивна; автоматизация сертификатов может работать."
+msgid "Version %s is active; certificate automations can run."
+msgstr "Версия %s активна; автоматизация сертификатов может работать."
 
-msgid "Version%1$sis active; certificate automations need%2$sor later."
-msgstr "Версия%1$sактивна; для автоматизации сертификатов требуется%2$sили более поздняя версия."
-
-msgid "Not active, but%dactive automation creates or sends certificates; it will fail."
-msgid_plural "Not active, but%dactive automations create or send certificates; they will fail."
-msgstr[0] "Не активно, но%dактивная автоматизация создает или отправляет сертификаты; это потерпит неудачу."
-msgstr[1] "Не активно, но активные средства автоматизации%dсоздают или отправляют сертификаты; они потерпят неудачу."
-msgstr[2] "Не активно, но активные средства автоматизации%dсоздают или отправляют сертификаты; они потерпят неудачу."
+msgid "Version %1$s is active; certificate automations need %2$s or later."
+msgstr "Версия %1$s активна; для автоматизации сертификатов требуется %2$s или более поздняя версия."
 
 msgid "Not active. Needed only for certificate automations."
 msgstr "Не активно. Требуется только для автоматизации сертификатов."
@@ -5782,38 +5770,20 @@ msgstr "Автоматизация"
 msgid "No automation is on. After a form or payment nothing runs automatically (certificate, e-mail, webhook)."
 msgstr "Автоматизация не включена. После формы или платежа ничего не запускается автоматически (сертификат, электронная почта, вебхук)."
 
-msgid "%dautomation is on."
-msgid_plural "%dautomations are on."
-msgstr[0] " Автоматизация%dвключена."
-msgstr[1] " Автоматизация%dвключена."
-msgstr[2] " Автоматизация%dвключена."
-
-msgid "%drun failed in the last 7 days; see the run log."
-msgid_plural "%druns failed in the last 7 days; see the run log."
-msgstr[0] " За последние 7 дней не удалось выполнить%d; см. журнал запусков."
-msgstr[1] " За последние 7 дней не удалось выполнить%d; см. журнал запусков."
-msgstr[2] " За последние 7 дней не удалось выполнить%d; см. журнал запусков."
-
 msgid "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
-msgstr "Ключи установлены; Форма%dиспользует reCAPTCHA. В формах%dиспользуется reCAPTCHA."
-
-msgid "%dform has reCAPTCHA on but the site key or secret key is missing; the form is not shown."
-msgid_plural "%dforms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
-msgstr[0] " В форме%dвключена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; форма не отображается."
-msgstr[1] " В формах%dвключена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; они не показаны."
-msgstr[2] " В формах%dвключена reCAPTCHA, но отсутствует ключ сайта или секретный ключ; они не показаны."
+msgstr "Ключи установлены; Форма %dиспользует reCAPTCHA. В формах %dиспользуется reCAPTCHA."
 
 msgid "Uploads folder"
 msgstr "Папка «Загрузки»"
 
-msgid "The uploads folder is not available:%s"
-msgstr "Папка загрузок недоступна:%s"
+msgid "The uploads folder is not available: %s"
+msgstr "Папка загрузок недоступна: %s"
 
 msgid "Writable; files sent with forms can be saved."
 msgstr "Доступно для записи; файлы, отправленные с помощью форм, можно сохранить."
 
-msgid "Not writable:%s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
-msgstr "Недоступно для записи:%s. Поля файлов в формах не могут сохранять загрузки; попросите хоста исправить права доступа к папке."
+msgid "Not writable: %s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
+msgstr "Недоступно для записи: %s. Поля файлов в формах не могут сохранять загрузки; попросите хоста исправить права доступа к папке."
 
 msgid "Donation form with sapling packages, card payment and a certificate automation."
 msgstr "Форма пожертвования с пакетами саженцев, оплатой картой и автоматизацией сертификатов."
@@ -6058,8 +6028,8 @@ msgstr "После подтверждения платежа в форме по�
 msgid "Create default flow"
 msgstr "Создать поток по умолчанию"
 
-msgid "Donation form:%s"
-msgstr "Форма пожертвования:%s"
+msgid "Donation form: %s"
+msgstr "Форма пожертвования: %s"
 
 msgid "Create the “Sapling Donation” form"
 msgstr "Создайте форму «Пожертвование саженцев»"
@@ -6070,8 +6040,8 @@ msgstr "Частично сделано"
 msgid "No runs yet. Runs appear here after a matching submission."
 msgstr "Прогонов пока нет. Запуски появляются здесь после соответствующей отправки."
 
-msgid "The latest%druns are kept."
-msgstr "Сохраняются последние запуски%d."
+msgid "The latest %d runs are kept."
+msgstr "Сохраняются последние запуски %d."
 
 msgid "Clear the run log?"
 msgstr "Очистить журнал запусков?"
@@ -6100,8 +6070,8 @@ msgstr "Подготовка сертификата..."
 msgid "No verified payment amount for this submission."
 msgstr "Нет подтвержденной суммы платежа для этой отправки."
 
-msgid "Certificate%1$sfor%2$s(%3$s)"
-msgstr "Сертификат%1$sдля%2$s(%3$s)"
+msgid "Certificate %1$s for %2$s (%3$s)"
+msgstr "Сертификат %1$s для %2$s(%3$s)"
 
 msgid "No certificate was created in an earlier step."
 msgstr "На предыдущем этапе сертификат не был создан."
@@ -6109,14 +6079,14 @@ msgstr "На предыдущем этапе сертификат не был с
 msgid "No channel selected."
 msgstr "Канал не выбран."
 
-msgid "Queued:%s"
-msgstr "В очереди:%s"
+msgid "Queued: %s"
+msgstr "В очереди: %s"
 
 msgid "No valid recipient address."
 msgstr "Нет действительного адреса получателя."
 
-msgid "New submission:%s"
-msgstr "Новая запись:%s"
+msgid "New submission: %s"
+msgstr "Новая запись: %s"
 
 msgid "wp_mail() could not send the e-mail."
 msgstr "wp_mail() не удалось отправить электронное письмо."
@@ -6196,8 +6166,8 @@ msgstr "Отправить тестовое сообщение"
 msgid "Quick Tips"
 msgstr "Быстрые советы"
 
-msgid "Create a bot using%s"
-msgstr "Создайте бота с помощью%s"
+msgid "Create a bot using %s"
+msgstr "Создайте бота с помощью %s"
 
 msgid "Add your bot to the target chat"
 msgstr "Добавьте бота в целевой чат"
@@ -6208,8 +6178,8 @@ msgstr "Используйте функцию тестирования для п
 msgid "Monitor activity for troubleshooting"
 msgstr "Отслеживание активности для устранения неполадок"
 
-msgid "Find your Chat ID using%s"
-msgstr "Найдите свой идентификатор чата, используя%s"
+msgid "Find your Chat ID using %s"
+msgstr "Найдите свой идентификатор чата, используя %s"
 
 msgid "Enter your test message here..."
 msgstr "Введите здесь тестовое сообщение..."
@@ -6484,8 +6454,8 @@ msgstr "Не удалось загрузить данные администра
 msgid "The Security & Spam Protection panel failed to render. Reload the page or check the browser console."
 msgstr "Не удалось отобразить панель «Безопасность и защита от спама». Перезагрузите страницу или проверьте консоль браузера."
 
-msgid "Protection is paused: required PHP functions are disabled on this server:%s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
-msgstr "Защита приостановлена: на этом сервере отключены необходимые функции PHP:%s. Попросите вашего хостера удалить их из строки Disable_functions в php.ini. До этого момента ваши формы будут работать без защиты."
+msgid "Protection is paused: required PHP functions are disabled on this server: %s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
+msgstr "Защита приостановлена: на этом сервере отключены необходимые функции PHP: %s. Попросите вашего хостера удалить их из строки Disable_functions в php.ini. До этого момента ваши формы будут работать без защиты."
 
 msgid "Protection is paused: the add-on database tables could not be created. Check that the database user can CREATE tables, then reload this page."
 msgstr "Защита приостановлена: не удалось создать дополнительные таблицы базы данных. Убедитесь, что пользователь базы данных может СОЗДАТЬ таблицы, а затем перезагрузите эту страницу."
@@ -6847,11 +6817,11 @@ msgstr "Если необходимая функция PHP отключена, �
 msgid "Security & Spam Protection tabs"
 msgstr "Вкладки «Безопасность и защита от спама»"
 
-msgid "Security log export is unavailable because this server has disabled a required PHP function:%s. Ask your hosting provider to enable it."
-msgstr "Экспорт журнала безопасности недоступен, поскольку на этом сервере отключена необходимая функция PHP:%s. Попросите вашего хостинг-провайдера включить эту функцию."
+msgid "Security log export is unavailable because this server has disabled a required PHP function: %s. Ask your hosting provider to enable it."
+msgstr "Экспорт журнала безопасности недоступен, поскольку на этом сервере отключена необходимая функция PHP: %s. Попросите вашего хостинг-провайдера включить эту функцию."
 
-msgid "Security log export is unavailable because this server has disabled required PHP functions:%s. Ask your hosting provider to enable them."
-msgstr "Экспорт журнала безопасности недоступен, поскольку на этом сервере отключены необходимые функции PHP:%s. Попросите вашего хостинг-провайдера включить их."
+msgid "Security log export is unavailable because this server has disabled required PHP functions: %s. Ask your hosting provider to enable them."
+msgstr "Экспорт журнала безопасности недоступен, поскольку на этом сервере отключены необходимые функции PHP: %s. Попросите вашего хостинг-провайдера включить их."
 
 msgid "Auto-Populate Dataset"
 msgstr "Автозаполнение набора данных"
@@ -7162,8 +7132,8 @@ msgstr "Неверная структура формы"
 msgid "No matching data found"
 msgstr "Соответствующие данные не найдены"
 
-msgid "API returned error:%d"
-msgstr "API возвратил ошибку:%d"
+msgid "API returned error: %d"
+msgstr "API возвратил ошибку: %d"
 
 msgid "Failed to update form"
 msgstr "Не удалось обновить форму"
@@ -7297,11 +7267,11 @@ msgstr "Данные формы не найдены. Пожалуйста, об�
 msgid "Auto-filled via External API"
 msgstr "Автозаполнение через внешний API"
 
-msgid "PayPal%s"
-msgstr "PayPal%s"
+msgid "PayPal %s"
+msgstr "PayPal %s"
 
-msgid "Stripe%s"
-msgstr "Полоса%s"
+msgid "Stripe %s"
+msgstr "Полоса %s"
 
 msgid "All Statuses"
 msgstr "Все статусы"
@@ -7390,8 +7360,8 @@ msgstr "Подписка успешно возобновлена."
 msgid "Payment Management Dashboard"
 msgstr "Панель управления платежами"
 
-msgid "Manage and track all%stransactions. View payment details, process refunds, and export records."
-msgstr "Управляйте и отслеживайте все транзакции%s. Просматривайте сведения о платежах, обрабатывайте возвраты и экспортируйте записи."
+msgid "Manage and track all %s transactions. View payment details, process refunds, and export records."
+msgstr "Управляйте и отслеживайте все транзакции %s. Просматривайте сведения о платежах, обрабатывайте возвраты и экспортируйте записи."
 
 msgid "Secure"
 msgstr "Безопасно"
@@ -7435,12 +7405,6 @@ msgstr "Настройки Google Таблицы"
 msgid "Active Bindings"
 msgstr "Активные привязки"
 
-msgid "%dservice account connected"
-msgid_plural "%dservice accounts connected"
-msgstr[0] "Учетная запись службы%dподключена"
-msgstr[1] " Подключены сервисные учетные записи%d"
-msgstr[2] " Подключены сервисные учетные записи%d"
-
 msgid "No service account connected yet"
 msgstr "Служебный аккаунт пока не подключен"
 
@@ -7465,8 +7429,8 @@ msgstr "Подключите один или несколько аккаунто
 msgid "Your server is missing the PHP OpenSSL extension."
 msgstr "На вашем сервере отсутствует расширение PHP OpenSSL."
 
-msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the%sPHP extension, then reload this page."
-msgstr "Синхронизация Google Sheet не может работать, пока она не включена. Попросите вашего хостера включить расширение PHP%s, а затем перезагрузите эту страницу."
+msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the %s PHP extension, then reload this page."
+msgstr "Синхронизация Google Sheet не может работать, пока она не включена. Попросите вашего хостера включить расширение PHP %s, а затем перезагрузите эту страницу."
 
 msgid "Copy this email"
 msgstr "Скопируйте это письмо"
@@ -7495,7 +7459,7 @@ msgstr "Ваш адрес электронной почты Google"
 msgid "(recommended)"
 msgstr "(рекомендуется)"
 
-msgid "Any sheet the plugin<strong>creates</strong>is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
+msgid "Any sheet the plugin <strong>creates</strong> is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
 msgstr "Любой лист, который плагин<strong>создает</strong>, автоматически передается по этому адресу, поэтому он появляется на вашем Google Диске в разделе «Доступно мне». Без этого новые листы останутся скрытыми внутри учетной записи службы."
 
 msgid "Enable Google Sheet Integration"
@@ -7531,14 +7495,14 @@ msgstr "Откройте сервисный аккаунт → вкладка «
 msgid "Drag that downloaded file into the box on the left — it is tested automatically"
 msgstr "Перетащите загруженный файл в поле слева — он проверяется автоматически"
 
-msgid "Add<strong>Your Google email</strong>above so created sheets land in your Drive"
+msgid "Add <strong>Your Google email</strong> above so created sheets land in your Drive"
 msgstr "Добавьте<strong>свой адрес электронной почты Google</strong>, указанный выше, чтобы созданные листы попадали на ваш Диск."
 
 msgid "Please choose a valid .json key file."
 msgstr "Пожалуйста, выберите действительный файл ключей .json."
 
-msgid "Could not read file:%s"
-msgstr "Не удалось прочитать файл:%s"
+msgid "Could not read file: %s"
+msgstr "Не удалось прочитать файл: %s"
 
 msgid "Connecting service account..."
 msgstr "Подключение сервисного аккаунта..."
@@ -7546,8 +7510,8 @@ msgstr "Подключение сервисного аккаунта..."
 msgid "Service account added."
 msgstr "Служебный аккаунт добавлен."
 
-msgid "Saved. New sheets created by the plugin will be shared to%sautomatically."
-msgstr "Сохранено. Новые листы, созданные плагином, будут автоматически доступны%s."
+msgid "Saved. New sheets created by the plugin will be shared to %s automatically."
+msgstr "Сохранено. Новые листы, созданные плагином, будут автоматически доступны %s."
 
 msgid "Email cleared. New sheets will stay inside the service account until you share them."
 msgstr "Электронная почта удалена. Новые листы останутся в сервисном аккаунте, пока вы не поделитесь ими."
@@ -7618,13 +7582,13 @@ msgstr "Служебный аккаунт"
 msgid "Loading your spreadsheets..."
 msgstr "Загрузка таблиц..."
 
-msgid "Click<strong>“Browse My Sheets”</strong>to list spreadsheets this service account can already access, or<strong>“Create New Sheet”</strong>to make a fresh one."
+msgid "Click <strong>“Browse My Sheets”</strong> to list spreadsheets this service account can already access, or <strong>“Create New Sheet”</strong> to make a fresh one."
 msgstr "Нажмите<strong>«Просмотреть мои таблицы»</strong>, чтобы просмотреть таблицы, к которым уже имеет доступ этот сервисный аккаунт, или<strong>«Создать новый лист»</strong>, чтобы создать новую."
 
-msgid "<strong>No spreadsheets are accessible to this service account yet.</strong>You have two options:"
+msgid "<strong>No spreadsheets are accessible to this service account yet.</strong> You have two options:"
 msgstr "<strong>Для этого сервисного аккаунта пока недоступны электронные таблицы.</strong>У вас есть два варианта:"
 
-msgid "<strong>Easiest:</strong>click<em>“Create New Sheet”</em>above — it is made for you and shared to your email automatically."
+msgid "<strong>Easiest:</strong> click <em>“Create New Sheet”</em> above — it is made for you and shared to your email automatically."
 msgstr "<strong>Самый простой:</strong>нажмите<em>«Создать новый лист»</em>выше — он создан для вас и автоматически отправлен на вашу электронную почту."
 
 msgid "<strong>Use an existing sheet:</strong>open it in Google Sheets → Share → paste"
@@ -7705,7 +7669,7 @@ msgstr "Отключить паузу без удаления привязки"
 msgid "Reading this form’s fields..."
 msgstr "Чтение полей этой формы..."
 
-msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry —<strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
+msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry — <strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
 msgstr "Мы не смогли автоматически прочитать поля этой формы, поэтому сопоставление столбцов недоступно. Не волнуйтесь —<strong>каждое отправленное поле по-прежнему будет автоматически синхронизироваться</strong>, каждое в своем столбце, в порядке отправки. Строка заголовка создается и постоянно обновляется."
 
 msgid "Drag rows (or use ▲▼) to set the<strong>column order</strong>. Rename any<strong>header</strong>. Turn a field off to skip its column. The letter (A, B, C...) shows where each field lands."
@@ -7738,12 +7702,6 @@ msgstr "Заголовок столбца"
 msgid "Include this field"
 msgstr "Включите это поле"
 
-msgid "%dcolumn will be written to the sheet."
-msgid_plural "%dcolumns will be written to the sheet."
-msgstr[0] " Столбец%dбудет записан на лист."
-msgstr[1] " Столбцы%dбудут записаны на лист."
-msgstr[2] " Столбцы%dбудут записаны на лист."
-
 msgid "Sheet Style"
 msgstr "Стиль листа"
 
@@ -7771,8 +7729,8 @@ msgstr "Вкладка:"
 msgid "Columns:"
 msgstr "Столбцы:"
 
-msgid "%dmapped"
-msgstr "%dсопоставлен"
+msgid "%d mapped"
+msgstr "%d сопоставлен"
 
 msgid "all submitted fields (auto)"
 msgstr "все отправленные поля (авто)"
@@ -7809,12 +7767,6 @@ msgstr "Удалить эту привязку? Синхронизация ос�
 
 msgid "Sync removed — your Google Sheet and its data are untouched."
 msgstr "Синхронизация удалена — ваш Google Sheet и его данные не будут затронуты."
-
-msgid "Remove ALL%dbinding? Syncing stops for every form. Your Google Sheets are not deleted."
-msgid_plural "Remove ALL%dbindings? Syncing stops for every form. Your Google Sheets are not deleted."
-msgstr[0] "Удалить привязку ALL%d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не удалены."
-msgstr[1] "Удалить ВСЕ привязки%d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не удалены."
-msgstr[2] "Удалить ВСЕ привязки%d? Синхронизация останавливается для каждой формы. Ваши Google Таблицы не удалены."
 
 msgid "All bindings removed. Your Google Sheets are untouched."
 msgstr "Все привязки удалены. Ваши Google Таблицы не тронуты."
@@ -7981,23 +7933,23 @@ msgstr "Закат"
 msgid "Grape"
 msgstr "Виноград"
 
-msgid "%sis currently unavailable."
-msgstr "%sв настоящее время недоступен."
+msgid "%s is currently unavailable."
+msgstr "%s в настоящее время недоступен."
 
-msgid "disabled in php.ini:%s"
-msgstr "отключено в php.ini:%s"
+msgid "disabled in php.ini: %s"
+msgstr "отключено в php.ini: %s"
 
-msgid "not provided by PHP or its required extension:%s"
-msgstr "не предоставляется PHP или его необходимым расширением:%s"
+msgid "not provided by PHP or its required extension: %s"
+msgstr "не предоставляется PHP или его необходимым расширением: %s"
 
-msgid "%1$scannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini."
-msgstr "%1$sне может быть запущен, поскольку необходимые функции PHP недоступны (%2$s). Попросите своего хостинг-провайдера включить необходимое расширение PHP или удалить перечисленные функции из Disabled_functions в php.ini."
+msgid "%1$s cannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini."
+msgstr "%1$s не может быть запущен, поскольку необходимые функции PHP недоступны (%2$s). Попросите своего хостинг-провайдера включить необходимое расширение PHP или удалить перечисленные функции из Disabled_functions в php.ini."
 
 msgid "This add-on is not included in Flux Forms."
 msgstr "Это дополнение не включено в Flux Forms."
 
-msgid "Error: server (%s) responded with an invalid request. responded code :%s"
-msgstr "Ошибка: сервер (%s) ответил неверным запросом. код ответа:%s"
+msgid "Error: server (%s) responded with an invalid request. responded code : %s "
+msgstr "Ошибка: сервер (%s) ответил неверным запросом. код ответа: %s"
 
 msgid "Your Easy Form Builder Pro subscription has expired, so this add-on cannot be downloaded."
 msgstr "Срок действия вашей подписки на Easy Form Builder Pro истек, поэтому загрузить это дополнение невозможно."
@@ -8104,8 +8056,8 @@ msgstr "Ваши письма попадают в спам"
 msgid "WordPress sent the test email, but delivery has not been confirmed yet."
 msgstr "WordPress отправил тестовое письмо, но доставка еще не подтверждена."
 
-msgid "Email delivery failed:%s"
-msgstr "Не удалось доставить электронное письмо:%s"
+msgid "Email delivery failed: %s"
+msgstr "Не удалось доставить электронное письмо: %s"
 
 msgid "No file was received. Please choose a file and try again."
 msgstr "Файл не получен. Пожалуйста, выберите файл и повторите попытку."
@@ -8119,7 +8071,7 @@ msgstr "Включите функцию уведомления по электр
 msgid "To receive email notifications from your forms, verify your email server by following these steps:"
 msgstr "Чтобы получать уведомления по электронной почте из ваших форм, подтвердите свой почтовый сервер, выполнив следующие действия:"
 
-msgid "Go to the<a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
+msgid "Go to the <a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
 msgstr "Перейдите на панель<a href=\"%s\" style=\"font-weight:600;\">Flux Forms</a>"
 
 msgid "Click Settings from the top menu"
@@ -8137,11 +8089,11 @@ msgstr "Если оценка выше 70 — включите переключ�
 msgid "Otherwise, follow the instructions shown in the test results"
 msgstr "В противном случае следуйте инструкциям, указанным в результатах теста."
 
-msgid "%snotification"
-msgstr " Уведомление%s"
+msgid "%s notification"
+msgstr " Уведомление %s"
 
-msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the%sfeature, please ensure it is enabled."
-msgstr "Отключение этой функции может повлиять на правильную работу Flux Forms. Если вы планируете использовать функцию%s, убедитесь, что она включена."
+msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the %s feature, please ensure it is enabled."
+msgstr "Отключение этой функции может повлиять на правильную работу Flux Forms. Если вы планируете использовать функцию %s, убедитесь, что она включена."
 
 msgid "Email system is working properly."
 msgstr "Система электронной почты работает правильно."
@@ -8263,8 +8215,8 @@ msgstr "Проблема с установкой аддона"
 msgid "Technical Details"
 msgstr "Технические детали"
 
-msgid "Checked%s"
-msgstr "Проверено%s"
+msgid "Checked %s"
+msgstr "Проверено %s"
 
 msgid "System Ready"
 msgstr "Система готова"
@@ -8302,14 +8254,14 @@ msgstr "Если вы видите это сообщение, скорее вс�
 msgid "Please also ensure that you have a stable internet connection and try again."
 msgstr "Также убедитесь, что у вас стабильное подключение к Интернету, и повторите попытку."
 
-msgid "Built with%sYT Form%sby%sWordPress form plugin by whitestudio.team%s"
+msgid "Built with %sYT Form%s by %sWordPress form plugin by whitestudio.team%s"
 msgstr "Создано с помощью%sYT Form%sот%sПлагин формы WordPress от whitestudio.team%s"
 
 msgid "Free WordPress form plugin"
 msgstr "Бесплатный плагин форм WordPress"
 
-msgid "Powered by%1$sYT Form%2$s.%3$sbest Form plugin for Wordpress%4$s."
-msgstr "При поддержке%1$sФорма YT%2$s.%3$sлучший плагин форм для Wordpress%4$s."
+msgid "Powered by %1$sYT Form%2$s. %3$sbest Form plugin for Wordpress%4$s."
+msgstr "При поддержке %1$sФорма YT%2$s.%3$sлучший плагин форм для Wordpress%4$s."
 
 msgid "Flux Forms WordPress Plugin"
 msgstr "Плагин Flux Forms для WordPress"
@@ -8785,8 +8737,8 @@ msgstr "Выберите форму, которую хотите отобраз�
 msgid "Please select a form from element settings"
 msgstr "Пожалуйста, выберите форму в настройках элемента"
 
-msgid "Form:%s(ID:%s)"
-msgstr "Форма:%s(ID:%s)"
+msgid "Form: %s (ID: %s)"
+msgstr "Форма: %s(ID: %s)"
 
 msgid "📍 Confirmation Code Finder (Tracking)"
 msgstr "📍 Поиск кода подтверждения (отслеживание)"
@@ -8809,8 +8761,8 @@ msgstr "Короткий код:"
 msgid "Run the email check"
 msgstr "Запустите проверку электронной почты"
 
-msgid "The last delivery check scored%sout of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
-msgstr "Последняя проверка доставки получила оценку%sиз 100. Ваши сообщения покидают сайт, но большинство почтовых ящиков воспринимают их как спам, поэтому люди, заполняющие ваши формы, не увидят их. Это решается отправкой через службу SMTP и добавлением записей SPF и DKIM для вашего домена."
+msgid "The last delivery check scored %s out of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
+msgstr "Последняя проверка доставки получила оценку %s из 100. Ваши сообщения покидают сайт, но большинство почтовых ящиков воспринимают их как спам, поэтому люди, заполняющие ваши формы, не увидят их. Это решается отправкой через службу SMTP и добавлением записей SPF и DKIM для вашего домена."
 
 msgid "The last delivery check found that your messages do leave the site, but mailboxes file them as spam. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
 msgstr "Последняя проверка доставки показала, что ваши сообщения покидают сайт, но почтовые ящики фиксируют их как спам. Это решается отправкой через службу SMTP и добавлением записей SPF и DKIM для вашего домена."
@@ -8860,14 +8812,14 @@ msgstr "WordPress не удалось отправить автоматичес�
 msgid "The email delivery test timed out before confirmation was received."
 msgstr "Прежде чем было получено подтверждение, время ожидания проверки доставки электронной почты истекло."
 
-msgid "Weekly Flux Forms report for%s"
-msgstr "Еженедельный отчет Flux Forms для%s"
+msgid "Weekly Flux Forms report for %s"
+msgstr "Еженедельный отчет Flux Forms для %s"
 
-msgid "Here is your weekly snapshot for%s."
-msgstr "Вот ваш еженедельный снимок%s."
+msgid "Here is your weekly snapshot for %s."
+msgstr "Вот ваш еженедельный снимок %s."
 
-msgid "Report generated%s"
-msgstr "Отчет создан%s"
+msgid "Report generated %s"
+msgstr "Отчет создан %s"
 
 msgid "Detailed analysis"
 msgstr "Детальный анализ"
@@ -8878,8 +8830,8 @@ msgstr "Электронная почта не отправлена"
 msgid "You can turn these reports off in Flux Forms settings."
 msgstr "Вы можете отключить эти отчеты в настройках Flux Forms."
 
-msgid "The test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
-msgstr "Тестовое электронное письмо было доставлено, но его показатель доставляемости составляет только%1$sиз 100 (ниже%2$s), поэтому электронные письма, отправляемые вашими формами, с большой вероятностью будут отклонены или отфильтрованы как спам."
+msgid "The test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
+msgstr "Тестовое электронное письмо было доставлено, но его показатель доставляемости составляет только %1$s из 100 (ниже %2$s), поэтому электронные письма, отправляемые вашими формами, с большой вероятностью будут отклонены или отфильтрованы как спам."
 
 msgid "Run the email check so you can be sure the messages your forms send are actually reaching people. The check sends a real message through the new WhiteStudio delivery service and reports back what arrived."
 msgstr "Запустите проверку электронной почты, чтобы быть уверенным, что сообщения, отправляемые вашими формами, действительно доходят до людей. Проверка отправляет реальное сообщение через новую службу доставки WhiteStudio и сообщает о том, что пришло."
@@ -8911,8 +8863,8 @@ msgstr "Ваши письма, скорее всего, попадут в спа
 msgid "Your emails are not reaching anybody"
 msgstr "Ваши письма никому не доходят"
 
-msgid "grade%s"
-msgstr "оценка%s"
+msgid "grade %s"
+msgstr "оценка %s"
 
 msgid "What you should do"
 msgstr "Что вам следует делать"
@@ -8926,11 +8878,11 @@ msgstr "Установите плагин SMTP и введите данные с
 msgid "Add the SPF and DKIM records to your domain settings."
 msgstr "Добавьте записи SPF и DKIM в настройки вашего домена."
 
-msgid "Run the email check again until the score is above%s."
-msgstr "Запустите проверку электронной почты еще раз, пока оценка не превысит%s."
+msgid "Run the email check again until the score is above %s."
+msgstr "Запустите проверку электронной почты еще раз, пока оценка не превысит %s."
 
-msgid "You have%1$sforms:%2$sactive and%3$sinactive."
-msgstr "У вас есть формы%1$s:%2$sактивна и%3$sнеактивна."
+msgid "You have %1$s forms: %2$s active and %3$s inactive."
+msgstr "У вас есть формы %1$s: %2$s активна и %3$s неактивна."
 
 msgid "Renew Flux Forms Pro"
 msgstr "Обновить формы Flux Pro"
@@ -8953,13 +8905,7 @@ msgstr "Доставка электронной почты работает"
 msgid "The automated Flux Forms email delivery test completed successfully."
 msgstr "Автоматическая проверка доставки электронной почты Flux Forms завершена успешно."
 
-msgid "You can attach up to%1$dfile here. Please wait about%2$dminutes before trying again."
-msgid_plural "You can attach up to%1$dfiles here. Please wait about%2$dminutes before trying again."
-msgstr[0] "Здесь вы можете прикрепить файл%1$d. Пожалуйста, подождите около%2$dминут, прежде чем повторить попытку."
-msgstr[1] "Здесь вы можете прикрепить до%1$dфайлов. Пожалуйста, подождите около%2$dминут, прежде чем повторить попытку."
-msgstr[2] "Здесь вы можете прикрепить до%1$dфайлов. Пожалуйста, подождите около%2$dминут, прежде чем повторить попытку."
-
-msgid "This file is too large. The maximum size for this field is%s."
+msgid "This file is too large. The maximum size for this field is %s."
 msgstr "Этот файл слишком велик. Максимальный размер этого поля —%s."
 
 msgid "This file type is not accepted here. Please attach one of the file types listed on the field."
@@ -9097,8 +9043,8 @@ msgstr "Пароль успешно изменен!"
 msgid "Invalid payment selection. Please review your choices and try again. If the problem persists, contact the site administrator."
 msgstr "Неверный выбор платежа. Пожалуйста, проверьте свой выбор и повторите попытку. Если проблема не устранена, обратитесь к администратору сайта."
 
-msgid "If your emails are not being delivered, try using an SMTP plugin. For more information,%1$sclick here%2$sor contact our%3$ssupport team%4$s."
-msgstr "Если ваши электронные письма не доставляются, попробуйте использовать плагин SMTP. Для получения дополнительной информации%1$sнажмите здесь%2$sили свяжитесь с нашей службой поддержки%3$s%4$s."
+msgid "If your emails are not being delivered, try using an SMTP plugin. For more information, %1$s click here %2$s or contact our %3$s support team %4$s."
+msgstr "Если ваши электронные письма не доставляются, попробуйте использовать плагин SMTP. Для получения дополнительной информации %1$s нажмите здесь %2$s или свяжитесь с нашей службой поддержки %3$s%4$s."
 
 msgid "View Messages"
 msgstr "Просмотр сообщений"
@@ -9118,8 +9064,8 @@ msgstr "Мы получили ваше сообщение"
 msgid "This email was sent automatically. Please do not reply."
 msgstr "Это письмо было отправлено автоматически. Пожалуйста, не отвечайте."
 
-msgid "Built with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s"
-msgstr "Создано с помощью%1$sYT Form%2$sот%3$sWhiteStudio.team%4$s"
+msgid "Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s"
+msgstr "Создано с помощью %1$sYT Form%2$s от %3$sWhiteStudio.team%4$s"
 
 msgid "Weekly Flux Forms report"
 msgstr "Еженедельный отчет Flux Forms"
@@ -9198,9 +9144,9 @@ msgstr "Конструктор форм с возможностью перета
 
 msgid "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
 msgid_plural "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
-msgstr[0] "Ключи установлены; Форма%dиспользует reCAPTCHA. В формах%dиспользуется reCAPTCHA."
-msgstr[1] "Ключи установлены; Форма%dиспользует reCAPTCHA. В формах%dиспользуется reCAPTCHA."
-msgstr[2] "Ключи установлены; Форма%dиспользует reCAPTCHA. В формах%dиспользуется reCAPTCHA."
+msgstr[0] "Ключи установлены; Форма %dиспользует reCAPTCHA. В формах %dиспользуется reCAPTCHA."
+msgstr[1] "Ключи установлены; Форма %dиспользует reCAPTCHA. В формах %dиспользуется reCAPTCHA."
+msgstr[2] "Ключи установлены; Форма %dиспользует reCAPTCHA. В формах %dиспользуется reCAPTCHA."
 
 msgid "The currency of this form is not supported."
 msgstr "Валюта этой формы не поддерживается."
@@ -9208,8 +9154,8 @@ msgstr "Валюта этой формы не поддерживается."
 msgid "The Stripe secret key is not configured."
 msgstr "Секретный ключ Stripe не настроен."
 
-msgid "Could not connect to Stripe:%s"
-msgstr "Не удалось подключиться к Stripe:%s"
+msgid "Could not connect to Stripe: %s"
+msgstr "Не удалось подключиться к Stripe: %s"
 
-msgid "Stripe API error (HTTP%d)."
-msgstr "Ошибка API-интерфейса Stripe (HTTP%d)."
+msgid "Stripe API error (HTTP %d)."
+msgstr "Ошибка API-интерфейса Stripe (HTTP %d)."

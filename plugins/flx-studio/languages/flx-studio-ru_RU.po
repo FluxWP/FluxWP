@@ -182,7 +182,7 @@ msgid "Delete"
 msgstr "Удалить"
 
 msgid "{n} items moved"
-msgstr "Элементы{n}перемещены."
+msgstr "Элементы {n} перемещены."
 
 msgid "Nothing here"
 msgstr "Здесь ничего"
@@ -221,7 +221,7 @@ msgid "Reuse settings"
 msgstr "Повторное использование настроек"
 
 msgid "{n} selected"
-msgstr "{n}выбрано"
+msgstr "{n} выбрано"
 
 msgid "Tap items to select"
 msgstr "Коснитесь элементов, чтобы выбрать"
@@ -239,7 +239,7 @@ msgid "New folder…"
 msgstr "Новая папка..."
 
 msgid "Delete {n} items?"
-msgstr "Удалить элементы{n}?"
+msgstr "Удалить элементы {n}?"
 
 msgid "Delete item?"
 msgstr "Удалить элемент?"
@@ -248,7 +248,7 @@ msgid "Files are deleted from the server. Copies added to the Media Library stay
 msgstr "Файлы удаляются с сервера. Копии, добавленные в Медиатеку, остаются."
 
 msgid "{n} items ready"
-msgstr "{n}элементы готовы"
+msgstr "{n} элементы готовы"
 
 msgid "Generation ready"
 msgstr "Поколение готово"
@@ -332,19 +332,19 @@ msgid "Provider"
 msgstr "Поставщик"
 
 msgid "{n} models"
-msgstr "Модели{n}"
+msgstr "Модели {n}"
 
 msgid "no key"
 msgstr "нет ключа"
 
 msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
-msgstr "Нет ключа{p}(Flux AI & MCP › Настройки › Изображения и видео)."
+msgstr "Нет ключа {p}(Flux AI & MCP › Настройки › Изображения и видео)."
 
 msgid "This reference is already added"
 msgstr "Эта ссылка уже добавлена"
 
 msgid "This model accepts at most {n} references"
-msgstr "Эта модель принимает максимум{n}."
+msgstr "Эта модель принимает максимум {n}."
 
 msgid "Save to references"
 msgstr "Сохранить в ссылки"
@@ -359,7 +359,7 @@ msgid "Pick from gallery"
 msgstr "Выбрать из галереи"
 
 msgid "{n} photos"
-msgstr "{n}фотографии"
+msgstr "{n} фотографии"
 
 msgid "no photos"
 msgstr "нет фотографий"
@@ -383,7 +383,7 @@ msgid "No images yet."
 msgstr "Пока нет изображений."
 
 msgid "{name} has no photos; add some in Manage people"
-msgstr "У{name}нет фотографий; добавить немного в Управление людьми"
+msgstr "У {name} нет фотографий; добавить немного в Управление людьми"
 
 msgid "Write a short draft first."
 msgstr "Сначала напишите краткий черновик."
@@ -515,7 +515,7 @@ msgid "Number of ideas"
 msgstr "Количество идей"
 
 msgid "{n} ideas"
-msgstr "{n}идеи"
+msgstr "{n} идеи"
 
 msgid "YouTube thumbnail"
 msgstr "Миниатюра YouTube"
@@ -530,10 +530,10 @@ msgid "Generate selected ({n})"
 msgstr "Создать выбранное ({n})"
 
 msgid "{n} generations started"
-msgstr "Начало генерации{n}"
+msgstr "Начало генерации {n}"
 
 msgid "Sending {i}/{n}"
-msgstr "Отправка{i}/{n}"
+msgstr "Отправка {i}/{n}"
 
 msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
 msgstr "Создает четкие подсказки из одной идеи. Выберите те, которые вам нравятся, и создайте их за один раз. Модель и соотношение берутся из панели поколений."
@@ -557,7 +557,7 @@ msgid "Delete person"
 msgstr "Удалить человека"
 
 msgid "Delete {name}?"
-msgstr "Удалить{name}?"
+msgstr "Удалить {name}?"
 
 msgid "The person and their photos are deleted. Earlier generations stay."
 msgstr "Человек и его фотографии будут удалены. Предыдущие поколения остаются."
@@ -596,10 +596,10 @@ msgid "just now"
 msgstr "только что"
 
 msgid "{n} min ago"
-msgstr "{n}мин назад"
+msgstr "{n} мин назад"
 
 msgid "{n} h ago"
-msgstr "{n}ч. назад"
+msgstr "{n} ч. назад"
 
 msgid "Server error ({n})."
 msgstr "Ошибка сервера ({n})."
@@ -641,13 +641,13 @@ msgid "Generations"
 msgstr "Поколения"
 
 msgid "{i} images · {v} videos"
-msgstr "{i}изображения ·{v}видео"
+msgstr "{i} изображения ·{v} видео"
 
 msgid "Spend"
 msgstr "Тратить"
 
 msgid "Image/video {m} · text {x}"
-msgstr "Изображение/видео{m}· текст{x}"
+msgstr "Изображение/видео {m}· текст {x}"
 
 msgid "Average"
 msgstr "Средний"
@@ -662,7 +662,7 @@ msgid "no attempts yet"
 msgstr "пока нет попыток"
 
 msgid "Storage {b}"
-msgstr "Хранилище{b}"
+msgstr "Хранилище {b}"
 
 msgid "Daily generations"
 msgstr "Ежедневные поколения"
@@ -794,7 +794,7 @@ msgid "Database tables"
 msgstr "Таблицы базы данных"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+msgstr "Отсутствует таблица: %s. Деактивируйте и повторно активируйте плагин."
 
 msgid "Tables are ready."
 msgstr "Столы готовы."
@@ -824,7 +824,7 @@ msgid "Flux AI"
 msgstr "Поток ИИ"
 
 msgid "%1$d models available (%2$s)."
-msgstr "Доступны модели%1$d(%2$s)."
+msgstr "Доступны модели %1$d(%2$s)."
 
 msgid "Enhance and Brainstorm"
 msgstr "Улучшение и мозговой штурм"
@@ -854,7 +854,7 @@ msgid "The file is empty."
 msgstr "Файл пуст."
 
 msgid "The file exceeds the %d MB limit."
-msgstr "Размер файла превышает ограничение%dв МБ."
+msgstr "Размер файла превышает ограничение %d в МБ."
 
 msgid "This file type is not supported."
 msgstr "Этот тип файла не поддерживается."
@@ -869,7 +869,7 @@ msgid "Person not found."
 msgstr "Человек не найден."
 
 msgid "At most %d reference images can be used."
-msgstr "Можно использовать не более эталонных изображений%d."
+msgstr "Можно использовать не более эталонных изображений %d."
 
 msgid "The file is not on the server."
 msgstr "Файла нет на сервере."

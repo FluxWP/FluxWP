@@ -305,7 +305,7 @@ class FLXF_Automations_Admin {
 			foreach ( $flows as $f ) {
 				$edit = self::url( array( 'flow' => $f['id'] ) );
 				echo '<tr data-id="' . esc_attr( $f['id'] ) . '">';
-				echo '<td><label class="flxfa-switch"><input type="checkbox" class="flxfa-toggle" ' . checked( $f['enabled'], true, false ) . ' aria-label="' . esc_attr( sprintf( /* translators: %s: automation name */ __( 'Enable%s', 'flx-forms' ), $f['title'] ) ) . '"><span></span></label></td>';
+				echo '<td><label class="flxfa-switch"><input type="checkbox" class="flxfa-toggle" ' . checked( $f['enabled'], true, false ) . ' aria-label="' . esc_attr( sprintf( /* translators: %s: automation name */ __( 'Enable %s', 'flx-forms' ), $f['title'] ) ) . '"><span></span></label></td>';
 				echo '<td><a class="flxfa-name" href="' . esc_url( $edit ) . '">' . esc_html( $f['title'] ) . '</a><div class="flxfa-steps">';
 				foreach ( self::step_summary( $f ) as $i => $s ) {
 					echo ( $i ? '<span class="flxfa-arrow" aria-hidden="true">→</span>' : '' ) . '<span class="flxfa-chip">' . esc_html( $s ) . '</span>';
@@ -331,7 +331,7 @@ class FLXF_Automations_Admin {
 		echo '<button type="button" class="flxfa-btn" id="flxfa-default">' . self::icon( 'bolt' ) . esc_html__( 'Create default flow', 'flx-forms' ) . '</button>';
 		if ( $donation_form ) {
 			/* translators: %s: form name */
-			echo '<span class="flxfa-muted">' . esc_html( sprintf( __( 'Donation form:%s', 'flx-forms' ), FLXF_Automations::form_title( $donation_form ) ) ) . '</span>';
+			echo '<span class="flxfa-muted">' . esc_html( sprintf( __( 'Donation form: %s', 'flx-forms' ), FLXF_Automations::form_title( $donation_form ) ) ) . '</span>';
 		} else {
 			echo '<button type="button" class="flxfa-btn flxfa-btn--ghost" id="flxfa-donation-form">' . self::icon( 'form' ) . esc_html__( 'Create the “Sapling Donation” form', 'flx-forms' ) . '</button>';
 		}
@@ -360,7 +360,7 @@ class FLXF_Automations_Admin {
 			return;
 		}
 		/* translators: %d: maximum number of runs kept */
-		echo '<div class="flxfa-runs-head"><p class="flxfa-muted">' . esc_html( sprintf( __( 'The latest%druns are kept.', 'flx-forms' ), FLXF_Automations::MAX_RUNS ) ) . '</p><button type="button" class="flxfa-btn" id="flxfa-clear-runs" data-confirm="' . esc_attr__( 'Clear the run log?', 'flx-forms' ) . '">' . esc_html__( 'Clear log', 'flx-forms' ) . '</button></div>';
+		echo '<div class="flxfa-runs-head"><p class="flxfa-muted">' . esc_html( sprintf( __( 'The latest %d runs are kept.', 'flx-forms' ), FLXF_Automations::MAX_RUNS ) ) . '</p><button type="button" class="flxfa-btn" id="flxfa-clear-runs" data-confirm="' . esc_attr__( 'Clear the run log?', 'flx-forms' ) . '">' . esc_html__( 'Clear log', 'flx-forms' ) . '</button></div>';
 		echo '<div class="flxfa-table-wrap"><table class="flxfa-table flxfa-runs"><thead><tr><th scope="col">' . esc_html__( 'Time', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Automation', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Form', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Tracking code', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Status', 'flx-forms' ) . '</th><th scope="col">' . esc_html__( 'Steps', 'flx-forms' ) . '</th></tr></thead><tbody>';
 		foreach ( $runs as $r ) {
 			$st = $r['status'] ?? 'running';

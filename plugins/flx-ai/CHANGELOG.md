@@ -1,5 +1,9 @@
 # Flux AI — Değişiklikler
 
+## 0.10.4
+- Bütçe mesajında ("Spent: %1$s / Limit: %2$s") boşluklar geri geldi.
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.10.3
 - MCP bağlantısı `edit_posts` yerine `flxai_mcp` yetkisi ister (rota, OAuth onay/belirteç/yenileme). `edit_posts` olan roller ve WordPress yöneticisi bu yetkiyi varsayılan taşır; Flux Roles'tan başka rollere de verilir. Araçlar kapalı liste, anahtar kapsamı, aracın `cap` değeri (yoksa `edit_posts`) ve `flx_mcp_tool_allowed` filtresine göre süzülür. Yetkisi kalkan kullanıcının anahtarı MCP ekranında uyarılır.
 

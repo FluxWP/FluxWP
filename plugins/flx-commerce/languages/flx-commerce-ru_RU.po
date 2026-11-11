@@ -47,7 +47,7 @@ msgid "Make the bank transfer"
 msgstr "Сделать банковский перевод"
 
 msgid "Copy %s"
-msgstr "Копировать%s"
+msgstr "Копировать %s"
 
 msgid "Copy"
 msgstr "Копировать"
@@ -89,7 +89,7 @@ msgid "Confirm payment"
 msgstr "Подтвердить платеж"
 
 msgid "Payment confirmed: %1$s · %2$s"
-msgstr "Платеж подтвержден:%1$s·%2$s"
+msgstr "Платеж подтвержден: %1$s · %2$s"
 
 msgid "Bank transfer payment confirmed."
 msgstr "Оплата банковским переводом подтверждена."
@@ -113,10 +113,10 @@ msgid "Confirmed"
 msgstr "Подтверждено"
 
 msgid "Cancelled because no payment arrived within %d days."
-msgstr "Отменено, поскольку платеж не поступил в течение%dдн."
+msgstr "Отменено, поскольку платеж не поступил в течение %d дн."
 
 msgid "Add %s more for free shipping."
-msgstr "Добавьте еще%s, чтобы получить бесплатную доставку."
+msgstr "Добавьте еще %s, чтобы получить бесплатную доставку."
 
 msgid "Free shipping!"
 msgstr "Бесплатная доставка!"
@@ -149,22 +149,22 @@ msgid "Note"
 msgstr "Примечание"
 
 msgid "Hello %1$s, your %2$s order (#%3$s) is in.\n\nAmount: %4$s\nRecipient: %5$s\nIBAN: %6$s\nReference: %7$s\n\nAfter paying you can upload the receipt here: %8$s"
-msgstr "Здравствуйте,%1$s, ваш заказ%2$s(#%3$s) принят.\n\nСумма:%4$sПолучатель:%5$sIBAN:%6$sСсылка:%7$sПосле оплаты вы можете загрузить квитанцию здесь:%8$s."
+msgstr "Здравствуйте, %1$s, ваш заказ %2$s(#%3$s) принят.\n\nСумма: %4$s Получатель: %5$s IBAN: %6$s Ссылка: %7$s После оплаты вы можете загрузить квитанцию здесь: %8$s."
 
 msgid "Bank transfer details sent to the customer by WhatsApp."
 msgstr "Реквизиты банковского перевода отправляются клиенту через WhatsApp."
 
 msgid "Receipt in: order #%1$s · %2$s"
-msgstr "Поступление в: заказ No%1$s·%2$s"
+msgstr "Поступление в: заказ No %1$s · %2$s"
 
 msgid "%1$s uploaded a receipt for order #%2$s.\n\nAmount: %3$s\nReference: %4$s\nFile: %5$s\n\nCheck and confirm: %6$s"
-msgstr "%1$sзагрузил квитанцию по заказу No%2$s.\n\nСумма:%3$sСсылка:%4$sФайл:%5$sПроверьте и подтвердите:%6$s."
+msgstr "%1$s загрузил квитанцию по заказу No %2$s.\n\nСумма: %3$s Ссылка: %4$s Файл: %5$s Проверьте и подтвердите: %6$s."
 
 msgid "Hello %1$s, the payment for your order #%2$s is confirmed. We are preparing your order. %3$s"
-msgstr "Здравствуйте,%1$s, оплата вашего заказа No%2$sподтверждена. Мы готовим ваш заказ.%3$s"
+msgstr "Здравствуйте, %1$s, оплата вашего заказа No %2$s подтверждена. Мы готовим ваш заказ.%3$s"
 
 msgid "New order #%1$s · %2$s\n%3$s\n%4$s\n%5$s"
-msgstr "Новый заказ No%1$s·%2$s%3$s%4$s%5$s"
+msgstr "Новый заказ No %1$s · %2$s %3$s%4$s %5$s"
 
 msgid "No receipt is expected for this order."
 msgstr "Поступления по этому заказу не ожидается."
@@ -179,7 +179,7 @@ msgid "The file could not be uploaded. Please try again."
 msgstr "Не удалось загрузить файл. Пожалуйста, попробуйте еще раз."
 
 msgid "The file can be at most %s MB."
-msgstr "Размер файла не может превышать%sМБ."
+msgstr "Размер файла не может превышать %s МБ."
 
 msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
 msgstr "Можно загружать только файлы PDF, JPG, PNG, WEBP или HEIC."
@@ -188,7 +188,7 @@ msgid "The file could not be saved."
 msgstr "Файл не удалось сохранить."
 
 msgid "The customer uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
-msgstr "Клиент загрузил чек:%1$s(%2$s). Проверьте оплату и подтвердите ее."
+msgstr "Клиент загрузил чек: %1$s(%2$s). Проверьте оплату и подтвердите ее."
 
 msgid "Add another receipt"
 msgstr "Добавить еще один чек"
@@ -197,7 +197,7 @@ msgid "Choose a receipt or drop it here"
 msgstr "Выберите чек или скиньте сюда"
 
 msgid "PDF, JPG or PNG · up to %s MB"
-msgstr "PDF, JPG или PNG · до%sМБ"
+msgstr "PDF, JPG или PNG · до %s МБ"
 
 msgid "Send receipt"
 msgstr "Отправить квитанцию"
@@ -218,13 +218,13 @@ msgid "Uncategorized"
 msgstr "Без категории"
 
 msgid "%s M"
-msgstr "%sМ"
+msgstr "%s М"
 
 msgid "%s K"
-msgstr "%sК."
+msgstr "%s К."
 
 msgid "%s ago"
-msgstr "%sназад"
+msgstr "%s назад"
 
 msgid "Processing"
 msgstr "Обработка"
@@ -251,7 +251,7 @@ msgid "WooCommerce"
 msgstr "WooCommerce"
 
 msgid "Active, version %s"
-msgstr "Активна, версия%s"
+msgstr "Активна, версия %s"
 
 msgid "WooCommerce is not installed or not active; Flux Commerce does not work."
 msgstr "WooCommerce не установлен или не активен; Flux Commerce не работает."
@@ -275,7 +275,7 @@ msgid "Customer list"
 msgstr "Список клиентов"
 
 msgid "Last full scan: %s"
-msgstr "Последнее полное сканирование:%s."
+msgstr "Последнее полное сканирование: %s."
 
 msgid "Older orders are not scanned yet; press \"Rebuild\" on the Customers page."
 msgstr "Старые заказы еще не сканируются; нажмите «Восстановить» на странице «Клиенты»."
@@ -293,7 +293,7 @@ msgid "Sales report"
 msgstr "Отчет о продажах"
 
 msgid "Scanning: %1$s / %2$s orders"
-msgstr "Сканирование: ордера%1$s/%2$s"
+msgstr "Сканирование: ордера %1$s/%2$s"
 
 msgid "Done. Reloading…"
 msgstr "Готово. Перезагрузка..."
@@ -317,13 +317,13 @@ msgid "Daily revenue"
 msgstr "Ежедневный доход"
 
 msgid "%1$s · %2$s · %3$s orders"
-msgstr "%1$s·%2$s·%3$sзаказы"
+msgstr "%1$s · %2$s · %3$s заказы"
 
 msgid "%s pc"
 msgid_plural "%s pcs"
-msgstr[0] "%sПК"
-msgstr[1] "%sшт."
-msgstr[2] "%sшт."
+msgstr[0] "%s ПК"
+msgstr[1] "%s шт."
+msgstr[2] "%s шт."
 
 msgid "Customer not found"
 msgstr "Клиент не найден"
@@ -353,13 +353,13 @@ msgid "Notes"
 msgstr "Примечания"
 
 msgid "Customer since %s"
-msgstr "Клиент с%s"
+msgstr "Клиент с %s"
 
 msgid "WhatsApp"
 msgstr "WhatsApp"
 
 msgid "%s open orders"
-msgstr "%sоткрытые ордера"
+msgstr "%s открытые ордера"
 
 msgid "Average order"
 msgstr "Средний заказ"
@@ -368,7 +368,7 @@ msgid "Order frequency"
 msgstr "Частота заказов"
 
 msgid "Every %s days"
-msgstr "Каждые%sдн."
+msgstr "Каждые %s дн."
 
 msgid "Details"
 msgstr "Подробности"
@@ -398,10 +398,10 @@ msgid "Show older"
 msgstr "Показать старше"
 
 msgid "%1$s of %2$s entries"
-msgstr "%1$sиз записей%2$s"
+msgstr "%1$s из записей %2$s"
 
 msgid "Order #%s"
-msgstr "Заказ No%s"
+msgstr "Заказ No %s"
 
 msgid "New order"
 msgstr "Новый заказ"
@@ -410,7 +410,7 @@ msgid "Payment received"
 msgstr "Платеж получен"
 
 msgid "Order #%1$s · %2$s"
-msgstr "Номер заказа%1$s·%2$s"
+msgstr "Номер заказа %1$s · %2$s"
 
 msgid "Refund issued"
 msgstr "Возврат произведен"
@@ -512,7 +512,7 @@ msgid "Add a note…"
 msgstr "Добавить примечание..."
 
 msgid "Note for %s"
-msgstr "Примечание для%s"
+msgstr "Примечание для %s"
 
 msgid "Today"
 msgstr "Сегодня"
@@ -536,10 +536,10 @@ msgid "Net revenue"
 msgstr "Чистая выручка"
 
 msgid "%s new"
-msgstr "%sновый"
+msgstr "%s новый"
 
 msgid "%1$s – %2$s · compared with %3$s – %4$s"
-msgstr "%1$s–%2$s· по сравнению с%3$s–%4$s"
+msgstr "%1$s–%2$s· по сравнению с %3$s–%4$s"
 
 msgid "Full report"
 msgstr "Полный отчет"
@@ -581,7 +581,7 @@ msgid "Low stock"
 msgstr "Низкий запас"
 
 msgid "threshold %s"
-msgstr "порог%s"
+msgstr "порог %s"
 
 msgid "No products running low."
 msgstr "Ни один товар не заканчивается."
@@ -590,7 +590,7 @@ msgid "Out of stock"
 msgstr "Нет в наличии"
 
 msgid "%s left"
-msgstr "%sслева"
+msgstr "%s слева"
 
 msgid "Paid orders in the period you pick; net amounts after refunds."
 msgstr "Оплаченные заказы в выбранный вами период; чистые суммы после возмещения."
@@ -638,7 +638,7 @@ msgid "Categories"
 msgstr "Категории"
 
 msgid "Counted statuses: %s. Change them in Settings."
-msgstr "Подсчитанные статусы:%s. Измените их в настройках."
+msgstr "Подсчитанные статусы: %s. Измените их в настройках."
 
 msgid "Summary"
 msgstr "Резюме"
@@ -719,7 +719,7 @@ msgid "Empty or 0 = the minimum amount of WooCommerce's \"Free shipping\" method
 msgstr "Пусто или 0 = минимальная сумма метода «Бесплатная доставка» WooCommerce."
 
 msgid "Empty = from WooCommerce's \"Free shipping\" method: %s"
-msgstr "Пусто = из метода «Бесплатная доставка» WooCommerce:%s."
+msgstr "Пусто = из метода «Бесплатная доставка» WooCommerce: %s."
 
 msgid "Turning the method on, the IBAN and the reference format are in WooCommerce › Settings › Payments › Bank transfer."
 msgstr "При включении метода IBAN и формат ссылки находятся в WooCommerce > Настройки > Платежи > Банковский перевод."
@@ -827,7 +827,7 @@ msgid "Bank (optional)"
 msgstr "Банк (необязательно)"
 
 msgid "What the customer writes in the transfer description. Placeholders: {kod} (prefix + order no), {siparis}, {ad}, {site}. Empty: {kod} {ad}"
-msgstr "Что пишет заказчик в описании трансфера. Заполнители:{kod}(префикс + номер заказа),{siparis},{ad},{site}. Пусто:{kod}{ad}"
+msgstr "Что пишет заказчик в описании трансфера. Заполнители: {kod}(префикс + номер заказа), {siparis}, {ad}, {site}. Пусто: {kod}{ad}"
 
 msgid "Code prefix"
 msgstr "Префикс кода"

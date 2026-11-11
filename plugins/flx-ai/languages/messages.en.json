@@ -503,7 +503,7 @@
     "%stool updated.\u0000%stool updated.": "%stool updated.\u0000%stool updated.",
     "%splugin\u0000%splugin": "%splugin\u0000%splugin",
     "%dvehicle is registered.%dvehicle is registered.": "%dvehicle is registered.%dvehicle is registered.",
-    "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s": "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s",
+    "Spent: %1$s/ Limit: %2$s\nRegeneration: %3$s\n\nDetail: %4$s": "Spent: %1$s/ Limit: %2$s\nRegeneration: %3$s\n\nDetail: %4$s",
     "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.": "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users.",
     "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.": "%dvehicle is registered.%dvehicle is registered.\u0000%dvehicle is registered.%dvehicle is registered.",
     "AI & MCP": "AI & MCP",

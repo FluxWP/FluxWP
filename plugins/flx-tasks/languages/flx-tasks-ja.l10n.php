@@ -1811,11 +1811,11 @@ return array(
   'Yeni görev' => '新しいタスク',
   'Oluştur ve aç' => '作成して開く',
   'ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter.' => 'ClickUp のようなタスク追跡: プロジェクト、フォルダー、リスト。リスト、ボード (カンバン) およびカレンダー ビュー、保存されたフィルターされたビュー、カスタム フィールド、コメントと添付ファイル、通知、リストの承認、管理ダッシュボード、MCP サーバー、および OpenRouter による人工知能。',
+  'ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ.' => 'ClickUp のようなタスク追跡: プロジェクト、フォルダー、リスト。リスト、ボード (カンバン) およびカレンダー ビュー、保存されたフィルターされたビュー、カスタム フィールド、コメントと添付ファイル、通知、リストの承認、管理ダッシュボード、および Flux AI & MCP による人工知能。',
+  'Flux AI & MCP' => 'Flux AI & MCP',
+  'Flux Tasks tools are available through Flux AI & MCP.' => 'Flux Tasks のツールは Flux AI & MCP から使えます。',
+  'Flux Tasks tools require Flux AI & MCP.' => 'Flux Tasks のツールには Flux AI & MCP が必要です。',
+  'MCP' => 'MCP',
 
-'ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ.'=>'ClickUp のようなタスク追跡: プロジェクト、フォルダー、リスト。リスト、ボード (カンバン) およびカレンダー ビュー、保存されたフィルターされたビュー、カスタム フィールド、コメントと添付ファイル、通知、リストの承認、管理ダッシュボード、および Flux AI & MCP による人工知能。',
-'Flux AI & MCP'=>'Flux AI & MCP',
-'Flux Tasks tools are available through Flux AI & MCP.'=>'Flux Tasks のツールは Flux AI & MCP から使えます。',
-'Flux Tasks tools require Flux AI & MCP.'=>'Flux Tasks のツールには Flux AI & MCP が必要です。',
-'MCP'=>'MCP',
  ),
 );

@@ -47,7 +47,7 @@ msgid "Make the bank transfer"
 msgstr "إجراء التحويل المصرفي"
 
 msgid "Copy %s"
-msgstr "انسخ%s"
+msgstr "انسخ %s"
 
 msgid "Copy"
 msgstr "نسخ"
@@ -89,7 +89,7 @@ msgid "Confirm payment"
 msgstr "تأكيد الدفع"
 
 msgid "Payment confirmed: %1$s · %2$s"
-msgstr "تم تأكيد الدفع:%1$s·%2$s"
+msgstr "تم تأكيد الدفع: %1$s · %2$s"
 
 msgid "Bank transfer payment confirmed."
 msgstr "تم تأكيد الدفع بالتحويل البنكي."
@@ -113,10 +113,10 @@ msgid "Confirmed"
 msgstr "تم التأكيد"
 
 msgid "Cancelled because no payment arrived within %d days."
-msgstr "تم الإلغاء نظرًا لعدم وصول أي دفعة خلال%dمن الأيام."
+msgstr "تم الإلغاء نظرًا لعدم وصول أي دفعة خلال %d من الأيام."
 
 msgid "Add %s more for free shipping."
-msgstr "أضف المزيد من%sللشحن المجاني."
+msgstr "أضف المزيد من %s للشحن المجاني."
 
 msgid "Free shipping!"
 msgstr "شحن مجاني!"
@@ -149,22 +149,22 @@ msgid "Note"
 msgstr "ملاحظة"
 
 msgid "Hello %1$s, your %2$s order (#%3$s) is in.\n\nAmount: %4$s\nRecipient: %5$s\nIBAN: %6$s\nReference: %7$s\n\nAfter paying you can upload the receipt here: %8$s"
-msgstr "مرحبًا%1$s، طلبك%2$s(#%3$s) موجود.\n\nالمبلغ:%4$sالمستلم:%5$sرقم الحساب المصرفي الدولي:%6$sالمرجع:%7$sبعد الدفع يمكنك تحميل الإيصال هنا:%8$s"
+msgstr "مرحبًا %1$s، طلبك %2$s(#%3$s) موجود.\n\nالمبلغ: %4$s المستلم: %5$s رقم الحساب المصرفي الدولي: %6$s المرجع: %7$s بعد الدفع يمكنك تحميل الإيصال هنا: %8$s"
 
 msgid "Bank transfer details sent to the customer by WhatsApp."
 msgstr "يتم إرسال تفاصيل التحويل البنكي للعميل عبر الواتساب."
 
 msgid "Receipt in: order #%1$s · %2$s"
-msgstr "يتم الاستلام في: الطلب رقم%1$s·%2$s"
+msgstr "يتم الاستلام في: الطلب رقم %1$s · %2$s"
 
 msgid "%1$s uploaded a receipt for order #%2$s.\n\nAmount: %3$s\nReference: %4$s\nFile: %5$s\n\nCheck and confirm: %6$s"
-msgstr "قامت%1$sبتحميل إيصال للطلب رقم%2$s.\n\nالمبلغ:%3$sالمرجع:%4$sالملف:%5$sالتحقق والتأكيد:%6$s"
+msgstr "قامت %1$s بتحميل إيصال للطلب رقم %2$s.\n\nالمبلغ: %3$s المرجع: %4$s الملف: %5$s التحقق والتأكيد: %6$s"
 
 msgid "Hello %1$s, the payment for your order #%2$s is confirmed. We are preparing your order. %3$s"
-msgstr "مرحبًا%1$s، تم تأكيد الدفع لطلبك رقم%2$s. نحن نقوم بإعداد طلبك.%3$s"
+msgstr "مرحبًا %1$s، تم تأكيد الدفع لطلبك رقم %2$s. نحن نقوم بإعداد طلبك.%3$s"
 
 msgid "New order #%1$s · %2$s\n%3$s\n%4$s\n%5$s"
-msgstr "الطلب الجديد #%1$s·%2$s%3$s%4$s%5$s"
+msgstr "الطلب الجديد #%1$s · %2$s %3$s%4$s %5$s"
 
 msgid "No receipt is expected for this order."
 msgstr "لا يتوقع استلام هذا الطلب."
@@ -179,7 +179,7 @@ msgid "The file could not be uploaded. Please try again."
 msgstr "لا يمكن تحميل الملف. يرجى المحاولة مرة أخرى."
 
 msgid "The file can be at most %s MB."
-msgstr "يمكن أن يصل حجم الملف إلى%sMB على الأكثر."
+msgstr "يمكن أن يصل حجم الملف إلى %s MB على الأكثر."
 
 msgid "Only PDF, JPG, PNG, WEBP or HEIC files can be uploaded."
 msgstr "يمكن تحميل ملفات PDF أو JPG أو PNG أو WEBP أو HEIC فقط."
@@ -188,7 +188,7 @@ msgid "The file could not be saved."
 msgstr "لا يمكن حفظ الملف."
 
 msgid "The customer uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
-msgstr "قام العميل بتحميل إيصال:%1$s(%2$s). التحقق من الدفع وتأكيده."
+msgstr "قام العميل بتحميل إيصال: %1$s(%2$s). التحقق من الدفع وتأكيده."
 
 msgid "Add another receipt"
 msgstr "إضافة إيصال آخر"
@@ -197,7 +197,7 @@ msgid "Choose a receipt or drop it here"
 msgstr "اختر إيصالاً أو قم بإسقاطه هنا"
 
 msgid "PDF, JPG or PNG · up to %s MB"
-msgstr "PDF أو JPG أو PNG · ما يصل إلى%sميغابايت"
+msgstr "PDF أو JPG أو PNG · ما يصل إلى %s ميغابايت"
 
 msgid "Send receipt"
 msgstr "إرسال الإيصال"
@@ -224,7 +224,7 @@ msgid "%s K"
 msgstr "%s ك"
 
 msgid "%s ago"
-msgstr "منذ%s"
+msgstr "منذ %s"
 
 msgid "Processing"
 msgstr "المعالجة"
@@ -251,7 +251,7 @@ msgid "WooCommerce"
 msgstr "ووكومرس"
 
 msgid "Active, version %s"
-msgstr "نشط، الإصدار%s"
+msgstr "نشط، الإصدار %s"
 
 msgid "WooCommerce is not installed or not active; Flux Commerce does not work."
 msgstr "لم يتم تثبيت WooCommerce أو أنه غير نشط؛ لا يعمل التجارة الجريان."
@@ -275,7 +275,7 @@ msgid "Customer list"
 msgstr "قائمة العملاء"
 
 msgid "Last full scan: %s"
-msgstr "آخر مسح كامل:%s"
+msgstr "آخر مسح كامل: %s"
 
 msgid "Older orders are not scanned yet; press \"Rebuild\" on the Customers page."
 msgstr "لم يتم فحص الطلبات الأقدم بعد؛ اضغط على \"إعادة البناء\" في صفحة العملاء."
@@ -293,7 +293,7 @@ msgid "Sales report"
 msgstr "تقرير المبيعات"
 
 msgid "Scanning: %1$s / %2$s orders"
-msgstr "المسح الضوئي: أوامر%1$s/%2$s"
+msgstr "المسح الضوئي: أوامر %1$s/%2$s"
 
 msgid "Done. Reloading…"
 msgstr "تم. جارٍ إعادة التحميل..."
@@ -317,16 +317,16 @@ msgid "Daily revenue"
 msgstr "الإيرادات اليومية"
 
 msgid "%1$s · %2$s · %3$s orders"
-msgstr "%1$s·%2$s· أوامر%3$s"
+msgstr "%1$s · %2$s· أوامر %3$s"
 
 msgid "%s pc"
 msgid_plural "%s pcs"
-msgstr[0] "جهاز كمبيوتر شخصى%s"
-msgstr[1] "جهاز الكمبيوتر%s"
-msgstr[2] "جهاز كمبيوتر شخصى%s"
-msgstr[3] "جهاز كمبيوتر شخصى%s"
-msgstr[4] "جهاز كمبيوتر شخصى%s"
-msgstr[5] "جهاز كمبيوتر شخصى%s"
+msgstr[0] "جهاز كمبيوتر شخصى %s"
+msgstr[1] "جهاز الكمبيوتر %s"
+msgstr[2] "جهاز كمبيوتر شخصى %s"
+msgstr[3] "جهاز كمبيوتر شخصى %s"
+msgstr[4] "جهاز كمبيوتر شخصى %s"
+msgstr[5] "جهاز كمبيوتر شخصى %s"
 
 msgid "Customer not found"
 msgstr "لم يتم العثور على العميل"
@@ -356,13 +356,13 @@ msgid "Notes"
 msgstr "ملاحظات"
 
 msgid "Customer since %s"
-msgstr "العميل منذ%s"
+msgstr "العميل منذ %s"
 
 msgid "WhatsApp"
 msgstr "واتساب"
 
 msgid "%s open orders"
-msgstr "%sالأوامر المفتوحة"
+msgstr "%s الأوامر المفتوحة"
 
 msgid "Average order"
 msgstr "متوسط الطلب"
@@ -371,7 +371,7 @@ msgid "Order frequency"
 msgstr "تردد الطلب"
 
 msgid "Every %s days"
-msgstr "كل%sأيام"
+msgstr "كل %s أيام"
 
 msgid "Details"
 msgstr "التفاصيل"
@@ -401,7 +401,7 @@ msgid "Show older"
 msgstr "عرض كبار السن"
 
 msgid "%1$s of %2$s entries"
-msgstr "%1$sمن إدخالات%2$s"
+msgstr "%1$s من إدخالات %2$s"
 
 msgid "Order #%s"
 msgstr "الطلب #%s"
@@ -413,7 +413,7 @@ msgid "Payment received"
 msgstr "تم استلام الدفعة"
 
 msgid "Order #%1$s · %2$s"
-msgstr "الطلب #%1$s·%2$s"
+msgstr "الطلب #%1$s · %2$s"
 
 msgid "Refund issued"
 msgstr "تم إصدار المبلغ المسترد"
@@ -539,7 +539,7 @@ msgid "Net revenue"
 msgstr "صافي الإيرادات"
 
 msgid "%s new"
-msgstr "%sجديد"
+msgstr "%s جديد"
 
 msgid "%1$s – %2$s · compared with %3$s – %4$s"
 msgstr "%1$s–%2$s· مقارنة بـ%3$s–%4$s"
@@ -584,7 +584,7 @@ msgid "Low stock"
 msgstr "مخزون منخفض"
 
 msgid "threshold %s"
-msgstr "عتبة%s"
+msgstr "عتبة %s"
 
 msgid "No products running low."
 msgstr "لا توجد منتجات منخفضة."
@@ -593,7 +593,7 @@ msgid "Out of stock"
 msgstr "نفاد المخزون"
 
 msgid "%s left"
-msgstr "%sاليسار"
+msgstr "%s اليسار"
 
 msgid "Paid orders in the period you pick; net amounts after refunds."
 msgstr "الطلبات المدفوعة في الفترة التي تختارها؛ صافي المبالغ بعد المبالغ المستردة."
@@ -641,7 +641,7 @@ msgid "Categories"
 msgstr "الفئات"
 
 msgid "Counted statuses: %s. Change them in Settings."
-msgstr "الحالات المحسوبة:%s. قم بتغييرها في الإعدادات."
+msgstr "الحالات المحسوبة: %s. قم بتغييرها في الإعدادات."
 
 msgid "Summary"
 msgstr "ملخص"
@@ -722,7 +722,7 @@ msgid "Empty or 0 = the minimum amount of WooCommerce's \"Free shipping\" method
 msgstr "فارغ أو 0 = الحد الأدنى لطريقة \"الشحن المجاني\" الخاصة بـ WooCommerce."
 
 msgid "Empty = from WooCommerce's \"Free shipping\" method: %s"
-msgstr "فارغ = من طريقة \"الشحن المجاني\" الخاصة بـ WooCommerce:%s"
+msgstr "فارغ = من طريقة \"الشحن المجاني\" الخاصة بـ WooCommerce: %s"
 
 msgid "Turning the method on, the IBAN and the reference format are in WooCommerce › Settings › Payments › Bank transfer."
 msgstr "عند تشغيل الطريقة، يوجد رقم IBAN والتنسيق المرجعي في WooCommerce › الإعدادات › المدفوعات › التحويل البنكي."
@@ -830,7 +830,7 @@ msgid "Bank (optional)"
 msgstr "البنك (اختياري)"
 
 msgid "What the customer writes in the transfer description. Placeholders: {kod} (prefix + order no), {siparis}, {ad}, {site}. Empty: {kod} {ad}"
-msgstr "ما يكتبه العميل في وصف التحويل. العناصر النائبة:{kod}(البادئة + رقم الطلب)،{siparis}،{ad}،{site}. فارغ:{kod}{ad}"
+msgstr "ما يكتبه العميل في وصف التحويل. العناصر النائبة: {kod}(البادئة + رقم الطلب)، {siparis}، {ad}، {site}. فارغ: {kod}{ad}"
 
 msgid "Code prefix"
 msgstr "بادئة الرمز"

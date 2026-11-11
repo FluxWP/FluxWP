@@ -1,0 +1,10 @@
+{
+ "source": {
+  "Restored version v%d": "Restored version v%d",
+  "Saved · v%s": "Saved · v%s",
+  "Server version: v%s.": "Server version: v%s.",
+  "Server version loaded · v%s": "Server version loaded · v%s",
+  "Restore the menu to v%s? It is saved as a new version and menu sites are notified.": "Restore the menu to v%s? It is saved as a new version and menu sites are notified.",
+  "Restored v%1$s · new version v%2$s": "Restored v%1$s · new version v%2$s"
+ }
+}

@@ -182,7 +182,7 @@ msgid "Delete"
 msgstr "Eliminar"
 
 msgid "{n} items moved"
-msgstr "{n}elementos movidos"
+msgstr "{n} elementos movidos"
 
 msgid "Nothing here"
 msgstr "Nada aquí"
@@ -221,7 +221,7 @@ msgid "Reuse settings"
 msgstr "Reutilizar configuración"
 
 msgid "{n} selected"
-msgstr "{n}seleccionado"
+msgstr "{n} seleccionado"
 
 msgid "Tap items to select"
 msgstr "Toque elementos para seleccionar"
@@ -239,7 +239,7 @@ msgid "New folder…"
 msgstr "Nueva carpeta..."
 
 msgid "Delete {n} items?"
-msgstr "¿Eliminar elementos{n}?"
+msgstr "¿Eliminar elementos {n}?"
 
 msgid "Delete item?"
 msgstr "¿Eliminar elemento?"
@@ -248,7 +248,7 @@ msgid "Files are deleted from the server. Copies added to the Media Library stay
 msgstr "Los archivos se eliminan del servidor. Las copias agregadas a la biblioteca multimedia permanecen."
 
 msgid "{n} items ready"
-msgstr "{n}elementos listos"
+msgstr "{n} elementos listos"
 
 msgid "Generation ready"
 msgstr "Generación lista"
@@ -332,19 +332,19 @@ msgid "Provider"
 msgstr "Proveedor"
 
 msgid "{n} models"
-msgstr "Modelos{n}"
+msgstr "Modelos {n}"
 
 msgid "no key"
 msgstr "sin llave"
 
 msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
-msgstr "Sin tecla{p}(Flux AI & MCP › Configuración › Imágenes y video)."
+msgstr "Sin tecla {p}(Flux AI & MCP › Configuración › Imágenes y video)."
 
 msgid "This reference is already added"
 msgstr "Esta referencia ya está agregada."
 
 msgid "This model accepts at most {n} references"
-msgstr "Este modelo acepta como máximo las referencias{n}"
+msgstr "Este modelo acepta como máximo las referencias {n}"
 
 msgid "Save to references"
 msgstr "Guardar en referencias"
@@ -359,7 +359,7 @@ msgid "Pick from gallery"
 msgstr "Elegir de la galería"
 
 msgid "{n} photos"
-msgstr "Fotos{n}"
+msgstr "Fotos {n}"
 
 msgid "no photos"
 msgstr "sin fotos"
@@ -383,7 +383,7 @@ msgid "No images yet."
 msgstr "Aún no hay imágenes."
 
 msgid "{name} has no photos; add some in Manage people"
-msgstr "{name}no tiene fotos; agregar algunos en Administrar personas"
+msgstr "{name} no tiene fotos; agregar algunos en Administrar personas"
 
 msgid "Write a short draft first."
 msgstr "Primero escribe un breve borrador."
@@ -515,7 +515,7 @@ msgid "Number of ideas"
 msgstr "numero de ideas"
 
 msgid "{n} ideas"
-msgstr "Ideas{n}"
+msgstr "Ideas {n}"
 
 msgid "YouTube thumbnail"
 msgstr "Miniatura de YouTube"
@@ -530,10 +530,10 @@ msgid "Generate selected ({n})"
 msgstr "Generar seleccionado ({n})"
 
 msgid "{n} generations started"
-msgstr "{n}generaciones comenzaron"
+msgstr "{n} generaciones comenzaron"
 
 msgid "Sending {i}/{n}"
-msgstr "Enviando{i}/{n}"
+msgstr "Enviando {i}/{n}"
 
 msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
 msgstr "Crea indicaciones distintas a partir de una idea. Elija los que le gusten y generelos de una sola vez. El modelo y la relación provienen de la barra de generación."
@@ -557,7 +557,7 @@ msgid "Delete person"
 msgstr "Eliminar persona"
 
 msgid "Delete {name}?"
-msgstr "¿Eliminar{name}?"
+msgstr "¿Eliminar {name}?"
 
 msgid "The person and their photos are deleted. Earlier generations stay."
 msgstr "La persona y sus fotos se eliminan. Las generaciones anteriores se quedan."
@@ -596,10 +596,10 @@ msgid "just now"
 msgstr "justo ahora"
 
 msgid "{n} min ago"
-msgstr "{n}hace minutos"
+msgstr "{n} hace minutos"
 
 msgid "{n} h ago"
-msgstr "{n}hace h"
+msgstr "{n} hace h"
 
 msgid "Server error ({n})."
 msgstr "Error del servidor ({n})."
@@ -641,13 +641,13 @@ msgid "Generations"
 msgstr "Generaciones"
 
 msgid "{i} images · {v} videos"
-msgstr "{i}imágenes ·{v}vídeos"
+msgstr "{i} imágenes ·{v} vídeos"
 
 msgid "Spend"
 msgstr "gastar"
 
 msgid "Image/video {m} · text {x}"
-msgstr "Imagen/vídeo{m}· texto{x}"
+msgstr "Imagen/vídeo {m}· texto {x}"
 
 msgid "Average"
 msgstr "Promedio"
@@ -662,7 +662,7 @@ msgid "no attempts yet"
 msgstr "aún no hay intentos"
 
 msgid "Storage {b}"
-msgstr "Almacenamiento{b}"
+msgstr "Almacenamiento {b}"
 
 msgid "Daily generations"
 msgstr "Generaciones diarias"
@@ -794,7 +794,7 @@ msgid "Database tables"
 msgstr "tablas de base de datos"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Falta tabla:%s. Desactiva y reactiva el complemento."
+msgstr "Falta tabla: %s. Desactiva y reactiva el complemento."
 
 msgid "Tables are ready."
 msgstr "Las mesas están listas."
@@ -824,7 +824,7 @@ msgid "Flux AI"
 msgstr "IA de flujo"
 
 msgid "%1$d models available (%2$s)."
-msgstr "Modelos%1$ddisponibles (%2$s)."
+msgstr "Modelos %1$d disponibles (%2$s)."
 
 msgid "Enhance and Brainstorm"
 msgstr "Mejorar y hacer una lluvia de ideas"
@@ -854,7 +854,7 @@ msgid "The file is empty."
 msgstr "El archivo está vacío."
 
 msgid "The file exceeds the %d MB limit."
-msgstr "El archivo excede el límite de MB de%d."
+msgstr "El archivo excede el límite de MB de %d."
 
 msgid "This file type is not supported."
 msgstr "Este tipo de archivo no es compatible."
@@ -869,7 +869,7 @@ msgid "Person not found."
 msgstr "Persona no encontrada."
 
 msgid "At most %d reference images can be used."
-msgstr "Como máximo se pueden utilizar imágenes de referencia%d."
+msgstr "Como máximo se pueden utilizar imágenes de referencia %d."
 
 msgid "The file is not on the server."
 msgstr "El archivo no está en el servidor."

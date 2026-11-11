@@ -59,7 +59,7 @@ msgid "Summary"
 msgstr "ملخص"
 
 msgid "Step %1$s of %2$s"
-msgstr "الخطوة%1$sمن%2$s"
+msgstr "الخطوة %1$s من %2$s"
 
 msgid "Create"
 msgstr "إنشاء"
@@ -389,7 +389,7 @@ msgid "Medium"
 msgstr "متوسط"
 
 msgid "Last check: %s"
-msgstr "الفحص الأخير:%s"
+msgstr "الفحص الأخير: %s"
 
 msgid "Actions"
 msgstr "الإجراءات"
@@ -524,7 +524,7 @@ msgid "Total"
 msgstr "المجموع"
 
 msgid "%s views"
-msgstr "%sمشاهدات"
+msgstr "%s مشاهدات"
 
 msgid "Page"
 msgstr "الصفحة"
@@ -710,7 +710,7 @@ msgid "Reason"
 msgstr "السبب"
 
 msgid "%s days"
-msgstr "%sأيام"
+msgstr "%s أيام"
 
 msgid "Completed"
 msgstr "مكتمل"
@@ -821,7 +821,7 @@ msgid "Info"
 msgstr "معلومات"
 
 msgid "%1$d OK · %2$d warnings · %3$d errors"
-msgstr "%1$dموافق · تحذيرات%2$d· أخطاء%3$d"
+msgstr "%1$d موافق · تحذيرات %2$d· أخطاء %3$d"
 
 msgid "Check again"
 msgstr "تحقق مرة أخرى"
@@ -830,7 +830,7 @@ msgid "Show only these (click again to show all)"
 msgstr "إظهار هذه فقط (انقر مرة أخرى لإظهار الكل)"
 
 msgid "Checked: %s"
-msgstr "تم الفحص:%s"
+msgstr "تم الفحص: %s"
 
 msgid "Check"
 msgstr "تحقق"
@@ -845,7 +845,7 @@ msgid "No checks are registered."
 msgstr "لم يتم تسجيل أي شيكات."
 
 msgid "System check found %d problem(s) that can stop donations or automations."
-msgstr "عثر فحص النظام على مشكلة (مشكلات)%dالتي يمكنها إيقاف التبرعات أو عمليات التشغيل الآلي."
+msgstr "عثر فحص النظام على مشكلة (مشكلات)%d التي يمكنها إيقاف التبرعات أو عمليات التشغيل الآلي."
 
 msgid "Open system check"
 msgstr "فتح فحص النظام"
@@ -857,7 +857,7 @@ msgid "System: %d error(s)"
 msgstr "النظام: خطأ (أخطاء)%d"
 
 msgid "This check could not run: %s"
-msgstr "تعذر تشغيل هذا الفحص:%s"
+msgstr "تعذر تشغيل هذا الفحص: %s"
 
 msgid "Scheduled tasks (cron)"
 msgstr "المهام المجدولة (كرون)"
@@ -1299,26 +1299,26 @@ msgstr[5] "الحقول"
 
 msgid "Flux Donate is not active and the Stripe keys are missing: %d payment form shows \"Online payment is unavailable\"."
 msgid_plural "Flux Donate is not active and the Stripe keys are missing: %d payment forms show \"Online payment is unavailable\"."
-msgstr[0] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[1] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: يُظهر نموذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[2] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[3] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[4] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[5] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
+msgstr[0] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع %d\"الدفع عبر الإنترنت غير متاح\"."
+msgstr[1] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: يُظهر نموذج الدفع %d\"الدفع عبر الإنترنت غير متاح\"."
+msgstr[2] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع %d\"الدفع عبر الإنترنت غير متاح\"."
+msgstr[3] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع %d\"الدفع عبر الإنترنت غير متاح\"."
+msgstr[4] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع %d\"الدفع عبر الإنترنت غير متاح\"."
+msgstr[5] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع %d\"الدفع عبر الإنترنت غير متاح\"."
 
 msgid "Not active, but %d active automation creates or sends certificates; it will fail."
 msgid_plural "Not active, but %d active automations create or send certificates; they will fail."
-msgstr[0] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
-msgstr[1] "غير نشط، ولكن التشغيل الآلي النشط لـ%dيقوم بإنشاء الشهادات أو إرسالها؛ سوف تفشل."
-msgstr[2] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
-msgstr[3] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
-msgstr[4] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
-msgstr[5] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
+msgstr[0] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%d تقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
+msgstr[1] "غير نشط، ولكن التشغيل الآلي النشط لـ%d يقوم بإنشاء الشهادات أو إرسالها؛ سوف تفشل."
+msgstr[2] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%d تقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
+msgstr[3] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%d تقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
+msgstr[4] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%d تقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
+msgstr[5] "غير نشطة، ولكن عمليات التشغيل الآلي النشطة لـ%d تقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
 
 msgid "%d automation is on."
 msgid_plural "%d automations are on."
 msgstr[0] "تم تشغيل عمليات التشغيل الآلي لـ%d."
-msgstr[1] "أتمتة%dقيد التشغيل."
+msgstr[1] "أتمتة %d قيد التشغيل."
 msgstr[2] "تم تشغيل عمليات التشغيل الآلي لـ%d."
 msgstr[3] "تم تشغيل عمليات التشغيل الآلي لـ%d."
 msgstr[4] "تم تشغيل عمليات التشغيل الآلي لـ%d."
@@ -1326,30 +1326,30 @@ msgstr[5] "تم تشغيل عمليات التشغيل الآلي لـ%d."
 
 msgid "%d run failed in the last 7 days; see the run log."
 msgid_plural "%d runs failed in the last 7 days; see the run log."
-msgstr[0] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[1] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[2] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[3] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[4] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[5] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
+msgstr[0] "فشل تشغيل %d في آخر 7 أيام؛ راجع سجل التشغيل."
+msgstr[1] "فشل تشغيل %d في آخر 7 أيام؛ راجع سجل التشغيل."
+msgstr[2] "فشل تشغيل %d في آخر 7 أيام؛ راجع سجل التشغيل."
+msgstr[3] "فشل تشغيل %d في آخر 7 أيام؛ راجع سجل التشغيل."
+msgstr[4] "فشل تشغيل %d في آخر 7 أيام؛ راجع سجل التشغيل."
+msgstr[5] "فشل تشغيل %d في آخر 7 أيام؛ راجع سجل التشغيل."
 
 msgid "Keys are set; %d form uses reCAPTCHA."
 msgid_plural "Keys are set; %d forms use reCAPTCHA."
-msgstr[0] "تم ضبط المفاتيح؛  تستخدم نماذج%dreCAPTCHA."
-msgstr[1] "تم ضبط المفاتيح؛  يستخدم نموذج%dreCAPTCHA."
-msgstr[2] "تم ضبط المفاتيح؛  تستخدم نماذج%dreCAPTCHA."
-msgstr[3] "تم ضبط المفاتيح؛  تستخدم نماذج%dreCAPTCHA."
-msgstr[4] "تم ضبط المفاتيح؛  تستخدم نماذج%dreCAPTCHA."
-msgstr[5] "تم ضبط المفاتيح؛  تستخدم نماذج%dreCAPTCHA."
+msgstr[0] "تم ضبط المفاتيح؛  تستخدم نماذج %d reCAPTCHA."
+msgstr[1] "تم ضبط المفاتيح؛  يستخدم نموذج %d reCAPTCHA."
+msgstr[2] "تم ضبط المفاتيح؛  تستخدم نماذج %d reCAPTCHA."
+msgstr[3] "تم ضبط المفاتيح؛  تستخدم نماذج %d reCAPTCHA."
+msgstr[4] "تم ضبط المفاتيح؛  تستخدم نماذج %d reCAPTCHA."
+msgstr[5] "تم ضبط المفاتيح؛  تستخدم نماذج %d reCAPTCHA."
 
 msgid "%d form has reCAPTCHA on but the site key or secret key is missing; the form is not shown."
 msgid_plural "%d forms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
-msgstr[0] "تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
-msgstr[1] "يحتوي نموذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لا يظهر النموذج."
-msgstr[2] "تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
-msgstr[3] "تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
-msgstr[4] "تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
-msgstr[5] "تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
+msgstr[0] "تحتوي نماذج %d على ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
+msgstr[1] "يحتوي نموذج %d على ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لا يظهر النموذج."
+msgstr[2] "تحتوي نماذج %d على ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
+msgstr[3] "تحتوي نماذج %d على ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
+msgstr[4] "تحتوي نماذج %d على ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
+msgstr[5] "تحتوي نماذج %d على ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
 
 msgid "Form"
 msgid_plural "Forms"
@@ -1362,48 +1362,48 @@ msgstr[5] "النماذج"
 
 msgid "%d service account connected"
 msgid_plural "%d service accounts connected"
-msgstr[0] "حسابات خدمة%dمتصلة"
-msgstr[1] "حساب خدمة%dمتصل"
-msgstr[2] "حسابات خدمة%dمتصلة"
-msgstr[3] "حسابات خدمة%dمتصلة"
-msgstr[4] "حسابات خدمة%dمتصلة"
-msgstr[5] "حسابات خدمة%dمتصلة"
+msgstr[0] "حسابات خدمة %d متصلة"
+msgstr[1] "حساب خدمة %d متصل"
+msgstr[2] "حسابات خدمة %d متصلة"
+msgstr[3] "حسابات خدمة %d متصلة"
+msgstr[4] "حسابات خدمة %d متصلة"
+msgstr[5] "حسابات خدمة %d متصلة"
 
 msgid "%d column will be written to the sheet."
 msgid_plural "%d columns will be written to the sheet."
-msgstr[0] "ستتم كتابة أعمدة%dعلى الورقة."
-msgstr[1] "سيتم كتابة عمود%dعلى الورقة."
-msgstr[2] "ستتم كتابة أعمدة%dعلى الورقة."
-msgstr[3] "ستتم كتابة أعمدة%dعلى الورقة."
-msgstr[4] "ستتم كتابة أعمدة%dعلى الورقة."
-msgstr[5] "ستتم كتابة أعمدة%dعلى الورقة."
+msgstr[0] "ستتم كتابة أعمدة %d على الورقة."
+msgstr[1] "سيتم كتابة عمود %d على الورقة."
+msgstr[2] "ستتم كتابة أعمدة %d على الورقة."
+msgstr[3] "ستتم كتابة أعمدة %d على الورقة."
+msgstr[4] "ستتم كتابة أعمدة %d على الورقة."
+msgstr[5] "ستتم كتابة أعمدة %d على الورقة."
 
 msgid "Remove ALL %d binding? Syncing stops for every form. Your Google Sheets are not deleted."
 msgid_plural "Remove ALL %d bindings? Syncing stops for every form. Your Google Sheets are not deleted."
-msgstr[0] "هل تريد إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[1] "هل تريد إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[2] "هل تريد إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[3] "هل تريد إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[4] "هل تريد إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[5] "هل تريد إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
+msgstr[0] "هل تريد إزالة جميع روابط %d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
+msgstr[1] "هل تريد إزالة جميع روابط %d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
+msgstr[2] "هل تريد إزالة جميع روابط %d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
+msgstr[3] "هل تريد إزالة جميع روابط %d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
+msgstr[4] "هل تريد إزالة جميع روابط %d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
+msgstr[5] "هل تريد إزالة جميع روابط %d؟ تتوقف المزامنة لكل نموذج. لا يتم حذف جداول بيانات Google الخاصة بك."
 
 msgid "You can attach up to %1$d file here. Please wait about %2$d minutes before trying again."
 msgid_plural "You can attach up to %1$d files here. Please wait about %2$d minutes before trying again."
-msgstr[0] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[1] "يمكنك إرفاق ما يصل إلى ملف%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[2] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[3] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[4] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[5] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
+msgstr[0] "يمكنك إرفاق ما يصل إلى ملفات %1$d هنا. يرجى الانتظار حوالي %2$d دقيقة قبل المحاولة مرة أخرى."
+msgstr[1] "يمكنك إرفاق ما يصل إلى ملف %1$d هنا. يرجى الانتظار حوالي %2$d دقيقة قبل المحاولة مرة أخرى."
+msgstr[2] "يمكنك إرفاق ما يصل إلى ملفات %1$d هنا. يرجى الانتظار حوالي %2$d دقيقة قبل المحاولة مرة أخرى."
+msgstr[3] "يمكنك إرفاق ما يصل إلى ملفات %1$d هنا. يرجى الانتظار حوالي %2$d دقيقة قبل المحاولة مرة أخرى."
+msgstr[4] "يمكنك إرفاق ما يصل إلى ملفات %1$d هنا. يرجى الانتظار حوالي %2$d دقيقة قبل المحاولة مرة أخرى."
+msgstr[5] "يمكنك إرفاق ما يصل إلى ملفات %1$d هنا. يرجى الانتظار حوالي %2$d دقيقة قبل المحاولة مرة أخرى."
 
 msgid "Add-on directory is ready for file operations"
 msgstr "دليل الوظائف الإضافية جاهز لعمليات الملف"
 
-msgid "Cannot install addons:%s"
-msgstr "لا يمكن تثبيت الإضافات:%s"
+msgid "Cannot install addons: %s"
+msgstr "لا يمكن تثبيت الإضافات: %s"
 
-msgid "%scomplete"
-msgstr " اكتمل%s"
+msgid "%s complete"
+msgstr " اكتمل %s"
 
 msgid "Copy and paste this shortcode to add the confirmation code finder to any page or post."
 msgstr "انسخ هذا الرمز القصير والصقه لإضافة أداة البحث عن رمز التأكيد إلى أي صفحة أو منشور."
@@ -1444,8 +1444,8 @@ msgstr "(فيديو أو صوت)"
 msgid "Localization"
 msgstr "التوطين"
 
-msgid "Help us speak your language! Translate Flux Forms on the%1$sWordPress.org translation portal%2$sand make it accessible to your community."
-msgstr "ساعدنا على التحدث بلغتك! ترجمة Flux Forms على بوابة الترجمة%1$sWordPress.org%2$sوجعلها في متناول مجتمعك."
+msgid "Help us speak your language! Translate Flux Forms on the %1$sWordPress.org translation portal%2$s and make it accessible to your community."
+msgstr "ساعدنا على التحدث بلغتك! ترجمة Flux Forms على بوابة الترجمة %1$sWordPress.org%2$s وجعلها في متناول مجتمعك."
 
 msgid "You can translate Flux Forms into your preferred language by translating the following sentences. WARNING: If your WordPress site is multilingual, do not change the values below."
 msgstr "يمكنك ترجمة Flux Forms إلى لغتك المفضلة عن طريق ترجمة الجمل التالية. تحذير: إذا كان موقع WordPress الخاص بك متعدد اللغات، فلا تقم بتغيير القيم أدناه."
@@ -1843,23 +1843,23 @@ msgstr "موضع التسمية"
 msgid "Align"
 msgstr "محاذاة"
 
-msgid "%swidth"
-msgstr " عرض%s"
+msgid "%s width"
+msgstr " عرض %s"
 
-msgid "%sLabel Position"
-msgstr " موضع التسمية%s"
+msgid "%s Label Position"
+msgstr " موضع التسمية %s"
 
-msgid "%sLabel size"
-msgstr " حجم التسمية%s"
+msgid "%s Label size"
+msgstr " حجم التسمية %s"
 
-msgid "%sLabel | Align"
-msgstr " تسمية%s| محاذاة"
+msgid "%s Label | Align"
+msgstr " تسمية %s| محاذاة"
 
-msgid "%sDescription | Align"
-msgstr " وصف%s| محاذاة"
+msgid "%s Description | Align"
+msgstr " وصف %s| محاذاة"
 
-msgid "%sButtons | Align"
-msgstr " أزرار%s| محاذاة"
+msgid "%s Buttons | Align"
+msgstr " أزرار %s| محاذاة"
 
 msgid "CSS Classes"
 msgstr "فئات CSS"
@@ -1879,8 +1879,8 @@ msgstr "لون الزر"
 msgid "red"
 msgstr "أحمر"
 
-msgid "%sChecked Color"
-msgstr " تم تحديد اللون%s"
+msgid "%s Checked Color"
+msgstr " تم تحديد اللون %s"
 
 msgid "Slider Button"
 msgstr "زر شريط التمرير"
@@ -1888,14 +1888,14 @@ msgstr "زر شريط التمرير"
 msgid "Value Text"
 msgstr "نص القيمة"
 
-msgid "Switch%s"
-msgstr "قم بالتبديل إلى%s"
+msgid "Switch %s"
+msgstr "قم بالتبديل إلى %s"
 
 msgid "Handle"
 msgstr "التعامل"
 
-msgid "%scolor"
-msgstr " لون%s"
+msgid "%s color"
+msgstr " لون %s"
 
 msgid "Border Color"
 msgstr "لون الحدود"
@@ -2014,7 +2014,7 @@ msgstr "سيتم تعطيل الميزات المتقدمة والحقول ال�
 msgid "Your Pro activation code will be removed from this site. Advanced features, Pro fields and add-ons will be unavailable until you upgrade again. Your forms, entries and settings will not be deleted."
 msgstr "ستتم إزالة رمز التفعيل الاحترافي الخاص بك من هذا الموقع. لن تكون الميزات المتقدمة والحقول الاحترافية والوظائف الإضافية متاحة حتى تقوم بالترقية مرة أخرى. لن يتم حذف النماذج والإدخالات والإعدادات الخاصة بك."
 
-msgid "KeepPro"
+msgid "Keep Pro"
 msgstr "KeepPro"
 
 msgid "Keep Free Plus"
@@ -2080,8 +2080,8 @@ msgstr "تم إرسال بريدك الإلكتروني التجريبي، ول�
 msgid "We could not verify delivery. Your email address was saved; please check your mail configuration in General Settings."
 msgstr "لم نتمكن من التحقق من التسليم. تم حفظ عنوان بريدك الإلكتروني؛ الرجاء التحقق من تكوين البريد الخاص بك في \"الإعدادات العامة\"."
 
-msgid "Your test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
-msgstr "تم تسليم البريد الإلكتروني الاختباري الخاص بك، ولكن درجة التسليم الخاصة به هي%1$sفقط من 100 (أقل من%2$s). من المرجح أن تتم تصفية رسائل البريد الإلكتروني التي ترسلها النماذج الخاصة بك كرسائل غير مرغوب فيها. قم بإعداد SMTP ثم قم بتشغيل التحقق مرة أخرى."
+msgid "Your test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
+msgstr "تم تسليم البريد الإلكتروني الاختباري الخاص بك، ولكن درجة التسليم الخاصة به هي %1$s فقط من 100 (أقل من %2$s). من المرجح أن تتم تصفية رسائل البريد الإلكتروني التي ترسلها النماذج الخاصة بك كرسائل غير مرغوب فيها. قم بإعداد SMTP ثم قم بتشغيل التحقق مرة أخرى."
 
 msgid "Finish setup"
 msgstr "إنهاء الإعداد"
@@ -2404,11 +2404,11 @@ msgstr "تم الإرسال بنجاح"
 msgid "This field is required."
 msgstr "هذا الحقل مطلوب."
 
-msgid "Custom%sMessage"
-msgstr "رسالة%sمخصصة"
+msgid "Custom %s Message"
+msgstr "رسالة %s مخصصة"
 
-msgid "Leave empty to use default%s"
-msgstr "اتركه فارغاً لاستخدام%sالافتراضي "
+msgid "Leave empty to use default %s"
+msgstr "اتركه فارغاً لاستخدام %s الافتراضي "
 
 msgid "Thank you"
 msgstr "شكرا"
@@ -2431,8 +2431,8 @@ msgstr "لم يتم العثور على الإعدادات\"، 'ar']]"
 msgid "Please navigate to the Flux Forms Panel, then go to Settings and click on Google Keys to configure the keys for Google reCAPTCHA."
 msgstr "يُرجى الانتقال إلى لوحة Flux Forms، ثم الانتقال إلى \"الإعدادات\" والنقر فوق \"Google Keys\" لتكوين المفاتيح لـ Google reCAPTCHA."
 
-msgid "If your language translation is not available yet, translate it and get a%3$slifetime discount! Contribute via the%1$sWordPress.org translation portal%2$s."
-msgstr "إذا لم تكن ترجمة لغتك متاحة بعد، قم بترجمتها واحصل على خصم%3$sمدى الحياة! المساهمة عبر بوابة الترجمة%1$sWordPress.org%2$s."
+msgid "If your language translation is not available yet, translate it and get a %3$s lifetime discount! Contribute via the %1$sWordPress.org translation portal%2$s."
+msgstr "إذا لم تكن ترجمة لغتك متاحة بعد، قم بترجمتها واحصل على خصم %3$s مدى الحياة! المساهمة عبر بوابة الترجمة %1$sWordPress.org%2$s."
 
 msgid "OFF"
 msgstr "إيقاف"
@@ -2836,8 +2836,8 @@ msgstr "الدفع في بلاد فارس"
 msgid "Unlock Pro Features Today"
 msgstr "افتح الميزات الاحترافية اليوم"
 
-msgid "Upgrade to Pro for just%1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
-msgstr "قم بالترقية إلى Pro مقابل%1$s%2$s%3$s/سنة فقط واحصل على إمكانية الوصول إلى الميزات القوية، بما في ذلك حقول النماذج المتقدمة وعمليات تكامل الدفع والمنطق الشرطي والنماذج متعددة الخطوات وتحميل الملفات والأمان والحماية من البريد العشوائي والدعم ذي الأولوية. ميزات عرض%4$sPro%5$s"
+msgid "Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
+msgstr "قم بالترقية إلى Pro مقابل %1$s%2$s %3$s/سنة فقط واحصل على إمكانية الوصول إلى الميزات القوية، بما في ذلك حقول النماذج المتقدمة وعمليات تكامل الدفع والمنطق الشرطي والنماذج متعددة الخطوات وتحميل الملفات والأمان والحماية من البريد العشوائي والدعم ذي الأولوية. ميزات عرض %4$sPro%5$s"
 
 msgid "Add-on"
 msgstr "إضافة"
@@ -3148,8 +3148,8 @@ msgstr "غير متطابق"
 msgid "No fields found."
 msgstr "لم يتم العثور على حقول."
 
-msgid "You can create up to%1$s%2$son your current plan. Upgrade to Pro for unlimited access."
-msgstr "يمكنك إنشاء ما يصل إلى%1$s%2$sفي خطتك الحالية. الترقية إلى Pro للوصول غير المحدود."
+msgid "You can create up to %1$s %2$s on your current plan. Upgrade to Pro for unlimited access."
+msgstr "يمكنك إنشاء ما يصل إلى %1$s%2$s في خطتك الحالية. الترقية إلى Pro للوصول غير المحدود."
 
 msgid "Inspector"
 msgstr "المفتش"
@@ -3550,11 +3550,11 @@ msgstr "إظهار العلامة المائية في المعاينة"
 msgid "Let the user download a copy of the recording"
 msgstr "السماح للمستخدم بتنزيل نسخة من التسجيل"
 
-msgid "Your hosting accepts uploads up to%sMB."
-msgstr "تقبل استضافتك عمليات تحميل تصل إلى%sميغابايت."
+msgid "Your hosting accepts uploads up to %s MB."
+msgstr "تقبل استضافتك عمليات تحميل تصل إلى %s ميغابايت."
 
-msgid "This is larger than the hosting upload limit (%sMB); uploads will fail."
-msgstr "هذا أكبر من حد تحميل الاستضافة (%sMB)؛ ستفشل عمليات التحميل."
+msgid "This is larger than the hosting upload limit (%s MB); uploads will fail."
+msgstr "هذا أكبر من حد تحميل الاستضافة (%s MB)؛ ستفشل عمليات التحميل."
 
 msgid "Cities Drop-Down"
 msgstr "القائمة المنسدلة للمدن"
@@ -3637,14 +3637,14 @@ msgstr "الإرسالات"
 msgid "Emails sent"
 msgstr "تم إرسال رسائل البريد الإلكتروني"
 
-msgid "%sFailures"
-msgstr " فشل%s"
+msgid "%s Failures"
+msgstr " فشل %s"
 
-msgid "%sError Log"
-msgstr " سجل أخطاء%s"
+msgid "%s Error Log"
+msgstr " سجل أخطاء %s"
 
-msgid "%sDetails"
-msgstr " تفاصيل%s"
+msgid "%s Details"
+msgstr " تفاصيل %s"
 
 msgid "No data available for this period"
 msgstr "لا توجد بيانات متاحة لهذه الفترة"
@@ -3658,17 +3658,17 @@ msgstr "خطأ: الرجاء التأكد من وجود نموذج واحد فق
 msgid "Your activation code has been verified. Enjoy all Pro features of Flux Forms."
 msgstr "تم التحقق من رمز التفعيل الخاص بك. استمتع بجميع الميزات الاحترافية لـ Flux Forms."
 
-msgid "The confirmation code for this message is%s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
-msgstr "رمز التأكيد لهذه الرسالة هو%s. بالنقر على الزر أدناه، ستتمكن من تتبع الرسائل وعرض الردود المستلمة. إذا لزم الأمر، يمكنك أيضًا إرسال رد جديد."
+msgid "The confirmation code for this message is %s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
+msgstr "رمز التأكيد لهذه الرسالة هو %s. بالنقر على الزر أدناه، ستتمكن من تتبع الرسائل وعرض الردود المستلمة. إذا لزم الأمر، يمكنك أيضًا إرسال رد جديد."
 
-msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s."
-msgstr "لاستكشاف الوظائف والإعدادات الكاملة لـ Flux Forms، بما في ذلك تكوينات البريد الإلكتروني وخيارات إنشاء النماذج والميزات الأخرى، ما عليك سوى التعمق في وثائق%1$sالخاصة بنا%2$s."
+msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s ."
+msgstr "لاستكشاف الوظائف والإعدادات الكاملة لـ Flux Forms، بما في ذلك تكوينات البريد الإلكتروني وخيارات إنشاء النماذج والميزات الأخرى، ما عليك سوى التعمق في وثائق %1$s الخاصة بنا %2$s."
 
 msgid "Responses & Confirmation"
 msgstr "الردود والتأكيد"
 
-msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings%1$sLearn how to fix email delivery issues%2$sor%3$scontact Flux Forms support%4$s."
-msgstr "قد تصل رسائل البريد الإلكتروني الاختبارية إلى مجلد الرسائل غير المرغوب فيها. إذا لم يتم تسليم رسائل البريد الإلكتروني، فهذا عادةً ما يرتبط بتكوين خادم الاستضافة أو البريد الإلكتروني. إعدادات الخادم%1$sتعرف على كيفية إصلاح مشكلات تسليم البريد الإلكتروني%2$sأو%3$sاتصل بدعم Flux Forms%4$s."
+msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings %1$sLearn how to fix email delivery issues%2$s or %3$scontact Flux Forms support%4$s."
+msgstr "قد تصل رسائل البريد الإلكتروني الاختبارية إلى مجلد الرسائل غير المرغوب فيها. إذا لم يتم تسليم رسائل البريد الإلكتروني، فهذا عادةً ما يرتبط بتكوين خادم الاستضافة أو البريد الإلكتروني. إعدادات الخادم %1$sتعرف على كيفية إصلاح مشكلات تسليم البريد الإلكتروني%2$s أو %3$sاتصل بدعم Flux Forms%4$s."
 
 msgid "From Address"
 msgstr "من العنوان"
@@ -3697,8 +3697,8 @@ msgstr "عند التمكين، يتم استخدام خوادم وضع الحم
 msgid "After changing the Development Mode (Sandbox) option, save the settings, then deactivate and reactivate Flux Forms plugin from the Plugins page for the changes to take effect."
 msgstr "بعد تغيير خيار وضع التطوير (Sandbox)، احفظ الإعدادات، ثم قم بإلغاء تنشيط المكون الإضافي Flux Forms وإعادة تنشيطه من صفحة المكونات الإضافية حتى تدخل التغييرات حيز التنفيذ."
 
-msgid "I have read and agree to%1$sthe terms and conditions%2$s"
-msgstr "لقد قرأت ووافقت على شروط وأحكام%1$s%2$s"
+msgid "I have read and agree to %1$sthe terms and conditions%2$s"
+msgstr "لقد قرأت ووافقت على شروط وأحكام %1$s%2$s"
 
 msgid "Terms"
 msgstr "الشروط"
@@ -3712,8 +3712,8 @@ msgstr "الحد الأقصى للتاريخ"
 msgid "Minimum date"
 msgstr "الحد الأدنى للتاريخ"
 
-msgid "Valid formats:%s"
-msgstr "التنسيقات الصالحة:%s"
+msgid "Valid formats: %s"
+msgstr "التنسيقات الصالحة: %s"
 
 msgid "Zoom"
 msgstr "تكبير"
@@ -3736,14 +3736,14 @@ msgstr "تتيح لك الوظيفة الإضافية لإشعارات Telegram 
 msgid "Enter a location name"
 msgstr "أدخل اسم الموقع"
 
-msgid "The%1$spages are currently unavailable. It looks like another plugin is causing a conflict with%1$s. To fix this issue,%2$scontact%1$ssupport%3$sfor assistance or try disabling your plugins one at a time to identify the one causing the conflict."
-msgstr "صفحات%1$sغير متاحة حاليًا. يبدو أن مكونًا إضافيًا آخر يتسبب في حدوث تعارض مع%1$s. لإصلاح هذه المشكلة، اتصل بـ%2$sبدعم%1$sبـ%3$sللحصول على المساعدة أو حاول تعطيل المكونات الإضافية الخاصة بك واحدًا تلو الآخر لتحديد المكون الذي يسبب التعارض."
+msgid "The %1$s pages are currently unavailable. It looks like another plugin is causing a conflict with %1$s . To fix this issue, %2$s contact %1$s support %3$s for assistance or try disabling your plugins one at a time to identify the one causing the conflict."
+msgstr "صفحات %1$s غير متاحة حاليًا. يبدو أن مكونًا إضافيًا آخر يتسبب في حدوث تعارض مع %1$s. لإصلاح هذه المشكلة، اتصل بـ%2$s بدعم %1$s بـ%3$s للحصول على المساعدة أو حاول تعطيل المكونات الإضافية الخاصة بك واحدًا تلو الآخر لتحديد المكون الذي يسبب التعارض."
 
 msgid "Send email with submitted form content only"
 msgstr "إرسال بريد إلكتروني يتضمن محتوى النموذج المقدم فقط"
 
-msgid "%scopied!"
-msgstr " تم نسخ%s!"
+msgid "%s copied!"
+msgstr " تم نسخ %s!"
 
 msgid "The website is not responding; please refresh and try again—saving or submitting is not available until it is restored."
 msgstr "موقع الويب لا يستجيب؛ يرجى التحديث والمحاولة مرة أخرى - لن يكون الحفظ أو الإرسال متاحًا إلا بعد استعادته."
@@ -3763,8 +3763,8 @@ msgstr "أدخل بريدك الإلكتروني لإعادة تعيين كلم�
 msgid "If your email is valid, a password reset link has been sent to your email address."
 msgstr "إذا كان بريدك الإلكتروني صالحاً، فقد تم إرسال رابط إعادة تعيين كلمة المرور إلى عنوان بريدك الإلكتروني."
 
-msgid "Enable%s"
-msgstr "تمكين%s"
+msgid "Enable %s"
+msgstr "تمكين %s"
 
 msgid "Auto-Populate"
 msgstr "التعبئة التلقائية"
@@ -3832,29 +3832,29 @@ msgstr "اتصالات API الخارجية"
 msgid "Add API Connection"
 msgstr "إضافة اتصال API"
 
-msgid "Upload the%sfile"
-msgstr "قم بتحميل ملف%s"
+msgid "Upload the %s file"
+msgstr "قم بتحميل ملف %s"
 
 msgid "Dataset"
 msgstr "مجموعة البيانات"
 
-msgid "The%shas been successfully completed"
-msgstr "تم إكمال%sبنجاح"
+msgid "The %s has been successfully completed"
+msgstr "تم إكمال %s بنجاح"
 
-msgid "%snot found"
-msgstr " لم يتم العثور على%s"
+msgid "%s not found"
+msgstr " لم يتم العثور على %s"
 
-msgid "%sLocation"
-msgstr " موقع%s"
+msgid "%s Location"
+msgstr " موقع %s"
 
 msgid "installation"
 msgstr "التثبيت"
 
-msgid "The%shave been deleted."
-msgstr "تم حذف%s."
+msgid "The %s have been deleted."
+msgstr "تم حذف %s."
 
-msgid "The%sfield must be correctly filled out to proceed."
-msgstr "يجب ملء الحقل%sبشكل صحيح للمتابعة."
+msgid "The %s field must be correctly filled out to proceed."
+msgstr "يجب ملء الحقل %s بشكل صحيح للمتابعة."
 
 msgid "Submitted Form"
 msgstr "النموذج المقدم"
@@ -3862,11 +3862,11 @@ msgstr "النموذج المقدم"
 msgid "You can't add reCAPTCHA to payment forms."
 msgstr "لا يمكنك إضافة reCAPTCHA إلى نماذج الدفع."
 
-msgid "Learn more about%sor watch the video tutorial."
-msgstr "اعرف المزيد حول%sأو شاهد الفيديو التعليمي."
+msgid "Learn more about %s or watch the video tutorial."
+msgstr "اعرف المزيد حول %s أو شاهد الفيديو التعليمي."
 
-msgid "Learn more%s"
-msgstr "معرفة المزيد عن%s"
+msgid "Learn more %s"
+msgstr "معرفة المزيد عن %s"
 
 msgid "Google reCAPTCHA"
 msgstr "Google reCAPTCHA"
@@ -3880,26 +3880,26 @@ msgstr "توجد نسخة محفوظة تلقائيًا من النموذج مت
 msgid "SMS notification could not be sent. Check if the SMS plugin is installed and configured properly."
 msgstr "تعذر إرسال إشعار SMS. تحقق من تثبيت المكون الإضافي لـ SMS وتكوينه بشكل صحيح."
 
-msgid "Your request was completed successfully.%1$s%2$s"
-msgstr "تم إكمال طلبك بنجاح.%1$s%2$s"
+msgid "Your request was completed successfully. %1$s %2$s"
+msgstr "تم إكمال طلبك بنجاح.%1$s %2$s"
 
 msgid "PayPal"
 msgstr "باي بال"
 
-msgid "To use%1$sfeatures in your forms, you need to get your%2$skeys."
-msgstr "لاستخدام ميزات%1$sفي النماذج الخاصة بك، يجب الحصول على مفاتيح%2$sالخاصة بك."
+msgid "To use %1$s features in your forms, you need to get your %2$s keys."
+msgstr "لاستخدام ميزات %1$s في النماذج الخاصة بك، يجب الحصول على مفاتيح %2$s الخاصة بك."
 
-msgid "Go to the add-ons page in the Flux Forms plugin, install the%sadd-on, and try again."
-msgstr "انتقل إلى صفحة الوظائف الإضافية في المكون الإضافي Flux Forms، ثم قم بتثبيت الوظيفة الإضافية%s، ثم حاول مرة أخرى."
+msgid "Go to the add-ons page in the Flux Forms plugin, install the %s add-on, and try again."
+msgstr "انتقل إلى صفحة الوظائف الإضافية في المكون الإضافي Flux Forms، ثم قم بتثبيت الوظيفة الإضافية %s، ثم حاول مرة أخرى."
 
-msgid "To create a payment form to collect online payments, install a payment add-on such as the%sAdd-on first."
-msgstr "لإنشاء نموذج دفع لجمع الدفعات عبر الإنترنت، قم بتثبيت وظيفة الدفع الإضافية مثل الوظيفة الإضافية%sأولاً."
+msgid "To create a payment form to collect online payments, install a payment add-on such as the %s Add-on first."
+msgstr "لإنشاء نموذج دفع لجمع الدفعات عبر الإنترنت، قم بتثبيت وظيفة الدفع الإضافية مثل الوظيفة الإضافية %s أولاً."
 
 msgid "Thank"
 msgstr "شكرًا"
 
-msgid "The%splugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the%ssettings."
-msgstr "قد يتداخل المكون الإضافي%sمع وظيفة نموذج Flux Forms. إذا واجهت أي مشاكل مع النماذج، قم بتعطيل التخزين المؤقت للمكون الإضافي Flux Forms في إعدادات%s."
+msgid "The %s plugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the %s settings."
+msgstr "قد يتداخل المكون الإضافي %s مع وظيفة نموذج Flux Forms. إذا واجهت أي مشاكل مع النماذج، قم بتعطيل التخزين المؤقت للمكون الإضافي Flux Forms في إعدادات %s."
 
 msgid "Remind me later"
 msgstr "ذكّرني لاحقًا"
@@ -3907,41 +3907,41 @@ msgstr "ذكّرني لاحقًا"
 msgid "Got it, don't show it again"
 msgstr "فهمت، لا تعرضه مرة أخرى"
 
-msgid "The value of the%1$sfield does not match the pattern and must be at least%2$scharacters."
-msgstr "قيمة الحقل%1$sلا تتطابق مع النمط ويجب أن تتكون من أحرف%2$sعلى الأقل."
+msgid "The value of the %1$s field does not match the pattern and must be at least %2$s characters."
+msgstr "قيمة الحقل %1$s لا تتطابق مع النمط ويجب أن تتكون من أحرف %2$s على الأقل."
 
-msgid "The value of the%1$sfield does not match the pattern and must be at most%2$scharacters."
-msgstr "قيمة الحقل%1$sلا تتطابق مع النمط ويجب أن تتكون من أحرف%2$sعلى الأكثر."
+msgid "The value of the %1$s field does not match the pattern and must be at most %2$s characters."
+msgstr "قيمة الحقل %1$s لا تتطابق مع النمط ويجب أن تتكون من أحرف %2$s على الأكثر."
 
-msgid "Please enter valid value for the%sfield."
-msgstr "الرجاء إدخال قيمة صالحة للحقل%s."
+msgid "Please enter valid value for the %s field."
+msgstr "الرجاء إدخال قيمة صالحة للحقل %s."
 
-msgid "%slist"
-msgstr " قائمة%s"
+msgid "%s list"
+msgstr " قائمة %s"
 
-msgid "The uploaded file exceeds the allowable limit of%sMB."
-msgstr "الملف الذي تم تحميله يتجاوز الحد المسموح به وهو%sميغابايت."
+msgid "The uploaded file exceeds the allowable limit of %s MB."
+msgstr "الملف الذي تم تحميله يتجاوز الحد المسموح به وهو %s ميغابايت."
 
-msgid "The uploaded file is below the required minimum size of%sMB."
-msgstr "الملف الذي تم تحميله أقل من الحد الأدنى المطلوب للحجم وهو%sميغابايت."
+msgid "The uploaded file is below the required minimum size of %s MB."
+msgstr "الملف الذي تم تحميله أقل من الحد الأدنى المطلوب للحجم وهو %s ميغابايت."
 
-msgid "Review the entered values in the%stab. This message appeared because an error was detected."
-msgstr "راجع القيم المدخلة في علامة التبويب%s. ظهرت هذه الرسالة بسبب اكتشاف خطأ."
+msgid "Review the entered values in the %s tab. This message appeared because an error was detected."
+msgstr "راجع القيم المدخلة في علامة التبويب %s. ظهرت هذه الرسالة بسبب اكتشاف خطأ."
 
 msgid "Are you sure you want to duplicate the \"%s\" ?"
 msgstr "هل أنت متأكد أنك تريد تكرار \"%s\" ؟"
 
-msgid "We are sorry, the booking time for the%soption has expired. Please choose from the other available options."
-msgstr "عذرًا، لقد انتهت مدة حجز خيار%s. الرجاء الاختيار من بين الخيارات الأخرى المتوفرة."
+msgid "We are sorry, the booking time for the %s option has expired. Please choose from the other available options."
+msgstr "عذرًا، لقد انتهت مدة حجز خيار %s. الرجاء الاختيار من بين الخيارات الأخرى المتوفرة."
 
-msgid "We are sorry, the%soption is currently at full capacity. Please choose from the other available options."
-msgstr "عذرًا، خيار%sيعمل حاليًا بكامل طاقته. الرجاء الاختيار من بين الخيارات الأخرى المتوفرة."
+msgid "We are sorry, the %s option is currently at full capacity. Please choose from the other available options."
+msgstr "عذرًا، خيار %s يعمل حاليًا بكامل طاقته. الرجاء الاختيار من بين الخيارات الأخرى المتوفرة."
 
-msgid "%sPayment Add-on"
-msgstr " الوظيفة الإضافية للدفع%s"
+msgid "%s Payment Add-on"
+msgstr " الوظيفة الإضافية للدفع %s"
 
-msgid "The%sadd-on for Flux Forms enables you to integrate your WordPress site with%sfor payment processing, donations, and online orders."
-msgstr "تمكنك الوظيفة الإضافية%sلـ Flux Forms من دمج موقع WordPress الخاص بك مع%sلمعالجة الدفعات والتبرعات والطلبات عبر الإنترنت."
+msgid "The %s add-on for Flux Forms enables you to integrate your WordPress site with %s for payment processing, donations, and online orders."
+msgstr "تمكنك الوظيفة الإضافية %s لـ Flux Forms من دمج موقع WordPress الخاص بك مع %s لمعالجة الدفعات والتبرعات والطلبات عبر الإنترنت."
 
 msgid "Activation Code"
 msgstr "رمز التفعيل"
@@ -3967,8 +3967,8 @@ msgstr "كل ميزة، بلا حدود، ودعم متضمن."
 msgid "Search Results"
 msgstr "نتائج البحث"
 
-msgid "Found%s%sfor: \"%s\""
-msgstr "تم العثور على%s%sلـ: \"%s\""
+msgid "Found %s %s for: \"%s\""
+msgstr "تم العثور على %s%s لـ: \"%s\""
 
 msgid "results"
 msgstr "النتائج"
@@ -3976,8 +3976,8 @@ msgstr "النتائج"
 msgid "No results found for:"
 msgstr "لم يتم العثور على نتائج لـ:"
 
-msgid "Found%1$s%2$sfor"
-msgstr "تم العثور على%1$s%2$sلـ"
+msgid "Found %1$s %2$s for"
+msgstr "تم العثور على %1$s%2$s لـ"
 
 msgid "Session Duration"
 msgstr "مدة الجلسة"
@@ -3985,23 +3985,23 @@ msgstr "مدة الجلسة"
 msgid "Set how long form security tokens remain valid. Longer durations provide better user experience but may reduce security."
 msgstr "قم بتعيين المدة التي تظل فيها رموز أمان النموذج صالحة. توفر الفترات الأطول تجربة أفضل للمستخدم ولكنها قد تقلل من الأمان."
 
-msgid "%sDay"
-msgstr " يوم%s"
+msgid "%s Day"
+msgstr " يوم %s"
 
-msgid "%sDays"
-msgstr "%sيوم"
+msgid "%s Days"
+msgstr "%s يوم"
 
 msgid "Select Duration"
 msgstr "حدد المدة"
 
-msgid "Choose the style for the%s."
-msgstr "اختر نمط%s."
+msgid "Choose the style for the %s."
+msgstr "اختر نمط %s."
 
-msgid "%1$s+%2$s"
+msgid "%1$s + %2$s"
 msgstr "%1$s+%2$s"
 
-msgid "%1$s%2$s&%3$s"
-msgstr "%1$s%2$s&%3$s"
+msgid "%1$s %2$s & %3$s"
+msgstr "%1$s %2$s&%3$s"
 
 msgid "Letters"
 msgstr "رسائل"
@@ -4117,8 +4117,8 @@ msgstr "تم حفظ كل شيء"
 msgid "1 unsaved change"
 msgstr "تغيير واحد غير محفوظ"
 
-msgid "%sunsaved changes"
-msgstr " تغييرات%sغير المحفوظة"
+msgid "%s unsaved changes"
+msgstr " تغييرات %s غير المحفوظة"
 
 msgid "Buttons, icons, field labels"
 msgstr "الأزرار، والأيقونات، وتسميات الحقول"
@@ -4519,8 +4519,8 @@ msgstr "اقرأ المزيد حول التوافق مع ذاكرة التخزي
 msgid "Dismiss All"
 msgstr "تجاهل الكل"
 
-msgid "Dismiss%s"
-msgstr "تجاهل%s"
+msgid "Dismiss %s"
+msgstr "تجاهل %s"
 
 msgid "Security Plugin Detected"
 msgstr "تم اكتشاف مكون إضافي للأمان"
@@ -4579,14 +4579,14 @@ msgstr "تصل رسائل البريد الإلكتروني الخاصة بك، 
 msgid "Delivery itself works - the test message reached us. What is missing is trust: sending through an SMTP service and adding SPF and DKIM records for your domain is what moves your emails from the spam folder to the inbox."
 msgstr "التسليم نفسه يعمل - وصلت رسالة الاختبار إلينا. ما ينقصنا هو الثقة: الإرسال عبر خدمة SMTP وإضافة سجلات SPF وDKIM للمجال الخاص بك هو ما ينقل رسائل البريد الإلكتروني الخاصة بك من مجلد البريد العشوائي إلى البريد الوارد."
 
-msgid "The test email was delivered with a deliverability score of%1$sout of 100. Under%2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
-msgstr "تم تسليم البريد الإلكتروني التجريبي بدرجة تسليم تبلغ%1$sمن أصل 100. ضمن%2$s، تقوم معظم صناديق البريد بحفظ الرسائل في مجلد البريد العشوائي، لذلك قد لا يتمكن الأشخاص الذين يملؤون النماذج الخاصة بك من رؤيتها أبدًا."
+msgid "The test email was delivered with a deliverability score of %1$s out of 100. Under %2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
+msgstr "تم تسليم البريد الإلكتروني التجريبي بدرجة تسليم تبلغ %1$s من أصل 100. ضمن %2$s، تقوم معظم صناديق البريد بحفظ الرسائل في مجلد البريد العشوائي، لذلك قد لا يتمكن الأشخاص الذين يملؤون النماذج الخاصة بك من رؤيتها أبدًا."
 
 msgid "Step-by-step SMTP setup guide"
 msgstr "دليل إعداد SMTP خطوة بخطوة"
 
-msgid "Your email server is working. A detailed HTML report has been sent to%s."
-msgstr "خادم البريد الإلكتروني الخاص بك يعمل. تم إرسال تقرير HTML مفصل إلى%s."
+msgid "Your email server is working. A detailed HTML report has been sent to %s."
+msgstr "خادم البريد الإلكتروني الخاص بك يعمل. تم إرسال تقرير HTML مفصل إلى %s."
 
 msgid "your admin email address"
 msgstr "عنوان البريد الإلكتروني للمشرف"
@@ -4594,14 +4594,14 @@ msgstr "عنوان البريد الإلكتروني للمشرف"
 msgid "Spam Score Report on the Way!"
 msgstr "تقرير نتيجة البريد العشوائي في الطريق!"
 
-msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to%swithin the next few minutes."
-msgstr "سيتم إرسال تقرير كامل عن سلامة البريد الإلكتروني - بما في ذلك نقاط البريد العشوائي وتفاصيل إمكانية التسليم والتوصيات - إلى%sخلال الدقائق القليلة القادمة."
+msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to %s within the next few minutes."
+msgstr "سيتم إرسال تقرير كامل عن سلامة البريد الإلكتروني - بما في ذلك نقاط البريد العشوائي وتفاصيل إمكانية التسليم والتوصيات - إلى %s خلال الدقائق القليلة القادمة."
 
 msgid "Email notifications may not be delivered"
 msgstr "قد لا يتم تسليم إعلامات البريد الإلكتروني"
 
-msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is%s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
-msgstr "تم تمكين ميزة الإعلام عبر البريد الإلكتروني لهذا النموذج، ولكن لم يتم التحقق من تسليم البريد الإلكتروني وآخر نتيجة للبريد العشوائي هي%s/100. تم حفظ النموذج، ولكن قد لا تصلك رسائل البريد الإلكتروني الخاصة بإشعارات المشرف حتى يتم إصلاح تسليم SMTP/البريد الإلكتروني."
+msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is %s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
+msgstr "تم تمكين ميزة الإعلام عبر البريد الإلكتروني لهذا النموذج، ولكن لم يتم التحقق من تسليم البريد الإلكتروني وآخر نتيجة للبريد العشوائي هي %s/100. تم حفظ النموذج، ولكن قد لا تصلك رسائل البريد الإلكتروني الخاصة بإشعارات المشرف حتى يتم إصلاح تسليم SMTP/البريد الإلكتروني."
 
 msgid "Notification emails are turned off"
 msgstr "تم إيقاف رسائل الإعلام الإلكترونية"
@@ -4654,11 +4654,11 @@ msgstr "جاري إعداد تقرير HTML مفصل يتضمن تشخيصات �
 msgid "Needs attention"
 msgstr "يحتاج إلى الاهتمام"
 
-msgid "%sof 5 steps done"
-msgstr " تم تنفيذ%sمن 5 خطوات"
+msgid "%s of 5 steps done"
+msgstr " تم تنفيذ %s من 5 خطوات"
 
-msgid "Step%sof 5"
-msgstr "الخطوة%sمن 5"
+msgid "Step %s of 5"
+msgstr "الخطوة %s من 5"
 
 msgid "/ 100"
 msgstr "/ 100"
@@ -4774,8 +4774,8 @@ msgstr "الأسباب المحتملة"
 msgid "What to check next"
 msgstr "ما يجب التحقق منه بعد ذلك"
 
-msgid "Score:%s"
-msgstr "النتيجة:%s"
+msgid "Score: %s"
+msgstr "النتيجة: %s"
 
 msgid "Upgrade"
 msgstr "ترقية"
@@ -4801,8 +4801,8 @@ msgstr "بدء اختبار تسليم البريد الإلكتروني..."
 msgid "WordPress accepted and sent the message. Waiting for it to arrive..."
 msgstr "قبل ووردبريس الرسالة وأرسلها. في انتظار وصوله..."
 
-msgid "Connection error. Please refresh the page and try again. (Code:%s)"
-msgstr "خطأ في الاتصال. يرجى تحديث الصفحة والمحاولة مرة أخرى. (الرمز:%s)"
+msgid "Connection error. Please refresh the page and try again. (Code: %s)"
+msgstr "خطأ في الاتصال. يرجى تحديث الصفحة والمحاولة مرة أخرى. (الرمز: %s)"
 
 msgid "Email Address"
 msgstr "عنوان البريد الإلكتروني"
@@ -5140,11 +5140,11 @@ msgstr "الوظيفة الإضافية مثبتة مسبقاً."
 msgid "File access status not checked yet. Please wait."
 msgstr "لم يتم التحقق من حالة الوصول إلى الملف بعد. الرجاء الانتظار."
 
-msgid "Error: server (%s) responded with an invalid request. responded code:%s"
-msgstr "خطأ: استجاب الخادم (%s) بطلب غير صالح. رمز الاستجابة:%s"
+msgid "Error: server (%s) responded with an invalid request. responded code: %s"
+msgstr "خطأ: استجاب الخادم (%s) بطلب غير صالح. رمز الاستجابة: %s"
 
-msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the%sserver"
-msgstr "لا يمكن تثبيت الوظائف الإضافية لـ Flux Forms لأن المكون الإضافي غير قادر على الاتصال بملقم%s"
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the %s server"
+msgstr "لا يمكن تثبيت الوظائف الإضافية لـ Flux Forms لأن المكون الإضافي غير قادر على الاتصال بملقم %s"
 
 msgid "Your Easy Form Builder Pro subscription has expired, so the Pro add-ons could not be downloaded. The plugin keeps working without them. Renew your subscription to restore all Pro features:"
 msgstr "لقد انتهت صلاحية اشتراكك في Easy Form Builder Pro، لذا تعذر تنزيل الوظائف الإضافية Pro. يستمر البرنامج المساعد في العمل بدونها. قم بتجديد اشتراكك لاستعادة كافة ميزات Pro:"
@@ -5164,8 +5164,8 @@ msgstr "لا يمكن تثبيت الوظائف الإضافية لـ Flux Forms
 msgid "Cannot install add-ons of Flux Forms because the plugin is not able to unzip files"
 msgstr "لا يمكن تثبيت الوظائف الإضافية لـ Flux Forms لأن المكون الإضافي غير قادر على فك ضغط الملفات"
 
-msgid "To fix this, sign in to your%s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
-msgstr "لإصلاح هذه المشكلة، قم بتسجيل الدخول إلى%sالخاص بك، وقم بتنزيل المكون الإضافي Add-ons Handler من قسم التنزيلات، ثم قم بتثبيته وتنشيطه. بعد ذلك، قم بتنشيط الوظائف الإضافية التي تحتاجها من المكون الإضافي Add-ons Handler."
+msgid "To fix this, sign in to your %s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
+msgstr "لإصلاح هذه المشكلة، قم بتسجيل الدخول إلى %s الخاص بك، وقم بتنزيل المكون الإضافي Add-ons Handler من قسم التنزيلات، ثم قم بتثبيته وتنشيطه. بعد ذلك، قم بتنشيط الوظائف الإضافية التي تحتاجها من المكون الإضافي Add-ons Handler."
 
 msgid "WhiteStudio dashboard"
 msgstr "لوحة تحكم WhiteStudio"
@@ -5185,17 +5185,17 @@ msgstr "لم يوفر خادم الوظيفة الإضافية عنوان URL ل
 msgid "The add-on download URL is not an approved Flux Forms source."
 msgstr "عنوان URL لتنزيل الوظيفة الإضافية ليس مصدرًا معتمدًا لـ Flux Forms."
 
-msgid "Your server could not reach%1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at%2$sand download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
-msgstr "تعذر على الخادم الخاص بك الوصول إلى%1$s، لذا تعذر تنزيل الوظيفة الإضافية. يكون هذا دائمًا بمثابة جدار حماية على الاستضافة الخاصة بك يمنع الطلب الصادر، ولا يمثل مشكلة في الترخيص الخاص بك. لتثبيت الإضافات دون أي تنزيل على الإطلاق، قم بتسجيل الدخول على%2$sوقم بتنزيل المكون الإضافي Flux Forms Add-ons Handler، ثم قم بتثبيته مثل أي مكون إضافي آخر. فهو يحتوي على كل الوظائف الإضافية التي تغطي تراخيصك."
+msgid "Your server could not reach %1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at %2$s and download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
+msgstr "تعذر على الخادم الخاص بك الوصول إلى %1$s، لذا تعذر تنزيل الوظيفة الإضافية. يكون هذا دائمًا بمثابة جدار حماية على الاستضافة الخاصة بك يمنع الطلب الصادر، ولا يمثل مشكلة في الترخيص الخاص بك. لتثبيت الإضافات دون أي تنزيل على الإطلاق، قم بتسجيل الدخول على %2$s وقم بتنزيل المكون الإضافي Flux Forms Add-ons Handler، ثم قم بتثبيته مثل أي مكون إضافي آخر. فهو يحتوي على كل الوظائف الإضافية التي تغطي تراخيصك."
 
-msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from%sare being blocked."
-msgstr "إذا كنت تفضل إصلاح الاتصال، اسأل موفر الاستضافة عن سبب حظر الطلبات الصادرة من%s."
+msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from %s are being blocked."
+msgstr "إذا كنت تفضل إصلاح الاتصال، اسأل موفر الاستضافة عن سبب حظر الطلبات الصادرة من %s."
 
 msgid "Flux Forms: add-on downloads are being blocked"
 msgstr "نماذج التدفق: تم حظر تنزيلات الوظائف الإضافية"
 
-msgid "Add-on affected:%s"
-msgstr "الوظيفة الإضافية المتأثرة:%s"
+msgid "Add-on affected: %s"
+msgstr "الوظيفة الإضافية المتأثرة: %s"
 
 msgid "No response was recorded for this add-on."
 msgstr "لم يتم تسجيل أي استجابة لهذه الوظيفة الإضافية."
@@ -5284,23 +5284,23 @@ msgstr "إذا واجهت أية مشكلات، فيرجى استبعاد الص
 msgid "Sent by"
 msgstr "تم الإرسال بواسطة"
 
-msgid "Action needed: Flux Forms Pro is paused on%s"
-msgstr "الإجراء المطلوب: تم إيقاف Flux Forms Pro مؤقتًا على%s"
+msgid "Action needed: Flux Forms Pro is paused on %s"
+msgstr "الإجراء المطلوب: تم إيقاف Flux Forms Pro مؤقتًا على %s"
 
-msgid "Flux Forms could not confirm your Pro licence for%1$sdays in a row, so the Pro features on%2$sare paused for now."
-msgstr "تعذر على Flux Forms تأكيد ترخيص Pro الخاص بك لمدة%1$sمن الأيام المتتالية، لذا تم إيقاف ميزات Pro في%2$sمؤقتًا في الوقت الحالي."
+msgid "Flux Forms could not confirm your Pro licence for %1$s days in a row, so the Pro features on %2$s are paused for now."
+msgstr "تعذر على Flux Forms تأكيد ترخيص Pro الخاص بك لمدة %1$s من الأيام المتتالية، لذا تم إيقاف ميزات Pro في %2$s مؤقتًا في الوقت الحالي."
 
 msgid "Your forms, entries and settings are untouched, every free feature keeps working, and your activation code is still stored — nothing was deleted."
 msgstr "لم يتم تغيير النماذج والإدخالات والإعدادات الخاصة بك، وستستمر كل الميزات المجانية في العمل، ولا يزال رمز التنشيط الخاص بك مخزّنًا - ولم يتم حذف أي شيء."
 
-msgid "Open%1$sYT Form → Settings%2$sand press%1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
-msgstr "افتح نموذج%1$sYT → الإعدادات%2$sواضغط على%1$sحفظ%2$s. يقوم ذلك بالتحقق من الترخيص مرة أخرى على الفور؛ إذا عاد الاتصال، فسيتم تشغيل Pro خلال دقيقة."
+msgid "Open %1$sYT Form → Settings%2$s and press %1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
+msgstr "افتح نموذج %1$sYT → الإعدادات%2$s واضغط على %1$sحفظ%2$s. يقوم ذلك بالتحقق من الترخيص مرة أخرى على الفور؛ إذا عاد الاتصال، فسيتم تشغيل Pro خلال دقيقة."
 
-msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to%s— a firewall, proxy or regional block is the usual cause — then repeat step 1."
+msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to %s — a firewall, proxy or regional block is the usual cause — then repeat step 1."
 msgstr "هل ما زالت متوقفة مؤقتًا؟ اطلب من موفر الاستضافة السماح باتصالات HTTPS الصادرة بـ%s— جدار الحماية أو الوكيل أو الحظر الإقليمي هو السبب المعتاد — ثم كرر الخطوة 1."
 
-msgid "If your subscription has expired, or you moved this website to a new domain,%1$srenew or re-activate your licence%2$sand paste the new code into Settings."
-msgstr "إذا انتهت صلاحية اشتراكك، أو قمت بنقل موقع الويب هذا إلى مجال جديد،%1$sقم بتجديد ترخيصك%2$sأو إعادة تنشيطه ولصق الرمز الجديد في الإعدادات."
+msgid "If your subscription has expired, or you moved this website to a new domain, %1$srenew or re-activate your licence%2$s and paste the new code into Settings."
+msgstr "إذا انتهت صلاحية اشتراكك، أو قمت بنقل موقع الويب هذا إلى مجال جديد، %1$sقم بتجديد ترخيصك%2$s أو إعادة تنشيطه ولصق الرمز الجديد في الإعدادات."
 
 msgid "First failed check"
 msgstr "فشل الفحص الأول"
@@ -5320,8 +5320,8 @@ msgstr "كيفية إعادة النسخة الاحترافية"
 msgid "Check my licence now"
 msgstr "التحقق من الترخيص الخاص بي الآن"
 
-msgid "Still stuck? Send the details above to%1$sour support team%2$sand we will take it from there."
-msgstr "هل ما زلت عالقًا؟ أرسل التفاصيل أعلاه إلى%1$sفريق الدعم لدينا%2$sوسنتولى الأمر من هناك."
+msgid "Still stuck? Send the details above to %1$sour support team%2$s and we will take it from there."
+msgstr "هل ما زلت عالقًا؟ أرسل التفاصيل أعلاه إلى %1$sفريق الدعم لدينا%2$s وسنتولى الأمر من هناك."
 
 msgid "The licence server answered with an error and could not confirm your licence."
 msgstr "أجاب خادم الترخيص بخطأ ولم يتمكن من تأكيد الترخيص الخاص بك."
@@ -5338,8 +5338,8 @@ msgstr "تعذر إكمال فحص الترخيص."
 msgid "Your activation code has expired!"
 msgstr "لقد انتهت صلاحية رمز التفعيل الخاص بك!"
 
-msgid "Your Easy Form Builder Pro subscription has expired. To continue using the%sadd-on and all Pro features, please renew your subscription."
-msgstr "لقد انتهت صلاحية اشتراكك في Easy Form Builder Pro. لمواصلة استخدام الوظيفة الإضافية%sوجميع ميزات Pro، يرجى تجديد اشتراكك."
+msgid "Your Easy Form Builder Pro subscription has expired. To continue using the %s add-on and all Pro features, please renew your subscription."
+msgstr "لقد انتهت صلاحية اشتراكك في Easy Form Builder Pro. لمواصلة استخدام الوظيفة الإضافية %s وجميع ميزات Pro، يرجى تجديد اشتراكك."
 
 msgid "Renew Subscription"
 msgstr "تجديد الاشتراك"
@@ -5347,11 +5347,11 @@ msgstr "تجديد الاشتراك"
 msgid "Pro Version Required"
 msgstr "الإصدار الاحترافي مطلوب"
 
-msgid "The%sadd-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
-msgstr "الوظيفة الإضافية%sهي ميزة احترافية. الرجاء الترقية إلى Flux Forms Pro للوصول إلى هذه الوظيفة."
+msgid "The %s add-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
+msgstr "الوظيفة الإضافية %s هي ميزة احترافية. الرجاء الترقية إلى Flux Forms Pro للوصول إلى هذه الوظيفة."
 
-msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running,%1$sRenew your subscription now.%2$s"
-msgstr "لقد انتهت صلاحية اشتراكك في Easy Form Builder Pro. لمواصلة الاستمتاع بجميع ميزات Pro والحفاظ على تشغيل النماذج الخاصة بك،%1$sقم بتجديد اشتراكك الآن.%2$s"
+msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running, %1$sRenew your subscription now.%2$s"
+msgstr "لقد انتهت صلاحية اشتراكك في Easy Form Builder Pro. لمواصلة الاستمتاع بجميع ميزات Pro والحفاظ على تشغيل النماذج الخاصة بك، %1$sقم بتجديد اشتراكك الآن.%2$s"
 
 msgid "The payment could not be verified yet."
 msgstr "تعذر التحقق من الدفع بعد."
@@ -5416,8 +5416,8 @@ msgstr "الاشتراك"
 msgid "One-time"
 msgstr "مرة واحدة"
 
-msgid "The latest%dpayments are shown."
-msgstr "يتم عرض آخر دفعات%d."
+msgid "The latest %d payments are shown."
+msgstr "يتم عرض آخر دفعات %d."
 
 msgid "Test provider (development only)"
 msgstr "موفر الاختبار (التطوير فقط)"
@@ -5503,11 +5503,11 @@ msgstr "تستقبل نماذج الدفع دفعات البطاقة من خلا
 msgid "Saved — leave empty to keep"
 msgstr "تم الحفظ — اتركه فارغًا للاحتفاظ به"
 
-msgid "%ssettings"
-msgstr " إعدادات%s"
+msgid "%s settings"
+msgstr " إعدادات %s"
 
-msgid "Flux Forms replaces%s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
-msgstr "تحل Flux Forms محل%s، الذي تم إلغاء تنشيطه. تظل النماذج والإدخالات والإعدادات الخاصة بك في مكانها. يمكنك حذف المكوّن الإضافي القديم."
+msgid "Flux Forms replaces %s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
+msgstr "تحل Flux Forms محل %s، الذي تم إلغاء تنشيطه. تظل النماذج والإدخالات والإعدادات الخاصة بك في مكانها. يمكنك حذف المكوّن الإضافي القديم."
 
 msgid "Updating amount..."
 msgstr "جاري تحديث المبلغ..."
@@ -5620,8 +5620,8 @@ msgstr "تصدير ملف CSV"
 msgid "Download the responses in the selected range and form as a spreadsheet file."
 msgstr "قم بتنزيل الردود في النطاق والنموذج المحدد كملف جدول بيانات."
 
-msgid "%sunread in total"
-msgstr "%sغير مقروء إجمالاً"
+msgid "%s unread in total"
+msgstr "%s غير مقروء إجمالاً"
 
 msgid "Form views"
 msgstr "طرق عرض النموذج"
@@ -5629,8 +5629,8 @@ msgstr "طرق عرض النموذج"
 msgid "No view data"
 msgstr "لا توجد بيانات عرض"
 
-msgid "Recorded since%s"
-msgstr "مسجل منذ%s"
+msgid "Recorded since %s"
+msgstr "مسجل منذ %s"
 
 msgid "View data is kept for about 8 days"
 msgstr "يتم الاحتفاظ ببيانات العرض لمدة 8 أيام تقريبًا"
@@ -5641,23 +5641,23 @@ msgstr "معدل التحويل"
 msgid "Responses per form view"
 msgstr "الإجابات لكل عرض نموذج"
 
-msgid "Responses per view since%s"
-msgstr "الإجابات لكل عرض منذ%s"
+msgid "Responses per view since %s"
+msgstr "الإجابات لكل عرض منذ %s"
 
 msgid "Payments received"
 msgstr "تم استلام الدفعات"
 
-msgid "%spaid"
-msgstr " تم دفع%s"
+msgid "%s paid"
+msgstr " تم دفع %s"
 
-msgid "Also%s"
-msgstr "أيضًا%s"
+msgid "Also %s"
+msgstr "أيضًا %s"
 
 msgid "No payments in this range"
 msgstr "لا توجد دفعات في هذا النطاق"
 
-msgid "vs previous%ddays"
-msgstr "مقارنة بأيام%dالسابقة"
+msgid "vs previous %d days"
+msgstr "مقارنة بأيام %d السابقة"
 
 msgid "up"
 msgstr "أعلى"
@@ -5710,8 +5710,8 @@ msgstr "فتح اللوحة"
 msgid "Failed or canceled"
 msgstr "فشل أو تم إلغاؤه"
 
-msgid "%spayments"
-msgstr " دفعات%s"
+msgid "%s payments"
+msgstr " دفعات %s"
 
 msgid "No responses in this range yet."
 msgstr "لا توجد ردود في هذا النطاق حتى الآن."
@@ -5737,8 +5737,8 @@ msgstr "إظهار كمخطط"
 msgid "Deleted form"
 msgstr "نموذج محذوف"
 
-msgid "%sother forms"
-msgstr "%sنماذج أخرى"
+msgid "%s other forms"
+msgstr "%s نماذج أخرى"
 
 msgid "Responses, form views, conversion and payments at a glance."
 msgstr "نظرة سريعة على الاستجابات وطرق عرض النماذج والتحويلات والمدفوعات."
@@ -5776,17 +5776,8 @@ msgstr "يتعامل Flux Donate مع عمليات الدفع (المقدمون�
 msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms uses its own Stripe settings."
 msgstr "Flux Donate نشط ولكنه لم يتولى الدفعات (تم إيقاف تشغيل عامل التصفية flxb_own_ Payments؟). يستخدم Flux Forms إعدادات Stripe الخاصة به."
 
-msgid "Flux Donate is not active; Flux Forms takes payments itself with%s."
-msgstr "Flux Donate غير نشط؛ تتلقى Flux Forms الدفعات بنفسها باستخدام%s."
-
-msgid "Flux Donate is not active and the Stripe keys are missing:%dpayment form shows \"Online payment is unavailable\"."
-msgid_plural "Flux Donate is not active and the Stripe keys are missing:%dpayment forms show \"Online payment is unavailable\"."
-msgstr[0] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[1] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: نموذج الدفع%dيعرض \"الدفع عبر الإنترنت غير متاح\"."
-msgstr[2] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[3] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[4] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
-msgstr[5] "Flux Donate غير نشط والمفاتيح الشريطية مفقودة: تظهر نماذج الدفع%d\"الدفع عبر الإنترنت غير متاح\"."
+msgid "Flux Donate is not active; Flux Forms takes payments itself with %s."
+msgstr "Flux Donate غير نشط؛ تتلقى Flux Forms الدفعات بنفسها باستخدام %s."
 
 msgid "Flux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected."
 msgstr "Flux Donate غير نشط ولم يتم تعيين أي مفاتيح شريطية. لا يوجد نموذج دفع، لذلك لن يتأثر أي شيء."
@@ -5800,20 +5791,11 @@ msgstr "غير نشط. عمل النماذج؛ لا يتم تعقب التبرع
 msgid "Flux Certificates (automations)"
 msgstr "شهادات التدفق (الأتمتة)"
 
-msgid "Version%sis active; certificate automations can run."
-msgstr "الإصدار%sنشط؛ يمكن تشغيل عمليات أتمتة الشهادات."
+msgid "Version %s is active; certificate automations can run."
+msgstr "الإصدار %s نشط؛ يمكن تشغيل عمليات أتمتة الشهادات."
 
-msgid "Version%1$sis active; certificate automations need%2$sor later."
-msgstr "الإصدار%1$sنشط؛ تحتاج عمليات أتمتة الشهادات إلى%2$sأو إصدار أحدث."
-
-msgid "Not active, but%dactive automation creates or sends certificates; it will fail."
-msgid_plural "Not active, but%dactive automations create or send certificates; they will fail."
-msgstr[0] "غير نشط، ولكن عمليات التشغيل التلقائي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
-msgstr[1] "غير نشط، ولكن التشغيل الآلي النشط لـ%dيقوم بإنشاء الشهادات أو إرسالها؛ سوف تفشل."
-msgstr[2] "غير نشط، ولكن عمليات التشغيل التلقائي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
-msgstr[3] "غير نشط، ولكن عمليات التشغيل التلقائي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
-msgstr[4] "غير نشط، ولكن عمليات التشغيل التلقائي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
-msgstr[5] "غير نشط، ولكن عمليات التشغيل التلقائي النشطة لـ%dتقوم بإنشاء الشهادات أو إرسالها؛ سوف يفشلون."
+msgid "Version %1$s is active; certificate automations need %2$s or later."
+msgstr "الإصدار %1$s نشط؛ تحتاج عمليات أتمتة الشهادات إلى %2$s أو إصدار أحدث."
 
 msgid "Not active. Needed only for certificate automations."
 msgstr "غير نشط. مطلوب فقط لأتمتة الشهادات."
@@ -5824,47 +5806,20 @@ msgstr "الأتمتة"
 msgid "No automation is on. After a form or payment nothing runs automatically (certificate, e-mail, webhook)."
 msgstr "لا يوجد تشغيل تلقائي. بعد النموذج أو الدفع، لا يتم تشغيل أي شيء تلقائيًا (الشهادة، البريد الإلكتروني، خطاف الويب)."
 
-msgid "%dautomation is on."
-msgid_plural "%dautomations are on."
-msgstr[0] "تم تشغيل عمليات التشغيل التلقائي لـ%d."
-msgstr[1] "تم تشغيل أتمتة%d."
-msgstr[2] "تم تشغيل عمليات التشغيل التلقائي لـ%d."
-msgstr[3] "تم تشغيل عمليات التشغيل التلقائي لـ%d."
-msgstr[4] "تم تشغيل عمليات التشغيل التلقائي لـ%d."
-msgstr[5] "تم تشغيل عمليات التشغيل التلقائي لـ%d."
-
-msgid "%drun failed in the last 7 days; see the run log."
-msgid_plural "%druns failed in the last 7 days; see the run log."
-msgstr[0] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[1] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[2] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[3] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[4] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-msgstr[5] "فشل تشغيل%dفي آخر 7 أيام؛ راجع سجل التشغيل."
-
 msgid "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
-msgstr "تم ضبط المفاتيح; يستخدم نموذج%dreCAPTCHA. تستخدم نماذج%dreCAPTCHA."
-
-msgid "%dform has reCAPTCHA on but the site key or secret key is missing; the form is not shown."
-msgid_plural "%dforms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
-msgstr[0] " تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
-msgstr[1] " يحتوي نموذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ النموذج غير معروض."
-msgstr[2] " تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
-msgstr[3] " تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
-msgstr[4] " تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
-msgstr[5] " تحتوي نماذج%dعلى ميزة reCAPTCHA قيد التشغيل ولكن مفتاح الموقع أو المفتاح السري مفقود؛ لم يتم عرضها."
+msgstr "تم ضبط المفاتيح; يستخدم نموذج %dreCAPTCHA. تستخدم نماذج %dreCAPTCHA."
 
 msgid "Uploads folder"
 msgstr "مجلد التحميلات"
 
-msgid "The uploads folder is not available:%s"
-msgstr "مجلد التحميلات غير متوفر:%s"
+msgid "The uploads folder is not available: %s"
+msgstr "مجلد التحميلات غير متوفر: %s"
 
 msgid "Writable; files sent with forms can be saved."
 msgstr "قابل للكتابة; يمكن حفظ الملفات المرسلة مع النماذج."
 
-msgid "Not writable:%s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
-msgstr "غير قابل للكتابة:%s. لا يمكن لحقول الملفات في النماذج حفظ التحميلات؛ اطلب من المضيف إصلاح أذونات المجلد."
+msgid "Not writable: %s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
+msgstr "غير قابل للكتابة: %s. لا يمكن لحقول الملفات في النماذج حفظ التحميلات؛ اطلب من المضيف إصلاح أذونات المجلد."
 
 msgid "Donation form with sapling packages, card payment and a certificate automation."
 msgstr "نموذج التبرع مع حزم الشتلات والدفع بالبطاقة وأتمتة الشهادات."
@@ -6109,8 +6064,8 @@ msgstr "بعد التحقق من الدفع في نموذج التبرع: أنش
 msgid "Create default flow"
 msgstr "إنشاء التدفق الافتراضي"
 
-msgid "Donation form:%s"
-msgstr "نموذج التبرع:%s"
+msgid "Donation form: %s"
+msgstr "نموذج التبرع: %s"
 
 msgid "Create the “Sapling Donation” form"
 msgstr "قم بإنشاء نموذج \"التبرع بالشتلات\""
@@ -6121,8 +6076,8 @@ msgstr "تم إنجازه جزئيًا"
 msgid "No runs yet. Runs appear here after a matching submission."
 msgstr "لم يتم تشغيله بعد. تظهر عمليات التشغيل هنا بعد الإرسال المطابق."
 
-msgid "The latest%druns are kept."
-msgstr "يتم الاحتفاظ بأحدث عمليات تشغيل%d."
+msgid "The latest %d runs are kept."
+msgstr "يتم الاحتفاظ بأحدث عمليات تشغيل %d."
 
 msgid "Clear the run log?"
 msgstr "هل تريد مسح سجل التشغيل؟"
@@ -6151,8 +6106,8 @@ msgstr "جاري تحضير شهادتك..."
 msgid "No verified payment amount for this submission."
 msgstr "لا يوجد مبلغ دفع تم التحقق منه لهذا الإرسال."
 
-msgid "Certificate%1$sfor%2$s(%3$s)"
-msgstr "شهادة%1$sلـ%2$s(%3$s)"
+msgid "Certificate %1$s for %2$s (%3$s)"
+msgstr "شهادة %1$s لـ%2$s(%3$s)"
 
 msgid "No certificate was created in an earlier step."
 msgstr "لم يتم إنشاء أي شهادة في خطوة سابقة."
@@ -6160,14 +6115,14 @@ msgstr "لم يتم إنشاء أي شهادة في خطوة سابقة."
 msgid "No channel selected."
 msgstr "لم يتم تحديد أي قناة."
 
-msgid "Queued:%s"
-msgstr "في قائمة الانتظار:%s"
+msgid "Queued: %s"
+msgstr "في قائمة الانتظار: %s"
 
 msgid "No valid recipient address."
 msgstr "لا يوجد عنوان مستلم صالح."
 
-msgid "New submission:%s"
-msgstr "إرسال جديد:%s"
+msgid "New submission: %s"
+msgstr "إرسال جديد: %s"
 
 msgid "wp_mail() could not send the e-mail."
 msgstr "wp_mail() تعذر عليه إرسال البريد الإلكتروني."
@@ -6247,8 +6202,8 @@ msgstr "إرسال رسالة اختبار"
 msgid "Quick Tips"
 msgstr "نصائح سريعة"
 
-msgid "Create a bot using%s"
-msgstr "قم بإنشاء روبوت باستخدام%s"
+msgid "Create a bot using %s"
+msgstr "قم بإنشاء روبوت باستخدام %s"
 
 msgid "Add your bot to the target chat"
 msgstr "أضف الروبوت الخاص بك إلى الدردشة المستهدفة"
@@ -6259,8 +6214,8 @@ msgstr "استخدم ميزة الاختبار للتحقق من الإعداد"
 msgid "Monitor activity for troubleshooting"
 msgstr "مراقبة النشاط لاستكشاف الأخطاء وإصلاحها"
 
-msgid "Find your Chat ID using%s"
-msgstr "ابحث عن معرف الدردشة الخاص بك باستخدام%s"
+msgid "Find your Chat ID using %s"
+msgstr "ابحث عن معرف الدردشة الخاص بك باستخدام %s"
 
 msgid "Enter your test message here..."
 msgstr "أدخل رسالتك الاختبارية هنا..."
@@ -6535,8 +6490,8 @@ msgstr "تعذر تحميل بيانات إدارة الأمان والحماي�
 msgid "The Security & Spam Protection panel failed to render. Reload the page or check the browser console."
 msgstr "فشل عرض لوحة الأمان والحماية من البريد العشوائي. أعد تحميل الصفحة أو تحقق من وحدة تحكم المتصفح."
 
-msgid "Protection is paused: required PHP functions are disabled on this server:%s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
-msgstr "تم إيقاف الحماية مؤقتًا: تم تعطيل وظائف PHP المطلوبة على هذا الخادم:%s. اطلب من مضيفك إزالتها من سطر Disable_functions في php.ini. تستمر النماذج في العمل دون حماية حتى ذلك الحين."
+msgid "Protection is paused: required PHP functions are disabled on this server: %s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
+msgstr "تم إيقاف الحماية مؤقتًا: تم تعطيل وظائف PHP المطلوبة على هذا الخادم: %s. اطلب من مضيفك إزالتها من سطر Disable_functions في php.ini. تستمر النماذج في العمل دون حماية حتى ذلك الحين."
 
 msgid "Protection is paused: the add-on database tables could not be created. Check that the database user can CREATE tables, then reload this page."
 msgstr "تم إيقاف الحماية مؤقتاً: تعذر إنشاء جداول قاعدة البيانات الإضافية. تأكد من أن مستخدم قاعدة البيانات يمكنه إنشاء الجداول، ثم أعد تحميل هذه الصفحة."
@@ -6898,11 +6853,11 @@ msgstr "إذا تم تعطيل إحدى وظائف PHP المطلوبة، قم �
 msgid "Security & Spam Protection tabs"
 msgstr "علامات التبويب \"الأمان والحماية من البريد العشوائي\""
 
-msgid "Security log export is unavailable because this server has disabled a required PHP function:%s. Ask your hosting provider to enable it."
-msgstr "تصدير سجل الأمان غير متاح لأن هذا الملقم قام بتعطيل وظيفة PHP مطلوبة:%s. اطلب من موفر الاستضافة تمكينه."
+msgid "Security log export is unavailable because this server has disabled a required PHP function: %s. Ask your hosting provider to enable it."
+msgstr "تصدير سجل الأمان غير متاح لأن هذا الملقم قام بتعطيل وظيفة PHP مطلوبة: %s. اطلب من موفر الاستضافة تمكينه."
 
-msgid "Security log export is unavailable because this server has disabled required PHP functions:%s. Ask your hosting provider to enable them."
-msgstr "تصدير سجل الأمان غير متاح لأن هذا الملقم قام بتعطيل وظائف PHP المطلوبة:%s. اطلب من موفر الاستضافة تمكينها."
+msgid "Security log export is unavailable because this server has disabled required PHP functions: %s. Ask your hosting provider to enable them."
+msgstr "تصدير سجل الأمان غير متاح لأن هذا الملقم قام بتعطيل وظائف PHP المطلوبة: %s. اطلب من موفر الاستضافة تمكينها."
 
 msgid "Auto-Populate Dataset"
 msgstr "ملء مجموعة البيانات تلقائيًا"
@@ -7213,8 +7168,8 @@ msgstr "بنية النموذج غير صالحة"
 msgid "No matching data found"
 msgstr "لم يتم العثور على بيانات مطابقة"
 
-msgid "API returned error:%d"
-msgstr "أرجعت واجهة برمجة التطبيقات خطأ:%d"
+msgid "API returned error: %d"
+msgstr "أرجعت واجهة برمجة التطبيقات خطأ: %d"
 
 msgid "Failed to update form"
 msgstr "فشل تحديث النموذج"
@@ -7348,11 +7303,11 @@ msgstr "لم يتم العثور على بيانات النموذج. الرجا�
 msgid "Auto-filled via External API"
 msgstr "ملء تلقائي عبر واجهة برمجة التطبيقات الخارجية"
 
-msgid "PayPal%s"
-msgstr "PayPal%s"
+msgid "PayPal %s"
+msgstr "PayPal %s"
 
-msgid "Stripe%s"
-msgstr "شريط%s"
+msgid "Stripe %s"
+msgstr "شريط %s"
 
 msgid "All Statuses"
 msgstr "كافة الحالات"
@@ -7441,8 +7396,8 @@ msgstr "تم إعادة تنشيط الاشتراك بنجاح."
 msgid "Payment Management Dashboard"
 msgstr "لوحة إدارة الدفع"
 
-msgid "Manage and track all%stransactions. View payment details, process refunds, and export records."
-msgstr "إدارة وتتبع جميع معاملات%s. عرض تفاصيل الدفع ومعالجة المبالغ المستردة وتصدير السجلات."
+msgid "Manage and track all %s transactions. View payment details, process refunds, and export records."
+msgstr "إدارة وتتبع جميع معاملات %s. عرض تفاصيل الدفع ومعالجة المبالغ المستردة وتصدير السجلات."
 
 msgid "Secure"
 msgstr "آمن"
@@ -7486,15 +7441,6 @@ msgstr "إعدادات ورقة Google"
 msgid "Active Bindings"
 msgstr "الارتباطات النشطة"
 
-msgid "%dservice account connected"
-msgid_plural "%dservice accounts connected"
-msgstr[0] "حسابات خدمة%dمتصلة"
-msgstr[1] "تم توصيل حساب خدمة%d"
-msgstr[2] "حسابات خدمة%dمتصلة"
-msgstr[3] "حسابات خدمة%dمتصلة"
-msgstr[4] "حسابات خدمة%dمتصلة"
-msgstr[5] "حسابات خدمة%dمتصلة"
-
 msgid "No service account connected yet"
 msgstr "لم يتم توصيل أي حساب خدمة حتى الآن"
 
@@ -7519,8 +7465,8 @@ msgstr "قم بتوصيل حساب واحد أو أكثر من حسابات خد
 msgid "Your server is missing the PHP OpenSSL extension."
 msgstr "يفتقد الملقم الخاص بك ملحق PHP OpenSSL."
 
-msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the%sPHP extension, then reload this page."
-msgstr "لا يمكن أن تعمل مزامنة جداول بيانات Google حتى يتم تمكينها. الرجاء مطالبة مضيفك بتمكين ملحق%sPHP، ثم إعادة تحميل هذه الصفحة."
+msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the %s PHP extension, then reload this page."
+msgstr "لا يمكن أن تعمل مزامنة جداول بيانات Google حتى يتم تمكينها. الرجاء مطالبة مضيفك بتمكين ملحق %s PHP، ثم إعادة تحميل هذه الصفحة."
 
 msgid "Copy this email"
 msgstr "انسخ هذا البريد الإلكتروني"
@@ -7549,7 +7495,7 @@ msgstr "بريدك الإلكتروني على Google"
 msgid "(recommended)"
 msgstr "(مستحسن)"
 
-msgid "Any sheet the plugin<strong>creates</strong>is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
+msgid "Any sheet the plugin <strong>creates</strong> is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
 msgstr "أي ورقة ينشئها المكون الإضافي<strong></strong>تتم مشاركتها تلقائيًا على هذا العنوان، لذلك تظهر في Google Drive الخاص بك ضمن \"تمت مشاركتها معي\". وبدون ذلك، تظل الأوراق الجديدة مخفية داخل حساب الخدمة."
 
 msgid "Enable Google Sheet Integration"
@@ -7585,14 +7531,14 @@ msgstr "افتح حساب الخدمة ← علامة تبويب المفاتي�
 msgid "Drag that downloaded file into the box on the left — it is tested automatically"
 msgstr "اسحب الملف الذي تم تنزيله إلى المربع الموجود على اليسار — سيتم اختباره تلقائيًا"
 
-msgid "Add<strong>Your Google email</strong>above so created sheets land in your Drive"
+msgid "Add <strong>Your Google email</strong> above so created sheets land in your Drive"
 msgstr "أضف<strong>بريدك الإلكتروني في Google</strong>أعلاه بحيث تصل الأوراق التي تم إنشاؤها إلى Drive"
 
 msgid "Please choose a valid .json key file."
 msgstr "الرجاء اختيار ملف مفتاح .json صالح."
 
-msgid "Could not read file:%s"
-msgstr "تعذرت قراءة الملف:%s"
+msgid "Could not read file: %s"
+msgstr "تعذرت قراءة الملف: %s"
 
 msgid "Connecting service account..."
 msgstr "جارٍ توصيل حساب الخدمة..."
@@ -7600,8 +7546,8 @@ msgstr "جارٍ توصيل حساب الخدمة..."
 msgid "Service account added."
 msgstr "تمت إضافة حساب الخدمة."
 
-msgid "Saved. New sheets created by the plugin will be shared to%sautomatically."
-msgstr "تم الحفظ. ستتم مشاركة الأوراق الجديدة التي أنشأها البرنامج الإضافي مع%sتلقائيًا."
+msgid "Saved. New sheets created by the plugin will be shared to %s automatically."
+msgstr "تم الحفظ. ستتم مشاركة الأوراق الجديدة التي أنشأها البرنامج الإضافي مع %s تلقائيًا."
 
 msgid "Email cleared. New sheets will stay inside the service account until you share them."
 msgstr "تم مسح البريد الإلكتروني. ستبقى الأوراق الجديدة داخل حساب الخدمة حتى تقوم بمشاركتها."
@@ -7672,13 +7618,13 @@ msgstr "حساب الخدمة"
 msgid "Loading your spreadsheets..."
 msgstr "جارٍ تحميل جداول البيانات..."
 
-msgid "Click<strong>“Browse My Sheets”</strong>to list spreadsheets this service account can already access, or<strong>“Create New Sheet”</strong>to make a fresh one."
+msgid "Click <strong>“Browse My Sheets”</strong> to list spreadsheets this service account can already access, or <strong>“Create New Sheet”</strong> to make a fresh one."
 msgstr "انقر فوق<strong>\"استعراض أوراقي\"</strong>لسرد جداول البيانات التي يمكن لحساب الخدمة هذا الوصول إليها بالفعل، أو<strong>\"إنشاء ورقة جديدة\"</strong>لإنشاء ورقة جديدة."
 
-msgid "<strong>No spreadsheets are accessible to this service account yet.</strong>You have two options:"
+msgid "<strong>No spreadsheets are accessible to this service account yet.</strong> You have two options:"
 msgstr "<strong>لا يمكن الوصول إلى جداول البيانات لحساب الخدمة هذا حتى الآن.</strong>لديك خياران:"
 
-msgid "<strong>Easiest:</strong>click<em>“Create New Sheet”</em>above — it is made for you and shared to your email automatically."
+msgid "<strong>Easiest:</strong> click <em>“Create New Sheet”</em> above — it is made for you and shared to your email automatically."
 msgstr "<strong>الأسهل:</strong>انقر فوق<em>\"إنشاء ورقة جديدة\"</em>أعلاه — فهي مصممة خصيصًا لك ويتم مشاركتها مع بريدك الإلكتروني تلقائيًا."
 
 msgid "<strong>Use an existing sheet:</strong>open it in Google Sheets → Share → paste"
@@ -7759,7 +7705,7 @@ msgstr "تعطيل الإيقاف المؤقت دون حذف الارتباط"
 msgid "Reading this form’s fields..."
 msgstr "قراءة حقول هذا النموذج..."
 
-msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry —<strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
+msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry — <strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
 msgstr "لم نتمكن من قراءة حقول هذا النموذج تلقائيًا، لذا فإن تعيين الأعمدة غير متاح. لا تقلق —<strong>ستتم مزامنة كل حقل مُرسل تلقائيًا</strong>، كل في العمود الخاص به، بترتيب الإرسال. يتم إنشاء صف الرأس وتحديثه لك."
 
 msgid "Drag rows (or use ▲▼) to set the<strong>column order</strong>. Rename any<strong>header</strong>. Turn a field off to skip its column. The letter (A, B, C...) shows where each field lands."
@@ -7792,15 +7738,6 @@ msgstr "رأس العمود"
 msgid "Include this field"
 msgstr "قم بتضمين هذا الحقل"
 
-msgid "%dcolumn will be written to the sheet."
-msgid_plural "%dcolumns will be written to the sheet."
-msgstr[0] "ستتم كتابة أعمدة%dفي الورقة."
-msgstr[1] "ستتم كتابة عمود%dعلى الورقة."
-msgstr[2] "ستتم كتابة أعمدة%dفي الورقة."
-msgstr[3] "ستتم كتابة أعمدة%dفي الورقة."
-msgstr[4] "ستتم كتابة أعمدة%dفي الورقة."
-msgstr[5] "ستتم كتابة أعمدة%dفي الورقة."
-
 msgid "Sheet Style"
 msgstr "نمط الورقة"
 
@@ -7828,8 +7765,8 @@ msgstr "علامة التبويب:"
 msgid "Columns:"
 msgstr "الأعمدة:"
 
-msgid "%dmapped"
-msgstr " تم تعيين%d"
+msgid "%d mapped"
+msgstr " تم تعيين %d"
 
 msgid "all submitted fields (auto)"
 msgstr "كافة الحقول المرسلة (تلقائي)"
@@ -7866,15 +7803,6 @@ msgstr "هل تريد إزالة هذا الارتباط؟ تتوقف المزا
 
 msgid "Sync removed — your Google Sheet and its data are untouched."
 msgstr "تمت إزالة المزامنة - لم يتم تغيير جدول بيانات Google الخاص بك وبياناته."
-
-msgid "Remove ALL%dbinding? Syncing stops for every form. Your Google Sheets are not deleted."
-msgid_plural "Remove ALL%dbindings? Syncing stops for every form. Your Google Sheets are not deleted."
-msgstr[0] "إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لم يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[1] "إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لم يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[2] "إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لم يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[3] "إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لم يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[4] "إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لم يتم حذف جداول بيانات Google الخاصة بك."
-msgstr[5] "إزالة جميع روابط%d؟ تتوقف المزامنة لكل نموذج. لم يتم حذف جداول بيانات Google الخاصة بك."
 
 msgid "All bindings removed. Your Google Sheets are untouched."
 msgstr "تمت إزالة كافة الارتباطات. لم يتم تغيير جداول بيانات Google الخاصة بك."
@@ -8041,23 +7969,23 @@ msgstr "غروب الشمس"
 msgid "Grape"
 msgstr "العنب"
 
-msgid "%sis currently unavailable."
-msgstr "%sغير متوفر حالياً."
+msgid "%s is currently unavailable."
+msgstr "%s غير متوفر حالياً."
 
-msgid "disabled in php.ini:%s"
-msgstr "معطل في php.ini:%s"
+msgid "disabled in php.ini: %s"
+msgstr "معطل في php.ini: %s"
 
-msgid "not provided by PHP or its required extension:%s"
-msgstr "غير متوفر بواسطة PHP أو ملحقها المطلوب:%s"
+msgid "not provided by PHP or its required extension: %s"
+msgstr "غير متوفر بواسطة PHP أو ملحقها المطلوب: %s"
 
-msgid "%1$scannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini."
-msgstr " لا يمكن تشغيل%1$sلأن وظائف PHP المطلوبة غير متوفرة (%2$s). اطلب من موفر الاستضافة تمكين ملحق PHP المطلوب أو إزالة الوظائف المدرجة من Disable_functions في php.ini."
+msgid "%1$s cannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini."
+msgstr " لا يمكن تشغيل %1$s لأن وظائف PHP المطلوبة غير متوفرة (%2$s). اطلب من موفر الاستضافة تمكين ملحق PHP المطلوب أو إزالة الوظائف المدرجة من Disable_functions في php.ini."
 
 msgid "This add-on is not included in Flux Forms."
 msgstr "لم يتم تضمين هذه الوظيفة الإضافية في Flux Forms."
 
-msgid "Error: server (%s) responded with an invalid request. responded code :%s"
-msgstr "خطأ: استجاب الخادم (%s) بطلب غير صالح. رمز الرد :%s"
+msgid "Error: server (%s) responded with an invalid request. responded code : %s "
+msgstr "خطأ: استجاب الخادم (%s) بطلب غير صالح. رمز الرد : %s"
 
 msgid "Your Easy Form Builder Pro subscription has expired, so this add-on cannot be downloaded."
 msgstr "لقد انتهت صلاحية اشتراكك في Easy Form Builder Pro، لذا لا يمكن تنزيل هذه الوظيفة الإضافية."
@@ -8164,8 +8092,8 @@ msgstr "يتم تسليم رسائل البريد الإلكتروني الخا�
 msgid "WordPress sent the test email, but delivery has not been confirmed yet."
 msgstr "أرسل WordPress رسالة البريد الإلكتروني التجريبية، ولكن لم يتم تأكيد التسليم بعد."
 
-msgid "Email delivery failed:%s"
-msgstr "فشل تسليم البريد الإلكتروني:%s"
+msgid "Email delivery failed: %s"
+msgstr "فشل تسليم البريد الإلكتروني: %s"
 
 msgid "No file was received. Please choose a file and try again."
 msgstr "لم يتم استلام أي ملف. الرجاء اختيار ملف والمحاولة مرة أخرى."
@@ -8179,7 +8107,7 @@ msgstr "تمكين ميزة الإعلام عبر البريد الإلكترو�
 msgid "To receive email notifications from your forms, verify your email server by following these steps:"
 msgstr "لتلقي إعلامات البريد الإلكتروني من النماذج الخاصة بك، تحقق من خادم البريد الإلكتروني الخاص بك باتباع الخطوات التالية:"
 
-msgid "Go to the<a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
+msgid "Go to the <a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
 msgstr "انتقل إلى لوحة نماذج التدفق<a href=\"%s\" style=\"font-weight:600;\"></a>"
 
 msgid "Click Settings from the top menu"
@@ -8197,11 +8125,11 @@ msgstr "إذا كانت النتيجة أعلى من 70 — قم بتمكين م
 msgid "Otherwise, follow the instructions shown in the test results"
 msgstr "وإلا، فاتبع الإرشادات الموضحة في نتائج الاختبار"
 
-msgid "%snotification"
-msgstr " إشعار%s"
+msgid "%s notification"
+msgstr " إشعار %s"
 
-msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the%sfeature, please ensure it is enabled."
-msgstr "قد يؤثر تعطيل هذه الميزة على الأداء الوظيفي المناسب لـ Flux Forms. إذا كنت تخطط لاستخدام ميزة%s، فيرجى التأكد من تمكينها."
+msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the %s feature, please ensure it is enabled."
+msgstr "قد يؤثر تعطيل هذه الميزة على الأداء الوظيفي المناسب لـ Flux Forms. إذا كنت تخطط لاستخدام ميزة %s، فيرجى التأكد من تمكينها."
 
 msgid "Email system is working properly."
 msgstr "نظام البريد الإلكتروني يعمل بشكل صحيح."
@@ -8323,8 +8251,8 @@ msgstr "مشكلة في تثبيت الملحق"
 msgid "Technical Details"
 msgstr "التفاصيل الفنية"
 
-msgid "Checked%s"
-msgstr "تم تحديد%s"
+msgid "Checked %s"
+msgstr "تم تحديد %s"
 
 msgid "System Ready"
 msgstr "النظام جاهز"
@@ -8362,14 +8290,14 @@ msgstr "إذا كنت ترى هذه الرسالة، فمن المحتمل أن 
 msgid "Please also ensure that you have a stable internet connection and try again."
 msgstr "يُرجى أيضًا التأكد من توفر اتصال ثابت بالإنترنت والمحاولة مرة أخرى."
 
-msgid "Built with%sYT Form%sby%sWordPress form plugin by whitestudio.team%s"
+msgid "Built with %sYT Form%s by %sWordPress form plugin by whitestudio.team%s"
 msgstr "تم إنشاؤه باستخدام نموذج%sYT%sبواسطة المكون الإضافي لنموذج WordPress%sبواسطة Whitestudio.team%s"
 
 msgid "Free WordPress form plugin"
 msgstr "مكوّن إضافي مجاني لنماذج WordPress"
 
-msgid "Powered by%1$sYT Form%2$s.%3$sbest Form plugin for Wordpress%4$s."
-msgstr "مدعوم من%1$sYT Form%2$s.%3$sأفضل مكون إضافي للنموذج في Wordpress%4$s."
+msgid "Powered by %1$sYT Form%2$s. %3$sbest Form plugin for Wordpress%4$s."
+msgstr "مدعوم من %1$sYT Form%2$s.%3$sأفضل مكون إضافي للنموذج في Wordpress%4$s."
 
 msgid "Flux Forms WordPress Plugin"
 msgstr "مكوّن Flux Forms WordPress الإضافي"
@@ -8845,8 +8773,8 @@ msgstr "اختر النموذج الذي تريد عرضه"
 msgid "Please select a form from element settings"
 msgstr "الرجاء تحديد نموذج من إعدادات العناصر"
 
-msgid "Form:%s(ID:%s)"
-msgstr "النموذج:%s(المعرف:%s)"
+msgid "Form: %s (ID: %s)"
+msgstr "النموذج: %s(المعرف: %s)"
 
 msgid "📍 Confirmation Code Finder (Tracking)"
 msgstr "📍 الباحث عن رمز التأكيد (التتبع)"
@@ -8869,8 +8797,8 @@ msgstr "الرمز القصير:"
 msgid "Run the email check"
 msgstr "قم بتشغيل فحص البريد الإلكتروني"
 
-msgid "The last delivery check scored%sout of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
-msgstr "سجل فحص التسليم الأخير%sمن أصل 100. تغادر رسائلك الموقع، ولكن معظم صناديق البريد ستسجلها كرسائل غير مرغوب فيها، وبالتالي لن يراها الأشخاص الذين يملؤون النماذج الخاصة بك. إن الإرسال عبر خدمة SMTP وإضافة سجلات SPF وDKIM للمجال الخاص بك هو ما يحل هذه المشكلة."
+msgid "The last delivery check scored %s out of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
+msgstr "سجل فحص التسليم الأخير %s من أصل 100. تغادر رسائلك الموقع، ولكن معظم صناديق البريد ستسجلها كرسائل غير مرغوب فيها، وبالتالي لن يراها الأشخاص الذين يملؤون النماذج الخاصة بك. إن الإرسال عبر خدمة SMTP وإضافة سجلات SPF وDKIM للمجال الخاص بك هو ما يحل هذه المشكلة."
 
 msgid "The last delivery check found that your messages do leave the site, but mailboxes file them as spam. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
 msgstr "أظهر فحص التسليم الأخير أن رسائلك تغادر الموقع، لكن صناديق البريد تسجلها كرسائل غير مرغوب فيها. إن الإرسال عبر خدمة SMTP وإضافة سجلات SPF وDKIM للمجال الخاص بك هو ما يحل هذه المشكلة."
@@ -8920,14 +8848,14 @@ msgstr "تعذر على WordPress إرسال البريد الإلكتروني �
 msgid "The email delivery test timed out before confirmation was received."
 msgstr "انتهت مهلة اختبار تسليم البريد الإلكتروني قبل استلام التأكيد."
 
-msgid "Weekly Flux Forms report for%s"
+msgid "Weekly Flux Forms report for %s"
 msgstr "تقرير Flux Forms الأسبوعي لـ%s"
 
-msgid "Here is your weekly snapshot for%s."
+msgid "Here is your weekly snapshot for %s."
 msgstr "هذه هي اللقطة الأسبوعية لـ%s."
 
-msgid "Report generated%s"
-msgstr "تم إنشاء التقرير%s"
+msgid "Report generated %s"
+msgstr "تم إنشاء التقرير %s"
 
 msgid "Detailed analysis"
 msgstr "تحليل تفصيلي"
@@ -8938,8 +8866,8 @@ msgstr "فشلت رسائل البريد الإلكتروني"
 msgid "You can turn these reports off in Flux Forms settings."
 msgstr "يمكنك إيقاف تشغيل هذه التقارير في إعدادات Flux Forms."
 
-msgid "The test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
-msgstr "تم تسليم البريد الإلكتروني التجريبي، ولكن درجة التسليم الخاصة به هي%1$sفقط من أصل 100 (أقل من%2$s)، لذلك من المحتمل جدًا أن يتم رفض رسائل البريد الإلكتروني التي ترسلها النماذج أو تصفيتها كرسائل غير مرغوب فيها."
+msgid "The test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
+msgstr "تم تسليم البريد الإلكتروني التجريبي، ولكن درجة التسليم الخاصة به هي %1$s فقط من أصل 100 (أقل من %2$s)، لذلك من المحتمل جدًا أن يتم رفض رسائل البريد الإلكتروني التي ترسلها النماذج أو تصفيتها كرسائل غير مرغوب فيها."
 
 msgid "Run the email check so you can be sure the messages your forms send are actually reaching people. The check sends a real message through the new WhiteStudio delivery service and reports back what arrived."
 msgstr "قم بتشغيل فحص البريد الإلكتروني حتى تتأكد من أن الرسائل التي ترسلها نماذجك تصل بالفعل إلى الأشخاص. يرسل الشيك رسالة حقيقية من خلال خدمة تسليم WhiteStudio الجديدة ويبلغ بما وصل."
@@ -8971,8 +8899,8 @@ msgstr "من المحتمل أن تصل رسائل البريد الإلكترو
 msgid "Your emails are not reaching anybody"
 msgstr "رسائل البريد الإلكتروني الخاصة بك لا تصل إلى أي شخص"
 
-msgid "grade%s"
-msgstr "درجة%s"
+msgid "grade %s"
+msgstr "درجة %s"
 
 msgid "What you should do"
 msgstr "ما يجب عليك فعله"
@@ -8986,11 +8914,11 @@ msgstr "قم بتثبيت مكون SMTP الإضافي وأدخل تفاصيل �
 msgid "Add the SPF and DKIM records to your domain settings."
 msgstr "أضف سجلات SPF وDKIM إلى إعدادات المجال لديك."
 
-msgid "Run the email check again until the score is above%s."
-msgstr "قم بتشغيل فحص البريد الإلكتروني مرة أخرى حتى تصبح النتيجة أعلى من%s."
+msgid "Run the email check again until the score is above %s."
+msgstr "قم بتشغيل فحص البريد الإلكتروني مرة أخرى حتى تصبح النتيجة أعلى من %s."
 
-msgid "You have%1$sforms:%2$sactive and%3$sinactive."
-msgstr "لديك نماذج%1$s:%2$sنشط و%3$sغير نشط."
+msgid "You have %1$s forms: %2$s active and %3$s inactive."
+msgstr "لديك نماذج %1$s: %2$s نشط و %3$s غير نشط."
 
 msgid "Renew Flux Forms Pro"
 msgstr "تجديد Flux Forms Pro"
@@ -9013,17 +8941,8 @@ msgstr "تسليم البريد الإلكتروني يعمل"
 msgid "The automated Flux Forms email delivery test completed successfully."
 msgstr "اكتمل اختبار تسليم البريد الإلكتروني التلقائي لـ Flux Forms بنجاح."
 
-msgid "You can attach up to%1$dfile here. Please wait about%2$dminutes before trying again."
-msgid_plural "You can attach up to%1$dfiles here. Please wait about%2$dminutes before trying again."
-msgstr[0] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[1] "يمكنك إرفاق ما يصل إلى ملف%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[2] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[3] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[4] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-msgstr[5] "يمكنك إرفاق ما يصل إلى ملفات%1$dهنا. يرجى الانتظار حوالي%2$dدقيقة قبل المحاولة مرة أخرى."
-
-msgid "This file is too large. The maximum size for this field is%s."
-msgstr "هذا الملف كبير جدًا. الحد الأقصى لحجم هذا الحقل هو%s."
+msgid "This file is too large. The maximum size for this field is %s."
+msgstr "هذا الملف كبير جدًا. الحد الأقصى لحجم هذا الحقل هو %s."
 
 msgid "This file type is not accepted here. Please attach one of the file types listed on the field."
 msgstr "نوع الملف هذا غير مقبول هنا. الرجاء إرفاق أحد أنواع الملفات المدرجة في الحقل."
@@ -9160,8 +9079,8 @@ msgstr "تم تغيير كلمة المرور بنجاح!"
 msgid "Invalid payment selection. Please review your choices and try again. If the problem persists, contact the site administrator."
 msgstr "اختيار الدفع غير صالح. يرجى مراجعة اختياراتك والمحاولة مرة أخرى. إذا استمرت المشكلة، اتصل بمسؤول الموقع."
 
-msgid "If your emails are not being delivered, try using an SMTP plugin. For more information,%1$sclick here%2$sor contact our%3$ssupport team%4$s."
-msgstr "إذا لم يتم تسليم رسائل البريد الإلكتروني الخاصة بك، فحاول استخدام مكون SMTP الإضافي. لمزيد من المعلومات،%1$sانقر هنا%2$sأو اتصل بفريق دعم%3$s%4$s."
+msgid "If your emails are not being delivered, try using an SMTP plugin. For more information, %1$s click here %2$s or contact our %3$s support team %4$s."
+msgstr "إذا لم يتم تسليم رسائل البريد الإلكتروني الخاصة بك، فحاول استخدام مكون SMTP الإضافي. لمزيد من المعلومات، %1$s انقر هنا %2$s أو اتصل بفريق دعم %3$s%4$s."
 
 msgid "View Messages"
 msgstr "عرض الرسائل"
@@ -9181,8 +9100,8 @@ msgstr "لقد تلقينا رسالتك"
 msgid "This email was sent automatically. Please do not reply."
 msgstr "تم إرسال هذه الرسالة الإلكترونية تلقائيًا. الرجاء عدم الرد."
 
-msgid "Built with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s"
-msgstr "تم إنشاؤه باستخدام نموذج%1$sYT%2$sبواسطة%3$sWhiteStudio.team%4$s"
+msgid "Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s"
+msgstr "تم إنشاؤه باستخدام نموذج %1$sYT%2$s بواسطة %3$sWhiteStudio.team%4$s"
 
 msgid "Weekly Flux Forms report"
 msgstr "تقرير نماذج التدفق الأسبوعي"
@@ -9261,12 +9180,12 @@ msgstr "أداة إنشاء نماذج السحب والإفلات: نماذج �
 
 msgid "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
 msgid_plural "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
-msgstr[0] "تم ضبط المفاتيح; يستخدم نموذج%dreCAPTCHA. تستخدم نماذج%dreCAPTCHA."
-msgstr[1] "تم ضبط المفاتيح; يستخدم نموذج%dreCAPTCHA. تستخدم نماذج%dreCAPTCHA."
-msgstr[2] "تم ضبط المفاتيح; يستخدم نموذج%dreCAPTCHA. تستخدم نماذج%dreCAPTCHA."
-msgstr[3] "تم ضبط المفاتيح; يستخدم نموذج%dreCAPTCHA. تستخدم نماذج%dreCAPTCHA."
-msgstr[4] "تم ضبط المفاتيح; يستخدم نموذج%dreCAPTCHA. تستخدم نماذج%dreCAPTCHA."
-msgstr[5] "تم ضبط المفاتيح; يستخدم نموذج%dreCAPTCHA. تستخدم نماذج%dreCAPTCHA."
+msgstr[0] "تم ضبط المفاتيح; يستخدم نموذج %dreCAPTCHA. تستخدم نماذج %dreCAPTCHA."
+msgstr[1] "تم ضبط المفاتيح; يستخدم نموذج %dreCAPTCHA. تستخدم نماذج %dreCAPTCHA."
+msgstr[2] "تم ضبط المفاتيح; يستخدم نموذج %dreCAPTCHA. تستخدم نماذج %dreCAPTCHA."
+msgstr[3] "تم ضبط المفاتيح; يستخدم نموذج %dreCAPTCHA. تستخدم نماذج %dreCAPTCHA."
+msgstr[4] "تم ضبط المفاتيح; يستخدم نموذج %dreCAPTCHA. تستخدم نماذج %dreCAPTCHA."
+msgstr[5] "تم ضبط المفاتيح; يستخدم نموذج %dreCAPTCHA. تستخدم نماذج %dreCAPTCHA."
 
 msgid "The currency of this form is not supported."
 msgstr "عملة هذا النموذج غير مدعومة."
@@ -9274,8 +9193,8 @@ msgstr "عملة هذا النموذج غير مدعومة."
 msgid "The Stripe secret key is not configured."
 msgstr "لم يتم تكوين المفتاح السري Stripe."
 
-msgid "Could not connect to Stripe:%s"
-msgstr "تعذر الاتصال بـ Stripe:%s"
+msgid "Could not connect to Stripe: %s"
+msgstr "تعذر الاتصال بـ Stripe: %s"
 
-msgid "Stripe API error (HTTP%d)."
-msgstr "خطأ في Stripe API (HTTP%d)."
+msgid "Stripe API error (HTTP %d)."
+msgstr "خطأ في Stripe API (HTTP %d)."

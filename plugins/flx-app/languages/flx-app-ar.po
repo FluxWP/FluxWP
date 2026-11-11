@@ -209,10 +209,10 @@ msgid "Only needed when enhanced push security is on in the Expo account. The de
 msgstr "مطلوب فقط عند تشغيل أمان الدفع المحسن في حساب Expo. لا يتلقى تطبيق سطح المكتب الدفع؛ يعرض الإشعارات من خلال المزامنة أثناء الفتح."
 
 msgid "Devices: %1$d · notifications on: %2$d"
-msgstr "الأجهزة:%1$d· الإخطارات على:%2$d"
+msgstr "الأجهزة: %1$d· الإخطارات على: %2$d"
 
 msgid "Last send %1$s: %2$d sent, %3$d failed"
-msgstr "آخر إرسال%1$s: تم إرسال%2$d، وفشل%3$d"
+msgstr "آخر إرسال %1$s: تم إرسال %2$d، وفشل %3$d"
 
 msgid "Web view"
 msgstr "عرض الويب"
@@ -285,12 +285,12 @@ msgstr "تسجيل الخروج"
 
 msgid "%d screen"
 msgid_plural "%d screens"
-msgstr[0] "شاشات%d"
-msgstr[1] "شاشة%d"
-msgstr[2] "شاشات%d"
-msgstr[3] "شاشات%d"
-msgstr[4] "شاشات%d"
-msgstr[5] "شاشات%d"
+msgstr[0] "شاشات %d"
+msgstr[1] "شاشة %d"
+msgstr[2] "شاشات %d"
+msgstr[3] "شاشات %d"
+msgstr[4] "شاشات %d"
+msgstr[5] "شاشات %d"
 
 msgid "General"
 msgstr "عام"
@@ -365,7 +365,7 @@ msgid "Saved."
 msgstr "تم الحفظ."
 
 msgid "Test notification: %1$d sent, %2$d failed, %3$d skipped."
-msgstr "إشعار الاختبار: تم إرسال%1$d، وفشل%2$d، وتم تخطي%3$d."
+msgstr "إشعار الاختبار: تم إرسال %1$d، وفشل %2$d، وتم تخطي %3$d."
 
 msgid "Give the key a name."
 msgstr "أعط المفتاح اسمًا."
@@ -410,7 +410,7 @@ msgid "Valid for"
 msgstr "صالحة ل"
 
 msgid "%d days"
-msgstr "%dأيام"
+msgstr "%d أيام"
 
 msgid "Create key"
 msgstr "إنشاء مفتاح"
@@ -512,7 +512,7 @@ msgid "Version"
 msgstr "الإصدار"
 
 msgid "Manifest error: %s"
-msgstr "خطأ واضح:%s"
+msgstr "خطأ واضح: %s"
 
 msgid "Separate item"
 msgstr "عنصر منفصل"
@@ -560,7 +560,7 @@ msgid "A name and at least one redirect URI are required (at most 10)."
 msgstr "مطلوب اسم وURI لإعادة التوجيه واحد على الأقل (10 على الأكثر)."
 
 msgid "Redirect URI rejected: %s (must be https, 127.0.0.1 or an app scheme)."
-msgstr "تم رفض URI لإعادة التوجيه:%s(يجب أن يكون https أو 127.0.0.1 أو مخطط تطبيق)."
+msgstr "تم رفض URI لإعادة التوجيه: %s(يجب أن يكون https أو 127.0.0.1 أو مخطط تطبيق)."
 
 msgid "Dynamic client limit reached; delete old ones."
 msgstr "تم الوصول إلى الحد الأقصى للعميل الديناميكي؛ حذف القديمة."
@@ -572,7 +572,7 @@ msgid "Posts"
 msgstr "المشاركات"
 
 msgid "%s drafts"
-msgstr "مسودات%s"
+msgstr "مسودات %s"
 
 msgid "My drafts"
 msgstr "مسوداتي"
@@ -587,7 +587,7 @@ msgid "Pending comments"
 msgstr "في انتظار التعليقات"
 
 msgid "%s approved"
-msgstr "تمت الموافقة على%s"
+msgstr "تمت الموافقة على %s"
 
 msgid "Recent comments"
 msgstr "التعليقات الأخيرة"
@@ -608,7 +608,7 @@ msgid "Today's orders"
 msgstr "طلبات اليوم"
 
 msgid "%s orders"
-msgstr "أوامر%s"
+msgstr "أوامر %s"
 
 msgid "Awaiting payment"
 msgstr "في انتظار الدفع"
@@ -650,7 +650,7 @@ msgid "Your session expired. Try again from the app."
 msgstr "انتهت جلستك. حاول مرة أخرى من التطبيق."
 
 msgid "%s wants to access your account"
-msgstr "يريد%sالوصول إلى حسابك"
+msgstr "يريد %s الوصول إلى حسابك"
 
 msgid "Change"
 msgstr "التغيير"
@@ -662,7 +662,7 @@ msgid "You can revoke access at any time under Users › App access."
 msgstr "يمكنك إلغاء الوصول في أي وقت ضمن المستخدمون › الوصول إلى التطبيق."
 
 msgid "After approval you will return to %s."
-msgstr "بعد الموافقة ستعود إلى%s."
+msgstr "بعد الموافقة ستعود إلى %s."
 
 msgid "Deny"
 msgstr "رفض"
@@ -677,10 +677,10 @@ msgid "This link has expired. Open it again from the app."
 msgstr "انتهت صلاحية هذا الرابط. افتحه مرة أخرى من التطبيق."
 
 msgid "%1$s is your sign-in code for the %2$s app. Valid for 10 minutes. Do not share this code with anyone."
-msgstr "%1$sهو رمز تسجيل الدخول الخاص بك لتطبيق%2$s. صالحة لمدة 10 دقائق. لا تشارك هذا الرمز مع أي شخص."
+msgstr "%1$s هو رمز تسجيل الدخول الخاص بك لتطبيق %2$s. صالحة لمدة 10 دقائق. لا تشارك هذا الرمز مع أي شخص."
 
 msgid "%s sign-in code"
-msgstr "رمز تسجيل الدخول%s"
+msgstr "رمز تسجيل الدخول %s"
 
 msgid "Your app sign-in code:"
 msgstr "رمز تسجيل الدخول إلى تطبيقك:"
@@ -749,7 +749,7 @@ msgid "Active access"
 msgstr "الوصول النشط"
 
 msgid "App sessions: %1$s · API keys: %2$s"
-msgstr "جلسات التطبيق:%1$s· مفاتيح API:%2$s"
+msgstr "جلسات التطبيق: %1$s· مفاتيح API: %2$s"
 
 msgid "Push notifications"
 msgstr "دفع الإخطارات"
@@ -758,25 +758,25 @@ msgid "Off."
 msgstr "إيقاف."
 
 msgid "Nothing sent yet. Registered devices: %s"
-msgstr "لم يتم إرسال أي شيء حتى الآن. الأجهزة المسجلة:%s"
+msgstr "لم يتم إرسال أي شيء حتى الآن. الأجهزة المسجلة: %s"
 
 msgid "Last send %1$s: %2$s sent, %3$s failed. %4$s"
-msgstr "آخر إرسال%1$s: تم إرسال%2$s، وفشل%3$s.%4$s"
+msgstr "آخر إرسال %1$s: تم إرسال %2$s، وفشل %3$s.%4$s"
 
 msgid "App screens (manifest)"
 msgstr "شاشات التطبيقات (البيان)"
 
 msgid "Modules with schema errors: %s. They may open in the web view in the app."
-msgstr "الوحدات التي بها أخطاء في المخطط:%s. وقد يتم فتحها في عرض الويب في التطبيق."
+msgstr "الوحدات التي بها أخطاء في المخطط: %s. وقد يتم فتحها في عرض الويب في التطبيق."
 
 msgid "%s modules valid."
-msgstr "وحدات%sصالحة."
+msgstr "وحدات %s صالحة."
 
 msgid "App clients"
 msgstr "عملاء التطبيق"
 
 msgid "Main FluxWP app: %1$s · branded apps: %2$s"
-msgstr "تطبيق FluxWP الرئيسي:%1$s· التطبيقات ذات العلامة التجارية:%2$s"
+msgstr "تطبيق FluxWP الرئيسي: %1$s· التطبيقات ذات العلامة التجارية: %2$s"
 
 msgid "on"
 msgstr "على"
@@ -1353,4 +1353,3 @@ msgstr "أُزيل رقم الهاتف من حسابك على %s"
 
 msgid "The token does not include the scope this request needs."
 msgstr "الرمز المميز لا يتضمن النطاق الذي يتطلبه هذا الطلب."
-

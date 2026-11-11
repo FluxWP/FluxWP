@@ -11,10 +11,10 @@ msgid "Shared"
 msgstr "Partagé"
 
 msgid "%1$s translation (%2$s)"
-msgstr "%1$straduction (%2$s)"
+msgstr "%1$s traduction (%2$s)"
 
 msgid "Create %s translation"
-msgstr "Créer une traduction%s"
+msgstr "Créer une traduction %s"
 
 msgid "You are not allowed to do this."
 msgstr "Vous n'êtes pas autorisé à faire cela."
@@ -50,7 +50,7 @@ msgid "Preparing translation…"
 msgstr "Préparation de la traduction…"
 
 msgid "AI is translating: %1$d / %2$d"
-msgstr "L'IA traduit :%1$d/%2$d"
+msgstr "L'IA traduit : %1$d/%2$d"
 
 msgid "Translation ready, opening the editor…"
 msgstr "Traduction prête, ouverture de l’éditeur…"
@@ -176,7 +176,7 @@ msgid "Country information"
 msgstr "Informations sur le pays"
 
 msgid "Country in your request: %1$s (%2$s header). Country-based suggestion works."
-msgstr "Pays dans votre demande :%1$s(en-tête%2$s). Les suggestions basées sur les pays fonctionnent."
+msgstr "Pays dans votre demande : %1$s(en-tête %2$s). Les suggestions basées sur les pays fonctionnent."
 
 msgid "The server sends no country information; the browser's time zone is used (Türkiye time = Turkish). For more accurate results, put the domain behind Cloudflare (free plan, the CF-IPCountry header is used automatically) or enable your host's GeoIP header."
 msgstr "Le serveur n'envoie aucune information sur le pays ; le fuseau horaire du navigateur est utilisé (heure Türkiye = turc). Pour des résultats plus précis, placez le domaine derrière Cloudflare (forfait gratuit, l'en-tête CF-IPCountry est utilisé automatiquement) ou activez l'en-tête GeoIP de votre hébergeur."
@@ -233,10 +233,10 @@ msgid "ID of the image shown instead of this one in this language (e.g. the tran
 msgstr "ID de l'image affichée à la place de celle-ci dans cette langue (par exemple la version traduite d'une affiche avec texte). Vide : même image."
 
 msgid "This page is available in %s."
-msgstr "Cette page est disponible dans%s."
+msgstr "Cette page est disponible dans %s."
 
 msgid "Switch to %s"
-msgstr "Passer à%s"
+msgstr "Passer à %s"
 
 msgid "Stay on this version"
 msgstr "Restez sur cette version"
@@ -275,7 +275,7 @@ msgid "WordPress language packs"
 msgstr "Packs de langues WordPress"
 
 msgid "Not installed: %s. Pick it once in Settings › General › Site Language and save (the pack downloads), then switch back."
-msgstr "Non installé :%s. Choisissez-le une fois dans Paramètres > Général > Langue du site et enregistrez (le pack télécharge), puis revenez."
+msgstr "Non installé : %s. Choisissez-le une fois dans Paramètres > Général > Langue du site et enregistrez (le pack télécharge), puis revenez."
 
 msgid "All active languages have WordPress translations."
 msgstr "Toutes les langues actives ont des traductions WordPress."
@@ -284,10 +284,10 @@ msgid "General settings"
 msgstr "Paramètres généraux"
 
 msgid "Page translations: %s"
-msgstr "Traductions de pages :%s"
+msgstr "Traductions de pages : %s"
 
 msgid "%1$d / %2$d pages translated. %3$s"
-msgstr "Pages%1$d/%2$dtraduites.  FLXTOK2FIN. %3$s"
+msgstr "Pages %1$d/%2$d traduites.  FLXTOK2FIN. %3$s"
 
 msgid "Untranslated ones are shown in Turkish (canonical address is Turkish)."
 msgstr "Ceux qui ne sont pas traduits sont affichés en turc (l'adresse canonique est turque)."
@@ -308,7 +308,7 @@ msgid "The server sends no country information; the browser time zone is used (T
 msgstr "Le serveur n'envoie aucune information sur le pays ; le fuseau horaire du navigateur est utilisé (heure Türkiye = turc). Si Cloudflare est activé, le code du pays est utilisé automatiquement."
 
 msgid "Country information comes from the %s header."
-msgstr "Les informations sur le pays proviennent de l'en-tête%s."
+msgstr "Les informations sur le pays proviennent de l'en-tête %s."
 
 msgid "Permalinks"
 msgstr "Liens permanents"

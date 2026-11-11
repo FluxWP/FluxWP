@@ -370,7 +370,7 @@
     "Emails are sent by the %s plugin; the SMTP settings here are not used. The template, sender name and log still come from Flux Mail.": "E-postaları %s eklentisi gönderiyor; buradaki SMTP ayarı kullanılmaz. Şablon, gönderen adı ve kayıt yine Flux Mail'den.",
     "SMTP is selected but the server, username or password is missing. Emails may not be sent.": "SMTP seçili ama sunucu, kullanıcı adı ya da şifre eksik. E-postalar gönderilemeyebilir.",
     "SMTP settings": "SMTP ayarları",
-    "SMTP: %1$s:%2$s": "SMTP: %1$s:%2$s",
+    "SMTP: %1$s:%2$s": "SMTP: %1$s: %2$s",
     "Mail is sent with the server's PHP mail(). Gmail shows \"via srv….main-hosting.eu\" next to the sender and it is more likely to land in spam. Open a info@ mailbox on Hostinger and choose SMTP.": "E-postalar sunucunun PHP mail() fonksiyonuyla gidiyor. Gmail gönderenin yanında \"via srv….main-hosting.eu\" gösterir ve spama düşme riski yüksektir. Hostinger'da bilgi@ e-posta hesabı açıp SMTP'yi seçin.",
     "Sent to %1$s (%2$s). Check that it reached the inbox.": "%1$s adresine gönderildi (%2$s). Gelen kutusuna düştüğünü kontrol edin.",
     "Test again": "Yeniden test et",

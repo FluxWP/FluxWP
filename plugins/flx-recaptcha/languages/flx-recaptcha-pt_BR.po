@@ -122,7 +122,7 @@ msgid "Not tested"
 msgstr "Não testado"
 
 msgid "Get your keys %s: choose the reCAPTCHA type and add your domain. The site key and the secret key must belong to the same entry."
-msgstr "Obtenha suas chaves%s: escolha o tipo de reCAPTCHA e adicione seu domínio. A chave do site e a chave secreta devem pertencer à mesma entrada."
+msgstr "Obtenha suas chaves %s: escolha o tipo de reCAPTCHA e adicione seu domínio. A chave do site e a chave secreta devem pertencer à mesma entrada."
 
 msgid "from the Google reCAPTCHA console"
 msgstr "no console reCAPTCHA do Google"
@@ -167,7 +167,7 @@ msgid "Runs a real check with Google; if it passes, the keys are saved and prote
 msgstr "Faz uma verificação real com o Google; se for aprovado, as chaves serão salvas e a proteção será ativada."
 
 msgid "Last test: %1$s · %2$s"
-msgstr "Último teste:%1$s·%2$s"
+msgstr "Último teste: %1$s · %2$s"
 
 msgid "Last 30 days: passed / blocked"
 msgstr "Últimos 30 dias: aprovado/bloqueado"
@@ -233,7 +233,7 @@ msgid "IP addresses that skip the check"
 msgstr "Endereços IP que ignoram a verificação"
 
 msgid "One IP or range (CIDR) per line. For your office, tests and monitoring services. Your current IP address: %s"
-msgstr "Um IP ou intervalo (CIDR) por linha. Para o seu escritório, serviços de testes e monitoramento. Seu endereço IP atual:%s"
+msgstr "Um IP ou intervalo (CIDR) por linha. Para o seu escritório, serviços de testes e monitoramento. Seu endereço IP atual: %s"
 
 msgid "If you get locked out of the login screen, add define( 'FLXRC_DISABLE', true ); to wp-config.php; protection turns off completely."
 msgstr "Se você não conseguir acessar a tela de login, adicione define( 'FLXRC_DISABLE', true ); para wp-config.php; a proteção é desligada completamente."
@@ -260,7 +260,7 @@ msgid "JavaScript must be enabled in your browser to send this form."
 msgstr "O JavaScript deve estar habilitado em seu navegador para enviar este formulário."
 
 msgid "This form is protected by reCAPTCHA and the Google %1$s and %2$s apply."
-msgstr "Este formulário é protegido por reCAPTCHA e os Google%1$se%2$sse aplicam."
+msgstr "Este formulário é protegido por reCAPTCHA e os Google %1$s e %2$s se aplicam."
 
 msgid "Privacy Policy"
 msgstr "Política de Privacidade"
@@ -278,7 +278,7 @@ msgid "The security check failed. Refresh the page and try again."
 msgstr "A verificação de segurança falhou. Atualize a página e tente novamente."
 
 msgid "Could not reach Google: %s"
-msgstr "Não foi possível acessar o Google:%s"
+msgstr "Não foi possível acessar o Google: %s"
 
 msgid "Google returned an unexpected response."
 msgstr "O Google retornou uma resposta inesperada."
@@ -293,10 +293,10 @@ msgid "Could not verify (%s)."
 msgstr "Não foi possível verificar (%s)."
 
 msgid "The keys work. Score: %1$s, domain: %2$s"
-msgstr "As chaves funcionam. Pontuação:%1$s, domínio:%2$s"
+msgstr "As chaves funcionam. Pontuação: %1$s, domínio: %2$s"
 
 msgid "The keys work. Domain: %s"
-msgstr "As chaves funcionam. Domínio:%s"
+msgstr "As chaves funcionam. Domínio: %s"
 
 msgid "Login"
 msgstr "Entrar"
@@ -389,13 +389,13 @@ msgid "No form is selected."
 msgstr "Nenhum formulário está selecionado."
 
 msgid "Not protected: %s"
-msgstr "Não protegido:%s"
+msgstr "Não protegido: %s"
 
 msgid "Google verification"
 msgstr "Verificação do Google"
 
 msgid "%1$s: %2$s. Test the keys again; if Google is unreachable, set Settings > Google host to recaptcha.net."
-msgstr "%1$s:%2$s. Teste as chaves novamente; se o Google estiver inacessível, defina Configurações> Host do Google para recaptcha.net."
+msgstr "%1$s: %2$s. Teste as chaves novamente; se o Google estiver inacessível, defina Configurações> Host do Google para recaptcha.net."
 
 msgid "Test"
 msgstr "Teste"

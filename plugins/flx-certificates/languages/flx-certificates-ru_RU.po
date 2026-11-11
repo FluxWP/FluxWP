@@ -53,7 +53,7 @@ msgid "This certificate has been revoked by the issuing organization and is no l
 msgstr "Этот сертификат был отозван организацией-выдателем и больше не действителен."
 
 msgid "This page confirms that the certificate is on record at %s."
-msgstr "Эта страница подтверждает, что сертификат зарегистрирован по адресу%s."
+msgstr "Эта страница подтверждает, что сертификат зарегистрирован по адресу %s."
 
 msgid "Lookup is disabled."
 msgstr "Поиск отключен."
@@ -65,7 +65,7 @@ msgid "Enter a valid phone number or email address."
 msgstr "Введите действительный номер телефона или адрес электронной почты."
 
 msgid "Hello %1$s,\n\nYour %2$s certificates:\n%3$s"
-msgstr "Привет,%1$s!\n\nВаши сертификаты%2$s:%3$s"
+msgstr "Привет, %1$s!\n\nВаши сертификаты %2$s: %3$s"
 
 msgid "Your certificates"
 msgstr "Ваши сертификаты"
@@ -171,10 +171,10 @@ msgid "No certificates selected."
 msgstr "Сертификаты не выбраны."
 
 msgid "%d messages queued."
-msgstr "Сообщения%dпоставлены в очередь."
+msgstr "Сообщения %d поставлены в очередь."
 
 msgid "%d certificates updated."
-msgstr "Сертификаты%dобновлены."
+msgstr "Сертификаты %d обновлены."
 
 msgid "Download Excel"
 msgstr "Скачать Excel"
@@ -276,22 +276,22 @@ msgid "Create the first certificate"
 msgstr "Создайте первый сертификат"
 
 msgid "Actually created: %s"
-msgstr "Фактически создано:%s."
+msgstr "Фактически создано: %s."
 
 msgid "backdated"
 msgstr "задним числом"
 
 msgid "%d view"
 msgid_plural "%d views"
-msgstr[0] "Просмотр%d"
-msgstr[1] "Просмотры%d"
-msgstr[2] "Просмотры%d"
+msgstr[0] "Просмотр %d"
+msgstr[1] "Просмотры %d"
+msgstr[2] "Просмотры %d"
 
 msgid "Registered person: %s"
-msgstr "Зарегистрированное лицо:%s"
+msgstr "Зарегистрированное лицо: %s"
 
 msgid "created by: %s"
-msgstr "автор:%s"
+msgstr "автор: %s"
 
 msgid "Actions"
 msgstr "Действия"
@@ -331,9 +331,9 @@ msgstr "Плагины"
 
 msgid "%d record"
 msgid_plural "%d records"
-msgstr[0] "%dзапись"
-msgstr[1] "%dзаписи"
-msgstr[2] "%dзаписи"
+msgstr[0] "%d запись"
+msgstr[1] "%d записи"
+msgstr[2] "%d записи"
 
 msgid "Inactive"
 msgstr "Неактивный"
@@ -399,7 +399,7 @@ msgid "Number of saplings"
 msgstr "Количество саженцев"
 
 msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
-msgstr "Дизайны электронных открыток%dбыли добавлены как неактивные шаблоны. Активированные вами дизайны можно выбрать на странице пожертвований."
+msgstr "Дизайны электронных открыток %d были добавлены как неактивные шаблоны. Активированные вами дизайны можно выбрать на странице пожертвований."
 
 msgid "All e-card designs are already added."
 msgstr "Все дизайны открыток уже добавлены."
@@ -411,7 +411,7 @@ msgid "Ready-made e-cards"
 msgstr "Готовые электронные открытки"
 
 msgid "(%1$d/%2$d added)"
-msgstr "(добавлены%1$d/%2$d)"
+msgstr "(добавлены %1$d/%2$d)"
 
 msgid "Add the missing e-card designs as inactive templates?"
 msgstr "Добавить недостающие дизайны электронных открыток в качестве неактивных шаблонов?"
@@ -426,7 +426,7 @@ msgid "Flux Mail (organization template)"
 msgstr "Flux Mail (шаблон организации)"
 
 msgid "%s ago"
-msgstr "%sназад"
+msgstr "%s назад"
 
 msgid "Certificates · Setup"
 msgstr "Сертификаты · Настройка"
@@ -441,13 +441,13 @@ msgid "Database tables"
 msgstr "Таблицы базы данных"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Отсутствует таблица:%s. Деактивируйте и повторно активируйте плагин."
+msgstr "Отсутствует таблица: %s. Деактивируйте и повторно активируйте плагин."
 
 msgid "A database update is pending; it completes when an admin page is opened."
 msgstr "Ожидается обновление базы данных; он завершается, когда открывается страница администратора."
 
 msgid "All tables exist. Plugin %1$s, database version %2$s."
-msgstr "Все таблицы существуют. Плагин%1$s, версия базы данных%2$s."
+msgstr "Все таблицы существуют. Плагин %1$s, версия базы данных %2$s."
 
 msgid "Files folder"
 msgstr "Папка с файлами"
@@ -456,7 +456,7 @@ msgid "The folder for certificate PDFs and images is writable."
 msgstr "Папка для PDF-файлов сертификатов и изображений доступна для записи."
 
 msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
-msgstr "%sнедоступен для записи; файлы сертификатов не могут быть сохранены. Проверьте права доступа к папке (755)."
+msgstr "%s недоступен для записи; файлы сертификатов не могут быть сохранены. Проверьте права доступа к папке (755)."
 
 msgid "Certificate page address"
 msgstr "Адрес страницы сертификата"
@@ -470,17 +470,17 @@ msgstr "Постоянные ссылки"
 msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
 msgstr "Правило URL-адреса сертификата не зарегистрировано; ссылки могут возвращать 404. Нажмите «Сохранить изменения» на странице «Постоянные ссылки»."
 
-msgid "Certificates open at %s{code}."
-msgstr "Сертификаты открываются по адресу%s{code}."
+msgid "Certificates open at %s {code}."
+msgstr "Сертификаты открываются по адресу %s{code}."
 
 msgid "Certificate templates"
 msgstr "Шаблоны сертификатов"
 
 msgid "%d active template."
 msgid_plural "%d active templates."
-msgstr[0] "%dактивный шаблон."
-msgstr[1] "%dактивные шаблоны."
-msgstr[2] "%dактивные шаблоны."
+msgstr[0] "%d активный шаблон."
+msgstr[1] "%d активные шаблоны."
+msgstr[2] "%d активные шаблоны."
 
 msgid "No active template; certificates cannot be created."
 msgstr "Нет активного шаблона; сертификаты не могут быть созданы."
@@ -492,7 +492,7 @@ msgid "Plugin files"
 msgstr "Файлы плагинов"
 
 msgid "Missing file: %s. Upload the plugin zip again."
-msgstr "Отсутствует файл:%s. Загрузите zip-архив плагина еще раз."
+msgstr "Отсутствует файл: %s. Загрузите zip-архив плагина еще раз."
 
 msgid "PDF renderer, QR and fonts are in place."
 msgstr "PDF-рендеринг, QR-код и шрифты на месте."
@@ -517,9 +517,9 @@ msgstr "Очередь"
 
 msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
 msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
-msgstr[0] "Сообщение%1$dожидает более 10 минут; очередь может не работать. Бегун:%2$s, последний запуск:%3$s."
-msgstr[1] "Сообщения%1$dожидаются более 10 минут; очередь может не работать. Бегун:%2$s, последний запуск:%3$s."
-msgstr[2] "Сообщения%1$dожидаются более 10 минут; очередь может не работать. Бегун:%2$s, последний запуск:%3$s."
+msgstr[0] "Сообщение %1$d ожидает более 10 минут; очередь может не работать. Бегун: %2$s, последний запуск: %3$s."
+msgstr[1] "Сообщения %1$d ожидаются более 10 минут; очередь может не работать. Бегун: %2$s, последний запуск: %3$s."
+msgstr[2] "Сообщения %1$d ожидаются более 10 минут; очередь может не работать. Бегун: %2$s, последний запуск: %3$s."
 
 msgid "never"
 msgstr "никогда"
@@ -528,10 +528,10 @@ msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php 
 msgstr "WP-Cron отключен (DISABLE_WP_CRON); в панели хостинга должен быть установлен поминутный cron для wp-cron.php."
 
 msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
-msgstr "Участник:%1$s. Последний запуск%2$s; cron срабатывает редко. Никаких ожидающих сообщений. Без регулярного трафика рекомендуется поминутный cron для wp-cron.php в панели хостинга."
+msgstr "Участник: %1$s. Последний запуск %2$s; cron срабатывает редко. Никаких ожидающих сообщений. Без регулярного трафика рекомендуется поминутный cron для wp-cron.php в панели хостинга."
 
 msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
-msgstr "Участник:%1$s. Последний запуск:%2$s. Никаких старых сообщений."
+msgstr "Участник: %1$s. Последний запуск: %2$s. Никаких старых сообщений."
 
 msgid "not recorded yet"
 msgstr "еще не записано"
@@ -541,18 +541,18 @@ msgstr "Отправка за последние 24 часа"
 
 msgid "%d message failed."
 msgid_plural "%d messages failed."
-msgstr[0] "Сообщение%dне удалось."
-msgstr[1] "Сообщения%dне удалось отправить."
-msgstr[2] "Сообщения%dне удалось отправить."
+msgstr[0] "Сообщение %d не удалось."
+msgstr[1] "Сообщения %d не удалось отправить."
+msgstr[2] "Сообщения %d не удалось отправить."
 
 msgid "View failed"
 msgstr "Посмотреть не удалось"
 
 msgid "%d message sent, none failed."
 msgid_plural "%d messages sent, none failed."
-msgstr[0] "Сообщение%dотправлено, ни одно сообщение не выполнено."
-msgstr[1] "Сообщения%dотправлены, ни одно из них не завершилось ошибкой."
-msgstr[2] "Сообщения%dотправлены, ни одно из них не завершилось ошибкой."
+msgstr[0] "Сообщение %d отправлено, ни одно сообщение не выполнено."
+msgstr[1] "Сообщения %d отправлены, ни одно из них не завершилось ошибкой."
+msgstr[2] "Сообщения %d отправлены, ни одно из них не завершилось ошибкой."
 
 msgid "Daily cleanup task"
 msgstr "Ежедневная задача по уборке"
@@ -567,22 +567,22 @@ msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; 
 msgstr "Flux Mail не активен. Сертификаты нельзя отправить по WhatsApp или SMS; электронная почта проходит через WordPress (wp_mail). Установите и активируйте Flux Mail."
 
 msgid "%s sending"
-msgstr "%sотправка"
+msgstr "%s отправка"
 
 msgid "Sent through the Flux Mail connection: %s."
-msgstr "Отправляется через соединение Flux Mail:%s."
+msgstr "Отправляется через соединение Flux Mail: %s."
 
 msgid "Last successful send %s."
-msgstr "Последняя успешная отправка%s."
+msgstr "Последняя успешная отправка %s."
 
 msgid "Connections"
 msgstr "Соединения"
 
 msgid "No %1$s connection is set up; certificates are not sent by %1$s."
-msgstr "Соединение%1$sне установлено; сертификаты не отправляются%1$s."
+msgstr "Соединение %1$s не установлено; сертификаты не отправляются %1$s."
 
 msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
-msgstr "Flux Mail не имеет активного соединения%s; сертификаты не могут быть отправлены по этому каналу."
+msgstr "Flux Mail не имеет активного соединения %s; сертификаты не могут быть отправлены по этому каналу."
 
 msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
 msgstr "Электронные письма с сертификатами проходят через Flux Mail с шаблоном организации (Связь > Электронная почта)."
@@ -597,7 +597,7 @@ msgid "The FluxWP theme (%s) is active; the events section and certificate page 
 msgstr "Тема FluxWP (%s) активна; раздел событий и страница сертификата соответствуют теме."
 
 msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
-msgstr "Активная тема:%s. Раздел событий появляется автоматически только в теме Örnek Vakfı; в других темах добавьте его с помощью шорткода."
+msgstr "Активная тема: %s. Раздел событий появляется автоматически только в теме Örnek Vakfı; в других темах добавьте его с помощью шорткода."
 
 msgid "Ongoing events"
 msgstr "Текущие события"
@@ -609,19 +609,19 @@ msgid "Events"
 msgstr "События"
 
 msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
-msgstr "Открытое событие без опубликованной страницы:%s. Исправьте это с помощью параметра «Опубликовать на сайте» на экране редактирования мероприятия."
+msgstr "Открытое событие без опубликованной страницы: %s. Исправьте это с помощью параметра «Опубликовать на сайте» на экране редактирования мероприятия."
 
 msgid "%d open event, its page is published."
 msgid_plural "%d open events, their pages are published."
-msgstr[0] "Открыто мероприятие%d, его страница опубликована."
-msgstr[1] "%dоткрытые мероприятия, их страницы публикуются."
-msgstr[2] "%dоткрытые мероприятия, их страницы публикуются."
+msgstr[0] "Открыто мероприятие %d, его страница опубликована."
+msgstr[1] "%d открытые мероприятия, их страницы публикуются."
+msgstr[2] "%d открытые мероприятия, их страницы публикуются."
 
 msgid "Certificate lookup"
 msgstr "Поиск сертификата"
 
 msgid "The lookup form is on %s."
-msgstr "Форма поиска находится на%s."
+msgstr "Форма поиска находится на %s."
 
 msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
 msgstr "Поиск включен, но ни одна из опубликованных страниц не имеет короткого кода [flx_sertifika_sorgula]."
@@ -639,7 +639,7 @@ msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in 
 msgstr "Расширение PHP GD (FreeType) отсутствует: PDF-файлы и изображения создаются только в браузере при первом открытии страницы сертификата."
 
 msgid "%d certificate is missing its PDF or image."
-msgstr "В сертификате%dотсутствует PDF-файл или изображение."
+msgstr "В сертификате %d отсутствует PDF-файл или изображение."
 
 msgid "Create missing files"
 msgstr "Создать недостающие файлы"
@@ -654,10 +654,10 @@ msgid "Generates files on the server for up to 25 certificates that are missing 
 msgstr "Создает на сервере файлы для до 25 сертификатов, в которых отсутствует PDF-файл или изображение."
 
 msgid "Files created for %1$d certificates, %2$d errors."
-msgstr "Файлы, созданные для сертификатов%1$d, ошибок%2$d."
+msgstr "Файлы, созданные для сертификатов %1$d, ошибок %2$d."
 
 msgid "%d certificates left, press again."
-msgstr "%dсертификаты остались, нажмите еще раз."
+msgstr "%d сертификаты остались, нажмите еще раз."
 
 msgid "Ongoing Events"
 msgstr "Текущие события"
@@ -689,7 +689,7 @@ msgid "F j"
 msgstr "Ф Дж"
 
 msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
-msgstr "Место посадки объявляется властями за 10 дней до мероприятия. Мы поделимся этим здесь, около%s."
+msgstr "Место посадки объявляется властями за 10 дней до мероприятия. Мы поделимся этим здесь, около %s."
 
 msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
 msgstr "Место посадки объявляется властями за 10 дней до мероприятия. Мы поделимся этим здесь."
@@ -710,7 +710,7 @@ msgid "Loads Google Maps"
 msgstr "Загружает карты Google"
 
 msgid "Goal: %s saplings"
-msgstr "Цель: саженцы%s"
+msgstr "Цель: саженцы %s"
 
 msgid "%s%%"
 msgstr "%s%%"
@@ -726,16 +726,16 @@ msgstr "посажены саженцы"
 
 msgid "%s person contributed"
 msgid_plural "%s people contributed"
-msgstr[0] "%sчеловек внёс вклад"
-msgstr[1] "%sчеловек внесли свой вклад"
-msgstr[2] "%sчеловек внесли свой вклад"
+msgstr[0] "%s человек внёс вклад"
+msgstr[1] "%s человек внесли свой вклад"
+msgstr[2] "%s человек внесли свой вклад"
 
 msgctxt "context_a104e4060425"
 msgid "F j, Y"
 msgstr "Ф дж, Й"
 
 msgid "Time: %s"
-msgstr "Время:%s"
+msgstr "Время: %s"
 
 msgid "This event is complete. Thank you to everyone who contributed."
 msgstr "Это событие завершено. Спасибо всем, кто внес свой вклад."
@@ -897,73 +897,73 @@ msgid "A cancelled certificate is hidden on the public page."
 msgstr "Аннулированный сертификат скрыт на общедоступной странице."
 
 msgid "%d open event, its page is published."
-msgstr "Открыто мероприятие%d, его страница опубликована."
+msgstr "Открыто мероприятие %d, его страница опубликована."
 
 msgid "There is %d active template."
 msgid_plural "There are %d active templates."
-msgstr[0] "Существует активный шаблон%d."
-msgstr[1] "Есть активные шаблоны%d."
-msgstr[2] "Есть активные шаблоны%d."
+msgstr[0] "Существует активный шаблон %d."
+msgstr[1] "Есть активные шаблоны %d."
+msgstr[2] "Есть активные шаблоны %d."
 
 msgid "%1$d message has been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s."
 msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s."
-msgstr[0] "Сообщение%1$dожидает более 10 минут; очередь может застопориться. Обработчик:%2$s, последний запуск:%3$s."
-msgstr[1] "Сообщения%1$dожидаются более 10 минут; очередь может застопориться. Обработчик:%2$s, последний запуск:%3$s."
-msgstr[2] "Сообщения%1$dожидаются более 10 минут; очередь может застопориться. Обработчик:%2$s, последний запуск:%3$s."
+msgstr[0] "Сообщение %1$d ожидает более 10 минут; очередь может застопориться. Обработчик: %2$s, последний запуск: %3$s."
+msgstr[1] "Сообщения %1$d ожидаются более 10 минут; очередь может застопориться. Обработчик: %2$s, последний запуск: %3$s."
+msgstr[2] "Сообщения %1$d ожидаются более 10 минут; очередь может застопориться. Обработчик: %2$s, последний запуск: %3$s."
 
 msgid "%d message could not be sent."
 msgid_plural "%d messages could not be sent."
-msgstr[0] "Не удалось отправить сообщение%d."
-msgstr[1] "Не удалось отправить сообщения%d."
-msgstr[2] "Не удалось отправить сообщения%d."
+msgstr[0] "Не удалось отправить сообщение %d."
+msgstr[1] "Не удалось отправить сообщения %d."
+msgstr[2] "Не удалось отправить сообщения %d."
 
 msgid "%d message sent without failures."
 msgid_plural "%d messages sent without failures."
-msgstr[0] "Сообщение%dотправлено без сбоев."
-msgstr[1] "Сообщения%dотправлены без сбоев."
-msgstr[2] "Сообщения%dотправлены без сбоев."
+msgstr[0] "Сообщение %d отправлено без сбоев."
+msgstr[1] "Сообщения %d отправлены без сбоев."
+msgstr[2] "Сообщения %d отправлены без сбоев."
 
 msgid "%d open event has a published page."
 msgid_plural "%d open events have published pages."
-msgstr[0] "Открытое мероприятие%dимеет опубликованную страницу."
-msgstr[1] "Открытые мероприятия%dимеют опубликованные страницы."
-msgstr[2] "Открытые мероприятия%dимеют опубликованные страницы."
+msgstr[0] "Открытое мероприятие %d имеет опубликованную страницу."
+msgstr[1] "Открытые мероприятия %d имеют опубликованные страницы."
+msgstr[2] "Открытые мероприятия %d имеют опубликованные страницы."
 
 msgid "%dviews"
 msgid_plural "%dviews"
-msgstr[0] "Просмотры%d"
-msgstr[1] "Просмотры%d"
-msgstr[2] "Просмотры%d"
+msgstr[0] "Просмотры %d"
+msgstr[1] "Просмотры %d"
+msgstr[2] "Просмотры %d"
 
 msgid "%dregistration"
 msgid_plural "%dregistration"
-msgstr[0] "Регистрация%d"
-msgstr[1] "Регистрация%d"
-msgstr[2] "Регистрация%d"
+msgstr[0] "Регистрация %d"
+msgstr[1] "Регистрация %d"
+msgstr[2] "Регистрация %d"
 
 msgid " There is active template%d. There is active template%d."
 msgstr " Существует активный шаблон%d. Существует активный шаблон%d."
 
 msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
-msgstr " Сообщение%1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s. Сообщение%1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s."
+msgstr " Сообщение %1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик: %2$s, последний запуск: %3$s. Сообщение %1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик: %2$s, последний запуск: %3$s."
 
 msgid "%dmessage could not be sent."
 msgid_plural "%dmessage could not be sent."
-msgstr[0] " Не удалось отправить сообщение%d."
-msgstr[1] " Не удалось отправить сообщение%d."
-msgstr[2] " Не удалось отправить сообщение%d."
+msgstr[0] " Не удалось отправить сообщение %d."
+msgstr[1] " Не удалось отправить сообщение %d."
+msgstr[2] " Не удалось отправить сообщение %d."
 
 msgid "%dmessage sent, no failure."
 msgid_plural "%dmessage sent, no failure."
-msgstr[0] " Сообщение%dотправлено, ошибок нет."
-msgstr[1] " Сообщение%dотправлено, ошибок нет."
-msgstr[2] " Сообщение%dотправлено, ошибок нет."
+msgstr[0] " Сообщение %dотправлено, ошибок нет."
+msgstr[1] " Сообщение %dотправлено, ошибок нет."
+msgstr[2] " Сообщение %dотправлено, ошибок нет."
 
 msgid "%dhas an open event, its page is live on the site."
 msgid_plural "%dhas open events, its pages are live on the site."
-msgstr[0] " У%dоткрытое мероприятие, его страница активна на сайте."
-msgstr[1] "У%dесть открытые мероприятия, его страницы активны на сайте."
-msgstr[2] "У%dесть открытые мероприятия, его страницы активны на сайте."
+msgstr[0] " У %dоткрытое мероприятие, его страница активна на сайте."
+msgstr[1] "У %dесть открытые мероприятия, его страницы активны на сайте."
+msgstr[2] "У %dесть открытые мероприятия, его страницы активны на сайте."
 
 msgid "saplings were planted"
 msgid_plural "saplings were planted"
@@ -994,9 +994,9 @@ msgstr[2] " Существует активный шаблон%d. Существ
 
 msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgid_plural "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
-msgstr[0] " Сообщение%1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s. Сообщение%1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s."
-msgstr[1] " Сообщение%1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s. Сообщение%1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s."
-msgstr[2] " Сообщение%1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s. Сообщение%1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик:%2$s, последний запуск:%3$s."
+msgstr[0] " Сообщение %1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик: %2$s, последний запуск: %3$s. Сообщение %1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик: %2$s, последний запуск: %3$s."
+msgstr[1] " Сообщение %1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик: %2$s, последний запуск: %3$s. Сообщение %1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик: %2$s, последний запуск: %3$s."
+msgstr[2] " Сообщение %1$dожидает более 10 минут; Возможно, очередь не работает. Обработчик: %2$s, последний запуск: %3$s. Сообщение %1$dожидает ожидания более 10 минут; Возможно, очередь не работает. Обработчик: %2$s, последний запуск: %3$s."
 
 msgid "Location opened: %1$s via QR, %2$s from the site"
 msgstr "Открытия места: %1$s по QR, %2$s с сайта"
@@ -1018,4 +1018,3 @@ msgstr "Карты пока нет: до указания места ссылк�
 
 msgid "Person not found."
 msgstr "Персона не найдена."
-

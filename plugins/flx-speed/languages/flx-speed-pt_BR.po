@@ -125,7 +125,7 @@ msgid "Cache"
 msgstr "Cache"
 
 msgid "%1$d CSS, %2$d JS copies · %3$s"
-msgstr "%1$dCSS,%2$dCópias JS ·%3$s"
+msgstr "%1$d CSS, %2$d Cópias JS ·%3$s"
 
 msgid "Compare"
 msgstr "Comparar"
@@ -173,7 +173,7 @@ msgid "All good: animations in the CSS files seen use transform/opacity."
 msgstr "Tudo bem: as animações nos arquivos CSS vistos usam transformação/opacidade."
 
 msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
-msgstr "Arquivos CSS%1$dverificados vistos no front-end (%2$s)."
+msgstr "Arquivos CSS %1$d verificados vistos no front-end (%2$s)."
 
 msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
 msgstr "O front end ainda não foi visto, então a pasta do tema foi verificada. Depois que o site é aberto, os arquivos carregados pela página são verificados."
@@ -209,7 +209,7 @@ msgid "Custom login URL turned off; login is back on wp-login.php."
 msgstr "URL de login personalizado desativado; o login está de volta em wp-login.php."
 
 msgid "Cleanup done: %s items."
-msgstr "Limpeza concluída: itens%s."
+msgstr "Limpeza concluída: itens %s."
 
 msgid "Login URL changed."
 msgstr "URL de login alterado."
@@ -218,7 +218,7 @@ msgid "New address:"
 msgstr "Novo endereço:"
 
 msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
-msgstr "Você está sendo desconectado para poder ver o novo endereço funcionar; você será redirecionado para a nova página de login em%ssegundos. Após fazer login você volta para esta tela."
+msgstr "Você está sendo desconectado para poder ver o novo endereço funcionar; você será redirecionado para a nova página de login em %s segundos. Após fazer login você volta para esta tela."
 
 msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
 msgstr "Redirecionamento interrompido. Você ainda está logado; o novo endereço será usado na próxima vez que você fizer login."
@@ -296,7 +296,7 @@ msgid "No records yet. Slow or failing requests and sampled requests appear here
 msgstr "Ainda não há registros. Solicitações lentas ou com falha e solicitações de amostra aparecem aqui."
 
 msgid "Records: %s"
-msgstr "Registros:%s"
+msgstr "Registros: %s"
 
 msgid "Delete all records?"
 msgstr "Excluir todos os registros?"
@@ -428,7 +428,7 @@ msgid "Disk"
 msgstr "Disco"
 
 msgid "%s free"
-msgstr "%sgrátis"
+msgstr "%s grátis"
 
 msgid "Note"
 msgstr "Nota"
@@ -677,7 +677,7 @@ msgid "Args"
 msgstr "Argumentos"
 
 msgid "Overdue: due %s"
-msgstr "Vencido: devido%s"
+msgstr "Vencido: devido %s"
 
 msgid "once"
 msgstr "uma vez"
@@ -809,28 +809,28 @@ msgid "If you forget the address or login won't open: add the line below to wp-c
 msgstr "Se você esquecer o endereço ou o login não abrir: adicione a linha abaixo ao wp-config.php usando seu gerenciador de arquivos (Hostinger hPanel › Gerenciador de Arquivos). O login volta para wp-login.php; assim que entrar, corrija o endereço aqui e remova a linha."
 
 msgid "Deprecated since %1$s. Use instead: %2$s"
-msgstr "Obsoleto desde%1$s. Use em vez disso:%2$s"
+msgstr "Obsoleto desde %1$s. Use em vez disso: %2$s"
 
 msgid "%d min"
-msgstr "%dmin"
+msgstr "%d min"
 
 msgid "%1$d d %2$d h"
-msgstr "%1$dd%2$dh"
+msgstr "%1$d d %2$d h"
 
 msgid "%d h"
-msgstr "%dh"
+msgstr "%d h"
 
 msgid "Account limit cannot be read"
 msgstr "O limite da conta não pode ser lido"
 
 msgid "%s cores, no account limit"
-msgstr "Núcleos%s, sem limite de conta"
+msgstr "Núcleos %s, sem limite de conta"
 
 msgid "Account limit %s cores"
-msgstr "Limite de conta de núcleos%s"
+msgstr "Limite de conta de núcleos %s"
 
 msgid "%1$d cores · load %2$s"
-msgstr "Núcleos%1$d· carregar%2$s"
+msgstr "Núcleos %1$d· carregar %2$s"
 
 msgid "Disk (account)"
 msgstr "Disco (conta)"
@@ -839,7 +839,7 @@ msgid "Scanning the account folder"
 msgstr "Verificando a pasta da conta"
 
 msgid "files %1$s · database %2$s"
-msgstr "arquivos%1$s· banco de dados%2$s"
+msgstr "arquivos %1$s· banco de dados %2$s"
 
 msgid "CPU load"
 msgstr "Carga da CPU"
@@ -971,7 +971,7 @@ msgid "Animations (GPU)"
 msgstr "Animações (GPU)"
 
 msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
-msgstr "A animação não está sendo executada na GPU:%s. Deve ser reescrito com transformação/opacidade (tema/predefinição)."
+msgstr "A animação não está sendo executada na GPU: %s. Deve ser reescrito com transformação/opacidade (tema/predefinição)."
 
 msgid "Animations in the CSS files seen use transform/opacity."
 msgstr "As animações nos arquivos CSS vistos usam transformação/opacidade."
@@ -1061,7 +1061,7 @@ msgid "Request recording"
 msgstr "Solicitar gravação"
 
 msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
-msgstr "Ativado:%1$d%% das solicitações são amostradas; solicitações sobre%2$dms e solicitações com falha são registradas."
+msgstr "Ativado: %1$d%% das solicitações são amostradas; solicitações sobre %2$d ms e solicitações com falha são registradas."
 
 msgid "Off: only the live panel works; AI cannot read history."
 msgstr "Desligado: apenas o painel ao vivo funciona; A IA não consegue ler o histórico."
@@ -1070,7 +1070,7 @@ msgid "Failing requests in the last 24 hours"
 msgstr "Falha nas solicitações nas últimas 24 horas"
 
 msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
-msgstr "Solicitações%1$dcom erros de PHP/servidor,%2$dfatal. Consulte Registros."
+msgstr "Solicitações %1$d com erros de PHP/servidor, %2$d fatal. Consulte Registros."
 
 msgid "No recorded errors."
 msgstr "Nenhum erro registrado."
@@ -1079,10 +1079,10 @@ msgid "Slow requests in the last 24 hours"
 msgstr "Solicitações lentas nas últimas 24 horas"
 
 msgid "%1$d requests exceeded %2$d ms."
-msgstr "As solicitações%1$dexcederam%2$dms."
+msgstr "As solicitações %1$d excederam %2$d ms."
 
 msgid "%d recorded requests had external service errors in the last 24 hours."
-msgstr "As solicitações registradas%dapresentaram erros de serviço externo nas últimas 24 horas."
+msgstr "As solicitações registradas %d apresentaram erros de serviço externo nas últimas 24 horas."
 
 msgid "No recorded external service errors."
 msgstr "Nenhum erro de serviço externo registrado."
@@ -1100,19 +1100,19 @@ msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
 msgstr "Flux AI & MCP não está ativo ou MCP está desligado; as ferramentas não são visíveis."
 
 msgid "%1$d KB (%2$d options) is loaded on every request."
-msgstr "%1$dKB (opções%2$d) é carregado em cada solicitação."
+msgstr "%1$d KB (opções %2$d) é carregado em cada solicitação."
 
 msgid "Under 800 KB is recommended; check the largest rows."
 msgstr "Recomenda-se menos de 800 KB; verifique as linhas maiores."
 
 msgid "Last run %s."
-msgstr "Última execução%s."
+msgstr "Última execução %s."
 
 msgid "Cron has not been seen running yet."
 msgstr "Cron ainda não foi visto correndo."
 
 msgid "%d events overdue."
-msgstr "Eventos%datrasados."
+msgstr "Eventos %d atrasados."
 
 msgid "Scheduled events are running"
 msgstr "Os eventos programados estão em andamento"
@@ -1121,16 +1121,16 @@ msgid "Disk space"
 msgstr "Espaço em disco"
 
 msgid "%1$d%% used, %2$s free."
-msgstr "%1$d%% usado,%2$slivre."
+msgstr "%1$d%% usado, %2$s livre."
 
 msgid "(account usage / quota from Settings)"
 msgstr "(uso/cota da conta em Configurações)"
 
 msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
-msgstr "%1$d%% do limite de CPU da conta em uso (núcleos%2$s)."
+msgstr "%1$d%% do limite de CPU da conta em uso (núcleos %2$s)."
 
 msgid "%1$d%% over the last minute (%2$d cores)."
-msgstr "%1$d%% no último minuto (núcleos%2$d)."
+msgstr "%1$d%% no último minuto (núcleos %2$d)."
 
 msgid "On: compiled PHP files are kept in memory."
 msgstr "Ativado: arquivos PHP compilados são mantidos na memória."
@@ -1142,7 +1142,7 @@ msgid "Off: PHP files are compiled again on every request. Turn it on in Hosting
 msgstr "Desativado: os arquivos PHP são compilados novamente a cada solicitação. Ative-o em Hostinger › Configuração do PHP."
 
 msgid "%d expired transients are still in the table."
-msgstr "Os transientes expirados%dainda estão na tabela."
+msgstr "Os transientes expirados %d ainda estão na tabela."
 
 msgid "None."
 msgstr "Nenhum."
@@ -1151,7 +1151,7 @@ msgid "Delete expired transients"
 msgstr "Excluir transientes expirados"
 
 msgid "%d transients deleted."
-msgstr "Transientes%dexcluídos."
+msgstr "Transientes %d excluídos."
 
 msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
 msgstr "Cada linha mostra algo que o site precisa e se está em vigor. Corrija os erros primeiro; vale a pena dar uma olhada nos avisos."
@@ -1166,7 +1166,7 @@ msgid "Info"
 msgstr "Informações"
 
 msgid "%1$d OK · %2$d warnings · %3$d errors"
-msgstr "%1$dOK · Avisos%2$d· Erros%3$d"
+msgstr "%1$d OK · Avisos %2$d· Erros %3$d"
 
 msgid "Check again"
 msgstr "Verifique novamente"
@@ -1175,7 +1175,7 @@ msgid "Show only these (click again to show all)"
 msgstr "Mostrar apenas estes (clique novamente para mostrar todos)"
 
 msgid "Checked: %s"
-msgstr "Verificado:%s"
+msgstr "Verificado: %s"
 
 msgid "Check"
 msgstr "Verifique"
@@ -1190,7 +1190,7 @@ msgid "No checks are registered."
 msgstr "Nenhum cheque é registrado."
 
 msgid "System check found %d problem(s) that can stop donations or automations."
-msgstr "A verificação do sistema encontrou problemas%dque podem interromper doações ou automações."
+msgstr "A verificação do sistema encontrou problemas %d que podem interromper doações ou automações."
 
 msgid "Open system check"
 msgstr "Verificação do sistema aberto"
@@ -1202,7 +1202,7 @@ msgid "System: %d error(s)"
 msgstr "Sistema: erro(s)%d"
 
 msgid "This check could not run: %s"
-msgstr "Esta verificação não pôde ser executada:%s"
+msgstr "Esta verificação não pôde ser executada: %s"
 
 msgid "Scheduled tasks (cron)"
 msgstr "Tarefas agendadas (cron)"
@@ -1226,16 +1226,16 @@ msgid "Other"
 msgstr "Outro"
 
 msgid "Plugin: %s"
-msgstr "Plug-in:%s"
+msgstr "Plug-in: %s"
 
 msgid "MU plugin: %s"
-msgstr "Plug-in MU:%s"
+msgstr "Plug-in MU: %s"
 
 msgid "Theme: %s"
-msgstr "Tema:%s"
+msgstr "Tema: %s"
 
 msgid "Drop-in: %s"
-msgstr "Entrada:%s"
+msgstr "Entrada: %s"
 
 msgid "WordPress core"
 msgstr "Núcleo do WordPress"

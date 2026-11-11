@@ -1167,15 +1167,15 @@ msgstr[2] "Пожертвования %s удалены навсегда."
 
 msgid "%1$s paid gift · %2$s"
 msgid_plural "%1$s paid gifts · %2$s"
-msgstr[0] "%1$sплатный подарок ·%2$s"
-msgstr[1] "%1$sплатные подарки ·%2$s"
-msgstr[2] "%1$sплатные подарки ·%2$s"
+msgstr[0] "%1$s платный подарок ·%2$s"
+msgstr[1] "%1$s платные подарки ·%2$s"
+msgstr[2] "%1$s платные подарки ·%2$s"
 
 msgid "%s waiting"
 msgid_plural "%s waiting"
-msgstr[0] "%sожидание"
-msgstr[1] "%sожидание"
-msgstr[2] "%sожидание"
+msgstr[0] "%s ожидание"
+msgstr[1] "%s ожидание"
+msgstr[2] "%s ожидание"
 
 msgid "%d certificate made. Check it, then press \"Send the certificates\"."
 msgid_plural "%d certificates made. Check them, then press \"Send the certificates\"."
@@ -4272,7 +4272,7 @@ msgid "These types get their hidden WooCommerce product the first time they are 
 msgstr "Эти типы получают свой скрытый продукт WooCommerce при первом пожертвовании или сохранении: %s"
 
 msgid "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
-msgstr " Активный тип%dсодержит скрытый продукт WooCommerce. Активные типы%dимеют скрытые продукты WooCommerce."
+msgstr " Активный тип %dсодержит скрытый продукт WooCommerce. Активные типы %dимеют скрытые продукты WooCommerce."
 
 msgid "No page with the donation options block is selected."
 msgstr "Ни одна страница с блоком вариантов пожертвований не выбрана."
@@ -5217,7 +5217,7 @@ msgid "Overdue scheduled tasks"
 msgstr "Просроченные запланированные задачи"
 
 msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
-msgstr " Задача%1$dзадерживается более чем на 15 минут:%2$s. Задачи%1$dзадерживаются более чем на 15 минут:%2$s."
+msgstr " Задача %1$dзадерживается более чем на 15 минут: %2$s. Задачи %1$dзадерживаются более чем на 15 минут: %2$s."
 
 msgid "A few late tasks right after a quiet period are normal; many mean cron is not running."
 msgstr "Несколько опоздавших задач сразу после периода затишья — это нормально; многие означают, что cron не запущен."
@@ -5476,15 +5476,15 @@ msgstr[2] "%1$sплатный подарок ·%2$s%1$sплатный подар
 
 msgid "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
 msgid_plural "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
-msgstr[0] " Активный тип%dсодержит скрытый продукт WooCommerce. Активные типы%dимеют скрытые продукты WooCommerce."
-msgstr[1] " Активный тип%dсодержит скрытый продукт WooCommerce. Активные типы%dимеют скрытые продукты WooCommerce."
-msgstr[2] " Активный тип%dсодержит скрытый продукт WooCommerce. Активные типы%dимеют скрытые продукты WooCommerce."
+msgstr[0] " Активный тип %dсодержит скрытый продукт WooCommerce. Активные типы %dимеют скрытые продукты WooCommerce."
+msgstr[1] " Активный тип %dсодержит скрытый продукт WooCommerce. Активные типы %dимеют скрытые продукты WooCommerce."
+msgstr[2] " Активный тип %dсодержит скрытый продукт WooCommerce. Активные типы %dимеют скрытые продукты WooCommerce."
 
 msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
-msgstr[0] " Задача%1$dзадерживается более чем на 15 минут:%2$s. Задачи%1$dзадерживаются более чем на 15 минут:%2$s."
-msgstr[1] " Задача%1$dзадерживается более чем на 15 минут:%2$s. Задачи%1$dзадерживаются более чем на 15 минут:%2$s."
-msgstr[2] " Задача%1$dзадерживается более чем на 15 минут:%2$s. Задачи%1$dзадерживаются более чем на 15 минут:%2$s."
+msgstr[0] " Задача %1$dзадерживается более чем на 15 минут: %2$s. Задачи %1$dзадерживаются более чем на 15 минут: %2$s."
+msgstr[1] " Задача %1$dзадерживается более чем на 15 минут: %2$s. Задачи %1$dзадерживаются более чем на 15 минут: %2$s."
+msgstr[2] " Задача %1$dзадерживается более чем на 15 минут: %2$s. Задачи %1$dзадерживаются более чем на 15 минут: %2$s."
 
 msgid "Donation lookup code"
 msgstr "Код для просмотра пожертвований"

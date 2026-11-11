@@ -1199,4 +1199,3 @@ msgstr ""
 
 msgid "Still answering. Please wait a moment."
 msgstr ""
-

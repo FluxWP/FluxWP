@@ -283,8 +283,8 @@ msgstr "geçmiş tarihli"
 
 msgid "%d view"
 msgid_plural "%d views"
-msgstr[0] "%dgörünümü"
-msgstr[1] "%dgörüntülemeleri"
+msgstr[0] "%d görünümü"
+msgstr[1] "%d görüntülemeleri"
 
 msgid "Registered person: %s"
 msgstr "Kayıtlı kişi: %s"
@@ -330,8 +330,8 @@ msgstr "Eklentiler"
 
 msgid "%d record"
 msgid_plural "%d records"
-msgstr[0] "%dkaydı"
-msgstr[1] "%dkayıtları"
+msgstr[0] "%d kaydı"
+msgstr[1] "%d kayıtları"
 
 msgid "Inactive"
 msgstr "Pasif"
@@ -468,7 +468,7 @@ msgstr "Kalıcı bağlantılar"
 msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
 msgstr "Sertifika adres kuralı kayıtlı değil; linkler 404 verebilir. Kalıcı bağlantılar sayfasında \"Değişiklikleri kaydet\"e basın."
 
-msgid "Certificates open at %s{code}."
+msgid "Certificates open at %s {code}."
 msgstr "Sertifikalar %s {code} adresinde açılır."
 
 msgid "Certificate templates"
@@ -717,8 +717,8 @@ msgstr "fidan toprakla buluştu"
 
 msgid "%s person contributed"
 msgid_plural "%s people contributed"
-msgstr[0] "%skişi katkıda bulundu"
-msgstr[1] "%skişi katkıda bulundu"
+msgstr[0] "%s kişi katkıda bulundu"
+msgstr[1] "%s kişi katkıda bulundu"
 
 msgctxt "context_a104e4060425"
 msgid "F j, Y"
@@ -891,28 +891,28 @@ msgstr "%d açık etkinlik var, sayfaları sitede yayında."
 
 msgid "There is %d active template."
 msgid_plural "There are %d active templates."
-msgstr[0] "%daktif şablonu var."
-msgstr[1] "%daktif şablonları var."
+msgstr[0] "%d aktif şablonu var."
+msgstr[1] "%d aktif şablonları var."
 
 msgid "%1$d message has been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s."
 msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s."
-msgstr[0] "%1$dmesajı 10 dakikadan fazla süredir bekliyor; kuyruk durmuş olabilir. İşleyici:%2$s, son çalıştırma:%3$s."
-msgstr[1] "%1$dmesajları 10 dakikadan fazla süredir bekliyor; kuyruk durmuş olabilir. İşleyici:%2$s, son çalıştırma:%3$s."
+msgstr[0] "%1$d mesajı 10 dakikadan fazla süredir bekliyor; kuyruk durmuş olabilir. İşleyici: %2$s, son çalıştırma: %3$s."
+msgstr[1] "%1$d mesajları 10 dakikadan fazla süredir bekliyor; kuyruk durmuş olabilir. İşleyici: %2$s, son çalıştırma: %3$s."
 
 msgid "%d message could not be sent."
 msgid_plural "%d messages could not be sent."
-msgstr[0] "%dmesajı gönderilemedi."
-msgstr[1] "%dmesajları gönderilemedi."
+msgstr[0] "%d mesajı gönderilemedi."
+msgstr[1] "%d mesajları gönderilemedi."
 
 msgid "%d message sent without failures."
 msgid_plural "%d messages sent without failures."
-msgstr[0] "%dmesajı hatasız olarak gönderildi."
-msgstr[1] "%dmesajları hatasız olarak gönderildi."
+msgstr[0] "%d mesajı hatasız olarak gönderildi."
+msgstr[1] "%d mesajları hatasız olarak gönderildi."
 
 msgid "%d open event has a published page."
 msgid_plural "%d open events have published pages."
-msgstr[0] "%dopen etkinliğinin yayınlanmış bir sayfası var."
-msgstr[1] "%daçık etkinliklerinin sayfaları yayınlandı."
+msgstr[0] "%d open etkinliğinin yayınlanmış bir sayfası var."
+msgstr[1] "%d açık etkinliklerinin sayfaları yayınlandı."
 
 msgid "%dviews"
 msgid_plural "%dviews"
@@ -970,8 +970,8 @@ msgstr[1] " There is active template%d. There is active template%d."
 
 msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgid_plural "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
-msgstr[0] "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
-msgstr[1] "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
+msgstr[0] "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler: %2$s, last run: %3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler: %2$s, last run: %3$s."
+msgstr[1] "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler: %2$s, last run: %3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler: %2$s, last run: %3$s."
 
 msgid "Location opened: %1$s via QR, %2$s from the site"
 msgstr "Konum açılma: QR ile %1$s, siteden %2$s"
@@ -993,4 +993,3 @@ msgstr "Harita henüz yok: konum girilene kadar link etkinlik sayfasını açar.
 
 msgid "Person not found."
 msgstr "Kişi bulunamadı."
-
