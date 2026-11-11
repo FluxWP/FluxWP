@@ -141,20 +141,6 @@ function flxs_install_tables() {
 	$c = $wpdb->get_charset_collate();
 
 	$sql = array();
-	$sql[] = 'CREATE TABLE ' . flxs_table( 'people' ) . " (
-		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-		name varchar(190) NOT NULL DEFAULT '',
-		phone varchar(20) DEFAULT NULL,
-		email varchar(190) DEFAULT NULL,
-		note text,
-		created_by bigint(20) unsigned NOT NULL DEFAULT 0,
-		created_at datetime NOT NULL,
-		updated_at datetime NOT NULL,
-		PRIMARY KEY  (id),
-		KEY phone (phone),
-		KEY email (email)
-	) $c;";
-
 	$sql[] = 'CREATE TABLE ' . flxs_table( 'templates' ) . " (
 		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 		name varchar(190) NOT NULL DEFAULT '',

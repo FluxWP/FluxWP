@@ -536,7 +536,7 @@ function flxs_bulk_send( array $spec, $dry = false ) {
 			} elseif ( ! empty( $spec['template_id'] ) ) {
 				$people = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT p.* FROM $pt p INNER JOIN $ct c ON c.person_id = p.id WHERE c.template_id = %d AND c.status = 'active'", $spec['template_id'] ), ARRAY_A );
 			} else {
-				$people = $wpdb->get_results( "SELECT * FROM $pt ORDER BY id", ARRAY_A );
+				$people = $wpdb->get_results( "SELECT * FROM $pt p WHERE " . flxs_people_mine_sql( 'p' ) . ' ORDER BY p.id', ARRAY_A ); // phpcs:ignore
 			}
 		}
 		if ( '' === trim( $body ) ) {

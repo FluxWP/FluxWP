@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Certificates
  * Description:       Sertifika şablonları, canlı PDF önizlemeli sertifika oluşturma, /sertifika/{kod} doğrulama sayfası, e-posta / SMS (Netgsm) / WhatsApp (Evolution API) gönderimi, asenkron kuyruk, kişi kaydı ve detaylı loglar.
- * Version:           1.9.9
+ * Version:           2.0.0
  * Domain Path:       /languages
  * Requires at least: 6.4
  * Requires PHP:      7.4
@@ -17,8 +17,8 @@ require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 require_once __DIR__ . '/includes/flx-background.php'; // Portable worker support (tools/background).
 
-define( 'FLXS_VERSION', '1.9.9' );
-define( 'FLXS_DB_VERSION', '5' );
+define( 'FLXS_VERSION', '2.0.0' );
+define( 'FLXS_DB_VERSION', '6' );
 define( 'FLXS_FILE', __FILE__ );
 define( 'FLXS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXS_URL', plugin_dir_url( __FILE__ ) );
@@ -27,6 +27,7 @@ require_once FLXS_DIR . 'includes/helpers.php';
 require_once FLXS_DIR . 'includes/install.php';
 require_once FLXS_DIR . 'includes/log.php';
 require_once FLXS_DIR . 'includes/people.php';
+require_once FLXS_DIR . 'includes/people-shared.php';
 require_once FLXS_DIR . 'includes/templates.php';
 require_once FLXS_DIR . 'includes/certificates.php';
 require_once FLXS_DIR . 'includes/providers.php';

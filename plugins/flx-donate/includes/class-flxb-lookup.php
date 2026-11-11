@@ -147,7 +147,8 @@ final class FLXB_Lookup {
 		$donors = array();
 		$orders = array();
 		$col    = 'email' === $type ? 'email' : 'phone';
-		$donors = array_map( 'intval', (array) $wpdb->get_col( $wpdb->prepare( 'SELECT id FROM ' . flxb_table( 'donors' ) . " WHERE {$col} = %s LIMIT 50", $value ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery
+		$alt    = 'phone' === $col ? ltrim( (string) $value, '+' ) : (string) $value; // shared people table: no "+"
+		$donors = array_map( 'intval', (array) $wpdb->get_col( $wpdb->prepare( 'SELECT id FROM ' . flxb_table( 'donors' ) . " WHERE {$col} IN (%s, %s) LIMIT 50", $value, $alt ) ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery
 		if ( function_exists( 'wc_get_orders' ) ) {
 			$st   = array_keys( wc_get_order_statuses() );
 			$args = array( 'limit' => FLXB_App::MAX, 'return' => 'ids', 'status' => $st );

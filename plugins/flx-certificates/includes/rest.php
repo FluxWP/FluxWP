@@ -616,7 +616,7 @@ function flxs_rest_directory( WP_REST_Request $r ) {
 	$page = max( 1, absint( $r->get_param( 'page' ) ) );
 	$s    = sanitize_text_field( (string) $r->get_param( 's' ) );
 	$t     = flxs_table( 'people' );
-	$where = array( '1=1' );
+	$where = array( flxs_people_mine_sql( 'p' ) );
 	$prm   = array();
 	if ( '' !== $s ) {
 		$like    = '%' . $wpdb->esc_like( $s ) . '%';

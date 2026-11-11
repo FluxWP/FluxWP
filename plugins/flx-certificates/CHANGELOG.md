@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0
+- People move to the shared FluxWP people table (`{prefix}flx_people`, flx-brand 1.3.0). A person added here is the same person in Flux CRM, Flux Mail, Flux Donate and Flux Chat; Flux Certificates still works alone.
+- One-time move of `{prefix}flxs_people`: ids are kept when free, a person already in the shared table (same phone, then e-mail) is reused and only gets empty fields filled; certificate, message and log references follow. The old table is dropped after a complete copy.
+- New people are created through `flx_person_ensure()` (Flux CRM matching runs when it is active), edits through `flx_person_update()`. The People screen lists people tied to Certificates; the picker searches everyone.
+- Deleting a person who is also used by another package only removes the Certificates tie. "Message all people" only reaches Certificates people.
+
 ## 1.9.9
 - "Certificates open at %s {code}." metninde boşluk geri geldi.
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

@@ -3,6 +3,7 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'The person could not be saved.' => 'Kişi kaydedilemedi.',
   'Location opened: %1$s via QR, %2$s from the site' => 'Konum açılma: QR ile %1$s, siteden %2$s',
   'Download QR (SVG)' => 'QR indir (SVG)',
   'Location link for QR codes' => 'QR için konum linki',

@@ -4,6 +4,13 @@ defined( 'ABSPATH' ) || exit;
 /** Tablo adı: flxs_table('certificates') => wp_flxs_certificates */
 function flxs_table( $name ) {
 	global $wpdb;
+	if ( 'people' === $name ) {
+		// 2.0.0: people live in the shared FluxWP people table (flx-brand people.php), used by every package.
+		if ( function_exists( 'flx_people_ready' ) && did_action( 'after_setup_theme' ) ) {
+			flx_people_ready();
+		}
+		return $wpdb->prefix . 'flx_people';
+	}
 	return $wpdb->prefix . 'flxs_' . $name;
 }
 
