@@ -395,6 +395,22 @@ Flux App `flxapp_modules` ile iki yerel modül kaydolur: `flxb-donations` ("Bağ
 - Sertifika: `id, code, number, name, title, date, date_label, donation_id, url, pdf_url, image_url`.
 - Hangi bağışlar kullanıcının: kendi WooCommerce siparişleri + hesaba bağlı bağışçı kartları (usermeta `flxb_donor_ids`) + hesabın e-postasıyla eşleşen bağışçı kartı. Kart bağlama: `flxapp_otp_customer_created` (siparişin bağışçısı) ve telefonla kodla girişte `flxapp_otp_login` (hesapta tek telefon varsa o numaranın kartı). Fatura bilgisine yazılmış telefon tek başına yetmez. Filtre `flxb_app_donor_ids( $ids, $user )`; PHP `FLXB_App::link( $user_id, $donor_ids )`.
 
+## Bağışlarım sayfası: kodla bağış ve sertifika görüntüleme (2.18.0)
+Hesabı olmayan bağışçı için sitedeki sayfa. Kısa kod `[flx_bagislarim]` (eş ad `[flx_my_donations]`, isteğe bağlı `baslik="..."`). Bağışçı e-posta ya da telefon girer, 6 haneli tek kullanımlık kod alır, girer; bağışlarını (tutar, durum, kalemler) ve sertifikalarını (görüntüle, PDF indir) görür. Giriş yapmış kullanıcı kodsuz kendi bağışlarını görür (`FLXB_App::gifts`). Ayarlar: Bağışlar › Ayarlar › **Bağış sorgulama** (seçenek `flxb_lookup`: `on`, `page_id`, `channels` email|whatsapp|sms), "Bağışlarım sayfasını oluştur" düğmesi.
+
+| Uç (hepsi POST, `no-store`) | Gövde → cevap |
+|---|---|
+| `/wp-json/flxb/v1/lookup/start` | `{login}` → `{ok, via, ttl, message}`; bağış olsa da olmasa da aynı cevap (kim bağış yaptı sızmaz), kod yalnız eşleşme varsa gider |
+| `/wp-json/flxb/v1/lookup/verify` | `{login, code}` → `{ok, data}` + HttpOnly çerez `flxb_lk` (30 dk) |
+| `/wp-json/flxb/v1/lookup/data` | → `{ok, data}` (çerez ya da giriş yapmış kullanıcı); oturum yoksa `{ok:false}` |
+| `/wp-json/flxb/v1/lookup/logout` | çerezi ve oturumu siler |
+
+- `data`: `who` (maskeli e-posta/telefon ya da hesap adı), `account`, `count`, `total_label` (tamamlanan bağışlar; para birimleri karışıksa boş), `items: [bağış + certificate_list: [sertifika]]` (havale bekliyorsa `pay_url` = siparişin teşekkür sayfası: IBAN + dekont yükleme), `certificates`, `donate_url`. Filtre `flxb_lookup_data( $out, $gifts )`.
+- Eşleşme: bağışçı kartlarında aynı e-posta/telefon + WooCommerce siparişlerinde aynı fatura e-postası/telefonu + o e-postalı hesabın siparişleri. Filtre `flxb_lookup_match( {donors, orders}, $type, $value )`. PHP: `FLXB_App::rows_for( $donor_ids, $order_ids )`, `FLXB_App::group( $rows )`.
+- Gönderim: e-posta şablonu `flx-donate/lookup-code` (Flux Mail'de düzenlenir; yoksa wp_mail, değişkenler `kod`, `dakika`, `link`); telefon önce WhatsApp (Flux Chat `flxc_send_private_text`, panelde görünmez), sonra Flux Mail WhatsApp/SMS (`log => false`). Kendi kanalın: `flxb_lookup_send( null, $type, $value, $code, $text )` → kanal adı döndür.
+- Sınırlar: kod 10 dk, 5 hatalı denemede düşer; IP başına 10 dk'da 8 istek, aynı adrese 10 dk'da 3 kod, doğrulama IP başına 10 dk'da 20; günlük üst sınır e-posta 40 / telefon 200 (`flxb_lookup_daily_cap( $cap, $via )`, Hostinger günde 100 e-posta). Kod transient'te hash'li, oturum belirteci hash'li saklanır.
+- Sistem kontrolü `flxb.lookup_page`: sayfa yoksa bilgi, telefon kanalı yoksa uyarı.
+
 ## Mobil uygulama: Onay bekleyenler (2.8.0)
 Personelin havale/EFT dekontlarını telefondan onaylaması için. Sözleşme: docs/fluxapp/MODUL-API.md › Bağış onayı.
 

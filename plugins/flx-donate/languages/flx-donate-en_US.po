@@ -5559,3 +5559,189 @@ msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 min
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgstr[0] "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgstr[1] "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
+
+msgid "Donation lookup code"
+msgstr "Donation lookup code"
+
+msgid "One-time code a donor enters on the \"My donations\" page to see their donations and certificates."
+msgstr "One-time code a donor enters on the \"My donations\" page to see their donations and certificates."
+
+msgid "Minutes the code is valid"
+msgstr "Minutes the code is valid"
+
+msgid "Lookup page"
+msgstr "Lookup page"
+
+msgid "{kod} is your code to view your donations"
+msgstr "{kod} is your code to view your donations"
+
+msgid "Your verification code"
+msgstr "Your verification code"
+
+msgid "Enter this code on the \"My donations\" page to see your donations and download your certificates:"
+msgstr "Enter this code on the \"My donations\" page to see your donations and download your certificates:"
+
+msgid "The code is valid for {dakika} minutes. If you did not ask for it, you can ignore this e-mail."
+msgstr "The code is valid for {dakika} minutes. If you did not ask for it, you can ignore this e-mail."
+
+msgid "Enter a valid e-mail address or phone number."
+msgstr "Enter a valid e-mail address or phone number."
+
+msgid "Codes cannot be sent by phone at the moment. Please use your e-mail address."
+msgstr "Codes cannot be sent by phone at the moment. Please use your e-mail address."
+
+msgid "Codes cannot be sent by e-mail at the moment. Please use your phone number."
+msgstr "Codes cannot be sent by e-mail at the moment. Please use your phone number."
+
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr "Too many attempts. Please wait a few minutes and try again."
+
+msgid "The code could not be sent. Please try again later or contact us."
+msgstr "The code could not be sent. Please try again later or contact us."
+
+msgid "If there is a donation with this number, we have sent a 6-digit code to it on WhatsApp."
+msgstr "If there is a donation with this number, we have sent a 6-digit code to it on WhatsApp."
+
+msgid "If there is a donation with this number, we have sent a 6-digit code to it by SMS."
+msgstr "If there is a donation with this number, we have sent a 6-digit code to it by SMS."
+
+msgid "If there is a donation with this address, we have sent a 6-digit code to it. Check your spam folder too."
+msgstr "If there is a donation with this address, we have sent a 6-digit code to it. Check your spam folder too."
+
+msgid "%1$s is your code to view your donations at %2$s. Valid for 10 minutes. Do not share it with anyone."
+msgstr "%1$s is your code to view your donations at %2$s. Valid for 10 minutes. Do not share it with anyone."
+
+msgid "The code is wrong or has expired."
+msgstr "The code is wrong or has expired."
+
+msgid "Send code"
+msgstr "Send code"
+
+msgid "Sending…"
+msgstr "Sending…"
+
+msgid "Show my donations"
+msgstr "Show my donations"
+
+msgid "Checking…"
+msgstr "Checking…"
+
+msgid "Send again"
+msgstr "Send again"
+
+msgid "Send again in %s s"
+msgstr "Send again in %s s"
+
+msgid "6-digit code"
+msgstr "6-digit code"
+
+msgid "Sign out"
+msgstr "Sign out"
+
+msgid "Verified: %s"
+msgstr "Verified: %s"
+
+msgid "Total donated"
+msgstr "Total donated"
+
+msgid "We could not find a donation with these details."
+msgstr "We could not find a donation with these details."
+
+msgid "Try the other e-mail address or phone number you may have used when donating."
+msgstr "Try the other e-mail address or phone number you may have used when donating."
+
+msgid "There is no certificate yet. Certificates are issued once the payment is confirmed."
+msgstr "There is no certificate yet. Certificates are issued once the payment is confirmed."
+
+msgid "Payment details"
+msgstr "Payment details"
+
+msgid "Order details"
+msgstr "Order details"
+
+msgid "Enter your e-mail address."
+msgstr "Enter your e-mail address."
+
+msgid "Enter your phone number."
+msgstr "Enter your phone number."
+
+msgid "Enter the 6-digit code."
+msgstr "Enter the 6-digit code."
+
+msgid "Donation lookup is turned off (Donations › Settings › Donation lookup)."
+msgstr "Donation lookup is turned off (Donations › Settings › Donation lookup)."
+
+msgid "My donations and certificates"
+msgstr "My donations and certificates"
+
+msgid "Enter the e-mail address or phone number you used when donating. We will send you a one-time code; no account or password is needed."
+msgstr "Enter the e-mail address or phone number you used when donating. We will send you a one-time code; no account or password is needed."
+
+msgid "E-mail address"
+msgstr "E-mail address"
+
+msgid "name@example.com"
+msgstr "name@example.com"
+
+msgid "Phone number"
+msgstr "Phone number"
+
+msgid "Your details are only used to find your donations."
+msgstr "Your details are only used to find your donations."
+
+msgid "Donation lookup"
+msgstr "Donation lookup"
+
+msgid "Donors can see their donations with a code"
+msgstr "Donors can see their donations with a code"
+
+msgid "On the \"My donations\" page a donor enters their e-mail or phone, gets a one-time code and sees their donations and certificates without an account."
+msgstr "On the \"My donations\" page a donor enters their e-mail or phone, gets a one-time code and sees their donations and certificates without an account."
+
+msgid "Send the code by"
+msgstr "Send the code by"
+
+msgid "(no connection yet: set it up in Flux Mail or Flux Chat)"
+msgstr "(no connection yet: set it up in Flux Mail or Flux Chat)"
+
+msgid "Phone numbers get the code on WhatsApp first, then by SMS. E-mail codes are limited to 40 a day to stay under the hosting mail limit."
+msgstr "Phone numbers get the code on WhatsApp first, then by SMS. E-mail codes are limited to 40 a day to stay under the hosting mail limit."
+
+msgid "Page"
+msgstr "Page"
+
+msgid "— Find automatically —"
+msgstr "— Find automatically —"
+
+msgid "The page shows the %s shortcode. Leave it on \"Find automatically\" or create the page with the button below."
+msgstr "The page shows the %s shortcode. Leave it on \"Find automatically\" or create the page with the button below."
+
+msgid "Create the \"My donations\" page"
+msgstr "Create the \"My donations\" page"
+
+msgid "The page"
+msgstr "The page"
+
+msgid "There is no page yet."
+msgstr "There is no page yet."
+
+msgid "The code is valid for 10 minutes; after 5 wrong codes a new one is needed. One address can ask for 3 codes in 10 minutes. A verified visitor stays signed in for 30 minutes on this device."
+msgstr "The code is valid for 10 minutes; after 5 wrong codes a new one is needed. One address can ask for 3 codes in 10 minutes. A verified visitor stays signed in for 30 minutes on this device."
+
+msgid "The answer is the same whether or not there is a donation, so the page does not reveal who has donated."
+msgstr "The answer is the same whether or not there is a donation, so the page does not reveal who has donated."
+
+msgid "Donation lookup page"
+msgstr "Donation lookup page"
+
+msgid "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode."
+msgstr "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode."
+
+msgid "Create the page"
+msgstr "Create the page"
+
+msgid "Donors can see their donations on %s with a code sent by e-mail or phone."
+msgstr "Donors can see their donations on %s with a code sent by e-mail or phone."
+
+msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
+msgstr "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."

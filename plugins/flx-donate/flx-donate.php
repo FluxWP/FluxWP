@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Donate
  * Description:       Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.
- * Version:           2.17.3
+ * Version:           2.18.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXB_VERSION', '2.17.3' );
+define( 'FLXB_VERSION', '2.18.0' );
 define( 'FLXB_FILE', __FILE__ );
 define( 'FLXB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXB_URL', plugin_dir_url( __FILE__ ) );
@@ -58,6 +58,7 @@ require_once FLXB_DIR . 'includes/class-flxb-form-sync.php';
 require_once FLXB_DIR . 'includes/class-flxb-preselect.php';
 require_once FLXB_DIR . 'includes/class-flxb-rest.php';
 require_once FLXB_DIR . 'includes/class-flxb-app.php';
+require_once FLXB_DIR . 'includes/class-flxb-lookup.php';
 require_once FLXB_DIR . 'includes/class-flxb-app-review.php';
 require_once FLXB_DIR . 'includes/class-flxb-app-admin.php';
 require_once FLXB_DIR . 'includes/app-manifest.php';
@@ -135,6 +136,7 @@ FLXB_Form_Sync::init();
 FLXB_Preselect::init();
 FLXB_Rest::init();
 FLXB_App::init();
+FLXB_Lookup::init();
 FLXB_App_Review::init();
 FLXB_App_Admin::init();
 
