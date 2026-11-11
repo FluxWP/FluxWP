@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.2.2
+- Paketler: devre dışı eklenti ve temalar artık hep listenin sonunda. Sıra: güncellemesi olanlar, etkinler, kurulu olmayanlar, devre dışılar.
+- FluxWP dışındaki eklentilerin ikonları güncelleme olmasa da görünür (WordPress.org kaydı, yoksa eklentinin kendi klasöründeki ikon). İkonu bulunamayan eklentide adın baş harfiyle renkli kutu (filtre `flxu_wp_plugin_icon`).
+
 ## 1.2.1
 - Paketler: ad altındaki kimlik (slug/dosya) kaldırıldı, yerine etiketler: FluxWP paketlerinde "FluxWP" + kategori (ör. İletişim), diğerlerinde gri "Genel" + Eklenti/Tema/Çeviri/Çekirdek.
 - "Tür" sütunu kaldırıldı.
