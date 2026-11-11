@@ -13,7 +13,7 @@ import os, sys, glob, shutil
 
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'flx-brand')
 FILES = ('loader.php', 'core.php')
-DIRS = ('phone',)  # 1.2.0: shared phone field assets
+DIRS = ('phone', 'field')  # 1.2.0: shared phone field assets; 1.3.0: shared form fields
 MARK = 'flx-brand/loader.php'
 
 

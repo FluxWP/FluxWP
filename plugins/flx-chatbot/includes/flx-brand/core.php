@@ -904,3 +904,283 @@ if ( ! function_exists( 'flx_job_check' ) ) {
 		return 0;
 	}
 }
+/*
+ * ---------------------------------------------------------------------------------------------------------
+ * Ortak form alanları (1.3.0)
+ * ---------------------------------------------------------------------------------------------------------
+ * Tek görünüm: ikon + küçük etiket + büyük, dikeyde ortalı değer; sağda ek (TL) ve yeşil tik / kırmızı ünlem;
+ * altında hata ya da yardım satırı. Yazarken biçimleme (kart, son kullanma, tutar…) ve doğrulama field/field.js'te.
+ *
+ *   echo flx_field( array( 'name' => 'email', 'type' => 'email', 'label' => 'E-posta', 'icon' => 'mail', 'required' => true, 'rules' => 'email' ) );
+ *   echo flx_field( array( 'name' => 'amount', 'label' => 'Tutar', 'icon' => 'edit', 'format' => 'money', 'rules' => 'min:120', 'suffix' => 'TL' ) );
+ *   echo flx_field( array( 'name' => 'phone', 'type' => 'phone', 'label' => 'Telefon' ) );           // ortak telefon alanı kutunun içinde
+ *   echo flx_check( array( 'name' => 'terms', 'label' => 'Kabul ediyorum', 'required' => true ) );
+ *
+ * <form data-flx-validate> gönderilirken denetlenir. Filtreler: flx_field_strings, flx_field_icons.
+ * JS: window.flxField.validate(form), .setError(el, msg), .clear(el), .addRule(), .addFormat(), .html(args).
+ */
+
+/** field/ klasörünün adresi. */
+function flx_field_url( $file = '' ) {
+	$dir = wp_normalize_path( __DIR__ . '/field' );
+	$tpl = wp_normalize_path( get_theme_root() );
+	if ( 0 === strpos( $dir, $tpl ) ) {
+		$url = get_theme_root_uri() . substr( $dir, strlen( $tpl ) );
+	} else {
+		$url = plugins_url( '', $dir . '/x' );
+	}
+	return trailingslashit( $url ) . ltrim( $file, '/' );
+}
+
+/** Hata metinleri (TR / EN gömülü, diğer dillerde EN). %s = kuralın değeri. */
+function flx_field_strings() {
+	$tr = 'tr' === flx_lang();
+	return (array) apply_filters(
+		'flx_field_strings',
+		array(
+			'required' => $tr ? 'Bu alanı doldurun.' : 'Please fill in this field.',
+			'invalid'  => $tr ? 'Bu alanı kontrol edin.' : 'Please check this field.',
+			'email'    => $tr ? 'Geçerli bir e-posta adresi yazın.' : 'Please enter a valid e-mail address.',
+			'phone'    => $tr ? 'Geçerli bir telefon numarası yazın.' : 'Please enter a valid phone number.',
+			'luhn'     => $tr ? 'Kart numarasını kontrol edin.' : 'Please check the card number.',
+			'exp'      => $tr ? 'Son kullanma tarihini kontrol edin (AA/YY).' : 'Please check the expiry date (MM/YY).',
+			'min'      => $tr ? 'En az %s olmalı.' : 'Must be at least %s.',
+			'max'      => $tr ? 'En çok %s olabilir.' : 'Must be at most %s.',
+			'minlen'   => $tr ? 'En az %s karakter yazın.' : 'Please enter at least %s characters.',
+			'maxlen'   => $tr ? 'En çok %s karakter yazılabilir.' : 'At most %s characters.',
+			'digits'   => $tr ? 'Rakamları kontrol edin.' : 'Please check the digits.',
+		)
+	);
+}
+
+/** Alan ikonları: ad => SVG iç içeriği (24×24, stroke). */
+function flx_field_icons() {
+	static $icons = null;
+	if ( null === $icons ) {
+		$icons = (array) apply_filters(
+			'flx_field_icons',
+			array(
+				'user'     => '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+				'mail'     => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+				'phone'    => '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+				'card'     => '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 10h18M7 15h4"/>',
+				'calendar' => '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+				'lock'     => '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+				'edit'     => '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+				'coins'    => '<circle cx="9" cy="9" r="6"/><path d="M15.5 9.5a6 6 0 1 1-6 6"/>',
+				'pin'      => '<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+				'home'     => '<path d="m3 11 9-7 9 7"/><path d="M5 10v10h14V10"/>',
+				'building' => '<rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 8h2M13 8h2M9 12h2M13 12h2M10 21v-4h4v4"/>',
+				'gift'     => '<rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 13h18M12 9v12"/><path d="M12 9C10 4 5 5 7 9M12 9c2-5 7-4 5 0"/>',
+				'search'   => '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+				'note'     => '<path d="M5 4h14v12l-5 4H5z"/><path d="M14 20v-4h5M8 9h8M8 13h5"/>',
+				'key'      => '<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/>',
+				'globe'    => '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+				'hash'     => '<path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/>',
+			)
+		);
+	}
+	return $icons;
+}
+
+/** CSS + JS (bir kez). Kısa kod / blok çıktısında çağrılır; flx_field() kendisi çağırır. */
+function flx_field_enqueue() {
+	if ( wp_style_is( 'flx-field', 'enqueued' ) ) {
+		return;
+	}
+	$v = defined( 'FLX_BRAND_VERSION' ) ? FLX_BRAND_VERSION : '1';
+	wp_enqueue_style( 'flx-field', flx_field_url( 'field.css' ), array(), $v );
+	wp_enqueue_script( 'flx-field', flx_field_url( 'field.js' ), array(), $v, true );
+	wp_localize_script(
+		'flx-field',
+		'FLX_FIELD',
+		array(
+			'i18n'  => flx_field_strings(),
+			'icons' => flx_field_icons(),
+		)
+	);
+}
+
+/** Bir ikonun kutu içi HTML'i ('' = yok). */
+function flx_field_icon( $name ) {
+	$icons = flx_field_icons();
+	return isset( $icons[ $name ] ) ? '<span class="flx-fld__ico" aria-hidden="true"><svg viewBox="0 0 24 24">' . $icons[ $name ] . '</svg></span>' : '';
+}
+
+/** Ek nitelikler (ad="değer"). */
+function flx_field_attrs( $attrs ) {
+	$out = '';
+	foreach ( (array) $attrs as $k => $v ) {
+		if ( false === $v || null === $v ) {
+			continue;
+		}
+		$out .= ' ' . esc_attr( $k ) . ( true === $v ? '' : '="' . esc_attr( (string) $v ) . '"' );
+	}
+	return $out;
+}
+
+/**
+ * Alan HTML'i.
+ *
+ * @param array $args name, id, type (text|email|tel|number|password|search|url|textarea|select|phone), label, value,
+ *                    placeholder, icon (flx_field_icons adı), suffix (sağda kısa metin: TL), hint (etiketin sağında: AA/YY),
+ *                    help (altta yardım), error (sunucudan gelen hata), required, readonly, disabled,
+ *                    format (card|exp|digits|money|upper|name), rules ("email min:120 minlen:3" …),
+ *                    messages ([ kural => metin ]), options (select: [ değer => etiket ]), rows (textarea),
+ *                    tick (doğruysa yeşil tik), size (''|sm), wide (ızgarada tam satır), hide_label,
+ *                    class, attrs (input'a ek nitelikler), wrap_attrs (sarmalayıcıya), phone (type=phone: flx_phone_field argümanları).
+ */
+function flx_field( array $args ) {
+	flx_field_enqueue();
+	$a    = wp_parse_args(
+		$args,
+		array(
+			'name'        => '',
+			'id'          => '',
+			'type'        => 'text',
+			'label'       => '',
+			'value'       => '',
+			'placeholder' => '',
+			'icon'        => '',
+			'suffix'      => '',
+			'hint'        => '',
+			'help'        => '',
+			'error'       => '',
+			'required'    => false,
+			'readonly'    => false,
+			'disabled'    => false,
+			'format'      => '',
+			'rules'       => '',
+			'messages'    => array(),
+			'options'     => array(),
+			'rows'        => 3,
+			'tick'        => false,
+			'size'        => '',
+			'wide'        => false,
+			'hide_label'  => false,
+			'class'       => '',
+			'attrs'       => array(),
+			'wrap_attrs'  => array(),
+			'phone'       => array(),
+		)
+	);
+	$type = (string) $a['type'];
+	$id   = '' !== $a['id'] ? (string) $a['id'] : 'flx-f-' . wp_rand( 10000, 999999 );
+	$cls  = 'flx-fld';
+	$cls .= 'textarea' === $type ? ' flx-fld--area' : ( 'select' === $type ? ' flx-fld--select' : ( 'phone' === $type ? ' flx-fld--phone' : '' ) );
+	$cls .= 'sm' === $a['size'] ? ' flx-fld--sm' : '';
+	$cls .= $a['wide'] ? ' flx-fld--wide' : '';
+	$cls .= $a['hide_label'] ? ' flx-fld--nolabel' : '';
+	$cls .= '' !== (string) $a['error'] ? ' is-error' : '';
+	$cls .= $a['readonly'] ? ' is-readonly' : '';
+	$cls .= $a['disabled'] ? ' is-disabled' : '';
+	$cls .= '' !== (string) $a['class'] ? ' ' . $a['class'] : '';
+
+	$in = array_merge(
+		array(
+			'id'              => $id,
+			'name'            => '' !== (string) $a['name'] ? (string) $a['name'] : false,
+			'placeholder'     => '' !== (string) $a['placeholder'] ? (string) $a['placeholder'] : false,
+			'required'        => $a['required'] ? true : false,
+			'readonly'        => $a['readonly'] ? true : false,
+			'disabled'        => $a['disabled'] ? true : false,
+			'data-flx-format' => '' !== (string) $a['format'] ? (string) $a['format'] : false,
+			'data-flx-rules'  => '' !== (string) $a['rules'] ? (string) $a['rules'] : false,
+			'aria-invalid'    => '' !== (string) $a['error'] ? 'true' : false,
+		),
+		(array) $a['attrs']
+	);
+	foreach ( (array) $a['messages'] as $rule => $text ) {
+		$in[ 'data-flx-msg-' . sanitize_key( $rule ) ] = (string) $text;
+	}
+
+	if ( 'phone' === $type ) {
+		$control = function_exists( 'flx_phone_field' ) ? flx_phone_field(
+			array_merge(
+				array(
+					'name'        => (string) $a['name'],
+					'value'       => (string) $a['value'],
+					'id'          => $id,
+					'placeholder' => (string) $a['placeholder'],
+					'required'    => (bool) $a['required'],
+					'label'       => (string) $a['label'],
+					'attrs'       => (array) $a['attrs'],
+					'message'     => false,
+				),
+				(array) $a['phone']
+			)
+		) : '<input class="flx-fld__input" type="tel" inputmode="tel" value="' . esc_attr( (string) $a['value'] ) . '"' . flx_field_attrs( $in ) . '>';
+	} elseif ( 'textarea' === $type ) {
+		$control = '<textarea class="flx-fld__input" rows="' . (int) $a['rows'] . '"' . flx_field_attrs( $in ) . '>' . esc_textarea( (string) $a['value'] ) . '</textarea>';
+	} elseif ( 'select' === $type ) {
+		$control = '<select class="flx-fld__input"' . flx_field_attrs( $in ) . '>';
+		foreach ( (array) $a['options'] as $val => $text ) {
+			$control .= '<option value="' . esc_attr( (string) $val ) . '"' . selected( (string) $a['value'], (string) $val, false ) . '>' . esc_html( (string) $text ) . '</option>';
+		}
+		$control .= '</select>';
+	} else {
+		$control = '<input class="flx-fld__input" type="' . esc_attr( $type ) . '" value="' . esc_attr( (string) $a['value'] ) . '"' . flx_field_attrs( $in ) . '>';
+	}
+
+	$tag   = 'phone' === $type ? 'div' : 'label';
+	$label = '<span class="flx-fld__label">' . esc_html( (string) $a['label'] ) . ( $a['required'] ? ' <em class="flx-fld__req" aria-hidden="true">*</em>' : '' ) . ( '' !== (string) $a['hint'] ? '<small class="flx-fld__hint">' . esc_html( (string) $a['hint'] ) . '</small>' : '' ) . '</span>';
+	$state = '<span class="flx-fld__state flx-fld__state--ok" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg></span><span class="flx-fld__state flx-fld__state--err" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 7v6M12 16.5v.5"/></svg></span>';
+
+	$h  = '<div class="' . esc_attr( $cls ) . '"' . ( $a['tick'] ? ' data-flx-tick' : '' ) . flx_field_attrs( $a['wrap_attrs'] ) . '>';
+	$h .= '<' . $tag . ' class="flx-fld__box"' . ( 'label' === $tag ? ' for="' . esc_attr( $id ) . '"' : '' ) . '>' . flx_field_icon( (string) $a['icon'] );
+	$h .= '<span class="flx-fld__in">' . $label . $control . '</span>';
+	$h .= '' !== (string) $a['suffix'] ? '<span class="flx-fld__suf">' . esc_html( (string) $a['suffix'] ) . '</span>' : '';
+	$h .= ( 'phone' === $type ? '' : $state ) . '</' . $tag . '>';
+	$h .= '<p class="flx-fld__msg" role="alert"' . ( '' !== (string) $a['error'] ? '' : ' hidden' ) . '>' . esc_html( (string) $a['error'] ) . '</p>';
+	$h .= '' !== (string) $a['help'] ? '<p class="flx-fld__help">' . esc_html( (string) $a['help'] ) . '</p>' : '';
+	return $h . '</div>';
+}
+
+/**
+ * Onay kutusu / radyo HTML'i.
+ *
+ * @param array $args name, id, value (1), label (düz metin) ya da label_html (bağlantılı, wp_kses_post'tan geçer), note (alt satır),
+ *                    checked, required, disabled, radio (true = radyo), error, messages ([ 'required' => … ]), class, attrs, wrap_attrs.
+ */
+function flx_check( array $args ) {
+	flx_field_enqueue();
+	$a   = wp_parse_args(
+		$args,
+		array(
+			'name'       => '',
+			'id'         => '',
+			'value'      => '1',
+			'label'      => '',
+			'label_html' => '',
+			'note'       => '',
+			'checked'    => false,
+			'required'   => false,
+			'disabled'   => false,
+			'radio'      => false,
+			'error'      => '',
+			'messages'   => array(),
+			'class'      => '',
+			'attrs'      => array(),
+			'wrap_attrs' => array(),
+		)
+	);
+	$in  = array_merge(
+		array(
+			'id'       => '' !== (string) $a['id'] ? (string) $a['id'] : false,
+			'name'     => '' !== (string) $a['name'] ? (string) $a['name'] : false,
+			'checked'  => $a['checked'] ? true : false,
+			'required' => $a['required'] ? true : false,
+			'disabled' => $a['disabled'] ? true : false,
+		),
+		(array) $a['attrs']
+	);
+	foreach ( (array) $a['messages'] as $rule => $text ) {
+		$in[ 'data-flx-msg-' . sanitize_key( $rule ) ] = (string) $text;
+	}
+	$cls  = 'flx-chk' . ( $a['radio'] ? ' flx-chk--radio' : '' ) . ( '' !== (string) $a['error'] ? ' is-error' : '' ) . ( $a['disabled'] ? ' is-disabled' : '' ) . ( '' !== (string) $a['class'] ? ' ' . $a['class'] : '' );
+	$text = '' !== (string) $a['label_html'] ? wp_kses_post( (string) $a['label_html'] ) : esc_html( (string) $a['label'] );
+	$h    = '<label class="' . esc_attr( $cls ) . '"' . flx_field_attrs( $a['wrap_attrs'] ) . '><input class="flx-chk__input" type="' . ( $a['radio'] ? 'radio' : 'checkbox' ) . '" value="' . esc_attr( (string) $a['value'] ) . '"' . flx_field_attrs( $in ) . '>';
+	$h   .= '<span class="flx-chk__box" aria-hidden="true"></span><span class="flx-chk__text">' . $text . ( '' !== (string) $a['note'] ? '<small>' . esc_html( (string) $a['note'] ) . '</small>' : '' ) . '</span></label>';
+	$h   .= '<p class="flx-fld__msg" role="alert"' . ( '' !== (string) $a['error'] ? '' : ' hidden' ) . '>' . esc_html( (string) $a['error'] ) . '</p>';
+	return $h;
+}
