@@ -562,9 +562,6 @@ msgstr ""
 msgid "Detected plugin: %s"
 msgstr ""
 
-msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
-msgstr ""
-
 msgid "Do not send the WordPress \"login details / set password\" email"
 msgstr ""
 
@@ -1169,9 +1166,6 @@ msgid "People who sign up with Google receive the set-password email (setting is
 msgstr ""
 
 msgid "Setting"
-msgstr ""
-
-msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
 msgstr ""
 
 msgid "No %s connection."
@@ -2306,9 +2300,6 @@ msgstr ""
 msgid "Open 24-hour windows"
 msgstr ""
 
-msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
-msgstr ""
-
 msgid "Approved templates"
 msgstr ""
 
@@ -2337,9 +2328,6 @@ msgid "Permanent access token (System User token)"
 msgstr ""
 
 msgid "App Secret"
-msgstr ""
-
-msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
 msgstr ""
 
 msgid "Graph API version"
@@ -2509,3 +2497,22 @@ msgstr ""
 
 msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
 msgstr ""
+
+msgid "App Secret missing · webhook off"
+msgstr ""
+
+msgid "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit."
+msgstr ""
+
+msgid "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr ""
+
+msgid "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr ""
+
+msgid "Rejected (App Secret missing)"
+msgstr ""
+
+msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
+msgstr ""
+

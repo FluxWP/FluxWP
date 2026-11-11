@@ -32,7 +32,7 @@ Form eklentileri genelde işe yarayan kısımları (ödeme, koşullu mantık, do
 - 🎨 **Siteye benzer.** Formlar temanın renklerini, yazı tiplerini ve koyu modunu kendiliğinden kullanır; builder formu sitede görüneceği gibi gösterir.
 - 📈 **Neyin işe yaradığını görün.** Form başına yanıt, görüntülenme, dönüşüm oranı ve ödeme; önceki dönemle karşılaştırmalı.
 - 🌱 **Bağıştan sertifikaya, kendiliğinden.** Ödenen fidan bağışı sertifikayı oluşturur (Flux Certificates), WhatsApp ve e-postayla gönderir ve teşekkür ekranında gösterir.
-- 🔐 **Sağlamlaştırıldı:** aslının üstüne stored XSS, takip kodu IDOR, yükleme klasörü ve IP tespiti düzeltmeleri.
+- 🔐 **Sağlamlaştırıldı:** aslının üstüne stored XSS, takip kodu IDOR, yükleme klasörü ve IP tespiti düzeltmeleri. Yönetici e-posta bağlantıları 128 bit anahtar kullanır; daha önce gönderilmiş anahtarlar çalışmaya devam eder.
 
 ## Özellikler
 

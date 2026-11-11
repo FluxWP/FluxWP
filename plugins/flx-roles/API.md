@@ -88,13 +88,13 @@ Flux Roles kurulu değilse referans yalnız `user_can( $id, 'flx_referans' )` ve
 
 WhatsApp asistanı yazan numarayı site kullanıcısıyla eşleştirir, açacağı araçları kullanıcının **yetkilerine** göre seçer.
 
-- User meta `flx_phone` (ülke kodlu rakam, ör. `905301234567`) ve `flx_phone_key` (son 10 hane, eşleştirme). Bir numara tek kullanıcıda.
+- User meta `flx_phone` ve `flx_phone_key` aynı değerdir: ülke kodlu tam rakam (E.164, ör. `905301234567`). Eşleşme bu tam değere göredir. Ülke kodu yazılmayan yerel numara varsayılan `90` ile tamamlanır (`05xx…` ya da `5` ile başlayan 10 hane). `+` ve `00` öneki ülke kodunu korur. İki farklı tam numara asla aynı sayılmaz. Bir numara tek kullanıcıda; aynı tam numarada birden fazla kayıt varsa eşleşme yok sayılır.
 - Numarayı yalnız `promote_users` yetkili kişi yazar (Profil › WhatsApp numarası); kişi kendi numarasını değiştiremez.
 
 | Fonksiyon | Dönüş |
 |---|---|
-| `flxr_normalize_phone( $raw )` | `905xx…` rakamları (`05xx`, `5xx`, `+90`, `0090` kabul) ya da `''` |
-| `flxr_user_by_phone( $raw )` | `WP_User` ya da `null` (son 10 haneyle). Filtre: `flx_user_by_phone` |
+| `flxr_normalize_phone( $raw )` | Ülke kodlu rakamlar ya da `''`. Yerel `05xx` / `5xx` → `90…`; ülke koduyla yazılmış numara olduğu gibi kalır |
+| `flxr_user_by_phone( $raw )` | `WP_User` ya da `null`. Yalnız kayıtlı tam numara eşitse. Filtre `flx_user_by_phone` farklı numaralı kullanıcı döndürürse yok sayılır |
 | `flxr_phone_identity( $raw )` | `null` ya da `array( user_id, name, role, role_label, caps[], is_admin )`; `caps` = katalogda açık olan yetkiler |
 | `flxr_phone_can( $raw, $cap )` | bool |
 | `flxr_user_phone( $user_id )` / `flxr_set_user_phone( $user_id, $raw )` | okuma / yazma (çakışmada `WP_Error`) |

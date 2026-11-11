@@ -76,15 +76,6 @@ msgstr "Отозвать"
 msgid "3. Connect an assistant"
 msgstr "3. Подключите помощника"
 
-msgid "Connectors › Add custom connector"
-msgstr "Соединители › Добавить пользовательский соединитель"
-
-msgid "URL with the key, for places where headers can't be added; don't share it:"
-msgstr "URL с ключом для мест, где нельзя добавлять заголовки; не делитесь этим:"
-
-msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
-msgstr "В Apache, если вы видите «Неверный ключ», добавьте SetEnvIf Authorization «(.*)» HTTP_AUTHORIZATION=$1 в .htaccess или используйте URL-адрес с ключом."
-
 msgid "Recent activity"
 msgstr "Недавняя активность"
 
@@ -964,20 +955,8 @@ msgstr "МКП выключен. Включите его в Flux AI & MCP › MC
 msgid "Invalid or missing MCP key."
 msgstr "Неверный или отсутствующий ключ MCP."
 
-msgid "This user can't edit content."
-msgstr "Этот пользователь не может редактировать контент."
-
 msgid "Unknown tool: %s"
 msgstr "Неизвестный инструмент:%s."
-
-msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
-msgstr "Этот инструмент отключен (Flux AI & MCP › Инструменты):%s"
-
-msgid "This key can't use this tool: %s"
-msgstr "Этот ключ не может использовать этот инструмент:%s"
-
-msgid "You don't have permission for this."
-msgstr "У вас нет на это разрешения."
 
 msgid "Unauthorized."
 msgstr "Несанкционированный."
@@ -1454,7 +1433,7 @@ msgid "No records"
 msgstr "Нет записей"
 
 msgid "MCP"
-msgstr "МКП"
+msgstr "MCP"
 
 msgid "Model and tool calls are listed here. Request bodies are not sent to the app."
 msgstr "Здесь перечислены вызовы моделей и инструментов. Тела запросов не отправляются в приложение."
@@ -1545,3 +1524,34 @@ msgid_plural "%dvehicle is registered.%dvehicle is registered."
 msgstr[0] " Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано."
 msgstr[1] " Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано."
 msgstr[2] " Транспортное средство%dзарегистрировано.%dТранспортное средство зарегистрировано."
+
+msgid "AI & MCP"
+msgstr "ИИ и MCP"
+
+msgid "Connects assistants over MCP (only tools their own permissions allow)"
+msgstr "Подключает ассистентов по MCP (только инструменты, которые разрешают их собственные права)"
+
+msgid "No MCP access"
+msgstr "Нет доступа к MCP"
+
+msgid "On Apache or LiteSpeed, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess."
+msgstr "В Apache или LiteSpeed, если вы видите «Неверный ключ», добавьте SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 в .htaccess."
+
+msgid "Other clients"
+msgstr "Другие клиенты"
+
+msgid "Roles and access"
+msgstr "Роли и доступ"
+
+msgid "Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL."
+msgstr "Отправляйте ключ в заголовке Authorization: Bearer или в заголовке X-MCP-Key. Не помещайте ключ в URL."
+
+msgid "This user can't use MCP."
+msgstr "Этот пользователь не может использовать MCP."
+
+msgid "Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do."
+msgstr "Кто может подключаться: пользователи с возможностью flxai_mcp. Роли, которые могут редактировать записи, получают её по умолчанию, администраторы — всегда."
+
+msgid "Your account can't connect an assistant (the MCP capability is required)."
+msgstr "Ваша учётная запись не может подключить ассистента (нужна возможность MCP)."
+

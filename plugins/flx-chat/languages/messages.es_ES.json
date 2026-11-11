@@ -970,7 +970,6 @@
     "Also show WhatsApp group messages": "Mostrar también mensajes grupales de WhatsApp",
     "New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app": "Nueva interfaz (experimental): la página de Chats se abre con la misma pantalla que la aplicación de escritorio y móvil",
     "Live update interval (sec)": "Intervalo de actualización en vivo (seg.)",
-    "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.": "La pestaña abierta busca mensajes nuevos en este intervalo (se recomiendan 10). En una pestaña en segundo plano, verifica una vez por minuto y con menos frecuencia después de errores.",
     "Agents": "Agentes",
     "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access.": "Asigne a un usuario el rol%s; solo ven la pantalla de chat y no pueden abrir la configuración. Los administradores siempre tienen acceso.",
     "Add new user": "Agregar nuevo usuario",
@@ -1496,7 +1495,6 @@
     "Users with the agent role: %d.": "Usuarios con rol de agente:%d.",
     "No user has the agent role; only administrators can use it for now.": "Ningún usuario tiene el rol de agente; sólo los administradores pueden usarlo por ahora.",
     "Live panel updates": "Actualizaciones del panel en vivo",
-    "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).": "Última solicitud de actualización%1$s. Mientras el panel está abierto, busca mensajes nuevos cada%2$ds (60 s en una pestaña en segundo plano).",
     "The chat screen has not been opened yet.": "La pantalla de chat aún no se ha abierto.",
     "WhatsApp line": "línea whatsapp",
     "No line added.": "No se agregó ninguna línea.",
@@ -1607,6 +1605,8 @@
     "The time limit for deleting for everyone has passed. You can hide it in the panel instead.": "Ha pasado el límite para eliminar para todos. Puede ocultarlo en el panel.",
     "WhatsApp did not delete the message.": "WhatsApp no eliminó el mensaje.",
     "Delete for everyone time limit (hours)": "Límite para eliminar para todos (horas)",
-    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp solo permite eliminar para todos un mensaje enviado durante unos 2 días y 12 horas (60 horas). Pasado ese límite, o en los mensajes recibidos, el mensaje solo se oculta en el panel y se queda en el teléfono del contacto. 0 desactiva eliminar para todos. Los mensajes eliminados nunca se borran del servidor; el equipo aún puede abrirlos."
+    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp solo permite eliminar para todos un mensaje enviado durante unos 2 días y 12 horas (60 horas). Pasado ese límite, o en los mensajes recibidos, el mensaje solo se oculta en el panel y se queda en el teléfono del contacto. 0 desactiva eliminar para todos. Los mensajes eliminados nunca se borran del servidor; el equipo aún puede abrirlos.",
+    "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.": "Última solicitud de actualización %1$s. Mientras el panel está abierto, busca mensajes nuevos cada %2$d s (3 s mientras se transmite una respuesta, hasta 15 s si nada cambia) y una vez por minuto en una pestaña en segundo plano.",
+    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "La pestaña abierta busca mensajes nuevos en este intervalo (se recomiendan 10), cada 3 s mientras se transmite una respuesta y hasta 15 s si nada cambia. Una pestaña en segundo plano comprueba una vez por minuto. Tras errores, la espera aumenta hasta 60 s."
   }
 }

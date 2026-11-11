@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.17.4
+- Partner settlement and report CSV cells are quoted when they would open as a spreadsheet formula. A real number, including a negative amount, stays a number. The donations export uses the same helper.
+
 ## 2.17.3
 - Fix recurring preset changes: compare donation metadata through the same current sanitizer used when saving, including card icons, subtitles, form visibility and extension fields.
 - Preserve runtime WooCommerce IDs outside the preset comparison; repeated apply retains prices and options without false changes.

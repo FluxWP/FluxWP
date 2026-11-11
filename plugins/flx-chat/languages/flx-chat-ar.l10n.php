@@ -967,7 +967,6 @@ return array(
   'Also show WhatsApp group messages' => 'إظهار أيضًا رسائل مجموعة WhatsApp',
   'New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app' => 'الواجهة الجديدة (تجريبية): تفتح صفحة الدردشات بنفس شاشة تطبيق سطح المكتب والهاتف المحمول',
   'Live update interval (sec)' => 'الفاصل الزمني للتحديث المباشر (ثانية)',
-  'The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.' => 'تقوم علامة التبويب المفتوحة بالتحقق من الرسائل الجديدة في هذه الفترة (يوصى بـ 10 رسائل). في علامة تبويب الخلفية، يتم التحقق مرة واحدة في الدقيقة، وبشكل أقل بعد الأخطاء.',
   'Agents' => 'الوكلاء',
   'Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access.' => 'منح المستخدم دور%s؛ لا يرون سوى شاشة الدردشة ولا يمكنهم فتح الإعدادات. يتمتع المسؤولون دائمًا بإمكانية الوصول.',
   'Add new user' => 'إضافة مستخدم جديد',
@@ -1493,7 +1492,6 @@ return array(
   'Users with the agent role: %d.' => 'المستخدمون الذين لديهم دور الوكيل:%d.',
   'No user has the agent role; only administrators can use it for now.' => 'لا يوجد مستخدم لديه دور الوكيل؛ يمكن للمسؤولين فقط استخدامه في الوقت الحالي.',
   'Live panel updates' => 'تحديثات اللوحة الحية',
-  'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).' => 'طلب التحديث الأخير%1$s. عندما تكون اللوحة مفتوحة، فإنها تتحقق من وجود رسائل جديدة كل%2$dثانية (60 ثانية في علامة تبويب الخلفية).',
   'The chat screen has not been opened yet.' => 'شاشة الدردشة لم تفتح بعد.',
   'WhatsApp line' => 'خط واتس اب',
   'No line added.' => 'لم تتم إضافة أي سطر.',
@@ -3191,5 +3189,7 @@ return array(
 'WhatsApp did not delete the message.'=>'لم يحذف واتساب الرسالة.',
 'Delete for everyone time limit (hours)'=>'مهلة الحذف لدى الجميع (ساعات)',
 'WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact\'s phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.'=>'يسمح واتساب بحذف رسالة مرسلة لدى الجميع خلال نحو يومين و12 ساعة (60 ساعة) فقط. بعد هذه المهلة، أو في الرسائل المستلمة، تُخفى الرسالة في اللوحة فقط وتبقى على هاتف جهة الاتصال. القيمة 0 توقف الحذف لدى الجميع. لا تُزال الرسائل المحذوفة من الخادم أبدًا؛ ويمكن للفريق فتحها.',
+'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.'=>'طلب التحديث الأخير %1$s. عندما تكون اللوحة مفتوحة تتحقق من الرسائل الجديدة كل %2$d ث (3 ث أثناء بث الرد، وحتى 15 ث إن لم يتغير شيء) ومرة كل دقيقة في علامة تبويب خلفية.',
+'The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.'=>'تتحقق علامة التبويب المفتوحة من الرسائل الجديدة في هذه الفترة (يُوصى بـ 10)، كل 3 ث أثناء بث الرد، وحتى 15 ث إن لم يتغير شيء. علامة التبويب الخلفية تتحقق مرة كل دقيقة. عند الأخطاء تمتد المهلة حتى 60 ث.',
 ),
 );

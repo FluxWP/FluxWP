@@ -310,6 +310,68 @@ function flxcb_rate( $key, $max, $window ) {
 	return true;
 }
 
+/** Tek uçuş kilidinin seçeneği (sohbet başına bir satır, bırakılınca silinir). */
+function flxcb_flight_key( $conv_id ) {
+	return 'flxcb_fly_' . (int) $conv_id;
+}
+
+/**
+ * Sohbet başına tek asistan isteği. add_option atomiktir.
+ * Bayat süre bütçenin biraz üstünde (55 sn): ölü istek kilidi tutmaz.
+ *
+ * @param int $conv_id Sohbet.
+ * @return bool true = bu istek aldı.
+ */
+function flxcb_flight_acquire( $conv_id ) {
+	$key = flxcb_flight_key( $conv_id );
+	$now = time();
+	if ( ! add_option( $key, $now, '', false ) ) {
+		$started = (int) get_option( $key, 0 );
+		if ( $started > 0 && ( $now - $started ) < 55 ) {
+			return false;
+		}
+		delete_option( $key );
+		if ( ! add_option( $key, $now, '', false ) ) {
+			return false;
+		}
+	}
+	flxcb_flight_track( (int) $conv_id, false );
+	return true;
+}
+
+/** Kilidi bırakır (finally ve kapanış yedeği). */
+function flxcb_flight_release( $conv_id ) {
+	$conv_id = (int) $conv_id;
+	if ( $conv_id <= 0 ) {
+		return;
+	}
+	delete_option( flxcb_flight_key( $conv_id ) );
+	flxcb_flight_track( $conv_id, true );
+}
+
+/** Kapanışta bırakılmamış kilitleri siler. $drop true ise bu sohbeti listeden çıkarır. */
+function flxcb_flight_track( $conv_id, $drop ) {
+	static $ids    = array();
+	static $hooked = false;
+	$conv_id       = (int) $conv_id;
+	if ( $drop ) {
+		unset( $ids[ $conv_id ] );
+		return;
+	}
+	$ids[ $conv_id ] = true;
+	if ( $hooked ) {
+		return;
+	}
+	$hooked = true;
+	register_shutdown_function(
+		static function () use ( &$ids ) {
+			foreach ( array_keys( $ids ) as $id ) {
+				delete_option( 'flxcb_fly_' . (int) $id );
+			}
+		}
+	);
+}
+
 function flxcb_now_ms() {
 	return (int) floor( microtime( true ) * 1000 );
 }

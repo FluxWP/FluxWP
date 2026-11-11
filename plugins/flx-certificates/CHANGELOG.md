@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.9.8 — 2026-11-10
+- Store the shared operational log in one table tagged by plugin and defer a background batch when fewer than 5 seconds remain before the 45-second request deadline.
+
+## 1.9.7 — 2026-11-10
+- Stop a certificate delivery run before a send can outlast the host. A cron run budgets 25 s (20 s otherwise) and will not claim a message unless the remaining time covers its transport timeout (at most 20 s) plus a 5 s margin. A claimed message left in `processing` returns to the queue after 10 minutes until attempts are exhausted.
+
+## 1.9.6 — 2026-11-10
+- Quote log CSV cells that would open as a spreadsheet formula. Numeric cells, including negatives, stay numbers.
+
+## 1.9.5 — 2026-11-10
+- Saving a certificate with `person.id` now checks the same people scope as the directory (`flxs_can_see_person`). An id outside that scope returns 404 and is not updated. Managers, and staff without `flxs_own_ref`, are unchanged.
+
 ## 1.9.4 — 2026-11-10
 - Bundle the shared bounded operational journal to trace worker/PDF/message jobs, timeouts and safe error metadata.
 

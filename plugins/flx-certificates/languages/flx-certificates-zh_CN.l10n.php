@@ -656,5 +656,6 @@ return array(
   'fidan toplandı\\x00fidan toplandı' . chr(0) . 'fidan toplandı\\x00fidan toplandı' => '树苗被收集',
   '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' . chr(0) . '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' => '%s贡献者',
 
+'Person not found.'=>'未找到此人。',
  ),
 );

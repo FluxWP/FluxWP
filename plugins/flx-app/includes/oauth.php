@@ -105,6 +105,56 @@ add_filter(
 	3
 );
 
+/* Kapsamı olan belirteç yalnız o kapsamın rotasına girer (RFC 6750). Kapsamsız kayıt tam erişimde kalır. */
+add_filter(
+	'rest_pre_dispatch',
+	function ( $result, $server, $req ) {
+		if ( null !== $result || ! $req instanceof WP_REST_Request || 'OPTIONS' === $req->get_method() ) {
+			return $result;
+		}
+		$row = flxapp_current_token();
+		if ( ! is_array( $row ) ) {
+			return $result;
+		}
+		$have = flxapp_token_scopes( $row );
+		if ( null === $have ) {
+			return $result;
+		}
+		$need = flxapp_route_scope( (string) $req->get_route() );
+		if ( '' === $need || in_array( $need, $have, true ) ) {
+			return $result;
+		}
+		return new WP_Error(
+			'insufficient_scope',
+			__( 'The token does not include the scope this request needs.', 'flx-app' ),
+			array(
+				'status' => 403,
+				'scope'  => $need,
+			)
+		);
+	},
+	10,
+	3
+);
+
+add_filter(
+	'rest_post_dispatch',
+	function ( $res, $server, $req ) {
+		if ( ! $res instanceof WP_HTTP_Response || 403 !== $res->get_status() ) {
+			return $res;
+		}
+		$data = $res->get_data();
+		if ( ! is_array( $data ) || 'insufficient_scope' !== ( $data['code'] ?? '' ) ) {
+			return $res;
+		}
+		$need = preg_replace( '/[^a-z_]/', '', (string) ( $data['data']['scope'] ?? '' ) );
+		$res->header( 'WWW-Authenticate', 'Bearer error="insufficient_scope", error_description="The token scope does not cover this request.", scope="' . $need . '"' );
+		return $res;
+	},
+	11,
+	3
+);
+
 /* Belirteç ucuna gelen Basic başlığı (client_secret_basic) WordPress uygulama parolası sanılmasın. */
 add_filter(
 	'application_password_is_api_request',
@@ -126,6 +176,27 @@ function flxapp_clean_scope( $scope ) {
 		}
 	}
 	return $out ? implode( ' ', $out ) : 'flx';
+}
+
+/** Rotanın istediği kapsam: flx, mcp, ya da '' (belirteç gerekmez). */
+function flxapp_route_scope( $route ) {
+	$route = (string) $route;
+	if ( 0 === strpos( $route, '/flxapp/v1/oauth/' ) || 0 === strpos( $route, '/flxapp/v1/otp/' ) || '/flxapp/v1/app/bootstrap' === $route ) {
+		return '';
+	}
+	if ( 0 === strpos( $route, '/flx-mcp/' ) ) {
+		return 'mcp';
+	}
+	return 'flx';
+}
+
+/** Kayıtlı kapsamlar. null: kapsam boş, tam erişim. */
+function flxapp_token_scopes( array $row ) {
+	$scope = trim( (string) ( $row['scope'] ?? '' ) );
+	if ( '' === $scope ) {
+		return null;
+	}
+	return preg_split( '/\s+/', $scope );
 }
 
 function flxapp_authorize_error_page( $message ) {

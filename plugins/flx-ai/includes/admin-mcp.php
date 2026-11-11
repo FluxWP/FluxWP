@@ -77,6 +77,14 @@ function flxai_page_mcp() {
 		<section class="flxai-card">
 			<h2><?php esc_html_e( '2. Connections and keys', 'flx-ai' ); ?></h2>
 			<p class="flxai-note"><?php esc_html_e( 'The assistant works with the permissions of the user who created the key. New content is created as a draft; deleting only moves to trash.', 'flx-ai' ); ?></p>
+			<p class="flxai-note">
+				<?php
+				esc_html_e( 'Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do.', 'flx-ai' );
+				if ( function_exists( 'flxr_admin_url' ) ) {
+					echo ' <a href="' . esc_url( flxr_admin_url() ) . '">' . esc_html__( 'Roles and access', 'flx-ai' ) . '</a>';
+				}
+				?>
+			</p>
 			<?php if ( $new ) : ?>
 				<div class="notice notice-success inline"><p><strong><?php esc_html_e( 'New key (shown only now, copy it):', 'flx-ai' ); ?></strong></p><p><code class="flxai-key"><?php echo esc_html( $new ); ?></code></p></div>
 			<?php endif; ?>
@@ -104,7 +112,10 @@ function flxai_page_mcp() {
 								<?php else : ?>
 									<code>…<?php echo esc_html( $k['hint'] ?? '' ); ?></code>
 								<?php endif; ?></td>
-							<td><?php echo esc_html( $u ? $u->user_login : '?' ); ?></td>
+							<td><?php echo esc_html( $u ? $u->user_login : '?' ); ?>
+								<?php if ( ! $u || ! user_can( $u, FLXAI_CAP_MCP ) ) : ?>
+									<span class="flxai-pill is-err"><?php esc_html_e( 'No MCP access', 'flx-ai' ); ?></span>
+								<?php endif; ?></td>
 							<td><?php echo empty( $k['tools'] ) ? esc_html__( 'All', 'flx-ai' ) : '<code>' . esc_html( implode( ', ', (array) $k['tools'] ) ) . '</code>'; ?></td>
 							<td><?php echo esc_html( flx_date( (int) ( $k['created'] ?? 0 ), 'datetime' ) ); ?></td>
 							<td><?php echo ! empty( $k['last_used'] ) ? esc_html( flx_time_ago( (int) $k['last_used'] ) ) : '—'; ?></td>
@@ -128,9 +139,9 @@ function flxai_page_mcp() {
 		<pre class="flxai-code"><?php echo esc_html( $json ); ?></pre>
 		<p><strong>Claude Code</strong>:</p>
 		<pre class="flxai-code">claude mcp add --transport http <?php echo esc_html( $slug . ' ' . $url ); ?> --header "Authorization: Bearer <?php echo esc_html( $key_show ); ?>"</pre>
-		<p><strong>Claude.ai › <?php esc_html_e( 'Connectors › Add custom connector', 'flx-ai' ); ?></strong> — <?php esc_html_e( 'URL with the key, for places where headers can\'t be added; don\'t share it:', 'flx-ai' ); ?></p>
-		<pre class="flxai-code"><?php echo esc_html( add_query_arg( 'key', $key_show, $url ) ); ?></pre>
-		<p class="flxai-note"><?php esc_html_e( 'On Apache, if you see "Invalid key", add SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL.', 'flx-ai' ); ?></p>
+		<p><strong><?php esc_html_e( 'Other clients', 'flx-ai' ); ?></strong> — <?php esc_html_e( 'Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL.', 'flx-ai' ); ?></p>
+		<pre class="flxai-code"><?php echo esc_html( 'Authorization: Bearer ' . $key_show ); ?></pre>
+		<p class="flxai-note"><?php esc_html_e( 'On Apache or LiteSpeed, if you see "Invalid key", add SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1 to .htaccess.', 'flx-ai' ); ?></p>
 	</section>
 
 	<?php if ( $log ) : ?>

@@ -1196,3 +1196,7 @@ msgstr "Placé après le chat du site #%d"
 
 msgid "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel."
 msgstr "Fenêtre de discussion sur le site basée sur l'intelligence artificielle : avec Flux AI, réponses 24h/24 et 7j/7 à partir du contenu et des produits de votre site, collecte de clients potentiels, informations WooCommerce, transfert en un clic vers un représentant en direct (boîte de réception Flux Chat ou la propre boîte de réception du plugin), partage de fichiers, accusés de lecture, notation de fin de discussion et laisser des messages après les heures d'ouverture. La couleur, la position, l'avatar, les textes et la visibilité sont personnalisés à partir du panneau. "
+
+msgid "Still answering. Please wait a moment."
+msgstr "La réponse est encore en cours. Veuillez patienter un moment."
+

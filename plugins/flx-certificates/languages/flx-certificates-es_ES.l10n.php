@@ -656,5 +656,6 @@ return array(
   'fidan toplandı\\x00fidan toplandı' . chr(0) . 'fidan toplandı\\x00fidan toplandı' => 'se recolectaron árboles jóvenes' . chr(0) . 'se recolectaron árboles jóvenes',
   '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' . chr(0) . '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' => '%scontribuido por' . chr(0) . '%scontribuido por',
 
+'Person not found.'=>'Persona no encontrada.',
  ),
 );

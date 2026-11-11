@@ -533,32 +533,7 @@ function flxg_flxai_tool_titles() {
 	);
 }
 
-add_filter(
-	'flxai_tools',
-	function ( $tools ) {
-		$tools  = is_array( $tools ) ? $tools : array();
-		$titles = flxg_flxai_tool_titles();
-		foreach ( flxg_tools() as $name => $t ) {
-			$tools[ 'flxg_' . $name ] = array(
-				'title'       => $titles[ $name ] ?? $t['title'],
-				'description' => 'Flux Tasks: ' . $t['description'],
-				'schema'      => $t['schema'],
-				'readonly'    => ! empty( $t['readonly'] ),
-				'confirm'     => ! empty( $t['destructive'] ),
-				'cap'         => 'flxg_use',
-				'source'      => 'flx-tasks',
-				'run'         => function ( $args ) use ( $name ) {
-					list( $ok, $data ) = flxg_run_tool( $name, is_array( $args ) ? $args : array() );
-					if ( ! $ok ) {
-						throw new Exception( (string) ( $data['error'] ?? 'error' ) );
-					}
-					return $data;
-				},
-			);
-		}
-		return $tools;
-	}
-);
+/* Araç kaydı includes/mcp.php'de: `flx_mcp_tools` hem MCP'ye hem bu sohbete verir. */
 
 /** Ortak sohbet: kullanıcı Flux Tasks'de bir belgedeyse "bu sayfa" hangisi, nasıl düzenlenir. */
 add_filter(

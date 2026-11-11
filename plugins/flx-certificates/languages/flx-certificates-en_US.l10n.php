@@ -653,4 +653,5 @@ return array('language'=>'en_US','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'fidan dikildi\\x00fidan dikildi' . chr(0) . 'fidan dikildi\\x00fidan dikildi' => 'saplings were planted' . chr(0) . 'saplings were planted',
 'fidan toplandı\\x00fidan toplandı' . chr(0) . 'fidan toplandı\\x00fidan toplandı' => 'saplings were collected' . chr(0) . 'saplings were collected',
 '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' . chr(0) . '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' => '%scontributed by' . chr(0) . '%scontributed by',
+'Person not found.'=>'Person not found.',
 ));

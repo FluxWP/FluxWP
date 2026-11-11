@@ -967,7 +967,6 @@ return array(
   'Also show WhatsApp group messages' => 'Afficher également les messages du groupe WhatsApp',
   'New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app' => 'Nouvelle interface (expérimentale) : la page Chats s\'ouvre avec le même écran que l\'application de bureau et mobile',
   'Live update interval (sec)' => 'Intervalle de mise à jour en direct (sec)',
-  'The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.' => 'L\'onglet ouvert vérifie les nouveaux messages à cet intervalle (10 recommandés). Dans un onglet en arrière-plan, il vérifie une fois par minute et moins souvent après des erreurs.',
   'Agents' => 'Agents',
   'Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access.' => 'Donnez à un utilisateur le rôle%s; ils ne voient que l\'écran de discussion et ne peuvent pas ouvrir les paramètres. Les administrateurs ont toujours accès.',
   'Add new user' => 'Ajouter un nouvel utilisateur',
@@ -1493,7 +1492,6 @@ return array(
   'Users with the agent role: %d.' => 'Utilisateurs avec le rôle d\'agent :%d.',
   'No user has the agent role; only administrators can use it for now.' => 'Aucun utilisateur n\'a le rôle d\'agent ; seuls les administrateurs peuvent l\'utiliser pour l\'instant.',
   'Live panel updates' => 'Mises à jour du panneau en direct',
-  'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).' => 'Dernière demande de mise à jour%1$s. Lorsque le panneau est ouvert, il vérifie les nouveaux messages toutes les%2$ds (60 s dans un onglet en arrière-plan).',
   'The chat screen has not been opened yet.' => 'L\'écran de discussion n\'a pas encore été ouvert.',
   'WhatsApp line' => 'Ligne WhatsApp',
   'No line added.' => 'Aucune ligne ajoutée.',
@@ -3191,5 +3189,7 @@ return array(
 'WhatsApp did not delete the message.'=>'WhatsApp n\'a pas supprimé le message.',
 'Delete for everyone time limit (hours)'=>'Délai de suppression pour tout le monde (heures)',
 'WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact\'s phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.'=>'WhatsApp ne permet de supprimer pour tout le monde un message envoyé que pendant environ 2 jours et 12 heures (60 heures). Passé ce délai, ou pour les messages reçus, le message est seulement masqué dans le panneau et reste sur le téléphone du contact. 0 désactive la suppression pour tout le monde. Les messages supprimés ne sont jamais retirés du serveur ; l\'équipe peut toujours les ouvrir.',
+'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.'=>'Dernière demande de mise à jour %1$s. Lorsque le panneau est ouvert, il vérifie les nouveaux messages toutes les %2$d s (3 s pendant qu\'une réponse est diffusée, jusqu\'à 15 s quand rien ne change) et une fois par minute dans un onglet en arrière-plan.',
+'The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.'=>'L\'onglet ouvert vérifie les nouveaux messages à cet intervalle (10 recommandé), toutes les 3 s pendant qu\'une réponse est diffusée, et jusqu\'à 15 s quand rien ne change. Un onglet en arrière-plan vérifie une fois par minute. Après des erreurs, l\'intervalle s\'allonge jusqu\'à 60 s.',
 ),
 );

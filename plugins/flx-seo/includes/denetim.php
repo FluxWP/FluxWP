@@ -922,6 +922,18 @@ function flxseo_psi_key() {
 }
 
 /**
+ * Web isteğinde PageSpeed beklemesi. Paylaşımlı barındırma PHP'yi ~60 sn'de keser; CLI ölçümü daha uzun sürebilir.
+ *
+ * @return int Saniye.
+ */
+function flxseo_psi_http_timeout() {
+	if ( PHP_SAPI === 'cli' || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
+		return 90;
+	}
+	return 40;
+}
+
+/**
  * PageSpeed Insights ölçümü (tek strateji ~15–40 sn). Anahtar isteğe bağlı; anahtarsız kota çok düşüktür.
  *
  * @param string $strategy mobile|desktop.
@@ -941,18 +953,23 @@ function flxseo_psi_run( $strategy = 'mobile', $url = '' ) {
 	if ( flxseo_psi_key() ) {
 		$query .= '&key=' . rawurlencode( flxseo_psi_key() );
 	}
+	$timeout = flxseo_psi_http_timeout();
 	if ( function_exists( 'set_time_limit' ) ) {
-		@set_time_limit( 120 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+		@set_time_limit( $timeout + 10 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 	}
 	// Anahtar "Web siteleri" (HTTP referrer) kısıtlıysa Google boş Referer'ı reddeder; site adresini gönder.
 	$r = wp_remote_get(
 		FLXSEO_PSI_ENDPOINT . '?' . $query,
 		array(
-			'timeout' => 90,
+			'timeout' => $timeout,
 			'headers' => array( 'Referer' => home_url( '/' ) ),
 		)
 	);
 	if ( is_wp_error( $r ) ) {
+		$msg = $r->get_error_message();
+		if ( false !== stripos( $msg, 'timed out' ) || false !== stripos( $msg, 'curl error 28' ) ) {
+			return new WP_Error( 'flxseo_psi_timeout', __( 'PageSpeed timed out; this step was skipped.', 'flx-seo' ) );
+		}
 		return $r;
 	}
 	$code = (int) wp_remote_retrieve_response_code( $r );

@@ -24,7 +24,7 @@ canlı temsilciye (ya da eklentinin kendi gelen kutusuna) devreder.
 - Önizleme ve "Sitede dene" gerçek asistanı kullanır; denemeler Flux Chat'te (yoksa Sohbetler'de) görünür, silinebilir.
 - Herkese açık AI: Flux AI'daki günlük harcama sınırı ana koruma; ayrıca sohbet başına cevap, saatlik ve günlük toplam sınırları var.
 - IP saklanmaz. Dosyalar `uploads/flx-chatbot/` altında, doğrudan erişime kapalı; yalnız sohbet sahibi ve temsilci açar.
-- Hostinger: cevaplar akışlı (NDJSON) gelir, istek ~40 sn'de kesilir. LiteSpeed REST'i önbelleğe almaz (no-store başlıkları).
+- Hostinger: cevaplar akışlı (NDJSON) gelir. Bir sohbet aynı anda tek asistan isteği çalıştırır; ikincisi HTTP 409 alır, pencere hata göstermez ve metni yazma kutusuna geri koyar. Turlar ve akış aynı 45 sn duvar saati bütçesini paylaşır; süre dolunca eldeki kısmi cevap kaydedilir. LiteSpeed REST'i önbelleğe almaz (no-store başlıkları).
 - Temsilci cevabı: ziyaretçi 60 sn'den uzun süredir sayfada değilse ve e-posta verdiyse cevap e-postayla da gider (en fazla 3 dk'da bir).
 - Sayfadan açma: `[flx_chatbot label="Bize yazın"]`, `<a href="#flxcb-open">`, `data-flxcb-open`, `data-flxcb-message="…"`, `FluxChatbot.open()`.
 

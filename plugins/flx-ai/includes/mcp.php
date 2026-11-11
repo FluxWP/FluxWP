@@ -4,8 +4,9 @@
  *
  * Adres: site.com/mcp (kısa adres, filtre flx_mcp_short_path) ve /wp-json/flx-mcp/v1/mcp (ikisi aynı sunucu).
  * Kimlik: OAuth 2.1 (oauth.php; istemci yalnız adresle bağlanır, WordPress girişi + onay),
- *         "Authorization: Bearer <anahtar>" (Flux AI & MCP › MCP), X-MCP-Key başlığı, ?key= ya da
- *         WordPress Uygulama Parolası (Basic). Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır;
+ *         "Authorization: Bearer <anahtar>" (Flux AI & MCP › MCP), X-MCP-Key başlığı ya da
+ *         WordPress Uygulama Parolası (Basic). Anahtar yalnız bu rotanın permission_callback'inde
+ *         kullanıcı olur; sorgu dizesinden okunmaz. Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır;
  *         anahtara araç listesi verildiyse yalnız o araçlar görünür ve çalışır.
  *
  * Eklentiler araçlarını `flx_mcp_tools` filtresiyle kaydeder (eski ad `flxseo_mcp_tools` da çalışır).
@@ -69,13 +70,6 @@ function flxai_request_rel_path() {
 function flxai_mcp_is_short_request() {
 	$short = flxai_mcp_short_path();
 	return '' !== $short && $short === flxai_request_rel_path();
-}
-
-/** Bu istek MCP sunucusuna mı (kısa adres, REST adresi ya da ?rest_route=)? */
-function flxai_mcp_is_request() {
-	$uri = (string) wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-	$rr  = (string) wp_unslash( $_GET['rest_route'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.NonceVerification
-	return false !== strpos( $uri, 'flx-mcp/v1' ) || 0 === strpos( $rr, '/flx-mcp/v1' ) || flxai_mcp_is_short_request();
 }
 
 /*
@@ -183,10 +177,30 @@ function flxai_mcp_allowed( $name ) {
 	return null === $scope || in_array( flxai_tool_resolve( $name ), array_map( 'flxai_tool_resolve', $scope ), true );
 }
 
+/**
+ * Bu kullanıcı MCP'de aracı görebilir ve çalıştırabilir mi?
+ * Sıra: kapalı değil, anahtar kapsamı, cap (yoksa edit_posts), flx_mcp_tool_allowed.
+ * Sohbet aynı cap ve filtreyi flxai_tool_allowed_for_user ile uygular; anahtar kapsamı yalnız burada.
+ */
+function flxai_mcp_tool_for_user( $name, array $tool, $user_id = 0 ) {
+	return flxai_tool_allowed_for_user( $name, $tool, $user_id, ! flxai_tool_is_off( $name ) && flxai_mcp_allowed( $name ) );
+}
+
+/** Kaynak veya istem: cap yoksa edit_posts. Liste ve okuma aynı kontrolü kullanır. */
+function flxai_mcp_item_allowed( array $item, $user_id = 0 ) {
+	$user_id = $user_id ? (int) $user_id : get_current_user_id();
+	return user_can( $user_id, flxai_tool_required_cap( $item ) );
+}
+
 function flxai_mcp_request_key( WP_REST_Request $req ) {
 	$auth = $req->get_header( 'authorization' );
-	if ( ! $auth && isset( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) ) {
-		$auth = sanitize_text_field( wp_unslash( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) );
+	if ( ! $auth ) {
+		// CGI/LiteSpeed Authorization'ı PHP'ye iletmez. WordPress uygulama parolalarıyla aynı sıra.
+		if ( ! empty( $_SERVER['HTTP_AUTHORIZATION'] ) ) {
+			$auth = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ) );
+		} elseif ( ! empty( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) ) {
+			$auth = sanitize_text_field( wp_unslash( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) );
+		}
 	}
 	if ( $auth && 0 === stripos( $auth, 'Bearer ' ) ) {
 		return trim( substr( $auth, 7 ) );
@@ -194,8 +208,7 @@ function flxai_mcp_request_key( WP_REST_Request $req ) {
 	if ( $req->get_header( 'x_mcp_key' ) ) {
 		return trim( $req->get_header( 'x_mcp_key' ) );
 	}
-	// Başlık eklenemeyen istemciler (ör. bazı web bağlayıcıları) için gizli adres: ?key=...
-	return (string) $req->get_param( 'key' );
+	return '';
 }
 
 /* ---------------------------------------------------------------------------
@@ -249,23 +262,6 @@ function flxai_mcp_instructions() {
  * REST
  * ------------------------------------------------------------------------- */
 
-/**
- * Bearer anahtarı olan istekte WordPress'in Basic/çerez kimliğini aramasına gerek yok.
- */
-add_filter(
-	'determine_current_user',
-	function ( $user_id ) {
-		if ( $user_id || flxai_mcp_legacy() || ! flxai_mcp_is_request() ) {
-			return $user_id;
-		}
-		$auth = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '' ) );
-		$key  = 0 === stripos( $auth, 'Bearer ' ) ? trim( substr( $auth, 7 ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_MCP_KEY'] ?? $_GET['key'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification
-		$k    = flxai_mcp_find_key( $key );
-		return $k ? (int) $k['user'] : $user_id;
-	},
-	30
-);
-
 add_action(
 	'rest_api_init',
 	function () {
@@ -311,8 +307,8 @@ function flxai_mcp_permission( WP_REST_Request $req ) {
 	if ( ! is_user_logged_in() ) {
 		return new WP_Error( 'mcp_auth', __( 'Invalid or missing MCP key.', 'flx-ai' ), array( 'status' => 401 ) );
 	}
-	if ( ! current_user_can( 'edit_posts' ) ) {
-		return new WP_Error( 'mcp_cap', __( 'This user can\'t edit content.', 'flx-ai' ), array( 'status' => 403 ) );
+	if ( ! current_user_can( FLXAI_CAP_MCP ) ) {
+		return new WP_Error( 'mcp_cap', __( 'This user can\'t use MCP.', 'flx-ai' ), array( 'status' => 403 ) );
 	}
 	return true;
 }
@@ -387,7 +383,7 @@ function flxai_mcp_dispatch( $m ) {
 		case 'tools/list':
 			$tools = array();
 			foreach ( flxai_mcp_tools() as $name => $t ) {
-				if ( ! flxai_mcp_allowed( $name ) || flxai_tool_is_off( $name ) || ( ! empty( $t['cap'] ) && ! current_user_can( $t['cap'] ) ) ) {
+				if ( ! is_array( $t ) || ! flxai_mcp_tool_for_user( $name, $t ) ) {
 					continue;
 				}
 				$tools[] = array(
@@ -404,6 +400,9 @@ function flxai_mcp_dispatch( $m ) {
 		case 'prompts/list':
 			$list = array();
 			foreach ( flxai_mcp_prompts() as $name => $p ) {
+				if ( ! flxai_mcp_item_allowed( $p ) ) {
+					continue;
+				}
 				$list[] = array(
 					'name'        => $name,
 					'title'       => $p['title'] ?? $name,
@@ -414,7 +413,7 @@ function flxai_mcp_dispatch( $m ) {
 			return flxai_rpc_result( $id, array( 'prompts' => $list ) );
 		case 'prompts/get':
 			$p = flxai_mcp_prompts()[ $params['name'] ?? '' ] ?? null;
-			if ( ! $p ) {
+			if ( ! $p || ! flxai_mcp_item_allowed( $p ) ) {
 				return flxai_rpc_error( $id, -32602, 'Unknown prompt' );
 			}
 			return flxai_rpc_result(
@@ -432,6 +431,9 @@ function flxai_mcp_dispatch( $m ) {
 		case 'resources/list':
 			$list = array();
 			foreach ( flxai_mcp_resources() as $uri => $r ) {
+				if ( ! flxai_mcp_item_allowed( $r ) ) {
+					continue;
+				}
 				$list[] = array(
 					'uri'         => $uri,
 					'name'        => $r['name'] ?? $uri,
@@ -444,7 +446,7 @@ function flxai_mcp_dispatch( $m ) {
 		case 'resources/read':
 			$uri = (string) ( $params['uri'] ?? '' );
 			$r   = flxai_mcp_resources()[ $uri ] ?? null;
-			if ( ! $r || ! current_user_can( $r['cap'] ?? 'edit_posts' ) ) {
+			if ( ! $r || ! flxai_mcp_item_allowed( $r ) ) {
 				return flxai_rpc_error( $id, -32002, 'Resource not found' );
 			}
 			return flxai_rpc_result( $id, array( 'contents' => array( array( 'uri' => $uri, 'mimeType' => $r['mimeType'] ?? 'text/plain', 'text' => (string) call_user_func( $r['read'] ) ) ) ) );
@@ -466,21 +468,11 @@ function flxai_mcp_call( $name, $args ) {
 	$ok    = false;
 	$t     = null;
 	try {
-		if ( ! isset( $tools[ $name ] ) ) {
+		$t = $tools[ $name ] ?? null;
+		// Kapalı, kapsam dışı, yetkisiz ya da filtreyle elenen araç çalışmaz; bilinmeyen araçla aynı yanıt.
+		if ( ! is_array( $t ) || ! flxai_mcp_tool_for_user( $name, $t ) ) {
 			/* translators: %s: tool name */
 			throw new Exception( sprintf( __( 'Unknown tool: %s', 'flx-ai' ), $name ) );
-		}
-		if ( flxai_tool_is_off( $name ) ) {
-			/* translators: %s: tool name */
-			throw new Exception( sprintf( __( 'This tool is turned off (Flux AI & MCP › Tools): %s', 'flx-ai' ), $name ) );
-		}
-		if ( ! flxai_mcp_allowed( $name ) ) {
-			/* translators: %s: tool name */
-			throw new Exception( sprintf( __( 'This key can\'t use this tool: %s', 'flx-ai' ), $name ) );
-		}
-		$t = $tools[ $name ];
-		if ( ! empty( $t['cap'] ) && ! current_user_can( $t['cap'] ) ) {
-			throw new Exception( __( 'You don\'t have permission for this.', 'flx-ai' ) );
 		}
 		$data = call_user_func( $t['run'], $args );
 		$ok   = true;

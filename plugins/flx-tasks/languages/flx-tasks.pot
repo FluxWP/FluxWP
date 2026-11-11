@@ -163,15 +163,6 @@ msgstr ""
 msgid "Flux AI"
 msgstr ""
 
-msgid "MCP server"
-msgstr ""
-
-msgid "On, %d personal key(s)."
-msgstr ""
-
-msgid "Off."
-msgstr ""
-
 msgid "Untitled document"
 msgstr ""
 
@@ -403,15 +394,6 @@ msgstr ""
 msgid "Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings."
 msgstr ""
 
-msgid "MCP is off. Turn it on under Flux Tasks › Settings."
-msgstr ""
-
-msgid "Invalid or missing MCP key."
-msgstr ""
-
-msgid "This user is not allowed to use Flux Tasks."
-msgstr ""
-
 msgid "%s assigned you to a task"
 msgstr ""
 
@@ -611,9 +593,6 @@ msgid "File not found."
 msgstr ""
 
 msgid "You don't have permission to delete this file."
-msgstr ""
-
-msgid "You don't have permission to delete this key."
 msgstr ""
 
 msgid "Planned"
@@ -1741,15 +1720,6 @@ msgstr ""
 msgid "This month: {c} requests, {t} tokens, ${m}"
 msgstr ""
 
-msgid "Enable MCP server"
-msgstr ""
-
-msgid "AI clients such as Claude and Cursor can read and write tasks. Each person generates their own key on their Profile page."
-msgstr ""
-
-msgid "Manage keys"
-msgstr ""
-
 msgid "Data"
 msgstr ""
 
@@ -1778,42 +1748,6 @@ msgid "Desktop notifications"
 msgstr ""
 
 msgid "While the Tasks tab is open, new notifications also arrive as browser notifications."
-msgstr ""
-
-msgid "MCP connection"
-msgstr ""
-
-msgid "The MCP server is off. An admin can turn it on from the Settings page."
-msgstr ""
-
-msgid "Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions."
-msgstr ""
-
-msgid "Your new key (shown only now):"
-msgstr ""
-
-msgid "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address."
-msgstr ""
-
-msgid "Unnamed"
-msgstr ""
-
-msgid "Last used: {d}"
-msgstr ""
-
-msgid "never"
-msgstr ""
-
-msgid "Delete key"
-msgstr ""
-
-msgid "Clients using this key will lose their connection."
-msgstr ""
-
-msgid "Key name (e.g. Claude desktop)"
-msgstr ""
-
-msgid "Create new key"
 msgstr ""
 
 msgid "Custom color"
@@ -2739,3 +2673,19 @@ msgstr ""
 
 msgid "ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter."
 msgstr ""
+
+msgid "ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ."
+msgstr ""
+
+msgid "Flux AI & MCP"
+msgstr ""
+
+msgid "Flux Tasks tools are available through Flux AI & MCP."
+msgstr ""
+
+msgid "Flux Tasks tools require Flux AI & MCP."
+msgstr ""
+
+msgid "MCP"
+msgstr ""
+

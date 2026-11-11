@@ -214,7 +214,7 @@ try:
     check(result['whatsapp'], 'Queued WhatsApp keeps its configured spacing and accepts the mocked Evolution response')
     check(result['whatsapp_retry'], 'WhatsApp HTTP 429 is treated as a retryable rate limit rather than a permanent failure')
     result = run('journal', cli=True)
-    check(result['bounded'] and result['not_autoloaded'] and result['expired'], 'Operational journal prunes by count and age without autoloading diagnostic entries')
+    check(result['bounded'] and result['autoloaded'] and result['expired'], 'Operational log prunes by count and age and keeps its schema marker autoloaded')
     run('race-prepare')
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
         race = list(pool.map(lambda _: run('race', cli=True), range(2)))

@@ -20,7 +20,11 @@ foreach ( array( 'flxai_models_all', 'flxai_models_anthropic', 'flxai_models_ope
 }
 foreach ( wp_roles()->role_objects as $flxai_role ) {
 	$flxai_role->remove_cap( 'flxai_chat' );
+	$flxai_role->remove_cap( 'flxai_mcp' );
 }
 foreach ( get_users( array( 'capability' => 'flxai_chat', 'fields' => 'ID' ) ) as $flxai_uid ) {
 	( new WP_User( $flxai_uid ) )->remove_cap( 'flxai_chat' );
+}
+foreach ( get_users( array( 'capability' => 'flxai_mcp', 'fields' => 'ID' ) ) as $flxai_uid ) {
+	( new WP_User( $flxai_uid ) )->remove_cap( 'flxai_mcp' );
 }

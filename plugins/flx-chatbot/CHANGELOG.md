@@ -1,5 +1,9 @@
 # Flux AI Chatbot
 
+## 0.1.4
+- Cap each assistant reply at a 45-second wall-clock budget shared by every model round and the stream. A second request for the same chat while one is running gets HTTP 409; the widget puts the text back and does not show an error.
+- Store an uploaded file's extension from the detected MIME type (allowlist). The client file name is not used for the extension.
+
 ## 0.1.3
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

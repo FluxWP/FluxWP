@@ -30,7 +30,7 @@ WordPress rolleri blog için düşünülmüş: Editör, Yazar, Katılımcı. Bir
 - 🎚️ **Tek tablo, gerçek yetki.** Her satır gerçek bir WordPress yetkisidir. Kapatınca menüden kalkar *ve* adresle de girilemez.
 - 👥 **Kuruma uygun roller:** Personel, İdareci ve Yönetici; artı sizin ekleyeceğiniz roller (Gönüllü, Muhasebe…).
 - 🔗 **Kişisel referans bağlantıları:** bağlantıyla gelen bağış o kişiye yazılır.
-- 📱 **WhatsApp'la uyumlu:** personelin telefon numarası sayesinde çağrı merkezi asistanı onu tanır ve rolünün izin verdiği işleri yapar.
+- 📱 **WhatsApp'la uyumlu:** personelin telefon numarası sayesinde çağrı merkezi asistanı onu tanır ve rolünün izin verdiği işleri yapar. Eşleşme ülke kodlu tam numarayadır; son haneler yetmez.
 - 🧩 **Diğer paketlerle büyür:** yeni FluxWP paketleri yetkilerini buraya kendiliğinden kaydeder.
 
 ## Özellikler

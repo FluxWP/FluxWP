@@ -37,9 +37,10 @@ A phone or desktop app for a WordPress site usually means application passwords 
 
 ### Sign-in
 - OAuth 2.0 authorisation code + PKCE (S256) with rotating refresh tokens and revoke; built-in client "Flux Desktop" (`flxmasaustu://` and loopback redirects).
-- RFC 8414 / 9728 metadata and dynamic client registration for MCP clients; the Flux SEO endpoint accepts these tokens.
+- RFC 8414 / 9728 metadata and dynamic client registration for MCP clients (off by default; turn it on under Application settings). The Flux SEO endpoint accepts these tokens when the token's scope includes `mcp`.
 - Personal API keys (`Bearer flxak_…`), with or without expiry.
 - **Donor sign-in** with a one-time code by WhatsApp (Flux Call Center) or e-mail; a customer account is created for donors who have orders.
+- **Own phone number:** a signed-in donor confirms a number with a code sent only to that phone and saves it on the account. Staff numbers stay with an administrator.
 - One-time admin session from the app (`/session`), and `X-FluxWP-Token` fallback for hosts that drop the `Authorization` header.
 
 ### What the app shows
@@ -80,9 +81,9 @@ Requirements: WordPress 6.4+, PHP 7.4+. The FluxWP desktop/mobile app or an MCP 
 
 **First steps**
 
-1. Activate Flux App; **Application** appears in the admin menu. The defaults work: access 60 min, session 60 days, MCP self-registration on.
+1. Activate Flux App; **Application** appears in the admin menu. The defaults work: access 60 min, session 60 days, MCP self-registration off.
 2. In the app, enter the site address and press **Log in**: the site's login and consent screen open, press **Allow**.
-3. For Claude and other MCP clients, give them `https://your-site/wp-json/flx-mcp/v1/mcp` and sign in, or create an API key.
+3. For Claude and other MCP clients, turn on self-registration, give them `https://your-site/wp-json/flx-mcp/v1/mcp` and sign in, or create an API key.
 
 > ℹ️ Resetting a password or deleting a user closes all of that person's app sessions and keys. If LiteSpeed caches the `.well-known/oauth-*` URLs, purge the cache.
 
@@ -92,14 +93,14 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-app/KURULUM.md) · API r
 
 - Register a native screen: `add_filter( 'flxapp_modules', … )` with `title`, `menu`, `api`, `icon`, `version`.
 - Register app screens as JSON: `add_filter( 'flxapp_manifest', … )` with `flxapp_manifest_file()`; send notifications with `do_action( 'flxapp_push', $user_ids, $message )`.
-- Endpoints `/flxapp/v1/app/bootstrap`, `/config`, `/manifest`, `/me`, `/sync`, `/prefs`, `/devices`, `/session`, `/settings/<option>`, `/otp/*`, `/oauth/*`; see [API.md](../../docs/flx-app/API.md).
+- Endpoints `/flxapp/v1/app/bootstrap`, `/config`, `/manifest`, `/me`, `/me/phone`, `/sync`, `/prefs`, `/devices`, `/session`, `/settings/<option>`, `/otp/*`, `/oauth/*`; see [API.md](../../docs/flx-app/API.md).
 
 ## Roadmap
 
 | | |
 |---|---|
 | ✅ | OAuth 2.0 + PKCE, API keys and MCP discovery |
-| ✅ | Donor sign-in with one-time codes |
+| ✅ | Donor sign-in with one-time codes (saved phone or own email; orders do not open an account). A signed-in donor can confirm and save a phone number |
 | ✅ | Role-based menu and native modules |
 | ✅ | Menu per platform and the Application page |
 | ⬜ | Push notifications |

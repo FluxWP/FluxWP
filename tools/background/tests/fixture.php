@@ -390,14 +390,24 @@ QA;
 		break;
 	case 'journal':
 		$limit = static function () { return 100; }; add_filter( 'flx_background_log_limit', $limit );
-		for ( $i = 0; $i < 105; ++$i ) { flx_background_log( 'qa.bounded', array( 'count' => $i ) ); }
-		update_option( 'flx_background_journal_pruned', 0, false ); flx_background_log( 'qa.prune' );
-		$count = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE %s", $wpdb->esc_like( 'flx_background_event_' ) . '%' ) );
-		$autoload = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name LIKE %s AND autoload IN ('yes','on','auto-on')", $wpdb->esc_like( 'flx_background_event_' ) . '%' ) );
-		$old_key = 'flx_background_event_' . ( time() - 20 * DAY_IN_SECONDS ) . '_old'; add_option( $old_key, array( 'event' => 'old' ), '', false );
-		update_option( 'flx_background_journal_pruned', 0, false ); flx_background_log( 'qa.age' ); wp_cache_delete( $old_key, 'options' );
-		$expired = false === get_option( $old_key ); remove_filter( 'flx_background_log_limit', $limit );
-		flx_bg_test_output( array( 'bounded' => $count <= 100, 'not_autoloaded' => 0 === $autoload, 'expired' => $expired ) );
+		$marker = 'flx_background_' . 'journal_pruned';
+		$old_key = 'flx_background_event_' . ( time() - 20 * DAY_IN_SECONDS ) . '_old'; add_option( $old_key, array( 'event' => 'old', 'time' => time() - 20 * DAY_IN_SECONDS ), '', false );
+		add_option( $marker, time(), '', false );
+		$state = get_option( 'flx_background_log_db', array() ); if ( ! is_array( $state ) ) { $state = array(); }
+		$state['version'] = 1; $state['legacy'] = 0; $state['pruned'] = time(); update_option( 'flx_background_log_db', $state, true );
+		for ( $i = 0; $i < 105; ++$i ) { flx_background_log( 'qa.bounded', array( 'plugin' => 'flx-mail', 'count' => $i ) ); }
+		flx_background_log_flush();
+		$table = $wpdb->prefix . 'flx_background_log';
+		$wpdb->query( $wpdb->prepare( "INSERT INTO {$table} (plugin, event, `time`, campaign, context) VALUES (%s,%s,%d,%d,%s)", 'flx-mail', 'qa.old', time() - 20 * DAY_IN_SECONDS, 0, '{}' ) );
+		$state = get_option( 'flx_background_log_db', array() ); $state['pruned'] = 0; update_option( 'flx_background_log_db', $state, true );
+		flx_background_log_retain();
+		$count = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$table}" );
+		$autoload = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name = %s AND autoload IN ('yes','on','auto-on','auto')", 'flx_background_log_db' ) );
+		wp_cache_delete( $old_key, 'options' ); wp_cache_delete( $marker, 'options' );
+		$aged = true; foreach ( flx_background_events( 200, 0, 'flx-mail' ) as $event ) { if ( 'qa.old' === ( $event['event'] ?? '' ) ) { $aged = false; } }
+		$expired = false === get_option( $old_key ) && false === get_option( $marker ) && $aged;
+		remove_filter( 'flx_background_log_limit', $limit );
+		flx_bg_test_output( array( 'bounded' => $count <= 100 && $count >= 1, 'autoloaded' => 1 === $autoload, 'expired' => $expired ) );
 		break;
 	case 'cleanup':
 		@unlink( WPMU_PLUGIN_DIR . '/flx-background-qa.php' );

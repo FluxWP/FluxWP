@@ -447,17 +447,8 @@ msgstr "Deixe o aplicativo abrir menus sem uma tela nativa como páginas de admi
 msgid "Sign in with code"
 msgstr "Faça login com código"
 
-msgid "Let donors sign in to the app with a code sent to their email or phone"
-msgstr "Permita que os doadores façam login no aplicativo com um código enviado para seu e-mail ou telefone"
-
-msgid "Create a customer account if none exists but there is a donation with these details"
-msgstr "Crie uma conta de cliente se não existir, mas houver uma doação com esses detalhes"
-
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
 msgstr "Permita que a equipe faça login com um código também (não recomendado; a equipe usa OAuth no navegador)"
-
-msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
-msgstr "Os códigos telefônicos são enviados via Flux Call Center (WhatsApp); sem ele, apenas e-mail."
 
 msgid "Can create API keys"
 msgstr "Pode criar chaves de API"
@@ -1301,3 +1292,61 @@ msgstr "Yetkiniz yok."
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr "Lado do servidor do desktop e aplicativo móvel FluxWP: login OAuth 2.0 (PKCE), dispositivos e push, visualização do aplicativo (configuração), exibições de plug-ins (manifesto), sessão do painel. Os clientes MCP também se conectam via OAuth."
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$s é o seu código para confirmar o número de telefone em %2$s. Válido por 10 minutos. Não compartilhe este código com ninguém."
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr "Um número de telefone terminado em %s foi adicionado à sua conta. Se não foi você, fale com o administrador do site."
+
+msgid "A phone number was added to your %s account"
+msgstr "Um número de telefone foi adicionado à sua conta %s"
+
+msgid "An administrator manages this phone number."
+msgstr "Um administrador gerencia este número de telefone."
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr "Criar uma conta de cliente para um e-mail depois que o código de entrada for confirmado"
+
+msgid "Enter a valid phone number."
+msgstr "Digite um número de telefone válido."
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr "Permitir que um doador conectado confirme um número de telefone e o salve na conta"
+
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr "Permitir que os doadores entrem com um código enviado ao e-mail ou ao número de telefone salvo na conta"
+
+msgid "No phone number is saved on this account."
+msgstr "Nenhum número de telefone está salvo nesta conta."
+
+msgid "Own phone number"
+msgstr "O próprio número de telefone"
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr "Os códigos de telefone saem pelo Flux Call Center (WhatsApp) quando esse canal está disponível; caso contrário, o código é enviado por e-mail à conta. Um código de telefone entra somente na conta cujo número salvo é exatamente esse número completo. Doações e pedidos nunca abrem nem reivindicam uma conta."
+
+msgid "Phone confirmation is not available."
+msgstr "A confirmação do telefone não está disponível."
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+msgstr "O código é enviado somente para esse telefone (WhatsApp ou um provedor de SMS), nunca por e-mail. Quem pode editar posts mantém um número gerenciado por um administrador, a menos que a entrada da equipe por código esteja ligada."
+
+msgid "The phone number could not be saved."
+msgstr "Não foi possível salvar o número de telefone."
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr "O número de telefone terminado em %s foi removido da sua conta. Se não foi você, fale com o administrador do site."
+
+msgid "The phone number on your %s account was changed"
+msgstr "O número de telefone da sua conta %s foi alterado"
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr "O número de telefone da sua conta agora termina em %s. Se não foi você, fale com o administrador do site."
+
+msgid "The phone number was removed from your %s account"
+msgstr "O número de telefone foi removido da sua conta %s"
+
+msgid "The token does not include the scope this request needs."
+msgstr "O token não inclui o escopo que esta solicitação exige."
+

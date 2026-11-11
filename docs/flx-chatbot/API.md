@@ -23,12 +23,16 @@
 | `flxcb_bot_tools` ( array $tools, $conv ) | Asistanın araçları (OpenAI biçimi). |
 | `flxcb_bot_run_tool` ( null, $name, $args, $conv ) | Eklenen aracı çalıştırır (null kalırsa yerleşik araç). |
 | `flxcb_bot_context` ( string, $conv ) | Sistem mesajındaki site bağlamı. |
-| `flxcb_allowed_mimes` ( array ) | Gönderilebilir dosya türleri. |
+| `flxcb_allowed_mimes` ( array ) | Gönderilebilir dosya türleri. Saklanan uzantı bu listenin MIME'inden gelir; istemci dosya adı kullanılmaz. |
 
 ## Eylemler
 `flxcb_conversation_created`, `flxcb_message_added` ( $row ), `flxcb_contact_changed` ( $id, $fields ), `flxcb_handoff` ( $conv, $by, $target ),
 `flxcb_closed`, `flxcb_rated`, `flxcb_lead` ( $conv, $note, $crm_id ), `flxcb_order_attributed` ( $conv, $order ),
 `flxcb_visitor_typing`, `flxcb_visitor_read`, `flxcb_settings_saved`.
+
+## Ziyaretçi mesajı
+- `POST /flx-chatbot/v1/message`: asistan açıksa NDJSON. Aynı sohbette süren bir cevap varken ikinci istek `409` / `flxcb_busy` döner; mesaj kaydedilmez. Kilit `add_option` (`flxcb_fly_{id}`), 55 sn sonra bayat sayılır ve bırakılınca silinir.
+- İstek bütçesi 45 sn (bütün turlar + akış). Kalan süre Flux AI `flxai_chat` `timeout` alanına gider; 3 sn'den az kaldıysa yeni tur veya araç çalışmaz, kısmi cevap yazılır.
 
 ## Flux AI & MCP
 SDK ile `flx-chatbot` sistemi (model ayarı) ve yöneticiler için salt okunur araçlar: `flxcb_conversations`,
