@@ -28,6 +28,7 @@ require_once FLXS_DIR . 'includes/install.php';
 require_once FLXS_DIR . 'includes/log.php';
 require_once FLXS_DIR . 'includes/people.php';
 require_once FLXS_DIR . 'includes/people-shared.php';
+require_once FLXS_DIR . 'includes/events-shared.php';
 require_once FLXS_DIR . 'includes/templates.php';
 require_once FLXS_DIR . 'includes/certificates.php';
 require_once FLXS_DIR . 'includes/providers.php';

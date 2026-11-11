@@ -514,3 +514,6 @@ function flx_phone_normalize( $raw, $country = '' ) {
 
 /* Shared people table and API (1.3.0): one person record for every FluxWP package. */
 require_once __DIR__ . '/people.php';
+
+/* Shared events table and API (1.4.0): one event record for every FluxWP package. */
+require_once __DIR__ . '/events.php';

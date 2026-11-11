@@ -11,12 +11,14 @@ require_once FLXCRM_DIR . 'includes/admin/page-overview.php';
 require_once FLXCRM_DIR . 'includes/admin/page-contacts.php';
 require_once FLXCRM_DIR . 'includes/admin/page-contact.php';
 require_once FLXCRM_DIR . 'includes/admin/page-segments.php';
+require_once FLXCRM_DIR . 'includes/admin/page-events.php';
 require_once FLXCRM_DIR . 'includes/admin/page-settings.php';
 
 final class FLXCRM_Admin {
 
 	public static function init() {
 		add_action( 'admin_menu', array( __CLASS__, 'menu' ), 55 );
+		FLXCRM_Page_Events::init();
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		foreach ( array( 'contact_save', 'contact_delete', 'event_add', 'event_delete', 'tag_add', 'tag_remove', 'segment_save', 'segment_delete', 'settings_save', 'csv', 'bulk' ) as $a ) {
 			add_action( 'admin_post_flxcrm_' . $a, array( __CLASS__, 'post_' . $a ) );
@@ -44,6 +46,7 @@ final class FLXCRM_Admin {
 		add_submenu_page( 'flx-crm', __( 'Overview', 'flx-crm' ), __( 'Overview', 'flx-crm' ), $view, 'flx-crm', array( 'FLXCRM_Page_Overview', 'render' ) );
 		add_submenu_page( 'flx-crm', __( 'Contacts', 'flx-crm' ), __( 'Contacts', 'flx-crm' ), $view, 'flx-crm-contacts', array( __CLASS__, 'route_contacts' ) );
 		add_submenu_page( 'flx-crm', __( 'Segments', 'flx-crm' ), __( 'Segments', 'flx-crm' ), $view, 'flx-crm-segments', array( 'FLXCRM_Page_Segments', 'render' ) );
+		add_submenu_page( 'flx-crm', __( 'Events', 'flx-crm' ), __( 'Events', 'flx-crm' ), $view, 'flx-crm-events', array( 'FLXCRM_Page_Events', 'render' ) );
 		add_submenu_page( 'flx-crm', __( 'CRM settings', 'flx-crm' ), __( 'Settings', 'flx-crm' ), self::cap_manage(), 'flx-crm-settings', array( 'FLXCRM_Page_Settings', 'render' ) );
 	}
 
@@ -446,6 +449,7 @@ final class FLXCRM_Admin {
 			'flx-crm'          => __( 'Overview', 'flx-crm' ),
 			'flx-crm-contacts' => __( 'Contacts', 'flx-crm' ),
 			'flx-crm-segments' => __( 'Segments', 'flx-crm' ),
+			'flx-crm-events'   => __( 'Events', 'flx-crm' ),
 		);
 		if ( flxcrm_can( true ) ) {
 			$tabs['flx-crm-settings'] = __( 'Settings', 'flx-crm' );

@@ -11,7 +11,7 @@ For each package: <pkg>/includes|inc/flx-brand/{loader.php,core.php} is overwrit
 import os, sys, glob, shutil
 
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'flx-brand')
-FILES = ('loader.php', 'core.php', 'people.php')
+FILES = ('loader.php', 'core.php', 'people.php', 'events.php')
 DIRS = ('phone',)  # 1.2.0: shared phone field assets
 MARK = 'flx-brand/loader.php'
 

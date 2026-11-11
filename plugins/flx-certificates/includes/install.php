@@ -254,32 +254,6 @@ function flxs_install_tables() {
 		KEY created_at (created_at)
 	) $c;";
 
-	$sql[] = 'CREATE TABLE ' . flxs_table( 'events' ) . " (
-		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-		name varchar(190) NOT NULL DEFAULT '',
-		event_date date DEFAULT NULL,
-		target int(11) NOT NULL DEFAULT 0,
-		base_count int(11) NOT NULL DEFAULT 0,
-		event_time varchar(20) NOT NULL DEFAULT '',
-		summary text,
-		image_id bigint(20) unsigned NOT NULL DEFAULT 0,
-		post_id bigint(20) unsigned NOT NULL DEFAULT 0,
-		loc_name varchar(190) NOT NULL DEFAULT '',
-		loc_address text,
-		loc_map varchar(500) NOT NULL DEFAULT '',
-		loc_announce date DEFAULT NULL,
-		loc_hits_qr int(11) NOT NULL DEFAULT 0,
-		loc_hits_web int(11) NOT NULL DEFAULT 0,
-		note text,
-		status varchar(20) NOT NULL DEFAULT 'open',
-		created_by bigint(20) unsigned NOT NULL DEFAULT 0,
-		created_at datetime NOT NULL,
-		updated_at datetime NOT NULL,
-		closed_at datetime DEFAULT NULL,
-		PRIMARY KEY  (id),
-		KEY status (status)
-	) $c;";
-
 	foreach ( $sql as $q ) {
 		dbDelta( $q );
 	}

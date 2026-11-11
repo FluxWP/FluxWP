@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.4.0
+- New CRM › Events: the one screen for the events of every FluxWP package, on the shared events table (`wp_flx_events`, flx-brand 1.4.0). Open / archive tabs, create, edit, close, reopen, delete, create or publish the site page, and an event page listing everyone tied to it with a link to their contact card.
+- The screen hardcodes no package. Fields come from `flx_event_fields` (section, translated label, type), numbers from `flx_event_stats`, buttons from `flx_event_actions`, people from `flx_event_people`, extra form parts from `flx_event_form_after` / `flx_events_screen_after`. Flux Certificates adds saplings, its links, the location QR and its site settings this way; a new package adds itself without a CRM update.
+- `flxcrm_events_url()` for packages that link or redirect here (Flux Certificates › Events redirects when CRM is active).
+
 ## 0.3.0
 - Contacts now live in the shared FluxWP people table (`wp_flx_people`, links in `wp_flx_people_links`) instead of CRM's own table. Every FluxWP package reads and writes the same person through `flx_person_ensure()`, `flx_person_find()`, `flx_person_update()`, whether or not Flux CRM is installed; install order does not matter. With CRM active those calls run CRM's own rules (matching, roles, timeline, hooks), so that logic stays in one place.
 - Upgrade moves the 0.2.x tables by itself: contact ids, links, timeline and tags are kept. If another package already created people, rows are matched by site user, e-mail or phone and merged.

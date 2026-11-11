@@ -190,3 +190,21 @@ flxcrm_run_tool( 'flxcrm_tag_contact', array( 'id' => 5, 'add' => array( 'VIP' )
 ```
 
 `flxcrm_tool_ran` eylemi `( $name, $args, $result, $ctx )` her başarılı çağrıdan sonra çalışır. Kişi birleştirme `FLXCRM_Contacts::merge( $primary, $ids )` ve `flxcrm_contact_merged` eylemi `( $primary_id, $merged_id )`; zaman tünelinde `merged` olayı.
+
+
+## Etkinlikler (0.4.0)
+
+Etkinlikler ortak tabloda: `{prefix}flx_events` (flx-brand 1.4.0, `events.php`). Yönetim ekranı CRM › Etkinlikler (`flxcrm_events_url()`); CRM yoksa Flux Certificates kendi ekranını gösterir. Ekran hiçbir paketi tanımaz, her şey filtreyle gelir:
+
+| Kanca | Ne yapar |
+|---|---|
+| `flx_events_columns` | Paketin kendi sütunları (`target`, `base_count` Flux Certificates'ın) |
+| `flx_event_fields` | Form alanları: `section`, çevrilmiş `label`, `type` (text, textarea, date, time, number, url, image, post), `placeholder`, `help`, `order` |
+| `flx_event_sections` | Bölüm başlıkları (`saplings` → "Fidan") |
+| `flx_event_stats` | Kart sayıları: `value`, `label`, `hint`, `progress` (0-100) |
+| `flx_event_actions` | Kart düğmeleri: `label`, `url`, `primary` |
+| `flx_event_people` | `[ kişi_id => [ "Sertifika", … ] ]`: etkinliğin kişileri |
+| `flx_event_form_after`, `flx_event_form_location`, `flx_events_screen_after` | Forma / listeye ek parça |
+| `flx_event_saved`, `flx_event_status`, `flx_event_deleting` | Kaydedildi, açıldı/kapandı, siliniyor (kendi kayıtlarını ayır) |
+
+API: `flx_event_get()`, `flx_events_query()`, `flx_event_save()`, `flx_event_set_status()`, `flx_event_delete()`, `flx_event_people()`, `flx_event_stats()`, `flx_event_actions()`, `flx_event_ensure_post()`. Eski `flxs_get_event(s)`, `flxs_save_event`, `flxs_event_public` aynı tabloyu okur.

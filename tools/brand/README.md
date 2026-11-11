@@ -35,6 +35,17 @@ $e164 = flx_phone_normalize( $_POST['phone'], 'de' ); // '' when not a number
 - `sync.py` copies `phone/` into every package next to `flx-brand`.
 - Dark colours (1.2.1): `body.flx-dark` only means the theme allows dark mode, so the field turns dark while the device is dark (`prefers-color-scheme`), like the theme. `html.flxfw-dark` (fluxwp.com switch) and `html.flxa-dark` (Flux Admin) force it; `html[data-flxfw-theme]` turns the device rule off.
 
+## Shared events (1.4.0)
+
+One event table for every FluxWP package: `{prefix}flx_events` (`events.php`). Flux Certificates groups certificates under an event, other packages attach their own records the same way. The event screen lives in Flux CRM (Flux Certificates shows its own when Flux CRM is not installed) and is built only from filters, so a new package shows up on it without changing the screen:
+
+- `flx_events_columns`: columns a package owns (Flux Certificates: `target`, `base_count`).
+- `flx_event_fields`: form fields with section, translated label and type (`text|textarea|date|time|number|url|image|post`).
+- `flx_event_people`: `[ person_id => [ label, … ] ]` per package. `flx_event_stats`: numbers on the card. `flx_event_actions`: buttons on the card.
+- Actions `flx_event_saved`, `flx_event_status`, `flx_event_deleting` (detach your records there).
+
+API: `flx_event_get()`, `flx_events_query()`, `flx_event_save()`, `flx_event_set_status()`, `flx_event_delete()`, `flx_event_people()`, `flx_event_stats()`, `flx_event_actions()`, `flx_event_ensure_post()`.
+
 ## Shared people (1.3.0)
 
 One person table for every FluxWP package: `{prefix}flx_people` + `{prefix}flx_people_links` (`people.php`). No package owns it; the first one that calls the API creates it, so packages work alone and in any install order. Flux CRM is the management layer on the same rows and takes over matching and writing through the `flx_person_pre_*` filters when active.

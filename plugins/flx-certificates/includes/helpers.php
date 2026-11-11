@@ -11,6 +11,13 @@ function flxs_table( $name ) {
 		}
 		return $wpdb->prefix . 'flx_people';
 	}
+	if ( 'events' === $name ) {
+		// 2.0.0: events live in the shared FluxWP events table (flx-brand events.php).
+		if ( function_exists( 'flx_events_ready' ) && did_action( 'after_setup_theme' ) ) {
+			flx_events_ready();
+		}
+		return $wpdb->prefix . 'flx_events';
+	}
 	return $wpdb->prefix . 'flxs_' . $name;
 }
 
