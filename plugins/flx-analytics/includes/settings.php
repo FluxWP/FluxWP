@@ -115,12 +115,14 @@ function flxan_write_config() {
 	}
 	$s   = flxan_settings( 'flush' );
 	$cfg = array(
-		'on'     => (int) $s['on'],
-		'token'  => $token,
-		'tz'     => wp_timezone_string(),
-		'dnt'    => (int) $s['dnt'],
-		'ips'    => array_values( array_filter( explode( "\n", (string) $s['exclude_ips'] ) ) ),
-		'max_mb' => 50,
+		'on'              => (int) $s['on'],
+		'token'           => $token,
+		'tz'              => wp_timezone_string(),
+		'dnt'             => (int) $s['dnt'],
+		'ips'             => array_values( array_filter( explode( "\n", (string) $s['exclude_ips'] ) ) ),
+		'max_mb'          => 50,
+		'collect_key'     => flxan_collect_key(),
+		'collect_window'  => flxan_collect_window(),
 	);
 	$php = "<?php\n// Flux Analiz uç ayarı; otomatik üretilir.\nreturn " . var_export( $cfg, true ) . ";\n"; // phpcs:ignore
 	$tmp = flxan_data_dir() . '/config.php.' . wp_generate_password( 6, false );
@@ -151,6 +153,29 @@ function flxan_method() {
 		return 'rest';
 	}
 	return 'fast';
+}
+
+/** Beacon HMAC window. Current and previous windows are accepted (24h). */
+function flxan_collect_window() {
+	return 43200;
+}
+
+/** Key derived once from wp_salt and stored, so the standalone endpoint can verify it. */
+function flxan_collect_key() {
+	$key = get_option( 'flxan_collect_key', '' );
+	if ( is_string( $key ) && preg_match( '/^[a-f0-9]{64}$/', $key ) ) {
+		return $key;
+	}
+	$key = hash( 'sha256', wp_salt( 'auth' ) . '|flxan-collect' );
+	update_option( 'flxan_collect_key', $key, false );
+	return $key;
+}
+
+/** Token printed into the tracking snippet for this window. */
+function flxan_collect_token( $ts = null ) {
+	$ts     = null === $ts ? time() : (int) $ts;
+	$window = flxan_collect_window();
+	return substr( hash_hmac( 'sha256', (string) intdiv( $ts, $window ), flxan_collect_key() ), 0, 32 );
 }
 
 /** Toplama adresi. */

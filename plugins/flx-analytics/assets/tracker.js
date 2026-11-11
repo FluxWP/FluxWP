@@ -30,6 +30,7 @@
 	try { TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
 
 	function send(data) {
+		if (C.t) data.t = C.t;
 		if (C.g) data.g = C.g;
 		if (RC) data.rc = RC;
 		var body = new URLSearchParams(data);

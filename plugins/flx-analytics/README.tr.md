@@ -28,11 +28,11 @@ WordPress için gizlilik öncelikli istatistik eklentisi: ziyaretçiler, sayfala
 
 Google Analytics ağır, çerez uyarısı ister ve ziyaretçi verisini üçüncü tarafa gönderir. Basit sayaçlar ise görüntülenmede kalır. Bir derneğin ihtiyacı ikisinin arası: *kaç kişi geldi, nereden geldi ve kaçı gerçekten bağış yaptı?*
 
-- 🔒 **Kişisel veri yok.** IP adresi ya da tarayıcı parmak izi saklanmaz. Ziyaretçi yalnız aynı gün içinde, ertesi gün silinen rastgele bir anahtarla tanınır. Çerez uyarısı gerekmez.
+- 🔒 **Kişisel veri yok.** IP adresi ya da tarayıcı parmak izi saklanmaz. Ziyaretçi yalnız aynı gün içinde, ertesi gün silinen rastgele bir anahtarla tanınır. Yönlendirilmiş adres yalnız bağlantı Cloudflare'den geliyorsa okunur. Çerez uyarısı gerekmez.
 - 💚 **Bağış odaklı.** Hazır huni her ziyareti ilk sayfadan bağış sayfasına, ödeme formuna, "Ödeme yap" tıklamasına ve teşekkür sayfasına kadar izler.
 - 🧭 **Sayıların ötesinde yolculuklar.** İnsanların hangi sırayla gezdiğini, nerede bıraktığını ve hangi yolların hedefe ulaştığını görün.
 - 🔗 **Gönüllüler için referans bağlantıları.** Her gönüllüye ya da kampanyaya bir `?r=kod` bağlantısı verin; getirdiği ziyaretçileri, ziyaretleri ve bağışları görün.
-- ⚡ **Hızlı ve önbellek dostu.** ~2 KB'lık sayaç ve WordPress'i bile yüklemeyen toplama ucu. LiteSpeed ve diğer sayfa önbellekleriyle çalışır.
+- ⚡ **Hızlı ve önbellek dostu.** ~2 KB'lık sayaç ve WordPress'i bile yüklemeyen toplama ucu. LiteSpeed ve diğer sayfa önbellekleriyle çalışır. Sayaç kısa ömürlü bir belirteç taşır (12 saatlik pencere; bir önceki pencere de geçerlidir), bu yüzden kopyalanmış bir Referer sayım göndermeye yetmez.
 - 🤖 **Yapay zekâya hazır.** 15 MCP aracı sayesinde Flux AI, Claude ya da herhangi bir MCP istemcisi "bu ay bağışçılarımız nereden geldi?" sorusunu yanıtlar.
 - 🌐 **Türkçe ve İngilizce**, her kullanıcının WordPress diline göre.
 
