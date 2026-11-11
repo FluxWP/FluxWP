@@ -269,7 +269,7 @@ Kişi "her ay bana fidan dikimini hatırlat", "her ay son projelerinizi gönderi
 - Zamanlama WP-Cron ile; Hostinger'da sunucu cron'u (5 dk, wp-cron.php) kurulu değilse ilk ziyarette gönderilir. 2 günden eski kaçan hatırlatma gönderilmez.
 
 ### Kapanış, tepki ve sormadan hatırlatıcı (1.42.0)
-- **Tamamlandı durumu**: vedalaşma bitince asistan sohbeti arka planda "tamamlandı" işaretler. Sonraki teşekkür/veda/dua mesajlarına yeniden veda yazmaz; ilk ikisine emoji tepkisi bırakır (👍 "tamam", 🤲 teşekkür ve dua), sonrasında sessiz kalır ve model çağrılmaz. Kişi soru ya da yeni bir konu yazarsa durum kalkar. Süre 12 saat (`flxc_bot_closed_ttl`), kapanış emojisi `flxc_bot_closer_emoji`, izinli emojiler `flxc_bot_react_emojis`.
+- **Tamamlandı durumu**: vedalaşma bitince asistan sohbeti arka planda "tamamlandı" işaretler. Sonraki teşekkür/veda/dua mesajlarına yeniden veda yazmaz; ilk ikisine emoji tepkisi bırakır (👍 "tamam", 🤲 teşekkür ve dua), sonrasında sessiz kalır ve model çağrılmaz. Kişi soru ya da yeni bir konu yazarsa ya da sohbete asistan dışı bir mesaj giderse (sertifika, bağış onayı, temsilci mesajı) durum kalkar. Ek süre sınırı 12 saat (`flxc_bot_closed_ttl`), kapanış emojisi `flxc_bot_closer_emoji`, izinli emojiler `flxc_bot_react_emojis`.
 - **Emoji tepkisi** Ayarlar › AI asistan'dan kapatılabilir; kapalıyken kapanış mesajlarında asistan yalnız sessiz kalır.
 - **Hatırlatıcı**: asistan onay ve gün sormadan kurar, günü kişiye söyler; gün yoksa ayın 1'i. Sonradan söylenen gün aynı hatırlatıcıyı günceller.
 - **Etkinlik konumu**: site aramasındaki etkinlik sonuçları Flux Certificates etkinlik kaydındaki tarih, saat ve konumu taşır (`flxc_site_item` filtresiyle genişletilebilir).

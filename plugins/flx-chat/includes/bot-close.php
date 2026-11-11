@@ -294,3 +294,29 @@ function flxc_bot_close_fast_sandbox( array $history, array $state ) {
 	$state['closed_n'] = $n + 1;
 	return array( 'emoji' => $emoji, 'state' => $state );
 }
+
+/**
+ * 1.42.0: tamamlandı durumu bir aksiyonla da kalkar. Sohbete asistan dışı bir mesaj gidince
+ * (sertifika, bağış onayı, ödeme bildirimi, temsilci ya da telefondan yazılan mesaj) konuşma yeniden
+ * açılmış sayılır; kişinin sonraki "teşekkürler"i tepkiyle geçiştirilmez, asistan normal cevap verir.
+ * Asistanın kendi mesajları (source bot) durumu değiştirmez.
+ */
+function flxc_bot_reopen_on_send( $id, $chat = null ) {
+	$m = flxc_get_message( (int) $id );
+	if ( ! $m || 'out' !== $m['direction'] || 'bot' === (string) $m['source'] ) {
+		return;
+	}
+	$fresh = flxc_get_chat( (int) $m['chat_id'] );
+	if ( ! $fresh ) {
+		return;
+	}
+	$state = flxc_bot_state( $fresh );
+	if ( empty( $state['closed'] ) ) {
+		return;
+	}
+	$state['closed'] = 0;
+	unset( $state['closed_n'] );
+	flxc_bot_save_state( (int) $fresh['id'], $state );
+}
+add_action( 'flxc_message_sent', 'flxc_bot_reopen_on_send', 20, 2 );
+add_action( 'flxc_message_from_phone', 'flxc_bot_reopen_on_send', 20, 2 );
