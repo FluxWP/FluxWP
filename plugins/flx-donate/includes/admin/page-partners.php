@@ -410,11 +410,11 @@ final class FLXB_Page_Partners {
 		header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( 'settlement-' . $kind . '-' . str_replace( '..', '_', $period ) . '.csv' ) . '"' );
 		$out = fopen( 'php://output', 'w' );
 		fwrite( $out, "\xEF\xBB\xBF" );
-		fputcsv( $out, array( __( 'Partner', 'flx-donate' ), __( 'Date', 'flx-donate' ), __( 'Code', 'flx-donate' ), __( 'On behalf of', 'flx-donate' ), __( 'Option', 'flx-donate' ), __( 'Status', 'flx-donate' ), __( 'Price', 'flx-donate' ), __( 'Currency', 'flx-donate' ) ) );
+		fputcsv( $out, array_map( 'flxb_csv_cell', array( __( 'Partner', 'flx-donate' ), __( 'Date', 'flx-donate' ), __( 'Code', 'flx-donate' ), __( 'On behalf of', 'flx-donate' ), __( 'Option', 'flx-donate' ), __( 'Status', 'flx-donate' ), __( 'Price', 'flx-donate' ), __( 'Currency', 'flx-donate' ) ) ) );
 		foreach ( $res as $r ) {
 			foreach ( $r['rows'] as $x ) {
 				$sts = FLXB_Track::statuses( (int) $x['type_id'] );
-				fputcsv( $out, array( $r['name'], $x['day'], $x['code'], $x['beneficiary_name'], $x['option_label'], $sts[ $x['status'] ] ?? $x['status'], $x['price'], $x['cur'] ) );
+				fputcsv( $out, array_map( 'flxb_csv_cell', array( $r['name'], $x['day'], $x['code'], $x['beneficiary_name'], $x['option_label'], $sts[ $x['status'] ] ?? $x['status'], $x['price'], $x['cur'] ) ) );
 			}
 		}
 		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose

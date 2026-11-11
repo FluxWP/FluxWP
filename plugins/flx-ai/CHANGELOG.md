@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.10.2
+- Kullanım CSV'sinde formül olarak açılacak hücrelerin başına tek tırnak konur. Gerçek sayılar, eksi tutarlar dahil, sayı kalır.
+
 ## 0.10.1
 - MCP anahtarı artık yalnız MCP rotasının izin kontrolünde kullanıcı olur (`/wp-json/flx-mcp/v1/mcp` ve aynı sunucuya düşen kısa adres). Adresin başka bir yerine ad alanı metni eklemek o kullanıcıyı yapmaz; MCP kapalıysa ve araç kapsamı da burada uygulanır.
 - Sorgu dizesindeki anahtar (`?key=`) kabul edilmez. Anahtar yalnız `Authorization: Bearer` veya `X-MCP-Key` başlığından okunur. Apache/LiteSpeed'de `REDIRECT_HTTP_AUTHORIZATION` okunmaya devam eder.
