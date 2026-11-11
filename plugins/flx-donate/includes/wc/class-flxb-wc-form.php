@@ -328,7 +328,7 @@ final class FLXB_WC_Form {
 		return false;
 	}
 
-	/** 2.22.0: what one piece costs, so a hand-written amount can be shown as pieces ("3 saplings"). */
+	/** 2.23.0: what one piece costs, so a hand-written amount can be shown as pieces ("3 saplings"). */
 	private static function unit_data( array $t, $money ) {
 		$o = FLXB_WC_Cart::unit_option( $t, $money );
 		$p = $o ? (float) FLXB_Types::option_price( $t, $o, $money ) : 0;
@@ -344,7 +344,7 @@ final class FLXB_WC_Form {
 		);
 	}
 
-	/** 2.22.0: a price without ",00" on buttons. */
+	/** 2.23.0: a price without ",00" on buttons. */
 	private static function price_short( $amount ) {
 		$whole = abs( $amount - round( $amount ) ) < 0.005;
 		return wc_price( $amount, array( 'decimals' => $whole ? 0 : wc_get_price_decimals() ) );
@@ -451,7 +451,7 @@ final class FLXB_WC_Form {
 		$style     = (string) $look['form_style'];
 		FLXB_WC_Look::enqueue_form();
 		$show_tabs = count( $types ) > 1 || 'classic' !== $style;
-		/* 2.22.0: amount buttons: one type needs no type step, the currency menu sits beside the amount heading. */
+		/* 2.23.0: amount buttons: one type needs no type step, the currency menu sits beside the amount heading. */
 		$amounts   = 'amounts' === (string) $look['opt_view'];
 		if ( $amounts && 1 === count( $types ) ) {
 			$show_tabs = false;
@@ -559,7 +559,7 @@ final class FLXB_WC_Form {
 		/* 2.0.5: "Repeat every month" sits under the choices as one compact row (it was squeezed under the cards). */
 		foreach ( $types as $id => $t ) :
 			if ( empty( $data['types'][ $id ]['monthly'] ) || $period ) {
-				continue; // 2.22.0: with the period tabs the monthly boxes live inside the tabs
+				continue; // 2.23.0: with the period tabs the monthly boxes live inside the tabs
 			}
 			?>
 		<label class="flxwb-monthly" data-flxwb-monthly="<?php echo esc_attr( $id ); ?>"<?php echo $id === $cur ? '' : ' hidden'; ?>><input type="checkbox" name="m[<?php echo esc_attr( $id ); ?>]" value="1" <?php checked( ! empty( $old['m'][ $id ] ) ); ?>>
@@ -723,7 +723,7 @@ final class FLXB_WC_Form {
 		/* 2.17.0: "smart" option view waits for the donor's pick (unless one option only or a pick came with the link). */
 		$view = $cards ? (string) FLXB_WC_Look::get( 'opt_view' ) : 'list';
 		$free = FLXB_WC_Cart::takes_free( $t );
-		/* 2.22.0: amount buttons need one option with a count; other types keep the list. */
+		/* 2.23.0: amount buttons need one option with a count; other types keep the list. */
 		$uo   = 'amounts' === $view ? FLXB_WC_Cart::unit_option( $t, FLXB_WC_Cart::currency() ) : null;
 		if ( 'amounts' === $view && ( ! $uo || 1 !== count( $cards ) || $cards[0]['key'] !== $uo['key'] ) ) {
 			$view = 'list';
@@ -831,7 +831,7 @@ final class FLXB_WC_Form {
 		endif;
 	}
 
-	/** 2.22.0: "Name on the certificate / Their name" as a shared FluxWP field; the texts follow "for myself / someone else". */
+	/** 2.23.0: "Name on the certificate / Their name" as a shared FluxWP field; the texts follow "for myself / someone else". */
 	private static function name_field( array $old, $for_other, $cert ) {
 		$l_self  = __( 'Name on the certificate', 'flx-donate' );
 		$l_other = __( 'Their name', 'flx-donate' );
@@ -867,7 +867,7 @@ final class FLXB_WC_Form {
 	}
 
 	/**
-	 * 2.22.0: the hand-written amount as a shared FluxWP field (icon, label, currency at the end). The lowest
+	 * 2.23.0: the hand-written amount as a shared FluxWP field (icon, label, currency at the end). The lowest
 	 * amount is not written up front: the warning comes under the field when a lower amount is sent.
 	 */
 	private static function amount_field( array $t, array $old, $label, $example = 0 ) {
@@ -893,7 +893,7 @@ final class FLXB_WC_Form {
 	}
 
 	/**
-	 * 2.22.0: "Amount buttons" view (Appearance): the option with a count as large buttons (1, 3, 5, 10 pieces
+	 * 2.23.0: "Amount buttons" view (Appearance): the option with a count as large buttons (1, 3, 5, 10 pieces
 	 * with their price), the currency menu beside the heading and the "Other amount" field under them.
 	 */
 	private static function amounts( array $t, array $old, array $d, array $o, $sel, $units, $free ) {

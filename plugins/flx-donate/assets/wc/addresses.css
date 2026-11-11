@@ -29,7 +29,7 @@
 .flxb-ab__form { margin-top: 16px; max-width: 640px; }
 body.flx-dark .flxb-addr__select, body.flx-dark .flxb-ab__item { background-color: var(--flx-surface, #17221c); border-color: var(--flx-line, #2c3b33); }
 @media (max-width: 600px) { .flxb-addr__select { font-size: 16px; } }
-/* 2.22.0: the edit forms can be closed without saving. */
+/* 2.23.0: the edit forms can be closed without saving. */
 .woocommerce-MyAccount-content form:has(.flxb-ab__close) { position: relative; }
 .flxb-ab__close { position: absolute; top: 0; right: 0; z-index: 2; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border: 1px solid var(--flx-line, #d6e2da); border-radius: 999px; background: var(--flx-surface, #fff); color: var(--flx-text, #4b5563); font-size: .88rem; font-weight: 700; line-height: 1; text-decoration: none !important; }
 .flxb-ab__close:hover, .flxb-ab__close:focus-visible { border-color: var(--flx-primary, #347a5a); color: var(--flx-primary, #347a5a); }

@@ -1,5 +1,7 @@
 # Değişiklikler
 
+## 1.4.0
+- Personel telefonu kaydedilince kişi ortak FluxWP kişi tablosuna da yazılır (site kullanıcısına bağlı, `roles / user:<id>` bağı): Flux CRM, Chat ve diğerleri personeli tek kayıtta görür. Personel araçlarına kimin girebileceği yine yalnız kullanıcıdaki numaradan belirlenir; aynı numaralı bir bağışçı personel yetkisi almaz.
 ## 1.3.5
 - Telefon numaraları tüm eklentilerde aynı kuralla okunur: `+90 0532…` yazımındaki fazla sıfır atılır, ülke kodu ve baştaki sıfır olmadan yazılan 10 haneli sabit hat (212…) 90 ile tamamlanır, hane sayısı ya da alan kodu tutmayan Türkiye numarası geçersiz sayılır.
 

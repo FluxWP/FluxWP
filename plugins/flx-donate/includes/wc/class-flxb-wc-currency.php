@@ -217,7 +217,7 @@ final class FLXB_WC_Currency {
 			return '';
 		}
 		if ( 'menu' === $compact ) {
-			/* 2.22.0: a drop-down of links (no JavaScript, works with page caches); sits beside the amount heading. */
+			/* 2.23.0: a drop-down of links (no JavaScript, works with page caches); sits beside the amount heading. */
 			$now  = $all[ self::current() ] ?? reset( $all );
 			$html = '<details class="flxwb-curdd"><summary aria-label="' . esc_attr__( 'Currency', 'flx-donate' ) . '"><span class="flxwb-cur__sym" aria-hidden="true">' . esc_html( $now['symbol'] ) . '</span>' . esc_html( self::short( $now['code'] ) ) . '<span class="flxwb-curdd__chev" aria-hidden="true"></span></summary><span class="flxwb-curdd__list">';
 			foreach ( $all as $c ) {

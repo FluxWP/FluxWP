@@ -90,7 +90,7 @@
 			if (first) first.hidden = want < 2;
 		}
 
-		/* 2.22.0: a hand-written amount as pieces ("3 Saplings") when the type is sold by the piece. */
+		/* 2.23.0: a hand-written amount as pieces ("3 Saplings") when the type is sold by the piece. */
 		function pieceCount(T, sum) {
 			return T.unit && T.unit.price > 0 && sum > 0 ? Math.max(1, Math.floor((sum + 0.001) / T.unit.price)) * (T.unit.n || 1) : 0;
 		}
@@ -200,7 +200,7 @@
 				});
 			});
 			var monthly = form.querySelector('input[name="m[' + tid() + ']"]');
-			/* 2.22.0: "One-time / Monthly" tabs drive the monthly boxes; a type without monthly giving stays one-time. */
+			/* 2.23.0: "One-time / Monthly" tabs drive the monthly boxes; a type without monthly giving stays one-time. */
 			var pt = form.querySelector('[data-flxwb-periods]');
 			if (pt) {
 				var wantM = !!pt.querySelector('[data-flxwb-period="monthly"][aria-selected="true"]');
@@ -289,7 +289,7 @@
 			setTimeout(function () { b.classList.remove('is-done'); }, 1200);
 		});
 
-		/* 2.22.0: amount buttons: writing an amount picks "Other amount"; emptying the field goes back to the buttons. */
+		/* 2.23.0: amount buttons: writing an amount picks "Other amount"; emptying the field goes back to the buttons. */
 		form.addEventListener('input', function (e) {
 			var ai = e.target && e.target.matches && e.target.matches('[data-flxwb-amount-input]') ? e.target : null;
 			if (!ai) return;
@@ -340,7 +340,7 @@
 			if (!c) return;
 			var r = c.closest('label') && c.closest('label').querySelector('input[type="radio"]');
 			if (r && !r.checked) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
-			/* 2.22.0: amount buttons: picking one clears the hand-written amount and its warning. */
+			/* 2.23.0: amount buttons: picking one clears the hand-written amount and its warning. */
 			var fo = b.closest('[data-flxwb-amounts]'), fa = fo && fo.querySelector('[data-flxwb-amount-input]');
 			if (fa) { fa.value = ''; fieldError(fa, ''); }
 			c.value = b.getAttribute('data-flxwb-quick');
@@ -413,7 +413,7 @@
 				var ai = P.querySelector('[data-flxwb-amount-input]');
 				var a = parseAmount(ai && ai.value);
 				if (!(a > 0) || a < (+T.min || 0)) {
-					/* 2.22.0: the lowest amount is said only now, under the field. */
+					/* 2.23.0: the lowest amount is said only now, under the field. */
 					msg = a > 0 && T.minMsg ? T.minMsg : (L.needAmount || '');
 					focus = ai;
 					if (fieldError(ai, msg)) { e.preventDefault(); ai.focus(); var oe = form.querySelector('.flxwb-note--err'); if (oe) oe.remove(); return; }

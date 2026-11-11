@@ -1,4 +1,4 @@
-/* FluxWP form fields (flx-brand 1.3.0): formatting while typing, validation and one way to show errors.
+/* FluxWP form fields (flx-brand 1.5.0): formatting while typing, validation and one way to show errors.
  *
  * Markup comes from flx_field() / flx_check() (PHP) or flxField.html() (JS). Rules live on the input:
  *   required                      data-flx-format="card|exp|digits|money|upper|name"

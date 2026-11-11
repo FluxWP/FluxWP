@@ -17,7 +17,7 @@
 	var ui = null, timer = 0;
 
 	function field(id, type, label, val, extra) {
-		/* 2.22.0: the shared FluxWP field (icon, label inside, one error look); checked by this script. */
+		/* 2.23.0: the shared FluxWP field (icon, label inside, one error look); checked by this script. */
 		var w = document.createElement('div');
 		w.className = 'flx-fld flx-fld--wide flxb-ct__field';
 		w.setAttribute('data-flx-manual', '');

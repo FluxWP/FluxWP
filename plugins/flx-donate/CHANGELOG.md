@@ -1,15 +1,23 @@
 # Değişiklikler
 
-## 2.22.0
+## 2.23.0
 - Bağış formu "Tutar düğmeleri" görünümü: adet seçenekleri büyük düğmeler (1, 3, 5, 10 …), "En çok seçilen" rozeti, yanında "Diğer tutar" alanı. Görünüm sekmesinden açılır.
 - Serbest tutar: bağışçı kendi tutarını yazar. En düşük tutar panelden girilir (para birimi başına ayrı). Sınır baştan yazmaz; daha düşük tutarla "Devam et" denince alanın altında uyarı çıkar. Yazılan tutar fidan adedine çevrilir (birim fiyatın altı 1 fidan sayılır).
 - Para birimi açılır menü oldu, mobilde de "Bağış tutarını seçin" başlığıyla aynı satırda.
 - "Tek seferlik bağış / Aylık düzenli bağış" sekmeleri (ayar; aylık ödeme alabilen ödeme yöntemi varsa görünür).
-- Tüm form alanları ortak bileşeni kullanır (flx-brand 1.3.0 `flx_field` / `flx_check`): ikon, etiket, alan altı hata mesajı, biçimleme. Kart formu, iletişim alanı ve ödeme sayfası alanları aynı görünümde; yazı dikeyde ortalı ve daha büyük.
+- Tüm form alanları ortak bileşeni kullanır (flx-brand 1.5.0 `flx_field` / `flx_check`): ikon, etiket, alan altı hata mesajı, biçimleme. Kart formu, iletişim alanı ve ödeme sayfası alanları aynı görünümde; yazı dikeyde ortalı ve daha büyük.
 - Kartla ödeme ilk sırada, havale sonra (ayar).
 - Yeni ayarlar: kupon kutusu (yalnız bağış olan sepette kapatılabilir), adres defteri (kapalıyken Hesabım'da "Adresler" de gizlenir).
 - Adres düzenleme ekranında "Kapat" ve "Vazgeç", yeni adres formunda "Vazgeç".
 - Geliştirici: `flxb_takes_free`, `flxb_min_free` filtreleri; `flxb_look` yeni alanları `flx_settings_schema`'da.
+
+## 2.22.0
+- Bağışı ya da düzenli bağışı olan kişi "kullanımda" sayılır (`flx_person_in_use`), Flux CRM silmez; Flux CRM iki kişiyi birleştirince bağışlar ve düzenli bağışlar kalan kişiye taşınır, toplamlar yeniden hesaplanır.
+- Bağışçılar ortak FluxWP kişi tablosunda (`{prefix}flx_people`, flx-brand 1.3.0): bağışçı numarası = kişi numarası. Aynı kişi Flux CRM, Flux Certificates, Flux Mail ve Flux Chat'te tek kayıt.
+- Eski `{prefix}flxb_donors` bir kez taşınır: Flux CRM'in zaten tanıdığı bağışçı (donate / donor:<id> bağı) ya da aynı telefon, sonra e-postalı kişi tekrar kullanılır, yalnız boş alanları dolar; yoksa numara boşsa korunur. Bağış ve düzenli bağış kayıtları yeni numaraları izler, toplamlar yeniden hesaplanır, tam kopyadan sonra eski tablo silinir.
+- Yeni bağışçı `flx_person_ensure()` ile açılır (Flux CRM eşleştirmesi çalışır); telefon ortak biçimde (+ olmadan E.164) saklanır, ekranda yine +90 532 … görünür. Bağışçılar listesi yalnız Flux Donate kişilerini gösterir.
+- Bağışçı notu ortak kişi notunda (`note`).
+- Artık Flux CRM gerekli (`Requires Plugins: woocommerce, flx-crm`).
 
 ## 2.21.1
 - Kayıtlı kart referansları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse kartı yeniden bağlayın.

@@ -7,6 +7,9 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxs_get_event( $id ) {
+	if ( function_exists( 'flx_event_get' ) ) {
+		return flx_event_get( $id ); // 2.0.0: shared FluxWP events table
+	}
 	global $wpdb;
 	$id = (int) $id;
 	return $id ? $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxs_table( 'events' ) . ' WHERE id = %d', $id ), ARRAY_A ) : null;
@@ -53,51 +56,16 @@ function flxs_valid_event( $id, $allow_closed = false ) {
 }
 
 function flxs_save_event( $data, $id = 0 ) {
-	global $wpdb;
-	$name = trim( sanitize_text_field( $data['name'] ?? '' ) );
-	if ( '' === $name ) {
-		return new WP_Error( 'flxs_event', 'Etkinlik adı boş olamaz.' );
+	$data = (array) $data;
+	if ( '' === trim( sanitize_text_field( (string) ( $data['name'] ?? '' ) ) ) && ( ! $id || array_key_exists( 'name', $data ) ) ) {
+		return new WP_Error( 'flxs_event', __( 'The event name cannot be empty.', 'flx-certificates' ) );
 	}
-	$date = sanitize_text_field( $data['event_date'] ?? '' );
-	$ann  = sanitize_text_field( $data['loc_announce'] ?? '' );
-	$ymd  = '/^\d{4}-\d{2}-\d{2}$/';
-	$row  = array(
-		'name'         => $name,
-		'event_date'   => preg_match( $ymd, $date ) ? $date : null,
-		'event_time'   => substr( sanitize_text_field( $data['event_time'] ?? '' ), 0, 20 ),
-		'target'       => max( 0, (int) ( $data['target'] ?? 0 ) ),
-		'base_count'   => max( 0, (int) ( $data['base_count'] ?? 0 ) ),
-		'summary'      => sanitize_textarea_field( $data['summary'] ?? '' ),
-		'image_id'     => max( 0, (int) ( $data['image_id'] ?? 0 ) ),
-		'loc_name'     => sanitize_text_field( $data['loc_name'] ?? '' ),
-		'loc_address'  => sanitize_textarea_field( $data['loc_address'] ?? '' ),
-		'loc_map'      => esc_url_raw( flxs_event_map_url( $data['loc_map'] ?? '' ) ),
-		'loc_announce' => preg_match( $ymd, $ann ) ? $ann : null,
-		'note'         => sanitize_textarea_field( $data['note'] ?? '' ),
-		'updated_at'   => flxs_now(),
-	);
-	if ( isset( $data['post_id'] ) ) {
-		$pid            = (int) $data['post_id'];
-		$row['post_id'] = ( $pid > 0 && 'etkinlik' === get_post_type( $pid ) ) ? $pid : 0;
+	$id = flx_event_save( $data, (int) $id ); // 2.0.0: shared FluxWP events table (flx-brand events.php)
+	if ( is_wp_error( $id ) ) {
+		return $id;
 	}
-	if ( $id ) {
-		$wpdb->update( flxs_table( 'events' ), $row, array( 'id' => (int) $id ) );
-	} else {
-		$row['status']     = 'open';
-		$row['created_by'] = get_current_user_id();
-		$row['created_at'] = flxs_now();
-		$wpdb->insert( flxs_table( 'events' ), $row );
-		$id = (int) $wpdb->insert_id;
-	}
-	if ( ! empty( $data['create_post'] ) ) {
-		flxs_event_ensure_post( $id );
-	}
-	// Görsel sitedeki etkinlik sayfasının öne çıkan görseli olur
 	$e = flxs_get_event( $id );
-	if ( $e && (int) $e['post_id'] && (int) $e['image_id'] && (int) get_post_thumbnail_id( (int) $e['post_id'] ) !== (int) $e['image_id'] ) {
-		set_post_thumbnail( (int) $e['post_id'], (int) $e['image_id'] );
-	}
-	flxs_log( 'event_saved', 'event', $id, $name );
+	flxs_log( 'event_saved', 'event', $id, $e ? $e['name'] : '' );
 	return (int) $id;
 }
 
@@ -107,41 +75,7 @@ function flxs_save_event( $data, $id = 0 ) {
  * $publish: bağlı yazı taslak/beklemede/özel ise yayınlar.
  */
 function flxs_event_ensure_post( $id, $publish = false ) {
-	global $wpdb;
-	$e = flxs_get_event( $id );
-	if ( ! $e || ! post_type_exists( 'etkinlik' ) ) {
-		return 0;
-	}
-	$post = (int) $e['post_id'] ? get_post( (int) $e['post_id'] ) : null;
-	if ( $post && 'etkinlik' === $post->post_type && 'trash' !== $post->post_status ) {
-		if ( $publish && in_array( $post->post_status, array( 'draft', 'pending', 'private', 'auto-draft' ), true ) ) {
-			wp_update_post( array( 'ID' => $post->ID, 'post_status' => 'publish' ) );
-		}
-		return (int) $post->ID;
-	}
-	$pid = (int) $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'etkinlik' AND post_status = 'publish' AND post_title = %s ORDER BY ID DESC LIMIT 1", $e['name'] ) );
-	if ( $pid && ! flxs_event_by_post( $pid ) ) {
-		$wpdb->update( flxs_table( 'events' ), array( 'post_id' => $pid ), array( 'id' => (int) $id ) );
-		return $pid;
-	}
-	$pid = wp_insert_post(
-		array(
-			'post_type'    => 'etkinlik',
-			'post_status'  => 'publish',
-			'post_title'   => $e['name'],
-			'post_excerpt' => (string) $e['summary'],
-			'post_content' => $e['summary'] ? '<!-- wp:paragraph --><p>' . esc_html( $e['summary'] ) . '</p><!-- /wp:paragraph -->' : '',
-		),
-		true
-	);
-	if ( is_wp_error( $pid ) ) {
-		return 0;
-	}
-	$wpdb->update( flxs_table( 'events' ), array( 'post_id' => (int) $pid ), array( 'id' => (int) $id ) );
-	if ( (int) $e['image_id'] ) {
-		set_post_thumbnail( (int) $pid, (int) $e['image_id'] );
-	}
-	return (int) $pid;
+	return flx_event_ensure_post( $id, $publish );
 }
 
 /* Kurulu sitelerde açık etkinliklerin sitede yayınlanmış sayfası olsun: bir kez bağla/oluştur/yayınla (v1.1.4) */
@@ -161,11 +95,7 @@ add_action(
 
 /** Harita alanı: Google/Apple/OSM linki ya da "41.01, 28.97" koordinatı → link */
 function flxs_event_map_url( $v ) {
-	$v = trim( (string) $v );
-	if ( preg_match( '/^(-?\d{1,2}(?:\.\d+)?)\s*,\s*(-?\d{1,3}(?:\.\d+)?)$/', $v, $m ) ) {
-		return 'https://www.google.com/maps?q=' . $m[1] . ',' . $m[2];
-	}
-	return preg_match( '#^https?://#i', $v ) ? $v : '';
+	return flx_event_map_url( $v );
 }
 
 /** Takipli konum yönlendirmesinin yolu: /konum/{etkinlik tarihi | id} (filtre flxs_location_slug) */
@@ -300,29 +230,20 @@ function flxs_event_by_post( $post_id ) {
 }
 
 function flxs_set_event_status( $id, $status ) {
-	global $wpdb;
 	$e = flxs_get_event( $id );
-	if ( ! $e || ! in_array( $status, array( 'open', 'closed' ), true ) || $e['status'] === $status ) {
+	if ( ! flx_event_set_status( $id, $status ) ) {
 		return false;
 	}
-	$wpdb->update(
-		flxs_table( 'events' ),
-		array( 'status' => $status, 'closed_at' => 'closed' === $status ? flxs_now() : null, 'updated_at' => flxs_now() ),
-		array( 'id' => (int) $id )
-	);
-	flxs_log( 'closed' === $status ? 'event_closed' : 'event_reopened', 'event', $id, $e['name'] );
+	flxs_log( 'closed' === $status ? 'event_closed' : 'event_reopened', 'event', $id, $e ? $e['name'] : '' );
 	return true;
 }
 
-/** Etkinliği siler; sertifikaları silinmez, etkinliksiz kalır. */
+/** Etkinliği siler; sertifikaları silinmez, etkinliksiz kalır (flx_event_deleting, people-shared.php). */
 function flxs_delete_event( $id ) {
-	global $wpdb;
 	$e = flxs_get_event( $id );
-	if ( ! $e ) {
+	if ( ! $e || ! flx_event_delete( $id ) ) {
 		return false;
 	}
-	$wpdb->update( flxs_table( 'certificates' ), array( 'event_id' => 0 ), array( 'event_id' => (int) $id ) );
-	$wpdb->delete( flxs_table( 'events' ), array( 'id' => (int) $id ) );
 	flxs_log( 'event_deleted', 'event', $id, $e['name'] );
 	return true;
 }

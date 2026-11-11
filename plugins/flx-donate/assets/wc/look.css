@@ -289,7 +289,7 @@ body:has(.flxwb-hero) main:has(.flxwb-hero) { margin-top: 0 !important; padding-
 body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flxwb-hero) { margin-top: 0 !important; }
 @media (max-width: 600px) { body:has(.flxwb-hero) main:has(.flxwb-hero) { padding-top: 12px !important; } }
 
-/* ---------- 2.22.0 · Period tabs, amount buttons, currency menu, shared fields ---------- */
+/* ---------- 2.23.0 · Period tabs, amount buttons, currency menu, shared fields ---------- */
 .flxwb .flx-fld, .flxwb .flx-chk { --flx-f-line: var(--w-line); --flx-f-p: var(--w-primary); --flx-f-bg: var(--w-surface); --flx-f-ink: var(--w-ink); --flx-f-text: var(--w-text); --flx-f-r: var(--w-r2); }
 .flxwb .flx-fld[hidden] { display: none; }
 .flxwb-period { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 6px; background: var(--w-mint-soft); border: 1px solid var(--w-line); border-radius: var(--w-r3); }

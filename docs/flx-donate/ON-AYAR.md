@@ -47,7 +47,7 @@ Flux Donate 2.11.0, Flux Setup ön ayarlarının `content` listesinde dört tür
 
 `FLXB_Preset::type_data()` and `type_read()` both use `FLXB_Types::clean_meta()` with the current `flxb_type_meta_clean` extensions. New supported metadata fields must not be maintained in a second importer whitelist. Runtime fields such as `wc_product_id` remain excluded by the sanitizer. This preserves icons, subtitles, form visibility, currency settings and extension fields on repeated apply.
 
-## Görünüm ayarları (`flxb_look`, 2.22.0)
+## Görünüm ayarları (`flxb_look`, 2.23.0)
 
 Ön ayar `settings.flxb_look` ile yalnız değiştirmek istediği alanları yazar; alanların tamamı `flx_settings_schema`'dadır.
 

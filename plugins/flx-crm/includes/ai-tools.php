@@ -1107,7 +1107,11 @@ function flxcrm_core_tools() {
 		},
 		'run'         => function ( $a ) {
 			flxcrm_tool_contact( $a['id'] ?? 0 );
-			return array( 'deleted' => FLXCRM_Contacts::delete( (int) $a['id'] ) );
+			$res = FLXCRM_Contacts::delete( (int) $a['id'] );
+			if ( is_wp_error( $res ) ) {
+				throw new Exception( $res->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput
+			}
+			return array( 'deleted' => $res );
 		},
 	);
 
@@ -1238,7 +1242,11 @@ function flxcrm_tool_message( array $a ) {
 function flxcrm_apply_settings( array $in ) {
 	$v     = array();
 	$known = flxcrm_roles();
-	foreach ( array( 'src_donate', 'src_commerce', 'src_chat', 'src_forms', 'src_users', 'src_mail', 'chat_events' ) as $k ) {
+	$flags = array( 'chat_events' );
+	foreach ( array_keys( flxcrm_registered_sources() ) as $sk ) {
+		$flags[] = 'src_' . $sk;
+	}
+	foreach ( $flags as $k ) {
 		if ( array_key_exists( $k, $in ) ) {
 			$v[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
 		}
@@ -1268,7 +1276,13 @@ function flxcrm_apply_settings( array $in ) {
 		$v['roles'] = $cur;
 		$known      = array_merge( $known, $cur );
 	}
-	foreach ( array( 'role_donate', 'role_commerce', 'role_forms', 'role_chat', 'role_users' ) as $k ) {
+	$role_keys = array();
+	foreach ( flxcrm_registered_sources() as $sk => $sd ) {
+		if ( null !== $sd['role'] ) {
+			$role_keys[] = 'role_' . $sk;
+		}
+	}
+	foreach ( $role_keys as $k ) {
 		if ( array_key_exists( $k, $in ) ) {
 			$r = sanitize_key( (string) $in[ $k ] );
 			if ( '' !== $r && ! isset( $known[ $r ] ) ) {

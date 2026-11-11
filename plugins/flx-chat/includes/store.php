@@ -158,8 +158,8 @@ function flxc_ensure_chat( $conn, $jid, $data = array() ) {
 }
 
 /**
- * Bilinen kişi adı, sırayla: Flux Certificates kişi kaydı, Flux CRM kişisi, Flux Donate bağışçısı (1.41.0).
- * Filtre: flxc_contact_name.
+ * Bilinen kişi adı (1.43.0): ortak FluxWP kişi tablosundan (Flux CRM, Certificates, Donate, Commerce aynı kayıt).
+ * Ortak tablo yoksa (eski paketler) eski sıra: Certificates kişisi, CRM kişisi, Donate bağışçısı. Filtre: flxc_contact_name.
  */
 function flxc_lookup_contact_name( $phone ) {
 	global $wpdb;
@@ -167,6 +167,11 @@ function flxc_lookup_contact_name( $phone ) {
 	$name  = '';
 	if ( '' === $phone ) {
 		return (string) apply_filters( 'flxc_contact_name', '', $phone );
+	}
+	if ( function_exists( 'flx_person_find' ) ) {
+		$p    = flx_person_get( flx_person_find( array( 'phone' => $phone ) ) );
+		$name = $p ? trim( (string) $p['name'] ) : '';
+		return (string) apply_filters( 'flxc_contact_name', $name, $phone );
 	}
 	if ( function_exists( 'flxs_table' ) ) {
 		$t = flxs_table( 'people' );

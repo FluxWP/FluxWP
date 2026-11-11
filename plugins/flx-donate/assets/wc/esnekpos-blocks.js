@@ -96,7 +96,7 @@
 	};
 
 	/* ---------- Card form ---------- */
-	/* 2.22.0: the shared FluxWP field markup (flx-brand field.css): icon, label and value centred in the box,
+	/* 2.23.0: the shared FluxWP field markup (flx-brand field.css): icon, label and value centred in the box,
 	   larger text, one error look. data-flx-manual: this form checks and formats the values itself. */
 	var ICONS = (window.FLX_FIELD && window.FLX_FIELD.icons) || {};
 	var Icon = function (name) {

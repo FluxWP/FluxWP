@@ -70,6 +70,34 @@ Bölümlerde `.flxcrm-card`, `.flxcrm-card__head`, `.flxcrm-list` sınıfların�
 yüklenmesi için sayfanızın `admin_enqueue_scripts`'inde `flxcrm_person_card_enqueue()` çağırın (çağırmazsanız kart
 kendisi yükler). Kart dışarıda "CRM kartı" düğmesi gösterir; kişiyi silme yalnız CRM'de.
 
+## Ortak kişi tablosu ve genişletme (0.3.0)
+
+Kişiler CRM'in değil, tüm FluxWP paketlerinin ortak tablosundadır: `wp_flx_people` + `wp_flx_people_links` (kod her pakete gömülü `flx-brand/people.php`, sitede en yeni kopya çalışır; ayrıntı `tools/brand/README.md`). CRM kurulu olmasa da her paket aynı kişiyi kullanır; kurulum sırası fark etmez.
+
+```php
+// CRM'e bağımlı olmadan (after_setup_theme sonrası; daha erken kodda function_exists ile koru):
+$id = flx_person_ensure( array( 'name' => $ad, 'phone' => $tel, 'email' => $eposta, 'roles' => array( 'donor' ), 'source' => 'donate', 'link' => array( 'donate', 'donor:' . $donor_id ) ) );
+$id = flx_person_find( array( 'link' => array( 'donate', 'donor:12' ), 'phone' => $tel ) );
+$r  = flx_person_update( $id, array( 'name' => 'Yeni Ad' ) ); // true | WP_Error (flx_person_taken: e-posta/telefon başkasında)
+$rows = flx_people_query( array( 'search' => 'ali', 'role' => 'donor', 'source' => 'donate', 'consent' => 'email', 'per_page' => 50 ) );
+```
+
+- CRM etkinken bu çağrılar `FLXCRM_Contacts` üzerinden yürür (`flx_person_pre_find|ensure|update` filtreleri): eşleştirme, rol olayları, zaman tüneli ve `flxcrm_*` eylemleri çalışır. CRM yokken ortak modül yalnız tam eşleşmeyle bulur/oluşturur; birleştirme ve mükerrer kararı CRM'in işidir.
+- Paket kişi kimliğini kendi kaydında tutuyorsa `flx_person_merged( $kalan_id, $silinen_id )` eylemini dinleyip günceller; `flx_person_deleting( $id )` silinmeden önce gelir.
+- Kendi sütununu eklemek: `flx_people_columns` ( ad => SQL tipi ) ve `flx_people_keys`. Var olan sütun değiştirilemez, hiçbir sütun silinmez.
+
+Başka bir eklenti CRM'i güncellemeden kendini kaydeder:
+
+| Ne | Nasıl |
+|---|---|
+| Kişi kaynağı (Ayarlar'da aç/kapa + rol, "Tümünü eşitle" adımı, bağlantı adı) | `flxcrm_register_sources` filtresi: `key => [ label, description, installed, role (null = rol satırı yok), backfill callable( $page, $per ) → [ done, scanned, total ] ]`. Açık mı `flxcrm_source_on( $key )`, rol `flxcrm_source_role( $key )` |
+| Rol | `flxcrm_roles` |
+| Zaman tüneli olay türü | `flxcrm_event_types`, yazmak için `FLXCRM_Events::add()` (`uniq` ile tekrar yazılmaz) |
+| Segment kural alanı | `flxcrm_segment_fields` + `flxcrm_segment_compile` |
+| Kişi kartına bölüm | `flxcrm_person_card_actions|main_before|main|side` eylemleri |
+| AI ve MCP aracı | `flxcrm_tools` |
+| Ayar varsayılanı | `flxcrm_default_settings` |
+
 ## Eylemler
 
 | Kanca | Argümanlar |
@@ -162,3 +190,21 @@ flxcrm_run_tool( 'flxcrm_tag_contact', array( 'id' => 5, 'add' => array( 'VIP' )
 ```
 
 `flxcrm_tool_ran` eylemi `( $name, $args, $result, $ctx )` her başarılı çağrıdan sonra çalışır. Kişi birleştirme `FLXCRM_Contacts::merge( $primary, $ids )` ve `flxcrm_contact_merged` eylemi `( $primary_id, $merged_id )`; zaman tünelinde `merged` olayı.
+
+
+## Etkinlikler (0.4.0)
+
+Etkinlikler ortak tabloda: `{prefix}flx_events` (flx-brand 1.4.0, `events.php`). Yönetim ekranı CRM › Etkinlikler (`flxcrm_events_url()`); CRM yoksa Flux Certificates kendi ekranını gösterir. Ekran hiçbir paketi tanımaz, her şey filtreyle gelir:
+
+| Kanca | Ne yapar |
+|---|---|
+| `flx_events_columns` | Paketin kendi sütunları (`target`, `base_count` Flux Certificates'ın) |
+| `flx_event_fields` | Form alanları: `section`, çevrilmiş `label`, `type` (text, textarea, date, time, number, url, image, post), `placeholder`, `help`, `order` |
+| `flx_event_sections` | Bölüm başlıkları (`saplings` → "Fidan") |
+| `flx_event_stats` | Kart sayıları: `value`, `label`, `hint`, `progress` (0-100) |
+| `flx_event_actions` | Kart düğmeleri: `label`, `url`, `primary` |
+| `flx_event_people` | `[ kişi_id => [ "Sertifika", … ] ]`: etkinliğin kişileri |
+| `flx_event_form_after`, `flx_event_form_location`, `flx_events_screen_after` | Forma / listeye ek parça |
+| `flx_event_saved`, `flx_event_status`, `flx_event_deleting` | Kaydedildi, açıldı/kapandı, siliniyor (kendi kayıtlarını ayır) |
+
+API: `flx_event_get()`, `flx_events_query()`, `flx_event_save()`, `flx_event_set_status()`, `flx_event_delete()`, `flx_event_people()`, `flx_event_stats()`, `flx_event_actions()`, `flx_event_ensure_post()`. Eski `flxs_get_event(s)`, `flxs_save_event`, `flxs_event_public` aynı tabloyu okur.

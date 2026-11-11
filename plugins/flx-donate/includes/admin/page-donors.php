@@ -193,7 +193,7 @@ final class FLXB_Page_Donors {
 		foreach ( array( 'consent_kvkk' => __( 'Privacy notice (KVKK) accepted', 'flx-donate' ), 'consent_email' => __( 'May be contacted by e-mail', 'flx-donate' ), 'consent_sms' => __( 'May be contacted by SMS', 'flx-donate' ) ) as $k => $label ) {
 			echo '<label class="flxb-switch"><input type="checkbox" name="' . esc_attr( $k ) . '" value="1"' . checked( (int) $d[ $k ], 1, false ) . disabled( ! $can, true, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html( $label ) . '</label>';
 		}
-		echo '<div class="flxb-field"><label for="flxb-notes">' . esc_html__( 'Notes', 'flx-donate' ) . '</label><textarea id="flxb-notes" name="notes" rows="4"' . disabled( ! $can, true, false ) . '>' . esc_textarea( (string) $d['notes'] ) . '</textarea></div>';
+		echo '<div class="flxb-field"><label for="flxb-notes">' . esc_html__( 'Notes', 'flx-donate' ) . '</label><textarea id="flxb-notes" name="notes" rows="4"' . disabled( ! $can, true, false ) . '>' . esc_textarea( (string) ( $d['note'] ?? '' ) ) . '</textarea></div>';
 		if ( $can ) {
 			echo '<div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Save', 'flx-donate' ) . '</button></div>';
 		}
@@ -325,7 +325,7 @@ final class FLXB_Page_Donors {
 		echo '<form class="flxb-form" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="flxb_donor_save"><input type="hidden" name="id" value="' . (int) $id . '"><input type="hidden" name="scope" value="crm">';
 		wp_nonce_field( 'flxb_donor_' . $id );
 		echo '<label class="flxb-switch"><input type="checkbox" name="consent_kvkk" value="1"' . checked( (int) $d['consent_kvkk'], 1, false ) . disabled( ! $can, true, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Privacy notice (KVKK) accepted', 'flx-donate' ) . '</label>';
-		echo '<div class="flxb-field"><label for="flxb-notes">' . esc_html__( 'Donation note', 'flx-donate' ) . '</label><textarea id="flxb-notes" name="notes" rows="3"' . disabled( ! $can, true, false ) . '>' . esc_textarea( (string) $d['notes'] ) . '</textarea></div>';
+		echo '<div class="flxb-field"><label for="flxb-notes">' . esc_html__( 'Donation note', 'flx-donate' ) . '</label><textarea id="flxb-notes" name="notes" rows="3"' . disabled( ! $can, true, false ) . '>' . esc_textarea( (string) ( $d['note'] ?? '' ) ) . '</textarea></div>';
 		if ( $can ) {
 			echo '<div class="flxb-formactions"><button type="submit" class="button">' . esc_html__( 'Save', 'flx-donate' ) . '</button></div>';
 		}
@@ -345,7 +345,7 @@ final class FLXB_Page_Donors {
 		global $wpdb;
 		$row = array(
 			'consent_kvkk' => empty( $_POST['consent_kvkk'] ) ? 0 : 1,
-			'notes'        => isset( $_POST['notes'] ) ? sanitize_textarea_field( wp_unslash( $_POST['notes'] ) ) : '',
+			'note'         => isset( $_POST['notes'] ) ? sanitize_textarea_field( wp_unslash( $_POST['notes'] ) ) : '',
 			'updated_at'   => flxb_now(),
 		);
 		/* 2.12.0: the CRM card form has no e-mail/SMS switches (they are on the CRM side); keep those as they are. */
@@ -353,7 +353,9 @@ final class FLXB_Page_Donors {
 			$row['consent_email'] = empty( $_POST['consent_email'] ) ? 0 : 1;
 			$row['consent_sms']   = empty( $_POST['consent_sms'] ) ? 0 : 1;
 		}
+		$before = FLXB_Donors::get( $id );
 		$wpdb->update( flxb_table( 'donors' ), $row, array( 'id' => $id ) );
+		do_action( 'flx_person_updated', $id, $row, $before );
 		FLXB_Admin::redirect( 'flxb-donors', array( 'donor' => $id, 'flxb_msg' => 'saved' ) );
 	}
 }

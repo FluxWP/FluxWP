@@ -44,8 +44,16 @@ function flxs_handle_person_save() {
 	if ( $nemail && ( $o = flxs_find_person_by_email( $nemail ) ) && (int) $o['id'] !== $id ) {
 		flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_err' => 'Bu e-posta başka bir kişide kayıtlı: ' . $o['name'] ) );
 	}
-	$data = array( 'name' => $name, 'phone' => $nphone ? $nphone : null, 'email' => $nemail ? $nemail : null, 'note' => $note, 'updated_at' => flxs_now() );
-	$wpdb->update( flxs_table( 'people' ), $data, array( 'id' => $id ) );
+	$data = array( 'name' => $name, 'phone' => $nphone ? $nphone : '', 'email' => $nemail ? $nemail : '', 'note' => $note );
+	if ( function_exists( 'flx_person_update' ) ) {
+		// Shared edit: other packages (and Flux CRM, when active) hear about it through flx_person_updated.
+		$res = flx_person_update( $id, $data );
+		if ( is_wp_error( $res ) ) {
+			flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_err' => $res->get_error_message() ) );
+		}
+	} else {
+		$wpdb->update( flxs_table( 'people' ), $data + array( 'updated_at' => flxs_now() ), array( 'id' => $id ) );
+	}
 	flxs_log( 'person_updated', 'person', $id, $name, array( 'before' => array_intersect_key( $p, $data ), 'after' => $data ) );
 	flxs_redirect( 'flxs-kisiler', array( 'person' => $id, 'flxs_msg' => 'Kaydedildi.' ) );
 }
@@ -89,12 +97,12 @@ function flxs_page_people() {
 	$s     = flxs_get_param( 's' );
 	$pt    = flxs_table( 'people' );
 	$ct    = flxs_table( 'certificates' );
-	$where = '1=1';
+	$where = flxs_people_mine_sql( 'p' );
 	$prm   = array();
 	if ( $s ) {
 		$like  = '%' . $wpdb->esc_like( $s ) . '%';
 		$dig   = preg_replace( '/\D+/', '', $s );
-		$where = '(p.name LIKE %s OR p.email LIKE %s' . ( strlen( $dig ) >= 3 ? ' OR p.phone LIKE %s' : '' ) . ')';
+		$where .= ' AND (p.name LIKE %s OR p.email LIKE %s' . ( strlen( $dig ) >= 3 ? ' OR p.phone LIKE %s' : '' ) . ')';
 		$prm   = array( $like, $like );
 		if ( strlen( $dig ) >= 3 ) {
 			$prm[] = '%' . $wpdb->esc_like( ltrim( $dig, '0' ) ) . '%';

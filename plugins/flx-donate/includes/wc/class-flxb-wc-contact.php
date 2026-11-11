@@ -74,7 +74,7 @@ class FLXB_WC_Contact {
 		wp_enqueue_style( 'flxb-contact', FLXB_URL . 'assets/wc/contact.css', array(), FLXB_VERSION );
 		$deps = array();
 		if ( function_exists( 'flx_field_enqueue' ) ) {
-			flx_field_enqueue(); // 2.22.0: shared FluxWP fields
+			flx_field_enqueue(); // 2.23.0: shared FluxWP fields
 			$deps[] = 'flx-field';
 		}
 		wp_enqueue_script( 'flxb-contact', FLXB_URL . 'assets/wc/contact.js', $deps, FLXB_VERSION, true );

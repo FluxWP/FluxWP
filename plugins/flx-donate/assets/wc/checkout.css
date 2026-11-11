@@ -88,7 +88,7 @@ body.flxb-co .wc-block-checkout__order-notes .wc-block-components-checkout-step_
 body.flxb-co .wc-block-checkout__order-notes .wc-block-checkout__add-note { margin: 0 !important; }
 body.flxb-co .wc-block-checkout__order-notes textarea { margin-top: 8px; }
 
-/* 2.22.0 · WooCommerce's own inputs and tick boxes follow the shared FluxWP field look (flx-brand field.css). */
+/* 2.23.0 · WooCommerce's own inputs and tick boxes follow the shared FluxWP field look (flx-brand field.css). */
 body.flxb-co .wc-block-components-text-input input[type], body.flxb-co .wc-block-components-text-input.is-active input[type] {
 	height: 60px !important; min-height: 60px; padding: 26px 16px 8px !important; border: 1.5px solid var(--co-line) !important; border-radius: 14px !important;
 	background: #fff !important; color: var(--co-ink) !important; font-size: 1.125rem !important; font-weight: 700; line-height: 1.35 !important; box-shadow: none !important;

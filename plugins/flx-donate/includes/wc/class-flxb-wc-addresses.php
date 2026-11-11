@@ -30,19 +30,19 @@ class FLXB_WC_Addresses {
 		add_action( 'woocommerce_before_checkout_billing_form', array( __CLASS__, 'classic_picker' ) );
 		add_action( 'woocommerce_checkout_order_processed', array( __CLASS__, 'remember_order' ), 20, 3 );
 		add_action( 'woocommerce_store_api_checkout_order_processed', array( __CLASS__, 'remember_order' ), 20 );
-		/* 2.22.0: the edit forms can be closed without saving. */
+		/* 2.23.0: the edit forms can be closed without saving. */
 		foreach ( array( 'billing', 'shipping' ) as $type ) {
 			add_action( 'woocommerce_before_edit_address_form_' . $type, array( __CLASS__, 'edit_close' ) );
 			add_action( 'woocommerce_after_edit_address_form_' . $type, array( __CLASS__, 'edit_cancel' ) );
 		}
 	}
 
-	/** 2.22.0: "Close" at the top of WooCommerce's edit address form (back to the address list, nothing is saved). */
+	/** 2.23.0: "Close" at the top of WooCommerce's edit address form (back to the address list, nothing is saved). */
 	public static function edit_close() {
 		echo '<a class="flxb-ab__close" href="' . esc_url( wc_get_account_endpoint_url( 'edit-address' ) ) . '" aria-label="' . esc_attr__( 'Close without saving', 'flx-donate' ) . '"><span aria-hidden="true">✕</span><span>' . esc_html__( 'Close', 'flx-donate' ) . '</span></a>';
 	}
 
-	/** 2.22.0: "Cancel" beside the save button of the edit address form. */
+	/** 2.23.0: "Cancel" beside the save button of the edit address form. */
 	public static function edit_cancel() {
 		echo '<a class="button flxb-ab__cancel" href="' . esc_url( wc_get_account_endpoint_url( 'edit-address' ) ) . '">' . esc_html__( 'Cancel', 'flx-donate' ) . '</a>';
 	}

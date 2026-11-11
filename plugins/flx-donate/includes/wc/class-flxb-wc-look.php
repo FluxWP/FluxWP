@@ -33,7 +33,7 @@ final class FLXB_WC_Look {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'checkout_assets' ), 30 );
 		add_action( 'update_option_' . self::OPTION, array( __CLASS__, 'flush' ) );
 		add_action( 'add_option_' . self::OPTION, array( __CLASS__, 'flush' ) );
-		/* 2.22.0 */
+		/* 2.23.0 */
 		add_filter( 'woocommerce_coupons_enabled', array( __CLASS__, 'coupons_enabled' ), 20 );
 		add_filter( 'option_woocommerce_gateway_order', array( __CLASS__, 'gateway_order' ), 20 );
 		add_filter( 'default_option_woocommerce_gateway_order', array( __CLASS__, 'gateway_order' ), 20 );
@@ -42,7 +42,7 @@ final class FLXB_WC_Look {
 		add_action( 'template_redirect', array( __CLASS__, 'no_address_page' ), 5 );
 	}
 
-	/** 2.22.0: no coupon box at the checkout of a donation-only cart (Appearance › coupons off). */
+	/** 2.23.0: no coupon box at the checkout of a donation-only cart (Appearance › coupons off). */
 	public static function coupons_enabled( $on ) {
 		if ( ! $on || self::get( 'coupons' ) || is_admin() && ! wp_doing_ajax() ) {
 			return $on;
@@ -51,7 +51,7 @@ final class FLXB_WC_Look {
 	}
 
 	/**
-	 * 2.22.0: card methods first. Bank transfer and cash methods (see pay_icons()) move behind every other
+	 * 2.23.0: card methods first. Bank transfer and cash methods (see pay_icons()) move behind every other
 	 * method on the site; the order saved under WooCommerce › Payments is kept inside each group.
 	 */
 	public static function gateway_order( $order ) {
@@ -71,7 +71,7 @@ final class FLXB_WC_Look {
 		return $on && (bool) self::get( 'addresses' );
 	}
 
-	/** 2.22.0: without the address book My Account has no "Addresses" item. */
+	/** 2.23.0: without the address book My Account has no "Addresses" item. */
 	public static function account_menu( $items ) {
 		if ( ! self::get( 'addresses' ) && is_array( $items ) ) {
 			unset( $items['edit-address'] );
@@ -105,7 +105,7 @@ final class FLXB_WC_Look {
 			'signup'       => 1,         // 2.21.0: guests can tick "Create an account" at the checkout
 			'hero'         => 1,         // 2.21.0: photo band over the form in the steps layout
 			'notes'        => 1,         // 2.21.0: "Add a note to your order" on the checkout
-			/* 2.22.0 */
+			/* 2.23.0 */
 			'quick'        => array(),   // quick quantities of a quantity option; empty = built-in (amounts: 1,3,5,10; else 3,5,10,25,50)
 			'quick_star'   => 0,         // amounts view: the quantity marked "Most chosen" (0 = none)
 			'period_tabs'  => 0,         // "One-time / Monthly" tabs over the form instead of the "Repeat every month" box

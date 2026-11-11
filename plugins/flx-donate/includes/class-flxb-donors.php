@@ -18,9 +18,12 @@ final class FLXB_Donors {
 		return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 	}
 
+	/** Finds a person (any FluxWP person, not only past donors) by phone, then e-mail. Phone may come with or without "+". */
 	public static function find( $phone, $email ) {
 		global $wpdb;
-		$t = flxb_table( 'donors' );
+		$t     = flxb_table( 'donors' );
+		$phone = '' !== (string) $phone ? flxb_person_phone( $phone ) : '';
+		$email = '' !== (string) $email ? flxb_normalize_email( $email ) : '';
 		if ( '' !== $phone ) {
 			$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE phone = %s ORDER BY id ASC LIMIT 1", $phone ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			if ( $row ) {
@@ -47,7 +50,7 @@ final class FLXB_Donors {
 		$t     = flxb_table( 'donors' );
 		$name  = sanitize_text_field( (string) ( $d['name'] ?? '' ) );
 		$email = flxb_normalize_email( $d['email'] ?? '' );
-		$phone = flxb_normalize_phone( $d['phone'] ?? '' );
+		$phone = flxb_person_phone( $d['phone'] ?? '' );
 		if ( '' === $email && '' === $phone ) {
 			/* Without a contact detail we keep one anonymous donor per name-less gift: no merge. */
 			if ( empty( $d['allow_anonymous'] ) ) {
@@ -57,21 +60,43 @@ final class FLXB_Donors {
 		$row = ( '' === $email && '' === $phone ) ? null : self::find( $phone, $email );
 		$now = flxb_now();
 		if ( ! $row ) {
-			$wpdb->insert(
-				$t,
-				array(
-					'name'          => mb_substr( $name, 0, 191 ),
-					'email'         => $email,
-					'phone'         => $phone,
-					'consent_kvkk'  => empty( $d['consent_kvkk'] ) ? 0 : 1,
-					'consent_email' => empty( $d['consent_email'] ) ? 0 : 1,
-					'consent_sms'   => empty( $d['consent_sms'] ) ? 0 : 1,
-					'created_at'    => $now,
-					'updated_at'    => $now,
-				),
-				array( '%s', '%s', '%s', '%d', '%d', '%d', '%s', '%s' )
-			);
-			return (int) $wpdb->insert_id;
+			$id = 0;
+			if ( function_exists( 'flx_person_ensure' ) ) {
+				// Shared create: Flux CRM's matching, roles and scoring run here when it is active.
+				$id = (int) flx_person_ensure(
+					array(
+						'name'          => $name,
+						'email'         => $email,
+						'phone'         => $phone,
+						'source'        => 'donate',
+						'consent_email' => ! empty( $d['consent_email'] ),
+						'consent_sms'   => ! empty( $d['consent_sms'] ),
+						'allow_empty'   => true,
+					)
+				);
+			}
+			if ( ! $id ) {
+				$wpdb->insert(
+					$t,
+					array(
+						'name'          => mb_substr( $name, 0, 190 ),
+						'email'         => $email,
+						'phone'         => $phone,
+						'source'        => 'donate',
+						'status'        => 'active',
+						'consent_email' => empty( $d['consent_email'] ) ? 0 : 1,
+						'consent_sms'   => empty( $d['consent_sms'] ) ? 0 : 1,
+						'created_at'    => $now,
+						'updated_at'    => $now,
+					)
+				);
+				$id = (int) $wpdb->insert_id;
+			}
+			if ( $id && ! empty( $d['consent_kvkk'] ) ) {
+				$wpdb->update( $t, array( 'consent_kvkk' => 1 ), array( 'id' => $id ) );
+			}
+			self::mark( $id );
+			return $id;
 		}
 		$upd = array();
 		if ( '' !== $name && '' === (string) $row['name'] ) {
@@ -92,8 +117,24 @@ final class FLXB_Donors {
 		if ( $upd ) {
 			$upd['updated_at'] = $now;
 			$wpdb->update( $t, $upd, array( 'id' => (int) $row['id'] ) );
+			do_action( 'flx_person_updated', (int) $row['id'], $upd, $row );
 		}
+		self::mark( (int) $row['id'] );
 		return (int) $row['id'];
+	}
+
+	/** Ties the person to Flux Donate (shared link `donate` / `donor:<id>`, the key Flux CRM's Donate source uses). */
+	public static function mark( $id ) {
+		if ( $id && function_exists( 'flx_person_link' ) ) {
+			flx_person_link( (int) $id, 'donate', 'donor:' . (int) $id );
+		}
+	}
+
+	/** SQL condition: people Flux Donate uses (tied with the `donate` link or with a gift). */
+	public static function mine_sql( $alias = 'd' ) {
+		global $wpdb;
+		$a = $alias ? $alias . '.' : '';
+		return "(EXISTS (SELECT 1 FROM {$wpdb->prefix}flx_people_links fl WHERE fl.contact_id = {$a}id AND fl.source = 'donate') OR {$a}donation_count > 0)";
 	}
 
 	/** Recompute first/last gift, total and count from completed donations. */
@@ -126,7 +167,7 @@ final class FLXB_Donors {
 		$a     = wp_parse_args( $a, array( 'search' => '', 'per_page' => 25, 'page' => 1, 'orderby' => 'last_donation_at', 'order' => 'DESC', 'kind' => '' ) );
 		$t     = flxb_table( 'donors' );
 		$s     = flxb_table( 'subscriptions' );
-		$where = array( '1=1' );
+		$where = array( self::mine_sql( 'd' ) );
 		$prm   = array();
 		if ( '' !== $a['search'] ) {
 			$like    = '%' . $wpdb->esc_like( $a['search'] ) . '%';
@@ -197,7 +238,13 @@ final class FLXB_Donors {
 				$out[ (int) $c['id'] ] = $c;
 			}
 		}
-		if ( function_exists( 'flxs_query_certificates' ) ) {
+		if ( function_exists( 'flxs_query_certificates' ) && function_exists( 'flx_people_table' ) && flxs_table( 'people' ) === flxb_table( 'donors' ) ) {
+			// Shared people table: the donor is the Certificates person.
+			$res = flxs_query_certificates( array( 'person_id' => (int) $donor['id'], 'per_page' => 50 ) );
+			foreach ( (array) ( $res['items'] ?? array() ) as $c ) {
+				$out[ (int) $c['id'] ] = $c;
+			}
+		} elseif ( function_exists( 'flxs_query_certificates' ) ) {
 			$person = null;
 			if ( '' !== (string) $donor['phone'] && function_exists( 'flxs_find_person_by_phone' ) ) {
 				$person = flxs_find_person_by_phone( $donor['phone'] );
