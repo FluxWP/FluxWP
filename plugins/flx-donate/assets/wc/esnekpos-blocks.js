@@ -99,7 +99,7 @@
 	var Field = function (p) {
 		return el('div', { className: 'flxb-cc__f' + (p.error ? ' has-error' : '') + (p.wide ? ' is-wide' : '') },
 			el('label', { className: 'flxb-cc__box' },
-				el('span', { className: 'flxb-cc__label' }, p.label),
+				el('span', { className: 'flxb-cc__label' }, p.label, p.hint ? el('small', { className: 'flxb-cc__hint-r' }, p.hint) : null),
 				el('input', {
 					type: p.type || 'text', inputMode: p.inputMode, autoComplete: p.autoComplete, value: p.value,
 					placeholder: p.placeholder || '', maxLength: p.maxLength, 'aria-invalid': p.error ? 'true' : 'false',
@@ -213,7 +213,7 @@
 							return el('label', { key: o.n, className: 'flxb-cc__inst-o' + (on ? ' is-on' : '') },
 								el('input', { type: 'radio', name: 'flxb-inst', checked: on, onChange: function () { set('inst', o.n); } }),
 								el('span', { className: 'flxb-cc__inst-n' }, o.n === 1 ? t.single : fmt(t.nInst, o.n)),
-								el('span', { className: 'flxb-cc__inst-a' }, o.n === 1 ? money(total, cur) : fmt(t.perInst, money(o.per, cur), money(o.total, cur)))
+								el('span', { className: 'flxb-cc__inst-a' }, o.n === 1 ? money(total, cur) : fmt(t.perInst, money(o.per, cur), money(o.total, cur), o.n))
 							);
 						})
 					),
@@ -228,7 +228,7 @@
 				after: el('span', { className: 'flxb-cc__brand flxb-cc__brand--' + (brand || 'none'), 'aria-hidden': 'true' }, BRAND[brand] || '')
 			}),
 			el('div', { className: 'flxb-cc__row' },
-				el(Field, { label: t.exp, value: v('exp'), inputMode: 'numeric', autoComplete: 'cc-exp', placeholder: 'AA / YY', maxLength: 7, onChange: change('exp', groupExp), onBlur: blur('exp'), error: errOf('exp') }),
+				el(Field, { label: t.exp, hint: t.expFmt, value: v('exp'), inputMode: 'numeric', autoComplete: 'cc-exp', placeholder: 'AA / YY', maxLength: 7, onChange: change('exp', groupExp), onBlur: blur('exp'), error: errOf('exp') }),
 				el(Field, { label: t.cvv, value: v('cvv'), inputMode: 'numeric', autoComplete: 'cc-csc', placeholder: '•••', maxLength: 4, type: 'password', onChange: change('cvv', function (x) { return digits(x).slice(0, 4); }), onBlur: blur('cvv'), error: errOf('cvv') })
 			),
 			el(Field, { label: t.name, value: v('name'), autoComplete: 'cc-name', wide: true, onChange: change('name', function (x) { return x.toLocaleUpperCase('tr-TR'); }), onBlur: blur('name'), error: errOf('name') }),

@@ -1,6 +1,7 @@
 # Değişiklikler
 
 ## 0.7.19
+- Ödeme sayfası rozeti: telefonda kart sağlayıcısının adı (EsnekPOS…) ikinci satırda.
 - Ödeme sayfası başlığındaki "Güvenli ödeme" rozeti etkin ödeme sağlayıcısını yazar (filtre `flx_secure_badge_provider`; boşsa yalnız "Güvenli ödeme").
 
 ## 0.7.18

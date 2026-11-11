@@ -449,11 +449,16 @@ add_filter(
 			return $html;
 		}
 		$provider = trim( wp_strip_all_tags( (string) apply_filters( 'flx_secure_badge_provider', '' ) ) );
-		$text     = '' !== $provider
+		if ( '' === $provider ) {
+			$inner = esc_html__( 'Güvenli ödeme', 'fluxwp' );
+		} else {
 			/* translators: %s: payment provider, e.g. EsnekPOS */
-			? sprintf( __( 'Güvenli ödeme · %s', 'fluxwp' ), $provider )
-			: __( 'Güvenli ödeme', 'fluxwp' );
-		return (string) preg_replace( '#(<p\b[^>]*>).*?(</p>)#s', '$1' . str_replace( array( '\\', '$' ), array( '\\\\', '\\$' ), esc_html( $text ) ) . '$2', $html, 1 );
+			$parts = explode( "\x01", sprintf( __( 'Güvenli ödeme · %s', 'fluxwp' ), "\x01" ), 2 );
+			$lead  = (string) preg_replace( '/[\s·•|:\-–]+$/u', '', $parts[0] );
+			/* 0.7.19: the provider is its own span, so on a phone it goes to the second line. */
+			$inner = '<span class="flx-secure-badge__t"><span>' . esc_html( $lead ) . '</span><span class="flx-secure-badge__p">' . esc_html( $provider ) . '</span>' . ( isset( $parts[1] ) && '' !== trim( $parts[1] ) ? '<span>' . esc_html( $parts[1] ) . '</span>' : '' ) . '</span>';
+		}
+		return (string) preg_replace( '#(<p\b[^>]*>).*?(</p>)#s', '$1' . str_replace( array( '\\', '$' ), array( '\\\\', '\\$' ), $inner ) . '$2', $html, 1 );
 	},
 	20,
 	2

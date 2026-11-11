@@ -43,6 +43,12 @@ final class FLXB_WC_Checkout_Layout {
 		}
 		wp_enqueue_style( 'flxb-checkout', FLXB_URL . 'assets/wc/checkout.css', array(), FLXB_VERSION );
 		wp_add_inline_style( 'flxb-checkout', 'body.flxb-co{' . FLXB_WC_Look::vars() . '}' );
+		if ( FLXB_WC_Look::get( 'signup' ) ) {
+			/* WooCommerce's "Create an account with {site}" box says whose details it uses. */
+			/* translators: %s: site name */
+			$label = __( 'Create my %s account with the details I entered', 'flx-donate' );
+			wp_add_inline_script( 'wp-i18n', 'wp.hooks.addFilter("i18n.gettext_woocommerce","flxb/signup",function(t,s){return s==="Create an account with %s"?' . wp_json_encode( $label ) . ':t;});', 'after' );
+		}
 		wp_enqueue_script( 'flxb-checkout', FLXB_URL . 'assets/wc/checkout.js', array(), FLXB_VERSION, true );
 		wp_localize_script(
 			'flxb-checkout',

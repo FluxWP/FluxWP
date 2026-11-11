@@ -5835,3 +5835,12 @@ msgstr "Bir sorun mu var? WhatsApp'tan yazın"
 
 msgid "Show \"Add a note to your order\" at the checkout"
 msgstr "Ödeme sayfasında \"Siparişinize not ekleyin\" kutusu görünsün"
+
+msgid "%1$s × %3$s = %2$s"
+msgstr "%1$s × %3$s = %2$s"
+
+msgid "Expiry"
+msgstr "Son kullanma"
+
+msgid "Create my %s account with the details I entered"
+msgstr "Girdiğim bilgilerle %s hesabımı oluştur"

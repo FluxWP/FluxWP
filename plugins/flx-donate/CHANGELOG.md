@@ -10,8 +10,8 @@
 - Bağış formu: adet seçeneğinin altında hızlı seçim düğmeleri (3, 5, 10, 25, 50; filtre flxb_quick_qty). A düzeni geniş yerleşir, telefonda tek sütun; tek bağış türü varken "Bağış türü" adımı gizlenir. "1Fidan" yazımı "1 fidan" oldu.
 - A düzeninde formun üstünde fotoğraflı başlık bandı (bağış türünün görseli, sayfa başlığı; sayfa zaten kapak bloğuyla başlıyorsa çıkmaz). Görünüm'den kapatılabilir.
 - Kart ile öde sekmesinin başlığında kart logoları yok; logolar kart alanlarının altında sağda.
-- Ödeme sayfası: ad ve soyad en başta, yan yana; "misafir olarak ödüyorsunuz" yazısı kalktı; "Hesap oluştur" kutusunun altındaki boşluk azaldı.
-- Taksitler kompakt: tutarlar seçeneğin hemen yanında, geniş ekranda iki sütun. 3D Secure kutusundaki tekrar logolar kaldırıldı.
+- Ödeme sayfası: ad ve soyad en başta, yan yana; "misafir olarak ödüyorsunuz" yazısı kalktı; hesap kutusu "Girdiğim bilgilerle Yeşil Türkiye hesabımı oluştur" der; "Hesap oluştur" kutusunun altındaki boşluk azaldı.
+- Taksitler kompakt: "515,00 × 3 = 1.545,00" biçiminde tutar seçeneğin hemen yanında, bir tık küçük yazı, geniş ekranda iki sütun. "Son kullanma" etiketinde AA/YY aynı satırda sağda, küçük. 3D Secure kutusundaki tekrar logolar kaldırıldı.
 - "Siparişinize not ekleyin" boşlukları azaldı; Görünüm'den kapatılabilir (Görünüm › "Sipariş notu").
 - "Bir sorun mu var? WhatsApp'tan yazın" ayrı, açık yeşil bir kutu; tıklayınca WhatsApp "Merhaba" yazılı açılır (filtre flxb_support_wa_text).
 - Fidan ürün görseli artık gerçek fidan fotoğrafı; eski hazır ikon görseli kendiliğinden değişir (elle seçilen görsele dokunulmaz). Görseli olmayan kalemde özet gri yer tutucu yerine fidan ikonu gösterir.

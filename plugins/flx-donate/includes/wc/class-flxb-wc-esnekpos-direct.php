@@ -117,7 +117,9 @@ final class FLXB_WC_Esnekpos_Direct {
 			'test'         => FLXB_WC_Esnekpos::credentials()['test'],
 			'i18n'         => array(
 				'card'         => __( 'Card number', 'flx-donate' ),
-				'exp'          => __( 'Expiry (MM/YY)', 'flx-donate' ),
+				'exp'          => __( 'Expiry', 'flx-donate' ),
+				/* translators: expiry date format shown beside the label */
+				'expFmt'       => __( 'MM/YY', 'flx-donate' ),
 				'cvv'          => __( 'CVV', 'flx-donate' ),
 				'name'         => __( 'Name on card', 'flx-donate' ),
 				'phone'        => __( 'Mobile phone', 'flx-donate' ),
@@ -127,7 +129,8 @@ final class FLXB_WC_Esnekpos_Direct {
 				/* translators: %d: number of installments */
 				'nInst'        => __( '%d installments', 'flx-donate' ),
 				/* translators: 1: amount per installment, 2: total */
-				'perInst'      => __( '%1$s × installment · total %2$s', 'flx-donate' ),
+				/* translators: 1: per installment, 2: total, 3: number of installments, e.g. "₺515,00 × 3 = ₺1.545,00" */
+				'perInst'      => __( '%1$s × %3$s = %2$s', 'flx-donate' ),
 				'instWait'     => __( 'Installment options appear once the card number is entered.', 'flx-donate' ),
 				'instNone'     => __( 'This card can be used for a single payment.', 'flx-donate' ),
 				'sec'          => __( 'Protected by 3D Secure: your bank confirms the payment with a code sent to your phone.', 'flx-donate' ),

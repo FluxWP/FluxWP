@@ -3542,4 +3542,8 @@ Teşekkürler,
 'Hello'=>'Merhaba',
 'Any trouble? Write to us on WhatsApp'=>'Bir sorun mu var? WhatsApp\'tan yazın',
 'Show "Add a note to your order" at the checkout'=>'Ödeme sayfasında "Siparişinize not ekleyin" kutusu görünsün',
+'%1$s × %3$s = %2$s'=>'%1$s × %3$s = %2$s',
+'Expiry'=>'Son kullanma',
+'MM/YY'=>'AA/YY',
+'Create my %s account with the details I entered'=>'Girdiğim bilgilerle %s hesabımı oluştur',
 ));
