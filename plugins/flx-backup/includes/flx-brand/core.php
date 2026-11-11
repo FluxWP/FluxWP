@@ -564,3 +564,53 @@ function flx_csv_stream( string $filename, array $header, iterable $rows, array 
 	}
 	fclose( $out );
 }
+
+/** Create $dir and, when missing, deny web access with an .htaccess and an empty index.html. */
+function flx_private_dir( string $dir ): bool {
+	$dir = rtrim( $dir, "/\\" );
+	if ( '' === $dir || ! wp_mkdir_p( $dir ) ) {
+		return '' !== $dir && is_dir( $dir ) && wp_is_writable( $dir );
+	}
+	$ht = $dir . '/.htaccess';
+	if ( ! is_file( $ht ) ) {
+		file_put_contents(
+			$ht,
+			"<IfModule mod_authz_core.c>\nRequire all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\nOrder deny,allow\nDeny from all\n</IfModule>\n"
+		);
+	}
+	$index = $dir . '/index.html';
+	if ( ! is_file( $index ) ) {
+		file_put_contents( $index, '' );
+	}
+	return is_dir( $dir ) && wp_is_writable( $dir );
+}
+
+/** Send a private file after the caller has checked permission, then return. The caller exits. */
+function flx_send_file( string $path, array $args = array() ) {
+	if ( ! is_file( $path ) || ! is_readable( $path ) ) {
+		return false;
+	}
+	$filename = isset( $args['filename'] ) && '' !== (string) $args['filename'] ? (string) $args['filename'] : basename( $path );
+	$type     = isset( $args['type'] ) ? (string) $args['type'] : '';
+	if ( '' === $type && function_exists( 'wp_check_filetype' ) ) {
+		$checked = wp_check_filetype( $filename );
+		$type    = is_array( $checked ) && ! empty( $checked['type'] ) ? (string) $checked['type'] : '';
+	}
+	if ( '' === $type ) {
+		$type = 'application/octet-stream';
+	}
+	$inline = ! empty( $args['inline'] );
+	$cache  = array_key_exists( 'cache', $args ) ? (string) $args['cache'] : 'private, no-store';
+	while ( ob_get_level() > 0 ) {
+		ob_end_clean();
+	}
+	header( 'Content-Type: ' . $type );
+	header( 'Content-Length: ' . (string) filesize( $path ) );
+	header( 'Content-Disposition: ' . ( $inline ? 'inline' : 'attachment' ) . '; filename="' . sanitize_file_name( $filename ) . '"' );
+	header( 'X-Content-Type-Options: nosniff' );
+	if ( '' !== $cache ) {
+		header( 'Cache-Control: ' . $cache );
+	}
+	readfile( $path );
+	return true;
+}

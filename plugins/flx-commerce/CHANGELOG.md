@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.10
+- Dekont klasörü doğrudan web erişimine kapalı kalır (Apache 2.2 ve 2.4).
+
 ## 0.2.9
 - Müşteri ve satış CSV'lerinde formül gibi açılacak hücreler tek tırnakla korunur. Sütunlar, virgül ayırıcı ve Excel BOM aynı kalır.
 

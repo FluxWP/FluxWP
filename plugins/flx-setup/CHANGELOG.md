@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.1.13
+- İçe aktarılan ön ayar klasörü Apache 2.2 ve 2.4'te web'den açılmaz.
+
 ## 1.1.12
 - Paketler ekranında "18güncellemeleri mevcut" yerine "18 güncelleme mevcut"; yedek/paket sayısı metinleri doğal Türkçe tekil ("%d paket etkinleştirildi", "%d yedek silindi").
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

@@ -269,8 +269,8 @@ function flxk_import_upload() {
 	file_put_contents( $dir . 'preset.json', wp_json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ); // phpcs:ignore
 	if ( ! file_exists( flxk_upload_dir() . 'index.php' ) ) {
 		file_put_contents( flxk_upload_dir() . 'index.php', "<?php\n// Silence is golden.\n" ); // phpcs:ignore
-		file_put_contents( flxk_upload_dir() . '.htaccess', "Deny from all\n" ); // phpcs:ignore
 	}
+	flx_private_dir( flxk_upload_dir() );
 	return array( 'imported' => $data['name'] );
 }
 

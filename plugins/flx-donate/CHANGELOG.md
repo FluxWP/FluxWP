@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.20.4
+- Dekont klasörü doğrudan web erişimine kapalı kalır (Apache 2.2 ve 2.4).
+
 ## 2.20.3
 - Bağış, mahsup ve rapor CSV'leri ortak dışa aktarmayı kullanır. Dosyanın içeriği aynı kalır.
 

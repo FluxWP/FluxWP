@@ -299,10 +299,14 @@ function flxs_handle_ecards_zip() {
 	}
 	$zip->close();
 	nocache_headers();
-	header( 'Content-Type: application/zip' );
-	header( 'Content-Disposition: attachment; filename="e-kartlar.zip"' );
-	header( 'Content-Length: ' . filesize( $file ) );
-	readfile( $file ); // phpcs:ignore
+	flx_send_file(
+		$file,
+		array(
+			'filename' => 'e-kartlar.zip',
+			'type'     => 'application/zip',
+			'cache'    => '', // nocache_headers() above already set it.
+		)
+	);
 	wp_delete_file( $file );
 	exit;
 }

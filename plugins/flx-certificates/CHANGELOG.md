@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.11
+- Sertifika PDF, Excel ve e-kart zip indirmesi aynı başlıklarla gider. Yazı tipi klasörü web'den açılmaz.
+
 ## 1.9.10
 - Kayıt CSV'si ortak dışa aktarmayı kullanır. Sütunlar, noktalı virgül ve Excel BOM aynı kalır.
 
