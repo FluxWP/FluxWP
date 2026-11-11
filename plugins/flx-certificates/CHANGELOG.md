@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.7 — 2026-11-10
+- Stop a certificate delivery run before a send can outlast the host. A cron run budgets 25 s (20 s otherwise) and will not claim a message unless the remaining time covers its transport timeout (at most 20 s) plus a 5 s margin. A claimed message left in `processing` returns to the queue after 10 minutes until attempts are exhausted.
+
 ## 1.9.6 — 2026-11-10
 - Quote log CSV cells that would open as a spreadsheet formula. Numeric cells, including negatives, stay numbers.
 

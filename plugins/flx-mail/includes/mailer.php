@@ -368,6 +368,9 @@ function flxi_phpmailer_init( $mailer ) {
 			$GLOBALS['flxi_current']['mailer'] = 'smtp';
 		}
 	}
+	if ( isset( $GLOBALS['flxi_queue_timeout'] ) ) {
+		$mailer->Timeout = min( (int) ( $mailer->Timeout ? $mailer->Timeout : 20 ), (int) $GLOBALS['flxi_queue_timeout'] );
+	}
 	if ( $s['set_sender'] && is_email( $mailer->From ) && 0 !== stripos( $mailer->From, 'wordpress@' ) ) {
 		$mailer->Sender = $mailer->From;
 	}

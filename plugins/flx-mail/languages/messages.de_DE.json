@@ -193,7 +193,6 @@
     "Appearance changes are applied to all emails when you save.": "Beim Speichern werden die Erscheinungsbildänderungen auf alle E-Mails angewendet.",
     "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified.": "Da Google die E-Mail-Adresse bereits verifiziert hat, erhalten Personen, die sich bei Google anmelden, nicht die E-Mail „Passwort/Anmeldedaten festlegen“ und ihr Konto wird als verifiziert behandelt.",
     "Detected plugin: %s": "Erkanntes Plugin:%s",
-    "No known Google sign-in plugin was detected; a Google return is also recognized from the request.": "Es wurde kein bekanntes Google-Anmelde-Plugin erkannt. Aus der Anfrage wird auch eine Google-Retoure erkannt.",
     "Do not send the WordPress \"login details / set password\" email": "Senden Sie nicht die WordPress-E-Mail „Anmeldedaten / Passwort festlegen“.",
     "Do not send the WooCommerce \"your account has been created\" email": "Senden Sie nicht die WooCommerce-E-Mail „Ihr Konto wurde erstellt“.",
     "Mark the email as verified (for verification plugins)": "E-Mail als verifiziert markieren (für Verifizierungs-Plugins)",
@@ -396,7 +395,6 @@
     "People who sign up with Google do not receive the set-password email, and their emails are treated as verified.": "Personen, die sich bei Google anmelden, erhalten die E-Mail mit dem festgelegten Passwort nicht und ihre E-Mails werden als bestätigt behandelt.",
     "People who sign up with Google receive the set-password email (setting is off).": "Personen, die sich bei Google anmelden, erhalten die E-Mail mit dem festgelegten Passwort (Einstellung ist deaktiviert).",
     "Setting": "Einstellung",
-    "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped.": "Es ist kein bekanntes Google-Anmelde-Plugin aktiv. Wenn Sie ein anderes Plugin verwenden, wird eine Google-Rückgabe trotzdem erkannt und die Passwort-E-Mail gestoppt.",
     "No %s connection.": "Keine%s-Verbindung.",
     "Settings entered, not tested yet.": "Einstellungen eingegeben, noch nicht getestet.",
     "Test successful (%s).": "Test erfolgreich (%s).",
@@ -773,7 +771,6 @@
     "Last incoming event": "Letztes eingehendes Ereignis",
     "Request with a bad signature": "Anfrage mit fehlerhafter Signatur",
     "Open 24-hour windows": "24-Stunden-Fenster öffnen",
-    "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit.": "App-Geheimnis nicht eingegeben: Eingehende Anfragen werden nicht als von Meta stammend überprüft. Fügen Sie es unter Bearbeiten hinzu.",
     "Approved templates": "Genehmigte Vorlagen",
     "WABA ID is required for templates.": "Für Vorlagen ist eine WABA-ID erforderlich.",
     "No templates. Add them in WhatsApp Manager › Message templates.": "Keine Vorlagen. Fügen Sie sie im WhatsApp Manager hinzu › Nachrichtenvorlagen.",
@@ -784,7 +781,6 @@
     "Needed for the template list.": "Wird für die Vorlagenliste benötigt.",
     "Permanent access token (System User token)": "Permanenter Zugriffstoken (Systembenutzertoken)",
     "App Secret": "App-Geheimnis",
-    "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended).": "Überprüft, ob eingehende Webhooks von Meta stammen. Wenn leer, wird die Signatur nicht überprüft (nicht empfohlen).",
     "Graph API version": "Graph-API-Version",
     "Couldn't reach Meta:": "Meta konnte nicht erreicht werden:",
     "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent.": "24-Stunden-Fenster geschlossen: Die Person hat in den letzten 24 Stunden nicht geschrieben. Es kann nur eine genehmigte Vorlage versendet werden.",
@@ -885,6 +881,12 @@
     "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.": "Verwendet die WordPress-Zeitzone. Zukünftige Netgsm-Sendungen können vor Versandbeginn abgebrochen werden.",
     "View delivery queue": "Versandwarteschlange anzeigen",
     "WordPress background processing": "WordPress-Hintergrundverarbeitung",
-    "Worker active": "Worker aktiv"
+    "Worker active": "Worker aktiv",
+    "App Secret missing · webhook off": "App-Geheimnis fehlt · Webhook aus",
+    "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit.": "App-Geheimnis nicht eingegeben: Eingehende Webhooks werden abgelehnt, bis es eingegeben ist. Fügen Sie es unter Bearbeiten hinzu.",
+    "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter).": "Es ist kein bekanntes Google-Anmelde-Plugin aktiv. Die Prüfung und das Unterdrücken der Passwort-E-Mail gelten, wenn ein unterstütztes Anmelde-Plugin eine Google-Anmeldung verbucht (oder über den Filter flxi_user_is_social).",
+    "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter).": "Es wurde kein bekanntes Google-Anmelde-Plugin erkannt; die Prüfung gilt, wenn ein unterstütztes Plugin eine Google-Anmeldung verbucht (oder über den Filter flxi_user_is_social).",
+    "Rejected (App Secret missing)": "Abgelehnt (App-Geheimnis fehlt)",
+    "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered.": "Überprüft, ob eingehende Webhooks von Meta stammen. Eingehende Ereignisse werden abgelehnt, bis es eingegeben ist."
   }
 }

@@ -967,7 +967,6 @@ return array(
   'Also show WhatsApp group messages' => 'Также показывать групповые сообщения WhatsApp',
   'New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app' => 'Новый интерфейс (экспериментальный): страница чатов открывается на том же экране, что и настольное и мобильное приложение.',
   'Live update interval (sec)' => 'Интервал обновления в реальном времени (сек)',
-  'The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.' => 'Открытая вкладка проверяет наличие новых сообщений через этот интервал (рекомендуется 10). В фоновой вкладке проверяется раз в минуту, а после ошибок реже.',
   'Agents' => 'Агенты',
   'Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access.' => 'Назначьте пользователю роль%s; они видят только экран чата и не могут открыть настройки. Администраторы всегда имеют доступ.',
   'Add new user' => 'Добавить нового пользователя',
@@ -1493,7 +1492,6 @@ return array(
   'Users with the agent role: %d.' => 'Пользователи с ролью агента:%d.',
   'No user has the agent role; only administrators can use it for now.' => 'Ни один пользователь не имеет роли агента; пока только администраторы могут использовать его.',
   'Live panel updates' => 'Обновления панели в реальном времени',
-  'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).' => 'Последний запрос на обновление%1$s. Пока панель открыта, она проверяет наличие новых сообщений каждые%2$d(60 секунд на фоновой вкладке).',
   'The chat screen has not been opened yet.' => 'Экран чата еще не открыт.',
   'WhatsApp line' => 'Линия WhatsApp',
   'No line added.' => 'Ни одна строка не добавлена.',
@@ -3191,5 +3189,7 @@ return array(
 'WhatsApp did not delete the message.'=>'WhatsApp не удалил сообщение.',
 'Delete for everyone time limit (hours)'=>'Срок удаления у всех (часы)',
 'WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact\'s phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.'=>'WhatsApp позволяет удалить отправленное сообщение у всех только в течение примерно 2 дней и 12 часов (60 часов). После этого срока, а также для полученных сообщений, сообщение только скрывается в панели и остаётся на телефоне контакта. 0 отключает удаление у всех. Удалённые сообщения никогда не удаляются с сервера; команда может их открыть.',
+'Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.'=>'Последний запрос на обновление %1$s. Пока панель открыта, она проверяет новые сообщения каждые %2$d с (3 с, пока идёт поток ответа, и до 15 с, если ничего не меняется) и раз в минуту на фоновой вкладке.',
+'The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.'=>'Открытая вкладка проверяет новые сообщения с этим интервалом (рекомендуется 10), каждые 3 с, пока идёт поток ответа, и до 15 с, если ничего не меняется. Фоновая вкладка проверяет раз в минуту. После ошибок интервал увеличивается до 60 с.',
 ),
 );
