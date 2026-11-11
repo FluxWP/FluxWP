@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.19
+- Yönetim paneli ve giriş ekranı sekme simgesi sol menü logosuyla aynı sırayı izler: site simgesi, yoksa kurum profili simgesi (ön ayarlar), o da yoksa FluxWP. Önceden site simgesi seçilmemişse hep FluxWP görünüyordu.
+- Pano sistem kontrolü listesinde `action_url` olmayan satırlar PHP uyarısı vermiyor.
+
 ## 1.7.18
 - PWA manifestosu ve oturum kontrolü ortak önbelleksiz başlıkları kullanır. Service worker'ın bir günlük önbelleği durur.
 

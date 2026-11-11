@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.22
+- Flux SEO favicon'u yazdıysa tema ikinci bir simge basmaz (yenilemede FluxWP → site simgesi geçişi bitti). SVG simgeye `type` eklendi.
+
 ## 0.7.21
 - Ödeme sayfası rozeti: telefonda kart sağlayıcısının adı (EsnekPOS…) ikinci satırda.
 - Ödeme sayfası başlığındaki "Güvenli ödeme" rozeti etkin ödeme sağlayıcısını yazar (filtre `flx_secure_badge_provider`; boşsa yalnız "Güvenli ödeme").

@@ -137,16 +137,20 @@ add_filter( 'render_block_core/site-logo', 'flx_site_logo_fallback', 10, 2 );
 
 /**
  * Favicon sırası: WordPress site simgesi > kurum profilindeki simge > FluxWP simgesi.
+ * Flux SEO kuruluysa favicon'u (sitenin simgesi dahil) o yazar ve `flx_favicon_printed` çalışır; tema yazmaz.
  * Flux SEO ya da Flux Admin kuruluysa FluxWP simgesini onlar yazar; tema yalnız ikisi de yoksa yazar.
  * Filtre `flx_theme_favicon` (svg, png, apple adresleri) ile değiştirilebilir; boş dizi kapatır.
  */
 function flx_favicon() {
-	if ( has_site_icon() ) {
+	// Flux SEO (öncelik 1) favicon'u zaten yazdıysa ikinci bir simge basılmaz: iki simge olunca tarayıcı
+	// yenilemede önce birini sonra ötekini gösteriyordu.
+	if ( has_site_icon() || did_action( 'flx_favicon_printed' ) ) {
 		return;
 	}
-	$icon = flx_logo_files()['icon'];
+	$icon = (string) apply_filters( 'flx_custom_favicon', (string) flx_logo_files()['icon'] );
 	if ( '' !== $icon ) {
-		echo '<link rel="icon" href="' . esc_url( $icon ) . '">' . "\n";
+		$svg = (bool) preg_match( '#\.svg($|\?)#i', $icon );
+		echo '<link rel="icon"' . ( $svg ? ' type="image/svg+xml" sizes="any"' : '' ) . ' href="' . esc_url( $icon ) . '">' . "\n";
 		return;
 	}
 	if ( defined( 'FLXSEO_VERSION' ) || defined( 'FLXA_VERSION' ) ) {

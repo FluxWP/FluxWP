@@ -313,8 +313,8 @@ function flxa_widget_system() {
 		echo '<ul class="flxa-list flxa-sys-list">';
 		foreach ( $c['bad'] as $r ) {
 			echo '<li><span class="flxa-dot is-' . esc_attr( $r['status'] ) . '" aria-hidden="true"></span><span class="flxa-li-main"><strong>' . esc_html( $r['label'] ) . '</strong><small>' . esc_html( $r['source'] . ( $r['message'] ? ' · ' . wp_trim_words( $r['message'], 14 ) : '' ) ) . '</small>';
-			if ( $r['action_url'] ) {
-				echo '<a class="flxa-li-action" href="' . esc_url( $r['action_url'] ) . '">' . esc_html( $r['action_label'] ? $r['action_label'] : __( 'Fix', 'flx-admin' ) ) . '</a>';
+			if ( ! empty( $r['action_url'] ) ) {
+				echo '<a class="flxa-li-action" href="' . esc_url( $r['action_url'] ) . '">' . esc_html( ! empty( $r['action_label'] ) ? $r['action_label'] : __( 'Fix', 'flx-admin' ) ) . '</a>';
 			}
 			echo '</span></li>';
 		}
