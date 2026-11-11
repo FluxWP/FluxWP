@@ -102,21 +102,51 @@ final class FLXU_Guard {
 		} else {
 			return $response;
 		}
+		/*
+		 * FluxWP paketleri ve 3. parti eklenti/temalar aynı korumadan geçer: geçmiş kaydı, site kontrolü,
+		 * bozulursa Flux Backup klasör yedeğinden geri dönüş. Tek dosyalı eklentiler (hello.php) hariç.
+		 * Filtre flxu_guard_third_party ile 3. parti kapatılabilir.
+		 */
 		$catalog = FLXU_Updater::instance()->catalog();
-		if ( '.' === $slug || ! isset( $catalog[ $slug ] ) || isset( $this->before[ $slug ] ) ) {
+		if ( '.' === $slug || '' === $slug || isset( $this->before[ $slug ] ) ) {
 			return $response;
 		}
-		$this->expect( $type, $slug, self::installed_version( $type, $slug ) );
+		if ( ! isset( $catalog[ $slug ] ) && ! apply_filters( 'flxu_guard_third_party', true, $type, $slug ) ) {
+			return $response;
+		}
+		$from = self::installed_version( $type, $slug );
+		if ( '' === $from ) {
+			return $response;
+		}
+		$this->expect( $type, $slug, $from );
 		return $response;
 	}
 
 	private function expect( string $type, string $slug, string $from ): void {
-		$catalog              = FLXU_Updater::instance()->catalog();
+		$catalog = FLXU_Updater::instance()->catalog();
+		$name    = $catalog[ $slug ]['name'] ?? '';
+		if ( '' === $name ) {
+			$name = self::local_name( $type, $slug );
+		}
 		$this->before[ $slug ] = array(
 			'type' => $type,
-			'name' => $catalog[ $slug ]['name'] ?? $slug,
+			'name' => $name,
 			'from' => $from,
 		);
+	}
+
+	/** Kurulu eklenti/temanın görünen adı (katalogda olmayanlar için). */
+	public static function local_name( string $type, string $slug ): string {
+		if ( 'theme' === $type ) {
+			$theme = wp_get_theme( $slug );
+			return $theme->exists() ? (string) $theme->get( 'Name' ) : $slug;
+		}
+		$files = FLXU_Updater::plugin_files();
+		if ( isset( $files[ $slug ] ) && function_exists( 'get_plugins' ) ) {
+			$all = get_plugins();
+			return (string) ( $all[ $files[ $slug ] ]['Name'] ?? $slug );
+		}
+		return $slug;
 	}
 
 	public function complete( $upgrader, $extra ): void {

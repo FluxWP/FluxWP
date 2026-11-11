@@ -1932,3 +1932,96 @@ msgstr "Select %s"
 
 msgid "Apply selected changes (%d)"
 msgstr "Apply selected changes (%d)"
+
+msgid "All"
+msgstr "All"
+
+msgid "FluxWP"
+msgstr "FluxWP"
+
+msgid "Themes"
+msgstr "Themes"
+
+msgid "WordPress & translations"
+msgstr "WordPress & translations"
+
+msgid "Translations"
+msgstr "Translations"
+
+msgid "New translations: %s"
+msgstr "New translations: %s"
+
+msgid "All translations are up to date."
+msgstr "All translations are up to date."
+
+msgid "%d update"
+msgid_plural "%d updates"
+msgstr[0] "%d update"
+msgstr[1] "%d updates"
+
+msgid "Core"
+msgstr "Core"
+
+msgid "Translation"
+msgstr "Translation"
+
+msgid "No download available"
+msgstr "No download available"
+
+msgid "%s updated."
+msgstr "%s updated."
+
+msgid "Filter packages"
+msgstr "Filter packages"
+
+msgid "Updates available"
+msgstr "Updates available"
+
+msgid "Search plugins and themes"
+msgstr "Search plugins and themes"
+
+msgid "Search plugins and themes…"
+msgstr "Search plugins and themes…"
+
+msgid "Only updates"
+msgstr "Only updates"
+
+msgid "Plugins, themes and updates"
+msgstr "Plugins, themes and updates"
+
+msgid "Nothing matches this filter."
+msgstr "Nothing matches this filter."
+
+msgid "Updating %s…"
+msgstr "Updating %s…"
+
+msgid "Auto-update"
+msgstr "Auto-update"
+
+msgid "Turn on automatic updates"
+msgstr "Turn on automatic updates"
+
+msgid "Turn off automatic updates"
+msgstr "Turn off automatic updates"
+
+msgid "Automatic updates turned on for %d package."
+msgid_plural "Automatic updates turned on for %d packages."
+msgstr[0] "Automatic updates turned on for %d package."
+msgstr[1] "Automatic updates turned on for %d packages."
+
+msgid "Automatic updates turned off for %d package."
+msgid_plural "Automatic updates turned off for %d packages."
+msgstr[0] "Automatic updates turned off for %d package."
+msgstr[1] "Automatic updates turned off for %d packages."
+
+msgid "No updates yet."
+msgstr "No updates yet."
+
+msgid "On for all FluxWP packages (FluxWP Panel › Settings)."
+msgstr "On for all FluxWP packages (FluxWP Panel › Settings)."
+
+msgid "Automatic updates are turned off for this site."
+msgstr "Automatic updates are turned off for this site."
+
+msgid "Retry failed ones"
+msgstr "Retry failed ones"

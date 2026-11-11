@@ -957,6 +957,10 @@ final class FLXU_Updater {
 		}
 		wp_update_plugins();
 		wp_update_themes();
+		// Paketler ekranı WordPress çekirdeği ve çevirileri de gösterir.
+		if ( function_exists( 'wp_version_check' ) ) {
+			wp_version_check( array(), true );
+		}
 		// wp.org'a ulaşılamazsa WP filtreyi çağırmayabilir; katalog yine de tazelensin.
 		$this->catalog( true );
 	}
