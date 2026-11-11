@@ -3207,5 +3207,16 @@ return array(
   'No referral.' => 'لا يوجد مُحيل.',
   'Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.' => 'هل وصلت الدفعة إلى الحساب؟ عند التأكيد تُنشأ الشهادة وتُرسل إلى المتبرع.',
 
+  'Change history' => 'سجل التغييرات',
+  'Assistant memory' => 'ذاكرة المساعد',
+  'Note updated' => 'تم تحديث الملاحظة',
+  'Show less' => 'عرض أقل',
+  'Show all ({n})' => 'عرض الكل ({n})',
+  'Filled from donation and certificate records (one-off update)' => 'تم الملء من سجلات التبرعات والشهادات (تحديث لمرة واحدة)',
+  'Name given by the sending record' => 'الاسم من السجل المُرسِل',
+  'Filled from donation and certificate records' => 'تم الملء من سجلات التبرعات والشهادات',
+  'The contact said their name in the chat' => 'ذكر جهة الاتصال اسمه في المحادثة',
+  'The contact corrected their name in the chat' => 'صحّح جهة الاتصال اسمه في المحادثة',
+  'The contact gave their full name in the chat' => 'ذكر جهة الاتصال اسمه الكامل في المحادثة',
  ),
 );

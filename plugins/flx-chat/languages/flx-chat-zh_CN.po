@@ -4851,3 +4851,36 @@ msgstr "无推荐人。"
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "款项已到账了吗？确认后将生成证书并发送给捐赠者。"
+
+msgid "Change history"
+msgstr "更改记录"
+
+msgid "Assistant memory"
+msgstr "助手记忆"
+
+msgid "Note updated"
+msgstr "备注已更新"
+
+msgid "Show less"
+msgstr "收起"
+
+msgid "Show all ({n})"
+msgstr "显示全部 ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "已根据捐赠和证书记录填写（一次性更新）"
+
+msgid "Name given by the sending record"
+msgstr "发送记录中提供的姓名"
+
+msgid "Filled from donation and certificate records"
+msgstr "已根据捐赠和证书记录填写"
+
+msgid "The contact said their name in the chat"
+msgstr "联系人在聊天中说出了姓名"
+
+msgid "The contact corrected their name in the chat"
+msgstr "联系人在聊天中更正了姓名"
+
+msgid "The contact gave their full name in the chat"
+msgstr "联系人在聊天中提供了全名"

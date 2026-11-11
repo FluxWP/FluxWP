@@ -1622,6 +1622,17 @@
     "{n} paid gifts · {m}": "{n} doações pagas · {m}",
     "No contact details.": "Sem dados de contato.",
     "No referral.": "Sem indicação.",
-    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "O pagamento chegou à conta? Ao confirmar, o certificado é criado e enviado ao doador."
+    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "O pagamento chegou à conta? Ao confirmar, o certificado é criado e enviado ao doador.",
+    "Change history": "Histórico de alterações",
+    "Assistant memory": "Memória do assistente",
+    "Note updated": "Nota atualizada",
+    "Show less": "Mostrar menos",
+    "Show all ({n})": "Mostrar tudo ({n})",
+    "Filled from donation and certificate records (one-off update)": "Preenchido a partir dos registros de doações e certificados (atualização única)",
+    "Name given by the sending record": "Nome informado pelo registro de envio",
+    "Filled from donation and certificate records": "Preenchido a partir dos registros de doações e certificados",
+    "The contact said their name in the chat": "O contato disse o nome na conversa",
+    "The contact corrected their name in the chat": "O contato corrigiu o nome na conversa",
+    "The contact gave their full name in the chat": "O contato informou o nome completo na conversa"
   }
 }

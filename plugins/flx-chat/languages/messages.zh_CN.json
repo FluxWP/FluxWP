@@ -1622,6 +1622,17 @@
     "{n} paid gifts · {m}": "已付款 {n} 笔 · {m}",
     "No contact details.": "没有联系方式。",
     "No referral.": "无推荐人。",
-    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "款项已到账了吗？确认后将生成证书并发送给捐赠者。"
+    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "款项已到账了吗？确认后将生成证书并发送给捐赠者。",
+    "Change history": "更改记录",
+    "Assistant memory": "助手记忆",
+    "Note updated": "备注已更新",
+    "Show less": "收起",
+    "Show all ({n})": "显示全部 ({n})",
+    "Filled from donation and certificate records (one-off update)": "已根据捐赠和证书记录填写（一次性更新）",
+    "Name given by the sending record": "发送记录中提供的姓名",
+    "Filled from donation and certificate records": "已根据捐赠和证书记录填写",
+    "The contact said their name in the chat": "联系人在聊天中说出了姓名",
+    "The contact corrected their name in the chat": "联系人在聊天中更正了姓名",
+    "The contact gave their full name in the chat": "联系人在聊天中提供了全名"
   }
 }

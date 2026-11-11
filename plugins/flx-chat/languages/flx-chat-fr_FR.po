@@ -4851,3 +4851,36 @@ msgstr "Aucun parrain."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "Le paiement est-il arrivé sur le compte ? En confirmant, le certificat est créé et envoyé au donateur."
+
+msgid "Change history"
+msgstr "Historique des modifications"
+
+msgid "Assistant memory"
+msgstr "Mémoire de l’assistant"
+
+msgid "Note updated"
+msgstr "Note mise à jour"
+
+msgid "Show less"
+msgstr "Afficher moins"
+
+msgid "Show all ({n})"
+msgstr "Tout afficher ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Renseigné à partir des dons et certificats (mise à jour unique)"
+
+msgid "Name given by the sending record"
+msgstr "Nom fourni par l’enregistrement expéditeur"
+
+msgid "Filled from donation and certificate records"
+msgstr "Renseigné à partir des dons et certificats"
+
+msgid "The contact said their name in the chat"
+msgstr "Le contact a donné son nom dans la conversation"
+
+msgid "The contact corrected their name in the chat"
+msgstr "Le contact a corrigé son nom dans la conversation"
+
+msgid "The contact gave their full name in the chat"
+msgstr "Le contact a donné son nom complet dans la conversation"

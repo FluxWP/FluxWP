@@ -4851,3 +4851,36 @@ msgstr "لا يوجد مُحيل."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "هل وصلت الدفعة إلى الحساب؟ عند التأكيد تُنشأ الشهادة وتُرسل إلى المتبرع."
+
+msgid "Change history"
+msgstr "سجل التغييرات"
+
+msgid "Assistant memory"
+msgstr "ذاكرة المساعد"
+
+msgid "Note updated"
+msgstr "تم تحديث الملاحظة"
+
+msgid "Show less"
+msgstr "عرض أقل"
+
+msgid "Show all ({n})"
+msgstr "عرض الكل ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "تم الملء من سجلات التبرعات والشهادات (تحديث لمرة واحدة)"
+
+msgid "Name given by the sending record"
+msgstr "الاسم من السجل المُرسِل"
+
+msgid "Filled from donation and certificate records"
+msgstr "تم الملء من سجلات التبرعات والشهادات"
+
+msgid "The contact said their name in the chat"
+msgstr "ذكر جهة الاتصال اسمه في المحادثة"
+
+msgid "The contact corrected their name in the chat"
+msgstr "صحّح جهة الاتصال اسمه في المحادثة"
+
+msgid "The contact gave their full name in the chat"
+msgstr "ذكر جهة الاتصال اسمه الكامل في المحادثة"

@@ -4851,3 +4851,36 @@ msgstr ""
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr ""
+
+msgid "Change history"
+msgstr ""
+
+msgid "Assistant memory"
+msgstr ""
+
+msgid "Note updated"
+msgstr ""
+
+msgid "Show less"
+msgstr ""
+
+msgid "Show all ({n})"
+msgstr ""
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr ""
+
+msgid "Name given by the sending record"
+msgstr ""
+
+msgid "Filled from donation and certificate records"
+msgstr ""
+
+msgid "The contact said their name in the chat"
+msgstr ""
+
+msgid "The contact corrected their name in the chat"
+msgstr ""
+
+msgid "The contact gave their full name in the chat"
+msgstr ""
