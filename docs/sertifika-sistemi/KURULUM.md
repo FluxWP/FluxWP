@@ -13,7 +13,7 @@ Sürüm 1.8.0. Temadan bağımsız, ayrı bir WordPress eklentisi. Sertifika say
 - **Ayarlar › Personel yetkileri** kısmında iki seçenek var:
   - Personel toplu gönderim yapabilsin
   - Personel yalnızca kendi oluşturduklarını görsün
-- **Flux Roles (v1.7.0):** Personel ve İdareci rolleri Kullanıcılar › Roller ve erişim'den yönetilir. `flxs_own_ref` yetkisi olan kullanıcı yalnız kendi oluşturduğu ya da referansı olduğu sertifikaları, bunların kişilerini ve mesajlarını görür (yukarıdaki ayardan bağımsız). Dashboard `flxs_dashboard` yetkisi ister; İdareci genel istatistiği görür. Sertifika Personeli rolüne bu yetki güncellemede bir kez eklenir. `flx_referans` yetkisi olan herkes referans olarak seçilebilir.
+- **Flux Roles (v1.7.0):** Personel ve İdareci rolleri Kullanıcılar › Roller ve erişim'den yönetilir. `flxs_own_ref` yetkisi olan kullanıcı yalnız kendi oluşturduğu ya da referansı olduğu sertifikaları, bunların kişilerini ve mesajlarını görür (yukarıdaki ayardan bağımsız). Yeni sertifika isteğinde gönderilen `person.id` bu kapsamın dışındaysa kişi güncellenmez ve yanıt 404 olur (kayıt var mı belli edilmez). Dashboard `flxs_dashboard` yetkisi ister; İdareci genel istatistiği görür. Sertifika Personeli rolüne bu yetki güncellemede bir kez eklenir. `flx_referans` yetkisi olan herkes referans olarak seçilebilir.
 
 ## Sertifika oluşturma (liste bazlı)
 1. Şablon seçilir.

@@ -163,15 +163,6 @@ msgstr "Через Flux AI, модель:%s."
 msgid "Flux AI"
 msgstr "Поток ИИ"
 
-msgid "MCP server"
-msgstr "MCP-сервер"
-
-msgid "On, %d personal key(s)."
-msgstr "Включено, персональные ключи%d."
-
-msgid "Off."
-msgstr "Выкл."
-
 msgid "Untitled document"
 msgstr "Документ без названия"
 
@@ -403,15 +394,6 @@ msgstr "Добро пожаловать в Flux Tasks: откройте эту �
 msgid "Track tasks in list, board and calendar views. Add new lists or folders from the left menu, and set up custom fields and permissions in list settings."
 msgstr "Отслеживайте задачи в виде списка, доски и календаря. Добавляйте новые списки или папки из меню слева, а также настраивайте настраиваемые поля и разрешения в настройках списка."
 
-msgid "MCP is off. Turn it on under Flux Tasks › Settings."
-msgstr "МКП выключен. Включите его в разделе «Задачи Flux» > «Настройки»."
-
-msgid "Invalid or missing MCP key."
-msgstr "Неверный или отсутствующий ключ MCP."
-
-msgid "This user is not allowed to use Flux Tasks."
-msgstr "Этому пользователю не разрешено использовать задачи Flux."
-
 msgid "%s assigned you to a task"
 msgstr "%sназначил вам задачу"
 
@@ -612,9 +594,6 @@ msgstr "Файл не найден."
 
 msgid "You don't have permission to delete this file."
 msgstr "У вас нет разрешения на удаление этого файла."
-
-msgid "You don't have permission to delete this key."
-msgstr "У вас нет разрешения на удаление этого ключа."
 
 msgid "Planned"
 msgstr "Планируется"
@@ -1741,15 +1720,6 @@ msgstr "например Стамбульский филиал Ассоциац�
 msgid "This month: {c} requests, {t} tokens, ${m}"
 msgstr "В этом месяце: запросы{c}, токены{t}, ${m}."
 
-msgid "Enable MCP server"
-msgstr "Включить MCP-сервер"
-
-msgid "AI clients such as Claude and Cursor can read and write tasks. Each person generates their own key on their Profile page."
-msgstr "Клиенты ИИ, такие как Claude и Cursor, могут читать и записывать задачи. Каждый человек генерирует свой собственный ключ на странице своего профиля."
-
-msgid "Manage keys"
-msgstr "Управление ключами"
-
 msgid "Data"
 msgstr "Данные"
 
@@ -1779,42 +1749,6 @@ msgstr "Уведомления на рабочем столе"
 
 msgid "While the Tasks tab is open, new notifications also arrive as browser notifications."
 msgstr "Пока вкладка «Задачи» открыта, новые уведомления также приходят в виде уведомлений браузера."
-
-msgid "MCP connection"
-msgstr "MCP-соединение"
-
-msgid "The MCP server is off. An admin can turn it on from the Settings page."
-msgstr "Сервер MCP выключен. Администратор может включить его на странице настроек."
-
-msgid "Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions."
-msgstr "Добавьте этот адрес и свой личный ключ в клиент с поддержкой MCP, например Claude, ChatGPT или Cursor. Помощник работает только в списках, которые вы можете видеть, с вашего разрешения."
-
-msgid "Your new key (shown only now):"
-msgstr "Ваш новый ключ (показан только сейчас):"
-
-msgid "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address."
-msgstr "В клиенте используйте «Authorization: Bearer<key>» в качестве заголовка. Если вы не можете добавить заголовок, добавьте ?key=<key>в конец адреса."
-
-msgid "Unnamed"
-msgstr "Безымянный"
-
-msgid "Last used: {d}"
-msgstr "Последнее использование:{d}"
-
-msgid "never"
-msgstr "никогда"
-
-msgid "Delete key"
-msgstr "Удалить ключ"
-
-msgid "Clients using this key will lose their connection."
-msgstr "Клиенты, использующие этот ключ, потеряют соединение."
-
-msgid "Key name (e.g. Claude desktop)"
-msgstr "Имя ключа (например, рабочий стол Claude)"
-
-msgid "Create new key"
-msgstr "Создать новый ключ"
 
 msgid "Custom color"
 msgstr "Пользовательский цвет"
@@ -2739,3 +2673,19 @@ msgstr "Создать и открыть"
 
 msgid "ClickUp-like task tracking: projects, folders, lists; list, board (kanban) and calendar views, saved filtered views, custom fields, comment and file attachments, notifications, list authorizations, admin dashboard, MCP server and artificial intelligence with OpenRouter."
 msgstr "Отслеживание задач в стиле ClickUp: проекты, папки, списки; представления списка, доски (канбан) и календаря, сохраненные отфильтрованные представления, настраиваемые поля, комментарии и вложения файлов, уведомления, авторизация списков, панель администратора, сервер MCP и искусственный интеллект с OpenRouter."
+
+msgid "ClickUp benzeri görev takibi: projeler, klasörler, listeler; liste, pano (kanban) ve takvim görünümleri, kayıtlı filtreli görünümler, özel alanlar, yorum ve dosya ekleri, bildirimler, liste yetkileri, yönetici panosu ve Flux AI & MCP üzerinden yapay zekâ."
+msgstr "Учёт задач в духе ClickUp: проекты, папки, списки; виды списка, доски (канбан) и календаря, сохранённые отфильтрованные виды, свои поля, комментарии и вложения, уведомления, права списков, панель администратора и искусственный интеллект через Flux AI & MCP."
+
+msgid "Flux AI & MCP"
+msgstr "Flux AI & MCP"
+
+msgid "Flux Tasks tools are available through Flux AI & MCP."
+msgstr "Инструменты Flux Tasks доступны через Flux AI & MCP."
+
+msgid "Flux Tasks tools require Flux AI & MCP."
+msgstr "Инструментам Flux Tasks нужен Flux AI & MCP."
+
+msgid "MCP"
+msgstr "MCP"
+

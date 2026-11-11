@@ -8,7 +8,7 @@
  * belirteç (/wp-json/flx-mcp/v1/oauth/token, yenileme belirteci döner) → MCP isteklerinde Bearer.
  *
  * Onaylanan her bağlantı MCP anahtar listesinde (flxai_mcp_keys, type=oauth) durur; Flux AI & MCP › MCP'den iptal edilir.
- * Elle oluşturulan anahtarlar (Bearer, X-MCP-Key, ?key=) aynen çalışır.
+ * Elle oluşturulan anahtarlar (Bearer, X-MCP-Key) aynen çalışır. Sorgu dizesindeki anahtar kabul edilmez.
  *
  * @package FLX_AI
  */
@@ -403,7 +403,7 @@ function flxai_oauth_rest_token( WP_REST_Request $req ) {
 			return flxai_oauth_error( 'invalid_grant', 'code_verifier' );
 		}
 		$user = get_userdata( (int) $d['user'] );
-		if ( ! $user || ! user_can( $user, 'edit_posts' ) ) {
+		if ( ! $user || ! user_can( $user, FLXAI_CAP_MCP ) ) {
 			return flxai_oauth_error( 'invalid_grant', 'user' );
 		}
 		$id          = wp_generate_uuid4();
@@ -432,7 +432,7 @@ function flxai_oauth_rest_token( WP_REST_Request $req ) {
 				return flxai_oauth_error( 'invalid_grant' );
 			}
 			if ( ! empty( $k['rhash'] ) && hash_equals( $k['rhash'], $hash ) ) {
-				if ( (int) ( $k['rexp'] ?? 0 ) < time() || ! user_can( (int) $k['user'], 'edit_posts' ) ) {
+				if ( (int) ( $k['rexp'] ?? 0 ) < time() || ! user_can( (int) $k['user'], FLXAI_CAP_MCP ) ) {
 					return flxai_oauth_error( 'invalid_grant' );
 				}
 				return flxai_oauth_issue( $keys, $id );
@@ -553,8 +553,8 @@ function flxai_oauth_authorize() {
 		wp_safe_redirect( wp_login_url( $here ) );
 		exit;
 	}
-	if ( ! current_user_can( 'edit_posts' ) ) {
-		flxai_oauth_page_error( __( 'Your account can\'t connect an assistant (content editing permission is required).', 'flx-ai' ) );
+	if ( ! current_user_can( FLXAI_CAP_MCP ) ) {
+		flxai_oauth_page_error( __( 'Your account can\'t connect an assistant (the MCP capability is required).', 'flx-ai' ) );
 	}
 	$user = wp_get_current_user();
 

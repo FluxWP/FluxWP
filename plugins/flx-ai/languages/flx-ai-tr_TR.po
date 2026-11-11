@@ -76,15 +76,6 @@ msgstr "İptal et"
 msgid "3. Connect an assistant"
 msgstr "3. Asistana bağla"
 
-msgid "Connectors › Add custom connector"
-msgstr "Bağlayıcılar › Özel bağlayıcı ekle"
-
-msgid "URL with the key, for places where headers can't be added; don't share it:"
-msgstr "başlık eklenemeyen yerler için anahtarlı adres; kimseyle paylaşmayın:"
-
-msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
-msgstr "Sunucu Apache ise ve \"Geçersiz anahtar\" hatası alırsanız .htaccess'e SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 ekleyin ya da anahtarlı adresi kullanın."
-
 msgid "Recent activity"
 msgstr "Son işlemler"
 
@@ -964,20 +955,8 @@ msgstr "MCP kapalı. Flux AI & MCP › MCP ekranından açın."
 msgid "Invalid or missing MCP key."
 msgstr "Geçersiz veya eksik MCP anahtarı."
 
-msgid "This user can't edit content."
-msgstr "Bu kullanıcının içerik düzenleme yetkisi yok."
-
 msgid "Unknown tool: %s"
 msgstr "Bilinmeyen araç: %s"
-
-msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
-msgstr "Bu araç kapalı (Flux AI & MCP › Araçlar): %s"
-
-msgid "This key can't use this tool: %s"
-msgstr "Bu anahtar bu aracı kullanamaz: %s"
-
-msgid "You don't have permission for this."
-msgstr "Bu işlem için yetkiniz yok."
 
 msgid "Unauthorized."
 msgstr "Yetkisiz."
@@ -1603,5 +1582,33 @@ msgstr "Bilinmeyen uygulama. Bağlayıcıyı kaldırıp yeniden ekleyin."
 msgid "You can end the connection any time under Flux AI & MCP › MCP."
 msgstr "Bağlantıyı istediğiniz zaman Flux AI & MCP › MCP'den kapatabilirsiniz."
 
-msgid "Your account can't connect an assistant (content editing permission is required)."
-msgstr "Hesabınız asistan bağlayamaz (içerik düzenleme yetkisi gerekir)."
+msgid "AI & MCP"
+msgstr "Yapay zekâ ve MCP"
+
+msgid "Connects assistants over MCP (only tools their own permissions allow)"
+msgstr "Asistanlar MCP ile bağlanır (yalnız kendi yetkilerinin izin verdiği araçlar)"
+
+msgid "No MCP access"
+msgstr "MCP erişimi yok"
+
+msgid "On Apache or LiteSpeed, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess."
+msgstr "Sunucu Apache veya LiteSpeed ise ve \"Geçersiz anahtar\" görürseniz .htaccess dosyasına SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 ekleyin."
+
+msgid "Other clients"
+msgstr "Diğer istemciler"
+
+msgid "Roles and access"
+msgstr "Roller ve erişim"
+
+msgid "Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL."
+msgstr "Anahtarı Authorization: Bearer başlığında ya da X-MCP-Key başlığında gönderin. Anahtarı URL'ye koymayın."
+
+msgid "This user can't use MCP."
+msgstr "Bu kullanıcı MCP kullanamaz."
+
+msgid "Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do."
+msgstr "Kim bağlanabilir: flxai_mcp yetkisi olan kullanıcılar. Yazı düzenleyebilen roller bu yetkiyi varsayılan olarak alır; yöneticilerde her zaman vardır."
+
+msgid "Your account can't connect an assistant (the MCP capability is required)."
+msgstr "Hesabınız bir asistan bağlayamaz (MCP yetkisi gerekli)."
+

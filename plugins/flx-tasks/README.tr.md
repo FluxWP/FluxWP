@@ -31,7 +31,7 @@ Gönüllü projeleri WhatsApp gruplarında, tablolarda ve akıllarda yaşar. Üc
 - ✅ **Her şey tek listede.** Kim neyi ne zamana yapıyor; durum, öncelik, etiket ve özel alanlarla. Liste, pano ve takvim arasında geçiş.
 - 💬 **Görevin üstünde konuşun.** Yorumlar, bahsetmeler, dosyalar ve hareket kaydı görevde durur, kayıp giden bir sohbette değil.
 - 📝 **Tutanaklı toplantılar.** Gündem, kararlar ve takip alt görevleri tek yerde; sonunda logolu PDF rapor.
-- 🤖 **Asistana sorun.** "Bu hafta geciken ne var?", "Bunu alt görevlere böl", "Yorumları özetle": Flux AI üzerinden, Claude için MCP ile.
+- 🤖 **Asistana sorun.** "Bu hafta geciken ne var?", "Bunu alt görevlere böl", "Yorumları özetle": Flux AI üzerinden ve ortak Flux AI & MCP sunucusuyla.
 
 ## Özellikler
 
@@ -50,7 +50,7 @@ Gönüllü projeleri WhatsApp gruplarında, tablolarda ve akıllarda yaşar. Üc
 
 ### Yönetim
 - **Kullanım panosu:** açık, geciken ve tamamlanan görevler, yorumlar, yapı, liste ve kişi başına depolama.
-- Flux AI üzerinden asistan ve hızlı işlemler; tüm araçlar ortak Flux AI sohbetinde ve MCP'de.
+- Flux AI üzerinden asistan ve hızlı işlemler; aynı araçlar (`flxg_` adları) hem ortak Flux AI sohbetinde hem Flux AI & MCP'de; eski öneksiz adlar alias olarak çalışır.
 - Flux App'da yerel ekran (`flx-tasks/v1/app/*`); sistem kontrolleri.
 
 ## Ekran görüntüleri

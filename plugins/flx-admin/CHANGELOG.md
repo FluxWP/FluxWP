@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.14
+- PWA sign-in checks pause while the tab is hidden and run immediately when it returns. The two-minute watch starts at 2 s and steps out to 15 s when the answer does not change. Errors and HTTP 429 back off exponentially up to 60 s, with one request in flight.
+
 ## 1.7.13
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Preserve singular/plural message boundaries and printf arguments in English source IDs and all native language packs; prevent count labels from breaking populated screens.

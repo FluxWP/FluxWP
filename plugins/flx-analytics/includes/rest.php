@@ -65,7 +65,8 @@ add_action(
 				'permission_callback' => $view,
 				'args'                => flxan_rest_range_args(),
 				'callback'            => function ( WP_REST_Request $r ) {
-					FLXAN_Aggregator::maybe_run( 60 );
+					// Stored totals only. Refresh stays on flxan_aggregate / the shutdown pump, under the aggregator lock.
+					FLXAN_Aggregator::nudge();
 					return FLXAN_Stats::report( flxan_rest_range( $r ) );
 				},
 			)

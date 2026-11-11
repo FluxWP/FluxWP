@@ -1,6 +1,6 @@
 <?php
 /**
- * Araç kaydı: MCP sunucusu ve yapay zekâ sohbeti aynı araçları kullanır.
+ * Araç kaydı: Flux AI MCP sunucusu ve yapay zekâ sohbeti aynı araçları kullanır.
  * Araçlar her zaman oturumdaki kullanıcının liste yetkileriyle çalışır.
  */
 
@@ -540,8 +540,11 @@ function flxg_tool_add_comment( $a ) {
 	return array( 'comment_id' => $c['id'], 'task_id' => (int) $row['id'] );
 }
 
-/** Aracı çalıştırır: [ok, data]. */
+/** Aracı çalıştırır: [ok, data]. Flux AI yalnız oturumu açar; `flxg_use` ve liste kuralları burada denetlenir. */
 function flxg_run_tool( $name, $args ) {
+	if ( ! current_user_can( 'flxg_use' ) ) {
+		return array( false, array( 'error' => 'This user is not allowed to use Flux Tasks.' ) );
+	}
 	$tools = flxg_tools();
 	if ( ! isset( $tools[ $name ] ) ) {
 		return array( false, array( 'error' => 'Unknown tool: ' . $name ) );

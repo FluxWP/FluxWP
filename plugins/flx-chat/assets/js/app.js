@@ -3051,17 +3051,23 @@
 
 	/* ---------- canlı güncelleme ---------- */
 
-	var syncTimer = null, syncFails = 0, syncing = false;
+	var syncTimer = null, syncFails = 0, syncing = false, syncQuiet = 0;
 	function schedule(ms) {
 		clearTimeout(syncTimer);
 		syncTimer = setTimeout(sync, ms);
 	}
 	function interval() {
-		var base = Math.max(3, +B.poll || 10) * 1000;
-		// Arka plandaki sekme dakikada bir bakar (bildirim için); sekmeye dönünce hemen eşitlenir.
-		if (document.hidden) base = Math.max(base, 60000);
-		else if (botActive()) base = Math.min(base, 3000);
-		return Math.min(120000, base * Math.pow(2, Math.min(4, syncFails)));
+		var configured = Math.max(3, +B.poll || 10) * 1000;
+		var fast = botActive() ? Math.min(configured, 3000) : configured;
+		// Hata ve 429: katlanarak en çok 60 sn.
+		if (syncFails) return Math.min(60000, fast * Math.pow(2, Math.min(6, syncFails)));
+		// Arka plandaki sekme dakikada bir bakar (yeni mesaj bildirimi için); sekmeye dönünce hemen eşitlenir.
+		if (document.hidden) return Math.max(configured, 60000);
+		// 3 sn yalnız cevap akarken ve son yanıt değişmişken. Yoksa 15 sn tabanına adım adım çık.
+		if (botActive() && !syncQuiet) return fast;
+		var floor = Math.max(configured, 15000);
+		if (fast >= floor) return fast;
+		return Math.min(floor, fast + Math.min(syncQuiet, 3) * Math.ceil((floor - fast) / 3));
 	}
 	/** Asistan cevap hazırlıyor ya da az önce gelen mesaja cevap verecek: kısa aralıkla bakılır. */
 	function botActive() {
@@ -3079,6 +3085,7 @@
 		// Geniş pencere: yavaş sunucuda geç yazılan satırlar da kaçmasın (aynı rev'li satırlar istemcide atlanır).
 		api('sync', { timeout: 20000, query: { since: S.rev ? S.rev - 15000 : 0, chat: S.active || '', after: after || '' } }).then(function (r) {
 			syncFails = 0;
+			var prevUnread = S.unread;
 			S.rev = r.rev;
 			if (r.nonce) nonce = r.nonce;
 			S.conns = r.connections || S.conns;
@@ -3101,6 +3108,8 @@
 			if (r.incoming && r.incoming.length) notify(r.incoming);
 			updateTitle();
 			if (offlineBanner) { offlineBanner.remove(); offlineBanner = null; }
+			var changed = listChanged || (r.messages && r.messages.length) || (r.incoming && r.incoming.length) || r.unread !== prevUnread;
+			syncQuiet = changed ? 0 : Math.min(6, syncQuiet + 1);
 		}).catch(function (e) {
 			syncFails++;
 			if (e.status === 403 || e.code === 'rest_cookie_invalid_nonce') showOffline(t('Oturum süresi doldu. Sayfayı yenileyin.'), true);
@@ -3117,8 +3126,18 @@
 		el.side.insertBefore(offlineBanner, el.side.children[1]);
 	}
 	document.addEventListener('visibilitychange', function () {
-		if (!document.hidden) { schedule(150); markRead(); }
+		if (document.hidden) { if (!syncing) schedule(interval()); return; }
+		syncQuiet = 0;
+		if (!syncing) schedule(0);
+		markRead();
 	});
+	function wake() {
+		if (!syncQuiet || syncFails || syncing || document.hidden) return;
+		syncQuiet = 0;
+		schedule(interval());
+	}
+	root.addEventListener('pointerdown', wake, true);
+	root.addEventListener('keydown', wake, true);
 	window.addEventListener('focus', function () { markRead(); });
 
 	/* ---------- başlat ---------- */

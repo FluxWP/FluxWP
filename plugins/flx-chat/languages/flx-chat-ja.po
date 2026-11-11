@@ -2893,9 +2893,6 @@ msgstr "新しいインターフェイス (実験的): デスクトップおよ�
 msgid "Live update interval (sec)"
 msgstr "ライブアップデート間隔(秒)"
 
-msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
-msgstr "開いているタブは、この間隔 (推奨 10) で新しいメッセージをチェックします。バックグラウンド タブでは、1 分に 1 回チェックされますが、エラー後は頻度が低くなります。"
-
 msgid "Agents"
 msgstr "エージェント"
 
@@ -4471,9 +4468,6 @@ msgstr "エージェントの役割を持っているユーザーはいません
 msgid "Live panel updates"
 msgstr "ライブパネルの更新"
 
-msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
-msgstr "最終更新リクエスト%1$s。パネルが開いている間、%2$d秒 (バックグラウンド タブでは 60 秒) ごとに新しいメッセージがチェックされます。"
-
 msgid "The chat screen has not been opened yet."
 msgstr "まだチャット画面は開いていません。"
 
@@ -4806,3 +4800,10 @@ msgstr "「全員から削除」の期限（時間）"
 
 msgid "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them."
 msgstr "WhatsAppで送信済みメッセージを全員から削除できるのは約2日と12時間（60時間）までです。期限後や受信メッセージは、パネルでのみ非表示になり、相手の端末に残ります。0にすると「全員から削除」をオフにします。削除したメッセージはサーバーから消えず、チームは引き続き開けます。"
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab."
+msgstr "最終更新リクエスト %1$s。パネルが開いている間、%2$d 秒ごとに新しいメッセージを確認します（返信のストリーム中は 3 秒、変化がなければ最大 15 秒）。バックグラウンドのタブでは 1 分に 1 回です。"
+
+msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
+msgstr "開いているタブはこの間隔（推奨 10）で新しいメッセージを確認します。返信のストリーム中は 3 秒ごと、変化がなければ最大 15 秒です。バックグラウンドのタブは 1 分に 1 回確認します。エラー時は間隔が最大 60 秒まで広がります。"
+

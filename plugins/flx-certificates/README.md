@@ -104,6 +104,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/sertifika-sistemi/KURULUM.md
 - Donor-selectable designs: `flxs_donor_templates()` (filter `flxs_donor_templates`).
 - Shortcodes: `[flxs_etkinlikler]`, `[flxs_etkinlik id="3"]`, `[flxs_fidan_sayaci]`, `[flx_sertifika_sorgula]`.
 - Capabilities `flxs_manage`, `flxs_dashboard`, `flxs_own_ref` are registered with Flux Roles; checks are registered with `flx_system_checks`.
+- `POST /flx-certificates/v1/certificates` updates `person.id` only when `flxs_can_see_person()` allows it (same scope as the people directory). Any other id returns 404 and is left unchanged. Managers are not limited.
 
 ## Roadmap
 

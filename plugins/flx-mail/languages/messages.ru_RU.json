@@ -193,7 +193,6 @@
     "Appearance changes are applied to all emails when you save.": "Изменения внешнего вида применяются ко всем электронным письмам при сохранении.",
     "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified.": "Поскольку Google уже подтвердил адрес электронной почты, люди, которые регистрируются в Google, не получают электронное письмо с просьбой «установить пароль/данные для входа», и их учетная запись считается подтвержденной.",
     "Detected plugin: %s": "Обнаруженный плагин:%s.",
-    "No known Google sign-in plugin was detected; a Google return is also recognized from the request.": "Ни один известный плагин для входа в Google не обнаружен; возврат Google также распознается по запросу.",
     "Do not send the WordPress \"login details / set password\" email": "Не отправляйте электронное письмо WordPress «данные для входа/установки пароля».",
     "Do not send the WooCommerce \"your account has been created\" email": "Не отправляйте электронное письмо WooCommerce «Ваша учетная запись создана».",
     "Mark the email as verified (for verification plugins)": "Отметьте адрес электронной почты как подтвержденный (для плагинов проверки)",
@@ -396,7 +395,6 @@
     "People who sign up with Google do not receive the set-password email, and their emails are treated as verified.": "Люди, зарегистрировавшиеся в Google, не получают электронное письмо с указанием пароля, и их электронные письма считаются подтвержденными.",
     "People who sign up with Google receive the set-password email (setting is off).": "Люди, зарегистрировавшиеся в Google, получают электронное письмо с инструкциями по установке пароля (настройка отключена).",
     "Setting": "Настройка",
-    "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped.": "Ни один из известных плагинов для входа в Google не активен. Если вы используете другой плагин, возврат Google все равно обнаруживается, а электронное письмо с паролем останавливается.",
     "No %s connection.": "Нет соединения%s.",
     "Settings entered, not tested yet.": "Настройки введены, еще не проверялись.",
     "Test successful (%s).": "Тест выполнен успешно (%s).",
@@ -773,7 +771,6 @@
     "Last incoming event": "Последнее входящее событие",
     "Request with a bad signature": "Запрос с плохой подписью",
     "Open 24-hour windows": "Открытые круглосуточно окна",
-    "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit.": "Секрет приложения не введен: входящие запросы не проверяются как поступающие из Meta. Добавьте его в разделе «Редактировать».",
     "Approved templates": "Утвержденные шаблоны",
     "WABA ID is required for templates.": "Для шаблонов требуется идентификатор WABA.",
     "No templates. Add them in WhatsApp Manager › Message templates.": "Никаких шаблонов. Добавьте их в WhatsApp Manager › Шаблоны сообщений.",
@@ -784,7 +781,6 @@
     "Needed for the template list.": "Требуется для списка шаблонов.",
     "Permanent access token (System User token)": "Токен постоянного доступа (токен пользователя системы)",
     "App Secret": "Секрет приложения",
-    "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended).": "Проверяет, что входящие вебхуки исходят из Meta. Если пусто, подпись не проверяется (не рекомендуется).",
     "Graph API version": "Версия графического API",
     "Couldn't reach Meta:": "Не удалось связаться с Метой:",
     "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent.": "24-часовое окно закрыто: человек не писал последние 24 часа. Можно отправить только утвержденный шаблон.",
@@ -885,6 +881,12 @@
     "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.": "Используется часовой пояс WordPress. Будущие отправки Netgsm можно отменить до начала.",
     "View delivery queue": "Открыть очередь отправки",
     "WordPress background processing": "Фоновая обработка WordPress",
-    "Worker active": "Worker активен"
+    "Worker active": "Worker активен",
+    "App Secret missing · webhook off": "Секрет приложения не задан · вебхук выключен",
+    "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit.": "Секрет приложения не введен: входящие вебхуки отклоняются, пока он не введен. Добавьте его в разделе «Редактировать».",
+    "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter).": "Ни один из известных плагинов входа через Google не активен. Проверка и подавление письма с паролем применяются, когда поддерживаемый плагин входа фиксирует вход через Google (или через фильтр flxi_user_is_social).",
+    "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter).": "Известный плагин входа через Google не обнаружен; проверка применяется, когда поддерживаемый плагин фиксирует вход через Google (или через фильтр flxi_user_is_social).",
+    "Rejected (App Secret missing)": "Отклонено (секрет приложения не задан)",
+    "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered.": "Проверяет, что входящие вебхуки исходят из Meta. Входящие события отклоняются, пока он не введен."
   }
 }

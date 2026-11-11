@@ -41,7 +41,7 @@ Out of the box, WordPress sends plain text from `wordpress@your-host`, every plu
 - **Sending method:** SMTP with a "Fill in Hostinger settings" button, a separate no-reply@ account, passwords stored encrypted or in `wp-config.php`; falls back to bilgi@ if no-reply@ fails.
 - **E-mails:** every e-mail of WordPress, WooCommerce and FluxWP packages, grouped, with on/off, editor, sender choice, desktop/phone/dark preview and "Send me a test". Unknown e-mails join the list the first time they are sent.
 - **Appearance:** logo for light and dark backgrounds, colours, tagline, address, social links, a tree silhouette footer; images (WebP too) are embedded so every mail program shows them; "Apply appearance to WooCommerce"; PDF download of any preview.
-- **DNS check** for SPF, DKIM and DMARC; Google sign-up users don't get "set your password" mails.
+- **DNS check** for SPF, DKIM and DMARC; Google sign-up users verified by a supported sign-in plugin don't get "set your password" mails.
 
 ### Mailbox, sending and log
 - **Mailbox:** bilgi@ over IMAP with unread and system-mail filters, starred, attachments, reply/reply all/forward, drafts, layouts and **Write reply with AI** (lands in *Awaiting approval*).
@@ -49,7 +49,7 @@ Out of the box, WordPress sends plain text from `wordpress@your-host`, every plu
 - **Log:** every message with time, recipient, subject, source plugin, channel and status; click for the content. Block list from Flux Call Center is honoured.
 
 ### WhatsApp and SMS
-- **Connections:** WhatsApp via Evolution API, Flux WPAPI or Cloud API (Meta), SMS via Netgsm; several numbers, a default per channel, QR or pairing-code connect, status, restart, log out.
+- **Connections:** WhatsApp via Evolution API, Flux WPAPI or Cloud API (Meta, with required `X-Hub-Signature-256` App Secret webhook verification), SMS via Netgsm; several numbers, a default per channel, QR or pairing-code connect, status, restart, log out.
 - **Test** a connection with text, image, voice message, document or (Cloud API) a template.
 
 ## Screenshots
@@ -105,7 +105,8 @@ Passwords and API keys are never readable or writable through any tool.
 ## For developers
 
 - Templates: `flxi_email_types` filter; send with `flxi_send_email( $key, $to, $vars )`.
-- WhatsApp / SMS: `flxi_send_message()`; new providers with `flxi_connection_types`.
+- WhatsApp / SMS: `flxi_send_message()`; new providers with `flxi_connection_types`. Cloud API (`wacloud`) requires `app_secret` and rejects unsigned or unconfigured webhook `POST` requests.
+- Google sign-in verification: `flxi_user_is_social( $user_id )` and `flxi_verified_meta` (only provider-recorded Google logins or `flxi_user_is_social` filter mark accounts verified or suppress new-user password e-mails; request heuristics in `flxi_is_google_request()` do not).
 - Mailbox: `flxi_mailbox_query()`, `flxi_mailbox_new_draft()` (also `POST /wp-json/flxi/v1/mailbox/new-draft`).
 - Block list: `flx_contact_blocked`; quota: `flxi_quota_left()`.
 

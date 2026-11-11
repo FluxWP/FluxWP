@@ -562,9 +562,6 @@ msgstr "Google e-posta adresini zaten doğruladığı için Google ile kayıt ol
 msgid "Detected plugin: %s"
 msgstr "Algılanan eklenti: %s"
 
-msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
-msgstr "Bilinen bir Google giriş eklentisi algılanmadı; Google dönüşü istekten de anlaşılır."
-
 msgid "Do not send the WordPress \"login details / set password\" email"
 msgstr "WordPress \"oturum açma bilgileri / parola belirleme\" e-postasını gönderme"
 
@@ -1170,9 +1167,6 @@ msgstr "Google ile kayıt olanlara parola belirleme e-postası gidiyor (ayar kap
 
 msgid "Setting"
 msgstr "Ayar"
-
-msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
-msgstr "Bilinen bir Google giriş eklentisi etkin değil. Başka bir eklenti kullanılıyorsa da Google dönüşü algılanır ve parola e-postası durdurulur."
 
 msgid "No %s connection."
 msgstr "%s bağlantısı yok."
@@ -2306,9 +2300,6 @@ msgstr "İmzası tutmayan istek"
 msgid "Open 24-hour windows"
 msgstr "Açık 24 saat penceresi"
 
-msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
-msgstr "App Secret girilmedi: gelen isteklerin Meta'dan geldiği doğrulanmıyor. Düzenle'den ekleyin."
-
 msgid "Approved templates"
 msgstr "Onaylı şablonlar"
 
@@ -2338,9 +2329,6 @@ msgstr "Kalıcı erişim anahtarı (System User token)"
 
 msgid "App Secret"
 msgstr "Uygulama gizli anahtarı (App Secret)"
-
-msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
-msgstr "Gelen webhook'ların Meta'dan geldiğini doğrular. Boşsa imza denetlenmez (önerilmez)."
 
 msgid "Graph API version"
 msgstr "Graph API sürümü"
@@ -2644,3 +2632,22 @@ msgstr "WordPress arka plan işlemleri"
 
 msgid "Worker active"
 msgstr "Worker etkin"
+
+msgid "App Secret missing · webhook off"
+msgstr "App Secret eksik · webhook kapalı"
+
+msgid "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit."
+msgstr "App Secret girilmedi: girilene kadar gelen webhook'lar reddedilir. Düzenle'den ekleyin."
+
+msgid "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "Bilinen bir Google giriş eklentisi etkin değil. Doğrulama ve parola e-postasını durdurma, desteklenen bir giriş eklentisi Google girişi kaydettiğinde (ya da flxi_user_is_social filtresiyle) uygulanır."
+
+msgid "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "Bilinen bir Google giriş eklentisi algılanmadı; doğrulama, desteklenen bir eklenti Google girişi kaydettiğinde (ya da flxi_user_is_social filtresiyle) uygulanır."
+
+msgid "Rejected (App Secret missing)"
+msgstr "Reddedildi (App Secret eksik)"
+
+msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
+msgstr "Gelen webhook'ların Meta'dan geldiğini doğrular. Girilene kadar gelen olaylar reddedilir."
+

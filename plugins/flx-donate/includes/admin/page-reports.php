@@ -292,13 +292,13 @@ final class FLXB_Page_Reports {
 		header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( 'report-' . $r['id'] . ( $res['from'] ? '-' . $res['from'] : '' ) . ( $res['to'] ? '_' . $res['to'] : '' ) . '.csv' ) . '"' );
 		$out = fopen( 'php://output', 'w' );
 		fwrite( $out, "\xEF\xBB\xBF" );
-		fputcsv( $out, wp_list_pluck( $res['cols'], 'label' ) );
+		fputcsv( $out, array_map( 'flxb_csv_cell', wp_list_pluck( $res['cols'], 'label' ) ) );
 		foreach ( $res['rows'] as $row ) {
 			$line = array();
 			foreach ( $res['cols'] as $k => $c ) {
 				$line[] = $c['dim'] ? FLXB_Reports::show( $c['kind'], $row[ $k ] ) : $row[ $k ];
 			}
-			fputcsv( $out, $line );
+			fputcsv( $out, array_map( 'flxb_csv_cell', $line ) );
 		}
 		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 		exit;

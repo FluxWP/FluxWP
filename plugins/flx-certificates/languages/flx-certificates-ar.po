@@ -1090,3 +1090,7 @@ msgstr "فُتح %1$s مرة عبر QR و%2$s مرة من الموقع."
 
 msgid "No map yet: the link opens the event page until a location is entered."
 msgstr "لا توجد خريطة بعد: يفتح الرابط صفحة الفعالية حتى يُدخَل موقع."
+
+msgid "Person not found."
+msgstr "لم يُعثر على الشخص."
+

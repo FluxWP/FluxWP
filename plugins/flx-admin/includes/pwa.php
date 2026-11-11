@@ -285,8 +285,10 @@ function flxa_pwa_auth() {
 
 /**
  * Uygulama (standalone) içindeki giriş sayfası: Google girişi ayrı pencerede bitince oturum çerezi bu sayfaya
- * geç ulaşabiliyor. Sayfa öne gelince ve dış girişe tıklandıktan sonra 2 dakika boyunca 2 sn'de bir sorulur;
- * oturum açıksa panele geçilir. Uygulama dışındaki tarayıcıda hiçbir şey yapmaz.
+ * geç ulaşabiliyor. Sayfa öne gelince ve dış girişe tıklandıktan sonra 2 dakika boyunca sorulur
+ * (hemen, sonra 2 sn; yanıt değişmezse 15 sn'ye kadar seyrekleşir). Gizli sekmede durur, dönünce hemen sorar.
+ * Hata veya HTTP 429 katlanarak en çok 60 sn bekler. Aynı anda tek istek vardır. Oturum açıksa panele geçilir.
+ * Uygulama dışındaki tarayıcıda hiçbir şey yapmaz.
  */
 function flxa_pwa_login_watch() {
 	if ( ! flxa_pwa_on() ) {
@@ -302,11 +304,13 @@ function flxa_pwa_login_watch() {
 var sa=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone;
 if(sa){try{document.cookie='flxa_app=1; path=/; max-age=31536000; samesite=lax'+(location.protocol==='https:'?'; secure':'');}catch(e){}}
 if(!sa||/[?&]action=(logout|lostpassword|rp|resetpass|register)/.test(location.search))return;
-var busy=0,until=0,t=0;
-function ask(){if(busy||document.hidden)return;busy=1;
-fetch(c.u+'&_='+Date.now(),{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json();}).then(function(j){if(j&&j.in)location.replace(c.to);}).catch(function(){}).then(function(){busy=0;});}
-function poll(){until=Date.now()+120000;if(t)return;t=setInterval(function(){if(Date.now()>until){clearInterval(t);t=0;return;}ask();},2000);}
-document.addEventListener('visibilitychange',function(){if(!document.hidden){ask();poll();}});
+var busy=0,until=0,t=0,quiet=0,fails=0;
+function delay(){if(fails)return Math.min(60000,2000*Math.pow(2,Math.min(6,fails)));return Math.min(15000,2000+Math.min(quiet,3)*4500);}
+function arm(ms){if(t)clearTimeout(t);t=0;if(document.hidden||Date.now()>until)return;t=setTimeout(ask,ms);}
+function ask(){if(t){clearTimeout(t);t=0;}if(busy||document.hidden)return;busy=1;
+fetch(c.u+'&_='+Date.now(),{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw r;return r.json();}).then(function(j){fails=0;if(j&&j.in){location.replace(c.to);return;}var d=delay();quiet=Math.min(6,quiet+1);return d;}).catch(function(){fails=Math.min(8,fails+1);return delay();}).then(function(d){busy=0;if(d&&!document.hidden&&Date.now()<=until)arm(d);});}
+function poll(now){until=Date.now()+120000;quiet=0;fails=0;if(busy)return;arm(now?0:delay());}
+document.addEventListener('visibilitychange',function(){if(document.hidden){if(t){clearTimeout(t);t=0;}return;}poll(1);});
 window.addEventListener('pageshow',ask);window.addEventListener('focus',ask);
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a,button');if(a&&!a.closest('#loginform'))poll();},true);
 })(<?php echo wp_json_encode( $cfg, JSON_UNESCAPED_SLASHES ); ?>);</script>

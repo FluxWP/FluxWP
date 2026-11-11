@@ -1101,7 +1101,9 @@
 				return r.json().catch(function () {
 					return {};
 				}).then(function (j) {
-					throw new Error((j && j.message) || T.error);
+					var err = new Error((j && j.message) || T.error);
+					err.status = r.status;
+					throw err;
 				});
 			}
 			if (ct.indexOf('ndjson') < 0) {
@@ -1142,6 +1144,21 @@
 			}
 			return pump();
 		}).catch(function (e) {
+			// 409: bu sohbet zaten cevaplanıyor. Hata ve yeniden dene gösterme; metni kutuya geri koy.
+			if (e.status === 409) {
+				S.msgs = S.msgs.filter(function (m) {
+					return m !== tmp;
+				});
+				var gone = el.msgs && el.msgs.querySelector('[data-id="' + tmp.id + '"]');
+				if (gone) {
+					gone.remove();
+				}
+				if (el.ta && !String(el.ta.value || '').trim()) {
+					el.ta.value = text;
+				}
+				showTyping(false);
+				return;
+			}
 			showTyping(false);
 			if (stream) {
 				stream.remove();
@@ -1165,7 +1182,7 @@
 		}).then(function () {
 			S.busy = false;
 			if (el.ta) {
-				el.sendBtn.disabled = !el.ta.value.trim();
+				onInput();
 			}
 			updateExtras();
 			schedulePoll();

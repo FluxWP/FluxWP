@@ -204,6 +204,15 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 	if ( ! flxcb_rate( 'cmsg|' . $conv['id'], 12, MINUTE_IN_SECONDS ) ) {
 		return flxcb_rest_err( 'flxcb_rate', __( 'You\'re typing too fast. Wait a moment and try again.', 'flx-chatbot' ), 429 );
 	}
+	// Asistan çalışacaksa aynı sohbette ikinci isteği hemen çevir. Mesaj yazılmaz.
+	$guard = 0;
+	if ( flxcb_bot_active( $conv ) ) {
+		if ( ! flxcb_flight_acquire( (int) $conv['id'] ) ) {
+			return flxcb_rest_err( 'flxcb_busy', __( 'Still answering. Please wait a moment.', 'flx-chatbot' ), 409 );
+		}
+		$guard = (int) $conv['id'];
+	}
+	try {
 	$before = (int) $req->get_param( 'after' );
 	$mid    = flxcb_add_message( array( 'conv_id' => (int) $conv['id'], 'role' => 'visitor', 'body' => $text ) );
 	$conv   = flxcb_get_conversation( (int) $conv['id'] );
@@ -220,11 +229,12 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 		return flxcb_rest_out( $state );
 	}
 
-	/* Asistan: NDJSON akışı. */
+	/* Asistan: NDJSON akışı. Duvar saati 45 sn; PHP sınırı onun biraz üstünde. */
 	ignore_user_abort( true );
 	if ( function_exists( 'set_time_limit' ) ) {
-		@set_time_limit( 90 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+		@set_time_limit( 55 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
 	}
+	$deadline = microtime( true ) + 45;
 	if ( ! headers_sent() ) {
 		nocache_headers();
 		header( 'Content-Type: application/x-ndjson; charset=utf-8' );
@@ -258,7 +268,8 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 		function ( $ev ) use ( $line ) {
 			$line( array( 'e' => $ev['t'], 'd' => $ev['d'] ) );
 		},
-		$page
+		$page,
+		$deadline
 	);
 	$conv = flxcb_get_conversation( (int) $conv['id'] );
 	if ( is_wp_error( $res ) ) {
@@ -282,6 +293,11 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 		)
 	);
 	exit;
+	} finally {
+		if ( $guard ) {
+			flxcb_flight_release( $guard );
+		}
+	}
 }
 
 function flxcb_rest_handoff( WP_REST_Request $req ) {

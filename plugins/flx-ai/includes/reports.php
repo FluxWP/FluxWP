@@ -236,9 +236,9 @@ add_action(
 		header( 'Content-Disposition: attachment; filename="flx-ai-' . wp_date( 'Y-m', $from ) . '.csv"' );
 		$fh = fopen( 'php://output', 'w' ); // phpcs:ignore
 		fwrite( $fh, "\xEF\xBB\xBF" ); // phpcs:ignore
-		fputcsv( $fh, array( 'time', 'kind', 'source', 'purpose', 'user_id', 'provider', 'model', 'tool', 'in_tokens', 'out_tokens', 'cache_read', 'cache_write', 'cost_usd', 'cost_without_cache_usd', 'estimated', 'ms', 'ok', 'error' ) );
+		fputcsv( $fh, array_map( 'flxai_csv_cell', array( 'time', 'kind', 'source', 'purpose', 'user_id', 'provider', 'model', 'tool', 'in_tokens', 'out_tokens', 'cache_read', 'cache_write', 'cost_usd', 'cost_without_cache_usd', 'estimated', 'ms', 'ok', 'error' ) ) );
 		foreach ( (array) $rows as $r ) {
-			fputcsv( $fh, array( wp_date( 'Y-m-d H:i:s', (int) $r['ts'] ), $r['kind'], $r['source'], $r['purpose'], $r['user_id'], $r['provider'], $r['model'], $r['tool'], $r['in_tok'], $r['out_tok'], $r['cache_read'], $r['cache_write'], $r['cost'], $r['full_cost'], $r['est'], $r['ms'], $r['ok'], $r['error'] ) );
+			fputcsv( $fh, array_map( 'flxai_csv_cell', array( wp_date( 'Y-m-d H:i:s', (int) $r['ts'] ), $r['kind'], $r['source'], $r['purpose'], $r['user_id'], $r['provider'], $r['model'], $r['tool'], $r['in_tok'], $r['out_tok'], $r['cache_read'], $r['cache_write'], $r['cost'], $r['full_cost'], $r['est'], $r['ms'], $r['ok'], $r['error'] ) ) );
 		}
 		fclose( $fh ); // phpcs:ignore
 		exit;

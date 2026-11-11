@@ -531,7 +531,7 @@ function flx_youtube_facade( $html, $block ) {
 	<?php
 	return ob_get_clean();
 }
-add_filter( 'render_block', 'flx_youtube_facade', 20, 2 );
+add_filter( 'render_block_core/embed', 'flx_youtube_facade', 20, 2 );
 
 /**
  * Ön ayar / AI için ayar şeması (Flux Setup `flx_settings_schema`). Açıklamalar makine içindir (AI, ön ayar yazarı).

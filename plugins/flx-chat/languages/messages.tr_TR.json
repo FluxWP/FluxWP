@@ -969,7 +969,6 @@
     "Also show WhatsApp group messages": "WhatsApp grup mesajlarını da göster",
     "New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app": "Yeni arayüz (deneysel): Sohbetler sayfası masaüstü ve mobil uygulamayla aynı ekranla açılır",
     "Live update interval (sec)": "Canlı güncelleme sıklığı (sn)",
-    "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.": "Açık sekmede bu aralıkla yeni mesaj kontrol edilir (önerilen 10). Sekme arka plandayken dakikada bir, hata olursa giderek seyrekleşir.",
     "Agents": "Temsilciler",
     "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access.": "Bir kullanıcıya %s rolü verin; yalnız sohbet ekranını görür, ayarlara giremez. Yöneticiler her zaman erişir.",
     "Add new user": "Yeni kullanıcı ekle",
@@ -1495,7 +1494,6 @@
     "Users with the agent role: %d.": "Temsilci rolündeki kullanıcı sayısı: %d.",
     "No user has the agent role; only administrators can use it for now.": "Temsilci rolünde kullanıcı yok; şimdilik yalnız yöneticiler kullanabilir.",
     "Live panel updates": "Panelin canlı güncellemesi",
-    "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).": "Son güncelleme isteği %1$s. Panel açıkken %2$d sn'de bir yeni mesaj sorulur (arka plandaki sekmede 60 sn).",
     "The chat screen has not been opened yet.": "Sohbet ekranı henüz hiç açılmadı.",
     "WhatsApp line": "WhatsApp hattı",
     "No line added.": "Hiç hat eklenmemiş.",
@@ -1606,6 +1604,8 @@
     "The time limit for deleting for everyone has passed. You can hide it in the panel instead.": "Herkesten silme süresi doldu. Bunun yerine panelde gizleyebilirsiniz.",
     "WhatsApp did not delete the message.": "WhatsApp mesajı silmedi.",
     "Delete for everyone time limit (hours)": "Herkesten silme süresi (saat)",
-    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp gönderilen mesajı herkesten silmeye yalnız yaklaşık 2 gün 12 saat (60 saat) izin verir. Bu süre geçince ya da gelen mesajlarda mesaj yalnız panelde gizlenir, kişinin telefonunda kalır. 0 herkesten silmeyi kapatır. Silinen mesajlar sunucudan hiç kaldırılmaz; ekip yine açıp görebilir."
+    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp gönderilen mesajı herkesten silmeye yalnız yaklaşık 2 gün 12 saat (60 saat) izin verir. Bu süre geçince ya da gelen mesajlarda mesaj yalnız panelde gizlenir, kişinin telefonunda kalır. 0 herkesten silmeyi kapatır. Silinen mesajlar sunucudan hiç kaldırılmaz; ekip yine açıp görebilir.",
+    "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.": "Son güncelleme isteği %1$s. Panel açıkken %2$d sn'de bir yeni mesaj sorulur (cevap akarken 3 sn, değişiklik yoksa 15 sn'ye kadar) ve arka plandaki sekmede dakikada bir.",
+    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "Açık sekmede bu aralıkla yeni mesaj kontrol edilir (önerilen 10); cevap akarken 3 sn'de bir, değişiklik yoksa 15 sn'ye kadar. Arka plandaki sekme dakikada bir bakar. Hatalarda aralık 60 sn'ye kadar seyrekleşir."
   }
 }

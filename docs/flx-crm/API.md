@@ -112,7 +112,7 @@ Otomasyonlar (0.2) bu eylemleri tetikleyici olarak kullanacak.
 | GET | `/stats`, `/meta` | Özet sayaçlar; roller, segmentler, etiketler |
 | GET | `/segments`, `/segments/{id}/contacts` | Kayıtlı segmentler ve kişileri |
 | POST | `/segments/preview` | `{ rules }` → `count, summary, sample` |
-| POST | `/score` | RFM'i yeniden hesapla |
+| POST | `/score` | RFM'i yeniden hesapla. Bir çağrı yaklaşık 20 saniye çalışır; `done: false` ise `flxcrm_score_cursor` kaldığı kişiyi tutar ve sonraki çağrı veya `flxcrm_daily` devam eder |
 
 ## Entegrasyonlar
 

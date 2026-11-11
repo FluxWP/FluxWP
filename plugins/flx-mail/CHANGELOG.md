@@ -3,6 +3,16 @@
 ## 1.13.19 — 2026-11-10
 - Store the shared operational log in one table tagged by plugin and defer a background batch when fewer than 5 seconds remain before the 45-second request deadline.
 
+## 1.13.18 — 2026-11-10
+- Prime member meta (`billing_phone`, `first_name`, `last_name`) in pages of 500 while collecting campaign recipients, so a role list does not run three meta queries per user. The list is still built in that one request. A cron queue run budgets 25 s (20 s otherwise) and will not claim a row unless the remaining time covers the transport timeout (at least 5 s, at most 30 s) plus a 5 s margin. A row left in `processing` returns to the queue after 10 minutes while attempts remain.
+
+## 1.13.17 — 2026-11-10
+- Campaign progress and the delivery queue pause while the tab is hidden and poll immediately when it is visible again. The short interval (1.5 s on the campaign screen, 5 s on the queue) stays only while the result is changing; otherwise the wait steps up to 15 s. A quota pause still waits 5 min. Errors and HTTP 429 back off exponentially up to 60 s, and a loop never overlaps its previous request.
+
+## 1.13.16 — 2026-11-10
+- Security (WhatsApp Cloud API): require App Secret on `wacloud` connections and reject webhook `POST` requests with `403` (`no_secret`) when App Secret is empty, before parsing payloads or firing `flxi_wacloud_event` / `flxi_whatsapp_event`. Show webhook status in Connections, Setup and System Check when App Secret is missing.
+- Security (Google sign-in): mark accounts as verified (`flxi_social`, `flxi_email_verified`, `flxi_verified_meta`) and suppress registration/password emails only when a supported social-login plugin has recorded a Google login for the user (or via `flxi_user_is_social`), never from request parameters or Referer alone.
+
 ## 1.13.15 — 2026-11-10
 - Batch Netgsm recipients in REST v2 packets, persist provider job IDs, reconcile per-recipient delivery reports and avoid resending uncertain submissions.
 - Add a live delivery queue, local stopping, future Netgsm scheduling/cancellation, protected REST actions and ten native locale catalogs.

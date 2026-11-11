@@ -1195,3 +1195,7 @@ msgstr "放置在站点聊天 #%d之后"
 
 msgid "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel."
 msgstr "[[“网站的人工智能支持聊天窗口:使用 Flux AI,对网站内容和产品进行 24/7 响应、潜在客户收集、WooCommerce 信息、一键传输给现场代表(Flux Chat 收件箱或插件自己的收件箱)、文件共享、阅读回执、聊天结束评分和下班后留下消息。颜色、位置、头像、文本和可见性可从面板自定义。”, 'tr']]"
+
+msgid "Still answering. Please wait a moment."
+msgstr "仍在回答。请稍等。"
+

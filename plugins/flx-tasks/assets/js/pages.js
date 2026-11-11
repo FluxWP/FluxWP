@@ -1012,12 +1012,6 @@
 		));
 		if (s.ai_hub && window.FLXAIModelPicker) setTimeout(function () { window.FLXAIModelPicker.attach(modelSel); }, 0);
 		inner.appendChild(h('section.flxg-card-box',
-			h('h2', t('MCP sunucusu')),
-			sw('mcp_enabled', t('MCP sunucusunu aç'), t('Claude, Cursor gibi yapay zekâ istemcileri görevleri okuyup yazabilir. Her kişi kendi anahtarını Profil sayfasından üretir.')),
-			h('.flxg-copyrow', h('code', d.mcpUrl), h('button.flxg-btn.is-sm', { type: 'button', onclick: function () { Y.copy(d.mcpUrl); } }, Y.icon('copy', 14), t('Kopyala'))),
-			h('a.flxg-link-btn', { href: '#/profile' }, t('Anahtarları yönet'))
-		));
-		inner.appendChild(h('section.flxg-card-box',
 			h('h2', t('Veri')),
 			sw('delete_data', t('Eklenti silinince tüm görev verisini de sil'), t('Kapalıyken eklentiyi silmek verilere dokunmaz.'))
 		));
@@ -1056,42 +1050,12 @@
 				} else store('desktop', null);
 			} }), h('span', h('b', t('Masaüstü bildirimleri')), h('small', t('Görevler sekmesi açıkken yeni bildirimler tarayıcı bildirimi olarak da gelir.')))) : null
 		));
-		var keysBox = h('section.flxg-card-box');
-		inner.appendChild(keysBox);
-		function drawKeys(r, fresh) {
-			Y.clear(keysBox);
-			keysBox.appendChild(h('h2', t('MCP bağlantısı')));
-			if (!r.enabled) keysBox.appendChild(h('p.flxg-error', t('MCP sunucusu kapalı. Yönetici Ayarlar sayfasından açabilir.')));
-			keysBox.appendChild(h('p.flxg-muted', t('Claude, ChatGPT, Cursor gibi MCP destekli bir istemciye bu adresi ve kişisel anahtarınızı ekleyin. Asistan yalnız sizin görebildiğiniz listelerde, sizin yetkinizle çalışır.')));
-			keysBox.appendChild(h('.flxg-copyrow', h('code', r.url), h('button.flxg-btn.is-sm', { type: 'button', onclick: function () { Y.copy(r.url); } }, Y.icon('copy', 14), t('Kopyala'))));
-			if (fresh) {
-				keysBox.appendChild(h('.flxg-newkey',
-					h('b', t('Yeni anahtarınız (yalnız şimdi gösterilir):')),
-					h('.flxg-copyrow', h('code', fresh), h('button.flxg-btn.is-sm.is-primary', { type: 'button', onclick: function () { Y.copy(fresh); } }, Y.icon('copy', 14), t('Kopyala'))),
-					h('small.flxg-help', t('İstemcide başlık olarak "Authorization: Bearer <anahtar>" kullanın. Başlık eklenemiyorsa adresin sonuna ?key=<anahtar> ekleyin.'))
-				));
-			}
-			var rows = r.keys.map(function (k) {
-				return h('tr',
-					h('td', h('b', k.label || t('Adsız')), h('div.flxg-muted', h('code', k.hint))),
-					S.me.can.manage ? h('td', k.userName) : null,
-					h('td.flxg-muted', t('Son kullanım: {d}', { d: k.lastUsed ? Y.ago(k.lastUsed) : t('hiç') })),
-					h('td', h('button.flxg-icon-btn.is-sm', { type: 'button', title: t('Sil'), onclick: function () {
-						Y.confirm(t('Anahtarı sil'), t('Bu anahtarı kullanan istemciler bağlantıyı kaybeder.'), t('Sil'), true).then(function (ok) {
-							if (ok) Y.api('DELETE', 'mcp-keys/' + k.id).then(function (x) { drawKeys(x); }, Y.fail);
-						});
-					} }, Y.icon('trash', 15)))
-				);
-			});
-			if (rows.length) keysBox.appendChild(h('.flxg-table-wrap', h('table.flxg-table', h('tbody', rows))));
-			keysBox.appendChild(h('.flxg-row-btns.is-left', h('button.flxg-btn', { type: 'button', onclick: function () {
-				Y.prompt(t('Anahtar adı (örn: Claude masaüstü)'), '', t('Oluştur')).then(function (label) {
-					if (label === null) return;
-					Y.api('POST', 'mcp-keys', { label: label }).then(function (x) { drawKeys(x, x.key); }, Y.fail);
-				});
-			} }, Y.icon('key', 15), t('Yeni anahtar oluştur'))));
-		}
-		Y.api('GET', 'mcp-keys').then(function (r) { drawKeys(r); }, Y.fail);
+		inner.appendChild(h('section.flxg-card-box',
+			h('h2', t('MCP')),
+			S.config.aiMcpUrl
+				? h('p.flxg-muted', t('Flux Tasks araçları Flux AI & MCP üzerinden kullanılabilir.'), ' ', h('a', { href: S.config.aiMcpUrl }, t('Flux AI & MCP')))
+				: h('p.flxg-muted', t('Flux Tasks araçları Flux AI & MCP gerektirir.'))
+		));
 	}
 
 	/* =====================================================================

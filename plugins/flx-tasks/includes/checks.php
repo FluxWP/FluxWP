@@ -112,9 +112,11 @@ function flxg_system_checks() {
 	} else {
 		$add( 'ai', $g_ai, __( 'AI', 'flx-tasks' ), 'warning', flxg_ai_off_message(), $ai_url, flxg_ai_hub() ? __( 'Flux AI', 'flx-tasks' ) : __( 'Plugins', 'flx-tasks' ) );
 	}
-	$keys = count( flxg_mcp_keys() );
-	/* translators: %d: key count */
-	$add( 'mcp', $g_ai, __( 'MCP server', 'flx-tasks' ), 'info', flxg_setting( 'mcp_enabled' ) ? sprintf( __( 'On, %d personal key(s).', 'flx-tasks' ), $keys ) : __( 'Off.', 'flx-tasks' ), $settings, __( 'Settings', 'flx-tasks' ) );
+	if ( flxg_ai_hub() ) {
+		$add( 'mcp', $g_ai, __( 'MCP', 'flx-tasks' ), 'info', __( 'Flux Tasks tools are available through Flux AI & MCP.', 'flx-tasks' ), admin_url( 'admin.php?page=flx-ai-mcp' ), __( 'Flux AI & MCP', 'flx-tasks' ) );
+	} else {
+		$add( 'mcp', $g_ai, __( 'MCP', 'flx-tasks' ), 'info', __( 'Flux Tasks tools require Flux AI & MCP.', 'flx-tasks' ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-tasks' ) );
+	}
 
 	return $out;
 }

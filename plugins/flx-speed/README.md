@@ -50,13 +50,13 @@ Query Monitor tells you what happened on the page you are looking at; it forgets
 - **Server:** OS, web server, PHP limits and disabled functions, extensions, OPcache, caches, WordPress constants and active plugins. Read from `/proc` and PHP, no `shell_exec` and no external services.
 - **Database:** version, key settings, status, table sizes and a clean-up section (admin only, with confirmation).
 - **Autoload:** total size and the 40 largest options with their owner. **Cron:** every scheduled event, overdue ones and when cron last ran.
-- **Custom login URL:** your own address such as `/fluxadmin` instead of wp-login.php; old addresses return 404, and a wp-config constant turns it off if you get locked out.
+- **Custom login URL:** your own address such as `/fluxadmin` instead of wp-login.php; old addresses return 404, including `/wp-login.php/x` and other path forms. A wp-config constant turns it off if you get locked out.
 - **PageSpeed switches:** remove unused theme CSS and inline it per page, minify CSS/JS, defer head scripts, drop unused theme.json fonts and preload the first-screen font, unlock viewport zoom, remove the emoji script. Each one is a toggle; risky ones start off. Flux SEO's site audit suggests them with one click, and non-composited animations are listed by file.
 - **System Check:** checks and one-click fixes from every FluxWP package (`flx_system_checks`, `flx_system_fixes`).
 - Dashboard widget with live boxes, p95, failing and slow requests and the top suggestions.
 
 ### Light on shared hosting
-- Visitors only trigger cheap hooks (errors, HTTP calls, timing). Query capture runs only on sampled requests, for logged-in staff and when profiling a page.
+- Visitors only trigger cheap hooks (errors, HTTP calls, timing). Query capture runs only on sampled requests, when profiling a page, and for an authorized user who opened wp-admin (a signed cookie, 30 minutes). A logged-in cookie alone does not turn it on.
 - One INSERT at the end of a request; old rows are pruned on the fly. Emails, phone numbers, IBANs, tokens and secrets are masked before anything is stored.
 
 ## Screenshots
