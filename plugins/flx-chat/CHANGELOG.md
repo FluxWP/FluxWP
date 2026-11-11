@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.39.0
+- Call centre: clicking a donation record opens a detailed donation window: amount and status (receipt awaiting approval and awaiting payment shown apart), date, order, confirmation code, source, who entered it, items (on behalf of), receipts, certificates, donor and referral, note. From there you can open the chat, open the donation record or mark it paid.
+- Donation rows show a referral chip; when the gift has none, the donor's earlier referral is shown dimmed.
+- New REST route: GET /flx-chat/v1/records/donations/<id>. The chat screen opens straight to a chat when called with ?phone=.
+
 ## 1.38.2
 - Experimental Flux panel: when `assets/flux/chunks.json` marks a chunk build, the chat screen loads `flux-modules.js` as an ES module and each module screen as its own hashed file. Mount options are stored before the module runs and the screen mounts once. Without the manifest, the page still loads the single classic script.
 

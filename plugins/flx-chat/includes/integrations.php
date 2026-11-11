@@ -37,6 +37,7 @@ function flxc_register_records_rest() {
 		array( '/records/search', 'GET', 'flxc_rest_records_search' ),
 		array( '/records/chat/(?P<id>\d+)', 'GET', 'flxc_rest_records_for_chat' ),
 		array( '/records/donations', 'POST', 'flxc_rest_create_donation' ),
+		array( '/records/donations/(?P<id>\d+)', 'GET', 'flxc_rest_donation_detail' ),
 		array( '/records/donations/(?P<id>\d+)/status', 'POST', 'flxc_rest_donation_status' ),
 		array( '/records/certificates', 'POST', 'flxc_rest_create_certificate' ),
 		array( '/records/certificates/(?P<id>\d+)', 'GET', 'flxc_rest_get_certificate' ),
@@ -187,7 +188,10 @@ function flxc_local_date( $utc ) {
 function flxc_donation_for_js( array $d ) {
 	$donor = ! empty( $d['donor_id'] ) ? FLXB_Donors::get( (int) $d['donor_id'] ) : null;
 	$type  = ! empty( $d['type_id'] ) ? FLXB_Types::get( (int) $d['type_id'] ) : null;
-	$st    = function_exists( 'flxb_status_label' ) ? flxb_status_label( $d['status'] ) : array( '', $d['status'] );
+	// 1.39.0: "Receipt awaiting approval" / "Awaiting payment" instead of a bare "Pending".
+	$st    = function_exists( 'flxb_donation_state' ) ? flxb_donation_state( $d ) : ( function_exists( 'flxb_status_label' ) ? flxb_status_label( $d['status'] ) : array( '', $d['status'] ) );
+	$ref   = (int) ( $d['ref_user_id'] ?? 0 );
+	$dref  = ! $ref && ! empty( $d['donor_id'] ) && method_exists( 'FLXB_Refs', 'donor_ref' ) ? FLXB_Refs::donor_ref( (int) $d['donor_id'] ) : 0;
 	$what  = array_filter( array( $type ? $type['title'] : '' ) );
 	$ol    = (string) $d['option_label'];
 	if ( '' !== $ol && ( ! $what || false === mb_stripos( $what[0], $ol ) ) ) {
@@ -211,7 +215,83 @@ function flxc_donation_for_js( array $d ) {
 		'cert'     => (string) $d['certificate_code'],
 		'receipts' => flxc_receipt_count( 'donation', (int) $d['id'] ),
 		'admin'    => flxb_can_manage() ? admin_url( 'admin.php?page=flxb-donations&donation=' . (int) $d['id'] ) : '',
+		'ref'      => $ref || $dref ? FLXB_Refs::name( $ref ? $ref : $dref ) : '',
+		'refDonor' => ! $ref && $dref ? 1 : 0, // 1.39.0: the donor's earlier referral, this gift has none
 	);
+}
+
+/**
+ * 1.39.0: everything about one gift for the call centre's donation window: lines, receipts,
+ * certificates, donor, referral and what the agent may do.
+ */
+function flxc_rest_donation_detail( WP_REST_Request $req ) {
+	if ( ! flxc_flxb_on() ) {
+		return new WP_Error( 'flxc_off', __( 'Flux Donate is not active.', 'flx-chat' ), array( 'status' => 404 ) );
+	}
+	$d = FLXB_Donations::get( (int) $req['id'] );
+	if ( ! $d || 'trash' === $d['status'] ) {
+		return new WP_Error( 'flxc_404', __( 'Donation not found.', 'flx-chat' ), array( 'status' => 404 ) );
+	}
+	$out   = flxc_donation_for_js( $d );
+	$sibs  = FLXB_Donations::siblings( $d );
+	$order = (int) $d['wc_order_id'] && function_exists( 'wc_get_order' ) ? wc_get_order( (int) $d['wc_order_id'] ) : null;
+	$total = $order ? (float) $order->get_total() : array_sum( array_map( 'floatval', wp_list_pluck( $sibs, 'amount' ) ) );
+	$out['total']   = flxc_money( $total, $order ? $order->get_currency() : $d['currency'] );
+	$out['order']   = $order ? (string) $order->get_order_number() : '';
+	$out['track']   = (string) $d['track'];
+	$out['ago']     = function_exists( 'flx_time_ago' ) ? flx_time_ago( strtotime( $d['created_at'] . ' UTC' ) ) : '';
+	$out['source']  = class_exists( 'FLXB_Page_Donations' ) ? FLXB_Page_Donations::source_label( $d['source'] ) : (string) $d['source'];
+	$out['lines']   = array();
+	foreach ( $sibs as $s ) {
+		$items = class_exists( 'FLXB_Items' ) ? FLXB_Items::for_donation( (int) $s['id'] ) : array();
+		$type  = (int) $s['type_id'] ? FLXB_Types::get( (int) $s['type_id'] ) : null;
+		$names = array_values( array_filter( array_map( 'strval', wp_list_pluck( $items, 'beneficiary_name' ) ), 'strlen' ) );
+		$out['lines'][] = array(
+			'title' => '' !== (string) $s['option_label'] ? (string) $s['option_label'] : ( $type ? (string) $type['title'] : __( 'Donation', 'flx-chat' ) ),
+			'type'  => $type ? (string) $type['title'] : '',
+			'qty'   => max( 1, (int) $s['quantity'] ),
+			'money' => flxc_money( $s['amount'], $s['currency'] ),
+			'names' => $names,
+		);
+	}
+	$out['receiptFiles'] = array();
+	if ( ! class_exists( 'FLXB_Approval' ) && defined( 'FLXB_DIR' ) && is_readable( FLXB_DIR . 'includes/admin/class-flxb-approval.php' ) ) {
+		require_once FLXB_DIR . 'includes/admin/class-flxb-approval.php';
+	}
+	if ( class_exists( 'FLXB_Approval' ) ) {
+		foreach ( FLXB_Approval::receipts( $d, $order ) as $r ) {
+			$out['receiptFiles'][] = array( 'name' => $r['name'], 'url' => $r['url'], 'kind' => $r['kind'], 'meta' => $r['meta'], 'warn' => $r['warn'] );
+		}
+	}
+	$out['certs'] = array();
+	$codes        = array_values( array_unique( array_filter( array_map( 'strval', array_merge( array( (string) $d['certificate_code'] ), (array) ( FLXB_Donations::meta( $d )['certificates'] ?? array() ) ) ) ) ) );
+	foreach ( $codes as $code ) {
+		$c = function_exists( 'flxs_get_certificate_by_code' ) ? flxs_get_certificate_by_code( $code ) : null;
+		if ( $c ) {
+			$out['certs'][] = array( 'number' => '' !== (string) $c['number'] ? (string) $c['number'] : (string) $c['code'], 'name' => (string) ( $c['data']['values']['ad_soyad'] ?? '' ), 'url' => function_exists( 'flxs_certificate_url' ) ? flxs_certificate_url( $c ) : '', 'revoked' => 'revoked' === ( $c['status'] ?? '' ) );
+		}
+	}
+	$fmt          = function ( $p ) {
+		$p = (string) $p;
+		return '' !== $p && function_exists( 'flxb_format_phone' ) ? flxb_format_phone( $p ) : $p;
+	};
+	$donor        = (int) $d['donor_id'] ? FLXB_Donors::get( (int) $d['donor_id'] ) : null;
+	$out['donor'] = $donor ? array(
+		'name'  => (string) $donor['name'],
+		'phone' => $fmt( $donor['phone'] ),
+		'email' => (string) $donor['email'],
+		'gifts' => (int) $donor['donation_count'],
+		'total' => flxc_money( $donor['total_amount'], $d['currency'] ),
+	) : null;
+	$ref           = (int) ( $d['ref_user_id'] ?? 0 );
+	$u             = $ref ? get_userdata( $ref ) : null;
+	$out['refInfo'] = $u ? array( 'name' => (string) $u->display_name, 'phone' => $fmt( get_user_meta( $ref, 'billing_phone', true ) ) ) : null;
+	$m             = FLXB_Donations::meta( $d );
+	$by            = ! empty( $m['created_by'] ) ? get_userdata( (int) $m['created_by'] ) : null;
+	$out['by']     = $by ? (string) $by->display_name : '';
+	$out['note']   = (string) ( $m['note'] ?? '' );
+	$out['canPay'] = 'pending' === $d['status'] && flxc_can_record_donation();
+	return $out;
 }
 
 function flxc_certificate_for_js( array $c ) {

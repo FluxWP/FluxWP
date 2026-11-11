@@ -3654,4 +3654,8 @@ return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'Show in the list'=>'Listede göster',
 'Review'=>'İncele',
 '%s more' . chr(0) . '%s more'=>'%s tane daha' . chr(0) . '%s tane daha',
+'Paid gifts'=>'Ödenmiş bağış',
+'Open chat'=>'Sohbeti aç',
+'This gift has no referral.'=>'Bu bağışın referansı yok.',
+'The donor\'s earlier gifts came through %s.'=>'Bağışçının önceki bağışları %s aracılığıyla geldi.',
 ));

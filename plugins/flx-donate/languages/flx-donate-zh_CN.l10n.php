@@ -3656,5 +3656,9 @@ return array(
 'Show in the list'=>'在列表中显示',
 'Review'=>'查看',
 '%s more' . chr(0) . '%s more'=>'还有 %s 条',
+'Paid gifts'=>'已付款捐赠',
+'Open chat'=>'打开聊天',
+'This gift has no referral.'=>'此捐赠没有推荐人。',
+'The donor\'s earlier gifts came through %s.'=>'该捐赠者此前的捐赠来自 %s。',
 ),
 );

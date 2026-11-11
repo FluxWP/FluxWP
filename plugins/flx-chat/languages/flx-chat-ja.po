@@ -4807,3 +4807,47 @@ msgstr "最終更新リクエスト %1$s。パネルが開いている間、%2$d
 msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 msgstr "開いているタブはこの間隔（推奨 10）で新しいメッセージを確認します。返信のストリーム中は 3 秒ごと、変化がなければ最大 15 秒です。バックグラウンドのタブは 1 分に 1 回確認します。エラー時は間隔が最大 60 秒まで広がります。"
 
+msgid "Flux Donate is not active."
+msgstr "Flux Donate が有効ではありません。"
+
+msgid "Donor's earlier referral"
+msgstr "寄付者の以前の紹介者"
+
+msgid "Referral"
+msgstr "紹介者"
+
+msgid "Order"
+msgstr "注文"
+
+msgid "Confirmation code"
+msgstr "確認コード"
+
+msgid "Recorded from"
+msgstr "登録元"
+
+msgid "Entered by"
+msgstr "登録者"
+
+msgid "Items"
+msgstr "明細"
+
+msgid "On behalf of: {n}"
+msgstr "名義: {n}"
+
+msgid "Receipts"
+msgstr "振込明細"
+
+msgid "Revoked"
+msgstr "取り消し済み"
+
+msgid "{n} paid gifts · {m}"
+msgstr "支払い済み {n} 件 · {m}"
+
+msgid "No contact details."
+msgstr "連絡先情報がありません。"
+
+msgid "No referral."
+msgstr "紹介者なし。"
+
+msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+msgstr "入金は口座に届きましたか？確認すると証明書が作成され、寄付者に送られます。"

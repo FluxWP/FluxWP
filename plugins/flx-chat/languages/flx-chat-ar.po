@@ -4807,3 +4807,47 @@ msgstr "طلب التحديث الأخير %1$s. عندما تكون اللوح�
 msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 msgstr "تتحقق علامة التبويب المفتوحة من الرسائل الجديدة في هذه الفترة (يُوصى بـ 10)، كل 3 ث أثناء بث الرد، وحتى 15 ث إن لم يتغير شيء. علامة التبويب الخلفية تتحقق مرة كل دقيقة. عند الأخطاء تمتد المهلة حتى 60 ث."
 
+msgid "Flux Donate is not active."
+msgstr "Flux Donate غير مفعّل."
+
+msgid "Donor's earlier referral"
+msgstr "مُحيل المتبرع السابق"
+
+msgid "Referral"
+msgstr "المُحيل"
+
+msgid "Order"
+msgstr "الطلب"
+
+msgid "Confirmation code"
+msgstr "رمز التأكيد"
+
+msgid "Recorded from"
+msgstr "مصدر التسجيل"
+
+msgid "Entered by"
+msgstr "أدخله"
+
+msgid "Items"
+msgstr "البنود"
+
+msgid "On behalf of: {n}"
+msgstr "نيابةً عن: {n}"
+
+msgid "Receipts"
+msgstr "الإيصالات"
+
+msgid "Revoked"
+msgstr "ملغى"
+
+msgid "{n} paid gifts · {m}"
+msgstr "{n} تبرعات مدفوعة · {m}"
+
+msgid "No contact details."
+msgstr "لا توجد بيانات اتصال."
+
+msgid "No referral."
+msgstr "لا يوجد مُحيل."
+
+msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+msgstr "هل وصلت الدفعة إلى الحساب؟ عند التأكيد تُنشأ الشهادة وتُرسل إلى المتبرع."

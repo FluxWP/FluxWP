@@ -6001,3 +6001,15 @@ msgstr[2] "%s أخرى"
 msgstr[3] "%s أخرى"
 msgstr[4] "%s أخرى"
 msgstr[5] "%s أخرى"
+
+msgid "Paid gifts"
+msgstr "تبرعات مدفوعة"
+
+msgid "Open chat"
+msgstr "فتح المحادثة"
+
+msgid "This gift has no referral."
+msgstr "لا يوجد مُحيل لهذا التبرع."
+
+msgid "The donor's earlier gifts came through %s."
+msgstr "وصلت تبرعات المتبرع السابقة عن طريق %s."

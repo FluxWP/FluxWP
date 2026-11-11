@@ -4807,3 +4807,47 @@ msgstr "Son güncelleme isteği %1$s. Panel açıkken %2$d sn'de bir yeni mesaj 
 msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 msgstr "Açık sekmede bu aralıkla yeni mesaj kontrol edilir (önerilen 10); cevap akarken 3 sn'de bir, değişiklik yoksa 15 sn'ye kadar. Arka plandaki sekme dakikada bir bakar. Hatalarda aralık 60 sn'ye kadar seyrekleşir."
 
+msgid "Flux Donate is not active."
+msgstr "Flux Donate etkin değil."
+
+msgid "Donor's earlier referral"
+msgstr "Bağışçının önceki referansı"
+
+msgid "Referral"
+msgstr "Referans"
+
+msgid "Order"
+msgstr "Sipariş"
+
+msgid "Confirmation code"
+msgstr "Onay kodu"
+
+msgid "Recorded from"
+msgstr "Kayıt kaynağı"
+
+msgid "Entered by"
+msgstr "Kaydı açan"
+
+msgid "Items"
+msgstr "Kalemler"
+
+msgid "On behalf of: {n}"
+msgstr "Adına: {n}"
+
+msgid "Receipts"
+msgstr "Dekontlar"
+
+msgid "Revoked"
+msgstr "İptal"
+
+msgid "{n} paid gifts · {m}"
+msgstr "{n} ödenmiş bağış · {m}"
+
+msgid "No contact details."
+msgstr "İletişim bilgisi yok."
+
+msgid "No referral."
+msgstr "Referans yok."
+
+msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+msgstr "Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir."

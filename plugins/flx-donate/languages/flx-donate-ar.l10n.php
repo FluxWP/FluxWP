@@ -3656,5 +3656,9 @@ return array(
 'Show in the list'=>'عرض في القائمة',
 'Review'=>'مراجعة',
 '%s more' . chr(0) . '%s more'=>'%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى' . chr(0) . '%s أخرى',
+'Paid gifts'=>'تبرعات مدفوعة',
+'Open chat'=>'فتح المحادثة',
+'This gift has no referral.'=>'لا يوجد مُحيل لهذا التبرع.',
+'The donor\'s earlier gifts came through %s.'=>'وصلت تبرعات المتبرع السابقة عن طريق %s.',
 ),
 );

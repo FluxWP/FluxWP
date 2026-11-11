@@ -3656,5 +3656,9 @@ return array(
 'Show in the list'=>'一覧で表示',
 'Review'=>'確認',
 '%s more' . chr(0) . '%s more'=>'他 %s 件',
+'Paid gifts'=>'支払い済みの寄付',
+'Open chat'=>'チャットを開く',
+'This gift has no referral.'=>'この寄付には紹介者がいません。',
+'The donor\'s earlier gifts came through %s.'=>'この寄付者の以前の寄付は %s 経由でした。',
 ),
 );

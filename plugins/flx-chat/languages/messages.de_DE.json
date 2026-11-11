@@ -1607,6 +1607,21 @@
     "Delete for everyone time limit (hours)": "Frist für Für alle löschen (Stunden)",
     "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp erlaubt das Löschen einer gesendeten Nachricht für alle nur etwa 2 Tage und 12 Stunden (60 Stunden). Danach oder bei empfangenen Nachrichten wird die Nachricht nur im Panel ausgeblendet und bleibt auf dem Telefon des Kontakts. 0 deaktiviert Für alle löschen. Gelöschte Nachrichten werden nie vom Server entfernt; das Team kann sie weiterhin öffnen.",
     "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.": "Letzte Aktualisierungsanforderung %1$s. Während das Panel geöffnet ist, prüft es alle %2$d s auf neue Nachrichten (3 s, während eine Antwort gestreamt wird, bis zu 15 s, wenn sich nichts ändert) und einmal pro Minute in einem Hintergrundtab.",
-    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "Der geöffnete Tab sucht in diesem Intervall nach neuen Nachrichten (10 empfohlen), alle 3 s während eine Antwort gestreamt wird und bis zu 15 s, wenn sich nichts ändert. Ein Hintergrundtab prüft einmal pro Minute. Bei Fehlern wird der Abstand auf bis zu 60 s gedehnt."
+    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "Der geöffnete Tab sucht in diesem Intervall nach neuen Nachrichten (10 empfohlen), alle 3 s während eine Antwort gestreamt wird und bis zu 15 s, wenn sich nichts ändert. Ein Hintergrundtab prüft einmal pro Minute. Bei Fehlern wird der Abstand auf bis zu 60 s gedehnt.",
+    "Flux Donate is not active.": "Flux Donate ist nicht aktiv.",
+    "Donor's earlier referral": "Frühere Empfehlung des Spenders",
+    "Referral": "Empfehlung",
+    "Order": "Bestellung",
+    "Confirmation code": "Bestätigungscode",
+    "Recorded from": "Erfasst über",
+    "Entered by": "Erfasst von",
+    "Items": "Positionen",
+    "On behalf of: {n}": "Im Namen von: {n}",
+    "Receipts": "Belege",
+    "Revoked": "Widerrufen",
+    "{n} paid gifts · {m}": "{n} bezahlte Spenden · {m}",
+    "No contact details.": "Keine Kontaktdaten.",
+    "No referral.": "Keine Empfehlung.",
+    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "Ist die Zahlung auf dem Konto eingegangen? Nach der Bestätigung wird die Urkunde erstellt und an den Spender gesendet."
   }
 }

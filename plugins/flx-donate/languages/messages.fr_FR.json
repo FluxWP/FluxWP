@@ -1886,6 +1886,10 @@
     "Receipts awaiting approval": "Justificatifs en attente de validation",
     "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "Le donateur a envoyé un justificatif. Ouvrez-le, vérifiez le compte bancaire, puis validez ou refusez.",
     "Show in the list": "Afficher dans la liste",
-    "Review": "Examiner"
+    "Review": "Examiner",
+    "Paid gifts": "Dons payés",
+    "Open chat": "Ouvrir la conversation",
+    "This gift has no referral.": "Ce don n'a pas de parrain.",
+    "The donor's earlier gifts came through %s.": "Les dons précédents du donateur sont passés par %s."
   }
 }
