@@ -11,6 +11,9 @@
  * Telefon kodu yalnız kayıtlı tam numarası (`flx_phone`) o numara olan hesaba girer.
  * Sipariş veya fatura bilgisinden hesap açılmaz ve bağlanmaz.
  * Yetkili personel (edit_posts) varsayılan olarak kodla giremez; OAuth (tarayıcı) kullanır.
+ *
+ * Kayıtlı bağışçı kendi numarasını kanıtlar: GET/POST/DELETE /flxapp/v1/me/phone.
+ * Kod yalnız o telefona gider (WhatsApp ya da flxapp_otp_send). E-postaya düşmez.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -349,10 +352,316 @@ function flxapp_rest_otp_verify( WP_REST_Request $req ) {
 	return flxapp_token_pair( $client['id'], $user->ID, 'flx', strtolower( wp_generate_password( 24, false ) ), $app_id );
 }
 
+const FLXAPP_PHONE_SELF_AT  = 'flx_phone_self_at';
+const FLXAPP_PHONE_SELF_KEY = 'flx_phone_self_key';
+
+/** Görünen kuyruk: 8+ hanede son 4, daha kısada son 2. Tam numara dönmez. */
+function flxapp_phone_tail( $phone ) {
+	$phone = preg_replace( '/\D/', '', (string) $phone );
+	$n     = strlen( $phone );
+	if ( $n < 2 ) {
+		return '';
+	}
+	$show = $n >= 8 ? 4 : 2;
+	return substr( $phone, -$show );
+}
+
+function flxapp_phone_mask( $phone ) {
+	$phone = preg_replace( '/\D/', '', (string) $phone );
+	$tail  = flxapp_phone_tail( $phone );
+	if ( '' === $tail ) {
+		return '';
+	}
+	return str_repeat( '•', strlen( $phone ) - strlen( $tail ) ) . $tail;
+}
+
+/** Kod (kullanıcı, telefon) ikilisine bağlı. Başka hesaba ya da başka numaraya taşınamaz. */
+function flxapp_phone_code_hash( $uid, $phone, $code ) {
+	return hash_hmac( 'sha256', (int) $uid . '|' . $phone . '|' . (string) $code, wp_salt( 'auth' ) );
+}
+
+function flxapp_phone_code_matches( $uid, $phone, $code, $hash ) {
+	$given  = flxapp_phone_code_hash( $uid, $phone, $code );
+	$expect = is_string( $hash ) && strlen( $hash ) === strlen( $given ) ? $hash : str_repeat( '0', strlen( $given ) );
+	return hash_equals( $expect, $given );
+}
+
+function flxapp_phone_code_key( $uid, $phone ) {
+	return 'flxapp_ph_' . flxapp_hash( 'self|' . (int) $uid . '|' . $phone );
+}
+
+/** Deneme sayaçları: kullanıcı, numara ve çağıran. Yeni kod bunları silmez. */
+function flxapp_phone_fail_ids( $uid, $phone, $caller ) {
+	$caller = '' !== (string) $caller ? (string) $caller : 'unknown';
+	return array(
+		'selfu|' . (int) $uid,
+		'selfp|' . $phone,
+		'selfc|' . $caller,
+	);
+}
+
+function flxapp_phone_fail_max( $uid, $phone, $caller ) {
+	$n = 0;
+	foreach ( flxapp_phone_fail_ids( $uid, $phone, $caller ) as $id ) {
+		$n = max( $n, flxapp_otp_fail_count( $id ) );
+	}
+	return $n;
+}
+
+function flxapp_phone_fail_note( $uid, $phone, $caller ) {
+	foreach ( flxapp_phone_fail_ids( $uid, $phone, $caller ) as $id ) {
+		flxapp_otp_fail_hit( $id );
+	}
+}
+
+function flxapp_phone_fail_clear_all( $uid, $phone, $caller ) {
+	foreach ( flxapp_phone_fail_ids( $uid, $phone, $caller ) as $id ) {
+		flxapp_otp_fail_clear( $id );
+	}
+}
+
+/**
+ * Başarısız doğrulama. $burn true ise kodu hemen düşürür (başka hesaba ait numara).
+ *
+ * @param array<string,mixed> $d
+ */
+function flxapp_phone_note_failure( $uid, $phone, $caller, $key, array $d, $burn = false ) {
+	flxapp_phone_fail_note( $uid, $phone, $caller );
+	if ( ! $d ) {
+		return;
+	}
+	$d['tries'] = (int) ( $d['tries'] ?? 0 ) + 1;
+	$ttl        = isset( $d['exp'] ) ? (int) $d['exp'] - time() : FLXAPP_OTP_TTL;
+	if ( $burn || $d['tries'] >= FLXAPP_OTP_TRIES || $ttl <= 0 ) {
+		delete_transient( $key );
+		return;
+	}
+	set_transient( $key, $d, $ttl );
+}
+
+function flxapp_phone_unavailable() {
+	return new WP_Error( 'flxapp_phone_unavailable', __( 'Phone confirmation is not available.', 'flx-app' ), array( 'status' => 403 ) );
+}
+
+/** Ayar açık, bağışçı kodla girebilir ve numara yazıcıları var. */
+function flxapp_phone_self_open( WP_User $user ) {
+	if ( ! flxapp_opt( 'phone_self_verify' ) || ! flxapp_otp_allowed( $user ) ) {
+		return false;
+	}
+	return function_exists( 'flxr_normalize_phone' ) && function_exists( 'flxr_set_user_phone' ) && function_exists( 'flxr_user_by_phone' ) && function_exists( 'flxr_user_phone' );
+}
+
+/** WhatsApp (gizli gönderim) ya da flxapp_otp_send kayıtlı. E-posta kanal sayılmaz. */
+function flxapp_phone_channel_ready() {
+	return function_exists( 'flxc_send_private_text' ) || function_exists( 'flxc_send_text' ) || has_filter( 'flxapp_otp_send' );
+}
+
+function flxapp_phone_self_current( $uid ) {
+	$phone = function_exists( 'flxr_user_phone' ) && function_exists( 'flxr_normalize_phone' ) ? flxr_normalize_phone( flxr_user_phone( $uid ) ) : '';
+	$key   = (string) get_user_meta( (int) $uid, FLXAPP_PHONE_SELF_KEY, true );
+	$at    = (int) get_user_meta( (int) $uid, FLXAPP_PHONE_SELF_AT, true );
+	$self  = '' !== $phone && $phone === $key && $at > 0;
+	return array( $phone, $self );
+}
+
+/**
+ * Kodu yalnız kanıtlanan numaraya gönderir. Filtre e-posta derse yok sayılır.
+ *
+ * @return string|false kanal
+ */
+function flxapp_phone_send_code( WP_User $user, $phone, $code ) {
+	$site = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
+	/* translators: 1: code, 2: site name */
+	$text = sprintf( __( '%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone.', 'flx-app' ), $code, $site );
+	$via  = apply_filters( 'flxapp_otp_send', null, $user, 'phone', $phone, $code, $text );
+	if ( is_string( $via ) && '' !== $via && 'email' !== $via ) {
+		return $via;
+	}
+	$whatsapp = (string) $phone;
+	if ( function_exists( 'flxc_normalize_phone' ) && (string) flxc_normalize_phone( $phone ) !== $whatsapp ) {
+		$whatsapp = '';
+	}
+	if ( '' !== $whatsapp && function_exists( 'flxc_send_private_text' ) ) {
+		$r = flxc_send_private_text( $whatsapp, $text, array( 'source' => 'flxapp-phone' ) );
+		if ( true === $r ) {
+			return 'whatsapp';
+		}
+	} elseif ( '' !== $whatsapp && function_exists( 'flxc_send_text' ) ) {
+		$r = flxc_send_text( $whatsapp, $text, array( 'source' => 'flxapp-phone', 'name' => $user->display_name ) );
+		if ( ! is_wp_error( $r ) ) {
+			return 'whatsapp';
+		}
+	}
+	return false;
+}
+
+/** Hesap e-postasına kısa uyarı. Tam numara ve kod yazılmaz. */
+function flxapp_phone_notify( WP_User $user, $kind, $phone ) {
+	if ( ! is_email( $user->user_email ) ) {
+		return;
+	}
+	$site = wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES );
+	$tail = flxapp_phone_tail( $phone );
+	if ( 'changed' === $kind ) {
+		/* translators: %s: site name */
+		$subject = sprintf( __( 'The phone number on your %s account was changed', 'flx-app' ), $site );
+		/* translators: %s: last digits of the phone number */
+		$body = sprintf( __( 'The phone number on your account now ends in %s. If you did not do this, contact the site administrator.', 'flx-app' ), $tail );
+	} elseif ( 'removed' === $kind ) {
+		/* translators: %s: site name */
+		$subject = sprintf( __( 'The phone number was removed from your %s account', 'flx-app' ), $site );
+		/* translators: %s: last digits of the phone number */
+		$body = sprintf( __( 'The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator.', 'flx-app' ), $tail );
+	} else {
+		/* translators: %s: site name */
+		$subject = sprintf( __( 'A phone number was added to your %s account', 'flx-app' ), $site );
+		/* translators: %s: last digits of the phone number */
+		$body = sprintf( __( 'A phone number ending in %s was added to your account. If you did not do this, contact the site administrator.', 'flx-app' ), $tail );
+	}
+	wp_mail( $user->user_email, $subject, $body );
+}
+
+function flxapp_rest_phone_get() {
+	$user = wp_get_current_user();
+	if ( ! $user instanceof WP_User ) {
+		return flxapp_phone_unavailable();
+	}
+	list( $phone, $self ) = flxapp_phone_self_current( $user->ID );
+	$open = flxapp_phone_self_open( $user ) && flxapp_phone_channel_ready();
+	return array(
+		'phone'         => flxapp_phone_mask( $phone ),
+		'available'     => $open,
+		'self_verified' => $self,
+	);
+}
+
+function flxapp_rest_phone_start( WP_REST_Request $req ) {
+	$user = wp_get_current_user();
+	if ( ! $user instanceof WP_User || ! flxapp_phone_self_open( $user ) ) {
+		return flxapp_phone_unavailable();
+	}
+	$phone = flxr_normalize_phone( $req->get_param( 'phone' ) );
+	if ( '' === $phone ) {
+		return new WP_Error( 'flxapp_phone', __( 'Enter a valid phone number.', 'flx-app' ), array( 'status' => 400 ) );
+	}
+	$uid    = (int) $user->ID;
+	$caller = flxapp_ip();
+	if ( ! flxapp_rate( 'phone_ip', 6, 10 * MINUTE_IN_SECONDS ) || ! flxapp_rate( 'phone_num|' . $phone, 3, 10 * MINUTE_IN_SECONDS, false ) || ! flxapp_rate( 'phone_user|' . $uid, 3, 10 * MINUTE_IN_SECONDS, false ) ) {
+		return new WP_Error( 'flxapp_rate', __( 'Too many attempts. Try again in a little while.', 'flx-app' ), array( 'status' => 429 ) );
+	}
+	$fails = flxapp_phone_fail_max( $uid, $phone, $caller );
+	if ( $fails >= FLXAPP_OTP_TRIES ) {
+		return new WP_Error( 'flxapp_rate', __( 'Too many attempts. Try again in a little while.', 'flx-app' ), array( 'status' => 429 ) );
+	}
+	if ( ! flxapp_phone_channel_ready() ) {
+		return flxapp_phone_unavailable();
+	}
+	$code = str_pad( (string) random_int( 0, 999999 ), 6, '0', STR_PAD_LEFT );
+	$via  = flxapp_phone_send_code( $user, $phone, $code );
+	if ( ! $via ) {
+		return flxapp_phone_unavailable();
+	}
+	set_transient(
+		flxapp_phone_code_key( $uid, $phone ),
+		array(
+			'user'  => $uid,
+			'hash'  => flxapp_phone_code_hash( $uid, $phone, $code ),
+			'tries' => $fails,
+			'exp'   => time() + FLXAPP_OTP_TTL,
+		),
+		FLXAPP_OTP_TTL
+	);
+	return array(
+		'sent'      => true,
+		'via'       => $via,
+		'via_label' => flxapp_otp_via_label( $via ),
+		'ttl'       => FLXAPP_OTP_TTL,
+	);
+}
+
+function flxapp_rest_phone_verify( WP_REST_Request $req ) {
+	$user = wp_get_current_user();
+	if ( ! $user instanceof WP_User || ! flxapp_phone_self_open( $user ) ) {
+		return flxapp_phone_unavailable();
+	}
+	$phone = flxr_normalize_phone( $req->get_param( 'phone' ) );
+	$code  = preg_replace( '/\D/', '', (string) $req->get_param( 'code' ) );
+	$bad   = new WP_Error( 'flxapp_phone_code', __( 'The code is wrong or has expired.', 'flx-app' ), array( 'status' => 400 ) );
+	if ( '' === $phone ) {
+		return new WP_Error( 'flxapp_phone', __( 'Enter a valid phone number.', 'flx-app' ), array( 'status' => 400 ) );
+	}
+	$uid    = (int) $user->ID;
+	$caller = flxapp_ip();
+	if ( ! flxapp_rate( 'phone_verify', 20, 10 * MINUTE_IN_SECONDS ) || ! flxapp_rate( 'phone_verify|' . $phone, FLXAPP_OTP_TRIES, 10 * MINUTE_IN_SECONDS, false ) || ! flxapp_rate( 'phone_verify_user|' . $uid, FLXAPP_OTP_TRIES, 10 * MINUTE_IN_SECONDS, false ) ) {
+		return new WP_Error( 'flxapp_rate', __( 'Too many attempts. Try again in a little while.', 'flx-app' ), array( 'status' => 429 ) );
+	}
+	$key    = flxapp_phone_code_key( $uid, $phone );
+	$raw    = get_transient( $key );
+	$d      = is_array( $raw ) ? $raw : array();
+	$locked = flxapp_phone_fail_max( $uid, $phone, $caller ) >= FLXAPP_OTP_TRIES || (int) ( $d['tries'] ?? 0 ) >= FLXAPP_OTP_TRIES;
+	$bound  = $d && (int) ( $d['user'] ?? 0 ) === $uid;
+	$match  = $bound && flxapp_phone_code_matches( $uid, $phone, $code, isset( $d['hash'] ) ? (string) $d['hash'] : '' );
+	// Yanlış kodda da bakılır; doğru kodun süresi aramayı ele vermesin.
+	$other  = flxr_user_by_phone( $phone );
+	$taken  = $match && ! $locked && $other instanceof WP_User && (int) $other->ID !== $uid;
+	if ( ! $d || $locked || ! $match || $taken ) {
+		flxapp_phone_note_failure( $uid, $phone, $caller, $key, $d, $taken );
+		return $bad;
+	}
+	$prev = flxr_normalize_phone( flxr_user_phone( $uid ) );
+	$kind = '' !== $prev && $prev !== $phone ? 'changed' : 'added';
+	$saved = flxr_set_user_phone( $uid, $phone );
+	if ( is_wp_error( $saved ) ) {
+		if ( 'flxr_phone_taken' === $saved->get_error_code() ) {
+			flxapp_phone_note_failure( $uid, $phone, $caller, $key, $d, true );
+			return $bad;
+		}
+		return new WP_Error( 'flxapp_phone', __( 'The phone number could not be saved.', 'flx-app' ), array( 'status' => 500 ) );
+	}
+	delete_transient( $key );
+	flxapp_phone_fail_clear_all( $uid, $phone, $caller );
+	update_user_meta( $uid, FLXAPP_PHONE_SELF_AT, time() );
+	update_user_meta( $uid, FLXAPP_PHONE_SELF_KEY, $phone );
+	do_action( 'flxapp_phone_self_verified', $uid, $phone );
+	flxapp_phone_notify( $user, $kind, $phone );
+	return array(
+		'saved' => true,
+		'phone' => flxapp_phone_mask( $phone ),
+	);
+}
+
+function flxapp_rest_phone_delete() {
+	$user = wp_get_current_user();
+	if ( ! $user instanceof WP_User || ! flxapp_phone_self_open( $user ) ) {
+		return flxapp_phone_unavailable();
+	}
+	$uid = (int) $user->ID;
+	list( $phone, $self ) = flxapp_phone_self_current( $uid );
+	if ( '' === $phone ) {
+		return new WP_Error( 'flxapp_phone_none', __( 'No phone number is saved on this account.', 'flx-app' ), array( 'status' => 404 ) );
+	}
+	if ( ! $self ) {
+		return new WP_Error( 'flxapp_phone_admin', __( 'An administrator manages this phone number.', 'flx-app' ), array( 'status' => 403 ) );
+	}
+	$saved = flxr_set_user_phone( $uid, '' );
+	if ( is_wp_error( $saved ) || true !== $saved ) {
+		return new WP_Error( 'flxapp_phone', __( 'The phone number could not be saved.', 'flx-app' ), array( 'status' => 500 ) );
+	}
+	delete_user_meta( $uid, FLXAPP_PHONE_SELF_AT );
+	delete_user_meta( $uid, FLXAPP_PHONE_SELF_KEY );
+	delete_transient( flxapp_phone_code_key( $uid, $phone ) );
+	flxapp_phone_notify( $user, 'removed', $phone );
+	return array( 'removed' => true );
+}
+
 add_action(
 	'rest_api_init',
 	function () {
 		register_rest_route( 'flxapp/v1', '/otp/start', array( 'methods' => 'POST', 'callback' => 'flxapp_rest_otp_start', 'permission_callback' => '__return_true' ) );
 		register_rest_route( 'flxapp/v1', '/otp/verify', array( 'methods' => 'POST', 'callback' => 'flxapp_rest_otp_verify', 'permission_callback' => '__return_true' ) );
+		register_rest_route( 'flxapp/v1', '/me/phone', array( 'methods' => 'GET', 'callback' => 'flxapp_rest_phone_get', 'permission_callback' => 'flxapp_logged_in' ) );
+		register_rest_route( 'flxapp/v1', '/me/phone/start', array( 'methods' => 'POST', 'callback' => 'flxapp_rest_phone_start', 'permission_callback' => 'flxapp_logged_in' ) );
+		register_rest_route( 'flxapp/v1', '/me/phone/verify', array( 'methods' => 'POST', 'callback' => 'flxapp_rest_phone_verify', 'permission_callback' => 'flxapp_logged_in' ) );
+		register_rest_route( 'flxapp/v1', '/me/phone', array( 'methods' => 'DELETE', 'callback' => 'flxapp_rest_phone_delete', 'permission_callback' => 'flxapp_logged_in' ) );
 	}
 );

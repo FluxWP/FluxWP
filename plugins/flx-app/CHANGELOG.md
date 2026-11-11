@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.8
+- Giriş yapmış bağışçı kendi telefon numarasını kanıtlayıp hesabına kaydedebilir (`GET/POST/DELETE /flxapp/v1/me/phone`). Kod yalnız o numaraya gider (WhatsApp ya da `flxapp_otp_send`); e-postaya düşmez. Personel varsayılan olarak kullanamaz. Ayar `phone_self_verify` varsayılan açıktır. Numara başka hesapta ise yanıt yanlış kodla aynıdır. Başarıda hesabın e-postasına kısa uyarı gider.
+
 ## 0.4.7
 - Başlangıçtaki bugünkü sipariş tutarı ve adedi ile ödeme bekleyen sayısı sipariş nesnesi yüklemeden hesaplanır. HPOS tablosu ya da yazı + postmeta kullanılır; sorgu hata verirse eski döngüye düşülür. 500 sipariş sınırı kalkar. Sonuç 60 saniye `flxapp_dash_wc_paid` ve `flxapp_dash_wc_wait` transient'lerinde durur; günün başlangıcı anahtarda değil değerde tutulur.
 

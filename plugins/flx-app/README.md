@@ -40,6 +40,7 @@ A phone or desktop app for a WordPress site usually means application passwords 
 - RFC 8414 / 9728 metadata and dynamic client registration for MCP clients (off by default; turn it on under Application settings). The Flux SEO endpoint accepts these tokens when the token's scope includes `mcp`.
 - Personal API keys (`Bearer flxak_…`), with or without expiry.
 - **Donor sign-in** with a one-time code by WhatsApp (Flux Call Center) or e-mail; a customer account is created for donors who have orders.
+- **Own phone number:** a signed-in donor confirms a number with a code sent only to that phone and saves it on the account. Staff numbers stay with an administrator.
 - One-time admin session from the app (`/session`), and `X-FluxWP-Token` fallback for hosts that drop the `Authorization` header.
 
 ### What the app shows
@@ -92,14 +93,14 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-app/KURULUM.md) · API r
 
 - Register a native screen: `add_filter( 'flxapp_modules', … )` with `title`, `menu`, `api`, `icon`, `version`.
 - Register app screens as JSON: `add_filter( 'flxapp_manifest', … )` with `flxapp_manifest_file()`; send notifications with `do_action( 'flxapp_push', $user_ids, $message )`.
-- Endpoints `/flxapp/v1/app/bootstrap`, `/config`, `/manifest`, `/me`, `/sync`, `/prefs`, `/devices`, `/session`, `/settings/<option>`, `/otp/*`, `/oauth/*`; see [API.md](../../docs/flx-app/API.md).
+- Endpoints `/flxapp/v1/app/bootstrap`, `/config`, `/manifest`, `/me`, `/me/phone`, `/sync`, `/prefs`, `/devices`, `/session`, `/settings/<option>`, `/otp/*`, `/oauth/*`; see [API.md](../../docs/flx-app/API.md).
 
 ## Roadmap
 
 | | |
 |---|---|
 | ✅ | OAuth 2.0 + PKCE, API keys and MCP discovery |
-| ✅ | Donor sign-in with one-time codes (saved phone or own email; orders do not open an account) |
+| ✅ | Donor sign-in with one-time codes (saved phone or own email; orders do not open an account). A signed-in donor can confirm and save a phone number |
 | ✅ | Role-based menu and native modules |
 | ✅ | Menu per platform and the Application page |
 | ⬜ | Push notifications |

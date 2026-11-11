@@ -447,17 +447,8 @@ msgstr "Let the app open menus without a native screen as admin pages (one-time 
 msgid "Sign in with code"
 msgstr "Sign in with code"
 
-msgid "Let donors sign in to the app with a code sent to their email or phone"
-msgstr "Let donors sign in to the app with a code sent to their email or phone"
-
-msgid "Create a customer account if none exists but there is a donation with these details"
-msgstr "Create a customer account if none exists but there is a donation with these details"
-
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
 msgstr "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
-
-msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
-msgstr "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
 
 msgid "Can create API keys"
 msgstr "Can create API keys"
@@ -1301,3 +1292,61 @@ msgstr "Yetkiniz yok."
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+
+msgid "A phone number was added to your %s account"
+msgstr "A phone number was added to your %s account"
+
+msgid "An administrator manages this phone number."
+msgstr "An administrator manages this phone number."
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr "Create a customer account for an email after its sign-in code is confirmed"
+
+msgid "Enter a valid phone number."
+msgstr "Enter a valid phone number."
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr "Let a signed-in donor confirm a phone number and save it on their account"
+
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+
+msgid "No phone number is saved on this account."
+msgstr "No phone number is saved on this account."
+
+msgid "Own phone number"
+msgstr "Own phone number"
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+
+msgid "Phone confirmation is not available."
+msgstr "Phone confirmation is not available."
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+msgstr "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+
+msgid "The phone number could not be saved."
+msgstr "The phone number could not be saved."
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+
+msgid "The phone number on your %s account was changed"
+msgstr "The phone number on your %s account was changed"
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+
+msgid "The phone number was removed from your %s account"
+msgstr "The phone number was removed from your %s account"
+
+msgid "The token does not include the scope this request needs."
+msgstr "The token does not include the scope this request needs."
+
