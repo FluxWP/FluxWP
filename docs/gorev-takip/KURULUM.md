@@ -1,6 +1,6 @@
-# Flux Tasks 0.8.2 — Kurulum
+# Flux Tasks 0.8.16 — Kurulum
 
-ClickUp benzeri görev takibi. Projeler, klasörler, listeler. Liste, Pano (kanban), Takvim görünümleri ve filtreli kayıtlı görünümler. Özel alanlar, yorumlar (sürükle-bırak dosya), bildirimler, liste yetkileri, yönetici panosu, MCP sunucusu, yapay zekâ (Flux AI üzerinden).
+ClickUp benzeri görev takibi. Projeler, klasörler, listeler. Liste, Pano (kanban), Takvim görünümleri ve filtreli kayıtlı görünümler. Özel alanlar, yorumlar (sürükle-bırak dosya), bildirimler, liste yetkileri, yönetici panosu, yapay zekâ ve MCP araçları (Flux AI & MCP üzerinden).
 
 ## 1. Yükleme
 
@@ -25,7 +25,7 @@ Tablolar `wp_flxg_*` adıyla açılır. Dosyalar `wp-content/uploads/flx-tasks/`
 
 Kaydet'e basmayı unutmayın.
 
-**Sistem kontrolü** (Ayarlar sayfasının en üstü): veritabanı tabloları, dosya klasörü (yazılabilir ve dışarıya kapalı mı), yükleme sınırı, günlük hatırlatma cron'u, yapay zekâ (Flux AI) durumu, MCP ve e-posta durumu. Kırmızı = hata, turuncu = uyarı. Kontroller ortak `flx_system_checks` filtresine de kaydolur; tema ya da Flux Donate'ın toplu Sistem kontrolü ekranında da görünür.
+**Sistem kontrolü** (Ayarlar sayfasının en üstü): veritabanı tabloları, dosya klasörü (yazılabilir ve dışarıya kapalı mı), yükleme sınırı, günlük hatırlatma cron'u, yapay zekâ (Flux AI) durumu, MCP araçlarının Flux AI & MCP'de olup olmadığı ve e-posta durumu. Kırmızı = hata, turuncu = uyarı. Kontroller ortak `flx_system_checks` filtresine de kaydolur; tema ya da Flux Donate'ın toplu Sistem kontrolü ekranında da görünür.
 
 ## 3. Yetki sistemi
 
@@ -81,14 +81,11 @@ Kullanım:
 
 ## 6. MCP (Claude, ChatGPT, Cursor vb.)
 
-1. Görevler → Profil → **Yeni anahtar oluştur**. Anahtar bir kez gösterilir, kopyalayın.
-2. Sunucu adresi: `https://example.org/wp-json/flx-tasks/v1/mcp` (Profil sayfasında kopyalanabilir).
-3. İstemciye ekleyin:
-   - Başlık: `Authorization: Bearer <anahtar>` ya da `X-MCP-Key: <anahtar>`. Anahtar adrese yazılmaz.
-   - Claude Code: `claude mcp add --transport http flx-tasks https://example.org/wp-json/flx-tasks/v1/mcp --header "Authorization: Bearer <anahtar>"`
-4. Araçlar: projeleri/listeleri listele, kişileri listele, görev ara, görev getir, görev oluştur/güncelle/sil, yorum ekle, özel alanları listele, liste oluştur, bildirimleri getir, dokümanları listele, doküman sayfasını oku/düzenle, doküman ve sayfa oluştur.
+Flux Tasks kendi MCP sunucusunu çalıştırmaz. Aynı araçlar Flux AI & MCP sunucusuna kaydolur: `https://example.org/wp-json/flx-mcp/v1/mcp`. Anahtar ve aç/kapa **Flux AI & MCP › MCP** (`admin.php?page=flx-ai-mcp`). Flux AI kurulu değilse görev takibi çalışır; MCP aracı olmaz. Profil sayfası bunu yazar ve Flux AI açıksa o ekrana bağlar.
 
-Anahtar kişiye özeldir, o kişinin yetkisiyle çalışır. Kullanılmayan anahtarı Profil'den silin. Yönetici MCP'yi Ayarlar'dan tamamen kapatabilir.
+Araç adları `flxg_` öneklidir: `flxg_list_projects`, `flxg_list_users`, `flxg_search_tasks`, `flxg_get_task`, `flxg_create_task`, `flxg_update_task`, `flxg_add_comment`, `flxg_list_fields`, `flxg_create_list`, `flxg_delete_task`, `flxg_list_notifications`, `flxg_list_docs`, `flxg_get_doc_page`, `flxg_edit_doc_page`, `flxg_create_doc`, `flxg_create_doc_page`. Eski sunucunun öneksiz adları (ör. `list_projects`) da çalışır. Her araç `flxg_use` ve liste yetkisini kendi içinde denetler. Ortak Flux AI sohbeti aynı araçları kullanır.
+
+Flux AI MCP rotası `edit_posts` ister. `flxg_use` olup `edit_posts` olmayan kullanıcı bu rotaya giremez; Flux AI'nin bu kontrolü gevşetilmedi.
 
 ## 7. Hostinger notları
 
@@ -111,6 +108,7 @@ Yeni sürüm zip'ini aynı yolla yükleyin ("Mevcut olanı yüklenenle değişti
 
 ## Sürüm notları
 
+- **0.8.16**: Kendi MCP sunucusu, anahtar deposu ve Ayarlar'daki MCP anahtarı kalktı. Araçlar Flux AI & MCP'ye `flx_mcp_tools` ile kaydolur.
 - **0.8.2**: Toplantı raporunda kararların ve gündem maddelerinin alt maddeleri de çıkar.
 - **0.8.1**: Toplantı PDF raporu yeni tasarım (logo, bilgi kartları, özet, rozetli tablolar); raporda alt görevler girintili listelenir.
 - **0.8.0**: Flux App (telefon uygulaması) Görevler menüsünü kendi yerel ekranıyla açar; uygulama için `flx-tasks/v1/app/*` uçları. Ek ayar gerekmez; Flux App kurulu değilse hiçbir şey değişmez.
