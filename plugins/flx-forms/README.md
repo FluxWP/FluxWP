@@ -32,7 +32,7 @@ Form plugins usually lock the useful parts (payments, conditional logic, file up
 - 🎨 **Looks like the site.** Forms use the theme's colours, fonts and dark mode automatically; the builder shows the form exactly as it will appear.
 - 📈 **Know what works.** Responses, form views, conversion rate and payments per form, compared with the previous period.
 - 🌱 **Donation to certificate, automatically.** A paid sapling donation creates a certificate (Flux Certificate), sends it by WhatsApp and e-mail and shows it on the thank-you screen.
-- 🔐 **Hardened:** stored XSS, tracking-code IDOR, upload folder and IP detection fixes on top of the original.
+- 🔐 **Hardened:** stored XSS, tracking-code IDOR, upload folder and IP detection fixes on top of the original. Admin e-mail links use a 128-bit key; keys already sent keep working.
 
 ## Features
 

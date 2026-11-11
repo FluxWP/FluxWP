@@ -5,6 +5,9 @@
 - Kod e-postayla (Flux Mail şablonu "Bağış sorgulama kodu"), telefona WhatsApp ya da SMS ile gider. Bağış olsa da olmasa da aynı cevap; kod 10 dk geçerli, 5 hatalı denemede düşer, istek ve günlük gönderim sınırları (e-posta günde 40). Doğrulanan ziyaretçi 30 dk açık kalır.
 - Bağışlar › Ayarlar › **Bağış sorgulama** sekmesi: aç/kapa, kanallar, sayfa seçimi, "Bağışlarım sayfasını oluştur". Sistem kontrolü satırı. TR, EN ve 8 dilde çeviri.
 
+## 2.17.4
+- Partner settlement and report CSV cells are quoted when they would open as a spreadsheet formula. A real number, including a negative amount, stays a number. The donations export uses the same helper.
+
 ## 2.17.3
 - Fix recurring preset changes: compare donation metadata through the same current sanitizer used when saving, including card icons, subtitles, form visibility and extension fields.
 - Preserve runtime WooCommerce IDs outside the preset comparison; repeated apply retains prices and options without false changes.

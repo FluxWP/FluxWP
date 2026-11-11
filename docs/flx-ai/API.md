@@ -164,7 +164,35 @@ if ( flx_ai_enabled( 'flx-x', 'auto_summary' ) ) { $r = flx_ai_complete( 'flx-x'
 
 ## MCP sunucusu (0.7.0)
 
-Ortak MCP sunucusu Flux AI'dadır (önceden Flux SEO içindeydi). Adres `/wp-json/flx-mcp/v1/mcp` (Streamable HTTP, durumsuz, JSON-RPC 2.0). Yönetim: **Flux AI & MCP › MCP** (`admin.php?page=flx-ai-mcp`): aç/kapa, kullanıcıya özel anahtarlar (isteğe bağlı araç kapsamı), son işlemler. Kimlik: `Authorization: Bearer <anahtar>`, `X-MCP-Key` başlığı ya da Uygulama Parolası. Anahtar sorgu dizesinden (`?key=`) okunmaz; kullanıcı yalnız WordPress bu rotayı (`/flx-mcp/v1/mcp`, kısa adres dahil) çalıştırınca kurulur. Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır; Flux AI sohbeti aynı araçları kullanır (değişiklik yapanlar onay ister).
+Ortak MCP sunucusu Flux AI'dadır (önceden Flux SEO içindeydi). Adres `/wp-json/flx-mcp/v1/mcp` (Streamable HTTP, durumsuz, JSON-RPC 2.0). Yönetim: **Flux AI & MCP › MCP** (`admin.php?page=flx-ai-mcp`): aç/kapa, kullanıcıya özel anahtarlar (isteğe bağlı araç kapsamı), son işlemler. Kimlik: `Authorization: Bearer <anahtar>`, `X-MCP-Key` başlığı ya da Uygulama Parolası. Anahtar sorgu dizesinden (`?key=`) okunmaz; kullanıcı yalnız WordPress bu rotayı (`/flx-mcp/v1/mcp`, kısa adres dahil) çalıştırınca kurulur. Bağlanmak `flxai_mcp` ister (aşağıda). Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır; Flux AI sohbeti aynı araçları kullanır (değişiklik yapanlar onay ister).
+
+### Kim bağlanır: `flxai_mcp` (0.10.3)
+
+Rota izni, OAuth onay ekranı, belirteç ve yenileme `flxai_mcp` bakar. Ayarlar, bütün anahtarlar ve sunucuyu açıp kapatmak `manage_options` olarak kalır. OAuth onayı kullanıcının kendi bağlantısını oluşturur.
+
+Varsayılan: `edit_posts` olan her rolde ve WordPress yöneticisinde açıktır (`user_has_cap`; şema 4 kurulumunda bu rollere bir kez de yazılır). Yönetici her zaman bağlanır. Flux Roles kataloğuna `flxr_catalog` grubu `ai` ile eklenir ve `flx_role_caps_supported` ile uygulanır; Roller ve erişim tablosundan `edit_posts` olmayan bir role de verilebilir. MCP ekranı Flux Roles kuruluysa o sayfaya bağlanır ve yetkisi kalkmış kullanıcının anahtarını uyarır.
+
+### Araç kimde görünür (0.10.3)
+
+`tools/list` ve `tools/call` aynı fonksiyonu kullanır (`flxai_mcp_tool_for_user` → `flxai_tool_allowed_for_user`). Sıra, hepsi geçmeden araç yoktur:
+
+1. Yönetici Flux AI & MCP › Araçlar'dan kapatmamış (`flxai_tool_is_off`).
+2. Anahtarın araç kapsamı izin veriyor (kapsam boşsa hepsi, `flxai_mcp_allowed`).
+3. Kullanıcı aracın `cap` değerine sahip. Kayıtta `cap` yoksa ya da boşsa `edit_posts` gerekir (eski araçlar, editör olmayanlar bağlanabildiği için açıkta kalmasın).
+4. `flx_mcp_tool_allowed` true döner.
+
+`tools/list` elenen aracı yazmaz. `tools/call` onu çalıştırmaz ve bilinmeyen araçla aynı hatayı döner (`Unknown tool`, `isError`). Filtre true dönerse kapalı aracı, kapsam dışını ya da yetkisiz kullanıcıyı açmaz. Ortak sohbet aynı fonksiyonu kullanır (`flxai_tools_for_user`); anahtar kapsamı yalnız MCP isteğindedir.
+
+```php
+add_filter( 'flx_mcp_tool_allowed', function ( $allowed, $name, $tool, $user_id ) {
+	if ( 'flxg_create_task' === $name && ! user_can( $user_id, 'flxg_use' ) ) {
+		return false;
+	}
+	return $allowed;
+}, 10, 4 );
+```
+
+Kaynak ve istem (`resources/list`+`resources/read`, `prompts/list`+`prompts/get`) aynı cap kuralını kullanır: `cap` yoksa `edit_posts`. Liste gizler; okuma/get çalıştırmaz ve bilinmeyen kaynak/istem döner. Bu ikisinde `flx_mcp_tool_allowed` uygulanmaz.
 
 ### Araç kaydı: `flx_mcp_tools`
 ```php
@@ -173,7 +201,7 @@ add_filter( 'flx_mcp_tools', function ( $tools ) {
 		'title'       => 'E-posta şablonları',
 		'description' => 'Lists templates.',          // modele gider; İngilizce önerilir
 		'readonly'    => true,                         // false: değiştirir → sohbette onay
-		'cap'         => 'manage_options',             // yoksa edit_posts (MCP) / read (sohbet)
+		'cap'         => 'manage_options',             // yoksa edit_posts (MCP ve sohbet)
 		'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
 		'log'         => true,                         // false: başarılı çağrı Son işlemler'e yazılmaz (yoklama araçları)
 		'source'      => 'flx-mail',                   // isteğe bağlı; yoksa aracı tanımlayan eklentinin klasörü
@@ -184,6 +212,10 @@ add_filter( 'flx_mcp_tools', function ( $tools ) {
 ```
 - Eski filtre **`flxseo_mcp_tools` aynen çalışır** (yeni filtreden sonra uygulanır); mevcut eklentilerin değişmesi gerekmez.
 - Araç adı benzersiz ve eklenti önekli olsun (`flxm_…`, `flxcrm_…`). Sonuç dizi ise `structuredContent` olarak da döner.
+
+### Flux Tasks (0.8.16)
+
+Flux Tasks kendi MCP rotasını çalıştırmaz. Araçlar `flx_mcp_tools` ile `flxg_` önekiyle kaydolur: `flxg_list_projects`, `flxg_list_users`, `flxg_search_tasks`, `flxg_get_task`, `flxg_create_task`, `flxg_update_task`, `flxg_add_comment`, `flxg_list_fields`, `flxg_create_list`, `flxg_delete_task`, `flxg_list_notifications`, `flxg_list_docs`, `flxg_get_doc_page`, `flxg_edit_doc_page`, `flxg_create_doc`, `flxg_create_doc_page`. Eski sunucunun öneksiz adları `aliases` ile çalışmaya devam eder. `cap` ve aracın kendi kontrolü `flxg_use`; liste ve görev yetkisi aracın içinde kalır. Aynı kayıt ortak sohbete de gider; ayrı bir `flxai_tools` kaydı yoktur. Rotaya girmek `flxai_mcp` ister. `edit_posts` olan roller ve yöneticiler bunu varsayılan taşır; yalnız `flxg_use` olan kullanıcıya Flux Roles'tan `flxai_mcp` verilince bağlanır ve yalnız bu araçları görür.
 
 ### Diğer filtreler
 | Filtre | Ne |

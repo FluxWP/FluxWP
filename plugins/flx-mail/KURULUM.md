@@ -85,8 +85,8 @@ Evolution / Flux WPAPI (WhatsApp) ve Netgsm (SMS) bilgilerini yalnız burada gir
 
 1. Meta for Developers'ta bir uygulama açın, WhatsApp ürününü ekleyin, numarayı WhatsApp Manager'da ekleyip doğrulayın.
 2. Business ayarları › Sistem kullanıcıları › kalıcı erişim anahtarı (whatsapp_business_messaging + whatsapp_business_management izinleri).
-3. İletişim › Bağlantılar › **+ Cloud API (Meta)**: Phone Number ID, WABA ID, token, App Secret › Kaydet.
-4. Açılan **Kurulum** penceresindeki adresi ve doğrulama anahtarını Meta › WhatsApp › Yapılandırma › Webhook'a girin, "messages" alanına abone olun. Pencerede "Meta doğrulaması" tarihi görünür.
+3. İletişim › Bağlantılar › **+ Cloud API (Meta)**: Phone Number ID, WABA ID, token, App Secret (zorunlu) › Kaydet.
+4. Açılan **Kurulum** penceresindeki adresi ve doğrulama anahtarını Meta › WhatsApp › Yapılandırma › Webhook'a girin, "messages" alanına abone olun. Pencerede "Meta doğrulaması" tarihi görünür. App Secret girilmemişse gelen webhook istekleri reddedilir.
 5. Kişi son 24 saatte yazmadıysa yalnız onaylı şablon gider; şablonları WhatsApp Manager'da açın, "Onaylı şablonlar"da görün.
 
 Sertifika e-postası artık sertifika görselini gösterir (tıklayınca sertifika sayfası: indirme/paylaşma orada).
@@ -136,8 +136,8 @@ Posta kutusundan gönderilen e-postalar da günlük 100 gönderim sınırına sa
 
 ## 10. Google ile giriş
 
-Ayarlar › Google ile giriş: varsayılan olarak açık. Bilinen eklentiler (Nextend Social Login, Site Kit,
-Super Socializer, miniOrange, Heateor vb.) ve Google dönüşü algılanır; kullanıcı "doğrulanmış" işaretlenir.
+Ayarlar › Google ile giriş: varsayılan olarak açık. Desteklenen eklentilerin (Nextend Social Login, Site Kit,
+Super Socializer, miniOrange, Heateor vb.) kullanıcıya ait Google giriş kaydı (veya `flxi_user_is_social` filtresi) varsa kullanıcı "doğrulanmış" işaretlenir ve parola belirleme e-postası gönderilmez.
 Kullanıcı profilinde "Google ile giriş" satırı görünür.
 
 ## 11. Kontrol

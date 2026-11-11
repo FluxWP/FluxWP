@@ -31,7 +31,7 @@ Volunteer projects live in WhatsApp groups, spreadsheets and memory. A paid proj
 - ✅ **Everything in one list.** Who does what by when, with status, priority, tags and custom fields; switch between list, board and calendar.
 - 💬 **Talk on the task.** Comments, mentions, files and an activity log sit on the task, not in a chat that scrolls away.
 - 📝 **Meetings with minutes.** Agenda, decisions and follow-up subtasks in one place, and a branded PDF report at the end.
-- 🤖 **Ask the assistant.** "What is overdue this week?", "Split this into subtasks", "Summarise the comments": through Flux AI, and through MCP for Claude.
+- 🤖 **Ask the assistant.** "What is overdue this week?", "Split this into subtasks", "Summarise the comments": through Flux AI, and through the shared Flux AI & MCP server.
 
 ## Features
 
@@ -50,7 +50,7 @@ Volunteer projects live in WhatsApp groups, spreadsheets and memory. A paid proj
 
 ### Manage
 - **Usage dashboard:** open, overdue and completed tasks, comments, structure, storage per list and per person.
-- AI assistant and quick actions through Flux AI; all tools available to the shared Flux AI chat and over MCP.
+- AI assistant and quick actions through Flux AI; the same tools (`flxg_` names) are on the shared Flux AI chat and on Flux AI & MCP; the old unprefixed names still work as aliases.
 - Native screen in the Flux App (`flx-tasks/v1/app/*`); system checks.
 
 ## Screenshots

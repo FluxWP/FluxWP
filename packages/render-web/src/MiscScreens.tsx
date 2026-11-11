@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@fluxwp/core';
 import { getPath, type ContentScreen, type Manifest, type SettingsScreen, type TabsScreen } from '@fluxwp/manifest';
 import { runRequest, sourceRequest, useApi, useBaseContext, useRenderer, useText } from '@fluxwp/runtime';
-import { sanitizeHtml } from '@fluxwp/ui';
+import { openSanitizedLink, sanitizeHtml } from '@fluxwp/ui';
 import { ManifestScreen } from './ManifestScreen';
 
 export function SettingsScreenView({ manifest, screen }: { manifest: Manifest; screen: SettingsScreen }) {
@@ -78,7 +78,7 @@ export function ContentScreenView({ manifest, screen, params }: { manifest: Mani
       <div className="fx-body">
         {q.isPending && <div className="fx-skel" />}
         {q.error && <p className="fx-error">{t('states.errorTitle')}</p>}
-        {screen.format === 'html' ? <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }} /> : <p className="fx-pre">{html}</p>}
+        {screen.format === 'html' ? <div onClick={openSanitizedLink} dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }} /> : <p className="fx-pre">{html}</p>}
       </div>
     </div>
   );

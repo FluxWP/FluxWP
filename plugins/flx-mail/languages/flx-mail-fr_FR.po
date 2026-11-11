@@ -562,9 +562,6 @@ msgstr "Étant donné que Google a déjà vérifié l'adresse e-mail, les person
 msgid "Detected plugin: %s"
 msgstr "Plugin détecté :%s"
 
-msgid "No known Google sign-in plugin was detected; a Google return is also recognized from the request."
-msgstr "Aucun plug-in de connexion Google connu n'a été détecté ; un retour Google est également reconnu à partir de la demande."
-
 msgid "Do not send the WordPress \"login details / set password\" email"
 msgstr "N’envoyez pas l’e-mail WordPress « informations de connexion / définition du mot de passe »"
 
@@ -1170,9 +1167,6 @@ msgstr "Les personnes qui s'inscrivent auprès de Google reçoivent l'e-mail dé
 
 msgid "Setting"
 msgstr "Paramètre"
-
-msgid "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped."
-msgstr "Aucun plugin de connexion Google connu n'est actif. Si vous utilisez un autre plugin, un retour Google est quand même détecté et l'email du mot de passe est stoppé."
 
 msgid "No %s connection."
 msgstr "Aucune connexion%s."
@@ -2306,9 +2300,6 @@ msgstr "Demande avec une mauvaise signature"
 msgid "Open 24-hour windows"
 msgstr "Fenêtres ouvertes 24 heures sur 24"
 
-msgid "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit."
-msgstr "Secret d'application non renseigné : les demandes entrantes ne sont pas vérifiées comme provenant de Meta. Ajoutez-le sous Modifier."
-
 msgid "Approved templates"
 msgstr "Modèles approuvés"
 
@@ -2338,9 +2329,6 @@ msgstr "Jeton d'accès permanent (jeton d'utilisateur système)"
 
 msgid "App Secret"
 msgstr "Secret d'application"
-
-msgid "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended)."
-msgstr "Vérifie que les webhooks entrants proviennent de Meta. Si vide, la signature n'est pas vérifiée (non recommandé)."
 
 msgid "Graph API version"
 msgstr "Version de l'API graphique"
@@ -2644,3 +2632,22 @@ msgstr "Traitement en arrière-plan WordPress"
 
 msgid "Worker active"
 msgstr "Worker actif"
+
+msgid "App Secret missing · webhook off"
+msgstr "Secret d'application manquant · webhook désactivé"
+
+msgid "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit."
+msgstr "Secret d'application non renseigné : les webhooks entrants sont rejetés tant qu'il n'est pas saisi. Ajoutez-le sous Modifier."
+
+msgid "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "Aucun plugin de connexion Google connu n'est actif. La vérification et l'arrêt de l'e-mail de mot de passe s'appliquent lorsqu'un plugin de connexion pris en charge enregistre une connexion Google (ou via le filtre flxi_user_is_social)."
+
+msgid "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter)."
+msgstr "Aucun plugin de connexion Google connu n'a été détecté ; la vérification s'applique lorsqu'un plugin pris en charge enregistre une connexion Google (ou via le filtre flxi_user_is_social)."
+
+msgid "Rejected (App Secret missing)"
+msgstr "Rejeté (secret d'application manquant)"
+
+msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
+msgstr "Vérifie que les webhooks entrants proviennent de Meta. Les événements entrants sont rejetés tant qu'il n'est pas saisi."
+

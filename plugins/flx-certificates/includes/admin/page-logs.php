@@ -66,10 +66,10 @@ function flxs_handle_logs_csv() {
 	header( 'Content-Disposition: attachment; filename="sertifika-log-' . gmdate( 'Ymd-His' ) . '.csv"' );
 	$out = fopen( 'php://output', 'w' );
 	fwrite( $out, "\xEF\xBB\xBF" ); // Excel için BOM
-	fputcsv( $out, array( 'Tarih', 'Kullanıcı', 'İşlem', 'Nesne', 'Nesne ID', 'Açıklama', 'Detay', 'IP' ), ';' );
+	fputcsv( $out, array_map( 'flxs_csv_cell', array( 'Tarih', 'Kullanıcı', 'İşlem', 'Nesne', 'Nesne ID', 'Açıklama', 'Detay', 'IP' ) ), ';' );
 	$labels = flxs_log_actions();
 	foreach ( $q['items'] as $l ) {
-		fputcsv( $out, array( flxs_date( $l['created_at'], 'Y-m-d H:i:s' ), flxs_user_label( $l['user_id'] ), $labels[ $l['action'] ] ?? $l['action'], $l['object_type'], $l['object_id'], $l['message'], $l['context'], $l['ip'] ), ';' );
+		fputcsv( $out, array_map( 'flxs_csv_cell', array( flxs_date( $l['created_at'], 'Y-m-d H:i:s' ), flxs_user_label( $l['user_id'] ), $labels[ $l['action'] ] ?? $l['action'], $l['object_type'], $l['object_id'], $l['message'], $l['context'], $l['ip'] ) ), ';' );
 	}
 	exit;
 }

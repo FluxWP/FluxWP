@@ -1,9 +1,9 @@
 <?php
 /**
  * Müşteriler: e-posta başına özet (sipariş sayısı, toplam harcama, ilk/son sipariş, not). Kayıtlı ve
- * misafir müşteriler birlikte. Sipariş durumu değişince o müşterinin satırı yeniden hesaplanır; ilk
- * kurulumda ya da istendiğinde "Yeniden oluştur" tüm siparişleri 100'lük parçalarla tarar (PHP süre
- * sınırına takılmaz).
+ * misafir müşteriler birlikte. Sipariş durumu değişince e-posta tek bir seçenekte kirli
+ * işaretlenir; satır yanıt gittikten sonra ya da günlük işte yeniden hesaplanır. Tek müşteri
+ * okunurken kirliyse hemen hesaplanır. "Yeniden oluştur" tüm siparişleri 100'lük parçalarla tarar.
  *
  * @package FLX_Commerce
  */
@@ -14,9 +14,13 @@ final class FLXCM_Customers {
 
 	const BATCH = 100;
 
+	/** Kirli e-postalar. Anahtar e-posta, değer 1. Olay başına satır yok. */
+	const DIRTY = 'flxcm_customers_dirty';
+
 	public static function init() {
 		add_action( 'woocommerce_order_status_changed', array( __CLASS__, 'on_status' ), 20, 4 );
 		add_action( 'woocommerce_order_refunded', array( __CLASS__, 'on_refund' ), 20 );
+		add_action( 'flxcm_daily', array( __CLASS__, 'flush_dirty' ) );
 		add_action( 'wp_ajax_flxcm_rebuild', array( __CLASS__, 'ajax_rebuild' ) );
 		add_action( 'wp_ajax_flxcm_note', array( __CLASS__, 'ajax_note' ) );
 		add_action( 'admin_post_flxcm_customers_csv', array( __CLASS__, 'csv' ) );
@@ -25,14 +29,93 @@ final class FLXCM_Customers {
 	public static function on_status( $order_id, $from, $to, $order = null ) {
 		$order = $order instanceof WC_Order ? $order : wc_get_order( $order_id );
 		if ( $order ) {
-			self::recompute( $order->get_billing_email() );
+			self::mark_dirty( $order->get_billing_email() );
 		}
 	}
 
 	public static function on_refund( $order_id ) {
 		$order = wc_get_order( $order_id );
 		if ( $order ) {
-			self::recompute( $order->get_billing_email() );
+			self::mark_dirty( $order->get_billing_email() );
+		}
+	}
+
+	/** E-postayı kirli işaretler. Aynı e-posta ikinci kez satır açmaz. */
+	public static function mark_dirty( $email ) {
+		self::edit_dirty( $email, true );
+		// Yalnız bu istekte kirli işaret yazıldıysa istek sonunda hesaplanır; her sayfa isteğinde seçenek okunmaz.
+		if ( ! has_action( 'shutdown', array( __CLASS__, 'flush_dirty' ) ) ) {
+			add_action( 'shutdown', array( __CLASS__, 'flush_dirty' ), PHP_INT_MAX );
+		}
+	}
+
+	private static function edit_dirty( $email, $add ) {
+		$email = strtolower( sanitize_email( (string) $email ) );
+		if ( '' === $email ) {
+			return;
+		}
+		for ( $try = 0; $try < 3; $try++ ) {
+			$list = get_option( self::DIRTY, array() );
+			if ( ! is_array( $list ) ) {
+				$list = array();
+			}
+			$has = isset( $list[ $email ] );
+			if ( $add && $has ) {
+				return;
+			}
+			if ( ! $add && ! $has ) {
+				return;
+			}
+			if ( $add ) {
+				$list[ $email ] = 1;
+			} else {
+				unset( $list[ $email ] );
+			}
+			if ( $list ) {
+				if ( false === get_option( self::DIRTY, false ) ) {
+					add_option( self::DIRTY, $list, '', false );
+				} else {
+					update_option( self::DIRTY, $list, false );
+				}
+			} else {
+				delete_option( self::DIRTY );
+			}
+			$now = get_option( self::DIRTY, array() );
+			$seen = is_array( $now ) && isset( $now[ $email ] );
+			if ( $add === $seen ) {
+				return;
+			}
+		}
+	}
+
+	private static function is_dirty( $email ) {
+		$email = strtolower( sanitize_email( (string) $email ) );
+		$list  = get_option( self::DIRTY, array() );
+		return '' !== $email && is_array( $list ) && isset( $list[ $email ] );
+	}
+
+	/**
+	 * Kirli müşterileri hesaplar. HTTP isteğinde önce bağlantıyı kapatır.
+	 * 20 saniyede bitmeyenler seçenekte kalır; günlük iş onları alır.
+	 */
+	public static function flush_dirty() {
+		$list = get_option( self::DIRTY, array() );
+		if ( ! is_array( $list ) || ! $list ) {
+			return;
+		}
+		if ( doing_action( 'shutdown' ) ) {
+			if ( function_exists( 'litespeed_finish_request' ) ) {
+				litespeed_finish_request();
+			} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
+				fastcgi_finish_request();
+			}
+		}
+		$deadline = microtime( true ) + 20;
+		foreach ( array_keys( $list ) as $email ) {
+			if ( microtime( true ) >= $deadline ) {
+				break;
+			}
+			self::recompute( $email );
 		}
 	}
 
@@ -63,9 +146,11 @@ final class FLXCM_Customers {
 		if ( ! $row ) {
 			// Hiç sayılan siparişi kalmadıysa notu korunarak sıfırlanır.
 			$wpdb->query( $wpdb->prepare( "UPDATE {$t} SET orders = 0, total = 0, updated_at = %s WHERE email = %s", current_time( 'mysql', true ), $email ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			self::edit_dirty( $email, false );
 			return;
 		}
 		self::write( $row );
+		self::edit_dirty( $email, false );
 	}
 
 	/** Satır özetine bir sipariş ekler. */
@@ -262,6 +347,10 @@ final class FLXCM_Customers {
 		global $wpdb;
 		$t   = FLXCM_Install::table();
 		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		if ( $row && self::is_dirty( $row['email'] ) ) {
+			self::recompute( $row['email'] );
+			$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE id = %d", (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		}
 		return $row ? $row : null;
 	}
 
@@ -271,6 +360,9 @@ final class FLXCM_Customers {
 		$email = strtolower( trim( (string) $email ) );
 		if ( '' === $email ) {
 			return null;
+		}
+		if ( self::is_dirty( $email ) ) {
+			self::recompute( $email );
 		}
 		$t   = FLXCM_Install::table();
 		$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$t} WHERE email = %s", $email ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared

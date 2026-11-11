@@ -77,10 +77,13 @@ function flxi_collect_recipients( array $sources, $manual, $channel ) {
 	foreach ( $sources as $src ) {
 		if ( 0 === strpos( $src, 'role:' ) ) {
 			$users = get_users( array( 'role' => substr( $src, 5 ), 'number' => 20000, 'fields' => array( 'ID', 'user_email', 'display_name' ) ) );
-			foreach ( $users as $u ) {
-				$phone = get_user_meta( $u->ID, 'billing_phone', true );
-				$first = trim( get_user_meta( $u->ID, 'first_name', true ) . ' ' . get_user_meta( $u->ID, 'last_name', true ) );
-				$add( $first ? $first : $u->display_name, $u->user_email, $phone );
+			foreach ( array_chunk( $users, 500 ) as $chunk ) {
+				update_meta_cache( 'user', wp_list_pluck( $chunk, 'ID' ) );
+				foreach ( $chunk as $u ) {
+					$phone = get_user_meta( $u->ID, 'billing_phone', true );
+					$first = trim( get_user_meta( $u->ID, 'first_name', true ) . ' ' . get_user_meta( $u->ID, 'last_name', true ) );
+					$add( $first ? $first : $u->display_name, $u->user_email, $phone );
+				}
 			}
 		} elseif ( 'flxs_people' === $src && function_exists( 'flxs_table' ) ) {
 			global $wpdb;
@@ -214,7 +217,7 @@ function flxi_kick_queue() {
 add_action(
 	'flxi_run_queue',
 	function () {
-		flxi_run_queue( 40 );
+		flxi_run_queue( 25 );
 	}
 );
 
@@ -237,7 +240,12 @@ function flxi_run_queue( $budget = 20 ) {
 		$stats  = array( 'processed' => 0, 'sent' => 0, 'failed' => 0 );
 		$camps  = array();
 		$emails = 0;
-		while ( microtime( true ) - $start < $budget - 3 ) {
+		while ( true ) {
+			$left    = $budget - ( microtime( true ) - $start );
+			$timeout = (int) floor( $left - 5 );
+			if ( $timeout < 5 ) {
+				break;
+			}
 			$row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE status = 'queued' AND scheduled_at <= %s ORDER BY scheduled_at ASC, id ASC LIMIT 1", flxi_now() ), ARRAY_A ); // phpcs:ignore
 			if ( ! $row ) {
 				break;
@@ -267,7 +275,9 @@ function flxi_run_queue( $budget = 20 ) {
 				$conn = flxi_resolve_connection( 'sms', (int) $camps[ $cid ]['data']['connection_id'] );
 				$type = $conn ? ( flxi_connection_types()[ $conn['type'] ] ?? array() ) : array();
 				if ( is_callable( $type['queue_batch'] ?? null ) ) {
+					$GLOBALS['flxi_queue_timeout'] = min( 30, $timeout );
 					$res = call_user_func( $type['queue_batch'], $row, $camps[ $cid ] );
+					unset( $GLOBALS['flxi_queue_timeout'] );
 					if ( is_array( $res ) ) { foreach ( array( 'processed', 'sent', 'failed', 'submitted' ) as $key ) { $stats[ $key ] = ( $stats[ $key ] ?? 0 ) + (int) ( $res[ $key ] ?? 0 ); } if ( empty( $res['processed'] ) ) { break; } continue; }
 				}
 			}
@@ -276,12 +286,14 @@ function flxi_run_queue( $budget = 20 ) {
 				continue;
 			}
 			flx_background_log( 'message.claimed', array( 'plugin' => 'flx-mail', 'campaign' => $cid, 'item' => (int) $row['id'], 'attempt' => (int) $row['attempts'] + 1 ) );
+			$GLOBALS['flxi_queue_timeout'] = min( 30, $timeout );
 			try {
 				$res = flxi_send_queue_item( $row, flxi_get_campaign( $cid ) );
 			} catch ( Throwable $error ) {
 				flx_background_log( 'message.exception', array( 'plugin' => 'flx-mail', 'campaign' => $cid, 'item' => (int) $row['id'], 'error_class' => get_class( $error ), 'error_file' => basename( $error->getFile() ), 'error_line' => $error->getLine() ) );
 				$res = array( 'ok' => false, 'error' => $error->getMessage(), 'retry' => true );
 			}
+			unset( $GLOBALS['flxi_queue_timeout'] );
 			$stats['processed']++;
 			if ( 'email' === $row['channel'] ) {
 				$emails++;

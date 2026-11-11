@@ -191,7 +191,6 @@
     "Appearance changes are applied to all emails when you save.": "Appearance changes are applied to all emails when you save.",
     "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified.": "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified.",
     "Detected plugin: %s": "Detected plugin: %s",
-    "No known Google sign-in plugin was detected; a Google return is also recognized from the request.": "No known Google sign-in plugin was detected; a Google return is also recognized from the request.",
     "Do not send the WordPress \"login details / set password\" email": "Do not send the WordPress \"login details / set password\" email",
     "Do not send the WooCommerce \"your account has been created\" email": "Do not send the WooCommerce \"your account has been created\" email",
     "Mark the email as verified (for verification plugins)": "Mark the email as verified (for verification plugins)",
@@ -394,7 +393,6 @@
     "People who sign up with Google do not receive the set-password email, and their emails are treated as verified.": "People who sign up with Google do not receive the set-password email, and their emails are treated as verified.",
     "People who sign up with Google receive the set-password email (setting is off).": "People who sign up with Google receive the set-password email (setting is off).",
     "Setting": "Setting",
-    "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped.": "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped.",
     "No %s connection.": "No %s connection.",
     "Settings entered, not tested yet.": "Settings entered, not tested yet.",
     "Test successful (%s).": "Test successful (%s).",
@@ -771,7 +769,6 @@
     "Last incoming event": "Last incoming event",
     "Request with a bad signature": "Request with a bad signature",
     "Open 24-hour windows": "Open 24-hour windows",
-    "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit.": "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit.",
     "Approved templates": "Approved templates",
     "WABA ID is required for templates.": "WABA ID is required for templates.",
     "No templates. Add them in WhatsApp Manager › Message templates.": "No templates. Add them in WhatsApp Manager › Message templates.",
@@ -782,7 +779,6 @@
     "Needed for the template list.": "Needed for the template list.",
     "Permanent access token (System User token)": "Permanent access token (System User token)",
     "App Secret": "App Secret",
-    "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended).": "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended).",
     "Graph API version": "Graph API version",
     "Couldn't reach Meta:": "Couldn't reach Meta:",
     "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent.": "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent.",
@@ -883,6 +879,12 @@
     "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.": "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.",
     "View delivery queue": "View delivery queue",
     "WordPress background processing": "WordPress background processing",
-    "Worker active": "Worker active"
+    "Worker active": "Worker active",
+    "App Secret missing · webhook off": "App Secret missing · webhook off",
+    "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit.": "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit.",
+    "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter).": "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter).",
+    "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter).": "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter).",
+    "Rejected (App Secret missing)": "Rejected (App Secret missing)",
+    "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered.": "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
   }
 }

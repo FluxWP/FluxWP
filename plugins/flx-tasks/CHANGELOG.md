@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.16
+- Flux Tasks no longer runs its own MCP server or key store. The tools register once on Flux AI & MCP through `flx_mcp_tools` under their `flxg_` names (the old unprefixed names stay as aliases) and the shared chat uses that same registration, so each tool appears once. Profile shows where to open that screen. The Tasks MCP switch is gone.
+
 ## 0.8.15
 - An MCP key now signs in only inside the MCP route permission check (`/flx-tasks/v1/mcp`). Putting the namespace text on any other REST address no longer runs the request as that user. The "MCP enabled" check stays on that route.
 - The key is no longer read from `?key=`. Send `Authorization: Bearer` or `X-MCP-Key`. Apache/LiteSpeed `REDIRECT_HTTP_AUTHORIZATION` is still read.

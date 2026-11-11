@@ -192,7 +192,6 @@
     "Appearance changes are applied to all emails when you save.": "Görünüm değişiklikleri kaydedince bütün e-postalara uygulanır.",
     "Because Google has already verified the email address, people who sign up with Google do not receive the \"set your password / login details\" email, and their account is treated as verified.": "Google e-posta adresini zaten doğruladığı için Google ile kayıt olan kişiye \"parolanızı belirleyin / oturum açma bilgileri\" e-postası gitmez ve hesabı doğrulanmış sayılır.",
     "Detected plugin: %s": "Algılanan eklenti: %s",
-    "No known Google sign-in plugin was detected; a Google return is also recognized from the request.": "Bilinen bir Google giriş eklentisi algılanmadı; Google dönüşü istekten de anlaşılır.",
     "Do not send the WordPress \"login details / set password\" email": "WordPress \"oturum açma bilgileri / parola belirleme\" e-postasını gönderme",
     "Do not send the WooCommerce \"your account has been created\" email": "WooCommerce \"hesabınız oluşturuldu\" e-postasını gönderme",
     "Mark the email as verified (for verification plugins)": "E-postayı doğrulanmış olarak işaretle (doğrulama eklentileri için)",
@@ -395,7 +394,6 @@
     "People who sign up with Google do not receive the set-password email, and their emails are treated as verified.": "Google ile kayıt olanlara parola belirleme e-postası gitmiyor, e-postaları doğrulanmış sayılıyor.",
     "People who sign up with Google receive the set-password email (setting is off).": "Google ile kayıt olanlara parola belirleme e-postası gidiyor (ayar kapalı).",
     "Setting": "Ayar",
-    "No known Google sign-in plugin is active. If you use another plugin, a Google return is still detected and the password email is stopped.": "Bilinen bir Google giriş eklentisi etkin değil. Başka bir eklenti kullanılıyorsa da Google dönüşü algılanır ve parola e-postası durdurulur.",
     "No %s connection.": "%s bağlantısı yok.",
     "Settings entered, not tested yet.": "Ayarlar girilmiş, henüz test edilmedi.",
     "Test successful (%s).": "Test başarılı (%s).",
@@ -772,7 +770,6 @@
     "Last incoming event": "Son gelen olay",
     "Request with a bad signature": "İmzası tutmayan istek",
     "Open 24-hour windows": "Açık 24 saat penceresi",
-    "App Secret not entered: incoming requests aren't verified as coming from Meta. Add it under Edit.": "App Secret girilmedi: gelen isteklerin Meta'dan geldiği doğrulanmıyor. Düzenle'den ekleyin.",
     "Approved templates": "Onaylı şablonlar",
     "WABA ID is required for templates.": "Şablonlar için WABA ID gerekli.",
     "No templates. Add them in WhatsApp Manager › Message templates.": "Şablon yok. WhatsApp Manager › Mesaj şablonları'ndan ekleyin.",
@@ -783,7 +780,6 @@
     "Needed for the template list.": "Şablon listesi için gerekli.",
     "Permanent access token (System User token)": "Kalıcı erişim anahtarı (System User token)",
     "App Secret": "Uygulama gizli anahtarı (App Secret)",
-    "Verifies that incoming webhooks come from Meta. If empty, the signature isn't checked (not recommended).": "Gelen webhook'ların Meta'dan geldiğini doğrular. Boşsa imza denetlenmez (önerilmez).",
     "Graph API version": "Graph API sürümü",
     "Couldn't reach Meta:": "Meta'ya ulaşılamadı:",
     "24-hour window closed: the person hasn't written in the last 24 hours. Only an approved template can be sent.": "24 saat penceresi kapalı: kişi son 24 saatte yazmadı. Yalnız onaylı şablon gönderilebilir.",
@@ -884,6 +880,12 @@
     "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.": "WordPress saat dilimini kullanır. İleri tarihli Netgsm gönderimleri başlamadan önce iptal edilebilir.",
     "View delivery queue": "Gönderim kuyruğunu görüntüle",
     "WordPress background processing": "WordPress arka plan işlemleri",
-    "Worker active": "Worker etkin"
+    "Worker active": "Worker etkin",
+    "App Secret missing · webhook off": "App Secret eksik · webhook kapalı",
+    "App Secret not entered: incoming webhooks are rejected until it is entered. Add it under Edit.": "App Secret girilmedi: girilene kadar gelen webhook'lar reddedilir. Düzenle'den ekleyin.",
+    "No known Google sign-in plugin is active. Verification and password-email suppression apply when a supported sign-in plugin records a Google login (or via the flxi_user_is_social filter).": "Bilinen bir Google giriş eklentisi etkin değil. Doğrulama ve parola e-postasını durdurma, desteklenen bir giriş eklentisi Google girişi kaydettiğinde (ya da flxi_user_is_social filtresiyle) uygulanır.",
+    "No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter).": "Bilinen bir Google giriş eklentisi algılanmadı; doğrulama, desteklenen bir eklenti Google girişi kaydettiğinde (ya da flxi_user_is_social filtresiyle) uygulanır.",
+    "Rejected (App Secret missing)": "Reddedildi (App Secret eksik)",
+    "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered.": "Gelen webhook'ların Meta'dan geldiğini doğrular. Girilene kadar gelen olaylar reddedilir."
   }
 }

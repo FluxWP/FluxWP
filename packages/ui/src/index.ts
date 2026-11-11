@@ -3,6 +3,6 @@ export { Avatar } from './Avatar';
 export { Modal } from './Modal';
 export { Empty, Loading } from './Empty';
 export { Icon } from './Icon';
-export { sanitizeHtml } from './sanitize';
+export { openSanitizedLink, sanitizeHtml } from './sanitize';
 export { useOverlay } from './overlay';
 export { MenuIcon } from './MenuIcon';

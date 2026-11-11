@@ -76,15 +76,6 @@ msgstr ""
 msgid "3. Connect an assistant"
 msgstr ""
 
-msgid "Connectors › Add custom connector"
-msgstr ""
-
-msgid "URL with the key, for places where headers can't be added; don't share it:"
-msgstr ""
-
-msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
-msgstr ""
-
 msgid "Recent activity"
 msgstr ""
 
@@ -964,19 +955,7 @@ msgstr ""
 msgid "Invalid or missing MCP key."
 msgstr ""
 
-msgid "This user can't edit content."
-msgstr ""
-
 msgid "Unknown tool: %s"
-msgstr ""
-
-msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
-msgstr ""
-
-msgid "This key can't use this tool: %s"
-msgstr ""
-
-msgid "You don't have permission for this."
 msgstr ""
 
 msgid "Unauthorized."
@@ -1453,9 +1432,6 @@ msgstr ""
 msgid "No records"
 msgstr ""
 
-msgid "MCP"
-msgstr ""
-
 msgid "Model and tool calls are listed here. Request bodies are not sent to the app."
 msgstr ""
 
@@ -1603,5 +1579,36 @@ msgstr ""
 msgid "You can end the connection any time under Flux AI & MCP › MCP."
 msgstr ""
 
-msgid "Your account can't connect an assistant (content editing permission is required)."
+msgid "AI & MCP"
 msgstr ""
+
+msgid "Connects assistants over MCP (only tools their own permissions allow)"
+msgstr ""
+
+msgid "No MCP access"
+msgstr ""
+
+msgid "On Apache or LiteSpeed, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess."
+msgstr ""
+
+msgid "Other clients"
+msgstr ""
+
+msgid "Roles and access"
+msgstr ""
+
+msgid "Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL."
+msgstr ""
+
+msgid "This user can't use MCP."
+msgstr ""
+
+msgid "Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do."
+msgstr ""
+
+msgid "Your account can't connect an assistant (the MCP capability is required)."
+msgstr ""
+
+msgid "MCP"
+msgstr ""
+

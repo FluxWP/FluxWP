@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/inc/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLX_VERSION', '0.7.17' ); // style.css Version ile aynı tutulur (CSS/JS önbelleği bununla yenilenir).
+define( 'FLX_VERSION', '0.7.18' ); // style.css Version ile aynı tutulur (CSS/JS önbelleği bununla yenilenir).
 
 /**
  * Theme supports.
@@ -87,7 +87,7 @@ function flx_enqueue_slider( $html, $block ) {
 	}
 	return $html;
 }
-add_filter( 'render_block', 'flx_enqueue_slider', 10, 2 );
+add_filter( 'render_block_core/group', 'flx_enqueue_slider', 10, 2 );
 add_action( 'wp_enqueue_scripts', 'flx_assets' );
 
 /**
@@ -201,7 +201,7 @@ function flx_cover_loading( $html, $block ) {
 	}
 	return $p->get_updated_html();
 }
-add_filter( 'render_block', 'flx_cover_loading', 10, 2 );
+add_filter( 'render_block_core/cover', 'flx_cover_loading', 10, 2 );
 
 /**
  * Tema görselleri (pattern'lerdeki img) lazy + async.
@@ -217,7 +217,7 @@ function flx_lazy_theme_images( $html, $block ) {
 	}
 	return $p->get_updated_html();
 }
-add_filter( 'render_block', 'flx_lazy_theme_images', 10, 2 );
+add_filter( 'render_block_core/image', 'flx_lazy_theme_images', 10, 2 );
 
 require get_theme_file_path( 'inc/logo.php' );
 require get_theme_file_path( 'inc/hiz.php' );

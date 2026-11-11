@@ -91,20 +91,12 @@ async function notifyDesktop(n: { title: string; body?: string; data?: Record<st
 
 async function embedWebView(url: string, r: EmbedRect, hooks?: EmbedHooks): Promise<EmbeddedView> {
   // Tauri "unstable" özelliği: ana pencereye çocuk webview. wp-admin iframe'e izin vermediği için gerekli.
+  // Gezinme kararı embed_open içindedir (aynı origin, diğer http(s) sistem tarayıcısı). JS yedeği o kontrolü taşıyamaz.
   const label = `embed-${++panelSeq}`;
-  let wv: Webview | null = null;
-  try {
-    await invoke('embed_open', {
-      args: { label, url, x: r.x, y: r.y, width: Math.max(1, r.width), height: Math.max(1, r.height), userAgent: embedUA() },
-    });
-    wv = await Webview.getByLabel(label);
-  } catch {
-    wv = new Webview(getCurrentWindow(), label, { url, x: r.x, y: r.y, width: r.width, height: r.height, userAgent: embedUA() });
-    await new Promise<void>((res, rej) => {
-      void wv!.once('tauri://created', () => res());
-      void wv!.once('tauri://error', (e) => rej(new Error(String(e.payload))));
-    });
-  }
+  await invoke('embed_open', {
+    args: { label, url, x: r.x, y: r.y, width: Math.max(1, r.width), height: Math.max(1, r.height), userAgent: embedUA() },
+  });
+  const wv = await Webview.getByLabel(label);
   if (!wv) throw new Error('embed');
   const view = wv;
   const unlisten: Array<() => void> = [];

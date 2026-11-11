@@ -447,17 +447,8 @@ msgstr "Uygulama, yerel ekranı olmayan menüleri panel sayfası olarak açabils
 msgid "Sign in with code"
 msgstr "Kodla giriş"
 
-msgid "Let donors sign in to the app with a code sent to their email or phone"
-msgstr "Bağışçılar uygulamaya e-posta ya da telefona gelen kodla girebilsin"
-
-msgid "Create a customer account if none exists but there is a donation with these details"
-msgstr "Hesabı yoksa ama bu bilgiyle bağışı varsa müşteri hesabı aç"
-
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
 msgstr "Personel de kodla girebilsin (önerilmez; personel tarayıcıyla OAuth kullanır)"
-
-msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
-msgstr "Telefona kod Flux Chat (WhatsApp) üzerinden gider; yoksa yalnız e-posta."
 
 msgid "Can create API keys"
 msgstr "API anahtarı oluşturabilir"
@@ -1301,3 +1292,61 @@ msgstr "Yetkiniz yok."
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr "FluxWP masaüstü ve mobil uygulamasının sunucu tarafı: OAuth 2.0 (PKCE) giriş, cihazlar ve push, uygulama görünümü (config), eklenti ekranları (manifest), panel oturumu. MCP istemcileri de OAuth ile bağlanır."
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$s, %2$s sitesinde telefon numaranızı doğrulama kodunuz. 10 dakika geçerli. Bu kodu kimseyle paylaşmayın."
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr "Sonu %s ile biten bir telefon numarası hesabınıza eklendi. Bunu siz yapmadıysanız site yöneticisine başvurun."
+
+msgid "A phone number was added to your %s account"
+msgstr "%s hesabınıza bir telefon numarası eklendi"
+
+msgid "An administrator manages this phone number."
+msgstr "Bu telefon numarasını bir yönetici yönetir."
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr "Giriş kodu doğrulandıktan sonra bu e-posta için müşteri hesabı aç"
+
+msgid "Enter a valid phone number."
+msgstr "Geçerli bir telefon numarası yazın."
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr "Giriş yapmış bağışçı telefon numarasını doğrulayıp hesabına kaydedebilsin"
+
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr "Bağışçılar e-postalarına ya da hesaplarındaki telefon numarasına gelen kodla giriş yapabilsin"
+
+msgid "No phone number is saved on this account."
+msgstr "Bu hesapta kayıtlı telefon numarası yok."
+
+msgid "Own phone number"
+msgstr "Kendi telefon numarası"
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr "Telefon kodu, kanal hazırsa Flux Chat (WhatsApp) üzerinden gider; değilse kod hesaba e-posta ile gönderilir. Telefon kodu yalnız kayıtlı numarası bu tam numarayla birebir aynı olan hesabın girişini açar. Bağışlar ve siparişler hesap açmaz ve hesaba sahip çıkmaz."
+
+msgid "Phone confirmation is not available."
+msgstr "Telefon doğrulama kullanılamıyor."
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+msgstr "Kod yalnız o telefona gider (WhatsApp ya da bir SMS sağlayıcısı), e-posta ile gitmez. Yazı düzenleyebilenler, personel kodla girişi açılmadıkça yönetici tarafından tutulan numarayı korur."
+
+msgid "The phone number could not be saved."
+msgstr "Telefon numarası kaydedilemedi."
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr "Sonu %s ile biten telefon numarası hesabınızdan kaldırıldı. Bunu siz yapmadıysanız site yöneticisine başvurun."
+
+msgid "The phone number on your %s account was changed"
+msgstr "%s hesabınızdaki telefon numarası değişti"
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr "Hesabınızdaki telefon numarası artık %s ile bitiyor. Bunu siz yapmadıysanız site yöneticisine başvurun."
+
+msgid "The phone number was removed from your %s account"
+msgstr "%s hesabınızdan telefon numarası kaldırıldı"
+
+msgid "The token does not include the scope this request needs."
+msgstr "Belirteç, bu isteğin gerektirdiği kapsamı içermiyor."
+

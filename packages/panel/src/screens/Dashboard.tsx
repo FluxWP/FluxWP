@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { Eye, EyeOff, GripVertical, Pencil, RefreshCw } from 'lucide-react';
 import { arrangeCards, layoutStore, moveItem, platform, type DashboardCard } from '@fluxwp/core';
-import { resolveTarget, useResolveEnv } from '@fluxwp/runtime';
+import { resolveTarget, useMe, useResolveEnv } from '@fluxwp/runtime';
 import { Icon } from '@fluxwp/ui';
-import { useActiveAccount, useApi, useLayoutPrefs, useMe } from '../state/hooks';
+import { useActiveAccount, useApi, useLayoutPrefs } from '../state/hooks';
 import { useRoute } from '../state/route';
 
 export function Dashboard() {
   const account = useActiveAccount()!;
   const { t } = useTranslation();
   const api = useApi(account);
-  const me = useMe(account).data;
+  const me = useMe().data;
   const prefs = useLayoutPrefs(account);
   const go = useRoute((s) => s.go);
   const env = useResolveEnv();

@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.3.1
+- Content-Security-Policy is set for the shell (`script-src 'self'`, no `unsafe-eval`). The dev server keeps a separate policy so Vite HMR can connect.
+- The OS credential store is granted only to the main window. Separate wp-admin windows do not get those commands.
+- The embedded webview may navigate only on the origin it was opened for (`about:blank` included). Other http(s) links open in the system browser; every other scheme is blocked.
+
 ## 0.3.0
 - Panel artık mobil uygulamayla aynı `@fluxwp/runtime` çekirdeğini kullanır. Kenar çubuğu ve üst çubuk `flxapp/v1/config` cevabından gelir (`X-FluxWP-Platform: desktop`); config yoksa eskisi gibi `/me` menüsü durur.
 - Tema hesap başına sitenin WordPress temasından (ve override'lardan) gelir. Hesap değiştirince kabuk ve tema birlikte değişir.

@@ -7,12 +7,13 @@ function flxapp_defaults() {
 	return array(
 		'access_minutes'  => 60,
 		'refresh_days'    => 60,
-		'dynamic_clients' => 1,
+		'dynamic_clients' => 0,
 		'web_session'     => 1,
 		'keys_cap'        => 'read',
-		'otp_enabled'     => 1,
-		'otp_create'      => 1,
-		'otp_staff'       => 0,
+		'otp_enabled'       => 1,
+		'otp_create'        => 0,
+		'otp_staff'         => 0,
+		'phone_self_verify' => 1,
 		'modules_off'     => array(),
 		'screens_off'     => array(),
 		'push_enabled'    => 1,
@@ -105,11 +106,13 @@ function flxapp_issuer() {
 }
 
 /**
- * Basit oran sınırı: anahtar başına pencerede en çok $max istek. Aşılırsa false.
+ * Basit oran sınırı: pencerede en çok $max istek. Aşılırsa false.
+ * $bind_ip true ise kova çağıranın IP'sine de bağlanır; false ise yalnız hedefe (hesap, telefon, e-posta).
  */
-function flxapp_rate( $key, $max = 30, $window = 60 ) {
-	$k = 'flxapp_rl_' . md5( $key . '|' . flxapp_ip() );
-	$n = (int) get_transient( $k );
+function flxapp_rate( $key, $max = 30, $window = 60, $bind_ip = true ) {
+	$id = $bind_ip ? $key . '|' . flxapp_ip() : 'id|' . $key;
+	$k  = 'flxapp_rl_' . md5( $id );
+	$n  = (int) get_transient( $k );
 	if ( $n >= $max ) {
 		return false;
 	}

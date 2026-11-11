@@ -1,12 +1,13 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Ana pencere ve panel pencereleri",
+  "description": "Ana pencere. Belirteç deposu yalnız burada.",
   "windows": [
-    "main",
-    "panel-*"
+    "main"
   ],
   "permissions": [
+    "allow-secure-store",
+    "allow-shell-commands",
     "core:default",
     "core:webview:allow-create-webview-window",
     "core:window:allow-start-dragging",

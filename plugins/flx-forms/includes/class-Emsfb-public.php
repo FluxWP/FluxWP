@@ -4177,7 +4177,7 @@ public function check_nonce_permission_efb($request) {
             $this->db = $wpdb;
         }
 		$table_name = $this->db->prefix . "emsfb_msg_";
-		$this->db->insert($table_name, array(
+		$stored_row = $this->db->insert($table_name, array(
 			'form_title_x' => $this->name,
 			'content' => $this->value,
 			'form_id' => $this->id,
@@ -4186,6 +4186,9 @@ public function check_nonce_permission_efb($request) {
 			'read_' => $read,
 			'date'=>wp_date('Y-m-d H:i:s')
 		));
+		if ( $stored_row ) {
+			delete_transient( 'emsfb_survey_' . (int) $this->id );
+		}
 		$this->claim_uploaded_files_efb($this->value);
 		return $uniqid;
 	}
@@ -7268,7 +7271,10 @@ public function check_nonce_permission_efb($request) {
 			/* Reuse a key issued while settings were unreadable, so codes in
 			 * already-sent emails keep verifying. */
 			$stored = get_option( 'emsfb_email_key', '' );
-			$rand = $stored !== '' ? $stored : substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'), 0, 10);
+			/* 128 bits from a CSPRNG. A key already stored for sent mail is kept,
+			 * so those links still verify. The code itself stays md5(track . key)
+			 * and is compared with hash_equals. */
+			$rand = $stored !== '' ? $stored : bin2hex( random_bytes( 16 ) );
 
 			if ( is_object( $this->setting ) && isset( $this->setting->emailSupporter ) ) {
 				$this->setting->email_key = $rand;
@@ -8330,9 +8336,38 @@ public function check_nonce_permission_efb($request) {
 		}
 	}
 
+	/**
+	 * One add_option lock per form. A holder killed at the host time limit
+	 * leaves a lock; after 60 seconds the next request may take it.
+	 */
+	private function efb_survey_hold_lock_efb( $name ) {
+		if ( add_option( $name, time(), '', false ) ) {
+			return true;
+		}
+		$started = (int) get_option( $name, 0 );
+		if ( $started > 0 && ( time() - $started ) < 60 ) {
+			return false;
+		}
+		delete_option( $name );
+		return (bool) add_option( $name, time(), '', false );
+	}
+
 	private function efb_get_survey_results_data($form_id, $formObj) {
 		global $wpdb;
 
+		$form_id = (int) $form_id;
+		$cache_key = 'emsfb_survey_' . $form_id;
+		$cached = get_transient( $cache_key );
+		if ( is_array( $cached ) ) {
+			return $cached;
+		}
+		$lock_key = 'emsfb_survey_lock_' . $form_id;
+		if ( ! $this->efb_survey_hold_lock_efb( $lock_key ) ) {
+			$cached = get_transient( $cache_key );
+			return is_array( $cached ) ? $cached : array();
+		}
+
+		try {
 		if (is_array($formObj)) {
 			foreach ($formObj as $idx => $field) {
 				$ftype = $field['type'] ?? 'NO_TYPE';
@@ -8343,9 +8378,11 @@ public function check_nonce_permission_efb($request) {
 		}
 
 		$table_name = $wpdb->prefix . 'emsfb_msg_';
+		$cursor = 0;
 		$query = $wpdb->prepare(
-			"SELECT content FROM $table_name WHERE form_id = %d",
-			$form_id
+			"SELECT msg_id, content FROM $table_name WHERE form_id = %d AND msg_id > %d ORDER BY msg_id ASC LIMIT 500",
+			$form_id,
+			$cursor
 		);
 
 		$messages = $wpdb->get_results($query);
@@ -8354,6 +8391,7 @@ public function check_nonce_permission_efb($request) {
 		}
 
 		if (empty($messages)) {
+			set_transient( $cache_key, [], 120 );
 			return [];
 		}
 
@@ -8504,6 +8542,7 @@ public function check_nonce_permission_efb($request) {
 		}
 
 		if (empty($public_fields)) {
+			set_transient( $cache_key, [], 120 );
 			return [];
 		}
 
@@ -8515,6 +8554,7 @@ public function check_nonce_permission_efb($request) {
 		$total_items_skipped_empty = 0;
 		$decode_failures = 0;
 
+		while ( ! empty( $messages ) ) {
 		foreach ($messages as $message) {
 			$content = stripslashes($message->content);
 			$data = json_decode($content, true);
@@ -8656,6 +8696,19 @@ public function check_nonce_permission_efb($request) {
 				}
 			}
 			$msg_index++;
+		}
+			$batch_last = end( $messages );
+			$batch_next = $batch_last ? (int) $batch_last->msg_id : 0;
+			unset( $messages, $batch_last );
+			if ( $batch_next <= $cursor ) {
+				break;
+			}
+			$cursor = $batch_next;
+			$messages = $wpdb->get_results( $wpdb->prepare(
+				"SELECT msg_id, content FROM $table_name WHERE form_id = %d AND msg_id > %d ORDER BY msg_id ASC LIMIT 500",
+				$form_id,
+				$cursor
+			) );
 		}
 
 		unset($field);
@@ -8844,7 +8897,11 @@ public function check_nonce_permission_efb($request) {
 			$results[] = $result;
 		}
 
+		set_transient( $cache_key, $results, 120 );
 		return $results;
+		} finally {
+			delete_option( $lock_key );
+		}
 	}
 
 	private function efb_intgrate_with_3rd_party_services_efb($track_code, $submitted_values, $form_fields_array, $event_type = 'form_submit', $integration_args = []) {

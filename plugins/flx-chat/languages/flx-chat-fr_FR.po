@@ -2893,9 +2893,6 @@ msgstr "Nouvelle interface (expérimentale) : la page Chats s'ouvre avec le mêm
 msgid "Live update interval (sec)"
 msgstr "Intervalle de mise à jour en direct (sec)"
 
-msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
-msgstr "L'onglet ouvert vérifie les nouveaux messages à cet intervalle (10 recommandés). Dans un onglet en arrière-plan, il vérifie une fois par minute et moins souvent après des erreurs."
-
 msgid "Agents"
 msgstr "Agents"
 
@@ -4471,9 +4468,6 @@ msgstr "Aucun utilisateur n'a le rôle d'agent ; seuls les administrateurs peuve
 msgid "Live panel updates"
 msgstr "Mises à jour du panneau en direct"
 
-msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
-msgstr "Dernière demande de mise à jour%1$s. Lorsque le panneau est ouvert, il vérifie les nouveaux messages toutes les%2$ds (60 s dans un onglet en arrière-plan)."
-
 msgid "The chat screen has not been opened yet."
 msgstr "L'écran de discussion n'a pas encore été ouvert."
 
@@ -4806,3 +4800,10 @@ msgstr "Délai de suppression pour tout le monde (heures)"
 
 msgid "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them."
 msgstr "WhatsApp ne permet de supprimer pour tout le monde un message envoyé que pendant environ 2 jours et 12 heures (60 heures). Passé ce délai, ou pour les messages reçus, le message est seulement masqué dans le panneau et reste sur le téléphone du contact. 0 désactive la suppression pour tout le monde. Les messages supprimés ne sont jamais retirés du serveur ; l'équipe peut toujours les ouvrir."
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab."
+msgstr "Dernière demande de mise à jour %1$s. Lorsque le panneau est ouvert, il vérifie les nouveaux messages toutes les %2$d s (3 s pendant qu'une réponse est diffusée, jusqu'à 15 s quand rien ne change) et une fois par minute dans un onglet en arrière-plan."
+
+msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
+msgstr "L'onglet ouvert vérifie les nouveaux messages à cet intervalle (10 recommandé), toutes les 3 s pendant qu'une réponse est diffusée, et jusqu'à 15 s quand rien ne change. Un onglet en arrière-plan vérifie une fois par minute. Après des erreurs, l'intervalle s'allonge jusqu'à 60 s."
+

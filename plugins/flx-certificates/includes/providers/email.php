@@ -138,7 +138,7 @@ function flxs_email_send( $config, $msg, $provider = array() ) {
 			$mailer->SMTPAuth   = '' !== (string) $config['username'];
 			$mailer->Username   = (string) $config['username'];
 			$mailer->Password   = (string) $config['password'];
-			$mailer->Timeout    = 20;
+			$mailer->Timeout    = isset( $GLOBALS['flxs_queue_timeout'] ) ? (int) $GLOBALS['flxs_queue_timeout'] : 20;
 			if ( $from_email ) {
 				$mailer->setFrom( $from_email, $from_name, false );
 			} elseif ( $config['username'] && is_email( $config['username'] ) ) {
@@ -147,6 +147,12 @@ function flxs_email_send( $config, $msg, $provider = array() ) {
 		};
 		add_action( 'phpmailer_init', $smtp, PHP_INT_MAX );
 	}
+	$limit = function ( $mailer ) {
+		if ( isset( $GLOBALS['flxs_queue_timeout'] ) ) {
+			$mailer->Timeout = (int) $GLOBALS['flxs_queue_timeout'];
+		}
+	};
+	add_action( 'phpmailer_init', $limit, PHP_INT_MAX );
 	add_action( 'wp_mail_failed', $on_fail );
 	add_filter( 'wp_mail_from', $f_email, PHP_INT_MAX );
 	add_filter( 'wp_mail_from_name', $f_name, PHP_INT_MAX );
@@ -154,6 +160,7 @@ function flxs_email_send( $config, $msg, $provider = array() ) {
 	$ok = wp_mail( $to, $msg['subject'], $html, $headers );
 
 	remove_action( 'wp_mail_failed', $on_fail );
+	remove_action( 'phpmailer_init', $limit, PHP_INT_MAX );
 	remove_filter( 'wp_mail_from', $f_email, PHP_INT_MAX );
 	remove_filter( 'wp_mail_from_name', $f_name, PHP_INT_MAX );
 	if ( $smtp ) {

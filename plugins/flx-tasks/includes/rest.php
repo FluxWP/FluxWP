@@ -121,10 +121,6 @@ function flxg_register_routes() {
 	flxg_route( '/ai/chat', 'POST', 'flxg_rest_ai_chat', $ai );
 	flxg_route( '/ai/task/(?P<id>\d+)', 'POST', 'flxg_rest_ai_task', $ai );
 	flxg_route( '/doc-pages/(?P<id>\d+)/ai', 'POST', 'flxg_rest_doc_ai', $ai );
-
-	flxg_route( '/mcp-keys', 'GET', 'flxg_rest_mcp_keys' );
-	flxg_route( '/mcp-keys', 'POST', 'flxg_rest_mcp_key_create' );
-	flxg_route( '/mcp-keys/(?P<id>[A-Za-z0-9]+)', 'DELETE', 'flxg_rest_mcp_key_delete' );
 }
 
 function flxg_body( WP_REST_Request $r ) {
@@ -219,8 +215,7 @@ function flxg_rest_boot() {
 				'poll'        => max( 15, (int) flxg_setting( 'poll_interval' ) ),
 				'maxUpload'   => flxg_max_upload_bytes(),
 				'emailOn'     => (bool) flxg_setting( 'email_notify' ),
-				'mcp'         => (bool) flxg_setting( 'mcp_enabled' ),
-				'mcpUrl'      => flxg_mcp_url(),
+				'aiMcpUrl'    => flxg_ai_hub() ? admin_url( 'admin.php?page=flx-ai-mcp' ) : '',
 				'fieldTypes'  => flxg_field_types(),
 				'priorities'  => $pr,
 				'roles'       => flxg_roles(),
@@ -1103,7 +1098,6 @@ function flxg_public_settings() {
 		'settings' => $s,
 		'roles'    => $roles,
 		'usage'    => get_option( 'flxg_ai_usage', null ),
-		'mcpUrl'   => flxg_mcp_url(),
 	);
 }
 
@@ -1129,7 +1123,7 @@ function flxg_rest_settings_save( WP_REST_Request $r ) {
 	if ( isset( $b['max_upload_mb'] ) ) {
 		$set['max_upload_mb'] = max( 1, min( 512, (int) $b['max_upload_mb'] ) );
 	}
-	foreach ( array( 'email_notify', 'mcp_enabled', 'delete_data' ) as $k ) {
+	foreach ( array( 'email_notify', 'delete_data' ) as $k ) {
 		if ( isset( $b[ $k ] ) ) {
 			$set[ $k ] = $b[ $k ] ? 1 : 0;
 		}
@@ -1168,45 +1162,4 @@ function flxg_rest_ai_task( WP_REST_Request $r ) {
 	}
 	$b = flxg_body( $r );
 	return flxg_ai_task_action( $id, (string) ( $b['action'] ?? '' ), (string) ( $b['hint'] ?? '' ) );
-}
-
-/* =========================================================================
- * MCP anahtarları
- * ====================================================================== */
-
-function flxg_rest_mcp_keys() {
-	$uid = get_current_user_id();
-	$all = current_user_can( 'flxg_manage' );
-	$out = array();
-	foreach ( flxg_mcp_keys() as $id => $k ) {
-		if ( ! $all && (int) $k['user'] !== $uid ) {
-			continue;
-		}
-		$out[] = array(
-			'id'       => $id,
-			'label'    => $k['label'],
-			'hint'     => $k['hint'],
-			'user'     => (int) $k['user'],
-			'userName' => flxg_user_name( (int) $k['user'] ),
-			'created'  => gmdate( 'c', (int) $k['created'] ),
-			'lastUsed' => $k['last_used'] ? gmdate( 'c', (int) $k['last_used'] ) : null,
-		);
-	}
-	return array( 'keys' => $out, 'url' => flxg_mcp_url(), 'enabled' => (bool) flxg_setting( 'mcp_enabled' ) );
-}
-
-function flxg_rest_mcp_key_create( WP_REST_Request $r ) {
-	$b = flxg_body( $r );
-	$k = flxg_mcp_create_key( get_current_user_id(), (string) ( $b['label'] ?? '' ) );
-	return array( 'key' => $k['key'], 'id' => $k['id'] ) + flxg_rest_mcp_keys();
-}
-
-function flxg_rest_mcp_key_delete( WP_REST_Request $r ) {
-	$keys = flxg_mcp_keys();
-	$id   = (string) $r['id'];
-	if ( ! isset( $keys[ $id ] ) || ( (int) $keys[ $id ]['user'] !== get_current_user_id() && ! current_user_can( 'flxg_manage' ) ) ) {
-		return flxg_error( 'flxg_forbidden', __( 'You don\'t have permission to delete this key.', 'flx-tasks' ), 403 );
-	}
-	flxg_mcp_delete_key( $id );
-	return flxg_rest_mcp_keys();
 }

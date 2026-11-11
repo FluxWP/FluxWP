@@ -446,17 +446,8 @@ msgstr "アプリが管理ページとしてネイティブ画面なしでメニ
 msgid "Sign in with code"
 msgstr "コードを使用してサインインする"
 
-msgid "Let donors sign in to the app with a code sent to their email or phone"
-msgstr "寄付者がメールまたは電話に送信されたコードを使用してアプリにサインインできるようにする"
-
-msgid "Create a customer account if none exists but there is a donation with these details"
-msgstr "顧客アカウントが存在しないが、これらの詳細を含む寄付がある場合は、顧客アカウントを作成します"
-
 msgid "Let staff sign in with a code too (not recommended; staff use OAuth in the browser)"
 msgstr "スタッフもコードを使用してサインインできるようにします (推奨されません。スタッフはブラウザーで OAuth を使用します)。"
-
-msgid "Phone codes are sent via Flux Call Center (WhatsApp); without it, email only."
-msgstr "電話コードは Flux コールセンター (WhatsApp) 経由で送信されます。それがなければ、電子メールのみ。"
 
 msgid "Can create API keys"
 msgstr "APIキーを作成できる"
@@ -1300,3 +1291,61 @@ msgstr "それでもいいよ。"
 
 msgid "Server side of FluxWP desktop and mobile app: OAuth 2.0 (PKCE) login, devices and push, app view (config), plugin displays (manifest), panel session. MCP clients also connect via OAuth."
 msgstr "FluxWP デスクトップおよびモバイル アプリのサーバー側: OAuth 2.0 (PKCE) ログイン、デバイスとプッシュ、アプリ ビュー (構成)、プラグイン表示 (マニフェスト)、パネル セッション。 MCP クライアントも OAuth 経由で接続します。"
+
+msgid "%1$s is your code to confirm the phone number on %2$s. Valid for 10 minutes. Do not share this code with anyone."
+msgstr "%1$s は %2$s の電話番号を確認するコードです。有効期限は 10 分です。このコードは誰にも教えないでください。"
+
+msgid "A phone number ending in %s was added to your account. If you did not do this, contact the site administrator."
+msgstr "末尾が %s の電話番号がアカウントに追加されました。心当たりがない場合はサイト管理者に連絡してください。"
+
+msgid "A phone number was added to your %s account"
+msgstr "%s アカウントに電話番号が追加されました"
+
+msgid "An administrator manages this phone number."
+msgstr "この電話番号は管理者が管理します。"
+
+msgid "Create a customer account for an email after its sign-in code is confirmed"
+msgstr "サインイン コードの確認後に、そのメールアドレスの顧客アカウントを作る"
+
+msgid "Enter a valid phone number."
+msgstr "有効な電話番号を入力してください。"
+
+msgid "Let a signed-in donor confirm a phone number and save it on their account"
+msgstr "サインイン中の寄付者が電話番号を確認してアカウントに保存できるようにする"
+
+msgid "Let donors sign in with a code sent to their email, or to the phone number saved on their account"
+msgstr "寄付者がメール、またはアカウントに保存した電話番号へ送られたコードでサインインできるようにする"
+
+msgid "No phone number is saved on this account."
+msgstr "このアカウントに保存された電話番号はありません。"
+
+msgid "Own phone number"
+msgstr "自分の電話番号"
+
+msgid "Phone codes go out through Flux Call Center (WhatsApp) when that channel is available; otherwise the code is emailed to the account. A phone code signs in only the account whose saved number is exactly that full number. Donations and orders never open or claim an account."
+msgstr "電話コードは、そのチャネルが使えるときは Flux コールセンター (WhatsApp) から送られ、使えないときはアカウントのメールに送られます。電話コードでサインインできるのは、保存された番号がその番号と完全に一致するアカウントだけです。寄付や注文でアカウントを開いたり受け取ったりすることはありません。"
+
+msgid "Phone confirmation is not available."
+msgstr "電話番号の確認は利用できません。"
+
+msgid "The code is sent only to that phone (WhatsApp or an SMS provider), never by email. People who can edit posts keep an administrator-managed number unless staff code sign-in is turned on."
+msgstr "コードはその電話だけに送られます（WhatsApp または SMS 事業者）。メールでは送りません。投稿を編集できる人は、スタッフのコードサインインがオンでない限り、管理者の管理する番号のままです。"
+
+msgid "The phone number could not be saved."
+msgstr "電話番号を保存できませんでした。"
+
+msgid "The phone number ending in %s was removed from your account. If you did not do this, contact the site administrator."
+msgstr "末尾が %s の電話番号がアカウントから削除されました。心当たりがない場合はサイト管理者に連絡してください。"
+
+msgid "The phone number on your %s account was changed"
+msgstr "%s アカウントの電話番号が変更されました"
+
+msgid "The phone number on your account now ends in %s. If you did not do this, contact the site administrator."
+msgstr "アカウントの電話番号の末尾は %s になりました。心当たりがない場合はサイト管理者に連絡してください。"
+
+msgid "The phone number was removed from your %s account"
+msgstr "%s アカウントから電話番号が削除されました"
+
+msgid "The token does not include the scope this request needs."
+msgstr "トークンに、このリクエストが必要とするスコープが含まれていません。"
+

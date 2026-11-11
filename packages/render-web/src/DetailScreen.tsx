@@ -1,8 +1,7 @@
 // Detail and dashboard sections. Values are already resolved by the runtime controllers.
 import type { DashboardScreen, DetailScreen as DetailModel, Manifest } from '@fluxwp/manifest';
 import { useDashboardController, useDetailController, useRenderer, type SectionView } from '@fluxwp/runtime';
-import { Icon } from '@fluxwp/ui';
-import { sanitizeHtml } from '@fluxwp/ui';
+import { Icon, openSanitizedLink, sanitizeHtml } from '@fluxwp/ui';
 
 export function DetailScreen({ manifest, screen, params }: { manifest: Manifest; screen: DetailModel; params: Record<string, string> }) {
   const c = useDetailController(manifest, screen, params);
@@ -111,7 +110,7 @@ function Sections({ sections, run }: { sections: SectionView[]; run: (id: string
           return (
             <section key={i} className="fx-card">
               {s.title && <h2>{s.title}</h2>}
-              {s.format === 'html' ? <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(s.value) }} /> : <p className="fx-pre">{s.value}</p>}
+              {s.format === 'html' ? <div onClick={openSanitizedLink} dangerouslySetInnerHTML={{ __html: sanitizeHtml(s.value) }} /> : <p className="fx-pre">{s.value}</p>}
             </section>
           );
         }

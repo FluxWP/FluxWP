@@ -2893,9 +2893,6 @@ msgstr "Neue Benutzeroberfläche (experimentell): Die Chats-Seite wird mit demse
 msgid "Live update interval (sec)"
 msgstr "Live-Update-Intervall (Sek.)"
 
-msgid "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors."
-msgstr "Der geöffnete Tab sucht in diesem Intervall nach neuen Nachrichten (10 empfohlen). In einer Hintergrundregisterkarte erfolgt die Überprüfung einmal pro Minute und bei Fehlern seltener."
-
 msgid "Agents"
 msgstr "Agenten"
 
@@ -4471,9 +4468,6 @@ msgstr "Kein Benutzer hat die Agentenrolle; Derzeit können nur Administratoren 
 msgid "Live panel updates"
 msgstr "Live-Panel-Updates"
 
-msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab)."
-msgstr "Letzte Aktualisierungsanforderung%1$s. Während das Panel geöffnet ist, prüft es alle%2$ds (60 s in einer Hintergrundregisterkarte) auf neue Nachrichten."
-
 msgid "The chat screen has not been opened yet."
 msgstr "Der Chat-Bildschirm wurde noch nicht geöffnet."
 
@@ -4806,3 +4800,10 @@ msgstr "Frist für Für alle löschen (Stunden)"
 
 msgid "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them."
 msgstr "WhatsApp erlaubt das Löschen einer gesendeten Nachricht für alle nur etwa 2 Tage und 12 Stunden (60 Stunden). Danach oder bei empfangenen Nachrichten wird die Nachricht nur im Panel ausgeblendet und bleibt auf dem Telefon des Kontakts. 0 deaktiviert Für alle löschen. Gelöschte Nachrichten werden nie vom Server entfernt; das Team kann sie weiterhin öffnen."
+
+msgid "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab."
+msgstr "Letzte Aktualisierungsanforderung %1$s. Während das Panel geöffnet ist, prüft es alle %2$d s auf neue Nachrichten (3 s, während eine Antwort gestreamt wird, bis zu 15 s, wenn sich nichts ändert) und einmal pro Minute in einem Hintergrundtab."
+
+msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
+msgstr "Der geöffnete Tab sucht in diesem Intervall nach neuen Nachrichten (10 empfohlen), alle 3 s während eine Antwort gestreamt wird und bis zu 15 s, wenn sich nichts ändert. Ein Hintergrundtab prüft einmal pro Minute. Bei Fehlern wird der Abstand auf bis zu 60 s gedehnt."
+

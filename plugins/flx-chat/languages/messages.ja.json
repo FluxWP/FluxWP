@@ -970,7 +970,6 @@
     "Also show WhatsApp group messages": "WhatsApp グループメッセージも表示します",
     "New interface (experimental): the Chats page opens with the same screen as the desktop and mobile app": "新しいインターフェイス (実験的): デスクトップおよびモバイル アプリと同じ画面でチャット ページが開きます。",
     "Live update interval (sec)": "ライブアップデート間隔(秒)",
-    "The open tab checks for new messages at this interval (10 recommended). In a background tab it checks once a minute, and less often after errors.": "開いているタブは、この間隔 (推奨 10) で新しいメッセージをチェックします。バックグラウンド タブでは、1 分に 1 回チェックされますが、エラー後は頻度が低くなります。",
     "Agents": "エージェント",
     "Give a user the %s role; they see only the chat screen and cannot open settings. Administrators always have access.": "ユーザーに%sロールを与えます。チャット画面のみが表示され、設定を開くことはできません。管理者は常にアクセスできます。",
     "Add new user": "新しいユーザーを追加",
@@ -1496,7 +1495,6 @@
     "Users with the agent role: %d.": "エージェントの役割を持つユーザー:%d。",
     "No user has the agent role; only administrators can use it for now.": "エージェントの役割を持っているユーザーはいません。現時点では管理者のみが使用できます。",
     "Live panel updates": "ライブパネルの更新",
-    "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (60 s in a background tab).": "最終更新リクエスト%1$s。パネルが開いている間、%2$d秒 (バックグラウンド タブでは 60 秒) ごとに新しいメッセージがチェックされます。",
     "The chat screen has not been opened yet.": "まだチャット画面は開いていません。",
     "WhatsApp line": "WhatsAppライン",
     "No line added.": "行は追加されていません。",
@@ -1607,6 +1605,8 @@
     "The time limit for deleting for everyone has passed. You can hide it in the panel instead.": "「全員から削除」の期限を過ぎました。代わりにパネルで非表示にできます。",
     "WhatsApp did not delete the message.": "WhatsAppでメッセージを削除できませんでした。",
     "Delete for everyone time limit (hours)": "「全員から削除」の期限（時間）",
-    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsAppで送信済みメッセージを全員から削除できるのは約2日と12時間（60時間）までです。期限後や受信メッセージは、パネルでのみ非表示になり、相手の端末に残ります。0にすると「全員から削除」をオフにします。削除したメッセージはサーバーから消えず、チームは引き続き開けます。"
+    "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsAppで送信済みメッセージを全員から削除できるのは約2日と12時間（60時間）までです。期限後や受信メッセージは、パネルでのみ非表示になり、相手の端末に残ります。0にすると「全員から削除」をオフにします。削除したメッセージはサーバーから消えず、チームは引き続き開けます。",
+    "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.": "最終更新リクエスト %1$s。パネルが開いている間、%2$d 秒ごとに新しいメッセージを確認します（返信のストリーム中は 3 秒、変化がなければ最大 15 秒）。バックグラウンドのタブでは 1 分に 1 回です。",
+    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "開いているタブはこの間隔（推奨 10）で新しいメッセージを確認します。返信のストリーム中は 3 秒ごと、変化がなければ最大 15 秒です。バックグラウンドのタブは 1 分に 1 回確認します。エラー時は間隔が最大 60 秒まで広がります。"
   }
 }

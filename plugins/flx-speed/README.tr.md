@@ -50,13 +50,13 @@ Query Monitor baktığınız sayfada ne olduğunu söyler, gerisini unutur. Payl
 - **Sunucu:** işletim sistemi, web sunucusu, PHP sınırları ve kapalı fonksiyonlar, uzantılar, OPcache, önbellekler, WordPress sabitleri ve etkin eklentiler. `/proc` ve PHP'den okunur; `shell_exec` ve dış servis yok.
 - **Veritabanı:** sürüm, önemli ayarlar, durum, tablo boyutları ve temizlik bölümü (yalnız yönetici, onay sorar).
 - **Autoload:** toplam boyut ve sahibiyle birlikte en büyük 40 seçenek. **Cron:** tüm zamanlanmış görevler, gecikenler ve cron'un son çalışması.
-- **Özel giriş adresi:** wp-login.php yerine `/fluxadmin` gibi kendi adresiniz; eski adresler 404 döner, kilitlenirseniz wp-config sabitiyle kapanır.
+- **Özel giriş adresi:** wp-login.php yerine `/fluxadmin` gibi kendi adresiniz; eski adresler 404 döner (`/wp-login.php/x` ve benzeri yollar dahil), kilitlenirseniz wp-config sabitiyle kapanır.
 - **PageSpeed ayarları:** kullanılmayan tema CSS'ini sayfaya göre kırpıp satır içine alma, CSS/JS sıkıştırma, head betiklerine defer, kullanılmayan theme.json yazı tiplerini çıkarma ve ilk ekran yazı tipini preload, viewport yakınlaştırma kilidini kaldırma, emoji betiğini kaldırma. Her biri aç/kapa; riskli olanlar kapalı başlar. Flux SEO site denetimi bunları tek tıkla önerir; GPU'da çalışmayan animasyonlar dosyasıyla listelenir.
 - **Sistem Kontrolü:** tüm FluxWP paketlerinin kontrolleri ve tek tık düzeltmeleri (`flx_system_checks`, `flx_system_fixes`).
 - Canlı kutular, p95, hatalı ve yavaş istekler ve ilk önerilerle Başlangıç widget'ı.
 
 ### Paylaşımlı sunucuda hafif
-- Ziyaretçide yalnız ucuz kancalar çalışır (hata, HTTP çağrısı, süre). Sorgu listesi yalnız örneklenen isteklerde, giriş yapmış personelde ve "Sayfayı ölç"te toplanır.
+- Ziyaretçide yalnız ucuz kancalar çalışır (hata, HTTP çağrısı, süre). Sorgu listesi yalnız örneklenen isteklerde, "Sayfayı ölç"te ve paneli gören kullanıcının wp-admin'de aldığı imzalı çerezle (30 dk) toplanır. Giriş çerezi tek başına açmaz.
 - İstek sonunda tek INSERT; eski kayıtlar ara sıra temizlenir. E-posta, telefon, IBAN, token ve gizli değerler kaydedilmeden önce maskelenir.
 
 ## Ekran görüntüleri

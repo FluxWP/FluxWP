@@ -50,7 +50,7 @@ Bağışlar Flux Donate'te, siparişler WooCommerce'te, mesajlar Flux Chat'te, b
 
 ### RFM skorlama
 - Yenilik, sıklık (ödeme yapılan gün) ve değer beşte birlik dilimlerle: Yeni, Şampiyon, Sadık, Umut vadeden, Risk altında, Uykuda, Kaybedilen.
-- Kayıp riski kişinin kendi ödeme aralığına göre: ayda bir bağış yapan 45 gün gelmeyince riskli, yılda bir yapan değil. Her gün yeniden hesaplanır.
+- Kayıp riski kişinin kendi ödeme aralığına göre: ayda bir bağış yapan 45 gün gelmeyince riskli, yılda bir yapan değil. Her gün, kaldığı kişiden devam ederek yaklaşık 20 saniyelik parçalarla yeniden hesaplanır.
 
 ### Segmentler
 - Canlı sayı ve örnek kişilerle kural düzenleyici: rol, etiket, RFM, değer, ödeme günü, son ödeme, son hareket, kayıp riski, izin, kaynak, şehir.

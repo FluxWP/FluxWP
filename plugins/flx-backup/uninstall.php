@@ -43,3 +43,13 @@ if ( $flxy_delete ) {
 foreach ( array( 'flxy_settings', 'flxy_backups', 'flxy_job', 'flxy_history', 'flxy_log', 'flxy_cron_heartbeat', 'flxy_last_restore', 'flxy_indicator' ) as $flxy_option ) {
 	delete_option( $flxy_option );
 }
+global $wpdb;
+$flxy_log = $wpdb->prefix . 'flx_background_log';
+$flxy_log_found = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $flxy_log ) ) );
+if ( $flxy_log_found === $flxy_log ) {
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$flxy_log} WHERE plugin = %s", 'flx-backup' ) ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	if ( null === $wpdb->get_var( "SELECT id FROM {$flxy_log} LIMIT 1" ) ) { // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$wpdb->query( "DROP TABLE IF EXISTS {$flxy_log}" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		delete_option( 'flx_background_log_db' );
+	}
+}

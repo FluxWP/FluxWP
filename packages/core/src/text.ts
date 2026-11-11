@@ -19,6 +19,16 @@ export function siteBase(url: string): string {
   return trimEnd(String(url || ''));
 }
 
+/**
+ * Install path under the host: `""` at the root, otherwise `/blog` (no trailing slash).
+ * `wp-admin`, `wp-json` and `wp-login.php` are not part of the install path.
+ */
+export function siteBasePath(siteUrl: string): string {
+  const u = new URL(siteUrl);
+  const cut = u.pathname.search(/\/(?:wp-admin|wp-json|wp-login\.php)/);
+  return trimEnd(cut < 0 ? u.pathname : u.pathname.slice(0, cut));
+}
+
 /** Drops `<` and `>` so a fragment such as `<script` cannot survive in plain text. */
 export function stripAngles(s: string): string {
   let out = '';

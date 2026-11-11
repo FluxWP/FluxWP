@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Backup
  * Description:       Her eklenti/tema güncellemesinden önce otomatik yedek alır, zamanlanmış tam yedekler, kota ve saklama süresi yönetimi, grafikli depolama paneli ve seçerek geri yükleme. Hostinger paylaşımlı barındırma ile uyumludur.
- * Version:           1.4.6
+ * Version:           1.4.7
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -22,7 +22,7 @@ if ( defined( 'FLXY_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXY_VERSION', '1.4.6' );
+define( 'FLXY_VERSION', '1.4.7' );
 define( 'FLXY_FILE', __FILE__ );
 define( 'FLXY_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXY_URL', plugin_dir_url( __FILE__ ) );
