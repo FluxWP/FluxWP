@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.40.0
+- Assistant stays on for new contacts: certificates, donation approval messages, tracking files and other plugin sends no longer pause the assistant. Only a message an agent writes (typed, quick reply, AI suggestion, record message) or a message typed on the phone pauses it. Blocklist, handoff and the per-chat off switch work as before.
+- Chats that were paused only by such automatic sends are turned back on once after the update.
+- New filter `flxc_bot_pause_sources` (default `agent`, `quick`, `ai`, `record`).
+
 ## 1.39.0
 - Call centre: clicking a donation record opens a detailed donation window: amount and status (receipt awaiting approval and awaiting payment shown apart), date, order, confirmation code, source, who entered it, items (on behalf of), receipts, certificates, donor and referral, note. From there you can open the chat, open the donation record or mark it paid.
 - Donation rows show a referral chip; when the gift has none, the donor's earlier referral is shown dimmed.
