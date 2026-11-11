@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.2.1
+- Paketler: ad altındaki kimlik (slug/dosya) kaldırıldı, yerine etiketler: FluxWP paketlerinde "FluxWP" + kategori (ör. İletişim), diğerlerinde gri "Genel" + Eklenti/Tema/Çeviri/Çekirdek.
+- "Tür" sütunu kaldırıldı.
+- Ada tıklayınca açılan pencerede teknik bilgiler (kimlik/dosya, tür, kategori, yazar, sürümler, kaynak); 3. parti eklenti ve temalarda da açıklama ve web sitesiyle.
+
 ## 1.2.0
 - Paketler ekranı artık sitedeki her şeyi gösteriyor: FluxWP paketlerinin yanında 3. parti eklentiler, temalar, çeviriler ve WordPress çekirdeği. Güncellemesi olanlar en üstte.
 - Sekmeler (Tümü / FluxWP / Eklentiler / Temalar / WordPress ve çeviriler) her sekmede satır ve güncelleme sayısıyla; canlı arama kutusu ve "Yalnız güncellemeler" süzgeci.

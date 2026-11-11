@@ -61,6 +61,8 @@ final class FLXU_WP {
 				'name'      => wp_strip_all_tags( (string) $d['Name'] ),
 				'sub'       => '.' === dirname( $file ) ? $file : dirname( $file ),
 				'author'    => wp_strip_all_tags( (string) $d['AuthorName'] ),
+				'desc'      => wp_strip_all_tags( (string) $d['Description'] ),
+				'web'       => (string) ( $d['PluginURI'] ?? '' ),
 				'installed' => (string) $d['Version'],
 				'latest'    => $update ? $latest : (string) $d['Version'],
 				'active'    => is_plugin_active( $file ) || ( is_multisite() && is_plugin_active_for_network( $file ) ),
@@ -92,6 +94,8 @@ final class FLXU_WP {
 				'name'      => wp_strip_all_tags( (string) $theme->display( 'Name', false ) ),
 				'sub'       => $stylesheet,
 				'author'    => wp_strip_all_tags( (string) $theme->get( 'Author' ) ),
+				'desc'      => wp_strip_all_tags( (string) $theme->get( 'Description' ) ),
+				'web'       => (string) $theme->get( 'ThemeURI' ),
 				'installed' => $ver,
 				'latest'    => $update ? $latest : $ver,
 				'active'    => in_array( $stylesheet, array( get_stylesheet(), get_template() ), true ),
@@ -218,6 +222,52 @@ final class FLXU_WP {
 		);
 	}
 
+	/** Kategori anahtarının görünen adı (sunucunun bildirdiği TR/EN ad). */
+	public static function category_label( string $key ): string {
+		if ( '' === $key ) {
+			return '';
+		}
+		$lang = 0 === strpos( determine_locale(), 'tr' ) ? 'tr' : 'en';
+		foreach ( FLXU_Updater::categories() as $c ) {
+			if ( ( $c['key'] ?? '' ) === $key ) {
+				$n = (array) ( $c['name'] ?? array() );
+				return (string) ( $n[ $lang ] ?? ( $n['en'] ?? ( $n ? reset( $n ) : $key ) ) );
+			}
+		}
+		return '';
+	}
+
+	/**
+	 * Ad altındaki etiketler. $tags = [[metin, tür]], tür: flux | cat | general | type.
+	 */
+	public static function tags_html( array $tags ): string {
+		$out = '';
+		foreach ( $tags as $t ) {
+			if ( '' !== (string) $t[0] ) {
+				$out .= '<span class="flxu-tag flxu-tag--' . esc_attr( $t[1] ) . '">' . esc_html( $t[0] ) . '</span>';
+			}
+		}
+		return '' !== $out ? '<span class="flxu-tags">' . $out . '</span>' : '';
+	}
+
+	/** Detay penceresi verisi (satırın data-info'su): açıklama, web adresi, teknik bilgiler. */
+	public static function info_attr( string $desc, string $web, array $meta ): string {
+		$m = array();
+		foreach ( $meta as $row ) {
+			if ( '' !== (string) $row[1] ) {
+				$m[] = array( (string) $row[0], (string) $row[1] );
+			}
+		}
+		$web = esc_url_raw( $web, array( 'https', 'http' ) );
+		return (string) wp_json_encode(
+			array(
+				'd' => wp_html_excerpt( $desc, 420, '…' ),
+				'w' => $web,
+				'm' => $m,
+			)
+		);
+	}
+
 	/**
 	 * Otomatik güncelleme sütunu: WordPress'in kendi eklenti/tema başına ayarı (auto_update_plugins /
 	 * auto_update_themes). FluxWP paketlerinde "FluxWP paketlerini otomatik güncelle" ayarı açıksa kilitli "açık".
@@ -294,8 +344,21 @@ final class FLXU_WP {
 			'wp_core'   => __( 'Core', 'flx-setup' ),
 		);
 		$search = strtolower( $r['name'] . ' ' . $r['sub'] . ' ' . $r['author'] );
+		$third  = in_array( $r['kind'], array( 'wp_plugin', 'wp_theme' ), true );
+		$info   = self::info_attr(
+			(string) ( $r['desc'] ?? ( $third ? '' : $r['sub'] ) ),
+			(string) ( $r['web'] ?? '' ),
+			array(
+				array( 'wp_theme' === $r['kind'] ? __( 'Folder', 'flx-setup' ) : __( 'File', 'flx-setup' ), $third ? $r['id'] : '' ),
+				array( __( 'Type', 'flx-setup' ), $type[ $r['kind'] ] ?? '' ),
+				array( __( 'Author', 'flx-setup' ), $r['author'] ),
+				array( __( 'Installed', 'flx-setup' ), $r['installed'] ),
+				array( __( 'Latest version', 'flx-setup' ), $r['latest'] ),
+				array( __( 'Status', 'flx-setup' ), $third ? ( $r['active'] ? __( 'Active', 'flx-setup' ) : __( 'Inactive', 'flx-setup' ) ) : '' ),
+			)
+		);
 		?>
-		<tr class="flxu-row flxu-row--wp flxu-row--<?php echo esc_attr( $r['state'] ); ?>" data-slug="<?php echo esc_attr( $r['key'] ); ?>" data-group="<?php echo esc_attr( $r['group'] ); ?>" data-search="<?php echo esc_attr( $search ); ?>">
+		<tr class="flxu-row flxu-row--wp flxu-row--<?php echo esc_attr( $r['state'] ); ?>" data-slug="<?php echo esc_attr( $r['key'] ); ?>" data-group="<?php echo esc_attr( $r['group'] ); ?>" data-search="<?php echo esc_attr( $search ); ?>" data-info="<?php echo esc_attr( $info ); ?>">
 			<th class="check-column" scope="row">
 				<?php if ( in_array( $r['kind'], array( 'wp_plugin', 'wp_theme' ), true ) || ( 'update' === $r['state'] && $r['can'] && 'wp_lang' === $r['kind'] ) ) : ?>
 					<input type="checkbox" name="flxu_wp[]" value="<?php echo esc_attr( $r['key'] ); ?>" class="flxu-wpcheck" data-state="<?php echo esc_attr( 'update' === $r['state'] && $r['can'] ? 'update' : 'current' ); ?>" data-kind="<?php echo esc_attr( $r['kind'] ); ?>" data-id="<?php echo esc_attr( $r['id'] ); ?>" data-name="<?php echo esc_attr( $r['name'] ); ?>" aria-label="<?php echo esc_attr( $r['name'] ); ?>">
@@ -307,18 +370,20 @@ final class FLXU_WP {
 				<?php else : ?>
 					<span class="flxu-pkg__ph dashicons <?php echo esc_attr( $r['ph'] ); ?>"></span>
 				<?php endif; ?>
-				<span><strong><?php echo esc_html( $r['name'] ); ?></strong><br>
-					<?php if ( in_array( $r['kind'], array( 'wp_plugin', 'wp_theme' ), true ) ) : ?>
-						<code><?php echo esc_html( $r['sub'] ); ?></code>
-					<?php else : ?>
+				<span class="flxu-pkg__main"><strong><button type="button" class="flxu-preview-open" data-slug="<?php echo esc_attr( $r['key'] ); ?>" aria-haspopup="dialog" aria-controls="flxu-preview"><?php echo esc_html( $r['name'] ); ?></button></strong>
+					<?php
+					echo self::tags_html( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						array(
+							array( 'wp_core' === $r['kind'] || 'wp_lang' === $r['kind'] ? 'WordPress' : __( 'General', 'flx-setup' ), 'general' ),
+							array( $type[ $r['kind'] ] ?? '', 'type' ),
+						)
+					);
+					?>
+					<?php if ( 'wp_lang' === $r['kind'] && 'update' === $r['state'] ) : ?>
 						<small class="flxu-src"><?php echo esc_html( $r['sub'] ); ?></small>
-					<?php endif; ?>
-					<?php if ( '' !== $r['author'] ) : ?>
-						<small class="flxu-src"><?php echo esc_html( $r['author'] ); ?></small>
 					<?php endif; ?>
 				</span>
 			</td>
-			<td class="flxu-c-type"><?php echo esc_html( $type[ $r['kind'] ] ?? '' ); ?></td>
 			<td class="flxu-c-inst"><?php echo '' !== $r['installed'] ? esc_html( $r['installed'] ) : '—'; ?>
 				<?php if ( ! $r['active'] ) : ?>
 					<br><small class="flxu-off"><?php esc_html_e( 'Inactive', 'flx-setup' ); ?></small>

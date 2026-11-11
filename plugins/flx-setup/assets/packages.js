@@ -466,7 +466,7 @@
 		dialog.setAttribute('aria-labelledby', 'flxu-preview-title');
 		dialog.setAttribute('aria-describedby', 'flxu-preview-description');
 		dialog.innerHTML = '<div class="flxu-preview__head"><h2 id="flxu-preview-title"></h2><button type="button" class="flxu-preview__close" aria-label="' + esc(L.previewClose) + '">×</button></div>' +
-			'<p id="flxu-preview-description" class="flxu-preview__description"></p><section class="flxu-preview__gallery" aria-label="' + esc(L.previewImages) + '"><p class="flxu-preview__label">' + esc(L.previewImages) + '</p><div class="flxu-preview__stage"><img alt=""><p class="flxu-preview__empty" hidden>' + esc(L.previewEmpty) + '</p></div><div class="flxu-preview__thumbs"></div></section>' +
+			'<p id="flxu-preview-description" class="flxu-preview__description"></p><dl class="flxu-preview__meta"></dl><section class="flxu-preview__gallery" aria-label="' + esc(L.previewImages) + '"><p class="flxu-preview__label">' + esc(L.previewImages) + '</p><div class="flxu-preview__stage"><img alt=""><p class="flxu-preview__empty" hidden>' + esc(L.previewEmpty) + '</p></div><div class="flxu-preview__thumbs"></div></section>' +
 			'<div class="flxu-preview__foot"><p>' + esc(L.previewMore) + '</p><a class="flxu-preview__website" target="_blank" rel="noopener noreferrer">' + esc(L.previewWebsite) + '<span aria-hidden="true">↗</span></a></div>';
 		document.body.appendChild(dialog);
 		dialog.querySelector('.flxu-preview__close').addEventListener('click', function () { dialog.close(); });
@@ -480,18 +480,43 @@
 		previewDialog = dialog; return dialog;
 	}
 	function openPreview(slug, trigger) {
-		var info = data.pk[slug] && data.pk[slug].preview;
-		if (!info) { return; }
+		/* FluxWP paketleri: sunucudaki tanıtım (açıklama + görseller). Hepsi: satırın teknik bilgileri (data-info). */
+		var pk = data.pk[slug] && data.pk[slug].preview;
+		var tr = rowEl(slug), meta = null;
+		try { meta = JSON.parse((tr && tr.getAttribute('data-info')) || 'null'); } catch (err) { meta = null; }
+		if (!pk && !meta) { return; }
+		var info = pk || {};
 		var dialog = makePreview();
 		if (typeof dialog.showModal !== 'function') { return; }
 		previewTrigger = trigger;
-		dialog.querySelector('h2').textContent = info.name || name(slug);
-		dialog.querySelector('.flxu-preview__description').textContent = info.description || L.previewDescription;
+		var btn = tr && tr.querySelector('.flxu-preview-open');
+		dialog.querySelector('h2').textContent = info.name || (btn ? btn.textContent : name(slug));
+		var desc = info.description || (meta && meta.d) || (pk ? L.previewDescription : '');
+		var dp = dialog.querySelector('.flxu-preview__description');
+		dp.textContent = desc; dp.hidden = !desc;
+		var dl = dialog.querySelector('.flxu-preview__meta');
+		dl.replaceChildren();
+		((meta && meta.m) || []).forEach(function (r, i) {
+			var dt = document.createElement('dt'), dd = document.createElement('dd');
+			dt.textContent = r[0];
+			/* İlk satır kimlik (slug / dosya / klasör): kod yazısıyla. */
+			if (i === 0 && tr && tr.getAttribute('data-group') !== 'core') { var c = document.createElement('code'); c.textContent = r[1]; dd.appendChild(c); } else { dd.textContent = r[1]; }
+			dl.appendChild(dt); dl.appendChild(dd);
+		});
+		dl.hidden = !dl.children.length;
+		dialog.querySelector('.flxu-preview__gallery').hidden = !pk;
 		var website = dialog.querySelector('.flxu-preview__website');
 		website.removeAttribute('href');
-		var websiteURL = previewURL(info.website);
+		var websiteURL = previewURL(info.website || (meta && meta.w) || '');
 		if (websiteURL) { website.href = websiteURL; }
 		dialog.querySelector('.flxu-preview__foot').hidden = !websiteURL;
+		dialog.querySelector('.flxu-preview__foot p').hidden = !pk;
+		if (!pk) {
+			dialog.querySelector('.flxu-preview__thumbs').replaceChildren();
+			if (!dialog.open) { dialog.showModal(); }
+			dialog.querySelector('.flxu-preview__close').focus();
+			return;
+		}
 		var stage = dialog.querySelector('.flxu-preview__stage');
 		var image = dialog.querySelector('.flxu-preview__stage img'), empty = dialog.querySelector('.flxu-preview__empty');
 		var thumbs = dialog.querySelector('.flxu-preview__thumbs');

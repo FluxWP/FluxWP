@@ -2025,3 +2025,24 @@ msgstr "Automatic updates are turned off for this site."
 
 msgid "Retry failed ones"
 msgstr "Retry failed ones"
+
+msgid "General"
+msgstr "General"
+
+msgid "Folder"
+msgstr "Folder"
+
+msgid "File"
+msgstr "File"
+
+msgid "Author"
+msgstr "Author"
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Released"
+msgstr "Released"

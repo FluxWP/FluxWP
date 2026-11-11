@@ -2025,3 +2025,24 @@ msgstr "Bu sitede otomatik güncellemeler kapalı."
 
 msgid "Retry failed ones"
 msgstr "Hatalıları tekrar dene"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Folder"
+msgstr "Klasör"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "Author"
+msgstr "Geliştirici"
+
+msgid "Slug"
+msgstr "Kimlik"
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "Released"
+msgstr "Yayın tarihi"
