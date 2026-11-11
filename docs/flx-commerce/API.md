@@ -12,7 +12,8 @@
 | `FLXCM_Bank::reference( WC_Order )` | Havale açıklaması |
 | `FLXCM_Bank::mark_paid( WC_Order )` | Havale ödemesini onaylar |
 | `FLXCM_Receipts::of( WC_Order )` | Yüklenen dekontlar |
-| `FLXCM_Customers::recompute( $email )` | Müşteri satırını yeniden hesaplar |
+| `FLXCM_Customers::recompute( $email )` | Müşteri satırını siparişlerden yeniden hesaplar |
+| `FLXCM_Customers::mark_dirty( $email )` | Satırı hemen hesaplamaz; `flxcm_customers_dirty` içine yazar. `shutdown` (bağlantı kapanınca) ya da `flxcm_daily` hesaplar. `get` / `by_email` kirli satırı okurken kendisi hesaplar |
 
 ## Filtreler
 | Filtre | |
