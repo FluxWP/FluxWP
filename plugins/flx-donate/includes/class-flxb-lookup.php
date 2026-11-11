@@ -229,8 +229,7 @@ final class FLXB_Lookup {
 	/** Answers of the lookup endpoints are never cached (LiteSpeed, CDN, browser). */
 	public static function no_cache( $res, $server, $req ) {
 		if ( $req instanceof WP_REST_Request && 0 === strpos( (string) $req->get_route(), '/' . self::NS . '/lookup' ) && $res instanceof WP_REST_Response ) {
-			$res->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0, private' );
-			$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+			flx_rest_nocache( $res );
 			$res->header( 'CDN-Cache-Control', 'no-store' );
 			do_action( 'litespeed_control_set_nocache', 'flx-donate lookup' );
 		}

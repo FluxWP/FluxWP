@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.10.7
+- OAuth, API ve akış yanıtları ortak önbelleksiz başlıkları kullanır. Akışın tampon kapatması durur.
+
 ## 0.10.6
 - MCP OAuth istek sınırı (dakikada 120, kayıt saatte 20) ortak sayacı kullanır. Adres, güvenilen vekilin ilettiği ziyaretçi adresidir; herkes tek kovada birleşmez.
 

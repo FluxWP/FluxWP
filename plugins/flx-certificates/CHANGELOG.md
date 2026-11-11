@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.13
+- Uygulama listeleri ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
 ## 1.9.12
 - Herkese açık sertifika sorgusu (saatte 10, aynı adrese 15 dakika) ortak sayacı kullanır. Adres güvenilen vekilden okunur.
 

@@ -119,9 +119,7 @@ function flxapp_nocache_headers() {
 	if ( headers_sent() ) {
 		return;
 	}
-	header( 'Cache-Control: no-store, no-cache, must-revalidate, max-age=0' );
-	header( 'Pragma: no-cache' );
-	header( 'X-LiteSpeed-Cache-Control: no-cache' );
+	flx_rest_nocache();
 	header( 'CDN-Cache-Control: no-store' );
 	do_action( 'litespeed_control_set_nocache', 'flx-app' );
 }

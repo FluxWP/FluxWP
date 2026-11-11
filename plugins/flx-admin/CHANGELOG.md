@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.16
+- PWA manifestosu ve oturum kontrolü ortak önbelleksiz başlıkları kullanır. Service worker'ın bir günlük önbelleği durur.
+
 ## 1.7.15
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

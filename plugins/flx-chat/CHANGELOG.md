@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.40.2
+- Sohbet API yanıtları ve dışa aktarma ortak önbelleksiz başlıkları kullanır. Kendi önbellek başlığı olan uçlar aynı kalır.
+
 ## 1.40.1
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

@@ -33,8 +33,7 @@ function flxai_app_can() {
 function flxai_app_nocache( $res, $server, $req ) {
 	unset( $server );
 	if ( $res instanceof WP_REST_Response && 0 === strpos( (string) $req->get_route(), '/flx-ai/v1/' ) ) {
-		$res->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
-		$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+		flx_rest_nocache( $res );
 		$res->header( 'CDN-Cache-Control', 'no-store' );
 		do_action( 'litespeed_control_set_nocache', 'flx-ai rest' );
 	}

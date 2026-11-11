@@ -193,7 +193,7 @@ function flxc_export_download() {
 	nocache_headers();
 	header( 'Content-Type: ' . ( 'json' === $o['format'] ? 'application/json' : 'text/markdown' ) . '; charset=utf-8' );
 	header( 'Content-Disposition: attachment; filename="' . $name . '"' );
-	header( 'X-LiteSpeed-Cache-Control: no-cache' );
+	flx_rest_nocache();
 	$head = array(
 		'site'        => flxc_brand_name(),
 		'exported_at' => wp_date( 'Y-m-d H:i' ),
@@ -264,7 +264,7 @@ function flxc_rest_export( WP_REST_Request $req ) {
 	header( 'Content-Type: ' . ( 'json' === $o['format'] ? 'application/json' : 'text/markdown' ) . '; charset=utf-8' );
 	header( 'Content-Disposition: attachment; filename="' . $name . '"' );
 	header( 'Content-Length: ' . strlen( $body ) );
-	header( 'X-LiteSpeed-Cache-Control: no-cache' );
+	flx_rest_nocache();
 	echo $body; // phpcs:ignore -- indirilen düz metin / JSON
 	exit;
 }

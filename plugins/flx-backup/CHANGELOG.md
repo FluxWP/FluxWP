@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.9
+- Yedek listesi ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
 ## 1.4.8
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

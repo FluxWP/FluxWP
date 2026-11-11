@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.1.22
+- Form listesi yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
 ## 2.1.21
 - Ödeme deneme sınırı (10 dakikada 20 başlatma, 60 onay) ortak sayacı kullanır. Adres yalnız güvenilen vekilden okunur; istemci kendi kovasını seçemez.
 

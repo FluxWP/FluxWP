@@ -43,10 +43,7 @@ function flxcb_rest_routes() {
 /* ---------------------------------------------------------------- */
 
 function flxcb_rest_out( $data, $status = 200 ) {
-	$r = new WP_REST_Response( $data, $status );
-	$r->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
-	$r->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
-	return $r;
+	return flx_rest_nocache( new WP_REST_Response( $data, $status ) );
 }
 
 function flxcb_rest_err( $code, $msg, $status = 400 ) {
@@ -239,8 +236,7 @@ function flxcb_rest_message( WP_REST_Request $req ) {
 		nocache_headers();
 		header( 'Content-Type: application/x-ndjson; charset=utf-8' );
 		header( 'X-Accel-Buffering: no' );
-		header( 'X-LiteSpeed-Cache-Control: no-cache' );
-		header( 'Cache-Control: no-store' );
+		flx_rest_nocache();
 	}
 	while ( ob_get_level() > 0 ) {
 		ob_end_flush();

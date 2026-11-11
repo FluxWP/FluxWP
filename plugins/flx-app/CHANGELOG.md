@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.11
+- Uygulama yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
 ## 0.4.10
 - Giriş, kod ve oturum istek sınırları ortak sayacı kullanır. Sınırlar aynıdır: IP ve hedef ayrıdır, yanlış kod sayacı yeni kod isteğiyle silinmez.
 

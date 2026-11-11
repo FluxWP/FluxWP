@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.11
+- Ticaret listeleri ortak önbelleksiz başlıkları kullanır. Dekont ucunun kendi başlığı durur.
+
 ## 0.2.10
 - Dekont klasörü doğrudan web erişimine kapalı kalır (Apache 2.2 ve 2.4).
 

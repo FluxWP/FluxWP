@@ -230,7 +230,7 @@ class FLXP_Login_URL {
 		do_action( 'litespeed_control_set_nocache', 'flx-speed: login url' );
 		if ( ! headers_sent() ) {
 			nocache_headers();
-			header( 'X-LiteSpeed-Cache-Control: no-cache' );
+			flx_rest_nocache();
 		}
 	}
 

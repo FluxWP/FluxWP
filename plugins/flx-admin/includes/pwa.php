@@ -157,7 +157,7 @@ function flxa_pwa_manifest() {
 	);
 	nocache_headers();
 	header( 'Content-Type: application/manifest+json; charset=utf-8' );
-	header( 'X-LiteSpeed-Cache-Control: no-cache' );
+	flx_rest_nocache();
 	echo wp_json_encode( apply_filters( 'flxa_pwa_manifest', $m ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 	exit;
 }
@@ -279,7 +279,7 @@ function flxa_pwa_keep_login( $login, $user ) {
 /** Giriş sayfası bu adresle "oturum açıldı mı" diye sorar; çerez gelmişse panele geçer. */
 function flxa_pwa_auth() {
 	nocache_headers();
-	header( 'X-LiteSpeed-Cache-Control: no-cache' );
+	flx_rest_nocache();
 	wp_send_json( array( 'in' => is_user_logged_in() ) );
 }
 

@@ -242,11 +242,7 @@ function flxai_oauth_issue( array $keys, $id ) {
 }
 
 function flxai_oauth_json( $data, $status = 200 ) {
-	$r = new WP_REST_Response( $data, $status );
-	$r->header( 'Cache-Control', 'no-store' );
-	$r->header( 'Pragma', 'no-cache' );
-	$r->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
-	return $r;
+	return flx_rest_nocache( new WP_REST_Response( $data, $status ) );
 }
 
 function flxai_oauth_error( $error, $desc = '', $status = 400 ) {

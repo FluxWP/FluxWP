@@ -266,8 +266,7 @@ add_filter(
 		if ( 0 !== strpos( (string) $req->get_route(), '/flx-ai/v1' ) || ! $res instanceof WP_REST_Response ) {
 			return $res;
 		}
-		$res->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0, private' );
-		$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+		flx_rest_nocache( $res );
 		$res->header( 'CDN-Cache-Control', 'no-store' );
 		do_action( 'litespeed_control_set_nocache', 'flx-ai api' );
 		return $res;

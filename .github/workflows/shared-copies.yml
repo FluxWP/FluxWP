@@ -31,3 +31,4 @@ jobs:
           php tools/brand/tests/csv.php
           php tools/brand/tests/files.php
           php tools/brand/tests/rate.php
+          php tools/brand/tests/nocache.php

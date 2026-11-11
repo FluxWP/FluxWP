@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.8
+- Analitik API yanıtları ortak önbelleksiz başlıkları kullanır. noindex ve CDN işareti durur.
+
 ## 0.4.7
 - CSV indirmede formül gibi açılacak hücrelerin başına tek tırnak gelir. Sütunlar, noktalı virgül ve Excel BOM aynı kalır.
 

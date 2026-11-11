@@ -748,3 +748,24 @@ function flx_rate_limit( string $key, int $max, int $window ): bool {
 	}
 	return $n <= $max;
 }
+
+/** Stop caches storing a REST response. A response object is returned; anything else is sent with header(). */
+function flx_rest_nocache( $response = null ) {
+	$headers = array(
+		'Cache-Control'             => 'no-store, no-cache, must-revalidate, max-age=0, private',
+		'Pragma'                    => 'no-cache',
+		'X-LiteSpeed-Cache-Control' => 'no-cache',
+	);
+	if ( is_object( $response ) && class_exists( 'WP_HTTP_Response', false ) && $response instanceof WP_HTTP_Response ) {
+		foreach ( $headers as $name => $value ) {
+			$response->header( $name, $value );
+		}
+		return $response;
+	}
+	if ( ! headers_sent() ) {
+		foreach ( $headers as $name => $value ) {
+			header( $name . ': ' . $value );
+		}
+	}
+	return $response;
+}

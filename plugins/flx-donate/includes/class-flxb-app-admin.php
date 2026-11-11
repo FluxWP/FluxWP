@@ -48,8 +48,7 @@ final class FLXB_App_Admin {
 	public static function nocache( $result, $server, $request ) {
 		unset( $server );
 		if ( $result instanceof WP_REST_Response && 0 === strpos( (string) $request->get_route(), '/' . self::NS . '/admin/' ) ) {
-			$result->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
-			$result->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+			flx_rest_nocache( $result );
 			$result->header( 'CDN-Cache-Control', 'no-store' );
 			do_action( 'litespeed_control_set_nocache', 'flxb-admin' );
 		}

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.20.6
+- Bağış sorgulama ve yönetim listeleri ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
 ## 2.20.5
 - Ödeme ve bağış sorgulama deneme sınırları ortak sayacı kullanır. Adres güvenilen vekilden okunur; e-posta ve telefon sınırları aynı kalır.
 
