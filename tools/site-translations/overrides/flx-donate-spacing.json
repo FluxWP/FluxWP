@@ -1,0 +1,129 @@
+{
+ "source": {
+  "basketball": "Basket",
+  "Sacrifice share": "Kurban share",
+  "healing": "Healing",
+  "Bring gifts in": "Brings gifts in",
+  "— note set": "— not set",
+  "%1$d·%2$dcents": "%1$d · %2$d sent",
+  "context_def6e4575e04\u0004MM/YY": "card expiry placeholder\u0004MM/YY",
+  "Complete the payment in the iyzico window...": "Complete the payment in the iyzico window…",
+  "Opening the secure payment page...": "Opening the secure payment page…",
+  "Code, name, phone, donation no...": "Code, name, phone, donation no…",
+  "Name, e-mail, phone, reference...": "Name, e-mail, phone, reference…",
+  "Name, e-mail or phone...": "Name, e-mail or phone…",
+  "Name, e-mail, phone, code...": "Name, e-mail, phone, code…",
+  "Interval (monthly...)": "Interval (monthly…)"
+ },
+ "translations": {
+  "de_DE": {
+   "Basket": "Spendenkorb",
+   "Kurban share": "Kurban-Anteil",
+   "Healing": "Heilung",
+   "Brings gifts in": "Bringt Spenden ein",
+   "— not set": "— nicht festgelegt",
+   "%1$d · %2$d sent": "%1$d · %2$d gesendet",
+   "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.": "Ich habe die %1$sDatenschutzerklärung%2$s und die %3$sSpendenvereinbarung%4$s gelesen und akzeptiere sie.",
+   "Unit price of %1$s set to %2$s %3$s.": "Einzelpreis von %1$s auf %2$s %3$s gesetzt."
+  },
+  "es_ES": {
+   "Basket": "Cesta de donaciones",
+   "Kurban share": "Participación de Kurban",
+   "Healing": "Sanación",
+   "Brings gifts in": "Aporta donaciones",
+   "— not set": "— sin definir",
+   "%1$d · %2$d sent": "%1$d · %2$d enviados",
+   "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.": "He leído y acepto la %1$spolítica de privacidad%2$s y el %3$sacuerdo de donación%4$s.",
+   "Unit price of %1$s set to %2$s %3$s.": "Precio unitario de %1$s establecido en %2$s %3$s."
+  },
+  "fr_FR": {
+   "Basket": "Panier de dons",
+   "Kurban share": "Part de Kurban",
+   "Healing": "Guérison",
+   "Brings gifts in": "Apporte des dons",
+   "— not set": "— non défini",
+   "%1$d · %2$d sent": "%1$d · %2$d envoyés",
+   "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.": "J'ai lu et j'accepte la %1$spolitique de confidentialité%2$s et l'%3$saccord de don%4$s.",
+   "Unit price of %1$s set to %2$s %3$s.": "Prix unitaire de %1$s défini sur %2$s %3$s."
+  },
+  "pt_BR": {
+   "Basket": "Cesta de doações",
+   "Kurban share": "Cota de Kurban",
+   "Healing": "Cura",
+   "Brings gifts in": "Traz doações",
+   "— not set": "— não definido",
+   "%1$d · %2$d sent": "%1$d · %2$d enviados",
+   "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.": "Li e aceito a %1$spolítica de privacidade%2$s e o %3$scontrato de doação%4$s.",
+   "Unit price of %1$s set to %2$s %3$s.": "Preço unitário de %1$s definido como %2$s %3$s."
+  },
+  "ja": {
+   "Basket": "寄付かご",
+   "Kurban share": "クルバンの持ち分",
+   "Healing": "癒し",
+   "Brings gifts in": "寄付を集める",
+   "— not set": "— 未設定",
+   "%1$d · %2$d sent": "%1$d · %2$d 件送信済み",
+   "Unit price of %1$s set to %2$s %3$s.": "%1$sの単価が%2$s %3$sに設定されました。"
+  },
+  "zh_CN": {
+   "Basket": "捐赠篮",
+   "Kurban share": "古尔邦份额",
+   "Healing": "康复",
+   "Brings gifts in": "带来捐赠",
+   "— not set": "— 未设置",
+   "%1$d · %2$d sent": "%1$d · 已发送 %2$d",
+   "Unit price of %1$s set to %2$s %3$s.": "%1$s的单价设置为%2$s %3$s。"
+  },
+  "ar": {
+   "Basket": "سلة التبرعات",
+   "Kurban share": "حصة الأضحية",
+   "Healing": "الشفاء",
+   "Brings gifts in": "يجلب التبرعات",
+   "— not set": "— غير محدد",
+   "%1$d · %2$d sent": "%1$d · %2$d مُرسلة",
+   "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.": "لقد قرأت %1$sسياسة الخصوصية%2$s و%3$sاتفاقية التبرع%4$s وأوافق عليهما.",
+   "Unit price of %1$s set to %2$s %3$s.": "تم تعيين سعر الوحدة لـ%1$s على %2$s %3$s."
+  },
+  "ru_RU": {
+   "Basket": "Корзина пожертвований",
+   "Kurban share": "Доля курбана",
+   "Healing": "Исцеление",
+   "Brings gifts in": "Привлекает пожертвования",
+   "— not set": "— не указано",
+   "%1$d · %2$d sent": "%1$d · %2$d отправлено",
+   "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s.": "Я прочитал(а) и принимаю %1$sполитику конфиденциальности%2$s и %3$sсоглашение о пожертвовании%4$s.",
+   "Unit price of %1$s set to %2$s %3$s.": "Цена за единицу %1$s установлена на %2$s %3$s.",
+   "of %s goal": "из цели %s"
+  },
+  "tr_TR": {
+   "%s recurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed.\u0000%s recurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed.": "%s düzenli bağış, tüm denemelere rağmen iyzico üzerinden tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçıya e-posta gönderildi.\u0000%s düzenli bağış, tüm denemelere rağmen iyzico üzerinden tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçılara e-posta gönderildi.",
+   "%s donor\u0000%s donors": "%s bağışçı\u0000%s bağışçı",
+   "and %s more\u0000and %s more": "ve %s tane daha\u0000ve %s tane daha",
+   "Import %s row\u0000Import %s rows": "%s satırı yükle\u0000%s satırı yükle",
+   "%1$s donation · %2$s received\u0000%1$s donations · %2$s received": "%1$s bağış · %2$s alındı\u0000%1$s bağış · %2$s alındı",
+   "%s donation moved to the trash.\u0000%s donations moved to the trash.": "%s bağış çöp kutusuna taşındı.\u0000%s bağış çöp kutusuna taşındı.",
+   "%s donation restored.\u0000%s donations restored.": "%s bağış geri alındı.\u0000%s bağış geri alındı.",
+   "%s donation deleted permanently.\u0000%s donations deleted permanently.": "%s bağış kalıcı olarak silindi.\u0000%s bağış kalıcı olarak silindi.",
+   "%1$s paid gift · %2$s\u0000%1$s paid gifts · %2$s": "%1$s ödenmiş bağış · %2$s\u0000%1$s ödenmiş bağış · %2$s",
+   "%s waiting\u0000%s waiting": "%s bekliyor\u0000%s bekliyor",
+   "%d certificate made. Check it, then press \"Send the certificates\".\u0000%d certificates made. Check them, then press \"Send the certificates\".": "%d sertifika oluşturuldu. Kontrol edip \"Sertifikaları gönder\"e basın.\u0000%d sertifika oluşturuldu. Kontrol edip \"Sertifikaları gönder\"e basın.",
+   "%d item updated.\u0000%d items updated.": "%d kayıt güncellendi.\u0000%d kayıt güncellendi.",
+   "%s record\u0000%s records": "%s kayıt\u0000%s kayıt",
+   "%d without a price\u0000%d without a price": "%d kayıt fiyatsız\u0000%d kayıt fiyatsız",
+   "Used by %s type\u0000Used by %s types": "%s türde kullanılıyor\u0000%s türde kullanılıyor",
+   "%d field\u0000%d fields": "%d alan\u0000%d alan",
+   "%s recurring donation\u0000%s recurring donations": "%s düzenli bağış\u0000%s düzenli bağış",
+   "Please write at most %s name (one per share).\u0000Please write at most %s names (one per share).": "Lütfen en fazla %s ad yazın (her hisse için bir ad).\u0000Lütfen en fazla %s ad yazın (her hisse için bir ad).",
+   "Donation of %1$s sapling. %2$s plants it for you and sends an online certificate in your name. Pay by card or bank transfer.\u0000Donation of %1$s saplings. %2$s plants them for you and sends an online certificate in your name. Pay by card or bank transfer.": "%1$s fidan bağışı. %2$s fidanı sizin için diker ve adınıza online bir sertifika gönderir. Kartla ya da havaleyle ödeyin.\u0000%1$s fidan bağışı. %2$s fidanları sizin için diker ve adınıza online bir sertifika gönderir. Kartla ya da havaleyle ödeyin.",
+   "%s Sapling\u0000%s Saplings": "%s Fidan\u0000%s Fidan",
+   "Warning: this receipt was uploaded before (%1$d time, via %2$s). Check it before confirming the payment.\u0000Warning: this receipt was uploaded before (%1$d times, via %2$s). Check it before confirming the payment.": "Uyarı: bu dekont daha önce yüklenmiş (%1$d kez, %2$s üzerinden). Ödemeyi onaylamadan önce kontrol edin.\u0000Uyarı: bu dekont daha önce yüklenmiş (%1$d kez, %2$s üzerinden). Ödemeyi onaylamadan önce kontrol edin.",
+   "%s donation is awaiting payment\u0000%s donations are awaiting payment": "%s bağış ödeme bekliyor\u0000%s bağış ödeme bekliyor",
+   "donor\u0000donors": "bağışçı\u0000bağışçı",
+   "day left\u0000days left": "gün kaldı\u0000gün kaldı",
+   "%1$d task is more than 15 minutes late: %2$s.\u0000%1$d tasks are more than 15 minutes late: %2$s.": "%1$d görev 15 dakikadan fazla gecikti: %2$s.\u0000%1$d görev 15 dakikadan fazla gecikti: %2$s.",
+   "%d recurring donation stopped after its card was declined 3 times.\u0000%d recurring donations stopped after their cards were declined 3 times.": "%d düzenli bağış, kart 3 kez reddedildiği için durdu.\u0000%d düzenli bağış, kartları 3 kez reddedildiği için durdu.",
+   "%d donation type is open and priced.\u0000%d donation types are open and priced.": "%d bağış türü açık ve fiyatlı.\u0000%d bağış türü açık ve fiyatlı.",
+   "%d bank account is listed for bank transfer gifts.\u0000%d bank accounts are listed for bank transfer gifts.": "Havale bağışları için %d banka hesabı tanımlı.\u0000Havale bağışları için %d banka hesabı tanımlı."
+  }
+ }
+}

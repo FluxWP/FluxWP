@@ -135,7 +135,7 @@ final class FLXB_WC_Cart {
 			$opt = FLXB_Types::option( $t, $key );
 			if ( $opt && FLXB_Types::option_on_sale( $opt ) && ! FLXB_Types::option_on_sale_in( $t, $opt, $cur ) ) {
 				/* translators: %s: currency code */
-				return new WP_Error( 'flxb_currency', sprintf( __( 'This option cannot be donated in%s. Please choose another currency.', 'flx-donate' ), $cur ) );
+				return new WP_Error( 'flxb_currency', sprintf( __( 'This option cannot be donated in %s. Please choose another currency.', 'flx-donate' ), $cur ) );
 			}
 			if ( ! $opt || ! FLXB_Types::option_on_sale_in( $t, $opt, $cur ) ) {
 				return new WP_Error( 'flxb_option', __( 'This option cannot be donated online at the moment.', 'flx-donate' ) );
@@ -146,7 +146,7 @@ final class FLXB_WC_Cart {
 				$max = self::max_units( $t );
 				if ( $n < 1 || $n > $max ) {
 					/* translators: %s: highest number */
-					return new WP_Error( 'flxb_units', sprintf( __( 'The number must be between 1 and%s.', 'flx-donate' ), number_format_i18n( $max ) ) );
+					return new WP_Error( 'flxb_units', sprintf( __( 'The number must be between 1 and %s.', 'flx-donate' ), number_format_i18n( $max ) ) );
 				}
 				$line['units'] = $n;
 			}
@@ -155,7 +155,7 @@ final class FLXB_WC_Cart {
 			$min    = FLXB_Types::min_amount_in( $t, $cur );
 			if ( $amount <= 0 || $amount < $min ) {
 				/* translators: %s: lowest amount */
-				return new WP_Error( 'flxb_amount', $min > 0 ? sprintf( __( 'The amount must be at least%s.', 'flx-donate' ), FLXB_WC::money_text( $min ) ) : __( 'Please enter an amount.', 'flx-donate' ) );
+				return new WP_Error( 'flxb_amount', $min > 0 ? sprintf( __( 'The amount must be at least %s.', 'flx-donate' ), FLXB_WC::money_text( $min ) ) : __( 'Please enter an amount.', 'flx-donate' ) );
 			}
 			if ( $amount > 1000000 ) {
 				return new WP_Error( 'flxb_amount', __( 'For this amount please get in touch with us.', 'flx-donate' ) );
@@ -335,7 +335,7 @@ final class FLXB_WC_Cart {
 			$line['currency'] = self::line_currency( $line );
 			if ( $line['currency'] !== FLXB_WC_Currency::current() && ! FLXB_WC_Currency::set( $line['currency'] ) ) {
 				/* translators: %s: currency code */
-				return new WP_Error( 'flxb_currency', sprintf( __( 'Donations in%scannot be paid here at the moment.', 'flx-donate' ), $line['currency'] ) );
+				return new WP_Error( 'flxb_currency', sprintf( __( 'Donations in %s cannot be paid here at the moment.', 'flx-donate' ), $line['currency'] ) );
 			}
 		}
 		$pid = FLXB_WC_Products::product_id( (int) $line['type_id'] );
@@ -424,7 +424,7 @@ final class FLXB_WC_Cart {
 				$here = self::line_price( $item[ self::KEY ], self::line_currency( $item[ self::KEY ] ) ) > 0;
 				WC()->cart->remove_cart_item( $key );
 				/* translators: %s: currency code */
-				wc_add_notice( $here ? sprintf( __( 'A donation in your cart cannot be paid in%sand was removed.', 'flx-donate' ), $cur ) : __( 'A donation in your cart is no longer available and was removed.', 'flx-donate' ), 'error' );
+				wc_add_notice( $here ? sprintf( __( 'A donation in your cart cannot be paid in %s and was removed.', 'flx-donate' ), $cur ) : __( 'A donation in your cart is no longer available and was removed.', 'flx-donate' ), 'error' );
 				continue;
 			}
 			if ( 'print' === ( $item[ self::KEY ]['cert'] ?? '' ) && ! self::print_here() ) {
@@ -437,7 +437,7 @@ final class FLXB_WC_Cart {
 		if ( $other && class_exists( 'FLXB_WC_Currency' ) && FLXB_WC_Currency::base() !== $cur ) {
 			/* Shop products have one price, in the store currency. */
 			/* translators: 1: store currency, 2: switch link */
-			wc_add_notice( sprintf( __( 'Products in your cart can only be paid in%1$s.<a href="%2$s">Switch to%1$s</a>', 'flx-donate' ), esc_html( FLXB_WC_Currency::base() ), esc_url( FLXB_WC_Currency::url( FLXB_WC_Currency::base() ) ) ), 'error' );
+			wc_add_notice( sprintf( __( 'Products in your cart can only be paid in %1$s. <a href="%2$s">Switch to %1$s</a>', 'flx-donate' ), esc_html( FLXB_WC_Currency::base() ), esc_url( FLXB_WC_Currency::url( FLXB_WC_Currency::base() ) ) ), 'error' );
 		}
 	}
 
@@ -533,7 +533,7 @@ final class FLXB_WC_Cart {
 
 	public static function consent_text( array $c ) {
 		/* translators: %s: proxy text version */
-		return sprintf( __( 'accepted (text version%s)', 'flx-donate' ), number_format_i18n( (int) ( $c['version'] ?? 0 ) ) );
+		return sprintf( __( 'accepted (text version %s)', 'flx-donate' ), number_format_i18n( (int) ( $c['version'] ?? 0 ) ) );
 	}
 
 	public static function cert_label( $cert ) {
@@ -550,7 +550,7 @@ final class FLXB_WC_Cart {
 		list( $n, $unit ) = self::units( $line, 1 );
 		if ( 'fidan' === $unit && $n ) {
 			/* translators: %s: number of saplings */
-			return sprintf( __( '%sSapling Donation', 'flx-donate' ), number_format_i18n( $n ) );
+			return sprintf( __( '%s Sapling Donation', 'flx-donate' ), number_format_i18n( $n ) );
 		}
 		$title = (string) $t['title'];
 		if ( '' !== (string) ( $line['option'] ?? '' ) && count( $t['options'] ) > 1 ) {

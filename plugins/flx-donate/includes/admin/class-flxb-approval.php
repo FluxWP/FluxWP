@@ -371,7 +371,7 @@ final class FLXB_Approval {
 		$sent = self::do_reject( $d, $reason, ! empty( $_POST['notify'] ) );
 		$msg  = $sent
 			/* translators: %s: channels */
-			? sprintf( __( 'Payment rejected; the donor was told by%s.', 'flx-donate' ), implode( ', ', $sent ) )
+			? sprintf( __( 'Payment rejected; the donor was told by %s.', 'flx-donate' ), implode( ', ', $sent ) )
 			: __( 'Payment rejected.', 'flx-donate' );
 		FLXB_Admin::redirect( 'flxb-donations', array( 'donation' => (int) $d['id'], 'flxb_msg' => 'rejected', 'flxb_err' => $msg ) );
 	}
@@ -393,7 +393,7 @@ final class FLXB_Approval {
 			$order->update_meta_data( '_flxb_reject_reason', $reason );
 			$order->save_meta_data();
 			/* translators: 1: user, 2: reason */
-			$order->update_status( 'cancelled', sprintf( __( 'Payment rejected by%1$s. Reason:%2$s', 'flx-donate' ), $who, $reason ) );
+			$order->update_status( 'cancelled', sprintf( __( 'Payment rejected by %1$s. Reason: %2$s', 'flx-donate' ), $who, $reason ) );
 		} elseif ( FLXB_Donations::set_status_by_uniq( $d['uniq'], 'canceled' ) ) {
 			FLXB_Donations::add_audit( (int) $d['id'], 'status', array( 'status' => array( 'pending', 'canceled' ) ) );
 		}
@@ -401,7 +401,7 @@ final class FLXB_Approval {
 		FLXB_Donations::add_audit( (int) $d['id'], 'rejected', array( 'reason' => $reason, 'sent' => $sent ) );
 		if ( $order && $sent ) {
 			/* translators: %s: channels */
-			$order->add_order_note( sprintf( __( 'Rejection sent to the donor:%s', 'flx-donate' ), implode( ', ', $sent ) ) );
+			$order->add_order_note( sprintf( __( 'Rejection sent to the donor: %s', 'flx-donate' ), implode( ', ', $sent ) ) );
 		}
 		do_action( 'flxb_payment_rejected', (int) $d['id'], $reason, $order, $sent );
 		return $sent;
@@ -416,7 +416,7 @@ final class FLXB_Approval {
 			/* translators: %s: donor name */
 			'' !== $name ? sprintf( __( 'Hello %s,', 'flx-donate' ), $name ) : __( 'Hello,', 'flx-donate' ),
 			/* translators: %s: amount */
-			sprintf( __( 'We could not confirm the payment of your%sdonation.', 'flx-donate' ), $total ),
+			sprintf( __( 'We could not confirm the payment of your %s donation.', 'flx-donate' ), $total ),
 			/* translators: %s: reason */
 			sprintf( __( 'Reason: %s', 'flx-donate' ), $reason ),
 			__( 'If you think this is a mistake, please reply to this message. Thank you.', 'flx-donate' ),

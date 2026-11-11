@@ -92,4 +92,9 @@
 	.flx-ph__cc { padding: 0 10px; gap: 8px; }
 	.flx-ph__pop { position: fixed; top: auto; bottom: 0; left: 0; right: 0; max-height: 70vh; border-radius: 16px 16px 0 0; }
 }
-body.flx-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; }
+/* Dark colours. body.flx-dark only means "dark mode allowed" (FluxWP theme), so it applies while the device is dark,
+   like the theme. A site switch (fluxwp.com: html.flxfw-dark / data-flxfw-theme) and the admin dark mode (html.flxa-dark) win. */
+@media (prefers-color-scheme: dark) {
+	html:not([data-flxfw-theme]) body.flx-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; }
+}
+html.flxfw-dark .flx-ph, html.flxa-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; }

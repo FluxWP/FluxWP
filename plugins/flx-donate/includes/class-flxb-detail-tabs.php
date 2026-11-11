@@ -43,7 +43,7 @@ final class FLXB_Detail_Tabs {
 		$on = (string) ( $t['on'] ?? 'item' );
 		if ( ! in_array( $on, array( 'item', 'donation' ), true ) ) {
 			/* translators: 1: tab id, 2: value */
-			$errors[] = sprintf( __( 'Tab%1$s: "on" must be item or donation, not%2$s.', 'flx-donate' ), $id, $on );
+			$errors[] = sprintf( __( 'Tab %1$s: "on" must be item or donation, not %2$s.', 'flx-donate' ), $id, $on );
 			$on       = 'item';
 		}
 		$fields = array();
@@ -51,13 +51,13 @@ final class FLXB_Detail_Tabs {
 			$k = sanitize_key( (string) ( $f['key'] ?? '' ) );
 			if ( '' === $k ) {
 				/* translators: %s: tab id */
-				$errors[] = sprintf( __( 'Tab%s: every field needs a "key".', 'flx-donate' ), $id );
+				$errors[] = sprintf( __( 'Tab %s: every field needs a "key".', 'flx-donate' ), $id );
 				continue;
 			}
 			$type = (string) ( $f['type'] ?? 'text' );
 			if ( ! in_array( $type, self::field_types(), true ) ) {
 				/* translators: 1: tab id, 2: field key, 3: type */
-				$errors[] = sprintf( __( 'Tab%1$s, field%2$s: unknown type%3$s.', 'flx-donate' ), $id, $k, $type );
+				$errors[] = sprintf( __( 'Tab %1$s, field %2$s: unknown type %3$s.', 'flx-donate' ), $id, $k, $type );
 				$type     = 'text';
 			}
 			$opts = array();
@@ -152,7 +152,7 @@ final class FLXB_Detail_Tabs {
 		}
 		if ( ! is_array( $raw ) ) {
 			/* translators: %s: JSON error */
-			return new WP_Error( 'flxb_json', sprintf( __( 'The JSON could not be read:%s', 'flx-donate' ), json_last_error_msg() ) );
+			return new WP_Error( 'flxb_json', sprintf( __( 'The JSON could not be read: %s', 'flx-donate' ), json_last_error_msg() ) );
 		}
 		if ( isset( $raw['id'] ) ) {
 			$raw = array( $raw ); // a single tab is fine too

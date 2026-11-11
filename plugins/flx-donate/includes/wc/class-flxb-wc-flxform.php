@@ -234,7 +234,7 @@ class FLXB_WC_FLXForm {
 			);
 			$rows = self::finish_entry( $track, (array) ( $m['rows'] ?? array() ), $order );
 			/* translators: %s: Flux Forms tracking code */
-			$order->add_order_note( sprintf( __( 'Flux Forms entry%scompleted by this payment.', 'flx-donate' ), $track ) );
+			$order->add_order_note( sprintf( __( 'Flux Forms entry %s completed by this payment.', 'flx-donate' ), $track ) );
 			$ctx = array(
 				'event_type'                => 'payment',
 				'track_code'                => $track,

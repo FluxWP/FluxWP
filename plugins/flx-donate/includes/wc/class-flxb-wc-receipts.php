@@ -129,7 +129,7 @@ final class FLXB_WC_Receipts {
 		$order->update_meta_data( '_flxb_state', 'uploaded' );
 		$order->save();
 		/* translators: 1: file name, 2: size */
-		$order->add_order_note( sprintf( __( 'The donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it.', 'flx-donate' ), $rec['name'], size_format( $rec['size'] ) ) );
+		$order->add_order_note( sprintf( __( 'The donor uploaded a receipt: %1$s (%2$s). Check the payment and confirm it.', 'flx-donate' ), $rec['name'], size_format( $rec['size'] ) ) );
 		if ( ! empty( $rec['dup'] ) ) {
 			$order->add_order_note( self::dup_text( $rec ) );
 		}

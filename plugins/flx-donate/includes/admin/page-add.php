@@ -81,7 +81,7 @@ final class FLXB_Page_Add {
 		echo '<div class="flxb-field" data-flxb-proxy hidden><label for="flxb-a-ben">' . esc_html__( 'On behalf of', 'flx-donate' ) . '</label><textarea id="flxb-a-ben" name="beneficiaries" rows="3"></textarea><p class="flxb-help">' . esc_html__( 'One name per line, one per unit. Units without a name are given on behalf of the donor.', 'flx-donate' ) . '</p>';
 		if ( $proxy ) {
 			/* translators: %s: version number */
-			echo '<label class="flxb-check"><input type="checkbox" name="proxy_consent" value="1"> ' . esc_html( sprintf( __( 'The donor accepted the proxy (vekâlet) text, version%s', 'flx-donate' ), number_format_i18n( (int) $proxy['version'] ) ) ) . '</label>';
+			echo '<label class="flxb-check"><input type="checkbox" name="proxy_consent" value="1"> ' . esc_html( sprintf( __( 'The donor accepted the proxy (vekâlet) text, version %s', 'flx-donate' ), number_format_i18n( (int) $proxy['version'] ) ) ) . '</label>';
 		}
 		echo '</div></div></section>';
 
@@ -317,7 +317,7 @@ final class FLXB_Page_Add {
 			$phone = '9' . $phone;
 		}
 		/* translators: 1: donor name, 2: amount, 3: payment link */
-		$text = sprintf( __( 'Hello%1$s, we have received your donation request (%2$s). You can pay here:%3$s', 'flx-donate' ), $name, wp_strip_all_tags( $order->get_formatted_order_total() ), $url );
+		$text = sprintf( __( 'Hello %1$s, we have received your donation request (%2$s). You can pay here: %3$s', 'flx-donate' ), $name, wp_strip_all_tags( $order->get_formatted_order_total() ), $url );
 		echo '<section class="flxb-card flxb-reqdone"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Request created', 'flx-donate' ) . '</h2></div><div class="flxb-form">';
 		echo '<div class="flxb-field"><label for="flxb-req-url">' . esc_html__( 'Payment link', 'flx-donate' ) . '</label><input type="text" id="flxb-req-url" class="flxb-input code" readonly value="' . esc_attr( $url ) . '" onclick="this.select()"></div>';
 		echo '<div class="flxb-formactions">';
