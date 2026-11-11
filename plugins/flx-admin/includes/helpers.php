@@ -145,19 +145,44 @@ function flxa_theme_primary() {
 }
 
 /**
- * Logo: ayarlardan yüklenen görsel (Ayarlar › Yönetim teması › Logo seç), yoksa kurumun yaprak ikonu.
- * Site simgesi bilerek kullanılmaz: çoğu sitede yazılı tam logodur, dar alanda okunmaz.
- * Varsayılan `flxa_logo_url` filtresiyle değiştirilebilir.
+ * Logo (sol menü başı, giriş ekranı). Sıra:
+ * 1. Ayarlar › Yönetim teması › Logo seç ile yüklenen görsel,
+ * 2. kurum profili simgesi (Flux Setup › Kurum profili › Simge; ön ayarlar burayı doldurur),
+ * 3. WordPress site simgesi (Görünüm › Özelleştir › Site kimliği; her zaman kare),
+ * 4. FluxWP işareti (`flxa_logo_url` filtresiyle değiştirilebilir).
+ * Kurumun yazılı tam logosu bilerek kullanılmaz: dar alanda okunmaz.
+ * Son sonuç `flxa_logo_src` filtresinden geçer.
  */
 function flxa_logo_url( $size = 96 ) {
-	$id = (int) flxa_setting( 'logo_id' );
+	$url = '';
+	$id  = (int) flxa_setting( 'logo_id' );
 	if ( $id ) {
-		$u = wp_get_attachment_image_url( $id, array( $size, $size ) );
-		if ( $u ) {
-			return $u;
+		$url = (string) wp_get_attachment_image_url( $id, array( $size, $size ) );
+	}
+	if ( '' === $url ) {
+		$url = flxa_logo_fallback_url( $size );
+	}
+	return (string) apply_filters( 'flxa_logo_src', $url, $size );
+}
+
+/** Ayarlarda logo seçilmemişse kullanılan logo (kurum profili simgesi > site simgesi > FluxWP). */
+function flxa_logo_fallback_url( $size = 96 ) {
+	$url = '';
+	if ( function_exists( 'flx_profile' ) ) {
+		$icon = flx_profile( 'icon', '' );
+		if ( is_numeric( $icon ) && (int) $icon > 0 ) {
+			$url = (string) wp_get_attachment_image_url( (int) $icon, array( $size, $size ) );
+		} elseif ( is_string( $icon ) && preg_match( '#^(https?:)?//|^/#', $icon ) ) {
+			$url = $icon;
 		}
 	}
-	return (string) apply_filters( 'flxa_logo_url', FLXA_URL . 'assets/brand-icon.svg?ver=' . FLXA_VERSION, $size );
+	if ( '' === $url && has_site_icon() ) {
+		$url = (string) get_site_icon_url( $size <= 96 ? 192 : 512 );
+	}
+	if ( '' === $url ) {
+		$url = (string) apply_filters( 'flxa_logo_url', FLXA_URL . 'assets/brand-icon.svg?ver=' . FLXA_VERSION, $size );
+	}
+	return $url;
 }
 
 /** Kullanıcının tema tercihi: auto | light | dark. */
