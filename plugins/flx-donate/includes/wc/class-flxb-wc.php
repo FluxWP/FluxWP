@@ -374,16 +374,16 @@ final class FLXB_WC {
 	public static function default_notify_text( $channel ) {
 		if ( 'sms' === $channel ) {
 			/* translators: SMS template. Placeholders: {ad} {tutar} {siparis} {iban} {aciklama} {link} */
-			return __( 'Hello{ad}, your donation of{tutar}is registered. IBAN:{iban}Reference:{aciklama}Upload your receipt:{link}', 'flx-donate' );
+			return __( 'Hello {ad}, your donation of {tutar} is registered. IBAN: {iban} Reference: {aciklama} Upload your receipt: {link}', 'flx-donate' );
 		}
 		/* translators: WhatsApp template. Placeholders: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site} */
-		return __( 'Hello{ad}🌱
+		return __( 'Hello {ad} 🌱
 
-Your donation of *{tutar}* is registered (No:{siparis}).
+Your donation of *{tutar}* is registered (No: {siparis}).
 
 Bank transfer details:
-Recipient:{alici}
-IBAN:{iban}
+Recipient: {alici}
+IBAN: {iban}
 Reference: *{aciklama}*
 
 After the transfer you can upload your receipt here:

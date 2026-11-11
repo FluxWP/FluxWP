@@ -412,8 +412,8 @@ function flxc_ingest_message( $conn_id, array $d, $opts = array() ) {
 			 */
 			do_action( 'flxc_message_received', $id, $chat );
 		}
-	} elseif ( $id && in_array( $source, array( 'phone', 'certificate' ), true ) && ! $history ) {
-		/** Telefondan ya da Flux Certificates panelinden gönderilen mesaj: asistan bu sohbette susar. */
+	} elseif ( $id && 'phone' === $source && ! $history ) {
+		/** Telefondan yazılan mesaj: asistan bu sohbette susar. Flux Certificates gönderimi (1.40.0) susturmaz. */
 		do_action( 'flxc_message_from_phone', $id, $chat );
 	}
 	return $id;

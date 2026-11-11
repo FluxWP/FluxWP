@@ -62,7 +62,7 @@ class FLXB_WC_Notify {
 		$order->update_meta_data( '_flxb_notified', time() );
 		$order->save_meta_data();
 		/* translators: %s: channel list */
-		$order->add_order_note( sprintf( __( 'Pending transfer notification sent:%s.', 'flx-donate' ), implode( ', ', $done ) ) );
+		$order->add_order_note( sprintf( __( 'Pending transfer notification sent: %s.', 'flx-donate' ), implode( ', ', $done ) ) );
 		return true;
 	}
 }

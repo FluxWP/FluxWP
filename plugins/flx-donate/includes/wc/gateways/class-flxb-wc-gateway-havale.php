@@ -68,7 +68,7 @@ class FLXB_WC_Gateway_Havale extends WC_Payment_Gateway {
 			'ref_format'  => array(
 				'title'       => __( 'Reference', 'flx-donate' ),
 				'type'        => 'text',
-				'description' => __( 'What the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}', 'flx-donate' ),
+				'description' => __( 'What the donor writes in the transfer description. Placeholders: {tur} (sapling donation / donation), {kod} (prefix + order no), {siparis}, {ad}. Empty: {tur} {kod} {ad}', 'flx-donate' ),
 				'default'     => '',
 				'placeholder' => '{tur} {kod} {ad}',
 			),

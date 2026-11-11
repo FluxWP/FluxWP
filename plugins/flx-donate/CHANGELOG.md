@@ -12,6 +12,13 @@
 - Kart ile öde sekmesinin başlığında kart logoları yok; logolar kart alanlarının altında sağda.
 - Fidan ürün görseli artık gerçek fidan fotoğrafı; eski hazır ikon görseli kendiliğinden değişir (elle seçilen görsele dokunulmaz). Görseli olmayan kalemde özet gri yer tutucu yerine fidan ikonu gösterir.
 
+## 2.20.1
+- İngilizce metinlerde yer tutucuların yanındaki silinmiş boşluklar geri geldi ("of %s goal", "Thank you, {ad}", "Your {aralik} donation of {tutar} is set up" ve 189 metin daha); kaynak, .pot ve 10 dilin .po/.mo/.l10n.php/JSON paketleri güncellendi. Makine çevirilerindeki aynı boşluk hataları da düzeltildi.
+- Toplu çeviride bozulan birkaç kelime geri alındı: "Basket" (basketball), "Kurban share", "Healing", "— not set", "%1$d · %2$d sent", "Brings gifts in", kart son kullanma alanının çeviri bağlamı ve "…".
+- Türkçe tekil/çoğul metinler (28 adet: "0 ücretli", "1 bekliyor", "%s bağışçı", "%d alan" …) toplu çeviri öncesindeki elle yazılmış Türkçeye döndü.
+- Şartlar onay cümlesinde (FR, ES, PT, DE, AR, RU) bağlantı yine "gizlilik politikası" ve "bağış sözleşmesi" kelimelerini sarıyor. Çevirisi eksik "%s more" eklendi.
+- Telefon alanı (flx-brand 1.2.1): FluxWP temasında açık modda koyu görünmüyor; koyu renkler yalnız cihaz koyu moddayken (ya da sitenin/adminin koyu modu açıkken) gelir.
+
 ## 2.20.0
 - Bağış detay sayfası yeniden tasarlandı: üstte tutar ve özet şeridi (durum, bağışçı, referans, ödeme, tür, ne zaman geldiği), solda sipariş, kalemler, ödeme ve kayıtlar, sağda bağışçı, referans ve işlemler kartları. Bağışçı kartında ödenmiş bağış sayısı, toplam, bekleyen ve "Sohbeti aç".
 - Referans her yerde görünür: listede referans sütunu, bağışın referansı yoksa bağışçının önceki bağışlarındaki referansı soluk gösterir. Detayda referans kartı (ad, telefon, e-posta), yetkili için düzenleme.

@@ -41,7 +41,7 @@ final class FLXB_Page_Donors {
 		if ( FLXB_Admin::list_lib() ) {
 			/* 2.6.0: shared Flux Admin list library; search row, kind and sort beside it. */
 			echo '<form class="flxb-filters flxb-filters--lib" method="get" action="' . esc_url( admin_url( 'admin.php' ) ) . '"' . FLXB_Admin::list_attrs( 'flxb-donors' ) . '><input type="hidden" name="page" value="flxb-donors">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<input type="search" name="s" value="' . esc_attr( $search ) . '" placeholder="' . esc_attr__( 'Name, e-mail or phone...', 'flx-donate' ) . '" aria-label="' . esc_attr__( 'Search', 'flx-donate' ) . '">';
+			echo '<input type="search" name="s" value="' . esc_attr( $search ) . '" placeholder="' . esc_attr__( 'Name, e-mail or phone…', 'flx-donate' ) . '" aria-label="' . esc_attr__( 'Search', 'flx-donate' ) . '">';
 			echo '<label><span>' . esc_html__( 'Show', 'flx-donate' ) . '</span><select name="kind">';
 			foreach ( $kinds as $k => $label ) {
 				echo '<option value="' . esc_attr( $k ) . '"' . selected( $kind, $k, false ) . '>' . esc_html( $label ) . '</option>';
@@ -61,7 +61,7 @@ final class FLXB_Page_Donors {
 		if ( '' !== $kind ) {
 			echo '<input type="hidden" name="kind" value="' . esc_attr( $kind ) . '">';
 		}
-		echo '<label class="screen-reader-text" for="flxb-s">' . esc_html__( 'Search', 'flx-donate' ) . '</label><input type="search" id="flxb-s" name="s" value="' . esc_attr( $search ) . '" placeholder="' . esc_attr__( 'Name, e-mail or phone...', 'flx-donate' ) . '">';
+		echo '<label class="screen-reader-text" for="flxb-s">' . esc_html__( 'Search', 'flx-donate' ) . '</label><input type="search" id="flxb-s" name="s" value="' . esc_attr( $search ) . '" placeholder="' . esc_attr__( 'Name, e-mail or phone…', 'flx-donate' ) . '">';
 		echo '<label class="screen-reader-text" for="flxb-orderby">' . esc_html__( 'Sort by', 'flx-donate' ) . '</label><select id="flxb-orderby" name="orderby">';
 		foreach ( $sorts as $k => $label ) {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( $orderby, $k, false ) . '>' . esc_html( $label ) . '</option>';
@@ -131,7 +131,7 @@ final class FLXB_Page_Donors {
 			echo '<span>' . FLXB_Admin::icon( 'phone', 14 ) . '<a href="tel:' . esc_attr( $d['phone'] ) . '">' . esc_html( flxb_format_phone( $d['phone'] ) ) . '</a></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		/* translators: %s: date */
-		echo '<span>' . esc_html( sprintf( __( 'Donor since%s', 'flx-donate' ), $d['first_donation_at'] ? flxb_date( $d['first_donation_at'], 'date' ) : flxb_date( $d['created_at'], 'date' ) ) ) . '</span>';
+		echo '<span>' . esc_html( sprintf( __( 'Donor since %s', 'flx-donate' ), $d['first_donation_at'] ? flxb_date( $d['first_donation_at'], 'date' ) : flxb_date( $d['created_at'], 'date' ) ) ) . '</span>';
 		echo '</div></div></div></section>';
 
 		echo '<div class="flxb-kpis">';
@@ -147,7 +147,7 @@ final class FLXB_Page_Donors {
 			FLXB_Page_Donations::table( $gifts['items'], false );
 			if ( (int) $gifts['total'] > count( $gifts['items'] ) ) {
 				/* translators: %s: number of gifts */
-				echo '<p class="flxb-tablefoot"><a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-donations', $own ? array() : array( 'donor_id' => $id ) ) ) . '">' . esc_html( sprintf( __( 'See all%sgifts', 'flx-donate' ), number_format_i18n( (int) $gifts['total'] ) ) ) . '</a></p>';
+				echo '<p class="flxb-tablefoot"><a href="' . esc_url( FLXB_Admin_Url::page( 'flxb-donations', $own ? array() : array( 'donor_id' => $id ) ) ) . '">' . esc_html( sprintf( __( 'See all %s gifts', 'flx-donate' ), number_format_i18n( (int) $gifts['total'] ) ) ) . '</a></p>';
 			}
 		} else {
 			echo '<p class="flxb-empty">' . esc_html__( 'No gifts yet.', 'flx-donate' ) . '</p>';

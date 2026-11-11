@@ -128,9 +128,9 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 							'noteTab'   => __( 'You will enter your card on iyzico\'s secure payment page and then come back here.', 'flx-donate' ),
 							'recurring' => __( 'For a recurring donation, keep "Save my card" ticked on the iyzico page so the next payments can be taken automatically.', 'flx-donate' ),
 							'sandboxNote' => __( 'TEST MODE (iyzico sandbox): no real money is taken.', 'flx-donate' ),
-							'waiting'   => __( 'Complete the payment in the iyzico window...', 'flx-donate' ),
+							'waiting'   => __( 'Complete the payment in the iyzico window…', 'flx-donate' ),
 							'focus'     => __( 'Show the payment window', 'flx-donate' ),
-							'loading'   => __( 'Opening the secure payment page...', 'flx-donate' ),
+							'loading'   => __( 'Opening the secure payment page…', 'flx-donate' ),
 							'closed'    => __( 'The payment was not completed. You can try again.', 'flx-donate' ),
 							'done'      => __( 'Thank you! Your donation has been received.', 'flx-donate' ),
 							'code'      => __( 'Confirmation code', 'flx-donate' ),
@@ -541,7 +541,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 			return FLXB_Payment_Result::failed( __( 'This payment has already been refunded.', 'flx-donate' ) );
 		}
 		if ( $want <= 0 || $want > $left ) {
-			return FLXB_Payment_Result::failed( sprintf( /* translators: %s: amount */ __( 'Enter an amount up to%s.', 'flx-donate' ), flxb_money( $left / 100, $currency ) ) );
+			return FLXB_Payment_Result::failed( sprintf( /* translators: %s: amount */ __( 'Enter an amount up to %s.', 'flx-donate' ), flxb_money( $left / 100, $currency ) ) );
 		}
 		$done  = 0;
 		$error = '';
@@ -572,7 +572,7 @@ class FLXB_Payment_Iyzico extends FLXB_Payment_Provider_Base {
 			}
 		}
 		if ( '' !== $error ) {
-			return FLXB_Payment_Result::failed( $done > 0 ? sprintf( /* translators: 1: refunded amount, 2: error */ __( '%1$swas refunded, then iyzico stopped:%2$s', 'flx-donate' ), flxb_money( $done / 100, $currency ), $error ) : $error );
+			return FLXB_Payment_Result::failed( $done > 0 ? sprintf( /* translators: 1: refunded amount, 2: error */ __( '%1$s was refunded, then iyzico stopped: %2$s', 'flx-donate' ), flxb_money( $done / 100, $currency ), $error ) : $error );
 		}
 		return FLXB_Payment_Result::completed( $iyz['paymentId'], array( 'record' => array( 'status' => $done >= $left ? 'refunded' : 'partially_refunded', 'meta' => array( 'amount' => round( $done / 100, 2 ) ) ) ) );
 	}

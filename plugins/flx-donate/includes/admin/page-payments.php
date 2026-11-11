@@ -132,7 +132,7 @@ final class FLXB_Page_Payments {
 				echo FLXB_Iyzico_Notify::admin_box(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside.
 				$last = get_option( 'flxb_iyzico_last_run' );
 				$next = wp_next_scheduled( FLXB_Iyzico_Recurring::HOOK );
-				echo '<div class="flxb-webhook"><span class="flxb-label">' . esc_html__( 'Recurring charges', 'flx-donate' ) . '</span><p class="flxb-help">' . esc_html( sprintf( /* translators: 1: next run, 2: last run */ __( 'Charged by Flux Donate\'s hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s.', 'flx-donate' ), $next ? flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) : '—', is_array( $last ) && ! empty( $last['time'] ) ? flxb_date( gmdate( 'Y-m-d H:i:s', (int) $last['time'] ) ) : '—' ) ) . '</p></div>';
+				echo '<div class="flxb-webhook"><span class="flxb-label">' . esc_html__( 'Recurring charges', 'flx-donate' ) . '</span><p class="flxb-help">' . esc_html( sprintf( /* translators: 1: next run, 2: last run */ __( 'Charged by Flux Donate\'s hourly WP-Cron job. Next run: %1$s. Last charge run: %2$s.', 'flx-donate' ), $next ? flxb_date( gmdate( 'Y-m-d H:i:s', $next ) ) : '—', is_array( $last ) && ! empty( $last['time'] ) ? flxb_date( gmdate( 'Y-m-d H:i:s', (int) $last['time'] ) ) : '—' ) ) . '</p></div>';
 			}
 			if ( 'iyzico' === $id ) {
 				echo '</section>';
@@ -296,7 +296,7 @@ final class FLXB_Page_Payments {
 			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr__( 'Refund this amount to the donor through the payment provider?', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_refund"><input type="hidden" name="op" value="refund"><input type="hidden" name="back" value="' . esc_attr( $back ) . '">';
 			echo $donation ? '<input type="hidden" name="id" value="' . (int) $donation['id'] . '">' : '<input type="hidden" name="pay" value="' . (int) $row->id . '">';
 			wp_nonce_field( 'flxb_refund_' . $key );
-			echo '<label class="flxb-money__label" for="flxb-ra-' . esc_attr( $key ) . '">' . esc_html( sprintf( /* translators: %s: amount */ __( 'Amount (up to%s)', 'flx-donate' ), flxb_money( $left, $cur, 2 ) ) ) . '</label>';
+			echo '<label class="flxb-money__label" for="flxb-ra-' . esc_attr( $key ) . '">' . esc_html( sprintf( /* translators: %s: amount */ __( 'Amount (up to %s)', 'flx-donate' ), flxb_money( $left, $cur, 2 ) ) ) . '</label>';
 			echo '<span class="flxb-money__row"><input type="number" class="flxb-input" id="flxb-ra-' . esc_attr( $key ) . '" name="amount" step="0.01" min="0.01" max="' . esc_attr( number_format( $left, 2, '.', '' ) ) . '" value="' . esc_attr( number_format( $left, 2, '.', '' ) ) . '"> <button type="submit" class="flxb-btn flxb-btn--sm">' . esc_html__( 'Refund', 'flx-donate' ) . '</button></span></form>';
 		}
 		if ( $void ) {

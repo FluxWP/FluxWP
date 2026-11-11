@@ -204,9 +204,9 @@ final class FLXB_Admin {
 					/* translators: %s: number of selected donations */
 					'selected'      => __( '%s selected', 'flx-donate' ),
 					/* translators: %s: number of donations */
-					'confirmDelete' => __( 'Delete%sdonations permanently? Their WooCommerce orders are deleted too. This cannot be undone.', 'flx-donate' ),
+					'confirmDelete' => __( 'Delete %s donations permanently? Their WooCommerce orders are deleted too. This cannot be undone.', 'flx-donate' ),
 					/* translators: %s: number of donations */
-					'confirmTrash'  => __( 'Move%sdonations to the trash? Their WooCommerce orders go to the trash too.', 'flx-donate' ),
+					'confirmTrash'  => __( 'Move %s donations to the trash? Their WooCommerce orders go to the trash too.', 'flx-donate' ),
 					'error'        => __( 'The data could not be loaded.', 'flx-donate' ),
 					'retry'        => __( 'Try again', 'flx-donate' ),
 					'total'        => __( 'Total donations', 'flx-donate' ),
@@ -220,10 +220,10 @@ final class FLXB_Admin {
 					'gift1'        => __( 'gift', 'flx-donate' ),
 					'vsPrev'       => __( 'vs previous period', 'flx-donate' ),
 					'noPrev'       => __( 'no gifts in the previous period', 'flx-donate' ),
-					'allTime'      => __( 'all time:%sdonors', 'flx-donate' ),
+					'allTime'      => __( 'all time: %s donors', 'flx-donate' ),
 					'firstGift'    => __( 'first gift in this period', 'flx-donate' ),
 					'perGift'      => __( 'per gift', 'flx-donate' ),
-					'pastDue'      => __( '%spast due', 'flx-donate' ),
+					'pastDue'      => __( '%s past due', 'flx-donate' ),
 					'mrrHint'      => __( 'monthly value of active ones', 'flx-donate' ),
 					'daily'        => __( 'Donations per day', 'flx-donate' ),
 					'dailyHint'    => __( 'Received amount, one-time and recurring', 'flx-donate' ),
@@ -363,7 +363,7 @@ final class FLXB_Admin {
 			$last = get_option( 'flxb_last_sync', array() );
 			$r    = is_array( $last['result'] ?? null ) ? $last['result'] : array();
 			/* translators: 1: payments checked, 2: newly imported, 3: already known */
-			$map['imported'][1] = sprintf( __( 'Import finished:%1$spayments checked,%2$simported,%3$salready known.', 'flx-donate' ), number_format_i18n( (int) ( $r['seen'] ?? 0 ) ), number_format_i18n( (int) ( $r['imported'] ?? 0 ) ), number_format_i18n( (int) ( $r['existing'] ?? 0 ) ) );
+			$map['imported'][1] = sprintf( __( 'Import finished: %1$s payments checked, %2$s imported, %3$s already known.', 'flx-donate' ), number_format_i18n( (int) ( $r['seen'] ?? 0 ) ), number_format_i18n( (int) ( $r['imported'] ?? 0 ) ), number_format_i18n( (int) ( $r['existing'] ?? 0 ) ) );
 		}
 		$err = isset( $_GET['flxb_err'] ) ? sanitize_text_field( wp_unslash( $_GET['flxb_err'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		if ( isset( $map[ $msg ] ) ) {

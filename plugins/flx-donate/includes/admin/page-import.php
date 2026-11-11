@@ -67,7 +67,7 @@ final class FLXB_Page_Import {
 			$st = array( 'preview' => __( 'Waiting', 'flx-donate' ), 'running' => __( 'Running', 'flx-donate' ), 'done' => __( 'Finished', 'flx-donate' ) );
 			foreach ( $all as $d ) {
 				/* translators: 1: rows, 2: created */
-				$sub = sprintf( __( '%1$srows,%2$swritten', 'flx-donate' ), number_format_i18n( count( $d['rows'] ) ), number_format_i18n( (int) $d['result']['created'] ) );
+				$sub = sprintf( __( '%1$s rows, %2$s written', 'flx-donate' ), number_format_i18n( count( $d['rows'] ) ), number_format_i18n( (int) $d['result']['created'] ) );
 				echo '<li><a href="' . esc_url( self::url( array( 'import' => $d['id'] ) ) ) . '"><b>' . esc_html( $d['file'] ) . '</b></a> · ' . esc_html( $st[ $d['state'] ] ?? $d['state'] ) . '<span class="flxb-sub2">' . esc_html( flxb_date( $d['created_at'] ) . ' · ' . $sub ) . '</span></li>';
 			}
 			echo '</ul>';
@@ -195,7 +195,7 @@ final class FLXB_Page_Import {
 		echo '</tbody></table></div>';
 		if ( count( $a['rows'] ) > count( $list ) ) {
 			/* translators: %s: number of rows */
-			echo '<p class="flxb-muted">' . esc_html( sprintf( __( 'Showing rows with a problem first;%srows in all.', 'flx-donate' ), number_format_i18n( count( $a['rows'] ) ) ) ) . '</p>';
+			echo '<p class="flxb-muted">' . esc_html( sprintf( __( 'Showing rows with a problem first; %s rows in all.', 'flx-donate' ), number_format_i18n( count( $a['rows'] ) ) ) ) . '</p>';
 		}
 		echo '</section>';
 		echo self::post_form( 'delete', ' style="margin-top:12px"' ) . '<input type="hidden" name="import" value="' . esc_attr( $imp['id'] ) . '"><button class="flxb-btn flxb-btn--danger" type="submit">' . esc_html__( 'Discard this file', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -210,7 +210,7 @@ final class FLXB_Page_Import {
 		echo '<section class="flxb-card" id="flxb-import-run" data-id="' . esc_attr( $imp['id'] ) . '" data-state="' . esc_attr( $imp['state'] ) . '" data-nonce="' . esc_attr( wp_create_nonce( 'flxb_import_step' ) ) . '" data-ajax="' . esc_url( admin_url( 'admin-ajax.php' ) ) . '">';
 		echo '<div class="flxb-progress"><span style="width:' . (int) $pct . '%"></span></div>';
 		/* translators: 1: rows done, 2: rows in all */
-		echo '<p data-flxb-progress>' . esc_html( sprintf( __( '%1$s/%2$srows', 'flx-donate' ), number_format_i18n( $imp['pos'] ), number_format_i18n( $total ) ) ) . '</p>';
+		echo '<p data-flxb-progress>' . esc_html( sprintf( __( '%1$s / %2$s rows', 'flx-donate' ), number_format_i18n( $imp['pos'] ), number_format_i18n( $total ) ) ) . '</p>';
 		echo '<div class="flxb-kpis">';
 		foreach ( array( array( __( 'Written', 'flx-donate' ), $r['created'], '#1F7A4D' ), array( __( 'Skipped (already imported)', 'flx-donate' ), $r['skipped'], '#6B7C8F' ), array( __( 'Errors', 'flx-donate' ), $r['failed'], '#B42318' ) ) as $k ) {
 			echo '<div class="flxb-kpi" style="--accent:' . esc_attr( $k[2] ) . '"><div class="flxb-kpi__label">' . esc_html( $k[0] ) . '</div><div class="flxb-kpi__value">' . esc_html( number_format_i18n( $k[1] ) ) . '</div></div>';

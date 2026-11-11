@@ -1117,43 +1117,43 @@ msgstr[1] "%d etkin türün gizli WooCommerce ürünleri var."
 
 msgid "%s recurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed."
 msgid_plural "%s recurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
-msgstr[0] "%syinelenen bağışın ücreti tüm denemelerden sonra iyzico aracılığıyla tahsil edilememiştir ve artık vadesi geçmiştir. Bağışçıya e-posta gönderildi."
-msgstr[1] "%syinelenen bağışların ücreti tüm denemelerden sonra iyzico aracılığıyla tahsil edilememiştir ve artık vadesi geçmiştir. Bağışçılara e-posta gönderildi."
+msgstr[0] "%s düzenli bağış, tüm denemelere rağmen iyzico üzerinden tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçıya e-posta gönderildi."
+msgstr[1] "%s düzenli bağış, tüm denemelere rağmen iyzico üzerinden tahsil edilemedi ve ödemesi gecikti durumuna geçti. Bağışçılara e-posta gönderildi."
 
 msgid "%s donor"
 msgid_plural "%s donors"
-msgstr[0] "%sbağışçısı"
-msgstr[1] "%sbağışçıları"
+msgstr[0] "%s bağışçı"
+msgstr[1] "%s bağışçı"
 
 msgid "and %s more"
 msgid_plural "and %s more"
-msgstr[0] "ve%sdaha fazlası"
-msgstr[1] "ve%sdaha fazlası"
+msgstr[0] "ve %s tane daha"
+msgstr[1] "ve %s tane daha"
 
 msgid "Import %s row"
 msgid_plural "Import %s rows"
-msgstr[0] "%ssatırını içe aktar"
-msgstr[1] "%ssatırlarını içe aktar"
+msgstr[0] "%s satırı yükle"
+msgstr[1] "%s satırı yükle"
 
 msgid "%1$s donation · %2$s received"
 msgid_plural "%1$s donations · %2$s received"
-msgstr[0] "%1$sbağışı ·%2$salındı"
-msgstr[1] "%1$sbağışları ·%2$salındı"
+msgstr[0] "%1$s bağış · %2$s alındı"
+msgstr[1] "%1$s bağış · %2$s alındı"
 
 msgid "%s donation moved to the trash."
 msgid_plural "%s donations moved to the trash."
-msgstr[0] "%sbağışı çöp kutusuna taşındı."
-msgstr[1] "%sbağışları çöp kutusuna taşındı."
+msgstr[0] "%s bağış çöp kutusuna taşındı."
+msgstr[1] "%s bağış çöp kutusuna taşındı."
 
 msgid "%s donation restored."
 msgid_plural "%s donations restored."
-msgstr[0] "%sbağışı geri yüklendi."
-msgstr[1] "%sbağışları geri yüklendi."
+msgstr[0] "%s bağış geri alındı."
+msgstr[1] "%s bağış geri alındı."
 
 msgid "%s donation deleted permanently."
 msgid_plural "%s donations deleted permanently."
-msgstr[0] "%sbağışı kalıcı olarak silindi."
-msgstr[1] "%sbağışları kalıcı olarak silindi."
+msgstr[0] "%s bağış kalıcı olarak silindi."
+msgstr[1] "%s bağış kalıcı olarak silindi."
 
 msgid "%1$s paid gift · %2$s"
 msgid_plural "%1$s paid gifts · %2$s"
@@ -1167,43 +1167,43 @@ msgstr[1] "%sbekliyor"
 
 msgid "%d certificate made. Check it, then press \"Send the certificates\"."
 msgid_plural "%d certificates made. Check them, then press \"Send the certificates\"."
-msgstr[0] "%dsertifikası yapıldı. Kontrol edin ve ardından \"Sertifikaları gönder\"e basın."
-msgstr[1] "%dsertifikaları yapıldı. Bunları kontrol edin ve ardından \"Sertifikaları gönder\"e basın."
+msgstr[0] "%d sertifika oluşturuldu. Kontrol edip \"Sertifikaları gönder\"e basın."
+msgstr[1] "%d sertifika oluşturuldu. Kontrol edip \"Sertifikaları gönder\"e basın."
 
 msgid "%d item updated."
 msgid_plural "%d items updated."
-msgstr[0] "%döğesi güncellendi."
-msgstr[1] "%döğeleri güncellendi."
+msgstr[0] "%d kayıt güncellendi."
+msgstr[1] "%d kayıt güncellendi."
 
 msgid "%s record"
 msgid_plural "%s records"
-msgstr[0] "%skaydı"
-msgstr[1] "%skayıtları"
+msgstr[0] "%s kayıt"
+msgstr[1] "%s kayıt"
 
 msgid "%d without a price"
 msgid_plural "%d without a price"
-msgstr[0] "%dfiyatsız"
-msgstr[1] "%dfiyatsız"
+msgstr[0] "%d kayıt fiyatsız"
+msgstr[1] "%d kayıt fiyatsız"
 
 msgid "Used by %s type"
 msgid_plural "Used by %s types"
-msgstr[0] "%stürü tarafından kullanılır"
-msgstr[1] "%stürleri tarafından kullanılır"
+msgstr[0] "%s türde kullanılıyor"
+msgstr[1] "%s türde kullanılıyor"
 
 msgid "%d field"
 msgid_plural "%d fields"
-msgstr[0] "%dalanı"
-msgstr[1] "%dalanları"
+msgstr[0] "%d alan"
+msgstr[1] "%d alan"
 
 msgid "%s recurring donation"
 msgid_plural "%s recurring donations"
-msgstr[0] "%syinelenen bağış"
-msgstr[1] "%syinelenen bağışlar"
+msgstr[0] "%s düzenli bağış"
+msgstr[1] "%s düzenli bağış"
 
 msgid "Please write at most %s name (one per share)."
 msgid_plural "Please write at most %s names (one per share)."
-msgstr[0] "Lütfen en fazla%sadını yazınız (paylaşım başına bir adet)."
-msgstr[1] "Lütfen en fazla%sadını yazın (paylaşım başına bir tane)."
+msgstr[0] "Lütfen en fazla %s ad yazın (her hisse için bir ad)."
+msgstr[1] "Lütfen en fazla %s ad yazın (her hisse için bir ad)."
 
 msgid "Your certificate is ready"
 msgid_plural "Your certificates are ready"
@@ -1212,8 +1212,8 @@ msgstr[1] "Sertifikalarınız hazır"
 
 msgid "Donation of %1$s sapling. %2$s plants it for you and sends an online certificate in your name. Pay by card or bank transfer."
 msgid_plural "Donation of %1$s saplings. %2$s plants them for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgstr[0] "%1$sfidanı bağışı.%2$sbunu sizin için yerleştirir ve adınıza çevrimiçi bir sertifika gönderir. Kartla veya banka havalesiyle ödeme yapın."
-msgstr[1] "%1$sfidanlarının bağışlanması.%2$sbunları sizin için yerleştirir ve adınıza çevrimiçi bir sertifika gönderir. Kartla veya banka havalesiyle ödeme yapın."
+msgstr[0] "%1$s fidan bağışı. %2$s fidanı sizin için diker ve adınıza online bir sertifika gönderir. Kartla ya da havaleyle ödeyin."
+msgstr[1] "%1$s fidan bağışı. %2$s fidanları sizin için diker ve adınıza online bir sertifika gönderir. Kartla ya da havaleyle ödeyin."
 
 msgid "%s Sapling"
 msgid_plural "%s Saplings"
@@ -1222,43 +1222,43 @@ msgstr[1] "%s fidan"
 
 msgid "Warning: this receipt was uploaded before (%1$d time, via %2$s). Check it before confirming the payment."
 msgid_plural "Warning: this receipt was uploaded before (%1$d times, via %2$s). Check it before confirming the payment."
-msgstr[0] "Uyarı: Bu makbuz daha önce yüklendi (%1$dzamanı,%2$saracılığıyla). Ödemeyi onaylamadan önce kontrol edin."
-msgstr[1] "Uyarı: Bu makbuz daha önce yüklendi (%1$dkez,%2$saracılığıyla). Ödemeyi onaylamadan önce kontrol edin."
+msgstr[0] "Uyarı: bu dekont daha önce yüklenmiş (%1$d kez, %2$s üzerinden). Ödemeyi onaylamadan önce kontrol edin."
+msgstr[1] "Uyarı: bu dekont daha önce yüklenmiş (%1$d kez, %2$s üzerinden). Ödemeyi onaylamadan önce kontrol edin."
 
 msgid "%s donation is awaiting payment"
 msgid_plural "%s donations are awaiting payment"
-msgstr[0] "%sbağışı ödemeyi bekliyor"
-msgstr[1] "%sbağışları ödemeyi bekliyor"
+msgstr[0] "%s bağış ödeme bekliyor"
+msgstr[1] "%s bağış ödeme bekliyor"
 
 msgid "donor"
 msgid_plural "donors"
 msgstr[0] "bağışçı"
-msgstr[1] "bağışçılar"
+msgstr[1] "bağışçı"
 
 msgid "day left"
 msgid_plural "days left"
-msgstr[0] "kalan gün"
-msgstr[1] "kalan günler"
+msgstr[0] "gün kaldı"
+msgstr[1] "gün kaldı"
 
 msgid "%1$d task is more than 15 minutes late: %2$s."
 msgid_plural "%1$d tasks are more than 15 minutes late: %2$s."
-msgstr[0] "%1$dgörevi 15 dakikadan fazla gecikti:%2$s."
-msgstr[1] "%1$dgörevleri 15 dakikadan fazla gecikti:%2$s."
+msgstr[0] "%1$d görev 15 dakikadan fazla gecikti: %2$s."
+msgstr[1] "%1$d görev 15 dakikadan fazla gecikti: %2$s."
 
 msgid "%d recurring donation stopped after its card was declined 3 times."
 msgid_plural "%d recurring donations stopped after their cards were declined 3 times."
-msgstr[0] "%dyinelenen bağış, kartı 3 kez reddedildikten sonra durduruldu."
-msgstr[1] "%dyinelenen bağışlar, kartlarının 3 kez reddedilmesinin ardından durduruldu."
+msgstr[0] "%d düzenli bağış, kart 3 kez reddedildiği için durdu."
+msgstr[1] "%d düzenli bağış, kartları 3 kez reddedildiği için durdu."
 
 msgid "%d donation type is open and priced."
 msgid_plural "%d donation types are open and priced."
-msgstr[0] "%dbağış türü açık ve fiyatlandırılmıştır."
-msgstr[1] "%dbağış türleri açık ve ücretlidir."
+msgstr[0] "%d bağış türü açık ve fiyatlı."
+msgstr[1] "%d bağış türü açık ve fiyatlı."
 
 msgid "%d bank account is listed for bank transfer gifts."
 msgid_plural "%d bank accounts are listed for bank transfer gifts."
-msgstr[0] "%dbanka hesabı banka havalesi hediyeleri için listelenmiştir."
-msgstr[1] "%dbanka hesapları banka havalesi hediyeleri için listelenmiştir."
+msgstr[0] "Havale bağışları için %d banka hesabı tanımlı."
+msgstr[1] "Havale bağışları için %d banka hesabı tanımlı."
 
 msgid "Publishable key"
 msgstr "Yayınlanabilir anahtar"
@@ -1317,7 +1317,7 @@ msgstr "Bağlantı geçersiz"
 msgid "This link is not valid. Please contact us to cancel your recurring donation."
 msgstr "Bu bağlantı geçersiz. Düzenli bağışınızı iptal etmek için lütfen bizimle iletişime geçin."
 
-msgid "%1$s·%2$s"
+msgid "%1$s · %2$s"
 msgstr "%1$s · %2$s"
 
 msgid "Recurring donation canceled"
@@ -1338,11 +1338,6 @@ msgstr "Düzenli bağışımı iptal et"
 msgid "Cancel recurring donation"
 msgstr "Düzenli bağışı iptal et"
 
-msgid "%srecurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed."
-msgid_plural "%srecurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
-msgstr[0] "%s recurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed."
-msgstr[1] "%s recurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
-
 msgid "Show them"
 msgstr "Göster"
 
@@ -1352,7 +1347,7 @@ msgstr "Türkiye"
 msgid "iyzico could not be reached. Please try again."
 msgstr "iyzico'ya ulaşılamadı. Lütfen tekrar deneyin."
 
-msgid "iyzico gave an unexpected answer (HTTP%d)."
+msgid "iyzico gave an unexpected answer (HTTP %d)."
 msgstr "iyzico beklenmeyen bir yanıt verdi (HTTP %d)."
 
 msgid "iyzico panel addresses"
@@ -1379,10 +1374,10 @@ msgstr "Bu sitede iyzico WooCommerce eklentisinin webhook anahtarı var: Flux Do
 msgid "The Stripe secret key is not configured."
 msgstr "Stripe gizli anahtarı ayarlanmamış."
 
-msgid "Could not connect to Stripe:%s"
+msgid "Could not connect to Stripe: %s"
 msgstr "Stripe'a bağlanılamadı: %s"
 
-msgid "Stripe API error (HTTP%d)."
+msgid "Stripe API error (HTTP %d)."
 msgstr "Stripe API hatası (HTTP %d)."
 
 msgid "Invalid or expired nonce"
@@ -1493,13 +1488,13 @@ msgstr "Düzenli bağış için iyzico sayfasında \"Kartımı kaydet\" seçili 
 msgid "TEST MODE (iyzico sandbox): no real money is taken."
 msgstr "TEST MODU (iyzico sandbox): gerçek para çekilmez."
 
-msgid "Complete the payment in the iyzico window..."
+msgid "Complete the payment in the iyzico window…"
 msgstr "Ödemeyi iyzico penceresinde tamamlayın…"
 
 msgid "Show the payment window"
 msgstr "Ödeme penceresini göster"
 
-msgid "Opening the secure payment page..."
+msgid "Opening the secure payment page…"
 msgstr "Güvenli ödeme sayfası açılıyor…"
 
 msgid "The payment was not completed. You can try again."
@@ -1547,10 +1542,10 @@ msgstr "iyzico bu sitede ayarlanmamış."
 msgid "This payment has already been refunded."
 msgstr "Bu ödeme zaten iade edilmiş."
 
-msgid "Enter an amount up to%s."
+msgid "Enter an amount up to %s."
 msgstr "En fazla %s tutar girin."
 
-msgid "%1$swas refunded, then iyzico stopped:%2$s"
+msgid "%1$s was refunded, then iyzico stopped: %2$s"
 msgstr "%1$s iade edildi, sonra iyzico durdu: %2$s"
 
 msgid "Recurring donation not found."
@@ -1592,7 +1587,7 @@ msgstr "Bağış türü yok"
 msgid "Amount is not a number"
 msgstr "Tutar sayı değil"
 
-msgid "No%s: opened as approved"
+msgid "No %s: opened as approved"
 msgstr "%s yok: onaylandı olarak açılır"
 
 msgid "Not paid: opened as approved"
@@ -1622,7 +1617,7 @@ msgstr "Bu form ile bağış türü farklı para birimleri kullandığı için �
 msgid "Your choice"
 msgstr "Seçiminiz"
 
-msgid "Donations for this cause open on%s."
+msgid "Donations for this cause open on %s."
 msgstr "Bu amaç için bağışlar %s tarihinde açılacak."
 
 msgid "Donations for this cause have ended."
@@ -1652,10 +1647,10 @@ msgstr "Adak"
 msgid "Akika"
 msgstr "Akika"
 
-msgid "healing"
+msgid "Healing"
 msgstr "Şifa"
 
-msgid "You can choose at most%s."
+msgid "You can choose at most %s."
 msgstr "En fazla %s seçebilirsiniz."
 
 msgid "This option is not open for donations at the moment."
@@ -1718,7 +1713,7 @@ msgstr "Lütfen bağışçının adını yazın."
 msgid "Please give the donor's phone number or e-mail address."
 msgstr "Lütfen bağışçının telefonunu ya da e-postasını girin."
 
-msgid "Donation request opened by%s."
+msgid "Donation request opened by %s."
 msgstr "Bağış talebini açan: %s."
 
 msgid "People who gave through you. Totals count only the gifts you referred."
@@ -1739,7 +1734,7 @@ msgstr "Son bağış"
 msgid "Number of gifts"
 msgstr "Bağış sayısı"
 
-msgid "Name, e-mail or phone..."
+msgid "Name, e-mail or phone…"
 msgstr "Ad, e-posta veya telefon…"
 
 msgid "Sort by"
@@ -1754,18 +1749,13 @@ msgstr "Bağışlar"
 msgid "Open card"
 msgstr "Kartı aç"
 
-msgid "%sdonor"
-msgid_plural "%sdonors"
-msgstr[0] "%s donor"
-msgstr[1] "%s donors"
-
 msgid "Donor not found"
 msgstr "Bağışçı bulunamadı"
 
 msgid "Donor card"
 msgstr "Bağışçı kartı"
 
-msgid "Donor since%s"
+msgid "Donor since %s"
 msgstr "%s tarihinden beri bağışçı"
 
 msgid "Average gift"
@@ -1774,7 +1764,7 @@ msgstr "Ortalama bağış"
 msgid "All gifts"
 msgstr "Tüm bağışlar"
 
-msgid "See all%sgifts"
+msgid "See all %s gifts"
 msgstr "%s bağışın tümünü gör"
 
 msgid "No gifts yet."
@@ -1785,11 +1775,6 @@ msgstr "Düzenli bağışlar"
 
 msgid "No recurring donation."
 msgstr "Düzenli bağış yok."
-
-msgid "and%smore"
-msgid_plural "and%smore"
-msgstr[0] "and %s more"
-msgstr[1] "and %s more"
 
 msgid "No certificate yet."
 msgstr "Henüz sertifika yok."
@@ -1833,10 +1818,10 @@ msgstr "Excel'den yükle"
 msgid "Donation settings"
 msgstr "Bağış ayarları"
 
-msgid "Delete%sdonations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
+msgid "Delete %s donations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
 msgstr "%s bağış kalıcı olarak silinsin mi? WooCommerce siparişleri de silinir. Bu geri alınamaz."
 
-msgid "Move%sdonations to the trash? Their WooCommerce orders go to the trash too."
+msgid "Move %s donations to the trash? Their WooCommerce orders go to the trash too."
 msgstr "%s bağış çöp kutusuna taşınsın mı? WooCommerce siparişleri de çöpe gider."
 
 msgid "The data could not be loaded."
@@ -1866,7 +1851,7 @@ msgstr "önceki döneme göre"
 msgid "no gifts in the previous period"
 msgstr "önceki dönemde bağış yok"
 
-msgid "all time:%sdonors"
+msgid "all time: %s donors"
 msgstr "tüm zamanlar: %s bağışçı"
 
 msgid "first gift in this period"
@@ -1875,7 +1860,7 @@ msgstr "ilk bağışı bu dönemde"
 msgid "per gift"
 msgstr "bağış başına"
 
-msgid "%spast due"
+msgid "%s past due"
 msgstr "%s gecikmiş"
 
 msgid "monthly value of active ones"
@@ -1938,7 +1923,7 @@ msgstr "Ödeme onaylandı. Sertifika hazırlanıp bağışçıya gönderilir."
 msgid "Payment rejected."
 msgstr "Ödeme reddedildi."
 
-msgid "Import finished:%1$spayments checked,%2$simported,%3$salready known."
+msgid "Import finished: %1$s payments checked, %2$s imported, %3$s already known."
 msgstr "İçe aktarma bitti: %1$s ödeme kontrol edildi, %2$s aktarıldı, %3$s zaten kayıtlıydı."
 
 msgid "Sorry, you are not allowed to access this page."
@@ -1965,7 +1950,7 @@ msgstr "Önceki yüklemeler"
 msgid "None yet."
 msgstr "Henüz yok."
 
-msgid "%1$srows,%2$swritten"
+msgid "%1$s rows, %2$s written"
 msgstr "%1$s satır, %2$s yazıldı"
 
 msgid "Check the columns and the matches, then start."
@@ -2007,12 +1992,7 @@ msgstr "Dosyadaki her farklı değer bir kez eşlenir."
 msgid "Apply and check again"
 msgstr "Uygula ve yeniden kontrol et"
 
-msgid "Import%srow"
-msgid_plural "Import%srows"
-msgstr[0] "Import %s row"
-msgstr[1] "Import %s rows"
-
-msgid "Showing rows with a problem first;%srows in all."
+msgid "Showing rows with a problem first; %s rows in all."
 msgstr "Önce sorunlu satırlar gösteriliyor; toplam %s satır."
 
 msgid "Discard this file"
@@ -2024,7 +2004,7 @@ msgstr "Bitti."
 msgid "Importing... Keep this page open; if it closes, opening it again continues where it stopped."
 msgstr "Yükleniyor… Sayfayı açık tutun; kapanırsa yeniden açınca kaldığı yerden devam eder."
 
-msgid "%1$s/%2$srows"
+msgid "%1$s / %2$s rows"
 msgstr "%1$s / %2$s satır"
 
 msgid "Written"
@@ -2060,7 +2040,7 @@ msgstr "Daha geniş bir tarih aralığı deneyin veya filtreleri temizleyin."
 msgid "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived"
 msgstr " %1$s bağış · %2$s alındı ​​%1$s bağış · %2$s alındı"
 
-msgid "Name, e-mail, phone, code..."
+msgid "Name, e-mail, phone, code…"
 msgstr "Ad, e-posta, telefon, kod…"
 
 msgid "All forms"
@@ -2078,23 +2058,8 @@ msgstr "Detaylı filtre"
 msgid "Donation type / form"
 msgstr "Bağış türü / form"
 
-msgid "Select the donation of%s"
+msgid "Select the donation of %s"
 msgstr "%s bağışını seç"
-
-msgid "%sdonation moved to the trash."
-msgid_plural "%sdonations moved to the trash."
-msgstr[0] "%s donation moved to the trash."
-msgstr[1] "%s donations moved to the trash."
-
-msgid "%sdonation restored."
-msgid_plural "%sdonations restored."
-msgstr[0] "%s donation restored."
-msgstr[1] "%s donations restored."
-
-msgid "%sdonation deleted permanently."
-msgid_plural "%sdonations deleted permanently."
-msgstr[0] "%s donation deleted permanently."
-msgstr[1] "%s donations deleted permanently."
 
 msgid "Receipt no."
 msgstr "Makbuz no."
@@ -2102,7 +2067,7 @@ msgstr "Makbuz no."
 msgid "Kind"
 msgstr "Çeşit"
 
-msgid "Donation receipt ·%s"
+msgid "Donation receipt · %s"
 msgstr "Bağış makbuzu · %s"
 
 msgid "Donation receipt"
@@ -2126,13 +2091,13 @@ msgstr "çağrı merkezi"
 msgid "Receipt linked"
 msgstr "Dekont eşleştirildi"
 
-msgid "Payment rejected:%s"
+msgid "Payment rejected: %s"
 msgstr "Ödeme reddedildi: %s"
 
-msgid "Status changed:%1$s→%2$s"
+msgid "Status changed: %1$s → %2$s"
 msgstr "Durum değişti: %1$s → %2$s"
 
-msgid "Refunded%s"
+msgid "Refunded %s"
 msgstr "%s iade edildi"
 
 msgid "Payment canceled at the provider"
@@ -2141,13 +2106,13 @@ msgstr "Ödeme sağlayıcıda iptal edildi"
 msgid "Names on whose behalf changed"
 msgstr "Adına yapılan kişi adları değişti"
 
-msgid "Referral changed:%1$s→%2$s"
+msgid "Referral changed: %1$s → %2$s"
 msgstr "Referans değişti: %1$s → %2$s"
 
 msgid "Donation not found"
 msgstr "Bağış bulunamadı"
 
-msgid "Donation of%s"
+msgid "Donation of %s"
 msgstr "%s tutarında bağış"
 
 msgid "Print receipt"
@@ -2171,13 +2136,13 @@ msgstr "iptal edildi"
 msgid "Different price"
 msgstr "Farklı fiyat"
 
-msgid "type price%1$s·%2$s"
+msgid "type price %1$s · %2$s"
 msgstr "tür fiyatı %1$s · %2$s"
 
 msgid "Proxy consent"
 msgstr "Vekâlet onayı"
 
-msgid "version%1$s·%2$s"
+msgid "version %1$s · %2$s"
 msgstr "sürüm %1$s · %2$s"
 
 msgid "Entered by"
@@ -2242,7 +2207,7 @@ msgstr "Durum \"%s\" olarak değişti."
 msgid "The status was not changed."
 msgstr "Durum değişmedi."
 
-msgid "basketball"
+msgid "Basket"
 msgstr "Bağış sepeti"
 
 msgid "WooCommerce order #%s"
@@ -2263,16 +2228,11 @@ msgstr "Sertifikaları gönder"
 msgid "Send the certificates to the donor now?"
 msgstr "Sertifikalar şimdi bağışçıya gönderilsin mi?"
 
-msgid "Certificates sent:%s"
+msgid "Certificates sent: %s"
 msgstr "Sertifikalar gönderildi: %s"
 
 msgid "There is no certificate to send."
 msgstr "Gönderilecek sertifika yok."
-
-msgid "%dcertificate made. Check it, then press \"Send the certificates\"."
-msgid_plural "%dcertificates made. Check them, then press \"Send the certificates\"."
-msgstr[0] "%d certificate made. Check it, then press \"Send the certificates\"."
-msgstr[1] "%d certificates made. Check them, then press \"Send the certificates\"."
 
 msgid "No certificate could be made; see the order notes."
 msgstr "Sertifika oluşturulamadı; sipariş notlarına bakın."
@@ -2280,7 +2240,7 @@ msgstr "Sertifika oluşturulamadı; sipariş notlarına bakın."
 msgid "Unit price"
 msgstr "Birim fiyat"
 
-msgid "Sacrifice share"
+msgid "Kurban share"
 msgstr "Kurban hissesi"
 
 msgid "Save names"
@@ -2328,12 +2288,7 @@ msgstr "Sahibine iletildi yap"
 msgid "Back to waiting"
 msgstr "Beklemeye döndü"
 
-msgid "%ditem updated."
-msgid_plural "%ditems updated."
-msgstr[0] "%d item updated."
-msgstr[1] "%d items updated."
-
-msgid "Skipped:%s"
+msgid "Skipped: %s"
 msgstr "Atlananlar: %s"
 
 msgid "due"
@@ -2348,7 +2303,7 @@ msgstr "Yeni kayıt"
 msgid "Every item with its code, payment, partner, target date and files. Open one to see its whole flow."
 msgstr "Her kayıt kodu, ödemesi, iş ortağı, hedef tarihi ve dosyalarıyla. Tüm akışı görmek için birini açın."
 
-msgid "Code, name, phone, donation no..."
+msgid "Code, name, phone, donation no…"
 msgstr "Kod, ad, telefon, bağış no…"
 
 msgid "Any payment"
@@ -2369,7 +2324,7 @@ msgstr "Tek tek takip edilen bağış türlerinin (Bağış türleri › Takip) 
 msgid "Selected"
 msgstr "Seçilenler"
 
-msgid "%1$d·%2$dcents"
+msgid "%1$d · %2$d sent"
 msgstr "%1$d · %2$d gönderildi"
 
 msgid "This item is canceled."
@@ -2417,10 +2372,10 @@ msgstr "Dosyalar kayıtta kalır."
 msgid "No file yet."
 msgstr "Henüz dosya yok."
 
-msgid "Sent to%1$s·%2$s"
+msgid "Sent to %1$s · %2$s"
 msgstr "%1$s numarasına gönderildi · %2$s"
 
-msgid "Send this file to%sover WhatsApp?"
+msgid "Send this file to %s over WhatsApp?"
 msgstr "Bu dosya WhatsApp'tan %s numarasına gönderilsin mi?"
 
 msgid "Send to owner"
@@ -2435,7 +2390,7 @@ msgstr "Dosyaları WhatsApp'tan göndermek için Flux Chat'ni kurun."
 msgid "There is no phone number for the owner. Add one above to send the file."
 msgstr "Sahibin telefonu yok. Dosyayı göndermek için yukarıdan ekleyin."
 
-msgid "%1$s(moved from%2$s)"
+msgid "%1$s (moved from %2$s)"
 msgstr "%1$s (%2$s yerinden devredildi)"
 
 msgid "Select at least one item."
@@ -2486,7 +2441,7 @@ msgstr "Sandbox (test)"
 msgid "Recurring charges"
 msgstr "Düzenli tahsilatlar"
 
-msgid "Charged by Flux Donate's hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s."
+msgid "Charged by Flux Donate's hourly WP-Cron job. Next run: %1$s. Last charge run: %2$s."
 msgstr "Flux Donate'ın saatlik WP-Cron görevi tahsil eder. Sonraki çalışma: %1$s. Son tahsilat çalışması: %2$s."
 
 msgid "In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working."
@@ -2500,11 +2455,6 @@ msgstr "Formlarda başlatılan tüm ödemeler, tamamlanmayanlar dahil. Tamamlana
 
 msgid "No payments yet."
 msgstr "Henüz ödeme yok."
-
-msgid "%srecord"
-msgid_plural "%srecords"
-msgstr[0] "%s record"
-msgstr[1] "%s records"
 
 msgid "A Stripe publishable key starts with pk_live_ or pk_test_."
 msgstr "Stripe yayınlanabilir anahtarı pk_live_ veya pk_test_ ile başlar."
@@ -2521,7 +2471,7 @@ msgstr "İade / iptal"
 msgid "Refund this amount to the donor through the payment provider?"
 msgstr "Bu tutar ödeme sağlayıcısı üzerinden bağışçıya iade edilsin mi?"
 
-msgid "Amount (up to%s)"
+msgid "Amount (up to %s)"
 msgstr "Tutar (en fazla %s)"
 
 msgid "Refund"
@@ -2572,19 +2522,19 @@ msgstr "Havale onaylandı (%s)."
 msgid "Please write a reason."
 msgstr "Lütfen bir açıklama yazın."
 
-msgid "Payment rejected; the donor was told by%s."
+msgid "Payment rejected; the donor was told by %s."
 msgstr "Ödeme reddedildi; bağışçıya %s ile bildirildi."
 
-msgid "Payment rejected by%1$s. Reason:%2$s"
+msgid "Payment rejected by %1$s. Reason: %2$s"
 msgstr "Ödeme %1$s tarafından reddedildi. Açıklama: %2$s"
 
-msgid "Rejection sent to the donor:%s"
+msgid "Rejection sent to the donor: %s"
 msgstr "Ret bilgisi bağışçıya gönderildi: %s"
 
 msgid "Hello,"
 msgstr "Merhaba,"
 
-msgid "We could not confirm the payment of your%sdonation."
+msgid "We could not confirm the payment of your %s donation."
 msgstr "%s tutarındaki bağışınızın ödemesini onaylayamadık."
 
 msgid "If you think this is a mistake, please reply to this message. Thank you."
@@ -2605,7 +2555,7 @@ msgstr "Tarih seç"
 msgid "Nothing in this period"
 msgstr "Bu dönemde kayıt yok"
 
-msgid "Only the first%srows are shown. The CSV has the same rows."
+msgid "Only the first %s rows are shown. The CSV has the same rows."
 msgstr "Yalnız ilk %s satır gösteriliyor. CSV'de de aynı satırlar var."
 
 msgid "Report (JSON)"
@@ -2653,7 +2603,7 @@ msgstr "Serbest tutar için. Seçenek seçildiğinde tutar adet × birim fiyatt�
 msgid "One name per line, one per unit. Units without a name are given on behalf of the donor."
 msgstr "Her satıra bir isim, her birim için bir isim. İsim yazılmayan birimler bağışçı adına verilir."
 
-msgid "The donor accepted the proxy (vekâlet) text, version%s"
+msgid "The donor accepted the proxy (vekâlet) text, version %s"
 msgstr "Bağışçı vekâlet metnini kabul etti (sürüm %s)"
 
 msgid "Matched to an existing donor card on phone number or e-mail address."
@@ -2710,7 +2660,7 @@ msgstr "Bağışçı ödeme sayfasında kartla ya da havaleyle öder. Bağış �
 msgid "Create request"
 msgstr "Talebi oluştur"
 
-msgid "Hello%1$s, we have received your donation request (%2$s). You can pay here:%3$s"
+msgid "Hello %1$s, we have received your donation request (%2$s). You can pay here: %3$s"
 msgstr "Merhaba %1$s, bağış talebiniz alındı (%2$s). Ödemeyi buradan yapabilirsiniz: %3$s"
 
 msgid "Request created"
@@ -2743,7 +2693,7 @@ msgstr "İşi yapan yerleri ya da kurumları ve bağış getiren ofisleri ekleyi
 msgid "Agreement"
 msgstr "Anlaşma"
 
-msgid "Bring gifts in"
+msgid "Brings gifts in"
 msgstr "Bağış getirir"
 
 msgid "All off"
@@ -2812,7 +2762,7 @@ msgstr "tüm seçenekler"
 msgid "Add agreement"
 msgstr "Anlaşma ekle"
 
-msgid "%s(cost)"
+msgid "%s (cost)"
 msgstr "%s (maliyet)"
 
 msgid "Brought in (gift price)"
@@ -2823,11 +2773,6 @@ msgstr "Tüm iş ortakları"
 
 msgid "Gift price"
 msgstr "Bağış fiyatı"
-
-msgid "%dwithout a price"
-msgid_plural "%dwithout a price"
-msgstr[0] "%d without a price"
-msgstr[1] "%d without a price"
 
 msgid "Re-read prices from the agreements"
 msgstr "Fiyatları anlaşmalardan yeniden oku"
@@ -2940,11 +2885,6 @@ msgstr "Bağış türlerini gruplayın, ör. Kurban, Ramazan, Genel. Anahtar tü
 msgid "Save categories"
 msgstr "Kategorileri kaydet"
 
-msgid "Used by%stype"
-msgid_plural "Used by%stypes"
-msgstr[0] "Used by %s type"
-msgstr[1] "Used by %s types"
-
 msgid "Remove category"
 msgstr "Kategoriyi kaldır"
 
@@ -2972,7 +2912,7 @@ msgstr "Vekâlet metni sürümleri"
 msgid "No text yet. Donations of types that require a proxy cannot be paid until a text is saved."
 msgstr "Henüz metin yok. Vekâlet gerektiren türlere ait bağışlar, bir metin kaydedilene kadar ödenemez."
 
-msgid "Version%1$s·%2$s"
+msgid "Version %1$s · %2$s"
 msgstr "Sürüm %1$s · %2$s"
 
 msgid "Add your own tabs with fields to tracked records (\"on\": \"item\") or donations (\"on\": \"donation\"), for all or some donation types. Leave it empty if you do not need any."
@@ -2986,11 +2926,6 @@ msgstr "Kullanılan sekmeler"
 
 msgid "Record page"
 msgstr "Kayıt sayfası"
-
-msgid "%dfield"
-msgid_plural "%dfields"
-msgstr[0] "%d field"
-msgstr[1] "%d fields"
 
 msgid "from a plugin"
 msgstr "eklentiden"
@@ -3010,7 +2945,7 @@ msgstr "İçe aktarılıyor…"
 msgid "Import now"
 msgstr "Şimdi içe aktar"
 
-msgid "Last run%1$s:%2$spayments checked,%3$simported."
+msgid "Last run %1$s: %2$s payments checked, %3$s imported."
 msgstr "Son çalışma %1$s: %2$s ödeme kontrol edildi, %3$s aktarıldı."
 
 msgid "Upcoming (%s)"
@@ -3046,7 +2981,7 @@ msgstr "(pasif)"
 msgid "(price not set)"
 msgstr "(fiyat belirlenmedi)"
 
-msgid "free amount (min.%s)"
+msgid "free amount (min. %s)"
 msgstr "serbest tutar (en az %s)"
 
 msgid "free amount"
@@ -3058,7 +2993,7 @@ msgstr "adet"
 msgid "recurring"
 msgstr "düzenli"
 
-msgid "%1$sof%2$s(%3$s%%)"
+msgid "%1$s of %2$s (%3$s%%)"
 msgstr "%1$s / %2$s (%%%3$s)"
 
 msgid "Open-ended"
@@ -3145,7 +3080,7 @@ msgstr "Bu Flux Forms formlarından gelen bağışlar bu türe sayılır. Formda
 msgid "No payment form found in Flux Forms yet."
 msgstr "Flux Forms'da henüz ödeme formu yok."
 
-msgid "also linked to:%s"
+msgid "also linked to: %s"
 msgstr "şuna da bağlı: %s"
 
 msgid "Save after choosing a form to map its choices."
@@ -3196,7 +3131,7 @@ msgstr "addan üretilir"
 msgid "Remove option"
 msgstr "Seçeneği kaldır"
 
-msgid "— note set"
+msgid "— not set"
 msgstr "— belirtilmedi"
 
 msgid "Units per choice"
@@ -3214,7 +3149,7 @@ msgstr "Çeviriler"
 msgid "Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names."
 msgstr "Bağış sayfasında, sepette ve ödeme sayfasında o dilde gösterilir (Flux Lang). Boş alanlarda yukarıdaki metin kullanılır. Kayıtlar yukarıdaki metinle tutulur. Yeni eklenen seçeneklerin adını çevirmek için önce bir kez kaydedin."
 
-msgid "Option:%s"
+msgid "Option: %s"
 msgstr "Seçenek: %s"
 
 msgid "Each unit of a gift becomes its own item with a 7-digit code: approved, sent to a partner, completed, delivered to the owner, with files and history."
@@ -3253,7 +3188,7 @@ msgstr "Etin tamamı ihtiyaç sahiplerine verilir"
 msgid "Mapping for “%s”"
 msgstr "“%s” eşleştirmesi"
 
-msgid "This form charges in%1$sbut the donation type is in%2$s: its payments are stopped until both use the same currency."
+msgid "This form charges in %1$s but the donation type is in %2$s: its payments are stopped until both use the same currency."
 msgstr "Bu form %1$s ile tahsilat yapıyor ama bağış türü %2$s cinsinden: ikisi aynı para birimini kullanana kadar ödemeleri durdurulur."
 
 msgid "This form has no priced choices to map."
@@ -3265,7 +3200,7 @@ msgstr "Form seçimi"
 msgid "Units"
 msgstr "Birim"
 
-msgid "form price:%s"
+msgid "form price: %s"
 msgstr "form fiyatı: %s"
 
 msgid "Not mapped (form price)"
@@ -3289,7 +3224,7 @@ msgstr "Vekâlet onay alanı"
 msgid "Monthly, weekly or yearly gifts charged automatically by the payment provider."
 msgstr "Ödeme sağlayıcısının otomatik olarak tahsil ettiği aylık, haftalık veya yıllık bağışlar."
 
-msgid "Name, e-mail, phone, reference..."
+msgid "Name, e-mail, phone, reference…"
 msgstr "Ad, e-posta, telefon, referans…"
 
 msgid "No recurring donations yet"
@@ -3298,21 +3233,16 @@ msgstr "Henüz düzenli bağış yok"
 msgid "A recurring donation is created when a payment form is set to charge every day, week, month or year."
 msgstr "Bir ödeme formu her gün, hafta, ay veya yıl tahsilat yapacak şekilde ayarlandığında düzenli bağış oluşur."
 
-msgid "%srecurring donation"
-msgid_plural "%srecurring donations"
-msgstr[0] "%s recurring donation"
-msgstr[1] "%s recurring donations"
-
 msgid "Interval"
 msgstr "Sıklık"
 
 msgid "Next charge"
 msgstr "Sonraki tahsilat"
 
-msgid "Attempt%1$sof%2$sfailed:%3$s"
+msgid "Attempt %1$s of %2$s failed: %3$s"
 msgstr "%2$s denemeden %1$s. başarısız: %3$s"
 
-msgid "canceled%s"
+msgid "canceled %s"
 msgstr "%s tarihinde iptal edildi"
 
 msgid "Cancel this recurring donation at the payment provider? No further charges will be made."
@@ -3324,7 +3254,7 @@ msgstr "Kart ödemeleri: resmî iyzico eklentisi etkin."
 msgid "Card payments: Flux Donate iyzico (the official iyzico plugin is not enabled)."
 msgstr "Kart ödemeleri: Flux Donate iyzico (resmî iyzico eklentisi etkin değil)."
 
-msgid "Card payments:%s."
+msgid "Card payments: %s."
 msgstr "Kart ödemeleri: %s."
 
 msgid "No card method is enabled (WooCommerce › Settings › Payments)."
@@ -3405,7 +3335,7 @@ msgstr "Havale kaydedilince bağışçının telefonuna kısa bir mesaj (Flux Ma
 msgid "WhatsApp text"
 msgstr "WhatsApp metni"
 
-msgid "Placeholders:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}"
+msgid "Placeholders: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site}"
 msgstr "Yer tutucular: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site}"
 
 msgid "SMS text"
@@ -3465,7 +3395,7 @@ msgstr "iyzico"
 msgid "Show every enabled card method"
 msgstr "Etkin tüm kart yöntemlerini göster"
 
-msgid "Donors see one card method; now:%s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
+msgid "Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
 msgstr "Bağışçı tek kart yöntemi görür; şu an: %s. Aylık bağışlar her zaman Flux Donate iyzico ile alınır (kartı o saklar). Havale her zaman görünür."
 
 msgid "all"
@@ -3555,7 +3485,7 @@ msgstr "Hazır tutarlar (serbest tutar)"
 msgid "Separated by spaces, e.g. 250 500 1000."
 msgstr "Boşlukla ayırın, örn. 250 500 1000."
 
-msgid "Preset amounts in%s"
+msgid "Preset amounts in %s"
 msgstr "%s hazır tutarları"
 
 msgid "Page address"
@@ -3564,7 +3494,7 @@ msgstr "Sayfa adresi"
 msgid "Optional: where its product page and the product XML link go. Empty = the donation page in the WooCommerce settings."
 msgstr "İsteğe bağlı: ürün sayfası ve ürün XML bağlantısının gideceği yer. Boş = WooCommerce ayarlarındaki bağış sayfası."
 
-msgid "WooCommerce product #%d(hidden from the shop)."
+msgid "WooCommerce product #%d (hidden from the shop)."
 msgstr "WooCommerce ürünü #%d (mağazada gizli)."
 
 msgid "This order has no donation line."
@@ -3600,7 +3530,7 @@ msgstr "Sipariş satırı bulunamadı."
 msgid "Enter an amount up to what is left to refund."
 msgstr "İade edilebilecek kalan tutara kadar bir tutar girin."
 
-msgid "Refunded from Flux Donate by%s"
+msgid "Refunded from Flux Donate by %s"
 msgstr "Flux Donate'tan %s tarafından iade edildi"
 
 msgid "No donation lines."
@@ -3627,7 +3557,7 @@ msgstr "Flux Donate'ta başarısız olarak işaretlendi."
 msgid "This payment link has expired. Please fill in the form again."
 msgstr "Bu ödeme bağlantısının süresi doldu. Lütfen formu yeniden doldurun."
 
-msgid "Flux Forms entry%scompleted by this payment."
+msgid "Flux Forms entry %s completed by this payment."
 msgstr "Flux Forms kaydı %s bu ödemeyle tamamlandı."
 
 msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed."
@@ -3666,7 +3596,7 @@ msgstr "Kart üzerindeki isim"
 msgid "Expiry (MM/YY)"
 msgstr "Son kullanma (AA/YY)"
 
-msgctxt "context_def6e4575e04"
+msgctxt "card expiry placeholder"
 msgid "MM/YY"
 msgstr "AA/YY"
 
@@ -3694,7 +3624,7 @@ msgstr "Taksit"
 msgid "Single payment"
 msgstr "Tek çekim"
 
-msgid "%1$sinstallments ×%2$s(total%3$s)"
+msgid "%1$s installments × %2$s (total %3$s)"
 msgstr "%1$s taksit × %2$s (toplam %3$s)"
 
 msgid "Installment options appear after the card number."
@@ -3736,7 +3666,7 @@ msgstr "Bu kayıtlı kart artık kullanılamıyor. Lütfen kart bilgilerini giri
 msgid "This installment option is not available for the card. Please choose another."
 msgstr "Bu taksit seçeneği bu kartta yok. Lütfen başka bir seçenek seçin."
 
-msgid "Card payment could not start:%1$s(card%2$s,%3$s)."
+msgid "Card payment could not start: %1$s (card %2$s, %3$s)."
 msgstr "Kart ödemesi başlatılamadı: %1$s (kart %2$s, %3$s)."
 
 msgid "test mode"
@@ -3745,10 +3675,10 @@ msgstr "test modu"
 msgid "live"
 msgstr "canlı"
 
-msgid "Card payment started:%1$sinstallments,%2$scharged by the bank."
+msgid "Card payment started: %1$s installments, %2$s charged by the bank."
 msgstr "Kart ödemesi başladı: %1$s taksit, bankanın çekeceği tutar %2$s."
 
-msgid "iyzico 3D Secure:%s"
+msgid "iyzico 3D Secure: %s"
 msgstr "iyzico 3D Secure: %s"
 
 msgid "The bank did not confirm the 3D Secure code. Please try again."
@@ -3823,7 +3753,7 @@ msgstr "Ortam: canlı."
 msgid "iyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything."
 msgstr "iyzico bu siparişle uyuşmayan bir ödeme bildirdi (%s): tutar, para birimi ya da sepet farklı. Bir işlem yapmadan önce iyzico panelinden kontrol edin."
 
-msgid "iyzico payment received:%1$s, payment id%2$s(%3$s)."
+msgid "iyzico payment received: %1$s, payment id %2$s (%3$s)."
 msgstr "iyzico ödemesi alındı: %1$s, ödeme no %2$s (%3$s)."
 
 msgid "Enter an amount to refund."
@@ -3835,10 +3765,10 @@ msgstr "Bu siparişte iade edilecek bir iyzico işlemi yok."
 msgid "The amount is more than what is left to refund at iyzico."
 msgstr "Tutar, iyzico'da iade edilebilecek kalan tutardan fazla."
 
-msgid "iyzico refused the refund:%s"
+msgid "iyzico refused the refund: %s"
 msgstr "iyzico iadeyi reddetti: %s"
 
-msgid "Refunded at iyzico:%1$s.%2$s"
+msgid "Refunded at iyzico: %1$s. %2$s"
 msgstr "iyzico'da iade edildi: %1$s. %2$s"
 
 msgid "Classic"
@@ -3973,16 +3903,16 @@ msgstr "Boş ya da 0 = o yöntemde ücret yok (ör. havale). Ücret = bağış �
 msgid "Please choose what you would like to donate for."
 msgstr "Lütfen neye bağış yapmak istediğinizi seçin."
 
-msgid "This option cannot be donated in%s. Please choose another currency."
+msgid "This option cannot be donated in %s. Please choose another currency."
 msgstr "Bu seçenek %s ile bağışlanamıyor. Lütfen başka bir para birimi seçin."
 
 msgid "This option cannot be donated online at the moment."
 msgstr "Bu seçeneğe şu anda online bağış yapılamıyor."
 
-msgid "The number must be between 1 and%s."
+msgid "The number must be between 1 and %s."
 msgstr "Adet 1 ile %s arasında olmalı."
 
-msgid "The amount must be at least%s."
+msgid "The amount must be at least %s."
 msgstr "Tutar en az %s olmalı."
 
 msgid "For this amount please get in touch with us."
@@ -4006,11 +3936,6 @@ msgstr "Bu bağış için vekâlet onayı gerekiyor, ancak henüz ayarlanmamış
 msgid "The proxy (vekâlet) text has been updated. Please read it again and accept it."
 msgstr "Vekâlet metni güncellendi. Lütfen yeniden okuyup onaylayın."
 
-msgid "Please write at most%sname (one per share)."
-msgid_plural "Please write at most%snames (one per share)."
-msgstr[0] "Please write at most %s name (one per share)."
-msgstr[1] "Please write at most %s names (one per share)."
-
 msgid "The phone number does not look right. Example: 0532 123 45 67"
 msgstr "Telefon numarası doğru görünmüyor. Örnek: 0532 123 45 67"
 
@@ -4023,7 +3948,7 @@ msgstr "Bu amaç aylık bağış almıyor."
 msgid "Monthly donations are not available at the moment."
 msgstr "Aylık bağış şu anda alınamıyor."
 
-msgid "Donations in%scannot be paid here at the moment."
+msgid "Donations in %s cannot be paid here at the moment."
 msgstr "%s ile bağış şu anda burada ödenemiyor."
 
 msgid "The donation product could not be found."
@@ -4032,7 +3957,7 @@ msgstr "Bağış ürünü bulunamadı."
 msgid "It could not be added to the cart."
 msgstr "Sepete eklenemedi."
 
-msgid "A donation in your cart cannot be paid in%sand was removed."
+msgid "A donation in your cart cannot be paid in %s and was removed."
 msgstr "Sepetinizdeki bir bağış %s ile ödenemediği için çıkarıldı."
 
 msgid "A donation in your cart is no longer available and was removed."
@@ -4041,7 +3966,7 @@ msgstr "Sepetinizdeki bir bağış artık alınamıyor ve çıkarıldı."
 msgid "Printed certificates can only be paid in the store currency; your certificate will be sent online."
 msgstr "Basılı sertifika yalnızca mağaza para birimiyle ödenebilir; sertifikanız çevrim içi gönderilecek."
 
-msgid "Products in your cart can only be paid in%1$s.<a href=\"%2$s\">Switch to%1$s</a>"
+msgid "Products in your cart can only be paid in %1$s. <a href=\"%2$s\">Switch to %1$s</a>"
 msgstr "Sepetinizdeki ürünler yalnızca %1$s ile ödenebilir. <a href=\"%2$s\">%1$s'ye geç</a>"
 
 msgid "Printed certificate delivery"
@@ -4068,13 +3993,13 @@ msgstr "bana da kopya"
 msgid "Postal address"
 msgstr "Posta adresi"
 
-msgid "accepted (text version%s)"
+msgid "accepted (text version %s)"
 msgstr "onaylandı (metin sürümü %s)"
 
 msgid "Online + printed"
 msgstr "Online + basılı"
 
-msgid "%sSapling Donation"
+msgid "%s Sapling Donation"
 msgstr "%s Fidan Bağışı"
 
 msgid "Certificate no"
@@ -4083,13 +4008,13 @@ msgstr "Sertifika no"
 msgid "The certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce)."
 msgstr "Sertifika hazırlanamadı: Flux Certificates şablonu bulunamadı (Bağışlar › Ayarlar › WooCommerce)."
 
-msgid "The certificate could not be made:%s"
+msgid "The certificate could not be made: %s"
 msgstr "Sertifika hazırlanamadı: %s"
 
 msgid "Not sent yet."
 msgstr "Henüz gönderilmedi."
 
-msgid "Certificate made:%1$s(%2$s).%3$s"
+msgid "Certificate made: %1$s (%2$s). %3$s"
 msgstr "Sertifika hazırlandı: %1$s (%2$s). %3$s"
 
 msgid "Certificates made again (%d); the old ones were revoked."
@@ -4098,16 +4023,16 @@ msgstr "Sertifikalar yeniden oluşturuldu (%d); eskiler iptal edildi."
 msgid "No delivery channel is chosen."
 msgstr "Gönderim kanalı seçilmemiş."
 
-msgid "Queued:%s."
+msgid "Queued: %s."
 msgstr "Sıraya alındı: %s."
 
-msgid "Copy to the donor:%s."
+msgid "Copy to the donor: %s."
 msgstr "Bağışçıya kopya: %s."
 
 msgid "The preview could not be drawn. You can open it with \"View certificate\"."
 msgstr "Önizleme çizilemedi. \"Sertifikayı görüntüle\" ile açabilirsiniz."
 
-msgid "No:%s"
+msgid "No: %s"
 msgstr "No: %s"
 
 msgid "View certificate"
@@ -4134,16 +4059,16 @@ msgstr "\"%1$s\" her ay tekrarlanıyor (düzenli bağış #%2$d); kart iyzico'da
 msgid "Card (iyzico), monthly"
 msgstr "Kart (iyzico), aylık"
 
-msgid "Monthly renewal of recurring donation #%1$d(first order #%2$s)."
+msgid "Monthly renewal of recurring donation #%1$d (first order #%2$s)."
 msgstr "Düzenli bağış #%1$d aylık yenilemesi (ilk sipariş #%2$s)."
 
-msgid "Monthly charge accepted by iyzico:%1$s, payment id%2$s."
+msgid "Monthly charge accepted by iyzico: %1$s, payment id %2$s."
 msgstr "Aylık tahsilatı iyzico kabul etti: %1$s, ödeme no %2$s."
 
-msgid "Monthly charge failed after the last attempt:%s"
+msgid "Monthly charge failed after the last attempt: %s"
 msgstr "Aylık tahsilat son denemede de başarısız oldu: %s"
 
-msgid "Monthly charge failed, it will be retried:%s"
+msgid "Monthly charge failed, it will be retried: %s"
 msgstr "Aylık tahsilat başarısız, yeniden denenecek: %s"
 
 msgid "Flux Donate always uses EsnekPOS's secure payment page; the bank asks for 3D Secure there when needed."
@@ -4158,31 +4083,31 @@ msgstr "Bu ödeme yöntemini Flux Donate çalıştırır: klasik ve blok ödeme 
 msgid "Donation #%d"
 msgstr "Bağış #%d"
 
-msgid "EsnekPOS did not answer (HTTP%d)."
+msgid "EsnekPOS did not answer (HTTP %d)."
 msgstr "EsnekPOS yanıt vermedi (HTTP %d)."
 
-msgid "EsnekPOS payment could not start:%s"
+msgid "EsnekPOS payment could not start: %s"
 msgstr "EsnekPOS ödemesi başlatılamadı: %s"
 
-msgid "EsnekPOS payment could not start:%1$s(%2$s)."
+msgid "EsnekPOS payment could not start: %1$s (%2$s)."
 msgstr "EsnekPOS ödemesi başlatılamadı: %1$s (%2$s)."
 
 msgid "The payment is being checked. Please wait a moment and refresh the page."
 msgstr "Ödeme kontrol ediliyor. Lütfen biraz bekleyip sayfayı yenileyin."
 
-msgid "EsnekPOS payment could not be checked:%s"
+msgid "EsnekPOS payment could not be checked: %s"
 msgstr "EsnekPOS ödemesi kontrol edilemedi: %s"
 
 msgid "The payment could not be verified yet. If money was taken from your card, please contact us before trying again."
 msgstr "Ödeme henüz doğrulanamadı. Kartınızdan para çekildiyse tekrar denemeden önce lütfen bizimle iletişime geçin."
 
-msgid "EsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged."
+msgid "EsnekPOS payment received: reference %1$s, %2$s installment(s), %3$s charged."
 msgstr "EsnekPOS ödemesi alındı: referans %1$s, %2$s taksit, çekilen %3$s."
 
 msgid "EsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything."
 msgstr "EsnekPOS bu siparişle eşleşmeyen (tutar ya da referans) bir ödeme bildirdi (%s). İşlem yapmadan önce EsnekPOS panelinden kontrol edin."
 
-msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment:%s"
+msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment: %s"
 msgstr "EsnekPOS dönüşü başarılı dedi ama EsnekPOS ödemeyi doğrulamadı: %s"
 
 msgid "EsnekPOS: the payment was not completed (%s)."
@@ -4203,15 +4128,10 @@ msgstr "EsnekPOS ödeme sayfasında, EsnekPOS panelindeki ayara göre."
 msgid "Refund in the EsnekPOS panel, then mark the order refunded."
 msgstr "İadeyi EsnekPOS panelinden yapın, sonra siparişi iade edildi olarak işaretleyin."
 
-msgid "Donation of%1$ssapling.%2$splants it for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgid_plural "Donation of%1$ssaplings.%2$splants them for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgstr[0] "Donation of %1$s sapling. %2$s plants it for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgstr[1] "Donation of %1$s saplings. %2$s plants them for you and sends an online certificate in your name. Pay by card or bank transfer."
-
 msgid "Donation packages"
 msgstr "Bağış paketleri"
 
-msgid "Donation >%s"
+msgid "Donation > %s"
 msgstr "Bağış > %s"
 
 msgid "I will also cover the transaction fee"
@@ -4238,25 +4158,25 @@ msgstr "En popüler"
 msgid "Family pack"
 msgstr "Aile paketi"
 
-msgid "Hello{ad}, your donation of{tutar}is registered. IBAN:{iban}Reference:{aciklama}Upload your receipt:{link}"
+msgid "Hello {ad}, your donation of {tutar} is registered. IBAN: {iban} Reference: {aciklama} Upload your receipt: {link}"
 msgstr "Merhaba {ad}, {tutar} tutarındaki bağışınız kaydedildi. IBAN: {iban} Açıklama: {aciklama} Dekontunuzu yükleyin: {link}"
 
-msgid "Hello{ad}🌱\n\nYour donation of *{tutar}* is registered (No:{siparis}).\n\nBank transfer details:\nRecipient:{alici}\nIBAN:{iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
+msgid "Hello {ad} 🌱\n\nYour donation of *{tutar}* is registered (No: {siparis}).\n\nBank transfer details:\nRecipient: {alici}\nIBAN: {iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
 msgstr "Merhaba {ad} 🌱\n\n*{tutar}* tutarındaki bağışınız kaydedildi (No: {siparis}).\n\nHavale bilgileri:\nAlıcı: {alici}\nIBAN: {iban}\nAçıklama: *{aciklama}*\n\nHavaleden sonra dekontunuzu buradan yükleyebilirsiniz:\n{link}\n\nTeşekkürler,\n{site}"
 
-msgid "Pending transfer notification sent:%s."
+msgid "Pending transfer notification sent: %s."
 msgstr "Bekleyen havale bildirimi gönderildi: %s."
 
 msgid "WooCommerce checks"
 msgstr "WooCommerce kontrolleri"
 
-msgid "Version%1$sis active. Flux Donate was checked up to%2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
+msgid "Version %1$s is active. Flux Donate was checked up to %2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
 msgstr "%1$s sürümü etkin. Flux Donate %2$s sürümüne kadar denendi; yalnızca kararlı, herkese açık WooCommerce işlevlerini kullanır ama büyük WooCommerce güncellemelerinden sonra bir bağışı deneyin."
 
-msgid "Active, version%s. Donations are paid through the WooCommerce cart and checkout."
+msgid "Active, version %s. Donations are paid through the WooCommerce cart and checkout."
 msgstr "Etkin, sürüm %s. Bağışlar WooCommerce sepeti ve ödeme sayfasıyla alınıyor."
 
-msgid "One-time card payments are taken by%s; iyzico is not shown at the checkout."
+msgid "One-time card payments are taken by %s; iyzico is not shown at the checkout."
 msgstr "Tek seferlik kart ödemelerini %s alır; iyzico ödeme sayfasında gösterilmez."
 
 msgid "One-time card payments are taken by the official iyzico WooCommerce plugin."
@@ -4268,7 +4188,7 @@ msgstr "Kart ödemeleri ödeme sayfasındaki kendi kart alanlarımızla alınır
 msgid "One-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled)."
 msgstr "Tek seferlik kart ödemelerini Flux Donate iyzico alıyor (resmî iyzico eklentisi etkin değil)."
 
-msgid "Card payments are taken by:%s."
+msgid "Card payments are taken by: %s."
 msgstr "Kart ödemelerini alan: %s."
 
 msgid "No card method is enabled; donations can only be paid by bank transfer."
@@ -4304,19 +4224,19 @@ msgstr "İki havale yöntemi"
 msgid "WooCommerce's own \"Direct bank transfer\" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable \"Direct bank transfer\"."
 msgstr "WooCommerce'in kendi \"Banka havalesi\" yöntemi, bağış havalelerinin yanında açık. Bağışçı iki benzer seçenek görür ve dekont yükleme yalnız bağış olanında çalışır; \"Banka havalesi\"ni kapatın."
 
-msgid "The shop currency is%1$s; these types use another currency and are charged in%1$sat the same number:%2$s"
+msgid "The shop currency is %1$s; these types use another currency and are charged in %1$s at the same number: %2$s"
 msgstr "Mağaza para birimi %1$s; bu türler başka para birimi kullanıyor ve aynı rakamla %1$s olarak tahsil edilir: %2$s"
 
 msgid "WooCommerce settings"
 msgstr "WooCommerce ayarları"
 
-msgid "Donation types and the shop use%s."
+msgid "Donation types and the shop use %s."
 msgstr "Bağış türleri ve mağaza %s kullanıyor."
 
 msgid "Donation products"
 msgstr "Bağış ürünleri"
 
-msgid "These types get their hidden WooCommerce product the first time they are donated to or saved:%s"
+msgid "These types get their hidden WooCommerce product the first time they are donated to or saved: %s"
 msgstr "Bu türlerin gizli WooCommerce ürünü ilk bağışta ya da kaydedildiğinde oluşturulur: %s"
 
 msgid "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
@@ -4328,10 +4248,10 @@ msgstr "Bağış seçenekleri bloğunun olduğu bir sayfa seçilmemiş."
 msgid "Other payment plugins"
 msgstr "Diğer ödeme eklentileri"
 
-msgid "Check these on the donation checkout:%s. Details: Donations › Settings › WooCommerce › Payment methods."
+msgid "Check these on the donation checkout: %s. Details: Donations › Settings › WooCommerce › Payment methods."
 msgstr "Bağış ödeme sayfasında şunları kontrol edin: %s. Ayrıntı: Bağışlar › Ayarlar › WooCommerce › Ödeme yöntemleri."
 
-msgid "Enabled and shown on the donation checkout:%s."
+msgid "Enabled and shown on the donation checkout: %s."
 msgstr "Etkin ve bağış ödeme sayfasında görünüyor: %s."
 
 msgid "Certificates after payment"
@@ -4346,7 +4266,7 @@ msgstr "Flux Certificates'da etkin şablon yok."
 msgid "Product XML"
 msgstr "Ürün XML'i"
 
-msgid "%1$slists%2$ddonation packages (Google Merchant format, e.g. for iyzico)."
+msgid "%1$s lists %2$d donation packages (Google Merchant format, e.g. for iyzico)."
 msgstr "%1$s, %2$d bağış paketini listeliyor (Google Merchant biçimi, örn. iyzico için)."
 
 msgid "Payment forms on the checkout"
@@ -4355,7 +4275,7 @@ msgstr "Ödeme sayfasında ödenen formlar"
 msgid "Donation forms send their choice to the WooCommerce cart; \"Payment completed\" automations run when the order is paid."
 msgstr "Bağış formları seçimi WooCommerce sepetine gönderir; \"Ödeme tamamlandı\" otomasyonları sipariş ödenince çalışır."
 
-msgid "Flux Forms%sis active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
+msgid "Flux Forms %s is active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
 msgstr "Flux Forms %s etkin. Formlar ödeme sayfasında ödenir ama \"Ödeme tamamlandı\" otomasyonları için Flux Forms 2.1.0 veya üstü gerekir."
 
 msgid "Donation e-mails"
@@ -4385,7 +4305,7 @@ msgstr "Boş = aşağıdaki banka hesabının sahibi; burada IBAN yoksa WooComme
 msgid "The account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce's \"Direct bank transfer\", else the theme settings; recipient and bank then come from that account too."
 msgstr "Her yerde gösterilen hesap (bağış sayfası, ödeme, çağrı merkezi). Boş = WooCommerce \"Banka havalesi\"nin ilk hesabı, o da yoksa tema ayarları; alıcı ve banka da o hesaptan gelir."
 
-msgid "What the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}"
+msgid "What the donor writes in the transfer description. Placeholders: {tur} (sapling donation / donation), {kod} (prefix + order no), {siparis}, {ad}. Empty: {tur} {kod} {ad}"
 msgstr "Bağışçının havale açıklamasına yazacağı metin. Yer tutucular: {tur} (fidan bağışı / bağış), {kod} (önek + sipariş no), {siparis}, {ad}. Boş: {tur} {kod} {ad}"
 
 msgid "Bank transfer pre-registration: waiting for the payment."
@@ -4448,13 +4368,8 @@ msgstr "Lütfen her hisse için en fazla bir ad yazın."
 msgid "/ month"
 msgstr "/ ay"
 
-msgid "(up to%s)"
+msgid "(up to %s)"
 msgstr "(en fazla %s)"
-
-msgid "%sSapling"
-msgid_plural "%sSaplings"
-msgstr[0] "%s Sapling"
-msgstr[1] "%s Saplings"
 
 msgid "Who is this donation for?"
 msgstr "Bu bağış kimin için?"
@@ -4522,7 +4437,7 @@ msgstr "Sepete git"
 msgid "Your donation"
 msgstr "Bağışınız"
 
-msgid "from%s"
+msgid "from %s"
 msgstr "%s'den başlayan"
 
 msgid "Payments are taken securely by iyzico."
@@ -4543,7 +4458,7 @@ msgstr "Başka bir tutar"
 msgid "Or write another amount"
 msgstr "Ya da başka bir tutar yazın"
 
-msgid "At least%s"
+msgid "At least %s"
 msgstr "En az %s"
 
 msgid "On whose behalf?"
@@ -4558,13 +4473,13 @@ msgstr "Adı boş bırakılan hisseler ödeme sayfasındaki ad adına kesilir. T
 msgid "Shares without a name are given in the name from the checkout."
 msgstr "Adı boş bırakılan hisseler ödeme sayfasındaki ad adına kesilir."
 
-msgid "Read the proxy (vekâlet) text (version%s)"
+msgid "Read the proxy (vekâlet) text (version %s)"
 msgstr "Vekâlet metnini okuyun (sürüm %s)"
 
 msgid "I give my proxy (vekâlet) for the sacrifice according to this text."
 msgstr "Bu metne göre kurban kesimi için vekâlet veriyorum."
 
-msgid "Share%s"
+msgid "Share %s"
 msgstr "Hisse %s"
 
 msgid "Apply to all"
@@ -4579,16 +4494,11 @@ msgstr "Bu bağış için dekont beklenmiyor."
 msgid "At most 5 receipts can be uploaded for a donation."
 msgstr "Bir bağış için en fazla 5 dekont yüklenebilir."
 
-msgid "The donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it."
+msgid "The donor uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
 msgstr "Bağışçı dekont yükledi: %1$s (%2$s). Ödemeyi kontrol edip onaylayın."
 
 msgid "the site"
 msgstr "site"
-
-msgid "Warning: this receipt was uploaded before (%1$dtime, via%2$s). Check it before confirming the payment."
-msgid_plural "Warning: this receipt was uploaded before (%1$dtimes, via%2$s). Check it before confirming the payment."
-msgstr[0] "Warning: this receipt was uploaded before (%1$d time, via %2$s). Check it before confirming the payment."
-msgstr[1] "Warning: this receipt was uploaded before (%1$d times, via %2$s). Check it before confirming the payment."
 
 msgid "Earlier donation: #%d."
 msgstr "Önceki bağış: #%d."
@@ -4623,11 +4533,6 @@ msgstr "Havale ile yaptığınız bağışlar. Ödemeyi yaptıysanız dekontunuz
 msgid "Donation #%s"
 msgstr "Bağış #%s"
 
-msgid "%sdonation is awaiting payment"
-msgid_plural "%sdonations are awaiting payment"
-msgstr[0] "%s donation is awaiting payment"
-msgstr[1] "%s donations are awaiting payment"
-
 msgid "If you have made the transfer, upload your receipt."
 msgstr "Havaleyi yaptıysanız dekontunuzu yükleyin."
 
@@ -4640,7 +4545,7 @@ msgstr "En az birini yazın. Makbuz ve sertifikanızı oraya göndeririz."
 msgid "Continue to payment"
 msgstr "Ödemeye geç"
 
-msgid "I have read and accept the%1$sprivacy policy%2$sand the%3$sdonation agreement%4$s."
+msgid "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s."
 msgstr "%1$sGizlilik politikasını%2$s ve %3$sbağış sözleşmesini%4$s okudum, kabul ediyorum."
 
 msgid "Make payment"
@@ -4655,7 +4560,7 @@ msgstr "Bağış Koşulları"
 msgid "Privacy policy"
 msgstr "Gizlilik Politikası"
 
-msgid "These terms apply to donations made on this site to%s."
+msgid "These terms apply to donations made on this site to %s."
 msgstr "Bu koşullar, bu sitede %s adına yapılan bağışlar için geçerlidir."
 
 msgid "A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose."
@@ -4679,13 +4584,13 @@ msgstr "Bağış yanlışlıkla yapıldıysa (hatalı tutar ya da çift ödeme),
 msgid "Your name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details."
 msgstr "Adınız ve iletişim bilgileriniz bağışı kaydetmek, makbuz ve sertifikayı göndermek ve bağışınızla ilgili size ulaşmak için kullanılır. Ayrıntılar için gizlilik politikasına bakın."
 
-msgid "For any question about your donation, write to us on WhatsApp:%s"
+msgid "For any question about your donation, write to us on WhatsApp: %s"
 msgstr "Bağışınızla ilgili her soru için bize WhatsApp'tan yazın: %s"
 
 msgid "For any question about your donation, write to us through the contact page."
 msgstr "Bağışınızla ilgili her soru için iletişim sayfasından bize yazın."
 
-msgid "%sprocesses your personal data under the Turkish Personal Data Protection Law (KVKK)."
+msgid "%s processes your personal data under the Turkish Personal Data Protection Law (KVKK)."
 msgstr "%s, kişisel verilerinizi 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında işler."
 
 msgid "What we collect"
@@ -4787,7 +4692,7 @@ msgstr "WooCommerce ödemeleri"
 msgid "Payment logos on the site"
 msgstr "Sitedeki ödeme logoları"
 
-msgid "Checkout page:%s."
+msgid "Checkout page: %s."
 msgstr "Ödeme sayfası: %s."
 
 msgid "Checkout block"
@@ -4814,7 +4719,7 @@ msgstr "Ayrıntı için işaretin üzerine gelin."
 msgid "Donation type not found."
 msgstr "Bağış türü bulunamadı."
 
-msgid "of%sgoal"
+msgid "of %s goal"
 msgstr "%s hedefin"
 
 msgid "Goal progress"
@@ -4835,16 +4740,16 @@ msgstr "Her sekme bir JSON nesnesi olmalı."
 msgid "A tab needs an \"id\"."
 msgstr "Sekmenin bir \"id\" değeri olmalı."
 
-msgid "Tab%1$s: \"on\" must be item or donation, not%2$s."
+msgid "Tab %1$s: \"on\" must be item or donation, not %2$s."
 msgstr "%1$s sekmesi: \"on\" item ya da donation olmalı, %2$s değil."
 
-msgid "Tab%s: every field needs a \"key\"."
+msgid "Tab %s: every field needs a \"key\"."
 msgstr "%s sekmesi: her alanın bir \"key\" değeri olmalı."
 
-msgid "Tab%1$s, field%2$s: unknown type%3$s."
+msgid "Tab %1$s, field %2$s: unknown type %3$s."
 msgstr "%1$s sekmesi, %2$s alanı: bilinmeyen tür %3$s."
 
-msgid "The JSON could not be read:%s"
+msgid "The JSON could not be read: %s"
 msgstr "JSON okunamadı: %s"
 
 msgid "Tracked items"
@@ -4865,7 +4770,7 @@ msgstr "İş ortağından geri al"
 msgid "Mark completed"
 msgstr "Tamamlandı olarak işaretle"
 
-msgid "Your gift on behalf of%1$sis completed. Thank you. Code:%2$s"
+msgid "Your gift on behalf of %1$s is completed. Thank you. Code: %2$s"
 msgstr "%1$s adına bağışınız tamamlandı. Teşekkür ederiz. Kod: %2$s"
 
 msgid "Page title"
@@ -4889,7 +4794,7 @@ msgstr "Düğme: geri al"
 msgid "Button: mark completed"
 msgstr "Düğme: tamamlandı işaretle"
 
-msgid "WhatsApp text with the file (%1$sname,%2$scode)"
+msgid "WhatsApp text with the file (%1$s name, %2$s code)"
 msgstr "Dosyayla giden WhatsApp metni (%1$s ad, %2$s kod)"
 
 msgid "File added"
@@ -4904,7 +4809,7 @@ msgstr "Dosya sahibine gönderildi"
 msgid "Details changed"
 msgstr "Bilgiler değişti"
 
-msgid "Choose:%s."
+msgid "Choose: %s."
 msgstr "Seçin: %s."
 
 msgid "not waiting"
@@ -4961,7 +4866,7 @@ msgstr "WhatsApp sohbeti açılamadı."
 msgid "Please sign in."
 msgstr "Lütfen giriş yapın."
 
-msgid "received%s"
+msgid "received %s"
 msgstr "%s geldi"
 
 msgid "Recurring donation started"
@@ -4973,7 +4878,7 @@ msgstr "Aylık (kartla) bir bağış kurulunca bağışçıya gönderilir."
 msgid "Donor name"
 msgstr "Bağışçı adı"
 
-msgid "Interval (monthly...)"
+msgid "Interval (monthly…)"
 msgstr "Sıklık (aylık…)"
 
 msgid "Date of the next payment"
@@ -4985,13 +4890,13 @@ msgstr "İptal bağlantısı"
 msgid "monthly"
 msgstr "aylık"
 
-msgid "Your recurring donation to{kurum}"
+msgid "Your recurring donation to {kurum}"
 msgstr "{kurum} için düzenli bağışınız"
 
-msgid "Thank you,{ad}"
+msgid "Thank you, {ad}"
 msgstr "Teşekkürler, {ad}"
 
-msgid "Your{aralik}donation of{tutar}is set up. The next payment will be taken on{sonraki}."
+msgid "Your {aralik} donation of {tutar} is set up. The next payment will be taken on {sonraki}."
 msgstr "{tutar} tutarındaki {aralik} bağışınız kuruldu. Sonraki ödeme {sonraki} tarihinde alınacak."
 
 msgid "You can cancel your recurring donation at any time with the button below."
@@ -5006,16 +4911,16 @@ msgstr "Kart her denemede reddedilip düzenli bağış durdurulunca bağışçı
 msgid "Number of attempts"
 msgstr "Deneme sayısı"
 
-msgid "We could not take your donation to{kurum}"
+msgid "We could not take your donation to {kurum}"
 msgstr "{kurum} için bağışınızı alamadık"
 
 msgid "Your recurring donation is paused"
 msgstr "Düzenli bağışınız durduruldu"
 
-msgid "Dear{ad},"
+msgid "Dear {ad},"
 msgstr "Sayın {ad},"
 
-msgid "We tried{deneme}times but could not charge your card for your{aralik}donation of{tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
+msgid "We tried {deneme} times but could not charge your card for your {aralik} donation of {tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
 msgstr "{tutar} tutarındaki {aralik} bağışınız için kartınızdan {deneme} kez tahsilat denedik ama başarılı olamadık; bu yüzden bağış durduruldu. Devam etmek isterseniz lütfen sitemizden yeni bir bağış yapın ya da bizimle iletişime geçin."
 
 msgid "Donate again"
@@ -5039,19 +4944,19 @@ msgstr "Dosya adı"
 msgid "Order link (admin)"
 msgstr "Sipariş bağlantısı (yönetim)"
 
-msgid "Receipt uploaded: donation #{siparis}({ad})"
+msgid "Receipt uploaded: donation #{siparis} ({ad})"
 msgstr "Dekont yüklendi: bağış #{siparis} ({ad})"
 
 msgid "A transfer receipt was uploaded"
 msgstr "Bir havale dekontu yüklendi"
 
-msgid "Amount:{tutar}"
+msgid "Amount: {tutar}"
 msgstr "Tutar: {tutar}"
 
-msgid "Reference:{aciklama}"
+msgid "Reference: {aciklama}"
 msgstr "Açıklama: {aciklama}"
 
-msgid "File:{dosya}"
+msgid "File: {dosya}"
 msgstr "Dosya: {dosya}"
 
 msgid "Check the payment at the bank and press \"Confirm payment\" on the order; the certificate is then issued and sent automatically."
@@ -5069,13 +4974,13 @@ msgstr "Bağış ödemenizi onaylayamadık"
 msgid "We could not confirm your payment"
 msgstr "Ödemenizi onaylayamadık"
 
-msgid "Hello{ad},"
+msgid "Hello {ad},"
 msgstr "Merhaba {ad},"
 
-msgid "We could not confirm the payment of your{tutar}donation."
+msgid "We could not confirm the payment of your {tutar} donation."
 msgstr "{tutar} tutarındaki bağışınızın ödemesini onaylayamadık."
 
-msgid "Reason:{aciklama}"
+msgid "Reason: {aciklama}"
 msgstr "Açıklama: {aciklama}"
 
 msgid "If you think this is a mistake, please reply to this e-mail. Thank you."
@@ -5090,7 +4995,7 @@ msgstr "Makbuzlarda ve bağışçı e-postalarında görünen ad (en fazla 190 k
 msgid "The organisation name cannot be empty."
 msgstr "Kurum adı boş olamaz."
 
-msgid "Organisation name saved:%s"
+msgid "Organisation name saved: %s"
 msgstr "Kurum adı kaydedildi: %s"
 
 msgid "Set the default currency"
@@ -5102,7 +5007,7 @@ msgstr "Yeni bağış türlerinde ve elle girilen bağışlarda kullanılır."
 msgid "Unsupported currency."
 msgstr "Desteklenmeyen para birimi."
 
-msgid "Default currency:%s"
+msgid "Default currency: %s"
 msgstr "Varsayılan para birimi: %s"
 
 msgid "Open a donation type"
@@ -5114,7 +5019,7 @@ msgstr "Fiyatı (veya serbest tutarı) olan kapalı bir bağış türünü açar
 msgid "This type has no option with a price and no free amount; set a price first."
 msgstr "Bu türün fiyatlı seçeneği ve serbest tutarı yok; önce fiyat girin."
 
-msgid "Donation type opened:%s"
+msgid "Donation type opened: %s"
 msgstr "Bağış türü açıldı: %s"
 
 msgid "Set a donation type's unit price"
@@ -5129,13 +5034,13 @@ msgstr "Fiyat 0'dan büyük olmalı."
 msgid "This type has no active option; add one on the Donation types page."
 msgstr "Bu türün etkin seçeneği yok; Bağış türleri sayfasından bir seçenek ekleyin."
 
-msgid "Unit price of%1$sset to%2$s%3$s."
+msgid "Unit price of %1$s set to %2$s %3$s."
 msgstr "%1$s birim fiyatı %2$s %3$s olarak ayarlandı."
 
 msgid "Link a form to a donation type"
 msgstr "Bağış türüne form bağla"
 
-msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms:%s"
+msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms: %s"
 msgstr "Değer \"slug=form numarası\", ör. \"fidan=3\". Formlar: %s"
 
 msgid "No form with this id."
@@ -5147,7 +5052,7 @@ msgstr "Form zaten bağlı."
 msgid "The form could not be linked."
 msgstr "Form bağlanamadı."
 
-msgid "Form \"%1$s\" linked to%2$s."
+msgid "Form \"%1$s\" linked to %2$s."
 msgstr "\"%1$s\" formu %2$s türüne bağlandı."
 
 msgid "Use the form \"slug=value\"."
@@ -5177,19 +5082,19 @@ msgstr "Rapor bir JSON nesnesi olmalı."
 msgid "The report needs an \"id\" (letters, digits, dash)."
 msgstr "Raporun bir \"id\" değeri olmalı (harf, rakam, tire)."
 
-msgid "Unknown \"source\":%s. Use donations or items."
+msgid "Unknown \"source\": %s. Use donations or items."
 msgstr "Bilinmeyen \"source\": %s. donations ya da items kullanın."
 
-msgid "Unknown \"group\" value:%s"
+msgid "Unknown \"group\" value: %s"
 msgstr "Bilinmeyen \"group\" değeri: %s"
 
 msgid "Group by at most two dimensions."
 msgstr "En fazla iki alana göre gruplayın."
 
-msgid "Unknown \"metrics\" value:%s"
+msgid "Unknown \"metrics\" value: %s"
 msgstr "Bilinmeyen \"metrics\" değeri: %s"
 
-msgid "\"sort\" must be one of the group or metrics values:%s"
+msgid "\"sort\" must be one of the group or metrics values: %s"
 msgstr "\"sort\", group ya da metrics değerlerinden biri olmalı: %s"
 
 msgid "piece"
@@ -5225,13 +5130,13 @@ msgstr "Yıllık"
 msgid "Test provider"
 msgstr "Test sağlayıcısı"
 
-msgid "%1$s(%2$s)"
+msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
 
-msgid "Last test%1$s:%2$s"
+msgid "Last test %1$s: %2$s"
 msgstr "Son test %1$s: %2$s"
 
-msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls%severy 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
+msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls %s every 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
 msgstr "WP-Cron wp-config.php'de kapatılmış (DISABLE_WP_CRON). Bu yalnızca sunucudaki bir cron görevi %s adresini 5–15 dakikada bir çağırıyorsa sorun değildir; aksi halde düzenli tahsilatlar, yeniden denemeler ve diğer zamanlanmış görevler hiç çalışmaz."
 
 msgid "Scheduled tasks are running, so a server cron is in place."
@@ -5249,13 +5154,13 @@ msgstr "ALTERNATE_WP_CRON açık."
 msgid "Flux Donate hourly task"
 msgstr "Flux Donate saatlik görevi"
 
-msgid "Last run:%s. Recurring iyzico charges are checked every hour."
+msgid "Last run: %s. Recurring iyzico charges are checked every hour."
 msgstr "Son çalışma: %s. Düzenli iyzico tahsilatları her saat kontrol ediliyor."
 
-msgid "Not run yet; the first run is scheduled for%s."
+msgid "Not run yet; the first run is scheduled for %s."
 msgstr "Henüz çalışmadı; ilk çalışma %s için planlandı."
 
-msgid "Last run:%s, more than 2 hours ago."
+msgid "Last run: %s, more than 2 hours ago."
 msgstr "Son çalışma: %s, 2 saatten daha önce."
 
 msgid "It has never run."
@@ -5267,7 +5172,7 @@ msgstr "WP-Cron kapalı, bu yüzden wp-cron.php'yi sunucudaki bir cron görevi �
 msgid "WP-Cron only runs on visits and may be blocked by the host or a security plugin. Use \"Test cron\" or add a server cron job."
 msgstr "WP-Cron yalnızca ziyaretlerde çalışır ve sunucu ya da bir güvenlik eklentisi tarafından engellenmiş olabilir. \"Cron'u test et\" düğmesini kullanın veya sunucuya cron görevi ekleyin."
 
-msgid "Next scheduled:%s."
+msgid "Next scheduled: %s."
 msgstr "Sonraki planlı çalışma: %s."
 
 msgid "The task is not scheduled; it is added again on the next page load."
@@ -5303,10 +5208,10 @@ msgstr "Kullanılabilir ödeme sağlayıcısı yok."
 msgid "Payment settings"
 msgstr "Ödeme ayarları"
 
-msgid "Card payments are taken with%s."
+msgid "Card payments are taken with %s."
 msgstr "Kartla ödemeler %s ile alınıyor."
 
-msgid "%sis the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
+msgid "%s is the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
 msgstr "Etkin sağlayıcı %s ama anahtarları eksik; bu yüzden bağış formları \"Online ödeme şu anda kullanılamıyor\" gösteriyor."
 
 msgid "Enter keys"
@@ -5333,10 +5238,10 @@ msgstr "Anahtarları iyzico ile denemek için \"Bağlantıyı test et\"i kullan�
 msgid "iyzico keys"
 msgstr "iyzico anahtarları"
 
-msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url):%s. Subscription notification URLs are not needed."
+msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url): %s. Subscription notification URLs are not needed."
 msgstr "iyzico paneli › İşyeri Bildirimleri Url alanına yapıştırın: %s. Abonelik bildirim adresleri gerekmez."
 
-msgid "Last notification received:%s."
+msgid "Last notification received: %s."
 msgstr "Son bildirim: %s."
 
 msgid "No notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made)."
@@ -5353,11 +5258,6 @@ msgstr "Adresleri göster"
 
 msgid "Failed recurring charges"
 msgstr "Başarısız düzenli tahsilatlar"
-
-msgid "%drecurring donation stopped after its card was declined 3 times."
-msgid_plural "%drecurring donations stopped after their cards were declined 3 times."
-msgstr[0] "%d recurring donation stopped after its card was declined 3 times."
-msgstr[1] "%d recurring donations stopped after their cards were declined 3 times."
 
 msgid "Stripe keys"
 msgstr "Stripe anahtarları"
@@ -5380,22 +5280,22 @@ msgstr "Webhook imza anahtarı eksik: Stripe'ta yapılan iadeler ve yenilemeler 
 msgid "Flux Forms is not active. Donation forms and card payments need it."
 msgstr "Flux Forms etkin değil. Bağış formları ve kartla ödeme için gerekli."
 
-msgid "Active, version%s."
+msgid "Active, version %s."
 msgstr "Etkin, sürüm %s."
 
-msgid "Version%1$sis active; Flux Donate needs%2$sor later for payments and prices to work together."
+msgid "Version %1$s is active; Flux Donate needs %2$s or later for payments and prices to work together."
 msgstr "Sürüm %1$s etkin; ödemelerin ve fiyatların birlikte çalışması için Flux Donate %2$s veya üstünü istiyor."
 
-msgid "Active, version%s. Certificates can be sent after donations."
+msgid "Active, version %s. Certificates can be sent after donations."
 msgstr "Etkin, sürüm %s. Bağıştan sonra sertifika gönderilebilir."
 
-msgid "Version%1$sis active;%2$sor later is recommended."
+msgid "Version %1$s is active; %2$s or later is recommended."
 msgstr "Sürüm %1$s etkin; %2$s veya üstü önerilir."
 
 msgid "Not active. Donations are recorded, but no certificate is created or sent."
 msgstr "Etkin değil. Bağışlar kaydedilir ama sertifika oluşturulmaz ve gönderilmez."
 
-msgid "WooCommerce is older than%s. Flux Donate 2.0 takes donations through WooCommerce; update it."
+msgid "WooCommerce is older than %s. Flux Donate 2.0 takes donations through WooCommerce; update it."
 msgstr "WooCommerce %s sürümünden eski. Flux Donate 2.0 bağışları WooCommerce ile alır; güncelleyin."
 
 msgid "WooCommerce is not active. Flux Donate 2.0 takes donations through the WooCommerce cart and checkout; until it is active, only the older Flux Forms payment layer works."
@@ -5425,24 +5325,19 @@ msgstr "WooCommerce ve iyzico eklentileri"
 msgid "Open donation types"
 msgstr "Açık bağış türleri"
 
-msgid "%ddonation type is open and priced."
-msgid_plural "%ddonation types are open and priced."
-msgstr[0] "%d donation type is open and priced."
-msgstr[1] "%d donation types are open and priced."
-
 msgid "No donation type is open with a price (or free amount), so forms cannot take donations."
 msgstr "Fiyatı (veya serbest tutarı) olan açık bağış türü yok; formlar bağış alamaz."
 
 msgid "Forms of open donation types"
 msgstr "Açık bağış türlerinin formları"
 
-msgid "No (existing) form is linked to:%s. Visitors cannot give to these types online."
+msgid "No (existing) form is linked to: %s. Visitors cannot give to these types online."
 msgstr "Şunlara bağlı (mevcut) bir form yok: %s. Ziyaretçiler bu türlere online bağış yapamaz."
 
 msgid "Every open donation type has a form."
 msgstr "Her açık bağış türünün formu var."
 
-msgid "Default currency:%s."
+msgid "Default currency: %s."
 msgstr "Varsayılan para birimi: %s."
 
 msgid "iyzico is not set up for this currency (Donations › Payments › iyzico › currencies)."
@@ -5450,11 +5345,6 @@ msgstr "iyzico bu para birimi için ayarlı değil (Bağışlar › Ödemeler �
 
 msgid "Bank accounts (transfer)"
 msgstr "Banka hesapları (havale)"
-
-msgid "%dbank account is listed for bank transfer gifts."
-msgid_plural "%dbank accounts are listed for bank transfer gifts."
-msgstr[0] "%d bank account is listed for bank transfer gifts."
-msgstr[1] "%d bank accounts are listed for bank transfer gifts."
 
 msgid "No bank account is listed. They come from the theme (filter flxb_bank_accounts) and are used when recording bank transfer gifts."
 msgstr "Tanımlı banka hesabı yok. Hesaplar temadan gelir (flxb_bank_accounts filtresi) ve havale bağışı kaydederken kullanılır."
@@ -5468,7 +5358,7 @@ msgstr "Girilmemiş; makbuz ve e-postalarda site başlığı \"%s\" kullanılıy
 msgid "E-mail sending"
 msgstr "E-posta gönderimi"
 
-msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to%s."
+msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to %s."
 msgstr "Test edilmedi. Bağışçı e-postaları (düzenli bağış başladı, kart reddedildi) wp_mail ile gider. Test, %s adresine bir ileti gönderir."
 
 msgid "Send test e-mail"
@@ -5492,7 +5382,7 @@ msgstr "Site adresi HTTPS değil. Kartla ödeme ve ödeme dönüşleri HTTPS ger
 msgid "WordPress security keys (salts)"
 msgstr "WordPress güvenlik anahtarları (salt)"
 
-msgid "Missing or weak in wp-config.php:%s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
+msgid "Missing or weak in wp-config.php: %s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
 msgstr "wp-config.php'de eksik veya zayıf: %s. Kayıtlı iyzico kartları bu anahtarlarla şifrelenir; bir kez benzersiz değerler girin (https://api.wordpress.org/secret-key/1.1/salt/) ve sonra değiştirmeyin, yoksa kayıtlı kartlar çalışmaz."
 
 msgid "Set in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working."
@@ -5501,7 +5391,7 @@ msgstr "wp-config.php'de tanımlı. Kayıtlı iyzico kartları bunlarla şifrele
 msgid "Up to date (%s)."
 msgstr "Güncel (%s)."
 
-msgid "Tables are at version%1$s, expected%2$s. Deactivate and activate Flux Donate to update them."
+msgid "Tables are at version %1$s, expected %2$s. Deactivate and activate Flux Donate to update them."
 msgstr "Tablolar %1$s sürümünde, beklenen %2$s. Güncellemek için Flux Donate'ı devre dışı bırakıp yeniden etkinleştirin."
 
 msgid "No iyzico keys to test."
@@ -5513,7 +5403,7 @@ msgstr "sandbox"
 msgid "Connected; iyzico accepted the keys (%s)."
 msgstr "Bağlantı kuruldu; iyzico anahtarları kabul etti (%s)."
 
-msgid "iyzico refused the keys (%1$s):%2$s. Check that the keys belong to this environment."
+msgid "iyzico refused the keys (%1$s): %2$s. Check that the keys belong to this environment."
 msgstr "iyzico anahtarları reddetti (%1$s): %2$s. Anahtarların bu ortama (sandbox/canlı) ait olduğunu kontrol edin."
 
 msgid "This server could not reach its own wp-cron.php (%s). WP-Cron cannot start from visits; add a server cron job."
@@ -5522,7 +5412,7 @@ msgstr "Bu sunucu kendi wp-cron.php adresine ulaşamadı (%s). WP-Cron ziyaretle
 msgid "wp-cron.php answered; WP-Cron can start."
 msgstr "wp-cron.php yanıt verdi; WP-Cron başlayabiliyor."
 
-msgid "wp-cron.php answered with HTTP%d(blocked by the host or a security plugin?). Add a server cron job."
+msgid "wp-cron.php answered with HTTP %d (blocked by the host or a security plugin?). Add a server cron job."
 msgstr "wp-cron.php HTTP %d ile yanıt verdi (sunucu veya bir güvenlik eklentisi mi engelliyor?). Sunucuya cron görevi ekleyin."
 
 msgid "[%s] Test e-mail from Flux Donate"
@@ -5531,10 +5421,10 @@ msgstr "[%s] Flux Donate test e-postası"
 msgid "This is a test from Donations › Settings › System check. If you can read it, donor e-mails can be sent."
 msgstr "Bu, Bağışlar › Ayarlar › Sistem kontrolü'nden gönderilen bir testtir. Bunu okuyabiliyorsanız bağışçı e-postaları gönderilebilir."
 
-msgid "Sent to%s. Check that it arrived (and not in spam)."
+msgid "Sent to %s. Check that it arrived (and not in spam)."
 msgstr "%s adresine gönderildi. Ulaştığını (ve spam'e düşmediğini) kontrol edin."
 
-msgid "Sending failed:%s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
+msgid "Sending failed: %s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
 msgstr "Gönderilemedi: %s. SMTP ayarlayın (ör. e-posta hesabınızla bir SMTP eklentisi)."
 
 msgid "Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış."
@@ -5761,11 +5651,6 @@ msgstr "Listede göster"
 msgid "Review"
 msgstr "İncele"
 
-msgid "%s more"
-msgid_plural "%s more"
-msgstr[0] "%s tane daha"
-msgstr[1] "%s tane daha"
-
 msgid "Paid gifts"
 msgstr "Ödenmiş bağış"
 
@@ -5777,6 +5662,11 @@ msgstr "Bu bağışın referansı yok."
 
 msgid "The donor's earlier gifts came through %s."
 msgstr "Bağışçının önceki bağışları %s aracılığıyla geldi."
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "%s tane daha"
+msgstr[1] "%s tane daha"
 
 msgid "Card fields on the checkout"
 msgstr "Ödeme sayfasında kart alanları"

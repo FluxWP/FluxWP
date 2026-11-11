@@ -123,6 +123,38 @@ add_action(
 	}
 );
 
+/* 1.40.0: sertifika/bağış bildirimi yüzünden susturulmuş sohbetlerde asistan yeniden açılır (temsilci yazmadıysa). */
+add_action(
+	'admin_init',
+	function () {
+		if ( get_option( 'flxc_mig_bot1400' ) ) {
+			return;
+		}
+		update_option( 'flxc_mig_bot1400', 1, false );
+		global $wpdb;
+		$since = gmdate( 'Y-m-d H:i:s', time() - max( 1, (int) flxc_setting( 'bot_pause_hours' ) ) * HOUR_IN_SECONDS );
+		$human = array_merge( (array) apply_filters( 'flxc_bot_pause_sources', array( 'agent', 'quick', 'ai', 'record' ) ), array( 'phone' ) );
+		$ids   = $wpdb->get_col( "SELECT id FROM " . flxc_table( 'chats' ) . " WHERE meta LIKE '%\"until\"%'" ); // phpcs:ignore
+		foreach ( $ids as $id ) {
+			$chat = flxc_get_chat( (int) $id );
+			if ( ! $chat ) {
+				continue;
+			}
+			$st = flxc_bot_state( $chat );
+			if ( (int) $st['until'] <= time() ) {
+				continue;
+			}
+			$ph = implode( ',', array_fill( 0, count( $human ), '%s' ) );
+			// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders
+			$n = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxc_table( 'messages' ) . " WHERE chat_id = %d AND direction = 'out' AND created_at >= %s AND source IN ($ph)", array_merge( array( (int) $id, $since ), $human ) ) );
+			if ( ! $n ) {
+				$st['until'] = 0;
+				flxc_bot_save_state( (int) $id, $st );
+			}
+		}
+	}
+);
+
 /* ---------- Tetik: gelen mesaj → istek bittikten sonra cevap ---------- */
 
 add_action( 'flxc_message_received', 'flxc_bot_on_message', 15, 2 );
@@ -148,8 +180,7 @@ add_action(
 	'flxc_message_sent',
 	function ( $id, $chat ) {
 		$m = flxc_get_message( $id );
-		// Otomatik olmayan her giden mesaj (yazılan, hazır cevap, öneri, kayıt, sertifika) bir insandan gelir.
-		if ( $m && 'out' === $m['direction'] && ! in_array( $m['source'], (array) apply_filters( 'flxc_bot_auto_sources', array( 'bot', 'auto', 'system', 'api' ) ), true ) ) {
+		if ( $m && 'out' === $m['direction'] && flxc_bot_is_human_source( (string) $m['source'] ) ) {
 			flxc_bot_pause( (int) $chat['id'] );
 		}
 	},
@@ -164,6 +195,18 @@ add_action(
 	10,
 	2
 );
+
+/**
+ * 1.40.0: asistanı yalnız temsilcinin kendi yazdığı mesaj susturur (yazılan, hazır cevap, AI önerisi, kayıt mesajı).
+ * Sertifika, bağış onayı, dosya, kod gibi sistem/eklenti gönderimleri asistanı kapatmaz; yeni kişiler asistan açık başlar.
+ * Eski filtre flxc_bot_auto_sources hâlâ çalışır: oraya eklenen kaynak hiç susturmaz.
+ */
+function flxc_bot_is_human_source( $source ) {
+	if ( in_array( $source, (array) apply_filters( 'flxc_bot_auto_sources', array( 'bot', 'auto', 'system', 'api' ) ), true ) ) {
+		return false;
+	}
+	return in_array( $source, (array) apply_filters( 'flxc_bot_pause_sources', array( 'agent', 'quick', 'ai', 'record' ) ), true );
+}
 
 function flxc_bot_pause( $chat_id ) {
 	if ( ! flxc_bot_enabled() ) {

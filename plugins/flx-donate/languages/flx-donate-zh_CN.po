@@ -1286,7 +1286,7 @@ msgstr "链接无效"
 msgid "This link is not valid. Please contact us to cancel your recurring donation."
 msgstr "此链接无效。请联系我们取消您的定期捐赠。"
 
-msgid "%1$s·%2$s"
+msgid "%1$s · %2$s"
 msgstr "%1$s·%2$s"
 
 msgid "Recurring donation canceled"
@@ -1307,10 +1307,6 @@ msgstr "取消我的定期捐赠"
 msgid "Cancel recurring donation"
 msgstr "取消定期捐赠"
 
-msgid "%srecurring donation could not be charged through iyzico after all attempts and is now past due. The donor was e-mailed."
-msgid_plural "%srecurring donations could not be charged through iyzico after all attempts and are now past due. The donors were e-mailed."
-msgstr[0] "%s经常性捐款在经过所有尝试后仍无法通过 iyzico 收取,现已过期。捐赠者已通过电子邮件发送。"
-
 msgid "Show them"
 msgstr "展示给他们"
 
@@ -1320,7 +1316,7 @@ msgstr "土耳其"
 msgid "iyzico could not be reached. Please try again."
 msgstr "无法联系 \niyzico。请重试。"
 
-msgid "iyzico gave an unexpected answer (HTTP%d)."
+msgid "iyzico gave an unexpected answer (HTTP %d)."
 msgstr "iyzico 给出了意外的答案 (HTTP%d)。"
 
 msgid "iyzico panel addresses"
@@ -1347,10 +1343,10 @@ msgstr "iyzico WooCommerce 插件在此站点上有一个 webhook 密钥:不适�
 msgid "The Stripe secret key is not configured."
 msgstr "未配置 Stripe 密钥。"
 
-msgid "Could not connect to Stripe:%s"
+msgid "Could not connect to Stripe: %s"
 msgstr "无法连接到 Stripe:%s"
 
-msgid "Stripe API error (HTTP%d)."
+msgid "Stripe API error (HTTP %d)."
 msgstr "Stripe API 错误 (HTTP%d)。"
 
 msgid "Invalid or expired nonce"
@@ -1461,13 +1457,13 @@ msgstr "对于定期捐款,请在 iyzico 页面上勾选“保存我的卡”,�
 msgid "TEST MODE (iyzico sandbox): no real money is taken."
 msgstr "测试模式(iyzico 沙盒):不收取真钱。"
 
-msgid "Complete the payment in the iyzico window..."
+msgid "Complete the payment in the iyzico window…"
 msgstr "在 iyzico 窗口中完成支付..."
 
 msgid "Show the payment window"
 msgstr "显示付款窗口"
 
-msgid "Opening the secure payment page..."
+msgid "Opening the secure payment page…"
 msgstr "打开安全支付页面..."
 
 msgid "The payment was not completed. You can try again."
@@ -1515,10 +1511,10 @@ msgstr "iyzico 未在此站点上配置。"
 msgid "This payment has already been refunded."
 msgstr "这笔付款已被退还。"
 
-msgid "Enter an amount up to%s."
+msgid "Enter an amount up to %s."
 msgstr "输入最多为%s的金额。"
 
-msgid "%1$swas refunded, then iyzico stopped:%2$s"
+msgid "%1$s was refunded, then iyzico stopped: %2$s"
 msgstr "%1$s已退款,然后 iyzico 停止:%2$s"
 
 msgid "Recurring donation not found."
@@ -1560,7 +1556,7 @@ msgstr "无捐赠类型"
 msgid "Amount is not a number"
 msgstr "金额不是数字"
 
-msgid "No%s: opened as approved"
+msgid "No %s: opened as approved"
 msgstr "否%s: 已批准打开"
 
 msgid "Not paid: opened as approved"
@@ -1590,7 +1586,7 @@ msgstr "此表格与其捐赠类型使用不同的货币,因此付款已停止�
 msgid "Your choice"
 msgstr "你的选择"
 
-msgid "Donations for this cause open on%s."
+msgid "Donations for this cause open on %s."
 msgstr "为此目的的捐款已于%s开放。"
 
 msgid "Donations for this cause have ended."
@@ -1620,10 +1616,10 @@ msgstr "阿达克"
 msgid "Akika"
 msgstr "阿基卡"
 
-msgid "healing"
-msgstr "治愈"
+msgid "Healing"
+msgstr "康复"
 
-msgid "You can choose at most%s."
+msgid "You can choose at most %s."
 msgstr "您最多可以选择%s。"
 
 msgid "This option is not open for donations at the moment."
@@ -1686,7 +1682,7 @@ msgstr "请写下捐赠者的姓名。"
 msgid "Please give the donor's phone number or e-mail address."
 msgstr "请提供捐赠者的电话号码或电子邮件地址。"
 
-msgid "Donation request opened by%s."
+msgid "Donation request opened by %s."
 msgstr "由%s打开捐赠请求。"
 
 msgid "People who gave through you. Totals count only the gifts you referred."
@@ -1707,7 +1703,7 @@ msgstr "最新礼物"
 msgid "Number of gifts"
 msgstr "礼物数量"
 
-msgid "Name, e-mail or phone..."
+msgid "Name, e-mail or phone…"
 msgstr "姓名、电子邮件或电话..."
 
 msgid "Sort by"
@@ -1722,17 +1718,13 @@ msgstr "礼物"
 msgid "Open card"
 msgstr "开卡"
 
-msgid "%sdonor"
-msgid_plural "%sdonors"
-msgstr[0] "%s捐助者"
-
 msgid "Donor not found"
 msgstr "未找到捐助者"
 
 msgid "Donor card"
 msgstr "捐赠卡"
 
-msgid "Donor since%s"
+msgid "Donor since %s"
 msgstr "自%s以来的捐助者"
 
 msgid "Average gift"
@@ -1741,7 +1733,7 @@ msgstr "平均礼物"
 msgid "All gifts"
 msgstr "所有礼物"
 
-msgid "See all%sgifts"
+msgid "See all %s gifts"
 msgstr "查看所有%s礼物"
 
 msgid "No gifts yet."
@@ -1752,10 +1744,6 @@ msgstr "经常性捐款"
 
 msgid "No recurring donation."
 msgstr "没有经常性捐赠。"
-
-msgid "and%smore"
-msgid_plural "and%smore"
-msgstr[0] "还有%s更多"
 
 msgid "No certificate yet."
 msgstr "还没有证书。"
@@ -1799,10 +1787,10 @@ msgstr "从 Excel 导入"
 msgid "Donation settings"
 msgstr "捐赠设置"
 
-msgid "Delete%sdonations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
+msgid "Delete %s donations permanently? Their WooCommerce orders are deleted too. This cannot be undone."
 msgstr "永久删除%s捐款吗?他们的 WooCommerce 订单也被删除。此操作无法撤消。"
 
-msgid "Move%sdonations to the trash? Their WooCommerce orders go to the trash too."
+msgid "Move %s donations to the trash? Their WooCommerce orders go to the trash too."
 msgstr "将%s捐款移至垃圾箱?他们的 WooCommerce 订单也会被扔进垃圾桶。"
 
 msgid "The data could not be loaded."
@@ -1832,7 +1820,7 @@ msgstr "与上一时期相比"
 msgid "no gifts in the previous period"
 msgstr "前期没有礼物"
 
-msgid "all time:%sdonors"
+msgid "all time: %s donors"
 msgstr "所有时间:%s捐助者"
 
 msgid "first gift in this period"
@@ -1841,7 +1829,7 @@ msgstr "这段时间的第一份礼物"
 msgid "per gift"
 msgstr "每件礼物"
 
-msgid "%spast due"
+msgid "%s past due"
 msgstr "%s逾期"
 
 msgid "monthly value of active ones"
@@ -1904,7 +1892,7 @@ msgstr "付款已批准。证书已制作并发送给捐赠者。"
 msgid "Payment rejected."
 msgstr "付款被拒绝。"
 
-msgid "Import finished:%1$spayments checked,%2$simported,%3$salready known."
+msgid "Import finished: %1$s payments checked, %2$s imported, %3$s already known."
 msgstr "导入完成:%1$s付款已检查,%2$s已导入,%3$s已知。"
 
 msgid "Sorry, you are not allowed to access this page."
@@ -1931,7 +1919,7 @@ msgstr "之前的导入"
 msgid "None yet."
 msgstr "还没有。"
 
-msgid "%1$srows,%2$swritten"
+msgid "%1$s rows, %2$s written"
 msgstr "%1$s行,已写入%2$s"
 
 msgid "Check the columns and the matches, then start."
@@ -1973,11 +1961,7 @@ msgstr "文件中的每个不同值都会匹配一次。"
 msgid "Apply and check again"
 msgstr "申请并再次检查"
 
-msgid "Import%srow"
-msgid_plural "Import%srows"
-msgstr[0] "导入%s行"
-
-msgid "Showing rows with a problem first;%srows in all."
+msgid "Showing rows with a problem first; %s rows in all."
 msgstr "首先显示有问题的行;总共%s行。"
 
 msgid "Discard this file"
@@ -1989,7 +1973,7 @@ msgstr "完成。"
 msgid "Importing... Keep this page open; if it closes, opening it again continues where it stopped."
 msgstr "正在导入...保持此页面打开;如果它关闭,则再次打开它会从停止处继续。"
 
-msgid "%1$s/%2$srows"
+msgid "%1$s / %2$s rows"
 msgstr "%1$s/%2$s行"
 
 msgid "Written"
@@ -2025,7 +2009,7 @@ msgstr "尝试更大的日期范围或清除筛选器。"
 msgid "%1$sdonation ·%2$sreceived%1$sdonations ·%2$sreceived"
 msgstr "%1$s捐赠 ·%2$s收到%1$s捐赠 ·%2$s收到"
 
-msgid "Name, e-mail, phone, code..."
+msgid "Name, e-mail, phone, code…"
 msgstr "姓名、电子邮件、电话、代码..."
 
 msgid "All forms"
@@ -2043,20 +2027,8 @@ msgstr "详细过滤器"
 msgid "Donation type / form"
 msgstr "捐赠类型/形式"
 
-msgid "Select the donation of%s"
+msgid "Select the donation of %s"
 msgstr "选择%s的捐赠"
-
-msgid "%sdonation moved to the trash."
-msgid_plural "%sdonations moved to the trash."
-msgstr[0] "%s捐款已移至垃圾桶。"
-
-msgid "%sdonation restored."
-msgid_plural "%sdonations restored."
-msgstr[0] "%s捐款已恢复。"
-
-msgid "%sdonation deleted permanently."
-msgid_plural "%sdonations deleted permanently."
-msgstr[0] "%s捐款已永久删除。"
 
 msgid "Receipt no."
 msgstr "收据号。"
@@ -2064,7 +2036,7 @@ msgstr "收据号。"
 msgid "Kind"
 msgstr "种类"
 
-msgid "Donation receipt ·%s"
+msgid "Donation receipt · %s"
 msgstr "Donation receipt ·%s"
 
 msgid "Donation receipt"
@@ -2088,13 +2060,13 @@ msgstr "呼叫中心"
 msgid "Receipt linked"
 msgstr "已链接收据"
 
-msgid "Payment rejected:%s"
+msgid "Payment rejected: %s"
 msgstr "付款被拒绝:%s"
 
-msgid "Status changed:%1$s→%2$s"
+msgid "Status changed: %1$s → %2$s"
 msgstr "状态已更改:%1$s→%2$s"
 
-msgid "Refunded%s"
+msgid "Refunded %s"
 msgstr "已退款%s"
 
 msgid "Payment canceled at the provider"
@@ -2103,13 +2075,13 @@ msgstr "提供商处取消付款"
 msgid "Names on whose behalf changed"
 msgstr "代表其更改的名称"
 
-msgid "Referral changed:%1$s→%2$s"
+msgid "Referral changed: %1$s → %2$s"
 msgstr "参考已更改:%1$s→%2$s"
 
 msgid "Donation not found"
 msgstr "未找到捐赠"
 
-msgid "Donation of%s"
+msgid "Donation of %s"
 msgstr "Donation of%s"
 
 msgid "Print receipt"
@@ -2133,13 +2105,13 @@ msgstr "已撤销"
 msgid "Different price"
 msgstr "价格不同"
 
-msgid "type price%1$s·%2$s"
+msgid "type price %1$s · %2$s"
 msgstr "输入价格%1$s·%2$s"
 
 msgid "Proxy consent"
 msgstr "代理同意"
 
-msgid "version%1$s·%2$s"
+msgid "version %1$s · %2$s"
 msgstr "版本%1$s·%2$s"
 
 msgid "Entered by"
@@ -2203,8 +2175,8 @@ msgstr "状态更改为“%s”。"
 msgid "The status was not changed."
 msgstr "状态未更改。"
 
-msgid "basketball"
-msgstr "篮球"
+msgid "Basket"
+msgstr "捐赠篮"
 
 msgid "WooCommerce order #%s"
 msgstr "WooCommerce 订单 #%s"
@@ -2224,15 +2196,11 @@ msgstr "发送证书"
 msgid "Send the certificates to the donor now?"
 msgstr "现在将证书发送给捐赠者吗?"
 
-msgid "Certificates sent:%s"
+msgid "Certificates sent: %s"
 msgstr "已发送证书:%s"
 
 msgid "There is no certificate to send."
 msgstr "没有要发送的证书。"
-
-msgid "%dcertificate made. Check it, then press \"Send the certificates\"."
-msgid_plural "%dcertificates made. Check them, then press \"Send the certificates\"."
-msgstr[0] "%d证书已制作。检查它们,然后按“发送证书”。"
 
 msgid "No certificate could be made; see the order notes."
 msgstr "无法制作证书;请参阅订单备注。"
@@ -2240,8 +2208,8 @@ msgstr "无法制作证书;请参阅订单备注。"
 msgid "Unit price"
 msgstr "单价"
 
-msgid "Sacrifice share"
-msgstr "牺牲份额"
+msgid "Kurban share"
+msgstr "古尔邦份额"
 
 msgid "Save names"
 msgstr "保存名称"
@@ -2288,11 +2256,7 @@ msgstr "标记已交付给所有者"
 msgid "Back to waiting"
 msgstr "返回等待"
 
-msgid "%ditem updated."
-msgid_plural "%ditems updated."
-msgstr[0] "%d项目已更新。"
-
-msgid "Skipped:%s"
+msgid "Skipped: %s"
 msgstr "已跳过:%s"
 
 msgid "due"
@@ -2307,7 +2271,7 @@ msgstr "新记录"
 msgid "Every item with its code, payment, partner, target date and files. Open one to see its whole flow."
 msgstr "每个项目及其代码、付款、合作伙伴、目标日期和文件。打开一个即可查看其整个流程。"
 
-msgid "Code, name, phone, donation no..."
+msgid "Code, name, phone, donation no…"
 msgstr "代码、姓名、电话、捐款号..."
 
 msgid "Any payment"
@@ -2328,8 +2292,8 @@ msgstr "为逐一跟踪的捐赠类型的每个单位创建一个项目(捐赠�
 msgid "Selected"
 msgstr "已选择"
 
-msgid "%1$d·%2$dcents"
-msgstr "%1$d·%2$d分"
+msgid "%1$d · %2$d sent"
+msgstr "%1$d · 已发送 %2$d"
 
 msgid "This item is canceled."
 msgstr "此项目已取消。"
@@ -2376,10 +2340,10 @@ msgstr "文件保留在该项目上。"
 msgid "No file yet."
 msgstr "还没有文件。"
 
-msgid "Sent to%1$s·%2$s"
+msgid "Sent to %1$s · %2$s"
 msgstr "发送到%1$s·%2$s"
 
-msgid "Send this file to%sover WhatsApp?"
+msgid "Send this file to %s over WhatsApp?"
 msgstr "通过 WhatsApp 将此文件发送到%s?"
 
 msgid "Send to owner"
@@ -2394,7 +2358,7 @@ msgstr "安装 Flux Chat 以通过 WhatsApp 发送文件。"
 msgid "There is no phone number for the owner. Add one above to send the file."
 msgstr "没有车主的电话号码。在上面添加一项以发送文件。"
 
-msgid "%1$s(moved from%2$s)"
+msgid "%1$s (moved from %2$s)"
 msgstr "%1$s(从%2$s移出)"
 
 msgid "Select at least one item."
@@ -2445,7 +2409,7 @@ msgstr "沙盒(测试)"
 msgid "Recurring charges"
 msgstr "经常性费用"
 
-msgid "Charged by Flux Donate's hourly WP-Cron job. Next run:%1$s. Last charge run:%2$s."
+msgid "Charged by Flux Donate's hourly WP-Cron job. Next run: %1$s. Last charge run: %2$s."
 msgstr "由 Flux Donate 的每小时 WP-Cron 作业收费。下次运行:%1$s。最后一次充电运行:%2$s。"
 
 msgid "In the Stripe Dashboard add a webhook endpoint with this URL and the events payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, charge.refunded, customer.subscription.created, customer.subscription.updated, customer.subscription.deleted, invoice.paid and invoice.payment_failed, then save its signing secret above. An endpoint set up earlier for Flux Forms keeps working."
@@ -2459,10 +2423,6 @@ msgstr "每笔付款都从表格开始,包括未完成的付款。已完成的�
 
 msgid "No payments yet."
 msgstr "尚未付款。"
-
-msgid "%srecord"
-msgid_plural "%srecords"
-msgstr[0] "%s记录"
 
 msgid "A Stripe publishable key starts with pk_live_ or pk_test_."
 msgstr "Stripe 可发布密钥以 pk_live_ 或 pk_test_ 开头。"
@@ -2479,7 +2439,7 @@ msgstr "退款/取消"
 msgid "Refund this amount to the donor through the payment provider?"
 msgstr "通过支付提供商将此金额退还给捐赠者?"
 
-msgid "Amount (up to%s)"
+msgid "Amount (up to %s)"
 msgstr "金额(最多%s)"
 
 msgid "Refund"
@@ -2530,19 +2490,19 @@ msgstr "银行转账已确认 (%s)。"
 msgid "Please write a reason."
 msgstr "请写出原因。"
 
-msgid "Payment rejected; the donor was told by%s."
+msgid "Payment rejected; the donor was told by %s."
 msgstr "付款被拒绝;%s告知捐赠者。"
 
-msgid "Payment rejected by%1$s. Reason:%2$s"
+msgid "Payment rejected by %1$s. Reason: %2$s"
 msgstr "付款被%1$s拒绝。原因:%2$s"
 
-msgid "Rejection sent to the donor:%s"
+msgid "Rejection sent to the donor: %s"
 msgstr "拒绝发送给捐赠者:%s"
 
 msgid "Hello,"
 msgstr "你好,"
 
-msgid "We could not confirm the payment of your%sdonation."
+msgid "We could not confirm the payment of your %s donation."
 msgstr "我们无法确认您的%s捐款的付款。"
 
 msgid "If you think this is a mistake, please reply to this message. Thank you."
@@ -2563,7 +2523,7 @@ msgstr "自定义日期"
 msgid "Nothing in this period"
 msgstr "这段时间没有什么"
 
-msgid "Only the first%srows are shown. The CSV has the same rows."
+msgid "Only the first %s rows are shown. The CSV has the same rows."
 msgstr "仅显示前%s行。 CSV 具有相同的行。"
 
 msgid "Report (JSON)"
@@ -2611,7 +2571,7 @@ msgstr "免费。使用选项时,金额为数量 × 单价。"
 msgid "One name per line, one per unit. Units without a name are given on behalf of the donor."
 msgstr "每行一个名称,每个单元一个名称。没有名字的单位是代表捐赠者提供的。"
 
-msgid "The donor accepted the proxy (vekâlet) text, version%s"
+msgid "The donor accepted the proxy (vekâlet) text, version %s"
 msgstr "捐赠者接受了代理 (vekâlet) 文本,版本%s"
 
 msgid "Matched to an existing donor card on phone number or e-mail address."
@@ -2668,7 +2628,7 @@ msgstr "捐赠者在付款页面通过银行卡或银行转账方式付款。捐
 msgid "Create request"
 msgstr "创建请求"
 
-msgid "Hello%1$s, we have received your donation request (%2$s). You can pay here:%3$s"
+msgid "Hello %1$s, we have received your donation request (%2$s). You can pay here: %3$s"
 msgstr "您好%1$s,我们已收到您的捐赠请求 (%2$s)。您可以在这里付款:%3$s"
 
 msgid "Request created"
@@ -2701,8 +2661,8 @@ msgstr "添加开展工作的地点或组织,以及带来礼物的办公室。"
 msgid "Agreement"
 msgstr "协议"
 
-msgid "Bring gifts in"
-msgstr "带礼物进来"
+msgid "Brings gifts in"
+msgstr "带来捐赠"
 
 msgid "All off"
 msgstr "全部关闭"
@@ -2770,7 +2730,7 @@ msgstr "所有选项"
 msgid "Add agreement"
 msgstr "添加协议"
 
-msgid "%s(cost)"
+msgid "%s (cost)"
 msgstr "%s(成本)"
 
 msgid "Brought in (gift price)"
@@ -2781,10 +2741,6 @@ msgstr "所有合作伙伴"
 
 msgid "Gift price"
 msgstr "礼品价格"
-
-msgid "%dwithout a price"
-msgid_plural "%dwithout a price"
-msgstr[0] "%d无价格"
 
 msgid "Re-read prices from the agreements"
 msgstr "重新读取协议中的价格"
@@ -2897,10 +2853,6 @@ msgstr "团体捐赠类型,例如牺牲,斋月,将军。密钥存储在类型上
 msgid "Save categories"
 msgstr "保存类别"
 
-msgid "Used by%stype"
-msgid_plural "Used by%stypes"
-msgstr[0] "由%s类型使用"
-
 msgid "Remove category"
 msgstr "删除类别"
 
@@ -2928,7 +2880,7 @@ msgstr "代理文本版本"
 msgid "No text yet. Donations of types that require a proxy cannot be paid until a text is saved."
 msgstr "还没有文字。在保存文本之前,无法支付需要代理的类型的捐赠。"
 
-msgid "Version%1$s·%2$s"
+msgid "Version %1$s · %2$s"
 msgstr "版本%1$s·%2$s"
 
 msgid "Add your own tabs with fields to tracked records (\"on\": \"item\") or donations (\"on\": \"donation\"), for all or some donation types. Leave it empty if you do not need any."
@@ -2942,10 +2894,6 @@ msgstr "正在使用的选项卡"
 
 msgid "Record page"
 msgstr "记录页面"
-
-msgid "%dfield"
-msgid_plural "%dfields"
-msgstr[0] "%d字段"
 
 msgid "from a plugin"
 msgstr "来自插件"
@@ -2965,7 +2913,7 @@ msgstr "正在导入..."
 msgid "Import now"
 msgstr "立即导入"
 
-msgid "Last run%1$s:%2$spayments checked,%3$simported."
+msgid "Last run %1$s: %2$s payments checked, %3$s imported."
 msgstr "上次运行%1$s:检查%2$s付款,导入%3$s。"
 
 msgid "Upcoming (%s)"
@@ -3001,7 +2949,7 @@ msgstr "(无效)"
 msgid "(price not set)"
 msgstr "(价格未定)"
 
-msgid "free amount (min.%s)"
+msgid "free amount (min. %s)"
 msgstr "免费金额(最少%s)"
 
 msgid "free amount"
@@ -3013,7 +2961,7 @@ msgstr "数量"
 msgid "recurring"
 msgstr "重复"
 
-msgid "%1$sof%2$s(%3$s%%)"
+msgid "%1$s of %2$s (%3$s%%)"
 msgstr "%1$s或%2$s(%3$s%%)"
 
 msgid "Open-ended"
@@ -3100,7 +3048,7 @@ msgstr "通过这些 Flux Forms 形式提供的礼物属于此类型。将表单
 msgid "No payment form found in Flux Forms yet."
 msgstr "尚未在 Flux Forms 中找到付款表单。"
 
-msgid "also linked to:%s"
+msgid "also linked to: %s"
 msgstr "还链接到:%s"
 
 msgid "Save after choosing a form to map its choices."
@@ -3151,8 +3099,8 @@ msgstr "从名字来看"
 msgid "Remove option"
 msgstr "删除选项"
 
-msgid "— note set"
-msgstr "— 注释集"
+msgid "— not set"
+msgstr "— 未设置"
 
 msgid "Units per choice"
 msgstr "每个选择的单位"
@@ -3169,7 +3117,7 @@ msgstr "翻译"
 msgid "Shown on the donation page, the cart and the checkout in that language (Flux Lang). Empty fields use the texts above. Records keep the texts above. Save once after adding options to translate their names."
 msgstr "以该语言 (Flux Lang) 显示在捐赠页面、购物车和结帐处。空字段使用上面的文本。记录保留上述文字。添加翻译名称的选项后保存一次。"
 
-msgid "Option:%s"
+msgid "Option: %s"
 msgstr "选项:%s"
 
 msgid "Each unit of a gift becomes its own item with a 7-digit code: approved, sent to a partner, completed, delivered to the owner, with files and history."
@@ -3208,7 +3156,7 @@ msgstr "所有的肉都送给有需要的人"
 msgid "Mapping for “%s”"
 msgstr "映射“%s”"
 
-msgid "This form charges in%1$sbut the donation type is in%2$s: its payments are stopped until both use the same currency."
+msgid "This form charges in %1$s but the donation type is in %2$s: its payments are stopped until both use the same currency."
 msgstr "此表单以%1$s收费,但捐赠类型为%2$s:其付款将停止,直到两者使用相同的货币。"
 
 msgid "This form has no priced choices to map."
@@ -3220,7 +3168,7 @@ msgstr "表单选择"
 msgid "Units"
 msgstr "单位"
 
-msgid "form price:%s"
+msgid "form price: %s"
 msgstr "表格价格:%s"
 
 msgid "Not mapped (form price)"
@@ -3244,7 +3192,7 @@ msgstr "代理同意字段"
 msgid "Monthly, weekly or yearly gifts charged automatically by the payment provider."
 msgstr "支付提供商自动收取每月、每周或每年的礼物费用。"
 
-msgid "Name, e-mail, phone, reference..."
+msgid "Name, e-mail, phone, reference…"
 msgstr "姓名、电子邮件、电话、参考..."
 
 msgid "No recurring donations yet"
@@ -3253,20 +3201,16 @@ msgstr "尚无经常性捐款"
 msgid "A recurring donation is created when a payment form is set to charge every day, week, month or year."
 msgstr "当付款表单设置为每天、每周、每月或每年收费时,就会创建定期捐款。"
 
-msgid "%srecurring donation"
-msgid_plural "%srecurring donations"
-msgstr[0] "%s经常性捐款"
-
 msgid "Interval"
 msgstr "间隔"
 
 msgid "Next charge"
 msgstr "下次充电"
 
-msgid "Attempt%1$sof%2$sfailed:%3$s"
+msgid "Attempt %1$s of %2$s failed: %3$s"
 msgstr "尝试%1$s或%2$s失败:%3$s"
 
-msgid "canceled%s"
+msgid "canceled %s"
 msgstr "已取消%s"
 
 msgid "Cancel this recurring donation at the payment provider? No further charges will be made."
@@ -3278,7 +3222,7 @@ msgstr "刷卡支付:已启用官方 iyzico 插件。"
 msgid "Card payments: Flux Donate iyzico (the official iyzico plugin is not enabled)."
 msgstr "卡支付:Flux Donate iyzico(未启用官方 iyzico 插件)。"
 
-msgid "Card payments:%s."
+msgid "Card payments: %s."
 msgstr "卡付款:%s。"
 
 msgid "No card method is enabled (WooCommerce › Settings › Payments)."
@@ -3359,7 +3303,7 @@ msgstr "注册转账时(通过 Flux Mail 或 Flux 证书提供商)向捐赠者�
 msgid "WhatsApp text"
 msgstr "WhatsApp 文本"
 
-msgid "Placeholders:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}"
+msgid "Placeholders: {ad} {tutar} {siparis} {alici} {iban} {aciklama} {link} {site}"
 msgstr "占位符:{ad}{tutar}{siparis}{alici}{iban}{aciklama}{link}{site}"
 
 msgid "SMS text"
@@ -3419,7 +3363,7 @@ msgstr "iyzico"
 msgid "Show every enabled card method"
 msgstr "显示每个启用的卡方法"
 
-msgid "Donors see one card method; now:%s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
+msgid "Donors see one card method; now: %s. Monthly donations always use Flux Donate iyzico (it stores the card). Bank transfer is always shown."
 msgstr "捐助者见一卡法;现在:%s。每月捐款始终使用 Flux Donate iyzico(它存储卡)。始终显示银行转帐。"
 
 msgid "all"
@@ -3509,7 +3453,7 @@ msgstr "预设金额(免费金额)"
 msgid "Separated by spaces, e.g. 250 500 1000."
 msgstr "用空格分隔,例如250 500 1000。"
 
-msgid "Preset amounts in%s"
+msgid "Preset amounts in %s"
 msgstr "%s中的预设金额"
 
 msgid "Page address"
@@ -3518,7 +3462,7 @@ msgstr "页面地址"
 msgid "Optional: where its product page and the product XML link go. Empty = the donation page in the WooCommerce settings."
 msgstr "可选:产品页面和产品 XML 链接所在的位置。空 = WooCommerce 设置中的捐赠页面。"
 
-msgid "WooCommerce product #%d(hidden from the shop)."
+msgid "WooCommerce product #%d (hidden from the shop)."
 msgstr "WooCommerce 产品 #%d(在商店中隐藏)。"
 
 msgid "This order has no donation line."
@@ -3554,7 +3498,7 @@ msgstr "未找到订单行。"
 msgid "Enter an amount up to what is left to refund."
 msgstr "输入剩余退款金额。"
 
-msgid "Refunded from Flux Donate by%s"
+msgid "Refunded from Flux Donate by %s"
 msgstr "从%s的 Flux 捐赠中退还"
 
 msgid "No donation lines."
@@ -3581,7 +3525,7 @@ msgstr "在 Flux Donate 中标记为失败。"
 msgid "This payment link has expired. Please fill in the form again."
 msgstr "此付款链接已过期。请重新填写表格。"
 
-msgid "Flux Forms entry%scompleted by this payment."
+msgid "Flux Forms entry %s completed by this payment."
 msgstr "本次付款已完成通量表格条目%s。"
 
 msgid "After you place the order you will see the IBAN and your own reference code. Once you have paid you can upload the receipt on the site; your certificate is sent when the payment is confirmed."
@@ -3620,7 +3564,7 @@ msgstr "卡上的姓名"
 msgid "Expiry (MM/YY)"
 msgstr "到期 (MM/YY)"
 
-msgctxt "context_def6e4575e04"
+msgctxt "card expiry placeholder"
 msgid "MM/YY"
 msgstr "月/年"
 
@@ -3648,7 +3592,7 @@ msgstr "分期付款"
 msgid "Single payment"
 msgstr "单笔支付', 'zh']]"
 
-msgid "%1$sinstallments ×%2$s(total%3$s)"
+msgid "%1$s installments × %2$s (total %3$s)"
 msgstr "%1$s分期付款 ×%2$s(总计%3$s)"
 
 msgid "Installment options appear after the card number."
@@ -3690,7 +3634,7 @@ msgstr "这张保存的卡不能再使用。请输入卡。"
 msgid "This installment option is not available for the card. Please choose another."
 msgstr "此分期付款选项不适用于该卡。请选择另一个。"
 
-msgid "Card payment could not start:%1$s(card%2$s,%3$s)."
+msgid "Card payment could not start: %1$s (card %2$s, %3$s)."
 msgstr "卡付款无法开始:%1$s(卡%2$s、%3$s)。"
 
 msgid "test mode"
@@ -3699,10 +3643,10 @@ msgstr "测试模式"
 msgid "live"
 msgstr "直播"
 
-msgid "Card payment started:%1$sinstallments,%2$scharged by the bank."
+msgid "Card payment started: %1$s installments, %2$s charged by the bank."
 msgstr "卡付款开始:%1$s分期付款,%2$s由银行收取。"
 
-msgid "iyzico 3D Secure:%s"
+msgid "iyzico 3D Secure: %s"
 msgstr "iyzico 3D 安全:%s"
 
 msgid "The bank did not confirm the 3D Secure code. Please try again."
@@ -3777,7 +3721,7 @@ msgstr "环境:现场。"
 msgid "iyzico reported a payment (%s) that does not match this order (amount, currency or basket). Check it in the iyzico panel before doing anything."
 msgstr "iyzico 报告了一笔付款 (%s) 与此订单(金额、货币或篮子)不匹配。在执行任何操作之前,请在 iyzico 面板中检查它。"
 
-msgid "iyzico payment received:%1$s, payment id%2$s(%3$s)."
+msgid "iyzico payment received: %1$s, payment id %2$s (%3$s)."
 msgstr "iyzico 收到付款:%1$s,付款 ID%2$s(%3$s)。"
 
 msgid "Enter an amount to refund."
@@ -3789,10 +3733,10 @@ msgstr "此订单没有可退款的 iyzico 交易。"
 msgid "The amount is more than what is left to refund at iyzico."
 msgstr "金额超过了 iyzico 剩余的退款金额。"
 
-msgid "iyzico refused the refund:%s"
+msgid "iyzico refused the refund: %s"
 msgstr "iyzico 拒绝退款:%s"
 
-msgid "Refunded at iyzico:%1$s.%2$s"
+msgid "Refunded at iyzico: %1$s. %2$s"
 msgstr "在 iyzico 退款:%1$s。%2$s"
 
 msgid "Classic"
@@ -3927,16 +3871,16 @@ msgstr "空或 0 = 该方法不收取任何费用(例如银行转账)。费用=�
 msgid "Please choose what you would like to donate for."
 msgstr "请选择您想要捐赠的项目。"
 
-msgid "This option cannot be donated in%s. Please choose another currency."
+msgid "This option cannot be donated in %s. Please choose another currency."
 msgstr "此选项无法在%s中捐赠。请选择其他货币。"
 
 msgid "This option cannot be donated online at the moment."
 msgstr "此选项目前无法在线捐赠。"
 
-msgid "The number must be between 1 and%s."
+msgid "The number must be between 1 and %s."
 msgstr "数字必须介于 1 和%s之间。"
 
-msgid "The amount must be at least%s."
+msgid "The amount must be at least %s."
 msgstr "金额必须至少为%s。"
 
 msgid "For this amount please get in touch with us."
@@ -3960,10 +3904,6 @@ msgstr "此捐赠需要代理 (vekâlet) 同意,但尚未设置。请联系站�
 msgid "The proxy (vekâlet) text has been updated. Please read it again and accept it."
 msgstr "代理 (vekâlet) 文本已更新。请再次阅读并接受。"
 
-msgid "Please write at most%sname (one per share)."
-msgid_plural "Please write at most%snames (one per share)."
-msgstr[0] "请最多写入%s名称(每个共享一个)。"
-
 msgid "The phone number does not look right. Example: 0532 123 45 67"
 msgstr "电话号码看起来不正确。示例: 0532 123 45 67"
 
@@ -3976,7 +3916,7 @@ msgstr "该事业不需要每月捐款。"
 msgid "Monthly donations are not available at the moment."
 msgstr "目前无法提供每月捐款。"
 
-msgid "Donations in%scannot be paid here at the moment."
+msgid "Donations in %s cannot be paid here at the moment."
 msgstr "目前无法在%s中支付捐款。"
 
 msgid "The donation product could not be found."
@@ -3985,7 +3925,7 @@ msgstr "找不到捐赠产品。"
 msgid "It could not be added to the cart."
 msgstr "无法将其添加到购物车。"
 
-msgid "A donation in your cart cannot be paid in%sand was removed."
+msgid "A donation in your cart cannot be paid in %s and was removed."
 msgstr "您购物车中的捐款无法在%s中支付,已被删除。"
 
 msgid "A donation in your cart is no longer available and was removed."
@@ -3994,7 +3934,7 @@ msgstr "您购物车中的捐赠不再可用,已被删除。"
 msgid "Printed certificates can only be paid in the store currency; your certificate will be sent online."
 msgstr "打印的凭证只能以商店货币支付;您的证书将在线发送。"
 
-msgid "Products in your cart can only be paid in%1$s.<a href=\"%2$s\">Switch to%1$s</a>"
+msgid "Products in your cart can only be paid in %1$s. <a href=\"%2$s\">Switch to %1$s</a>"
 msgstr "您购物车中的产品只能通过%1$s付款。<a href=\"%2$s\">切换到%1$s</a>"
 
 msgid "Printed certificate delivery"
@@ -4021,13 +3961,13 @@ msgstr "复制给我"
 msgid "Postal address"
 msgstr "邮寄地址"
 
-msgid "accepted (text version%s)"
+msgid "accepted (text version %s)"
 msgstr "已接受(文本版本%s)"
 
 msgid "Online + printed"
 msgstr "在线 + 打印"
 
-msgid "%sSapling Donation"
+msgid "%s Sapling Donation"
 msgstr "%s树苗捐赠"
 
 msgid "Certificate no"
@@ -4036,13 +3976,13 @@ msgstr "证书编号"
 msgid "The certificate could not be made: no Flux Certificates template was found (Donations › Settings › WooCommerce)."
 msgstr "无法制作证书:找不到 Flux 证书模板(捐赠 > 设置 > WooCommerce)。"
 
-msgid "The certificate could not be made:%s"
+msgid "The certificate could not be made: %s"
 msgstr "无法制作证书:%s"
 
 msgid "Not sent yet."
 msgstr "尚未发送。"
 
-msgid "Certificate made:%1$s(%2$s).%3$s"
+msgid "Certificate made: %1$s (%2$s). %3$s"
 msgstr "制作的证书:%1$s(%2$s)。%3$s"
 
 msgid "Certificates made again (%d); the old ones were revoked."
@@ -4051,16 +3991,16 @@ msgstr "再次制作证书(%d);旧的已被撤销。"
 msgid "No delivery channel is chosen."
 msgstr "未选择传送渠道。"
 
-msgid "Queued:%s."
+msgid "Queued: %s."
 msgstr "排队:%s。"
 
-msgid "Copy to the donor:%s."
+msgid "Copy to the donor: %s."
 msgstr "复制到捐赠者:%s。"
 
 msgid "The preview could not be drawn. You can open it with \"View certificate\"."
 msgstr "无法绘制预览。您可以使用“查看证书”打开它。"
 
-msgid "No:%s"
+msgid "No: %s"
 msgstr "否:%s"
 
 msgid "View certificate"
@@ -4087,16 +4027,16 @@ msgstr "“%1$s”每月重复一次(定期捐赠#%2$d);该卡存储在 iyzico�
 msgid "Card (iyzico), monthly"
 msgstr "卡 (iyzico),每月"
 
-msgid "Monthly renewal of recurring donation #%1$d(first order #%2$s)."
+msgid "Monthly renewal of recurring donation #%1$d (first order #%2$s)."
 msgstr "每月续订定期捐款 #%1$d(第一笔订单 #%2$s)。"
 
-msgid "Monthly charge accepted by iyzico:%1$s, payment id%2$s."
+msgid "Monthly charge accepted by iyzico: %1$s, payment id %2$s."
 msgstr "iyzico 接受的每月费用:%1$s,付款 ID%2$s。"
 
-msgid "Monthly charge failed after the last attempt:%s"
+msgid "Monthly charge failed after the last attempt: %s"
 msgstr "最后一次尝试后每月充电失败:%s"
 
-msgid "Monthly charge failed, it will be retried:%s"
+msgid "Monthly charge failed, it will be retried: %s"
 msgstr "月费失败,将重试:%s"
 
 msgid "Flux Donate always uses EsnekPOS's secure payment page; the bank asks for 3D Secure there when needed."
@@ -4111,31 +4051,31 @@ msgstr "Flux Donate 运行此付款方式:经典和块结帐、无购物车的�
 msgid "Donation #%d"
 msgstr "捐赠 #%d"
 
-msgid "EsnekPOS did not answer (HTTP%d)."
+msgid "EsnekPOS did not answer (HTTP %d)."
 msgstr "EsnekPOS 未应答 (HTTP%d)。"
 
-msgid "EsnekPOS payment could not start:%s"
+msgid "EsnekPOS payment could not start: %s"
 msgstr "EsnekPOS 付款无法开始:%s"
 
-msgid "EsnekPOS payment could not start:%1$s(%2$s)."
+msgid "EsnekPOS payment could not start: %1$s (%2$s)."
 msgstr "EsnekPOS 付款无法开始:%1$s(%2$s)。"
 
 msgid "The payment is being checked. Please wait a moment and refresh the page."
 msgstr "正在检查付款。请稍等片刻并刷新页面。"
 
-msgid "EsnekPOS payment could not be checked:%s"
+msgid "EsnekPOS payment could not be checked: %s"
 msgstr "无法检查 EsnekPOS 付款:%s"
 
 msgid "The payment could not be verified yet. If money was taken from your card, please contact us before trying again."
 msgstr "尚未验证付款。如果您的卡上的钱被提取,请在重试之前联系我们。"
 
-msgid "EsnekPOS payment received: reference%1$s,%2$sinstallment(s),%3$scharged."
+msgid "EsnekPOS payment received: reference %1$s, %2$s installment(s), %3$s charged."
 msgstr "已收到 EsnekPOS 付款:参考%1$s、%2$s分期付款、已收取%3$s。"
 
 msgid "EsnekPOS reported a payment (%s) that does not match this order (amount or reference). Check it in the EsnekPOS panel before doing anything."
 msgstr "EsnekPOS 报告的付款 (%s) 与此订单(金额或参考)不匹配。在执行任何操作之前,请在 EsnekPOS 面板中检查它。"
 
-msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment:%s"
+msgid "EsnekPOS return said success but EsnekPOS did not confirm the payment: %s"
 msgstr "EsnekPOS 返回表示成功,但 EsnekPOS 未确认付款:%s"
 
 msgid "EsnekPOS: the payment was not completed (%s)."
@@ -4156,14 +4096,10 @@ msgstr "在 EsnekPOS 的支付页面上,按照 EsnekPOS 面板中的设置。"
 msgid "Refund in the EsnekPOS panel, then mark the order refunded."
 msgstr "在 EsnekPOS 面板中退款,然后将订单标记为已退款。"
 
-msgid "Donation of%1$ssapling.%2$splants it for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgid_plural "Donation of%1$ssaplings.%2$splants them for you and sends an online certificate in your name. Pay by card or bank transfer."
-msgstr[0] "%1$s树苗捐赠。%2$s会为您种植它们,并以您的名义发送在线证书。通过卡或银行转帐付款。"
-
 msgid "Donation packages"
 msgstr "捐赠包"
 
-msgid "Donation >%s"
+msgid "Donation > %s"
 msgstr "捐赠 >%s"
 
 msgid "I will also cover the transaction fee"
@@ -4190,25 +4126,25 @@ msgstr "最受欢迎"
 msgid "Family pack"
 msgstr "家庭包"
 
-msgid "Hello{ad}, your donation of{tutar}is registered. IBAN:{iban}Reference:{aciklama}Upload your receipt:{link}"
+msgid "Hello {ad}, your donation of {tutar} is registered. IBAN: {iban} Reference: {aciklama} Upload your receipt: {link}"
 msgstr "您好{ad},您的{tutar}捐赠已登记。 IBAN:{iban}参考号:{aciklama}上传收据:{link}"
 
-msgid "Hello{ad}🌱\n\nYour donation of *{tutar}* is registered (No:{siparis}).\n\nBank transfer details:\nRecipient:{alici}\nIBAN:{iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
+msgid "Hello {ad} 🌱\n\nYour donation of *{tutar}* is registered (No: {siparis}).\n\nBank transfer details:\nRecipient: {alici}\nIBAN: {iban}\nReference: *{aciklama}*\n\nAfter the transfer you can upload your receipt here:\n{link}\n\nThank you,\n{site}"
 msgstr "您好{ad}🌱\n\n您的 *{tutar}* 捐赠已登记(编号:{siparis})。\n\n银行转帐详细信息:\n收款人:{alici}\nIBAN:{iban}\n参考:*{aciklama}*\n\n转帐后,您可以在此处上传您的收据:\n{link}\n\n谢谢你,\n{site}"
 
-msgid "Pending transfer notification sent:%s."
+msgid "Pending transfer notification sent: %s."
 msgstr "已发送待处理传输通知:%s。"
 
 msgid "WooCommerce checks"
 msgstr "WooCommerce 检查"
 
-msgid "Version%1$sis active. Flux Donate was checked up to%2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
+msgid "Version %1$s is active. Flux Donate was checked up to %2$s; it uses only stable public WooCommerce functions, but test a donation after big WooCommerce updates."
 msgstr "版本%1$s处于活动状态。 Flux Donate 已检查至%2$s;它仅使用稳定的公共 WooCommerce 功能,但会在大型 WooCommerce 更新后测试捐赠。"
 
-msgid "Active, version%s. Donations are paid through the WooCommerce cart and checkout."
+msgid "Active, version %s. Donations are paid through the WooCommerce cart and checkout."
 msgstr "活动,版本%s。捐款通过 WooCommerce 购物车和结帐支付。"
 
-msgid "One-time card payments are taken by%s; iyzico is not shown at the checkout."
+msgid "One-time card payments are taken by %s; iyzico is not shown at the checkout."
 msgstr "一次性卡付款由%s进行;结帐时不会显示 iyzico。"
 
 msgid "One-time card payments are taken by the official iyzico WooCommerce plugin."
@@ -4220,7 +4156,7 @@ msgstr "卡付款在结帐时使用我们自己的卡字段(iyzico 3D Secure、�
 msgid "One-time card payments are taken by Flux Donate iyzico (the official iyzico plugin is not enabled)."
 msgstr "一次性卡付款由 Flux Donate iyzico 进行(未启用官方 iyzico 插件)。"
 
-msgid "Card payments are taken by:%s."
+msgid "Card payments are taken by: %s."
 msgstr "银行卡付款方式为:%s。"
 
 msgid "No card method is enabled; donations can only be paid by bank transfer."
@@ -4256,19 +4192,19 @@ msgstr "两种银行转帐方式"
 msgid "WooCommerce's own \"Direct bank transfer\" is enabled next to the donation bank transfer. Donors see two similar choices and the receipt upload works only with the donation one; disable \"Direct bank transfer\"."
 msgstr "WooCommerce 自己的“直接银行转账”在捐赠银行转账旁边启用。捐赠者会看到两个类似的选择,并且收据上传仅适用于捐赠的一项;禁用“直接银行转帐”。"
 
-msgid "The shop currency is%1$s; these types use another currency and are charged in%1$sat the same number:%2$s"
+msgid "The shop currency is %1$s; these types use another currency and are charged in %1$s at the same number: %2$s"
 msgstr "商店货币为%1$s; these types use another currency and are charged in%1$sat the same number:%2$s"
 
 msgid "WooCommerce settings"
 msgstr "WooCommerce 设置"
 
-msgid "Donation types and the shop use%s."
+msgid "Donation types and the shop use %s."
 msgstr "捐赠类型和商店使用%s。"
 
 msgid "Donation products"
 msgstr "捐赠产品"
 
-msgid "These types get their hidden WooCommerce product the first time they are donated to or saved:%s"
+msgid "These types get their hidden WooCommerce product the first time they are donated to or saved: %s"
 msgstr "这些类型在第一次捐赠或保存时获得隐藏的 WooCommerce 产品:%s"
 
 msgid "%dactive type has its hidden WooCommerce product.%dactive types have their hidden WooCommerce products."
@@ -4280,10 +4216,10 @@ msgstr "未选择带有捐赠选项块的页面。"
 msgid "Other payment plugins"
 msgstr "其他支付插件"
 
-msgid "Check these on the donation checkout:%s. Details: Donations › Settings › WooCommerce › Payment methods."
+msgid "Check these on the donation checkout: %s. Details: Donations › Settings › WooCommerce › Payment methods."
 msgstr "在捐赠结帐处检查这些:%s。详细信息:捐赠 › 设置 › WooCommerce › 付款方式。"
 
-msgid "Enabled and shown on the donation checkout:%s."
+msgid "Enabled and shown on the donation checkout: %s."
 msgstr "已启用并显示在捐赠结帐上:%s。"
 
 msgid "Certificates after payment"
@@ -4298,7 +4234,7 @@ msgstr "Flux 证书没有活动模板。"
 msgid "Product XML"
 msgstr "产品 XML"
 
-msgid "%1$slists%2$ddonation packages (Google Merchant format, e.g. for iyzico)."
+msgid "%1$s lists %2$d donation packages (Google Merchant format, e.g. for iyzico)."
 msgstr "%1$s列出%2$d捐赠包(Google Merchant 格式,例如 iyzico)。"
 
 msgid "Payment forms on the checkout"
@@ -4307,7 +4243,7 @@ msgstr "结帐时的付款表格"
 msgid "Donation forms send their choice to the WooCommerce cart; \"Payment completed\" automations run when the order is paid."
 msgstr "捐赠表格将他们的选择发送到 WooCommerce 购物车;订单支付后,“付款已完成”自动化运行。"
 
-msgid "Flux Forms%sis active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
+msgid "Flux Forms %s is active. Forms are paid on the checkout, but their \"Payment completed\" automations need Flux Forms 2.1.0 or later."
 msgstr "通量形式%s处于活动状态。表单在结账时付款,但其“付款已完成”自动化功能需要 Flux Forms 2.1.0 或更高版本。"
 
 msgid "Donation e-mails"
@@ -4337,7 +4273,7 @@ msgstr "空 = 以下银行帐户的持有人,或者此处没有 IBAN 的 WooComm
 msgid "The account shown everywhere (donation page, checkout, call center). Empty = the first account of WooCommerce's \"Direct bank transfer\", else the theme settings; recipient and bank then come from that account too."
 msgstr "帐户随处可见(捐赠页面、结帐、呼叫中心)。空 = WooCommerce 的“直接银行转账”的第一个帐户,其他为主题设置;收件人和银行也来自该帐户。"
 
-msgid "What the donor writes in the transfer description. Placeholders:{tur}(sapling donation / donation),{kod}(prefix + order no),{siparis},{ad}. Empty:{tur}{kod}{ad}"
+msgid "What the donor writes in the transfer description. Placeholders: {tur} (sapling donation / donation), {kod} (prefix + order no), {siparis}, {ad}. Empty: {tur} {kod} {ad}"
 msgstr "捐赠者在转账说明中所写的内容。占位符:{tur}(树苗捐赠/捐赠)、{kod}(前缀+订单号)、{siparis}、{ad}。空:{tur}{kod}{ad}"
 
 msgid "Bank transfer pre-registration: waiting for the payment."
@@ -4400,12 +4336,8 @@ msgstr "每个共享最多只能写一个名称。"
 msgid "/ month"
 msgstr "/月"
 
-msgid "(up to%s)"
+msgid "(up to %s)"
 msgstr "(直到%s)"
-
-msgid "%sSapling"
-msgid_plural "%sSaplings"
-msgstr[0] "%s树苗"
 
 msgid "Who is this donation for?"
 msgstr "这笔捐款是给谁的?"
@@ -4473,7 +4405,7 @@ msgstr "转到购物车"
 msgid "Your donation"
 msgstr "您的捐款"
 
-msgid "from%s"
+msgid "from %s"
 msgstr "来自%s"
 
 msgid "Payments are taken securely by iyzico."
@@ -4494,7 +4426,7 @@ msgstr "另一笔金额"
 msgid "Or write another amount"
 msgstr "或者写另一个金额"
 
-msgid "At least%s"
+msgid "At least %s"
 msgstr "至少%s"
 
 msgid "On whose behalf?"
@@ -4509,13 +4441,13 @@ msgstr "没有名称的股票以结帐时的名称给出。通过电话号码,�
 msgid "Shares without a name are given in the name from the checkout."
 msgstr "没有名称的共享以结账时的名称给出。"
 
-msgid "Read the proxy (vekâlet) text (version%s)"
+msgid "Read the proxy (vekâlet) text (version %s)"
 msgstr "读取代理 (vekâlet) 文本(版本%s)"
 
 msgid "I give my proxy (vekâlet) for the sacrifice according to this text."
 msgstr "我根据本文给出我的代理人(vekâlet)作为牺牲。"
 
-msgid "Share%s"
+msgid "Share %s"
 msgstr "共享%s"
 
 msgid "Apply to all"
@@ -4530,15 +4462,11 @@ msgstr "预计此次捐赠不会有收据。"
 msgid "At most 5 receipts can be uploaded for a donation."
 msgstr "一次捐赠最多可上传 5 张收据。"
 
-msgid "The donor uploaded a receipt:%1$s(%2$s). Check the payment and confirm it."
+msgid "The donor uploaded a receipt: %1$s (%2$s). Check the payment and confirm it."
 msgstr "捐赠者上传了收据:%1$s(%2$s)。检查付款并确认。"
 
 msgid "the site"
 msgstr "网站"
-
-msgid "Warning: this receipt was uploaded before (%1$dtime, via%2$s). Check it before confirming the payment."
-msgid_plural "Warning: this receipt was uploaded before (%1$dtimes, via%2$s). Check it before confirming the payment."
-msgstr[0] "警告:此收据之前已上传(%1$d次,通过%2$s)。请先检查后再确认付款。"
 
 msgid "Earlier donation: #%d."
 msgstr "之前的捐赠:#%d。"
@@ -4573,10 +4501,6 @@ msgstr "您的银行转帐捐款。如果您已付款,请上传收据;您的证�
 msgid "Donation #%s"
 msgstr "捐赠 #%s"
 
-msgid "%sdonation is awaiting payment"
-msgid_plural "%sdonations are awaiting payment"
-msgstr[0] "%s捐款正在等待付款"
-
 msgid "If you have made the transfer, upload your receipt."
 msgstr "如果您已进行转账,请上传收据。"
 
@@ -4589,7 +4513,7 @@ msgstr "至少写一个。我们会将您的收据和证书发送到那里。"
 msgid "Continue to payment"
 msgstr "继续付款"
 
-msgid "I have read and accept the%1$sprivacy policy%2$sand the%3$sdonation agreement%4$s."
+msgid "I have read and accept the %1$sprivacy policy%2$s and the %3$sdonation agreement%4$s."
 msgstr "我已阅读并接受%1$s隐私政策%2$s和%3$s捐赠协议%4$s。"
 
 msgid "Make payment"
@@ -4604,7 +4528,7 @@ msgstr "捐赠条款"
 msgid "Privacy policy"
 msgstr "隐私政策"
 
-msgid "These terms apply to donations made on this site to%s."
+msgid "These terms apply to donations made on this site to %s."
 msgstr "这些条款适用于在本网站上向%s进行的捐赠。"
 
 msgid "A donation is a gift without anything in return. It is used for the purpose chosen on the donation form (for example sapling planting). When a purpose is fully funded, the association may use the donation for a similar purpose."
@@ -4628,13 +4552,13 @@ msgstr "If a donation was made by mistake (wrong amount or a double payment), wr
 msgid "Your name and contact details are used to record the donation, send the receipt and certificate, and contact you about your donation. See the privacy policy for details."
 msgstr "您的姓名和联系方式将用于记录捐赠、发送收据和证书,并就捐赠事宜与您联系。有关详细信息,请参阅隐私政策。"
 
-msgid "For any question about your donation, write to us on WhatsApp:%s"
+msgid "For any question about your donation, write to us on WhatsApp: %s"
 msgstr "如果对您的捐赠有任何疑问,请通过 WhatsApp 给我们写信:%s"
 
 msgid "For any question about your donation, write to us through the contact page."
 msgstr "如果对您的捐赠有任何疑问,请通过联系页面写信给我们。"
 
-msgid "%sprocesses your personal data under the Turkish Personal Data Protection Law (KVKK)."
+msgid "%s processes your personal data under the Turkish Personal Data Protection Law (KVKK)."
 msgstr "%s根据土耳其个人数据保护法 (KVKK) 处理您的个人数据。"
 
 msgid "What we collect"
@@ -4736,7 +4660,7 @@ msgstr "WooCommerce 付款"
 msgid "Payment logos on the site"
 msgstr "网站上的付款徽标"
 
-msgid "Checkout page:%s."
+msgid "Checkout page: %s."
 msgstr "结账页面:%s。"
 
 msgid "Checkout block"
@@ -4763,7 +4687,7 @@ msgstr "指向一个标记以了解详细信息。"
 msgid "Donation type not found."
 msgstr "未找到捐赠类型。"
 
-msgid "of%sgoal"
+msgid "of %s goal"
 msgstr "%s目标"
 
 msgid "Goal progress"
@@ -4784,16 +4708,16 @@ msgstr "每个选项卡必须是 JSON 对象。"
 msgid "A tab needs an \"id\"."
 msgstr "选项卡需要一个“id”。"
 
-msgid "Tab%1$s: \"on\" must be item or donation, not%2$s."
+msgid "Tab %1$s: \"on\" must be item or donation, not %2$s."
 msgstr "Tab%1$s: \"on\" 必须是物品或捐赠,而不是%2$s。"
 
-msgid "Tab%s: every field needs a \"key\"."
+msgid "Tab %s: every field needs a \"key\"."
 msgstr "Tab%s:每个字段都需要一个“键”。"
 
-msgid "Tab%1$s, field%2$s: unknown type%3$s."
+msgid "Tab %1$s, field %2$s: unknown type %3$s."
 msgstr "选项卡%1$s,字段%2$s:未知类型%3$s."
 
-msgid "The JSON could not be read:%s"
+msgid "The JSON could not be read: %s"
 msgstr "无法读取 JSON:%s"
 
 msgid "Tracked items"
@@ -4814,7 +4738,7 @@ msgstr "从合作伙伴那里收回"
 msgid "Mark completed"
 msgstr "标记已完成"
 
-msgid "Your gift on behalf of%1$sis completed. Thank you. Code:%2$s"
+msgid "Your gift on behalf of %1$s is completed. Thank you. Code: %2$s"
 msgstr "您代表%1$s的礼物已完成。谢谢。代码:%2$s"
 
 msgid "Page title"
@@ -4838,7 +4762,7 @@ msgstr "按钮:收回"
 msgid "Button: mark completed"
 msgstr "按钮:标记已完成"
 
-msgid "WhatsApp text with the file (%1$sname,%2$scode)"
+msgid "WhatsApp text with the file (%1$s name, %2$s code)"
 msgstr "包含文件的 WhatsApp 文本(%1$s名称、%2$s代码)"
 
 msgid "File added"
@@ -4853,7 +4777,7 @@ msgstr "文件已发送给所有者"
 msgid "Details changed"
 msgstr "详细信息已更改"
 
-msgid "Choose:%s."
+msgid "Choose: %s."
 msgstr "选择:%s。"
 
 msgid "not waiting"
@@ -4910,7 +4834,7 @@ msgstr "无法打开 WhatsApp 聊天。"
 msgid "Please sign in."
 msgstr "请登录。"
 
-msgid "received%s"
+msgid "received %s"
 msgstr "收到%s"
 
 msgid "Recurring donation started"
@@ -4922,7 +4846,7 @@ msgstr "设置每月(卡)捐赠后发送给捐赠者。"
 msgid "Donor name"
 msgstr "捐助者姓名"
 
-msgid "Interval (monthly...)"
+msgid "Interval (monthly…)"
 msgstr "间隔(每月...)"
 
 msgid "Date of the next payment"
@@ -4934,13 +4858,13 @@ msgstr "取消链接"
 msgid "monthly"
 msgstr "每月"
 
-msgid "Your recurring donation to{kurum}"
+msgid "Your recurring donation to {kurum}"
 msgstr "您对{kurum}的定期捐款"
 
-msgid "Thank you,{ad}"
+msgid "Thank you, {ad}"
 msgstr "谢谢你,{ad}"
 
-msgid "Your{aralik}donation of{tutar}is set up. The next payment will be taken on{sonraki}."
+msgid "Your {aralik} donation of {tutar} is set up. The next payment will be taken on {sonraki}."
 msgstr "您对{tutar}的{aralik}捐赠已设置。下一次付款将在{sonraki}进行。"
 
 msgid "You can cancel your recurring donation at any time with the button below."
@@ -4955,16 +4879,16 @@ msgstr "当卡每次尝试都被拒绝并且经常性捐赠被暂停时发送给
 msgid "Number of attempts"
 msgstr "尝试次数"
 
-msgid "We could not take your donation to{kurum}"
+msgid "We could not take your donation to {kurum}"
 msgstr "我们无法将您的捐款转至{kurum}"
 
 msgid "Your recurring donation is paused"
 msgstr "您的定期捐赠已暂停"
 
-msgid "Dear{ad},"
+msgid "Dear {ad},"
 msgstr "亲爱的{ad},"
 
-msgid "We tried{deneme}times but could not charge your card for your{aralik}donation of{tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
+msgid "We tried {deneme} times but could not charge your card for your {aralik} donation of {tutar}, so it is paused. If you would like to continue, please make a new donation on our website or contact us."
 msgstr "我们尝试了{deneme}次,但无法从您的卡中收取{aralik}的{tutar}捐赠费用,因此已暂停。如果您想继续,请在我们的网站上进行新的捐赠或联系我们。"
 
 msgid "Donate again"
@@ -4988,19 +4912,19 @@ msgstr "文件名"
 msgid "Order link (admin)"
 msgstr "订购链接(管理员)"
 
-msgid "Receipt uploaded: donation #{siparis}({ad})"
+msgid "Receipt uploaded: donation #{siparis} ({ad})"
 msgstr "收据已上传:捐款 #{siparis}({ad})"
 
 msgid "A transfer receipt was uploaded"
 msgstr "转账收据已上传"
 
-msgid "Amount:{tutar}"
+msgid "Amount: {tutar}"
 msgstr "金额:{tutar}"
 
-msgid "Reference:{aciklama}"
+msgid "Reference: {aciklama}"
 msgstr "参考:{aciklama}"
 
-msgid "File:{dosya}"
+msgid "File: {dosya}"
 msgstr "文件:{dosya}"
 
 msgid "Check the payment at the bank and press \"Confirm payment\" on the order; the certificate is then issued and sent automatically."
@@ -5018,13 +4942,13 @@ msgstr "我们无法确认您的捐款付款"
 msgid "We could not confirm your payment"
 msgstr "我们无法确认您的付款"
 
-msgid "Hello{ad},"
+msgid "Hello {ad},"
 msgstr "你好{ad},"
 
-msgid "We could not confirm the payment of your{tutar}donation."
+msgid "We could not confirm the payment of your {tutar} donation."
 msgstr "我们无法确认您的{tutar}捐款的付款。"
 
-msgid "Reason:{aciklama}"
+msgid "Reason: {aciklama}"
 msgstr "原因:{aciklama}"
 
 msgid "If you think this is a mistake, please reply to this e-mail. Thank you."
@@ -5039,7 +4963,7 @@ msgstr "收据和捐赠者电子邮件上显示的姓名(最多 190 个字符)�
 msgid "The organisation name cannot be empty."
 msgstr "组织名称不能为空。"
 
-msgid "Organisation name saved:%s"
+msgid "Organisation name saved: %s"
 msgstr "已保存组织名称:%s"
 
 msgid "Set the default currency"
@@ -5051,7 +4975,7 @@ msgstr "用于新的捐赠类型和手动输入。"
 msgid "Unsupported currency."
 msgstr "不支持的货币。"
 
-msgid "Default currency:%s"
+msgid "Default currency: %s"
 msgstr "默认货币:%s"
 
 msgid "Open a donation type"
@@ -5063,7 +4987,7 @@ msgstr "将已具有价格(或免费金额)的封闭式捐赠类型设置为活�
 msgid "This type has no option with a price and no free amount; set a price first."
 msgstr "此类型没有价格选项,也没有免费金额;先定个价格。"
 
-msgid "Donation type opened:%s"
+msgid "Donation type opened: %s"
 msgstr "打开的捐赠类型:%s"
 
 msgid "Set a donation type's unit price"
@@ -5078,13 +5002,13 @@ msgstr "价格必须大于 0。"
 msgid "This type has no active option; add one on the Donation types page."
 msgstr "此类型没有活动选项;在“捐赠类型”页面上添加一项。"
 
-msgid "Unit price of%1$sset to%2$s%3$s."
-msgstr "%1$s的单价设置为%2$s%3$s。"
+msgid "Unit price of %1$s set to %2$s %3$s."
+msgstr "%1$s的单价设置为%2$s %3$s。"
 
 msgid "Link a form to a donation type"
 msgstr "将表单链接到捐赠类型"
 
-msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms:%s"
+msgid "Value \"slug=form id\", e.g. \"fidan=3\". Forms: %s"
 msgstr "值“slug=form id”,例如“菲丹=3”。形式:%s"
 
 msgid "No form with this id."
@@ -5096,7 +5020,7 @@ msgstr "表单已链接。"
 msgid "The form could not be linked."
 msgstr "无法链接该表单。"
 
-msgid "Form \"%1$s\" linked to%2$s."
+msgid "Form \"%1$s\" linked to %2$s."
 msgstr "表单“%1$s”链接到%2$s。"
 
 msgid "Use the form \"slug=value\"."
@@ -5126,19 +5050,19 @@ msgstr "报告必须是 JSON 对象。"
 msgid "The report needs an \"id\" (letters, digits, dash)."
 msgstr "报告需要一个“id”(字母、数字、破折号)。"
 
-msgid "Unknown \"source\":%s. Use donations or items."
+msgid "Unknown \"source\": %s. Use donations or items."
 msgstr "未知“来源”:%s。使用捐赠或物品。"
 
-msgid "Unknown \"group\" value:%s"
+msgid "Unknown \"group\" value: %s"
 msgstr "未知的“组”值:%s"
 
 msgid "Group by at most two dimensions."
 msgstr "最多按两个维度分组。"
 
-msgid "Unknown \"metrics\" value:%s"
+msgid "Unknown \"metrics\" value: %s"
 msgstr "未知的“指标”值:%s"
 
-msgid "\"sort\" must be one of the group or metrics values:%s"
+msgid "\"sort\" must be one of the group or metrics values: %s"
 msgstr "“排序”必须是组或指标值之一:%s"
 
 msgid "piece"
@@ -5174,13 +5098,13 @@ msgstr "每年"
 msgid "Test provider"
 msgstr "测试提供者"
 
-msgid "%1$s(%2$s)"
+msgid "%1$s (%2$s)"
 msgstr "%1$s(%2$s)"
 
-msgid "Last test%1$s:%2$s"
+msgid "Last test %1$s: %2$s"
 msgstr "上次测试%1$s:%2$s"
 
-msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls%severy 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
+msgid "WP-Cron is turned off in wp-config.php (DISABLE_WP_CRON). That is fine only if a server cron job calls %s every 5–15 minutes; without it recurring charges, retries and other scheduled tasks never run."
 msgstr "WP-Cron 在 wp-config.php (DISABLE_WP_CRON) 中关闭。仅当服务器 cron 作业每 5-15 分钟调用%s时才可以;如果没有它,重复收费、重试和其他计划任务将永远不会运行。"
 
 msgid "Scheduled tasks are running, so a server cron is in place."
@@ -5198,13 +5122,13 @@ msgstr "ALTERNATE_WP_CRON 已打开。"
 msgid "Flux Donate hourly task"
 msgstr "Flux 捐赠每小时任务"
 
-msgid "Last run:%s. Recurring iyzico charges are checked every hour."
+msgid "Last run: %s. Recurring iyzico charges are checked every hour."
 msgstr "上次运行:%s。每小时检查一次 iyzico 重复费用。"
 
-msgid "Not run yet; the first run is scheduled for%s."
+msgid "Not run yet; the first run is scheduled for %s."
 msgstr "尚未运行;第一次运行计划在%s进行。"
 
-msgid "Last run:%s, more than 2 hours ago."
+msgid "Last run: %s, more than 2 hours ago."
 msgstr "上次运行:%s,超过 2 小时前。"
 
 msgid "It has never run."
@@ -5216,7 +5140,7 @@ msgstr "WP-Cron 已关闭,因此服务器 cron 作业必须调用 wp-cron.php。
 msgid "WP-Cron only runs on visits and may be blocked by the host or a security plugin. Use \"Test cron\" or add a server cron job."
 msgstr "WP-Cron 仅在访问时运行,可能会被主机或安全插件阻止。使用“测试 cron”或添加服务器 cron 作业。"
 
-msgid "Next scheduled:%s."
+msgid "Next scheduled: %s."
 msgstr "下一个计划:%s。"
 
 msgid "The task is not scheduled; it is added again on the next page load."
@@ -5252,10 +5176,10 @@ msgstr "没有可用的付款提供商。"
 msgid "Payment settings"
 msgstr "付款设置"
 
-msgid "Card payments are taken with%s."
+msgid "Card payments are taken with %s."
 msgstr "通过%s进行卡付款。"
 
-msgid "%sis the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
+msgid "%s is the active provider but its keys are missing, so donation forms show \"Online payment is unavailable\"."
 msgstr "%s是活动提供者,但其密钥丢失,因此捐赠表单显示“在线支付不可用”。"
 
 msgid "Enter keys"
@@ -5282,10 +5206,10 @@ msgstr "使用“测试连接”来检查 iyzico 的密钥。"
 msgid "iyzico keys"
 msgstr "iyzico 键"
 
-msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url):%s. Subscription notification URLs are not needed."
+msgid "Paste into iyzico panel › Merchant notifications URL (İşyeri Bildirimleri Url): %s. Subscription notification URLs are not needed."
 msgstr "粘贴到 iyzico 面板中 › 商户通知 URL (şyeri Bildirimleri Url):%s。不需要订阅通知 URL。"
 
-msgid "Last notification received:%s."
+msgid "Last notification received: %s."
 msgstr "最后收到的通知:%s。"
 
 msgid "No notification received in the last 30 days (normal until the address is saved in the iyzico panel and a payment is made)."
@@ -5302,10 +5226,6 @@ msgstr "显示地址"
 
 msgid "Failed recurring charges"
 msgstr "定期收费失败"
-
-msgid "%drecurring donation stopped after its card was declined 3 times."
-msgid_plural "%drecurring donations stopped after their cards were declined 3 times."
-msgstr[0] "%d经常性捐款在其卡被拒绝 3 次后停止。"
 
 msgid "Stripe keys"
 msgstr "条带键"
@@ -5328,22 +5248,22 @@ msgstr "Webhook 签名密钥丢失:在 Stripe 中进行的退款和续订不会�
 msgid "Flux Forms is not active. Donation forms and card payments need it."
 msgstr "Flux Forms 未激活。捐赠表格和银行卡付款需要它。"
 
-msgid "Active, version%s."
+msgid "Active, version %s."
 msgstr "活动,版本%s。"
 
-msgid "Version%1$sis active; Flux Donate needs%2$sor later for payments and prices to work together."
+msgid "Version %1$s is active; Flux Donate needs %2$s or later for payments and prices to work together."
 msgstr "版本%1$s已激活; Flux Donate 需要%2$s或更高版本才能使付款和价格协同工作。"
 
-msgid "Active, version%s. Certificates can be sent after donations."
+msgid "Active, version %s. Certificates can be sent after donations."
 msgstr "活动,版本%s。捐赠后可发送证书。"
 
-msgid "Version%1$sis active;%2$sor later is recommended."
+msgid "Version %1$s is active; %2$s or later is recommended."
 msgstr "版本%1$s已激活;建议使用%2$s或更高版本。"
 
 msgid "Not active. Donations are recorded, but no certificate is created or sent."
 msgstr "未激活。捐赠会被记录,但不会创建或发送任何证书。"
 
-msgid "WooCommerce is older than%s. Flux Donate 2.0 takes donations through WooCommerce; update it."
+msgid "WooCommerce is older than %s. Flux Donate 2.0 takes donations through WooCommerce; update it."
 msgstr "WooCommerce 早于%s。 Flux Donate 2.0 通过 WooCommerce 接受捐款;更新它。"
 
 msgid "WooCommerce is not active. Flux Donate 2.0 takes donations through the WooCommerce cart and checkout; until it is active, only the older Flux Forms payment layer works."
@@ -5373,23 +5293,19 @@ msgstr "WooCommerce 和 iyzico 插件"
 msgid "Open donation types"
 msgstr "开放捐赠类型"
 
-msgid "%ddonation type is open and priced."
-msgid_plural "%ddonation types are open and priced."
-msgstr[0] "%d捐赠类型开放并定价。"
-
 msgid "No donation type is open with a price (or free amount), so forms cannot take donations."
 msgstr "没有开放有价格(或免费金额)的捐赠类型,因此表格无法接受捐赠。"
 
 msgid "Forms of open donation types"
 msgstr "公开捐赠类型的形式"
 
-msgid "No (existing) form is linked to:%s. Visitors cannot give to these types online."
+msgid "No (existing) form is linked to: %s. Visitors cannot give to these types online."
 msgstr "没有(现有)表单链接到:%s。访问者无法在线向这些类型捐款。"
 
 msgid "Every open donation type has a form."
 msgstr "每种公开捐赠类型都有一个表格。"
 
-msgid "Default currency:%s."
+msgid "Default currency: %s."
 msgstr "默认货币:%s。"
 
 msgid "iyzico is not set up for this currency (Donations › Payments › iyzico › currencies)."
@@ -5397,10 +5313,6 @@ msgstr "iyzico 未设置此货币(捐赠 › 付款 › iyzico › 货币)。"
 
 msgid "Bank accounts (transfer)"
 msgstr "银行账户(转账)"
-
-msgid "%dbank account is listed for bank transfer gifts."
-msgid_plural "%dbank accounts are listed for bank transfer gifts."
-msgstr[0] "%d银行账户已列出用于银行转账礼物。"
 
 msgid "No bank account is listed. They come from the theme (filter flxb_bank_accounts) and are used when recording bank transfer gifts."
 msgstr "未列出银行帐户。它们来自主题(过滤器 flxb_bank_accounts),并在记录银行转账礼物时使用。"
@@ -5414,7 +5326,7 @@ msgstr "未设置;收据和电子邮件使用网站标题“%s”。"
 msgid "E-mail sending"
 msgstr "电子邮件发送"
 
-msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to%s."
+msgid "Not tested. Donor e-mails (recurring donation started, card declined) go out with wp_mail. The test sends one message to %s."
 msgstr "未测试。捐赠者电子邮件(定期捐赠开始,卡被拒绝)通过 wp_mail 发送。该测试向%s发送一条消息。"
 
 msgid "Send test e-mail"
@@ -5438,7 +5350,7 @@ msgstr "站点地址不是 HTTPS。卡付款和付款回调需要 HTTPS(设置 �
 msgid "WordPress security keys (salts)"
 msgstr "WordPress 安全密钥(盐)"
 
-msgid "Missing or weak in wp-config.php:%s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
+msgid "Missing or weak in wp-config.php: %s. Saved iyzico cards are encrypted with these keys; set unique values once (https://api.wordpress.org/secret-key/1.1/salt/) and do not change them afterwards, or saved cards stop working."
 msgstr "wp-config.php 中缺少或较弱:%s。保存的 iyzico 卡使用这些密钥进行加密;设置唯一值一次(https://api.wordpress.org/secret-key/1.1/salt/),之后不要更改它们,否则保存的卡将停止工作。"
 
 msgid "Set in wp-config.php. Saved iyzico cards are encrypted with them: do not change them, or saved cards stop working."
@@ -5447,7 +5359,7 @@ msgstr "在 wp-config.php 中设置。已保存的 iyzico 卡已使用它们加�
 msgid "Up to date (%s)."
 msgstr "最新 (%s)。"
 
-msgid "Tables are at version%1$s, expected%2$s. Deactivate and activate Flux Donate to update them."
+msgid "Tables are at version %1$s, expected %2$s. Deactivate and activate Flux Donate to update them."
 msgstr "表的版本为%1$s,预计为%2$s。停用并激活 Flux Donate 来更新它们。"
 
 msgid "No iyzico keys to test."
@@ -5459,7 +5371,7 @@ msgstr "沙箱"
 msgid "Connected; iyzico accepted the keys (%s)."
 msgstr "已连接; iyzico 接受了密钥 (%s)。"
 
-msgid "iyzico refused the keys (%1$s):%2$s. Check that the keys belong to this environment."
+msgid "iyzico refused the keys (%1$s): %2$s. Check that the keys belong to this environment."
 msgstr "iyzico 拒绝了密钥 (%1$s):%2$s。检查密钥是否属于此环境。"
 
 msgid "This server could not reach its own wp-cron.php (%s). WP-Cron cannot start from visits; add a server cron job."
@@ -5468,7 +5380,7 @@ msgstr "此服务器无法访问其自己的 wp-cron.php (%s)。 WP-Cron无法�
 msgid "wp-cron.php answered; WP-Cron can start."
 msgstr "wp-cron.php 回答; WP-Cron 可以启动。"
 
-msgid "wp-cron.php answered with HTTP%d(blocked by the host or a security plugin?). Add a server cron job."
+msgid "wp-cron.php answered with HTTP %d (blocked by the host or a security plugin?). Add a server cron job."
 msgstr "wp-cron.php 用 HTTP%d应答(被主机或安全插件阻止?)。添加服务器 cron 作业。"
 
 msgid "[%s] Test e-mail from Flux Donate"
@@ -5477,10 +5389,10 @@ msgstr "[%s] 来自 Flux Donate 的测试电子邮件"
 msgid "This is a test from Donations › Settings › System check. If you can read it, donor e-mails can be sent."
 msgstr "这是来自捐赠 › 设置 › 系统检查的测试。如果您能阅读,则可以发送捐赠者电子邮件。"
 
-msgid "Sent to%s. Check that it arrived (and not in spam)."
+msgid "Sent to %s. Check that it arrived (and not in spam)."
 msgstr "发送到%s。检查它是否已到达(并且不在垃圾邮件中)。"
 
-msgid "Sending failed:%s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
+msgid "Sending failed: %s. Set up SMTP (e.g. an SMTP plugin with your mail account)."
 msgstr "发送失败:%s。设置 SMTP (例如使用您的邮件帐户的 SMTP 插件)。"
 
 msgid "Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış."
@@ -5703,10 +5615,6 @@ msgstr "在列表中显示"
 msgid "Review"
 msgstr "查看"
 
-msgid "%s more"
-msgid_plural "%s more"
-msgstr[0] "还有 %s 条"
-
 msgid "Paid gifts"
 msgstr "已付款捐赠"
 
@@ -5718,3 +5626,7 @@ msgstr "此捐赠没有推荐人。"
 
 msgid "The donor's earlier gifts came through %s."
 msgstr "该捐赠者此前的捐赠来自 %s。"
+
+msgid "%s more"
+msgid_plural "%s more"
+msgstr[0] "另外 %s 个"

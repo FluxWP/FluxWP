@@ -52,7 +52,7 @@ final class FLXB_Shortcode {
 				<span class="flxb-camp__raised"><?php echo esc_html( flxb_money( $p['raised'], $cur ) ); ?></span>
 				<?php if ( $p['goal'] > 0 ) : ?>
 					<?php /* translators: %s: goal amount */ ?>
-					<span class="flxb-camp__goal"><?php echo esc_html( sprintf( __( 'of%sgoal', 'flx-donate' ), flxb_money( $p['goal'], $cur ) ) ); ?></span>
+					<span class="flxb-camp__goal"><?php echo esc_html( sprintf( __( 'of %s goal', 'flx-donate' ), flxb_money( $p['goal'], $cur ) ) ); ?></span>
 				<?php endif; ?>
 			</div>
 			<?php if ( $p['goal'] > 0 ) : ?>

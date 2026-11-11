@@ -203,7 +203,7 @@ final class FLXB_Types {
 				return '';
 			case 'upcoming':
 				/* translators: %s: start date */
-				return sprintf( __( 'Donations for this cause open on%s.', 'flx-donate' ), flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) );
+				return sprintf( __( 'Donations for this cause open on %s.', 'flx-donate' ), flx_date( strtotime( $t['start_date'] . ' 12:00' ) ) );
 			case 'ended':
 				return __( 'Donations for this cause have ended.', 'flx-donate' );
 			default:
@@ -444,7 +444,7 @@ final class FLXB_Types {
 			'vacip'  => __( 'Vacip', 'flx-donate' ),
 			'adak'   => __( 'Adak', 'flx-donate' ),
 			'akika'  => __( 'Akika', 'flx-donate' ),
-			'sifa'   => __( 'healing', 'flx-donate' ),
+			'sifa'   => __( 'Healing', 'flx-donate' ),
 			'nafile' => __( 'Nafile', 'flx-donate' ),
 		);
 	}
@@ -604,7 +604,7 @@ final class FLXB_Types {
 				}
 			}
 			if ( (int) $t['max_quantity'] > 0 && $qty > (int) $t['max_quantity'] ) {
-				return array_merge( $out, array( 'ok' => false, 'message' => sprintf( /* translators: %s: maximum quantity */ __( 'You can choose at most%s.', 'flx-donate' ), number_format_i18n( (int) $t['max_quantity'] ) ) ) );
+				return array_merge( $out, array( 'ok' => false, 'message' => sprintf( /* translators: %s: maximum quantity */ __( 'You can choose at most %s.', 'flx-donate' ), number_format_i18n( (int) $t['max_quantity'] ) ) ) );
 			}
 		}
 		foreach ( $rows as $r ) {

@@ -184,7 +184,7 @@ final class FLXB_Page_Reports {
 		echo '</tbody></table></div>';
 		if ( $res['cut'] ) {
 			/* translators: %s: row limit */
-			echo '<p class="flxb-muted">' . esc_html( sprintf( __( 'Only the first%srows are shown. The CSV has the same rows.', 'flx-donate' ), number_format_i18n( $r['limit'] ) ) ) . '</p>';
+			echo '<p class="flxb-muted">' . esc_html( sprintf( __( 'Only the first %s rows are shown. The CSV has the same rows.', 'flx-donate' ), number_format_i18n( $r['limit'] ) ) ) . '</p>';
 		}
 		echo '</div>';
 	}

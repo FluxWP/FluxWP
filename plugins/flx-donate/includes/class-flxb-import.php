@@ -529,7 +529,7 @@ final class FLXB_Import {
 			if ( $t && FLXB_Types::tracks_items( $t ) ) {
 				if ( in_array( $r['status'], array( 'sent', 'done', 'delivered' ), true ) && '0' === (string) $r['partner'] ) {
 					/* translators: %s: what a partner is called */
-					$r['warns'][] = sprintf( __( 'No%s: opened as approved', 'flx-donate' ), FLXB_Track::label( 'partner', $tid ) );
+					$r['warns'][] = sprintf( __( 'No %s: opened as approved', 'flx-donate' ), FLXB_Track::label( 'partner', $tid ) );
 					$r['status']  = 'approved';
 				}
 				if ( in_array( $r['status'], array( 'sent', 'done', 'delivered' ), true ) && ! $r['paid'] ) {
