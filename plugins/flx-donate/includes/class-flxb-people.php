@@ -20,6 +20,29 @@ final class FLXB_People {
 		add_filter( 'flx_people_columns', array( __CLASS__, 'columns' ) );
 		add_filter( 'flx_people_keys', array( __CLASS__, 'keys' ) );
 		add_action( 'after_setup_theme', array( __CLASS__, 'upgrade' ), 2 ); // after flx-brand core (0) and Flux CRM's move (1)
+		add_filter( 'flx_person_in_use', array( __CLASS__, 'in_use' ), 10, 2 );
+		add_action( 'flx_person_merged', array( __CLASS__, 'merged' ), 10, 2 );
+	}
+
+	/** A donor with gifts or monthly donations is not deleted by another package (Flux CRM merges instead). */
+	public static function in_use( $used, $id ) {
+		global $wpdb;
+		$n = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxb_table( 'donations' ) . ' WHERE donor_id = %d', (int) $id ) ) // phpcs:ignore WordPress.DB
+			+ (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxb_table( 'subscriptions' ) . ' WHERE donor_id = %d', (int) $id ) ); // phpcs:ignore WordPress.DB
+		if ( $n ) {
+			$used[] = __( 'Donations', 'flx-donate' );
+		}
+		return $used;
+	}
+
+	/** Two people merged (Flux CRM): gifts and monthly donations of the duplicate move to the kept person. */
+	public static function merged( $primary_id, $dup_id ) {
+		global $wpdb;
+		foreach ( array( 'donations', 'subscriptions' ) as $t ) {
+			$wpdb->update( flxb_table( $t ), array( 'donor_id' => (int) $primary_id ), array( 'donor_id' => (int) $dup_id ) ); // phpcs:ignore WordPress.DB
+		}
+		FLXB_Donors::recalc( (int) $primary_id );
+		FLXB_Donors::mark( (int) $primary_id );
 	}
 
 	/** Columns Flux Donate owns on the shared table. */

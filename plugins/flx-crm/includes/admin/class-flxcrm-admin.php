@@ -187,7 +187,11 @@ final class FLXCRM_Admin {
 
 	public static function post_contact_delete() {
 		self::guard( 'contact_delete' );
-		FLXCRM_Contacts::delete( absint( self::post( 'id', 0 ) ) );
+		$id  = absint( self::post( 'id', 0 ) );
+		$res = FLXCRM_Contacts::delete( $id );
+		if ( is_wp_error( $res ) ) {
+			self::back( self::card_url( $id ), '', $res->get_error_message() );
+		}
 		FLXCRM_Contacts::flush_stats();
 		self::back( flxcrm_admin_url( 'contacts' ), 'deleted' );
 	}
@@ -328,8 +332,9 @@ final class FLXCRM_Admin {
 					++$n;
 					break;
 				case 'delete':
-					FLXCRM_Contacts::delete( $id );
-					++$n;
+					if ( true === FLXCRM_Contacts::delete( $id ) ) { // a contact still used by a package stays
+						++$n;
+					}
 					break;
 			}
 		}

@@ -1107,7 +1107,11 @@ function flxcrm_core_tools() {
 		},
 		'run'         => function ( $a ) {
 			flxcrm_tool_contact( $a['id'] ?? 0 );
-			return array( 'deleted' => FLXCRM_Contacts::delete( (int) $a['id'] ) );
+			$res = FLXCRM_Contacts::delete( (int) $a['id'] );
+			if ( is_wp_error( $res ) ) {
+				throw new Exception( $res->get_error_message() ); // phpcs:ignore WordPress.Security.EscapeOutput
+			}
+			return array( 'deleted' => $res );
 		},
 	);
 

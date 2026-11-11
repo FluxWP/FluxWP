@@ -373,6 +373,11 @@ final class FLXCRM_Contacts {
 		if ( ! self::get( $id ) ) {
 			return false;
 		}
+		$used = function_exists( 'flx_person_in_use' ) ? flx_person_in_use( $id ) : array();
+		if ( $used ) {
+			/* translators: %s: package records, e.g. "Certificates, Donations" */
+			return new WP_Error( 'flxcrm_in_use', sprintf( __( 'This contact still has records in: %s. Merge it into another contact instead of deleting it.', 'flx-crm' ), implode( ', ', $used ) ) );
+		}
 		do_action( 'flxcrm_contact_deleting', $id );
 		foreach ( array( 'events', 'links', 'contact_tags' ) as $tb ) {
 			$wpdb->delete( flxcrm_table( $tb ), array( 'contact_id' => $id ) ); // phpcs:ignore WordPress.DB

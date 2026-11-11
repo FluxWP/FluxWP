@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2.0.0
+- A person holding certificates reports itself in use (`flx_person_in_use`), so Flux CRM does not delete it; when Flux CRM merges two people the certificates and messages move to the kept one.
 - People move to the shared FluxWP people table (`{prefix}flx_people`, flx-brand 1.3.0). A person added here is the same person in Flux CRM, Flux Mail, Flux Donate and Flux Chat; Flux Certificates still works alone.
 - One-time move of `{prefix}flxs_people`: ids are kept when free, a person already in the shared table (same phone, then e-mail) is reused and only gets empty fields filled; certificate, message and log references follow. The old table is dropped after a complete copy.
 - New people are created through `flx_person_ensure()` (Flux CRM matching runs when it is active), edits through `flx_person_update()`. The People screen lists people tied to Certificates; the picker searches everyone.

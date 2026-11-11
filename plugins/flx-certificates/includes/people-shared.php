@@ -150,3 +150,30 @@ function flxs_people_mine_sql( $alias = 'p' ) {
 	$a = $alias ? $alias . '.' : '';
 	return "(EXISTS (SELECT 1 FROM {$wpdb->prefix}flx_people_links fl WHERE fl.contact_id = {$a}id AND fl.source = 'certificates') OR {$a}id IN (SELECT person_id FROM " . flxs_table( 'certificates' ) . '))';
 }
+
+/** A person holding certificates is not deleted by another package (Flux CRM merges instead). */
+add_filter(
+	'flx_person_in_use',
+	static function ( $used, $id ) {
+		global $wpdb;
+		if ( (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxs_table( 'certificates' ) . ' WHERE person_id = %d', (int) $id ) ) ) { // phpcs:ignore WordPress.DB
+			$used[] = __( 'Certificates', 'flx-certificates' );
+		}
+		return $used;
+	},
+	10,
+	2
+);
+
+/** Two people merged (Flux CRM): certificates and messages of the duplicate move to the kept person. */
+add_action(
+	'flx_person_merged',
+	static function ( $primary_id, $dup_id ) {
+		global $wpdb;
+		foreach ( array( 'certificates', 'messages' ) as $t ) {
+			$wpdb->update( flxs_table( $t ), array( 'person_id' => (int) $primary_id ), array( 'person_id' => (int) $dup_id ) ); // phpcs:ignore WordPress.DB
+		}
+	},
+	10,
+	2
+);

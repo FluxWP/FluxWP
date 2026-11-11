@@ -3,6 +3,7 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'This contact still has records in: %s. Merge it into another contact instead of deleting it.' => 'Bu kişinin şurada hâlâ kaydı var: %s. Silmek yerine başka bir kişiyle birleştirin.',
   '— Not linked —' => '— Bağlı değil —',
   'e.g. National Forestation Day' => 'ör. 11 Kasım Milli Ağaçlandırma Günü',
   'Why' => 'Neden',

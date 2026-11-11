@@ -14,7 +14,9 @@
  *      flx_person_links(), flx_people_query(), flx_people_table(), flx_people_ready().
  * Filters: flx_people_columns, flx_people_keys (extra columns/keys a package owns), flx_person_phone,
  *          flx_person_pre_find, flx_person_pre_ensure, flx_person_pre_update (short-circuit, used by Flux CRM).
- * Actions: flx_people_installed, flx_person_created( $id, $row ), flx_person_updated( $id, $changes, $before ).
+ * Actions: flx_people_installed, flx_person_created( $id, $row ), flx_person_updated( $id, $changes, $before ),
+ *          flx_person_merged( $primary_id, $dup_id ) (move your records), flx_person_deleting( $id ).
+ * Filter flx_person_in_use: packages that still hold records of a person (deleting is refused while any does).
  *
  * @package flx-brand
  */
@@ -527,4 +529,12 @@ function flx_people_query( array $f = array() ) {
 	$sql  = "SELECT p.* FROM $t p WHERE $where ORDER BY p.$by $dir, p.id DESC LIMIT %d OFFSET %d";
 	$args = array_merge( $args, array( $per, $off ) );
 	return (array) $wpdb->get_results( $wpdb->prepare( $sql, $args ), ARRAY_A ); // phpcs:ignore WordPress.DB
+}
+
+/**
+ * Packages that still hold records of this person (certificates, donations…): [ label, … ]. A person in use is not
+ * deleted; merge it into another person instead (Flux CRM), which moves those records through `flx_person_merged`.
+ */
+function flx_person_in_use( $id ) {
+	return array_values( array_unique( array_filter( array_map( 'strval', (array) apply_filters( 'flx_person_in_use', array(), (int) $id ) ) ) ) );
 }
