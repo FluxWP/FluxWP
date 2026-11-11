@@ -5826,3 +5826,12 @@ msgstr "A · Adım adım: formun üstünde sayfa başlığıyla fotoğraf bandı
 
 msgid "Quick choice"
 msgstr "Hızlı seçim"
+
+msgid "Hello"
+msgstr "Merhaba"
+
+msgid "Any trouble? Write to us on WhatsApp"
+msgstr "Bir sorun mu var? WhatsApp'tan yazın"
+
+msgid "Show \"Add a note to your order\" at the checkout"
+msgstr "Ödeme sayfasında \"Siparişinize not ekleyin\" kutusu görünsün"

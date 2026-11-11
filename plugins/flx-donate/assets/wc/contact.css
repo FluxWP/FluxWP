@@ -26,9 +26,12 @@ body.flx-dark .flxb-ct__field input { background: var(--flx-surface, #17221c); b
 .flxb-ct-on .wc-block-checkout.is-mobile .wc-block-checkout__sidebar { display: none !important; }
 .flxb-ct-on .wc-block-checkout__contact-fields .wc-block-components-checkout-step__description { display: none !important; }
 .flxb-ct-on .wc-block-components-checkout-place-order-button { width: 100%; min-height: 54px; }
-.flxb-ct-support .flxwb-support { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: .92rem; }
-.flxb-ct-support .flxwb-support .flxwb-ic { flex: none; width: 20px; height: 20px; color: #1e9e57; }
-.flxb-ct-support .flxwb-support a { font-weight: 700; white-space: nowrap; }
+.flxb-ct-support .flxwb-support { display: flex; align-items: center; gap: 10px; margin: 12px 0 0; padding: 12px 14px; border: 1px solid #A7E3BF; border-radius: 12px; background: #E9F8EF; color: #14532D; font-size: .92rem; line-height: 1.4; text-decoration: none !important; transition: background .15s; }
+.flxb-ct-support .flxwb-support:hover, .flxb-ct-support .flxwb-support:focus-visible { background: #DBF3E4; }
+.flxb-ct-support .flxwb-support .flxwb-ic { flex: none; width: 22px; height: 22px; color: #1E9E57; }
+.flxb-ct-support .flxwb-support__t { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.flxb-ct-support .flxwb-support__t strong { font-weight: 700; }
+.flxb-ct-support .flxwb-support__n { color: #1E9E57; font-weight: 700; white-space: nowrap; }
 
 /* 2.0.5: header fixed at the top; a slim bar with the total and the button fixed at the bottom
    (2.0.4 made WooCommerce's whole actions block sticky, and newer WooCommerce puts the summary inside it). */

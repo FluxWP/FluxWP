@@ -76,6 +76,9 @@
 	function place() {
 		var wide = !!q('.wc-block-checkout.is-large');
 		if (document.body.classList.contains('flxb-co-wide') !== wide) { document.body.classList.toggle('flxb-co-wide', wide); }
+		var ht = q('.wc-block-checkout__contact-fields .wc-block-components-checkout-step__title');
+		var hv = ht ? JSON.stringify(ht.textContent.trim()) : '';
+		if (hv && document.body.style.getPropertyValue('--flxb-co-h') !== hv) { document.body.style.setProperty('--flxb-co-h', hv); }
 		var summary = q('.wc-block-checkout__sidebar .wp-block-woocommerce-checkout-order-summary-block');
 		if (!summary) { return; }
 		if (!box) { build(); }

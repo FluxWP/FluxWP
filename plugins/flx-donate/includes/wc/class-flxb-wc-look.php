@@ -53,6 +53,7 @@ final class FLXB_WC_Look {
 			'checkout'     => 'compact', // 2.21.0: compact (two columns, cards, pay button in the summary) | theme
 			'signup'       => 1,         // 2.21.0: guests can tick "Create an account" at the checkout
 			'hero'         => 1,         // 2.21.0: photo band over the form in the steps layout
+			'notes'        => 1,         // 2.21.0: "Add a note to your order" on the checkout
 		);
 	}
 
@@ -153,6 +154,7 @@ final class FLXB_WC_Look {
 		$out['checkout']     = isset( $in['checkout'], self::checkout_styles()[ $in['checkout'] ] ) ? (string) $in['checkout'] : $d['checkout'];
 		$out['signup']       = array_key_exists( 'signup', $in ) ? ( empty( $in['signup'] ) ? 0 : 1 ) : $d['signup'];
 		$out['hero']         = array_key_exists( 'hero', $in ) ? ( empty( $in['hero'] ) ? 0 : 1 ) : $d['hero'];
+		$out['notes']        = array_key_exists( 'notes', $in ) ? ( empty( $in['notes'] ) ? 0 : 1 ) : $d['notes'];
 		$out['fee_rates']    = array();
 		foreach ( (array) ( $in['fee_rates'] ?? array() ) as $gw => $r ) {
 			$gw  = sanitize_key( (string) $gw );
@@ -273,6 +275,7 @@ final class FLXB_WC_Look {
 				'fee_checked'  => array( 'type' => 'bool', 'default' => false, 'desc' => 'The transaction fee box is ticked by default.' ),
 				'checkout'     => array( 'type' => 'enum', 'enum' => array_keys( self::checkout_styles() ), 'default' => 'compact', 'desc' => 'Checkout page layout: compact (two columns, sections as cards, terms + pay button in the summary) or theme.' ),
 				'hero'         => array( 'type' => 'bool', 'default' => true, 'desc' => 'Steps layout: a photo band with the page title over the form (skipped when the page starts with a cover block).' ),
+				'notes'        => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout: the "Add a note to your order" box.' ),
 				'signup'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Guests can tick "Create an account" at the checkout (the password is e-mailed).' ),
 				'fee_rates'    => array( 'type' => 'object', 'default' => array(), 'desc' => 'Transaction fee per payment method: { "gateway id": { "pct": 2.9, "fixed": 0.25 } } (fixed in the store currency).' ),
 			),
@@ -332,6 +335,7 @@ final class FLXB_WC_Look {
 			echo '<label class="flxb-look__opt"><input type="radio" name="checkout" value="' . esc_attr( $k ) . '"' . checked( $s['checkout'], $k, false ) . '><strong>' . esc_html( $v[0] ) . '</strong><span>' . esc_html( $v[1] ) . '</span></label>';
 		}
 		echo '</div></div>';
+		echo '<label class="flxb-check"><input type="checkbox" name="notes" value="1"' . checked( (int) $s['notes'], 1, false ) . '> ' . esc_html__( 'Show "Add a note to your order" at the checkout', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="signup" value="1"' . checked( (int) $s['signup'], 1, false ) . '> ' . esc_html__( 'Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)', 'flx-donate' ) . '</label>';
 		echo '</section>';
 
@@ -409,6 +413,7 @@ final class FLXB_WC_Look {
 		$in['fee_checked'] = ! empty( $in['fee_checked'] ) ? 1 : 0;
 		$in['signup']      = ! empty( $in['signup'] ) ? 1 : 0;
 		$in['hero']        = ! empty( $in['hero'] ) ? 1 : 0;
+		$in['notes']       = ! empty( $in['notes'] ) ? 1 : 0;
 		update_option( self::OPTION, self::clean( $in ), false );
 		self::flush();
 		FLXB_Admin::redirect( 'flxb-settings', array( 'tab' => 'look', 'flxb_msg' => 'saved' ) );

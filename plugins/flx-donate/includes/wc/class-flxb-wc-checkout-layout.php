@@ -20,6 +20,7 @@ final class FLXB_WC_Checkout_Layout {
 	public static function init() {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'assets' ), 31 );
 		add_filter( 'body_class', array( __CLASS__, 'body_class' ) );
+		add_filter( 'render_block_woocommerce/checkout-order-note-block', array( __CLASS__, 'notes' ) );
 		add_filter( 'woocommerce_checkout_registration_enabled', array( __CLASS__, 'signup' ) );
 		add_filter( 'option_woocommerce_registration_generate_password', array( __CLASS__, 'generate_password' ) );
 		add_action( 'woocommerce_store_api_checkout_update_order_from_request', array( __CLASS__, 'account_email' ), 4, 2 );
@@ -54,6 +55,11 @@ final class FLXB_WC_Checkout_Layout {
 				'secure'   => __( 'Secure, encrypted payment. Card details are not stored on this site.', 'flx-donate' ),
 			)
 		);
+	}
+
+	/** 2.21.0: the order note box can be turned off (Appearance › Checkout); the block is left out of the page. */
+	public static function notes( $html ) {
+		return FLXB_WC_Look::get( 'notes' ) ? $html : '';
 	}
 
 	/** "Create an account" box for guests (WooCommerce's own; it creates the account after the order). */

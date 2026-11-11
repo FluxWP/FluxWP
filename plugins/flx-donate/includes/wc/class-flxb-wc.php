@@ -237,7 +237,9 @@ final class FLXB_WC {
 		if ( 0 === strpos( $digits, '0' ) ) {
 			$digits = '9' . $digits; // 0530… → 90530…
 		}
-		return array( $num, 'https://wa.me/' . $digits );
+		/* 2.21.0: the chat opens with a greeting typed in (filter flxb_support_wa_text; '' for none). */
+		$text = (string) apply_filters( 'flxb_support_wa_text', __( 'Hello', 'flx-donate' ) );
+		return array( $num, 'https://wa.me/' . $digits . ( '' !== $text ? '?text=' . rawurlencode( $text ) : '' ) );
 	}
 
 	/** "Trouble? Write to us on WhatsApp" line; '' when no number is set. */
@@ -246,7 +248,8 @@ final class FLXB_WC {
 		if ( '' === $url ) {
 			return '';
 		}
-		return '<p class="flxwb-support">' . self::icon( 'whatsapp' ) . '<span>' . esc_html__( 'Any trouble? Write to us on WhatsApp:', 'flx-donate' ) . ' <a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $num ) . '</a></span></p>';
+		/* 2.21.0: one box, all of it is the link (light WhatsApp green). */
+		return '<a class="flxwb-support" href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . self::icon( 'whatsapp' ) . '<span class="flxwb-support__t"><strong>' . esc_html__( 'Any trouble? Write to us on WhatsApp', 'flx-donate' ) . '</strong> <span class="flxwb-support__n">' . esc_html( $num ) . '</span></span></a>';
 	}
 
 	public static function settings() {

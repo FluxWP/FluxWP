@@ -237,12 +237,7 @@
 			instBox,
 			el('div', { className: 'flxb-cc__3ds' },
 				el('span', { className: 'flxb-cc__3ds-ico', 'aria-hidden': 'true' }),
-				el('span', { className: 'flxb-cc__3ds-t' }, el('strong', null, '3D Secure'), ' ', t.sec),
-				el('span', { className: 'flxb-cc__3ds-logos', 'aria-hidden': 'true' },
-					el('span', { className: 'flxb-cc__logo flxb-cc__logo--visa' }, 'Visa Secure'),
-					el('span', { className: 'flxb-cc__logo flxb-cc__logo--mc' }, 'Mastercard ID Check'),
-					el('span', { className: 'flxb-cc__logo flxb-cc__logo--troy' }, 'troy')
-				)
+				el('span', { className: 'flxb-cc__3ds-t' }, el('strong', null, '3D Secure'), ' ', t.sec)
 			),
 			el('div', { className: 'flxb-cc__foot' },
 				el('p', { className: 'flxb-cc__muted flxb-cc__safe' }, t.secShort),

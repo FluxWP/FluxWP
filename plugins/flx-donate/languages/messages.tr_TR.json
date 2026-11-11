@@ -1921,6 +1921,9 @@
         "Checkout page layout": "Ödeme sayfası düzeni",
         "Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)": "Misafir bağışçı girdiği bilgilerle ödeme sayfasında hesap açabilir (şifre e-postayla gönderilir)",
         "A · Steps: photo band with the page title over the form (the type picture)": "A · Adım adım: formun üstünde sayfa başlığıyla fotoğraf bandı (bağış türü görseli)",
-        "Quick choice": "Hızlı seçim"
+        "Quick choice": "Hızlı seçim",
+        "Hello": "Merhaba",
+        "Any trouble? Write to us on WhatsApp": "Bir sorun mu var? WhatsApp'tan yazın",
+        "Show \"Add a note to your order\" at the checkout": "Ödeme sayfasında \"Siparişinize not ekleyin\" kutusu görünsün"
     }
 }

@@ -433,9 +433,12 @@ body.flx-dark .flxwb-dcard__icon--wa { background: rgba(26, 158, 81, .18); color
 .flxwb .flxwb-pkgs > .flxwb-pkg--qty { grid-column: 1 / -1; }
 
 /* 2.0.4: support WhatsApp line (checkout, transfer panel). */
-.flxwb-support { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: .92rem; }
-.flxwb-support .flxwb-ic { flex: none; width: 20px; height: 20px; color: #1e9e57; }
-.flxwb-support a { font-weight: 700; white-space: nowrap; }
+.flxwb-support { display: flex; align-items: center; gap: 10px; margin: 12px 0 0; padding: 12px 14px; border: 1px solid #A7E3BF; border-radius: 12px; background: #E9F8EF; color: #14532D; font-size: .92rem; line-height: 1.4; text-decoration: none !important; transition: background .15s; }
+.flxwb-support:hover, .flxwb-support:focus-visible { background: #DBF3E4; }
+.flxwb-support .flxwb-ic { flex: none; width: 22px; height: 22px; color: #1E9E57; }
+.flxwb-support__t { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.flxwb-support__t strong { font-weight: 700; }
+.flxwb-support__n { color: #1E9E57; font-weight: 700; white-space: nowrap; }
 
 /* ---------- 2.0.5: compact form, "Repeat every month" as one row, total + Continue always on screen ---------- */
 .flxwb-form { gap: 18px; }
