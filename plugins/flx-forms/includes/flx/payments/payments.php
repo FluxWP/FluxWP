@@ -550,7 +550,7 @@ function flxf_payments_admin_settings_assets() {
 			'notConfigured'  => __( 'Not configured', 'flx-forms' ),
 			'active'         => __( 'Active', 'flx-forms' ),
 			'savedSecret'    => __( 'Saved — leave empty to keep', 'flx-forms' ),
-			'settingsOf'     => __( '%ssettings', 'flx-forms' ),
+			'settingsOf'     => __( '%s settings', 'flx-forms' ),
 		),
 	) );
 }

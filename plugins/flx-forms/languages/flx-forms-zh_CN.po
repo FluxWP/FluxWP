@@ -1339,10 +1339,10 @@ msgstr[0] "您最多可以在此处附加%1$d文件。请等待大约%2$d分钟,
 msgid "Add-on directory is ready for file operations"
 msgstr "附加目录已准备好进行文件操作"
 
-msgid "Cannot install addons:%s"
+msgid "Cannot install addons: %s"
 msgstr "[[“无法安装插件:%s"
 
-msgid "%scomplete"
+msgid "%s complete"
 msgstr "%s完成"
 
 msgid "Copy and paste this shortcode to add the confirmation code finder to any page or post."
@@ -1384,7 +1384,7 @@ msgstr "(视频或音频)"
 msgid "Localization"
 msgstr "本地化"
 
-msgid "Help us speak your language! Translate Flux Forms on the%1$sWordPress.org translation portal%2$sand make it accessible to your community."
+msgid "Help us speak your language! Translate Flux Forms on the %1$sWordPress.org translation portal%2$s and make it accessible to your community."
 msgstr "帮助我们说您的语言!在%1$sWordPress.org 翻译门户%2$s上翻译 Flux 表单,并使其可供您的社区访问。"
 
 msgid "You can translate Flux Forms into your preferred language by translating the following sentences. WARNING: If your WordPress site is multilingual, do not change the values below."
@@ -1783,22 +1783,22 @@ msgstr "标签位置"
 msgid "Align"
 msgstr "对齐"
 
-msgid "%swidth"
+msgid "%s width"
 msgstr "%s宽度"
 
-msgid "%sLabel Position"
+msgid "%s Label Position"
 msgstr "%s标签位置"
 
-msgid "%sLabel size"
+msgid "%s Label size"
 msgstr "%s标签大小"
 
-msgid "%sLabel | Align"
+msgid "%s Label | Align"
 msgstr "%s标签 |对齐"
 
-msgid "%sDescription | Align"
+msgid "%s Description | Align"
 msgstr "%s说明 |对齐"
 
-msgid "%sButtons | Align"
+msgid "%s Buttons | Align"
 msgstr "%s按钮 |对齐"
 
 msgid "CSS Classes"
@@ -1819,7 +1819,7 @@ msgstr "按钮颜色"
 msgid "red"
 msgstr "红色"
 
-msgid "%sChecked Color"
+msgid "%s Checked Color"
 msgstr "%s检查的颜色"
 
 msgid "Slider Button"
@@ -1828,13 +1828,13 @@ msgstr "滑块按钮"
 msgid "Value Text"
 msgstr "值文本"
 
-msgid "Switch%s"
+msgid "Switch %s"
 msgstr "切换%s"
 
 msgid "Handle"
 msgstr "句柄"
 
-msgid "%scolor"
+msgid "%s color"
 msgstr "%s颜色"
 
 msgid "Border Color"
@@ -1954,7 +1954,7 @@ msgstr "表单中使用的高级功能和高级字段将被禁用。您的表单
 msgid "Your Pro activation code will be removed from this site. Advanced features, Pro fields and add-ons will be unavailable until you upgrade again. Your forms, entries and settings will not be deleted."
 msgstr "您的 Pro 激活码将从该网站删除。除非您再次升级,否则高级功能、Pro 字段和附加组件将不可用。您的表单、条目和设置将不会被删除。"
 
-msgid "KeepPro"
+msgid "Keep Pro"
 msgstr "KeepPro"
 
 msgid "Keep Free Plus"
@@ -2020,7 +2020,7 @@ msgstr "您的测试电子邮件已发送,但尚未确认送达。检查收件�
 msgid "We could not verify delivery. Your email address was saved; please check your mail configuration in General Settings."
 msgstr "我们无法验证交货情况。您的电子邮件地址已保存;请检查常规设置中的邮件配置。"
 
-msgid "Your test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
+msgid "Your test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again."
 msgstr "您的测试电子邮件已送达,但其送达率分数仅为%1$s(满分 100)(低于%2$s)。您的表单发送的电子邮件很可能会被过滤为垃圾邮件。设置 SMTP 并再次运行检查。"
 
 msgid "Finish setup"
@@ -2344,10 +2344,10 @@ msgstr "发送成功"
 msgid "This field is required."
 msgstr "此字段是必需的。"
 
-msgid "Custom%sMessage"
+msgid "Custom %s Message"
 msgstr "自定义%s消息"
 
-msgid "Leave empty to use default%s"
+msgid "Leave empty to use default %s"
 msgstr "留空以使用默认%s"
 
 msgid "Thank you"
@@ -2371,7 +2371,7 @@ msgstr "未找到设置"
 msgid "Please navigate to the Flux Forms Panel, then go to Settings and click on Google Keys to configure the keys for Google reCAPTCHA."
 msgstr "请导航到 Flux 表单面板,然后转到“设置”并单击“Google 密钥”来配置 Google reCAPTCHA 的密钥。"
 
-msgid "If your language translation is not available yet, translate it and get a%3$slifetime discount! Contribute via the%1$sWordPress.org translation portal%2$s."
+msgid "If your language translation is not available yet, translate it and get a %3$s lifetime discount! Contribute via the %1$sWordPress.org translation portal%2$s."
 msgstr "如果您的语言翻译尚不可用,请进行翻译并获得%3$s终身折扣!通过%1$sWordPress.org 翻译门户%2$s做出贡献。"
 
 msgid "OFF"
@@ -2776,7 +2776,7 @@ msgstr "波斯付款"
 msgid "Unlock Pro Features Today"
 msgstr "立即解锁专业功能"
 
-msgid "Upgrade to Pro for just%1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
+msgid "Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s"
 msgstr "每年只需%1$s%2$s%3$s即可升级到专业版,并获得强大的功能,包括高级表单字段、付款集成、条件逻辑、多步骤表单、文件上传、安全和垃圾邮件防护以及优先支持。%4$s查看 Pro 功能%5$s"
 
 msgid "Add-on"
@@ -3088,7 +3088,7 @@ msgstr "不匹配"
 msgid "No fields found."
 msgstr "未找到字段。"
 
-msgid "You can create up to%1$s%2$son your current plan. Upgrade to Pro for unlimited access."
+msgid "You can create up to %1$s %2$s on your current plan. Upgrade to Pro for unlimited access."
 msgstr "您可以在当前计划中创建最多%1$s%2$s。升级到专业版即可无限制访问。"
 
 msgid "Inspector"
@@ -3490,10 +3490,10 @@ msgstr "在预览中显示水印"
 msgid "Let the user download a copy of the recording"
 msgstr "让用户下载录音副本"
 
-msgid "Your hosting accepts uploads up to%sMB."
+msgid "Your hosting accepts uploads up to %s MB."
 msgstr "您的主机最多接受%sMB 的上传。"
 
-msgid "This is larger than the hosting upload limit (%sMB); uploads will fail."
+msgid "This is larger than the hosting upload limit (%s MB); uploads will fail."
 msgstr "这大于托管上传限制 (%sMB);上传将失败。"
 
 msgid "Cities Drop-Down"
@@ -3577,13 +3577,13 @@ msgstr "提交内容"
 msgid "Emails sent"
 msgstr "已发送电子邮件"
 
-msgid "%sFailures"
+msgid "%s Failures"
 msgstr "%s失败"
 
-msgid "%sError Log"
+msgid "%s Error Log"
 msgstr "%s错误日志"
 
-msgid "%sDetails"
+msgid "%s Details"
 msgstr "%s详细信息"
 
 msgid "No data available for this period"
@@ -3598,16 +3598,16 @@ msgstr "错误: 请确保每页只有一个表单。"
 msgid "Your activation code has been verified. Enjoy all Pro features of Flux Forms."
 msgstr "您的激活码已经过验证。享受 Flux Forms 的所有 Pro 功能。"
 
-msgid "The confirmation code for this message is%s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
+msgid "The confirmation code for this message is %s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply."
 msgstr "此消息的确认代码是%s。通过单击下面的按钮,您将能够跟踪消息并查看收到的回复。如果需要,您还可以发送新回复。"
 
-msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s."
+msgid "To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s ."
 msgstr "要探索 Flux Forms 的完整功能和设置,包括电子邮件配置、表单创建选项和其他功能,只需深入研究我们的%1$s文档%2$s即可。"
 
 msgid "Responses & Confirmation"
 msgstr "回复和确认"
 
-msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings%1$sLearn how to fix email delivery issues%2$sor%3$scontact Flux Forms support%4$s."
+msgid "Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings %1$sLearn how to fix email delivery issues%2$s or %3$scontact Flux Forms support%4$s."
 msgstr "测试电子邮件可能会进入您的垃圾邮件文件夹。如果电子邮件未送达,这通常与您的托管或电子邮件服务器配置有关。服务器设置%1$s了解如何解决电子邮件送达问题%2$s或%3$s联系 Flux Forms 支持%4$s。"
 
 msgid "From Address"
@@ -3637,7 +3637,7 @@ msgstr "启用后,使用 PayPal 和其他服务的沙箱/演示服务器。禁�
 msgid "After changing the Development Mode (Sandbox) option, save the settings, then deactivate and reactivate Flux Forms plugin from the Plugins page for the changes to take effect."
 msgstr "更改“开发模式(沙盒)”选项后,保存设置,然后从“插件”页面停用并重新激活 Flux Forms 插件以使更改生效。"
 
-msgid "I have read and agree to%1$sthe terms and conditions%2$s"
+msgid "I have read and agree to %1$sthe terms and conditions%2$s"
 msgstr "我已阅读并同意%1$s条款和条件%2$s"
 
 msgid "Terms"
@@ -3652,7 +3652,7 @@ msgstr "最大日期"
 msgid "Minimum date"
 msgstr "最短日期"
 
-msgid "Valid formats:%s"
+msgid "Valid formats: %s"
 msgstr "有效格式:%s"
 
 msgid "Zoom"
@@ -3676,13 +3676,13 @@ msgstr "Telegram 通知插件可让您在收到新消息或回复时在 Telegram
 msgid "Enter a location name"
 msgstr "输入位置名称"
 
-msgid "The%1$spages are currently unavailable. It looks like another plugin is causing a conflict with%1$s. To fix this issue,%2$scontact%1$ssupport%3$sfor assistance or try disabling your plugins one at a time to identify the one causing the conflict."
+msgid "The %1$s pages are currently unavailable. It looks like another plugin is causing a conflict with %1$s . To fix this issue, %2$s contact %1$s support %3$s for assistance or try disabling your plugins one at a time to identify the one causing the conflict."
 msgstr "%1$s页面当前不可用。看起来另一个插件与%1$s发生冲突。要解决此问题,请联系%2$s%1$s支持人员%3$s寻求帮助,或尝试一次禁用一个插件以确定导致冲突的插件。"
 
 msgid "Send email with submitted form content only"
 msgstr "仅发送包含提交的表单内容的电子邮件"
 
-msgid "%scopied!"
+msgid "%s copied!"
 msgstr "%s已复制!"
 
 msgid "The website is not responding; please refresh and try again—saving or submitting is not available until it is restored."
@@ -3703,7 +3703,7 @@ msgstr "输入您的电子邮件以重置密码"
 msgid "If your email is valid, a password reset link has been sent to your email address."
 msgstr "如果您的电子邮件有效,密码重置链接已发送到您的电子邮件地址。"
 
-msgid "Enable%s"
+msgid "Enable %s"
 msgstr "启用%s"
 
 msgid "Auto-Populate"
@@ -3772,28 +3772,28 @@ msgstr "外部 API 连接"
 msgid "Add API Connection"
 msgstr "添加 API 连接"
 
-msgid "Upload the%sfile"
+msgid "Upload the %s file"
 msgstr "上传%s文件"
 
 msgid "Dataset"
 msgstr "数据集"
 
-msgid "The%shas been successfully completed"
+msgid "The %s has been successfully completed"
 msgstr "%s已成功完成"
 
-msgid "%snot found"
+msgid "%s not found"
 msgstr " 未找到%s"
 
-msgid "%sLocation"
+msgid "%s Location"
 msgstr "%s位置"
 
 msgid "installation"
 msgstr "安装"
 
-msgid "The%shave been deleted."
+msgid "The %s have been deleted."
 msgstr "%s已被删除。"
 
-msgid "The%sfield must be correctly filled out to proceed."
+msgid "The %s field must be correctly filled out to proceed."
 msgstr "必须正确填写%s字段才能继续。"
 
 msgid "Submitted Form"
@@ -3802,10 +3802,10 @@ msgstr "已提交表格"
 msgid "You can't add reCAPTCHA to payment forms."
 msgstr "您无法将 reCAPTCHA 添加到付款表单。"
 
-msgid "Learn more about%sor watch the video tutorial."
+msgid "Learn more about %s or watch the video tutorial."
 msgstr "了解有关%s的更多信息或观看视频教程。"
 
-msgid "Learn more%s"
+msgid "Learn more %s"
 msgstr "了解更多%s"
 
 msgid "Google reCAPTCHA"
@@ -3820,25 +3820,25 @@ msgstr "[[“有一个自动保存的表单版本可用。您想恢复它吗?"
 msgid "SMS notification could not be sent. Check if the SMS plugin is installed and configured properly."
 msgstr "无法发送短信通知。检查短信插件是否已正确安装和配置。"
 
-msgid "Your request was completed successfully.%1$s%2$s"
+msgid "Your request was completed successfully. %1$s %2$s"
 msgstr "您的请求已成功完成。%1$s%2$s"
 
 msgid "PayPal"
 msgstr "贝宝"
 
-msgid "To use%1$sfeatures in your forms, you need to get your%2$skeys."
+msgid "To use %1$s features in your forms, you need to get your %2$s keys."
 msgstr "要在表单中使用%1$s功能,您需要获取%2$s密钥。"
 
-msgid "Go to the add-ons page in the Flux Forms plugin, install the%sadd-on, and try again."
+msgid "Go to the add-ons page in the Flux Forms plugin, install the %s add-on, and try again."
 msgstr "转到 Flux Forms 插件中的附加组件页面,安装%s附加组件,然后重试。"
 
-msgid "To create a payment form to collect online payments, install a payment add-on such as the%sAdd-on first."
+msgid "To create a payment form to collect online payments, install a payment add-on such as the %s Add-on first."
 msgstr "要创建付款表单来收取在线付款,请先安装付款插件,例如%s插件。"
 
 msgid "Thank"
 msgstr "谢谢"
 
-msgid "The%splugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the%ssettings."
+msgid "The %s plugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the %s settings."
 msgstr "%s插件可能会干扰 Flux Forms 表单功能。如果您遇到任何表单问题,请在%s设置中禁用 Flux Forms 插件的缓存。"
 
 msgid "Remind me later"
@@ -3847,40 +3847,40 @@ msgstr "稍后提醒我"
 msgid "Got it, don't show it again"
 msgstr "[[“知道了,不要再显示"
 
-msgid "The value of the%1$sfield does not match the pattern and must be at least%2$scharacters."
+msgid "The value of the %1$s field does not match the pattern and must be at least %2$s characters."
 msgstr "The value of the%1$sfield does not match the pattern and must be at least%2$scharacters."
 
-msgid "The value of the%1$sfield does not match the pattern and must be at most%2$scharacters."
+msgid "The value of the %1$s field does not match the pattern and must be at most %2$s characters."
 msgstr "The value of the%1$sfield does not match the pattern and must be at most%2$scharacters."
 
-msgid "Please enter valid value for the%sfield."
+msgid "Please enter valid value for the %s field."
 msgstr "请为%s字段输入有效值。"
 
-msgid "%slist"
+msgid "%s list"
 msgstr "%s列表"
 
-msgid "The uploaded file exceeds the allowable limit of%sMB."
+msgid "The uploaded file exceeds the allowable limit of %s MB."
 msgstr "The uploaded file exceeds the allowable limit of%sMB."
 
-msgid "The uploaded file is below the required minimum size of%sMB."
+msgid "The uploaded file is below the required minimum size of %s MB."
 msgstr "The uploaded file is below the required minimum size of%sMB."
 
-msgid "Review the entered values in the%stab. This message appeared because an error was detected."
+msgid "Review the entered values in the %s tab. This message appeared because an error was detected."
 msgstr "检查%s选项卡中输入的值。出现此消息是因为检测到错误。"
 
 msgid "Are you sure you want to duplicate the \"%s\" ?"
 msgstr "您确定要复制“%s”吗?"
 
-msgid "We are sorry, the booking time for the%soption has expired. Please choose from the other available options."
+msgid "We are sorry, the booking time for the %s option has expired. Please choose from the other available options."
 msgstr "很抱歉,%s选项的预订时间已过期。请从其他可用选项中进行选择。"
 
-msgid "We are sorry, the%soption is currently at full capacity. Please choose from the other available options."
+msgid "We are sorry, the %s option is currently at full capacity. Please choose from the other available options."
 msgstr "很抱歉,%s选项当前已满。请从其他可用选项中进行选择。"
 
-msgid "%sPayment Add-on"
+msgid "%s Payment Add-on"
 msgstr "%s付款插件"
 
-msgid "The%sadd-on for Flux Forms enables you to integrate your WordPress site with%sfor payment processing, donations, and online orders."
+msgid "The %s add-on for Flux Forms enables you to integrate your WordPress site with %s for payment processing, donations, and online orders."
 msgstr "Flux Forms 的%s插件使您能够将 WordPress 网站与%s集成,以进行付款处理、捐赠和在线订单。"
 
 msgid "Activation Code"
@@ -3907,7 +3907,7 @@ msgstr "所有功能均无限制,并且包含支持。"
 msgid "Search Results"
 msgstr "搜索结果"
 
-msgid "Found%s%sfor: \"%s\""
+msgid "Found %s %s for: \"%s\""
 msgstr "找到%s%s为:“%s”"
 
 msgid "results"
@@ -3916,7 +3916,7 @@ msgstr "结果"
 msgid "No results found for:"
 msgstr "未找到以下结果:"
 
-msgid "Found%1$s%2$sfor"
+msgid "Found %1$s %2$s for"
 msgstr "找到%1$s%2$s"
 
 msgid "Session Duration"
@@ -3925,22 +3925,22 @@ msgstr "会话持续时间"
 msgid "Set how long form security tokens remain valid. Longer durations provide better user experience but may reduce security."
 msgstr "设置表单安全令牌保持有效的时间。较长的持续时间可提供更好的用户体验,但可能会降低安全性。"
 
-msgid "%sDay"
+msgid "%s Day"
 msgstr "%s天"
 
-msgid "%sDays"
+msgid "%s Days"
 msgstr "%s天"
 
 msgid "Select Duration"
 msgstr "选择持续时间"
 
-msgid "Choose the style for the%s."
+msgid "Choose the style for the %s."
 msgstr "选择%s的样式。"
 
-msgid "%1$s+%2$s"
+msgid "%1$s + %2$s"
 msgstr "%1$s+%2$s"
 
-msgid "%1$s%2$s&%3$s"
+msgid "%1$s %2$s & %3$s"
 msgstr "%1$s%2$s和%3$s"
 
 msgid "Letters"
@@ -4057,7 +4057,7 @@ msgstr "一切都已保存"
 msgid "1 unsaved change"
 msgstr "1 个未保存的更改"
 
-msgid "%sunsaved changes"
+msgid "%s unsaved changes"
 msgstr "%s未保存的更改"
 
 msgid "Buttons, icons, field labels"
@@ -4459,7 +4459,7 @@ msgstr "了解有关缓存兼容性的更多信息"
 msgid "Dismiss All"
 msgstr "全部关闭"
 
-msgid "Dismiss%s"
+msgid "Dismiss %s"
 msgstr "关闭%s"
 
 msgid "Security Plugin Detected"
@@ -4519,13 +4519,13 @@ msgstr "您的电子邮件已到达,但很可能会落入垃圾邮件"
 msgid "Delivery itself works - the test message reached us. What is missing is trust: sending through an SMTP service and adding SPF and DKIM records for your domain is what moves your emails from the spam folder to the inbox."
 msgstr "交付本身有效 - 测试消息已到达我们。缺少的是信任:通过 SMTP 服务发送并为您的域添加 SPF 和 DKIM 记录,才能将您的电子邮件从垃圾邮件文件夹移至收件箱。"
 
-msgid "The test email was delivered with a deliverability score of%1$sout of 100. Under%2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
+msgid "The test email was delivered with a deliverability score of %1$s out of 100. Under %2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them."
 msgstr "测试电子邮件的送达率分数为%1$s(满分 100)。在%2$s下,大多数邮箱将邮件归档到垃圾邮件文件夹中,因此填写表单的人可能永远不会看到它们。"
 
 msgid "Step-by-step SMTP setup guide"
 msgstr "SMTP 设置分步指南"
 
-msgid "Your email server is working. A detailed HTML report has been sent to%s."
+msgid "Your email server is working. A detailed HTML report has been sent to %s."
 msgstr "您的电子邮件服务器正在运行。详细的 HTML 报告已发送至%s。"
 
 msgid "your admin email address"
@@ -4534,13 +4534,13 @@ msgstr "您的管理员电子邮件地址"
 msgid "Spam Score Report on the Way!"
 msgstr "垃圾邮件分数报告正在路上!"
 
-msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to%swithin the next few minutes."
+msgid "A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to %s within the next few minutes."
 msgstr "完整的电子邮件运行状况报告(包括您的垃圾邮件评分、送达率详细信息和建议)将在接下来的几分钟内发送到%s。"
 
 msgid "Email notifications may not be delivered"
 msgstr "可能无法发送电子邮件通知"
 
-msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is%s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
+msgid "This form's email notification feature is enabled, but email delivery has not been verified and the latest spam score is %s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed."
 msgstr "此表单的电子邮件通知功能已启用,但电子邮件发送尚未经过验证,最新垃圾邮件评分为%s/100。表单已保存,但在修复 SMTP/电子邮件传递之前,您可能无法收到管理员通知电子邮件。"
 
 msgid "Notification emails are turned off"
@@ -4594,10 +4594,10 @@ msgstr "正在准备一份包含完整诊断信息的详细 HTML 报告,并将�
 msgid "Needs attention"
 msgstr "需要注意"
 
-msgid "%sof 5 steps done"
+msgid "%s of 5 steps done"
 msgstr "%s已完成 5 个步骤"
 
-msgid "Step%sof 5"
+msgid "Step %s of 5"
 msgstr "第 5 步%s"
 
 msgid "/ 100"
@@ -4714,7 +4714,7 @@ msgstr "可能的原因"
 msgid "What to check next"
 msgstr "下一步要检查什么"
 
-msgid "Score:%s"
+msgid "Score: %s"
 msgstr "得分:%s"
 
 msgid "Upgrade"
@@ -4741,7 +4741,7 @@ msgstr "开始电子邮件发送测试..."
 msgid "WordPress accepted and sent the message. Waiting for it to arrive..."
 msgstr "WordPress 接受并发送了消息。等待它的到来..."
 
-msgid "Connection error. Please refresh the page and try again. (Code:%s)"
+msgid "Connection error. Please refresh the page and try again. (Code: %s)"
 msgstr "连接错误。请刷新页面并重试。 (代码:%s)"
 
 msgid "Email Address"
@@ -5080,10 +5080,10 @@ msgstr "该附加组件已安装。"
 msgid "File access status not checked yet. Please wait."
 msgstr "尚未检查文件访问状态。请稍候。"
 
-msgid "Error: server (%s) responded with an invalid request. responded code:%s"
+msgid "Error: server (%s) responded with an invalid request. responded code: %s"
 msgstr "错误:服务器 (%s) 响应无效请求。响应代码:%s"
 
-msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the%sserver"
+msgid "Cannot install add-ons of Flux Forms because the plugin is not able to connect to the %s server"
 msgstr "无法安装 Flux Forms 的附加组件,因为该插件无法连接到%s服务器"
 
 msgid "Your Easy Form Builder Pro subscription has expired, so the Pro add-ons could not be downloaded. The plugin keeps working without them. Renew your subscription to restore all Pro features:"
@@ -5104,7 +5104,7 @@ msgstr "无法安装 Flux Forms 的附加组件,因为该插件无法移动下�
 msgid "Cannot install add-ons of Flux Forms because the plugin is not able to unzip files"
 msgstr "无法安装 Flux Forms 的附加组件,因为该插件无法解压缩文件"
 
-msgid "To fix this, sign in to your%s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
+msgid "To fix this, sign in to your %s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin."
 msgstr "要解决此问题,请登录您的%s,从下载部分下载附加处理程序插件,然后安装并激活它。之后,从附加组件处理程序插件激活您需要的附加组件。"
 
 msgid "WhiteStudio dashboard"
@@ -5125,16 +5125,16 @@ msgstr "附加服务器未提供下载 URL。"
 msgid "The add-on download URL is not an approved Flux Forms source."
 msgstr "附加组件下载 URL 不是经过批准的 Flux Forms 源。"
 
-msgid "Your server could not reach%1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at%2$sand download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
+msgid "Your server could not reach %1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at %2$s and download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers."
 msgstr "您的服务器无法到达%1$s,因此无法下载该附加组件。这几乎总是您主机上的防火墙阻止了传出请求,而不是您的许可证问题。要安装附加组件而不需要任何下载,请登录%2$s并下载 Flux Forms 附加组件处理程序插件,然后像安装任何其他插件一样安装它。它包含您的许可证涵盖的所有附加组件。"
 
-msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from%sare being blocked."
+msgid "If you would rather fix the connection, ask your hosting provider why outgoing requests from %s are being blocked."
 msgstr "如果您想修复连接,请询问您的托管提供商为什么来自%s的传出请求被阻止。"
 
 msgid "Flux Forms: add-on downloads are being blocked"
 msgstr "Flux Forms:附加组件下载被阻止"
 
-msgid "Add-on affected:%s"
+msgid "Add-on affected: %s"
 msgstr "受影响的附加组件:%s"
 
 msgid "No response was recorded for this add-on."
@@ -5224,22 +5224,22 @@ msgstr "如果您遇到任何问题,请从缓存中排除发布表单的页面�
 msgid "Sent by"
 msgstr "发送者"
 
-msgid "Action needed: Flux Forms Pro is paused on%s"
+msgid "Action needed: Flux Forms Pro is paused on %s"
 msgstr "需要采取的措施:Flux Forms Pro 在%s上暂停"
 
-msgid "Flux Forms could not confirm your Pro licence for%1$sdays in a row, so the Pro features on%2$sare paused for now."
+msgid "Flux Forms could not confirm your Pro licence for %1$s days in a row, so the Pro features on %2$s are paused for now."
 msgstr "Flux Forms 连续%1$s天无法确认您的 Pro 许可证,因此%2$s上的 Pro 功能暂时暂停。"
 
 msgid "Your forms, entries and settings are untouched, every free feature keeps working, and your activation code is still stored — nothing was deleted."
 msgstr "您的表单、条目和设置不会受到影响,所有免费功能都将继续运行,并且您的激活码仍然会被存储 — 没有任何内容被删除。"
 
-msgid "Open%1$sYT Form → Settings%2$sand press%1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
+msgid "Open %1$sYT Form → Settings%2$s and press %1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute."
 msgstr "打开%1$sYT 表单 → 设置%2$s并按%1$s保存%2$s。立即再次检查许可证;如果连接恢复,Pro 将在一分钟内打开。"
 
-msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to%s— a firewall, proxy or regional block is the usual cause — then repeat step 1."
+msgid "Still paused? Ask your hosting provider to allow outgoing HTTPS connections to %s — a firewall, proxy or regional block is the usual cause — then repeat step 1."
 msgstr "还暂停吗?请您的托管提供商允许到%s的传出 HTTPS 连接(防火墙、代理或区域阻止是常见原因),然后重复步骤 1。"
 
-msgid "If your subscription has expired, or you moved this website to a new domain,%1$srenew or re-activate your licence%2$sand paste the new code into Settings."
+msgid "If your subscription has expired, or you moved this website to a new domain, %1$srenew or re-activate your licence%2$s and paste the new code into Settings."
 msgstr "If your subscription has expired, or you moved this website to a new domain,%1$srenew or re-activate your licence%2$sand paste the new code into Settings."
 
 msgid "First failed check"
@@ -5260,7 +5260,7 @@ msgstr "如何恢复 Pro"
 msgid "Check my licence now"
 msgstr "立即检查我的许可证"
 
-msgid "Still stuck? Send the details above to%1$sour support team%2$sand we will take it from there."
+msgid "Still stuck? Send the details above to %1$sour support team%2$s and we will take it from there."
 msgstr "还是卡住了?将上述详细信息发送给%1$s我们的支持团队%2$s,我们将从那里获取。"
 
 msgid "The licence server answered with an error and could not confirm your licence."
@@ -5278,7 +5278,7 @@ msgstr "无法完成许可证检查。"
 msgid "Your activation code has expired!"
 msgstr "您的激活码已过期!"
 
-msgid "Your Easy Form Builder Pro subscription has expired. To continue using the%sadd-on and all Pro features, please renew your subscription."
+msgid "Your Easy Form Builder Pro subscription has expired. To continue using the %s add-on and all Pro features, please renew your subscription."
 msgstr "您的 Easy Form Builder Pro 订阅已过期。要继续使用%s插件和所有 Pro 功能,请续订您的订阅。"
 
 msgid "Renew Subscription"
@@ -5287,10 +5287,10 @@ msgstr "续订订阅"
 msgid "Pro Version Required"
 msgstr "需要专业版"
 
-msgid "The%sadd-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
+msgid "The %s add-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality."
 msgstr "%s附加组件是 Pro 功能。请升级到 Flux Forms Pro 才能访问此功能。"
 
-msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running,%1$sRenew your subscription now.%2$s"
+msgid "Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running, %1$sRenew your subscription now.%2$s"
 msgstr "您的 Easy Form Builder Pro 订阅已过期。要继续享受所有 Pro 功能并保持您的表单正常运行,请立即续订%1$s。%2$s"
 
 msgid "The payment could not be verified yet."
@@ -5356,7 +5356,7 @@ msgstr "订阅"
 msgid "One-time"
 msgstr "一次"
 
-msgid "The latest%dpayments are shown."
+msgid "The latest %d payments are shown."
 msgstr "显示最新的%d付款。"
 
 msgid "Test provider (development only)"
@@ -5443,10 +5443,10 @@ msgstr "付款表格通过此提供商进行卡付款。仅列出已安装的提
 msgid "Saved — leave empty to keep"
 msgstr "已保存 — 留空以保留"
 
-msgid "%ssettings"
+msgid "%s settings"
 msgstr "%s设置"
 
-msgid "Flux Forms replaces%s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
+msgid "Flux Forms replaces %s, which has been deactivated. Your forms, entries and settings stay in place. You can delete the old plugin."
 msgstr "Flux Forms 取代了已停用的%s。您的表单、条目和设置保持不变。您可以删除旧插件。"
 
 msgid "Updating amount..."
@@ -5560,7 +5560,7 @@ msgstr "导出 CSV"
 msgid "Download the responses in the selected range and form as a spreadsheet file."
 msgstr "将所选范围内的响应下载为电子表格文件。"
 
-msgid "%sunread in total"
+msgid "%s unread in total"
 msgstr "%s未读总数"
 
 msgid "Form views"
@@ -5569,7 +5569,7 @@ msgstr "表单视图"
 msgid "No view data"
 msgstr "没有查看数据"
 
-msgid "Recorded since%s"
+msgid "Recorded since %s"
 msgstr "自%s开始记录"
 
 msgid "View data is kept for about 8 days"
@@ -5581,22 +5581,22 @@ msgstr "转化率"
 msgid "Responses per form view"
 msgstr "每个表单视图的响应"
 
-msgid "Responses per view since%s"
+msgid "Responses per view since %s"
 msgstr "自%s以来每个视图的响应 "
 
 msgid "Payments received"
 msgstr "已收到付款"
 
-msgid "%spaid"
+msgid "%s paid"
 msgstr "%s已付款"
 
-msgid "Also%s"
+msgid "Also %s"
 msgstr "还有%s"
 
 msgid "No payments in this range"
 msgstr "此范围内没有付款"
 
-msgid "vs previous%ddays"
+msgid "vs previous %d days"
 msgstr "与之前%d天相比"
 
 msgid "up"
@@ -5650,7 +5650,7 @@ msgstr "打开面板"
 msgid "Failed or canceled"
 msgstr "失败或取消"
 
-msgid "%spayments"
+msgid "%s payments"
 msgstr "%s付款"
 
 msgid "No responses in this range yet."
@@ -5677,7 +5677,7 @@ msgstr "显示为图表"
 msgid "Deleted form"
 msgstr "已删除的表单"
 
-msgid "%sother forms"
+msgid "%s other forms"
 msgstr "%s其他形式"
 
 msgid "Responses, form views, conversion and payments at a glance."
@@ -5716,12 +5716,8 @@ msgstr "Flux Donate 处理付款(提供程序、密钥、网络钩子):捐款 �
 msgid "Flux Donate is active but did not take over payments (filter flxb_own_payments is off?). Flux Forms uses its own Stripe settings."
 msgstr "Flux Donate 处于活动状态,但未接管付款(过滤器 flxb_own_ payment 已关闭?)。 Flux Forms 使用自己的 Stripe 设置。"
 
-msgid "Flux Donate is not active; Flux Forms takes payments itself with%s."
+msgid "Flux Donate is not active; Flux Forms takes payments itself with %s."
 msgstr "通量捐赠未激活; Flux Forms 使用%s自行付款。"
-
-msgid "Flux Donate is not active and the Stripe keys are missing:%dpayment form shows \"Online payment is unavailable\"."
-msgid_plural "Flux Donate is not active and the Stripe keys are missing:%dpayment forms show \"Online payment is unavailable\"."
-msgstr[0] "Flux Donate 未激活且 Stripe 密钥丢失:%d付款表格显示“在线付款不可用”。"
 
 msgid "Flux Donate is not active and no Stripe keys are set. No payment form exists, so nothing is affected."
 msgstr "Flux Donate 未激活,并且未设置 Stripe 键。不存在付款表单,因此不会受到任何影响。"
@@ -5735,15 +5731,11 @@ msgstr "未激活。表格工作;不会跟踪捐款,并且无法进行定期 iyz
 msgid "Flux Certificates (automations)"
 msgstr "Flux 证书(自动化)"
 
-msgid "Version%sis active; certificate automations can run."
+msgid "Version %s is active; certificate automations can run."
 msgstr "版本%s已激活;可以运行证书自动化。"
 
-msgid "Version%1$sis active; certificate automations need%2$sor later."
+msgid "Version %1$s is active; certificate automations need %2$s or later."
 msgstr "版本%1$s已激活;证书自动化需要%2$s或更高版本。"
-
-msgid "Not active, but%dactive automation creates or sends certificates; it will fail."
-msgid_plural "Not active, but%dactive automations create or send certificates; they will fail."
-msgstr[0] "不活动,但%d活动自动创建或发送证书;他们会失败。"
 
 msgid "Not active. Needed only for certificate automations."
 msgstr "未激活。仅证书自动化需要。"
@@ -5754,31 +5746,19 @@ msgstr "自动化"
 msgid "No automation is on. After a form or payment nothing runs automatically (certificate, e-mail, webhook)."
 msgstr "没有启用自动化。填写表格或付款后,不会自动运行任何内容(证书、电子邮件、Webhook)。"
 
-msgid "%dautomation is on."
-msgid_plural "%dautomations are on."
-msgstr[0] "%d自动化已开启。"
-
-msgid "%drun failed in the last 7 days; see the run log."
-msgid_plural "%druns failed in the last 7 days; see the run log."
-msgstr[0] "%d在过去 7 天内运行失败;查看运行日志。"
-
 msgid "Keys are set;%dform uses reCAPTCHA.%dforms use reCAPTCHA."
 msgstr "按键已设置;%d表单使用 reCAPTCHA。%d表单使用 reCAPTCHA。"
-
-msgid "%dform has reCAPTCHA on but the site key or secret key is missing; the form is not shown."
-msgid_plural "%dforms have reCAPTCHA on but the site key or secret key is missing; they are not shown."
-msgstr[0] "%d表单已启用 reCAPTCHA,但缺少站点密钥或秘密密钥;它们没有显示。"
 
 msgid "Uploads folder"
 msgstr "上传文件夹"
 
-msgid "The uploads folder is not available:%s"
+msgid "The uploads folder is not available: %s"
 msgstr "The uploads folder is not available:%s"
 
 msgid "Writable; files sent with forms can be saved."
 msgstr "可写;可以保存通过表单发送的文件。"
 
-msgid "Not writable:%s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
+msgid "Not writable: %s. File fields in forms cannot save uploads; ask the host to fix the folder permissions."
 msgstr "不可写:%s。表单中的文件字段无法保存上传;请主机修复文件夹权限。"
 
 msgid "Donation form with sapling packages, card payment and a certificate automation."
@@ -6024,7 +6004,7 @@ msgstr "在捐款表格上验证付款后:创建“Fidan Bağış Sertifikası�
 msgid "Create default flow"
 msgstr "创建默认流"
 
-msgid "Donation form:%s"
+msgid "Donation form: %s"
 msgstr "捐赠表格:%s"
 
 msgid "Create the “Sapling Donation” form"
@@ -6036,7 +6016,7 @@ msgstr "部分完成"
 msgid "No runs yet. Runs appear here after a matching submission."
 msgstr "还没有运行。匹配提交后,运行将显示在此处。"
 
-msgid "The latest%druns are kept."
+msgid "The latest %d runs are kept."
 msgstr "保留最新的%d运行。"
 
 msgid "Clear the run log?"
@@ -6066,7 +6046,7 @@ msgstr "正在准备您的证书..."
 msgid "No verified payment amount for this submission."
 msgstr "本次提交的付款金额未经过验证。"
 
-msgid "Certificate%1$sfor%2$s(%3$s)"
+msgid "Certificate %1$s for %2$s (%3$s)"
 msgstr "%2$s(%3$s) 的证书%1$s"
 
 msgid "No certificate was created in an earlier step."
@@ -6075,13 +6055,13 @@ msgstr "之前的步骤中未创建任何证书。"
 msgid "No channel selected."
 msgstr "未选择频道。"
 
-msgid "Queued:%s"
+msgid "Queued: %s"
 msgstr "排队:%s"
 
 msgid "No valid recipient address."
 msgstr "没有有效的收件人地址。"
 
-msgid "New submission:%s"
+msgid "New submission: %s"
 msgstr "新提交:%s"
 
 msgid "wp_mail() could not send the e-mail."
@@ -6162,7 +6142,7 @@ msgstr "发送测试消息"
 msgid "Quick Tips"
 msgstr "快速提示"
 
-msgid "Create a bot using%s"
+msgid "Create a bot using %s"
 msgstr "使用%s创建机器人"
 
 msgid "Add your bot to the target chat"
@@ -6174,7 +6154,7 @@ msgstr "使用测试功能验证设置"
 msgid "Monitor activity for troubleshooting"
 msgstr "监视活动以进行故障排除"
 
-msgid "Find your Chat ID using%s"
+msgid "Find your Chat ID using %s"
 msgstr "使用%s查找您的聊天 ID "
 
 msgid "Enter your test message here..."
@@ -6450,7 +6430,7 @@ msgstr "无法加载安全和垃圾邮件防护管理数据。另一个插件可
 msgid "The Security & Spam Protection panel failed to render. Reload the page or check the browser console."
 msgstr "安全和垃圾邮件防护面板无法呈现。重新加载页面或检查浏览器控制台。"
 
-msgid "Protection is paused: required PHP functions are disabled on this server:%s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
+msgid "Protection is paused: required PHP functions are disabled on this server: %s. Ask your host to remove them from the disable_functions line in php.ini. Your forms keep working without protection until then."
 msgstr "保护已暂停:此服务器上禁用了所需的 PHP 功能:%s。请您的主机从 php.ini 中的disable_functions 行中删除它们。在此之前,您的表单将在没有保护的情况下继续工作。"
 
 msgid "Protection is paused: the add-on database tables could not be created. Check that the database user can CREATE tables, then reload this page."
@@ -6813,10 +6793,10 @@ msgstr "如果需要的 PHP 功能被禁用,请在 php.ini disable_functions 中
 msgid "Security & Spam Protection tabs"
 msgstr "安全和垃圾邮件防护选项卡"
 
-msgid "Security log export is unavailable because this server has disabled a required PHP function:%s. Ask your hosting provider to enable it."
+msgid "Security log export is unavailable because this server has disabled a required PHP function: %s. Ask your hosting provider to enable it."
 msgstr "安全日志导出不可用,因为该服务器已禁用所需的 PHP 功能:%s。请您的托管提供商启用它。"
 
-msgid "Security log export is unavailable because this server has disabled required PHP functions:%s. Ask your hosting provider to enable them."
+msgid "Security log export is unavailable because this server has disabled required PHP functions: %s. Ask your hosting provider to enable them."
 msgstr "安全日志导出不可用,因为该服务器已禁用所需的 PHP 功能:%s。请您的托管提供商启用它们。"
 
 msgid "Auto-Populate Dataset"
@@ -7128,7 +7108,7 @@ msgstr "无效的表单结构"
 msgid "No matching data found"
 msgstr "未找到匹配的数据"
 
-msgid "API returned error:%d"
+msgid "API returned error: %d"
 msgstr "API 返回错误:%d"
 
 msgid "Failed to update form"
@@ -7263,10 +7243,10 @@ msgstr "未找到表单数据。请刷新页面。"
 msgid "Auto-filled via External API"
 msgstr "通过外部 API 自动填充"
 
-msgid "PayPal%s"
+msgid "PayPal %s"
 msgstr "PayPal%s"
 
-msgid "Stripe%s"
+msgid "Stripe %s"
 msgstr "条带%s"
 
 msgid "All Statuses"
@@ -7356,7 +7336,7 @@ msgstr "订阅已成功重新激活。"
 msgid "Payment Management Dashboard"
 msgstr "付款管理仪表板"
 
-msgid "Manage and track all%stransactions. View payment details, process refunds, and export records."
+msgid "Manage and track all %s transactions. View payment details, process refunds, and export records."
 msgstr "管理和跟踪所有%s事务。查看付款详细信息、处理退款和导出记录。"
 
 msgid "Secure"
@@ -7401,10 +7381,6 @@ msgstr "Google 表格设置"
 msgid "Active Bindings"
 msgstr "活动绑定"
 
-msgid "%dservice account connected"
-msgid_plural "%dservice accounts connected"
-msgstr[0] "%d服务帐户已连接"
-
 msgid "No service account connected yet"
 msgstr "尚未连接服务帐户"
 
@@ -7429,7 +7405,7 @@ msgstr "连接一个或多个 Google 服务帐户 - 无需登录浏览器"
 msgid "Your server is missing the PHP OpenSSL extension."
 msgstr "您的服务器缺少 PHP OpenSSL 扩展。"
 
-msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the%sPHP extension, then reload this page."
+msgid "Google Sheet sync cannot work until it is enabled. Please ask your host to enable the %s PHP extension, then reload this page."
 msgstr "Google 表格同步在启用之前无法工作。请要求您的主机启用%sPHP 扩展,然后重新加载此页面。"
 
 msgid "Copy this email"
@@ -7459,7 +7435,7 @@ msgstr "您的 Google 电子邮件"
 msgid "(recommended)"
 msgstr "(推荐)"
 
-msgid "Any sheet the plugin<strong>creates</strong>is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
+msgid "Any sheet the plugin <strong>creates</strong> is automatically shared to this address, so it appears in your own Google Drive under “Shared with me.” Without it, new sheets stay hidden inside the service account."
 msgstr "插件<strong>创建的任何工作表</strong>都会自动共享到此地址,因此它会显示在您自己的 Google 云端硬盘中的“与我共享”下。如果没有它,新工作表将隐藏在服务帐户内。"
 
 msgid "Enable Google Sheet Integration"
@@ -7495,13 +7471,13 @@ msgstr "打开服务帐户 → 密钥选项卡 → 添加密钥 → 创建新密
 msgid "Drag that downloaded file into the box on the left — it is tested automatically"
 msgstr "将下载的文件拖到左侧的框中 - 它会自动进行测试"
 
-msgid "Add<strong>Your Google email</strong>above so created sheets land in your Drive"
+msgid "Add <strong>Your Google email</strong> above so created sheets land in your Drive"
 msgstr "在上面添加<strong>您的 Google 电子邮件</strong>,这样创建的工作表就会进入您的云端硬盘"
 
 msgid "Please choose a valid .json key file."
 msgstr "请选择有效的 .json 密钥文件。"
 
-msgid "Could not read file:%s"
+msgid "Could not read file: %s"
 msgstr "无法读取文件:%s"
 
 msgid "Connecting service account..."
@@ -7510,7 +7486,7 @@ msgstr "正在连接服务帐户..."
 msgid "Service account added."
 msgstr "已添加服务帐户。"
 
-msgid "Saved. New sheets created by the plugin will be shared to%sautomatically."
+msgid "Saved. New sheets created by the plugin will be shared to %s automatically."
 msgstr "已保存。该插件创建的新工作表将自动共享到%s。"
 
 msgid "Email cleared. New sheets will stay inside the service account until you share them."
@@ -7582,13 +7558,13 @@ msgstr "服务帐户"
 msgid "Loading your spreadsheets..."
 msgstr "正在加载电子表格..."
 
-msgid "Click<strong>“Browse My Sheets”</strong>to list spreadsheets this service account can already access, or<strong>“Create New Sheet”</strong>to make a fresh one."
+msgid "Click <strong>“Browse My Sheets”</strong> to list spreadsheets this service account can already access, or <strong>“Create New Sheet”</strong> to make a fresh one."
 msgstr "单击<strong>“浏览我的工作表”</strong>列出此服务帐户已可以访问的电子表格,或单击<strong>“创建新工作表”</strong>新建一个电子表格。"
 
-msgid "<strong>No spreadsheets are accessible to this service account yet.</strong>You have two options:"
+msgid "<strong>No spreadsheets are accessible to this service account yet.</strong> You have two options:"
 msgstr "<strong>此服务帐户尚无法访问任何电子表格。</strong>您有两个选择:"
 
-msgid "<strong>Easiest:</strong>click<em>“Create New Sheet”</em>above — it is made for you and shared to your email automatically."
+msgid "<strong>Easiest:</strong> click <em>“Create New Sheet”</em> above — it is made for you and shared to your email automatically."
 msgstr "<strong>最简单:</strong>单击上面的<em>“创建新工作表”</em>— 它是为您制作的并自动共享到您的电子邮件。"
 
 msgid "<strong>Use an existing sheet:</strong>open it in Google Sheets → Share → paste"
@@ -7669,7 +7645,7 @@ msgstr "禁用暂停而不删除绑定"
 msgid "Reading this form’s fields..."
 msgstr "正在读取此表单的字段..."
 
-msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry —<strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
+msgid "We couldn’t read this form’s fields automatically, so column mapping isn’t available. Don’t worry — <strong>every submitted field will still be synced automatically</strong>, each in its own column, in submission order. The header row is created and kept up to date for you."
 msgstr "我们无法自动读取此表单的字段,因此列映射不可用。别担心 -<strong>每个提交的字段仍会自动同步</strong>,每个字段都按提交顺序在自己的列中。标题行已创建并为您保持最新。"
 
 msgid "Drag rows (or use ▲▼) to set the<strong>column order</strong>. Rename any<strong>header</strong>. Turn a field off to skip its column. The letter (A, B, C...) shows where each field lands."
@@ -7702,10 +7678,6 @@ msgstr "列标题"
 msgid "Include this field"
 msgstr "包含此字段"
 
-msgid "%dcolumn will be written to the sheet."
-msgid_plural "%dcolumns will be written to the sheet."
-msgstr[0] "%d列将写入工作表。"
-
 msgid "Sheet Style"
 msgstr "工作表样式"
 
@@ -7733,7 +7705,7 @@ msgstr "制表符:"
 msgid "Columns:"
 msgstr "列:"
 
-msgid "%dmapped"
+msgid "%d mapped"
 msgstr "%d已映射"
 
 msgid "all submitted fields (auto)"
@@ -7771,10 +7743,6 @@ msgstr "删除此绑定?此表单的同步停止。您的 Google 表格及其数
 
 msgid "Sync removed — your Google Sheet and its data are untouched."
 msgstr "同步已删除 - 您的 Google 表格及其数据未受影响。"
-
-msgid "Remove ALL%dbinding? Syncing stops for every form. Your Google Sheets are not deleted."
-msgid_plural "Remove ALL%dbindings? Syncing stops for every form. Your Google Sheets are not deleted."
-msgstr[0] "删除所有%d绑定?每个表单的同步都会停止。您的 Google 表格未删除。"
 
 msgid "All bindings removed. Your Google Sheets are untouched."
 msgstr "所有绑定均已删除。您的 Google 表格未受影响。"
@@ -7941,22 +7909,22 @@ msgstr "日落"
 msgid "Grape"
 msgstr "葡萄"
 
-msgid "%sis currently unavailable."
+msgid "%s is currently unavailable."
 msgstr "%s当前不可用。"
 
-msgid "disabled in php.ini:%s"
+msgid "disabled in php.ini: %s"
 msgstr "在 php.ini 中禁用:%s"
 
-msgid "not provided by PHP or its required extension:%s"
+msgid "not provided by PHP or its required extension: %s"
 msgstr "PHP 或其所需扩展未提供:%s"
 
-msgid "%1$scannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini."
+msgid "%1$s cannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini."
 msgstr "%1$s无法运行,因为所需的 PHP 函数不可用 (%2$s)。请您的托管提供商启用所需的 PHP 扩展或从 php.ini 中的 disabled_functions 中删除列出的函数。"
 
 msgid "This add-on is not included in Flux Forms."
 msgstr "此附加组件不包含在 Flux Forms 中。"
 
-msgid "Error: server (%s) responded with an invalid request. responded code :%s"
+msgid "Error: server (%s) responded with an invalid request. responded code : %s "
 msgstr "错误:服务器 (%s) 响应无效请求。响应代码:%s"
 
 msgid "Your Easy Form Builder Pro subscription has expired, so this add-on cannot be downloaded."
@@ -8064,7 +8032,7 @@ msgstr "您的电子邮件将被发送至垃圾邮件"
 msgid "WordPress sent the test email, but delivery has not been confirmed yet."
 msgstr "WordPress 发送了测试电子邮件,但尚未确认送达。"
 
-msgid "Email delivery failed:%s"
+msgid "Email delivery failed: %s"
 msgstr "电子邮件传送失败:%s"
 
 msgid "No file was received. Please choose a file and try again."
@@ -8079,7 +8047,7 @@ msgstr "启用电子邮件通知功能"
 msgid "To receive email notifications from your forms, verify your email server by following these steps:"
 msgstr "要从您的表单接收电子邮件通知,请按照以下步骤验证您的电子邮件服务器:"
 
-msgid "Go to the<a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
+msgid "Go to the <a href=\"%s\" style=\"font-weight:600;\">Flux Forms Panel</a>"
 msgstr "转至<a href=\"%s\" style=\"font-weight:600;\">Flux Forms 面板</a>"
 
 msgid "Click Settings from the top menu"
@@ -8097,10 +8065,10 @@ msgstr "如果分数高于 70 — 启用“此站点可以发送电子邮件”�
 msgid "Otherwise, follow the instructions shown in the test results"
 msgstr "否则,请按照测试结果中显示的说明进行操作"
 
-msgid "%snotification"
+msgid "%s notification"
 msgstr "%s通知"
 
-msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the%sfeature, please ensure it is enabled."
+msgid "Disabling this feature may affect the proper functionality of Flux Forms. If you plan to use the %s feature, please ensure it is enabled."
 msgstr "禁用此功能可能会影响 Flux Forms 的正常功能。如果您打算使用%s功能,请确保启用它。"
 
 msgid "Email system is working properly."
@@ -8223,7 +8191,7 @@ msgstr "插件安装问题"
 msgid "Technical Details"
 msgstr "技术细节"
 
-msgid "Checked%s"
+msgid "Checked %s"
 msgstr "已检查%s"
 
 msgid "System Ready"
@@ -8262,13 +8230,13 @@ msgstr "If you are seeing this message, it is likely for one of these reasons: I
 msgid "Please also ensure that you have a stable internet connection and try again."
 msgstr "另请确保您有稳定的互联网连接,然后重试。"
 
-msgid "Built with%sYT Form%sby%sWordPress form plugin by whitestudio.team%s"
+msgid "Built with %sYT Form%s by %sWordPress form plugin by whitestudio.team%s"
 msgstr "使用%sYT 表单%s(作者:%s) WordPress 表单插件(作者:whitestudio.team)构建%s"
 
 msgid "Free WordPress form plugin"
 msgstr "免费 WordPress 表单插件"
 
-msgid "Powered by%1$sYT Form%2$s.%3$sbest Form plugin for Wordpress%4$s."
+msgid "Powered by %1$sYT Form%2$s. %3$sbest Form plugin for Wordpress%4$s."
 msgstr "由%1$sYT 表格%2$s提供支持。%3$s适用于 Wordpress 的最佳表单插件%4$s。"
 
 msgid "Flux Forms WordPress Plugin"
@@ -8745,7 +8713,7 @@ msgstr "选择要显示的表单"
 msgid "Please select a form from element settings"
 msgstr "请从元素设置中选择一个表单"
 
-msgid "Form:%s(ID:%s)"
+msgid "Form: %s (ID: %s)"
 msgstr "表格:%s(ID:%s)"
 
 msgid "📍 Confirmation Code Finder (Tracking)"
@@ -8769,7 +8737,7 @@ msgstr "短代码:"
 msgid "Run the email check"
 msgstr "运行电子邮件检查"
 
-msgid "The last delivery check scored%sout of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
+msgid "The last delivery check scored %s out of 100. Your messages do leave the site, but most mailboxes will file them as spam, so the people filling in your forms will not see them. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
 msgstr "最后一次投递检查的得分为%s(满分 100)。您的邮件确实离开了该网站,但大多数邮箱会将它们归档为垃圾邮件,因此填写您表单的人不会看到它们。通过 SMTP 服务发送并为您的域添加 SPF 和 DKIM 记录即可解决此问题。"
 
 msgid "The last delivery check found that your messages do leave the site, but mailboxes file them as spam. Sending through an SMTP service, and adding SPF and DKIM records for your domain, is what fixes this."
@@ -8820,13 +8788,13 @@ msgstr "WordPress 无法发送自动测试电子邮件。该消息从未离开�
 msgid "The email delivery test timed out before confirmation was received."
 msgstr "在收到确认之前,电子邮件传送测试超时。"
 
-msgid "Weekly Flux Forms report for%s"
+msgid "Weekly Flux Forms report for %s"
 msgstr "%s的每周通量表格报告 "
 
-msgid "Here is your weekly snapshot for%s."
+msgid "Here is your weekly snapshot for %s."
 msgstr "这是%s的每周快照。"
 
-msgid "Report generated%s"
+msgid "Report generated %s"
 msgstr "生成的报告%s"
 
 msgid "Detailed analysis"
@@ -8838,7 +8806,7 @@ msgstr "电子邮件发送失败"
 msgid "You can turn these reports off in Flux Forms settings."
 msgstr "您可以在 Flux Forms 设置中关闭这些报告。"
 
-msgid "The test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
+msgid "The test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s), so the emails your forms send are very likely to be rejected or filtered as spam."
 msgstr "测试电子邮件已送达,但其送达率分数仅为%1$s(满分 100)(低于%2$s),因此您的表单发送的电子邮件很可能被拒绝或被过滤为垃圾邮件。"
 
 msgid "Run the email check so you can be sure the messages your forms send are actually reaching people. The check sends a real message through the new WhiteStudio delivery service and reports back what arrived."
@@ -8871,7 +8839,7 @@ msgstr "您的电子邮件可能会成为垃圾邮件"
 msgid "Your emails are not reaching anybody"
 msgstr "您的电子邮件没有到达任何人"
 
-msgid "grade%s"
+msgid "grade %s"
 msgstr "给%s评分 "
 
 msgid "What you should do"
@@ -8886,10 +8854,10 @@ msgstr "安装 SMTP 插件并输入电子邮件服务的详细信息。"
 msgid "Add the SPF and DKIM records to your domain settings."
 msgstr "将 SPF 和 DKIM 记录添加到你的域设置中。"
 
-msgid "Run the email check again until the score is above%s."
+msgid "Run the email check again until the score is above %s."
 msgstr "再次运行电子邮件检查,直到分数高于%s。"
 
-msgid "You have%1$sforms:%2$sactive and%3$sinactive."
+msgid "You have %1$s forms: %2$s active and %3$s inactive."
 msgstr "您有%1$s表单:%2$s处于活动状态,%3$s处于非活动状态。"
 
 msgid "Renew Flux Forms Pro"
@@ -8913,11 +8881,7 @@ msgstr "电子邮件传送正常"
 msgid "The automated Flux Forms email delivery test completed successfully."
 msgstr "自动 Flux Forms 电子邮件传送测试已成功完成。"
 
-msgid "You can attach up to%1$dfile here. Please wait about%2$dminutes before trying again."
-msgid_plural "You can attach up to%1$dfiles here. Please wait about%2$dminutes before trying again."
-msgstr[0] "您最多可以在此处附加%1$d文件。请等待大约%2$d分钟后再重试。"
-
-msgid "This file is too large. The maximum size for this field is%s."
+msgid "This file is too large. The maximum size for this field is %s."
 msgstr "此文件太大。该字段的最大大小为%s。"
 
 msgid "This file type is not accepted here. Please attach one of the file types listed on the field."
@@ -9055,7 +9019,7 @@ msgstr "密码已成功更改!"
 msgid "Invalid payment selection. Please review your choices and try again. If the problem persists, contact the site administrator."
 msgstr "付款选择无效。请检查您的选择并重试。如果问题仍然存在,请联系站点管理员。"
 
-msgid "If your emails are not being delivered, try using an SMTP plugin. For more information,%1$sclick here%2$sor contact our%3$ssupport team%4$s."
+msgid "If your emails are not being delivered, try using an SMTP plugin. For more information, %1$s click here %2$s or contact our %3$s support team %4$s."
 msgstr "如果您的电子邮件未送达,请尝试使用 SMTP 插件。有关详细信息,%1$s单击此处%2$s或联系我们的%3$s支持团队%4$s。"
 
 msgid "View Messages"
@@ -9076,7 +9040,7 @@ msgstr "我们收到了您的消息"
 msgid "This email was sent automatically. Please do not reply."
 msgstr "这封电子邮件是自动发送的。请不要回复。"
 
-msgid "Built with%1$sYT Form%2$sby%3$sWhiteStudio.team%4$s"
+msgid "Built with %1$sYT Form%2$s by %3$sWhiteStudio.team%4$s"
 msgstr "由%3$sWhiteStudio.team%4$s使用%1$sYT 表单%2$s构建"
 
 msgid "Weekly Flux Forms report"
@@ -9164,8 +9128,8 @@ msgstr "不支持这种形式的货币。"
 msgid "The Stripe secret key is not configured."
 msgstr "未配置 Stripe 密钥。"
 
-msgid "Could not connect to Stripe:%s"
+msgid "Could not connect to Stripe: %s"
 msgstr "无法连接到 Stripe:%s"
 
-msgid "Stripe API error (HTTP%d)."
+msgid "Stripe API error (HTTP %d)."
 msgstr "Stripe API 错误 (HTTP%d)。"

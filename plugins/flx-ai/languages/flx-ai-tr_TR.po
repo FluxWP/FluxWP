@@ -1487,13 +1487,13 @@ msgstr[1] "%d araç kayıtlı."
 
 msgid "%s tool updated."
 msgid_plural "%s tools updated."
-msgstr[0] "%saracı güncellendi."
-msgstr[1] "%saraçları güncellendi."
+msgstr[0] "%s aracı güncellendi."
+msgstr[1] "%s araçları güncellendi."
 
 msgid "%s plugin"
 msgid_plural "%s plugins"
-msgstr[0] "%seklentisi"
-msgstr[1] "%seklentileri"
+msgstr[0] "%s eklentisi"
+msgstr[1] "%s eklentileri"
 
 msgid "%stool updated."
 msgid_plural "%stool updated."
@@ -1508,7 +1508,7 @@ msgstr[1] "%s eklenti"
 msgid "%dvehicle is registered.%dvehicle is registered."
 msgstr " %d araç kayıtlı. %d araç kayıtlı."
 
-msgid "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s"
+msgid "Spent: %1$s/ Limit: %2$s\nRegeneration: %3$s\n\nDetail: %4$s"
 msgstr "Harcanan: %1$s / Sınır: %2$s\nYenilenme: %3$s\n\nAyrıntı: %4$s"
 
 msgid "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users."
@@ -1518,69 +1518,6 @@ msgid "%dvehicle is registered.%dvehicle is registered."
 msgid_plural "%dvehicle is registered.%dvehicle is registered."
 msgstr[0] "%dvehicle is registered.%dvehicle is registered."
 msgstr[1] "%dvehicle is registered.%dvehicle is registered."
-
-msgid "2. Connections and keys"
-msgstr "2. Bağlantılar ve anahtarlar"
-
-msgid "OAuth"
-msgstr "OAuth"
-
-msgid "Sign in with OAuth: assistants connect with only the URL; the user signs in to WordPress and approves each connection"
-msgstr "OAuth ile giriş: asistanlar yalnız adresle bağlanır; kullanıcı WordPress'e giriş yapar ve her bağlantıyı onaylar"
-
-msgid "The same server also answers at:"
-msgstr "Aynı sunucu şu adreste de çalışır:"
-
-msgid "With a key instead (clients without OAuth, devices, scripts):"
-msgstr "Anahtarla bağlanmak için (OAuth desteklemeyen istemciler, cihazlar, betikler):"
-
-msgid "add a custom connector / MCP server with only this URL. You will sign in to WordPress and approve; no key needed:"
-msgstr "özel bağlayıcı / MCP sunucusu olarak yalnız bu adresi ekleyin. WordPress'e giriş yapıp onaylarsınız, anahtar gerekmez:"
-
-msgid "%1$s wants to connect to %2$s"
-msgstr "%1$s, %2$s sitesine bağlanmak istiyor"
-
-msgid "After approval you return to %s."
-msgstr "Onaydan sonra %s adresine dönersiniz."
-
-msgid "Allow"
-msgstr "İzin ver"
-
-msgid "Back to site"
-msgstr "Siteye dön"
-
-msgid "Change"
-msgstr "Değiştir"
-
-msgid "Connect assistant"
-msgstr "Asistan bağla"
-
-msgid "Connecting assistants with sign-in is turned off on this site."
-msgstr "Bu sitede girişle asistan bağlama kapalı."
-
-msgid "Deny"
-msgstr "Reddet"
-
-msgid "New content is created as a draft; deleting only moves to trash."
-msgstr "Yeni içerik taslak olarak açılır, silme yalnız çöpe taşır."
-
-msgid "OAuth sign-in for MCP is off."
-msgstr "MCP için OAuth girişi kapalı."
-
-msgid "The assistant uses the site's MCP tools with your permissions."
-msgstr "Asistan sitenin MCP araçlarını sizin yetkilerinizle kullanır."
-
-msgid "The page expired. Start connecting again from the assistant."
-msgstr "Sayfanın süresi doldu. Bağlanmayı asistandan yeniden başlatın."
-
-msgid "This return address is not registered for the application."
-msgstr "Bu dönüş adresi uygulama için kayıtlı değil."
-
-msgid "Unknown application. Remove the connector and add it again."
-msgstr "Bilinmeyen uygulama. Bağlayıcıyı kaldırıp yeniden ekleyin."
-
-msgid "You can end the connection any time under Flux AI & MCP › MCP."
-msgstr "Bağlantıyı istediğiniz zaman Flux AI & MCP › MCP'den kapatabilirsiniz."
 
 msgid "AI & MCP"
 msgstr "Yapay zekâ ve MCP"
@@ -1611,4 +1548,3 @@ msgstr "Kim bağlanabilir: flxai_mcp yetkisi olan kullanıcılar. Yazı düzenle
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr "Hesabınız bir asistan bağlayamaz (MCP yetkisi gerekli)."
-

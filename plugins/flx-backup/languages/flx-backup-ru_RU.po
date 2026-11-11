@@ -89,7 +89,7 @@ msgid "Dismiss this notice."
 msgstr "Отклоните это уведомление."
 
 msgid "Uploading %1$s…"
-msgstr "Загрузка%1$s..."
+msgstr "Загрузка %1$s..."
 
 msgid "%1$s / %2$s"
 msgstr "%1$s/%2$s"
@@ -104,10 +104,10 @@ msgid "Upload cancelled."
 msgstr "Загрузка отменена."
 
 msgid "Upload failed: %s"
-msgstr "Не удалось загрузить:%s."
+msgstr "Не удалось загрузить: %s."
 
 msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
-msgstr "Эта резервная копия была сделана на другом сайте:%s. Если вы восстановите базу данных, контент будет взят с этого сайта; Адрес этого сайта (siteurl/home) сохраняется, но ссылки на старый адрес внутри контента не изменяются автоматически."
+msgstr "Эта резервная копия была сделана на другом сайте: %s. Если вы восстановите базу данных, контент будет взят с этого сайта; Адрес этого сайта (siteurl/home) сохраняется, но ссылки на старый адрес внутри контента не изменяются автоматически."
 
 msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
 msgstr "Префикс таблицы в резервной копии (%1$s) отличается от префикса этого сайта (%2$s); базу данных невозможно восстановить на этот сайт, можно выбрать только файлы."
@@ -131,7 +131,7 @@ msgid "ZipArchive (PHP zip extension) is not available on the server."
 msgstr "ZipArchive (расширение PHP zip) недоступно на сервере."
 
 msgid "The backup folder is not writable: %s"
-msgstr "Папка резервной копии недоступна для записи:%s."
+msgstr "Папка резервной копии недоступна для записи: %s."
 
 msgid "Backup type"
 msgstr "Тип резервной копии"
@@ -188,16 +188,16 @@ msgid "Storage"
 msgstr "Хранение"
 
 msgid "%s%% of the quota is used"
-msgstr "%sИспользовано %% квоты"
+msgstr "%s Использовано %% квоты"
 
 msgid "%1$s%% used · %2$s free"
-msgstr "%1$s%% использовано ·%2$sбесплатно"
+msgstr "%1$s%% использовано ·%2$s бесплатно"
 
 msgid "Last successful backup"
 msgstr "Последнее успешное резервное копирование"
 
 msgid "%s ago"
-msgstr "%sназад"
+msgstr "%s назад"
 
 msgid "No backups yet."
 msgstr "Резервных копий пока нет."
@@ -233,7 +233,7 @@ msgid "Time range"
 msgstr "Временной диапазон"
 
 msgid "%s days"
-msgstr "%sдней"
+msgstr "%s дней"
 
 msgid "Quota"
 msgstr "Квота"
@@ -281,7 +281,7 @@ msgid "Delete selected"
 msgstr "Удалить выбранное"
 
 msgid "Total %s"
-msgstr "Всего%s"
+msgstr "Всего %s"
 
 msgid "Select all"
 msgstr "Выбрать все"
@@ -311,7 +311,7 @@ msgid "No backups."
 msgstr "Никаких резервных копий."
 
 msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
-msgstr "Резервные копии хранятся в%s. Hostinger не включает эту папку в свои резервные копии: загрузите важные резервные копии на свой компьютер."
+msgstr "Резервные копии хранятся в %s. Hostinger не включает эту папку в свои резервные копии: загрузите важные резервные копии на свой компьютер."
 
 msgid "Database"
 msgstr "База данных"
@@ -347,10 +347,10 @@ msgid "Locked"
 msgstr "Заблокировано"
 
 msgid "Until %s"
-msgstr "До%s"
+msgstr "До %s"
 
 msgid "Last %s scheduled"
-msgstr "Последний запланированный%s"
+msgstr "Последний запланированный %s"
 
 msgid "Until the quota is full"
 msgstr "Пока квота не исчерпается"
@@ -377,7 +377,7 @@ msgid "Files"
 msgstr "Файлы"
 
 msgid "%1$s tables, %2$s rows"
-msgstr "Таблицы%1$s, строки%2$s"
+msgstr "Таблицы %1$s, строки %2$s"
 
 msgid "Included"
 msgstr "Включено"
@@ -479,7 +479,7 @@ msgid "The total size of backups never exceeds this: before a new backup, the ol
 msgstr "Общий размер резервных копий никогда не превышает это значение: перед созданием новой резервной копии самые старые разблокированные резервные копии удаляются. Заблокированные резервные копии никогда не удаляются автоматически; если освободить место невозможно, резервная копия не создается."
 
 msgid "Currently using %1$s. Folder: %2$s"
-msgstr "В настоящее время используется%1$s. Папка:%2$s"
+msgstr "В настоящее время используется %1$s. Папка: %2$s"
 
 msgid "Pre-update backup"
 msgstr "Резервная копия перед обновлением"
@@ -593,7 +593,7 @@ msgid "Invalid path."
 msgstr "Неверный путь."
 
 msgid "Path not found: %s"
-msgstr "Путь не найден:%s"
+msgstr "Путь не найден: %s"
 
 msgid "Could not write a temporary file."
 msgstr "Не удалось записать временный файл."
@@ -602,10 +602,10 @@ msgid "Could not read the file list."
 msgstr "Не удалось прочитать список файлов."
 
 msgid "Could not open the zip file (code %s)."
-msgstr "Не удалось открыть zip-файл (код%s)."
+msgstr "Не удалось открыть zip-файл (код %s)."
 
 msgid "Could not write the zip: %s"
-msgstr "Не удалось записать почтовый индекс:%s."
+msgstr "Не удалось записать почтовый индекс: %s."
 
 msgid "The backup record was deleted."
 msgstr "Резервная запись была удалена."
@@ -620,25 +620,25 @@ msgid "Could not write the zip (the disk may be full)."
 msgstr "Не удалось записать zip (возможно, диск переполнен)."
 
 msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
-msgstr "Резервное копирование было отключено%sраз в один и тот же момент (ограничение по времени сервера). Попробуйте использовать меньше папок или добавьте в исключения большие папки."
+msgstr "Резервное копирование было отключено %s раз в один и тот же момент (ограничение по времени сервера). Попробуйте использовать меньше папок или добавьте в исключения большие папки."
 
 msgid "Backup taken: %1$s (%2$s)"
-msgstr "Резервная копия сделана:%1$s(%2$s)"
+msgstr "Резервная копия сделана: %1$s(%2$s)"
 
 msgid "Backup failed (%1$s): %2$s"
-msgstr "Не удалось выполнить резервное копирование (%1$s):%2$s."
+msgstr "Не удалось выполнить резервное копирование (%1$s): %2$s."
 
 msgid "Scanning files… %s files"
-msgstr "Сканирование файлов... Файлы%s"
+msgstr "Сканирование файлов... Файлы %s"
 
 msgid "Checking quota…"
 msgstr "Проверка квоты..."
 
 msgid "Backing up database: %1$s (%2$s rows)"
-msgstr "Резервное копирование базы данных:%1$s(строки%2$s)"
+msgstr "Резервное копирование базы данных: %1$s(строки %2$s)"
 
 msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
-msgstr "Архивирование файлов: файлы%1$s/%2$s(%3$s/%4$s)"
+msgstr "Архивирование файлов: файлы %1$s/%2$s(%3$s/%4$s)"
 
 msgid "Finishing…"
 msgstr "Завершение..."
@@ -656,10 +656,10 @@ msgid "Backup folder writable"
 msgstr "Папка резервной копии доступна для записи"
 
 msgid "Backups are written to %s."
-msgstr "Резервные копии записываются в%s."
+msgstr "Резервные копии записываются в %s."
 
 msgid "The %s folder cannot be created or written. Check the file permissions (755)."
-msgstr "Папку%sневозможно создать или записать. Проверьте права доступа к файлу (755)."
+msgstr "Папку %s невозможно создать или записать. Проверьте права доступа к файлу (755)."
 
 msgid "ZipArchive and zlib"
 msgstr "ZipArchive и zlib"
@@ -674,7 +674,7 @@ msgid "Backup quota"
 msgstr "Квота резервного копирования"
 
 msgid "%1$s / %2$s used (%3$s%%)."
-msgstr "%1$s/%2$sиспользовано (%3$s%%)."
+msgstr "%1$s/%2$s использовано (%3$s%%)."
 
 msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
 msgstr "Самые старые разблокированные резервные копии будут удалены, чтобы освободить место для новых; увеличьте квоту или просмотрите заблокированные резервные копии."
@@ -683,7 +683,7 @@ msgid "There are no backups yet. Take the first one from the dashboard with \"Ba
 msgstr "Резервных копий пока нет. Возьмите первый с панели управления с помощью «Резервное копирование сейчас»."
 
 msgid "%1$s (%2$s): %3$s"
-msgstr "%1$s(%2$s):%3$s"
+msgstr "%1$s(%2$s): %3$s"
 
 msgid "for all plugin and theme updates"
 msgstr "для всех обновлений плагинов и тем"
@@ -695,10 +695,10 @@ msgid "Off: no backup is taken before updates."
 msgstr "Выкл.: резервное копирование перед обновлением не создается."
 
 msgid "On, %1$s. Backups are kept for %2$s days."
-msgstr "Включено,%1$s. Резервные копии хранятся%2$sдн."
+msgstr "Включено, %1$s. Резервные копии хранятся %2$s дн."
 
 msgid "The daily cleanup task ran %s."
-msgstr "Задача ежедневной очистки выполнялась%s."
+msgstr "Задача ежедневной очистки выполнялась %s."
 
 msgid "The daily task is scheduled but has not run yet."
 msgstr "Ежедневная задача запланирована, но еще не запущена."
@@ -713,7 +713,7 @@ msgid "Flux Backup scheduled tasks"
 msgstr "Запланированные задачи Flux Backup"
 
 msgid "Could not start the scheduled backup: %s"
-msgstr "Не удалось запустить запланированное резервное копирование:%s."
+msgstr "Не удалось запустить запланированное резервное копирование: %s."
 
 msgid "Left unfinished (timed out)."
 msgstr "Осталось незавершенным (время истекло)."
@@ -722,10 +722,10 @@ msgid "Could not write the SQL file."
 msgstr "Не удалось записать файл SQL."
 
 msgid "Could not read table %1$s: %2$s"
-msgstr "Не удалось прочитать таблицу%1$s:%2$s."
+msgstr "Не удалось прочитать таблицу %1$s: %2$s."
 
 msgid "Could not get the structure of table %1$s: %2$s"
-msgstr "Не удалось получить структуру таблицы%1$s:%2$s."
+msgstr "Не удалось получить структуру таблицы %1$s: %2$s."
 
 msgid "Could not open the SQL file."
 msgstr "Не удалось открыть файл SQL."
@@ -734,10 +734,10 @@ msgid "Flux Backup: click for details"
 msgstr "Резервное копирование Flux: нажмите, чтобы узнать подробности"
 
 msgid "Restoring %s"
-msgstr "Восстановление%s"
+msgstr "Восстановление %s"
 
 msgid "Backing up %s"
-msgstr "Резервное копирование%s"
+msgstr "Резервное копирование %s"
 
 msgid "Restore complete"
 msgstr "Восстановление завершено"
@@ -761,10 +761,10 @@ msgid "Cancelling…"
 msgstr "Отмена..."
 
 msgid "Elapsed: %s"
-msgstr "Прошло:%s"
+msgstr "Прошло: %s"
 
 msgid "Remaining: about %s"
-msgstr "Осталось: около%s"
+msgstr "Осталось: около %s"
 
 msgid "Backup"
 msgstr "Резервное копирование"
@@ -776,16 +776,16 @@ msgid "Do not change the site while the restore is running."
 msgstr "Не меняйте сайт во время восстановления."
 
 msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
-msgstr "Не удалось выполнить резервное копирование перед обновлением%1$s; обновление продолжилось без резервной копии:%2$s"
+msgstr "Не удалось выполнить резервное копирование перед обновлением %1$s; обновление продолжилось без резервной копии: %2$s"
 
 msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
-msgstr "Не удалось добавить папку%1$sв резервную копию перед обновлением:%2$s."
+msgstr "Не удалось добавить папку %1$s в резервную копию перед обновлением: %2$s."
 
 msgid "The backup file is missing from disk."
 msgstr "Файл резервной копии отсутствует на диске."
 
 msgid "This path is not in the backup: %s"
-msgstr "Этого пути нет в резервной копии:%s."
+msgstr "Этого пути нет в резервной копии: %s."
 
 msgid "This backup has no database."
 msgstr "Эта резервная копия не имеет базы данных."
@@ -797,7 +797,7 @@ msgid "Safety backup before restore (%s)"
 msgstr "Безопасное резервное копирование перед восстановлением (%s)"
 
 msgid "The safety backup failed, so nothing was restored: %s"
-msgstr "Не удалось выполнить безопасное резервное копирование, поэтому ничего не было восстановлено:%s."
+msgstr "Не удалось выполнить безопасное резервное копирование, поэтому ничего не было восстановлено: %s."
 
 msgid "The backup has no database.sql.gz."
 msgstr "В резервной копии нет файла data.sql.gz."
@@ -809,55 +809,55 @@ msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2
 msgstr "Префикс таблицы в резервной копии (%1$s) отличается от префикса этого сайта (%2$s); база данных не была восстановлена."
 
 msgid "Not found in the backup: %s"
-msgstr "Не найден в резервной копии:%s."
+msgstr "Не найден в резервной копии: %s."
 
 msgid "Could not move the folder (permission problem?): %s"
-msgstr "Не удалось переместить папку (проблема с разрешением?):%s."
+msgstr "Не удалось переместить папку (проблема с разрешением?): %s."
 
 msgid "Could not create the folder: %s"
-msgstr "Не удалось создать папку:%s."
+msgstr "Не удалось создать папку: %s."
 
 msgid "Could not write the file: %s"
-msgstr "Не удалось записать файл:%s."
+msgstr "Не удалось записать файл: %s."
 
 msgid "database"
 msgstr "база данных"
 
 msgid "Restored: %1$s (%2$s)."
-msgstr "Восстановлено:%1$s(%2$s)."
+msgstr "Восстановлено: %1$s(%2$s)."
 
 msgid "%s SQL statements failed; details are in the log."
-msgstr "%sSQL-запросы не выполнены; подробности в журнале."
+msgstr "%s SQL-запросы не выполнены; подробности в журнале."
 
 msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
-msgstr "%sВозможно, база данных частично восстановлена; восстановите «Безопасную резервную копию перед восстановлением»."
+msgstr "%s Возможно, база данных частично восстановлена; восстановите «Безопасную резервную копию перед восстановлением»."
 
 msgid "Restore failed (%1$s): %2$s"
-msgstr "Не удалось восстановить (%1$s):%2$s."
+msgstr "Не удалось восстановить (%1$s): %2$s."
 
 msgid "Taking safety backup: %s"
-msgstr "Создание резервной копии:%s."
+msgstr "Создание резервной копии: %s."
 
 msgid "Unpacking the database file…"
 msgstr "Распаковка файла базы данных..."
 
 msgid "Restoring database: %s"
-msgstr "Восстановление базы данных:%s."
+msgstr "Восстановление базы данных: %s."
 
 msgid "Preparing files…"
 msgstr "Подготовка файлов..."
 
 msgid "Restoring files: %1$s / %2$s"
-msgstr "Восстановление файлов:%1$s/%2$s"
+msgstr "Восстановление файлов: %1$s/%2$s"
 
 msgid "%s s"
-msgstr "%sс"
+msgstr "%s с"
 
 msgid "%1$s min %2$s s"
-msgstr "%1$sмин%2$sс"
+msgstr "%1$s мин %2$s с"
 
 msgid "%1$s h %2$s min"
-msgstr "%1$sч%2$sмин."
+msgstr "%1$s ч %2$s мин."
 
 msgid "Cancelled."
 msgstr "Отменено."
@@ -866,13 +866,13 @@ msgid "Could not verify the session. Reload the page."
 msgstr "Не удалось проверить сеанс. Перезагрузите страницу."
 
 msgid "Backup deleted: %s"
-msgstr "Резервная копия удалена:%s."
+msgstr "Резервная копия удалена: %s."
 
 msgid "Before %1$s %2$s → %3$s"
-msgstr "До%1$s%2$s→%3$s"
+msgstr "До %1$s%2$s → %3$s"
 
 msgid "Before updating %s"
-msgstr "Перед обновлением%s"
+msgstr "Перед обновлением %s"
 
 msgid "Pre-update"
 msgstr "Предварительное обновление"
@@ -905,7 +905,7 @@ msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise t
 msgstr "Предполагаемый размер резервной копии (%1$s) превышает квоту (%2$s). Поднимите квоту в настройках."
 
 msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
-msgstr "Недостаточно квоты: новая резервная копия имеет размер%1$s, используется%2$s, квота%3$s. Остальные резервные копии заблокированы; разблокируйте или удалите некоторые или увеличьте квоту."
+msgstr "Недостаточно квоты: новая резервная копия имеет размер %1$s, используется %2$s, квота %3$s. Остальные резервные копии заблокированы; разблокируйте или удалите некоторые или увеличьте квоту."
 
 msgid "The file is empty or too small."
 msgstr "Файл пуст или слишком мал."
@@ -914,13 +914,13 @@ msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota i
 msgstr "Размер файла (%1$s) превышает квоту резервного копирования (%2$s). Поднимите квоту в настройках."
 
 msgid "There is not enough free disk space on the server (free: %s)."
-msgstr "На сервере недостаточно свободного дискового пространства (свободно:%s)."
+msgstr "На сервере недостаточно свободного дискового пространства (свободно: %s)."
 
 msgid "Upload not found; start again."
 msgstr "Загрузка не найдена; начни заново."
 
 msgid "A chunk did not reach the server (error %d)."
-msgstr "Чанк не дошел до сервера (ошибка%d)."
+msgstr "Чанк не дошел до сервера (ошибка %d)."
 
 msgid "Chunks arrived out of order."
 msgstr "Кусочки пришли не в порядке."
@@ -932,7 +932,7 @@ msgid "Could not write the temporary file (the disk may be full)."
 msgstr "Не удалось записать временный файл (возможно, диск переполнен)."
 
 msgid "%1$s was uploaded (%2$s) and added to the backup list."
-msgstr "%1$sбыл загружен (%2$s) и добавлен в список резервных копий."
+msgstr "%1$s был загружен (%2$s) и добавлен в список резервных копий."
 
 msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
 msgstr "Файл загружен не полностью (%1$s/%2$s). Попробуйте еще раз."
@@ -941,16 +941,16 @@ msgid "Could not move the file to the backup folder."
 msgstr "Не удалось переместить файл в папку резервного копирования."
 
 msgid "Uploaded: %s"
-msgstr "Загружено:%s"
+msgstr "Загружено: %s"
 
 msgid "Backup uploaded: %1$s (%2$s, %3$s)"
-msgstr "Резервная копия загружена:%1$s(%2$s,%3$s)"
+msgstr "Резервная копия загружена: %1$s(%2$s, %3$s)"
 
 msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
 msgstr "Этот файл не является резервной копией Flux Backup (zip-архив не удалось открыть или в нем нет файла манифеста.json)."
 
 msgid "The backup contains an unexpected or unsafe path: %s"
-msgstr "Резервная копия содержит неожиданный или небезопасный путь:%s."
+msgstr "Резервная копия содержит неожиданный или небезопасный путь: %s."
 
 msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
 msgstr "В манифесте указано, что резервная копия включает базу данных, но файл data.sql.gz отсутствует; файл может быть поврежден."
@@ -963,51 +963,51 @@ msgstr "Размер несжатой резервной копии неправ
 
 msgid "%s file"
 msgid_plural "%s files"
-msgstr[0] "Файл%s"
-msgstr[1] "Файлы%s"
-msgstr[2] "Файлы%s"
+msgstr[0] "Файл %s"
+msgstr[1] "Файлы %s"
+msgstr[2] "Файлы %s"
 
 msgid "%s locked"
 msgid_plural "%s locked"
-msgstr[0] "%sзаблокирован"
-msgstr[1] "%sзаблокирован"
-msgstr[2] "%sзаблокирован"
+msgstr[0] "%s заблокирован"
+msgstr[1] "%s заблокирован"
+msgstr[2] "%s заблокирован"
 
 msgid "Before updating %s package"
 msgid_plural "Before updating %s packages"
-msgstr[0] "Перед обновлением пакета%s"
-msgstr[1] "Перед обновлением пакетов%s"
-msgstr[2] "Перед обновлением пакетов%s"
+msgstr[0] "Перед обновлением пакета %s"
+msgstr[1] "Перед обновлением пакетов %s"
+msgstr[2] "Перед обновлением пакетов %s"
 
 msgid "%s row"
 msgid_plural "%s rows"
-msgstr[0] "%sстрока"
-msgstr[1] "%sстроки"
-msgstr[2] "%sстроки"
+msgstr[0] "%s строка"
+msgstr[1] "%s строки"
+msgstr[2] "%s строки"
 
 msgid "%s backup"
 msgid_plural "%s backups"
-msgstr[0] "%sрезервная копия"
-msgstr[1] "%sрезервные копии"
-msgstr[2] "%sрезервные копии"
+msgstr[0] "%s резервная копия"
+msgstr[1] "%s резервные копии"
+msgstr[2] "%s резервные копии"
 
 msgid "%s other item"
 msgid_plural "%s other items"
-msgstr[0] "%sдругой товар"
-msgstr[1] "%sдругие предметы"
-msgstr[2] "%sдругие предметы"
+msgstr[0] "%s другой товар"
+msgstr[1] "%s другие предметы"
+msgstr[2] "%s другие предметы"
 
 msgid "%1$s old backup deleted for the quota: %2$s"
 msgid_plural "%1$s old backups deleted for the quota: %2$s"
-msgstr[0] "%1$sстарая резервная копия удалена для квоты:%2$s"
-msgstr[1] "%1$sстарые резервные копии удалены по квоте:%2$s"
-msgstr[2] "%1$sстарые резервные копии удалены по квоте:%2$s"
+msgstr[0] "%1$s старая резервная копия удалена для квоты: %2$s"
+msgstr[1] "%1$s старые резервные копии удалены по квоте: %2$s"
+msgstr[2] "%1$s старые резервные копии удалены по квоте: %2$s"
 
 msgid "%s backup past its retention period was deleted."
 msgid_plural "%s backups past their retention period were deleted."
-msgstr[0] "Резервная копия%s, срок хранения которой истек, удалена."
-msgstr[1] "Резервные копии%sс истекшим сроком хранения были удалены."
-msgstr[2] "Резервные копии%sс истекшим сроком хранения были удалены."
+msgstr[0] "Резервная копия %s, срок хранения которой истек, удалена."
+msgstr[1] "Резервные копии %s с истекшим сроком хранения были удалены."
+msgstr[2] "Резервные копии %s с истекшим сроком хранения были удалены."
 
 msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
 msgstr "Выполняет автоматическое резервное копирование перед каждым обновлением плагина/темы, запланированное полное резервное копирование, управление квотами и сроками хранения, панель управления хранилищем с диаграммами и выборочным восстановлением. Совместим с общим хостингом Hostinger."

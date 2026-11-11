@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.1.12
+- Paketler ekranında "18güncellemeleri mevcut" yerine "18 güncelleme mevcut"; yedek/paket sayısı metinleri doğal Türkçe tekil ("%d paket etkinleştirildi", "%d yedek silindi").
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 1.1.11
 - Add per-row selection and top/bottom apply controls to preset, migration and patch previews. Select normal changes or explicitly overwrite protected values in separate groups.
 - Execute only submitted targets, reject empty/stale selections and missing unchecked dependencies, and keep partial migrations/patches pending. Existing API callers retain their full-apply behaviour.

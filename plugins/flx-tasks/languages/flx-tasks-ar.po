@@ -65,19 +65,19 @@ msgid "WordPress and PHP version"
 msgstr "نسخة ووردبريس و PHP"
 
 msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
-msgstr "وورد%1$s، PHP%2$s. المطلوب: ووردبريس 6.5+، PHP 7.4+."
+msgstr "وورد %1$s، PHP %2$s. المطلوب: ووردبريس 6.5+، PHP 7.4+."
 
 msgid "Database tables"
 msgstr "جداول قاعدة البيانات"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "الجدول المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+msgstr "الجدول المفقود: %s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
 
 msgid "Plugins"
 msgstr "الإضافات"
 
 msgid "Tables are ready (schema %s)."
-msgstr "الجداول جاهزة (المخطط%s)."
+msgstr "الجداول جاهزة (المخطط %s)."
 
 msgid "File folder"
 msgstr "مجلد الملف"
@@ -95,7 +95,7 @@ msgid "Upload limit"
 msgstr "حد التحميل"
 
 msgid "Effective limit %1$s (server limit %2$s)."
-msgstr "الحد الفعال%1$s(حد الخادم%2$s)."
+msgstr "الحد الفعال %1$s(حد الخادم %2$s)."
 
 msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
 msgstr "الإعداد أكبر من حد الخادم؛ يمكن رفع upload_max_filesize وpost_max_size في لوحة الاستضافة."
@@ -110,10 +110,10 @@ msgid "Not scheduled: overdue/upcoming task notifications and old temporary file
 msgstr "غير مجدولة: لن يتم تشغيل إعلامات المهام المتأخرة/القادمة وتنظيف الملفات المؤقتة القديمة. يؤدي فتح صفحة المهام بمجرد إعادة جدولتها."
 
 msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
-msgstr "المهمة المجدولة متأخرة (بسبب%s). قد لا يتم تشغيل WP-Cron (إذا حصل الموقع على عدد قليل من الزيارات، فمن المستحسن إجراء عملية cron حقيقية في لوحة الاستضافة)."
+msgstr "المهمة المجدولة متأخرة (بسبب %s). قد لا يتم تشغيل WP-Cron (إذا حصل الموقع على عدد قليل من الزيارات، فمن المستحسن إجراء عملية cron حقيقية في لوحة الاستضافة)."
 
 msgid "Next run: %s."
-msgstr "التشغيل التالي:%s."
+msgstr "التشغيل التالي: %s."
 
 msgid "WP-Cron mode"
 msgstr "وضع WP-كرون"
@@ -128,7 +128,7 @@ msgid "Update interval"
 msgstr "الفاصل الزمني للتحديث"
 
 msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
-msgstr "10 ثوانٍ أثناء وجوده على الشاشة، و%dبعد دقيقتين من الخمول؛ علامات التبويب الخلفية لا ترسل أي طلبات."
+msgstr "10 ثوانٍ أثناء وجوده على الشاشة، و %d بعد دقيقتين من الخمول؛ علامات التبويب الخلفية لا ترسل أي طلبات."
 
 msgid "API cache"
 msgstr "ذاكرة التخزين المؤقت لواجهة برمجة التطبيقات"
@@ -158,7 +158,7 @@ msgid "AI"
 msgstr "منظمة العفو الدولية"
 
 msgid "Via Flux AI, model: %s."
-msgstr "عبر Flux AI، الموديل:%s."
+msgstr "عبر Flux AI، الموديل: %s."
 
 msgid "Flux AI"
 msgstr "تدفق منظمة العفو الدولية"
@@ -215,7 +215,7 @@ msgid "Add page to document"
 msgstr "إضافة صفحة إلى الوثيقة"
 
 msgid "Document: %s"
-msgstr "المستند:%s"
+msgstr "المستند: %s"
 
 msgid "Improve"
 msgstr "تحسين"
@@ -311,7 +311,7 @@ msgid "An email draft needs Flux Communication and mailbox permission."
 msgstr "تحتاج مسودة البريد الإلكتروني إلى إذن Flux Communication وصندوق البريد."
 
 msgid "File is too large. The maximum upload size is %s."
-msgstr "الملف كبير جدًا. الحد الأقصى لحجم التحميل هو%s."
+msgstr "الملف كبير جدًا. الحد الأقصى لحجم التحميل هو %s."
 
 msgid "Could not upload the file."
 msgstr "تعذر تحميل الملف."
@@ -395,16 +395,16 @@ msgid "Track tasks in list, board and calendar views. Add new lists or folders f
 msgstr "تتبع المهام في طرق عرض القائمة واللوحة والتقويم. أضف قوائم أو مجلدات جديدة من القائمة اليسرى، وقم بإعداد الحقول والأذونات المخصصة في إعدادات القائمة."
 
 msgid "%s assigned you to a task"
-msgstr "قام%sبتعيين مهمة لك"
+msgstr "قام %s بتعيين مهمة لك"
 
 msgid "%s mentioned you in a comment"
-msgstr "ذكرك%sفي تعليق"
+msgstr "ذكرك %s في تعليق"
 
 msgid "%s wrote a comment"
-msgstr "كتب%sتعليقًا"
+msgstr "كتب %s تعليقًا"
 
 msgid "%1$s changed the status to \"%2$s\""
-msgstr "قام%1$sبتغيير الحالة إلى \"%2$s\""
+msgstr "قام %1$s بتغيير الحالة إلى \"%2$s\""
 
 msgid "Due tomorrow"
 msgstr "المقرر غدا"
@@ -458,16 +458,16 @@ msgid "Sent when someone assigns you to a task."
 msgstr "يتم إرساله عندما يقوم شخص ما بتعيينك لمهمة."
 
 msgid "{kisi} assigned you to a task: {gorev}"
-msgstr "قام{kisi}بتعيين مهمة لك:{gorev}"
+msgstr "قام {kisi} بتعيين مهمة لك: {gorev}"
 
 msgid "New task: {gorev}"
-msgstr "مهمة جديدة:{gorev}"
+msgstr "مهمة جديدة: {gorev}"
 
 msgid "Hi {ad},"
-msgstr "مرحبًا{ad}،"
+msgstr "مرحبًا {ad}،"
 
 msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
-msgstr "قام{kisi}بتعيينك إلى<strong>{gorev}</strong>في قائمة<strong>{liste}</strong>."
+msgstr "قام {kisi} بتعيينك إلى<strong>{gorev}</strong>في قائمة<strong>{liste}</strong>."
 
 msgid "Open task"
 msgstr "مهمة مفتوحة"
@@ -479,10 +479,10 @@ msgid "Sent when someone @mentions you in a comment."
 msgstr "يتم إرساله عندما يقوم شخص ما بالإشارة إليك في تعليق."
 
 msgid "{kisi} mentioned you in a comment: {gorev}"
-msgstr "ذكرك{kisi}في تعليق:{gorev}"
+msgstr "ذكرك {kisi} في تعليق: {gorev}"
 
 msgid "{kisi} mentioned you"
-msgstr "لقد ذكرك{kisi}"
+msgstr "لقد ذكرك {kisi}"
 
 msgid "Comment on <strong>{gorev}</strong>:"
 msgstr "تعليق على<strong>{gorev}</strong>:"
@@ -497,10 +497,10 @@ msgid "Sent one day before the due date of a task assigned to you."
 msgstr "يتم إرساله قبل يوم واحد من الموعد المحدد للمهمة الموكلة إليك."
 
 msgid "Due tomorrow: {gorev}"
-msgstr "المقرر غدًا:{gorev}"
+msgstr "المقرر غدًا: {gorev}"
 
 msgid "<strong>{gorev}</strong> is due on {tarih}."
-msgstr "<strong>{gorev}</strong>مقرر في{tarih}."
+msgstr "<strong>{gorev}</strong>مقرر في {tarih}."
 
 msgid "Can view"
 msgstr "يمكن عرض"
@@ -617,7 +617,7 @@ msgid "A task cannot be moved under its own subtask."
 msgstr "لا يمكن نقل المهمة ضمن المهمة الفرعية الخاصة بها."
 
 msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
-msgstr "يمكن دمج المهام الفرعية في معظم مستويات%dفي هذا المشروع. يمكنك تغيير الحد في إعدادات المشروع."
+msgstr "يمكن دمج المهام الفرعية في معظم مستويات %d في هذا المشروع. يمكنك تغيير الحد في إعدادات المشروع."
 
 msgid "Task name cannot be empty."
 msgstr "لا يمكن أن يكون اسم المهمة فارغًا."
@@ -680,10 +680,10 @@ msgid "Loading"
 msgstr "جاري التحميل"
 
 msgid "{n} failed"
-msgstr "فشل{n}"
+msgstr "فشل {n}"
 
 msgid "{n} in progress"
-msgstr "{n}قيد التقدم"
+msgstr "{n} قيد التقدم"
 
 msgid "server busy, waiting"
 msgstr "الخادم مشغول، في الانتظار"
@@ -704,7 +704,7 @@ msgid "Close"
 msgstr "إغلاق"
 
 msgid "Uploading: {n}"
-msgstr "التحميل:{n}"
+msgstr "التحميل: {n}"
 
 msgid "Upload timed out."
 msgstr "انتهت مهلة التحميل."
@@ -830,13 +830,13 @@ msgid "Delete page"
 msgstr "حذف الصفحة"
 
 msgid "\"{p}\" and its {n} subpages will be deleted."
-msgstr "سيتم حذف \"{p}\" وصفحاته الفرعية{n}."
+msgstr "سيتم حذف \"{p}\" وصفحاته الفرعية {n}."
 
 msgid "\"{p}\" will be deleted."
 msgstr "سيتم حذف \"{p}\"."
 
 msgid "Last edited by {n}, {t}"
-msgstr "التعديل الأخير تم بواسطة{n},{t}"
+msgstr "التعديل الأخير تم بواسطة {n}, {t}"
 
 msgid "typing"
 msgstr "الكتابة"
@@ -1226,7 +1226,7 @@ msgid "Add as tasks ({n})"
 msgstr "إضافة كمهام ({n})"
 
 msgid "{n} tasks added to \"{l}\"."
-msgstr "تمت إضافة مهام{n}إلى \"{l}\"."
+msgstr "تمت إضافة مهام {n} إلى \"{l}\"."
 
 msgid "Open list"
 msgstr "فتح القائمة"
@@ -1313,7 +1313,7 @@ msgid "Tags"
 msgstr "العلامات"
 
 msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
-msgstr "يتم ربط علامات{n}بالاسم في المشروع المستهدف:{e}موجود بالفعل، وسيتم إنشاء{c}."
+msgstr "يتم ربط علامات {n} بالاسم في المشروع المستهدف: {e} موجود بالفعل، وسيتم إنشاء {c}."
 
 msgid "People who will lose access"
 msgstr "الأشخاص الذين سيفقدون إمكانية الوصول"
@@ -1448,16 +1448,16 @@ msgid "The view \"{n}\" will be deleted. Tasks are not affected."
 msgstr "سيتم حذف العرض \"{n}\". لا تتأثر المهام."
 
 msgid "{n} assigned you to a task"
-msgstr "قام{n}بتعيين مهمة لك"
+msgstr "قام {n} بتعيين مهمة لك"
 
 msgid "{n} mentioned you in a comment"
-msgstr "ذكرك{n}في تعليق"
+msgstr "ذكرك {n} في تعليق"
 
 msgid "{n} wrote a comment"
-msgstr "كتب{n}تعليقًا"
+msgstr "كتب {n} تعليقًا"
 
 msgid "{n} changed the status to \"{s}\""
-msgstr "قام{n}بتغيير الحالة إلى \"{s}\""
+msgstr "قام {n} بتغيير الحالة إلى \"{s}\""
 
 msgid "All"
 msgstr "الكل"
@@ -1487,16 +1487,16 @@ msgid "File storage"
 msgstr "تخزين الملفات"
 
 msgid "{n} files"
-msgstr "ملفات{n}"
+msgstr "ملفات {n}"
 
 msgid "previews {s}"
-msgstr "معاينات{s}"
+msgstr "معاينات {s}"
 
 msgid "Open tasks"
 msgstr "المهام المفتوحة"
 
 msgid "{n} completed"
-msgstr "اكتمل{n}"
+msgstr "اكتمل {n}"
 
 msgid "open tasks past their due date"
 msgstr "المهام المفتوحة بعد تاريخ استحقاقها"
@@ -1505,19 +1505,19 @@ msgid "Last 30 days"
 msgstr "آخر 30 يومًا"
 
 msgid "{n} tasks completed"
-msgstr "اكتملت مهام{n}"
+msgstr "اكتملت مهام {n}"
 
 msgid "Comments"
 msgstr "التعليقات"
 
 msgid "{n} active users (30 days)"
-msgstr "{n}من المستخدمين النشطين (30 يومًا)"
+msgstr "{n} من المستخدمين النشطين (30 يومًا)"
 
 msgid "Structure"
 msgstr "الهيكل"
 
 msgid "projects / lists · {n} users"
-msgstr "المشاريع / القوائم · مستخدمو{n}"
+msgstr "المشاريع / القوائم · مستخدمو {n}"
 
 msgid "PDF"
 msgstr "قوات الدفاع الشعبي"
@@ -1637,7 +1637,7 @@ msgid "{n} problem(s)"
 msgstr "مشكلة (مشاكل){n}"
 
 msgid "{n} warning(s)"
-msgstr "تحذيرات{n}"
+msgstr "تحذيرات {n}"
 
 msgid "Everything is in place"
 msgstr "كل شيء في مكانه"
@@ -1649,10 +1649,10 @@ msgid "Check again"
 msgstr "تحقق مرة أخرى"
 
 msgid "{n} item(s)"
-msgstr "{n}العناصر"
+msgstr "{n} العناصر"
 
 msgid "Flux AI default: {m}"
-msgstr "تدفق الذكاء الاصطناعي الافتراضي:{m}"
+msgstr "تدفق الذكاء الاصطناعي الافتراضي: {m}"
 
 msgid "Flux AI default"
 msgstr "تدفق الذكاء الاصطناعي الافتراضي"
@@ -1718,7 +1718,7 @@ msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. W
 msgstr "على سبيل المثال فرع الجمعية اسطنبول. أضف علامة \"الحدث\" إلى مهام الحدث. اكتب التواريخ بالشكل day.month.year."
 
 msgid "This month: {c} requests, {t} tokens, ${m}"
-msgstr "هذا الشهر: طلبات{c}، رموز{t}، ${m}"
+msgstr "هذا الشهر: طلبات {c}، رموز {t}، ${m}"
 
 msgid "Data"
 msgstr "البيانات"
@@ -1928,7 +1928,7 @@ msgid "Permissions saved"
 msgstr "تم حفظ الأذونات"
 
 msgid "List settings: {n}"
-msgstr "إعدادات القائمة:{n}"
+msgstr "إعدادات القائمة: {n}"
 
 msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
 msgstr "ماذا تريد أن تفعل؟ على سبيل المثال \"إظهار المهام في هذه القائمة المستحقة غدًا\" أو \"افتح ملصق مهمة لـ Ayşe المقرر يوم الجمعة\""
@@ -2066,7 +2066,7 @@ msgid "Complete"
 msgstr "كامل"
 
 msgid "Completed: {d}"
-msgstr "اكتمل:{d}"
+msgstr "اكتمل: {d}"
 
 msgid "You can only comment"
 msgstr "يمكنك التعليق فقط"
@@ -2111,7 +2111,7 @@ msgid "Show less"
 msgstr "عرض أقل"
 
 msgid "{n} more fields"
-msgstr "{n}المزيد من الحقول"
+msgstr "{n} المزيد من الحقول"
 
 msgid "Participants"
 msgstr "المشاركون"
@@ -2192,7 +2192,7 @@ msgid "Owner"
 msgstr "المالك"
 
 msgid "Report: {d} · {n}"
-msgstr "التقرير:{d}·{n}"
+msgstr "التقرير: {d} · {n}"
 
 msgid "Add subtask…"
 msgstr "إضافة مهمة فرعية..."
@@ -2222,10 +2222,10 @@ msgid "Drag files here or choose"
 msgstr "اسحب الملفات هنا أو اختر"
 
 msgid "Up to {s}"
-msgstr "ما يصل إلى{s}"
+msgstr "ما يصل إلى {s}"
 
 msgid "{n} is too large (up to {s})."
-msgstr "{n}كبير جدًا (يصل إلى{s})."
+msgstr "{n} كبير جدًا (يصل إلى {s})."
 
 msgid "Upload new image"
 msgstr "تحميل صورة جديدة"
@@ -2255,13 +2255,13 @@ msgid "removed the priority"
 msgstr "تمت إزالة الأولوية"
 
 msgid "set the due date to {d}"
-msgstr "اضبط تاريخ الاستحقاق على{d}"
+msgstr "اضبط تاريخ الاستحقاق على {d}"
 
 msgid "removed the due date"
 msgstr "إزالة تاريخ الاستحقاق"
 
 msgid "set the start date to {d}"
-msgstr "اضبط تاريخ البدء على{d}"
+msgstr "اضبط تاريخ البدء على {d}"
 
 msgid "removed the start date"
 msgstr "تمت إزالة تاريخ البدء"
@@ -2270,10 +2270,10 @@ msgid "took the task"
 msgstr "تولى المهمة"
 
 msgid "assigned {n}"
-msgstr "المعينة{n}"
+msgstr "المعينة {n}"
 
 msgid "unassigned {n}"
-msgstr "{n}غير المعين"
+msgstr "{n} غير المعين"
 
 msgid "added a tag:"
 msgstr "تمت إضافة علامة:"
@@ -2399,7 +2399,7 @@ msgid "Added to the end of the description."
 msgstr "يضاف إلى نهاية الوصف."
 
 msgid "{n} subtasks created"
-msgstr "تم إنشاء المهام الفرعية{n}"
+msgstr "تم إنشاء المهام الفرعية {n}"
 
 msgid "Create subtasks"
 msgstr "إنشاء مهام فرعية"
@@ -2438,7 +2438,7 @@ msgid "Search or create a tag…"
 msgstr "بحث أو إنشاء علامة..."
 
 msgid "Create: {n}"
-msgstr "إنشاء:{n}"
+msgstr "إنشاء: {n}"
 
 msgid "No tags yet. Type to create one."
 msgstr "لا توجد علامات حتى الآن. اكتب لإنشاء واحد."
@@ -2459,7 +2459,7 @@ msgid "Group"
 msgstr "المجموعة"
 
 msgid "Group: {n}"
-msgstr "المجموعة:{n}"
+msgstr "المجموعة: {n}"
 
 msgid "Manual order"
 msgstr "الطلب اليدوي"
@@ -2579,7 +2579,7 @@ msgid "This task no longer matches this view's filter. It will be hidden when yo
 msgstr "لم تعد هذه المهمة تتطابق مع عامل تصفية طريقة العرض هذه. سيتم إخفاؤه عند تغيير الصفحة."
 
 msgid "Assigned: {n}"
-msgstr "المعينة:{n}"
+msgstr "المعينة: {n}"
 
 msgid "Outside filter"
 msgstr "مرشح خارجي"
@@ -2618,7 +2618,7 @@ msgid "No tasks in this list yet."
 msgstr "لا توجد مهام في هذه القائمة حتى الآن."
 
 msgid "{n} selected"
-msgstr "تم تحديد{n}"
+msgstr "تم تحديد {n}"
 
 msgid "Assign"
 msgstr "تعيين"
@@ -2627,13 +2627,13 @@ msgid "Delete tasks"
 msgstr "حذف المهام"
 
 msgid "{n} tasks will be permanently deleted along with their comments and files."
-msgstr "سيتم حذف مهام{n}نهائيًا مع تعليقاتها وملفاتها."
+msgstr "سيتم حذف مهام {n} نهائيًا مع تعليقاتها وملفاتها."
 
 msgid "Clear selection"
 msgstr "مسح التحديد"
 
 msgid "{n} tasks updated"
-msgstr "تم تحديث مهام{n}"
+msgstr "تم تحديث مهام {n}"
 
 msgid "Previous"
 msgstr "السابق"
@@ -2645,7 +2645,7 @@ msgid "Week"
 msgstr "الأسبوع"
 
 msgid "No date: {n}"
-msgstr "لا يوجد تاريخ:{n}"
+msgstr "لا يوجد تاريخ: {n}"
 
 msgid "Tasks without a date"
 msgstr "المهام بدون تاريخ"
@@ -2654,7 +2654,7 @@ msgid "No dated tasks this month."
 msgstr "لا توجد مهام مؤرخة هذا الشهر."
 
 msgid "+{n} more"
-msgstr "+{n}المزيد"
+msgstr "+{n} المزيد"
 
 msgid "Meeting name"
 msgstr "اسم الاجتماع"
@@ -2688,4 +2688,3 @@ msgstr "أدوات Flux Tasks تتطلب Flux AI & MCP."
 
 msgid "MCP"
 msgstr "MCP"
-

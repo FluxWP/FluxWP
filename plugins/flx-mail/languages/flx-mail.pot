@@ -2498,6 +2498,141 @@ msgstr ""
 msgid "All emails of the site in one place: sender name/address (info@ / no-reply@), SMTP, corporate templates with logo and mobile-friendly, viewing, editing, opening/closing emails of WordPress + WooCommerce + FluxWP plugins, sending records, individual and bulk sending. WhatsApp (Evolution API) and SMS (Netgsm) connections are also here; Other plugins use it with public API."
 msgstr ""
 
+msgid "Accepted; awaiting delivery report"
+msgstr ""
+
+msgid "Action unavailable."
+msgstr ""
+
+msgid "All sends"
+msgstr ""
+
+msgid "Attempts"
+msgstr ""
+
+msgid "Awaiting delivery reports"
+msgstr ""
+
+msgid "Batch not found."
+msgstr ""
+
+msgid "Campaign"
+msgstr ""
+
+msgid "Campaign not found."
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Check delivery reports"
+msgstr ""
+
+msgid "Choose a scheduled time at least one minute in the future."
+msgstr ""
+
+msgid "Continue with this action?"
+msgstr ""
+
+msgid "Could not refresh. Retrying shortly."
+msgstr ""
+
+msgid "Delivered"
+msgstr ""
+
+msgid "Delivery acceptance is unknown. Check Netgsm before sending again."
+msgstr ""
+
+msgid "Delivery queue"
+msgstr ""
+
+msgid "Duplicate recipient"
+msgstr ""
+
+msgid "Last report"
+msgstr ""
+
+msgid "Live email, WhatsApp and SMS progress. Acceptance by a provider is not proof of delivery."
+msgstr ""
+
+msgid "Needs review"
+msgstr ""
+
+msgid "Netgsm only supports cancellation of future scheduled sends. Delivered messages cannot be recalled."
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "No final delivery report received. Check Netgsm."
+msgstr ""
+
+msgid "No queue entries yet."
+msgstr ""
+
+msgid "Operational history"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Provider job ID"
+msgstr ""
+
+msgid "Queue"
+msgstr ""
+
+msgid "Ready recipients are grouped in one API request. Default: 1000; maximum: 50000."
+msgstr ""
+
+msgid "Recent background events across plugins. Message content and credentials are excluded. Detailed delivery records remain in Log."
+msgstr ""
+
+msgid "Recipients per Netgsm request"
+msgstr ""
+
+msgid "Request Netgsm cancellation"
+msgstr ""
+
+msgid "Scheduled send (optional)"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Stop queued messages"
+msgstr ""
+
+msgid "Stopping the local queue does not recall messages already accepted by a provider. Netgsm cancellation is available only for future scheduled sends."
+msgstr ""
+
+msgid "The cancellation window has closed."
+msgstr ""
+
+msgid "The original Netgsm connection is unavailable."
+msgstr ""
+
+msgid "The queue is busy. Try again shortly."
+msgstr ""
+
+msgid "Updated"
+msgstr ""
+
+msgid "Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts."
+msgstr ""
+
+msgid "View delivery queue"
+msgstr ""
+
+msgid "WordPress background processing"
+msgstr ""
+
+msgid "Worker active"
+msgstr ""
+
 msgid "App Secret missing · webhook off"
 msgstr ""
 
@@ -2515,4 +2650,3 @@ msgstr ""
 
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr ""
-

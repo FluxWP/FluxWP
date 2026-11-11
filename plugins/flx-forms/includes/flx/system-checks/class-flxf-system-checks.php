@@ -183,7 +183,7 @@ final class FLXF_System_Checks {
 		$url = admin_url( 'admin.php?page=Emsfb' );
 		if ( $p && $p->is_configured() ) {
 			/* translators: %s: provider name */
-			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'ok', sprintf( __( 'Flux Donate is not active; Flux Forms takes payments itself with%s.', 'flx-forms' ), $p->label() ) ) );
+			return array( self::c( 'handoff', 'Payments', __( 'Payments', 'flx-forms' ), 'ok', sprintf( __( 'Flux Donate is not active; Flux Forms takes payments itself with %s.', 'flx-forms' ), $p->label() ) ) );
 		}
 		return array(
 			self::c(
@@ -211,9 +211,9 @@ final class FLXF_System_Checks {
 			$v     = (string) FLXS_VERSION;
 			$out[] = version_compare( $v, self::MIN_FLXS, '>=' )
 				/* translators: %s: version */
-				? self::c( 'flxs', 'Plugins', __( 'Flux Certificates (automations)', 'flx-forms' ), 'ok', sprintf( __( 'Version%sis active; certificate automations can run.', 'flx-forms' ), $v ) )
+				? self::c( 'flxs', 'Plugins', __( 'Flux Certificates (automations)', 'flx-forms' ), 'ok', sprintf( __( 'Version %s is active; certificate automations can run.', 'flx-forms' ), $v ) )
 				/* translators: 1: installed version, 2: required version */
-				: self::c( 'flxs', 'Plugins', __( 'Flux Certificates (automations)', 'flx-forms' ), 'warning', sprintf( __( 'Version%1$sis active; certificate automations need%2$sor later.', 'flx-forms' ), $v, self::MIN_FLXS ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-forms' ) );
+				: self::c( 'flxs', 'Plugins', __( 'Flux Certificates (automations)', 'flx-forms' ), 'warning', sprintf( __( 'Version %1$s is active; certificate automations need %2$s or later.', 'flx-forms' ), $v, self::MIN_FLXS ), admin_url( 'plugins.php' ), __( 'Plugins', 'flx-forms' ) );
 		} else {
 			$out[] = $cert
 				/* translators: %d: number of flows */
@@ -288,13 +288,13 @@ final class FLXF_System_Checks {
 		$u = wp_upload_dir( null, false );
 		if ( ! empty( $u['error'] ) ) {
 			/* translators: %s: error */
-			return array( self::c( 'uploads', 'Config', __( 'Uploads folder', 'flx-forms' ), 'error', sprintf( __( 'The uploads folder is not available:%s', 'flx-forms' ), wp_strip_all_tags( (string) $u['error'] ) ) ) );
+			return array( self::c( 'uploads', 'Config', __( 'Uploads folder', 'flx-forms' ), 'error', sprintf( __( 'The uploads folder is not available: %s', 'flx-forms' ), wp_strip_all_tags( (string) $u['error'] ) ) ) );
 		}
 		return array(
 			wp_is_writable( $u['basedir'] )
 				? self::c( 'uploads', 'Config', __( 'Uploads folder', 'flx-forms' ), 'ok', __( 'Writable; files sent with forms can be saved.', 'flx-forms' ) )
 				/* translators: %s: folder path */
-				: self::c( 'uploads', 'Config', __( 'Uploads folder', 'flx-forms' ), 'error', sprintf( __( 'Not writable:%s. File fields in forms cannot save uploads; ask the host to fix the folder permissions.', 'flx-forms' ), $u['basedir'] ) ),
+				: self::c( 'uploads', 'Config', __( 'Uploads folder', 'flx-forms' ), 'error', sprintf( __( 'Not writable: %s. File fields in forms cannot save uploads; ask the host to fix the folder permissions.', 'flx-forms' ), $u['basedir'] ) ),
 		);
 	}
 }

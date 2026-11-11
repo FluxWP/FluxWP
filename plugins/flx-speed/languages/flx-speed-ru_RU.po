@@ -125,7 +125,7 @@ msgid "Cache"
 msgstr "Кэш"
 
 msgid "%1$d CSS, %2$d JS copies · %3$s"
-msgstr "%1$dCSS,%2$dКопии JS ·%3$s"
+msgstr "%1$d CSS, %2$d Копии JS ·%3$s"
 
 msgid "Compare"
 msgstr "Сравнить"
@@ -173,7 +173,7 @@ msgid "All good: animations in the CSS files seen use transform/opacity."
 msgstr "Все хорошо: анимация в видимых файлах CSS использует преобразование/непрозрачность."
 
 msgid "Scanned %1$d CSS files seen on the front end (%2$s)."
-msgstr "Отсканированные CSS-файлы%1$d, видимые на внешнем интерфейсе (%2$s)."
+msgstr "Отсканированные CSS-файлы %1$d, видимые на внешнем интерфейсе (%2$s)."
 
 msgid "The front end has not been seen yet, so the theme folder was scanned. Once the site is opened, the files the page loads are scanned."
 msgstr "Переднюю часть еще не видели, поэтому просканировали папку темы. После открытия сайта сканируются файлы, загружаемые страницей."
@@ -209,7 +209,7 @@ msgid "Custom login URL turned off; login is back on wp-login.php."
 msgstr "Пользовательский URL-адрес для входа отключен; вход вернулся на wp-login.php."
 
 msgid "Cleanup done: %s items."
-msgstr "Очистка завершена: элементы%s."
+msgstr "Очистка завершена: элементы %s."
 
 msgid "Login URL changed."
 msgstr "URL-адрес входа изменен."
@@ -218,7 +218,7 @@ msgid "New address:"
 msgstr "Новый адрес:"
 
 msgid "You are being logged out so you can see the new address work; you will be redirected to the new login page in %s seconds. After logging in you come back to this screen."
-msgstr "Вы выходите из системы, чтобы увидеть работу нового адреса; вы будете перенаправлены на новую страницу входа через%sсекунд. После входа в систему вы вернетесь на этот экран."
+msgstr "Вы выходите из системы, чтобы увидеть работу нового адреса; вы будете перенаправлены на новую страницу входа через %s секунд. После входа в систему вы вернетесь на этот экран."
 
 msgid "Redirect stopped. You are still logged in; the new address is used the next time you log in."
 msgstr "Редирект остановлен. Вы все еще вошли в систему; новый адрес будет использован при следующем входе в систему."
@@ -296,7 +296,7 @@ msgid "No records yet. Slow or failing requests and sampled requests appear here
 msgstr "Записей пока нет. Здесь отображаются медленные или невыполненные запросы, а также выборочные запросы."
 
 msgid "Records: %s"
-msgstr "Записи:%s"
+msgstr "Записи: %s"
 
 msgid "Delete all records?"
 msgstr "Удалить все записи?"
@@ -428,7 +428,7 @@ msgid "Disk"
 msgstr "Диск"
 
 msgid "%s free"
-msgstr "%sбесплатно"
+msgstr "%s бесплатно"
 
 msgid "Note"
 msgstr "Примечание"
@@ -677,7 +677,7 @@ msgid "Args"
 msgstr "Аргументы"
 
 msgid "Overdue: due %s"
-msgstr "Просрочено: срок%s"
+msgstr "Просрочено: срок %s"
 
 msgid "once"
 msgstr "однажды"
@@ -809,28 +809,28 @@ msgid "If you forget the address or login won't open: add the line below to wp-c
 msgstr "Если вы забыли адрес или логин не открывается: добавьте строку ниже в wp-config.php с помощью вашего файлового менеджера (Hostinger hPanel › File Manager). Вход возвращается в wp-login.php; как только вы войдете, исправьте здесь адрес и удалите строку."
 
 msgid "Deprecated since %1$s. Use instead: %2$s"
-msgstr "Устарело с%1$s. Вместо этого используйте:%2$s"
+msgstr "Устарело с %1$s. Вместо этого используйте: %2$s"
 
 msgid "%d min"
-msgstr "%dмин."
+msgstr "%d мин."
 
 msgid "%1$d d %2$d h"
-msgstr "%1$dd%2$dh"
+msgstr "%1$d d %2$d h"
 
 msgid "%d h"
-msgstr "%dч."
+msgstr "%d ч."
 
 msgid "Account limit cannot be read"
 msgstr "Лимит счета не может быть прочитан"
 
 msgid "%s cores, no account limit"
-msgstr "%sядер, без ограничений по счету"
+msgstr "%s ядер, без ограничений по счету"
 
 msgid "Account limit %s cores"
-msgstr "Ограничение аккаунта%sядер"
+msgstr "Ограничение аккаунта %s ядер"
 
 msgid "%1$d cores · load %2$s"
-msgstr "%1$dядра · загрузить%2$s"
+msgstr "%1$d ядра · загрузить %2$s"
 
 msgid "Disk (account)"
 msgstr "Диск (аккаунт)"
@@ -839,7 +839,7 @@ msgid "Scanning the account folder"
 msgstr "Сканирование папки аккаунта"
 
 msgid "files %1$s · database %2$s"
-msgstr "файлы%1$s· база данных%2$s"
+msgstr "файлы %1$s· база данных %2$s"
 
 msgid "CPU load"
 msgstr "загрузка процессора"
@@ -971,7 +971,7 @@ msgid "Animations (GPU)"
 msgstr "Анимации (графический процессор)"
 
 msgid "Animation not running on the GPU: %s. Should be rewritten with transform/opacity (theme/preset)."
-msgstr "Анимация не работает на графическом процессоре:%s. Должно быть переписано с использованием преобразования/непрозрачности (тема/предустановка)."
+msgstr "Анимация не работает на графическом процессоре: %s. Должно быть переписано с использованием преобразования/непрозрачности (тема/предустановка)."
 
 msgid "Animations in the CSS files seen use transform/opacity."
 msgstr "Анимации в CSS-файлах используют трансформацию/непрозрачность."
@@ -1061,7 +1061,7 @@ msgid "Request recording"
 msgstr "Запросить запись"
 
 msgid "On: %1$d%% of requests are sampled; requests over %2$d ms and failing requests are recorded."
-msgstr "Включено:%1$dВыборка %% запросов; регистрируются запросы в течение%2$dмс и неудачные запросы."
+msgstr "Включено: %1$d Выборка %% запросов; регистрируются запросы в течение %2$d мс и неудачные запросы."
 
 msgid "Off: only the live panel works; AI cannot read history."
 msgstr "Выкл.: работает только живая панель; ИИ не может читать историю."
@@ -1070,7 +1070,7 @@ msgid "Failing requests in the last 24 hours"
 msgstr "Неудачные запросы за последние 24 часа"
 
 msgid "%1$d requests with PHP/server errors, %2$d fatal. See Records."
-msgstr "Запросы%1$dс ошибками PHP/сервера,%2$dфатальные. См. Записи."
+msgstr "Запросы %1$d с ошибками PHP/сервера, %2$d фатальные. См. Записи."
 
 msgid "No recorded errors."
 msgstr "Никаких зафиксированных ошибок."
@@ -1079,10 +1079,10 @@ msgid "Slow requests in the last 24 hours"
 msgstr "Медленные запросы за последние 24 часа"
 
 msgid "%1$d requests exceeded %2$d ms."
-msgstr "Запросы%1$dпревысили%2$dмс."
+msgstr "Запросы %1$d превысили %2$d мс."
 
 msgid "%d recorded requests had external service errors in the last 24 hours."
-msgstr "За последние 24 часа в записанных запросах%dбыли ошибки внешних служб."
+msgstr "За последние 24 часа в записанных запросах %d были ошибки внешних служб."
 
 msgid "No recorded external service errors."
 msgstr "Никаких зарегистрированных ошибок внешних служб."
@@ -1100,19 +1100,19 @@ msgid "Flux AI & MCP is not active or MCP is off; tools are not visible."
 msgstr "Flux AI и MCP не активны или MCP выключен; инструменты не видны."
 
 msgid "%1$d KB (%2$d options) is loaded on every request."
-msgstr "%1$dКБ (опции%2$d) загружаются при каждом запросе."
+msgstr "%1$d КБ (опции %2$d) загружаются при каждом запросе."
 
 msgid "Under 800 KB is recommended; check the largest rows."
 msgstr "Рекомендуется менее 800 КБ; проверьте самые большие строки."
 
 msgid "Last run %s."
-msgstr "Последний запуск%s."
+msgstr "Последний запуск %s."
 
 msgid "Cron has not been seen running yet."
 msgstr "Cron еще не был замечен работающим."
 
 msgid "%d events overdue."
-msgstr "События%dпросрочены."
+msgstr "События %d просрочены."
 
 msgid "Scheduled events are running"
 msgstr "Запланированные мероприятия идут"
@@ -1121,16 +1121,16 @@ msgid "Disk space"
 msgstr "Дисковое пространство"
 
 msgid "%1$d%% used, %2$s free."
-msgstr "%1$d%% использовано,%2$sсвободен."
+msgstr "%1$d%% использовано, %2$s свободен."
 
 msgid "(account usage / quota from Settings)"
 msgstr "(использование аккаунта/квота из настроек)"
 
 msgid "%1$d%% of the account CPU limit in use (%2$s cores)."
-msgstr "%1$dИспользуемый %% лимита ЦП учетной записи (ядра%2$s)."
+msgstr "%1$d Используемый %% лимита ЦП учетной записи (ядра %2$s)."
 
 msgid "%1$d%% over the last minute (%2$d cores)."
-msgstr "%1$d%% за последнюю минуту (ядра%2$d)."
+msgstr "%1$d%% за последнюю минуту (ядра %2$d)."
 
 msgid "On: compiled PHP files are kept in memory."
 msgstr "Включено: скомпилированные файлы PHP хранятся в памяти."
@@ -1142,7 +1142,7 @@ msgid "Off: PHP files are compiled again on every request. Turn it on in Hosting
 msgstr "Выкл.: файлы PHP компилируются заново при каждом запросе. Включите его в Hostinger › Конфигурация PHP."
 
 msgid "%d expired transients are still in the table."
-msgstr "Переходные процессы с истекшим сроком действия%dвсе еще находятся в таблице."
+msgstr "Переходные процессы с истекшим сроком действия %d все еще находятся в таблице."
 
 msgid "None."
 msgstr "Нет."
@@ -1151,7 +1151,7 @@ msgid "Delete expired transients"
 msgstr "Удалить просроченные переходные процессы"
 
 msgid "%d transients deleted."
-msgstr "Переходные процессы%dудалены."
+msgstr "Переходные процессы %d удалены."
 
 msgid "Each line shows something the site needs and whether it is in place. Fix the errors first; warnings are worth a look."
 msgstr "В каждой строке показано, что нужно сайту и есть ли это на месте. Сначала исправьте ошибки; предупреждения заслуживают внимания."
@@ -1166,7 +1166,7 @@ msgid "Info"
 msgstr "Информация"
 
 msgid "%1$d OK · %2$d warnings · %3$d errors"
-msgstr "%1$dOK · Предупреждения%2$d· Ошибки%3$d"
+msgstr "%1$d OK · Предупреждения %2$d· Ошибки %3$d"
 
 msgid "Check again"
 msgstr "Проверьте еще раз"
@@ -1175,7 +1175,7 @@ msgid "Show only these (click again to show all)"
 msgstr "Показать только эти (нажмите еще раз, чтобы показать все)"
 
 msgid "Checked: %s"
-msgstr "Проверено:%s"
+msgstr "Проверено: %s"
 
 msgid "Check"
 msgstr "Проверить"
@@ -1190,7 +1190,7 @@ msgid "No checks are registered."
 msgstr "Никакие чеки не регистрируются."
 
 msgid "System check found %d problem(s) that can stop donations or automations."
-msgstr "Проверка системы выявила проблемы%d, которые могут остановить пожертвования или автоматизацию."
+msgstr "Проверка системы выявила проблемы %d, которые могут остановить пожертвования или автоматизацию."
 
 msgid "Open system check"
 msgstr "Открытая проверка системы"
@@ -1199,10 +1199,10 @@ msgid "Hide until the next update"
 msgstr "Скрыть до следующего обновления"
 
 msgid "System: %d error(s)"
-msgstr "Система: ошибки%d"
+msgstr "Система: ошибки %d"
 
 msgid "This check could not run: %s"
-msgstr "Эту проверку не удалось выполнить:%s."
+msgstr "Эту проверку не удалось выполнить: %s."
 
 msgid "Scheduled tasks (cron)"
 msgstr "Запланированные задачи (cron)"
@@ -1226,16 +1226,16 @@ msgid "Other"
 msgstr "Другое"
 
 msgid "Plugin: %s"
-msgstr "Плагин:%s"
+msgstr "Плагин: %s"
 
 msgid "MU plugin: %s"
-msgstr "Плагин MU:%s"
+msgstr "Плагин MU: %s"
 
 msgid "Theme: %s"
-msgstr "Тема:%s"
+msgstr "Тема: %s"
 
 msgid "Drop-in: %s"
-msgstr "Вход:%s"
+msgstr "Вход: %s"
 
 msgid "WordPress core"
 msgstr "Ядро WordPress"

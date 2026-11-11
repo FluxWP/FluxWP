@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.20
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.7.18
 - Layout saves (template, part, menu, styles) purge supported page caches once per request, on shutdown. The object cache is no longer flushed; WordPress already drops the saved post and there is no persistent object cache.
 - Block tweaks (slider, cover, images, logo, shop title, YouTube embed, static translations) run only on the block types they change. Priority is unchanged, so those blocks render the same HTML.

@@ -160,7 +160,7 @@
     "Permalinks are set to \"Plain\"; certificate links work as ?flxs_kod=. \"Post name\" is recommended.": "固定链接设置为“普通”;证书链接的工作方式为 ?flxs_kod=。推荐“帖子名称”。",
     "Permalinks": "固定链接",
     "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page.": "证书URL规则未注册;链接可能会返回 404。按“永久链接”页面上的“保存更改”。",
-    "Certificates open at %s{code}.": "证书在%s{code}处打开。",
+    "Certificates open at %s {code}.": "证书在%s{code}处打开。",
     "Certificate templates": "证书模板",
     "%d active template.\u0000%d active templates.": "%d活动模板。",
     "No active template; certificates cannot be created.": "没有活动模板;无法创建证书。",

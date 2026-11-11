@@ -468,8 +468,8 @@ msgstr "Permalinks"
 msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
 msgstr "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
 
-msgid "Certificates open at %s{code}."
-msgstr "Certificates open at %s{code}."
+msgid "Certificates open at %s {code}."
+msgstr "Certificates open at %s {code}."
 
 msgid "Certificate templates"
 msgstr "Certificate templates"
@@ -993,4 +993,3 @@ msgstr "No map yet: the link opens the event page until a location is entered."
 
 msgid "Person not found."
 msgstr "Person not found."
-

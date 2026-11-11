@@ -806,7 +806,7 @@ return array(
   'WordPress bu PHP özelliğini kullanmaz; PHP2Shell gibi açıklarda istismar yolu olur. php.ini ya da hosting panelinde session.upload_progress.enabled = Off yapın.' => 'WordPress 不使用此 PHP 功能;它是 PHP2Shell 等漏洞的利用路径。在 php.ini 或托管面板中设置 session.upload_progress.enabled = Off。',
   'Meta başlık/açıklama, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap ayarları, favicon ve SEO kontrolü. Yapay zekâ asistanları için içerik ve SEO araçları (MCP sunucusu Flux AI\'da).' => '元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。',
   'Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).' => '元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。',
+  'PageSpeed timed out; this step was skipped.' => 'PageSpeed 超时；已跳过此步骤。',
 
-'PageSpeed timed out; this step was skipped.'=>'PageSpeed 超时；已跳过此步骤。',
  ),
 );

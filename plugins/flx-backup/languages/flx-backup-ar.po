@@ -89,7 +89,7 @@ msgid "Dismiss this notice."
 msgstr "تجاهل هذا الإشعار."
 
 msgid "Uploading %1$s…"
-msgstr "جارٍ تحميل%1$s..."
+msgstr "جارٍ تحميل %1$s..."
 
 msgid "%1$s / %2$s"
 msgstr "%1$s/%2$s"
@@ -104,10 +104,10 @@ msgid "Upload cancelled."
 msgstr "تم إلغاء التحميل."
 
 msgid "Upload failed: %s"
-msgstr "فشل التحميل:%s"
+msgstr "فشل التحميل: %s"
 
 msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
-msgstr "تم أخذ هذه النسخة الاحتياطية على موقع آخر:%s. إذا قمت باستعادة قاعدة البيانات، فإن المحتوى يأتي من هذا الموقع؛ يتم الاحتفاظ بعنوان هذا الموقع (siteurl/home)، ولكن لا يتم تغيير الروابط إلى العنوان القديم داخل المحتوى تلقائيًا."
+msgstr "تم أخذ هذه النسخة الاحتياطية على موقع آخر: %s. إذا قمت باستعادة قاعدة البيانات، فإن المحتوى يأتي من هذا الموقع؛ يتم الاحتفاظ بعنوان هذا الموقع (siteurl/home)، ولكن لا يتم تغيير الروابط إلى العنوان القديم داخل المحتوى تلقائيًا."
 
 msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
 msgstr "تختلف بادئة الجدول في النسخة الاحتياطية (%1$s) عن بادئة هذا الموقع (%2$s)؛ لا يمكن استعادة قاعدة البيانات إلى هذا الموقع، يمكن تحديد الملفات فقط."
@@ -131,7 +131,7 @@ msgid "ZipArchive (PHP zip extension) is not available on the server."
 msgstr "ZipArchive (امتداد PHP المضغوط) غير متوفر على الخادم."
 
 msgid "The backup folder is not writable: %s"
-msgstr "مجلد النسخ الاحتياطي غير قابل للكتابة:%s"
+msgstr "مجلد النسخ الاحتياطي غير قابل للكتابة: %s"
 
 msgid "Backup type"
 msgstr "نوع النسخ الاحتياطي"
@@ -188,16 +188,16 @@ msgid "Storage"
 msgstr "التخزين"
 
 msgid "%s%% of the quota is used"
-msgstr "تم استخدام%s%% من الحصة"
+msgstr "تم استخدام %s%% من الحصة"
 
 msgid "%1$s%% used · %2$s free"
-msgstr "تم استخدام%1$s%% ·%2$sمجاني"
+msgstr "تم استخدام %1$s%% ·%2$s مجاني"
 
 msgid "Last successful backup"
 msgstr "آخر نسخة احتياطية ناجحة"
 
 msgid "%s ago"
-msgstr "منذ%s"
+msgstr "منذ %s"
 
 msgid "No backups yet."
 msgstr "لا توجد نسخ احتياطية حتى الآن."
@@ -233,7 +233,7 @@ msgid "Time range"
 msgstr "النطاق الزمني"
 
 msgid "%s days"
-msgstr "%sأيام"
+msgstr "%s أيام"
 
 msgid "Quota"
 msgstr "الحصة النسبية"
@@ -281,7 +281,7 @@ msgid "Delete selected"
 msgstr "حذف المحدد"
 
 msgid "Total %s"
-msgstr "إجمالي%s"
+msgstr "إجمالي %s"
 
 msgid "Select all"
 msgstr "حدد الكل"
@@ -311,7 +311,7 @@ msgid "No backups."
 msgstr "لا توجد نسخ احتياطية."
 
 msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
-msgstr "يتم تخزين النسخ الاحتياطية في%s. لا يقوم Hostinger بتضمين هذا المجلد في النسخ الاحتياطية الخاصة به: قم بتنزيل النسخ الاحتياطية المهمة على جهاز الكمبيوتر الخاص بك."
+msgstr "يتم تخزين النسخ الاحتياطية في %s. لا يقوم Hostinger بتضمين هذا المجلد في النسخ الاحتياطية الخاصة به: قم بتنزيل النسخ الاحتياطية المهمة على جهاز الكمبيوتر الخاص بك."
 
 msgid "Database"
 msgstr "قاعدة البيانات"
@@ -347,10 +347,10 @@ msgid "Locked"
 msgstr "مغلق"
 
 msgid "Until %s"
-msgstr "حتى%s"
+msgstr "حتى %s"
 
 msgid "Last %s scheduled"
-msgstr "تمت جدولة آخر%s"
+msgstr "تمت جدولة آخر %s"
 
 msgid "Until the quota is full"
 msgstr "حتى اكتمال الحصة"
@@ -377,7 +377,7 @@ msgid "Files"
 msgstr "ملفات"
 
 msgid "%1$s tables, %2$s rows"
-msgstr "جداول%1$s، صفوف%2$s"
+msgstr "جداول %1$s، صفوف %2$s"
 
 msgid "Included"
 msgstr "متضمنة"
@@ -479,7 +479,7 @@ msgid "The total size of backups never exceeds this: before a new backup, the ol
 msgstr "لا يتجاوز الحجم الإجمالي للنسخ الاحتياطية هذا أبدًا: قبل إجراء نسخة احتياطية جديدة، يتم حذف أقدم النسخ الاحتياطية غير المؤمّنة. لا يتم حذف النسخ الاحتياطية المقفلة تلقائيًا أبدًا؛ إذا لم يكن من الممكن توفير مساحة، فلن يتم أخذ النسخة الاحتياطية."
 
 msgid "Currently using %1$s. Folder: %2$s"
-msgstr "تستخدم حاليا%1$s. المجلد:%2$s"
+msgstr "تستخدم حاليا %1$s. المجلد: %2$s"
 
 msgid "Pre-update backup"
 msgstr "النسخ الاحتياطي قبل التحديث"
@@ -593,7 +593,7 @@ msgid "Invalid path."
 msgstr "مسار غير صالح."
 
 msgid "Path not found: %s"
-msgstr "لم يتم العثور على المسار:%s"
+msgstr "لم يتم العثور على المسار: %s"
 
 msgid "Could not write a temporary file."
 msgstr "لا يمكن كتابة ملف مؤقت."
@@ -602,10 +602,10 @@ msgid "Could not read the file list."
 msgstr "لا يمكن قراءة قائمة الملفات."
 
 msgid "Could not open the zip file (code %s)."
-msgstr "تعذر فتح الملف المضغوط (الرمز%s)."
+msgstr "تعذر فتح الملف المضغوط (الرمز %s)."
 
 msgid "Could not write the zip: %s"
-msgstr "لا يمكن كتابة الملف المضغوط:%s"
+msgstr "لا يمكن كتابة الملف المضغوط: %s"
 
 msgid "The backup record was deleted."
 msgstr "تم حذف سجل النسخ الاحتياطي."
@@ -620,25 +620,25 @@ msgid "Could not write the zip (the disk may be full)."
 msgstr "تعذر كتابة الملف المضغوط (قد يكون القرص ممتلئًا)."
 
 msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
-msgstr "تم قطع النسخة الاحتياطية%sمرات في نفس النقطة (الحد الزمني للخادم). حاول استخدام مجلدات أقل أو قم بإضافة مجلدات كبيرة إلى الاستثناءات."
+msgstr "تم قطع النسخة الاحتياطية %s مرات في نفس النقطة (الحد الزمني للخادم). حاول استخدام مجلدات أقل أو قم بإضافة مجلدات كبيرة إلى الاستثناءات."
 
 msgid "Backup taken: %1$s (%2$s)"
-msgstr "تم أخذ النسخة الاحتياطية:%1$s(%2$s)"
+msgstr "تم أخذ النسخة الاحتياطية: %1$s(%2$s)"
 
 msgid "Backup failed (%1$s): %2$s"
-msgstr "فشل النسخ الاحتياطي (%1$s):%2$s"
+msgstr "فشل النسخ الاحتياطي (%1$s): %2$s"
 
 msgid "Scanning files… %s files"
-msgstr "مسح الملفات... ملفات%s"
+msgstr "مسح الملفات... ملفات %s"
 
 msgid "Checking quota…"
 msgstr "جارٍ التحقق من الحصة..."
 
 msgid "Backing up database: %1$s (%2$s rows)"
-msgstr "النسخ الاحتياطي لقاعدة البيانات:%1$s(صفوف%2$s)"
+msgstr "النسخ الاحتياطي لقاعدة البيانات: %1$s(صفوف %2$s)"
 
 msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
-msgstr "أرشفة الملفات: ملفات%1$s/%2$s(%3$s/%4$s)"
+msgstr "أرشفة الملفات: ملفات %1$s/%2$s(%3$s/%4$s)"
 
 msgid "Finishing…"
 msgstr "تشطيب..."
@@ -656,10 +656,10 @@ msgid "Backup folder writable"
 msgstr "مجلد النسخ الاحتياطي للكتابة"
 
 msgid "Backups are written to %s."
-msgstr "تتم كتابة النسخ الاحتياطية إلى%s."
+msgstr "تتم كتابة النسخ الاحتياطية إلى %s."
 
 msgid "The %s folder cannot be created or written. Check the file permissions (755)."
-msgstr "لا يمكن إنشاء المجلد%sأو كتابته. تأكد من أذونات الملف (755)."
+msgstr "لا يمكن إنشاء المجلد %s أو كتابته. تأكد من أذونات الملف (755)."
 
 msgid "ZipArchive and zlib"
 msgstr "ZipArchive و zlib"
@@ -674,7 +674,7 @@ msgid "Backup quota"
 msgstr "الحصص الاحتياطية"
 
 msgid "%1$s / %2$s used (%3$s%%)."
-msgstr "تم استخدام%1$s/%2$s(%3$s%%)."
+msgstr "تم استخدام %1$s/%2$s(%3$s%%)."
 
 msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
 msgstr "سيتم حذف أقدم النسخ الاحتياطية غير المؤمنة لإفساح المجال للنسخ الاحتياطية الجديدة؛ قم بزيادة الحصة أو قم بمراجعة النسخ الاحتياطية المقفلة."
@@ -683,7 +683,7 @@ msgid "There are no backups yet. Take the first one from the dashboard with \"Ba
 msgstr "لا توجد نسخ احتياطية حتى الآن. خذ أول واحد من لوحة التحكم باستخدام \"النسخ الاحتياطي الآن\"."
 
 msgid "%1$s (%2$s): %3$s"
-msgstr "%1$s(%2$s):%3$s"
+msgstr "%1$s(%2$s): %3$s"
 
 msgid "for all plugin and theme updates"
 msgstr "لجميع تحديثات البرنامج المساعد والموضوع"
@@ -695,10 +695,10 @@ msgid "Off: no backup is taken before updates."
 msgstr "إيقاف: لا يتم أخذ نسخة احتياطية قبل التحديثات."
 
 msgid "On, %1$s. Backups are kept for %2$s days."
-msgstr "تشغيل،%1$s. يتم الاحتفاظ بالنسخ الاحتياطية لمدة%2$sأيام."
+msgstr "تشغيل، %1$s. يتم الاحتفاظ بالنسخ الاحتياطية لمدة %2$s أيام."
 
 msgid "The daily cleanup task ran %s."
-msgstr "تم تشغيل مهمة التنظيف اليومية بواسطة%s."
+msgstr "تم تشغيل مهمة التنظيف اليومية بواسطة %s."
 
 msgid "The daily task is scheduled but has not run yet."
 msgstr "تمت جدولة المهمة اليومية ولكن لم يتم تشغيلها بعد."
@@ -713,7 +713,7 @@ msgid "Flux Backup scheduled tasks"
 msgstr "المهام المجدولة للنسخ الاحتياطي Flux"
 
 msgid "Could not start the scheduled backup: %s"
-msgstr "تعذر بدء النسخة الاحتياطية المجدولة:%s"
+msgstr "تعذر بدء النسخة الاحتياطية المجدولة: %s"
 
 msgid "Left unfinished (timed out)."
 msgstr "تركت غير مكتملة (انتهت المهلة)."
@@ -722,10 +722,10 @@ msgid "Could not write the SQL file."
 msgstr "لا يمكن كتابة ملف SQL."
 
 msgid "Could not read table %1$s: %2$s"
-msgstr "لا يمكن قراءة الجدول%1$s:%2$s"
+msgstr "لا يمكن قراءة الجدول %1$s: %2$s"
 
 msgid "Could not get the structure of table %1$s: %2$s"
-msgstr "تعذر الحصول على بنية الجدول%1$s:%2$s"
+msgstr "تعذر الحصول على بنية الجدول %1$s: %2$s"
 
 msgid "Could not open the SQL file."
 msgstr "لا يمكن فتح ملف SQL."
@@ -734,10 +734,10 @@ msgid "Flux Backup: click for details"
 msgstr "النسخ الاحتياطي التدفق: انقر للحصول على التفاصيل"
 
 msgid "Restoring %s"
-msgstr "استعادة%s"
+msgstr "استعادة %s"
 
 msgid "Backing up %s"
-msgstr "النسخ الاحتياطي%s"
+msgstr "النسخ الاحتياطي %s"
 
 msgid "Restore complete"
 msgstr "اكتملت الاستعادة"
@@ -761,10 +761,10 @@ msgid "Cancelling…"
 msgstr "جارٍ الإلغاء..."
 
 msgid "Elapsed: %s"
-msgstr "المنقضي:%s"
+msgstr "المنقضي: %s"
 
 msgid "Remaining: about %s"
-msgstr "المتبقي: حوالي%s"
+msgstr "المتبقي: حوالي %s"
 
 msgid "Backup"
 msgstr "النسخ الاحتياطي"
@@ -776,16 +776,16 @@ msgid "Do not change the site while the restore is running."
 msgstr "لا تقم بتغيير الموقع أثناء تشغيل الاستعادة."
 
 msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
-msgstr "لا يمكن عمل نسخة احتياطية قبل تحديث%1$s؛ استمر التحديث بدون نسخة احتياطية:%2$s"
+msgstr "لا يمكن عمل نسخة احتياطية قبل تحديث %1$s؛ استمر التحديث بدون نسخة احتياطية: %2$s"
 
 msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
-msgstr "تعذر إضافة المجلد%1$sإلى النسخة الاحتياطية للتحديث المسبق:%2$s"
+msgstr "تعذر إضافة المجلد %1$s إلى النسخة الاحتياطية للتحديث المسبق: %2$s"
 
 msgid "The backup file is missing from disk."
 msgstr "ملف النسخ الاحتياطي مفقود من القرص."
 
 msgid "This path is not in the backup: %s"
-msgstr "هذا المسار غير موجود في النسخة الاحتياطية:%s"
+msgstr "هذا المسار غير موجود في النسخة الاحتياطية: %s"
 
 msgid "This backup has no database."
 msgstr "لا تحتوي هذه النسخة الاحتياطية على قاعدة بيانات."
@@ -797,7 +797,7 @@ msgid "Safety backup before restore (%s)"
 msgstr "النسخ الاحتياطي للسلامة قبل الاستعادة (%s)"
 
 msgid "The safety backup failed, so nothing was restored: %s"
-msgstr "فشلت النسخة الاحتياطية الآمنة، لذا لم تتم استعادة أي شيء:%s"
+msgstr "فشلت النسخة الاحتياطية الآمنة، لذا لم تتم استعادة أي شيء: %s"
 
 msgid "The backup has no database.sql.gz."
 msgstr "النسخة الاحتياطية لا تحتوي على قاعدة بيانات.sql.gz."
@@ -809,55 +809,55 @@ msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2
 msgstr "تختلف بادئة الجدول في النسخة الاحتياطية (%1$s) عن بادئة هذا الموقع (%2$s)؛ لم تتم استعادة قاعدة البيانات."
 
 msgid "Not found in the backup: %s"
-msgstr "لم يتم العثور عليه في النسخة الاحتياطية:%s"
+msgstr "لم يتم العثور عليه في النسخة الاحتياطية: %s"
 
 msgid "Could not move the folder (permission problem?): %s"
-msgstr "تعذر نقل المجلد (مشكلة في الإذن؟):%s"
+msgstr "تعذر نقل المجلد (مشكلة في الإذن؟): %s"
 
 msgid "Could not create the folder: %s"
-msgstr "تعذر إنشاء المجلد:%s"
+msgstr "تعذر إنشاء المجلد: %s"
 
 msgid "Could not write the file: %s"
-msgstr "تعذر كتابة الملف:%s"
+msgstr "تعذر كتابة الملف: %s"
 
 msgid "database"
 msgstr "قاعدة البيانات"
 
 msgid "Restored: %1$s (%2$s)."
-msgstr "تمت الاستعادة:%1$s(%2$s)."
+msgstr "تمت الاستعادة: %1$s(%2$s)."
 
 msgid "%s SQL statements failed; details are in the log."
-msgstr "فشلت عبارات SQL%s؛ التفاصيل موجودة في السجل."
+msgstr "فشلت عبارات SQL %s؛ التفاصيل موجودة في السجل."
 
 msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
-msgstr "%sقد تتم استعادة قاعدة البيانات جزئيًا؛ استعادة \"النسخ الاحتياطي للسلامة قبل الاستعادة\"."
+msgstr "%s قد تتم استعادة قاعدة البيانات جزئيًا؛ استعادة \"النسخ الاحتياطي للسلامة قبل الاستعادة\"."
 
 msgid "Restore failed (%1$s): %2$s"
-msgstr "فشلت الاستعادة (%1$s):%2$s"
+msgstr "فشلت الاستعادة (%1$s): %2$s"
 
 msgid "Taking safety backup: %s"
-msgstr "أخذ نسخة احتياطية للسلامة:%s"
+msgstr "أخذ نسخة احتياطية للسلامة: %s"
 
 msgid "Unpacking the database file…"
 msgstr "جارٍ تفريغ ملف قاعدة البيانات..."
 
 msgid "Restoring database: %s"
-msgstr "استعادة قاعدة البيانات:%s"
+msgstr "استعادة قاعدة البيانات: %s"
 
 msgid "Preparing files…"
 msgstr "جارٍ تحضير الملفات..."
 
 msgid "Restoring files: %1$s / %2$s"
-msgstr "استعادة الملفات:%1$s/%2$s"
+msgstr "استعادة الملفات: %1$s/%2$s"
 
 msgid "%s s"
-msgstr "%sس"
+msgstr "%s س"
 
 msgid "%1$s min %2$s s"
-msgstr "%1$sدقيقة%2$sث"
+msgstr "%1$s دقيقة %2$s ث"
 
 msgid "%1$s h %2$s min"
-msgstr "%1$sح%2$sدقيقة"
+msgstr "%1$s ح %2$s دقيقة"
 
 msgid "Cancelled."
 msgstr "تم الإلغاء."
@@ -866,13 +866,13 @@ msgid "Could not verify the session. Reload the page."
 msgstr "تعذر التحقق من الجلسة. أعد تحميل الصفحة."
 
 msgid "Backup deleted: %s"
-msgstr "تم حذف النسخة الاحتياطية:%s"
+msgstr "تم حذف النسخة الاحتياطية: %s"
 
 msgid "Before %1$s %2$s → %3$s"
-msgstr "قبل%1$s%2$s→%3$s"
+msgstr "قبل %1$s%2$s → %3$s"
 
 msgid "Before updating %s"
-msgstr "قبل تحديث%s"
+msgstr "قبل تحديث %s"
 
 msgid "Pre-update"
 msgstr "التحديث المسبق"
@@ -905,7 +905,7 @@ msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise t
 msgstr "حجم النسخة الاحتياطية المقدر (%1$s) أكبر من الحصة (%2$s). ارفع الحصة في الإعدادات."
 
 msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
-msgstr "الحصة غير كافية: النسخة الاحتياطية الجديدة تدور حول%1$s، وتستخدم%2$s، والحصة%3$s. النسخ الاحتياطية المتبقية مؤمنة؛ فتح أو حذف بعض، أو زيادة الحصة."
+msgstr "الحصة غير كافية: النسخة الاحتياطية الجديدة تدور حول %1$s، وتستخدم %2$s، والحصة %3$s. النسخ الاحتياطية المتبقية مؤمنة؛ فتح أو حذف بعض، أو زيادة الحصة."
 
 msgid "The file is empty or too small."
 msgstr "الملف فارغ أو صغير جدًا."
@@ -914,13 +914,13 @@ msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota i
 msgstr "الملف (%1$s) أكبر من حصة النسخ الاحتياطي (%2$s). ارفع الحصة في الإعدادات."
 
 msgid "There is not enough free disk space on the server (free: %s)."
-msgstr "لا توجد مساحة كافية على القرص على الخادم (مجاني:%s)."
+msgstr "لا توجد مساحة كافية على القرص على الخادم (مجاني: %s)."
 
 msgid "Upload not found; start again."
 msgstr "لم يتم العثور على التحميل؛ ابدأ مرة أخرى."
 
 msgid "A chunk did not reach the server (error %d)."
-msgstr "لم تصل القطعة إلى الخادم (خطأ%d)."
+msgstr "لم تصل القطعة إلى الخادم (خطأ %d)."
 
 msgid "Chunks arrived out of order."
 msgstr "وصلت القطع خارج الترتيب."
@@ -932,7 +932,7 @@ msgid "Could not write the temporary file (the disk may be full)."
 msgstr "تعذر كتابة الملف المؤقت (قد يكون القرص ممتلئًا)."
 
 msgid "%1$s was uploaded (%2$s) and added to the backup list."
-msgstr "تم تحميل%1$s(%2$s) وإضافته إلى قائمة النسخ الاحتياطية."
+msgstr "تم تحميل %1$s(%2$s) وإضافته إلى قائمة النسخ الاحتياطية."
 
 msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
 msgstr "تم تحميل الملف بشكل غير كامل (%1$s/%2$s). حاول ثانية."
@@ -941,16 +941,16 @@ msgid "Could not move the file to the backup folder."
 msgstr "تعذر نقل الملف إلى مجلد النسخ الاحتياطي."
 
 msgid "Uploaded: %s"
-msgstr "تم الرفع:%s"
+msgstr "تم الرفع: %s"
 
 msgid "Backup uploaded: %1$s (%2$s, %3$s)"
-msgstr "تم تحميل النسخة الاحتياطية:%1$s(%2$s,%3$s)"
+msgstr "تم تحميل النسخة الاحتياطية: %1$s(%2$s, %3$s)"
 
 msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
 msgstr "هذا الملف ليس نسخة احتياطية لـ Flux Backup (تعذر فتح الملف المضغوط أو لا يحتوي على ملف Manifest.json)."
 
 msgid "The backup contains an unexpected or unsafe path: %s"
-msgstr "تحتوي النسخة الاحتياطية على مسار غير متوقع أو غير آمن:%s"
+msgstr "تحتوي النسخة الاحتياطية على مسار غير متوقع أو غير آمن: %s"
 
 msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
 msgstr "يقول البيان أن النسخة الاحتياطية تتضمن قاعدة البيانات ولكن قاعدة البيانات.sql.gz مفقودة؛ قد يكون الملف تالفًا."
@@ -963,75 +963,75 @@ msgstr "الحجم غير المضغوط للنسخة الاحتياطية غي�
 
 msgid "%s file"
 msgid_plural "%s files"
-msgstr[0] "ملفات%s"
-msgstr[1] "ملف%s"
-msgstr[2] "ملفات%s"
-msgstr[3] "ملفات%s"
-msgstr[4] "ملفات%s"
-msgstr[5] "ملفات%s"
+msgstr[0] "ملفات %s"
+msgstr[1] "ملف %s"
+msgstr[2] "ملفات %s"
+msgstr[3] "ملفات %s"
+msgstr[4] "ملفات %s"
+msgstr[5] "ملفات %s"
 
 msgid "%s locked"
 msgid_plural "%s locked"
-msgstr[0] "تم قفل%s"
-msgstr[1] "تم قفل%s"
-msgstr[2] "تم قفل%s"
-msgstr[3] "تم قفل%s"
-msgstr[4] "تم قفل%s"
-msgstr[5] "تم قفل%s"
+msgstr[0] "تم قفل %s"
+msgstr[1] "تم قفل %s"
+msgstr[2] "تم قفل %s"
+msgstr[3] "تم قفل %s"
+msgstr[4] "تم قفل %s"
+msgstr[5] "تم قفل %s"
 
 msgid "Before updating %s package"
 msgid_plural "Before updating %s packages"
-msgstr[0] "قبل تحديث حزم%s"
-msgstr[1] "قبل تحديث حزمة%s"
-msgstr[2] "قبل تحديث حزم%s"
-msgstr[3] "قبل تحديث حزم%s"
-msgstr[4] "قبل تحديث حزم%s"
-msgstr[5] "قبل تحديث حزم%s"
+msgstr[0] "قبل تحديث حزم %s"
+msgstr[1] "قبل تحديث حزمة %s"
+msgstr[2] "قبل تحديث حزم %s"
+msgstr[3] "قبل تحديث حزم %s"
+msgstr[4] "قبل تحديث حزم %s"
+msgstr[5] "قبل تحديث حزم %s"
 
 msgid "%s row"
 msgid_plural "%s rows"
-msgstr[0] "صفوف%s"
-msgstr[1] "صف%s"
-msgstr[2] "صفوف%s"
-msgstr[3] "صفوف%s"
-msgstr[4] "صفوف%s"
-msgstr[5] "صفوف%s"
+msgstr[0] "صفوف %s"
+msgstr[1] "صف %s"
+msgstr[2] "صفوف %s"
+msgstr[3] "صفوف %s"
+msgstr[4] "صفوف %s"
+msgstr[5] "صفوف %s"
 
 msgid "%s backup"
 msgid_plural "%s backups"
-msgstr[0] "النسخ الاحتياطية%s"
-msgstr[1] "النسخ الاحتياطي%s"
-msgstr[2] "النسخ الاحتياطية%s"
-msgstr[3] "النسخ الاحتياطية%s"
-msgstr[4] "النسخ الاحتياطية%s"
-msgstr[5] "النسخ الاحتياطية%s"
+msgstr[0] "النسخ الاحتياطية %s"
+msgstr[1] "النسخ الاحتياطي %s"
+msgstr[2] "النسخ الاحتياطية %s"
+msgstr[3] "النسخ الاحتياطية %s"
+msgstr[4] "النسخ الاحتياطية %s"
+msgstr[5] "النسخ الاحتياطية %s"
 
 msgid "%s other item"
 msgid_plural "%s other items"
-msgstr[0] "%sعناصر أخرى"
-msgstr[1] "%sعنصر آخر"
-msgstr[2] "%sعناصر أخرى"
-msgstr[3] "%sعناصر أخرى"
-msgstr[4] "%sعناصر أخرى"
-msgstr[5] "%sعناصر أخرى"
+msgstr[0] "%s عناصر أخرى"
+msgstr[1] "%s عنصر آخر"
+msgstr[2] "%s عناصر أخرى"
+msgstr[3] "%s عناصر أخرى"
+msgstr[4] "%s عناصر أخرى"
+msgstr[5] "%s عناصر أخرى"
 
 msgid "%1$s old backup deleted for the quota: %2$s"
 msgid_plural "%1$s old backups deleted for the quota: %2$s"
-msgstr[0] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
-msgstr[1] "تم حذف النسخة الاحتياطية القديمة لـ%1$sللحصة:%2$s"
-msgstr[2] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
-msgstr[3] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
-msgstr[4] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
-msgstr[5] "تم حذف النسخ الاحتياطية القديمة لـ%1$sللحصة:%2$s"
+msgstr[0] "تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s"
+msgstr[1] "تم حذف النسخة الاحتياطية القديمة لـ%1$s للحصة: %2$s"
+msgstr[2] "تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s"
+msgstr[3] "تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s"
+msgstr[4] "تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s"
+msgstr[5] "تم حذف النسخ الاحتياطية القديمة لـ%1$s للحصة: %2$s"
 
 msgid "%s backup past its retention period was deleted."
 msgid_plural "%s backups past their retention period were deleted."
-msgstr[0] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
-msgstr[1] "تم حذف النسخة الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
-msgstr[2] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
-msgstr[3] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
-msgstr[4] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
-msgstr[5] "تم حذف النسخ الاحتياطية لـ%sبعد فترة الاحتفاظ بها."
+msgstr[0] "تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها."
+msgstr[1] "تم حذف النسخة الاحتياطية لـ%s بعد فترة الاحتفاظ بها."
+msgstr[2] "تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها."
+msgstr[3] "تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها."
+msgstr[4] "تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها."
+msgstr[5] "تم حذف النسخ الاحتياطية لـ%s بعد فترة الاحتفاظ بها."
 
 msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
 msgstr "يأخذ نسخة احتياطية تلقائية قبل كل تحديث للمكون الإضافي/الموضوع، والنسخ الاحتياطية الكاملة المجدولة، وإدارة الحصص والاحتفاظ، ولوحة معلومات التخزين مع المخططات والاستعادة الانتقائية. متوافق مع استضافة Hostinger المشتركة."

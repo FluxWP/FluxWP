@@ -24,12 +24,12 @@ msgstr "الملف الشخصي"
 
 msgid "%s person"
 msgid_plural "%s people"
-msgstr[0] "%sالناس"
-msgstr[1] "شخص%s"
-msgstr[2] "%sالناس"
-msgstr[3] "%sالناس"
-msgstr[4] "%sالناس"
-msgstr[5] "%sالناس"
+msgstr[0] "%s الناس"
+msgstr[1] "شخص %s"
+msgstr[2] "%s الناس"
+msgstr[3] "%s الناس"
+msgstr[4] "%s الناس"
+msgstr[5] "%s الناس"
 
 msgid "You are not allowed to do this."
 msgstr "لا يسمح لك أن تفعل هذا."
@@ -89,13 +89,13 @@ msgid "Access"
 msgstr "الوصول"
 
 msgid "%s is not installed"
-msgstr "لم يتم تثبيت%s"
+msgstr "لم يتم تثبيت %s"
 
 msgid "The setting is saved; it takes effect once the plugin is updated to a version that enforces this permission."
 msgstr "يتم حفظ الإعداد. يصبح ساري المفعول بمجرد تحديث المكون الإضافي إلى إصدار يفرض هذا الإذن."
 
 msgid "Waiting for %s update"
-msgstr "في انتظار تحديث%s"
+msgstr "في انتظار تحديث %s"
 
 msgid "broad access"
 msgstr "وصول واسع النطاق"
@@ -272,7 +272,7 @@ msgid "Invalid phone number. Write it with the country code or as 05xx."
 msgstr "رقم الهاتف غير صالح. اكتبه مع رمز البلد أو كـ 05xx."
 
 msgid "This number belongs to another user: %s."
-msgstr "هذا الرقم يخص مستخدم آخر:%s."
+msgstr "هذا الرقم يخص مستخدم آخر: %s."
 
 msgid "WhatsApp number"
 msgstr "رقم الواتساب"
@@ -290,7 +290,7 @@ msgid "Donations from visitors who come through this link show you as the referr
 msgstr "تظهر لك تبرعات الزوار الذين يأتون من خلال هذا الرابط كمحيل."
 
 msgid "To share another page, add %s to the end of its address."
-msgstr "لمشاركة صفحة أخرى، أضف%sإلى نهاية عنوانها."
+msgstr "لمشاركة صفحة أخرى، أضف %s إلى نهاية عنوانها."
 
 msgid "Flux Roles"
 msgstr "أدوار التدفق"
@@ -299,13 +299,13 @@ msgid "FluxWP roles"
 msgstr "أدوار FluxWP"
 
 msgid "Missing role: %s. Deactivate and reactivate the plugin."
-msgstr "الدور المفقود:%s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
+msgstr "الدور المفقود: %s. قم بإلغاء تنشيط البرنامج المساعد وإعادة تنشيطه."
 
 msgid "Staff WhatsApp numbers"
 msgstr "ارقام واتس اب للموظفين"
 
 msgid "%s people have no WhatsApp number on their profile; the assistant won't recognize them."
-msgstr "ليس لدى الأشخاص في%sرقم WhatsApp في ملفهم الشخصي؛ لن يتعرف عليهم المساعد."
+msgstr "ليس لدى الأشخاص في %s رقم WhatsApp في ملفهم الشخصي؛ لن يتعرف عليهم المساعد."
 
 msgid "Everyone in the roles has a number."
 msgstr "كل شخص في الأدوار لديه رقم."
@@ -314,7 +314,7 @@ msgid "Plugins enforcing role permissions"
 msgstr "الإضافات التي تفرض أذونات الدور"
 
 msgid "Some enabled permissions aren't enforced yet; waiting for updates of: %s. Until then these people can't see the related screen."
-msgstr "لم يتم فرض بعض الأذونات الممكّنة بعد؛ في انتظار تحديثات:%s. وحتى ذلك الحين، لا يستطيع هؤلاء الأشخاص رؤية الشاشة ذات الصلة."
+msgstr "لم يتم فرض بعض الأذونات الممكّنة بعد؛ في انتظار تحديثات: %s. وحتى ذلك الحين، لا يستطيع هؤلاء الأشخاص رؤية الشاشة ذات الصلة."
 
 msgid "All enabled permissions are enforced."
 msgstr "يتم فرض كافة الأذونات الممكّنة."

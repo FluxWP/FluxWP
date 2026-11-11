@@ -1503,7 +1503,7 @@ msgstr[0] "%sプラグイン"
 msgid "%dvehicle is registered.%dvehicle is registered."
 msgstr "%d車両が登録されています。%d車両が登録されています。"
 
-msgid "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s"
+msgid "Spent: %1$s/ Limit: %2$s\nRegeneration: %3$s\n\nDetail: %4$s"
 msgstr "使用済み:%1$s/ 制限:%2$s\n再生成:%3$s\n\n詳細:%4$s"
 
 msgid "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users."
@@ -1542,4 +1542,3 @@ msgstr "接続できる人: flxai_mcp 権限を持つユーザー。投稿を編
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr "このアカウントではアシスタントを接続できません（MCP 権限が必要です）。"
-

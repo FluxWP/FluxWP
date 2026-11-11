@@ -17,10 +17,10 @@ msgid "Preset applied to the empty site."
 msgstr "Пресет применен к пустому сайту."
 
 msgid "%s preset is ready. It was not applied automatically because the site has content: preview and apply it."
-msgstr "Пресет%sготов. Он не был применен автоматически, поскольку на сайте есть контент: просмотрите и примените его."
+msgstr "Пресет %s готов. Он не был применен автоматически, поскольку на сайте есть контент: просмотрите и примените его."
 
 msgid "Presets: %1$d pending updates, %2$d patches awaiting approval."
-msgstr "Предустановки:%1$dожидают обновления, исправления%2$dожидают утверждения."
+msgstr "Предустановки: %1$d ожидают обновления, исправления %2$d ожидают утверждения."
 
 msgid "You are not allowed to do this."
 msgstr "Вам не разрешено это делать."
@@ -29,13 +29,13 @@ msgid "Done."
 msgstr "Готово."
 
 msgid "Applied: %d changes."
-msgstr "Применено: изменения%d."
+msgstr "Применено: изменения %d."
 
 msgid "%d manually changed values were kept."
-msgstr "%dизмененные вручную значения были сохранены."
+msgstr "%d измененные вручную значения были сохранены."
 
 msgid "Undone: %1$d. Left untouched because they changed later: %2$d."
-msgstr "Отменено:%1$d. Оставлено нетронутым, поскольку позже они изменились:%2$d."
+msgstr "Отменено: %1$d. Оставлено нетронутым, поскольку позже они изменились: %2$d."
 
 msgid "\"%s\" imported. You can preview and apply it."
 msgstr "«%s» импортирован. Вы можете просмотреть и применить его."
@@ -71,7 +71,7 @@ msgid "Not applied"
 msgstr "Не применяется"
 
 msgid "Missing: %s. These parts are skipped."
-msgstr "Отсутствует:%s. Эти части пропускаются."
+msgstr "Отсутствует: %s. Эти части пропускаются."
 
 msgid "Preview and apply"
 msgstr "Предварительный просмотр и применение"
@@ -110,7 +110,7 @@ msgid "Site patches"
 msgstr "Патчи сайта"
 
 msgid "theme %s"
-msgstr "тема%s"
+msgstr "тема %s"
 
 msgid "Will be added"
 msgstr "Будет добавлено"
@@ -173,16 +173,16 @@ msgid "Status"
 msgstr "Статус"
 
 msgid "Value of the %s preset. Once applied, that preset's updates will not overwrite it."
-msgstr "Значение предустановки%s. После применения обновления этого пресета не перезапишут его."
+msgstr "Значение предустановки %s. После применения обновления этого пресета не перезапишут его."
 
 msgid "Conflict: %s also writes this value; the last one applied wins."
-msgstr "Конфликт:%sтакже записывает это значение; побеждает тот, кто применил последний."
+msgstr "Конфликт: %s также записывает это значение; побеждает тот, кто применил последний."
 
 msgid "Apply anyway"
 msgstr "Подать заявку в любом случае"
 
 msgid "Apply (%d changes)"
-msgstr "Применить (изменения%d)"
+msgstr "Применить (изменения %d)"
 
 msgid "Show unchanged rows too"
 msgstr "Показать неизмененные строки тоже"
@@ -269,10 +269,10 @@ msgid "More closing comments than opening ones."
 msgstr "Заключительных комментариев больше, чем вступительных."
 
 msgid "Unregistered block: %s"
-msgstr "Незарегистрированный блок:%s."
+msgstr "Незарегистрированный блок: %s."
 
 msgid "Media file missing: %s"
-msgstr "Медиа-файл отсутствует:%s."
+msgstr "Медиа-файл отсутствует: %s."
 
 msgid "Media needs \"file\" or \"url\"."
 msgstr "Медиа-файлу нужен «файл» или «url»."
@@ -284,7 +284,7 @@ msgid "\"%s\" cannot be written, skipped."
 msgstr "«%s» нельзя записать, пропустить."
 
 msgid "The %s language pack is not installed; the site language was not set (Settings › General)."
-msgstr "Языковой пакет%sне установлен; язык сайта не установлен (Настройки › Общие)."
+msgstr "Языковой пакет %s не установлен; язык сайта не установлен (Настройки › Общие)."
 
 msgid "Migration not found."
 msgstr "Миграция не обнаружена."
@@ -293,7 +293,7 @@ msgid "Record not found."
 msgstr "Запись не найдена."
 
 msgid "Exported from %1$s on %2$s."
-msgstr "Экспортировано из%1$sв%2$s."
+msgstr "Экспортировано из %1$s в %2$s."
 
 msgid "Page"
 msgstr "Страница"
@@ -305,7 +305,7 @@ msgid "Term"
 msgstr "Срок"
 
 msgid "Taxonomy not found: %s"
-msgstr "Таксономия не найдена:%s."
+msgstr "Таксономия не найдена: %s."
 
 msgid "Menu"
 msgstr "Меню"
@@ -395,13 +395,13 @@ msgid "Could not read the preset file."
 msgstr "Не удалось прочитать файл настроек."
 
 msgid "The preset is not valid JSON: %s"
-msgstr "Недопустимая предустановка JSON:%s."
+msgstr "Недопустимая предустановка JSON: %s."
 
 msgid "Not valid JSON: %s"
-msgstr "Недействительный JSON:%s."
+msgstr "Недействительный JSON: %s."
 
 msgid "File not found: %s"
-msgstr "Файл не найден:%s"
+msgstr "Файл не найден: %s"
 
 msgid "\"format\" must be \"%s\"."
 msgstr "«формат» должен быть «%s»."
@@ -440,7 +440,7 @@ msgid "Package not found."
 msgstr "Пакет не найден."
 
 msgid "Installing %s"
-msgstr "Установка%s"
+msgstr "Установка %s"
 
 msgid "FluxWP themes and plugins are updated from your own update server instead of wordpress.org. New versions appear on Dashboard › Updates as usual."
 msgstr "Темы и плагины FluxWP обновляются с вашего собственного сервера обновлений, а не с wordpress.org. Новые версии появляются на панели управления › Обновления как обычно."
@@ -452,7 +452,7 @@ msgid "Updates checked."
 msgstr "Обновления проверены."
 
 msgid "Connected to the server as \"%1$s\". Last check: %2$s ago."
-msgstr "Подключился к серверу как «%1$s». Последняя проверка:%2$sназад."
+msgstr "Подключился к серверу как «%1$s». Последняя проверка: %2$s назад."
 
 msgid "Packages"
 msgstr "Пакеты"
@@ -497,7 +497,7 @@ msgid "Check for updates"
 msgstr "Проверьте наличие обновлений"
 
 msgid "Last check: %s"
-msgstr "Последняя проверка:%s"
+msgstr "Последняя проверка: %s"
 
 msgid "Checking…"
 msgstr "Проверка..."
@@ -507,9 +507,9 @@ msgstr "Не удалось подключиться к серверу."
 
 msgid "%d update available"
 msgid_plural "%d updates available"
-msgstr[0] "Доступно обновление%d"
-msgstr[1] "%dдоступны обновления"
-msgstr[2] "%dдоступны обновления"
+msgstr[0] "Доступно обновление %d"
+msgstr[1] "%d доступны обновления"
+msgstr[2] "%d доступны обновления"
 
 msgid "All up to date ✓"
 msgstr "Все актуально ✓"
@@ -557,13 +557,13 @@ msgid "No site key entered."
 msgstr "Ключ сайта не введен."
 
 msgid "Could not reach the server: %s"
-msgstr "Не удалось связаться с сервером:%s."
+msgstr "Не удалось связаться с сервером: %s."
 
 msgid "Invalid site key. Compare it with config.php on the server."
 msgstr "Неверный ключ сайта. Сравните его с config.php на сервере."
 
 msgid "The server returned an unexpected response (HTTP %d)."
-msgstr "Сервер вернул неожиданный ответ (HTTP%d)."
+msgstr "Сервер вернул неожиданный ответ (HTTP %d)."
 
 msgid "No notes for this version."
 msgstr "Нет примечаний к этой версии."
@@ -581,7 +581,7 @@ msgid "Not checked yet."
 msgstr "Еще не проверено."
 
 msgid "Server connection works. Last check: %s."
-msgstr "Соединение с сервером работает. Последняя проверка:%s."
+msgstr "Соединение с сервером работает. Последняя проверка: %s."
 
 msgid "Update server"
 msgstr "Обновление сервера"
@@ -590,7 +590,7 @@ msgid "FluxWP package updates"
 msgstr "Обновления пакета FluxWP"
 
 msgid "Waiting for update: %s"
-msgstr "Ожидание обновления:%s"
+msgstr "Ожидание обновления: %s"
 
 msgid "Updates"
 msgstr "Обновления"
@@ -617,10 +617,10 @@ msgid "Connect to the server with \"Test connection\"."
 msgstr "Подключитесь к серверу с помощью «Тестового соединения»."
 
 msgid "Last check: %s ago"
-msgstr "Последняя проверка:%sназад"
+msgstr "Последняя проверка: %s назад"
 
 msgid "%1$d packages, %2$d updates"
-msgstr "Пакеты%1$d, обновления%2$d"
+msgstr "Пакеты %1$d, обновления %2$d"
 
 msgid "Test connection"
 msgstr "Тестовое соединение"
@@ -641,7 +641,7 @@ msgid "Updating themes"
 msgstr "Обновление тем"
 
 msgid "Installing %1$s version %2$s"
-msgstr "Установка версии%1$s%2$s"
+msgstr "Установка версии %1$s %2$s"
 
 msgid "No records."
 msgstr "Никаких записей."
@@ -749,7 +749,7 @@ msgid "Open backup"
 msgstr "Открыть резервную копию"
 
 msgid "Install version %2$s of %1$s?"
-msgstr "Установить версию%2$sиз%1$s?"
+msgstr "Установить версию %2$s из %1$s?"
 
 msgid "Package did not change; the installation may have failed."
 msgstr "Пакет не изменился; установка могла завершиться неудачно."
@@ -770,46 +770,46 @@ msgid "Package is not installed on this site."
 msgstr "Пакет не установлен на этом сайте."
 
 msgid "Before %1$s %2$s → %3$s"
-msgstr "До%1$s%2$s→%3$s"
+msgstr "До %1$s %2$s → %3$s"
 
 msgid "Backup failed, nothing was changed: %s"
-msgstr "Не удалось выполнить резервное копирование, ничего не изменилось:%s"
+msgstr "Не удалось выполнить резервное копирование, ничего не изменилось: %s"
 
 msgid "Installation failed."
 msgstr "Установка не удалась."
 
 msgid "The site failed after the update (HTTP 500: %s)."
-msgstr "На сайте произошел сбой после обновления (HTTP 500:%s)."
+msgstr "На сайте произошел сбой после обновления (HTTP 500: %s)."
 
 msgid "Site check could not run (no connection)."
 msgstr "Не удалось выполнить проверку сайта (нет соединения)."
 
 msgid "Site check returned HTTP %d; not treated as a failure."
-msgstr "Проверка сайта вернула HTTP%d; не рассматривается как неудача."
+msgstr "Проверка сайта вернула HTTP %d; не рассматривается как неудача."
 
 msgid "%d backup deleted."
 msgid_plural "%d backups deleted."
-msgstr[0] "Резервная копия%dудалена."
-msgstr[1] "Резервные копии%dудалены."
-msgstr[2] "Резервные копии%dудалены."
+msgstr[0] "Резервная копия %d удалена."
+msgstr[1] "Резервные копии %d удалены."
+msgstr[2] "Резервные копии %d удалены."
 
 msgid "Retention saved and applied to existing update backups."
 msgstr "Срок хранения сохраняется и применяется к существующим резервным копиям обновлений."
 
 msgid "%d expired backup deleted."
 msgid_plural "%d expired backups deleted."
-msgstr[0] "Резервная копия с истекшим сроком действия%dудалена."
-msgstr[1] "%dрезервные копии с истекшим сроком действия удалены."
-msgstr[2] "%dрезервные копии с истекшим сроком действия удалены."
+msgstr[0] "Резервная копия с истекшим сроком действия %d удалена."
+msgstr[1] "%d резервные копии с истекшим сроком действия удалены."
+msgstr[2] "%d резервные копии с истекшим сроком действия удалены."
 
 msgid "Update backups are deleted automatically after"
 msgstr "Резервные копии обновлений автоматически удаляются после"
 
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%dдень"
-msgstr[1] "%dдней"
-msgstr[2] "%dдней"
+msgstr[0] "%d день"
+msgstr[1] "%d дней"
+msgstr[2] "%d дней"
 
 msgid "."
 msgstr "."
@@ -818,13 +818,13 @@ msgid "Flux Backup settings"
 msgstr "Настройки резервного копирования Flux"
 
 msgid "Update backup retention is set on the %s page (with Flux Backup 1.2.0 you can also change it here)."
-msgstr "Срок хранения резервных копий обновлений устанавливается на странице%s(в Flux Backup 1.2.0 вы также можете изменить это здесь)."
+msgstr "Срок хранения резервных копий обновлений устанавливается на странице %s(в Flux Backup 1.2.0 вы также можете изменить это здесь)."
 
 msgid "Currently %1$d update backup, %2$s."
 msgid_plural "Currently %1$d update backups, %2$s."
-msgstr[0] "В настоящее время резервная копия обновления%1$d,%2$s."
-msgstr[1] "В настоящее время%1$dобновляет резервные копии,%2$s."
-msgstr[2] "В настоящее время%1$dобновляет резервные копии,%2$s."
+msgstr[0] "В настоящее время резервная копия обновления %1$d, %2$s."
+msgstr[1] "В настоящее время %1$d обновляет резервные копии, %2$s."
+msgstr[2] "В настоящее время %1$d обновляет резервные копии, %2$s."
 
 msgid "Delete all unlocked update backups? This cannot be undone."
 msgstr "Удалить все разблокированные резервные копии обновлений? Это невозможно отменить."
@@ -842,7 +842,7 @@ msgid "Locked"
 msgstr "Заблокировано"
 
 msgid "Deleted on %s"
-msgstr "Удален%s"
+msgstr "Удален %s"
 
 msgid "Open"
 msgstr "Открыть"
@@ -858,9 +858,9 @@ msgstr "Удалить выбранные резервные копии"
 
 msgid "%s item"
 msgid_plural "%s items"
-msgstr[0] "%sэлемент"
-msgstr[1] "%sэлементы"
-msgstr[2] "%sэлементы"
+msgstr[0] "%s элемент"
+msgstr[1] "%s элементы"
+msgstr[2] "%s элементы"
 
 msgid "First page"
 msgstr "Первая страница"
@@ -875,7 +875,7 @@ msgid "Last page"
 msgstr "Последняя страница"
 
 msgid "%1$d of %2$d"
-msgstr "%1$dиз%2$d"
+msgstr "%1$d из %2$d"
 
 msgid "Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone."
 msgstr "Удалить эту резервную копию? Он также содержит резервные копии других пакетов в том же массовом обновлении. Это невозможно отменить."
@@ -884,7 +884,7 @@ msgid "No package selected to install or update."
 msgstr "Пакет для установки или обновления не выбран."
 
 msgid "installed %s"
-msgstr "установлен%s"
+msgstr "установлен %s"
 
 msgid "install failed"
 msgstr "установка не удалась"
@@ -911,7 +911,7 @@ msgid "Installed, inactive"
 msgstr "Установлен, неактивен"
 
 msgid "%1$s requires %2$s (%3$s)."
-msgstr "Для%1$sтребуется%2$s(%3$s)."
+msgstr "Для %1$s требуется %2$s(%3$s)."
 
 msgid "not installed"
 msgstr "не установлен"
@@ -920,7 +920,7 @@ msgid "installed, inactive"
 msgstr "установлен, неактивен"
 
 msgid "Add %s too"
-msgstr "Добавьте также%s"
+msgstr "Добавьте также %s"
 
 msgid "Will also be installed / activated:"
 msgstr "Также будут установлены/активированы:"
@@ -932,10 +932,10 @@ msgid "Remove"
 msgstr "Удалить"
 
 msgid "%1$s was deselected: it does not work without %2$s."
-msgstr "Выбор%1$sотменен: без%2$sон не работает."
+msgstr "Выбор %1$s отменен: без %2$s он не работает."
 
 msgid "For %1$s these will also be installed and activated: %2$s. Continue?"
-msgstr "Для%1$sтакже будут установлены и активированы:%2$s. Продолжать?"
+msgstr "Для %1$s также будут установлены и активированы: %2$s. Продолжать?"
 
 msgid "Preparing…"
 msgstr "Подготовка..."
@@ -959,7 +959,7 @@ msgid "Nothing to do."
 msgstr "Нечего делать."
 
 msgid "Done: %1$d succeeded, %2$d failed."
-msgstr "Готово:%1$dвыполнен успешно,%2$dне выполнен."
+msgstr "Готово: %1$d выполнен успешно, %2$d не выполнен."
 
 msgid "The server did not respond (%s). Check the history and system checks."
 msgstr "Сервер не ответил (%s). Проверьте историю и системные проверки."
@@ -968,19 +968,19 @@ msgid "An install/update is running. Leaving the page may interrupt it."
 msgstr "Выполняется установка/обновление. Выход со страницы может прервать ее."
 
 msgid "Installing %s…"
-msgstr "Установка%s..."
+msgstr "Установка %s..."
 
 msgid "Installing %s from wordpress.org…"
-msgstr "Установка%sс wordpress.org..."
+msgstr "Установка %s с wordpress.org..."
 
 msgid "Activating %s…"
-msgstr "Активация%s..."
+msgstr "Активация %s..."
 
 msgid "Updating %s (backup first)…"
-msgstr "Обновление%s(сначала резервное копирование)..."
+msgstr "Обновление %s(сначала резервное копирование)..."
 
 msgid "Changing the version of %s (backup first)…"
-msgstr "Изменение версии%s(сначала сделайте резервную копию)..."
+msgstr "Изменение версии %s(сначала сделайте резервную копию)..."
 
 msgid "Installing…"
 msgstr "Установка..."
@@ -1001,25 +1001,25 @@ msgid "Done"
 msgstr "Готово"
 
 msgid "(required by %s)"
-msgstr "(требуется%s)"
+msgstr "(требуется %s)"
 
 msgid "%1$s installed%2$s."
-msgstr "%1$sустановлен%2$s."
+msgstr "%1$s установлен%2$s."
 
 msgid "%1$s was not activated: %2$s must be installed and active first."
-msgstr "%1$sне был активирован: сначала необходимо установить и активировать%2$s."
+msgstr "%1$s не был активирован: сначала необходимо установить и активировать %2$s."
 
 msgid "%1$s could not be activated: %2$s"
-msgstr "%1$sне удалось активировать:%2$s"
+msgstr "%1$s не удалось активировать: %2$s"
 
 msgid "%s activated."
-msgstr "%sактивирован."
+msgstr "%s активирован."
 
 msgid "%s: you are not allowed to install."
 msgstr "%s: вам не разрешено устанавливать."
 
 msgid "Could not download %1$s from wordpress.org: %2$s"
-msgstr "Не удалось загрузить%1$sс wordpress.org:%2$s."
+msgstr "Не удалось загрузить %1$s с wordpress.org: %2$s."
 
 msgid "no download link"
 msgstr "нет ссылки для скачивания"
@@ -1028,25 +1028,25 @@ msgid "unknown error"
 msgstr "неизвестная ошибка"
 
 msgid "%1$s could not be installed: %2$s"
-msgstr "%1$sне удалось установить:%2$s"
+msgstr "%1$s не удалось установить: %2$s"
 
 msgid "%s is already installed."
-msgstr "%sуже установлен."
+msgstr "%s уже установлен."
 
 msgid "%1$s %2$s installed."
-msgstr "%1$s%2$sустановлен."
+msgstr "%1$s %2$s установлен."
 
 msgid "This plugin is not required by any FluxWP package."
 msgstr "Этот плагин не требуется ни для одного пакета FluxWP."
 
 msgid "%s was installed from wordpress.org."
-msgstr "%sбыл установлен с wordpress.org."
+msgstr "%s был установлен с wordpress.org."
 
 msgid "%s is not installed, so it could not be activated."
-msgstr "%sне установлен, поэтому его невозможно активировать."
+msgstr "%s не установлен, поэтому его невозможно активировать."
 
 msgid "%s is already active."
-msgstr "%sуже активен."
+msgstr "%s уже активен."
 
 msgid "Unknown action."
 msgstr "Неизвестное действие."
@@ -1055,13 +1055,13 @@ msgid "The package is not installed."
 msgstr "Пакет не установлен."
 
 msgid "%s was not updated: WordPress sees no update for it. Click \"Check for updates\" and try again."
-msgstr "%sне был обновлен: WordPress не видит для него обновлений. Нажмите «Проверить наличие обновлений» и повторите попытку."
+msgstr "%s не был обновлен: WordPress не видит для него обновлений. Нажмите «Проверить наличие обновлений» и повторите попытку."
 
 msgid "Source: %s"
-msgstr "Источник:%s"
+msgstr "Источник: %s"
 
 msgid "available from %d sources"
-msgstr "доступно из источников%d"
+msgstr "доступно из источников %d"
 
 msgid "Remove this source? Packages installed from it stay on the site; they just stop receiving updates."
 msgstr "Удалить этот источник? Установленные с него пакеты остаются на сайте; они просто перестают получать обновления."
@@ -1071,9 +1071,9 @@ msgstr "Выкл."
 
 msgid "Connected · %d package"
 msgid_plural "Connected · %d packages"
-msgstr[0] "Подключено · Пакет%d"
-msgstr[1] "Подключено · Пакеты%d"
-msgstr[2] "Подключено · Пакеты%d"
+msgstr[0] "Подключено · Пакет %d"
+msgstr[1] "Подключено · Пакеты %d"
+msgstr[2] "Подключено · Пакеты %d"
 
 msgid "Other sources"
 msgstr "Другие источники"
@@ -1082,7 +1082,7 @@ msgid "Packages are collected from these sources as well as the main server. If 
 msgstr "Пакеты собираются из этих источников, а также с основного сервера. Если пакет находится более чем в одном источнике, он обновляется из источника, из которого был установлен; если он не установлен, побеждает источник, расположенный выше в списке."
 
 msgid "Source not added: %s"
-msgstr "Источник не добавлен:%s."
+msgstr "Источник не добавлен: %s."
 
 msgid "Source added and its packages loaded."
 msgstr "Добавлен исходный код и загружены его пакеты."
@@ -1139,25 +1139,25 @@ msgid "Test and add"
 msgstr "Тестируйте и добавляйте"
 
 msgid "Could not reach %1$s: %2$s Its packages are shown from the last known data."
-msgstr "Не удалось связаться с%1$s:%2$s. Его пакеты показаны на основе последних известных данных."
+msgstr "Не удалось связаться с %1$s: %2$s. Его пакеты показаны на основе последних известных данных."
 
 msgid "Sources"
 msgstr "Источники"
 
 msgid "Update source: %s"
-msgstr "Источник обновления:%s."
+msgstr "Источник обновления: %s."
 
 msgid "The GitHub address is not in owner/repo form."
 msgstr "Адрес GitHub не указан в форме владельца/репозитория."
 
 msgid "Could not reach the source: %s"
-msgstr "Не удалось связаться с источником:%s."
+msgstr "Не удалось связаться с источником: %s."
 
 msgid "Repository not found or not public."
 msgstr "Репозиторий не найден или не является общедоступным."
 
 msgid "GitHub returned an unexpected response (HTTP %d)."
-msgstr "GitHub вернул неожиданный ответ (HTTP%d)."
+msgstr "GitHub вернул неожиданный ответ (HTTP %d)."
 
 msgid "The address must start with https://."
 msgstr "Адрес должен начинаться с https://."
@@ -1203,27 +1203,27 @@ msgstr "Неактивный"
 
 msgid "%d package activated."
 msgid_plural "%d packages activated."
-msgstr[0] "Пакет%dактивирован."
-msgstr[1] "Пакеты%dактивированы."
-msgstr[2] "Пакеты%dактивированы."
+msgstr[0] "Пакет %d активирован."
+msgstr[1] "Пакеты %d активированы."
+msgstr[2] "Пакеты %d активированы."
 
 msgid "%d package deactivated."
 msgid_plural "%d packages deactivated."
-msgstr[0] "Пакет%dдеактивирован."
-msgstr[1] "Пакеты%dдеактивированы."
-msgstr[2] "Пакеты%dдеактивированы."
+msgstr[0] "Пакет %d деактивирован."
+msgstr[1] "Пакеты %d деактивированы."
+msgstr[2] "Пакеты %d деактивированы."
 
 msgid "%d package deleted."
 msgid_plural "%d packages deleted."
-msgstr[0] "Пакет%dудален."
-msgstr[1] "Пакеты%dудалены."
-msgstr[2] "Пакеты%dудалены."
+msgstr[0] "Пакет %d удален."
+msgstr[1] "Пакеты %d удалены."
+msgstr[2] "Пакеты %d удалены."
 
 msgid "Skipped (already in that state, active theme or FluxWP Panel): %s."
-msgstr "Пропущено (уже в этом состоянии, активная тема или панель FluxWP):%s."
+msgstr "Пропущено (уже в этом состоянии, активная тема или панель FluxWP): %s."
 
 msgid "Failed: %s."
-msgstr "Ошибка:%s."
+msgstr "Ошибка: %s."
 
 msgid "Delete these packages from the site? Their files will be removed. %s"
 msgstr "Удалить эти пакеты с сайта? Их файлы будут удалены.%s"
@@ -1292,7 +1292,7 @@ msgid "Go to the Packages screen."
 msgstr "Перейдите на экран «Пакеты»."
 
 msgid "Site name: %s"
-msgstr "Название сайта:%s"
+msgstr "Название сайта: %s"
 
 msgid "The FluxWP theme is not installed."
 msgstr "Тема FluxWP не установлена."
@@ -1316,7 +1316,7 @@ msgid "Preset not found. If the package is installed, apply it under Appearance 
 msgstr "Предустановка не найдена. Если пакет установлен, примените его в разделе «Внешний вид» > «Пресеты»."
 
 msgid "%s preset applied."
-msgstr "Применена предустановка%s."
+msgstr "Применена предустановка %s."
 
 msgid "Setup finished."
 msgstr "Настройка завершена."
@@ -1334,16 +1334,16 @@ msgid "The active theme does not support colour styles."
 msgstr "Активная тема не поддерживает цветовые стили."
 
 msgid "The theme has no %s colour style."
-msgstr "В теме нет цветового стиля%s."
+msgstr "В теме нет цветового стиля %s."
 
 msgid "Could not create the global styles record."
 msgstr "Не удалось создать запись глобальных стилей."
 
 msgid "Colour style: %s"
-msgstr "Цветовой стиль:%s"
+msgstr "Цветовой стиль: %s"
 
 msgid "Step %1$s of %2$s"
-msgstr "Шаг%1$sиз%2$s"
+msgstr "Шаг %1$s из %2$s"
 
 msgid "Welcome to FluxWP"
 msgstr "Добро пожаловать в FluxWP"
@@ -1352,7 +1352,7 @@ msgid "Let's set up your site in three steps. Pick the plugins, choose the look,
 msgstr "Давайте настроим ваш сайт в три шага. Выберите плагины, выберите внешний вид, а FluxWP Panel установит все остальное."
 
 msgid "%d plugins"
-msgstr "Плагины%d"
+msgstr "Плагины %d"
 
 msgid "Donations, forms, WhatsApp, e-mail, SEO and backups work from one admin."
 msgstr "Пожертвования, формы, WhatsApp, электронная почта, SEO и резервное копирование работают под управлением одного администратора."
@@ -1397,7 +1397,7 @@ msgid "FluxWP Panel was updated. Reopening the wizard on the new version…"
 msgstr "Панель FluxWP обновлена. Повторное открытие мастера в новой версии..."
 
 msgid "Updates could not be completed: %s Setup does not continue until the updates are done."
-msgstr "Не удалось выполнить обновление:%sУстановка не продолжится, пока не будут установлены обновления."
+msgstr "Не удалось выполнить обновление: %s Установка не продолжится, пока не будут установлены обновления."
 
 msgid "Try again"
 msgstr "Попробуйте еще раз"
@@ -1490,10 +1490,10 @@ msgid "Cancel"
 msgstr "Отмена"
 
 msgid "%s plugins + FluxWP theme"
-msgstr "Плагины%s+ тема FluxWP"
+msgstr "Плагины %s+ тема FluxWP"
 
 msgid "%s plugins"
-msgstr "Плагины%s"
+msgstr "Плагины %s"
 
 msgid "Keep this tab open."
 msgstr "Держите эту вкладку открытой."
@@ -1580,10 +1580,10 @@ msgid "Other FluxWP packages."
 msgstr "Другие пакеты FluxWP."
 
 msgid "Plugins · %1$s of %2$s"
-msgstr "Плагины ·%1$sиз%2$s"
+msgstr "Плагины ·%1$s из %2$s"
 
 msgid "%s packages queued"
-msgstr "Пакеты%sпоставлены в очередь"
+msgstr "Пакеты %s поставлены в очередь"
 
 msgid "activating"
 msgstr "активация"
@@ -1613,7 +1613,7 @@ msgid "Upload a PNG, JPG, WebP or GIF."
 msgstr "Загрузите PNG, JPG, WebP или GIF."
 
 msgid "Tagline: %s"
-msgstr "Слоган:%s"
+msgstr "Слоган: %s"
 
 msgid "Could not set the logo."
 msgstr "Не удалось установить логотип."
@@ -1625,7 +1625,7 @@ msgid "You are not allowed to create pages."
 msgstr "Вам не разрешено создавать страницы."
 
 msgid "Page: %s"
-msgstr "Страница:%s"
+msgstr "Страница: %s"
 
 msgid "No new pages."
 msgstr "Никаких новых страниц."
@@ -1686,7 +1686,7 @@ msgid "Contact"
 msgstr "Контакт"
 
 msgid "I accept the %1$s and %2$s; I have read the %3$s."
-msgstr "Я принимаю%1$sи%2$s; Я прочитал%3$s."
+msgstr "Я принимаю %1$s и %2$s; Я прочитал %3$s."
 
 msgid "Terms of Use"
 msgstr "Условия использования"
@@ -1746,7 +1746,7 @@ msgid "Saved."
 msgstr "Сохранено."
 
 msgid "Last sent %s. Sent at most once a day."
-msgstr "Последний отправленный%s. Отправляется максимум раз в день."
+msgstr "Последний отправленный %s. Отправляется максимум раз в день."
 
 msgid "Telemetry URL"
 msgstr "URL-адрес телеметрии"
@@ -1785,13 +1785,13 @@ msgid "Not needed"
 msgstr "Не требуется"
 
 msgid "Could not download %s from wordpress.org."
-msgstr "Не удалось загрузить%sс wordpress.org."
+msgstr "Не удалось загрузить %s с wordpress.org."
 
 msgid "Try from Plugins › Add New"
 msgstr "Попробуйте из плагинов › Добавить новый"
 
 msgid "Next attempt: %s."
-msgstr "Следующая попытка:%s."
+msgstr "Следующая попытка: %s."
 
 msgid "Update distribution is temporarily paused on the server. Nothing is wrong with your site; updates will resume when distribution is turned back on."
 msgstr "Распространение обновлений на сервере временно приостановлено. С вашим сайтом все в порядке; обновления возобновятся, когда распространение снова будет включено."
@@ -1809,7 +1809,7 @@ msgid "The site key is disabled on the server and keyless updates are off, so no
 msgstr "Ключ сайта отключен на сервере, а обновления без ключа отключены, поэтому пакеты недоступны. Попросите администратора сервера повторно активировать ключ."
 
 msgid "The server cannot respond right now (HTTP %d)."
-msgstr "Сервер не может ответить прямо сейчас (HTTP%d)."
+msgstr "Сервер не может ответить прямо сейчас (HTTP %d)."
 
 msgid "Distribution paused"
 msgstr "Распространение приостановлено"
@@ -1824,7 +1824,7 @@ msgid "Site key disabled"
 msgstr "Ключ сайта отключен"
 
 msgid "Support and feedback: %s"
-msgstr "Поддержка и обратная связь:%s"
+msgstr "Поддержка и обратная связь: %s"
 
 msgid "FluxWP Panel"
 msgstr "Панель FluxWP"
@@ -1848,19 +1848,19 @@ msgid "A short overview is not available yet."
 msgstr "Краткий обзор пока недоступен."
 
 msgid "Preview image %d"
-msgstr "Изображение для предварительного просмотра%d"
+msgstr "Изображение для предварительного просмотра %d"
 
 msgid "%d package removed."
 msgid_plural "%d packages removed."
-msgstr[0] "Пакет%dудален."
-msgstr[1] "Пакеты%dудалены."
-msgstr[2] "Пакеты%dудалены."
+msgstr[0] "Пакет %d удален."
+msgstr[1] "Пакеты %d удалены."
+msgstr[2] "Пакеты %d удалены."
 
 msgid "%s record"
 msgid_plural "%s records"
-msgstr[0] "%sзапись"
-msgstr[1] "%sзаписи"
-msgstr[2] "%sзаписи"
+msgstr[0] "%s запись"
+msgstr[1] "%s записи"
+msgstr[2] "%s записи"
 
 msgid "%dthere is an update"
 msgid_plural "%dthere is an update"
@@ -1870,33 +1870,33 @@ msgstr[2] "%dесть обновление"
 
 msgid "%dpackage activated."
 msgid_plural "%dpackage activated."
-msgstr[0] " Пакет%dактивирован."
-msgstr[1] " Пакет%dактивирован."
-msgstr[2] " Пакет%dактивирован."
+msgstr[0] " Пакет %dактивирован."
+msgstr[1] " Пакет %dактивирован."
+msgstr[2] " Пакет %dактивирован."
 
 msgid "%dpackage has been disabled."
 msgid_plural "%dpackage has been disabled."
-msgstr[0] "Пакет%dотключен."
-msgstr[1] "Пакет%dотключен."
-msgstr[2] "Пакет%dотключен."
+msgstr[0] "Пакет %dотключен."
+msgstr[1] "Пакет %dотключен."
+msgstr[2] "Пакет %dотключен."
 
 msgid "%dpackage removed."
 msgid_plural "%dpackage removed."
-msgstr[0] " Пакет%dудален."
-msgstr[1] " Пакет%dудален."
-msgstr[2] " Пакет%dудален."
+msgstr[0] " Пакет %dудален."
+msgstr[1] " Пакет %dудален."
+msgstr[2] " Пакет %dудален."
 
 msgid "%dbackup deleted."
 msgid_plural "%dbackup deleted."
-msgstr[0] " Резервная копия%dудалена."
-msgstr[1] " Резервная копия%dудалена."
-msgstr[2] " Резервная копия%dудалена."
+msgstr[0] " Резервная копия %dудалена."
+msgstr[1] " Резервная копия %dудалена."
+msgstr[2] " Резервная копия %dудалена."
 
 msgid "Expired%dbackup deleted. Expired%dbackup deleted."
 msgstr "Резервная копия%dс истекшим сроком действия удалена. Резервная копия%dс истекшим сроком действия удалена."
 
 msgid "Connected ·%dpackage Connected ·%dpackage"
-msgstr "Подключено · Пакет%dПодключено · Пакет%d"
+msgstr "Подключено · Пакет %dПодключено · Пакет %d"
 
 msgid "%dday"
 msgid_plural "%dday"
@@ -1909,9 +1909,9 @@ msgstr "В настоящее время резервная копия обно�
 
 msgid "%sregistration"
 msgid_plural "%sregistration"
-msgstr[0] "Регистрация%s"
-msgstr[1] "Регистрация%s"
-msgstr[2] "Регистрация%s"
+msgstr[0] "Регистрация %s"
+msgstr[1] "Регистрация %s"
+msgstr[2] "Регистрация %s"
 
 msgid "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back."
 msgstr "Плагин установки и обновления FluxWP. Мастер установки при первом запуске (введение, выбор плагина, внешний вид, установка); Переносит темы и плагины FluxWP с сервера обновлений (по умолчанию updater.fluxwp.com) на экран обновлений WordPress; Механизм предустановок (preset.json) настраивает сайт за один шаг, заменяет его одобренными исправлениями и откатывает его."
@@ -1924,9 +1924,9 @@ msgstr[2] "Резервная копия%dс истекшим сроком де�
 
 msgid "Connected ·%dpackage Connected ·%dpackage"
 msgid_plural "Connected ·%dpackage Connected ·%dpackage"
-msgstr[0] "Подключено · Пакет%dПодключено · Пакет%d"
-msgstr[1] "Подключено · Пакет%dПодключено · Пакет%d"
-msgstr[2] "Подключено · Пакет%dПодключено · Пакет%d"
+msgstr[0] "Подключено · Пакет %dПодключено · Пакет %d"
+msgstr[1] "Подключено · Пакет %dПодключено · Пакет %d"
+msgstr[2] "Подключено · Пакет %dПодключено · Пакет %d"
 
 msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."

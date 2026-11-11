@@ -2648,4 +2648,3 @@ msgstr "已拒绝（未填写 App Secret）"
 
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr "验证传入的 webhook 来自 Meta。在填写之前，传入事件会被拒绝。"
-

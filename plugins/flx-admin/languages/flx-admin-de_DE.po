@@ -14,7 +14,7 @@ msgid "Collapse / expand menu ([)"
 msgstr "Menü ein-/ausblenden ([)"
 
 msgid "Store: %s"
-msgstr "Shop:%s"
+msgstr "Shop: %s"
 
 msgid "WordPress updates"
 msgstr "WordPress-Updates"
@@ -344,7 +344,7 @@ msgid "l, F j, Y"
 msgstr "l, F j, Y"
 
 msgid "%1$s, %2$s"
-msgstr "%1$s,%2$s"
+msgstr "%1$s, %2$s"
 
 msgid "Edit modules"
 msgstr "Bearbeiten Sie Module"
@@ -362,7 +362,7 @@ msgid "Donations today"
 msgstr "Spenden heute"
 
 msgid "%s donations"
-msgstr "%sSpenden"
+msgstr "%s Spenden"
 
 msgid "This month"
 msgstr "Diesen Monat"
@@ -401,7 +401,7 @@ msgid "No problems"
 msgstr "Keine Probleme"
 
 msgid "%s checks OK"
-msgstr "%sprüft OK"
+msgstr "%s prüft OK"
 
 msgid "Donations"
 msgstr "Spenden"
@@ -626,7 +626,7 @@ msgid "Live counter interval"
 msgstr "Live-Zählerintervall"
 
 msgid "%d s"
-msgstr "%ds"
+msgstr "%d s"
 
 msgid "Badges (WhatsApp, tasks, pending donations, updates) ride on the WordPress Heartbeat request; no extra requests. 60 s is recommended for Hostinger."
 msgstr "Abzeichen (WhatsApp, Aufgaben, ausstehende Spenden, Updates) basieren auf der WordPress Heartbeat-Anfrage; keine zusätzlichen Anfragen. Für Hostinger werden 60 s empfohlen."
@@ -756,7 +756,7 @@ msgstr "Rollenbasiertes Menü"
 
 msgid "%s role has a custom menu layout; other roles see the default grouped menu."
 msgid_plural "%s roles have a custom menu layout; other roles see the default grouped menu."
-msgstr[0] "Die Rolle%sverfügt über ein benutzerdefiniertes Menülayout. Andere Rollen sehen das standardmäßige gruppierte Menü."
+msgstr[0] "Die Rolle %s verfügt über ein benutzerdefiniertes Menülayout. Andere Rollen sehen das standardmäßige gruppierte Menü."
 msgstr[1] "%s-Rollen verfügen über ein benutzerdefiniertes Menülayout. Andere Rollen sehen das standardmäßige gruppierte Menü."
 
 msgid "All roles see the default grouped menu."
@@ -772,10 +772,10 @@ msgid "Live counters"
 msgstr "Live-Zähler"
 
 msgid "Heartbeat is %s s; Hostinger may temporarily block the IP under heavy load. 60 s is recommended."
-msgstr "Heartbeat ist%ss; Hostinger kann die IP bei starker Auslastung vorübergehend blockieren. 60 s werden empfohlen."
+msgstr "Heartbeat ist %s s; Hostinger kann die IP bei starker Auslastung vorübergehend blockieren. 60 s werden empfohlen."
 
 msgid "Badges refresh every %s s via WordPress Heartbeat (no extra requests)."
-msgstr "Abzeichen werden alle%ss über WordPress Heartbeat aktualisiert (keine zusätzlichen Anfragen)."
+msgstr "Abzeichen werden alle %s s über WordPress Heartbeat aktualisiert (keine zusätzlichen Anfragen)."
 
 msgid "Turn the admin theme on/off"
 msgstr "Schalten Sie das Admin-Theme ein/aus"
@@ -793,7 +793,7 @@ msgid "Seconds (30, 60 or 120)."
 msgstr "Sekunden (30, 60 oder 120)."
 
 msgid "Interval set to %s s."
-msgstr "Intervall auf%ss eingestellt."
+msgstr "Intervall auf %s s eingestellt."
 
 msgid "PWA (install as an app)"
 msgstr "PWA (als App installieren)"
@@ -997,7 +997,7 @@ msgid "No breakdown"
 msgstr "Keine Panne"
 
 msgid "last %d days"
-msgstr "letzten%dTage"
+msgstr "letzten %d Tage"
 
 msgid "Daily donation totals"
 msgstr "Tägliche Spendensummen"
@@ -1045,7 +1045,7 @@ msgid "Pagination"
 msgstr "Paginierung"
 
 msgid "%1$s–%2$s of %3$s"
-msgstr "%1$s–%2$svon%3$s"
+msgstr "%1$s–%2$s von %3$s"
 
 msgid "Previous page"
 msgstr "Vorherige Seite"
@@ -1152,7 +1152,7 @@ msgstr "Setup-Assistent, Voreinstellungen und FluxWP-Paketaktualisierungen"
 msgid "%s donation"
 msgid_plural "%s donations"
 msgstr[0] "%s-Spende"
-msgstr[1] "%sSpenden"
+msgstr[1] "%s Spenden"
 
 msgid "%s error"
 msgid_plural "%s errors"
@@ -1166,7 +1166,7 @@ msgstr[1] "%s-Warnungen"
 
 msgid "%s role has a custom menu layout; other roles use the default grouped menu."
 msgid_plural "%s roles have custom menu layouts; other roles use the default grouped menu."
-msgstr[0] "Die Rolle%sverfügt über ein benutzerdefiniertes Menülayout. Andere Rollen verwenden das standardmäßige gruppierte Menü."
+msgstr[0] "Die Rolle %s verfügt über ein benutzerdefiniertes Menülayout. Andere Rollen verwenden das standardmäßige gruppierte Menü."
 msgstr[1] "%s-Rollen verfügen über benutzerdefinierte Menülayouts. Andere Rollen verwenden das standardmäßige gruppierte Menü."
 
 msgid "Okunmamış WhatsApp"

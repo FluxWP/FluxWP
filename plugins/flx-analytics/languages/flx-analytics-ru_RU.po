@@ -41,10 +41,10 @@ msgid "All statistics were deleted."
 msgstr "Вся статистика удалена."
 
 msgid "Koko Analytics data imported: %s rows."
-msgstr "Импортированы данные Koko Analytics: строки%s."
+msgstr "Импортированы данные Koko Analytics: строки %s."
 
 msgid "%s visit rows processed."
-msgstr "%sстроки посещений обработаны."
+msgstr "%s строки посещений обработаны."
 
 msgid "Counting"
 msgstr "Подсчет"
@@ -167,7 +167,7 @@ msgid "Data"
 msgstr "Данные"
 
 msgid "Last processed %1$s. Waiting in queue: %2$s."
-msgstr "Последний обработанный%1$s. Ожидание в очереди:%2$s."
+msgstr "Последний обработанный %1$s. Ожидание в очереди: %2$s."
 
 msgid "No visits processed yet."
 msgstr "Посещения еще не обработаны."
@@ -182,7 +182,7 @@ msgid "Download pages (CSV)"
 msgstr "Загрузить страницы (CSV)"
 
 msgid "Koko Analytics data found: %1$s days (%2$s – %3$s). Days before Flux Analytics was installed are imported; Koko tables are not modified."
-msgstr "Обнаружены данные Koko Analytics:%1$sдней (%2$s–%3$s). Импортируются дни до установки Flux Analytics; Таблицы Коко не изменяются."
+msgstr "Обнаружены данные Koko Analytics: %1$s дней (%2$s–%3$s). Импортируются дни до установки Flux Analytics; Таблицы Коко не изменяются."
 
 msgid "Import Koko Analytics data"
 msgstr "Импортируйте данные Koko Analytics"
@@ -296,7 +296,7 @@ msgid "Last 14 days"
 msgstr "Последние 14 дней"
 
 msgid "%1$s: %2$s visitors, %3$s views"
-msgstr "%1$s: посетители%2$s, просмотры%3$s."
+msgstr "%1$s: посетители %2$s, просмотры %3$s."
 
 msgid "All statistics →"
 msgstr "Вся статистика →"
@@ -305,7 +305,7 @@ msgid "on the site now (last 5 min)"
 msgstr "на сайте сейчас (последние 5 минут)"
 
 msgid "last 30 min · %s views"
-msgstr "за последние 30 минут · Просмотры:%s"
+msgstr "за последние 30 минут · Просмотры: %s"
 
 msgid "Pages being viewed now"
 msgstr "Страницы, просматриваемые сейчас"
@@ -320,7 +320,7 @@ msgid "Nobody right now"
 msgstr "Никто прямо сейчас"
 
 msgid "today · %s views"
-msgstr "сегодня · Просмотры%s"
+msgstr "сегодня · Просмотры %s"
 
 msgid "yesterday"
 msgstr "вчера"
@@ -338,13 +338,13 @@ msgid "Outside visitors / logged-in users"
 msgstr "Внешние посетители/вошедшие пользователи"
 
 msgid "Outside: %1$s · Logged in: %2$s"
-msgstr "За пределами:%1$s· Войти:%2$s"
+msgstr "За пределами: %1$s· Войти: %2$s"
 
 msgid "Channels"
 msgstr "Каналы"
 
 msgid "%s donations"
-msgstr "%sпожертвования"
+msgstr "%s пожертвования"
 
 msgid "No data in this range."
 msgstr "Нет данных в этом диапазоне."
@@ -440,7 +440,7 @@ msgid "Invalid code. Use letters, digits, - and _."
 msgstr "Неверный код. Используйте буквы, цифры, - и _."
 
 msgid "%s views"
-msgstr "Просмотры%s"
+msgstr "Просмотры %s"
 
 msgid "Last 30 days (Site Analytics)"
 msgstr "Последние 30 дней (аналитика сайта)"
@@ -659,7 +659,7 @@ msgid "Statistics processing"
 msgstr "Обработка статистики"
 
 msgid "Last processed %1$s. Waiting: %2$s."
-msgstr "Последний обработанный%1$s. Ожидание:%2$s."
+msgstr "Последний обработанный %1$s. Ожидание: %2$s."
 
 msgid "Processing error"
 msgstr "Ошибка обработки"
@@ -683,7 +683,7 @@ msgid "Processing is already running; try again in a few seconds."
 msgstr "Обработка уже запущена; повторите попытку через несколько секунд."
 
 msgid "%s rows processed."
-msgstr "Строки%sобработаны."
+msgstr "Строки %s обработаны."
 
 msgid "Repair statistics tables"
 msgstr "Таблицы статистики ремонта"
@@ -716,7 +716,7 @@ msgid "Nonprofit and donations"
 msgstr "Некоммерческая организация и пожертвования"
 
 msgid "%s card"
-msgstr "Карта%s"
+msgstr "Карта %s"
 
 msgid "(theme)"
 msgstr "(тема)"
@@ -749,7 +749,7 @@ msgid "System"
 msgstr "Система"
 
 msgid "Plugins: %s"
-msgstr "Плагины:%s"
+msgstr "Плагины: %s"
 
 msgid "No records in this range."
 msgstr "В этом диапазоне записей нет."
@@ -764,7 +764,7 @@ msgid "Setup wizard"
 msgstr "Мастер настройки"
 
 msgid "%d days"
-msgstr "%dдней"
+msgstr "%d дней"
 
 msgid "All countries"
 msgstr "Все страны"
@@ -791,7 +791,7 @@ msgid "Distinct errors"
 msgstr "Явные ошибки"
 
 msgid "%s fatal"
-msgstr "%sфатальный"
+msgstr "%s фатальный"
 
 msgid "Error events"
 msgstr "События ошибок"
@@ -857,7 +857,7 @@ msgid "Fatal only"
 msgstr "Только фатально"
 
 msgid "%s records"
-msgstr "%sзаписи"
+msgstr "%s записи"
 
 msgid "No errors in this range."
 msgstr "В этом диапазоне ошибок нет."
@@ -902,7 +902,7 @@ msgid "Abandoned"
 msgstr "Заброшенный"
 
 msgid "Median time for finishers: %s min"
-msgstr "Среднее время финишеров:%sмин."
+msgstr "Среднее время финишеров: %s мин."
 
 msgid "No wizard data yet."
 msgstr "Данных мастера пока нет."
@@ -962,10 +962,10 @@ msgid "Fast endpoint unreachable, REST will be used"
 msgstr "Быстрая конечная точка недоступна, будет использоваться REST"
 
 msgid "%s s"
-msgstr "%sс"
+msgstr "%s с"
 
 msgid "%1$s min %2$s s"
-msgstr "%1$sмин%2$sс"
+msgstr "%1$s мин %2$s с"
 
 msgid "Copied"
 msgstr "Скопировано"
@@ -998,7 +998,7 @@ msgid "Logged-in users"
 msgstr "Вошедшие пользователи"
 
 msgid "Role: %s"
-msgstr "Роль:%s"
+msgstr "Роль: %s"
 
 msgid "Referral"
 msgstr "Направление"
@@ -1016,13 +1016,13 @@ msgid "Visitors and views chart"
 msgstr "График посетителей и просмотров"
 
 msgid "Week of %s"
-msgstr "Неделя%s"
+msgstr "Неделя %s"
 
 msgid "Compared with the previous period of equal length"
 msgstr "По сравнению с предыдущим периодом такой же продолжительности"
 
 msgid "Previous period: %s"
-msgstr "Предыдущий период:%s"
+msgstr "Предыдущий период: %s"
 
 msgid "Sessions"
 msgstr "Сессии"
@@ -1040,7 +1040,7 @@ msgid "Left after viewing one page"
 msgstr "Осталось после просмотра одной страницы"
 
 msgid "%1$s min ago: %2$s"
-msgstr "%1$sмин. назад:%2$s"
+msgstr "%1$s мин. назад: %2$s"
 
 msgid "Live"
 msgstr "Живи"
@@ -1049,10 +1049,10 @@ msgid "Refreshes every 5 s"
 msgstr "Обновляется каждые 5 с."
 
 msgid "visitors in last %s min"
-msgstr "посетителей за последнюю%sминуту"
+msgstr "посетителей за последнюю %s минуту"
 
 msgid "%s min ago"
-msgstr "%sмин назад"
+msgstr "%s мин назад"
 
 msgid "now"
 msgstr "сейчас"
@@ -1103,7 +1103,7 @@ msgid "No country data in this range."
 msgstr "В этом диапазоне нет данных о стране."
 
 msgid "Funnel: %s"
-msgstr "Воронка:%s"
+msgstr "Воронка: %s"
 
 msgid "Drop from previous step"
 msgstr "Отказаться от предыдущего шага"
@@ -1133,7 +1133,7 @@ msgid "Save"
 msgstr "Сохранить"
 
 msgid "No referral links yet. Add ?r=code to the site address wherever you share it (e.g. %s); give it a name here and reports will show that name."
-msgstr "Реферальных ссылок пока нет. Добавьте ?r=code к адресу сайта, где бы вы им не делились (например,%s); дайте ему имя здесь, и в отчетах будет показано это имя."
+msgstr "Реферальных ссылок пока нет. Добавьте ?r=code к адресу сайта, где бы вы им не делились (например, %s); дайте ему имя здесь, и в отчетах будет показано это имя."
 
 msgid "Pages / session"
 msgstr "Страницы/сессия"
@@ -1220,7 +1220,7 @@ msgid "Funnel name"
 msgstr "Название воронки"
 
 msgid "%s steps"
-msgstr "%sшаги"
+msgstr "%s шаги"
 
 msgid "Delete funnel"
 msgstr "Удалить воронку"
@@ -1253,7 +1253,7 @@ msgid "Add preset step…"
 msgstr "Добавить заданный шаг..."
 
 msgid "At most %s steps."
-msgstr "Не более шагов%s."
+msgstr "Не более шагов %s."
 
 msgid "New funnel"
 msgstr "Новая воронка"
@@ -1271,7 +1271,7 @@ msgid "Delete funnel \"%s\"?"
 msgstr "Удалить последовательность \"%s\"?"
 
 msgid "Funnel %s"
-msgstr "Воронка%s"
+msgstr "Воронка %s"
 
 msgid "Replace all funnels with the default donation funnel? (Applied when you click Save.)"
 msgstr "Заменить все воронки на воронку для пожертвований по умолчанию? (Применяется при нажатии кнопки «Сохранить».)"
@@ -1313,7 +1313,7 @@ msgid "Paths shown"
 msgstr "Показаны пути"
 
 msgid "Top %s paths"
-msgstr "Основные пути%s"
+msgstr "Основные пути %s"
 
 msgid "Top paths"
 msgstr "Лучшие пути"
@@ -1334,7 +1334,7 @@ msgid "Could not load data. Refresh the page."
 msgstr "Не удалось загрузить данные. Обновите страницу."
 
 msgid "%1$s visits · %2$s"
-msgstr "%1$sпосещения ·%2$s"
+msgstr "%1$s посещения ·%2$s"
 
 msgid "No data"
 msgstr "Нет данных"
@@ -1343,13 +1343,13 @@ msgid "Multi-page sessions"
 msgstr "Многостраничные сессии"
 
 msgid "%s of all visits"
-msgstr "%sвсех посещений"
+msgstr "%s всех посещений"
 
 msgid "Avg path length"
 msgstr "Средняя длина пути"
 
 msgid "%s pages"
-msgstr "Страницы%s"
+msgstr "Страницы %s"
 
 msgid "In multi-page sessions"
 msgstr "В многостраничных сессиях"
@@ -1373,16 +1373,16 @@ msgid "Click a box to filter the paths below by that page. Thickness shows the n
 msgstr "Щелкните поле, чтобы отфильтровать пути ниже по этой странице. Толщина показывает количество посещений."
 
 msgid "%s visits"
-msgstr "%sпосещений"
+msgstr "%s посещений"
 
 msgid "Entries"
 msgstr "Записи"
 
 msgid "Step %s"
-msgstr "Шаг%s"
+msgstr "Шаг %s"
 
 msgid "%s end here"
-msgstr "%sзаканчивается здесь"
+msgstr "%s заканчивается здесь"
 
 msgid "all continue"
 msgstr "все продолжается"
@@ -1406,7 +1406,7 @@ msgid "new"
 msgstr "новый"
 
 msgid "Showing %2$s of %1$s paths."
-msgstr "Показаны пути%2$sиз%1$s."
+msgstr "Показаны пути %2$s из %1$s."
 
 msgid "30 days"
 msgstr "30 дней"

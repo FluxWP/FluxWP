@@ -65,19 +65,19 @@ msgid "WordPress and PHP version"
 msgstr "WordPress- und PHP-Version"
 
 msgid "WordPress %1$s, PHP %2$s. Required: WordPress 6.5+, PHP 7.4+."
-msgstr "WordPress%1$s, PHP%2$s. Erforderlich: WordPress 6.5+, PHP 7.4+."
+msgstr "WordPress %1$s, PHP %2$s. Erforderlich: WordPress 6.5+, PHP 7.4+."
 
 msgid "Database tables"
 msgstr "Datenbanktabellen"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Fehlende Tabelle:%s. Deaktivieren Sie das Plugin und aktivieren Sie es erneut."
+msgstr "Fehlende Tabelle: %s. Deaktivieren Sie das Plugin und aktivieren Sie es erneut."
 
 msgid "Plugins"
 msgstr "Plugins"
 
 msgid "Tables are ready (schema %s)."
-msgstr "Tabellen sind bereit (Schema%s)."
+msgstr "Tabellen sind bereit (Schema %s)."
 
 msgid "File folder"
 msgstr "Dateiordner"
@@ -95,7 +95,7 @@ msgid "Upload limit"
 msgstr "Upload-Limit"
 
 msgid "Effective limit %1$s (server limit %2$s)."
-msgstr "Effektives Limit%1$s(Serverlimit%2$s)."
+msgstr "Effektives Limit %1$s(Serverlimit %2$s)."
 
 msgid "The setting is larger than the server limit; upload_max_filesize and post_max_size can be raised in the hosting panel."
 msgstr "Die Einstellung ist größer als das Serverlimit; upload_max_filesize und post_max_size können im Hosting-Panel erhöht werden."
@@ -110,10 +110,10 @@ msgid "Not scheduled: overdue/upcoming task notifications and old temporary file
 msgstr "Nicht geplant: Benachrichtigungen über überfällige/anstehende Aufgaben und die Bereinigung alter temporärer Dateien werden nicht ausgeführt. Durch einmaliges Öffnen der Seite „Aufgaben“ wird diese neu geplant."
 
 msgid "The scheduled job is late (due %s). WP-Cron may not be triggering (if the site gets few visits, a real cron in the hosting panel is recommended)."
-msgstr "Der geplante Job ist verspätet (fällig%s). WP-Cron wird möglicherweise nicht ausgelöst (wenn die Website nur wenige Besuche erhält, wird ein echter Cron im Hosting-Panel empfohlen)."
+msgstr "Der geplante Job ist verspätet (fällig %s). WP-Cron wird möglicherweise nicht ausgelöst (wenn die Website nur wenige Besuche erhält, wird ein echter Cron im Hosting-Panel empfohlen)."
 
 msgid "Next run: %s."
-msgstr "Nächster Lauf:%s."
+msgstr "Nächster Lauf: %s."
 
 msgid "WP-Cron mode"
 msgstr "WP-Cron-Modus"
@@ -128,7 +128,7 @@ msgid "Update interval"
 msgstr "Aktualisierungsintervall"
 
 msgid "10 s while on screen, %d s after 2 min idle; background tabs send no requests."
-msgstr "10 s während auf dem Bildschirm,%ds nach 2 Minuten Leerlauf; Hintergrundregisterkarten senden keine Anfragen."
+msgstr "10 s während auf dem Bildschirm, %d s nach 2 Minuten Leerlauf; Hintergrundregisterkarten senden keine Anfragen."
 
 msgid "API cache"
 msgstr "API-Cache"
@@ -158,7 +158,7 @@ msgid "AI"
 msgstr "KI"
 
 msgid "Via Flux AI, model: %s."
-msgstr "Über Flux AI, Modell:%s."
+msgstr "Über Flux AI, Modell: %s."
 
 msgid "Flux AI"
 msgstr "Fluss-KI"
@@ -215,7 +215,7 @@ msgid "Add page to document"
 msgstr "Seite zum Dokument hinzufügen"
 
 msgid "Document: %s"
-msgstr "Dokument:%s"
+msgstr "Dokument: %s"
 
 msgid "Improve"
 msgstr "Verbessern"
@@ -311,7 +311,7 @@ msgid "An email draft needs Flux Communication and mailbox permission."
 msgstr "Für einen E-Mail-Entwurf sind Flux Communication und eine Postfachberechtigung erforderlich."
 
 msgid "File is too large. The maximum upload size is %s."
-msgstr "Die Datei ist zu groß. Die maximale Upload-Größe beträgt%s."
+msgstr "Die Datei ist zu groß. Die maximale Upload-Größe beträgt %s."
 
 msgid "Could not upload the file."
 msgstr "Die Datei konnte nicht hochgeladen werden."
@@ -395,16 +395,16 @@ msgid "Track tasks in list, board and calendar views. Add new lists or folders f
 msgstr "Verfolgen Sie Aufgaben in Listen-, Board- und Kalenderansichten. Fügen Sie im linken Menü neue Listen oder Ordner hinzu und richten Sie benutzerdefinierte Felder und Berechtigungen in den Listeneinstellungen ein."
 
 msgid "%s assigned you to a task"
-msgstr "%shat Ihnen eine Aufgabe zugewiesen"
+msgstr "%s hat Ihnen eine Aufgabe zugewiesen"
 
 msgid "%s mentioned you in a comment"
-msgstr "%shat Sie in einem Kommentar erwähnt"
+msgstr "%s hat Sie in einem Kommentar erwähnt"
 
 msgid "%s wrote a comment"
-msgstr "%shat einen Kommentar geschrieben"
+msgstr "%s hat einen Kommentar geschrieben"
 
 msgid "%1$s changed the status to \"%2$s\""
-msgstr "%1$shat den Status in „%2$s“ geändert."
+msgstr "%1$s hat den Status in „%2$s“ geändert."
 
 msgid "Due tomorrow"
 msgstr "Fällig morgen"
@@ -458,16 +458,16 @@ msgid "Sent when someone assigns you to a task."
 msgstr "Wird gesendet, wenn Ihnen jemand eine Aufgabe zuweist."
 
 msgid "{kisi} assigned you to a task: {gorev}"
-msgstr "{kisi}hat Ihnen eine Aufgabe zugewiesen:{gorev}"
+msgstr "{kisi} hat Ihnen eine Aufgabe zugewiesen: {gorev}"
 
 msgid "New task: {gorev}"
-msgstr "Neue Aufgabe:{gorev}"
+msgstr "Neue Aufgabe: {gorev}"
 
 msgid "Hi {ad},"
-msgstr "Hallo{ad},"
+msgstr "Hallo {ad},"
 
 msgid "{kisi} assigned you to <strong>{gorev}</strong> in the <strong>{liste}</strong> list."
-msgstr "{kisi}hat Ihnen<strong>{gorev}</strong>in der Liste<strong>{liste}</strong>zugewiesen."
+msgstr "{kisi} hat Ihnen<strong>{gorev}</strong>in der Liste<strong>{liste}</strong>zugewiesen."
 
 msgid "Open task"
 msgstr "Aufgabe öffnen"
@@ -479,10 +479,10 @@ msgid "Sent when someone @mentions you in a comment."
 msgstr "Wird gesendet, wenn jemand Sie in einem Kommentar @erwähnt."
 
 msgid "{kisi} mentioned you in a comment: {gorev}"
-msgstr "{kisi}hat Sie in einem Kommentar erwähnt:{gorev}"
+msgstr "{kisi} hat Sie in einem Kommentar erwähnt: {gorev}"
 
 msgid "{kisi} mentioned you"
-msgstr "{kisi}hat Sie erwähnt"
+msgstr "{kisi} hat Sie erwähnt"
 
 msgid "Comment on <strong>{gorev}</strong>:"
 msgstr "Kommentar zu<strong>{gorev}</strong>:"
@@ -497,10 +497,10 @@ msgid "Sent one day before the due date of a task assigned to you."
 msgstr "Wird einen Tag vor dem Fälligkeitsdatum einer Ihnen zugewiesenen Aufgabe gesendet."
 
 msgid "Due tomorrow: {gorev}"
-msgstr "Fällig morgen:{gorev}"
+msgstr "Fällig morgen: {gorev}"
 
 msgid "<strong>{gorev}</strong> is due on {tarih}."
-msgstr "<strong>{gorev}</strong>ist am{tarih}fällig."
+msgstr "<strong>{gorev}</strong>ist am {tarih} fällig."
 
 msgid "Can view"
 msgstr "Kann angesehen werden"
@@ -617,7 +617,7 @@ msgid "A task cannot be moved under its own subtask."
 msgstr "Eine Aufgabe kann nicht unter eine eigene Unteraufgabe verschoben werden."
 
 msgid "Subtasks can be nested at most %d levels in this project. You can change the limit in project settings."
-msgstr "Unteraufgaben können in diesem Projekt auf den meisten%d-Ebenen verschachtelt werden. Sie können das Limit in den Projekteinstellungen ändern."
+msgstr "Unteraufgaben können in diesem Projekt auf den meisten %d-Ebenen verschachtelt werden. Sie können das Limit in den Projekteinstellungen ändern."
 
 msgid "Task name cannot be empty."
 msgstr "Der Aufgabenname darf nicht leer sein."
@@ -680,10 +680,10 @@ msgid "Loading"
 msgstr "Laden"
 
 msgid "{n} failed"
-msgstr "{n}ist fehlgeschlagen"
+msgstr "{n} ist fehlgeschlagen"
 
 msgid "{n} in progress"
-msgstr "{n}in Bearbeitung"
+msgstr "{n} in Bearbeitung"
 
 msgid "server busy, waiting"
 msgstr "Server beschäftigt, wartet"
@@ -704,7 +704,7 @@ msgid "Close"
 msgstr "Schließen"
 
 msgid "Uploading: {n}"
-msgstr "Hochladen:{n}"
+msgstr "Hochladen: {n}"
 
 msgid "Upload timed out."
 msgstr "Zeitüberschreitung beim Hochladen."
@@ -830,13 +830,13 @@ msgid "Delete page"
 msgstr "Seite löschen"
 
 msgid "\"{p}\" and its {n} subpages will be deleted."
-msgstr "„{p}“ und seine{n}-Unterseiten werden gelöscht."
+msgstr "„{p}“ und seine {n}-Unterseiten werden gelöscht."
 
 msgid "\"{p}\" will be deleted."
 msgstr "„{p}“ wird gelöscht."
 
 msgid "Last edited by {n}, {t}"
-msgstr "Zuletzt bearbeitet von{n},{t}"
+msgstr "Zuletzt bearbeitet von {n}, {t}"
 
 msgid "typing"
 msgstr "Tippen"
@@ -1313,7 +1313,7 @@ msgid "Tags"
 msgstr "Schlagworte"
 
 msgid "{n} tags are linked by name in the target project: {e} already exist, {c} will be created."
-msgstr "{n}-Tags sind im Zielprojekt namentlich verknüpft:{e}existiert bereits,{c}wird erstellt."
+msgstr "{n}-Tags sind im Zielprojekt namentlich verknüpft: {e} existiert bereits, {c} wird erstellt."
 
 msgid "People who will lose access"
 msgstr "Menschen, die den Zugang verlieren"
@@ -1448,16 +1448,16 @@ msgid "The view \"{n}\" will be deleted. Tasks are not affected."
 msgstr "Die Ansicht „{n}“ wird gelöscht. Aufgaben sind nicht betroffen."
 
 msgid "{n} assigned you to a task"
-msgstr "{n}hat Ihnen eine Aufgabe zugewiesen"
+msgstr "{n} hat Ihnen eine Aufgabe zugewiesen"
 
 msgid "{n} mentioned you in a comment"
-msgstr "{n}hat Sie in einem Kommentar erwähnt"
+msgstr "{n} hat Sie in einem Kommentar erwähnt"
 
 msgid "{n} wrote a comment"
-msgstr "{n}hat einen Kommentar geschrieben"
+msgstr "{n} hat einen Kommentar geschrieben"
 
 msgid "{n} changed the status to \"{s}\""
-msgstr "{n}hat den Status in „{s}“ geändert."
+msgstr "{n} hat den Status in „{s}“ geändert."
 
 msgid "All"
 msgstr "Alle"
@@ -1490,13 +1490,13 @@ msgid "{n} files"
 msgstr "{n}-Dateien"
 
 msgid "previews {s}"
-msgstr "Vorschau{s}"
+msgstr "Vorschau {s}"
 
 msgid "Open tasks"
 msgstr "Offene Aufgaben"
 
 msgid "{n} completed"
-msgstr "{n}abgeschlossen"
+msgstr "{n} abgeschlossen"
 
 msgid "open tasks past their due date"
 msgstr "offene Aufgaben, deren Fälligkeitsdatum überschritten ist"
@@ -1511,7 +1511,7 @@ msgid "Comments"
 msgstr "Kommentare"
 
 msgid "{n} active users (30 days)"
-msgstr "{n}aktive Benutzer (30 Tage)"
+msgstr "{n} aktive Benutzer (30 Tage)"
 
 msgid "Structure"
 msgstr "Struktur"
@@ -1649,10 +1649,10 @@ msgid "Check again"
 msgstr "Überprüfen Sie es noch einmal"
 
 msgid "{n} item(s)"
-msgstr "{n}Artikel"
+msgstr "{n} Artikel"
 
 msgid "Flux AI default: {m}"
-msgstr "Flux AI-Standard:{m}"
+msgstr "Flux AI-Standard: {m}"
 
 msgid "Flux AI default"
 msgstr "Flux AI-Standard"
@@ -1718,7 +1718,7 @@ msgid "E.g. Association Istanbul branch. Add the \"Event\" tag to event tasks. W
 msgstr "Z.B. Zweigstelle des Vereins in Istanbul. Fügen Sie den Ereignisaufgaben das Tag „Ereignis“ hinzu. Schreiben Sie Datumsangaben als Tag.Monat.Jahr."
 
 msgid "This month: {c} requests, {t} tokens, ${m}"
-msgstr "Diesen Monat:{c}-Anfragen,{t}-Tokens, ${m}"
+msgstr "Diesen Monat: {c}-Anfragen, {t}-Tokens, ${m}"
 
 msgid "Data"
 msgstr "Daten"
@@ -1928,7 +1928,7 @@ msgid "Permissions saved"
 msgstr "Berechtigungen gespeichert"
 
 msgid "List settings: {n}"
-msgstr "Listeneinstellungen:{n}"
+msgstr "Listeneinstellungen: {n}"
 
 msgid "What do you want to do? e.g. \"Show tasks in this list due tomorrow\" or \"Open a poster task for Ayşe due Friday\""
 msgstr "Was möchten Sie tun? z.B. „Aufgaben in dieser Liste anzeigen, die morgen fällig sind“ oder „Eine Posteraufgabe für Ayşe öffnen, die am Freitag fällig ist“"
@@ -2066,7 +2066,7 @@ msgid "Complete"
 msgstr "Komplett"
 
 msgid "Completed: {d}"
-msgstr "Abgeschlossen:{d}"
+msgstr "Abgeschlossen: {d}"
 
 msgid "You can only comment"
 msgstr "Sie können nur kommentieren"
@@ -2111,7 +2111,7 @@ msgid "Show less"
 msgstr "Weniger anzeigen"
 
 msgid "{n} more fields"
-msgstr "{n}weitere Felder"
+msgstr "{n} weitere Felder"
 
 msgid "Participants"
 msgstr "Teilnehmer"
@@ -2192,7 +2192,7 @@ msgid "Owner"
 msgstr "Besitzer"
 
 msgid "Report: {d} · {n}"
-msgstr "Bericht:{d}·{n}"
+msgstr "Bericht: {d} · {n}"
 
 msgid "Add subtask…"
 msgstr "Unteraufgabe hinzufügen..."
@@ -2222,10 +2222,10 @@ msgid "Drag files here or choose"
 msgstr "Ziehen Sie Dateien hierher oder wählen Sie aus"
 
 msgid "Up to {s}"
-msgstr "Bis{s}"
+msgstr "Bis {s}"
 
 msgid "{n} is too large (up to {s})."
-msgstr "{n}ist zu groß (bis zu{s})."
+msgstr "{n} ist zu groß (bis zu {s})."
 
 msgid "Upload new image"
 msgstr "Neues Bild hochladen"
@@ -2255,13 +2255,13 @@ msgid "removed the priority"
 msgstr "hat die Priorität entfernt"
 
 msgid "set the due date to {d}"
-msgstr "Setzen Sie das Fälligkeitsdatum auf{d}"
+msgstr "Setzen Sie das Fälligkeitsdatum auf {d}"
 
 msgid "removed the due date"
 msgstr "das Fälligkeitsdatum entfernt"
 
 msgid "set the start date to {d}"
-msgstr "Setzen Sie das Startdatum auf{d}"
+msgstr "Setzen Sie das Startdatum auf {d}"
 
 msgid "removed the start date"
 msgstr "Das Startdatum wurde entfernt"
@@ -2270,10 +2270,10 @@ msgid "took the task"
 msgstr "nahm die Aufgabe an"
 
 msgid "assigned {n}"
-msgstr "{n}zugewiesen"
+msgstr "{n} zugewiesen"
 
 msgid "unassigned {n}"
-msgstr "nicht zugewiesen{n}"
+msgstr "nicht zugewiesen {n}"
 
 msgid "added a tag:"
 msgstr "einen Tag hinzugefügt:"
@@ -2438,7 +2438,7 @@ msgid "Search or create a tag…"
 msgstr "Suchen oder erstellen Sie ein Tag..."
 
 msgid "Create: {n}"
-msgstr "Erstellen:{n}"
+msgstr "Erstellen: {n}"
 
 msgid "No tags yet. Type to create one."
 msgstr "Noch keine Tags. Geben Sie ein, um eines zu erstellen."
@@ -2459,7 +2459,7 @@ msgid "Group"
 msgstr "Gruppe"
 
 msgid "Group: {n}"
-msgstr "Gruppe:{n}"
+msgstr "Gruppe: {n}"
 
 msgid "Manual order"
 msgstr "Manuelle Bestellung"
@@ -2579,7 +2579,7 @@ msgid "This task no longer matches this view's filter. It will be hidden when yo
 msgstr "Diese Aufgabe entspricht nicht mehr dem Filter dieser Ansicht. Es wird ausgeblendet, wenn Sie die Seite wechseln."
 
 msgid "Assigned: {n}"
-msgstr "Zugewiesen:{n}"
+msgstr "Zugewiesen: {n}"
 
 msgid "Outside filter"
 msgstr "Außenfilter"
@@ -2618,7 +2618,7 @@ msgid "No tasks in this list yet."
 msgstr "Noch keine Aufgaben in dieser Liste."
 
 msgid "{n} selected"
-msgstr "{n}ausgewählt"
+msgstr "{n} ausgewählt"
 
 msgid "Assign"
 msgstr "Zuweisen"
@@ -2645,7 +2645,7 @@ msgid "Week"
 msgstr "Woche"
 
 msgid "No date: {n}"
-msgstr "Kein Datum:{n}"
+msgstr "Kein Datum: {n}"
 
 msgid "Tasks without a date"
 msgstr "Aufgaben ohne Datum"
@@ -2654,7 +2654,7 @@ msgid "No dated tasks this month."
 msgstr "Diesen Monat gibt es keine datierten Aufgaben."
 
 msgid "+{n} more"
-msgstr "+{n}mehr"
+msgstr "+{n} mehr"
 
 msgid "Meeting name"
 msgstr "Name der Besprechung"
@@ -2688,4 +2688,3 @@ msgstr "Flux Tasks-Werkzeuge benötigen Flux AI & MCP."
 
 msgid "MCP"
 msgstr "MCP"
-

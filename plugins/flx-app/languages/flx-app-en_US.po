@@ -1349,4 +1349,3 @@ msgstr "The phone number was removed from your %s account"
 
 msgid "The token does not include the scope this request needs."
 msgstr "The token does not include the scope this request needs."
-

@@ -241,21 +241,21 @@ class Emsfb_Addon_Compatibility {
 		$missing      = self::missing_functions( $addon_key );
 
 		if ( empty( $missing ) ) {
-			return sprintf( esc_html__( '%sis currently unavailable.', 'flx-forms' ), $name );
+			return sprintf( esc_html__( '%s is currently unavailable.', 'flx-forms' ), $name );
 		}
 
 		$disabled = array_values( array_filter( $missing, array( __CLASS__, 'is_function_disabled' ) ) );
 		$absent   = array_values( array_diff( $missing, $disabled ) );
 		$reasons  = array();
 		if ( ! empty( $disabled ) ) {
-			$reasons[] = sprintf( esc_html__( 'disabled in php.ini:%s', 'flx-forms' ), implode( ', ', $disabled ) );
+			$reasons[] = sprintf( esc_html__( 'disabled in php.ini: %s', 'flx-forms' ), implode( ', ', $disabled ) );
 		}
 		if ( ! empty( $absent ) ) {
-			$reasons[] = sprintf( esc_html__( 'not provided by PHP or its required extension:%s', 'flx-forms' ), implode( ', ', $absent ) );
+			$reasons[] = sprintf( esc_html__( 'not provided by PHP or its required extension: %s', 'flx-forms' ), implode( ', ', $absent ) );
 		}
 
 		return sprintf(
-			esc_html__( '%1$scannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini.', 'flx-forms' ),
+			esc_html__( '%1$s cannot run because required PHP functions are unavailable (%2$s). Ask your hosting provider to enable the required PHP extension or remove the listed functions from disabled_functions in php.ini.', 'flx-forms' ),
 			$name,
 			implode( '; ', $reasons )
 		);

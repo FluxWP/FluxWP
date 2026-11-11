@@ -2,16 +2,16 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: ar\nPlural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);\n"
 
 msgid "%d rows"
-msgstr "صفوف%d"
+msgstr "صفوف %d"
 
 msgid "%1$d files, %2$s"
-msgstr "ملفات%1$d،%2$s"
+msgstr "ملفات %1$d، %2$s"
 
 msgid "Content may still use image URLs from this theme; check your pages first."
 msgstr "قد يستمر المحتوى في استخدام عناوين URL للصور من هذا الموضوع؛ تحقق من صفحاتك أولاً."
 
 msgid "%d old settings"
-msgstr "%dالإعدادات القديمة"
+msgstr "%d الإعدادات القديمة"
 
 msgid "Old tables"
 msgstr "الجداول القديمة"
@@ -35,7 +35,7 @@ msgid "Leftovers"
 msgstr "بقايا الطعام"
 
 msgid "%d items deleted."
-msgstr "تم حذف عناصر%d."
+msgstr "تم حذف عناصر %d."
 
 msgid "Could not delete:"
 msgstr "لا يمكن حذف:"
@@ -74,22 +74,22 @@ msgid "Sodium is missing: encrypted settings could not be moved, enter them agai
 msgstr "الصوديوم مفقود: لا يمكن نقل الإعدادات المشفرة، أدخلها مرة أخرى في اللوحة."
 
 msgid "%d encrypted values could not be opened (the site keys may have changed); enter them again in the panel."
-msgstr "تعذر فتح قيم%dالمشفرة (ربما تغيرت مفاتيح الموقع)؛ أدخلهم مرة أخرى في اللوحة."
+msgstr "تعذر فتح قيم %d المشفرة (ربما تغيرت مفاتيح الموقع)؛ أدخلهم مرة أخرى في اللوحة."
 
 msgid "Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names. The name map is in map.json."
 msgstr "ينقل بيانات الموقع المحفوظة ضمن أسماء الحزم القديمة (الإعدادات، الجداول، التعريف، المحتوى، السمة، مجلدات التحميل) إلى أسماء FluxWP. خريطة الاسم موجودة في Map.json."
 
 msgid "%1$s is empty, %2$s was left as it is."
-msgstr "%1$sفارغ، وتم ترك%2$sكما هو."
+msgstr "%1$s فارغ، وتم ترك %2$s كما هو."
 
 msgid "%1$s was not empty: it was backed up as %2$s and replaced by %3$s."
-msgstr "لم يكن%1$sفارغًا: فقد تم نسخه احتياطيًا كـ%2$sواستبداله بـ%3$s."
+msgstr "لم يكن %1$s فارغًا: فقد تم نسخه احتياطيًا كـ%2$s واستبداله بـ%3$s."
 
 msgid "%3$d items from %1$s were moved into %2$s."
-msgstr "تم نقل عناصر%3$dمن%1$sإلى%2$s."
+msgstr "تم نقل عناصر %3$d من %1$s إلى %2$s."
 
 msgid "%2$d files in %1$s already existed in the new folder; the old copies were left in place."
-msgstr "ملفات%2$dالموجودة في%1$sموجودة بالفعل في المجلد الجديد؛ تم ترك النسخ القديمة في مكانها."
+msgstr "ملفات %2$d الموجودة في %1$s موجودة بالفعل في المجلد الجديد؛ تم ترك النسخ القديمة في مكانها."
 
 msgid "Step"
 msgstr "خطوة"
@@ -101,7 +101,7 @@ msgid "Migrate"
 msgstr "يهاجر"
 
 msgid "Migration finished on %s. You can delete this plugin now."
-msgstr "انتهت عملية الترحيل في%s. يمكنك حذف هذا البرنامج المساعد الآن."
+msgstr "انتهت عملية الترحيل في %s. يمكنك حذف هذا البرنامج المساعد الآن."
 
 msgid "Migration finished. Check that the new plugins are active and clear the cache."
 msgstr "انتهت الهجرة. تأكد من أن المكونات الإضافية الجديدة نشطة وامسح ذاكرة التخزين المؤقت."
@@ -168,17 +168,17 @@ msgstr "قم بتحميل هذه الحزم الجديدة أولاً (لا تق
 
 msgid "%d row"
 msgid_plural "%d rows"
-msgstr[0] "صفوف%d"
-msgstr[1] "صف%d"
-msgstr[2] "صفوف%d"
-msgstr[3] "صفوف%d"
-msgstr[4] "صفوف%d"
-msgstr[5] "صفوف%d"
+msgstr[0] "صفوف %d"
+msgstr[1] "صف %d"
+msgstr[2] "صفوف %d"
+msgstr[3] "صفوف %d"
+msgstr[4] "صفوف %d"
+msgstr[5] "صفوف %d"
 
 msgid "%d legacy setting"
 msgid_plural "%d legacy settings"
 msgstr[0] "الإعدادات القديمة لـ%d"
-msgstr[1] "الإعداد القديم%d"
+msgstr[1] "الإعداد القديم %d"
 msgstr[2] "الإعدادات القديمة لـ%d"
 msgstr[3] "الإعدادات القديمة لـ%d"
 msgstr[4] "الإعدادات القديمة لـ%d"
@@ -186,12 +186,12 @@ msgstr[5] "الإعدادات القديمة لـ%d"
 
 msgid "%drow"
 msgid_plural "%drow"
-msgstr[0] "صف%d"
-msgstr[1] "صف%d"
-msgstr[2] "صف%d"
-msgstr[3] "صف%d"
-msgstr[4] "صف%d"
-msgstr[5] "صف%d"
+msgstr[0] "صف %d"
+msgstr[1] "صف %d"
+msgstr[2] "صف %d"
+msgstr[3] "صف %d"
+msgstr[4] "صف %d"
+msgstr[5] "صف %d"
 
 msgid "%dold setting"
 msgid_plural "%dold setting"

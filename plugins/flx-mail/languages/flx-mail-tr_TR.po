@@ -1097,7 +1097,7 @@ msgid "SMTP settings"
 msgstr "SMTP ayarları"
 
 msgid "SMTP: %1$s:%2$s"
-msgstr "SMTP: %1$s:%2$s"
+msgstr "SMTP: %1$s: %2$s"
 
 msgid "Mail is sent with the server's PHP mail(). Gmail shows \"via srv….main-hosting.eu\" next to the sender and it is more likely to land in spam. Open a info@ mailbox on Hostinger and choose SMTP."
 msgstr "E-postalar sunucunun PHP mail() fonksiyonuyla gidiyor. Gmail gönderenin yanında \"via srv….main-hosting.eu\" gösterir ve spama düşme riski yüksektir. Hostinger'da bilgi@ e-posta hesabı açıp SMTP'yi seçin."
@@ -2650,4 +2650,3 @@ msgstr "Reddedildi (App Secret eksik)"
 
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr "Gelen webhook'ların Meta'dan geldiğini doğrular. Girilene kadar gelen olaylar reddedilir."
-

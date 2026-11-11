@@ -4807,3 +4807,47 @@ msgstr "Last update request %1$s. While the panel is open it checks for new mess
 msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 msgstr "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 
+msgid "Flux Donate is not active."
+msgstr "Flux Donate is not active."
+
+msgid "Donor's earlier referral"
+msgstr "Donor's earlier referral"
+
+msgid "Referral"
+msgstr "Referral"
+
+msgid "Order"
+msgstr "Order"
+
+msgid "Confirmation code"
+msgstr "Confirmation code"
+
+msgid "Recorded from"
+msgstr "Recorded from"
+
+msgid "Entered by"
+msgstr "Entered by"
+
+msgid "Items"
+msgstr "Items"
+
+msgid "On behalf of: {n}"
+msgstr "On behalf of: {n}"
+
+msgid "Receipts"
+msgstr "Receipts"
+
+msgid "Revoked"
+msgstr "Revoked"
+
+msgid "{n} paid gifts · {m}"
+msgstr "{n} paid gifts · {m}"
+
+msgid "No contact details."
+msgstr "No contact details."
+
+msgid "No referral."
+msgstr "No referral."
+
+msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+msgstr "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."

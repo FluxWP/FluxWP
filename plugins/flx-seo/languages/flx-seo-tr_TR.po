@@ -1212,4 +1212,3 @@ msgstr "Meta başlık/açıklama, canonical, Open Graph, schema (Organization, W
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "PageSpeed zaman aşımına uğradı; bu adım atlandı."
-

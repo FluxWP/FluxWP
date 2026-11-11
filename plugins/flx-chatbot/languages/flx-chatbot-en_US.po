@@ -1199,4 +1199,3 @@ msgstr "Artificial intelligence-supported chat window to the site: With Flux AI,
 
 msgid "Still answering. Please wait a moment."
 msgstr "Still answering. Please wait a moment."
-

@@ -1,5 +1,8 @@
 # Flux AI Chatbot
 
+## 0.1.5
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.1.4
 - Cap each assistant reply at a 45-second wall-clock budget shared by every model round and the stream. A second request for the same chat while one is running gets HTTP 409; the widget puts the text back and does not show an error.
 - Store an uploaded file's extension from the detected MIME type (allowlist). The client file name is not used for the extension.

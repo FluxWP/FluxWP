@@ -5,10 +5,10 @@ msgid "\"Discourage search engines from indexing this site\" is checked. Uncheck
 msgstr "„Suchmaschinen von der Indexierung dieser Website abhalten“ ist aktiviert. Deaktivieren Sie es auf der Live-Site."
 
 msgid "%1$d critical issues: %2$s"
-msgstr "Kritische%1$d-Probleme:%2$s"
+msgstr "Kritische %1$d-Probleme: %2$s"
 
 msgid "%1$s is active, v%2$s. Flux Donate reads the keys from it."
-msgstr "%1$sist aktiv, v%2$s. Flux Donate liest die Schlüssel daraus."
+msgstr "%1$s ist aktiv, v%2$s. Flux Donate liest die Schlüssel daraus."
 
 msgid "%1$s (%2$s)."
 msgstr "%1$s(%2$s)."
@@ -17,10 +17,10 @@ msgid "%d issues"
 msgstr "%d-Probleme"
 
 msgid "%s is active."
-msgstr "%sist aktiv."
+msgstr "%s ist aktiv."
 
 msgid "%s is installed but not active. Flux Donate reads the keys from its own Payments settings."
-msgstr "%sist installiert, aber nicht aktiv. Flux Donate liest die Schlüssel aus seinen eigenen Zahlungseinstellungen."
+msgstr "%s ist installiert, aber nicht aktiv. Flux Donate liest die Schlüssel aus seinen eigenen Zahlungseinstellungen."
 
 msgid "%s. Choose 8.1 or later under Hostinger › PHP Configuration."
 msgstr "%s. Wählen Sie 8.1 oder höher unter Hostinger › PHP-Konfiguration."
@@ -353,16 +353,16 @@ msgid "Plugins, scheduled tasks and key settings. Red rows mean part of the site
 msgstr "Plugins, geplante Aufgaben und wichtige Einstellungen. Rote Zeilen bedeuten, dass ein Teil der Website nicht funktioniert; Gelbe Reihen sind empfohlene Korrekturen. Die Seite wird bei jedem Öffnen erneut überprüft."
 
 msgid "See the status of plugins, cron and settings on the %s screen."
-msgstr "Sehen Sie sich den Status von Plugins, Crons und Einstellungen auf dem%s-Bildschirm an."
+msgstr "Sehen Sie sich den Status von Plugins, Crons und Einstellungen auf dem %s-Bildschirm an."
 
 msgid "Ecosystem protection"
 msgstr "Schutz des Ökosystems"
 
 msgid "Missing or not published: %s."
-msgstr "Fehlt oder wurde nicht veröffentlicht:%s."
+msgstr "Fehlt oder wurde nicht veröffentlicht: %s."
 
 msgid "Active, v%1$s. This theme was tested with v%2$s or later; please update."
-msgstr "Aktiv, v%1$s. Dieses Thema wurde mit v%2$soder höher getestet; Bitte aktualisieren."
+msgstr "Aktiv, v%1$s. Dieses Thema wurde mit v%2$s oder höher getestet; Bitte aktualisieren."
 
 msgid "Active, v%s."
 msgstr "Aktiv, v%s."
@@ -512,7 +512,7 @@ msgid "We are here for volunteering, donations, corporate partnerships and all y
 msgstr "Wir sind für Freiwilligenarbeit, Spenden, Unternehmenspartnerschaften und alle Ihre Fragen da."
 
 msgid "Tasks only run when visitors arrive (WP-Cron). With little traffic the certificate queue and recurring donation renewals are delayed. Add this command under Hostinger › Advanced › Cron Jobs, every 5 minutes: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
-msgstr "Aufgaben werden nur ausgeführt, wenn Besucher eintreffen (WP-Cron). Bei wenig Verkehr verzögern sich die Zertifikatswarteschlange und wiederkehrende Spendenverlängerungen. Fügen Sie diesen Befehl alle 5 Minuten unter Hostinger › Erweitert › Cron-Jobs hinzu:%sFügen Sie dann define( 'DISABLE_WP_CRON', true ); zu wp-config.php."
+msgstr "Aufgaben werden nur ausgeführt, wenn Besucher eintreffen (WP-Cron). Bei wenig Verkehr verzögern sich die Zertifikatswarteschlange und wiederkehrende Spendenverlängerungen. Fügen Sie diesen Befehl alle 5 Minuten unter Hostinger › Erweitert › Cron-Jobs hinzu: %s Fügen Sie dann define( 'DISABLE_WP_CRON', true ); zu wp-config.php."
 
 msgid "Update"
 msgstr "Aktualisieren"
@@ -581,7 +581,7 @@ msgid "Account and Cart"
 msgstr "Konto und Warenkorb"
 
 msgid "%1$d updates have never been applied. A fresh install may not need them; apply one if the related page looks outdated. List: %2$s"
-msgstr "%1$d-Updates wurden nie angewendet. Bei einer Neuinstallation sind sie möglicherweise nicht erforderlich. Wenden Sie eine an, wenn die zugehörige Seite veraltet erscheint. Liste:%2$s"
+msgstr "%1$d-Updates wurden nie angewendet. Bei einer Neuinstallation sind sie möglicherweise nicht erforderlich. Wenden Sie eine an, wenn die zugehörige Seite veraltet erscheint. Liste: %2$s"
 
 msgid "Welcome"
 msgstr "Willkommen"
@@ -644,7 +644,7 @@ msgid "People Trained"
 msgstr "Menschen geschult"
 
 msgid "Checked: %s"
-msgstr "Geprüft:%s"
+msgstr "Geprüft: %s"
 
 msgid "Copy"
 msgstr "Kopieren"
@@ -695,10 +695,10 @@ msgid "Shop"
 msgstr "Einkaufen"
 
 msgid "Hi %s, your donations are saved to your account."
-msgstr "Hallo%s, Ihre Spenden werden auf Ihrem Konto gespeichert."
+msgstr "Hallo %s, Ihre Spenden werden auf Ihrem Konto gespeichert."
 
 msgid "Hello, %s"
-msgstr "Hallo,%s"
+msgstr "Hallo, %s"
 
 msgid "Distance Sales Agreement"
 msgstr "Fernabsatzvertrag"
@@ -935,7 +935,7 @@ msgid "Warning"
 msgstr "Warnung"
 
 msgid "%1$d tasks are more than 15 minutes overdue: %2$s"
-msgstr "%1$d-Aufgaben sind mehr als 15 Minuten überfällig:%2$s"
+msgstr "%1$d-Aufgaben sind mehr als 15 Minuten überfällig: %2$s"
 
 msgid "No overdue tasks."
 msgstr "Keine überfälligen Aufgaben."
@@ -953,7 +953,7 @@ msgid "WooCommerce account icon and mini cart. Hidden when WooCommerce is inacti
 msgstr "WooCommerce-Kontosymbol und Mini-Warenkorb. Versteckt, wenn WooCommerce inaktiv ist."
 
 msgid "WooCommerce currency is %s. Choose Turkish lira."
-msgstr "Die WooCommerce-Währung ist%s. Wählen Sie türkische Lira."
+msgstr "Die WooCommerce-Währung ist %s. Wählen Sie türkische Lira."
 
 msgid "Coming soon"
 msgstr "Kommt bald"
@@ -1052,7 +1052,7 @@ msgid "guide and our"
 msgstr "Führer und unser"
 
 msgid "v%s and later add their own checks to this screen."
-msgstr "v%sund höher fügen diesem Bildschirm eigene Prüfungen hinzu."
+msgstr "v%s und höher fügen diesem Bildschirm eigene Prüfungen hinzu."
 
 msgid "or"
 msgstr "oder"
@@ -1238,10 +1238,10 @@ msgid "Copies the previous theme's settings (logo, menus, additional CSS) and th
 msgstr "Kopiert die Einstellungen des vorherigen Themes (Logo, Menüs, zusätzliches CSS) und die Vorlagen, Teile und Stile, die Sie im Site-Editor gespeichert haben, in dieses Theme. Das vorherige Thema bleibt unberührt; Datensätze mit demselben Namen in diesem Thema werden nicht überschrieben."
 
 msgid "Migrate from %s"
-msgstr "Von%smigrieren"
+msgstr "Von %s migrieren"
 
 msgid "Migrate from %1$s again (last: %2$s)"
-msgstr "Erneut von%1$smigrieren (letztes:%2$s)"
+msgstr "Erneut von %1$s migrieren (letztes: %2$s)"
 
 msgid "FluxWP"
 msgstr "FluxWP"
@@ -1370,7 +1370,7 @@ msgid "WhatsApp chats and call logs"
 msgstr "WhatsApp-Chats und Anrufprotokolle"
 
 msgid "Tasks run only when visitors arrive (WP-Cron). With low traffic, emails and scheduled jobs are delayed. Add this command every 5 minutes under Hostinger › Advanced › Cron Jobs: %s Then add define( 'DISABLE_WP_CRON', true ); to wp-config.php."
-msgstr "Aufgaben werden nur ausgeführt, wenn Besucher eintreffen (WP-Cron). Bei geringem Datenverkehr verzögern sich E-Mails und geplante Aufträge. Fügen Sie diesen Befehl alle 5 Minuten unter Hostinger › Erweitert › Cron-Jobs hinzu:%s. Fügen Sie dann define( 'DISABLE_WP_CRON', true ); zu wp-config.php."
+msgstr "Aufgaben werden nur ausgeführt, wenn Besucher eintreffen (WP-Cron). Bei geringem Datenverkehr verzögern sich E-Mails und geplante Aufträge. Fügen Sie diesen Befehl alle 5 Minuten unter Hostinger › Erweitert › Cron-Jobs hinzu: %s. Fügen Sie dann define( 'DISABLE_WP_CRON', true ); zu wp-config.php."
 
 msgid "%s. Choose Istanbul so order, form and email times are correct."
 msgstr "%s. Wählen Sie Istanbul, damit die Bestell-, Formular- und E-Mail-Zeiten korrekt sind."

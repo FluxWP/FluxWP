@@ -98,7 +98,7 @@ msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Pr
 msgstr "As cinco seções do PageSpeed ​​Insights (Desempenho, Acessibilidade, Melhores Práticas, SEO, Navegação Agente) por prioridade. A auditoria no local não precisa de chave e funciona sozinha todos os dias; uma execução do PageSpeed ​​​​adiciona o resultado real do Lighthouse do Google."
 
 msgid "On-site audit: %1$s · %2$s"
-msgstr "Auditoria no local:%1$s·%2$s"
+msgstr "Auditoria no local: %1$s · %2$s"
 
 msgid "No audit has run yet."
 msgstr "Nenhuma auditoria foi executada ainda."
@@ -155,7 +155,7 @@ msgid "How to fix:"
 msgstr "Como consertar:"
 
 msgid "Where to fix: %s"
-msgstr "Onde corrigir:%s"
+msgstr "Onde corrigir: %s"
 
 msgid "Fix"
 msgstr "Correção"
@@ -680,16 +680,16 @@ msgid "If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are bl
 msgstr "Se rastreadores como GPTBot, ClaudeBot, Google-Extended, PerplexityBot forem bloqueados, seu conteúdo não aparecerá nas respostas de IA. Remova-os do robots.txt, a menos que você os bloqueie propositalmente."
 
 msgid "Returned HTTP %d."
-msgstr "HTTP retornado%d."
+msgstr "HTTP retornado %d."
 
 msgid "Settings › Reading: search engines discouraged"
 msgstr "Configurações › Leitura: motores de busca desencorajados"
 
 msgid "%d characters."
-msgstr "%dcaracteres."
+msgstr "%d caracteres."
 
 msgid "%d H1 headings."
-msgstr "Títulos%dH1."
+msgstr "Títulos %d H1."
 
 msgid "JSON-LD could not be parsed."
 msgstr "JSON-LD não pôde ser analisado."
@@ -698,19 +698,19 @@ msgid "not found"
 msgstr "não encontrado"
 
 msgid "%d render-blocking CSS/JS requests in <head>."
-msgstr "%dsolicitações CSS/JS de bloqueio de renderização em<head>."
+msgstr "%d solicitações CSS/JS de bloqueio de renderização em<head>."
 
 msgid "%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed."
-msgstr "%dsolicitações CSS/JS de bloqueio de renderização em<head>. Meça a economia estimada com o PageSpeed."
+msgstr "%d solicitações CSS/JS de bloqueio de renderização em<head>. Meça a economia estimada com o PageSpeed."
 
 msgid "The page has %s elements."
-msgstr "A página possui elementos%s."
+msgstr "A página possui elementos %s."
 
 msgid "Response measured from the server: %d ms (may bypass the cache)."
-msgstr "Resposta medida do servidor:%dms (pode ignorar o cache)."
+msgstr "Resposta medida do servidor: %d ms (pode ignorar o cache)."
 
 msgid "HTML is %s."
-msgstr "HTML é%s."
+msgstr "HTML é %s."
 
 msgid "The HTTPS page loads content over http://."
 msgstr "A página HTTPS carrega conteúdo por http://."
@@ -719,7 +719,7 @@ msgid "No Content-Security-Policy header."
 msgstr "Nenhum cabeçalho Content-Security-Policy."
 
 msgid "Missing directive: %s."
-msgstr "Diretiva ausente:%s."
+msgstr "Diretiva ausente: %s."
 
 msgid "first line is not \"# Title\""
 msgstr "a primeira linha não é \"# Title\""
@@ -743,7 +743,7 @@ msgid "Not run yet. Check performance, accessibility, SEO, security and agent re
 msgstr "Ainda não corra. Verifique desempenho, acessibilidade, SEO, segurança e prontidão do agente."
 
 msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
-msgstr "Recomendações críticas%1$d, alta%2$d, média%3$d, baixa%4$d."
+msgstr "Recomendações críticas %1$d, alta %2$d, média %3$d, baixa %4$d."
 
 msgid "Site build guide"
 msgstr "Guia de construção de site"
@@ -794,16 +794,16 @@ msgid "Sunday"
 msgstr "domingo"
 
 msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
-msgstr "[%1$s] Auditoria do site:%2$dnovas recomendações críticas/altas"
+msgstr "[%1$s] Auditoria do site: %2$d novas recomendações críticas/altas"
 
 msgid "The automatic site audit found new recommendations:"
 msgstr "A auditoria automática do site encontrou novas recomendações:"
 
 msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
-msgstr "Total:%1$dcrítico,%2$dalto,%3$dmédio,%4$dbaixo."
+msgstr "Total: %1$d crítico, %2$d alto, %3$d médio, %4$d baixo."
 
 msgid "Resolved since the previous audit: %d."
-msgstr "Resolvido desde a auditoria anterior:%d."
+msgstr "Resolvido desde a auditoria anterior: %d."
 
 msgid "Details and fixes:"
 msgstr "Detalhes e correções:"
@@ -824,7 +824,7 @@ msgid "Report history"
 msgstr "Histórico de relatórios"
 
 msgid "Next automatic audit: %s"
-msgstr "Próxima auditoria automática:%s"
+msgstr "Próxima auditoria automática: %s"
 
 msgid "Automatic audit is off."
 msgstr "A auditoria automática está desativada."
@@ -902,7 +902,7 @@ msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpe
 msgstr "Nenhum relatório com execução do PageSpeed ainda. Insira a chave API e ative o PageSpeed ​​na auditoria automática."
 
 msgid "%s PageSpeed scores over time"
-msgstr "%sPontuações do PageSpeed ao longo do tempo"
+msgstr "%s Pontuações do PageSpeed ao longo do tempo"
 
 msgid "Site audit and agent readiness"
 msgstr "Auditoria do local e prontidão do agente"
@@ -914,7 +914,7 @@ msgid "No URLs to submit."
 msgstr "Não há URLs para enviar."
 
 msgid "IndexNow returned %d."
-msgstr "IndexNow retornou%d."
+msgstr "IndexNow retornou %d."
 
 msgid "Not allowed."
 msgstr "Não é permitido."
@@ -923,7 +923,7 @@ msgid "IndexNow is off or the site is hidden from search engines (Settings › R
 msgstr "O IndexNow está desativado ou o site está oculto dos mecanismos de pesquisa (Configurações › Leitura)."
 
 msgid "%d URLs submitted to Bing, Yandex and the other IndexNow search engines."
-msgstr "URLs%denviados ao Bing, Yandex e outros mecanismos de pesquisa IndexNow."
+msgstr "URLs %d enviados ao Bing, Yandex e outros mecanismos de pesquisa IndexNow."
 
 msgid "Open Search Console"
 msgstr "Abra o console de pesquisa"
@@ -944,7 +944,7 @@ msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexin
 msgstr "Adicionar site › Meta tag. Após a verificação, adicione o URL do mapa do site em Indexação › Arquivos de mapa do site."
 
 msgid "%1$s · %2$d URLs · HTTP %3$d"
-msgstr "%1$s· URLs%2$d· HTTP%3$d"
+msgstr "%1$s· URLs %2$d· HTTP %3$d"
 
 msgid "key file could not be verified"
 msgstr "arquivo de chave não pôde ser verificado"
@@ -1031,7 +1031,7 @@ msgid "Bing and Yandex"
 msgstr "Bing e Yandex"
 
 msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
-msgstr "Nenhum código de verificação:%s. Adicione o site nos painéis para webmasters desses mecanismos de pesquisa (a importação do Bing do Google Search Console não precisa de código)."
+msgstr "Nenhum código de verificação: %s. Adicione o site nos painéis para webmasters desses mecanismos de pesquisa (a importação do Bing do Google Search Console não precisa de código)."
 
 msgid "Bing and Yandex verification codes are set."
 msgstr "Os códigos de verificação do Bing e Yandex estão definidos."
@@ -1175,13 +1175,13 @@ msgid "llms.txt"
 msgstr "llms.txt"
 
 msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
-msgstr "PHP%1$snão está corrigido contra%2$s. Atualize para pelo menos%3$s(painel de hospedagem › versão PHP). Um pacote de distribuição pode conter a correção sem alterar o número da versão; pergunte ao seu provedor se não tiver certeza."
+msgstr "PHP %1$s não está corrigido contra %2$s. Atualize para pelo menos %3$s(painel de hospedagem › versão PHP). Um pacote de distribuição pode conter a correção sem alterar o número da versão; pergunte ao seu provedor se não tiver certeza."
 
 msgid "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
-msgstr "PHP%1$snão recebe mais correções de segurança; buracos como%2$spermanecem abertos. Mude para PHP%3$sou outra versão mais recente e corrigida."
+msgstr "PHP %1$s não recebe mais correções de segurança; buracos como %2$s permanecem abertos. Mude para PHP %3$s ou outra versão mais recente e corrigida."
 
 msgid "PHP %1$s is patched against %2$s."
-msgstr "PHP%1$sé corrigido contra%2$s."
+msgstr "PHP %1$s é corrigido contra %2$s."
 
 msgid "Security"
 msgstr "Segurança"
@@ -1212,4 +1212,3 @@ msgstr "Meta título/descrição, canônico, Open Graph, esquema (Organização,
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "O PageSpeed expirou; esta etapa foi ignorada."
-

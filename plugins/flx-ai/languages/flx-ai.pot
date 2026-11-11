@@ -1432,6 +1432,9 @@ msgstr ""
 msgid "No records"
 msgstr ""
 
+msgid "MCP"
+msgstr ""
+
 msgid "Model and tool calls are listed here. Request bodies are not sent to the app."
 msgstr ""
 
@@ -1505,7 +1508,7 @@ msgstr[1] ""
 msgid "%dvehicle is registered.%dvehicle is registered."
 msgstr ""
 
-msgid "Spent:%1$s/ Limit:%2$s\nRegeneration:%3$s\n\nDetail:%4$s"
+msgid "Spent: %1$s/ Limit: %2$s\nRegeneration: %3$s\n\nDetail: %4$s"
 msgstr ""
 
 msgid "Common AI hub for all FluxWP plugins: OpenRouter and Anthropic keys, model catalog and prices, prompt cache, vehicle registration, common MCP server, usage reports, billing and spending limit; Admin and public AI chat on site for authorized users."
@@ -1515,69 +1518,6 @@ msgid "%dvehicle is registered.%dvehicle is registered."
 msgid_plural "%dvehicle is registered.%dvehicle is registered."
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "2. Connections and keys"
-msgstr ""
-
-msgid "OAuth"
-msgstr ""
-
-msgid "Sign in with OAuth: assistants connect with only the URL; the user signs in to WordPress and approves each connection"
-msgstr ""
-
-msgid "The same server also answers at:"
-msgstr ""
-
-msgid "With a key instead (clients without OAuth, devices, scripts):"
-msgstr ""
-
-msgid "add a custom connector / MCP server with only this URL. You will sign in to WordPress and approve; no key needed:"
-msgstr ""
-
-msgid "%1$s wants to connect to %2$s"
-msgstr ""
-
-msgid "After approval you return to %s."
-msgstr ""
-
-msgid "Allow"
-msgstr ""
-
-msgid "Back to site"
-msgstr ""
-
-msgid "Change"
-msgstr ""
-
-msgid "Connect assistant"
-msgstr ""
-
-msgid "Connecting assistants with sign-in is turned off on this site."
-msgstr ""
-
-msgid "Deny"
-msgstr ""
-
-msgid "New content is created as a draft; deleting only moves to trash."
-msgstr ""
-
-msgid "OAuth sign-in for MCP is off."
-msgstr ""
-
-msgid "The assistant uses the site's MCP tools with your permissions."
-msgstr ""
-
-msgid "The page expired. Start connecting again from the assistant."
-msgstr ""
-
-msgid "This return address is not registered for the application."
-msgstr ""
-
-msgid "Unknown application. Remove the connector and add it again."
-msgstr ""
-
-msgid "You can end the connection any time under Flux AI & MCP › MCP."
-msgstr ""
 
 msgid "AI & MCP"
 msgstr ""
@@ -1608,7 +1548,3 @@ msgstr ""
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr ""
-
-msgid "MCP"
-msgstr ""
-

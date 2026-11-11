@@ -99,7 +99,7 @@ function flxs_system_checks() {
 		$add( 'permalinks', $g_set, __( 'Certificate page address', 'flx-certificates' ), 'error', __( 'The certificate URL rule is not registered; links may return 404. Press "Save Changes" on the Permalinks page.', 'flx-certificates' ), admin_url( 'options-permalink.php' ), __( 'Permalinks', 'flx-certificates' ) );
 	} else {
 		/* translators: %s: certificate base URL */
-		$add( 'permalinks', $g_set, __( 'Certificate page address', 'flx-certificates' ), 'ok', sprintf( __( 'Certificates open at %s{code}.', 'flx-certificates' ), $cert_url ) );
+		$add( 'permalinks', $g_set, __( 'Certificate page address', 'flx-certificates' ), 'ok', sprintf( __( 'Certificates open at %s {code}.', 'flx-certificates' ), $cert_url ) );
 	}
 
 	$tpls = flxs_list_templates( true );

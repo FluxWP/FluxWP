@@ -182,7 +182,7 @@ msgid "Delete"
 msgstr "Löschen"
 
 msgid "{n} items moved"
-msgstr "{n}Elemente verschoben"
+msgstr "{n} Elemente verschoben"
 
 msgid "Nothing here"
 msgstr "Nichts hier"
@@ -221,7 +221,7 @@ msgid "Reuse settings"
 msgstr "Einstellungen wiederverwenden"
 
 msgid "{n} selected"
-msgstr "{n}ausgewählt"
+msgstr "{n} ausgewählt"
 
 msgid "Tap items to select"
 msgstr "Tippen Sie auf die Elemente, um sie auszuwählen"
@@ -248,7 +248,7 @@ msgid "Files are deleted from the server. Copies added to the Media Library stay
 msgstr "Dateien werden vom Server gelöscht. Zur Medienbibliothek hinzugefügte Exemplare bleiben erhalten."
 
 msgid "{n} items ready"
-msgstr "{n}Artikel bereit"
+msgstr "{n} Artikel bereit"
 
 msgid "Generation ready"
 msgstr "Generation bereit"
@@ -338,13 +338,13 @@ msgid "no key"
 msgstr "kein Schlüssel"
 
 msgid "No {p} key (Flux AI & MCP › Settings › Images and video)."
-msgstr "Keine{p}-Taste (Flux AI & MCP › Einstellungen › Bilder und Videos)."
+msgstr "Keine {p}-Taste (Flux AI & MCP › Einstellungen › Bilder und Videos)."
 
 msgid "This reference is already added"
 msgstr "Dieser Verweis wurde bereits hinzugefügt"
 
 msgid "This model accepts at most {n} references"
-msgstr "Dieses Modell akzeptiert höchstens{n}-Referenzen"
+msgstr "Dieses Modell akzeptiert höchstens {n}-Referenzen"
 
 msgid "Save to references"
 msgstr "Unter Referenzen speichern"
@@ -383,7 +383,7 @@ msgid "No images yet."
 msgstr "Noch keine Bilder."
 
 msgid "{name} has no photos; add some in Manage people"
-msgstr "{name}hat keine Fotos; Fügen Sie einige unter „Personen verwalten“ hinzu"
+msgstr "{name} hat keine Fotos; Fügen Sie einige unter „Personen verwalten“ hinzu"
 
 msgid "Write a short draft first."
 msgstr "Schreiben Sie zunächst einen kurzen Entwurf."
@@ -533,7 +533,7 @@ msgid "{n} generations started"
 msgstr "{n}-Generationen gestartet"
 
 msgid "Sending {i}/{n}"
-msgstr "Senden von{i}/{n}"
+msgstr "Senden von {i}/{n}"
 
 msgid "Creates distinct prompts from one idea. Pick the ones you like and generate them in one go. Model and ratio come from the generation bar."
 msgstr "Erstellt aus einer Idee eindeutige Anregungen. Wählen Sie diejenigen aus, die Ihnen gefallen, und generieren Sie sie auf einmal. Modell und Verhältnis stammen aus der Generationsleiste."
@@ -557,7 +557,7 @@ msgid "Delete person"
 msgstr "Person löschen"
 
 msgid "Delete {name}?"
-msgstr "{name}löschen?"
+msgstr "{name} löschen?"
 
 msgid "The person and their photos are deleted. Earlier generations stay."
 msgstr "Die Person und ihre Fotos werden gelöscht. Frühere Generationen bleiben."
@@ -596,10 +596,10 @@ msgid "just now"
 msgstr "gerade jetzt"
 
 msgid "{n} min ago"
-msgstr "{n}vor einer Minute"
+msgstr "{n} vor einer Minute"
 
 msgid "{n} h ago"
-msgstr "{n}vor h"
+msgstr "{n} vor h"
 
 msgid "Server error ({n})."
 msgstr "Serverfehler ({n})."
@@ -647,7 +647,7 @@ msgid "Spend"
 msgstr "Verbringen"
 
 msgid "Image/video {m} · text {x}"
-msgstr "Bild/Video{m}· Text{x}"
+msgstr "Bild/Video {m}· Text {x}"
 
 msgid "Average"
 msgstr "Durchschnittlich"
@@ -662,7 +662,7 @@ msgid "no attempts yet"
 msgstr "noch keine Versuche"
 
 msgid "Storage {b}"
-msgstr "Speicher{b}"
+msgstr "Speicher {b}"
 
 msgid "Daily generations"
 msgstr "Tägliche Generationen"
@@ -794,7 +794,7 @@ msgid "Database tables"
 msgstr "Datenbanktabellen"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Fehlende Tabelle:%s. Deaktivieren Sie das Plugin und aktivieren Sie es erneut."
+msgstr "Fehlende Tabelle: %s. Deaktivieren Sie das Plugin und aktivieren Sie es erneut."
 
 msgid "Tables are ready."
 msgstr "Tische stehen bereit."
@@ -854,7 +854,7 @@ msgid "The file is empty."
 msgstr "Die Datei ist leer."
 
 msgid "The file exceeds the %d MB limit."
-msgstr "Die Datei überschreitet die MB-Grenze von%d."
+msgstr "Die Datei überschreitet die MB-Grenze von %d."
 
 msgid "This file type is not supported."
 msgstr "Dieser Dateityp wird nicht unterstützt."
@@ -869,7 +869,7 @@ msgid "Person not found."
 msgstr "Person nicht gefunden."
 
 msgid "At most %d reference images can be used."
-msgstr "Es können höchstens%d-Referenzbilder verwendet werden."
+msgstr "Es können höchstens %d-Referenzbilder verwendet werden."
 
 msgid "The file is not on the server."
 msgstr "Die Datei befindet sich nicht auf dem Server."

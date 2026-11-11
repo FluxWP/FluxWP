@@ -53,7 +53,7 @@ msgid "This certificate has been revoked by the issuing organization and is no l
 msgstr "Ce certificat a été révoqué par l'organisme émetteur et n'est plus valable."
 
 msgid "This page confirms that the certificate is on record at %s."
-msgstr "Cette page confirme que le certificat est enregistré à%s."
+msgstr "Cette page confirme que le certificat est enregistré à %s."
 
 msgid "Lookup is disabled."
 msgstr "La recherche est désactivée."
@@ -171,10 +171,10 @@ msgid "No certificates selected."
 msgstr "Aucun certificat sélectionné."
 
 msgid "%d messages queued."
-msgstr "Messages%dmis en file d'attente."
+msgstr "Messages %d mis en file d'attente."
 
 msgid "%d certificates updated."
-msgstr "Certificats%dmis à jour."
+msgstr "Certificats %d mis à jour."
 
 msgid "Download Excel"
 msgstr "Télécharger Excel"
@@ -276,21 +276,21 @@ msgid "Create the first certificate"
 msgstr "Créer le premier certificat"
 
 msgid "Actually created: %s"
-msgstr "Créé actuellement :%s"
+msgstr "Créé actuellement : %s"
 
 msgid "backdated"
 msgstr "antidaté"
 
 msgid "%d view"
 msgid_plural "%d views"
-msgstr[0] "Vue%d"
-msgstr[1] "Vues%d"
+msgstr[0] "Vue %d"
+msgstr[1] "Vues %d"
 
 msgid "Registered person: %s"
-msgstr "Personne enregistrée :%s"
+msgstr "Personne enregistrée : %s"
 
 msgid "created by: %s"
-msgstr "créé par :%s"
+msgstr "créé par : %s"
 
 msgid "Actions"
 msgstr "Actions"
@@ -330,8 +330,8 @@ msgstr "Plugins"
 
 msgid "%d record"
 msgid_plural "%d records"
-msgstr[0] "%denregistrement"
-msgstr[1] "%denregistrements"
+msgstr[0] "%d enregistrement"
+msgstr[1] "%d enregistrements"
 
 msgid "Inactive"
 msgstr "Inactif"
@@ -397,7 +397,7 @@ msgid "Number of saplings"
 msgstr "Nombre de jeunes arbres"
 
 msgid "%d e-card designs were added as inactive templates. Designs you activate can be picked on the donation page."
-msgstr "Les modèles de cartes électroniques%dont été ajoutés en tant que modèles inactifs. Les designs que vous activez peuvent être sélectionnés sur la page de don."
+msgstr "Les modèles de cartes électroniques %d ont été ajoutés en tant que modèles inactifs. Les designs que vous activez peuvent être sélectionnés sur la page de don."
 
 msgid "All e-card designs are already added."
 msgstr "Tous les modèles de cartes électroniques sont déjà ajoutés."
@@ -409,7 +409,7 @@ msgid "Ready-made e-cards"
 msgstr "Cartes électroniques prêtes à l'emploi"
 
 msgid "(%1$d/%2$d added)"
-msgstr "(%1$d/%2$dajouté)"
+msgstr "(%1$d/%2$d ajouté)"
 
 msgid "Add the missing e-card designs as inactive templates?"
 msgstr "Ajouter les modèles de cartes électroniques manquants en tant que modèles inactifs ?"
@@ -439,13 +439,13 @@ msgid "Database tables"
 msgstr "Tableaux de base de données"
 
 msgid "Missing table: %s. Deactivate and reactivate the plugin."
-msgstr "Table manquante :%s. Désactivez et réactivez le plugin."
+msgstr "Table manquante : %s. Désactivez et réactivez le plugin."
 
 msgid "A database update is pending; it completes when an admin page is opened."
 msgstr "Une mise à jour de la base de données est en attente ; il se termine lorsqu'une page d'administration est ouverte."
 
 msgid "All tables exist. Plugin %1$s, database version %2$s."
-msgstr "Tous les tableaux existent. Plugin%1$s, version base de données%2$s."
+msgstr "Tous les tableaux existent. Plugin %1$s, version base de données %2$s."
 
 msgid "Files folder"
 msgstr "Dossier de fichiers"
@@ -454,7 +454,7 @@ msgid "The folder for certificate PDFs and images is writable."
 msgstr "Le dossier des fichiers PDF et des images des certificats est accessible en écriture."
 
 msgid "%s is not writable; certificate files cannot be saved. Check folder permissions (755)."
-msgstr "%sn'est pas accessible en écriture ; les fichiers de certificat ne peuvent pas être enregistrés. Vérifiez les autorisations du dossier (755)."
+msgstr "%s n'est pas accessible en écriture ; les fichiers de certificat ne peuvent pas être enregistrés. Vérifiez les autorisations du dossier (755)."
 
 msgid "Certificate page address"
 msgstr "Adresse de la page du certificat"
@@ -468,16 +468,16 @@ msgstr "Liens permanents"
 msgid "The certificate URL rule is not registered; links may return 404. Press \"Save Changes\" on the Permalinks page."
 msgstr "La règle d'URL de certificat n'est pas enregistrée ; les liens peuvent renvoyer 404. Appuyez sur « Enregistrer les modifications » sur la page Liens permanents."
 
-msgid "Certificates open at %s{code}."
-msgstr "Certificats ouverts à%s{code}."
+msgid "Certificates open at %s {code}."
+msgstr "Certificats ouverts à %s{code}."
 
 msgid "Certificate templates"
 msgstr "Modèles de certificat"
 
 msgid "%d active template."
 msgid_plural "%d active templates."
-msgstr[0] "%dmodèle actif."
-msgstr[1] "%dmodèles actifs."
+msgstr[0] "%d modèle actif."
+msgstr[1] "%d modèles actifs."
 
 msgid "No active template; certificates cannot be created."
 msgstr "Aucun modèle actif ; les certificats ne peuvent pas être créés."
@@ -489,7 +489,7 @@ msgid "Plugin files"
 msgstr "Fichiers de plugins"
 
 msgid "Missing file: %s. Upload the plugin zip again."
-msgstr "Fichier manquant :%s. Téléchargez à nouveau le zip du plugin."
+msgstr "Fichier manquant : %s. Téléchargez à nouveau le zip du plugin."
 
 msgid "PDF renderer, QR and fonts are in place."
 msgstr "Le moteur de rendu PDF, le QR et les polices sont en place."
@@ -514,8 +514,8 @@ msgstr "File d'attente"
 
 msgid "%1$d message has been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
 msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may not be running. Runner: %2$s, last run: %3$s."
-msgstr[0] "Le message%1$dattend depuis plus de 10 minutes ; la file d'attente n'est peut-être pas en cours d'exécution. Runner :%2$s, dernière exécution :%3$s."
-msgstr[1] "Les messages%1$dattendent depuis plus de 10 minutes ; la file d'attente n'est peut-être pas en cours d'exécution. Runner :%2$s, dernière exécution :%3$s."
+msgstr[0] "Le message %1$d attend depuis plus de 10 minutes ; la file d'attente n'est peut-être pas en cours d'exécution. Runner : %2$s, dernière exécution : %3$s."
+msgstr[1] "Les messages %1$d attendent depuis plus de 10 minutes ; la file d'attente n'est peut-être pas en cours d'exécution. Runner : %2$s, dernière exécution : %3$s."
 
 msgid "never"
 msgstr "jamais"
@@ -524,10 +524,10 @@ msgid "WP-Cron is disabled (DISABLE_WP_CRON); a per-minute cron for wp-cron.php 
 msgstr "WP-Cron est désactivé (DISABLE_WP_CRON) ; un cron par minute pour wp-cron.php doit être défini dans le panneau d'hébergement."
 
 msgid "Runner: %1$s. Last run %2$s; cron fires rarely. No messages waiting. Without regular traffic, a per-minute cron for wp-cron.php in the hosting panel is recommended."
-msgstr "Coureur :%1$s. Dernière exécution%2$s; cron se déclenche rarement. Aucun message en attente. Sans trafic régulier, un cron par minute pour wp-cron.php dans le panneau d'hébergement est recommandé."
+msgstr "Coureur : %1$s. Dernière exécution %2$s; cron se déclenche rarement. Aucun message en attente. Sans trafic régulier, un cron par minute pour wp-cron.php dans le panneau d'hébergement est recommandé."
 
 msgid "Runner: %1$s. Last run: %2$s. No old messages waiting."
-msgstr "Coureur :%1$s. Dernière exécution :%2$s. Aucun vieux message en attente."
+msgstr "Coureur : %1$s. Dernière exécution : %2$s. Aucun vieux message en attente."
 
 msgid "not recorded yet"
 msgstr "pas encore enregistré"
@@ -537,16 +537,16 @@ msgstr "Envoi dans les dernières 24 heures"
 
 msgid "%d message failed."
 msgid_plural "%d messages failed."
-msgstr[0] "Le message%da échoué."
-msgstr[1] "Les messages%dont échoué."
+msgstr[0] "Le message %d a échoué."
+msgstr[1] "Les messages %d ont échoué."
 
 msgid "View failed"
 msgstr "Échec de la vue"
 
 msgid "%d message sent, none failed."
 msgid_plural "%d messages sent, none failed."
-msgstr[0] "Message%denvoyé, aucun n'a échoué."
-msgstr[1] "%dmessages envoyés, aucun n'a échoué."
+msgstr[0] "Message %d envoyé, aucun n'a échoué."
+msgstr[1] "%d messages envoyés, aucun n'a échoué."
 
 msgid "Daily cleanup task"
 msgstr "Tâche de nettoyage quotidienne"
@@ -561,22 +561,22 @@ msgid "Flux Mail is not active. Certificates cannot be sent by WhatsApp or SMS; 
 msgstr "Flux Mail n'est pas actif. Les certificats ne peuvent pas être envoyés par WhatsApp ou SMS ; l'e-mail passe par WordPress (wp_mail). Installez et activez Flux Mail."
 
 msgid "%s sending"
-msgstr "%senvoi"
+msgstr "%s envoi"
 
 msgid "Sent through the Flux Mail connection: %s."
-msgstr "Envoyé via la connexion Flux Mail :%s."
+msgstr "Envoyé via la connexion Flux Mail : %s."
 
 msgid "Last successful send %s."
-msgstr "Dernier envoi réussi%s."
+msgstr "Dernier envoi réussi %s."
 
 msgid "Connections"
 msgstr "Connexions"
 
 msgid "No %1$s connection is set up; certificates are not sent by %1$s."
-msgstr "Aucune connexion%1$sn'est établie ; les certificats ne sont pas envoyés par%1$s."
+msgstr "Aucune connexion %1$s n'est établie ; les certificats ne sont pas envoyés par %1$s."
 
 msgid "Flux Mail has no active %s connection; certificates cannot be sent on that channel."
-msgstr "Flux Mail n'a pas de connexion%sactive ; les certificats ne peuvent pas être envoyés sur ce canal."
+msgstr "Flux Mail n'a pas de connexion %s active ; les certificats ne peuvent pas être envoyés sur ce canal."
 
 msgid "Certificate emails go through Flux Mail with the organization template (Communication › Emails)."
 msgstr "Les emails de certificat transitent par Flux Mail avec le modèle d'organisation (Communication › Emails)."
@@ -591,7 +591,7 @@ msgid "The FluxWP theme (%s) is active; the events section and certificate page 
 msgstr "Le thème FluxWP (%s) est actif ; la section événements et la page certificat correspondent au thème."
 
 msgid "Active theme: %s. The events section appears automatically only in the Örnek Vakfı theme; in other themes add it with a shortcode."
-msgstr "Thème actif :%s. La section événements apparaît automatiquement uniquement dans le thème Örnek Vakfı ; dans d'autres thèmes, ajoutez-le avec un shortcode."
+msgstr "Thème actif : %s. La section événements apparaît automatiquement uniquement dans le thème Örnek Vakfı ; dans d'autres thèmes, ajoutez-le avec un shortcode."
 
 msgid "Ongoing events"
 msgstr "Événements en cours"
@@ -603,18 +603,18 @@ msgid "Events"
 msgstr "Événements"
 
 msgid "Open event without a published page: %s. Fix it with \"Publish on site\" in the event edit screen."
-msgstr "Événement ouvert sans page publiée :%s. Corrigez-le avec \"Publier sur site\" dans l'écran d'édition de l'événement."
+msgstr "Événement ouvert sans page publiée : %s. Corrigez-le avec \"Publier sur site\" dans l'écran d'édition de l'événement."
 
 msgid "%d open event, its page is published."
 msgid_plural "%d open events, their pages are published."
-msgstr[0] "%dévénement ouvert, sa page est publiée."
-msgstr[1] "%douvrent les événements, leurs pages sont publiées."
+msgstr[0] "%d événement ouvert, sa page est publiée."
+msgstr[1] "%d ouvrent les événements, leurs pages sont publiées."
 
 msgid "Certificate lookup"
 msgstr "Recherche de certificat"
 
 msgid "The lookup form is on %s."
-msgstr "Le formulaire de recherche se trouve sur%s."
+msgstr "Le formulaire de recherche se trouve sur %s."
 
 msgid "Lookup is on, but no published page has the [flx_sertifika_sorgula] shortcode."
 msgstr "La recherche est activée, mais aucune page publiée ne contient le shortcode [flx_sertifika_sorgula]."
@@ -632,7 +632,7 @@ msgid "PHP GD (FreeType) extension is missing: PDFs and images are only made in 
 msgstr "L'extension PHP GD (FreeType) est manquante : les PDF et les images ne sont créés dans le navigateur que lors de la première ouverture de la page du certificat."
 
 msgid "%d certificate is missing its PDF or image."
-msgstr "Le certificat%dne contient pas son PDF ou son image."
+msgstr "Le certificat %d ne contient pas son PDF ou son image."
 
 msgid "Create missing files"
 msgstr "Créer des fichiers manquants"
@@ -647,10 +647,10 @@ msgid "Generates files on the server for up to 25 certificates that are missing 
 msgstr "Génère des fichiers sur le serveur pour jusqu'à 25 certificats pour lesquels il manque un PDF ou une image."
 
 msgid "Files created for %1$d certificates, %2$d errors."
-msgstr "Fichiers créés pour les certificats%1$d, erreurs%2$d."
+msgstr "Fichiers créés pour les certificats %1$d, erreurs %2$d."
 
 msgid "%d certificates left, press again."
-msgstr "Il reste des certificats%d, appuyez à nouveau."
+msgstr "Il reste des certificats %d, appuyez à nouveau."
 
 msgid "Ongoing Events"
 msgstr "Événements en cours"
@@ -680,7 +680,7 @@ msgid "F j"
 msgstr "Fj"
 
 msgid "The planting site is announced by the authorities 10 days before the event. We will share it here around %s."
-msgstr "Le site de plantation est annoncé par les autorités 10 jours avant l'événement. Nous le partagerons ici autour de%s."
+msgstr "Le site de plantation est annoncé par les autorités 10 jours avant l'événement. Nous le partagerons ici autour de %s."
 
 msgid "The planting site is announced by the authorities 10 days before the event. We will share it here."
 msgstr "Le site de plantation est annoncé par les autorités 10 jours avant l'événement. Nous le partagerons ici."
@@ -701,7 +701,7 @@ msgid "Loads Google Maps"
 msgstr "Charge Google Maps"
 
 msgid "Goal: %s saplings"
-msgstr "Objectif : jeunes plants%s"
+msgstr "Objectif : jeunes plants %s"
 
 msgid "%s%%"
 msgstr "%s %%"
@@ -717,15 +717,15 @@ msgstr "jeunes arbres plantés"
 
 msgid "%s person contributed"
 msgid_plural "%s people contributed"
-msgstr[0] "%spersonne a contribué"
-msgstr[1] "%spersonnes ont contribué"
+msgstr[0] "%s personne a contribué"
+msgstr[1] "%s personnes ont contribué"
 
 msgctxt "context_a104e4060425"
 msgid "F j, Y"
 msgstr "F j, Y"
 
 msgid "Time: %s"
-msgstr "Heure :%s"
+msgstr "Heure : %s"
 
 msgid "This event is complete. Thank you to everyone who contributed."
 msgstr "Cet événement est terminé. Merci à tous ceux qui ont contribué."
@@ -887,32 +887,32 @@ msgid "A cancelled certificate is hidden on the public page."
 msgstr "Un certificat annulé est masqué sur la page publique."
 
 msgid "%d open event, its page is published."
-msgstr "%dévénement ouvert, sa page est publiée."
+msgstr "%d événement ouvert, sa page est publiée."
 
 msgid "There is %d active template."
 msgid_plural "There are %d active templates."
-msgstr[0] "Il existe un modèle actif%d."
-msgstr[1] "Il existe des modèles actifs%d."
+msgstr[0] "Il existe un modèle actif %d."
+msgstr[1] "Il existe des modèles actifs %d."
 
 msgid "%1$d message has been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s."
 msgid_plural "%1$d messages have been waiting for more than 10 minutes; the queue may be stalled. Handler: %2$s, last run: %3$s."
-msgstr[0] "Le message%1$dattend depuis plus de 10 minutes ; la file d'attente peut être bloquée. Gestionnaire :%2$s, dernière exécution :%3$s."
-msgstr[1] "Les messages%1$dattendent depuis plus de 10 minutes ; la file d'attente peut être bloquée. Gestionnaire :%2$s, dernière exécution :%3$s."
+msgstr[0] "Le message %1$d attend depuis plus de 10 minutes ; la file d'attente peut être bloquée. Gestionnaire : %2$s, dernière exécution : %3$s."
+msgstr[1] "Les messages %1$d attendent depuis plus de 10 minutes ; la file d'attente peut être bloquée. Gestionnaire : %2$s, dernière exécution : %3$s."
 
 msgid "%d message could not be sent."
 msgid_plural "%d messages could not be sent."
-msgstr[0] "Le message%dn'a pas pu être envoyé."
-msgstr[1] "Les messages%dn'ont pas pu être envoyés."
+msgstr[0] "Le message %d n'a pas pu être envoyé."
+msgstr[1] "Les messages %d n'ont pas pu être envoyés."
 
 msgid "%d message sent without failures."
 msgid_plural "%d messages sent without failures."
-msgstr[0] "Message%denvoyé sans échec."
-msgstr[1] "%dmessages envoyés sans échec."
+msgstr[0] "Message %d envoyé sans échec."
+msgstr[1] "%d messages envoyés sans échec."
 
 msgid "%d open event has a published page."
 msgid_plural "%d open events have published pages."
-msgstr[0] "L'événement ouvert%da une page publiée."
-msgstr[1] "Les événements ouverts%dont publié des pages."
+msgstr[0] "L'événement ouvert %d a une page publiée."
+msgstr[1] "Les événements ouverts %d ont publié des pages."
 
 msgid "%dviews"
 msgid_plural "%dviews"
@@ -921,24 +921,24 @@ msgstr[1] "%dvues"
 
 msgid "%dregistration"
 msgid_plural "%dregistration"
-msgstr[0] "Inscription%d"
-msgstr[1] "Inscription%d"
+msgstr[0] "Inscription %d"
+msgstr[1] "Inscription %d"
 
 msgid " There is active template%d. There is active template%d."
 msgstr " Il existe un modèle actif%d. Il existe un modèle actif%d."
 
 msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
-msgstr " Le message%1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s. Message%1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s."
+msgstr " Le message %1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire : %2$s, dernière exécution : %3$s. Message %1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire : %2$s, dernière exécution : %3$s."
 
 msgid "%dmessage could not be sent."
 msgid_plural "%dmessage could not be sent."
-msgstr[0] "Le message%dn'a pas pu être envoyé."
-msgstr[1] "Le message%dn'a pas pu être envoyé."
+msgstr[0] "Le message %dn'a pas pu être envoyé."
+msgstr[1] "Le message %dn'a pas pu être envoyé."
 
 msgid "%dmessage sent, no failure."
 msgid_plural "%dmessage sent, no failure."
-msgstr[0] "Message%denvoyé, aucun échec."
-msgstr[1] "Message%denvoyé, aucun échec."
+msgstr[0] "Message %denvoyé, aucun échec."
+msgstr[1] "Message %denvoyé, aucun échec."
 
 msgid "%dhas an open event, its page is live on the site."
 msgid_plural "%dhas open events, its pages are live on the site."
@@ -970,8 +970,8 @@ msgstr[1] " Il existe un modèle actif%d. Il existe un modèle actif%d."
 
 msgid "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
 msgid_plural "%1$dmessage has been waiting for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s.%1$dmessage pending for more than 10 minutes; The queue may not be working. Handler:%2$s, last run:%3$s."
-msgstr[0] " Le message%1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s. Message%1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s."
-msgstr[1] " Le message%1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s. Message%1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire :%2$s, dernière exécution :%3$s."
+msgstr[0] " Le message %1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire : %2$s, dernière exécution : %3$s. Message %1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire : %2$s, dernière exécution : %3$s."
+msgstr[1] " Le message %1$dattend depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire : %2$s, dernière exécution : %3$s. Message %1$den attente depuis plus de 10 minutes ; La file d'attente ne fonctionne peut-être pas. Gestionnaire : %2$s, dernière exécution : %3$s."
 
 msgid "Location opened: %1$s via QR, %2$s from the site"
 msgstr "Lieu ouvert : %1$s via QR, %2$s depuis le site"
@@ -993,4 +993,3 @@ msgstr "Pas encore de carte : le lien ouvre la page de l'événement jusqu'à ce
 
 msgid "Person not found."
 msgstr "Personne introuvable."
-

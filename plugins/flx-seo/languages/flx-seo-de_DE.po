@@ -98,7 +98,7 @@ msgid "The five PageSpeed Insights sections (Performance, Accessibility, Best Pr
 msgstr "Die fünf PageSpeed Insights-Abschnitte (Leistung, Barrierefreiheit, Best Practices, SEO, Agentic Browsing) nach Priorität. Das Vor-Ort-Audit benötigt keinen Schlüssel und läuft jeden Tag von selbst; Ein PageSpeed-Lauf fügt das echte Lighthouse-Ergebnis von Google hinzu."
 
 msgid "On-site audit: %1$s · %2$s"
-msgstr "Audit vor Ort:%1$s·%2$s"
+msgstr "Audit vor Ort: %1$s · %2$s"
 
 msgid "No audit has run yet."
 msgstr "Es wurde noch kein Audit durchgeführt."
@@ -155,7 +155,7 @@ msgid "How to fix:"
 msgstr "So beheben Sie Folgendes:"
 
 msgid "Where to fix: %s"
-msgstr "Wo zu beheben:%s"
+msgstr "Wo zu beheben: %s"
 
 msgid "Fix"
 msgstr "Beheben"
@@ -680,7 +680,7 @@ msgid "If crawlers like GPTBot, ClaudeBot, Google-Extended, PerplexityBot are bl
 msgstr "Wenn Crawler wie GPTBot, ClaudeBot, Google-Extended, PerplexityBot blockiert sind, werden Ihre Inhalte nicht in KI-Antworten angezeigt. Entfernen Sie sie aus robots.txt, es sei denn, Sie blockieren sie absichtlich."
 
 msgid "Returned HTTP %d."
-msgstr "HTTP%dzurückgegeben."
+msgstr "HTTP %d zurückgegeben."
 
 msgid "Settings › Reading: search engines discouraged"
 msgstr "Einstellungen › Lesen: Von Suchmaschinen abgeraten"
@@ -689,7 +689,7 @@ msgid "%d characters."
 msgstr "%d-Zeichen."
 
 msgid "%d H1 headings."
-msgstr "%dH1-Überschriften."
+msgstr "%d H1-Überschriften."
 
 msgid "JSON-LD could not be parsed."
 msgstr "JSON-LD konnte nicht analysiert werden."
@@ -698,19 +698,19 @@ msgid "not found"
 msgstr "nicht gefunden"
 
 msgid "%d render-blocking CSS/JS requests in <head>."
-msgstr "%drenderblockierende CSS/JS-Anfragen in<head>."
+msgstr "%d renderblockierende CSS/JS-Anfragen in<head>."
 
 msgid "%d render-blocking CSS/JS requests in <head>. Measure the estimated saving with PageSpeed."
-msgstr "%drenderblockierende CSS/JS-Anfragen in<head>. Messen Sie die geschätzte Einsparung mit PageSpeed."
+msgstr "%d renderblockierende CSS/JS-Anfragen in<head>. Messen Sie die geschätzte Einsparung mit PageSpeed."
 
 msgid "The page has %s elements."
-msgstr "Die Seite enthält%s-Elemente."
+msgstr "Die Seite enthält %s-Elemente."
 
 msgid "Response measured from the server: %d ms (may bypass the cache)."
-msgstr "Vom Server gemessene Antwort:%dms (kann den Cache umgehen)."
+msgstr "Vom Server gemessene Antwort: %d ms (kann den Cache umgehen)."
 
 msgid "HTML is %s."
-msgstr "HTML ist%s."
+msgstr "HTML ist %s."
 
 msgid "The HTTPS page loads content over http://."
 msgstr "Die HTTPS-Seite lädt Inhalte über http://."
@@ -719,7 +719,7 @@ msgid "No Content-Security-Policy header."
 msgstr "Kein Content-Security-Policy-Header."
 
 msgid "Missing directive: %s."
-msgstr "Fehlende Direktive:%s."
+msgstr "Fehlende Direktive: %s."
 
 msgid "first line is not \"# Title\""
 msgstr "Die erste Zeile ist nicht „# Title“"
@@ -743,7 +743,7 @@ msgid "Not run yet. Check performance, accessibility, SEO, security and agent re
 msgstr "Noch nicht ausgeführt. Überprüfen Sie Leistung, Zugänglichkeit, SEO, Sicherheit und Agentenbereitschaft."
 
 msgid "Critical %1$d, high %2$d, medium %3$d, low %4$d recommendations."
-msgstr "Kritische%1$d-, hohe%2$d-, mittlere%3$d- und niedrige%4$d-Empfehlungen."
+msgstr "Kritische %1$d-, hohe %2$d-, mittlere %3$d- und niedrige %4$d-Empfehlungen."
 
 msgid "Site build guide"
 msgstr "Leitfaden zur Site-Erstellung"
@@ -794,16 +794,16 @@ msgid "Sunday"
 msgstr "Sonntag"
 
 msgid "[%1$s] Site audit: %2$d new critical/high recommendations"
-msgstr "[%1$s] Site-Audit:%2$dneue kritische/hohe Empfehlungen"
+msgstr "[%1$s] Site-Audit: %2$d neue kritische/hohe Empfehlungen"
 
 msgid "The automatic site audit found new recommendations:"
 msgstr "Das automatische Site-Audit ergab neue Empfehlungen:"
 
 msgid "Total: critical %1$d, high %2$d, medium %3$d, low %4$d."
-msgstr "Gesamt: kritisch%1$d, hoch%2$d, mittel%3$d, niedrig%4$d."
+msgstr "Gesamt: kritisch %1$d, hoch %2$d, mittel %3$d, niedrig %4$d."
 
 msgid "Resolved since the previous audit: %d."
-msgstr "Seit der letzten Prüfung behoben:%d."
+msgstr "Seit der letzten Prüfung behoben: %d."
 
 msgid "Details and fixes:"
 msgstr "Details und Korrekturen:"
@@ -824,7 +824,7 @@ msgid "Report history"
 msgstr "Berichtsverlauf"
 
 msgid "Next automatic audit: %s"
-msgstr "Nächstes automatisches Audit:%s"
+msgstr "Nächstes automatisches Audit: %s"
 
 msgid "Automatic audit is off."
 msgstr "Die automatische Prüfung ist deaktiviert."
@@ -902,7 +902,7 @@ msgid "No report with a PageSpeed run yet. Enter the API key and turn on PageSpe
 msgstr "Noch kein Bericht mit einem PageSpeed-Durchlauf. Geben Sie den API-Schlüssel ein und aktivieren Sie PageSpeed ​​im automatischen Audit."
 
 msgid "%s PageSpeed scores over time"
-msgstr "%sPageSpeed punktet im Laufe der Zeit"
+msgstr "%s PageSpeed punktet im Laufe der Zeit"
 
 msgid "Site audit and agent readiness"
 msgstr "Site-Audit und Agentenbereitschaft"
@@ -914,7 +914,7 @@ msgid "No URLs to submit."
 msgstr "Keine URLs zum Einreichen."
 
 msgid "IndexNow returned %d."
-msgstr "IndexNow hat%dzurückgegeben."
+msgstr "IndexNow hat %d zurückgegeben."
 
 msgid "Not allowed."
 msgstr "Nicht erlaubt."
@@ -944,7 +944,7 @@ msgid "Add site › Meta tag. After verifying, add the sitemap URL under Indexin
 msgstr "Site hinzufügen › Meta-Tag. Fügen Sie nach der Überprüfung die Sitemap-URL unter Indexierung › Sitemap-Dateien hinzu."
 
 msgid "%1$s · %2$d URLs · HTTP %3$d"
-msgstr "%1$s·%2$dURLs · HTTP%3$d"
+msgstr "%1$s · %2$d URLs · HTTP %3$d"
 
 msgid "key file could not be verified"
 msgstr "Schlüsseldatei konnte nicht überprüft werden"
@@ -1031,7 +1031,7 @@ msgid "Bing and Yandex"
 msgstr "Bing und Yandex"
 
 msgid "No verification code: %s. Add the site in these search engines' webmaster panels (Bing's import from Google Search Console needs no code)."
-msgstr "Kein Bestätigungscode:%s. Fügen Sie die Website in den Webmaster-Panels dieser Suchmaschinen hinzu (für den Import von Bing aus der Google Search Console ist kein Code erforderlich)."
+msgstr "Kein Bestätigungscode: %s. Fügen Sie die Website in den Webmaster-Panels dieser Suchmaschinen hinzu (für den Import von Bing aus der Google Search Console ist kein Code erforderlich)."
 
 msgid "Bing and Yandex verification codes are set."
 msgstr "Bing- und Yandex-Bestätigungscodes sind festgelegt."
@@ -1175,13 +1175,13 @@ msgid "llms.txt"
 msgstr "llms.txt"
 
 msgid "PHP %1$s is not patched against %2$s. Update to at least %3$s (hosting panel › PHP version). A distribution package may carry the fix without changing the version number; ask your provider if unsure."
-msgstr "PHP%1$sist nicht gegen%2$sgepatcht. Aktualisieren Sie mindestens auf%3$s(Hosting-Panel › PHP-Version). Ein Distributionspaket kann den Fix enthalten, ohne die Versionsnummer zu ändern; Fragen Sie Ihren Anbieter, wenn Sie sich nicht sicher sind."
+msgstr "PHP %1$s ist nicht gegen %2$s gepatcht. Aktualisieren Sie mindestens auf %3$s(Hosting-Panel › PHP-Version). Ein Distributionspaket kann den Fix enthalten, ohne die Versionsnummer zu ändern; Fragen Sie Ihren Anbieter, wenn Sie sich nicht sicher sind."
 
 msgid "PHP %1$s no longer gets security fixes; holes such as %2$s stay open. Move to PHP %3$s or another patched, newer version."
-msgstr "PHP%1$serhält keine Sicherheitsupdates mehr; Löcher wie%2$sbleiben offen. Wechseln Sie zu PHP%3$soder einer anderen gepatchten, neueren Version."
+msgstr "PHP %1$s erhält keine Sicherheitsupdates mehr; Löcher wie %2$s bleiben offen. Wechseln Sie zu PHP %3$s oder einer anderen gepatchten, neueren Version."
 
 msgid "PHP %1$s is patched against %2$s."
-msgstr "PHP%1$sist gegen%2$sgepatcht."
+msgstr "PHP %1$s ist gegen %2$s gepatcht."
 
 msgid "Security"
 msgstr "Sicherheit"
@@ -1212,4 +1212,3 @@ msgstr "Metatitel/-beschreibung, kanonisch, Open Graph, Schema (Organisation, We
 
 msgid "PageSpeed timed out; this step was skipped."
 msgstr "PageSpeed hat das Zeitlimit überschritten; dieser Schritt wurde übersprungen."
-

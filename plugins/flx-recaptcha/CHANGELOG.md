@@ -1,5 +1,8 @@
 # Flux reCAPTCHA
 
+## 0.2.3
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.2.2
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

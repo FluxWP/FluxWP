@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.9
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.4.8
 - Giriş yapmış bağışçı kendi telefon numarasını kanıtlayıp hesabına kaydedebilir (`GET/POST/DELETE /flxapp/v1/me/phone`). Kod yalnız o numaraya gider (WhatsApp ya da `flxapp_otp_send`); e-postaya düşmez. Personel varsayılan olarak kullanamaz. Ayar `phone_self_verify` varsayılan açıktır. Numara başka hesapta ise yanıt yanlış kodla aynıdır. Başarıda hesabın e-postasına kısa uyarı gider.
 

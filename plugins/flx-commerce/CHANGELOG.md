@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.8
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.2.7
 - An order status change or refund marks that customer dirty instead of rebuilding their whole history inside the payment request. The row is rebuilt after the response is sent, or by the daily job if the request was cut off. Opening that customer recomputes first.
 

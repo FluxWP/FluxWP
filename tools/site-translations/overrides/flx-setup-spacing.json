@@ -1,0 +1,16 @@
+{
+ "source": {},
+ "translations": {
+  "tr_TR": {
+   "%d update available\u0000%d updates available": "%d güncelleme mevcut\u0000%d güncelleme mevcut",
+   "%d backup deleted.\u0000%d backups deleted.": "%d yedek silindi.\u0000%d yedek silindi.",
+   "%d expired backup deleted.\u0000%d expired backups deleted.": "Süresi dolmuş %d yedek silindi.\u0000Süresi dolmuş %d yedek silindi.",
+   "%d day\u0000%d days": "%d gün\u0000%d gün",
+   "Currently %1$d update backup, %2$s.\u0000Currently %1$d update backups, %2$s.": "Şu anda %1$d güncelleme yedeği var, %2$s.\u0000Şu anda %1$d güncelleme yedeği var, %2$s.",
+   "%d package activated.\u0000%d packages activated.": "%d paket etkinleştirildi.\u0000%d paket etkinleştirildi.",
+   "%d package deactivated.\u0000%d packages deactivated.": "%d paket devre dışı bırakıldı.\u0000%d paket devre dışı bırakıldı.",
+   "%d package removed.\u0000%d packages removed.": "%d paket kaldırıldı.\u0000%d paket kaldırıldı.",
+   "%s record\u0000%s records": "%s kayıt\u0000%s kayıt"
+  }
+ }
+}

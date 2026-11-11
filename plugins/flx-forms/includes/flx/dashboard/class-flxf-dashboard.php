@@ -156,24 +156,24 @@ class FLXF_Dashboard {
 			'csvHint'        => __( 'Download the responses in the selected range and form as a spreadsheet file.', 'flx-forms' ),
 			'responses'      => __( 'Responses', 'flx-forms' ),
 			'unread'         => __( 'Unread', 'flx-forms' ),
-			'unreadAll'      => __( '%sunread in total', 'flx-forms' ),
+			'unreadAll'      => __( '%s unread in total', 'flx-forms' ),
 			'views'          => __( 'Form views', 'flx-forms' ),
 			'viewsNone'      => __( 'No view data', 'flx-forms' ),
 			/* translators: %s: a date */
-			'viewsSince'     => __( 'Recorded since%s', 'flx-forms' ),
+			'viewsSince'     => __( 'Recorded since %s', 'flx-forms' ),
 			'viewsKept'      => __( 'View data is kept for about 8 days', 'flx-forms' ),
 			'conversion'     => __( 'Conversion rate', 'flx-forms' ),
 			'convHint'       => __( 'Responses per form view', 'flx-forms' ),
 			/* translators: %s: a date */
-			'convSince'      => __( 'Responses per view since%s', 'flx-forms' ),
+			'convSince'      => __( 'Responses per view since %s', 'flx-forms' ),
 			'payments'       => __( 'Payments received', 'flx-forms' ),
 			/* translators: %s: number of payments */
-			'paidCount'      => __( '%spaid', 'flx-forms' ),
+			'paidCount'      => __( '%s paid', 'flx-forms' ),
 			/* translators: %s: list of other currency totals */
-			'otherCur'       => __( 'Also%s', 'flx-forms' ),
+			'otherCur'       => __( 'Also %s', 'flx-forms' ),
 			'noPayments'     => __( 'No payments in this range', 'flx-forms' ),
 			/* translators: %d: number of days */
-			'vsPrev'         => __( 'vs previous%ddays', 'flx-forms' ),
+			'vsPrev'         => __( 'vs previous %d days', 'flx-forms' ),
 			'newVal'         => __( 'new', 'flx-forms' ),
 			'noChange'       => __( 'no change', 'flx-forms' ),
 			'up'             => __( 'up', 'flx-forms' ),
@@ -209,7 +209,7 @@ class FLXF_Dashboard {
 			'pay_failed'     => __( 'Failed or canceled', 'flx-forms' ),
 			'pay_refunded'   => __( 'Refunded', 'flx-forms' ),
 			/* translators: %s: number of payments */
-			'payN'           => __( '%spayments', 'flx-forms' ),
+			'payN'           => __( '%s payments', 'flx-forms' ),
 			'noData'         => __( 'No responses in this range yet.', 'flx-forms' ),
 			'noForms'        => __( 'You have not created a form yet.', 'flx-forms' ),
 			'createForm'     => __( 'Create a form', 'flx-forms' ),
@@ -224,7 +224,7 @@ class FLXF_Dashboard {
 			'chartView'      => __( 'Show as chart', 'flx-forms' ),
 			'deleted'        => __( 'Deleted form', 'flx-forms' ),
 			/* translators: %s: number of forms */
-			'otherForms'     => __( '%sother forms', 'flx-forms' ),
+			'otherForms'     => __( '%s other forms', 'flx-forms' ),
 		);
 	}
 

@@ -89,7 +89,7 @@ msgid "Dismiss this notice."
 msgstr "Ignore este aviso."
 
 msgid "Uploading %1$s…"
-msgstr "Carregando%1$s..."
+msgstr "Carregando %1$s..."
 
 msgid "%1$s / %2$s"
 msgstr "%1$s/%2$s"
@@ -104,10 +104,10 @@ msgid "Upload cancelled."
 msgstr "Carregamento cancelado."
 
 msgid "Upload failed: %s"
-msgstr "Falha no upload:%s"
+msgstr "Falha no upload: %s"
 
 msgid "This backup was taken on another site: %s. If you restore the database, the content comes from that site; this site's address (siteurl/home) is kept, but links to the old address inside the content are not changed automatically."
-msgstr "Este backup foi feito em outro site:%s. Se você restaurar o banco de dados, o conteúdo virá desse site; o endereço deste site (siteurl/home) é mantido, mas os links para o endereço antigo dentro do conteúdo não são alterados automaticamente."
+msgstr "Este backup foi feito em outro site: %s. Se você restaurar o banco de dados, o conteúdo virá desse site; o endereço deste site (siteurl/home) é mantido, mas os links para o endereço antigo dentro do conteúdo não são alterados automaticamente."
 
 msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2$s); the database cannot be restored to this site, only files can be selected."
 msgstr "O prefixo da tabela no backup (%1$s) difere do prefixo deste site (%2$s); o banco de dados não pode ser restaurado neste site, apenas arquivos podem ser selecionados."
@@ -131,7 +131,7 @@ msgid "ZipArchive (PHP zip extension) is not available on the server."
 msgstr "ZipArchive (extensão PHP zip) não está disponível no servidor."
 
 msgid "The backup folder is not writable: %s"
-msgstr "A pasta de backup não é gravável:%s"
+msgstr "A pasta de backup não é gravável: %s"
 
 msgid "Backup type"
 msgstr "Tipo de backup"
@@ -191,13 +191,13 @@ msgid "%s%% of the quota is used"
 msgstr "%s%% da cota é usada"
 
 msgid "%1$s%% used · %2$s free"
-msgstr "%1$s%% usado ·%2$sgrátis"
+msgstr "%1$s%% usado ·%2$s grátis"
 
 msgid "Last successful backup"
 msgstr "Último backup bem-sucedido"
 
 msgid "%s ago"
-msgstr "%satrás"
+msgstr "%s atrás"
 
 msgid "No backups yet."
 msgstr "Ainda não há backups."
@@ -233,7 +233,7 @@ msgid "Time range"
 msgstr "Intervalo de tempo"
 
 msgid "%s days"
-msgstr "%sdias"
+msgstr "%s dias"
 
 msgid "Quota"
 msgstr "Cota"
@@ -281,7 +281,7 @@ msgid "Delete selected"
 msgstr "Excluir selecionado"
 
 msgid "Total %s"
-msgstr "Total%s"
+msgstr "Total %s"
 
 msgid "Select all"
 msgstr "Selecionar tudo"
@@ -311,7 +311,7 @@ msgid "No backups."
 msgstr "Sem backups."
 
 msgid "Backups are stored in %s. Hostinger does not include this folder in its own backups: download important backups to your computer."
-msgstr "Os backups são armazenados em%s. A Hostinger não inclui esta pasta em seus próprios backups: baixe backups importantes para o seu computador."
+msgstr "Os backups são armazenados em %s. A Hostinger não inclui esta pasta em seus próprios backups: baixe backups importantes para o seu computador."
 
 msgid "Database"
 msgstr "Banco de dados"
@@ -347,10 +347,10 @@ msgid "Locked"
 msgstr "Bloqueado"
 
 msgid "Until %s"
-msgstr "Até%s"
+msgstr "Até %s"
 
 msgid "Last %s scheduled"
-msgstr "Último%sagendado"
+msgstr "Último %s agendado"
 
 msgid "Until the quota is full"
 msgstr "Até que a cota esteja cheia"
@@ -377,7 +377,7 @@ msgid "Files"
 msgstr "Arquivos"
 
 msgid "%1$s tables, %2$s rows"
-msgstr "Tabelas%1$s, linhas%2$s"
+msgstr "Tabelas %1$s, linhas %2$s"
 
 msgid "Included"
 msgstr "Incluído"
@@ -479,7 +479,7 @@ msgid "The total size of backups never exceeds this: before a new backup, the ol
 msgstr "O tamanho total dos backups nunca excede este valor: antes de um novo backup, os backups desbloqueados mais antigos são excluídos. Os backups bloqueados nunca são excluídos automaticamente; se nenhum espaço puder ser criado, o backup não será feito."
 
 msgid "Currently using %1$s. Folder: %2$s"
-msgstr "Atualmente usando%1$s. Pasta:%2$s"
+msgstr "Atualmente usando %1$s. Pasta: %2$s"
 
 msgid "Pre-update backup"
 msgstr "Backup pré-atualização"
@@ -593,7 +593,7 @@ msgid "Invalid path."
 msgstr "Caminho inválido."
 
 msgid "Path not found: %s"
-msgstr "Caminho não encontrado:%s"
+msgstr "Caminho não encontrado: %s"
 
 msgid "Could not write a temporary file."
 msgstr "Não foi possível gravar um arquivo temporário."
@@ -602,10 +602,10 @@ msgid "Could not read the file list."
 msgstr "Não foi possível ler a lista de arquivos."
 
 msgid "Could not open the zip file (code %s)."
-msgstr "Não foi possível abrir o arquivo zip (código%s)."
+msgstr "Não foi possível abrir o arquivo zip (código %s)."
 
 msgid "Could not write the zip: %s"
-msgstr "Não foi possível gravar o zip:%s"
+msgstr "Não foi possível gravar o zip: %s"
 
 msgid "The backup record was deleted."
 msgstr "O registro de backup foi excluído."
@@ -620,25 +620,25 @@ msgid "Could not write the zip (the disk may be full)."
 msgstr "Não foi possível gravar o zip (o disco pode estar cheio)."
 
 msgid "The backup was cut off %s times at the same point (server time limit). Try with fewer folders or add large folders to the exclusions."
-msgstr "O backup foi cortado%svezes no mesmo ponto (limite de tempo do servidor). Experimente com menos pastas ou adicione pastas grandes às exclusões."
+msgstr "O backup foi cortado %s vezes no mesmo ponto (limite de tempo do servidor). Experimente com menos pastas ou adicione pastas grandes às exclusões."
 
 msgid "Backup taken: %1$s (%2$s)"
-msgstr "Backup realizado:%1$s(%2$s)"
+msgstr "Backup realizado: %1$s(%2$s)"
 
 msgid "Backup failed (%1$s): %2$s"
-msgstr "Falha no backup (%1$s):%2$s"
+msgstr "Falha no backup (%1$s): %2$s"
 
 msgid "Scanning files… %s files"
-msgstr "Verificando arquivos... arquivos%s"
+msgstr "Verificando arquivos... arquivos %s"
 
 msgid "Checking quota…"
 msgstr "Verificando cota..."
 
 msgid "Backing up database: %1$s (%2$s rows)"
-msgstr "Fazendo backup do banco de dados:%1$s(linhas%2$s)"
+msgstr "Fazendo backup do banco de dados: %1$s(linhas %2$s)"
 
 msgid "Archiving files: %1$s / %2$s files (%3$s / %4$s)"
-msgstr "Arquivando arquivos: arquivos%1$s/%2$s(%3$s/%4$s)"
+msgstr "Arquivando arquivos: arquivos %1$s/%2$s(%3$s/%4$s)"
 
 msgid "Finishing…"
 msgstr "Finalizando..."
@@ -656,10 +656,10 @@ msgid "Backup folder writable"
 msgstr "Pasta de backup gravável"
 
 msgid "Backups are written to %s."
-msgstr "Os backups são gravados em%s."
+msgstr "Os backups são gravados em %s."
 
 msgid "The %s folder cannot be created or written. Check the file permissions (755)."
-msgstr "A pasta%snão pode ser criada ou gravada. Verifique as permissões do arquivo (755)."
+msgstr "A pasta %s não pode ser criada ou gravada. Verifique as permissões do arquivo (755)."
 
 msgid "ZipArchive and zlib"
 msgstr "ZipArchive e zlib"
@@ -674,7 +674,7 @@ msgid "Backup quota"
 msgstr "Cota de backup"
 
 msgid "%1$s / %2$s used (%3$s%%)."
-msgstr "%1$s/%2$susado (%3$s%%)."
+msgstr "%1$s/%2$s usado (%3$s%%)."
 
 msgid "The oldest unlocked backups will be deleted to make room for new ones; increase the quota or review the locked backups."
 msgstr "Os backups desbloqueados mais antigos serão excluídos para dar espaço para novos; aumente a cota ou revise os backups bloqueados."
@@ -683,7 +683,7 @@ msgid "There are no backups yet. Take the first one from the dashboard with \"Ba
 msgstr "Ainda não há backups. Pegue o primeiro no painel com “Fazer backup agora”."
 
 msgid "%1$s (%2$s): %3$s"
-msgstr "%1$s(%2$s):%3$s"
+msgstr "%1$s(%2$s): %3$s"
 
 msgid "for all plugin and theme updates"
 msgstr "para todas as atualizações de plugins e temas"
@@ -695,10 +695,10 @@ msgid "Off: no backup is taken before updates."
 msgstr "Desativado: nenhum backup é feito antes das atualizações."
 
 msgid "On, %1$s. Backups are kept for %2$s days."
-msgstr "Ativado,%1$s. Os backups são mantidos por%2$sdias."
+msgstr "Ativado, %1$s. Os backups são mantidos por %2$s dias."
 
 msgid "The daily cleanup task ran %s."
-msgstr "A tarefa de limpeza diária foi executada%s."
+msgstr "A tarefa de limpeza diária foi executada %s."
 
 msgid "The daily task is scheduled but has not run yet."
 msgstr "A tarefa diária está agendada, mas ainda não foi executada."
@@ -713,7 +713,7 @@ msgid "Flux Backup scheduled tasks"
 msgstr "Tarefas agendadas do Flux Backup"
 
 msgid "Could not start the scheduled backup: %s"
-msgstr "Não foi possível iniciar o backup agendado:%s"
+msgstr "Não foi possível iniciar o backup agendado: %s"
 
 msgid "Left unfinished (timed out)."
 msgstr "Deixado inacabado (tempo limite)."
@@ -722,10 +722,10 @@ msgid "Could not write the SQL file."
 msgstr "Não foi possível gravar o arquivo SQL."
 
 msgid "Could not read table %1$s: %2$s"
-msgstr "Não foi possível ler a tabela%1$s:%2$s"
+msgstr "Não foi possível ler a tabela %1$s: %2$s"
 
 msgid "Could not get the structure of table %1$s: %2$s"
-msgstr "Não foi possível obter a estrutura da tabela%1$s:%2$s"
+msgstr "Não foi possível obter a estrutura da tabela %1$s: %2$s"
 
 msgid "Could not open the SQL file."
 msgstr "Não foi possível abrir o arquivo SQL."
@@ -734,10 +734,10 @@ msgid "Flux Backup: click for details"
 msgstr "Flux Backup: clique para detalhes"
 
 msgid "Restoring %s"
-msgstr "Restaurando%s"
+msgstr "Restaurando %s"
 
 msgid "Backing up %s"
-msgstr "Fazendo backup de%s"
+msgstr "Fazendo backup de %s"
 
 msgid "Restore complete"
 msgstr "Restauração concluída"
@@ -761,10 +761,10 @@ msgid "Cancelling…"
 msgstr "Cancelando..."
 
 msgid "Elapsed: %s"
-msgstr "Decorrido:%s"
+msgstr "Decorrido: %s"
 
 msgid "Remaining: about %s"
-msgstr "Restante: sobre%s"
+msgstr "Restante: sobre %s"
 
 msgid "Backup"
 msgstr "Cópia de segurança"
@@ -776,16 +776,16 @@ msgid "Do not change the site while the restore is running."
 msgstr "Não altere o site enquanto a restauração estiver em execução."
 
 msgid "Could not back up before updating %1$s; the update continued without a backup: %2$s"
-msgstr "Não foi possível fazer backup antes de atualizar%1$s; a atualização continuou sem backup:%2$s"
+msgstr "Não foi possível fazer backup antes de atualizar %1$s; a atualização continuou sem backup: %2$s"
 
 msgid "Could not add the %1$s folder to the pre-update backup: %2$s"
-msgstr "Não foi possível adicionar a pasta%1$sao backup pré-atualização:%2$s"
+msgstr "Não foi possível adicionar a pasta %1$s ao backup pré-atualização: %2$s"
 
 msgid "The backup file is missing from disk."
 msgstr "O arquivo de backup está faltando no disco."
 
 msgid "This path is not in the backup: %s"
-msgstr "Este caminho não está no backup:%s"
+msgstr "Este caminho não está no backup: %s"
 
 msgid "This backup has no database."
 msgstr "Este backup não possui banco de dados."
@@ -797,7 +797,7 @@ msgid "Safety backup before restore (%s)"
 msgstr "Backup de segurança antes da restauração (%s)"
 
 msgid "The safety backup failed, so nothing was restored: %s"
-msgstr "O backup de segurança falhou, então nada foi restaurado:%s"
+msgstr "O backup de segurança falhou, então nada foi restaurado: %s"
 
 msgid "The backup has no database.sql.gz."
 msgstr "O backup não possui database.sql.gz."
@@ -809,55 +809,55 @@ msgid "The table prefix in the backup (%1$s) differs from this site's prefix (%2
 msgstr "O prefixo da tabela no backup (%1$s) difere do prefixo deste site (%2$s); o banco de dados não foi restaurado."
 
 msgid "Not found in the backup: %s"
-msgstr "Não encontrado no backup:%s"
+msgstr "Não encontrado no backup: %s"
 
 msgid "Could not move the folder (permission problem?): %s"
-msgstr "Não foi possível mover a pasta (problema de permissão?):%s"
+msgstr "Não foi possível mover a pasta (problema de permissão?): %s"
 
 msgid "Could not create the folder: %s"
-msgstr "Não foi possível criar a pasta:%s"
+msgstr "Não foi possível criar a pasta: %s"
 
 msgid "Could not write the file: %s"
-msgstr "Não foi possível gravar o arquivo:%s"
+msgstr "Não foi possível gravar o arquivo: %s"
 
 msgid "database"
 msgstr "banco de dados"
 
 msgid "Restored: %1$s (%2$s)."
-msgstr "Restaurado:%1$s(%2$s)."
+msgstr "Restaurado: %1$s(%2$s)."
 
 msgid "%s SQL statements failed; details are in the log."
-msgstr "%sInstruções SQL falharam; os detalhes estão no log."
+msgstr "%s Instruções SQL falharam; os detalhes estão no log."
 
 msgid "%s The database may be partially restored; restore the \"Safety backup before restore\"."
-msgstr "%sO banco de dados pode ser parcialmente restaurado; restaure o \"Backup de segurança antes da restauração\"."
+msgstr "%s O banco de dados pode ser parcialmente restaurado; restaure o \"Backup de segurança antes da restauração\"."
 
 msgid "Restore failed (%1$s): %2$s"
-msgstr "Falha na restauração (%1$s):%2$s"
+msgstr "Falha na restauração (%1$s): %2$s"
 
 msgid "Taking safety backup: %s"
-msgstr "Fazendo backup de segurança:%s"
+msgstr "Fazendo backup de segurança: %s"
 
 msgid "Unpacking the database file…"
 msgstr "Descompactando o arquivo do banco de dados..."
 
 msgid "Restoring database: %s"
-msgstr "Restaurando banco de dados:%s"
+msgstr "Restaurando banco de dados: %s"
 
 msgid "Preparing files…"
 msgstr "Preparando arquivos..."
 
 msgid "Restoring files: %1$s / %2$s"
-msgstr "Restaurando arquivos:%1$s/%2$s"
+msgstr "Restaurando arquivos: %1$s/%2$s"
 
 msgid "%s s"
-msgstr "%ss"
+msgstr "%s s"
 
 msgid "%1$s min %2$s s"
-msgstr "%1$smin%2$ss"
+msgstr "%1$s min %2$s s"
 
 msgid "%1$s h %2$s min"
-msgstr "%1$sh%2$smin"
+msgstr "%1$s h %2$s min"
 
 msgid "Cancelled."
 msgstr "Cancelado."
@@ -866,13 +866,13 @@ msgid "Could not verify the session. Reload the page."
 msgstr "Não foi possível verificar a sessão. Recarregue a página."
 
 msgid "Backup deleted: %s"
-msgstr "Backup excluído:%s"
+msgstr "Backup excluído: %s"
 
 msgid "Before %1$s %2$s → %3$s"
-msgstr "Antes de%1$s%2$s→%3$s"
+msgstr "Antes de %1$s%2$s → %3$s"
 
 msgid "Before updating %s"
-msgstr "Antes de atualizar%s"
+msgstr "Antes de atualizar %s"
 
 msgid "Pre-update"
 msgstr "Pré-atualização"
@@ -905,7 +905,7 @@ msgid "The estimated backup size (%1$s) is larger than the quota (%2$s). Raise t
 msgstr "O tamanho estimado do backup (%1$s) é maior que a cota (%2$s). Aumente a cota em Configurações."
 
 msgid "Not enough quota: the new backup is about %1$s, used %2$s, quota %3$s. The remaining backups are locked; unlock or delete some, or increase the quota."
-msgstr "Cota insuficiente: o novo backup é sobre%1$s, usado%2$s, cota%3$s. Os backups restantes estão bloqueados; desbloquear ou excluir alguns ou aumentar a cota."
+msgstr "Cota insuficiente: o novo backup é sobre %1$s, usado %2$s, cota %3$s. Os backups restantes estão bloqueados; desbloquear ou excluir alguns ou aumentar a cota."
 
 msgid "The file is empty or too small."
 msgstr "O arquivo está vazio ou é muito pequeno."
@@ -914,13 +914,13 @@ msgid "The file (%1$s) is larger than the backup quota (%2$s). Raise the quota i
 msgstr "O arquivo (%1$s) é maior que a cota de backup (%2$s). Aumente a cota em Configurações."
 
 msgid "There is not enough free disk space on the server (free: %s)."
-msgstr "Não há espaço livre suficiente em disco no servidor (livre:%s)."
+msgstr "Não há espaço livre suficiente em disco no servidor (livre: %s)."
 
 msgid "Upload not found; start again."
 msgstr "Carregamento não encontrado; começar de novo."
 
 msgid "A chunk did not reach the server (error %d)."
-msgstr "Um pedaço não chegou ao servidor (erro%d)."
+msgstr "Um pedaço não chegou ao servidor (erro %d)."
 
 msgid "Chunks arrived out of order."
 msgstr "Pedaços chegaram fora de ordem."
@@ -932,7 +932,7 @@ msgid "Could not write the temporary file (the disk may be full)."
 msgstr "Não foi possível gravar o arquivo temporário (o disco pode estar cheio)."
 
 msgid "%1$s was uploaded (%2$s) and added to the backup list."
-msgstr "%1$sfoi carregado (%2$s) e adicionado à lista de backup."
+msgstr "%1$s foi carregado (%2$s) e adicionado à lista de backup."
 
 msgid "The file was uploaded incompletely (%1$s / %2$s). Try again."
 msgstr "O arquivo foi carregado de forma incompleta (%1$s/%2$s). Tente novamente."
@@ -941,16 +941,16 @@ msgid "Could not move the file to the backup folder."
 msgstr "Não foi possível mover o arquivo para a pasta de backup."
 
 msgid "Uploaded: %s"
-msgstr "Enviado:%s"
+msgstr "Enviado: %s"
 
 msgid "Backup uploaded: %1$s (%2$s, %3$s)"
-msgstr "Backup carregado:%1$s(%2$s,%3$s)"
+msgstr "Backup carregado: %1$s(%2$s, %3$s)"
 
 msgid "This file is not a Flux Backup backup (the zip could not be opened or has no manifest.json)."
 msgstr "Este arquivo não é um backup do Flux Backup (o zip não pôde ser aberto ou não possui manifest.json)."
 
 msgid "The backup contains an unexpected or unsafe path: %s"
-msgstr "O backup contém um caminho inesperado ou inseguro:%s"
+msgstr "O backup contém um caminho inesperado ou inseguro: %s"
 
 msgid "The manifest says the backup includes the database but database.sql.gz is missing; the file may be corrupt."
 msgstr "O manifesto diz que o backup inclui o banco de dados, mas está faltando database.sql.gz; o arquivo pode estar corrompido."
@@ -963,43 +963,43 @@ msgstr "O tamanho descompactado do backup não é plausível; o arquivo não foi
 
 msgid "%s file"
 msgid_plural "%s files"
-msgstr[0] "Arquivo%s"
-msgstr[1] "Arquivos%s"
+msgstr[0] "Arquivo %s"
+msgstr[1] "Arquivos %s"
 
 msgid "%s locked"
 msgid_plural "%s locked"
-msgstr[0] "%sbloqueado"
-msgstr[1] "%sbloqueado"
+msgstr[0] "%s bloqueado"
+msgstr[1] "%s bloqueado"
 
 msgid "Before updating %s package"
 msgid_plural "Before updating %s packages"
-msgstr[0] "Antes de atualizar o pacote%s"
-msgstr[1] "Antes de atualizar pacotes%s"
+msgstr[0] "Antes de atualizar o pacote %s"
+msgstr[1] "Antes de atualizar pacotes %s"
 
 msgid "%s row"
 msgid_plural "%s rows"
-msgstr[0] "Linha%s"
-msgstr[1] "Linhas%s"
+msgstr[0] "Linha %s"
+msgstr[1] "Linhas %s"
 
 msgid "%s backup"
 msgid_plural "%s backups"
-msgstr[0] "Backup%s"
-msgstr[1] "Backups%s"
+msgstr[0] "Backup %s"
+msgstr[1] "Backups %s"
 
 msgid "%s other item"
 msgid_plural "%s other items"
-msgstr[0] "%soutro item"
-msgstr[1] "%soutros itens"
+msgstr[0] "%s outro item"
+msgstr[1] "%s outros itens"
 
 msgid "%1$s old backup deleted for the quota: %2$s"
 msgid_plural "%1$s old backups deleted for the quota: %2$s"
-msgstr[0] "%1$sbackup antigo excluído da cota:%2$s"
-msgstr[1] "%1$sbackups antigos excluídos da cota:%2$s"
+msgstr[0] "%1$s backup antigo excluído da cota: %2$s"
+msgstr[1] "%1$s backups antigos excluídos da cota: %2$s"
 
 msgid "%s backup past its retention period was deleted."
 msgid_plural "%s backups past their retention period were deleted."
-msgstr[0] "O backup%sapós o período de retenção foi excluído."
-msgstr[1] "Os backups%sapós o período de retenção foram excluídos."
+msgstr[0] "O backup %s após o período de retenção foi excluído."
+msgstr[1] "Os backups %s após o período de retenção foram excluídos."
 
 msgid "Takes an automatic backup before every plugin/theme update, scheduled full backups, quota and retention management, a storage dashboard with charts and selective restore. Compatible with Hostinger shared hosting."
 msgstr "Faz backup automático antes de cada atualização de plugin/tema, backups completos agendados, gerenciamento de cotas e retenção, painel de armazenamento com gráficos e restauração seletiva. Compatível com hospedagem compartilhada Hostinger."

@@ -1,0 +1,9 @@
+{
+ "source": {
+  "Installed (v%s) but not active.": "Installed (v%s) but not active.",
+  "Active, v%1$s. This theme was tested with v%2$s or later; please update.": "Active, v%1$s. This theme was tested with v%2$s or later; please update.",
+  "Active, v%s.": "Active, v%s.",
+  "v%s and later add their own checks to this screen.": "v%s and later add their own checks to this screen.",
+  "%1$s is active, v%2$s. Flux Donate reads the keys from it.": "%1$s is active, v%2$s. Flux Donate reads the keys from it."
+ }
+}

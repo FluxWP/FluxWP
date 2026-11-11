@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.6.5
+- Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
+
 ## 0.6.4
 - Full profiling (SAVEQUERIES) no longer follows the logged-in cookie. It runs only for a signed 30-minute marker set when someone who can open the Flux Speed panel loads wp-admin, and the collected profile is dropped if that user is not allowed.
 - Block the default login script when the request is wp-login.php with a path suffix, extra slashes or different case, including subdirectory installs.

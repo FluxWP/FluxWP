@@ -446,7 +446,7 @@ if ( ! function_exists( 'efb_steps_complete_text_efb' ) ) {
 		$tpl = isset( $lan_text['percentComplete'] ) && $lan_text['percentComplete'] !== ''
 			? $lan_text['percentComplete']
 			/* translators: %s: completion percentage, already formatted with a percent sign */
-			: esc_html__( '%scomplete', 'flx-forms' );
+			: esc_html__( '%s complete', 'flx-forms' );
 		return str_replace( '%s', $percent . '%', $tpl );
 	}
 }
@@ -887,7 +887,7 @@ class efbFunction {
 			$fill_missing_defaults = [
 				'videoOrAudio' => esc_html__('(Video or Audio)','flx-forms'),
 				'localization' => esc_html__('Localization','flx-forms'),
-				'translateContrib' => esc_html__('Help us speak your language! Translate Flux Forms on the%1$sWordPress.org translation portal%2$sand make it accessible to your community.','flx-forms'),
+				'translateContrib' => esc_html__('Help us speak your language! Translate Flux Forms on the %1$sWordPress.org translation portal%2$s and make it accessible to your community.','flx-forms'),
 				'translateLocal' => esc_html__('You can translate Flux Forms into your preferred language by translating the following sentences. WARNING: If your WordPress site is multilingual, do not change the values below.','flx-forms'),
 			];
 
@@ -1250,7 +1250,7 @@ class efbFunction {
 			/* translators: 1: current step number, 2: total number of steps */
 			"stepXofY" => $state ? $ac->text->stepXofY : esc_html__('Step %1$s of %2$s','flx-forms'),
 			/* translators: %s: completion percentage, already formatted with a percent sign */
-			"percentComplete" => $state ? $ac->text->percentComplete : esc_html__('%scomplete','flx-forms'),
+			"percentComplete" => $state ? $ac->text->percentComplete : esc_html__('%s complete','flx-forms'),
 			/* translators: Private form = form visible only to logged-in users */
 			"showTheFormTologgedUsers" => $state ? $ac->text->showTheFormTologgedUsers : esc_html__('Private form','flx-forms'),
 			"labelSize" => $state ? $ac->text->labelSize : esc_html__('Label size','flx-forms'),
@@ -1267,17 +1267,17 @@ class efbFunction {
 			"right" => $state ? $ac->text->right : esc_html__('Right','flx-forms'),
 			"width" => $state ? $ac->text->width : esc_html__('Width','flx-forms'),
 			/* translators: Mobile Width = width of element on mobile devices */
-			"swidth" => $state && isset($ac->text->swidth) ? $ac->text->swidth : esc_html__('%swidth','flx-forms'),
+			"swidth" => $state && isset($ac->text->swidth) ? $ac->text->swidth : esc_html__('%s width','flx-forms'),
 			/* translators: %s = context prefix (e.g. Mobile/Desktop). Label Position = position of field label */
-			"slabelPosition" => $state && isset($ac->text->slabelPosition) ? $ac->text->slabelPosition : esc_html__('%sLabel Position','flx-forms'),
+			"slabelPosition" => $state && isset($ac->text->slabelPosition) ? $ac->text->slabelPosition : esc_html__('%s Label Position','flx-forms'),
 			/* translators: %s = context prefix (e.g. Mobile/Desktop). Label size = font size of field label */
-			"slabelSize" => $state && isset($ac->text->slabelSize) ? $ac->text->slabelSize : esc_html__('%sLabel size','flx-forms'),
+			"slabelSize" => $state && isset($ac->text->slabelSize) ? $ac->text->slabelSize : esc_html__('%s Label size','flx-forms'),
 			/* translators: %s = context prefix (e.g. Mobile/Desktop). Label Align = text alignment of field label */
-			"slabelAlign" => $state && isset($ac->text->slabelAlign) ? $ac->text->slabelAlign : esc_html__('%sLabel | Align','flx-forms'),
+			"slabelAlign" => $state && isset($ac->text->slabelAlign) ? $ac->text->slabelAlign : esc_html__('%s Label | Align','flx-forms'),
 			/* translators: %s = context prefix (e.g. Mobile/Desktop). Description Align = text alignment of field description */
-			"sdescAlign" => $state && isset($ac->text->sdescAlign) ? $ac->text->sdescAlign : esc_html__('%sDescription | Align','flx-forms'),
+			"sdescAlign" => $state && isset($ac->text->sdescAlign) ? $ac->text->sdescAlign : esc_html__('%s Description | Align','flx-forms'),
 			/* translators: %s = context prefix (e.g. Mobile/Desktop). Buttons Align = alignment of the form navigation/submit buttons */
-			"sbtnsAlign" => $state && isset($ac->text->sbtnsAlign) ? $ac->text->sbtnsAlign : esc_html__('%sButtons | Align','flx-forms'),
+			"sbtnsAlign" => $state && isset($ac->text->sbtnsAlign) ? $ac->text->sbtnsAlign : esc_html__('%s Buttons | Align','flx-forms'),
 			/* translators: Desktop = computer/PC view */
 			"desktop" => $state && isset($ac->text->desktop) ? $ac->text->desktop : esc_html__('Desktop','flx-forms'),
 			/* translators: Mobile = mobile phone view */
@@ -1303,18 +1303,18 @@ class efbFunction {
 			"white" => $state ? $ac->text->white : esc_html__('White','flx-forms'),
 			"clr" => $state ? $ac->text->clr : esc_html__('Color','flx-forms'),
 			/* translators: %s Checked Color = color of checked radio/checkbox elements, %s is replaced with field type name */
-			"checkedClr" => $state && isset($ac->text->checkedClr) ? $ac->text->checkedClr : esc_html__('%sChecked Color','flx-forms'),
+			"checkedClr" => $state && isset($ac->text->checkedClr) ? $ac->text->checkedClr : esc_html__('%s Checked Color','flx-forms'),
 			/* translators: Range Thumb range slider button/thumb */
 			"rangeThumb" => $state && isset($ac->text->rangeThumb) ? $ac->text->rangeThumb : esc_html__('Slider Button','flx-forms'),
 			/* translators: Range Value  range slider value */
 			"rangeValue" => $state && isset($ac->text->rangeValue) ? $ac->text->rangeValue : esc_html__('Value Text','flx-forms'),
 			/* translators: Switch %s = dynamic switch label, %s is replaced with On/Off/Handle */
-			"switchs" => $state && isset($ac->text->switchs) ? $ac->text->switchs : esc_html__('Switch%s','flx-forms'),
+			"switchs" => $state && isset($ac->text->switchs) ? $ac->text->switchs : esc_html__('Switch %s','flx-forms'),
 			/* translators: Handle = the toggle button/thumb of switch */
 			"handle" => $state && isset($ac->text->handle) ? $ac->text->handle : esc_html__('Handle','flx-forms'),
 
 			/* translators: %s Color = color of the field element, %s is replaced with field type name */
-			"scolor" => $state && isset($ac->text->scolor) ? $ac->text->scolor : esc_html__('%scolor','flx-forms'),
+			"scolor" => $state && isset($ac->text->scolor) ? $ac->text->scolor : esc_html__('%s color','flx-forms'),
 
 			"borderColor" => $state ? $ac->text->borderColor : esc_html__('Border Color','flx-forms'),
 			"height" => $state ? $ac->text->height : esc_html__('height','flx-forms'),
@@ -1397,7 +1397,7 @@ class efbFunction {
 			/* translators: Confirmation text for changing from Free Plus to Free. */
 			"downgradeFreePlusToFreeAdvancedBody" => $state && isset($ac->text->downgradeFreePlusToFreeAdvancedBody) ? $ac->text->downgradeFreePlusToFreeAdvancedBody : esc_html__('Advanced features and advanced fields used in your forms will be disabled. Your forms, entries and settings will not be deleted, and will be available again if you upgrade.','flx-forms'),
 			"downgradeProToFreeBody" => $state && isset($ac->text->downgradeProToFreeBody) ? $ac->text->downgradeProToFreeBody : esc_html__('Your Pro activation code will be removed from this site. Advanced features, Pro fields and add-ons will be unavailable until you upgrade again. Your forms, entries and settings will not be deleted.','flx-forms'),
-			"keepPro" => $state && isset($ac->text->keepPro) ? $ac->text->keepPro : esc_html__('KeepPro','flx-forms'),
+			"keepPro" => $state && isset($ac->text->keepPro) ? $ac->text->keepPro : esc_html__('Keep Pro','flx-forms'),
 			"keepFreePlus" => $state && isset($ac->text->keepFreePlus) ? $ac->text->keepFreePlus : esc_html__('Keep Free Plus','flx-forms'),
 			"switchToFreePlus" => $state && isset($ac->text->switchToFreePlus) ? $ac->text->switchToFreePlus : esc_html__('Switch to Free Plus','flx-forms'),
 			"switchToFree" => $state && isset($ac->text->switchToFree) ? $ac->text->switchToFree : esc_html__('Switch to Free','flx-forms'),
@@ -1427,7 +1427,7 @@ class efbFunction {
 			"onboardingTestPendingGuidance" => $state && isset($ac->text->onboardingTestPendingGuidance) ? $ac->text->onboardingTestPendingGuidance : esc_html__('Your test email was sent, but delivery is not confirmed yet. Check the inbox or spam folder for the address below; you can finish setup and try again later from General Settings.','flx-forms'),
 			"onboardingTestFailed" => $state && isset($ac->text->onboardingTestFailed) ? $ac->text->onboardingTestFailed : esc_html__('We could not verify delivery. Your email address was saved; please check your mail configuration in General Settings.','flx-forms'),
 			/* translators: Shown when the test message arrived but its deliverability score is too low to rely on. %1$s: measured score, %2$s: minimum acceptable score. */
-			"emailDeliveryLowScore" => $state && isset($ac->text->emailDeliveryLowScore) ? $ac->text->emailDeliveryLowScore : esc_html__('Your test email was delivered, but its deliverability score is only%1$sout of 100 (below%2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again.','flx-forms'),
+			"emailDeliveryLowScore" => $state && isset($ac->text->emailDeliveryLowScore) ? $ac->text->emailDeliveryLowScore : esc_html__('Your test email was delivered, but its deliverability score is only %1$s out of 100 (below %2$s). The emails your forms send will most likely be filtered as spam. Set up SMTP and run the check again.','flx-forms'),
 			"onboardingFinish" => $state && isset($ac->text->onboardingFinish) ? $ac->text->onboardingFinish : esc_html__('Finish setup','flx-forms'),
 
 			/* translators: Selected = indicates something has been chosen */
@@ -1579,9 +1579,9 @@ class efbFunction {
 			"sync" => $state ? $ac->text->sync : esc_html__('Sync','flx-forms'),
 			"enterTheValueThisField" => $state ? $ac->text->enterTheValueThisField : esc_html__('This field is required.','flx-forms'),
 			/* translators: %s will be replaced with field type like "Required", "Validation", etc. Example: "Custom Required Message" */
-			"customMessage" => $state && isset($ac->text->customMessage) ? $ac->text->customMessage : esc_html__('Custom%sMessage','flx-forms'),
+			"customMessage" => $state && isset($ac->text->customMessage) ? $ac->text->customMessage : esc_html__('Custom %s Message','flx-forms'),
 			/* translators: Hint text for custom message field. %s will be replaced with type like "message", "value", etc. */
-			"customMessageHint" => $state && isset($ac->text->customMessageHint) ? $ac->text->customMessageHint : esc_html__('Leave empty to use default%s','flx-forms'),
+			"customMessageHint" => $state && isset($ac->text->customMessageHint) ? $ac->text->customMessageHint : esc_html__('Leave empty to use default %s','flx-forms'),
 			"thankYou" => $state ? $ac->text->thankYou : esc_html__('Thank you','flx-forms'),
 			"YouSubscribed" => $state ? $ac->text->YouSubscribed : esc_html__('You are subscribed','flx-forms'),
 			"passwordRecovery" => $state ? $ac->text->passwordRecovery : esc_html__('Password recovery','flx-forms'),
@@ -1595,9 +1595,9 @@ class efbFunction {
 			"videoOrAudio" => $state && isset($ac->text->videoOrAudio) ? $ac->text->videoOrAudio : esc_html__('(Video or Audio)','flx-forms'),
 			"localization" => $state && isset($ac->text->localization) ? $ac->text->localization : esc_html__('Localization','flx-forms'),
 			/* translators: %1$s and %2$s are opening and closing HTML link tags for the WordPress.org translation portal */
-			"translateContrib" => $state && isset($ac->text->translateContrib) ? $ac->text->translateContrib : esc_html__('Help us speak your language! Translate Flux Forms on the%1$sWordPress.org translation portal%2$sand make it accessible to your community.','flx-forms'),
+			"translateContrib" => $state && isset($ac->text->translateContrib) ? $ac->text->translateContrib : esc_html__('Help us speak your language! Translate Flux Forms on the %1$sWordPress.org translation portal%2$s and make it accessible to your community.','flx-forms'),
 			/* translators: %1$s and %2$s are opening and closing HTML link tags for the WordPress.org translation portal, %3$s is the discount percentage */
-			"translateDiscount" => $state && isset($ac->text->translateDiscount) ? $ac->text->translateDiscount : esc_html__('If your language translation is not available yet, translate it and get a%3$slifetime discount! Contribute via the%1$sWordPress.org translation portal%2$s.','flx-forms'),
+			"translateDiscount" => $state && isset($ac->text->translateDiscount) ? $ac->text->translateDiscount : esc_html__('If your language translation is not available yet, translate it and get a %3$s lifetime discount! Contribute via the %1$sWordPress.org translation portal%2$s.','flx-forms'),
 			"discountOff" => $state && isset($ac->text->discountOff) ? $ac->text->discountOff : esc_html__('OFF','flx-forms'),
 			"translateLocal" => $state && isset($ac->text->translateLocal) ? $ac->text->translateLocal : esc_html__('You can translate Flux Forms into your preferred language by translating the following sentences. WARNING: If your WordPress site is multilingual, do not change the values below.','flx-forms'),
 			"enterValidURL" => $state ? $ac->text->enterValidURL : esc_html__('Please enter a valid URL. Protocol is required (http://, https://)','flx-forms'),
@@ -1788,7 +1788,7 @@ class efbFunction {
 			"pWRedirect" => $state  &&  isset($ac->text->pWRedirect) ? $ac->text->pWRedirect : esc_html__('Please wait, you will be redirected shortly.','flx-forms'),
 			"persiaPayment" => $state  &&  isset($ac->text->persiaPayment) ? $ac->text->persiaPayment : esc_html__('Persia payment','flx-forms'),
 			"getPro" => $state  &&  isset($ac->text->getPro) ? $ac->text->getPro : esc_html__('Unlock Pro Features Today','flx-forms'),
-			"yFreeVEnPro" => $state  &&  isset($ac->text->yFreeVEnPro) ? $ac->text->yFreeVEnPro : esc_html__('Upgrade to Pro for just%1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s','flx-forms'),
+			"yFreeVEnPro" => $state  &&  isset($ac->text->yFreeVEnPro) ? $ac->text->yFreeVEnPro : esc_html__('Upgrade to Pro for just %1$s%2$s%3$s/year and get access to powerful features, including advanced form fields, payment integrations, conditional logic, multi-step forms, file uploads, Security & Spam Protection, and priority support.%4$sView Pro Features%5$s','flx-forms'),
 			/* translators: %1$s is the name of the addon */
 			"addon" => $state  &&  isset($ac->text->addon) ? $ac->text->addon : esc_html__('Add-on','flx-forms'),
 			"addons" => $state  &&  isset($ac->text->addons) ? $ac->text->addons : esc_html__('Add-ons','flx-forms'),
@@ -1942,7 +1942,7 @@ class efbFunction {
 			/* translators: Empty state shown when the form has no fields to build conditions from */
 			"noFields" => $state  &&  isset($ac->text->noFields) ? $ac->text->noFields : esc_html__('No fields found.','flx-forms'),
 			/* translators: %1$s = maximum number of items allowed, %2$s = item label (e.g. rules, conditions). Shown when the current plan's limit is reached. */
-			"planLimitReached" => $state  &&  isset($ac->text->planLimitReached) ? $ac->text->planLimitReached : esc_html__('You can create up to%1$s%2$son your current plan. Upgrade to Pro for unlimited access.','flx-forms'),
+			"planLimitReached" => $state  &&  isset($ac->text->planLimitReached) ? $ac->text->planLimitReached : esc_html__('You can create up to %1$s %2$s on your current plan. Upgrade to Pro for unlimited access.','flx-forms'),
 			/* translators: Inspector = panel showing the details of the last rule test run */
 			"inspector" => $state  &&  isset($ac->text->inspector) ? $ac->text->inspector : esc_html__('Inspector','flx-forms'),
 			/* translators: Rule trace = section listing the step-by-step evaluation of a rule during testing */
@@ -2221,9 +2221,9 @@ class efbFunction {
 			/* translators: Setting label: let the visitor download a copy of their recording */
 			"recAllowDownload" => $state && isset($ac->text->recAllowDownload) ? $ac->text->recAllowDownload : esc_html__('Let the user download a copy of the recording','flx-forms'),
 			/* translators: %s = megabytes. Hint under the max file size setting showing the hosting upload limit */
-			"hostUploadLimit" => $state && isset($ac->text->hostUploadLimit) ? $ac->text->hostUploadLimit : esc_html__('Your hosting accepts uploads up to%sMB.','flx-forms'),
+			"hostUploadLimit" => $state && isset($ac->text->hostUploadLimit) ? $ac->text->hostUploadLimit : esc_html__('Your hosting accepts uploads up to %s MB.','flx-forms'),
 			/* translators: %s = megabytes. Warning when the configured size exceeds the hosting upload limit */
-			"hostUploadLimitOver" => $state && isset($ac->text->hostUploadLimitOver) ? $ac->text->hostUploadLimitOver : esc_html__('This is larger than the hosting upload limit (%sMB); uploads will fail.','flx-forms'),
+			"hostUploadLimitOver" => $state && isset($ac->text->hostUploadLimitOver) ? $ac->text->hostUploadLimitOver : esc_html__('This is larger than the hosting upload limit (%s MB); uploads will fail.','flx-forms'),
 			"cityList" => $state  &&  isset($ac->text->cityList) ? $ac->text->cityList : esc_html__('Cities Drop-Down','flx-forms'),
 			"elan" => $state  &&  isset($ac->text->elan) ? $ac->text->elan : esc_html__('English language','flx-forms'),
 			"nlan" => $state  &&  isset($ac->text->nlan) ? $ac->text->nlan : esc_html__('National language','flx-forms'),
@@ -2262,13 +2262,13 @@ class efbFunction {
 			/* translators: Dashboard widget card label. Example: "Emails sent" */
 			"dwEmailsSent" => $state  &&  isset($ac->text->dwEmailsSent) ? $ac->text->dwEmailsSent : esc_html__('Emails sent','flx-forms'),
 			/* translators: Dashboard widget — card label: %s is replaced with the word 'Email' at runtime. Example: "Email Failures" */
-			"dwEmailsFailed" => $state  &&  isset($ac->text->dwEmailsFailed) ? $ac->text->dwEmailsFailed : esc_html__('%sFailures','flx-forms'),
+			"dwEmailsFailed" => $state  &&  isset($ac->text->dwEmailsFailed) ? $ac->text->dwEmailsFailed : esc_html__('%s Failures','flx-forms'),
 			/* translators: Dashboard widget — panel title: %s is replaced with the word 'Email' at runtime. Example: "Email Error Log" */
-			"dwEmailErrors" => $state  &&  isset($ac->text->dwEmailErrors) ? $ac->text->dwEmailErrors : esc_html__('%sError Log','flx-forms'),
+			"dwEmailErrors" => $state  &&  isset($ac->text->dwEmailErrors) ? $ac->text->dwEmailErrors : esc_html__('%s Error Log','flx-forms'),
 			/* translators: Dashboard widget — table column header: recipient email address */
 			"dwRecipient" => $state  &&  isset($ac->text->dwRecipient) ? $ac->text->dwRecipient : esc_html__('Recipient','flx-forms'),
 			/* translators: Dashboard widget — table column header: %s is replaced with the word 'Error' at runtime. Example: "Error Details" */
-			"dwErrorDetail" => $state  &&  isset($ac->text->dwErrorDetail) ? $ac->text->dwErrorDetail : esc_html__('%sDetails','flx-forms'),
+			"dwErrorDetail" => $state  &&  isset($ac->text->dwErrorDetail) ? $ac->text->dwErrorDetail : esc_html__('%s Details','flx-forms'),
 			/* translators: Dashboard widget — shown when there is no data to display */
 			"dwNoData" => $state  &&  isset($ac->text->dwNoData) ? $ac->text->dwNoData : esc_html__('No data available for this period','flx-forms'),
 			"fernvtf" => $state  &&  isset($ac->text->fernvtf) ? $ac->text->fernvtf : esc_html__('The entered data does not match the form type. If you are an admin, please review the form type.','flx-forms'),
@@ -2276,15 +2276,15 @@ class efbFunction {
 			"actvtcmsg" => $state  &&  isset($ac->text->actvtcmsg) ? $ac->text->actvtcmsg : esc_html__('Your activation code has been verified. Enjoy all Pro features of Flux Forms.','flx-forms'),
 
 			/* translators: %s is the confirmation code */
-			"msgdml" => $state  &&  isset($ac->text->msgdml) ? $ac->text->msgdml : esc_html__('The confirmation code for this message is%s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply.','flx-forms'),
+			"msgdml" => $state  &&  isset($ac->text->msgdml) ? $ac->text->msgdml : esc_html__('The confirmation code for this message is %s. By clicking the button below, you will be able to track messages and view received responses. If needed, you can also send a new reply.','flx-forms'),
 
 			/* translators: %1$s and %2$s are opening and closing link tags for documentation */
-			"msgnml" => $state  &&  isset($ac->text->msgnml) ? $ac->text->msgnml : esc_html__('To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our%1$sdocumentation%2$s.','flx-forms'),
+			"msgnml" => $state  &&  isset($ac->text->msgnml) ? $ac->text->msgnml : esc_html__('To explore the full functionality and settings of Flux Forms, including email configurations, form creation options, and other features, simply delve into our %1$s documentation %2$s .','flx-forms'),
 
 			"rspcon" => $state  &&  isset($ac->text->rspcon) ? $ac->text->rspcon : esc_html__('Responses & Confirmation','flx-forms'),
 
 			/* translators: %1$s, %2$s, %3$s, %4$s are opening and closing link tags for help resources */
-			"mlntip" => $state  &&  isset($ac->text->mlntip) ? $ac->text->mlntip : esc_html__('Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings%1$sLearn how to fix email delivery issues%2$sor%3$scontact Flux Forms support%4$s.','flx-forms'),
+			"mlntip" => $state  &&  isset($ac->text->mlntip) ? $ac->text->mlntip : esc_html__('Test emails may land in your spam folder. If emails are not delivered, this is usually related to your hosting or email server configuration.server settings %1$sLearn how to fix email delivery issues%2$s or %3$scontact Flux Forms support%4$s.','flx-forms'),
 			"from" => $state  &&  isset($ac->text->from) ? $ac->text->from : esc_html__('From Address','flx-forms'),
 			"msgfml" => $state  &&  isset($ac->text->msgfml) ? $ac->text->msgfml : esc_html__('Make sure this email address matches the one configured in your SMTP settings to prevent email delivery issues.','flx-forms'),
 			"prsm" => $state  &&  isset($ac->text->prsm) ? $ac->text->prsm : esc_html__('To preview the form, you need to save the built form and try again.','flx-forms'),
@@ -2297,14 +2297,14 @@ class efbFunction {
 			"devModeWarn" => $state  &&  isset($ac->text->devModeWarn) ? $ac->text->devModeWarn : esc_html__('After changing the Development Mode (Sandbox) option, save the settings, then deactivate and reactivate Flux Forms plugin from the Plugins page for the changes to take effect.','flx-forms'),
 
 			/* translators: %1$s and %2$s are opening and closing link tags for terms and conditions */
-			"trmcn" => $state  &&  isset($ac->text->trmcn) ? $ac->text->trmcn : esc_html__('I have read and agree to%1$sthe terms and conditions%2$s','flx-forms'),
+			"trmcn" => $state  &&  isset($ac->text->trmcn) ? $ac->text->trmcn : esc_html__('I have read and agree to %1$sthe terms and conditions%2$s','flx-forms'),
 			"trmCheckbox" => $state  &&  isset($ac->text->trmCheckbox) ? $ac->text->trmCheckbox : esc_html__('Terms','flx-forms'),
 			"prvnt" => $state  &&  isset($ac->text->prvnt) ? $ac->text->prvnt : esc_html__('Preview in new tab','flx-forms'),
 			"mxdt" => $state  &&  isset($ac->text->mxdt) ? $ac->text->mxdt : esc_html__('Maximum date','flx-forms'),
 			"mindt" => $state  &&  isset($ac->text->mindt) ? $ac->text->mindt : esc_html__('Minimum date','flx-forms'),
 
 			/* translators: %s is the list of valid file formats */
-			"ivf" => $state  &&  isset($ac->text->ivf) ? $ac->text->ivf : esc_html__('Valid formats:%s','flx-forms'),
+			"ivf" => $state  &&  isset($ac->text->ivf) ? $ac->text->ivf : esc_html__('Valid formats: %s','flx-forms'),
 			"zoom" => $state  &&  isset($ac->text->zoom) ? $ac->text->zoom : esc_html__('Zoom','flx-forms'),
 			/* translators: CDN = Content Delivery Network - a service that loads files faster; leafletjs.com is a mapping library; unpkg.com is a JavaScript file hosting service */
 			"lpds" => $state  &&  isset($ac->text->lpds) && strpos((string) $ac->text->lpds, 'This is the best version') === false && strpos((string) $ac->text->lpds, 'Bu en iyi sürüm') === false ? $ac->text->lpds : esc_html__('The map library (OpenStreetMap and Leaflet) loads only on pages that contain a location picker field.','flx-forms'),
@@ -2316,11 +2316,11 @@ class efbFunction {
 			"eln" => $state  &&  isset($ac->text->eln) ? $ac->text->eln : esc_html__('Enter a location name','flx-forms'),
 
 			/* translators: %1$s is the plugin name, %2$s and %3$s are opening and closing link tags for support */
-			"alns" => $state  &&  isset($ac->text->alns) ? $ac->text->alns : esc_html__('The%1$spages are currently unavailable. It looks like another plugin is causing a conflict with%1$s. To fix this issue,%2$scontact%1$ssupport%3$sfor assistance or try disabling your plugins one at a time to identify the one causing the conflict.','flx-forms'),
+			"alns" => $state  &&  isset($ac->text->alns) ? $ac->text->alns : esc_html__('The %1$s pages are currently unavailable. It looks like another plugin is causing a conflict with %1$s . To fix this issue, %2$s contact %1$s support %3$s for assistance or try disabling your plugins one at a time to identify the one causing the conflict.','flx-forms'),
 
 			"settings" => $state  &&  isset($ac->text->settings) ? $ac->text->settings : esc_html__('Settings','flx-forms'),
 			"emlcc" => $state  &&  isset($ac->text->emlcc) ? $ac->text->emlcc : esc_html__('Send email with submitted form content only','flx-forms'),
-			"copied" => $state  &&  isset($ac->text->copied) ? $ac->text->copied : esc_html__('%scopied!','flx-forms'),
+			"copied" => $state  &&  isset($ac->text->copied) ? $ac->text->copied : esc_html__('%s copied!','flx-forms'),
 			"srvnrsp" => $state  &&  isset($ac->text->srvnrsp) ? $ac->text->srvnrsp : esc_html__('The website is not responding; please refresh and try again—saving or submitting is not available until it is restored.','flx-forms'),
 
 			"sxnlex" => $state  &&  isset($ac->text->sxnlex) ? $ac->text->sxnlex : esc_html__('Your session has expired or is no longer valid. Please refresh the page to continue.','flx-forms'),
@@ -2330,7 +2330,7 @@ class efbFunction {
 			"servpss" => $state  &&  isset($ac->text->servpss) ? $ac->text->servpss : esc_html__('Enter your email to reset your password','flx-forms'),
 			"imvpwsy" => $state  &&  isset($ac->text->imvpwsy) ? $ac->text->imvpwsy : esc_html__('If your email is valid, a password reset link has been sent to your email address.','flx-forms'),
 			/* translators: %s is the feature name being enabled (e.g., SMS, Email, Auto-Populate) */
-			"enbl" => $state  &&  isset($ac->text->enbl) ? $ac->text->enbl : esc_html__('Enable%s','flx-forms'),
+			"enbl" => $state  &&  isset($ac->text->enbl) ? $ac->text->enbl : esc_html__('Enable %s','flx-forms'),
 			"atfll" => $state  &&  isset($ac->text->atfll) ? $ac->text->atfll : esc_html__('Auto-Populate','flx-forms'),
 			"atflldm" => $state  &&  isset($ac->text->atflldm) ? $ac->text->atflldm : esc_html__('Auto-populate from previously submitted forms','flx-forms'),
 			"atflltm" => $state  &&  isset($ac->text->atflltm) ? $ac->text->atflltm : esc_html__('Enable Auto-Populate to automatically populate this field','flx-forms'),
@@ -2357,30 +2357,30 @@ class efbFunction {
 			"externalApi" => $state && isset($ac->text->externalApi) ? $ac->text->externalApi : esc_html__('External API Connections', 'flx-forms'),
 			"addNewApi" => $state && isset($ac->text->addNewApi) ? $ac->text->addNewApi : esc_html__('Add API Connection', 'flx-forms'),
 			/* translators: %s is the file type (e.g., Image, Document, ZIP, JPEG PNG ...) */
-			"uplsf" => $state  &&  isset($ac->text->uplsf) ? $ac->text->uplsf : esc_html__('Upload the%sfile','flx-forms'),
+			"uplsf" => $state  &&  isset($ac->text->uplsf) ? $ac->text->uplsf : esc_html__('Upload the %s file','flx-forms'),
 			"csv" => $state  &&  isset($ac->text->csv) ? $ac->text->csv : esc_html__('CSV','flx-forms'),
 			/* translators: Dataset = collection of data/information */
 			"datas" => $state  &&  isset($ac->text->datas) ? $ac->text->datas : esc_html__('Dataset','flx-forms'),
 			/* translators: %s is the action or process that was successfully completed */
-			"tshbc" => $state  &&  isset($ac->text->tshbc) ? $ac->text->tshbc : esc_html__('The%shas been successfully completed','flx-forms'),
+			"tshbc" => $state  &&  isset($ac->text->tshbc) ? $ac->text->tshbc : esc_html__('The %s has been successfully completed','flx-forms'),
 			"rename" => $state  &&  isset($ac->text->rename) ? $ac->text->rename : esc_html__('Rename','flx-forms'),
 			"source" => $state  &&  isset($ac->text->source) ? $ac->text->source : esc_html__('Source','flx-forms'),
 			/* translators: %s is the item that was not found (e.g., File, Form, Response) */
-			"snotfound" => $state  &&  isset($ac->text->snotfound) ? $ac->text->snotfound : esc_html__('%snot found','flx-forms'),
+			"snotfound" => $state  &&  isset($ac->text->snotfound) ? $ac->text->snotfound : esc_html__('%s not found','flx-forms'),
 			/* translators: %s is the location name of places or cities */
-			"slocation" => $state  &&  isset($ac->text->slocation) ? $ac->text->slocation : esc_html__('%sLocation','flx-forms'),
+			"slocation" => $state  &&  isset($ac->text->slocation) ? $ac->text->slocation : esc_html__('%s Location','flx-forms'),
 			"installation" => $state  &&  isset($ac->text->installation) ? $ac->text->installation : esc_html__('installation','flx-forms'),
 			/* translators: %s is the item type that was deleted (e.g., files, forms, messages) */
-			"tDeleted" => $state && isset($ac->text->tDeleted) ? $ac->text->tDeleted : esc_html__('The%shave been deleted.','flx-forms'),
+			"tDeleted" => $state && isset($ac->text->tDeleted) ? $ac->text->tDeleted : esc_html__('The %s have been deleted.','flx-forms'),
 			/* translators: %s is the label name of field that must be filled correctly (e.g., Email, Password) */
-			"sfmcfop" => $state  &&  isset($ac->text->sfmcfop) ? $ac->text->sfmcfop : esc_html__('The%sfield must be correctly filled out to proceed.','flx-forms'),
+			"sfmcfop" => $state  &&  isset($ac->text->sfmcfop) ? $ac->text->sfmcfop : esc_html__('The %s field must be correctly filled out to proceed.','flx-forms'),
 			"fform" => $state  &&  isset($ac->text->fform) ? $ac->text->fform : esc_html__('Submitted Form','flx-forms'),
 			"paymentNcaptcha" => $state  &&  isset($ac->text->paymentNcaptcha) ? $ac->text->paymentNcaptcha : esc_html__('You can\'t add reCAPTCHA to payment forms.','flx-forms'),
 
 			/* translators: %s is the feature name */
-			"lmavt" => $state  &&  isset($ac->text->lmavt) ? $ac->text->lmavt : esc_html__('Learn more about%sor watch the video tutorial.','flx-forms'),
+			"lmavt" => $state  &&  isset($ac->text->lmavt) ? $ac->text->lmavt : esc_html__('Learn more about %s or watch the video tutorial.','flx-forms'),
 
-			"lrnmrs" => $state  &&  isset($ac->text->lrnmrs) ? $ac->text->lrnmrs : esc_html__('Learn more%s','flx-forms'),
+			"lrnmrs" => $state  &&  isset($ac->text->lrnmrs) ? $ac->text->lrnmrs : esc_html__('Learn more %s','flx-forms'),
 
 			"grecaptcha" => $state  &&  isset($ac->text->grecaptcha) ? $ac->text->grecaptcha : esc_html__('Google reCAPTCHA','flx-forms'),
 
@@ -2389,46 +2389,46 @@ class efbFunction {
 			"rasfmb" => $state  &&  isset($ac->text->rasfmb) ? $ac->text->rasfmb : esc_html__('There is an auto-saved version of the form available. Do you want to restore it?','flx-forms'),
 			"smsWPN" => $state  &&  isset($ac->text->smsWPN) ? $ac->text->smsWPN : esc_html__('SMS notification could not be sent. Check if the SMS plugin is installed and configured properly.','flx-forms'),
 			/* translators: %1$s and %2$s are HTML tags for formatting the success message */
-			"msgSndBut" => $state && isset($ac->text->msgSndBut) ? $ac->text->msgSndBut : esc_html__('Your request was completed successfully.%1$s%2$s', 'flx-forms'),
+			"msgSndBut" => $state && isset($ac->text->msgSndBut) ? $ac->text->msgSndBut : esc_html__('Your request was completed successfully. %1$s %2$s', 'flx-forms'),
 			"paypal" => $state  &&  isset($ac->text->paypal) ? $ac->text->paypal : esc_html__('PayPal','flx-forms'),
 			/* translators: %1$s is the payment service name (e.g., Stripe, PayPal), %2$s is the key type (e.g., API, Public) */
-			"ufinyf" => $state  &&  isset($ac->text->ufinyf) ? $ac->text->ufinyf : esc_html__('To use%1$sfeatures in your forms, you need to get your%2$skeys.','flx-forms'),
+			"ufinyf" => $state  &&  isset($ac->text->ufinyf) ? $ac->text->ufinyf : esc_html__('To use %1$s features in your forms, you need to get your %2$s keys.','flx-forms'),
 			"payment" => $state  &&  isset($ac->text->payment) ? $ac->text->payment : esc_html__('Payment','flx-forms'),
 			/* translators: %s: Add-on name */
-			"INAddonMsg" => $state  &&  isset($ac->text->INAddonMsg) ? $ac->text->INAddonMsg : esc_html__('Go to the add-ons page in the Flux Forms plugin, install the%sadd-on, and try again.','flx-forms'),
+			"INAddonMsg" => $state  &&  isset($ac->text->INAddonMsg) ? $ac->text->INAddonMsg : esc_html__('Go to the add-ons page in the Flux Forms plugin, install the %s add-on, and try again.','flx-forms'),
 			/* translators: %s: Payment add-on name */
-			"IMAddonPMsg" => $state && isset($ac->text->IMAddonPMsg) ? $ac->text->IMAddonPMsg  : esc_html__('To create a payment form to collect online payments, install a payment add-on such as the%sAdd-on first.', 'flx-forms'),
+			"IMAddonPMsg" => $state && isset($ac->text->IMAddonPMsg) ? $ac->text->IMAddonPMsg  : esc_html__('To create a payment form to collect online payments, install a payment add-on such as the %s Add-on first.', 'flx-forms'),
 			"activated" => $state  &&  isset($ac->text->activated) ? $ac->text->activated : esc_html__('Activated','flx-forms'),
 			"thank" => $state  &&  isset($ac->text->thank) ? $ac->text->thank : esc_html__('Thank','flx-forms'),
 
 			/* translators: %s is the caching plugin name */
-			"excefb" => $state  &&  isset($ac->text->excefb) ? $ac->text->excefb : esc_html__('The%splugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the%ssettings.','flx-forms'),
+			"excefb" => $state  &&  isset($ac->text->excefb) ? $ac->text->excefb : esc_html__('The %s plugin may interfere with Flux Forms form functionality. If you encounter any issues with the forms, disable caching for the Flux Forms plugin in the %s settings.','flx-forms'),
 			"rmndltr" => $state  &&  isset($ac->text->rmndltr) ? $ac->text->rmndltr : esc_html__('Remind me later','flx-forms'),
 			"gotitdsmss" => $state  &&  isset($ac->text->gotitdsmss) ? $ac->text->gotitdsmss : esc_html__('Got it, don\'t show it again','flx-forms'),
 			/* translators: %1$s is the field name, %2$s is the minimum character count */
-			"ptrnMmm_" => $state  &&  isset($ac->text->ptrnMmm_) ? $ac->text->ptrnMmm_ : esc_html__('The value of the%1$sfield does not match the pattern and must be at least%2$scharacters.','flx-forms'),
+			"ptrnMmm_" => $state  &&  isset($ac->text->ptrnMmm_) ? $ac->text->ptrnMmm_ : esc_html__('The value of the %1$s field does not match the pattern and must be at least %2$s characters.','flx-forms'),
 			/* translators: %1$s is the field name, %2$s is the maximum character count */
-			"ptrnMmx_" => $state  &&  isset($ac->text->ptrnMmx_) ? $ac->text->ptrnMmx_ : esc_html__('The value of the%1$sfield does not match the pattern and must be at most%2$scharacters.','flx-forms'),
+			"ptrnMmx_" => $state  &&  isset($ac->text->ptrnMmx_) ? $ac->text->ptrnMmx_ : esc_html__('The value of the %1$s field does not match the pattern and must be at most %2$s characters.','flx-forms'),
 			/* translators: %s is the field name[Label name of the field] */
-			"mnvvXXX_" => $state  &&  isset($ac->text->mnvvXXX_) ? $ac->text->mnvvXXX_ : esc_html__('Please enter valid value for the%sfield.','flx-forms'),
+			"mnvvXXX_" => $state  &&  isset($ac->text->mnvvXXX_) ? $ac->text->mnvvXXX_ : esc_html__('Please enter valid value for the %s field.','flx-forms'),
 			/* translators: %s is the list name */
-			"list_" => $state  &&  isset($ac->text->list_) ? $ac->text->list_ : esc_html__('%slist','flx-forms'),
+			"list_" => $state  &&  isset($ac->text->list_) ? $ac->text->list_ : esc_html__('%s list','flx-forms'),
 			/* translators: %s is the file size in MB */
-			"fSiz_l_dy_" => $state &&  isset($ac->text->fSiz_l_dy_) ? $ac->text->fSiz_l_dy_ : esc_html__('The uploaded file exceeds the allowable limit of%sMB.','flx-forms'),
+			"fSiz_l_dy_" => $state &&  isset($ac->text->fSiz_l_dy_) ? $ac->text->fSiz_l_dy_ : esc_html__('The uploaded file exceeds the allowable limit of %s MB.','flx-forms'),
 			/* translators: %s is the file size in MB */
-			"fSiz_s_dy_" => $state &&  isset($ac->text->fSiz_s_dy_) ? $ac->text->fSiz_s_dy_ : esc_html__('The uploaded file is below the required minimum size of%sMB.','flx-forms'),
+			"fSiz_s_dy_" => $state &&  isset($ac->text->fSiz_s_dy_) ? $ac->text->fSiz_s_dy_ : esc_html__('The uploaded file is below the required minimum size of %s MB.','flx-forms'),
 			/* translators: %s is the tab name of the settings in the panel Flux Forms */
-			"msgchckvt_" => $state  &&  isset($ac->text->msgchckvt_) ? $ac->text->msgchckvt_ : esc_html__('Review the entered values in the%stab. This message appeared because an error was detected.','flx-forms'),
+			"msgchckvt_" => $state  &&  isset($ac->text->msgchckvt_) ? $ac->text->msgchckvt_ : esc_html__('Review the entered values in the %s tab. This message appeared because an error was detected.','flx-forms'),
 			/* translators: %s is the item being duplicated (e.g., form, field) */
 			"ausdup_" => $state  &&  isset($ac->text->ausdup_) ? $ac->text->ausdup_ : esc_html__('Are you sure you want to duplicate the "%s" ?','flx-forms'),
 			/* translators: %s is the option name */
-			"bkXpM_" => $state  &&  isset($ac->text->bkXpM_) ? $ac->text->bkXpM_ : esc_html__('We are sorry, the booking time for the%soption has expired. Please choose from the other available options.','flx-forms'),
+			"bkXpM_" => $state  &&  isset($ac->text->bkXpM_) ? $ac->text->bkXpM_ : esc_html__('We are sorry, the booking time for the %s option has expired. Please choose from the other available options.','flx-forms'),
 			/* translators: %s is the option name */
-			"bkFlM_" => $state  &&  isset($ac->text->bkFlM_) ? $ac->text->bkFlM_ : esc_html__('We are sorry, the%soption is currently at full capacity. Please choose from the other available options.','flx-forms'),
+			"bkFlM_" => $state  &&  isset($ac->text->bkFlM_) ? $ac->text->bkFlM_ : esc_html__('We are sorry, the %s option is currently at full capacity. Please choose from the other available options.','flx-forms'),
 			/* translators: %s is the payment add-on name like Stripe and Paypal */
-			"sSTAddon" => $state  &&  isset($ac->text->sSTAddon) ? $ac->text->sSTAddon : esc_html__('%sPayment Add-on','flx-forms'),
+			"sSTAddon" => $state  &&  isset($ac->text->sSTAddon) ? $ac->text->sSTAddon : esc_html__('%s Payment Add-on','flx-forms'),
 			/* translators: %1$s is the payment add-on name, %2$s is the payment processor name */
-			"sSTDAddon" => $state  &&  isset($ac->text->sSTDAddon) ? $ac->text->sSTDAddon : esc_html__('The%sadd-on for Flux Forms enables you to integrate your WordPress site with%sfor payment processing, donations, and online orders.','flx-forms'),
+			"sSTDAddon" => $state  &&  isset($ac->text->sSTDAddon) ? $ac->text->sSTDAddon : esc_html__('The %s add-on for Flux Forms enables you to integrate your WordPress site with %s for payment processing, donations, and online orders.','flx-forms'),
 			/* translators: Activation code = license key. */
 			'activationCode' => $state  &&  isset($ac->text->activationCode) ? $ac->text->activationCode : esc_html__('Activation Code','flx-forms'),
 
@@ -2452,7 +2452,7 @@ class efbFunction {
 			'searchResults' => $state && isset($ac->text->searchResults) ? $ac->text->searchResults : esc_html__('Search Results','flx-forms'),
 
 			/* translators: Text for search result count message */
-			'foundResultsFor' => $state && isset($ac->text->foundResultsFor) ? $ac->text->foundResultsFor : esc_html__('Found%s%sfor: "%s"','flx-forms'),
+			'foundResultsFor' => $state && isset($ac->text->foundResultsFor) ? $ac->text->foundResultsFor : esc_html__('Found %s %s for: "%s"','flx-forms'),
 
 			/* translators: Single result text */
 			'result' => $state && isset($ac->text->result) ? $ac->text->result : esc_html__('result','flx-forms'),
@@ -2466,7 +2466,7 @@ class efbFunction {
 
 
 			/* translators: Template for found results text with placeholders - %1$s is result count, %2$s is result/results text */
-			'foundResultsText' => $state && isset($ac->text->foundResultsText) ? $ac->text->foundResultsText : esc_html__('Found%1$s%2$sfor','flx-forms'),
+			'foundResultsText' => $state && isset($ac->text->foundResultsText) ? $ac->text->foundResultsText : esc_html__('Found %1$s %2$s for','flx-forms'),
 
 			/* translators: Session Duration = title for nonce/session expiration settings */
 			"sessionDuration" => $state && isset($ac->text->sessionDuration) ? $ac->text->sessionDuration : esc_html__('Session Duration','flx-forms'),
@@ -2476,22 +2476,22 @@ class efbFunction {
 			"sessionDurationDesc" => $state && isset($ac->text->sessionDurationDesc) ? $ac->text->sessionDurationDesc : esc_html__('Set how long form security tokens remain valid. Longer durations provide better user experience but may reduce security.','flx-forms'),
 
 			/* translators: %s Day = singular form for day count in session duration (e.g., "1 Day") */
-			"sessionDurationDay" => $state && isset($ac->text->sessionDurationDay) ? $ac->text->sessionDurationDay : esc_html__('%sDay','flx-forms'),
+			"sessionDurationDay" => $state && isset($ac->text->sessionDurationDay) ? $ac->text->sessionDurationDay : esc_html__('%s Day','flx-forms'),
 
 			/* translators: %s Days = plural form for day count in session duration (e.g., "2 Days") */
-			"sessionDurationDays" => $state && isset($ac->text->sessionDurationDays) ? $ac->text->sessionDurationDays : esc_html__('%sDays','flx-forms'),
+			"sessionDurationDays" => $state && isset($ac->text->sessionDurationDays) ? $ac->text->sessionDurationDays : esc_html__('%s Days','flx-forms'),
 
 			/* translators: Select Duration = placeholder text for session duration dropdown */
 			"selectDuration" => $state && isset($ac->text->selectDuration) ? $ac->text->selectDuration : esc_html__('Select Duration','flx-forms'),
 
 			/* translators: %s is the feature name (e.g., Confirmation Code) */
-			"trackCodeStyleDesc" => $state && isset($ac->text->trackCodeStyleDesc) ? $ac->text->trackCodeStyleDesc : esc_html__('Choose the style for the%s.','flx-forms'),
+			"trackCodeStyleDesc" => $state && isset($ac->text->trackCodeStyleDesc) ? $ac->text->trackCodeStyleDesc : esc_html__('Choose the style for the %s.','flx-forms'),
 
 			/* translators: %1$s + %2$s = pattern for composing code option labels like "Date + Random Numbers" */
-			"trackCodeDatePlus" => $state && isset($ac->text->trackCodeDatePlus) ? $ac->text->trackCodeDatePlus : esc_html__('%1$s+%2$s','flx-forms'),
+			"trackCodeDatePlus" => $state && isset($ac->text->trackCodeDatePlus) ? $ac->text->trackCodeDatePlus : esc_html__('%1$s + %2$s','flx-forms'),
 
 			/* translators: %1$s %2$s & %3$s = pattern for composing labels like "Local Letters & Numbers" */
-			"trackCodeTriple" => $state && isset($ac->text->trackCodeTriple) ? $ac->text->trackCodeTriple : esc_html__('%1$s%2$s&%3$s','flx-forms'),
+			"trackCodeTriple" => $state && isset($ac->text->trackCodeTriple) ? $ac->text->trackCodeTriple : esc_html__('%1$s %2$s & %3$s','flx-forms'),
 
 			/* translators: Letters = alphabet characters */
 			"tLetters" => $state && isset($ac->text->tLetters) ? $ac->text->tLetters : esc_html__('Letters','flx-forms'),
@@ -2656,7 +2656,7 @@ class efbFunction {
 			"respClrDirtyOne" => $state && isset($ac->text->respClrDirtyOne) ? $ac->text->respClrDirtyOne : esc_html__('1 unsaved change','flx-forms'),
 
 			/* translators: %s = number of changed values, always 2 or more */
-			"respClrDirtyMany" => $state && isset($ac->text->respClrDirtyMany) ? $ac->text->respClrDirtyMany : esc_html__('%sunsaved changes','flx-forms'),
+			"respClrDirtyMany" => $state && isset($ac->text->respClrDirtyMany) ? $ac->text->respClrDirtyMany : esc_html__('%s unsaved changes','flx-forms'),
 
 			/* translators: Hint under the Primary color picker */
 			"respHintPrimary" => $state && isset($ac->text->respHintPrimary) ? $ac->text->respHintPrimary : esc_html__('Buttons, icons, field labels','flx-forms'),
@@ -2938,7 +2938,7 @@ class efbFunction {
 			"dismiss" => $state && isset($ac->text->dismiss) ? $ac->text->dismiss : esc_html__('Dismiss','flx-forms'),
 			"dismissAll" => $state && isset($ac->text->dismissAll) ? $ac->text->dismissAll : esc_html__('Dismiss All','flx-forms'),
 			/* translators: %s: item label */
-			"dismissItem" => $state && isset($ac->text->dismissItem) ? $ac->text->dismissItem : esc_html__('Dismiss%s','flx-forms'),
+			"dismissItem" => $state && isset($ac->text->dismissItem) ? $ac->text->dismissItem : esc_html__('Dismiss %s','flx-forms'),
 			/* translators: Security plugin warning messages shown to admin on public forms */
 			"securityWarnTitle" => $state && isset($ac->text->securityWarnTitle) ? $ac->text->securityWarnTitle : esc_html__('Security Plugin Detected','flx-forms'),
 			"securityWarnMsg" => $state && isset($ac->text->securityWarnMsg) ? $ac->text->securityWarnMsg : esc_html__('The following security plugin may block form submissions with 403 errors. It may block the REST API, remove the X-WP-Nonce header, or apply firewall rules to form requests.','flx-forms'),
@@ -2976,21 +2976,21 @@ class efbFunction {
 			/* translators: Guidance shown when the email arrives but its score is too low for the inbox */
 			"emailSpamRiskGuidance" => $state && isset($ac->text->emailSpamRiskGuidance) ? $ac->text->emailSpamRiskGuidance : esc_html__('Delivery itself works - the test message reached us. What is missing is trust: sending through an SMTP service and adding SPF and DKIM records for your domain is what moves your emails from the spam folder to the inbox.','flx-forms'),
 			/* translators: Result sentence for a delivered email with a low score. %1$s: measured score, %2$s: healthy score threshold. */
-			"emailSpamRiskDesc" => $state && isset($ac->text->emailSpamRiskDesc) ? $ac->text->emailSpamRiskDesc : esc_html__('The test email was delivered with a deliverability score of%1$sout of 100. Under%2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them.','flx-forms'),
+			"emailSpamRiskDesc" => $state && isset($ac->text->emailSpamRiskDesc) ? $ac->text->emailSpamRiskDesc : esc_html__('The test email was delivered with a deliverability score of %1$s out of 100. Under %2$s, most mailboxes file messages in the spam folder, so the people filling in your forms may never see them.','flx-forms'),
 			/* translators: Button label linking to the SMTP setup guide */
 			"smtpSetupGuideBtn" => $state && isset($ac->text->smtpSetupGuideBtn) ? $ac->text->smtpSetupGuideBtn : esc_html__('Step-by-step SMTP setup guide','flx-forms'),
 			/* translators: Message shown when email test succeeds. %s is replaced with the admin email address (e.g. "...sent to admin@example.com.") */
-			"emailServerWorkingReport" => $state && isset($ac->text->emailServerWorkingReport) ? $ac->text->emailServerWorkingReport : esc_html__('Your email server is working. A detailed HTML report has been sent to%s.','flx-forms'),
+			"emailServerWorkingReport" => $state && isset($ac->text->emailServerWorkingReport) ? $ac->text->emailServerWorkingReport : esc_html__('Your email server is working. A detailed HTML report has been sent to %s.','flx-forms'),
 			/* translators: Fallback text when admin email address is not available */
 			"yourAdminEmail" => $state && isset($ac->text->yourAdminEmail) ? $ac->text->yourAdminEmail : esc_html__('your admin email address','flx-forms'),
 			/* translators: Title of the spam score notification box shown when email test succeeds */
 			"emailSpamReportTitle" => $state && isset($ac->text->emailSpamReportTitle) ? $ac->text->emailSpamReportTitle : esc_html__('Spam Score Report on the Way!','flx-forms'),
 			/* translators: Description in spam score notification box. %s is replaced with the admin email address */
-			"emailSpamReportDesc" => $state && isset($ac->text->emailSpamReportDesc) ? $ac->text->emailSpamReportDesc : esc_html__('A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to%swithin the next few minutes.','flx-forms'),
+			"emailSpamReportDesc" => $state && isset($ac->text->emailSpamReportDesc) ? $ac->text->emailSpamReportDesc : esc_html__('A complete email health report — including your spam score, deliverability details, and recommendations — will be sent to %s within the next few minutes.','flx-forms'),
 			/* translators: Warning title shown after saving a form whose email notifications may not reach the admin */
 			"emailNotificationRiskTitle" => $state && isset($ac->text->emailNotificationRiskTitle) ? $ac->text->emailNotificationRiskTitle : esc_html__('Email notifications may not be delivered','flx-forms'),
 			/* translators: %s = numeric spam score out of 100. Shown when the form has email notifications on but delivery is unverified */
-			"emailNotificationRiskDesc" => $state && isset($ac->text->emailNotificationRiskDesc) ? $ac->text->emailNotificationRiskDesc : esc_html__('This form\'s email notification feature is enabled, but email delivery has not been verified and the latest spam score is%s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed.','flx-forms'),
+			"emailNotificationRiskDesc" => $state && isset($ac->text->emailNotificationRiskDesc) ? $ac->text->emailNotificationRiskDesc : esc_html__('This form\'s email notification feature is enabled, but email delivery has not been verified and the latest spam score is %s/100. The form was saved, but admin notification emails may not reach you until SMTP/email delivery is fixed.','flx-forms'),
 			/* translators: Title shown in the form builder when the "This site can send emails" switch is off */
 			"emailSendingOffTitle" => $state && isset($ac->text->emailSendingOffTitle) ? $ac->text->emailSendingOffTitle : esc_html__('Notification emails are turned off','flx-forms'),
 			/* translators: Explains that no email at all is sent while the switch is off */
@@ -3039,9 +3039,9 @@ class efbFunction {
 			/* translators: Status chip shown when the email test failed */
 			"emailTestPhaseFailed" => $state && isset($ac->text->emailTestPhaseFailed) ? $ac->text->emailTestPhaseFailed : esc_html__('Failed','flx-forms'),
 			/* translators: %s = how many of the five test steps have finished */
-			"emailTestStepsDone" => $state && isset($ac->text->emailTestStepsDone) ? $ac->text->emailTestStepsDone : esc_html__('%sof 5 steps done','flx-forms'),
+			"emailTestStepsDone" => $state && isset($ac->text->emailTestStepsDone) ? $ac->text->emailTestStepsDone : esc_html__('%s of 5 steps done','flx-forms'),
 			/* translators: %s = which of the five test steps is running now */
-			"emailTestStepsRunning" => $state && isset($ac->text->emailTestStepsRunning) ? $ac->text->emailTestStepsRunning : esc_html__('Step%sof 5','flx-forms'),
+			"emailTestStepsRunning" => $state && isset($ac->text->emailTestStepsRunning) ? $ac->text->emailTestStepsRunning : esc_html__('Step %s of 5','flx-forms'),
 			/* translators: Shown under the deliverability score, as in "92 / 100" */
 			"emailTestScoreOutOf" => $state && isset($ac->text->emailTestScoreOutOf) ? $ac->text->emailTestScoreOutOf : esc_html__('/ 100','flx-forms'),
 			"emailTestStartingTitle" => $state && isset($ac->text->emailTestStartingTitle) ? $ac->text->emailTestStartingTitle : esc_html__('Test started','flx-forms'),
@@ -3109,7 +3109,7 @@ class efbFunction {
 			/* translators: Recommendations section title shown in email test result */
 			"recommendations" => $state && isset($ac->text->recommendations) ? $ac->text->recommendations : esc_html__('Recommendations','flx-forms'),
 			/* translators: Score label in email test result badge. %s is replaced with the numeric score value (e.g. "Score: 8") */
-			"score" => $state && isset($ac->text->score) ? $ac->text->score : esc_html__('Score:%s','flx-forms'),
+			"score" => $state && isset($ac->text->score) ? $ac->text->score : esc_html__('Score: %s','flx-forms'),
 			/* translators: Upgrade button label shown when a higher plan is required */
 			"upgrade" => $state && isset($ac->text->upgrade) ? $ac->text->upgrade : esc_html__('Upgrade','flx-forms'),
 
@@ -3128,7 +3128,7 @@ class efbFunction {
 			/* translators: Status message shown after the test email has been sent */
 			"testEmailSent" => $state && isset($ac->text->testEmailSent) ? $ac->text->testEmailSent : esc_html__('WordPress accepted and sent the message. Waiting for it to arrive...','flx-forms'),
 			/* translators: Connection error message with HTTP status code. %s is replaced with the error code (e.g. "Code: 500") */
-			"connectionErrorCode" => $state && isset($ac->text->connectionErrorCode) ? $ac->text->connectionErrorCode : esc_html__('Connection error. Please refresh the page and try again. (Code:%s)','flx-forms'),
+			"connectionErrorCode" => $state && isset($ac->text->connectionErrorCode) ? $ac->text->connectionErrorCode : esc_html__('Connection error. Please refresh the page and try again. (Code: %s)','flx-forms'),
 
 			/* translators: Form template field labels */
 			"fullName" => $state && isset($ac->text->fullName) ? $ac->text->fullName : esc_html__('Full Name','flx-forms'),
@@ -4576,7 +4576,7 @@ public function addon_add_efb($value) {
         $fallback_max_attempts = 1;
         $attempt = 0;
         $success = false;
-        $error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code:%s','flx-forms');
+        $error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code: %s','flx-forms');
 		$error_messag = sprintf($error_message, $domain, 'not_success');
         /* Walks the whole endpoint list rather than a single spare domain: with
          * an independent mirror in play a site can now have three places to
@@ -4607,7 +4607,7 @@ public function addon_add_efb($value) {
             if (is_wp_error($request)) {
                 $attempt++;
                 $error_message = sprintf(
-                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to connect to the%sserver','flx-forms'),
+                    esc_html__('Cannot install add-ons of Flux Forms because the plugin is not able to connect to the %s server','flx-forms'),
                     $server_label
                 );
 
@@ -4624,7 +4624,7 @@ public function addon_add_efb($value) {
 
             if ($response_code != 200) {
                 $attempt++;
-                $error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code:%s','flx-forms');
+                $error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code: %s','flx-forms');
 				$error_message = sprintf($error_message, $server_label, $response_code);
 
                 if ($attempt >= $max_attempts) {
@@ -4654,7 +4654,7 @@ public function addon_add_efb($value) {
 
             if (json_last_error() !== JSON_ERROR_NONE) {
                 $attempt++;
-				$error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code:%s','flx-forms');
+				$error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code: %s','flx-forms');
 				$error_message = sprintf($error_message, $server_label, 'invalid_json');
 
                 if ($attempt >= $max_attempts) {
@@ -4667,7 +4667,7 @@ public function addon_add_efb($value) {
             }
 			if($data==null){
 				$attempt++;
-				$error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code:%s','flx-forms');
+				$error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code: %s','flx-forms');
 				$error_message = sprintf($error_message, $server_label, 'invalid_data');
 
 				if ($attempt >= $max_attempts) {
@@ -4687,7 +4687,7 @@ public function addon_add_efb($value) {
 					$error_message = esc_html__('Your Easy Form Builder Pro subscription has expired, so the Pro add-ons could not be downloaded. The plugin keeps working without them. Renew your subscription to restore all Pro features:', 'flx-forms') . ' ' . $renew_url;
 					return array('status' => false, 'message' => $error_message, 'expired' => true);
 				}
-				$error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code:%s','flx-forms');
+				$error_message =  esc_html__('Error: server (%s) responded with an invalid request. responded code: %s','flx-forms');
 				$error_message = sprintf($error_message, $server_label, 'invalid_status');
                 if ($is_persian_locale) {
                     $attempt++;
@@ -4748,7 +4748,7 @@ public function addon_add_efb($value) {
                 $success = true;
             } else {
                 $attempt++;
-                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code:%s','flx-forms');
+                $error_message = esc_html__('Error: server (%s) responded with an invalid request. responded code: %s','flx-forms');
                 $error_message = sprintf($error_message, $server_label, 'download_unavailable');
                 if ($attempt >= $max_attempts) {
                     if ($switch_to_fallback('download_flag_false')) {
@@ -4787,7 +4787,7 @@ public function addon_add_efb($value) {
 			$ac->{$value}=1;
 			$ac->efb_version=EMSFB_PLUGIN_VERSION;
 			$this->set_setting_Emsfb( $ac, $ac->emailSupporter );
-			$message = esc_html__('The%shas been successfully completed','flx-forms');
+			$message = esc_html__('The %s has been successfully completed','flx-forms');
 			$message = sprintf($message,  esc_html__('installation','flx-forms'));
             return array('status' => true, 'message' => $message );
         } else {
@@ -4894,7 +4894,7 @@ public function addon_add_efb($value) {
 		$renew_required = false;
 		$download_message = sprintf(
 			/* translators: %s: link to the WhiteStudio dashboard. */
-			esc_html__( 'To fix this, sign in to your%s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin.', 'flx-forms' ),
+			esc_html__( 'To fix this, sign in to your %s, download the Add-ons Handler plugin from the Downloads section, then install and activate it. After that, activate the add-ons you need from the Add-ons Handler plugin.', 'flx-forms' ),
 			'<a href="https://whitestudio.team/login" target="_blank" rel="noopener noreferrer">' . esc_html__( 'WhiteStudio dashboard', 'flx-forms' ) . '</a>'
 		);
 		foreach ($addons as $key => $value) {
@@ -5180,7 +5180,7 @@ public function addon_add_efb($value) {
 
 		$message = sprintf(
 			/* translators: 1: download server host name, 2: sign-in URL */
-			esc_html__( 'Your server could not reach%1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at%2$sand download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers.', 'flx-forms' ),
+			esc_html__( 'Your server could not reach %1$s, so the add-on could not be downloaded. This is almost always a firewall on your hosting blocking the outgoing request, not a problem with your licence. To install add-ons without any download at all, sign in at %2$s and download the Flux Forms Add-ons Handler plugin, then install it like any other plugin. It contains every add-on your licence covers.', 'flx-forms' ),
 			esc_html( (string) $server_label ),
 			esc_url( EMSFB_SERVER_URL . '/login' )
 		);
@@ -5191,7 +5191,7 @@ public function addon_add_efb($value) {
 		if ( '' !== $outgoing_ip ) {
 			$message .= ' ' . sprintf(
 				/* translators: %s: this site's outgoing IP address */
-				esc_html__( 'If you would rather fix the connection, ask your hosting provider why outgoing requests from%sare being blocked.', 'flx-forms' ),
+				esc_html__( 'If you would rather fix the connection, ask your hosting provider why outgoing requests from %s are being blocked.', 'flx-forms' ),
 				esc_html( $outgoing_ip )
 			);
 		}
@@ -5273,7 +5273,7 @@ public function addon_add_efb($value) {
 			$name  = $this->get_addon_recovery_label_efb( $addon_key );
 			$body .= '<p>' . sprintf(
 				/* translators: %s: add-on name */
-				esc_html__( 'Add-on affected:%s', 'flx-forms' ),
+				esc_html__( 'Add-on affected: %s', 'flx-forms' ),
 				esc_html( $name )
 			) . '</p>';
 		}
@@ -6700,7 +6700,7 @@ public function addon_add_efb($value) {
 
 		$subject = sprintf(
 			/* translators: %s: site name. */
-			esc_html__('Action needed: Flux Forms Pro is paused on%s', 'flx-forms'),
+			esc_html__('Action needed: Flux Forms Pro is paused on %s', 'flx-forms'),
 			wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES)
 		);
 
@@ -6740,7 +6740,7 @@ public function addon_add_efb($value) {
 
 		$intro = sprintf(
 			/* translators: 1: number of days, 2: site name. */
-			esc_html__('Flux Forms could not confirm your Pro licence for%1$sdays in a row, so the Pro features on%2$sare paused for now.', 'flx-forms'),
+			esc_html__('Flux Forms could not confirm your Pro licence for %1$s days in a row, so the Pro features on %2$s are paused for now.', 'flx-forms'),
 			'<strong>' . esc_html(number_format_i18n($days)) . '</strong>',
 			'<strong>' . esc_html(wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES)) . '</strong>'
 		);
@@ -6750,18 +6750,18 @@ public function addon_add_efb($value) {
 		$steps = array(
 			sprintf(
 				/* translators: 1: opening bold tag, 2: closing bold tag. */
-				esc_html__('Open%1$sYT Form → Settings%2$sand press%1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute.', 'flx-forms'),
+				esc_html__('Open %1$sYT Form → Settings%2$s and press %1$sSave%2$s. That checks the licence again straight away; if the connection is back, Pro switches on within a minute.', 'flx-forms'),
 				'<strong>',
 				'</strong>'
 			),
 			sprintf(
 				/* translators: %s: licence server address. */
-				esc_html__('Still paused? Ask your hosting provider to allow outgoing HTTPS connections to%s— a firewall, proxy or regional block is the usual cause — then repeat step 1.', 'flx-forms'),
+				esc_html__('Still paused? Ask your hosting provider to allow outgoing HTTPS connections to %s — a firewall, proxy or regional block is the usual cause — then repeat step 1.', 'flx-forms'),
 				'<strong>whitestudio.team</strong>'
 			),
 			sprintf(
 				/* translators: 1: opening link tag, 2: closing link tag. */
-				esc_html__('If your subscription has expired, or you moved this website to a new domain,%1$srenew or re-activate your licence%2$sand paste the new code into Settings.', 'flx-forms'),
+				esc_html__('If your subscription has expired, or you moved this website to a new domain, %1$srenew or re-activate your licence%2$s and paste the new code into Settings.', 'flx-forms'),
 				'<a href="' . esc_url($renew) . '" target="_blank" style="color:#202a8d;">',
 				'</a>'
 			),
@@ -6811,7 +6811,7 @@ public function addon_add_efb($value) {
 
 		$html .= '<p style="margin:16px 0 0 0;font-size:13px;color:#6b7280;">' . sprintf(
 			/* translators: 1: opening link tag, 2: closing link tag. */
-			esc_html__('Still stuck? Send the details above to%1$sour support team%2$sand we will take it from there.', 'flx-forms'),
+			esc_html__('Still stuck? Send the details above to %1$sour support team%2$s and we will take it from there.', 'flx-forms'),
 			'<a href="' . esc_url($support) . '" target="_blank" style="color:#202a8d;">',
 			'</a>'
 		) . '</p>';
@@ -7003,7 +7003,7 @@ public function addon_add_efb($value) {
 		if ( $is_expired ) {
 			$title   = esc_html__( 'Your activation code has expired!', 'flx-forms' );
 			$message = sprintf(
-				esc_html__( 'Your Easy Form Builder Pro subscription has expired. To continue using the%sadd-on and all Pro features, please renew your subscription.', 'flx-forms' ),
+				esc_html__( 'Your Easy Form Builder Pro subscription has expired. To continue using the %s add-on and all Pro features, please renew your subscription.', 'flx-forms' ),
 				'<strong>' . esc_html( $addon_name ) . '</strong>'
 			);
 			$btn_url  = $renew_url;
@@ -7013,7 +7013,7 @@ public function addon_add_efb($value) {
 		} else {
 			$title   = esc_html__( 'Pro Version Required', 'flx-forms' );
 			$message = sprintf(
-				esc_html__( 'The%sadd-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality.', 'flx-forms' ),
+				esc_html__( 'The %s add-on is a Pro feature. Please upgrade to Flux Forms Pro to access this functionality.', 'flx-forms' ),
 				'<strong>' . esc_html( $addon_name ) . '</strong>'
 			);
 			$btn_url  = $buy_url;
@@ -7042,7 +7042,7 @@ public function addon_add_efb($value) {
 
 		$url = EMSFB_SERVER_URL . '/checkout?renew=';
 
-		$msg = esc_html__('Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running,%1$sRenew your subscription now.%2$s', 'flx-forms');
+		$msg = esc_html__('Your Easy Form Builder Pro subscription has expired. To continue enjoying all Pro features and keep your forms running, %1$sRenew your subscription now.%2$s', 'flx-forms');
 		$ac = get_option('emsfb_pro_activeCode');
 		$renew = '<br><a class="efb alert-link fw-bold text-info" href="'.$url.'' . $ac . '" target="_blank">';
 		$msg = sprintf($msg, $renew, '</a>');
