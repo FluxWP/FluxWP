@@ -161,7 +161,7 @@
 	}
 	function paybar() {
 		var real = document.querySelector('.wc-block-components-checkout-place-order-button');
-		if (!real) { return; }
+		if (!real || document.body.classList.contains('flxb-nostick')) { return; } // 2.23.0: Appearance › fixed bar off
 		if (!bar) {
 			bar = document.createElement('div'); bar.className = 'flxb-paybar';
 			bar.innerHTML = '<div class="flxb-paybar__in"><div class="flxb-paybar__sum"><span></span><strong></strong></div><button type="button" class="flxb-paybar__btn"></button></div>';

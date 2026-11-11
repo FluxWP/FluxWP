@@ -3567,4 +3567,5 @@ Teşekkürler,
 'Show the coupon box when the cart holds only donations'=>'Sepette yalnız bağış varken kupon kutusu görünsün',
 'Address book: donors keep addresses under My Account and pick them at the checkout (turn off when you post nothing)'=>'Adres defteri: bağışçılar Hesabım\'da adres tutar ve ödemede seçer (posta ile bir şey göndermiyorsanız kapatın)',
 'Close without saving'=>'Kaydetmeden kapat',
+'On phones keep the total and the button fixed at the bottom (form and checkout)'=>'Telefonda toplam ve düğme altta sabit dursun (form ve ödeme sayfası)',
 ));

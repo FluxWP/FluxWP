@@ -5910,3 +5910,6 @@ msgstr "Adres defteri: bağışçılar Hesabım'da adres tutar ve ödemede seçe
 
 msgid "Close without saving"
 msgstr "Kaydetmeden kapat"
+
+msgid "On phones keep the total and the button fixed at the bottom (form and checkout)"
+msgstr "Telefonda toplam ve düğme altta sabit dursun (form ve ödeme sayfası)"

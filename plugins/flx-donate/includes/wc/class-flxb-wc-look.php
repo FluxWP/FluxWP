@@ -113,6 +113,7 @@ final class FLXB_WC_Look {
 			'min_amount'   => 0,         // lowest hand-written amount in the store currency when the type has none (0 = none)
 			'min_amounts'  => array(),   // the same for the other currencies: [ 'USD' => 5 ]
 			'coupons'      => 1,         // coupon box at the checkout of a donation-only cart
+			'sticky_bar'   => 1,         // 2.23.0: phones keep the total and the button fixed at the bottom (form and checkout)
 			'card_first'   => 1,         // card methods before bank transfer and cash at the checkout
 			'addresses'    => 1,         // address book (My Account › Addresses, saved addresses at the checkout)
 		);
@@ -237,7 +238,7 @@ final class FLXB_WC_Look {
 				$out['min_amounts'][ $c ] = $v;
 			}
 		}
-		foreach ( array( 'coupons', 'card_first', 'addresses' ) as $k ) {
+		foreach ( array( 'coupons', 'card_first', 'addresses', 'sticky_bar' ) as $k ) {
 			$out[ $k ] = array_key_exists( $k, $in ) ? ( empty( $in[ $k ] ) ? 0 : 1 ) : $d[ $k ];
 		}
 		$out['fee_rates']    = array();
@@ -257,7 +258,7 @@ final class FLXB_WC_Look {
 
 	/** Classes for the form wrapper. */
 	public static function form_class() {
-		return 'flxwb--' . self::get( 'form_style' );
+		return 'flxwb--' . self::get( 'form_style' ) . ( self::get( 'sticky_bar' ) ? '' : ' flxwb--nostick' );
 	}
 
 	/** CSS variables (inline style on the form wrapper and the checkout body). */
@@ -283,6 +284,9 @@ final class FLXB_WC_Look {
 
 	/** Checkout: payment layout class. */
 	public static function body_class( $c ) {
+		if ( ! self::get( 'sticky_bar' ) ) {
+			$c[] = 'flxb-nostick';
+		}
 		$p = self::get( 'pay_style' );
 		if ( 'theme' !== $p && function_exists( 'is_checkout' ) && is_checkout() && ! is_wc_endpoint_url() ) {
 			$c[] = 'flxb-pay';
@@ -369,6 +373,7 @@ final class FLXB_WC_Look {
 				'min_amount'   => array( 'type' => 'number', 'default' => 0, 'desc' => 'Lowest hand-written amount in the store currency for types that set none (0 = no limit). The warning shows under the field when the donor continues.' ),
 				'min_amounts'  => array( 'type' => 'object', 'default' => array(), 'desc' => 'Lowest hand-written amount per extra currency: { "USD": 5, "EUR": 5 }.' ),
 				'coupons'      => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout of a donation-only cart: the "Add a coupon" box.' ),
+				'sticky_bar'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Phones: the total and the button stay fixed at the bottom of the form and the checkout.' ),
 				'card_first'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout: card methods come before bank transfer and cash.' ),
 				'addresses'    => array( 'type' => 'bool', 'default' => true, 'desc' => 'Address book: My Account › Addresses and the saved addresses at the checkout. Off = the site asks for no address anywhere.' ),
 				'fee_rates'    => array( 'type' => 'object', 'default' => array(), 'desc' => 'Transaction fee per payment method: { "gateway id": { "pct": 2.9, "fixed": 0.25 } } (fixed in the store currency).' ),
@@ -450,6 +455,7 @@ final class FLXB_WC_Look {
 		echo '</div></div>';
 		echo '<label class="flxb-check"><input type="checkbox" name="notes" value="1"' . checked( (int) $s['notes'], 1, false ) . '> ' . esc_html__( 'Show "Add a note to your order" at the checkout', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="signup" value="1"' . checked( (int) $s['signup'], 1, false ) . '> ' . esc_html__( 'Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)', 'flx-donate' ) . '</label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="sticky_bar" value="1"' . checked( (int) $s['sticky_bar'], 1, false ) . '> ' . esc_html__( 'On phones keep the total and the button fixed at the bottom (form and checkout)', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="card_first" value="1"' . checked( (int) $s['card_first'], 1, false ) . '> ' . esc_html__( 'Card payment comes first, before bank transfer', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="coupons" value="1"' . checked( (int) $s['coupons'], 1, false ) . '> ' . esc_html__( 'Show the coupon box when the cart holds only donations', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="addresses" value="1"' . checked( (int) $s['addresses'], 1, false ) . '> ' . esc_html__( 'Address book: donors keep addresses under My Account and pick them at the checkout (turn off when you post nothing)', 'flx-donate' ) . '</label>';
@@ -532,7 +538,7 @@ final class FLXB_WC_Look {
 		$in['signup']      = ! empty( $in['signup'] ) ? 1 : 0;
 		$in['hero']        = ! empty( $in['hero'] ) ? 1 : 0;
 		$in['notes']       = ! empty( $in['notes'] ) ? 1 : 0;
-		foreach ( array( 'period_tabs', 'other_amount', 'coupons', 'card_first', 'addresses' ) as $k ) {
+		foreach ( array( 'period_tabs', 'other_amount', 'coupons', 'card_first', 'addresses', 'sticky_bar' ) as $k ) {
 			$in[ $k ] = ! empty( $in[ $k ] ) ? 1 : 0;
 		}
 		update_option( self::OPTION, self::clean( $in ), false );

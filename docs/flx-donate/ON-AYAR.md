@@ -60,6 +60,7 @@ Flux Donate 2.11.0, Flux Setup ön ayarlarının `content` listesinde dört tür
 | `min_amount` | sayı | Serbest tutarın alt sınırı (mağaza para birimi). Baştan gösterilmez, alan altında uyarı olarak çıkar |
 | `min_amounts` | `{ "USD": 5, "EUR": 5 }` | Diğer para birimlerinde alt sınır |
 | `period_tabs` | bool | "Tek seferlik / Aylık düzenli" sekmeleri (aylık ödeme alabilen yöntem varsa görünür) |
+| `sticky_bar` | bool | Telefonda toplam ve düğme altta sabit (form ve ödeme) |
 | `card_first` | bool | Ödemede kart havaleden önce gelir |
 | `coupons` | bool | Yalnız bağış olan sepette kupon kutusu |
 | `addresses` | bool | Adres defteri ve Hesabım > Adresler |
