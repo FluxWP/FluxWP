@@ -656,5 +656,6 @@ return array(
   'fidan toplandı\\x00fidan toplandı' . chr(0) . 'fidan toplandı\\x00fidan toplandı' => 'саженцы были собраны' . chr(0) . 'саженцы были собраны' . chr(0) . 'саженцы были собраны',
   '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' . chr(0) . '%skişi katkıda bulundu\\x00%skişi katkıda bulundu' => '%sпредоставлен' . chr(0) . '%sпредоставлен' . chr(0) . '%sпредоставлен',
 
+'Person not found.'=>'Персона не найдена.',
  ),
 );

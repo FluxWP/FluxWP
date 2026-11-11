@@ -101,8 +101,13 @@ function flxs_rest_cert_save( WP_REST_Request $r ) {
 			return flxs_rest_error( 'Bu sertifikayı düzenleme yetkiniz yok.', 403 );
 		}
 	}
-	$name = $p['name'] ?? ( $values['ad_soyad'] ?? '' );
-	$up   = flxs_upsert_person( $name, $p['phone'] ?? '', $p['email'] ?? '', (int) ( $p['id'] ?? 0 ) );
+	$name      = $p['name'] ?? ( $values['ad_soyad'] ?? '' );
+	$person_id = (int) ( $p['id'] ?? 0 );
+	// Liste/rehber ile aynı kapsam: flxs_own_ref dışında kalan kişi 404 (varlığı sızmasın). Yönetici için flxs_can_see_person her zaman true.
+	if ( $person_id && ! flxs_can_see_person( $person_id ) ) {
+		return flxs_rest_error( __( 'Person not found.', 'flx-certificates' ), 404 );
+	}
+	$up = flxs_upsert_person( $name, $p['phone'] ?? '', $p['email'] ?? '', $person_id );
 	if ( is_wp_error( $up ) ) {
 		return flxs_rest_error( $up );
 	}

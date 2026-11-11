@@ -965,3 +965,7 @@ msgstr "通过二维码打开 %1$s 次,从网站打开 %2$s 次。"
 
 msgid "No map yet: the link opens the event page until a location is entered."
 msgstr "尚无地图:在填写位置之前,该链接会打开活动页面。"
+
+msgid "Person not found."
+msgstr "未找到此人。"
+
