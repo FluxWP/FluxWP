@@ -312,3 +312,24 @@ form + .flxcrm-card{margin-top:16px}
 .flxcrm-evimg__prev{width:100%;max-width:320px;aspect-ratio:16/9;border:1px dashed var(--c-bd);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;color:var(--c-mut);font-size:12px}
 .flxcrm-evimg__prev img{width:100%;height:100%;object-fit:cover}
 .flx-ev-check{display:flex;gap:6px;align-items:center;font-size:13px}
+
+/* Kişi kartı › Bilgiler: salt okunur görünüm + Düzenle */
+.flxcrm-details__edit{display:inline-flex!important;align-items:center;gap:5px}
+.flxcrm-dl{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin:0}
+.flxcrm-dl>div{grid-column:1/-1;min-width:0}
+.flxcrm-dl>div.is-half{grid-column:auto}
+.flxcrm-dl dt{font-size:12px;color:var(--c-mut);margin:0 0 2px}
+.flxcrm-dl dd{margin:0;font-size:14px;line-height:1.45;overflow-wrap:anywhere}
+.flxcrm-dl dd a{text-decoration:none}
+.flxcrm-chips{display:flex;flex-wrap:wrap;gap:6px}
+.flxcrm-chip{--rc:#64748b;display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:99px;border:1px solid var(--rc);background:color-mix(in srgb,var(--rc) 13%,transparent);font-size:12.5px}
+.flxcrm-chip:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--rc)}
+.flxcrm-consents{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}
+.flxcrm-consents small{grid-column:1/-1}
+.flxcrm-consent{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--c-mut)}
+.flxcrm-consent svg{opacity:.55}
+.flxcrm-consent.is-on{color:var(--c-tx)}
+.flxcrm-consent.is-on svg{opacity:1;color:var(--c-ac)}
+.flxcrm-phone>span{display:block;font-weight:550;font-size:12.5px;margin-bottom:4px}
+.flxcrm-form .flx-ph{width:100%;--flx-ph-h:36px;--flx-ph-radius:8px}
+@media (max-width:782px){.flxcrm-form .flx-ph{--flx-ph-h:40px}}

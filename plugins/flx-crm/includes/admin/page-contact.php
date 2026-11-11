@@ -290,7 +290,16 @@ final class FLXCRM_Page_Contact {
 		echo '<div class="flxcrm-form">';
 		echo '<label><span>' . esc_html__( 'Full name', 'flx-crm' ) . '</span><input type="text" name="name" value="' . esc_attr( $c['name'] ) . '" autocomplete="off"' . $dis . '></label>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo '<label><span>' . esc_html__( 'E-mail', 'flx-crm' ) . '</span><input type="email" name="email" value="' . esc_attr( $c['email'] ) . '" autocomplete="off"' . $dis . '></label>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<label><span>' . esc_html__( 'Phone', 'flx-crm' ) . '</span><input type="tel" name="phone" value="' . esc_attr( '' !== $c['phone'] ? '+' . $c['phone'] : '' ) . '" placeholder="+90 5xx xxx xx xx" autocomplete="off"' . $dis . '></label>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		// Ortak telefon alanı (flx-brand): ülke seçici + doğrulama; gizli alan E.164 gönderir.
+		echo '<div class="flxcrm-phone"><span>' . esc_html__( 'Phone', 'flx-crm' ) . '</span>' . flx_phone_field( // phpcs:ignore WordPress.Security.EscapeOutput
+			array(
+				'name'  => 'phone',
+				'id'    => 'flxcrm-phone-' . (int) $c['id'],
+				'value' => '' !== (string) $c['phone'] ? '+' . $c['phone'] : '',
+				'label' => __( 'Phone', 'flx-crm' ),
+				'attrs' => $can ? array() : array( 'disabled' => 'disabled' ),
+			)
+		) . '</div>';
 		echo '<div class="flxcrm-form__row"><label><span>' . esc_html__( 'Organisation', 'flx-crm' ) . '</span><input type="text" name="company" value="' . esc_attr( $c['company'] ) . '"' . $dis . '></label>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo '<label><span>' . esc_html__( 'City', 'flx-crm' ) . '</span><input type="text" name="city" value="' . esc_attr( $c['city'] ) . '"' . $dis . '></label></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
 
@@ -326,15 +335,69 @@ final class FLXCRM_Page_Contact {
 	}
 
 	private static function details_form( array $c, $can ) {
-		echo '<section class="flxcrm-card"><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'user', 16 ) . esc_html__( 'Details', 'flx-crm' ) . '</h2></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+		// phpcs:ignore WordPress.Security.NonceVerification
+		$open = $can && ! empty( $_GET['flxcrm_err'] ) && isset( $_GET['flxcrm_edit'] );
+		echo '<section class="flxcrm-card flxcrm-details' . ( $open ? ' is-editing' : '' ) . '" data-flxcrm-details><div class="flxcrm-card__head"><h2>' . flxcrm_icon( 'user', 16 ) . esc_html__( 'Details', 'flx-crm' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		if ( $can ) {
+			echo '<button type="button" class="button button-small flxcrm-details__edit" data-flxcrm-edit aria-expanded="' . ( $open ? 'true' : 'false' ) . '"' . ( $open ? ' hidden' : '' ) . '>' . flxcrm_icon( 'edit', 14 ) . esc_html__( 'Edit', 'flx-crm' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '</div>';
+		echo '<div class="flxcrm-details__view"' . ( $open ? ' hidden' : '' ) . '>';
+		self::details_view( $c );
+		echo '</div>';
+		if ( ! $can ) {
+			echo '</section>';
+			return;
+		}
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-details__form"' . ( $open ? '' : ' hidden' ) . '>';
 		wp_nonce_field( 'flxcrm_contact_save' );
 		echo '<input type="hidden" name="action" value="flxcrm_contact_save"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret();
 		self::fields( $c, $can );
-		if ( $can ) {
-			echo '<p class="flxcrm-actions"><button class="button button-primary">' . esc_html__( 'Save', 'flx-crm' ) . '</button></p>';
-		}
+		echo '<p class="flxcrm-actions"><button class="button button-primary">' . esc_html__( 'Save', 'flx-crm' ) . '</button> <button type="button" class="button" data-flxcrm-cancel>' . esc_html__( 'Cancel', 'flx-crm' ) . '</button></p>';
 		echo '</form></section>';
+	}
+
+	/** Bilgiler kartının salt okunur görünümü. */
+	private static function details_view( array $c ) {
+		$none = '<span class="flxcrm-muted">—</span>';
+		$rows = array();
+
+		$rows[] = array( __( 'Full name', 'flx-crm' ), '' !== trim( (string) $c['name'] ) ? esc_html( $c['name'] ) : $none );
+		$rows[] = array( __( 'E-mail', 'flx-crm' ), '' !== (string) $c['email'] ? '<a href="mailto:' . esc_attr( $c['email'] ) . '">' . esc_html( $c['email'] ) . '</a>' : $none );
+		$rows[] = array( __( 'Phone', 'flx-crm' ), '' !== (string) $c['phone'] ? '<a href="tel:+' . esc_attr( $c['phone'] ) . '">' . esc_html( flxcrm_phone_display( $c['phone'] ) ) . '</a>' : $none );
+		$rows[] = array( __( 'Organisation', 'flx-crm' ), '' !== (string) $c['company'] ? esc_html( $c['company'] ) : $none, true );
+		$rows[] = array( __( 'City', 'flx-crm' ), '' !== (string) $c['city'] ? esc_html( $c['city'] ) : $none, true );
+
+		$have  = flxcrm_unpack_roles( $c['roles'] );
+		$chips = '';
+		foreach ( flxcrm_roles() as $k => $r ) {
+			if ( in_array( $k, $have, true ) ) {
+				$chips .= '<span class="flxcrm-chip" style="--rc:' . esc_attr( $r['color'] ) . '">' . esc_html( $r['label'] ) . '</span>';
+			}
+		}
+		$rows[] = array( __( 'Roles', 'flx-crm' ), '' !== $chips ? '<span class="flxcrm-chips">' . $chips . '</span>' : $none );
+
+		$cons = '';
+		foreach ( FLXCRM_Contacts::consent_labels() as $k => $l ) {
+			$on    = 1 === (int) ( $c[ 'consent_' . $k ] ?? 0 );
+			$cons .= '<span class="flxcrm-consent' . ( $on ? ' is-on' : '' ) . '">' . flxcrm_icon( $on ? 'check' : 'x', 13 ) . '<span>' . esc_html( $l ) . '</span><span class="screen-reader-text">' . esc_html( $on ? __( 'allowed', 'flx-crm' ) : __( 'not allowed', 'flx-crm' ) ) . '</span></span>';
+		}
+		if ( ! empty( $c['consent_at'] ) ) {
+			/* translators: %s: date */
+			$cons .= '<small class="flxcrm-muted">' . esc_html( sprintf( __( 'Last changed: %s', 'flx-crm' ), flxcrm_date( $c['consent_at'], 'd.m.Y H:i' ) ) ) . '</small>';
+		}
+		$rows[] = array( __( 'Contact consents', 'flx-crm' ), '<span class="flxcrm-consents">' . $cons . '</span>' );
+
+		$owner  = (int) ( $c['owner_id'] ?? 0 ) ? get_userdata( (int) $c['owner_id'] ) : false;
+		$rows[] = array( __( 'Owner', 'flx-crm' ), $owner ? esc_html( $owner->display_name ) : $none );
+		$note   = trim( (string) ( $c['note'] ?? '' ) );
+		$rows[] = array( __( 'Short note', 'flx-crm' ), '' !== $note ? nl2br( esc_html( $note ) ) : $none );
+
+		echo '<dl class="flxcrm-dl">';
+		foreach ( $rows as $r ) {
+			echo '<div' . ( ! empty( $r[2] ) ? ' class="is-half"' : '' ) . '><dt>' . esc_html( $r[0] ) . '</dt><dd>' . $r[1] . '</dd></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '</dl>';
 	}
 
 	private static function tags_card( array $c, $can ) {
