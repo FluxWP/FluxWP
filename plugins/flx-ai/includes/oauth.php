@@ -196,14 +196,7 @@ function flxai_oauth_prune_clients( array $all ) {
 
 /** Basit oran sınırı: IP başına pencerede en çok $max. */
 function flxai_oauth_rate( $bucket, $max, $window ) {
-	$ip  = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ?? '' ) );
-	$key = 'flxai_orl_' . md5( $bucket . '|' . $ip );
-	$n   = (int) get_transient( $key );
-	if ( $n >= $max ) {
-		return false;
-	}
-	set_transient( $key, $n + 1, $window );
-	return true;
+	return flx_rate_limit( 'flxai_oauth|' . $bucket . '|' . flx_client_ip(), (int) $max, (int) $window );
 }
 
 function flxai_oauth_random( $prefix ) {
@@ -249,11 +242,7 @@ function flxai_oauth_issue( array $keys, $id ) {
 }
 
 function flxai_oauth_json( $data, $status = 200 ) {
-	$r = new WP_REST_Response( $data, $status );
-	$r->header( 'Cache-Control', 'no-store' );
-	$r->header( 'Pragma', 'no-cache' );
-	$r->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
-	return $r;
+	return flx_rest_nocache( new WP_REST_Response( $data, $status ) );
 }
 
 function flxai_oauth_error( $error, $desc = '', $status = 400 ) {

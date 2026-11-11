@@ -42,10 +42,8 @@ function flxg_rest_nocache( $res, $server, $req ) {
 	if ( false !== strpos( (string) $req->get_route(), '/files/' ) && 'GET' === $req->get_method() ) {
 		return $res;
 	}
-	$res->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0, private' );
-	$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+	flx_rest_nocache( $res );
 	$res->header( 'CDN-Cache-Control', 'no-store' );
-	$res->header( 'Pragma', 'no-cache' );
 	do_action( 'litespeed_control_set_nocache', 'flx-tasks api' );
 	if ( ! defined( 'DONOTCACHEPAGE' ) ) {
 		define( 'DONOTCACHEPAGE', true );

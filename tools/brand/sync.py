@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Copies the FluxWP brand signature module (flx-brand/) into every package and loads it.
 
-Usage: python3 tools/brand/sync.py [ROOT ...]
+Usage: python3 tools/brand/sync.py [--check] [ROOT ...]
 ROOT is a repo with plugins/ and themes/ (default: this repo). Example, both repos:
     python3 tools/brand/sync.py . ../wp-extras
 
 For each package: <pkg>/includes|inc/flx-brand/{loader.php,core.php} is overwritten and the main file
 (plugin header file or functions.php) gets one require line after the ABSPATH guard (once).
+--check compares those copies and the require line, prints differing paths and exits 1.
 """
 import os, sys, glob, shutil
 
@@ -36,7 +37,43 @@ def add_require(path, rel):
     return True
 
 
-def sync(root):
+def rel_files(base):
+    if not os.path.isdir(base):
+        return []
+    out = []
+    for dirpath, _, names in os.walk(base):
+        for name in names:
+            out.append(os.path.relpath(os.path.join(dirpath, name), base))
+    return out
+
+
+def same(a, b):
+    if not (os.path.isfile(a) and os.path.isfile(b)):
+        return False
+    return open(a, 'rb').read() == open(b, 'rb').read()
+
+
+def drift(pkg, dst, main):
+    bad = []
+    for f in FILES:
+        dest = os.path.join(dst, f)
+        if not same(os.path.join(SRC, f), dest):
+            bad.append(os.path.relpath(dest))
+    for d in DIRS:
+        src_d, dst_d = os.path.join(SRC, d), os.path.join(dst, d)
+        src_names, dst_names = set(rel_files(src_d)), set(rel_files(dst_d))
+        for name in sorted(src_names | dst_names):
+            dest = os.path.join(dst_d, name)
+            if name not in src_names or name not in dst_names or not same(os.path.join(src_d, name), dest):
+                bad.append(os.path.relpath(dest))
+    tops = [f for f in glob.glob(os.path.join(pkg, '*.php')) if os.path.isfile(f)]
+    if not any(MARK in open(f, encoding='utf-8').read() for f in tops):
+        bad.append(os.path.relpath(main))
+    return bad
+
+
+def sync(root, check=False):
+    failed = []
     for pkg in sorted(glob.glob(os.path.join(root, 'plugins', '*')) + glob.glob(os.path.join(root, 'themes', '*'))):
         if not os.path.isdir(pkg):
             continue
@@ -45,6 +82,9 @@ def sync(root):
             continue
         rel = 'includes' if os.path.isdir(os.path.join(pkg, 'includes')) else 'inc'
         dst = os.path.join(pkg, rel, 'flx-brand')
+        if check:
+            failed += drift(pkg, dst, main)
+            continue
         os.makedirs(dst, exist_ok=True)
         for f in FILES:
             shutil.copyfile(os.path.join(SRC, f), os.path.join(dst, f))
@@ -55,8 +95,15 @@ def sync(root):
         # Already required from another top-level file (e.g. flx-forms-load.php)?
         done = any(MARK in open(f, encoding='utf-8').read() for f in glob.glob(os.path.join(pkg, '*.php')) if f != main)
         print(('+ ' if not done and add_require(main, rel) else '= ') + os.path.relpath(pkg, root))
+    return failed
 
 
 if __name__ == '__main__':
-    for r in (sys.argv[1:] or [os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')]):
-        sync(r)
+    check = '--check' in sys.argv[1:]
+    roots = [a for a in sys.argv[1:] if a != '--check'] or [os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')]
+    failed = []
+    for r in roots:
+        failed += sync(r, check)
+    if failed:
+        print('\n'.join(failed))
+        raise SystemExit(1)

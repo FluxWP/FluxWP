@@ -95,12 +95,9 @@ function flxwk_rate_hit() {
 	if ( current_user_can( 'manage_options' ) ) {
 		return true;
 	}
-	$key = 'flxwk_rl_' . flxwk_ask_identity() . '_' . (int) floor( time() / HOUR_IN_SECONDS );
-	$n   = (int) get_transient( $key );
-	if ( $n >= $max ) {
+	if ( ! flx_rate_limit( 'flxwk|' . flxwk_ask_identity(), $max, HOUR_IN_SECONDS ) ) {
 		return new WP_Error( 'flxwk_rate', __( 'You have reached the question limit for this hour. Try again later.', 'flx-wiki' ), array( 'status' => 429 ) );
 	}
-	set_transient( $key, $n + 1, HOUR_IN_SECONDS );
 	return true;
 }
 

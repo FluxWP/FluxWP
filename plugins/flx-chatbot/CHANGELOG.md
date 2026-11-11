@@ -1,5 +1,11 @@
 # Flux AI Chatbot
 
+## 0.1.7
+- Sohbet yanıtları ortak önbelleksiz başlıkları kullanır. Akışın tampon kapatması durur.
+
+## 0.1.6
+- Mesaj, yoklama, dosya ve asistan sınırları ortak sayacı kullanır. Adres, güvenilen vekilin ilettiği ziyaretçi adresidir.
+
 ## 0.1.5
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

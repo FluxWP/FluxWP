@@ -56,46 +56,27 @@ function flxrc_disabled_by_constant() {
 /* Gizli anahtar                                                       */
 /* ------------------------------------------------------------------ */
 
-function flxrc_crypto_key() {
-	return sodium_crypto_generichash( 'flx-recaptcha|' . wp_salt( 'secure_auth' ), '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
-}
-
 /** Düz metni saklanacak biçime çevirir. */
 function flxrc_seal( $plain ) {
-	$plain = (string) $plain;
-	if ( '' === $plain ) {
-		return '';
-	}
-	if ( function_exists( 'sodium_crypto_secretbox' ) ) {
-		try {
-			$nonce = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-			return 's1:' . base64_encode( $nonce . sodium_crypto_secretbox( $plain, $nonce, flxrc_crypto_key() ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
-		} catch ( Exception $e ) {
-			unset( $e );
-		}
-	}
-	return 'p1:' . base64_encode( $plain ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
+	return flx_secret_seal( (string) $plain, 'flx-recaptcha' );
 }
 
 /** Saklanan değeri açar; açılamazsa (tuzlar değişti) ''. */
 function flxrc_unseal( $stored ) {
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+	}
+	if ( ! function_exists( 'flx_secret_open' ) ) {
+		return '';
+	}
 	$stored = (string) $stored;
 	if ( 0 === strpos( $stored, 'p1:' ) ) {
-		return (string) base64_decode( substr( $stored, 3 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
+		return (string) base64_decode( substr( $stored, 3 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 	}
-	if ( 0 === strpos( $stored, 's1:' ) && function_exists( 'sodium_crypto_secretbox_open' ) ) {
-		$raw = base64_decode( substr( $stored, 3 ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
-		if ( false === $raw || strlen( $raw ) <= SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ) {
-			return '';
-		}
-		try {
-			$out = sodium_crypto_secretbox_open( substr( $raw, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), substr( $raw, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), flxrc_crypto_key() );
-			return false === $out ? '' : $out;
-		} catch ( Exception $e ) {
-			return '';
-		}
+	if ( 0 !== strpos( $stored, 'flx1:' ) && 0 !== strpos( $stored, 's1:' ) ) {
+		return '';
 	}
-	return '';
+	return flx_secret_open( $stored, 'flx-recaptcha', array( 's1:' => 'flx-recaptcha|' . wp_salt( 'secure_auth' ) ) );
 }
 
 /** Gizli anahtar (düz). FLXRC_SECRET_KEY sabiti paneli ezer. */

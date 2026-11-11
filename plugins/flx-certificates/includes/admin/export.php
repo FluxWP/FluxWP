@@ -115,10 +115,14 @@ function flxs_handle_cert_export() {
 	}
 	flxs_log( 'certificates_exported', 'certificate', 0, (string) count( $rows ), array( 'filters' => array_filter( flxs_cert_filter_args() ) ) );
 	nocache_headers();
-	header( 'Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' );
-	header( 'Content-Disposition: attachment; filename="' . $name . '"' );
-	header( 'Content-Length: ' . filesize( $file ) );
-	readfile( $file ); // phpcs:ignore
+	flx_send_file(
+		$file,
+		array(
+			'filename' => $name,
+			'type'     => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+			'cache'    => '', // nocache_headers() above already set it.
+		)
+	);
 	wp_delete_file( $file );
 	exit;
 }

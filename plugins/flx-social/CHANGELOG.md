@@ -1,5 +1,11 @@
 # Değişiklik günlüğü
 
+## 0.2.6
+- Uygulama gizli anahtarları ve hesap belirteçleri bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse bunları yeniden girin.
+
+## 0.2.5
+- Sosyal API yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
 ## 0.2.4
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

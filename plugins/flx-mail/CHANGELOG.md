@@ -7,6 +7,12 @@
 - E-postaların üstündeki logo artık sitenin kendi logosu: Flux Mail ayarındaki logo, yoksa kurum profili / Flux SEO / temanın Site Logosu, o da yoksa site simgesi ve site adı. Eklentiyle gelen FluxWP logosu kullanılmaz. Ön ayarlar `flxi_site_logos` filtresiyle PNG logo verir. WooCommerce e-posta başlığına yazılmış FluxWP logosu bir kez düzeltilir.
 - E-postalar sayfası yana kaymıyor: "Gönderen" kartındaki ad ve adres sığmazsa "…" ile kesilir.
 
+## 1.13.22
+- SMTP, IMAP ve bağlantı parolaları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse parolaları yeniden girin.
+
+## 1.13.21
+- Telefon numaraları tüm eklentilerde aynı kuralla okunur: `+90 0532…` yazımındaki fazla sıfır atılır, ülke kodu ve baştaki sıfır olmadan yazılan 10 haneli sabit hat (212…) 90 ile tamamlanır, hane sayısı ya da alan kodu tutmayan Türkiye numarası geçersiz sayılır.
+
 ## 1.13.20
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

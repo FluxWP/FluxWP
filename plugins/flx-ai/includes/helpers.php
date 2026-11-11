@@ -134,36 +134,23 @@ function flxai_set_source_model( $source, $model ) {
 	flxai_update_settings( array( 'source_models' => $all ) );
 }
 
-/** Gizli değeri şifreler (sodium varsa). */
+/** Gizli değeri mühürler. */
 function flxai_encrypt( $plain ) {
-	if ( '' === $plain ) {
-		return '';
-	}
-	if ( function_exists( 'sodium_crypto_secretbox' ) ) {
-		$key   = sodium_crypto_generichash( wp_salt( 'auth' ) . 'flxai', '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
-		$nonce = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-		return 'enc1:' . base64_encode( $nonce . sodium_crypto_secretbox( $plain, $nonce, $key ) ); // phpcs:ignore
-	}
-	return 'b64:' . base64_encode( $plain ); // phpcs:ignore
+	return flx_secret_seal( (string) $plain, 'flx-ai' );
 }
 
 function flxai_decrypt( $stored ) {
-	if ( '' === $stored ) {
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+	}
+	if ( ! function_exists( 'flx_secret_open' ) ) {
 		return '';
 	}
-	if ( 0 === strpos( $stored, 'enc1:' ) && function_exists( 'sodium_crypto_secretbox_open' ) ) {
-		$raw = base64_decode( substr( $stored, 5 ), true ); // phpcs:ignore
-		if ( false === $raw || strlen( $raw ) <= SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ) {
-			return '';
-		}
-		$key   = sodium_crypto_generichash( wp_salt( 'auth' ) . 'flxai', '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
-		$plain = sodium_crypto_secretbox_open( substr( $raw, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), substr( $raw, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), $key );
-		return false === $plain ? '' : $plain;
-	}
+	$stored = (string) $stored;
 	if ( 0 === strpos( $stored, 'b64:' ) ) {
-		return (string) base64_decode( substr( $stored, 4 ), true ); // phpcs:ignore
+		return (string) base64_decode( substr( $stored, 4 ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 	}
-	return $stored;
+	return flx_secret_open( $stored, 'flx-ai', array( 'enc1:' => wp_salt( 'auth' ) . 'flxai' ) );
 }
 
 /** Gizli değerin ekranda gösterilecek hali: "kayıtlı (…ab12)". */
@@ -266,8 +253,7 @@ add_filter(
 		if ( 0 !== strpos( (string) $req->get_route(), '/flx-ai/v1' ) || ! $res instanceof WP_REST_Response ) {
 			return $res;
 		}
-		$res->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0, private' );
-		$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+		flx_rest_nocache( $res );
 		$res->header( 'CDN-Cache-Control', 'no-store' );
 		do_action( 'litespeed_control_set_nocache', 'flx-ai api' );
 		return $res;
@@ -293,19 +279,3 @@ add_filter(
 	10,
 	2
 );
-
-/** CSV cell: quote a formula, leave a real number (including a negative) as a number. */
-function flxai_csv_cell( $v ) {
-	if ( is_int( $v ) || is_float( $v ) ) {
-		return $v;
-	}
-	$s = (string) $v;
-	if ( preg_match( '/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/', $s ) ) {
-		return $s;
-	}
-	$probe = preg_replace( '/^[\x00-\x08\x0A-\x0C\x0E-\x20]*/', '', $s );
-	if ( is_string( $probe ) && isset( $probe[0] ) && false !== strpos( "=+-@\t\r", $probe[0] ) ) {
-		return "'" . $s;
-	}
-	return $s;
-}

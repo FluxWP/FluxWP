@@ -1,5 +1,8 @@
 # Flux reCAPTCHA
 
+## 0.2.4
+- Gizli anahtar bir sonraki kayıtta ortak mühürle saklanır. Eski kayıt açılır. WordPress tuzları değişirse anahtarı yeniden girin.
+
 ## 0.2.3
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.6.6
+- Hız API'si ve özel giriş adresi ortak önbelleksiz başlıkları kullanır. Eski Expires başlığı durur.
+
 ## 0.6.5
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

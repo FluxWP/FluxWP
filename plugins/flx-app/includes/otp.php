@@ -32,17 +32,7 @@ function flxapp_otp_normalize( $login ) {
 	} elseif ( function_exists( 'flxc_normalize_phone' ) ) {
 		$p = (string) flxc_normalize_phone( $login );
 	} else {
-		$p = preg_replace( '/\D/', '', $login );
-		if ( 0 === strpos( $p, '00' ) ) {
-			$p = substr( $p, 2 );
-		} elseif ( 11 === strlen( $p ) && '0' === $p[0] ) {
-			$p = '90' . substr( $p, 1 );
-		} elseif ( 10 === strlen( $p ) && '5' === $p[0] ) {
-			$p = '90' . $p;
-		}
-		if ( strlen( $p ) < 10 || strlen( $p ) > 15 ) {
-			$p = '';
-		}
+		$p = flx_phone_digits( $login, 'tr' );
 	}
 	return '' !== $p && strlen( $p ) >= 10 && strlen( $p ) <= 15 ? array( 'phone', $p ) : array( '', '' );
 }

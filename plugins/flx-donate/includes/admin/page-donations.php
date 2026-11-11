@@ -1094,26 +1094,19 @@ final class FLXB_Page_Donations {
 		$res = FLXB_Donations::query( array_merge( $f, array( 'per_page' => 0 ) ) );
 		$delim = 0 === strpos( strtolower( (string) get_user_locale() ), 'tr' ) ? ';' : ',';
 		$name  = 'bagislar-' . ( $f['from'] ? $f['from'] : 'tumu' ) . ( $f['to'] ? '_' . $f['to'] : '' ) . '.csv';
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( $name ) . '"' );
-		header( 'X-Content-Type-Options: nosniff' );
-		$out = fopen( 'php://output', 'w' );
-		fwrite( $out, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
-		$head = array( __( 'Donation ID', 'flx-donate' ), __( 'Date', 'flx-donate' ), __( 'Donor', 'flx-donate' ), __( 'E-mail', 'flx-donate' ), __( 'Phone', 'flx-donate' ), __( 'Amount', 'flx-donate' ), __( 'Currency', 'flx-donate' ), __( 'Type', 'flx-donate' ), __( 'Status', 'flx-donate' ), __( 'Donation type', 'flx-donate' ), __( 'Option', 'flx-donate' ), __( 'Quantity', 'flx-donate' ), __( 'Unit price', 'flx-donate' ), __( 'Form', 'flx-donate' ), __( 'Confirmation code', 'flx-donate' ), __( 'Payment provider', 'flx-donate' ), __( 'Provider reference', 'flx-donate' ), __( 'Certificate', 'flx-donate' ), __( 'Items', 'flx-donate' ), __( 'On behalf of', 'flx-donate' ), __( 'Proxy consent version', 'flx-donate' ), __( 'Recorded from', 'flx-donate' ), __( 'Referral', 'flx-donate' ) );
-		fputcsv( $out, array_map( 'flxb_csv_cell', $head ), $delim, '"', '' );
+		$head  = array( __( 'Donation ID', 'flx-donate' ), __( 'Date', 'flx-donate' ), __( 'Donor', 'flx-donate' ), __( 'E-mail', 'flx-donate' ), __( 'Phone', 'flx-donate' ), __( 'Amount', 'flx-donate' ), __( 'Currency', 'flx-donate' ), __( 'Type', 'flx-donate' ), __( 'Status', 'flx-donate' ), __( 'Donation type', 'flx-donate' ), __( 'Option', 'flx-donate' ), __( 'Quantity', 'flx-donate' ), __( 'Unit price', 'flx-donate' ), __( 'Form', 'flx-donate' ), __( 'Confirmation code', 'flx-donate' ), __( 'Payment provider', 'flx-donate' ), __( 'Provider reference', 'flx-donate' ), __( 'Certificate', 'flx-donate' ), __( 'Items', 'flx-donate' ), __( 'On behalf of', 'flx-donate' ), __( 'Proxy consent version', 'flx-donate' ), __( 'Recorded from', 'flx-donate' ), __( 'Referral', 'flx-donate' ) );
 		$camps = array();
 		foreach ( FLXB_Types::all( 'all' ) as $c ) {
 			$camps[ (int) $c['id'] ] = $c['title'];
 		}
-		foreach ( $res['items'] as $r ) {
-			$items = FLXB_Items::for_donation( (int) $r['id'] );
-			$meta  = FLXB_Donations::meta( $r );
-			fputcsv(
-				$out,
-				array_map(
-					'flxb_csv_cell',
-					array(
+		flx_csv_stream(
+			$name,
+			$head,
+			( static function () use ( $res, $camps, $delim ) {
+				foreach ( $res['items'] as $r ) {
+					$items = FLXB_Items::for_donation( (int) $r['id'] );
+					$meta  = FLXB_Donations::meta( $r );
+					yield array(
 						$r['id'],
 						flxb_date( $r['created_at'], 'Y-m-d H:i' ),
 						(string) $r['donor_name'],
@@ -1140,14 +1133,15 @@ final class FLXB_Page_Donations {
 						! empty( $meta['proxy_consent']['version'] ) ? (int) $meta['proxy_consent']['version'] : '',
 						self::source_label( $r['source'] ),
 						(int) ( $r['ref_user_id'] ?? 0 ) ? FLXB_Refs::name( (int) $r['ref_user_id'] ) : '',
-					)
-				),
-				$delim,
-				'"',
-				''
-			);
-		}
-		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+					);
+				}
+			} )(),
+			array(
+				'delimiter' => $delim,
+				'enclosure' => '"',
+				'escape'    => '',
+			)
+		);
 		exit;
 	}
 }

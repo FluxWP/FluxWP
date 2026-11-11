@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 2.21.1
+- Kayıtlı kart referansları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse kartı yeniden bağlayın.
+- Telefon biçimi ortak yardımcıyı kullanır. Yazılan numara eskisi gibi +90… olur.
+- İçe aktarmada telefon aynı ortak kuralla okunur (`0090…` ve `+90 0532…` yazımları düzelir); tanınmayan numara yazıldığı gibi kalır.
+- Bağış sorgulama ve yönetim listeleri ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+- Ödeme ve bağış sorgulama deneme sınırları ortak sayacı kullanır. Adres güvenilen vekilden okunur; e-posta ve telefon sınırları aynı kalır.
+- Dekont klasörü doğrudan web erişimine kapalı kalır (Apache 2.2 ve 2.4).
+- Bağış, mahsup ve rapor CSV'leri ortak dışa aktarmayı kullanır. Dosyanın içeriği aynı kalır.
+
 ## 2.21.0
 - EsnekPOS: kart alanları ödeme sayfasında; 3D Secure aynı sayfada pencerede açılır, sayfadan ayrılmadan sonuç gelir. Hata olursa nedeni ve "kartınızdan para çekilmedi" açıkça yazar; hata Öde düğmesinin üstünde de görünür.
 - EsnekPOS: kart numarası girilince taksit seçenekleri (kredi kartı, BIN'e göre; taksit farkını bağışçı ya da dernek öder, ayarlanır). Kart alanlarının altında 3D Secure bilgisi.

@@ -171,9 +171,8 @@ function flxai_rest_stream_step( array $c, $since ) {
 	if ( ! headers_sent() ) {
 		status_header( 200 );
 		header( 'Content-Type: application/x-ndjson; charset=utf-8' );
-		header( 'Cache-Control: no-cache, no-store, must-revalidate, private' );
 		header( 'X-Accel-Buffering: no' );
-		header( 'X-LiteSpeed-Cache-Control: no-cache' );
+		flx_rest_nocache();
 		header( 'X-Content-Type-Options: nosniff' );
 	}
 	$out = function ( array $row ) {

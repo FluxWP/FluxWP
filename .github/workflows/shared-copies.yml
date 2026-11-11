@@ -1,0 +1,36 @@
+name: Shared copies
+on:
+  pull_request:
+    paths:
+      - 'tools/system-checks/**'
+      - 'tools/brand/**'
+      - 'plugins/**/flx-system-checks.php'
+      - 'plugins/**/flx-brand/**'
+      - 'themes/**/flx-brand/**'
+      - '.github/workflows/shared-copies.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/system-checks/**'
+      - 'tools/brand/**'
+      - 'plugins/**/flx-system-checks.php'
+      - 'plugins/**/flx-brand/**'
+      - 'themes/**/flx-brand/**'
+      - '.github/workflows/shared-copies.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify shared copies
+        run: |
+          python3 tools/system-checks/sync.py --check
+          python3 tools/brand/sync.py --check
+          php tools/brand/tests/csv.php
+          php tools/brand/tests/files.php
+          php tools/brand/tests/rate.php
+          php tools/brand/tests/nocache.php
+          php tools/brand/tests/phone.php
+          php tools/brand/tests/secret.php

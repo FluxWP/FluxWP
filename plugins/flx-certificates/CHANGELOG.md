@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.9.15
+- SMTP sağlayıcı şifresi artık şifreli saklanır. Eski kayıt açılır ve bir sonraki kayıtta mühürlenir. WordPress tuzları değişirse şifreyi yeniden girin.
+
+## 1.9.14
+- Telefon biçimi ortak yardımcıyı kullanır. Kayıtlı rakamlar aynı kalır (905…).
+
+## 1.9.13
+- Uygulama listeleri ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
+## 1.9.12
+- Herkese açık sertifika sorgusu (saatte 10, aynı adrese 15 dakika) ortak sayacı kullanır. Adres güvenilen vekilden okunur.
+
+## 1.9.11
+- Sertifika PDF, Excel ve e-kart zip indirmesi aynı başlıklarla gider. Yazı tipi klasörü web'den açılmaz.
+
+## 1.9.10
+- Kayıt CSV'si ortak dışa aktarmayı kullanır. Sütunlar, noktalı virgül ve Excel BOM aynı kalır.
+
 ## 1.9.9
 - "Certificates open at %s {code}." metninde boşluk geri geldi.
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

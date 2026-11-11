@@ -835,15 +835,6 @@ class FLXF_Dashboard {
 	 * CSV export
 	 * ------------------------------------------------------------------ */
 
-	/** Neutralise spreadsheet formulas (CSV injection): =, +, -, @, tab, CR at the start. */
-	public static function csv_cell( $v ) {
-		$v = str_replace( array( "\r\n", "\r" ), "\n", (string) $v );
-		if ( preg_match( '/^[\s]*[=+\-@\t\r]/u', $v ) || ( '' !== $v && in_array( $v[0], array( "\t", "\r" ), true ) ) ) {
-			$v = "'" . $v;
-		}
-		return $v;
-	}
-
 	public static function csv() {
 		if ( ! self::can() ) {
 			wp_die( esc_html__( 'Sorry, you are not allowed to do that.', 'flx-forms' ), 403 );
@@ -886,39 +877,47 @@ class FLXF_Dashboard {
 		$cols = array_keys( $cols );
 
 		$name = 'responses-' . ( $form && isset( $forms[ $form ] ) ? sanitize_title( $forms[ $form ]['title'] ) . '-' : '' ) . $from . '_' . $to . '.csv';
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( $name ) . '"' );
-		header( 'X-Content-Type-Options: nosniff' );
-
-		$out = fopen( 'php://output', 'w' );
-		fwrite( $out, "\xEF\xBB\xBF" );
-		fputcsv( $out, array_map( array( __CLASS__, 'csv_cell' ), array_merge( $fixed, $cols ) ), $delim, '"', '' );
-
-		/* Pass 2: rows. */
-		if ( self::table_exists( 'emsfb_msg_' ) ) {
-			$after = 0;
-			do {
-				$rows = $fetch( $after );
-				foreach ( $rows as $r ) {
-					$after = (int) $r['msg_id'];
-					$flat  = self::flatten( self::decode_json( $r['content'] ) );
-					$fid   = (int) $r['form_id'];
-					$line  = array(
-						(int) $r['msg_id'],
-						isset( $forms[ $fid ] ) ? $forms[ $fid ]['title'] : '#' . $fid,
-						(string) $r['date'],
-						(string) $r['track'],
-						self::is_unread( $r['read_'] ) ? __( 'Unread', 'flx-forms' ) : __( 'Read', 'flx-forms' ),
-					);
-					foreach ( $cols as $k ) {
-						$line[] = isset( $flat[ $k ] ) ? $flat[ $k ] : '';
-					}
-					fputcsv( $out, array_map( array( __CLASS__, 'csv_cell' ), $line ), $delim, '"', '' );
+		/* Keep the previous CR → LF rewrite so multiline answers stay the same bytes. */
+		$cr = static function ( $v ) {
+			if ( is_int( $v ) || is_float( $v ) ) {
+				return $v;
+			}
+			return str_replace( array( "\r\n", "\r" ), "\n", (string) $v );
+		};
+		flx_csv_stream(
+			$name,
+			array_map( $cr, array_merge( $fixed, $cols ) ),
+			( static function () use ( $fetch, $cols, $forms, $cr, $chunk ) {
+				if ( ! self::table_exists( 'emsfb_msg_' ) ) {
+					return;
 				}
-			} while ( count( $rows ) === $chunk );
-		}
-		fclose( $out );
+				$after = 0;
+				do {
+					$batch = $fetch( $after );
+					foreach ( $batch as $r ) {
+						$after = (int) $r['msg_id'];
+						$flat  = self::flatten( self::decode_json( $r['content'] ) );
+						$fid   = (int) $r['form_id'];
+						$line  = array(
+							(int) $r['msg_id'],
+							isset( $forms[ $fid ] ) ? $forms[ $fid ]['title'] : '#' . $fid,
+							(string) $r['date'],
+							(string) $r['track'],
+							self::is_unread( $r['read_'] ) ? __( 'Unread', 'flx-forms' ) : __( 'Read', 'flx-forms' ),
+						);
+						foreach ( $cols as $k ) {
+							$line[] = isset( $flat[ $k ] ) ? $flat[ $k ] : '';
+						}
+						yield array_map( $cr, $line );
+					}
+				} while ( count( $batch ) === $chunk );
+			} )(),
+			array(
+				'delimiter' => $delim,
+				'enclosure' => '"',
+				'escape'    => '',
+			)
+		);
 		exit;
 	}
 }
