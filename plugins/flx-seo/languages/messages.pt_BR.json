@@ -408,6 +408,7 @@
     "The server's PHP is unpatched against a known hole or no longer supported. Upgrade PHP to the current patch release from the hosting panel.": "O PHP do servidor não foi corrigido contra uma falha conhecida ou não é mais suportado. Atualize o PHP para a versão de patch atual no painel de hospedagem.",
     "session.upload_progress is on": "session.upload_progress está ativado",
     "WordPress does not use this PHP feature; it is the exploit path for holes such as PHP2Shell. Set session.upload_progress.enabled = Off in php.ini or the hosting panel.": "O WordPress não usa esse recurso PHP; é o caminho de exploração para falhas como PHP2Shell. Defina session.upload_progress.enabled = Off no php.ini ou no painel de hospedagem.",
-    "Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).": "Meta título/descrição, canônico, Open Graph, esquema (Organização, WebSite, Breadcrumb, Artigo), configurações de mapa do site, favicon e controle de SEO. Ferramentas de conteúdo e SEO para assistentes de IA (no servidor MCP Flux AI)."
+    "Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI).": "Meta título/descrição, canônico, Open Graph, esquema (Organização, WebSite, Breadcrumb, Artigo), configurações de mapa do site, favicon e controle de SEO. Ferramentas de conteúdo e SEO para assistentes de IA (no servidor MCP Flux AI).",
+    "PageSpeed timed out; this step was skipped.": "O PageSpeed expirou; esta etapa foi ignorada."
   }
 }
