@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.1.18
+- Survey charts read submissions 500 at a time and keep the finished result for 120 seconds, one cache entry per form. Storing a new submission drops that form's cache. A second request does not recompute while the first still holds the 60 second lock; it reuses the cached result when there is one.
+- New admin e-mail keys are 128 bits from a CSPRNG. Keys already stored, and the links sent with them, keep working.
+
 ## 2.1.17
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Preserve singular/plural message boundaries and printf arguments in English source IDs and all native language packs; prevent count labels from breaking populated screens.
