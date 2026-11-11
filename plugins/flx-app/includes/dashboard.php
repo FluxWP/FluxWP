@@ -242,45 +242,163 @@ function flxapp_dash_orders_url( $status = '' ) {
 	return admin_url( $base . ( $status ? '&' . ( $hpos ? 'status' : 'post_status' ) . '=' . $status : '' ) );
 }
 
+/** wc_get_orders varsayılan türleri (view-orders; iade kayıtları da girer). */
+function flxapp_dash_wc_types() {
+	$types = function_exists( 'wc_get_order_types' ) ? wc_get_order_types( 'view-orders' ) : array( 'shop_order' );
+	return array_values( array_filter( array_map( 'strval', (array) $types ) ) );
+}
+
+/**
+ * Toplam ve adet. Hata olursa null (çağıran nesne döngüsüne düşer).
+ * Tarih sınırı wc_get_orders ile aynı: yerel günün başı, date_created_gmt / post_date_gmt.
+ * İade satırının toplamı eksi olduğu için SUM, eski get_total() döngüsü gibi netler.
+ *
+ * @param bool  $dated     true ise $gmt'den sonrası.
+ * @param array $statuses  wc- önekli durumlar.
+ * @param string $gmt      Y-m-d H:i:s, UTC.
+ * @return array|null sum, count
+ */
+function flxapp_dash_wc_aggregate( $dated, array $statuses, $gmt ) {
+	global $wpdb;
+	$types = flxapp_dash_wc_types();
+	if ( ! $types || ! $statuses ) {
+		return null;
+	}
+	$hpos = class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) && \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
+	$in_t = implode( ',', array_fill( 0, count( $types ), '%s' ) );
+	$in_s = implode( ',', array_fill( 0, count( $statuses ), '%s' ) );
+	$args = array_merge( $types, $statuses );
+	if ( $hpos ) {
+		$table = class_exists( '\Automattic\WooCommerce\Internal\DataStores\Orders\OrdersTableDataStore' )
+			? \Automattic\WooCommerce\Internal\DataStores\Orders\OrdersTableDataStore::get_orders_table_name()
+			: $wpdb->prefix . 'wc_orders';
+		$sum   = $dated ? 'COALESCE(SUM(total_amount), 0)' : '0';
+		$sql   = "SELECT COUNT(*) AS n, {$sum} AS total FROM {$table} WHERE type IN ($in_t) AND status IN ($in_s)";
+		if ( $dated ) {
+			$sql   .= ' AND date_created_gmt >= %s';
+			$args[] = $gmt;
+		}
+	} else {
+		$sum = $dated ? "COALESCE(SUM(CAST((SELECT pm.meta_value FROM {$wpdb->postmeta} pm WHERE pm.post_id = p.ID AND pm.meta_key = '_order_total' LIMIT 1) AS DECIMAL(20,6))), 0)" : '0';
+		$sql = "SELECT COUNT(*) AS n, {$sum} AS total FROM {$wpdb->posts} p WHERE p.post_type IN ($in_t) AND p.post_status IN ($in_s)";
+		if ( $dated ) {
+			$sql   .= ' AND p.post_date_gmt >= %s';
+			$args[] = $gmt;
+		}
+	}
+	$wpdb->last_error = '';
+	$row              = $wpdb->get_row( $wpdb->prepare( $sql, $args ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	if ( '' !== $wpdb->last_error || ! is_object( $row ) ) {
+		return null;
+	}
+	return array(
+		'sum'   => (float) $row->total,
+		'count' => (int) $row->n,
+	);
+}
+
+/** Sabit anahtar; aralık ve sorgu biçimi değerin içinde. 60 sn. */
+function flxapp_dash_wc_remember( $key, $range, array $shape, $compute ) {
+	$cached = get_transient( $key );
+	if ( is_array( $cached ) && ( $cached['range'] ?? null ) === $range && ( $cached['shape'] ?? null ) === $shape && isset( $cached['count'] ) ) {
+		return $cached;
+	}
+	$value          = $compute();
+	$value['range'] = $range;
+	$value['shape'] = $shape;
+	set_transient( $key, $value, 60 );
+	return $value;
+}
+
+function flxapp_dash_wc_shape( array $statuses ) {
+	$hpos = class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) && \Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
+	return array(
+		'hpos'     => $hpos ? 1 : 0,
+		'statuses' => array_values( $statuses ),
+		'types'    => flxapp_dash_wc_types(),
+	);
+}
+
+function flxapp_dash_wc_paid( array $statuses, $start ) {
+	$gmt = gmdate( 'Y-m-d H:i:s', (int) $start );
+	return flxapp_dash_wc_remember(
+		'flxapp_dash_wc_paid',
+		$gmt,
+		flxapp_dash_wc_shape( $statuses ),
+		function () use ( $statuses, $start, $gmt ) {
+			$row = flxapp_dash_wc_aggregate( true, $statuses, $gmt );
+			if ( is_array( $row ) ) {
+				return $row;
+			}
+			$today = wc_get_orders(
+				array(
+					'limit'        => 500,
+					'status'       => $statuses,
+					'date_created' => '>=' . $start,
+					'return'       => 'objects',
+				)
+			);
+			$sum = 0.0;
+			foreach ( $today as $o ) {
+				$sum += (float) $o->get_total();
+			}
+			return array(
+				'sum'   => $sum,
+				'count' => count( $today ),
+			);
+		}
+	);
+}
+
+function flxapp_dash_wc_waiting() {
+	$statuses = array( 'wc-on-hold', 'wc-pending' );
+	return flxapp_dash_wc_remember(
+		'flxapp_dash_wc_wait',
+		'',
+		flxapp_dash_wc_shape( $statuses ),
+		function () use ( $statuses ) {
+			$row = flxapp_dash_wc_aggregate( false, $statuses, '' );
+			if ( is_array( $row ) ) {
+				return $row;
+			}
+			$waiting = wc_get_orders(
+				array(
+					'limit'  => -1,
+					'status' => $statuses,
+					'return' => 'ids',
+				)
+			);
+			return array(
+				'sum'   => 0.0,
+				'count' => count( $waiting ),
+			);
+		}
+	);
+}
+
 function flxapp_dash_wc( $d, $u ) {
 	if ( ! function_exists( 'wc_get_orders' ) || ! ( user_can( $u, 'edit_shop_orders' ) || user_can( $u, 'manage_woocommerce' ) ) ) {
 		return $d;
 	}
 	$paid  = function_exists( 'wc_get_is_paid_statuses' ) ? wc_get_is_paid_statuses() : array( 'processing', 'completed' );
+	$paid  = array_map( fn( $s ) => 'wc-' . $s, (array) $paid );
 	$start = ( new DateTimeImmutable( 'today', wp_timezone() ) )->getTimestamp();
-	$today = wc_get_orders(
-		array(
-			'limit'        => 500,
-			'status'       => array_map( fn( $s ) => 'wc-' . $s, $paid ),
-			'date_created' => '>=' . $start,
-			'return'       => 'objects',
-		)
-	);
-	$sum   = 0.0;
-	foreach ( $today as $o ) {
-		$sum += (float) $o->get_total();
-	}
+	$today = flxapp_dash_wc_paid( $paid, $start );
+	$sum   = (float) $today['sum'];
 	$cur          = get_woocommerce_currency();
 	$d['cards'][] = array(
 		'id'    => 'wc-today',
 		'title' => __( 'Today\'s orders', 'flx-app' ),
 		'value' => html_entity_decode( wp_strip_all_tags( wc_price( $sum, array( 'currency' => $cur ) ) ), ENT_QUOTES, 'UTF-8' ),
 		/* translators: %s: sipariş sayısı */
-		'sub'   => sprintf( __( '%s orders', 'flx-app' ), flxapp_dash_num( count( $today ) ) ),
+		'sub'   => sprintf( __( '%s orders', 'flx-app' ), flxapp_dash_num( $today['count'] ) ),
 		'icon'  => 'cart',
 		'tone'  => 'accent',
 		'open'  => 'screen:woo/orders',
 		'url'   => flxapp_dash_orders_url(),
 		'order' => 10,
 	);
-	$waiting = wc_get_orders(
-		array(
-			'limit'  => -1,
-			'status' => array( 'wc-on-hold', 'wc-pending' ),
-			'return' => 'ids',
-		)
-	);
-	$n       = count( $waiting );
+	$n       = (int) flxapp_dash_wc_waiting()['count'];
 	$d['cards'][] = array(
 		'id'    => 'wc-waiting',
 		'title' => __( 'Awaiting payment', 'flx-app' ),
