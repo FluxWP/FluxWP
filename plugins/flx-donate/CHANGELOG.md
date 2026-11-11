@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 2.18.0
+- Yeni **Bağışlarım** sayfası (`[flx_bagislarim]`): hesabı olmayan bağışçı e-posta ya da telefonunu girer, tek kullanımlık 6 haneli kodla doğrulanır; bağışlarını (tutar, durum, kalemler) ve sertifikalarını görür, PDF indirir. Havale bekleyen bağışta ödeme bilgileri (IBAN + dekont) bağlantısı. Giriş yapmış kullanıcı kodsuz görür.
+- Kod e-postayla (Flux Mail şablonu "Bağış sorgulama kodu"), telefona WhatsApp ya da SMS ile gider. Bağış olsa da olmasa da aynı cevap; kod 10 dk geçerli, 5 hatalı denemede düşer, istek ve günlük gönderim sınırları (e-posta günde 40). Doğrulanan ziyaretçi 30 dk açık kalır.
+- Bağışlar › Ayarlar › **Bağış sorgulama** sekmesi: aç/kapa, kanallar, sayfa seçimi, "Bağışlarım sayfasını oluştur". Sistem kontrolü satırı. TR, EN ve 8 dilde çeviri.
+
 ## 2.17.4
 - Partner settlement and report CSV cells are quoted when they would open as a spreadsheet formula. A real number, including a negative amount, stays a number. The donations export uses the same helper.
 

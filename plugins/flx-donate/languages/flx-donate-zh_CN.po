@@ -5501,3 +5501,189 @@ msgstr[0] "%d活动类型具有其隐藏的 WooCommerce 产品。%d活动类型�
 msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgstr[0] "%1$d任务迟到超过 15 分钟:%2$s。%1$d任务延迟超过 15 分钟:%2$s。"
+
+msgid "Donation lookup code"
+msgstr "捐赠查询验证码"
+
+msgid "One-time code a donor enters on the \"My donations\" page to see their donations and certificates."
+msgstr "捐赠者在“我的捐赠”页面输入的一次性验证码，用于查看其捐赠和证书。"
+
+msgid "Minutes the code is valid"
+msgstr "验证码有效分钟数"
+
+msgid "Lookup page"
+msgstr "查询页面"
+
+msgid "{kod} is your code to view your donations"
+msgstr "{kod} 是您查看捐赠的验证码"
+
+msgid "Your verification code"
+msgstr "您的验证码"
+
+msgid "Enter this code on the \"My donations\" page to see your donations and download your certificates:"
+msgstr "在“我的捐赠”页面输入此验证码，即可查看您的捐赠并下载证书："
+
+msgid "The code is valid for {dakika} minutes. If you did not ask for it, you can ignore this e-mail."
+msgstr "验证码 {dakika} 分钟内有效。如果不是您本人申请，请忽略此邮件。"
+
+msgid "Enter a valid e-mail address or phone number."
+msgstr "请输入有效的电子邮箱或电话号码。"
+
+msgid "Codes cannot be sent by phone at the moment. Please use your e-mail address."
+msgstr "目前无法通过电话发送验证码，请使用电子邮箱。"
+
+msgid "Codes cannot be sent by e-mail at the moment. Please use your phone number."
+msgstr "目前无法通过电子邮件发送验证码，请使用电话号码。"
+
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr "尝试次数过多，请等待几分钟后再试。"
+
+msgid "The code could not be sent. Please try again later or contact us."
+msgstr "验证码发送失败，请稍后重试或联系我们。"
+
+msgid "If there is a donation with this number, we have sent a 6-digit code to it on WhatsApp."
+msgstr "如果该号码有捐赠记录，我们已通过 WhatsApp 发送 6 位验证码。"
+
+msgid "If there is a donation with this number, we have sent a 6-digit code to it by SMS."
+msgstr "如果该号码有捐赠记录，我们已通过短信发送 6 位验证码。"
+
+msgid "If there is a donation with this address, we have sent a 6-digit code to it. Check your spam folder too."
+msgstr "如果该邮箱有捐赠记录，我们已发送 6 位验证码。请同时查看垃圾邮件文件夹。"
+
+msgid "%1$s is your code to view your donations at %2$s. Valid for 10 minutes. Do not share it with anyone."
+msgstr "%1$s 是您在 %2$s 查看捐赠的验证码，10 分钟内有效。请勿告诉他人。"
+
+msgid "The code is wrong or has expired."
+msgstr "验证码错误或已过期。"
+
+msgid "Send code"
+msgstr "发送验证码"
+
+msgid "Sending…"
+msgstr "正在发送…"
+
+msgid "Show my donations"
+msgstr "查看我的捐赠"
+
+msgid "Checking…"
+msgstr "正在验证…"
+
+msgid "Send again"
+msgstr "重新发送"
+
+msgid "Send again in %s s"
+msgstr "%s 秒后重新发送"
+
+msgid "6-digit code"
+msgstr "6 位验证码"
+
+msgid "Sign out"
+msgstr "退出"
+
+msgid "Verified: %s"
+msgstr "已验证：%s"
+
+msgid "Total donated"
+msgstr "捐赠总额"
+
+msgid "We could not find a donation with these details."
+msgstr "未找到与这些信息相关的捐赠。"
+
+msgid "Try the other e-mail address or phone number you may have used when donating."
+msgstr "请尝试您捐赠时可能使用过的其他邮箱或电话号码。"
+
+msgid "There is no certificate yet. Certificates are issued once the payment is confirmed."
+msgstr "暂无证书。付款确认后将签发证书。"
+
+msgid "Payment details"
+msgstr "付款信息"
+
+msgid "Order details"
+msgstr "订单详情"
+
+msgid "Enter your e-mail address."
+msgstr "请输入您的电子邮箱。"
+
+msgid "Enter your phone number."
+msgstr "请输入您的电话号码。"
+
+msgid "Enter the 6-digit code."
+msgstr "请输入 6 位验证码。"
+
+msgid "Donation lookup is turned off (Donations › Settings › Donation lookup)."
+msgstr "捐赠查询已关闭（捐赠 › 设置 › 捐赠查询）。"
+
+msgid "My donations and certificates"
+msgstr "我的捐赠和证书"
+
+msgid "Enter the e-mail address or phone number you used when donating. We will send you a one-time code; no account or password is needed."
+msgstr "请输入您捐赠时使用的电子邮箱或电话号码。我们会向您发送一次性验证码，无需账号或密码。"
+
+msgid "E-mail address"
+msgstr "电子邮箱"
+
+msgid "name@example.com"
+msgstr "name@example.com"
+
+msgid "Phone number"
+msgstr "电话号码"
+
+msgid "Your details are only used to find your donations."
+msgstr "您的信息仅用于查找您的捐赠。"
+
+msgid "Donation lookup"
+msgstr "捐赠查询"
+
+msgid "Donors can see their donations with a code"
+msgstr "捐赠者可以用验证码查看捐赠"
+
+msgid "On the \"My donations\" page a donor enters their e-mail or phone, gets a one-time code and sees their donations and certificates without an account."
+msgstr "在“我的捐赠”页面，捐赠者输入邮箱或电话，收到一次性验证码后无需账号即可查看捐赠和证书。"
+
+msgid "Send the code by"
+msgstr "验证码发送方式"
+
+msgid "(no connection yet: set it up in Flux Mail or Flux Chat)"
+msgstr "（尚无连接：请在 Flux Mail 或 Flux Chat 中设置）"
+
+msgid "Phone numbers get the code on WhatsApp first, then by SMS. E-mail codes are limited to 40 a day to stay under the hosting mail limit."
+msgstr "电话号码优先通过 WhatsApp 接收验证码，其次是短信。为不超过主机的邮件限额，邮件验证码每天最多 40 封。"
+
+msgid "Page"
+msgstr "页面"
+
+msgid "— Find automatically —"
+msgstr "— 自动查找 —"
+
+msgid "The page shows the %s shortcode. Leave it on \"Find automatically\" or create the page with the button below."
+msgstr "页面显示 %s 短代码。可保留“自动查找”，或用下方按钮创建页面。"
+
+msgid "Create the \"My donations\" page"
+msgstr "创建“我的捐赠”页面"
+
+msgid "The page"
+msgstr "页面"
+
+msgid "There is no page yet."
+msgstr "尚无页面。"
+
+msgid "The code is valid for 10 minutes; after 5 wrong codes a new one is needed. One address can ask for 3 codes in 10 minutes. A verified visitor stays signed in for 30 minutes on this device."
+msgstr "验证码有效期 10 分钟；输错 5 次后需要新的验证码。同一地址 10 分钟内最多申请 3 次。已验证的访客在此设备上保持登录 30 分钟。"
+
+msgid "The answer is the same whether or not there is a donation, so the page does not reveal who has donated."
+msgstr "无论是否有捐赠，回复都相同，因此页面不会泄露谁捐过款。"
+
+msgid "Donation lookup page"
+msgstr "捐赠查询页面"
+
+msgid "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode."
+msgstr "捐赠者还无法查询捐赠：没有已发布的页面包含 [flx_bagislarim] 短代码。"
+
+msgid "Create the page"
+msgstr "创建页面"
+
+msgid "Donors can see their donations on %s with a code sent by e-mail or phone."
+msgstr "捐赠者可在 %s 通过邮件或电话收到的验证码查看捐赠。"
+
+msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
+msgstr "页面 %s 仅支持邮件：没有用于电话验证码的 WhatsApp 或短信连接。"
