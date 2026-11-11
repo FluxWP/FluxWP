@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 1.8.9
+- Sayfa yenilenince sekmede önce FluxWP simgesi, sonra sitenin simgesi görünüyordu. Sitenin simgesi (kurum profili ya da ön ayar) varsa artık ilk HTML'de yalnız o yazılır, FluxWP simgesi hiç basılmaz. /favicon.ico ve /site.webmanifest de sitenin simgesini verir.
+- Yeni filtre `flx_custom_favicon` (adres); favicon yazılınca `flx_favicon_printed` çalışır, tema ve ön ayarlar ikinci simge basmaz.
+
 ## 1.8.8
 - SEO API yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
 
