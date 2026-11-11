@@ -14,6 +14,12 @@ Edit only `tools/brand/flx-brand/`, then copy to all packages (also bump `versio
 python3 tools/brand/sync.py . ../wp-extras
 ```
 
+`--check` writes nothing. It compares `loader.php`, `core.php` and `phone/` with this source (extra files inside a copy's `phone/` included) and a missing `require_once`, prints the differing paths and exits 1:
+
+```sh
+python3 tools/brand/sync.py --check . ../wp-extras
+```
+
 Date/time in the user's language (TR + EN built in, independent of core language packs; other languages fall back to WordPress): `flx_time_ago( $time, $now = null )` ("31 dakika önce" / "31 minutes ago", "dün"), `flx_date( $time, 'date'|'short'|'datetime'|'time'|php-format )`, `flx_lang()`, `flx_ts()`. `$time` is a Unix timestamp, DateTimeInterface or a GMT `Y-m-d H:i:s` string. The core loads on `after_setup_theme`, so call them from screens/hooks after that (or guard with `function_exists`).
 
 API: `flx_brand_credit( $context, $args )`, `flx_brand_mark( $size )`, shortcode `[flx_credit]`, block `flx/credit`.

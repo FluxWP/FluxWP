@@ -25,4 +25,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Verify shared copies
-        run: python3 tools/system-checks/sync.py --check
+        run: |
+          python3 tools/system-checks/sync.py --check
+          python3 tools/brand/sync.py --check
