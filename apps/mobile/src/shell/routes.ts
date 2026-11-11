@@ -1,10 +1,11 @@
 // Route (runtime) → expo-router href. Routes are account scoped: /<account>/… (plan §5).
 import type { Href } from 'expo-router';
+import { accountIdFromRouteKey, accountRouteKey } from '@fluxwp/core';
 import type { Route } from '@fluxwp/runtime';
 
-/** "host#1" → "host@1": '#' cannot live in a path segment. */
-export const accountKey = (id: string) => id.replace('#', '@');
-export const accountIdFromKey = (key: string) => key.replace('@', '#');
+/** One path segment. Root stays `host@userId`; a subdirectory encodes `/`. */
+export const accountKey = accountRouteKey;
+export const accountIdFromKey = accountIdFromRouteKey;
 
 export function hrefFor(account: string, route: Route): Href | null {
   const a = accountKey(account);

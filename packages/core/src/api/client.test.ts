@@ -9,6 +9,26 @@ const json = (status: number, body: unknown) => new Response(JSON.stringify(body
 describe('client', () => {
   it('url kurar, _locale=user ekler', () => {
     expect(buildUrl('https://x.org/', 'flxapp/v1/me', { a: 1, b: undefined })).toBe('https://x.org/wp-json/flxapp/v1/me?_locale=user&a=1');
+    expect(buildUrl('https://x.org/blog/', '/flxapp/v1/me')).toBe('https://x.org/blog/wp-json/flxapp/v1/me?_locale=user');
+    expect(buildUrl('https://x.org/blog', 'https://x.org/blog/wp-content/uploads/a.png')).toBe('https://x.org/blog/wp-content/uploads/a.png');
+  });
+
+  it('rejects paths that leave the site before any request', async () => {
+    const f = vi.fn<typeof fetch>();
+    const creds = vi.fn(async () => ({ token: 'secret' }));
+    const api = createClient({ siteUrl: 'https://x.org/blog', fetchImpl: f, getCredentials: creds });
+    await expect(api('\\\\evil.test/x')).rejects.toMatchObject({ name: 'ApiError', code: 'foreign_url' });
+    await expect(api('//evil.test/x')).rejects.toMatchObject({ code: 'foreign_url' });
+    await expect(api('https://evil.test/a')).rejects.toMatchObject({ code: 'foreign_url' });
+    await expect(api('https://x.org/other')).rejects.toMatchObject({ code: 'foreign_url' });
+    await expect(api('https://x.org/blog/../other')).rejects.toMatchObject({ code: 'foreign_url' });
+    await expect(api('https://x.org/blog-evil/a')).rejects.toMatchObject({ code: 'foreign_url' });
+    await expect(api('https://user:pass@x.org/blog/wp-json/a')).rejects.toMatchObject({ code: 'bad_url' });
+    await expect(api('javascript:alert(1)')).rejects.toMatchObject({ code: 'foreign_url' });
+    await expect(api('flx\r\nX: 1')).rejects.toMatchObject({ code: 'bad_url' });
+    await expect(api('http://x.org/blog/a')).rejects.toMatchObject({ code: 'foreign_url' });
+    expect(f).not.toHaveBeenCalled();
+    expect(creds).not.toHaveBeenCalled();
   });
 
   it('401de bir kez yenileyip tekrar dener', async () => {

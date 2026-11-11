@@ -1,5 +1,5 @@
 import { platform } from '../platform';
-import { trimEnd } from '../text';
+import { siteBasePath, trimEnd } from '../text';
 
 export class ApiError extends Error {
   constructor(
@@ -83,20 +83,50 @@ export function restBase(siteUrl: string): string {
   return trimEnd(siteUrl) + '/wp-json/';
 }
 
+const CONTROLS = /[\u0000-\u001F\u007F-\u009F]/;
+
+function pathUnder(pathname: string, basePath: string): boolean {
+  if (!basePath || basePath === '/') return true;
+  const base = basePath.endsWith('/') ? basePath.slice(0, -1) : basePath;
+  return pathname === base || pathname.startsWith(base + '/');
+}
+
+/**
+ * Resolve `path` against the account site. The result must stay on that origin and,
+ * for a subdirectory install, under that install's path. Backslash and protocol-relative
+ * paths (`\\host`, `//host`) are not rewritten into a relative path: the URL parser
+ * sees them, and a different origin is rejected before any request.
+ */
 export function buildUrl(siteUrl: string, path: string, query?: RequestOptions['query']): string {
-  // Sunucunun verdiği tam adres (ör. medya) yalnız aynı sitedeyse kabul edilir; belirteç başka hosta gitmesin.
-  if (/^https?:\/\//i.test(path)) {
-    const abs = new URL(path);
-    if (abs.origin !== new URL(restBase(siteUrl)).origin) throw new ApiError(0, 'foreign_url', abs.origin);
-    for (const [k, v] of Object.entries(query ?? {})) if (v !== undefined && v !== null && v !== '') abs.searchParams.set(k, String(v));
-    return abs.toString();
+  if (typeof path !== 'string' || CONTROLS.test(path) || CONTROLS.test(siteUrl)) throw new ApiError(0, 'bad_url', 'control');
+  let site: URL;
+  try {
+    site = new URL(siteUrl);
+  } catch {
+    throw new ApiError(0, 'bad_url', 'site');
   }
-  const u = new URL(path.replace(/^\/+/, ''), restBase(siteUrl));
-  u.searchParams.set('_locale', 'user');
+  if (site.username || site.password || (site.protocol !== 'http:' && site.protocol !== 'https:')) {
+    throw new ApiError(0, 'bad_url', site.username || site.password ? 'credentials' : site.protocol);
+  }
+  const normalised = path.replace(/\\/g, '/');
+  const absolute = /^[a-z][a-z0-9+.-]*:/i.test(normalised) || normalised.startsWith('//');
+  let resolved: URL;
+  try {
+    resolved = absolute ? new URL(normalised, site) : new URL(normalised.replace(/^\/+/, ''), restBase(siteUrl));
+  } catch {
+    throw new ApiError(0, 'bad_url', 'path');
+  }
+  if (resolved.username || resolved.password) throw new ApiError(0, 'bad_url', 'credentials');
+  if (resolved.protocol !== 'http:' && resolved.protocol !== 'https:') throw new ApiError(0, 'foreign_url', resolved.protocol);
+  const basePath = siteBasePath(siteUrl);
+  if (resolved.origin !== site.origin || !pathUnder(resolved.pathname, basePath || '/')) {
+    throw new ApiError(0, 'foreign_url', resolved.origin);
+  }
+  if (!absolute) resolved.searchParams.set('_locale', 'user');
   for (const [k, v] of Object.entries(query ?? {})) {
-    if (v !== undefined && v !== null && v !== '') u.searchParams.set(k, String(v));
+    if (v !== undefined && v !== null && v !== '') resolved.searchParams.set(k, String(v));
   }
-  return u.toString();
+  return resolved.toString();
 }
 
 export interface ApiClient {
@@ -143,7 +173,7 @@ function xhrSend(url: string, method: string, headers: Record<string, string>, b
 export function createClient(o: ClientOptions): ApiClient {
   const doFetch = (...a: Parameters<typeof fetch>) => (o.fetchImpl ?? platform().fetch)(...a);
 
-  const send = async (path: string, opts: RequestOptions, cred: Credentials | null) => {
+  const send = async (url: string, opts: RequestOptions, cred: Credentials | null) => {
     const headers: Record<string, string> = { Accept: 'application/json', ...platformHeaders(), ...o.extraHeaders?.(), ...opts.headers };
     let body: BodyInit | undefined;
     if (opts.formData) {
@@ -161,17 +191,17 @@ export function createClient(o: ClientOptions): ApiClient {
       else headers.Authorization = `Bearer ${cred.token}`;
     }
     const method = opts.method ?? (body ? 'POST' : 'GET');
-    const url = buildUrl(o.siteUrl, path, opts.query);
     if (opts.onUploadProgress && typeof XMLHttpRequest !== 'undefined') return xhrSend(url, method, headers, body, opts.signal, opts.onUploadProgress);
     return doFetch(url, { method, headers, body, signal: opts.signal, credentials: o.credentials });
   };
 
   async function request<T>(path: string, opts: RequestOptions = {}): Promise<T | ApiResult<T>> {
+    const url = buildUrl(o.siteUrl, path, opts.query);
     let cred = opts.anonymous ? null : await o.getCredentials();
-    let res = await send(path, opts, cred);
+    let res = await send(url, opts, cred);
     if (res.status === 401 && !opts.anonymous && o.onUnauthorized) {
       cred = await o.onUnauthorized();
-      if (cred) res = await send(path, opts, cred);
+      if (cred) res = await send(url, opts, cred);
     }
     const headers = responseHeaders(res);
     const etag = headers.get('etag');

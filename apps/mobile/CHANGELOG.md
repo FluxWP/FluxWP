@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.4
+- Account route keys use the shared id helper, so a subdirectory install stays one path segment.
+
 ## 0.3.3
 - Keep shared locale selection type-safe across ten languages; use English mobile-only copy when a dedicated translation is unavailable.
 

@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.2.4
+- The AI stream URL is resolved before the access token is attached.
+
 ## 0.2.3
 - Support ten shared locales, English translation keys and Arabic direction for WordPress embeds and shared screens.
 

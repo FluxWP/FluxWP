@@ -87,6 +87,7 @@ export interface AiStepRequest {
 
 /** POST /chats/<id>/step?stream=1 with the same transport the account uses. */
 export async function streamAiStep(req: AiStepRequest, onEvent: (ev: AiEvent) => void): Promise<void> {
+  const url = buildUrl(req.siteUrl, `flx-ai/v1/chats/${req.chatId}/step`, { stream: 1, since: req.since ?? 0 });
   const headers: Record<string, string> = {
     Accept: 'application/x-ndjson, application/json',
     'Content-Type': 'application/json',
@@ -94,7 +95,7 @@ export async function streamAiStep(req: AiStepRequest, onEvent: (ev: AiEvent) =>
   if (req.demo) headers.Authorization = 'Bearer demo';
   else if (req.token) headers.Authorization = req.scheme === 'basic' ? `Basic ${req.token}` : `Bearer ${req.token}`;
   const fetchImpl = req.demo ? demoShellFetch : fetch;
-  const res = await fetchImpl(buildUrl(req.siteUrl, `flx-ai/v1/chats/${req.chatId}/step`, { stream: 1, since: req.since ?? 0 }), {
+  const res = await fetchImpl(url, {
     method: 'POST',
     headers,
     body: '{}',
