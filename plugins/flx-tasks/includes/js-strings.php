@@ -423,7 +423,7 @@ function flxg_js_strings() {
 		'MCP sunucusu kapalı. Yönetici Ayarlar sayfasından açabilir.' => __( 'The MCP server is off. An admin can turn it on from the Settings page.', 'flx-tasks' ),
 		'Claude, ChatGPT, Cursor gibi MCP destekli bir istemciye bu adresi ve kişisel anahtarınızı ekleyin. Asistan yalnız sizin görebildiğiniz listelerde, sizin yetkinizle çalışır.' => __( 'Add this address and your personal key to an MCP-capable client such as Claude, ChatGPT or Cursor. The assistant works only in lists you can see, with your permissions.', 'flx-tasks' ),
 		'Yeni anahtarınız (yalnız şimdi gösterilir):' => __( 'Your new key (shown only now):', 'flx-tasks' ),
-		'İstemcide başlık olarak "Authorization: Bearer <anahtar>" kullanın. Başlık eklenemiyorsa adresin sonuna ?key=<anahtar> ekleyin.' => __( 'In the client, use "Authorization: Bearer <key>" as the header. If you can\'t add a header, append ?key=<key> to the end of the address.', 'flx-tasks' ),
+		'İstemcide "Authorization: Bearer <anahtar>" ya da "X-MCP-Key: <anahtar>" başlığını kullanın. Anahtarı adrese yazmayın.' => __( 'In the client, send the "Authorization: Bearer <key>" header, or the "X-MCP-Key: <key>" header. Do not put the key in the URL.', 'flx-tasks' ),
 		'Adsız' => __( 'Unnamed', 'flx-tasks' ),
 		'Son kullanım: {d}' => __( 'Last used: {d}', 'flx-tasks' ),
 		'hiç' => __( 'never', 'flx-tasks' ),

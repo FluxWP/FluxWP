@@ -1068,7 +1068,7 @@
 				keysBox.appendChild(h('.flxg-newkey',
 					h('b', t('Yeni anahtarınız (yalnız şimdi gösterilir):')),
 					h('.flxg-copyrow', h('code', fresh), h('button.flxg-btn.is-sm.is-primary', { type: 'button', onclick: function () { Y.copy(fresh); } }, Y.icon('copy', 14), t('Kopyala'))),
-					h('small.flxg-help', t('İstemcide başlık olarak "Authorization: Bearer <anahtar>" kullanın. Başlık eklenemiyorsa adresin sonuna ?key=<anahtar> ekleyin.'))
+					h('small.flxg-help', t('İstemcide "Authorization: Bearer <anahtar>" ya da "X-MCP-Key: <anahtar>" başlığını kullanın. Anahtarı adrese yazmayın.'))
 				));
 			}
 			var rows = r.keys.map(function (k) {

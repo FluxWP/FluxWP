@@ -3,7 +3,8 @@
  * MCP sunucusu (Model Context Protocol, Streamable HTTP, durumsuz).
  *
  * Adres: /wp-json/flx-tasks/v1/mcp
- * Kimlik: "Authorization: Bearer <anahtar>", "X-MCP-Key: <anahtar>" ya da ?key=<anahtar>.
+ * Kimlik: "Authorization: Bearer <anahtar>" ya da "X-MCP-Key: <anahtar>".
+ * Anahtar yalnız bu rotanın permission_callback'inde kullanıcı olur; sorgu dizesinden okunmaz.
  * Her kullanıcı kendi anahtarını Flux Tasks › Profil › MCP bölümünden üretir; araçlar o kullanıcının liste yetkileriyle çalışır.
  */
 
@@ -56,8 +57,13 @@ function flxg_mcp_delete_key( $id ) {
 
 function flxg_mcp_request_key( WP_REST_Request $req ) {
 	$auth = $req->get_header( 'authorization' );
-	if ( ! $auth && isset( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) ) {
-		$auth = sanitize_text_field( wp_unslash( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) );
+	if ( ! $auth ) {
+		// CGI/LiteSpeed Authorization'ı PHP'ye iletmez. WordPress uygulama parolalarıyla aynı sıra.
+		if ( ! empty( $_SERVER['HTTP_AUTHORIZATION'] ) ) {
+			$auth = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ) );
+		} elseif ( ! empty( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) ) {
+			$auth = sanitize_text_field( wp_unslash( $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ) );
+		}
 	}
 	if ( $auth && 0 === stripos( $auth, 'Bearer ' ) ) {
 		return trim( substr( $auth, 7 ) );
@@ -65,24 +71,8 @@ function flxg_mcp_request_key( WP_REST_Request $req ) {
 	if ( $req->get_header( 'x_mcp_key' ) ) {
 		return trim( $req->get_header( 'x_mcp_key' ) );
 	}
-	return (string) $req->get_param( 'key' );
+	return '';
 }
-
-/* Bearer anahtarlı istekte WordPress'in çerez/Basic kimliğine bakmaya gerek yok. */
-add_filter(
-	'determine_current_user',
-	function ( $user_id ) {
-		$uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
-		if ( $user_id || false === strpos( $uri, 'flx-tasks/v1/mcp' ) ) {
-			return $user_id;
-		}
-		$auth = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '' ) );
-		$key  = 0 === stripos( $auth, 'Bearer ' ) ? trim( substr( $auth, 7 ) ) : sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_MCP_KEY'] ?? $_GET['key'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification
-		$k    = flxg_mcp_find_key( $key );
-		return $k ? (int) $k['user'] : $user_id;
-	},
-	30
-);
 
 add_action(
 	'rest_api_init',

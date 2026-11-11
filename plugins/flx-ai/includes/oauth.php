@@ -8,7 +8,7 @@
  * belirteç (/wp-json/flx-mcp/v1/oauth/token, yenileme belirteci döner) → MCP isteklerinde Bearer.
  *
  * Onaylanan her bağlantı MCP anahtar listesinde (flxai_mcp_keys, type=oauth) durur; Flux AI & MCP › MCP'den iptal edilir.
- * Elle oluşturulan anahtarlar (Bearer, X-MCP-Key, ?key=) aynen çalışır.
+ * Elle oluşturulan anahtarlar (Bearer, X-MCP-Key) aynen çalışır. Sorgu dizesindeki anahtar kabul edilmez.
  *
  * @package FLX_AI
  */

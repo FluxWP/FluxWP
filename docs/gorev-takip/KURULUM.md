@@ -84,9 +84,8 @@ Kullanım:
 1. Görevler → Profil → **Yeni anahtar oluştur**. Anahtar bir kez gösterilir, kopyalayın.
 2. Sunucu adresi: `https://example.org/wp-json/flx-tasks/v1/mcp` (Profil sayfasında kopyalanabilir).
 3. İstemciye ekleyin:
-   - Başlık destekleyen istemci: `Authorization: Bearer <anahtar>`
+   - Başlık: `Authorization: Bearer <anahtar>` ya da `X-MCP-Key: <anahtar>`. Anahtar adrese yazılmaz.
    - Claude Code: `claude mcp add --transport http flx-tasks https://example.org/wp-json/flx-tasks/v1/mcp --header "Authorization: Bearer <anahtar>"`
-   - Başlık eklenemiyorsa adresin sonuna `?key=<anahtar>` ekleyin.
 4. Araçlar: projeleri/listeleri listele, kişileri listele, görev ara, görev getir, görev oluştur/güncelle/sil, yorum ekle, özel alanları listele, liste oluştur, bildirimleri getir, dokümanları listele, doküman sayfasını oku/düzenle, doküman ve sayfa oluştur.
 
 Anahtar kişiye özeldir, o kişinin yetkisiyle çalışır. Kullanılmayan anahtarı Profil'den silin. Yönetici MCP'yi Ayarlar'dan tamamen kapatabilir.

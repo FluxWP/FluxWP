@@ -773,7 +773,7 @@
  "İndir": "Download",
  "İptal": "Cancelled",
  "İstek": "Requests",
- "İstemcide başlık olarak \"Authorization: Bearer <anahtar>\" kullanın. Başlık eklenemiyorsa adresin sonuna ?key=<anahtar> ekleyin.": "In the client, use \"Authorization: Bearer <key>\" as the header. If you can't add a header, append ?key=<key> to the end of the address.",
+ "İstemcide \"Authorization: Bearer <anahtar>\" ya da \"X-MCP-Key: <anahtar>\" başlığını kullanın. Anahtarı adrese yazmayın.": "In the client, send the \"Authorization: Bearer <key>\" header, or the \"X-MCP-Key: <key>\" header. Do not put the key in the URL.",
  "İtalik": "Italic",
  "İşaretli": "Checked",
  "İşaretsiz": "Unchecked",
