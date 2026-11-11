@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.7 — 2026-11-10
+- Store the shared operational log in one table tagged by plugin and defer a background batch when fewer than 5 seconds remain before the 45-second request deadline.
+
 ## 1.4.6 — 2026-11-10
 - Record backup phase transitions and bundle correlated worker diagnostics in the bounded shared operational journal.
 

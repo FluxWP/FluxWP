@@ -1,9 +1,9 @@
 <?php
-/** Portable background worker library 1.2.0; bundled into each consuming plugin. */
+/** Portable background worker library 1.2.2; bundled into each consuming plugin. */
 defined( 'ABSPATH' ) || exit;
 if ( ! function_exists( 'flx_background_worker_active' ) ) {
 	/** Capability marker: old-first bundles safely retain serial execution. */
-	function flx_background_scheduler_version() { return '1.2.0'; }
+	function flx_background_scheduler_version() { return '1.2.2'; }
 	/** The Docker CLI worker already exports this operational marker. */
 	function flx_background_worker_context() {
 		return defined( 'WP_CLI' ) && WP_CLI && 'worker' === getenv( 'WP_CRON_MODE' );
@@ -97,6 +97,22 @@ if ( ! function_exists( 'flx_background_worker_active' ) ) {
 }
 
 // Additive APIs have their own guard: an older bundle may have loaded first.
+if ( ! function_exists( 'flx_bg_deadline' ) ) {
+	/** Request start plus 45s, before the shared host kills PHP near 60s. */
+	function flx_bg_deadline() {
+		static $fallback = 0.0;
+		if ( isset( $_SERVER['REQUEST_TIME_FLOAT'] ) ) {
+			return (float) $_SERVER['REQUEST_TIME_FLOAT'] + 45;
+		}
+		if ( 0.0 === $fallback ) {
+			$fallback = microtime( true );
+		}
+		return $fallback + 45;
+	}
+	function flx_bg_time_left() {
+		return max( 0, flx_bg_deadline() - microtime( true ) );
+	}
+}
 if ( ! function_exists( 'flx_background_run' ) ) {
 	/**
 	 * Execute one bounded batch using the shared worker/lease policy.
@@ -123,10 +139,15 @@ if ( ! function_exists( 'flx_background_run' ) ) {
 			$handoff();
 			return isset( $options['on_locked'] ) ? call_user_func( $options['on_locked'] ) : array( 'processed' => 0, 'locked' => true );
 		}
-		$started = microtime( true );
-		$context = array( 'plugin' => FLX_Background_Pool::plugin_for( $options['hook'] ?? '' ), 'hook' => $options['hook'] ?? '', 'job' => getenv( 'FLX_BACKGROUND_JOB_ID' ) ?: wp_generate_uuid4() );
-		flx_background_log( 'batch.started', $context );
+		$context = array();
 		try {
+			if ( flx_bg_time_left() < 5 ) {
+				$handoff();
+				return isset( $options['on_defer'] ) ? call_user_func( $options['on_defer'] ) : array( 'processed' => 0, 'deferred' => true );
+			}
+			$started = microtime( true );
+			$context = array( 'plugin' => FLX_Background_Pool::plugin_for( $options['hook'] ?? '' ), 'hook' => $options['hook'] ?? '', 'job' => getenv( 'FLX_BACKGROUND_JOB_ID' ) ?: wp_generate_uuid4() );
+			flx_background_log( 'batch.started', $context );
 			$result = $callback();
 			flx_background_log( 'batch.finished', $context + array( 'elapsed_ms' => (int) ( 1000 * ( microtime( true ) - $started ) ), 'count' => is_array( $result ) ? (int) ( $result['processed'] ?? 0 ) : 0 ) );
 			return $result;

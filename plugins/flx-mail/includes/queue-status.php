@@ -33,7 +33,7 @@ function flxi_queue_snapshot( WP_REST_Request $request ) {
 			if ( $batch ) { $batches[ $token ] = array( 'token' => $token, 'jobid' => $batch['jobid'], 'state' => $batch['state'], 'counts' => flxi_netgsm_counts( $batch ), 'can_cancel' => $batch['send_at'] > time() + 10 && flxi_netgsm_counts( $batch )['submitted'] > 0, 'checked' => $batch['last_checked'] ? flx_date( $batch['last_checked'], 'datetime' ) : '', 'error' => $batch['last_error'] ?? '' ); }
 		}
 	} unset( $row );
-	$events = flx_background_events( 50, $cid ); foreach ( $events as &$event ) { $event['date'] = flx_date( $event['time'], 'datetime' ); } unset( $event );
+	$events = flx_background_events( 50, $cid, 'flx-mail' ); foreach ( $events as &$event ) { $event['date'] = flx_date( $event['time'], 'datetime' ); } unset( $event );
 	return array( 'campaigns' => $camps, 'campaign' => $campaign ? array_intersect_key( $campaign, array_flip( array( 'id', 'name', 'status' ) ) ) : null, 'counts' => $by, 'rows' => $rows, 'page' => $page, 'pages' => max( 1, (int) ceil( array_sum( $by ) / 50 ) ), 'batches' => array_values( $batches ), 'events' => $events, 'worker' => flx_background_worker_active() );
 }
 

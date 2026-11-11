@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.13.19 — 2026-11-10
+- Store the shared operational log in one table tagged by plugin and defer a background batch when fewer than 5 seconds remain before the 45-second request deadline.
+
 ## 1.13.18 — 2026-11-10
 - Prime member meta (`billing_phone`, `first_name`, `last_name`) in pages of 500 while collecting campaign recipients, so a role list does not run three meta queries per user. The list is still built in that one request. A cron queue run budgets 25 s (20 s otherwise) and will not claim a row unless the remaining time covers the transport timeout (at least 5 s, at most 30 s) plus a 5 s margin. A row left in `processing` returns to the queue after 10 minutes while attempts remain.
 
