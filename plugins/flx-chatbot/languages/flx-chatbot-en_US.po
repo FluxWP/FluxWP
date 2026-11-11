@@ -1196,3 +1196,7 @@ msgstr "Placed after site chat #%d"
 
 msgid "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel."
 msgstr "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel."
+
+msgid "Still answering. Please wait a moment."
+msgstr "Still answering. Please wait a moment."
+

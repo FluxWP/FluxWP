@@ -33,23 +33,103 @@ if ( ! function_exists( 'flxan_c_run' ) ) {
 		return false;
 	}
 
-	/** Ziyaretçinin IP'si (yalnız özet ve dışlama için; saklanmaz). */
-	function flxan_c_ip( array $server ) {
-		$ip = isset( $server['REMOTE_ADDR'] ) ? (string) $server['REMOTE_ADDR'] : '';
-		if ( ! empty( $server['HTTP_CF_CONNECTING_IP'] ) ) {
-			return trim( (string) $server['HTTP_CF_CONNECTING_IP'] );
-		}
-		$private = ! filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE );
-		if ( $private && ! empty( $server['HTTP_X_FORWARDED_FOR'] ) ) {
-			$first = trim( explode( ',', (string) $server['HTTP_X_FORWARDED_FOR'] )[0] );
-			if ( filter_var( $first, FILTER_VALIDATE_IP ) ) {
-				return $first;
+	/**
+	 * Cloudflare's published ranges (ips-v4 / ips-v6, 2026-11-10).
+	 * Filter `flxan_cloudflare_cidrs` when WordPress is loaded.
+	 */
+	function flxan_c_cloudflare_cidrs() {
+		$cidrs = array(
+			'173.245.48.0/20',
+			'103.21.244.0/22',
+			'103.22.200.0/22',
+			'103.31.4.0/22',
+			'141.101.64.0/18',
+			'108.162.192.0/18',
+			'190.93.240.0/20',
+			'188.114.96.0/20',
+			'197.234.240.0/22',
+			'198.41.128.0/17',
+			'162.158.0.0/15',
+			'104.16.0.0/13',
+			'104.24.0.0/14',
+			'172.64.0.0/13',
+			'131.0.72.0/22',
+			'2400:cb00::/32',
+			'2606:4700::/32',
+			'2803:f800::/32',
+			'2405:b500::/32',
+			'2405:8100::/32',
+			'2a06:98c0::/29',
+			'2c0f:f248::/32',
+		);
+		if ( function_exists( 'apply_filters' ) ) {
+			$filtered = apply_filters( 'flxan_cloudflare_cidrs', $cidrs );
+			if ( is_array( $filtered ) ) {
+				$cidrs = $filtered;
 			}
 		}
-		if ( $private && ! empty( $server['HTTP_X_REAL_IP'] ) && filter_var( $server['HTTP_X_REAL_IP'], FILTER_VALIDATE_IP ) ) {
-			return (string) $server['HTTP_X_REAL_IP'];
+		return $cidrs;
+	}
+
+	/** Direct peer is a Cloudflare address, so forwarded headers were set by Cloudflare. */
+	function flxan_c_peer_is_cloudflare( $ip ) {
+		$ip = trim( (string) $ip );
+		if ( ! filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+			return false;
 		}
-		return $ip;
+		return flxan_c_ip_excluded( $ip, flxan_c_cloudflare_cidrs() );
+	}
+
+	/**
+	 * Visitor IP, used only to build the daily hash and the exclusion list.
+	 * The raw address is never stored. CF-Connecting-IP and other forwarded
+	 * headers count only when REMOTE_ADDR is inside Cloudflare's ranges.
+	 */
+	function flxan_c_ip( array $server ) {
+		$remote = isset( $server['REMOTE_ADDR'] ) ? trim( (string) $server['REMOTE_ADDR'] ) : '';
+		if ( flxan_c_peer_is_cloudflare( $remote ) ) {
+			foreach ( array( 'HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP' ) as $header ) {
+				if ( empty( $server[ $header ] ) ) {
+					continue;
+				}
+				$candidate = trim( explode( ',', (string) $server[ $header ] )[0] );
+				if ( filter_var( $candidate, FILTER_VALIDATE_IP ) ) {
+					return $candidate;
+				}
+			}
+		}
+		// Doğrudan eş özel ağdaysa (Docker/Coolify ters vekili, yerel nginx) asıl adres iletilen başlıktadır;
+		// yoksa bütün ziyaretçiler tek özete düşer. Dışarıdan gelen istek özel adresli olamaz.
+		$private = '' !== $remote && ! filter_var( $remote, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE );
+		if ( $private ) {
+			foreach ( array( 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP' ) as $header ) {
+				if ( empty( $server[ $header ] ) ) {
+					continue;
+				}
+				$candidate = trim( explode( ',', (string) $server[ $header ] )[0] );
+				if ( filter_var( $candidate, FILTER_VALIDATE_IP ) ) {
+					return $candidate;
+				}
+			}
+		}
+		return $remote;
+	}
+
+	/**
+	 * Beacon token: HMAC of the 12-hour window (and the previous one) with the
+	 * key written into config.php. Cached pages keep working for 24 hours.
+	 */
+	function flxan_c_token_ok( $token, array $cfg, $now ) {
+		$key    = isset( $cfg['collect_key'] ) ? (string) $cfg['collect_key'] : '';
+		$window = isset( $cfg['collect_window'] ) ? (int) $cfg['collect_window'] : 43200;
+		$token  = strtolower( (string) $token );
+		if ( ! preg_match( '/^[a-f0-9]{32}$/', $token ) || ! preg_match( '/^[a-f0-9]{64}$/', $key ) || $window < 60 ) {
+			return false;
+		}
+		$cur  = intdiv( (int) $now, $window );
+		$nowt = substr( hash_hmac( 'sha256', (string) $cur, $key ), 0, 32 );
+		$prev = substr( hash_hmac( 'sha256', (string) ( $cur - 1 ), $key ), 0, 32 );
+		return hash_equals( $nowt, $token ) || hash_equals( $prev, $token );
 	}
 
 	/** IP dışlama listesinde mi? Tam adres, "1.2.3.*" ya da CIDR ("1.2.3.0/24"). */
@@ -244,6 +324,9 @@ if ( ! function_exists( 'flxan_c_run' ) ) {
 		}
 		if ( ! empty( $in['test'] ) ) {
 			return is_writable( $dir ) ? 200 : 500;
+		}
+		if ( ! flxan_c_token_ok( isset( $in['t'] ) ? $in['t'] : '', $cfg, time() ) ) {
+			return 403;
 		}
 		if ( empty( $cfg['on'] ) || flxan_c_is_automated( $server ) ) {
 			return 204;

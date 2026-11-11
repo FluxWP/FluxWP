@@ -1209,3 +1209,7 @@ msgstr "WordPress n'utilise pas cette fonctionnalité PHP ; c'est le chemin d'ex
 
 msgid "Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI)."
 msgstr "Meta titre/description, canonique, Open Graph, schéma (organisation, site Web, fil d'Ariane, article), paramètres du plan du site, favicon et contrôle SEO. Outils de contenu et de référencement pour les assistants IA (sur le serveur MCP Flux AI)."
+
+msgid "PageSpeed timed out; this step was skipped."
+msgstr "PageSpeed a expiré ; cette étape a été ignorée."
+

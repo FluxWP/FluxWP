@@ -26,7 +26,7 @@ Düzeltme: Flux AI & MCP `system_fix` ile `flxp_expired_transients` (süresi dol
 Örnek: "Son 24 saatte site neden yavaş?", "/bagis/ sayfasını ölç, en yavaş sorgu hangi eklentiden?", "Evolution isteği hata veriyor mu?", "Autoload'ı en çok hangi eklenti şişiriyor?", "Cron çalışıyor mu?"
 
 ## Performans (Hostinger)
-- Ziyaretçide yalnız ucuz kancalar çalışır (PHP hatası, dış istek, süre). Sorgu listesi (`SAVEQUERIES`) yalnız örneklenen isteklerde, giriş yapmış kullanıcıda ve "Sayfayı ölç"te açılır.
+- Ziyaretçide yalnız ucuz kancalar çalışır (PHP hatası, dış istek, süre). Sorgu listesi (`SAVEQUERIES`) yalnız örneklenen isteklerde, "Sayfayı ölç"te ve paneli gören kullanıcının wp-admin'de aldığı imzalı çerezle (30 dk, HMAC) açılır. Çerez giriş çerezi değildir; kullanıcı yetkili değilse toplanan profil atılır.
 - Kayıt istek sonunda tek INSERT. Temizlik ara sıra, istek üzerine (cron gerekmez).
 - `wp-config.php`'de `SAVEQUERIES` tanımlıysa Sistem Kontrolü uyarır; kaldırın.
 - Tamamen kapatmak için `define( 'FLXP_DISABLED', true );`.

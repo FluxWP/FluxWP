@@ -164,7 +164,7 @@ if ( flx_ai_enabled( 'flx-x', 'auto_summary' ) ) { $r = flx_ai_complete( 'flx-x'
 
 ## MCP sunucusu (0.7.0)
 
-Ortak MCP sunucusu Flux AI'dadır (önceden Flux SEO içindeydi). Adres `/wp-json/flx-mcp/v1/mcp` (Streamable HTTP, durumsuz, JSON-RPC 2.0). Yönetim: **Flux AI & MCP › MCP** (`admin.php?page=flx-ai-mcp`): aç/kapa, kullanıcıya özel anahtarlar (isteğe bağlı araç kapsamı), son işlemler. Kimlik: `Authorization: Bearer <anahtar>`, `X-MCP-Key` başlığı, `?key=` ya da Uygulama Parolası. Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır; Flux AI sohbeti aynı araçları kullanır (değişiklik yapanlar onay ister).
+Ortak MCP sunucusu Flux AI'dadır (önceden Flux SEO içindeydi). Adres `/wp-json/flx-mcp/v1/mcp` (Streamable HTTP, durumsuz, JSON-RPC 2.0). Yönetim: **Flux AI & MCP › MCP** (`admin.php?page=flx-ai-mcp`): aç/kapa, kullanıcıya özel anahtarlar (isteğe bağlı araç kapsamı), son işlemler. Kimlik: `Authorization: Bearer <anahtar>`, `X-MCP-Key` başlığı ya da Uygulama Parolası. Anahtar sorgu dizesinden (`?key=`) okunmaz; kullanıcı yalnız WordPress bu rotayı (`/flx-mcp/v1/mcp`, kısa adres dahil) çalıştırınca kurulur. Araçlar anahtarı oluşturan kullanıcının yetkileriyle çalışır; Flux AI sohbeti aynı araçları kullanır (değişiklik yapanlar onay ister).
 
 ### Araç kaydı: `flx_mcp_tools`
 ```php

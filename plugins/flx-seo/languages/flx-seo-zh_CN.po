@@ -1209,3 +1209,7 @@ msgstr "WordPress 不使用此 PHP 功能;它是 PHP2Shell 等漏洞的利用路
 
 msgid "Meta title/description, canonical, Open Graph, schema (Organization, WebSite, Breadcrumb, Article), sitemap settings, favicon and SEO control. Content and SEO tools for AI assistants (on MCP server Flux AI)."
 msgstr "元标题/描述、规范、开放图谱、架构(组织、网站、面包屑、文章)、站点地图设置、网站图标和 SEO 控制。 AI 助手的内容和 SEO 工具(在 MCP 服务器 Flux AI 上)。"
+
+msgid "PageSpeed timed out; this step was skipped."
+msgstr "PageSpeed 超时；已跳过此步骤。"
+

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.7
+- An order status change or refund marks that customer dirty instead of rebuilding their whole history inside the payment request. The row is rebuilt after the response is sent, or by the daily job if the request was cut off. Opening that customer recomputes first.
+
 ## 0.2.6
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

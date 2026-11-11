@@ -36,6 +36,7 @@ add_action(
 		$s   = flxan_settings();
 		$cfg = array(
 			'u'  => flxan_collect_url(),
+			't'  => flxan_collect_token(),
 			'i'  => is_singular() ? (int) get_queried_object_id() : 0,
 			'dnt'=> (int) $s['dnt'],
 			'eo' => (int) $s['ev_outbound'],

@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.4.5
+- Telemetry hub: a new install id is refused after 60 new ids in an hour, and the install table is kept at 5000 rows (when full, the 200 least recently seen rows are dropped, so ids that reported once go before active installs). The per-install hourly limit stays. The client id must still be 32 hex characters and the body at most 128 KiB.
+- Collection trusts `CF-Connecting-IP` and other forwarded headers only when the direct peer is in Cloudflare's published ranges. `X-Forwarded-For` / `X-Real-IP` are still read when the direct peer is a private address (a local reverse proxy); otherwise the peer address is used. The raw address is still not stored.
+- The tracking snippet carries a 12-hour HMAC token (the previous window is accepted, so a cached page keeps counting for 24 hours). A request without that token is rejected.
+- The report endpoint serves the stored aggregate. Refresh stays on the 5-minute job and the shutdown pump, under the existing lock.
+
 ## 0.4.4
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

@@ -1196,3 +1196,7 @@ msgstr "Site sohbeti #%d sonrasında verildi"
 
 msgid "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel."
 msgstr "Siteye yapay zekâ destekli sohbet penceresi: Flux AI ile sitenizin içeriğinden ve ürünlerinden 7/24 cevap, potansiyel müşteri toplama, WooCommerce bilgisi, tek tıkla canlı temsilciye devir (Flux Chat gelen kutusu ya da eklentinin kendi gelen kutusu), dosya paylaşımı, okundu bilgisi, sohbet sonu puanlama ve mesai dışında mesaj bırakma. Renk, konum, avatar, metinler ve görünürlük panelden özelleştirilir."
+
+msgid "Still answering. Please wait a moment."
+msgstr "Hâlâ cevap veriyor. Biraz bekleyin."
+

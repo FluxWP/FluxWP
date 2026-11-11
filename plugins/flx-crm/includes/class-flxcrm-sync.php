@@ -52,11 +52,17 @@ final class FLXCRM_Sync {
 			$label = __( 'Totals', 'flx-crm' );
 		} else {
 			$s     = FLXCRM_Scoring::run();
-			$r     = array( 'done' => true, 'scanned' => $s['scored'], 'total' => $s['scored'] );
+			$r     = array(
+				'done'    => ! empty( $s['done'] ),
+				'scanned' => (int) $s['scored'],
+				'total'   => (int) ( $s['total'] ?? $s['scored'] ),
+			);
 			$label = __( 'RFM score', 'flx-crm' );
-			update_option( 'flxcrm_synced_at', time(), false );
-			FLXCRM_Segments::seed();
-			FLXCRM_Contacts::flush_stats();
+			if ( ! empty( $s['done'] ) ) {
+				update_option( 'flxcrm_synced_at', time(), false );
+				FLXCRM_Segments::seed();
+				FLXCRM_Contacts::flush_stats();
+			}
 		}
 		$next = null;
 		if ( ! empty( $r['done'] ) ) {

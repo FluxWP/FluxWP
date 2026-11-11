@@ -1200,3 +1200,7 @@ msgstr "تم وضعها بعد دردشة الموقع #%d"
 
 msgid "Artificial intelligence-supported chat window to the site: With Flux AI, 24/7 responses from your site's content and products, potential customer collection, WooCommerce information, one-click transfer to a live representative (Flux Chat inbox or the plugin's own inbox), file sharing, read receipts, end-of-chat scoring and leaving messages after hours. Color, position, avatar, texts and visibility are customized from the panel."
 msgstr "نافذة دردشة مدعومة بالذكاء الاصطناعي إلى الموقع: باستخدام Flux AI، استجابات على مدار الساعة طوال أيام الأسبوع من محتوى موقعك ومنتجاته، وجمع العملاء المحتملين، ومعلومات WooCommerce، والتحويل بنقرة واحدة إلى ممثل مباشر (صندوق الوارد الخاص بـ Flux Chat أو صندوق الوارد الخاص بالمكون الإضافي)، ومشاركة الملفات، وإيصالات القراءة، وسجل نهاية الدردشة، وترك الرسائل بعد ساعات. يتم تخصيص اللون والموضع والصورة الرمزية والنصوص والرؤية من اللوحة."
+
+msgid "Still answering. Please wait a moment."
+msgstr "ما زال يجيب. من فضلك انتظر لحظة."
+

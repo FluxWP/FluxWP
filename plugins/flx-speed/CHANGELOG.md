@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.6.4
+- Full profiling (SAVEQUERIES) no longer follows the logged-in cookie. It runs only for a signed 30-minute marker set when someone who can open the Flux Speed panel loads wp-admin, and the collected profile is dropped if that user is not allowed.
+- Block the default login script when the request is wp-login.php with a path suffix, extra slashes or different case, including subdirectory installs.
+
 ## 0.6.3
 - Remove legacy translation response framing from source IDs and all language packs; headings no longer display literal newline escapes.
 - Refresh current English and Turkish product screenshots and browser walkthroughs, including mobile and dark views.

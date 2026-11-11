@@ -990,3 +990,7 @@ msgstr "QR ile %1$s, siteden %2$s kez açıldı."
 
 msgid "No map yet: the link opens the event page until a location is entered."
 msgstr "Harita henüz yok: konum girilene kadar link etkinlik sayfasını açar."
+
+msgid "Person not found."
+msgstr "Kişi bulunamadı."
+

@@ -3,6 +3,10 @@
 ## 0.10.2
 - Kullanım CSV'sinde formül olarak açılacak hücrelerin başına tek tırnak konur. Gerçek sayılar, eksi tutarlar dahil, sayı kalır.
 
+## 0.10.1
+- MCP anahtarı artık yalnız MCP rotasının izin kontrolünde kullanıcı olur (`/wp-json/flx-mcp/v1/mcp` ve aynı sunucuya düşen kısa adres). Adresin başka bir yerine ad alanı metni eklemek o kullanıcıyı yapmaz; MCP kapalıysa ve araç kapsamı da burada uygulanır.
+- Sorgu dizesindeki anahtar (`?key=`) kabul edilmez. Anahtar yalnız `Authorization: Bearer` veya `X-MCP-Key` başlığından okunur. Apache/LiteSpeed'de `REDIRECT_HTTP_AUTHORIZATION` okunmaya devam eder.
+
 ## 0.10.0
 - **Kısa MCP adresi `site.com/mcp`.** Aynı sunucu `/wp-json/flx-mcp/v1/mcp` adresinde de çalışır; yeniden yazma kuralı yok. Sitede `mcp` adlı sayfa varsa `flx_mcp_short_path` filtresiyle değiştirilir ya da `''` ile kapatılır.
 - **MCP için OAuth 2.1 girişi Flux AI & MCP'de** (Flux App gerekmez). claude.ai, Claude Desktop, ChatGPT, Cursor, VS Code yalnız adresle bağlanır: 401 + `WWW-Authenticate`, `/.well-known/oauth-protected-resource` (RFC 9728), `/.well-known/oauth-authorization-server` (RFC 8414), dinamik istemci kaydı (RFC 7591), `site.com/mcp/authorize` onay ekranı (WordPress girişi, PKCE S256 zorunlu), belirteç / yenileme (dönüşümlü; kullanılmış yenileme belirteci tekrar gelirse bağlantı kapanır) ve iptal (RFC 7009) uçları `/wp-json/flx-mcp/v1/oauth/*`.
