@@ -63,7 +63,33 @@ function flxr_set_user_phone( $user_id, $raw ) {
 	}
 	update_user_meta( $user_id, FLXR_PHONE_META, $d );
 	update_user_meta( $user_id, FLXR_PHONE_KEY, $d );
+	flxr_person_sync( $user_id, $d );
 	return true;
+}
+
+/**
+ * 1.4.0: the staff member is also a person of the shared FluxWP people table (tied to the site user), so Flux CRM,
+ * Flux Chat and the others see one record for them. Who may use staff tools is still decided only here, from the
+ * number saved on the user (a donor with the same number never gets staff rights).
+ */
+function flxr_person_sync( $user_id, $phone ) {
+	if ( ! function_exists( 'flx_person_ensure' ) ) {
+		return 0;
+	}
+	$u = get_userdata( (int) $user_id );
+	if ( ! $u ) {
+		return 0;
+	}
+	return (int) flx_person_ensure(
+		array(
+			'name'    => $u->display_name,
+			'email'   => $u->user_email,
+			'phone'   => ltrim( (string) $phone, '+' ),
+			'user_id' => (int) $user_id,
+			'source'  => 'roles',
+			'link'    => array( 'roles', 'user:' . (int) $user_id ),
+		)
+	);
 }
 
 /**

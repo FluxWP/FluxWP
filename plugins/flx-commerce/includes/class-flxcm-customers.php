@@ -219,6 +219,30 @@ final class FLXCM_Customers {
 		} else {
 			$wpdb->insert( $t, $data );
 		}
+		self::person( $data );
+	}
+
+	/**
+	 * The customer is a person of the shared FluxWP people table (flx-brand): found by the `commerce / email:`
+	 * link (the key Flux CRM's WooCommerce source uses), user, e-mail or phone, or created. This table only keeps
+	 * the order summary; who the person is lives once, in the shared table.
+	 */
+	private static function person( array $d ) {
+		if ( ! function_exists( 'flx_person_ensure' ) || '' === (string) $d['email'] ) {
+			return 0;
+		}
+		return (int) flx_person_ensure(
+			array(
+				'name'    => $d['name'],
+				'email'   => $d['email'],
+				'phone'   => $d['phone'],
+				'user_id' => (int) $d['user_id'],
+				'city'    => $d['city'],
+				'source'  => 'commerce',
+				'link'    => array( 'commerce', 'email:' . strtolower( (string) $d['email'] ) ),
+				'at'      => $d['first_at'],
+			)
+		);
 	}
 
 	/**

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.4.0
+- Personel telefonu kaydedilince kişi ortak FluxWP kişi tablosuna da yazılır (site kullanıcısına bağlı, `roles / user:<id>` bağı): Flux CRM, Chat ve diğerleri personeli tek kayıtta görür. Personel araçlarına kimin girebileceği yine yalnız kullanıcıdaki numaradan belirlenir; aynı numaralı bir bağışçı personel yetkisi almaz.
+
 ## 1.3.4
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

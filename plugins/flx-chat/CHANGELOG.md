@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.43.0
+- Contact names come from the shared FluxWP people table (one record across Flux CRM, Certificates, Donate and Commerce). Without it the old order stays: Certificates person, CRM contact, Donate donor.
+
 ## 1.42.0
 - Hatırlatıcı sormadan kurulur: kişi "önümüzdeki ay hatırlatın", "ayın 15'inde hatırlat" deyince asistan onay ve gün sormaz, hatırlatıcıyı hemen kurar ve hangi gün yazacağını söyler. Gün verilmemişse ayın 1'i (tek seferlikte gelecek ayın 1'i). Kişi sonradan farklı gün/saat/sıklık söylerse yeni hatırlatıcı açılmaz, aynı kayıt güncellenir. `reminder_set` aracında `confirmed` kalktı.
 - Sohbet tamamlandı durumu (yumuşak kapanış): vedalaşma bitince asistan sohbeti "tamamlandı" işaretler (`close_chat`). Sonraki "iyi günler", "her zaman", "Allah razı olsun" gibi mesajlara yeniden veda yazmaz; ilk ikisine emoji tepkisi bırakır, sonra sessiz kalır. Kişi soru ya da yeni bir konu yazarsa durum kalkar, asistan normal devam eder. Sohbete asistan dışı bir mesaj gidince de (sertifika, bağış onayı, temsilci ya da telefondan yazılan mesaj) durum sıfırlanır. Ek olarak 12 saat sonra kendiliğinden kalkar. Sonraki kapanış mesajlarında model çağrılmaz (maliyet yok).

@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.0
+- Her müşteri ortak FluxWP kişi tablosunda bir kişi (flx-brand): `commerce / email:` bağı (Flux CRM'in WooCommerce kaynağıyla aynı anahtar), kullanıcı, e-posta ya da telefonla bulunur, yoksa açılır. Müşteri tablosu yalnız sipariş özetini tutar.
+
 ## 0.2.8
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 
