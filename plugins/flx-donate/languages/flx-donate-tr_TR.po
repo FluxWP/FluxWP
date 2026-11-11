@@ -5560,6 +5560,192 @@ msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than
 msgstr[0] "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgstr[1] "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 
+msgid "Donation lookup code"
+msgstr "Bağış sorgulama kodu"
+
+msgid "One-time code a donor enters on the \"My donations\" page to see their donations and certificates."
+msgstr "Bağışçının bağışlarını ve sertifikalarını görmek için \"Bağışlarım\" sayfasına girdiği tek kullanımlık kod."
+
+msgid "Minutes the code is valid"
+msgstr "Kodun geçerli olduğu dakika"
+
+msgid "Lookup page"
+msgstr "Sorgulama sayfası"
+
+msgid "{kod} is your code to view your donations"
+msgstr "Bağışlarınızı görmek için kodunuz: {kod}"
+
+msgid "Your verification code"
+msgstr "Doğrulama kodunuz"
+
+msgid "Enter this code on the \"My donations\" page to see your donations and download your certificates:"
+msgstr "Bağışlarınızı görmek ve sertifikalarınızı indirmek için bu kodu \"Bağışlarım\" sayfasına girin:"
+
+msgid "The code is valid for {dakika} minutes. If you did not ask for it, you can ignore this e-mail."
+msgstr "Kod {dakika} dakika geçerlidir. Bu kodu siz istemediyseniz bu e-postayı dikkate almayın."
+
+msgid "Enter a valid e-mail address or phone number."
+msgstr "Geçerli bir e-posta adresi ya da telefon numarası girin."
+
+msgid "Codes cannot be sent by phone at the moment. Please use your e-mail address."
+msgstr "Şu an telefona kod gönderilemiyor. Lütfen e-posta adresinizi kullanın."
+
+msgid "Codes cannot be sent by e-mail at the moment. Please use your phone number."
+msgstr "Şu an e-postaya kod gönderilemiyor. Lütfen telefon numaranızı kullanın."
+
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr "Çok fazla deneme yapıldı. Lütfen birkaç dakika bekleyip yeniden deneyin."
+
+msgid "The code could not be sent. Please try again later or contact us."
+msgstr "Kod gönderilemedi. Lütfen daha sonra yeniden deneyin ya da bizimle iletişime geçin."
+
+msgid "If there is a donation with this number, we have sent a 6-digit code to it on WhatsApp."
+msgstr "Bu numarayla yapılmış bir bağış varsa WhatsApp'tan 6 haneli bir kod gönderdik."
+
+msgid "If there is a donation with this number, we have sent a 6-digit code to it by SMS."
+msgstr "Bu numarayla yapılmış bir bağış varsa SMS ile 6 haneli bir kod gönderdik."
+
+msgid "If there is a donation with this address, we have sent a 6-digit code to it. Check your spam folder too."
+msgstr "Bu adresle yapılmış bir bağış varsa 6 haneli bir kod gönderdik. Gereksiz (spam) klasörüne de bakın."
+
+msgid "%1$s is your code to view your donations at %2$s. Valid for 10 minutes. Do not share it with anyone."
+msgstr "%2$s bağışlarınızı görmek için kodunuz: %1$s. 10 dakika geçerlidir. Kimseyle paylaşmayın."
+
+msgid "The code is wrong or has expired."
+msgstr "Kod hatalı ya da süresi dolmuş."
+
+msgid "Send code"
+msgstr "Kod gönder"
+
+msgid "Sending…"
+msgstr "Gönderiliyor…"
+
+msgid "Show my donations"
+msgstr "Bağışlarımı göster"
+
+msgid "Checking…"
+msgstr "Kontrol ediliyor…"
+
+msgid "Send again"
+msgstr "Yeniden gönder"
+
+msgid "Send again in %s s"
+msgstr "%s sn sonra yeniden gönder"
+
+msgid "6-digit code"
+msgstr "6 haneli kod"
+
+msgid "Sign out"
+msgstr "Çıkış"
+
+msgid "Verified: %s"
+msgstr "Doğrulandı: %s"
+
+msgid "Total donated"
+msgstr "Toplam bağış"
+
+msgid "We could not find a donation with these details."
+msgstr "Bu bilgilerle yapılmış bir bağış bulamadık."
+
+msgid "Try the other e-mail address or phone number you may have used when donating."
+msgstr "Bağış yaparken kullanmış olabileceğiniz diğer e-posta adresini ya da telefon numarasını deneyin."
+
+msgid "There is no certificate yet. Certificates are issued once the payment is confirmed."
+msgstr "Henüz sertifika yok. Sertifikalar ödeme onaylanınca oluşturulur."
+
+msgid "Payment details"
+msgstr "Ödeme bilgileri"
+
+msgid "Order details"
+msgstr "Sipariş ayrıntıları"
+
+msgid "Enter your e-mail address."
+msgstr "E-posta adresinizi girin."
+
+msgid "Enter your phone number."
+msgstr "Telefon numaranızı girin."
+
+msgid "Enter the 6-digit code."
+msgstr "6 haneli kodu girin."
+
+msgid "Donation lookup is turned off (Donations › Settings › Donation lookup)."
+msgstr "Bağış sorgulama kapalı (Bağışlar › Ayarlar › Bağış sorgulama)."
+
+msgid "My donations and certificates"
+msgstr "Bağışlarım ve sertifikalarım"
+
+msgid "Enter the e-mail address or phone number you used when donating. We will send you a one-time code; no account or password is needed."
+msgstr "Bağış yaparken kullandığınız e-posta adresini ya da telefon numarasını girin. Size tek kullanımlık bir kod göndereceğiz; hesap ya da şifre gerekmez."
+
+msgid "E-mail address"
+msgstr "E-posta adresi"
+
+msgid "name@example.com"
+msgstr "ad@ornek.com"
+
+msgid "Phone number"
+msgstr "Telefon numarası"
+
+msgid "Your details are only used to find your donations."
+msgstr "Bilgileriniz yalnız bağışlarınızı bulmak için kullanılır."
+
+msgid "Donation lookup"
+msgstr "Bağış sorgulama"
+
+msgid "Donors can see their donations with a code"
+msgstr "Bağışçılar bağışlarını kodla görebilsin"
+
+msgid "On the \"My donations\" page a donor enters their e-mail or phone, gets a one-time code and sees their donations and certificates without an account."
+msgstr "Bağışçı \"Bağışlarım\" sayfasında e-postasını ya da telefonunu girer, tek kullanımlık kod alır ve hesap açmadan bağışlarını ve sertifikalarını görür."
+
+msgid "Send the code by"
+msgstr "Kodu gönderme yolu"
+
+msgid "(no connection yet: set it up in Flux Mail or Flux Chat)"
+msgstr "(henüz bağlantı yok: Flux Mail ya da Flux Chat'te kurun)"
+
+msgid "Phone numbers get the code on WhatsApp first, then by SMS. E-mail codes are limited to 40 a day to stay under the hosting mail limit."
+msgstr "Telefon numarasına kod önce WhatsApp'tan, olmazsa SMS ile gider. Hosting e-posta sınırını aşmamak için e-posta kodları günde 40 ile sınırlıdır."
+
+msgid "Page"
+msgstr "Sayfa"
+
+msgid "— Find automatically —"
+msgstr "— Otomatik bul —"
+
+msgid "The page shows the %s shortcode. Leave it on \"Find automatically\" or create the page with the button below."
+msgstr "Sayfada %s kısa kodu bulunur. \"Otomatik bul\" seçili kalabilir ya da aşağıdaki düğmeyle sayfayı oluşturun."
+
+msgid "Create the \"My donations\" page"
+msgstr "\"Bağışlarım\" sayfasını oluştur"
+
+msgid "The page"
+msgstr "Sayfa"
+
+msgid "There is no page yet."
+msgstr "Henüz sayfa yok."
+
+msgid "The code is valid for 10 minutes; after 5 wrong codes a new one is needed. One address can ask for 3 codes in 10 minutes. A verified visitor stays signed in for 30 minutes on this device."
+msgstr "Kod 10 dakika geçerlidir; 5 hatalı denemeden sonra yeni kod gerekir. Bir adres 10 dakikada en fazla 3 kod isteyebilir. Doğrulanan ziyaretçi bu cihazda 30 dakika açık kalır."
+
+msgid "The answer is the same whether or not there is a donation, so the page does not reveal who has donated."
+msgstr "Bağış olsa da olmasa da aynı cevap verilir; böylece sayfa kimin bağış yaptığını açığa çıkarmaz."
+
+msgid "Donation lookup page"
+msgstr "Bağış sorgulama sayfası"
+
+msgid "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode."
+msgstr "Bağışçılar henüz bağışlarını sorgulayamıyor: [flx_bagislarim] kısa kodlu yayımlanmış bir sayfa yok."
+
+msgid "Create the page"
+msgstr "Sayfayı oluştur"
+
+msgid "Donors can see their donations on %s with a code sent by e-mail or phone."
+msgstr "Bağışçılar %s sayfasında e-posta ya da telefona gelen kodla bağışlarını görebiliyor."
+
+msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
+msgstr "%s sayfası yalnız e-postayla çalışıyor: telefon kodları için WhatsApp ya da SMS bağlantısı yok."
+
 msgid "Receipt awaiting approval"
 msgstr "Dekont onayı bekliyor"
 

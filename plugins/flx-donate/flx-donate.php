@@ -58,6 +58,7 @@ require_once FLXB_DIR . 'includes/class-flxb-form-sync.php';
 require_once FLXB_DIR . 'includes/class-flxb-preselect.php';
 require_once FLXB_DIR . 'includes/class-flxb-rest.php';
 require_once FLXB_DIR . 'includes/class-flxb-app.php';
+require_once FLXB_DIR . 'includes/class-flxb-lookup.php';
 require_once FLXB_DIR . 'includes/class-flxb-app-review.php';
 require_once FLXB_DIR . 'includes/class-flxb-app-admin.php';
 require_once FLXB_DIR . 'includes/app-manifest.php';
@@ -135,6 +136,7 @@ FLXB_Form_Sync::init();
 FLXB_Preselect::init();
 FLXB_Rest::init();
 FLXB_App::init();
+FLXB_Lookup::init();
 FLXB_App_Review::init();
 FLXB_App_Admin::init();
 

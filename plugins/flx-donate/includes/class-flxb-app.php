@@ -132,9 +132,17 @@ final class FLXB_App {
 
 	/** Donation rows of an account, newest first (trash left out). */
 	public static function rows( $user_id ) {
+		return self::rows_for( self::donor_ids( $user_id ), self::order_ids( $user_id ) );
+	}
+
+	/**
+	 * Donation rows of these donor cards and WooCommerce orders, newest first (trash left out).
+	 * Also used by the donation lookup page (FLXB_Lookup) after the visitor proved an e-mail or phone.
+	 */
+	public static function rows_for( array $donors, array $orders ) {
 		global $wpdb;
-		$donors = self::donor_ids( $user_id );
-		$orders = self::order_ids( $user_id );
+		$donors = array_values( array_unique( array_filter( array_map( 'intval', $donors ) ) ) );
+		$orders = array_values( array_unique( array_filter( array_map( 'intval', $orders ) ) ) );
 		if ( ! $donors && ! $orders ) {
 			return array();
 		}
@@ -156,8 +164,13 @@ final class FLXB_App {
 
 	/** Rows grouped into gifts: the lines of one order are one gift. */
 	public static function gifts( $user_id ) {
+		return self::group( self::rows( $user_id ) );
+	}
+
+	/** Group donation rows into gifts (one order = one gift). */
+	public static function group( array $rows ) {
 		$out = array();
-		foreach ( self::rows( $user_id ) as $r ) {
+		foreach ( $rows as $r ) {
 			$k = (int) $r['wc_order_id'] ? 'o' . (int) $r['wc_order_id'] : 'd' . (int) $r['id'];
 			if ( ! isset( $out[ $k ] ) ) {
 				$out[ $k ] = array();
@@ -248,7 +261,7 @@ final class FLXB_App {
 	}
 
 	/** Status of a gift: its lines share it; a mixed order shows the first "open" one. */
-	private static function gift_status( array $g ) {
+	public static function gift_status( array $g ) {
 		$all = array_unique( wp_list_pluck( $g, 'status' ) );
 		foreach ( array( 'pending', 'completed', 'partially_refunded', 'refunded', 'failed', 'canceled' ) as $s ) {
 			if ( in_array( $s, $all, true ) ) {
@@ -258,7 +271,7 @@ final class FLXB_App {
 		return (string) reset( $all );
 	}
 
-	private static function gift_amount( array $g ) {
+	public static function gift_amount( array $g ) {
 		return (float) array_sum( array_map( 'floatval', wp_list_pluck( $g, 'amount' ) ) );
 	}
 
@@ -327,7 +340,7 @@ final class FLXB_App {
 	}
 
 	/** Certificates of these gifts from Flux Certificates (revoked ones left out). */
-	private static function certificates_of( array $gifts ) {
+	public static function certificates_of( array $gifts ) {
 		if ( ! function_exists( 'flxs_get_certificate_by_code' ) ) {
 			return array();
 		}

@@ -5502,6 +5502,192 @@ msgid "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 min
 msgid_plural "%1$dtask is more than 15 minutes late:%2$s.%1$dtasks are more than 15 minutes late:%2$s."
 msgstr[0] "%1$dタスクは 15 分以上遅れています:%2$s。%1$dタスクが 15 分以上遅れています:%2$s。"
 
+msgid "Donation lookup code"
+msgstr "寄付照会コード"
+
+msgid "One-time code a donor enters on the \"My donations\" page to see their donations and certificates."
+msgstr "寄付者が「マイ寄付」ページで寄付と証明書を見るために入力するワンタイムコード。"
+
+msgid "Minutes the code is valid"
+msgstr "コードの有効時間（分）"
+
+msgid "Lookup page"
+msgstr "照会ページ"
+
+msgid "{kod} is your code to view your donations"
+msgstr "寄付を確認するためのコード: {kod}"
+
+msgid "Your verification code"
+msgstr "確認コード"
+
+msgid "Enter this code on the \"My donations\" page to see your donations and download your certificates:"
+msgstr "「マイ寄付」ページでこのコードを入力すると、寄付の確認と証明書のダウンロードができます:"
+
+msgid "The code is valid for {dakika} minutes. If you did not ask for it, you can ignore this e-mail."
+msgstr "コードの有効期限は{dakika}分です。心当たりがない場合はこのメールを無視してください。"
+
+msgid "Enter a valid e-mail address or phone number."
+msgstr "有効なメールアドレスまたは電話番号を入力してください。"
+
+msgid "Codes cannot be sent by phone at the moment. Please use your e-mail address."
+msgstr "現在、電話にコードを送信できません。メールアドレスをご利用ください。"
+
+msgid "Codes cannot be sent by e-mail at the moment. Please use your phone number."
+msgstr "現在、メールにコードを送信できません。電話番号をご利用ください。"
+
+msgid "Too many attempts. Please wait a few minutes and try again."
+msgstr "試行回数が多すぎます。数分待ってから再度お試しください。"
+
+msgid "The code could not be sent. Please try again later or contact us."
+msgstr "コードを送信できませんでした。後でもう一度お試しいただくか、お問い合わせください。"
+
+msgid "If there is a donation with this number, we have sent a 6-digit code to it on WhatsApp."
+msgstr "この番号での寄付がある場合、WhatsAppで6桁のコードを送信しました。"
+
+msgid "If there is a donation with this number, we have sent a 6-digit code to it by SMS."
+msgstr "この番号での寄付がある場合、SMSで6桁のコードを送信しました。"
+
+msgid "If there is a donation with this address, we have sent a 6-digit code to it. Check your spam folder too."
+msgstr "このアドレスでの寄付がある場合、6桁のコードを送信しました。迷惑メールフォルダもご確認ください。"
+
+msgid "%1$s is your code to view your donations at %2$s. Valid for 10 minutes. Do not share it with anyone."
+msgstr "%2$sでの寄付を確認するためのコード: %1$s。10分間有効です。誰にも教えないでください。"
+
+msgid "The code is wrong or has expired."
+msgstr "コードが間違っているか、有効期限が切れています。"
+
+msgid "Send code"
+msgstr "コードを送信"
+
+msgid "Sending…"
+msgstr "送信中…"
+
+msgid "Show my donations"
+msgstr "寄付を表示"
+
+msgid "Checking…"
+msgstr "確認中…"
+
+msgid "Send again"
+msgstr "再送信"
+
+msgid "Send again in %s s"
+msgstr "%s秒後に再送信"
+
+msgid "6-digit code"
+msgstr "6桁のコード"
+
+msgid "Sign out"
+msgstr "ログアウト"
+
+msgid "Verified: %s"
+msgstr "確認済み: %s"
+
+msgid "Total donated"
+msgstr "寄付総額"
+
+msgid "We could not find a donation with these details."
+msgstr "この情報での寄付は見つかりませんでした。"
+
+msgid "Try the other e-mail address or phone number you may have used when donating."
+msgstr "寄付の際に使った可能性のある別のメールアドレスや電話番号をお試しください。"
+
+msgid "There is no certificate yet. Certificates are issued once the payment is confirmed."
+msgstr "まだ証明書はありません。証明書は支払いが確認されると発行されます。"
+
+msgid "Payment details"
+msgstr "支払い情報"
+
+msgid "Order details"
+msgstr "注文の詳細"
+
+msgid "Enter your e-mail address."
+msgstr "メールアドレスを入力してください。"
+
+msgid "Enter your phone number."
+msgstr "電話番号を入力してください。"
+
+msgid "Enter the 6-digit code."
+msgstr "6桁のコードを入力してください。"
+
+msgid "Donation lookup is turned off (Donations › Settings › Donation lookup)."
+msgstr "寄付照会はオフです（寄付 › 設定 › 寄付照会）。"
+
+msgid "My donations and certificates"
+msgstr "マイ寄付と証明書"
+
+msgid "Enter the e-mail address or phone number you used when donating. We will send you a one-time code; no account or password is needed."
+msgstr "寄付の際に使ったメールアドレスまたは電話番号を入力してください。ワンタイムコードをお送りします。アカウントやパスワードは不要です。"
+
+msgid "E-mail address"
+msgstr "メールアドレス"
+
+msgid "name@example.com"
+msgstr "name@example.com"
+
+msgid "Phone number"
+msgstr "電話番号"
+
+msgid "Your details are only used to find your donations."
+msgstr "入力された情報は寄付の検索にのみ使用されます。"
+
+msgid "Donation lookup"
+msgstr "寄付照会"
+
+msgid "Donors can see their donations with a code"
+msgstr "寄付者がコードで寄付を確認できる"
+
+msgid "On the \"My donations\" page a donor enters their e-mail or phone, gets a one-time code and sees their donations and certificates without an account."
+msgstr "「マイ寄付」ページで寄付者がメールまたは電話番号を入力し、ワンタイムコードを受け取って、アカウントなしで寄付と証明書を確認できます。"
+
+msgid "Send the code by"
+msgstr "コードの送信方法"
+
+msgid "(no connection yet: set it up in Flux Mail or Flux Chat)"
+msgstr "（接続がまだありません: Flux Mail または Flux Chat で設定してください）"
+
+msgid "Phone numbers get the code on WhatsApp first, then by SMS. E-mail codes are limited to 40 a day to stay under the hosting mail limit."
+msgstr "電話番号にはまずWhatsApp、次にSMSでコードを送ります。ホスティングのメール上限を超えないよう、メールのコードは1日40件までです。"
+
+msgid "Page"
+msgstr "ページ"
+
+msgid "— Find automatically —"
+msgstr "— 自動で検索 —"
+
+msgid "The page shows the %s shortcode. Leave it on \"Find automatically\" or create the page with the button below."
+msgstr "ページには %s ショートコードを表示します。「自動で検索」のままにするか、下のボタンでページを作成してください。"
+
+msgid "Create the \"My donations\" page"
+msgstr "「マイ寄付」ページを作成"
+
+msgid "The page"
+msgstr "ページ"
+
+msgid "There is no page yet."
+msgstr "まだページがありません。"
+
+msgid "The code is valid for 10 minutes; after 5 wrong codes a new one is needed. One address can ask for 3 codes in 10 minutes. A verified visitor stays signed in for 30 minutes on this device."
+msgstr "コードは10分間有効で、5回間違えると新しいコードが必要です。1つのアドレスで10分間に3回までコードを要求できます。確認済みの訪問者はこの端末で30分間ログインしたままになります。"
+
+msgid "The answer is the same whether or not there is a donation, so the page does not reveal who has donated."
+msgstr "寄付の有無にかかわらず同じ応答を返すため、誰が寄付したかは分かりません。"
+
+msgid "Donation lookup page"
+msgstr "寄付照会ページ"
+
+msgid "Donors cannot look up their donations yet: no published page has the [flx_bagislarim] shortcode."
+msgstr "寄付者はまだ寄付を照会できません: [flx_bagislarim] ショートコードを含む公開ページがありません。"
+
+msgid "Create the page"
+msgstr "ページを作成"
+
+msgid "Donors can see their donations on %s with a code sent by e-mail or phone."
+msgstr "寄付者は %s でメールまたは電話に届くコードを使って寄付を確認できます。"
+
+msgid "The page %s works with e-mail only: there is no WhatsApp or SMS connection for phone codes."
+msgstr "ページ %s はメールのみで動作します: 電話用のWhatsAppまたはSMS接続がありません。"
+
 msgid "Receipt awaiting approval"
 msgstr "振込明細の承認待ち"
 
