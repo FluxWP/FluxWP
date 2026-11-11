@@ -17,6 +17,7 @@ final class FLXU_Ajax {
 		add_action( 'wp_ajax_flxu_plan', array( __CLASS__, 'plan' ) );
 		add_action( 'wp_ajax_flxu_step', array( __CLASS__, 'step' ) );
 		add_action( 'wp_ajax_flxu_check', array( __CLASS__, 'check' ) );
+		add_action( 'wp_ajax_flxu_auto', array( 'FLXU_WP', 'ajax_auto' ) );
 	}
 
 	/** "Güncellemeleri kontrol et": sunucuya sorar, sayfa yenilenmeden tablo tazelenir. */

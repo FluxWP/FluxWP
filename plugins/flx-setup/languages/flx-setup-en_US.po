@@ -1994,3 +1994,34 @@ msgstr "Nothing matches this filter."
 
 msgid "Updating %s…"
 msgstr "Updating %s…"
+
+msgid "Auto-update"
+msgstr "Auto-update"
+
+msgid "Turn on automatic updates"
+msgstr "Turn on automatic updates"
+
+msgid "Turn off automatic updates"
+msgstr "Turn off automatic updates"
+
+msgid "Automatic updates turned on for %d package."
+msgid_plural "Automatic updates turned on for %d packages."
+msgstr[0] "Automatic updates turned on for %d package."
+msgstr[1] "Automatic updates turned on for %d packages."
+
+msgid "Automatic updates turned off for %d package."
+msgid_plural "Automatic updates turned off for %d packages."
+msgstr[0] "Automatic updates turned off for %d package."
+msgstr[1] "Automatic updates turned off for %d packages."
+
+msgid "No updates yet."
+msgstr "No updates yet."
+
+msgid "On for all FluxWP packages (FluxWP Panel › Settings)."
+msgstr "On for all FluxWP packages (FluxWP Panel › Settings)."
+
+msgid "Automatic updates are turned off for this site."
+msgstr "Automatic updates are turned off for this site."
+
+msgid "Retry failed ones"
+msgstr "Retry failed ones"

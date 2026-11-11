@@ -218,6 +218,73 @@ final class FLXU_WP {
 		);
 	}
 
+	/**
+	 * Otomatik güncelleme sütunu: WordPress'in kendi eklenti/tema başına ayarı (auto_update_plugins /
+	 * auto_update_themes). FluxWP paketlerinde "FluxWP paketlerini otomatik güncelle" ayarı açıksa kilitli "açık".
+	 */
+	public static function auto_cell( string $type, string $id, bool $flux = false ): void {
+		echo '<td class="flxu-c-auto">';
+		if ( '' === $id || ! in_array( $type, array( 'plugin', 'theme' ), true ) ) {
+			echo '<span class="flxu-muted">—</span></td>';
+			return;
+		}
+		if ( $flux && ! empty( FLXU_Updater::settings()['auto'] ) ) {
+			echo '<span class="flxu-auto is-on is-locked" title="' . esc_attr__( 'On for all FluxWP packages (FluxWP Panel › Settings).', 'flx-setup' ) . '"><span class="flxu-auto__track" aria-hidden="true"></span>' . esc_html__( 'On', 'flx-setup' ) . '</span></td>';
+			return;
+		}
+		if ( ! wp_is_auto_update_enabled_for_type( $type ) ) {
+			echo '<span class="flxu-muted" title="' . esc_attr__( 'Automatic updates are turned off for this site.', 'flx-setup' ) . '">—</span></td>';
+			return;
+		}
+		$on  = in_array( $id, (array) get_site_option( 'theme' === $type ? 'auto_update_themes' : 'auto_update_plugins', array() ), true );
+		$can = current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' );
+		printf(
+			'<button type="button" class="flxu-auto%1$s" role="switch" aria-checked="%2$s" data-type="%3$s" data-id="%4$s"%5$s><span class="flxu-auto__track" aria-hidden="true"></span><span class="flxu-auto__txt">%6$s</span></button>',
+			$on ? ' is-on' : '',
+			$on ? 'true' : 'false',
+			esc_attr( $type ),
+			esc_attr( $id ),
+			$can ? '' : ' disabled',
+			$on ? esc_html__( 'On', 'flx-setup' ) : esc_html__( 'Off', 'flx-setup' )
+		);
+		echo '</td>';
+	}
+
+	/** wp_ajax_flxu_auto: tek satırın otomatik güncellemesini aç/kapa. */
+	public static function ajax_auto(): void {
+		check_ajax_referer( FLXU_Ajax::NONCE, 'nonce' );
+		$type = sanitize_key( wp_unslash( $_POST['type'] ?? '' ) );
+		$id   = sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) );
+		$on   = ! empty( $_POST['on'] );
+		if ( ! in_array( $type, array( 'plugin', 'theme' ), true ) || ! current_user_can( 'theme' === $type ? 'update_themes' : 'update_plugins' ) ) {
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'flx-setup' ) ), 403 );
+		}
+		if ( ! wp_is_auto_update_enabled_for_type( $type ) ) {
+			wp_send_json_error( array( 'message' => __( 'Automatic updates are turned off for this site.', 'flx-setup' ) ) );
+		}
+		if ( 'plugin' === $type ) {
+			if ( ! function_exists( 'get_plugins' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/plugin.php';
+			}
+			$ok = isset( get_plugins()[ $id ] );
+		} else {
+			$ok = wp_get_theme( $id )->exists();
+		}
+		if ( ! $ok ) {
+			wp_send_json_error( array( 'message' => __( 'Package not found.', 'flx-setup' ) ) );
+		}
+		$opt  = 'theme' === $type ? 'auto_update_themes' : 'auto_update_plugins';
+		$list = (array) get_site_option( $opt, array() );
+		$list = $on ? array_values( array_unique( array_merge( $list, array( $id ) ) ) ) : array_values( array_diff( $list, array( $id ) ) );
+		update_site_option( $opt, $list );
+		wp_send_json_success(
+			array(
+				'on'    => $on,
+				'label' => $on ? __( 'On', 'flx-setup' ) : __( 'Off', 'flx-setup' ),
+			)
+		);
+	}
+
 	/** Tablo satırı (FluxWP satırlarıyla aynı sütunlar). */
 	public static function render_row( array $r ): void {
 		$type = array(
@@ -230,8 +297,8 @@ final class FLXU_WP {
 		?>
 		<tr class="flxu-row flxu-row--wp flxu-row--<?php echo esc_attr( $r['state'] ); ?>" data-slug="<?php echo esc_attr( $r['key'] ); ?>" data-group="<?php echo esc_attr( $r['group'] ); ?>" data-search="<?php echo esc_attr( $search ); ?>">
 			<th class="check-column" scope="row">
-				<?php if ( 'update' === $r['state'] && $r['can'] && 'wp_core' !== $r['kind'] ) : ?>
-					<input type="checkbox" name="flxu_wp[]" value="<?php echo esc_attr( $r['key'] ); ?>" class="flxu-wpcheck" data-kind="<?php echo esc_attr( $r['kind'] ); ?>" data-id="<?php echo esc_attr( $r['id'] ); ?>" data-name="<?php echo esc_attr( $r['name'] ); ?>" aria-label="<?php echo esc_attr( $r['name'] ); ?>">
+				<?php if ( in_array( $r['kind'], array( 'wp_plugin', 'wp_theme' ), true ) || ( 'update' === $r['state'] && $r['can'] && 'wp_lang' === $r['kind'] ) ) : ?>
+					<input type="checkbox" name="flxu_wp[]" value="<?php echo esc_attr( $r['key'] ); ?>" class="flxu-wpcheck" data-state="<?php echo esc_attr( 'update' === $r['state'] && $r['can'] ? 'update' : 'current' ); ?>" data-kind="<?php echo esc_attr( $r['kind'] ); ?>" data-id="<?php echo esc_attr( $r['id'] ); ?>" data-name="<?php echo esc_attr( $r['name'] ); ?>" aria-label="<?php echo esc_attr( $r['name'] ); ?>">
 				<?php endif; ?>
 			</th>
 			<td class="flxu-pkg">
@@ -258,6 +325,7 @@ final class FLXU_WP {
 				<?php endif; ?>
 			</td>
 			<td class="flxu-c-latest"><?php echo esc_html( $r['latest'] ); ?></td>
+			<?php self::auto_cell( 'wp_plugin' === $r['kind'] ? 'plugin' : ( 'wp_theme' === $r['kind'] ? 'theme' : '' ), $r['id'] ); ?>
 			<td class="flxu-actions">
 				<div class="flxu-run" hidden><span class="flxu-run__spin"></span><span class="flxu-run__text"></span><span class="flxu-run__bar"><span></span></span></div>
 				<div class="flxu-done" hidden></div>
@@ -292,8 +360,10 @@ final class FLXU_WP {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		require_once ABSPATH . 'wp-admin/includes/theme.php';
 		require_once ABSPATH . 'wp-admin/includes/update.php';
-		$skin  = new WP_Ajax_Upgrader_Skin();
-		$name  = $id;
+		$skin   = new WP_Ajax_Upgrader_Skin();
+		$name   = $id;
+		$guard  = FLXU_Guard::instance();
+		$logged = $guard->logged;
 		$res   = null;
 
 		if ( 'wp_plugin' === $kind ) {
@@ -342,11 +412,19 @@ final class FLXU_WP {
 		foreach ( $skin->get_errors()->get_error_messages() as $m ) {
 			$lines[] = array( 'ok' => false, 'text' => $name . ': ' . wp_strip_all_tags( $m ) );
 		}
-		if ( is_wp_error( $res ) ) {
+		if ( is_wp_error( $res ) && ! in_array( $name . ': ' . $res->get_error_message(), wp_list_pluck( $lines, 'text' ), true ) ) {
 			$lines[] = array( 'ok' => false, 'text' => $name . ': ' . $res->get_error_message() );
-		} elseif ( ! $res && ! $lines ) {
+		} elseif ( ! is_wp_error( $res ) && ! $res && ! $lines ) {
 			/* translators: %s: plugin/theme name */
 			$lines[] = array( 'ok' => false, 'text' => sprintf( __( '%s was not updated: WordPress sees no update for it. Click "Check for updates" and try again.', 'flx-setup' ), $name ) );
+		}
+		// Koruma kayıtları (site kontrolü, otomatik geri dönüş) bu istekte yazıldıysa onları göster.
+		$new = array_reverse( array_slice( FLXU_Guard::history(), 0, $guard->logged - $logged ) );
+		foreach ( $new as $e ) {
+			$lines[] = array(
+				'ok'   => 'ok' === $e['result'],
+				'text' => FLXU_Admin::entry_text( $e ),
+			);
 		}
 		if ( ! $lines ) {
 			/* translators: %s: plugin/theme name */

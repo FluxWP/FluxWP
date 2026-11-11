@@ -5,6 +5,10 @@
 - Sekmeler (Tümü / FluxWP / Eklentiler / Temalar / WordPress ve çeviriler) her sekmede satır ve güncelleme sayısıyla; canlı arama kutusu ve "Yalnız güncellemeler" süzgeci.
 - 3. parti eklenti, tema ve çeviri güncellemeleri sayfadan çıkmadan tek tek, seçerek ya da "Tümünü güncelle" ile yapılır (WordPress'in kendi yükleyicisi). Çekirdek güncellemesi WordPress'in kendi ekranında.
 - "Güncellemeleri kontrol et" WordPress çekirdeği ve çevirileri de yeniler.
+- 3. parti eklenti ve temalarda da seçim kutusu: toplu etkinleştir, devre dışı bırak, kaldır.
+- Yeni "Otomatik güncelleme" sütunu: her eklenti/temada aç/kapa düğmesi (WordPress'in kendi ayarı) ve toplu "Otomatik güncellemeyi aç/kapat". FluxWP paketlerinde genel ayar açıksa kilitli "Açık".
+- 3. parti güncellemeler de FluxWP paketleriyle aynı korumadan geçer: Flux Backup yedeği, geçmiş kaydı, güncelleme sonrası site kontrolü ve bozulursa yedekten geri dönüş (filtre flxu_guard_third_party).
+- Hata satırda ve en üstteki kayıtta görünür; satırda "Yeniden dene", kayıt başlığında "Hatalıları tekrar dene".
 
 ## 1.1.12
 - Paketler ekranında "18güncellemeleri mevcut" yerine "18 güncelleme mevcut"; yedek/paket sayısı metinleri doğal Türkçe tekil ("%d paket etkinleştirildi", "%d yedek silindi").

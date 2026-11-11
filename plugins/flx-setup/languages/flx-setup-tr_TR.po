@@ -1994,3 +1994,34 @@ msgstr "Bu süzgece uyan bir şey yok."
 
 msgid "Updating %s…"
 msgstr "%s güncelleniyor…"
+
+msgid "Auto-update"
+msgstr "Otomatik güncelleme"
+
+msgid "Turn on automatic updates"
+msgstr "Otomatik güncellemeyi aç"
+
+msgid "Turn off automatic updates"
+msgstr "Otomatik güncellemeyi kapat"
+
+msgid "Automatic updates turned on for %d package."
+msgid_plural "Automatic updates turned on for %d packages."
+msgstr[0] "%d paketin otomatik güncellemesi açıldı."
+msgstr[1] "%d paketin otomatik güncellemesi açıldı."
+
+msgid "Automatic updates turned off for %d package."
+msgid_plural "Automatic updates turned off for %d packages."
+msgstr[0] "%d paketin otomatik güncellemesi kapatıldı."
+msgstr[1] "%d paketin otomatik güncellemesi kapatıldı."
+
+msgid "No updates yet."
+msgstr "Henüz güncelleme yok."
+
+msgid "On for all FluxWP packages (FluxWP Panel › Settings)."
+msgstr "Tüm FluxWP paketlerinde açık (FluxWP Panel › Ayarlar)."
+
+msgid "Automatic updates are turned off for this site."
+msgstr "Bu sitede otomatik güncellemeler kapalı."
+
+msgid "Retry failed ones"
+msgstr "Hatalıları tekrar dene"
