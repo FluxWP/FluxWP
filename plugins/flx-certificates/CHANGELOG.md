@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.15
+- SMTP sağlayıcı şifresi artık şifreli saklanır. Eski kayıt açılır ve bir sonraki kayıtta mühürlenir. WordPress tuzları değişirse şifreyi yeniden girin.
+
 ## 1.9.14
 - Telefon biçimi ortak yardımcıyı kullanır. Kayıtlı rakamlar aynı kalır (905…).
 

@@ -120,8 +120,40 @@ function flxc_setting( $key ) {
 
 function flxc_update_settings( array $values ) {
 	$s = array_merge( flxc_settings(), $values );
+	if ( isset( $s['connections'] ) && is_array( $s['connections'] ) ) {
+		foreach ( $s['connections'] as $i => $c ) {
+			if ( ! is_array( $c ) ) {
+				continue;
+			}
+			foreach ( array( 'api_key', 'secret' ) as $k ) {
+				$v = (string) ( $c[ $k ] ?? '' );
+				if ( '' === $v || 0 === strpos( $v, 'flx1:' ) || ! function_exists( 'flx_secret_seal' ) ) {
+					continue;
+				}
+				$sealed = flx_secret_seal( $v, 'flx-chat' );
+				if ( '' !== $sealed ) {
+					$s['connections'][ $i ][ $k ] = $sealed;
+				}
+			}
+		}
+	}
 	update_option( 'flxc_settings', $s, false );
 	return flxc_settings( true );
+}
+
+/** Open a stored connection secret. A value from before sealing is returned unchanged. */
+function flxc_open_secret( $value ) {
+	$value = (string) $value;
+	if ( '' === $value || 0 !== strpos( $value, 'flx1:' ) ) {
+		return $value;
+	}
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+	}
+	if ( ! function_exists( 'flx_secret_open' ) ) {
+		return '';
+	}
+	return flx_secret_open( $value, 'flx-chat' );
 }
 
 /** Varsayılan etiketler: ilk kurulumda site dilinde yazılır, sonra panelden değiştirilir. */

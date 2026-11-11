@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.40.4
+- Kendi WhatsApp hattının API anahtarı ve webhook gizli anahtarı artık şifreli saklanır. Eski kayıtlar çalışır ve bir sonraki kayıtta mühürlenir. WordPress tuzları değişirse anahtarı yeniden girin.
+
 ## 1.40.3
 - Sertifika eklentisi yokken telefon kuralı onunla aynıdır. Geçerli numaralar aynı kalır; eksik ya da bozuk Türkiye numarası artık kabul edilmez.
 

@@ -33,7 +33,10 @@ function flxc_connections() {
 	$out  = array();
 	foreach ( $list as $c ) {
 		if ( is_array( $c ) && ! empty( $c['id'] ) ) {
-			$out[ $c['id'] ] = flxc_new_connection( $c );
+			$row               = flxc_new_connection( $c );
+			$row['api_key']    = flxc_open_secret( $row['api_key'] );
+			$row['secret']     = flxc_open_secret( $row['secret'] );
+			$out[ $row['id'] ] = $row;
 		}
 	}
 	return $out;
