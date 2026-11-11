@@ -358,19 +358,3 @@ function flxs_valid_ref_user( $user_id ) {
 	$u = get_userdata( $user_id );
 	return ( $u && ( $u->has_cap( 'flxs_use' ) || $u->has_cap( 'flxs_manage' ) || $u->has_cap( 'flx_referans' ) ) ) ? $user_id : 0;
 }
-
-/** CSV cell: quote a formula, leave a real number (including a negative) as a number. */
-function flxs_csv_cell( $v ) {
-	if ( is_int( $v ) || is_float( $v ) ) {
-		return $v;
-	}
-	$s = (string) $v;
-	if ( preg_match( '/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/', $s ) ) {
-		return $s;
-	}
-	$probe = preg_replace( '/^[\x00-\x08\x0A-\x0C\x0E-\x20]*/', '', $s );
-	if ( is_string( $probe ) && isset( $probe[0] ) && false !== strpos( "=+-@\t\r", $probe[0] ) ) {
-		return "'" . $s;
-	}
-	return $s;
-}

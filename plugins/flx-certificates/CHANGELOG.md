@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.9.10
+- Kayıt CSV'si ortak dışa aktarmayı kullanır. Sütunlar, noktalı virgül ve Excel BOM aynı kalır.
+
 ## 1.9.9
 - "Certificates open at %s {code}." metninde boşluk geri geldi.
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

@@ -230,17 +230,16 @@ add_action(
 		global $wpdb;
 		$ym                = sanitize_text_field( wp_unslash( $_GET['ym'] ?? '' ) );
 		list( $from, $to ) = flxai_month_range( $ym );
-		$rows              = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxai_table( 'log' ) . ' WHERE ts >= %d AND ts < %d ORDER BY ts', $from, $to ), ARRAY_A ); // phpcs:ignore
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="flx-ai-' . wp_date( 'Y-m', $from ) . '.csv"' );
-		$fh = fopen( 'php://output', 'w' ); // phpcs:ignore
-		fwrite( $fh, "\xEF\xBB\xBF" ); // phpcs:ignore
-		fputcsv( $fh, array_map( 'flxai_csv_cell', array( 'time', 'kind', 'source', 'purpose', 'user_id', 'provider', 'model', 'tool', 'in_tokens', 'out_tokens', 'cache_read', 'cache_write', 'cost_usd', 'cost_without_cache_usd', 'estimated', 'ms', 'ok', 'error' ) ) );
-		foreach ( (array) $rows as $r ) {
-			fputcsv( $fh, array_map( 'flxai_csv_cell', array( wp_date( 'Y-m-d H:i:s', (int) $r['ts'] ), $r['kind'], $r['source'], $r['purpose'], $r['user_id'], $r['provider'], $r['model'], $r['tool'], $r['in_tok'], $r['out_tok'], $r['cache_read'], $r['cache_write'], $r['cost'], $r['full_cost'], $r['est'], $r['ms'], $r['ok'], $r['error'] ) ) );
-		}
-		fclose( $fh ); // phpcs:ignore
+		$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxai_table( 'log' ) . ' WHERE ts >= %d AND ts < %d ORDER BY ts', $from, $to ), ARRAY_A ); // phpcs:ignore
+		flx_csv_stream(
+			'flx-ai-' . wp_date( 'Y-m', $from ) . '.csv',
+			array( 'time', 'kind', 'source', 'purpose', 'user_id', 'provider', 'model', 'tool', 'in_tokens', 'out_tokens', 'cache_read', 'cache_write', 'cost_usd', 'cost_without_cache_usd', 'estimated', 'ms', 'ok', 'error' ),
+			( static function () use ( $rows ) {
+				foreach ( (array) $rows as $r ) {
+					yield array( wp_date( 'Y-m-d H:i:s', (int) $r['ts'] ), $r['kind'], $r['source'], $r['purpose'], $r['user_id'], $r['provider'], $r['model'], $r['tool'], $r['in_tok'], $r['out_tok'], $r['cache_read'], $r['cache_write'], $r['cost'], $r['full_cost'], $r['est'], $r['ms'], $r['ok'], $r['error'] );
+				}
+			} )()
+		);
 		exit;
 	}
 );

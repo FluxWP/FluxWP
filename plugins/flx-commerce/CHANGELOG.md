@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.2.9
+- Müşteri ve satış CSV'lerinde formül gibi açılacak hücreler tek tırnakla korunur. Sütunlar, virgül ayırıcı ve Excel BOM aynı kalır.
+
 ## 0.2.8
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

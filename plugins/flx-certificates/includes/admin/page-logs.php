@@ -60,17 +60,18 @@ function flxs_handle_logs_csv() {
 	if ( ! flxs_can_manage() ) {
 		wp_die( 'Yetki yok' );
 	}
-	$q = flxs_logs_query( flxs_logs_args(), 0 );
-	nocache_headers();
-	header( 'Content-Type: text/csv; charset=utf-8' );
-	header( 'Content-Disposition: attachment; filename="sertifika-log-' . gmdate( 'Ymd-His' ) . '.csv"' );
-	$out = fopen( 'php://output', 'w' );
-	fwrite( $out, "\xEF\xBB\xBF" ); // Excel için BOM
-	fputcsv( $out, array_map( 'flxs_csv_cell', array( 'Tarih', 'Kullanıcı', 'İşlem', 'Nesne', 'Nesne ID', 'Açıklama', 'Detay', 'IP' ) ), ';' );
+	$q      = flxs_logs_query( flxs_logs_args(), 0 );
 	$labels = flxs_log_actions();
-	foreach ( $q['items'] as $l ) {
-		fputcsv( $out, array_map( 'flxs_csv_cell', array( flxs_date( $l['created_at'], 'Y-m-d H:i:s' ), flxs_user_label( $l['user_id'] ), $labels[ $l['action'] ] ?? $l['action'], $l['object_type'], $l['object_id'], $l['message'], $l['context'], $l['ip'] ) ), ';' );
-	}
+	flx_csv_stream(
+		'sertifika-log-' . gmdate( 'Ymd-His' ) . '.csv',
+		array( 'Tarih', 'Kullanıcı', 'İşlem', 'Nesne', 'Nesne ID', 'Açıklama', 'Detay', 'IP' ),
+		( static function () use ( $q, $labels ) {
+			foreach ( $q['items'] as $l ) {
+				yield array( flxs_date( $l['created_at'], 'Y-m-d H:i:s' ), flxs_user_label( $l['user_id'] ), $labels[ $l['action'] ] ?? $l['action'], $l['object_type'], $l['object_id'], $l['message'], $l['context'], $l['ip'] );
+			}
+		} )(),
+		array( 'delimiter' => ';' )
+	);
 	exit;
 }
 

@@ -127,9 +127,13 @@ final class FLXCM_Page_Reports {
 		nocache_headers();
 		header( 'Content-Type: text/csv; charset=utf-8' );
 		header( 'Content-Disposition: attachment; filename="sales-' . $s['from'] . '_' . $s['to'] . '.csv"' );
+		header( 'X-Content-Type-Options: nosniff' );
 		$out = fopen( 'php://output', 'w' );
 		fwrite( $out, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
-		fputcsv( $out, array( __( 'Summary', 'flx-commerce' ), $s['from'] . ' – ' . $s['to'] ) );
+		$put = static function ( array $row ) use ( $out ) {
+			fputcsv( $out, array_map( 'flx_csv_cell', $row ) );
+		};
+		$put( array( __( 'Summary', 'flx-commerce' ), $s['from'] . ' – ' . $s['to'] ) );
 		foreach (
 			array(
 				__( 'Gross revenue', 'flx-commerce' )      => wc_format_decimal( $s['gross'], 2 ),
@@ -143,27 +147,27 @@ final class FLXCM_Page_Reports {
 				__( 'Average order', 'flx-commerce' ) => wc_format_decimal( $s['aov'], 2 ),
 			) as $k => $v
 		) {
-			fputcsv( $out, array( $k, $v ) );
+			$put( array( $k, $v ) );
 		}
 		fputcsv( $out, array() );
-		fputcsv( $out, array( __( 'Day', 'flx-commerce' ), __( 'Net revenue', 'flx-commerce' ), __( 'Orders', 'flx-commerce' ) ) );
+		$put( array( __( 'Day', 'flx-commerce' ), __( 'Net revenue', 'flx-commerce' ), __( 'Orders', 'flx-commerce' ) ) );
 		foreach ( $s['series'] as $day => $v ) {
-			fputcsv( $out, array( $day, wc_format_decimal( $v[0], 2 ), $v[1] ) );
+			$put( array( $day, wc_format_decimal( $v[0], 2 ), $v[1] ) );
 		}
 		fputcsv( $out, array() );
-		fputcsv( $out, array( __( 'Product', 'flx-commerce' ), __( 'Qty', 'flx-commerce' ), __( 'Net sales', 'flx-commerce' ) ) );
+		$put( array( __( 'Product', 'flx-commerce' ), __( 'Qty', 'flx-commerce' ), __( 'Net sales', 'flx-commerce' ) ) );
 		foreach ( $s['products'] as $r ) {
-			fputcsv( $out, array( FLXCM_Customers::csv_cell( $r[1] ), $r[2], wc_format_decimal( $r[3], 2 ) ) );
+			$put( array( $r[1], $r[2], wc_format_decimal( $r[3], 2 ) ) );
 		}
 		fputcsv( $out, array() );
-		fputcsv( $out, array( __( 'Category', 'flx-commerce' ), __( 'Qty', 'flx-commerce' ), __( 'Net sales', 'flx-commerce' ) ) );
+		$put( array( __( 'Category', 'flx-commerce' ), __( 'Qty', 'flx-commerce' ), __( 'Net sales', 'flx-commerce' ) ) );
 		foreach ( $s['categories'] as $r ) {
-			fputcsv( $out, array( FLXCM_Customers::csv_cell( $r[0] ), $r[1], wc_format_decimal( $r[2], 2 ) ) );
+			$put( array( $r[0], $r[1], wc_format_decimal( $r[2], 2 ) ) );
 		}
 		fputcsv( $out, array() );
-		fputcsv( $out, array( __( 'Payment method', 'flx-commerce' ), __( 'Orders', 'flx-commerce' ), __( 'Net sales', 'flx-commerce' ) ) );
+		$put( array( __( 'Payment method', 'flx-commerce' ), __( 'Orders', 'flx-commerce' ), __( 'Net sales', 'flx-commerce' ) ) );
 		foreach ( $s['methods'] as $r ) {
-			fputcsv( $out, array( FLXCM_Customers::csv_cell( $r[0] ), $r[1], wc_format_decimal( $r[2], 2 ) ) );
+			$put( array( $r[0], $r[1], wc_format_decimal( $r[2], 2 ) ) );
 		}
 		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 		exit;

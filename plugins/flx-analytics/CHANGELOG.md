@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.7
+- CSV indirmede formül gibi açılacak hücrelerin başına tek tırnak gelir. Sütunlar, noktalı virgül ve Excel BOM aynı kalır.
+
 ## 0.4.6
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

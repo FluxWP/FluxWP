@@ -511,3 +511,56 @@ function flx_phone_normalize( $raw, $country = '' ) {
 	}
 	return strlen( $out ) >= 8 && strlen( $out ) <= 15 ? '+' . $out : '';
 }
+
+/** Quote a CSV cell that opens as a spreadsheet formula; leave a real number, including a negative, as a number. */
+function flx_csv_cell( $v ) {
+	if ( is_int( $v ) || is_float( $v ) ) {
+		return $v;
+	}
+	$s = (string) $v;
+	if ( preg_match( '/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/', $s ) ) {
+		return $s;
+	}
+	$probe = preg_replace( '/^[\x00-\x08\x0A-\x0C\x0E-\x20]*/', '', $s );
+	if ( is_string( $probe ) && isset( $probe[0] ) && false !== strpos( "=+-@\t\r", $probe[0] ) ) {
+		return "'" . $s;
+	}
+	return $s;
+}
+
+/** Send a CSV download for $header and $rows, then return. The caller exits. */
+function flx_csv_stream( string $filename, array $header, iterable $rows, array $args = array() ) {
+	$delimiter = isset( $args['delimiter'] ) ? (string) $args['delimiter'] : ',';
+	$bom       = array_key_exists( 'bom', $args ) ? (bool) $args['bom'] : true;
+	nocache_headers();
+	header( 'Content-Type: text/csv; charset=utf-8' );
+	header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( $filename ) . '"' );
+	header( 'X-Content-Type-Options: nosniff' );
+	$out = fopen( 'php://output', 'w' );
+	if ( false === $out ) {
+		return;
+	}
+	if ( $bom ) {
+		fwrite( $out, "\xEF\xBB\xBF" );
+	}
+	$write = static function ( array $row ) use ( $out, $delimiter, $args ) {
+		$cells = array();
+		foreach ( $row as $cell ) {
+			$cells[] = flx_csv_cell( $cell );
+		}
+		if ( array_key_exists( 'enclosure', $args ) || array_key_exists( 'escape', $args ) ) {
+			$enclosure = array_key_exists( 'enclosure', $args ) ? (string) $args['enclosure'] : '"';
+			$escape    = array_key_exists( 'escape', $args ) ? (string) $args['escape'] : '\\';
+			fputcsv( $out, $cells, $delimiter, $enclosure, $escape );
+			return;
+		}
+		fputcsv( $out, $cells, $delimiter );
+	};
+	if ( array() !== $header ) {
+		$write( $header );
+	}
+	foreach ( $rows as $row ) {
+		$write( array_values( (array) $row ) );
+	}
+	fclose( $out );
+}
