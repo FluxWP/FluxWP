@@ -343,7 +343,7 @@ Flux WPAPI ve hesaplar (1.34.0): WhatsApp hesapları (Evolution API ya da Flux W
 
 Flux App (1.33.0): Çağrı Merkezi `flxapp_modules` filtresiyle `flxc-inbox` modülü olarak kaydolur; uygulama WhatsApp menüsünü yerel ekranla açar. Uçlar `flx-chat/v1/app/chats`, `/app/chats/<id>`, `/app/chats/<id>/messages?before=|after=`, `/app/chats/<id>/send` `{text}`, `/app/chats/<id>/read`, `/app/chats/<id>/bot` `{on}`; biçim docs/fluxapp/MODUL-API.md. Medya adresleri imzalı ve süreli (`/app/media/<id>?u=&e=&s=`).
 
-Giriş ya da doğrulama kodu gibi panelde görünmemesi gereken metin için `flxc_send_private_text( '905321234567', 'Giriş kodunuz: 123456', array( 'source' => 'flxapp-otp' ) )` kullanın (1.32.0): sohbet açılmaz, mesaj kaydedilmez, asistan susturulmaz. `true` ya da `WP_Error` döner. Asistanı susturmayan kaynaklar `flxc_bot_auto_sources` filtresiyle genişletilebilir.
+Giriş ya da doğrulama kodu gibi panelde görünmemesi gereken metin için `flxc_send_private_text( '905321234567', 'Giriş kodunuz: 123456', array( 'source' => 'flxapp-otp' ) )` kullanın (1.32.0): sohbet açılmaz, mesaj kaydedilmez, asistan susturulmaz. `true` ya da `WP_Error` döner. Asistanı susturmayan kaynaklar `flxc_bot_auto_sources` filtresiyle genişletilebilir. 1.40.0'dan beri asistanı yalnız temsilcinin yazdığı mesaj susturur (kaynaklar `flxc_bot_pause_sources`, varsayılan `agent`, `quick`, `ai`, `record`) ve telefondan yazılan mesaj; sertifika, bağış onayı ve diğer eklenti gönderimleri susturmaz.
 
 ## 12. Dil
 Arayüz kaynak dili Türkçedir, İngilizce çevirisi pakettedir. Dil, kullanıcının WordPress dil ayarını izler (Profil › Dil).
