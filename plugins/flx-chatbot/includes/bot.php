@@ -273,13 +273,18 @@ function flxcb_bot_history( $conv ) {
 /**
  * Asistan cevabı üretir ve kaydeder.
  *
- * @param array    $conv Sohbet.
- * @param callable $emit Akış olayı: fn( array( 't' => text|tool, 'd' => … ) ).
- * @param array    $page Ziyaretçinin bulunduğu sayfa { url, title }.
+ * @param array    $conv     Sohbet.
+ * @param callable $emit     Akış olayı: fn( array( 't' => text|tool, 'd' => … ) ).
+ * @param array    $page     Ziyaretçinin bulunduğu sayfa { url, title }.
+ * @param float    $deadline microtime(true) son an. 0 ise bu çağrıdan itibaren 45 sn.
  * @return array|WP_Error { message id, handoff?, lead? }
  */
-function flxcb_bot_reply( $conv, $emit = null, array $page = array() ) {
-	$emit = is_callable( $emit ) ? $emit : function () {};
+function flxcb_bot_reply( $conv, $emit = null, array $page = array(), $deadline = 0.0 ) {
+	$emit     = is_callable( $emit ) ? $emit : function () {};
+	$deadline = (float) $deadline > 0 ? (float) $deadline : microtime( true ) + 45;
+	$remain   = function () use ( $deadline ) {
+		return $deadline - microtime( true );
+	};
 	if ( ! flxcb_ai_ready() ) {
 		return new WP_Error( 'flxcb_ai', 'ai unavailable' );
 	}
@@ -308,12 +313,22 @@ function flxcb_bot_reply( $conv, $emit = null, array $page = array() ) {
 	$usage = array();
 
 	for ( $round = 0; $round < 5; $round++ ) {
-		$opts = array(
+		$left = $remain();
+		// Birkaç saniyeden az kaldıysa yeni tur açma; eldeki cevabı yaz.
+		if ( $left < 3 ) {
+			break;
+		}
+		$streamed = '';
+		$opts     = array(
 			'purpose'    => 'chatbot',
 			'max_tokens' => 700,
-			'timeout'    => 40,
-			'stream'     => function ( $ev ) use ( $emit ) {
+			'timeout'    => max( 1, (int) floor( $left ) ),
+			'stop_check' => function () use ( $remain ) {
+				return $remain() < 3;
+			},
+			'stream'     => function ( $ev ) use ( $emit, &$streamed ) {
 				if ( 'text' === ( $ev['t'] ?? '' ) && '' !== (string) ( $ev['d'] ?? '' ) ) {
+					$streamed .= (string) $ev['d'];
 					$emit( array( 't' => 'text', 'd' => (string) $ev['d'] ) );
 				}
 			},
@@ -323,7 +338,13 @@ function flxcb_bot_reply( $conv, $emit = null, array $page = array() ) {
 		}
 		$res = flx_ai_chat( 'flx-chatbot', $messages, $opts );
 		if ( is_wp_error( $res ) ) {
-			if ( '' !== $text ) {
+			$data    = $res->get_error_data();
+			$partial = trim( (string) ( is_array( $data ) ? ( $data['partial'] ?? '' ) : '' ) );
+			$chunk   = '' !== $partial ? $partial : trim( $streamed );
+			if ( '' !== $chunk ) {
+				$text .= ( '' !== $text ? "\n\n" : '' ) . $chunk;
+			}
+			if ( '' !== trim( $text ) || $state['cards'] ) {
 				break;
 			}
 			return $res;
@@ -340,7 +361,12 @@ function flxcb_bot_reply( $conv, $emit = null, array $page = array() ) {
 			'content'    => $chunk,
 			'tool_calls' => $calls,
 		);
+		$stopped = false;
 		foreach ( $calls as $c ) {
+			if ( $remain() < 3 ) {
+				$stopped = true;
+				break;
+			}
 			$name = (string) ( $c['function']['name'] ?? '' );
 			$args = json_decode( (string) ( $c['function']['arguments'] ?? '{}' ), true );
 			$emit( array( 't' => 'tool', 'd' => $name ) );
@@ -353,6 +379,9 @@ function flxcb_bot_reply( $conv, $emit = null, array $page = array() ) {
 			if ( 'save_contact' === $name ) {
 				$conv = flxcb_get_conversation( (int) $conv['id'] );
 			}
+		}
+		if ( $stopped ) {
+			break;
 		}
 	}
 
