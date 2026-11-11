@@ -26,7 +26,12 @@ final class FLXB_WC_Esnekpos_Blocks extends AbstractPaymentMethodType {
 	}
 
 	public function get_payment_method_script_handles() {
-		wp_register_script( 'flxb-esnekpos-blocks', FLXB_URL . 'assets/wc/esnekpos-blocks.js', array( 'wc-blocks-registry', 'wc-settings', 'wp-element', 'wp-data', 'wp-html-entities' ), FLXB_VERSION, true );
+		$deps = array( 'wc-blocks-registry', 'wc-settings', 'wp-element', 'wp-data', 'wp-html-entities' );
+		if ( function_exists( 'flx_field_enqueue' ) ) {
+			flx_field_enqueue(); // 2.22.0: the card fields use the shared FluxWP field look and icons
+			$deps[] = 'flx-field';
+		}
+		wp_register_script( 'flxb-esnekpos-blocks', FLXB_URL . 'assets/wc/esnekpos-blocks.js', $deps, FLXB_VERSION, true );
 		wp_enqueue_style( 'flxb-esnekpos', FLXB_URL . 'assets/wc/esnekpos.css', array(), FLXB_VERSION );
 		return array( 'flxb-esnekpos-blocks' );
 	}

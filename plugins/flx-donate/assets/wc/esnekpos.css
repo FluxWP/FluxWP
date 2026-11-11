@@ -13,14 +13,10 @@
 .flxb-cc > *, .flxb-cc__f.is-wide { grid-column: 1 / -1; }
 .flxb-cc__row { display: contents; }
 .flxb-cc__row > .flxb-cc__f { grid-column: auto; }
-.flxb-cc__box { position: relative; display: block; margin: 0; padding: 7px 12px 6px; min-height: 52px; border: 1px solid var(--cc-line); border-radius: var(--cc-r); background: #fff; cursor: text; transition: border-color .15s, box-shadow .15s; }
-.flxb-cc__box:focus-within { border-color: var(--cc-p); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cc-p) 16%, transparent); }
-.flxb-cc__label { display: flex; align-items: baseline; gap: 6px; font-size: 12px; line-height: 1.25; color: var(--cc-m); white-space: nowrap; }
-.flxb-cc__hint-r { margin-left: auto; font-size: 10.5px; letter-spacing: .02em; opacity: .85; }
-.flxb-cc__box input { display: block; width: 100%; margin: 0; padding: 0 64px 0 0; border: 0 !important; outline: 0; background: none !important; box-shadow: none !important; font: inherit; font-size: 16px; line-height: 1.4; color: var(--cc-ink); min-height: 0 !important; height: auto !important; }
-.flxb-cc__box input::placeholder { color: #A1A1AA; }
-.flxb-cc__f.has-error .flxb-cc__box { border-color: var(--cc-err); background: #FEF3F2; }
-.flxb-cc__err { display: block; margin: 4px 2px 0; color: var(--cc-err); font-size: 13px; font-weight: 600; line-height: 1.35; }
+.flxb-cc .flx-fld { --flx-f-p: var(--cc-p); --flx-f-ink: var(--cc-ink); --flx-f-line: var(--cc-line); --flx-f-muted: var(--cc-m); min-width: 0; }
+.flxb-cc .flx-fld__box { position: relative; }
+.flxb-cc .flx-fld__input { font-variant-numeric: tabular-nums; letter-spacing: .01em; }
+.flxb-cc .flx-fld__box:has(.flxb-cc__brand:not(.flxb-cc__brand--none)) .flx-fld__in { padding-right: 52px; }
 .flxb-cc__brand { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center; min-width: 38px; height: 22px; padding: 0 6px; border-radius: 4px; font: 800 10px/1 system-ui, sans-serif; font-style: normal; letter-spacing: .02em; color: #fff; }
 .flxb-cc__brand--none { display: none; }
 .flxb-cc__brand--visa { background: #1A1F71; }

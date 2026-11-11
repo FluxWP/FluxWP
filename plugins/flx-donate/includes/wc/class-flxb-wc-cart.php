@@ -78,6 +78,41 @@ final class FLXB_WC_Cart {
 		return $any;
 	}
 
+	/**
+	 * 2.22.0: does the type take a hand-written amount? Its own "free amount" switch, or Appearance ›
+	 * "Other amount" for the types shown on the form (not for proxy types: a share has a fixed price).
+	 */
+	public static function takes_free( array $t ) {
+		if ( ! empty( $t['allow_free'] ) ) {
+			return true;
+		}
+		$on = class_exists( 'FLXB_WC_Look' ) && FLXB_WC_Look::get( 'other_amount' ) && self::in_form( $t ) && ! FLXB_Types::requires_proxy( $t );
+		return (bool) apply_filters( 'flxb_takes_free', $on, $t );
+	}
+
+	/** 2.22.0: lowest hand-written amount: the type's own, else the one of Settings › Appearance. */
+	public static function min_free( array $t, $currency = '' ) {
+		$cur = '' !== (string) $currency ? strtoupper( (string) $currency ) : self::currency();
+		$min = FLXB_Types::min_amount_in( $t, $cur );
+		if ( $min <= 0 && class_exists( 'FLXB_WC_Look' ) ) {
+			$base = class_exists( 'FLXB_WC_Currency' ) ? FLXB_WC_Currency::base() : get_woocommerce_currency();
+			$map  = (array) FLXB_WC_Look::get( 'min_amounts' );
+			$min  = $cur === $base ? (float) FLXB_WC_Look::get( 'min_amount' ) : (float) ( $map[ $cur ] ?? 0 );
+		}
+		return (float) apply_filters( 'flxb_min_free', $min, $t, $cur );
+	}
+
+	/** 2.22.0: the first option with a count that is on sale in the currency (amount buttons, units of a free amount). */
+	public static function unit_option( array $t, $currency = '' ) {
+		$cur = '' !== (string) $currency ? strtoupper( (string) $currency ) : self::currency();
+		foreach ( (array) $t['options'] as $o ) {
+			if ( self::option_takes_units( $t, (string) $o['key'] ) && FLXB_Types::option_on_sale_in( $t, $o, $cur ) ) {
+				return $o;
+			}
+		}
+		return null;
+	}
+
 	/** The option that takes a free count ("different quantity"), or '' when quantity is per option. */
 	public static function custom_option( array $t ) {
 		return (string) FLXB_Types::meta( $t, 'custom_option', '' );
@@ -150,9 +185,9 @@ final class FLXB_WC_Cart {
 				}
 				$line['units'] = $n;
 			}
-		} elseif ( $free && $t['allow_free'] ) {
+		} elseif ( $free && self::takes_free( $t ) ) {
 			$amount = FLXB_WC::parse_amount( $in['amount'] ?? '' );
-			$min    = FLXB_Types::min_amount_in( $t, $cur );
+			$min    = self::min_free( $t, $cur );
 			if ( $amount <= 0 || $amount < $min ) {
 				/* translators: %s: lowest amount */
 				return new WP_Error( 'flxb_amount', $min > 0 ? sprintf( __( 'The amount must be at least %s.', 'flx-donate' ), FLXB_WC::money_text( $min ) ) : __( 'Please enter an amount.', 'flx-donate' ) );
@@ -161,6 +196,13 @@ final class FLXB_WC_Cart {
 				return new WP_Error( 'flxb_amount', __( 'For this amount please get in touch with us.', 'flx-donate' ) );
 			}
 			$line['amount'] = round( $amount, 2 );
+			/* 2.22.0: a free amount on a type sold by the piece counts as whole pieces (450 TL = 3 saplings at 150 TL), at least one. */
+			$uo = self::unit_option( $t, $cur );
+			$up = $uo ? (float) FLXB_Types::option_price( $t, $uo, $cur ) : 0;
+			if ( $uo && $up > 0 && '' !== (string) $uo['unit'] ) {
+				$line['free_units'] = max( 1, (int) floor( ( $amount + 0.001 ) / $up ) ) * max( 1, (int) $uo['units_per'] );
+				$line['free_unit']  = (string) $uo['unit'];
+			}
 		} else {
 			return new WP_Error( 'flxb_option', __( 'Please choose an option.', 'flx-donate' ) );
 		}
@@ -308,7 +350,7 @@ final class FLXB_WC_Cart {
 				/* Priced on the server before it reached the cart (Flux Forms hand-off), never by the browser. */
 				return round( (float) $line['amount'], 2 );
 			}
-			return $t['allow_free'] ? max( 0, (float) ( $line['amount'] ?? 0 ) ) : 0.0;
+			return self::takes_free( $t ) ? max( 0, (float) ( $line['amount'] ?? 0 ) ) : 0.0;
 		}
 		$o = FLXB_Types::option( $t, (string) $line['option'] );
 		if ( ! $o || empty( $o['active'] ) ) {
@@ -374,7 +416,7 @@ final class FLXB_WC_Cart {
 			}
 		}
 		if ( empty( $in['option'] ) ) {
-			$in['amount'] = max( 1, FLXB_Types::min_amount_in( $t, self::currency() ) );
+			$in['amount'] = max( 1, self::min_free( $t, self::currency() ) );
 		}
 		$line = self::build_line( $in );
 		if ( ! is_wp_error( $line ) ) {
@@ -473,7 +515,9 @@ final class FLXB_WC_Cart {
 		$t = FLXB_Types::get( (int) ( $line['type_id'] ?? 0 ) );
 		$o = $t && '' !== (string) ( $line['option'] ?? '' ) ? FLXB_Types::option( $t, (string) $line['option'] ) : null;
 		if ( ! $o ) {
-			return array( 0, '' );
+			/* 2.22.0: a free amount on a type sold by the piece. */
+			$n = (int) ( $line['free_units'] ?? 0 );
+			return $n > 0 && '' !== (string) ( $line['free_unit'] ?? '' ) ? array( $n * max( 1, (int) $qty ), (string) $line['free_unit'] ) : array( 0, '' );
 		}
 		return array( max( 1, (int) ( $line['units'] ?? 1 ) ) * max( 1, (int) $o['units_per'] ) * max( 1, (int) $qty ), (string) $o['unit'] );
 	}

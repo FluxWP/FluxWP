@@ -17,12 +17,18 @@
 	var ui = null, timer = 0;
 
 	function field(id, type, label, val, extra) {
+		/* 2.22.0: the shared FluxWP field (icon, label inside, one error look); checked by this script. */
 		var w = document.createElement('div');
-		w.className = 'flxb-ct__field';
-		var l = document.createElement('label'); l.htmlFor = id; l.textContent = label;
-		var i = document.createElement('input'); i.id = id; i.type = type; i.value = val || '';
+		w.className = 'flx-fld flx-fld--wide flxb-ct__field';
+		w.setAttribute('data-flx-manual', '');
+		var box = document.createElement('label'); box.className = 'flx-fld__box'; box.htmlFor = id;
+		var ico = window.flxField ? window.flxField.icon('tel' === type ? 'phone' : 'mail') : '';
+		if (ico) { box.insertAdjacentHTML('beforeend', ico); }
+		var inn = document.createElement('span'); inn.className = 'flx-fld__in';
+		var l = document.createElement('span'); l.className = 'flx-fld__label'; l.textContent = label;
+		var i = document.createElement('input'); i.className = 'flx-fld__input'; i.id = id; i.type = type; i.value = val || '';
 		Object.keys(extra || {}).forEach(function (k) { i.setAttribute(k, extra[k]); });
-		w.appendChild(l); w.appendChild(i);
+		inn.appendChild(l); inn.appendChild(i); box.appendChild(inn); w.appendChild(box);
 		return { w: w, i: i };
 	}
 
@@ -42,6 +48,9 @@
 		else if (!e && !phoneOk(p)) { msg = C.need; }
 		ui.err.textContent = msg; ui.err.hidden = !msg;
 		ui.box.classList.toggle('has-error', !!msg);
+		var badE = !!msg && (msg === C.badEmail || msg === C.need), badP = !!msg && (msg === C.badPhone || msg === C.need);
+		ui.email.w.classList.toggle('is-error', badE); ui.phone.w.classList.toggle('is-error', badP);
+		ui.email.i.setAttribute('aria-invalid', badE ? 'true' : 'false'); ui.phone.i.setAttribute('aria-invalid', badP ? 'true' : 'false');
 		return !msg;
 	}
 
@@ -57,7 +66,7 @@
 		var email = field('flxb-ct-email', 'email', C.email, isPh(b.email) ? '' : (b.email || emailInput.value), { autocomplete: 'email', inputmode: 'email' });
 		var phone = field('flxb-ct-phone', 'tel', C.phone, b.phone || '', { autocomplete: 'tel', inputmode: 'tel', placeholder: C.phoneHolder });
 		var help = document.createElement('p'); help.className = 'flxb-ct__help'; help.textContent = C.help;
-		var err = document.createElement('p'); err.className = 'flxb-ct__err'; err.setAttribute('role', 'alert'); err.hidden = true;
+		var err = document.createElement('p'); err.className = 'flxb-ct__err flx-fld__msg'; err.setAttribute('role', 'alert'); err.hidden = true;
 		var row = document.createElement('div'); row.className = 'flxb-ct__row';
 		row.appendChild(phone.w); row.appendChild(email.w);
 		box.appendChild(row); box.appendChild(help); box.appendChild(err);
@@ -66,8 +75,8 @@
 		/* 2.21.0: a signed-in donor's e-mail and phone are read-only (changed under My account). */
 		var U = C.user;
 		if (U) {
-			if (U.email) { email.i.value = U.email; email.i.readOnly = true; }
-			if (U.phone) { phone.i.value = U.phone; phone.i.readOnly = true; }
+			if (U.email) { email.i.value = U.email; email.i.readOnly = true; email.w.classList.add('is-readonly'); }
+			if (U.phone) { phone.i.value = U.phone; phone.i.readOnly = true; phone.w.classList.add('is-readonly'); }
 			if (U.email && U.phone) { help.hidden = true; }
 			var who = document.createElement('p'); who.className = 'flxb-ct__who';
 			var t = document.createElement('span'); t.textContent = U.who; who.appendChild(t);

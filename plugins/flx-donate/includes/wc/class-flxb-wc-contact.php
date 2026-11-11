@@ -72,7 +72,12 @@ class FLXB_WC_Contact {
 			return;
 		}
 		wp_enqueue_style( 'flxb-contact', FLXB_URL . 'assets/wc/contact.css', array(), FLXB_VERSION );
-		wp_enqueue_script( 'flxb-contact', FLXB_URL . 'assets/wc/contact.js', array(), FLXB_VERSION, true );
+		$deps = array();
+		if ( function_exists( 'flx_field_enqueue' ) ) {
+			flx_field_enqueue(); // 2.22.0: shared FluxWP fields
+			$deps[] = 'flx-field';
+		}
+		wp_enqueue_script( 'flxb-contact', FLXB_URL . 'assets/wc/contact.js', $deps, FLXB_VERSION, true );
 		/* "Order summary" → "Donation summary": WooCommerce's block checkout translates in JS, so filter its gettext there, before it renders. */
 		wp_add_inline_script( 'wp-hooks', 'window.wp&&wp.hooks&&wp.hooks.addFilter("i18n.gettext_woocommerce","flx-donate/summary",function(t,s){return "Order summary"===s?' . wp_json_encode( __( 'Donation summary', 'flx-donate' ) ) . ':t;});' );
 		wp_localize_script(

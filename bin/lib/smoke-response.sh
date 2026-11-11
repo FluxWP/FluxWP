@@ -3,6 +3,11 @@
 # Ordinary prose mentioning "critical error" must not fail a release.
 flx_test_response_failed() {
   local code="$1" body="$2"
+  # A menu parent that has no screen of its own (admin.php?page=woocommerce) answers
+  # with wp_die( 'Cannot load <slug>.' ) and HTTP 500. No code failed there.
+  if [ "$code" = 500 ] && grep -qE '<div class="wp-die-message">(<p>)?Cannot load [A-Za-z0-9_-]+\.(</p>)?</div>' "$body"; then
+    return 1
+  fi
   case "$code" in 5[0-9][0-9]) return 0 ;; esac
 
   # PHP's HTML diagnostics use <br /> and <b>; preserve the diagnostic's line start.
