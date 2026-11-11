@@ -700,6 +700,17 @@ final class FLXB_WC_Form {
 					<?php endif; ?>
 					<span class="flxwb-pkg__tick" aria-hidden="true"><?php echo FLXB_WC::icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
 				</label>
+				<?php
+				/* 2.18.0: quick quantity buttons under a quantity option (filter flxb_quick_qty; empty list = none). */
+				$quick = $qty ? array_values( array_filter( array_map( 'intval', (array) apply_filters( 'flxb_quick_qty', array( 1, 5, 10, 25, 50 ), $t, $o ) ), static function ( $q ) use ( $d ) { return $q >= 1 && $q <= (int) $d['max']; } ) ) : array();
+				if ( count( $quick ) > 1 ) :
+					?>
+				<div class="flxwb-quick" role="group" aria-label="<?php esc_attr_e( 'Quick choice', 'flx-donate' ); ?>">
+					<?php foreach ( $quick as $qn ) : ?>
+					<button type="button" data-flxwb-quick="<?php echo esc_attr( (string) $qn ); ?>" aria-controls="<?php echo esc_attr( $cid ); ?>" aria-pressed="<?php echo (int) $units === $qn ? 'true' : 'false'; ?>"><?php echo esc_html( number_format_i18n( $qn * $n ) ); ?></button>
+					<?php endforeach; ?>
+				</div>
+				<?php endif; ?>
 			<?php endforeach; ?>
 			<?php if ( $t['allow_free'] ) : ?>
 				<label class="flxwb-pkg flxwb-pkg--free">

@@ -50,6 +50,8 @@ final class FLXB_WC_Look {
 			'fee_on'       => 0,         // "I will cover the transaction fee" box on the form
 			'fee_checked'  => 0,         // the box is ticked by default
 			'fee_rates'    => array(),   // [ gateway id => [ 'pct' => 2.9, 'fixed' => 0.25 ] ]
+			'checkout'     => 'compact', // 2.18.0: compact (two columns, cards, pay button in the summary) | theme
+			'signup'       => 1,         // 2.18.0: guests can tick "Create an account" at the checkout
 		);
 	}
 
@@ -99,6 +101,13 @@ final class FLXB_WC_Look {
 		);
 	}
 
+	public static function checkout_styles() {
+		return array(
+			'compact' => array( __( 'Two columns', 'flx-donate' ), __( 'Contact and payment as cards on the left; the summary, the terms box and the pay button on the right. On phones one column with a pay bar at the bottom.', 'flx-donate' ) ),
+			'theme'   => array( __( 'Theme', 'flx-donate' ), __( 'The look of WooCommerce and the theme.', 'flx-donate' ) ),
+		);
+	}
+
 	public static function section_labels() {
 		return array(
 			'options' => __( 'Options and amount', 'flx-donate' ),
@@ -140,6 +149,8 @@ final class FLXB_WC_Look {
 		$out['opt_view']     = isset( $in['opt_view'], self::opt_views()[ $in['opt_view'] ] ) ? (string) $in['opt_view'] : $d['opt_view'];
 		$out['fee_on']       = empty( $in['fee_on'] ) ? 0 : 1;
 		$out['fee_checked']  = empty( $in['fee_checked'] ) ? 0 : 1;
+		$out['checkout']     = isset( $in['checkout'], self::checkout_styles()[ $in['checkout'] ] ) ? (string) $in['checkout'] : $d['checkout'];
+		$out['signup']       = array_key_exists( 'signup', $in ) ? ( empty( $in['signup'] ) ? 0 : 1 ) : $d['signup'];
 		$out['fee_rates']    = array();
 		foreach ( (array) ( $in['fee_rates'] ?? array() ) as $gw => $r ) {
 			$gw  = sanitize_key( (string) $gw );
@@ -258,6 +269,8 @@ final class FLXB_WC_Look {
 				'opt_view'     => array( 'type' => 'enum', 'enum' => array_keys( self::opt_views() ), 'default' => 'list', 'desc' => 'Options of a type: list (one under the other), select (one row: drop-down + quantity), smart (list until a pick, then one row; the rest of the form opens after the pick).' ),
 				'fee_on'       => array( 'type' => 'bool', 'default' => false, 'desc' => 'Show the "I will cover the transaction fee" box on the donation form.' ),
 				'fee_checked'  => array( 'type' => 'bool', 'default' => false, 'desc' => 'The transaction fee box is ticked by default.' ),
+				'checkout'     => array( 'type' => 'enum', 'enum' => array_keys( self::checkout_styles() ), 'default' => 'compact', 'desc' => 'Checkout page layout: compact (two columns, sections as cards, terms + pay button in the summary) or theme.' ),
+				'signup'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Guests can tick "Create an account" at the checkout (the password is e-mailed).' ),
 				'fee_rates'    => array( 'type' => 'object', 'default' => array(), 'desc' => 'Transaction fee per payment method: { "gateway id": { "pct": 2.9, "fixed": 0.25 } } (fixed in the store currency).' ),
 			),
 		);
@@ -309,7 +322,14 @@ final class FLXB_WC_Look {
 		foreach ( self::pay_styles() as $k => $v ) {
 			echo '<label class="flxb-look__opt"><input type="radio" name="pay_style" value="' . esc_attr( $k ) . '"' . checked( $s['pay_style'], $k, false ) . '>' . self::thumb( 'pay', $k ) . '<strong>' . esc_html( $v[0] ) . '</strong><span>' . esc_html( $v[1] ) . '</span></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
-		echo '</div></section>';
+		echo '</div>';
+		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Checkout page layout', 'flx-donate' ) . '</span><div class="flxb-look__grid flxb-look__grid--text">';
+		foreach ( self::checkout_styles() as $k => $v ) {
+			echo '<label class="flxb-look__opt"><input type="radio" name="checkout" value="' . esc_attr( $k ) . '"' . checked( $s['checkout'], $k, false ) . '><strong>' . esc_html( $v[0] ) . '</strong><span>' . esc_html( $v[1] ) . '</span></label>';
+		}
+		echo '</div></div>';
+		echo '<label class="flxb-check"><input type="checkbox" name="signup" value="1"' . checked( (int) $s['signup'], 1, false ) . '> ' . esc_html__( 'Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)', 'flx-donate' ) . '</label>';
+		echo '</section>';
 
 		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Colours and corners', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Used by the form and the payment options. Empty fields follow the theme.', 'flx-donate' ) . '</p></div></div><div class="flxb-fields-2">';
 		foreach ( array( 'primary' => __( 'Main colour', 'flx-donate' ), 'accent' => __( 'Accent colour', 'flx-donate' ) ) as $k => $l ) {
@@ -383,6 +403,7 @@ final class FLXB_WC_Look {
 		$in['share_phone'] = ! empty( $in['share_phone'] ) ? 1 : 0;
 		$in['fee_on']      = ! empty( $in['fee_on'] ) ? 1 : 0;
 		$in['fee_checked'] = ! empty( $in['fee_checked'] ) ? 1 : 0;
+		$in['signup']      = ! empty( $in['signup'] ) ? 1 : 0;
 		update_option( self::OPTION, self::clean( $in ), false );
 		self::flush();
 		FLXB_Admin::redirect( 'flxb-settings', array( 'tab' => 'look', 'flxb_msg' => 'saved' ) );

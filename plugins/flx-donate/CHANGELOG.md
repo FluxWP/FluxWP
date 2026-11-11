@@ -1,5 +1,15 @@
 # Değişiklikler
 
+## 2.20.0
+- EsnekPOS: kart alanları ödeme sayfasında; 3D Secure aynı sayfada pencerede açılır, sayfadan ayrılmadan sonuç gelir. Hata olursa nedeni ve "kartınızdan para çekilmedi" açıkça yazar; hata Öde düğmesinin üstünde de görünür.
+- EsnekPOS: kart numarası girilince taksit seçenekleri (kredi kartı, BIN'e göre; taksit farkını bağışçı ya da dernek öder, ayarlanır). Kart alanlarının altında 3D Secure bilgisi.
+- EsnekPOS "Telefon Boş Bırakılamaz" hatası: telefon siparişten, hesaptan ya da bağışçı kaydından alınır; hiçbiri yoksa kart formunda telefon istenir.
+- Sağ üstteki "Güvenli ödeme" rozeti seçili kart sağlayıcısını yazar (EsnekPOS seçiliyken iyzico yazmaz).
+- Görünüm › Ödeme sayfası düzeni: yeni "İki sütun" (varsayılan): adımlar kart görünümünde, boşluklar az; sağda özet, şartlar onayı ve "{tutar} öde" düğmesi (taksit seçilince taksitli toplam). Telefonda tek sütun.
+- Giriş yapmış bağışçının e-posta ve telefonu salt okunur gelir (Hesabım'dan değişir); ad boşsa hesaptaki ad yazılır. Misafir "Hesap oluştur" kutusunu işaretleyebilir (şifre bağlantısı e-postayla gider; yalnız e-posta yazılınca görünür).
+- Bağış formu: adet seçeneğinin altında hızlı seçim düğmeleri (1, 5, 10, 25, 50; filtre flxb_quick_qty). A düzeni geniş yerleşir, tek bağış türü varken "Bağış türü" adımı gizlenir. "1Fidan" yazımı "1 fidan" oldu.
+- Fidan ürün görseli artık gerçek fidan fotoğrafı; eski hazır ikon görseli kendiliğinden değişir (elle seçilen görsele dokunulmaz). Görseli olmayan kalemde özet gri yer tutucu yerine fidan ikonu gösterir.
+
 ## 2.18.0
 - Yeni **Bağışlarım** sayfası (`[flx_bagislarim]`): hesabı olmayan bağışçı e-posta ya da telefonunu girer, tek kullanımlık 6 haneli kodla doğrulanır; bağışlarını (tutar, durum, kalemler) ve sertifikalarını görür, PDF indirir. Havale bekleyen bağışta ödeme bilgileri (IBAN + dekont) bağlantısı. Giriş yapmış kullanıcı kodsuz görür.
 - Kod e-postayla (Flux Mail şablonu "Bağış sorgulama kodu"), telefona WhatsApp ya da SMS ile gider. Bağış olsa da olmasa da aynı cevap; kod 10 dk geçerli, 5 hatalı denemede düşer, istek ve günlük gönderim sınırları (e-posta günde 40). Doğrulanan ziyaretçi 30 dk açık kalır.

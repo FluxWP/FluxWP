@@ -1,0 +1,78 @@
+/* Flux Donate 2.18.0 · compact two-column checkout (body.flxb-co). Colours follow the theme (--flx-*). GPL v2 or later. */
+body.flxb-co {
+	--co-p: var(--flxb-l-p, var(--flx-primary, #1F2937));
+	--co-ink: var(--flx-ink, #111827);
+	--co-t: var(--flx-text, #4B5563);
+	--co-m: var(--flx-text-muted, #6B7280);
+	--co-line: var(--flx-line, #E6E0D6);
+	--co-bg: var(--flx-bg-soft, #FBF9F6);
+	--co-r: var(--flxb-l-r, 16px);
+	--co-err: #B42318;
+	background: var(--co-bg);
+}
+body.flxb-co .wp-block-post-content, body.flxb-co .wp-block-woocommerce-checkout { margin-top: 0 !important; padding-top: 0 !important; }
+body.flxb-co main.flx-checkout-main, body.flxb-co main.wp-block-group:has(.wp-block-woocommerce-checkout) { margin-top: 0 !important; padding-top: 20px !important; }
+
+/* Steps as cards */
+body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step {
+	margin: 0 0 14px !important; padding: 20px 22px !important; border: 1px solid var(--co-line); border-radius: var(--co-r);
+	background: #fff; box-shadow: 0 1px 2px rgba(17, 24, 39, .04);
+}
+body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step::before, body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step::after { display: none !important; }
+body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step__heading-container { margin: 0 !important; }
+body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step__heading { margin: 0 0 14px !important; }
+body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step__heading-container:has(.wc-block-components-checkout-step__heading:empty), body.flxb-co .wc-block-checkout__billing-fields .wc-block-components-checkout-step__heading-container { display: none !important; }
+body.flxb-co .wc-block-components-checkout-step__title { margin: 0 !important; font-size: 1.15rem !important; font-weight: 800; color: var(--co-ink); }
+body.flxb-co .wc-block-components-checkout-step__container, body.flxb-co .wc-block-components-checkout-step__content { padding: 0 !important; margin: 0 !important; }
+/* Contact + name: one card */
+body.flxb-co .wc-block-checkout__form > div:empty { display: none !important; }
+body.flxb-co .wc-block-checkout__contact-fields:has(~ .wc-block-checkout__billing-fields) { margin-bottom: 0 !important; padding-bottom: 6px !important; border-bottom: 0; border-radius: var(--co-r) var(--co-r) 0 0; box-shadow: none; }
+body.flxb-co .wc-block-checkout__contact-fields ~ .wc-block-checkout__billing-fields { margin-top: 0 !important; padding-top: 6px !important; border-top: 0; border-radius: 0 0 var(--co-r) var(--co-r); }
+body.flxb-co .wc-block-checkout__billing-fields .wc-block-components-address-form { margin-top: 0 !important; }
+body.flxb-co .wc-block-checkout__guest-checkout-notice { margin: 8px 0 0; font-size: 13px; color: var(--co-m); }
+body.flxb-co .wc-block-checkout__create-account { margin: 10px 0 0 !important; }
+body.flxb-co .wc-block-checkout__create-account .wc-block-components-checkbox__label { font-weight: 600; color: var(--co-ink); }
+body.flxb-co .flxb-co-hint { margin: 4px 0 0 32px; font-size: 12.5px; line-height: 1.45; color: var(--co-m); }
+body.flxb-co .flxb-ct__who { color: var(--co-m); opacity: 1; }
+body.flxb-co .flxb-ct__who a { color: var(--co-p); }
+/* Order notes, terms and the actions: no card chrome */
+body.flxb-co .wc-block-checkout__order-notes { padding: 4px 4px 10px !important; border: 0 !important; background: none !important; box-shadow: none !important; }
+body.flxb-co .wc-block-checkout__terms { margin: 4px 0 10px !important; padding: 14px 16px !important; border: 1px solid var(--co-line) !important; border-radius: var(--co-r); background: #fff; }
+body.flxb-co .wc-block-checkout__actions { padding-top: 0 !important; border: 0 !important; }
+body.flxb-co .wc-block-checkout__main > .wc-block-components-form > hr, body.flxb-co .wc-block-checkout__main hr { display: none; }
+
+/* Summary column */
+body.flxb-co .wc-block-checkout__sidebar { padding: 4px 16px 0 !important; overflow: hidden; border: 1px solid var(--co-line) !important; border-radius: var(--co-r) !important; background: #fff !important; box-shadow: 0 1px 2px rgba(17, 24, 39, .04) !important; }
+body.flxb-co .wc-block-checkout__sidebar .wp-block-woocommerce-checkout-order-summary-block { border: 0 !important; border-radius: 0 !important; background: none; box-shadow: none !important; }
+body.flxb-co .wc-block-checkout__sidebar.is-sticky { top: calc(var(--flxb-head, 80px) + 16px) !important; }
+.flxb-co-pay { display: none; margin: 0 -16px; padding: 16px; border-top: 1px solid var(--co-line); }
+body.flxb-co-wide .flxb-co-pay { display: grid; gap: 12px; }
+.flxb-co-terms { display: flex; gap: 10px; align-items: flex-start; margin: 0; font-size: 14px; line-height: 1.45; color: var(--co-ink); cursor: pointer; }
+.flxb-co-terms input { flex: none; width: 20px !important; height: 20px !important; margin: 1px 0 0 !important; accent-color: var(--co-p); cursor: pointer; }
+.flxb-co-terms a { color: var(--co-p); font-weight: 700; }
+.flxb-co-terms.has-error { color: var(--co-err); }
+.flxb-co-terms__err { margin: -4px 0 0 30px; color: var(--co-err); font-size: 13px; font-weight: 600; }
+.flxb-co-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 54px; margin: 0; padding: 12px 18px; border: 0; border-radius: 12px; background: var(--co-p); color: #fff; font: inherit; font-size: 1.05rem; font-weight: 800; cursor: pointer; transition: filter .15s; }
+.flxb-co-btn:hover { filter: brightness(1.08); }
+.flxb-co-btn[disabled] { opacity: .65; cursor: progress; }
+.flxb-co-btn svg { width: 18px; height: 18px; flex: none; }
+.flxb-co-sec { display: block; margin: 0; color: var(--co-m); font-size: 12.5px; line-height: 1.4; text-align: center; }
+.flxb-co-sec svg { display: inline-block; width: 13px; height: 13px; margin-right: 5px; vertical-align: -2px; }
+/* Wide screen: terms and the button live in the summary column */
+body.flxb-co-wide .wc-block-checkout__terms, body.flxb-co-wide .wc-block-checkout__actions, body.flxb-co-wide .flxb-paybar { display: none !important; }
+body.flxb-co-wide { padding-bottom: 0 !important; }
+
+/* Summary items: the product picture, the icon only when there is none */
+body.flxb-co .wc-block-components-order-summary-item__image img { width: 48px; height: 48px; object-fit: cover; border-radius: 10px; }
+
+/* Notices: a clear card */
+body.flxb-co .wc-block-components-notice-banner.is-error { align-items: flex-start; padding: 14px 16px; border: 1px solid #FDA29B; border-radius: 12px; background: #FEF3F2; color: #7A271A; font-size: 14.5px; line-height: 1.5; }
+body.flxb-co .wc-block-components-notice-banner.is-error > svg { flex: none; background: var(--co-err); fill: #fff; border-radius: 50%; padding: 2px; }
+body.flxb-co .wc-block-components-notice-banner.is-error .wc-block-components-notice-banner__content { font-weight: 600; }
+
+@media (max-width: 600px) {
+	body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step { padding: 16px !important; border-radius: 14px; }
+	body.flxb-co main.flx-checkout-main, body.flxb-co main.wp-block-group:has(.wp-block-woocommerce-checkout) { padding-top: 12px !important; }
+}
+.flxb-co-msg { margin: 0; padding: 10px 12px; border: 1px solid #FDA29B; border-radius: 10px; background: #FEF3F2; color: #7A271A; font-size: 13.5px; font-weight: 600; line-height: 1.45; }
+body.flxb-co .wc-block-components-notices { scroll-margin-top: calc(var(--flxb-head, 80px) + 16px); }

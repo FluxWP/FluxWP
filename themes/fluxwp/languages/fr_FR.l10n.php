@@ -652,6 +652,7 @@ return array(
   'Görevler ziyaretçi geldikçe çalışıyor (WP-Cron). Ziyaret azken sertifika kuyruğu ve düzenli bağış yenilemeleri gecikir. Hostinger › Gelişmiş › Cron Jobs\'a 5 dakikada bir şu komutu ekleyin: %s Sonra wp-config.php\'ye define( \'DISABLE_WP_CRON\', true ); yazın.' => 'Les tâches ne s\'exécutent que lorsque les visiteurs arrivent (WP-Cron). Avec peu de trafic, la file d\'attente des certificats et les renouvellements de dons récurrents sont retardés. Ajoutez cette commande sous Hostinger › Advanced › Cron Jobs, toutes les 5 minutes :%sAjoutez ensuite definition( \'DISABLE_WP_CRON\', true ); vers wp-config.php.',
   'Güncelle' => 'Mise à jour',
   'Güvenli ödeme · iyzico' => 'Paiement sécurisé · iyzico',
+  'Güvenli ödeme · %s' => 'Paiement sécurisé · %s',
   'Güvenlik' => 'Sécurité',
   'Haberler' => 'Actualités',
   'Hakkımızda' => 'À propos de nous',

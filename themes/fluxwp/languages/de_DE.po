@@ -1446,3 +1446,7 @@ msgstr "%s. Hostinger › PHP-Version 8.2 ist in der letzten Sekunde verfügbar.
 
 msgid "Dots"
 msgstr "Punkte"
+
+#, php-format
+msgid "Güvenli ödeme · %s"
+msgstr "Sichere Zahlung · %s"

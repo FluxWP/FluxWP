@@ -479,3 +479,10 @@ body.flx-dark .flxwb-dcard__icon--wa { background: rgba(26, 158, 81, .18); color
 .flxwb-dfields { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; padding: 14px; border: 1px solid var(--w-line); border-radius: var(--w-r3); background: var(--w-mint-soft); }
 .flxwb-dfields select { width: 100%; min-height: 46px; }
 @media (max-width: 560px) { .flxwb-dgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* 2.18.0: quick quantity buttons under a quantity option */
+.flxwb-quick { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; }
+.flxwb-quick button { min-width: 52px; min-height: 40px; padding: 6px 14px; border: 1px solid var(--w-line, #DDE2E7); border-radius: 999px; background: var(--w-surface, #fff); color: var(--w-ink, #111827); font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer; transition: border-color .15s, background .15s; }
+.flxwb-quick button:hover { border-color: var(--w-primary, #1F2937); }
+.flxwb-quick button[aria-pressed="true"] { border-color: var(--w-primary, #1F2937); background: var(--w-primary, #1F2937); color: #fff; }
+.flxwb-pkg__count { white-space: nowrap; }

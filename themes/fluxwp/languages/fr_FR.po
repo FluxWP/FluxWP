@@ -1446,3 +1446,7 @@ msgstr " %s . Hostinger › PHP installé 8.2 et installé."
 
 msgid "Dots"
 msgstr "Points"
+
+#, php-format
+msgid "Güvenli ödeme · %s"
+msgstr "Paiement sécurisé · %s"

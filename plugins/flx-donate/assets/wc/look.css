@@ -267,3 +267,10 @@
 .flxwb-fee strong { font-weight: 600; }
 .flxwb-fee [data-flxwb-fee-amount] { font-weight: 600; color: var(--w-primary); font-size: inherit; }
 .flxwb-fee__help { display: block; margin-top: 2px; color: var(--w-muted, #6B7280); font-size: 12.5px; line-height: 1.45; }
+
+/* 2.18.0 · A (steps): wide container, no type step when there is only one type, quick quantity buttons */
+.is-layout-constrained > .flxwb--steps, .flxwb--steps.flxwb--steps { max-width: var(--wp--style--global--wide-size, 1140px) !important; margin-left: auto !important; margin-right: auto !important; }
+.flxwb--steps .flxwb-form { grid-template-columns: minmax(0, 1fr) 360px; }
+.flxwb--steps .flxwb-types:has(.flxwb-tabs > :only-child) { display: none; }
+.flxwb--steps .flxwb-types:has(.flxwb-tabs > :only-child) + .flxwb-main, .flxwb--steps .flxwb-types:has(.flxwb-tabs > :only-child) ~ .flxwb-main { border-radius: var(--w-radius); }
+.flxwb--steps .flxwb-types:has(.flxwb-tabs > :only-child) ~ .flxwb-main .flxwb-sec:first-child { border-top: 0; }

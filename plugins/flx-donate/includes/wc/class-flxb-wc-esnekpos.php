@@ -209,7 +209,7 @@ class FLXB_WC_Esnekpos {
 	}
 
 	/** JSON POST to EsnekPOS. @return array|WP_Error */
-	private static function post( $path, array $body ) {
+	public static function post( $path, array $body ) {
 		$r = wp_remote_post(
 			self::base_url() . $path,
 			array(
@@ -229,7 +229,7 @@ class FLXB_WC_Esnekpos {
 		return $j;
 	}
 
-	private static function message( array $r ) {
+	public static function message( array $r ) {
 		foreach ( array( 'tr' === self::locale() ? 'RETURN_MESSAGE_TR' : 'RETURN_MESSAGE', 'RETURN_MESSAGE', 'RETURN_MESSAGE_TR' ) as $k ) {
 			if ( ! empty( $r[ $k ] ) && is_scalar( $r[ $k ] ) ) {
 				return sanitize_text_field( (string) $r[ $k ] );
@@ -238,11 +238,11 @@ class FLXB_WC_Esnekpos {
 		return '';
 	}
 
-	private static function locale() {
+	public static function locale() {
 		return 0 === strpos( (string) determine_locale(), 'tr' ) ? 'tr' : 'en';
 	}
 
-	private static function ok( array $r ) {
+	public static function ok( array $r ) {
 		return 'SUCCESS' === strtoupper( (string) ( $r['STATUS'] ?? '' ) ) && '0' === trim( (string) ( $r['RETURN_CODE'] ?? '' ) );
 	}
 
@@ -419,6 +419,9 @@ class FLXB_WC_Esnekpos {
 			$err = self::settle( $order, $ref, $posted_ok || ! $keyed, $posted_msg );
 		}
 		$order = wc_get_order( $order->get_id() );
+		if ( $keyed && ! empty( $_GET['m'] ) && class_exists( 'FLXB_WC_Esnekpos_Direct' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			FLXB_WC_Esnekpos_Direct::bridge( $order, $err ); // 2.18.0: 3D Secure ran in the checkout's modal
+		}
 		if ( ! $keyed ) {
 			/* Old return URL: no order key in it, so none is handed out (the donor gets the e-mail). */
 			wp_safe_redirect( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : home_url( '/' ) );
@@ -435,7 +438,7 @@ class FLXB_WC_Esnekpos {
 	 *
 	 * @return string Error for the donor ('' when paid).
 	 */
-	private static function settle( WC_Order $order, $ref, $posted_ok, $posted_msg ) {
+	public static function settle( WC_Order $order, $ref, $posted_ok, $posted_msg ) {
 		$lock = 'flxb_wc_esn_lock_' . $order->get_id();
 		if ( ! add_option( $lock, time(), '', false ) && time() - (int) get_option( $lock ) < 60 ) {
 			return __( 'The payment is being checked. Please wait a moment and refresh the page.', 'flx-donate' );

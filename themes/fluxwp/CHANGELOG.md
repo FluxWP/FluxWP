@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.19
+- Ödeme sayfası başlığındaki "Güvenli ödeme" rozeti etkin ödeme sağlayıcısını yazar (filtre `flx_secure_badge_provider`; boşsa yalnız "Güvenli ödeme").
+
 ## 0.7.18
 - Layout saves (template, part, menu, styles) purge supported page caches once per request, on shutdown. The object cache is no longer flushed; WordPress already drops the saved post and there is no persistent object cache.
 - Block tweaks (slider, cover, images, logo, shop title, YouTube embed, static translations) run only on the block types they change. Priority is unchanged, so those blocks render the same HTML.
