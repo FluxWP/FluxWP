@@ -76,15 +76,6 @@ msgstr "Revoke"
 msgid "3. Connect an assistant"
 msgstr "3. Connect an assistant"
 
-msgid "Connectors › Add custom connector"
-msgstr "Connectors › Add custom connector"
-
-msgid "URL with the key, for places where headers can't be added; don't share it:"
-msgstr "URL with the key, for places where headers can't be added; don't share it:"
-
-msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
-msgstr "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
-
 msgid "Recent activity"
 msgstr "Recent activity"
 
@@ -964,20 +955,8 @@ msgstr "MCP is off. Turn it on in Flux AI & MCP › MCP."
 msgid "Invalid or missing MCP key."
 msgstr "Invalid or missing MCP key."
 
-msgid "This user can't edit content."
-msgstr "This user can't edit content."
-
 msgid "Unknown tool: %s"
 msgstr "Unknown tool: %s"
-
-msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
-msgstr "This tool is turned off (Flux AI & MCP › Tools): %s"
-
-msgid "This key can't use this tool: %s"
-msgstr "This key can't use this tool: %s"
-
-msgid "You don't have permission for this."
-msgstr "You don't have permission for this."
 
 msgid "Unauthorized."
 msgstr "Unauthorized."
@@ -1603,5 +1582,33 @@ msgstr "Unknown application. Remove the connector and add it again."
 msgid "You can end the connection any time under Flux AI & MCP › MCP."
 msgstr "You can end the connection any time under Flux AI & MCP › MCP."
 
-msgid "Your account can't connect an assistant (content editing permission is required)."
-msgstr "Your account can't connect an assistant (content editing permission is required)."
+msgid "AI & MCP"
+msgstr "AI & MCP"
+
+msgid "Connects assistants over MCP (only tools their own permissions allow)"
+msgstr "Connects assistants over MCP (only tools their own permissions allow)"
+
+msgid "No MCP access"
+msgstr "No MCP access"
+
+msgid "On Apache or LiteSpeed, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess."
+msgstr "On Apache or LiteSpeed, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess."
+
+msgid "Other clients"
+msgstr "Other clients"
+
+msgid "Roles and access"
+msgstr "Roles and access"
+
+msgid "Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL."
+msgstr "Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL."
+
+msgid "This user can't use MCP."
+msgstr "This user can't use MCP."
+
+msgid "Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do."
+msgstr "Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do."
+
+msgid "Your account can't connect an assistant (the MCP capability is required)."
+msgstr "Your account can't connect an assistant (the MCP capability is required)."
+

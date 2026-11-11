@@ -85,7 +85,7 @@ Flux Tasks kendi MCP sunucusunu çalıştırmaz. Aynı araçlar Flux AI & MCP su
 
 Araç adları `flxg_` öneklidir: `flxg_list_projects`, `flxg_list_users`, `flxg_search_tasks`, `flxg_get_task`, `flxg_create_task`, `flxg_update_task`, `flxg_add_comment`, `flxg_list_fields`, `flxg_create_list`, `flxg_delete_task`, `flxg_list_notifications`, `flxg_list_docs`, `flxg_get_doc_page`, `flxg_edit_doc_page`, `flxg_create_doc`, `flxg_create_doc_page`. Eski sunucunun öneksiz adları (ör. `list_projects`) da çalışır. Her araç `flxg_use` ve liste yetkisini kendi içinde denetler. Ortak Flux AI sohbeti aynı araçları kullanır.
 
-Flux AI MCP rotası `edit_posts` ister. `flxg_use` olup `edit_posts` olmayan kullanıcı bu rotaya giremez; Flux AI'nin bu kontrolü gevşetilmedi.
+Flux AI MCP rotası `flxai_mcp` ister. `edit_posts` olan roller ve WordPress yöneticisi bu yetkiyi varsayılan taşır. `flxg_use` olup `edit_posts` olmayan kullanıcı, Flux Roles'tan `flxai_mcp` verilirse bağlanır; görev araçları yine `flxg_use` ve liste kurallarını denetler.
 
 ## 7. Hostinger notları
 

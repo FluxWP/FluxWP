@@ -76,15 +76,6 @@ msgstr "撤销"
 msgid "3. Connect an assistant"
 msgstr "3. 连接助手"
 
-msgid "Connectors › Add custom connector"
-msgstr "连接器 › 添加自定义连接器"
-
-msgid "URL with the key, for places where headers can't be added; don't share it:"
-msgstr "带key的URL,用于无法添加header的地方;不要分享它:"
-
-msgid "On Apache, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess, or use the keyed URL."
-msgstr "在 Apache 上,如果您看到“无效密钥”,请将 SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 添加到 .htaccess,或使用密钥 URL。"
-
 msgid "Recent activity"
 msgstr "最近的活动"
 
@@ -964,20 +955,8 @@ msgstr "MCP 已关闭。在 Flux AI 和 MCP › MCP 中将其打开。"
 msgid "Invalid or missing MCP key."
 msgstr "MCP 密钥无效或丢失。"
 
-msgid "This user can't edit content."
-msgstr "该用户无法编辑内容。"
-
 msgid "Unknown tool: %s"
 msgstr "未知工具:%s"
-
-msgid "This tool is turned off (Flux AI & MCP › Tools): %s"
-msgstr "该工具已关闭(Flux AI 和 MCP › 工具):%s"
-
-msgid "This key can't use this tool: %s"
-msgstr "该键不能使用该工具:%s"
-
-msgid "You don't have permission for this."
-msgstr "您无权执行此操作。"
 
 msgid "Unauthorized."
 msgstr "未经授权。"
@@ -1533,3 +1512,34 @@ msgstr "所有 FluxWP 插件的通用 AI 中心:OpenRouter 和 Anthropic 密钥�
 msgid "%dvehicle is registered.%dvehicle is registered."
 msgid_plural "%dvehicle is registered.%dvehicle is registered."
 msgstr[0] "%d车辆已注册。%d车辆已注册。"
+
+msgid "AI & MCP"
+msgstr "AI 与 MCP"
+
+msgid "Connects assistants over MCP (only tools their own permissions allow)"
+msgstr "通过 MCP 连接助手（仅限其自身权限允许的工具）"
+
+msgid "No MCP access"
+msgstr "无 MCP 访问权限"
+
+msgid "On Apache or LiteSpeed, if you see \"Invalid key\", add SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 to .htaccess."
+msgstr "在 Apache 或 LiteSpeed 上，如果看到“无效密钥”，请将 SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1 添加到 .htaccess。"
+
+msgid "Other clients"
+msgstr "其他客户端"
+
+msgid "Roles and access"
+msgstr "角色与访问"
+
+msgid "Send the key in the Authorization: Bearer header, or in the X-MCP-Key header. Do not put the key in the URL."
+msgstr "请在 Authorization: Bearer 标头或 X-MCP-Key 标头中发送密钥。不要把密钥放进 URL。"
+
+msgid "This user can't use MCP."
+msgstr "该用户不能使用 MCP。"
+
+msgid "Who can connect: users with the flxai_mcp capability. Roles that can edit posts have it by default, and administrators always do."
+msgstr "谁可以连接：拥有 flxai_mcp 能力的用户。默认可编辑文章的角色拥有该能力，管理员始终拥有。"
+
+msgid "Your account can't connect an assistant (the MCP capability is required)."
+msgstr "您的账户不能连接助手（需要 MCP 能力）。"
+

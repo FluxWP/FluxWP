@@ -20,16 +20,36 @@ function flxai_tools_all() {
 	return flxai_chat_registry()['tools'];
 }
 
+/**
+ * Aracın istediği yetki. Kayıtta cap yoksa (ya da boşsa) edit_posts: editör olmayanlar MCP'ye bağlanabildiği için
+ * eski araçlar açıkta kalmasın.
+ */
+function flxai_tool_required_cap( array $tool ) {
+	$cap = array_key_exists( 'cap', $tool ) && null !== $tool['cap'] ? (string) $tool['cap'] : '';
+	return '' !== $cap ? $cap : 'edit_posts';
+}
+
+/**
+ * Kullanıcı bu aracı görebilir ve çalıştırabilir mi? Sohbet ve MCP aynı fonksiyonu kullanır.
+ * $gates: yönetici kapatması ve (MCP'de) anahtar kapsamı. Cap ve flx_mcp_tool_allowed burada.
+ * Filtre true dönerse kapalı, kapsam dışı ya da yetkisiz aracı açmaz.
+ *
+ * @param bool $gates Ön koşullar (kapalı değil, MCP'de anahtar kapsamı uygun).
+ */
+function flxai_tool_allowed_for_user( $name, array $tool, $user_id = 0, $gates = true ) {
+	$user_id = $user_id ? (int) $user_id : get_current_user_id();
+	$base    = (bool) $gates && user_can( $user_id, flxai_tool_required_cap( $tool ) );
+	$ok      = (bool) apply_filters( 'flx_mcp_tool_allowed', $base, (string) $name, $tool, $user_id );
+	return $base && $ok;
+}
+
 /** Kullanıcının kullanabileceği, açık araçlar. */
 function flxai_tools_for_user( $user_id = 0 ) {
 	$user_id = $user_id ? (int) $user_id : get_current_user_id();
 	$off     = flxai_tools_off();
 	$out     = array();
 	foreach ( flxai_tools_all() as $name => $t ) {
-		if ( in_array( $name, $off, true ) ) {
-			continue;
-		}
-		if ( '' !== $t['cap'] && ! user_can( $user_id, $t['cap'] ) ) {
+		if ( ! flxai_tool_allowed_for_user( $name, $t, $user_id, ! in_array( $name, $off, true ) ) ) {
 			continue;
 		}
 		$out[ $name ] = $t;

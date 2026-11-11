@@ -105,8 +105,80 @@ function flxai_install() {
 	if ( $role ) {
 		$role->add_cap( 'flxai_chat' );
 	}
+	flxai_grant_mcp_cap();
 	update_option( 'flxai_db_version', FLXAI_DB_VERSION, true );
 }
+
+/**
+ * MCP yetkisi (flxai_mcp). Yönetici her kurulumda alır. edit_posts olan roller bir kez (şema 4) alır;
+ * canlı kural user_has_cap filtresindedir, bu yüzden sonradan açılan edit_posts rolleri de bağlanır.
+ */
+function flxai_grant_mcp_cap() {
+	$admin = get_role( 'administrator' );
+	if ( $admin ) {
+		$admin->add_cap( FLXAI_CAP_MCP );
+	}
+	$prev = get_option( 'flxai_db_version' );
+	if ( false !== $prev && (int) $prev >= 4 ) {
+		return;
+	}
+	if ( ! function_exists( 'wp_roles' ) ) {
+		return;
+	}
+	foreach ( wp_roles()->roles as $key => $role ) {
+		if ( 'administrator' === $key || empty( $role['capabilities']['edit_posts'] ) ) {
+			continue;
+		}
+		$obj = get_role( $key );
+		if ( $obj ) {
+			$obj->add_cap( FLXAI_CAP_MCP );
+		}
+	}
+}
+
+/* edit_posts olan herkes ve WordPress yöneticisi MCP kullanır. Flux Roles bu yetkiyi edit_posts olmayan role de verebilir. */
+add_filter(
+	'user_has_cap',
+	function ( $all, $caps, $args, $user ) {
+		if ( ! in_array( FLXAI_CAP_MCP, (array) $caps, true ) || ! empty( $all[ FLXAI_CAP_MCP ] ) ) {
+			return $all;
+		}
+		$roles = $user instanceof WP_User ? (array) $user->roles : array();
+		if ( in_array( 'administrator', $roles, true ) || ! empty( $all['manage_options'] ) || ! empty( $all['edit_posts'] ) ) {
+			$all[ FLXAI_CAP_MCP ] = true;
+		}
+		return $all;
+	},
+	10,
+	4
+);
+
+/* Flux Roles kataloğu: yetki Roller ve erişim tablosunda görünür ve herhangi bir role verilebilir. */
+add_filter(
+	'flxr_catalog',
+	function ( $groups ) {
+		$groups['ai'] = array(
+			'label'  => __( 'AI & MCP', 'flx-ai' ),
+			'plugin' => 'Flux AI & MCP',
+			'active' => true,
+			'caps'   => array(
+				FLXAI_CAP_MCP => array(
+					'label' => __( 'Connects assistants over MCP (only tools their own permissions allow)', 'flx-ai' ),
+					'new'   => true,
+				),
+			),
+		);
+		return $groups;
+	}
+);
+add_filter(
+	'flx_role_caps_supported',
+	function ( $caps ) {
+		$caps   = is_array( $caps ) ? $caps : array();
+		$caps[] = FLXAI_CAP_MCP;
+		return $caps;
+	}
+);
 
 /** Aktivasyon güncellemede çalışmaz; şema sürümü değişince kurulum burada yapılır. */
 function flxai_maybe_upgrade() {
