@@ -1,6 +1,6 @@
 # Değişiklikler
 
-## 2.20.0
+## 2.21.0
 - EsnekPOS: kart alanları ödeme sayfasında; 3D Secure aynı sayfada pencerede açılır, sayfadan ayrılmadan sonuç gelir. Hata olursa nedeni ve "kartınızdan para çekilmedi" açıkça yazar; hata Öde düğmesinin üstünde de görünür.
 - EsnekPOS: kart numarası girilince taksit seçenekleri (kredi kartı, BIN'e göre; taksit farkını bağışçı ya da dernek öder, ayarlanır). Kart alanlarının altında 3D Secure bilgisi.
 - EsnekPOS "Telefon Boş Bırakılamaz" hatası: telefon siparişten, hesaptan ya da bağışçı kaydından alınır; hiçbiri yoksa kart formunda telefon istenir.
@@ -9,6 +9,12 @@
 - Giriş yapmış bağışçının e-posta ve telefonu salt okunur gelir (Hesabım'dan değişir); ad boşsa hesaptaki ad yazılır. Misafir "Hesap oluştur" kutusunu işaretleyebilir (şifre bağlantısı e-postayla gider; yalnız e-posta yazılınca görünür).
 - Bağış formu: adet seçeneğinin altında hızlı seçim düğmeleri (1, 5, 10, 25, 50; filtre flxb_quick_qty). A düzeni geniş yerleşir, tek bağış türü varken "Bağış türü" adımı gizlenir. "1Fidan" yazımı "1 fidan" oldu.
 - Fidan ürün görseli artık gerçek fidan fotoğrafı; eski hazır ikon görseli kendiliğinden değişir (elle seçilen görsele dokunulmaz). Görseli olmayan kalemde özet gri yer tutucu yerine fidan ikonu gösterir.
+
+## 2.20.0
+- Bağış detay sayfası yeniden tasarlandı: üstte tutar ve özet şeridi (durum, bağışçı, referans, ödeme, tür, ne zaman geldiği), solda sipariş, kalemler, ödeme ve kayıtlar, sağda bağışçı, referans ve işlemler kartları. Bağışçı kartında ödenmiş bağış sayısı, toplam, bekleyen ve "Sohbeti aç".
+- Referans her yerde görünür: listede referans sütunu, bağışın referansı yoksa bağışçının önceki bağışlarındaki referansı soluk gösterir. Detayda referans kartı (ad, telefon, e-posta), yetkili için düzenleme.
+- Yeni API: FLXB_Refs::donor_ref() / donor_refs(), flxb_donation_state().
+
 ## 2.19.0
 - Bağışlar listesinde satıra tıklayınca bağış detayı açılır (toplu işlem formu tıklamayı yutuyordu). Bağışçı adı da detayı açar. Bağışçı kartına detaydaki addan gidilir.
 - Listenin üstünde "Dekont onayı bekleyenler" kutusu: dekont gelen bağışlar sayısıyla, tek tıkla detayda dekont ve Onayla / Reddet.

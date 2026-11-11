@@ -5824,3 +5824,15 @@ msgid_plural "%s more"
 msgstr[0] "ещё %s"
 msgstr[1] "ещё %s"
 msgstr[2] "ещё %s"
+
+msgid "Paid gifts"
+msgstr "Оплаченные пожертвования"
+
+msgid "Open chat"
+msgstr "Открыть чат"
+
+msgid "This gift has no referral."
+msgstr "У этого пожертвования нет реферала."
+
+msgid "The donor's earlier gifts came through %s."
+msgstr "Прежние пожертвования этого жертвователя пришли через %s."

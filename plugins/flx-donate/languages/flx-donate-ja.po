@@ -5706,3 +5706,15 @@ msgstr "確認"
 msgid "%s more"
 msgid_plural "%s more"
 msgstr[0] "他 %s 件"
+
+msgid "Paid gifts"
+msgstr "支払い済みの寄付"
+
+msgid "Open chat"
+msgstr "チャットを開く"
+
+msgid "This gift has no referral."
+msgstr "この寄付には紹介者がいません。"
+
+msgid "The donor's earlier gifts came through %s."
+msgstr "この寄付者の以前の寄付は %s 経由でした。"

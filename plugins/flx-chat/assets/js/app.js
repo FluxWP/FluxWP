@@ -2892,17 +2892,66 @@
 
 	function recRow(rec, onPick) {
 		var isD = rec.kind === 'donation';
-		return h('div', { class: 'flxc-row flxc-rec-row', role: 'listitem', tabindex: '0', onclick: function (e) { recMenu(rec, e.currentTarget, onPick); }, onkeydown: function (e) { if (e.key === 'Enter') recMenu(rec, e.currentTarget, onPick); } },
+		// 1.39.0: a donation opens its detail window (the menu's actions are inside it).
+		var open = function (e) { if (isD) openDonationDetail(rec, onPick); else recMenu(rec, e.currentTarget, onPick); };
+		return h('div', { class: 'flxc-row flxc-rec-row', role: 'listitem', tabindex: '0', onclick: open, onkeydown: function (e) { if (e.key === 'Enter') open(e); } },
 			h('span', { class: 'flxc-av flxc-rec-av flxc-rec-av-' + rec.kind }, icon(isD ? 'gift' : 'cert')),
 			h('span', { class: 'flxc-row-main' },
 				h('span', { class: 'flxc-row-top' }, h('strong', { class: 'flxc-row-name', text: rec.name || rec.phone || '—' }), h('time', { class: 'flxc-row-time', text: rec.date.split(' ').slice(0, 3).join(' ') })),
 				h('span', { class: 'flxc-row-bot' },
 					h('span', { class: 'flxc-row-prev', text: isD ? rec.title + (rec.qty > 1 ? ' × ' + rec.qty : '') + ' · ' + rec.money : rec.number + (rec.qty ? ' · ' + t('{n} adet', { n: rec.qty }) : '') + (rec.event ? ' · ' + rec.event : '') }),
 					rec.statusL ? h('em', { class: 'flxc-tone flxc-tone-' + (rec.tone || 'muted'), text: rec.statusL }) : null,
-					rec.receipts ? h('span', { class: 'flxc-rc-n', title: t('Dekont') }, icon('receipt'), String(rec.receipts)) : null
+					rec.receipts ? h('span', { class: 'flxc-rc-n', title: t('Dekont') }, icon('receipt'), String(rec.receipts)) : null,
+					isD && rec.ref ? h('span', { class: 'flxc-ref' + (rec.refDonor ? ' is-donor' : ''), title: rec.refDonor ? t('Bağışçının önceki referansı') : t('Referans') }, icon('person'), rec.ref) : null
 				)
 			)
 		);
+	}
+
+	/** 1.39.0: one donation in full: amount and status, lines and names, receipts, certificates, donor, referral, actions. */
+	function openDonationDetail(rec, onPick) {
+		var body = h('div', { class: 'flxc-dd' }, h('div', { class: 'flxc-loading' }, h('span', { class: 'flxc-spin' })));
+		var foot = h('div', { class: 'flxc-dd-foot' });
+		var dlg = modal({ cls: 'flxc-dd-dlg', title: t('Bağış'), body: body, foot: foot });
+		function kv(k, v) { return v ? h('div', { class: 'flxc-dd-kv' }, h('span', { text: k }), h('strong', { text: v })) : null; }
+		function sec(title, kids) { kids = kids.filter(Boolean); return kids.length ? h('section', { class: 'flxc-dd-sec' }, h('h3', { text: title }), kids) : null; }
+		function person(av, name, lines, cls) {
+			return h('div', { class: 'flxc-dd-person' + (cls ? ' ' + cls : '') }, h('span', { class: 'flxc-dd-av', text: (name || '?').charAt(0).toUpperCase() }),
+				h('span', { class: 'flxc-dd-pmain' }, h('strong', { text: name || '—' }), lines.filter(Boolean).map(function (x) { return h('small', { text: x }); })));
+		}
+		function done() { if (onPick) { onPick(); if (S.active) loadChatRecs(S.active); } else if (el.recs) { el.recs.remove(); el.recs = null; openRecords('donation'); } }
+		api('records/donations/' + rec.id).then(function (d) {
+			clear(body); clear(foot);
+			add(body, h('div', { class: 'flxc-dd-hero' },
+				h('div', { class: 'flxc-dd-amt' }, h('strong', { text: d.total || d.money }), h('small', { text: [d.title + (d.qty > 1 ? ' × ' + d.qty : ''), d.method].filter(Boolean).join(' · ') })),
+				h('em', { class: 'flxc-tone flxc-tone-' + (d.tone || 'muted'), text: d.statusL })));
+			add(body, h('div', { class: 'flxc-dd-grid' },
+				kv(t('Tarih'), [d.date, d.ago].filter(Boolean).join(' · ')),
+				kv(t('Sipariş'), d.order ? '#' + d.order : ''),
+				kv(t('Onay kodu'), d.track),
+				kv(t('Kayıt kaynağı'), d.source),
+				kv(t('Kaydı açan'), d.by)));
+			add(body, sec(t('Kalemler'), (d.lines || []).map(function (l) {
+				return h('div', { class: 'flxc-dd-line' }, h('span', { class: 'flxc-dd-lmain' }, h('strong', { text: l.title + (l.qty > 1 ? ' × ' + l.qty : '') }), l.type && l.type !== l.title ? h('small', { text: l.type }) : null, l.names && l.names.length ? h('small', { text: t('Adına: {n}', { n: l.names.join(', ') }) }) : null), h('span', { class: 'flxc-dd-lamt', text: l.money }));
+			})));
+			add(body, sec(t('Dekontlar'), (d.receiptFiles || []).map(function (r) {
+				return h('a', { class: 'flxc-dd-file', href: r.url, target: '_blank', rel: 'noopener' }, icon('receipt'), h('span', null, h('strong', { text: r.name }), r.meta ? h('small', { text: r.meta }) : null, r.warn ? h('small', { class: 'flxc-dd-warn', text: r.warn }) : null), icon('open'));
+			})));
+			add(body, sec(t('Sertifikalar'), (d.certs || []).map(function (c) {
+				return h('a', { class: 'flxc-dd-file', href: c.url, target: '_blank', rel: 'noopener' }, icon('cert'), h('span', null, h('strong', { text: c.number }), h('small', { text: [c.name, c.revoked ? t('İptal') : ''].filter(Boolean).join(' · ') })), icon('open'));
+			})));
+			add(body, h('div', { class: 'flxc-dd-people' },
+				sec(t('Bağışçı'), [d.donor ? person('', d.donor.name, [d.donor.phone, d.donor.email, t('{n} ödenmiş bağış · {m}', { n: d.donor.gifts, m: d.donor.total })]) : h('p', { class: 'flxc-muted', text: t('İletişim bilgisi yok.') })]),
+				sec(t('Referans'), [d.refInfo ? person('', d.refInfo.name, [d.refInfo.phone], 'is-ref') : (d.ref ? person('', d.ref, [t('Bağışçının önceki referansı')], 'is-ref is-donor') : h('p', { class: 'flxc-muted', text: t('Referans yok.') }))])));
+			if (d.note) add(body, sec(t('Not'), [h('p', { class: 'flxc-dd-note', text: d.note })]));
+			var phone = (d.phone || '').replace(/\D+/g, '');
+			if (phone && !onPick) add(foot, h('button', { type: 'button', class: 'flxc-btn flxc-btn-ghost', onclick: function () { dlg.close(); goChat(phone, d.name); } }, icon('unread'), t('Sohbeti aç')));
+			if (d.admin) add(foot, h('a', { class: 'flxc-btn flxc-btn-ghost', href: d.admin, target: '_blank', rel: 'noopener' }, icon('gear'), t('Bağış kaydını aç')));
+			if (d.canPay) add(foot, h('button', { type: 'button', class: 'flxc-btn', onclick: function () {
+				if (!window.confirm(t('Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir.'))) return;
+				api('records/donations/' + d.id + '/status', { method: 'POST', body: { status: 'completed' } }).then(function () { toast(t('Bağış onaylandı')); dlg.close(); done(); }).catch(function (e) { toast(e.message, 'err'); });
+			} }, icon('check'), t('Ödendi olarak işaretle')));
+		}).catch(function (e) { clear(body); add(body, h('div', { class: 'flxc-empty-list', text: e.message })); });
 	}
 
 	/** 1.15.0: sohbetteki kişinin bağış ve sertifikaları (sohbet üstündeki düğme). */
@@ -3169,8 +3218,9 @@
 		if (!S.active && multiChannel()) renderEmptyMain(); // kanal bilgisiyle boş ekran metni
 		return loadChats();
 	}).then(function () {
-		var want = +(new URLSearchParams(location.search).get('chat') || 0);
+		var qp = new URLSearchParams(location.search), want = +(qp.get('chat') || 0), wantPh = (qp.get('phone') || '').replace(/\D+/g, '');
 		if (want) openChat(want);
+		else if (wantPh) goChat(wantPh); // 1.39.0: Flux Donate "Open chat" (admin.php?page=flx-chat&phone=90...)
 		updateTitle();
 		schedule(interval());
 	}).catch(function (e) { toast(e.message, 'err'); });

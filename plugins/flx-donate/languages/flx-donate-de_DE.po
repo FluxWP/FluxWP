@@ -5765,3 +5765,15 @@ msgid "%s more"
 msgid_plural "%s more"
 msgstr[0] "%s weiterer"
 msgstr[1] "%s weitere"
+
+msgid "Paid gifts"
+msgstr "Bezahlte Spenden"
+
+msgid "Open chat"
+msgstr "Chat öffnen"
+
+msgid "This gift has no referral."
+msgstr "Diese Spende hat keine Empfehlung."
+
+msgid "The donor's earlier gifts came through %s."
+msgstr "Frühere Spenden dieses Spenders kamen über %s."

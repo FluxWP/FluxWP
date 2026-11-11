@@ -692,3 +692,47 @@ html.flxa-dark .flxb { --flxb-mint: var(--flxa-accent-soft); --flxb-dark: var(--
 	.flxb-awaiting__go { display: none; }
 	.flxb-awaiting .flxb-card__head { flex-wrap: wrap; }
 }
+
+/* 2.20.0: donation detail: summary strip, main column and side column with people and actions. */
+.flxb-hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; margin: 0 0 16px; border: 1px solid var(--flxb-line); border-radius: var(--flxb-radius); background: var(--flxb-surface); overflow: hidden; }
+.flxb-hero__fact { display: grid; gap: 6px; align-content: start; padding: 14px 18px; border-right: 1px solid var(--flxb-grid); min-width: 0; }
+.flxb-hero__fact:last-child { border-right: 0; }
+.flxb-hero__k { font-size: 11.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--flxb-muted); }
+.flxb-hero__v { color: var(--flxb-ink); font-weight: 700; font-size: 14.5px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxb-hero__v a { color: var(--flxb-ink); }
+.flxb-ref-chip { display: inline-flex; align-items: center; gap: 5px; max-width: 100%; padding: 2px 9px; border-radius: 99px; background: #EEEAFB; color: #4A3A99; font-size: 12.5px; font-weight: 700; box-shadow: inset 0 0 0 1px #D8D0F5; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxb-ref-chip--donor { background: transparent; color: var(--flxb-muted); box-shadow: inset 0 0 0 1px var(--flxb-grid); font-weight: 600; }
+.flxb-detail { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 340px); gap: 16px; align-items: start; }
+.flxb-detail__main, .flxb-detail__side { display: grid; gap: 16px; min-width: 0; }
+.flxb-detail .flxb-card--gap, .flxb-detail .flxb-card { margin: 0; }
+.flxb-detail__side { position: sticky; top: 48px; }
+.flxb-detail__side .flxb-manage__row { display: grid; gap: 8px; }
+.flxb-detail__side .flxb-manage__status { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.flxb-detail__side .flxb-manage__status .flxb-btn { width: 100%; justify-content: center; }
+.flxb-detail__side .flxb-manage__status label { grid-column: 1 / -1; font-weight: 700; color: var(--flxb-muted); font-size: 12.5px; }
+.flxb-detail__side .flxb-manage__status select { min-width: 0; width: 100%; }
+.flxb-detail__side .flxb-inline-form { margin: 0; }
+.flxb-detail__side .flxb-inline-form .flxb-btn { width: 100%; justify-content: center; }
+.flxb-pcard__id { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; min-width: 0; }
+.flxb-pcard__id > div { display: grid; gap: 2px; min-width: 0; }
+.flxb-pcard__id strong { color: var(--flxb-ink); font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxb-pcard__id small { color: var(--flxb-muted); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxb-pcard__av { flex: 0 0 auto; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--flxb-mint); color: var(--flxb-dark); font-weight: 800; font-size: 17px; }
+.flxb-pcard__av--ref { background: #EEEAFB; color: #4A3A99; }
+.flxb-pcard__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 12px; }
+.flxb-pcard__stats > div { padding: 8px 10px; border-radius: 10px; background: var(--flxb-soft); }
+.flxb-pcard__stats dt { font-size: 11.5px; color: var(--flxb-muted); font-weight: 700; }
+.flxb-pcard__stats dd { margin: 2px 0 0; color: var(--flxb-ink); font-weight: 800; font-variant-numeric: tabular-nums; }
+.flxb-pcard__links { display: flex; flex-wrap: wrap; gap: 8px; }
+.flxb-pcard .flxb-ref-edit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; margin-top: 4px; align-items: center; }
+.flxb-pcard .flxb-ref-edit select { min-width: 0; width: 100%; }
+.flxb-notice--info { margin: 8px 0; font-size: 13px; }
+@media (max-width: 1100px) {
+	.flxb-detail { grid-template-columns: minmax(0, 1fr); }
+	.flxb-detail__side { position: static; }
+}
+@media (max-width: 600px) {
+	.flxb-hero { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.flxb-hero__fact { border-right: 0; border-bottom: 1px solid var(--flxb-grid); padding: 10px 14px; }
+	.flxb-hero__fact:nth-child(odd) { border-right: 1px solid var(--flxb-grid); }
+}

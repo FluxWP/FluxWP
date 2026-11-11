@@ -1606,6 +1606,21 @@
     "Delete for everyone time limit (hours)": "Herkesten silme süresi (saat)",
     "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "WhatsApp gönderilen mesajı herkesten silmeye yalnız yaklaşık 2 gün 12 saat (60 saat) izin verir. Bu süre geçince ya da gelen mesajlarda mesaj yalnız panelde gizlenir, kişinin telefonunda kalır. 0 herkesten silmeyi kapatır. Silinen mesajlar sunucudan hiç kaldırılmaz; ekip yine açıp görebilir.",
     "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.": "Son güncelleme isteği %1$s. Panel açıkken %2$d sn'de bir yeni mesaj sorulur (cevap akarken 3 sn, değişiklik yoksa 15 sn'ye kadar) ve arka plandaki sekmede dakikada bir.",
-    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "Açık sekmede bu aralıkla yeni mesaj kontrol edilir (önerilen 10); cevap akarken 3 sn'de bir, değişiklik yoksa 15 sn'ye kadar. Arka plandaki sekme dakikada bir bakar. Hatalarda aralık 60 sn'ye kadar seyrekleşir."
+    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "Açık sekmede bu aralıkla yeni mesaj kontrol edilir (önerilen 10); cevap akarken 3 sn'de bir, değişiklik yoksa 15 sn'ye kadar. Arka plandaki sekme dakikada bir bakar. Hatalarda aralık 60 sn'ye kadar seyrekleşir.",
+    "Flux Donate is not active.": "Flux Donate etkin değil.",
+    "Donor's earlier referral": "Bağışçının önceki referansı",
+    "Referral": "Referans",
+    "Order": "Sipariş",
+    "Confirmation code": "Onay kodu",
+    "Recorded from": "Kayıt kaynağı",
+    "Entered by": "Kaydı açan",
+    "Items": "Kalemler",
+    "On behalf of: {n}": "Adına: {n}",
+    "Receipts": "Dekontlar",
+    "Revoked": "İptal",
+    "{n} paid gifts · {m}": "{n} ödenmiş bağış · {m}",
+    "No contact details.": "İletişim bilgisi yok.",
+    "No referral.": "Referans yok.",
+    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir."
   }
 }

@@ -3656,5 +3656,9 @@ return array(
 'Show in the list'=>'Afficher dans la liste',
 'Review'=>'Examiner',
 '%s more' . chr(0) . '%s more'=>'%s de plus' . chr(0) . '%s de plus',
+'Paid gifts'=>'Dons payés',
+'Open chat'=>'Ouvrir la conversation',
+'This gift has no referral.'=>'Ce don n\'a pas de parrain.',
+'The donor\'s earlier gifts came through %s.'=>'Les dons précédents du donateur sont passés par %s.',
 ),
 );

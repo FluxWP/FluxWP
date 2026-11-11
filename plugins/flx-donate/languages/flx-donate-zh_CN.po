@@ -5706,3 +5706,15 @@ msgstr "查看"
 msgid "%s more"
 msgid_plural "%s more"
 msgstr[0] "还有 %s 条"
+
+msgid "Paid gifts"
+msgstr "已付款捐赠"
+
+msgid "Open chat"
+msgstr "打开聊天"
+
+msgid "This gift has no referral."
+msgstr "此捐赠没有推荐人。"
+
+msgid "The donor's earlier gifts came through %s."
+msgstr "该捐赠者此前的捐赠来自 %s。"

@@ -1884,6 +1884,10 @@
     "Receipts awaiting approval": "Receipts awaiting approval",
     "The donor sent a receipt. Open it, check the bank account, then approve or reject.": "The donor sent a receipt. Open it, check the bank account, then approve or reject.",
     "Show in the list": "Show in the list",
-    "Review": "Review"
+    "Review": "Review",
+    "Paid gifts": "Paid gifts",
+    "Open chat": "Open chat",
+    "This gift has no referral.": "This gift has no referral.",
+    "The donor's earlier gifts came through %s.": "The donor's earlier gifts came through %s."
   }
 }

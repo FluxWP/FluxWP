@@ -3656,5 +3656,9 @@ return array(
 'Show in the list'=>'Показать в списке',
 'Review'=>'Проверить',
 '%s more' . chr(0) . '%s more'=>'ещё %s' . chr(0) . 'ещё %s' . chr(0) . 'ещё %s',
+'Paid gifts'=>'Оплаченные пожертвования',
+'Open chat'=>'Открыть чат',
+'This gift has no referral.'=>'У этого пожертвования нет реферала.',
+'The donor\'s earlier gifts came through %s.'=>'Прежние пожертвования этого жертвователя пришли через %s.',
 ),
 );

@@ -4807,3 +4807,47 @@ msgstr ""
 msgid "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s."
 msgstr ""
 
+msgid "Flux Donate is not active."
+msgstr ""
+
+msgid "Donor's earlier referral"
+msgstr ""
+
+msgid "Referral"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Confirmation code"
+msgstr ""
+
+msgid "Recorded from"
+msgstr ""
+
+msgid "Entered by"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "On behalf of: {n}"
+msgstr ""
+
+msgid "Receipts"
+msgstr ""
+
+msgid "Revoked"
+msgstr ""
+
+msgid "{n} paid gifts · {m}"
+msgstr ""
+
+msgid "No contact details."
+msgstr ""
+
+msgid "No referral."
+msgstr ""
+
+msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+msgstr ""

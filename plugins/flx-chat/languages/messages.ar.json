@@ -1607,6 +1607,21 @@
     "Delete for everyone time limit (hours)": "مهلة الحذف لدى الجميع (ساعات)",
     "WhatsApp lets you delete a sent message for everyone only for about 2 days and 12 hours (60 hours). After this limit, or for received messages, the message is only hidden in the panel: it stays on the contact's phone. 0 turns off delete for everyone. Deleted messages are never removed from the server; the team can still open them.": "يسمح واتساب بحذف رسالة مرسلة لدى الجميع خلال نحو يومين و12 ساعة (60 ساعة) فقط. بعد هذه المهلة، أو في الرسائل المستلمة، تُخفى الرسالة في اللوحة فقط وتبقى على هاتف جهة الاتصال. القيمة 0 توقف الحذف لدى الجميع. لا تُزال الرسائل المحذوفة من الخادم أبدًا؛ ويمكن للفريق فتحها.",
     "Last update request %1$s. While the panel is open it checks for new messages every %2$d s (3 s while a reply is streaming, up to 15 s when nothing changes) and once a minute in a background tab.": "طلب التحديث الأخير %1$s. عندما تكون اللوحة مفتوحة تتحقق من الرسائل الجديدة كل %2$d ث (3 ث أثناء بث الرد، وحتى 15 ث إن لم يتغير شيء) ومرة كل دقيقة في علامة تبويب خلفية.",
-    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "تتحقق علامة التبويب المفتوحة من الرسائل الجديدة في هذه الفترة (يُوصى بـ 10)، كل 3 ث أثناء بث الرد، وحتى 15 ث إن لم يتغير شيء. علامة التبويب الخلفية تتحقق مرة كل دقيقة. عند الأخطاء تمتد المهلة حتى 60 ث."
+    "The open tab checks for new messages at this interval (10 recommended), every 3 s while a reply is streaming, and up to 15 s when nothing changes. A background tab checks once a minute. Errors back off up to 60 s.": "تتحقق علامة التبويب المفتوحة من الرسائل الجديدة في هذه الفترة (يُوصى بـ 10)، كل 3 ث أثناء بث الرد، وحتى 15 ث إن لم يتغير شيء. علامة التبويب الخلفية تتحقق مرة كل دقيقة. عند الأخطاء تمتد المهلة حتى 60 ث.",
+    "Flux Donate is not active.": "Flux Donate غير مفعّل.",
+    "Donor's earlier referral": "مُحيل المتبرع السابق",
+    "Referral": "المُحيل",
+    "Order": "الطلب",
+    "Confirmation code": "رمز التأكيد",
+    "Recorded from": "مصدر التسجيل",
+    "Entered by": "أدخله",
+    "Items": "البنود",
+    "On behalf of: {n}": "نيابةً عن: {n}",
+    "Receipts": "الإيصالات",
+    "Revoked": "ملغى",
+    "{n} paid gifts · {m}": "{n} تبرعات مدفوعة · {m}",
+    "No contact details.": "لا توجد بيانات اتصال.",
+    "No referral.": "لا يوجد مُحيل.",
+    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "هل وصلت الدفعة إلى الحساب؟ عند التأكيد تُنشأ الشهادة وتُرسل إلى المتبرع."
   }
 }

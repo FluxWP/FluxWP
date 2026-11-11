@@ -210,6 +210,32 @@ final class FLXB_Refs {
 		return $u ? (string) $u->display_name : ( (int) $user_id ? '#' . (int) $user_id : '' );
 	}
 
+	/** 2.20.0: the referral of the donor's most recent referred gift (0 when none). */
+	public static function donor_ref( $donor_id ) {
+		global $wpdb;
+		return (int) $wpdb->get_var( $wpdb->prepare( 'SELECT ref_user_id FROM ' . flxb_table( 'donations' ) . " WHERE donor_id = %d AND ref_user_id > 0 AND status <> 'trash' ORDER BY id DESC LIMIT 1", (int) $donor_id ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	}
+
+	/**
+	 * 2.20.0: the same for many donors at once (list rows).
+	 *
+	 * @return array donor id => referral user id
+	 */
+	public static function donor_refs( array $donor_ids ) {
+		global $wpdb;
+		$ids = array_values( array_unique( array_filter( array_map( 'intval', $donor_ids ) ) ) );
+		if ( ! $ids ) {
+			return array();
+		}
+		$t   = flxb_table( 'donations' );
+		$out = array();
+		$rows = (array) $wpdb->get_results( "SELECT donor_id, ref_user_id FROM {$t} WHERE id IN (SELECT MAX(id) FROM {$t} WHERE donor_id IN (" . implode( ',', $ids ) . ") AND ref_user_id > 0 AND status <> 'trash' GROUP BY donor_id)", ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+		foreach ( $rows as $r ) {
+			$out[ (int) $r['donor_id'] ] = (int) $r['ref_user_id'];
+		}
+		return $out;
+	}
+
 	/** Referral written on a WooCommerce order by Flux Roles. */
 	public static function of_order( $order ) {
 		if ( function_exists( 'flxr_order_ref_user' ) ) {
