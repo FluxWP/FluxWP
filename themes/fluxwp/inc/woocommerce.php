@@ -436,3 +436,25 @@ add_filter(
 		return false !== strpos( $content, '[' ) ? do_shortcode( $content ) : $content;
 	}
 );
+
+/**
+ * Ödeme sayfası başlığındaki "Güvenli ödeme" rozeti: sağlayıcı adı sabit yazılmaz, o an kartları
+ * alan ödeme yönteminden gelir (EsnekPOS, iyzico…). Eski şablonlarda kalmış "· iyzico" metni de düzelir.
+ * Sağlayıcı adı: filtre flx_secure_badge_provider (Flux Donate / Flux POS doldurur; boş = yalnız "Güvenli ödeme").
+ */
+add_filter(
+	'render_block_core/paragraph',
+	function ( $html, $block ) {
+		if ( false === strpos( ' ' . ( $block['attrs']['className'] ?? '' ) . ' ', ' flx-secure-badge ' ) ) {
+			return $html;
+		}
+		$provider = trim( wp_strip_all_tags( (string) apply_filters( 'flx_secure_badge_provider', '' ) ) );
+		$text     = '' !== $provider
+			/* translators: %s: payment provider, e.g. EsnekPOS */
+			? sprintf( __( 'Güvenli ödeme · %s', 'fluxwp' ), $provider )
+			: __( 'Güvenli ödeme', 'fluxwp' );
+		return (string) preg_replace( '#(<p\b[^>]*>).*?(</p>)#s', '$1' . str_replace( array( '\\', '$' ), array( '\\\\', '\\$' ), esc_html( $text ) ) . '$2', $html, 1 );
+	},
+	20,
+	2
+);
