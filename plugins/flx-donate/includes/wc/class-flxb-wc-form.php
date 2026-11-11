@@ -491,14 +491,12 @@ final class FLXB_WC_Form {
 			<div class="flxwb-deliver" data-flxwb-deliver<?php echo $cur_d['cert'] ? '' : ' hidden'; ?>>
 				<p class="flxwb-deliver__title"><?php esc_html_e( 'Where should the certificate go?', 'flx-donate' ); ?></p>
 				<div class="flxwb-dcard">
-					<span class="flxwb-dcard__icon flxwb-dcard__icon--wa"><?php echo FLXB_WC::icon( 'wa' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-					<span class="flxwb-dcard__body"><strong>WhatsApp</strong>
+					<span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon flxwb-dcard__icon--wa"><?php echo FLXB_WC::icon( 'wa' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>WhatsApp</strong>
 						<?php echo self::phone_input( 'ben_phone', (string) ( $old['ben_phone'] ?? ( $for_other ? '' : $me['phone'] ) ), array( 'data-flxwb-phone' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</span>
 				</div>
 				<label class="flxwb-dcard">
-					<span class="flxwb-dcard__icon"><?php echo FLXB_WC::icon( 'mail' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-					<span class="flxwb-dcard__body"><strong><?php esc_html_e( 'E-mail', 'flx-donate' ); ?></strong>
+					<span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon"><?php echo FLXB_WC::icon( 'mail' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span><?php esc_html_e( 'E-mail', 'flx-donate' ); ?></strong>
 						<input type="email" name="ben_email" autocomplete="off" value="<?php echo esc_attr( (string) ( $old['ben_email'] ?? ( $for_other ? '' : $me['email'] ) ) ); ?>" placeholder="ornek@eposta.com" data-flxwb-email>
 					</span>
 				</label>
@@ -841,7 +839,7 @@ final class FLXB_WC_Form {
 		$value   = (string) ( $old['ben_name'] ?? '' );
 		$place   = __( 'e.g. Ayşe Yılmaz or the Yılmaz family', 'flx-donate' );
 		$help    = $for_other ? ( $cert ? $h_other : $h_nocert ) : $h_self;
-		$hidden  = ! $cert && ! $for_other;
+		$hidden  = ! $for_other; // 2.23.0: for myself the name comes from the checkout, the field is only for someone else
 		if ( ! function_exists( 'flx_field' ) ) {
 			return '<label class="flxwb-field" data-flxwb-name' . ( $hidden ? ' hidden' : '' ) . '><span class="flxwb-field__label" data-flxwb-name-label data-self="' . esc_attr( $l_self ) . '" data-other="' . esc_attr( $l_other ) . '">' . esc_html( $for_other ? $l_other : $l_self ) . '</span><input type="text" name="ben_name" maxlength="80" autocomplete="off" value="' . esc_attr( $value ) . '" placeholder="' . esc_attr( $place ) . '"><span class="flxwb-field__help" data-flxwb-name-help data-self="' . esc_attr( $h_self ) . '" data-other="' . esc_attr( $h_other ) . '" data-nocert="' . esc_attr( $h_nocert ) . '">' . esc_html( $help ) . '</span></label>';
 		}

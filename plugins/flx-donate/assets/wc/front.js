@@ -243,7 +243,12 @@
 				var pk = ds.querySelector('input[name="tpl"]:checked');
 				ds.querySelectorAll('[data-flxwb-dfields]').forEach(function (b) { b.hidden = !pk || b.getAttribute('data-flxwb-dfields') !== pk.value; });
 			}
-			if (nf) nf.hidden = !T.cert && !other;
+			/* 2.23.0: for myself the checkout name is used; the name field is only asked for someone else. */
+			if (nf) {
+				nf.hidden = !other;
+				var ni = nf.querySelector('input[name="ben_name"]');
+				if (ni) ni.disabled = !other;
+			}
 			var ph = form.querySelector('[data-flxwb-phone]'), em = form.querySelector('[data-flxwb-email]');
 			var sm = form.querySelector('[data-flxwb-sendme]');
 			if (sm) sm.hidden = !(T.cert && other && ((ph && phoneOf(ph)) || (em && em.value.trim())));

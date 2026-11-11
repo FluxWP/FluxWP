@@ -357,3 +357,9 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 	.flxwb .flxwb-who .flxwb-seg__opt span { font-size: .85rem; white-space: nowrap; gap: 4px; }
 	.flxwb .flxwb-who .flxwb-seg__opt svg { width: 16px; height: 16px; }
 }
+
+/* 2.23.0 · Where the certificate goes: the icon sits left of the WhatsApp / E-mail title, the field gets the full width. */
+.flxwb .flxwb-dcard { grid-template-columns: minmax(0, 1fr); }
+.flxwb .flxwb-dcard__title { display: inline-flex; align-items: center; gap: 8px; }
+.flxwb .flxwb-dcard__title .flxwb-dcard__icon { width: 28px; height: 28px; border-radius: 8px; flex: none; }
+.flxwb .flxwb-dcard__title .flxwb-dcard__icon svg, .flxwb .flxwb-dcard__title .flxwb-dcard__icon .flxwb-ic { width: 16px; height: 16px; }
