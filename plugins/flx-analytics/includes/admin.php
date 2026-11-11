@@ -422,21 +422,12 @@ class FLXAN_Admin {
 					$rows[] = array( $r['d'], $r['visitors'], $r['pageviews'] );
 				}
 		}
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="flx-analytics-' . $type . '-' . $g['start'] . '_' . $g['end'] . '.csv"' );
-		$out = fopen( 'php://output', 'w' );
-		fwrite( $out, "\xEF\xBB\xBF" ); // Excel UTF-8
-		foreach ( $rows as $r ) {
-			fputcsv( $out, array_map(
-				function ( $v ) {
-					$v = (string) $v;
-					return preg_match( '/^[=+\-@]/', $v ) ? "'" . $v : $v; // CSV formül enjeksiyonu
-				},
-				$r
-			), ';' );
-		}
-		fclose( $out ); // phpcs:ignore
+		flx_csv_stream(
+			'flx-analytics-' . $type . '-' . $g['start'] . '_' . $g['end'] . '.csv',
+			(array) array_shift( $rows ),
+			$rows,
+			array( 'delimiter' => ';' )
+		);
 		exit;
 	}
 }

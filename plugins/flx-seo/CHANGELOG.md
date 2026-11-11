@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.8.8
+- SEO API yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
 ## 1.8.7
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

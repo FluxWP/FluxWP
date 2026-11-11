@@ -361,9 +361,7 @@ class FLXS_Renderer {
 		$ttf = flxs_font_file( $id );
 		$dir = flxs_upload_dir()['dir'] . '/fonts/';
 		if ( ! is_dir( $dir ) ) {
-			wp_mkdir_p( $dir );
-			// TCPDF font tanımları PHP dosyası: dışarıdan erişilmesin
-			file_put_contents( $dir . '.htaccess', "Require all denied\nDeny from all\n" ); // phpcs:ignore
+			flx_private_dir( $dir );
 			file_put_contents( $dir . 'index.php', "<?php // Silence\n" ); // phpcs:ignore
 		}
 		$name = TCPDF_FONTS::addTTFfont( $ttf, 'TrueTypeUnicode', '', 32, $dir );

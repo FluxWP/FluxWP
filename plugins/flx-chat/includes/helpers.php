@@ -121,8 +121,40 @@ function flxc_setting( $key ) {
 
 function flxc_update_settings( array $values ) {
 	$s = array_merge( flxc_settings(), $values );
+	if ( isset( $s['connections'] ) && is_array( $s['connections'] ) ) {
+		foreach ( $s['connections'] as $i => $c ) {
+			if ( ! is_array( $c ) ) {
+				continue;
+			}
+			foreach ( array( 'api_key', 'secret' ) as $k ) {
+				$v = (string) ( $c[ $k ] ?? '' );
+				if ( '' === $v || 0 === strpos( $v, 'flx1:' ) || ! function_exists( 'flx_secret_seal' ) ) {
+					continue;
+				}
+				$sealed = flx_secret_seal( $v, 'flx-chat' );
+				if ( '' !== $sealed ) {
+					$s['connections'][ $i ][ $k ] = $sealed;
+				}
+			}
+		}
+	}
 	update_option( 'flxc_settings', $s, false );
 	return flxc_settings( true );
+}
+
+/** Open a stored connection secret. A value from before sealing is returned unchanged. */
+function flxc_open_secret( $value ) {
+	$value = (string) $value;
+	if ( '' === $value || 0 !== strpos( $value, 'flx1:' ) ) {
+		return $value;
+	}
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+	}
+	if ( ! function_exists( 'flx_secret_open' ) ) {
+		return '';
+	}
+	return flx_secret_open( $value, 'flx-chat' );
 }
 
 /** Varsayılan etiketler: ilk kurulumda site dilinde yazılır, sonra panelden değiştirilir. */
@@ -170,36 +202,7 @@ function flxc_normalize_phone( $raw ) {
 	if ( function_exists( 'flxs_normalize_phone' ) ) {
 		return flxs_normalize_phone( $raw );
 	}
-	$raw = trim( (string) $raw );
-	if ( '' === $raw ) {
-		return '';
-	}
-	$digits = preg_replace( '/\D+/', '', $raw );
-	if ( '' === $digits ) {
-		return '';
-	}
-	$intl = 0 === strpos( $raw, '+' ) || 0 === strpos( $digits, '00' );
-	if ( $intl ) {
-		$digits = ltrim( $digits, '0' );
-	} elseif ( '0' === $digits[0] ) {
-		$digits = '0' . ltrim( $digits, '0' );
-	}
-	if ( 0 === strpos( $digits, '900' ) && 13 === strlen( $digits ) ) {
-		$digits = '90' . substr( $digits, 3 );
-	}
-	if ( ! $intl ) {
-		$len = strlen( $digits );
-		if ( 11 === $len && '0' === $digits[0] ) {
-			$digits = '90' . substr( $digits, 1 );
-		} elseif ( 10 === $len && '0' !== $digits[0] ) {
-			$digits = '90' . $digits;
-		}
-	}
-	$digits = ltrim( $digits, '0' );
-	if ( strlen( $digits ) < 8 || strlen( $digits ) > 15 ) {
-		return '';
-	}
-	return $digits;
+	return flx_phone_digits( $raw, 'tr' );
 }
 
 /** 905321234567 => +90 532 123 45 67 */

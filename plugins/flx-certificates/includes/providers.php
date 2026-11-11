@@ -17,7 +17,7 @@ function flxs_get_provider( $id ) {
 	global $wpdb;
 	$row = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxs_table( 'providers' ) . ' WHERE id = %d', $id ), ARRAY_A );
 	if ( $row ) {
-		$row['config'] = flxs_decode( $row['config'] );
+		$row['config'] = flxs_open_config( flxs_decode( $row['config'] ) );
 	}
 	return $row;
 }
@@ -36,9 +36,25 @@ function flxs_list_providers( $channel = '', $only_active = false ) {
 	$sql  = 'SELECT * FROM ' . flxs_table( 'providers' ) . ' WHERE ' . implode( ' AND ', $where ) . ' ORDER BY channel, id';
 	$rows = $wpdb->get_results( $prm ? $wpdb->prepare( $sql, $prm ) : $sql, ARRAY_A );
 	foreach ( $rows as &$r ) {
-		$r['config'] = flxs_decode( $r['config'] );
+		$r['config'] = flxs_open_config( flxs_decode( $r['config'] ) );
 	}
 	return $rows;
+}
+
+/** Open sealed provider fields. A value stored before sealing is returned unchanged. */
+function flxs_open_config( $config ) {
+	if ( ! is_array( $config ) ) {
+		return array();
+	}
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme: load the shared core now.
+	}
+	foreach ( $config as $k => $v ) {
+		if ( is_string( $v ) && 0 === strpos( $v, 'flx1:' ) ) {
+			$config[ $k ] = function_exists( 'flx_secret_open' ) ? flx_secret_open( $v, 'flx-certificates' ) : '';
+		}
+	}
+	return $config;
 }
 
 /** E-postada sağlayıcı yoksa WordPress'in kendi wp_mail'i kullanılır (sanal sağlayıcı #0). */
@@ -202,6 +218,12 @@ function flxs_save_provider( $id, $type, $name, array $input, $active ) {
 			$v = trim( (string) $v );
 			if ( '' === $v && $old ) {
 				$v = $old['config'][ $k ] ?? '';
+			}
+			if ( '' !== (string) $v && 0 !== strpos( (string) $v, 'flx1:' ) && function_exists( 'flx_secret_seal' ) ) {
+				$sealed = flx_secret_seal( (string) $v, 'flx-certificates' );
+				if ( '' !== $sealed ) {
+					$v = $sealed;
+				}
 			}
 		} elseif ( 'checkbox' === $f['type'] ) {
 			$v = empty( $v ) ? 0 : 1;

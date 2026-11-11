@@ -570,8 +570,7 @@ add_filter(
 	'rest_post_dispatch',
 	function ( $res, $server, $req ) {
 		if ( $res instanceof WP_HTTP_Response && 0 === strpos( (string) $req->get_route(), '/' . FLXST_NS ) ) {
-			$res->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
-			$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+			flx_rest_nocache( $res );
 			$res->header( 'CDN-Cache-Control', 'no-store' );
 			do_action( 'litespeed_control_set_nocache', 'flx-studio rest' );
 		}

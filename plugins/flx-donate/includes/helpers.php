@@ -131,36 +131,7 @@ function flxb_unit_label( $unit, $count = 1 ) {
  * (0532 123 45 67, 532 123 45 67, 90 532…) become +90…; '' when it is not a phone number.
  */
 function flxb_normalize_phone( $raw ) {
-	$raw = trim( (string) $raw );
-	if ( '' === $raw ) {
-		return '';
-	}
-	$digits = preg_replace( '/\D+/', '', $raw );
-	if ( '' === $digits ) {
-		return '';
-	}
-	$intl = 0 === strpos( $raw, '+' ) || 0 === strpos( $digits, '00' );
-	if ( $intl ) {
-		$digits = ltrim( $digits, '0' );
-		if ( 0 === strpos( $digits, '900' ) && 13 === strlen( $digits ) ) {
-			$digits = '90' . substr( $digits, 3 ); // +90 0532…
-		}
-	} else {
-		$digits = ltrim( $digits, '0' );
-		$len    = strlen( $digits );
-		if ( 10 === $len ) {
-			$digits = '90' . $digits;             // 532 123 45 67, 0532…, 212…
-		} elseif ( 13 === $len && 0 === strpos( $digits, '900' ) ) {
-			$digits = '90' . substr( $digits, 3 );
-		}
-	}
-	if ( strlen( $digits ) < 8 || strlen( $digits ) > 15 ) {
-		return '';
-	}
-	if ( 0 === strpos( $digits, '90' ) && ( 12 !== strlen( $digits ) || ! in_array( $digits[2], array( '2', '3', '4', '5', '8' ), true ) ) ) {
-		return '';
-	}
-	return '+' . $digits;
+	return flx_phone_normalize( $raw, 'tr' );
 }
 
 /** +905321234567 → +90 532 123 45 67 */
@@ -229,22 +200,6 @@ function flxb_local_day_to_utc( $ymd, $end = false ) {
 	} catch ( \Exception $e ) {
 		return $ymd . ( $end ? ' 23:59:59' : ' 00:00:00' );
 	}
-}
-
-/** CSV cell: quote a formula, leave a real number (including a negative) as a number. */
-function flxb_csv_cell( $v ) {
-	if ( is_int( $v ) || is_float( $v ) ) {
-		return $v;
-	}
-	$s = (string) $v;
-	if ( preg_match( '/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/', $s ) ) {
-		return $s;
-	}
-	$probe = preg_replace( '/^[\x00-\x08\x0A-\x0C\x0E-\x20]*/', '', $s );
-	if ( is_string( $probe ) && isset( $probe[0] ) && false !== strpos( "=+-@\t\r", $probe[0] ) ) {
-		return "'" . $s;
-	}
-	return $s;
 }
 
 /* ------------------------------------------------------------------

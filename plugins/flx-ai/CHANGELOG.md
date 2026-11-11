@@ -1,5 +1,17 @@
 # Flux AI — Değişiklikler
 
+## 0.10.8
+- Kayıtlı API anahtarları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılmaya devam eder. WordPress tuzları değişirse anahtarları yeniden girin.
+
+## 0.10.7
+- OAuth, API ve akış yanıtları ortak önbelleksiz başlıkları kullanır. Akışın tampon kapatması durur.
+
+## 0.10.6
+- MCP OAuth istek sınırı (dakikada 120, kayıt saatte 20) ortak sayacı kullanır. Adres, güvenilen vekilin ilettiği ziyaretçi adresidir; herkes tek kovada birleşmez.
+
+## 0.10.5
+- Kullanım CSV'si ortak dışa aktarmayı kullanır. Sütunlar, virgül ayırıcı ve Excel BOM aynı kalır.
+
 ## 0.10.4
 - Bütçe mesajında ("Spent: %1$s / Limit: %2$s") boşluklar geri geldi.
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

@@ -606,16 +606,12 @@ final class FLXB_Import {
 	}
 
 	private static function phone( $v ) {
-		$d = preg_replace( '/\D/', '', (string) $v );
-		if ( '' === $d ) {
-			return '';
+		$n = flx_phone_normalize( $v, 'tr' );
+		if ( '' !== $n ) {
+			return $n;
 		}
-		if ( 10 === strlen( $d ) && '5' === $d[0] ) {
-			$d = '90' . $d;
-		} elseif ( 11 === strlen( $d ) && '0' === $d[0] ) {
-			$d = '90' . substr( $d, 1 );
-		}
-		return '+' . $d;
+		$d = preg_replace( '/\D/', '', (string) $v ); // Keep an unrecognised number as typed.
+		return '' !== $d ? '+' . $d : '';
 	}
 
 	/** Write one row. @return true|WP_Error */

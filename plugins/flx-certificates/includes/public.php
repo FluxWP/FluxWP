@@ -115,11 +115,16 @@ function flxs_serve_pdf( $cert ) {
 		return;
 	}
 	nocache_headers();
-	header( 'Content-Type: application/pdf' );
-	header( 'Content-Length: ' . filesize( $path ) );
-	header( 'Content-Disposition: ' . ( isset( $_GET['indir'] ) ? 'attachment' : 'inline' ) . '; filename="' . flxs_pdf_filename( $cert ) . '"' ); // phpcs:ignore
 	header( 'X-Robots-Tag: noindex' );
-	readfile( $path ); // phpcs:ignore
+	flx_send_file(
+		$path,
+		array(
+			'filename' => flxs_pdf_filename( $cert ),
+			'type'     => 'application/pdf',
+			'inline'   => ! isset( $_GET['indir'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			'cache'    => '', // nocache_headers() above already set it.
+		)
+	);
 }
 
 function flxs_page_data( $cert ) {

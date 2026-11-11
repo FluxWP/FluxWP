@@ -281,8 +281,7 @@ function flxcb_contrast( $hex ) {
 
 /** Ziyaretçi IP'sinin tuzlu özeti (yalnız hız sınırı için, saklanmaz). */
 function flxcb_ip_key() {
-	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
-	return substr( hash_hmac( 'sha256', $ip, wp_salt( 'nonce' ) ), 0, 20 );
+	return substr( hash_hmac( 'sha256', flx_client_ip(), wp_salt( 'nonce' ) ), 0, 20 );
 }
 
 /**
@@ -293,21 +292,7 @@ function flxcb_ip_key() {
  * @param int    $window Saniye.
  */
 function flxcb_rate( $key, $max, $window ) {
-	if ( $max <= 0 ) {
-		return true;
-	}
-	$t   = 'flxcb_rl_' . md5( $key . '|' . $window );
-	$cur = get_transient( $t );
-	$cur = is_array( $cur ) ? $cur : array( 'n' => 0, 'until' => time() + $window );
-	if ( $cur['until'] < time() ) {
-		$cur = array( 'n' => 0, 'until' => time() + $window );
-	}
-	if ( $cur['n'] >= $max ) {
-		return false;
-	}
-	++$cur['n'];
-	set_transient( $t, $cur, max( 1, $cur['until'] - time() ) );
-	return true;
+	return flx_rate_limit( 'flxcb|' . $key, (int) $max, (int) $window );
 }
 
 /** Tek uçuş kilidinin seçeneği (sohbet başına bir satır, bırakılınca silinir). */

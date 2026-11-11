@@ -33,12 +33,7 @@ final class FLXCM_Receipts {
 	public static function dir() {
 		$up  = wp_upload_dir( null, false );
 		$dir = trailingslashit( $up['basedir'] ) . 'flxcm-dekont';
-		if ( ! is_dir( $dir ) ) {
-			wp_mkdir_p( $dir );
-		}
-		if ( ! file_exists( $dir . '/.htaccess' ) ) {
-			@file_put_contents( $dir . '/.htaccess', "<IfModule mod_authz_core.c>\nRequire all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\nDeny from all\n</IfModule>\n" ); // phpcs:ignore
-		}
+		flx_private_dir( $dir );
 		if ( ! file_exists( $dir . '/index.php' ) ) {
 			@file_put_contents( $dir . '/index.php', "<?php\n// Silence is golden.\n" ); // phpcs:ignore
 		}

@@ -189,7 +189,7 @@ final class FLXB_Lookup {
 	/* ---------- Rate limits ---------- */
 
 	private static function ip() {
-		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+		$ip = flx_client_ip();
 		return '' !== $ip ? $ip : '0';
 	}
 
@@ -199,13 +199,7 @@ final class FLXB_Lookup {
 
 	/** Counts a hit; false when the limit is reached. */
 	private static function rate( $key, $max, $window ) {
-		$k = 'flxb_lkr_' . self::h( $key );
-		$n = (int) get_transient( $k );
-		if ( $n >= $max ) {
-			return false;
-		}
-		set_transient( $k, $n + 1, $window );
-		return true;
+		return flx_rate_limit( 'flxb_lk|' . $key, (int) $max, (int) $window );
 	}
 
 	/** Daily cap per channel (Hostinger: 100 e-mails a day for the whole site). */
@@ -235,8 +229,7 @@ final class FLXB_Lookup {
 	/** Answers of the lookup endpoints are never cached (LiteSpeed, CDN, browser). */
 	public static function no_cache( $res, $server, $req ) {
 		if ( $req instanceof WP_REST_Request && 0 === strpos( (string) $req->get_route(), '/' . self::NS . '/lookup' ) && $res instanceof WP_REST_Response ) {
-			$res->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0, private' );
-			$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+			flx_rest_nocache( $res );
 			$res->header( 'CDN-Cache-Control', 'no-store' );
 			do_action( 'litespeed_control_set_nocache', 'flx-donate lookup' );
 		}

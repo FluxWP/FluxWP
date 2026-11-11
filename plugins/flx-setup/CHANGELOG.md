@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.3
+- İçe aktarılan ön ayar klasörü Apache 2.2 ve 2.4'te web'den açılmaz.
+
 ## 1.2.2
 - Paketler: devre dışı eklenti ve temalar artık hep listenin sonunda. Sıra: güncellemesi olanlar, etkinler, kurulu olmayanlar, devre dışılar.
 - FluxWP dışındaki eklentilerin ikonları güncelleme olmasa da görünür (WordPress.org kaydı, yoksa eklentinin kendi klasöründeki ikon). İkonu bulunamayan eklentide adın baş harfiyle renkli kutu (filtre `flxu_wp_plugin_icon`).
