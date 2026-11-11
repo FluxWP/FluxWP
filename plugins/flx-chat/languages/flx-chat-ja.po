@@ -4851,3 +4851,117 @@ msgstr "紹介者なし。"
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "入金は口座に届きましたか？確認すると証明書が作成され、寄付者に送られます。"
+
+msgid "Change history"
+msgstr "変更履歴"
+
+msgid "Assistant memory"
+msgstr "アシスタントの記憶"
+
+msgid "Note updated"
+msgstr "メモを更新しました"
+
+msgid "Show less"
+msgstr "表示を減らす"
+
+msgid "Show all ({n})"
+msgstr "すべて表示 ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "寄付・証明書の記録から入力 (1回限りの更新)"
+
+msgid "Name given by the sending record"
+msgstr "送信元の記録にある名前"
+
+msgid "Filled from donation and certificate records"
+msgstr "寄付・証明書の記録から入力"
+
+msgid "The contact said their name in the chat"
+msgstr "連絡先がチャットで名前を伝えました"
+
+msgid "The contact corrected their name in the chat"
+msgstr "連絡先がチャットで名前を訂正しました"
+
+msgid "The contact gave their full name in the chat"
+msgstr "連絡先がチャットでフルネームを伝えました"
+
+msgid "The assistant updated the reminder: %1$s (%2$s)"
+msgstr "アシスタントがリマインダーを更新しました: %1$s (%2$s)"
+
+msgid "The assistant marked the chat as completed (the person said goodbye). It continues normally if they write again."
+msgstr "アシスタントがチャットを完了としてマークしました(相手が別れの挨拶をしました)。再度メッセージが届けば通常どおり続きます。"
+
+msgid "Let the assistant react to messages with an emoji (👍 for \"okay\", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell"
+msgstr "アシスタントがメッセージに絵文字でリアクションできるようにする(「了解」には👍、感謝や祈りには🤲)。別れの挨拶の後は、新たな挨拶を書かずにリアクションします"
+
+msgid "same person and donation, not a copy"
+msgstr "同じ人物・同じ寄付で、コピーではありません"
+
+msgid "Closing, reactions and reminders"
+msgstr "終了、リアクション、リマインダー"
+
+msgid "Chat already marked completed (goodbyes said)"
+msgstr "チャットは既に完了としてマーク済み(別れの挨拶済み)"
+
+msgid "Site search returns a sample event with a location"
+msgstr "サイト検索が場所付きのサンプルイベントを返す"
+
+msgid "Chat marked completed"
+msgstr "チャットが完了としてマークされた"
+
+msgid "Emoji reaction left"
+msgstr "絵文字リアクションを付けた"
+
+msgid "No text reply to the last message"
+msgstr "最後のメッセージにテキスト返信なし"
+
+msgid "Reminder is one-time"
+msgstr "リマインダーは1回限り"
+
+msgid "Exactly one reminder"
+msgstr "リマインダーはちょうど1件"
+
+msgid "(no text, reacted to the message: {e})"
+msgstr "(テキストなし、メッセージへのリアクション: {e})"
+
+msgid "(no text: the chat is completed, stayed silent)"
+msgstr "(テキストなし: チャットは完了済みのため返信なし)"
+
+msgid "(reacted to the message: {e})"
+msgstr "(メッセージへのリアクション: {e})"
+
+msgid "Reminder request: set at once"
+msgstr "リマインダーの依頼: すぐに設定"
+
+msgid "Event location and time"
+msgstr "イベントの場所と時間"
+
+msgid "Continuation: own receipt sent again, asks if it arrived"
+msgstr "続き: 自分の領収書を再送し、届いたか尋ねる"
+
+msgid "Thanks after help: one short farewell"
+msgstr "対応後のお礼: 短い別れの挨拶を1回"
+
+msgid "Goodbye loop: no repeated farewells"
+msgstr "別れの挨拶のループ: 挨拶を繰り返さない"
+
+msgid "New topic after goodbye gets a normal reply"
+msgstr "別れの挨拶後の新しい話題には通常どおり返信"
+
+msgid "Question after goodbye is answered"
+msgstr "別れの挨拶後の質問に回答する"
+
+msgid "Short \"okay\" after goodbye: reaction only"
+msgstr "別れの挨拶後の短い「了解」: リアクションのみ"
+
+msgid "Continuation: prayer gets a prayer reaction"
+msgstr "続き: 祈りの言葉に祈りのリアクション"
+
+msgid "Continuation: \"you will remind me\" sets the reminder at once"
+msgstr "続き: 「リマインドしてくださいね」ですぐにリマインダーを設定"
+
+msgid "Changes the day afterwards: same reminder updated"
+msgstr "後から日付を変更: 同じリマインダーを更新"
+
+msgid "Monthly reminder turned into one-time"
+msgstr "毎月のリマインダーを1回限りに変更"

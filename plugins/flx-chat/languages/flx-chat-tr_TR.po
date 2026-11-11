@@ -4851,3 +4851,117 @@ msgstr "Referans yok."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir."
+
+msgid "Change history"
+msgstr "Değişiklik geçmişi"
+
+msgid "Assistant memory"
+msgstr "Asistan hafızası"
+
+msgid "Note updated"
+msgstr "Not güncellendi"
+
+msgid "Show less"
+msgstr "Daha az göster"
+
+msgid "Show all ({n})"
+msgstr "Tümünü göster ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Bağış ve sertifika kayıtlarından dolduruldu (tek seferlik güncelleme)"
+
+msgid "Name given by the sending record"
+msgstr "Gönderen kayıttaki ad"
+
+msgid "Filled from donation and certificate records"
+msgstr "Bağış ve sertifika kayıtlarından dolduruldu"
+
+msgid "The contact said their name in the chat"
+msgstr "Kişi adını sohbette söyledi"
+
+msgid "The contact corrected their name in the chat"
+msgstr "Kişi adını sohbette düzeltti"
+
+msgid "The contact gave their full name in the chat"
+msgstr "Kişi ad soyadını sohbette verdi"
+
+msgid "The assistant updated the reminder: %1$s (%2$s)"
+msgstr "Asistan hatırlatıcıyı güncelledi: %1$s (%2$s)"
+
+msgid "The assistant marked the chat as completed (the person said goodbye). It continues normally if they write again."
+msgstr "Asistan sohbeti tamamlandı olarak işaretledi (kişi vedalaştı). Kişi yeniden yazarsa normal devam eder."
+
+msgid "Let the assistant react to messages with an emoji (👍 for \"okay\", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell"
+msgstr "Asistan mesajlara emoji tepkisi bıraksın (\"tamam\" için 👍, teşekkür ve dua için 🤲); vedalaşıldıktan sonra yeni bir veda yazmak yerine tepki bırakır"
+
+msgid "same person and donation, not a copy"
+msgstr "aynı kişi ve bağış, kopya değil"
+
+msgid "Closing, reactions and reminders"
+msgstr "Kapanış, tepki ve hatırlatıcı"
+
+msgid "Chat already marked completed (goodbyes said)"
+msgstr "Sohbet zaten tamamlandı işaretli (vedalaşıldı)"
+
+msgid "Site search returns a sample event with a location"
+msgstr "Site araması konumu olan örnek bir etkinlik döndürür"
+
+msgid "Chat marked completed"
+msgstr "Sohbet tamamlandı işaretlendi"
+
+msgid "Emoji reaction left"
+msgstr "Emoji tepkisi bırakıldı"
+
+msgid "No text reply to the last message"
+msgstr "Son mesaja metin cevabı yazılmadı"
+
+msgid "Reminder is one-time"
+msgstr "Hatırlatıcı tek seferlik"
+
+msgid "Exactly one reminder"
+msgstr "Tam olarak bir hatırlatıcı"
+
+msgid "(no text, reacted to the message: {e})"
+msgstr "(metin yok, mesaja tepki: {e})"
+
+msgid "(no text: the chat is completed, stayed silent)"
+msgstr "(metin yok: sohbet tamamlandı, sessiz kalındı)"
+
+msgid "(reacted to the message: {e})"
+msgstr "(mesaja tepki: {e})"
+
+msgid "Reminder request: set at once"
+msgstr "Hatırlatıcı isteği: hemen kurulur"
+
+msgid "Event location and time"
+msgstr "Etkinlik yeri ve saati"
+
+msgid "Continuation: own receipt sent again, asks if it arrived"
+msgstr "Devam: kendi dekontunu yeniden gönderdi, ulaştı mı diye soruyor"
+
+msgid "Thanks after help: one short farewell"
+msgstr "Yardımdan sonra teşekkür: tek kısa veda"
+
+msgid "Goodbye loop: no repeated farewells"
+msgstr "Veda döngüsü: tekrar tekrar veda yok"
+
+msgid "New topic after goodbye gets a normal reply"
+msgstr "Vedadan sonra yeni konu normal cevaplanır"
+
+msgid "Question after goodbye is answered"
+msgstr "Vedadan sonraki soru cevaplanır"
+
+msgid "Short \"okay\" after goodbye: reaction only"
+msgstr "Vedadan sonra kısa \"tamam\": yalnız tepki"
+
+msgid "Continuation: prayer gets a prayer reaction"
+msgstr "Devam: duaya dua tepkisi"
+
+msgid "Continuation: \"you will remind me\" sets the reminder at once"
+msgstr "Devam: \"hatırlatırsınız\" denince hatırlatıcı hemen kurulur"
+
+msgid "Changes the day afterwards: same reminder updated"
+msgstr "Günü sonradan değiştirir: aynı hatırlatıcı güncellenir"
+
+msgid "Monthly reminder turned into one-time"
+msgstr "Aylık hatırlatıcı tek seferliğe çevrilir"

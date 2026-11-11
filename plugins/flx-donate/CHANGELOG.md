@@ -1,23 +1,29 @@
 # Değişiklikler
 
-## 2.20.8
+## 2.21.1
 - Kayıtlı kart referansları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse kartı yeniden bağlayın.
-
-## 2.20.7
 - Telefon biçimi ortak yardımcıyı kullanır. Yazılan numara eskisi gibi +90… olur.
 - İçe aktarmada telefon aynı ortak kuralla okunur (`0090…` ve `+90 0532…` yazımları düzelir); tanınmayan numara yazıldığı gibi kalır.
-
-## 2.20.6
 - Bağış sorgulama ve yönetim listeleri ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
-
-## 2.20.5
 - Ödeme ve bağış sorgulama deneme sınırları ortak sayacı kullanır. Adres güvenilen vekilden okunur; e-posta ve telefon sınırları aynı kalır.
-
-## 2.20.4
 - Dekont klasörü doğrudan web erişimine kapalı kalır (Apache 2.2 ve 2.4).
-
-## 2.20.3
 - Bağış, mahsup ve rapor CSV'leri ortak dışa aktarmayı kullanır. Dosyanın içeriği aynı kalır.
+
+## 2.21.0
+- EsnekPOS: kart alanları ödeme sayfasında; 3D Secure aynı sayfada pencerede açılır, sayfadan ayrılmadan sonuç gelir. Hata olursa nedeni ve "kartınızdan para çekilmedi" açıkça yazar; hata Öde düğmesinin üstünde de görünür.
+- EsnekPOS: kart numarası girilince taksit seçenekleri (kredi kartı, BIN'e göre; taksit farkını bağışçı ya da dernek öder, ayarlanır). Kart alanlarının altında 3D Secure bilgisi.
+- EsnekPOS "Telefon Boş Bırakılamaz" hatası: telefon siparişten, hesaptan ya da bağışçı kaydından alınır; hiçbiri yoksa kart formunda telefon istenir.
+- Sağ üstteki "Güvenli ödeme" rozeti seçili kart sağlayıcısını yazar (EsnekPOS seçiliyken iyzico yazmaz).
+- Görünüm › Ödeme sayfası düzeni: yeni "İki sütun" (varsayılan): adımlar kart görünümünde, boşluklar az; sağda özet, şartlar onayı ve "{tutar} öde" düğmesi (taksit seçilince taksitli toplam). Telefonda tek sütun.
+- Giriş yapmış bağışçının e-posta ve telefonu salt okunur gelir (Hesabım'dan değişir); ad boşsa hesaptaki ad yazılır. Misafir "Hesap oluştur" kutusunu işaretleyebilir (şifre bağlantısı e-postayla gider; yalnız e-posta yazılınca görünür).
+- Bağış formu: adet seçeneğinin altında hızlı seçim düğmeleri (3, 5, 10, 25, 50; filtre flxb_quick_qty). A düzeni geniş yerleşir, telefonda tek sütun; tek bağış türü varken "Bağış türü" adımı gizlenir. "1Fidan" yazımı "1 fidan" oldu.
+- A düzeninde formun üstünde fotoğraflı başlık bandı (bağış türünün görseli, sayfa başlığı; sayfa zaten kapak bloğuyla başlıyorsa çıkmaz). Görünüm'den kapatılabilir.
+- Kart ile öde sekmesinin başlığında kart logoları yok; logolar kart alanlarının altında sağda.
+- Ödeme sayfası: ad ve soyad en başta, yan yana; "misafir olarak ödüyorsunuz" yazısı kalktı; hesap kutusu "Girdiğim bilgilerle Yeşil Türkiye hesabımı oluştur" der; "Hesap oluştur" kutusunun altındaki boşluk azaldı.
+- Taksitler kompakt: "515,00 × 3 = 1.545,00" biçiminde tutar seçeneğin hemen yanında, bir tık küçük yazı, geniş ekranda iki sütun. "Son kullanma" etiketinde AA/YY aynı satırda sağda, küçük. 3D Secure kutusundaki tekrar logolar kaldırıldı.
+- "Siparişinize not ekleyin" boşlukları azaldı; Görünüm'den kapatılabilir (Görünüm › "Sipariş notu").
+- "Bir sorun mu var? WhatsApp'tan yazın" ayrı, açık yeşil bir kutu; tıklayınca WhatsApp "Merhaba" yazılı açılır (filtre flxb_support_wa_text).
+- Fidan ürün görseli artık gerçek fidan fotoğrafı; eski hazır ikon görseli kendiliğinden değişir (elle seçilen görsele dokunulmaz). Görseli olmayan kalemde özet gri yer tutucu yerine fidan ikonu gösterir.
 
 ## 2.20.2
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

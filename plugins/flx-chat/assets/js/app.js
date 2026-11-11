@@ -968,7 +968,7 @@
 			} else if (S.order.indexOf(id) < 0) S.order.push(id);
 			sortOrder();
 			renderList();
-			if (S.active === id) { renderChatHead(); if (S.info) renderInfo(); }
+			if (S.active === id) { renderChatHead(); if (S.info) { renderInfo(); refreshClog(id); } }
 			return r.chat;
 		}).catch(function (e) { toast(e.message, 'err'); });
 	}
@@ -2342,8 +2342,45 @@
 		api('chats/' + S.active).then(function (r) {
 			upsertChat(r.chat);
 			S.sections[r.chat.id] = r.sections || [];
+			S.clog[r.chat.id] = r.log || [];
 			if (S.info && S.active === r.chat.id) renderInfo();
 		}).catch(function () {});
+	}
+	// 1.41.0: kişi değişiklik geçmişi (kim, ne zaman, eski → yeni).
+	S.clog = {};
+	S.clogOpen = false;
+	var refreshClog = debounce(function (id) {
+		api('chats/' + id).then(function (r) {
+			S.clog[id] = r.log || [];
+			if (S.info && S.active === id) renderInfo();
+		}).catch(function () {});
+	}, 1200);
+	var CLOG_FIELD = { name: 'Kişi adı', notes: 'Kişi notları', labels: 'Etiketler', assigned_to: 'Atanan temsilci', phone: 'Telefon', staff_user: 'Personel', blocked: 'Kara liste', memory: 'Asistan hafızası' };
+	var CLOG_SRC = { staff: 'Personel', ai: 'Asistan', system: 'Sistem', contact: 'Kişi' };
+	function clogSection(c) {
+		var rows = S.clog[c.id] || [];
+		if (!rows.length) return null;
+		var list = h('div', { class: 'flxc-clog' });
+		var max = S.clogOpen ? rows.length : 5;
+		rows.slice(0, max).forEach(function (r) {
+			var field = CLOG_FIELD[r.field] ? t(CLOG_FIELD[r.field]) : r.field;
+			if (r.field === 'memory' && r.note) field += ' · ' + r.note;
+			var val = r.field === 'notes'
+				? h('span', { class: 'flxc-clog-v' }, t('Not güncellendi'))
+				: r.field === 'blocked' ? h('span', { class: 'flxc-clog-v' }, r['new'] === '1' ? t('Kara listeye alındı') : t('Kara listeden çıkarıldı'))
+				: h('span', { class: 'flxc-clog-v' },
+					r.old ? h('del', { text: r.old }) : h('em', { text: t('(boş)') }),
+					h('span', { class: 'flxc-clog-arrow', text: ' → ' }),
+					r['new'] ? h('strong', { text: r['new'] }) : h('em', { text: t('(boş)') }));
+			list.appendChild(h('div', { class: 'flxc-clog-row is-' + r.source, title: r.field === 'notes' ? (r['new'] || '') : null },
+				h('div', { class: 'flxc-clog-top' }, h('b', { text: field }), h('time', { text: fmtDate.format(r.ts) + ' ' + fmtTime.format(r.ts), datetime: new Date(r.ts).toISOString() })),
+				val,
+				h('small', { class: 'flxc-clog-who' }, h('span', { class: 'flxc-clog-src', text: t(CLOG_SRC[r.source] || 'Sistem') }), r.source === 'staff' && r.user ? ' ' + r.user : '', r.note && r.field !== 'memory' ? ' · ' + r.note : '')
+			));
+		});
+		var more = rows.length > 5 ? h('button', { type: 'button', class: 'flxc-link', onclick: function () { S.clogOpen = !S.clogOpen; renderInfo(); } },
+			S.clogOpen ? t('Daha az göster') : t('Tümünü göster ({n})', { n: rows.length })) : null;
+		return h('div', { class: 'flxc-info-sec' }, h('h4', null, icon('clock'), t('Değişiklik geçmişi')), list, more);
 	}
 	function closeInfo(silent) {
 		if (!S.info) return;
@@ -2431,6 +2468,7 @@
 					? h('button', { type: 'button', class: 'flxc-info-act', onclick: function () { patchChat(c.id, { status: 'open' }); } }, icon('reopen'), t('Sohbeti yeniden aç'))
 					: h('button', { type: 'button', class: 'flxc-info-act is-danger', onclick: function () { patchChat(c.id, { status: 'closed' }); } }, icon('done'), t('Sohbeti kapat'))
 			),
+			clogSection(c),
 			h('p', { class: 'flxc-help flxc-center', text: t('İlk kayıt: {d}', { d: fmtLong.format(c.created) }) })
 		));
 	}

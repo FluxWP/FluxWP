@@ -1,4 +1,4 @@
-/* Flux Donate 2.0.4: one contact section on a donation-only checkout, e-mail or phone (at least one). GPL v2 or later. */
+/* Flux Donate 2.21.0 (since 2.0.4): one contact section on a donation-only checkout, e-mail or phone (at least one). GPL v2 or later. */
 (function () {
 	'use strict';
 	var C = window.FLXBContact;
@@ -63,8 +63,26 @@
 		box.appendChild(row); box.appendChild(help); box.appendChild(err);
 		host.insertBefore(box, host.firstChild);
 		ui = { box: box, email: email, phone: phone, err: err };
+		/* 2.21.0: a signed-in donor's e-mail and phone are read-only (changed under My account). */
+		var U = C.user;
+		if (U) {
+			if (U.email) { email.i.value = U.email; email.i.readOnly = true; }
+			if (U.phone) { phone.i.value = U.phone; phone.i.readOnly = true; }
+			if (U.email && U.phone) { help.hidden = true; }
+			var who = document.createElement('p'); who.className = 'flxb-ct__who';
+			var t = document.createElement('span'); t.textContent = U.who; who.appendChild(t);
+			[[U.edit, U.editUrl], [U.out, U.outUrl]].forEach(function (l) {
+				if (!l[0] || !l[1]) { return; }
+				var a = document.createElement('a'); a.href = l[1]; a.textContent = l[0]; who.appendChild(a);
+			});
+			box.insertBefore(who, err);
+			/* The account's name fills an empty name on the order (WooCommerce only reads the billing name). */
+			if (d && (U.first || U.last) && !b.first_name && !b.last_name) {
+				d.dispatch('wc/store/cart').setBillingAddress(Object.assign({}, b, { first_name: U.first || '', last_name: U.last || '' }));
+			}
+		}
 		/* 2.0.6: what the donor typed on the donation form wins (it was lost on some setups). */
-		try {
+		if (!U) try {
 			var carry = JSON.parse(window.sessionStorage.getItem('flxb_contact') || 'null');
 			if (carry) {
 				if (carry.p) { phone.i.value = carry.p; }
@@ -73,11 +91,29 @@
 			}
 		} catch (x) {}
 		[email.i, phone.i].forEach(function (i) {
-			i.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(push, 250); if (!err.hidden) { check(); } });
+			i.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(push, 250); if (!err.hidden) { check(); } signup(); });
 			i.addEventListener('blur', function () { push(); });
 		});
 		push();
 	}
+
+	/* 2.21.0: "Create an account" needs a real e-mail; hidden (and unticked) while there is none. */
+	function signup() {
+		var s = document.querySelector('.wc-block-checkout__create-account');
+		if (!s || !ui) { return; }
+		var ok = reEmail.test(ui.email.i.value.trim());
+		var cb = s.querySelector('input[type="checkbox"]');
+		if (!ok && cb && cb.checked) { cb.click(); }
+		s.classList.toggle('flxb-ct-hide', !ok);
+		var h = s.nextElementSibling && s.nextElementSibling.classList.contains('flxb-co-hint') ? s.nextElementSibling : null;
+		if (!h && C.signupHint) {
+			h = document.createElement('p'); h.className = 'flxb-co-hint'; h.textContent = C.signupHint;
+			s.parentNode.insertBefore(h, s.nextSibling);
+		}
+		var hide = !ok || !(cb && cb.checked);
+		if (h && h.hidden !== hide) { h.hidden = hide; }
+	}
+	document.addEventListener('change', function (ev) { if (ev.target.closest && ev.target.closest('.wc-block-checkout__create-account')) { setTimeout(signup, 0); } }, true);
 
 	document.addEventListener('click', function (ev) {
 		var btn = ev.target.closest && ev.target.closest('.wc-block-components-checkout-place-order-button');
@@ -145,8 +181,8 @@
 	function start() {
 		if (!document.querySelector('.wp-block-woocommerce-checkout, .wc-block-checkout')) { return; }
 		document.body.classList.add('flxb-ct-on');
-		mount(); support(); fixHead(); paybar();
-		new MutationObserver(function () { mount(); support(); paybar(); }).observe(document.body, { childList: true, subtree: true });
+		mount(); support(); fixHead(); paybar(); signup();
+		new MutationObserver(function () { mount(); support(); paybar(); signup(); }).observe(document.body, { childList: true, subtree: true });
 	}
 	if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', start); } else { start(); }
 })();

@@ -1529,3 +1529,5 @@ html[dir=rtl] :is(.flx-link-arrow a::after,.flx-btn-arrow .wp-block-button__link
 html[dir=rtl] :is(.flx-swiper-prev,.flx-swiper-next){scale:-1 1}
 html[dir=rtl] :is(.flx-swiper-progress span,.flx-hero .swiper-pagination-bullet-active::after){transform-origin:right}
 html[dir=rtl] .flx-pay-logos{background-position:right center}
+.flx-secure-badge__t{display:inline-flex;align-items:baseline}.flx-secure-badge__p::before{content:"·";margin:0 .35em}
+@media (max-width:600px){.flx-secure-badge{border-radius:14px}.flx-secure-badge__t{flex-direction:column;align-items:flex-start;line-height:1.15}.flx-secure-badge__p{font-size:.95em}.flx-secure-badge__p::before{content:none}}

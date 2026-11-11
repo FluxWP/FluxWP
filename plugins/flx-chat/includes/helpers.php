@@ -80,6 +80,7 @@ function flxc_default_settings() {
 		'ref_cert_notify'  => 1,      // 1.29.0: sertifika referans personele de gider
 		'ref_cert_text'    => '',
 		'staff_cert_max'   => 3,      // personelin bir bağışın sertifikasını yeniden gönderme sınırı
+		'bot_reactions'    => 1,      // 1.42.0: asistan kapanış / teşekkür / dua mesajlarına emoji tepkisi bırakır
 		'bot_voice'        => 1,      // 1.26.0: sesli mesaj metne çevrilip cevaplanır
 		'bot_voice_max'    => 60,     // bundan uzun ses dinlenmez (sn)
 		'ai_model_audio'   => '',     // boşsa ses okuyan ucuz OpenRouter modeli

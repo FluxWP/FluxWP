@@ -4851,3 +4851,117 @@ msgstr "Sin referencia."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "¿Ha llegado el pago a la cuenta? Al confirmar, se crea el certificado y se envía al donante."
+
+msgid "Change history"
+msgstr "Historial de cambios"
+
+msgid "Assistant memory"
+msgstr "Memoria del asistente"
+
+msgid "Note updated"
+msgstr "Nota actualizada"
+
+msgid "Show less"
+msgstr "Mostrar menos"
+
+msgid "Show all ({n})"
+msgstr "Mostrar todo ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Completado con los registros de donaciones y certificados (actualización única)"
+
+msgid "Name given by the sending record"
+msgstr "Nombre indicado por el registro que envía"
+
+msgid "Filled from donation and certificate records"
+msgstr "Completado con los registros de donaciones y certificados"
+
+msgid "The contact said their name in the chat"
+msgstr "El contacto dijo su nombre en el chat"
+
+msgid "The contact corrected their name in the chat"
+msgstr "El contacto corrigió su nombre en el chat"
+
+msgid "The contact gave their full name in the chat"
+msgstr "El contacto dio su nombre completo en el chat"
+
+msgid "The assistant updated the reminder: %1$s (%2$s)"
+msgstr "El asistente actualizó el recordatorio: %1$s (%2$s)"
+
+msgid "The assistant marked the chat as completed (the person said goodbye). It continues normally if they write again."
+msgstr "El asistente marcó el chat como completado (la persona se despidió). Si vuelve a escribir, continúa con normalidad."
+
+msgid "Let the assistant react to messages with an emoji (👍 for \"okay\", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell"
+msgstr "Permitir que el asistente reaccione a los mensajes con un emoji (👍 para «vale», 🤲 para agradecimientos y oraciones); tras la despedida reacciona en lugar de escribir otra despedida"
+
+msgid "same person and donation, not a copy"
+msgstr "misma persona y donación, no es una copia"
+
+msgid "Closing, reactions and reminders"
+msgstr "Cierre, reacciones y recordatorios"
+
+msgid "Chat already marked completed (goodbyes said)"
+msgstr "Chat ya marcado como completado (ya hubo despedida)"
+
+msgid "Site search returns a sample event with a location"
+msgstr "La búsqueda del sitio devuelve un evento de ejemplo con ubicación"
+
+msgid "Chat marked completed"
+msgstr "Chat marcado como completado"
+
+msgid "Emoji reaction left"
+msgstr "Se dejó una reacción con emoji"
+
+msgid "No text reply to the last message"
+msgstr "Sin respuesta de texto al último mensaje"
+
+msgid "Reminder is one-time"
+msgstr "El recordatorio es de una sola vez"
+
+msgid "Exactly one reminder"
+msgstr "Exactamente un recordatorio"
+
+msgid "(no text, reacted to the message: {e})"
+msgstr "(sin texto, reacción al mensaje: {e})"
+
+msgid "(no text: the chat is completed, stayed silent)"
+msgstr "(sin texto: el chat está completado, se guardó silencio)"
+
+msgid "(reacted to the message: {e})"
+msgstr "(reacción al mensaje: {e})"
+
+msgid "Reminder request: set at once"
+msgstr "Solicitud de recordatorio: se crea al instante"
+
+msgid "Event location and time"
+msgstr "Lugar y hora del evento"
+
+msgid "Continuation: own receipt sent again, asks if it arrived"
+msgstr "Continuación: reenvió su propio comprobante y pregunta si llegó"
+
+msgid "Thanks after help: one short farewell"
+msgstr "Agradecimiento tras la ayuda: una despedida breve"
+
+msgid "Goodbye loop: no repeated farewells"
+msgstr "Bucle de despedidas: sin despedidas repetidas"
+
+msgid "New topic after goodbye gets a normal reply"
+msgstr "Un tema nuevo tras la despedida recibe una respuesta normal"
+
+msgid "Question after goodbye is answered"
+msgstr "La pregunta tras la despedida se responde"
+
+msgid "Short \"okay\" after goodbye: reaction only"
+msgstr "«Vale» breve tras la despedida: solo reacción"
+
+msgid "Continuation: prayer gets a prayer reaction"
+msgstr "Continuación: la oración recibe una reacción de oración"
+
+msgid "Continuation: \"you will remind me\" sets the reminder at once"
+msgstr "Continuación: «ustedes me lo recuerdan» crea el recordatorio al instante"
+
+msgid "Changes the day afterwards: same reminder updated"
+msgstr "Cambia el día después: se actualiza el mismo recordatorio"
+
+msgid "Monthly reminder turned into one-time"
+msgstr "El recordatorio mensual pasa a ser de una sola vez"

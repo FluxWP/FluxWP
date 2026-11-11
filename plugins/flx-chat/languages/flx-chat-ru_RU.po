@@ -4851,3 +4851,117 @@ msgstr "Нет реферала."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "Платёж поступил на счёт? После подтверждения сертификат будет создан и отправлен жертвователю."
+
+msgid "Change history"
+msgstr "История изменений"
+
+msgid "Assistant memory"
+msgstr "Память ассистента"
+
+msgid "Note updated"
+msgstr "Заметка обновлена"
+
+msgid "Show less"
+msgstr "Свернуть"
+
+msgid "Show all ({n})"
+msgstr "Показать все ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Заполнено из записей о пожертвованиях и сертификатах (однократное обновление)"
+
+msgid "Name given by the sending record"
+msgstr "Имя из отправившей записи"
+
+msgid "Filled from donation and certificate records"
+msgstr "Заполнено из записей о пожертвованиях и сертификатах"
+
+msgid "The contact said their name in the chat"
+msgstr "Контакт назвал своё имя в чате"
+
+msgid "The contact corrected their name in the chat"
+msgstr "Контакт исправил своё имя в чате"
+
+msgid "The contact gave their full name in the chat"
+msgstr "Контакт назвал полное имя в чате"
+
+msgid "The assistant updated the reminder: %1$s (%2$s)"
+msgstr "Ассистент обновил напоминание: %1$s (%2$s)"
+
+msgid "The assistant marked the chat as completed (the person said goodbye). It continues normally if they write again."
+msgstr "Ассистент отметил чат как завершённый (человек попрощался). Если он напишет снова, разговор продолжится как обычно."
+
+msgid "Let the assistant react to messages with an emoji (👍 for \"okay\", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell"
+msgstr "Разрешить ассистенту реагировать на сообщения эмодзи (👍 на «хорошо», 🤲 на благодарность и молитвы); после прощания он ставит реакцию вместо нового прощального сообщения"
+
+msgid "same person and donation, not a copy"
+msgstr "тот же человек и то же пожертвование, не копия"
+
+msgid "Closing, reactions and reminders"
+msgstr "Завершение, реакции и напоминания"
+
+msgid "Chat already marked completed (goodbyes said)"
+msgstr "Чат уже отмечен как завершённый (попрощались)"
+
+msgid "Site search returns a sample event with a location"
+msgstr "Поиск по сайту возвращает пример мероприятия с местом проведения"
+
+msgid "Chat marked completed"
+msgstr "Чат отмечен как завершённый"
+
+msgid "Emoji reaction left"
+msgstr "Оставлена реакция эмодзи"
+
+msgid "No text reply to the last message"
+msgstr "Нет текстового ответа на последнее сообщение"
+
+msgid "Reminder is one-time"
+msgstr "Напоминание одноразовое"
+
+msgid "Exactly one reminder"
+msgstr "Ровно одно напоминание"
+
+msgid "(no text, reacted to the message: {e})"
+msgstr "(без текста, реакция на сообщение: {e})"
+
+msgid "(no text: the chat is completed, stayed silent)"
+msgstr "(без текста: чат завершён, ответа нет)"
+
+msgid "(reacted to the message: {e})"
+msgstr "(реакция на сообщение: {e})"
+
+msgid "Reminder request: set at once"
+msgstr "Просьба о напоминании: создаётся сразу"
+
+msgid "Event location and time"
+msgstr "Место и время мероприятия"
+
+msgid "Continuation: own receipt sent again, asks if it arrived"
+msgstr "Продолжение: повторно отправил свою квитанцию и спрашивает, дошла ли она"
+
+msgid "Thanks after help: one short farewell"
+msgstr "Благодарность после помощи: одно короткое прощание"
+
+msgid "Goodbye loop: no repeated farewells"
+msgstr "Цикл прощаний: без повторных прощаний"
+
+msgid "New topic after goodbye gets a normal reply"
+msgstr "Новая тема после прощания получает обычный ответ"
+
+msgid "Question after goodbye is answered"
+msgstr "На вопрос после прощания даётся ответ"
+
+msgid "Short \"okay\" after goodbye: reaction only"
+msgstr "Короткое «хорошо» после прощания: только реакция"
+
+msgid "Continuation: prayer gets a prayer reaction"
+msgstr "Продолжение: на молитву ставится реакция-молитва"
+
+msgid "Continuation: \"you will remind me\" sets the reminder at once"
+msgstr "Продолжение: «вы мне напомните» сразу создаёт напоминание"
+
+msgid "Changes the day afterwards: same reminder updated"
+msgstr "Позже меняет день: обновляется то же напоминание"
+
+msgid "Monthly reminder turned into one-time"
+msgstr "Ежемесячное напоминание становится одноразовым"

@@ -1,7 +1,22 @@
 # Değişiklikler
 
-## 1.1.13
+## 1.2.2
 - İçe aktarılan ön ayar klasörü Apache 2.2 ve 2.4'te web'den açılmaz.
+
+## 1.2.1
+- Paketler: ad altındaki kimlik (slug/dosya) kaldırıldı, yerine etiketler: FluxWP paketlerinde "FluxWP" + kategori (ör. İletişim), diğerlerinde gri "Genel" + Eklenti/Tema/Çeviri/Çekirdek.
+- "Tür" sütunu kaldırıldı.
+- Ada tıklayınca açılan pencerede teknik bilgiler (kimlik/dosya, tür, kategori, yazar, sürümler, kaynak); 3. parti eklenti ve temalarda da açıklama ve web sitesiyle.
+
+## 1.2.0
+- Paketler ekranı artık sitedeki her şeyi gösteriyor: FluxWP paketlerinin yanında 3. parti eklentiler, temalar, çeviriler ve WordPress çekirdeği. Güncellemesi olanlar en üstte.
+- Sekmeler (Tümü / FluxWP / Eklentiler / Temalar / WordPress ve çeviriler) her sekmede satır ve güncelleme sayısıyla; canlı arama kutusu ve "Yalnız güncellemeler" süzgeci.
+- 3. parti eklenti, tema ve çeviri güncellemeleri sayfadan çıkmadan tek tek, seçerek ya da "Tümünü güncelle" ile yapılır (WordPress'in kendi yükleyicisi). Çekirdek güncellemesi WordPress'in kendi ekranında.
+- "Güncellemeleri kontrol et" WordPress çekirdeği ve çevirileri de yeniler.
+- 3. parti eklenti ve temalarda da seçim kutusu: toplu etkinleştir, devre dışı bırak, kaldır.
+- Yeni "Otomatik güncelleme" sütunu: her eklenti/temada aç/kapa düğmesi (WordPress'in kendi ayarı) ve toplu "Otomatik güncellemeyi aç/kapat". FluxWP paketlerinde genel ayar açıksa kilitli "Açık".
+- 3. parti güncellemeler de FluxWP paketleriyle aynı korumadan geçer: Flux Backup yedeği, geçmiş kaydı, güncelleme sonrası site kontrolü ve bozulursa yedekten geri dönüş (filtre flxu_guard_third_party).
+- Hata satırda ve en üstteki kayıtta görünür; satırda "Yeniden dene", kayıt başlığında "Hatalıları tekrar dene".
 
 ## 1.1.12
 - Paketler ekranında "18güncellemeleri mevcut" yerine "18 güncelleme mevcut"; yedek/paket sayısı metinleri doğal Türkçe tekil ("%d paket etkinleştirildi", "%d yedek silindi").

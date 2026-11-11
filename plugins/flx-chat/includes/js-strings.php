@@ -421,5 +421,12 @@ function flxc_js_strings() {
 		'İletişim bilgisi yok.' => __( 'No contact details.', 'flx-chat' ),
 		'Referans yok.' => __( 'No referral.', 'flx-chat' ),
 		'Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir.' => __( 'Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.', 'flx-chat' ),
+		'Değişiklik geçmişi' => __( 'Change history', 'flx-chat' ),
+		'Asistan hafızası' => __( 'Assistant memory', 'flx-chat' ),
+		'Kişi' => __( 'Contact', 'flx-chat' ),
+		'Not güncellendi' => __( 'Note updated', 'flx-chat' ),
+		'(boş)' => __( '(empty)', 'flx-chat' ),
+		'Daha az göster' => __( 'Show less', 'flx-chat' ),
+		'Tümünü göster ({n})' => __( 'Show all ({n})', 'flx-chat' ),
 	);
 }

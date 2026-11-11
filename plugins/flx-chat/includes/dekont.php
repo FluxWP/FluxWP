@@ -177,12 +177,14 @@ function flxc_dekont_tool( array $a, $chat = null, array $state = array() ) {
 	$cid  = (int) ( $chat['id'] ?? 0 );
 	$own  = (int) ( $state['donation'] ?? 0 );
 	$mine = array();
+	// 1.42.0: kişinin siteden yaptığı bağışa yüklediği dekont da kendi yüklemesidir.
+	$owned = $cid && function_exists( 'flxc_rcheck_own_donations' ) ? array_keys( flxc_rcheck_own_donations( $chat, $state ) ) : array();
 	$dups = array_values(
 		array_filter(
 			$dups,
-			function ( $r ) use ( $cid, $own, &$mine ) {
+			function ( $r ) use ( $cid, $own, $owned, &$mine ) {
 				$here = $cid && (int) $r['chat_id'] === $cid && ( ! $r['donation_id'] || (int) $r['donation_id'] === $own || (int) $r['created_at'] > time() - DAY_IN_SECONDS );
-				if ( $here || ( $own && (int) $r['donation_id'] === $own ) ) {
+				if ( $here || ( $own && (int) $r['donation_id'] === $own ) || ( $r['donation_id'] && in_array( (int) $r['donation_id'], $owned, true ) ) ) {
 					$mine[] = $r;
 					return false;
 				}
@@ -203,7 +205,7 @@ function flxc_dekont_tool( array $a, $chat = null, array $state = array() ) {
 		);
 	}
 	if ( ! $dups && $mine ) {
-		return array( 'ok' => true, 'seen' => false, 'uploaded_here' => true, 'note' => 'Bu dekont bu sohbetten ' . wp_date( 'd.m.Y H:i', (int) $mine[0]['created_at'] ) . ' tarihinde yüklenmiş ve sisteme kayıtlı; kopya DEĞİL. Ödeme ekip onaylayınca kesinleşir; kayıt durumunu my_records / staff_my_donations ile söyle, "ödemeniz onaylandı" deme.' );
+		return array( 'ok' => true, 'seen' => false, 'uploaded_here' => true, 'note' => 'Bu dekont kişinin kendi bağışı için ' . wp_date( 'd.m.Y H:i', (int) $mine[0]['created_at'] ) . ' tarihinde ' . ( 'site' === $mine[0]['source'] ? 'siteden' : 'bu sohbetten' ) . ' yüklenmiş ve sisteme kayıtlı; kopya DEĞİL, "ikinci bağış için kullanılamaz" deme. Ödeme ekip onaylayınca kesinleşir; kayıt durumunu my_records / staff_my_donations ile söyle, "ödemeniz onaylandı" deme.' );
 	}
 	if ( ! $dups ) {
 		return array( 'ok' => true, 'seen' => false, 'note' => 'Bu dekont daha önce yüklenmemiş. Bu ödemenin onaylandığı anlamına gelmez: kişiye teşekkür et, ekibin ödemeyi kontrol edip döneceğini söyle; dekontun fotoğrafını ya da PDF\'ini buradan göndermesini iste. "Ödemeniz onaylandı" deme.' );

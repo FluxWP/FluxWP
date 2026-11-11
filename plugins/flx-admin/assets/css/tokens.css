@@ -1,0 +1,64 @@
+/* Flux Admin · renk/yazı değişkenleri (--flxa-*). admin.css ve iframe.css (güncelleme/yükleme pencereleri) bunları kullanır.
+ * Koyu tema html.flxa-dark ile.
+ */
+
+@font-face { font-family: "FLXA Figtree"; font-style: normal; font-display: swap; font-weight: 300 900; src: url(../fonts/figtree-latin-ext-wght-normal.woff2) format("woff2"); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "FLXA Figtree"; font-style: normal; font-display: swap; font-weight: 300 900; src: url(../fonts/figtree-latin-wght-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
+html.flxa-html {
+	--flxa-side-w: 264px;
+	--flxa-rail-w: 64px;
+	--flxa-font: "FLXA Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	--flxa-bg: color-mix(in srgb, var(--flxa-accent) 4%, #F3F4F7);
+	--flxa-side: #FFFFFF;
+	--flxa-surface: #FFFFFF;
+	--flxa-surface-2: color-mix(in srgb, var(--flxa-accent) 5%, #EEF0F4);
+	--flxa-surface-3: color-mix(in srgb, var(--flxa-accent) 7%, #E4E7EE);
+	--flxa-border: color-mix(in srgb, var(--flxa-accent) 7%, #E0E3EA);
+	--flxa-border-strong: color-mix(in srgb, var(--flxa-accent) 9%, #CBCFDA);
+	--flxa-text: color-mix(in srgb, var(--flxa-accent) 10%, #12141B);
+	--flxa-muted: color-mix(in srgb, var(--flxa-accent) 12%, #5A5F6E);
+	--flxa-accent-soft: color-mix(in srgb, var(--flxa-accent) 13%, #fff);
+	--flxa-accent-strong: color-mix(in srgb, var(--flxa-accent) 78%, #000);
+	--flxa-accent-hover: color-mix(in srgb, var(--flxa-accent) 88%, #000);
+	--flxa-on-accent: #FFFFFF;
+	--flxa-warn: #A04A06;
+	--flxa-warn-soft: #FBEADB;
+	--flxa-error: #B42318;
+	--flxa-error-soft: #FDE7E5;
+	--flxa-info: #1D5FA8;
+	--flxa-info-soft: #E3EEFB;
+	--flxa-focus: color-mix(in srgb, var(--flxa-accent) 45%, transparent);
+	--flxa-shadow: 0 1px 2px rgba(17, 19, 27, .05), 0 2px 10px rgba(17, 19, 27, .04);
+	--flxa-shadow-lg: 0 10px 40px rgba(12, 13, 22, .18), 0 2px 6px rgba(12, 13, 22, .08);
+	--flxa-radius: 14px;
+	--flxa-scrim: rgba(6, 7, 14, .5);
+	color-scheme: light;
+	background: var(--flxa-bg);
+}
+
+html.flxa-html.flxa-dark {
+	--flxa-bg: color-mix(in srgb, var(--flxa-accent) 6%, #0D0E13);
+	--flxa-side: color-mix(in srgb, var(--flxa-accent) 7%, #111218);
+	--flxa-surface: color-mix(in srgb, var(--flxa-accent) 8%, #15171E);
+	--flxa-surface-2: color-mix(in srgb, var(--flxa-accent) 10%, #1C1F27);
+	--flxa-surface-3: color-mix(in srgb, var(--flxa-accent) 12%, #252833);
+	--flxa-border: color-mix(in srgb, var(--flxa-accent) 12%, #272A34);
+	--flxa-border-strong: color-mix(in srgb, var(--flxa-accent) 15%, #363A47);
+	--flxa-text: color-mix(in srgb, var(--flxa-accent) 5%, #E8E9EF);
+	--flxa-muted: color-mix(in srgb, var(--flxa-accent) 14%, #9A9EAE);
+	--flxa-accent-l: color-mix(in srgb, var(--flxa-accent) 55%, #fff);
+	--flxa-accent-soft: color-mix(in srgb, var(--flxa-accent) 30%, #0D0E13);
+	--flxa-accent-strong: color-mix(in srgb, var(--flxa-accent) 45%, #fff);
+	--flxa-accent-hover: color-mix(in srgb, var(--flxa-accent) 80%, #fff);
+	--flxa-warn: #F0A35E;
+	--flxa-warn-soft: #3A2716;
+	--flxa-error: #FF8A80;
+	--flxa-error-soft: #3D1B19;
+	--flxa-info: #8DBBF2;
+	--flxa-info-soft: #172A40;
+	--flxa-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+	--flxa-shadow-lg: 0 12px 40px rgba(0, 0, 0, .55);
+	--flxa-scrim: rgba(0, 0, 0, .6);
+	color-scheme: dark;
+}

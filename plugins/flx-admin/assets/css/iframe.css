@@ -1,0 +1,86 @@
+/* Flux Admin · WordPress'in iframe ekranları (IFRAME_REQUEST): eklenti/tema/çeviri güncelleme çıktısı
+ * (update.php?action=update-selected…), eklenti "Ayrıntılar" penceresi (plugin-install.php?tab=plugin-information).
+ * Bu ekranlarda menü/kabuk yok; yalnız renk ve yazı tipi temaya uyar. Değişkenler tokens.css'te.
+ */
+
+html.flxa-html,
+html.flxa-html body.iframe { background: var(--flxa-bg); }
+html.flxa-html body.iframe { color: var(--flxa-text); font-family: var(--flxa-font); -webkit-font-smoothing: antialiased; }
+html.flxa-html body.iframe p,
+html.flxa-html body.iframe li,
+html.flxa-html body.iframe td,
+html.flxa-html body.iframe th,
+html.flxa-html body.iframe h1,
+html.flxa-html body.iframe h2,
+html.flxa-html body.iframe h3,
+html.flxa-html body.iframe h4,
+html.flxa-html body.iframe strong,
+html.flxa-html body.iframe label { color: var(--flxa-text); }
+html.flxa-html body.iframe a,
+html.flxa-html body.iframe .button-link { color: var(--flxa-accent-strong); }
+html.flxa-html.flxa-dark body.iframe a,
+html.flxa-html.flxa-dark body.iframe .button-link { color: var(--flxa-accent-l); }
+html.flxa-html body.iframe code,
+html.flxa-html body.iframe pre { background: var(--flxa-surface-2); color: var(--flxa-text); }
+html.flxa-html body.iframe hr { border-color: var(--flxa-border); }
+
+/* Güncelleme çıktısı: "X güncellendi" kutuları ve ayrıntılar. */
+html.flxa-html body.iframe .wrap > h2 { font-size: 15px; font-weight: 650; }
+html.flxa-html body.iframe div.updated,
+html.flxa-html body.iframe div.error,
+html.flxa-html body.iframe .notice,
+html.flxa-html body.iframe .update-messages {
+	background: var(--flxa-surface);
+	color: var(--flxa-text);
+	border: 1px solid var(--flxa-border);
+	border-left-width: 4px;
+	border-radius: 10px;
+	box-shadow: none;
+}
+html.flxa-html body.iframe div.updated,
+html.flxa-html body.iframe .notice-success { border-left-color: #2E9E5B; }
+html.flxa-html body.iframe div.error,
+html.flxa-html body.iframe .notice-error { border-left-color: var(--flxa-error); background: var(--flxa-error-soft); }
+html.flxa-html body.iframe .notice-warning { border-left-color: var(--flxa-warn); background: var(--flxa-warn-soft); }
+html.flxa-html body.iframe .update-messages { border-left-color: var(--flxa-border-strong); padding: 2px 12px; }
+html.flxa-html body.iframe .update-messages p { color: var(--flxa-muted); }
+
+/* Düğmeler */
+html.flxa-html body.iframe .button,
+html.flxa-html body.iframe .button-secondary { background: var(--flxa-surface); color: var(--flxa-text); border-color: var(--flxa-border-strong); border-radius: 8px; }
+html.flxa-html body.iframe .button:hover,
+html.flxa-html body.iframe .button-secondary:hover { background: var(--flxa-surface-2); color: var(--flxa-text); }
+html.flxa-html body.iframe .button-primary { background: var(--flxa-accent); color: var(--flxa-on-accent); border-color: var(--flxa-accent); }
+html.flxa-html body.iframe .button-primary:hover { background: var(--flxa-accent-hover); color: var(--flxa-on-accent); }
+html.flxa-html body.iframe .button-disabled,
+html.flxa-html body.iframe .button:disabled { background: var(--flxa-surface-2) !important; color: var(--flxa-muted) !important; border-color: var(--flxa-border) !important; }
+
+/* Eklenti "Ayrıntılar" penceresi */
+html.flxa-html #plugin-information,
+html.flxa-html #plugin-information-scrollable,
+html.flxa-html #plugin-information-content,
+html.flxa-html #section-holder { background: var(--flxa-surface); color: var(--flxa-text); }
+html.flxa-html #plugin-information-title { background: var(--flxa-surface-2); }
+html.flxa-html #plugin-information-title h2 { color: var(--flxa-text); }
+html.flxa-html #plugin-information-title.with-banner h2 { color: #fff; }
+html.flxa-html #plugin-information-tabs { background: var(--flxa-surface-2); border-bottom-color: var(--flxa-border); }
+html.flxa-html #plugin-information-tabs a { color: var(--flxa-muted); }
+html.flxa-html #plugin-information-tabs a.current { background: var(--flxa-surface); color: var(--flxa-text); border-color: var(--flxa-border); }
+html.flxa-html #plugin-information .fyi { background: var(--flxa-surface-2); border-color: var(--flxa-border); }
+html.flxa-html #plugin-information .counter-back { background: var(--flxa-surface-3); }
+html.flxa-html #plugin-information-footer { background: var(--flxa-surface-2); border-top-color: var(--flxa-border); }
+html.flxa-html #plugin-information .section,
+html.flxa-html #plugin-information .section p,
+html.flxa-html #plugin-information .section li,
+html.flxa-html #plugin-information .section h1,
+html.flxa-html #plugin-information .section h2,
+html.flxa-html #plugin-information .section h3 { color: var(--flxa-text); }
+html.flxa-html #plugin-information .section blockquote { background: var(--flxa-surface-2); border-color: var(--flxa-border); }
+html.flxa-html #plugin-information .reviews .review { border-color: var(--flxa-border); }
+html.flxa-html #plugin-information .star-rating .star { color: #F0B849; }
+html.flxa-html #plugin-information .fyi strong,
+html.flxa-html #plugin-information .fyi h3,
+html.flxa-html #plugin-information .fyi h2,
+html.flxa-html #plugin-information .counter-label { color: var(--flxa-muted); }
+html.flxa-html #plugin-information .fyi li,
+html.flxa-html #plugin-information .counter-count { color: var(--flxa-text); }

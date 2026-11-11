@@ -192,6 +192,7 @@ function flxc_rest_chat( WP_REST_Request $req ) {
 	return array(
 		'chat'     => flxc_chats_for_js( array( $chat ) )[0],
 		'sections' => flxc_contact_sections( $chat ),
+		'log'      => function_exists( 'flxc_clog_for_js' ) ? flxc_clog_for_js( (int) $chat['id'], 100 ) : array(),
 	);
 }
 
@@ -260,7 +261,8 @@ function flxc_rest_new_chat( WP_REST_Request $req ) {
 			}
 		}
 	}
-	$chat = flxc_ensure_chat( $conn['id'], $jid, array( 'name' => sanitize_text_field( (string) $req->get_param( 'name' ) ) ) );
+	// 1.41.0: the name the agent typed is written (and logged) as the agent's change, not as a record's.
+	$chat = flxc_ensure_chat( $conn['id'], $jid );
 	$name = sanitize_text_field( (string) $req->get_param( 'name' ) );
 	if ( $name && $name !== $chat['name'] ) {
 		flxc_update_chat( $chat['id'], array( 'name' => $name ) );

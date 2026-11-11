@@ -209,7 +209,7 @@ class FLXB_WC_Esnekpos {
 	}
 
 	/** JSON POST to EsnekPOS. @return array|WP_Error */
-	private static function post( $path, array $body ) {
+	public static function post( $path, array $body ) {
 		$r = wp_remote_post(
 			self::base_url() . $path,
 			array(
@@ -229,7 +229,7 @@ class FLXB_WC_Esnekpos {
 		return $j;
 	}
 
-	private static function message( array $r ) {
+	public static function message( array $r ) {
 		foreach ( array( 'tr' === self::locale() ? 'RETURN_MESSAGE_TR' : 'RETURN_MESSAGE', 'RETURN_MESSAGE', 'RETURN_MESSAGE_TR' ) as $k ) {
 			if ( ! empty( $r[ $k ] ) && is_scalar( $r[ $k ] ) ) {
 				return sanitize_text_field( (string) $r[ $k ] );
@@ -238,11 +238,11 @@ class FLXB_WC_Esnekpos {
 		return '';
 	}
 
-	private static function locale() {
+	public static function locale() {
 		return 0 === strpos( (string) determine_locale(), 'tr' ) ? 'tr' : 'en';
 	}
 
-	private static function ok( array $r ) {
+	public static function ok( array $r ) {
 		return 'SUCCESS' === strtoupper( (string) ( $r['STATUS'] ?? '' ) ) && '0' === trim( (string) ( $r['RETURN_CODE'] ?? '' ) );
 	}
 
@@ -268,7 +268,11 @@ class FLXB_WC_Esnekpos {
 			$last  = trim( substr( $first, strrpos( $first, ' ' ) ) );
 			$first = trim( substr( $first, 0, strrpos( $first, ' ' ) ) );
 		}
-		$city = trim( (string) $order->get_billing_city() );
+		$city  = trim( (string) $order->get_billing_city() );
+		$phone = self::phone( $order );
+		if ( '' === $phone ) {
+			return new WP_Error( 'flxb_esn_phone', __( 'Card payments need a phone number. Please write your phone number and try again.', 'flx-donate' ) );
+		}
 		$body = array(
 			'Config'   => array(
 				'MERCHANT'         => $c['merchant'],
@@ -283,7 +287,7 @@ class FLXB_WC_Esnekpos {
 				'FIRST_NAME' => '' !== $first ? $first : __( 'Donor', 'flx-donate' ),
 				'LAST_NAME'  => '' !== $last ? $last : '-',
 				'MAIL'       => (string) $order->get_billing_email(),
-				'PHONE'      => (string) $order->get_billing_phone(),
+				'PHONE'      => $phone,
 				'CITY'       => $city,
 				'STATE'      => '' !== trim( (string) $order->get_billing_state() ) ? (string) $order->get_billing_state() : $city,
 				'ADDRESS'    => trim( $order->get_billing_address_1() . ' ' . $order->get_billing_address_2() ),
@@ -309,6 +313,37 @@ class FLXB_WC_Esnekpos {
 		$order->update_meta_data( '_flxb_esnek_test', $c['test'] ? 1 : 0 );
 		$order->save();
 		return $url;
+	}
+
+	/**
+	 * The donor's phone for EsnekPOS (it refuses an empty one): the order's billing or shipping phone,
+	 * then the customer's saved phone, then the donor record with the order's e-mail.
+	 * Turkish numbers go as 05XXXXXXXXX, others as +CC… digits. '' when none is known.
+	 */
+	public static function phone( WC_Order $order ) {
+		$cands = array( $order->get_billing_phone(), method_exists( $order, 'get_shipping_phone' ) ? $order->get_shipping_phone() : '' );
+		$uid   = (int) $order->get_customer_id();
+		if ( $uid ) {
+			$cands[] = get_user_meta( $uid, 'billing_phone', true );
+			$cands[] = get_user_meta( $uid, 'shipping_phone', true );
+		}
+		$email = (string) $order->get_billing_email();
+		if ( '' !== $email && class_exists( 'FLXB_Donors' ) && ! ( class_exists( 'FLXB_WC_Contact' ) && FLXB_WC_Contact::is_placeholder( $email ) ) ) {
+			$d       = FLXB_Donors::find( '', $email );
+			$cands[] = is_array( $d ) ? ( $d['phone'] ?? '' ) : '';
+		}
+		foreach ( $cands as $raw ) {
+			$n = function_exists( 'flxb_normalize_phone' ) ? flxb_normalize_phone( (string) $raw ) : '';
+			if ( '' === $n ) {
+				continue;
+			}
+			if ( '' === trim( (string) $order->get_billing_phone() ) ) {
+				$order->set_billing_phone( $n ); // keep it on the order too (receipt, call center)
+			}
+			$d = ltrim( $n, '+' );
+			return (string) apply_filters( 'flxb_esnekpos_phone', 0 === strpos( $d, '90' ) && 12 === strlen( $d ) ? '0' . substr( $d, 2 ) : '+' . $d, $order );
+		}
+		return '';
 	}
 
 	/** ProcessQuery for a reference. @return array|WP_Error */
@@ -384,6 +419,9 @@ class FLXB_WC_Esnekpos {
 			$err = self::settle( $order, $ref, $posted_ok || ! $keyed, $posted_msg );
 		}
 		$order = wc_get_order( $order->get_id() );
+		if ( $keyed && ! empty( $_GET['m'] ) && class_exists( 'FLXB_WC_Esnekpos_Direct' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			FLXB_WC_Esnekpos_Direct::bridge( $order, $err ); // 2.21.0: 3D Secure ran in the checkout's modal
+		}
 		if ( ! $keyed ) {
 			/* Old return URL: no order key in it, so none is handed out (the donor gets the e-mail). */
 			wp_safe_redirect( function_exists( 'wc_get_checkout_url' ) ? wc_get_checkout_url() : home_url( '/' ) );
@@ -400,7 +438,7 @@ class FLXB_WC_Esnekpos {
 	 *
 	 * @return string Error for the donor ('' when paid).
 	 */
-	private static function settle( WC_Order $order, $ref, $posted_ok, $posted_msg ) {
+	public static function settle( WC_Order $order, $ref, $posted_ok, $posted_msg ) {
 		$lock = 'flxb_wc_esn_lock_' . $order->get_id();
 		if ( ! add_option( $lock, time(), '', false ) && time() - (int) get_option( $lock ) < 60 ) {
 			return __( 'The payment is being checked. Please wait a moment and refresh the page.', 'flx-donate' );

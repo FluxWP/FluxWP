@@ -4851,3 +4851,117 @@ msgstr "No referral."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
+
+msgid "Change history"
+msgstr "Change history"
+
+msgid "Assistant memory"
+msgstr "Assistant memory"
+
+msgid "Note updated"
+msgstr "Note updated"
+
+msgid "Show less"
+msgstr "Show less"
+
+msgid "Show all ({n})"
+msgstr "Show all ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Filled from donation and certificate records (one-off update)"
+
+msgid "Name given by the sending record"
+msgstr "Name given by the sending record"
+
+msgid "Filled from donation and certificate records"
+msgstr "Filled from donation and certificate records"
+
+msgid "The contact said their name in the chat"
+msgstr "The contact said their name in the chat"
+
+msgid "The contact corrected their name in the chat"
+msgstr "The contact corrected their name in the chat"
+
+msgid "The contact gave their full name in the chat"
+msgstr "The contact gave their full name in the chat"
+
+msgid "The assistant updated the reminder: %1$s (%2$s)"
+msgstr "The assistant updated the reminder: %1$s (%2$s)"
+
+msgid "The assistant marked the chat as completed (the person said goodbye). It continues normally if they write again."
+msgstr "The assistant marked the chat as completed (the person said goodbye). It continues normally if they write again."
+
+msgid "Let the assistant react to messages with an emoji (👍 for \"okay\", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell"
+msgstr "Let the assistant react to messages with an emoji (👍 for \"okay\", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell"
+
+msgid "same person and donation, not a copy"
+msgstr "same person and donation, not a copy"
+
+msgid "Closing, reactions and reminders"
+msgstr "Closing, reactions and reminders"
+
+msgid "Chat already marked completed (goodbyes said)"
+msgstr "Chat already marked completed (goodbyes said)"
+
+msgid "Site search returns a sample event with a location"
+msgstr "Site search returns a sample event with a location"
+
+msgid "Chat marked completed"
+msgstr "Chat marked completed"
+
+msgid "Emoji reaction left"
+msgstr "Emoji reaction left"
+
+msgid "No text reply to the last message"
+msgstr "No text reply to the last message"
+
+msgid "Reminder is one-time"
+msgstr "Reminder is one-time"
+
+msgid "Exactly one reminder"
+msgstr "Exactly one reminder"
+
+msgid "(no text, reacted to the message: {e})"
+msgstr "(no text, reacted to the message: {e})"
+
+msgid "(no text: the chat is completed, stayed silent)"
+msgstr "(no text: the chat is completed, stayed silent)"
+
+msgid "(reacted to the message: {e})"
+msgstr "(reacted to the message: {e})"
+
+msgid "Reminder request: set at once"
+msgstr "Reminder request: set at once"
+
+msgid "Event location and time"
+msgstr "Event location and time"
+
+msgid "Continuation: own receipt sent again, asks if it arrived"
+msgstr "Continuation: own receipt sent again, asks if it arrived"
+
+msgid "Thanks after help: one short farewell"
+msgstr "Thanks after help: one short farewell"
+
+msgid "Goodbye loop: no repeated farewells"
+msgstr "Goodbye loop: no repeated farewells"
+
+msgid "New topic after goodbye gets a normal reply"
+msgstr "New topic after goodbye gets a normal reply"
+
+msgid "Question after goodbye is answered"
+msgstr "Question after goodbye is answered"
+
+msgid "Short \"okay\" after goodbye: reaction only"
+msgstr "Short \"okay\" after goodbye: reaction only"
+
+msgid "Continuation: prayer gets a prayer reaction"
+msgstr "Continuation: prayer gets a prayer reaction"
+
+msgid "Continuation: \"you will remind me\" sets the reminder at once"
+msgstr "Continuation: \"you will remind me\" sets the reminder at once"
+
+msgid "Changes the day afterwards: same reminder updated"
+msgstr "Changes the day afterwards: same reminder updated"
+
+msgid "Monthly reminder turned into one-time"
+msgstr "Monthly reminder turned into one-time"

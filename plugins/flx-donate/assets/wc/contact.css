@@ -26,9 +26,12 @@ body.flx-dark .flxb-ct__field input { background: var(--flx-surface, #17221c); b
 .flxb-ct-on .wc-block-checkout.is-mobile .wc-block-checkout__sidebar { display: none !important; }
 .flxb-ct-on .wc-block-checkout__contact-fields .wc-block-components-checkout-step__description { display: none !important; }
 .flxb-ct-on .wc-block-components-checkout-place-order-button { width: 100%; min-height: 54px; }
-.flxb-ct-support .flxwb-support { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: .92rem; }
-.flxb-ct-support .flxwb-support .flxwb-ic { flex: none; width: 20px; height: 20px; color: #1e9e57; }
-.flxb-ct-support .flxwb-support a { font-weight: 700; white-space: nowrap; }
+.flxb-ct-support .flxwb-support { display: flex; align-items: center; gap: 10px; margin: 12px 0 0; padding: 12px 14px; border: 1px solid #A7E3BF; border-radius: 12px; background: #E9F8EF; color: #14532D; font-size: .92rem; line-height: 1.4; text-decoration: none !important; transition: background .15s; }
+.flxb-ct-support .flxwb-support:hover, .flxb-ct-support .flxwb-support:focus-visible { background: #DBF3E4; }
+.flxb-ct-support .flxwb-support .flxwb-ic { flex: none; width: 22px; height: 22px; color: #1E9E57; }
+.flxb-ct-support .flxwb-support__t { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.flxb-ct-support .flxwb-support__t strong { font-weight: 700; }
+.flxb-ct-support .flxwb-support__n { color: #1E9E57; font-weight: 700; white-space: nowrap; }
 
 /* 2.0.5: header fixed at the top; a slim bar with the total and the button fixed at the bottom
    (2.0.4 made WooCommerce's whole actions block sticky, and newer WooCommerce puts the summary inside it). */
@@ -52,3 +55,12 @@ body.flx-dark .flxb-ct__field input { background: var(--flx-surface, #17221c); b
 }
 .flxb-paybar__btn[disabled] { opacity: .6; cursor: progress; }
 @media (prefers-color-scheme: dark) { body.flx-dark .flxb-paybar { background: var(--flx-surface, #13251f); box-shadow: 0 -8px 24px -12px rgba(0, 0, 0, .8); } }
+
+/* 2.21.0: signed-in donor (read-only e-mail / phone) and the "Create an account" hint */
+.flxb-ct__field input[readonly] { background: color-mix(in srgb, var(--flx-line, #c3cec7) 18%, #fff); cursor: default; border-style: dashed; }
+.flxb-ct__who { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; margin: 8px 0 0; font-size: .85rem; opacity: .9; }
+.flxb-ct__who a { font-weight: 700; }
+.flxb-co-hint { margin: 4px 0 0 32px; font-size: .8rem; line-height: 1.45; opacity: .8; }
+/* 2.21.0: an item without a picture shows a sapling icon instead of the grey placeholder */
+.wc-block-components-order-summary-item__image:has(img[src*="woocommerce-placeholder"]) img { opacity: 0; }
+.wc-block-components-order-summary-item__image:has(img[src*="woocommerce-placeholder"]) { border-radius: 12px; background: color-mix(in srgb, var(--flx-primary, #347a5a) 10%, #fff) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23347a5a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21V11'/%3E%3Cpath d='M12 11c0-4 3-7 7-7 0 4-3 7-7 7z'/%3E%3Cpath d='M12 13c0-3-2.5-5.5-6-5.5 0 3.5 2.5 5.5 6 5.5z'/%3E%3C/svg%3E") center/24px no-repeat; }

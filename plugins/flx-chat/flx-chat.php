@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Chat
  * Description:       WhatsApp (Evolution API) çağrı merkezi: gelen ve giden mesajları canlı görün, yeni sohbet başlatın, hazır cevaplar, etiketler, atama, dahili notlar, otomatik yanıtlar; sohbetten bağış (Flux Donate) ve sertifika (Flux Certificates) kaydı, dekont eşleştirme. OpenRouter ile yapay zekâ cevap önerisi ve otomatik bağış asistanı.
- * Version:           1.40.4
+ * Version:           1.42.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -16,8 +16,8 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXC_VERSION', '1.40.4' );
-define( 'FLXC_DB_VERSION', '9' );
+define( 'FLXC_VERSION', '1.42.1' );
+define( 'FLXC_DB_VERSION', '10' );
 define( 'FLXC_FILE', __FILE__ );
 define( 'FLXC_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXC_URL', plugin_dir_url( __FILE__ ) );
@@ -28,6 +28,7 @@ require_once FLXC_DIR . 'includes/connections.php';
 require_once FLXC_DIR . 'includes/evolution.php';
 require_once FLXC_DIR . 'includes/wacloud.php';
 require_once FLXC_DIR . 'includes/store.php';
+require_once FLXC_DIR . 'includes/contact-log.php';
 require_once FLXC_DIR . 'includes/ingest.php';
 require_once FLXC_DIR . 'includes/send.php';
 require_once FLXC_DIR . 'includes/automation.php';
@@ -37,6 +38,7 @@ require_once FLXC_DIR . 'includes/integrations.php';
 require_once FLXC_DIR . 'includes/link-preview.php';
 require_once FLXC_DIR . 'includes/ai.php';
 require_once FLXC_DIR . 'includes/bot.php';
+require_once FLXC_DIR . 'includes/bot-close.php';
 require_once FLXC_DIR . 'includes/receipt-ai.php';
 require_once FLXC_DIR . 'includes/dekont.php';
 require_once FLXC_DIR . 'includes/bot-stats.php';

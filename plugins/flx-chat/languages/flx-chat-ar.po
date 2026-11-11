@@ -4851,3 +4851,117 @@ msgstr "لا يوجد مُحيل."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "هل وصلت الدفعة إلى الحساب؟ عند التأكيد تُنشأ الشهادة وتُرسل إلى المتبرع."
+
+msgid "Change history"
+msgstr "سجل التغييرات"
+
+msgid "Assistant memory"
+msgstr "ذاكرة المساعد"
+
+msgid "Note updated"
+msgstr "تم تحديث الملاحظة"
+
+msgid "Show less"
+msgstr "عرض أقل"
+
+msgid "Show all ({n})"
+msgstr "عرض الكل ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "تم الملء من سجلات التبرعات والشهادات (تحديث لمرة واحدة)"
+
+msgid "Name given by the sending record"
+msgstr "الاسم من السجل المُرسِل"
+
+msgid "Filled from donation and certificate records"
+msgstr "تم الملء من سجلات التبرعات والشهادات"
+
+msgid "The contact said their name in the chat"
+msgstr "ذكر جهة الاتصال اسمه في المحادثة"
+
+msgid "The contact corrected their name in the chat"
+msgstr "صحّح جهة الاتصال اسمه في المحادثة"
+
+msgid "The contact gave their full name in the chat"
+msgstr "ذكر جهة الاتصال اسمه الكامل في المحادثة"
+
+msgid "The assistant updated the reminder: %1$s (%2$s)"
+msgstr "حدّث المساعد التذكير: %1$s (%2$s)"
+
+msgid "The assistant marked the chat as completed (the person said goodbye). It continues normally if they write again."
+msgstr "وضع المساعد علامة «مكتملة» على المحادثة (ودّع الشخص). إذا كتب مجددًا تستمر المحادثة بشكل طبيعي."
+
+msgid "Let the assistant react to messages with an emoji (👍 for \"okay\", 🤲 for thanks and prayers); once goodbyes are said it reacts instead of writing another farewell"
+msgstr "السماح للمساعد بالتفاعل مع الرسائل برمز تعبيري (👍 لـ«تمام»، 🤲 للشكر والدعاء)؛ وبعد الوداع يتفاعل بدلًا من كتابة وداع آخر"
+
+msgid "same person and donation, not a copy"
+msgstr "الشخص نفسه والتبرع نفسه، ليست نسخة مكررة"
+
+msgid "Closing, reactions and reminders"
+msgstr "الإنهاء والتفاعلات والتذكيرات"
+
+msgid "Chat already marked completed (goodbyes said)"
+msgstr "المحادثة معلَّمة مسبقًا كمكتملة (تم الوداع)"
+
+msgid "Site search returns a sample event with a location"
+msgstr "يعيد بحث الموقع فعالية تجريبية لها موقع"
+
+msgid "Chat marked completed"
+msgstr "تم تعليم المحادثة كمكتملة"
+
+msgid "Emoji reaction left"
+msgstr "تم ترك تفاعل برمز تعبيري"
+
+msgid "No text reply to the last message"
+msgstr "لا رد نصي على الرسالة الأخيرة"
+
+msgid "Reminder is one-time"
+msgstr "التذكير لمرة واحدة"
+
+msgid "Exactly one reminder"
+msgstr "تذكير واحد بالضبط"
+
+msgid "(no text, reacted to the message: {e})"
+msgstr "(بلا نص، تفاعل مع الرسالة: {e})"
+
+msgid "(no text: the chat is completed, stayed silent)"
+msgstr "(بلا نص: المحادثة مكتملة، لم يُرسل رد)"
+
+msgid "(reacted to the message: {e})"
+msgstr "(تفاعل مع الرسالة: {e})"
+
+msgid "Reminder request: set at once"
+msgstr "طلب تذكير: يُضبط فورًا"
+
+msgid "Event location and time"
+msgstr "مكان الفعالية ووقتها"
+
+msgid "Continuation: own receipt sent again, asks if it arrived"
+msgstr "متابعة: أعاد إرسال إيصاله ويسأل هل وصل"
+
+msgid "Thanks after help: one short farewell"
+msgstr "شكر بعد المساعدة: وداع قصير واحد"
+
+msgid "Goodbye loop: no repeated farewells"
+msgstr "حلقة الوداع: لا وداع متكرر"
+
+msgid "New topic after goodbye gets a normal reply"
+msgstr "موضوع جديد بعد الوداع يُجاب عليه بشكل طبيعي"
+
+msgid "Question after goodbye is answered"
+msgstr "السؤال بعد الوداع يُجاب عليه"
+
+msgid "Short \"okay\" after goodbye: reaction only"
+msgstr "«تمام» قصيرة بعد الوداع: تفاعل فقط"
+
+msgid "Continuation: prayer gets a prayer reaction"
+msgstr "متابعة: الدعاء يُقابَل بتفاعل دعاء"
+
+msgid "Continuation: \"you will remind me\" sets the reminder at once"
+msgstr "متابعة: «ذكّروني» تضبط التذكير فورًا"
+
+msgid "Changes the day afterwards: same reminder updated"
+msgstr "يغيّر اليوم لاحقًا: يُحدَّث التذكير نفسه"
+
+msgid "Monthly reminder turned into one-time"
+msgstr "تذكير شهري يتحول إلى تذكير لمرة واحدة"
