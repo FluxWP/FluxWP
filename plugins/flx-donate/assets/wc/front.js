@@ -90,6 +90,19 @@
 			if (first) first.hidden = want < 2;
 		}
 
+		/* 2.23.0: a hand-written amount as pieces ("3 Saplings") when the type is sold by the piece. */
+		function pieceCount(T, sum) {
+			return T.unit && T.unit.price > 0 && sum > 0 ? Math.max(1, Math.floor((sum + 0.001) / T.unit.price)) * (T.unit.n || 1) : 0;
+		}
+		function pieces(T, sum) {
+			var n = pieceCount(T, sum);
+			return n ? (n === 1 ? T.unit.one : String(T.unit.many || '%s').replace('%s', n.toLocaleString(document.documentElement.lang || undefined))) : '';
+		}
+		function fieldError(el, msg) {
+			if (window.flxField && el && el.closest('.flx-fld')) { window.flxField.setError(el, msg); return true; }
+			return false;
+		}
+
 		/* 2.16.0: summary lines (steps layout): what is picked, how many, the price. */
 		function summary(T, P, opt, sum) {
 			var box = form.querySelector('[data-flxwb-sum-lines]');
@@ -101,9 +114,12 @@
 				var r = P.querySelector('input[name="o[' + tid() + ']"][value="' + opt + '"]');
 				var lb = r && r.closest('label') ? r.closest('label').querySelector('.flxwb-pkg__count') : null;
 				var u = unitsOf(P, T, opt);
-				rows.push([title + (lb ? ' · ' + lb.textContent.trim() : ''), (u > 1 ? u + ' × ' : '') + money(T.opts[opt].price)]);
-			} else if (title) {
-				rows.push([title, sum > 0 ? money(sum) : '—']);
+				var name = lb ? lb.textContent.trim() : '';
+				if (!title && !name) name = pieces(T, T.opts[opt].price * u) || '';
+				rows.push([title + (title && name ? ' · ' : '') + name, (u > 1 ? u + ' × ' : '') + money(T.opts[opt].price)]);
+			} else if (title || T.unit) {
+				var pc = pieces(T, sum);
+				rows.push([(title || '') + (pc ? (title ? ' · ' : '') + pc : ''), sum > 0 ? money(sum) : '—']);
 			}
 			box.innerHTML = '';
 			rows.forEach(function (x) {
@@ -152,11 +168,12 @@
 			pickSync();
 			var opt = checked(P, 'o[' + tid() + ']');
 			var free = P.querySelector('[data-flxwb-free]');
-			if (free) free.hidden = !!(P.querySelector('input[type="radio"][name="o[' + tid() + ']"]')) && opt !== '__free';
+			if (free && !free.hasAttribute('data-flxwb-free-open')) free.hidden = !!(P.querySelector('input[type="radio"][name="o[' + tid() + ']"]')) && opt !== '__free';
 			if (opt === '__free' || opt === '') {
 				var ai = P.querySelector('[data-flxwb-amount-input]');
 				sum = parseAmount(ai && ai.value);
 				P.querySelectorAll('[data-flxwb-amount]').forEach(function (c) { c.classList.toggle('is-active', sum > 0 && Math.abs(parseFloat(c.getAttribute('data-flxwb-amount')) - sum) < 0.001); });
+				if (T.unit && T.unit.unit === 'fidan' && pieceCount(T, sum)) label = pieceCount(T, sum).toLocaleString(document.documentElement.lang || undefined) + ' 🌱';
 			} else if (T.opts && T.opts[opt]) {
 				var o = T.opts[opt], units = 1;
 				if (o.qty) {
@@ -183,6 +200,14 @@
 				});
 			});
 			var monthly = form.querySelector('input[name="m[' + tid() + ']"]');
+			/* 2.23.0: "One-time / Monthly" tabs drive the monthly boxes; a type without monthly giving stays one-time. */
+			var pt = form.querySelector('[data-flxwb-periods]');
+			if (pt) {
+				var wantM = !!pt.querySelector('[data-flxwb-period="monthly"][aria-selected="true"]');
+				form.querySelectorAll('input[name^="m["]').forEach(function (m) { m.checked = wantM; });
+				var pn = form.querySelector('[data-flxwb-period-note]');
+				if (pn) pn.hidden = !(wantM && monthly);
+			}
 			syncShares(T, opt);
 			summary(T, P, opt, sum);
 			if (cert) cert.hidden = !T.cert;
@@ -218,7 +243,12 @@
 				var pk = ds.querySelector('input[name="tpl"]:checked');
 				ds.querySelectorAll('[data-flxwb-dfields]').forEach(function (b) { b.hidden = !pk || b.getAttribute('data-flxwb-dfields') !== pk.value; });
 			}
-			if (nf) nf.hidden = !T.cert && !other;
+			/* 2.23.0: for myself the checkout name is used; the name field is only asked for someone else. */
+			if (nf) {
+				nf.hidden = !other;
+				var ni = nf.querySelector('input[name="ben_name"]');
+				if (ni) ni.disabled = !other;
+			}
 			var ph = form.querySelector('[data-flxwb-phone]'), em = form.querySelector('[data-flxwb-email]');
 			var sm = form.querySelector('[data-flxwb-sendme]');
 			if (sm) sm.hidden = !(T.cert && other && ((ph && phoneOf(ph)) || (em && em.value.trim())));
@@ -264,6 +294,33 @@
 			setTimeout(function () { b.classList.remove('is-done'); }, 1200);
 		});
 
+		/* 2.23.0: amount buttons: writing an amount picks "Other amount"; emptying the field goes back to the buttons. */
+		form.addEventListener('input', function (e) {
+			var ai = e.target && e.target.matches && e.target.matches('[data-flxwb-amount-input]') ? e.target : null;
+			if (!ai) return;
+			fieldError(ai, '');
+			var fs = ai.closest('[data-flxwb-amounts]');
+			if (!fs) return;
+			var has = String(ai.value || '').trim() !== '';
+			var rf = fs.querySelector('input[type="radio"][value="__free"]'), ro = fs.querySelector('input[type="radio"]:not([value="__free"])');
+			if (has && rf) rf.checked = true; else if (!has && ro) ro.checked = true;
+		}, true);
+		form.querySelectorAll('[data-flxwb-period]').forEach(function (b, i, all) {
+			b.addEventListener('click', function () {
+				all.forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+				update();
+			});
+			b.addEventListener('keydown', function (e) {
+				if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+				var n = all[(i + 1) % all.length];
+				n.focus(); n.click();
+			});
+		});
+		/* Currency menu closes on a click outside. */
+		document.addEventListener('click', function (e) {
+			form.querySelectorAll('.flxwb-curdd[open]').forEach(function (d) { if (!d.contains(e.target)) d.removeAttribute('open'); });
+		});
+
 		form.addEventListener('change', update);
 		form.addEventListener('input', update);
 
@@ -274,10 +331,11 @@
 
 		/* 2.21.0: quick quantity buttons (1 / 5 / 10 …) under a quantity option. */
 		var quick = function () {
-			form.querySelectorAll('.flxwb-quick').forEach(function (g) {
+			form.querySelectorAll('.flxwb-quick, .flxwb-amts').forEach(function (g) {
 				var b0 = g.querySelector('[data-flxwb-quick]'), c = b0 ? document.getElementById(b0.getAttribute('aria-controls')) : null;
 				if (!c) return;
-				g.querySelectorAll('[data-flxwb-quick]').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.getAttribute('data-flxwb-quick') === (parseInt(c.value, 10) || 0))); });
+				var rq = c.closest('label') && c.closest('label').querySelector('input[type="radio"]');
+				g.querySelectorAll('[data-flxwb-quick]').forEach(function (b) { b.setAttribute('aria-pressed', String((!rq || rq.checked) && +b.getAttribute('data-flxwb-quick') === (parseInt(c.value, 10) || 0))); });
 			});
 		};
 		form.addEventListener('click', function (e) {
@@ -287,6 +345,9 @@
 			if (!c) return;
 			var r = c.closest('label') && c.closest('label').querySelector('input[type="radio"]');
 			if (r && !r.checked) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+			/* 2.23.0: amount buttons: picking one clears the hand-written amount and its warning. */
+			var fo = b.closest('[data-flxwb-amounts]'), fa = fo && fo.querySelector('[data-flxwb-amount-input]');
+			if (fa) { fa.value = ''; fieldError(fa, ''); }
 			c.value = b.getAttribute('data-flxwb-quick');
 			c.dispatchEvent(new Event('input', { bubbles: true }));
 			c.dispatchEvent(new Event('change', { bubbles: true }));
@@ -357,9 +418,10 @@
 				var ai = P.querySelector('[data-flxwb-amount-input]');
 				var a = parseAmount(ai && ai.value);
 				if (!(a > 0) || a < (+T.min || 0)) {
-					var help = ai && ai.closest('.flxwb-field') ? ai.closest('.flxwb-field').querySelector('.flxwb-field__help') : null;
-					msg = help ? help.textContent : (ai ? ai.getAttribute('placeholder') : '');
+					/* 2.23.0: the lowest amount is said only now, under the field. */
+					msg = a > 0 && T.minMsg ? T.minMsg : (L.needAmount || '');
 					focus = ai;
+					if (fieldError(ai, msg)) { e.preventDefault(); ai.focus(); var oe = form.querySelector('.flxwb-note--err'); if (oe) oe.remove(); return; }
 				}
 			}
 			var nm = form.querySelector('input[name="ben_name"]');

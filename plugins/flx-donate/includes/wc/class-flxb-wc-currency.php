@@ -216,6 +216,15 @@ final class FLXB_WC_Currency {
 		if ( count( $all ) < 2 ) {
 			return '';
 		}
+		if ( 'menu' === $compact ) {
+			/* 2.23.0: a drop-down of links (no JavaScript, works with page caches); sits beside the amount heading. */
+			$now  = $all[ self::current() ] ?? reset( $all );
+			$html = '<details class="flxwb-curdd"><summary aria-label="' . esc_attr__( 'Currency', 'flx-donate' ) . '"><span class="flxwb-cur__sym" aria-hidden="true">' . esc_html( $now['symbol'] ) . '</span>' . esc_html( self::short( $now['code'] ) ) . '<span class="flxwb-curdd__chev" aria-hidden="true"></span></summary><span class="flxwb-curdd__list">';
+			foreach ( $all as $c ) {
+				$html .= '<a class="flxwb-curdd__opt' . ( $c['current'] ? ' is-on' : '' ) . '" href="' . esc_url( $c['url'] ) . '" rel="nofollow"' . ( $c['current'] ? ' aria-current="true"' : '' ) . '><span class="flxwb-cur__sym" aria-hidden="true">' . esc_html( $c['symbol'] ) . '</span><span>' . esc_html( self::short( $c['code'] ) ) . '</span><small>' . esc_html( $c['label'] ) . '</small></a>';
+			}
+			return $html . '</span></details>';
+		}
 		$html = '<nav class="flxwb-cur' . ( $compact ? ' flxwb-cur--compact' : '' ) . '" aria-label="' . esc_attr__( 'Currency', 'flx-donate' ) . '">';
 		if ( ! $compact ) {
 			$html .= '<span class="flxwb-cur__label">' . esc_html__( 'Currency', 'flx-donate' ) . '</span>';

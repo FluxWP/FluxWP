@@ -9,18 +9,10 @@
 .flxb-ct-on .wc-block-checkout__billing-fields::before { display: none !important; }
 .flxb-ct { margin: 0 0 4px; }
 .flxb-ct__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.flxb-ct__field { position: relative; display: flex; flex-direction: column; gap: 4px; }
-.flxb-ct__field label { font-size: .85rem; font-weight: 600; }
-.flxb-ct__field input {
-	width: 100%; min-height: 50px; padding: 12px 14px; font: inherit; font-size: 1rem; box-sizing: border-box;
-	border: 1px solid var(--flx-line, #c3cec7); border-radius: 12px; background: var(--flx-surface, #fff); color: inherit;
-}
-.flxb-ct__field input:focus { outline: 0; border-color: var(--flx-primary, #347a5a); box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-primary, #347a5a) 18%, transparent); }
-.flxb-ct.has-error .flxb-ct__field input { border-color: #cc1818; }
+.flxb-ct .flx-fld { --flx-f-p: var(--flx-primary, #347a5a); --flx-f-line: var(--flx-line, #c3cec7); min-width: 0; }
 .flxb-ct__help { margin: 8px 0 0; font-size: .85rem; opacity: .8; }
-.flxb-ct__err { margin: 6px 0 0; font-size: .9rem; color: #cc1818; font-weight: 600; }
-body.flx-dark .flxb-ct__field input { background: var(--flx-surface, #17221c); border-color: var(--flx-line, #2c3b33); }
-@media (max-width: 600px) { .flxb-ct__row { grid-template-columns: 1fr; } .flxb-ct__field input { font-size: 16px; } }
+.flxb-ct__err { margin: 8px 0 0; }
+@media (max-width: 600px) { .flxb-ct__row { grid-template-columns: 1fr; } }
 
 /* Mobile: the summary sits above the place order button already; no second, collapsible one at the top. */
 .flxb-ct-on .wc-block-checkout.is-mobile .wc-block-checkout__sidebar { display: none !important; }

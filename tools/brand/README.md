@@ -72,3 +72,23 @@ $rows = flx_people_query( array( 'search' => 'ali', 'role' => 'donor', 'per_page
 - A package adds its own columns with `flx_people_columns` / `flx_people_keys`; the table is extended, never reduced.
 - Actions: `flx_person_created`, `flx_person_updated`, and from Flux CRM `flx_person_merged( $kept, $removed )`, `flx_person_deleting`.
 - Loads with the core on `after_setup_theme`; guard earlier calls with `function_exists`.
+
+## Form fields (1.5.0)
+
+One look and one error system for inputs, selects, text areas, check boxes and radios in every package: an icon, a small label over a large, vertically centred value, an optional suffix (`TL`), a green tick / red mark, and the error or help line under the box. Formatting while typing and validation live in `field/field.js`.
+
+```php
+echo flx_field( array( 'name' => 'email', 'type' => 'email', 'label' => __( 'E-mail', 'my-domain' ), 'icon' => 'mail', 'required' => true, 'rules' => 'email' ) );
+echo flx_field( array( 'name' => 'amount', 'label' => __( 'Amount', 'my-domain' ), 'icon' => 'edit', 'format' => 'money', 'rules' => 'min:120', 'suffix' => 'TL', 'messages' => array( 'min' => __( 'At least 120 TL.', 'my-domain' ) ) ) );
+echo flx_field( array( 'name' => 'phone', 'type' => 'phone', 'label' => __( 'Phone', 'my-domain' ) ) ); // the shared phone field inside the box
+echo flx_check( array( 'name' => 'terms', 'label_html' => __( 'I accept the <a href="/terms/">terms</a>', 'my-domain' ), 'required' => true ) );
+```
+
+- `flx_field()` arguments: `name, id, type (text|email|tel|number|password|search|url|textarea|select|phone), label, value, placeholder, icon, suffix, hint, help, error, required, readonly, disabled, format, rules, messages, options, rows, tick, size (sm), wide, hide_label, class, attrs, wrap_attrs, phone`. `flx_check()`: `name, id, value, label | label_html, note, checked, required, disabled, radio, error, messages, class, attrs, wrap_attrs`.
+- Formats (`format`): `card, exp, digits, money, upper, name`. Rules (`rules`, space separated): `email luhn exp phone min:N max:N minlen:N maxlen:N digits:3-4`, plus `required`. Texts: `messages` per rule, else the built-in TR / EN texts (`flx_field_strings` filter).
+- Icons (`flx_field_icons` filter): `user, mail, phone, card, calendar, lock, edit, coins, pin, home, building, gift, search, note, key, globe, hash`.
+- A `<form data-flx-validate>` is checked on submit and the first wrong field gets the focus. Fields are checked on blur once touched.
+- JS: `window.flxField.validate( el | form )`, `.setError( el, msg )`, `.clear( el )`, `.html( args )` (same markup from JS), `.icon( name )`, `.addRule()`, `.addFormat()`; event `flx-field:change` `{ valid, value }`.
+- `data-flx-manual` on the wrapper: markup and look only; the owner (a React form, an own script) formats and validates itself.
+- Sizes and colours are CSS variables on the wrapper or a parent: `--flx-f-h` (60px), `--flx-f-r`, `--flx-f-fs`, `--flx-f-p` (accent), `--flx-f-line`, `--flx-f-bg`, `--flx-f-ink`, `--flx-f-err`. Dark mode follows the same rules as the phone field.
+- `sync.py` copies `field/` into every package next to `flx-brand`.

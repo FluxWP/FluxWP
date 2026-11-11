@@ -96,18 +96,27 @@
 	};
 
 	/* ---------- Card form ---------- */
+	/* 2.23.0: the shared FluxWP field markup (flx-brand field.css): icon, label and value centred in the box,
+	   larger text, one error look. data-flx-manual: this form checks and formats the values itself. */
+	var ICONS = (window.FLX_FIELD && window.FLX_FIELD.icons) || {};
+	var Icon = function (name) {
+		return ICONS[name] ? el('span', { className: 'flx-fld__ico', 'aria-hidden': 'true' }, el('svg', { viewBox: '0 0 24 24', dangerouslySetInnerHTML: { __html: ICONS[name] } })) : null;
+	};
 	var Field = function (p) {
-		return el('div', { className: 'flxb-cc__f' + (p.error ? ' has-error' : '') + (p.wide ? ' is-wide' : '') },
-			el('label', { className: 'flxb-cc__box' },
-				el('span', { className: 'flxb-cc__label' }, p.label, p.hint ? el('small', { className: 'flxb-cc__hint-r' }, p.hint) : null),
-				el('input', {
-					type: p.type || 'text', inputMode: p.inputMode, autoComplete: p.autoComplete, value: p.value,
-					placeholder: p.placeholder || '', maxLength: p.maxLength, 'aria-invalid': p.error ? 'true' : 'false',
-					onChange: function (e) { p.onChange(e.target.value); }, onBlur: p.onBlur, readOnly: !!p.readOnly
-				}),
+		return el('div', { className: 'flx-fld flxb-cc__f' + (p.error ? ' is-error' : '') + (p.wide ? ' flx-fld--wide is-wide' : ''), 'data-flx-manual': '' },
+			el('label', { className: 'flx-fld__box' },
+				Icon(p.icon),
+				el('span', { className: 'flx-fld__in' },
+					el('span', { className: 'flx-fld__label' }, p.label, p.hint ? el('small', { className: 'flx-fld__hint' }, p.hint) : null),
+					el('input', {
+						className: 'flx-fld__input', type: p.type || 'text', inputMode: p.inputMode, autoComplete: p.autoComplete, value: p.value,
+						placeholder: p.placeholder || '', maxLength: p.maxLength, 'aria-invalid': p.error ? 'true' : 'false',
+						onChange: function (e) { p.onChange(e.target.value); }, onBlur: p.onBlur, readOnly: !!p.readOnly
+					})
+				),
 				p.after || null
 			),
-			p.error ? el('span', { className: 'flxb-cc__err', role: 'alert' }, p.error) : null
+			p.error ? el('p', { className: 'flx-fld__msg', role: 'alert' }, p.error) : null
 		);
 	};
 
@@ -223,16 +232,16 @@
 
 		return el('div', { className: 'flxb-cc' },
 			el(Field, {
-				label: t.card, value: v('num'), inputMode: 'numeric', autoComplete: 'cc-number', placeholder: '0000 0000 0000 0000', maxLength: 23, wide: true,
+				label: t.card, icon: 'card', value: v('num'), inputMode: 'numeric', autoComplete: 'cc-number', placeholder: '0000 0000 0000 0000', maxLength: 23, wide: true,
 				onChange: change('num', function (x) { return groupCard(digits(x)); }), onBlur: blur('num'), error: errOf('num'),
 				after: el('span', { className: 'flxb-cc__brand flxb-cc__brand--' + (brand || 'none'), 'aria-hidden': 'true' }, BRAND[brand] || '')
 			}),
 			el('div', { className: 'flxb-cc__row' },
-				el(Field, { label: t.exp, hint: t.expFmt, value: v('exp'), inputMode: 'numeric', autoComplete: 'cc-exp', placeholder: 'AA / YY', maxLength: 7, onChange: change('exp', groupExp), onBlur: blur('exp'), error: errOf('exp') }),
-				el(Field, { label: t.cvv, value: v('cvv'), inputMode: 'numeric', autoComplete: 'cc-csc', placeholder: '•••', maxLength: 4, type: 'password', onChange: change('cvv', function (x) { return digits(x).slice(0, 4); }), onBlur: blur('cvv'), error: errOf('cvv') })
+				el(Field, { label: t.exp, icon: 'calendar', hint: t.expFmt, value: v('exp'), inputMode: 'numeric', autoComplete: 'cc-exp', placeholder: 'AA / YY', maxLength: 7, onChange: change('exp', groupExp), onBlur: blur('exp'), error: errOf('exp') }),
+				el(Field, { label: t.cvv, icon: 'lock', value: v('cvv'), inputMode: 'numeric', autoComplete: 'cc-csc', placeholder: '•••', maxLength: 4, type: 'password', onChange: change('cvv', function (x) { return digits(x).slice(0, 4); }), onBlur: blur('cvv'), error: errOf('cvv') })
 			),
-			el(Field, { label: t.name, value: v('name'), autoComplete: 'cc-name', wide: true, onChange: change('name', function (x) { return x.toLocaleUpperCase('tr-TR'); }), onBlur: blur('name'), error: errOf('name') }),
-			needPhone ? el(Field, { label: t.phone, value: v('phone'), type: 'tel', inputMode: 'tel', autoComplete: 'tel', placeholder: '0532 123 45 67', wide: true, onChange: change('phone'), onBlur: blur('phone'), error: errOf('phone') || '' }) : null,
+			el(Field, { label: t.name, icon: 'user', value: v('name'), autoComplete: 'cc-name', wide: true, onChange: change('name', function (x) { return x.toLocaleUpperCase('tr-TR'); }), onBlur: blur('name'), error: errOf('name') }),
+			needPhone ? el(Field, { label: t.phone, icon: 'phone', value: v('phone'), type: 'tel', inputMode: 'tel', autoComplete: 'tel', placeholder: '0532 123 45 67', wide: true, onChange: change('phone'), onBlur: blur('phone'), error: errOf('phone') || '' }) : null,
 			needPhone && !errOf('phone') ? el('p', { className: 'flxb-cc__muted flxb-cc__hint' }, t.phoneHelp) : null,
 			instBox,
 			el('div', { className: 'flxb-cc__3ds' },

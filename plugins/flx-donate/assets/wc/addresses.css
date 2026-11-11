@@ -29,3 +29,12 @@
 .flxb-ab__form { margin-top: 16px; max-width: 640px; }
 body.flx-dark .flxb-addr__select, body.flx-dark .flxb-ab__item { background-color: var(--flx-surface, #17221c); border-color: var(--flx-line, #2c3b33); }
 @media (max-width: 600px) { .flxb-addr__select { font-size: 16px; } }
+/* 2.23.0: the edit forms can be closed without saving. */
+.woocommerce-MyAccount-content form:has(.flxb-ab__close) { position: relative; }
+.flxb-ab__close { position: absolute; top: 0; right: 0; z-index: 2; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px; border: 1px solid var(--flx-line, #d6e2da); border-radius: 999px; background: var(--flx-surface, #fff); color: var(--flx-text, #4b5563); font-size: .88rem; font-weight: 700; line-height: 1; text-decoration: none !important; }
+.flxb-ab__close:hover, .flxb-ab__close:focus-visible { border-color: var(--flx-primary, #347a5a); color: var(--flx-primary, #347a5a); }
+.flxb-ab__foot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.woocommerce-MyAccount-content .flxb-ab__cancel, .flxb-ab__cancel { background: transparent !important; color: var(--flx-text, #4b5563) !important; border: 1px solid var(--flx-line, #d6e2da) !important; box-shadow: none !important; }
+.woocommerce-address-fields > .flxb-ab__cancel { float: right; margin-left: 10px; }
+.woocommerce-address-fields:has(> .flxb-ab__cancel) > p:last-of-type { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 10px; }
+body.flx-dark .flxb-ab__close { background-color: var(--flx-surface, #17221c); border-color: var(--flx-line, #2c3b33); }

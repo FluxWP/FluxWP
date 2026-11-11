@@ -33,6 +33,57 @@ final class FLXB_WC_Look {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'checkout_assets' ), 30 );
 		add_action( 'update_option_' . self::OPTION, array( __CLASS__, 'flush' ) );
 		add_action( 'add_option_' . self::OPTION, array( __CLASS__, 'flush' ) );
+		/* 2.23.0 */
+		add_filter( 'woocommerce_coupons_enabled', array( __CLASS__, 'coupons_enabled' ), 20 );
+		add_filter( 'option_woocommerce_gateway_order', array( __CLASS__, 'gateway_order' ), 20 );
+		add_filter( 'default_option_woocommerce_gateway_order', array( __CLASS__, 'gateway_order' ), 20 );
+		add_filter( 'flxb_wc_address_book', array( __CLASS__, 'address_book' ), 5 );
+		add_filter( 'woocommerce_account_menu_items', array( __CLASS__, 'account_menu' ), 50 );
+		add_action( 'template_redirect', array( __CLASS__, 'no_address_page' ), 5 );
+	}
+
+	/** 2.23.0: no coupon box at the checkout of a donation-only cart (Appearance › coupons off). */
+	public static function coupons_enabled( $on ) {
+		if ( ! $on || self::get( 'coupons' ) || is_admin() && ! wp_doing_ajax() ) {
+			return $on;
+		}
+		return ! ( function_exists( 'WC' ) && WC()->cart && did_action( 'wp_loaded' ) && FLXB_WC_Cart::cart_donation_only() );
+	}
+
+	/**
+	 * 2.23.0: card methods first. Bank transfer and cash methods (see pay_icons()) move behind every other
+	 * method on the site; the order saved under WooCommerce › Payments is kept inside each group.
+	 */
+	public static function gateway_order( $order ) {
+		if ( ! self::get( 'card_first' ) || ( is_admin() && ! wp_doing_ajax() ) ) {
+			return $order;
+		}
+		$order = is_array( $order ) ? $order : array();
+		$icons = self::pay_icons();
+		$late  = array_merge( (array) ( $icons['bank'] ?? array() ), (array) ( $icons['cash'] ?? array() ) );
+		foreach ( array_values( array_unique( $late ) ) as $i => $id ) {
+			$order[ $id ] = 5000 + ( isset( $order[ $id ] ) && is_numeric( $order[ $id ] ) ? (int) $order[ $id ] : 100 + $i );
+		}
+		return $order;
+	}
+
+	public static function address_book( $on ) {
+		return $on && (bool) self::get( 'addresses' );
+	}
+
+	/** 2.23.0: without the address book My Account has no "Addresses" item. */
+	public static function account_menu( $items ) {
+		if ( ! self::get( 'addresses' ) && is_array( $items ) ) {
+			unset( $items['edit-address'] );
+		}
+		return $items;
+	}
+
+	public static function no_address_page() {
+		if ( ! self::get( 'addresses' ) && function_exists( 'is_wc_endpoint_url' ) && is_wc_endpoint_url( 'edit-address' ) ) {
+			wp_safe_redirect( wc_get_page_permalink( 'myaccount' ) );
+			exit;
+		}
 	}
 
 	public static function defaults() {
@@ -54,6 +105,17 @@ final class FLXB_WC_Look {
 			'signup'       => 1,         // 2.21.0: guests can tick "Create an account" at the checkout
 			'hero'         => 1,         // 2.21.0: photo band over the form in the steps layout
 			'notes'        => 1,         // 2.21.0: "Add a note to your order" on the checkout
+			/* 2.23.0 */
+			'quick'        => array(),   // quick quantities of a quantity option; empty = built-in (amounts: 1,3,5,10; else 3,5,10,25,50)
+			'quick_star'   => 0,         // amounts view: the quantity marked "Most chosen" (0 = none)
+			'period_tabs'  => 0,         // "One-time / Monthly" tabs over the form instead of the "Repeat every month" box
+			'other_amount' => 0,         // types shown on the form also take a hand-written amount ("Other amount")
+			'min_amount'   => 0,         // lowest hand-written amount in the store currency when the type has none (0 = none)
+			'min_amounts'  => array(),   // the same for the other currencies: [ 'USD' => 5 ]
+			'coupons'      => 1,         // coupon box at the checkout of a donation-only cart
+			'sticky_bar'   => 1,         // 2.23.0: phones keep the total and the button fixed at the bottom (form and checkout)
+			'card_first'   => 1,         // card methods before bank transfer and cash at the checkout
+			'addresses'    => 1,         // address book (My Account › Addresses, saved addresses at the checkout)
 		);
 	}
 
@@ -91,6 +153,7 @@ final class FLXB_WC_Look {
 			'list'   => array( __( 'List', 'flx-donate' ), __( 'All options one under the other.', 'flx-donate' ) ),
 			'select' => array( __( 'Drop-down', 'flx-donate' ), __( 'One row: the option in a drop-down menu and the quantity beside it.', 'flx-donate' ) ),
 			'smart'  => array( __( 'List, then one row', 'flx-donate' ), __( 'The list first; after a pick it folds into one row (drop-down + quantity) and the rest of the form opens.', 'flx-donate' ) ),
+			'amounts' => array( __( 'Amount buttons', 'flx-donate' ), __( 'Quantity options as large amount buttons (1, 3, 5, 10 …) with the currency menu beside the heading and an "Other amount" field under them.', 'flx-donate' ) ),
 		);
 	}
 
@@ -155,6 +218,29 @@ final class FLXB_WC_Look {
 		$out['signup']       = array_key_exists( 'signup', $in ) ? ( empty( $in['signup'] ) ? 0 : 1 ) : $d['signup'];
 		$out['hero']         = array_key_exists( 'hero', $in ) ? ( empty( $in['hero'] ) ? 0 : 1 ) : $d['hero'];
 		$out['notes']        = array_key_exists( 'notes', $in ) ? ( empty( $in['notes'] ) ? 0 : 1 ) : $d['notes'];
+		$out['quick'] = array();
+		$quick        = $in['quick'] ?? array();
+		foreach ( is_array( $quick ) ? $quick : preg_split( '/[\s,;]+/', (string) $quick ) as $q ) {
+			$q = (int) $q;
+			if ( $q >= 1 && $q <= 100000 && ! in_array( $q, $out['quick'], true ) && count( $out['quick'] ) < 8 ) {
+				$out['quick'][] = $q;
+			}
+		}
+		$out['quick_star']   = max( 0, min( 100000, (int) ( $in['quick_star'] ?? 0 ) ) );
+		$out['period_tabs']  = empty( $in['period_tabs'] ) ? 0 : 1;
+		$out['other_amount'] = empty( $in['other_amount'] ) ? 0 : 1;
+		$out['min_amount']   = round( max( 0, min( 1000000, (float) str_replace( ',', '.', (string) ( $in['min_amount'] ?? 0 ) ) ) ), 2 );
+		$out['min_amounts']  = array();
+		foreach ( (array) ( $in['min_amounts'] ?? array() ) as $c => $v ) {
+			$c = strtoupper( preg_replace( '/[^A-Za-z]/', '', (string) $c ) );
+			$v = round( max( 0, min( 1000000, (float) str_replace( ',', '.', (string) $v ) ) ), 2 );
+			if ( 3 === strlen( $c ) && $v > 0 ) {
+				$out['min_amounts'][ $c ] = $v;
+			}
+		}
+		foreach ( array( 'coupons', 'card_first', 'addresses', 'sticky_bar' ) as $k ) {
+			$out[ $k ] = array_key_exists( $k, $in ) ? ( empty( $in[ $k ] ) ? 0 : 1 ) : $d[ $k ];
+		}
 		$out['fee_rates']    = array();
 		foreach ( (array) ( $in['fee_rates'] ?? array() ) as $gw => $r ) {
 			$gw  = sanitize_key( (string) $gw );
@@ -172,7 +258,7 @@ final class FLXB_WC_Look {
 
 	/** Classes for the form wrapper. */
 	public static function form_class() {
-		return 'flxwb--' . self::get( 'form_style' );
+		return 'flxwb--' . self::get( 'form_style' ) . ( self::get( 'sticky_bar' ) ? '' : ' flxwb--nostick' );
 	}
 
 	/** CSS variables (inline style on the form wrapper and the checkout body). */
@@ -198,6 +284,9 @@ final class FLXB_WC_Look {
 
 	/** Checkout: payment layout class. */
 	public static function body_class( $c ) {
+		if ( ! self::get( 'sticky_bar' ) ) {
+			$c[] = 'flxb-nostick';
+		}
 		$p = self::get( 'pay_style' );
 		if ( 'theme' !== $p && function_exists( 'is_checkout' ) && is_checkout() && ! is_wc_endpoint_url() ) {
 			$c[] = 'flxb-pay';
@@ -270,13 +359,23 @@ final class FLXB_WC_Look {
 				'type_label'   => array( 'type' => 'string', 'default' => '', 'desc' => 'Heading over the donation type choice (steps / cards layouts).' ),
 				'option_label' => array( 'type' => 'string', 'default' => '', 'desc' => 'Heading over the options of a type; empty = built-in text.' ),
 				'share_phone'  => array( 'type' => 'bool', 'default' => true, 'desc' => 'Proxy (sacrifice) types: a phone field on every share card.' ),
-				'opt_view'     => array( 'type' => 'enum', 'enum' => array_keys( self::opt_views() ), 'default' => 'list', 'desc' => 'Options of a type: list (one under the other), select (one row: drop-down + quantity), smart (list until a pick, then one row; the rest of the form opens after the pick).' ),
+				'opt_view'     => array( 'type' => 'enum', 'enum' => array_keys( self::opt_views() ), 'default' => 'list', 'desc' => 'Options of a type: list (one under the other), select (one row: drop-down + quantity), smart (list until a pick, then one row; the rest of the form opens after the pick), amounts (quantity options as amount buttons + currency menu + "Other amount" field).' ),
 				'fee_on'       => array( 'type' => 'bool', 'default' => false, 'desc' => 'Show the "I will cover the transaction fee" box on the donation form.' ),
 				'fee_checked'  => array( 'type' => 'bool', 'default' => false, 'desc' => 'The transaction fee box is ticked by default.' ),
 				'checkout'     => array( 'type' => 'enum', 'enum' => array_keys( self::checkout_styles() ), 'default' => 'compact', 'desc' => 'Checkout page layout: compact (two columns, sections as cards, terms + pay button in the summary) or theme.' ),
 				'hero'         => array( 'type' => 'bool', 'default' => true, 'desc' => 'Steps layout: a photo band with the page title over the form (skipped when the page starts with a cover block).' ),
 				'notes'        => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout: the "Add a note to your order" box.' ),
 				'signup'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Guests can tick "Create an account" at the checkout (the password is e-mailed).' ),
+				'quick'        => array( 'type' => 'list', 'default' => array(), 'desc' => 'Quick quantity buttons of a quantity option, e.g. [1,3,5,10]; empty = built-in.' ),
+				'quick_star'   => array( 'type' => 'int', 'default' => 0, 'desc' => 'Amount buttons view: the quantity that carries the "Most chosen" badge (0 = none).' ),
+				'period_tabs'  => array( 'type' => 'bool', 'default' => false, 'desc' => '"One-time donation / Monthly donation" tabs over the form (shown when a payment method can take monthly payments) instead of the "Repeat every month" box.' ),
+				'other_amount' => array( 'type' => 'bool', 'default' => false, 'desc' => 'Types shown on the form also take a hand-written amount ("Other amount"), without turning it on for every type.' ),
+				'min_amount'   => array( 'type' => 'number', 'default' => 0, 'desc' => 'Lowest hand-written amount in the store currency for types that set none (0 = no limit). The warning shows under the field when the donor continues.' ),
+				'min_amounts'  => array( 'type' => 'object', 'default' => array(), 'desc' => 'Lowest hand-written amount per extra currency: { "USD": 5, "EUR": 5 }.' ),
+				'coupons'      => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout of a donation-only cart: the "Add a coupon" box.' ),
+				'sticky_bar'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Phones: the total and the button stay fixed at the bottom of the form and the checkout.' ),
+				'card_first'   => array( 'type' => 'bool', 'default' => true, 'desc' => 'Checkout: card methods come before bank transfer and cash.' ),
+				'addresses'    => array( 'type' => 'bool', 'default' => true, 'desc' => 'Address book: My Account › Addresses and the saved addresses at the checkout. Off = the site asks for no address anywhere.' ),
 				'fee_rates'    => array( 'type' => 'object', 'default' => array(), 'desc' => 'Transaction fee per payment method: { "gateway id": { "pct": 2.9, "fixed": 0.25 } } (fixed in the store currency).' ),
 			),
 		);
@@ -315,6 +414,25 @@ final class FLXB_WC_Look {
 		}
 		echo '</div></div>';
 
+		$base_sym = html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' );
+		echo '<div class="flxb-fields-2">';
+		echo '<div class="flxb-field"><label for="flxb-look-q">' . esc_html__( 'Quick quantities', 'flx-donate' ) . '</label><input id="flxb-look-q" type="text" name="quick" value="' . esc_attr( implode( ', ', $s['quick'] ) ) . '" placeholder="1, 3, 5, 10"><p class="flxb-help">' . esc_html__( 'Buttons of an option with a quantity, comma separated. Empty = the built-in list.', 'flx-donate' ) . '</p></div>';
+		echo '<div class="flxb-field"><label for="flxb-look-qs">' . esc_html__( '"Most chosen" badge on', 'flx-donate' ) . '</label><input id="flxb-look-qs" type="number" name="quick_star" min="0" step="1" style="width:110px" value="' . esc_attr( $s['quick_star'] ? (string) $s['quick_star'] : '' ) . '" placeholder="0"><p class="flxb-help">' . esc_html__( 'The quantity that is highlighted in the amount buttons view. Empty = none.', 'flx-donate' ) . '</p></div>';
+		echo '</div>';
+		echo '<label class="flxb-check"><input type="checkbox" name="other_amount" value="1"' . checked( (int) $s['other_amount'], 1, false ) . '> ' . esc_html__( 'Donors can also write their own amount ("Other amount") for the types on the form', 'flx-donate' ) . '</label>';
+		echo '<div class="flxb-fields-2">';
+		echo '<div class="flxb-field"><label for="flxb-look-min">' . esc_html( sprintf( /* translators: %s: currency symbol */ __( 'Lowest own amount (%s)', 'flx-donate' ), $base_sym ) ) . '</label><input id="flxb-look-min" type="number" name="min_amount" min="0" step="0.01" style="width:140px" value="' . esc_attr( $s['min_amount'] > 0 ? (string) $s['min_amount'] : '' ) . '" placeholder="0"><p class="flxb-help">' . esc_html__( 'Used when the donation type sets no minimum. It is not shown up front: a warning appears under the field when a lower amount is sent.', 'flx-donate' ) . '</p></div>';
+		$others = class_exists( 'FLXB_WC_Currency' ) ? array_diff( FLXB_WC_Currency::codes(), array( FLXB_WC_Currency::base() ) ) : array();
+		if ( $others ) {
+			echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Lowest own amount in the other currencies', 'flx-donate' ) . '</span><span class="flxb-look__mins">';
+			foreach ( $others as $c ) {
+				echo '<label>' . esc_html( $c ) . ' <input type="number" name="min_amounts[' . esc_attr( $c ) . ']" min="0" step="0.01" value="' . esc_attr( isset( $s['min_amounts'][ $c ] ) ? (string) $s['min_amounts'][ $c ] : '' ) . '" placeholder="0"></label>';
+			}
+			echo '</span></div>';
+		}
+		echo '</div>';
+		echo '<label class="flxb-check"><input type="checkbox" name="period_tabs" value="1"' . checked( (int) $s['period_tabs'], 1, false ) . '> ' . esc_html__( '"One-time donation / Monthly donation" tabs over the form (shown when a payment method can take monthly payments)', 'flx-donate' ) . '</label>';
+
 		echo '<div class="flxb-field"><span class="flxb-label">' . esc_html__( 'Order of the sections', 'flx-donate' ) . '</span><ol class="flxb-look__order" data-flxb-look-order>';
 		$labels = self::section_labels();
 		foreach ( $s['order'] as $k ) {
@@ -337,6 +455,10 @@ final class FLXB_WC_Look {
 		echo '</div></div>';
 		echo '<label class="flxb-check"><input type="checkbox" name="notes" value="1"' . checked( (int) $s['notes'], 1, false ) . '> ' . esc_html__( 'Show "Add a note to your order" at the checkout', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="signup" value="1"' . checked( (int) $s['signup'], 1, false ) . '> ' . esc_html__( 'Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)', 'flx-donate' ) . '</label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="sticky_bar" value="1"' . checked( (int) $s['sticky_bar'], 1, false ) . '> ' . esc_html__( 'On phones keep the total and the button fixed at the bottom (form and checkout)', 'flx-donate' ) . '</label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="card_first" value="1"' . checked( (int) $s['card_first'], 1, false ) . '> ' . esc_html__( 'Card payment comes first, before bank transfer', 'flx-donate' ) . '</label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="coupons" value="1"' . checked( (int) $s['coupons'], 1, false ) . '> ' . esc_html__( 'Show the coupon box when the cart holds only donations', 'flx-donate' ) . '</label>';
+		echo '<label class="flxb-check"><input type="checkbox" name="addresses" value="1"' . checked( (int) $s['addresses'], 1, false ) . '> ' . esc_html__( 'Address book: donors keep addresses under My Account and pick them at the checkout (turn off when you post nothing)', 'flx-donate' ) . '</label>';
 		echo '</section>';
 
 		echo '<section class="flxb-card"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Colours and corners', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Used by the form and the payment options. Empty fields follow the theme.', 'flx-donate' ) . '</p></div></div><div class="flxb-fields-2">';
@@ -380,6 +502,8 @@ final class FLXB_WC_Look {
 .flxb-look__fees code{font-size:11px;color:#8c8f94;background:none;padding:0}
 .flxb-look__color input[type=color]{width:42px;height:36px;padding:2px;border:1px solid #dcdcde;border-radius:6px;background:#fff}
 .flxb-look__color input[type=text]{width:120px}
+.flxb-look__mins{display:flex;flex-wrap:wrap;gap:12px}
+.flxb-look__mins input{width:90px}
 </style>
 <script>
 (function(){
@@ -414,6 +538,9 @@ final class FLXB_WC_Look {
 		$in['signup']      = ! empty( $in['signup'] ) ? 1 : 0;
 		$in['hero']        = ! empty( $in['hero'] ) ? 1 : 0;
 		$in['notes']       = ! empty( $in['notes'] ) ? 1 : 0;
+		foreach ( array( 'period_tabs', 'other_amount', 'coupons', 'card_first', 'addresses', 'sticky_bar' ) as $k ) {
+			$in[ $k ] = ! empty( $in[ $k ] ) ? 1 : 0;
+		}
 		update_option( self::OPTION, self::clean( $in ), false );
 		self::flush();
 		FLXB_Admin::redirect( 'flxb-settings', array( 'tab' => 'look', 'flxb_msg' => 'saved' ) );

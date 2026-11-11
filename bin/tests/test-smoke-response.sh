@@ -29,6 +29,10 @@ check_response 'Quoted diagnostic in inline code' healthy 200 \
 check_response 'Ordinary warning' healthy 200 'Warning: a non-fatal notice'
 check_response 'HTTP 500 without an error phrase' failed 500 '<html>Server unavailable</html>'
 check_response 'HTTP 503 without a body' failed 503 ''
+check_response 'Menu parent without a screen' healthy 500 \
+  '<body id="error-page"><div class="wp-die-message">Cannot load woocommerce.</div></body>'
+check_response 'Cannot load text beside a real fatal' failed 500 \
+  '<div class="wp-die-message"><p>There has been a critical error on this website.</p></div><p>Cannot load woocommerce.</p>'
 check_response 'HTTP 599' failed 599 'Proxy failure'
 check_response 'Redirect with ordinary prose' healthy 302 'critical error documentation'
 check_response 'WordPress critical page' failed 200 \

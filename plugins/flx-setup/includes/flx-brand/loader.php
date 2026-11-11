@@ -18,7 +18,7 @@ if ( ! isset( $GLOBALS['flx_brand_copies'] ) || ! is_array( $GLOBALS['flx_brand_
 	$GLOBALS['flx_brand_copies'] = array();
 }
 $GLOBALS['flx_brand_copies'][] = array(
-	'version' => '1.4.0',
+	'version' => '1.5.0',
 	'file'    => __DIR__ . '/core.php',
 );
 

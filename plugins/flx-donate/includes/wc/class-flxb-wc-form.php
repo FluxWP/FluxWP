@@ -137,6 +137,7 @@ final class FLXB_WC_Form {
 					'tooMany'     => __( 'Please write at most one name per share.', 'flx-donate' ),
 					'monthly'     => __( '/ month', 'flx-donate' ),
 					'needOption'  => __( 'Please choose an option.', 'flx-donate' ),
+					'needAmount'  => __( 'Please enter an amount.', 'flx-donate' ),
 					/* translators: %s: amount */
 					'feeUpTo'     => __( '(up to %s)', 'flx-donate' ),
 					'feeLine'     => __( 'Transaction fee', 'flx-donate' ),
@@ -316,7 +317,7 @@ final class FLXB_WC_Form {
 	}
 
 	public static function has_choices( array $t ) {
-		if ( $t['allow_free'] ) {
+		if ( FLXB_WC_Cart::takes_free( $t ) ) {
 			return true;
 		}
 		foreach ( $t['options'] as $o ) {
@@ -327,6 +328,28 @@ final class FLXB_WC_Form {
 		return false;
 	}
 
+	/** 2.23.0: what one piece costs, so a hand-written amount can be shown as pieces ("3 saplings"). */
+	private static function unit_data( array $t, $money ) {
+		$o = FLXB_WC_Cart::unit_option( $t, $money );
+		$p = $o ? (float) FLXB_Types::option_price( $t, $o, $money ) : 0;
+		if ( ! $o || $p <= 0 || '' === (string) $o['unit'] ) {
+			return null;
+		}
+		return array(
+			'price' => $p,
+			'n'     => max( 1, (int) $o['units_per'] ),
+			'unit'  => (string) $o['unit'],
+			'one'   => FLXB_WC::units_text( 1, (string) $o['unit'] ),
+			'many'  => str_replace( '7', '%s', FLXB_WC::units_text( 7, (string) $o['unit'] ) ),
+		);
+	}
+
+	/** 2.23.0: a price without ",00" on buttons. */
+	private static function price_short( $amount ) {
+		$whole = abs( $amount - round( $amount ) ) < 0.005;
+		return wc_price( $amount, array( 'decimals' => $whole ? 0 : wc_get_price_decimals() ) );
+	}
+
 	private static function tab_key( array $t ) {
 		return (string) $t['slug'];
 	}
@@ -335,7 +358,7 @@ final class FLXB_WC_Form {
 		if ( 'fidan' === ( $t['options'][0]['unit'] ?? '' ) ) {
 			return 'sprout';
 		}
-		return $t['allow_free'] && ! $t['options'] ? 'heart' : 'gift';
+		return FLXB_WC_Cart::takes_free( $t ) && ! $t['options'] ? 'heart' : 'gift';
 	}
 
 	/**
@@ -409,8 +432,11 @@ final class FLXB_WC_Form {
 			}
 			$data['types'][ $id ] = array(
 				'opts'    => $opts,
-				'free'    => (bool) $t['allow_free'],
-				'min'     => FLXB_Types::min_amount_in( $t, $money ),
+				'free'    => FLXB_WC_Cart::takes_free( $t ),
+				'min'     => FLXB_WC_Cart::min_free( $t, $money ),
+				/* translators: %s: lowest amount */
+				'minMsg'  => FLXB_WC_Cart::min_free( $t, $money ) > 0 ? sprintf( __( 'The amount must be at least %s.', 'flx-donate' ), FLXB_WC::money_text( FLXB_WC_Cart::min_free( $t, $money ) ) ) : '',
+				'unit'    => self::unit_data( $t, $money ),
 				'max'     => FLXB_WC_Cart::max_units( $t ),
 				'cert'    => FLXB_WC_Cart::type_has_certificate( $t ),
 				'proxy'   => FLXB_Types::requires_proxy( $t ),
@@ -425,6 +451,17 @@ final class FLXB_WC_Form {
 		$style     = (string) $look['form_style'];
 		FLXB_WC_Look::enqueue_form();
 		$show_tabs = count( $types ) > 1 || 'classic' !== $style;
+		/* 2.23.0: amount buttons: one type needs no type step, the currency menu sits beside the amount heading. */
+		$amounts   = 'amounts' === (string) $look['opt_view'];
+		if ( $amounts && 1 === count( $types ) ) {
+			$show_tabs = false;
+		}
+		$any_month = (bool) array_filter( array_column( $data['types'], 'monthly' ) );
+		$period    = ! empty( $look['period_tabs'] ) && $any_month;
+		$is_month  = $period && ! empty( $old['m'][ $cur ] );
+		if ( function_exists( 'flx_field_enqueue' ) ) {
+			flx_field_enqueue();
+		}
 
 		/* 2.16.0: the sections are built one by one and printed in the order of Settings › Appearance. */
 		$sec = array();
@@ -437,6 +474,9 @@ final class FLXB_WC_Form {
 		</div>
 			<?php
 		endforeach;
+		if ( $period ) {
+			echo '<p class="flxwb-period__note" data-flxwb-period-note' . ( $is_month ? '' : ' hidden' ) . '>' . FLXB_WC::icon( 'repeat' ) . '<span>' . esc_html__( 'The same amount is taken from your card every month. You can stop it any time from your account.', 'flx-donate' ) . '</span></p>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
 		$sec['options'] = ob_get_clean();
 
 		ob_start();
@@ -447,22 +487,16 @@ final class FLXB_WC_Form {
 				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="0" <?php checked( ! $for_other ); ?>><span><?php echo FLXB_WC::icon( 'user' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'For myself', 'flx-donate' ); ?></span></label>
 				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="1" <?php checked( $for_other ); ?>><span><?php echo FLXB_WC::icon( 'gift' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'On behalf of someone else', 'flx-donate' ); ?></span></label>
 			</div>
-			<label class="flxwb-field" data-flxwb-name<?php echo ! $cur_d['cert'] && ! $for_other ? ' hidden' : ''; ?>>
-				<span class="flxwb-field__label" data-flxwb-name-label data-self="<?php esc_attr_e( 'Name on the certificate', 'flx-donate' ); ?>" data-other="<?php esc_attr_e( 'Their name', 'flx-donate' ); ?>"><?php echo $for_other ? esc_html__( 'Their name', 'flx-donate' ) : esc_html__( 'Name on the certificate', 'flx-donate' ); ?></span>
-				<input type="text" name="ben_name" maxlength="80" autocomplete="off" value="<?php echo esc_attr( (string) ( $old['ben_name'] ?? '' ) ); ?>" placeholder="<?php esc_attr_e( 'e.g. Ayşe Yılmaz or the Yılmaz family', 'flx-donate' ); ?>">
-				<span class="flxwb-field__help" data-flxwb-name-help data-self="<?php esc_attr_e( 'Optional. If you leave it empty, the name from the checkout is used.', 'flx-donate' ); ?>" data-other="<?php esc_attr_e( 'Written on the certificate and the donation record.', 'flx-donate' ); ?>" data-nocert="<?php esc_attr_e( 'Written on the donation record.', 'flx-donate' ); ?>"><?php echo $for_other ? ( $cur_d['cert'] ? esc_html__( 'Written on the certificate and the donation record.', 'flx-donate' ) : esc_html__( 'Written on the donation record.', 'flx-donate' ) ) : esc_html__( 'Optional. If you leave it empty, the name from the checkout is used.', 'flx-donate' ); ?></span>
-			</label>
+			<?php echo self::name_field( $old, $for_other, (bool) $cur_d['cert'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			<div class="flxwb-deliver" data-flxwb-deliver<?php echo $cur_d['cert'] ? '' : ' hidden'; ?>>
 				<p class="flxwb-deliver__title"><?php esc_html_e( 'Where should the certificate go?', 'flx-donate' ); ?></p>
 				<div class="flxwb-dcard">
-					<span class="flxwb-dcard__icon flxwb-dcard__icon--wa"><?php echo FLXB_WC::icon( 'wa' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-					<span class="flxwb-dcard__body"><strong>WhatsApp</strong>
+					<span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon flxwb-dcard__icon--wa"><?php echo FLXB_WC::icon( 'wa' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>WhatsApp</strong>
 						<?php echo self::phone_input( 'ben_phone', (string) ( $old['ben_phone'] ?? ( $for_other ? '' : $me['phone'] ) ), array( 'data-flxwb-phone' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 					</span>
 				</div>
 				<label class="flxwb-dcard">
-					<span class="flxwb-dcard__icon"><?php echo FLXB_WC::icon( 'mail' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
-					<span class="flxwb-dcard__body"><strong><?php esc_html_e( 'E-mail', 'flx-donate' ); ?></strong>
+					<span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon"><?php echo FLXB_WC::icon( 'mail' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span><?php esc_html_e( 'E-mail', 'flx-donate' ); ?></strong>
 						<input type="email" name="ben_email" autocomplete="off" value="<?php echo esc_attr( (string) ( $old['ben_email'] ?? ( $for_other ? '' : $me['email'] ) ) ); ?>" placeholder="ornek@eposta.com" data-flxwb-email>
 					</span>
 				</label>
@@ -522,8 +556,8 @@ final class FLXB_WC_Form {
 		ob_start();
 		/* 2.0.5: "Repeat every month" sits under the choices as one compact row (it was squeezed under the cards). */
 		foreach ( $types as $id => $t ) :
-			if ( empty( $data['types'][ $id ]['monthly'] ) ) {
-				continue;
+			if ( empty( $data['types'][ $id ]['monthly'] ) || $period ) {
+				continue; // 2.23.0: with the period tabs the monthly boxes live inside the tabs
 			}
 			?>
 		<label class="flxwb-monthly" data-flxwb-monthly="<?php echo esc_attr( $id ); ?>"<?php echo $id === $cur ? '' : ' hidden'; ?>><input type="checkbox" name="m[<?php echo esc_attr( $id ); ?>]" value="1" <?php checked( ! empty( $old['m'][ $id ] ) ); ?>>
@@ -536,7 +570,7 @@ final class FLXB_WC_Form {
 
 		ob_start();
 		?>
-<div class="flxwb <?php echo esc_attr( FLXB_WC_Look::form_class() ); ?><?php echo ! empty( self::$waiting[ $cur ] ) ? ' is-await' : ''; ?><?php echo $args['align'] ? ' align' . esc_attr( $args['align'] ) : ''; ?>" data-flxwb="<?php echo esc_attr( wp_json_encode( $data ) ); ?>"<?php echo '' !== FLXB_WC_Look::vars() ? ' style="' . esc_attr( FLXB_WC_Look::vars() ) . '"' : ''; ?>>
+<div class="flxwb <?php echo esc_attr( FLXB_WC_Look::form_class() ); ?><?php echo $amounts ? ' flxwb--amounts' : ''; ?><?php echo $show_tabs ? '' : ' flxwb--notypes'; ?><?php echo $period ? ' flxwb--period' : ''; ?><?php echo ! empty( self::$waiting[ $cur ] ) ? ' is-await' : ''; ?><?php echo $args['align'] ? ' align' . esc_attr( $args['align'] ) : ''; ?>" data-flxwb="<?php echo esc_attr( wp_json_encode( $data ) ); ?>"<?php echo '' !== FLXB_WC_Look::vars() ? ' style="' . esc_attr( FLXB_WC_Look::vars() ) . '"' : ''; ?>>
 	<?php if ( isset( $_GET['flxb_added'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification ?>
 	<div class="flxwb-note flxwb-note--ok" role="status"><?php echo FLXB_WC::icon( 'check' ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		<span><?php esc_html_e( 'Your donation was added to the cart.', 'flx-donate' ); ?> <a href="<?php echo esc_url( wc_get_cart_url() ); ?>"><?php esc_html_e( 'Go to cart', 'flx-donate' ); ?></a></span>
@@ -547,7 +581,14 @@ final class FLXB_WC_Form {
 	<form class="flxwb-form" method="post" action="" novalidate>
 		<input type="hidden" name="flxb_action" value="add">
 		<input type="hidden" name="flxb_type" value="<?php echo esc_attr( $cur ); ?>" data-flxwb-type>
-		<?php echo FLXB_WC_Currency::switcher(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?>
+		<?php if ( ! $amounts ) : ?><?php echo FLXB_WC_Currency::switcher(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?><?php endif; ?>
+		<?php if ( $period ) : ?>
+		<div class="flxwb-period" role="tablist" aria-label="<?php esc_attr_e( 'How often', 'flx-donate' ); ?>" data-flxwb-periods>
+			<button type="button" role="tab" class="flxwb-period__tab" aria-selected="<?php echo $is_month ? 'false' : 'true'; ?>" data-flxwb-period="once"><span class="flxwb-period__in"><?php echo FLXB_WC::icon( 'heart' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'One-time donation', 'flx-donate' ); ?></span></span></button>
+			<?php foreach ( $types as $id => $t ) : ?><?php if ( ! empty( $data['types'][ $id ]['monthly'] ) ) : ?><input type="checkbox" hidden name="m[<?php echo esc_attr( $id ); ?>]" value="1" <?php checked( ! empty( $old['m'][ $id ] ) ); ?>><?php endif; ?><?php endforeach; ?>
+			<button type="button" role="tab" class="flxwb-period__tab" aria-selected="<?php echo $is_month ? 'true' : 'false'; ?>" data-flxwb-period="monthly"><span class="flxwb-period__in"><?php echo FLXB_WC::icon( 'repeat' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Monthly donation', 'flx-donate' ); ?></span></span></button>
+		</div>
+		<?php endif; ?>
 		<?php if ( $show_tabs ) : ?>
 		<div class="flxwb-types">
 			<p class="flxwb-legend flxwb-legend--type" id="<?php echo esc_attr( $uid . '-tl' ); ?>"><?php echo esc_html( '' !== FLXB_WC_Look::label( 'type_label' ) ? FLXB_WC_Look::label( 'type_label' ) : __( 'Donation type', 'flx-donate' ) ); ?></p>
@@ -679,7 +720,13 @@ final class FLXB_WC_Form {
 		}
 		/* 2.17.0: "smart" option view waits for the donor's pick (unless one option only or a pick came with the link). */
 		$view = $cards ? (string) FLXB_WC_Look::get( 'opt_view' ) : 'list';
-		$wait = 'smart' === $view && '' === $sel && ( count( $cards ) + ( $t['allow_free'] ? 1 : 0 ) ) > 1;
+		$free = FLXB_WC_Cart::takes_free( $t );
+		/* 2.23.0: amount buttons need one option with a count; other types keep the list. */
+		$uo   = 'amounts' === $view ? FLXB_WC_Cart::unit_option( $t, FLXB_WC_Cart::currency() ) : null;
+		if ( 'amounts' === $view && ( ! $uo || 1 !== count( $cards ) || $cards[0]['key'] !== $uo['key'] ) ) {
+			$view = 'list';
+		}
+		$wait = 'smart' === $view && '' === $sel && ( count( $cards ) + ( $free ? 1 : 0 ) ) > 1;
 		self::$waiting[ $id ] = $wait;
 		if ( '' === $sel && ! $wait ) {
 			$sel = $cards ? $cards[0]['key'] : '__free';
@@ -690,6 +737,10 @@ final class FLXB_WC_Form {
 		$name_o  = 'o[' . $id . ']';
 		if ( '' !== (string) $t['description'] ) {
 			echo '<p class="flxwb-desc">' . esc_html( (string) $t['description'] ) . '</p>';
+		}
+		if ( 'amounts' === $view ) {
+			self::amounts( $t, $old, $d, $cards[0], $sel, $units, $free );
+			return;
 		}
 		if ( $cards ) :
 			?>
@@ -703,7 +754,7 @@ final class FLXB_WC_Form {
 					<?php foreach ( $cards as $o ) : ?>
 					<option value="<?php echo esc_attr( $o['key'] ); ?>" <?php selected( $sel, $o['key'] ); ?>><?php echo esc_html( $o['label'] . ' · ' . html_entity_decode( wp_strip_all_tags( wc_price( FLXB_Types::option_price( $t, $o, $money ) ) ), ENT_QUOTES, 'UTF-8' ) ); ?></option>
 					<?php endforeach; ?>
-					<?php if ( $t['allow_free'] ) : ?><option value="__free" <?php selected( $sel, '__free' ); ?>><?php esc_html_e( 'Another amount', 'flx-donate' ); ?></option><?php endif; ?>
+					<?php if ( $free ) : ?><option value="__free" <?php selected( $sel, '__free' ); ?>><?php esc_html_e( 'Another amount', 'flx-donate' ); ?></option><?php endif; ?>
 				</select>
 				<span class="flxwb-pick__chev" aria-hidden="true"></span>
 			</span>
@@ -745,7 +796,7 @@ final class FLXB_WC_Form {
 				</div>
 				<?php endif; ?>
 			<?php endforeach; ?>
-			<?php if ( $t['allow_free'] ) : ?>
+			<?php if ( $free ) : ?>
 				<label class="flxwb-pkg flxwb-pkg--free">
 					<input type="radio" name="<?php echo esc_attr( $name_o ); ?>" value="__free" <?php checked( $sel, '__free' ); ?>>
 					<span class="flxwb-pkg__icon"><?php echo FLXB_WC::icon( 'heart' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>
@@ -757,11 +808,11 @@ final class FLXB_WC_Form {
 			</div>
 		</fieldset>
 			<?php
-		elseif ( $t['allow_free'] ) :
+		elseif ( $free ) :
 			echo '<input type="hidden" name="' . esc_attr( $name_o ) . '" value="__free">';
 		endif;
-		if ( $t['allow_free'] ) :
-			$min = FLXB_Types::min_amount_in( $t, $money );
+		if ( $free ) :
+			$min = FLXB_WC_Cart::min_free( $t, $money );
 			?>
 		<fieldset class="flxwb-fs flxwb-free" data-flxwb-free<?php echo $cards && '__free' !== $sel ? ' hidden' : ''; ?>>
 			<legend class="flxwb-legend"><?php esc_html_e( 'Donation amount', 'flx-donate' ); ?></legend>
@@ -772,19 +823,112 @@ final class FLXB_WC_Form {
 				<?php endforeach; ?>
 			</div>
 			<?php endif; ?>
-			<label class="flxwb-field flxwb-field--amount">
-				<span class="flxwb-field__label"><?php echo $presets ? esc_html__( 'Or write another amount', 'flx-donate' ) : esc_html__( 'Amount', 'flx-donate' ); ?></span>
-				<span class="flxwb-money">
-					<input type="text" name="a[<?php echo esc_attr( $id ); ?>]" inputmode="decimal" autocomplete="off" value="<?php echo esc_attr( (string) ( $old['a'][ $id ] ?? '' ) ); ?>" placeholder="<?php echo esc_attr( wc_format_localized_price( $presets ? $presets[0] : max( $min, 100 ) ) ); ?>" data-flxwb-amount-input>
-					<span class="flxwb-money__sym"><?php echo esc_html( html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' ) ); ?></span>
-				</span>
-				<?php if ( $min > 0 ) : ?>
-				<span class="flxwb-field__help"><?php /* translators: %s: lowest amount */ echo esc_html( sprintf( __( 'At least %s', 'flx-donate' ), FLXB_WC::money_text( $min ) ) ); ?></span>
-				<?php endif; ?>
-			</label>
+			<?php echo self::amount_field( $t, $old, $presets ? __( 'Or write another amount', 'flx-donate' ) : __( 'Amount', 'flx-donate' ), $presets ? $presets[0] : max( $min, 100 ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
 		</fieldset>
 			<?php
 		endif;
+	}
+
+	/** 2.23.0: "Name on the certificate / Their name" as a shared FluxWP field; the texts follow "for myself / someone else". */
+	private static function name_field( array $old, $for_other, $cert ) {
+		$l_self  = __( 'Name on the certificate', 'flx-donate' );
+		$l_other = __( 'Their name', 'flx-donate' );
+		$h_self  = __( 'Optional. If you leave it empty, the name from the checkout is used.', 'flx-donate' );
+		$h_other = __( 'Written on the certificate and the donation record.', 'flx-donate' );
+		$h_nocert = __( 'Written on the donation record.', 'flx-donate' );
+		$value   = (string) ( $old['ben_name'] ?? '' );
+		$place   = __( 'e.g. Ayşe Yılmaz or the Yılmaz family', 'flx-donate' );
+		$help    = $for_other ? ( $cert ? $h_other : $h_nocert ) : $h_self;
+		$hidden  = ! $for_other; // 2.23.0: for myself the name comes from the checkout, the field is only for someone else
+		if ( ! function_exists( 'flx_field' ) ) {
+			return '<label class="flxwb-field" data-flxwb-name' . ( $hidden ? ' hidden' : '' ) . '><span class="flxwb-field__label" data-flxwb-name-label data-self="' . esc_attr( $l_self ) . '" data-other="' . esc_attr( $l_other ) . '">' . esc_html( $for_other ? $l_other : $l_self ) . '</span><input type="text" name="ben_name" maxlength="80" autocomplete="off" value="' . esc_attr( $value ) . '" placeholder="' . esc_attr( $place ) . '"><span class="flxwb-field__help" data-flxwb-name-help data-self="' . esc_attr( $h_self ) . '" data-other="' . esc_attr( $h_other ) . '" data-nocert="' . esc_attr( $h_nocert ) . '">' . esc_html( $help ) . '</span></label>';
+		}
+		$wrap = array( 'data-flxwb-name' => '' );
+		if ( $hidden ) {
+			$wrap['hidden'] = true;
+		}
+		$html = flx_field(
+			array(
+				'name'        => 'ben_name',
+				'label'       => '@@L@@',
+				'value'       => $value,
+				'placeholder' => $place,
+				'icon'        => 'user',
+				'help'        => '@@H@@',
+				'wide'        => true,
+				'attrs'       => array( 'maxlength' => '80', 'autocomplete' => 'off' ),
+				'wrap_attrs'  => $wrap,
+			)
+		);
+		$html = str_replace( '<span class="flx-fld__label">@@L@@', '<span class="flx-fld__label" data-flxwb-name-label data-self="' . esc_attr( $l_self ) . '" data-other="' . esc_attr( $l_other ) . '">' . esc_html( $for_other ? $l_other : $l_self ), $html );
+		return str_replace( '<p class="flx-fld__help">@@H@@', '<p class="flx-fld__help" data-flxwb-name-help data-self="' . esc_attr( $h_self ) . '" data-other="' . esc_attr( $h_other ) . '" data-nocert="' . esc_attr( $h_nocert ) . '">' . esc_html( $help ), $html );
+	}
+
+	/**
+	 * 2.23.0: the hand-written amount as a shared FluxWP field (icon, label, currency at the end). The lowest
+	 * amount is not written up front: the warning comes under the field when a lower amount is sent.
+	 */
+	private static function amount_field( array $t, array $old, $label, $example = 0 ) {
+		$id   = (int) $t['id'];
+		$sym  = html_entity_decode( get_woocommerce_currency_symbol(), ENT_QUOTES, 'UTF-8' );
+		$code = class_exists( 'FLXB_WC_Currency' ) ? FLXB_WC_Currency::short( FLXB_WC_Cart::currency() ) : $sym;
+		$args = array(
+			'name'        => 'a[' . $id . ']',
+			'id'          => 'flxwb-a-' . $id . '-' . wp_rand( 100, 9999 ),
+			'label'       => $label,
+			'value'       => (string) ( $old['a'][ $id ] ?? '' ),
+			'placeholder' => $example > 0 ? wc_format_localized_price( $example ) : '0',
+			'icon'        => 'edit',
+			'suffix'      => $code,
+			'wide'        => true,
+			'class'       => 'flxwb-amount',
+			'attrs'       => array( 'inputmode' => 'decimal', 'autocomplete' => 'off', 'data-flxwb-amount-input' => '' ),
+		);
+		if ( function_exists( 'flx_field' ) ) {
+			return flx_field( $args );
+		}
+		return '<label class="flxwb-field flxwb-field--amount"><span class="flxwb-field__label">' . esc_html( $label ) . '</span><span class="flxwb-money"><input type="text" name="' . esc_attr( $args['name'] ) . '" inputmode="decimal" autocomplete="off" value="' . esc_attr( $args['value'] ) . '" placeholder="' . esc_attr( $args['placeholder'] ) . '" data-flxwb-amount-input><span class="flxwb-money__sym">' . esc_html( $sym ) . '</span></span></label>';
+	}
+
+	/**
+	 * 2.23.0: "Amount buttons" view (Appearance): the option with a count as large buttons (1, 3, 5, 10 pieces
+	 * with their price), the currency menu beside the heading and the "Other amount" field under them.
+	 */
+	private static function amounts( array $t, array $old, array $d, array $o, $sel, $units, $free ) {
+		$id    = (int) $t['id'];
+		$money = FLXB_WC_Cart::currency();
+		$price = (float) FLXB_Types::option_price( $t, $o, $money );
+		$n     = max( 1, (int) $o['units_per'] );
+		$cid   = 'flxwb-q-' . $id . '-' . $o['key'];
+		$quick = (array) FLXB_WC_Look::get( 'quick' );
+		$quick = array_values( array_filter( array_map( 'intval', (array) apply_filters( 'flxb_quick_qty', $quick ? $quick : array( 1, 3, 5, 10 ), $t, $o ) ), static function ( $q ) use ( $d ) { return $q >= 1 && $q <= (int) $d['max']; } ) );
+		$star  = (int) FLXB_WC_Look::get( 'quick_star' );
+		$is_free = $free && '__free' === $sel;
+		if ( ! $is_free && ! isset( $old['u'][ $id ] ) && ! isset( $_GET['flxb_qty'] ) && $quick && ! in_array( (int) $units, $quick, true ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			$units = in_array( $star, $quick, true ) ? $star : $quick[0];
+		}
+		$label = '' !== FLXB_WC_Look::label( 'option_label' ) ? FLXB_WC_Look::label( 'option_label' ) : __( 'Choose the donation amount', 'flx-donate' );
+		?>
+		<fieldset class="flxwb-fs flxwb-amts-fs" data-flxwb-optview="list" data-flxwb-amounts>
+			<legend class="flxwb-legend flxwb-legend--row"><span class="flxwb-legend__t"><?php echo esc_html( $label ); ?></span><?php echo FLXB_WC_Currency::switcher( 'menu' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside ?></legend>
+			<label hidden><input type="radio" name="o[<?php echo esc_attr( $id ); ?>]" value="<?php echo esc_attr( $o['key'] ); ?>" <?php checked( ! $is_free ); ?>><input type="number" id="<?php echo esc_attr( $cid ); ?>" name="u[<?php echo esc_attr( $id ); ?>]" min="1" max="<?php echo esc_attr( $d['max'] ); ?>" step="1" value="<?php echo esc_attr( $units ); ?>" data-flxwb-count></label>
+			<?php if ( $free ) : ?><label hidden><input type="radio" name="o[<?php echo esc_attr( $id ); ?>]" value="__free" <?php checked( $is_free ); ?>></label><?php endif; ?>
+			<div class="flxwb-amts" role="group" aria-label="<?php echo esc_attr( $label ); ?>" style="--flxwb-amts:<?php echo esc_attr( (string) max( 1, min( 4, count( $quick ) ) ) ); ?>">
+				<?php foreach ( $quick as $qn ) : ?>
+				<button type="button" class="flxwb-amt<?php echo $qn === $star ? ' has-badge' : ''; ?>" data-flxwb-quick="<?php echo esc_attr( (string) $qn ); ?>" aria-controls="<?php echo esc_attr( $cid ); ?>" aria-pressed="<?php echo ! $is_free && (int) $units === $qn ? 'true' : 'false'; ?>">
+					<?php if ( $qn === $star ) : ?><span class="flxwb-amt__badge"><?php esc_html_e( 'Most chosen', 'flx-donate' ); ?></span><?php endif; ?>
+					<strong class="flxwb-amt__price"><?php echo wp_kses_post( self::price_short( $price * $qn ) ); ?></strong>
+					<span class="flxwb-amt__n"><?php echo esc_html( '' !== (string) $o['unit'] ? FLXB_WC::units_text( $qn * $n, (string) $o['unit'] ) : '× ' . number_format_i18n( $qn ) ); ?></span>
+				</button>
+				<?php endforeach; ?>
+			</div>
+			<?php if ( $free ) : ?>
+			<div class="flxwb-free flxwb-free--open" data-flxwb-free data-flxwb-free-open>
+				<?php echo self::amount_field( $t, $old, __( 'Other amount', 'flx-donate' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			</div>
+			<?php endif; ?>
+		</fieldset>
+		<?php
 	}
 
 	/**
