@@ -361,30 +361,24 @@ final class FLXB_Iyzico_Api {
 		return hash( 'sha256', 'flxb-iyzico-card|' . $salt, true );
 	}
 
-	/** Encrypt a card reference for the database (sodium, else OpenSSL AES-256-GCM). */
+	/** Encrypt a card reference. Older s1: and o1: values still open. */
 	public static function seal( $plain ) {
-		$plain = (string) $plain;
-		if ( '' === $plain ) {
-			return '';
-		}
-		if ( function_exists( 'sodium_crypto_secretbox' ) ) {
-			$nonce = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-			return 's1:' . base64_encode( $nonce . sodium_crypto_secretbox( $plain, $nonce, self::crypt_key() ) );
-		}
-		if ( function_exists( 'openssl_encrypt' ) ) {
-			$iv  = random_bytes( 12 );
-			$tag = '';
-			$c   = openssl_encrypt( $plain, 'aes-256-gcm', self::crypt_key(), OPENSSL_RAW_DATA, $iv, $tag );
-			if ( false !== $c ) {
-				return 'o1:' . base64_encode( $iv . $tag . $c );
-			}
-		}
-		return '';
+		return flx_secret_seal( (string) $plain, 'flx-donate' );
 	}
 
 	public static function open( $sealed ) {
+		if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+			flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+		}
+		if ( ! function_exists( 'flx_secret_open' ) ) {
+			return '';
+		}
 		$sealed = (string) $sealed;
-		$raw    = base64_decode( substr( $sealed, 3 ), true );
+		if ( 0 === strpos( $sealed, 'flx1:' ) ) {
+			return flx_secret_open( $sealed, 'flx-donate' );
+		}
+		// s1: used a raw SHA-256 key, not generichash. o1: is AES-256-GCM with the same key.
+		$raw = base64_decode( substr( $sealed, 3 ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 		if ( false === $raw ) {
 			return '';
 		}

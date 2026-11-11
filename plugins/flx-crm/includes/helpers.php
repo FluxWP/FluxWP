@@ -232,19 +232,8 @@ function flxcrm_source_label( $key ) {
 
 /** Telefonu yalnız rakamlara çevirir (E.164, + olmadan); Türkiye numaralarında 90 ekler. */
 function flxcrm_phone( $phone ) {
-	$d = preg_replace( '/\D+/', '', (string) $phone );
+	$d = flx_phone_digits( $phone, 'tr' );
 	if ( '' === $d ) {
-		return '';
-	}
-	if ( 0 === strpos( $d, '00' ) ) {
-		$d = substr( $d, 2 );
-	}
-	if ( 10 === strlen( $d ) && '5' === $d[0] ) {
-		$d = '90' . $d;
-	} elseif ( 11 === strlen( $d ) && '0' === $d[0] ) {
-		$d = '90' . substr( $d, 1 );
-	}
-	if ( strlen( $d ) < 8 || strlen( $d ) > 15 ) {
 		return '';
 	}
 	return (string) apply_filters( 'flxcrm_phone', $d, $phone );

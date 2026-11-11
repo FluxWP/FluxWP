@@ -22,8 +22,7 @@ add_filter(
 		if ( 0 === strpos( $request->get_route(), '/flx-chat/v1/' ) && $response instanceof WP_REST_Response ) {
 			$h = $response->get_headers();
 			if ( empty( $h['Cache-Control'] ) ) {
-				$response->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, private' );
-				$response->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+				flx_rest_nocache( $response );
 			}
 		}
 		return $response;

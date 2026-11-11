@@ -466,60 +466,40 @@ final class FLXCM_Customers {
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-commerce' ), 403 );
 		}
-		$q = self::query(
-			array(
-				's'        => sanitize_text_field( wp_unslash( $_GET['s'] ?? '' ) ),
-				'segment'  => sanitize_key( $_GET['segment'] ?? 'all' ),
-				'orderby'  => 'total',
-				'per_page' => 200,
-				'paged'    => 1,
-			)
+		$args = array(
+			's'        => sanitize_text_field( wp_unslash( $_GET['s'] ?? '' ) ),
+			'segment'  => sanitize_key( $_GET['segment'] ?? 'all' ),
+			'orderby'  => 'total',
+			'per_page' => 200,
 		);
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="customers-' . wp_date( 'Y-m-d' ) . '.csv"' );
-		$out = fopen( 'php://output', 'w' );
-		fwrite( $out, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
-		fputcsv( $out, array( __( 'Name', 'flx-commerce' ), __( 'E-mail', 'flx-commerce' ), __( 'Phone', 'flx-commerce' ), __( 'City', 'flx-commerce' ), __( 'Orders', 'flx-commerce' ), __( 'Total spent', 'flx-commerce' ), __( 'First order', 'flx-commerce' ), __( 'Last order', 'flx-commerce' ), __( 'Note', 'flx-commerce' ) ) );
-		$page = 1;
-		do {
-			foreach ( $q['rows'] as $r ) {
-				fputcsv(
-					$out,
-					array(
-						self::csv_cell( $r['name'] ),
-						self::csv_cell( $r['email'] ),
-						self::csv_cell( $r['phone'] ),
-						self::csv_cell( $r['city'] ),
-						(int) $r['orders'],
-						wc_format_decimal( $r['total'], 2 ),
-						$r['first_at'] ? get_date_from_gmt( $r['first_at'], 'Y-m-d' ) : '',
-						$r['last_at'] ? get_date_from_gmt( $r['last_at'], 'Y-m-d' ) : '',
-						self::csv_cell( (string) $r['note'] ),
-					)
-				);
-			}
-			++$page;
-			if ( $page > $q['pages'] ) {
-				break;
-			}
-			$q = self::query(
-				array(
-					's'        => sanitize_text_field( wp_unslash( $_GET['s'] ?? '' ) ),
-					'segment'  => sanitize_key( $_GET['segment'] ?? 'all' ),
-					'orderby'  => 'total',
-					'per_page' => 200,
-					'paged'    => $page,
-				)
-			);
-		} while ( true );
-		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		$q    = self::query( array_merge( $args, array( 'paged' => 1 ) ) );
+		flx_csv_stream(
+			'customers-' . wp_date( 'Y-m-d' ) . '.csv',
+			array( __( 'Name', 'flx-commerce' ), __( 'E-mail', 'flx-commerce' ), __( 'Phone', 'flx-commerce' ), __( 'City', 'flx-commerce' ), __( 'Orders', 'flx-commerce' ), __( 'Total spent', 'flx-commerce' ), __( 'First order', 'flx-commerce' ), __( 'Last order', 'flx-commerce' ), __( 'Note', 'flx-commerce' ) ),
+			( static function () use ( $q, $args ) {
+				$page = 1;
+				while ( true ) {
+					foreach ( $q['rows'] as $r ) {
+						yield array(
+							$r['name'],
+							$r['email'],
+							$r['phone'],
+							$r['city'],
+							(int) $r['orders'],
+							wc_format_decimal( $r['total'], 2 ),
+							$r['first_at'] ? get_date_from_gmt( $r['first_at'], 'Y-m-d' ) : '',
+							$r['last_at'] ? get_date_from_gmt( $r['last_at'], 'Y-m-d' ) : '',
+							(string) $r['note'],
+						);
+					}
+					++$page;
+					if ( $page > $q['pages'] ) {
+						break;
+					}
+					$q = self::query( array_merge( $args, array( 'paged' => $page ) ) );
+				}
+			} )()
+		);
 		exit;
-	}
-
-	/** Excel formül enjeksiyonuna karşı (=, +, -, @ ile başlayan hücreler). */
-	public static function csv_cell( $v ) {
-		$v = (string) $v;
-		return '' !== $v && in_array( $v[0], array( '=', '+', '-', '@', "\t", "\r" ), true ) ? "'" . $v : $v;
 	}
 }

@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 2.1.22
+- Form listesi yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
+## 2.1.21
+- Ödeme deneme sınırı (10 dakikada 20 başlatma, 60 onay) ortak sayacı kullanır. Adres yalnız güvenilen vekilden okunur; istemci kendi kovasını seçemez.
+
+## 2.1.20
+- Yanıt CSV'sinde formül gibi açılacak hücreler tek tırnakla korunur. Sütunlar, ayırıcı ve satır sonları aynı kalır.
+
 ## 2.1.19
 - İngilizce kaynak metinlerde 154 yer tutucu boşluğu geri geldi ("Version %s is active", "The latest %d payments are shown", "%s settings" …); toplu çeviri öncesindeki metinler esas alındı.
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

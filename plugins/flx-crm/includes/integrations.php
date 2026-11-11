@@ -53,15 +53,7 @@ add_filter(
 add_filter(
 	'flxi_recipients_from_source',
 	function ( $list, $src, $channel ) {
-		$f = null;
-		if ( 0 === strpos( (string) $src, 'flxcrm_seg:' ) ) {
-			$s = FLXCRM_Segments::get( (int) substr( $src, 11 ) );
-			if ( $s ) {
-				$f = array( 'rules' => $s['rules'] );
-			}
-		} elseif ( 0 === strpos( (string) $src, 'flxcrm_role:' ) ) {
-			$f = array( 'role' => sanitize_key( substr( $src, 12 ) ) );
-		}
+		$f = flxcrm_mail_source_filter( $src );
 		if ( null === $f ) {
 			return $list;
 		}
@@ -77,6 +69,40 @@ add_filter(
 			}
 		}
 		return $list;
+	},
+	10,
+	3
+);
+
+/** CRM kaynağının süzgeci: segment kuralları ya da rol. CRM kaynağı değilse null. */
+function flxcrm_mail_source_filter( $src ) {
+	if ( 0 === strpos( (string) $src, 'flxcrm_seg:' ) ) {
+		$s = FLXCRM_Segments::get( (int) substr( $src, 11 ) );
+		return $s ? array( 'rules' => $s['rules'] ) : null;
+	}
+	if ( 0 === strpos( (string) $src, 'flxcrm_role:' ) ) {
+		return array( 'role' => sanitize_key( substr( $src, 12 ) ) );
+	}
+	return null;
+}
+
+/**
+ * Flux Mail'e dökümü bildirir: listede kaç kişi var, kaçı bu kanala izin vermediği için alınmadı.
+ * Gönder ekranı "43 kişiden 0'ı eklendi, 43'ü e-posta izni vermemiş" diyebilsin diye.
+ */
+add_filter(
+	'flxi_recipient_source_info',
+	function ( $info, $src, $channel ) {
+		$f = flxcrm_mail_source_filter( $src );
+		if ( null === $f ) {
+			return $info;
+		}
+		$total = FLXCRM_Contacts::count( $f );
+		$ok    = $total;
+		if ( flxcrm_mail_requires_consent( $channel ) ) {
+			$ok = FLXCRM_Contacts::count( $f + array( 'consent' => flxcrm_channel_consent( $channel ) ) );
+		}
+		return array( 'total' => $total, 'no_consent' => max( 0, $total - $ok ) );
 	},
 	10,
 	3

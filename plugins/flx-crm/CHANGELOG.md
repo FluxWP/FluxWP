@@ -10,6 +10,14 @@
 - Upgrade moves the 0.2.x tables by itself: contact ids, links, timeline and tags are kept. If another package already created people, rows are matched by site user, e-mail or phone and merged.
 - CRM adds only its own columns (owner, UTM, totals, RFM, segment, churn) to the shared table. Uninstalling CRM no longer deletes people.
 - Extension points, so another plugin can plug in without a CRM update: `flxcrm_register_sources` (a source gets its on/off switch and role in Settings, a step in "Sync everything" and a name on contact links), `flxcrm_source_on()`, `flxcrm_source_role()`; contact changes are also announced as `flx_person_created`, `flx_person_updated`, `flx_person_merged`, `flx_person_deleting`.
+## 0.2.10
+- Flux Mail › Gönder ekranında CRM segmenti ya da rolü seçildiğinde kaç kişinin o kanala (e-posta, WhatsApp, SMS) izin vermediği için alınmadığı bildirilir (Flux Mail 1.14.0+, `flxi_recipient_source_info`).
+
+## 0.2.9
+- Telefon numaraları tüm eklentilerde aynı kuralla okunur: `+90 0532…` yazımındaki fazla sıfır atılır, ülke kodu ve baştaki sıfır olmadan yazılan 10 haneli sabit hat (212…) 90 ile tamamlanır, hane sayısı ya da alan kodu tutmayan Türkiye numarası geçersiz sayılır.
+
+## 0.2.8
+- Kişi listesi CSV'sinde formül gibi açılacak hücreler tek tırnakla korunur. Sütunlar, virgül ayırıcı ve Excel BOM aynı kalır.
 
 ## 0.2.7
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

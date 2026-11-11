@@ -2,6 +2,17 @@
 
 ## 0.3.0
 - Her müşteri ortak FluxWP kişi tablosunda bir kişi (flx-brand): `commerce / email:` bağı (Flux CRM'in WooCommerce kaynağıyla aynı anahtar), kullanıcı, e-posta ya da telefonla bulunur, yoksa açılır. Müşteri tablosu yalnız sipariş özetini tutar.
+## 0.2.12
+- Telefon numaraları tüm eklentilerde aynı kuralla okunur: `+90 0532…` yazımındaki fazla sıfır atılır, ülke kodu ve baştaki sıfır olmadan yazılan 10 haneli sabit hat (212…) 90 ile tamamlanır, hane sayısı ya da alan kodu tutmayan Türkiye numarası geçersiz sayılır. Geçersiz numaralı siparişe WhatsApp bildirimi denenmez.
+
+## 0.2.11
+- Ticaret listeleri ortak önbelleksiz başlıkları kullanır. Dekont ucunun kendi başlığı durur.
+
+## 0.2.10
+- Dekont klasörü doğrudan web erişimine kapalı kalır (Apache 2.2 ve 2.4).
+
+## 0.2.9
+- Müşteri ve satış CSV'lerinde formül gibi açılacak hücreler tek tırnakla korunur. Sütunlar, virgül ayırıcı ve Excel BOM aynı kalır.
 
 ## 0.2.8
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.

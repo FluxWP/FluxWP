@@ -483,7 +483,10 @@ function flx_phone_field( array $args ) {
 
 /**
  * Numarayı E.164'e çevirir (+905321234567). Ülke kodsuz yazılmışsa $country (iso2, boş = varsayılan ülke) eklenir.
- * Sunucu tarafı yalnız biçim ve uzunluk denetler (8–15 hane); asıl doğrulama alandaki libphonenumber'dadır.
+ * Türkiye (tr): başında + ya da 00 olmayan numarada baştaki sıfırlar atılır (N). N tam 10 haneyse 90 eklenir,
+ * 10'dan uzunsa N olduğu gibi kalır, daha kısaysa geçersizdir. Her yolda 900 + 10 hane (13) fazladan 0'ı düşer;
+ * 90 ile başlayan sonuç yalnız 12 hane ve üçüncü hanesi 2, 3, 4, 5 ya da 8 ise geçerlidir.
+ * Diğer ülkeler: yalnız biçim ve uzunluk (8–15 hane).
  *
  * @return string '' = geçersiz ya da boş.
  */
@@ -493,12 +496,42 @@ function flx_phone_normalize( $raw, $country = '' ) {
 	if ( '' === $dg ) {
 		return '';
 	}
+	$cc = '' !== $country ? strtolower( (string) $country ) : flx_phone_country();
+	if ( 'tr' === $cc ) {
+		$intl = '+' === substr( $raw, 0, 1 ) || 0 === strpos( $dg, '00' );
+		if ( $intl ) {
+			$dg = ltrim( $dg, '0' );
+		} elseif ( '0' === $dg[0] ) {
+			$dg = '0' . ltrim( $dg, '0' );
+		}
+		if ( '' === $dg ) {
+			return '';
+		}
+		if ( 0 === strpos( $dg, '900' ) && 13 === strlen( $dg ) ) {
+			$dg = '90' . substr( $dg, 3 );
+		}
+		if ( ! $intl ) {
+			$len = strlen( $dg );
+			if ( 11 === $len && '0' === $dg[0] ) {
+				$dg = '90' . substr( $dg, 1 );
+			} elseif ( 10 === $len && '0' !== $dg[0] ) {
+				$dg = '90' . $dg;
+			}
+		}
+		$dg = ltrim( $dg, '0' );
+		if ( strlen( $dg ) < 10 || strlen( $dg ) > 15 ) {
+			return '';
+		}
+		if ( 0 === strpos( $dg, '90' ) && ( 12 !== strlen( $dg ) || ! in_array( $dg[2], array( '2', '3', '4', '5', '8' ), true ) ) ) {
+			return '';
+		}
+		return '+' . $dg;
+	}
 	if ( '+' === substr( $raw, 0, 1 ) ) {
 		$out = $dg;
 	} elseif ( 0 === strpos( $dg, '00' ) ) {
 		$out = substr( $dg, 2 );
 	} else {
-		$cc   = '' !== $country ? strtolower( $country ) : flx_phone_country();
 		$dial = array( 'tr' => '90', 'de' => '49', 'at' => '43', 'ch' => '41', 'nl' => '31', 'be' => '32', 'fr' => '33', 'gb' => '44', 'us' => '1', 'it' => '39', 'es' => '34', 'se' => '46', 'dk' => '45', 'no' => '47', 'az' => '994' );
 		$dial = (array) apply_filters( 'flx_phone_dial_codes', $dial );
 		if ( ! isset( $dial[ $cc ] ) ) {
@@ -510,6 +543,366 @@ function flx_phone_normalize( $raw, $country = '' ) {
 		}
 	}
 	return strlen( $out ) >= 8 && strlen( $out ) <= 15 ? '+' . $out : '';
+}
+
+/** Same number as flx_phone_normalize(), without the leading + (905321234567). '' when invalid. */
+function flx_phone_digits( $raw, $country = '' ) {
+	$n = flx_phone_normalize( $raw, $country );
+	return '' === $n ? '' : substr( $n, 1 );
+}
+
+/** True when both values are valid and the same E.164. Trailing digits are not compared; empty or invalid values are not equal. */
+function flx_phone_equal( $a, $b, $country = '' ) {
+	$a = flx_phone_normalize( $a, $country );
+	$b = flx_phone_normalize( $b, $country );
+	return '' !== $a && $a === $b;
+}
+
+/** Quote a CSV cell that opens as a spreadsheet formula; leave a real number, including a negative, as a number. */
+function flx_csv_cell( $v ) {
+	if ( is_int( $v ) || is_float( $v ) ) {
+		return $v;
+	}
+	$s = (string) $v;
+	if ( preg_match( '/^[+-]?(?:\d+(?:\.\d+)?|\.\d+)$/', $s ) ) {
+		return $s;
+	}
+	$probe = preg_replace( '/^[\x00-\x08\x0A-\x0C\x0E-\x20]*/', '', $s );
+	if ( is_string( $probe ) && isset( $probe[0] ) && false !== strpos( "=+-@\t\r", $probe[0] ) ) {
+		return "'" . $s;
+	}
+	return $s;
+}
+
+/** Send a CSV download for $header and $rows, then return. The caller exits. */
+function flx_csv_stream( string $filename, array $header, iterable $rows, array $args = array() ) {
+	$delimiter = isset( $args['delimiter'] ) ? (string) $args['delimiter'] : ',';
+	$bom       = array_key_exists( 'bom', $args ) ? (bool) $args['bom'] : true;
+	nocache_headers();
+	header( 'Content-Type: text/csv; charset=utf-8' );
+	header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( $filename ) . '"' );
+	header( 'X-Content-Type-Options: nosniff' );
+	$out = fopen( 'php://output', 'w' );
+	if ( false === $out ) {
+		return;
+	}
+	if ( $bom ) {
+		fwrite( $out, "\xEF\xBB\xBF" );
+	}
+	$write = static function ( array $row ) use ( $out, $delimiter, $args ) {
+		$cells = array();
+		foreach ( $row as $cell ) {
+			$cells[] = flx_csv_cell( $cell );
+		}
+		if ( array_key_exists( 'enclosure', $args ) || array_key_exists( 'escape', $args ) ) {
+			$enclosure = array_key_exists( 'enclosure', $args ) ? (string) $args['enclosure'] : '"';
+			$escape    = array_key_exists( 'escape', $args ) ? (string) $args['escape'] : '\\';
+			fputcsv( $out, $cells, $delimiter, $enclosure, $escape );
+			return;
+		}
+		fputcsv( $out, $cells, $delimiter );
+	};
+	if ( array() !== $header ) {
+		$write( $header );
+	}
+	foreach ( $rows as $row ) {
+		$write( array_values( (array) $row ) );
+	}
+	fclose( $out );
+}
+
+/** Create $dir and, when missing, deny web access with an .htaccess and an empty index.html. */
+function flx_private_dir( string $dir ): bool {
+	$dir = rtrim( $dir, "/\\" );
+	if ( '' === $dir || ! wp_mkdir_p( $dir ) ) {
+		return '' !== $dir && is_dir( $dir ) && wp_is_writable( $dir );
+	}
+	$ht = $dir . '/.htaccess';
+	if ( ! is_file( $ht ) ) {
+		file_put_contents(
+			$ht,
+			"<IfModule mod_authz_core.c>\nRequire all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\nOrder deny,allow\nDeny from all\n</IfModule>\n"
+		);
+	}
+	$index = $dir . '/index.html';
+	if ( ! is_file( $index ) ) {
+		file_put_contents( $index, '' );
+	}
+	return is_dir( $dir ) && wp_is_writable( $dir );
+}
+
+/** Send a private file after the caller has checked permission, then return. The caller exits. */
+function flx_send_file( string $path, array $args = array() ) {
+	if ( ! is_file( $path ) || ! is_readable( $path ) ) {
+		return false;
+	}
+	$filename = isset( $args['filename'] ) && '' !== (string) $args['filename'] ? (string) $args['filename'] : basename( $path );
+	$type     = isset( $args['type'] ) ? (string) $args['type'] : '';
+	if ( '' === $type && function_exists( 'wp_check_filetype' ) ) {
+		$checked = wp_check_filetype( $filename );
+		$type    = is_array( $checked ) && ! empty( $checked['type'] ) ? (string) $checked['type'] : '';
+	}
+	if ( '' === $type ) {
+		$type = 'application/octet-stream';
+	}
+	$inline = ! empty( $args['inline'] );
+	$cache  = array_key_exists( 'cache', $args ) ? (string) $args['cache'] : 'private, no-store';
+	while ( ob_get_level() > 0 ) {
+		ob_end_clean();
+	}
+	header( 'Content-Type: ' . $type );
+	header( 'Content-Length: ' . (string) filesize( $path ) );
+	header( 'Content-Disposition: ' . ( $inline ? 'inline' : 'attachment' ) . '; filename="' . sanitize_file_name( $filename ) . '"' );
+	header( 'X-Content-Type-Options: nosniff' );
+	if ( '' !== $cache ) {
+		header( 'Cache-Control: ' . $cache );
+	}
+	readfile( $path );
+	return true;
+}
+
+/** True when $ip sits inside one of the CIDR ranges. */
+function flx_ip_in_cidrs( $ip, array $cidrs ) {
+	$a = @inet_pton( (string) $ip ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	if ( false === $a ) {
+		return false;
+	}
+	foreach ( $cidrs as $cidr ) {
+		$cidr = (string) $cidr;
+		if ( false === strpos( $cidr, '/' ) ) {
+			continue;
+		}
+		list( $net, $bits ) = explode( '/', $cidr, 2 );
+		$b = @inet_pton( $net ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		if ( false === $b || strlen( $a ) !== strlen( $b ) ) {
+			continue;
+		}
+		$bits  = max( 0, min( strlen( $a ) * 8, (int) $bits ) );
+		$bytes = intdiv( $bits, 8 );
+		if ( substr( $a, 0, $bytes ) !== substr( $b, 0, $bytes ) ) {
+			continue;
+		}
+		$rest = $bits % 8;
+		if ( ! $rest || ( ( ord( $a[ $bytes ] ) ^ ord( $b[ $bytes ] ) ) & ( 0xFF << ( 8 - $rest ) ) & 0xFF ) === 0 ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/** Cloudflare published ranges (ips-v4 / ips-v6, 2026-11-10), the same list Flux Analytics uses. */
+function flx_cloudflare_cidrs() {
+	return array(
+		'173.245.48.0/20',
+		'103.21.244.0/22',
+		'103.22.200.0/22',
+		'103.31.4.0/22',
+		'141.101.64.0/18',
+		'108.162.192.0/18',
+		'190.93.240.0/20',
+		'188.114.96.0/20',
+		'197.234.240.0/22',
+		'198.41.128.0/17',
+		'162.158.0.0/15',
+		'104.16.0.0/13',
+		'104.24.0.0/14',
+		'172.64.0.0/13',
+		'131.0.72.0/22',
+		'2400:cb00::/32',
+		'2606:4700::/32',
+		'2803:f800::/32',
+		'2405:b500::/32',
+		'2405:8100::/32',
+		'2a06:98c0::/29',
+		'2c0f:f248::/32',
+	);
+}
+
+/** Caller address for rate limits. Forwarded headers count only from a private or loopback peer, or from Cloudflare. */
+function flx_client_ip(): string {
+	$remote = isset( $_SERVER['REMOTE_ADDR'] ) ? trim( (string) $_SERVER['REMOTE_ADDR'] ) : '';
+	if ( ! filter_var( $remote, FILTER_VALIDATE_IP ) ) {
+		$remote = '';
+	}
+	$trust = false;
+	$cloud = false;
+	if ( '' !== $remote && ! filter_var( $remote, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+		$trust = true;
+	} elseif ( '' !== $remote && flx_ip_in_cidrs( $remote, flx_cloudflare_cidrs() ) ) {
+		$trust = true;
+		$cloud = true;
+	}
+	$ip = $remote;
+	if ( $trust ) {
+		$picked = '';
+		if ( $cloud && ! empty( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
+			$cand = trim( explode( ',', (string) $_SERVER['HTTP_CF_CONNECTING_IP'] )[0] );
+			if ( filter_var( $cand, FILTER_VALIDATE_IP ) ) {
+				$picked = $cand;
+			}
+		}
+		if ( '' === $picked && ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			foreach ( explode( ',', (string) $_SERVER['HTTP_X_FORWARDED_FOR'] ) as $part ) {
+				$part = trim( $part );
+				if ( filter_var( $part, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) ) {
+					$picked = $part;
+				}
+			}
+		}
+		if ( '' === $picked && ! empty( $_SERVER['HTTP_X_REAL_IP'] ) ) {
+			$cand = trim( explode( ',', (string) $_SERVER['HTTP_X_REAL_IP'] )[0] );
+			if ( filter_var( $cand, FILTER_VALIDATE_IP ) ) {
+				$picked = $cand;
+			}
+		}
+		if ( '' !== $picked ) {
+			$ip = $picked;
+		}
+	}
+	return (string) apply_filters( 'flx_client_ip', $ip );
+}
+
+/** Count this hit. True while $key stays within $max hits per fixed $window seconds. Prefix $key with the plugin (keys are shared site-wide). */
+function flx_rate_limit( string $key, int $max, int $window ): bool {
+	if ( $max <= 0 || $window <= 0 ) {
+		return true;
+	}
+	global $wpdb;
+	$now  = time();
+	$end  = $now - ( $now % $window ) + $window;
+	$name = '_flx_rl_' . sprintf( '%010d', $end ) . '_' . md5( $window . '|' . $key );
+	$wpdb->query(
+		$wpdb->prepare(
+			"INSERT INTO {$wpdb->options} (option_name, option_value, autoload) VALUES (%s, '1', 'off') ON DUPLICATE KEY UPDATE option_value = option_value + 1",
+			$name
+		)
+	);
+	$n = (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT option_value FROM {$wpdb->options} WHERE option_name = %s",
+			$name
+		)
+	);
+	if ( 1 === wp_rand( 1, 50 ) ) {
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s AND option_name < %s",
+				$wpdb->esc_like( '_flx_rl_' ) . '%',
+				'_flx_rl_' . sprintf( '%010d', $now )
+			)
+		);
+	}
+	return $n <= $max;
+}
+
+/** Stop caches storing a REST response. A response object is returned; anything else is sent with header(). */
+function flx_rest_nocache( $response = null ) {
+	$headers = array(
+		'Cache-Control'             => 'no-store, no-cache, must-revalidate, max-age=0, private',
+		'Pragma'                    => 'no-cache',
+		'X-LiteSpeed-Cache-Control' => 'no-cache',
+	);
+	if ( is_object( $response ) && class_exists( 'WP_HTTP_Response', false ) && $response instanceof WP_HTTP_Response ) {
+		foreach ( $headers as $name => $value ) {
+			$response->header( $name, $value );
+		}
+		return $response;
+	}
+	if ( ! headers_sent() ) {
+		foreach ( $headers as $name => $value ) {
+			header( $name . ': ' . $value );
+		}
+	}
+	return $response;
+}
+
+/** Seal a secret for one plugin slug. Empty input or a crypto failure returns an empty string, never plain text. */
+function flx_secret_seal( string $plain, string $context ): string {
+	if ( '' === $plain ) {
+		return '';
+	}
+	try {
+		$key   = sodium_crypto_generichash( 'flx-secret|' . $context . '|' . wp_salt( 'auth' ), '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
+		$nonce = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
+		return 'flx1:' . base64_encode( $nonce . sodium_crypto_secretbox( $plain, $nonce, $key ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+	} catch ( Throwable $e ) {
+		unset( $e );
+		return '';
+	}
+}
+
+/** Open a flx1: value for $context, or a legacy prefix keyed by the old generichash material. No known prefix is returned unchanged. */
+function flx_secret_open( string $stored, string $context, array $legacy = array() ): string {
+	try {
+		$b64 = null;
+		$key = null;
+		if ( 0 === strpos( $stored, 'flx1:' ) ) {
+			$b64 = substr( $stored, 5 );
+			$key = sodium_crypto_generichash( 'flx-secret|' . $context . '|' . wp_salt( 'auth' ), '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
+		} else {
+			$match = '';
+			foreach ( $legacy as $prefix => $material ) {
+				$prefix = (string) $prefix;
+				if ( '' !== $prefix && 0 === strpos( $stored, $prefix ) && strlen( $prefix ) > strlen( $match ) ) {
+					$match = $prefix;
+					$b64   = substr( $stored, strlen( $prefix ) );
+					$key   = sodium_crypto_generichash( (string) $material, '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
+				}
+			}
+			if ( '' === $match ) {
+				return $stored;
+			}
+		}
+		$raw = base64_decode( (string) $b64, true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+		$n   = SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
+		if ( false === $raw || strlen( $raw ) <= $n ) {
+			return '';
+		}
+		$plain = sodium_crypto_secretbox_open( substr( $raw, $n ), substr( $raw, 0, $n ), $key );
+		return false === $plain ? '' : $plain;
+	} catch ( Throwable $e ) {
+		unset( $e );
+		return '';
+	}
+}
+
+if ( ! function_exists( 'flx_job_sig' ) ) {
+	/** HMAC of "$action|$id" with the auth salt. Same bytes an in-flight loopback already carries. */
+	function flx_job_sig( string $action, $id ): string {
+		return hash_hmac( 'sha256', $action . '|' . $id, wp_salt( 'auth' ) );
+	}
+}
+
+if ( ! function_exists( 'flx_job_kick' ) ) {
+	/** Signed admin-ajax loopback that does not wait for the job. */
+	function flx_job_kick( string $action, $id ): bool {
+		$res = wp_remote_post(
+			admin_url( 'admin-ajax.php' ),
+			array(
+				'blocking'  => false,
+				'timeout'   => 0.5,
+				'sslverify' => apply_filters( 'https_local_ssl_verify', false ),
+				'body'      => array(
+					'action' => $action,
+					'id'     => $id,
+					'sig'    => flx_job_sig( $action, $id ),
+				),
+			)
+		);
+		return ! is_wp_error( $res );
+	}
+}
+
+if ( ! function_exists( 'flx_job_check' ) ) {
+	/** Posted job id when the signature matches, otherwise 0. The caller answers 403. */
+	function flx_job_check( string $action ): int {
+		$id  = isset( $_POST['id'] ) ? (int) $_POST['id'] : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		$sig = isset( $_POST['sig'] ) && is_string( $_POST['sig'] ) ? $_POST['sig'] : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( $id && hash_equals( flx_job_sig( $action, $id ), $sig ) ) {
+			return $id;
+		}
+		return 0;
+	}
 }
 
 /* Shared people table and API (1.3.0): one person record for every FluxWP package. */

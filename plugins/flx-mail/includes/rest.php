@@ -210,8 +210,10 @@ function flxi_rest_queue_run( WP_REST_Request $r ) {
 }
 
 function flxi_rest_recipients( WP_REST_Request $r ) {
-	$list = flxi_collect_recipients( array_map( 'sanitize_text_field', (array) $r['sources'] ), (string) $r['manual'], sanitize_key( (string) $r['channel'] ) );
-	$note = '';
+	$report  = array();
+	$channel = sanitize_key( (string) $r['channel'] );
+	$list    = flxi_collect_recipients( array_map( 'sanitize_text_field', (array) $r['sources'] ), (string) $r['manual'], $channel, $report );
+	$note    = '';
 	if ( 'email' === (string) $r['channel'] && $list ) {
 		$days = flxi_quota_days_for( count( $list ), 'noreply' === (string) $r['sender'] ? 'noreply' : 'info' );
 		if ( $days ) {
@@ -223,7 +225,61 @@ function flxi_rest_recipients( WP_REST_Request $r ) {
 		'quota_note' => $note,
 		'count'  => count( $list ),
 		'sample' => array_slice( $list, 0, 5 ),
+		'why'    => flxi_recipient_report_lines( $report, $channel ),
 	);
+}
+
+/**
+ * Seçilen kaynaklardan neden kişi gelmediğini (ya da eksik geldiğini) satır satır anlatır:
+ * adresi olmayanlar, kanala izin vermeyenler, başka listeden zaten eklenenler, abonelikten çıkanlar.
+ *
+ * @param array  $report  flxi_collect_recipients() dökümü.
+ * @param string $channel email|whatsapp|sms
+ * @return string[]
+ */
+function flxi_recipient_report_lines( array $report, $channel ) {
+	$labels = flxi_recipient_sources();
+	$lines  = array();
+	$n      = 'number_format_i18n';
+	foreach ( (array) ( $report['sources'] ?? array() ) as $src => $s ) {
+		if ( ! $s['found'] && 'manual' === $src ) {
+			continue;
+		}
+		$missing = $s['found'] - $s['added'];
+		if ( $s['found'] && ! $missing ) {
+			continue;
+		}
+		$label = 'manual' === $src ? __( 'Typed list', 'flx-mail' ) : preg_replace( '/\s*\([\d.,\s]+\)\s*$/u', '', (string) ( $labels[ $src ] ?? $src ) );
+		$why   = array();
+		if ( $s['no_address'] ) {
+			if ( 'email' === $channel ) {
+				/* translators: %s: kişi sayısı */
+				$why[] = sprintf( _n( '%s has no email address', '%s have no email address', $s['no_address'], 'flx-mail' ), $n( $s['no_address'] ) );
+			} else {
+				/* translators: %s: kişi sayısı */
+				$why[] = sprintf( _n( '%s has no valid phone number', '%s have no valid phone number', $s['no_address'], 'flx-mail' ), $n( $s['no_address'] ) );
+			}
+		}
+		if ( $s['no_consent'] ) {
+			$names = array( 'email' => __( 'email', 'flx-mail' ), 'whatsapp' => 'WhatsApp', 'sms' => 'SMS' );
+			/* translators: 1: kişi sayısı, 2: kanal (e-posta, WhatsApp, SMS) */
+			$why[] = sprintf( _n( '%1$s has not given %2$s permission', '%1$s have not given %2$s permission', $s['no_consent'], 'flx-mail' ), $n( $s['no_consent'] ), $names[ $channel ] ?? $channel );
+		}
+		if ( $s['duplicate'] ) {
+			/* translators: %s: kişi sayısı */
+			$why[] = sprintf( _n( '%s is already on the list', '%s are already on the list', $s['duplicate'], 'flx-mail' ), $n( $s['duplicate'] ) );
+		}
+		if ( ! $s['found'] ) {
+			$why[] = __( 'this list is empty', 'flx-mail' );
+		}
+		/* translators: 1: liste adı, 2: alınan kişi sayısı, 3: listedeki kişi sayısı, 4: nedenler */
+		$lines[] = sprintf( __( '%1$s: %2$s of %3$s added (%4$s).', 'flx-mail' ), $label, $n( $s['added'] ), $n( $s['found'] ), implode( '; ', $why ) );
+	}
+	if ( ! empty( $report['unsubscribed'] ) ) {
+		/* translators: %s: kişi sayısı */
+		$lines[] = sprintf( _n( '%s person unsubscribed earlier and was left out.', '%s people unsubscribed earlier and were left out.', (int) $report['unsubscribed'], 'flx-mail' ), $n( (int) $report['unsubscribed'] ) );
+	}
+	return $lines;
 }
 
 function flxi_rest_connection_test( WP_REST_Request $r ) {

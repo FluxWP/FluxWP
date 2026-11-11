@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.18
+- Görev API yanıtları ortak önbelleksiz başlıkları kullanır. Dosya indirme ve CDN işareti aynı kalır.
+
 ## 0.8.17
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

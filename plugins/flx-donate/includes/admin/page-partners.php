@@ -404,20 +404,19 @@ final class FLXB_Page_Partners {
 		check_admin_referer( 'flxb_partner_settle_csv' );
 		$kind   = 'source' === FLXB_Admin::q( 'kind' ) ? 'source' : 'service';
 		$period = sanitize_text_field( FLXB_Admin::q( 'period' ) );
-		$res    = FLXB_Partners::settlement( $kind, $period, absint( FLXB_Admin::q( 'partner' ) ), true );
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( 'settlement-' . $kind . '-' . str_replace( '..', '_', $period ) . '.csv' ) . '"' );
-		$out = fopen( 'php://output', 'w' );
-		fwrite( $out, "\xEF\xBB\xBF" );
-		fputcsv( $out, array_map( 'flxb_csv_cell', array( __( 'Partner', 'flx-donate' ), __( 'Date', 'flx-donate' ), __( 'Code', 'flx-donate' ), __( 'On behalf of', 'flx-donate' ), __( 'Option', 'flx-donate' ), __( 'Status', 'flx-donate' ), __( 'Price', 'flx-donate' ), __( 'Currency', 'flx-donate' ) ) ) );
-		foreach ( $res as $r ) {
-			foreach ( $r['rows'] as $x ) {
-				$sts = FLXB_Track::statuses( (int) $x['type_id'] );
-				fputcsv( $out, array_map( 'flxb_csv_cell', array( $r['name'], $x['day'], $x['code'], $x['beneficiary_name'], $x['option_label'], $sts[ $x['status'] ] ?? $x['status'], $x['price'], $x['cur'] ) ) );
-			}
-		}
-		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
+		$res = FLXB_Partners::settlement( $kind, $period, absint( FLXB_Admin::q( 'partner' ) ), true );
+		flx_csv_stream(
+			'settlement-' . $kind . '-' . str_replace( '..', '_', $period ) . '.csv',
+			array( __( 'Partner', 'flx-donate' ), __( 'Date', 'flx-donate' ), __( 'Code', 'flx-donate' ), __( 'On behalf of', 'flx-donate' ), __( 'Option', 'flx-donate' ), __( 'Status', 'flx-donate' ), __( 'Price', 'flx-donate' ), __( 'Currency', 'flx-donate' ) ),
+			( static function () use ( $res ) {
+				foreach ( $res as $r ) {
+					foreach ( $r['rows'] as $x ) {
+						$sts = FLXB_Track::statuses( (int) $x['type_id'] );
+						yield array( $r['name'], $x['day'], $x['code'], $x['beneficiary_name'], $x['option_label'], $sts[ $x['status'] ] ?? $x['status'], $x['price'], $x['cur'] );
+					}
+				}
+			} )()
+		);
 		exit;
 	}
 }

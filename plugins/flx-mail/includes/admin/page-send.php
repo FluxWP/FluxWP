@@ -34,15 +34,15 @@ function flxi_page_send() {
 	echo '<textarea name="manual" rows="4" data-recipients placeholder="' . esc_attr__( "ayse@ornek.com\nMehmet Demir <mehmet@ornek.com>\nZeynep Kaya, 0532 123 45 67", 'flx-mail' ) . '"></textarea>';
 	echo '<small>' . esc_html__( 'One person per line: email, phone, or "Full Name <email>" / "Full Name, email, phone".', 'flx-mail' ) . '</small>';
 	if ( $sources ) {
-		echo '<div class="flxi-checks">';
+		echo '<div class="flxi-sources">';
 		foreach ( $sources as $k => $label ) {
-			echo '<label><input type="checkbox" name="sources[]" value="' . esc_attr( $k ) . '" data-recipients> ' . esc_html( $label ) . '</label>';
+			echo '<label class="flxi-source"><input type="checkbox" name="sources[]" value="' . esc_attr( $k ) . '" data-recipients><span>' . esc_html( $label ) . '</span></label>';
 		}
 		echo '</div>';
 	}
-	echo '<p class="flxi-count" data-recipient-count aria-live="polite"></p></div>';
+	echo '<p class="flxi-count" data-recipient-count aria-live="polite"></p><ul class="flxi-count__why" data-recipient-why hidden></ul></div>';
 
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Scheduled send (optional)', 'flx-mail' ) . '</span><input type="datetime-local" name="send_at"><small>' . esc_html__( 'Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.', 'flx-mail' ) . '</small></label>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Scheduled send (optional)', 'flx-mail' ) . '</span><input type="datetime-local" name="send_at"><small>' . esc_html__( 'Uses the WordPress time zone. Future Netgsm sends can be cancelled before sending starts.', 'flx-mail' ) . ' <span class="flxi-now" data-site-clock data-offset="' . esc_attr( (string) ( (int) wp_date( 'Z' ) ) ) . '" data-now="' . esc_attr( (string) time() ) . '">' . esc_html__( 'Site time now:', 'flx-mail' ) . ' <strong data-site-clock-value>' . esc_html( wp_date( 'd.m.Y H:i' ) ) . '</strong> <span>(' . esc_html( flxi_timezone_label() ) . ')</span></span></small></label>';
 	// E-posta alanları
 	echo '<div data-for-channel="email">';
 	echo '<label class="flxi-field"><span>' . esc_html__( 'Subject', 'flx-mail' ) . '</span><input type="text" name="subject" data-preview data-insert-target></label>';
@@ -74,7 +74,7 @@ function flxi_page_send() {
 
 	// WhatsApp / SMS alanları
 	echo '<div data-for-channel="whatsapp sms" hidden>';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Message', 'flx-mail' ) . '</span><textarea name="text" rows="6" data-insert-target placeholder="' . esc_attr__( 'Hello {ad} 🌱 …', 'flx-mail' ) . '"></textarea><small>' . esc_html__( 'Variables: {ad}, {ad_soyad}, {telefon}. *Bold* and _italic_ work in WhatsApp.', 'flx-mail' ) . '</small></label>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Message', 'flx-mail' ) . '</span><textarea name="text" rows="6" data-msg-text data-insert-target placeholder="' . esc_attr__( 'Hello {ad} 🌱 …', 'flx-mail' ) . '"></textarea><small>' . esc_html__( 'Variables: {ad}, {ad_soyad}, {telefon}. *Bold* and _italic_ work in WhatsApp.', 'flx-mail' ) . '</small></label>';
 	foreach ( $conns as $ch => $list ) {
 		if ( count( $list ) > 1 ) {
 			echo '<label class="flxi-field" data-for-channel="' . esc_attr( $ch ) . '"><span>' . esc_html__( 'Link', 'flx-mail' ) . '</span><select name="connection_' . esc_attr( $ch ) . '">';
@@ -88,6 +88,13 @@ function flxi_page_send() {
 
 	echo '<label class="flxi-field"><span>' . esc_html__( 'Campaign name (only visible to you)', 'flx-mail' ) . '</span><input type="text" name="name" placeholder="' . esc_attr__( 'E.g. November sapling planting invitation', 'flx-mail' ) . '"></label>';
 	echo '<div class="flxi-actions"><button type="submit" class="button button-primary button-large" data-confirm="' . esc_attr__( 'Start sending?', 'flx-mail' ) . '">' . esc_html__( 'Send', 'flx-mail' ) . '</button> <button type="button" class="button button-large" data-test-free>' . esc_html__( 'Send me a test', 'flx-mail' ) . '</button><span class="flxi-status" aria-live="polite"></span></div>';
+	echo '</div></div>';
+
+	// WhatsApp / SMS önizlemesi: kanalın kendi sınırlarıyla (uzunluk, SMS parçası, biçim).
+	echo '<div class="flxi-editor__preview" data-for-channel="whatsapp sms" hidden><div class="flxi-msgpv" data-msg-preview data-boot="' . esc_attr( wp_json_encode( flxi_message_preview_boot() ) ) . '">';
+	echo '<div class="flxi-msgpv__head"><span class="flxi-msgpv__avatar" aria-hidden="true"></span><div><strong data-msg-title></strong><small data-msg-sub></small></div></div>';
+	echo '<div class="flxi-msgpv__chat" data-msg-chat></div>';
+	echo '<div class="flxi-msgpv__meter"><div class="flxi-msgpv__stat" data-msg-stat aria-live="polite"></div><div class="flxi-bar"><span data-msg-bar style="width:0"></span></div><ul class="flxi-msgpv__notes" data-msg-notes></ul></div>';
 	echo '</div></div>';
 
 	echo '<div class="flxi-editor__preview" data-for-channel="email"><div class="flxi-preview"><div class="flxi-preview__bar"><div class="flxi-preview__subject"><span class="flxi-muted">' . esc_html__( 'Subject:', 'flx-mail' ) . '</span> <strong data-preview-subject></strong></div>';
@@ -113,6 +120,51 @@ function flxi_page_send() {
 		echo '</tbody></table></div></div>';
 	}
 	flxi_page_foot();
+}
+
+/** Saat dilimi etiketi: "Europe/Istanbul, UTC+3" ya da yalnız "UTC+0". */
+function flxi_timezone_label() {
+	$off  = (int) wp_date( 'Z' );
+	$sign = $off < 0 ? '-' : '+';
+	$h    = (int) floor( abs( $off ) / 3600 );
+	$m    = (int) ( ( abs( $off ) % 3600 ) / 60 );
+	$utc  = 'UTC' . $sign . $h . ( $m ? ':' . str_pad( (string) $m, 2, '0', STR_PAD_LEFT ) : '' );
+	$name = (string) get_option( 'timezone_string' );
+	return $name ? $name . ', ' . $utc : $utc;
+}
+
+/**
+ * WhatsApp / SMS önizlemesinin bildiği kurallar: bağlantının türü, Netgsm başlığı, Türkçe karakter ayarı,
+ * İYS filtresi, WhatsApp hesabının durumu. Gizli değer (parola, token) yer almaz.
+ */
+function flxi_message_preview_boot() {
+	$out = array(
+		'site'     => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+		'whatsapp' => array(),
+		'sms'      => array(),
+	);
+	foreach ( array( 'whatsapp', 'sms' ) as $ch ) {
+		foreach ( flxi_list_connections( $ch, true ) as $c ) {
+			$cfg = (array) ( $c['config'] ?? array() );
+			$row = array(
+				'id'   => (int) $c['id'],
+				'name' => (string) $c['name'],
+				'type' => (string) $c['type'],
+			);
+			if ( 'sms' === $ch ) {
+				$row['header']   = (string) ( $cfg['header'] ?? '' );
+				$row['encoding'] = array_key_exists( 'encoding', $cfg ) ? (string) $cfg['encoding'] : 'TR';
+				$row['iys']      = (string) ( $cfg['iysfilter'] ?? '0' );
+			} elseif ( function_exists( 'flxi_wa_cached_state' ) ) {
+				$st           = flxi_wa_cached_state( $c['id'] );
+				$row['state'] = (string) $st['state'];
+				$row['me']    = (string) $st['me'];
+				$row['title'] = (string) $st['name'];
+			}
+			$out[ $ch ][] = $row;
+		}
+	}
+	return $out;
 }
 
 add_action(

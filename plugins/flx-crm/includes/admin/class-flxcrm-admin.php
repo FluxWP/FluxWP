@@ -349,49 +349,39 @@ final class FLXCRM_Admin {
 			$f['rules'] = $s['rules'];
 		}
 		$ids = FLXCRM_Contacts::ids( $f );
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename=crm-' . gmdate( 'Ymd-His' ) . '.csv' );
-		$out = fopen( 'php://output', 'w' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
-		fwrite( $out, "\xEF\xBB\xBF" ); // phpcs:ignore WordPress.WP.AlternativeFunctions
-		fputcsv( $out, array( 'id', __( 'Name', 'flx-crm' ), __( 'E-mail', 'flx-crm' ), __( 'Phone', 'flx-crm' ), __( 'Roles', 'flx-crm' ), __( 'Segment', 'flx-crm' ), __( 'Total value', 'flx-crm' ), __( 'Donation', 'flx-crm' ), __( 'Order', 'flx-crm' ), __( 'Last payment', 'flx-crm' ), __( 'Churn risk', 'flx-crm' ), __( 'City', 'flx-crm' ), __( 'E-mail consent', 'flx-crm' ), __( 'SMS consent', 'flx-crm' ), __( 'WhatsApp consent', 'flx-crm' ), __( 'Tags', 'flx-crm' ) ) );
-		global $wpdb;
-		foreach ( array_chunk( $ids, 500 ) as $chunk ) {
-			$rows = $wpdb->get_results( 'SELECT * FROM ' . flxcrm_table( 'contacts' ) . ' WHERE id IN (' . implode( ',', $chunk ) . ') ORDER BY id', ARRAY_A ); // phpcs:ignore WordPress.DB
-			$tags = FLXCRM_Tags::of_many( $chunk );
-			foreach ( (array) $rows as $r ) {
-				$roles = array_map( 'flxcrm_role_label', flxcrm_unpack_roles( $r['roles'] ) );
-				fputcsv(
-					$out,
-					array(
-						$r['id'],
-						self::csv_safe( $r['name'] ),
-						self::csv_safe( $r['email'] ),
-						'' !== $r['phone'] ? '+' . $r['phone'] : '',
-						implode( ', ', $roles ),
-						'' !== $r['segment'] ? flxcrm_segment_label( $r['segment'] ) : '',
-						$r['ltv'],
-						$r['donations'],
-						$r['orders'],
-						$r['last_paid_at'] ? get_date_from_gmt( $r['last_paid_at'], 'Y-m-d' ) : '',
-						$r['churn'],
-						self::csv_safe( $r['city'] ),
-						$r['consent_email'],
-						$r['consent_sms'],
-						$r['consent_whatsapp'],
-						self::csv_safe( implode( ', ', wp_list_pluck( $tags[ (int) $r['id'] ] ?? array(), 'name' ) ) ),
-					)
-				);
-			}
-		}
-		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+		flx_csv_stream(
+			'crm-' . gmdate( 'Ymd-His' ) . '.csv',
+			array( 'id', __( 'Name', 'flx-crm' ), __( 'E-mail', 'flx-crm' ), __( 'Phone', 'flx-crm' ), __( 'Roles', 'flx-crm' ), __( 'Segment', 'flx-crm' ), __( 'Total value', 'flx-crm' ), __( 'Donation', 'flx-crm' ), __( 'Order', 'flx-crm' ), __( 'Last payment', 'flx-crm' ), __( 'Churn risk', 'flx-crm' ), __( 'City', 'flx-crm' ), __( 'E-mail consent', 'flx-crm' ), __( 'SMS consent', 'flx-crm' ), __( 'WhatsApp consent', 'flx-crm' ), __( 'Tags', 'flx-crm' ) ),
+			( static function () use ( $ids ) {
+				global $wpdb;
+				foreach ( array_chunk( $ids, 500 ) as $chunk ) {
+					$batch = $wpdb->get_results( 'SELECT * FROM ' . flxcrm_table( 'contacts' ) . ' WHERE id IN (' . implode( ',', $chunk ) . ') ORDER BY id', ARRAY_A ); // phpcs:ignore WordPress.DB
+					$tags  = FLXCRM_Tags::of_many( $chunk );
+					foreach ( (array) $batch as $r ) {
+						$roles = array_map( 'flxcrm_role_label', flxcrm_unpack_roles( $r['roles'] ) );
+						yield array(
+							$r['id'],
+							$r['name'],
+							$r['email'],
+							'' !== $r['phone'] ? '+' . $r['phone'] : '',
+							implode( ', ', $roles ),
+							'' !== $r['segment'] ? flxcrm_segment_label( $r['segment'] ) : '',
+							$r['ltv'],
+							$r['donations'],
+							$r['orders'],
+							$r['last_paid_at'] ? get_date_from_gmt( $r['last_paid_at'], 'Y-m-d' ) : '',
+							$r['churn'],
+							$r['city'],
+							$r['consent_email'],
+							$r['consent_sms'],
+							$r['consent_whatsapp'],
+							implode( ', ', wp_list_pluck( $tags[ (int) $r['id'] ] ?? array(), 'name' ) ),
+						);
+					}
+				}
+			} )()
+		);
 		exit;
-	}
-
-	/** Excel formül enjeksiyonuna karşı. */
-	private static function csv_safe( $v ) {
-		$v = (string) $v;
-		return '' !== $v && in_array( $v[0], array( '=', '+', '-', '@' ), true ) ? "'" . $v : $v;
 	}
 
 	/** Zaman tünelinin devamı (aşağı kaydırınca). */

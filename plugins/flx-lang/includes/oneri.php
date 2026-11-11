@@ -57,9 +57,7 @@ add_action(
 					if ( ! is_array( $last ) || ( $last['source'] ?? '' ) !== $now || ( time() - (int) ( $last['t'] ?? 0 ) ) > DAY_IN_SECONDS ) {
 						update_option( 'flxl_geo_seen', array( 'source' => $now, 't' => time() ), false );
 					}
-					$res = new WP_REST_Response( array( 'country' => $g['country'] ) );
-					$res->header( 'Cache-Control', 'no-store, private, max-age=0' );
-					$res->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+					$res = flx_rest_nocache( new WP_REST_Response( array( 'country' => $g['country'] ) ) );
 					$res->header( 'CDN-Cache-Control', 'no-store' );
 					$res->header( 'Vary', 'CF-IPCountry' );
 					do_action( 'litespeed_control_set_nocache', 'flx-lang geo' );

@@ -287,20 +287,19 @@ final class FLXB_Page_Reports {
 			wp_die( esc_html__( 'Report not found.', 'flx-donate' ) );
 		}
 		$res = FLXB_Reports::run( $r, array( 'from' => FLXB_Admin::q( 'from' ), 'to' => FLXB_Admin::q( 'to' ) ) );
-		nocache_headers();
-		header( 'Content-Type: text/csv; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename="' . sanitize_file_name( 'report-' . $r['id'] . ( $res['from'] ? '-' . $res['from'] : '' ) . ( $res['to'] ? '_' . $res['to'] : '' ) . '.csv' ) . '"' );
-		$out = fopen( 'php://output', 'w' );
-		fwrite( $out, "\xEF\xBB\xBF" );
-		fputcsv( $out, array_map( 'flxb_csv_cell', wp_list_pluck( $res['cols'], 'label' ) ) );
-		foreach ( $res['rows'] as $row ) {
-			$line = array();
-			foreach ( $res['cols'] as $k => $c ) {
-				$line[] = $c['dim'] ? FLXB_Reports::show( $c['kind'], $row[ $k ] ) : $row[ $k ];
-			}
-			fputcsv( $out, array_map( 'flxb_csv_cell', $line ) );
-		}
-		fclose( $out ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
+		flx_csv_stream(
+			'report-' . $r['id'] . ( $res['from'] ? '-' . $res['from'] : '' ) . ( $res['to'] ? '_' . $res['to'] : '' ) . '.csv',
+			wp_list_pluck( $res['cols'], 'label' ),
+			( static function () use ( $res ) {
+				foreach ( $res['rows'] as $row ) {
+					$line = array();
+					foreach ( $res['cols'] as $k => $c ) {
+						$line[] = $c['dim'] ? FLXB_Reports::show( $c['kind'], $row[ $k ] ) : $row[ $k ];
+					}
+					yield $line;
+				}
+			} )()
+		);
 		exit;
 	}
 }

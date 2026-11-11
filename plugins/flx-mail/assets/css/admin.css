@@ -61,6 +61,11 @@ html.flxa-dark .flxi-wrap { --flxi-mint: var(--flxa-accent-soft); --flxi-pd: var
 .flxi-stat { background: #fff; border: 1px solid var(--flxi-line); border-radius: var(--flxi-r); padding: 14px 16px; text-decoration: none; display: block; }
 .flxi-stat__n, .flxi-stat__v { display: block; font-size: 24px; font-weight: 700; color: var(--flxi-ink); line-height: 1.2; }
 .flxi-stat__l { display: block; color: var(--flxi-text); margin-top: 2px; }
+/* Kartlar ızgarayı genişletmesin: uzun gönderen adı / adresi "…" ile kesilir, sayfa yana kaymaz. */
+.flxi-stat { min-width: 0; }
+.flxi-stat__v, .flxi-stat__e, .flxi-stat__m { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxi-stat--wide .flxi-stat__v { font-size: 18px; margin-top: 4px; }
+.flxi-stat__e { display: block; color: var(--flxi-ink); font-size: 13.5px; margin-top: 1px; }
 
 /* Rozet */
 .flxi-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 999px; background: #eef2f4; color: #3d4f5a; font-size: 12px; line-height: 18px; white-space: nowrap; }
@@ -122,6 +127,60 @@ html.flxa-dark .flxi-wrap { --flxi-mint: var(--flxa-accent-soft); --flxi-pd: var
 .flxi-status.is-err { color: var(--flxi-red); font-weight: 600; }
 .flxi-count { margin: 6px 0 0; color: var(--flxi-pd); font-weight: 600; min-height: 1.4em; }
 .flxi-count.is-empty { color: var(--flxi-amber); }
+.flxi-count__why { margin: 4px 0 0; padding: 8px 12px; list-style: none; background: #fff8eb; border: 1px solid #f3dcae; border-radius: 8px; color: #7a4a06; font-size: 12.5px; line-height: 1.5; }
+.flxi-count__why li { margin: 0; }
+.flxi-count__why li + li { margin-top: 3px; }
+html.flxa-dark .flxi-count__why { background: rgba(245, 158, 11, .12); border-color: rgba(245, 158, 11, .35); color: #f6cf8b; }
+/* Alıcı listeleri: hizalı iki sütun */
+.flxi-sources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 18px; margin-top: 10px; }
+.flxi-wrap .flxi-source { display: flex; align-items: flex-start; gap: 8px; margin: 0; line-height: 1.4; cursor: pointer; }
+.flxi-wrap .flxi-source input[type="checkbox"] { flex: 0 0 auto; margin: 1px 0 0; }
+.flxi-source span { min-width: 0; overflow-wrap: anywhere; }
+.flxi-now { white-space: nowrap; color: var(--flxi-ink); }
+.flxi-now strong { font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) { .flxi-sources { grid-template-columns: minmax(0, 1fr); } .flxi-now { white-space: normal; display: block; } }
+
+/* WhatsApp / SMS önizlemesi */
+.flxi-msgpv { border: 1px solid var(--flxi-line); border-radius: var(--flxi-r); overflow: hidden; background: #fff; }
+.flxi-msgpv__head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #075e54; color: #fff; }
+.flxi-msgpv__head strong { display: block; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flxi-msgpv__head small { display: block; opacity: .8; }
+.flxi-msgpv__head > div { min-width: 0; }
+.flxi-msgpv__avatar { flex: 0 0 34px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255, 255, 255, .25) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Ccircle cx='12' cy='9' r='4'/%3E%3Cpath d='M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z'/%3E%3C/svg%3E") center/22px no-repeat; }
+.flxi-msgpv.is-sms .flxi-msgpv__head { background: #f4f5f7; color: #111827; border-bottom: 1px solid #e3e5ea; }
+.flxi-msgpv.is-sms .flxi-msgpv__head strong { color: #111827; }
+.flxi-msgpv.is-sms .flxi-msgpv__avatar { background-color: #9aa1ae; }
+.flxi-msgpv__chat { background: #efeae2; min-height: 260px; max-height: 52vh; overflow: auto; padding: 14px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.flxi-msgpv.is-sms .flxi-msgpv__chat { background: #fff; }
+.flxi-msgpv__chat > .flxi-muted { align-self: center; margin: auto; text-align: center; }
+.flxi-msgpv__bubble { background: #fff; color: #111b21; border-radius: 2px 10px 10px 10px; padding: 7px 9px 5px; max-width: 86%; box-shadow: 0 1px 1px rgba(0, 0, 0, .1); font-size: 14px; line-height: 1.42; }
+.flxi-msgpv.is-sms .flxi-msgpv__bubble { background: #e9e9eb; border-radius: 16px 16px 16px 4px; box-shadow: none; padding: 8px 12px 6px; }
+.flxi-msgpv__text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.flxi-msgpv__text code { font: 13px/1.4 Menlo, Consolas, monospace; background: transparent; padding: 0; }
+.flxi-msgpv__link { color: #027eb5; text-decoration: underline; }
+.flxi-msgpv__time { display: block; text-align: right; font-size: 11px; color: #667781; margin-top: 2px; }
+.flxi-msgpv__meter { padding: 12px 14px 14px; border-top: 1px solid var(--flxi-line); }
+.flxi-msgpv__stat { font-weight: 600; color: var(--flxi-ink); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+.flxi-msgpv .flxi-bar { height: 6px; }
+.flxi-msgpv .flxi-bar span { transition: width .2s; }
+.flxi-msgpv .flxi-bar.is-warn span { background: #f59e0b; }
+.flxi-msgpv .flxi-bar.is-bad span { background: var(--flxi-red); }
+.flxi-msgpv__notes { margin: 10px 0 0; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.5; color: var(--flxi-text); }
+.flxi-msgpv__notes li { margin: 0 0 5px; padding-left: 14px; position: relative; }
+.flxi-msgpv__notes li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: #b6bdc9; }
+.flxi-msgpv__notes li.is-warn { color: var(--flxi-amber); }
+.flxi-msgpv__notes li.is-warn::before { background: #f59e0b; }
+.flxi-msgpv__notes li.is-bad { color: var(--flxi-red); font-weight: 600; }
+.flxi-msgpv__notes li.is-bad::before { background: var(--flxi-red); }
+html.flxa-dark .flxi-msgpv { background: var(--flxa-surface, #1b1f27); }
+html.flxa-dark .flxi-msgpv__chat { background: #0b141a; }
+html.flxa-dark .flxi-msgpv__bubble { background: #202c33; color: #e9edef; }
+html.flxa-dark .flxi-msgpv__time { color: #8696a0; }
+html.flxa-dark .flxi-msgpv__link { color: #53bdeb; }
+html.flxa-dark .flxi-msgpv.is-sms .flxi-msgpv__head { background: #1c1c1e; color: #fff; border-color: #2c2c2e; }
+html.flxa-dark .flxi-msgpv.is-sms .flxi-msgpv__head strong { color: #fff; }
+html.flxa-dark .flxi-msgpv.is-sms .flxi-msgpv__chat { background: #000; }
+html.flxa-dark .flxi-msgpv.is-sms .flxi-msgpv__bubble { background: #26262a; color: #fff; }
 
 /* Segmentli seçici */
 .flxi-seg { display: inline-flex; background: #f0f4f2; border-radius: 9px; padding: 3px; gap: 2px; }
@@ -166,6 +225,7 @@ html.flxa-dark .flxi-wrap { --flxi-mint: var(--flxa-accent-soft); --flxi-pd: var
 .flxi-sticky { position: sticky; bottom: 0; z-index: 5; margin: -6px 0 18px; padding: 12px 0; background: linear-gradient(rgba(240, 240, 241, 0), #f0f0f1 40%); }
 .flxi-media { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px; border: 1px dashed #c9d8cf; border-radius: 10px; background: #fff; }
 .flxi-media img { max-height: 46px; max-width: 220px; }
+.flxi-media img[src=""], .flxi-media img:not([src]) { display: none; }
 .flxi-media--dark { background: color-mix(in srgb, var(--flxa-accent, #1F2937) 78%, #000); }
 .flxi-wrap .flxi-media.flxi-media--dark .button-link.button-link { color: #fff; }
 .flxi-dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; margin: 10px 0 0; }

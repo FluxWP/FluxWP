@@ -429,6 +429,9 @@
 			if ( tf ) {
 				tf.hidden = ch !== 'email';
 			}
+			if ( msgpv ) {
+				msgpv();
+			}
 			countRecipients();
 		};
 		var countEl = $( '[data-recipient-count]', send );
@@ -442,6 +445,11 @@
 			var manual = ( $( 'textarea[name="manual"]', send ) || {} ).value || '';
 			if ( ! sources.length && ! manual.trim() ) {
 				countEl.textContent = '';
+				paintWhy();
+				lastRecipients = null;
+				if ( msgpv ) {
+					msgpv();
+				}
 				return;
 			}
 			countEl.textContent = T.checking;
@@ -453,10 +461,201 @@
 					countEl.textContent += ' · ' + r.quota_note;
 				}
 				countEl.classList.toggle( 'is-empty', ! r.count );
+				paintWhy( r.why );
+				lastRecipients = r;
+				if ( msgpv ) {
+					msgpv();
+				}
 			} ).catch( function () {
 				countEl.textContent = '';
+				paintWhy();
 			} );
 		}, 500 );
+		var lastRecipients = null;
+		var whyEl = $( '[data-recipient-why]', send );
+		// Seçilen listeden neden kişi gelmediği (adres yok, izin yok, zaten listede) satır satır.
+		var paintWhy = function ( lines ) {
+			if ( ! whyEl ) {
+				return;
+			}
+			whyEl.textContent = '';
+			( lines || [] ).forEach( function ( l ) {
+				var li = document.createElement( 'li' );
+				li.textContent = l;
+				whyEl.appendChild( li );
+			} );
+			whyEl.hidden = ! ( lines && lines.length );
+		};
+
+		// Sitenin (WordPress saat dilimi) şu anki saati: zamanlanmış gönderimi buna göre girersiniz.
+		var clock = $( '[data-site-clock]', send );
+		if ( clock ) {
+			var skew = parseInt( clock.getAttribute( 'data-now' ), 10 ) * 1000 - Date.now();
+			var off = parseInt( clock.getAttribute( 'data-offset' ), 10 ) * 1000;
+			var two = function ( n ) {
+				return ( n < 10 ? '0' : '' ) + n;
+			};
+			var tick = function () {
+				var d = new Date( Date.now() + skew + off );
+				$( '[data-site-clock-value]', clock ).textContent = two( d.getUTCDate() ) + '.' + two( d.getUTCMonth() + 1 ) + '.' + d.getUTCFullYear() + ' ' + two( d.getUTCHours() ) + ':' + two( d.getUTCMinutes() ) + ':' + two( d.getUTCSeconds() );
+			};
+			tick();
+			setInterval( tick, 1000 );
+		}
+
+		/* WhatsApp / SMS önizlemesi: kanalın kendi kurallarıyla (uzunluk, SMS parçası, biçim, desteklenmeyen karakter). */
+		var msgpv = ( function () {
+			var box = $( '[data-msg-preview]', send );
+			var ta = $( '[data-msg-text]', send );
+			if ( ! box || ! ta ) {
+				return null;
+			}
+			var M = T.msg || {};
+			var boot = {};
+			try {
+				boot = JSON.parse( box.getAttribute( 'data-boot' ) || '{}' );
+			} catch ( e ) {}
+			var esc = function ( x ) {
+				return String( x == null ? '' : x ).replace( /[&<>"']/g, function ( c ) {
+					return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ c ];
+				} );
+			};
+			var f = function ( str ) {
+				var a = arguments, i = 0;
+				return String( str || '' ).replace( /%(\d\$)?[sd]/g, function ( m, pos ) {
+					i++;
+					return a[ pos ? parseInt( pos, 10 ) : i ];
+				} );
+			};
+			var num = function ( n ) {
+				return Number( n ).toLocaleString( document.documentElement.lang || undefined );
+			};
+			// GSM 03.38 temel alfabe; uzantı tablosundakiler iki karakter sayılır.
+			var GSM = '@£$¥èéùìòÇ\nØø\rÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !"#¤%&\'()*+,-./0123456789:;<=>?¡ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÑÜ§¿abcdefghijklmnopqrstuvwxyzäöñüà';
+			var GSM_EXT = '^{}\\[~]|€';
+			var TR_SHIFT = 'çğışĞİŞ';
+			var TR_ASCII = { 'ç': 'c', 'ğ': 'g', 'ı': 'i', 'ş': 's', 'Ğ': 'G', 'İ': 'I', 'Ş': 'S', 'Ç': 'C', 'ö': 'o', 'Ö': 'O', 'ü': 'u', 'Ü': 'U' };
+			var sms = function ( text, turkish ) {
+				var len = 0, bad = [], out = '';
+				Array.from( text ).forEach( function ( ch ) {
+					if ( ! turkish && TR_ASCII[ ch ] ) {
+						ch = TR_ASCII[ ch ];
+					}
+					out += ch;
+					if ( GSM.indexOf( ch ) > -1 ) {
+						len += 1;
+					} else if ( GSM_EXT.indexOf( ch ) > -1 || ( turkish && TR_SHIFT.indexOf( ch ) > -1 ) ) {
+						len += 2;
+					} else {
+						len += 1;
+						if ( bad.indexOf( ch ) === -1 && ch !== '\uFE0F' && ch !== '\u200D' ) {
+							bad.push( ch );
+						}
+					}
+				} );
+				var one = turkish ? 155 : 160, part = turkish ? 146 : 153;
+				var parts = len <= one ? ( len ? 1 : 0 ) : Math.ceil( len / part );
+				return { len: len, parts: parts, one: one, part: part, cap: parts <= 1 ? one : parts * part, bad: bad, text: out };
+			};
+			var waHtml = function ( text ) {
+				var h = esc( text );
+				h = h.replace( /```([\s\S]+?)```/g, '<code>$1</code>' );
+				h = h.replace( /(^|[\s.,;:!?(])\*(\S(?:[^*\n]*\S)?)\*(?=$|[\s.,;:!?)])/g, '$1<strong>$2</strong>' );
+				h = h.replace( /(^|[\s.,;:!?(])_(\S(?:[^_\n]*\S)?)_(?=$|[\s.,;:!?)])/g, '$1<em>$2</em>' );
+				h = h.replace( /(^|[\s.,;:!?(])~(\S(?:[^~\n]*\S)?)~(?=$|[\s.,;:!?)])/g, '$1<s>$2</s>' );
+				return h.replace( /(https?:\/\/[^\s<]+)/g, '<span class="flxi-msgpv__link">$1</span>' );
+			};
+			var conn = function ( ch ) {
+				var list = boot[ ch ] || [];
+				var sel = $( 'select[name="connection_' + ch + '"]', send );
+				var id = sel ? parseInt( sel.value, 10 ) : 0;
+				for ( var i = 0; i < list.length; i++ ) {
+					if ( list[ i ].id === id ) {
+						return list[ i ];
+					}
+				}
+				return list[ 0 ] || {};
+			};
+			var paint = function () {
+				var ch = channel();
+				if ( ch !== 'whatsapp' && ch !== 'sms' ) {
+					return;
+				}
+				var c = conn( ch );
+				var first = lastRecipients && lastRecipients.sample && lastRecipients.sample[ 0 ] ? lastRecipients.sample[ 0 ] : null;
+				var full = first && first.name ? first.name : M.sampleName;
+				var raw = ta.value;
+				var hasVar = /\{(ad|ad_soyad|telefon)\}/.test( raw );
+				var text = raw.replace( /\{ad_soyad\}/g, full ).replace( /\{ad\}/g, String( full ).split( /\s+/ )[ 0 ] ).replace( /\{telefon\}/g, first && first.to ? first.to : '905301234567' );
+				var count = lastRecipients ? lastRecipients.count : 0;
+				var notes = [], stat = '', pct = 0, level = '';
+				var now = new Date();
+				var time = ( now.getHours() < 10 ? '0' : '' ) + now.getHours() + ':' + ( now.getMinutes() < 10 ? '0' : '' ) + now.getMinutes();
+				box.className = 'flxi-msgpv is-' + ch;
+				var body;
+				if ( ch === 'sms' ) {
+					var tr = c.encoding !== '';
+					var m = sms( text, tr );
+					body = esc( m.text );
+					$( '[data-msg-title]', box ).textContent = c.header || boot.site || 'SMS';
+					$( '[data-msg-sub]', box ).textContent = M.smsSub;
+					stat = f( M.smsStat, num( m.len ), num( m.cap ), num( m.parts ) );
+					pct = m.cap ? Math.min( 100, Math.round( m.len / m.cap * 100 ) ) : 0;
+					if ( m.parts > 6 ) {
+						level = 'bad';
+						notes.push( [ 'bad', M.smsTooLong ] );
+					} else if ( m.parts > 1 ) {
+						level = 'warn';
+						notes.push( [ 'warn', f( M.smsParts, num( m.parts ), num( m.one ) ) ] );
+					}
+					if ( count && m.parts ) {
+						notes.push( [ '', f( M.smsCredits, num( count ), num( m.parts ), num( count * m.parts ) ) ] );
+					}
+					if ( m.bad.length ) {
+						level = level || 'warn';
+						notes.push( [ 'warn', f( M.smsBad, m.bad.slice( 0, 8 ).join( ' ' ) ) ] );
+					}
+					notes.push( [ '', tr ? M.smsTr : M.smsAscii ] );
+					notes.push( [ '', c.iys && c.iys !== '0' ? M.smsIysOn : M.smsIysOff ] );
+				} else {
+					var n = Array.from( text ).length;
+					body = waHtml( text );
+					$( '[data-msg-title]', box ).textContent = c.title || boot.site || 'WhatsApp';
+					$( '[data-msg-sub]', box ).textContent = c.me ? '+' + String( c.me ).replace( /\D/g, '' ) : ( c.name || '' );
+					stat = f( M.waStat, num( n ), num( 4096 ) );
+					pct = Math.min( 100, Math.round( n / 4096 * 100 ) );
+					if ( n > 4096 ) {
+						level = 'bad';
+						notes.push( [ 'bad', M.waTooLong ] );
+					}
+					if ( c.type === 'wacloud' ) {
+						notes.push( [ 'warn', M.waWindow ] );
+					} else {
+						if ( c.state && c.state !== 'open' ) {
+							notes.push( [ 'bad', M.waNotOpen ] );
+						}
+						notes.push( [ '', M.waUnofficial ] );
+					}
+					notes.push( [ '', M.waFormat ] );
+				}
+				if ( hasVar ) {
+					notes.push( [ '', f( M.varNote, full ) ] );
+				}
+				$( '[data-msg-chat]', box ).innerHTML = raw.trim() ? '<div class="flxi-msgpv__bubble"><div class="flxi-msgpv__text">' + body + '</div><span class="flxi-msgpv__time">' + time + '</span></div>' : '<p class="flxi-muted">' + esc( M.empty ) + '</p>';
+				$( '[data-msg-stat]', box ).textContent = stat;
+				var bar = $( '[data-msg-bar]', box );
+				bar.style.width = pct + '%';
+				bar.parentNode.className = 'flxi-bar' + ( level ? ' is-' + level : '' );
+				$( '[data-msg-notes]', box ).innerHTML = notes.map( function ( x ) {
+					return '<li' + ( x[ 0 ] ? ' class="is-' + x[ 0 ] + '"' : '' ) + '>' + esc( x[ 1 ] ) + '</li>';
+				} ).join( '' );
+			};
+			ta.addEventListener( 'input', paint );
+			$$( 'select[name^="connection_"]', send ).forEach( function ( el ) {
+				el.addEventListener( 'change', paint );
+			} );
+			return paint;
+		}() );
 
 		$$( 'input[name="channel"]', send ).forEach( function ( r ) {
 			r.addEventListener( 'change', applyChannel );

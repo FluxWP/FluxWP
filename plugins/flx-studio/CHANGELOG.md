@@ -1,5 +1,8 @@
 # Flux Studio — Değişiklikler
 
+## 0.4.4
+- Stüdyo API yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
 ## 0.4.3
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

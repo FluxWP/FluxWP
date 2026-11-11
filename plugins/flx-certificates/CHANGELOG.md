@@ -7,6 +7,23 @@
 - Events move to the shared FluxWP events table (`{prefix}flx_events`, flx-brand 1.4.0), ids kept; `target` and `base_count` stay as Certificates' own columns. All `flxs_*` event functions keep working (Donate, Chat, Forms and presets call them).
 - With Flux CRM active the event screen is CRM › Events; Certificates › Events redirects there. Saplings, certificate counts, people, certificate links, the location QR and the site settings show on that screen through the shared event filters. Without Flux CRM the Certificates screen stays as it was.
 - Deleting a person who is also used by another package only removes the Certificates tie. "Message all people" only reaches Certificates people.
+## 1.9.15
+- SMTP sağlayıcı şifresi artık şifreli saklanır. Eski kayıt açılır ve bir sonraki kayıtta mühürlenir. WordPress tuzları değişirse şifreyi yeniden girin.
+
+## 1.9.14
+- Telefon biçimi ortak yardımcıyı kullanır. Kayıtlı rakamlar aynı kalır (905…).
+
+## 1.9.13
+- Uygulama listeleri ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
+## 1.9.12
+- Herkese açık sertifika sorgusu (saatte 10, aynı adrese 15 dakika) ortak sayacı kullanır. Adres güvenilen vekilden okunur.
+
+## 1.9.11
+- Sertifika PDF, Excel ve e-kart zip indirmesi aynı başlıklarla gider. Yazı tipi klasörü web'den açılmaz.
+
+## 1.9.10
+- Kayıt CSV'si ortak dışa aktarmayı kullanır. Sütunlar, noktalı virgül ve Excel BOM aynı kalır.
 
 ## 1.9.9
 - "Certificates open at %s {code}." metninde boşluk geri geldi.

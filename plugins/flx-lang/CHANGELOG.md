@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.2.8
+- Ülke ucu ortak önbelleksiz başlıkları kullanır. CDN işareti ve CF-IPCountry ayrımı durur.
+
 ## 0.2.7
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

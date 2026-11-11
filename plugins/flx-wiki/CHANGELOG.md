@@ -1,5 +1,8 @@
 # Flux Wiki
 
+## 0.2.10
+- Wiki'ye sor saatlik sınırı ortak sayacı kullanır. Yönetici muafiyeti ve saatlik kota aynı kalır.
+
 ## 0.2.9
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

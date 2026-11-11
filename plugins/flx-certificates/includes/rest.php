@@ -353,24 +353,19 @@ function flxs_rest_lookup( WP_REST_Request $r ) {
 		return array( 'ok' => true, 'message' => flxs_lookup_message() );
 	}
 	$contact = trim( (string) $r->get_param( 'contact' ) );
-	$ip      = flxs_client_ip();
-	$ipkey   = 'flxs_lk_ip_' . md5( $ip );
-	$hits    = (int) get_transient( $ipkey );
-	if ( $hits >= 10 ) {
+	if ( ! flx_rate_limit( 'flxs_lk_ip|' . flx_client_ip(), 10, HOUR_IN_SECONDS ) ) {
 		return flxs_rest_error( __( 'Too many attempts. Please try again later.', 'flx-certificates' ), 429 );
 	}
-	set_transient( $ipkey, $hits + 1, HOUR_IN_SECONDS );
 
 	$is_email = (bool) is_email( $contact );
 	$phone    = $is_email ? '' : flxs_normalize_phone( $contact );
 	if ( ! $is_email && ! $phone ) {
 		return flxs_rest_error( __( 'Enter a valid phone number or email address.', 'flx-certificates' ) );
 	}
-	$ckey = 'flxs_lk_c_' . md5( $is_email ? strtolower( $contact ) : $phone );
-	if ( get_transient( $ckey ) ) {
+	$who = $is_email ? strtolower( $contact ) : $phone;
+	if ( ! flx_rate_limit( 'flxs_lk_c|' . $who, 1, 15 * MINUTE_IN_SECONDS ) ) {
 		return array( 'ok' => true, 'message' => flxs_lookup_message() );
 	}
-	set_transient( $ckey, 1, 15 * MINUTE_IN_SECONDS );
 
 	$person = $is_email ? flxs_find_person_by_email( $contact ) : flxs_find_person_by_phone( $phone );
 	if ( $person ) {
@@ -566,8 +561,7 @@ function flxs_rest_app_nocache( $result, $server, $request ) {
 	$route = (string) $request->get_route();
 	$live  = array( '/flx-certificates/v1/certificates', '/flx-certificates/v1/directory', '/flx-certificates/v1/messages', '/flx-certificates/v1/queue/status', '/flx-certificates/v1/stats', '/flx-certificates/v1/overview' );
 	if ( $result instanceof WP_REST_Response && in_array( $route, $live, true ) ) {
-		$result->header( 'Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0' );
-		$result->header( 'X-LiteSpeed-Cache-Control', 'no-cache' );
+		flx_rest_nocache( $result );
 		$result->header( 'CDN-Cache-Control', 'no-store' );
 		do_action( 'litespeed_control_set_nocache', 'flxs-app' );
 	}

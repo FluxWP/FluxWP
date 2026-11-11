@@ -1,5 +1,17 @@
 # Değişiklikler
 
+## 0.4.13
+- Expo erişim belirteci ve push belirteçleri bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse belirteçleri yeniden girin.
+
+## 0.4.12
+- Telefon numaraları tüm eklentilerde aynı kuralla okunur: `+90 0532…` yazımındaki fazla sıfır atılır, ülke kodu ve baştaki sıfır olmadan yazılan 10 haneli sabit hat (212…) 90 ile tamamlanır, hane sayısı ya da alan kodu tutmayan Türkiye numarası geçersiz sayılır.
+
+## 0.4.11
+- Uygulama yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
+
+## 0.4.10
+- Giriş, kod ve oturum istek sınırları ortak sayacı kullanır. Sınırlar aynıdır: IP ve hedef ayrıdır, yanlış kod sayacı yeni kod isteğiyle silinmez.
+
 ## 0.4.9
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 

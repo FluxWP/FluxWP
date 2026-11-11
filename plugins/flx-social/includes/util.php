@@ -10,29 +10,37 @@ function flxsm_crypt_key() {
 }
 
 function flxsm_encrypt( $plain ) {
-	$plain = (string) $plain;
-	if ( '' === $plain ) {
-		return '';
-	}
-	if ( function_exists( 'sodium_crypto_secretbox' ) ) {
-		$n = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-		return 's1:' . base64_encode( $n . sodium_crypto_secretbox( $plain, $n, flxsm_crypt_key() ) );
-	}
-	return 'b1:' . base64_encode( $plain );
+	return flx_secret_seal( (string) $plain, 'flx-social' );
 }
 
 function flxsm_decrypt( $enc ) {
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+	}
+	if ( ! function_exists( 'flx_secret_open' ) ) {
+		return '';
+	}
 	$enc = (string) $enc;
-	if ( 0 === strpos( $enc, 's1:' ) && function_exists( 'sodium_crypto_secretbox_open' ) ) {
-		$raw = base64_decode( substr( $enc, 3 ) );
-		if ( strlen( $raw ) <= SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ) {
+	if ( 0 === strpos( $enc, 'b1:' ) ) {
+		return (string) base64_decode( substr( $enc, 3 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+	}
+	// Old boxes used a raw SHA-256 key, not generichash, so $legacy cannot open them.
+	if ( 0 === strpos( $enc, 's1:' ) ) {
+		try {
+			$raw = base64_decode( substr( $enc, 3 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+			$n   = SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
+			if ( ! is_string( $raw ) || strlen( $raw ) <= $n ) {
+				return '';
+			}
+			$out = sodium_crypto_secretbox_open( substr( $raw, $n ), substr( $raw, 0, $n ), flxsm_crypt_key() );
+			return false === $out ? '' : $out;
+		} catch ( Throwable $e ) {
+			unset( $e );
 			return '';
 		}
-		$out = sodium_crypto_secretbox_open( substr( $raw, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), substr( $raw, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), flxsm_crypt_key() );
-		return false === $out ? '' : $out;
 	}
-	if ( 0 === strpos( $enc, 'b1:' ) ) {
-		return (string) base64_decode( substr( $enc, 3 ) );
+	if ( 0 === strpos( $enc, 'flx1:' ) ) {
+		return flx_secret_open( $enc, 'flx-social' );
 	}
 	return '';
 }

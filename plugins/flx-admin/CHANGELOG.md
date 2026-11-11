@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.18
+- PWA manifestosu ve oturum kontrolü ortak önbelleksiz başlıkları kullanır. Service worker'ın bir günlük önbelleği durur.
+
 ## 1.7.17
 - Sol menünün başındaki ve giriş ekranındaki logo artık sitenin kendi simgesi: önce Flux Admin ayarlarındaki logo, sonra kurum profili simgesi (ön ayarlar doldurur: Yeşil Türkiye, Qurban Global…), sonra WordPress site simgesi; hiçbiri yoksa FluxWP işareti. Yeni filtre `flxa_logo_src`.
 

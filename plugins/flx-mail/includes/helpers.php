@@ -130,31 +130,37 @@ function flxi_update_settings( array $changes ) {
 
 /** Veritabanında düz metin durmasın diye site anahtarıyla şifrelenir (veritabanı tek başına sızarsa okunmaz). */
 function flxi_encrypt( $plain ) {
-	$plain = (string) $plain;
-	if ( '' === $plain ) {
-		return '';
-	}
-	if ( function_exists( 'sodium_crypto_secretbox' ) ) {
-		$key   = substr( hash( 'sha256', wp_salt( 'secure_auth' ) . 'flxi', true ), 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
-		$nonce = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-		return 'flxi1:' . base64_encode( $nonce . sodium_crypto_secretbox( $plain, $nonce, $key ) );
-	}
-	return 'flxi0:' . base64_encode( $plain );
+	return flx_secret_seal( (string) $plain, 'flx-mail' );
 }
 
 function flxi_decrypt( $stored ) {
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+	}
+	if ( ! function_exists( 'flx_secret_open' ) ) {
+		return '';
+	}
 	$stored = (string) $stored;
-	if ( 0 === strpos( $stored, 'flxi1:' ) && function_exists( 'sodium_crypto_secretbox_open' ) ) {
-		$raw   = base64_decode( substr( $stored, 6 ) );
-		$key   = substr( hash( 'sha256', wp_salt( 'secure_auth' ) . 'flxi', true ), 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
-		$nonce = substr( $raw, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-		$out   = sodium_crypto_secretbox_open( substr( $raw, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), $nonce, $key );
-		return false === $out ? '' : $out;
-	}
 	if ( 0 === strpos( $stored, 'flxi0:' ) ) {
-		return (string) base64_decode( substr( $stored, 6 ) );
+		return (string) base64_decode( substr( $stored, 6 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 	}
-	return $stored;
+	// Old boxes used a raw SHA-256 key, not generichash, so $legacy cannot open them.
+	if ( 0 === strpos( $stored, 'flxi1:' ) ) {
+		try {
+			$raw = base64_decode( substr( $stored, 6 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+			$n   = SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
+			if ( ! is_string( $raw ) || strlen( $raw ) <= $n ) {
+				return '';
+			}
+			$key = substr( hash( 'sha256', wp_salt( 'secure_auth' ) . 'flxi', true ), 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
+			$out = sodium_crypto_secretbox_open( substr( $raw, $n ), substr( $raw, 0, $n ), $key );
+			return false === $out ? '' : $out;
+		} catch ( Throwable $e ) {
+			unset( $e );
+			return '';
+		}
+	}
+	return flx_secret_open( $stored, 'flx-mail' );
 }
 
 /** SMTP şifresi: wp-config.php'de FLXI_SMTP_PASS tanımlıysa o kullanılır. */
@@ -196,6 +202,7 @@ function flxi_brand() {
 	$phone = $s['phone'] ? $s['phone'] : flxi_seo_option( 'phone' );
 	$mail  = $s['contact_email'] ? $s['contact_email'] : ( flxi_seo_option( 'email' ) ? flxi_seo_option( 'email' ) : $s['from_email'] );
 	$web   = $s['website'] ? $s['website'] : home_url( '/' );
+	$site  = flxi_site_logos();
 
 	$social = array();
 	foreach ( (array) $s['social'] as $k => $url ) {
@@ -221,8 +228,10 @@ function flxi_brand() {
 		'email'      => $mail,
 		'website'    => $web,
 		'host'       => preg_replace( '/^www\./', '', (string) wp_parse_url( $web, PHP_URL_HOST ) ),
-		'logo'       => $s['logo'] ? $s['logo'] : FLXI_URL . 'assets/img/logo.png',
-		'logo_white' => $s['logo_white'] ? $s['logo_white'] : FLXI_URL . 'assets/img/logo-beyaz.png',
+		// Ayarda logo yoksa sitenin kendi logosu; o da yoksa boş kalır ve düzen site adını (varsa simgesiyle) yazar.
+		'logo'       => $s['logo'] ? $s['logo'] : $site['logo'],
+		'logo_white' => $s['logo_white'] ? $s['logo_white'] : ( $s['logo'] ? '' : $site['logo_white'] ),
+		'icon'       => $site['icon'],
 		'logo_width' => max( 80, min( 320, (int) $s['logo_width'] ) ),
 		'primary'    => flxi_hex( $s['color_primary'], flxi_theme_color( 'color_primary' ) ),
 		'dark'       => flxi_hex( $s['color_dark'], flxi_theme_color( 'color_dark' ) ),
@@ -233,6 +242,72 @@ function flxi_brand() {
 		'art'        => flxi_footer_art_urls( $s['footer_art'] ),
 	);
 	return apply_filters( 'flxi_brand', $brand );
+}
+
+/**
+ * Sitenin kendi logoları (e-posta ayarında logo seçilmemişse kullanılır). Sıra:
+ * Flux SEO kurum logosu > kurum profili logosu (ön ayarlar doldurur) > temanın "Site Logosu".
+ * E-posta istemcileri SVG göstermediği için yalnız PNG/JPG/GIF/WebP alınır. Koyu zemin logosu
+ * kurum profilindeki açık renk logodur (logo_light). Simge: kurum profili simgesi > WordPress site simgesi.
+ *
+ * @return array{logo:string,logo_white:string,icon:string}
+ */
+function flxi_site_logos() {
+	$url = function ( $v, $size = 'full' ) {
+		if ( is_numeric( $v ) && (int) $v > 0 ) {
+			$v = (string) wp_get_attachment_image_url( (int) $v, $size );
+		}
+		$v = is_string( $v ) ? trim( $v ) : '';
+		return $v && preg_match( '/\.(png|jpe?g|gif|webp)(\?.*)?$/i', $v ) ? esc_url_raw( $v ) : '';
+	};
+	$profile = function ( $key ) {
+		return function_exists( 'flx_profile' ) ? flx_profile( $key, '' ) : '';
+	};
+	$logo = $url( flxi_seo_option( 'logo' ) );
+	if ( '' === $logo ) {
+		$logo = $url( $profile( 'logo' ) );
+	}
+	if ( '' === $logo ) {
+		$logo = $url( (int) get_theme_mod( 'custom_logo' ) );
+	}
+	$icon = $url( $profile( 'icon' ), array( 96, 96 ) );
+	if ( '' === $icon && has_site_icon() ) {
+		$icon = $url( get_site_icon_url( 192 ) );
+	}
+	$out = array(
+		'logo'       => $logo,
+		'logo_white' => $logo ? $url( $profile( 'logo_light' ) ) : '',
+		'icon'       => $icon,
+	);
+	return wp_parse_args( (array) apply_filters( 'flxi_site_logos', $out ), $out );
+}
+
+/**
+ * E-postanın üstündeki logo: logo görseli (koyu modda açık renk sürümüyle), logo yoksa site simgesi + site adı.
+ *
+ * @param array  $b     flxi_brand().
+ * @param int    $width Logo genişliği (px).
+ * @param string $font  Yazı tipi ailesi (logo yokken ad için).
+ * @return string
+ */
+function flxi_logo_markup( array $b, $width, $font ) {
+	$width = (int) $width;
+	if ( '' !== (string) $b['logo'] ) {
+		$dark = (string) $b['logo_white'];
+		$swap = '' !== $dark && $dark !== $b['logo'];
+		$o    = '<img' . ( $swap ? ' class="flxi-logo-l"' : '' ) . ' src="' . esc_url( $b['logo'] ) . '" width="' . $width . '" alt="' . esc_attr( $b['org'] ) . '" style="display:block;width:' . $width . 'px;max-width:100%;height:auto;">';
+		if ( $swap ) {
+			$o .= '<!--[if !mso]><!--><img class="flxi-logo-d" src="' . esc_url( $dark ) . '" width="' . $width . '" alt="' . esc_attr( $b['org'] ) . '" style="display:none;width:' . $width . 'px;max-width:100%;height:auto;max-height:0;overflow:hidden;"><!--<![endif]-->';
+		}
+		return $o;
+	}
+	$name = '<span class="flxi-brandname" style="font-family:' . $font . ';font-size:20px;line-height:1.25;font-weight:800;color:' . $b['text'] . ';">' . esc_html( $b['name'] ) . '</span>';
+	if ( '' === (string) $b['icon'] ) {
+		return $name;
+	}
+	return '<table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr>'
+		. '<td valign="middle" style="padding-right:10px;"><img src="' . esc_url( $b['icon'] ) . '" width="36" height="36" alt="" style="display:block;width:36px;height:36px;border-radius:8px;"></td>'
+		. '<td valign="middle">' . $name . '</td></tr></table>';
 }
 
 /**
@@ -395,22 +470,7 @@ function flxi_admin_url( $page = 'flxi', $args = array() ) {
 
 /** Telefonu uluslararası rakam biçimine çevirir: 0532 123 45 67 → 905321234567. Flux Certificates ile aynı kural. */
 function flxi_normalize_phone( $raw ) {
-	if ( function_exists( 'flxs_normalize_phone' ) ) {
-		return flxs_normalize_phone( $raw );
-	}
-	$d = preg_replace( '/\D+/', '', (string) $raw );
-	if ( '' === $d ) {
-		return '';
-	}
-	if ( 0 === strpos( $d, '00' ) ) {
-		$d = substr( $d, 2 );
-	}
-	if ( 10 === strlen( $d ) && '5' === $d[0] ) {
-		$d = '90' . $d;
-	} elseif ( 11 === strlen( $d ) && '0' === $d[0] ) {
-		$d = '90' . substr( $d, 1 );
-	}
-	return strlen( $d ) >= 10 && strlen( $d ) <= 15 ? $d : '';
+	return flx_phone_digits( $raw, 'tr' );
 }
 
 /** Alt kısım çizimleri (e-postanın en altındaki ağaç silüeti). */

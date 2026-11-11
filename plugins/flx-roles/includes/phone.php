@@ -14,19 +14,7 @@ const FLXR_PHONE_KEY  = 'flx_phone_key';
 
 /** Rakamlara indirger; Türkiye için 05xx / 5xx → 905xx. */
 function flxr_normalize_phone( $raw ) {
-	$raw = trim( (string) $raw );
-	$d   = preg_replace( '/\D+/', '', $raw );
-	if ( '' === $d ) {
-		return '';
-	}
-	if ( 0 === strpos( $d, '00' ) ) {
-		$d = substr( $d, 2 );
-	} elseif ( 11 === strlen( $d ) && '0' === $d[0] ) {
-		$d = '90' . substr( $d, 1 );
-	} elseif ( 10 === strlen( $d ) && '5' === $d[0] ) {
-		$d = '90' . $d;
-	}
-	return strlen( $d ) >= 10 && strlen( $d ) <= 15 ? $d : '';
+	return flx_phone_digits( $raw, 'tr' );
 }
 
 /** Eşleştirme anahtarı: ülke kodlu tam numara. İki farklı tam numara eşit değildir. */

@@ -98,6 +98,33 @@ add_action(
 					'use'       => __( 'Use', 'flx-mail' ),
 					'confirmSend' => __( 'Start sending?', 'flx-mail' ),
 					'checking'  => __( 'Checking…', 'flx-mail' ),
+					'msg'       => array(
+						'empty'      => __( 'Write the message to see how it will look.', 'flx-mail' ),
+						'sampleName' => __( 'Ayşe Yılmaz', 'flx-mail' ),
+						/* translators: %s: örnek kişi adı */
+						'varNote'    => __( 'Variables are shown filled in for %s; the length changes with each name.', 'flx-mail' ),
+						'smsSub'     => __( 'Text message', 'flx-mail' ),
+						/* translators: 1: karakter sayısı, 2: karakter sınırı, 3: SMS sayısı */
+						'smsStat'    => __( '%1$s / %2$s characters · %3$s SMS', 'flx-mail' ),
+						/* translators: 1: SMS sayısı, 2: tek SMS karakter sınırı */
+						'smsParts'   => __( 'This message is sent and billed as %1$s SMS. Keep it under %2$s characters for a single SMS.', 'flx-mail' ),
+						'smsTooLong' => __( 'Longer than 6 SMS: Netgsm rejects messages over its maximum length (code 20). Shorten the text.', 'flx-mail' ),
+						/* translators: 1: alıcı sayısı, 2: kişi başına SMS, 3: toplam SMS */
+						'smsCredits' => __( '%1$s recipients × %2$s SMS = %3$s SMS credits.', 'flx-mail' ),
+						/* translators: %s: karakterler */
+						'smsBad'     => __( 'Not supported in SMS and may arrive as "?" or be dropped: %s', 'flx-mail' ),
+						'smsTr'      => __( 'Turkish characters are on: one SMS holds 155 characters, longer messages 146 per part. ç ğ ı ş Ğ İ Ş count as two characters.', 'flx-mail' ),
+						'smsAscii'   => __( 'Turkish characters are off: ş, ğ, ı, ç, ö, ü are sent as s, g, i, c, o, u. One SMS holds 160 characters, longer messages 153 per part.', 'flx-mail' ),
+						'smsIysOff'  => __( 'Sent as an informational message (no İYS check). For promotional content turn on the İYS filter in the Netgsm connection.', 'flx-mail' ),
+						'smsIysOn'   => __( 'Commercial message: Netgsm does not deliver to numbers without İYS consent.', 'flx-mail' ),
+						/* translators: 1: karakter sayısı, 2: karakter sınırı */
+						'waStat'     => __( '%1$s / %2$s characters', 'flx-mail' ),
+						'waTooLong'  => __( 'WhatsApp accepts at most 4,096 characters in one message. Shorten the text.', 'flx-mail' ),
+						'waWindow'   => __( 'WhatsApp Cloud API: free text only reaches people who wrote to you in the last 24 hours. Others need an approved template.', 'flx-mail' ),
+						'waNotOpen'  => __( 'This WhatsApp account is not connected right now. Connect it under Connections before sending.', 'flx-mail' ),
+						'waUnofficial' => __( 'Bulk messages to people who have not saved your number can get the number restricted by WhatsApp. Send to people who expect your message and keep a delay between messages.', 'flx-mail' ),
+						'waFormat'   => __( '*bold*, _italic_, ~strikethrough~ and ```monospace``` are shown formatted. Links become clickable.', 'flx-mail' ),
+					),
 					'copied'    => __( 'Copied', 'flx-mail' ),
 					'pdf'       => __( 'Download PDF', 'flx-mail' ),
 					'pdfWait'   => __( 'Preparing PDF…', 'flx-mail' ),
