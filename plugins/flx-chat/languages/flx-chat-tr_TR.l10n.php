@@ -3207,5 +3207,16 @@ return array(
   'No referral.' => 'Referans yok.',
   'Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.' => 'Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir.',
 
+  'Change history' => 'Değişiklik geçmişi',
+  'Assistant memory' => 'Asistan hafızası',
+  'Note updated' => 'Not güncellendi',
+  'Show less' => 'Daha az göster',
+  'Show all ({n})' => 'Tümünü göster ({n})',
+  'Filled from donation and certificate records (one-off update)' => 'Bağış ve sertifika kayıtlarından dolduruldu (tek seferlik güncelleme)',
+  'Name given by the sending record' => 'Gönderen kayıttaki ad',
+  'Filled from donation and certificate records' => 'Bağış ve sertifika kayıtlarından dolduruldu',
+  'The contact said their name in the chat' => 'Kişi adını sohbette söyledi',
+  'The contact corrected their name in the chat' => 'Kişi adını sohbette düzeltti',
+  'The contact gave their full name in the chat' => 'Kişi ad soyadını sohbette verdi',
  ),
 );

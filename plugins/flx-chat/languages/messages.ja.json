@@ -1622,6 +1622,17 @@
     "{n} paid gifts · {m}": "支払い済み {n} 件 · {m}",
     "No contact details.": "連絡先情報がありません。",
     "No referral.": "紹介者なし。",
-    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "入金は口座に届きましたか？確認すると証明書が作成され、寄付者に送られます。"
+    "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.": "入金は口座に届きましたか？確認すると証明書が作成され、寄付者に送られます。",
+    "Change history": "変更履歴",
+    "Assistant memory": "アシスタントの記憶",
+    "Note updated": "メモを更新しました",
+    "Show less": "表示を減らす",
+    "Show all ({n})": "すべて表示 ({n})",
+    "Filled from donation and certificate records (one-off update)": "寄付・証明書の記録から入力 (1回限りの更新)",
+    "Name given by the sending record": "送信元の記録にある名前",
+    "Filled from donation and certificate records": "寄付・証明書の記録から入力",
+    "The contact said their name in the chat": "連絡先がチャットで名前を伝えました",
+    "The contact corrected their name in the chat": "連絡先がチャットで名前を訂正しました",
+    "The contact gave their full name in the chat": "連絡先がチャットでフルネームを伝えました"
   }
 }

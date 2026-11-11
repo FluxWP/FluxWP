@@ -293,6 +293,21 @@ function flxc_install_tables() {
 		KEY donation_id (donation_id)
 	) $c;";
 
+	// 1.41.0: contact change log (who changed what about the contact, when, old and new value).
+	$sql[] = 'CREATE TABLE ' . flxc_table( 'contact_log' ) . " (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		chat_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		field varchar(40) NOT NULL DEFAULT '',
+		old_value text,
+		new_value text,
+		source varchar(20) NOT NULL DEFAULT 'system',
+		user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+		note varchar(255) NOT NULL DEFAULT '',
+		created_at bigint(20) NOT NULL DEFAULT 0,
+		PRIMARY KEY  (id),
+		KEY chat_id (chat_id,id)
+	) $c;";
+
 	foreach ( $sql as $q ) {
 		dbDelta( $q );
 	}

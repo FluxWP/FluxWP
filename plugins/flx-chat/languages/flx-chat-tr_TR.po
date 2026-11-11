@@ -4851,3 +4851,36 @@ msgstr "Referans yok."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir."
+
+msgid "Change history"
+msgstr "Değişiklik geçmişi"
+
+msgid "Assistant memory"
+msgstr "Asistan hafızası"
+
+msgid "Note updated"
+msgstr "Not güncellendi"
+
+msgid "Show less"
+msgstr "Daha az göster"
+
+msgid "Show all ({n})"
+msgstr "Tümünü göster ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Bağış ve sertifika kayıtlarından dolduruldu (tek seferlik güncelleme)"
+
+msgid "Name given by the sending record"
+msgstr "Gönderen kayıttaki ad"
+
+msgid "Filled from donation and certificate records"
+msgstr "Bağış ve sertifika kayıtlarından dolduruldu"
+
+msgid "The contact said their name in the chat"
+msgstr "Kişi adını sohbette söyledi"
+
+msgid "The contact corrected their name in the chat"
+msgstr "Kişi adını sohbette düzeltti"
+
+msgid "The contact gave their full name in the chat"
+msgstr "Kişi ad soyadını sohbette verdi"

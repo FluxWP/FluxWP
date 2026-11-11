@@ -3207,5 +3207,16 @@ return array(
   'No referral.' => 'Нет реферала.',
   'Has the payment reached the account? When you confirm, the certificate is made and sent to the donor.' => 'Платёж поступил на счёт? После подтверждения сертификат будет создан и отправлен жертвователю.',
 
+  'Change history' => 'История изменений',
+  'Assistant memory' => 'Память ассистента',
+  'Note updated' => 'Заметка обновлена',
+  'Show less' => 'Свернуть',
+  'Show all ({n})' => 'Показать все ({n})',
+  'Filled from donation and certificate records (one-off update)' => 'Заполнено из записей о пожертвованиях и сертификатах (однократное обновление)',
+  'Name given by the sending record' => 'Имя из отправившей записи',
+  'Filled from donation and certificate records' => 'Заполнено из записей о пожертвованиях и сертификатах',
+  'The contact said their name in the chat' => 'Контакт назвал своё имя в чате',
+  'The contact corrected their name in the chat' => 'Контакт исправил своё имя в чате',
+  'The contact gave their full name in the chat' => 'Контакт назвал полное имя в чате',
  ),
 );

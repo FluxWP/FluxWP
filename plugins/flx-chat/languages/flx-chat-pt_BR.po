@@ -4851,3 +4851,36 @@ msgstr "Sem indicação."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "O pagamento chegou à conta? Ao confirmar, o certificado é criado e enviado ao doador."
+
+msgid "Change history"
+msgstr "Histórico de alterações"
+
+msgid "Assistant memory"
+msgstr "Memória do assistente"
+
+msgid "Note updated"
+msgstr "Nota atualizada"
+
+msgid "Show less"
+msgstr "Mostrar menos"
+
+msgid "Show all ({n})"
+msgstr "Mostrar tudo ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Preenchido a partir dos registros de doações e certificados (atualização única)"
+
+msgid "Name given by the sending record"
+msgstr "Nome informado pelo registro de envio"
+
+msgid "Filled from donation and certificate records"
+msgstr "Preenchido a partir dos registros de doações e certificados"
+
+msgid "The contact said their name in the chat"
+msgstr "O contato disse o nome na conversa"
+
+msgid "The contact corrected their name in the chat"
+msgstr "O contato corrigiu o nome na conversa"
+
+msgid "The contact gave their full name in the chat"
+msgstr "O contato informou o nome completo na conversa"

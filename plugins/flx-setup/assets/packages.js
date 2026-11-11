@@ -39,10 +39,53 @@
 	}
 	/** Toplu işlem (etkinleştir/kapat/kaldır) için kurulu seçim. */
 	function selectedInstalled() {
-		return Array.prototype.filter.call(form().querySelectorAll('.flxu-check:checked'), function (b) {
-			return b.getAttribute('data-state') !== 'missing';
+		return Array.prototype.filter.call(form().querySelectorAll('.flxu-check:checked, .flxu-wpcheck:checked'), function (b) {
+			return b.getAttribute('data-state') !== 'missing' && b.getAttribute('data-kind') !== 'wp_lang';
 		});
 	}
+	/** Seçili 3. parti satırları (eklenti/tema/çeviri) → adımlar. */
+	function wpSelected() {
+		return Array.prototype.filter.call(form().querySelectorAll('.flxu-wpcheck:checked'), function (b) {
+			return b.getAttribute('data-state') === 'update';
+		}).map(function (b) {
+			return { kind: b.getAttribute('data-kind'), slug: b.value, id: b.getAttribute('data-id'), name: b.getAttribute('data-name') };
+		});
+	}
+	function wpAll() {
+		try { return JSON.parse(form().getAttribute('data-wp-all') || '[]'); } catch (e) { return []; }
+	}
+
+	/* ---------------- Sekme + arama ---------------- */
+	var filt = { tab: 'all', q: '', only: false };
+	function norm(s) { return String(s || '').toLocaleLowerCase('tr').replace(/ı/g, 'i').normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+	function applyFilter() {
+		var f = form(); if (!f) { return; }
+		var q = norm(filt.q).trim(), shown = 0, counts = {};
+		f.querySelectorAll('tr.flxu-row').forEach(function (tr) {
+			var g = tr.getAttribute('data-group') || 'flux';
+			var up = tr.classList.contains('flxu-row--update');
+			var hit = !q || norm(tr.getAttribute('data-search')).indexOf(q) > -1;
+			['all', g].forEach(function (k) {
+				counts[k] = counts[k] || [0, 0];
+				if (hit && !tr.classList.contains('flxu-row--empty')) { counts[k][0]++; if (up) { counts[k][1]++; } }
+			});
+			var on = hit && (filt.tab === 'all' || filt.tab === g) && (!filt.only || up);
+			tr.hidden = !on;
+			if (on) { shown++; }
+		});
+		var none = document.getElementById('flxu-none');
+		if (none) { none.hidden = shown > 0; }
+		document.querySelectorAll('#flxu-filter .flxu-tab').forEach(function (b) {
+			var k = b.getAttribute('data-tab'), c = counts[k] || [0, 0], on = k === filt.tab;
+			b.classList.toggle('is-active', on);
+			b.setAttribute('aria-selected', on ? 'true' : 'false');
+			b.querySelector('.flxu-tab__n').textContent = c[0];
+			var u = b.querySelector('.flxu-tab__up');
+			u.textContent = c[1];
+			u.hidden = !c[1];
+		});
+	}
+
 	function name(slug) {
 		return (data.pk[slug] && data.pk[slug].name) || (data.pl[slug] && data.pl[slug].name) || slug;
 	}
@@ -101,7 +144,7 @@
 		var f = form(); if (!f) { return; }
 		var sel = selected();
 		var btn = document.getElementById('flxu-do-selected');
-		if (btn) { btn.disabled = busy || !sel.length; }
+		if (btn) { btn.disabled = busy || !(sel.length || wpSelected().length); }
 		var mb = document.getElementById('flxu-do-manage'), op = document.getElementById('flxu-bulk-op');
 		if (mb) { mb.disabled = busy || !op || !op.value || !selectedInstalled().length; }
 		var panel = document.getElementById('flxu-deps');
@@ -127,9 +170,10 @@
 		panel.hidden = !html;
 		// Satırdaki "Gerekli:" işaretleri.
 		f.querySelectorAll('.flxu-row').forEach(function (tr) {
-			var b = tr.querySelector('.flxu-check');
+			var b = tr.querySelector('.flxu-check, .flxu-wpcheck');
 			tr.classList.toggle('flxu-row--sel', !!(b && b.checked));
 		});
+		applyFilter();
 	}
 
 	/* ---------------- Sayfadan çıkmadan çalıştırma ---------------- */
@@ -191,11 +235,20 @@
 			d.textContent = text;
 			li.appendChild(d);
 		},
-		finish: function (okN, errN) {
+		finish: function (okN, errN, failed) {
 			var el = this.el();
 			el.classList.remove('is-busy');
 			el.classList.add(errN ? 'is-err' : 'is-ok');
 			this.title(fmt(L.done, okN, errN));
+			var old = el.querySelector('.flxu-log__retry'); if (old) { old.remove(); }
+			if (failed && failed.length) {
+				var b = document.createElement('button');
+				b.type = 'button';
+				b.className = 'button button-small flxu-log__retry';
+				b.textContent = L.retryFailed + ' (' + failed.length + ')';
+				b.setAttribute('data-steps', JSON.stringify(failed));
+				el.querySelector('.flxu-log__title').after(b);
+			}
 		}
 	};
 
@@ -275,8 +328,10 @@
 		tr.querySelector('.flxu-done').innerHTML = '<span class="flxu-badge">' + esc(L.short.queued) + '</span>';
 		tr.querySelector('.flxu-idle').hidden = true;
 	}
-	function rowDone(slug, ok, text) {
+	function rowDone(slug, ok, text, step) {
 		var html = '<span class="flxu-res ' + (ok ? 'is-ok' : 'is-err') + '"><span class="dashicons ' + (ok ? 'dashicons-yes-alt' : 'dashicons-dismiss') + '"></span>' + esc(text) + '</span>';
+		/* Hata: aynı adımı tekrar dene. */
+		if (!ok && step) { html += '<button type="button" class="button button-small flxu-retry" data-step="' + esc(JSON.stringify(step)) + '">' + esc(L.retry) + '</button>'; }
 		doneMarks[slug] = html;
 		var tr = rowEl(slug); if (!tr) { return; }
 		tr.classList.remove('flxu-row--busy', 'flxu-row--queued');
@@ -322,10 +377,12 @@
 		draw();
 		log.start(title || L.preparing);
 		stay.show();
-		var okN = 0, errN = 0;
-		var planP = params.steps ? Promise.resolve({ steps: params.steps }) : post(params);
+		var okN = 0, errN = 0, failed = [];
+		var tail = params.extra || [];
+		delete params.extra;
+		var planP = params.steps ? Promise.resolve({ steps: params.steps }) : (params.action ? post(params) : Promise.resolve({ steps: [] }));
 		planP.then(function (res) {
-			var steps = res.steps || [];
+			var steps = (res.steps || []).concat(tail);
 			if (!steps.length) { log.line(L.nothing, 'ok'); return; }
 			log.title(L.working);
 			steps.forEach(function (st) { rowQueued(st.slug); });
@@ -337,18 +394,20 @@
 				var li = log.line(fmt((L.kind && L.kind[st.kind]) || '%s', st.name) + (st.why ? ' (' + st.why + ')' : ''), 'run');
 				stay.step(fmt((L.kind && L.kind[st.kind]) || '%s', st.name), i, steps.length);
 				rowRun(st.slug, st.kind);
-				return post({ action: 'flxu_step', kind: st.kind, slug: st.slug, version: st.version || '' }).then(function (r) {
+				return post({ action: 'flxu_step', kind: st.kind, slug: st.slug, id: st.id || '', version: st.version || '' }).then(function (r) {
 					(r.lines || []).forEach(function (l) { log.sub(li, l.text, l.ok); });
 					li.className = 'flxu-log__line is-' + (r.ok ? 'ok' : 'err');
 					r.ok ? okN++ : errN++;
 					var last = (r.lines || []).filter(function (l) { return !l.ok; })[0] || (r.lines || [])[(r.lines || []).length - 1];
-					rowDone(st.slug, r.ok, last ? last.text : (r.ok ? L.ok : L.fail));
+					rowDone(st.slug, r.ok, last ? last.text : (r.ok ? L.ok : L.fail), st);
+					if (!r.ok) { failed.push(st); }
 					if (typeof r.pending === 'number') { setBadge(r.pending); }
 				}).catch(function (e) {
 					errN++;
 					li.className = 'flxu-log__line is-err';
 					log.sub(li, fmt(L.http, e.message), false);
-					rowDone(st.slug, false, fmt(L.http, e.message));
+					rowDone(st.slug, false, fmt(L.http, e.message), st);
+					failed.push(st);
 				}).then(function () {
 					i++;
 					log.progress(i, steps.length);
@@ -360,7 +419,7 @@
 			errN++;
 			log.line(fmt(L.http, e.message), 'err');
 		}).then(function () {
-			log.finish(okN, errN);
+			log.finish(okN, errN, failed);
 			busy = false;
 			return refresh();
 		}).then(function () {
@@ -472,7 +531,8 @@
 	document.addEventListener('change', function (e) {
 		var f = form(); if (!f || !f.contains(e.target)) { return; }
 		if (e.target.id === 'flxu-check-all') {
-			f.querySelectorAll('.flxu-check').forEach(function (b) { b.checked = e.target.checked; });
+			/* Yalnız görünen (sekme/arama süzgecinden geçen) satırlar. */
+			f.querySelectorAll('.flxu-check, .flxu-wpcheck').forEach(function (b) { if (!b.closest('tr').hidden) { b.checked = e.target.checked; } });
 			if (!e.target.checked) { extra = []; }
 		} else if (e.target.classList.contains('flxu-check') && !e.target.checked) {
 			dropDependents(e.target.value);
@@ -517,7 +577,7 @@
 			var op = document.getElementById('flxu-bulk-op').value, inst = selectedInstalled();
 			if (busy || !op || !inst.length) { e.preventDefault(); return; }
 			f.querySelectorAll('.flxu-check[data-state="missing"]:checked').forEach(function (x) { x.checked = false; });
-			if (op === 'delete' && !window.confirm(fmt(L.confirmDel, inst.map(function (x) { return name(x.value); }).join(', ')))) { e.preventDefault(); }
+			if (op === 'delete' && !window.confirm(fmt(L.confirmDel, inst.map(function (x) { return x.getAttribute('data-name') || name(x.value); }).join(', ')))) { e.preventDefault(); }
 			return;
 		}
 		if (!window.fetch) { return; }
@@ -533,10 +593,16 @@
 			return;
 		}
 		if (b.value === 'all') {
-			run({ action: 'flxu_plan', all: 1, activate: activate });
+			run({ action: 'flxu_plan', all: 1, activate: activate, extra: wpAll() });
 			return;
 		}
+		if (b.value === 'wp') {
+			run({ steps: [{ kind: b.getAttribute('data-kind'), slug: b.getAttribute('data-slug'), id: b.getAttribute('data-id'), name: b.getAttribute('data-name') }] });
+			return;
+		}
+		var wsel = b.value === 'one' ? [] : wpSelected();
 		var sel = b.value === 'one' ? [b.getAttribute('data-slug')] : selected();
+		if (!sel.length && wsel.length) { run({ extra: wsel }); return; }
 		if (!sel.length) { return; }
 		// Eksik gerekli eklentiler: kullanıcıya sor, kabul ederse birlikte kur.
 		var need = [], by = [];
@@ -548,8 +614,54 @@
 			});
 		});
 		if (need.length && !window.confirm(fmt(L.confirmDeps, by.map(name).join(', '), need.map(name).join(', ')))) { return; }
-		run({ action: 'flxu_plan', slugs: sel, activate: b.value === 'one' ? 1 : activate });
+		run({ action: 'flxu_plan', slugs: sel, activate: b.value === 'one' ? 1 : activate, extra: wsel });
 	});
+
+	/* Tekrar dene (satır ya da kayıt başlığındaki "Hatalıları tekrar dene"). */
+	document.addEventListener('click', function (e) {
+		var r = e.target.closest && e.target.closest('.flxu-retry, .flxu-log__retry');
+		if (!r || busy) { return; }
+		e.preventDefault();
+		var steps;
+		try { steps = r.classList.contains('flxu-retry') ? [JSON.parse(r.getAttribute('data-step'))] : JSON.parse(r.getAttribute('data-steps')); } catch (err) { return; }
+		if (steps && steps.length) { run({ steps: steps }); }
+	});
+
+	/* Otomatik güncelleme aç/kapa (WordPress'in eklenti/tema başına ayarı). */
+	document.addEventListener('click', function (e) {
+		var t = e.target.closest && e.target.closest('button.flxu-auto');
+		if (!t || t.disabled || t.classList.contains('is-busy')) { return; }
+		e.preventDefault();
+		var on = t.getAttribute('aria-checked') !== 'true';
+		t.classList.add('is-busy');
+		post({ action: 'flxu_auto', type: t.getAttribute('data-type'), id: t.getAttribute('data-id'), on: on ? 1 : 0 }).then(function (r) {
+			t.classList.toggle('is-on', !!r.on);
+			t.setAttribute('aria-checked', r.on ? 'true' : 'false');
+			t.querySelector('.flxu-auto__txt').textContent = r.label;
+		}).catch(function (err) {
+			window.alert(err.message);
+		}).then(function () { t.classList.remove('is-busy'); });
+	});
+
+	/* Sekme ve arama (sekme seçimi oturum boyunca hatırlanır). */
+	document.addEventListener('click', function (e) {
+		var t = e.target.closest && e.target.closest('#flxu-filter .flxu-tab');
+		if (!t) { return; }
+		filt.tab = t.getAttribute('data-tab');
+		try { sessionStorage.setItem('flxu-tab', filt.tab); } catch (err) { /* yok */ }
+		applyFilter();
+	});
+	document.addEventListener('input', function (e) {
+		if (e.target.id === 'flxu-search') { filt.q = e.target.value; applyFilter(); }
+	});
+	document.addEventListener('change', function (e) {
+		if (e.target.id === 'flxu-only-updates') { filt.only = e.target.checked; applyFilter(); }
+	});
+	document.addEventListener('keydown', function (e) {
+		var s = document.getElementById('flxu-search');
+		if (e.key === 'Escape' && document.activeElement === s && s.value) { s.value = ''; filt.q = ''; applyFilter(); }
+	});
+	try { var st0 = sessionStorage.getItem('flxu-tab'); if (st0 && document.querySelector('#flxu-filter .flxu-tab[data-tab="' + st0 + '"]')) { filt.tab = st0; } } catch (err) { /* yok */ }
 
 	window.addEventListener('beforeunload', function (e) {
 		if (busy) { e.preventDefault(); e.returnValue = L.leave; return L.leave; }

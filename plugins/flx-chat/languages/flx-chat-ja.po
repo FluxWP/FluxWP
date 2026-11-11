@@ -4851,3 +4851,36 @@ msgstr "紹介者なし。"
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "入金は口座に届きましたか？確認すると証明書が作成され、寄付者に送られます。"
+
+msgid "Change history"
+msgstr "変更履歴"
+
+msgid "Assistant memory"
+msgstr "アシスタントの記憶"
+
+msgid "Note updated"
+msgstr "メモを更新しました"
+
+msgid "Show less"
+msgstr "表示を減らす"
+
+msgid "Show all ({n})"
+msgstr "すべて表示 ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "寄付・証明書の記録から入力 (1回限りの更新)"
+
+msgid "Name given by the sending record"
+msgstr "送信元の記録にある名前"
+
+msgid "Filled from donation and certificate records"
+msgstr "寄付・証明書の記録から入力"
+
+msgid "The contact said their name in the chat"
+msgstr "連絡先がチャットで名前を伝えました"
+
+msgid "The contact corrected their name in the chat"
+msgstr "連絡先がチャットで名前を訂正しました"
+
+msgid "The contact gave their full name in the chat"
+msgstr "連絡先がチャットでフルネームを伝えました"

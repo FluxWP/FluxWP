@@ -897,3 +897,22 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 #flxc-app .flxc-rec-row .flxc-row-bot { flex-wrap: wrap; row-gap: 4px; }
 #flxc-app .flxc-rec-row .flxc-row-prev { flex: 1 0 auto; max-width: 100%; }
 #flxc-app .flxc-rec-row .flxc-ref { max-width: 100%; }
+
+/* 1.41.0: kişi değişiklik geçmişi */
+#flxc-app .flxc-clog { display: flex; flex-direction: column; }
+#flxc-app .flxc-clog-row { padding: 8px 0; border-top: 1px solid var(--flxc-line); display: flex; flex-direction: column; gap: 2px; font-size: 13.5px; }
+#flxc-app .flxc-clog-row:first-child { border-top: 0; padding-top: 0; }
+#flxc-app .flxc-clog-top { display: flex; justify-content: space-between; gap: 8px; }
+#flxc-app .flxc-clog-top b { font-weight: 500; }
+#flxc-app .flxc-clog-top time { color: var(--flxc-muted); font-size: 12px; white-space: nowrap; }
+#flxc-app .flxc-clog-v { overflow-wrap: anywhere; }
+#flxc-app .flxc-clog-v del { color: var(--flxc-muted); }
+#flxc-app .flxc-clog-v em { color: var(--flxc-muted); font-style: normal; }
+#flxc-app .flxc-clog-v strong { font-weight: 500; }
+#flxc-app .flxc-clog-arrow { color: var(--flxc-muted); }
+#flxc-app .flxc-clog-who { color: var(--flxc-muted); font-size: 12px; }
+#flxc-app .flxc-clog-src { display: inline-block; padding: 0 6px; border-radius: 8px; background: var(--flxc-hover); color: var(--flxc-text); font-size: 11.5px; font-weight: 500; }
+#flxc-app .flxc-clog-row.is-ai .flxc-clog-src { background: rgba(124, 58, 237, .14); color: #7c3aed; }
+#flxc-app .flxc-clog-row.is-system .flxc-clog-src { background: rgba(14, 165, 233, .14); color: #0284c7; }
+#flxc-app .flxc-clog-row.is-staff .flxc-clog-src { background: rgba(0, 168, 132, .14); color: var(--flxc-accent-ink); }
+#flxc-app .flxc-clog + .flxc-link { margin-top: 6px; }

@@ -4851,3 +4851,36 @@ msgstr "Нет реферала."
 
 msgid "Has the payment reached the account? When you confirm, the certificate is made and sent to the donor."
 msgstr "Платёж поступил на счёт? После подтверждения сертификат будет создан и отправлен жертвователю."
+
+msgid "Change history"
+msgstr "История изменений"
+
+msgid "Assistant memory"
+msgstr "Память ассистента"
+
+msgid "Note updated"
+msgstr "Заметка обновлена"
+
+msgid "Show less"
+msgstr "Свернуть"
+
+msgid "Show all ({n})"
+msgstr "Показать все ({n})"
+
+msgid "Filled from donation and certificate records (one-off update)"
+msgstr "Заполнено из записей о пожертвованиях и сертификатах (однократное обновление)"
+
+msgid "Name given by the sending record"
+msgstr "Имя из отправившей записи"
+
+msgid "Filled from donation and certificate records"
+msgstr "Заполнено из записей о пожертвованиях и сертификатах"
+
+msgid "The contact said their name in the chat"
+msgstr "Контакт назвал своё имя в чате"
+
+msgid "The contact corrected their name in the chat"
+msgstr "Контакт исправил своё имя в чате"
+
+msgid "The contact gave their full name in the chat"
+msgstr "Контакт назвал полное имя в чате"

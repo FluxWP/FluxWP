@@ -50,6 +50,14 @@ function flxa_shell_on() {
 	return flxa_enabled() && ( '' === flxa_app_screen() || flxa_app_rail() ) && ! wp_doing_ajax() && ! defined( 'IFRAME_REQUEST' );
 }
 
+/**
+ * WordPress'in kabuksuz iframe ekranları (eklenti/tema/çeviri güncelleme çıktısı, eklenti "Ayrıntılar" penceresi).
+ * Menü yok; yalnız tema rengi (açık/koyu) ve yazı tipi uygulanır (assets/css/iframe.css).
+ */
+function flxa_iframe_on() {
+	return flxa_enabled() && defined( 'IFRAME_REQUEST' ) && ! wp_doing_ajax() && '' === flxa_app_screen();
+}
+
 /** WhatsApp / Görevler ekranında menü ikon şeridine daralır, uygulama hemen sağında açılır (geniş ekran). */
 function flxa_app_rail() {
 	return flxa_enabled() && '' !== flxa_app_screen() && (bool) flxa_setting( 'app_rail' );
@@ -69,10 +77,16 @@ function flxa_enqueue() {
 			return;
 		}
 	}
+	if ( flxa_iframe_on() ) {
+		wp_enqueue_style( 'flxa-tokens', FLXA_URL . 'assets/css/tokens.css', array(), FLXA_VERSION );
+		wp_enqueue_style( 'flxa-iframe', FLXA_URL . 'assets/css/iframe.css', array( 'common', 'flxa-tokens' ), FLXA_VERSION );
+		return;
+	}
 	if ( ! flxa_shell_on() ) {
 		return;
 	}
-	wp_enqueue_style( 'flxa-admin', FLXA_URL . 'assets/css/admin.css', array( 'common', 'admin-menu', 'dashboard' ), FLXA_VERSION );
+	wp_enqueue_style( 'flxa-tokens', FLXA_URL . 'assets/css/tokens.css', array(), FLXA_VERSION );
+	wp_enqueue_style( 'flxa-admin', FLXA_URL . 'assets/css/admin.css', array( 'common', 'admin-menu', 'dashboard', 'flxa-tokens' ), FLXA_VERSION );
 	wp_enqueue_script( 'flxa-admin', FLXA_URL . 'assets/js/admin.js', array( 'heartbeat' ), FLXA_VERSION, true );
 	wp_localize_script( 'flxa-admin', 'FLXA', flxa_boot() );
 }
@@ -204,7 +218,7 @@ function flxa_switch_boot() {
 
 /** Tema sınıfı <head>'de, sayfa çizilmeden önce (yanıp sönme olmasın). */
 function flxa_head() {
-	if ( ! flxa_shell_on() ) {
+	if ( ! flxa_shell_on() && ! flxa_iframe_on() ) {
 		return;
 	}
 	$mode   = flxa_user_mode();
@@ -217,6 +231,9 @@ function flxa_head() {
 }
 
 function flxa_body_class( $c ) {
+	if ( flxa_iframe_on() ) {
+		return $c . ' flxa-iframe';
+	}
 	if ( ! flxa_shell_on() ) {
 		return $c;
 	}

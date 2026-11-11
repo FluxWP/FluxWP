@@ -3,6 +3,10 @@
 ## 1.7.17
 - Sol menünün başındaki ve giriş ekranındaki logo artık sitenin kendi simgesi: önce Flux Admin ayarlarındaki logo, sonra kurum profili simgesi (ön ayarlar doldurur: Yeşil Türkiye, Qurban Global…), sonra WordPress site simgesi; hiçbiri yoksa FluxWP işareti. Yeni filtre `flxa_logo_src`.
 
+## 1.7.16
+- Koyu modda WordPress güncelleme çıktısı (Eklentileri/Temaları/Çevirileri güncelle) açık zeminde kalıyordu: iframe ekranları artık yönetim temasının rengini (açık/koyu) ve yazı tipini kullanıyor. Eklenti "Ayrıntılar" penceresi de koyu temaya uydu.
+- Renk değişkenleri ayrı dosyada (assets/css/tokens.css); admin.css ve yeni iframe.css bunu kullanır.
+
 ## 1.7.15
 - Çevirilerde yer tutucuların (%s, %d, {ad}) yanında silinmiş boşluklar geri geldi (TR, DE, ES, FR, PT, RU, AR); .po/.mo/.l10n.php/JSON paketleri güncellendi.
 
