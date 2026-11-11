@@ -29,35 +29,25 @@ function flxapp_defaults() {
 
 /* Gizli değerler (Expo erişim belirteci, push belirteçleri) sodium ile şifreli. Panelde yalnız "kayıtlı" görünür. */
 
-function flxapp_secret_key() {
-	return sodium_crypto_generichash( wp_salt( 'auth' ) . '|flxapp', '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
-}
-
 function flxapp_encrypt( $plain ) {
-	if ( '' === (string) $plain ) {
-		return '';
-	}
-	if ( ! function_exists( 'sodium_crypto_secretbox' ) ) {
-		return 'p:' . (string) $plain;
-	}
-	$nonce = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-	return 's:' . base64_encode( $nonce . sodium_crypto_secretbox( (string) $plain, $nonce, flxapp_secret_key() ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+	return flx_secret_seal( (string) $plain, 'flx-app' );
 }
 
 function flxapp_decrypt( $v ) {
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+	}
+	if ( ! function_exists( 'flx_secret_open' ) ) {
+		return '';
+	}
 	$v = (string) $v;
 	if ( 0 === strpos( $v, 'p:' ) ) {
 		return substr( $v, 2 );
 	}
-	if ( 0 !== strpos( $v, 's:' ) || ! function_exists( 'sodium_crypto_secretbox_open' ) ) {
+	if ( 0 !== strpos( $v, 'flx1:' ) && 0 !== strpos( $v, 's:' ) ) {
 		return '';
 	}
-	$raw = (string) base64_decode( substr( $v, 2 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
-	if ( strlen( $raw ) <= SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ) {
-		return '';
-	}
-	$plain = sodium_crypto_secretbox_open( substr( $raw, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), substr( $raw, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), flxapp_secret_key() );
-	return false === $plain ? '' : $plain;
+	return flx_secret_open( $v, 'flx-app', array( 's:' => wp_salt( 'auth' ) . '|flxapp' ) );
 }
 
 function flxapp_secret_put( $name, $value ) {

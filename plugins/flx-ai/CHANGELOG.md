@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.10.8
+- Kayıtlı API anahtarları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılmaya devam eder. WordPress tuzları değişirse anahtarları yeniden girin.
+
 ## 0.10.7
 - OAuth, API ve akış yanıtları ortak önbelleksiz başlıkları kullanır. Akışın tampon kapatması durur.
 

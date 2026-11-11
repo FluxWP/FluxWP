@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.20.8
+- Kayıtlı kart referansları bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse kartı yeniden bağlayın.
+
 ## 2.20.7
 - Telefon biçimi ortak yardımcıyı kullanır. Yazılan numara eskisi gibi +90… olur.
 - İçe aktarmada telefon aynı ortak kuralla okunur (`0090…` ve `+90 0532…` yazımları düzelir); tanınmayan numara yazıldığı gibi kalır.

@@ -130,31 +130,37 @@ function flxi_update_settings( array $changes ) {
 
 /** Veritabanında düz metin durmasın diye site anahtarıyla şifrelenir (veritabanı tek başına sızarsa okunmaz). */
 function flxi_encrypt( $plain ) {
-	$plain = (string) $plain;
-	if ( '' === $plain ) {
-		return '';
-	}
-	if ( function_exists( 'sodium_crypto_secretbox' ) ) {
-		$key   = substr( hash( 'sha256', wp_salt( 'secure_auth' ) . 'flxi', true ), 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
-		$nonce = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-		return 'flxi1:' . base64_encode( $nonce . sodium_crypto_secretbox( $plain, $nonce, $key ) );
-	}
-	return 'flxi0:' . base64_encode( $plain );
+	return flx_secret_seal( (string) $plain, 'flx-mail' );
 }
 
 function flxi_decrypt( $stored ) {
+	if ( ! function_exists( 'flx_secret_open' ) && function_exists( 'flx_brand_boot' ) ) {
+		flx_brand_boot(); // Read before after_setup_theme (e.g. mail sent while plugins load): load the shared core now.
+	}
+	if ( ! function_exists( 'flx_secret_open' ) ) {
+		return '';
+	}
 	$stored = (string) $stored;
-	if ( 0 === strpos( $stored, 'flxi1:' ) && function_exists( 'sodium_crypto_secretbox_open' ) ) {
-		$raw   = base64_decode( substr( $stored, 6 ) );
-		$key   = substr( hash( 'sha256', wp_salt( 'secure_auth' ) . 'flxi', true ), 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
-		$nonce = substr( $raw, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
-		$out   = sodium_crypto_secretbox_open( substr( $raw, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES ), $nonce, $key );
-		return false === $out ? '' : $out;
-	}
 	if ( 0 === strpos( $stored, 'flxi0:' ) ) {
-		return (string) base64_decode( substr( $stored, 6 ) );
+		return (string) base64_decode( substr( $stored, 6 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 	}
-	return $stored;
+	// Old boxes used a raw SHA-256 key, not generichash, so $legacy cannot open them.
+	if ( 0 === strpos( $stored, 'flxi1:' ) ) {
+		try {
+			$raw = base64_decode( substr( $stored, 6 ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+			$n   = SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
+			if ( ! is_string( $raw ) || strlen( $raw ) <= $n ) {
+				return '';
+			}
+			$key = substr( hash( 'sha256', wp_salt( 'secure_auth' ) . 'flxi', true ), 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
+			$out = sodium_crypto_secretbox_open( substr( $raw, $n ), substr( $raw, 0, $n ), $key );
+			return false === $out ? '' : $out;
+		} catch ( Throwable $e ) {
+			unset( $e );
+			return '';
+		}
+	}
+	return flx_secret_open( $stored, 'flx-mail' );
 }
 
 /** SMTP şifresi: wp-config.php'de FLXI_SMTP_PASS tanımlıysa o kullanılır. */

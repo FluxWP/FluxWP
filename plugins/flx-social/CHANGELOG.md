@@ -1,5 +1,8 @@
 # Değişiklik günlüğü
 
+## 0.2.6
+- Uygulama gizli anahtarları ve hesap belirteçleri bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse bunları yeniden girin.
+
 ## 0.2.5
 - Sosyal API yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
 

@@ -38,7 +38,7 @@ add_filter(
 	20
 );
 
-/** Ayar köprüsü düz metin yazarsa gizli anahtarı mühürler. Zaten mühürlü değer (s1:/p1:) olduğu gibi kalır. */
+/** Ayar köprüsü düz metin yazarsa gizli anahtarı mühürler. Zaten mühürlü değer (flx1:/s1:/p1:) olduğu gibi kalır. */
 add_filter(
 	'pre_update_option_flxrc_settings',
 	function ( $value ) {
@@ -46,7 +46,7 @@ add_filter(
 			return $value;
 		}
 		$secret = (string) $value['secret'];
-		if ( '' === $secret || 0 === strpos( $secret, 's1:' ) || 0 === strpos( $secret, 'p1:' ) ) {
+		if ( '' === $secret || 0 === strpos( $secret, 'flx1:' ) || 0 === strpos( $secret, 's1:' ) || 0 === strpos( $secret, 'p1:' ) ) {
 			return $value;
 		}
 		$value['secret'] = flxrc_seal( $secret );

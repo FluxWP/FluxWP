@@ -815,3 +815,53 @@ function flx_rest_nocache( $response = null ) {
 	}
 	return $response;
 }
+
+/** Seal a secret for one plugin slug. Empty input or a crypto failure returns an empty string, never plain text. */
+function flx_secret_seal( string $plain, string $context ): string {
+	if ( '' === $plain ) {
+		return '';
+	}
+	try {
+		$key   = sodium_crypto_generichash( 'flx-secret|' . $context . '|' . wp_salt( 'auth' ), '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
+		$nonce = random_bytes( SODIUM_CRYPTO_SECRETBOX_NONCEBYTES );
+		return 'flx1:' . base64_encode( $nonce . sodium_crypto_secretbox( $plain, $nonce, $key ) ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+	} catch ( Throwable $e ) {
+		unset( $e );
+		return '';
+	}
+}
+
+/** Open a flx1: value for $context, or a legacy prefix keyed by the old generichash material. No known prefix is returned unchanged. */
+function flx_secret_open( string $stored, string $context, array $legacy = array() ): string {
+	try {
+		$b64 = null;
+		$key = null;
+		if ( 0 === strpos( $stored, 'flx1:' ) ) {
+			$b64 = substr( $stored, 5 );
+			$key = sodium_crypto_generichash( 'flx-secret|' . $context . '|' . wp_salt( 'auth' ), '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
+		} else {
+			$match = '';
+			foreach ( $legacy as $prefix => $material ) {
+				$prefix = (string) $prefix;
+				if ( '' !== $prefix && 0 === strpos( $stored, $prefix ) && strlen( $prefix ) > strlen( $match ) ) {
+					$match = $prefix;
+					$b64   = substr( $stored, strlen( $prefix ) );
+					$key   = sodium_crypto_generichash( (string) $material, '', SODIUM_CRYPTO_SECRETBOX_KEYBYTES );
+				}
+			}
+			if ( '' === $match ) {
+				return $stored;
+			}
+		}
+		$raw = base64_decode( (string) $b64, true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
+		$n   = SODIUM_CRYPTO_SECRETBOX_NONCEBYTES;
+		if ( false === $raw || strlen( $raw ) <= $n ) {
+			return '';
+		}
+		$plain = sodium_crypto_secretbox_open( substr( $raw, $n ), substr( $raw, 0, $n ), $key );
+		return false === $plain ? '' : $plain;
+	} catch ( Throwable $e ) {
+		unset( $e );
+		return '';
+	}
+}

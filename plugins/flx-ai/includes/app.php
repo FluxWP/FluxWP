@@ -83,7 +83,7 @@ add_filter(
 	}
 );
 
-/** Köprü düz metin yazarsa key_* alanlarını şifreler. enc1: / b64: dokunulmaz. */
+/** Köprü düz metin yazarsa key_* alanlarını şifreler. flx1: / enc1: / b64: dokunulmaz. */
 add_filter(
 	'pre_update_option_flxai_settings',
 	function ( $value ) {
@@ -95,7 +95,7 @@ add_filter(
 				continue;
 			}
 			$v = (string) $v;
-			if ( '' === $v || 0 === strpos( $v, 'enc1:' ) || 0 === strpos( $v, 'b64:' ) ) {
+			if ( '' === $v || 0 === strpos( $v, 'flx1:' ) || 0 === strpos( $v, 'enc1:' ) || 0 === strpos( $v, 'b64:' ) ) {
 				continue;
 			}
 			$value[ $k ] = flxai_encrypt( $v );
