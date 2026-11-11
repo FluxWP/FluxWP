@@ -18,7 +18,11 @@ jQuery(function ($) {
 	});
 	$(document).on('click', '[data-flxa-logo-clear]', function (e) {
 		e.preventDefault();
-		$('[data-flxa-logo-id]').val('0');
+		var $id = $('[data-flxa-logo-id]');
+		$id.val('0');
+		if ($id.data('fallback')) {
+			$('[data-flxa-logo-preview]').attr('src', $id.data('fallback'));
+		}
 		$(this).prop('hidden', true);
 	});
 });
