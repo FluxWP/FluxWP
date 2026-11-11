@@ -73,7 +73,9 @@ Genel şemalar (`fluxwp`, `fluxapp`, `flxmasaustu`) ve `javascript:`/`data:` vb.
 2. `POST /flxapp/v1/oauth/token` (form): `grant_type=authorization_code&code&redirect_uri&client_id&code_verifier` → `{access_token, token_type, expires_in, refresh_token, scope}`. Kod tek kullanımlık, 10 dk.
 3. Yenileme: `grant_type=refresh_token&refresh_token&client_id` → yeni çift. Kullanılmış yenileme belirteci tekrar gelirse oturumun tamamı kapanır (cihaz kaydı da silinir).
 4. İptal: `POST /oauth/revoke` `token&client_id` (RFC 7009).
-5. Dinamik kayıt: `POST /oauth/register` (RFC 7591, MCP; ayardan kapatılabilir, saatte 10/IP).
+5. Dinamik kayıt: `POST /oauth/register` (RFC 7591, MCP). Varsayılan kapalı (`flxapp_settings.dynamic_clients`, Uygulama ayarları). Açıkken dönüş adresleri eskisi gibi doğrulanır, saatte 10/IP. Kodla gelen istemciler (`flx-mobil`, `flx-masaustu`, marka `app_clients`) kayıt kapalıyken de yetkilendirilir.
+
+İstenen `scope` bilinen listeyle süzülür (`flx`, `mcp`, `offline_access`; bilinmeyen atılır, hiçbiri kalmazsa `flx`) ve onay ekranında eskisi gibi gösterilir. Kayıtlı kapsamı olan erişim belirteci: `flx` uygulama uçlarını (`/me`, `/counts`, `/config`, `/manifest`, `/dashboard`, `/sync`, `/prefs`, `/devices`, `/session`, `/session/end`, `/logout`, `/settings`, `/app/brand`) ve sitenin diğer REST uçlarını açar; `mcp` yalnız `/flx-mcp/`; `offline_access` yenileme içindir, tek başına uç açmaz. Kayıtlı kapsamı boş olan belirteç kısıtlanmaz. Yetmeyen kapsam `403` `insufficient_scope` ve `WWW-Authenticate: Bearer error="insufficient_scope", scope="<gerekli>"`.
 
 Flux App olmayan site için uygulama WordPress Application Passwords (`authorize-application.php`) ile sınırlı moda düşer (plan §4.3); bu eklentinin işi değildir.
 
@@ -315,4 +317,4 @@ Sekmeler: Genel, **Görünüm** (tema: mod, köşe, yoğunluk, yazı tipleri, a�
 
 ## MCP
 
-Flux AI & MCP ucu (`/wp-json/flx-mcp/v1/mcp`) OAuth belirteci ve `flxak_` anahtarıyla da çalışır. MCP ucu 401'de `WWW-Authenticate: Bearer resource_metadata="…"` verir; Claude gibi istemciler metadata'dan kendini kaydeder, kullanıcı onay ekranında izin verir.
+Flux AI & MCP ucu (`/wp-json/flx-mcp/v1/mcp`) `mcp` kapsamlı OAuth belirteci ve `flx mcp` kapsamlı `flxak_` anahtarıyla çalışır. Kapsamı boş eski belirteç de girer. MCP ucu 401'de `WWW-Authenticate: Bearer resource_metadata="…"` verir. Dinamik kayıt kapalıyken istemci elle eklenir ya da API anahtarı kullanılır; açıkken metadata'dan kendini kaydeder, kullanıcı onay ekranında izin verir.

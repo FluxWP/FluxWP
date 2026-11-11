@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.4.6
+- OAuth belirtecinin kayıtlı kapsamı uygulanır. `flx` uygulama uçlarını ve sitenin diğer REST uçlarını (panel oturumu dahil) açar; `mcp` yalnız `/flx-mcp/`. `offline_access` yenileme içindir, tek başına uç açmaz. Kapsamı boş kayıtlı belirteç tüm uçlara erişir. Kapsam yetmezse yanıt 403 `insufficient_scope` ve `WWW-Authenticate: Bearer error="insufficient_scope"`.
+- MCP istemcisinin kendini kaydetmesi varsayılan kapalıdır (Uygulama ayarlarındaki mevcut kutu). Açıkken dönüş adresleri eskisi gibi doğrulanır. Kodla gelen istemciler kayıt kapalıyken çalışır.
+
 ## 0.4.5
 - Kodla giriş yalnız kodun gittiği e-postanın hesabına ya da kayıtlı WhatsApp numarası o tam numara olan hesaba açılır. Sipariş veya fatura bilgisinden hesap açılmaz ve bağlanmaz.
 - Hesap açma (`otp_create`) varsayılan kapalı. Açıkken yalnız doğrulanmış e-posta için yeni müşteri açılır; eski siparişler bağlanmaz.
