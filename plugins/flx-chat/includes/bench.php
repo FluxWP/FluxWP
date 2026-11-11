@@ -22,6 +22,7 @@ function flxc_bench_groups() {
 		'kayitlar'  => __( 'Records, cancellation and receipts', 'flx-chat' ),
 		'personel'  => __( 'Staff assistant', 'flx-chat' ),
 		'islemler'  => __( 'Action results (isolated)', 'flx-chat' ),
+		'kapanis'   => __( 'Closing, reactions and reminders', 'flx-chat' ),
 	) );
 }
 
@@ -37,6 +38,9 @@ function flxc_bench_setups() {
 		'verified_email' => __( 'E-mail verified', 'flx-chat' ),
 		'ch_whatsapp'    => __( 'Phone code is sent via WhatsApp', 'flx-chat' ),
 		'ch_sms'         => __( 'Phone code is sent via SMS', 'flx-chat' ),
+		// 1.42.0
+		'chat_closed'    => __( 'Chat already marked completed (goodbyes said)', 'flx-chat' ),
+		'sample_event'   => __( 'Site search returns a sample event with a location', 'flx-chat' ),
 	);
 }
 
@@ -56,6 +60,12 @@ function flxc_bench_state_keys() {
 		'verified'      => array( __( 'Number or e-mail verified', 'flx-chat' ), array( 'verify_check' ) ),
 		'reminder'      => array( __( 'Reminder set', 'flx-chat' ), array( 'reminder_set' ) ),
 		'memory'        => array( __( 'Saved to memory', 'flx-chat' ), array( 'remember' ) ),
+		// 1.42.0: kapanış, tepki, hatırlatıcı ayrıntısı.
+		'closed'        => array( __( 'Chat marked completed', 'flx-chat' ), array( 'close_chat' ) ),
+		'reacted'       => array( __( 'Emoji reaction left', 'flx-chat' ), array( 'react' ) ),
+		'quiet_end'     => array( __( 'No text reply to the last message', 'flx-chat' ), array( 'close_chat' ) ),
+		'rem_once'      => array( __( 'Reminder is one-time', 'flx-chat' ), array( 'reminder_set' ) ),
+		'rem_single'    => array( __( 'Exactly one reminder', 'flx-chat' ), array( 'reminder_set' ) ),
 	);
 }
 
@@ -162,9 +172,10 @@ function flxc_bench_staff_user() {
 
 /** 1.16.0: emekliye ayrılan hazır senaryolar (yerine güncel sürümü eklendi); düzenlenmemişlerse kayıtlı setten çıkar. */
 function flxc_bench_retired() {
+	// 1.42.0: d-t7 (özet + onay) yerine onaysız hemen kuran d-t9.
 	// 1.18.0: d-p1 yerine kayıt kontrolü de yapan d-p4. 1.20.0: d-t4 yerine onay turlu d-t7, d-ck yerine d-cm (fiyat metinde de olabilir).
 	// 1.22.0: d-b3 yerine eksik bilgi sormayı da kabul eden d-b7, d-g1 yerine fiyatı metinde de kabul eden d-g7.
-	return array( 'd-u4', 'd-p1', 'd-t4', 'd-ck', 'd-b3', 'd-g1' );
+	return array( 'd-u4', 'd-p1', 'd-t4', 'd-ck', 'd-b3', 'd-g1', 'd-t7' );
 }
 
 /** Kayıtlı senaryolar; hiç kaydedilmediyse hazır set. Sonraki sürümlerde eklenen hazır senaryolar kayıtlı sete de katılır. */
@@ -581,7 +592,9 @@ function flxc_bench_step_locked( $run_id ) {
 			$role       = 'bot';
 			$tools      = array();
 			foreach ( (array) $r['log'] as $l ) {
-				$tools[]      = $l['tool'] . ( isset( $l['result']['ok'] ) && false === $l['result']['ok'] ? ' ✕' : '' );
+				// 1.42.0: tepki emojisi araç adının yanında görünür (close_chat 👍).
+				$emo          = in_array( $l['tool'], array( 'close_chat', 'react' ), true ) ? (string) ( $l['args']['reaction'] ?? ( $l['args']['emoji'] ?? '' ) ) : '';
+				$tools[]      = $l['tool'] . ( '' !== $emo ? ' ' . $emo : '' ) . ( isset( $l['result']['ok'] ) && false === $l['result']['ok'] ? ' ✕' : '' );
 				$d['tools'][] = $l['tool'];
 			}
 			if ( ! empty( $r['keyword'] ) ) {
@@ -747,6 +760,13 @@ function flxc_bench_setup_state( array $setup ) {
 		if ( in_array( $k, $setup, true ) ) {
 			$st['test_channel'] = $ch;
 		}
+	}
+	if ( in_array( 'chat_closed', $setup, true ) ) {
+		$st['closed']   = time();
+		$st['closed_n'] = 0;
+	}
+	if ( in_array( 'sample_event', $setup, true ) ) {
+		$st['test_event'] = 1;
 	}
 	return $st;
 }
@@ -946,7 +966,31 @@ function flxc_bench_state_has( $key, array $d ) {
 			$seed = flxc_bench_setup_state( (array) ( $d['sc']['setup'] ?? array() ) );
 			return count( (array) ( $st['phones_ok'] ?? array() ) ) + count( (array) ( $st['emails_ok'] ?? array() ) ) > count( (array) ( $seed['phones_ok'] ?? array() ) ) + count( (array) ( $seed['emails_ok'] ?? array() ) );
 		case 'reminder':
-			return ! empty( $st['rems'] ) || ! empty( $st['rem_draft'] );
+			return ! empty( $st['rems'] );
+		case 'rem_once':
+			return (bool) array_filter(
+				(array) ( $st['rems'] ?? array() ),
+				function ( $x ) {
+					return 'once' === ( $x['freq'] ?? '' );
+				}
+			);
+		case 'rem_single':
+			return 1 === count( (array) ( $st['rems'] ?? array() ) );
+		case 'closed':
+			return ! empty( $st['closed'] );
+		case 'reacted':
+			return ! empty( $st['reacts'] );
+		case 'quiet_end':
+			// Son müşteri mesajına asistan metin yazmadı (yalnız tepki / sessiz kapanış).
+			$last = null;
+			foreach ( (array) $d['transcript'] as $m ) {
+				if ( 'assistant' === ( $m['role'] ?? '' ) && empty( $m['scripted'] ) ) {
+					$last = $m;
+				} elseif ( 'user' === ( $m['role'] ?? '' ) ) {
+					$last = null;
+				}
+			}
+			return null !== $last && '' === trim( (string) $last['content'] );
 		case 'memory':
 			return ! empty( $st['mem'] );
 	}
@@ -1000,7 +1044,9 @@ function flxc_bench_judge_glossary() {
 		. "- verify_send kod gönderir, verify_check kodu doğrular ve kişinin kayıtlarını (records) döndürür; my_records kayıtları getirir.\n"
 		. "- send_price_list, payment_link, create_donation, handoff, opt_out: metinleri sistem asistanın mesajından sonra ayrı mesaj olarak gönderir.\n"
 		. "- receipt_check / dekont ön kontrolü: dekontu ekip onaylar; asistan ödemenin onaylandığını söylememelidir.\n"
-		. "- reminder_set hatırlatıcı kurar; staff_* araçları yalnız personelde vardır (test bağışı, rapor, kendi açtığı bağışlar).\n";
+		. "- close_chat sohbeti tamamlandı işaretler; silent=true ise ya da sohbet zaten tamamlandıysa asistan bilerek metin yazmaz (\"(metin yok)\" doğru davranıştır), yalnız reaction emojisi kişinin mesajına tepki olarak gider. args içinde auto=true varsa bu kararı model değil sistem verdi. react kişinin mesajına emoji tepkisi bırakır.\n"
+		. "- search_site sonucundaki event alanı etkinliğin tarihi, saati ve yeridir; [[linkN]] işaretleri kişiye gerçek link olarak gider.\n"
+		. "- reminder_set hatırlatıcıyı onay sormadan hemen kurar (id verilirse var olanı günceller); gün söylenmediyse ayın 1'i varsayılandır. staff_* araçları yalnız personelde vardır (test bağışı, rapor, kendi açtığı bağışlar).\n";
 }
 
 /** Değerlendirici model: konuşmayı ölçüte göre geçti/kaldı diye puanlar. */

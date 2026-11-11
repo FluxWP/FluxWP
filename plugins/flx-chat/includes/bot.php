@@ -50,6 +50,7 @@ function flxc_bot_state( $chat ) {
 			'donation' => 0,
 			'last_in'  => 0,     // en son işlenen gelen mesaj id
 			'ai'       => 0,     // asistan bu sohbette en az bir kez yazdı (AI filtresi)
+			'closed'   => 0,     // 1.42.0: sohbet tamamlandı işareti (zaman); kişi yeni bir şey yazınca silinir
 		)
 	);
 }
@@ -312,6 +313,10 @@ function flxc_bot_run( $chat_id ) {
 			if ( flxc_bot_wants_human( $chat_id, $prev_in ) ) {
 				flxc_bot_human_now( $chat );
 				break;
+			}
+			// 1.42.0: tamamlanmış sohbette yalnız teşekkür / veda geldiyse model çağrılmaz, mesaja tepki bırakılır.
+			if ( flxc_bot_close_fast( $chat, $prev_in ) ) {
+				continue;
 			}
 			flxc_bot_busy( $chat_id, true );
 			$GLOBALS['flxc_bot_turn_usage'] = array();
@@ -664,8 +669,9 @@ function flxc_bot_turn( $chat ) {
 		$sent++;
 	}
 	flxc_evo_typing( null, 'stop' );
-	if ( ! $sent && empty( $ctx['stop'] ) ) {
-		// Model boş döndü: kişi "yazıyor…" görüp sessiz kalmasın.
+	if ( ! $sent && empty( $ctx['stop'] ) && empty( $ctx['quiet_ok'] ) ) {
+		// Model boş döndü: kişi "yazıyor…" görüp sessiz kalmasın. (1.42.0: tepki bırakıldıysa ya da sohbet
+		// tamamlandı işaretlendiyse metinsiz tur bilinçlidir, bekleme mesajı gitmez.)
 		flxc_bot_fallback( $fresh, __( 'the AI returned an empty answer', 'flx-chat' ) );
 		return;
 	}
@@ -674,6 +680,11 @@ function flxc_bot_turn( $chat ) {
 		$st       = flxc_bot_state( flxc_get_chat( $chat['id'] ) );
 		$st['n']  = (int) $st['n'] + 1;
 		$st['ai'] = 1;
+		// 1.42.0: bu turda sohbet kapatılmadıysa (asistan yeni bir konuya cevap verdi) tamamlandı işareti kalkar.
+		if ( empty( $ctx['closed'] ) ) {
+			$st['closed'] = 0;
+			unset( $st['closed_n'] );
+		}
 		flxc_bot_save_state( $chat['id'], $st );
 	}
 }
@@ -985,6 +996,10 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 		$known[] = 'Bağış durumu (şu an, kayıttan): ' . flxc_bot_donation_status_text( (int) $state['donation'], $state );
 	}
 
+	if ( flxc_bot_is_closed( $state ) ) {
+		$known[] = 'Sohbet durumu: tamamlandı (vedalaşıldı, ' . wp_date( 'H:i', (int) $state['closed'] ) . '). Kişi yalnız teşekkür / veda / dua yazarsa metin yazma, close_chat(silent=true); yeni bir soru ya da istek gelirse normal cevap ver.';
+	}
+
 	// En başta sistem tanımı ve araç haritası (bot-info.php); fiyat, IBAN, saat metne gömülmez.
 	// Önce sabit kısım, sonda "## Bilinenler" ile kişiye özel kısım: Claude önbelleği sabit kısmı
 	// tüm sohbetlerde ortak okur (ai-claude.php bu başlıktan böler).
@@ -1001,7 +1016,7 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 		$rules[] = flxc_verify_rule( $chat );
 	}
 	if ( in_array( 'search_site', $tools, true ) ) {
-		$rules[] = '- Kişi bir proje, etkinlik, haber ya da gönderi sorarsa search_site çağır; yalnız dönen içerikleri ve linklerini paylaş, bulunamadıysa uydurma.';
+		$rules[] = '- Kişi bir proje, etkinlik, haber ya da gönderi sorarsa search_site çağır; yalnız dönen içerikleri ve linklerini paylaş, bulunamadıysa uydurma. Etkinliğin tarihi, saati ve yeri sonuçtaki event alanındadır: yer sorulursa konum adını, adresini ve yol tarifi linkini (map) ver; event.location "henüz açıklanmadı" diyorsa bunu ve varsa açıklanacağı tarihi söyle, yer uydurma, ekibe aktarma.';
 	}
 	$rules[] = '- Ekibe aktarma (handoff) son çaredir: yalnız kişi açıkça bir insanla görüşmek isterse ya da araçlarınla çözemeyeceğin bir sorun varsa (şikâyet, iade, teknik arıza, araç hata veriyor). Bağış, ödeme ya da sertifika durumu sorulursa önce my_records çağır ve kendin cevapla; sertifikasını yeniden isterse certificate_resend kullan.';
 	$rules[] = '- İstisna: kişi kızgınsa, şikâyet ediyorsa ya da "kimse dönmedi", "artık yeter" gibi sabrı tükendiyse araçla uğraştırma: tek cümleyle içtenlikle özür dile ve handoff çağır.';
@@ -1027,6 +1042,7 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 		$pay[] = '- Şu an yalnız havale/EFT ile ödeme alınıyor.';
 	}
 	$p .= "\n\n## Bağış ve ödeme\n" . implode( "\n", $pay );
+	$p .= "\n\n" . flxc_bot_close_rule();
 	$extra = trim( (string) flxc_setting( 'bot_instructions' ) );
 	if ( '' !== $extra ) {
 		$p .= "\n\n## Ek talimatlar (öncelikli)\n" . $extra;
@@ -1239,6 +1255,7 @@ function flxc_bot_tools() {
 		$list[] = flxc_dekont_tool_def( $f );
 	}
 	$list = array_merge( $list, flxc_bot_info_tools( $f ) );
+	$list = array_merge( $list, flxc_bot_close_tools( $f ) );
 	if ( function_exists( 'flxc_rem_on' ) && flxc_rem_on() ) {
 		$list = array_merge( $list, flxc_rem_tools( $f ) );
 	}
@@ -1529,6 +1546,12 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			$save( $state );
 			return $r;
 
+		case 'close_chat':
+		case 'react':
+			$r = flxc_bot_close_tool( $name, $a, $chat, $state, $ctx, $sandbox );
+			$save( $state );
+			return $r;
+
 		case 'read_doc':
 			$d = flxc_bot_doc( (string) ( $a['slug'] ?? '' ) );
 			return $d && 'off' !== $d['mode'] ? array( 'ok' => true, 'title' => $d['title'], 'content' => $d['body'] ) : array( 'ok' => false, 'error' => 'Belge yok.' );
@@ -1557,7 +1580,7 @@ function flxc_bot_tool( $name, array $a, $chat, array &$ctx ) {
 			return flxc_bot_info_tool( $name, $a );
 
 		case 'search_site':
-			return flxc_site_on() ? flxc_site_tool( $a ) : array( 'ok' => false, 'error' => 'Site araması kapalı.' );
+			return flxc_site_on() ? flxc_site_tool( $a, $sandbox ? $state : array() ) : array( 'ok' => false, 'error' => 'Site araması kapalı.' );
 
 		case 'receipt_check':
 			return flxc_dekont_tool( $a, $chat, $state );

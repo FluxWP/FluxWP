@@ -280,6 +280,27 @@ function flxc_bot_sandbox_turn( array $history, array $state, $template, $model 
 			'usage'   => flxc_ai_usage_sum( array(), '' !== $model ? $model : flxc_ai_model( 'bot' ) ),
 		);
 	}
+	// 1.42.0: gerçek hatta olduğu gibi: tamamlanmış sohbette yalnız teşekkür / veda geldiyse model çağrılmaz, tepki bırakılır.
+	$fast = flxc_bot_close_fast_sandbox( $history, $state );
+	if ( $fast ) {
+		return array(
+			'replies'  => array(),
+			'auto'     => array(),
+			'state'    => $fast['state'],
+			'log'      => array(
+				array(
+					'tool'   => 'close_chat',
+					'args'   => array_filter( array( 'silent' => true, 'reaction' => $fast['emoji'], 'auto' => true ) ),
+					'result' => array( 'ok' => true, 'note' => 'Sohbet zaten tamamlandı; model çağrılmadı' . ( '' !== $fast['emoji'] ? ', mesaja tepki bırakıldı.' : ', arka arkaya üçüncü veda: sessiz kalındı.' ) ),
+				),
+			),
+			'handoff'  => false,
+			'reaction' => $fast['emoji'],
+			'bg'       => flxc_bot_sandbox_bg( $fast['state'] ),
+			'ms'       => 0,
+			'usage'    => flxc_ai_usage_sum( array(), '' !== $model ? $model : flxc_ai_model( 'bot' ) ),
+		);
+	}
 	$ctx   = array(
 		'after'   => array(),
 		'sandbox'  => array( 'state' => $state ),
@@ -317,10 +338,17 @@ function flxc_bot_sandbox_turn( array $history, array $state, $template, $model 
 			$auto[] = $i >= count( $parts );
 		}
 	}
+	// 1.42.0: bu turda sohbet kapatılmadıysa ve asistan yazdıysa tamamlandı işareti kalkar (gerçek hattaki gibi).
+	if ( $out && empty( $ctx['closed'] ) ) {
+		$ctx['sandbox']['state']['closed'] = 0;
+		unset( $ctx['sandbox']['state']['closed_n'] );
+	}
+	$r_new = array_slice( (array) ( $ctx['sandbox']['state']['reacts'] ?? array() ), count( (array) ( $state['reacts'] ?? array() ) ) );
 	return array(
 		'replies' => $out,
 		'auto'    => $auto,
 		'images'  => (object) $imgs,
+		'reaction' => $r_new ? (string) end( $r_new ) : '',
 		'state'   => $ctx['sandbox']['state'],
 		'log'     => $ctx['log'],
 		'handoff' => ! empty( $ctx['handoff'] ),

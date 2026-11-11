@@ -713,7 +713,8 @@
 				if (r.month) D.month = r.month;
 				var tools = (r.log || []).map(function (l) { return '⚙ ' + l.tool + (l.result && l.result.ok === false ? ' ✕' : ''); }).join('  ');
 				var n0 = tst.history.length;
-				if (!r.replies.length) tst.history.push({ role: 'assistant', content: t('(cevap yok)'), tools: tools, calls: calls });
+				if (!r.replies.length) tst.history.push({ role: 'assistant', content: r.reaction ? t('(metin yok, mesaja tepki: {e})', { e: r.reaction }) : (r.state && r.state.closed ? t('(metin yok: sohbet tamamlandı, sessiz kalındı)') : t('(cevap yok)')), tools: tools, calls: calls });
+				else if (r.reaction) tst.history.push({ role: 'assistant', content: t('(mesaja tepki: {e})', { e: r.reaction }), tools: '', calls: null, auto: true });
 				r.replies.forEach(function (x, i) { tst.history.push({ role: 'assistant', content: x, tools: i === 0 ? tools : '', calls: i === 0 ? calls : null, auto: !!(r.auto && r.auto[i]), img: (r.images && r.images[i]) || '' }); });
 				// Turun kullanımı son cevabın altında.
 				if (u && tst.history.length > n0) tst.history[tst.history.length - 1].usage = u;

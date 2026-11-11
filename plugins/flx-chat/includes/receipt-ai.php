@@ -78,6 +78,12 @@ function flxc_bot_receipt_turn( $chat ) {
 	}
 	$state   = flxc_bot_state( $chat );
 	$pending = array();
+	// 1.42.0: bağış bu sohbette açılmadıysa (siteden yapıldıysa) dekont kişinin kendi bekleyen bağışıyla karşılaştırılır.
+	$own     = flxc_rcheck_own_donations( $chat, $state );
+	$state['own_donations'] = array_keys( $own );
+	if ( empty( $state['donation'] ) ) {
+		$state['donation'] = flxc_rcheck_pick_donation( $own );
+	}
 	foreach ( flxc_recent_messages( $chat['id'], 1, 12, 30 ) as $m ) {
 		if ( 'in' !== $m['direction'] || ! in_array( $m['type'], array( 'image', 'document' ), true ) ) {
 			continue;
@@ -97,6 +103,10 @@ function flxc_bot_receipt_turn( $chat ) {
 		$kind = array( 'match' => 'rc_match', 'mismatch' => 'rc_bad', 'not_receipt' => 'rc_not' );
 		flxc_bot_stat_add( array( 'rc' => 1 ) + ( isset( $kind[ $res['verdict'] ] ) ? array( $kind[ $res['verdict'] ] => 1 ) : array() ), isset( $res['u'] ) ? array( $res['u'] ) : array(), (int) $m['chat_id'] );
 		unset( $res['u'] );
+		$res = flxc_rcheck_rematch( $res, $own );
+		if ( ! empty( $res['donation'] ) ) {
+			$state['donation'] = (int) $res['donation'];
+		}
 		if ( 'not_receipt' !== $res['verdict'] ) {
 			$res = flxc_rcheck_register( $res, $m, $state );
 		}
@@ -104,7 +114,8 @@ function flxc_bot_receipt_turn( $chat ) {
 		// Bakılmayan eski dosyalar bir daha kontrol edilmesin.
 		$meta['rcheck'] = $res;
 		flxc_update_message( $m['id'], array( 'meta' => $meta ) );
-		if ( 'not_receipt' !== $res['verdict'] && ! empty( $state['donation'] ) ) {
+		// Kişi aynı dekontu bu bağış için zaten yüklediyse (siteden ya da bu sohbetten) ikinci kez eklenmez.
+		if ( 'not_receipt' !== $res['verdict'] && ! empty( $state['donation'] ) && empty( $res['dup']['same'] ) ) {
 			flxc_attach_receipt( $m['id'], 'donation', (int) $state['donation'], false, __( 'AI pre-check', 'flx-chat' ) . ': ' . flxc_rcheck_summary( $res ) );
 		}
 		if ( ! $best || 'not_receipt' === $best['verdict'] ) {
@@ -128,13 +139,15 @@ function flxc_bot_receipt_turn( $chat ) {
 	}
 	flxc_system_message( $chat, __( 'Receipt pre-check (AI): ', 'flx-chat' ) . flxc_rcheck_summary( $best ) . ( $auto ? '' : ' · ' . __( 'Awaiting staff approval', 'flx-chat' ) ) );
 	// 1.9.1: asistan kapanmaz (kişi sorularına cevap vermeye devam eder); son onay ekipte, ekibe haber gider.
+	$did              = (int) ( $best['donation'] ?? 0 );
 	$state            = flxc_bot_state( flxc_get_chat( $chat['id'] ) );
-	$state['receipt'] = array( 'donation' => (int) ( $state['donation'] ?? 0 ), 'verdict' => $best['verdict'], 'at' => time() );
+	$state['receipt'] = array( 'donation' => $did ? $did : (int) ( $state['donation'] ?? 0 ), 'verdict' => $best['verdict'], 'at' => time() );
 	flxc_bot_save_state( $chat['id'], $state );
 	return array(
 		'texts'  => array( flxc_rcheck_reply( $best ) ),
 		// Tutar farkını kişi düzeltebilir; sahte/tekrar dekont ve yanlış alıcı ekibe hemen haber verir.
-		'notify' => ! ( 'mismatch' === $best['verdict'] && 'amount' === ( $best['why'] ?? '' ) ),
+		// Kişinin kendi dekontunu yeniden göndermesi (same) yeni bir iş değildir, ekip yeniden uyarılmaz.
+		'notify' => ! ( 'mismatch' === $best['verdict'] && 'amount' === ( $best['why'] ?? '' ) ) && empty( $best['dup']['same'] ),
 		'reason' => __( 'Receipt received, final check by the team', 'flx-chat' ),
 	);
 }
@@ -264,8 +277,79 @@ function flxc_receipt_ai_read( array $base, $data, $mime, $name, $caption, array
 }
 
 /**
+ * 1.42.0: kişinin kendi bağışları (yazdığı numara, kodla doğrulanmış numara/e-posta, bu sohbette açılan).
+ * Canlıda görülen hata: kişi bağışı siteden yapıp dekontu oradan yükledi, sonra aynı dekontu WhatsApp'tan da gönderdi;
+ * sohbette bağış kaydı olmadığı için dekont "başka kayıt için kullanılmış" sayıldı ve beklenen tutar boş kaldı.
+ *
+ * @return array[] id => { id, amount, currency, status, receipts }
+ */
+function flxc_rcheck_own_donations( $chat, array $state ) {
+	$out = array();
+	if ( ! function_exists( 'flxc_bot_own_records' ) || ! flxc_flxb_on() || empty( $chat['id'] ) ) {
+		return $out;
+	}
+	$r = flxc_bot_own_records(
+		$chat,
+		function_exists( 'flxc_ev_emails' ) ? flxc_ev_emails( $state ) : array(),
+		function_exists( 'flxc_verify_phones' ) ? flxc_verify_phones( $state ) : array(),
+		$state
+	);
+	foreach ( (array) $r['donations'] as $d ) {
+		$id = (int) ( $d['id'] ?? 0 );
+		if ( $id ) {
+			$out[ $id ] = array(
+				'id'       => $id,
+				'amount'   => (float) ( $d['amount'] ?? 0 ),
+				'status'   => (string) ( $d['status'] ?? '' ),
+				'receipts' => (int) ( $d['receipts'] ?? 0 ),
+			);
+		}
+	}
+	return $out;
+}
+
+/** Dekontun karşılaştırılacağı bağış: ödeme bekleyenlerden dekontu olmayan, yoksa en yenisi (0 = yok). */
+function flxc_rcheck_pick_donation( array $own ) {
+	$pend = array_filter(
+		$own,
+		function ( $d ) {
+			return 'pending' === $d['status'];
+		}
+	);
+	if ( ! $pend ) {
+		return 0;
+	}
+	$bare = array_filter(
+		$pend,
+		function ( $d ) {
+			return ! $d['receipts'];
+		}
+	);
+	return (int) max( array_keys( $bare ? $bare : $pend ) );
+}
+
+/** Tutar seçilen bağışa uymuyor ama kişinin bekleyen başka bir bağışına uyuyorsa dekont ona aittir. */
+function flxc_rcheck_rematch( array $res, array $own ) {
+	if ( 'mismatch' !== ( $res['verdict'] ?? '' ) || 'amount' !== ( $res['why'] ?? '' ) || ! isset( $res['amount'] ) ) {
+		return $res;
+	}
+	foreach ( $own as $d ) {
+		if ( 'pending' === $d['status'] && (int) $d['id'] !== (int) ( $res['donation'] ?? 0 ) && abs( (float) $res['amount'] - $d['amount'] ) < 1 ) {
+			$res['donation'] = (int) $d['id'];
+			$res['expected'] = $d['amount'];
+			$res['amt_ok']   = true;
+			$res['verdict']  = 'match';
+			unset( $res['why'] );
+			break;
+		}
+	}
+	return $res;
+}
+
+/**
  * Dekontu deftere yazar; daha önce yüklenmişse sonuç "duplicate" olur (yanlış alıcı uyarısı önce gelir).
- * Aynı sohbette aynı bağış için tekrar gönderilmişse sahte sayılmaz (same=true).
+ * Aynı kişinin kendi bağışı için yeniden gönderdiği dekont sahte sayılmaz (same=true): aynı sohbetten ya da
+ * kişinin kendi bağışına (siteden) daha önce yüklenmiş olması yeter.
  */
 function flxc_rcheck_register( array $res, array $m, array $state ) {
 	$path = flxc_message_media_path( $m );
@@ -290,8 +374,15 @@ function flxc_rcheck_register( array $res, array $m, array $state ) {
 	if ( $reg['duplicates'] ) {
 		$dup  = $reg['duplicates'][0];
 		$same = true;
+		$target = (int) ( $state['donation'] ?? 0 );
+		$mine   = array_map( 'intval', (array) ( $state['own_donations'] ?? array() ) );
 		foreach ( $reg['duplicates'] as $x ) {
-			$same = $same && (int) $m['chat_id'] === $x['chat_id'] && (int) ( $state['donation'] ?? 0 ) === $x['donation_id'];
+			$did = (int) $x['donation_id'];
+			// 1.42.0: önceki yükleme kişinin kendi bağışına yapıldıysa (siteden de olsa) ve dekont şimdi de o bağış içinse
+			// aynı kişinin dekontudur. Kişinin BAŞKA bir bağışı için yeniden kullanılıyorsa uyarı sürer.
+			$own_dup  = $did && ( $did === $target || ( ! $target && in_array( $did, $mine, true ) ) );
+			$chat_dup = (int) $m['chat_id'] === (int) $x['chat_id'] && $target === $did;
+			$same     = $same && ( $own_dup || $chat_dup );
 		}
 		$res['dup'] = array(
 			'id'       => $dup['id'],
@@ -385,7 +476,7 @@ function flxc_rcheck_summary( array $r ) {
 			$parts[] = __( 'Receipt no', 'flx-chat' ) . ': ' . $r['dekont_no'];
 		}
 		if ( ! empty( $r['dup'] ) ) {
-			$parts[] = '⚠ ' . __( 'This receipt was', 'flx-chat' ) . ' ' . flxc_dekont_dup_text( array( 'created_at' => $r['dup']['at'], 'source' => $r['dup']['source'] ) ) . ( ! empty( $r['dup']['donation'] ) ? ' (' . __( 'donation', 'flx-chat' ) . ' #' . (int) $r['dup']['donation'] . ')' : '' );
+			$parts[] = ( empty( $r['dup']['same'] ) ? '⚠ ' : 'ℹ ' ) . __( 'This receipt was', 'flx-chat' ) . ' ' . flxc_dekont_dup_text( array( 'created_at' => $r['dup']['at'], 'source' => $r['dup']['source'] ) ) . ( ! empty( $r['dup']['donation'] ) ? ' (' . __( 'donation', 'flx-chat' ) . ' #' . (int) $r['dup']['donation'] . ')' : '' ) . ( empty( $r['dup']['same'] ) ? '' : ' · ' . __( 'same person and donation, not a copy', 'flx-chat' ) );
 		}
 	}
 	if ( ! empty( $r['note'] ) ) {
