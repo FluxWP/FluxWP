@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux Donate 2.18.0: compact two-column checkout (Donations › Settings › Appearance › Checkout page layout).
+ * Flux Donate 2.21.0: compact two-column checkout (Donations › Settings › Appearance › Checkout page layout).
  *
  * Every checkout step is a card, contact and name are one card, the left column has no empty gaps. On a wide
  * screen the summary column gets the terms box and a "Pay {total}" button; both drive WooCommerce's own

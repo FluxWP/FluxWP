@@ -1,4 +1,4 @@
-/* Flux Donate 2.18.0 · compact checkout: terms box and "Pay {total}" in the summary column on wide screens.
+/* Flux Donate 2.21.0 · compact checkout: terms box and "Pay {total}" in the summary column on wide screens.
  * Both drive WooCommerce's own checkbox and place order button (its validation, payment methods and 3D Secure stay). GPL v2 or later. */
 (function () {
 	'use strict';

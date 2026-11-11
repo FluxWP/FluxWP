@@ -480,7 +480,7 @@ body.flx-dark .flxwb-dcard__icon--wa { background: rgba(26, 158, 81, .18); color
 .flxwb-dfields select { width: 100%; min-height: 46px; }
 @media (max-width: 560px) { .flxwb-dgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-/* 2.18.0: quick quantity buttons under a quantity option */
+/* 2.21.0: quick quantity buttons under a quantity option */
 .flxwb-quick { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; }
 .flxwb-quick button { min-width: 52px; min-height: 40px; padding: 6px 14px; border: 1px solid var(--w-line, #DDE2E7); border-radius: 999px; background: var(--w-surface, #fff); color: var(--w-ink, #111827); font: inherit; font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer; transition: border-color .15s, background .15s; }
 .flxwb-quick button:hover { border-color: var(--w-primary, #1F2937); }

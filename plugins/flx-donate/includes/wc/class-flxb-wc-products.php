@@ -122,7 +122,7 @@ final class FLXB_WC_Products {
 	}
 
 	/** Product image: the type image, else the bundled sapling / donation picture. */
-	/** 2.18.0: the bundled sapling picture is a photo (it was an icon); the version marks the attachment it made. */
+	/** 2.21.0: the bundled sapling picture is a photo (it was an icon); the version marks the attachment it made. */
 	const BUNDLED_IMG = '2';
 
 	/**

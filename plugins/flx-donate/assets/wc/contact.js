@@ -1,4 +1,4 @@
-/* Flux Donate 2.18.0 (since 2.0.4): one contact section on a donation-only checkout, e-mail or phone (at least one). GPL v2 or later. */
+/* Flux Donate 2.21.0 (since 2.0.4): one contact section on a donation-only checkout, e-mail or phone (at least one). GPL v2 or later. */
 (function () {
 	'use strict';
 	var C = window.FLXBContact;
@@ -63,7 +63,7 @@
 		box.appendChild(row); box.appendChild(help); box.appendChild(err);
 		host.insertBefore(box, host.firstChild);
 		ui = { box: box, email: email, phone: phone, err: err };
-		/* 2.18.0: a signed-in donor's e-mail and phone are read-only (changed under My account). */
+		/* 2.21.0: a signed-in donor's e-mail and phone are read-only (changed under My account). */
 		var U = C.user;
 		if (U) {
 			if (U.email) { email.i.value = U.email; email.i.readOnly = true; }
@@ -97,7 +97,7 @@
 		push();
 	}
 
-	/* 2.18.0: "Create an account" needs a real e-mail; hidden (and unticked) while there is none. */
+	/* 2.21.0: "Create an account" needs a real e-mail; hidden (and unticked) while there is none. */
 	function signup() {
 		var s = document.querySelector('.wc-block-checkout__create-account');
 		if (!s || !ui) { return; }

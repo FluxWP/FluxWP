@@ -268,9 +268,23 @@
 .flxwb-fee [data-flxwb-fee-amount] { font-weight: 600; color: var(--w-primary); font-size: inherit; }
 .flxwb-fee__help { display: block; margin-top: 2px; color: var(--w-muted, #6B7280); font-size: 12.5px; line-height: 1.45; }
 
-/* 2.18.0 · A (steps): wide container, no type step when there is only one type, quick quantity buttons */
+/* 2.21.0 · A (steps): wide container, no type step when there is only one type, quick quantity buttons */
 .is-layout-constrained > .flxwb--steps, .flxwb--steps.flxwb--steps { max-width: var(--wp--style--global--wide-size, 1140px) !important; margin-left: auto !important; margin-right: auto !important; }
-.flxwb--steps .flxwb-form { grid-template-columns: minmax(0, 1fr) 360px; }
+@media (min-width: 901px) { .flxwb--steps .flxwb-form { grid-template-columns: minmax(0, 1fr) 360px; } }
 .flxwb--steps .flxwb-types:has(.flxwb-tabs > :only-child) { display: none; }
 .flxwb--steps .flxwb-types:has(.flxwb-tabs > :only-child) + .flxwb-main, .flxwb--steps .flxwb-types:has(.flxwb-tabs > :only-child) ~ .flxwb-main { border-radius: var(--w-radius); }
 .flxwb--steps .flxwb-types:has(.flxwb-tabs > :only-child) ~ .flxwb-main .flxwb-sec:first-child { border-top: 0; }
+
+/* 2.21.0 · A (steps): photo band with the page title over the form */
+.flxwb-hero { position: relative; margin: 0 0 24px; padding: clamp(28px, 5vw, 56px) clamp(20px, 4vw, 44px); min-height: 200px; display: flex; align-items: flex-end; border-radius: var(--w-radius, 16px); overflow: hidden; color: #fff; background: linear-gradient(90deg, rgba(6, 38, 28, .86) 0%, rgba(6, 38, 28, .55) 55%, rgba(6, 38, 28, .2) 100%), var(--flxwb-hero) center / cover no-repeat, #0E3B2E; }
+.flxwb-hero__in { max-width: 640px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.flxwb-hero__pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 8px; border: 1px solid rgba(255, 255, 255, .55); border-radius: 999px; font-size: .85rem; font-weight: 700; color: #fff; }
+.flxwb-hero__pill .flxwb-ic { width: 16px; height: 16px; color: #B5E36B; }
+.flxwb-hero__title { margin: 0; color: #fff !important; font-size: clamp(1.7rem, 3.6vw, 2.6rem); line-height: 1.15; }
+.flxwb-hero__desc { margin: 0; color: rgba(255, 255, 255, .9); font-size: 1.02rem; line-height: 1.5; }
+body:has(.flxwb-hero) .wp-block-post-title, body:has(.flxwb-hero) h1.entry-title { display: none; }
+@media (max-width: 600px) { .flxwb-hero { min-height: 160px; margin-bottom: 16px; border-radius: 14px; } }
+.flxwb-hero + .flxwb-acct { margin: 0 0 20px !important; max-width: none !important; }
+body:has(.flxwb-hero) main:has(.flxwb-hero) { margin-top: 0 !important; padding-top: 24px !important; }
+body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flxwb-hero) { margin-top: 0 !important; }
+@media (max-width: 600px) { body:has(.flxwb-hero) main:has(.flxwb-hero) { padding-top: 12px !important; } }

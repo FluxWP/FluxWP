@@ -50,8 +50,9 @@ final class FLXB_WC_Look {
 			'fee_on'       => 0,         // "I will cover the transaction fee" box on the form
 			'fee_checked'  => 0,         // the box is ticked by default
 			'fee_rates'    => array(),   // [ gateway id => [ 'pct' => 2.9, 'fixed' => 0.25 ] ]
-			'checkout'     => 'compact', // 2.18.0: compact (two columns, cards, pay button in the summary) | theme
-			'signup'       => 1,         // 2.18.0: guests can tick "Create an account" at the checkout
+			'checkout'     => 'compact', // 2.21.0: compact (two columns, cards, pay button in the summary) | theme
+			'signup'       => 1,         // 2.21.0: guests can tick "Create an account" at the checkout
+			'hero'         => 1,         // 2.21.0: photo band over the form in the steps layout
 		);
 	}
 
@@ -151,6 +152,7 @@ final class FLXB_WC_Look {
 		$out['fee_checked']  = empty( $in['fee_checked'] ) ? 0 : 1;
 		$out['checkout']     = isset( $in['checkout'], self::checkout_styles()[ $in['checkout'] ] ) ? (string) $in['checkout'] : $d['checkout'];
 		$out['signup']       = array_key_exists( 'signup', $in ) ? ( empty( $in['signup'] ) ? 0 : 1 ) : $d['signup'];
+		$out['hero']         = array_key_exists( 'hero', $in ) ? ( empty( $in['hero'] ) ? 0 : 1 ) : $d['hero'];
 		$out['fee_rates']    = array();
 		foreach ( (array) ( $in['fee_rates'] ?? array() ) as $gw => $r ) {
 			$gw  = sanitize_key( (string) $gw );
@@ -270,6 +272,7 @@ final class FLXB_WC_Look {
 				'fee_on'       => array( 'type' => 'bool', 'default' => false, 'desc' => 'Show the "I will cover the transaction fee" box on the donation form.' ),
 				'fee_checked'  => array( 'type' => 'bool', 'default' => false, 'desc' => 'The transaction fee box is ticked by default.' ),
 				'checkout'     => array( 'type' => 'enum', 'enum' => array_keys( self::checkout_styles() ), 'default' => 'compact', 'desc' => 'Checkout page layout: compact (two columns, sections as cards, terms + pay button in the summary) or theme.' ),
+				'hero'         => array( 'type' => 'bool', 'default' => true, 'desc' => 'Steps layout: a photo band with the page title over the form (skipped when the page starts with a cover block).' ),
 				'signup'       => array( 'type' => 'bool', 'default' => true, 'desc' => 'Guests can tick "Create an account" at the checkout (the password is e-mailed).' ),
 				'fee_rates'    => array( 'type' => 'object', 'default' => array(), 'desc' => 'Transaction fee per payment method: { "gateway id": { "pct": 2.9, "fixed": 0.25 } } (fixed in the store currency).' ),
 			),
@@ -315,6 +318,7 @@ final class FLXB_WC_Look {
 			echo '<li><input type="hidden" name="order[]" value="' . esc_attr( $k ) . '"><span>' . esc_html( $labels[ $k ] ) . '</span><button type="button" class="flxb-iconbtn" data-up aria-label="' . esc_attr__( 'Move up', 'flx-donate' ) . '">↑</button><button type="button" class="flxb-iconbtn" data-down aria-label="' . esc_attr__( 'Move down', 'flx-donate' ) . '">↓</button></li>';
 		}
 		echo '</ol><p class="flxb-help">' . esc_html__( 'The type choice is always first and the total always last. Sections a type does not use are skipped.', 'flx-donate' ) . '</p></div>';
+		echo '<label class="flxb-check"><input type="checkbox" name="hero" value="1"' . checked( (int) $s['hero'], 1, false ) . '> ' . esc_html__( 'A · Steps: photo band with the page title over the form (the type picture)', 'flx-donate' ) . '</label>';
 		echo '<label class="flxb-check"><input type="checkbox" name="share_phone" value="1"' . checked( (int) $s['share_phone'], 1, false ) . '> ' . esc_html__( 'Ask a phone number for every share (types with a proxy). The video or certificate of that share can be sent there too.', 'flx-donate' ) . '</label>';
 		echo '</section>';
 
@@ -404,6 +408,7 @@ final class FLXB_WC_Look {
 		$in['fee_on']      = ! empty( $in['fee_on'] ) ? 1 : 0;
 		$in['fee_checked'] = ! empty( $in['fee_checked'] ) ? 1 : 0;
 		$in['signup']      = ! empty( $in['signup'] ) ? 1 : 0;
+		$in['hero']        = ! empty( $in['hero'] ) ? 1 : 0;
 		update_option( self::OPTION, self::clean( $in ), false );
 		self::flush();
 		FLXB_Admin::redirect( 'flxb-settings', array( 'tab' => 'look', 'flxb_msg' => 'saved' ) );

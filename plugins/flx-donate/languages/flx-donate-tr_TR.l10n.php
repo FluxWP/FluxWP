@@ -3709,4 +3709,6 @@ return array('language'=>'tr_TR','plural-forms'=>'nplurals=2; plural=(n != 1);',
 'Contact and payment as cards on the left; the summary, the terms box and the pay button on the right. On phones one column with a pay bar at the bottom.'=>'Solda kart görünümünde iletişim ve ödeme; sağda özet, şartlar onayı ve Öde düğmesi. Telefonda tek sütun ve altta ödeme çubuğu.',
 'Checkout page layout'=>'Ödeme sayfası düzeni',
 'Guests can create an account at the checkout with the details they enter (the password is e-mailed to them)'=>'Misafir bağışçı girdiği bilgilerle ödeme sayfasında hesap açabilir (şifre e-postayla gönderilir)',
+'A · Steps: photo band with the page title over the form (the type picture)'=>'A · Adım adım: formun üstünde sayfa başlığıyla fotoğraf bandı (bağış türü görseli)',
+'Quick choice'=>'Hızlı seçim',
 ));

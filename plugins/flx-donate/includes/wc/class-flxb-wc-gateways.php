@@ -49,7 +49,7 @@ class FLXB_WC_Gateways {
 	}
 
 	/**
-	 * 2.18.0: provider name on the theme's "Secure payment" badge = the card method donors see now
+	 * 2.21.0: provider name on the theme's "Secure payment" badge = the card method donors see now
 	 * (EsnekPOS, iyzico…); '' when several card methods are shown or none is enabled.
 	 */
 	public static function badge_provider( $name ) {

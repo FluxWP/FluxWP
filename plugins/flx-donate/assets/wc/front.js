@@ -267,7 +267,12 @@
 		form.addEventListener('change', update);
 		form.addEventListener('input', update);
 
-		/* 2.18.0: quick quantity buttons (1 / 5 / 10 …) under a quantity option. */
+		/* 2.21.0: the photo band opens the page; the theme's "Have an account?" line moves under it. */
+		var hero = form.closest('.flxwb') && form.closest('.flxwb').querySelector('.flxwb-hero');
+		var acct = hero ? document.querySelector('.flx-hesap-satiri') : null;
+		if (acct && (acct.compareDocumentPosition(hero) & Node.DOCUMENT_POSITION_FOLLOWING)) { hero.parentNode.insertBefore(acct, hero.nextSibling); acct.classList.add('flxwb-acct'); }
+
+		/* 2.21.0: quick quantity buttons (1 / 5 / 10 …) under a quantity option. */
 		var quick = function () {
 			form.querySelectorAll('.flxwb-quick').forEach(function (g) {
 				var b0 = g.querySelector('[data-flxwb-quick]'), c = b0 ? document.getElementById(b0.getAttribute('aria-controls')) : null;

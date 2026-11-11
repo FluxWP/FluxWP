@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux Donate 2.18.0: EsnekPOS on the checkout block with card fields (FLXB_WC_Esnekpos_Direct).
+ * Flux Donate 2.21.0: EsnekPOS on the checkout block with card fields (FLXB_WC_Esnekpos_Direct).
  *
  * GPL v2 or later.
  *

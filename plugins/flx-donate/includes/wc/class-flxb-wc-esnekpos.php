@@ -420,7 +420,7 @@ class FLXB_WC_Esnekpos {
 		}
 		$order = wc_get_order( $order->get_id() );
 		if ( $keyed && ! empty( $_GET['m'] ) && class_exists( 'FLXB_WC_Esnekpos_Direct' ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			FLXB_WC_Esnekpos_Direct::bridge( $order, $err ); // 2.18.0: 3D Secure ran in the checkout's modal
+			FLXB_WC_Esnekpos_Direct::bridge( $order, $err ); // 2.21.0: 3D Secure ran in the checkout's modal
 		}
 		if ( ! $keyed ) {
 			/* Old return URL: no order key in it, so none is handed out (the donor gets the e-mail). */

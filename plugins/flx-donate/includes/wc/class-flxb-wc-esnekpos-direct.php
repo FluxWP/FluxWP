@@ -1,6 +1,6 @@
 <?php
 /**
- * Flux Donate 2.18.0: EsnekPOS card fields on the checkout, 3D Secure in a modal, installments.
+ * Flux Donate 2.21.0: EsnekPOS card fields on the checkout, 3D Secure in a modal, installments.
  *
  *  - Block checkout: the EsnekPOS method shows card fields (number, expiry, CVV, name on card), the phone
  *    when the order has none, and the installment options once the card's BIN is known.

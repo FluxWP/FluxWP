@@ -7,7 +7,9 @@
 - Sağ üstteki "Güvenli ödeme" rozeti seçili kart sağlayıcısını yazar (EsnekPOS seçiliyken iyzico yazmaz).
 - Görünüm › Ödeme sayfası düzeni: yeni "İki sütun" (varsayılan): adımlar kart görünümünde, boşluklar az; sağda özet, şartlar onayı ve "{tutar} öde" düğmesi (taksit seçilince taksitli toplam). Telefonda tek sütun.
 - Giriş yapmış bağışçının e-posta ve telefonu salt okunur gelir (Hesabım'dan değişir); ad boşsa hesaptaki ad yazılır. Misafir "Hesap oluştur" kutusunu işaretleyebilir (şifre bağlantısı e-postayla gider; yalnız e-posta yazılınca görünür).
-- Bağış formu: adet seçeneğinin altında hızlı seçim düğmeleri (1, 5, 10, 25, 50; filtre flxb_quick_qty). A düzeni geniş yerleşir, tek bağış türü varken "Bağış türü" adımı gizlenir. "1Fidan" yazımı "1 fidan" oldu.
+- Bağış formu: adet seçeneğinin altında hızlı seçim düğmeleri (3, 5, 10, 25, 50; filtre flxb_quick_qty). A düzeni geniş yerleşir, telefonda tek sütun; tek bağış türü varken "Bağış türü" adımı gizlenir. "1Fidan" yazımı "1 fidan" oldu.
+- A düzeninde formun üstünde fotoğraflı başlık bandı (bağış türünün görseli, sayfa başlığı; sayfa zaten kapak bloğuyla başlıyorsa çıkmaz). Görünüm'den kapatılabilir.
+- Kart ile öde sekmesinin başlığında kart logoları yok; logolar kart alanlarının altında sağda.
 - Fidan ürün görseli artık gerçek fidan fotoğrafı; eski hazır ikon görseli kendiliğinden değişir (elle seçilen görsele dokunulmaz). Görseli olmayan kalemde özet gri yer tutucu yerine fidan ikonu gösterir.
 
 ## 2.20.0

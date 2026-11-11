@@ -1,4 +1,4 @@
-/* Flux Donate 2.18.0 · EsnekPOS card fields, installments, 3D Secure modal. Colours follow the theme (--flx-*). GPL v2 or later. */
+/* Flux Donate 2.21.0 · EsnekPOS card fields, installments, 3D Secure modal. Colours follow the theme (--flx-*). GPL v2 or later. */
 .flxb-cc, .flxb-3ds {
 	--cc-p: var(--flx-primary, var(--wp--preset--color--primary, #1F2937));
 	--cc-ink: var(--flx-ink, var(--wp--preset--color--ink, #111827));
@@ -48,7 +48,10 @@
 .flxb-cc__logo--visa { color: #1A1F71; }
 .flxb-cc__logo--mc { color: #EB001B; }
 .flxb-cc__logo--troy { color: #00A3AD; }
+.flxb-cc__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
 .flxb-cc__safe { padding-left: 2px; }
+.flxb-cc__foot .flxb-cc-label__brands { margin-left: auto; }
+.flxb-cc__foot .flxb-cc__brand { position: static; transform: none; height: 20px; min-width: 34px; font-size: 9.5px; }
 
 /* 3D Secure modal */
 html.flxb-3ds-open, html.flxb-3ds-open body { overflow: hidden; }

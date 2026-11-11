@@ -53,11 +53,11 @@ body.flx-dark .flxb-ct__field input { background: var(--flx-surface, #17221c); b
 .flxb-paybar__btn[disabled] { opacity: .6; cursor: progress; }
 @media (prefers-color-scheme: dark) { body.flx-dark .flxb-paybar { background: var(--flx-surface, #13251f); box-shadow: 0 -8px 24px -12px rgba(0, 0, 0, .8); } }
 
-/* 2.18.0: signed-in donor (read-only e-mail / phone) and the "Create an account" hint */
+/* 2.21.0: signed-in donor (read-only e-mail / phone) and the "Create an account" hint */
 .flxb-ct__field input[readonly] { background: color-mix(in srgb, var(--flx-line, #c3cec7) 18%, #fff); cursor: default; border-style: dashed; }
 .flxb-ct__who { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; margin: 8px 0 0; font-size: .85rem; opacity: .9; }
 .flxb-ct__who a { font-weight: 700; }
 .flxb-co-hint { margin: 4px 0 0 32px; font-size: .8rem; line-height: 1.45; opacity: .8; }
-/* 2.18.0: an item without a picture shows a sapling icon instead of the grey placeholder */
+/* 2.21.0: an item without a picture shows a sapling icon instead of the grey placeholder */
 .wc-block-components-order-summary-item__image:has(img[src*="woocommerce-placeholder"]) img { opacity: 0; }
 .wc-block-components-order-summary-item__image:has(img[src*="woocommerce-placeholder"]) { border-radius: 12px; background: color-mix(in srgb, var(--flx-primary, #347a5a) 10%, #fff) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23347a5a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21V11'/%3E%3Cpath d='M12 11c0-4 3-7 7-7 0 4-3 7-7 7z'/%3E%3Cpath d='M12 13c0-3-2.5-5.5-6-5.5 0 3.5 2.5 5.5 6 5.5z'/%3E%3C/svg%3E") center/24px no-repeat; }

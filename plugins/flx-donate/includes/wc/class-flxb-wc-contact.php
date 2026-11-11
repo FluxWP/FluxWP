@@ -97,7 +97,7 @@ class FLXB_WC_Contact {
 	}
 
 	/**
-	 * 2.18.0: a signed-in donor's e-mail and phone are shown read-only (they are changed under My account).
+	 * 2.21.0: a signed-in donor's e-mail and phone are shown read-only (they are changed under My account).
 	 * Empty ones stay editable.
 	 */
 	private static function signed_in() {

@@ -1,4 +1,4 @@
-/* Flux Donate 2.18.0 · compact two-column checkout (body.flxb-co). Colours follow the theme (--flx-*). GPL v2 or later. */
+/* Flux Donate 2.21.0 · compact two-column checkout (body.flxb-co). Colours follow the theme (--flx-*). GPL v2 or later. */
 body.flxb-co {
 	--co-p: var(--flxb-l-p, var(--flx-primary, #1F2937));
 	--co-ink: var(--flx-ink, #111827);
@@ -71,7 +71,8 @@ body.flxb-co .wc-block-components-notice-banner.is-error > svg { flex: none; bac
 body.flxb-co .wc-block-components-notice-banner.is-error .wc-block-components-notice-banner__content { font-weight: 600; }
 
 @media (max-width: 600px) {
-	body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step { padding: 16px !important; border-radius: 14px; }
+	body.flxb-co { --co-r: 14px; }
+	body.flxb-co .wc-block-checkout__main .wc-block-components-checkout-step { padding: 16px !important; }
 	body.flxb-co main.flx-checkout-main, body.flxb-co main.wp-block-group:has(.wp-block-woocommerce-checkout) { padding-top: 12px !important; }
 }
 .flxb-co-msg { margin: 0; padding: 10px 12px; border: 1px solid #FDA29B; border-radius: 10px; background: #FEF3F2; color: #7A271A; font-size: 13.5px; font-weight: 600; line-height: 1.45; }

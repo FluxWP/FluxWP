@@ -1,4 +1,4 @@
-/* Flux Donate 2.18.0 · EsnekPOS card fields on the checkout block, installments, 3D Secure in a modal. GPL v2 or later. */
+/* Flux Donate 2.21.0 · EsnekPOS card fields on the checkout block, installments, 3D Secure in a modal. GPL v2 or later. */
 (function () {
 	'use strict';
 	var reg = window.wc && window.wc.wcBlocksRegistry;
@@ -244,17 +244,18 @@
 					el('span', { className: 'flxb-cc__logo flxb-cc__logo--troy' }, 'troy')
 				)
 			),
-			el('p', { className: 'flxb-cc__muted flxb-cc__safe' }, t.secShort)
+			el('div', { className: 'flxb-cc__foot' },
+				el('p', { className: 'flxb-cc__muted flxb-cc__safe' }, t.secShort),
+				el('span', { className: 'flxb-cc-label__brands', 'aria-hidden': 'true' },
+					el('i', { className: 'flxb-cc__brand flxb-cc__brand--visa' }, 'VISA'),
+					el('i', { className: 'flxb-cc__brand flxb-cc__brand--mastercard' }, ''),
+					el('i', { className: 'flxb-cc__brand flxb-cc__brand--troy' }, 'troy')))
 		);
 	};
 
 	var title = decode(data.title || 'EsnekPOS');
 	var Label = function () {
-		return el('span', { className: 'flxb-cc-label' }, title,
-			el('span', { className: 'flxb-cc-label__brands', 'aria-hidden': 'true' },
-				el('i', { className: 'flxb-cc__brand flxb-cc__brand--visa' }, 'VISA'),
-				el('i', { className: 'flxb-cc__brand flxb-cc__brand--mastercard' }, ''),
-				el('i', { className: 'flxb-cc__brand flxb-cc__brand--troy' }, 'troy')));
+		return el('span', { className: 'flxb-cc-label' }, title);
 	};
 	reg.registerPaymentMethod({
 		name: NAME,
