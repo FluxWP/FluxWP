@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux CRM
  * Description:       Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.
- * Version:           0.2.7
+ * Version:           0.3.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -24,8 +24,8 @@ if ( defined( 'FLXCRM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCRM_VERSION', '0.2.7' );
-define( 'FLXCRM_DB_VERSION', 1 );
+define( 'FLXCRM_VERSION', '0.3.0' );
+define( 'FLXCRM_DB_VERSION', 2 );
 define( 'FLXCRM_FILE', __FILE__ );
 define( 'FLXCRM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXCRM_URL', plugin_dir_url( __FILE__ ) );
@@ -49,6 +49,7 @@ require_once FLXCRM_DIR . 'includes/app-manifest.php';
 require_once FLXCRM_DIR . 'includes/integrations.php';
 require_once FLXCRM_DIR . 'includes/ai-tools.php';
 require_once FLXCRM_DIR . 'includes/person-card.php';
+require_once FLXCRM_DIR . 'includes/extend.php';
 require_once FLXCRM_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXCRM_DIR . 'includes/admin/class-flxcrm-admin.php';
@@ -79,7 +80,12 @@ add_filter(
 
 register_activation_hook( FLXCRM_FILE, array( 'FLXCRM_Install', 'install' ) );
 register_deactivation_hook( FLXCRM_FILE, array( 'FLXCRM_Install', 'deactivate' ) );
-add_action( 'plugins_loaded', array( 'FLXCRM_Install', 'maybe_upgrade' ), 5 );
+// Ortak kişi tablosu (flx-brand people.php, after_setup_theme 0'da yüklenir): CRM kendi sütunlarını ekler,
+// 0.2.x'in flxcrm_contacts tablosunu oraya taşır ve kişi API'sini (flx_person_*) kendi kurallarıyla yürütür.
+add_filter( 'flx_people_columns', array( 'FLXCRM_Install', 'people_columns' ) );
+add_filter( 'flx_people_keys', array( 'FLXCRM_Install', 'people_keys' ) );
+add_action( 'flx_people_before_install', array( 'FLXCRM_Install', 'migrate_people' ) );
+add_action( 'after_setup_theme', array( 'FLXCRM_Install', 'maybe_upgrade' ), 1 );
 
 add_action(
 	'plugins_loaded',

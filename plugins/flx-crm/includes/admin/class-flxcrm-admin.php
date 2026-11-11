@@ -251,13 +251,16 @@ final class FLXCRM_Admin {
 	public static function post_settings_save() {
 		self::guard( 'settings_save' );
 		$v = array();
-		foreach ( array( 'src_donate', 'src_commerce', 'src_chat', 'src_forms', 'src_users', 'src_mail', 'chat_events', 'ai_tools', 'ai_write', 'ai_destructive' ) as $k ) {
+		foreach ( array( 'chat_events', 'ai_tools', 'ai_write', 'ai_destructive' ) as $k ) {
 			$v[ $k ] = self::post( $k ) ? 1 : 0;
 		}
 		$known = flxcrm_roles();
-		foreach ( array( 'role_donate', 'role_commerce', 'role_forms', 'role_chat', 'role_users' ) as $k ) {
-			$r       = sanitize_key( (string) self::post( $k ) );
-			$v[ $k ] = isset( $known[ $r ] ) ? $r : '';
+		foreach ( flxcrm_registered_sources() as $sk => $sd ) {
+			$v[ 'src_' . $sk ] = self::post( 'src_' . $sk ) ? 1 : 0;
+			if ( null !== $sd['role'] ) {
+				$r                  = sanitize_key( (string) self::post( 'role_' . $sk ) );
+				$v[ 'role_' . $sk ] = isset( $known[ $r ] ) ? $r : '';
+			}
 		}
 		$v['risk_threshold'] = min( 100, max( 10, absint( self::post( 'risk_threshold', 70 ) ) ) );
 		$v['active_days']    = min( 730, max( 7, absint( self::post( 'active_days', 90 ) ) ) );
