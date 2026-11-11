@@ -171,7 +171,7 @@ function flxi_page_settings() {
 	echo '<section class="flxi-card" id="google"><h2 class="flxi-card__title">' . esc_html__( 'Google sign-in', 'flx-mail' ) . '</h2>';
 	echo '<p class="flxi-muted">' . esc_html__( 'Because Google has already verified the email address, people who sign up with Google do not receive the "set your password / login details" email, and their account is treated as verified.', 'flx-mail' ) . '</p>';
 	/* translators: %s: eklenti listesi */
-	echo '<p>' . ( $social ? esc_html( sprintf( __( 'Detected plugin: %s', 'flx-mail' ), implode( ', ', $social ) ) ) : esc_html__( 'No known Google sign-in plugin was detected; a Google return is also recognized from the request.', 'flx-mail' ) ) . '</p>';
+	echo '<p>' . ( $social ? esc_html( sprintf( __( 'Detected plugin: %s', 'flx-mail' ), implode( ', ', $social ) ) ) : esc_html__( 'No known Google sign-in plugin was detected; verification applies when a supported plugin records a Google login (or via the flxi_user_is_social filter).', 'flx-mail' ) ) . '</p>';
 	echo '<div class="flxi-field">' . flxi_switch( $n( 'social_block_core' ), $s['social_block_core'], __( 'Do not send the WordPress "login details / set password" email', 'flx-mail' ) ) . '</div>'; // phpcs:ignore
 	echo '<div class="flxi-field">' . flxi_switch( $n( 'social_block_wc' ), $s['social_block_wc'], __( 'Do not send the WooCommerce "your account has been created" email', 'flx-mail' ) ) . '</div>'; // phpcs:ignore
 	echo '<div class="flxi-field">' . flxi_switch( $n( 'social_verified' ), $s['social_verified'], __( 'Mark the email as verified (for verification plugins)', 'flx-mail' ) ) . '</div>'; // phpcs:ignore

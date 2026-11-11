@@ -41,7 +41,7 @@ WordPress kendi hâlinde `wordpress@sunucu` adresinden düz metin gönderir; her
 - **Gönderim yöntemi:** "Hostinger ayarlarını doldur" düğmeli SMTP, no-reply@ için ayrı hesap, şifreli ya da `wp-config.php`'de saklanan şifre; no-reply@ girişi olmazsa bilgi@ ile gider.
 - **E-postalar:** WordPress, WooCommerce ve FluxWP paketlerinin tüm e-postaları gruplu; aç/kapa, düzenleyici, gönderen seçimi, masaüstü/telefon/koyu önizleme ve "Bana test gönder". Listede olmayan e-posta ilk gönderildiğinde listeye eklenir.
 - **Görünüm:** açık ve koyu zemin için logo, renkler, slogan, adres, sosyal medya, ağaç silüetli alt kısım; görseller (WebP dahil) gömülür, her programda görünür; "WooCommerce'e uygula"; her önizlemeyi PDF indirme.
-- SPF, DKIM ve DMARC için **DNS kontrolü**; Google ile kayıt olana "parolanızı belirleyin" e-postası gitmez.
+- SPF, DKIM ve DMARC için **DNS kontrolü**; desteklenen bir giriş eklentisiyle Google üzerinden kayıt olduğu doğrulanan kişilere "parolanızı belirleyin" e-postası gitmez.
 
 ### Posta kutusu, gönderim ve kayıtlar
 - **Posta kutusu:** IMAP ile bilgi@; okunmamış ve sistem e-postası süzgeçleri, yıldız, ekler, cevapla/tümünü cevapla/ilet, taslaklar, şablonlar ve **AI ile cevap yaz** (*Onay bekleyen*'e düşer).
@@ -49,7 +49,7 @@ WordPress kendi hâlinde `wordpress@sunucu` adresinden düz metin gönderir; her
 - **Kayıtlar:** her mesaj zaman, alıcı, konu, kaynak eklenti, kanal ve durumla; tıklayınca içerik. Flux Chat'ndeki kara listeye uyulur.
 
 ### WhatsApp ve SMS
-- **Bağlantılar:** WhatsApp için Evolution API, Flux WPAPI ya da Cloud API (Meta), SMS için Netgsm; birden çok numara, kanal başına varsayılan, QR ya da eşleştirme koduyla bağlanma, durum, yeniden başlatma, oturum kapatma.
+- **Bağlantılar:** WhatsApp için Evolution API, Flux WPAPI ya da Cloud API (Meta, zorunlu `X-Hub-Signature-256` App Secret webhook doğrulamasıyla), SMS için Netgsm; birden çok numara, kanal başına varsayılan, QR ya da eşleştirme koduyla bağlanma, durum, yeniden başlatma, oturum kapatma.
 - Bir bağlantıyı metin, resim, sesli mesaj, belge ya da (Cloud API) şablonla **test edin**.
 
 ## Ekran görüntüleri
@@ -105,7 +105,8 @@ Flux Mail sitenin MCP sunucusuna (**Flux SEO**) ve **Flux AI** sohbetine araçla
 ## Geliştiriciler için
 
 - Şablonlar: `flxi_email_types` filtresi; gönderim `flxi_send_email( $key, $to, $vars )`.
-- WhatsApp / SMS: `flxi_send_message()`; yeni sağlayıcı için `flxi_connection_types`.
+- WhatsApp / SMS: `flxi_send_message()`; yeni sağlayıcı için `flxi_connection_types`. Cloud API (`wacloud`) bağlantılarında `app_secret` zorunludur; imzasız ya da `app_secret` girilmemiş webhook `POST` istekleri reddedilir.
+- Google ile giriş doğrulaması: `flxi_user_is_social( $user_id )` ve `flxi_verified_meta` (yalnız sosyal giriş eklentisinin kullanıcı kaydı veya `flxi_user_is_social` filtresi hesabı doğrulanmış işaretler ve parola belirleme e-postasını durdurur; `flxi_is_google_request()` istek sezgiseli tek başına doğrulama vermez).
 - Posta kutusu: `flxi_mailbox_query()`, `flxi_mailbox_new_draft()` (ayrıca `POST /wp-json/flxi/v1/mailbox/new-draft`).
 - Kara liste: `flx_contact_blocked`; kota: `flxi_quota_left()`.
 

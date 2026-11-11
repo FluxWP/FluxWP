@@ -1185,6 +1185,7 @@
 			html += copyRow( W.callback, j.webhook ) + copyRow( W.verifyTok, j.verify );
 			html += '<dl class="flxi-dl flxi-wa__info"><dt>' + h( W.lastVerify ) + '</dt><dd>' + h( when( hk.verify ) ) + '</dd><dt>' + h( W.lastEvent ) + '</dt><dd>' + h( when( hk.event ) ) + '</dd>' +
 				( hk.bad_signature ? '<dt>' + h( W.badSig ) + '</dt><dd class="flxi-err">' + h( when( hk.bad_signature ) ) + '</dd>' : '' ) +
+				( hk.no_secret ? '<dt>' + h( W.noSecretHit ) + '</dt><dd class="flxi-err">' + h( when( hk.no_secret ) ) + '</dd>' : '' ) +
 				'<dt>' + h( W.openChats ) + '</dt><dd>' + h( j.open_chats ) + '</dd></dl>';
 			if ( ! j.signed ) {
 				html += '<p class="flxi-callout flxi-callout--warn">' + h( W.noSecret ) + '</p>';

@@ -110,6 +110,9 @@ function flxi_page_connections() {
 				echo '<span class="flxi-wa-state" data-wa-state="' . (int) $c['id'] . '" data-state="' . esc_attr( $st['state'] ) . '">' . esc_html( flxi_wa_state_label( $st ) ) . '</span>';
 			}
 			$detail = $cloud ? 'Phone ID ' . ( $c['config']['phone_id'] ?? '' ) : ( $evo ? wp_parse_url( (string) ( $c['config']['base_url'] ?? '' ), PHP_URL_HOST ) . ' · ' . ( $c['config']['instance'] ?? '' ) : ( $c['config']['header'] ?? '' ) . ' · ' . ( $c['config']['username'] ?? '' ) );
+			if ( $cloud && '' === (string) ( $c['config']['app_secret'] ?? '' ) ) {
+				echo ' ' . flxi_badge( __( 'App Secret missing · webhook off', 'flx-mail' ), 'amber' ); // phpcs:ignore
+			}
 			echo '<div class="flxi-row__desc">' . esc_html( $types[ $c['type'] ]['label'] ?? $c['type'] ) . ' · ' . esc_html( $detail );
 			if ( $t ) {
 				echo ' · <span class="' . ( $t['ok'] ? 'flxi-ok' : 'flxi-err' ) . '">' . esc_html( $t['ok'] ? __( 'Test successful', 'flx-mail' ) : $t['error'] ) . '</span>';

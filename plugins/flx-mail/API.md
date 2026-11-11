@@ -95,9 +95,9 @@ Eylem: `flxi_connection_saved( $id )`, `flxi_connection_deleted( $id )`.
 
 ### WhatsApp Cloud API (`wacloud`, 1.10.0+)
 
-Config: `phone_id`, `waba_id`, `token`, `app_secret`, `graph` (ör. `v23.0`), `link_preview`, `delay`. QR / instance yok; `flxi_whatsapp_state()` numara bilgisini okur (`me` = görünen numara, `name` = doğrulanmış ad).
+Config: `phone_id`, `waba_id`, `token`, `app_secret` (zorunlu), `graph` (ör. `v23.0`), `link_preview`, `delay`. QR / instance yok; `flxi_whatsapp_state()` numara bilgisini okur (`me` = görünen numara, `name` = doğrulanmış ad).
 
-- **Gelen:** Meta webhook'u `flxi/v1/wacloud/{id}/webhook` (GET doğrulama `hub.verify_token`, POST `X-Hub-Signature-256` App Secret ile). Her olay Evolution v2 webhook gövdesine çevrilir ve yayılır:
+- **Gelen:** Meta webhook'u `flxi/v1/wacloud/{id}/webhook` (GET doğrulama `hub.verify_token`, POST `X-Hub-Signature-256` zorunlu App Secret ile; `app_secret` boşsa POST `403` ile reddedilir, `no_secret` kaydedilir ve hiçbir olay yayılmaz). Her doğrulanmış olay Evolution v2 webhook gövdesine çevrilir ve yayılır:
   `do_action( 'flxi_whatsapp_event', $conn_id, $event )` — `event` = `messages.upsert` (`data.key.remoteJid`, `pushName`, `message.conversation | imageMessage… + message.base64`, `contextInfo.stanzaId`) ya da `messages.update` (`keyId`, `status` SERVER_ACK|DELIVERY_ACK|READ|ERROR). `instance` = `wacloud-{id}`. Ham gövde: `flxi_wacloud_event( $id, $payload )`.
 - **Gönderim:** `flxi_send_message( 'whatsapp', $tel, $metin, [ 'connection_id' => $id, 'wa_template' => [ 'name' => 'bagis_tesekkur', 'lang' => 'tr', 'params' => [ 'Ayşe', '3' ] ] ] )`. Ham Graph gövdesi (alıntı, tepki, okundu, medya id): `flxi_wacloud_post( $id, $tel, [ 'type' => 'reaction', 'reaction' => [ 'message_id' => …, 'emoji' => '👍' ] ] )` → `ok, external_id, error, code`.
 - **24 saat:** `flxi_wacloud_window( $id, $tel )` → `open, last_in, closes`. Kapalıyken serbest metin `#131047` hatası döner; yalnız şablon gider.
@@ -120,7 +120,9 @@ Test senaryoları: `flxi_test_scenario( $id, 'check'|'text'|'image'|'audio'|'doc
 | `flxi_brand` | Logo, renkler, kurum bilgileri |
 | `flxi_wrap_email` ($wrap, $key, $atts) | Başka eklentinin e-postası sarılsın mı |
 | `flxi_mail_context` | Hangi şablon/kaynak olduğuna karar |
-| `flxi_is_google_request`, `flxi_user_is_social` | Google ile giriş algısı |
+| `flxi_user_is_social` ($is_social, $user_id) | Kullanıcının Google ile giriş yaptığına dair güvenilir karar (doğrulama ve parola e-postası bastırma yalnız sağlayıcı kaydı veya bu filtre `true` döndüğünde çalışır) |
+| `flxi_is_google_request` | İstek parametreleri / Referer'a dayalı sezgisel kontrol (doğrulama veya e-posta bastırma hakkı vermez) |
+| `flxi_verified_meta` | `flxi_mark_email_verified( $user_id )` tarafından yazılacak doğrulama meta anahtarları |
 | `flxi_connection_types` | Yeni WhatsApp/SMS sağlayıcısı |
 | `flxi_recipient_sources`, `flxi_recipients_from_source` | Toplu gönderimde yeni alıcı kaynağı |
 | `flxi_certificate_background` | Sertifika önizlemesi için temiz arka plan görseli |
