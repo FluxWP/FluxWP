@@ -728,10 +728,10 @@ final class FLXU_Admin {
 						<tr class="flxu-row flxu-row--empty" data-group="flux" data-search=""><td></td><td colspan="6"><?php esc_html_e( 'The package list could not be fetched. Check the server address and key (if any) in Settings and press "Test connection".', 'flx-setup' ); ?></td></tr>
 					<?php endif; ?>
 					<?php
-					// Önce güncellemesi olanlar (FluxWP, sonra diğerleri), sonra kalanlar.
-					foreach ( array( true, false ) as $upd_pass ) :
+					// Sıra: güncellemesi olanlar, etkinler, kurulu olmayanlar, en sonda devre dışılar (her adımda önce FluxWP).
+					foreach ( array( 0, 1, 2, 3 ) as $rank_pass ) :
 						foreach ( $rows as $row ) :
-							if ( ( 'update' === $row['state'] ) !== $upd_pass ) {
+							if ( FLXU_WP::sort_rank( $row['state'], $row['active'] ) !== $rank_pass ) {
 								continue;
 							}
 						$versions = array();
@@ -878,7 +878,7 @@ final class FLXU_Admin {
 					<?php endforeach; ?>
 					<?php
 						foreach ( $wp_rows as $wr ) {
-							if ( ( 'update' === $wr['state'] ) === $upd_pass ) {
+							if ( FLXU_WP::sort_rank( $wr['state'], $wr['active'] ) === $rank_pass ) {
 								FLXU_WP::render_row( $wr );
 							}
 						}
@@ -1493,6 +1493,8 @@ final class FLXU_Admin {
 			.flxu-pkg{display:flex;align-items:center;gap:12px}
 			.flxu-pkg img,.flxu-pkg__ph{width:40px;height:40px;border-radius:9px;flex:none;object-fit:cover}
 			.flxu-pkg__ph{display:inline-flex;align-items:center;justify-content:center;background:var(--flxa-surface-2, #f0f0f1);color:var(--flxa-muted, #646970);font-size:22px}
+			.flxu-pkg__ph--letter{background:hsl(var(--flxu-h, 220) 55% 92%);color:hsl(var(--flxu-h, 220) 45% 34%);font-size:17px;font-weight:600;line-height:1;text-transform:uppercase}
+			.flxa-dark .flxu-pkg__ph--letter{background:hsl(var(--flxu-h, 220) 30% 24%);color:hsl(var(--flxu-h, 220) 70% 82%)}
 			.flxu-row--update{box-shadow:inset 3px 0 0 #dba617}
 			.flxu-actions{white-space:nowrap}
 			.flxu-ver{display:inline-block;margin-left:8px;position:relative}
