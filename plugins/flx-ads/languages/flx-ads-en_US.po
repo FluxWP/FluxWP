@@ -50,6 +50,15 @@ msgstr "Test event sent. Check TikTok Events Manager › Test events."
 msgid "Google accepted the test event (validation only; nothing was recorded)."
 msgstr "Google accepted the test event (validation only; nothing was recorded)."
 
+msgid "Enter the ad account ID and a key first."
+msgstr "Enter the ad account ID and a key first."
+
+msgid "Meta answered too slowly; try again later."
+msgstr "Meta answered too slowly; try again later."
+
+msgid "Too many rows; only part of the period was read."
+msgstr "Too many rows; only part of the period was read."
+
 msgid "Ad conversion"
 msgstr "Ad conversion"
 
@@ -113,6 +122,21 @@ msgstr "never"
 msgid "Send log"
 msgstr "Send log"
 
+msgid "Meta ad spend"
+msgstr "Meta ad spend"
+
+msgid "Last update failed:"
+msgstr "Last update failed:"
+
+msgid "Spend read %s."
+msgstr "Spend read %s."
+
+msgid "Not read yet; opening the Flux Ads screen starts it."
+msgstr "Not read yet; opening the Flux Ads screen starts it."
+
+msgid "Ad spend"
+msgstr "Ad spend"
+
 msgid "Cookie consent"
 msgstr "Cookie consent"
 
@@ -153,6 +177,18 @@ msgstr "Sections"
 
 msgid "Settings saved."
 msgstr "Settings saved."
+
+msgid "Meta spend updated: %d rows."
+msgstr "Meta spend updated: %d rows."
+
+msgid "Meta spend could not be read:"
+msgstr "Meta spend could not be read:"
+
+msgid "Spend added."
+msgstr "Spend added."
+
+msgid "Enter an amount greater than zero."
+msgstr "Enter an amount greater than zero."
 
 msgid "Sent again. The row shows the result."
 msgstr "Sent again. The row shows the result."
@@ -223,6 +259,27 @@ msgstr "New donors and customers"
 msgid "first paid order"
 msgstr "first paid order"
 
+msgid "%s link clicks"
+msgstr "%s link clicks"
+
+msgid "Return on ad spend (ROAS)"
+msgstr "Return on ad spend (ROAS)"
+
+msgid "%s income from these ads"
+msgstr "%s income from these ads"
+
+msgid "Cost per payment"
+msgstr "Cost per payment"
+
+msgid "%s payments"
+msgstr "%s payments"
+
+msgid "Cost per new donor"
+msgstr "Cost per new donor"
+
+msgid "%s new"
+msgstr "%s new"
+
 msgid "Some payments are in another currency and no exchange rate was found; their amount is shown per currency in the row but not added to the totals. Install Flux CRM for currency conversion."
 msgstr "Some payments are in another currency and no exchange rate was found; their amount is shown per currency in the row but not added to the totals. Install Flux CRM for currency conversion."
 
@@ -232,6 +289,9 @@ msgstr "Payments"
 msgid "Amount"
 msgstr "Amount"
 
+msgid "Spend"
+msgstr "Spend"
+
 msgid "New"
 msgstr "New"
 
@@ -240,6 +300,9 @@ msgstr "Share"
 
 msgid "No paid donation or order in this period yet. Use the Ad link tab to tag your ads."
 msgstr "No paid donation or order in this period yet. Use the Ad link tab to tag your ads."
+
+msgid "%s per payment"
+msgstr "%s per payment"
 
 msgid "Latest payments from ads"
 msgstr "Latest payments from ads"
@@ -261,6 +324,54 @@ msgstr "Donation"
 
 msgid "new"
 msgstr "new"
+
+msgid "Update now"
+msgstr "Update now"
+
+msgid "Enter the ad account ID in Settings › Meta. Spend per campaign and ad is then read every 6 hours, so the report shows ROAS and cost per donation."
+msgstr "Enter the ad account ID in Settings › Meta. Spend per campaign and ad is then read every 6 hours, so the report shows ROAS and cost per donation."
+
+msgid "Not read yet. It runs in the background after this page loads; refresh in a minute."
+msgstr "Not read yet. It runs in the background after this page loads; refresh in a minute."
+
+msgid "Updated %1$s: %2$s – %3$s, %4$d rows. Updates every 6 hours."
+msgstr "Updated %1$s: %2$s – %3$s, %4$d rows. Updates every 6 hours."
+
+msgid "The key needs the ads_read permission on this ad account: Business Settings › Users › System users › add the ad account › Generate token (ads_read)."
+msgstr "The key needs the ads_read permission on this ad account: Business Settings › Users › System users › add the ad account › Generate token (ads_read)."
+
+msgid "Channel"
+msgstr "Channel"
+
+msgid "No spend in this period."
+msgstr "No spend in this period."
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Spend is matched to donations by campaign name (utm_campaign) and ad name (utm_content). Use the Meta URL parameters from the Ad link tab so the names are the same."
+msgstr "Spend is matched to donations by campaign name (utm_campaign) and ad name (utm_content). Use the Meta URL parameters from the Ad link tab so the names are the same."
+
+msgid "Add spend by hand"
+msgstr "Add spend by hand"
+
+msgid "For Google Ads, TikTok, posters or anything not read automatically. Use the same campaign name as in the ad link."
+msgstr "For Google Ads, TikTok, posters or anything not read automatically. Use the same campaign name as in the ad link."
+
+msgid "Ad (optional)"
+msgstr "Ad (optional)"
+
+msgid "Currency"
+msgstr "Currency"
+
+msgid "Add spend"
+msgstr "Add spend"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "You are not allowed to do this."
+msgstr "You are not allowed to do this."
 
 msgid "Waiting"
 msgstr "Waiting"
@@ -364,6 +475,21 @@ msgstr "Test event code (optional)"
 msgid "While testing only. Empty it after testing, or real donations are reported as test events."
 msgstr "While testing only. Empty it after testing, or real donations are reported as test events."
 
+msgid "Ad spend (for ROAS)"
+msgstr "Ad spend (for ROAS)"
+
+msgid "Ad account ID"
+msgstr "Ad account ID"
+
+msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
+msgstr "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
+
+msgid "Marketing API token (ads_read)"
+msgstr "Marketing API token (ads_read)"
+
+msgid "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads."
+msgstr "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads."
+
 msgid "Pixel ID"
 msgstr "Pixel ID"
 
@@ -426,6 +552,3 @@ msgstr "How long a click counts for a later donation."
 
 msgid "Save settings"
 msgstr "Save settings"
-
-msgid "You are not allowed to do this."
-msgstr "You are not allowed to do this."

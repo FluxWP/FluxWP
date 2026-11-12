@@ -50,6 +50,15 @@ msgstr "Test olayı gönderildi. TikTok Olay Yöneticisi › Olayları test et b
 msgid "Google accepted the test event (validation only; nothing was recorded)."
 msgstr "Google test olayını kabul etti (yalnız doğrulama, hiçbir şey kaydedilmedi)."
 
+msgid "Enter the ad account ID and a key first."
+msgstr "Önce reklam hesabı kimliğini ve anahtarı girin."
+
+msgid "Meta answered too slowly; try again later."
+msgstr "Meta çok yavaş yanıt verdi; biraz sonra yeniden deneyin."
+
+msgid "Too many rows; only part of the period was read."
+msgstr "Satır sayısı çok fazla; dönemin yalnız bir kısmı okunabildi."
+
 msgid "Ad conversion"
 msgstr "Reklam dönüşümü"
 
@@ -113,6 +122,21 @@ msgstr "hiç"
 msgid "Send log"
 msgstr "Gönderim kaydı"
 
+msgid "Meta ad spend"
+msgstr "Meta reklam harcaması"
+
+msgid "Last update failed:"
+msgstr "Son güncelleme başarısız:"
+
+msgid "Spend read %s."
+msgstr "Harcama %s okundu."
+
+msgid "Not read yet; opening the Flux Ads screen starts it."
+msgstr "Henüz okunmadı; Flux Ads ekranı açılınca başlar."
+
+msgid "Ad spend"
+msgstr "Reklam harcaması"
+
 msgid "Cookie consent"
 msgstr "Çerez onayı"
 
@@ -153,6 +177,18 @@ msgstr "Bölümler"
 
 msgid "Settings saved."
 msgstr "Ayarlar kaydedildi."
+
+msgid "Meta spend updated: %d rows."
+msgstr "Meta harcaması güncellendi: %d satır."
+
+msgid "Meta spend could not be read:"
+msgstr "Meta harcaması okunamadı:"
+
+msgid "Spend added."
+msgstr "Harcama eklendi."
+
+msgid "Enter an amount greater than zero."
+msgstr "Sıfırdan büyük bir tutar girin."
 
 msgid "Sent again. The row shows the result."
 msgstr "Yeniden gönderildi. Sonuç satırda görünür."
@@ -223,6 +259,27 @@ msgstr "Yeni bağışçı ve müşteri"
 msgid "first paid order"
 msgstr "ilk ödemesini yapan"
 
+msgid "%s link clicks"
+msgstr "%s bağlantı tıklaması"
+
+msgid "Return on ad spend (ROAS)"
+msgstr "Reklam getirisi (ROAS)"
+
+msgid "%s income from these ads"
+msgstr "Bu reklamlardan %s gelir"
+
+msgid "Cost per payment"
+msgstr "Ödeme başı maliyet"
+
+msgid "%s payments"
+msgstr "%s ödeme"
+
+msgid "Cost per new donor"
+msgstr "Yeni bağışçı başı maliyet"
+
+msgid "%s new"
+msgstr "%s yeni"
+
 msgid "Some payments are in another currency and no exchange rate was found; their amount is shown per currency in the row but not added to the totals. Install Flux CRM for currency conversion."
 msgstr "Bazı ödemeler başka para biriminde ve kur bulunamadı; tutarları satırda para birimine göre görünür ama toplama eklenmez. Kur çevirisi için Flux CRM'i kurun."
 
@@ -232,6 +289,9 @@ msgstr "Ödeme"
 msgid "Amount"
 msgstr "Tutar"
 
+msgid "Spend"
+msgstr "Harcama"
+
 msgid "New"
 msgstr "Yeni"
 
@@ -240,6 +300,9 @@ msgstr "Pay"
 
 msgid "No paid donation or order in this period yet. Use the Ad link tab to tag your ads."
 msgstr "Bu dönemde henüz ödenmiş bağış ya da sipariş yok. Reklamlarınızı etiketlemek için Reklam bağlantısı sekmesini kullanın."
+
+msgid "%s per payment"
+msgstr "ödeme başı %s"
 
 msgid "Latest payments from ads"
 msgstr "Reklamdan gelen son ödemeler"
@@ -261,6 +324,54 @@ msgstr "Bağış"
 
 msgid "new"
 msgstr "yeni"
+
+msgid "Update now"
+msgstr "Şimdi güncelle"
+
+msgid "Enter the ad account ID in Settings › Meta. Spend per campaign and ad is then read every 6 hours, so the report shows ROAS and cost per donation."
+msgstr "Ayarlar › Meta'da reklam hesabı kimliğini girin. Kampanya ve reklam bazında harcama 6 saatte bir okunur; rapor ROAS'ı ve bağış başı maliyeti gösterir."
+
+msgid "Not read yet. It runs in the background after this page loads; refresh in a minute."
+msgstr "Henüz okunmadı. Bu sayfa yüklendikten sonra arka planda çalışır; bir dakika sonra yenileyin."
+
+msgid "Updated %1$s: %2$s – %3$s, %4$d rows. Updates every 6 hours."
+msgstr "%1$s güncellendi: %2$s – %3$s, %4$d satır. 6 saatte bir güncellenir."
+
+msgid "The key needs the ads_read permission on this ad account: Business Settings › Users › System users › add the ad account › Generate token (ads_read)."
+msgstr "Anahtarın bu reklam hesabında ads_read izni olmalı: İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › Anahtar oluştur (ads_read)."
+
+msgid "Channel"
+msgstr "Kanal"
+
+msgid "No spend in this period."
+msgstr "Bu dönemde harcama yok."
+
+msgid "Total"
+msgstr "Toplam"
+
+msgid "Spend is matched to donations by campaign name (utm_campaign) and ad name (utm_content). Use the Meta URL parameters from the Ad link tab so the names are the same."
+msgstr "Harcama bağışlarla kampanya adı (utm_campaign) ve reklam adı (utm_content) üzerinden eşleşir. Adlar aynı olsun diye Reklam bağlantısı sekmesindeki Meta URL parametrelerini kullanın."
+
+msgid "Add spend by hand"
+msgstr "Harcamayı elle ekle"
+
+msgid "For Google Ads, TikTok, posters or anything not read automatically. Use the same campaign name as in the ad link."
+msgstr "Google Ads, TikTok, afiş ya da otomatik okunmayan her şey için. Reklam bağlantısındaki kampanya adının aynısını yazın."
+
+msgid "Ad (optional)"
+msgstr "Reklam (isteğe bağlı)"
+
+msgid "Currency"
+msgstr "Para birimi"
+
+msgid "Add spend"
+msgstr "Harcama ekle"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "You are not allowed to do this."
+msgstr "Bunu yapmaya yetkiniz yok."
 
 msgid "Waiting"
 msgstr "Bekliyor"
@@ -364,6 +475,21 @@ msgstr "Test olay kodu (isteğe bağlı)"
 msgid "While testing only. Empty it after testing, or real donations are reported as test events."
 msgstr "Yalnız test sırasında. Testten sonra boşaltın; yoksa gerçek bağışlar test olayı olarak gider."
 
+msgid "Ad spend (for ROAS)"
+msgstr "Reklam harcaması (ROAS için)"
+
+msgid "Ad account ID"
+msgstr "Reklam hesabı kimliği"
+
+msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
+msgstr "Reklam Yöneticisi › sol üstteki hesap menüsü, hesap adının altındaki sayı (act_ yazmak gerekmez)."
+
+msgid "Marketing API token (ads_read)"
+msgstr "Marketing API anahtarı (ads_read)"
+
+msgid "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads."
+msgstr "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › ads_read ile anahtar oluşturun. Boş = Conversions API anahtarı denenir. Yalnız okur; Flux Ads reklamlarınızı değiştirmez."
+
 msgid "Pixel ID"
 msgstr "Pixel kimliği"
 
@@ -426,6 +552,3 @@ msgstr "Bir tıklama sonraki bağış için kaç gün sayılır."
 
 msgid "Save settings"
 msgstr "Ayarları kaydet"
-
-msgid "You are not allowed to do this."
-msgstr "Bunu yapmaya yetkiniz yok."

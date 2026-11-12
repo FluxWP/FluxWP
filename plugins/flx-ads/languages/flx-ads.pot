@@ -48,6 +48,15 @@ msgstr ""
 msgid "Google accepted the test event (validation only; nothing was recorded)."
 msgstr ""
 
+msgid "Enter the ad account ID and a key first."
+msgstr ""
+
+msgid "Meta answered too slowly; try again later."
+msgstr ""
+
+msgid "Too many rows; only part of the period was read."
+msgstr ""
+
 msgid "Ad conversion"
 msgstr ""
 
@@ -111,6 +120,21 @@ msgstr ""
 msgid "Send log"
 msgstr ""
 
+msgid "Meta ad spend"
+msgstr ""
+
+msgid "Last update failed:"
+msgstr ""
+
+msgid "Spend read %s."
+msgstr ""
+
+msgid "Not read yet; opening the Flux Ads screen starts it."
+msgstr ""
+
+msgid "Ad spend"
+msgstr ""
+
 msgid "Cookie consent"
 msgstr ""
 
@@ -150,6 +174,18 @@ msgid "Sections"
 msgstr ""
 
 msgid "Settings saved."
+msgstr ""
+
+msgid "Meta spend updated: %d rows."
+msgstr ""
+
+msgid "Meta spend could not be read:"
+msgstr ""
+
+msgid "Spend added."
+msgstr ""
+
+msgid "Enter an amount greater than zero."
 msgstr ""
 
 msgid "Sent again. The row shows the result."
@@ -221,6 +257,27 @@ msgstr ""
 msgid "first paid order"
 msgstr ""
 
+msgid "%s link clicks"
+msgstr ""
+
+msgid "Return on ad spend (ROAS)"
+msgstr ""
+
+msgid "%s income from these ads"
+msgstr ""
+
+msgid "Cost per payment"
+msgstr ""
+
+msgid "%s payments"
+msgstr ""
+
+msgid "Cost per new donor"
+msgstr ""
+
+msgid "%s new"
+msgstr ""
+
 msgid "Some payments are in another currency and no exchange rate was found; their amount is shown per currency in the row but not added to the totals. Install Flux CRM for currency conversion."
 msgstr ""
 
@@ -230,6 +287,9 @@ msgstr ""
 msgid "Amount"
 msgstr ""
 
+msgid "Spend"
+msgstr ""
+
 msgid "New"
 msgstr ""
 
@@ -237,6 +297,9 @@ msgid "Share"
 msgstr ""
 
 msgid "No paid donation or order in this period yet. Use the Ad link tab to tag your ads."
+msgstr ""
+
+msgid "%s per payment"
 msgstr ""
 
 msgid "Latest payments from ads"
@@ -258,6 +321,54 @@ msgid "Donation"
 msgstr ""
 
 msgid "new"
+msgstr ""
+
+msgid "Update now"
+msgstr ""
+
+msgid "Enter the ad account ID in Settings › Meta. Spend per campaign and ad is then read every 6 hours, so the report shows ROAS and cost per donation."
+msgstr ""
+
+msgid "Not read yet. It runs in the background after this page loads; refresh in a minute."
+msgstr ""
+
+msgid "Updated %1$s: %2$s – %3$s, %4$d rows. Updates every 6 hours."
+msgstr ""
+
+msgid "The key needs the ads_read permission on this ad account: Business Settings › Users › System users › add the ad account › Generate token (ads_read)."
+msgstr ""
+
+msgid "Channel"
+msgstr ""
+
+msgid "No spend in this period."
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "Spend is matched to donations by campaign name (utm_campaign) and ad name (utm_content). Use the Meta URL parameters from the Ad link tab so the names are the same."
+msgstr ""
+
+msgid "Add spend by hand"
+msgstr ""
+
+msgid "For Google Ads, TikTok, posters or anything not read automatically. Use the same campaign name as in the ad link."
+msgstr ""
+
+msgid "Ad (optional)"
+msgstr ""
+
+msgid "Currency"
+msgstr ""
+
+msgid "Add spend"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "You are not allowed to do this."
 msgstr ""
 
 msgid "Waiting"
@@ -362,6 +473,21 @@ msgstr ""
 msgid "While testing only. Empty it after testing, or real donations are reported as test events."
 msgstr ""
 
+msgid "Ad spend (for ROAS)"
+msgstr ""
+
+msgid "Ad account ID"
+msgstr ""
+
+msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
+msgstr ""
+
+msgid "Marketing API token (ads_read)"
+msgstr ""
+
+msgid "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads."
+msgstr ""
+
 msgid "Pixel ID"
 msgstr ""
 
@@ -423,7 +549,4 @@ msgid "How long a click counts for a later donation."
 msgstr ""
 
 msgid "Save settings"
-msgstr ""
-
-msgid "You are not allowed to do this."
 msgstr ""

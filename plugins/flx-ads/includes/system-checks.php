@@ -70,6 +70,21 @@ add_filter(
 				'action_label' => __( 'Send log', 'flx-ads' ),
 			);
 		}
+		if ( FLXADS_Spend::meta_ready() ) {
+			$sp       = FLXADS_Spend::status( 'meta' );
+			$bad      = $sp && empty( $sp['ok'] );
+			$checks[] = array(
+				'id'           => 'flxads.spend',
+				'source'       => $src,
+				'group'        => __( 'Ads', 'flx-ads' ),
+				'label'        => __( 'Meta ad spend', 'flx-ads' ),
+				'status'       => $bad ? 'warning' : ( $sp ? 'ok' : 'info' ),
+				/* translators: %s: time ago */
+				'message'      => $bad ? __( 'Last update failed:', 'flx-ads' ) . ' ' . $sp['message'] : ( $sp ? sprintf( __( 'Spend read %s.', 'flx-ads' ), flxads_ago( $sp['at'] ) ) : __( 'Not read yet; opening the Flux Ads screen starts it.', 'flx-ads' ) ),
+				'action_url'   => flxads_admin_url( 'spend' ),
+				'action_label' => __( 'Ad spend', 'flx-ads' ),
+			);
+		}
 		if ( function_exists( 'flx_cookie_active' ) && ! flx_cookie_active() && 'auto' === flxads_setting( 'consent' ) && $any ) {
 			$checks[] = array(
 				'id'           => 'flxads.consent',

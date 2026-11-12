@@ -21,6 +21,7 @@ final class FLXADS_Install {
 		$cs = $wpdb->get_charset_collate();
 		$c  = flxads_table( 'conversions' );
 		$o  = flxads_table( 'orders' );
+		$sp = flxads_table( 'spend' );
 		dbDelta(
 			"CREATE TABLE $c (
 				id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -67,6 +68,27 @@ final class FLXADS_Install {
 				KEY paid_at (paid_at),
 				KEY channel (channel),
 				KEY person_id (person_id)
+			) $cs;"
+		);
+		dbDelta(
+			"CREATE TABLE $sp (
+				id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+				platform varchar(12) NOT NULL DEFAULT '',
+				day date NOT NULL DEFAULT '0000-00-00',
+				ad_key varchar(40) NOT NULL DEFAULT '',
+				campaign_id varchar(40) NOT NULL DEFAULT '',
+				campaign varchar(150) NOT NULL DEFAULT '',
+				adset varchar(150) NOT NULL DEFAULT '',
+				ad varchar(150) NOT NULL DEFAULT '',
+				spend decimal(14,2) NOT NULL DEFAULT 0,
+				currency char(3) NOT NULL DEFAULT '',
+				impressions int(10) unsigned NOT NULL DEFAULT 0,
+				clicks int(10) unsigned NOT NULL DEFAULT 0,
+				manual tinyint(1) NOT NULL DEFAULT 0,
+				updated_at datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+				PRIMARY KEY  (id),
+				UNIQUE KEY platform_day_ad (platform,day,ad_key),
+				KEY day (day)
 			) $cs;"
 		);
 		foreach ( array( 'administrator' => array( 'flxads_view', 'flxads_manage' ), 'shop_manager' => array( 'flxads_view' ) ) as $role => $caps ) {

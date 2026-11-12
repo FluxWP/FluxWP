@@ -59,6 +59,13 @@ html.flxa-dark .flxads .flxads-dot--tiktok{background:#fff}
 .flxads .flxads-builder input,.flxads .flxads-builder select{min-height:36px;width:100%;max-width:none}
 .flxads .flxads-out{grid-column:1/-1;display:flex;gap:10px;align-items:center;background:var(--c-s2);border:1px solid var(--c-bd);border-radius:10px;padding:10px 12px}
 .flxads .flxads-out code{flex:1;background:none;overflow-wrap:anywhere;font-size:12.5px}
+.flxads .flxads-h3{font-size:13.5px;font-weight:650;margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--c-bd)}
+.flxads .flxads-roas{display:inline-block;padding:2px 8px;border-radius:99px;font-weight:650;font-size:12.5px;background:var(--c-s2)}
+.flxads .flxads-roas--good{background:var(--c-ok-s);color:var(--c-ok)}.flxads .flxads-roas--mid{background:var(--c-warn-s);color:var(--c-warn)}.flxads .flxads-roas--bad{background:var(--c-bad-s);color:var(--c-bad)}
+.flxads .flxads-total td{background:var(--c-s2)}
+.flxads .flxads-builder p{grid-column:1/-1;margin:0}
+.flxads .flxads-builder label:first-child{grid-column:auto}
+.flxads .flxads-builder[data-flxads-builder] label:first-child{grid-column:1/-1}
 .flxads-crm-card p{margin:8px 0 0}
 @media (max-width:960px){.flxads .flxads-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:782px){

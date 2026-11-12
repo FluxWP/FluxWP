@@ -100,8 +100,13 @@ final class FLXADS_Report {
 			if ( 'source' === $dim ) {
 				$k = trim( $k . ' / ' . (string) $r['k2'], ' /' );
 			}
+			/* "Fidan Kasım 2026" ile "fidan-kasim-2026" aynı kampanya/reklam: tek satır, ilk görülen yazılış. */
+			$raw = $k;
+			if ( 'campaign' === $dim || 'content' === $dim ) {
+				$k = FLXADS_Spend::norm( $k );
+			}
 			if ( ! isset( $out[ $k ] ) ) {
-				$out[ $k ] = array( 'key' => $k, 'channel' => (string) $r['ch'], 'count' => 0, 'amount' => 0.0, 'new' => 0, 'amounts' => array() );
+				$out[ $k ] = array( 'key' => $raw, 'channel' => (string) $r['ch'], 'count' => 0, 'amount' => 0.0, 'new' => 0, 'amounts' => array() );
 			}
 			$conv = self::to_base( (float) $r['amt'], (string) $r['currency'], (string) $r['d'] );
 			if ( null === $conv ) {
@@ -121,6 +126,7 @@ final class FLXADS_Report {
 				$tot['ads_amount'] += $conv;
 			}
 		}
+		$spent = self::attach_spend( $dim, $out, $tot, $from, $to, $f );
 		foreach ( $out as &$o ) {
 			$o['label'] = self::label( $dim, $o['key'] );
 			$o['share'] = $tot['amount'] > 0 ? round( 100 * $o['amount'] / $tot['amount'], 1 ) : 0;
@@ -129,7 +135,7 @@ final class FLXADS_Report {
 		usort(
 			$out,
 			static function ( $a, $b ) {
-				return $b['amount'] <=> $a['amount'] ?: $b['count'] <=> $a['count'];
+				return $b['amount'] <=> $a['amount'] ?: ( $b['spend'] ?? 0 ) <=> ( $a['spend'] ?? 0 ) ?: $b['count'] <=> $a['count'];
 			}
 		);
 		return array(
@@ -138,7 +144,111 @@ final class FLXADS_Report {
 			'base'   => $base,
 			'totals' => $tot,
 			'rows'   => array_slice( $out, 0, (int) $limit ),
+			'spend'  => $spent,
 		);
+	}
+
+	/**
+	 * Harcamayı satırlara ekler: kanal (platform), kampanya (ad ya da kimlik), reklam (reklam adı).
+	 * Harcaması olup ödemesi olmayan kampanya/reklam da satır olarak eklenir (0 ödeme, ROAS 0).
+	 * Toplamlara spend, spend_income (harcaması olan kanalların geliri), roas, cpa, cpn yazılır.
+	 *
+	 * @return bool Dönemde harcama var mı.
+	 */
+	private static function attach_spend( $dim, array &$out, array &$tot, $from, $to, array $f ) {
+		$tot['spend']        = 0.0;
+		$tot['spend_income'] = 0.0;
+		$tot['spend_count']  = 0;
+		$tot['spend_new']    = 0;
+		$tot['roas']         = null;
+		$tot['cpa']          = null;
+		$tot['cpn']          = null;
+		if ( ! FLXADS_Spend::any() ) {
+			return false;
+		}
+		$sp = FLXADS_Spend::totals( $from, $to, (string) ( $f['channel'] ?? '' ) );
+		if ( $sp['total'] <= 0 ) {
+			return false;
+		}
+		$tot['spend']       = $sp['total'];
+		$tot['spend_mixed'] = $sp['mixed'];
+		$tot['impressions'] = $sp['impressions'];
+		$tot['clicks']      = $sp['clicks'];
+		/* ROAS paydası: harcaması bilinen kanalların geliri (yalnız Meta eşitliyse Meta geliri / Meta harcaması). */
+		$by_ch = self::channel_income( $from, $to, $f );
+		foreach ( $sp['by_channel'] as $ch => $amt ) {
+			$tot['spend_income'] += $by_ch[ $ch ]['amount'] ?? 0;
+			$tot['spend_count']  += $by_ch[ $ch ]['count'] ?? 0;
+			$tot['spend_new']    += $by_ch[ $ch ]['new'] ?? 0;
+		}
+		$tot['roas'] = $tot['spend_income'] / $sp['total'];
+		$tot['cpa']  = $tot['spend_count'] ? $sp['total'] / $tot['spend_count'] : null;
+		$tot['cpn']  = $tot['spend_new'] ? $sp['total'] / $tot['spend_new'] : null;
+
+		if ( ! in_array( $dim, array( 'channel', 'campaign', 'content' ), true ) ) {
+			return true;
+		}
+		$map = 'channel' === $dim ? array_map( static function ( $a ) { return array( $a, '', '' ); }, $sp['by_channel'] ) : ( 'campaign' === $dim ? $sp['by_campaign'] : $sp['by_ad'] );
+		/* Kampanya kimliğiyle gelen utm_campaign ({{campaign.id}}) de eşleşsin. */
+		$ids = array();
+		if ( 'campaign' === $dim ) {
+			foreach ( $sp['by_campaign'] as $nk => $c ) {
+				foreach ( array_keys( $c[3] ) as $cid ) {
+					$ids[ (string) $cid ] = $nk;
+				}
+			}
+		}
+		$used = array();
+		foreach ( $out as $k => &$o ) {
+			$nk = (string) $k; // kampanya/reklam satırları zaten norm anahtarlı
+			if ( 'campaign' === $dim && ! isset( $map[ $nk ] ) && isset( $ids[ (string) $o['key'] ] ) ) {
+				$nk = $ids[ (string) $o['key'] ];
+			}
+			if ( '' !== $nk && isset( $map[ $nk ] ) && ! isset( $used[ $nk ] ) ) {
+				$used[ $nk ] = true;
+				$o['spend']  = $map[ $nk ][0];
+				$o['roas']   = $o['spend'] > 0 ? $o['amount'] / $o['spend'] : null;
+				$o['cpa']    = $o['count'] ? $o['spend'] / $o['count'] : null;
+			}
+		}
+		unset( $o );
+		foreach ( $map as $nk => $c ) {
+			if ( isset( $used[ $nk ] ) ) {
+				continue;
+			}
+			$key         = 'channel' === $dim ? (string) $nk : (string) $c[2];
+			$out[ 'spend:' . $nk ] = array(
+				'key'     => $key,
+				'channel' => 'channel' === $dim ? (string) $nk : (string) $c[1],
+				'count'   => 0,
+				'amount'  => 0.0,
+				'new'     => 0,
+				'amounts' => array(),
+				'spend'   => $c[0],
+				'roas'    => 0.0,
+				'cpa'     => null,
+			);
+		}
+		return true;
+	}
+
+	/** Kanal başına gelir/adet/yeni (ROAS paydası için; boyuttan bağımsız). */
+	private static function channel_income( $from, $to, array $f ) {
+		global $wpdb;
+		list( $w ) = self::where( array( 'from' => $from, 'to' => $to ) + $f );
+		$rows      = (array) $wpdb->get_results( 'SELECT channel, currency, COUNT(*) AS n, SUM(total) AS amt, SUM(new_person) AS nw, MIN(paid_at) AS d FROM ' . flxads_table( 'orders' ) . " WHERE $w GROUP BY channel, currency", ARRAY_A ); // phpcs:ignore WordPress.DB
+		$out       = array();
+		foreach ( $rows as $r ) {
+			$ch = (string) $r['channel'];
+			$a  = self::to_base( (float) $r['amt'], (string) $r['currency'], (string) $r['d'] );
+			if ( ! isset( $out[ $ch ] ) ) {
+				$out[ $ch ] = array( 'amount' => 0.0, 'count' => 0, 'new' => 0 );
+			}
+			$out[ $ch ]['amount'] += (float) $a;
+			$out[ $ch ]['count']  += (int) $r['n'];
+			$out[ $ch ]['new']    += (int) $r['nw'];
+		}
+		return $out;
 	}
 
 	public static function label( $dim, $key ) {

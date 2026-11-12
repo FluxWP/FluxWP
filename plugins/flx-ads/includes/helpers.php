@@ -26,6 +26,8 @@ function flxads_defaults() {
 			'meta_pixel'    => '',
 			'meta_token'    => '',      // gizli
 			'meta_test'     => '',      // Events Manager › Test events kodu (ör. TEST12345)
+			'meta_account'  => '',      // reklam hesabı kimliği (harcama için; act_ öneki atılır)
+			'meta_ads_token' => '',     // gizli (Marketing API, ads_read); boşsa meta_token denenir
 			'tiktok_on'     => 0,
 			'tiktok_pixel'  => '',
 			'tiktok_token'  => '',      // gizli
@@ -53,7 +55,7 @@ function flxads_setting( $key ) {
 
 /** Gizli alanlar: panelde, logda, REST/MCP'de asla açık gösterilmez. */
 function flxads_secret_keys() {
-	return array( 'meta_token', 'tiktok_token', 'ga4_secret' );
+	return array( 'meta_token', 'meta_ads_token', 'tiktok_token', 'ga4_secret' );
 }
 
 function flxads_save_settings( array $values ) {

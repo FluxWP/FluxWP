@@ -10,6 +10,7 @@ Which ad brought which donation. Flux Ads sends donation and order conversions t
 - **Bank transfer aware**: the conversion goes when the transfer is approved, not when the thank-you page opens.
 - **Consent first**: pixels start only after the visitor accepts the cookie banner. E-mail and phone go only hashed, and by default only for contacts with ad consent.
 - **Report**: channel, campaign, ad (utm_content), source/medium, landing page, first ad touch, new donors. Ad link (UTM) builder included.
+- **Ad spend and ROAS**: Meta spend per campaign and ad is read from your ad account; other spend can be entered by hand. The report shows spend, ROAS, cost per payment and cost per new donor.
 - **Flux CRM**: ad conversions on the contact timeline and an "Ad source" card.
 - **Flux AI / MCP**: `flxads_report`, `flxads_status`.
 

@@ -18,7 +18,7 @@ add_filter(
 		);
 		$tools['flxads_report'] = array(
 			'title'       => __( 'Ad conversions report', 'flx-ads' ),
-			'description' => 'Which ad channel (meta, google, tiktok, microsoft, other UTM, or none), campaign (utm_campaign), ad (utm_content), source/medium, landing page or first ad touch brought how many paid donations/orders, how much money (in the shop base currency) and how many new donors. Use it to answer "which ad brought which donation".',
+			'description' => 'Which ad channel (meta, google, tiktok, microsoft, other UTM, or none), campaign (utm_campaign), ad (utm_content), source/medium, landing page or first ad touch brought how many paid donations/orders, how much money (in the shop base currency) and how many new donors. When ad spend is known (Meta synced, or entered by hand) rows and totals also have spend, roas (income / spend) and cpa (spend per payment); totals.cpn is cost per new donor. Use it to answer "which ad brought which donation".',
 			'readonly'    => true,
 			'cap'         => 'flxads_view',
 			'source'      => 'flx-ads',
@@ -34,13 +34,19 @@ add_filter(
 				$r    = FLXADS_Report::grouped( (string) ( $args['by'] ?? 'channel' ), $args, 50 );
 				foreach ( $r['rows'] as &$row ) {
 					$row['amount'] = round( $row['amount'], 2 );
+					foreach ( array( 'spend', 'roas', 'cpa' ) as $k ) {
+						if ( isset( $row[ $k ] ) ) {
+							$row[ $k ] = round( (float) $row[ $k ], 2 );
+						}
+					}
 				}
+				unset( $row );
 				return $r;
 			},
 		);
 		$tools['flxads_status'] = array(
 			'title'       => __( 'Ad tracking status', 'flx-ads' ),
-			'description' => 'Which ad platforms are set up (Meta Pixel + Conversions API, TikTok Pixel + Events API, GA4 + Measurement Protocol), consent mode, and server conversion send counts (pending, sent, failed, skipped) with the latest errors. No secrets.',
+			'description' => 'Which ad platforms are set up (Meta Pixel + Conversions API, TikTok Pixel + Events API, GA4 + Measurement Protocol), consent mode, and server conversion send counts (pending, sent, failed, skipped) with the latest errors, and Meta ad spend sync state. No secrets.',
 			'readonly'    => true,
 			'cap'         => 'flxads_view',
 			'source'      => 'flx-ads',
@@ -53,6 +59,8 @@ add_filter(
 					$out['platforms'][ $p ] = array( 'label' => $label, 'browser' => flxads_platform_on( $p ), 'server' => flxads_platform_on( $p, true ) );
 				}
 				$out['consent'] = flxads_setting( 'consent' );
+				$sync           = FLXADS_Spend::status( 'meta' );
+				$out['spend']   = array( 'meta_ready' => FLXADS_Spend::meta_ready(), 'last_sync' => $sync['at'] ?? '', 'ok' => ! empty( $sync['ok'] ), 'error' => empty( $sync['ok'] ) ? (string) ( $sync['message'] ?? '' ) : '' );
 				$out['counts']  = FLXADS_Send::counts();
 				$out['errors']  = $wpdb->get_results( 'SELECT platform, order_id, last_error, created_at FROM ' . flxads_table( 'conversions' ) . " WHERE status = 'failed' ORDER BY id DESC LIMIT 10", ARRAY_A ); // phpcs:ignore WordPress.DB
 				return $out;

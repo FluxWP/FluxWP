@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Ad spend: Meta spend per campaign and ad is read daily from the ad account (Marketing API, read only), every 6 hours. Other spend (Google Ads, TikTok, posters) can be entered by hand on the new Ad spend tab.
+- Report: ad spend, ROAS, cost per payment and cost per new donor; Spend and ROAS columns by channel, campaign and ad. Campaigns with spend but no payment are listed too.
+- Campaign and ad names match regardless of case, spaces and Turkish letters ("Fidan Kasım 2026" = "fidan-kasim-2026").
+- MCP: `flxads_report` returns spend, ROAS and cost; `flxads_status` the spend sync state. System check for the spend sync.
+
 ## 0.1.0
 
 - New plugin: ad conversion tracking for donations and orders. Every paid order (donation or shop order) is a conversion; the report filters by kind.
