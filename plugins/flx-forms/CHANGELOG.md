@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 2.2.0
+- Formlar artık sayfada Gutenberg bloklarıyla kurulabilir: "Flux Form" bloğu ve metin, e-posta, telefon, uzun metin, sayı, tarih, açılır liste, tekli ve çoklu seçim alan blokları. Sayfa kaydedilince form Flux Forms'a yazılır; panelde aynı form görünür, yanıtlar, e-postalar ve otomasyonlar Flux Forms'ta çalışır.
+- Panelde yapılmış bir form blokta seçilebilir. Blokta karşılığı olmayan alan türleri "Flux Forms alanı" olarak bozulmadan korunur, "Panelde düzenle" bağlantısıyla açılır.
+- Form panelde değişmişse editör "Paneldeki sürümü yükle / Benimkini koru" uyarısı gösterir; sayfa kaydı panel değişikliğinin üstüne sessizce yazmaz.
+- Panel form listesinde her forma "Blokla düzenle" düğmesi: formun bulunduğu sayfayı açar, yoksa formla yeni bir taslak sayfa oluşturur.
+- Blok ayarları: düğme metni, teşekkür mesajı, onay kodu, bildirim e-postası, captcha, renkler, köşe yuvarlaklığı, alan boşluğu, form başlığını gösterme.
+- Eski "Flux Forms" form seçici bloğu ekleyiciden kalktı; sayfalardaki eski bloklar çalışmaya devam eder ve "Flux Form" bloğuna dönüştürülebilir. Editörde aynı betiğin iki kez yüklenmesi düzeldi.
+
 ## 2.1.23
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

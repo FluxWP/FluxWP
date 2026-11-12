@@ -2,6 +2,13 @@
 
 Easy Form Builder'ın (WhiteStudio, GPL) fork'u. Builder arayüzü aynı kaldı; lisans/Pro kilitleri, dış sunucu bağlantıları ve telemetri kaldırıldı, eksik eklentiler (Stripe, koşullu mantık, çevrimdışı ülke listeleri) yeniden yazıldı. Üstüne Dashboard, Otomasyonlar (sertifika entegrasyonu) ve tema uyumu eklendi.
 
+## Sürüm 2.2.0: Gutenberg form blokları
+Formlar sayfada bloklarla kurulabilir. Editörde "Flux Form" bloğunu ekleyin, "Yeni form" ile başlayın ya da "Mevcut formu seç" ile paneldeki bir formu açın. Alan blokları: metin, e-posta, telefon, uzun metin, sayı, tarih, açılır liste, tekli ve çoklu seçim. Sayfa kaydedilince form Flux Forms'a yazılır; panel listesinde görünür, yanıtlar, e-postalar ve otomasyonlar her zamanki gibi çalışır.
+- Panelde form listesinde "Blokla düzenle" düğmesi formun olduğu sayfayı açar, yoksa yeni taslak sayfa açar.
+- Blokta karşılığı olmayan alanlar (puan, dosya, ödeme...) "Flux Forms alanı" olarak korunur ve panelde düzenlenir. Çok adımlı formlar şimdilik panelde düzenlenir, blokta salt gösterilir.
+- Form panelde değişmişse editör uyarır; "Paneldeki sürümü yükle" ya da "Benimkini koru" seçilene kadar sayfa kaydı forma yazmaz.
+- Geliştirici: REST `flxf/v1/block-forms` (GET liste, GET `/<id>`, POST kaydet; `hash` uyuşmazsa 409 `flxf_form_conflict`). Kayıttan sonra `do_action( 'flxf_block_form_saved', $id, $structure )`.
+
 ## Sürüm 2.1.3
 Formlar › Otomasyonlar'daki "Yeni otomasyon" düğmesinin yazısı Flux Admin açıkken yeşil üstüne yeşil kalıyordu; artık beyaz.
 
@@ -107,7 +114,7 @@ Eklenen alanlar dahil tüm elemanlar açık: Metin, Ad, Şifre, E-posta, Sayı, 
 
 ## 3. Formu sayfaya ekleme
 
-Panel'deki kısa kodu kopyalayın: `[EMS_Form_Builder id=3]` — sayfaya/yazıya "Kısa kod" bloğu ile ekleyin. Elementor/WPBakery widget'ları da mevcut.
+En kolayı "Flux Form" bloğu (2.2.0). Kısa kod da çalışır: `[EMS_Form_Builder id=3]` — sayfaya/yazıya "Kısa kod" bloğu ile ekleyin. Elementor/WPBakery widget'ları da mevcut.
 
 Formlar temanın renklerini, yazı tiplerini ve karanlık modunu otomatik kullanır. Kapatmak isterseniz: `add_filter( 'flxf_theme_style', '__return_false' );`
 

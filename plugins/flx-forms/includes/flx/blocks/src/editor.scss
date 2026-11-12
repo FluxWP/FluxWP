@@ -1,0 +1,136 @@
+/* Editor preview of the Flux Form block. Same CSS variables as the front end. */
+.wp-block-flxf-form {
+	--flxf-b-gap: 16px;
+	--flxf-b-radius: 8px;
+	padding: 20px;
+	border-radius: var(--flxf-b-radius);
+	background: var(--flxf-b-card-bg, transparent);
+	border: 1px dashed rgba(0, 0, 0, 0.15);
+
+	.flxf-b-fields {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--flxf-b-gap);
+
+		> * {
+			margin: 0 !important;
+		}
+	}
+}
+
+.flxf-b-field {
+	flex: 0 0 100%;
+	min-width: 0;
+	box-sizing: border-box;
+
+	&.flxf-b-w50 {
+		flex-basis: calc(50% - var(--flxf-b-gap) / 2);
+	}
+
+	&.flxf-b-w33 {
+		flex-basis: calc(33.333% - var(--flxf-b-gap) * 2 / 3);
+	}
+}
+
+.flxf-b-label {
+	display: inline-block;
+	margin-bottom: 6px;
+	font-weight: 600;
+	font-size: 14px;
+	color: var(--flxf-b-label, inherit);
+}
+
+.flxf-b-req {
+	margin-inline-start: 4px;
+	color: #d63638;
+}
+
+.flxf-b-input {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	min-height: 42px;
+	padding: 8px 12px;
+	font-size: 14px;
+	border: 1px solid var(--flxf-b-input-border, #c3c4c7);
+	border-radius: var(--flxf-b-radius);
+	background: var(--flxf-b-input-bg, #fff);
+	color: var(--flxf-b-input-text, inherit);
+	pointer-events: none;
+}
+
+textarea.flxf-b-input {
+	min-height: 96px;
+	resize: none;
+}
+
+.flxf-b-help {
+	margin: 6px 0 0;
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+.flxf-b-choices {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.flxf-b-choice {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+}
+
+.flxf-b-raw .components-notice {
+	margin: 0;
+}
+
+.flxf-b-submit {
+	margin-top: var(--flxf-b-gap);
+}
+
+.flxf-b-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 22px;
+	border: 0;
+	border-radius: var(--flxf-b-radius);
+	background: var(--flxf-b-button-bg, #1e1e1e);
+	color: var(--flxf-b-button-text, #fff);
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.flxf-b-placeholder {
+	.components-placeholder__fieldset {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+	}
+}
+
+.flxf-b-options {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.flxf-b-option {
+	display: flex;
+	align-items: center;
+	gap: 2px;
+
+	.components-base-control {
+		flex: 1;
+	}
+}
+
+.flxf-b-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 12px;
+}

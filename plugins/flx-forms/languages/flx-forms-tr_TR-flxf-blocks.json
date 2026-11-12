@@ -1,0 +1,306 @@
+{
+  "domain": "flx-forms",
+  "locale_data": {
+    "flx-forms": {
+      "": {
+        "domain": "flx-forms",
+        "lang": "tr_TR",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Send": [
+        "Gönder"
+      ],
+      "Next": [
+        "İleri"
+      ],
+      "Previous": [
+        "Geri"
+      ],
+      "Thank you": [
+        "Teşekkürler"
+      ],
+      "Your message has been sent.": [
+        "Mesajınız gönderildi."
+      ],
+      "Confirmation code": [
+        "Onay kodu"
+      ],
+      "Error": [
+        "Hata"
+      ],
+      "Please fill in the required fields.": [
+        "Lütfen zorunlu alanları doldurun."
+      ],
+      "Text": [
+        "Metin"
+      ],
+      "Full name": [
+        "Ad soyad"
+      ],
+      "Email": [
+        "E-posta"
+      ],
+      "Phone": [
+        "Telefon"
+      ],
+      "Long text": [
+        "Uzun metin"
+      ],
+      "Message": [
+        "Mesaj"
+      ],
+      "Number": [
+        "Sayı"
+      ],
+      "Date": [
+        "Tarih"
+      ],
+      "Dropdown": [
+        "Açılır liste"
+      ],
+      "Choose one": [
+        "Birini seçin"
+      ],
+      "Single choice": [
+        "Tekli seçim"
+      ],
+      "Multiple choice": [
+        "Çoklu seçim"
+      ],
+      "Choose any": [
+        "İstediklerinizi seçin"
+      ],
+      "Select": [
+        "Seçin"
+      ],
+      "Option": [
+        "Seçenek"
+      ],
+      "Move up": [
+        "Yukarı taşı"
+      ],
+      "Move down": [
+        "Aşağı taşı"
+      ],
+      "Remove option": [
+        "Seçeneği kaldır"
+      ],
+      "Add option": [
+        "Seçenek ekle"
+      ],
+      "Field": [
+        "Alan"
+      ],
+      "Label": [
+        "Etiket"
+      ],
+      "Placeholder": [
+        "Yer tutucu"
+      ],
+      "Help text": [
+        "Yardım metni"
+      ],
+      "Shown under the field.": [
+        "Alanın altında görünür."
+      ],
+      "Required": [
+        "Zorunlu"
+      ],
+      "Width": [
+        "Genişlik"
+      ],
+      "Full": [
+        "Tam"
+      ],
+      "Half": [
+        "Yarım"
+      ],
+      "One third": [
+        "Üçte bir"
+      ],
+      "Options": [
+        "Seçenekler"
+      ],
+      "Add options in the block settings.": [
+        "Seçenekleri blok ayarlarından ekleyin."
+      ],
+      "Flux Forms field": [
+        "Flux Forms alanı"
+      ],
+      "A field made in the Flux Forms panel. Edit it there; it is kept as it is.": [
+        "Flux Forms panelinde yapılmış bir alan. Orada düzenlenir, burada olduğu gibi korunur."
+      ],
+      "This field type is edited in the Flux Forms panel. It is kept unchanged.": [
+        "Bu alan türü Flux Forms panelinde düzenlenir. Olduğu gibi korunur."
+      ],
+      "Edit in panel": [
+        "Panelde düzenle"
+      ],
+      "The form could not be loaded.": [
+        "Form yüklenemedi."
+      ],
+      "Form": [
+        "Form"
+      ],
+      "The form could not be saved.": [
+        "Form kaydedilemedi."
+      ],
+      "Flux Form": [
+        "Flux Form"
+      ],
+      "Build a new form here, or edit a form made in the Flux Forms panel. Both edit the same form.": [
+        "Burada yeni bir form kurun ya da Flux Forms panelinde yapılmış bir formu düzenleyin. İkisi de aynı formu düzenler."
+      ],
+      "New form": [
+        "Yeni form"
+      ],
+      "Choose an existing form": [
+        "Mevcut formu seç"
+      ],
+      "Choose a form": [
+        "Form seçin"
+      ],
+      "— Select —": [
+        "— Seçin —"
+      ],
+      "Cancel": [
+        "Vazgeç"
+      ],
+      "Reload from Flux Forms": [
+        "Flux Forms'tan yeniden yükle"
+      ],
+      "Form name": [
+        "Form adı"
+      ],
+      "Shown in the Flux Forms panel.": [
+        "Flux Forms panelinde görünür."
+      ],
+      "Button text": [
+        "Düğme metni"
+      ],
+      "Flux Forms form #%d": [
+        "Flux Forms formu #%d"
+      ],
+      "Open in panel": [
+        "Panelde aç"
+      ],
+      "Responses": [
+        "Yanıtlar"
+      ],
+      "The form is created in Flux Forms when you save the page.": [
+        "Sayfayı kaydettiğinizde form Flux Forms'ta oluşturulur."
+      ],
+      "After sending": [
+        "Gönderimden sonra"
+      ],
+      "Thank-you title": [
+        "Teşekkür başlığı"
+      ],
+      "Thank-you message": [
+        "Teşekkür mesajı"
+      ],
+      "Show a confirmation code": [
+        "Onay kodu göster"
+      ],
+      "Notifications": [
+        "Bildirimler"
+      ],
+      "Email me new responses": [
+        "Yeni yanıtları bana e-postayla gönder"
+      ],
+      "Notification address": [
+        "Bildirim adresi"
+      ],
+      "Empty: the address in Flux Forms settings.": [
+        "Boşsa Flux Forms ayarlarındaki adres kullanılır."
+      ],
+      "Send a copy to the person": [
+        "Formu dolduran kişiye kopya gönder"
+      ],
+      "No": [
+        "Hayır"
+      ],
+      "Spam protection (captcha)": [
+        "Spam koruması (captcha)"
+      ],
+      "Colors": [
+        "Renkler"
+      ],
+      "Labels": [
+        "Etiketler"
+      ],
+      "Field text": [
+        "Alan metni"
+      ],
+      "Field background": [
+        "Alan zemini"
+      ],
+      "Field border": [
+        "Alan kenarlığı"
+      ],
+      "Button": [
+        "Düğme"
+      ],
+      "Form background": [
+        "Form zemini"
+      ],
+      "Layout": [
+        "Yerleşim"
+      ],
+      "Corner radius": [
+        "Köşe yuvarlaklığı"
+      ],
+      "Space between fields": [
+        "Alanlar arası boşluk"
+      ],
+      "Show form title and steps": [
+        "Form başlığını ve adımları göster"
+      ],
+      "The title and step bar Flux Forms prints above the fields.": [
+        "Flux Forms'un alanların üstüne yazdığı başlık ve adım çubuğu."
+      ],
+      "Load the panel version": [
+        "Paneldeki sürümü yükle"
+      ],
+      "Keep mine": [
+        "Benimkini koru"
+      ],
+      "This form was changed in the Flux Forms panel after you opened it, so your changes were not written to the form. Load the panel version, or keep yours and overwrite it.": [
+        "Bu form, siz açtıktan sonra Flux Forms panelinde değişti; bu yüzden değişiklikleriniz forma yazılmadı. Paneldeki sürümü yükleyin ya da kendinizinkini koruyup üstüne yazın."
+      ],
+      "This is a multi-step form. Steps are edited in the Flux Forms panel for now; the page shows the form as it is.": [
+        "Bu çok adımlı bir form. Adımlar şimdilik Flux Forms panelinde düzenlenir; sayfa formu olduğu gibi gösterir."
+      ],
+      "A Flux Forms form built from blocks. Responses, emails and automations run in Flux Forms.": [
+        "Bloklarla kurulan bir Flux Forms formu. Yanıtlar, e-postalar ve otomasyonlar Flux Forms'ta çalışır."
+      ],
+      "form": [
+        "form"
+      ],
+      "contact": [
+        "iletişim"
+      ],
+      "Edit with blocks": [
+        "Blokla düzenle"
+      ],
+      "You are not allowed to do this.": [
+        "Bunu yapma izniniz yok."
+      ],
+      "Form not found.": [
+        "Form bulunamadı."
+      ],
+      "Flux Forms": [
+        "Flux Forms"
+      ],
+      "The form structure is not valid.": [
+        "Form yapısı geçerli değil."
+      ],
+      "This form type can only be edited in the Flux Forms panel.": [
+        "Bu form türü yalnız Flux Forms panelinde düzenlenebilir."
+      ],
+      "This form was changed in the Flux Forms panel after you opened it.": [
+        "Bu form, siz açtıktan sonra Flux Forms panelinde değişti."
+      ]
+    }
+  }
+}
