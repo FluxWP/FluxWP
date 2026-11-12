@@ -266,5 +266,21 @@
 		paint(); apply();
 	}
 
-	document.addEventListener('DOMContentLoaded', function () { charts(); credits(); tests(); renderTest(); bodies(); toolsUi(); });
+	/* Zamanlanmış görev formu: seçilen tekrara göre alanlar. */
+	function taskForm() {
+		var f = document.querySelector('[data-flxai-task-form]');
+		if (!f) return;
+		var sel = f.querySelector('[name="freq"]');
+		function apply() {
+			f.querySelectorAll('[data-for]').forEach(function (r) {
+				var on = r.getAttribute('data-for').split(' ').indexOf(sel.value) >= 0;
+				r.hidden = !on;
+				r.querySelectorAll('input').forEach(function (i) { i.disabled = !on; });
+			});
+		}
+		sel.addEventListener('change', apply);
+		apply();
+	}
+
+	document.addEventListener('DOMContentLoaded', function () { charts(); credits(); tests(); renderTest(); bodies(); toolsUi(); taskForm(); });
 })();

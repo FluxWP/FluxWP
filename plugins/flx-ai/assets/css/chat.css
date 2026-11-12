@@ -275,3 +275,6 @@ svg { width: 18px; height: 18px; flex: none; display: block; }
 .notice a { color: var(--brand); }
 .notice.shake { animation: shake .4s ease-in-out; }
 @keyframes shake { 20%, 60% { transform: translateX(-4px); } 40%, 80% { transform: translateX(4px); } }
+/* Zamanlanmış görevden gelen mesaj (0.11.0) */
+.msg.user .b .task { display: flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; opacity: .75; margin: -2px 0 4px; white-space: normal; }
+.msg.user .b .task svg { width: 13px; height: 13px; flex: none; }

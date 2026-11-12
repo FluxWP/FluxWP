@@ -229,3 +229,34 @@ html.flxa-dark .flxai-chip.is-on { color: #0d0e13; }
 	.flxai-tools tr.is-dupe .flxai-col-where { display: none; }
 }
 .flxai-check-text { flex: 1 1 0; min-width: 0; }
+
+/* Zamanlanmış görevler (0.11.0) */
+.flxai-tasks-acts { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.flxai-inline { display: inline; margin: 0; }
+.flxai-tasks-table td:first-child { min-width: 240px; }
+.flxai-tasks-table td:first-child .flxai-pill { margin-left: 4px; vertical-align: 1px; }
+.flxai-tasks-row-acts { white-space: nowrap; text-align: right; }
+.flxai-tasks-row-acts form { display: inline-flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; margin: 0; }
+.flxai .flxai-tasks-row-acts .button-link-delete { color: var(--a-err); border-color: transparent; background: transparent; }
+.flxai-pill.is-run { background: var(--a-brand-soft); color: var(--a-text); }
+.flxai-pill.is-run::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: currentColor; margin-right: 5px; vertical-align: 1px; animation: flxai-blink 1.2s infinite; }
+@keyframes flxai-blink { 50% { opacity: .25; } }
+.flxai-tasks-empty { padding: 8px 2px; }
+.flxai-tasks-ex { margin: 6px 0 0 18px; list-style: disc; color: var(--a-text); }
+.flxai-tasks-ex li { margin: 4px 0; }
+.flxai-tasks-tip { margin: 12px 0 0; }
+.flxai-days { display: flex; flex-wrap: wrap; gap: 6px 4px; }
+.flxai-task-form textarea { max-width: 720px; }
+.flxai-task-form [data-for][hidden] { display: none; }
+@media screen and (max-width: 782px) {
+	.flxai-tasks-table, .flxai-tasks-table tbody { display: block; }
+	.flxai-tasks-table thead { display: none; }
+	.flxai-tasks-table tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 12px; padding: 12px 2px; border-bottom: 1px solid var(--a-line); }
+	.flxai-tasks-table tr:last-child { border-bottom: 0; }
+	.flxai-tasks-table td { display: block; padding: 0; border: 0; min-width: 0 !important; }
+	.flxai-tasks-table td:first-child, .flxai-tasks-table td:nth-child(4), .flxai-tasks-row-acts { grid-column: 1 / -1; }
+	.flxai-tasks-table td[data-l]:not(:first-child)::before { content: attr(data-l); display: block; font-size: 11px; font-weight: 650; text-transform: uppercase; letter-spacing: .03em; color: var(--a-muted); margin-bottom: 2px; }
+	.flxai-tasks-row-acts { text-align: left; }
+	.flxai-tasks-row-acts form { justify-content: flex-start; }
+	.flxai-tasks .flxai-bill-head { flex-wrap: wrap; }
+}

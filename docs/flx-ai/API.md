@@ -116,6 +116,9 @@ foreach ( $x['widgets'] as $w ) {
 | `flxai_systems` | Bağlı sistemler listesi: `kaynak => [label, plugin (klasor/dosya.php), page (admin.php?page=…)]`. Yeni AI kullanan paket kendini buraya ekler. |
 | `flxai_purpose_labels` | `amaç => etiket` (Kayıtlar ve raporlarda "nerede" sütunu). |
 | `flxai_log_mask` | `( $text )` içerik kaydı maskesine ek kural (e-posta, 10+ hane, IBAN, anahtarlar zaten maskeli). |
+| `flxai_agent_user_text` | `( $text, $msg )` modele giden kullanıcı metni (kayıtlı mesaj değişmez). Zamanlanmış görev notu buradan eklenir. |
+| `flxai_tasks_max_per_user` | Kullanıcı başına en fazla görev (varsayılan 50). |
+| `flxai_task_ran` | Olay `( $task_id, $state )`: görevin bir adımı bitti (`ok`, `approval`, `running`, `error`, `waiting`). |
 
 ## Sohbet aracı kaydı (`flxai_tools`)
 ```php
@@ -333,8 +336,19 @@ if ( is_wp_error( $r ) ) { /* $r->get_error_data()['maybe_charged'] */ }
 ## REST (`/wp-json/flx-ai/v1`)
 Sohbet arayüzü içindir (nonce `wp_rest`): `GET boot`, `GET chats`, `GET chats/{id}`, `POST chats/{id}` (title/archived), `POST chats/{id}/delete`, `POST chats/{id}/send` (id 0 yeni sohbet), `POST chats/{id}/step`, `POST chats/{id}/decide`, `POST chats/{id}/stop`, `POST chats/{id}/rewind` (`msg` = kullanıcı mesajının `_id`'si, `mode` = `edit`: o mesaj ve sonrası silinir / `keep`: o mesaj kalır, sonrası silinir; çalışırken 409 `flxai_busy`). Bir tur adım adım ilerler (`send`, sonra `step` ~45 sn bütçeyle); adım sunucuda istemci kopsa da biter (`ignore_user_abort`), durum veritabanında. Sayfa yenilenince istemci `GET chats/{id}` ile `running` görür ve `step` çağırmaya devam eder. `stop` süren adımın ortasında da dinlenir. Yönetici: `GET models`, `POST test`, `POST render-test`, `GET log/{id}` (içerik kaydı), `GET report`, `GET billing`, `POST credits`. Yanıtlar `no-store`.
 
+## Zamanlanmış görevler (0.11.0)
+Tablo `{prefix}flxai_tasks`. Görev bir istemdir: zamanı gelince ortak sohbet motoru (`flxai_agent_send` + `flxai_agent_step`) onu **görev sahibinin** kullanıcısıyla çalıştırır, sonuç görevin sohbetine (`chat_id`) yazılır. Kullanıcı mesajında `_task => [id, title]` durur; modele "kullanıcı başında değil, rapor yaz, değişiklikler onaya düşer" notu eklenir. Değişiklik yapan araç onay kartında bekler (sohbet `approval`); sonraki zaman geldiğinde onay hâlâ bekliyorsa çalışma `waiting` olarak atlanır.
+
+Zamanlama (`schedule`): `freq` `hourly|daily|weekdays|weekly|monthly|once`, `time` `HH:MM` (site saat dilimi), `days` `[1..7]` (ISO, weekly), `day` `1..31` (monthly, kısa ayda son gün), `every` `1..24` (hourly, `time` çapa), `at` `Y-m-d H:i` (once).
+
+Fonksiyonlar: `flxai_task_save( $data, $id = 0, $user_id = 0 )` (title, prompt, schedule, status `active|paused`, model, bot) → görev | WP_Error; `flxai_task_get( $id, $user_id = 0 )`; `flxai_task_list( [user_id, status, limit] )`; `flxai_task_delete( $id )`; `flxai_task_queue_now( $id )` (duraklatılmışsa bir kez çalışıp yine durur); `flxai_task_run( $id, $force )`; `flxai_task_next_run( $schedule, $from )`; `flxai_task_schedule_label( $schedule )`; `flxai_task_public( $task )`.
+
+Tetikleme: `flxai_tasks_tick` (WP-Cron, `flxai_5min`) + `shutdown`'da zamanı geçen görev varsa (`flxai_tasks_next`, autoload) `admin-ajax.php?action=flxai_tasks_run` loopback'i (gizli `flxai_tasks_token` ile, `blocking => false`). Bir istek bir sohbet adımı (~45 sn) çalıştırır; sürüyorsa `last_state = running` ve sonraki istek devam eder. Ayar `tasks_enabled` (varsayılan 1; ekrandan kapatılır).
+
+Araçlar (`flx_mcp_tools` ile, sohbet + MCP): `flxai_task_list` (okur), `flxai_task_create`, `flxai_task_update`, `flxai_task_delete`, `flxai_task_run` (onay ister). Yetki `read` + AI sohbeti erişimi; kullanıcı yalnız kendi görevini, yönetici hepsini yönetir. Başka eklentiler görev açmak için `flxai_task_save()` çağırır; bot/ajan katmanı (Faz 3) `bot` sütununu kullanacak.
+
 ## Sistem kontrolü
-`flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).
+`flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`, `flxai.tasks`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).
 
 ## Uygulama
 
