@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Düzeltme: blokların sayfa başı CSS ve verisi yeniden basılıyor; akordiyonda "SSS şeması" açıkken FAQPage yapılandırılmış verisi çıkıyor.
+
 ## 0.1.1
 
 - FluxWP ortak imza modülü (flx-brand) eklendi; diğer FluxWP paketleriyle aynı kişi, etkinlik, telefon ve form alanı araçları.

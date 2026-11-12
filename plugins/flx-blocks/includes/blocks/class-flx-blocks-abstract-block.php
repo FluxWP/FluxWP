@@ -34,7 +34,7 @@ class Flx_Blocks_Abstract_Block {
 	 *
 	 * @var string
 	 */
-	protected $namespace = 'flxbk';
+	protected $namespace = 'flx';
 
 	/**
 	 * Block name within this namespace.
