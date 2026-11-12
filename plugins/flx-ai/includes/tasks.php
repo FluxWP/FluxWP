@@ -236,6 +236,11 @@ function flxai_task_save( array $data, $id = 0, $user_id = 0 ) {
 	if ( isset( $data['notify'] ) && is_array( $data['notify'] ) ) {
 		$meta['notify'] = flxai_task_notify_clean( $data['notify'] + (array) ( $meta['notify'] ?? array() ) );
 	}
+	if ( isset( $data['ws'] ) && is_array( $data['ws'] ) && function_exists( 'flxai_ws_clean_cfg' ) ) {
+		$cur        = (array) ( $meta['ws'] ?? array() );
+		$cfg        = flxai_ws_clean_cfg( $data['ws'] + $cur );
+		$meta['ws'] = array_merge( $cur, $cfg );
+	}
 	$row['meta'] = wp_json_encode( $meta ? $meta : new stdClass(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
 	$row['updated'] = time();
 	if ( $old ) {
@@ -311,6 +316,11 @@ function flxai_task_public( array $t ) {
 		'owner'          => $owner ? $owner->display_name : '',
 		'skill'          => (string) ( $t['meta']['skill'] ?? '' ),
 		'notify'         => flxai_task_notify_cfg( $t ),
+		'workspace'      => function_exists( 'flxai_ws_clean_cfg' ) ? array(
+			'dir'     => (string) ( $t['meta']['ws']['dir'] ?? '' ),
+			'access'  => (string) ( $t['meta']['ws']['access'] ?? '' ) ?: 'workspace',
+			'folders' => (array) ( $t['meta']['ws']['folders'] ?? array() ),
+		) : null,
 	);
 }
 
@@ -445,6 +455,9 @@ function flxai_task_run( $id, $force = false ) {
 		$state               = 'error';
 		$patch['last_error'] = $e->getMessage();
 	} finally {
+		if ( 'ok' === $state && $chat && function_exists( 'flxai_change_open_pr' ) && flxai_change_open_pr( (int) $chat['id'] ) ) {
+			$state = 'approval'; // Site dosyaları için değişiklik isteği onay bekliyor.
+		}
 		if ( 'running' !== $state ) {
 			// Çalışma bitti (ya da atlandı): geçmişe yazılır. from/to: sohbetteki mesaj aralığı.
 			$from = isset( $meta['run_from'] ) && 'waiting' !== $state ? (int) $meta['run_from'] : -1;
@@ -616,6 +629,9 @@ function flxai_task_tool_data( array $a ) {
 	if ( $n ) {
 		$data['notify'] = $n;
 	}
+	if ( isset( $a['access'] ) || isset( $a['folders'] ) ) {
+		$data['ws'] = array_intersect_key( $a, array_flip( array( 'access', 'folders' ) ) );
+	}
 	$s    = array_intersect_key( $a, array_flip( array( 'freq', 'time', 'days', 'day', 'every', 'at' ) ) );
 	if ( $s ) {
 		$data['schedule'] = $s;
@@ -680,6 +696,16 @@ function flxai_task_tool_schema( $with_id ) {
 		'notify_whatsapp' => array(
 			'type'        => 'string',
 			'description' => 'WhatsApp bildirimi için numara, ülke koduyla (ör. 905321234567).',
+		),
+		'access'          => array(
+			'type'        => 'string',
+			'enum'        => array( 'workspace', 'site' ),
+			'description' => 'Dosya erişimi: workspace (varsayılan; yalnız görevin kendi klasörü + folders) ya da site (tüm site okunur). Klasör dışındaki her değişiklik kullanıcı onayına (PR) gider.',
+		),
+		'folders'         => array(
+			'type'        => 'array',
+			'items'       => array( 'type' => 'string' ),
+			'description' => 'Görevin okuyabileceği ek klasörler (site köküne göre, ör. wp-content/uploads/raporlar). Değişiklikler yine onaya gider.',
 		),
 	);
 	$schema = array(

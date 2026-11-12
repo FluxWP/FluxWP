@@ -39,6 +39,10 @@ add_action(
 					'status'   => empty( $post['active'] ) ? 'paused' : 'active',
 					'schedule' => $sched,
 					'skill'    => (string) ( $post['skill'] ?? '' ),
+					'ws'       => array(
+						'access'  => sanitize_key( $post['ws_access'] ?? 'workspace' ),
+						'folders' => (string) ( $post['ws_folders'] ?? '' ),
+					),
 					'notify'   => array(
 						'mode'     => sanitize_key( $post['notify'] ?? 'none' ),
 						'email'    => ! empty( $post['notify_email'] ),
@@ -327,6 +331,22 @@ function flxai_task_form( $t ) {
 		echo '<p class="description">' . esc_html__( 'WhatsApp needs Flux Mail with a WhatsApp connection.', 'flx-ai' ) . '</p>';
 	}
 	echo '</div></td></tr>';
+	if ( function_exists( 'flxai_ws_ready' ) ) {
+		$ws  = (array) ( $t['meta']['ws'] ?? array() );
+		$acc = 'site' === ( $ws['access'] ?? '' ) ? 'site' : 'workspace';
+		echo '<tr><th>' . esc_html__( 'Files', 'flx-ai' ) . '</th><td>';
+		if ( ! flxai_ws_ready() ) {
+			echo '<p class="description">' . esc_html__( 'Install Flux Files to give tasks a workspace folder (reports, notes, drafts).', 'flx-ai' ) . '</p>';
+		}
+		echo '<fieldset class="flxai-ws-acc"><label class="flxai-check"><input type="radio" name="ws_access" value="workspace"' . checked( $acc, 'workspace', false ) . '> ' . esc_html__( 'Only its own folder and the folders below', 'flx-ai' ) . '</label>';
+		echo '<label class="flxai-check"><input type="radio" name="ws_access" value="site"' . checked( $acc, 'site', false ) . '> ' . esc_html__( 'Can read all site files', 'flx-ai' ) . '</label></fieldset>';
+		echo '<p><label for="flxai-ws-folders">' . esc_html__( 'Allowed folders (one per line, relative to the site root)', 'flx-ai' ) . '</label><br><textarea id="flxai-ws-folders" name="ws_folders" rows="3" class="large-text code" placeholder="wp-content/uploads/raporlar">' . esc_textarea( implode( "\n", (array) ( $ws['folders'] ?? array() ) ) ) . '</textarea></p>';
+		echo '<p class="description">' . esc_html__( 'The task writes freely only in its own folder. Any change to other files waits for your approval as a change request. Other chats\' folders, passwords and WordPress core are always off limits.', 'flx-ai' );
+		if ( ! empty( $ws['dir'] ) ) {
+			echo ' <code>' . esc_html( $ws['dir'] ) . '</code>';
+		}
+		echo '</p></td></tr>';
+	}
 	echo '</table>';
 	echo '<p class="submit"><button type="submit" class="button button-primary">' . esc_html__( 'Save', 'flx-ai' ) . '</button> <a class="button" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-tasks' ) ) . '">' . esc_html__( 'Cancel', 'flx-ai' ) . '</a></p>';
 	echo '</form>';

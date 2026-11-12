@@ -3,7 +3,7 @@
  * Skill'ler (0.12.0): adlı, sürümlü talimat paketleri ("Günlük brifing", "Bağışçı incelemesi", "Reklam taslağı").
  *
  * Kaynaklar: eklentilerin getirdiği hazır skill'ler (`flxai_skills` filtresi, kodda) + sitede kayıtlı olanlar
- * (`flxai_skills` tablosu). Aynı adlı kayıt hazır skill'in yerine geçer (kopyalayıp değiştirme); kayıt silinince
+ * (0.13.0'dan beri dosya: <çalışma alanı>/.skills/<ad>/SKILL.md; Flux Files'tan da görülür/düzenlenir). Aynı adlı kayıt hazır skill'in yerine geçer (kopyalayıp değiştirme); kayıt silinince
  * hazır hali geri gelir. Sohbet modeli etkin skill'lerin ad + açıklama listesini sistem metninde görür,
  * ihtiyaç olunca flxai_skill_get ile talimatı okur. Kullanıcı mesajı "/ad" ile başlarsa ya da görev bir
  * skill'e bağlıysa talimat doğrudan mesaja eklenir. Skill düzenlenince ona bağlı tüm görevler yeni hali kullanır.
@@ -106,17 +106,41 @@ function flxai_skills_bundled() {
 	return $out;
 }
 
-/** Sitede kayıtlı skill'ler: slug => skill. */
-function flxai_skills_saved() {
-	global $wpdb;
-	$rows = $wpdb->get_results( 'SELECT * FROM ' . flxai_table( 'skills' ) . ' ORDER BY name ASC', ARRAY_A ); // phpcs:ignore
-	$out  = array();
-	foreach ( (array) $rows as $r ) {
-		$t        = json_decode( (string) $r['tools'], true );
-		$r['tools'] = is_array( $t ) ? $t : array();
-		$n        = flxai_skill_normalize( $r['slug'], $r );
-		$out[ $n['slug'] ] = $n;
+/** Skill dosyası (çalışma alanına göre): .skills/<ad>/SKILL.md */
+function flxai_skill_file( $slug ) {
+	return flxai_ws_skills_dir() . '/' . flxai_skill_slug( $slug ) . '/SKILL.md';
+}
+
+/** Sitede kayıtlı skill'ler (dosyalar): slug => skill. */
+function flxai_skills_saved( $flush = false ) {
+	static $cache = null;
+	if ( $flush ) {
+		$cache = null;
+		return array();
 	}
+	if ( null !== $cache ) {
+		return $cache;
+	}
+	$out = array();
+	foreach ( (array) glob( flxai_ws_abs( flxai_ws_skills_dir() ) . '/*/SKILL.md' ) as $file ) {
+		$slug = flxai_skill_slug( basename( dirname( $file ) ) );
+		if ( '' === $slug ) {
+			continue;
+		}
+		$md = flxai_ws_read( flxai_skill_file( $slug ) );
+		$d  = null === $md ? null : flxai_skill_from_md( $md );
+		if ( ! $d || is_wp_error( $d ) || '' === trim( $d['body'] ) ) {
+			continue;
+		}
+		$d['name']    = $d['_title'] ? $d['name'] : '';
+		$d['updated'] = (int) filemtime( $file );
+		$n            = flxai_skill_normalize( $slug, $d );
+		if ( ! $d['_title'] ) {
+			$n['name'] = ''; // hazır skill'in (çevrilmiş) adı kullanılır
+		}
+		$out[ $slug ] = $n;
+	}
+	$cache = $out;
 	return $out;
 }
 
@@ -146,6 +170,7 @@ function flxai_skills_all( $active_only = false ) {
 	}
 	foreach ( $saved as $slug => $s ) {
 		if ( ! isset( $out[ $slug ] ) ) {
+			$s['name']    = '' !== $s['name'] ? $s['name'] : $slug;
 			$s['bundled'] = false;
 			$s['custom']  = true;
 			$s['changed'] = false;
@@ -173,7 +198,6 @@ function flxai_skill_get( $slug ) {
  * @return array|WP_Error
  */
 function flxai_skill_save( array $data, $old = '' ) {
-	global $wpdb;
 	$old  = flxai_skill_slug( $old );
 	$prev = '' !== $old ? flxai_skill_get( $old ) : null;
 	if ( '' !== $old && ! $prev ) {
@@ -202,31 +226,21 @@ function flxai_skill_save( array $data, $old = '' ) {
 		/* translators: %s: skill name (slug) */
 		return new WP_Error( 'flxai_skill_taken', sprintf( __( 'A skill named "%s" already exists.', 'flx-ai' ), $s['slug'] ), array( 'status' => 400 ) );
 	}
-	$bund  = flxai_skills_bundled()[ $s['slug'] ] ?? null;
-	$row   = array(
-		'slug'        => $s['slug'],
-		'name'        => $bund && $bund['name'] === $s['name'] ? '' : $s['name'],
-		'description' => $bund && $bund['description'] === $s['description'] ? '' : $s['description'],
-		'body'        => $s['body'],
-		'tools'       => wp_json_encode( $s['tools'] ),
-		'example'     => $s['example'],
-		'status'      => $s['status'],
-		'updated'     => time(),
+	$bund    = flxai_skills_bundled()[ $s['slug'] ] ?? null;
+	$changed = $prev && ( $prev['body'] !== $s['body'] || $prev['tools'] !== $s['tools'] || $prev['example'] !== $s['example'] );
+	$s['version'] = $prev ? (int) $prev['version'] + ( $changed ? 1 : 0 ) : 1;
+	// Hazır skill'in adı/açıklaması değişmediyse dosyaya yazılmaz; dil değişince çevrilmiş hali gelir.
+	$w = flxai_ws_write(
+		flxai_skill_file( $s['slug'] ),
+		flxai_skill_to_md( $s, $bund && $bund['name'] === $s['name'] ? '' : null, $bund && $bund['description'] === $s['description'] ? '' : null )
 	);
-	$table = flxai_table( 'skills' );
-	$id    = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$table} WHERE slug = %s", $prev ? $prev['slug'] : $s['slug'] ) ); // phpcs:ignore
-	if ( $id ) {
-		$changed = $prev && ( $prev['body'] !== $s['body'] || $prev['tools'] !== $s['tools'] || $prev['example'] !== $s['example'] );
-		$row['version'] = (int) ( $prev['version'] ?? 1 ) + ( $changed ? 1 : 0 );
-		$wpdb->update( $table, $row, array( 'id' => $id ) ); // phpcs:ignore
-	} else {
-		$row += array(
-			'user_id' => get_current_user_id(),
-			'created' => time(),
-			'version' => $prev ? (int) $prev['version'] + ( $prev['body'] !== $s['body'] || $prev['tools'] !== $s['tools'] || $prev['example'] !== $s['example'] ? 1 : 0 ) : 1,
-		);
-		$wpdb->insert( $table, $row ); // phpcs:ignore
+	if ( is_wp_error( $w ) ) {
+		return $w;
 	}
+	if ( $prev && $prev['slug'] !== $s['slug'] && ! empty( $prev['custom'] ) ) {
+		flxai_ws_remove( dirname( flxai_skill_file( $prev['slug'] ) ) );
+	}
+	flxai_skills_saved( true );
 	if ( $prev && $prev['slug'] !== $s['slug'] ) {
 		flxai_skill_rename_in_tasks( $prev['slug'], $s['slug'] );
 	}
@@ -235,8 +249,9 @@ function flxai_skill_save( array $data, $old = '' ) {
 
 /** Sitedeki kaydı siler: kendi skill'i kalkar, hazır skill varsayılan haline döner. */
 function flxai_skill_delete( $slug ) {
-	global $wpdb;
-	return (bool) $wpdb->delete( flxai_table( 'skills' ), array( 'slug' => flxai_skill_slug( $slug ) ) ); // phpcs:ignore
+	$ok = flxai_ws_remove( dirname( flxai_skill_file( $slug ) ) );
+	flxai_skills_saved( true );
+	return $ok;
 }
 
 /** Skill'e bağlı görevler. */
@@ -271,11 +286,28 @@ function flxai_skill_prompt( array $s ) {
 
 /* ---------- SKILL.md ---------- */
 
-function flxai_skill_to_md( array $s ) {
+/**
+ * SKILL.md metni.
+ *
+ * @param string|null $title       Başlık (null: skill adı, '': yazılmaz).
+ * @param string|null $description Açıklama (null: skill açıklaması, '': yazılmaz).
+ */
+function flxai_skill_to_md( array $s, $title = null, $description = null ) {
 	$q   = fn( $v ) => preg_match( '/[:#\-\[\]{}"\'&*!|>%@`]|^\s|\s$/u', $v ) ? '"' . str_replace( array( '\\', '"' ), array( '\\\\', '\\"' ), $v ) . '"' : $v;
-	$out = "---\nname: " . $s['slug'] . "\ntitle: " . $q( $s['name'] ) . "\ndescription: " . $q( preg_replace( '/\s+/u', ' ', $s['description'] ) ) . "\n";
+	$title       = null === $title ? $s['name'] : (string) $title;
+	$description = null === $description ? $s['description'] : (string) $description;
+	$out         = "---\nname: " . $s['slug'] . "\n";
+	if ( '' !== $title ) {
+		$out .= 'title: ' . $q( $title ) . "\n";
+	}
+	if ( '' !== $description ) {
+		$out .= 'description: ' . $q( preg_replace( '/\s+/u', ' ', $description ) ) . "\n";
+	}
 	if ( $s['tools'] ) {
 		$out .= 'tools: [' . implode( ', ', $s['tools'] ) . "]\n";
+	}
+	if ( 'off' === ( $s['status'] ?? '' ) ) {
+		$out .= "status: off\n";
 	}
 	$out .= 'version: ' . (int) $s['version'] . "\n---\n\n" . trim( $s['body'] ) . "\n";
 	if ( '' !== trim( $s['example'] ) ) {
@@ -318,6 +350,9 @@ function flxai_skill_from_md( $text ) {
 		'tools'       => '' === $tools ? array() : array_map( 'trim', explode( ',', $tools ) ),
 		'body'        => $body,
 		'example'     => $example,
+		'status'      => 'off' === strtolower( (string) ( $head['status'] ?? '' ) ) ? 'off' : 'active',
+		'version'     => max( 1, (int) ( $head['version'] ?? 1 ) ),
+		'_title'      => '' !== (string) ( $head['title'] ?? '' ),
 	);
 }
 

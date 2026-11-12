@@ -2139,3 +2139,213 @@ msgstr ""
 
 msgid "You can attach up to %s files."
 msgstr ""
+
+msgid "Invalid path."
+msgstr ""
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr ""
+
+msgid "Outside this workspace. You may only use your own folder (%s) and the folders allowed for this chat or task."
+msgstr ""
+
+msgid "AI changes"
+msgstr ""
+
+msgid "This change request is already closed."
+msgstr ""
+
+msgid "Flux Files is required to apply file changes."
+msgstr ""
+
+msgid "Change request #%1$d was merged: %2$d file(s) changed."
+msgstr ""
+
+msgid "Change request #%1$d was partly merged: %2$d file(s) applied, %3$d rejected."
+msgstr ""
+
+msgid "Change request #%d was rejected; no files were changed."
+msgstr ""
+
+msgid "You cannot change this task."
+msgstr ""
+
+msgid "This folder is not part of the workspace."
+msgstr ""
+
+msgid "This file is not part of the workspace."
+msgstr ""
+
+msgid "Change not found."
+msgstr ""
+
+msgid "Some files were not applied: %s"
+msgstr ""
+
+msgid "Merged; the files were changed."
+msgstr ""
+
+msgid "Change request #%d"
+msgstr ""
+
+msgid "Review the diff"
+msgstr ""
+
+msgid "added"
+msgstr ""
+
+msgid "changed"
+msgstr ""
+
+msgid "deleted"
+msgstr ""
+
+msgid "Merge"
+msgstr ""
+
+msgid "Files"
+msgstr ""
+
+msgid "Install Flux Files to give tasks a workspace folder (reports, notes, drafts)."
+msgstr ""
+
+msgid "Only its own folder and the folders below"
+msgstr ""
+
+msgid "Can read all site files"
+msgstr ""
+
+msgid "Allowed folders (one per line, relative to the site root)"
+msgstr ""
+
+msgid "The task writes freely only in its own folder. Any change to other files waits for your approval as a change request. Other chats' folders, passwords and WordPress core are always off limits."
+msgstr ""
+
+msgid "The AI chat is turned off or not set up yet. Check Flux AI & MCP › Settings."
+msgstr ""
+
+msgid "The chat needs JavaScript."
+msgstr ""
+
+msgid "Workspace"
+msgstr ""
+
+msgid "Exit full screen"
+msgstr ""
+
+msgid "Full screen"
+msgstr ""
+
+msgid "Change in the assistant's folder"
+msgstr ""
+
+msgid "Change request #%s: waiting for your approval"
+msgstr ""
+
+msgid "Change request #%s: rejected"
+msgstr ""
+
+msgid "Change request #%s: merged"
+msgstr ""
+
+msgid "View diff"
+msgstr ""
+
+msgid "Empty folder"
+msgstr ""
+
+msgid "The file is too large to show a diff."
+msgstr ""
+
+msgid "No differences."
+msgstr ""
+
+msgid "Merged"
+msgstr ""
+
+msgid "Rejected"
+msgstr ""
+
+msgid "Partly merged"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Change request"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "%s files"
+msgstr ""
+
+msgid "Merge this"
+msgstr ""
+
+msgid "Once the chat starts, its folder and the assistant's changes appear here."
+msgstr ""
+
+msgid "The workspace needs the Flux Files plugin. You can install it from FluxWP Panel › Packages."
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Open in Flux Files"
+msgstr ""
+
+msgid "The folder is empty. Notes, reports and drafts the assistant writes appear here."
+msgstr ""
+
+msgid "Allowed folders"
+msgstr ""
+
+msgid "No changes yet. What the assistant writes to its own folder shows here as commits, and changes it proposes to site files as change requests."
+msgstr ""
+
+msgid "File access for this task"
+msgstr ""
+
+msgid "File access for this chat"
+msgstr ""
+
+msgid "Only its own folder"
+msgstr ""
+
+msgid "The assistant sees only this chat's folder and the folders you allow below."
+msgstr ""
+
+msgid "Can read the whole site"
+msgstr ""
+
+msgid "The assistant can read the site's files; every file it wants to change comes to you as a change request."
+msgstr ""
+
+msgid "One folder per line (relative to the site root). Changes in these folders also wait for your approval."
+msgstr ""
+
+msgid "Rules that always apply"
+msgstr ""
+
+msgid "The assistant cannot directly change any file outside its own folder."
+msgstr ""
+
+msgid "Other chats' and tasks' folders are closed; skill files are read-only."
+msgstr ""
+
+msgid "Files with passwords and keys (wp-config, .env, .sql) and WordPress core are never opened."
+msgstr ""
+
+msgid "At most 50 files per turn and 1 MB per file can be written."
+msgstr ""
+
+msgid "The file changed in the meantime and was not applied: %s"
+msgstr ""
+
+msgid "Reject the change request?"
+msgstr ""
+
+msgid "No files change; the assistant is told it was rejected."
+msgstr ""

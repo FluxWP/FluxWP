@@ -62,6 +62,16 @@ function flxai_tool_needs_approval( array $t ) {
 	return empty( $t['readonly'] ) || ! empty( $t['confirm'] );
 }
 
+/**
+ * Bu çağrı onay ister mi? Araç kuralına ek olarak çağrının girdisine bakılabilir
+ * (ör. çalışma alanında kendi klasörüne yazma onaysızdır, site dosyası değişikliği PR'ye gider).
+ *
+ * @param array|null $chat Sohbet.
+ */
+function flxai_call_needs_approval( $name, array $t, $args, $chat = null ) {
+	return (bool) apply_filters( 'flxai_call_needs_approval', flxai_tool_needs_approval( $t ), (string) $name, is_array( $args ) ? $args : array(), $chat );
+}
+
 /** OpenAI biçimi araç tanımları. */
 function flxai_tool_defs( array $tools ) {
 	$defs = array();
@@ -105,7 +115,20 @@ function flxai_run_tool( $name, $args, array $ctx = array() ) {
 	} else {
 		$t = $tools[ $name ];
 		try {
-			if ( ! empty( $t['mcp'] ) ) {
+			/**
+			 * Aracı çalıştırmadan önce: null dışı dönüş sonuç olarak kullanılır, Exception hata olur
+			 * (ör. çalışma alanı kuralları).
+			 *
+			 * @param mixed  $pre  null.
+			 * @param string $name Araç.
+			 * @param array  $args Girdi.
+			 * @param array  $ctx  user_id, chat_id, turn, source, purpose.
+			 */
+			$pre = apply_filters( 'flxai_pre_run_tool', null, $name, is_array( $args ) ? $args : array(), $ctx );
+			if ( null !== $pre ) {
+				$data = $pre;
+				$ok   = true;
+			} elseif ( ! empty( $t['mcp'] ) ) {
 				$r    = flxai_mcp_call( $name, is_array( $args ) ? $args : array() );
 				$text = (string) ( $r['content'][0]['text'] ?? '' );
 				$dec  = json_decode( $text, true );

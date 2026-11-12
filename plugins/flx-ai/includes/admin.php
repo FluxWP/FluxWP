@@ -13,6 +13,7 @@ function flxai_admin_menu() {
 	$waiting = current_user_can( 'manage_options' ) ? flxai_approvals_count() + count( flxai_tasks_unread() ) : 0;
 	add_menu_page( 'Flux AI & MCP', 'Flux AI & MCP' . ( $waiting ? ' <span class="awaiting-mod count-' . (int) $waiting . '"><span class="pending-count">' . esc_html( number_format_i18n( $waiting ) ) . '</span></span>' : '' ), 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
 	add_submenu_page( 'flx-ai', __( 'Overview', 'flx-ai' ), __( 'Overview', 'flx-ai' ), 'manage_options', 'flx-ai', 'flxai_page_overview' );
+	add_submenu_page( 'flx-ai', __( 'Chat', 'flx-ai' ), __( 'Chat', 'flx-ai' ), 'manage_options', 'flx-ai-chat', 'flxai_page_chat' );
 	$bubble = function ( $n ) {
 		return $n ? ' <span class="awaiting-mod count-' . (int) $n . '"><span class="pending-count">' . esc_html( number_format_i18n( $n ) ) . '</span></span>' : '';
 	};
@@ -787,4 +788,15 @@ function flxai_home_composer() {
 		echo '<button type="button" class="flxai-chip" data-fill="' . esc_attr( $c[1] ) . '">' . esc_html( $c[0] ) . '</button>';
 	}
 	echo '</div></section>';
+}
+
+/** Tam sayfa sohbet (0.13.0): ortak sohbet paneli bu sayfada tam ekran açılır, sağda çalışma alanı. */
+function flxai_page_chat() {
+	echo '<div class="wrap flxai flxai-chat-page">';
+	if ( ! flxai_dock_enabled() || ! flxai_can_chat() ) {
+		echo '<h1>' . esc_html__( 'Chat', 'flx-ai' ) . '</h1><p>' . esc_html__( 'The AI chat is turned off or not set up yet. Check Flux AI & MCP › Settings.', 'flx-ai' ) . '</p>';
+	} else {
+		echo '<noscript><p>' . esc_html__( 'The chat needs JavaScript.', 'flx-ai' ) . '</p></noscript>';
+	}
+	echo '</div>';
 }

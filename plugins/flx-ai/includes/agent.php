@@ -16,7 +16,7 @@ function flxai_new_id() {
 }
 
 /** Sistem metni: sabit kısım önbelleğe alınır, değişken kısım (tarih, kullanıcı) sonra gelir. */
-function flxai_agent_system( $user_id, $at = 0 ) {
+function flxai_agent_system( $user_id, $at = 0, $chat = null ) {
 	$user  = get_userdata( $user_id );
 	$tr    = flxai_is_tr();
 	$fixed = "Sen \"" . get_bloginfo( 'name' ) . "\" WordPress sitesinin yönetim asistanısın (Flux AI). Site: " . home_url( '/' ) . "\n"
@@ -39,6 +39,14 @@ function flxai_agent_system( $user_id, $at = 0 ) {
 		. '- Kullanıcı: ' . ( $user ? $user->display_name . ' (' . implode( ', ', (array) $user->roles ) . ')' : '-' ) . "\n"
 		. '- Tarih: ' . flx_date( $at ? (int) $at : time(), 'l, j F Y H:i' ) . ' (' . wp_timezone_string() . ")\n"
 		. '- Arayüz dili: ' . ( $tr ? 'Türkçe' : determine_locale() );
+	/**
+	 * Sohbete özel oturum bilgisi (önbelleğe alınmayan kısım; ör. çalışma alanı).
+	 *
+	 * @param string     $text    Ek metin.
+	 * @param array|null $chat    Sohbet.
+	 * @param int        $user_id Kullanıcı.
+	 */
+	$dyn .= (string) apply_filters( 'flxai_chat_session', '', $chat, $user_id );
 	return array(
 		'role'    => 'system',
 		'content' => array(
@@ -195,7 +203,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 		return FLXAI_STEP_BUDGET - ( microtime( true ) - $t0 );
 	};
 	$user_id = (int) $chat['user_id'];
-	$ctx     = array( 'user_id' => $user_id, 'chat_id' => (int) $chat['id'], 'source' => 'flx-ai', 'purpose' => 'chat' );
+	$ctx     = array( 'user_id' => $user_id, 'chat_id' => (int) $chat['id'], 'turn' => (string) ( $chat['state']['turn']['started'] ?? '' ), 'source' => 'flx-ai', 'purpose' => 'chat' );
 	$state   = 'continue';
 	$did     = false;
 	try {
@@ -250,7 +258,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 			$tools = flxai_tools_for_user( $user_id );
 			$model = flxai_model_for( 'flx-ai', (string) ( $chat['model'] ?: flxai_setting( 'chat_model', '' ) ) );
 			$info  = flxai_model_info( $model );
-			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ) ) ), flxai_agent_history( $chat['messages'], $user_id ) );
+			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ), $chat ) ), flxai_agent_history( $chat['messages'], $user_id ) );
 			if ( $emit ) {
 				$emit( array( 't' => 'model' ) );
 			}
@@ -346,7 +354,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 							'ms'     => 0,
 						)
 					);
-				} elseif ( flxai_tool_needs_approval( $tools[ $name ] ) ) {
+				} elseif ( flxai_call_needs_approval( $name, $tools[ $name ], json_decode( (string) ( $c['function']['arguments'] ?? '' ), true ), $chat ) ) {
 					$chat['state']['pending'][] = (string) $c['id'];
 				} else {
 					$chat['state']['queue'][] = (string) $c['id'];
@@ -406,7 +414,7 @@ function flxai_agent_decide( array $chat, array $decisions ) {
 /** Tek bir bekleyen araç çağrısını çalıştırır ya da "reddedildi" sonucu yazar. */
 function flxai_agent_decide_call( array &$chat, array $c, $approve ) {
 	if ( $approve ) {
-		$ctx = array( 'user_id' => (int) $chat['user_id'], 'chat_id' => (int) $chat['id'], 'source' => 'flx-ai', 'purpose' => 'chat' );
+		$ctx = array( 'user_id' => (int) $chat['user_id'], 'chat_id' => (int) $chat['id'], 'turn' => (string) ( $chat['state']['turn']['started'] ?? '' ), 'source' => 'flx-ai', 'purpose' => 'chat' );
 		flxai_agent_tool_result( $chat, $c, flxai_run_tool( (string) $c['function']['name'], json_decode( (string) $c['function']['arguments'], true ), $ctx ) );
 		return;
 	}

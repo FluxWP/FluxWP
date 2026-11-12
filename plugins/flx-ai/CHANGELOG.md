@@ -1,5 +1,14 @@
 # Flux AI — Değişiklikler
 
+## 0.13.0
+- **Çalışma alanı** (Codex benzeri): her sohbetin ve zamanlanmış görevin kendi klasörü var (`wp-content/flx-ai/chats/<id>`, `tasks/<id>-<ad>`). Tüm dosya işlemleri Flux Files üzerinden: sürüm, çöp kutusu ve işlem kaydı oradan gelir. Klasörler Flux Files'ta da görünür.
+- Sohbet penceresinin sağında dosya paneli: **Dosyalar** (ağaç + dosya görüntüleme), **Değişiklikler** (mini git) ve **Ayarlar**. Yeni **Flux AI & MCP › Sohbet** sayfası sohbeti tam ekran açar; panelde tam ekran düğmesi.
+- **Commit**: asistanın kendi klasörüne bir turda yazdıkları tek commit olur; hangi dosyada nerenin değiştiği, ne eklenip silindiği satır satır fark olarak görünür. Sohbette ilgili mesajın altında "Farkı gör" bağlantısı.
+- **Değişiklik isteği (PR)**: kendi klasörü dışındaki dosyalara (izin verilen klasörler) yazmak dosyayı değiştirmez, değişiklik isteğine eklenir. Dosya dosya ya da hep birlikte Birleştir / Reddet; birleştirmeden önce dosya bu arada değiştiyse uygulanmaz. Sonuç asistana bildirilir. Onay bekleyenler ekranında ve menü sayısında da görünür; görev çalışmasında açılan istek görevi "Onay bekliyor" yapar ve bildirimi tetikler.
+- **Skill'ler dosya oldu**: `.skills/<ad>/SKILL.md`. Eski tablodaki skill'ler kurulumda dosyaya taşınır, tablo kaldırılır.
+- **Sert güvenlik kuralları** (PHP'de, model aşamaz): asistan varsayılan olarak yalnız kendi klasörünü görür; başka sohbet ve görevlerin klasörleri her zaman kapalı, `.skills` yalnız okunur (değişiklik yalnız skill araçlarıyla). Yol temizleme ve gerçek yol (symlink) kontrolü Flux Files'tan; wp-config, .env, .sql gibi hassas dosyalar ve WordPress çekirdeği hiçbir zaman açılmaz. Yazma başına 1 MB, tur ya da istek başına 50 dosya sınırı. Kendi klasörü dışındaki her değişiklik onaylı değişiklik isteği. Dışarıdan MCP bağlantısının dosya erişimi değişmedi.
+- Görev formunda **Dosyalar** satırı: "Yalnız kendi klasörü ve aşağıdaki klasörler" ya da "Sitenin tüm dosyalarını okuyabilir" + izin verilen klasörler. Sohbette aynı ayar dosya panelinin Ayarlar sekmesinde. Görev araçlarında `access` ve `folders`.
+
 ## 0.12.0
 - **Skill'ler** (Flux AI & MCP › Skill'ler): adlı, sürümlü talimat paketleri (ad, açıklama, Markdown talimat, önerilen araçlar, örnek çıktı). Hazır gelenler: Günlük brifing, Site sağlığı incelemesi; eklentiler `flxai_skills` filtresiyle kendi skill'lerini getirir. Hazır skill düzenlenince sitede kopyası tutulur, "Varsayılana dön" ile aslı gelir.
 - Asistan uygun skill'i kendisi seçer (`flxai_skill_get` ile okur); sohbette mesajı `/ad` ile başlatarak doğrudan çağrılır. Sohbetten oluşturulur ve değiştirilir: `flxai_skill_list`, `flxai_skill_get`, `flxai_skill_save`, `flxai_skill_delete` (sohbet + MCP; değiştirenler onay kartı ister).

@@ -115,6 +115,7 @@ function flxai_dock_enqueue() {
 			'widgets'     => (bool) flxai_setting( 'chat_widgets', 1 ),
 			'mermaid'     => FLXAI_URL . 'assets/vendor/mermaid/mermaid.min.js?ver=12.2.0',
 			'i18n'        => flxai_js_strings(),
+			'page'        => is_admin() && 'flx-ai-chat' === sanitize_key( wp_unslash( $_GET['page'] ?? '' ) ), // phpcs:ignore WordPress.Security.NonceVerification
 			'accept'      => '.' . implode( ',.', array_keys( flxai_attach_types() ) ),
 			'maxBytes'    => flxai_attach_max_bytes(),
 		)
