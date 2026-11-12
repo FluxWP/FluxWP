@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.2.6
+- Paketler: "Gerekli:" satırı olan paketlerde ad ile etiketler arasında oluşan boş satır kaldırıldı; satır yükseklikleri tutarlı.
+- Çeviriler: güncellendikten sonra satır hep "Güncelleme var" kalıyordu. Kurulamayan çeviri artık "başarılı" sayılmaz, nedeni yazılır; güncellemeden hemen sonra yeniden kontrol edilir; sitede aynı ya da daha yeni tarihle kurulu çeviri (WordPress.org yine önerse de) gizlenir.
+- İkonlar sitede önbelleğe alınır (uploads/flx-setup/icons): sunucunun imzalı adresi her kontrolde değiştiği için ikonlar her seferinde yeniden iniyor, yanıp sönüyor, bazen hiç gelmiyordu. Eldeki ikon kalır, yenisi gelince hemen değişir, inemezse eskisi gösterilir. "Güncellemeleri kontrol et" tabloyu yenilerken ikonlar yerinde kalır.
+
 ## 1.2.5
 - Paket indirme hatası artık gerçek nedeni yazıyor: "Dosya indirilemedi." yerine HTTP kodu + sunucunun mesajı (ör. "HTTP 403: Invalid site key"), zaman aşımı, sunucuya ulaşılamadı, disk dolu, gelen dosya zip değil. Her durumda ne yapılacağı da yazar; ayrıntı debug.log'a da düşer.
 - İndirmeden önce geçici klasör yazılabilir mi ve diskte en az 50 MB boş yer var mı bakılır.

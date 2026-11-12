@@ -3,6 +3,8 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Not installed: %s' => 'Kurulmadı: %s',
+  'WordPress.org still offers a newer translation: %s. The file could not be written or the language folder is read-only.' => 'WordPress.org hâlâ daha yeni çeviri bildiriyor: %s. Dosya yazılamadı ya da dil klasörü salt okunur.',
   'FluxWP packages.' => 'FluxWP paketleri.',
   'Install and activate missing plugins' => 'Eksik eklentileri kur ve etkinleştir',
   'The missing plugins could not be installed. Install them from FluxWP Panel › Packages.' => 'Eksik eklentiler kurulamadı. FluxWP Panel › Paketler\'den kurun.',

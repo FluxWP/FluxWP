@@ -349,14 +349,40 @@
 		});
 	}
 
+	/**
+	 * Tablo yenilenirken ikonlar yanıp sönmesin: eski <img> düğümleri yeni tabloya taşınır.
+	 * Adres değiştiyse yeni resim arkada yüklenir, gelince yerine geçer; gelmezse eskisi kalır.
+	 */
+	function keepIcons() {
+		var old = {};
+		document.querySelectorAll('#flxu-packages .flxu-row[data-slug] .flxu-pkg > img').forEach(function (img) {
+			if (img.complete && img.naturalWidth) { old[img.closest('.flxu-row').getAttribute('data-slug')] = img; }
+		});
+		return function () {
+			document.querySelectorAll('#flxu-packages .flxu-row[data-slug] .flxu-pkg > img').forEach(function (img) {
+				var prev = old[img.closest('.flxu-row').getAttribute('data-slug')];
+				if (!prev) { return; }
+				var src = img.getAttribute('src');
+				img.replaceWith(prev);
+				if (prev.getAttribute('src') !== src) {
+					var pre = new Image();
+					pre.onload = function () { prev.setAttribute('src', src); };
+					pre.src = src;
+				}
+			});
+		};
+	}
+
 	/** İşlem bitince tabloyu ve geçmişi sayfayı yenilemeden tazele. */
 	function refresh() {
 		return fetch(window.location.href, { credentials: 'same-origin' }).then(function (r) { return r.text(); }).then(function (html) {
 			var doc = new DOMParser().parseFromString(html, 'text/html');
+			var icons = keepIcons();
 			['flxu-status-wrap', 'flxu-packages', 'flxu-history-wrap'].forEach(function (id) {
 				var neu = doc.getElementById(id), old = document.getElementById(id);
 				if (neu && old) { old.replaceWith(document.importNode(neu, true)); }
 			});
+			icons();
 			load();
 			extra = [];
 			Object.keys(doneMarks).forEach(function (slug) {
