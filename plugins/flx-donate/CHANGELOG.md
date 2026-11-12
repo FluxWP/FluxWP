@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.27.0
+- Flux AI & MCP için salt okunur "Bağış özeti" aracı (`flxb_donation_summary`): seçilen gün ya da aralıkta ödenen bağış sayısı ve tutarı, fidan adedi, yeni bağışçı, türe göre kırılım (fidan, zekat, kurban …), tek seferlik / aylık, dekont onayı bekleyen ve ödeme bekleyen bağışlar (aralıkta ve şu an açık olanlar), iptal / başarısız / iade, aktif aylık bağışlar. `compare` ile bir önceki eş dönem ve fark. Günlük brifing artık bağış verisini okuyabilir.
+- Araç kişisel veri döndürmez; diğer para birimleri ayrı listelenir, toplama karışmaz.
+
 ## 2.26.1
 - Excel'den yükle: bir hücrede alt alta yazılmış adlar (ör. 6 fidana 6 ad) kişi başı bir fidan olarak dağıtılır, bağış formundaki "Başka bir kişi ekle (ayrı sertifika)" ile aynı: ilk ad kalan fidanları alır, diğer her ad 1 fidan. Adlar bağışçı sütunundaysa "Adına" sütunu bağışçı olur. Ad sayısı fidandan fazlaysa fazla adlar ilk sertifikaya yazılır (önizlemede uyarı). Önizlemede adlar satırın altında görünür.
 - `flxb_create_order()` satırları `people` ( [ { name, phone, email } ] ) alır.
