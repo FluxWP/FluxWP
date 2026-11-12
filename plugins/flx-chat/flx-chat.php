@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Chat
  * Description:       WhatsApp (Evolution API) çağrı merkezi: gelen ve giden mesajları canlı görün, yeni sohbet başlatın, hazır cevaplar, etiketler, atama, dahili notlar, otomatik yanıtlar; sohbetten bağış (Flux Donate) ve sertifika (Flux Certificates) kaydı, dekont eşleştirme. OpenRouter ile yapay zekâ cevap önerisi ve otomatik bağış asistanı.
- * Version:           1.43.3
+ * Version:           1.44.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXC_VERSION', '1.43.3' );
+define( 'FLXC_VERSION', '1.44.0' );
 define( 'FLXC_DB_VERSION', '10' );
 define( 'FLXC_FILE', __FILE__ );
 define( 'FLXC_DIR', plugin_dir_path( __FILE__ ) );
@@ -52,6 +52,7 @@ require_once FLXC_DIR . 'includes/mirror.php';
 require_once FLXC_DIR . 'includes/bot-account.php';
 require_once FLXC_DIR . 'includes/verify.php';
 require_once FLXC_DIR . 'includes/reminders.php';
+require_once FLXC_DIR . 'includes/optout.php';
 require_once FLXC_DIR . 'includes/bot-studio.php';
 require_once FLXC_DIR . 'includes/bot-info.php';
 require_once FLXC_DIR . 'includes/staff.php';

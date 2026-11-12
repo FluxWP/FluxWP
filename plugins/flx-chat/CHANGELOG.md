@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.44.0
+- Flux Mail IPTAL uyumu (Flux Mail 1.17.0+). Kişi yalnız IPTAL / BAŞLA yazarsa asistan, karşılama ve mesai dışı yanıtı cevap yazmaz; onayı Flux Mail gönderir. Komutun yanında soru da varsa ya da "bağışımı iptal etmek istiyorum" gibi bir cümleyse asistan normal cevap verir.
+- Flux Mail gönderimleri (kampanya, IPTAL onayı; kaynak `flx-mail`) asistanı susturmaz. Onay mesajının bildirimi Flux Mail kimliği kaydetmeden gelse de (2 dk içinde, metin aynıysa) telefondan yazılmış sayılmaz.
+- IPTAL yazmış kişiye hatırlatıcı gitmez (iş "atlandı" olur, hatırlatıcı silinmez; BAŞLA yazınca yeniden gider). Kişi kendisi yazarsa asistan cevap verir ama kendiliğinden kampanya / bağış çağrısı önermez.
+- Kişi bilgisinde "Tanıtım mesajları: Kapalı (kişi IPTAL yazdı)" satırı, Flux Mail IPTAL listesine bağlantıyla.
+- Flux Mail kurulu değilse ya da eski sürümse hiçbir şey değişmez.
+
 ## 1.43.3
 - Flux Donate içe aktarımındaki eski bağışlar için referans personele "bağış ödendi" ve adına bağış yapılan kişiye sertifika WhatsApp'ı gitmez (`flx_silent`).
 

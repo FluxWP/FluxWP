@@ -580,6 +580,9 @@ function flxc_rem_run( $rid, $deadline ) {
 	if ( flxc_chat_blocked( $chat ) ) {
 		return $res( 'skipped', __( 'The person is on the blocklist.', 'flx-chat' ) );
 	}
+	if ( function_exists( 'flxc_optout_chat' ) && flxc_optout_chat( $chat ) ) {
+		return $res( 'skipped', __( 'The person replied STOP to promotional messages.', 'flx-chat' ) );
+	}
 	if ( ! flxc_bot_enabled() || ! flxc_ai_ready() ) {
 		return $res( 'skipped', __( 'The assistant is off.', 'flx-chat' ) );
 	}

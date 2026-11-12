@@ -3252,5 +3252,9 @@ return array(
   'Continuation: "vazgeçtim" stops the reminder' => '続き：「vazgeçtim」でリマインダーを停止',
   'Continuation: complaint after a misread closes at once' => '続き：誤解の後の苦情ですぐ停止',
   'Goodbye reaction is 👍 or 🤲, never 🙏' => '別れのリアクションは👍か🤲、🙏は使わない',
+  'Promotional messages' => 'プロモーションメッセージ',
+  'Off (the person replied STOP)' => 'オフ（STOPと返信済み）',
+  'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => 'プロモーションメッセージとリマインダーは送信されません。本人からのメッセージへの返信は送信されます。',
+  'The person replied STOP to promotional messages.' => 'この人はプロモーションメッセージにSTOPと返信しました。',
  ),
 );

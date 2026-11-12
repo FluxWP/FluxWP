@@ -4986,3 +4986,15 @@ msgstr "Suite : après un malentendu, la plainte le ferme aussitôt"
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "La réaction d’au revoir est 👍 ou 🤲, jamais 🙏"
+
+msgid "Promotional messages"
+msgstr "Messages promotionnels"
+
+msgid "Off (the person replied STOP)"
+msgstr "Désactivé (la personne a répondu STOP)"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "Les messages promotionnels et les rappels ne sont pas envoyés. Les réponses à ses propres messages partent toujours."
+
+msgid "The person replied STOP to promotional messages."
+msgstr "La personne a répondu STOP aux messages promotionnels."

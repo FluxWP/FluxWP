@@ -4986,3 +4986,15 @@ msgstr "متابعة: بعد سوء فهم، الاعتراض يغلقه فور�
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "تفاعل الوداع 👍 أو 🤲، وليس 🙏 أبدًا"
+
+msgid "Promotional messages"
+msgstr "الرسائل الترويجية"
+
+msgid "Off (the person replied STOP)"
+msgstr "متوقفة (ردّ الشخص بـ STOP)"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "لا تُرسل الرسائل الترويجية والتذكيرات. الردود على رسائل الشخص نفسه تُرسل."
+
+msgid "The person replied STOP to promotional messages."
+msgstr "ردّ الشخص بـ STOP على الرسائل الترويجية."

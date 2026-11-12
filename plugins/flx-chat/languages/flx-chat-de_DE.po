@@ -4986,3 +4986,15 @@ msgstr "Fortsetzung: Beschwerde nach Missverständnis schließt sofort"
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "Abschiedsreaktion ist 👍 oder 🤲, nie 🙏"
+
+msgid "Promotional messages"
+msgstr "Werbenachrichten"
+
+msgid "Off (the person replied STOP)"
+msgstr "Aus (die Person hat STOP geantwortet)"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "Werbenachrichten und Erinnerungen werden nicht gesendet. Antworten auf eigene Nachrichten der Person gehen weiterhin."
+
+msgid "The person replied STOP to promotional messages."
+msgstr "Die Person hat auf Werbenachrichten mit STOP geantwortet."

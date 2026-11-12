@@ -4986,3 +4986,15 @@ msgstr "Devam: yanlış anlamadan sonra itiraz gelince hemen kapatır"
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "Veda tepkisi 👍 ya da 🤲, asla 🙏"
+
+msgid "Promotional messages"
+msgstr "Tanıtım mesajları"
+
+msgid "Off (the person replied STOP)"
+msgstr "Kapalı (kişi IPTAL yazdı)"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "Tanıtım mesajları ve hatırlatıcılar gitmez. Kişinin kendi mesajlarına cevap verilir."
+
+msgid "The person replied STOP to promotional messages."
+msgstr "Kişi tanıtım mesajları için IPTAL yazdı."

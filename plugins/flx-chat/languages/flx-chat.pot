@@ -4986,3 +4986,15 @@ msgstr ""
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr ""
+
+msgid "Promotional messages"
+msgstr ""
+
+msgid "Off (the person replied STOP)"
+msgstr ""
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr ""
+
+msgid "The person replied STOP to promotional messages."
+msgstr ""

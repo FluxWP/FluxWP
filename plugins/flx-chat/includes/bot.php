@@ -191,6 +191,10 @@ add_action(
 add_action(
 	'flxc_message_from_phone',
 	function ( $id, $chat ) {
+		// 1.44.0: Flux Mail'in IPTAL / BAŞLA onayı telefondan görünse de temsilci mesajı değildir.
+		if ( function_exists( 'flxc_optout_is_confirmation' ) && flxc_optout_is_confirmation( $id, $chat ) ) {
+			return;
+		}
 		flxc_bot_pause( (int) $chat['id'] );
 	},
 	10,
@@ -309,6 +313,10 @@ function flxc_bot_run( $chat_id ) {
 			$prev_in          = (int) $state['last_in'];
 			$state['last_in'] = $last_in;
 			flxc_bot_save_state( $chat_id, $state );
+			// 1.44.0: yalnız IPTAL / BAŞLA yazıldıysa asistan cevap yazmaz; onayı Flux Mail gönderir.
+			if ( function_exists( 'flxc_optout_only_commands' ) && flxc_optout_only_commands( $chat_id, $prev_in ) ) {
+				continue;
+			}
 			// "Beni temsilciye bağla" diyene model beklemeden hemen cevap verilir, asistan bu sohbette kapanır.
 			if ( flxc_bot_wants_human( $chat_id, $prev_in ) ) {
 				flxc_bot_human_now( $chat );
@@ -995,6 +1003,10 @@ function flxc_bot_system_prompt( $chat, array $state, $template = null ) {
 	$known[] = 'Oluşturulan bağış kaydı: ' . ( $state['donation'] ? '#' . $state['donation'] . ( flxc_bot_same_order( $state ) ? ' (ödeme bilgileri gönderildi)' : '' ) : '-' );
 	if ( $state['donation'] ) {
 		$known[] = 'Bağış durumu (şu an, kayıttan): ' . flxc_bot_donation_status_text( (int) $state['donation'], $state );
+	}
+
+	if ( function_exists( 'flxc_optout_chat' ) && flxc_optout_chat( $chat ) ) {
+		$known[] = 'Tanıtım mesajları: KAPALI (kişi IPTAL yazdı). Kişinin kendi sorularına normal cevap ver; kendiliğinden kampanya, bağış çağrısı ya da duyuru önerme. Kişi yeniden almak isterse BAŞLA yazabileceğini söyle.';
 	}
 
 	if ( flxc_bot_is_closed( $state ) ) {

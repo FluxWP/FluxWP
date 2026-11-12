@@ -4986,3 +4986,15 @@ msgstr "Продолжение: после недопонимания жалоб
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "Реакция на прощание — 👍 или 🤲, никогда 🙏"
+
+msgid "Promotional messages"
+msgstr "Рекламные сообщения"
+
+msgid "Off (the person replied STOP)"
+msgstr "Выкл. (человек ответил STOP)"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "Рекламные сообщения и напоминания не отправляются. Ответы на собственные сообщения человека отправляются."
+
+msgid "The person replied STOP to promotional messages."
+msgstr "Человек ответил STOP на рекламные сообщения."

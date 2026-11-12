@@ -4986,3 +4986,15 @@ msgstr "Continuación: tras un malentendido, la queja lo cierra al instante"
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "La reacción de despedida es 👍 o 🤲, nunca 🙏"
+
+msgid "Promotional messages"
+msgstr "Mensajes promocionales"
+
+msgid "Off (the person replied STOP)"
+msgstr "Desactivado (la persona respondió STOP)"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "No se envían mensajes promocionales ni recordatorios. Las respuestas a los mensajes de la persona sí se envían."
+
+msgid "The person replied STOP to promotional messages."
+msgstr "La persona respondió STOP a los mensajes promocionales."
