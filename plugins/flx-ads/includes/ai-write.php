@@ -52,6 +52,8 @@ function flxads_write_tools() {
 				'pii'          => array( 'type' => 'string', 'enum' => array( 'consent', 'never', 'always' ) ),
 				'browser'      => array( 'type' => 'boolean' ),
 				'window_days'  => array( 'type' => 'integer', 'minimum' => 1, 'maximum' => 365 ),
+				'opt_roas'      => array( 'type' => 'number', 'description' => 'Suggestions: target return on ad spend (e.g. 2 = 2x).' ),
+				'opt_min_spend' => array( 'type' => 'number', 'description' => 'Suggestions: spend (ad account currency, 7 days) before a campaign is judged; 0 = automatic (2x average cost per payment).' ),
 			),
 			'preview'     => static function ( $a ) {
 				$new = flxads_clean_settings( $a, true );
@@ -432,6 +434,66 @@ function flxads_write_tools() {
 				return $r;
 			},
 		),
+		'flxads_suggestions'        => array(
+			'kind'        => 'read',
+			'title'       => __( 'Ad suggestions', 'flx-ads' ),
+			'description' => 'Suggestions for active Meta campaigns from the last 7 days: pause a campaign that spends without payments, lower or raise a daily budget by 20% by ROAS against the target, pause an ad with a much lower click rate than its ad set, new text when frequency is high. Each has id, type, reason, the exact action and status (open|applied|dismissed|gone). Nothing is applied automatically. refresh=true checks Meta again first.',
+			'props'       => array(
+				'status'  => array( 'type' => 'string', 'enum' => array( 'open', 'all' ) ),
+				'refresh' => array( 'type' => 'boolean' ),
+			),
+			'run'         => static function ( $a ) {
+				if ( ! empty( $a['refresh'] ) ) {
+					$r = FLXADS_Optimizer::refresh();
+					if ( is_wp_error( $r ) ) {
+						throw new Exception( $r->get_error_message() );
+					}
+				}
+				$list = 'all' === ( $a['status'] ?? 'open' ) ? FLXADS_Optimizer::all() : FLXADS_Optimizer::open();
+				return array(
+					'checked'     => FLXADS_Optimizer::last_run(),
+					'suggestions' => array_map( array( 'FLXADS_Optimizer', 'export' ), array_slice( $list, 0, 50 ) ),
+				);
+			},
+		),
+		'flxads_suggestion_apply'   => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Apply an ad suggestion', 'flx-ads' ),
+			'description' => 'Apply one open suggestion from flxads_suggestions: the pause or budget change goes to Meta at once and is written to the change history. Only when the user asks for this suggestion.',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'required'    => array( 'id' ),
+			'preview'     => static function ( $a ) {
+				$s = FLXADS_Optimizer::get( (string) ( $a['id'] ?? '' ) );
+				if ( ! $s || 'open' !== $s['status'] ) {
+					throw new Exception( 'Suggestion not found or already closed.' );
+				}
+				return FLXADS_Optimizer::export( $s );
+			},
+			'run'         => static function ( $a, $channel = 'mcp' ) {
+				$r = FLXADS_Optimizer::apply( (string) ( $a['id'] ?? '' ), $channel );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_suggestion_dismiss' => array(
+			'kind'        => 'write',
+			'title'       => __( 'Dismiss an ad suggestion', 'flx-ads' ),
+			'description' => 'Dismiss an open suggestion (nothing changes in Meta). It does not come back for 14 days. Optional short note why.',
+			'props'       => array(
+				'id'   => array( 'type' => 'string' ),
+				'note' => array( 'type' => 'string' ),
+			),
+			'required'    => array( 'id' ),
+			'run'         => static function ( $a, $channel = 'mcp' ) {
+				$r = FLXADS_Optimizer::dismiss( (string) ( $a['id'] ?? '' ), $channel, (string) ( $a['note'] ?? '' ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return array( 'id' => (string) $a['id'], 'dismissed' => true );
+			},
+		),
 		'flxads_studio_context'     => array(
 			'kind'        => 'read',
 			'title'       => __( 'Campaign planning context', 'flx-ads' ),
@@ -656,6 +718,6 @@ add_filter(
 		if ( ! flxads_can() ) {
 			return $text;
 		}
-		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one. For Meta campaigns, ad sets and ads use flxads_campaigns and flxads_campaign_detail; pausing, turning on and budget changes (flxads_ad_status, flxads_ad_budget) only when the user asks, one item at a time, budget steps of at most 20-30%. To plan a new campaign: flxads_studio_context, then flxads_draft_save (a draft only); the user reviews it in Flux Ads › Studio. Send it to Meta (paused) with flxads_draft_send only when the user asks.";
+		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one. For Meta campaigns, ad sets and ads use flxads_campaigns and flxads_campaign_detail; pausing, turning on and budget changes (flxads_ad_status, flxads_ad_budget) only when the user asks, one item at a time, budget steps of at most 20-30%. To plan a new campaign: flxads_studio_context, then flxads_draft_save (a draft only); the user reviews it in Flux Ads › Studio. Send it to Meta (paused) with flxads_draft_send only when the user asks. For what to change in running campaigns use flxads_suggestions; apply one (flxads_suggestion_apply) only when the user picks it.";
 	}
 );

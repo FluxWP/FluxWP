@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0
+
+- Suggestions: new page. Every day (and when you open it) Flux Ads checks active Meta campaigns from the last 7 days against what they brought on this site and suggests: pause a sales campaign that spent without a payment, lower the daily budget 20% when ROAS is under half the target, raise it 20% when ROAS is 1.5 times the target or more, pause an ad whose click rate is under half its ad set's, and write new text when people saw the ads more than 4 times.
+- Nothing is applied by itself. Apply asks for confirmation, goes to Meta and is written to the change history; Dismiss hides a suggestion for 14 days. Applied ones are not suggested again for 7 days. Earlier suggestions are listed with who decided and from where.
+- New settings (Settings › Suggestions): target ROAS (default 2) and spend before a campaign is judged (default automatic: twice the average cost per payment).
+- The menu shows how many suggestions wait. New action `flxads_suggestions_new`.
+- Flux AI / MCP: `flxads_suggestions` (read, optional refresh), `flxads_suggestion_apply` (needs approval), `flxads_suggestion_dismiss`.
+
 ## 0.5.0
 
 - Studio: new page. Write a short brief and Flux AI drafts a Meta campaign from it and this site's numbers (last 90 days of campaigns, your audiences, donor counts; no personal data): objective, daily budget, ad sets with ages, countries, audiences in/out and budget share, and ad text variants with a short reason.

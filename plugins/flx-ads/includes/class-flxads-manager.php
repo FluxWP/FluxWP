@@ -223,7 +223,7 @@ final class FLXADS_Manager {
 	 *
 	 * @return array|WP_Error
 	 */
-	public static function campaign( $id, $range = '7' ) {
+	public static function campaign( $id, $range = '7', $breakdown = true ) {
 		$ok = self::ready();
 		if ( is_wp_error( $ok ) ) {
 			return $ok;
@@ -256,10 +256,10 @@ final class FLXADS_Manager {
 		}
 		$out['adsets']    = $out['adsets'] ?? array();
 		$out['currency']  = $cur;
-		$out['breakdown'] = array(
+		$out['breakdown'] = $breakdown ? array(
 			'age_gender' => self::breakdown( $id, 'age,gender', $range ),
 			'placement'  => self::breakdown( $id, 'publisher_platform,platform_position', $range ),
-		);
+		) : array();
 		return $out;
 	}
 

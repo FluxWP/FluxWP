@@ -66,6 +66,15 @@ msgstr ""
 msgid "Change daily budget in Meta"
 msgstr ""
 
+msgid "Ad suggestions"
+msgstr ""
+
+msgid "Apply an ad suggestion"
+msgstr ""
+
+msgid "Dismiss an ad suggestion"
+msgstr ""
+
 msgid "Campaign planning context"
 msgstr ""
 
@@ -178,6 +187,57 @@ msgid "Enter a daily budget greater than zero."
 msgstr ""
 
 msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr ""
+
+msgid "Pause campaign"
+msgstr ""
+
+msgid "Lower budget"
+msgstr ""
+
+msgid "Raise budget"
+msgstr ""
+
+msgid "Pause weak ad"
+msgstr ""
+
+msgid "New ad text"
+msgstr ""
+
+msgid "Waiting"
+msgstr ""
+
+msgid "Applied"
+msgstr ""
+
+msgid "Dismissed"
+msgstr ""
+
+msgid "No longer valid"
+msgstr ""
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr ""
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr ""
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr ""
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr ""
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr ""
+
+msgid "This suggestion is already closed."
+msgstr ""
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr ""
+
+msgid "Suggestion not found."
 msgstr ""
 
 msgid "Ad channel"
@@ -395,6 +455,11 @@ msgstr ""
 msgid "Theme Settings"
 msgstr ""
 
+msgid "Checked: %d new suggestion."
+msgid_plural "Checked: %d new suggestions."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] ""
@@ -420,6 +485,9 @@ msgid "Report"
 msgstr ""
 
 msgid "Campaigns"
+msgstr ""
+
+msgid "Suggestions"
 msgstr ""
 
 msgid "Studio"
@@ -480,6 +548,12 @@ msgid "Draft deleted."
 msgstr ""
 
 msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
+msgstr ""
+
+msgid "Applied in Meta and written to the change history."
+msgstr ""
+
+msgid "Dismissed. It does not come back for 14 days."
 msgstr ""
 
 msgid "Status changed in Meta."
@@ -974,6 +1048,60 @@ msgstr ""
 msgid "Daily budget %1$s → %2$s"
 msgstr ""
 
+msgid "Flux Ads checks your active Meta campaigns every day against what they brought on this site, and suggests what to change. Nothing changes until you press Apply; every change goes to the change history under Campaigns."
+msgstr ""
+
+msgid "Last check %s."
+msgstr ""
+
+msgid "Target ROAS %s."
+msgstr ""
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr ""
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr ""
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr ""
+
+msgid "Change the rules"
+msgstr ""
+
+msgid "Check now"
+msgstr ""
+
+msgid "No suggestions now. Your active campaigns are within the target."
+msgstr ""
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr ""
+
+msgid "Pause \"%s\" in Meta?"
+msgstr ""
+
+msgid "Apply: %s a day"
+msgstr ""
+
+msgid "Apply: pause"
+msgstr ""
+
+msgid "Open Studio"
+msgstr ""
+
+msgid "Dismiss"
+msgstr ""
+
+msgid "Earlier suggestions"
+msgstr ""
+
+msgid "Suggestion"
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
 msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
 msgstr ""
 
@@ -1121,9 +1249,6 @@ msgstr ""
 msgid "Create in Meta (paused)"
 msgstr ""
 
-msgid "Waiting"
-msgstr ""
-
 msgid "Sent"
 msgstr ""
 
@@ -1269,6 +1394,18 @@ msgid "Measurement Protocol API secret"
 msgstr ""
 
 msgid "Data stream › Measurement Protocol API secrets › Create. Needed for bank-transfer donations approved later. To see donations in Google Ads, import the GA4 \"purchase\" conversion there."
+msgstr ""
+
+msgid "Target ROAS"
+msgstr ""
+
+msgid "Income on the site per 1 spent on ads. Under half of it: lower the budget; 1.5 times and more: raise it."
+msgstr ""
+
+msgid "Spend before judging (7 days)"
+msgstr ""
+
+msgid "In the ad account currency. 0 = automatic: twice your average cost per payment."
 msgstr ""
 
 msgid "Privacy"

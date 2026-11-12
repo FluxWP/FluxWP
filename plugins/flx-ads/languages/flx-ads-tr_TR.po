@@ -68,6 +68,15 @@ msgstr "Meta'da duraklat ya da aç"
 msgid "Change daily budget in Meta"
 msgstr "Meta'da günlük bütçeyi değiştir"
 
+msgid "Ad suggestions"
+msgstr "Reklam önerileri"
+
+msgid "Apply an ad suggestion"
+msgstr "Reklam önerisini uygula"
+
+msgid "Dismiss an ad suggestion"
+msgstr "Reklam önerisini kapat"
+
 msgid "Campaign planning context"
 msgstr "Kampanya planlama bağlamı"
 
@@ -181,6 +190,57 @@ msgstr "Sıfırdan büyük bir günlük bütçe girin."
 
 msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
 msgstr "Bunun burada günlük bütçesi yok (toplam bütçe ya da bütçe kampanyada / reklam setlerinde). Meta Reklam Yöneticisi'nden değiştirin."
+
+msgid "Pause campaign"
+msgstr "Kampanyayı duraklat"
+
+msgid "Lower budget"
+msgstr "Bütçeyi düşür"
+
+msgid "Raise budget"
+msgstr "Bütçeyi artır"
+
+msgid "Pause weak ad"
+msgstr "Zayıf reklamı duraklat"
+
+msgid "New ad text"
+msgstr "Yeni reklam metni"
+
+msgid "Waiting"
+msgstr "Bekliyor"
+
+msgid "Applied"
+msgstr "Uygulandı"
+
+msgid "Dismissed"
+msgstr "Kapatıldı"
+
+msgid "No longer valid"
+msgstr "Artık geçerli değil"
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr "Son 7 günde %1$s harcadı, sitede hiç ödeme getirmedi (%2$s harcamadan sonra değerlendirilir)."
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr "Reklam harcamasının getirisi %1$s, %2$s hedefinizin yarısının altında. Günlük bütçeyi %3$s → %4$s düşürün (-%%20), parayı daha iyi kampanyalara kaydırın."
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr "Reklam harcamasının getirisi %1$s, %2$s ödemeyle hedefin epey üstünde. Günlük bütçeyi %3$s → %4$s artırın (+%%20; Meta'nın öğrenmesi bozulmayacak kadar)."
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr "Tıklama oranı %%%1$s, bu setteki diğer reklamların ortalaması %%%2$s; %3$s harcadı. Duraklatınca bütçe daha iyi reklamlara geçer."
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr "Kişiler bu reklamları 7 günde ortalama %s kez gördü; 4'ten sonra sonuç genelde düşer. Stüdyo'da yeni metin çeşitleri yazın ya da kitleyi genişletin."
+
+msgid "This suggestion is already closed."
+msgstr "Bu öneri zaten kapandı."
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr "Bu öneri Meta'da bir şey değiştirmiyor; Stüdyo'yu açın ya da kapatın."
+
+msgid "Suggestion not found."
+msgstr "Öneri bulunamadı."
 
 msgid "Ad channel"
 msgstr "Reklam kanalı"
@@ -397,6 +457,11 @@ msgstr "Temanın çerez banner'ı kapalı, reklam pixel'leri izin sormadan yükl
 msgid "Theme Settings"
 msgstr "Tema Ayarları"
 
+msgid "Checked: %d new suggestion."
+msgid_plural "Checked: %d new suggestions."
+msgstr[0] "Kontrol edildi: %d yeni öneri."
+msgstr[1] "Kontrol edildi: %d yeni öneri."
+
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s gün"
@@ -423,6 +488,9 @@ msgstr "Rapor"
 
 msgid "Campaigns"
 msgstr "Kampanyalar"
+
+msgid "Suggestions"
+msgstr "Öneriler"
 
 msgid "Studio"
 msgstr "Stüdyo"
@@ -483,6 +551,12 @@ msgstr "Taslak silindi."
 
 msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
 msgstr "Meta'da duraklatılmış olarak oluşturuldu. Hazır olunca Kampanyalar'dan açın."
+
+msgid "Applied in Meta and written to the change history."
+msgstr "Meta'da uygulandı ve değişiklik geçmişine yazıldı."
+
+msgid "Dismissed. It does not come back for 14 days."
+msgstr "Kapatıldı. 14 gün boyunca yeniden gelmez."
 
 msgid "Status changed in Meta."
 msgstr "Durum Meta'da değişti."
@@ -976,6 +1050,60 @@ msgstr "Kim"
 msgid "Daily budget %1$s → %2$s"
 msgstr "Günlük bütçe %1$s → %2$s"
 
+msgid "Flux Ads checks your active Meta campaigns every day against what they brought on this site, and suggests what to change. Nothing changes until you press Apply; every change goes to the change history under Campaigns."
+msgstr "Flux Ads etkin Meta kampanyalarınızı her gün sitede getirdikleriyle karşılaştırır ve neyin değişmesi gerektiğini önerir. Uygula'ya basmadıkça hiçbir şey değişmez; her değişiklik Kampanyalar'daki değişiklik geçmişine yazılır."
+
+msgid "Last check %s."
+msgstr "Son kontrol %s."
+
+msgid "Target ROAS %s."
+msgstr "Hedef ROAS %s."
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr "Kampanya 7 günde %s harcadıktan sonra değerlendirilir."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr "Kampanya 7 günde ödeme başı ortalama maliyetinizin iki katını harcadıktan sonra değerlendirilir (şu an %s)."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr "Kampanya 7 günde ödeme başı ortalama maliyetinizin iki katını harcadıktan sonra değerlendirilir."
+
+msgid "Change the rules"
+msgstr "Kuralları değiştir"
+
+msgid "Check now"
+msgstr "Şimdi kontrol et"
+
+msgid "No suggestions now. Your active campaigns are within the target."
+msgstr "Şu an öneri yok. Etkin kampanyalarınız hedef içinde."
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr "\"%1$s\" günlük bütçesi Meta'da %2$s yapılsın mı?"
+
+msgid "Pause \"%s\" in Meta?"
+msgstr "\"%s\" Meta'da duraklatılsın mı?"
+
+msgid "Apply: %s a day"
+msgstr "Uygula: günde %s"
+
+msgid "Apply: pause"
+msgstr "Uygula: duraklat"
+
+msgid "Open Studio"
+msgstr "Stüdyo'yu aç"
+
+msgid "Dismiss"
+msgstr "Kapat"
+
+msgid "Earlier suggestions"
+msgstr "Önceki öneriler"
+
+msgid "Suggestion"
+msgstr "Öneri"
+
+msgid "Result"
+msgstr "Sonuç"
+
 msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
 msgstr "Flux AI, brifinizden ve bu sitenin rakamlarından bir kampanya taslağı yazar: reklam setleri, kitleler, bütçe dağılımı ve reklam metni çeşitleri. Burada okuyup düzenlersiniz. \"Meta'ya gönder\" her şeyi duraklatılmış oluşturur; Kampanyalar'dan açana kadar hiçbir şey gösterilmez, harcanmaz."
 
@@ -1123,9 +1251,6 @@ msgstr "Duraklatılmış oluştur"
 msgid "Create in Meta (paused)"
 msgstr "Meta'da oluştur (duraklatılmış)"
 
-msgid "Waiting"
-msgstr "Bekliyor"
-
 msgid "Sent"
 msgstr "Gönderildi"
 
@@ -1272,6 +1397,18 @@ msgstr "Measurement Protocol API gizli anahtarı"
 
 msgid "Data stream › Measurement Protocol API secrets › Create. Needed for bank-transfer donations approved later. To see donations in Google Ads, import the GA4 \"purchase\" conversion there."
 msgstr "Veri akışı › Measurement Protocol API gizli anahtarları › Oluştur. Sonradan onaylanan Havale/EFT bağışları için gerekli. Bağışları Google Ads'te görmek için GA4 \"purchase\" dönüşümünü orada içe aktarın."
+
+msgid "Target ROAS"
+msgstr "Hedef ROAS"
+
+msgid "Income on the site per 1 spent on ads. Under half of it: lower the budget; 1.5 times and more: raise it."
+msgstr "Reklama harcanan her 1 birim için sitedeki gelir. Yarısının altı: bütçeyi düşür; 1,5 katı ve üstü: artır."
+
+msgid "Spend before judging (7 days)"
+msgstr "Değerlendirme için en az harcama (7 gün)"
+
+msgid "In the ad account currency. 0 = automatic: twice your average cost per payment."
+msgstr "Reklam hesabının para biriminde. 0 = otomatik: ödeme başı ortalama maliyetin iki katı."
 
 msgid "Privacy"
 msgstr "Gizlilik"

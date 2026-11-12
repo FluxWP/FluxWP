@@ -40,6 +40,8 @@ function flxads_defaults() {
 			'pii'           => 'consent', // consent (yalnız reklam izni olan kişi) | never | always
 			'browser'       => 1,       // tarayıcı pixel'leri de yüklensin (kapalıysa yalnız sunucu)
 			'window_days'   => 90,      // atıf çerezinin ömrü
+			'opt_roas'      => 2,       // Öneriler: hedef ROAS
+			'opt_min_spend' => 0,       // Öneriler: karar için en az harcama (0 = otomatik)
 		)
 	);
 }
@@ -100,6 +102,8 @@ function flxads_clean_settings( array $in, $partial = false ) {
 		'pii'          => static function ( $v ) { return in_array( $v, array( 'consent', 'never', 'always' ), true ) ? $v : 'consent'; },
 		'browser'      => static function ( $v ) { return empty( $v ) ? 0 : 1; },
 		'window_days'  => static function ( $v ) { return max( 1, min( 365, (int) ( '' === (string) $v ? 90 : $v ) ) ); },
+		'opt_roas'      => static function ( $v ) { $v = (float) str_replace( ',', '.', (string) $v ); return $v > 0 ? min( 100, round( $v, 2 ) ) : 2; },
+		'opt_min_spend' => static function ( $v ) { return max( 0, round( (float) str_replace( ',', '.', (string) $v ), 2 ) ); },
 	);
 	$out = array();
 	foreach ( $rules as $k => $fn ) {
@@ -258,7 +262,7 @@ function flxads_admin_url( $tab = 'report', array $args = array() ) {
 
 /** Bölüm → sol menü alt sayfasının kısa adı (Rapor ana sayfadır). */
 function flxads_page_slug( $tab ) {
-	return in_array( $tab, array( 'campaigns', 'studio', 'value', 'spend', 'audiences', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
+	return in_array( $tab, array( 'campaigns', 'suggestions', 'studio', 'value', 'spend', 'audiences', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
 }
 
 /** Açık bölüm; eski ?page=flx-ads&tab=… bağlantıları da çalışır. */

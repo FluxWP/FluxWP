@@ -68,6 +68,15 @@ msgstr "Pause or turn on in Meta"
 msgid "Change daily budget in Meta"
 msgstr "Change daily budget in Meta"
 
+msgid "Ad suggestions"
+msgstr "Ad suggestions"
+
+msgid "Apply an ad suggestion"
+msgstr "Apply an ad suggestion"
+
+msgid "Dismiss an ad suggestion"
+msgstr "Dismiss an ad suggestion"
+
 msgid "Campaign planning context"
 msgstr "Campaign planning context"
 
@@ -181,6 +190,57 @@ msgstr "Enter a daily budget greater than zero."
 
 msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
 msgstr "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+
+msgid "Pause campaign"
+msgstr "Pause campaign"
+
+msgid "Lower budget"
+msgstr "Lower budget"
+
+msgid "Raise budget"
+msgstr "Raise budget"
+
+msgid "Pause weak ad"
+msgstr "Pause weak ad"
+
+msgid "New ad text"
+msgstr "New ad text"
+
+msgid "Waiting"
+msgstr "Waiting"
+
+msgid "Applied"
+msgstr "Applied"
+
+msgid "Dismissed"
+msgstr "Dismissed"
+
+msgid "No longer valid"
+msgstr "No longer valid"
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+
+msgid "This suggestion is already closed."
+msgstr "This suggestion is already closed."
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+
+msgid "Suggestion not found."
+msgstr "Suggestion not found."
 
 msgid "Ad channel"
 msgstr "Ad channel"
@@ -397,6 +457,11 @@ msgstr "The theme cookie banner is off, so ad pixels load without asking. Under 
 msgid "Theme Settings"
 msgstr "Theme Settings"
 
+msgid "Checked: %d new suggestion."
+msgid_plural "Checked: %d new suggestions."
+msgstr[0] "Checked: %d new suggestion."
+msgstr[1] "Checked: %d new suggestions."
+
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s day"
@@ -423,6 +488,9 @@ msgstr "Report"
 
 msgid "Campaigns"
 msgstr "Campaigns"
+
+msgid "Suggestions"
+msgstr "Suggestions"
 
 msgid "Studio"
 msgstr "Studio"
@@ -483,6 +551,12 @@ msgstr "Draft deleted."
 
 msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
 msgstr "Created in Meta, paused. Turn it on under Campaigns when you are ready."
+
+msgid "Applied in Meta and written to the change history."
+msgstr "Applied in Meta and written to the change history."
+
+msgid "Dismissed. It does not come back for 14 days."
+msgstr "Dismissed. It does not come back for 14 days."
 
 msgid "Status changed in Meta."
 msgstr "Status changed in Meta."
@@ -976,6 +1050,60 @@ msgstr "Who"
 msgid "Daily budget %1$s → %2$s"
 msgstr "Daily budget %1$s → %2$s"
 
+msgid "Flux Ads checks your active Meta campaigns every day against what they brought on this site, and suggests what to change. Nothing changes until you press Apply; every change goes to the change history under Campaigns."
+msgstr "Flux Ads checks your active Meta campaigns every day against what they brought on this site, and suggests what to change. Nothing changes until you press Apply; every change goes to the change history under Campaigns."
+
+msgid "Last check %s."
+msgstr "Last check %s."
+
+msgid "Target ROAS %s."
+msgstr "Target ROAS %s."
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr "A campaign is judged after %s spend in 7 days."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr "A campaign is judged after spending twice your average cost per payment in 7 days."
+
+msgid "Change the rules"
+msgstr "Change the rules"
+
+msgid "Check now"
+msgstr "Check now"
+
+msgid "No suggestions now. Your active campaigns are within the target."
+msgstr "No suggestions now. Your active campaigns are within the target."
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+
+msgid "Pause \"%s\" in Meta?"
+msgstr "Pause \"%s\" in Meta?"
+
+msgid "Apply: %s a day"
+msgstr "Apply: %s a day"
+
+msgid "Apply: pause"
+msgstr "Apply: pause"
+
+msgid "Open Studio"
+msgstr "Open Studio"
+
+msgid "Dismiss"
+msgstr "Dismiss"
+
+msgid "Earlier suggestions"
+msgstr "Earlier suggestions"
+
+msgid "Suggestion"
+msgstr "Suggestion"
+
+msgid "Result"
+msgstr "Result"
+
 msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
 msgstr "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
 
@@ -1123,9 +1251,6 @@ msgstr "Create paused"
 msgid "Create in Meta (paused)"
 msgstr "Create in Meta (paused)"
 
-msgid "Waiting"
-msgstr "Waiting"
-
 msgid "Sent"
 msgstr "Sent"
 
@@ -1272,6 +1397,18 @@ msgstr "Measurement Protocol API secret"
 
 msgid "Data stream › Measurement Protocol API secrets › Create. Needed for bank-transfer donations approved later. To see donations in Google Ads, import the GA4 \"purchase\" conversion there."
 msgstr "Data stream › Measurement Protocol API secrets › Create. Needed for bank-transfer donations approved later. To see donations in Google Ads, import the GA4 \"purchase\" conversion there."
+
+msgid "Target ROAS"
+msgstr "Target ROAS"
+
+msgid "Income on the site per 1 spent on ads. Under half of it: lower the budget; 1.5 times and more: raise it."
+msgstr "Income on the site per 1 spent on ads. Under half of it: lower the budget; 1.5 times and more: raise it."
+
+msgid "Spend before judging (7 days)"
+msgstr "Spend before judging (7 days)"
+
+msgid "In the ad account currency. 0 = automatic: twice your average cost per payment."
+msgstr "In the ad account currency. 0 = automatic: twice your average cost per payment."
 
 msgid "Privacy"
 msgstr "Privacy"
