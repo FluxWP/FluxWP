@@ -300,6 +300,576 @@
       ],
       "This form was changed in the Flux Forms panel after you opened it.": [
         "Bu form, siz açtıktan sonra Flux Forms panelinde değişti."
+      ],
+      "%d entries in the list.": [
+        "Listede %d kayıt var."
+      ],
+      "A field type the block editor does not know yet. It is kept as it is.": [
+        "Blok düzenleyicinin henüz tanımadığı bir alan türü. Olduğu gibi korunur."
+      ],
+      "Add a Step block to split the form into steps.": [
+        "Formu adımlara bölmek için Adım bloğu ekleyin."
+      ],
+      "Add another field to the form first.": [
+        "Önce forma başka bir alan ekleyin."
+      ],
+      "Add condition": [
+        "Koşul ekle"
+      ],
+      "Add row": [
+        "Satır ekle"
+      ],
+      "Address": [
+        "Adres"
+      ],
+      "All of them": [
+        "Hepsi"
+      ],
+      "All supported files": [
+        "Desteklenen tüm dosyalar"
+      ],
+      "Allowed files": [
+        "İzin verilen dosyalar"
+      ],
+      "Always": [
+        "Her zaman"
+      ],
+      "Amount": [
+        "Tutar"
+      ],
+      "Amount field": [
+        "Tutar alanı"
+      ],
+      "Any of them": [
+        "Herhangi biri"
+      ],
+      "Archives (zip, rar)": [
+        "Arşivler (zip, rar)"
+      ],
+      "Attach a file": [
+        "Dosya ekleyin"
+      ],
+      "Audio and video": [
+        "Ses ve video"
+      ],
+      "CSS classes": [
+        "CSS sınıfları"
+      ],
+      "Camera": [
+        "Kamera"
+      ],
+      "Card payment (Stripe)": [
+        "Kartla ödeme (Stripe)"
+      ],
+      "Card payments use the Stripe keys in Flux Forms settings.": [
+        "Kartla ödeme, Flux Forms ayarlarındaki Stripe anahtarlarını kullanır."
+      ],
+      "Change image": [
+        "Görseli değiştir"
+      ],
+      "Checklist with quantity": [
+        "Adetli çoklu seçim"
+      ],
+      "Choose a file or drop it here": [
+        "Dosya seçin ya da buraya bırakın"
+      ],
+      "Choose a product": [
+        "Ürün seçin"
+      ],
+      "Choose image": [
+        "Görsel seç"
+      ],
+      "Choose products": [
+        "Ürünleri seçin"
+      ],
+      "City": [
+        "İlçe / şehir"
+      ],
+      "Clear": [
+        "Temizle"
+      ],
+      "Clear button text": [
+        "Temizle düğmesi metni"
+      ],
+      "Color": [
+        "Renk"
+      ],
+      "Columns": [
+        "Sütun"
+      ],
+      "Comma separated, for example: pdf, docx, png": [
+        "Virgülle ayırın, örneğin: pdf, docx, png"
+      ],
+      "Condition": [
+        "Koşul"
+      ],
+      "Conditional": [
+        "Koşullu"
+      ],
+      "Conditional display": [
+        "Koşullu gösterim"
+      ],
+      "Conditions to meet": [
+        "Sağlanacak koşullar"
+      ],
+      "Countdown before recording (seconds)": [
+        "Kayıttan önce geri sayım (saniye)"
+      ],
+      "Country": [
+        "Ülke"
+      ],
+      "Country code": [
+        "Ülke kodu"
+      ],
+      "Currency": [
+        "Para birimi"
+      ],
+      "Custom extensions": [
+        "Özel uzantılar"
+      ],
+      "Custom list": [
+        "Özel liste"
+      ],
+      "Daily subscription": [
+        "Günlük abonelik"
+      ],
+      "Default value": [
+        "Varsayılan değer"
+      ],
+      "Description": [
+        "Açıklama"
+      ],
+      "Do you agree?": [
+        "Kabul ediyor musunuz?"
+      ],
+      "Documents": [
+        "Belgeler"
+      ],
+      "Drop your files here": [
+        "Dosyalarınızı buraya bırakın"
+      ],
+      "Earliest date": [
+        "En erken tarih"
+      ],
+      "File drop zone": [
+        "Dosya bırakma alanı"
+      ],
+      "File upload": [
+        "Dosya yükleme"
+      ],
+      "Fill the list again": [
+        "Listeyi yeniden doldur"
+      ],
+      "First button": [
+        "Birinci düğme"
+      ],
+      "Flux Forms: advanced": [
+        "Flux Forms: gelişmiş"
+      ],
+      "Flux Forms: choices": [
+        "Flux Forms: seçimler"
+      ],
+      "Flux Forms: content": [
+        "Flux Forms: içerik"
+      ],
+      "Flux Forms: payment": [
+        "Flux Forms: ödeme"
+      ],
+      "HTML": [
+        "HTML"
+      ],
+      "HTML code": [
+        "HTML kodu"
+      ],
+      "Heading": [
+        "Başlık"
+      ],
+      "Hidden": [
+        "Gizli"
+      ],
+      "Hidden field": [
+        "Gizli alan"
+      ],
+      "Hide the label": [
+        "Etiketi gizle"
+      ],
+      "Hide when…": [
+        "Şu durumda gizle…"
+      ],
+      "High": [
+        "Yüksek"
+      ],
+      "How likely are you to recommend us?": [
+        "Bizi tavsiye etme olasılığınız nedir?"
+      ],
+      "How many points can be marked": [
+        "İşaretlenebilecek nokta sayısı"
+      ],
+      "How much?": [
+        "Ne kadar?"
+      ],
+      "Huge": [
+        "Çok büyük"
+      ],
+      "I accept the terms and conditions.": [
+        "Şartları ve koşulları kabul ediyorum."
+      ],
+      "Image choice": [
+        "Görselli seçim"
+      ],
+      "Images": [
+        "Görseller"
+      ],
+      "Large": [
+        "Büyük"
+      ],
+      "Larger": [
+        "Daha büyük"
+      ],
+      "Latest date": [
+        "En geç tarih"
+      ],
+      "Latitude": [
+        "Enlem"
+      ],
+      "Let the person download the recording": [
+        "Kişi kaydı indirebilsin"
+      ],
+      "Link": [
+        "Bağlantı"
+      ],
+      "Location picker": [
+        "Konum seçici"
+      ],
+      "Longitude": [
+        "Boylam"
+      ],
+      "Maximum": [
+        "En çok"
+      ],
+      "Maximum choices": [
+        "En çok seçim"
+      ],
+      "Maximum duration (seconds)": [
+        "En uzun süre (saniye)"
+      ],
+      "Maximum file size (MB)": [
+        "En büyük dosya boyutu (MB)"
+      ],
+      "Maximum length": [
+        "En çok uzunluk"
+      ],
+      "Medium": [
+        "Orta"
+      ],
+      "Message when left empty": [
+        "Boş bırakılınca gösterilecek mesaj"
+      ],
+      "Minimum": [
+        "En az"
+      ],
+      "Minimum choices": [
+        "En az seçim"
+      ],
+      "Minimum length": [
+        "En az uzunluk"
+      ],
+      "Mirror the preview": [
+        "Önizlemeyi aynala"
+      ],
+      "Mobile": [
+        "Cep telefonu"
+      ],
+      "Mobile (with country code)": [
+        "Cep telefonu (ülke kodlu)"
+      ],
+      "Monthly subscription": [
+        "Aylık abonelik"
+      ],
+      "Multi-select list": [
+        "Çoklu seçim listesi"
+      ],
+      "Next button": [
+        "İleri düğmesi"
+      ],
+      "Noise reduction": [
+        "Gürültü azaltma"
+      ],
+      "Not shown to the person; its default value is still sent.": [
+        "Kişiye gösterilmez; varsayılan değeri yine de gönderilir."
+      ],
+      "Off": [
+        "Kapalı"
+      ],
+      "Off text": [
+        "Kapalı metni"
+      ],
+      "On": [
+        "Açık"
+      ],
+      "On text": [
+        "Açık metni"
+      ],
+      "One": [
+        "Bir"
+      ],
+      "One-time": [
+        "Tek seferlik"
+      ],
+      "Only when…": [
+        "Yalnız şu durumda…"
+      ],
+      "Password": [
+        "Parola"
+      ],
+      "Payment": [
+        "Ödeme"
+      ],
+      "Payment type": [
+        "Ödeme türü"
+      ],
+      "Pick a location": [
+        "Konum seçin"
+      ],
+      "Previous button": [
+        "Geri düğmesi"
+      ],
+      "Price": [
+        "Fiyat"
+      ],
+      "Product (single)": [
+        "Ürün (tekli)"
+      ],
+      "Product dropdown": [
+        "Ürün açılır listesi"
+      ],
+      "Product list (multiple)": [
+        "Ürün listesi (çoklu)"
+      ],
+      "Products (multiple)": [
+        "Ürünler (çoklu)"
+      ],
+      "Quality": [
+        "Kalite"
+      ],
+      "Quantity": [
+        "Adet"
+      ],
+      "Quantity placeholder": [
+        "Adet yer tutucusu"
+      ],
+      "Rate each item": [
+        "Her birini puanlayın"
+      ],
+      "Rating table": [
+        "Puanlama tablosu"
+      ],
+      "Read only": [
+        "Salt okunur"
+      ],
+      "Record a video": [
+        "Video kaydedin"
+      ],
+      "Record a voice message": [
+        "Sesli mesaj kaydedin"
+      ],
+      "Record your screen": [
+        "Ekranınızı kaydedin"
+      ],
+      "Remove": [
+        "Kaldır"
+      ],
+      "Remove condition": [
+        "Koşulu kaldır"
+      ],
+      "Row": [
+        "Satır"
+      ],
+      "Rows": [
+        "Satırlar"
+      ],
+      "Score 0-10 (NPS)": [
+        "0-10 puan (NPS)"
+      ],
+      "Score 1-5": [
+        "1-5 puan"
+      ],
+      "Screen recording": [
+        "Ekran kaydı"
+      ],
+      "Second button": [
+        "İkinci düğme"
+      ],
+      "Short description": [
+        "Kısa açıklama"
+      ],
+      "Show this field": [
+        "Bu alanı göster"
+      ],
+      "Sign here": [
+        "Buraya imzalayın"
+      ],
+      "Signature": [
+        "İmza"
+      ],
+      "Single choice with quantity": [
+        "Adetli tekli seçim"
+      ],
+      "Size": [
+        "Boyut"
+      ],
+      "Slider": [
+        "Kaydırıcı"
+      ],
+      "Small": [
+        "Küçük"
+      ],
+      "Standard": [
+        "Standart"
+      ],
+      "Star rating": [
+        "Yıldızlı puan"
+      ],
+      "Start recording": [
+        "Kaydı başlat"
+      ],
+      "Starts a new step. Fields below it, up to the next step, are shown together.": [
+        "Yeni bir adım başlatır. Altındaki alanlar, sonraki adıma kadar birlikte gösterilir."
+      ],
+      "State / province": [
+        "İl / eyalet"
+      ],
+      "State / province code": [
+        "İl / eyalet kodu"
+      ],
+      "Step": [
+        "Adım"
+      ],
+      "Step title": [
+        "Adım başlığı"
+      ],
+      "Steps": [
+        "Adımlar"
+      ],
+      "Switch": [
+        "Anahtar"
+      ],
+      "Terms": [
+        "Şartlar"
+      ],
+      "Terms consent": [
+        "Şart onayı"
+      ],
+      "The list could not be loaded. Check the country and state codes.": [
+        "Liste yüklenemedi. Ülke ve il kodlarını kontrol edin."
+      ],
+      "This field type is not available as a block. It is kept unchanged.": [
+        "Bu alan türü blok olarak yok. Olduğu gibi korunur."
+      ],
+      "Three": [
+        "Üç"
+      ],
+      "Total": [
+        "Toplam"
+      ],
+      "Turn on": [
+        "Açın"
+      ],
+      "Two": [
+        "İki"
+      ],
+      "Two letters, for example TR.": [
+        "İki harf, örneğin TR."
+      ],
+      "Value": [
+        "Değer"
+      ],
+      "Video recording": [
+        "Video kaydı"
+      ],
+      "Voice recording": [
+        "Ses kaydı"
+      ],
+      "Web address": [
+        "Web adresi"
+      ],
+      "Website": [
+        "Web sitesi"
+      ],
+      "Weekly subscription": [
+        "Haftalık abonelik"
+      ],
+      "YYYY-MM-DD, or 1 for today.": [
+        "YYYY-AA-GG ya da bugün için 1."
+      ],
+      "Yearly subscription": [
+        "Yıllık abonelik"
+      ],
+      "Yes": [
+        "Evet"
+      ],
+      "Yes / No": [
+        "Evet / Hayır"
+      ],
+      "Your rating": [
+        "Puanınız"
+      ],
+      "Your score": [
+        "Puanınız"
+      ],
+      "Zoom": [
+        "Yakınlaştırma"
+      ],
+      "contains": [
+        "içerir"
+      ],
+      "does not contain": [
+        "içermez"
+      ],
+      "ends with": [
+        "ile biter"
+      ],
+      "is": [
+        "eşittir"
+      ],
+      "is after": [
+        "sonradır"
+      ],
+      "is at least": [
+        "en az"
+      ],
+      "is at most": [
+        "en çok"
+      ],
+      "is before": [
+        "öncedir"
+      ],
+      "is empty": [
+        "boştur"
+      ],
+      "is filled in": [
+        "doludur"
+      ],
+      "is greater than": [
+        "büyüktür"
+      ],
+      "is less than": [
+        "küçüktür"
+      ],
+      "is not": [
+        "eşit değildir"
+      ],
+      "starts with": [
+        "ile başlar"
+      ],
+      "More settings": [
+        "Diğer ayarlar"
+      ],
+      "Front camera": [
+        "Ön kamera"
+      ],
+      "Back camera": [
+        "Arka kamera"
       ]
     }
   }

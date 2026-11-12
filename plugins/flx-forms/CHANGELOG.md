@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 2.3.0
+- Flux Forms'taki tüm alan türleri artık blok: metin, e-posta, telefon, cep telefonu, uzun metin, sayı, parola, web adresi, tarih, kaydırıcı, renk, açılır liste, tekli/çoklu seçim, çoklu seçim listesi, görselli seçim, adetli seçimler, evet/hayır, anahtar, şart onayı, ülke, il, ilçe, dosya yükleme ve bırakma alanı, yıldız/1-5/NPS puanı, puanlama tablosu, imza, konum seçici, ses/video/ekran kaydı, ürün seçimleri, tutar, toplam, kartla ödeme (Stripe), başlık, bağlantı ve HTML. Her türün paneldeki ayarları (uzunluk sınırları, varsayılan değer, sütun, dosya türü ve boyutu, kayıt süresi, harita konumu, fiyatlar, görseller...) blok ayarlarında.
+- Adım bloğu: formu adımlara böler; çok adımlı formlar artık blokta düzenlenir.
+- Koşullu gösterim: her alanın ayarlarında "Yalnız şu durumda / Şu durumda gizle" ve bir ya da birkaç koşul (eşittir, içerir, büyüktür, boştur...). Panelde kurulan basit kurallar blokta görünür, karmaşık kurallar olduğu gibi korunur.
+- Ödeme formları: ürün/fiyat alanları ve kartla ödeme bloğu; formda para birimi ve ödeme türü (tek seferlik ya da abonelik).
+- Her alanda gizli alan, salt okunur, etiketi gizle, boş bırakılınca mesaj ve CSS sınıfı ayarları.
+- Ülke, il ve ilçe listeleri Flux Forms'un kendi dosyalarından dolar.
+
 ## 2.2.0
 - Formlar artık sayfada Gutenberg bloklarıyla kurulabilir: "Flux Form" bloğu ve metin, e-posta, telefon, uzun metin, sayı, tarih, açılır liste, tekli ve çoklu seçim alan blokları. Sayfa kaydedilince form Flux Forms'a yazılır; panelde aynı form görünür, yanıtlar, e-postalar ve otomasyonlar Flux Forms'ta çalışır.
 - Panelde yapılmış bir form blokta seçilebilir. Blokta karşılığı olmayan alan türleri "Flux Forms alanı" olarak bozulmadan korunur, "Panelde düzenle" bağlantısıyla açılır.
