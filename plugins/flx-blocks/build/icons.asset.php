@@ -2,5 +2,5 @@
 	'dependencies' => array(
 		'react-jsx-runtime'
 	),
-	'version' => 'e857d64c0d2ed29371c7'
+	'version' => '9c3ac16a30cf7f06955e'
 );

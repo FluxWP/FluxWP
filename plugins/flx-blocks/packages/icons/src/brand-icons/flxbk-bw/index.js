@@ -1,9 +1,4 @@
-// Flux Block Editor mark, single colour (follows currentColor).
-export default <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-	<path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" />
-	<path d="m8 6 2-2" />
-	<path d="m18 16 2-2" />
-	<path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" />
-	<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
-	<path d="m15 5 4 4" />
+// FluxWP mark, single colour (follows currentColor).
+export default <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20px" height="20px" fill="currentColor">
+	<rect x="9" y="9" width="13" height="13" rx="3.5" /><rect x="25.5" y="9" width="13" height="13" rx="3.5" /><rect x="9" y="25.5" width="13" height="13" rx="3.5" /><rect x="25.5" y="25.5" width="13" height="13" rx="3.5" /><rect x="9" y="42" width="13" height="13" rx="3.5" /><rect x="44.2" y="6.8" width="13" height="13" rx="3.5" fillOpacity=".55" />
 </svg>;

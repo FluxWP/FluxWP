@@ -1,36 +1,25 @@
 /**
  * WordPress dependencies
  */
-import { SVG, Path, G, Defs, LinearGradient, Stop } from '@wordpress/primitives';
+import { SVG, Rect, G, Defs, LinearGradient, Stop } from '@wordpress/primitives';
 
 /**
- * The Flux Block Editor mark, shaped like a `@wordpress/icons` glyph so it renders through `Icon`.
- * The gradient is fixed: the logo keeps its colour wherever it sits.
+ * The FluxWP mark (same as the FluxWP app icon), shaped like a `@wordpress/icons` glyph so it
+ * renders through `Icon`. Colours are fixed: the logo keeps them wherever it sits.
  */
 export const flxbkLogo = (
-	<SVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+	<SVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
 		<Defs>
 			<LinearGradient id="flxbk-logo-g" x1="0" y1="0" x2="1" y2="1">
-				<Stop offset="0" stopColor="#F472B6" />
-				<Stop offset=".5" stopColor="#DB2777" />
-				<Stop offset="1" stopColor="#831843" />
+				<Stop offset="0" stopColor="#6366F1" />
+				<Stop offset=".55" stopColor="#3730A3" />
+				<Stop offset="1" stopColor="#1E1B4B" />
 			</LinearGradient>
 		</Defs>
-		<Path d="M12 0C3.3 0 0 3.3 0 12s3.3 12 12 12 12-3.3 12-12S20.7 0 12 0Z" fill="url(#flxbk-logo-g)" />
-		<G
-			transform="translate(6 6) scale(0.5)"
-			fill="none"
-			stroke="#fff"
-			strokeWidth="2.2"
-			strokeLinecap="round"
-			strokeLinejoin="round"
-		>
-			<Path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" />
-			<Path d="m8 6 2-2" />
-			<Path d="m18 16 2-2" />
-			<Path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" />
-			<Path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
-			<Path d="m15 5 4 4" />
+		<Rect width="256" height="256" rx="60" fill="url(#flxbk-logo-g)" />
+		<Rect x="1.5" y="1.5" width="253" height="253" rx="58.5" fill="none" stroke="#fff" strokeOpacity=".22" strokeWidth="3" />
+		<G transform="translate(32 32) scale(3)">
+			<Rect x="9" y="9" width="13" height="13" rx="3.5" fill="#FFFFFF" /><Rect x="25.5" y="9" width="13" height="13" rx="3.5" fill="#FFFFFF" /><Rect x="9" y="25.5" width="13" height="13" rx="3.5" fill="#FFFFFF" /><Rect x="25.5" y="25.5" width="13" height="13" rx="3.5" fill="#FFFFFF" /><Rect x="9" y="42" width="13" height="13" rx="3.5" fill="#FFFFFF" /><Rect x="44.2" y="6.8" width="13" height="13" rx="3.5" fill="#F59E0B" />
 		</G>
 	</SVG>
 );

@@ -1,19 +1,15 @@
-// Flux Block Editor mark: gradient rounded square with the pencil-ruler glyph.
-export default <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px">
+// FluxWP mark (same as the FluxWP app icon).
+export default <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20px" height="20px">
 	<defs>
 		<linearGradient id="flxbk-mark-g" x1="0" y1="0" x2="1" y2="1">
-			<stop offset="0" stopColor="#F472B6" />
-			<stop offset=".5" stopColor="#DB2777" />
-			<stop offset="1" stopColor="#831843" />
+			<stop offset="0" stopColor="#6366F1" />
+			<stop offset=".55" stopColor="#3730A3" />
+			<stop offset="1" stopColor="#1E1B4B" />
 		</linearGradient>
 	</defs>
-	<path d="M12 0C3.3 0 0 3.3 0 12s3.3 12 12 12 12-3.3 12-12S20.7 0 12 0Z" fill="url(#flxbk-mark-g)" />
-	<g transform="translate(6 6) scale(0.5)" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-		<path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" />
-		<path d="m8 6 2-2" />
-		<path d="m18 16 2-2" />
-		<path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" />
-		<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
-		<path d="m15 5 4 4" />
+	<rect width="256" height="256" rx="60" fill="url(#flxbk-mark-g)" />
+	<rect x="1.5" y="1.5" width="253" height="253" rx="58.5" fill="none" stroke="#fff" strokeOpacity=".22" strokeWidth="3" />
+	<g transform="translate(32 32) scale(3)">
+		<rect x="9" y="9" width="13" height="13" rx="3.5" fill="#FFFFFF" /><rect x="25.5" y="9" width="13" height="13" rx="3.5" fill="#FFFFFF" /><rect x="9" y="25.5" width="13" height="13" rx="3.5" fill="#FFFFFF" /><rect x="25.5" y="25.5" width="13" height="13" rx="3.5" fill="#FFFFFF" /><rect x="9" y="42" width="13" height="13" rx="3.5" fill="#FFFFFF" /><rect x="44.2" y="6.8" width="13" height="13" rx="3.5" fill="#F59E0B" />
 	</g>
 </svg>;
