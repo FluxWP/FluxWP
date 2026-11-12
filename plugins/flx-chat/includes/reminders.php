@@ -388,9 +388,8 @@ function flxc_rem_tools( $f ) {
 		$f( 'reminder_list', 'Kişinin etkin hatırlatıcılarını listeler.' ),
 		$f(
 			'reminder_cancel',
-			'Kişi bir hatırlatıcıyı durdurmak/silmek isterse çağır.',
-			array( 'id' => array( 'type' => 'integer' ) ),
-			array( 'id' )
+			'Hatırlatıcıyı HEMEN durdurur; onay sorma. Kişi hatırlatıcıyı istemediğini herhangi bir kısa ya da gündelik sözle söylerse çağır: "kapat", "kapat istemiyorum", "istemiyorum", "iptal", "sil", "durdur", "vazgeçtim", "gerek yok", "hatırlatmayın", "yazmayın". Az önce kurduğun hatırlatıcıdan sonra gelen bu sözler o hatırlatıcı içindir. id verilmezse kişinin tek / en son kurulan hatırlatıcısı durdurulur.',
+			array( 'id' => array( 'type' => 'integer', 'description' => 'Hatırlatıcılar listesindeki # no; boşsa en son kurulan' ) )
 		),
 	);
 }
@@ -414,7 +413,12 @@ function flxc_rem_tool( $name, array $a, $chat, array &$state, $sandbox ) {
 			return array( 'ok' => true, 'reminders' => $out );
 
 		case 'reminder_cancel':
+			// 1.43.2: id verilmezse (ya da yanlışsa ve tek hatırlatıcı varsa) en son kurulan durdurulur; kişi "kapat" dediğinde
+			// model id aramakla uğraşmasın.
 			$r = $find( (int) ( $a['id'] ?? 0 ) );
+			if ( ! $r && $list && ( empty( $a['id'] ) || 1 === count( $list ) ) ) {
+				$r = end( $list );
+			}
 			if ( ! $r ) {
 				return array( 'ok' => false, 'error' => 'Bu kişide böyle bir hatırlatıcı yok; reminder_list ile bak.' );
 			}
@@ -425,7 +429,7 @@ function flxc_rem_tool( $name, array $a, $chat, array &$state, $sandbox ) {
 				/* translators: %s: title */
 				flxc_system_message( $chat, sprintf( __( 'The person stopped the reminder: %s', 'flx-chat' ), $r['title'] ) );
 			}
-			return array( 'ok' => true, 'note' => 'Durduruldu. Kişiye kısaca bildir.' );
+			return array( 'ok' => true, 'title' => $r['title'], 'note' => 'Durduruldu. Kişiye tek kısa cümleyle kapattığını söyle (ör. "Tamam, hatırlatıcıyı kapattım."); özür ve açıklama ekleme.' );
 
 		case 'reminder_set':
 			$id   = (int) ( $a['id'] ?? 0 );
@@ -488,6 +492,8 @@ function flxc_rem_prompt( $chat, array $state ) {
 		'## Hatırlatıcılar',
 		'- Kişi ileri bir tarihte bağış yapacağını ya da bir şey isteyeceğini söylerse ("önümüzdeki ay babam için", "maaşım yatınca", "bayramda") baskı yapmadan tek cümleyle hatırlatmayı teklif et. Kişi hatırlatma isterse ya da teklifi kabul ederse ("hatırlatırsınız", "olur", "haber verin", "unutmam inşallah ama siz de yazın") HEMEN reminder_set çağır: gün, saat, tür ya da adet sorma, onay isteme. Söylenmeyen gün ayın 1\'i, saat varsayılandır; kişiye ne zaman hatırlatacağını tek cümleyle söyle, isterse günü değiştirebileceğini ekle.',
 		'- Tek bir zaman ("önümüzdeki ay", "aralıkta") tek seferliktir (freq=once); "her ay", "düzenli" denirse tekrarlı. Kişi sonradan "10\'u olsun", "her ay değil bir kez" gibi düzeltirse aynı hatırlatıcıyı id ile güncelle ve yeni zamanı kısaca söyle.',
+		'- Kapatma: kişi hatırlatıcıyı istemediğini söylerse HEMEN reminder_cancel çağır, onay sorma. Kısa ve gündelik sözler yeter: "kapat", "kapat istemiyorum" (= kapat, istemiyorum), "istemiyorum", "iptal", "sil", "vazgeçtim", "gerek yok", "hatırlatmayın". Hatırlatıcıyı kurduğun mesajdan hemen sonra gelen "kapat" / "istemiyorum" o hatırlatıcı içindir; "kapatma" diye olumsuz okuma. Kişi bunu istemediğini yazdığında hatırlatıcıyı açık bırakıp ne demek istediğini yorumlayan mesaj yazma.',
+		'- Gerçekten belirsizse tek kısa soru sor: "Hatırlatıcıyı kapatayım mı?". Kişi itiraz ederse ("niye kapatmadın", "kapat dedim") açıklama yapmadan hemen kapat ve tek cümleyle bildir.',
 	);
 	foreach ( $list as $r ) {
 		$out[] = '- #' . (int) $r['id'] . ' ' . $r['title'] . ' · ' . flxc_rem_when( $r );

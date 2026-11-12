@@ -4965,3 +4965,24 @@ msgstr "Changes the day afterwards: same reminder updated"
 
 msgid "Monthly reminder turned into one-time"
 msgstr "Monthly reminder turned into one-time"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "Has an active one-time reminder (just set)"
+
+msgid "Reminder stopped"
+msgstr "Reminder stopped"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "No 🙏 in reactions or replies"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "Continuation: \"vazgeçtim\" stops the reminder"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "Continuation: complaint after a misread closes at once"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "Goodbye reaction is 👍 or 🤲, never 🙏"

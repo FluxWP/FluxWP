@@ -4965,3 +4965,24 @@ msgstr ""
 
 msgid "Monthly reminder turned into one-time"
 msgstr ""
+
+msgid "Has an active one-time reminder (just set)"
+msgstr ""
+
+msgid "Reminder stopped"
+msgstr ""
+
+msgid "No 🙏 in reactions or replies"
+msgstr ""
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr ""
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr ""
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr ""
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr ""

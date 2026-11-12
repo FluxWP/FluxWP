@@ -1658,6 +1658,13 @@
     "Continuation: prayer gets a prayer reaction": "Continuation: prayer gets a prayer reaction",
     "Continuation: \"you will remind me\" sets the reminder at once": "Continuation: \"you will remind me\" sets the reminder at once",
     "Changes the day afterwards: same reminder updated": "Changes the day afterwards: same reminder updated",
-    "Monthly reminder turned into one-time": "Monthly reminder turned into one-time"
+    "Monthly reminder turned into one-time": "Monthly reminder turned into one-time",
+    "Has an active one-time reminder (just set)": "Has an active one-time reminder (just set)",
+    "Reminder stopped": "Reminder stopped",
+    "No 🙏 in reactions or replies": "No 🙏 in reactions or replies",
+    "Continuation: \"Kapat istemiyorum\" stops the reminder at once": "Continuation: \"Kapat istemiyorum\" stops the reminder at once",
+    "Continuation: \"vazgeçtim\" stops the reminder": "Continuation: \"vazgeçtim\" stops the reminder",
+    "Continuation: complaint after a misread closes at once": "Continuation: complaint after a misread closes at once",
+    "Goodbye reaction is 👍 or 🤲, never 🙏": "Goodbye reaction is 👍 or 🤲, never 🙏"
   }
 }
