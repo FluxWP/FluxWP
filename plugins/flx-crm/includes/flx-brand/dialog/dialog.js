@@ -56,7 +56,6 @@
 				var title = h( 'h2', 'flx-dlg__title', o.title || ( 'alert' === kind ? T.notice : T.confirm ) );
 				title.id = tid;
 				d.setAttribute( 'aria-labelledby', tid );
-				main.appendChild( title );
 				if ( o.message ) {
 					var msg = h( 'p', 'flx-dlg__msg', o.message );
 					msg.id = tid + 'm';
@@ -88,8 +87,18 @@
 					f.appendChild( input );
 					main.appendChild( f );
 				}
-				body.appendChild( ic );
-				body.appendChild( main );
+				/* Başlık şeridi (ikon + başlık + kapat) ayrı; içerik altta tam genişlik. */
+				var head = h( 'div', 'flx-dlg__head' );
+				head.appendChild( ic );
+				head.appendChild( title );
+				var x = h( 'button', 'flx-dlg__x', '×' );
+				x.type = 'button';
+				x.setAttribute( 'aria-label', T.close || 'Close' );
+				head.appendChild( x );
+				d.appendChild( head );
+				if ( main.childNodes.length ) {
+					body.appendChild( main );
+				}
 				var foot = h( 'div', 'flx-dlg__foot' );
 				var no = null;
 				if ( 'alert' !== kind ) {
@@ -100,7 +109,9 @@
 				var ok = h( 'button', 'flx-dlg__btn flx-dlg__btn--ok', o.ok || ( 'alert' === kind ? T.close || 'OK' : T.ok || 'OK' ) );
 				ok.type = 'button';
 				foot.appendChild( ok );
-				d.appendChild( body );
+				if ( body.childNodes.length ) {
+					d.appendChild( body );
+				}
 				d.appendChild( foot );
 				document.body.appendChild( d );
 
@@ -138,6 +149,9 @@
 				check();
 				ok.addEventListener( 'click', function () {
 					finish( 'prompt' === kind ? input.value : 'confirm' === kind ? true : undefined );
+				} );
+				x.addEventListener( 'click', function () {
+					finish( 'prompt' === kind ? null : 'confirm' === kind ? false : undefined );
 				} );
 				if ( no ) {
 					no.addEventListener( 'click', function () {
