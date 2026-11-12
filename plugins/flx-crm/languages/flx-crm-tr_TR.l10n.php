@@ -3,6 +3,7 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'WhatsApp and SMS do not go out in the quiet hours of the Flux Mail connection (21:00–09:00 by default); a message planned then waits for the next allowed hour.' => 'WhatsApp ve SMS, Flux Mail bağlantısının sessiz saatlerinde (varsayılan 21:00–09:00) gitmez; o saate planlanan mesaj izin verilen ilk saati bekler.',
   'CRM event: %1$s (%2$s)' => 'CRM etkinliği: %1$s (%2$s)',
   'Flux Mail is not active; messages are sent through it.' => 'Flux Mail etkin değil; mesajlar onun üzerinden gider.',
   'Pick at least one channel.' => 'En az bir kanal seçin.',

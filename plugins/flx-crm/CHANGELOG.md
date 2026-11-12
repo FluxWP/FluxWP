@@ -5,6 +5,7 @@
 - A photo, video or file from the media library can go with it: on e-mail a photo shows above the text and other files get a button; on WhatsApp it goes as an attachment once Flux Mail declares campaign media (`flxi_campaign_features` contains `media`), until then the file link is added to the text, as on SMS.
 - Message type: "Event information or thank-you" goes to every person of the event with an address on that channel; "Promotion or campaign" only to people who allowed that channel (and adds the unsubscribe link on e-mail). The blocklist and e-mail unsubscribes always apply.
 - Sending is a normal Flux Mail bulk send (`flxi_create_campaign`) per channel, so the queue, the wait between WhatsApp messages and the daily e-mail limit apply. Campaign data carries `kind` (info|marketing) and `ref` (`flxcrm_event:<id>`) for Flux Mail.
+- Works with Flux Mail 1.17.0 campaign media, `kind` and `ref` (FluxWP#240): an info message is not blocked by the IPTAL ad opt-out and gets no opt-out line; the blocklist still applies. The planning field notes the connection's quiet hours (21:00–09:00 by default), when WhatsApp and SMS wait.
 - "Sent and planned" list on the event with each channel's state and count (links to the Flux Mail queue); a planned send can be cancelled until it starts. The event card has a "Send message" button.
 - Flux Mail › Send gets the events (open, or closed in the last 60 days) as recipient sources `flxcrm_event:<id>` (consent required there). New action `flxcrm_event_message_queued`.
 

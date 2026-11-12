@@ -296,7 +296,7 @@ final class FLXCRM_Page_Events {
 		echo '<fieldset class="flxcrm-evmsg__row"><legend>' . esc_html__( 'When', 'flx-crm' ) . '</legend>';
 		echo '<label class="flxcrm-check"><input type="radio" name="when" value="now"' . ( $def ? '' : ' checked' ) . '> ' . esc_html__( 'Now', 'flx-crm' ) . '</label>';
 		echo '<label class="flxcrm-check"><input type="radio" name="when" value="later"' . ( $def ? ' checked' : '' ) . '> ' . esc_html__( 'Plan for', 'flx-crm' ) . '</label>';
-		echo '<input type="datetime-local" name="send_at" value="' . esc_attr( $def ) . '" data-flxa-native><small>' . esc_html( sprintf( /* translators: %s: time zone */ __( 'Site time (%s). Planned sends can be cancelled below until they start.', 'flx-crm' ), wp_timezone_string() ) ) . '</small></fieldset>';
+		echo '<input type="datetime-local" name="send_at" value="' . esc_attr( $def ) . '" data-flxa-native><small>' . esc_html( sprintf( /* translators: %s: time zone */ __( 'Site time (%s). Planned sends can be cancelled below until they start.', 'flx-crm' ), wp_timezone_string() ) ) . ' ' . esc_html__( 'WhatsApp and SMS do not go out in the quiet hours of the Flux Mail connection (21:00–09:00 by default); a message planned then waits for the next allowed hour.', 'flx-crm' ) . '</small></fieldset>';
 
 		echo '<p class="flxcrm-evmsg__submit"><button class="button button-primary button-large" data-label-now="' . esc_attr__( 'Send now', 'flx-crm' ) . '" data-label-later="' . esc_attr__( 'Plan the message', 'flx-crm' ) . '">' . esc_html( $def ? __( 'Plan the message', 'flx-crm' ) : __( 'Send now', 'flx-crm' ) ) . '</button> <span class="flxcrm-muted" data-total></span></p>';
 		echo '</form>';
