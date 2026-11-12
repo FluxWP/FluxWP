@@ -2,6 +2,12 @@
 
 Easy Form Builder'ın (WhiteStudio, GPL) fork'u. Builder arayüzü aynı kaldı; lisans/Pro kilitleri, dış sunucu bağlantıları ve telemetri kaldırıldı, eksik eklentiler (Stripe, koşullu mantık, çevrimdışı ülke listeleri) yeniden yazıldı. Üstüne Dashboard, Otomasyonlar (sertifika entegrasyonu) ve tema uyumu eklendi.
 
+## Sürüm 2.4.0: eski blok formlarını taşıma
+Flux Forms kuruluyken Flux Block Editor'ın "Form" ve "Form (gelişmiş)" blokları ekleyicide görünmez; mevcut sayfalardaki eski formlar çalışmaya devam eder. Eski form bloğunu seçin, araç çubuğunda ya da blok ayarlarındaki "Flux Forms" panelinde "Flux Forms'a taşı"ya basın, onaylayın ve sayfayı kaydedin: form Flux Forms'ta oluşur, panel listesinde görünür.
+- Eşleme: metin, e-posta, telefon, sayı (en az/en çok), tarih, saat (metin), uzun metin, açılır liste (çoklu seçimse çoklu liste), onay kutuları, radyo, onay (şart onayı), dosya (boyut sınırı), gizli alan (gizli metin + varsayılan değer). Genişlik %50 ve %33'e yuvarlanır. Gönder düğmesi metni, başarı mesajı ve "E-posta" eylemindeki ilk alıcı adresi forma geçer; captcha açıksa formda da açılır.
+- Taşınmayanlar: Mailchimp, MailerLite, FluentCRM, webhook gibi eylemler (Flux Forms otomasyonlarıyla yeniden kurulur), alan stilleri. Eski gelişmiş form kaydı (Form (gelişmiş) yazısı) silinmez. Taşıma geri alınabilir (Ctrl+Z) ya da sayfa revizyonundan dönülebilir.
+- Eski blokları ekleyicide tutmak için: `add_filter( 'flxf_hide_legacy_form_blocks', '__return_false' );`
+
 ## Sürüm 2.3.0: tüm alanlar blokta
 Flux Forms'taki her alan türünün bloğu var; "Flux Forms alanı" yedeği yalnız bilinmeyen eski türler için kalır. Ekleyicide beş grup: Flux Forms (temel), seçimler, gelişmiş, ödeme, içerik.
 - Alan ayarları: etiket, yer tutucu, yardım metni, zorunlu, genişlik, türe özel ayarlar (uzunluk/değer sınırları, varsayılan değer, sütun, dosya türü ve boyutu, kayıt kalitesi ve süresi, harita konumu, düğme metinleri...). "Diğer" panelinde gizli alan, salt okunur, etiketi gizle, boş mesajı, CSS sınıfı.

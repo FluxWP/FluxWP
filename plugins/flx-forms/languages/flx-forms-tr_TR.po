@@ -9745,3 +9745,24 @@ msgstr "Ön kamera"
 
 msgid "Back camera"
 msgstr "Arka kamera"
+
+msgid "Move to Flux Forms"
+msgstr "Flux Forms'a taşı"
+
+msgid "Move"
+msgstr "Taşı"
+
+msgid "The fields of this form become Flux Forms fields. The new form is created in Flux Forms when you save the page; responses, emails and automations then run there."
+msgstr "Bu formun alanları Flux Forms alanlarına dönüşür. Yeni form, sayfayı kaydettiğinizde Flux Forms'ta oluşur; yanıtlar, e-postalar ve otomasyonlar artık orada çalışır."
+
+msgid "This form has no fields to move."
+msgstr "Bu formda taşınacak alan yok."
+
+msgid "The form was moved to Flux Forms. Save the page to create it."
+msgstr "Form Flux Forms'a taşındı. Oluşturmak için sayfayı kaydedin."
+
+msgid "The form could not be moved."
+msgstr "Form taşınamadı."
+
+msgid "Forms are now made with Flux Forms. This form keeps working as it is; move it to manage its responses, emails and automations in Flux Forms."
+msgstr "Formlar artık Flux Forms ile yapılıyor. Bu form olduğu gibi çalışmaya devam eder; yanıtlarını, e-postalarını ve otomasyonlarını Flux Forms'ta yönetmek için taşıyın."

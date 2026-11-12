@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 2.4.0
+- Formlar tek yerde: Flux Block Editor'ın kendi "Form" ve "Form (gelişmiş)" blokları, Flux Forms kuruluyken ekleyiciden kalkar. Sayfalardaki mevcut formlar olduğu gibi çalışmaya devam eder.
+- Eski form bloklarında "Flux Forms'a taşı" (araç çubuğu ve blok ayarları): alanlar Flux Forms bloklarına dönüşür (metin, e-posta, telefon, sayı, tarih, saat, uzun metin, açılır liste, çoklu seçim, onay kutuları, radyo, onay, dosya, gizli alan), düğme metni, başarı mesajı ve bildirim e-postası da taşınır. Sayfa kaydedilince form Flux Forms'ta oluşur. Eski gelişmiş form kaydı silinmez.
+- İstenirse eski bloklar ekleyicide tutulabilir: `add_filter( 'flxf_hide_legacy_form_blocks', '__return_false' );`
+
 ## 2.3.0
 - Flux Forms'taki tüm alan türleri artık blok: metin, e-posta, telefon, cep telefonu, uzun metin, sayı, parola, web adresi, tarih, kaydırıcı, renk, açılır liste, tekli/çoklu seçim, çoklu seçim listesi, görselli seçim, adetli seçimler, evet/hayır, anahtar, şart onayı, ülke, il, ilçe, dosya yükleme ve bırakma alanı, yıldız/1-5/NPS puanı, puanlama tablosu, imza, konum seçici, ses/video/ekran kaydı, ürün seçimleri, tutar, toplam, kartla ödeme (Stripe), başlık, bağlantı ve HTML. Her türün paneldeki ayarları (uzunluk sınırları, varsayılan değer, sütun, dosya türü ve boyutu, kayıt süresi, harita konumu, fiyatlar, görseller...) blok ayarlarında.
 - Adım bloğu: formu adımlara böler; çok adımlı formlar artık blokta düzenlenir.
