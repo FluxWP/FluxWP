@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.23
+- Ortak onay/uyarı penceresinde (flx-brand 1.6.1) metinler bir kademe büyüdü: açıklama 16 px, başlık 17 px, bildirimler 14,5 px.
+
 ## 1.7.22
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

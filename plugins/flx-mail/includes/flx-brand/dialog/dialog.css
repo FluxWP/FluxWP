@@ -10,13 +10,13 @@
 .flx-dlg--danger .flx-dlg__icon{background:color-mix(in srgb,var(--d-bad) 12%,transparent);color:var(--d-bad)}
 .flx-dlg__icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .flx-dlg__main{min-width:0;flex:1}
-.flx-dlg__title{flex:1;min-width:0;margin:0;font-size:16px;font-weight:650;line-height:1.35;color:var(--d-tx)}
-.flx-dlg__msg{margin:0;color:var(--d-mut);overflow-wrap:anywhere;white-space:pre-line}
+.flx-dlg__title{flex:1;min-width:0;margin:0;font-size:17px;font-weight:650;line-height:1.35;color:var(--d-tx)}
+.flx-dlg__msg{margin:0;font-size:16px;line-height:1.55;color:var(--d-mut);overflow-wrap:anywhere;white-space:pre-line}
 .flx-dlg__msg+.flx-dlg__field{margin:16px 0 0}
 .flx-dlg__x{flex:none;appearance:none;width:32px;height:32px;border:0;border-radius:8px;background:none;color:var(--d-mut);font-size:22px;line-height:1;cursor:pointer}
 .flx-dlg__x:hover{background:color-mix(in srgb,var(--d-tx) 7%,transparent);color:var(--d-tx)}
 .flx-dlg__x:focus-visible{outline:2px solid var(--d-ac);outline-offset:1px}
-.flx-dlg__field label{display:block;font-size:13px;margin:0 0 6px;color:var(--d-tx)}
+.flx-dlg__field label{display:block;font-size:14px;margin:0 0 6px;color:var(--d-tx)}
 .flx-dlg__field b{font-weight:650}
 .flx-dlg__field input{box-sizing:border-box;width:100%;min-height:40px;padding:8px 12px;border:1px solid var(--d-bd);border-radius:10px;background:transparent;color:var(--d-tx);font:inherit;font-size:15px}
 .flx-dlg__field input:focus{outline:2px solid color-mix(in srgb,var(--d-ac) 45%,transparent);outline-offset:1px;border-color:var(--d-ac)}
@@ -44,7 +44,7 @@ html.flxa-dark .flx-dlg{--d-bg:var(--flxa-card,#1e2128);--d-tx:var(--flxa-text,#
 }
 /* Bildirimler (toast) */
 .flx-toasts{position:fixed;z-index:100100;right:20px;bottom:20px;display:flex;flex-direction:column;gap:8px;max-width:min(380px,calc(100vw - 32px));pointer-events:none}
-.flx-toast{--t-c:var(--flxa-accent,#2271b1);display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:12px;background:var(--flxa-card,#fff);color:var(--flxa-text,#1d2327);border:1px solid var(--flxa-border,#e2e4e7);border-left:4px solid var(--t-c);box-shadow:0 10px 30px rgba(15,23,42,.16);font:13.5px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;pointer-events:auto;animation:flx-dlg-in .18s ease-out}
+.flx-toast{--t-c:var(--flxa-accent,#2271b1);display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:12px;background:var(--flxa-card,#fff);color:var(--flxa-text,#1d2327);border:1px solid var(--flxa-border,#e2e4e7);border-left:4px solid var(--t-c);box-shadow:0 10px 30px rgba(15,23,42,.16);font:14.5px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;pointer-events:auto;animation:flx-dlg-in .18s ease-out}
 .flx-toast--ok{--t-c:#0f7a4f}.flx-toast--bad{--t-c:var(--flxa-error,#b42318)}.flx-toast--warn{--t-c:#b45309}
 .flx-toast__msg{flex:1;min-width:0;overflow-wrap:anywhere}
 .flx-toast__x{appearance:none;border:0;background:none;color:inherit;opacity:.55;cursor:pointer;font-size:18px;line-height:1;padding:0 2px}

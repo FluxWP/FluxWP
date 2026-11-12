@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.7
+- Ortak onay/uyarı penceresinde (flx-brand 1.6.1) metinler bir kademe büyüdü: açıklama 16 px, başlık 17 px, bildirimler 14,5 px.
+
 ## 1.2.6
 - Paketler: "Gerekli:" satırı olan paketlerde ad ile etiketler arasında oluşan boş satır kaldırıldı; satır yükseklikleri tutarlı.
 - Çeviriler: güncellendikten sonra satır hep "Güncelleme var" kalıyordu. Kurulamayan çeviri artık "başarılı" sayılmaz, nedeni yazılır; güncellemeden hemen sonra yeniden kontrol edilir; sitede aynı ya da daha yeni tarihle kurulu çeviri (WordPress.org yine önerse de) gizlenir.
