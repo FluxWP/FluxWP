@@ -9337,3 +9337,411 @@ msgstr "Bu form türü yalnız Flux Forms panelinde düzenlenebilir."
 msgid "This form was changed in the Flux Forms panel after you opened it."
 msgstr "Bu form, siz açtıktan sonra Flux Forms panelinde değişti."
 
+
+msgid "%d entries in the list."
+msgstr "Listede %d kayıt var."
+
+msgid "A field type the block editor does not know yet. It is kept as it is."
+msgstr "Blok düzenleyicinin henüz tanımadığı bir alan türü. Olduğu gibi korunur."
+
+msgid "Add a Step block to split the form into steps."
+msgstr "Formu adımlara bölmek için Adım bloğu ekleyin."
+
+msgid "Add another field to the form first."
+msgstr "Önce forma başka bir alan ekleyin."
+
+msgid "Add row"
+msgstr "Satır ekle"
+
+msgid "All of them"
+msgstr "Hepsi"
+
+msgid "All supported files"
+msgstr "Desteklenen tüm dosyalar"
+
+msgid "Allowed files"
+msgstr "İzin verilen dosyalar"
+
+msgid "Always"
+msgstr "Her zaman"
+
+msgid "Amount field"
+msgstr "Tutar alanı"
+
+msgid "Any of them"
+msgstr "Herhangi biri"
+
+msgid "Archives (zip, rar)"
+msgstr "Arşivler (zip, rar)"
+
+msgid "Attach a file"
+msgstr "Dosya ekleyin"
+
+msgid "Audio and video"
+msgstr "Ses ve video"
+
+msgid "CSS classes"
+msgstr "CSS sınıfları"
+
+msgid "Camera"
+msgstr "Kamera"
+
+msgid "Card payment (Stripe)"
+msgstr "Kartla ödeme (Stripe)"
+
+msgid "Card payments use the Stripe keys in Flux Forms settings."
+msgstr "Kartla ödeme, Flux Forms ayarlarındaki Stripe anahtarlarını kullanır."
+
+msgid "Change image"
+msgstr "Görseli değiştir"
+
+msgid "Checklist with quantity"
+msgstr "Adetli çoklu seçim"
+
+msgid "Choose a file or drop it here"
+msgstr "Dosya seçin ya da buraya bırakın"
+
+msgid "Choose a product"
+msgstr "Ürün seçin"
+
+msgid "Choose image"
+msgstr "Görsel seç"
+
+msgid "Choose products"
+msgstr "Ürünleri seçin"
+
+msgid "Clear button text"
+msgstr "Temizle düğmesi metni"
+
+msgid "Columns"
+msgstr "Sütun"
+
+msgid "Comma separated, for example: pdf, docx, png"
+msgstr "Virgülle ayırın, örneğin: pdf, docx, png"
+
+msgid "Conditional"
+msgstr "Koşullu"
+
+msgid "Conditional display"
+msgstr "Koşullu gösterim"
+
+msgid "Conditions to meet"
+msgstr "Sağlanacak koşullar"
+
+msgid "Countdown before recording (seconds)"
+msgstr "Kayıttan önce geri sayım (saniye)"
+
+msgid "Country"
+msgstr "Ülke"
+
+msgid "Country code"
+msgstr "Ülke kodu"
+
+msgid "Custom extensions"
+msgstr "Özel uzantılar"
+
+msgid "Custom list"
+msgstr "Özel liste"
+
+msgid "Daily subscription"
+msgstr "Günlük abonelik"
+
+msgid "Do you agree?"
+msgstr "Kabul ediyor musunuz?"
+
+msgid "Drop your files here"
+msgstr "Dosyalarınızı buraya bırakın"
+
+msgid "Earliest date"
+msgstr "En erken tarih"
+
+msgid "File drop zone"
+msgstr "Dosya bırakma alanı"
+
+msgid "Fill the list again"
+msgstr "Listeyi yeniden doldur"
+
+msgid "First button"
+msgstr "Birinci düğme"
+
+msgid "Flux Forms: advanced"
+msgstr "Flux Forms: gelişmiş"
+
+msgid "Flux Forms: choices"
+msgstr "Flux Forms: seçimler"
+
+msgid "Flux Forms: content"
+msgstr "Flux Forms: içerik"
+
+msgid "Flux Forms: payment"
+msgstr "Flux Forms: ödeme"
+
+msgid "Front"
+msgstr "Ön"
+
+msgid "HTML"
+msgstr "HTML"
+
+msgid "HTML code"
+msgstr "HTML kodu"
+
+msgid "Hidden field"
+msgstr "Gizli alan"
+
+msgid "Hide when…"
+msgstr "Şu durumda gizle…"
+
+msgid "How likely are you to recommend us?"
+msgstr "Bizi tavsiye etme olasılığınız nedir?"
+
+msgid "How many points can be marked"
+msgstr "İşaretlenebilecek nokta sayısı"
+
+msgid "How much?"
+msgstr "Ne kadar?"
+
+msgid "Huge"
+msgstr "Çok büyük"
+
+msgid "I accept the terms and conditions."
+msgstr "Şartları ve koşulları kabul ediyorum."
+
+msgid "Image choice"
+msgstr "Görselli seçim"
+
+msgid "Images"
+msgstr "Görseller"
+
+msgid "Larger"
+msgstr "Daha büyük"
+
+msgid "Latest date"
+msgstr "En geç tarih"
+
+msgid "Let the person download the recording"
+msgstr "Kişi kaydı indirebilsin"
+
+msgid "Location picker"
+msgstr "Konum seçici"
+
+msgid "Maximum"
+msgstr "En çok"
+
+msgid "Maximum choices"
+msgstr "En çok seçim"
+
+msgid "Maximum duration (seconds)"
+msgstr "En uzun süre (saniye)"
+
+msgid "Maximum length"
+msgstr "En çok uzunluk"
+
+msgid "Message when left empty"
+msgstr "Boş bırakılınca gösterilecek mesaj"
+
+msgid "Minimum"
+msgstr "En az"
+
+msgid "Minimum choices"
+msgstr "En az seçim"
+
+msgid "Minimum length"
+msgstr "En az uzunluk"
+
+msgid "Mirror the preview"
+msgstr "Önizlemeyi aynala"
+
+msgid "Mobile (with country code)"
+msgstr "Cep telefonu (ülke kodlu)"
+
+msgid "Monthly subscription"
+msgstr "Aylık abonelik"
+
+msgid "Multi-select list"
+msgstr "Çoklu seçim listesi"
+
+msgid "Next button"
+msgstr "İleri düğmesi"
+
+msgid "Noise reduction"
+msgstr "Gürültü azaltma"
+
+msgid "Not shown to the person; its default value is still sent."
+msgstr "Kişiye gösterilmez; varsayılan değeri yine de gönderilir."
+
+msgid "Off text"
+msgstr "Kapalı metni"
+
+msgid "On text"
+msgstr "Açık metni"
+
+msgid "One"
+msgstr "Bir"
+
+msgid "Only when…"
+msgstr "Yalnız şu durumda…"
+
+msgid "Payment type"
+msgstr "Ödeme türü"
+
+msgid "Pick a location"
+msgstr "Konum seçin"
+
+msgid "Previous button"
+msgstr "Geri düğmesi"
+
+msgid "Product (single)"
+msgstr "Ürün (tekli)"
+
+msgid "Product dropdown"
+msgstr "Ürün açılır listesi"
+
+msgid "Product list (multiple)"
+msgstr "Ürün listesi (çoklu)"
+
+msgid "Products (multiple)"
+msgstr "Ürünler (çoklu)"
+
+msgid "Quality"
+msgstr "Kalite"
+
+msgid "Quantity"
+msgstr "Adet"
+
+msgid "Quantity placeholder"
+msgstr "Adet yer tutucusu"
+
+msgid "Rate each item"
+msgstr "Her birini puanlayın"
+
+msgid "Rating table"
+msgstr "Puanlama tablosu"
+
+msgid "Read only"
+msgstr "Salt okunur"
+
+msgid "Record a video"
+msgstr "Video kaydedin"
+
+msgid "Record a voice message"
+msgstr "Sesli mesaj kaydedin"
+
+msgid "Record your screen"
+msgstr "Ekranınızı kaydedin"
+
+msgid "Remove condition"
+msgstr "Koşulu kaldır"
+
+msgid "Row"
+msgstr "Satır"
+
+msgid "Rows"
+msgstr "Satırlar"
+
+msgid "Score 0-10 (NPS)"
+msgstr "0-10 puan (NPS)"
+
+msgid "Score 1-5"
+msgstr "1-5 puan"
+
+msgid "Second button"
+msgstr "İkinci düğme"
+
+msgid "Short description"
+msgstr "Kısa açıklama"
+
+msgid "Show this field"
+msgstr "Bu alanı göster"
+
+msgid "Sign here"
+msgstr "Buraya imzalayın"
+
+msgid "Single choice with quantity"
+msgstr "Adetli tekli seçim"
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Slider"
+msgstr "Kaydırıcı"
+
+msgid "Star rating"
+msgstr "Yıldızlı puan"
+
+msgid "Start recording"
+msgstr "Kaydı başlat"
+
+msgid "Starts a new step. Fields below it, up to the next step, are shown together."
+msgstr "Yeni bir adım başlatır. Altındaki alanlar, sonraki adıma kadar birlikte gösterilir."
+
+msgid "State / province"
+msgstr "İl / eyalet"
+
+msgid "State / province code"
+msgstr "İl / eyalet kodu"
+
+msgid "Step title"
+msgstr "Adım başlığı"
+
+msgid "Terms consent"
+msgstr "Şart onayı"
+
+msgid "The list could not be loaded. Check the country and state codes."
+msgstr "Liste yüklenemedi. Ülke ve il kodlarını kontrol edin."
+
+msgid "This field type is not available as a block. It is kept unchanged."
+msgstr "Bu alan türü blok olarak yok. Olduğu gibi korunur."
+
+msgid "Three"
+msgstr "Üç"
+
+msgid "Turn on"
+msgstr "Açın"
+
+msgid "Two"
+msgstr "İki"
+
+msgid "Two letters, for example TR."
+msgstr "İki harf, örneğin TR."
+
+msgid "Voice recording"
+msgstr "Ses kaydı"
+
+msgid "Web address"
+msgstr "Web adresi"
+
+msgid "Weekly subscription"
+msgstr "Haftalık abonelik"
+
+msgid "YYYY-MM-DD, or 1 for today."
+msgstr "YYYY-AA-GG ya da bugün için 1."
+
+msgid "Yearly subscription"
+msgstr "Yıllık abonelik"
+
+msgid "Yes / No"
+msgstr "Evet / Hayır"
+
+msgid "Your rating"
+msgstr "Puanınız"
+
+msgid "Your score"
+msgstr "Puanınız"
+
+msgid "is at least"
+msgstr "en az"
+
+msgid "is at most"
+msgstr "en çok"
+
+msgid "is filled in"
+msgstr "doludur"
+
+msgid "More settings"
+msgstr "Diğer ayarlar"
+
+msgid "Front camera"
+msgstr "Ön kamera"
+
+msgid "Back camera"
+msgstr "Arka kamera"
