@@ -66,7 +66,13 @@ function flxai_agent_history( array $messages ) {
 				$p    = $m['_page'];
 				$text = '[Sayfa: ' . mb_substr( (string) ( $p['title'] ?? '' ), 0, 120 ) . ' — ' . mb_substr( (string) ( $p['url'] ?? '' ), 0, 300 ) . ( ! empty( $p['admin'] ) ? ' (yönetim paneli)' : '' ) . "]\n" . $text;
 			}
-			$m['content'] = $text;
+			/**
+			 * Modele giden kullanıcı metni (ör. zamanlanmış görev notu). Kayıtlı mesaj değişmez.
+			 *
+			 * @param string $text Metin.
+			 * @param array  $m    Kayıtlı mesaj (_task, _page …).
+			 */
+			$m['content'] = (string) apply_filters( 'flxai_agent_user_text', $text, $m );
 		}
 		$out[] = $m;
 	}

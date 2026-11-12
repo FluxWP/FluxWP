@@ -168,6 +168,8 @@ require_once __DIR__ . '/automations/automations.php';
 require_once __DIR__ . '/class-flxf-iletisim.php';
 FLXF_Iletisim::init();
 require_once __DIR__ . '/builder/builder.php';
+/* 2.2.0: Gutenberg blocks that build and edit Flux Forms forms. */
+require_once __DIR__ . '/blocks/blocks.php';
 
 /**
  * Translations ship with the plugin (languages/flx-forms-tr_TR.l10n.php/.mo). English is the source.

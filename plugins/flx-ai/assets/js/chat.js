@@ -17,6 +17,15 @@
 	var KEY = 'flxai-ui';
 	var DOCK_MIN = 340, FLOAT_MIN_W = 320, FLOAT_MIN_H = 380;
 	var ui = loadUi();
+	// ?flxai_chat=ID (ör. Zamanlanmış görevler › Raporu aç): o sohbeti açar.
+	try {
+		var qp = new URLSearchParams(location.search), qc = parseInt(qp.get('flxai_chat'), 10);
+		if (qc > 0) {
+			ui.chat = qc; ui.open = true; saveUi();
+			qp.delete('flxai_chat');
+			history.replaceState(null, '', location.pathname + (qp.toString() ? '?' + qp.toString() : '') + location.hash);
+		}
+	} catch (e) {}
 	var S = {
 		boot: null, chat: null, msgs: [], optimistic: null, running: false, pending: [],
 		list: [], q: '', archived: false, pop: null, menu: null, editing: 0, models: null, err: null,
@@ -35,6 +44,7 @@
 	var P = {
 		spark: '<path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/>',
 		x: '<path d="M18 6 6 18M6 6l12 12"/>',
+		clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
 		plus: '<path d="M12 5v14M5 12h14"/>',
 		search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
 		down: '<path d="m6 9 6 6 6-6"/>',
@@ -883,7 +893,8 @@
 		var acts = id && !S.running ? '<div class="acts">' +
 			'<button class="ab" type="button" data-edit="' + esc(id) + '" title="' + esc(t('Düzenle')) + '">' + ic('pencil') + '</button>' +
 			(isLast ? '' : '<button class="ab" type="button" data-rewind="' + esc(id) + '" title="' + esc(t('Bu noktaya geri dön')) + '">' + ic('rewind') + '</button>') + '</div>' : '';
-		return '<div class="msg user">' + acts + '<div class="b">' + esc(m.content) + '</div></div>';
+		var task = m._task ? '<div class="task" title="' + esc(t('Zamanlanmış görev')) + '">' + ic('clock') + '<span>' + esc(tf('Zamanlanmış görev · %s', m._task.title || '')) + '</span></div>' : '';
+		return '<div class="msg user' + (task ? ' is-task' : '') + '">' + acts + '<div class="b">' + task + esc(m.content) + '</div></div>';
 	}
 	function renderTurn(x, live) {
 		var h = '<div class="msg ai"><div class="b">';
