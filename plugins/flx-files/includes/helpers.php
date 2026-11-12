@@ -15,6 +15,7 @@ function flxfm_defaults() {
 		'versions'     => 10, // Dosya başına saklanan önceki sürüm.
 		'mcp_write'    => 0,  // Dış MCP istemcileri değişiklik yapabilir mi.
 		'ai_code'      => 0,  // AI/MCP .php/.js gibi çalıştırılabilir dosya yazabilir mi.
+		'quota_gb'     => 0,  // Hosting paketinin disk kotası (GB). 0: yalnız kullanılan gösterilir.
 		'shared'       => array(), // Sitede [flx_files] ile yayınlanan klasörler (uploads altında, göreli yol).
 	);
 }
@@ -42,6 +43,9 @@ function flxfm_save_settings( array $in ) {
 	}
 	if ( array_key_exists( 'trash_days', $in ) ) {
 		$s['trash_days'] = max( 0, min( 365, (int) $in['trash_days'] ) );
+	}
+	if ( array_key_exists( 'quota_gb', $in ) ) {
+		$s['quota_gb'] = max( 0, min( 100000, round( (float) $in['quota_gb'], 1 ) ) );
 	}
 	if ( array_key_exists( 'versions', $in ) ) {
 		$s['versions'] = max( 0, min( 50, (int) $in['versions'] ) );
@@ -303,6 +307,18 @@ function flxfm_is_mcp_request() {
 		$route = sanitize_text_field( wp_unslash( $_GET['rest_route'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	}
 	return 0 === strpos( ltrim( $route, '/' ), 'flx-mcp/' );
+}
+
+/**
+ * Depolama ölçülen klasör: hosting hesabının ana klasörü (/home/<kullanıcı>, Hostinger'da tüm siteler ve
+ * e-postalar dahil), okunamıyorsa site kökü. Filtre: flxfm_usage_root.
+ */
+function flxfm_usage_root() {
+	$root = flxfm_root();
+	if ( preg_match( '#^(/home/[^/]+)/#', $root . '/', $m ) && @is_readable( $m[1] ) ) { // phpcs:ignore WordPress.PHP.NoSilencedErrors
+		$root = $m[1];
+	}
+	return (string) apply_filters( 'flxfm_usage_root', $root );
 }
 
 /** Bayt → okunur boyut. */

@@ -176,6 +176,15 @@ msgstr "%s on clipboard"
 msgid "Storage"
 msgstr "Storage"
 
+msgid "measuring…"
+msgstr "measuring…"
+
+msgid "%s used"
+msgstr "%s used"
+
+msgid "Hosting account: %1$s files, measured %2$s"
+msgstr "Hosting account: %1$s files, measured %2$s"
+
 msgid "Cut"
 msgstr "Cut"
 
@@ -628,6 +637,12 @@ msgstr "0 keeps items until you empty the trash."
 
 msgid "Versions per file"
 msgstr "Versions per file"
+
+msgid "Disk quota (GB)"
+msgstr "Disk quota (GB)"
+
+msgid "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only."
+msgstr "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only."
 
 msgid "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."
 msgstr "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."

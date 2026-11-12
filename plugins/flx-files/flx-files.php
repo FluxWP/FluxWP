@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Files
  * Description:       Modern dosya yöneticisi: site dosyalarına göz at, yükle (sürükle-bırak, büyük dosyalar parça parça), kod editöründe düzenle, ZIP indir/arşivle/aç, izinleri değiştir. Silinenler Çöp kutusu'nda bekler, her kayıtta önceki sürüm saklanır, tüm işlemler Etkinlik'te. Flux AI ve MCP ile dosya listele, oku, ara; yazma ve silme onayla. Uploads içindeki bir klasör [flx_files] kısa koduyla sitede belge kütüphanesi olur.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -24,7 +24,7 @@ if ( defined( 'FLXFM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXFM_VERSION', '0.1.0' );
+define( 'FLXFM_VERSION', '0.1.1' );
 define( 'FLXFM_FILE', __FILE__ );
 define( 'FLXFM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXFM_URL', plugin_dir_url( __FILE__ ) );
