@@ -14,7 +14,7 @@ registerBlockType('flx/googlemaps', {
 	...metadata,
 	title: _x('Google Maps', 'block title', 'flx-blocks'),
 	description: _x('Display google maps on your site', 'block description', 'flx-blocks'),
-	keywords: [__('google', 'flx-blocks'), __('maps', 'flx-blocks'), 'KB'],
+	keywords: [__('google', 'flx-blocks'), __('maps', 'flx-blocks'), 'flux'],
 	icon: {
 		src: googleMapsIcon,
 	},

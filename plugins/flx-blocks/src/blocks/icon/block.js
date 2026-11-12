@@ -41,7 +41,7 @@ registerBlockType('flx/icon', {
 	...metadata,
 	title: _x('Icon', 'block title', 'flx-blocks'),
 	description: __('Create engaging lists with icons for bullets.', 'flx-blocks'),
-	keywords: [__('icon', 'flx-blocks'), __('svg', 'flx-blocks'), 'KB'],
+	keywords: [__('icon', 'flx-blocks'), __('svg', 'flx-blocks'), 'flux'],
 	icon: {
 		src: iconIcon,
 	},

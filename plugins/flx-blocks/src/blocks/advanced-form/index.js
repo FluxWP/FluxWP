@@ -38,7 +38,7 @@ registerBlockType('flx/advanced-form', {
 		'block description',
 		'flx-blocks'
 	),
-	keywords: [__('contact', 'flx-blocks'), __('form', 'flx-blocks'), 'kb'],
+	keywords: [__('contact', 'flx-blocks'), __('form', 'flx-blocks'), 'flux'],
 	icon: {
 		src: formBlockIcon,
 	},

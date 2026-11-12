@@ -1111,7 +1111,7 @@ const FlxbkRowLayout = (props) => {
 																		isMulti={true}
 																		maxMenuHeight={200}
 																		isClearable={true}
-																		placeholder={'Any Membership'}
+																		placeholder={__('Any Membership', 'flx-blocks')}
 																		onChange={(value) =>
 																			setAttributes({
 																				rcpMembershipLevel: value,

@@ -55,8 +55,7 @@ registerBlockType('flx/countup', {
 		__('count up', 'flx-blocks'),
 		__('counter', 'flx-blocks'),
 		__('number', 'flx-blocks'),
-		'KB',
-	],
+		'flux',	],
 	icon: {
 		src: countUpIcon,
 	},

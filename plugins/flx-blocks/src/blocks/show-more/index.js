@@ -15,7 +15,7 @@ registerBlockType('flx/show-more', {
 	...metadata,
 	title: _x('Show More', 'block title', 'flx-blocks'),
 	description: _x('Hide content and enable a show more button to reveal', 'block description', 'flx-blocks'),
-	keywords: [__('show', 'flx-blocks'), __('hide', 'flx-blocks'), 'kb'],
+	keywords: [__('show', 'flx-blocks'), __('hide', 'flx-blocks'), 'flux'],
 	icon: {
 		src: showMoreIcon,
 	},

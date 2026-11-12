@@ -42,7 +42,7 @@ registerBlockType('flx/advancedgallery', {
 		'block description',
 		'flx-blocks'
 	),
-	keywords: [__('gallery', 'flx-blocks'), __('image', 'flx-blocks'), 'KB'],
+	keywords: [__('gallery', 'flx-blocks'), __('image', 'flx-blocks'), 'flux'],
 	icon: {
 		src: galleryIcon,
 	},

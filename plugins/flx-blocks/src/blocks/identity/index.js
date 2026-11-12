@@ -16,7 +16,7 @@ registerBlockType('flx/identity', {
 	...metadata,
 	title: _x('Site Identity', 'block title', 'flx-blocks'),
 	description: _x('Flux site identity block', 'block description', 'flx-blocks'),
-	keywords: [__('logo', 'flx-blocks'), __('identity', 'flx-blocks'), 'kb'],
+	keywords: [__('logo', 'flx-blocks'), __('identity', 'flx-blocks'), 'flux'],
 	icon: {
 		src: logoBlockIcon,
 	},

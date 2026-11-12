@@ -41,7 +41,7 @@ registerBlockType('flx/advancedheading', {
 		'Create a heading or paragraph and define sizes for desktop, tablet and mobile along with font family, colors, etc.',
 		'flx-blocks'
 	),
-	keywords: [__('text', 'flx-blocks'), __('advanced', 'flx-blocks'), __('heading', 'flx-blocks'), 'KB'],
+	keywords: [__('text', 'flx-blocks'), __('advanced', 'flx-blocks'), __('heading', 'flx-blocks'), 'flux'],
 	icon: {
 		src: advancedHeadingIcon,
 	},

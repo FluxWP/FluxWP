@@ -441,7 +441,7 @@ export function Edit(props) {
 					<>
 						<FlxbkPanelBody>
 							<SmallResponsiveControl
-								label={'Colors'}
+								label={__('Colors', 'flx-blocks')}
 								desktopChildren={styleColorControls()}
 								tabletChildren={styleColorControls('Tablet')}
 								mobileChildren={styleColorControls('Mobile')}
@@ -482,7 +482,7 @@ export function Edit(props) {
 								normal={
 									<>
 										<SmallResponsiveControl
-											label={'Colors'}
+											label={__('Colors', 'flx-blocks')}
 											desktopChildren={styleColorControlsCloseIcon()}
 											tabletChildren={styleColorControlsCloseIcon('Tablet')}
 											mobileChildren={styleColorControlsCloseIcon('Mobile')}
@@ -502,7 +502,7 @@ export function Edit(props) {
 								hover={
 									<>
 										<SmallResponsiveControl
-											label={'Hover Colors'}
+											label={__('Hover Colors', 'flx-blocks')}
 											desktopChildren={styleColorControlsCloseIcon('', 'Hover')}
 											tabletChildren={styleColorControlsCloseIcon('Tablet', 'Hover')}
 											mobileChildren={styleColorControlsCloseIcon('Mobile', 'Hover')}

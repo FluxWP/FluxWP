@@ -314,14 +314,14 @@ function CreateNewOnly({ clientId, setJustCompletedOnboarding, postId }) {
 	const steps = [
 		{
 			key: 'name',
-			name: 'Header Name',
+			name: __('Header Name', 'flx-blocks'),
 			visualNumber: 1,
 			component: HeaderName,
 			componentData: { postId },
 			containerData: { headerStyle: { position: 'unset' } },
 		},
-		{ key: 'desktop', name: 'Desktop Layout', visualNumber: 2, component: HeaderDesktop },
-		{ key: 'mobile', name: 'Mobile Layout', visualNumber: 3, component: HeaderMobile },
+		{ key: 'desktop', name: __('Desktop Layout', 'flx-blocks'), visualNumber: 2, component: HeaderDesktop },
+		{ key: 'mobile', name: __('Mobile Layout', 'flx-blocks'), visualNumber: 3, component: HeaderMobile },
 	];
 
 	return (
@@ -419,16 +419,16 @@ function Chooser({ commit, clientId, setJustCompletedOnboarding, formData, setFo
 	};
 
 	const steps = [
-		{ key: 'select-existing', name: 'Header Selection', hideSteps: true, component: HeaderExisting },
+		{ key: 'select-existing', name: __('Header Selection', 'flx-blocks'), hideSteps: true, component: HeaderExisting },
 		{
 			key: 'name',
-			name: 'Header Name',
+			name: __('Header Name', 'flx-blocks'),
 			visualNumber: 1,
 			component: HeaderName,
 			containerData: { headerStyle: { position: 'unset' } },
 		},
-		{ key: 'desktop', name: 'Desktop Layout', visualNumber: 2, component: HeaderDesktop },
-		{ key: 'mobile', name: 'Mobile Layout', visualNumber: 3, component: HeaderMobile },
+		{ key: 'desktop', name: __('Desktop Layout', 'flx-blocks'), visualNumber: 2, component: HeaderDesktop },
+		{ key: 'mobile', name: __('Mobile Layout', 'flx-blocks'), visualNumber: 3, component: HeaderMobile },
 	];
 
 	return (

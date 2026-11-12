@@ -109,8 +109,8 @@ class MailerLiteControls extends Component {
 	getMailerLiteFields() {
 		if (!this.state.api) {
 			const theFields = [];
-			theFields.push({ value: null, label: 'None' });
-			theFields.push({ value: 'email', label: 'Email *' });
+			theFields.push({ value: null, label: __('None', 'flx-blocks') });
+			theFields.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 			this.setState({ groupFields: theFields, groupFieldsLoaded: true });
 			return;
 		}
@@ -121,8 +121,8 @@ class MailerLiteControls extends Component {
 			.then((fields) => {
 				if (Array.isArray(fields)) {
 					const theFields = [];
-					theFields.push({ value: null, label: 'None' });
-					theFields.push({ value: 'email', label: 'Email *' });
+					theFields.push({ value: null, label: __('None', 'flx-blocks') });
+					theFields.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 					fields.map((item, index) => {
 						if (item.key !== 'email') {
 							theFields.push({ value: item.key, label: item.title });
@@ -131,8 +131,8 @@ class MailerLiteControls extends Component {
 					this.setState({ groupFields: theFields, groupFieldsLoaded: true, isFetchingFields: false });
 				} else if (undefined !== fields?.data && Array.isArray(fields.data)) {
 					const theFields = [];
-					theFields.push({ value: null, label: 'None' });
-					theFields.push({ value: 'email', label: 'Email *' });
+					theFields.push({ value: null, label: __('None', 'flx-blocks') });
+					theFields.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 					fields.data.map((item, index) => {
 						if (item.key !== 'email') {
 							theFields.push({ value: item.key, label: item.name });
@@ -141,15 +141,15 @@ class MailerLiteControls extends Component {
 					this.setState({ groupFields: theFields, groupFieldsLoaded: true, isFetchingFields: false });
 				} else {
 					const theFields = [];
-					theFields.push({ value: null, label: 'None' });
-					theFields.push({ value: 'email', label: 'Email *' });
+					theFields.push({ value: null, label: __('None', 'flx-blocks') });
+					theFields.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 					this.setState({ groupFields: theFields, groupFieldsLoaded: true, isFetchingFields: false });
 				}
 			})
 			.catch(() => {
 				const theFields = [];
-				theFields.push({ value: null, label: 'None' });
-				theFields.push({ value: 'email', label: 'Email *' });
+				theFields.push({ value: null, label: __('None', 'flx-blocks') });
+				theFields.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 				this.setState({ groupFields: theFields, groupFieldsLoaded: true, isFetchingFields: false });
 			});
 	}

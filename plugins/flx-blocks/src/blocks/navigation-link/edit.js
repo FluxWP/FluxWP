@@ -1388,13 +1388,13 @@ export default function Edit(props) {
 
 					{hasChildren && (
 						<button
-							aria-label="Expand child menu"
+							aria-label={__('Expand child menu', 'flx-blocks')}
 							class="fxb-nav-dropdown-toggle-btn"
 							data-toggle-duration="10"
 							data-toggle-target={`fxb-nav-link-${uniqueID} .sub-menu`}
 							aria-expanded="false"
 						>
-							<span class="screen-reader-text">Expand child menu</span>
+							<span class="screen-reader-text">{__('Expand child menu', 'flx-blocks')}</span>
 							{ArrowDown}
 						</button>
 					)}

@@ -35,7 +35,7 @@ registerBlockType('flx/countdown-inner', {
 	...metadata,
 	title: __('Countdown Content', 'flx-blocks'),
 	description: __('Inner Container for Countdown Block', 'flx-blocks'),
-	keywords: [__('countdown', 'flx-blocks'), __('timer', 'flx-blocks'), 'KB'],
+	keywords: [__('countdown', 'flx-blocks'), __('timer', 'flx-blocks'), 'flux'],
 	icon: countdownInnerIcon,
 	edit,
 	save({ attributes }) {

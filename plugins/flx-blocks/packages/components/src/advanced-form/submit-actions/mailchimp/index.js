@@ -171,8 +171,8 @@ function MailChimpControls({ formInnerBlocks, parentClientId, settings, save }) 
 	const getMailChimpAttributes = () => {
 		if (!api || !settings.list.value) {
 			const theAttributes = [];
-			theAttributes.push({ value: null, label: 'None' });
-			theAttributes.push({ value: 'email', label: 'Email *' });
+			theAttributes.push({ value: null, label: __('None', 'flx-blocks') });
+			theAttributes.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 
 			setListAttr(theAttributes);
 			setListAttrLoaded(true);
@@ -190,8 +190,8 @@ function MailChimpControls({ formInnerBlocks, parentClientId, settings, save }) 
 		})
 			.then((list) => {
 				const theAttributes = [];
-				theAttributes.push({ value: null, label: 'None' });
-				theAttributes.push({ value: 'email', label: 'Email *' });
+				theAttributes.push({ value: null, label: __('None', 'flx-blocks') });
+				theAttributes.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 				list.merge_fields.map((item, index) => {
 					theAttributes.push({ value: item.tag, label: item.name });
 				});
@@ -202,8 +202,8 @@ function MailChimpControls({ formInnerBlocks, parentClientId, settings, save }) 
 			})
 			.catch(() => {
 				const theAttributes = [];
-				theAttributes.push({ value: null, label: 'None' });
-				theAttributes.push({ value: 'email', label: 'Email *' });
+				theAttributes.push({ value: null, label: __('None', 'flx-blocks') });
+				theAttributes.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 
 				setListAttr(theAttributes);
 				setListAttrLoaded(true);

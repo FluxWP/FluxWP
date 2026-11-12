@@ -401,6 +401,36 @@ msgstr "İçe aktarma dosyasının yapısı geçersiz: export.json yok"
 msgid "Invalid JSON data in import file."
 msgstr "İçe aktarma dosyasındaki JSON geçersiz."
 
+msgid "This site does not share its design library."
+msgstr "Bu site tasarım kütüphanesini paylaşmıyor."
+
+msgid "The library key is missing or wrong."
+msgstr "Kütüphane anahtarı eksik ya da yanlış."
+
+msgid "Other"
+msgstr "Diğer"
+
+msgid "My patterns"
+msgstr "Desenlerim"
+
+msgid "Enter a valid site address."
+msgstr "Geçerli bir site adresi girin."
+
+msgid "Unknown action."
+msgstr "Bilinmeyen işlem."
+
+msgid "Library not found."
+msgstr "Kütüphane bulunamadı."
+
+msgid "The library could not be reached."
+msgstr "Kütüphaneye ulaşılamadı."
+
+msgid "The library refused access. Check the key, and that sharing is on at the other site."
+msgstr "Kütüphane erişime izin vermedi. Anahtarı ve diğer sitede paylaşımın açık olduğunu kontrol edin."
+
+msgid "This address is not a Flux design library."
+msgstr "Bu adres bir Flux tasarım kütüphanesi değil."
+
 msgid "Make a duplicate from this."
 msgstr "Bunun bir kopyasını oluştur."
 
@@ -1965,6 +1995,9 @@ msgstr "Alıcı adresini değiştir"
 msgid "By default email is sent to the email field, you can use this to override."
 msgstr "Varsayılan olarak e-posta, e-posta alanındaki adrese gider; bununla değiştirebilirsiniz."
 
+msgid "Email *"
+msgstr "E-posta *"
+
 msgid "Kit (ConvertKit) Settings"
 msgstr "Kit (ConvertKit) ayarları"
 
@@ -2568,8 +2601,8 @@ msgstr "Genel"
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-msgid "tab"
-msgstr "sekme"
+msgid "%s tab"
+msgstr "%s sekmesi"
 
 msgid "Edit"
 msgstr "Düzenle"
@@ -3426,6 +3459,15 @@ msgstr "gönder düğmesi"
 
 msgid "captcha"
 msgstr "captcha"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Option 1"
+msgstr "Seçenek 1"
+
+msgid "Option 2"
+msgstr "Seçenek 2"
 
 msgid "Advanced forms can not be edited within the widgets screen."
 msgstr "Gelişmiş formlar bileşenler ekranında düzenlenemez."
@@ -4428,6 +4470,9 @@ msgstr "Gelişmiş yazı ayarları"
 
 msgid "Text Shadow Settings"
 msgstr "Metin gölgesi ayarları"
+
+msgid "Enable Text Shadow"
+msgstr "Metin gölgesini aç"
 
 msgid "Text Shadow"
 msgstr "Metin gölgesi"
@@ -5453,6 +5498,12 @@ msgstr "Tablet ve mobil cihazlar için header içeriği."
 msgid "Icon Line Width"
 msgstr "İkon çizgi kalınlığı"
 
+msgid "Trigger Colors"
+msgstr "Tetikleyici renkleri"
+
+msgid "Hover Colors"
+msgstr "Üzerine gelince renkler"
+
 msgctxt "block title"
 msgid "Off Canvas Trigger"
 msgstr "Kenar menü tetikleyici"
@@ -5496,6 +5547,9 @@ msgstr "İçerik dikey hizalaması"
 
 msgid "Close Trigger Settings"
 msgstr "Kapat düğmesi ayarları"
+
+msgid "Colors"
+msgstr "Renkler"
 
 msgid "Close Trigger Styles"
 msgstr "Kapat düğmesi stilleri"
@@ -5851,6 +5905,9 @@ msgstr "Flux Header"
 msgid "The selected header is in the trash."
 msgstr "Seçilen header çöp kutusunda."
 
+msgid "Mobile Layout"
+msgstr "Mobil düzen"
+
 msgctxt "block title"
 msgid "Header (Adv)"
 msgstr "Header (gelişmiş)"
@@ -5864,6 +5921,33 @@ msgstr "header"
 
 msgid "footer"
 msgstr "footer"
+
+msgid "Call To Action"
+msgstr "Harekete geç"
+
+msgid "Secondary"
+msgstr "İkincil"
+
+msgid "Call to Action"
+msgstr "Eylem çağrısı"
+
+msgid "Call to action"
+msgstr "Harekete geç"
+
+msgid "Chat or support"
+msgstr "Sohbet ya da destek"
+
+msgid "Join Today"
+msgstr "Hemen katıl"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "Youtube"
+msgstr "YouTube"
 
 msgctxt "block title"
 msgid "Icon"
@@ -6614,6 +6698,9 @@ msgstr "Mega menü önizlemesini dondur"
 msgid "Freeze Sub Menu Preview"
 msgstr "Alt menü önizlemesini dondur"
 
+msgid "Expand child menu"
+msgstr "Alt menüyü aç"
+
 msgid "Select Your Columns"
 msgstr "Sütunlarınızı seçin"
 
@@ -6632,6 +6719,9 @@ msgstr "Flux menü bağlantısı"
 msgid "Briefly and concisely explain what you do for your audience."
 msgstr "Ziyaretçilerinize ne yaptığınızı kısaca anlatın."
 
+msgid "Get Started"
+msgstr "Başlayın"
+
 msgid "Ask a question"
 msgstr "Bir soru sorun"
 
@@ -6640,6 +6730,27 @@ msgstr "Premium özellikler"
 
 msgid "Others"
 msgstr "Diğerleri"
+
+msgid "New Arrivals"
+msgstr "Yeni gelenler"
+
+msgid "Best Sellers"
+msgstr "Çok satanlar"
+
+msgid "Women"
+msgstr "Kadın"
+
+msgid "Children"
+msgstr "Çocuk"
+
+msgid "Men"
+msgstr "Erkek"
+
+msgid "Accessories"
+msgstr "Aksesuar"
+
+msgid "Sale"
+msgstr "İndirim"
 
 msgid "Ecosystem"
 msgstr "Ekosistem"
@@ -6661,9 +6772,6 @@ msgstr "Bu alana kısa bir açıklama ekleyin."
 
 msgid "Resources"
 msgstr "Kaynaklar"
-
-msgid "Call to Action"
-msgstr "Eylem çağrısı"
 
 msgid "Development"
 msgstr "Geliştirme"
@@ -6700,6 +6808,12 @@ msgstr "Dikey"
 
 msgid "Tablet Orientation"
 msgstr "Tablet yönü"
+
+msgid "Categories"
+msgstr "Kategoriler"
+
+msgid "Product Categories"
+msgstr "Ürün kategorileri"
 
 msgid "Navigation Name"
 msgstr "Menü adı"
@@ -6827,9 +6941,6 @@ msgstr "Menü öğesi stilleri"
 msgid "Transparent Styles"
 msgstr "Saydam stiller"
 
-msgid "Colors"
-msgstr "Renkler"
-
 msgid "Divider"
 msgstr "Ayırıcı"
 
@@ -6896,6 +7007,27 @@ msgstr "Menü seçin"
 msgctxt "block title"
 msgid "Navigation (Adv)"
 msgstr "Menü (gelişmiş)"
+
+msgid "Add a short title"
+msgstr "Kısa bir başlık ekleyin"
+
+msgid "Short Title"
+msgstr "Kısa başlık"
+
+msgid "View Demo"
+msgstr "Demoyu gör"
+
+msgid "Contact Sales"
+msgstr "Satışla iletişim"
+
+msgid "Documentation"
+msgstr "Belgeler"
+
+msgid "Use this space to add a medium length description."
+msgstr "Bu alana orta uzunlukta bir açıklama yazın."
+
+msgid "Short title"
+msgstr "Kısa başlık"
 
 msgctxt "block title"
 msgid "Posts"
@@ -7368,6 +7500,9 @@ msgstr "En düşük erişim seviyesi"
 msgid "Specific Memberships"
 msgstr "Belirli üyelikler"
 
+msgid "Any Membership"
+msgstr "Herhangi bir üyelik"
+
 msgid "Row Content Only Editing"
 msgstr "Satırda yalnız içerik düzenlensin"
 
@@ -7617,6 +7752,9 @@ msgstr "Alan boşluğu"
 
 msgid "Modal Style"
 msgstr "Açılır pencere stili"
+
+msgid "Search for:"
+msgstr "Ara:"
 
 msgctxt "block title"
 msgid "Search (Adv)"
@@ -8034,6 +8172,9 @@ msgstr "Sekmeler"
 msgid "tabs"
 msgstr "sekmeler"
 
+msgid "tab"
+msgstr "sekme"
+
 msgid "Tab 1 Content"
 msgstr "Sekme 1 içeriği"
 
@@ -8060,9 +8201,6 @@ msgstr "Koyu zemin"
 
 msgid "Vertical Tabs"
 msgstr "Dikey sekmeler"
-
-msgid "Mobile Layout"
-msgstr "Mobil düzen"
 
 msgid "Tablet Layout"
 msgstr "Tablet düzen"
@@ -8180,6 +8318,9 @@ msgstr "Alt başlıklar gösterilsin mi?"
 
 msgid "Tab Anchor Settings"
 msgstr "Sekme çapa ayarları"
+
+msgid "No general settings available."
+msgstr "Genel ayar yok."
 
 msgctxt "block title"
 msgid "Testimonial"
@@ -8680,6 +8821,83 @@ msgstr "Gelişmiş metin bloğu editörde varsayılan blok olur ve varsayılan s
 msgid "If Flux Block Editor is disabled Advanced Text blocks will continue to display, but may lose some of their styling."
 msgstr "Flux Block Editor kapatılırsa gelişmiş metin blokları görünmeye devam eder ama bazı stillerini kaybedebilir."
 
+msgid "Could not load the library."
+msgstr "Kütüphane yüklenemedi."
+
+msgid "“%s” added."
+msgstr "“%s” eklendi."
+
+msgid "Try again"
+msgstr "Tekrar dene"
+
+msgid "Search patterns"
+msgstr "Desen ara"
+
+msgid "Refresh library"
+msgstr "Kütüphaneyi yenile"
+
+msgid "No pattern matches your search."
+msgstr "Aramanıza uyan desen yok."
+
+msgid "This library has no patterns yet. Theme and preset patterns, and the patterns you save, appear here."
+msgstr "Bu kütüphanede henüz desen yok. Tema ve ön ayar desenleri ile kaydettiğiniz desenler burada görünür."
+
+msgid "%d pattern"
+msgid_plural "%d patterns"
+msgstr[0] "%d desen"
+msgstr[1] "%d desen"
+
+msgid "Insert"
+msgstr "Ekle"
+
+msgid "The library could not be added."
+msgstr "Kütüphane eklenemedi."
+
+msgid "Only administrators can add libraries."
+msgstr "Kütüphaneyi yalnız yöneticiler ekleyebilir."
+
+msgid "Linked libraries"
+msgstr "Bağlı kütüphaneler"
+
+msgid "Add another Flux site by its address. Its sections and pages show up here as a library; nothing is copied until you insert it."
+msgstr "Başka bir Flux sitesini adresiyle ekleyin. Bölümleri ve sayfaları burada kütüphane olarak görünür; siz eklemeden hiçbir şey kopyalanmaz."
+
+msgid "with key"
+msgstr "anahtarlı"
+
+msgid "Site address"
+msgstr "Site adresi"
+
+msgid "Name (optional)"
+msgstr "Ad (isteğe bağlı)"
+
+msgid "Key"
+msgstr "Anahtar"
+
+msgid "Add library"
+msgstr "Kütüphane ekle"
+
+msgid "Share this site"
+msgstr "Bu siteyi paylaş"
+
+msgid "Other Flux sites can use this site’s patterns as a library"
+msgstr "Diğer Flux siteleri bu sitenin desenlerini kütüphane olarak kullanabilir"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "New key"
+msgstr "Yeni anahtar"
+
+msgid "A new key cuts off every site that used the old one."
+msgstr "Yeni anahtar, eskisini kullanan tüm sitelerin erişimini keser."
+
+msgid "Design Library"
+msgstr "Tasarım kütüphanesi"
+
+msgid "This site"
+msgstr "Bu site"
+
 msgid "Full Screen Width"
 msgstr "Tam ekran genişliği"
 
@@ -8973,9 +9191,6 @@ msgstr "Tek tek öğe ayarlarını aç"
 
 msgid "Components"
 msgstr "Bileşenler"
-
-msgid "Design Library"
-msgstr "Tasarım kütüphanesi"
 
 msgid "Show Design Library Button For"
 msgstr "Tasarım kütüphanesi düğmesini göster"

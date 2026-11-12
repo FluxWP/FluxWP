@@ -3,6 +3,7 @@
  * Post Type: flxbk_navigation
  */
 
+import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
 
 const postMeta = {
@@ -43,8 +44,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '372_59c297-f5',
-					label: 'Short Title',
-					description: 'Use this space to add a short description.',
+					label: __('Short Title', 'flx-blocks'),
+					description: __('Use this space to add a short description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					typography: [
@@ -133,8 +134,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '372_833e19-55',
-					label: 'Short Title',
-					description: 'Use this space to add a short description.',
+					label: __('Short Title', 'flx-blocks'),
+					description: __('Use this space to add a short description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					typography: [
@@ -221,8 +222,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '372_70deb0-0d',
-					label: 'Short Title',
-					description: 'Use this space to add a short description.',
+					label: __('Short Title', 'flx-blocks'),
+					description: __('Use this space to add a short description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					typography: [
