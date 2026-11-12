@@ -29,14 +29,16 @@ function flxai_skills_builtin() {
 		'gunluk-brifing' => array(
 			'name'        => __( 'Daily briefing', 'flx-ai' ),
 			'description' => __( 'Short morning report: yesterday\'s donations and orders, unanswered messages, site issues and what needs you today.', 'flx-ai' ),
-			'tools'       => array( 'flxai_current_time' ),
+			'tools'       => array( 'flxai_current_time', 'flxb_donation_summary', 'flxseo_order_summary', 'flxcrm_overview', 'flxcrm_recent_events', 'flxads_report' ),
 			'body'        => "# Günlük brifing\n\n"
 				. "Kullanıcıya güne başlarken okuyacağı kısa bir rapor hazırla.\n\n"
-				. "1. Tarihi flxai_current_time ile al; \"dün\" bu tarihe göre.\n"
-				. "2. Erişebildiğin araçlarla dünü topla: bağışlar/siparişler (adet, toplam), yeni ve cevapsız mesajlar, yeni kişiler, site sorunları (sistem kontrolü, hız).\n"
-				. "3. Aracı olmayan konuyu atla, uydurma.\n"
-				. "4. Rapor: başlıklı, madde madde, en fazla 15 satır. En sonda \"Bugün bakmanız gereken\" bölümü (onay bekleyen dekont, cevapsız mesaj, hata).\n"
-				. "5. Önceki günden belirgin fark (ör. bağış yarıya düştü) varsa bir cümleyle belirt.",
+				. "1. Tarihi flxai_current_time ile al; \"dün\" ve \"önceki gün\" bu tarihe göre (Y-m-d).\n"
+				. "2. Bağışlar: flxb_donation_summary varsa period=yesterday, compare=true ile çağır (ödenen adet/toplam, türlere göre, bekleyen, iptal ve önceki güne göre değişim tek çağrıda gelir).\n"
+				. "3. Siparişler: flxseo_order_summary varsa date=<dün>, compare=true ile çağır; bugünkü bekleyen ödemeler için bir kez de parametresiz çağır.\n"
+				. "4. Mesajlar ve kişiler: Flux Chat / Flux CRM araçlarından hangileri varsa (ör. flxcrm_overview, flxcrm_recent_events) cevapsız sohbetleri ve dün eklenen kişileri al. Site sorunları: sistem kontrolü ve hız araçları. Reklam: flxads_report.\n"
+				. "5. Araç listesinde olmayan konuyu hiç yazma; \"doğrulanamadı\", \"alınamadı\" gibi boş maddeler ekleme. Uydurma.\n"
+				. "6. Rapor: başlıklı, madde madde, en fazla 15 satır. Değişim varsa sayının yanına yaz (ör. \"12 bağış, 4.350 TL (önceki gün 9)\"). En sonda \"Bugün bakmanız gereken\" bölümü (onay bekleyen dekont, bekleyen ödeme, cevapsız mesaj, hata).\n"
+				. "7. Önceki günden belirgin fark (ör. bağış yarıya düştü) varsa bir cümleyle belirt; karşılaştırma verisi yoksa bu cümleyi atla.",
 			'example'     => "## Günlük brifing\n- **Bağışlar:** dün 12 bağış, toplam 4.350 TL.\n- **Mesajlar:** 3 cevapsız WhatsApp sohbeti.\n- **Site:** sorun yok.\n\n**Bugün bakmanız gereken:** 2 dekont onay bekliyor.",
 		),
 		'site-sagligi'   => array(

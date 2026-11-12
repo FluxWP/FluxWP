@@ -2765,3 +2765,147 @@ msgstr "Vazgeç"
 
 msgid "Code"
 msgstr "Kod"
+
+msgid "Start an empty chat."
+msgstr "Boş bir sohbet başlatır."
+
+msgid "Chats"
+msgstr "Sohbetler"
+
+msgid "Show or hide the chat list: running, recent and archived chats."
+msgstr "Sohbet listesini gösterir ya da gizler: çalışanlar, son sohbetler ve arşiv."
+
+msgid "Find an earlier chat by title or content."
+msgstr "Önceki bir sohbeti başlığından ya da içeriğinden bulur."
+
+msgid "Files, change requests and settings of this chat."
+msgstr "Bu sohbetin dosyaları, değişiklik istekleri ve ayarları."
+
+msgid "Attach a file"
+msgstr "Dosya ekle"
+
+msgid "Image, PDF or document for the assistant to read."
+msgstr "Asistanın okuyacağı görsel, PDF ya da belge."
+
+msgid "Create a scheduled task: "
+msgstr "Zamanlanmış görev oluştur: "
+
+msgid "Have the assistant run something on its own at set times and notify you or others."
+msgstr "Asistan belirli zamanlarda bir işi kendiliğinden yapsın, size ya da başkalarına bildirsin."
+
+msgid "List my scheduled tasks and their last reports."
+msgstr "Zamanlanmış görevlerimi ve son raporlarını listele."
+
+msgid "My tasks"
+msgstr "Görevlerim"
+
+msgid "Scheduled tasks, next runs and last reports."
+msgstr "Zamanlanmış görevler, sonraki çalışmalar ve son raporlar."
+
+msgid "Create a new skill: "
+msgstr "Yeni bir skill oluştur: "
+
+msgid "Save reusable instructions you can call later with /name."
+msgstr "Sonra /ad ile çağırabileceğiniz tekrar kullanılabilir talimat kaydeder."
+
+msgid "Change model"
+msgstr "Modeli değiştir"
+
+msgid "Pick the AI model for this chat."
+msgstr "Bu sohbetin yapay zekâ modelini seçin."
+
+msgid "Read a scheduled task report"
+msgstr "Zamanlanmış görev raporunu oku"
+
+msgid "WhatsApp group"
+msgstr "WhatsApp grubu"
+
+msgid "E-mail address"
+msgstr "E-posta adresi"
+
+msgid "Phone number"
+msgstr "Telefon numarası"
+
+msgid "Find notification recipients"
+msgstr "Bildirim alıcısı bul"
+
+msgid "my e-mail"
+msgstr "e-postam"
+
+msgid "Next: %1$s (%2$s)"
+msgstr "Sonraki: %1$s (%2$s)"
+
+msgid "avg. %s"
+msgstr "ort. %s"
+
+msgid "Runs: %s"
+msgstr "%s çalışma"
+
+msgid "Notifications"
+msgstr "Bildirimler"
+
+msgid "Details"
+msgstr "Detay"
+
+msgid "More"
+msgstr "Daha fazla"
+
+msgid "Last output"
+msgstr "Son çıktı"
+
+msgid "Open in the AI chat: reasoning, tool calls and follow-up"
+msgstr "AI sohbetinde aç: düşünme, araç çağrıları ve devamı"
+
+msgid "Also notify"
+msgstr "Ayrıca bildir"
+
+msgid "People from Flux CRM, site users or WhatsApp groups. Pick a channel for each."
+msgstr "Flux CRM kişileri, site kullanıcıları ya da WhatsApp grupları. Her biri için kanal seçin."
+
+msgid "Search name, e-mail, phone or group…"
+msgstr "Ad, e-posta, telefon ya da grup ara…"
+
+msgid "Add recipient"
+msgstr "Alıcı ekle"
+
+msgid "You can also say it in the AI chat, e.g. \"send the daily briefing to Ayşe by WhatsApp and to the board group\"."
+msgstr "AI sohbetinde de söyleyebilirsiniz, ör. \"günlük brifingi Ayşe'ye WhatsApp'tan ve yönetim grubuna da gönder\"."
+
+msgid "Commands"
+msgstr "Komutlar"
+
+msgid "Apps"
+msgstr "Uygulamalar"
+
+msgid "E-mail"
+msgstr "E-posta"
+
+msgid "Contact"
+msgstr "Kişi"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "/ commands"
+msgstr "/ komutlar"
+
+msgid "Hide panel"
+msgstr "Paneli gizle"
+
+msgid "Search chats…"
+msgstr "Sohbetlerde ara…"
+
+msgid "Results"
+msgstr "Sonuçlar"
+
+msgid "Recent chats"
+msgstr "Son sohbetler"
+
+msgid "The archive is empty."
+msgstr "Arşiv boş."
+
+msgid "No command found."
+msgstr "Komut bulunamadı."
+
+msgid "Archived"
+msgstr "Arşivdekiler"

@@ -2364,3 +2364,147 @@ msgstr ""
 
 msgid "Code"
 msgstr ""
+
+msgid "Start an empty chat."
+msgstr ""
+
+msgid "Chats"
+msgstr ""
+
+msgid "Show or hide the chat list: running, recent and archived chats."
+msgstr ""
+
+msgid "Find an earlier chat by title or content."
+msgstr ""
+
+msgid "Files, change requests and settings of this chat."
+msgstr ""
+
+msgid "Attach a file"
+msgstr ""
+
+msgid "Image, PDF or document for the assistant to read."
+msgstr ""
+
+msgid "Create a scheduled task: "
+msgstr ""
+
+msgid "Have the assistant run something on its own at set times and notify you or others."
+msgstr ""
+
+msgid "List my scheduled tasks and their last reports."
+msgstr ""
+
+msgid "My tasks"
+msgstr ""
+
+msgid "Scheduled tasks, next runs and last reports."
+msgstr ""
+
+msgid "Create a new skill: "
+msgstr ""
+
+msgid "Save reusable instructions you can call later with /name."
+msgstr ""
+
+msgid "Change model"
+msgstr ""
+
+msgid "Pick the AI model for this chat."
+msgstr ""
+
+msgid "Read a scheduled task report"
+msgstr ""
+
+msgid "WhatsApp group"
+msgstr ""
+
+msgid "E-mail address"
+msgstr ""
+
+msgid "Phone number"
+msgstr ""
+
+msgid "Find notification recipients"
+msgstr ""
+
+msgid "my e-mail"
+msgstr ""
+
+msgid "Next: %1$s (%2$s)"
+msgstr ""
+
+msgid "avg. %s"
+msgstr ""
+
+msgid "Runs: %s"
+msgstr ""
+
+msgid "Notifications"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "Last output"
+msgstr ""
+
+msgid "Open in the AI chat: reasoning, tool calls and follow-up"
+msgstr ""
+
+msgid "Also notify"
+msgstr ""
+
+msgid "People from Flux CRM, site users or WhatsApp groups. Pick a channel for each."
+msgstr ""
+
+msgid "Search name, e-mail, phone or group…"
+msgstr ""
+
+msgid "Add recipient"
+msgstr ""
+
+msgid "You can also say it in the AI chat, e.g. \"send the daily briefing to Ayşe by WhatsApp and to the board group\"."
+msgstr ""
+
+msgid "Commands"
+msgstr ""
+
+msgid "Apps"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "/ commands"
+msgstr ""
+
+msgid "Hide panel"
+msgstr ""
+
+msgid "Search chats…"
+msgstr ""
+
+msgid "Results"
+msgstr ""
+
+msgid "Recent chats"
+msgstr ""
+
+msgid "The archive is empty."
+msgstr ""
+
+msgid "No command found."
+msgstr ""
+
+msgid "Archived"
+msgstr ""

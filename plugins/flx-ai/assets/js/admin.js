@@ -293,6 +293,69 @@
 			wa.addEventListener('change', applyW);
 			applyW();
 		}
+		recipients(f.querySelector('[data-rcp]'));
+	}
+
+	/* Görev bildirimi ek alıcıları: CRM kişisi, kullanıcı, WhatsApp grubu; alıcı başına kanal. */
+	function recipients(box) {
+		if (!box) return;
+		var inp = box.querySelector('input[type=search]'), res = box.querySelector('.flxai-rcp-res'), listEl = box.querySelector('.flxai-rcp-list'), hid = box.querySelector('[name="notify_to"]');
+		var chOk = {}; try { chOk = JSON.parse(box.getAttribute('data-channels') || '{}'); } catch (e) {}
+		var list = []; try { list = JSON.parse(hid.value || '[]') || []; } catch (e) {}
+		var found = [], timer = 0, seq = 0;
+		var CH = { email: t('E-posta'), sms: 'SMS', whatsapp: 'WhatsApp' };
+		var KIND = { contact: t('Kişi'), user: t('Kullanıcı'), group: t('WhatsApp grubu'), email: t('E-posta'), phone: t('Telefon') };
+		function can(r, c) {
+			if (r.kind === 'group') return c === 'whatsapp';
+			if (c === 'email') return !!r.email;
+			return !!r.phone && !!chOk[c];
+		}
+		function save() { hid.value = JSON.stringify(list); }
+		function draw() {
+			listEl.innerHTML = list.map(function (r, i) {
+				return '<div class="flxai-rcp-row"><span class="flxai-rcp-who"><b>' + esc(r.name) + '</b><small>' + esc(KIND[r.kind] || '') + (r.email || r.phone ? ' · ' + esc(r.email || ('+' + r.phone)) : '') + '</small></span>' +
+					'<span class="flxai-rcp-ch">' + ['email', 'sms', 'whatsapp'].map(function (c) {
+						var dis = !can(r, c), on = (r.channels || []).indexOf(c) >= 0;
+						return '<label class="flxai-chip' + (on ? ' is-on' : '') + (dis ? ' is-dis' : '') + '"><input type="checkbox" data-i="' + i + '" data-c="' + c + '"' + (on ? ' checked' : '') + (dis ? ' disabled' : '') + '> ' + esc(CH[c]) + '</label>';
+					}).join('') + '</span><button type="button" class="button-link flxai-rcp-rm" data-rm="' + i + '" aria-label="' + esc(t('Kaldır')) + '">×</button></div>';
+			}).join('');
+			save();
+		}
+		function search() {
+			var q = inp.value.trim(), my = ++seq;
+			fetch(box.getAttribute('data-rest') + (box.getAttribute('data-rest').indexOf('?') < 0 ? '?' : '&') + 'q=' + encodeURIComponent(q) + '&_t=' + Date.now(), { headers: { 'X-WP-Nonce': box.getAttribute('data-nonce') }, credentials: 'same-origin' })
+				.then(function (r) { return r.json(); }).then(function (d) {
+					if (my !== seq) return;
+					if (d.channels) chOk = d.channels;
+					found = d.items || [];
+					res.hidden = false;
+					res.innerHTML = found.length ? found.map(function (r, i) {
+						return '<button type="button" data-pick="' + i + '"><b>' + esc(r.name) + '</b><small>' + esc(KIND[r.kind] || '') + (r.sub ? ' · ' + esc(r.sub) : '') + '</small></button>';
+					}).join('') : '<div class="flxai-rcp-none">' + esc(t('Sonuç yok.')) + '</div>';
+				}).catch(function () {});
+		}
+		inp.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(search, 220); });
+		inp.addEventListener('focus', function () { if (!res.innerHTML) search(); else res.hidden = false; });
+		inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); var b = res.querySelector('[data-pick]'); if (b) b.click(); } if (e.key === 'Escape') res.hidden = true; });
+		document.addEventListener('click', function (e) { if (!box.contains(e.target)) res.hidden = true; });
+		res.addEventListener('click', function (e) {
+			var b = e.target.closest('[data-pick]'); if (!b) return;
+			var r = Object.assign({}, found[+b.getAttribute('data-pick')]);
+			delete r.sub;
+			r.channels = r.kind === 'group' ? ['whatsapp'] : (r.email ? ['email'] : (can(r, 'whatsapp') ? ['whatsapp'] : (can(r, 'sms') ? ['sms'] : [])));
+			if (!r.channels.length) return;
+			if (!list.some(function (x) { return x.kind === r.kind && (x.id ? x.id === r.id : (x.email + x.phone + x.jid) === (r.email + r.phone + r.jid)); })) list.push(r);
+			inp.value = ''; res.hidden = true; draw();
+		});
+		listEl.addEventListener('change', function (e) {
+			var c = e.target.getAttribute('data-c'); if (!c) return;
+			var r = list[+e.target.getAttribute('data-i')], ch = (r.channels || []).filter(function (x) { return x !== c; });
+			if (e.target.checked) ch.push(c);
+			if (!ch.length) { e.target.checked = true; return; }
+			r.channels = ch; draw();
+		});
+		listEl.addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (b) { list.splice(+b.getAttribute('data-rm'), 1); draw(); } });
+		draw();
 	}
 
 	/* Görev geçmişi: cevaplar AI sohbetindeki gibi Markdown (güvenli, küçük). */

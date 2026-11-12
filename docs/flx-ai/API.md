@@ -377,9 +377,28 @@ Sohbet: etkin skill'lerin listesi sistem metnine eklenir (`flxai_skills_prompt_m
 ## Görev bildirimleri ve onay kuyruğu (0.12.0)
 Görev `meta.skill` (slug) ve `meta.notify` (`mode` none|important|always, `email` bool, `whatsapp` numara, `panel` bool) taşır; `flxai_task_save()` `skill` ve `notify` alanlarını alır, görev araçlarında `skill`, `notify`, `notify_channels`, `notify_whatsapp`.
 
-"important": çalışmada model `flxai_task_notify` (yalnız sohbet aracı, `flxai_tools`) çağırdıysa, durum `approval` ya da `error` ise. Gönderim `flxai_task_ran` (öncelik 20): e-posta `flxi_send_email` şablonu `flx-ai/task_report` (değişkenler `gorev`, `ozet`, `ozet_html`, `durum`, `link`; yoksa `wp_mail`), WhatsApp `flxi_send_message( 'whatsapp', … , [ 'source' => 'flx-ai' ] )`, panel kullanıcı meta `flxai_task_unread` (task_id => zaman; Geçmiş açılınca silinir, `flxai_tasks_unread()`). Kanallar geçmiş kaydına `notified` olarak yazılır. Olay: `flxai_task_notified( $task, $state, $text, $sent )`.
+"important": çalışmada model `flxai_task_notify` (yalnız sohbet aracı, `flxai_tools`) çağırdıysa, durum `approval` ya da `error` ise. Gönderim `flxai_task_ran` (öncelik 20): e-posta `flxi_send_email` şablonu `flx-ai/task_report` (değişkenler `gorev`, `ozet`, `ozet_html`, `durum`, `link`; yoksa `wp_mail`), WhatsApp `flxi_send_message( 'whatsapp', … , [ 'source' => 'flx-ai' ] )`, panel kullanıcı meta `flxai_task_unread` (task_id => zaman; rapor açılınca silinir, `flxai_tasks_unread()`). Kanallar geçmiş kaydına `notified` olarak yazılır. Olay: `flxai_task_notified( $task, $state, $text, $sent )`.
 
 Onay kuyruğu: `flxai_approvals_count( $user_id )`, `flxai_approvals_list( $user_id )` (kullanıcının `approval` durumundaki sohbetlerinin bekleyen araç çağrıları), `flxai_approval_decide( $chat_id, $call_id, $approve, $args = null )` (tek işlem; `$args` verilirse girdi değişir; sohbette başka bekleyen kalmadıysa model bir adım devam eder). Olay `flxai_agent_decided( $chat )` (sohbetten ya da kuyruktan karar sonrası). Ekran `admin.php?page=flx-ai-approvals`.
+
+### Ek alıcılar (0.14.0)
+`meta.notify.to`: en çok 20 öğe `{ kind: contact|user|email|phone|group, id, name, email, phone, jid, channels: [email|sms|whatsapp] }` (`flxai_notify_to_clean()`). `contact` = Flux CRM kişisi (e-posta/telefon her gönderimde `FLXCRM_Contacts::get()` ile yeniden okunur), `user` = WP kullanıcısı (telefon `billing_phone`), `group` = WhatsApp grubu (`jid` `…@g.us`, yalnız whatsapp; Flux Mail'in grup JID'ini kabul etmesi gerekir). Gönderim: e-posta `flx-ai/task_report` şablonu, SMS/WhatsApp `flxi_send_message()`; yönetim bağlantısı yalnız `user` alıcılarına gider. Geçmişteki `notified` listesine `kanal:ad` yazılır.
+
+- `flxai_notify_find( $q, $limit = 12 )` → kişi/kullanıcı/grup adayları (yetkiye göre: `flxcrm_view`, `list_users`, `flxc_use`). REST `GET flx-ai/v1/notify/recipients?q=` → `items`, `channels` (`flxai_notify_channels()`: Flux Mail bağlantılarına göre kullanılabilir kanallar).
+- Araçlar: `flxai_notify_find_recipients` (q), görev araçlarında `notify_to` (tam liste, verilince eskisinin yerine geçer), `flxai_task_report` (id, limit → `runs`, `last_report`, `chat_url`).
+- Görev raporu bağlantısı: `admin.php?page=flx-ai-tasks&open=<id>` (`flxai_task_open_url()`; okundu işaretler, `admin.php?page=flx-ai-chat&flxai_chat=<chat_id>`'ye gider). `flxai_task_last_output( $task )` son çalışmanın son asistan metni.
+
+## Sohbet "/" menüsü (0.14.0)
+`flxai_slash_commands()` boot yanıtında `commands` olarak gelir. Öğe: `id`, `group` (`actions` | `skills` | `apps` | özel), `title`, `desc`, `kind` (`action` | `insert` | `skill`), `insert` (kutuya yazılacak metin), `action` (`new`, `side`, `search`, `ws`, `attach`, `model`; bilinmeyen eylem `flxai:command` window olayıyla yayılır, `detail` = öğe), `icon` (chat.js simge adı), özel grupta `groupLabel`. Eklentiler `flxai_slash_commands` filtresiyle ekler:
+
+```php
+add_filter( 'flxai_slash_commands', function ( $c ) {
+	$c[] = array( 'id' => 'myapp:report', 'group' => 'apps', 'kind' => 'insert', 'insert' => 'Aylık raporu hazırla: ', 'title' => 'Aylık rapor', 'desc' => 'My App verisinden rapor.' );
+	return $c;
+} );
+```
+
+Sohbet listesi (`GET chats`) her öğede `task` (görev adı ya da boş) döner.
 
 ## Sohbet ekleri ve sohbeti başlatma (0.12.0)
 

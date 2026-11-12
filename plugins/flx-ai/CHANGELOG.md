@@ -1,5 +1,14 @@
 # Flux AI — Değişiklikler
 
+## 0.14.0
+- Zamanlanmış görevler sayfası yenilendi: tablo yerine kartlar. Her görevde zamanlama, sonraki çalışma, çalışma sayısı, ortalama süre, maliyet ve bildirim alıcıları; **Son çıktı** kartın içinde açılır kapanır (yeni rapor açık gelir). Düğmeler sadeleşti: **Detay**, **Şimdi çalıştır** ve ⋯ menüsünde Duraklat / Düzenle / Sil. Mobilde tek sütun.
+- **Detay**, "Raporu aç" ve bildirimlerdeki bağlantı ayrı geçmiş ekranı yerine görevin AI sohbetini tam ekranda açar (düşünme ve araç çağrıları orada). Eski `&history=` bağlantıları da sohbete gider; rapor okunmuş sayılır.
+- Tam ekran sohbette solda açılır kapanır **Sohbetler** paneli: çalışanlar ve onay bekleyenler üstte, son sohbetler, altta açılır **Arşivdekiler**, arama; görev sohbetleri saat simgesiyle. Çalışan sohbet varken liste kendini yeniler.
+- Sohbet kutusunda **/** yazınca komut menüsü: yeni sohbet, sohbetler, arama, çalışma alanı, dosya ekle, zamanlanmış görev, görevlerim, yeni skill, model; altında açıklamalarıyla tüm skill'ler. Ok tuşları + Enter/Tab ile seçilir. Eklentiler `flxai_slash_commands` filtresiyle komut ekler (ileride uygulamalar).
+- "Bana bildir"e **Ayrıca bildir**: Flux CRM kişileri, site kullanıcıları, e-posta/telefon ya da WhatsApp grupları (Flux Chat) aranıp eklenir; her alıcı için E-posta / SMS / WhatsApp seçilir, en çok 20 alıcı. Gönderim Flux Mail ile; CRM kişisinin güncel e-posta/telefonu her gönderimde okunur. Sohbetten de söylenebilir (`notify_to`).
+- Yeni araçlar (sohbet + MCP): `flxai_notify_find_recipients` (alıcı arama), `flxai_task_report` (görevin son çalışmaları ve son raporun tam metni).
+- Günlük brifing skill'i bağış (`flxb_donation_summary`, dün + önceki gün karşılaştırma) ve sipariş (`flxseo_order_summary` date + compare) özet araçlarını kullanır; aracı olmayan konu için "doğrulanamadı" gibi boş madde yazmaz.
+
 ## 0.13.2
 - Sohbet ve görev klasörleri sıra numarası yerine benzersiz, tahmin edilemez 13 haneli numarayla adlanır (`chats/1251231225235`, `tasks/…`). Eski `chats/<sıra>` ve `tasks/<sıra>-<ad>` klasörleri ilk açılışta yeni adına taşınır.
 
