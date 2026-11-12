@@ -1,0 +1,21 @@
+@use '../../styles/mixins' as *;
+
+// The read-only body a theme preset with nothing to edit shows: its preview where the fields would be,
+// and the note that says why there are none.
+.flx-blocks-style-library__theme-preset {
+	@include flex-column(var(--fxb-sl-space-20));
+
+	padding: var(--fxb-sl-space-20);
+}
+
+.flx-blocks-style-library__theme-preset-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--fxb-sl-space-40) var(--fxb-sl-space-20);
+	background: var(--fxb-sl-color-gray-100);
+}
+
+.flx-blocks-style-library__theme-preset .components-notice {
+	margin: 0;
+}

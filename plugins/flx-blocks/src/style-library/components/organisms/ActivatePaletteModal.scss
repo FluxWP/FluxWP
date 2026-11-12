@@ -1,0 +1,13 @@
+// Mirrors ActivateLibraryModal.scss — see that file for why the selector is compound (it lands on
+// `.components-modal__frame`, and the max-width is capped so the consequence copy wraps at a
+// readable measure instead of stretching to the viewport cap).
+.components-modal__frame.flx-blocks-style-library__activate-palette-modal {
+	max-width: var(--fxb-sl-size-modal-medium);
+}
+
+.flx-blocks-style-library__activate-palette-modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--fxb-sl-space-10);
+	margin-top: var(--fxb-sl-space-20);
+}

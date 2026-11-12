@@ -330,6 +330,22 @@ html{scroll-behavior:smooth}
 .flx-note{font-size:var(--wp--preset--font-size--small);color:var(--flx-text);margin-top:1rem!important;padding:.8rem 1rem;border-radius:12px;background:var(--flx-mint)}
 .flx-page-head .wp-block-cover__inner-container{max-width:1240px;margin-inline:auto}
 .flx-page-head .wp-block-cover__inner-container>*{margin-inline-start:0!important;margin-inline-end:auto!important}
+/* İnce sayfa başlığı (ör. bağış sayfası): form ilk ekranda görünsün. Görsel odağı blokta focalPoint ile. */
+.flx-page-head--slim{min-height:0!important;padding-top:1.75rem!important;padding-bottom:1.75rem!important}
+.flx-page-head--slim .wp-block-cover__inner-container{width:100%}
+.flx-page-head--slim+*{margin-block-start:0!important}
+.flx-page-head--overlap{padding-bottom:calc(1.75rem + 96px)!important}
+.flx-page-head--overlap+*{position:relative;z-index:2;margin-block-start:-96px!important;padding-top:0!important}
+.flx-page-head--slim .flx-pill{margin:0 0 .5rem!important;font-size:.75rem;padding:.2em .7em}
+.flx-page-head--slim h1{margin:0!important;font-size:clamp(1.5rem,2.6vw,2.25rem)!important;line-height:1.15;max-width:28ch}
+.flx-page-head--slim h1+p{margin:.4rem 0 0!important;font-size:.95rem!important;opacity:.92;max-width:80ch}
+@media (max-width:781px){
+.flx-page-head--slim{padding:1.1rem 1rem!important}
+.flx-page-head--overlap{padding-bottom:calc(1.1rem + 44px)!important}
+.flx-page-head--overlap+*{margin-block-start:-44px!important}
+.flx-page-head--slim h1{font-size:1.5rem!important}
+.flx-page-head--slim h1+p{display:none}
+}
 
 /* ==========================================================================
    v0.3: detay sayfaları, kenar çubuğu, yazı gezinmesi, arama modalı

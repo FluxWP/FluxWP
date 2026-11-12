@@ -1,0 +1,23 @@
+.flx-blocks-style-library__nav-section {
+	display: flex;
+	flex-direction: column;
+	gap: var(--fxb-sl-space-17);
+}
+
+.flx-blocks-style-library__nav-section-label {
+	// wp-admin sets h2 margin globally; zero it so the section's flex gap is the only spacing.
+	margin: 0;
+	padding-inline: var(--fxb-sl-space-15);
+	color: var(--fxb-sl-color-nav-section-title);
+	font-size: var(--fxb-sl-font-size-meta);
+	font-weight: var(--fxb-sl-font-weight-regular);
+	line-height: normal;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.flx-blocks-style-library__nav-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--fxb-sl-space-02);
+}

@@ -138,8 +138,9 @@ final class FLXB_WC_Certificates {
 			$nos       = array();
 			$codes     = array();
 			// 2.4.1: one certificate per name on whose behalf (Kader, Ferhat → two certificates).
-			foreach ( self::recipients( $line, $item, $billing, $total ) as $rc ) {
-				$cert = self::make_one( $order, $item, $line, $template, (int) $tpl_id, $rc['name'], $rc['count'], $phone, $email, $billing );
+			// 2.24.0: other people get their own certificate and their own WhatsApp / e-mail.
+			foreach ( self::recipients_with_contacts( $line, $item, $billing, $total, $phone, $email, $dphone, $demail ) as $rc ) {
+				$cert = self::make_one( $order, $item, $line, $template, (int) $tpl_id, $rc['name'], $rc['count'], $rc['phone'], $rc['email'], $billing );
 				if ( is_wp_error( $cert ) ) {
 					/* translators: %s: error */
 					$order->add_order_note( sprintf( __( 'The certificate could not be made: %s', 'flx-donate' ), $cert->get_error_message() ) );
@@ -148,7 +149,7 @@ final class FLXB_WC_Certificates {
 				$ids[]   = (int) $cert['id'];
 				$nos[]   = (string) $cert['number'];
 				$codes[] = (string) $cert['code'];
-				$sent    = $args['send'] ? self::send( $order, $cert, $line, $dphone, $demail ) : __( 'Not sent yet.', 'flx-donate' );
+				$sent    = $args['send'] ? self::send( $order, $cert, array_merge( $line, array( 'ben_phone' => $rc['phone'], 'ben_email' => $rc['email'] ) ), $dphone, $demail ) : __( 'Not sent yet.', 'flx-donate' );
 				/* translators: 1: certificate number, 2: name, 3: delivery summary */
 				$order->add_order_note( sprintf( __( 'Certificate made: %1$s (%2$s). %3$s', 'flx-donate' ), $cert['number'], $rc['name'], $sent ) );
 				$made[] = $cert;
@@ -222,6 +223,44 @@ final class FLXB_WC_Certificates {
 			}
 		}
 		return array_values( $out );
+	}
+
+	/**
+	 * 2.24.0: recipients() with the contacts each certificate goes to. Other people (line "people") get
+	 * one sapling each and their own WhatsApp / e-mail (empty = the donor's); the rest go on the first
+	 * certificate, to the line's contacts.
+	 *
+	 * @return array[] name, count, phone, email
+	 */
+	public static function recipients_with_contacts( array $line, $item, $billing, $total, $phone, $email, $dphone, $demail ) {
+		$people = ! empty( $line['for_other'] ) && ! empty( $line['people'] ) && is_array( $line['people'] ) ? array_slice( array_values( $line['people'] ), 0, max( 0, (int) $total - 1 ) ) : array();
+		if ( ! $people ) {
+			$out = array();
+			foreach ( self::recipients( $line, $item, $billing, $total ) as $rc ) {
+				$out[] = $rc + array( 'phone' => $phone, 'email' => $email );
+			}
+			return $out;
+		}
+		$main = trim( (string) ( $line['ben_name'] ?? '' ) );
+		$out  = array(
+			array(
+				'name'  => '' !== $main ? $main : $billing,
+				'count' => max( 1, (int) $total - count( $people ) ),
+				'phone' => $phone,
+				'email' => $email,
+			),
+		);
+		foreach ( $people as $p ) {
+			$ph    = (string) ( $p['phone'] ?? '' );
+			$em    = (string) ( $p['email'] ?? '' );
+			$out[] = array(
+				'name'  => (string) $p['name'],
+				'count' => 1,
+				'phone' => '' !== $ph ? $ph : ( '' === $em ? $dphone : '' ),
+				'email' => '' !== $em ? $em : ( '' === $ph ? $demail : '' ),
+			);
+		}
+		return $out;
 	}
 
 	/** Make one certificate. @return array|WP_Error */

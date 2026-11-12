@@ -1,0 +1,385 @@
+<?php
+/**
+ * Class to Build the Table of Contents Block.
+ *
+ * @package Flux Block Editor
+ */
+
+use FluxWP\Blocks\Site_Styles\Contracts\Supports_Site_Styles;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Class to Build the Table of Contents Block.
+ *
+ * @category class
+ */
+class Flx_Blocks_Tableofcontents_Block extends Flx_Blocks_Abstract_Block implements Supports_Site_Styles {
+
+	/**
+	 * Instance of this class
+	 *
+	 * @var null
+	 */
+	private static $instance = null;
+
+	/**
+	 * Block name within this namespace.
+	 *
+	 * @var string
+	 */
+	protected $block_name = 'tableofcontents';
+
+	/**
+	 * Block determines in scripts need to be loaded for block.
+	 *
+	 * @var string
+	 */
+	protected $has_script = true;
+
+	/**
+	 * Instance Control
+	 */
+	public static function get_instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	public function __construct() {
+		parent::__construct();
+
+		add_filter( 'rank_math/researches/toc_plugins', array( $this, 'toc_filter_rankmath' ) );
+	}
+
+	/**
+	 * Builds CSS for block.
+	 *
+	 * @param array $attributes the blocks attributes.
+	 * @param Flx_Blocks_CSS $css the css class for blocks.
+	 * @param string $unique_id the blocks attr ID.
+	 * @param string $unique_style_id the blocks alternate ID for queries.
+	 */
+	public function build_css( $attributes, $css, $unique_id, $unique_style_id ) {
+
+		$css->set_style_id( 'fxb-' . $this->block_name . $unique_style_id );
+		// Container.
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-wrap' );
+		$css->render_measure_output( $attributes, 'containerMargin', 'margin', array(
+			'tablet_key'  => 'containerTabletMargin',
+			'mobile_key'  => 'containerMobileMargin',
+			'unit_key' => 'containerMarginUnit',
+		) );
+		$css->render_measure_output(
+			$attributes,
+			'containerPadding',
+			'padding',
+			array(
+				'unit_key' => 'containerPaddingUnit',
+			)
+		);
+		if ( isset( $attributes['containerBackground'] ) && ! empty( $attributes['containerBackground'] ) ) {
+			$css->add_property( 'background-color', $css->render_color( $attributes['containerBackground'] ) );
+		}
+		if ( ! empty( $attributes['containerBorderColor'] ) || $css->is_number( $attributes['containerBorder'][0] ) || $css->is_number( $attributes['containerBorder'][1] ) || $css->is_number( $attributes['containerBorder'][2] ) || $css->is_number( $attributes['containerBorder'][3] ) ) {
+			if ( ! empty( $attributes['containerBorderColor'] ) ) {
+				$css->add_property( 'border-color', $css->render_color( $attributes['containerBorderColor'] ) );
+			}
+			$css->render_measure_output( $attributes, 'containerBorder', 'border-width' );
+		} else {
+			$css->render_border_styles( $attributes, 'borderStyle' );
+		}
+		$css->render_measure_output( $attributes, 'borderRadius', 'border-radius', array( 'unit_key' => 'borderRadiusUnit' ) );
+		if ( isset( $attributes['displayShadow'] ) && true == $attributes['displayShadow'] ) {
+			if ( isset( $attributes['shadow'] ) && is_array( $attributes['shadow'] ) && isset( $attributes['shadow'][0] ) && is_array( $attributes['shadow'][0] ) ) {
+				$css->add_property( 'box-shadow', $css->render_shadow( $attributes['shadow'][0] ) );
+			} else {
+				$css->add_property( 'box-shadow', 'rgba(0, 0, 0, 0.2) 0px 0px 14px 0px' );
+			}
+		}
+		if ( isset( $attributes['maxWidth'] ) && ! empty( $attributes['maxWidth'] ) ) {
+			$maxWidthType = ( isset( $attributes['maxWidthType'] ) ? $attributes['maxWidthType'] : 'px' );
+			$css->add_property( 'max-width', $css->render_number( $attributes['maxWidth'], $maxWidthType ) );
+		}
+		// Title.
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-contents-title-wrap' );
+		if ( isset( $attributes['titleAlign'] ) ) {
+			$css->add_property( 'text-align', $css->render_string( $attributes['titleAlign'] ) );
+		}
+		$css->render_measure_output(
+			$attributes,
+			'titlePadding',
+			'padding',
+			array(
+				'unit_key' => 'titlePaddingType',
+			)
+		);
+		// Border, check old first.
+		if ( ! empty( $attributes['titleBorderColor'] ) || $css->is_number( $attributes['titleBorder'][0] ) || $css->is_number( $attributes['titleBorder'][1] ) || $css->is_number( $attributes['titleBorder'][2] ) || $css->is_number( $attributes['titleBorder'][3] ) ) {
+			if ( ! empty( $attributes['titleBorderColor'] ) ) {
+				$css->add_property( 'border-color', $css->render_color( $attributes['titleBorderColor'] ) );
+			}
+			$css->render_measure_output( $attributes, 'titleBorder', 'border-width' );
+		} else {
+			$css->render_border_styles( $attributes, 'titleBorderStyle' );
+		}
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . '.fxb-collapsible-toc.fxb-toc-toggle-hidden .fxb-table-of-contents-title-wrap' );
+		if ( isset( $attributes['titleCollapseBorderColor'] ) && ! empty( $attributes['titleCollapseBorderColor'] ) ) {
+			$css->add_property( 'border-color', $css->render_color( $attributes['titleCollapseBorderColor'] ) );
+		}
+		if ( isset( $attributes['titleColor'] ) && ! empty( $attributes['titleColor'] ) ) {
+			$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-contents-title-wrap' );
+			$css->add_property( 'color', $css->render_color( $attributes['titleColor'] ) );
+		}
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-contents-title' );
+		if ( isset( $attributes['titleColor'] ) && ! empty( $attributes['titleColor'] ) ) {
+			$css->add_property( 'color', $css->render_color( $attributes['titleColor'] ) );
+		}
+		if ( ! empty( $attributes['titleSize'][0] ) ) {
+			$css->add_property( 'font-size', $css->get_font_size( $attributes['titleSize'][0], ( isset( $attributes['titleSizeType'] ) && ! empty( $attributes['titleSizeType'] ) ? $attributes['titleSizeType'] : 'px' ) ) );
+		}
+		if ( ! empty( $attributes['titleLineHeight'][0] ) ) {
+			$css->add_property( 'line-height', $attributes['titleLineHeight'][0] . ( isset( $attributes['titleLineType'] ) ? $attributes['titleLineType'] : 'px' ) );
+		}
+		if ( isset( $attributes['titleLetterSpacing'] ) ) {
+			$css->add_property( 'letter-spacing', $css->render_number( $attributes['titleLetterSpacing'], 'px' ) );
+		}
+		if ( isset( $attributes['titleTypography'] ) ) {
+			$google = isset( $attributes['titleGoogleFont'] ) && $attributes['titleGoogleFont'] ? true : false;
+			$google = $google && ( isset( $attributes['titleLoadGoogleFont'] ) && $attributes['titleLoadGoogleFont'] || ! isset( $attributes['titleLoadGoogleFont'] ) ) ? true : false;
+			$css->add_property( 'font-family', $css->render_font_family( $attributes['titleTypography'], $google, ( isset( $attributes['titleFontVariant'] ) ? $attributes['titleFontVariant'] : '' ), ( isset( $attributes['titleFontSubset'] ) ? $attributes['titleFontSubset'] : '' ) ) );
+		}
+		if ( isset( $attributes['titleFontWeight'] ) ) {
+			$css->add_property( 'font-weight', $css->render_string( $attributes['titleFontWeight'] ) );
+		}
+		if ( isset( $attributes['titleFontStyle'] ) ) {
+			$css->add_property( 'font-style', $css->render_string( $attributes['titleFontStyle'] ) );
+		}
+		if ( isset( $attributes['titleTextTransform'] ) ) {
+			$css->add_property( 'text-transform', $css->render_string( $attributes['titleTextTransform'] ) );
+		}
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-wrap .fxb-table-of-content-list' );
+		if ( isset( $attributes['contentColor'] ) && ! empty( $attributes['contentColor'] ) ) {
+			$css->add_property( 'color', $css->render_color( $attributes['contentColor'] ) );
+		}
+		if ( ! empty( $attributes['contentSize'][0] ) ) {
+			$css->add_property( 'font-size', $css->get_font_size( $attributes['contentSize'][0], ( isset( $attributes['contentSizeType'] ) && ! empty( $attributes['contentSizeType'] ) ? $attributes['contentSizeType'] : 'px' ) ) );
+		}
+		if ( ! empty( $attributes['contentLineHeight'][0] ) ) {
+			$css->add_property( 'line-height', $attributes['contentLineHeight'][0] . ( isset( $attributes['contentLineType'] ) ? $attributes['contentLineType'] : 'px' ) );
+		}
+		if ( isset( $attributes['contentLetterSpacing'] ) ) {
+			$css->add_property( 'letter-spacing', $css->render_number( $attributes['contentLetterSpacing'], 'px' ) );
+		}
+		if ( isset( $attributes['contentTypography'] ) ) {
+			$google = isset( $attributes['contentGoogleFont'] ) && $attributes['contentGoogleFont'] ? true : false;
+			$google = $google && ( isset( $attributes['contentLoadGoogleFont'] ) && $attributes['contentLoadGoogleFont'] || ! isset( $attributes['contentLoadGoogleFont'] ) ) ? true : false;
+			$css->add_property( 'font-family', $css->render_font_family( $attributes['contentTypography'], $google, ( isset( $attributes['contentFontVariant'] ) ? $attributes['contentFontVariant'] : '' ), ( isset( $attributes['contentFontSubset'] ) ? $attributes['contentFontSubset'] : '' ) ) );
+		}
+		if ( isset( $attributes['contentFontWeight'] ) ) {
+			$css->add_property( 'font-weight', $css->render_string( $attributes['contentFontWeight'] ) );
+		}
+		if ( isset( $attributes['contentFontStyle'] ) ) {
+			$css->add_property( 'font-style', $css->render_string( $attributes['contentFontStyle'] ) );
+		}
+		if ( isset( $attributes['contentTextTransform'] ) ) {
+			$css->add_property( 'text-transform', $css->render_string( $attributes['contentTextTransform'] ) );
+		}
+		$css->render_measure_output(
+			$attributes,
+			'contentMargin',
+			'margin',
+			array(
+				'unit_key' => 'contentMarginType',
+			)
+		);
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-wrap .fxb-table-of-content-list .fxb-table-of-contents__entry:hover' );
+		if ( isset( $attributes['contentHoverColor'] ) && ! empty( $attributes['contentHoverColor'] ) ) {
+			$css->add_property( 'color', $css->render_color( $attributes['contentHoverColor'] ) );
+		}
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-wrap .fxb-table-of-content-list .active > .fxb-table-of-contents__entry' );
+		if ( isset( $attributes['contentActiveColor'] ) && ! empty( $attributes['contentActiveColor'] ) ) {
+			$css->add_property( 'color', $css->render_color( $attributes['contentActiveColor'] ) );
+		}
+		if ( isset( $attributes['listGap'] ) && is_array( $attributes['listGap'] ) && isset( $attributes['listGap'][0] ) && ! empty( $attributes['listGap'][0] ) ) {
+			$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-list li' );
+			$css->add_property( 'margin-bottom', $css->render_string( $attributes['listGap'][0], 'px' ) );
+			$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-list li .fxb-table-of-contents-list-sub' );
+			$css->add_property( 'margin-top', $css->render_string( $attributes['listGap'][0], 'px' ) );
+		}
+		if ( isset( $attributes['containerBackground'] ) && ! empty( $attributes['containerBackground'] ) ) {
+			$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-toggle-icon-style-basiccircle .fxb-table-of-contents-icon-trigger:after, .fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-toggle-icon-style-basiccircle .fxb-table-of-contents-icon-trigger:before, .fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-toggle-icon-style-arrowcircle .fxb-table-of-contents-icon-trigger:after, .fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-toggle-icon-style-arrowcircle .fxb-table-of-contents-icon-trigger:before, .fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-toggle-icon-style-xclosecircle .fxb-table-of-contents-icon-trigger:after, .fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-toggle-icon-style-xclosecircle .fxb-table-of-contents-icon-trigger:before' );
+			$css->add_property( 'background-color', $css->render_color( $attributes['containerBackground'] ) );
+		}
+
+		/*
+		 * Tablet
+		 */
+		$css->set_media_state( 'tablet' );
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-contents-title' );
+		if ( ! empty( $attributes['titleSize'][1] ) ) {
+			$css->add_property( 'font-size', $css->get_font_size( $attributes['titleSize'][1], ( isset( $attributes['titleSizeType'] ) && ! empty( $attributes['titleSizeType'] ) ? $attributes['titleSizeType'] : 'px' ) ) );
+		}
+		if ( ! empty( $attributes['titleLineHeight'][1] ) ) {
+			$css->add_property( 'line-height', $attributes['titleLineHeight'][1] . ( isset( $attributes['titleLineType'] ) ? $attributes['titleLineType'] : 'px' ) );
+		}
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-wrap .fxb-table-of-content-list' );
+		if ( ! empty( $attributes['contentSize'][1] ) ) {
+			$css->add_property( 'font-size', $css->get_font_size( $attributes['contentSize'][1], ( isset( $attributes['contentSizeType'] ) && ! empty( $attributes['contentSizeType'] ) ? $attributes['contentSizeType'] : 'px' ) ) );
+		}
+		if ( ! empty( $attributes['contentLineHeight'][1] ) ) {
+			$css->add_property( 'line-height', $attributes['contentLineHeight'][1] . ( isset( $attributes['contentLineType'] ) ? $attributes['contentLineType'] : 'px' ) );
+		}
+		if ( ! empty( $attributes['listGap'][1] ) ) {
+			$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-list li' );
+			$css->add_property( 'margin-bottom', $css->render_string( $attributes['listGap'][1], 'px' ) );
+			$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-list li .fxb-table-of-contents-list-sub' );
+			$css->add_property( 'margin-top', $css->render_string( $attributes['listGap'][1], 'px' ) );
+		}
+		$css->set_media_state( 'desktop' );
+
+		/*
+		 * Mobile
+		 */
+		$css->set_media_state( 'mobile' );
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ':not(.this-class-is-for-specificity):not(.class-is-for-specificity)' );
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-contents-title' );
+		if ( ! empty( $attributes['titleSize'][2] ) ) {
+			$css->add_property( 'font-size', $css->get_font_size( $attributes['titleSize'][2], ( isset( $attributes['titleSizeType'] ) && ! empty( $attributes['titleSizeType'] ) ? $attributes['titleSizeType'] : 'px' ) ) );
+		}
+		if ( isset( $attributes['titleLineHeight'] ) && is_array( $attributes['titleLineHeight'] ) && isset( $attributes['titleLineHeight'][2] ) && ! empty( $attributes['titleLineHeight'][2] ) ) {
+			$css->add_property( 'line-height', $attributes['titleLineHeight'][2] . ( isset( $attributes['titleLineType'] ) ? $attributes['titleLineType'] : 'px' ) );
+		}
+		$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-wrap .fxb-table-of-content-list' );
+		if ( ! empty( $attributes['contentSize'][2] ) ) {
+			$css->add_property( 'font-size', $css->get_font_size( $attributes['contentSize'][2], ( isset( $attributes['contentSizeType'] ) && ! empty( $attributes['contentSizeType'] ) ? $attributes['contentSizeType'] : 'px' ) ) );
+		}
+		if ( isset( $attributes['contentLineHeight'] ) && is_array( $attributes['contentLineHeight'] ) && isset( $attributes['contentLineHeight'][2] ) && ! empty( $attributes['contentLineHeight'][2] ) ) {
+			$css->add_property( 'line-height', $attributes['contentLineHeight'][2] . ( isset( $attributes['contentLineType'] ) ? $attributes['contentLineType'] : 'px' ) );
+		}
+		if ( isset( $attributes['listGap'] ) && is_array( $attributes['listGap'] ) && isset( $attributes['listGap'][2] ) && ! empty( $attributes['listGap'][2] ) ) {
+			$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-list li' );
+			$css->add_property( 'margin-bottom', $css->render_string( $attributes['listGap'][2], 'px' ) );
+			$css->set_selector( '.fxb-table-of-content-nav.fxb-table-of-content-id' . $unique_id . ' .fxb-table-of-content-list li .fxb-table-of-contents-list-sub' );
+			$css->add_property( 'margin-top', $css->render_string( $attributes['listGap'][2], 'px' ) );
+		}
+		$css->set_media_state( 'desktop' );
+
+		return $css->css_output();
+	}
+	/**
+	 * Return dynamically generated HTML for block
+	 *
+	 * @param $attributes
+	 * @param $unique_id
+	 * @param $content
+	 * @param WP_Block $block_instance The instance of the WP_Block class that represents the block being rendered.
+	 *
+	 * @return mixed
+	 */
+	public function build_html( $attributes, $unique_id, $content, $block_instance ) {
+		if ( is_feed() ) {
+			return;
+		}
+		if ( isset( $attributes['enableScrollSpy'] ) && $attributes['enableScrollSpy'] ) {
+			wp_register_script( 'flx-blocks-gumshoe', FLXBK_URL . 'includes/assets/js/gumshoe.min.js', array(), FLXBK_VERSION, true );
+		}
+
+		$toc = new Flx_Blocks_Table_Of_Contents();
+
+		return $toc->render_table_of_content( $attributes, $content );
+	}
+
+	/**
+	 * Registers scripts and styles.
+	 */
+	public function register_scripts() {
+		parent::register_scripts();
+		// If in the backend, bail out.
+		if ( is_admin() ) {
+			return;
+		}
+		if ( apply_filters( 'flxbk_check_if_rest', false ) && flxbk_is_rest() ) {
+			return;
+		}
+
+		wp_register_script( 'flx-blocks-' . $this->block_name, FLXBK_URL . 'includes/assets/js/fxb-table-of-contents.min.js', array(), FLXBK_VERSION, true );
+	}
+
+	/**
+	 * Filter to add plugins to the TOC list.
+	 *
+	 * @param array $toc_plugins TOC plugins.
+	 */
+	public function toc_filter_rankmath( $toc_plugins ) {
+		$toc_plugins['flx-blocks/flx-blocks.php'] = 'Flux Block Editor';
+
+		return $toc_plugins;
+	}
+
+	/**
+	 * The editor paints the title and the list inline, and the list's columns, style and
+	 * link style are classes the render builds from the attributes, so every style value
+	 * goes through the overlay. What the block does with the headings (which to list, the
+	 * title text and toggle, scrolling, searching) stays per table.
+	 *
+	 */
+	public function site_styles_overlay_attributes(): array {
+		return array_merge(
+			[ 'columns', 'listStyle', 'linkStyle', 'listGap', 'displayShadow', 'shadow', 'maxWidth', 'maxWidthType' ],
+			[ 'containerBackground', 'containerPadding', 'tabletContainerPadding', 'mobileContainerPadding', 'containerPaddingUnit' ],
+			[ 'containerMargin', 'containerTabletMargin', 'containerMobileMargin', 'containerMarginUnit' ],
+			[ 'borderStyle', 'tabletBorderStyle', 'mobileBorderStyle', 'borderRadius', 'tabletBorderRadius', 'mobileBorderRadius', 'borderRadiusUnit' ],
+			[ 'titleAlign', 'titleColor', 'titleSize', 'titleSizeType', 'titleLineHeight', 'titleLineType', 'titleLetterSpacing', 'titleTextTransform' ],
+			[ 'titleTypography', 'titleGoogleFont', 'titleLoadGoogleFont', 'titleFontSubset', 'titleFontVariant', 'titleFontWeight', 'titleFontStyle' ],
+			[ 'titlePadding', 'tabletTitlePadding', 'mobileTitlePadding', 'titlePaddingType', 'titleBorderStyle', 'tabletTitleBorderStyle', 'mobileTitleBorderStyle' ],
+			[ 'contentHoverColor', 'contentSize', 'contentSizeType', 'contentLineHeight', 'contentLineType', 'contentLetterSpacing', 'contentTextTransform' ],
+			[ 'contentTypography', 'contentGoogleFont', 'contentLoadGoogleFont', 'contentFontSubset', 'contentFontVariant', 'contentFontWeight', 'contentFontStyle' ],
+			[ 'contentMargin', 'tabletContentMargin', 'mobileContentMargin', 'contentMarginType' ]
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 *
+	 */
+	public function site_styles_attributes_map(): array {
+		return [ 'contentColor' => 'color.text' ];
+	}
+
+	/**
+	 * The text color is the list's, which is what the block's own content color paints.
+	 *
+	 * @inheritDoc
+	 *
+	 */
+	public function site_styles_supports(): array {
+		return [
+			'color' => [
+				'text'                            => true,
+				'background'                      => false,
+				'gradients'                       => false,
+				'__experimentalSkipSerialization' => true,
+			],
+		];
+	}
+
+	/**
+	 * The list, which the editor and the front end both render inside the block's wrapper. Only
+	 * the color goes there, so the block's other core styles, such as Additional CSS, keep the wrapper.
+	 *
+	 * @inheritDoc
+	 *
+	 */
+	public function site_styles_selectors(): array {
+		return [ 'color' => '.wp-block-flx-tableofcontents .fxb-table-of-content-list' ];
+	}
+
+}
+
+Flx_Blocks_Tableofcontents_Block::get_instance();

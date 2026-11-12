@@ -1,0 +1,30 @@
+.flxbk-background-size-control .flxbk-controls-content .flxbk-radio-container-control {
+    width: 100%;
+}
+.flxbk-small-radio-container {
+	max-width: 40px;
+}
+.flxbk-background-size-control {
+	.flxbk-radio-container-control .components-button.radio-custom.only-icon svg {
+		width: 20px;
+		margin: 0;
+	}
+	.flxbk-radio-control-label {
+		display: block;
+		margin-bottom: 6px;
+	}
+	.flxbk-controls-content {
+		gap: 12px;
+		align-items: end;
+		.components-unit-control-wrapper {
+			flex-grow: 1;
+			margin: 0;
+			.components-input-control__label {
+				font-size: 11px;
+				font-weight: 500;
+				text-transform: uppercase;
+				margin: 0 0 3px;
+			}
+		}
+	}
+}

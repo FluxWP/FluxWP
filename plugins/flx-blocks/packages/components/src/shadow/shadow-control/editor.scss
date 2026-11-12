@@ -1,0 +1,38 @@
+.fxt-box-shadow-label .components-base-control.components-toggle-control, .fxt-box-shadow-label .components-toggle-control .components-base-control__field {
+    margin-bottom: 0 !important;
+}
+.fxt-box-shadow-label h2.fxt-beside-color-label {
+    flex-grow: 1;
+    margin: 12px 0;
+	font-weight: 400;
+}
+.fxt-box-shadow-label {
+    display: flex;
+    align-items: center;
+}
+.fxt-inner-sub-section-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+.fxt-inner-sub-section {
+    border: 1px solid var(--fxb-border-color, #859CB6 );
+    border-top: 0;
+    padding: 25px 10px 10px 10px;
+    margin-bottom: 15px;
+    margin-top: -12px;
+}
+.fxt-box-shadow-subset {
+    padding: 0 2px;
+    text-align: center;
+}
+.fxt-box-shadow-subset .fxt-box-shadow-title {
+    font-size:12px;
+}
+
+.fxt-box-shadow-subset .fxt-advanced-color-settings-container {
+    flex-direction: column-reverse;
+}
+.fxt-box-shadow-subset input.components-text-control__input {
+    padding: 0 1px;
+	border: 1px solid var(--fxb-border-color, #859CB6 );
+}

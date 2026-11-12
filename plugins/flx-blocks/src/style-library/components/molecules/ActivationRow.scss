@@ -1,0 +1,29 @@
+@use '../../styles/mixins' as *;
+
+.flx-blocks-style-library__activation-row {
+	@include flex-column(var(--fxb-sl-space-05));
+
+	align-items: flex-start;
+	padding: var(--fxb-sl-space-15) 0;
+	border-top: var(--fxb-sl-border-width-input) solid var(--fxb-sl-color-border);
+	border-bottom: var(--fxb-sl-border-width-input) solid var(--fxb-sl-color-border);
+}
+
+.flx-blocks-style-library__activation-row-status {
+	margin: 0;
+	color: var(--fxb-sl-color-text-primary);
+	font-size: var(--fxb-sl-font-size-m);
+	font-weight: var(--fxb-sl-font-weight-medium);
+	line-height: var(--fxb-sl-line-height-s);
+}
+
+.flx-blocks-style-library__activation-row-hint {
+	margin: 0;
+	color: var(--fxb-sl-color-text-muted);
+	font-size: var(--fxb-sl-font-size-s);
+	line-height: var(--fxb-sl-line-height-s);
+}
+
+.flx-blocks-style-library__activation-row-action {
+	margin-top: var(--fxb-sl-space-10);
+}

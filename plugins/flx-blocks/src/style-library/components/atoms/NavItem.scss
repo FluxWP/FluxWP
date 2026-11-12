@@ -1,0 +1,41 @@
+.flx-blocks-style-library__nav-item-button {
+	display: flex;
+	align-items: center;
+	gap: var(--fxb-sl-space-12);
+	width: 100%;
+	padding: var(--fxb-sl-space-10) var(--fxb-sl-space-15);
+	border: 0;
+	border-radius: var(--fxb-sl-radius-s);
+	background: transparent;
+	color: var(--fxb-sl-color-nav-tab-text);
+	font-size: var(--fxb-sl-font-size-nav-tab);
+	font-weight: var(--fxb-sl-font-weight-regular);
+	line-height: var(--fxb-sl-line-height-nav-tab);
+	text-align: left;
+	cursor: pointer;
+
+	&:hover {
+		background-color: var(--fxb-sl-color-menu-item-bg-hover);
+	}
+
+	// Declared after :hover so a selected tab that is also hovered keeps its fill and weight — both selectors
+	// share the same specificity, so source order decides the winner.
+	&--active,
+	&--active:hover {
+		background-color: var(--fxb-sl-color-menu-item-bg-selected);
+		font-weight: var(--fxb-sl-font-weight-medium);
+	}
+}
+
+.flx-blocks-style-library__nav-item-icon {
+	flex: 0 0 auto;
+	width: var(--fxb-sl-size-nav-item-icon);
+	height: var(--fxb-sl-size-nav-item-icon);
+}
+
+.flx-blocks-style-library__nav-item-count {
+	margin-left: auto;
+	color: var(--fxb-sl-color-nav-tab-count);
+	font-size: var(--fxb-sl-font-size-nav-tab-count);
+	font-weight: var(--fxb-sl-font-weight-regular);
+}

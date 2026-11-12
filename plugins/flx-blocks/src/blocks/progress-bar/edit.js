@@ -1,0 +1,1329 @@
+/**
+ * BLOCK: Flux Progress Bar
+ */
+
+/**
+ * Import Css
+ */
+import './editor.scss';
+
+import {
+	TypographyControls,
+	PopColorControl,
+	WebfontLoader,
+	ResponsiveRangeControls,
+	ResponsiveMeasureRangeControl,
+	ResponsiveAlignControls,
+	InspectorControlTabs,
+	FlxbkPanelBody,
+	FlxbkRadioButtons,
+	FlxbkImageControl,
+	FlxbkBlockDefaults,
+} from '@flx-blocks/components';
+
+import {
+	FlxbkColorOutput,
+	getPreviewSize,
+	getSpacingOptionOutput,
+	getFontSizeOptionOutput,
+	uniqueIdHelper,
+} from '@flx-blocks/helpers';
+
+import { lineBar, circleBar, semiCircleBar, lineMask } from '@flx-blocks/icons';
+
+/**
+ * Internal block libraries
+ */
+import { __ } from '@wordpress/i18n';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { useState, useEffect, useRef, Fragment } from '@wordpress/element';
+import { map, range } from 'lodash';
+import {
+	RichText,
+	InspectorControls,
+	BlockControls,
+	useBlockProps,
+	BlockAlignmentControl,
+} from '@wordpress/block-editor';
+
+import {
+	PanelBody,
+	SelectControl,
+	ButtonGroup,
+	Button,
+	ToggleControl,
+	RangeControl,
+	TextControl,
+} from '@wordpress/components';
+import { Circle, SemiCircle, Line } from 'progressbar.js';
+/**
+ * Internal dependencies
+ */
+import classnames from 'classnames';
+import { useIsSiteStylesPanel } from '../../site-styles/use-is-site-styles-panel';
+import { getSupportedBlock } from '../../site-styles/supported-blocks';
+
+export function Edit(props) {
+	const { attributes, setAttributes, isSelected, clientId } = props;
+
+	const {
+		uniqueID,
+		align,
+		labelPadding,
+		tabletLabelPadding,
+		mobileLabelPadding,
+		labelPaddingType,
+		margin,
+		tabletMargin,
+		mobileMargin,
+		marginType,
+		barBackground,
+		barBackgroundOpacity,
+		progressColor,
+		progressOpacity,
+		barType,
+		containerMaxWidth,
+		tabletContainerMaxWidth,
+		mobileContainerMaxWidth,
+		containerMaxWidthUnits,
+		displayLabel,
+		labelFont,
+		label,
+		labelPosition,
+		numberFont,
+		progressAmount,
+		progressMax,
+		displayPercent,
+		numberSuffix,
+		numberPrefix,
+		numberIsRelative,
+		duration,
+		progressWidth,
+		progressWidthTablet,
+		progressWidthMobile,
+		progressBorderRadius,
+		easing,
+		labelLayout,
+		hAlign,
+		thAlign,
+		mhAlign,
+		delayUntilInView,
+		decimal,
+		maskIterations,
+		maskSvg,
+		maskUrl,
+		ariaLabel,
+		showMaxProgressOnPageLoad,
+	} = attributes;
+
+	const { previewDevice } = useSelect(
+		(select) => {
+			return {
+				previewDevice: select('flxblocks/data').getPreviewDeviceType(),
+			};
+		},
+		[clientId]
+	);
+
+	uniqueIdHelper(props);
+	const isSiteStylesPanel = useIsSiteStylesPanel();
+	// The bar's own document: the editor canvas, or the Flux panel's preview.
+	const barRef = useRef(null);
+
+	const saveLabelFont = (value) => {
+		setAttributes({
+			labelFont: JSON.parse(JSON.stringify({ ...labelFont, ...value })),
+		});
+	};
+	const saveNumberFont = (value) => {
+		setAttributes({
+			numberFont: JSON.parse(JSON.stringify({ ...numberFont, ...value })),
+		});
+	};
+
+	const [activeTab, setActiveTab] = useState('general');
+	const [rerender, setRerender] = useState(0);
+
+	const previewMarginTop = getPreviewSize(
+		previewDevice,
+		undefined !== margin ? margin[0] : '',
+		undefined !== tabletMargin ? tabletMargin[0] : '',
+		undefined !== mobileMargin ? mobileMargin[0] : ''
+	);
+	const previewMarginRight = getPreviewSize(
+		previewDevice,
+		undefined !== margin ? margin[1] : '',
+		undefined !== tabletMargin ? tabletMargin[1] : '',
+		undefined !== mobileMargin ? mobileMargin[1] : ''
+	);
+	const previewMarginBottom = getPreviewSize(
+		previewDevice,
+		undefined !== margin ? margin[2] : '',
+		undefined !== tabletMargin ? tabletMargin[2] : '',
+		undefined !== mobileMargin ? mobileMargin[2] : ''
+	);
+	const previewMarginLeft = getPreviewSize(
+		previewDevice,
+		undefined !== margin ? margin[3] : '',
+		undefined !== tabletMargin ? tabletMargin[3] : '',
+		undefined !== mobileMargin ? mobileMargin[3] : ''
+	);
+
+	const previewLabelPaddingTop = getPreviewSize(
+		previewDevice,
+		undefined !== labelPadding ? labelPadding[0] : '',
+		undefined !== tabletLabelPadding ? tabletLabelPadding[0] : '',
+		undefined !== mobileLabelPadding ? mobileLabelPadding[0] : ''
+	);
+	const previewLabelPaddingRight = getPreviewSize(
+		previewDevice,
+		undefined !== labelPadding ? labelPadding[1] : '',
+		undefined !== tabletLabelPadding ? tabletLabelPadding[1] : '',
+		undefined !== mobileLabelPadding ? mobileLabelPadding[1] : ''
+	);
+	const previewLabelPaddingBottom = getPreviewSize(
+		previewDevice,
+		undefined !== labelPadding ? labelPadding[2] : '',
+		undefined !== tabletLabelPadding ? tabletLabelPadding[2] : '',
+		undefined !== mobileLabelPadding ? mobileLabelPadding[2] : ''
+	);
+	const previewLabelPaddingLeft = getPreviewSize(
+		previewDevice,
+		undefined !== labelPadding ? labelPadding[3] : '',
+		undefined !== tabletLabelPadding ? tabletLabelPadding[3] : '',
+		undefined !== mobileLabelPadding ? mobileLabelPadding[3] : ''
+	);
+
+	const previewProgressWidth = getPreviewSize(
+		previewDevice,
+		undefined !== progressWidth ? progressWidth : '',
+		undefined !== progressWidthTablet ? progressWidthTablet : '',
+		undefined !== progressWidthMobile ? progressWidthMobile : ''
+	);
+	const previewProgressBorderRadius = getPreviewSize(
+		previewDevice,
+		undefined !== progressBorderRadius[0] ? progressBorderRadius[0] : '',
+		undefined !== progressBorderRadius[1] ? progressBorderRadius[1] : '',
+		undefined !== progressBorderRadius[2] ? progressBorderRadius[2] : ''
+	);
+
+	const previewContainerMaxWidth = getPreviewSize(
+		previewDevice,
+		undefined !== containerMaxWidth ? containerMaxWidth : '',
+		undefined !== tabletContainerMaxWidth ? tabletContainerMaxWidth : '',
+		undefined !== mobileContainerMaxWidth ? mobileContainerMaxWidth : ''
+	);
+	const tempLabelFont = JSON.parse(JSON.stringify(labelFont));
+	const tempNumberFont = JSON.parse(JSON.stringify(numberFont));
+	const previewLabelFont = getPreviewSize(
+		previewDevice,
+		undefined !== tempLabelFont.size && undefined !== tempLabelFont.size[0] && '' !== tempLabelFont.size[0]
+			? tempLabelFont.size[0]
+			: '',
+		undefined !== tempLabelFont.size && undefined !== tempLabelFont.size[1] && '' !== tempLabelFont.size[1]
+			? tempLabelFont.size[1]
+			: '',
+		undefined !== tempLabelFont.size && undefined !== tempLabelFont.size[2] && '' !== tempLabelFont.size[2]
+			? tempLabelFont.size[2]
+			: ''
+	);
+	const previewLabelLineHeight = getPreviewSize(
+		previewDevice,
+		undefined !== tempLabelFont.lineHeight &&
+			undefined !== tempLabelFont.lineHeight[0] &&
+			'' !== tempLabelFont.lineHeight[0]
+			? tempLabelFont.lineHeight[0]
+			: '',
+		undefined !== tempLabelFont.lineHeight &&
+			undefined !== tempLabelFont.lineHeight[1] &&
+			'' !== tempLabelFont.lineHeight[1]
+			? tempLabelFont.lineHeight[1]
+			: '',
+		undefined !== tempLabelFont.lineHeight &&
+			undefined !== tempLabelFont.lineHeight[2] &&
+			'' !== tempLabelFont.lineHeight[2]
+			? tempLabelFont.lineHeight[2]
+			: ''
+	);
+	const previewLabelSpacing = getPreviewSize(
+		previewDevice,
+		undefined !== tempLabelFont?.letterSpacing?.[0] && '' !== tempLabelFont.letterSpacing[0]
+			? tempLabelFont.letterSpacing[0]
+			: '',
+		undefined !== tempLabelFont?.letterSpacing?.[1] && '' !== tempLabelFont.letterSpacing[1]
+			? tempLabelFont.letterSpacing[1]
+			: '',
+		undefined !== tempLabelFont?.letterSpacing?.[2] && '' !== tempLabelFont.letterSpacing[2]
+			? tempLabelFont.letterSpacing[2]
+			: ''
+	);
+	const previewNumberFont = getPreviewSize(
+		previewDevice,
+		undefined !== tempNumberFont.size && undefined !== tempNumberFont.size[0] && '' !== tempNumberFont.size[0]
+			? tempNumberFont.size[0]
+			: '',
+		undefined !== tempNumberFont.size && undefined !== tempNumberFont.size[1] && '' !== tempNumberFont.size[1]
+			? tempNumberFont.size[1]
+			: '',
+		undefined !== tempNumberFont.size && undefined !== tempNumberFont.size[2] && '' !== tempNumberFont.size[2]
+			? tempNumberFont.size[2]
+			: ''
+	);
+	const previewNumberLineHeight = getPreviewSize(
+		previewDevice,
+		undefined !== tempNumberFont?.lineHeight?.[0] && '' !== tempNumberFont.lineHeight[0]
+			? tempNumberFont.lineHeight[0]
+			: '',
+		undefined !== tempNumberFont?.lineHeight?.[1] && '' !== tempNumberFont.lineHeight[1]
+			? tempNumberFont.lineHeight[1]
+			: '',
+		undefined !== tempNumberFont?.lineHeight?.[2] && '' !== tempNumberFont.lineHeight[2]
+			? tempNumberFont.lineHeight[2]
+			: ''
+	);
+	const previewNumberSpacing = getPreviewSize(
+		previewDevice,
+		undefined !== tempNumberFont?.letterSpacing?.[0] && '' !== tempNumberFont.letterSpacing[0]
+			? tempNumberFont.letterSpacing[0]
+			: '',
+		undefined !== tempNumberFont?.letterSpacing?.[1] && '' !== tempNumberFont.letterSpacing[1]
+			? tempNumberFont.letterSpacing[1]
+			: '',
+		undefined !== tempNumberFont?.letterSpacing?.[2] && '' !== tempNumberFont.letterSpacing[2]
+			? tempNumberFont.letterSpacing[2]
+			: ''
+	);
+	const previewAlign = getPreviewSize(
+		previewDevice,
+		undefined !== hAlign ? hAlign : '',
+		undefined !== thAlign ? thAlign : '',
+		undefined !== mhAlign ? mhAlign : ''
+	);
+	const containerClasses = classnames({
+		'fxb-progress-bar-container': true,
+		[`fxb-progress-bar-container${uniqueID}`]: true,
+		[`fxb-progress-bar-type-${barType}`]: true,
+		[`fxb-progress-bar-align${undefined !== align ? align : ''}`]: true,
+	});
+
+	const blockProps = useBlockProps({
+		className: containerClasses,
+	});
+
+	const layoutPresetOptions = [
+		{ key: 'line', name: __('Line', 'flx-blocks'), icon: lineBar },
+		{ key: 'circle', name: __('Circle', 'flx-blocks'), icon: circleBar },
+		{ key: 'line-mask', name: __('Masked Line', 'flx-blocks'), icon: lineMask },
+		{ key: 'semicircle', name: __('Semicircle', 'flx-blocks'), icon: semiCircleBar },
+	];
+	const labelFontConfigObj = {
+		google: {
+			families: [labelFont.family + (labelFont.variant ? ':' + labelFont.variant : '')],
+		},
+	};
+	const labelFontConfig = labelFont.google ? labelFontConfigObj : '';
+	const numberFontConfigObj = {
+		google: {
+			families: [numberFont.family + (numberFont.variant ? ':' + numberFont.variant : '')],
+		},
+	};
+	const numberFontConfig = numberFont.google ? numberFontConfigObj : '';
+
+	const progressLabelStyles = {
+		fontWeight: labelFont?.weight ? labelFont.weight : undefined,
+		fontStyle: labelFont?.style ? labelFont.style : undefined,
+		color: labelFont?.color ? FlxbkColorOutput(labelFont.color) : undefined,
+		fontSize: previewLabelFont ? getFontSizeOptionOutput(previewLabelFont, labelFont.sizeType) : undefined,
+		lineHeight: previewLabelLineHeight ? previewLabelLineHeight + labelFont.lineType : undefined,
+		letterSpacing: previewLabelSpacing
+			? previewLabelSpacing + (labelFont.spacingType ? labelFont.spacingType : 'px')
+			: undefined,
+		textTransform: labelFont.textTransform ? labelFont.textTransform : undefined,
+		fontFamily: labelFont.family ? labelFont.family : undefined,
+	};
+	const progressPercentStyles = {
+		fontWeight: tempNumberFont?.weight ? tempNumberFont.weight : progressLabelStyles.fontWeight,
+		fontStyle: tempNumberFont?.style ? tempNumberFont.style : progressLabelStyles.fontStyle,
+		color: tempNumberFont?.color ? FlxbkColorOutput(tempNumberFont.color) : progressLabelStyles.color,
+		fontSize: previewNumberFont
+			? getFontSizeOptionOutput(previewNumberFont, tempNumberFont.sizeType)
+			: progressLabelStyles.fontSize,
+		lineHeight: previewNumberLineHeight
+			? previewNumberLineHeight + tempNumberFont.lineType
+			: progressLabelStyles.lineHeight,
+		letterSpacing: previewNumberSpacing
+			? previewNumberSpacing + (tempNumberFont.spacingType ? tempNumberFont.spacingType : 'px')
+			: progressLabelStyles.letterSpacing,
+		textTransform: tempNumberFont?.textTransform ? tempNumberFont.textTransform : progressLabelStyles.textTransform,
+		fontFamily: tempNumberFont?.family ? tempNumberFont.family : progressLabelStyles.fontFamily,
+	};
+
+	const progressAttributes = {
+		color: progressColor ? FlxbkColorOutput(progressColor, progressOpacity) : 'var(--global-palette1, #2B6CB0)',
+		strokeWidth: previewProgressWidth,
+		duration: duration === 0 ? 1 : duration * 1000,
+		easing,
+		trailWidth: previewProgressWidth,
+		trailColor: barBackground
+			? FlxbkColorOutput(barBackground, barBackgroundOpacity)
+			: 'var(--global-palette7, #EDF2F7)',
+		svgStyle: {
+			borderRadius: barType === 'line' ? previewProgressBorderRadius + 'px' : '',
+		},
+		step(state, bar) {
+			const selector = barRef.current ? barRef.current.ownerDocument : document;
+
+			const elementAbove = selector.getElementById('current-progress-above' + uniqueID);
+			const elementInside = selector.getElementById('current-progress-inside' + uniqueID);
+			const elementBelow = selector.getElementById('current-progress-below' + uniqueID);
+			let value;
+			if (numberIsRelative) {
+				value = bar.value() * 100;
+			} else {
+				value = bar.value() * progressMax;
+			}
+			if (decimal === 'one') {
+				value = Math.round(value * 10) / 10;
+				value = value.toFixed(1);
+			} else if (decimal === 'two') {
+				value = Math.round(value * 100) / 100;
+				value = value.toFixed(2);
+			} else {
+				value = Math.round(value);
+			}
+
+			if (elementAbove && labelPosition === 'above' && displayPercent) {
+				elementAbove.innerHTML = numberPrefix + value + numberSuffix;
+			} else if (elementAbove) {
+				elementAbove.innerHTML = '';
+			}
+
+			if (elementInside && labelPosition === 'inside' && displayPercent) {
+				elementInside.innerHTML = numberPrefix + value + numberSuffix;
+			} else if (elementInside) {
+				elementInside.innerHTML = '';
+			}
+
+			if (elementBelow && labelPosition === 'below' && displayPercent) {
+				elementBelow.innerHTML = numberPrefix + value + numberSuffix;
+			} else if (elementBelow) {
+				elementBelow.innerHTML = '';
+			}
+		},
+	};
+
+	let progressItem = null;
+
+	useEffect(() => {
+		const containerDiv = barRef.current;
+		if (containerDiv === null) {
+			return;
+		}
+		if (barType === 'line' || barType === 'line-mask') {
+			progressItem = new Line(containerDiv, progressAttributes);
+		} else if (barType === 'circle') {
+			progressItem = new Circle(containerDiv, progressAttributes);
+		} else if (barType === 'semicircle') {
+			progressItem = new SemiCircle(containerDiv, progressAttributes);
+		}
+
+		if (progressItem) {
+			const progressReal = progressAmount <= progressMax ? progressAmount : progressMax;
+			progressItem.animate(progressReal / progressMax);
+		}
+
+		return function cleanup() {
+			if (progressItem) {
+				progressItem.destroy();
+			}
+		};
+	}, [
+		progressAmount,
+		progressMax,
+		progressColor,
+		progressOpacity,
+		progressBorderRadius,
+		duration,
+		easing,
+		barBackground,
+		barBackgroundOpacity,
+		barType,
+		progressWidth,
+		progressWidthTablet,
+		progressWidthMobile,
+		labelPosition,
+		numberIsRelative,
+		rerender,
+		labelLayout,
+		decimal,
+		uniqueID,
+		displayPercent,
+		numberPrefix,
+		numberSuffix,
+	]);
+
+	const RenderLabel = (currentPosition) => {
+		const wrapperLayoutStyles = {
+			paddingTop:
+				'' !== previewLabelPaddingTop
+					? getSpacingOptionOutput(previewLabelPaddingTop, labelPaddingType)
+					: undefined,
+			paddingRight:
+				'' !== previewLabelPaddingRight
+					? getSpacingOptionOutput(previewLabelPaddingRight, labelPaddingType)
+					: undefined,
+			paddingBottom:
+				'' !== previewLabelPaddingBottom
+					? getSpacingOptionOutput(previewLabelPaddingBottom, labelPaddingType)
+					: undefined,
+			paddingLeft:
+				'' !== previewLabelPaddingLeft
+					? getSpacingOptionOutput(previewLabelPaddingLeft, labelPaddingType)
+					: undefined,
+		};
+
+		if (previewAlign === 'space-between') {
+			wrapperLayoutStyles.justifyContent = 'space-between';
+		} else if (previewAlign === 'center') {
+			wrapperLayoutStyles.justifyContent = 'center';
+			wrapperLayoutStyles.textAlign = 'center';
+		} else if (previewAlign === 'left') {
+			wrapperLayoutStyles.textAlign = 'left';
+			wrapperLayoutStyles.justifyContent = 'flex-start';
+		} else if (previewAlign === 'right') {
+			wrapperLayoutStyles.textAlign = 'right';
+			wrapperLayoutStyles.justifyContent = 'flex-end';
+		}
+
+		if (labelLayout === 'lt' || labelLayout === 'lb') {
+			wrapperLayoutStyles.flexDirection = 'column';
+		}
+
+		if (labelPosition === 'inside' && previewAlign === 'center') {
+			wrapperLayoutStyles.transform = 'translateX(-50%) translateY(-50%)';
+			wrapperLayoutStyles.left = '50%';
+		}
+
+		if (barType === 'line' && labelPosition === 'inside' && previewAlign === 'right') {
+			wrapperLayoutStyles.width = '100%';
+		}
+
+		if (
+			(barType === 'line' || barType === 'line-mask') &&
+			labelPosition === 'inside' &&
+			previewAlign === 'space-between'
+		) {
+			wrapperLayoutStyles.width = '100%';
+		}
+
+		return (
+			<div
+				className={'fxb-progress-label-wrap ' + (currentPosition === 'inside' ? 'fxt-progress-label-inside' : '')}
+				style={wrapperLayoutStyles}
+			>
+				{displayPercent && (labelLayout === 'lb' || labelLayout === 'pl') && (
+					<span id={'current-progress-' + currentPosition + uniqueID} style={progressPercentStyles}></span>
+				)}
+
+				{displayLabel && (
+					<RichText
+						tagName={'span'}
+						value={label}
+						onChange={(value) => {
+							setAttributes({ label: value });
+						}}
+						placeholder={__('Progress', 'flx-blocks')}
+						style={progressLabelStyles}
+						className={'fxt-progress-label'}
+					/>
+				)}
+				{displayPercent && (labelLayout === 'lt' || labelLayout === 'lp') && (
+					<span id={'current-progress-' + currentPosition + uniqueID} style={progressPercentStyles}></span>
+				)}
+			</div>
+		);
+	};
+
+	let maskStyles = '';
+	const iterations = maskIterations ?? 5;
+	const mask = maskSvg ?? 'star';
+	const maskBaseUrl = flxbk_params.svgMaskPath;
+	let maskUrlToUse = maskBaseUrl + mask + '.svg';
+
+	if ('custom' === maskSvg) {
+		if (maskUrl) {
+			maskUrlToUse = maskUrl;
+		} else {
+			maskUrlToUse = maskBaseUrl + 'star.svg';
+		}
+	}
+
+	const maskImageString = ('url(' + maskUrlToUse + '),').repeat(iterations).replace(/(^,)|(,$)/g, '');
+	const maskRepeatString = 'no-repeat,'.repeat(iterations).replace(/(^,)|(,$)/g, '');
+	const maskPositionArray = iterations > 1 ? range(0, 100.1, 100 / (iterations - 1)) : [0];
+	const maskPositionString = (maskPositionArray.join('%,') + '%').replace(/(^,)|(,$)/g, '');
+	const maskAspectRatioString = iterations + '/1';
+	const maskHeight = progressWidth ? progressWidth * 11.5 : 80;
+	const maskHeightTablet = progressWidthTablet ? progressWidthTablet * 11.5 : 0;
+	const maskHeightMobile = progressWidthMobile ? progressWidthMobile * 11.5 : 0;
+	const maskHeightString = maskHeight ? maskHeight + 'px' : '80px';
+	const maskHeightStringTablet = maskHeightTablet ? maskHeightTablet + 'px' : '';
+	const maskHeightStringMobile = maskHeightMobile ? maskHeightMobile + 'px' : '';
+	const maskWidth = maskHeight * iterations;
+	const maskWidthTablet = maskHeightTablet ? maskHeightTablet * iterations : 0;
+	const maskWidthMobile = maskHeightMobile ? maskHeightMobile * iterations : 0;
+	const maskWidthString = maskWidth + 'px';
+	const maskWidthStringTablet = maskWidthTablet ? maskWidthTablet + 'px' : '';
+	const maskWidthStringMobile = maskWidthMobile ? maskWidthMobile + 'px' : '';
+	const previewMaskWidthString = getPreviewSize(
+		previewDevice,
+		maskWidthString,
+		maskWidthStringTablet,
+		maskWidthStringMobile
+	);
+	const previewMaskHeightString = getPreviewSize(
+		previewDevice,
+		maskHeightString,
+		maskHeightStringTablet,
+		maskHeightStringMobile
+	);
+
+	if ('line-mask' == barType) {
+		maskStyles = `
+				#fxb-progress-bar${uniqueID} {
+					-webkit-mask-image: ${maskImageString};
+					mask-image: ${maskImageString};
+
+					-webkit-mask-size: contain;
+					mask-size: contain;
+
+					-webkit-mask-repeat: ${maskRepeatString};
+					mask-repeat: ${maskRepeatString};
+
+					-webkit-mask-position: ${maskPositionString};
+					mask-position: ${maskPositionString};
+
+					aspect-ratio: ${maskAspectRatioString};
+
+					height: ${previewMaskHeightString};
+					width: ${previewMaskWidthString};
+					max-width: 100%;
+				}
+				`;
+	}
+
+	return (
+		<div
+			{...blockProps}
+			style={{
+				position: 'relative',
+				marginTop: '' !== previewMarginTop ? getSpacingOptionOutput(previewMarginTop, marginType) : undefined,
+				marginRight:
+					'' !== previewMarginRight ? getSpacingOptionOutput(previewMarginRight, marginType) : undefined,
+				marginBottom:
+					'' !== previewMarginBottom ? getSpacingOptionOutput(previewMarginBottom, marginType) : undefined,
+				marginLeft:
+					'' !== previewMarginLeft ? getSpacingOptionOutput(previewMarginLeft, marginType) : undefined,
+				width: previewContainerMaxWidth ? previewContainerMaxWidth + containerMaxWidthUnits : 'none',
+			}}
+		>
+			<BlockControls group="block">
+				<BlockAlignmentControl value={align} onChange={(value) => setAttributes({ align: value })} />
+			</BlockControls>
+			<InspectorControls>
+				<InspectorControlTabs panelName={'progress-bar'} setActiveTab={setActiveTab} activeTab={activeTab} />
+
+				{activeTab === 'general' && (
+					<>
+						{!isSiteStylesPanel && (
+							<PanelBody>
+								<ButtonGroup
+									className="fxt-style-btn-group"
+									aria-label={__('Progress Bar Layout', 'flx-blocks')}
+								>
+									{map(layoutPresetOptions, ({ name, key, icon }) => (
+										<Button
+											key={key}
+											className="fxt-style-btn"
+											isSmall
+											label={name}
+											aria-pressed={false}
+											onClick={() => {
+												const attributeUpdates = { barType: key };
+												// Update defaults if switching back from line mask
+												if (barType === 'line-mask' && key !== 'line-mask') {
+													if (5 === progressMax && 4 === progressAmount) {
+														attributeUpdates.progressMax = 100;
+														attributeUpdates.progressAmount = 90;
+														if ('' === numberSuffix) {
+															attributeUpdates.numberSuffix = '%';
+														}
+													}
+													attributeUpdates.decimal = 'none';
+													attributeUpdates.displayPercent = true;
+												}
+												if (key !== 'line' && labelPosition === 'inside') {
+													attributeUpdates.hAlign = 'center';
+													attributeUpdates.thAlign = '';
+													attributeUpdates.mhAlign = '';
+												}
+												// Update from default if they choose the line mask option
+												if (key === 'line-mask') {
+													if (100 == progressMax && 90 == progressAmount) {
+														attributeUpdates.progressMax = 5;
+														attributeUpdates.progressAmount = 4;
+														if ('' !== numberSuffix) {
+															attributeUpdates.numberSuffix = '';
+														}
+													}
+													if (labelPosition === 'inside') {
+														attributeUpdates.labelPosition = 'bottom';
+													}
+													if ('' == label) {
+														attributeUpdates.displayLabel = false;
+													}
+													attributeUpdates.decimal = 'one';
+													attributeUpdates.displayPercent = false;
+												}
+												setAttributes(attributeUpdates);
+											}}
+											style={{
+												border: barType === key ? '2px solid #2B6CB0' : '0',
+												//marginRight: '4px',
+												//width      : '75px',
+											}}
+										>
+											{icon}
+										</Button>
+									))}
+								</ButtonGroup>
+							</PanelBody>
+						)}
+
+						{/* These are the wordpress and Flux components mostly that are imported at the top */}
+						<FlxbkPanelBody>
+							{barType == 'line-mask' && !isSiteStylesPanel && (
+								<>
+									<SelectControl
+										label={__('Mask Shape', 'flx-blocks')}
+										options={[
+											{
+												label: __('Star', 'flx-blocks'),
+												value: 'star',
+											},
+											{
+												label: __('Heart', 'flx-blocks'),
+												value: 'heart',
+											},
+											{
+												label: __('Smile', 'flx-blocks'),
+												value: 'smile-beam',
+											},
+											{
+												label: __('Thumbs Up', 'flx-blocks'),
+												value: 'thumbs-up',
+											},
+											{
+												label: __('Thumbs Down', 'flx-blocks'),
+												value: 'thumbs-down',
+											},
+											{
+												label: __('Mug', 'flx-blocks'),
+												value: 'mug-hot',
+											},
+											{
+												label: __('Circle', 'flx-blocks'),
+												value: 'circle',
+											},
+											{
+												label: __('Diamond', 'flx-blocks'),
+												value: 'diamond',
+											},
+											{
+												label: __('Rounded', 'flx-blocks'),
+												value: 'rounded',
+											},
+											{
+												label: __('Cat', 'flx-blocks'),
+												value: 'cat',
+											},
+											{
+												label: __('Dog', 'flx-blocks'),
+												value: 'dog',
+											},
+											{
+												label: __('Custom', 'flx-blocks'),
+												value: 'custom',
+											},
+										]}
+										value={maskSvg}
+										onChange={(value) => setAttributes({ maskSvg: value })}
+									/>
+									{maskSvg === 'custom' && (
+										<div class="components-base-control">
+											<FlxbkImageControl
+												label={__('Custom Mask Image', 'flx-blocks')}
+												hasImage={maskUrl ? true : false}
+												imageURL={maskUrl ? maskUrl : ''}
+												imageID={''}
+												onRemoveImage={() => {
+													setAttributes({
+														maskUrl: undefined,
+													});
+												}}
+												onSaveImage={(image) => {
+													setAttributes({
+														maskUrl: image.url,
+													});
+												}}
+												disableMediaButtons={maskUrl ? true : false}
+											/>
+											Square images that are black on a transparent background work best for this
+											mask.
+										</div>
+									)}
+									<RangeControl
+										label={__('Mask Iterations', 'flx-blocks')}
+										value={maskIterations}
+										onChange={(value) => setAttributes({ maskIterations: value })}
+										min={1}
+										max={100}
+									/>
+								</>
+							)}
+							<ResponsiveRangeControls
+								label={__('Progress Thickness', 'flx-blocks')}
+								value={progressWidth}
+								tabletValue={progressWidthTablet}
+								mobileValue={progressWidthMobile}
+								onChange={(value) => {
+									setAttributes({ progressWidth: value });
+								}}
+								onChangeTablet={(value) => {
+									setAttributes({ progressWidthTablet: value });
+								}}
+								onChangeMobile={(value) => {
+									setAttributes({ progressWidthMobile: value });
+								}}
+								allowEmpty={false}
+								min={0.25}
+								max={50}
+								step={0.25}
+							/>
+							{'line' === barType && (
+								<ResponsiveRangeControls
+									label={__('Border Radius', 'flx-blocks')}
+									value={progressBorderRadius[0]}
+									tabletValue={progressBorderRadius[1]}
+									mobileValue={progressBorderRadius[2]}
+									onChange={(value) =>
+										setAttributes({
+											progressBorderRadius: [
+												value,
+												progressBorderRadius && progressBorderRadius[1]
+													? progressBorderRadius[1]
+													: '',
+												progressBorderRadius && progressBorderRadius[2]
+													? progressBorderRadius[2]
+													: '',
+											],
+										})
+									}
+									onChangeTablet={(value) =>
+										setAttributes({
+											progressBorderRadius: [
+												progressBorderRadius && progressBorderRadius[0]
+													? progressBorderRadius[0]
+													: '',
+												value,
+												progressBorderRadius && progressBorderRadius[2]
+													? progressBorderRadius[2]
+													: '',
+											],
+										})
+									}
+									onChangeMobile={(value) =>
+										setAttributes({
+											progressBorderRadius: [
+												progressBorderRadius && progressBorderRadius[0]
+													? progressBorderRadius[0]
+													: '',
+												progressBorderRadius && progressBorderRadius[1]
+													? progressBorderRadius[1]
+													: '',
+												value,
+											],
+										})
+									}
+									allowEmpty={true}
+									min={0}
+									max={50}
+									step={1}
+									unit={'px'}
+								/>
+							)}
+							{!isSiteStylesPanel && (
+								<>
+									<FlxbkRadioButtons
+										label={__('Number Format', 'flx-blocks')}
+										value={decimal}
+										className={'fxb-letter-case'}
+										options={[
+											{
+												value: 'none',
+												label: __('1', 'flx-blocks'),
+												tooltip: __('Whole Number', 'flx-blocks'),
+											},
+											{
+												value: 'one',
+												label: __('0.1', 'flx-blocks'),
+												tooltip: __('One Decimal Space', 'flx-blocks'),
+											},
+											{
+												value: 'two',
+												label: __('0.01', 'flx-blocks'),
+												tooltip: __('Two Decimal Spaces', 'flx-blocks'),
+											},
+										]}
+										allowClear={false}
+										onChange={(value) => setAttributes({ decimal: value })}
+									/>
+									<RangeControl
+										label={__('Progress', 'flx-blocks')}
+										value={progressAmount}
+										onChange={(value) => setAttributes({ progressAmount: value })}
+										min={0}
+										max={progressMax}
+										step={decimal === 'two' ? 0.01 : decimal === 'one' ? 0.1 : 1}
+									/>
+									<RangeControl
+										label={__('Max Progress', 'flx-blocks')}
+										value={progressMax}
+										onChange={(value) => {
+											setAttributes({ progressMax: value });
+										}}
+										min={1}
+										max={1000}
+										step={decimal === 'two' ? 0.01 : decimal === 'one' ? 0.1 : 1}
+									/>
+									<TextControl
+										label={__('Aria Label', 'flx-blocks')}
+										value={ariaLabel}
+										onChange={(value) => setAttributes({ ariaLabel: value })}
+										help={__(
+											'Describe the purpose of this progress bar for screen readers, leave blank if label describes and the bar is purely decorative.',
+											'flx-blocks'
+										)}
+										className={'fxb-textbox-style'}
+									/>
+								</>
+							)}
+						</FlxbkPanelBody>
+
+						{!isSiteStylesPanel && (
+							<>
+								<FlxbkPanelBody
+									title={__('Number Settings', 'flx-blocks')}
+									initialOpen={true}
+									panelName={'fxb-progress-number-settings'}
+								>
+									<ToggleControl
+										label={__('Show Number', 'flx-blocks')}
+										checked={displayPercent}
+										onChange={(value) => setAttributes({ displayPercent: value })}
+									/>
+
+									{displayPercent && (
+										<>
+											<TextControl
+												label={__('Number Prefix', 'flx-blocks')}
+												value={numberPrefix}
+												onChange={(value) => setAttributes({ numberPrefix: value })}
+												onBlur={() => {
+													setRerender(Math.random());
+												}}
+											/>
+											<TextControl
+												label={__('Number Suffix', 'flx-blocks')}
+												value={numberSuffix}
+												onChange={(value) => setAttributes({ numberSuffix: value })}
+												onBlur={() => {
+													setRerender(Math.random());
+												}}
+											/>
+											{progressMax !== 100 && (
+												<ToggleControl
+													label={__('Percentage relative to 100%', 'flx-blocks')}
+													checked={numberIsRelative}
+													onChange={(value) => setAttributes({ numberIsRelative: value })}
+												/>
+											)}
+										</>
+									)}
+								</FlxbkPanelBody>
+
+								<FlxbkPanelBody
+									title={__('Animation', 'flx-blocks')}
+									initialOpen={false}
+									panelName={'fxb-progress-bar-timing'}
+								>
+									<RangeControl
+										label={__('Duration', 'flx-blocks')}
+										value={duration}
+										onChange={(value) => setAttributes({ duration: value })}
+										min={0}
+										max={25}
+										step={0.1}
+									/>
+
+									<ToggleControl
+										label={__('Wait until visible to animate', 'flx-blocks')}
+										help={__(
+											'The animation wont start until the progress bar is visible in the viewport. This does not apply in the editor',
+											'flx-blocks'
+										)}
+										checked={delayUntilInView}
+										onChange={(value) => setAttributes({ delayUntilInView: value })}
+									/>
+
+									<SelectControl
+										label={__('Type', 'flx-blocks')}
+										options={[
+											{ value: 'linear', label: __('Linear', 'flx-blocks') },
+											{ value: 'easeIn', label: __('Ease In', 'flx-blocks') },
+											{ value: 'easeOut', label: __('Ease Out', 'flx-blocks') },
+											{ value: 'easeInOut', label: __('Ease In Out', 'flx-blocks') },
+										]}
+										value={easing}
+										onChange={(value) => setAttributes({ easing: value })}
+									/>
+								</FlxbkPanelBody>
+							</>
+						)}
+					</>
+				)}
+
+				{activeTab === 'style' && (
+					<Fragment>
+						<FlxbkPanelBody>
+							{!isSiteStylesPanel && (
+								<FlxbkRadioButtons
+									label={__('Text Position', 'flx-blocks')}
+									value={labelPosition}
+									options={[
+										{ value: 'above', label: __('Above', 'flx-blocks') },
+										{
+											value: 'inside',
+											label: __('Inside', 'flx-blocks'),
+											isDisabled: barType === 'line-mask',
+										},
+										{ value: 'below', label: __('Below', 'flx-blocks') },
+									]}
+									className={'fxb-letter-case'}
+									allowClear={false}
+									onChange={(value) => setAttributes({ labelPosition: value })}
+								/>
+							)}
+
+							{/* {labelPosition !== 'inside' || barType === 'line' ? ( <ResponsiveAlignControls
+								label={__( 'Text Alignment', 'flx-blocks' )}
+								value={( hAlign ? hAlign : '' )}
+								mobileValue={( mhAlign ? mhAlign : '' )}
+								tabletValue={( thAlign ? thAlign : '' )}
+								onChange={( nextAlign ) => setAttributes( { hAlign: ( nextAlign ? nextAlign : 'space-between' ) } )}
+								onChangeTablet={( nextAlign ) => setAttributes( { thAlign: ( nextAlign ? nextAlign : '' ) } )}
+								onChangeMobile={( nextAlign ) => setAttributes( { mhAlign: ( nextAlign ? nextAlign : '' ) } )}
+								type={'justify'}
+							/> ) : null} */}
+							{!((barType === 'circle' || barType === 'semicircle') && labelPosition === 'inside') && (
+								<ResponsiveAlignControls
+									label={__('Text Alignment', 'flx-blocks')}
+									value={hAlign ? hAlign : ''}
+									mobileValue={mhAlign ? mhAlign : ''}
+									tabletValue={thAlign ? thAlign : ''}
+									onChange={(nextAlign) =>
+										setAttributes({ hAlign: nextAlign ? nextAlign : 'space-between' })
+									}
+									onChangeTablet={(nextAlign) =>
+										setAttributes({ thAlign: nextAlign ? nextAlign : '' })
+									}
+									onChangeMobile={(nextAlign) =>
+										setAttributes({ mhAlign: nextAlign ? nextAlign : '' })
+									}
+									type={'justify'}
+								/>
+							)}
+
+							{displayLabel && displayPercent && !isSiteStylesPanel ? (
+								<SelectControl
+									label={__('Text Layout', 'flx-blocks')}
+									options={[
+										{ value: 'lp', label: __('Label then %', 'flx-blocks') },
+										{ value: 'pl', label: __('% then Label', 'flx-blocks') },
+										{ value: 'lt', label: __('Label above %', 'flx-blocks') },
+										{ value: 'lb', label: __('Label below %', 'flx-blocks') },
+									]}
+									value={labelLayout}
+									onChange={(value) => setAttributes({ labelLayout: value })}
+								/>
+							) : null}
+
+							{!isSiteStylesPanel && (
+								<>
+									<ToggleControl
+										label={__('Show Label', 'flx-blocks')}
+										checked={displayLabel}
+										onChange={(value) => setAttributes({ displayLabel: value })}
+									/>
+
+									<ToggleControl
+										label={__('Show Number', 'flx-blocks')}
+										checked={displayPercent}
+										onChange={(value) => setAttributes({ displayPercent: value })}
+									/>
+								</>
+							)}
+						</FlxbkPanelBody>
+
+						<FlxbkPanelBody
+							title={__('Progress Color', 'flx-blocks')}
+							initialOpen={false}
+							panelName={'fxb-progress-color'}
+						>
+							<PopColorControl
+								label={__('Progress Background', 'flx-blocks')}
+								colorValue={barBackground}
+								opacityValue={barBackgroundOpacity}
+								onColorChange={(value) => setAttributes({ barBackground: value })}
+								onOpacityChange={(value) => setAttributes({ barBackgroundOpacity: value })}
+							/>
+							<PopColorControl
+								label={__('Progress Color', 'flx-blocks')}
+								colorValue={progressColor}
+								opacityValue={progressOpacity}
+								onColorChange={(value) => setAttributes({ progressColor: value })}
+								onOpacityChange={(value) => setAttributes({ progressOpacity: value })}
+							/>
+						</FlxbkPanelBody>
+						{displayPercent || displayLabel ? (
+							<FlxbkPanelBody
+								title={__('Text Styling', 'flx-blocks')}
+								initialOpen={false}
+								panelName={'fxb-progress-text-styling'}
+							>
+								<PopColorControl
+									label={__('Color Settings', 'flx-blocks')}
+									value={labelFont.color ? labelFont.color : ''}
+									default={''}
+									onChange={(value) => saveLabelFont({ color: value })}
+								/>
+								<TypographyControls
+									fontGroup={'body'}
+									fontSize={labelFont.size}
+									onFontSize={(value) => saveLabelFont({ size: value })}
+									fontSizeType={labelFont.sizeType}
+									onFontSizeType={(value) => saveLabelFont({ sizeType: value })}
+									lineHeight={labelFont.lineHeight}
+									onLineHeight={(value) => saveLabelFont({ lineHeight: value })}
+									lineHeightType={labelFont.lineType}
+									onLineHeightType={(value) => saveLabelFont({ lineType: value })}
+									reLetterSpacing={labelFont.letterSpacing}
+									onLetterSpacing={(value) => saveLabelFont({ letterSpacing: value })}
+									textTransform={labelFont.textTransform}
+									onTextTransform={(value) => saveLabelFont({ textTransform: value })}
+									fontFamily={labelFont.family}
+									onFontFamily={(value) => saveLabelFont({ family: value })}
+									onFontChange={(select) => {
+										saveLabelFont({
+											family: select.value,
+											google: select.google,
+										});
+									}}
+									onFontArrayChange={(values) => saveLabelFont(values)}
+									googleFont={labelFont.google}
+									onGoogleFont={(value) => saveLabelFont({ google: value })}
+									loadGoogleFont={labelFont.loadGoogle}
+									onLoadGoogleFont={(value) => saveLabelFont({ loadGoogle: value })}
+									fontVariant={labelFont.variant}
+									onFontVariant={(value) => saveLabelFont({ variant: value })}
+									fontWeight={labelFont.weight}
+									onFontWeight={(value) => saveLabelFont({ weight: value })}
+									fontStyle={labelFont.style}
+									onFontStyle={(value) => saveLabelFont({ style: value })}
+									fontSubset={labelFont.subset}
+									onFontSubset={(value) => saveLabelFont({ subset: value })}
+									// padding={labelFont.padding}
+									// onPadding={( value ) => saveLabelFont( { padding: value } )}
+									// margin={labelFont.margin}
+									// onMargin={( value ) => saveLabelFont( { margin: value } )}
+								/>
+							</FlxbkPanelBody>
+						) : null}
+
+						{displayPercent && (
+							<FlxbkPanelBody
+								title={__('Number Styling', 'flx-blocks')}
+								initialOpen={false}
+								panelName={'fxb-progress-number-styling'}
+							>
+								<PopColorControl
+									label={__('Color Settings', 'flx-blocks')}
+									value={numberFont.color ? numberFont.color : ''}
+									default={''}
+									onChange={(value) => saveNumberFont({ color: value })}
+								/>
+								<TypographyControls
+									fontGroup={'body'}
+									fontSize={numberFont.size}
+									onFontSize={(value) => saveNumberFont({ size: value })}
+									fontSizeType={numberFont.sizeType}
+									onFontSizeType={(value) => saveNumberFont({ sizeType: value })}
+									lineHeight={numberFont.lineHeight}
+									onLineHeight={(value) => saveNumberFont({ lineHeight: value })}
+									lineHeightType={numberFont.lineType}
+									onLineHeightType={(value) => saveNumberFont({ lineType: value })}
+									reLetterSpacing={numberFont.letterSpacing}
+									onLetterSpacing={(value) => saveNumberFont({ letterSpacing: value })}
+									textTransform={numberFont.textTransform}
+									onTextTransform={(value) => saveNumberFont({ textTransform: value })}
+									fontFamily={numberFont.family}
+									onFontFamily={(value) => saveNumberFont({ family: value })}
+									onFontChange={(select) => {
+										saveNumberFont({
+											family: select.value,
+											google: select.google,
+										});
+									}}
+									onFontArrayChange={(values) => saveNumberFont(values)}
+									googleFont={numberFont.google}
+									onGoogleFont={(value) => saveNumberFont({ google: value })}
+									loadGoogleFont={numberFont.loadGoogle}
+									onLoadGoogleFont={(value) => saveNumberFont({ loadGoogle: value })}
+									fontVariant={numberFont.variant}
+									onFontVariant={(value) => saveNumberFont({ variant: value })}
+									fontWeight={numberFont.weight}
+									onFontWeight={(value) => saveNumberFont({ weight: value })}
+									fontStyle={numberFont.style}
+									onFontStyle={(value) => saveNumberFont({ style: value })}
+									fontSubset={numberFont.subset}
+									onFontSubset={(value) => saveNumberFont({ subset: value })}
+									// padding={numberFont.padding}
+									// onPadding={( value ) => saveNumberFont( { padding: value } )}
+									// margin={numberFont.margin}
+									// onMargin={( value ) => saveNumberFont( { margin: value } )}
+								/>
+							</FlxbkPanelBody>
+						)}
+						{(displayPercent || displayLabel) && (
+							<FlxbkPanelBody
+								title={__('Text and Number Padding', 'flx-blocks')}
+								initialOpen={false}
+								panelName={'fxb-progress-text-padding'}
+							>
+								<ResponsiveMeasureRangeControl
+									label={__('Padding', 'flx-blocks')}
+									value={labelPadding}
+									tabletValue={tabletLabelPadding}
+									mobileValue={mobileLabelPadding}
+									onChange={(value) => {
+										setAttributes({ labelPadding: value });
+									}}
+									onChangeTablet={(value) => setAttributes({ tabletLabelPadding: value })}
+									onChangeMobile={(value) => setAttributes({ mobileLabelPadding: value })}
+									min={labelPaddingType === 'em' || labelPaddingType === 'rem' ? -12 : -999}
+									max={labelPaddingType === 'em' || labelPaddingType === 'rem' ? 24 : 999}
+									step={labelPaddingType === 'em' || labelPaddingType === 'rem' ? 0.1 : 1}
+									unit={labelPaddingType}
+									units={['px', 'em', 'rem', '%', 'vh']}
+									onUnit={(value) => setAttributes({ labelPaddingType: value })}
+									// onMouseOver={ labelPaddingMouseOver.onMouseOver }
+									// onMouseOut={ labelPaddingMouseOver.onMouseOut }
+								/>
+							</FlxbkPanelBody>
+						)}
+					</Fragment>
+				)}
+
+				{activeTab === 'advanced' && (
+					<>
+						<FlxbkPanelBody>
+							<ResponsiveMeasureRangeControl
+								label={__('Margin', 'flx-blocks')}
+								value={margin}
+								tabletValue={tabletMargin}
+								mobileValue={mobileMargin}
+								onChange={(value) => {
+									setAttributes({ margin: value });
+								}}
+								onChangeTablet={(value) => setAttributes({ tabletMargin: value })}
+								onChangeMobile={(value) => setAttributes({ mobileMargin: value })}
+								min={marginType === 'em' || marginType === 'rem' ? -12 : -999}
+								max={marginType === 'em' || marginType === 'rem' ? 24 : 999}
+								step={marginType === 'em' || marginType === 'rem' ? 0.1 : 1}
+								unit={marginType}
+								units={['px', 'em', 'rem', '%', 'vh']}
+								onUnit={(value) => setAttributes({ marginType: value })}
+								// onMouseOver={ marginMouseOver.onMouseOver }
+								// onMouseOut={ marginMouseOver.onMouseOut }
+								allowAuto={true}
+							/>
+							<ResponsiveRangeControls
+								label={__('Max Width', 'flx-blocks')}
+								value={containerMaxWidth}
+								onChange={(value) => setAttributes({ containerMaxWidth: value })}
+								tabletValue={tabletContainerMaxWidth ? tabletContainerMaxWidth : ''}
+								onChangeTablet={(value) => setAttributes({ tabletContainerMaxWidth: value })}
+								mobileValue={mobileContainerMaxWidth ? mobileContainerMaxWidth : ''}
+								onChangeMobile={(value) => setAttributes({ mobileContainerMaxWidth: value })}
+								min={0}
+								max={containerMaxWidthUnits === 'px' ? 3000 : 100}
+								step={1}
+								unit={containerMaxWidthUnits}
+								onUnit={(value) => setAttributes({ containerMaxWidthUnits: value })}
+								reset={() =>
+									setAttributes({
+										containerMaxWidth: 0,
+										tabletContainerMaxWidth: '',
+										mobileContainerMaxWidth: '',
+									})
+								}
+								units={['px', 'vh', '%']}
+							/>
+						</FlxbkPanelBody>
+						{displayPercent && !isSiteStylesPanel && (
+							<FlxbkPanelBody initialOpen={true} panelName={'fxb-progress-preload-settings'}>
+								<ToggleControl
+									label={__('Show max progress on page load', 'flx-blocks')}
+									help={__(
+										'The max progress value will be shown prior to the progress bar javascript executing or if javascript is disabled.',
+										'flx-blocks'
+									)}
+									checked={showMaxProgressOnPageLoad}
+									onChange={(value) => setAttributes({ showMaxProgressOnPageLoad: value })}
+								/>
+							</FlxbkPanelBody>
+						)}
+						{/* Progress Bar has no Block Defaults; in FSE mode this points to its site styles. */}
+						{getSupportedBlock('flx/progress-bar') && !isSiteStylesPanel && (
+							<FlxbkBlockDefaults blockSlug={'flx/progress-bar'} />
+						)}
+					</>
+				)}
+			</InspectorControls>
+			<style>{maskStyles}</style>
+			<div>
+				{'above' === labelPosition && (displayLabel || displayPercent) && RenderLabel('above')}
+
+				<div id={'fxb-progress-bar' + uniqueID} class="fxb-progress-bar" ref={barRef}></div>
+				{'inside' === labelPosition && (displayLabel || displayPercent) && RenderLabel('inside')}
+				{'below' === labelPosition && (displayLabel || displayPercent) && RenderLabel('below')}
+			</div>
+
+			{labelFont.google && <WebfontLoader config={labelFontConfig}></WebfontLoader>}
+
+			{displayPercent && numberFont.google && <WebfontLoader config={numberFontConfig}></WebfontLoader>}
+		</div>
+	);
+}
+
+export default Edit;

@@ -1,0 +1,33 @@
+@use '../../styles/mixins' as *;
+
+.flx-blocks-style-library__empty-state {
+	@include flex-column(var(--fxb-sl-space-10));
+
+	align-items: center;
+	padding: var(--fxb-sl-space-60) var(--fxb-sl-space-40);
+	text-align: center;
+}
+
+.flx-blocks-style-library__empty-state-icon {
+	display: flex;
+	color: var(--fxb-sl-color-text-muted);
+}
+
+.flx-blocks-style-library__empty-state-title {
+	margin: 0;
+	color: var(--fxb-sl-color-text-primary);
+	font-size: var(--fxb-sl-font-size-body);
+	font-weight: var(--fxb-sl-font-weight-medium);
+	line-height: var(--fxb-sl-line-height-ratio-snug);
+}
+
+.flx-blocks-style-library__empty-state-description {
+	@include body-text;
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.flx-blocks-style-library__empty-state-action {
+	margin-top: var(--fxb-sl-space-10);
+}

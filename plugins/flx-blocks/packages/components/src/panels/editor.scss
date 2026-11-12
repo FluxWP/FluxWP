@@ -1,0 +1,31 @@
+// Colors
+.flxbk-color-group .components-base-control.flxbk-pop-color-control {
+    margin-bottom:0;
+    border:1px solid var(--fxb-border-color, #859CB6 );
+    border-bottom:0;
+    padding:4px 8px;
+}
+.flxbk-color-group .components-base-control.flxbk-pop-color-control:last-child {
+    border-bottom:1px solid var(--fxb-border-color, #859CB6 );
+}
+.flxbk-color-group .flxbk-pop-color-control .flxbk-pop-color-icon-indicate .flxbk-pop-color-indicate {
+    width: 24px;
+    height: 24px;
+}
+.flxbk-color-group .flxbk-pop-color-control .flxbk-pop-color-clear span.dashicon {
+    width: 14px;
+    font-size: 14px;
+    height: 14px;
+}
+.flxbk-color-group .flxbk-pop-color-control .color-indicator-icon .dashicons-admin-site {
+    left: 4px;
+    top: 4px;
+}
+.components-base-control.flxbk-two-column-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+.components-base-control.flxbk-two-column-group  > .components-base-control {
+    margin-bottom:0
+}

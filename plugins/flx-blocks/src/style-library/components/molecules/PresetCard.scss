@@ -1,0 +1,113 @@
+.flx-blocks-style-library__preset-card {
+	--fxb-sl-preset-card-inset-block: var(--fxb-sl-space-15);
+	--fxb-sl-preset-card-inset-inline: var(--fxb-sl-space-20);
+	--fxb-sl-preset-card-border: #e2e8f0;
+	--fxb-sl-preset-card-radius: 0.165rem;
+
+	position: relative;
+	list-style: none;
+	border: 1px solid var(--fxb-sl-preset-card-border);
+	border-radius: var(--fxb-sl-preset-card-radius);
+	background: transparent;
+
+	&--selected {
+		border-color: var(--fxb-sl-color-theme);
+		background: var(--fxb-sl-color-theme-tint-4);
+	}
+
+	&:hover {
+		border-color: var(--fxb-sl-color-theme);
+	}
+
+	&.flx-blocks-style-library__preset-card--placeholder {
+		border: var(--fxb-sl-border-width-input) dashed var(--fxb-sl-color-control-border);
+		background: var(--fxb-sl-color-gray-100);
+
+		> * {
+			visibility: hidden;
+		}
+	}
+}
+
+[aria-busy='true'] .flx-blocks-style-library__preset-card:hover {
+	border-color: var(--fxb-sl-preset-card-border);
+}
+
+.flx-blocks-style-library__preset-card-main {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: var(--fxb-sl-space-20);
+	width: 100%;
+	padding: var(--fxb-sl-preset-card-inset-block) var(--fxb-sl-preset-card-inset-inline);
+	border: 0;
+	background: transparent;
+	text-align: left;
+	cursor: pointer;
+}
+
+.flx-blocks-style-library__preset-card-title {
+	padding-inline-end: 4rem;
+	overflow-wrap: anywhere;
+	color: var(--fxb-sl-color-text-primary);
+	font-size: var(--fxb-sl-font-size-s);
+	font-weight: var(--fxb-sl-font-weight-regular);
+	letter-spacing: -0.01em;
+	line-height: 1.65;
+}
+
+.flx-blocks-style-library__preset-card-preview {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	width: 100%;
+	height: 7.5rem;
+	background: var(--fxb-sl-color-gray-100);
+}
+
+.flx-blocks-style-library__preset-card-title.flx-blocks-style-library__skeleton {
+	width: 40%;
+	padding-inline-end: 0;
+}
+
+.flx-blocks-style-library__preset-card-badge {
+	position: absolute;
+	top: var(--fxb-sl-preset-card-inset-block);
+	right: var(--fxb-sl-preset-card-inset-inline);
+	padding: var(--fxb-sl-space-05) 0.375rem;
+	border: 1px solid var(--fxb-sl-color-theme);
+	border-radius: var(--fxb-sl-preset-card-radius);
+	color: var(--fxb-sl-color-theme);
+	font-size: var(--fxb-sl-font-size-10);
+	line-height: 1;
+	pointer-events: none;
+}
+
+// Muted, so a theme preset reads as "where this comes from" rather than as the Default's own accent.
+// A theme preset is never the default, so the two badges never share a card.
+.flx-blocks-style-library__preset-card-badge--theme {
+	border-color: var(--fxb-sl-color-text-muted);
+	color: var(--fxb-sl-color-text-muted);
+}
+
+.flx-blocks-style-library__preset-card .flx-blocks-style-library__drag-handle {
+	position: absolute;
+	top: var(--fxb-sl-preset-card-inset-block);
+	right: var(--fxb-sl-preset-card-inset-inline);
+	width: var(--fxb-sl-space-25);
+	height: var(--fxb-sl-space-25);
+	background: rgba(255, 255, 255, 0.9);
+	opacity: 0;
+}
+
+.flx-blocks-style-library__preset-card .flx-blocks-style-library__drag-handle-icon {
+	width: var(--fxb-sl-space-17);
+	height: var(--fxb-sl-space-17);
+}
+
+.flx-blocks-style-library__preset-card:hover .flx-blocks-style-library__drag-handle,
+.flx-blocks-style-library__preset-card:focus-within .flx-blocks-style-library__drag-handle {
+	opacity: 1;
+}

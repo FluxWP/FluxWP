@@ -1,0 +1,619 @@
+<?php
+/**
+ * Enqueue CSS/JS of all the blocks.
+ *
+ * @package Flux Block Editor
+ */
+
+/*
+ * cspell:ignore accorion blockattr fontsubsets fontvariants indexkey matzeeable surecart
+ */
+
+use function FluxWP\Blocks\get_webfont_url;
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Class to Enqueue CSS/JS of all the blocks.
+ *
+ * @category class
+ */
+class Flx_Blocks_Frontend {
+
+	/**
+	 * Google fonts to enqueue
+	 *
+	 * @var array
+	 */
+	public static $gfonts = [];
+
+	/**
+	 * Google fonts to enqueue
+	 *
+	 * @var array
+	 */
+	public static $footer_gfonts = [];
+
+	/**
+	 * Google schema to add to head
+	 *
+	 * @var null
+	 */
+	public static $faq_schema = null;
+
+	/**
+	 * Instance of this class
+	 *
+	 * @var null
+	 */
+	private static $instance = null;
+
+	/**
+	 * The ids of the posts whose blocks the CSS walk is inside right now, so content that includes itself,
+	 * directly or through other posts, is walked once instead of forever.
+	 *
+	 *
+	 * @var array<int, true>
+	 */
+	private $walking = [];
+
+	/**
+	 * Instance Control
+	 */
+	public static function get_instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Class Constructor.
+	 */
+	public function __construct() {
+		add_action( 'init', [ $this, 'on_init' ], 20 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'frontend_inline_css' ], 20 );
+		add_action( 'wp_head', [ $this, 'frontend_gfonts' ], 90 );
+		add_action( 'wp_footer', [ $this, 'frontend_footer_gfonts' ], 90 );
+		add_action( 'wp_head', [ $this, 'faq_schema' ], 91 );
+		if ( ! is_admin() ) {
+			add_action( 'render_block', [ $this, 'conditionally_render_block' ], 6, 3 );
+		}
+		// Add Custom support for SureCart Single Product Page.
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_surecart_single_product_template' ], 20 );
+	}
+
+	/**
+	 * Check for logged in, logged out visibility settings.
+	 *
+	 * @param mixed  $block_content The block content.
+	 * @param array  $block The block data.
+	 * @param object $wp_block The block class object.
+	 *
+	 * @return mixed Returns the block content.
+	 */
+	public function conditionally_render_block( $block_content, $block, $wp_block ) {
+		if ( is_admin() ) {
+			return $block_content;
+		}
+		if ( 'flx/rowlayout' === $block['blockName'] && isset( $block['attrs'] ) ) {
+			if ( isset( $block['attrs']['loggedIn'] ) && $block['attrs']['loggedIn'] && is_user_logged_in() ) {
+				$hide = true;
+				if ( isset( $block['attrs']['loggedInUser'] ) && is_array( $block['attrs']['loggedInUser'] ) && ! empty( $block['attrs']['loggedInUser'] ) ) {
+					$user = wp_get_current_user();
+					foreach ( $block['attrs']['loggedInUser'] as $key => $role ) {
+						if ( in_array( $role['value'], (array) $user->roles ) ) {
+							return '';
+						} else {
+							$hide = false;
+						}
+					}
+				}
+				if ( isset( $block['attrs']['loggedInShow'] ) && is_array( $block['attrs']['loggedInShow'] ) && ! empty( $block['attrs']['loggedInShow'] ) ) {
+					$user       = wp_get_current_user();
+					$show_roles = [];
+					foreach ( $block['attrs']['loggedInShow'] as $key => $user_rule ) {
+						if ( isset( $user_rule['value'] ) && ! empty( $user_rule['value'] ) ) {
+							$show_roles[] = $user_rule['value'];
+						}
+					}
+					// print_r( $show_roles );
+					// print_r( $user->roles );
+					$match = array_intersect( $show_roles, (array) $user->roles );
+					if ( count( $match ) === 0 ) {
+						return '';
+					} else {
+						$hide = false;
+					}
+				}
+				if ( $hide ) {
+					return '';
+				}
+			}
+			if ( isset( $block['attrs']['loggedOut'] ) && $block['attrs']['loggedOut'] && ! is_user_logged_in() ) {
+				return '';
+			}
+			if ( function_exists( 'rcp_user_has_access' ) && isset( $block['attrs']['rcpMembership'] ) && $block['attrs']['rcpMembership'] ) {
+				if ( ! is_user_logged_in() ) {
+					return '';
+				}
+				$hide         = true;
+				$access_level = (int) ( $block['attrs']['rcpAccess'] ?? '0' );
+				if ( rcp_user_has_access( get_current_user_id(), $access_level ) ) {
+					$hide = false;
+				}
+				if ( $hide ) {
+					return '';
+				}
+				if ( isset( $block['attrs']['rcpMembershipLevel'] ) && ! empty( $block['attrs']['rcpMembershipLevel'] ) && is_array( $block['attrs']['rcpMembershipLevel'] ) ) {
+					$hide = true;
+					foreach ( $block['attrs']['rcpMembershipLevel'] as $key => $level ) {
+						if ( in_array( $level['value'], rcp_get_customer_membership_level_ids() ) ) {
+							$hide = false;
+						}
+					}
+				}
+				if ( $hide ) {
+					return '';
+				}
+			}
+		}
+
+		return $block_content;
+	}
+
+	/**
+	 * On init startup.
+	 */
+	public function on_init() {
+		add_filter( 'excerpt_allowed_blocks', [ $this, 'add_blocks_to_excerpt' ], 20 );
+		add_filter( 'excerpt_allowed_wrapper_blocks', [ $this, 'add_wrapper_blocks_to_excerpt' ], 20 );
+	}
+
+	/**
+	 * Allow Columns to be looked at for inner content.
+	 *
+	 * @param array $allowed inner blocks.
+	 */
+	public function add_blocks_to_excerpt( $allowed ) {
+		$allowed = array_merge( $allowed, apply_filters( 'flxbk_allowed_excerpt_blocks', [ 'flx/advancedheading' ] ) );
+
+		return $allowed;
+	}
+
+	/**
+	 * Allow Columns to be looked at for inner content.
+	 *
+	 * @param array $allowed inner blocks.
+	 */
+	public function add_wrapper_blocks_to_excerpt( $allowed ) {
+		$allowed = array_merge(
+			$allowed,
+			apply_filters(
+				'flxbk_allowed_excerpt_blocks',
+				[
+					'flx/rowlayout',
+					'flx/column',
+				] 
+			) 
+		);
+		return $allowed;
+	}
+
+	/**
+	 * Loop through panes in an accordion and render the FAQ schema
+	 *
+	 * @param $accorion array
+	 *
+	 * @return void
+	 */
+	public function render_accordion_scheme_head( $accorion ) {
+		if ( ! empty( $accorion['innerBlocks'] ) && is_array( $accorion['innerBlocks'] ) ) {
+			foreach ( $accorion['innerBlocks'] as $key => $block ) {
+				if ( isset( $block['blockName'] ) && $block['blockName'] === 'flx/pane' ) {
+					$this->render_pane_scheme_head( $block );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Render Pane Schema in Head
+	 *
+	 * @param array $block the blocks object.
+	 */
+	public function render_pane_scheme_head( $block ) {
+		$allowed_tags = apply_filters( 'flxbk_faq_schema_allowed_tags', '<a><strong><br><h2><h3><h4><h5><ul><li><ol><p>', $block );
+		if ( ! is_null( self::$faq_schema ) ) {
+			if ( is_array( $block['innerBlocks'] ) && ! empty( $block['innerBlocks'] ) ) {
+				// an accordion pane has its "question" in the pane's innerHTML
+				// the "answer" is everything in innerblocks
+				// here we parse that out and build the question and answer
+				
+				$answer = '';
+				foreach ( $block['innerBlocks'] as $inner_key => $inner_block ) {
+					$block_content = render_block( $inner_block );
+					// Remove script and style tags
+					$block_content = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $block_content );
+
+					// Remove all other tags
+					$block_content = strip_tags( $block_content, $allowed_tags );
+
+					// Remove attributes from tags
+					$block_content = preg_replace( '/<([a-z][a-z0-9]*)[^>]*>/i', '<$1>', $block_content );
+					$answer       .= trim( $block_content );
+				}
+
+				preg_match( '/<span class="fxt-blocks-accordion-title">(.*?)<\/span>/s', do_blocks( $block['innerHTML'] ), $match );
+				$question = ( $match && isset( $match[1] ) && ! empty( $match[1] ) ? $match[1] : '' );
+
+				$question = apply_filters( 'flxbk_faq_schema_question', $question, $block );
+				$answer   = apply_filters( 'flxbk_faq_schema_answer', $answer, $block );
+
+				if ( strpos( self::$faq_schema, '}]}</script>' ) !== false ) {
+					$schema = ',';
+				} else {
+					$schema = '';
+				}
+				$schema          .= '{"@type":"Question","name": "' . esc_attr( $question ) . '","acceptedAnswer":{"@type": "Answer","text": "' . str_replace( '"', '&quot;', $answer ) . '"}}';
+				$question_schema  = ( ! empty( $question ) && ! empty( $answer ) ? $schema . ']}</script>' : ']}</script>' );
+				self::$faq_schema = str_replace( ']}</script>', $question_schema, self::$faq_schema );
+			}
+		}
+	}
+
+	/**
+	 * Checks if the current request is a WP REST API request.
+	 *
+	 * Case #1: After WP_REST_Request initialization
+	 * Case #2: Support "plain" permalink settings
+	 * Case #3: It can happen that WP_Rewrite is not yet initialized,
+	 *          so do this (wp-settings.php)
+	 * Case #4: URL Path begins with wp-json/ (your REST prefix)
+	 *          Also supports WP installations in subdirectories
+	 *
+	 * @returns boolean
+	 * @author matzeeable
+	 */
+	public function is_rest() {
+		$prefix = rest_get_url_prefix();
+		if ( ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || ( isset( $_GET['rest_route'] ) && strpos( $_GET['rest_route'], '/', 0 ) === 0 ) ) {
+			return true;
+		}
+		// (#3).
+		global $wp_rewrite;
+		if ( $wp_rewrite === null ) {
+			$wp_rewrite = new WP_Rewrite();
+		}
+		// (#4).
+		$rest_url    = wp_parse_url( trailingslashit( rest_url() ) );
+		$current_url = wp_parse_url( add_query_arg( [] ) );
+
+		if ( isset( $current_url['path'] ) && isset( $rest_url['path'] ) ) {
+			return strpos( $current_url['path'], $rest_url['path'], 0 ) === 0;
+		}
+		return false;
+	}
+
+	/**
+	 * Registers and enqueue's styles.
+	 *
+	 * @param string $handle the handle for the script.
+	 */
+	public function enqueue_style( $handle ) {
+		if ( ! wp_style_is( $handle, 'registered' ) ) {
+			$this->register_scripts();
+		}
+		wp_enqueue_style( $handle );
+	}
+
+	/**
+	 * Load the faq schema in head.
+	 */
+	public function faq_schema() {
+		if ( is_null( self::$faq_schema ) ) {
+			return;
+		}
+		$print_faq_schema = apply_filters( 'flxbk_print_faq_schema', true );
+		if ( ! $print_faq_schema ) {
+			return;
+		}
+		echo apply_filters( 'flxbk_faq_schema', self::$faq_schema );
+	}
+
+	/**
+	 * Load the front end Google Fonts
+	 */
+	public function frontend_gfonts() {
+		if ( empty( self::$gfonts ) ) {
+			return;
+		}
+		$print_google_fonts = apply_filters( 'flxbk_print_google_fonts', true );
+		if ( ! $print_google_fonts ) {
+			return;
+		}
+		$this->print_gfonts( self::$gfonts );
+	}
+
+	/**
+	 * Load the front end Google Fonts
+	 */
+	public function frontend_footer_gfonts() {
+		if ( empty( self::$footer_gfonts ) ) {
+			return;
+		}
+		$print_google_fonts = apply_filters( 'flxbk_print_footer_google_fonts', true );
+		if ( ! $print_google_fonts ) {
+			return;
+		}
+		$this->print_gfonts( self::$footer_gfonts );
+	}
+
+	/**
+	 * Print gFonts
+	 *
+	 *
+	 * @param array<string, array{fontfamily: string, fontvariants?: string[], fontsubsets?: string[]}> $gfonts The Google Fonts to load.
+	 */
+	public function print_gfonts( $gfonts ) {
+		$link    = '';
+		$subsets = [];
+		foreach ( $gfonts as $key => $gfont_values ) {
+			if ( ! empty( $link ) ) {
+				$link .= '%7C'; // Append a new font to the string.
+			}
+			$link .= $gfont_values['fontfamily'];
+			if ( ! empty( $gfont_values['fontvariants'] ) ) {
+				$link .= ':';
+				$link .= implode( ',', $gfont_values['fontvariants'] );
+			}
+			if ( ! empty( $gfont_values['fontsubsets'] ) ) {
+				foreach ( $gfont_values['fontsubsets'] as $subset ) {
+					if ( ! empty( $subset ) && ! in_array( $subset, $subsets ) ) {
+						array_push( $subsets, $subset );
+					}
+				}
+			}
+		}
+		if ( ! empty( $subsets ) ) {
+			$link .= '&subset=' . implode( ',', $subsets );
+		}
+		if ( apply_filters( 'flxbk_display_swap_google_fonts', true ) ) {
+			$link .= '&display=swap';
+		}
+
+		$full_link           = 'https://fonts.googleapis.com/css?family=' . str_replace( '|', '%7C', $link );
+		if ( flxbk_fonts_local() && function_exists( 'FluxWP\Blocks\get_webfont_url' ) ) {
+			$full_link = get_webfont_url( $full_link );
+		}
+		echo '<link href="' . esc_url( $full_link ) . '" rel="stylesheet">'; //phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
+	}
+	/**
+	 * Process the SC Single Product Template for Flux Block Editor.
+	 */
+	public function enqueue_surecart_single_product_template() {
+		if ( ! is_singular( 'sc_product' ) ) {
+			return;
+		}
+		if ( function_exists( 'sc_get_product' ) ) {
+			$product          = sc_get_product();
+			$template_part_id = $product->template_part_id ?? 'surecart/surecart//product-info'; // Get the template part ID.
+			$template         = get_block_template( $template_part_id, 'wp_template_part' );
+			if ( ! $template ) {
+				$template = get_block_template( 'surecart/surecart//product-info', 'wp_template_part' );
+			}
+			$blocks = $template->content ?? '';
+			if ( ! empty( $blocks ) ) {
+				$blocks = parse_blocks( $blocks );
+				$this->frontend_css_parse( $blocks );
+			}
+		}
+	}
+
+	/**
+	 * Outputs extra css for blocks.
+	 */
+	public function frontend_inline_css() {
+		if ( function_exists( 'has_blocks' ) && has_blocks( get_the_ID() ) ) {
+			global $post;
+			if ( ! is_object( $post ) ) {
+				return;
+			}
+			$this->frontend_build_css( $post );
+		}
+	}
+
+	/**
+	 * Outputs extra css for blocks.
+	 *
+	 * @param $post_object object of WP_Post.
+	 */
+	public function frontend_build_css( $post_object ) {
+		if ( ! is_object( $post_object ) ) {
+			return;
+		}
+		if ( ! method_exists( $post_object, 'post_content' ) ) {
+			$post_content = apply_filters( 'as3cf_filter_post_local_to_provider', $post_object->post_content );
+			$blocks       = parse_blocks( $post_content );
+			$this->frontend_css_parse( $blocks );
+		}
+	}
+	/**
+	 * Parse blocks for css.
+	 *
+	 * @param array $blocks array of blocks.
+	 */
+	public function frontend_css_parse( $blocks ) {
+		if ( ! is_array( $blocks ) || empty( $blocks ) ) {
+			return;
+		}
+		$flxbk = apply_filters( 'flxbk_blocks_to_generate_post_css', [] );
+		foreach ( $blocks as $indexkey => $block ) {
+			$block = apply_filters( 'flxbk_frontend_build_css', $block );
+			if ( ! is_object( $block ) && is_array( $block ) && isset( $block['blockName'] ) ) {
+				if ( isset( $flxbk[ $block['blockName'] ] ) ) {
+					$block_class_instance = $flxbk[ $block['blockName'] ]::get_instance();
+					$block_class_instance->output_head_data( $block );
+				}
+				/** !!!! Needs to stay to build schema !!! */
+				if ( 'flx/accordion' === $block['blockName'] ) {
+					if ( isset( $block['attrs'] ) && is_array( $block['attrs'] ) ) {
+						if ( isset( $block['attrs']['faqSchema'] ) && $block['attrs']['faqSchema'] ) {
+							$this->render_accordion_scheme_head( $block );
+						}
+					}
+				}
+				if ( 'core/block' === $block['blockName'] ) {
+					if ( isset( $block['attrs'] ) && is_array( $block['attrs'] ) ) {
+						$blockattr = $block['attrs'];
+						if ( isset( $blockattr['ref'] ) ) {
+							$reusable_block = get_post( $blockattr['ref'] );
+							if ( $reusable_block && 'wp_block' === $reusable_block->post_type ) {
+								$this->cycle_through_post( $reusable_block, $flxbk );
+							}
+						}
+					}
+				}
+				if ( 'flx/advanced-form' === $block['blockName'] ) {
+					if ( isset( $block['attrs'] ) && is_array( $block['attrs'] ) ) {
+						$blockattr = $block['attrs'];
+						if ( isset( $blockattr['id'] ) ) {
+							$form_block = get_post( $blockattr['id'] );
+							if ( $form_block && 'flxbk_form' === $form_block->post_type ) {
+								$this->cycle_through_post( $form_block, $flxbk );
+							}
+						}
+					}
+				}
+				if ( 'flx/header' === $block['blockName'] ) {
+					if ( isset( $block['attrs'] ) && is_array( $block['attrs'] ) ) {
+						$blockattr = $block['attrs'];
+						if ( isset( $blockattr['id'] ) ) {
+							$header_block = get_post( $blockattr['id'] );
+							if ( $header_block && 'flxbk_header' === $header_block->post_type ) {
+								$this->cycle_through_post( $header_block, $flxbk );
+							}
+						}
+					}
+				}
+				if ( 'flx/navigation' === $block['blockName'] ) {
+					if ( isset( $block['attrs'] ) && is_array( $block['attrs'] ) ) {
+						$blockattr = $block['attrs'];
+						if ( isset( $blockattr['id'] ) ) {
+							$navigation_block = get_post( $blockattr['id'] );
+							if ( $navigation_block && 'flxbk_navigation' === $navigation_block->post_type ) {
+								$this->cycle_through_post( $navigation_block, $flxbk );
+							}
+						}
+					}
+				}
+				if ( ! empty( $block['innerBlocks'] ) && is_array( $block['innerBlocks'] ) ) {
+					$this->blocks_cycle_through( $block['innerBlocks'], $flxbk );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Builds css for inner blocks
+	 *
+	 * @param array                       $inner_blocks   array of inner blocks.
+	 * @param array<string, class-string> $flxbk Block name => the class that builds its CSS.
+	 */
+	public function blocks_cycle_through( $inner_blocks, $flxbk ) {
+		foreach ( $inner_blocks as $in_indexkey => $inner_block ) {
+			$inner_block = apply_filters( 'flxbk_frontend_build_css', $inner_block );
+			if ( ! is_object( $inner_block ) && is_array( $inner_block ) && isset( $inner_block['blockName'] ) ) {
+				if ( isset( $flxbk[ $inner_block['blockName'] ] ) ) {
+					$block_class_instance = $flxbk[ $inner_block['blockName'] ]::get_instance();
+					$block_class_instance->output_head_data( $inner_block );
+				}
+				/** !!!! Needs to stay to build schema !!! */
+				if ( 'flx/accordion' === $inner_block['blockName'] ) {
+					if ( isset( $inner_block['attrs'] ) && is_array( $inner_block['attrs'] ) ) {
+						if ( isset( $inner_block['attrs']['faqSchema'] ) && $inner_block['attrs']['faqSchema'] ) {
+							$this->render_accordion_scheme_head( $inner_block );
+						}
+					}
+				}
+				if ( 'core/block' === $inner_block['blockName'] ) {
+					if ( isset( $inner_block['attrs'] ) && is_array( $inner_block['attrs'] ) ) {
+						$blockattr = $inner_block['attrs'];
+						if ( isset( $blockattr['ref'] ) ) {
+							$reusable_block = get_post( $blockattr['ref'] );
+							if ( $reusable_block && 'wp_block' === $reusable_block->post_type ) {
+								$this->cycle_through_post( $reusable_block, $flxbk );
+							}
+						}
+					}
+				}
+				if ( 'flx/advanced-form' === $inner_block['blockName'] ) {
+					if ( isset( $inner_block['attrs'] ) && is_array( $inner_block['attrs'] ) ) {
+						$blockattr = $inner_block['attrs'];
+						if ( isset( $blockattr['id'] ) ) {
+							$form_block = get_post( $blockattr['id'] );
+							if ( $form_block && 'flxbk_form' === $form_block->post_type ) {
+								$this->cycle_through_post( $form_block, $flxbk );
+							}
+						}
+					}
+				}
+				if ( 'flx/header' === $inner_block['blockName'] ) {
+					if ( isset( $inner_block['attrs'] ) && is_array( $inner_block['attrs'] ) ) {
+						$blockattr = $inner_block['attrs'];
+						if ( isset( $blockattr['id'] ) ) {
+							$header_block = get_post( $blockattr['id'] );
+							if ( $header_block && 'flxbk_header' === $header_block->post_type ) {
+								$this->cycle_through_post( $header_block, $flxbk );
+							}
+						}
+					}
+				}
+				if ( 'flx/navigation' === $inner_block['blockName'] ) {
+					if ( isset( $inner_block['attrs'] ) && is_array( $inner_block['attrs'] ) ) {
+						$blockattr = $inner_block['attrs'];
+						if ( isset( $blockattr['id'] ) ) {
+							$navigation_block = get_post( $blockattr['id'] );
+							if ( $navigation_block && 'flxbk_navigation' === $navigation_block->post_type ) {
+								$this->cycle_through_post( $navigation_block, $flxbk );
+							}
+						}
+					}
+				}
+				if ( ! empty( $inner_block['innerBlocks'] ) && is_array( $inner_block['innerBlocks'] ) ) {
+					$this->blocks_cycle_through( $inner_block['innerBlocks'], $flxbk );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Walk the blocks of a post a block points to (a synced pattern, form, header or navigation), skipping a
+	 * post the walk is already inside so content that includes itself can't loop forever.
+	 *
+	 *
+	 * @param WP_Post                     $post           The post the block points to.
+	 * @param array<string, class-string> $flxbk Block name => the class that builds its CSS.
+	 *
+	 * @return void
+	 */
+	private function cycle_through_post( $post, $flxbk ) {
+		if ( isset( $this->walking[ $post->ID ] ) ) {
+			return;
+		}
+
+		$this->walking[ $post->ID ] = true;
+
+		try {
+			$this->blocks_cycle_through( parse_blocks( $post->post_content ), $flxbk );
+		} finally {
+			unset( $this->walking[ $post->ID ] );
+		}
+	}
+}
+
+Flx_Blocks_Frontend::get_instance();

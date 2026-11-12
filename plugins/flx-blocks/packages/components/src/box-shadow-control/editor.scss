@@ -1,0 +1,80 @@
+.fxt-box-shadow-label .components-base-control.components-toggle-control, .fxt-box-shadow-label .components-toggle-control .components-base-control__field {
+	margin-bottom: 0 !important;
+}
+.fxt-box-shadow-label h2.fxt-beside-color-label {
+	flex-grow: 1;
+	margin: 12px 0;
+	font-weight: 400;
+}
+.fxt-box-shadow-label {
+	display: flex;
+	align-items: center;
+}
+.fxt-inner-sub-section-row {
+	display: flex;
+	margin-bottom: 10px;
+}
+.fxt-inner-sub-section {
+	border: 1px solid var(--fxb-border-color, #859CB6 );
+	border-top: 0;
+	padding: 25px 10px 10px 10px;
+	margin-bottom: 15px;
+	margin-top: -12px;
+}
+/* Dims the section while its value is driven externally. Purely a visual cue — every sub-input inside
+   carries a real `disabled` attribute, so input is blocked accessibly rather than by trapping pointer
+   events (which leaves the control reachable by keyboard and silent to assistive tech). */
+.fxt-inner-sub-section--read-only {
+	opacity: 0.5;
+}
+.fxt-box-shadow-subset {
+	padding: 0 2px;
+	text-align: center;
+}
+.fxt-box-shadow-subset .fxt-box-shadow-title {
+	font-size:12px;
+}
+
+.fxt-box-shadow-subset .fxt-advanced-color-settings-container {
+	flex-direction: column-reverse;
+}
+.fxt-box-shadow-subset input.components-text-control__input {
+	padding: 0 1px;
+	border: 1px solid var(--fxb-border-color, #859CB6 );
+}
+
+.flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label.radio-soft-inner-glow:before {
+	box-shadow: 0 0 5px 3px #a1afc1 inset;
+}
+.flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label.radio-soft-outer-glow:before {
+	box-shadow: 0 0 5px 3px #a1afc1;
+}
+.flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label.radio-right-offset-glow:before {
+	box-shadow: 4px 4px 3px 0 #a1afc1;
+}
+.flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label.radio-bottom-offset-glow:before {
+	box-shadow: 0 4px 3px 0 #a1afc1;
+}
+.flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label.radio-inner-solid:before {
+	box-shadow: 0 0 0 5px #a1afc1 inset;
+}
+.flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label.radio-right-bottom-solid:before {
+	box-shadow: 4px 4px 0 0 #a1afc1 ;
+}
+.flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label.radio-top-left-solid:before {
+	box-shadow: -4px -4px 0 0 #a1afc1 ;
+}
+
+.fxt-box-shadow-container .flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label:not(.radio-none):before {
+	content: ".";
+	display: block;
+	width: 28px;
+	height: 28px;
+	color: white;
+	margin: 0 auto;
+	border: 1px solid gray;
+}
+
+.fxt-box-shadow-container .flxbk-radio-container-control.components-button-group .components-button.has-icon.radio-no-label span {
+	display: none;
+}

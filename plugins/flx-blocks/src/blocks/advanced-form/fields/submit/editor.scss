@@ -1,0 +1,170 @@
+/**
+ * #.# Styles
+ */
+.fxb-advanced-form .fxt-btn-align-right {
+	justify-content: flex-end;
+}
+.fxb-advanced-form .fxt-btn-align-center {
+	justify-content: center;
+}
+.fxb-advanced-form .fxt-btn-align-left {
+	justify-content: flex-start;
+}
+// NEW CSS.
+.wp-block-flx-advanced-form-submit .fxt-button {
+	z-index: 1;
+	position: relative;
+	overflow: hidden;
+	border: 0 solid transparent;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+.wp-block-flx-advanced-form-submit .fxt-button:not(.fxb-btn-global-inherit) {
+	padding: 0.4em 1em;
+	cursor: pointer;
+	font-size: 1.125rem;
+	border-radius: 3px;
+	transition: all 0.3s ease-in-out;
+	box-shadow: none;
+}
+.wp-block-flx-advanced-form-submit .fxt-button.fxb-btn-global-fill {
+	border: 0px solid transparent;
+	border-radius: 3px;
+	background: var(--global-palette-btn-bg, #3633e1);
+	color: var(--global-palette-btn, #ffffff);
+	&:hover {
+		color: var(--global-palette-btn-hover, #ffffff);
+	}
+}
+.wp-block-flx-advanced-form-submit .fxt-button.fxb-btn-global-outline {
+	border: 2px solid var(--global-palette-btn-bg, #3633e1);
+	background: transparent;
+	padding: calc(0.4em - 2px) calc(1em - 2px);
+	color: var(--global-palette-btn-bg, #3633e1);
+	&:hover {
+		border-color: var(--global-palette-btn-bg-hover, #2f2ffc);
+		background: transparent;
+		color: var(--global-palette-btn-bg-hover, #2f2ffc);
+	}
+}
+.wp-block-flx-advanced-form-submit .fxt-button::before {
+	position: absolute;
+	content: "";
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0;
+	background: transparent;
+	transition: all 0.3s ease-in-out;
+}
+.wp-block-flx-advanced-form-submit .fxt-button.fxb-btn-global-fill::before {
+	background: var(--global-palette-btn-bg-hover, #2f2ffc);
+}
+.editor-styles-wrapper .wp-block-flx-advanced-form-submit .fxt-button:not(.fxb-btn-global-inherit):hover {
+	box-shadow: none;
+}
+.wp-block-flx-advanced-form-submit .fxt-button:hover::before {
+	opacity: 1;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-width-type-fixed .fxt-button {
+	width: 100%;
+}
+.editor-styles-wrapper .wp-block-flx-advanced-form-submit .fxt-button.fxt-btn-size-small {
+	font-size: 0.9rem;
+}
+.editor-styles-wrapper .wp-block-flx-advanced-form-submit .fxt-button.fxt-btn-size-large {
+	font-size: 1.35rem;
+}
+.editor-styles-wrapper .wp-block-flx-advanced-form-submit .fxt-button.fxt-btn-size-xlarge {
+	font-size: 1.65rem;
+}
+.wp-block-flx-advanced-form-submit .fxt-button.fxb-btn-global-outline.fxt-btn-size-xlarge {
+	border-width: 4px;
+}
+.wp-block-flx-advanced-form-submit .fxt-button.fxb-btn-global-outline.fxt-btn-size-large {
+	border-width: 3px;
+	padding: calc(0.4em - 3px) calc(1em - 3px);
+}
+.wp-block-flx-advanced-form-submit .fxt-button.fxb-btn-global-outline.fxt-btn-size-small {
+	border-width: 1px;
+	padding: calc(0.4em - 1px) calc(1em - 1px);
+}
+.wp-block-flx-advanced-form-submit {
+	display: inline-flex;
+	margin-left: 0;
+	margin-right: 0;
+
+	.wp-block-button__link {
+		width: auto;
+		height: auto;
+	}
+
+	&.fxt-btn-width-type-full {
+		flex: 1 0 fit-content;
+		width: 100%;
+		.fxt-button {
+			width: 100%;
+		}
+	}
+	.fxt-button {
+		display: flex;
+	}
+}
+// Button Alignment.
+.wp-block-flx-advanced-form-submit .fxt-btn-align-center {
+	justify-content: center;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-align-left {
+	justify-content: flex-start;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-align-right {
+	justify-content: flex-end;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-align-space-between {
+	justify-content: space-between;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-align-center.fxb-direction-columns {
+	align-items: center;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-align-left.fxb-direction-columns {
+	align-items: flex-start;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-align-right.fxb-direction-columns {
+	align-items: flex-end;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-align-space-between.fxb-direction-columns {
+	align-items: center;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-valign-center {
+	align-items: center;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-valign-top {
+	align-items: flex-start;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-valign-bottom {
+	align-items: flex-end;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-valign-center.fxb-direction-columns {
+	justify-content: center;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-valign-top.fxb-direction-columns {
+	justify-content: flex-start;
+}
+.wp-block-flx-advanced-form-submit .fxt-btn-valign-bottom.fxb-direction-columns {
+	justify-content: flex-end;
+}
+.btn-inner-wrap {
+	display: flex;
+	width: 100%;
+}
+// Icon Settings.
+.fxb-btn-has-icon {
+	gap: 0.5em;
+}
+.fxb-btn-only-icon .fxt-button-text {
+	display: none;
+}

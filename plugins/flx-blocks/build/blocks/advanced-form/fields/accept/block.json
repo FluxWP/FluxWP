@@ -1,0 +1,97 @@
+{
+  "apiVersion": 3,
+  "name": "flx/advanced-form-accept",
+  "category": "flx-blocks",
+  "textdomain": "flx-blocks",
+  "attributes": {
+    "uniqueID": {
+      "type": "string"
+    },
+    "formID": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": true
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "defaultValue": {
+      "type": "string"
+    },
+    "isChecked": {
+      "type": "boolean",
+      "default": false
+    },
+    "defaultParameter": {
+      "type": "string"
+    },
+    "ariaDescription": {
+      "type": "string",
+      "default": ""
+    },
+    "helpText": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "maxWidth": {
+      "type": "array",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "maxWidthUnit": {
+      "type": "string",
+      "default": "%"
+    },
+    "minWidth": {
+      "type": "array",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "minWidthUnit": {
+      "type": "string",
+      "default": "px"
+    },
+    "inputName": {
+      "type": "string"
+    },
+    "requiredMessage": {
+      "type": "string"
+    },
+    "anchor": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "html": false,
+    "ktfieldconditional": true,
+    "reusable": false,
+    "fxbMetadata": true,
+    "ktdynamic": true,
+    "fxbContentLabel": "label"
+  },
+  "ancestor": [
+    "flx/advanced-form"
+  ],
+  "parent": [
+    "flx/advanced-form",
+    "flx/column"
+  ]
+}

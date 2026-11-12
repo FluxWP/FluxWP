@@ -259,7 +259,7 @@ class FLXB_WC_Ledger {
 					'units_per'  => $opt ? (int) $opt['units_per'] : 1,
 				),
 			),
-			'beneficiaries'   => $names ? $names : ( '' !== $ben ? array_fill( 0, $units, $ben ) : array() ),
+			'beneficiaries'   => $names ? $names : self::ben_list( $l, $ben, $units, $units * max( 1, $opt ? (int) $opt['units_per'] : 1 ) ),
 			/* 2.16.0: phones of the share cards, next to the names. */
 			'beneficiary_phones' => $names && isset( $l['beneficiary_phones'] ) && is_array( $l['beneficiary_phones'] ) ? array_values( array_map( 'strval', $l['beneficiary_phones'] ) ) : array(),
 		);
@@ -311,6 +311,18 @@ class FLXB_WC_Ledger {
 			'accepted_at' => sanitize_text_field( (string) ( $c['accepted_at'] ?? '' ) ),
 			'source'      => sanitize_key( (string) ( $c['source'] ?? 'woocommerce' ) ),
 		);
+	}
+
+	/** 2.24.0: one name per unit: the other people one each, the rest in the line's name. */
+	private static function ben_list( array $l, $ben, $units, $pieces ) {
+		if ( '' === $ben ) {
+			return array();
+		}
+		$people = ! empty( $l['people'] ) && is_array( $l['people'] ) ? array_slice( wp_list_pluck( array_values( $l['people'] ), 'name' ), 0, max( 0, (int) $pieces - 1 ) ) : array();
+		if ( ! $people ) {
+			return array_fill( 0, max( 1, (int) $units ), $ben );
+		}
+		return array_merge( array_fill( 0, max( 1, (int) $pieces - count( $people ) ), $ben ), array_map( 'strval', $people ) );
 	}
 
 	/** Flux Certificates verification code of the line's certificate (the ledger keeps codes, not numbers). */

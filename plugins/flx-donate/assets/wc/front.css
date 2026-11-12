@@ -489,3 +489,25 @@ body.flx-dark .flxwb-dcard__icon--wa { background: rgba(26, 158, 81, .18); color
 .flxwb-quick button:hover { border-color: var(--w-primary, #1F2937); }
 .flxwb-quick button[aria-pressed="true"] { border-color: var(--w-primary, #1F2937); background: var(--w-primary, #1F2937); color: #fff; }
 .flxwb-pkg__count { white-space: nowrap; }
+
+/* 2.24.0: other people, each with their own certificate. */
+.flxwb-people { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.flxwb-people[hidden], .flxwb-person[hidden], .flxwb-people__add[hidden], .flxwb-people__note[hidden] { display: none; }
+.flxwb-people__list { display: flex; flex-direction: column; gap: 10px; }
+.flxwb-people__list:empty { display: none; }
+.flxwb-person { padding: 14px 16px; border: 1.5px solid var(--w-line); border-radius: var(--w-r3); background: var(--w-surface); }
+.flxwb-person__head { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; }
+.flxwb-person__head strong { color: var(--w-ink); font-size: .95rem; }
+.flxwb-person__count { color: var(--w-text); font-size: .85rem; opacity: .8; }
+.flxwb-person__del { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border: 0; background: none; color: var(--w-text); font: inherit; font-size: .85rem; cursor: pointer; border-radius: var(--w-r1); }
+.flxwb-person__del:hover { color: var(--w-err); background: var(--w-err-bg); }
+.flxwb-person__del svg { width: 14px; height: 14px; }
+.flxwb-person__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.flxwb .flxwb-person .flxwb-dcard { padding: 0; border: 0; background: none; box-shadow: none; }
+.flxwb-people__add { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px 14px; border: 1.5px dashed var(--w-line); border-radius: var(--w-r3); background: none; color: var(--w-primary); font: inherit; font-weight: 700; cursor: pointer; }
+.flxwb-people__add:hover { border-color: var(--w-primary); background: var(--w-mint-soft); }
+.flxwb-people__add svg { width: 18px; height: 18px; }
+.flxwb-people__note { margin: 0; }
+@media (min-width: 900px) {
+	.flxwb-person__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; }
+}

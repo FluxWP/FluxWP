@@ -1,0 +1,880 @@
+<?php
+/**
+ * Abstract Class to Build Blocks.
+ *
+ * @package Flux Block Editor
+ */
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+use FluxWP\Blocks\Design_Tokens\Database\Active_Token_Library_Store;
+use FluxWP\Blocks\Design_Tokens\Projection\Palette\Renders_Palette_Attribute;
+use FluxWP\Blocks\Design_Tokens\Projection\Preset\Renders_Preset_Classes;
+use FluxWP\Blocks\Design_Tokens\Registry\Token_Registry;
+use FluxWP\Blocks\Design_Tokens\Resolver\Preset_Fallback;
+use FluxWP\Blocks\Design_Tokens\Resolver\Preset_Resolver;
+use FluxWP\Blocks\Design_Tokens\Schema\Vocabulary\Alias;
+use FluxWP\Blocks\Utils\Cast;
+
+/**
+ * Abstract class to register blocks, build CSS, and enqueue scripts.
+ *
+ * @category class
+ */
+class Flx_Blocks_Abstract_Block {
+
+	use Renders_Palette_Attribute;
+	use Renders_Preset_Classes;
+
+	/**
+	 * Block namespace.
+	 *
+	 * @var string
+	 */
+	protected $namespace = 'flx';
+
+	/**
+	 * Block name within this namespace.
+	 *
+	 * @var string
+	 */
+	protected $block_name = '';
+
+	/**
+	 * Block determines if style needs to be loaded for block.
+	 *
+	 * @var string
+	 */
+	protected $has_style = true;
+
+	/**
+	 * Block determines if scripts need to be loaded for block.
+	 *
+	 * @var string
+	 */
+	protected $has_script = false;
+
+	/**
+	 * Cache for a blocks attributes with defaults based on uniqueId
+	 * Stored as: uniqueId => attributes
+	 *
+	 * @var array
+	 */
+	protected $attributes_with_defaults = [];
+
+	/**
+	 * Cache for default attributes by block name.
+	 * Stored as: blockName => attributes
+	 *
+	 * @var array
+	 */
+	protected $default_attributes_cache = [];
+
+	/**
+	 * Allow us to enable merged defaults on blocks individually.
+	 * Considered setting this as a property within each block, but it's easier to see an exhaustive list here.
+	 * Eventually all blocks will be supported.
+	 *
+	 * @var array
+	 */
+	protected $supports_merged_defaults = [
+		'navigation',
+		'navigation-link',
+		'header',
+		'navigation-list',
+		'singlebtn',
+		'header-row',
+		'off-canvas-trigger',
+		'off-canvas',
+		'header-column',
+		'search',
+		'identity',
+		'table',
+		'vector',
+		'select',
+		'email',
+		'text',
+		'textarea',
+		'number',
+		'date',
+		'time',
+		'radio',
+		'checkbox',
+		'file',
+		'telephone',
+		'accept',
+		'captcha',
+		'submit',
+		'single-icon',
+	];
+
+	/**
+	 * Allow us to enable merged defaults on blocks individually.
+	 * Considered setting this as a property within each block, but it's easier to see an exhaustive list here.
+	 * Eventually all blocks will be supported.
+	 *
+	 * @var array
+	 */
+	protected $is_cpt_block = [
+		'navigation',
+		'header',
+		'advanced-form',
+	];
+
+	/**
+	 * Class Constructor.
+	 */
+	public function __construct() {
+		add_action( 'init', [ $this, 'on_init' ], 20 );
+		add_filter( 'flxbk_blocks_to_generate_post_css', [ $this, 'add_block_to_post_generate_css' ] );
+	}
+
+	/**
+	 * The block type name, e.g. `flx/singlebtn`.
+	 *
+	 *
+	 * @return string The block type name.
+	 */
+	public function get_name(): string {
+		return $this->namespace . '/' . $this->block_name;
+	}
+
+	/**
+	 * The block name without its namespace, e.g. `singlebtn`, as in the block's
+	 * `flxbk_<slug>_render_block_attributes` filter.
+	 *
+	 *
+	 * @return string The block slug.
+	 */
+	public function get_slug(): string {
+		return $this->block_name;
+	}
+
+	/**
+	 * On init startup register the block.
+	 */
+	public function on_init() {
+		if ( $this->should_register() ) {
+			register_block_type(
+				FLXBK_PATH . 'build/blocks/' . $this->block_name . '/block.json',
+				[
+					'render_callback' => [ $this, 'render_css' ],
+					'editor_script'   => 'flx-blocks-' . $this->block_name,
+					'editor_style'    => 'flx-blocks-' . $this->block_name,
+				]
+			);
+		}
+	}
+
+	/**
+	 * Add Class name to list of blocks to render in header.
+	 *
+	 * @param array $block_class_array the blocks that are registered to be rendered.
+	 */
+	public function add_block_to_post_generate_css( $block_class_array ) {
+		if ( $this->should_register() ) {
+			if ( ! isset( $block_class_array[ $this->namespace . '/' . $this->block_name ] ) ) {
+				$block_class_array[ $this->namespace . '/' . $this->block_name ] = 'Flx_Blocks_' . str_replace( ' ', '_', ucwords( str_replace( '-', ' ', $this->block_name ) ) ) . '_Block';
+			}
+		}
+
+		return $block_class_array;
+	}
+
+	/**
+	 * Check if block stylesheet should render inline.
+	 *
+	 * @param string $name the stylesheet name.
+	 */
+	public function should_render_inline_stylesheet( $name ) {
+		if ( apply_filters( 'flxbk_force_render_inline_stylesheet', false, $name ) || ( ! is_admin() && ! wp_style_is( $name, 'done' ) && ! is_feed() ) ) {
+			if ( function_exists( 'wp_is_block_theme' ) ) {
+				if ( ! doing_filter( 'the_content' ) && ! wp_is_block_theme() && 1 === did_action( 'wp_head' ) ) {
+					wp_print_styles( $name );
+				}
+			} elseif ( ! doing_filter( 'the_content' ) && 1 === did_action( 'wp_head' ) ) {
+				wp_print_styles( $name );
+			}
+		}
+	}
+
+	/**
+	 * Render styles in the footer.
+	 *
+	 * @param string $name the stylesheet name.
+	 * @param string $css  the inline css to print.
+	 */
+	public function render_styles_footer( $name, $css ) {
+		if ( ! is_admin() && ! wp_style_is( $name, 'done' ) && ! is_feed() ) {
+			wp_register_style( $name, false, [], FLXBK_VERSION );
+			wp_add_inline_style( $name, $css );
+			wp_enqueue_style( $name );
+		}
+	}
+
+	/**
+	 * Check if block should render inline.
+	 *
+	 * @param string $name the blocks name.
+	 * @param string $unique_id the blocks unique id.
+	 */
+	public function should_render_inline( $name, $unique_id ) {
+		if ( ( doing_filter( 'the_content' ) && ! is_feed() ) || apply_filters( 'flxbk_force_render_inline_css_in_content', false, $name, $unique_id ) || is_customize_preview() ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Render Block CSS in Page Head.
+	 *
+	 *
+	 * @param array $block the block data.
+	 */
+	public function output_head_data( $block ) {
+		if ( isset( $block['attrs'] ) && is_array( $block['attrs'] ) ) {
+			$attributes = $block['attrs'];
+			if ( ! empty( $attributes['uniqueID'] ) ) {
+				$attributes['uniqueID'] = $this->sanitize_unique_id( $attributes['uniqueID'] );
+			}
+			if ( in_array( $this->block_name, $this->is_cpt_block ) ) {
+				$unique_id = ! empty( $attributes['id'] ) ? strval( $attributes['id'] ) . '-cpt-id' : '';
+				if ( empty( $unique_id ) ) {
+					$unique_id = ! empty( $attributes['uniqueID'] ) ? $attributes['uniqueID'] : '';
+				}
+			} else {
+				$unique_id = ! empty( $attributes['uniqueID'] ) ? $attributes['uniqueID'] : '';
+			}
+			if ( ! empty( $unique_id ) ) {
+				$unique_id = $this->sanitize_unique_id( $unique_id );
+				if ( in_array( $this->block_name, $this->supports_merged_defaults ) ) {
+					$attributes = $this->get_attributes_with_defaults( $unique_id, $attributes );
+				}
+				// Check and enqueue stylesheets and scripts if needed.
+				$this->render_scripts( $attributes, false );
+
+				$css_class = Flx_Blocks_CSS::get_instance();
+				if ( ! $css_class->has_styles( 'fxb-' . $this->block_name . $unique_id ) && apply_filters( 'flxbk_render_head_css', true, $this->block_name, $attributes ) ) {
+					// Filter attributes for easier dynamic css.
+					$attributes = apply_filters( 'flxbk_' . $this->block_name . '_render_block_attributes', $attributes );
+					$this->build_css( $attributes, $css_class, $unique_id, $unique_id );
+				}
+			}
+		}
+	}
+	/**
+	 * Render for block scripts block.
+	 *
+	 * @param array   $attributes the blocks attributes.
+	 * @param boolean $inline true or false based on when called.
+	 */
+	public function render_scripts( $attributes, $inline = false ) {
+		if ( $this->has_style ) {
+			if ( ! wp_style_is( 'flx-blocks-' . $this->block_name, 'enqueued' ) ) {
+				$this->enqueue_style( 'flx-blocks-' . $this->block_name );
+				if ( $inline ) {
+					$this->should_render_inline_stylesheet( 'flx-blocks-' . $this->block_name );
+				}
+			}
+		}
+		if ( $this->has_script ) {
+			if ( ! wp_script_is( 'flx-blocks-' . $this->block_name, 'enqueued' ) ) {
+				$this->enqueue_script( 'flx-blocks-' . $this->block_name );
+			}
+		}
+	}
+	/**
+	 * Render Block CSS
+	 *
+	 *
+	 * @param array    $attributes The blocks attributes.
+	 * @param string   $content the blocks content.
+	 * @param WP_Block $block_instance The instance of the WP_Block class that represents the block being rendered.
+	 */
+	public function render_css( $attributes, $content, $block_instance ) {
+		$this->render_scripts( $attributes, true );
+		if ( ! empty( $attributes['uniqueID'] ) ) {
+			$attributes['uniqueID'] = $this->sanitize_unique_id( $attributes['uniqueID'] );
+		}
+		if ( in_array( $this->block_name, $this->is_cpt_block ) ) {
+			$unique_id = ! empty( $attributes['id'] ) ? strval( $attributes['id'] ) . '-cpt-id' : '';
+			if ( empty( $unique_id ) ) {
+				$unique_id = ! empty( $attributes['uniqueID'] ) ? $attributes['uniqueID'] : '';
+			}
+		} else {
+			$unique_id = ! empty( $attributes['uniqueID'] ) ? $attributes['uniqueID'] : '';
+		}
+		if ( ! empty( $unique_id ) ) {
+			$unique_id       = $this->sanitize_unique_id( $unique_id );
+			$unique_style_id = apply_filters( 'flxbk_build_render_unique_id', $unique_id, $this->block_name, $attributes );
+			$css_class       = Flx_Blocks_CSS::get_instance();
+
+			if ( in_array( $this->block_name, $this->supports_merged_defaults ) ) {
+				$attributes = $this->get_attributes_with_defaults( $unique_id . get_locale(), $attributes, false );
+			}
+
+			// If filter didn't run in header (which would have enqueued the specific css id ) then filter attributes for easier dynamic css.
+			$attributes = apply_filters( 'flxbk_' . str_replace( '-', '_', $this->block_name ) . '_render_block_attributes', $attributes, $block_instance );
+
+			$content = $this->build_html( $attributes, $unique_id, $content, $block_instance );
+			$content = $this->render_palette_attribute( $attributes, $content );
+			$content = $this->render_preset_class( $attributes, $content );
+			if ( ! $css_class->has_styles( 'fxb-' . $this->block_name . $unique_style_id ) && ! is_feed() && apply_filters( 'flxbk_render_inline_css', true, $this->block_name, $unique_id ) ) {
+				$css = $this->build_css( $attributes, $css_class, $unique_id, $unique_style_id );
+				if ( ! empty( $css ) && ! wp_is_block_theme() ) {
+					$this->do_inline_styles( $content, $unique_style_id, $css );
+				}
+			} elseif ( ! wp_is_block_theme() && ! $css_class->has_header_styles( 'fxb-' . $this->block_name . $unique_style_id ) && ! is_feed() && apply_filters( 'flxbk_render_inline_css', true, $this->block_name, $unique_id ) ) {
+				// Some plugins run render block without outputting the content, this makes it so css can be rebuilt.
+				$css = $this->build_css( $attributes, $css_class, $unique_id, $unique_style_id );
+				if ( ! empty( $css ) ) {
+					$this->do_inline_styles( $content, $unique_style_id, $css );
+				}
+			}
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Potentially prepend inline style to the content, unless it needs to get moved off to the footer.
+	 *
+	 * @param string $content         the block content, prepended with the style tag in place.
+	 * @param string $unique_style_id the blocks alternate ID for queries.
+	 * @param string $css             the css to print.
+	 */
+	public function do_inline_styles( &$content, $unique_style_id, $css ) {
+		if ( apply_filters( 'flxbk_render_styles_footer', $this->block_name == 'data' || $this->block_name == 'slide' ) ) {
+			$this->render_styles_footer( 'fxb-' . $this->block_name . $unique_style_id, $css );
+		} else {
+			$content = '<style>' . $css . '</style>' . $content;
+		}
+	}
+
+	/**
+	 * Builds CSS for block.
+	 *
+	 * @param array  $attributes the blocks attributes.
+	 * @param string $css the css class for blocks.
+	 * @param string $unique_id the blocks attr ID.
+	 * @param string $unique_style_id the blocks alternate ID for queries.
+	 */
+	public function build_css( $attributes, $css, $unique_id, $unique_style_id ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- a stub; the parameters are the contract a block overrides.
+		return '';
+	}
+
+	/**
+	 * Build HTML for dynamic blocks
+	 *
+	 * @param $attributes
+	 * @param $unique_id
+	 * @param $content
+	 * @param WP_Block $block_instance The instance of the WP_Block class that represents the block being rendered.
+	 *
+	 * @return mixed
+	 */
+	public function build_html( $attributes, $unique_id, $content, $block_instance ) {
+		return $content;
+	}
+
+	/**
+	 * Reflect a block's per-block color-palette override onto its rendered root element as
+	 * data-fxb-palette="<id>", so the Design Tokens projector's `[data-fxb-palette]` switch layer re-skins the
+	 * block's colors on the front end. Generic across every dynamic block: a block opts in by registering the
+	 * `fxbPalette` attribute (via `fxbPalette` block support) and needs no per-block PHP. A no-op when no palette
+	 * is pinned, the content is empty, or it has no opening tag to carry the attribute.
+	 *
+	 * The attribute lands on the block's own root element (the tag carrying its `wp-block-<namespace>-<name>`
+	 * class), not an outer wrapper such as an animation `data-aos` div, and the whole method short-circuits
+	 * before any parsing when nothing is pinned.
+	 *
+	 *
+	 * @param mixed $attributes The block attributes.
+	 * @param mixed $content    The block's rendered HTML.
+	 *
+	 * @return mixed The HTML, with data-fxb-palette set on the root element when a palette is pinned.
+	 */
+	protected function render_palette_attribute( $attributes, $content ) {
+		if ( ! is_array( $attributes ) || ! is_string( $content ) || $content === '' ) {
+			return $content;
+		}
+
+		$palette = $this->palette_attributes( $attributes['fxbPalette'] ?? '' );
+
+		if ( ! isset( $palette['data-fxb-palette'] ) ) {
+			return $content;
+		}
+
+		$tags = new WP_HTML_Tag_Processor( $content );
+
+		if ( ! $tags->next_tag( [ 'class_name' => 'wp-block-' . $this->namespace . '-' . $this->block_name ] ) ) {
+			return $content;
+		}
+
+		$tags->set_attribute( 'data-fxb-palette', $palette['data-fxb-palette'] );
+
+		return $tags->get_updated_html();
+	}
+
+	/**
+	 * Add a block's selected design-token preset class (`fxb-preset--<slug>`) to its rendered root element, so
+	 * the Design Tokens projector's scoped preset CSS applies on the front end. Generic across every dynamic
+	 * block: a block opts in by registering the `fxbPreset` attribute (via `fxbPreset` block support) and needs
+	 * no per-block PHP. A no-op when no preset is selected, the content is empty, or it has no opening tag to
+	 * carry the class.
+	 *
+	 * The class lands on the block's own root element (the tag carrying its `wp-block-<namespace>-<name>` class),
+	 * not an outer wrapper such as an animation `data-aos` div — the scoped preset selector is compound on the
+	 * block class (`.wp-block-<name>.fxb-preset--<slug>`), so a class on a wrapper never matches. The whole method
+	 * short-circuits before any parsing when nothing is selected.
+	 *
+	 *
+	 * @param mixed $attributes The block attributes.
+	 * @param mixed $content    The block's rendered HTML.
+	 *
+	 * @return mixed The HTML, with the fxb-preset--<slug> class (and a class-painted preset's own classes) added
+	 *               to the root element when a preset is set.
+	 */
+	protected function render_preset_class( $attributes, $content ) {
+		if ( ! is_array( $attributes ) || ! is_string( $content ) || $content === '' ) {
+			return $content;
+		}
+
+		if ( $this->stored_preset( $attributes ) === '' ) {
+			return $content;
+		}
+
+		$resolved = $this->resolved_preset( $attributes );
+
+		if ( $resolved === null ) {
+			// The token services cannot answer (a block outside the preset system, an inactive registry, or a
+			// broken token graph): render the stored class as before, so the page never fails.
+			$classes = $this->preset_classes( Cast::to_string( $attributes['fxbPreset'] ?? '' ) );
+		} else {
+			$classes = $this->preset_classes( $resolved['is_default'] ? '' : $resolved['slug'], $resolved['class'] );
+		}
+
+		if ( $classes === [] ) {
+			return $content;
+		}
+
+		$tags = new WP_HTML_Tag_Processor( $content );
+
+		if ( ! $tags->next_tag( [ 'class_name' => 'wp-block-' . $this->namespace . '-' . $this->block_name ] ) ) {
+			return $content;
+		}
+
+		foreach ( $classes as $preset_class ) {
+			$tags->add_class( $preset_class );
+		}
+
+		return $tags->get_updated_html();
+	}
+
+	/**
+	 * The preset slug this block asks for: its `fxbPreset` attribute. A block that still carries an older
+	 * style attribute maps it to a preset slug here, so the mapping happens at render time and the stored
+	 * attributes are never rewritten.
+	 *
+	 *
+	 * @param array<string, mixed> $attributes The block attributes.
+	 *
+	 * @return string The stored slug, or '' for the default look.
+	 */
+	protected function stored_preset( array $attributes ): string {
+		return Cast::to_string( $attributes['fxbPreset'] ?? '' );
+	}
+
+	/**
+	 * The preset this block renders with, after the fallback chain: the stored slug when the library
+	 * defines it, else the theme's base preset for a theme slug, else the block's `$default`. Null when
+	 * the token registry is inactive or the token services cannot answer, so a caller can keep the
+	 * behavior it had before presets existed.
+	 *
+	 *
+	 * @param array<string, mixed> $attributes The block attributes.
+	 *
+	 * @return array{slug: string, class: string, is_default: bool}|null The resolved slug, the classes a
+	 *                                                                    class-painted preset puts on the
+	 *                                                                    element ('' for a preset painted
+	 *                                                                    through variables), and whether the
+	 *                                                                    slug is the block's default.
+	 */
+	protected function resolved_preset( array $attributes ): ?array {
+		try {
+			$registry = flxbk()->get( Token_Registry::class );
+			$fallback = flxbk()->get( Preset_Fallback::class );
+			$resolver = flxbk()->get( Preset_Resolver::class );
+			$library  = flxbk()->get( Active_Token_Library_Store::class );
+
+			// The container is typed `mixed`, and this runs on every render, so the services are checked
+			// rather than assumed — a misconfigured container degrades to the look the block had before.
+			if (
+				! $registry instanceof Token_Registry
+				|| ! $fallback instanceof Preset_Fallback
+				|| ! $resolver instanceof Preset_Resolver
+				|| ! $library instanceof Active_Token_Library_Store
+				|| ! $registry->is_active()
+			) {
+				return null;
+			}
+
+			$block  = $this->namespace . '/' . $this->block_name;
+			$slug   = $library->get();
+			$preset = $fallback->resolve( $block, $this->stored_preset( $attributes ), $slug );
+
+			return [
+				'slug'       => $preset,
+				'class'      => $resolver->theme_class( $block, $preset, $slug ),
+				'is_default' => $preset === $resolver->default_preset( $block, $slug ),
+			];
+		} catch ( Throwable $e ) {
+			// This runs in the render path, so a block with no presets or a broken token graph must not take
+			// the page down with it.
+			return null;
+		}
+	}
+
+	/**
+	 * Registers scripts and styles.
+	 */
+	public function register_scripts() {
+		// If in the backend, bail out.
+		if ( is_admin() ) {
+			return;
+		}
+		if ( apply_filters( 'flxbk_check_if_rest', false ) && flxbk_is_rest() ) {
+			return;
+		}
+		wp_register_style( 'flx-blocks-' . $this->block_name, FLXBK_URL . 'build/style-blocks-' . $this->block_name . '.css', [], FLXBK_VERSION );
+	}
+
+	/**
+	 * Registers and enqueue's script.
+	 *
+	 * @param string $handle the handle for the script.
+	 */
+	public function enqueue_script( $handle ) {
+		if ( ! wp_script_is( $handle, 'registered' ) ) {
+			$this->register_scripts();
+		}
+		wp_enqueue_script( $handle );
+	}
+
+	/**
+	 * Registers and enqueue's styles.
+	 *
+	 * @param string $handle the handle for the script.
+	 */
+	public function enqueue_style( $handle ) {
+		if ( ! wp_style_is( $handle, 'registered' ) ) {
+			$this->register_scripts();
+		}
+		wp_enqueue_style( $handle );
+	}
+
+
+	/**
+	 * Gets the HTML tag from the attributes.
+	 * If the tag provided isn't allowed, return the default value.
+	 *
+	 *
+	 * @param array  $attributes Array of the blocks attributes.
+	 * @param string $tag_key Offset on $attributes where the tag is set.
+	 * @param string $default_tag Default tag to use if $tag_key attribute is undefined or invalid.
+	 * @param array  $allowed_tags Array of allowed tags.
+	 * @param string $level_key If defined, we'll assume heading tags are allowed.
+	 *
+	 * @return string
+	 */
+	public function get_html_tag( $attributes, $tag_key, $default_tag, $allowed_tags = [], $level_key = '' ) {
+
+		if ( ! empty( $attributes[ $tag_key ] ) && in_array( $attributes[ $tag_key ], $allowed_tags, true ) ) {
+
+			if ( $attributes[ $tag_key ] === 'heading' ) {
+				$level = filter_var(
+					$attributes[ $level_key ] ?? null,
+					FILTER_VALIDATE_INT,
+					[
+						'options' => [
+							'min_range' => 1,
+							'max_range' => 6,
+						],
+					]
+				);
+				return 'h' . ( false !== $level ? $level : 2 );
+			}
+
+			return $attributes[ $tag_key ];
+		}
+
+		return $default_tag;
+	}
+
+
+
+	/**
+	 * Get this blocks attributes merged with defaults from the registration.
+	 *
+	 * @param string $cache_key The cache key (usually unique id).
+	 * @param array  $attributes The block's attributes.
+	 * @param bool   $cache Whether to cache the merged result. Default true.
+	 * @return array
+	 */
+	public function get_attributes_with_defaults( $cache_key, $attributes, $cache = true ) {
+		if ( ! empty( $this->attributes_with_defaults[ $cache_key ] ) ) {
+			return $this->attributes_with_defaults[ $cache_key ];
+		}
+
+		$default_attributes = $this->get_block_default_attributes();
+
+		/**
+		 * Filters a block's default attributes before they are merged with the instance's attributes.
+		 *
+		 * Lets a module contribute an extra layer of defaults (e.g. the Design Tokens block preset) that
+		 * sits above the block.json defaults yet below the instance attributes, so the merge below still
+		 * lets a per-instance value win.
+		 *
+		 *
+		 * @param array<string, mixed> $default_attributes The block's registration defaults: attribute
+		 *                                                 name => default value.
+		 * @param string               $block_name         The full block name, e.g. "flx/advancedbtn".
+		 *
+		 * @return array<string, mixed> The default attributes, after any module's overlay.
+		 */
+		$filtered_attributes = apply_filters( 'flxbk_block_default_attributes', $default_attributes, 'flx/' . $this->block_name );
+
+		// A third-party callback could return a non-array; ignore it and keep KB's own defaults rather than
+		// letting a bad value corrupt the merge below.
+		if ( is_array( $filtered_attributes ) ) {
+			$default_attributes = $filtered_attributes;
+		}
+
+		$merged_attributes = $this->merge_attributes_with_defaults( $attributes, $default_attributes );
+
+		if ( $cache ) {
+			$this->attributes_with_defaults[ $cache_key ] = $merged_attributes;
+		}
+		return $merged_attributes;
+	}
+
+	/**
+	 * Get default attributes for a block.
+	 *
+	 * @return array
+	 */
+	protected function get_block_default_attributes() {
+		$block_name = 'flx/' . $this->block_name;
+		if ( ! isset( $this->default_attributes_cache[ $block_name ] ) ) {
+			$registry           = WP_Block_Type_Registry::get_instance()->get_registered( $block_name );
+			$default_attributes = [];
+
+			if ( $registry && property_exists( $registry, 'attributes' ) && ! empty( $registry->attributes ) ) {
+				foreach ( $registry->attributes as $key => $value ) {
+					if ( isset( $value['default'] ) ) {
+						$default_attributes[ $key ] = $value['default'];
+					}
+				}
+			}
+
+			$this->default_attributes_cache[ $block_name ] = $default_attributes;
+		}
+
+		return $this->default_attributes_cache[ $block_name ];
+	}
+
+	/**
+	 * Merge attributes with defaults.
+	 *
+	 * @param array $attributes The block's attributes.
+	 * @param array $default_attributes The default attributes.
+	 * @return array
+	 */
+	protected function merge_attributes_with_defaults( $attributes, $default_attributes ) {
+		$merged_attributes = $default_attributes;
+
+		foreach ( $attributes as $key => $value ) {
+			if ( isset( $merged_attributes[ $key ] ) && is_array( $merged_attributes[ $key ] ) &&
+				count( $merged_attributes[ $key ] ) == 1 && isset( $merged_attributes[ $key ][0] ) &&
+				is_array( $merged_attributes[ $key ][0] ) &&
+				is_array( $value ) && count( $value ) == 1 && isset( $value[0] ) ) {
+				// Handle attributes that are an array with a single object.
+				$merged_attributes[ $key ][0] = array_merge( $merged_attributes[ $key ][0], $value[0] );
+			} else {
+				$merged_attributes[ $key ] = $value;
+			}
+		}
+
+		return $merged_attributes;
+	}
+
+	/**
+	 * Get this blocks attributes merged with defaults from the registration for post type based blocks.
+	 *
+	 * @param int    $post_id Post ID.
+	 * @param string $cpt_name Custom post type name.
+	 * @param string $meta_prefix Meta prefix.
+	 * @return array
+	 */
+	public function get_attributes_with_defaults_cpt( $post_id, $cpt_name, $meta_prefix ) {
+		if ( ! empty( $this->attributes_with_defaults[ $post_id ] ) ) {
+			return $this->attributes_with_defaults[ $post_id ];
+		}
+
+		$default_attributes = $this->get_cpt_default_attributes( $cpt_name, $meta_prefix );
+		$post_meta          = get_post_meta( $post_id );
+		$attributes         = [];
+		if ( ! empty( $post_meta ) && is_array( $post_meta ) ) {
+			foreach ( $post_meta as $meta_key => $meta_value ) {
+				if ( strpos( $meta_key, $meta_prefix ) === 0 && isset( $meta_value[0] ) ) {
+					$attributes[ str_replace( $meta_prefix, '', $meta_key ) ] = maybe_unserialize( $meta_value[0] );
+				}
+			}
+		}
+		$merged_attributes = $this->merge_attributes_with_defaults( $attributes, $default_attributes );
+
+		$this->attributes_with_defaults[ $post_id ] = $merged_attributes;
+		return $merged_attributes;
+	}
+
+
+	/**
+	 * Get default attributes for a custom post type.
+	 *
+	 * @param string $cpt_name Custom post type name.
+	 * @param string $meta_prefix Meta prefix.
+	 * @return array
+	 */
+	protected function get_cpt_default_attributes( $cpt_name, $meta_prefix ) {
+		$cache_key = $cpt_name . '_' . $meta_prefix;
+
+		if ( ! isset( $this->default_attributes_cache[ $cache_key ] ) ) {
+			$meta_keys          = get_registered_meta_keys( 'post', $cpt_name );
+			$default_attributes = [];
+
+			foreach ( $meta_keys as $key => $value ) {
+				if ( str_starts_with( $key, $meta_prefix ) && array_key_exists( 'default', $value ) ) {
+					$attr_name                        = str_replace( $meta_prefix, '', $key );
+					$default_attributes[ $attr_name ] = $value['default'];
+				}
+			}
+
+			$this->default_attributes_cache[ $cache_key ] = $default_attributes;
+		}
+
+		return $this->default_attributes_cache[ $cache_key ];
+	}
+
+	/**
+	 * Return if this block should register itself. (can override for things like blocks in two plugins)
+	 *
+	 * @return boolean
+	 */
+	public function should_register() {
+		return true;
+	}
+
+	/**
+	 * Get the current blocks pro version. Useful for mocking in tests that rely the on KBP_VERSION constant.
+	 *
+	 * @return string|null
+	 */
+	protected function get_pro_version() {
+		return defined( 'KBP_VERSION' ) ? KBP_VERSION : null;
+	}
+
+	/**
+	 * Normalize a blocks unique id so it is safe to use in markup and style rules.
+	 *
+	 *
+	 * @param string $unique_id The blocks unique id.
+	 *
+	 * @return string
+	 */
+	protected function sanitize_unique_id( $unique_id ) {
+		return (string) preg_replace( '/[^A-Za-z0-9_-]/', '', str_replace( '/', '-', (string) $unique_id ) );
+	}
+
+	/**
+	 * Build escaped HTML attributes to be placed in an HTML tag.
+	 *
+	 * @param array<string, string|int|float|bool> $attributes The html attributes to render to a tag.
+	 *
+	 * @return string
+	 */
+	protected function build_escaped_html_attributes( array $attributes ): string {
+		$html = '';
+
+		foreach ( $attributes as $key => $value ) {
+			if ( is_bool( $value ) ) {
+				if ( $value ) {
+					$html .= sprintf( ' %s', esc_attr( $key ) );
+				}
+
+				continue;
+			}
+
+			$html .= sprintf( ' %s="%s"', esc_attr( $key ), esc_attr( $value ) );
+		}
+
+		return $html;
+	}
+
+	/**
+	 * Whether a native shadow item paints anything visible — all-zero offsets, blur, and spread
+	 * render nothing regardless of color, matching the value the "None" pick writes.
+	 *
+	 * A non-numeric, non-empty leg is a {dot.alias} token reference, which resolves to a var() whose
+	 * value is unknown here — it counts as visible, since treating it as a zero would let the
+	 * caller's `box-shadow: none` reset erase a shadow the token does paint. A `shadowToken` binding on
+	 * the item follows the same reasoning for the whole shadow, but only while the binding is backed by
+	 * the active library: an unbacked one (a token deleted after the item was saved) no longer paints
+	 * anything the renderer will emit, so it must not block the `box-shadow: none` reset either — it is
+	 * treated as invisible, the same as an item with no binding and no geometry.
+	 *
+	 * Lives here rather than on any one block because it answers a question about the shared shadow
+	 * value shape, which every shadow-carrying block stores identically. It is what a block gates its
+	 * `box-shadow` output on once it has no separate "enable" boolean to read.
+	 *
+	 *
+	 * @param array<string, mixed> $shadow_item One `shadow[0]`-shaped item.
+	 *
+	 * @return bool Whether the item paints a visible shadow.
+	 */
+	protected function has_visible_shadow( array $shadow_item ): bool {
+		// A bound item's visibility is decided by its binding alone; the stored legs are never consulted
+		// for one. Backed, its real value lives in the token and is unknown here, so it counts as visible
+		// or the caller's `box-shadow: none` reset would erase a shadow the token does paint. Unbacked, it
+		// renders nothing (see Flx_Blocks_CSS::render_shadow()), so it must count as INVISIBLE and let
+		// the caller fall through to that reset — reading its legs instead would keep a stale binding in
+		// the shadow branch, where the empty render is dropped and the reset never runs.
+		$shadow_token = $shadow_item[ Flx_Blocks_CSS::get_shadow_token_key() ] ?? null;
+		if ( Alias::is_alias( $shadow_token ) ) {
+			return Flx_Blocks_CSS::get_instance()->is_token_reference_backed( $shadow_token );
+		}
+
+		foreach ( [ 'hOffset', 'vOffset', 'blur', 'spread' ] as $axis ) {
+			$value = $shadow_item[ $axis ] ?? 0;
+
+			if ( is_numeric( $value ) ) {
+				if ( 0.0 !== (float) $value ) {
+					return true;
+				}
+
+				continue;
+			}
+
+			// A {dot.alias} leg resolves to a var() unknown here, so it counts as visible — read as zero,
+			// the caller's `box-shadow: none` would erase a shadow the token does paint.
+			if ( is_string( $value ) && '' !== trim( $value ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+}

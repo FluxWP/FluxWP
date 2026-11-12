@@ -1,0 +1,10 @@
+.components-modal__frame.flx-blocks-style-library__delete-palette-modal {
+	max-width: var(--fxb-sl-size-modal-medium);
+}
+
+.flx-blocks-style-library__delete-palette-modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--fxb-sl-space-10);
+	margin-top: var(--fxb-sl-space-20);
+}

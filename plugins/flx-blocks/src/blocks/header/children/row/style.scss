@@ -1,0 +1,84 @@
+.wp-block-flx-header-row {
+	margin-top: 0;
+	margin-bottom: 0;
+	&:not(.fxb-header-row-layout-contained) {
+		background: var(--fxb-header-row-bg, transparent );
+	}
+	&.fxb-header-row-layout-contained .flxbk-header-row-inner {
+		background: var(--fxb-header-row-bg, transparent );
+	}
+	.flxbk-header-row-inner {
+		padding: 0 var(--global-content-edge-padding, 15px);
+		display: grid;
+		grid-template-columns: 1fr minmax(0, auto) 1fr;
+		margin: 0 auto;
+	}
+	.flxbk-header-row-inner:has(> div.no-content-column-center) {
+		grid-template-columns: auto auto;
+	}
+	.flxbk-header-row-inner > .no-content-column-center {
+		display: none;
+	}
+
+	.wp-block-flx-header-column,
+	.wp-block-flx-header-section {
+		gap: 10px;
+		align-items: center;
+		display: flex;
+	}
+
+	.wp-block-flx-header-column-center,
+	.wp-block-flx-header-column-tablet-center {
+		justify-content: center;
+	}
+
+	.wp-block-flx-header-section {
+		// Override a style we set elsewhere
+		p {
+			margin-bottom: unset;
+			margin-top: unset;
+		}
+	}
+
+	.wp-block-flx-header-column-center-left {
+		flex-grow: 1;
+		justify-content: flex-end;
+	}
+
+	.wp-block-flx-header-column-center-right {
+		flex-grow: 1;
+		justify-content: flex-start;
+	}
+	&.fxb-header-row-layout-contained {
+		padding: 0 var(--global-content-edge-padding, 15px);
+		max-width: var(--global-content-width, var(--wp--style--global--wide-size));
+		margin: 0 auto;
+		//left and right centering for if this row gets sticky
+		left: 0;
+		right: 0;
+	}
+	&.fxb-header-row-layout-standard {
+		.flxbk-header-row-inner {
+			max-width: var(--global-content-width, var(--wp--style--global--wide-size));
+		}
+	}
+	// &:where(.fxb-header-row-layout-fullwidth) {
+	// 	.flxbk-header-row-inner {
+	// 		padding: 0;
+	// 	}
+	// }
+	&.fxb-header-row-layout-config-single > .flxbk-header-row-inner:not(.specificity) {
+		grid-template-columns: auto;
+		> .wp-block-flx-header-section,
+		> .wp-block-flx-header-column {
+			display: none;
+		}
+		> .wp-block-flx-header-section:first-child,
+		> .wp-block-flx-header-column:first-child {
+			display: block;
+			> .wp-block-flx-header-column {
+				display: none;
+			}
+		}
+	}
+}

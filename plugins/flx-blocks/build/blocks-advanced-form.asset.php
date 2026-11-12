@@ -1,0 +1,29 @@
+<?php return array(
+	'dependencies' => array(
+		'flxbk-components',
+		'flxbk-helpers',
+		'flxbk-icons',
+		'lodash',
+		'react',
+		'react-dom',
+		'react-jsx-runtime',
+		'wp-a11y',
+		'wp-api-fetch',
+		'wp-blob',
+		'wp-block-editor',
+		'wp-blocks',
+		'wp-components',
+		'wp-compose',
+		'wp-core-data',
+		'wp-data',
+		'wp-date',
+		'wp-element',
+		'wp-hooks',
+		'wp-i18n',
+		'wp-keycodes',
+		'wp-notices',
+		'wp-primitives',
+		'wp-url'
+	),
+	'version' => 'e7a6a275c29a90d190ec'
+);

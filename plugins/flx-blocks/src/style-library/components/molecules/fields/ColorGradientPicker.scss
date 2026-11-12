@@ -1,0 +1,41 @@
+.flx-blocks-style-library__color-gradient-picker {
+	overflow: hidden;
+	border: 1px solid var(--fxb-sl-color-border);
+	border-radius: var(--fxb-sl-radius-m);
+	background: var(--fxb-sl-color-surface);
+}
+
+.flx-blocks-style-library__color-gradient-picker .components-tab-panel__tabs {
+	display: flex;
+	gap: var(--fxb-sl-space-05);
+	padding: var(--fxb-sl-space-10);
+}
+
+.flx-blocks-style-library__color-gradient-picker .components-tab-panel__tabs-item {
+	// The one `!important` in this app: the tab is a core `Button` whose control height is set with
+	// core's own `!important`, which no added specificity can outrank — unlike the `SelectDropdown`
+	// overrides, where repeating a class was enough.
+	height: auto !important;
+	min-height: 0;
+	// 0.5625rem per spec, not on the spacing ramp.
+	padding: var(--fxb-sl-space-05) 0.5625rem;
+	// Transparent, not absent, so the tab does not shift when the active state adds a visible one.
+	border: 1px solid transparent;
+	border-radius: var(--fxb-sl-radius-m);
+	background: none;
+	color: var(--fxb-sl-color-text-primary);
+	font-size: var(--fxb-sl-font-size-m);
+	font-weight: var(--fxb-sl-font-weight-regular);
+
+	// Core marks the active tab with a themed underline drawn as a `::after`; this design uses the
+	// pill fill instead, so both would otherwise show at once.
+	&::after {
+		content: none;
+	}
+
+	&.is-active {
+		border-color: rgba(0, 0, 0, 0.1);
+		background: var(--fxb-sl-color-gray-100);
+		font-weight: var(--fxb-sl-font-weight-semibold);
+	}
+}

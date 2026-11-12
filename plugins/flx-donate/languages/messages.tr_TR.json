@@ -1950,6 +1950,12 @@
         "Show the coupon box when the cart holds only donations": "Sepette yalnız bağış varken kupon kutusu görünsün",
         "Address book: donors keep addresses under My Account and pick them at the checkout (turn off when you post nothing)": "Adres defteri: bağışçılar Hesabım'da adres tutar ve ödemede seçer (posta ile bir şey göndermiyorsanız kapatın)",
         "Close without saving": "Kaydetmeden kapat",
-        "On phones keep the total and the button fixed at the bottom (form and checkout)": "Telefonda toplam ve düğme altta sabit dursun (form ve ödeme sayfası)"
+        "On phones keep the total and the button fixed at the bottom (form and checkout)": "Telefonda toplam ve düğme altta sabit dursun (form ve ödeme sayfası)",
+        "Person %s": "%s. kişi",
+        "e.g. Ayşe Yılmaz": "örn. Ayşe Yılmaz",
+        "Add another person with their own certificate": "Başka bir kişi ekle (ayrı sertifika)",
+        "Every person gets their own certificate. The remaining saplings go on the first certificate.": "Her kişiye ayrı sertifika gider. Kalan fidanlar ilk kişinin sertifikasına yazılır.",
+        "Please write a name for every person.": "Lütfen her kişi için bir ad yazın.",
+        "Other people": "Diğer kişiler"
     }
 }

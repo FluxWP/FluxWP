@@ -1,0 +1,54 @@
+.flx-blocks-style-library__inheritance-pill {
+	display: inline-flex;
+	align-items: center;
+	box-sizing: border-box;
+	// The two variants must measure the same height even though only one of them draws a border:
+	// a transparent border on the static pill keeps both boxes identical, so a mixed row of cards
+	// stays on one baseline.
+	border: var(--fxb-sl-border-width-input) solid transparent;
+	// Half the one-line pill height, not on the radius ramp.
+	border-radius: 0.625rem;
+	padding: 0 var(--fxb-sl-space-10);
+	font-size: var(--fxb-sl-font-size-xs);
+	font-weight: var(--fxb-sl-font-weight-regular);
+	// 1.125rem, the pill ramp, not on the line-height scale.
+	line-height: 1.125rem;
+	white-space: nowrap;
+}
+
+// Not a control: no hover treatment of its own. The cursor comes from the slot, whose click selects
+// the card.
+.flx-blocks-style-library__inheritance-pill--inherited {
+	// Set to 1 for a single-line pill.
+	--fxb-sl-inheritance-pill-max-lines: 2;
+
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: var(--fxb-sl-inheritance-pill-max-lines);
+	line-clamp: var(--fxb-sl-inheritance-pill-max-lines);
+	overflow: hidden;
+	max-width: 100%;
+	white-space: normal;
+	overflow-wrap: anywhere;
+	text-align: left;
+	background: var(--fxb-sl-color-gray-100);
+	color: var(--fxb-sl-color-text-muted);
+}
+
+.flx-blocks-style-library__inheritance-pill--reset {
+	border-color: var(--fxb-sl-color-gray-400);
+	background: transparent;
+	color: var(--fxb-sl-color-theme);
+	cursor: pointer;
+
+	&:hover:not(:disabled),
+	&:focus-visible {
+		border-color: var(--fxb-sl-color-theme);
+		background: var(--fxb-sl-color-theme-tint-4);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+}

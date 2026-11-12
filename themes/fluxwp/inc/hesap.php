@@ -1,8 +1,9 @@
 <?php
 /**
  * Hesap girişi:
- * - Bağış sayfasında (hero'nun altında) giriş durumu satırı: Giriş yap / Kayıt ol ya da Hesabım / Çıkış yap.
- *   Kısa kod: [flx_hesap_satiri]
+ * - Giriş durumu satırı: Giriş yap / Kayıt ol ya da Hesabım / Çıkış yap. Kısa kod: [flx_hesap_satiri].
+ *   Bağış sayfasına artık kendiliğinden eklenmez (yer kaplıyordu); eski davranış için
+ *   add_filter( 'flx_hesap_satiri_auto', '__return_true' ).
  * - Hesabım'dan giriş/kayıt sonrası geldiği sayfaya dönüş (?flx_donus=/bagis/).
  * - Boş sepetteki "Mağazaya geri dön" → "Bağışlar Sayfasına dön" (bağış sayfasına gider).
  * Giriş/Kayıt sekmeleri ve Google butonunun yeri: assets/js/main.js + theme.css.
@@ -60,7 +61,7 @@ add_shortcode( 'flx_hesap_satiri', 'flx_hesap_satiri' );
 
 /** Bağış sayfasında: hero (flx-page-head cover) bitince satır eklenir; hero yoksa içeriğin başına. */
 function flx_hesap_satiri_bagis_mi() {
-	if ( is_admin() || ! is_page() ) {
+	if ( is_admin() || ! is_page() || ! apply_filters( 'flx_hesap_satiri_auto', false ) ) {
 		return false;
 	}
 	$p = get_queried_object();

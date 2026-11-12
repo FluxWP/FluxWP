@@ -1,0 +1,1789 @@
+// cspell:ignore newcount whiteondark blackonlight outlineblack outlinewhite outlinedark outlinelight OZBO
+
+/**
+ * BLOCK: Flux Row / Layout
+ */
+
+/**
+ * Import External
+ */
+import { times } from 'lodash';
+
+/**
+ * Import Flux Components
+ */
+import {
+	PopColorControl,
+	SmallResponsiveControl,
+	RangeControl,
+	ResponsiveMeasurementControls,
+	FlxbkPanelBody,
+	FlxbkRadioButtons,
+	FlxbkImageControl,
+	BackgroundControl as FlxbkBackgroundControl,
+	BackgroundTypeControl,
+	GradientControl,
+	FlxbkVideoControl,
+	SubsectionWrap,
+	ColorGroup,
+	ResponsiveBorderControl,
+	BoxShadowControl,
+	DynamicTextInputControl,
+} from '@flx-blocks/components';
+import { showSettings } from '@flx-blocks/helpers';
+
+/**
+ * Import Block Specific Components
+ */
+import { BLEND_OPTIONS } from './constants';
+import metadata from './block.json';
+/**
+ * Import WordPress Internals
+ */
+import { Fragment } from '@wordpress/element';
+import { TextControl, ToggleControl, SelectControl } from '@wordpress/components';
+import { useDispatch, useSelect } from '@wordpress/data';
+
+/**
+ * Internal block libraries
+ */
+import { __ } from '@wordpress/i18n';
+import { resetAttr, useLinkedMeasureState, usePresetBinding } from '../../extension/token-indicators';
+import {
+	anyCornerInherited,
+	inheritedMeasureSlots,
+	measureAttrsForDevice,
+	presetValueForDevice,
+} from '../../extension/token-indicators/normalize';
+import { EditorBoxControl } from '../../extension/design-tokens/components/EditorBoxControl';
+import { useColorGroups } from '../../extension/design-tokens/hooks/use-color-groups';
+import { resolveColorLiteral } from '../../extension/design-tokens/color-literal';
+import { pickableTokensForControl } from '../../extension/token-picker';
+import { ColorControl } from '../../token-controls';
+
+/**
+ * Build the row edit
+ */
+function StyleControls(props) {
+	const { clientId, attributes, setAttributes, isSelected, context, isSiteStylesPanel } = props;
+	const {
+		uniqueID,
+		columns,
+		mobileLayout,
+		currentTab,
+		colLayout,
+		tabletLayout,
+		columnGutter,
+		customGutter,
+		customRowGutter,
+		collapseGutter,
+		tabletGutter,
+		mobileGutter,
+		tabletRowGutter,
+		mobileRowGutter,
+		gutterType,
+		rowGutterType,
+		collapseOrder,
+		topPadding,
+		bottomPadding,
+		leftPadding,
+		rightPadding,
+		topPaddingM,
+		bottomPaddingM,
+		leftPaddingM,
+		rightPaddingM,
+		topMargin,
+		bottomMargin,
+		topMarginM,
+		bottomMarginM,
+		gradient,
+		bgColor,
+		bgImg,
+		bgImgAttachment,
+		bgImgSize,
+		bgImgPosition,
+		bgImgRepeat,
+		bgImgID,
+		verticalAlignment,
+		overlayOpacity,
+		overlayBgImg,
+		overlayBgImgAttachment,
+		overlayBgImgID,
+		overlayBgImgPosition,
+		overlayBgImgRepeat,
+		overlayBgImgSize,
+		currentOverlayTab,
+		overlayBlendMode,
+		overlayGradAngle,
+		overlayGradLoc,
+		overlayGradLocSecond,
+		overlayGradType,
+		overlay,
+		overlayGradient,
+		overlaySecond,
+		htmlTag,
+		minHeight,
+		maxWidth,
+		bottomSep,
+		bottomSepColor,
+		bottomSepHeight,
+		bottomSepHeightMobile,
+		bottomSepHeightTab,
+		bottomSepWidth,
+		bottomSepWidthMobile,
+		bottomSepWidthTab,
+		topSep,
+		topSepColor,
+		topSepHeight,
+		topSepHeightMobile,
+		topSepHeightTab,
+		topSepWidth,
+		topSepWidthMobile,
+		topSepWidthTab,
+		firstColumnWidth,
+		secondColumnWidth,
+		textColor,
+		linkColor,
+		linkHoverColor,
+		tabletPadding,
+		topMarginT,
+		bottomMarginT,
+		minHeightUnit,
+		maxWidthUnit,
+		marginUnit,
+		columnsUnlocked,
+		tabletBackground,
+		tabletOverlay,
+		mobileBackground,
+		mobileOverlay,
+		columnsInnerHeight,
+		zIndex,
+		backgroundInline,
+		backgroundSettingTab,
+		backgroundSliderCount,
+		backgroundSlider,
+		inheritMaxWidth,
+		backgroundSliderSettings,
+		backgroundVideo,
+		backgroundVideoType,
+		overlaySecondOpacity,
+		overlayFirstOpacity,
+		paddingUnit,
+		align,
+		minHeightTablet,
+		minHeightMobile,
+		bgColorClass,
+		vsdesk,
+		vstablet,
+		vsmobile,
+		loggedInUser,
+		loggedIn,
+		loggedOut,
+		loggedInShow,
+		rcpAccess,
+		rcpMembership,
+		rcpMembershipLevel,
+		borderWidth,
+		tabletBorderWidth,
+		mobileBorderWidth,
+		borderRadius,
+		tabletBorderRadius,
+		mobileBorderRadius,
+		border,
+		tabletBorder,
+		mobileBorder,
+		borderStyle,
+		tabletBorderStyle,
+		mobileBorderStyle,
+		borderRadiusUnit,
+		borderRadiusOverflow,
+		isPrebuiltModal,
+		responsiveMaxWidth,
+		flxbkBlockCSS,
+		displayBoxShadow,
+		boxShadow,
+	} = attributes;
+
+	const { previewDevice } = useSelect(
+		(select) => {
+			return {
+				previewDevice: select('flxblocks/data').getPreviewDeviceType(),
+			};
+		},
+		[clientId]
+	);
+	const { setPreviewDeviceType: setPreviewDevice } = useDispatch('flxblocks/data');
+
+	// Design-token indicators: the per-attribute bound/overridden state for the selected preset, plus a
+	// reset that clears the mapped attribute back to the preset value (served by the existing scoped CSS).
+	const tokenBinding = usePresetBinding('flx/rowlayout', attributes, undefined, previewDevice);
+	// The block's own attribute schema is passed through so a reset can clear a color's legacy
+	// palette-CLASS companion (`bgColor` -> `bgColorClass`) as well as the color itself. WordPress emits
+	// those utility classes with `!important`, so a stale one outranks anything the reset restores and
+	// the row would keep the old color while the field claimed otherwise.
+	const resetToken = (attr) => resetAttr(attr, setAttributes, tokenBinding[attr]?.kind, metadata.attributes);
+	// One fetch of the block's effective palette groups, shared by both `ColorControl` instances below.
+	const colorGroups = useColorGroups(clientId);
+
+	// Empty when the token registry is inactive, which is what keeps the plain measurement control below
+	// as the fallback rather than leaving the row with no radius control at all.
+	const borderRadiusTokens = pickableTokensForControl('flx/rowlayout', 'borderRadius') || [];
+	// The Border Radius control keeps ONE linked/individual mode but writes a different attribute per
+	// breakpoint, so the mode must be read from — and "link" must collapse — whichever device is active.
+	const borderRadiusForDevice = measureAttrsForDevice(
+		attributes,
+		'borderRadius',
+		{ tablet: 'tabletBorderRadius', mobile: 'mobileBorderRadius' },
+		previewDevice
+	);
+	const borderRadiusPresetValue = presetValueForDevice(
+		tokenBinding.borderRadius?.presetValue,
+		tokenBinding.borderRadius?.responsive,
+		previewDevice
+	);
+	// What an unset corner falls back to on the active device: another breakpoint's corner before the
+	// preset's, matching the cascade the row actually renders through. The corners stay stored-empty —
+	// this only tells the field's popover which size is in effect and where it came from.
+	const inheritedBorderRadius = inheritedMeasureSlots(
+		previewDevice,
+		{ desktop: borderRadius, tablet: tabletBorderRadius },
+		borderRadiusPresetValue
+	);
+	const borderRadiusIsRelative = borderRadiusUnit === 'em' || borderRadiusUnit === 'rem';
+	// `resetOn` clears the remembered link choice on a preset change, since an override records a choice
+	// about the PREVIOUS preset's corners — otherwise an explicit "link" would stick and hide a new
+	// preset's per-corner radius.
+	const { isLinked: borderRadiusIsLinked, toggleLink: toggleBorderRadiusLink } = useLinkedMeasureState({
+		forDevice: borderRadiusForDevice,
+		previewDevice,
+		setAttributes,
+		resetOn: attributes.fxbPreset,
+	});
+
+	// Every write clears `bgColorClass` as well. That attribute carries a legacy global-palette CLASS,
+	// which the row emits on its own wrapper and which therefore beats the color this control writes —
+	// so leaving a stale one behind would silently discard the pick. `PopColorControl` set the class
+	// itself through `onClassChange`; a palette color is a token alias now, so nothing sets it again.
+	const writeBackgroundColor = (value) => setAttributes({ bgColor: value, bgColorClass: '' });
+
+	// The row offers the same Background Color field in two mutually exclusive branches — the video
+	// background tab and the normal one — so it is built once here rather than written out at both.
+	//
+	// Rendered unconditionally, NOT behind a `colorGroups.length` guard the way the measure controls sit
+	// behind their token pool. The pool is read synchronously from a localized global, so it is either
+	// there on the first render or not at all; `useColorGroups` fetches over REST and returns an empty
+	// list until it resolves, so gating on it would mount the old control and visibly swap it a moment
+	// later. An empty list costs only an empty Style Library tab — the Custom tab still picks any color.
+	const backgroundColorField = (
+		<ColorControl
+			label={__('Background Color', 'flx-blocks')}
+			value={bgColor ? bgColor : ''}
+			groups={colorGroups}
+			status={{
+				bound: !!tokenBinding.bgColor?.bound,
+				modified: !!tokenBinding.bgColor?.overridden,
+			}}
+			onReset={() => resetToken('bgColor')}
+			onPick={(alias) => writeBackgroundColor(alias)}
+			onCustom={(literal) => writeBackgroundColor(literal)}
+			onClear={() => writeBackgroundColor('')}
+			resolveLiteral={resolveColorLiteral}
+		/>
+	);
+
+	const editorDocument = document.querySelector('iframe[name="editor-canvas"]')?.contentWindow.document || document;
+	const tabletBackgroundType = tabletBackground?.[0]?.type || 'normal';
+	const mobileBackgroundType = mobileBackground?.[0]?.type || 'normal';
+	const mobileAllowForceOverride =
+		'' === mobileBackground?.[0]?.bgImg &&
+		(('normal' === tabletBackgroundType && '' !== tabletBackground?.[0]?.bgImg) ||
+			('gradient' === tabletBackgroundType && '' !== tabletBackground?.[0]?.gradient) ||
+			('normal' === backgroundSettingTab && '' !== bgImg) ||
+			('gradient' === backgroundSettingTab && '' !== gradient))
+			? true
+			: false;
+	const tabletAllowForceOverride =
+		'' === tabletBackground?.[0]?.bgImg &&
+		(('normal' === backgroundSettingTab && '' !== bgImg) ||
+			('gradient' === backgroundSettingTab && '' !== gradient))
+			? true
+			: false;
+	const hasBorderRadius =
+		borderRadius?.[0] || borderRadius?.[1] || borderRadius?.[2] || borderRadius?.[3] ? true : false;
+	const hasBackgroundVideoContent = undefined !== backgroundVideo && undefined !== backgroundVideo[0];
+	const saveSlideItem = (value, thisIndex) => {
+		let currentItems = backgroundSlider;
+		if (undefined === currentItems || (undefined !== currentItems && undefined === currentItems[0])) {
+			currentItems = [
+				{
+					bgColor: '',
+					bgImg: '',
+					bgImgID: '',
+				},
+			];
+		}
+		const newUpdate = currentItems.map((item, index) => {
+			if (index === thisIndex) {
+				item = { ...item, ...value };
+			}
+			return item;
+		});
+		setAttributes({
+			backgroundSlider: newUpdate,
+		});
+	};
+	const saveTabletBackground = (value) => {
+		const newUpdate = tabletBackground.map((item, index) => {
+			if (0 === index) {
+				item = { ...item, ...value };
+			}
+			return item;
+		});
+		setAttributes({
+			tabletBackground: newUpdate,
+		});
+	};
+	const saveTabletOverlay = (value) => {
+		const newUpdate = tabletOverlay.map((item, index) => {
+			if (0 === index) {
+				item = { ...item, ...value };
+			}
+			return item;
+		});
+		setAttributes({
+			tabletOverlay: newUpdate,
+		});
+	};
+	const saveMobileBackground = (value) => {
+		const newUpdate = mobileBackground.map((item, index) => {
+			if (0 === index) {
+				item = { ...item, ...value };
+			}
+			return item;
+		});
+		setAttributes({
+			mobileBackground: newUpdate,
+		});
+	};
+	const saveMobileOverlay = (value) => {
+		const newUpdate = mobileOverlay.map((item, index) => {
+			if (0 === index) {
+				item = { ...item, ...value };
+			}
+			return item;
+		});
+		setAttributes({
+			mobileOverlay: newUpdate,
+		});
+	};
+	const saveSliderSettings = (value) => {
+		let backgroundSlidSettings;
+		if (
+			undefined === backgroundSliderSettings ||
+			(undefined !== backgroundSliderSettings && undefined === backgroundSliderSettings[0])
+		) {
+			backgroundSlidSettings = [
+				{
+					youTube: '',
+					local: '',
+					localID: '',
+					vimeo: '',
+					ratio: '16/9',
+					btns: false,
+					btnsMute: false,
+					loop: true,
+					mute: true,
+				},
+			];
+		} else {
+			backgroundSlidSettings = backgroundSliderSettings;
+		}
+		const newUpdate = backgroundSlidSettings.map((item, index) => {
+			if (0 === index) {
+				item = { ...item, ...value };
+			}
+			return item;
+		});
+		setAttributes({
+			backgroundSliderSettings: newUpdate,
+		});
+	};
+	function saveBoxShadow(value) {
+		const newItems = boxShadow.map((item, thisIndex) => {
+			if (0 === thisIndex) {
+				item = { ...item, ...value };
+			}
+			return item;
+		});
+
+		setAttributes({
+			boxShadow: newItems,
+		});
+	}
+	const saveVideoSettings = (value) => {
+		let bgVideo;
+		if (undefined === backgroundVideo || (undefined !== backgroundVideo && undefined === backgroundVideo[0])) {
+			bgVideo = [
+				{
+					youTube: '',
+					local: '',
+					localID: '',
+					vimeo: '',
+					ratio: '16/9',
+					btns: false,
+					btnsMute: false,
+					loop: true,
+					mute: true,
+				},
+			];
+		} else {
+			bgVideo = backgroundVideo;
+		}
+		const newUpdate = bgVideo.map((item, index) => {
+			if (0 === index) {
+				item = { ...item, ...value };
+			}
+			return item;
+		});
+		setAttributes({
+			backgroundVideo: newUpdate,
+		});
+	};
+	const overTabControls = (
+		<div>
+			<PopColorControl
+				label={__('Overlay Color', 'flx-blocks')}
+				value={tabletOverlay && tabletOverlay[0] ? tabletOverlay[0].overlay : ''}
+				default={''}
+				onChange={(value) => saveTabletOverlay({ overlay: value })}
+			/>
+			<FlxbkBackgroundControl
+				label={__('Overlay Image', 'flx-blocks')}
+				hasImage={tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImg ? true : false}
+				imageURL={
+					tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImg
+						? tabletOverlay[0].overlayBgImg
+						: ''
+				}
+				imageID={
+					tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImgID
+						? tabletOverlay[0].overlayBgImgID
+						: ''
+				}
+				imagePosition={
+					tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImgPosition
+						? tabletOverlay[0].overlayBgImgPosition
+						: 'center center'
+				}
+				imageSize={
+					tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImgSize
+						? tabletOverlay[0].overlayBgImgSize
+						: 'cover'
+				}
+				imageRepeat={
+					tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImgRepeat
+						? tabletOverlay[0].overlayBgImgRepeat
+						: 'no-repeat'
+				}
+				imageAttachment={
+					tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImgAttachment
+						? tabletOverlay[0].overlayBgImgAttachment
+						: 'scroll'
+				}
+				imageAttachmentParallax={true}
+				imageAttachmentFixed={false}
+				onRemoveImage={() => {
+					saveTabletOverlay({
+						overlayBgImgID: '',
+						overlayBgImg: '',
+					});
+				}}
+				onSaveImage={(img) => {
+					saveTabletOverlay({
+						overlayBgImgID: img.id,
+						overlayBgImg: img.url,
+					});
+				}}
+				onSaveURL={(newURL) => {
+					if (
+						newURL !==
+						(tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImg
+							? tabletOverlay[0].overlayBgImg
+							: '')
+					) {
+						saveTabletOverlay({
+							overlayBgImgID: undefined,
+							overlayBgImg: newURL,
+						});
+					}
+				}}
+				onSavePosition={(value) => saveTabletOverlay({ overlayBgImgPosition: value })}
+				onSaveSize={(value) => saveTabletOverlay({ overlayBgImgSize: value })}
+				onSaveRepeat={(value) => saveTabletOverlay({ overlayBgImgRepeat: value })}
+				onSaveAttachment={(value) => saveTabletOverlay({ overlayBgImgAttachment: value })}
+				disableMediaButtons={
+					tabletOverlay && tabletOverlay[0] && tabletOverlay[0].overlayBgImg
+						? tabletOverlay[0].overlayBgImg
+						: ''
+				}
+				dynamicAttribute="tabletOverlay:0:overlayBgImg"
+				isSelected={isSelected}
+				attributes={attributes}
+				setAttributes={setAttributes}
+				name={'flx/rowlayout'}
+				clientId={clientId}
+			/>
+		</div>
+	);
+	const overMobileControls = (
+		<div>
+			<PopColorControl
+				label={__('Overlay Color', 'flx-blocks')}
+				value={mobileOverlay && mobileOverlay[0] ? mobileOverlay[0].overlay : ''}
+				default={''}
+				onChange={(value) => saveMobileOverlay({ overlay: value })}
+			/>
+			<FlxbkBackgroundControl
+				label={__('Overlay Image', 'flx-blocks')}
+				hasImage={mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImg ? true : false}
+				imageURL={
+					mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImg
+						? mobileOverlay[0].overlayBgImg
+						: ''
+				}
+				imageID={
+					mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImgID
+						? mobileOverlay[0].overlayBgImgID
+						: ''
+				}
+				imagePosition={
+					mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImgPosition
+						? mobileOverlay[0].overlayBgImgPosition
+						: 'center center'
+				}
+				imageSize={
+					mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImgSize
+						? mobileOverlay[0].overlayBgImgSize
+						: 'cover'
+				}
+				imageRepeat={
+					mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImgRepeat
+						? mobileOverlay[0].overlayBgImgRepeat
+						: 'no-repeat'
+				}
+				imageAttachment={
+					mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImgAttachment
+						? mobileOverlay[0].overlayBgImgAttachment
+						: 'scroll'
+				}
+				imageAttachmentParallax={true}
+				imageAttachmentFixed={false}
+				onRemoveImage={() => {
+					saveMobileOverlay({
+						overlayBgImgID: '',
+						overlayBgImg: '',
+					});
+				}}
+				onSaveImage={(img) => {
+					saveMobileOverlay({
+						overlayBgImgID: img.id,
+						overlayBgImg: img.url,
+					});
+				}}
+				onSaveURL={(newURL) => {
+					if (
+						newURL !==
+						(mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImg
+							? mobileOverlay[0].overlayBgImg
+							: '')
+					) {
+						saveMobileOverlay({
+							overlayBgImgID: undefined,
+							overlayBgImg: newURL,
+						});
+					}
+				}}
+				onSavePosition={(value) => saveMobileOverlay({ overlayBgImgPosition: value })}
+				onSaveSize={(value) => saveMobileOverlay({ overlayBgImgSize: value })}
+				onSaveRepeat={(value) => saveMobileOverlay({ overlayBgImgRepeat: value })}
+				onSaveAttachment={(value) => saveMobileOverlay({ overlayBgImgAttachment: value })}
+				disableMediaButtons={
+					mobileOverlay && mobileOverlay[0] && mobileOverlay[0].overlayBgImg
+						? mobileOverlay[0].overlayBgImg
+						: ''
+				}
+				dynamicAttribute="mobileOverlay:0:overlayBgImg"
+				isSelected={isSelected}
+				attributes={attributes}
+				setAttributes={setAttributes}
+				name={'flx/rowlayout'}
+				clientId={clientId}
+			/>
+		</div>
+	);
+	const mobileControls = (
+		<>
+			<ToggleControl
+				label={__('Set custom background for Mobile?', 'flx-blocks')}
+				checked={mobileBackground && mobileBackground[0] ? mobileBackground[0].enable : false}
+				onChange={(value) => saveMobileBackground({ enable: value })}
+			/>
+			{mobileBackground?.[0]?.enable && (
+				<>
+					<BackgroundTypeControl
+						label={__('Type', 'flx-blocks')}
+						type={mobileBackground?.[0]?.type ? mobileBackground[0].type : 'normal'}
+						onChange={(value) => saveMobileBackground({ type: value })}
+						allowedTypes={['normal', 'gradient']}
+					/>
+					{'gradient' === mobileBackgroundType && (
+						<GradientControl
+							value={mobileBackground?.[0]?.gradient}
+							onChange={(value) => saveMobileBackground({ gradient: value })}
+							gradients={[]}
+						/>
+					)}
+					{'normal' === mobileBackgroundType && (
+						<>
+							<PopColorControl
+								label={__('Background Color', 'flx-blocks')}
+								value={mobileBackground[0].bgColor ? mobileBackground[0].bgColor : ''}
+								default={''}
+								onChange={(value) => saveMobileBackground({ bgColor: value })}
+							/>
+							{mobileAllowForceOverride && (
+								<ToggleControl
+									label={__('Force no image for mobile', 'flx-blocks')}
+									checked={
+										mobileBackground && mobileBackground[0]
+											? mobileBackground[0].forceOverDesk
+											: false
+									}
+									onChange={(value) => saveMobileBackground({ forceOverDesk: value })}
+								/>
+							)}
+							<FlxbkBackgroundControl
+								label={__('Background Image', 'flx-blocks')}
+								hasImage={
+									mobileBackground && mobileBackground[0] && mobileBackground[0].bgImg ? true : false
+								}
+								imageURL={
+									mobileBackground && mobileBackground[0] && mobileBackground[0].bgImg
+										? mobileBackground[0].bgImg
+										: ''
+								}
+								imageID={
+									mobileBackground && mobileBackground[0] && mobileBackground[0].bgImgID
+										? mobileBackground[0].bgImgID
+										: ''
+								}
+								imagePosition={
+									mobileBackground && mobileBackground[0] && mobileBackground[0].bgImgPosition
+										? mobileBackground[0].bgImgPosition
+										: 'center center'
+								}
+								imageSize={
+									mobileBackground && mobileBackground[0] && mobileBackground[0].bgImgSize
+										? mobileBackground[0].bgImgSize
+										: 'cover'
+								}
+								imageRepeat={
+									mobileBackground && mobileBackground[0] && mobileBackground[0].bgImgRepeat
+										? mobileBackground[0].bgImgRepeat
+										: 'no-repeat'
+								}
+								imageAttachment={
+									mobileBackground && mobileBackground[0] && mobileBackground[0].bgImgAttachment
+										? mobileBackground[0].bgImgAttachment
+										: 'scroll'
+								}
+								imageAttachmentParallax={true}
+								onRemoveImage={() => {
+									saveMobileBackground({
+										bgImgID: '',
+										bgImg: '',
+									});
+								}}
+								onSaveImage={(img) => {
+									saveMobileBackground({
+										bgImgID: img.id,
+										bgImg: img.url,
+									});
+								}}
+								onSaveURL={(newURL) => {
+									if (
+										newURL !==
+										(mobileBackground && mobileBackground[0] && mobileBackground[0].bgImg
+											? mobileBackground[0].bgImg
+											: '')
+									) {
+										saveMobileBackground({
+											bgImgID: undefined,
+											bgImg: newURL,
+										});
+									}
+								}}
+								onSavePosition={(value) => saveMobileBackground({ bgImgPosition: value })}
+								onSaveSize={(value) => saveMobileBackground({ bgImgSize: value })}
+								onSaveRepeat={(value) => saveMobileBackground({ bgImgRepeat: value })}
+								onSaveAttachment={(value) => saveMobileBackground({ bgImgAttachment: value })}
+								disableMediaButtons={
+									mobileBackground && mobileBackground[0] && mobileBackground[0].bgImg
+										? mobileBackground[0].bgImg
+										: ''
+								}
+								dynamicAttribute="mobileBackground:0:bgImg"
+								isSelected={isSelected}
+								attributes={attributes}
+								setAttributes={setAttributes}
+								name={'flx/rowlayout'}
+								clientId={clientId}
+							/>
+						</>
+					)}
+				</>
+			)}
+		</>
+	);
+	const mobileOverlayControls = (
+		<>
+			<ToggleControl
+				label={__('Set custom background overlay for mobile?', 'flx-blocks')}
+				checked={mobileOverlay && mobileOverlay[0] ? mobileOverlay[0].enable : false}
+				onChange={(value) => saveMobileOverlay({ enable: value })}
+			/>
+			{mobileOverlay && mobileOverlay[0] && mobileOverlay[0].enable && (
+				<>
+					<RangeControl
+						label={__('Overlay Opacity', 'flx-blocks')}
+						value={mobileOverlay && mobileOverlay[0] ? mobileOverlay[0].overlayOpacity : 30}
+						onChange={(value) => {
+							saveMobileOverlay({
+								overlayOpacity: value,
+							});
+						}}
+						min={0}
+						max={100}
+						reset={true}
+					/>
+					<BackgroundTypeControl
+						label={__('Overlay Type', 'flx-blocks')}
+						type={mobileOverlay[0].currentOverlayTab ? mobileOverlay[0].currentOverlayTab : 'normal'}
+						onChange={(value) => saveMobileOverlay({ currentOverlayTab: value })}
+						allowedTypes={['normal', 'gradient']}
+					/>
+					{'gradient' === mobileOverlay[0].currentOverlayTab && (
+						<GradientControl
+							value={mobileOverlay[0].gradient}
+							onChange={(value) => saveMobileOverlay({ gradient: value })}
+							gradients={[]}
+						/>
+					)}
+					{'gradient' !== mobileOverlay[0].currentOverlayTab && overMobileControls}
+					<SelectControl
+						label={__('Blend Mode', 'flx-blocks')}
+						value={mobileOverlay && mobileOverlay[0] ? mobileOverlay[0].overlayBlendMode : 'none'}
+						options={BLEND_OPTIONS}
+						onChange={(value) => saveMobileOverlay({ overlayBlendMode: value })}
+					/>
+					<p>{__('Notice: Blend Mode not supported in all browsers', 'flx-blocks')}</p>
+				</>
+			)}
+		</>
+	);
+	const tabletControls = (
+		<>
+			<ToggleControl
+				label={__('Set custom background for tablets?', 'flx-blocks')}
+				checked={tabletBackground && tabletBackground[0] ? tabletBackground[0].enable : false}
+				onChange={(value) => saveTabletBackground({ enable: value })}
+			/>
+			{tabletBackground?.[0]?.enable && (
+				<>
+					<BackgroundTypeControl
+						label={__('Type', 'flx-blocks')}
+						type={tabletBackground?.[0]?.type ? tabletBackground[0].type : 'normal'}
+						onChange={(value) => saveTabletBackground({ type: value })}
+						allowedTypes={['normal', 'gradient']}
+					/>
+					{'gradient' === tabletBackgroundType && (
+						<GradientControl
+							value={tabletBackground?.[0]?.gradient}
+							onChange={(value) => saveTabletBackground({ gradient: value })}
+							gradients={[]}
+						/>
+					)}
+					{'normal' === tabletBackgroundType && (
+						<>
+							<PopColorControl
+								label={__('Background Color', 'flx-blocks')}
+								value={tabletBackground[0].bgColor ? tabletBackground[0].bgColor : ''}
+								default={''}
+								onChange={(value) => saveTabletBackground({ bgColor: value })}
+							/>
+							{tabletAllowForceOverride && (
+								<ToggleControl
+									label={__('Force no image/gradient for tablet', 'flx-blocks')}
+									checked={
+										tabletBackground && tabletBackground[0]
+											? tabletBackground[0].forceOverDesk
+											: false
+									}
+									onChange={(value) => saveTabletBackground({ forceOverDesk: value })}
+								/>
+							)}
+							<FlxbkBackgroundControl
+								label={__('Background Image', 'flx-blocks')}
+								hasImage={
+									tabletBackground && tabletBackground[0] && tabletBackground[0].bgImg ? true : false
+								}
+								imageURL={
+									tabletBackground && tabletBackground[0] && tabletBackground[0].bgImg
+										? tabletBackground[0].bgImg
+										: ''
+								}
+								imageID={
+									tabletBackground && tabletBackground[0] && tabletBackground[0].bgImgID
+										? tabletBackground[0].bgImgID
+										: ''
+								}
+								imagePosition={
+									tabletBackground && tabletBackground[0] && tabletBackground[0].bgImgPosition
+										? tabletBackground[0].bgImgPosition
+										: 'center center'
+								}
+								imageSize={
+									tabletBackground && tabletBackground[0] && tabletBackground[0].bgImgSize
+										? tabletBackground[0].bgImgSize
+										: 'cover'
+								}
+								imageRepeat={
+									tabletBackground && tabletBackground[0] && tabletBackground[0].bgImgRepeat
+										? tabletBackground[0].bgImgRepeat
+										: 'no-repeat'
+								}
+								imageAttachment={
+									tabletBackground && tabletBackground[0] && tabletBackground[0].bgImgAttachment
+										? tabletBackground[0].bgImgAttachment
+										: 'scroll'
+								}
+								imageAttachmentParallax={true}
+								onRemoveImage={() => {
+									saveTabletBackground({
+										bgImgID: '',
+										bgImg: '',
+									});
+								}}
+								onSaveImage={(img) => {
+									saveTabletBackground({
+										bgImgID: img.id,
+										bgImg: img.url,
+									});
+								}}
+								onSaveURL={(newURL) => {
+									if (
+										newURL !==
+										(tabletBackground && tabletBackground[0] && tabletBackground[0].bgImg
+											? tabletBackground[0].bgImg
+											: '')
+									) {
+										saveTabletBackground({
+											bgImgID: undefined,
+											bgImg: newURL,
+										});
+									}
+								}}
+								onSavePosition={(value) => saveTabletBackground({ bgImgPosition: value })}
+								onSaveSize={(value) => saveTabletBackground({ bgImgSize: value })}
+								onSaveRepeat={(value) => saveTabletBackground({ bgImgRepeat: value })}
+								onSaveAttachment={(value) => saveTabletBackground({ bgImgAttachment: value })}
+								disableMediaButtons={
+									tabletBackground && tabletBackground[0] && tabletBackground[0].bgImg
+										? tabletBackground[0].bgImg
+										: ''
+								}
+								dynamicAttribute="tabletBackground:0:bgImg"
+								isSelected={isSelected}
+								attributes={attributes}
+								setAttributes={setAttributes}
+								name={'flx/rowlayout'}
+								clientId={clientId}
+							/>
+						</>
+					)}
+				</>
+			)}
+		</>
+	);
+	const tabletOverlayControls = (
+		<>
+			<ToggleControl
+				label={__('Set custom background overlay for tablets?', 'flx-blocks')}
+				checked={tabletOverlay && tabletOverlay[0] ? tabletOverlay[0].enable : false}
+				onChange={(value) => saveTabletOverlay({ enable: value })}
+			/>
+			{tabletOverlay && tabletOverlay[0] && tabletOverlay[0].enable && (
+				<>
+					<RangeControl
+						label={__('Overlay Opacity', 'flx-blocks')}
+						value={tabletOverlay && tabletOverlay[0] ? tabletOverlay[0].overlayOpacity : 30}
+						onChange={(value) => {
+							saveTabletOverlay({
+								overlayOpacity: value,
+							});
+						}}
+						min={0}
+						max={100}
+						reset={true}
+					/>
+					<BackgroundTypeControl
+						label={__('Overlay Type', 'flx-blocks')}
+						type={tabletOverlay[0].currentOverlayTab ? tabletOverlay[0].currentOverlayTab : 'normal'}
+						onChange={(value) => saveTabletOverlay({ currentOverlayTab: value })}
+						allowedTypes={['normal', 'gradient']}
+					/>
+					{'gradient' === tabletOverlay[0].currentOverlayTab && (
+						<GradientControl
+							value={tabletOverlay[0].gradient}
+							onChange={(value) => saveTabletOverlay({ gradient: value })}
+							gradients={[]}
+						/>
+					)}
+					{'gradient' !== tabletOverlay[0].currentOverlayTab && overTabControls}
+					<SelectControl
+						label={__('Blend Mode', 'flx-blocks')}
+						value={tabletOverlay && tabletOverlay[0] ? tabletOverlay[0].overlayBlendMode : 'none'}
+						options={BLEND_OPTIONS}
+						onChange={(value) => saveTabletOverlay({ overlayBlendMode: value })}
+					/>
+					<p>{__('Notice: Blend Mode not supported in all browsers', 'flx-blocks')}</p>
+				</>
+			)}
+		</>
+	);
+
+	const slideControls = (index) => {
+		let bgSlider;
+		if (undefined === backgroundSlider || (undefined !== backgroundSlider && undefined === backgroundSlider[0])) {
+			bgSlider = [
+				{
+					bgColor: '',
+					bgImg: '',
+					bgImgID: '',
+				},
+			];
+		} else {
+			bgSlider = backgroundSlider;
+		}
+		return (
+			<SubsectionWrap
+				label={__('Slide', 'flx-blocks') + ' ' + (index + 1) + ' ' + __('Settings', 'flx-blocks')}
+			>
+				<PopColorControl
+					label={__('Slide Background Color', 'flx-blocks')}
+					value={
+						undefined !== bgSlider && undefined !== bgSlider[index] && bgSlider[index].bgColor
+							? bgSlider[index].bgColor
+							: ''
+					}
+					default={''}
+					onChange={(value) => saveSlideItem({ bgColor: value }, index)}
+				/>
+				<FlxbkImageControl
+					label={__('Slide Background Image', 'flx-blocks')}
+					hasImage={bgSlider && bgSlider[index] && bgSlider[index].bgImg ? true : false}
+					imageURL={bgSlider && bgSlider[index] && bgSlider[index].bgImg ? bgSlider[index].bgImg : ''}
+					imageID={bgSlider && bgSlider[index] && bgSlider[index].bgImgID ? bgSlider[index].bgImgID : ''}
+					onRemoveImage={() => {
+						saveSlideItem(
+							{
+								bgImgID: '',
+								bgImg: '',
+							},
+							index
+						);
+					}}
+					onSaveImage={(img) => {
+						saveSlideItem(
+							{
+								bgImgID: img.id,
+								bgImg: img.url,
+							},
+							index
+						);
+					}}
+					disableMediaButtons={bgSlider && bgSlider[index] && bgSlider[index].bgImg ? true : false}
+				/>
+			</SubsectionWrap>
+		);
+	};
+	const deskControls = (
+		<>
+			<BackgroundTypeControl
+				label={__('Type', 'flx-blocks')}
+				type={backgroundSettingTab}
+				onChange={(value) => {
+					setAttributes({ backgroundSettingTab: value });
+				}}
+			/>
+			{'slider' === backgroundSettingTab && (
+				<>
+					<RangeControl
+						label={__('Slider Item Count', 'flx-blocks')}
+						value={undefined !== backgroundSliderCount ? backgroundSliderCount : 1}
+						onChange={(newcount) => {
+							let newSlides;
+							if (
+								undefined === backgroundSlider ||
+								(undefined !== backgroundSlider && undefined === backgroundSlider[0])
+							) {
+								newSlides = [
+									{
+										bgColor: '',
+										bgImg: '',
+										bgImgID: '',
+									},
+								];
+							} else {
+								newSlides = backgroundSlider;
+							}
+							if (newSlides.length < newcount) {
+								const amount = Math.abs(newcount - newSlides.length);
+								{
+									times(amount, (n) => {
+										newSlides.push({
+											bgColor: '',
+											bgImg: '',
+											bgImgID: '',
+										});
+									});
+								}
+								setAttributes({ backgroundSlider: newSlides });
+							}
+							setAttributes({ backgroundSliderCount: newcount });
+						}}
+						step={1}
+						min={1}
+						max={20}
+					/>
+					{times(undefined !== backgroundSliderCount ? backgroundSliderCount : 1, (n) => slideControls(n))}
+					<FlxbkRadioButtons
+						label={__('Slider Image Size', 'flx-blocks')}
+						value={bgImgSize}
+						options={[
+							{ value: 'cover', label: __('Cover', 'flx-blocks') },
+							{ value: 'contain', label: __('Contain', 'flx-blocks') },
+							{ value: 'auto', label: __('Auto', 'flx-blocks') },
+						]}
+						onChange={(value) => setAttributes({ bgImgSize: value })}
+					/>
+					<SelectControl
+						label={__('Slider Image Position', 'flx-blocks')}
+						value={bgImgPosition}
+						options={[
+							{ value: 'center top', label: __('Center Top', 'flx-blocks') },
+							{ value: 'center center', label: __('Center Center', 'flx-blocks') },
+							{ value: 'center bottom', label: __('Center Bottom', 'flx-blocks') },
+							{ value: 'left top', label: __('Left Top', 'flx-blocks') },
+							{ value: 'left center', label: __('Left Center', 'flx-blocks') },
+							{ value: 'left bottom', label: __('Left Bottom', 'flx-blocks') },
+							{ value: 'right top', label: __('Right Top', 'flx-blocks') },
+							{ value: 'right center', label: __('Right Center', 'flx-blocks') },
+							{ value: 'right bottom', label: __('Right Bottom', 'flx-blocks') },
+						]}
+						onChange={(value) => setAttributes({ bgImgPosition: value })}
+					/>
+					<FlxbkRadioButtons
+						label={__('Slider Image Repeat', 'flx-blocks')}
+						value={bgImgRepeat}
+						options={[
+							{ value: 'no-repeat', label: __('No Repeat', 'flx-blocks') },
+							{ value: 'repeat', label: __('Repeat', 'flx-blocks') },
+							{ value: 'repeat-x', label: __('Repeat-x', 'flx-blocks') },
+							{ value: 'repeat-y', label: __('Repeat-y', 'flx-blocks') },
+						]}
+						onChange={(value) => setAttributes({ bgImgRepeat: value })}
+					/>
+					<ToggleControl
+						label={__('Slider Auto Play', 'flx-blocks')}
+						checked={
+							backgroundSliderSettings &&
+							backgroundSliderSettings[0] &&
+							undefined !== backgroundSliderSettings[0].autoPlay
+								? backgroundSliderSettings[0].autoPlay
+								: true
+						}
+						onChange={(value) => saveSliderSettings({ autoPlay: value })}
+					/>
+					{backgroundSliderSettings &&
+						backgroundSliderSettings[0] &&
+						undefined !== backgroundSliderSettings[0].autoPlay &&
+						backgroundSliderSettings[0].autoPlay && (
+							<>
+								<RangeControl
+									label={__('Autoplay Speed', 'flx-blocks')}
+									value={backgroundSliderSettings[0].speed}
+									onChange={(value) => saveSliderSettings({ speed: value })}
+									min={500}
+									max={15000}
+									step={10}
+								/>
+								<ToggleControl
+									label={__('Show Pause Button', 'flx-blocks')}
+									checked={
+										backgroundSliderSettings &&
+										backgroundSliderSettings[0] &&
+										undefined !== backgroundSliderSettings[0].showPauseButton
+											? backgroundSliderSettings[0].showPauseButton
+											: false
+									}
+									onChange={(value) => saveSliderSettings({ showPauseButton: value })}
+									help={__(
+										'Display a pause/play button in the bottom right corner.',
+										'flx-blocks'
+									)}
+								/>
+							</>
+						)}
+					<SelectControl
+						label={__('Transition Style', 'flx-blocks')}
+						options={[
+							{
+								label: __('Fade', 'flx-blocks'),
+								value: 'fade',
+							},
+							{
+								label: __('Slide', 'flx-blocks'),
+								value: 'slide',
+							},
+						]}
+						value={
+							backgroundSliderSettings &&
+							backgroundSliderSettings[0] &&
+							undefined !== backgroundSliderSettings[0].fade &&
+							false === backgroundSliderSettings[0].fade
+								? 'slide'
+								: 'fade'
+						}
+						onChange={(value) => {
+							if ('slide' === value) {
+								saveSliderSettings({ fade: false });
+							} else {
+								saveSliderSettings({ fade: true });
+							}
+						}}
+					/>
+					<RangeControl
+						label={__('Slider Transition Speed', 'flx-blocks')}
+						value={
+							backgroundSliderSettings &&
+							backgroundSliderSettings[0] &&
+							undefined !== backgroundSliderSettings[0].tranSpeed
+								? backgroundSliderSettings[0].tranSpeed
+								: 400
+						}
+						onChange={(value) => saveSliderSettings({ tranSpeed: value })}
+						min={100}
+						max={2000}
+						step={10}
+					/>
+					<SelectControl
+						label={__('Arrow Style', 'flx-blocks')}
+						options={[
+							{
+								label: __('White on Dark', 'flx-blocks'),
+								value: 'whiteondark',
+							},
+							{
+								label: __('Black on Light', 'flx-blocks'),
+								value: 'blackonlight',
+							},
+							{
+								label: __('Outline Black', 'flx-blocks'),
+								value: 'outlineblack',
+							},
+							{
+								label: __('Outline White', 'flx-blocks'),
+								value: 'outlinewhite',
+							},
+							{
+								label: __('None', 'flx-blocks'),
+								value: 'none',
+							},
+						]}
+						value={
+							backgroundSliderSettings &&
+							backgroundSliderSettings[0] &&
+							undefined !== backgroundSliderSettings[0].arrowStyle
+								? backgroundSliderSettings[0].arrowStyle
+								: 'none'
+						}
+						onChange={(value) => saveSliderSettings({ arrowStyle: value })}
+					/>
+					<SelectControl
+						label={__('Dot Style', 'flx-blocks')}
+						options={[
+							{
+								label: __('Dark', 'flx-blocks'),
+								value: 'dark',
+							},
+							{
+								label: __('Light', 'flx-blocks'),
+								value: 'light',
+							},
+							{
+								label: __('Outline Dark', 'flx-blocks'),
+								value: 'outlinedark',
+							},
+							{
+								label: __('Outline Light', 'flx-blocks'),
+								value: 'outlinelight',
+							},
+							{
+								label: __('None', 'flx-blocks'),
+								value: 'none',
+							},
+						]}
+						value={
+							backgroundSliderSettings &&
+							backgroundSliderSettings[0] &&
+							undefined !== backgroundSliderSettings[0].dotStyle
+								? backgroundSliderSettings[0].dotStyle
+								: 'dark'
+						}
+						onChange={(value) => saveSliderSettings({ dotStyle: value })}
+					/>
+				</>
+			)}
+			{'video' === backgroundSettingTab && (
+				<>
+					<SelectControl
+						label={__('Background Video Type', 'flx-blocks')}
+						options={[
+							{
+								label: __('Local (MP4)', 'flx-blocks'),
+								value: 'local',
+							},
+							{
+								label: __('YouTube', 'flx-blocks'),
+								value: 'youtube',
+							},
+							{
+								label: __('Vimeo', 'flx-blocks'),
+								value: 'vimeo',
+							},
+						]}
+						value={backgroundVideoType}
+						onChange={(value) => setAttributes({ backgroundVideoType: value })}
+					/>
+					{(undefined === backgroundVideoType || 'local' === backgroundVideoType) && (
+						<Fragment>
+							<FlxbkVideoControl
+								label={__('Background Video', 'flx-blocks')}
+								hasVideo={hasBackgroundVideoContent && backgroundVideo[0].localID ? true : false}
+								videoURL={
+									backgroundVideo && backgroundVideo[0] && backgroundVideo[0].local
+										? backgroundVideo[0].local
+										: ''
+								}
+								videoID={
+									backgroundVideo && backgroundVideo[0] && backgroundVideo[0].localID
+										? backgroundVideo[0].localID
+										: ''
+								}
+								onRemoveVideo={() => {
+									saveVideoSettings({
+										localID: '',
+										local: '',
+									});
+								}}
+								onSaveVideo={(video) => {
+									saveVideoSettings({
+										localID: video.id,
+										local: video.url,
+									});
+								}}
+								disableMediaButtons={
+									hasBackgroundVideoContent && backgroundVideo[0].local ? true : false
+								}
+							/>
+							<DynamicTextInputControl
+								label={__('HTML5 Video File URL', 'flx-blocks')}
+								value={
+									hasBackgroundVideoContent && backgroundVideo[0].local
+										? backgroundVideo[0].local
+										: ''
+								}
+								onChange={(value) => saveVideoSettings({ local: value })}
+								dynamicAttribute={'backgroundVideo:0:local'}
+								allowClear={true}
+								{...props}
+							/>
+						</Fragment>
+					)}
+					{undefined !== backgroundVideoType && 'local' !== backgroundVideoType && (
+						<div class="components-base-control">
+							{__(
+								'Warning: Embedded videos are not ideal for background content. Consider self hosting instead.',
+								'flx-blocks'
+							)}
+						</div>
+					)}
+					{'youtube' === backgroundVideoType && (
+						<TextControl
+							label={__('YouTube ID ( example: OZBOEnHhR14 )', 'flx-blocks')}
+							value={
+								hasBackgroundVideoContent && backgroundVideo[0].youTube
+									? backgroundVideo[0].youTube
+									: ''
+							}
+							onChange={(value) => saveVideoSettings({ youTube: value })}
+						/>
+					)}
+					{'vimeo' === backgroundVideoType && (
+						<TextControl
+							label={__('Vimeo ID ( example: 789006133 )', 'flx-blocks')}
+							value={
+								hasBackgroundVideoContent && backgroundVideo[0].vimeo ? backgroundVideo[0].vimeo : ''
+							}
+							onChange={(value) => saveVideoSettings({ vimeo: value })}
+						/>
+					)}
+					{undefined !== backgroundVideoType && 'local' !== backgroundVideoType && (
+						<SelectControl
+							label={__('Background Video Ratio', 'flx-blocks')}
+							options={[
+								{
+									label: '16 / 9',
+									value: '16/9',
+								},
+								{
+									label: '4 / 3',
+									value: '4/3',
+								},
+								{
+									label: '3 / 2',
+									value: '3/2',
+								},
+							]}
+							value={
+								hasBackgroundVideoContent && undefined !== backgroundVideo[0].ratio
+									? backgroundVideo[0].ratio
+									: '16/9'
+							}
+							onChange={(value) => saveVideoSettings({ ratio: value })}
+						/>
+					)}
+					<ToggleControl
+						label={__('Mute Video', 'flx-blocks')}
+						checked={
+							hasBackgroundVideoContent && undefined !== backgroundVideo[0].mute
+								? backgroundVideo[0].mute
+								: true
+						}
+						onChange={(value) => saveVideoSettings({ mute: value })}
+					/>
+					<ToggleControl
+						label={__('Loop Video', 'flx-blocks')}
+						checked={
+							hasBackgroundVideoContent && undefined !== backgroundVideo[0].loop
+								? backgroundVideo[0].loop
+								: true
+						}
+						onChange={(value) => saveVideoSettings({ loop: value })}
+					/>
+					{(undefined === backgroundVideoType || 'local' === backgroundVideoType) && (
+						<>
+							<ToggleControl
+								label={__('Show Mute Unmute Buttons?', 'flx-blocks')}
+								checked={
+									hasBackgroundVideoContent && undefined !== backgroundVideo[0].btnsMute
+										? backgroundVideo[0].btnsMute
+										: false
+								}
+								onChange={(value) => saveVideoSettings({ btnsMute: value })}
+							/>
+							<ToggleControl
+								label={__('Show Play Pause Buttons?', 'flx-blocks')}
+								checked={
+									hasBackgroundVideoContent && undefined !== backgroundVideo[0].btns
+										? backgroundVideo[0].btns
+										: true
+								}
+								onChange={(value) => saveVideoSettings({ btns: value })}
+							/>
+						</>
+					)}
+					{backgroundColorField}
+					{undefined !== backgroundVideoType && 'local' === backgroundVideoType && (
+						<FlxbkImageControl
+							label={__('Select Video Poster', 'flx-blocks')}
+							hasImage={bgImg ? true : false}
+							imageURL={bgImg ? bgImg : ''}
+							imageID={bgImgID ? bgImgID : ''}
+							onRemoveImage={() => {
+								setAttributes({
+									bgImgID: null,
+									bgImg: null,
+								});
+							}}
+							onSaveImage={(img) => {
+								setAttributes({
+									bgImgID: img.id,
+									bgImg: img.url,
+								});
+							}}
+							disableMediaButtons={bgImg ? true : false}
+						/>
+					)}
+				</>
+			)}
+			{'gradient' === backgroundSettingTab && (
+				<GradientControl
+					value={gradient}
+					onChange={(value) => setAttributes({ gradient: value })}
+					gradients={[]}
+				/>
+			)}
+			{'normal' === backgroundSettingTab && (
+				<>
+					{backgroundColorField}
+					<FlxbkBackgroundControl
+						label={__('Background Image', 'flx-blocks')}
+						hasImage={bgImg}
+						imageURL={bgImg}
+						imageID={bgImgID}
+						imagePosition={bgImgPosition ? bgImgPosition : 'center center'}
+						imageSize={bgImgSize ? bgImgSize : 'cover'}
+						imageRepeat={bgImgRepeat ? bgImgRepeat : 'no-repeat'}
+						imageAttachment={bgImgAttachment ? bgImgAttachment : 'scroll'}
+						imageAttachmentParallax={true}
+						onRemoveImage={() => {
+							setAttributes({
+								bgImgID: null,
+								bgImg: null,
+							});
+						}}
+						onSaveImage={(img) => {
+							setAttributes({
+								bgImgID: img.id,
+								bgImg: img.url,
+							});
+						}}
+						onSaveURL={(newURL) => {
+							if (newURL !== bgImg) {
+								setAttributes({
+									bgImgID: undefined,
+									bgImg: newURL,
+								});
+							}
+						}}
+						onSavePosition={(value) => setAttributes({ bgImgPosition: value })}
+						onSaveSize={(value) => setAttributes({ bgImgSize: value })}
+						onSaveRepeat={(value) => setAttributes({ bgImgRepeat: value })}
+						onSaveAttachment={(value) => setAttributes({ bgImgAttachment: value })}
+						inlineImage={backgroundInline}
+						onSaveInlineImage={(value) => setAttributes({ backgroundInline: value })}
+						disableMediaButtons={bgImg}
+						dynamicAttribute="bgImg"
+						isSelected={isSelected}
+						attributes={attributes}
+						setAttributes={setAttributes}
+						name={'flx/rowlayout'}
+						clientId={clientId}
+						context={context}
+					/>
+				</>
+			)}
+		</>
+	);
+	const overControls = (
+		<>
+			<PopColorControl
+				label={__('Overlay Color', 'flx-blocks')}
+				value={overlay ? overlay : ''}
+				default={''}
+				onChange={(value) => setAttributes({ overlay: value })}
+				opacityValue={undefined !== overlayFirstOpacity && '' !== overlayFirstOpacity ? overlayFirstOpacity : 1}
+				onOpacityChange={(value) => setAttributes({ overlayFirstOpacity: value })}
+			/>
+			<FlxbkBackgroundControl
+				label={__('Background Image', 'flx-blocks')}
+				hasImage={overlayBgImg}
+				imageURL={overlayBgImg}
+				imageID={overlayBgImgID}
+				imagePosition={overlayBgImgPosition ? overlayBgImgPosition : 'center center'}
+				imageSize={overlayBgImgSize ? overlayBgImgSize : 'cover'}
+				imageRepeat={overlayBgImgRepeat ? overlayBgImgRepeat : 'no-repeat'}
+				imageAttachment={overlayBgImgAttachment ? overlayBgImgAttachment : 'scroll'}
+				imageAttachmentParallax={true}
+				onRemoveImage={() => {
+					setAttributes({
+						overlayBgImgID: null,
+						overlayBgImg: null,
+					});
+				}}
+				onSaveImage={(img) => {
+					setAttributes({
+						overlayBgImgID: img.id,
+						overlayBgImg: img.url,
+					});
+				}}
+				onSaveURL={(newURL) => {
+					if (newURL !== overlayBgImg) {
+						setAttributes({
+							overlayBgImgID: undefined,
+							overlayBgImg: newURL,
+						});
+					}
+				}}
+				onSavePosition={(value) => setAttributes({ overlayBgImgPosition: value })}
+				onSaveSize={(value) => setAttributes({ overlayBgImgSize: value })}
+				onSaveRepeat={(value) => setAttributes({ overlayBgImgRepeat: value })}
+				onSaveAttachment={(value) => setAttributes({ overlayBgImgAttachment: value })}
+				disableMediaButtons={overlayBgImg}
+				dynamicAttribute="overlayBgImg"
+				isSelected={isSelected}
+				attributes={attributes}
+				setAttributes={setAttributes}
+				name={'flx/rowlayout'}
+				clientId={clientId}
+			/>
+		</>
+	);
+	const deskOverlayControls = (
+		<>
+			<RangeControl
+				label={__('Overlay Opacity', 'flx-blocks')}
+				value={overlayOpacity}
+				onChange={(value) => {
+					setAttributes({
+						overlayOpacity: value,
+					});
+				}}
+				min={0}
+				max={100}
+				reset={true}
+			/>
+			<BackgroundTypeControl
+				label={__('Overlay Type', 'flx-blocks')}
+				type={currentOverlayTab ? currentOverlayTab : 'normal'}
+				onChange={(value) => setAttributes({ currentOverlayTab: value })}
+				allowedTypes={['normal', 'gradient']}
+			/>
+			{'gradient' === currentOverlayTab && (
+				<GradientControl
+					value={overlayGradient}
+					onChange={(value) => setAttributes({ overlayGradient: value })}
+					gradients={[]}
+				/>
+			)}
+			{'gradient' !== currentOverlayTab && <>{overControls}</>}
+			<SelectControl
+				label={__('Blend Mode', 'flx-blocks')}
+				value={overlayBlendMode}
+				options={BLEND_OPTIONS}
+				onChange={(value) => setAttributes({ overlayBlendMode: value })}
+			/>
+			<p>{__('Notice: Blend Mode not supported in all browsers', 'flx-blocks')}</p>
+		</>
+	);
+	const colorControls = (
+		<FlxbkPanelBody
+			title={__('Text Color Settings', 'flx-blocks')}
+			initialOpen={false}
+			panelName={'fxb-row-text-color'}
+		>
+			<ColorGroup>
+				<PopColorControl
+					label={__('Text Color', 'flx-blocks')}
+					value={textColor ? textColor : ''}
+					default={''}
+					onChange={(value) => setAttributes({ textColor: value })}
+				/>
+				<PopColorControl
+					label={__('Link Color', 'flx-blocks')}
+					value={linkColor ? linkColor : ''}
+					default={''}
+					onChange={(value) => setAttributes({ linkColor: value })}
+					swatchLabel2={__('Hover Color', 'flx-blocks')}
+					value2={linkHoverColor ? linkHoverColor : ''}
+					default2={''}
+					onChange2={(value) => setAttributes({ linkHoverColor: value })}
+				/>
+			</ColorGroup>
+		</FlxbkPanelBody>
+	);
+	return (
+		<>
+			{showSettings('background', 'flx/rowlayout') && (
+				<FlxbkPanelBody
+					title={__('Background Settings', 'flx-blocks')}
+					initialOpen={true}
+					panelName={'fxb-row-bg-settings'}
+				>
+					{isSiteStylesPanel ? (
+						backgroundColorField
+					) : (
+						<SmallResponsiveControl
+							label={__('Background', 'flx-blocks')}
+							hasPadding={true}
+							desktopChildren={deskControls}
+							tabletChildren={tabletControls}
+							mobileChildren={mobileControls}
+						/>
+					)}
+				</FlxbkPanelBody>
+			)}
+			{!isSiteStylesPanel && showSettings('backgroundOverlay', 'flx/rowlayout') && (
+				<FlxbkPanelBody
+					title={__('Background Overlay Settings', 'flx-blocks')}
+					initialOpen={false}
+					panelName={'fxb-row-bg-overlay'}
+				>
+					<SmallResponsiveControl
+						label={__('Overlay', 'flx-blocks')}
+						hasPadding={true}
+						desktopChildren={deskOverlayControls}
+						tabletChildren={tabletOverlayControls}
+						mobileChildren={mobileOverlayControls}
+					/>
+				</FlxbkPanelBody>
+			)}
+			{showSettings('border', 'flx/rowlayout') && (
+				<FlxbkPanelBody
+					title={__('Border Settings', 'flx-blocks')}
+					initialOpen={false}
+					panelName={'fxb-row-border-settings'}
+				>
+					<ResponsiveBorderControl
+						label={__('Border', 'flx-blocks')}
+						value={borderStyle}
+						tabletValue={tabletBorderStyle}
+						mobileValue={mobileBorderStyle}
+						onChange={(value) => setAttributes({ borderStyle: value })}
+						onChangeTablet={(value) => setAttributes({ tabletBorderStyle: value })}
+						onChangeMobile={(value) => setAttributes({ mobileBorderStyle: value })}
+					/>
+					{borderRadiusTokens.length ? (
+						<EditorBoxControl
+							label={__('Border Radius', 'flx-blocks')}
+							value={borderRadiusForDevice.value}
+							onChange={(next) => setAttributes({ [borderRadiusForDevice.attr]: next })}
+							previewDevice={previewDevice}
+							onDeviceChange={setPreviewDevice}
+							tokens={borderRadiusTokens}
+							defaultValue={inheritedBorderRadius.values}
+							inherited={anyCornerInherited(inheritedBorderRadius.inherited)}
+							state={tokenBinding.borderRadius}
+							onReset={() => resetToken('borderRadius')}
+							isLinked={borderRadiusIsLinked}
+							onToggleLink={toggleBorderRadiusLink}
+							unit={borderRadiusUnit}
+							units={['px', 'em', 'rem', '%']}
+							onUnit={(value) => setAttributes({ borderRadiusUnit: value })}
+							min={0}
+							max={borderRadiusIsRelative ? 24 : 500}
+							step={borderRadiusIsRelative ? 0.1 : 1}
+						/>
+					) : (
+						<ResponsiveMeasurementControls
+							label={__('Border Radius', 'flx-blocks')}
+							value={borderRadius}
+							tabletValue={tabletBorderRadius}
+							mobileValue={mobileBorderRadius}
+							onChange={(value) => setAttributes({ borderRadius: value })}
+							onChangeTablet={(value) => setAttributes({ tabletBorderRadius: value })}
+							onChangeMobile={(value) => setAttributes({ mobileBorderRadius: value })}
+							unit={borderRadiusUnit}
+							units={['px', 'em', 'rem', '%']}
+							onUnit={(value) => setAttributes({ borderRadiusUnit: value })}
+							max={borderRadiusUnit === 'em' || borderRadiusUnit === 'rem' ? 24 : 500}
+							step={borderRadiusUnit === 'em' || borderRadiusUnit === 'rem' ? 0.1 : 1}
+							min={0}
+							isBorderRadius={true}
+							allowEmpty={true}
+						/>
+					)}
+					{hasBorderRadius && (
+						<ToggleControl
+							label={__('Overflow Hidden', 'flx-blocks')}
+							checked={borderRadiusOverflow}
+							onChange={(value) => setAttributes({ borderRadiusOverflow: value })}
+						/>
+					)}
+					<BoxShadowControl
+						label={__('Box Shadow', 'flx-blocks')}
+						enable={undefined !== displayBoxShadow ? displayBoxShadow : false}
+						color={
+							undefined !== boxShadow && undefined !== boxShadow[0] && undefined !== boxShadow[0].color
+								? boxShadow[0].color
+								: '#000000'
+						}
+						colorDefault={'#000000'}
+						onArrayChange={(color, opacity) => saveBoxShadow({ color, opacity })}
+						opacity={
+							undefined !== boxShadow && undefined !== boxShadow[0] && undefined !== boxShadow[0].opacity
+								? boxShadow[0].opacity
+								: 0.2
+						}
+						hOffset={
+							undefined !== boxShadow && undefined !== boxShadow[0] && undefined !== boxShadow[0].hOffset
+								? boxShadow[0].hOffset
+								: 0
+						}
+						vOffset={
+							undefined !== boxShadow && undefined !== boxShadow[0] && undefined !== boxShadow[0].vOffset
+								? boxShadow[0].vOffset
+								: 0
+						}
+						blur={
+							undefined !== boxShadow && undefined !== boxShadow[0] && undefined !== boxShadow[0].blur
+								? boxShadow[0].blur
+								: 14
+						}
+						spread={
+							undefined !== boxShadow && undefined !== boxShadow[0] && undefined !== boxShadow[0].spread
+								? boxShadow[0].spread
+								: 0
+						}
+						inset={
+							undefined !== boxShadow && undefined !== boxShadow[0] && undefined !== boxShadow[0].inset
+								? boxShadow[0].inset
+								: false
+						}
+						onEnableChange={(value) => {
+							setAttributes({
+								displayBoxShadow: value,
+							});
+						}}
+						onColorChange={(value) => {
+							saveBoxShadow({ color: value });
+						}}
+						onOpacityChange={(value) => {
+							saveBoxShadow({ opacity: value });
+						}}
+						onHOffsetChange={(value) => {
+							saveBoxShadow({ hOffset: value });
+						}}
+						onVOffsetChange={(value) => {
+							saveBoxShadow({ vOffset: value });
+						}}
+						onBlurChange={(value) => {
+							saveBoxShadow({ blur: value });
+						}}
+						onSpreadChange={(value) => {
+							saveBoxShadow({ spread: value });
+						}}
+						onInsetChange={(value) => {
+							saveBoxShadow({ inset: value });
+						}}
+					/>
+				</FlxbkPanelBody>
+			)}
+			<div className="fxt-sidebar-settings-spacer"></div>
+			{showSettings('textColor', 'flx/rowlayout') && colorControls}
+		</>
+	);
+}
+export default StyleControls;
