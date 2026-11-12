@@ -119,14 +119,11 @@ final class FLXCRM_Page_Contact {
 		do_action( 'flxcrm_person_card_actions', $c, self::$context );
 		// Kişiyi sil: gözden uzak, ⋯ menüsünde (yalnız CRM'in kendi kartında); onay sorulur.
 		if ( $can && '' === self::$context ) {
-			echo '<details class="flxcrm-more"><summary class="button" aria-label="' . esc_attr__( 'More actions', 'flx-crm' ) . '"><span aria-hidden="true">⋯</span></summary><div class="flxcrm-more__menu">';
-			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-danger flxcrm-delete" data-flxcrm-delete>';
+			echo '<details class="flxcrm-more"><summary class="button" aria-label="' . esc_attr__( 'More actions', 'flx-crm' ) . '"><span aria-hidden="true">⋯</span></summary><div class="flxcrm-more__menu" role="menu">';
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-delete" data-flx-confirm="' . esc_attr__( 'Donations and orders stay in their own plugins; only the CRM card is deleted.', 'flx-crm' ) . '" data-flx-confirm-title="' . esc_attr__( 'Delete contact', 'flx-crm' ) . '" data-flx-confirm-ok="' . esc_attr__( 'Delete permanently', 'flx-crm' ) . '" data-flx-confirm-type="' . esc_attr( $name ) . '" data-flx-confirm-danger>';
 			wp_nonce_field( 'flxcrm_contact_delete' );
-			echo '<input type="hidden" name="action" value="flxcrm_contact_delete"><input type="hidden" name="id" value="' . (int) $id . '">';
-			echo '<strong>' . esc_html__( 'Delete contact', 'flx-crm' ) . '</strong><small class="flxcrm-muted">' . esc_html__( 'Donations and orders stay in their own plugins; only the CRM card is deleted.', 'flx-crm' ) . '</small>';
-			/* translators: %s: contact name */
-			echo '<label><span>' . sprintf( esc_html__( 'To confirm, type %s', 'flx-crm' ), '<b>' . esc_html( $name ) . '</b>' ) . '</span><input type="text" name="confirm_name" autocomplete="off" spellcheck="false" data-name="' . esc_attr( $name ) . '"></label>'; // phpcs:ignore WordPress.Security.EscapeOutput
-			echo '<button class="button flxcrm-delete__btn" disabled>' . flxcrm_icon( 'trash', 14 ) . esc_html__( 'Delete permanently', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<input type="hidden" name="action" value="flxcrm_contact_delete"><input type="hidden" name="id" value="' . (int) $id . '"><input type="hidden" name="confirm_name" value="' . esc_attr( $name ) . '">';
+			echo '<button class="flxcrm-more__item is-bad" role="menuitem">' . flxcrm_icon( 'trash', 15 ) . esc_html__( 'Delete permanently', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
 			echo '</div></details>';
 		}
 		echo '</div></header>';
@@ -269,7 +266,7 @@ final class FLXCRM_Page_Contact {
 					echo '<span class="flxcrm-muted">' . esc_html( $by->display_name ) . '</span>';
 				}
 				if ( $manual ) {
-					echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flxcrm-confirm>' . wp_nonce_field( 'flxcrm_event_delete', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_event_delete"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret() . '<input type="hidden" name="event" value="' . (int) $e['id'] . '"><button class="button-link button-link-delete">' . esc_html__( 'Delete', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
+					echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm="' . esc_attr__( 'This timeline entry will be deleted.', 'flx-crm' ) . '" data-flx-confirm-title="' . esc_attr__( 'Delete entry', 'flx-crm' ) . '" data-flx-confirm-ok="' . esc_attr__( 'Delete', 'flx-crm' ) . '" data-flx-confirm-danger>' . wp_nonce_field( 'flxcrm_event_delete', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxcrm_event_delete"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret() . '<input type="hidden" name="event" value="' . (int) $e['id'] . '"><button class="button-link button-link-delete">' . esc_html__( 'Delete', 'flx-crm' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 				echo '</div>';
 			}

@@ -92,3 +92,17 @@ echo flx_check( array( 'name' => 'terms', 'label_html' => __( 'I accept the <a h
 - `data-flx-manual` on the wrapper: markup and look only; the owner (a React form, an own script) formats and validates itself.
 - Sizes and colours are CSS variables on the wrapper or a parent: `--flx-f-h` (60px), `--flx-f-r`, `--flx-f-fs`, `--flx-f-p` (accent), `--flx-f-line`, `--flx-f-bg`, `--flx-f-ink`, `--flx-f-err`. Dark mode follows the same rules as the phone field.
 - `sync.py` copies `field/` into every package next to `flx-brand`.
+
+## Dialogs and toasts (1.6.0)
+
+Use these instead of the browser's `confirm()` / `alert()` / `prompt()` everywhere. Loaded on every admin page; on the front end call `flx_dialog_enqueue()`.
+
+```js
+if ( await flxDialog.confirm( { title: 'Delete?', message: 'This cannot be undone.', ok: 'Delete', danger: true } ) ) { … }
+await flxDialog.confirm( { title: 'Delete contact', danger: true, type: 'Jane Doe' } ); // OK stays disabled until the name is typed
+await flxDialog.alert( { title: 'Saved', message: '…' } );
+const v = await flxDialog.prompt( { title: 'Rename', value: 'old' } );            // null = cancelled
+flxDialog.toast( 'Saved.', { type: 'ok' } );                                      // ok | bad | warn | info, timeout ms (0 = stays)
+```
+
+Without code: `<form data-flx-confirm="Message" data-flx-confirm-title="…" data-flx-confirm-ok="Delete" data-flx-confirm-danger data-flx-confirm-type="Jane Doe">` (also on a button or link). After OK the form is submitted again with the same submit button, so other `submit` handlers still run. Native `<dialog>` (focus trap, Esc), backdrop click cancels, bottom sheet under 600 px, Flux Admin light/dark colours. Texts: `flx_dialog_strings` filter. One dialog at a time; later calls wait in a queue.

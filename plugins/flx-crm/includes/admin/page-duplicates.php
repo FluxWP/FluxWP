@@ -91,7 +91,7 @@ final class FLXCRM_Page_Duplicates {
 		}
 		$can = flxcrm_can( true );
 		foreach ( $groups as $g ) {
-			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-card flxcrm-card--flush" data-flxcrm-confirm>';
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-card flxcrm-card--flush" data-flx-confirm="' . esc_attr__( 'The other cards are merged into the kept one. This cannot be undone.', 'flx-crm' ) . '" data-flx-confirm-title="' . esc_attr__( 'Merge contacts', 'flx-crm' ) . '" data-flx-confirm-ok="' . esc_attr__( 'Merge', 'flx-crm' ) . '">';
 			wp_nonce_field( 'flxcrm_merge' );
 			echo '<input type="hidden" name="action" value="flxcrm_merge"><p class="flxcrm-muted" style="padding:12px 18px 0;margin:0">' . esc_html( 'phone' === $g['why'] ? __( 'Same phone number', 'flx-crm' ) : __( 'Same name', 'flx-crm' ) ) . '</p>';
 			echo '<table class="flxcrm-table"><thead><tr><th>' . esc_html__( 'Keep', 'flx-crm' ) . '</th><th>' . esc_html__( 'Merge', 'flx-crm' ) . '</th><th>' . esc_html__( 'Name', 'flx-crm' ) . '</th><th>' . esc_html__( 'Phone', 'flx-crm' ) . '</th><th>' . esc_html__( 'E-mail', 'flx-crm' ) . '</th><th>' . esc_html__( 'Used by', 'flx-crm' ) . '</th></tr></thead><tbody>';

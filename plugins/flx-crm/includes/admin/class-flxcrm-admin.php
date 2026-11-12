@@ -96,6 +96,8 @@ final class FLXCRM_Admin {
 					'done'     => __( 'Done. Reloading the page…', 'flx-crm' ),
 					'fail'     => __( 'Something went wrong. Please try again.', 'flx-crm' ),
 					'confirm'  => __( 'Are you sure? This cannot be undone.', 'flx-crm' ),
+					'bulkDelete' => __( 'Delete the selected contacts?', 'flx-crm' ),
+					'del'      => __( 'Delete', 'flx-crm' ),
 					'matches'  => __( '%s contacts match', 'flx-crm' ),
 					'counting' => __( 'Counting…', 'flx-crm' ),
 					'scoring'  => __( 'Calculating…', 'flx-crm' ),
