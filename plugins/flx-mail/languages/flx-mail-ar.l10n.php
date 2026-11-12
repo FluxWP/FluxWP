@@ -3,6 +3,7 @@ return array(
  'language' => 'ar',
  'plural-forms' => 'nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3&&n%100<=10?3:n%100>=11&&n%100<=99?4:5);',
  'messages' => array(
+  'WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages.' => 'لا يمكن لـ WhatsApp Cloud API إرسال الرسائل إلى المجموعات. اختر اتصال Evolution API أو Flux WPAPI لرسائل المجموعات.',
   'Sample email' => 'عينة من البريد الإلكتروني',
   'Branded email layout' => 'تخطيط البريد الإلكتروني ذو العلامات التجارية',
   '<p>Hello Ayşe,</p><p>Every email sent from our site uses this layout: our logo on top, the content in the middle, and our organization details and social media accounts at the bottom.</p>' => '<p>مرحبًا عائشة،</p><p>كل بريد إلكتروني يتم إرساله من موقعنا يستخدم هذا التصميم: شعارنا في الأعلى، والمحتوى في المنتصف، وتفاصيل مؤسستنا وحساباتنا على وسائل التواصل الاجتماعي في الأسفل.</p>',

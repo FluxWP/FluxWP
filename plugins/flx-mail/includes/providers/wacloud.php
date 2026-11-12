@@ -148,6 +148,9 @@ function flxi_wacloud_post( $id_or_cfg, $to, array $payload ) {
  * (24 saat penceresi dışında tek yol).
  */
 function flxi_wacloud_send( $config, $msg, $conn = array() ) {
+	if ( flxi_is_wa_group( $msg['recipient'] ) ) {
+		return flxi_wa_group_unsupported();
+	}
 	$phone = flxi_normalize_phone( $msg['recipient'] );
 	if ( ! $phone ) {
 		/* translators: %s: telefon */

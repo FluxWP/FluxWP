@@ -3,6 +3,7 @@ return array(
  'language' => 'fr_FR',
  'plural-forms' => 'nplurals=2; plural=(n > 1);',
  'messages' => array(
+  'WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages.' => 'L’API WhatsApp Cloud ne peut pas envoyer de messages aux groupes. Choisissez une connexion Evolution API ou Flux WPAPI pour les messages de groupe.',
   'Sample email' => 'Exemple d\'e-mail',
   'Branded email layout' => 'Disposition des e-mails de marque',
   '<p>Hello Ayşe,</p><p>Every email sent from our site uses this layout: our logo on top, the content in the middle, and our organization details and social media accounts at the bottom.</p>' => '<p> Bonjour Ayşe, </p> <p> Chaque e-mail envoyé depuis notre site utilise cette présentation : notre logo en haut, le contenu au milieu et les détails de notre organisation et nos comptes de réseaux sociaux en bas. </p>',

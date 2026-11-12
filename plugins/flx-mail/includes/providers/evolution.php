@@ -61,7 +61,7 @@ function flxi_evolution_request( $config, $path, $body = null, $method = 'POST' 
 }
 
 function flxi_evolution_send( $config, $msg, $conn = array() ) {
-	$phone = flxi_normalize_phone( $msg['recipient'] );
+	$phone = flxi_wa_number( $msg['recipient'] ); // grup kimliği (…@g.us) olduğu gibi gider
 	if ( ! $phone ) {
 		/* translators: %s: telefon */
 		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid phone: %s', 'flx-mail' ), $msg['recipient'] ), 'retry' => false );

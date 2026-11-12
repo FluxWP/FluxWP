@@ -109,7 +109,10 @@ function flxi_wa_send_media( $conn, $to, $kind, array $m ) {
 	if ( ! in_array( $kind, array( 'image', 'audio', 'document' ), true ) ) {
 		return array( 'ok' => false, 'error' => 'kind' );
 	}
-	$phone = flxi_normalize_phone( $to );
+	if ( 'wacloud' === $conn['type'] && flxi_is_wa_group( $to ) ) {
+		return flxi_wa_group_unsupported();
+	}
+	$phone = flxi_wa_number( $to ); // Evolution / Flux WPAPI: grup kimliği olduğu gibi
 	if ( ! $phone ) {
 		/* translators: %s: telefon */
 		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid phone: %s', 'flx-mail' ), $to ) );

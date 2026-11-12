@@ -473,6 +473,22 @@ function flxi_normalize_phone( $raw ) {
 	return flx_phone_digits( $raw, 'tr' );
 }
 
+/** WhatsApp grup kimliği mi (120363…@g.us, eski biçim 905321234567-1600000000@g.us). */
+function flxi_is_wa_group( $to ) {
+	return (bool) preg_match( '/^\d{5,30}(-\d{5,20})?@g\.us$/', trim( (string) $to ) );
+}
+
+/** Evolution / Flux WPAPI için alıcı: grup kimliği olduğu gibi, telefon rakam biçiminde. '' geçersiz. */
+function flxi_wa_number( $to ) {
+	$to = trim( (string) $to );
+	return flxi_is_wa_group( $to ) ? $to : flxi_normalize_phone( $to );
+}
+
+/** Cloud API grup mesajı göndermez: grup alıcısında dönen hata. */
+function flxi_wa_group_unsupported() {
+	return array( 'ok' => false, 'error' => __( 'WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages.', 'flx-mail' ), 'retry' => false, 'code' => 'group_unsupported' );
+}
+
 /** Alt kısım çizimleri (e-postanın en altındaki ağaç silüeti). */
 function flxi_footer_arts() {
 	return array(

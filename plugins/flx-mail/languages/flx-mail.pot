@@ -2753,3 +2753,7 @@ msgstr ""
 
 msgid "Shown in dark mode (Apple Mail, iOS). Default: the light logo from the organisation profile; without one the normal logo stays."
 msgstr ""
+
+#: includes/helpers.php
+msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
+msgstr ""

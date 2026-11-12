@@ -3,6 +3,7 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages.' => 'WhatsApp Cloud API gruplara mesaj gönderemez. Grup mesajları için Evolution API ya da Flux WPAPI bağlantısı seçin.',
   'All people, who allowed this channel (%s)' => 'Tüm kişiler, bu kanala izin verenler (%s)',
   'Sample email' => 'Örnek e-posta',
   'Branded email layout' => 'Kurumsal e-posta görünümü',

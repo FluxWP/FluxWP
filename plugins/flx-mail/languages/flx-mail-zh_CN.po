@@ -2648,3 +2648,7 @@ msgstr "已拒绝（未填写 App Secret）"
 
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr "验证传入的 webhook 来自 Meta。在填写之前，传入事件会被拒绝。"
+
+#: includes/helpers.php
+msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
+msgstr "WhatsApp Cloud API 无法向群组发送消息。请为群组消息选择 Evolution API 或 Flux WPAPI 连接。"
