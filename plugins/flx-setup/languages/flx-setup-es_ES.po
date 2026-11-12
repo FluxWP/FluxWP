@@ -1911,3 +1911,36 @@ msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgstr[0] "Actualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s."
 msgstr[1] "Actualmente la copia de seguridad de actualización%1$des%2$s. Actualmente, la copia de seguridad de actualización de%1$des%2$s."
+
+msgid "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
+msgstr "Error en la descarga: la carpeta temporal (%s) no tiene permisos de escritura. Pide a tu proveedor que revise los permisos."
+
+msgid "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Error en la descarga: el disco está lleno (%s libres). Elimina copias de seguridad antiguas (Flux Backup) u otros archivos grandes e inténtalo de nuevo."
+
+msgid "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full."
+msgstr "Error en la descarga: el archivo recibido no es un zip (%s). Un cortafuegos o proxy puede estar alterando la respuesta, o el disco puede estar lleno."
+
+msgid "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Error en la descarga: no se pudo guardar el archivo, el disco puede estar lleno (%s). Elimina copias de seguridad antiguas (Flux Backup) u otros archivos grandes e inténtalo de nuevo."
+
+msgid "Download failed: the connection timed out (%s)."
+msgstr "Error en la descarga: se agotó el tiempo de conexión (%s)."
+
+msgid "Download failed: the server could not be reached (%s)."
+msgstr "Error en la descarga: no se pudo conectar con el servidor (%s)."
+
+msgid "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings."
+msgstr "La clave del sitio fue rechazada o este paquete no está permitido para ella. Revisa la clave en FluxWP Panel › Ajustes."
+
+msgid "This version is no longer on the server. Click \"Check for updates\" and try again."
+msgstr "Esta versión ya no está en el servidor. Haz clic en «Buscar actualizaciones» e inténtalo de nuevo."
+
+msgid "Too many requests in a short time. Wait a minute and try again."
+msgstr "Demasiadas solicitudes en poco tiempo. Espera un minuto e inténtalo de nuevo."
+
+msgid "The update server had a temporary error. Try again in a minute."
+msgstr "El servidor de actualizaciones tuvo un error temporal. Inténtalo de nuevo en un minuto."
+
+msgid "Download failed (HTTP %1$d: %2$s). %3$s"
+msgstr "Error en la descarga (HTTP %1$d: %2$s). %3$s"
