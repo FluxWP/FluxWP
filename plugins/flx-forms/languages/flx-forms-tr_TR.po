@@ -9146,3 +9146,194 @@ msgstr "Could not connect to Stripe: %s"
 
 msgid "Stripe API error (HTTP %d)."
 msgstr "Stripe API error (HTTP %d)."
+
+msgid "Please fill in the required fields."
+msgstr "Lütfen zorunlu alanları doldurun."
+
+msgid "Full name"
+msgstr "Ad soyad"
+
+msgid "Long text"
+msgstr "Uzun metin"
+
+msgid "Dropdown"
+msgstr "Açılır liste"
+
+msgid "Choose one"
+msgstr "Birini seçin"
+
+msgid "Single choice"
+msgstr "Tekli seçim"
+
+msgid "Multiple choice"
+msgstr "Çoklu seçim"
+
+msgid "Choose any"
+msgstr "İstediklerinizi seçin"
+
+msgid "Option"
+msgstr "Seçenek"
+
+msgid "Remove option"
+msgstr "Seçeneği kaldır"
+
+msgid "Add option"
+msgstr "Seçenek ekle"
+
+msgid "Help text"
+msgstr "Yardım metni"
+
+msgid "Shown under the field."
+msgstr "Alanın altında görünür."
+
+msgid "Full"
+msgstr "Tam"
+
+msgid "Half"
+msgstr "Yarım"
+
+msgid "One third"
+msgstr "Üçte bir"
+
+msgid "Add options in the block settings."
+msgstr "Seçenekleri blok ayarlarından ekleyin."
+
+msgid "Flux Forms field"
+msgstr "Flux Forms alanı"
+
+msgid "A field made in the Flux Forms panel. Edit it there; it is kept as it is."
+msgstr "Flux Forms panelinde yapılmış bir alan. Orada düzenlenir, burada olduğu gibi korunur."
+
+msgid "This field type is edited in the Flux Forms panel. It is kept unchanged."
+msgstr "Bu alan türü Flux Forms panelinde düzenlenir. Olduğu gibi korunur."
+
+msgid "Edit in panel"
+msgstr "Panelde düzenle"
+
+msgid "The form could not be loaded."
+msgstr "Form yüklenemedi."
+
+msgid "The form could not be saved."
+msgstr "Form kaydedilemedi."
+
+msgid "Flux Form"
+msgstr "Flux Form"
+
+msgid "Build a new form here, or edit a form made in the Flux Forms panel. Both edit the same form."
+msgstr "Burada yeni bir form kurun ya da Flux Forms panelinde yapılmış bir formu düzenleyin. İkisi de aynı formu düzenler."
+
+msgid "Choose an existing form"
+msgstr "Mevcut formu seç"
+
+msgid "Choose a form"
+msgstr "Form seçin"
+
+msgid "— Select —"
+msgstr "— Seçin —"
+
+msgid "Reload from Flux Forms"
+msgstr "Flux Forms'tan yeniden yükle"
+
+msgid "Shown in the Flux Forms panel."
+msgstr "Flux Forms panelinde görünür."
+
+msgid "Button text"
+msgstr "Düğme metni"
+
+#, php-format
+msgid "Flux Forms form #%d"
+msgstr "Flux Forms formu #%d"
+
+msgid "Open in panel"
+msgstr "Panelde aç"
+
+msgid "The form is created in Flux Forms when you save the page."
+msgstr "Sayfayı kaydettiğinizde form Flux Forms'ta oluşturulur."
+
+msgid "After sending"
+msgstr "Gönderimden sonra"
+
+msgid "Thank-you title"
+msgstr "Teşekkür başlığı"
+
+msgid "Thank-you message"
+msgstr "Teşekkür mesajı"
+
+msgid "Show a confirmation code"
+msgstr "Onay kodu göster"
+
+msgid "Email me new responses"
+msgstr "Yeni yanıtları bana e-postayla gönder"
+
+msgid "Notification address"
+msgstr "Bildirim adresi"
+
+msgid "Empty: the address in Flux Forms settings."
+msgstr "Boşsa Flux Forms ayarlarındaki adres kullanılır."
+
+msgid "Send a copy to the person"
+msgstr "Formu dolduran kişiye kopya gönder"
+
+msgid "Spam protection (captcha)"
+msgstr "Spam koruması (captcha)"
+
+msgid "Colors"
+msgstr "Renkler"
+
+msgid "Field text"
+msgstr "Alan metni"
+
+msgid "Field background"
+msgstr "Alan zemini"
+
+msgid "Field border"
+msgstr "Alan kenarlığı"
+
+msgid "Form background"
+msgstr "Form zemini"
+
+msgid "Corner radius"
+msgstr "Köşe yuvarlaklığı"
+
+msgid "Space between fields"
+msgstr "Alanlar arası boşluk"
+
+msgid "Show form title and steps"
+msgstr "Form başlığını ve adımları göster"
+
+msgid "The title and step bar Flux Forms prints above the fields."
+msgstr "Flux Forms'un alanların üstüne yazdığı başlık ve adım çubuğu."
+
+msgid "Load the panel version"
+msgstr "Paneldeki sürümü yükle"
+
+msgid "Keep mine"
+msgstr "Benimkini koru"
+
+msgid "This form was changed in the Flux Forms panel after you opened it, so your changes were not written to the form. Load the panel version, or keep yours and overwrite it."
+msgstr "Bu form, siz açtıktan sonra Flux Forms panelinde değişti; bu yüzden değişiklikleriniz forma yazılmadı. Paneldeki sürümü yükleyin ya da kendinizinkini koruyup üstüne yazın."
+
+msgid "This is a multi-step form. Steps are edited in the Flux Forms panel for now; the page shows the form as it is."
+msgstr "Bu çok adımlı bir form. Adımlar şimdilik Flux Forms panelinde düzenlenir; sayfa formu olduğu gibi gösterir."
+
+msgid "A Flux Forms form built from blocks. Responses, emails and automations run in Flux Forms."
+msgstr "Bloklarla kurulan bir Flux Forms formu. Yanıtlar, e-postalar ve otomasyonlar Flux Forms'ta çalışır."
+
+msgid "form"
+msgstr "form"
+
+msgid "contact"
+msgstr "iletişim"
+
+msgid "Edit with blocks"
+msgstr "Blokla düzenle"
+
+msgid "The form structure is not valid."
+msgstr "Form yapısı geçerli değil."
+
+msgid "This form type can only be edited in the Flux Forms panel."
+msgstr "Bu form türü yalnız Flux Forms panelinde düzenlenebilir."
+
+msgid "This form was changed in the Flux Forms panel after you opened it."
+msgstr "Bu form, siz açtıktan sonra Flux Forms panelinde değişti."
+

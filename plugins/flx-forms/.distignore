@@ -5,3 +5,7 @@
 ./docs/logo.svg
 ./README.tr.md
 ./docs/thumb.gif
+# Blok kaynaklari ve build araclari pakete girmez (yalniz build/ gider)
+./includes/flx/blocks/src
+./includes/flx/blocks/package.json
+./includes/flx/blocks/bun.lock

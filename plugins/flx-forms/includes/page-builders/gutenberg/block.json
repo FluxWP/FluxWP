@@ -27,8 +27,7 @@
         "html": false,
         "align": ["wide", "full"],
         "className": true,
-        "customClassName": true
-    },
-    "editorScript": "file:./editor.js",
-    "editorStyle": "file:./editor.css"
+        "customClassName": true,
+        "inserter": false
+    }
 }

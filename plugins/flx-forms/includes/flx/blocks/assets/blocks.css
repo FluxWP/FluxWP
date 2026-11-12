@@ -1,0 +1,85 @@
+/*
+ * Flux Form block on the front end. The form itself is Flux Forms's own output;
+ * these rules only apply what the block chose (each one is behind a flxf-set-* class).
+ */
+.flxf-bform {
+	box-sizing: border-box;
+}
+
+/* Title, description and the step bar of single-step forms are hidden by default. */
+.flxf-bform-noheader .title_efb,
+.flxf-bform-noheader .desc_efb {
+	display: none !important;
+}
+.flxf-bform-noheader #steps-efb:not(:has(li:nth-child(3))),
+.flxf-bform-noheader #steps-efb:not(:has(li:nth-child(3))) ~ #f-progress-efb {
+	display: none !important;
+}
+
+body .flxf-bform.flxf-set-card-bg {
+	background: var(--flxf-b-card-bg);
+	padding: clamp(16px, 4vw, 32px);
+	border-radius: var(--flxf-b-radius, 12px);
+}
+
+body .flxf-bform.flxf-set-label .efb.col-form-label,
+body .flxf-bform.flxf-set-label .efb.form-label,
+body .flxf-bform.flxf-set-label .efb.col-form-label span:not(.text-danger),
+body .flxf-bform.flxf-set-label .efb.form-check-label {
+	color: var(--flxf-b-label) !important;
+}
+
+body .flxf-bform.flxf-set-input-text .efb.input-efb,
+body .flxf-bform.flxf-set-input-text .efb.form-control,
+body .flxf-bform.flxf-set-input-text .efb.form-select {
+	color: var(--flxf-b-input-text) !important;
+}
+
+body .flxf-bform.flxf-set-input-bg .efb.input-efb,
+body .flxf-bform.flxf-set-input-bg .efb.form-control,
+body .flxf-bform.flxf-set-input-bg .efb.form-select {
+	background-color: var(--flxf-b-input-bg) !important;
+}
+
+body .flxf-bform.flxf-set-input-border .efb.input-efb,
+body .flxf-bform.flxf-set-input-border .efb.form-control,
+body .flxf-bform.flxf-set-input-border .efb.form-select {
+	border-color: var(--flxf-b-input-border) !important;
+}
+
+body .flxf-bform.flxf-set-radius .efb.input-efb,
+body .flxf-bform.flxf-set-radius .efb.form-control,
+body .flxf-bform.flxf-set-radius .efb.form-select,
+body .flxf-bform.flxf-set-radius .efb.btn_send_efb,
+body .flxf-bform.flxf-set-radius .efb.btn {
+	border-radius: var(--flxf-b-radius) !important;
+}
+
+body .flxf-bform.flxf-set-button-bg .efb.btn_send_efb,
+body .flxf-bform.flxf-set-button-bg .efb.btn-primary {
+	background: var(--flxf-b-button-bg) !important;
+	border-color: var(--flxf-b-button-bg) !important;
+}
+
+body .flxf-bform.flxf-set-button-text .efb.btn_send_efb,
+body .flxf-bform.flxf-set-button-text .efb.btn_send_efb *,
+body .flxf-bform.flxf-set-button-text .efb.btn-primary,
+body .flxf-bform.flxf-set-button-text .efb.btn-primary * {
+	color: var(--flxf-b-button-text) !important;
+}
+
+body .flxf-bform.flxf-set-gap .efb.efbField.my-1 {
+	margin-top: calc(var(--flxf-b-gap) / 2) !important;
+	margin-bottom: calc(var(--flxf-b-gap) / 2) !important;
+}
+
+/* The Flux Forms theme style paints buttons and corners from its own variables. */
+.flxf-bform.flxf-set-button-bg .body_efb,
+.flxf-bform.flxf-set-button-bg #alert_efb {
+	--flxf-primary: var(--flxf-b-button-bg) !important;
+	--flxf-primary-dark: var(--flxf-b-button-bg) !important;
+}
+.flxf-bform.flxf-set-radius .body_efb,
+.flxf-bform.flxf-set-radius #alert_efb {
+	--flxf-radius: var(--flxf-b-radius) !important;
+}
