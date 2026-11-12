@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.4
+- Paketler: "Gerekli:" satırı olan paketlerde ad ile etiketler arasında oluşan boş satır kaldırıldı; satır yükseklikleri tutarlı.
+
 ## 1.2.3
 - İçe aktarılan ön ayar klasörü Apache 2.2 ve 2.4'te web'den açılmaz.
 

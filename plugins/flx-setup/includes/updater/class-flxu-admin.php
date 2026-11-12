@@ -802,7 +802,7 @@ final class FLXU_Admin {
 										</small>
 									<?php endif; ?>
 									<?php if ( $req ) : ?>
-										<br><small class="flxu-req"><?php esc_html_e( 'Requires:', 'flx-setup' ); ?>
+										<small class="flxu-req"><?php esc_html_e( 'Requires:', 'flx-setup' ); ?>
 										<?php
 										$installed_pl = FLXU_Installer::installed_plugins();
 										foreach ( $req as $i => $d ) {
@@ -1467,7 +1467,9 @@ final class FLXU_Admin {
 			.flxu-tag--cat{background:transparent;color:var(--flxa-text,#1d2327)}
 			.flxu-tag--general{background:var(--flxa-surface-3,#e6e7ea);color:var(--flxa-muted,#50575e);border-color:transparent}
 			.flxu-tag--type{background:transparent}
-			.flxu-pkg__main .flxu-src{display:block}
+			.flxu-pkg__main{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+			.flxu-pkg__main .flxu-tags{margin:2px 0 0}
+			.flxu-pkg__main .flxu-src,.flxu-pkg__main .flxu-req{display:block;margin:0}
 			.flxu-preview__meta{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:0;padding:0 28px 24px;font-size:13px}
 			.flxu-preview__meta dt{color:var(--flxa-muted,#646970)}.flxu-preview__meta dd{margin:0;color:var(--flxa-text,#1d2327);word-break:break-word}
 			.flxu-preview__meta code{font-size:12px}
