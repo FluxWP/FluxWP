@@ -1019,7 +1019,7 @@ add_action(
 
 /** Aynı istekte birden çok satır (aynı sipariş) tek bildirime iner; gönderim istek sonunda. */
 function flxc_staff_ref_notify_queue( $id, $status ) {
-	if ( ! in_array( $status, array( 'completed', 'canceled' ), true ) || ! (int) flxc_setting( 'ref_notify' ) || ! function_exists( 'flxr_user_phone' ) ) {
+	if ( ! in_array( $status, array( 'completed', 'canceled' ), true ) || ! (int) flxc_setting( 'ref_notify' ) || ! function_exists( 'flxr_user_phone' ) || apply_filters( 'flx_silent', false, (int) $id ) ) { // 1.43.3: Flux Donate içe aktarımı sessiz
 		return;
 	}
 	static $q = null;

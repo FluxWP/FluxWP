@@ -22,8 +22,30 @@ final class FLXB_Import {
 
 	const STEP = 12;
 
+	/** 2.26.0: true while rows are being written (see silent()). */
+	public static $running = false;
+
+	/** 2.26.0: open on every site (older sapling / donation lists), not only with record tracking. */
 	public static function enabled() {
-		return (bool) apply_filters( 'flxb_import_enabled', flxb_track_enabled() );
+		return (bool) apply_filters( 'flxb_import_enabled', true );
+	}
+
+	/**
+	 * 2.26.0: imported records are history, nobody is told about them. Filter `flx_silent`
+	 * ( bool $silent, mixed $context ): true while an import step runs, and for an imported order (or a
+	 * donation id / row of one) at any later time. Packages that send WhatsApp, e-mail or ad / analytics
+	 * events check it first: `if ( apply_filters( 'flx_silent', false, $order ) ) return;`.
+	 */
+	public static function silent( $silent, $context = null ) {
+		if ( $silent || self::$running ) {
+			return true;
+		}
+		if ( is_numeric( $context ) || ( is_array( $context ) && isset( $context['wc_order_id'] ) ) ) {
+			$row     = is_array( $context ) ? $context : FLXB_Donations::get( (int) $context );
+			$oid     = $row ? (int) ( $row['wc_order_id'] ?? 0 ) : 0;
+			$context = $oid && function_exists( 'wc_get_order' ) ? wc_get_order( $oid ) : null;
+		}
+		return is_object( $context ) && method_exists( $context, 'get_created_via' ) && 'flxb-import' === $context->get_created_via();
 	}
 
 	/* ---------- Reading ---------- */
@@ -163,12 +185,12 @@ final class FLXB_Import {
 				'phone'       => array( __( 'Phone (on behalf of)', 'flx-donate' ), array( 'adina telefon', 'sahip telefon', 'sahibi telefon', 'beneficiary phone' ) ),
 				'type'        => array( __( 'Donation type', 'flx-donate' ), array( 'bagis turu', 'turu', 'tur', 'type', 'urun', 'proje', 'kurban turu', 'kurbanin turu' ) ),
 				'option'      => array( __( 'Option', 'flx-donate' ), array( 'secenek', 'paket', 'option' ) ),
-				'quantity'    => array( __( 'Quantity', 'flx-donate' ), array( 'adet', 'sayi', 'quantity', 'qty', 'hisse sayisi' ) ),
+				'quantity'    => array( __( 'Quantity', 'flx-donate' ), array( 'adet', 'adedi', 'sayi', 'sayisi', 'quantity', 'qty', 'hisse sayisi', 'fidan adedi', 'fidan sayisi' ) ),
 				'amount'      => array( __( 'Amount', 'flx-donate' ), array( 'tutar', 'ucret', 'fiyat', 'amount', 'price', 'toplam', 'bagis tutari' ) ),
 				'currency'    => array( __( 'Currency', 'flx-donate' ), array( 'para birimi', 'doviz', 'currency' ) ),
-				'paid'        => array( __( 'Payment', 'flx-donate' ), array( 'odeme', 'odendi', 'tahsil', 'tahsilat', 'payment', 'paid' ) ),
+				'paid'        => array( __( 'Payment', 'flx-donate' ), array( 'odeme', 'odeme durumu', 'odendi', 'tahsil', 'tahsilat', 'payment', 'paid' ) ),
 				'status'      => array( __( 'Status', 'flx-donate' ), array( 'durum', 'status', 'asama' ) ),
-				'partner'     => array( FLXB_Track::label( 'partner' ), array( 'kesim yeri', 'dikim alani', 'dikim yeri', 'is ortagi', 'partner', 'kesimhane', 'uygulama yeri' ) ),
+				'partner'     => array( FLXB_Track::label( 'partner' ), array( 'kesim yeri', 'dikim alani', 'dikim yeri', 'dikim bolgesi', 'bolge', 'is ortagi', 'partner', 'kesimhane', 'uygulama yeri' ) ),
 				'source'      => array( __( 'Brought in by', 'flx-donate' ), array( 'kurum', 'kaynak', 'sube', 'getiren', 'source' ) ),
 				'target'      => array( __( 'Target date', 'flx-donate' ), array( 'istenen tarih', 'hedef tarih', 'gerceklesmesi istenen', 'kesim tarihi', 'kesilmesi istenen', 'dikim tarihi', 'target' ) ),
 				'ref'         => array( __( 'Referral', 'flx-donate' ), array( 'referans', 'personel', 'takip eden', 'temsilci', 'referral' ) ),
@@ -272,7 +294,7 @@ final class FLXB_Import {
 			'map'        => $map,
 			'rows'       => array_values( array_slice( $sheets[ $sheet ], $hrow + 1 ) ),
 			'res'        => array(),
-			'opts'       => array( 'paid' => 1, 'keep_date' => 1, 'type' => $types ? (int) $types[0]['id'] . '|' : '' ),
+			'opts'       => array( 'paid' => 1, 'keep_date' => 1, 'nodate' => 'above', 'nodate_day' => '', 'type' => $types ? (int) $types[0]['id'] . '|' : '' ),
 			'state'      => 'preview',
 			'pos'        => 0,
 			'result'     => array( 'created' => 0, 'skipped' => 0, 'failed' => 0, 'errors' => array() ),
@@ -383,12 +405,12 @@ final class FLXB_Import {
 		if ( '' === $k ) {
 			return $default;
 		}
-		foreach ( array( 'odenmedi', 'bekl', 'hayir', 'yok', 'no', 'unpaid', 'pending', 'borc' ) as $n ) {
+		foreach ( array( 'odenmedi', 'odenecek', 'bekl', 'hayir', 'yok', 'no', 'unpaid', 'pending', 'borc' ) as $n ) {
 			if ( false !== strpos( $k, $n ) ) {
 				return 0;
 			}
 		}
-		foreach ( array( 'odendi', 'evet', 'tahsil', 'tamam', 'yes', 'paid', 'nakit', 'havale', 'kart', 'eft' ) as $n ) {
+		foreach ( array( 'odendi', 'evet', 'tahsil', 'tamam', 'yes', 'paid', 'nakit', 'havale', 'kart', 'eft', 'dekont', 'gonderil', 'alindi', 'geldi' ) as $n ) {
 			if ( false !== strpos( $k, $n ) ) {
 				return 1;
 			}
@@ -396,12 +418,40 @@ final class FLXB_Import {
 		return '1' === $k ? 1 : ( '0' === $k ? 0 : $default );
 	}
 
-	private static function users() {
-		$out = array();
-		foreach ( get_users( array( 'fields' => array( 'ID', 'display_name' ), 'number' => 500 ) ) as $u ) {
-			$out[ (int) $u->ID ] = $u->display_name;
+	/**
+	 * 2.26.0: the site user a "brought in by / referral" cell means. Exact name (display name, first +
+	 * last name, login) first; then the only user whose name holds every word of the cell, or whose
+	 * every word is in the cell ("Enes" ↔ "Enes Aktaş"). 0 when nothing or more than one fits.
+	 */
+	public static function match_user( $raw ) {
+		$k = flxb_fold( $raw );
+		if ( '' === $k ) {
+			return 0;
 		}
-		return $out;
+		static $names = null;
+		if ( null === $names ) {
+			$names = array();
+			foreach ( get_users( array( 'fields' => array( 'ID', 'display_name', 'user_login' ), 'number' => 500 ) ) as $u ) {
+				$full = trim( get_user_meta( $u->ID, 'first_name', true ) . ' ' . get_user_meta( $u->ID, 'last_name', true ) );
+				$names[ (int) $u->ID ] = array_values( array_unique( array_filter( array( flxb_fold( $u->display_name ), flxb_fold( $full ), flxb_fold( $u->user_login ) ) ) ) );
+			}
+		}
+		foreach ( $names as $uid => $list ) {
+			if ( in_array( $k, $list, true ) ) {
+				return $uid;
+			}
+		}
+		$words = explode( ' ', $k );
+		$hits  = array();
+		foreach ( $names as $uid => $list ) {
+			foreach ( $list as $n ) {
+				$nw = explode( ' ', $n );
+				if ( ! array_diff( $words, $nw ) || ( count( $nw ) > 0 && strlen( $nw[0] ) > 2 && ! array_diff( $nw, $words ) ) ) {
+					$hits[ $uid ] = 1;
+				}
+			}
+		}
+		return 1 === count( $hits ) ? (int) key( $hits ) : 0;
 	}
 
 	/**
@@ -441,15 +491,8 @@ final class FLXB_Import {
 			$g['to'] = (string) ( $res['status'][ $k ] ?? self::guess_status( $g['raw'], 0 ) );
 		}
 		unset( $g );
-		$users = self::users();
 		foreach ( $groups['ref'] as $k => &$g ) {
-			$match = 0;
-			foreach ( $users as $uid => $name ) {
-				if ( '' !== $k && flxb_fold( $name ) === $k ) {
-					$match = $uid;
-				}
-			}
-			$g['to'] = (string) ( $res['ref'][ $k ] ?? $match );
+			$g['to'] = (string) ( $res['ref'][ $k ] ?? self::match_user( $g['raw'] ) );
 		}
 		unset( $g );
 		foreach ( $groups['paid'] as $k => &$g ) {
@@ -472,9 +515,12 @@ final class FLXB_Import {
 				$existing[ $kk ] = 1;
 			}
 		}
-		$rows  = array();
-		$stats = array( 'total' => 0, 'ok' => 0, 'dup' => 0, 'error' => 0, 'warn' => 0 );
-		$seen  = array();
+		$rows   = array();
+		$stats  = array( 'total' => 0, 'ok' => 0, 'dup' => 0, 'error' => 0, 'warn' => 0 );
+		$seen   = array();
+		$nodate = (string) ( $imp['opts']['nodate'] ?? 'today' );
+		$day    = flxb_parse_date( (string) ( $imp['opts']['nodate_day'] ?? '' ) );
+		$above  = '';
 		foreach ( $imp['rows'] as $i => $row ) {
 			++$stats['total'];
 			$tk  = flxb_fold( self::cell( $imp, $row, 'type' ) . ' / ' . self::cell( $imp, $row, 'option' ) );
@@ -516,6 +562,19 @@ final class FLXB_Import {
 			);
 			if ( 3 !== strlen( $r['currency'] ) ) {
 				$r['currency'] = '';
+			}
+			/* 2.26.0: a row without a date (older lists often fill it only now and then). */
+			$r['dated'] = '' !== $r['created'];
+			if ( $r['dated'] ) {
+				$above = $r['created'];
+			} elseif ( '' === self::cell( $imp, $row, 'created' ) ) {
+				if ( 'above' === $nodate ) {
+					$r['created'] = $above;
+				} elseif ( 'target' === $nodate && '' !== $r['target'] ) {
+					$r['created'] = $r['target'] . ' 12:00:00';
+				} elseif ( 'day' === $nodate && '' !== $day ) {
+					$r['created'] = $day . ' 12:00:00';
+				}
 			}
 			if ( '' === $r['donor'] && '' === $r['name'] ) {
 				$r['errors'][] = __( 'No donor or name', 'flx-donate' );
@@ -559,7 +618,42 @@ final class FLXB_Import {
 			$seen[ $r['key'] ] = 1;
 			$rows[]            = $r;
 		}
-		return array( 'groups' => $groups, 'rows' => $rows, 'stats' => $stats );
+		return array( 'groups' => $groups, 'rows' => $rows, 'stats' => $stats, 'summary' => self::summary( $rows ) );
+	}
+
+	/**
+	 * 2.26.0: what will be written (rows that are ready): units, amount paid / waiting, per referral.
+	 *
+	 * @return array { rows, units, paid, waiting, paid_n, waiting_n, currency, by_ref: [ user_id => { rows, units, amount } ] }
+	 */
+	public static function summary( array $rows ) {
+		$out = array( 'rows' => 0, 'units' => 0, 'paid' => 0.0, 'waiting' => 0.0, 'paid_n' => 0, 'waiting_n' => 0, 'currency' => '', 'by_ref' => array() );
+		foreach ( $rows as $r ) {
+			if ( ! empty( $r['dup'] ) || $r['errors'] ) {
+				continue;
+			}
+			$t   = $r['type_id'] ? FLXB_Types::get( $r['type_id'] ) : null;
+			$amt = null !== $r['amount'] ? (float) $r['amount'] : 0.0;
+			if ( null === $r['amount'] && $t ) {
+				$o   = '' !== $r['option'] ? FLXB_Types::option( $t, $r['option'] ) : null;
+				$amt = $o ? (float) FLXB_Types::option_price( $t, $o, '' !== $r['currency'] ? $r['currency'] : (string) $t['currency'] ) * $r['qty'] : 0.0;
+			}
+			if ( '' === $out['currency'] ) {
+				$out['currency'] = '' !== $r['currency'] ? $r['currency'] : ( $t ? (string) $t['currency'] : '' );
+			}
+			++$out['rows'];
+			$out['units'] += (int) $r['qty'];
+			$out[ $r['paid'] ? 'paid' : 'waiting' ] += $amt;
+			++$out[ $r['paid'] ? 'paid_n' : 'waiting_n' ];
+			$ref = (int) $r['ref'];
+			if ( ! isset( $out['by_ref'][ $ref ] ) ) {
+				$out['by_ref'][ $ref ] = array( 'rows' => 0, 'units' => 0, 'amount' => 0.0 );
+			}
+			++$out['by_ref'][ $ref ]['rows'];
+			$out['by_ref'][ $ref ]['units']  += (int) $r['qty'];
+			$out['by_ref'][ $ref ]['amount'] += $amt;
+		}
+		return $out;
 	}
 
 	/** The same row is never imported twice: key over every mapped cell. */
@@ -627,10 +721,17 @@ final class FLXB_Import {
 		if ( null !== $r['amount'] ) {
 			$line['amount'] = $r['amount'];
 		}
-		if ( '' !== $r['name'] ) {
+		$t = FLXB_Types::get( $r['type_id'] );
+		if ( '' !== $r['name'] && $t && ! FLXB_Types::tracks_items( $t ) ) {
+			/* 2.26.0: an untracked type (e.g. saplings) keeps one "on behalf of" name, not one per unit. */
+			$line['name'] = $r['name'];
+			if ( flxb_fold( $r['name'] ) !== flxb_fold( $who ) ) {
+				$line['for_other'] = true;
+				$line['ben_name']  = $r['name'];
+			}
+		} elseif ( '' !== $r['name'] ) {
 			$line['beneficiaries'] = array_fill( 0, $r['qty'], $r['name'] );
 			$line['name']          = $r['name'];
-			$t                     = FLXB_Types::get( $r['type_id'] );
 			if ( $t && FLXB_Types::requires_proxy( $t ) ) {
 				$pt                    = flxb_proxy_text();
 				$line['proxy_consent'] = array( 'version' => $pt ? (int) $pt['version'] : 0, 'accepted_at' => current_time( 'mysql', true ), 'source' => 'import' );
@@ -711,6 +812,25 @@ final class FLXB_Import {
 		$total = count( $a['rows'] );
 		$end   = min( $total, $imp['pos'] + max( 1, (int) $n ) );
 		$start = microtime( true );
+		/* 2.26.0: nothing leaves the site while history is written: no e-mail, WhatsApp or ad event. */
+		self::$running = true;
+		add_filter( 'pre_wp_mail', '__return_false', 999 );
+		try {
+			self::write_rows( $imp, $a, $end, $start );
+		} finally {
+			remove_filter( 'pre_wp_mail', '__return_false', 999 );
+			self::$running = false;
+		}
+		if ( $imp['pos'] >= $total ) {
+			$imp['state']       = 'done';
+			$imp['finished_at'] = current_time( 'mysql' );
+		}
+		self::save( $imp );
+		return array( 'pos' => $imp['pos'], 'total' => $total, 'done' => 'done' === $imp['state'], 'result' => $imp['result'] );
+	}
+
+	private static function write_rows( array &$imp, array $a, $end, $start ) {
+		global $wpdb;
 		for ( $i = $imp['pos']; $i < $end; $i++ ) {
 			$r          = $a['rows'][ $i ];
 			$imp['pos'] = $i + 1;
@@ -735,11 +855,7 @@ final class FLXB_Import {
 				break;
 			}
 		}
-		if ( $imp['pos'] >= $total ) {
-			$imp['state']       = 'done';
-			$imp['finished_at'] = current_time( 'mysql' );
-		}
-		self::save( $imp );
-		return array( 'pos' => $imp['pos'], 'total' => $total, 'done' => 'done' === $imp['state'], 'result' => $imp['result'] );
 	}
 }
+
+add_filter( 'flx_silent', array( 'FLXB_Import', 'silent' ), 10, 2 );

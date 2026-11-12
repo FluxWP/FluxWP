@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.43.3
+- Flux Donate içe aktarımındaki eski bağışlar için referans personele "bağış ödendi" ve adına bağış yapılan kişiye sertifika WhatsApp'ı gitmez (`flx_silent`).
+
 ## 1.43.2
 - Hatırlatıcıyı kapatma: kişi "kapat", "kapat istemiyorum", "istemiyorum", "iptal", "vazgeçtim", "gerek yok" gibi kısa bir sözle hatırlatıcıyı istemediğini söyleyince asistan onay sormadan hemen kapatır ve tek cümleyle bildirir. Az önce kurulan hatırlatıcıdan sonra gelen "kapat" artık "kapatma" diye okunmaz; gerçekten belirsizse tek kısa soru sorar, itirazda ("niye kapatmadın") açıklama yapmadan kapatır. `reminder_cancel` aracında `id` zorunlu değil, verilmezse en son kurulan durdurulur.
 - 🙏 yasak: asistan tepki olarak yalnız 👍 ve 🤲 kullanır (önceden 🙏 ❤️ 🌱 de vardı). 🙏 asistanın hiçbir mesajında gitmez; metinde kalırsa gönderimden önce 🤲 olur. Yeni filtre `flxc_bot_banned_emojis` (yalnız ekler; 🙏 hep yasak). `flxc_bot_react_emojis` filtresiyle yasaklı emoji eklenemez.

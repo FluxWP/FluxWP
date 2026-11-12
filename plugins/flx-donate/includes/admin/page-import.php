@@ -56,7 +56,7 @@ final class FLXB_Page_Import {
 		FLXB_Admin::header( __( 'Import from Excel', 'flx-donate' ), __( 'Bring in older donations and records from an Excel (.xlsx) or CSV file. You see everything before anything is written; a row is never imported twice.', 'flx-donate' ) );
 		echo '<div class="flxb-grid flxb-grid--2-1"><section class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Upload a file', 'flx-donate' ) . '</h2></div>';
 		echo self::post_form( 'upload', ' enctype="multipart/form-data" class="flxb-form"' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo '<div class="flxb-field"><label for="flxb-if">' . esc_html__( 'File', 'flx-donate' ) . '</label><input id="flxb-if" type="file" name="file" accept=".xlsx,.csv,.txt,.tsv" required><p class="flxb-help">' . esc_html__( 'The first row names the columns. Recognised: date, donor, phone, e-mail, on behalf of, donation type, option, quantity, amount, currency, payment, status, partner, brought in by, target date, referral, note.', 'flx-donate' ) . '</p></div>';
+		echo '<div class="flxb-field"><label for="flxb-if">' . esc_html__( 'File', 'flx-donate' ) . '</label><input id="flxb-if" type="file" name="file" accept=".xlsx,.csv,.txt,.tsv" required><p class="flxb-help">' . esc_html__( 'The first row names the columns. Recognised: date, donor, phone, e-mail, on behalf of, donation type, option, quantity, amount, currency, payment, status, partner, brought in by, target date, referral, note.', 'flx-donate' ) . '</p><p class="flxb-help">' . esc_html__( 'Nothing is sent to donors or staff while importing (no e-mail, WhatsApp or certificate).', 'flx-donate' ) . '</p></div>';
 		echo '<div class="flxb-actions"><button class="flxb-btn flxb-btn--primary" type="submit" data-flxb-busy="' . esc_attr__( 'Reading...', 'flx-donate' ) . '">' . FLXB_Admin::icon( 'download' ) . esc_html__( 'Read the file', 'flx-donate' ) . '</button></div></form></section>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<aside class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Earlier imports', 'flx-donate' ) . '</h2></div>';
 		$all = FLXB_Import::all();
@@ -87,6 +87,28 @@ final class FLXB_Page_Import {
 			echo '<div class="flxb-kpi"' . ( $k[2] ? ' style="--accent:' . esc_attr( $k[2] ) . '"' : '' ) . '><div class="flxb-kpi__label">' . esc_html( $k[0] ) . '</div><div class="flxb-kpi__value">' . esc_html( number_format_i18n( $k[1] ) ) . '</div></div>';
 		}
 		echo '</div>';
+
+		/* 2.26.0: what will be written, checked before starting */
+		$sum = $a['summary'];
+		$cur = $sum['currency'];
+		echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Summary', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Only ready rows are counted. After changing a match, press "Apply and check again" to update it.', 'flx-donate' ) . '</p></div></div>';
+		echo '<div class="flxb-kpis">';
+		foreach ( array( array( __( 'Records', 'flx-donate' ), number_format_i18n( $sum['rows'] ), '' ), array( __( 'Units', 'flx-donate' ), number_format_i18n( $sum['units'] ), '' ), array( __( 'Paid', 'flx-donate' ), flxb_money( $sum['paid'], $cur ) . ' · ' . number_format_i18n( $sum['paid_n'] ), '#1F7A4D' ), array( __( 'Waiting for payment', 'flx-donate' ), flxb_money( $sum['waiting'], $cur ) . ' · ' . number_format_i18n( $sum['waiting_n'] ), '#B7791F' ) ) as $k ) {
+			echo '<div class="flxb-kpi"' . ( $k[2] ? ' style="--accent:' . esc_attr( $k[2] ) . '"' : '' ) . '><div class="flxb-kpi__label">' . esc_html( $k[0] ) . '</div><div class="flxb-kpi__value">' . esc_html( $k[1] ) . '</div></div>';
+		}
+		echo '</div>';
+		if ( $sum['by_ref'] ) {
+			echo '<div class="flxb-tablewrap"><table class="flxb-table flxb-table--compact"><thead><tr><th>' . esc_html__( 'Referral', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Records', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Units', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th></tr></thead><tbody>';
+			uasort( $sum['by_ref'], function ( $x, $y ) { return $y['rows'] <=> $x['rows']; } );
+			foreach ( $sum['by_ref'] as $uid => $x ) {
+				$u = $uid ? get_userdata( $uid ) : null;
+				echo '<tr><td class="flxb-col-main">' . esc_html( $u ? $u->display_name : __( '(none)', 'flx-donate' ) ) . '</td><td class="num" data-label="' . esc_attr__( 'Records', 'flx-donate' ) . '"><span>' . esc_html( number_format_i18n( $x['rows'] ) ) . '</span></td><td class="num" data-label="' . esc_attr__( 'Units', 'flx-donate' ) . '"><span>' . esc_html( number_format_i18n( $x['units'] ) ) . '</span></td><td class="num" data-label="' . esc_attr__( 'Amount', 'flx-donate' ) . '"><span>' . esc_html( flxb_money( $x['amount'], $cur ) ) . '</span></td></tr>';
+			}
+			echo '</tbody></table></div>';
+		}
+		echo '</section>';
+		/* translators: 1: records, 2: units, 3: paid amount, 4: amount waiting for payment */
+		$confirm = sprintf( __( '%1$s records (%2$s units) will be written. Paid: %3$s, waiting for payment: %4$s. Nothing is sent to anyone.', 'flx-donate' ), number_format_i18n( $sum['rows'] ), number_format_i18n( $sum['units'] ), flxb_money( $sum['paid'], $cur ), flxb_money( $sum['waiting'], $cur ) );
 
 		echo self::post_form( 'save', ' class="flxb-form"' ) . '<input type="hidden" name="import" value="' . esc_attr( $imp['id'] ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
@@ -122,6 +144,12 @@ final class FLXB_Page_Import {
 		echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Options', 'flx-donate' ) . '</h2></div><div class="flxb-fields-2">';
 		echo '<div class="flxb-field"><label>' . esc_html__( 'Donation type when the row has none', 'flx-donate' ) . '</label>' . self::select( 'opts[type]', array( '' => '—' ) + $types, $imp['opts']['type'] ?? '' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div class="flxb-field"><label>' . esc_html__( 'Payment when the row does not say', 'flx-donate' ) . '</label>' . self::select( 'opts[paid]', array( '1' => __( 'Paid', 'flx-donate' ), '0' => __( 'Waiting for payment', 'flx-donate' ) ), (string) (int) ! empty( $imp['opts']['paid'] ) ) . '</div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		/* 2.26.0: rows without a date */
+		$nd = (string) ( $imp['opts']['nodate'] ?? 'today' );
+		echo '<div class="flxb-fields-2"><div class="flxb-field"><label>' . esc_html__( 'Date when the row has none', 'flx-donate' ) . '</label>' . self::select( 'opts[nodate]', array( 'above' => __( 'Same as the row above', 'flx-donate' ), 'target' => __( 'The target date of the row', 'flx-donate' ), 'day' => __( 'A day I choose', 'flx-donate' ), 'today' => __( 'Today', 'flx-donate' ) ), $nd, ' data-flxb-nodate' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div class="flxb-field" data-flxb-nodate-day' . ( 'day' === $nd ? '' : ' hidden' ) . '><label for="flxb-nd-day">' . esc_html__( 'Day', 'flx-donate' ) . '</label><input id="flxb-nd-day" type="date" name="opts[nodate_day]" value="' . esc_attr( (string) ( $imp['opts']['nodate_day'] ?? '' ) ) . '"></div></div>';
+		echo '<p class="flxb-help">' . esc_html__( 'Imported records are history: no e-mail, WhatsApp message, certificate or ad conversion is sent to anyone.', 'flx-donate' ) . '</p>';
+		echo '<script>(function(){var s=document.querySelector("[data-flxb-nodate]"),d=document.querySelector("[data-flxb-nodate-day]");if(s&&d){s.addEventListener("change",function(){d.hidden=s.value!=="day";});}})();</script>';
 		echo '<input type="hidden" name="opts[keep_date]" value="0"><label class="flxb-switch"><input type="checkbox" name="opts[keep_date]" value="1"' . checked( ! empty( $imp['opts']['keep_date'] ), true, false ) . '><span class="flxb-switch__ui" aria-hidden="true"></span>' . esc_html__( 'Keep the date in the file (otherwise today)', 'flx-donate' ) . '</label></section>';
 
 		/* Matches */
@@ -164,10 +192,11 @@ final class FLXB_Page_Import {
 
 		echo '<div class="flxb-actions flxb-actions--sticky"><button class="flxb-btn" type="submit" name="do" value="apply">' . esc_html__( 'Apply and check again', 'flx-donate' ) . '</button> ';
 		/* translators: %s: number of rows */
-		echo '<button class="flxb-btn flxb-btn--primary" type="submit" name="do" value="run"' . ( $s['ok'] ? '' : ' disabled' ) . '>' . esc_html( sprintf( _n( 'Import %s row', 'Import %s rows', $s['ok'], 'flx-donate' ), number_format_i18n( $s['ok'] ) ) ) . '</button></div></form>';
+		echo '<button class="flxb-btn flxb-btn--primary" type="submit" name="do" value="run" data-flxb-run data-flx-confirm="' . esc_attr( $confirm ) . '" data-flx-confirm-title="' . esc_attr__( 'Start the import?', 'flx-donate' ) . '" data-flx-confirm-ok="' . esc_attr__( 'Import', 'flx-donate' ) . '"' . ( $s['ok'] ? '' : ' disabled' ) . '>' . esc_html( sprintf( _n( 'Import %s row', 'Import %s rows', $s['ok'], 'flx-donate' ), number_format_i18n( $s['ok'] ) ) ) . '</button><span class="flxb-help" data-flxb-stale hidden>' . esc_html__( 'You changed something: press "Apply and check again" first.', 'flx-donate' ) . '</span></div></form>';
+		echo '<script>(function(){var f=document.querySelector("[data-flxb-run]");if(!f){return;}var m=f.form,h=m.querySelector("[data-flxb-stale]");m.addEventListener("change",function(){f.disabled=true;if(h){h.hidden=false;}});})();</script>';
 
 		/* Rows */
-		echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Rows', 'flx-donate' ) . '</h2></div><div class="flxb-tablewrap"><table class="flxb-table flxb-table--compact"><thead><tr><th>#</th><th>' . esc_html__( 'Donor', 'flx-donate' ) . '</th><th>' . esc_html__( 'Donation type', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Quantity', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th><th>' . esc_html__( 'Status', 'flx-donate' ) . '</th><th>' . esc_html__( 'Check', 'flx-donate' ) . '</th></tr></thead><tbody>';
+		echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Rows', 'flx-donate' ) . '</h2></div><div class="flxb-tablewrap"><table class="flxb-table flxb-table--compact"><thead><tr><th>#</th><th>' . esc_html__( 'Donor', 'flx-donate' ) . '</th><th>' . esc_html__( 'Date', 'flx-donate' ) . '</th><th>' . esc_html__( 'Donation type', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Quantity', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th><th>' . esc_html__( 'Status', 'flx-donate' ) . '</th><th>' . esc_html__( 'Check', 'flx-donate' ) . '</th></tr></thead><tbody>';
 		$sts = FLXB_Track::statuses();
 		$problems = array_filter(
 			$a['rows'],
@@ -190,7 +219,7 @@ final class FLXB_Page_Import {
 				$check = '<span class="flxb-pill flxb-pill--ok">' . esc_html__( 'Ready', 'flx-donate' ) . '</span>';
 			}
 			$who = '' !== $r['donor'] ? $r['donor'] : $r['name'];
-			echo '<tr><td>' . (int) $r['n'] . '</td><td class="flxb-col-main">' . esc_html( $who ) . ( '' !== $r['name'] && $r['name'] !== $who ? '<span class="flxb-sub2">' . esc_html( $r['name'] ) . '</span>' : '' ) . '</td><td data-label="' . esc_attr__( 'Donation type', 'flx-donate' ) . '"><span>' . esc_html( $t ? $t['title'] : '—' ) . '</span></td><td class="num" data-label="' . esc_attr__( 'Quantity', 'flx-donate' ) . '"><span>' . (int) $r['qty'] . '</span></td><td class="num" data-label="' . esc_attr__( 'Amount', 'flx-donate' ) . '"><span>' . esc_html( null === $r['amount'] ? '—' : flxb_money( $r['amount'], '' !== $r['currency'] ? $r['currency'] : ( $t ? $t['currency'] : '' ) ) ) . '</span></td><td data-label="' . esc_attr__( 'Status', 'flx-donate' ) . '"><span>' . esc_html( $sts[ $r['status'] ] ?? $r['status'] ) . '</span></td><td data-label="' . esc_attr__( 'Check', 'flx-donate' ) . '"><span>' . $check . '</span></td></tr>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<tr><td>' . (int) $r['n'] . '</td><td class="flxb-col-main">' . esc_html( $who ) . ( '' !== $r['name'] && $r['name'] !== $who ? '<span class="flxb-sub2">' . esc_html( $r['name'] ) . '</span>' : '' ) . '</td><td data-label="' . esc_attr__( 'Date', 'flx-donate' ) . '"><span' . ( empty( $r['dated'] ) ? ' class="flxb-muted"' : '' ) . '>' . esc_html( ! empty( $imp['opts']['keep_date'] ) && '' !== $r['created'] ? flxb_date( get_gmt_from_date( $r['created'] ) ) : __( 'Today', 'flx-donate' ) ) . '</span></td><td data-label="' . esc_attr__( 'Donation type', 'flx-donate' ) . '"><span>' . esc_html( $t ? $t['title'] : '—' ) . '</span></td><td class="num" data-label="' . esc_attr__( 'Quantity', 'flx-donate' ) . '"><span>' . (int) $r['qty'] . '</span></td><td class="num" data-label="' . esc_attr__( 'Amount', 'flx-donate' ) . '"><span>' . esc_html( null === $r['amount'] ? '—' : flxb_money( $r['amount'], '' !== $r['currency'] ? $r['currency'] : ( $t ? $t['currency'] : '' ) ) ) . '</span></td><td data-label="' . esc_attr__( 'Status', 'flx-donate' ) . '"><span>' . esc_html( $t && ! FLXB_Types::tracks_items( $t ) ? ( $r['paid'] ? __( 'Paid', 'flx-donate' ) : __( 'Waiting for payment', 'flx-donate' ) ) : ( $sts[ $r['status'] ] ?? $r['status'] ) ) . '</span></td><td data-label="' . esc_attr__( 'Check', 'flx-donate' ) . '"><span>' . $check . '</span></td></tr>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</tbody></table></div>';
 		if ( count( $a['rows'] ) > count( $list ) ) {
@@ -316,6 +345,8 @@ final class FLXB_Page_Import {
 			'type'      => preg_replace( '/[^a-z0-9|_-]/', '', (string) ( $o['type'] ?? '' ) ),
 			'paid'      => empty( $o['paid'] ) ? 0 : 1,
 			'keep_date' => empty( $o['keep_date'] ) ? 0 : 1,
+			'nodate'    => in_array( (string) ( $o['nodate'] ?? '' ), array( 'above', 'target', 'day', 'today' ), true ) ? (string) $o['nodate'] : 'today',
+			'nodate_day' => flxb_parse_date( sanitize_text_field( (string) ( $o['nodate_day'] ?? '' ) ) ),
 		);
 		if ( 'run' === ( $_POST['do'] ?? '' ) && ! $changed ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			FLXB_Import::prepare( $imp );

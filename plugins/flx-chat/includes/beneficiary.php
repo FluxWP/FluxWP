@@ -47,7 +47,7 @@ function flxc_benef_cert_default_text() {
 add_action(
 	'flxb_wc_certificates_issued',
 	function ( $order, $made ) {
-		if ( ! flxc_flxb_on() || ! is_object( $order ) || ( ! flxc_benef_cert_on() && ! flxc_ref_cert_on() ) ) {
+		if ( ! flxc_flxb_on() || ! is_object( $order ) || ( ! flxc_benef_cert_on() && ! flxc_ref_cert_on() ) || apply_filters( 'flx_silent', false, $order ) ) {
 			return;
 		}
 		$made = array_map( 'intval', wp_list_pluck( (array) $made, 'id' ) );
