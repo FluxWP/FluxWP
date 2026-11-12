@@ -677,13 +677,10 @@
 		}
 		applyChannel();
 
-		send.addEventListener( 'submit', function ( e ) {
-			var b = e.submitter || $( 'button[type="submit"]', send );
+		/* Onay penceresi düğmedeki data-flx-confirm ile (flx-brand modal). */
+		send.addEventListener( 'submit', function () {
 			if ( window.tinymce ) {
 				window.tinymce.triggerSave();
-			}
-			if ( b && b.getAttribute( 'data-confirm' ) && ! window.confirm( b.getAttribute( 'data-confirm' ) ) ) {
-				e.preventDefault();
 			}
 		} );
 
@@ -1301,9 +1298,9 @@
 
 	var waAct = function ( attr, path, confirmText ) {
 		$$( '[' + attr + ']' ).forEach( function ( b ) {
-			b.addEventListener( 'click', function () {
+			b.addEventListener( 'click', async function () {
 				var id = b.getAttribute( attr );
-				if ( confirmText && ! window.confirm( confirmText ) ) {
+				if ( confirmText && ! (await window.flxDialog.confirm({ message:  confirmText  })) ) {
 					return;
 				}
 				var more = b.closest( 'details' );
@@ -1374,10 +1371,10 @@
 				return d;
 			};
 			var st = $( '.flxi-status', f );
-			f.addEventListener( 'submit', function ( e ) {
+			f.addEventListener( 'submit', async function ( e ) {
 				e.preventDefault();
 				var d = data( true );
-				if ( d.db && d.db.driver !== ( db.driver || 'file' ) && ! window.confirm( W.dbSwitch ) ) {
+				if ( d.db && d.db.driver !== ( db.driver || 'file' ) && ! (await window.flxDialog.confirm({ message:  W.dbSwitch  })) ) {
 					return;
 				}
 				status( st, W.wait );

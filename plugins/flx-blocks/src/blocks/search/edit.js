@@ -900,7 +900,7 @@ export function Edit(props) {
 						>
 							<button
 								className="fxb-search-close-btn"
-								aria-label="Close search"
+								aria-label={__('Close search', 'flx-blocks')}
 								data-toggle-target="#search-drawer"
 								data-toggle-body-class="showing-popup-drawer-from-full"
 								aria-expanded="false"
@@ -925,7 +925,7 @@ export function Edit(props) {
 							>
 								<form className={'fxb-search-form'}>
 									<label className="screen-reader-text" htmlFor={'fxb-search-input' + uniqueID}>
-										Search for:
+										{__('Search for:', 'flx-blocks')}
 									</label>
 									{renderInputField()}
 								</form>

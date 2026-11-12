@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Shared FluxWP library (flx-brand) brought up to date: the new shared dialog files are included, so CI verify passes.
+
 ## 0.2.0
 
 - Ad spend: Meta spend per campaign and ad is read daily from the ad account (Marketing API, read only), every 6 hours. Other spend (Google Ads, TikTok, posters) can be entered by hand on the new Ad spend tab.

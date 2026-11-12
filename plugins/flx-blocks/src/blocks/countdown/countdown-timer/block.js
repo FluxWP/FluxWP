@@ -35,7 +35,7 @@ registerBlockType('flx/countdown-timer', {
 	...metadata,
 	title: __('Countdown Timer', 'flx-blocks'),
 	description: __('The countdown timer', 'flx-blocks'),
-	keywords: [__('countdown', 'flx-blocks'), __('timer', 'flx-blocks'), 'KB'],
+	keywords: [__('countdown', 'flx-blocks'), __('timer', 'flx-blocks'), 'flux'],
 	icon: countdownInnerIcon,
 	edit,
 	save: (props) => {

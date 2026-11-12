@@ -53,7 +53,7 @@ registerBlockType('flx/accordion', {
 		'Create beautiful accordions! Each pane can contain any other block, customize title styles, content background, and borders.',
 		'flx-blocks'
 	),
-	keywords: [__('accordion', 'flx-blocks'), __('pane', 'flx-blocks'), 'KB'],
+	keywords: [__('accordion', 'flx-blocks'), __('pane', 'flx-blocks'), 'flux'],
 	icon: {
 		src: accordionBlockIcon,
 	},

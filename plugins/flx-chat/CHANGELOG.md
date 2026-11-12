@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.43.1
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 1.43.0
 - Contact names come from the shared FluxWP people table (one record across Flux CRM, Certificates, Donate and Commerce). Without it the old order stays: Certificates person, CRM contact, Donate donor.
 ## 1.42.1

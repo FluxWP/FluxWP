@@ -1036,10 +1036,10 @@
 		function cmd(c, v) { ed.focus(); document.execCommand(c, false, v || null); }
 		var tb = h('.flxg-desc-tb',
 			[['bold', 'bold', t('Kalın')], ['italic', 'italic', t('İtalik')], ['heading', 'formatBlock:h3', t('Başlık')], ['ul', 'insertUnorderedList', t('Madde listesi')], ['ol', 'insertOrderedList', t('Numaralı liste')], ['checklist', 'checklist', t('Kontrol listesi')], ['quote', 'formatBlock:blockquote', t('Alıntı')], ['code', 'formatBlock:pre', t('Kod')], ['link', 'link', t('Bağlantı')]].map(function (b) {
-				return h('button.flxg-icon-btn.is-sm', { type: 'button', title: b[2], onmousedown: function (e) {
+				return h('button.flxg-icon-btn.is-sm', { type: 'button', title: b[2], onmousedown: async function (e) {
 					e.preventDefault();
 					if (b[1] === 'link') {
-						var url = window.prompt(t('Bağlantı adresi'), 'https://');
+						var url = (await window.flxDialog.prompt({ title: t('Bağlantı adresi'), value: 'https://' }));
 						if (url) cmd('createLink', url);
 						return;
 					}

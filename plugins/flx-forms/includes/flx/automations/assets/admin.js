@@ -75,34 +75,34 @@
         cb.disabled = true;
         post('toggle', { id: tr.dataset.id, enabled: cb.checked ? '1' : '0' }).then(function (r) {
           cb.disabled = false;
-          if (!r.success) { cb.checked = !cb.checked; alert((r.data && r.data.message) || 'Error'); }
+          if (!r.success) { cb.checked = !cb.checked; window.flxDialog.alert((r.data && r.data.message) || 'Error'); }
         });
       });
-      list.addEventListener('click', function (e) {
+      list.addEventListener('click', async function (e) {
         var b = e.target.closest('.flxfa-dup, .flxfa-del');
         if (!b) return;
         var tr = b.closest('tr');
         if (b.classList.contains('flxfa-del')) {
-          if (!window.confirm(b.dataset.confirm)) return;
-          post('delete', { id: tr.dataset.id }).then(function (r) { if (r.success) tr.remove(); else alert((r.data && r.data.message) || 'Error'); });
+          if (!(await window.flxDialog.confirm({ message: b.dataset.confirm }))) return;
+          post('delete', { id: tr.dataset.id }).then(function (r) { if (r.success) tr.remove(); else window.flxDialog.alert((r.data && r.data.message) || 'Error'); });
         } else {
-          post('duplicate', { id: tr.dataset.id }).then(function (r) { if (r.success) location.reload(); else alert((r.data && r.data.message) || 'Error'); });
+          post('duplicate', { id: tr.dataset.id }).then(function (r) { if (r.success) location.reload(); else window.flxDialog.alert((r.data && r.data.message) || 'Error'); });
         }
       });
     }
     var def = document.getElementById('flxfa-default');
     if (def) def.addEventListener('click', function () {
       def.disabled = true;
-      post('default', {}).then(function (r) { if (r.success && r.data.url) location.href = r.data.url; else { def.disabled = false; alert((r.data && r.data.message) || 'Error'); } });
+      post('default', {}).then(function (r) { if (r.success && r.data.url) location.href = r.data.url; else { def.disabled = false; window.flxDialog.alert((r.data && r.data.message) || 'Error'); } });
     });
     var df = document.getElementById('flxfa-donation-form');
     if (df) df.addEventListener('click', function () {
       df.disabled = true;
-      post('donation_form', {}).then(function (r) { if (r.success) location.reload(); else { df.disabled = false; alert((r.data && r.data.message) || 'Error'); } });
+      post('donation_form', {}).then(function (r) { if (r.success) location.reload(); else { df.disabled = false; window.flxDialog.alert((r.data && r.data.message) || 'Error'); } });
     });
     var cr = document.getElementById('flxfa-clear-runs');
-    if (cr) cr.addEventListener('click', function () {
-      if (!window.confirm(cr.dataset.confirm)) return;
+    if (cr) cr.addEventListener('click', async function () {
+      if (!(await window.flxDialog.confirm({ message: cr.dataset.confirm }))) return;
       post('clear_runs', {}).then(function () { location.reload(); });
     });
   }
@@ -487,7 +487,7 @@
       el('div', { class: 'flxfa-node__tools' }, [
         el('button', { type: 'button', class: 'flxfa-icon-btn', title: t('moveUp'), 'aria-label': t('moveUp'), disabled: i === 0, onclick: function () { move(i, i - 1); } }, [svg('up')]),
         el('button', { type: 'button', class: 'flxfa-icon-btn', title: t('moveDown'), 'aria-label': t('moveDown'), disabled: i === state.flow.actions.length - 1, onclick: function () { move(i, i + 1); } }, [svg('down')]),
-        el('button', { type: 'button', class: 'flxfa-icon-btn flxfa-icon-btn--danger', title: t('remove'), 'aria-label': t('remove'), onclick: function () { if (window.confirm(t('confirmRemove'))) { state.flow.actions.splice(i, 1); setDirty(true); render(); } } }, [svg('trash')])
+        el('button', { type: 'button', class: 'flxfa-icon-btn flxfa-icon-btn--danger', title: t('remove'), 'aria-label': t('remove'), onclick: async function () { if ((await window.flxDialog.confirm({ message: t('confirmRemove'), danger: true }))) { state.flow.actions.splice(i, 1); setDirty(true); render(); } } }, [svg('trash')])
       ])
     ]);
     var node = el('section', { class: 'flxfa-node flxfa-node--action' + (open ? ' is-open' : '') + (disabled ? ' is-disabled' : ''), 'data-index': i, 'aria-label': t('a_' + a.type) }, [head]);

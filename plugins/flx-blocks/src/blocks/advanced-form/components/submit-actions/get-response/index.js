@@ -130,7 +130,7 @@ function GetResponseOptions({ formInnerBlocks, parentClientId, settings, save })
 		})
 			.then((list) => {
 				const theAttributes = [];
-				theAttributes.push({ value: null, label: 'None' });
+				theAttributes.push({ value: null, label: __('None', 'flx-blocks') });
 				theAttributes.push({ value: 'email', label: __('Email', 'flx-blocks') + ' *' });
 				theAttributes.push({ value: 'name', label: __('Name', 'flx-blocks') });
 
@@ -144,7 +144,7 @@ function GetResponseOptions({ formInnerBlocks, parentClientId, settings, save })
 			})
 			.catch(() => {
 				const theAttributes = [];
-				theAttributes.push({ value: null, label: 'None' });
+				theAttributes.push({ value: null, label: __('None', 'flx-blocks') });
 				theAttributes.push({ value: 'email', label: __('Email', 'flx-blocks') + ' *' });
 				theAttributes.push({ value: 'name', label: __('Name', 'flx-blocks') });
 

@@ -15,7 +15,7 @@ registerBlockType('flx/progress-bar', {
 	...metadata,
 	title: _x('Progress Bar', 'block title', 'flx-blocks'),
 	description: _x('Flux progress bar', 'block description', 'flx-blocks'),
-	keywords: [__('progress bar', 'flx-blocks'), 'kb'],
+	keywords: [__('progress bar', 'flx-blocks'), 'flux'],
 	icon: {
 		src: progressIcon,
 	},

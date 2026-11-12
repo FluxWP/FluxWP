@@ -31,7 +31,7 @@ registerBlockType('flx/single-icon', {
 	...metadata,
 	title: __('Single Icon', 'flx-blocks'),
 	description: __('Single icon within Icon block', 'flx-blocks'),
-	keywords: [__('icon', 'flx-blocks'), __('svg', 'flx-blocks'), 'KB'],
+	keywords: [__('icon', 'flx-blocks'), __('svg', 'flx-blocks'), 'flux'],
 	icon: {
 		src: iconIcon,
 	},

@@ -165,13 +165,13 @@
 				'<a class="button" data-fwd-wa target="_blank" rel="noopener">Kendi WhatsApp\'ımdan aç</a></div></form>';
 			document.body.appendChild(fwd);
 			fwd._f = fwd.querySelector('form');
-			fwd.addEventListener('click', function (e) {
+			fwd.addEventListener('click', async function (e) {
 				if (e.target === fwd || e.target.closest('[data-fwd-close]')) { fwd.hidden = true; return; }
 				var c = e.target.closest('[data-fwd-ch]');
 				if (c) { fwd._phoneCh = c.getAttribute('data-fwd-ch'); try { localStorage.setItem('flxs_fwd_ch', fwd._phoneCh); } catch (er) {} sync(); return; }
 				var del = e.target.closest('[data-rcp-del]');
 				if (del) {
-					if (!window.confirm('Rehberden silinsin mi?')) return;
+					if (!(await window.flxDialog.confirm({ message: 'Rehberden silinsin mi?', danger: true }))) return;
 					api('DELETE', 'recipients/' + del.getAttribute('data-rcp-del')).then(loadBook).catch(function (er) { toast(er.message, 'err'); });
 					return;
 				}
@@ -370,12 +370,10 @@
 	document.querySelectorAll('.flxs-bulkbar').forEach(function (b) { selState(b.closest('form')); });
 
 	/* ---------- ortak davranışlar ---------- */
-	document.addEventListener('click', function (e) {
+	document.addEventListener('click', async function (e) {
 		var c = e.target.closest('[data-flxs-copy]');
 		if (c) { e.preventDefault(); copy(c.getAttribute('data-flxs-copy')); return; }
 
-		var cf = e.target.closest('[data-confirm]');
-		if (cf && !window.confirm(cf.getAttribute('data-confirm'))) { e.preventDefault(); return; }
 
 		var all = e.target.closest('.flxs-check-all');
 		if (all) {
@@ -447,7 +445,7 @@
 		if (qs) {
 			e.preventDefault();
 			var ch = qs.getAttribute('data-quick-send');
-			if (!window.confirm(C.channels[ch] + ' ile gönderilsin mi?')) return;
+			if (!(await window.flxDialog.confirm({ message: C.channels[ch] + ' ile gönderilsin mi?' }))) return;
 			api('POST', 'certificates/' + qs.getAttribute('data-id') + '/send', { channels: [ch] }).then(function (r) {
 				var res = r.results[ch] || {};
 				toast(res.ok ? 'Kuyruğa alındı' : res.message, res.ok ? 'ok' : 'err');

@@ -10,6 +10,14 @@ if (!defined('ABSPATH')) {
 
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
+/** Uyarıyı tarayıcının alert'i yerine ortak modalla gösteren satır içi betik (flx-brand flxDialog). */
+function flxf_alert_script( $message ) {
+	if ( function_exists( 'flx_dialog_enqueue' ) ) {
+		flx_dialog_enqueue();
+	}
+	return '<script>window.addEventListener("load",function(){if(window.flxDialog){window.flxDialog.alert(' . wp_json_encode( (string) $message ) . ');}});</script>';
+}
+
 if (!defined('EMSFB_PLUGIN_FILE')) {
     define('EMSFB_PLUGIN_FILE', FLXF_PLUGIN_FILE);
 }

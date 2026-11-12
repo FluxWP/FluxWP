@@ -3,6 +3,7 @@
  * Post Type: flxbk_navigation
  */
 
+import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
 
 const postMeta = {
@@ -47,17 +48,17 @@ function innerBlocks() {
 		createBlock('flx/navigation', {}, [
 			createBlock(
 				'flx/navigation-link',
-				{ uniqueID: '372_6fa62d-de', label: 'View Demo', url: '#', kind: 'custom' },
+				{ uniqueID: '372_6fa62d-de', label: __('View Demo', 'flx-blocks'), url: '#', kind: 'custom' },
 				[]
 			),
 			createBlock(
 				'flx/navigation-link',
-				{ uniqueID: '372_6edcc1-8e', label: 'Contact Sales', url: '#', kind: 'custom' },
+				{ uniqueID: '372_6edcc1-8e', label: __('Contact Sales', 'flx-blocks'), url: '#', kind: 'custom' },
 				[]
 			),
 			createBlock(
 				'flx/navigation-link',
-				{ uniqueID: '372_c4f166-e5', label: 'Documentation', url: '#', kind: 'custom' },
+				{ uniqueID: '372_c4f166-e5', label: __('Documentation', 'flx-blocks'), url: '#', kind: 'custom' },
 				[]
 			),
 		]),

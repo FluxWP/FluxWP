@@ -3,6 +3,7 @@
  *
  * Registering a basic block with Gutenberg.
  */
+import { __ } from '@wordpress/i18n';
 import { InspectorControlTabs, SelectParentBlock, FlxbkPanelBody } from '@flx-blocks/components';
 
 import {
@@ -54,7 +55,7 @@ function FlxbkTab(props) {
 				/>
 				{activeTab === 'general' && (
 					<FlxbkPanelBody>
-						<div className="components-base-control">No general settings available.</div>
+						<div className="components-base-control">{__('No general settings available.', 'flx-blocks')}</div>
 					</FlxbkPanelBody>
 				)}
 			</InspectorControls>

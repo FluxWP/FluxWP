@@ -40,7 +40,7 @@ registerBlockType('flx/infobox', {
 	...metadata,
 	title: _x('Info Box', 'block title', 'flx-blocks'),
 	description: _x('Create beautiful information boxes using icons or images.', 'block description', 'flx-blocks'),
-	keywords: [__('icon', 'flx-blocks'), __('info', 'flx-blocks'), 'KB'],
+	keywords: [__('icon', 'flx-blocks'), __('info', 'flx-blocks'), 'flux'],
 	icon: {
 		src: infoboxIcon,
 	},

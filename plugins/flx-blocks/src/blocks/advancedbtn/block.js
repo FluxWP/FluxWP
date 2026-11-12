@@ -42,7 +42,7 @@ registerBlockType('flx/advancedbtn', {
 		'Create an advanced button or a row of buttons. Style each one, including hover controls',
 		'flx-blocks'
 	),
-	keywords: [__('button', 'flx-blocks'), __('icon', 'flx-blocks'), 'KB'],
+	keywords: [__('button', 'flx-blocks'), __('icon', 'flx-blocks'), 'flux'],
 	icon: {
 		src: advancedBtnIcon,
 	},

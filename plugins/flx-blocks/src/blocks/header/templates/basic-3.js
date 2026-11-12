@@ -3,6 +3,7 @@
  * Post Type: flxbk_header
  */
 
+import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
 
 const postMeta = {
@@ -37,7 +38,7 @@ function innerBlocks() {
 					{
 						uniqueID: '6_ab0443-66',
 						location: 'top',
-						metadata: { name: 'Top Row' },
+						metadata: { name: __('Top Row', 'flx-blocks') },
 					},
 					[
 						createBlock(
@@ -45,7 +46,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_d3211c-99',
 								location: 'left',
-								metadata: { name: 'Left Section' },
+								metadata: { name: __('Left Section', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -53,7 +54,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_91abed-d2',
 										location: 'left',
-										metadata: { name: 'Left' },
+										metadata: { name: __('Left', 'flx-blocks') },
 									},
 									[]
 								),
@@ -62,7 +63,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_9f5961-32',
 										location: 'center-left',
-										metadata: { name: 'Center Left' },
+										metadata: { name: __('Center Left', 'flx-blocks') },
 									},
 									[]
 								),
@@ -73,7 +74,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_378e9d-cd',
 								location: 'center',
-								metadata: { name: 'Center' },
+								metadata: { name: __('Center', 'flx-blocks') },
 							},
 							[]
 						),
@@ -82,7 +83,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_abbeb1-2a',
 								location: 'right',
-								metadata: { name: 'Right Section' },
+								metadata: { name: __('Right Section', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -90,7 +91,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_8b2d3c-0b',
 										location: 'center-right',
-										metadata: { name: 'Center Right' },
+										metadata: { name: __('Center Right', 'flx-blocks') },
 									},
 									[]
 								),
@@ -99,7 +100,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_e1ec2c-70',
 										location: 'right',
-										metadata: { name: 'Right' },
+										metadata: { name: __('Right', 'flx-blocks') },
 									},
 									[]
 								),
@@ -115,7 +116,7 @@ function innerBlocks() {
 						layout: 'fullwidth',
 						minHeight: 80,
 						padding: ['sm', 'sm', 'sm', 'sm'],
-						metadata: { name: 'Middle Row' },
+						metadata: { name: __('Middle Row', 'flx-blocks') },
 					},
 					[
 						createBlock(
@@ -123,7 +124,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_5ef4ea-76',
 								location: 'left',
-								metadata: { name: 'Left Section' },
+								metadata: { name: __('Left Section', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -131,7 +132,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_ef1743-20',
 										location: 'left',
-										metadata: { name: 'Left' },
+										metadata: { name: __('Left', 'flx-blocks') },
 									},
 									[]
 								),
@@ -140,7 +141,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_424422-01',
 										location: 'center-left',
-										metadata: { name: 'Center Left' },
+										metadata: { name: __('Center Left', 'flx-blocks') },
 									},
 									[
 										createBlock(
@@ -157,7 +158,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_d73051-3d',
 								location: 'center',
-								metadata: { name: 'Center' },
+								metadata: { name: __('Center', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -175,7 +176,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_f00bb1-7f',
 								location: 'right',
-								metadata: { name: 'Right Section' },
+								metadata: { name: __('Right Section', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -183,7 +184,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_71b76c-e9',
 										location: 'center-right',
-										metadata: { name: 'Center Right' },
+										metadata: { name: __('Center Right', 'flx-blocks') },
 									},
 									[
 										createBlock(
@@ -198,7 +199,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_5264df-4a',
 										location: 'right',
-										metadata: { name: 'Right' },
+										metadata: { name: __('Right', 'flx-blocks') },
 									},
 									[
 										createBlock('flx/advancedbtn', { uniqueID: '6_c4c399-29' }, [
@@ -206,7 +207,7 @@ function innerBlocks() {
 												'flx/singlebtn',
 												{
 													uniqueID: '6_1dcf73-af',
-													text: 'Call to action',
+													text: __('Call to action', 'flx-blocks'),
 													sizePreset: 'small',
 													color: 'palette9',
 													background: 'palette3',
@@ -245,7 +246,7 @@ function innerBlocks() {
 					{
 						uniqueID: '6_1be4fc-bb',
 						location: 'bottom',
-						metadata: { name: 'Bottom Row' },
+						metadata: { name: __('Bottom Row', 'flx-blocks') },
 					},
 					[
 						createBlock(
@@ -253,7 +254,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_d29711-a5',
 								location: 'left',
-								metadata: { name: 'Left Section' },
+								metadata: { name: __('Left Section', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -261,7 +262,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_709416-dd',
 										location: 'left',
-										metadata: { name: 'Left' },
+										metadata: { name: __('Left', 'flx-blocks') },
 									},
 									[]
 								),
@@ -270,7 +271,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_1b739b-8c',
 										location: 'center-left',
-										metadata: { name: 'Center Left' },
+										metadata: { name: __('Center Left', 'flx-blocks') },
 									},
 									[]
 								),
@@ -281,7 +282,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_ff0421-eb',
 								location: 'center',
-								metadata: { name: 'Center' },
+								metadata: { name: __('Center', 'flx-blocks') },
 							},
 							[]
 						),
@@ -290,7 +291,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_099ace-7c',
 								location: 'right',
-								metadata: { name: 'Right Section' },
+								metadata: { name: __('Right Section', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -298,7 +299,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_9e83d6-e8',
 										location: 'center-right',
-										metadata: { name: 'Center Right' },
+										metadata: { name: __('Center Right', 'flx-blocks') },
 									},
 									[]
 								),
@@ -307,7 +308,7 @@ function innerBlocks() {
 									{
 										uniqueID: '6_176e1e-df',
 										location: 'right',
-										metadata: { name: 'Right' },
+										metadata: { name: __('Right', 'flx-blocks') },
 									},
 									[]
 								),
@@ -322,7 +323,7 @@ function innerBlocks() {
 					{
 						uniqueID: '6_9a68e2-ec',
 						location: 'top',
-						metadata: { name: 'Top Row' },
+						metadata: { name: __('Top Row', 'flx-blocks') },
 					},
 					[
 						createBlock(
@@ -330,7 +331,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_d14800-cd',
 								location: 'tablet-left',
-								metadata: { name: 'Left' },
+								metadata: { name: __('Left', 'flx-blocks') },
 							},
 							[]
 						),
@@ -339,7 +340,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_8e1cce-17',
 								location: 'tablet-center',
-								metadata: { name: 'Center' },
+								metadata: { name: __('Center', 'flx-blocks') },
 							},
 							[]
 						),
@@ -348,7 +349,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_3f44b0-36',
 								location: 'tablet-right',
-								metadata: { name: 'Right' },
+								metadata: { name: __('Right', 'flx-blocks') },
 							},
 							[]
 						),
@@ -359,7 +360,7 @@ function innerBlocks() {
 					{
 						uniqueID: '6_be98a1-59',
 						location: 'center',
-						metadata: { name: 'Middle Row' },
+						metadata: { name: __('Middle Row', 'flx-blocks') },
 					},
 					[
 						createBlock(
@@ -367,7 +368,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_f7efdb-52',
 								location: 'tablet-left',
-								metadata: { name: 'Left' },
+								metadata: { name: __('Left', 'flx-blocks') },
 							},
 							[]
 						),
@@ -376,7 +377,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_7048f8-e9',
 								location: 'tablet-center',
-								metadata: { name: 'Center' },
+								metadata: { name: __('Center', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -394,7 +395,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_f780bf-26',
 								location: 'tablet-right',
-								metadata: { name: 'Right' },
+								metadata: { name: __('Right', 'flx-blocks') },
 							},
 							[
 								createBlock(
@@ -416,14 +417,14 @@ function innerBlocks() {
 				),
 				createBlock(
 					'flx/header-row',
-					{ uniqueID: '6_12c3d7-de', location: 'bottom', metadata: { name: 'Bottom Row' } },
+					{ uniqueID: '6_12c3d7-de', location: 'bottom', metadata: { name: __('Bottom Row', 'flx-blocks') } },
 					[
 						createBlock(
 							'flx/header-column',
 							{
 								uniqueID: '6_092ed2-c2',
 								location: 'tablet-left',
-								metadata: { name: 'Left' },
+								metadata: { name: __('Left', 'flx-blocks') },
 							},
 							[]
 						),
@@ -432,7 +433,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_ee92c3-ac',
 								location: 'tablet-center',
-								metadata: { name: 'Center' },
+								metadata: { name: __('Center', 'flx-blocks') },
 							},
 							[]
 						),
@@ -441,7 +442,7 @@ function innerBlocks() {
 							{
 								uniqueID: '6_6e0811-10',
 								location: 'tablet-right',
-								metadata: { name: 'Right' },
+								metadata: { name: __('Right', 'flx-blocks') },
 							},
 							[]
 						),

@@ -26,8 +26,7 @@ registerBlockType('flx/spacer', {
 		__('spacer', 'flx-blocks'),
 		__('divider', 'flx-blocks'),
 		__('separator', 'flx-blocks'),
-		'KB',
-	],
+		'flux',	],
 	icon: {
 		src: spacerIcon,
 	},

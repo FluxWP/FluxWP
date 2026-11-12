@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.2.10
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 0.2.9
 - Fix an endless loop ("Maximum call stack size reached") when another plugin such as LiteSpeed Cache asks for the locale while Flux Lang reads its settings. The settings read and the locale filter now return the incoming value on a nested call.
 

@@ -41,7 +41,7 @@ const RenameBlockMenuItem = () => {
 							}}
 							icon={'smiley'}
 							iconPosition={null}
-							label={'Rename'}
+							label={__('Rename', 'flx-blocks')}
 							role={null}
 						>
 							{__('Rename', 'flx-blocks')}

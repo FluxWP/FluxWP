@@ -31,6 +31,7 @@ final class FLXB_WC_Esnekpos_Blocks extends AbstractPaymentMethodType {
 			flx_field_enqueue(); // 2.23.0: the card fields use the shared FluxWP field look and icons
 			$deps[] = 'flx-field';
 		}
+		if ( function_exists( 'flx_dialog_enqueue' ) ) { flx_dialog_enqueue(); } // Ortak modal (flx-brand).
 		wp_register_script( 'flxb-esnekpos-blocks', FLXB_URL . 'assets/wc/esnekpos-blocks.js', $deps, FLXB_VERSION, true );
 		wp_enqueue_style( 'flxb-esnekpos', FLXB_URL . 'assets/wc/esnekpos.css', array(), FLXB_VERSION );
 		return array( 'flxb-esnekpos-blocks' );

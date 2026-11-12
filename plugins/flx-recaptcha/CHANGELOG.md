@@ -1,5 +1,8 @@
 # Flux reCAPTCHA
 
+## 0.2.5
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 0.2.4
 - Gizli anahtar bir sonraki kayıtta ortak mühürle saklanır. Eski kayıt açılır. WordPress tuzları değişirse anahtarı yeniden girin.
 

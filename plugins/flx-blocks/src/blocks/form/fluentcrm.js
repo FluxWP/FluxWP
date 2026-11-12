@@ -87,8 +87,8 @@ class FluentCRMControls extends Component {
 		})
 			.then((fields) => {
 				const theFields = [];
-				theFields.push({ value: null, label: 'None' });
-				theFields.push({ value: 'email', label: 'Email *' });
+				theFields.push({ value: null, label: __('None', 'flx-blocks') });
+				theFields.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 				fields.map((item, index) => {
 					if (item.key !== 'email') {
 						theFields.push({ value: item.key, label: item.title });
@@ -98,8 +98,8 @@ class FluentCRMControls extends Component {
 			})
 			.catch(() => {
 				const theFields = [];
-				theFields.push({ value: null, label: 'None' });
-				theFields.push({ value: 'email', label: 'Email *' });
+				theFields.push({ value: null, label: __('None', 'flx-blocks') });
+				theFields.push({ value: 'email', label: __('Email *', 'flx-blocks') });
 				this.setState({ listFields: theFields, listFieldsLoaded: true, isFetchingFields: false });
 			});
 	}

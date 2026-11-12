@@ -940,7 +940,7 @@ class FLXAN_Telemetry_Hub {
 					</tr>
 				<?php endforeach; ?>
 			</table></div>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxan-more" onsubmit="return confirm('<?php echo esc_js( __( 'Delete all error records?', 'flx-analytics' ) ); ?>')">
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxan-more" data-flx-confirm-danger data-flx-confirm="<?php echo esc_attr( __( 'Delete all error records?', 'flx-analytics' ) ); ?>">
 				<input type="hidden" name="action" value="flxan_tm_forget"><input type="hidden" name="h" value="all">
 				<?php wp_nonce_field( 'flxan_tm_forget' ); ?>
 				<button class="button-link" style="color:#b32d2e"><?php esc_html_e( 'Clear all errors', 'flx-analytics' ); ?></button>

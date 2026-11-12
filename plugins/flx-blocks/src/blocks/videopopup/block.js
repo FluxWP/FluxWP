@@ -32,7 +32,7 @@ export { metadata, name };
 /**
  * Internal block libraries
  */
-import { __ } from '@wordpress/i18n';
+import { __, _x } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 
 /**
@@ -46,12 +46,13 @@ import { registerBlockType } from '@wordpress/blocks';
  */
 registerBlockType('flx/videopopup', {
 	...metadata,
+	description: _x('Display a thumbnail that opens a video in a popup.', 'block description', 'flx-blocks'),
 	title: __('Video Popup', 'flx-blocks'),
 	icon: {
 		src: videoPopupIcon,
 	},
 	category: 'flx-blocks',
-	keywords: [__('Video Popup', 'flx-blocks'), __('Modal', 'flx-blocks'), 'KB'],
+	keywords: [__('Video Popup', 'flx-blocks'), __('Modal', 'flx-blocks'), 'flux'],
 	example: {
 		attributes: {
 			background: [

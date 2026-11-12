@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.2
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 0.7.1
 - Kullanılmayan CSS kırpma: yeni `flxp_ps_safelist` filtresi. Sınıf adlarını JavaScript'te üreten kütüphaneler (Splide carousel noktaları/okları, GLightbox, Plyr) kendi kalıplarını bildirir, kuralları silinmez. Filtre ya da ayar değişince kırpılmış kopyalar yenilenir.
 

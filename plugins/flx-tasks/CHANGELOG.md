@@ -1,5 +1,8 @@
 # Flux Tasks — Değişiklikler
 
+## 0.8.19
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 0.8.18
 - Görev API yanıtları ortak önbelleksiz başlıkları kullanır. Dosya indirme ve CDN işareti aynı kalır.
 

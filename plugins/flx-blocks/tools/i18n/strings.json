@@ -651,6 +651,56 @@
 },
 {
 "ctx": "",
+"id": "This site does not share its design library.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "The library key is missing or wrong.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Other",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "My patterns",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Enter a valid site address.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Unknown action.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Library not found.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "The library could not be reached.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "The library refused access. Check the key, and that sharing is on at the other site.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "This address is not a Flux design library.",
+"plural": ""
+},
+{
+"ctx": "",
 "id": "Make a duplicate from this.",
 "plural": ""
 },
@@ -3236,6 +3286,11 @@
 },
 {
 "ctx": "",
+"id": "Email *",
+"plural": ""
+},
+{
+"ctx": "",
 "id": "Kit (ConvertKit) Settings",
 "plural": ""
 },
@@ -4241,7 +4296,7 @@
 },
 {
 "ctx": "",
-"id": "tab",
+"id": "%s tab",
 "plural": ""
 },
 {
@@ -5667,6 +5722,21 @@
 {
 "ctx": "",
 "id": "captcha",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Message",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Option 1",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Option 2",
 "plural": ""
 },
 {
@@ -7327,6 +7397,11 @@
 {
 "ctx": "",
 "id": "Text Shadow Settings",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Enable Text Shadow",
 "plural": ""
 },
 {
@@ -9015,6 +9090,16 @@
 "plural": ""
 },
 {
+"ctx": "",
+"id": "Trigger Colors",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Hover Colors",
+"plural": ""
+},
+{
 "ctx": "block title",
 "id": "Off Canvas Trigger",
 "plural": ""
@@ -9082,6 +9167,11 @@
 {
 "ctx": "",
 "id": "Close Trigger Settings",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Colors",
 "plural": ""
 },
 {
@@ -9665,6 +9755,11 @@
 "plural": ""
 },
 {
+"ctx": "",
+"id": "Mobile Layout",
+"plural": ""
+},
+{
 "ctx": "block title",
 "id": "Header (Adv)",
 "plural": ""
@@ -9682,6 +9777,51 @@
 {
 "ctx": "",
 "id": "footer",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Call To Action",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Secondary",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Call to Action",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Call to action",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Chat or support",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Join Today",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Facebook",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Instagram",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Youtube",
 "plural": ""
 },
 {
@@ -10916,6 +11056,11 @@
 },
 {
 "ctx": "",
+"id": "Expand child menu",
+"plural": ""
+},
+{
+"ctx": "",
 "id": "Select Your Columns",
 "plural": ""
 },
@@ -10946,6 +11091,11 @@
 },
 {
 "ctx": "",
+"id": "Get Started",
+"plural": ""
+},
+{
+"ctx": "",
 "id": "Ask a question",
 "plural": ""
 },
@@ -10957,6 +11107,41 @@
 {
 "ctx": "",
 "id": "Others",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "New Arrivals",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Best Sellers",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Women",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Children",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Men",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Accessories",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Sale",
 "plural": ""
 },
 {
@@ -10992,11 +11177,6 @@
 {
 "ctx": "",
 "id": "Resources",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Call to Action",
 "plural": ""
 },
 {
@@ -11057,6 +11237,16 @@
 {
 "ctx": "",
 "id": "Tablet Orientation",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Categories",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Product Categories",
 "plural": ""
 },
 {
@@ -11271,11 +11461,6 @@
 },
 {
 "ctx": "",
-"id": "Colors",
-"plural": ""
-},
-{
-"ctx": "",
 "id": "Divider",
 "plural": ""
 },
@@ -11382,6 +11567,41 @@
 {
 "ctx": "block title",
 "id": "Navigation (Adv)",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Add a short title",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Short Title",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "View Demo",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Contact Sales",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Documentation",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Use this space to add a medium length description.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Short title",
 "plural": ""
 },
 {
@@ -12166,6 +12386,11 @@
 },
 {
 "ctx": "",
+"id": "Any Membership",
+"plural": ""
+},
+{
+"ctx": "",
 "id": "Row Content Only Editing",
 "plural": ""
 },
@@ -12577,6 +12802,11 @@
 {
 "ctx": "",
 "id": "Modal Style",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Search for:",
 "plural": ""
 },
 {
@@ -13256,6 +13486,11 @@
 },
 {
 "ctx": "",
+"id": "tab",
+"plural": ""
+},
+{
+"ctx": "",
 "id": "Tab 1 Content",
 "plural": ""
 },
@@ -13297,11 +13532,6 @@
 {
 "ctx": "",
 "id": "Vertical Tabs",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Mobile Layout",
 "plural": ""
 },
 {
@@ -13497,6 +13727,11 @@
 {
 "ctx": "",
 "id": "Tab Anchor Settings",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "No general settings available.",
 "plural": ""
 },
 {
@@ -14326,6 +14561,131 @@
 },
 {
 "ctx": "",
+"id": "Could not load the library.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "“%s” added.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Try again",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Search patterns",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Refresh library",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "No pattern matches your search.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "This library has no patterns yet. Theme and preset patterns, and the patterns you save, appear here.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "%d pattern",
+"plural": "%d patterns"
+},
+{
+"ctx": "",
+"id": "Insert",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "The library could not be added.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Only administrators can add libraries.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Linked libraries",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Add another Flux site by its address. Its sections and pages show up here as a library; nothing is copied until you insert it.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "with key",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Site address",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Name (optional)",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Key",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Add library",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Share this site",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Other Flux sites can use this site’s patterns as a library",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Address",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "New key",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "A new key cuts off every site that used the old one.",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "Design Library",
+"plural": ""
+},
+{
+"ctx": "",
+"id": "This site",
+"plural": ""
+},
+{
+"ctx": "",
 "id": "Full Screen Width",
 "plural": ""
 },
@@ -14812,11 +15172,6 @@
 {
 "ctx": "",
 "id": "Components",
-"plural": ""
-},
-{
-"ctx": "",
-"id": "Design Library",
 "plural": ""
 },
 {

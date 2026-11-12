@@ -361,7 +361,7 @@ final class FLXB_Page_Track {
 			$steps = self::steps( $tid );
 			echo '<div class="flxb-kbtns">';
 			foreach ( $btn[ $it['status'] ] ?? array() as $s ) {
-				echo self::form_open( 'step', $id, isset( $conf[ $s ] ) ? ' onsubmit="return confirm(' . esc_attr( wp_json_encode( $conf[ $s ] ) ) . ')"' : '' ) . '<input type="hidden" name="step" value="' . esc_attr( $s ) . '"><button type="submit" class="flxb-btn' . ( in_array( $s, array( 'approve', 'done', 'delivered' ), true ) ? ' flxb-btn--primary' : ( in_array( $s, array( 'cancel', 'revoke' ), true ) ? ' flxb-btn--danger' : '' ) ) . '">' . esc_html( $steps[ $s ] ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo self::form_open( 'step', $id, isset( $conf[ $s ] ) ? ' data-flx-confirm="' . esc_attr( $conf[ $s ] ) . '"' : '' ) . '<input type="hidden" name="step" value="' . esc_attr( $s ) . '"><button type="submit" class="flxb-btn' . ( in_array( $s, array( 'approve', 'done', 'delivered' ), true ) ? ' flxb-btn--primary' : ( in_array( $s, array( 'cancel', 'revoke' ), true ) ? ' flxb-btn--danger' : '' ) ) . '">' . esc_html( $steps[ $s ] ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			echo '</div>';
 			echo self::form_open( 'note', $id ) . '<label class="flxb-field"><span class="flxb-label">' . esc_html__( 'Add a note to the history', 'flx-donate' ) . '</span><input type="text" name="note" maxlength="300" required></label><div class="flxb-formactions"><button type="submit" class="flxb-btn flxb-btn--sm">' . esc_html__( 'Add note', 'flx-donate' ) . '</button></div></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -389,9 +389,9 @@ final class FLXB_Page_Track {
 				echo '<div class="flxb-kbtns">';
 				if ( FLXB_Track::can_send() && '' !== $phone ) {
 					/* translators: %s: phone */
-					echo self::form_open( 'file_send', $id, ' onsubmit="return confirm(' . esc_attr( wp_json_encode( sprintf( __( 'Send this file to %s over WhatsApp?', 'flx-donate' ), self::phone( $phone ) ) ) ) . ')"' ) . '<input type="hidden" name="att" value="' . $att . '"><button type="submit" class="flxb-btn flxb-btn--primary flxb-btn--sm">' . esc_html__( 'Send to owner', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo self::form_open( 'file_send', $id, ' data-flx-confirm="' . esc_attr( sprintf( __( 'Send this file to %s over WhatsApp?', 'flx-donate' ), self::phone( $phone ) ) ) . '"' ) . '<input type="hidden" name="att" value="' . $att . '"><button type="submit" class="flxb-btn flxb-btn--primary flxb-btn--sm">' . esc_html__( 'Send to owner', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
-				echo self::form_open( 'file_delete', $id, ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Remove this file from the item? It stays in the media library.', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="att" value="' . $att . '"><button type="submit" class="flxb-linkbtn flxb-linkbtn--danger">' . esc_html__( 'Remove', 'flx-donate' ) . '</button></form></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo self::form_open( 'file_delete', $id, ' data-flx-confirm-danger data-flx-confirm="' . esc_attr( __( 'Remove this file from the item? It stays in the media library.', 'flx-donate' ) ) . '"' ) . '<input type="hidden" name="att" value="' . $att . '"><button type="submit" class="flxb-linkbtn flxb-linkbtn--danger">' . esc_html__( 'Remove', 'flx-donate' ) . '</button></form></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			echo '</div></div>';
 		}

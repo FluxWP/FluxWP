@@ -6,7 +6,7 @@
 /**
  * Internal block libraries
  */
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { Icon } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
@@ -82,7 +82,7 @@ function InspectorControlTabs({ allowedTabs = null, activeTab, setActiveTab, ope
 					return (
 						<button
 							key={key}
-							aria-label={title + ' ' + __('tab', 'flx-blocks')}
+							aria-label={sprintf(/* translators: %s: tab name, e.g. "General". */ __('%s tab', 'flx-blocks'), title)}
 							onClick={() => switchTab(key)}
 							className={classnames({
 								['is-active']: key === activeTab,

@@ -22,7 +22,7 @@ registerBlockType('flx/table', {
 	...metadata,
 	title: _x('Table (Adv)', 'block title', 'flx-blocks'),
 	description: _x('Display tables on your site', 'block description', 'flx-blocks'),
-	keywords: [__('table', 'flx-blocks'), __('structure', 'flx-blocks'), 'KB'],
+	keywords: [__('table', 'flx-blocks'), __('structure', 'flx-blocks'), 'flux'],
 	icon: {
 		src: tableBlockIcon,
 	},

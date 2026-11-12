@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Yeni: üst çubukta **Tasarım kütüphanesi** düğmesi. Tam ekran pencerede bu sitenin desenleri (tema, ön ayarlar, Desenlerim) önizlemeli, kategorili ve aramalı listelenir; tıklanan desen imlecin olduğu yere eklenir.
+- Yeni: başka Flux sitelerini adres + anahtarla kütüphane olarak ekleme ve bu siteyi kütüphane olarak paylaşma (REST `flx-blocks/v1/library`, belge docs/flx-blocks/LIBRARY.md).
+- Türkçe: header ve mega menü şablonlarındaki satır/bölüm adları, düğme ve bağlantı metinleri, form şablonu alanları (Ad, E-posta, Mesaj, Gönder), entegrasyon alan listeleri, sekme adları ve kalan sabit metinler çeviriye alındı (71 yeni çeviri).
+- Blok arama anahtar kelimelerindeki eski "KB" kısaltması "flux" oldu.
+
 ## 0.1.2
 
 - Düzeltme: blokların sayfa başı CSS ve verisi yeniden basılıyor; akordiyonda "SSS şeması" açıkken FAQPage yapılandırılmış verisi çıkıyor.

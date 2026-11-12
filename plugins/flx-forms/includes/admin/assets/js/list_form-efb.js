@@ -236,7 +236,7 @@ function fun_emsFormBuilder_render_view(x) {
     const currentUrl = window.location.href;
     const txt = fun_create_content_nloading_efb();
     const txtWithoutHTML = stripTags_efb(txt);
-    alert(txtWithoutHTML)
+    window.flxDialog.alert(txtWithoutHTML)
     report_problem_efb('AdminPagesNotLoaded' ,currentUrl);
     return;
   }
@@ -2852,7 +2852,7 @@ function efb_open_color_modal() {
      * keeps the dialog open. The listener takes itself off as soon as the
      * dialog is gone from the DOM, so it can never outlive it.
      */
-    const closeGuard = (e) => {
+    const closeGuard = async (e) => {
       if (!document.getElementById('efbClrRoot')) {
         document.removeEventListener('click', closeGuard, true);
         return;
@@ -2862,13 +2862,13 @@ function efb_open_color_modal() {
         ? e.target.closest('#settingModalEfb-close, .efb-modal-backdrop')
         : null;
       if (!hit) return;
-      if (window.confirm(t('respClrUnsaved', 'Your color changes have not been saved yet. Close and lose them?'))) {
-        document.removeEventListener('click', closeGuard, true);
-        return;
-      }
       e.preventDefault();
       e.stopPropagation();
       e.stopImmediatePropagation();
+      if (await window.flxDialog.confirm({ message: t('respClrUnsaved', 'Your color changes have not been saved yet. Close and lose them?'), danger: true })) {
+        document.removeEventListener('click', closeGuard, true);
+        hit.click();
+      }
     };
     document.addEventListener('click', closeGuard, true);
 

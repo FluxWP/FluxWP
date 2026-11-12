@@ -22,7 +22,7 @@ registerBlockType('flx/column', {
 	...metadata,
 	title: _x('Section', 'block title', 'flx-blocks'),
 	description: __('A container to style a section of content.', 'flx-blocks'),
-	keywords: [__('column', 'flx-blocks'), __('section', 'flx-blocks'), 'KB'],
+	keywords: [__('column', 'flx-blocks'), __('section', 'flx-blocks'), 'flux'],
 	icon: {
 		src: blockColumnIcon,
 	},

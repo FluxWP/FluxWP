@@ -162,7 +162,7 @@ function ActiveCampaignOptions({ formInnerBlocks, parentClientId, settings, save
 		})
 			.then((list) => {
 				const theAttributes = [];
-				theAttributes.push({ value: null, label: 'None' });
+				theAttributes.push({ value: null, label: __('None', 'flx-blocks') });
 				theAttributes.push({ value: 'email', label: __('Email', 'flx-blocks') + ' *' });
 				theAttributes.push({ value: 'firstName', label: __('First Name', 'flx-blocks') });
 				theAttributes.push({ value: 'lastName', label: __('Last Name', 'flx-blocks') });
@@ -180,7 +180,7 @@ function ActiveCampaignOptions({ formInnerBlocks, parentClientId, settings, save
 			})
 			.catch(() => {
 				const theAttributes = [];
-				theAttributes.push({ value: null, label: 'None' });
+				theAttributes.push({ value: null, label: __('None', 'flx-blocks') });
 				theAttributes.push({ value: 'email', label: __('Email', 'flx-blocks') + ' *' });
 				theAttributes.push({ value: 'firstName', label: __('First Name', 'flx-blocks') });
 				theAttributes.push({ value: 'lastName', label: __('Last Name', 'flx-blocks') });

@@ -588,7 +588,7 @@ async function  actionSendData_emsFormBuilder(saveMode) {
           if (saveMode === 1) clear_auto_save_efb();
           fun_pr(1);
         } else {
-          alert(res, "error")
+          window.flxDialog.alert(res, "error")
           show_message_result_form_set_EFB(0, res.data.value, `${efb_var.text.somethingWentWrongPleaseRefresh}, Code:400-1`)
           fun_pr(0);
         }
@@ -691,7 +691,7 @@ function actionSendAddonsUn_efb(val) {
           alert_message_efb(m,'', 30,'success');
           location.reload();
         } else {
-          alert(res, "error")
+          window.flxDialog.alert(res, "error")
           alert_message_efb(efb_var.text.error, `${efb_var.text.somethingWentWrongPleaseRefresh}, Code:400-1`, 30, "danger");
 
         }

@@ -333,8 +333,8 @@
 				h('p', { class: 'flxbs-muted flxbs-clip', text: d.body.slice(0, 220) }),
 				h('div', { class: 'flxbs-row' },
 					h('button', { type: 'button', class: 'flxbs-link', onclick: function () { docForm(d); } }, t('Düzenle')),
-					h('button', { type: 'button', class: 'flxbs-link is-danger', onclick: function () {
-						if (!confirm(t('“{t}” belgesi silinsin mi?', { t: d.title }))) return;
+					h('button', { type: 'button', class: 'flxbs-link is-danger', onclick: async function () {
+						if (!(await window.flxDialog.confirm({ message: t('“{t}” belgesi silinsin mi?', { t: d.title }), danger: true }))) return;
 						api('bot/docs/' + d.id, { method: 'DELETE' }).then(function (r) { D.docs = r.docs; render(); }).catch(function (er) { toast(er.message, 1); });
 					} }, t('Sil')))
 			));
@@ -342,7 +342,7 @@
 		body.appendChild(list);
 	}
 	function copy(s) {
-		(navigator.clipboard ? navigator.clipboard.writeText(s) : Promise.reject()).then(function () { toast(t('Kopyalandı')); }, function () { prompt('', s); });
+		(navigator.clipboard ? navigator.clipboard.writeText(s) : Promise.reject()).then(function () { toast(t('Kopyalandı')); }, async function () { (await window.flxDialog.prompt({ title: '', value: s })); });
 	}
 	function docForm(d) {
 		var title = h('input', { type: 'text', class: 'flxbs-in', value: d.title || '' });
@@ -487,10 +487,10 @@
 			var S = ED.cur;
 			head.appendChild(h('div', { class: 'flxbs-chat-top' },
 				h('h2', { text: S ? S.title : t('Yeni oturum') }),
-				S ? h('button', { type: 'button', class: 'flxbs-link', onclick: function () { var v = window.prompt(t('Oturum adı'), S.title); if (v && v.trim()) edUpdate({ title: v.trim() }); } }, t('Yeniden adlandır')) : null,
+				S ? h('button', { type: 'button', class: 'flxbs-link', onclick: async function () { var v = (await window.flxDialog.prompt({ title: t('Oturum adı'), value: S.title })); if (v && v.trim()) edUpdate({ title: v.trim() }); } }, t('Yeniden adlandır')) : null,
 				S ? h('button', { type: 'button', class: 'flxbs-link', onclick: function () { edUpdate({ status: S.status === 'archived' ? 'active' : 'archived' }, S.status === 'archived' ? t('Arşivden çıkarıldı') : t('Arşive alındı')); } }, S.status === 'archived' ? t('Arşivden çıkar') : t('Arşive al')) : null,
-				S ? h('button', { type: 'button', class: 'flxbs-link is-danger', onclick: function () {
-					if (!window.confirm(t('Bu oturum silinsin mi? Geri alınamaz.'))) return;
+				S ? h('button', { type: 'button', class: 'flxbs-link is-danger', onclick: async function () {
+					if (!(await window.flxDialog.confirm({ message: t('Bu oturum silinsin mi? Geri alınamaz.'), danger: true }))) return;
 					api('bot/editor/sessions/' + S.id, { method: 'DELETE' }).then(function () { ED.cur = null; edList(); edPaint(); toast(t('Silindi')); }).catch(function (e) { toast(e.message, 1); });
 				} }, t('Sil')) : null,
 				h('div', { class: 'flxbs-right flxbs-dash-wrap' }, panel.dash, msel)));

@@ -221,7 +221,7 @@ function flxi_page_template_edit( $key ) {
 	echo '<div class="flxi-actions"><button type="submit" class="button button-primary button-large">' . esc_html__( 'Save', 'flx-mail' ) . '</button>';
 	if ( $editable ) {
 		echo ' <button type="button" class="button button-large" data-test-template="' . esc_attr( $key ) . '">' . esc_html__( 'Send me a test', 'flx-mail' ) . '</button>';
-		echo ' <button type="submit" name="reset" value="1" class="button-link flxi-link-danger" onclick="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr__( 'Reset content to default?', 'flx-mail' ) . '">' . esc_html__( 'Reset to default', 'flx-mail' ) . '</button>';
+		echo ' <button type="submit" name="reset" value="1" class="button-link flxi-link-danger" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Reset content to default?', 'flx-mail' ) . '">' . esc_html__( 'Reset to default', 'flx-mail' ) . '</button>';
 	}
 	echo '<span class="flxi-status" aria-live="polite"></span></div>';
 	echo '</div></div>';

@@ -208,7 +208,7 @@ function flxapp_render_tokens( array $rows, $show_user ) {
 		echo '<td data-label="' . esc_attr__( 'Created', 'flx-app' ) . '">' . esc_html( flxapp_when( $r['created'] ) ) . '</td>';
 		echo '<td data-label="' . esc_attr__( 'Last used', 'flx-app' ) . '">' . esc_html( flxapp_when( $last ) ) . ( $r['last_ip'] && $is_key ? ' <span class="flxapp-muted">' . esc_html( $r['last_ip'] ) . '</span>' : '' ) . '</td>';
 		echo '<td data-label="' . esc_attr__( 'Expires', 'flx-app' ) . '">' . ( (int) $r['expires'] ? esc_html( flxapp_when( $r['expires'] ) ) : esc_html__( 'Never', 'flx-app' ) ) . '</td>';
-		echo '<td><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(\'' . esc_js( __( 'Remove this access?', 'flx-app' ) ) . '\')">';
+		echo '<td><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr( __( 'Remove this access?', 'flx-app' ) ) . '">';
 		echo '<input type="hidden" name="action" value="flxapp_revoke"><input type="hidden" name="id" value="' . (int) $r['id'] . '">';
 		wp_nonce_field( 'flxapp_revoke' );
 		echo '<button class="button button-link-delete">' . esc_html__( 'Remove', 'flx-app' ) . '</button></form></td>';
@@ -368,7 +368,7 @@ function flxapp_render_settings_page() {
 			}
 			echo '<tr><td data-label="' . esc_attr__( 'Application', 'flx-app' ) . '"><strong>' . esc_html( $c['name'] ) . '</strong></td><td data-label="client_id"><code>' . esc_html( $c['id'] ) . '</code></td><td data-label="' . esc_attr__( 'Redirect URIs', 'flx-app' ) . '">' . implode( '<br>', array_map( 'esc_html', (array) $c['redirect_uris'] ) ) . '</td><td data-label="' . esc_attr__( 'Type', 'flx-app' ) . '">' . esc_html( $type ) . '</td><td>';
 			if ( empty( $c['builtin'] ) ) {
-				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(\'' . esc_js( __( 'Delete the application and all of its sessions?', 'flx-app' ) ) . '\')"><input type="hidden" name="action" value="flxapp_client_delete"><input type="hidden" name="id" value="' . esc_attr( $c['id'] ) . '">';
+				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr( __( 'Delete the application and all of its sessions?', 'flx-app' ) ) . '"><input type="hidden" name="action" value="flxapp_client_delete"><input type="hidden" name="id" value="' . esc_attr( $c['id'] ) . '">';
 				wp_nonce_field( 'flxapp_client_delete' );
 				echo '<button class="button button-link-delete">' . esc_html__( 'Delete', 'flx-app' ) . '</button></form>';
 			}

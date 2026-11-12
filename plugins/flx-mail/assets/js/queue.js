@@ -17,7 +17,7 @@
     const json = await response.json(); if (!response.ok) throw new Error(json.message || t.error); return json;
   }
   async function action(data) {
-    if (!window.confirm(t.confirm)) return;
+    if (!(await window.flxDialog.confirm({ message: t.confirm }))) return;
     try { await request('queue/action', data); await refresh(); } catch (error) { $('[data-health]').textContent = error.message; }
   }
   function render(data) {

@@ -110,7 +110,7 @@ function flxs_page_templates() {
 		echo '<div class="flxs-muted">' . count( $t['config']['fields'] ) . ' alan · ' . (int) ( $counts[ $t['id'] ] ?? 0 ) . ' sertifika</div>';
 		echo '<div class="flxs-tplcard__acts"><a href="' . esc_url( admin_url( 'admin.php?page=flxs-sablonlar&edit=' . (int) $t['id'] ) ) . '">Düzenle</a>' .
 			$act( 'duplicate', 'Çoğalt' ) . $act( 'toggle', 'active' === $t['status'] ? 'Pasif yap' : 'Aktif yap' ) . $act( 'export', 'Dışa aktar' ) .
-			$act( 'delete', 'Sil', 'class="flxs-danger" data-confirm="Şablon silinsin mi?"' ) . '</div>'; // phpcs:ignore
+			$act( 'delete', 'Sil', 'class="flxs-danger" data-flx-confirm="Şablon silinsin mi?"' ) . '</div>'; // phpcs:ignore
 		echo '</div></div>';
 	}
 	echo '</div>';

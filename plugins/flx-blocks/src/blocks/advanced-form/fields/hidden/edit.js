@@ -141,7 +141,7 @@ function FieldHidden(props) {
 				</InspectorControls>
 				<>
 					{label === '' ? (
-						<em className="fxb-hidden-field-label">Hidden Field</em>
+						<em className="fxb-hidden-field-label">{__('Hidden Field', 'flx-blocks')}</em>
 					) : (
 						<em className="fxb-hidden-field-label">Hidden Field: {label}</em>
 					)}
