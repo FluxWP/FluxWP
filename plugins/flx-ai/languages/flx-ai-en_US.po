@@ -2746,3 +2746,18 @@ msgstr "No files change; the assistant is told it was rejected."
 msgctxt "workspace tab"
 msgid "Changes"
 msgstr "Changes"
+
+msgid "Only text files in this chat's own folder can be edited."
+msgstr "Only text files in this chat's own folder can be edited."
+
+msgid "The file is too large."
+msgstr "The file is too large."
+
+msgid "Preview"
+msgstr "Preview"
+
+msgid "Discard"
+msgstr "Discard"
+
+msgid "Code"
+msgstr "Code"

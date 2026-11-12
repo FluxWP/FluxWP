@@ -106,6 +106,11 @@ function flxai_dock_enqueue() {
 			'rest'        => esc_url_raw( rest_url( 'flx-ai/v1/' ) ),
 			'nonce'       => wp_create_nonce( 'wp_rest' ),
 			'css'         => FLXAI_URL . 'assets/css/chat.css?ver=' . FLXAI_VERSION,
+			// Dosya paneli editörü: WordPress'in CodeMirror'ı, yalnız gerekince yüklenir (Flux Files ile aynı).
+			'cm'          => array(
+				'js'  => includes_url( 'js/codemirror/codemirror.min.js' ) . '?ver=' . rawurlencode( get_bloginfo( 'version' ) ),
+				'css' => includes_url( 'js/codemirror/codemirror.min.css' ) . '?ver=' . rawurlencode( get_bloginfo( 'version' ) ),
+			),
 			'admin'       => is_admin(),
 			'mode'        => (string) flxai_setting( 'chat_mode', 'bubble' ) === 'dock' ? 'dock' : 'float',
 			'locale'      => str_replace( '_', '-', determine_locale() ),

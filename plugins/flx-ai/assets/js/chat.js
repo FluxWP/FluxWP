@@ -39,7 +39,7 @@
 	var host, root, els = {};
 
 	function loadUi() {
-		var d = { open: false, mode: C.mode === 'dock' ? 'dock' : 'float', w: 420, fw: 400, fh: 640, chat: 0, draft: '', unread: false, model: '', page: false, ws: false, wsTab: 'files' };
+		var d = { open: false, mode: C.mode === 'dock' ? 'dock' : 'float', w: 420, fw: 400, fh: 640, chat: 0, draft: '', unread: false, model: '', page: false, ws: false, wsTab: 'files', wsw: 0 };
 		try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); for (var k in s) if (k in d) d[k] = s[k]; } catch (e) {}
 		return d;
 	}
@@ -440,6 +440,27 @@
 		els.wsBtn = els.wrap.querySelector('[data-a="ws"]');
 		els.ws = els.wrap.querySelector('.ws');
 		els.ws.addEventListener('click', onWs);
+		els.ws.addEventListener('input', function (e) {
+			if (!e.target.classList.contains('ws-edit') || !WS.view) return;
+			var first = WS.view.draft == null;
+			WS.view.draft = e.target.value;
+			if (first) { var pos = e.target.selectionStart, st = e.target.scrollTop; renderWs(); var ta = els.ws.querySelector('.ws-edit'); if (ta) { ta.focus(); ta.setSelectionRange(pos, pos); ta.scrollTop = st; } }
+			else { var sb = els.ws.querySelector('[data-wa="save"]'); if (sb) sb.disabled = WS.view.draft === WS.view.content; }
+		});
+		els.ws.addEventListener('keydown', function (e) {
+			if (e.target.classList.contains('ws-edit') && (e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); var sb = els.ws.querySelector('[data-wa="save"]'); if (sb && !sb.disabled) sb.click(); }
+		});
+		// Sağ panel genişliği (tam ekran sohbet): sol kenardan sürükle, çift tık varsayılan.
+		els.ws.addEventListener('pointerdown', function (e) {
+			if (!e.target.classList.contains('ws-rz')) return;
+			e.preventDefault();
+			var x0 = e.clientX, w0 = els.ws.getBoundingClientRect().width;
+			els.ws.classList.add('rz');
+			function mv(ev) { ui.wsw = Math.round(w0 + x0 - ev.clientX); layout(); }
+			function up() { els.ws.classList.remove('rz'); document.removeEventListener('pointermove', mv); document.removeEventListener('pointerup', up); saveUi(); }
+			document.addEventListener('pointermove', mv); document.addEventListener('pointerup', up);
+		});
+		els.ws.addEventListener('dblclick', function (e) { if (e.target.classList.contains('ws-rz')) { ui.wsw = 0; layout(); saveUi(); } });
 		els.ws.addEventListener('submit', function (e) { e.preventDefault(); wsSave(); });
 		if (C.page) { ['close', 'page', 'mode'].forEach(function (a) { var b = els.wrap.querySelector('[data-a="' + a + '"]'); if (b) b.remove(); }); els.page = null; }
 		els.bubble.addEventListener('click', function () { open(); });
@@ -492,6 +513,14 @@
 		renderBubble();
 	}
 	function wide() { return window.innerWidth >= 1024; }
+	// Kenar çubuğu daraltılınca/genişleyince içerik alanı değişir: tam ekran sohbet yeniden yerleşir.
+	var wcObs = null;
+	function watchContent(wc) {
+		if (wcObs || !wc || !window.ResizeObserver) return;
+		var raf = 0;
+		wcObs = new ResizeObserver(function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(function () { if (els.panel && els.panel.classList.contains('page')) layout(); }); });
+		wcObs.observe(wc);
+	}
 	function layout() {
 		var paged = ui.open && (ui.page || C.page) && wide();
 		var html = document.documentElement, docked = ui.open && ui.mode === 'dock' && wide() && !paged;
@@ -504,17 +533,21 @@
 		p.classList.toggle('dock', !paged && ui.mode === 'dock');
 		p.classList.toggle('float', !paged && ui.mode !== 'dock');
 		if (paged) {
-			var bar = document.getElementById('wpadminbar'), menu = document.getElementById('adminmenuback');
-			var top = bar ? bar.getBoundingClientRect().height : 0, left = menu && getComputedStyle(menu).display !== 'none' ? menu.getBoundingClientRect().width : 0;
+			// Sol menü (WP ya da Flux Admin kenar çubuğu, daraltılmış/sağda olsa da) açık kalır: içerik alanının sınırları kullanılır.
+			var bar = document.getElementById('wpadminbar'), wc = document.getElementById('wpcontent');
+			var top = bar ? bar.getBoundingClientRect().height : 0, r = wc ? wc.getBoundingClientRect() : null;
+			var left = r ? Math.max(0, Math.round(r.left)) : 0, right = r ? Math.max(0, Math.round(window.innerWidth - r.right)) : 0;
+			if (right > window.innerWidth / 3) right = 0;
 			p.style.width = ''; p.style.height = '';
-			p.style.top = top + 'px'; p.style.left = left + 'px';
+			p.style.top = top + 'px'; p.style.left = left + 'px'; p.style.right = right + 'px';
+			watchContent(wc);
 		} else if (ui.mode === 'dock') {
-			p.style.left = ''; p.style.top = '';
+			p.style.left = ''; p.style.top = ''; p.style.right = '';
 			p.style.width = (wide() ? w : Math.min(w, window.innerWidth)) + 'px';
 			p.style.height = '';
 			p.style.setProperty('--top', '0px');
 		} else {
-			p.style.left = ''; p.style.top = '';
+			p.style.left = ''; p.style.top = ''; p.style.right = '';
 			var fw = Math.max(FLOAT_MIN_W, Math.min(ui.fw, window.innerWidth - 24));
 			var fh = Math.max(FLOAT_MIN_H, Math.min(ui.fh, window.innerHeight - 24));
 			p.style.width = fw + 'px'; p.style.height = fh + 'px';
@@ -528,6 +561,11 @@
 			els.page.hidden = !wide();
 		}
 		els.ws.hidden = !ui.ws;
+		if (paged && ui.wsw) {
+			var pw = p.getBoundingClientRect().width || window.innerWidth;
+			ui.wsw = Math.max(300, Math.min(ui.wsw, pw - 420));
+			els.ws.style.width = ui.wsw + 'px';
+		} else els.ws.style.width = '';
 		p.classList.toggle('ws-on', !!ui.ws);
 		els.wsBtn.classList.toggle('on', !!ui.ws);
 		scrollLock(ui.open && window.innerWidth <= 782);
@@ -1443,7 +1481,7 @@
 		if (els.wsBtn) els.wsBtn.classList.toggle('dot', pend > 0);
 		if (els.ws.hidden) return;
 		var d = WS.data, tab = ui.wsTab || 'files';
-		var h = '<div class="ws-head"><div class="ws-tabs" role="tablist">' +
+		var h = '<div class="ws-rz" title="' + esc(t('Genişliği değiştir')) + '"></div><div class="ws-head"><div class="ws-tabs" role="tablist">' +
 			['files', 'changes', 'settings'].map(function (k) {
 				var lbl = { files: t('Dosyalar'), changes: t('Değişiklikler'), settings: t('Ayarlar') }[k];
 				return '<button type="button" role="tab" data-wt="' + k + '" class="' + (tab === k ? 'on' : '') + '">' + esc(lbl) + (k === 'changes' && pend ? ' <b>' + pend + '</b>' : '') + '</button>';
@@ -1460,8 +1498,23 @@
 				var v = WS.view;
 				h += '<div class="ws-path"><button type="button" class="ib" data-wa="back" title="' + esc(t('Geri')) + '">' + ic('back') + '</button><code>' + esc(v.path) + '</code>' +
 					(v.files ? '<a class="ib" href="' + esc(v.files) + '" target="_blank" rel="noopener" title="' + esc(t('Flux Files\'ta aç')) + '">' + ic('ext') + '</a>' : '') + '</div>';
-				h += v.err ? '<div class="ws-empty">' + esc(v.err) + '</div>' : v.content == null ? '<div class="ws-empty"><span class="spin"></span></div>'
-					: '<div class="diff view">' + String(v.content).split('\n').map(function (l, i) { return '<div class="dl"><i>' + (i + 1) + '</i><code>' + esc(l) + '</code></div>'; }).join('') + '</div>';
+				if (v.err) h += '<div class="ws-empty">' + esc(v.err) + '</div>';
+				else if (v.content == null) h += '<div class="ws-empty"><span class="spin"></span></div>';
+				else {
+					var isMd = /\.(md|markdown)$/i.test(v.path), mode = v.mode || (isMd ? 'preview' : 'code');
+					var modes = (isMd ? ['preview'] : []).concat(v.editable ? ['edit'] : (isMd ? ['code'] : []));
+					if (modes.length > 1 || v.editable) {
+						h += '<div class="ws-vbar"><div class="seg">' + modes.map(function (m) {
+							return '<button type="button" data-vm="' + m + '" class="' + (mode === m ? 'on' : '') + '">' + esc({ preview: t('Önizleme'), code: t('Kod'), edit: t('Düzenle') }[m]) + '</button>';
+						}).join('') + '</div>' +
+						(mode === 'edit' ? '<span class="sp"></span>' + (v.draft != null && v.draft !== v.content ? '<button type="button" class="btn" data-wa="undo">' + esc(t('Vazgeç')) + '</button>' : '') +
+							'<button type="button" class="btn primary" data-wa="save"' + (v.draft == null || v.draft === v.content || WS.busy ? ' disabled' : '') + '>' + esc(t('Kaydet')) + '</button>' : '') + '</div>';
+					}
+					if (mode === 'preview') h += '<div class="ws-md md">' + md(v.content) + '</div>';
+					else if (cmLib()) h += '<div class="ws-cm-slot"></div>';
+					else if (mode === 'edit') { h += '<textarea class="ws-edit" spellcheck="false">' + esc(v.draft != null ? v.draft : v.content) + '</textarea>'; cmLoad(); }
+					else if ((cmLoad(), true)) h += '<div class="diff view">' + String(v.content).split('\n').map(function (l, i) { return '<div class="dl"><i>' + (i + 1) + '</i><code>' + esc(l) + '</code></div>'; }).join('') + '</div>';
+				}
 			} else {
 				h += '<div class="ws-path">' + ic('folder') + '<code title="' + esc(d.dir) + '">' + esc(d.dir) + '</code>' +
 					(d.files ? '<a class="ib" href="' + esc(d.files) + '" target="_blank" rel="noopener" title="' + esc(t('Flux Files\'ta aç')) + '">' + ic('ext') + '</a>' : '') + '</div>';
@@ -1488,7 +1541,56 @@
 				'</ul><p><code>' + esc(d.dir) + '</code></p></div></div>';
 		}
 		h += '</div>';
+		var cmFocus = WS.cm && WS.cm.cm.hasFocus();
 		els.ws.innerHTML = h;
+		var slot = els.ws.querySelector('.ws-cm-slot');
+		if (slot && WS.view) cmMount(slot, WS.view, cmFocus);
+	}
+	/* Renkli editör: WordPress'in CodeMirror'ı (Flux Files ile aynı), ilk gerektiğinde yüklenir. */
+	var CMP = null;
+	var CM_MODES = { php: 'application/x-httpd-php', js: 'text/javascript', mjs: 'text/javascript', jsx: 'text/jsx', ts: 'text/typescript', json: 'application/json', css: 'text/css', scss: 'text/x-scss', sass: 'text/x-sass', less: 'text/x-less', html: 'text/html', htm: 'text/html', svg: 'application/xml', xml: 'application/xml', md: 'text/x-gfm', markdown: 'text/x-gfm', sql: 'text/x-mysql', yml: 'text/x-yaml', yaml: 'text/x-yaml', sh: 'text/x-sh', conf: 'text/x-nginx-conf', diff: 'text/x-diff', csv: 'text/plain', txt: 'text/plain' };
+	function cmLib() { return window.wp && window.wp.CodeMirror; }
+	function cmLoad() {
+		if (cmLib()) return Promise.resolve(cmLib());
+		if (!C.cm || !C.cm.js) return Promise.resolve(null);
+		if (!CMP) {
+			CMP = new Promise(function (res, rej) {
+				window.wp = window.wp || {};
+				var sc = document.createElement('script');
+				sc.src = C.cm.js;
+				sc.onload = function () { cmLib() ? res(cmLib()) : rej(new Error('no-cm')); };
+				sc.onerror = function () { rej(new Error('no-cm')); };
+				document.head.appendChild(sc);
+			}).then(function (lib) { renderWs(); return lib; });
+			CMP.catch(function () {});
+		}
+		return CMP;
+	}
+	function cmMount(slot, v, focus) {
+		var edit = v.editable && v.mode === 'edit', key = v.path + '|' + (edit ? 'e' : 'r');
+		if (root && C.cm && C.cm.css && !root.querySelector('link[data-cm]')) {
+			var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = C.cm.css; l.setAttribute('data-cm', '1');
+			(root.firstChild ? root.insertBefore(l, root.firstChild) : root.appendChild(l));
+		}
+		if (!WS.cm || WS.cm.key !== key) {
+			var ext = (v.path.split('.').pop() || '').toLowerCase();
+			var cm = cmLib()(document.createElement('div'), {
+				value: v.draft != null ? v.draft : String(v.content), mode: CM_MODES[ext] || 'text/plain',
+				lineNumbers: true, lineWrapping: true, readOnly: !edit, indentWithTabs: true, tabSize: 4, indentUnit: 4, styleActiveLine: edit
+			});
+			cm.on('change', function () {
+				if (!WS.view || WS.view.path !== v.path) return;
+				var first = WS.view.draft == null;
+				WS.view.draft = cm.getValue();
+				var sb = els.ws.querySelector('[data-wa="save"]');
+				if (first || !sb) renderWs(); else sb.disabled = WS.view.draft === WS.view.content;
+			});
+			cm.addKeyMap({ 'Ctrl-S': function () { var sb = els.ws.querySelector('[data-wa="save"]'); if (sb && !sb.disabled) sb.click(); }, 'Cmd-S': function () { var sb = els.ws.querySelector('[data-wa="save"]'); if (sb && !sb.disabled) sb.click(); } });
+			WS.cm = { key: key, cm: cm };
+		}
+		slot.appendChild(WS.cm.cm.getWrapperElement());
+		WS.cm.cm.refresh();
+		if (focus || (edit && v.focus)) { v.focus = false; WS.cm.cm.focus(); }
 	}
 	function wsDetail(id, force) {
 		if (WS.detail[id] && !force) return;
@@ -1531,6 +1633,19 @@
 			if (a === 'close') { ui.ws = false; saveUi(); layout(); }
 			else if (a === 'refresh') wsLoad(true);
 			else if (a === 'back') { WS.view = null; renderWs(); }
+			else if (a === 'undo' && WS.view) { WS.view.draft = null; WS.cm = null; renderWs(); }
+			else if (a === 'save' && WS.view && WS.view.draft != null && !WS.busy) {
+				var sv = WS.view, txt = sv.draft;
+				WS.busy = true; renderWs();
+				api('POST', 'chats/' + WS.chat + '/ws/save', { path: sv.path, content: txt }).then(function () {
+					WS.busy = false; sv.content = txt; sv.draft = null; WS.note = t('Kaydedildi.'); renderWs();
+					setTimeout(function () { WS.note = ''; renderWs(); }, 2000);
+				}).catch(function (er) { WS.busy = false; WS.note = er.message; renderWs(); });
+			}
+			return;
+		}
+		if ((b = e.target.closest('[data-vm]'))) {
+			if (WS.view) { WS.view.mode = b.getAttribute('data-vm'); WS.view.focus = true; renderWs(); var ta = els.ws.querySelector('.ws-edit'); if (ta) ta.focus(); }
 			return;
 		}
 		if ((b = e.target.closest('[data-dir]'))) {
@@ -1544,7 +1659,7 @@
 			WS.view = { path: fp, content: null };
 			renderWs();
 			api('GET', 'chats/' + WS.chat + '/ws/file?path=' + encodeURIComponent(fp)).then(function (r) {
-				if (WS.view && WS.view.path === fp) { WS.view = { path: fp, content: r.content, files: r.files }; renderWs(); }
+				if (WS.view && WS.view.path === fp) { WS.view = { path: fp, content: r.content, files: r.files, editable: !!r.editable }; renderWs(); }
 			}).catch(function (er) { if (WS.view && WS.view.path === fp) { WS.view.err = er.message; renderWs(); } });
 			return;
 		}
