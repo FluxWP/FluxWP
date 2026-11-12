@@ -40,6 +40,7 @@ require_once FLXADS_DIR . 'includes/class-flxads-report.php';
 require_once FLXADS_DIR . 'includes/class-flxads-spend.php';
 require_once FLXADS_DIR . 'includes/crm.php';
 require_once FLXADS_DIR . 'includes/mcp.php';
+require_once FLXADS_DIR . 'includes/ai-write.php';
 require_once FLXADS_DIR . 'includes/system-checks.php';
 if ( is_admin() ) {
 	require_once FLXADS_DIR . 'includes/admin/class-flxads-admin.php';

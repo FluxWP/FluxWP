@@ -12,7 +12,7 @@ Hangi reklam hangi bağışı getirdi. Flux Ads bağış ve sipariş dönüşüm
 - **Rapor**: kanal, kampanya, reklam (utm_content), kaynak/ortam, açılış sayfası, ilk reklam teması, yeni bağışçı. Reklam bağlantısı (UTM) oluşturucu.
 - **Harcama ve ROAS**: Meta harcaması kampanya ve reklam bazında reklam hesabından okunur; diğer harcamalar elle girilir. Rapor harcamayı, ROAS'ı, ödeme başı ve yeni bağışçı başı maliyeti gösterir.
 - **Flux CRM**: kişinin zaman tünelinde reklam dönüşümü ve "Reklam kaynağı" kartı.
-- **Flux AI / MCP**: `flxads_report`, `flxads_status`.
+- **Flux AI / MCP**: rapor, harcama ve gönderim kaydını okur; ayar değiştirir, harcama ekler/siler, Meta harcamasını günceller, bağlantıyı test eder, dönüşümü yeniden gönderir. Her değişiklik onayınla yapılır; gizli anahtarlar asla açılmaz.
 
 WooCommerce gerekir. Flux Donate ile çalışır; Flux CRM isteğe bağlıdır.
 

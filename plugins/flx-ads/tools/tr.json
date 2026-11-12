@@ -183,5 +183,13 @@
  "Ad account ID": "Reklam hesabı kimliği",
  "Ads Manager › account menu at the top left, the number under the account name (act_ is optional).": "Reklam Yöneticisi › sol üstteki hesap menüsü, hesap adının altındaki sayı (act_ yazmak gerekmez).",
  "Marketing API token (ads_read)": "Marketing API anahtarı (ads_read)",
- "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads.": "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › ads_read ile anahtar oluşturun. Boş = Conversions API anahtarı denenir. Yalnız okur; Flux Ads reklamlarınızı değiştirmez."
+ "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads.": "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › ads_read ile anahtar oluşturun. Boş = Conversions API anahtarı denenir. Yalnız okur; Flux Ads reklamlarınızı değiştirmez.",
+ "Ad tracking settings": "Reklam takibi ayarları",
+ "Change ad tracking settings": "Reklam takibi ayarlarını değiştir",
+ "Test ad platform connection": "Reklam platformu bağlantısını test et",
+ "Ad conversion send log": "Reklam dönüşümü gönderim kaydı",
+ "Send a conversion again": "Dönüşümü yeniden gönder",
+ "Add ad spend": "Reklam harcaması ekle",
+ "Delete manual ad spend": "Elle girilen harcamayı sil",
+ "Update Meta ad spend now": "Meta harcamasını şimdi güncelle"
 }

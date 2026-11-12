@@ -76,6 +76,49 @@ function flxads_save_settings( array $values ) {
 	return $cur;
 }
 
+/**
+ * Ayar girdisini doğrula. $partial: yalnız verilen anahtarlar döner (AI/MCP güncellemesi); değilse form
+ * gibi davranır (işaretsiz kutu = 0). Gizli alanlar burada işlenmez.
+ */
+function flxads_clean_settings( array $in, $partial = false ) {
+	$rules = array(
+		'meta_on'      => static function ( $v ) { return empty( $v ) ? 0 : 1; },
+		'meta_pixel'   => static function ( $v ) { return preg_replace( '/\D+/', '', (string) $v ); },
+		'meta_test'    => static function ( $v ) { return preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ); },
+		'meta_account' => static function ( $v ) { return preg_replace( '/\D+/', '', (string) $v ); },
+		'tiktok_on'    => static function ( $v ) { return empty( $v ) ? 0 : 1; },
+		'tiktok_pixel' => static function ( $v ) { return strtoupper( preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ) ); },
+		'tiktok_test'  => static function ( $v ) { return preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ); },
+		'ga4_on'       => static function ( $v ) { return empty( $v ) ? 0 : 1; },
+		'ga4_id'       => static function ( $v ) {
+			$v = strtoupper( trim( (string) $v ) );
+			return preg_match( '/^G-[A-Z0-9]{4,}$/', $v ) ? $v : '';
+		},
+		'consent'      => static function ( $v ) { return 'always' === $v ? 'always' : 'auto'; },
+		'pii'          => static function ( $v ) { return in_array( $v, array( 'consent', 'never', 'always' ), true ) ? $v : 'consent'; },
+		'browser'      => static function ( $v ) { return empty( $v ) ? 0 : 1; },
+		'window_days'  => static function ( $v ) { return max( 1, min( 365, (int) ( '' === (string) $v ? 90 : $v ) ) ); },
+	);
+	$out = array();
+	foreach ( $rules as $k => $fn ) {
+		if ( $partial && ! array_key_exists( $k, $in ) ) {
+			continue;
+		}
+		$out[ $k ] = $fn( $in[ $k ] ?? '' );
+	}
+	return $out;
+}
+
+/** Doğrulanmış ayarları kaydet; Meta hesabı ya da harcama anahtarı değişince harcama baştan (30 gün) okunur. */
+function flxads_store_settings( array $v ) {
+	if ( ( isset( $v['meta_account'] ) && $v['meta_account'] !== (string) flxads_setting( 'meta_account' ) ) || '' !== (string) ( $v['meta_ads_token'] ?? '' ) ) {
+		$sync = (array) get_option( 'flxads_spend_sync', array() );
+		unset( $sync['meta'] );
+		update_option( 'flxads_spend_sync', $sync, false );
+	}
+	return flxads_save_settings( $v );
+}
+
 /** Gizli değeri sakla (sodium varsa şifreli). */
 function flxads_encrypt( $plain ) {
 	if ( '' === $plain ) {

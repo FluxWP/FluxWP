@@ -9,6 +9,33 @@ msgstr ""
 msgid "Which ad brought which donation"
 msgstr ""
 
+msgid "Ad tracking settings"
+msgstr ""
+
+msgid "Change ad tracking settings"
+msgstr ""
+
+msgid "Test ad platform connection"
+msgstr ""
+
+msgid "Ad conversion send log"
+msgstr ""
+
+msgid "Send a conversion again"
+msgstr ""
+
+msgid "Ad spend"
+msgstr ""
+
+msgid "Add ad spend"
+msgstr ""
+
+msgid "Delete manual ad spend"
+msgstr ""
+
+msgid "Update Meta ad spend now"
+msgstr ""
+
 msgid "Ad channel"
 msgstr ""
 
@@ -130,9 +157,6 @@ msgid "Spend read %s."
 msgstr ""
 
 msgid "Not read yet; opening the Flux Ads screen starts it."
-msgstr ""
-
-msgid "Ad spend"
 msgstr ""
 
 msgid "Cookie consent"

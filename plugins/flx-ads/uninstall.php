@@ -10,7 +10,7 @@ global $wpdb;
 foreach ( array( 'conversions', 'orders', 'spend' ) as $flxads_t ) {
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}flxads_{$flxads_t}" ); // phpcs:ignore WordPress.DB
 }
-foreach ( array( 'flxads_settings', 'flxads_db_version', 'flxads_heartbeat', 'flxads_tests', 'flxads_spend_sync' ) as $flxads_opt ) {
+foreach ( array( 'flxads_settings', 'flxads_db_version', 'flxads_heartbeat', 'flxads_tests', 'flxads_spend_sync', 'flxads_tool_log' ) as $flxads_opt ) {
 	delete_option( $flxads_opt );
 }
 foreach ( wp_roles()->role_objects as $flxads_role ) {

@@ -534,31 +534,11 @@ final class FLXADS_Admin {
 	/** Gönderilen ayarları doğrula ve kaydet. */
 	private static function store() {
 		$in = isset( $_POST['s'] ) && is_array( $_POST['s'] ) ? wp_unslash( $_POST['s'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput, WordPress.Security.NonceVerification
-		$v  = array(
-			'meta_on'      => empty( $in['meta_on'] ) ? 0 : 1,
-			'meta_pixel'   => preg_replace( '/\D+/', '', (string) ( $in['meta_pixel'] ?? '' ) ),
-			'meta_test'    => preg_replace( '/[^A-Za-z0-9]/', '', (string) ( $in['meta_test'] ?? '' ) ),
-			'meta_account' => preg_replace( '/\D+/', '', (string) ( $in['meta_account'] ?? '' ) ),
-			'tiktok_on'    => empty( $in['tiktok_on'] ) ? 0 : 1,
-			'tiktok_pixel' => strtoupper( preg_replace( '/[^A-Za-z0-9]/', '', (string) ( $in['tiktok_pixel'] ?? '' ) ) ),
-			'tiktok_test'  => preg_replace( '/[^A-Za-z0-9]/', '', (string) ( $in['tiktok_test'] ?? '' ) ),
-			'ga4_on'       => empty( $in['ga4_on'] ) ? 0 : 1,
-			'ga4_id'       => preg_match( '/^G-[A-Z0-9]{4,}$/', strtoupper( trim( (string) ( $in['ga4_id'] ?? '' ) ) ) ) ? strtoupper( trim( (string) $in['ga4_id'] ) ) : '',
-			'consent'      => 'always' === ( $in['consent'] ?? '' ) ? 'always' : 'auto',
-			'pii'          => in_array( $in['pii'] ?? '', array( 'consent', 'never', 'always' ), true ) ? $in['pii'] : 'consent',
-			'browser'      => empty( $in['browser'] ) ? 0 : 1,
-			'window_days'  => max( 1, min( 365, (int) ( $in['window_days'] ?? 90 ) ) ),
-		);
+		$v  = flxads_clean_settings( $in );
 		foreach ( flxads_secret_keys() as $k ) {
 			$v[ $k ] = trim( (string) ( $in[ $k ] ?? '' ) );
 		}
-		/* Hesap ya da anahtar değişince harcama baştan (30 gün) okunur. */
-		if ( $v['meta_account'] !== (string) flxads_setting( 'meta_account' ) || '' !== $v['meta_ads_token'] ) {
-			$sync = (array) get_option( 'flxads_spend_sync', array() );
-			unset( $sync['meta'] );
-			update_option( 'flxads_spend_sync', $sync, false );
-		}
-		flxads_save_settings( $v );
+		flxads_store_settings( $v );
 	}
 
 	public static function test() {

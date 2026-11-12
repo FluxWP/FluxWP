@@ -11,6 +11,33 @@ msgstr "Ayarlar"
 msgid "Which ad brought which donation"
 msgstr "Hangi reklam hangi bağışı getirdi"
 
+msgid "Ad tracking settings"
+msgstr "Reklam takibi ayarları"
+
+msgid "Change ad tracking settings"
+msgstr "Reklam takibi ayarlarını değiştir"
+
+msgid "Test ad platform connection"
+msgstr "Reklam platformu bağlantısını test et"
+
+msgid "Ad conversion send log"
+msgstr "Reklam dönüşümü gönderim kaydı"
+
+msgid "Send a conversion again"
+msgstr "Dönüşümü yeniden gönder"
+
+msgid "Ad spend"
+msgstr "Reklam harcaması"
+
+msgid "Add ad spend"
+msgstr "Reklam harcaması ekle"
+
+msgid "Delete manual ad spend"
+msgstr "Elle girilen harcamayı sil"
+
+msgid "Update Meta ad spend now"
+msgstr "Meta harcamasını şimdi güncelle"
+
 msgid "Ad channel"
 msgstr "Reklam kanalı"
 
@@ -133,9 +160,6 @@ msgstr "Harcama %s okundu."
 
 msgid "Not read yet; opening the Flux Ads screen starts it."
 msgstr "Henüz okunmadı; Flux Ads ekranı açılınca başlar."
-
-msgid "Ad spend"
-msgstr "Reklam harcaması"
 
 msgid "Cookie consent"
 msgstr "Çerez onayı"

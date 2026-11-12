@@ -42,4 +42,11 @@ Olay kimliği `order-<sipariş id>` (tarayıcı `eventID` / `event_id` ile aynı
 
 ## MCP
 
-`flxads_report` (by, from, to, kind, channel; harcama, ROAS, maliyet dahil), `flxads_status` (harcama eşitleme durumu dahil). Gizli anahtar ve kişisel veri dönmez.
+Okuma: `flxads_report` (by, from, to, kind, channel; harcama, ROAS, maliyet dahil), `flxads_status` (harcama eşitleme durumu dahil), `flxads_settings_get` (gizliler yalnız `*_set`), `flxads_send_log` (status, limit), `flxads_spend_list` (from, to; elle girilenler id'leriyle).
+
+Yazma (`flxads_manage`, `includes/ai-write.php`): `flxads_settings_update` (yalnız verilen alanlar, `flxads_clean_settings( $in, true )`), `flxads_test_connection` (platform), `flxads_resend` (ids), `flxads_spend_add` (channel, day, campaign, ad, spend, currency), `flxads_spend_delete` (id, yalnız elle girilen), `flxads_spend_sync` (days).
+
+- Flux AI sohbeti (`flxai_tools`): yazan her araç `confirm` → onay kartı; kart onaydır.
+- MCP (`flx_mcp_tools`): `destructive` olanlar (`flxads_settings_update`, `flxads_spend_delete`) ilk çağrıda önizleme + `confirm_token` (15 dk, tek kullanımlık, aynı argümanlara bağlı) döner.
+- Gizli anahtarlar (`meta_token`, `meta_ads_token`, `tiktok_token`, `ga4_secret`) hiçbir araçla okunmaz/yazılmaz. Kişisel veri dönmez.
+- Yazmalar `flxads_tool_log` seçeneğine (son 100: tool, channel, user, at, args).

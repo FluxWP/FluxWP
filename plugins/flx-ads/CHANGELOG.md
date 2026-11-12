@@ -6,6 +6,7 @@
 - Report: ad spend, ROAS, cost per payment and cost per new donor; Spend and ROAS columns by channel, campaign and ad. Campaigns with spend but no payment are listed too.
 - Campaign and ad names match regardless of case, spaces and Turkish letters ("Fidan Kasım 2026" = "fidan-kasim-2026").
 - MCP: `flxads_report` returns spend, ROAS and cost; `flxads_status` the spend sync state. System check for the spend sync.
+- Flux AI and MCP can now change things too: `flxads_settings_get` / `flxads_settings_update`, `flxads_test_connection`, `flxads_send_log` / `flxads_resend`, `flxads_spend_list` / `flxads_spend_add` / `flxads_spend_delete` / `flxads_spend_sync`. In Flux AI chat every change waits for the approval card; over MCP, settings changes and deleting spend first return a preview and a `confirm_token`. Access tokens and secrets can never be read or set by AI. Changes are logged (`flxads_tool_log`, last 100).
 
 ## 0.1.0
 
