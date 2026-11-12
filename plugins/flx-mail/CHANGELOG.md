@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.17.0 — 2026-11-12
+- WhatsApp ban koruması (Evolution API / Flux WPAPI, yalnız kuyruktaki toplu gönderim): mesajlar arası rastgele bekleme (varsayılan 8–20 sn), her 25 mesajda 10 dk mola, saatlik (60) ve günlük (250) üst sınır, yeni numarada ısınma (günlük sınır 20'den başlar, her gün +20), sessiz saatler (21:00–09:00), göndermeden önce numaranın WhatsApp'ı var mı kontrolü (yoksa atlanır), art arda 5 hatada 30 dk durma + sistem kontrolü uyarısı, "yazıyor…" süresi mesaj uzunluğuna göre. Ayarlar Bağlantılar › düzenle › "Ban koruması". Gönder ekranında bekleyen gönderimin nedeni ve devam saati görünür.
+- Metin çeşitlemesi: `{Merhaba|Selam|İyi günler}` her alıcıda rastgele biri.
+- IPTAL: tanıtım WhatsApp mesajlarının altına "Bu tarz mesajlar istemiyorsanız IPTAL yazın." eklenir (SMS'te isteğe bağlı). Kişi yalnız IPTAL yazarsa o kanaldan tanıtım mesajı gitmez, ortak kişi kaydında kanal izni kapanır, bir kez onay mesajı gider; BAŞLA geri alır. Bilgilendirme mesajları ve kişinin kendi yazdığına verilen cevaplar gider. Gelen mesaj Flux Chat'ten okunur. Ayarlar › IPTAL: kelimeler, metinler, liste, elle ekle/kaldır.
+- Gönder ekranında "Tanıtım mesajı" anahtarı (kapalıysa bilgilendirme) ve WhatsApp için resim/video/dosya (ortam kütüphanesinden). Önizleme çıkış satırını ve çeşitlemeyi gösterir.
+- Kampanya API'si: `media`, `file_name`, `kind` (`marketing` | `info`), `ref`; `flxi_send_message( …, array( 'kind' => 'marketing' ) )`; özellik sorgusu `flxi_campaign_features`. Resim/video tek mesaj (metin altyazı), PDF önceki gibi ayrı belge.
+- Flux Mail'in gönderdiği WhatsApp mesajları Flux Chat'te asistanı susturmaz (`flxc_external_source` → `flx-mail`).
+- MCP: `flxi_optouts`, `flxi_wa_guard`.
+
 ## 1.16.0 — 2026-11-12
 - WhatsApp gruplarına mesaj: `flxi_send_message( 'whatsapp', '120363…@g.us', … )` grup kimliğini telefon gibi rakama çevirip bozmuyor, Evolution API / Flux WPAPI'ye olduğu gibi gönderiyor (metin, belge, resim, ses). Zamanlanmış görev bildirimleri artık gruba da gidebilir.
 - Yeni `flxi_whatsapp_groups( $conn_id )`: numaranın üye olduğu gruplar (kimlik, ad, üye sayısı), 10 dk önbellek; REST `GET flxi/v1/wa/{id}/groups`.

@@ -69,7 +69,30 @@ function flxi_evolution_send( $config, $msg, $conn = array() ) {
 	$instance = rawurlencode( (string) $config['instance'] );
 	$v1       = 'v1' === ( $config['version'] ?? 'v2' );
 	$preview  = ! empty( $config['link_preview'] );
-	$typing   = max( 0, (int) ( $config['typing'] ?? 0 ) );
+	$typing   = function_exists( 'flxi_wa_typing_ms' ) ? flxi_wa_typing_ms( $config, $msg['body'] ) : max( 0, (int) ( $config['typing'] ?? 0 ) );
+	$mtype    = ! empty( $msg['media'] ) ? flxi_media_kind( $msg['media'], $msg['file_name'] ?? '' ) : '';
+
+	// Resim / video: tek mesaj, metin altyazı olur. Belge (PDF): önce metin, sonra dosya (eski davranış).
+	if ( in_array( $mtype, array( 'image', 'video' ), true ) ) {
+		$item = array(
+			'mediatype' => $mtype,
+			'mimetype'  => flxi_media_mime( $msg['media'], $msg['file_name'] ?? '', $mtype ),
+			'caption'   => (string) $msg['body'],
+			'media'     => (string) $msg['media'],
+			'fileName'  => ! empty( $msg['file_name'] ) ? $msg['file_name'] : basename( (string) wp_parse_url( $msg['media'], PHP_URL_PATH ) ),
+		);
+		$body = $v1 ? array( 'number' => $phone, 'mediaMessage' => $item, 'options' => array( 'delay' => $typing, 'presence' => 'composing' ) ) : array_merge( array( 'number' => $phone, 'delay' => $typing ), $item );
+		$r    = flxi_evolution_request( $config, '/message/sendMedia/' . $instance, $body );
+		$json = is_array( $r['json'] ) ? $r['json'] : array();
+		if ( ! $r['ok'] ) {
+			$detail = $r['error'] ? $r['error'] : (string) ( is_array( $json['response']['message'] ?? null ) ? wp_json_encode( $json['response']['message'], JSON_UNESCAPED_UNICODE ) : ( $json['response']['message'] ?? ( $json['message'] ?? '' ) ) );
+			if ( false !== strpos( $detail, '"exists":false' ) ) {
+				$detail = __( 'This number does not have WhatsApp.', 'flx-mail' );
+			}
+			return array( 'ok' => false, 'error' => 'Evolution HTTP ' . $r['code'] . ( $detail ? ': ' . mb_substr( $detail, 0, 300 ) : '' ), 'retry' => $r['code'] >= 500 || in_array( $r['code'], array( 0, 404, 429 ), true ), 'response' => array( 'http' => $r['code'], 'body' => $json ? $json : $r['body'] ) );
+		}
+		return array( 'ok' => true, 'external_id' => (string) ( $json['key']['id'] ?? '' ), 'response' => array( 'http' => $r['code'], 'body' => $json ) );
+	}
 
 	if ( $v1 ) {
 		$body = array(
@@ -111,7 +134,7 @@ function flxi_evolution_send( $config, $msg, $conn = array() ) {
 		$media = array(
 			'number'    => $phone,
 			'mediatype' => 'document',
-			'mimetype'  => 'application/pdf',
+			'mimetype'  => flxi_media_mime( $msg['media'], $msg['file_name'] ?? '', 'document' ),
 			'media'     => $msg['media'],
 			'fileName'  => $msg['file_name'] ? $msg['file_name'] : basename( (string) wp_parse_url( $msg['media'], PHP_URL_PATH ) ),
 			'caption'   => '',

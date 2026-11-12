@@ -437,3 +437,13 @@ html.flxa-dark .flxi-wa-state { background: var(--flxa-surface-2); color: var(--
 html.flxa-dark .flxi-wa-state[data-state="open"] { background: #173826; color: #7fdca4; }
 html.flxa-dark .flxi-wa-state[data-state="connecting"] { background: var(--flxa-warn-soft); color: var(--flxa-warn); }
 html.flxa-dark .flxi-wa-state[data-state="error"], html.flxa-dark .flxi-wa-state[data-state="missing"] { background: var(--flxa-error-soft); color: var(--flxa-error); }
+
+/* 1.17.0: bağlantı formunda alt başlık (ban koruması) ve IPTAL listesi */
+.flxi-wrap .flxi-form-sub { margin: 22px 0 4px; padding-top: 16px; border-top: 1px solid var(--flxi-line, #e5e7eb); font-size: 14px; }
+.flxi-wrap .flxi-optouts { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.flxi-wrap .flxi-optouts th, .flxi-wrap .flxi-optouts td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--flxi-line, #e5e7eb); font-size: 13px; }
+.flxi-wrap .flxi-optout-add { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; margin-top: 12px; }
+.flxi-wrap .flxi-optout-add .flxi-field { margin: 0; flex: 1 1 200px; }
+@media (max-width: 600px) { .flxi-wrap .flxi-optouts thead { display: none; } .flxi-wrap .flxi-optouts td { display: block; border: 0; padding: 2px 0; } .flxi-wrap .flxi-optouts tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--flxi-line, #e5e7eb); } }
+.flxi-wrap .flxi-media-pick { display: flex; gap: 8px; } .flxi-wrap .flxi-media-pick input { flex: 1; min-width: 0; }
+.flxi-wrap .flxi-optout-add input, .flxi-wrap .flxi-optout-add select { width: 100%; }

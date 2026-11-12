@@ -19,7 +19,7 @@ function flxi_page_settings() {
 	};
 
 	echo '<nav class="flxi-subnav" aria-label="' . esc_attr__( 'Sections', 'flx-mail' ) . '">';
-	foreach ( array( 'gonderen' => __( 'Sender', 'flx-mail' ), 'smtp' => __( 'Sending method', 'flx-mail' ), 'posta' => __( 'Mailbox', 'flx-mail' ), 'test' => __( 'Test', 'flx-mail' ), 'gorunum' => __( 'Appearance', 'flx-mail' ), 'google' => __( 'Google sign-in', 'flx-mail' ), 'woocommerce' => 'WooCommerce', 'kayit' => __( 'Log and bulk send', 'flx-mail' ), 'sinirlar' => __( 'Mailbox limits', 'flx-mail' ) ) as $id => $l ) {
+	foreach ( array( 'gonderen' => __( 'Sender', 'flx-mail' ), 'smtp' => __( 'Sending method', 'flx-mail' ), 'posta' => __( 'Mailbox', 'flx-mail' ), 'test' => __( 'Test', 'flx-mail' ), 'gorunum' => __( 'Appearance', 'flx-mail' ), 'google' => __( 'Google sign-in', 'flx-mail' ), 'woocommerce' => 'WooCommerce', 'kayit' => __( 'Log and bulk send', 'flx-mail' ), 'iptal' => __( 'Opt-out (STOP)', 'flx-mail' ), 'sinirlar' => __( 'Mailbox limits', 'flx-mail' ) ) as $id => $l ) {
 		echo '<a href="#' . esc_attr( $id ) . '">' . esc_html( $l ) . '</a>';
 	}
 	echo '</nav>';
@@ -210,6 +210,26 @@ function flxi_page_settings() {
 	echo '<p class="flxi-muted">' . esc_html( sprintf( __( 'Unsubscribed: %s people', 'flx-mail' ), number_format_i18n( count( $unsub ) ) ) ) . '</p>';
 	echo '</section>';
 
+	// IPTAL: tanıtım mesajlarından çıkış
+	echo '<section class="flxi-card" id="iptal"><h2 class="flxi-card__title">' . esc_html__( 'Opt-out (STOP)', 'flx-mail' ) . '</h2>';
+	echo '<p class="flxi-muted">' . esc_html__( 'A line at the bottom of promotional WhatsApp and SMS messages tells people how to stop them. When someone replies with only the opt-out word, promotional messages are no longer sent to them on that channel. Information messages (event details, receipts, certificates) and replies to their own messages still go out. If they reply with the start word, they get promotional messages again.', 'flx-mail' ) . '</p>';
+	echo '<div class="flxi-field">' . flxi_switch( $n( 'optout_enabled' ), $s['optout_enabled'], __( 'Use opt-out', 'flx-mail' ) ) . '</div>'; // phpcs:ignore
+	echo '<div class="flxi-grid2"><div class="flxi-field">' . flxi_switch( $n( 'optout_footer_wa' ), $s['optout_footer_wa'], __( 'Add the opt-out line to promotional WhatsApp messages', 'flx-mail' ) ) . '</div>'; // phpcs:ignore
+	echo '<div class="flxi-field">' . flxi_switch( $n( 'optout_footer_sms' ), $s['optout_footer_sms'], __( 'Add the opt-out line to promotional SMS (costs extra characters; Netgsm İYS rules apply separately)', 'flx-mail' ) ) . '</div></div>'; // phpcs:ignore
+	$text( 'optout_text', __( 'Opt-out line', 'flx-mail' ), __( 'Leave empty to use the default in the site language.', 'flx-mail' ), 'text', __( 'If you don\'t want messages like this, reply STOP.', 'flx-mail' ) );
+	echo '<div class="flxi-grid2">';
+	/* translators: %s: varsayılan kelimeler */
+	$text( 'optout_keywords', __( 'Opt-out words (comma separated)', 'flx-mail' ), esc_html( sprintf( __( 'The whole message must be the word; "I want to cancel my donation" is not counted. Default: %s', 'flx-mail' ), flxi_optout_default_words() ) ), 'text', flxi_optout_default_words() );
+	/* translators: %s: varsayılan kelimeler */
+	$text( 'optin_keywords', __( 'Start words (comma separated)', 'flx-mail' ), esc_html( sprintf( __( 'Default: %s', 'flx-mail' ), flxi_optin_default_words() ) ), 'text', flxi_optin_default_words() );
+	echo '</div>';
+	$text( 'optout_reply', __( 'Reply after opting out', 'flx-mail' ), __( 'Sent once on WhatsApp. Leave empty for the default; type - to send nothing.', 'flx-mail' ), 'text', flxi_optout_reply_text( 'out' ) );
+	$text( 'optin_reply', __( 'Reply after starting again', 'flx-mail' ), '', 'text', flxi_optout_reply_text( 'in' ) );
+	/* translators: 1: WhatsApp sayısı, 2: SMS sayısı */
+	echo '<p class="flxi-muted"><strong>' . esc_html( sprintf( __( 'Opted out: %1$s on WhatsApp, %2$s on SMS', 'flx-mail' ), number_format_i18n( flxi_optout_count( 'whatsapp' ) ), number_format_i18n( flxi_optout_count( 'sms' ) ) ) ) . '</strong></p>';
+	echo '<p><a href="#iptal-liste">' . esc_html__( 'See the list', 'flx-mail' ) . '</a></p>';
+	echo '</section>';
+
 	// Posta kutusu sınırları
 	echo '<section class="flxi-card" id="sinirlar"><h2 class="flxi-card__title">' . esc_html__( 'Mailbox limits', 'flx-mail' ) . '</h2>';
 	echo '<p class="flxi-muted">' . esc_html__( 'The limits of your Hostinger email plan. The send counter uses them; bulk sends never exceed the daily limit, and the rest go out as allowance frees up. If you hit the limits often, upgrade to a higher email plan at Hostinger and update the values here.', 'flx-mail' ) . '</p>';
@@ -237,6 +257,7 @@ function flxi_page_settings() {
 
 	echo '<div class="flxi-actions"><button class="button button-primary button-large">' . esc_html__( 'Save settings', 'flx-mail' ) . '</button></div>';
 	echo '</form>';
+	flxi_optout_admin_list();
 	flxi_page_foot();
 }
 
@@ -248,11 +269,11 @@ add_action(
 		$d     = flxi_defaults();
 		$clean = array();
 		// İşaret kutuları formda yoksa kapalıdır (yalnız bu formdaki bölümler için).
-		$bools = array( 'force_from', 'set_sender', 'smtp_auth', 'wrap_plain', 'wrap_html', 'email_images_fix', 'embed_images', 'social_block_core', 'social_block_wc', 'social_verified', 'log_enabled', 'log_body', 'bulk_unsubscribe', 'mailbox_enabled' );
+		$bools = array( 'force_from', 'set_sender', 'smtp_auth', 'wrap_plain', 'wrap_html', 'email_images_fix', 'embed_images', 'social_block_core', 'social_block_wc', 'social_verified', 'log_enabled', 'log_body', 'bulk_unsubscribe', 'mailbox_enabled', 'optout_enabled', 'optout_footer_wa', 'optout_footer_sms' );
 		$partial = ! empty( $_POST['partial'] );
 		foreach ( $d as $k => $def ) {
 			if ( in_array( $k, $bools, true ) ) {
-				if ( $partial && ! array_key_exists( $k, $in ) && ! in_array( $k, array( 'log_enabled', 'log_body', 'bulk_unsubscribe' ), true ) ) {
+				if ( $partial && ! array_key_exists( $k, $in ) && ! in_array( $k, array( 'log_enabled', 'log_body', 'bulk_unsubscribe', 'optout_enabled', 'optout_footer_wa', 'optout_footer_sms' ), true ) ) {
 					continue;
 				}
 				$clean[ $k ] = empty( $in[ $k ] ) ? 0 : 1;
@@ -311,3 +332,29 @@ add_action(
 		flxi_redirect( flxi_admin_url( 'flxi-ayarlar' ) . '#woocommerce', __( 'Logo, colors, sender and footer applied to WooCommerce emails.', 'flx-mail' ) );
 	}
 );
+
+/** IPTAL listesi + elle ekleme (ayar formunun dışında; ayrı formlar). */
+function flxi_optout_admin_list() {
+	$rows = flxi_optout_list( '', 200 );
+	$chs  = flxi_channels();
+	echo '<section class="flxi-card" id="iptal-liste"><h2 class="flxi-card__title">' . esc_html__( 'Opted-out people', 'flx-mail' ) . '</h2>';
+	if ( $rows ) {
+		echo '<table class="flxi-optouts"><thead><tr><th>' . esc_html__( 'Phone', 'flx-mail' ) . '</th><th>' . esc_html__( 'Channel', 'flx-mail' ) . '</th><th>' . esc_html__( 'How', 'flx-mail' ) . '</th><th>' . esc_html__( 'Date', 'flx-mail' ) . '</th><th></th></tr></thead><tbody>';
+		foreach ( $rows as $r ) {
+			$how = 'inbound' === $r['source'] ? ( '' !== $r['keyword'] ? sprintf( /* translators: %s: kelime */ __( 'Replied "%s"', 'flx-mail' ), $r['keyword'] ) : __( 'Replied', 'flx-mail' ) ) : __( 'Added by staff', 'flx-mail' );
+			echo '<tr><td>+' . esc_html( $r['recipient'] ) . '</td><td>' . esc_html( $chs[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $how ) . '</td><td>' . esc_html( flx_date( strtotime( $r['created_at'] . ' UTC' ), 'short' ) ) . '</td><td>';
+			echo flxi_post_button( 'flxi_optout_remove', array( 'channel' => $r['channel'], 'recipient' => $r['recipient'] ), __( 'Remove', 'flx-mail' ), __( 'Promotional messages will be sent to this person again. Remove only if they asked for it.', 'flx-mail' ) ); // phpcs:ignore
+			echo '</td></tr>';
+		}
+		echo '</tbody></table>';
+	} else {
+		echo '<p class="flxi-muted">' . esc_html__( 'Nobody has opted out yet.', 'flx-mail' ) . '</p>';
+	}
+	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxi-optout-add">';
+	wp_nonce_field( 'flxi_optout' );
+	echo '<input type="hidden" name="action" value="flxi_optout_add">';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Add a phone by hand', 'flx-mail' ) . '</span><input type="tel" name="recipient" placeholder="0532 123 45 67" required></label>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Channel', 'flx-mail' ) . '</span><select name="channel"><option value="whatsapp">WhatsApp</option><option value="sms">SMS</option></select></label>';
+	echo '<button class="button">' . esc_html__( 'Add', 'flx-mail' ) . '</button></form>';
+	echo '</section>';
+}

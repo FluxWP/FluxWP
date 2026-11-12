@@ -76,6 +76,15 @@ function flxi_defaults() {
 		// Toplu gönderim
 		'bulk_per_run'     => 20,
 		'bulk_unsubscribe' => 1,
+		// Tanıtım mesajlarından çıkış (IPTAL); boş metinler site dilinde varsayılanı kullanır.
+		'optout_enabled'   => 1,
+		'optout_footer_wa' => 1,
+		'optout_footer_sms' => 0,
+		'optout_text'      => '',
+		'optout_keywords'  => '',
+		'optin_keywords'   => '',
+		'optout_reply'     => '',
+		'optin_reply'      => '',
 		// Posta kutusu sınırları (Hostinger e-posta paketi)
 		'limit_daily'          => 100,
 		'limit_recipients'     => 100,
@@ -509,4 +518,26 @@ function flxi_footer_art_urls( $art ) {
 		'light' => FLXI_URL . 'assets/img/footer/' . $art . '.png',
 		'dark'  => FLXI_URL . 'assets/img/footer/' . $art . '-dark.png',
 	);
+}
+
+/** Medya adresinin türü (WhatsApp): image | video | document. */
+function flxi_media_kind( $url, $name = '' ) {
+	$ext = strtolower( pathinfo( (string) ( $name ? $name : wp_parse_url( (string) $url, PHP_URL_PATH ) ), PATHINFO_EXTENSION ) );
+	if ( in_array( $ext, array( 'jpg', 'jpeg', 'png', 'webp', 'gif' ), true ) ) {
+		return 'image';
+	}
+	if ( in_array( $ext, array( 'mp4', '3gp', 'mov' ), true ) ) {
+		return 'video';
+	}
+	return 'document';
+}
+
+/** Medya MIME türü (bilinmiyorsa türe göre varsayılan). */
+function flxi_media_mime( $url, $name, $kind ) {
+	$file = (string) ( $name ? $name : wp_parse_url( (string) $url, PHP_URL_PATH ) );
+	$t    = wp_check_filetype( $file );
+	if ( ! empty( $t['type'] ) ) {
+		return $t['type'];
+	}
+	return 'image' === $kind ? 'image/jpeg' : ( 'video' === $kind ? 'video/mp4' : 'application/pdf' );
 }

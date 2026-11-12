@@ -157,7 +157,8 @@ function flxi_collect_recipients( array $sources, $manual, $channel, &$report = 
 /**
  * Gönderim oluşturur ve kuyruğa ekler.
  *
- * @param array $data name, channel, subject, heading, body, button_text, button_url, sender, text, connection_id, unsubscribe
+ * @param array $data name, channel, subject, heading, body, button_text, button_url, sender, text, connection_id, unsubscribe,
+ *                    send_at, media (URL, WhatsApp), file_name, kind ('marketing' varsayılan | 'info'), ref (ör. flxcrm_event:12)
  * @param array $recipients flxi_collect_recipients() sonucu
  * @return int|WP_Error
  */
@@ -205,6 +206,11 @@ function flxi_create_campaign( array $data, array $recipients ) {
 					'text'          => sanitize_textarea_field( $data['text'] ?? '' ),
 					'connection_id' => (int) ( $data['connection_id'] ?? 0 ),
 					'unsubscribe'   => ! empty( $data['unsubscribe'] ),
+					// 1.17.0: medya (WhatsApp), tür (marketing: IPTAL'e uyar / info: bilgilendirme), kaynak etiketi.
+					'media'         => esc_url_raw( (string) ( $data['media'] ?? '' ) ),
+					'file_name'     => sanitize_file_name( (string) ( $data['file_name'] ?? '' ) ),
+					'kind'          => flxi_message_kind( $data['kind'] ?? 'marketing' ),
+					'ref'           => mb_substr( sanitize_text_field( (string) ( $data['ref'] ?? '' ) ), 0, 120 ),
 				)
 			),
 			'status'     => 'queued',
@@ -331,6 +337,18 @@ function flxi_run_queue( $budget = 20 ) {
 					if ( is_array( $res ) ) { foreach ( array( 'processed', 'sent', 'failed', 'submitted' ) as $key ) { $stats[ $key ] = ( $stats[ $key ] ?? 0 ) + (int) ( $res[ $key ] ?? 0 ); } if ( empty( $res['processed'] ) ) { break; } continue; }
 				}
 			}
+			// WhatsApp ban koruması: bağlantının kapısı kapalıysa bu kampanyanın sıradakileri kapı açılana ertelenir.
+			$guard_conn = null;
+			if ( 'whatsapp' === $row['channel'] && $camps[ $cid ] && empty( $camps[ $cid ]['data']['stopped'] ) && ! flxi_is_wa_group( $row['recipient'] ) ) {
+				$guard_conn = flxi_resolve_connection( 'whatsapp', (int) ( $camps[ $cid ]['data']['connection_id'] ?? 0 ) );
+				$gate       = flxi_wa_guard_check( $guard_conn );
+				if ( $gate['wait'] > 0 ) {
+					$when = gmdate( 'Y-m-d H:i:s', $gate['until'] );
+					$wpdb->query( $wpdb->prepare( "UPDATE $t SET scheduled_at = %s WHERE campaign_id = %d AND status = 'queued' AND scheduled_at < %s", $when, $cid, $when ) ); // phpcs:ignore
+					flxi_campaign_note_wait( $cid, $gate );
+					continue;
+				}
+			}
 			$claimed = $wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'processing', attempts = attempts + 1, scheduled_at = %s WHERE id = %d AND status = 'queued'", flxi_now(), $row['id'] ) );
 			if ( 1 !== (int) $claimed ) {
 				continue;
@@ -344,6 +362,9 @@ function flxi_run_queue( $budget = 20 ) {
 				$res = array( 'ok' => false, 'error' => $error->getMessage(), 'retry' => true );
 			}
 			unset( $GLOBALS['flxi_queue_timeout'] );
+			if ( $guard_conn ) {
+				flxi_wa_guard_after( $guard_conn, $res );
+			}
 			$stats['processed']++;
 			if ( 'email' === $row['channel'] ) {
 				$emails++;
@@ -416,8 +437,12 @@ function flxi_send_queue_item( $row, $camp ) {
 	if ( flxi_contact_blocked( 'email' === $row['channel'] ? '' : $row['recipient'], 'email' === $row['channel'] ? $row['recipient'] : '', $row['channel'] ) ) {
 		return array( 'ok' => false, 'error' => __( 'On the blocklist: not sent', 'flx-mail' ), 'retry' => false, 'skip' => true );
 	}
+	$kind = flxi_message_kind( $d['kind'] ?? 'marketing' );
+	if ( 'marketing' === $kind && 'email' !== $row['channel'] && flxi_optout_has( $row['channel'], $row['recipient'] ) ) {
+		return array( 'ok' => false, 'error' => __( 'Opted out of promotional messages (replied STOP): not sent', 'flx-mail' ), 'retry' => false, 'skip' => true );
+	}
 	if ( 'email' === $row['channel'] ) {
-		if ( in_array( $row['recipient'], flxi_unsubscribed(), true ) ) {
+		if ( 'marketing' === $kind && in_array( $row['recipient'], flxi_unsubscribed(), true ) ) {
 			return array( 'ok' => false, 'error' => __( 'Unsubscribed.', 'flx-mail' ), 'retry' => false );
 		}
 		$unsub   = ! empty( $d['unsubscribe'] ) && flxi_setting( 'bulk_unsubscribe' ) ? flxi_unsubscribe_url( $row['recipient'] ) : '';
@@ -450,17 +475,38 @@ function flxi_send_queue_item( $row, $camp ) {
 		remove_action( 'wp_mail_failed', $catch );
 		return array( 'ok' => (bool) $ok, 'error' => $error, 'retry' => ! $ok );
 	}
+	if ( 'whatsapp' === $row['channel'] && ! flxi_is_wa_group( $row['recipient'] ) ) {
+		$conn = flxi_resolve_connection( 'whatsapp', (int) $d['connection_id'] );
+		if ( flxi_wa_guard_applies( $conn ) && flxi_wa_guard_conf( $conn )['skip_no_wa'] && false === flxi_wa_exists( $conn, $row['recipient'] ) ) {
+			return array( 'ok' => false, 'error' => __( 'This number does not have WhatsApp.', 'flx-mail' ), 'retry' => false, 'skip' => true );
+		}
+	}
 	return flxi_send_message(
 		$row['channel'],
 		$row['recipient'],
-		flxi_fill( (string) $d['text'], $vars ),
+		flxi_fill( flxi_spin( (string) $d['text'] ), $vars ),
 		array(
 			'connection_id' => (int) $d['connection_id'],
 			'campaign_id'   => (int) $camp['id'],
-			'source'        => 'flx-mail',
+			'source'        => (string) ( $d['ref'] ?? '' ) !== '' ? mb_substr( 'flx-mail:' . $d['ref'], 0, 80 ) : 'flx-mail',
 			'template'      => 'flx-mail/campaign',
+			'kind'          => $kind,
+			'media'         => 'whatsapp' === $row['channel'] ? (string) ( $d['media'] ?? '' ) : '',
+			'file_name'     => (string) ( $d['file_name'] ?? '' ),
 		)
 	);
+}
+
+/** Kampanyanın neden beklediğini not eder (Gönder ekranında görünür). */
+function flxi_campaign_note_wait( $cid, array $gate ) {
+	global $wpdb;
+	$c = flxi_get_campaign( $cid );
+	if ( ! $c || ( (int) ( $c['data']['wait_until'] ?? 0 ) === (int) $gate['until'] && ( $c['data']['wait_reason'] ?? '' ) === $gate['reason'] ) ) {
+		return;
+	}
+	$c['data']['wait_until']  = (int) $gate['until'];
+	$c['data']['wait_reason'] = (string) $gate['reason'];
+	$wpdb->update( flxi_table( 'campaigns' ), array( 'data' => flxi_json( $c['data'] ) ), array( 'id' => (int) $cid ) );
 }
 
 /* ------------------------------------------------------------------ */

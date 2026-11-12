@@ -96,6 +96,9 @@ function flxi_save_connection( $id, $type, $name, array $input, $active, $is_def
 	$config = array();
 	foreach ( $def['fields'] as $f ) {
 		$k = $f['key'];
+		if ( 'heading' === $f['type'] ) {
+			continue;
+		}
 		$v = $input[ $k ] ?? ( $f['default'] ?? '' );
 		switch ( $f['type'] ) {
 			case 'password':
@@ -170,7 +173,8 @@ function flxi_delete_connection( $id ) {
  * @param string $channel whatsapp|sms
  * @param string $to      telefon; WhatsApp'ta grup kimliği de olur (120363…@g.us, yalnız Evolution / Flux WPAPI)
  * @param string $text    mesaj
- * @param array  $args    connection_id, source, template (kayıt adı), wa_template (Cloud API şablonu: name, lang, params), campaign_id, media (url), file_name, log (bool)
+ * @param array  $args    connection_id, source, template (kayıt adı), wa_template (Cloud API şablonu: name, lang, params), campaign_id, media (url), file_name, log (bool),
+ *                        kind ('marketing': IPTAL yazana gitmez + çıkış satırı; 'info' ya da yok: her zaman), no_optout_footer (bool)
  * @return array ok, external_id, error, retry, response, connection_id
  */
 function flxi_send_message( $channel, $to, $text, array $args = array() ) {
@@ -186,6 +190,21 @@ function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 			flxi_log_message( $channel, $to, $text, false, $r['error'], array( 'source' => $args['source'] ?? '', 'template' => $args['template'] ?? '', 'campaign_id' => $args['campaign_id'] ?? 0, 'status' => 'blocked' ) );
 		}
 		return $r;
+	}
+	// Tanıtım mesajı (kind = marketing): IPTAL yazmış kişiye gitmez, altına çıkış satırı eklenir.
+	// Bilgilendirme (info) ve kişinin kendi yazdığına cevap bu kurala takılmaz.
+	$kind = isset( $args['kind'] ) ? flxi_message_kind( $args['kind'] ) : '';
+	if ( 'marketing' === $kind && ! $group ) {
+		if ( flxi_optout_has( $channel, $to ) ) {
+			$r = array( 'ok' => false, 'optout' => true, 'skip' => true, 'error' => __( 'Opted out of promotional messages (replied STOP): not sent', 'flx-mail' ), 'retry' => false );
+			if ( ! isset( $args['log'] ) || $args['log'] ) {
+				flxi_log_message( $channel, $to, $text, false, $r['error'], array( 'source' => $args['source'] ?? '', 'template' => $args['template'] ?? '', 'campaign_id' => $args['campaign_id'] ?? 0, 'status' => 'blocked' ) );
+			}
+			return $r;
+		}
+		if ( empty( $args['no_optout_footer'] ) ) {
+			$text = flxi_optout_append( $text, $channel );
+		}
 	}
 	$conn = flxi_resolve_connection( $channel, (int) ( $args['connection_id'] ?? 0 ) );
 	if ( $group && $conn && ! flxi_is_evo_type( $conn['type'] ) && empty( $args['connection_id'] ) ) {
@@ -237,6 +256,9 @@ function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 				'mailer'      => $conn['type'],
 			)
 		);
+	}
+	if ( $r['ok'] && 'whatsapp' === $channel && '' !== (string) $r['external_id'] && function_exists( 'flxi_remember_sent_id' ) ) {
+		flxi_remember_sent_id( (string) $r['external_id'] );
 	}
 	do_action( 'flxi_message_sent', $channel, $to, $text, $r, $args );
 	return $r;

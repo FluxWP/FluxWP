@@ -159,6 +159,19 @@ function flxi_install_tables() {
 			KEY status_time (status,scheduled_at)
 		) $c;"
 	);
+	// 1.17.0: tanıtım mesajlarından çıkanlar (IPTAL), kanal başına.
+	dbDelta(
+		'CREATE TABLE ' . flxi_table( 'optouts' ) . " (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			channel varchar(12) NOT NULL DEFAULT 'whatsapp',
+			recipient varchar(190) NOT NULL,
+			keyword varchar(40) NOT NULL DEFAULT '',
+			source varchar(40) NOT NULL DEFAULT '',
+			created_at datetime NOT NULL,
+			PRIMARY KEY  (id),
+			UNIQUE KEY channel_recipient (channel,recipient)
+		) $c;"
+	);
 	flxi_mailbox_install_tables( $c );
 	update_option( 'flxi_db_version', FLXI_DB_VERSION, false );
 }

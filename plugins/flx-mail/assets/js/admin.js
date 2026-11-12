@@ -586,6 +586,13 @@
 				var full = first && first.name ? first.name : M.sampleName;
 				var raw = ta.value;
 				var hasVar = /\{(ad|ad_soyad|telefon)\}/.test( raw );
+				var mk = $( '[data-msg-marketing]', send );
+				var foot = boot.optout && boot.optout[ ch ] && ( ! mk || mk.checked ) ? boot.optout[ ch ] : '';
+				// {Merhaba|Selam} çeşitlemesi: önizlemede ilk seçenek.
+				raw = raw.replace( /\{([^{}]*\|[^{}]*)\}/g, function ( m0, a ) { return a.split( '|' )[ 0 ]; } );
+				if ( foot && raw.trim() && raw.indexOf( foot ) === -1 ) {
+					raw = raw.replace( /\s+$/, '' ) + ( ch === 'whatsapp' ? '\n\n_' + foot + '_' : '\n' + foot );
+				}
 				var text = raw.replace( /\{ad_soyad\}/g, full ).replace( /\{ad\}/g, String( full ).split( /\s+/ )[ 0 ] ).replace( /\{telefon\}/g, first && first.to ? first.to : '905301234567' );
 				var count = lastRecipients ? lastRecipients.count : 0;
 				var notes = [], stat = '', pct = 0, level = '';
@@ -651,6 +658,26 @@
 				} ).join( '' );
 			};
 			ta.addEventListener( 'input', paint );
+			var mkSwitch = $( '[data-msg-marketing]', send );
+			if ( mkSwitch ) {
+				mkSwitch.addEventListener( 'change', paint );
+			}
+			// Kampanya medyası: WordPress ortam kütüphanesinden seç.
+			var pick = $( '[data-media-pick]', send );
+			if ( pick ) {
+				if ( ! ( window.wp && wp.media ) ) {
+					pick.hidden = true;
+				} else {
+					pick.addEventListener( 'click', function () {
+						var frame = wp.media( { multiple: false } );
+						frame.on( 'select', function () {
+							var a = frame.state().get( 'selection' ).first().toJSON();
+							$( '[data-media-url]', send ).value = a.url || '';
+						} );
+						frame.open();
+					} );
+				}
+			}
 			$$( 'select[name^="connection_"]', send ).forEach( function ( el ) {
 				el.addEventListener( 'change', paint );
 			} );
