@@ -1,0 +1,9 @@
+{
+  "slug": "flx-blocks",
+  "shots": [
+    { "name": "editor", "url": "post.php?action=edit", "vh": 1000 },
+    { "name": "blocks", "url": "post.php?action=edit", "vh": 1000 },
+    { "name": "style-library", "url": "admin.php?page=flx-blocks-style-library", "vh": 1000 },
+    { "name": "settings", "url": "admin.php?page=flx-blocks", "vh": 1000 }
+  ]
+}
