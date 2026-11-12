@@ -1511,8 +1511,9 @@
 							'<button type="button" class="btn primary" data-wa="save"' + (v.draft == null || v.draft === v.content || WS.busy ? ' disabled' : '') + '>' + esc(t('Kaydet')) + '</button>' : '') + '</div>';
 					}
 					if (mode === 'preview') h += '<div class="ws-md md">' + md(v.content) + '</div>';
-					else if (mode === 'edit') h += '<textarea class="ws-edit" spellcheck="false">' + esc(v.draft != null ? v.draft : v.content) + '</textarea>';
-					else h += '<div class="diff view">' + String(v.content).split('\n').map(function (l, i) { return '<div class="dl"><i>' + (i + 1) + '</i><code>' + esc(l) + '</code></div>'; }).join('') + '</div>';
+					else if (cmLib()) h += '<div class="ws-cm-slot"></div>';
+					else if (mode === 'edit') { h += '<textarea class="ws-edit" spellcheck="false">' + esc(v.draft != null ? v.draft : v.content) + '</textarea>'; cmLoad(); }
+					else if ((cmLoad(), true)) h += '<div class="diff view">' + String(v.content).split('\n').map(function (l, i) { return '<div class="dl"><i>' + (i + 1) + '</i><code>' + esc(l) + '</code></div>'; }).join('') + '</div>';
 				}
 			} else {
 				h += '<div class="ws-path">' + ic('folder') + '<code title="' + esc(d.dir) + '">' + esc(d.dir) + '</code>' +
@@ -1540,7 +1541,56 @@
 				'</ul><p><code>' + esc(d.dir) + '</code></p></div></div>';
 		}
 		h += '</div>';
+		var cmFocus = WS.cm && WS.cm.cm.hasFocus();
 		els.ws.innerHTML = h;
+		var slot = els.ws.querySelector('.ws-cm-slot');
+		if (slot && WS.view) cmMount(slot, WS.view, cmFocus);
+	}
+	/* Renkli editör: WordPress'in CodeMirror'ı (Flux Files ile aynı), ilk gerektiğinde yüklenir. */
+	var CMP = null;
+	var CM_MODES = { php: 'application/x-httpd-php', js: 'text/javascript', mjs: 'text/javascript', jsx: 'text/jsx', ts: 'text/typescript', json: 'application/json', css: 'text/css', scss: 'text/x-scss', sass: 'text/x-sass', less: 'text/x-less', html: 'text/html', htm: 'text/html', svg: 'application/xml', xml: 'application/xml', md: 'text/x-gfm', markdown: 'text/x-gfm', sql: 'text/x-mysql', yml: 'text/x-yaml', yaml: 'text/x-yaml', sh: 'text/x-sh', conf: 'text/x-nginx-conf', diff: 'text/x-diff', csv: 'text/plain', txt: 'text/plain' };
+	function cmLib() { return window.wp && window.wp.CodeMirror; }
+	function cmLoad() {
+		if (cmLib()) return Promise.resolve(cmLib());
+		if (!C.cm || !C.cm.js) return Promise.resolve(null);
+		if (!CMP) {
+			CMP = new Promise(function (res, rej) {
+				window.wp = window.wp || {};
+				var sc = document.createElement('script');
+				sc.src = C.cm.js;
+				sc.onload = function () { cmLib() ? res(cmLib()) : rej(new Error('no-cm')); };
+				sc.onerror = function () { rej(new Error('no-cm')); };
+				document.head.appendChild(sc);
+			}).then(function (lib) { renderWs(); return lib; });
+			CMP.catch(function () {});
+		}
+		return CMP;
+	}
+	function cmMount(slot, v, focus) {
+		var edit = v.editable && v.mode === 'edit', key = v.path + '|' + (edit ? 'e' : 'r');
+		if (root && C.cm && C.cm.css && !root.querySelector('link[data-cm]')) {
+			var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = C.cm.css; l.setAttribute('data-cm', '1');
+			(root.firstChild ? root.insertBefore(l, root.firstChild) : root.appendChild(l));
+		}
+		if (!WS.cm || WS.cm.key !== key) {
+			var ext = (v.path.split('.').pop() || '').toLowerCase();
+			var cm = cmLib()(document.createElement('div'), {
+				value: v.draft != null ? v.draft : String(v.content), mode: CM_MODES[ext] || 'text/plain',
+				lineNumbers: true, lineWrapping: true, readOnly: !edit, indentWithTabs: true, tabSize: 4, indentUnit: 4, styleActiveLine: edit
+			});
+			cm.on('change', function () {
+				if (!WS.view || WS.view.path !== v.path) return;
+				var first = WS.view.draft == null;
+				WS.view.draft = cm.getValue();
+				var sb = els.ws.querySelector('[data-wa="save"]');
+				if (first || !sb) renderWs(); else sb.disabled = WS.view.draft === WS.view.content;
+			});
+			cm.addKeyMap({ 'Ctrl-S': function () { var sb = els.ws.querySelector('[data-wa="save"]'); if (sb && !sb.disabled) sb.click(); }, 'Cmd-S': function () { var sb = els.ws.querySelector('[data-wa="save"]'); if (sb && !sb.disabled) sb.click(); } });
+			WS.cm = { key: key, cm: cm };
+		}
+		slot.appendChild(WS.cm.cm.getWrapperElement());
+		WS.cm.cm.refresh();
+		if (focus || (edit && v.focus)) { v.focus = false; WS.cm.cm.focus(); }
 	}
 	function wsDetail(id, force) {
 		if (WS.detail[id] && !force) return;
@@ -1583,7 +1633,7 @@
 			if (a === 'close') { ui.ws = false; saveUi(); layout(); }
 			else if (a === 'refresh') wsLoad(true);
 			else if (a === 'back') { WS.view = null; renderWs(); }
-			else if (a === 'undo' && WS.view) { WS.view.draft = null; renderWs(); }
+			else if (a === 'undo' && WS.view) { WS.view.draft = null; WS.cm = null; renderWs(); }
 			else if (a === 'save' && WS.view && WS.view.draft != null && !WS.busy) {
 				var sv = WS.view, txt = sv.draft;
 				WS.busy = true; renderWs();
@@ -1595,7 +1645,7 @@
 			return;
 		}
 		if ((b = e.target.closest('[data-vm]'))) {
-			if (WS.view) { WS.view.mode = b.getAttribute('data-vm'); renderWs(); var ta = els.ws.querySelector('.ws-edit'); if (ta) ta.focus(); }
+			if (WS.view) { WS.view.mode = b.getAttribute('data-vm'); WS.view.focus = true; renderWs(); var ta = els.ws.querySelector('.ws-edit'); if (ta) ta.focus(); }
 			return;
 		}
 		if ((b = e.target.closest('[data-dir]'))) {

@@ -424,3 +424,23 @@ svg { width: 18px; height: 18px; flex: none; display: block; }
 .ws-md th, .ws-md td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; }
 .ws-edit { flex: 1; min-height: 320px; width: 100%; box-sizing: border-box; resize: none; font: 12.5px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: inherit; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; tab-size: 4; outline: none; }
 .ws-edit:focus { border-color: var(--brand); box-shadow: none; outline: none; }
+/* Renkli editör (WordPress CodeMirror, Flux Files ile aynı renkler) */
+.ws-cm-slot { flex: 1 1 auto; min-height: 320px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--bg); }
+.ws-cm-slot .CodeMirror { flex: 1; height: auto; min-height: 320px; font: 12.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--bg); color: var(--text); }
+.ws-cm-slot .CodeMirror-gutters { background: var(--bg); border-right: 0; }
+.ws-cm-slot .CodeMirror-linenumber { color: #a1a7b3; padding: 0 10px 0 6px; }
+.ws-cm-slot .CodeMirror-lines { padding: 10px 0; }
+.ws-cm-slot .CodeMirror-activeline-background { background: color-mix(in srgb, var(--brand) 6%, transparent); }
+.ws-cm-slot:focus-within { border-color: var(--brand); }
+.ws-cm-slot .cm-s-default .cm-header { color: var(--brand); }
+:host(.dark) .ws-cm-slot .CodeMirror-cursor { border-left-color: #e7e9ee; }
+:host(.dark) .ws-cm-slot .CodeMirror-selected, :host(.dark) .ws-cm-slot .CodeMirror-focused .CodeMirror-selected { background: rgba(130, 170, 255, .2); }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-keyword { color: #c792ea; }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-string, :host(.dark) .ws-cm-slot .cm-s-default .cm-link { color: #c3e88d; }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-variable-2, :host(.dark) .ws-cm-slot .cm-s-default .cm-variable-3 { color: #82aaff; }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-comment, :host(.dark) .ws-cm-slot .cm-s-default .cm-quote { color: #8b95a1; }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-def, :host(.dark) .ws-cm-slot .cm-s-default .cm-property, :host(.dark) .ws-cm-slot .cm-s-default .cm-header { color: #82aaff; }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-number, :host(.dark) .ws-cm-slot .cm-s-default .cm-atom { color: #f78c6c; }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-tag { color: #f07178; }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-attribute, :host(.dark) .ws-cm-slot .cm-s-default .cm-variable-2 { color: #ffcb6b; }
+:host(.dark) .ws-cm-slot .cm-s-default .cm-meta, :host(.dark) .ws-cm-slot .cm-s-default .cm-builtin { color: #89ddff; }
