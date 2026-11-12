@@ -1,0 +1,9 @@
+{
+  "slug": "flx-ads",
+  "shots": [
+    { "name": "report", "url": "admin.php?page=flx-ads&by=campaign", "vh": 1000 },
+    { "name": "spend", "url": "admin.php?page=flx-ads-spend", "vh": 1000 },
+    { "name": "links", "url": "admin.php?page=flx-ads-links", "vh": 1000 },
+    { "name": "settings", "url": "admin.php?page=flx-ads-settings", "vh": 1000 }
+  ]
+}

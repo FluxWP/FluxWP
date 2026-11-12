@@ -11,8 +11,15 @@ Which ad brought which donation. Flux Ads sends donation and order conversions t
 - **Consent first**: pixels start only after the visitor accepts the cookie banner. E-mail and phone go only hashed, and by default only for contacts with ad consent.
 - **Report**: channel, campaign, ad (utm_content), source/medium, landing page, first ad touch, new donors. Ad link (UTM) builder included.
 - **Ad spend and ROAS**: Meta spend per campaign and ad is read from your ad account; other spend can be entered by hand. The report shows spend, ROAS, cost per payment and cost per new donor.
+- **Donor value (LTV)**: each person belongs to the campaign of their first payment; their later payments count for it too. Per campaign: new donors, value at 90 days and so far, repeat rate, cost to win one (CAC), value / cost and payback time, plus a monthly cohort table.
+- **Meta audiences**: send a Flux CRM group (everyone with ad consent, donors, a value group or a saved segment) to Meta as a custom audience, hashed and only with ad consent. Updated daily; withdrawn consent is removed at once. Lookalike audiences and exclusion lists (e.g. recent donors) included.
+- **Campaigns**: Meta campaigns, ad sets and ads with spend next to the donations they brought, age/gender and placement breakdowns. Pause, turn on or change a daily budget from the panel, each after confirmation and kept in a change history.
+- **Suggestions**: a daily check of your active campaigns against the donations they brought: pause what spends without results, move budget by ROAS, pause weak ads, refresh tired ads. Each one is applied only when you press Apply.
+- **Season plan**: Ramadan, Qurban, 11 November, Giving Tuesday, year end and your own dates, with last year's numbers and a reminder to prepare; one click opens a Studio draft.
+- **Tests**: A/B tests between two ads and holdout tests that show how many donations the ads really added.
+- **Studio**: write a brief and Flux AI drafts a campaign (ad sets, audiences, budget split, text variants). You edit it; "Send to Meta" creates it paused, nothing runs until you turn it on.
 - **Flux CRM**: ad conversions on the contact timeline and an "Ad source" card.
-- **Flux AI / MCP**: read the report, spend and send log; change settings, add or delete spend, update Meta spend, test connections and resend conversions, each change after your approval. Secrets are never exposed.
+- **Flux AI / MCP**: read the report, donor value, spend, audiences and send log; change settings, add or delete spend, update Meta spend, create, update or delete audiences, test connections and resend conversions, each change after your approval. Secrets are never exposed.
 
 Requires WooCommerce. Works with Flux Donate; Flux CRM is optional.
 

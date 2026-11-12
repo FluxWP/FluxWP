@@ -27,7 +27,8 @@ function flxads_defaults() {
 			'meta_token'    => '',      // gizli
 			'meta_test'     => '',      // Events Manager › Test events kodu (ör. TEST12345)
 			'meta_account'  => '',      // reklam hesabı kimliği (harcama için; act_ öneki atılır)
-			'meta_ads_token' => '',     // gizli (Marketing API, ads_read); boşsa meta_token denenir
+			'meta_page'     => '',      // Facebook sayfa kimliği (Stüdyo taslak reklamları bu sayfa adına)
+			'meta_ads_token' => '',     // gizli (Marketing API: ads_read harcama, ads_management kitleler); boşsa meta_token denenir
 			'tiktok_on'     => 0,
 			'tiktok_pixel'  => '',
 			'tiktok_token'  => '',      // gizli
@@ -39,6 +40,8 @@ function flxads_defaults() {
 			'pii'           => 'consent', // consent (yalnız reklam izni olan kişi) | never | always
 			'browser'       => 1,       // tarayıcı pixel'leri de yüklensin (kapalıysa yalnız sunucu)
 			'window_days'   => 90,      // atıf çerezinin ömrü
+			'opt_roas'      => 2,       // Öneriler: hedef ROAS
+			'opt_min_spend' => 0,       // Öneriler: karar için en az harcama (0 = otomatik)
 		)
 	);
 }
@@ -86,6 +89,7 @@ function flxads_clean_settings( array $in, $partial = false ) {
 		'meta_pixel'   => static function ( $v ) { return preg_replace( '/\D+/', '', (string) $v ); },
 		'meta_test'    => static function ( $v ) { return preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ); },
 		'meta_account' => static function ( $v ) { return preg_replace( '/\D+/', '', (string) $v ); },
+		'meta_page'    => static function ( $v ) { return preg_replace( '/\D+/', '', (string) $v ); },
 		'tiktok_on'    => static function ( $v ) { return empty( $v ) ? 0 : 1; },
 		'tiktok_pixel' => static function ( $v ) { return strtoupper( preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ) ); },
 		'tiktok_test'  => static function ( $v ) { return preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ); },
@@ -98,6 +102,8 @@ function flxads_clean_settings( array $in, $partial = false ) {
 		'pii'          => static function ( $v ) { return in_array( $v, array( 'consent', 'never', 'always' ), true ) ? $v : 'consent'; },
 		'browser'      => static function ( $v ) { return empty( $v ) ? 0 : 1; },
 		'window_days'  => static function ( $v ) { return max( 1, min( 365, (int) ( '' === (string) $v ? 90 : $v ) ) ); },
+		'opt_roas'      => static function ( $v ) { $v = (float) str_replace( ',', '.', (string) $v ); return $v > 0 ? min( 100, round( $v, 2 ) ) : 2; },
+		'opt_min_spend' => static function ( $v ) { return max( 0, round( (float) str_replace( ',', '.', (string) $v ), 2 ) ); },
 	);
 	$out = array();
 	foreach ( $rules as $k => $fn ) {
@@ -251,7 +257,23 @@ function flxads_can( $manage = false ) {
 }
 
 function flxads_admin_url( $tab = 'report', array $args = array() ) {
-	return add_query_arg( array_merge( array( 'page' => 'flx-ads', 'tab' => $tab ), $args ), admin_url( 'admin.php' ) );
+	return add_query_arg( array_merge( array( 'page' => flxads_page_slug( $tab ) ), $args ), admin_url( 'admin.php' ) );
+}
+
+/** Bölüm → sol menü alt sayfasının kısa adı (Rapor ana sayfadır). */
+function flxads_page_slug( $tab ) {
+	return in_array( $tab, array( 'campaigns', 'suggestions', 'studio', 'planner', 'experiments', 'value', 'spend', 'audiences', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
+}
+
+/** Açık bölüm; eski ?page=flx-ads&tab=… bağlantıları da çalışır. */
+function flxads_current_tab() {
+	// phpcs:disable WordPress.Security.NonceVerification
+	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flx-ads';
+	if ( 0 === strpos( $page, 'flx-ads-' ) ) {
+		return substr( $page, 8 );
+	}
+	return isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'report';
+	// phpcs:enable
 }
 
 /** Para gösterimi. */
