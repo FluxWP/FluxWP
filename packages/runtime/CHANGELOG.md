@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.3.0
+- Chat engine: `deleteMessage(m, scope)` keeps the returned row (content stays, folded on screen); `channel` view filter. `deleteNote` still works.
+
 ## 0.2.4
 - The AI stream URL is resolved before the access token is attached.
 

@@ -1,5 +1,7 @@
 // Flux AI chat. Tokens arrive as NDJSON (`stream=1` on /step) and paint as they land.
-import { useState } from 'react';
+// The list follows Flux AI 0.14's chat sidebar: running/approval first, recent, archived on demand, search,
+// scheduled-task chats marked with a clock.
+import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, TextInput, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -8,9 +10,15 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { loadTokens } from '@fluxwp/core';
 import { messageText, streamAiStep, useAccount, useApi, useRenderer, type AiChat, type AiEvent, type AiMessage } from '@fluxwp/runtime';
 import { Button, EmptyState, IconButton, Spinner, Text } from '@/ui/primitives';
-import { useScreenTitle } from '../kit';
+import { Icon } from '@/ui/Icon';
+import { overlays, type MenuItem } from '@/ui/overlays';
+import { SearchField, useScreenTitle } from '../kit';
 
-interface ChatList { chats: { id: number; title: string; status: string }[] }
+interface ChatRow { id: number; title: string; status: string; archived?: number; task?: string; snippet?: string }
+interface ChatList { chats: ChatRow[] }
+type Item = { kind: 'head'; key: string; label: string; toggle?: boolean } | { kind: 'chat'; key: string; chat: ChatRow };
+
+const busy = (s: string) => s === 'running' || s === 'approval';
 interface SendResult { state: string; chat: AiChat }
 
 export default function AiScreen(_props: { params: Record<string, string> }) {
@@ -21,7 +29,25 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
   const account = useAccount();
   const renderer = useRenderer();
   const qc = useQueryClient();
-  const list = useQuery({ queryKey: ['flxai', account.id, 'chats'], queryFn: () => api<ChatList>('flx-ai/v1/chats') });
+  const [q, setQ] = useState('');
+  const [query, setQuery] = useState('');
+  const [showArchived, setShowArchived] = useState(false);
+  useEffect(() => {
+    const h = setTimeout(() => setQuery(q.trim()), 300);
+    return () => clearTimeout(h);
+  }, [q]);
+  const list = useQuery({
+    queryKey: ['flxai', account.id, 'chats', query],
+    queryFn: () => api<ChatList>('flx-ai/v1/chats', { query: { q: query || undefined, limit: 50 } }),
+    // A running chat (also a scheduled task started on the server) refreshes the list until it settles.
+    refetchInterval: (qr) => (qr.state.data?.chats.some((c) => c.status === 'running') ? 4000 : false),
+  });
+  const archived = useQuery({
+    queryKey: ['flxai', account.id, 'chats', 'archived', query],
+    queryFn: () => api<ChatList>('flx-ai/v1/chats', { query: { archived: 1, q: query || undefined, limit: 50 } }),
+    enabled: showArchived,
+  });
+  const refreshLists = () => void qc.invalidateQueries({ queryKey: ['flxai', account.id, 'chats'] });
   const [openId, setOpenId] = useState<number | null>(null);
   const [chat, setChat] = useState<AiChat | null>(null);
   const [draft, setDraft] = useState('');
@@ -82,28 +108,89 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
     if (r.state === 'continue' || r.chat.status === 'running') await step(chat.id);
   };
 
+  const stop = async () => {
+    if (!chat) return;
+    try {
+      const r = await api<SendResult>(`flx-ai/v1/chats/${chat.id}/stop`, { method: 'POST' });
+      if (r?.chat) setChat(r.chat);
+    } catch (e) {
+      renderer.ui.toast(e instanceof Error ? e.message : String(e), 'error');
+    }
+  };
+
+  /** Uzun basınca: arşivle / arşivden çıkar / sil. */
+  const rowMenu = async (c: ChatRow) => {
+    const items: MenuItem[] = [
+      c.archived ? { id: 'unarchive', label: t('mobile.screens.ai.unarchive'), icon: 'archive' } : { id: 'archive', label: t('mobile.screens.ai.archive'), icon: 'archive' },
+      { id: 'delete', label: t('mobile.screens.ai.delete'), icon: 'trash', danger: true },
+    ];
+    const id = await overlays.menu(c.title || t('mobile.screens.ai.actions'), items);
+    if (!id) return;
+    try {
+      if (id === 'delete') {
+        if (!(await renderer.ui.confirm({ title: t('mobile.screens.ai.deleteAsk'), body: t('mobile.screens.ai.deleteBody'), ok: t('mobile.screens.ai.delete'), tone: 'danger' }))) return;
+        await api(`flx-ai/v1/chats/${c.id}/delete`, { method: 'POST' });
+      } else {
+        await api(`flx-ai/v1/chats/${c.id}`, { method: 'POST', body: { archived: id === 'archive' ? 1 : 0 } });
+      }
+      refreshLists();
+    } catch (e) {
+      renderer.ui.toast(e instanceof Error ? e.message : String(e), 'error');
+    }
+  };
+
   const messages: (AiMessage & { id: string })[] = [
     ...(chat?.messages ?? []).filter((m) => messageText(m)).map((m, i) => ({ ...m, id: 'm' + i })),
     ...(draft ? [{ id: 'draft', role: 'assistant', content: draft }] : []),
   ];
 
   if (openId === null) {
+    const all = list.data?.chats ?? [];
+    const active = all.filter((c) => busy(c.status));
+    const recent = all.filter((c) => !busy(c.status));
+    const items: Item[] = [
+      ...(active.length ? [{ kind: 'head' as const, key: 'h-active', label: t('mobile.screens.ai.active') }, ...active.map((c) => ({ kind: 'chat' as const, key: 'c' + c.id, chat: c }))] : []),
+      ...(recent.length ? [{ kind: 'head' as const, key: 'h-recent', label: t('mobile.screens.ai.recent') }, ...recent.map((c) => ({ kind: 'chat' as const, key: 'c' + c.id, chat: c }))] : []),
+      ...(all.length || showArchived ? [{ kind: 'head' as const, key: 'h-arch', label: t('mobile.screens.ai.archived'), toggle: true }] : []),
+      ...(showArchived ? (archived.data?.chats ?? []).map((c) => ({ kind: 'chat' as const, key: 'a' + c.id, chat: { ...c, archived: 1 } })) : []),
+    ];
+    const newChat = () => (setOpenId(0), setChat(null));
     return (
       <View testID="screen-ai" style={styles.fill}>
         <View style={styles.tools}>
-          <Button icon="plus" label={t('mobile.screens.ai.new')} onPress={() => (setOpenId(0), setChat(null))} />
+          <Button icon="plus" label={t('mobile.screens.ai.new')} onPress={newChat} />
         </View>
+        <SearchField testID="ai-search" value={q} onChange={setQ} placeholder={t('mobile.screens.ai.search')} />
         {list.isPending ? <Spinner /> : (
           <FlashList
-            data={list.data?.chats ?? []}
-            keyExtractor={(c) => String(c.id)}
-            renderItem={({ item }) => (
-              <Pressable accessibilityRole="button" onPress={() => void load(item.id)} style={styles.row}>
-                <Text numberOfLines={1}>{item.title || t('mobile.screens.ai.new')}</Text>
-                <Text variant="caption">{item.status}</Text>
-              </Pressable>
-            )}
-            ListEmptyComponent={<EmptyState icon="ai" title={t('mobile.screens.ai.empty')} body={t('mobile.screens.ai.emptyBody')} action={{ label: t('mobile.screens.ai.new'), onPress: () => (setOpenId(0), setChat(null)) }} />}
+            data={items}
+            keyExtractor={(i) => i.key}
+            getItemType={(i) => i.kind}
+            onRefresh={refreshLists}
+            refreshing={list.isRefetching && !list.isPending}
+            renderItem={({ item }) => {
+              if (item.kind === 'head') {
+                return item.toggle ? (
+                  <Pressable accessibilityRole="button" accessibilityState={{ expanded: showArchived }} onPress={() => setShowArchived((v) => !v)} style={styles.headRow}>
+                    <Text variant="caption" tone="muted" style={styles.flex}>{item.label}</Text>
+                    <Icon name={showArchived ? 'chevron-down' : 'chevron'} size={16} color={theme.colors.textMuted} />
+                  </Pressable>
+                ) : <Text variant="caption" tone="muted" style={styles.headRow}>{item.label}</Text>;
+              }
+              const c = item.chat;
+              const status = c.status && c.status !== 'idle' ? t(`mobile.screens.ai.status.${c.status}`, { defaultValue: c.status }) : '';
+              return (
+                <Pressable accessibilityRole="button" onPress={() => void load(c.id)} onLongPress={() => void rowMenu(c)} delayLongPress={350} style={[styles.row, c.archived ? styles.rowArchived : null]}>
+                  <View style={styles.rowLine}>
+                    {c.task ? <Icon name="clock" size={15} color={theme.colors.textMuted} /> : null}
+                    <Text numberOfLines={1} style={styles.flex}>{c.title || t('mobile.screens.ai.new')}</Text>
+                    {status ? <Text variant="caption" tone={c.status === 'approval' ? 'danger' : 'primary'}>{status}</Text> : null}
+                  </View>
+                  {c.snippet ? <Text variant="caption" tone="muted" numberOfLines={1}>{c.snippet}</Text> : c.task ? <Text variant="caption" tone="muted" numberOfLines={1}>{t('mobile.screens.ai.task')}</Text> : null}
+                </Pressable>
+              );
+            }}
+            ListEmptyComponent={<EmptyState icon="ai" title={t('mobile.screens.ai.empty')} body={t('mobile.screens.ai.emptyBody')} action={{ label: t('mobile.screens.ai.new'), onPress: newChat }} />}
           />
         )}
       </View>
@@ -113,8 +200,9 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
   return (
     <KeyboardAvoidingView testID="screen-ai" style={styles.fill} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <View style={styles.head}>
-        <IconButton icon="back" label={t('mobile.shell.back')} onPress={() => (setOpenId(null), setChat(null), void list.refetch())} />
+        <IconButton icon="back" label={t('mobile.shell.back')} onPress={() => (setOpenId(null), setChat(null), refreshLists())} />
         <Text variant="label" numberOfLines={1} style={styles.flex}>{chat?.title || t('mobile.screens.ai.new')}</Text>
+        {streaming || chat?.status === 'running' ? <IconButton icon="x" label={t('mobile.screens.ai.stop')} onPress={() => void stop()} /> : null}
       </View>
       <FlashList
         data={messages}
@@ -153,7 +241,10 @@ const styles = StyleSheet.create((theme) => ({
   fill: { flex: 1, backgroundColor: theme.colors.bg },
   flex: { flex: 1 },
   tools: { padding: theme.space[3] },
-  row: { minHeight: 64, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], justifyContent: 'center', backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
+  headRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: theme.space[4] + 4, paddingTop: theme.space[3], paddingBottom: 6 },
+  rowLine: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  rowArchived: { opacity: 0.75 },
+  row: { minHeight: 64, gap: 2, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], justifyContent: 'center', backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
   head: { flexDirection: 'row', alignItems: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
   thread: { padding: theme.space[3] },
   bubble: { maxWidth: '86%', borderRadius: theme.radius.lg, padding: 12, marginBottom: 8, gap: 4 },

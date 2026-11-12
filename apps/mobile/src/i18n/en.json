@@ -108,7 +108,7 @@
   },
   "screens": {
     "inbox": {
-      "title": "WhatsApp",
+      "title": "Messages",
       "search": "Search chats",
       "empty": "No chats",
       "emptyBody": "Nothing in this view.",
@@ -127,7 +127,27 @@
         "closed": "Closed"
       },
       "offline": "You are offline",
-      "auth": "Session expired"
+      "auth": "Session expired",
+      "allChannels": "All channels",
+      "deleted": "This message was deleted",
+      "show": "Show",
+      "hide": "Hide",
+      "deletedBy": "Deleted by {{who}} · {{ago}}",
+      "deletedContact": "Deleted by the contact · {{ago}}",
+      "deletedPhone": "Deleted from the phone · {{ago}}",
+      "actions": "Message",
+      "copy": "Copy",
+      "copied": "Copied",
+      "deleteEveryone": "Delete for everyone",
+      "deletePanel": "Hide in the panel only",
+      "deleteNote": "Delete note",
+      "deleteEveryoneAsk": "Delete this message for everyone?",
+      "deleteEveryoneBody": "The contact sees \"This message was deleted\". The record stays in the panel.",
+      "deletePanelAsk": "Hide this message in the panel?",
+      "deletePanelBody": "The message stays on the contact's phone. \"Show\" opens it again in the panel.",
+      "deleteNoteAsk": "Delete this note?",
+      "delete": "Delete",
+      "deletedOk": "Message deleted"
     },
     "tasks": {
       "title": "Tasks",
@@ -226,7 +246,25 @@
       "approve": "Approve",
       "deny": "Deny",
       "tool": "Tool approval",
-      "notReady": "Flux AI is not set up yet"
+      "notReady": "Flux AI is not set up yet",
+      "search": "Search chats",
+      "active": "Running and waiting for approval",
+      "recent": "Recent chats",
+      "archived": "Archived",
+      "task": "Scheduled task",
+      "status": {
+        "idle": "",
+        "running": "Running",
+        "approval": "Waiting for approval"
+      },
+      "actions": "Chat",
+      "archive": "Archive",
+      "unarchive": "Unarchive",
+      "delete": "Delete",
+      "deleteAsk": "Delete this chat?",
+      "deleteBody": "The chat and the files in its folder are deleted.",
+      "stop": "Stop",
+      "refresh": "Refresh"
     },
     "tv": {
       "title": "TV Remote",

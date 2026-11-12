@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.4.0
+- Mesajlar (Flux Chat 1.37–1.38): ekran adı "Mesajlar"; birden çok kanal açıkken kanal düğmeleri, avatarda kanal işareti, başlıkta kanal adı (WhatsApp, Site sohbeti). Mesaja uzun basınca Kopyala, Herkesten sil (WhatsApp süresi içinde, gönderen ya da yönetici), Yalnız panelde gizle, Notu sil; hepsi onay penceresiyle.
+- Silinen mesajlar artık asıl içerikle normal balon gibi görünmüyor: "Bu mesaj silindi · Göster" satırına katlanır, açınca içerik ve kimin ne zaman sildiği görünür.
+- Flux AI (0.14): sohbet listesi masaüstündeki Sohbetler paneli gibi: çalışan ve onay bekleyenler üstte, son sohbetler, açılır Arşivdekiler, arama. Zamanlanmış görev sohbetleri saat simgesiyle; çalışan sohbet varken liste kendini yeniler, aşağı çekince yenilenir. Uzun basınca Arşivle / Arşivden çıkar / Sil. Çalışan sohbette Durdur düğmesi.
+
 ## 0.3.4
 - Account route keys use the shared id helper, so a subdirectory install stays one path segment.
 
