@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.4.2
+- CRM screens no longer reload the whole page: links, the left-menu CRM items, list filters, timeline tabs and forms (note, tags, details, delete, bulk actions) run with fetch and only the CRM content is replaced. Address bar, back/forward, page title and menu highlight follow along; styles and scripts a new screen needs (e.g. the phone field) are loaded on the fly.
+- Also works for the shared person card inside other plugins (Donate, Commerce), on that page only. Sync and scoring refresh the screen the same way.
+- Falls back to a normal page load when the response is not a CRM screen; opt out with `data-flxcrm-hard` on a link or form.
+
 ## 0.4.1
 - Contact card › Details is read-only by default: name, e-mail, phone, organisation, city, roles, consents, owner and note as text, with an Edit button that opens the form (Save / Cancel). If saving fails, the card comes back with the form open.
 - The phone field uses the shared FluxWP phone field (flx-brand `flx_phone_field`): country picker with flags, live check, saved as E.164. The form is not sent while the number is invalid.

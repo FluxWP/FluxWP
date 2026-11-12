@@ -333,3 +333,6 @@ form + .flxcrm-card{margin-top:16px}
 .flxcrm-phone>span{display:block;font-weight:550;font-size:12.5px;margin-bottom:4px}
 .flxcrm-form .flx-ph{width:100%;--flx-ph-h:36px;--flx-ph-radius:8px}
 @media (max-width:782px){.flxcrm-form .flx-ph{--flx-ph-h:40px}}
+/* Sayfa yenilemeden gezinme sırasında */
+.flxcrm.is-loading{opacity:.6;transition:opacity .15s .05s;cursor:progress}
+.flxcrm.is-loading *{pointer-events:none}
