@@ -61,6 +61,22 @@ final class FLXADS_Audiences {
 		return $a;
 	}
 
+	/**
+	 * Holdout payını ayarlar (0 = kapalı) ve kitleyi hemen eşitler: holdout'a düşenler Meta'dan çıkar, kapanınca geri girer.
+	 *
+	 * @return array|WP_Error
+	 */
+	public static function set_holdout( $id, $pct, $exp = '' ) {
+		$a = self::get( $id );
+		if ( ! $a ) {
+			return new WP_Error( 'flxads_bad', __( 'Audience not found.', 'flx-ads' ) );
+		}
+		$a['holdout']     = max( 0, min( 50, (int) $pct ) );
+		$a['holdout_exp'] = $a['holdout'] ? (string) $exp : '';
+		self::put( $a );
+		return self::sync( $id );
+	}
+
 	/** Kaynak seçenekleri: anahtar => ad. */
 	public static function sources() {
 		$out = array(
@@ -286,6 +302,10 @@ final class FLXADS_Audiences {
 		$t      = flxcrm_table( 'contacts' );
 		$m      = flxads_table( 'aud_members' );
 		$ids    = self::member_ids( $a['source'] );
+		if ( ! empty( $a['holdout'] ) ) {
+			/* Holdout deneyi: kişilerin sabit bir payı reklam görmesin diye kitleye girmez (FLXADS_Experiments). */
+			$ids = array_values( array_filter( $ids, static function ( $pid ) use ( $a ) { return ! FLXADS_Experiments::in_holdout( $a['id'], $pid, (int) $a['holdout'] ); } ) );
+		}
 		$want   = array();
 		foreach ( array_chunk( $ids, 1000 ) as $chunk ) {
 			$rows = (array) $wpdb->get_results( "SELECT id, name, email, phone, country FROM $t WHERE id IN (" . implode( ',', array_map( 'intval', $chunk ) ) . ')', ARRAY_A ); // phpcs:ignore WordPress.DB

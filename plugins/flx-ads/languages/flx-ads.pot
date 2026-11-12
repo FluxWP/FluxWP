@@ -75,6 +75,27 @@ msgstr ""
 msgid "Dismiss an ad suggestion"
 msgstr ""
 
+msgid "Season plan"
+msgstr ""
+
+msgid "Add a season date"
+msgstr ""
+
+msgid "Delete a season date"
+msgstr ""
+
+msgid "Ad tests"
+msgstr ""
+
+msgid "Start an ad test"
+msgstr ""
+
+msgid "End an ad test"
+msgstr ""
+
+msgid "Delete an ad test"
+msgstr ""
+
 msgid "Campaign planning context"
 msgstr ""
 
@@ -88,6 +109,9 @@ msgid "Create draft in Meta (paused)"
 msgstr ""
 
 msgid "Delete a campaign draft"
+msgstr ""
+
+msgid "Audience not found."
 msgstr ""
 
 msgid "Everyone with ad consent"
@@ -120,13 +144,76 @@ msgstr ""
 msgid "%1$s · lookalike %2$d%% %3$s"
 msgstr ""
 
-msgid "Audience not found."
-msgstr ""
-
 msgid "Not from ads"
 msgstr ""
 
 msgid "(not set)"
+msgstr ""
+
+msgid "A/B test"
+msgstr ""
+
+msgid "Holdout (lift)"
+msgstr ""
+
+msgid "Choose the test type."
+msgstr ""
+
+msgid "The end date is before the start date."
+msgstr ""
+
+msgid "Pick a campaign and two different ads in it."
+msgstr ""
+
+msgid "Both ads must be in the chosen campaign."
+msgstr ""
+
+msgid "Pick an audience that ads are shown to."
+msgstr ""
+
+msgid "The holdout share must be between 5% and 50%."
+msgstr ""
+
+msgid "This audience already has a running holdout test."
+msgstr ""
+
+msgid "Test not found."
+msgstr ""
+
+msgid "The audience of this test was deleted."
+msgstr ""
+
+msgid "Not enough data yet: wait until both ads have clicks."
+msgstr ""
+
+msgid "payments per click"
+msgstr ""
+
+msgid "click rate"
+msgstr ""
+
+msgid "Too little data yet: each ad needs at least 50 clicks (1,000 impressions while payments are few). Let it run longer."
+msgstr ""
+
+msgid "No clear winner yet on %1$s (confidence %2$s%%; 95%% is needed). Let it run longer."
+msgstr ""
+
+msgid "\"%1$s\" wins on %2$s with %3$s%% confidence. You can pause \"%4$s\"."
+msgstr ""
+
+msgid "Not enough data yet."
+msgstr ""
+
+msgid "Ads work: people who could see them gave %1$s%% more often. About %2$s extra donors and %3$s extra income came from the ads (confidence %4$s%%)."
+msgstr ""
+
+msgid "People who did not see the ads gave more often. The ads to this audience are not adding donations; try other text or another audience."
+msgstr ""
+
+msgid "The holdout group is still small (%s people; at least 100 are needed). Use a larger audience or share, or wait for it to grow."
+msgstr ""
+
+msgid "No clear difference yet between people who could see the ads and the holdout (confidence %s%%; 95%% is needed)."
 msgstr ""
 
 msgid "Last 7 days"
@@ -189,6 +276,11 @@ msgstr ""
 msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
 msgstr ""
 
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Pause campaign"
 msgstr ""
 
@@ -202,6 +294,9 @@ msgid "Pause weak ad"
 msgstr ""
 
 msgid "New ad text"
+msgstr ""
+
+msgid "Season coming"
 msgstr ""
 
 msgid "Waiting"
@@ -231,6 +326,9 @@ msgstr ""
 msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
 msgstr ""
 
+msgid "Last year it brought %1$s payments and %2$s."
+msgstr ""
+
 msgid "This suggestion is already closed."
 msgstr ""
 
@@ -238,6 +336,48 @@ msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it.
 msgstr ""
 
 msgid "Suggestion not found."
+msgstr ""
+
+msgid "Ramadan and Eid"
+msgstr ""
+
+msgid "Qurban (Eid al-Adha)"
+msgstr ""
+
+msgid "World Forestry Day and Forest Week"
+msgstr ""
+
+msgid "Mother's Day (donate in her name)"
+msgstr ""
+
+msgid "World Environment Day"
+msgstr ""
+
+msgid "National Tree Planting Day (11 November)"
+msgstr ""
+
+msgid "Teachers' Day (donate in their name)"
+msgstr ""
+
+msgid "Black Friday and Giving Tuesday"
+msgstr ""
+
+msgid "Year-end giving"
+msgstr ""
+
+msgid "Enter a name and a start date."
+msgstr ""
+
+msgid "Too many dates; delete old ones first."
+msgstr ""
+
+msgid "Date not found."
+msgstr ""
+
+msgid "Campaign for %1$s (%2$s – %3$s)."
+msgstr ""
+
+msgid "Last year the same period brought %1$s payments and %2$s."
 msgstr ""
 
 msgid "Ad channel"
@@ -319,9 +459,6 @@ msgid "Give the campaign a name."
 msgstr ""
 
 msgid "Enter the page the ads open (a full https:// address)."
-msgstr ""
-
-msgid "The end date is before the start date."
 msgstr ""
 
 msgid "Add at least one ad set (who sees the ads)."
@@ -470,6 +607,11 @@ msgid_plural "%s payments"
 msgstr[0] ""
 msgstr[1] ""
 
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "%d try"
 msgid_plural "%d tries"
 msgstr[0] ""
@@ -491,6 +633,9 @@ msgid "Suggestions"
 msgstr ""
 
 msgid "Studio"
+msgstr ""
+
+msgid "Tests"
 msgstr ""
 
 msgid "Donor value"
@@ -548,6 +693,15 @@ msgid "Draft deleted."
 msgstr ""
 
 msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
+msgstr ""
+
+msgid "Season plan updated."
+msgstr ""
+
+msgid "Test saved."
+msgstr ""
+
+msgid "Test deleted."
 msgstr ""
 
 msgid "Applied in Meta and written to the change history."
@@ -1087,6 +1241,9 @@ msgstr ""
 msgid "Apply: pause"
 msgstr ""
 
+msgid "Write a draft"
+msgstr ""
+
 msgid "Open Studio"
 msgstr ""
 
@@ -1100,6 +1257,147 @@ msgid "Suggestion"
 msgstr ""
 
 msgid "Result"
+msgstr ""
+
+msgid "The periods when giving peaks, with what the same period brought last year. Start the campaign before the period: Meta needs a few days to review and learn. \"Write a draft\" opens Studio with the brief and dates filled in; nothing goes to Meta from here."
+msgstr ""
+
+msgid "Now"
+msgstr ""
+
+msgid "Prepare now"
+msgstr ""
+
+msgid "Later"
+msgstr ""
+
+msgid "running"
+msgstr ""
+
+msgid "approximate; check the official calendar"
+msgstr ""
+
+msgid "Last year: %1$s payments, %2$s, %3$s new donors."
+msgstr ""
+
+msgid "Ad spend %1$s (ROAS %2$s)."
+msgstr ""
+
+msgid "No payments in this period last year."
+msgstr ""
+
+msgid "Delete this date?"
+msgstr ""
+
+msgid "Add your own date"
+msgstr ""
+
+msgid "A campaign day of your own: an anniversary, an event, a planting day."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Prepare days before"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Find out what really works. A/B: two ads in the same campaign, compared by donations per click on this site. Holdout: a fixed share of an audience does not see the ads; comparing the two groups shows how many donations the ads really added."
+msgstr ""
+
+msgid "No tests yet."
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Ended"
+msgstr ""
+
+msgid "open-ended"
+msgstr ""
+
+msgid "Audience \"%1$s\", %2$s%% held out"
+msgstr ""
+
+msgid "Pause \"%s\""
+msgstr ""
+
+msgid "End the test? The held-out people go back into the Meta audience."
+msgstr ""
+
+msgid "End the test? The result is kept."
+msgstr ""
+
+msgid "End test"
+msgstr ""
+
+msgid "Delete this test and its result?"
+msgstr ""
+
+msgid "New A/B test"
+msgstr ""
+
+msgid "No active campaign with ads. Create two variants in Studio first."
+msgstr ""
+
+msgid "Pick two ads of the same campaign. Studio drafts already tag each variant (utm_content), so donations are counted per ad."
+msgstr ""
+
+msgid "Ad A"
+msgstr ""
+
+msgid "Ad B"
+msgstr ""
+
+msgid "Start test"
+msgstr ""
+
+msgid "New holdout test"
+msgstr ""
+
+msgid "Create a Meta audience that ads are shown to (Audiences) first. An audience runs one holdout test at a time."
+msgstr ""
+
+msgid "The held-out people are removed from the Meta audience right away and put back when the test ends. Run it for at least 4 weeks; the bigger the audience, the sooner the answer."
+msgstr ""
+
+msgid "Start the test? The held-out people are removed from the Meta audience now."
+msgstr ""
+
+msgid "%1$s (%2$s people)"
+msgstr ""
+
+msgid "Held out (%)"
+msgstr ""
+
+msgid "Payments on the site"
+msgstr ""
+
+msgid "Payments per click"
+msgstr ""
+
+msgid "Gave at least once"
+msgstr ""
+
+msgid "Income"
+msgstr ""
+
+msgid "Could see ads"
+msgstr ""
+
+msgid "Held out"
+msgstr ""
+
+msgid "There is no winner yet."
 msgstr ""
 
 msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
@@ -1124,12 +1422,6 @@ msgid "Page the ads open"
 msgstr ""
 
 msgid "Goal"
-msgstr ""
-
-msgid "Start"
-msgstr ""
-
-msgid "End"
 msgstr ""
 
 msgid "Write draft"
@@ -1208,9 +1500,6 @@ msgid "This draft is in Meta as a paused campaign. Turn it on or change it under
 msgstr ""
 
 msgid "Why this plan (AI)"
-msgstr ""
-
-msgid "Name"
 msgstr ""
 
 msgid "Ad sets (who sees it)"

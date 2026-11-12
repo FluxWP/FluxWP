@@ -494,6 +494,133 @@ function flxads_write_tools() {
 				return array( 'id' => (string) $a['id'], 'dismissed' => true );
 			},
 		),
+		'flxads_season_plan'        => array(
+			'kind'        => 'read',
+			'title'       => __( 'Season plan', 'flx-ads' ),
+			'description' => 'Giving seasons in the next N days (Ramadan, Qurban, 11 November tree day, Giving Tuesday, year end, the site\'s own dates...): dates, state now|prep|later, days left, preparation days, and what the same period brought last year (payments, income, new donors, ad spend). Use it to plan campaigns; write the draft with flxads_draft_save. Hijri dates are approximate.',
+			'props'       => array( 'days' => array( 'type' => 'integer', 'minimum' => 7, 'maximum' => 365 ) ),
+			'run'         => static function ( $a ) {
+				return array( 'today' => wp_date( 'Y-m-d' ), 'seasons' => array_map( static function ( $e ) { return $e + array( 'brief' => FLXADS_Planner::brief( $e ) ); }, FLXADS_Planner::upcoming( (int) ( $a['days'] ?? 180 ) ?: 180 ) ) );
+			},
+		),
+		'flxads_season_add'         => array(
+			'kind'        => 'write',
+			'title'       => __( 'Add a season date', 'flx-ads' ),
+			'description' => 'Add the site\'s own campaign date to the season plan (anniversary, event, planting day). Local only.',
+			'props'       => array(
+				'name'  => array( 'type' => 'string' ),
+				'start' => array( 'type' => 'string', 'description' => 'Y-m-d' ),
+				'end'   => array( 'type' => 'string', 'description' => 'Y-m-d, optional' ),
+				'prep'  => array( 'type' => 'integer', 'description' => 'Days of preparation before start (3-60, default 14).' ),
+			),
+			'required'    => array( 'name', 'start' ),
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Planner::add_custom( $a );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_season_delete'      => array(
+			'kind'        => 'write',
+			'title'       => __( 'Delete a season date', 'flx-ads' ),
+			'description' => 'Delete one of the site\'s own dates (id from flxads_season_plan, custom ones only).',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'required'    => array( 'id' ),
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Planner::delete_custom( (string) ( $a['id'] ?? '' ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return array( 'deleted' => true );
+			},
+		),
+		'flxads_tests'              => array(
+			'kind'        => 'read',
+			'title'       => __( 'Ad tests', 'flx-ads' ),
+			'description' => 'A/B tests (two Meta ads of one campaign, payments per click on the site, or click rate while payments are few) and holdout tests (share of an audience kept out of Meta; lift in giving rate, extra donors and income). Each with result, confidence (95% needed) and a plain verdict.',
+			'props'       => array(),
+			'run'         => static function () {
+				return array( 'tests' => array_map( array( 'FLXADS_Experiments', 'export' ), FLXADS_Experiments::all() ) );
+			},
+		),
+		'flxads_test_create'        => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Start an ad test', 'flx-ads' ),
+			'description' => 'Start a test. type=ab: campaign (Meta campaign id) and two ad ids a, b of that campaign (from flxads_campaign_detail); nothing changes in Meta. type=holdout: audience (Flux Ads audience id, a target audience from flxads_audiences_list) and pct 5-50; the held-out people are removed from the Meta audience at once and put back when it ends. start/end Y-m-d (holdout: at least 4 weeks).',
+			'props'       => array(
+				'type'     => array( 'type' => 'string', 'enum' => array( 'ab', 'holdout' ) ),
+				'name'     => array( 'type' => 'string' ),
+				'campaign' => array( 'type' => 'string' ),
+				'a'        => array( 'type' => 'string' ),
+				'b'        => array( 'type' => 'string' ),
+				'audience' => array( 'type' => 'string' ),
+				'pct'      => array( 'type' => 'integer', 'minimum' => 5, 'maximum' => 50 ),
+				'start'    => array( 'type' => 'string' ),
+				'end'      => array( 'type' => 'string' ),
+			),
+			'required'    => array( 'type' ),
+			'preview'     => static function ( $a ) {
+				if ( 'holdout' === ( $a['type'] ?? '' ) ) {
+					$aud = FLXADS_Audiences::get( (string) ( $a['audience'] ?? '' ) );
+					if ( ! $aud ) {
+						throw new Exception( 'Audience not found.' );
+					}
+					return array( 'type' => 'holdout', 'audience' => $aud['name'], 'people' => (int) $aud['count'], 'held_out_percent' => (int) ( $a['pct'] ?? 10 ), 'effect' => 'About ' . (int) round( (int) $aud['count'] * (int) ( $a['pct'] ?? 10 ) / 100 ) . ' people are removed from the Meta audience until the test ends.' );
+				}
+				return array( 'type' => 'ab', 'campaign' => (string) ( $a['campaign'] ?? '' ), 'a' => (string) ( $a['a'] ?? '' ), 'b' => (string) ( $a['b'] ?? '' ), 'effect' => 'Nothing changes in Meta; results are read from Meta and this site.' );
+			},
+			'run'         => static function ( $a, $channel = 'mcp' ) {
+				$r = FLXADS_Experiments::create( $a, $channel );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return FLXADS_Experiments::export( $r );
+			},
+		),
+		'flxads_test_end'           => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'End an ad test', 'flx-ads' ),
+			'description' => 'End a running test and keep its result. For a holdout test the held-out people go back into the Meta audience.',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'required'    => array( 'id' ),
+			'preview'     => static function ( $a ) {
+				$e = FLXADS_Experiments::get( (string) ( $a['id'] ?? '' ) );
+				if ( ! $e ) {
+					throw new Exception( 'Test not found.' );
+				}
+				return FLXADS_Experiments::export( $e );
+			},
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Experiments::finish( (string) ( $a['id'] ?? '' ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return FLXADS_Experiments::export( $r );
+			},
+		),
+		'flxads_test_delete'        => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Delete an ad test', 'flx-ads' ),
+			'description' => 'Delete a test and its result (a running holdout is ended first).',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'required'    => array( 'id' ),
+			'preview'     => static function ( $a ) {
+				$e = FLXADS_Experiments::get( (string) ( $a['id'] ?? '' ) );
+				if ( ! $e ) {
+					throw new Exception( 'Test not found.' );
+				}
+				return array( 'delete' => $e['name'], 'type' => $e['type'], 'status' => $e['status'] );
+			},
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Experiments::delete( (string) ( $a['id'] ?? '' ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return array( 'deleted' => true );
+			},
+		),
 		'flxads_studio_context'     => array(
 			'kind'        => 'read',
 			'title'       => __( 'Campaign planning context', 'flx-ads' ),
@@ -718,6 +845,6 @@ add_filter(
 		if ( ! flxads_can() ) {
 			return $text;
 		}
-		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one. For Meta campaigns, ad sets and ads use flxads_campaigns and flxads_campaign_detail; pausing, turning on and budget changes (flxads_ad_status, flxads_ad_budget) only when the user asks, one item at a time, budget steps of at most 20-30%. To plan a new campaign: flxads_studio_context, then flxads_draft_save (a draft only); the user reviews it in Flux Ads › Studio. Send it to Meta (paused) with flxads_draft_send only when the user asks. For what to change in running campaigns use flxads_suggestions; apply one (flxads_suggestion_apply) only when the user picks it.";
+		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one. For Meta campaigns, ad sets and ads use flxads_campaigns and flxads_campaign_detail; pausing, turning on and budget changes (flxads_ad_status, flxads_ad_budget) only when the user asks, one item at a time, budget steps of at most 20-30%. To plan a new campaign: flxads_studio_context, then flxads_draft_save (a draft only); the user reviews it in Flux Ads › Studio. Send it to Meta (paused) with flxads_draft_send only when the user asks. For what to change in running campaigns use flxads_suggestions; apply one (flxads_suggestion_apply) only when the user picks it. For upcoming giving seasons use flxads_season_plan and draft early. To learn what works, flxads_tests shows A/B and holdout results; start or end a test only when the user asks.";
 	}
 );

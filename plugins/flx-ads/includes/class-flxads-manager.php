@@ -48,6 +48,9 @@ final class FLXADS_Manager {
 
 	/** [ since, until ] site saatiyle. */
 	public static function span( $range ) {
+		if ( preg_match( '/^(\d{4}-\d{2}-\d{2}):(\d{4}-\d{2}-\d{2})$/', (string) $range, $m ) ) {
+			return array( $m[1], min( $m[2], wp_date( 'Y-m-d' ) ) ); // deneyler: tarih aralığı "Y-m-d:Y-m-d"
+		}
 		$d = isset( self::ranges()[ (string) $range ] ) ? (int) $range : 7;
 		return array( wp_date( 'Y-m-d', time() - ( $d - 1 ) * DAY_IN_SECONDS ), wp_date( 'Y-m-d' ) );
 	}

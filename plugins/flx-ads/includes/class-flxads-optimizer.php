@@ -210,6 +210,14 @@ final class FLXADS_Optimizer {
 				}
 			}
 		}
+		/* Hazırlık zamanı gelen sezonlar (Sezon planı): taslak yazma hatırlatması. */
+		foreach ( FLXADS_Planner::upcoming( 90, false ) as $e ) {
+			if ( 'prep' !== $e['state'] ) {
+				continue;
+			}
+			$e['last'] = FLXADS_Planner::last_year( $e );
+			$out[]     = self::make( 'season', 'season', array( 'id' => $e['key'], 'name' => $e['name'] ), array(), array( 'start' => $e['start'], 'end' => $e['end'], 'days' => $e['days'], 'last_payments' => $e['last']['payments'], 'last_income' => $e['last']['income'], 'base' => $e['last']['base'], 'brief' => FLXADS_Planner::brief( $e ) ), null );
+		}
 		return $out;
 	}
 
@@ -238,6 +246,7 @@ final class FLXADS_Optimizer {
 			'budget_up'   => __( 'Raise budget', 'flx-ads' ),
 			'pause_ad'    => __( 'Pause weak ad', 'flx-ads' ),
 			'fatigue'     => __( 'New ad text', 'flx-ads' ),
+			'season'      => __( 'Season coming', 'flx-ads' ),
 		);
 	}
 
@@ -270,6 +279,14 @@ final class FLXADS_Optimizer {
 			case 'fatigue':
 				/* translators: %s: frequency */
 				return sprintf( __( 'People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience.', 'flx-ads' ), number_format_i18n( (float) $d['frequency'], 1 ) );
+			case 'season':
+				/* translators: 1: season, 2: days */
+				$t = sprintf( _n( '%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn.', '%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn.', (int) $d['days'], 'flx-ads' ), $s['name'], number_format_i18n( (int) $d['days'] ) );
+				if ( ! empty( $d['last_payments'] ) ) {
+					/* translators: 1: payments, 2: income */
+					$t .= ' ' . sprintf( __( 'Last year it brought %1$s payments and %2$s.', 'flx-ads' ), number_format_i18n( (int) $d['last_payments'] ), flxads_money( $d['last_income'], $d['base'] ) );
+				}
+				return $t;
 		}
 		return '';
 	}

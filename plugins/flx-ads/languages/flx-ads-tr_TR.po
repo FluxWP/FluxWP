@@ -77,6 +77,27 @@ msgstr "Reklam önerisini uygula"
 msgid "Dismiss an ad suggestion"
 msgstr "Reklam önerisini kapat"
 
+msgid "Season plan"
+msgstr "Sezon planı"
+
+msgid "Add a season date"
+msgstr "Sezon tarihi ekle"
+
+msgid "Delete a season date"
+msgstr "Sezon tarihini sil"
+
+msgid "Ad tests"
+msgstr "Reklam testleri"
+
+msgid "Start an ad test"
+msgstr "Reklam testi başlat"
+
+msgid "End an ad test"
+msgstr "Reklam testini bitir"
+
+msgid "Delete an ad test"
+msgstr "Reklam testini sil"
+
 msgid "Campaign planning context"
 msgstr "Kampanya planlama bağlamı"
 
@@ -91,6 +112,9 @@ msgstr "Taslağı Meta'da oluştur (duraklatılmış)"
 
 msgid "Delete a campaign draft"
 msgstr "Kampanya taslağını sil"
+
+msgid "Audience not found."
+msgstr "Kitle bulunamadı."
 
 msgid "Everyone with ad consent"
 msgstr "Reklam izni veren herkes"
@@ -122,14 +146,77 @@ msgstr "Kaynak olarak kendi kitlelerinizden birini seçin."
 msgid "%1$s · lookalike %2$d%% %3$s"
 msgstr "%1$s · benzer %%%2$d %3$s"
 
-msgid "Audience not found."
-msgstr "Kitle bulunamadı."
-
 msgid "Not from ads"
 msgstr "Reklamsız gelenler"
 
 msgid "(not set)"
 msgstr "(belirtilmemiş)"
+
+msgid "A/B test"
+msgstr "A/B testi"
+
+msgid "Holdout (lift)"
+msgstr "Holdout (artış)"
+
+msgid "Choose the test type."
+msgstr "Test türünü seçin."
+
+msgid "The end date is before the start date."
+msgstr "Bitiş tarihi başlangıçtan önce."
+
+msgid "Pick a campaign and two different ads in it."
+msgstr "Bir kampanya ve içinden iki farklı reklam seçin."
+
+msgid "Both ads must be in the chosen campaign."
+msgstr "İki reklam da seçilen kampanyada olmalı."
+
+msgid "Pick an audience that ads are shown to."
+msgstr "Reklam gösterilen bir kitle seçin."
+
+msgid "The holdout share must be between 5% and 50%."
+msgstr "Holdout payı %5 ile %50 arasında olmalı."
+
+msgid "This audience already has a running holdout test."
+msgstr "Bu kitlede zaten süren bir holdout testi var."
+
+msgid "Test not found."
+msgstr "Test bulunamadı."
+
+msgid "The audience of this test was deleted."
+msgstr "Bu testin kitlesi silinmiş."
+
+msgid "Not enough data yet: wait until both ads have clicks."
+msgstr "Henüz yeterli veri yok: iki reklamın da tıklama almasını bekleyin."
+
+msgid "payments per click"
+msgstr "tıklama başına ödeme"
+
+msgid "click rate"
+msgstr "tıklama oranı"
+
+msgid "Too little data yet: each ad needs at least 50 clicks (1,000 impressions while payments are few). Let it run longer."
+msgstr "Henüz veri az: her reklamın en az 50 tıklaması (ödeme azken 1.000 gösterimi) olmalı. Biraz daha çalışsın."
+
+msgid "No clear winner yet on %1$s (confidence %2$s%%; 95%% is needed). Let it run longer."
+msgstr "%1$s açısından henüz net kazanan yok (güven %%%2$s; %%95 gerekir). Biraz daha çalışsın."
+
+msgid "\"%1$s\" wins on %2$s with %3$s%% confidence. You can pause \"%4$s\"."
+msgstr "\"%1$s\" %2$s açısından %%%3$s güvenle kazanıyor. \"%4$s\" reklamını duraklatabilirsiniz."
+
+msgid "Not enough data yet."
+msgstr "Henüz yeterli veri yok."
+
+msgid "Ads work: people who could see them gave %1$s%% more often. About %2$s extra donors and %3$s extra income came from the ads (confidence %4$s%%)."
+msgstr "Reklamlar işe yarıyor: reklamı görebilenler %%%1$s daha sık bağış yaptı. Reklamlar sayesinde yaklaşık %2$s ek bağışçı ve %3$s ek gelir geldi (güven %%%4$s)."
+
+msgid "People who did not see the ads gave more often. The ads to this audience are not adding donations; try other text or another audience."
+msgstr "Reklamı görmeyenler daha sık bağış yaptı. Bu kitleye reklam bağış eklemiyor; başka metin ya da başka kitle deneyin."
+
+msgid "The holdout group is still small (%s people; at least 100 are needed). Use a larger audience or share, or wait for it to grow."
+msgstr "Holdout grubu hâlâ küçük (%s kişi; en az 100 gerekir). Daha büyük kitle ya da pay kullanın veya büyümesini bekleyin."
+
+msgid "No clear difference yet between people who could see the ads and the holdout (confidence %s%%; 95%% is needed)."
+msgstr "Reklamı görebilenlerle holdout grubu arasında henüz net fark yok (güven %%%s; %%95 gerekir)."
 
 msgid "Last 7 days"
 msgstr "Son 7 gün"
@@ -191,6 +278,11 @@ msgstr "Sıfırdan büyük bir günlük bütçe girin."
 msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
 msgstr "Bunun burada günlük bütçesi yok (toplam bütçe ya da bütçe kampanyada / reklam setlerinde). Meta Reklam Yöneticisi'nden değiştirin."
 
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
+msgstr[1] "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
+
 msgid "Pause campaign"
 msgstr "Kampanyayı duraklat"
 
@@ -205,6 +297,9 @@ msgstr "Zayıf reklamı duraklat"
 
 msgid "New ad text"
 msgstr "Yeni reklam metni"
+
+msgid "Season coming"
+msgstr "Sezon yaklaşıyor"
 
 msgid "Waiting"
 msgstr "Bekliyor"
@@ -233,6 +328,9 @@ msgstr "Tıklama oranı %%%1$s, bu setteki diğer reklamların ortalaması %%%2$
 msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
 msgstr "Kişiler bu reklamları 7 günde ortalama %s kez gördü; 4'ten sonra sonuç genelde düşer. Stüdyo'da yeni metin çeşitleri yazın ya da kitleyi genişletin."
 
+msgid "Last year it brought %1$s payments and %2$s."
+msgstr "Geçen yıl %1$s ödeme ve %2$s getirdi."
+
 msgid "This suggestion is already closed."
 msgstr "Bu öneri zaten kapandı."
 
@@ -241,6 +339,48 @@ msgstr "Bu öneri Meta'da bir şey değiştirmiyor; Stüdyo'yu açın ya da kapa
 
 msgid "Suggestion not found."
 msgstr "Öneri bulunamadı."
+
+msgid "Ramadan and Eid"
+msgstr "Ramazan ve Bayram"
+
+msgid "Qurban (Eid al-Adha)"
+msgstr "Kurban Bayramı"
+
+msgid "World Forestry Day and Forest Week"
+msgstr "Dünya Ormancılık Günü ve Orman Haftası"
+
+msgid "Mother's Day (donate in her name)"
+msgstr "Anneler Günü (onun adına bağış)"
+
+msgid "World Environment Day"
+msgstr "Dünya Çevre Günü"
+
+msgid "National Tree Planting Day (11 November)"
+msgstr "Milli Ağaçlandırma Günü (11 Kasım)"
+
+msgid "Teachers' Day (donate in their name)"
+msgstr "Öğretmenler Günü (onun adına bağış)"
+
+msgid "Black Friday and Giving Tuesday"
+msgstr "Black Friday ve Giving Tuesday"
+
+msgid "Year-end giving"
+msgstr "Yıl sonu bağışları"
+
+msgid "Enter a name and a start date."
+msgstr "Bir ad ve başlangıç tarihi girin."
+
+msgid "Too many dates; delete old ones first."
+msgstr "Çok fazla tarih var; önce eskileri silin."
+
+msgid "Date not found."
+msgstr "Tarih bulunamadı."
+
+msgid "Campaign for %1$s (%2$s – %3$s)."
+msgstr "%1$s kampanyası (%2$s – %3$s)."
+
+msgid "Last year the same period brought %1$s payments and %2$s."
+msgstr "Geçen yıl aynı dönem %1$s ödeme ve %2$s getirdi."
 
 msgid "Ad channel"
 msgstr "Reklam kanalı"
@@ -322,9 +462,6 @@ msgstr "Kampanyaya bir ad verin."
 
 msgid "Enter the page the ads open (a full https:// address)."
 msgstr "Reklamların açacağı sayfayı girin (tam https:// adresi)."
-
-msgid "The end date is before the start date."
-msgstr "Bitiş tarihi başlangıçtan önce."
 
 msgid "Add at least one ad set (who sees the ads)."
 msgstr "En az bir reklam seti ekleyin (reklamı kimler görecek)."
@@ -472,6 +609,11 @@ msgid_plural "%s payments"
 msgstr[0] "%s ödeme"
 msgstr[1] "%s ödeme"
 
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] "%s gün sonra"
+msgstr[1] "%s gün sonra"
+
 msgid "%d try"
 msgid_plural "%d tries"
 msgstr[0] "%d deneme"
@@ -494,6 +636,9 @@ msgstr "Öneriler"
 
 msgid "Studio"
 msgstr "Stüdyo"
+
+msgid "Tests"
+msgstr "Testler"
 
 msgid "Donor value"
 msgstr "Bağışçı değeri"
@@ -551,6 +696,15 @@ msgstr "Taslak silindi."
 
 msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
 msgstr "Meta'da duraklatılmış olarak oluşturuldu. Hazır olunca Kampanyalar'dan açın."
+
+msgid "Season plan updated."
+msgstr "Sezon planı güncellendi."
+
+msgid "Test saved."
+msgstr "Test kaydedildi."
+
+msgid "Test deleted."
+msgstr "Test silindi."
 
 msgid "Applied in Meta and written to the change history."
 msgstr "Meta'da uygulandı ve değişiklik geçmişine yazıldı."
@@ -1089,6 +1243,9 @@ msgstr "Uygula: günde %s"
 msgid "Apply: pause"
 msgstr "Uygula: duraklat"
 
+msgid "Write a draft"
+msgstr "Taslak yaz"
+
 msgid "Open Studio"
 msgstr "Stüdyo'yu aç"
 
@@ -1103,6 +1260,147 @@ msgstr "Öneri"
 
 msgid "Result"
 msgstr "Sonuç"
+
+msgid "The periods when giving peaks, with what the same period brought last year. Start the campaign before the period: Meta needs a few days to review and learn. \"Write a draft\" opens Studio with the brief and dates filled in; nothing goes to Meta from here."
+msgstr "Bağışların yükseldiği dönemler ve geçen yıl aynı dönemin getirdikleri. Kampanyayı dönemden önce başlatın: Meta'nın inceleyip öğrenmesi birkaç gün sürer. \"Taslak yaz\" Stüdyo'yu brif ve tarihler dolu açar; buradan Meta'ya hiçbir şey gitmez."
+
+msgid "Now"
+msgstr "Şimdi"
+
+msgid "Prepare now"
+msgstr "Hazırlanma zamanı"
+
+msgid "Later"
+msgstr "Sonra"
+
+msgid "running"
+msgstr "sürüyor"
+
+msgid "approximate; check the official calendar"
+msgstr "tahmini; resmi takvimden kontrol edin"
+
+msgid "Last year: %1$s payments, %2$s, %3$s new donors."
+msgstr "Geçen yıl: %1$s ödeme, %2$s, %3$s yeni bağışçı."
+
+msgid "Ad spend %1$s (ROAS %2$s)."
+msgstr "Reklam harcaması %1$s (ROAS %2$s)."
+
+msgid "No payments in this period last year."
+msgstr "Geçen yıl bu dönemde ödeme yok."
+
+msgid "Delete this date?"
+msgstr "Bu tarih silinsin mi?"
+
+msgid "Add your own date"
+msgstr "Kendi tarihinizi ekleyin"
+
+msgid "A campaign day of your own: an anniversary, an event, a planting day."
+msgstr "Size özel bir kampanya günü: yıldönümü, etkinlik, dikim günü."
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Prepare days before"
+msgstr "Kaç gün önce hazırlan"
+
+msgid "Start"
+msgstr "Başlangıç"
+
+msgid "End"
+msgstr "Bitiş"
+
+msgid "Add"
+msgstr "Ekle"
+
+msgid "Find out what really works. A/B: two ads in the same campaign, compared by donations per click on this site. Holdout: a fixed share of an audience does not see the ads; comparing the two groups shows how many donations the ads really added."
+msgstr "Gerçekte neyin işe yaradığını öğrenin. A/B: aynı kampanyadaki iki reklam, bu sitede tıklama başına bağışla karşılaştırılır. Holdout: kitlenin sabit bir payı reklamı görmez; iki grubu karşılaştırmak reklamların gerçekte kaç bağış eklediğini gösterir."
+
+msgid "No tests yet."
+msgstr "Henüz test yok."
+
+msgid "Running"
+msgstr "Sürüyor"
+
+msgid "Ended"
+msgstr "Bitti"
+
+msgid "open-ended"
+msgstr "bitiş yok"
+
+msgid "Audience \"%1$s\", %2$s%% held out"
+msgstr "\"%1$s\" kitlesi, %%%2$s dışarıda"
+
+msgid "Pause \"%s\""
+msgstr "\"%s\" reklamını duraklat"
+
+msgid "End the test? The held-out people go back into the Meta audience."
+msgstr "Test bitsin mi? Dışarıda tutulan kişiler Meta kitlesine geri girer."
+
+msgid "End the test? The result is kept."
+msgstr "Test bitsin mi? Sonuç saklanır."
+
+msgid "End test"
+msgstr "Testi bitir"
+
+msgid "Delete this test and its result?"
+msgstr "Bu test ve sonucu silinsin mi?"
+
+msgid "New A/B test"
+msgstr "Yeni A/B testi"
+
+msgid "No active campaign with ads. Create two variants in Studio first."
+msgstr "Reklamlı etkin kampanya yok. Önce Stüdyo'da iki çeşit oluşturun."
+
+msgid "Pick two ads of the same campaign. Studio drafts already tag each variant (utm_content), so donations are counted per ad."
+msgstr "Aynı kampanyadan iki reklam seçin. Stüdyo taslakları her çeşidi zaten etiketler (utm_content); bağışlar reklam başına sayılır."
+
+msgid "Ad A"
+msgstr "Reklam A"
+
+msgid "Ad B"
+msgstr "Reklam B"
+
+msgid "Start test"
+msgstr "Testi başlat"
+
+msgid "New holdout test"
+msgstr "Yeni holdout testi"
+
+msgid "Create a Meta audience that ads are shown to (Audiences) first. An audience runs one holdout test at a time."
+msgstr "Önce reklam gösterilen bir Meta kitlesi oluşturun (Kitleler). Bir kitlede aynı anda tek holdout testi çalışır."
+
+msgid "The held-out people are removed from the Meta audience right away and put back when the test ends. Run it for at least 4 weeks; the bigger the audience, the sooner the answer."
+msgstr "Dışarıda tutulan kişiler Meta kitlesinden hemen çıkar, test bitince geri girer. En az 4 hafta çalıştırın; kitle ne kadar büyükse cevap o kadar erken gelir."
+
+msgid "Start the test? The held-out people are removed from the Meta audience now."
+msgstr "Test başlasın mı? Dışarıda tutulan kişiler Meta kitlesinden şimdi çıkarılır."
+
+msgid "%1$s (%2$s people)"
+msgstr "%1$s (%2$s kişi)"
+
+msgid "Held out (%)"
+msgstr "Dışarıda tutulan (%)"
+
+msgid "Payments on the site"
+msgstr "Sitedeki ödemeler"
+
+msgid "Payments per click"
+msgstr "Tıklama başına ödeme"
+
+msgid "Gave at least once"
+msgstr "En az bir kez bağış yapan"
+
+msgid "Income"
+msgstr "Gelir"
+
+msgid "Could see ads"
+msgstr "Reklamı görebilen"
+
+msgid "Held out"
+msgstr "Dışarıda tutulan"
+
+msgid "There is no winner yet."
+msgstr "Henüz kazanan yok."
 
 msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
 msgstr "Flux AI, brifinizden ve bu sitenin rakamlarından bir kampanya taslağı yazar: reklam setleri, kitleler, bütçe dağılımı ve reklam metni çeşitleri. Burada okuyup düzenlersiniz. \"Meta'ya gönder\" her şeyi duraklatılmış oluşturur; Kampanyalar'dan açana kadar hiçbir şey gösterilmez, harcanmaz."
@@ -1127,12 +1425,6 @@ msgstr "Reklamların açacağı sayfa"
 
 msgid "Goal"
 msgstr "Amaç"
-
-msgid "Start"
-msgstr "Başlangıç"
-
-msgid "End"
-msgstr "Bitiş"
 
 msgid "Write draft"
 msgstr "Taslak yaz"
@@ -1211,9 +1503,6 @@ msgstr "Bu taslak Meta'da duraklatılmış kampanya olarak duruyor. Kampanyalar'
 
 msgid "Why this plan (AI)"
 msgstr "Neden bu plan (AI)"
-
-msgid "Name"
-msgstr "Ad"
 
 msgid "Ad sets (who sees it)"
 msgstr "Reklam setleri (kimler görür)"

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0
+
+- Season plan: new page with the giving seasons of the next 12 months: Ramadan and Eid, Qurban, World Forestry Day, Mother's Day, World Environment Day, 11 November tree day, Teachers' Day, Black Friday and Giving Tuesday, year end, plus your own dates. Each shows what the same period brought last year (payments, income, new donors, ad spend and ROAS) and when to start preparing. "Write a draft" opens Studio with the brief and dates filled in. Hijri dates are approximate.
+- Suggestions remind you when a season's preparation time starts.
+- Tests: A/B compares two ads of one campaign by payments per click on the site (or click rate while payments are few), with 95% confidence and a minimum of data before a winner is named; the losing ad can be paused from there. Holdout keeps a fixed share (5–50%) of a Meta audience out of the audience and compares how often each group gave: lift, extra donors and extra income from the ads. The held-out people go back when the test ends (by hand or on its end date).
+- Flux AI / MCP: `flxads_season_plan`, `flxads_tests` (read), `flxads_season_add`, `flxads_season_delete`, `flxads_test_create`, `flxads_test_end`, `flxads_test_delete` (starting, ending and deleting a test need approval).
+- New filter `flxads_seasons` for presets to add their own dates.
+
 ## 0.6.0
 
 - Suggestions: new page. Every day (and when you open it) Flux Ads checks active Meta campaigns from the last 7 days against what they brought on this site and suggests: pause a sales campaign that spent without a payment, lower the daily budget 20% when ROAS is under half the target, raise it 20% when ROAS is 1.5 times the target or more, pause an ad whose click rate is under half its ad set's, and write new text when people saw the ads more than 4 times.

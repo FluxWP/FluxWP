@@ -262,7 +262,7 @@ function flxads_admin_url( $tab = 'report', array $args = array() ) {
 
 /** Bölüm → sol menü alt sayfasının kısa adı (Rapor ana sayfadır). */
 function flxads_page_slug( $tab ) {
-	return in_array( $tab, array( 'campaigns', 'suggestions', 'studio', 'value', 'spend', 'audiences', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
+	return in_array( $tab, array( 'campaigns', 'suggestions', 'studio', 'planner', 'experiments', 'value', 'spend', 'audiences', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
 }
 
 /** Açık bölüm; eski ?page=flx-ads&tab=… bağlantıları da çalışır. */

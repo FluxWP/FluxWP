@@ -15,6 +15,8 @@ Which ad brought which donation. Flux Ads sends donation and order conversions t
 - **Meta audiences**: send a Flux CRM group (everyone with ad consent, donors, a value group or a saved segment) to Meta as a custom audience, hashed and only with ad consent. Updated daily; withdrawn consent is removed at once. Lookalike audiences and exclusion lists (e.g. recent donors) included.
 - **Campaigns**: Meta campaigns, ad sets and ads with spend next to the donations they brought, age/gender and placement breakdowns. Pause, turn on or change a daily budget from the panel, each after confirmation and kept in a change history.
 - **Suggestions**: a daily check of your active campaigns against the donations they brought: pause what spends without results, move budget by ROAS, pause weak ads, refresh tired ads. Each one is applied only when you press Apply.
+- **Season plan**: Ramadan, Qurban, 11 November, Giving Tuesday, year end and your own dates, with last year's numbers and a reminder to prepare; one click opens a Studio draft.
+- **Tests**: A/B tests between two ads and holdout tests that show how many donations the ads really added.
 - **Studio**: write a brief and Flux AI drafts a campaign (ad sets, audiences, budget split, text variants). You edit it; "Send to Meta" creates it paused, nothing runs until you turn it on.
 - **Flux CRM**: ad conversions on the contact timeline and an "Ad source" card.
 - **Flux AI / MCP**: read the report, donor value, spend, audiences and send log; change settings, add or delete spend, update Meta spend, create, update or delete audiences, test connections and resend conversions, each change after your approval. Secrets are never exposed.
