@@ -521,6 +521,7 @@ final class FLXU_Admin {
 		if ( ! current_user_can( 'update_plugins' ) ) {
 			return;
 		}
+		FLXU_Icon_Cache::warm_missing();
 
 		// phpcs:disable WordPress.Security.NonceVerification
 		if ( isset( $_GET['flxu_install'] ) ) {

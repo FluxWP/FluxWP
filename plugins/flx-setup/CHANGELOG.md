@@ -2,6 +2,8 @@
 
 ## 1.2.5
 - Paketler: "Gerekli:" satırı olan paketlerde ad ile etiketler arasında oluşan boş satır kaldırıldı; satır yükseklikleri tutarlı.
+- Çeviriler: güncellendikten sonra satır hep "Güncelleme var" kalıyordu. Kurulamayan çeviri artık "başarılı" sayılmaz, nedeni yazılır; güncellemeden hemen sonra yeniden kontrol edilir; sitede aynı ya da daha yeni tarihle kurulu çeviri (WordPress.org yine önerse de) gizlenir.
+- İkonlar sitede önbelleğe alınır (uploads/flx-setup/icons): sunucunun imzalı adresi her kontrolde değiştiği için ikonlar her seferinde yeniden iniyor, yanıp sönüyor, bazen hiç gelmiyordu. Eldeki ikon kalır, yenisi gelince hemen değişir, inemezse eskisi gösterilir. "Güncellemeleri kontrol et" tabloyu yenilerken ikonlar yerinde kalır.
 
 ## 1.2.4
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.

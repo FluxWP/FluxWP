@@ -525,9 +525,38 @@ final class FLXU_WP {
 					'lines' => array( array( 'ok' => true, 'text' => __( 'All translations are up to date.', 'flx-setup' ) ) ),
 				);
 			}
+			$todo     = wp_get_translation_updates();
 			$upgrader = new Language_Pack_Upgrader( $skin );
-			$res      = $upgrader->bulk_upgrade();
-			$res      = is_array( $res ) && array_filter( $res ) ? true : $res;
+			$res      = $upgrader->bulk_upgrade( $todo );
+			if ( is_array( $res ) ) {
+				// Sonuç dizisinde WP_Error ya da false olan çeviri kurulmadı (eskiden "başarılı" sayılıyordu).
+				$bad = array();
+				foreach ( $res as $i => $r ) {
+					if ( is_wp_error( $r ) || false === $r || null === $r ) {
+						$t     = $todo[ $i ] ?? null;
+						$bad[] = ( $t ? self::translation_name( $t ) . ' (' . $t->language . ')' : '#' . ( $i + 1 ) ) . ( is_wp_error( $r ) ? ': ' . $r->get_error_message() : '' );
+					}
+				}
+				$res = $bad
+					/* translators: %s: list of translations that failed */
+					? new WP_Error( 'flxu_lang', sprintf( __( 'Not installed: %s', 'flx-setup' ), implode( ', ', $bad ) ) )
+					: true;
+			}
+			// WordPress güncelleme verisini sildi; hemen yeniden sor ki satır ve rozet doğru kalsın.
+			if ( ! is_wp_error( $res ) && $res ) {
+				wp_update_plugins();
+				wp_update_themes();
+				wp_version_check( array(), true );
+				FLXU_Translations::flush();
+				$left = array();
+				foreach ( wp_get_translation_updates() as $t ) {
+					$left[] = self::translation_name( $t ) . ' (' . $t->language . ')';
+				}
+				if ( $left ) {
+					/* translators: %s: list of translations */
+					$res = new WP_Error( 'flxu_lang_left', sprintf( __( 'WordPress.org still offers a newer translation: %s. The file could not be written or the language folder is read-only.', 'flx-setup' ), implode( ', ', $left ) ) );
+				}
+			}
 		} else {
 			return self::fail( __( 'Unknown action.', 'flx-setup' ) );
 		}

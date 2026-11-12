@@ -62,12 +62,16 @@ if ( ! flxk_legacy_updater_active() ) {
 	require_once FLXK_DIR . 'includes/updater/class-flxu-previews.php';
 	require_once FLXK_DIR . 'includes/updater/class-flxu-admin.php';
 	require_once FLXK_DIR . 'includes/updater/class-flxu-wp.php';
+	require_once FLXK_DIR . 'includes/updater/class-flxu-translations.php';
+	require_once FLXK_DIR . 'includes/updater/class-flxu-icon-cache.php';
 	require_once FLXK_DIR . 'includes/updater/class-flxu-installer.php';
 	require_once FLXK_DIR . 'includes/updater/class-flxu-ajax.php';
 	require_once FLXK_DIR . 'includes/repair.php';
 
 	FLXU_Updater::instance();
 	FLXU_Guard::instance();
+	FLXU_Translations::init();
+	FLXU_Icon_Cache::init();
 	FLXU_Ajax::init();
 
 	if ( is_admin() ) {
