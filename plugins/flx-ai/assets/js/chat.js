@@ -88,7 +88,8 @@
 		ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
 		shield: '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/>',
 		sideL: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/>',
-		slash: '<path d="M15 4 9 20"/>'
+		slash: '<path d="M15 4 9 20"/>',
+		chart: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'
 	};
 	function ic(n) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (P[n] || '') + '</svg>'; }
 	function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -1000,6 +1001,10 @@
 						if (rj && rj.staged && rj.change) { cur.ch = cur.ch || {}; cur.ch['p' + rj.change] = { id: rj.change, pr: 1, n: ((cur.ch['p' + rj.change] || {}).n || 0) + 1 }; }
 						else if (rj && rj.commit) { cur.ch = cur.ch || {}; cur.ch['c' + rj.commit] = { id: rj.commit, pr: 0, n: ((cur.ch['c' + rj.commit] || {}).n || 0) + 1 }; }
 					}
+					if (r && c.function.name === 'flxai_visual_report' && r._ok !== false) {
+						var rr = null; try { rr = JSON.parse(r.content || 'null'); } catch (e) {}
+						if (rr && rr.path) { cur.rep = cur.rep || {}; cur.rep[rr.path] = { path: rr.path, title: rr.title || rr.path }; }
+					}
 					if (r) { cur.ms += +r._ms || 0; if (r._ok === false) cur.failed++; }
 				});
 			} else if (m.content) cur.answer = m._live ? liveText(m.content) : m.content;
@@ -1120,6 +1125,12 @@
 					'<span>' + esc(lbl) + '</span><b>' + esc(t('Farkı gör')) + '</b></button>';
 			}).join('') + '</div>';
 		}
+		if (x.rep) {
+			h += '<div class="chlinks">' + Object.keys(x.rep).map(function (k) {
+				var r = x.rep[k];
+				return '<button type="button" class="chlink rep" data-rep="' + esc(r.path) + '">' + ic('chart') + '<span><strong>' + esc(r.title) + '</strong><small>' + esc(t('Görsel rapor')) + '</small></span><b>' + esc(t('Aç')) + '</b></button>';
+			}).join('') + '</div>';
+		}
 		return h + '</div></div>';
 	}
 	function renderTool(w) {
@@ -1160,6 +1171,7 @@
 		var b;
 		if ((b = e.target.closest('[data-sug]'))) { send(b.getAttribute('data-sug')); return; }
 		if ((b = e.target.closest('[data-showch]'))) { showChanges(+b.getAttribute('data-showch')); return; }
+		if ((b = e.target.closest('[data-rep]'))) { showReport(b.getAttribute('data-rep')); return; }
 		if ((b = e.target.closest('[data-work]'))) { var id = b.getAttribute('data-work'); S.openWork[id] = !S.openWork[id]; renderBody(); return; }
 		if ((b = e.target.closest('[data-tool]'))) { var tid = b.getAttribute('data-tool'); S.openTool[tid] = !S.openTool[tid]; renderBody(); return; }
 		if ((b = e.target.closest('[data-dec]'))) { S.decisions[b.getAttribute('data-id')] = b.getAttribute('data-dec'); renderBody(); return; }
@@ -1657,7 +1669,7 @@
 				if (v.err) h += '<div class="ws-empty">' + esc(v.err) + '</div>';
 				else if (v.content == null) h += '<div class="ws-empty"><span class="spin"></span></div>';
 				else {
-					var isMd = /\.(md|markdown)$/i.test(v.path), mode = v.mode || (isMd ? 'preview' : 'code');
+					var isHtml = /\.html?$/i.test(v.path), isMd = isHtml || /\.(md|markdown)$/i.test(v.path), mode = v.mode || (isMd ? 'preview' : 'code');
 					var modes = (isMd ? ['preview'] : []).concat(v.editable ? ['edit'] : (isMd ? ['code'] : []));
 					if (modes.length > 1 || v.editable) {
 						h += '<div class="ws-vbar"><div class="seg">' + modes.map(function (m) {
@@ -1666,7 +1678,12 @@
 						(mode === 'edit' ? '<span class="sp"></span>' + (v.draft != null && v.draft !== v.content ? '<button type="button" class="btn" data-wa="undo">' + esc(t('Vazgeç')) + '</button>' : '') +
 							'<button type="button" class="btn primary" data-wa="save"' + (v.draft == null || v.draft === v.content || WS.busy ? ' disabled' : '') + '>' + esc(t('Kaydet')) + '</button>' : '') + '</div>';
 					}
-					if (mode === 'preview') h += '<div class="ws-md md">' + md(v.content) + '</div>';
+					if (mode === 'preview' && isHtml) {
+						var vu = wsViewUrl(v.path, v.ago);
+						h += '<div class="ws-html"><iframe sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" title="' + esc(v.path) + '" src="' + esc(vu) + '"></iframe>' +
+							'<a class="btn ws-html-open" href="' + esc(vu) + '" target="_blank" rel="noopener">' + ic('expand') + esc(t('Tam ekran aç')) + '</a></div>';
+					}
+					else if (mode === 'preview') h += '<div class="ws-md md">' + md(v.content) + '</div>';
 					else if (cmLib()) h += '<div class="ws-cm-slot"></div>';
 					else if (mode === 'edit') { h += '<textarea class="ws-edit" spellcheck="false">' + esc(v.draft != null ? v.draft : v.content) + '</textarea>'; cmLoad(); }
 					else if ((cmLoad(), true)) h += '<div class="diff view">' + String(v.content).split('\n').map(function (l, i) { return '<div class="dl"><i>' + (i + 1) + '</i><code>' + esc(l) + '</code></div>'; }).join('') + '</div>';
@@ -1815,7 +1832,7 @@
 			WS.view = { path: fp, content: null };
 			renderWs();
 			api('GET', 'chats/' + WS.chat + '/ws/file?path=' + encodeURIComponent(fp)).then(function (r) {
-				if (WS.view && WS.view.path === fp) { WS.view = { path: fp, content: r.content, files: r.files, editable: !!r.editable }; renderWs(); }
+				if (WS.view && WS.view.path === fp) { WS.view = { path: fp, content: r.content, files: r.files, editable: !!r.editable, ago: Date.now() }; renderWs(); }
 			}).catch(function (er) { if (WS.view && WS.view.path === fp) { WS.view.err = er.message; renderWs(); } });
 			return;
 		}
@@ -1827,6 +1844,19 @@
 			if (WS.openCh[id]) wsDetail(id);
 			renderWs();
 		}
+	}
+	/* Görsel rapor: çalışma alanındaki HTML, ayrı (sandbox) adresten gösterilir. */
+	function wsViewUrl(path, v) {
+		return C.rest + 'chats/' + WS.chat + '/ws/view' + (C.rest.indexOf('?') < 0 ? '?' : '&') + 'path=' + encodeURIComponent(path) + '&_wpnonce=' + encodeURIComponent(C.nonce) + '&v=' + encodeURIComponent(v || Date.now());
+	}
+	function showReport(path) {
+		ui.ws = true; ui.wsTab = 'files'; if (wide() && !C.page) ui.page = true; saveUi(); layout();
+		wsLoad(true);
+		WS.view = { path: path, content: null, mode: 'preview' };
+		renderWs();
+		api('GET', 'chats/' + WS.chat + '/ws/file?path=' + encodeURIComponent(path)).then(function (r) {
+			if (WS.view && WS.view.path === path) { WS.view = { path: path, content: r.content, files: r.files, editable: !!r.editable, ago: Date.now(), mode: 'preview' }; renderWs(); }
+		}).catch(function (er) { if (WS.view && WS.view.path === path) { WS.view.err = er.message; renderWs(); } });
 	}
 	/* Sohbetteki değişiklik bağlantısı (araç sonucu) çalışma alanını açar. */
 	function showChanges(id) {

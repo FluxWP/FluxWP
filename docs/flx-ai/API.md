@@ -400,6 +400,13 @@ add_filter( 'flxai_slash_commands', function ( $c ) {
 
 Sohbet listesi (`GET chats`) her öğede `task` (görev adı ya da boş) döner.
 
+## Görsel rapor (0.15.0)
+- Sohbet aracı `flxai_visual_report` `{title, html, file?}`: `html` `<main>` içine konacak Tailwind gövdesi ya da tam `<html>` belgesi. Gövde şablona sarılır (Tailwind CDN 3.4.16, `darkMode:'media'`; gövdede `new Chart` varsa Chart.js 4.4.1, `class="mermaid"` varsa Mermaid 11.4.1). Dosya `<sohbet klasörü>/raporlar/<slug>.html`; aynı `file` ile güncellenir. Dönüş `{path, title, saved}`. Flux Files (çalışma alanı) gerekir; yalnız sohbette çalışır (MCP'de yok).
+- PHP: `flxai_report_save( $chat, $title, $html, $file = '' )` → `{path,title}` | `WP_Error`; `flxai_report_wrap( $title, $html )`.
+- Sunum: `GET /flx-ai/v1/chats/<id>/ws/view?path=…&_wpnonce=…` (giriş + `flxai_can_chat`, yalnız sohbetin göz atabildiği `.html`). Başlıklar: `Content-Security-Policy: sandbox allow-scripts allow-popups …; connect-src 'none'; …` (opak köken: çerez, oturum, REST erişimi yok), `nosniff`, `no-referrer`, `no-store`, LiteSpeed no-cache. HTML hiçbir WP sayfasına basılmaz; sohbette `<iframe sandbox>` ile açılır.
+- Filtre `flxai_report_cdns` (dizi): betik/stil izinli CDN'ler. Varsayılan cdn.tailwindcss.com, cdn.jsdelivr.net, unpkg.com, cdnjs.cloudflare.com (+ Google Fonts).
+- Hazır skill `gorsel-rapor`. Tasarım ilkeleri [nicobailon/visual-explainer](https://github.com/nicobailon/visual-explainer) (MIT) skill'inden uyarlandı; kod kopyalanmadı.
+
 ## Sohbet ekleri ve sohbeti başlatma (0.12.0)
 
 - REST `POST /flx-ai/v1/files` (multipart, alan `file`) → `{ key, name, type, size }`. `GET /flx-ai/v1/files/<key>` dosyayı yalnız sahibine verir (görsel/PDF inline, diğerleri indirme, `nosniff`).

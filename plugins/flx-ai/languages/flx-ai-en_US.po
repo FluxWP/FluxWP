@@ -2905,3 +2905,30 @@ msgstr "No command found."
 
 msgid "Archived"
 msgstr "Archived"
+
+msgid "Visual report"
+msgstr "Visual report"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Open full screen"
+msgstr "Open full screen"
+
+msgid "Turns data, plans or explanations into an interactive one-page visual report (Tailwind, charts, diagrams) you open in the chat."
+msgstr "Turns data, plans or explanations into an interactive one-page visual report (Tailwind, charts, diagrams) you open in the chat."
+
+msgid "Visual reports need Flux Files (workspace)."
+msgstr "Visual reports need Flux Files (workspace)."
+
+msgid "Report"
+msgstr "Report"
+
+msgid "The report is too large."
+msgstr "The report is too large."
+
+msgid "Create a visual report"
+msgstr "Create a visual report"
+
+msgid "This tool only works in the AI chat."
+msgstr "This tool only works in the AI chat."
