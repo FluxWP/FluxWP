@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.7.23
+- Bağış sayfasındaki "Merhaba …, bağışların hesabına kaydedilir" / "Giriş yap" şeridi artık kendiliğinden eklenmez (yer kaplıyordu). Eski davranış: `add_filter( 'flx_hesap_satiri_auto', '__return_true' )`; kısa kod `[flx_hesap_satiri]` duruyor.
+- Yeni ince sayfa başlığı stili `flx-page-head--slim`: kapak bloğu kısa bant olur, telefonda alt yazı gizlenir; form ilk ekranda görünür.
+- `flx-page-head--overlap`: başlık görseli aşağı uzar, altındaki blok (bağış formu kartları) görselin üstüne biner.
+
 ## 0.7.22
 - Flux SEO favicon'u yazdıysa tema ikinci bir simge basmaz (yenilemede FluxWP → site simgesi geçişi bitti). SVG simgeye `type` eklendi.
 

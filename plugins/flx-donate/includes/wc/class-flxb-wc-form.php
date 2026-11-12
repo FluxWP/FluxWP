@@ -133,6 +133,9 @@ final class FLXB_WC_Form {
 					'badEmail'    => __( 'Please enter a valid e-mail address.', 'flx-donate' ),
 					'badPhone'    => __( 'Please enter a valid phone number.', 'flx-donate' ),
 					'needName'    => __( 'Please write the name of the person you are donating for.', 'flx-donate' ),
+					'needPersonName' => __( 'Please write a name for every person.', 'flx-donate' ),
+					/* translators: %s: number of the person (2, 3 …) */
+					'person'      => __( 'Person %s', 'flx-donate' ),
 					'needConsent' => __( 'Please accept the proxy (vekâlet) text to continue.', 'flx-donate' ),
 					'tooMany'     => __( 'Please write at most one name per share.', 'flx-donate' ),
 					'monthly'     => __( '/ month', 'flx-donate' ),
@@ -245,6 +248,8 @@ final class FLXB_WC_Form {
 			'ben_phone' => self::phone_value( (string) ( $in['ben_phone'] ?? '' ) ),
 			'ben_email' => (string) ( $in['ben_email'] ?? '' ),
 			'send_me'   => ! empty( $in['send_me'] ),
+			/* 2.24.0: more people, each with their own certificate (name, WhatsApp, e-mail). */
+			'people'    => self::people_in( $in ),
 			/* 2.0.1: proxy (vekâlet) types; 2.16.0: one name (+ phone) per share card, "For myself" = none. */
 			'beneficiaries'      => $owners[0],
 			'beneficiary_phones' => $owners[1],
@@ -288,6 +293,39 @@ final class FLXB_WC_Form {
 			return $raw;
 		}
 		return flx_phone_normalize( $raw );
+	}
+
+	/** 2.24.0: the extra person rows (people_name[] / people_phone[] / people_email[]) as a list. */
+	public static function people_in( array $in ) {
+		$names  = isset( $in['people_name'] ) && is_array( $in['people_name'] ) ? array_values( $in['people_name'] ) : array();
+		$phones = isset( $in['people_phone'] ) && is_array( $in['people_phone'] ) ? array_values( $in['people_phone'] ) : array();
+		$mails  = isset( $in['people_email'] ) && is_array( $in['people_email'] ) ? array_values( $in['people_email'] ) : array();
+		$out    = array();
+		foreach ( array_slice( $names, 0, 1000 ) as $i => $nm ) {
+			$out[] = array(
+				'name'  => is_scalar( $nm ) ? (string) $nm : '',
+				'phone' => isset( $phones[ $i ] ) && is_scalar( $phones[ $i ] ) ? self::phone_value( (string) $phones[ $i ] ) : '',
+				'email' => isset( $mails[ $i ] ) && is_scalar( $mails[ $i ] ) ? (string) $mails[ $i ] : '',
+			);
+		}
+		return $out;
+	}
+
+	/** 2.24.0: one extra person card (name, WhatsApp, e-mail); __NO__ is the person's number. */
+	private static function person_card( array $p = array(), $no = '__NO__' ) {
+		/* translators: %s: number of the person (2, 3 …) */
+		$head = sprintf( __( 'Person %s', 'flx-donate' ), $no );
+		$h    = '<div class="flxwb-person" data-flxwb-person>';
+		$h   .= '<div class="flxwb-person__head"><strong data-flxwb-person-no>' . esc_html( $head ) . '</strong><span class="flxwb-person__count" data-flxwb-person-count></span>';
+		$h   .= '<button type="button" class="flxwb-person__del" data-flxwb-person-del aria-label="' . esc_attr__( 'Remove', 'flx-donate' ) . '">' . FLXB_WC::icon( 'x' ) . '<span>' . esc_html__( 'Remove', 'flx-donate' ) . '</span></button></div>';
+		$h   .= '<div class="flxwb-person__grid">';
+		$h   .= '<label class="flxwb-dcard flxwb-dcard--name"><span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon">' . FLXB_WC::icon( 'user' ) . '</span>' . esc_html__( 'Name', 'flx-donate' ) . '</strong>';
+		$h   .= '<input type="text" name="people_name[]" maxlength="80" autocomplete="off" value="' . esc_attr( (string) ( $p['name'] ?? '' ) ) . '" placeholder="' . esc_attr__( 'e.g. Ayşe Yılmaz', 'flx-donate' ) . '" data-flxwb-person-name></span></label>';
+		$h   .= '<div class="flxwb-dcard"><span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon flxwb-dcard__icon--wa">' . FLXB_WC::icon( 'wa' ) . '</span>WhatsApp</strong>';
+		$h   .= self::phone_input( 'people_phone[]', (string) ( $p['phone'] ?? '' ), array( 'data-flxwb-person-phone' => '' ) ) . '</span></div>';
+		$h   .= '<label class="flxwb-dcard"><span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon">' . FLXB_WC::icon( 'mail' ) . '</span>' . esc_html__( 'E-mail', 'flx-donate' ) . '</strong>';
+		$h   .= '<input type="email" name="people_email[]" autocomplete="off" value="' . esc_attr( (string) ( $p['email'] ?? '' ) ) . '" placeholder="ornek@eposta.com" data-flxwb-person-email></span></label>';
+		return $h . '</div></div>';
 	}
 
 	/** Types shown by a block / shortcode. */
@@ -487,9 +525,10 @@ final class FLXB_WC_Form {
 				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="0" <?php checked( ! $for_other ); ?>><span><?php echo FLXB_WC::icon( 'user' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'For myself', 'flx-donate' ); ?></span></label>
 				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="1" <?php checked( $for_other ); ?>><span><?php echo FLXB_WC::icon( 'gift' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'On behalf of someone else', 'flx-donate' ); ?></span></label>
 			</div>
-			<?php echo self::name_field( $old, $for_other, (bool) $cur_d['cert'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<?php if ( ! $cur_d['cert'] ) { echo self::name_field( $old, $for_other, false ); } // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			<div class="flxwb-deliver" data-flxwb-deliver<?php echo $cur_d['cert'] ? '' : ' hidden'; ?>>
 				<p class="flxwb-deliver__title"><?php esc_html_e( 'Where should the certificate go?', 'flx-donate' ); ?></p>
+				<?php if ( $cur_d['cert'] ) { echo self::name_field( $old, $for_other, true ); } // phpcs:ignore WordPress.Security.EscapeOutput -- 2.24.0: the name sits under the title, with the contacts ?>
 				<div class="flxwb-dcard">
 					<span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon flxwb-dcard__icon--wa"><?php echo FLXB_WC::icon( 'wa' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>WhatsApp</strong>
 						<?php echo self::phone_input( 'ben_phone', (string) ( $old['ben_phone'] ?? ( $for_other ? '' : $me['phone'] ) ), array( 'data-flxwb-phone' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
@@ -500,8 +539,21 @@ final class FLXB_WC_Form {
 						<input type="email" name="ben_email" autocomplete="off" value="<?php echo esc_attr( (string) ( $old['ben_email'] ?? ( $for_other ? '' : $me['email'] ) ) ); ?>" placeholder="ornek@eposta.com" data-flxwb-email>
 					</span>
 				</label>
-				<p class="flxwb-field__help" data-flxwb-deliver-help data-self="<?php esc_attr_e( 'Empty fields use the phone and e-mail of your account or the checkout.', 'flx-donate' ); ?>" data-other="<?php esc_attr_e( 'Their phone and e-mail. Empty fields use yours.', 'flx-donate' ); ?>"><?php echo $for_other ? esc_html__( 'Their phone and e-mail. Empty fields use yours.', 'flx-donate' ) : esc_html__( 'Empty fields use the phone and e-mail of your account or the checkout.', 'flx-donate' ); ?></p>
 				<label class="flxwb-check" data-flxwb-sendme<?php echo $for_other ? '' : ' hidden'; ?>><input type="checkbox" name="send_me" value="1" <?php checked( ! empty( $old['send_me'] ) ); ?>> <?php esc_html_e( 'Send me a copy too', 'flx-donate' ); ?></label>
+			</div>
+			<?php
+			/* 2.24.0: more than one sapling for someone else: other people, each with their own certificate. */
+			$people = ! empty( $old['people'] ) && is_array( $old['people'] ) ? array_values( array_filter( $old['people'], static function ( $p ) { return is_array( $p ) && implode( '', array_map( 'strval', $p ) ) !== ''; } ) ) : array();
+			?>
+			<div class="flxwb-people" data-flxwb-people hidden>
+				<div class="flxwb-people__list" data-flxwb-people-list><?php
+				foreach ( $people as $i => $p ) {
+					echo self::person_card( $p, number_format_i18n( $i + 2 ) ); // phpcs:ignore WordPress.Security.EscapeOutput
+				}
+				?></div>
+				<button type="button" class="flxwb-people__add" data-flxwb-people-add><?php echo FLXB_WC::icon( 'plus' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><span><?php esc_html_e( 'Add another person with their own certificate', 'flx-donate' ); ?></span></button>
+				<p class="flxwb-field__help flxwb-people__note" data-flxwb-people-note hidden><?php esc_html_e( 'Every person gets their own certificate. The remaining saplings go on the first certificate.', 'flx-donate' ); ?></p>
+				<template data-flxwb-people-tpl><?php echo self::person_card(); // phpcs:ignore WordPress.Security.EscapeOutput ?></template>
 			</div>
 		</fieldset>
 		<?php

@@ -5913,3 +5913,22 @@ msgstr "Kaydetmeden kapat"
 
 msgid "On phones keep the total and the button fixed at the bottom (form and checkout)"
 msgstr "Telefonda toplam ve düğme altta sabit dursun (form ve ödeme sayfası)"
+
+#, php-format
+msgid "Person %s"
+msgstr "%s. kişi"
+
+msgid "e.g. Ayşe Yılmaz"
+msgstr "örn. Ayşe Yılmaz"
+
+msgid "Add another person with their own certificate"
+msgstr "Başka bir kişi ekle (ayrı sertifika)"
+
+msgid "Every person gets their own certificate. The remaining saplings go on the first certificate."
+msgstr "Her kişiye ayrı sertifika gider. Kalan fidanlar ilk kişinin sertifikasına yazılır."
+
+msgid "Please write a name for every person."
+msgstr "Lütfen her kişi için bir ad yazın."
+
+msgid "Other people"
+msgstr "Diğer kişiler"
