@@ -2650,3 +2650,7 @@ msgstr "Rechazado (falta el secreto de la aplicación)"
 
 msgid "Verifies that incoming webhooks come from Meta. Incoming events are rejected until it is entered."
 msgstr "Verifica que los webhooks entrantes provengan de Meta. Los eventos entrantes se rechazan hasta que se introduzca."
+
+#: includes/helpers.php
+msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
+msgstr "WhatsApp Cloud API no puede enviar mensajes a grupos. Elige una conexión de Evolution API o Flux WPAPI para los mensajes de grupo."

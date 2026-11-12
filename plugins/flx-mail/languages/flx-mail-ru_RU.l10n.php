@@ -3,6 +3,7 @@ return array(
  'language' => 'ru_RU',
  'plural-forms' => 'nplurals=3; plural=(n%10==1&&n%100!=11?0:n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?1:2);',
  'messages' => array(
+  'WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages.' => 'WhatsApp Cloud API не может отправлять сообщения в группы. Для сообщений в группы выберите подключение Evolution API или Flux WPAPI.',
   'Sample email' => 'Образец электронного письма',
   'Branded email layout' => 'Фирменный макет письма',
   '<p>Hello Ayşe,</p><p>Every email sent from our site uses this layout: our logo on top, the content in the middle, and our organization details and social media accounts at the bottom.</p>' => '<p>Здравствуйте, Айше!</p><p>Каждое электронное письмо, отправленное с нашего сайта, использует этот макет: наш логотип вверху, контент посередине, а сведения о нашей организации и учетные записи в социальных сетях внизу.</p>',

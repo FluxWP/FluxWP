@@ -168,13 +168,19 @@ function flxi_delete_connection( $id ) {
  * WhatsApp / SMS mesajı gönderir (hemen, kuyruksuz).
  *
  * @param string $channel whatsapp|sms
- * @param string $to      telefon
+ * @param string $to      telefon; WhatsApp'ta grup kimliği de olur (120363…@g.us, yalnız Evolution / Flux WPAPI)
  * @param string $text    mesaj
  * @param array  $args    connection_id, source, template (kayıt adı), wa_template (Cloud API şablonu: name, lang, params), campaign_id, media (url), file_name, log (bool)
  * @return array ok, external_id, error, retry, response, connection_id
  */
 function flxi_send_message( $channel, $to, $text, array $args = array() ) {
-	if ( empty( $args['ignore_blocklist'] ) && flxi_contact_blocked( $to, '', $channel ) ) {
+	$group = flxi_is_wa_group( $to );
+	if ( $group && 'whatsapp' !== $channel ) {
+		/* translators: %s: alıcı */
+		return array( 'ok' => false, 'error' => sprintf( __( 'Invalid phone: %s', 'flx-mail' ), $to ), 'retry' => false );
+	}
+	// Grup kimliği bir kişi değil: kara liste telefon/e-posta için, gruba bakılmaz.
+	if ( ! $group && empty( $args['ignore_blocklist'] ) && flxi_contact_blocked( $to, '', $channel ) ) {
 		$r = array( 'ok' => false, 'blocked' => true, 'error' => __( 'On the blocklist: not sent', 'flx-mail' ), 'retry' => false );
 		if ( ! isset( $args['log'] ) || $args['log'] ) {
 			flxi_log_message( $channel, $to, $text, false, $r['error'], array( 'source' => $args['source'] ?? '', 'template' => $args['template'] ?? '', 'campaign_id' => $args['campaign_id'] ?? 0, 'status' => 'blocked' ) );
@@ -182,6 +188,15 @@ function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 		return $r;
 	}
 	$conn = flxi_resolve_connection( $channel, (int) ( $args['connection_id'] ?? 0 ) );
+	if ( $group && $conn && ! flxi_is_evo_type( $conn['type'] ) && empty( $args['connection_id'] ) ) {
+		// Varsayılan Cloud API ise gruba gidebilen ilk Evolution / Flux WPAPI bağlantısı.
+		foreach ( flxi_list_connections( 'whatsapp', true ) as $o ) {
+			if ( flxi_is_evo_type( $o['type'] ) ) {
+				$conn = $o;
+				break;
+			}
+		}
+	}
 	if ( ! $conn ) {
 		/* translators: %s: kanal adı */
 		$r = array( 'ok' => false, 'error' => sprintf( __( 'There is no active connection for %s. Add one in Communication › Connections.', 'flx-mail' ), flxi_channels()[ $channel ] ?? $channel ), 'retry' => false );

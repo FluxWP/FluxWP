@@ -3,6 +3,7 @@ return array(
  'language' => 'ja',
  'plural-forms' => 'nplurals=1; plural=0;',
  'messages' => array(
+  'WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages.' => 'WhatsApp Cloud API はグループにメッセージを送信できません。グループメッセージには Evolution API または Flux WPAPI の接続を選択してください。',
   'Sample email' => 'サンプルメール',
   'Branded email layout' => 'ブランドメールのレイアウト',
   '<p>Hello Ayşe,</p><p>Every email sent from our site uses this layout: our logo on top, the content in the middle, and our organization details and social media accounts at the bottom.</p>' => '<p>こんにちは、Ayşe さん、</p><p>当社のサイトから送信されるすべての電子メールは、このレイアウトを使用しています。当社のロゴが上部、コンテンツが中央、組織の詳細とソーシャル メディア アカウントが下部にあります。</p>',

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.16.0 — 2026-11-12
+- WhatsApp gruplarına mesaj: `flxi_send_message( 'whatsapp', '120363…@g.us', … )` grup kimliğini telefon gibi rakama çevirip bozmuyor, Evolution API / Flux WPAPI'ye olduğu gibi gönderiyor (metin, belge, resim, ses). Zamanlanmış görev bildirimleri artık gruba da gidebilir.
+- Yeni `flxi_whatsapp_groups( $conn_id )`: numaranın üye olduğu gruplar (kimlik, ad, üye sayısı), 10 dk önbellek; REST `GET flxi/v1/wa/{id}/groups`.
+- Cloud API gruplara gönderemez: açık hata ("Grup mesajları için Evolution API ya da Flux WPAPI bağlantısı seçin"). Bağlantı seçilmemişse ve varsayılan Cloud API ise gruba gidebilen ilk bağlantı kullanılır.
+- Kara liste kontrolü grup kimliğine uygulanmıyor.
+
 ## 1.15.1
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

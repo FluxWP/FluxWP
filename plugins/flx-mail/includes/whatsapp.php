@@ -229,6 +229,61 @@ function flxi_wa_server_instances( $id ) {
 	return $out;
 }
 
+/**
+ * Numaranın üye olduğu WhatsApp grupları (Evolution / Flux WPAPI). 10 dk önbellek.
+ * Gönderim: flxi_send_message( 'whatsapp', $grup['id'], $metin, [ 'connection_id' => $id ] ).
+ *
+ * @param int  $id    bağlantı; 0 = varsayılan WhatsApp bağlantısı.
+ * @param bool $fresh önbelleği atla.
+ * @return array|WP_Error [ [ 'id' => '120363…@g.us', 'name', 'size', 'announce' ] ], ada göre sıralı.
+ */
+function flxi_whatsapp_groups( $id = 0, $fresh = false ) {
+	if ( ! (int) $id ) {
+		$def = flxi_resolve_connection( 'whatsapp', 0 );
+		$id  = $def ? (int) $def['id'] : 0;
+	}
+	$any = flxi_get_connection( (int) $id );
+	if ( $any && 'wacloud' === $any['type'] ) {
+		return new WP_Error( 'flxi_wa_groups', flxi_wa_group_unsupported()['error'], array( 'status' => 400 ) );
+	}
+	$c = flxi_wa_conn( $id );
+	if ( is_wp_error( $c ) ) {
+		return $c;
+	}
+	$key = 'flxi_wa_groups_' . (int) $id;
+	if ( ! $fresh ) {
+		$hit = get_transient( $key );
+		if ( is_array( $hit ) ) {
+			return $hit;
+		}
+	}
+	$r = flxi_evolution_request( $c['config'], '/group/fetchAllGroups/' . flxi_wa_inst( $c ) . '?getParticipants=false', null, 'GET' );
+	if ( ! $r['ok'] ) {
+		return new WP_Error( 'flxi_wa_groups', flxi_wa_error( $r ), array( 'status' => 400 ) );
+	}
+	$out = array();
+	foreach ( (array) ( is_array( $r['json'] ) ? $r['json'] : array() ) as $g ) {
+		$gid = is_array( $g ) ? (string) ( $g['id'] ?? '' ) : '';
+		if ( ! flxi_is_wa_group( $gid ) ) {
+			continue;
+		}
+		$out[] = array(
+			'id'       => $gid,
+			'name'     => sanitize_text_field( (string) ( $g['subject'] ?? '' ) ),
+			'size'     => (int) ( $g['size'] ?? 0 ),
+			'announce' => ! empty( $g['announce'] ),
+		);
+	}
+	usort(
+		$out,
+		function ( $a, $b ) {
+			return strnatcasecmp( $a['name'], $b['name'] );
+		}
+	);
+	set_transient( $key, $out, 10 * MINUTE_IN_SECONDS );
+	return $out;
+}
+
 /* ---------------- Flux WPAPI sunucu ayarları (/flxw/server) ---------------- */
 
 /** Sunucu bilgisi; parola gövdede gelse bile atılır. */
@@ -349,6 +404,9 @@ add_action(
 		register_rest_route( $ns, $id . '/instances', array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
 			return flxi_wa_server_instances( (int) $r['id'] );
 		}, 'permission_callback' => $perm ) );
+		register_rest_route( $ns, $id . '/groups', array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
+			return flxi_whatsapp_groups( (int) $r['id'], ! empty( $r['fresh'] ) );
+		}, 'permission_callback' => $perm ) );
 		register_rest_route( $ns, $id . '/server', array(
 			array( 'methods' => 'GET', 'callback' => function ( WP_REST_Request $r ) {
 				return flxi_wa_server_get( (int) $r['id'] );
@@ -366,5 +424,6 @@ add_action(
 		$all = (array) get_option( 'flxi_wa_state', array() );
 		unset( $all[ (int) $id ] );
 		update_option( 'flxi_wa_state', $all, false );
+		delete_transient( 'flxi_wa_groups_' . (int) $id );
 	}
 );

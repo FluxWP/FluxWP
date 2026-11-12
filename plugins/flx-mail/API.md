@@ -75,6 +75,20 @@ $r = flxi_send_message( 'whatsapp', '905321234567', 'Merhaba Ayşe 🌱', array(
 Kanallar: `email`, `whatsapp`, `sms`. Tipler: `evolution`, `flxwpapi`, `wacloud` (WhatsApp), `netgsm` (SMS);
 yenisi `flxi_connection_types` filtresiyle eklenir (`send` / `test` callback'leri; Evolution v2 uçlarını konuşan tipte `'evo' => true`).
 
+### WhatsApp grupları (1.16.0+)
+
+Alıcı bir grup kimliği de olabilir (`120363…@g.us`; eski biçim `905321234567-1600000000@g.us`). Kimlik normalize edilmeden Evolution / Flux WPAPI'ye `number` olarak gider; metin ve `media` aynı.
+
+```php
+$gruplar = flxi_whatsapp_groups( $conn_id );   // 0 = varsayılan; WP_Error ya da [ [ 'id', 'name', 'size', 'announce' ] ], 10 dk önbellek
+$r = flxi_send_message( 'whatsapp', $gruplar[0]['id'], 'Günlük brifing…', array( 'connection_id' => $conn_id, 'source' => 'flx-ai' ) );
+```
+
+- `flxi_is_wa_group( $to )` grup kimliği mi; `flxi_wa_number( $to )` Evolution alıcısı (grup olduğu gibi, telefon rakam).
+- Cloud API (`wacloud`) grup göndermez: `ok => false, code => 'group_unsupported'`, açık hata metni. `connection_id` verilmez ve varsayılan Cloud API ise ilk etkin Evolution / Flux WPAPI bağlantısı seçilir.
+- Kara liste gruplara uygulanmaz (telefon/e-posta içindir). SMS kanalında grup kimliği geçersiz telefon hatası verir.
+- REST: `GET flxi/v1/wa/{id}/groups` (`fresh=1` önbelleği atlar), yönetici yetkisi.
+
 ### WhatsApp hesapları (1.9.0+)
 
 WhatsApp hesapları (numaralar) yalnız İletişim › Bağlantılar'da eklenir ve yönetilir; diğer eklentiler (Flux Chat, Flux Certificates) buradan seçer.
@@ -102,7 +116,7 @@ Config: `phone_id`, `waba_id`, `token`, `app_secret` (zorunlu), `graph` (ör. `v
 - **Gönderim:** `flxi_send_message( 'whatsapp', $tel, $metin, [ 'connection_id' => $id, 'wa_template' => [ 'name' => 'bagis_tesekkur', 'lang' => 'tr', 'params' => [ 'Ayşe', '3' ] ] ] )`. Ham Graph gövdesi (alıntı, tepki, okundu, medya id): `flxi_wacloud_post( $id, $tel, [ 'type' => 'reaction', 'reaction' => [ 'message_id' => …, 'emoji' => '👍' ] ] )` → `ok, external_id, error, code`.
 - **24 saat:** `flxi_wacloud_window( $id, $tel )` → `open, last_in, closes`. Kapalıyken serbest metin `#131047` hatası döner; yalnız şablon gider.
 - **Şablonlar:** `flxi_wacloud_templates( $id )` → `name, lang, status, category, body, params` (WABA ID gerekir).
-- Yok: grup mesajı, mesaj düzenleme, findChats/findMessages.
+- Yok: grup mesajı (`group_unsupported`), mesaj düzenleme, findChats/findMessages.
 
 ### Resim, ses, belge gönderimi (1.12.0+)
 
