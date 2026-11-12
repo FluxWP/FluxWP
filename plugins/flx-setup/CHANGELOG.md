@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.8
+- Ön ayarlar: profil değeri yer tutucu taşıyınca (ör. profil e-postası "bilgi@{domain}", ayar "{profile.email}") ikinci kat da çözülür. Önceden ayar "bilgi@{domain}" ile kıyaslandığı için sitedeki çözülmüş değer her uygulamadan sonra "Değişecek" görünüyordu (flxseo:email). Kendine dönen profil değerinde döngü yok (en çok 3 kat).
+
 ## 1.2.7
 - Ortak onay/uyarı penceresinde (flx-brand 1.6.1) metinler bir kademe büyüdü: açıklama 16 px, başlık 17 px, bildirimler 14,5 px.
 

@@ -133,7 +133,22 @@ function flxk_resolve( $v, array &$ctx ) {
 			}
 			if ( ! empty( $m[6] ) ) {
 				$pv = flxk_path_get( $ctx['profile'], $m[6], '' );
-				return is_scalar( $pv ) ? (string) $pv : '';
+				if ( ! is_scalar( $pv ) ) {
+					return '';
+				}
+				// Profil değerinin kendisi de yer tutucu taşıyabilir (email: "bilgi@{domain}"): bir kat daha çözülür.
+				// Aksi halde ayar "bilgi@{domain}" ile kıyaslanır, sitedeki çözülmüş değer hep "Değişecek" görünür.
+				$depth = (int) ( $ctx['_resolve_depth'] ?? 0 );
+				if ( $depth < 3 && false !== strpos( (string) $pv, '{' ) ) {
+					$ctx['_resolve_depth'] = $depth + 1; // Kendine dönen profil değerinde sonsuz döngü olmasın.
+					$pv                    = flxk_resolve( (string) $pv, $ctx );
+					if ( $depth ) {
+						$ctx['_resolve_depth'] = $depth;
+					} else {
+						unset( $ctx['_resolve_depth'] );
+					}
+				}
+				return (string) $pv;
 			}
 			switch ( $m[1] ) {
 				case 'domain':
