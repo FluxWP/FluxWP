@@ -4965,3 +4965,24 @@ msgstr "Günü sonradan değiştirir: aynı hatırlatıcı güncellenir"
 
 msgid "Monthly reminder turned into one-time"
 msgstr "Aylık hatırlatıcı tek seferliğe çevrilir"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "Etkin tek seferlik hatırlatıcısı var (az önce kuruldu)"
+
+msgid "Reminder stopped"
+msgstr "Hatırlatıcı durduruldu"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "Tepki ve cevaplarda 🙏 yok"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "Devam: \"Kapat istemiyorum\" hatırlatıcıyı hemen durdurur"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "Devam: \"vazgeçtim\" hatırlatıcıyı durdurur"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "Devam: yanlış anlamadan sonra itiraz gelince hemen kapatır"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "Veda tepkisi 👍 ya da 🤲, asla 🙏"

@@ -2046,3 +2046,36 @@ msgstr "Kategori"
 
 msgid "Released"
 msgstr "Yayın tarihi"
+
+msgid "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
+msgstr "Dosya indirilemedi: geçici klasör (%s) yazılabilir değil. Barındırma firmanızdan klasör izinlerini kontrol etmesini isteyin."
+
+msgid "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Dosya indirilemedi: disk dolu (%s boş). Eski yedekleri (Flux Backup) ya da diğer büyük dosyaları silip yeniden deneyin."
+
+msgid "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full."
+msgstr "Dosya indirilemedi: gelen dosya zip değil (%s). Bir güvenlik duvarı ya da proxy yanıtı değiştiriyor olabilir veya disk dolu olabilir."
+
+msgid "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Dosya indirilemedi: dosya kaydedilemedi, disk dolu olabilir (%s). Eski yedekleri (Flux Backup) ya da diğer büyük dosyaları silip yeniden deneyin."
+
+msgid "Download failed: the connection timed out (%s)."
+msgstr "Dosya indirilemedi: bağlantı zaman aşımına uğradı (%s)."
+
+msgid "Download failed: the server could not be reached (%s)."
+msgstr "Dosya indirilemedi: sunucuya ulaşılamadı (%s)."
+
+msgid "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings."
+msgstr "Site anahtarı reddedildi ya da bu paket bu anahtara açık değil. Anahtarı FluxWP Panel › Ayarlar'dan kontrol edin."
+
+msgid "This version is no longer on the server. Click \"Check for updates\" and try again."
+msgstr "Bu sürüm artık sunucuda yok. \"Güncellemeleri kontrol et\"e basıp yeniden deneyin."
+
+msgid "Too many requests in a short time. Wait a minute and try again."
+msgstr "Kısa sürede çok fazla istek. Bir dakika bekleyip yeniden deneyin."
+
+msgid "The update server had a temporary error. Try again in a minute."
+msgstr "Güncelleme sunucusunda geçici bir hata oldu. Bir dakika sonra yeniden deneyin."
+
+msgid "Download failed (HTTP %1$d: %2$s). %3$s"
+msgstr "Dosya indirilemedi (HTTP %1$d: %2$s). %3$s"

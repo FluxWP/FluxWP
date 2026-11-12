@@ -502,6 +502,55 @@ class FLXB_WC_Admin {
 		return true;
 	}
 
+	/**
+	 * 2.25.0: the WooCommerce part of a donation for the detail page's "⋯" menu: the order link and,
+	 * when the line can still be refunded, a hidden refund form the menu fills (flxDialog prompt).
+	 *
+	 * @return array|null { order_url, order_label, refund: { form, html, label, help, field, left, max, err } | null }
+	 */
+	public static function donation_menu( array $d ) {
+		$oid   = FLXB_WC_Ledger::order_of( $d );
+		$order = $oid ? wc_get_order( $oid ) : null;
+		if ( ! $order ) {
+			return null;
+		}
+		$out     = array(
+			/* translators: %s: order number */
+			'order_label' => sprintf( __( 'WooCommerce order #%s', 'flx-donate' ), $order->get_order_number() ),
+			'order_url'   => $order->get_edit_order_url(),
+			'refund'      => null,
+		);
+		$item_id = FLXB_WC_Ledger::item_of( $d );
+		$item    = $item_id ? $order->get_item( $item_id ) : null;
+		if ( ! $item || ! $order->is_paid() || ! current_user_can( 'edit_shop_orders' ) || ! flxb_can_manage() ) {
+			return $out;
+		}
+		$paid = FLXB_WC_Ledger::line_amount( $item );
+		$left = round( $paid - abs( (float) $order->get_total_refunded_for_item( $item_id ) ) - abs( (float) $order->get_tax_refunded_for_item( $item_id, 0 ) ), 2 );
+		if ( $left <= 0 ) {
+			return $out;
+		}
+		$gw   = wc_get_payment_gateway_by_order( $order );
+		$auto = $gw && $gw->supports( 'refunds' );
+		$form = 'flxb-wcr-' . (int) $d['id'];
+		$html = '<form id="' . esc_attr( $form ) . '" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" hidden data-flx-confirm-danger data-flx-confirm="' . esc_attr( $auto ? __( 'Refund this amount to the donor\'s card?', 'flx-donate' ) : __( 'Record this refund? The money is not sent back automatically for this payment method.', 'flx-donate' ) ) . '">'
+			. '<input type="hidden" name="action" value="flxb_wc_refund"><input type="hidden" name="donation" value="' . (int) $d['id'] . '">'
+			. wp_nonce_field( 'flxb_wc_refund_' . (int) $d['id'], '_wpnonce', true, false )
+			. '<input type="hidden" name="amount" value=""></form>';
+		$out['refund'] = array(
+			'form'  => $form,
+			'html'  => $html,
+			'label' => $auto ? __( 'Refund', 'flx-donate' ) : __( 'Record refund', 'flx-donate' ),
+			'help'  => $auto ? __( 'Refunded through WooCommerce and the payment method; the record follows.', 'flx-donate' ) : __( 'Recorded in WooCommerce only: send the money back yourself (e.g. by bank transfer).', 'flx-donate' ),
+			/* translators: %s: amount */
+			'field' => sprintf( __( 'Amount (up to %s)', 'flx-donate' ), flxb_money( $left, $order->get_currency(), 2 ) ),
+			'left'  => wc_format_localized_price( $left ),
+			'max'   => number_format( $left, 2, '.', '' ),
+			'err'   => __( 'Enter an amount between 0 and the amount left.', 'flx-donate' ),
+		);
+		return $out;
+	}
+
 	public static function refund() {
 		$id = absint( $_POST['donation'] ?? 0 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- checked next
 		check_admin_referer( 'flxb_wc_refund_' . $id );

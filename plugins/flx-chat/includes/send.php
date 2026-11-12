@@ -62,6 +62,11 @@ function flxc_send( $chat, array $args ) {
 	);
 	$type = $args['type'];
 	$body = (string) $args['body'];
+	// 1.43.2 (Ahmet): asistanın hiçbir mesajında yasaklı emoji (🙏) gitmez; hatırlatıcı, kapanış, araç metinleri dahil.
+	if ( 'text' === $type && 'bot' === $args['source'] && function_exists( 'flxc_bot_strip_banned' ) ) {
+		$body         = flxc_bot_strip_banned( $body );
+		$args['body'] = $body;
+	}
 	if ( 'text' === $type && 'bot' === $args['source'] && ( false !== strpos( $body, '```' ) || false !== stripos( $body, '<svg' ) ) && function_exists( 'flxc_widgets_strip' ) ) {
 		$body = flxc_widgets_strip( $body );
 		if ( '' === $body ) {

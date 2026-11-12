@@ -4965,3 +4965,24 @@ msgstr "يغيّر اليوم لاحقًا: يُحدَّث التذكير نفس
 
 msgid "Monthly reminder turned into one-time"
 msgstr "تذكير شهري يتحول إلى تذكير لمرة واحدة"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "لديه تذكير لمرة واحدة نشط (أُنشئ للتو)"
+
+msgid "Reminder stopped"
+msgstr "تم إيقاف التذكير"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "لا 🙏 في التفاعلات أو الردود"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "متابعة: «Kapat istemiyorum» يوقف التذكير فورًا"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "متابعة: «vazgeçtim» يوقف التذكير"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "متابعة: بعد سوء فهم، الاعتراض يغلقه فورًا"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "تفاعل الوداع 👍 أو 🤲، وليس 🙏 أبدًا"

@@ -1660,6 +1660,13 @@
     "Continuation: prayer gets a prayer reaction": "Continuación: la oración recibe una reacción de oración",
     "Continuation: \"you will remind me\" sets the reminder at once": "Continuación: «ustedes me lo recuerdan» crea el recordatorio al instante",
     "Changes the day afterwards: same reminder updated": "Cambia el día después: se actualiza el mismo recordatorio",
-    "Monthly reminder turned into one-time": "El recordatorio mensual pasa a ser de una sola vez"
+    "Monthly reminder turned into one-time": "El recordatorio mensual pasa a ser de una sola vez",
+    "Has an active one-time reminder (just set)": "Tiene un recordatorio único activo (recién creado)",
+    "Reminder stopped": "Recordatorio detenido",
+    "No 🙏 in reactions or replies": "Sin 🙏 en reacciones ni respuestas",
+    "Continuation: \"Kapat istemiyorum\" stops the reminder at once": "Continuación: «Kapat istemiyorum» detiene el recordatorio al instante",
+    "Continuation: \"vazgeçtim\" stops the reminder": "Continuación: «vazgeçtim» detiene el recordatorio",
+    "Continuation: complaint after a misread closes at once": "Continuación: tras un malentendido, la queja lo cierra al instante",
+    "Goodbye reaction is 👍 or 🤲, never 🙏": "La reacción de despedida es 👍 o 🤲, nunca 🙏"
   }
 }

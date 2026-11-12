@@ -1276,5 +1276,16 @@ return array(
   '%dgün\\x00%dgün' . chr(0) . '%dgün\\x00%dgün' => '%d天',
   '%skayıt\\x00%skayıt' . chr(0) . '%skayıt\\x00%skayıt' => '%s注册',
 
+  'Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions.' => '下载失败:临时文件夹(%s)不可写。请联系主机商检查文件夹权限。',
+  'Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again.' => '下载失败:磁盘已满(剩余 %s)。请删除旧备份(Flux Backup)或其他大文件后重试。',
+  'Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full.' => '下载失败:收到的文件不是 zip(%s)。可能是防火墙或代理修改了响应,或磁盘已满。',
+  'Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again.' => '下载失败:无法保存文件,磁盘可能已满(%s)。请删除旧备份(Flux Backup)或其他大文件后重试。',
+  'Download failed: the connection timed out (%s).' => '下载失败:连接超时(%s)。',
+  'Download failed: the server could not be reached (%s).' => '下载失败:无法连接服务器(%s)。',
+  'The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings.' => '站点密钥被拒绝,或此软件包不允许该密钥使用。请在 FluxWP Panel › 设置 中检查密钥。',
+  'This version is no longer on the server. Click "Check for updates" and try again.' => '服务器上已没有此版本。请点击“检查更新”后重试。',
+  'Too many requests in a short time. Wait a minute and try again.' => '短时间内请求过多。请等待一分钟后重试。',
+  'The update server had a temporary error. Try again in a minute.' => '更新服务器出现临时错误。请一分钟后重试。',
+  'Download failed (HTTP %1$d: %2$s). %3$s' => '下载失败(HTTP %1$d:%2$s)。%3$s',
  ),
 );

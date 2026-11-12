@@ -3245,5 +3245,12 @@ return array(
   'Continuation: "you will remind me" sets the reminder at once' => 'Fortsetzung: „Sie erinnern mich“ richtet die Erinnerung sofort ein',
   'Changes the day afterwards: same reminder updated' => 'Ändert den Tag nachträglich: dieselbe Erinnerung wird aktualisiert',
   'Monthly reminder turned into one-time' => 'Monatliche Erinnerung wird zu einer einmaligen',
+  'Has an active one-time reminder (just set)' => 'Hat eine aktive einmalige Erinnerung (gerade erstellt)',
+  'Reminder stopped' => 'Erinnerung gestoppt',
+  'No 🙏 in reactions or replies' => 'Kein 🙏 in Reaktionen oder Antworten',
+  'Continuation: "Kapat istemiyorum" stops the reminder at once' => 'Fortsetzung: „Kapat istemiyorum“ stoppt die Erinnerung sofort',
+  'Continuation: "vazgeçtim" stops the reminder' => 'Fortsetzung: „vazgeçtim“ stoppt die Erinnerung',
+  'Continuation: complaint after a misread closes at once' => 'Fortsetzung: Beschwerde nach Missverständnis schließt sofort',
+  'Goodbye reaction is 👍 or 🤲, never 🙏' => 'Abschiedsreaktion ist 👍 oder 🤲, nie 🙏',
  ),
 );

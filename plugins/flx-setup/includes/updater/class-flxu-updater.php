@@ -166,6 +166,8 @@ final class FLXU_Updater {
 		update_site_option( FLXU_Sources::CACHE, $cache );
 		$out = FLXU_Sources::merge( $parts );
 		update_site_option( 'flxu_catalog_last', $out );
+		/** Katalog tazelendi (ikon önbelleği burada eksik/yeni ikonları indirir). */
+		do_action( 'flxu_catalog_updated', $out );
 		return $out;
 	}
 
@@ -675,6 +677,9 @@ final class FLXU_Updater {
 		} elseif ( ! empty( $remote['svg'] ) ) {
 			$url = (string) $remote['svg'];
 
+		}
+		if ( $url && class_exists( 'FLXU_Icon_Cache' ) ) {
+			$url = FLXU_Icon_Cache::url( $slug, $pastel && ! empty( $remote['pastel'] ) ? 'pastel' : 'svg', $url );
 		}
 		if ( $url ) {
 			$icons = array(

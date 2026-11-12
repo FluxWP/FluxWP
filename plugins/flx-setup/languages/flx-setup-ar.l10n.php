@@ -1276,5 +1276,16 @@ return array(
   '%dgün\\x00%dgün' . chr(0) . '%dgün\\x00%dgün' => '%dيوم' . chr(0) . '%dيوم' . chr(0) . '%dيوم' . chr(0) . '%dيوم' . chr(0) . '%dيوم' . chr(0) . '%dيوم',
   '%skayıt\\x00%skayıt' . chr(0) . '%skayıt\\x00%skayıt' => 'تسجيل %s' . chr(0) . 'تسجيل %s' . chr(0) . 'تسجيل %s' . chr(0) . 'تسجيل %s' . chr(0) . 'تسجيل %s' . chr(0) . 'تسجيل %s',
 
+  'Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions.' => 'فشل التنزيل: المجلد المؤقت (%s) غير قابل للكتابة. اطلب من مزوّد الاستضافة التحقق من أذونات المجلد.',
+  'Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again.' => 'فشل التنزيل: القرص ممتلئ (المساحة الحرة %s). احذف النسخ الاحتياطية القديمة (Flux Backup) أو الملفات الكبيرة الأخرى ثم أعد المحاولة.',
+  'Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full.' => 'فشل التنزيل: الملف المستلم ليس ملف zip (%s). قد يكون جدار حماية أو وكيل يغيّر الاستجابة، أو قد يكون القرص ممتلئًا.',
+  'Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again.' => 'فشل التنزيل: تعذّر حفظ الملف، قد يكون القرص ممتلئًا (%s). احذف النسخ الاحتياطية القديمة (Flux Backup) أو الملفات الكبيرة الأخرى ثم أعد المحاولة.',
+  'Download failed: the connection timed out (%s).' => 'فشل التنزيل: انتهت مهلة الاتصال (%s).',
+  'Download failed: the server could not be reached (%s).' => 'فشل التنزيل: تعذّر الوصول إلى الخادم (%s).',
+  'The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings.' => 'تم رفض مفتاح الموقع أو أن هذه الحزمة غير مسموح بها له. تحقق من المفتاح في FluxWP Panel › الإعدادات.',
+  'This version is no longer on the server. Click "Check for updates" and try again.' => 'هذا الإصدار لم يعد موجودًا على الخادم. انقر على "التحقق من التحديثات" ثم أعد المحاولة.',
+  'Too many requests in a short time. Wait a minute and try again.' => 'طلبات كثيرة في وقت قصير. انتظر دقيقة ثم أعد المحاولة.',
+  'The update server had a temporary error. Try again in a minute.' => 'حدث خطأ مؤقت في خادم التحديثات. أعد المحاولة بعد دقيقة.',
+  'Download failed (HTTP %1$d: %2$s). %3$s' => 'فشل التنزيل (HTTP %1$d: %2$s). %3$s',
  ),
 );

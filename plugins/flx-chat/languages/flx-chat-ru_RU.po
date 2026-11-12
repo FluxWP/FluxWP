@@ -4965,3 +4965,24 @@ msgstr "Позже меняет день: обновляется то же на�
 
 msgid "Monthly reminder turned into one-time"
 msgstr "Ежемесячное напоминание становится одноразовым"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "Есть активное разовое напоминание (только что создано)"
+
+msgid "Reminder stopped"
+msgstr "Напоминание остановлено"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "Нет 🙏 в реакциях и ответах"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "Продолжение: «Kapat istemiyorum» сразу останавливает напоминание"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "Продолжение: «vazgeçtim» останавливает напоминание"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "Продолжение: после недопонимания жалоба сразу закрывает его"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "Реакция на прощание — 👍 или 🤲, никогда 🙏"

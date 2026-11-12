@@ -1911,3 +1911,36 @@ msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgstr[0] "Derzeit ist die%1$d-Updatesicherung%2$s. Derzeit ist die%1$d-Update-Sicherung%2$s."
 msgstr[1] "Derzeit ist die%1$d-Updatesicherung%2$s. Derzeit ist die%1$d-Update-Sicherung%2$s."
+
+msgid "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
+msgstr "Download fehlgeschlagen: Der temporäre Ordner (%s) ist nicht beschreibbar. Bitten Sie Ihren Hoster, die Ordnerrechte zu prüfen."
+
+msgid "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Download fehlgeschlagen: Die Festplatte ist voll (%s frei). Löschen Sie alte Backups (Flux Backup) oder andere große Dateien und versuchen Sie es erneut."
+
+msgid "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full."
+msgstr "Download fehlgeschlagen: Die empfangene Datei ist kein Zip (%s). Eine Firewall oder ein Proxy verändert eventuell die Antwort, oder die Festplatte ist voll."
+
+msgid "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Download fehlgeschlagen: Die Datei konnte nicht gespeichert werden, die Festplatte ist eventuell voll (%s). Löschen Sie alte Backups (Flux Backup) oder andere große Dateien und versuchen Sie es erneut."
+
+msgid "Download failed: the connection timed out (%s)."
+msgstr "Download fehlgeschlagen: Zeitüberschreitung der Verbindung (%s)."
+
+msgid "Download failed: the server could not be reached (%s)."
+msgstr "Download fehlgeschlagen: Der Server ist nicht erreichbar (%s)."
+
+msgid "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings."
+msgstr "Der Site-Schlüssel wurde abgelehnt oder dieses Paket ist für ihn nicht freigegeben. Prüfen Sie den Schlüssel unter FluxWP Panel › Einstellungen."
+
+msgid "This version is no longer on the server. Click \"Check for updates\" and try again."
+msgstr "Diese Version ist nicht mehr auf dem Server. Klicken Sie auf „Nach Updates suchen“ und versuchen Sie es erneut."
+
+msgid "Too many requests in a short time. Wait a minute and try again."
+msgstr "Zu viele Anfragen in kurzer Zeit. Warten Sie eine Minute und versuchen Sie es erneut."
+
+msgid "The update server had a temporary error. Try again in a minute."
+msgstr "Der Update-Server hatte einen vorübergehenden Fehler. Versuchen Sie es in einer Minute erneut."
+
+msgid "Download failed (HTTP %1$d: %2$s). %3$s"
+msgstr "Download fehlgeschlagen (HTTP %1$d: %2$s). %3$s"

@@ -627,6 +627,17 @@
     "FluxWP's installation and update plugin. Installation wizard at first startup (introduction, plugin selection, appearance, installation); Brings FluxWP themes and plugins from the update server (default updater.fluxwp.com) to WordPress' update screen; The preset engine (preset.json) sets up the site in one step, replaces it with approved patches, and rolls it back.": "FluxWP のインストールとプラグインの更新。初回起動時のインストール ウィザード (導入、プラグインの選択、外観、インストール)。FluxWP のテーマとプラグインを更新サーバー (デフォルトの updater.fluxwp.com) から WordPress の更新画面に表示します。プリセット エンジン (preset.json) は 1 ステップでサイトをセットアップし、承認されたパッチに置き換えてロールバックします。",
     "Expired%dbackup deleted. Expired%dbackup deleted.\u0000Expired%dbackup deleted. Expired%dbackup deleted.": "期限切れの%dバックアップが削除されました。期限切れの%dバックアップが削除されました。",
     "Connected ·%dpackage Connected ·%dpackage\u0000Connected ·%dpackage Connected ·%dpackage": "接続済み ·%dパッケージ接続済み ·%dパッケージ",
-    "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.": "現在%1$d更新バックアップは%2$sです。現在、%1$d更新バックアップは%2$sです。"
+    "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.\u0000Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s.": "現在%1$d更新バックアップは%2$sです。現在、%1$d更新バックアップは%2$sです。",
+    "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions.": "ダウンロードに失敗しました:一時フォルダー(%s)に書き込めません。ホスティング会社にフォルダー権限の確認を依頼してください。",
+    "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again.": "ダウンロードに失敗しました:ディスクがいっぱいです(空き %s)。古いバックアップ(Flux Backup)などの大きなファイルを削除してから再試行してください。",
+    "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full.": "ダウンロードに失敗しました:受信したファイルが zip ではありません(%s)。ファイアウォールやプロキシが応答を書き換えているか、ディスクがいっぱいの可能性があります。",
+    "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again.": "ダウンロードに失敗しました:ファイルを保存できませんでした。ディスクがいっぱいの可能性があります(%s)。古いバックアップ(Flux Backup)などの大きなファイルを削除してから再試行してください。",
+    "Download failed: the connection timed out (%s).": "ダウンロードに失敗しました:接続がタイムアウトしました(%s)。",
+    "Download failed: the server could not be reached (%s).": "ダウンロードに失敗しました:サーバーに接続できません(%s)。",
+    "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings.": "サイトキーが拒否されたか、このパッケージはこのキーで許可されていません。FluxWP Panel › 設定 でキーを確認してください。",
+    "This version is no longer on the server. Click \"Check for updates\" and try again.": "このバージョンはサーバーにありません。「更新を確認」を押して再試行してください。",
+    "Too many requests in a short time. Wait a minute and try again.": "短時間にリクエストが多すぎます。1分待ってから再試行してください。",
+    "The update server had a temporary error. Try again in a minute.": "更新サーバーで一時的なエラーが発生しました。1分後に再試行してください。",
+    "Download failed (HTTP %1$d: %2$s). %3$s": "ダウンロードに失敗しました(HTTP %1$d: %2$s)。%3$s"
   }
 }
