@@ -30,7 +30,7 @@ import {
 import { useSelect, useDispatch, select, subscribe } from '@wordpress/data';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { toStructure, fromStructure, defaultHead, FIELD_TYPES } from './convert';
+import { toStructure, fromStructure, defaultHead, FIELD_TYPES, newId } from './convert';
 import { FIELDS } from './fields';
 
 const ALLOWED = [...Object.keys(FIELDS).map((t) => `flxf/${t}`), 'flxf/raw'];
@@ -98,7 +98,7 @@ function Edit({ attributes, setAttributes, clientId }) {
 
 	useEffect(() => {
 		if (!uid) {
-			setAttributes({ uid: Math.random().toString(36).slice(2, 8) });
+			setAttributes({ uid: newId(6) });
 		}
 	}, []);
 

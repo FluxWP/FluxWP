@@ -12,8 +12,12 @@ import { __ } from '@wordpress/i18n';
 export const FIELD_TYPES = ['text', 'email', 'tel', 'textarea', 'number', 'select', 'radio', 'checkbox', 'date'];
 export const OPTION_TYPES = ['select', 'radio', 'checkbox'];
 
-export function newId() {
-	return Math.random().toString(36).slice(2, 11);
+// Short ids for fields, options and the block's CSS scope (not secrets).
+export function newId(len = 9) {
+	const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+	const bytes = new Uint8Array(len);
+	window.crypto.getRandomValues(bytes);
+	return Array.from(bytes, (b) => chars[b % chars.length]).join('');
 }
 
 export function defaultHead() {
