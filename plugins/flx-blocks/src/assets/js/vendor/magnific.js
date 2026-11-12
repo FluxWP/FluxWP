@@ -48,7 +48,7 @@
 		},
 		z = function (b) {
 			if (b !== v || !n.currTemplate.closeBtn)
-				(n.currTemplate.closeBtn = a(n.st.closeMarkup.replace('%title%', n.st.tClose))), (v = b);
+				(n.currTemplate.closeBtn = a(a.parseHTML(String(n.st.closeMarkup).replace('%title%', String(n.st.tClose).replace(/[&<>"']/g, ''))))), (v = b);
 			return n.currTemplate.closeBtn;
 		},
 		A = function () {
@@ -163,7 +163,7 @@
 				n.updateItemHTML(),
 				y('BuildControls'),
 				a('html').css(m),
-				n.bgOverlay.add(n.wrap).prependTo(n.st.prependTo || a(document.body)),
+				n.bgOverlay.add(n.wrap).prependTo(n.st.prependTo ? a(document).find(n.st.prependTo) : a(document.body)),
 				(n._lastFocusedEl = document.activeElement),
 				setTimeout(function () {
 					n.content ? (n._addClassToMFP(k), n._setFocus()) : n.bgOverlay.addClass(k),
@@ -229,7 +229,7 @@
 			y('BeforeChange', [n.currItem ? n.currItem.type : '', c]), (n.currItem = b);
 			if (!n.currTemplate[c]) {
 				var d = n.st[c] ? n.st[c].markup : !1;
-				y('FirstMarkupParse', d), d ? (n.currTemplate[c] = a(d)) : (n.currTemplate[c] = !0);
+				y('FirstMarkupParse', d), d ? (n.currTemplate[c] = a(a.parseHTML(String(d).trim()))) : (n.currTemplate[c] = !0);
 			}
 			t && t !== b.type && n.container.removeClass('mfp-' + t + '-holder');
 			var e = n['get' + c.charAt(0).toUpperCase() + c.slice(1)](b, n.currTemplate[c]);

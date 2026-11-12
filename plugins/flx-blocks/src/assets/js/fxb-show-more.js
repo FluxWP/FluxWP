@@ -148,7 +148,7 @@
 			}
 
 			// Remove any HTML tags that might have slipped through
-			let cleaned = text.replace(/<[^>]*>/g, '');
+			let cleaned = text.replace(/<[^>]*>/g, '').replace(/[<>]/g, '');
 
 			// Normalize whitespace
 			cleaned = cleaned.replace(/\s+/g, ' ').trim();

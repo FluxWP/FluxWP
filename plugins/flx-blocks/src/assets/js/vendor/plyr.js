@@ -2043,10 +2043,22 @@
 										return e.trim();
 									})
 									.join('\n');
-								if (i !== this.elements.captions.innerHTML) {
+								if (i !== this.elements.captions.getAttribute('data-flx-cue')) {
 									z(this.elements.captions);
+									this.elements.captions.setAttribute('data-flx-cue', i);
 									var a = B('span', Y(this.config.selectors.caption));
-									(a.innerHTML = i),
+									var ent = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0' };
+									(a.textContent = i
+										.replace(/<br\s*\/?>/gi, '\n')
+										.replace(/<[^>]*>/g, '')
+										.replace(/[<>]/g, '')
+										.replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|[a-z]{2,6});/gi, function (m, k) {
+											k = k.toLowerCase();
+											if ('#x' === k.slice(0, 2)) return String.fromCodePoint(parseInt(k.slice(2), 16) || 32);
+											if ('#' === k[0]) return String.fromCodePoint(parseInt(k.slice(1), 10) || 32);
+											return Object.prototype.hasOwnProperty.call(ent, k) ? ent[k] : m;
+										})),
+									(a.style.whiteSpace = 'pre-line'),
 										this.elements.captions.appendChild(a),
 										H.call(this, this.media, 'cuechange');
 								}
@@ -4820,7 +4832,7 @@
 														e
 													)
 														? Le.youtube
-														: /^https?:\/\/player.vimeo.com\/video\/\d{0,9}(?=\b|\/)/.test(
+														: /^https?:\/\/player\.vimeo\.com\/video\/\d{0,9}(?=\b|\/)/.test(
 																e
 														  )
 														? Le.vimeo

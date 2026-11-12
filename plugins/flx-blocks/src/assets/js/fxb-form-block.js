@@ -74,7 +74,29 @@
 			window.flxbkForm.error_item++;
 		},
 		strip_tags(input, allowed) {
+			// Rebuilds the markup from a token list: text is escaped, only allowed tags are kept and
+			// only their allowed attributes (with safe URLs) are written back.
 			const allowedTags = (allowed || '').toLowerCase().match(/[a-z][a-z0-9]*/g) || [];
+			const allowedAttributes = { a: ['href', 'target', 'rel'] };
+			const entities = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };
+			const decode = (s) =>
+				String(s).replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|[a-z]{2,6});/gi, (m, e) => {
+					const k = e.toLowerCase();
+					if ('#x' === k.slice(0, 2)) {
+						return String.fromCodePoint(parseInt(k.slice(2), 16) || 32);
+					}
+					if ('#' === k[0]) {
+						return String.fromCodePoint(parseInt(k.slice(1), 10) || 32);
+					}
+					return Object.prototype.hasOwnProperty.call(entities, k) ? entities[k] : m;
+				});
+			const esc = (s) =>
+				String(s)
+					.replace(/&/g, '&amp;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;')
+					.replace(/"/g, '&quot;')
+					.replace(/'/g, '&#039;');
 			const isSafeUrl = (url) => {
 				try {
 					return ['http:', 'https:', 'mailto:', 'tel:'].includes(new URL(url, window.location.href).protocol);
@@ -82,21 +104,38 @@
 					return false;
 				}
 			};
-			const body = new DOMParser().parseFromString(input, 'text/html').body;
-
-			body.querySelectorAll('*').forEach((element) => {
-				if (!allowedTags.includes(element.localName)) {
-					element.replaceWith(...element.childNodes);
-					return;
+			const text = String(input || '');
+			const tagRe = /<(\/?)([a-z][a-z0-9]*)\b([^<>]*)>/gi;
+			let out = '';
+			let last = 0;
+			let m;
+			while ((m = tagRe.exec(text)) !== null) {
+				out += esc(decode(text.slice(last, m.index)));
+				last = tagRe.lastIndex;
+				const name = m[2].toLowerCase();
+				const tag = allowedTags.find((t) => t === name);
+				if (!tag) {
+					continue;
 				}
-				[...element.attributes].forEach(({ name, value }) => {
-					if (name.startsWith('on') || ('href' === name && !isSafeUrl(value))) {
-						element.removeAttribute(name);
+				if (m[1]) {
+					out += '</' + tag + '>';
+					continue;
+				}
+				const keep = allowedAttributes[tag] || [];
+				const attrRe = /([a-z-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+				let attrs = '';
+				let a;
+				while ((a = attrRe.exec(m[3])) !== null) {
+					const attr = keep.find((k) => k === a[1].toLowerCase());
+					const value = decode(undefined !== a[2] ? a[2] : a[3]);
+					if (!attr || ('href' === attr && !isSafeUrl(value))) {
+						continue;
 					}
-				});
-			});
-
-			return body.innerHTML;
+					attrs += ' ' + attr + '="' + esc(value) + '"';
+				}
+				out += '<' + tag + attrs + '>';
+			}
+			return out + esc(decode(text.slice(last)));
 		},
 		addErrorNotice(form) {
 			let error_message = form.getAttribute('data-error-message');
@@ -111,7 +150,7 @@
 		},
 		isValidEmail(email) {
 			const pattern = new RegExp(
-				/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i
+				/^[^\s@<>()\[\],;:\"]+@[^\s@<>()\[\],;:\".]+(?:\.[^\s@<>()\[\],;:\".]+)+$/i
 			);
 			return pattern.test(email);
 		},

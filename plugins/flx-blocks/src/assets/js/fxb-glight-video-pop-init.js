@@ -41,6 +41,33 @@
 		 *
 		 * @return {boolean} Whether the URL resolves to http or https.
 		 */
+		/**
+		 * Find the privacy hash of an unlisted Vimeo URL (vimeo.com/123/abc or ?h=abc).
+		 *
+		 * @param {string} href The video URL.
+		 * @return {Array|null} Match-like array whose last item is the hash, or null.
+		 */
+		vimeoHash(href) {
+			let u;
+			try {
+				u = new URL(String(href), window.location.href);
+			} catch (error) {
+				return null;
+			}
+			if (!/(^|\.)vimeo\.com$/i.test(u.hostname)) {
+				return null;
+			}
+			const query = u.searchParams.get('h');
+			if (query && /^[\da-f]+$/i.test(query)) {
+				return [query];
+			}
+			const parts = u.pathname.split('/').filter(Boolean);
+			const at = parts.findIndex((p) => /^\d+$/.test(p));
+			if (at > -1 && parts[at + 1] && /^[\da-f]+$/i.test(parts[at + 1])) {
+				return [parts[at + 1]];
+			}
+			return null;
+		},
 		isWebUrl(url) {
 			if (/["'<>`\s]/.test(String(url).trim())) {
 				return false;
@@ -214,7 +241,7 @@
 				} else {
 					if (device === 'mobile') {
 						const mobileHref = flxBlocksProVideoLightbox.cache[i]?.getAttribute('data-href-mobile');
-						if (mobileHref && flxBlocksProVideoLightbox.isWebUrl(mobileHref)) {
+						if (mobileHref && /^https?:\/\/[^\s"'<>`]+$/i.test(mobileHref)) {
 							flxBlocksProVideoLightbox.cache[i].setAttribute('href', mobileHref);
 						}
 					}
@@ -264,8 +291,7 @@
 
 					lightbox.on('slide_after_load', (data) => {
 						// Check for hash in Vimeo URL (unlisted video)
-						const regex = /^(.*vimeo.com\/|.*video\/)?(\d+)(\?.*&*h=|\/)+([\d,a-f]+)/;
-						const found = data.slideConfig.href.match(regex);
+						const found = flxBlocksProVideoLightbox.vimeoHash(data.slideConfig.href);
 						if (found) {
 							// If hash is found, append it to the iframe src
 							const iframe = data.slideNode.querySelector('iframe');

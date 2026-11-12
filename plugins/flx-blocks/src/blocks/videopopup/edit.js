@@ -83,6 +83,14 @@ import { useDispatch, useSelect } from '@wordpress/data';
 import { video, closeSmall, keyboardReturn } from '@wordpress/icons';
 import { applyFilters } from '@wordpress/hooks';
 
+function isVimeoUrl(value) {
+	try {
+		return /(^|\.)vimeo\.com$/i.test(new URL(value).hostname);
+	} catch (e) {
+		return false;
+	}
+}
+
 /**
  * Build the overlay edit
  */
@@ -781,7 +789,7 @@ function FlxbkVideoPopup(props) {
 								</FlxbkPanelBody>
 							)}
 
-							{url && url.includes('vimeo.com/') && (
+							{url && isVimeoUrl(url) && (
 								<ToggleControl
 									label={__('Is Private or Password Protected', 'flx-blocks')}
 									checked={isVimeoPrivate}

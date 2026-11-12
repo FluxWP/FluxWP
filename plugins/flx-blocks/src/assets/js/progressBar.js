@@ -2081,7 +2081,10 @@
 						recursive = recursive || false;
 
 						for (var attrName in source) {
-							if (source.hasOwnProperty(attrName)) {
+							if (attrName === '__proto__' || attrName === 'constructor' || attrName === 'prototype') {
+								continue;
+							}
+							if (Object.prototype.hasOwnProperty.call(source, attrName)) {
 								var destVal = destination[attrName];
 								var sourceVal = source[attrName];
 								if (recursive && isObject(destVal) && isObject(sourceVal)) {

@@ -76,7 +76,7 @@ export default function InlinePopColorControl({
 	};
 	const convertedOpacityValue = 100 === opacityUnit ? convertOpacity(currentOpacity) : currentOpacity;
 	const colorVal = currentColor ? currentColor : value;
-	const paletteIndex = isPalette && colors && colorVal ? colorVal.match(/\d+$/)?.[0] - 1 : null;
+	const paletteIndex = isPalette && colors && colorVal ? colorVal.match(/^\D*(\d+)$/)?.[1] - 1 : null;
 	let currentColorString = paletteIndex !== null && colors[paletteIndex] ? colors[paletteIndex].color : colorVal;
 	if (!isPalette && currentColorString && currentColorString.startsWith('var(')) {
 		currentColorString = window

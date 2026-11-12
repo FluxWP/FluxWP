@@ -1231,16 +1231,43 @@
 					{
 						key: 'stripTags',
 						value: function e(input) {
-							var allowed = (
-								('<a><br><b><i><u><p><ol><ul><li><strong><small>' + '')
-									.toLowerCase()
-									.match(/<[a-z][a-z0-9]*>/g) || []
-							).join('');
-							const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
-								commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
-							return input.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
-								return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
-							});
+							// Rebuild from tokens: text escaped, only allowed tags kept (a keeps a safe href).
+							var allowedTags = ['a', 'br', 'b', 'i', 'u', 'p', 'ol', 'ul', 'li', 'strong', 'small'];
+							var esc = function (v) {
+								return String(v)
+									.replace(/&(?!(?:#x[0-9a-f]{1,6}|#[0-9]{1,7}|[a-z]{2,8});)/gi, '&amp;')
+									.replace(/</g, '&lt;')
+									.replace(/>/g, '&gt;')
+									.replace(/"/g, '&quot;');
+							};
+							var src = String(input || '').replace(/<!--[\s\S]*?-->/g, '');
+							var tagRe = /<(\/?)([a-z][a-z0-9]*)\b([^<>]*)>/gi;
+							var out = '';
+							var last = 0;
+							var m;
+							while ((m = tagRe.exec(src)) !== null) {
+								out += esc(src.slice(last, m.index));
+								last = tagRe.lastIndex;
+								var name = m[2].toLowerCase();
+								var tag = allowedTags.find(function (t) {
+									return t === name;
+								});
+								if (!tag) continue;
+								if (m[1]) {
+									out += '</' + tag + '>';
+									continue;
+								}
+								var attrs = '';
+								if ('a' === tag) {
+									var h = /\bhref\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(m[3]);
+									var href = h ? (undefined !== h[1] ? h[1] : h[2]) : '';
+									if (/^(https?:|mailto:|tel:|\/|#)/i.test(href.trim())) {
+										attrs = ' href="' + esc(href.trim()) + '"';
+									}
+								}
+								out += '<' + tag + attrs + '>';
+							}
+							return out + esc(src.slice(last));
 						},
 					},
 					{

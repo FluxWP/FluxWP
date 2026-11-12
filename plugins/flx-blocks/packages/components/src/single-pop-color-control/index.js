@@ -96,7 +96,7 @@ export default function SinglePopColorControl({
 	const colorVal = currentColor ? currentColor : value;
 	// Derived on every render from the value, unless a colour is being picked here: an effect would lag a render.
 	const usesPalette = currentColor ? isPalette : !!(value && value.startsWith('palette'));
-	const paletteIndex = usesPalette && colors && colorVal ? colorVal.match(/\d+$/)?.[0] - 1 : null;
+	const paletteIndex = usesPalette && colors && colorVal ? colorVal.match(/^\D*(\d+)$/)?.[1] - 1 : null;
 	let currentColorString = paletteIndex !== null && colors[paletteIndex] ? colors[paletteIndex].color : colorVal;
 	if (!usesPalette && currentColorString && currentColorString.startsWith('var(')) {
 		currentColorString = window

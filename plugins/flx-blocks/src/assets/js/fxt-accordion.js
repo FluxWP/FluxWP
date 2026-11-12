@@ -944,7 +944,7 @@
 			if (window.location.hash != '') {
 				const id = location.hash.substring(1);
 
-				if (!/^[A-z0-9_-]+$/.test(id)) {
+				if (!/^[A-Za-z0-9_-]+$/.test(id)) {
 					return;
 				}
 				if (e.type && e.type === 'initialized' && hasInitializedFlxbkAccordion) {

@@ -58,7 +58,29 @@
 			}
 		},
 		strip_tags(input, allowed) {
+			// Rebuilds the markup from a token list: text is escaped, only allowed tags are kept and
+			// only their allowed attributes (with safe URLs) are written back.
 			const allowedTags = (allowed || '').toLowerCase().match(/[a-z][a-z0-9]*/g) || [];
+			const allowedAttributes = { a: ['href', 'target', 'rel'] };
+			const entities = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };
+			const decode = (s) =>
+				String(s).replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|[a-z]{2,6});/gi, (m, e) => {
+					const k = e.toLowerCase();
+					if ('#x' === k.slice(0, 2)) {
+						return String.fromCodePoint(parseInt(k.slice(2), 16) || 32);
+					}
+					if ('#' === k[0]) {
+						return String.fromCodePoint(parseInt(k.slice(1), 10) || 32);
+					}
+					return Object.prototype.hasOwnProperty.call(entities, k) ? entities[k] : m;
+				});
+			const esc = (s) =>
+				String(s)
+					.replace(/&/g, '&amp;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;')
+					.replace(/"/g, '&quot;')
+					.replace(/'/g, '&#039;');
 			const isSafeUrl = (url) => {
 				try {
 					return ['http:', 'https:', 'mailto:', 'tel:'].includes(new URL(url, window.location.href).protocol);
@@ -66,22 +88,38 @@
 					return false;
 				}
 			};
-			const body = new DOMParser().parseFromString(input, 'text/html').body;
-
-			body.querySelectorAll('*').forEach((element) => {
-				if (!allowedTags.includes(element.localName)) {
-					element.replaceWith(...element.childNodes);
-					return;
+			const text = String(input || '');
+			const tagRe = /<(\/?)([a-z][a-z0-9]*)\b([^<>]*)>/gi;
+			let out = '';
+			let last = 0;
+			let m;
+			while ((m = tagRe.exec(text)) !== null) {
+				out += esc(decode(text.slice(last, m.index)));
+				last = tagRe.lastIndex;
+				const name = m[2].toLowerCase();
+				const tag = allowedTags.find((t) => t === name);
+				if (!tag) {
+					continue;
 				}
-				const allowedAttributes = flxBlocksGLight.allowedCaptionAttributes[element.localName] || [];
-				[...element.attributes].forEach(({ name, value }) => {
-					if (!allowedAttributes.includes(name) || ('href' === name && !isSafeUrl(value))) {
-						element.removeAttribute(name);
+				if (m[1]) {
+					out += '</' + tag + '>';
+					continue;
+				}
+				const keep = allowedAttributes[tag] || [];
+				const attrRe = /([a-z-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/gi;
+				let attrs = '';
+				let a;
+				while ((a = attrRe.exec(m[3])) !== null) {
+					const attr = keep.find((k) => k === a[1].toLowerCase());
+					const value = decode(undefined !== a[2] ? a[2] : a[3]);
+					if (!attr || ('href' === attr && !isSafeUrl(value))) {
+						continue;
 					}
-				});
-			});
-
-			return body.innerHTML;
+					attrs += ' ' + attr + '="' + esc(value) + '"';
+				}
+				out += '<' + tag + attrs + '>';
+			}
+			return out + esc(decode(text.slice(last)));
 		},
 		/**
 		 * Escape a plain-text string for use in markup.

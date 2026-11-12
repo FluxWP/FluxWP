@@ -162,9 +162,20 @@
 		 * @return {string} The decoded plain text.
 		 */
 		stripHtml(html) {
-			const wrappedHtml = `<pre>${html}</pre>`;
-			const doc = new DOMParser().parseFromString(wrappedHtml, 'text/html');
-			return doc.body.textContent || '';
+			const entities = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0' };
+			return String(html ?? '')
+				.replace(/<[^>]*>/g, '')
+				.replace(/[<>]/g, '')
+				.replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|[a-z]{2,6});/gi, (m, e) => {
+					const k = e.toLowerCase();
+					if ('#x' === k.slice(0, 2)) {
+						return String.fromCodePoint(parseInt(k.slice(2), 16) || 32);
+					}
+					if ('#' === k[0]) {
+						return String.fromCodePoint(parseInt(k.slice(1), 10) || 32);
+					}
+					return Object.prototype.hasOwnProperty.call(entities, k) ? entities[k] : m;
+				});
 		},
 		createSafeElement(type, className, content) {
 			const element = document.createElement(type);

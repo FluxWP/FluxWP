@@ -53,13 +53,29 @@ export default function Tooltip({ children, text, className, TagName = 'span', p
 	const dismiss = useDismiss(context);
 	// Role props for screen readers
 	const role = useRole(context, { role: 'tooltip' });
+	// Rebuilds the markup from tokens: text is escaped and only allowed tags (without attributes) are kept.
 	const strip_tags = (input, allowed) => {
-		allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
-		const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
-			commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
-		return input.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
-			return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
-		});
+		const allowedTags = (allowed || '').toLowerCase().match(/[a-z][a-z0-9]*/g) || [];
+		const esc = (value) =>
+			String(value)
+				.replace(/&(?!(?:#x[0-9a-f]{1,6}|#[0-9]{1,7}|[a-z]{2,8});)/gi, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;');
+		const source = String(input || '').replace(/<!--[\s\S]*?-->/g, '');
+		const tagRe = /<(\/?)([a-z][a-z0-9]*)\b[^<>]*>/gi;
+		let out = '';
+		let last = 0;
+		let m;
+		while ((m = tagRe.exec(source)) !== null) {
+			out += esc(source.slice(last, m.index));
+			last = tagRe.lastIndex;
+			const tag = allowedTags.find((t) => t === m[2].toLowerCase());
+			if (tag) {
+				out += '<' + (m[1] ? '/' : '') + tag + '>';
+			}
+		}
+		return out + esc(source.slice(last));
 	};
 
 	// Merge all the interactions into prop getters
