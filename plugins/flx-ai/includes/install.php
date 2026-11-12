@@ -1,6 +1,7 @@
 <?php
 /**
- * Tablolar: flxai_log (her model ve araç çağrısı), flxai_chats (ortak sohbetler), flxai_media (görsel/video işleri).
+ * Tablolar: flxai_log (her model ve araç çağrısı), flxai_chats (ortak sohbetler), flxai_media (görsel/video işleri),
+ * flxai_tasks (zamanlanmış görevler).
  *
  * @package FLX_AI
  */
@@ -20,6 +21,31 @@ function flxai_install() {
 	$cht = flxai_table( 'chats' );
 	$bdy = flxai_table( 'log_body' );
 	$med = flxai_table( 'media' );
+	$tsk = flxai_table( 'tasks' );
+	dbDelta(
+		"CREATE TABLE {$tsk} (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			title varchar(190) NOT NULL DEFAULT '',
+			prompt text NOT NULL,
+			schedule varchar(500) NOT NULL DEFAULT '',
+			status varchar(20) NOT NULL DEFAULT 'active',
+			next_run int(10) unsigned NOT NULL DEFAULT 0,
+			last_run int(10) unsigned NOT NULL DEFAULT 0,
+			last_state varchar(20) NOT NULL DEFAULT '',
+			last_error varchar(255) NOT NULL DEFAULT '',
+			chat_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			runs int(10) unsigned NOT NULL DEFAULT 0,
+			bot varchar(60) NOT NULL DEFAULT '',
+			model varchar(120) NOT NULL DEFAULT '',
+			created int(10) unsigned NOT NULL DEFAULT 0,
+			updated int(10) unsigned NOT NULL DEFAULT 0,
+			meta longtext NOT NULL,
+			PRIMARY KEY  (id),
+			KEY status_next (status,next_run),
+			KEY user_id (user_id)
+		) {$cs};"
+	);
 	dbDelta(
 		"CREATE TABLE {$bdy} (
 			log_id bigint(20) unsigned NOT NULL DEFAULT 0,
