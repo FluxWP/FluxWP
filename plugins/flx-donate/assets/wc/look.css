@@ -356,6 +356,16 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 	.flxwb-curdd > summary { min-height: 38px; padding: 5px 10px; }
 }
 .flxwb-who .flxwb-seg + .flx-fld { margin-top: 12px; }
+/* Wide form: "For me / In someone's name" sit right of the step title, on the same row. */
+@media (min-width: 900px) {
+	.flxwb--steps .flxwb-sec > .flxwb-who { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); align-items: center; column-gap: 16px; }
+	.flxwb--steps .flxwb-sec > .flxwb-who > * { grid-column: 1 / -1; }
+	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-legend { grid-column: 1; grid-row: 1; margin: 0; }
+	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg { grid-column: 2; grid-row: 1; }
+	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg .flxwb-seg__opt span { min-height: 42px; padding: 6px 10px; }
+	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg ~ * { margin-top: 16px; }
+	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg ~ .flxwb-deliver { margin-top: 16px; }
+}
 
 /* 2.23.0 · Appearance › no fixed bar at the bottom on phones: the total sits in the flow of the form. */
 .flxwb.flxwb--nostick .flxwb-bar { position: static; }
