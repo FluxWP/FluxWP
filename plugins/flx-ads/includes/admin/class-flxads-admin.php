@@ -15,6 +15,7 @@ final class FLXADS_Admin {
 		add_action( 'admin_post_flxads_retry', array( __CLASS__, 'retry' ) );
 		add_action( 'admin_post_flxads_spend', array( __CLASS__, 'spend_action' ) );
 		add_action( 'admin_post_flxads_aud', array( __CLASS__, 'audience_action' ) );
+		add_action( 'admin_post_flxads_mgr', array( __CLASS__, 'mgr_action' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_action( 'admin_head', array( __CLASS__, 'menu_icon' ) );
 	}
@@ -51,6 +52,7 @@ final class FLXADS_Admin {
 	private static function tabs() {
 		$t = array(
 			'report'    => __( 'Report', 'flx-ads' ),
+			'campaigns' => __( 'Campaigns', 'flx-ads' ),
 			'value'     => __( 'Donor value', 'flx-ads' ),
 			'spend'     => __( 'Ad spend', 'flx-ads' ),
 			'audiences' => __( 'Audiences', 'flx-ads' ),
@@ -114,6 +116,8 @@ final class FLXADS_Admin {
 				'aud_delete'    => __( 'Audience deleted.', 'flx-ads' ),
 			);
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( $t[ $m ] ) . '</p></div>';
+		} elseif ( 'mgr_status' === $m || 'mgr_budget' === $m ) {
+			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( 'mgr_status' === $m ? __( 'Status changed in Meta.', 'flx-ads' ) : __( 'Daily budget changed in Meta.', 'flx-ads' ) ) . '</p></div>';
 		} elseif ( 'retried' === $m ) {
 			echo '<div class="notice notice-info is-dismissible"><p>' . esc_html__( 'Sent again. The row shows the result.', 'flx-ads' ) . '</p></div>';
 		}
@@ -616,6 +620,258 @@ final class FLXADS_Admin {
 			$msg = 'aud_' . $do;
 		}
 		wp_safe_redirect( flxads_admin_url( 'audiences', array( 'flxads_msg' => $msg ) ) );
+		exit;
+	}
+
+	/* ------------------------------------------------------------ Kampanyalar (Meta) */
+
+	private static function mgr_range() {
+		$r = isset( $_GET['range'] ) ? sanitize_key( wp_unslash( $_GET['range'] ) ) : '7'; // phpcs:ignore WordPress.Security.NonceVerification
+		return isset( FLXADS_Manager::ranges()[ $r ] ) ? $r : '7';
+	}
+
+	private static function mgr_status( $eff ) {
+		$l    = FLXADS_Manager::statuses();
+		$tone = 'ACTIVE' === $eff ? 'sent' : ( in_array( $eff, array( 'DISAPPROVED', 'WITH_ISSUES', 'PENDING_BILLING_INFO' ), true ) ? 'failed' : 'pending' );
+		return '<span class="flxads-pill flxads-pill--' . esc_attr( $tone ) . '">' . esc_html( $l[ $eff ] ?? ucfirst( strtolower( str_replace( '_', ' ', $eff ) ) ) ) . '</span>';
+	}
+
+	private static function mgr_budget( array $o, $cur ) {
+		if ( null !== $o['daily'] ) {
+			/* translators: %s: amount */
+			return sprintf( __( '%s / day', 'flx-ads' ), flxads_money( $o['daily'], $cur ) );
+		}
+		if ( null !== $o['lifetime'] ) {
+			/* translators: %s: amount */
+			return sprintf( __( '%s total', 'flx-ads' ), flxads_money( $o['lifetime'], $cur ) );
+		}
+		return '';
+	}
+
+	/** Aç/duraklat + günlük bütçe formları. */
+	private static function mgr_controls( array $o, $cur, $back ) {
+		if ( ! flxads_can( true ) ) {
+			return;
+		}
+		$url = esc_url( admin_url( 'admin-post.php' ) );
+		$hid = '<input type="hidden" name="action" value="flxads_mgr"><input type="hidden" name="id" value="' . esc_attr( $o['id'] ) . '"><input type="hidden" name="back" value="' . esc_attr( $back ) . '">';
+		echo '<div class="flxads-actions">';
+		if ( in_array( $o['status'], array( 'ACTIVE', 'PAUSED' ), true ) ) {
+			$on  = 'ACTIVE' === $o['status'];
+			$msg = $on
+				/* translators: %s: name */
+				? sprintf( __( '"%s" stops showing in Meta right away. You can turn it back on any time.', 'flx-ads' ), $o['name'] )
+				/* translators: %s: name */
+				: sprintf( __( '"%s" starts showing in Meta and spending its budget.', 'flx-ads' ), $o['name'] );
+			echo '<form method="post" action="' . $url . '" data-flx-confirm="' . esc_attr( $msg ) . '" data-flx-confirm-ok="' . esc_attr( $on ? __( 'Pause', 'flx-ads' ) : __( 'Turn on', 'flx-ads' ) ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput
+			wp_nonce_field( 'flxads_mgr' );
+			echo $hid . '<input type="hidden" name="do" value="status"><input type="hidden" name="value" value="' . ( $on ? 'PAUSED' : 'ACTIVE' ) . '"><button class="button button-small' . ( $on ? '' : ' button-primary' ) . '">' . esc_html( $on ? __( 'Pause', 'flx-ads' ) : __( 'Turn on', 'flx-ads' ) ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		if ( null !== $o['daily'] ) {
+			/* translators: 1: name, 2: current budget */
+			$msg = sprintf( __( 'The daily budget of "%1$s" changes in Meta right away (now %2$s).', 'flx-ads' ), $o['name'], flxads_money( $o['daily'], $cur ) );
+			echo '<form class="flxads-budget" method="post" action="' . $url . '" data-flx-confirm="' . esc_attr( $msg ) . '" data-flx-confirm-ok="' . esc_attr__( 'Change budget', 'flx-ads' ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput
+			wp_nonce_field( 'flxads_mgr' );
+			echo $hid . '<input type="hidden" name="do" value="budget"><label><span class="screen-reader-text">' . esc_html__( 'Daily budget', 'flx-ads' ) . '</span><input type="number" name="value" min="1" step="1" value="' . esc_attr( (string) round( $o['daily'] ) ) . '"></label><button class="button button-small">' . esc_html__( 'Save', 'flx-ads' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '</div>';
+	}
+
+	private static function mgr_metrics_cells( array $o, $cur ) {
+		echo '<td class="num" data-label="' . esc_attr__( 'Spend', 'flx-ads' ) . '">' . esc_html( flxads_money( $o['spend'], $cur ) ) . '</td>';
+		echo '<td class="num" data-label="' . esc_attr__( 'Impressions', 'flx-ads' ) . '">' . esc_html( number_format_i18n( $o['impressions'] ) ) . '</td>';
+		echo '<td class="num" data-label="' . esc_attr__( 'Link clicks', 'flx-ads' ) . '"><span>' . esc_html( number_format_i18n( $o['clicks'] ) ) . ( null !== $o['ctr'] ? '<small class="flxads-muted">' . esc_html( sprintf( /* translators: %s: CTR */ __( 'CTR %s%%', 'flx-ads' ), number_format_i18n( $o['ctr'], 2 ) ) ) . '</small>' : '' ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+	}
+
+	private static function tab_campaigns() {
+		echo '<p class="flxads-lead">' . esc_html__( 'Your Meta campaigns, ad sets and ads with spend and the donations they brought on this site. Pause, turn on or change the daily budget here; every change goes to Meta at once and is written to the history below.', 'flx-ads' ) . '</p>';
+		if ( ! FLXADS_Spend::meta_ready() ) {
+			echo '<section class="flxads-card flxads-pad"><p>' . esc_html__( 'Enter the Meta ad account ID and a Marketing API key in Settings › Meta. Reading needs ads_read; pausing and budget changes need ads_management.', 'flx-ads' ) . '</p>';
+			if ( flxads_can( true ) ) {
+				echo '<p><a class="button" href="' . esc_url( flxads_admin_url( 'settings' ) ) . '">' . esc_html__( 'Settings', 'flx-ads' ) . '</a></p>';
+			}
+			echo '</section>';
+			return;
+		}
+		$range = self::mgr_range();
+		$cid   = isset( $_GET['campaign'] ) ? preg_replace( '/\D+/', '', (string) wp_unslash( $_GET['campaign'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+		echo '<nav class="flxads-seg" aria-label="' . esc_attr__( 'Period', 'flx-ads' ) . '">';
+		foreach ( FLXADS_Manager::ranges() as $k => $l ) {
+			$args = array( 'range' => $k );
+			if ( '' !== $cid ) {
+				$args['campaign'] = $cid;
+			}
+			echo '<a class="' . ( (string) $k === $range ? 'is-on' : '' ) . '" href="' . esc_url( flxads_admin_url( 'campaigns', $args ) ) . '"' . ( (string) $k === $range ? ' aria-current="true"' : '' ) . '>' . esc_html( $l ) . '</a>';
+		}
+		echo '</nav>';
+		if ( '' !== $cid ) {
+			self::mgr_campaign( $cid, $range );
+		} else {
+			self::mgr_list( $range );
+		}
+		self::mgr_history();
+	}
+
+	private static function mgr_list( $range ) {
+		$d = FLXADS_Manager::campaigns( $range );
+		if ( is_wp_error( $d ) ) {
+			echo '<section class="flxads-card flxads-pad"><p class="flxads-test flxads-test--bad">' . esc_html( __( 'Meta could not be read:', 'flx-ads' ) . ' ' . $d->get_error_message() ) . '</p></section>';
+			return;
+		}
+		$cur = $d['currency'];
+		$t   = $d['totals'];
+		echo '<div class="flxads-kpis">';
+		self::kpi( __( 'Ad spend', 'flx-ads' ), flxads_money( $t['spend'], $cur ), flxads_date( $d['since'], 'date' ) . ' – ' . flxads_date( $d['until'], 'date' ) );
+		/* translators: %s: payments */
+		self::kpi( __( 'Brought on the site', 'flx-ads' ), flxads_money( $t['income'], $d['base'] ), sprintf( __( '%s payments', 'flx-ads' ), number_format_i18n( $t['payments'] ) ) );
+		self::kpi( __( 'Return on ad spend (ROAS)', 'flx-ads' ), self::roas( $t['roas'] ) );
+		/* translators: %s: count */
+		self::kpi( __( 'Active campaigns', 'flx-ads' ), number_format_i18n( $t['active'] ), sprintf( __( '%s in total', 'flx-ads' ), number_format_i18n( count( $d['rows'] ) ) ) );
+		echo '</div>';
+		echo '<div class="flxads-card"><table class="flxads-table flxads-mgr"><thead><tr><th>' . esc_html__( 'Campaign', 'flx-ads' ) . '</th><th>' . esc_html__( 'Budget', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Spend', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Impressions', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Link clicks', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'On the site', 'flx-ads' ) . '</th><th class="num">ROAS</th><th></th></tr></thead><tbody>';
+		if ( ! $d['rows'] ) {
+			echo '<tr><td colspan="8" class="flxads-empty">' . esc_html__( 'No campaigns in this ad account.', 'flx-ads' ) . '</td></tr>';
+		}
+		foreach ( $d['rows'] as $c ) {
+			echo '<tr><td data-label="' . esc_attr__( 'Campaign', 'flx-ads' ) . '"><a class="flxads-mgr__name" href="' . esc_url( flxads_admin_url( 'campaigns', array( 'campaign' => $c['id'], 'range' => $range ) ) ) . '">' . esc_html( $c['name'] ) . '</a> ' . self::mgr_status( $c['effective'] ) . '<small class="flxads-muted">' . esc_html( self::objective( $c['objective'] ?? '' ) ) . '</small></td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			$b = self::mgr_budget( $c, $cur );
+			echo '<td data-label="' . esc_attr__( 'Budget', 'flx-ads' ) . '">' . ( '' !== $b ? esc_html( $b ) : '<span class="flxads-muted">' . esc_html__( 'in ad sets', 'flx-ads' ) . '</span>' ) . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			self::mgr_metrics_cells( $c, $cur );
+			echo '<td class="num" data-label="' . esc_attr__( 'On the site', 'flx-ads' ) . '">' . ( $c['payments'] ? '<span>' . esc_html( flxads_money( $c['income'], $d['base'] ) ) . '<small class="flxads-muted">' . esc_html( sprintf( /* translators: %s: payments */ _n( '%s payment', '%s payments', $c['payments'], 'flx-ads' ), number_format_i18n( $c['payments'] ) ) ) . '</small></span>' : '<span class="flxads-muted">—</span>' ) . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<td class="num" data-label="ROAS"><span class="flxads-roas flxads-roas--' . esc_attr( self::roas_level( $c['roas'] ) ) . '">' . esc_html( self::roas( $c['roas'] ) ) . '</span></td><td>';
+			self::mgr_controls( $c, $cur, 'list:' . $range );
+			echo '</td></tr>';
+		}
+		echo '</tbody></table></div>';
+		echo '<p class="flxads-muted">' . esc_html__( 'Donations on the site are matched by campaign name or ID in the ad link (utm_campaign). Meta numbers are refreshed every 10 minutes.', 'flx-ads' ) . '</p>';
+	}
+
+	private static function objective( $o ) {
+		$m = array(
+			'OUTCOME_SALES'         => __( 'Sales', 'flx-ads' ),
+			'OUTCOME_LEADS'         => __( 'Leads', 'flx-ads' ),
+			'OUTCOME_TRAFFIC'       => __( 'Traffic', 'flx-ads' ),
+			'OUTCOME_ENGAGEMENT'    => __( 'Engagement', 'flx-ads' ),
+			'OUTCOME_AWARENESS'     => __( 'Awareness', 'flx-ads' ),
+			'OUTCOME_APP_PROMOTION' => __( 'App promotion', 'flx-ads' ),
+		);
+		return $m[ $o ] ?? ucfirst( strtolower( str_replace( array( 'OUTCOME_', '_' ), array( '', ' ' ), (string) $o ) ) );
+	}
+
+	private static function mgr_campaign( $cid, $range ) {
+		$c = FLXADS_Manager::campaign( $cid, $range );
+		echo '<p><a href="' . esc_url( flxads_admin_url( 'campaigns', array( 'range' => $range ) ) ) . '">← ' . esc_html__( 'All campaigns', 'flx-ads' ) . '</a></p>';
+		if ( is_wp_error( $c ) ) {
+			echo '<section class="flxads-card flxads-pad"><p class="flxads-test flxads-test--bad">' . esc_html( __( 'Meta could not be read:', 'flx-ads' ) . ' ' . $c->get_error_message() ) . '</p></section>';
+			return;
+		}
+		$cur  = $c['currency'];
+		$back = 'campaign:' . $c['id'] . ':' . $range;
+		echo '<section class="flxads-card flxads-pad flxads-mgr__head"><div><h2>' . esc_html( $c['name'] ) . ' ' . self::mgr_status( $c['effective'] ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		$bits = array_filter( array( self::objective( $c['objective'] ?? '' ), self::mgr_budget( $c, $cur ), sprintf( /* translators: %s: amount */ __( '%s spent', 'flx-ads' ), flxads_money( $c['spend'], $cur ) ) ) );
+		echo '<p class="flxads-muted">' . esc_html( implode( ' · ', $bits ) ) . '</p></div>';
+		self::mgr_controls( $c, $cur, $back );
+		echo '</section>';
+
+		echo '<h2 class="flxads-h2">' . esc_html__( 'Ad sets and ads', 'flx-ads' ) . '</h2>';
+		echo '<div class="flxads-card"><table class="flxads-table flxads-mgr"><thead><tr><th>' . esc_html__( 'Ad set / ad', 'flx-ads' ) . '</th><th>' . esc_html__( 'Budget', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Spend', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Impressions', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Link clicks', 'flx-ads' ) . '</th><th></th></tr></thead><tbody>';
+		if ( ! $c['adsets'] ) {
+			echo '<tr><td colspan="6" class="flxads-empty">' . esc_html__( 'No ad sets.', 'flx-ads' ) . '</td></tr>';
+		}
+		$gl = array( 'all' => __( 'all genders', 'flx-ads' ), 'male' => __( 'men', 'flx-ads' ), 'female' => __( 'women', 'flx-ads' ) );
+		foreach ( $c['adsets'] as $s ) {
+			$tg  = $s['targeting'] ?? array();
+			$who = $tg ? sprintf( /* translators: 1: min age, 2: max age, 3: gender, 4: places */ __( '%1$d–%2$d, %3$s, %4$s', 'flx-ads' ), $tg['age_min'], $tg['age_max'], $gl[ $tg['genders'] ] ?? '', implode( ', ', array_merge( $tg['countries'], $tg['cities'] ) ) ) : '';
+			if ( $tg && ( $tg['audiences'] || $tg['excluded'] ) ) {
+				/* translators: 1: included, 2: excluded */
+				$who .= ' · ' . sprintf( __( 'audiences +%1$d / −%2$d', 'flx-ads' ), $tg['audiences'], $tg['excluded'] );
+			}
+			echo '<tr class="flxads-mgr__set"><td data-label="' . esc_attr__( 'Ad set', 'flx-ads' ) . '"><strong>' . esc_html( $s['name'] ) . '</strong> ' . self::mgr_status( $s['effective'] ) . ( '' !== $who ? '<small class="flxads-muted">' . esc_html( $who ) . '</small>' : '' ) . '</td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<td data-label="' . esc_attr__( 'Budget', 'flx-ads' ) . '">' . esc_html( self::mgr_budget( $s, $cur ) ) . '</td>';
+			self::mgr_metrics_cells( $s, $cur );
+			echo '<td>';
+			self::mgr_controls( $s, $cur, $back );
+			echo '</td></tr>';
+			foreach ( $s['ads'] as $a ) {
+				$cr = $a['creative'] ?? array();
+				echo '<tr class="flxads-mgr__ad"><td data-label="' . esc_attr__( 'Ad', 'flx-ads' ) . '"><div class="flxads-mgr__adcell">' . ( ! empty( $cr['thumb'] ) ? '<img src="' . esc_url( $cr['thumb'] ) . '" alt="" width="40" height="40" loading="lazy">' : '' ) . '<div>' . esc_html( $a['name'] ) . ' ' . self::mgr_status( $a['effective'] ) . ( ! empty( $cr['title'] ) ? '<small class="flxads-muted">' . esc_html( $cr['title'] ) . '</small>' : '' ) . '</div></div></td><td></td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+				self::mgr_metrics_cells( $a, $cur );
+				echo '<td>';
+				self::mgr_controls( $a, $cur, $back );
+				echo '</td></tr>';
+			}
+		}
+		echo '</tbody></table></div>';
+
+		$bd = $c['breakdown'];
+		echo '<div class="flxads-bd">';
+		self::mgr_breakdown( __( 'Age and gender', 'flx-ads' ), $bd['age_gender'], $cur, static function ( $k ) use ( $gl ) {
+			$g = array( 'male' => $gl['male'], 'female' => $gl['female'], 'unknown' => __( 'unknown', 'flx-ads' ) );
+			return $k[0] . ' · ' . ( $g[ $k[1] ] ?? $k[1] );
+		} );
+		self::mgr_breakdown( __( 'Placement', 'flx-ads' ), $bd['placement'], $cur, static function ( $k ) {
+			$pl = array( 'facebook' => 'Facebook', 'instagram' => 'Instagram', 'audience_network' => 'Audience Network', 'messenger' => 'Messenger', 'threads' => 'Threads' );
+			return ( $pl[ $k[0] ] ?? ucfirst( str_replace( '_', ' ', $k[0] ) ) ) . ' · ' . str_replace( '_', ' ', $k[1] );
+		} );
+		echo '</div>';
+	}
+
+	private static function mgr_breakdown( $title, array $rows, $cur, callable $label ) {
+		echo '<section class="flxads-card"><h3 class="flxads-h3">' . esc_html( $title ) . '</h3><table class="flxads-table"><thead><tr><th></th><th class="num">' . esc_html__( 'Spend', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Link clicks', 'flx-ads' ) . '</th></tr></thead><tbody>';
+		if ( ! $rows ) {
+			echo '<tr><td colspan="3" class="flxads-empty">' . esc_html__( 'No data for this period.', 'flx-ads' ) . '</td></tr>';
+		}
+		$max = $rows ? max( 0.01, max( array_column( $rows, 'spend' ) ) ) : 1;
+		foreach ( array_slice( $rows, 0, 12 ) as $r ) {
+			echo '<tr><td><span class="flxads-bar" style="--w:' . esc_attr( (string) round( 100 * $r['spend'] / $max ) ) . '%"></span>' . esc_html( $label( $r['key'] ) ) . '</td><td class="num">' . esc_html( flxads_money( $r['spend'], $cur ) ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['clicks'] ) ) . '</td></tr>';
+		}
+		echo '</tbody></table></section>';
+	}
+
+	private static function mgr_history() {
+		$h = FLXADS_Manager::history( 15 );
+		if ( ! $h ) {
+			return;
+		}
+		$ch = array( 'panel' => __( 'Panel', 'flx-ads' ), 'ai' => 'Flux AI', 'mcp' => 'MCP' );
+		echo '<h2 class="flxads-h2">' . esc_html__( 'Change history', 'flx-ads' ) . '</h2><div class="flxads-card"><table class="flxads-table"><thead><tr><th>' . esc_html__( 'When', 'flx-ads' ) . '</th><th>' . esc_html__( 'What', 'flx-ads' ) . '</th><th>' . esc_html__( 'Change', 'flx-ads' ) . '</th><th>' . esc_html__( 'Who', 'flx-ads' ) . '</th></tr></thead><tbody>';
+		$st = FLXADS_Manager::statuses();
+		foreach ( $h as $r ) {
+			$u   = get_userdata( (int) $r['user'] );
+			$chg = 'status' === $r['field'] ? ( $st[ $r['from'] ] ?? $r['from'] ) . ' → ' . ( $st[ $r['to'] ] ?? $r['to'] ) : sprintf( /* translators: 1: old, 2: new */ __( 'Daily budget %1$s → %2$s', 'flx-ads' ), number_format_i18n( (float) $r['from'], 2 ), number_format_i18n( (float) $r['to'], 2 ) );
+			echo '<tr><td data-label="' . esc_attr__( 'When', 'flx-ads' ) . '">' . esc_html( flxads_ago( $r['at'] ) ) . '</td><td data-label="' . esc_attr__( 'What', 'flx-ads' ) . '">' . esc_html( $r['name'] ) . '</td><td data-label="' . esc_attr__( 'Change', 'flx-ads' ) . '">' . esc_html( $chg ) . '</td><td data-label="' . esc_attr__( 'Who', 'flx-ads' ) . '">' . esc_html( ( $u ? $u->display_name : '—' ) . ' · ' . ( $ch[ $r['channel'] ] ?? $r['channel'] ) ) . '</td></tr>';
+		}
+		echo '</tbody></table></div>';
+	}
+
+	public static function mgr_action() {
+		if ( ! flxads_can( true ) ) {
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-ads' ) );
+		}
+		check_admin_referer( 'flxads_mgr' );
+		$p  = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$do = sanitize_key( (string) ( $p['do'] ?? '' ) );
+		$id = preg_replace( '/\D+/', '', (string) ( $p['id'] ?? '' ) );
+		if ( 'status' === $do ) {
+			$r = FLXADS_Manager::set_status( $id, sanitize_key( (string) ( $p['value'] ?? '' ) ), 'panel' );
+		} elseif ( 'budget' === $do ) {
+			$r = FLXADS_Manager::set_budget( $id, (float) ( $p['value'] ?? 0 ), 'panel' );
+		} else {
+			$r = new WP_Error( 'flxads_bad', __( 'Unknown action.', 'flx-ads' ) );
+		}
+		if ( is_wp_error( $r ) ) {
+			set_transient( 'flxads_aud_err_' . get_current_user_id(), $r->get_error_message(), 120 );
+			$args = array( 'flxads_msg' => 'aud_err' );
+		} else {
+			$args = array( 'flxads_msg' => 'mgr_' . $do );
+		}
+		$back = explode( ':', sanitize_text_field( (string) ( $p['back'] ?? '' ) ) );
+		if ( 'campaign' === ( $back[0] ?? '' ) ) {
+			$args += array( 'campaign' => preg_replace( '/\D+/', '', (string) ( $back[1] ?? '' ) ), 'range' => sanitize_key( (string) ( $back[2] ?? '7' ) ) );
+		} elseif ( 'list' === ( $back[0] ?? '' ) ) {
+			$args['range'] = sanitize_key( (string) ( $back[1] ?? '7' ) );
+		}
+		wp_safe_redirect( flxads_admin_url( 'campaigns', $args ) );
 		exit;
 	}
 

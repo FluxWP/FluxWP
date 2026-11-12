@@ -58,11 +58,20 @@ Olay kimliği `order-<sipariş id>` (tarayıcı `eventID` / `event_id` ile aynı
 
 ## MCP
 
-Okuma: `flxads_report` (by, from, to, kind, channel; harcama, ROAS, maliyet dahil), `flxads_status` (harcama eşitleme durumu dahil), `flxads_settings_get` (gizliler yalnız `*_set`), `flxads_send_log` (status, limit), `flxads_spend_list` (from, to; elle girilenler id'leriyle), `flxads_value_report` (from, to, by, kind, cohorts), `flxads_audiences_list`.
+Okuma: `flxads_report` (by, from, to, kind, channel; harcama, ROAS, maliyet dahil), `flxads_status` (harcama eşitleme durumu dahil), `flxads_settings_get` (gizliler yalnız `*_set`), `flxads_send_log` (status, limit), `flxads_spend_list` (from, to; elle girilenler id'leriyle), `flxads_value_report` (from, to, by, kind, cohorts), `flxads_audiences_list`, `flxads_campaigns` (range 7|30|90), `flxads_campaign_detail` (id, range).
 
-Yazma (`flxads_manage`, `includes/ai-write.php`): `flxads_settings_update` (yalnız verilen alanlar, `flxads_clean_settings( $in, true )`), `flxads_test_connection` (platform), `flxads_resend` (ids), `flxads_spend_add` (channel, day, campaign, ad, spend, currency), `flxads_spend_delete` (id, yalnız elle girilen), `flxads_spend_sync` (days), `flxads_audience_create` (name, source, purpose, lookalike, country, ratio), `flxads_audience_lookalike` (id, country, ratio), `flxads_audience_sync` (id), `flxads_audience_delete` (id).
+Yazma (`flxads_manage`, `includes/ai-write.php`): `flxads_settings_update` (yalnız verilen alanlar, `flxads_clean_settings( $in, true )`), `flxads_test_connection` (platform), `flxads_resend` (ids), `flxads_spend_add` (channel, day, campaign, ad, spend, currency), `flxads_spend_delete` (id, yalnız elle girilen), `flxads_spend_sync` (days), `flxads_audience_create` (name, source, purpose, lookalike, country, ratio), `flxads_audience_lookalike` (id, country, ratio), `flxads_audience_sync` (id), `flxads_audience_delete` (id), `flxads_ad_status` (id, status PAUSED|ACTIVE), `flxads_ad_budget` (id, amount: hesap para biriminde günlük bütçe).
 
 - Flux AI sohbeti (`flxai_tools`): yazan her araç `confirm` → onay kartı; kart onaydır.
-- MCP (`flx_mcp_tools`): `destructive` olanlar (`flxads_settings_update`, `flxads_spend_delete`, `flxads_audience_create`, `flxads_audience_lookalike`, `flxads_audience_delete`) ilk çağrıda önizleme + `confirm_token` (15 dk, tek kullanımlık, aynı argümanlara bağlı) döner.
+- MCP (`flx_mcp_tools`): `destructive` olanlar (`flxads_settings_update`, `flxads_spend_delete`, `flxads_audience_create`, `flxads_audience_lookalike`, `flxads_audience_delete`, `flxads_ad_status`, `flxads_ad_budget`) ilk çağrıda önizleme + `confirm_token` (15 dk, tek kullanımlık, aynı argümanlara bağlı) döner.
 - Gizli anahtarlar (`meta_token`, `meta_ads_token`, `tiktok_token`, `ga4_secret`) hiçbir araçla okunmaz/yazılmaz. Kişisel veri dönmez.
 - Yazmalar `flxads_tool_log` seçeneğine (son 100: tool, channel, user, at, args).
+
+## Reklam yöneticisi (0.4.0)
+
+`FLXADS_Manager` (`includes/class-flxads-manager.php`), ekran Flux Ads › Kampanyalar (`flxads_admin_url( 'campaigns', [ 'campaign' => <id>, 'range' => 7|30|90 ] )`).
+
+- `campaigns( $range )`: `[ currency, base, since, until, rows[], totals ]`; satırda Meta alanları (`status`, `effective`, `objective`, `daily`, `lifetime` tam birimde, `spend`, `impressions`, `reach`, `clicks`, `ctr`, `cpm`, `frequency`) + sitedeki `income`, `payments`, `new`, `roas`, `cpa`. Eşleşme: `utm_campaign` = Meta kampanya kimliği ya da `FLXADS_Spend::norm()` ile ad.
+- `campaign( $id, $range )`: kampanya + `adsets[]` (`targeting` özeti, `ads[]` ve `creative`) + `breakdown[ age_gender | placement ]`.
+- `set_status( $id, 'ACTIVE'|'PAUSED', $channel )`, `set_budget( $id, $amount, $channel )`: yalnız günlük bütçesi olan nesnede; Meta'ya en küçük birimde gider (ondalıksız para birimleri `ZERO_DECIMAL`). Silme/arşivleme yok.
+- Okumalar 10 dk transient (`flxads_mgr_*`, anahtar listesi `flxads_mgr_keys`); değişiklik `flush()` eder. Değişiklik geçmişi `flxads_mgr_log` (son 100: at, user, channel panel|ai|mcp, id, name, field, from, to), `history( $limit )`.

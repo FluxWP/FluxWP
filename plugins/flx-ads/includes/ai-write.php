@@ -349,6 +349,89 @@ function flxads_write_tools() {
 				return array( 'deleted' => true );
 			},
 		),
+		'flxads_campaigns'          => array(
+			'kind'        => 'read',
+			'title'       => __( 'Meta campaigns', 'flx-ads' ),
+			'description' => 'Meta ad account campaigns with status, objective, daily/lifetime budget (account currency), spend, impressions, link clicks, CTR for the period, and what they brought on this site (income in base currency, payments, new people, ROAS, cost per payment; matched by utm_campaign name or ID). range: 7 | 30 | 90 days.',
+			'props'       => array( 'range' => array( 'type' => 'string', 'enum' => array( '7', '30', '90' ) ) ),
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Manager::campaigns( (string) ( $a['range'] ?? '7' ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_campaign_detail'    => array(
+			'kind'        => 'read',
+			'title'       => __( 'Meta campaign details', 'flx-ads' ),
+			'description' => 'One Meta campaign: its ad sets (status, budget, targeting summary: ages, gender, places, audiences) with their ads (status, creative title/body) and metrics, plus spend breakdowns by age+gender and by placement for the period.',
+			'props'       => array(
+				'id'    => array( 'type' => 'string', 'description' => 'Campaign ID from flxads_campaigns.' ),
+				'range' => array( 'type' => 'string', 'enum' => array( '7', '30', '90' ) ),
+			),
+			'required'    => array( 'id' ),
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Manager::campaign( (string) ( $a['id'] ?? '' ), (string) ( $a['range'] ?? '7' ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_ad_status'          => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Pause or turn on in Meta', 'flx-ads' ),
+			'description' => 'Pause or turn on a Meta campaign, ad set or ad (id from flxads_campaigns / flxads_campaign_detail). status: PAUSED | ACTIVE. Takes effect in Meta at once and is written to the change history. Never turn something on without the user asking for it.',
+			'props'       => array(
+				'id'     => array( 'type' => 'string' ),
+				'status' => array( 'type' => 'string', 'enum' => array( 'PAUSED', 'ACTIVE' ) ),
+			),
+			'required'    => array( 'id', 'status' ),
+			'preview'     => static function ( $a ) {
+				$o = FLXADS_Manager::object( (string) ( $a['id'] ?? '' ) );
+				if ( is_wp_error( $o ) ) {
+					throw new Exception( $o->get_error_message() );
+				}
+				return array( 'item' => $o['name'], 'id' => $o['id'], 'from' => $o['status'], 'to' => strtoupper( (string) ( $a['status'] ?? '' ) ) );
+			},
+			'run'         => static function ( $a, $channel = 'mcp' ) {
+				$r = FLXADS_Manager::set_status( (string) ( $a['id'] ?? '' ), (string) ( $a['status'] ?? '' ), $channel );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_ad_budget'          => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Change daily budget in Meta', 'flx-ads' ),
+			'description' => 'Set the daily budget of a Meta campaign or ad set that has a daily budget, in whole units of the ad account currency (e.g. 750 = 750 TRY a day). Takes effect in Meta at once and is written to the change history. Large jumps reset Meta\'s learning; prefer steps of at most 20-30%.',
+			'props'       => array(
+				'id'     => array( 'type' => 'string' ),
+				'amount' => array( 'type' => 'number', 'minimum' => 1 ),
+			),
+			'required'    => array( 'id', 'amount' ),
+			'preview'     => static function ( $a ) {
+				$o = FLXADS_Manager::object( (string) ( $a['id'] ?? '' ) );
+				if ( is_wp_error( $o ) ) {
+					throw new Exception( $o->get_error_message() );
+				}
+				if ( null === $o['daily'] ) {
+					throw new Exception( 'This item has no daily budget (lifetime budget, or the budget is set on the campaign / ad sets).' );
+				}
+				$to  = round( (float) ( $a['amount'] ?? 0 ), 2 );
+				$pct = FLXADS_Manager::change_pct( $o['daily'], $to );
+				return array( 'item' => $o['name'], 'id' => $o['id'], 'daily_budget_from' => $o['daily'], 'daily_budget_to' => $to, 'currency' => FLXADS_Manager::currency(), 'change_percent' => $pct, 'warning' => null !== $pct && abs( $pct ) > 30 ? 'Change above 30%: Meta may restart the learning phase.' : '' );
+			},
+			'run'         => static function ( $a, $channel = 'mcp' ) {
+				$r = FLXADS_Manager::set_budget( (string) ( $a['id'] ?? '' ), (float) ( $a['amount'] ?? 0 ), $channel );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
 	);
 }
 
@@ -424,7 +507,7 @@ function flxads_run_tool( $name, $args, $channel, $confirmed = false ) {
 			throw new Exception( 'confirm_token is invalid, expired, already used or the arguments changed. Call again without confirm_token for a new preview.' );
 		}
 	}
-	$out = call_user_func( $t['run'], $args );
+	$out = call_user_func( $t['run'], $args, $channel );
 	if ( 'read' !== $t['kind'] ) {
 		$log = (array) get_option( 'flxads_tool_log', array() );
 		array_unshift( $log, array( 'tool' => $name, 'channel' => $channel, 'user' => get_current_user_id(), 'at' => flxads_now(), 'args' => $args ) );
@@ -485,6 +568,6 @@ add_filter(
 		if ( ! flxads_can() ) {
 			return $text;
 		}
-		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one.";
+		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one. For Meta campaigns, ad sets and ads use flxads_campaigns and flxads_campaign_detail; pausing, turning on and budget changes (flxads_ad_status, flxads_ad_budget) only when the user asks, one item at a time, budget steps of at most 20-30%.";
 	}
 );

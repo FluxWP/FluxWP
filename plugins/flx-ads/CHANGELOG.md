@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0
+
+- Campaigns: new page with your Meta campaigns for the last 7, 30 or 90 days. Each shows its status, objective, budget, spend, impressions, link clicks and CTR next to what it brought on this site: income, payments and ROAS, matched by the campaign name or ID in utm_campaign.
+- Campaign details: ad sets, with a targeting summary (ages, gender, places, audiences in/out), and their ads with the creative title. Spend broken down by age + gender and by placement.
+- Pause or turn on a campaign, ad set or ad, and change a daily budget, from the panel. Each change asks for confirmation, goes to Meta at once and is written to the change history (who, from where, old → new). Nothing is deleted or archived from here.
+- Meta numbers are cached for 10 minutes; a change clears the cache. Reading needs ads_read, changes need ads_management.
+- Flux AI / MCP: `flxads_campaigns`, `flxads_campaign_detail` (read), `flxads_ad_status`, `flxads_ad_budget` (need approval; the budget preview warns above a 30% change).
+
 ## 0.3.0
 
 - Donor value (LTV): new page. Each person belongs to the campaign of their first payment; all their later payments count for it. Per campaign or channel: new people, first payment, value at 90 days and so far, repeat rate, cost to win one (CAC), value / cost and payback days. Monthly cohort table of value per person.

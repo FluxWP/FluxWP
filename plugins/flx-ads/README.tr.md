@@ -13,6 +13,7 @@ Hangi reklam hangi bağışı getirdi. Flux Ads bağış ve sipariş dönüşüm
 - **Harcama ve ROAS**: Meta harcaması kampanya ve reklam bazında reklam hesabından okunur; diğer harcamalar elle girilir. Rapor harcamayı, ROAS'ı, ödeme başı ve yeni bağışçı başı maliyeti gösterir.
 - **Bağışçı değeri (LTV)**: kişi ilk ödemesini getiren kampanyaya yazılır, sonraki ödemeleri de o kampanyaya sayılır. Kampanya başına yeni bağışçı, 90 günlük ve bugüne kadarki değer, tekrar oranı, bir kişiyi kazanma maliyeti (CAC), değer / maliyet ve geri dönüş süresi; aylık kohort tablosu.
 - **Meta kitleleri**: Flux CRM'deki bir grubu (reklam izni veren herkes, bağışçılar, değer grubu ya da kayıtlı segment) Meta'ya özel hedef kitle olarak gönderir; yalnız reklam izni olanlar, hash'li. Her gün güncellenir; izni geri alan hemen çıkarılır. Benzer kitle ve hariç tutma listesi (ör. yeni bağışçılar) dahil.
+- **Kampanyalar**: Meta kampanyaları, reklam setleri ve reklamlar; harcamanın yanında getirdikleri bağışlar, yaş/cinsiyet ve yerleşim kırılımı. Panelden duraklatın, açın ya da günlük bütçeyi değiştirin; her değişiklik onayla olur ve değişiklik geçmişinde kalır.
 - **Flux CRM**: kişinin zaman tünelinde reklam dönüşümü ve "Reklam kaynağı" kartı.
 - **Flux AI / MCP**: rapor, bağışçı değeri, harcama, kitleler ve gönderim kaydını okur; ayar değiştirir, harcama ekler/siler, Meta harcamasını günceller, kitle oluşturur/günceller/siler, bağlantıyı test eder, dönüşümü yeniden gönderir. Her değişiklik onayınla yapılır; gizli anahtarlar asla açılmaz.
 

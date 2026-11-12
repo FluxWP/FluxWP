@@ -56,6 +56,18 @@ msgstr "Update a Meta audience now"
 msgid "Delete a Meta audience"
 msgstr "Delete a Meta audience"
 
+msgid "Meta campaigns"
+msgstr "Meta campaigns"
+
+msgid "Meta campaign details"
+msgstr "Meta campaign details"
+
+msgid "Pause or turn on in Meta"
+msgstr "Pause or turn on in Meta"
+
+msgid "Change daily budget in Meta"
+msgstr "Change daily budget in Meta"
+
 msgid "Everyone with ad consent"
 msgstr "Everyone with ad consent"
 
@@ -94,6 +106,66 @@ msgstr "Not from ads"
 
 msgid "(not set)"
 msgstr "(not set)"
+
+msgid "Last 7 days"
+msgstr "Last 7 days"
+
+msgid "Last 30 days"
+msgstr "Last 30 days"
+
+msgid "Last 90 days"
+msgstr "Last 90 days"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Paused"
+msgstr "Paused"
+
+msgid "Campaign paused"
+msgstr "Campaign paused"
+
+msgid "Ad set paused"
+msgstr "Ad set paused"
+
+msgid "Processing"
+msgstr "Processing"
+
+msgid "Has issues"
+msgstr "Has issues"
+
+msgid "In review"
+msgstr "In review"
+
+msgid "Rejected"
+msgstr "Rejected"
+
+msgid "Approved"
+msgstr "Approved"
+
+msgid "Billing needed"
+msgstr "Billing needed"
+
+msgid "Archived"
+msgstr "Archived"
+
+msgid "Deleted"
+msgstr "Deleted"
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+msgstr "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+
+msgid "Campaign not found."
+msgstr "Campaign not found."
+
+msgid "Status can only be Active or Paused."
+msgstr "Status can only be Active or Paused."
+
+msgid "Enter a daily budget greater than zero."
+msgstr "Enter a daily budget greater than zero."
+
+msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
 
 msgid "Ad channel"
 msgstr "Ad channel"
@@ -237,6 +309,11 @@ msgid_plural "%s days"
 msgstr[0] "%s day"
 msgstr[1] "%s days"
 
+msgid "%s payment"
+msgid_plural "%s payments"
+msgstr[0] "%s payment"
+msgstr[1] "%s payments"
+
 msgid "%d try"
 msgid_plural "%d tries"
 msgstr[0] "%d try"
@@ -250,6 +327,9 @@ msgstr "Copy"
 
 msgid "Report"
 msgstr "Report"
+
+msgid "Campaigns"
+msgstr "Campaigns"
 
 msgid "Donor value"
 msgstr "Donor value"
@@ -296,20 +376,17 @@ msgstr "Audience updated."
 msgid "Audience deleted."
 msgstr "Audience deleted."
 
+msgid "Status changed in Meta."
+msgstr "Status changed in Meta."
+
+msgid "Daily budget changed in Meta."
+msgstr "Daily budget changed in Meta."
+
 msgid "Sent again. The row shows the result."
 msgstr "Sent again. The row shows the result."
 
 msgid "Period"
 msgstr "Period"
-
-msgid "Last 7 days"
-msgstr "Last 7 days"
-
-msgid "Last 30 days"
-msgstr "Last 30 days"
-
-msgid "Last 90 days"
-msgstr "Last 90 days"
 
 msgid "Last 12 months"
 msgstr "Last 12 months"
@@ -634,6 +711,162 @@ msgstr "Create lookalike"
 
 msgid "Unknown action."
 msgstr "Unknown action."
+
+msgid "%s / day"
+msgstr "%s / day"
+
+msgid "%s total"
+msgstr "%s total"
+
+msgid "\"%s\" stops showing in Meta right away. You can turn it back on any time."
+msgstr "\"%s\" stops showing in Meta right away. You can turn it back on any time."
+
+msgid "\"%s\" starts showing in Meta and spending its budget."
+msgstr "\"%s\" starts showing in Meta and spending its budget."
+
+msgid "Pause"
+msgstr "Pause"
+
+msgid "Turn on"
+msgstr "Turn on"
+
+msgid "The daily budget of \"%1$s\" changes in Meta right away (now %2$s)."
+msgstr "The daily budget of \"%1$s\" changes in Meta right away (now %2$s)."
+
+msgid "Change budget"
+msgstr "Change budget"
+
+msgid "Daily budget"
+msgstr "Daily budget"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Impressions"
+msgstr "Impressions"
+
+msgid "Link clicks"
+msgstr "Link clicks"
+
+msgid "CTR %s%%"
+msgstr "CTR %s%%"
+
+msgid "Your Meta campaigns, ad sets and ads with spend and the donations they brought on this site. Pause, turn on or change the daily budget here; every change goes to Meta at once and is written to the history below."
+msgstr "Your Meta campaigns, ad sets and ads with spend and the donations they brought on this site. Pause, turn on or change the daily budget here; every change goes to Meta at once and is written to the history below."
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta. Reading needs ads_read; pausing and budget changes need ads_management."
+msgstr "Enter the Meta ad account ID and a Marketing API key in Settings › Meta. Reading needs ads_read; pausing and budget changes need ads_management."
+
+msgid "Meta could not be read:"
+msgstr "Meta could not be read:"
+
+msgid "Brought on the site"
+msgstr "Brought on the site"
+
+msgid "Active campaigns"
+msgstr "Active campaigns"
+
+msgid "%s in total"
+msgstr "%s in total"
+
+msgid "Budget"
+msgstr "Budget"
+
+msgid "On the site"
+msgstr "On the site"
+
+msgid "No campaigns in this ad account."
+msgstr "No campaigns in this ad account."
+
+msgid "in ad sets"
+msgstr "in ad sets"
+
+msgid "Donations on the site are matched by campaign name or ID in the ad link (utm_campaign). Meta numbers are refreshed every 10 minutes."
+msgstr "Donations on the site are matched by campaign name or ID in the ad link (utm_campaign). Meta numbers are refreshed every 10 minutes."
+
+msgid "Sales"
+msgstr "Sales"
+
+msgid "Leads"
+msgstr "Leads"
+
+msgid "Traffic"
+msgstr "Traffic"
+
+msgid "Engagement"
+msgstr "Engagement"
+
+msgid "Awareness"
+msgstr "Awareness"
+
+msgid "App promotion"
+msgstr "App promotion"
+
+msgid "All campaigns"
+msgstr "All campaigns"
+
+msgid "%s spent"
+msgstr "%s spent"
+
+msgid "Ad sets and ads"
+msgstr "Ad sets and ads"
+
+msgid "Ad set / ad"
+msgstr "Ad set / ad"
+
+msgid "No ad sets."
+msgstr "No ad sets."
+
+msgid "all genders"
+msgstr "all genders"
+
+msgid "men"
+msgstr "men"
+
+msgid "women"
+msgstr "women"
+
+msgid "%1$d–%2$d, %3$s, %4$s"
+msgstr "%1$d–%2$d, %3$s, %4$s"
+
+msgid "audiences +%1$d / −%2$d"
+msgstr "audiences +%1$d / −%2$d"
+
+msgid "Ad set"
+msgstr "Ad set"
+
+msgid "Age and gender"
+msgstr "Age and gender"
+
+msgid "unknown"
+msgstr "unknown"
+
+msgid "Placement"
+msgstr "Placement"
+
+msgid "No data for this period."
+msgstr "No data for this period."
+
+msgid "Panel"
+msgstr "Panel"
+
+msgid "Change history"
+msgstr "Change history"
+
+msgid "When"
+msgstr "When"
+
+msgid "What"
+msgstr "What"
+
+msgid "Change"
+msgstr "Change"
+
+msgid "Who"
+msgstr "Who"
+
+msgid "Daily budget %1$s → %2$s"
+msgstr "Daily budget %1$s → %2$s"
 
 msgid "Waiting"
 msgstr "Waiting"

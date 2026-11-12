@@ -56,6 +56,18 @@ msgstr "Meta kitlesini şimdi güncelle"
 msgid "Delete a Meta audience"
 msgstr "Meta kitlesini sil"
 
+msgid "Meta campaigns"
+msgstr "Meta kampanyaları"
+
+msgid "Meta campaign details"
+msgstr "Meta kampanya ayrıntısı"
+
+msgid "Pause or turn on in Meta"
+msgstr "Meta'da duraklat ya da aç"
+
+msgid "Change daily budget in Meta"
+msgstr "Meta'da günlük bütçeyi değiştir"
+
 msgid "Everyone with ad consent"
 msgstr "Reklam izni veren herkes"
 
@@ -94,6 +106,66 @@ msgstr "Reklamsız gelenler"
 
 msgid "(not set)"
 msgstr "(belirtilmemiş)"
+
+msgid "Last 7 days"
+msgstr "Son 7 gün"
+
+msgid "Last 30 days"
+msgstr "Son 30 gün"
+
+msgid "Last 90 days"
+msgstr "Son 90 gün"
+
+msgid "Active"
+msgstr "Etkin"
+
+msgid "Paused"
+msgstr "Duraklatıldı"
+
+msgid "Campaign paused"
+msgstr "Kampanya duraklatıldı"
+
+msgid "Ad set paused"
+msgstr "Reklam seti duraklatıldı"
+
+msgid "Processing"
+msgstr "İşleniyor"
+
+msgid "Has issues"
+msgstr "Sorun var"
+
+msgid "In review"
+msgstr "İncelemede"
+
+msgid "Rejected"
+msgstr "Reddedildi"
+
+msgid "Approved"
+msgstr "Onaylandı"
+
+msgid "Billing needed"
+msgstr "Ödeme bilgisi gerekli"
+
+msgid "Archived"
+msgstr "Arşivlendi"
+
+msgid "Deleted"
+msgstr "Silindi"
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+msgstr "Ayarlar › Meta'ya reklam hesabı kimliğini ve Marketing API anahtarını girin."
+
+msgid "Campaign not found."
+msgstr "Kampanya bulunamadı."
+
+msgid "Status can only be Active or Paused."
+msgstr "Durum yalnız Etkin ya da Duraklatıldı olabilir."
+
+msgid "Enter a daily budget greater than zero."
+msgstr "Sıfırdan büyük bir günlük bütçe girin."
+
+msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr "Bunun burada günlük bütçesi yok (toplam bütçe ya da bütçe kampanyada / reklam setlerinde). Meta Reklam Yöneticisi'nden değiştirin."
 
 msgid "Ad channel"
 msgstr "Reklam kanalı"
@@ -237,6 +309,11 @@ msgid_plural "%s days"
 msgstr[0] "%s gün"
 msgstr[1] "%s gün"
 
+msgid "%s payment"
+msgid_plural "%s payments"
+msgstr[0] "%s ödeme"
+msgstr[1] "%s ödeme"
+
 msgid "%d try"
 msgid_plural "%d tries"
 msgstr[0] "%d deneme"
@@ -250,6 +327,9 @@ msgstr "Kopyala"
 
 msgid "Report"
 msgstr "Rapor"
+
+msgid "Campaigns"
+msgstr "Kampanyalar"
 
 msgid "Donor value"
 msgstr "Bağışçı değeri"
@@ -296,20 +376,17 @@ msgstr "Kitle güncellendi."
 msgid "Audience deleted."
 msgstr "Kitle silindi."
 
+msgid "Status changed in Meta."
+msgstr "Durum Meta'da değişti."
+
+msgid "Daily budget changed in Meta."
+msgstr "Günlük bütçe Meta'da değişti."
+
 msgid "Sent again. The row shows the result."
 msgstr "Yeniden gönderildi. Sonuç satırda görünür."
 
 msgid "Period"
 msgstr "Dönem"
-
-msgid "Last 7 days"
-msgstr "Son 7 gün"
-
-msgid "Last 30 days"
-msgstr "Son 30 gün"
-
-msgid "Last 90 days"
-msgstr "Son 90 gün"
 
 msgid "Last 12 months"
 msgstr "Son 12 ay"
@@ -634,6 +711,162 @@ msgstr "Benzer kitle oluştur"
 
 msgid "Unknown action."
 msgstr "Bilinmeyen işlem."
+
+msgid "%s / day"
+msgstr "%s / gün"
+
+msgid "%s total"
+msgstr "toplam %s"
+
+msgid "\"%s\" stops showing in Meta right away. You can turn it back on any time."
+msgstr "\"%s\" Meta'da hemen durur. İstediğiniz zaman yeniden açabilirsiniz."
+
+msgid "\"%s\" starts showing in Meta and spending its budget."
+msgstr "\"%s\" Meta'da yayınlanmaya ve bütçesini harcamaya başlar."
+
+msgid "Pause"
+msgstr "Duraklat"
+
+msgid "Turn on"
+msgstr "Aç"
+
+msgid "The daily budget of \"%1$s\" changes in Meta right away (now %2$s)."
+msgstr "\"%1$s\" günlük bütçesi Meta'da hemen değişir (şu an %2$s)."
+
+msgid "Change budget"
+msgstr "Bütçeyi değiştir"
+
+msgid "Daily budget"
+msgstr "Günlük bütçe"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Impressions"
+msgstr "Gösterim"
+
+msgid "Link clicks"
+msgstr "Bağlantı tıklaması"
+
+msgid "CTR %s%%"
+msgstr "TO %%%s"
+
+msgid "Your Meta campaigns, ad sets and ads with spend and the donations they brought on this site. Pause, turn on or change the daily budget here; every change goes to Meta at once and is written to the history below."
+msgstr "Meta kampanyalarınız, reklam setleriniz ve reklamlarınız; harcamaları ve bu sitede getirdikleri bağışlarla. Buradan duraklatın, açın ya da günlük bütçeyi değiştirin; her değişiklik hemen Meta'ya gider ve aşağıdaki geçmişe yazılır."
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta. Reading needs ads_read; pausing and budget changes need ads_management."
+msgstr "Ayarlar › Meta'ya reklam hesabı kimliğini ve Marketing API anahtarını girin. Okumak için ads_read, duraklatma ve bütçe değişikliği için ads_management izni gerekir."
+
+msgid "Meta could not be read:"
+msgstr "Meta okunamadı:"
+
+msgid "Brought on the site"
+msgstr "Sitede getirdiği"
+
+msgid "Active campaigns"
+msgstr "Etkin kampanya"
+
+msgid "%s in total"
+msgstr "toplam %s"
+
+msgid "Budget"
+msgstr "Bütçe"
+
+msgid "On the site"
+msgstr "Sitede"
+
+msgid "No campaigns in this ad account."
+msgstr "Bu reklam hesabında kampanya yok."
+
+msgid "in ad sets"
+msgstr "reklam setlerinde"
+
+msgid "Donations on the site are matched by campaign name or ID in the ad link (utm_campaign). Meta numbers are refreshed every 10 minutes."
+msgstr "Sitedeki bağışlar reklam bağlantısındaki kampanya adı ya da kimliğiyle (utm_campaign) eşleşir. Meta rakamları 10 dakikada bir yenilenir."
+
+msgid "Sales"
+msgstr "Satış"
+
+msgid "Leads"
+msgstr "Potansiyel müşteri"
+
+msgid "Traffic"
+msgstr "Trafik"
+
+msgid "Engagement"
+msgstr "Etkileşim"
+
+msgid "Awareness"
+msgstr "Bilinirlik"
+
+msgid "App promotion"
+msgstr "Uygulama tanıtımı"
+
+msgid "All campaigns"
+msgstr "Tüm kampanyalar"
+
+msgid "%s spent"
+msgstr "%s harcandı"
+
+msgid "Ad sets and ads"
+msgstr "Reklam setleri ve reklamlar"
+
+msgid "Ad set / ad"
+msgstr "Reklam seti / reklam"
+
+msgid "No ad sets."
+msgstr "Reklam seti yok."
+
+msgid "all genders"
+msgstr "tüm cinsiyetler"
+
+msgid "men"
+msgstr "erkek"
+
+msgid "women"
+msgstr "kadın"
+
+msgid "%1$d–%2$d, %3$s, %4$s"
+msgstr "%1$d–%2$d yaş, %3$s, %4$s"
+
+msgid "audiences +%1$d / −%2$d"
+msgstr "kitle +%1$d / −%2$d"
+
+msgid "Ad set"
+msgstr "Reklam seti"
+
+msgid "Age and gender"
+msgstr "Yaş ve cinsiyet"
+
+msgid "unknown"
+msgstr "bilinmiyor"
+
+msgid "Placement"
+msgstr "Yerleşim"
+
+msgid "No data for this period."
+msgstr "Bu dönem için veri yok."
+
+msgid "Panel"
+msgstr "Panel"
+
+msgid "Change history"
+msgstr "Değişiklik geçmişi"
+
+msgid "When"
+msgstr "Ne zaman"
+
+msgid "What"
+msgstr "Ne"
+
+msgid "Change"
+msgstr "Değişiklik"
+
+msgid "Who"
+msgstr "Kim"
+
+msgid "Daily budget %1$s → %2$s"
+msgstr "Günlük bütçe %1$s → %2$s"
 
 msgid "Waiting"
 msgstr "Bekliyor"
