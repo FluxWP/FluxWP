@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.26.1
+- Excel'den yükle: bir hücrede alt alta yazılmış adlar (ör. 6 fidana 6 ad) kişi başı bir fidan olarak dağıtılır, bağış formundaki "Başka bir kişi ekle (ayrı sertifika)" ile aynı: ilk ad kalan fidanları alır, diğer her ad 1 fidan. Adlar bağışçı sütunundaysa "Adına" sütunu bağışçı olur. Ad sayısı fidandan fazlaysa fazla adlar ilk sertifikaya yazılır (önizlemede uyarı). Önizlemede adlar satırın altında görünür.
+- `flxb_create_order()` satırları `people` ( [ { name, phone, email } ] ) alır.
+
 ## 2.26.0
 - "Excel'den içe aktar" her sitede açık (önceden yalnız kayıt takibi açıkken görünüyordu): eski fidan / bağış listeleri panelden yüklenir.
 - Sütun tanıma: "Fidan Adedi", "Fidan Sayısı" (adet), "Dikim Bölgesi" (iş ortağı), "Ödeme Durumu" (ödeme). Ödeme değerlerinde "Ekimde ödenecek" ödenmedi, "Gönderildi" / "Dekont" ödendi sayılır (önizlemede değiştirilebilir).
