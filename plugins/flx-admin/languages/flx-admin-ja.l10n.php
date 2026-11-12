@@ -797,5 +797,8 @@ return array(
   '%suyarı\\x00%suyarı' . chr(0) . '%suyarı\\x00%suyarı' => '%s警告',
   '%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\\x00%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.' . chr(0) . '%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\\x00%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.' => '%sには、ロール用の特別なメニュー レイアウトがあります。他のロールについては、デフォルトのグループ化されたメニューを参照してください。',
 
+  'Select date' => '日付を選択',
+  'Previous month' => '前の月',
+  'Next month' => '次の月',
  ),
 );

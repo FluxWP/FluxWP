@@ -394,6 +394,9 @@
     "%sdonate\u0000%sdonate": "%sdonate\u0000%sdonate",
     "%seven\u0000%seven": "%seven\u0000%seven",
     "%swarning\u0000%swarning": "%swarning\u0000%swarning",
-    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu."
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.",
+    "Select date": "Select date",
+    "Previous month": "Previous month",
+    "Next month": "Next month"
   }
 }

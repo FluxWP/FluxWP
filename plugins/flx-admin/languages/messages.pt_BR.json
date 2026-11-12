@@ -396,6 +396,9 @@
     "%sdonate\u0000%sdonate": "%sdoar\u0000%sdoar",
     "%seven\u0000%seven": "%spar\u0000%spar",
     "%swarning\u0000%swarning": "Aviso %s\u0000Aviso %s",
-    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.\u0000%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão."
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.\u0000%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.",
+    "Select date": "Selecionar data",
+    "Previous month": "Mês anterior",
+    "Next month": "Próximo mês"
   }
 }

@@ -797,5 +797,8 @@ return array(
   '%suyarı\\x00%suyarı' . chr(0) . '%suyarı\\x00%suyarı' => 'تحذير %s' . chr(0) . 'تحذير %s' . chr(0) . 'تحذير %s' . chr(0) . 'تحذير %s' . chr(0) . 'تحذير %s' . chr(0) . 'تحذير %s',
   '%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\\x00%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.' . chr(0) . '%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\\x00%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.' => 'يحتوي %sعلى تخطيط قائمة خاص للدور؛ الأدوار الأخرى ترى القائمة المجمعة الافتراضية.' . chr(0) . 'يحتوي %sعلى تخطيط قائمة خاص للدور؛ الأدوار الأخرى ترى القائمة المجمعة الافتراضية.' . chr(0) . 'يحتوي %sعلى تخطيط قائمة خاص للدور؛ الأدوار الأخرى ترى القائمة المجمعة الافتراضية.' . chr(0) . 'يحتوي %sعلى تخطيط قائمة خاص للدور؛ الأدوار الأخرى ترى القائمة المجمعة الافتراضية.' . chr(0) . 'يحتوي %sعلى تخطيط قائمة خاص للدور؛ الأدوار الأخرى ترى القائمة المجمعة الافتراضية.' . chr(0) . 'يحتوي %sعلى تخطيط قائمة خاص للدور؛ الأدوار الأخرى ترى القائمة المجمعة الافتراضية.',
 
+  'Select date' => 'اختر التاريخ',
+  'Previous month' => 'الشهر السابق',
+  'Next month' => 'الشهر التالي',
  ),
 );

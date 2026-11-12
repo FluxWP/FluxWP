@@ -64,7 +64,7 @@ body.flxa:not(.flxa-appmode) .button.button-hero { border-radius: calc(var(--flx
 body.flxa:not(.flxa-appmode) input[type=text], body.flxa:not(.flxa-appmode) input[type=search], body.flxa:not(.flxa-appmode) input[type=email], body.flxa:not(.flxa-appmode) input[type=url],
 body.flxa:not(.flxa-appmode) input[type=password], body.flxa:not(.flxa-appmode) input[type=number], body.flxa:not(.flxa-appmode) input[type=tel], body.flxa:not(.flxa-appmode) input[type=date],
 body.flxa:not(.flxa-appmode) input[type=datetime-local], body.flxa:not(.flxa-appmode) input[type=time], body.flxa:not(.flxa-appmode) input[type=month], body.flxa:not(.flxa-appmode) input[type=week],
-body.flxa:not(.flxa-appmode) textarea, body.flxa:not(.flxa-appmode) select {
+body.flxa:not(.flxa-appmode) input:not([type]), body.flxa:not(.flxa-appmode) textarea, body.flxa:not(.flxa-appmode) select {
 	border-radius: var(--flxa-r, 10px); border: 1px solid var(--flxa-border-strong); background-color: var(--flxa-surface); color: var(--flxa-text);
 }
 body.flxa:not(.flxa-appmode) select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2397A79D' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-size: 16px 16px; background-position: right 8px top 55%; background-repeat: no-repeat !important; padding-right: 30px; }
@@ -784,6 +784,8 @@ body.flxa:not(.flxa-appmode) #wpbody-content input[type=email], body.flxa:not(.f
 body.flxa:not(.flxa-appmode) #wpbody-content input[type=password], body.flxa:not(.flxa-appmode) #wpbody-content input[type=number],
 body.flxa:not(.flxa-appmode) #wpbody-content input[type=tel], body.flxa:not(.flxa-appmode) #wpbody-content input[type=date],
 body.flxa:not(.flxa-appmode) #wpbody-content input[type=datetime-local], body.flxa:not(.flxa-appmode) #wpbody-content input[type=time],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=month], body.flxa:not(.flxa-appmode) #wpbody-content input[type=week],
+body.flxa:not(.flxa-appmode) #wpbody-content input:not([type]),
 body.flxa:not(.flxa-appmode) #wpbody-content select, body.flxa:not(.flxa-appmode) #wpbody-content textarea {
 	border-radius: var(--flxa-r-sm, 8px); padding-left: 10px; transition: border-color .15s, box-shadow .15s, background-color .15s;
 }
@@ -792,10 +794,13 @@ body.flxa:not(.flxa-appmode) #wpbody-content input[type=email], body.flxa:not(.f
 body.flxa:not(.flxa-appmode) #wpbody-content input[type=password], body.flxa:not(.flxa-appmode) #wpbody-content input[type=number],
 body.flxa:not(.flxa-appmode) #wpbody-content input[type=tel], body.flxa:not(.flxa-appmode) #wpbody-content input[type=date],
 body.flxa:not(.flxa-appmode) #wpbody-content input[type=datetime-local], body.flxa:not(.flxa-appmode) #wpbody-content input[type=time],
+body.flxa:not(.flxa-appmode) #wpbody-content input[type=month], body.flxa:not(.flxa-appmode) #wpbody-content input[type=week],
+body.flxa:not(.flxa-appmode) #wpbody-content input:not([type]),
 body.flxa:not(.flxa-appmode) #wpbody-content select:not([multiple]) { min-height: 36px; }
 body.flxa #wpbody-content input[type=text]:hover, body.flxa #wpbody-content input[type=search]:hover, body.flxa #wpbody-content input[type=email]:hover,
 body.flxa #wpbody-content input[type=url]:hover, body.flxa #wpbody-content input[type=password]:hover, body.flxa #wpbody-content input[type=number]:hover,
-body.flxa #wpbody-content input[type=tel]:hover, body.flxa #wpbody-content input[type=date]:hover, body.flxa #wpbody-content select:hover, body.flxa #wpbody-content textarea:hover { border-color: color-mix(in srgb, var(--flxa-accent) 45%, var(--flxa-border-strong)); }
+body.flxa #wpbody-content input[type=tel]:hover, body.flxa #wpbody-content input[type=date]:hover, body.flxa #wpbody-content input[type=datetime-local]:hover,
+body.flxa #wpbody-content input[type=time]:hover, body.flxa #wpbody-content input[type=month]:hover, body.flxa #wpbody-content input:not([type]):hover, body.flxa #wpbody-content select:hover, body.flxa #wpbody-content textarea:hover { border-color: color-mix(in srgb, var(--flxa-accent) 45%, var(--flxa-border-strong)); }
 body.flxa #wpbody-content input:focus, body.flxa #wpbody-content select:focus, body.flxa #wpbody-content textarea:focus { border-color: var(--flxa-accent) !important; }
 body.flxa:not(.flxa-appmode) input[type=checkbox], body.flxa:not(.flxa-appmode) input[type=radio] { width: 18px; height: 18px; min-width: 18px; border-radius: 5px; transition: background-color .12s, border-color .12s; }
 body.flxa:not(.flxa-appmode) input[type=radio] { border-radius: 50%; }
@@ -1464,3 +1469,47 @@ html.flxa-dark body.flxa:not(.flxa-appmode) .googlesitekit-logo__logo-text :is(p
 #flxa-gfly.is-right-rail::before { left: auto; right: -7px; border-left: 0; border-bottom: 0; border-top: 1px solid var(--flxa-border); border-right: 1px solid var(--flxa-border); }
 #flxa-gfly.is-right-rail::after { left: auto; right: -22px; }
 .flxa-fold-btn:focus-visible { outline: 2px solid var(--flxa-accent); outline-offset: 2px; }
+
+/* ───────────────────────── Tarih seçici (assets/js/datepicker.js) ─────────────────────────
+ * input[type=date] görünmez kalır; yerine dropdown ile aynı görünen .flxa-date düğmesi ve .flxa-dp takvimi gelir. */
+body.flxa input.flxa-date-native { position: absolute !important; width: 1px !important; height: 1px !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; opacity: 0 !important; pointer-events: none !important; overflow: hidden; }
+body.flxa .flxa-date {
+	display: inline-flex; align-items: center; gap: 8px; box-sizing: border-box; min-height: 36px; max-width: 100%; margin: 0; padding: 0 32px 0 10px; vertical-align: middle;
+	font: inherit; font-size: 14px; line-height: 1.3; text-align: left; color: var(--flxa-text); cursor: pointer;
+	background: var(--flxa-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2397A79D' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 8px top 55% / 16px 16px;
+	border: 1px solid var(--flxa-border-strong); border-radius: var(--flxa-r-sm, 8px); box-shadow: none; transition: border-color .15s, background-color .15s;
+}
+body.flxa .flxa-date:hover { border-color: color-mix(in srgb, var(--flxa-accent) 45%, var(--flxa-border-strong)); }
+body.flxa .flxa-date:focus, body.flxa .flxa-date.is-open { outline: none; border-color: var(--flxa-accent); }
+body.flxa .flxa-date:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus); }
+body.flxa .flxa-date.is-empty .flxa-date-val { color: var(--flxa-muted); }
+body.flxa .flxa-date.is-invalid { border-color: var(--flxa-error); }
+body.flxa .flxa-date:disabled, body.flxa .flxa-date.is-readonly { background-color: var(--flxa-surface-2); color: var(--flxa-muted); cursor: default; }
+body.flxa .flxa-date-ico { display: inline-flex; color: var(--flxa-muted); flex: none; }
+body.flxa .flxa-date-val { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.flxa-dp { position: fixed; z-index: 100200; width: 292px; box-sizing: border-box; padding: 12px; font-family: var(--flxa-font); color: var(--flxa-text); background: var(--flxa-surface); border: 1px solid var(--flxa-border); border-radius: calc(var(--flxa-radius, 14px) + 2px); box-shadow: var(--flxa-shadow-lg); }
+.flxa-dp[hidden] { display: none; }
+.flxa-dp button { font: inherit; color: inherit; background: none; border: 0; margin: 0; cursor: pointer; }
+.flxa-dp button:disabled { cursor: default; opacity: .35; }
+.flxa-dp button:focus { outline: none; }
+.flxa-dp button:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus); }
+.flxa-dp-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 8px; }
+.flxa-dp-title { flex: 1; text-align: center; font-weight: 700; font-size: 14px; }
+.flxa-dp-nav { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50% !important; color: var(--flxa-muted) !important; }
+.flxa-dp-nav:hover:not(:disabled) { background: var(--flxa-surface-2) !important; color: var(--flxa-text) !important; }
+.flxa-dp-week, .flxa-dp-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.flxa-dp-week span { text-align: center; font-size: 11px; font-weight: 700; color: var(--flxa-muted); padding: 4px 0; text-transform: capitalize; }
+.flxa-dp-grid { display: flex; flex-direction: column; gap: 2px; }
+.flxa-dp-day { height: 36px; border-radius: var(--flxa-r-sm, 8px) !important; font-size: 13px !important; font-weight: 600; font-variant-numeric: tabular-nums; }
+.flxa-dp-day:hover:not(:disabled):not(.is-sel) { background: var(--flxa-surface-2) !important; }
+.flxa-dp-day.is-out { color: var(--flxa-muted) !important; font-weight: 500; }
+.flxa-dp-day.is-today { box-shadow: inset 0 0 0 1px var(--flxa-accent); color: var(--flxa-accent-strong) !important; }
+.flxa-dp-day.is-sel { background: var(--flxa-accent) !important; color: var(--flxa-on-accent) !important; box-shadow: none; }
+.flxa-dp-day:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus); }
+.flxa-dp-foot { display: flex; justify-content: space-between; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--flxa-border); }
+.flxa-dp-act { padding: 6px 12px !important; border-radius: var(--flxa-r-sm, 8px) !important; font-size: 13px !important; font-weight: 700; color: var(--flxa-muted) !important; }
+.flxa-dp-act:hover:not(:disabled) { background: var(--flxa-surface-2) !important; color: var(--flxa-text) !important; }
+.flxa-dp-act.is-main { margin-left: auto; color: var(--flxa-accent-strong) !important; }
+.flxa-dp.is-sheet { box-shadow: 0 0 0 100vmax var(--flxa-scrim); left: 0; right: 0; bottom: 0; top: auto; width: auto; border-radius: 20px 20px 0 0; padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); }
+.flxa-dp.is-sheet .flxa-dp-day { height: 44px; font-size: 15px !important; }

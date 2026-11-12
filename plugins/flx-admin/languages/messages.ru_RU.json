@@ -396,6 +396,9 @@
     "%sdonate\u0000%sdonate": "%sпожертвовать\u0000%sпожертвовать\u0000%sпожертвовать",
     "%seven\u0000%seven": "%sдаже\u0000%sдаже\u0000%sдаже",
     "%swarning\u0000%swarning": "Предупреждение %s\u0000Предупреждение %s\u0000Предупреждение %s",
-    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.\u0000%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.\u0000%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию."
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.\u0000%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.\u0000%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.",
+    "Select date": "Выберите дату",
+    "Previous month": "Предыдущий месяц",
+    "Next month": "Следующий месяц"
   }
 }

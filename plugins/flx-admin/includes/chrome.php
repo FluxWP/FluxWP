@@ -89,6 +89,7 @@ function flxa_enqueue() {
 	wp_enqueue_style( 'flxa-admin', FLXA_URL . 'assets/css/admin.css', array( 'common', 'admin-menu', 'dashboard', 'flxa-tokens' ), FLXA_VERSION );
 	wp_enqueue_script( 'flxa-admin', FLXA_URL . 'assets/js/admin.js', array( 'heartbeat' ), FLXA_VERSION, true );
 	wp_localize_script( 'flxa-admin', 'FLXA', flxa_boot() );
+	wp_enqueue_script( 'flxa-date', FLXA_URL . 'assets/js/datepicker.js', array( 'flxa-admin' ), FLXA_VERSION, true );
 }
 
 function flxa_boot() {
@@ -195,7 +196,13 @@ function flxa_boot() {
 			'taskDone'    => __( 'Task created.', 'flx-admin' ),
 			'open'        => __( 'Open', 'flx-admin' ),
 			'noPrio'      => __( 'None', 'flx-admin' ),
+			'datePick'    => __( 'Select date', 'flx-admin' ),
+			'datePrev'    => __( 'Previous month', 'flx-admin' ),
+			'dateNext'    => __( 'Next month', 'flx-admin' ),
+			'dateToday'   => __( 'Today', 'flx-admin' ),
+			'dateClear'   => __( 'Clear', 'flx-admin' ),
 		),
+		'weekStart' => (int) get_option( 'start_of_week', 1 ),
 	);
 }
 
