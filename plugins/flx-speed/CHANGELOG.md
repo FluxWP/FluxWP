@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.1
+- Kullanılmayan CSS kırpma: yeni `flxp_ps_safelist` filtresi. Sınıf adlarını JavaScript'te üreten kütüphaneler (Splide carousel noktaları/okları, GLightbox, Plyr) kendi kalıplarını bildirir, kuralları silinmez. Filtre ya da ayar değişince kırpılmış kopyalar yenilenir.
+
 ## 0.7.0
 - Yeni Önbellek sekmesi (Performans › Önbellek): LiteSpeed Cache sayfa önbelleği aç/kapa ve Tümünü temizle; nesne önbelleği için SQLite Object Cache ya da LiteSpeed Cache + Memcached seçimi tek tıkla.
 - Gereken eklenti yoksa ekran söyler ve wordpress.org'dan Kur ve etkinleştir düğmesi verir; gereken PHP uzantıları (sqlite3, igbinary, Memcached) tek tek gösterilir.

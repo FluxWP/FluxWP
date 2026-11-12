@@ -551,9 +551,20 @@ class FLXP_PageSpeed {
 		return $i;
 	}
 
+	/**
+	 * Kırpmada her zaman korunan sınıf/id kalıpları: varsayılanlar + ayar + flxp_ps_safelist filtresi.
+	 * Filtre: sınıf adlarını JavaScript'te birleştirerek üreten kütüphaneler (Splide, GLightbox…) kendi
+	 * kalıplarını bildirir; örn. add_filter( 'flxp_ps_safelist', fn( $p ) => array_merge( $p, array( 'splide__*' ) ) ).
+	 */
+	public static function safe_patterns() {
+		$extra = apply_filters( 'flxp_ps_safelist', array() );
+		$extra = is_array( $extra ) ? array_filter( array_map( 'strval', $extra ), 'strlen' ) : array();
+		return array_values( array_unique( array_merge( self::SAFE_DEFAULT, self::lines( 'ps_safelist' ), $extra ) ) );
+	}
+
 	/** Güvenli liste (joker * destekli) eşleştirici. */
 	private static function safe_matcher() {
-		$pats = array_merge( self::SAFE_DEFAULT, self::lines( 'ps_safelist' ) );
+		$pats = self::safe_patterns();
 		$re   = array();
 		foreach ( $pats as $p ) {
 			$p = ltrim( trim( $p ), '.#' );
@@ -578,7 +589,7 @@ class FLXP_PageSpeed {
 			return null;
 		}
 		$slug = self::slug( $path );
-		$key  = self::src_key( $path, (string) flxp_settings( 'ps_safelist' ) );
+		$key  = self::src_key( $path, implode( "\n", self::safe_patterns() ) ); // Filtre/ayar değişince kopyalar yenilenir.
 		$inv  = self::css_inventory( $path, $key );
 		$keep = array();
 		foreach ( $inv as $t ) {
