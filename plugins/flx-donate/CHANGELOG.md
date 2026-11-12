@@ -2,6 +2,7 @@
 
 ## 2.23.1
 - Tutar düğmeleri görünümü: geniş ekranda "Diğer tutar" alanı düğmelerle aynı satırda, en sağda (10 fidanın yanında). Telefonda düğmelerin altında kalır.
+- "Diğer tutar" başlığı kutunun üstünde, normal renkte; kutu düğmelerle aynı yükseklikte, yazılan tutarın altında ince çizgi.
 
 ## 2.23.0
 - Bağış formu "Tutar düğmeleri" görünümü: adet seçenekleri büyük düğmeler (1, 3, 5, 10 …), "En çok seçilen" rozeti, yanında "Diğer tutar" alanı. Görünüm sekmesinden açılır.
