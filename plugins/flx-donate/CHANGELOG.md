@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.23.1
+- Tutar düğmeleri görünümü: geniş ekranda "Diğer tutar" alanı düğmelerle aynı satırda, en sağda (10 fidanın yanında). Telefonda düğmelerin altında kalır.
+
 ## 2.23.0
 - Bağış formu "Tutar düğmeleri" görünümü: adet seçenekleri büyük düğmeler (1, 3, 5, 10 …), "En çok seçilen" rozeti, yanında "Diğer tutar" alanı. Görünüm sekmesinden açılır.
 - Serbest tutar: bağışçı kendi tutarını yazar. En düşük tutar panelden girilir (para birimi başına ayrı). Sınır baştan yazmaz; daha düşük tutarla "Devam et" denince alanın altında uyarı çıkar. Yazılan tutar fidan adedine çevrilir (birim fiyatın altı 1 fidan sayılır).
