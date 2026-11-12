@@ -212,9 +212,8 @@ final class FLXADS_Orders {
 		);
 		$wpdb->replace( flxads_table( 'orders' ), $row ); // phpcs:ignore WordPress.DB
 
-		if ( 'donations' !== flxads_setting( 'scope' ) || $donation ) {
-			FLXADS_Send::queue( $order, ! empty( $a['c'] ) );
-		}
+		/* Ödenen her sipariş (bağış ya da mağaza) dönüşümdür; raporda tür ayrı süzülür. */
+		FLXADS_Send::queue( $order, ! empty( $a['c'] ) );
 		/** Atıf kaydedildi: CRM ve diğer paketler dinler. */
 		do_action( 'flxads_order_attributed', $order->get_id(), $row, $order );
 	}

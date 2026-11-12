@@ -2,7 +2,7 @@
 
 ## 0.1.0
 
-- New plugin: ad conversion tracking for donations and orders.
+- New plugin: ad conversion tracking for donations and orders. Every paid order (donation or shop order) is a conversion; the report filters by kind.
 - Meta Pixel + Conversions API, TikTok Pixel + Events API, Google Analytics 4 + Measurement Protocol. Browser and server events share one event ID (`order-<id>`), so Meta and TikTok count a payment once; GA4 server events wait 30 minutes and are skipped when the thank-you page already sent the purchase.
 - Bank transfer (Havale/EFT): no browser conversion while the payment is pending; the server sends Purchase when the donation is approved (Flux Donate calls `payment_complete`).
 - Attribution: UTM (source, medium, campaign, content, term, id) and click IDs (fbclid, gclid, gbraid, wbraid, ttclid, msclkid) in a first-party cookie with first and last touch; falls back to WooCommerce order attribution.

@@ -394,8 +394,8 @@ msgstr "Measurement Protocol API secret"
 msgid "Data stream › Measurement Protocol API secrets › Create. Needed for bank-transfer donations approved later. To see donations in Google Ads, import the GA4 \"purchase\" conversion there."
 msgstr "Data stream › Measurement Protocol API secrets › Create. Needed for bank-transfer donations approved later. To see donations in Google Ads, import the GA4 \"purchase\" conversion there."
 
-msgid "Privacy and scope"
-msgstr "Privacy and scope"
+msgid "Privacy"
+msgstr "Privacy"
 
 msgid "Wait for consent (recommended): pixels and the ad cookie start only after the visitor accepts the theme cookie banner. Donations of visitors who did not accept are counted in the report but not sent to ad platforms."
 msgstr "Wait for consent (recommended): pixels and the ad cookie start only after the visitor accepts the theme cookie banner. Donations of visitors who did not accept are counted in the report but not sent to ad platforms."
@@ -414,15 +414,6 @@ msgstr "Never: only the browser ID, IP and browser type."
 
 msgid "Always (hashed). Your privacy notice must say so."
 msgstr "Always (hashed). Your privacy notice must say so."
-
-msgid "Which payments are conversions"
-msgstr "Which payments are conversions"
-
-msgid "Donations only (Flux Donate)"
-msgstr "Donations only (Flux Donate)"
-
-msgid "Donations and shop orders"
-msgstr "Donations and shop orders"
 
 msgid "Load the browser pixels too (page views, form and checkout steps). Off = server events only."
 msgstr "Load the browser pixels too (page views, form and checkout steps). Off = server events only."

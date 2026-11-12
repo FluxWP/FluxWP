@@ -101,9 +101,6 @@ final class FLXADS_Front {
 		if ( ! $order->is_paid() || $order->get_meta( '_flxads_browser' ) ) {
 			return;
 		}
-		if ( 'donations' === flxads_setting( 'scope' ) && ! FLXADS_Orders::is_donation( $order ) ) {
-			return;
-		}
 		$order->update_meta_data( '_flxads_browser', time() );
 		$order->save_meta_data();
 		self::add(

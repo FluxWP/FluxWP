@@ -53,7 +53,6 @@ add_filter(
 					$out['platforms'][ $p ] = array( 'label' => $label, 'browser' => flxads_platform_on( $p ), 'server' => flxads_platform_on( $p, true ) );
 				}
 				$out['consent'] = flxads_setting( 'consent' );
-				$out['scope']   = flxads_setting( 'scope' );
 				$out['counts']  = FLXADS_Send::counts();
 				$out['errors']  = $wpdb->get_results( 'SELECT platform, order_id, last_error, created_at FROM ' . flxads_table( 'conversions' ) . " WHERE status = 'failed' ORDER BY id DESC LIMIT 10", ARRAY_A ); // phpcs:ignore WordPress.DB
 				return $out;

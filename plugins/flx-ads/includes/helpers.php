@@ -33,7 +33,6 @@ function flxads_defaults() {
 			'ga4_on'        => 0,
 			'ga4_id'        => '',      // boşsa tema ayarındaki GA4 kimliği
 			'ga4_secret'    => '',      // gizli (Measurement Protocol API secret)
-			'scope'         => 'donations', // donations | all (yalnız bağış siparişleri ya da tüm siparişler)
 			'consent'       => 'auto',  // auto (tema çerez banner'ı açıksa onay beklenir) | always
 			'pii'           => 'consent', // consent (yalnız reklam izni olan kişi) | never | always
 			'browser'       => 1,       // tarayıcı pixel'leri de yüklensin (kapalıysa yalnız sunucu)

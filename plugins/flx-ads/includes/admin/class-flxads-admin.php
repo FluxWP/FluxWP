@@ -345,7 +345,7 @@ final class FLXADS_Admin {
 			}
 		);
 
-		echo '<section class="flxads-card flxads-pad"><h2 class="flxads-h2">' . esc_html__( 'Privacy and scope', 'flx-ads' ) . '</h2>';
+		echo '<section class="flxads-card flxads-pad"><h2 class="flxads-h2">' . esc_html__( 'Privacy', 'flx-ads' ) . '</h2>';
 		echo '<fieldset class="flxads-field"><legend>' . esc_html__( 'Cookie consent', 'flx-ads' ) . '</legend>';
 		echo '<label><input type="radio" name="s[consent]" value="auto"' . checked( $s['consent'], 'auto', false ) . '> ' . esc_html__( 'Wait for consent (recommended): pixels and the ad cookie start only after the visitor accepts the theme cookie banner. Donations of visitors who did not accept are counted in the report but not sent to ad platforms.', 'flx-ads' ) . '</label>';
 		echo '<label><input type="radio" name="s[consent]" value="always"' . checked( $s['consent'], 'always', false ) . '> ' . esc_html__( 'Always: you collect consent another way.', 'flx-ads' ) . '</label></fieldset>';
@@ -354,9 +354,6 @@ final class FLXADS_Admin {
 			echo '<label><input type="radio" name="s[pii]" value="' . esc_attr( $k ) . '"' . checked( $s['pii'], $k, false ) . '> ' . esc_html( $l ) . '</label>';
 		}
 		echo '</fieldset>';
-		echo '<fieldset class="flxads-field"><legend>' . esc_html__( 'Which payments are conversions', 'flx-ads' ) . '</legend>';
-		echo '<label><input type="radio" name="s[scope]" value="donations"' . checked( $s['scope'], 'donations', false ) . '> ' . esc_html__( 'Donations only (Flux Donate)', 'flx-ads' ) . '</label>';
-		echo '<label><input type="radio" name="s[scope]" value="all"' . checked( $s['scope'], 'all', false ) . '> ' . esc_html__( 'Donations and shop orders', 'flx-ads' ) . '</label></fieldset>';
 		echo '<label class="flxads-check"><input type="checkbox" name="s[browser]" value="1"' . checked( ! empty( $s['browser'] ), true, false ) . '> ' . esc_html__( 'Load the browser pixels too (page views, form and checkout steps). Off = server events only.', 'flx-ads' ) . '</label>';
 		echo '<label class="flxads-field flxads-field--short"><span>' . esc_html__( 'Attribution window (days)', 'flx-ads' ) . '</span><input type="number" min="1" max="365" name="s[window_days]" value="' . (int) $s['window_days'] . '"><small>' . esc_html__( 'How long a click counts for a later donation.', 'flx-ads' ) . '</small></label>';
 		echo '</section>';
@@ -390,7 +387,6 @@ final class FLXADS_Admin {
 			'ga4_id'       => preg_match( '/^G-[A-Z0-9]{4,}$/', strtoupper( trim( (string) ( $in['ga4_id'] ?? '' ) ) ) ) ? strtoupper( trim( (string) $in['ga4_id'] ) ) : '',
 			'consent'      => 'always' === ( $in['consent'] ?? '' ) ? 'always' : 'auto',
 			'pii'          => in_array( $in['pii'] ?? '', array( 'consent', 'never', 'always' ), true ) ? $in['pii'] : 'consent',
-			'scope'        => 'all' === ( $in['scope'] ?? '' ) ? 'all' : 'donations',
 			'browser'      => empty( $in['browser'] ) ? 0 : 1,
 			'window_days'  => max( 1, min( 365, (int) ( $in['window_days'] ?? 90 ) ) ),
 		);
