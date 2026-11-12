@@ -1,0 +1,438 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Ads\n"
+
+msgid "Settings"
+msgstr ""
+
+msgid "Which ad brought which donation"
+msgstr ""
+
+msgid "Ad channel"
+msgstr ""
+
+msgid "Campaign"
+msgstr ""
+
+msgid "Ad (utm_content)"
+msgstr ""
+
+msgid "Source / medium"
+msgstr ""
+
+msgid "Landing page"
+msgstr ""
+
+msgid "First ad touch"
+msgstr ""
+
+msgid "(not set)"
+msgstr ""
+
+msgid "Fill in the ID and the key first."
+msgstr ""
+
+msgid "Connected to \"%s\". Enter a test event code to see a test event in Events Manager."
+msgstr ""
+
+msgid "Test event sent. Check Events Manager › Test events."
+msgstr ""
+
+msgid "Enter the test event code from TikTok Events Manager › Test events, then test again."
+msgstr ""
+
+msgid "Test event sent. Check TikTok Events Manager › Test events."
+msgstr ""
+
+msgid "Google accepted the test event (validation only; nothing was recorded)."
+msgstr ""
+
+msgid "Ad conversion"
+msgstr ""
+
+msgid "Ad source"
+msgstr ""
+
+msgid "No payment from this contact came through an ad."
+msgstr ""
+
+msgid "First came through: %s"
+msgstr ""
+
+msgid "Ad report"
+msgstr ""
+
+msgid "Other campaigns (UTM)"
+msgstr ""
+
+msgid "No ad (direct, search, other sites)"
+msgstr ""
+
+msgid "Ad conversions report"
+msgstr ""
+
+msgid "Ad tracking status"
+msgstr ""
+
+msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
+msgstr ""
+
+msgid "Browser pixel only. Without the server key, bank-transfer donations approved later and visitors with ad blockers are not counted."
+msgstr ""
+
+msgid "Pixel and server events are set up. Last test passed."
+msgstr ""
+
+msgid "Last connection test failed:"
+msgstr ""
+
+msgid "Pixel and server events are set up. Run \"Test\" once to check the key."
+msgstr ""
+
+msgid "Ads"
+msgstr ""
+
+msgid "Ad platforms"
+msgstr ""
+
+msgid "No ad platform is on. The ad report still works from UTM links and click IDs."
+msgstr ""
+
+msgid "Server conversions"
+msgstr ""
+
+msgid "%1$d failed, %2$d waiting. Last retry run: %3$s."
+msgstr ""
+
+msgid "never"
+msgstr ""
+
+msgid "Send log"
+msgstr ""
+
+msgid "Cookie consent"
+msgstr ""
+
+msgid "The theme cookie banner is off, so ad pixels load without asking. Under KVKK/GDPR marketing cookies need consent: turn the banner on in Appearance › Theme Settings."
+msgstr ""
+
+msgid "Theme Settings"
+msgstr ""
+
+msgid "%d try"
+msgid_plural "%d tries"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Copied"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Report"
+msgstr ""
+
+msgid "Ad link"
+msgstr ""
+
+msgid "You are not allowed to view this page."
+msgstr ""
+
+msgid "Ad conversions"
+msgstr ""
+
+msgid "Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved."
+msgstr ""
+
+msgid "Sections"
+msgstr ""
+
+msgid "Settings saved."
+msgstr ""
+
+msgid "Sent again. The row shows the result."
+msgstr ""
+
+msgid "Period"
+msgstr ""
+
+msgid "Last 7 days"
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 90 days"
+msgstr ""
+
+msgid "Last 12 months"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Donations and orders"
+msgstr ""
+
+msgid "Donations"
+msgstr ""
+
+msgid "Shop orders"
+msgstr ""
+
+msgid "Group by"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Clear filter"
+msgstr ""
+
+msgid "Brought by ads"
+msgstr ""
+
+msgid "%s%% of all income"
+msgstr ""
+
+msgid "Payments from ads"
+msgstr ""
+
+msgid "of %s in total"
+msgstr ""
+
+msgid "Total income"
+msgstr ""
+
+msgid "New donors and customers"
+msgstr ""
+
+msgid "first paid order"
+msgstr ""
+
+msgid "Some payments are in another currency and no exchange rate was found; their amount is shown per currency in the row but not added to the totals. Install Flux CRM for currency conversion."
+msgstr ""
+
+msgid "Payments"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "No paid donation or order in this period yet. Use the Ad link tab to tag your ads."
+msgstr ""
+
+msgid "Latest payments from ads"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Ad"
+msgstr ""
+
+msgid "None yet."
+msgstr ""
+
+msgid "Donation"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "Waiting"
+msgstr ""
+
+msgid "Sent"
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "Not sent"
+msgstr ""
+
+msgid "visitor did not accept cookies"
+msgstr ""
+
+msgid "already sent from the browser"
+msgstr ""
+
+msgid "platform turned off"
+msgstr ""
+
+msgid "order deleted"
+msgstr ""
+
+msgid "no consent, or sent from the browser"
+msgstr ""
+
+msgid "Platform"
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Nothing sent yet. When a donation is paid, a Purchase event is sent to every platform that has its server key."
+msgstr ""
+
+msgid "Send again"
+msgstr ""
+
+msgid "Tag each ad with its own link"
+msgstr ""
+
+msgid "Meta, Google and TikTok add their click ID by themselves. A UTM link also names the campaign and the ad, so the report can show \"which ad brought which donation\". Paste the link as the ad's website URL; use a different \"Ad\" value for each ad or video."
+msgstr ""
+
+msgid "Page"
+msgstr ""
+
+msgid "E-mail newsletter"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Paid social"
+msgstr ""
+
+msgid "Search ad (cpc)"
+msgstr ""
+
+msgid "Video ad"
+msgstr ""
+
+msgid "Organic post"
+msgstr ""
+
+msgid "E-mail"
+msgstr ""
+
+msgid "Meta tip: instead of one link per ad you can put this in the ad's URL parameters field: utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}"
+msgstr ""
+
+msgid "Saved (%s). Leave empty to keep."
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "Test the connection"
+msgstr ""
+
+msgid "Pixel (dataset) ID"
+msgstr ""
+
+msgid "Events Manager › Data sources › your pixel › Settings."
+msgstr ""
+
+msgid "Conversions API access token"
+msgstr ""
+
+msgid "Events Manager › Settings › Conversions API › Generate access token. Needed for server events (bank transfers, ad blockers)."
+msgstr ""
+
+msgid "Test event code (optional)"
+msgstr ""
+
+msgid "While testing only. Empty it after testing, or real donations are reported as test events."
+msgstr ""
+
+msgid "Pixel ID"
+msgstr ""
+
+msgid "TikTok Ads Manager › Tools › Events › Web events."
+msgstr ""
+
+msgid "Events API access token"
+msgstr ""
+
+msgid "Pixel › Settings › Events API › Generate access token."
+msgstr ""
+
+msgid "While testing only."
+msgstr ""
+
+msgid "Measurement ID"
+msgstr ""
+
+msgid "Empty = the theme's ID (%s). The theme already loads the tag; Flux Ads only adds the donation events."
+msgstr ""
+
+msgid "Admin › Data streams › Measurement ID."
+msgstr ""
+
+msgid "Measurement Protocol API secret"
+msgstr ""
+
+msgid "Data stream › Measurement Protocol API secrets › Create. Needed for bank-transfer donations approved later. To see donations in Google Ads, import the GA4 \"purchase\" conversion there."
+msgstr ""
+
+msgid "Privacy and scope"
+msgstr ""
+
+msgid "Wait for consent (recommended): pixels and the ad cookie start only after the visitor accepts the theme cookie banner. Donations of visitors who did not accept are counted in the report but not sent to ad platforms."
+msgstr ""
+
+msgid "Always: you collect consent another way."
+msgstr ""
+
+msgid "E-mail and phone (for better matching)"
+msgstr ""
+
+msgid "Only for contacts with ad consent in Flux CRM (recommended). Sent as SHA-256 hashes, never in plain text."
+msgstr ""
+
+msgid "Never: only the browser ID, IP and browser type."
+msgstr ""
+
+msgid "Always (hashed). Your privacy notice must say so."
+msgstr ""
+
+msgid "Which payments are conversions"
+msgstr ""
+
+msgid "Donations only (Flux Donate)"
+msgstr ""
+
+msgid "Donations and shop orders"
+msgstr ""
+
+msgid "Load the browser pixels too (page views, form and checkout steps). Off = server events only."
+msgstr ""
+
+msgid "Attribution window (days)"
+msgstr ""
+
+msgid "How long a click counts for a later donation."
+msgstr ""
+
+msgid "Save settings"
+msgstr ""
+
+msgid "You are not allowed to do this."
+msgstr ""
