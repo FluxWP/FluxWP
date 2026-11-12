@@ -36,7 +36,7 @@ import { __, _x } from '@wordpress/i18n';
 registerBlockType('flx/posts', {
 	...metadata,
 	title: _x('Posts', 'block title', 'flx-blocks'),
-	keywords: [__('posts', 'flx-blocks'), __('latest posts', 'flx-blocks'), __('blog', 'flx-blocks'), 'KB'],
+	keywords: [__('posts', 'flx-blocks'), __('latest posts', 'flx-blocks'), __('blog', 'flx-blocks'), 'flux'],
 	icon: {
 		src: postsIcon,
 	},

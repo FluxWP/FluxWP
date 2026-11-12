@@ -43,7 +43,7 @@ registerBlockType('flx/form', {
 	...metadata,
 	title: _x('Form', 'block title', 'flx-blocks'),
 	description: __('Create a contact or marketing form for your website.', 'flx-blocks'),
-	keywords: [__('contact', 'flx-blocks'), __('marketing', 'flx-blocks'), 'KB'],
+	keywords: [__('contact', 'flx-blocks'), __('marketing', 'flx-blocks'), 'flux'],
 	icon: {
 		src: formBlockIcon,
 	},

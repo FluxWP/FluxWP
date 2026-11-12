@@ -2277,7 +2277,7 @@ function FlxbkAdvancedHeading(props) {
 								panelName={'fxb-adv-heading-text-shadow'}
 							>
 								<ToggleControl
-									label={'Enable Text Shadow'}
+									label={__('Enable Text Shadow', 'flx-blocks')}
 									checked={enableTextShadow}
 									onChange={(value) => {
 										setAttributes({ enableTextShadow: value });

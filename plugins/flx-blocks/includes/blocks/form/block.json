@@ -5,7 +5,7 @@
 	"name": "flx/form",
 	"category": "flx-blocks",
 	"textdomain": "flx-blocks",
-	"keywords": ["contact", "marketing", "KB"],
+	"keywords": ["contact", "marketing", "flux"],
 	"attributes": {
 		"uniqueID": {
 			"type": "string",

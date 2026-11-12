@@ -1602,7 +1602,7 @@ export function EditInner(props) {
 									mobileChildren={styleColorControls('Mobile', 'Sticky')}
 								></SmallResponsiveControl>
 								<ResponsiveSingleBorderControl
-									label={'Divider'}
+									label={__('Divider', 'flx-blocks')}
 									value={stickyDivider}
 									tabletValue={stickyDividerTablet}
 									mobileValue={stickyDividerMobile}

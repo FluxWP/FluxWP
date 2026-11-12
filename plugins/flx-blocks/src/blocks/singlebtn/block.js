@@ -30,7 +30,7 @@ registerBlockType('flx/singlebtn', {
 	...metadata,
 	title: __('Single Button', 'flx-blocks'),
 	description: __('Single button within a button block', 'flx-blocks'),
-	keywords: [__('Button', 'flx-blocks'), __('btn', 'flx-blocks'), 'KB'],
+	keywords: [__('Button', 'flx-blocks'), __('btn', 'flx-blocks'), 'flux'],
 	icon: {
 		src: advancedBtnIcon,
 	},

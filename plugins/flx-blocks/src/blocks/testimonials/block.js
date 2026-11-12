@@ -26,8 +26,7 @@ registerBlockType('flx/testimonials', {
 	keywords: [
 		__('testimonials', 'flx-blocks'),
 		__('rating', 'flx-blocks'),
-		'KB',
-		__('carousel', 'flx-blocks'),
+		'flux',		__('carousel', 'flx-blocks'),
 	],
 	icon: {
 		src: testimonialBlockIcon,

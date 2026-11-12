@@ -17,7 +17,7 @@ import { __, _x } from '@wordpress/i18n';
 registerBlockType('flx/tableofcontents', {
 	...metadata,
 	title: _x('Table of Contents', 'block title', 'flx-blocks'),
-	keywords: [__('table of contents', 'flx-blocks'), __('summary', 'flx-blocks'), 'KB'],
+	keywords: [__('table of contents', 'flx-blocks'), __('summary', 'flx-blocks'), 'flux'],
 	icon: {
 		src: tableOfContentsIcon,
 	},

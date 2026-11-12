@@ -168,7 +168,7 @@ function innerBlocks() {
 									'flx/singlebtn',
 									{
 										uniqueID: '252_2c1ecd-8d',
-										text: 'Get Started',
+										text: __('Get Started', 'flx-blocks'),
 										widthType: 'full',
 										margin: ['', '', 'sm', ''],
 										typography: [

@@ -31,7 +31,7 @@ registerBlockType('flx/header', {
 	...metadata,
 	title: _x('Header (Adv)', 'block title', 'flx-blocks'),
 	description: _x('Create an advanced header or footer for your website.', 'block description', 'flx-blocks'),
-	keywords: [__('header', 'flx-blocks'), __('footer', 'flx-blocks'), 'kb'],
+	keywords: [__('header', 'flx-blocks'), __('footer', 'flx-blocks'), 'flux'],
 	icon: {
 		src: headerBlockIcon,
 	},

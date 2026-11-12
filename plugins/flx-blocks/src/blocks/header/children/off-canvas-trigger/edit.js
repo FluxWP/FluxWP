@@ -188,7 +188,7 @@ export function Edit(props) {
 								normal={
 									<>
 										<SmallResponsiveControl
-											label={'Trigger Colors'}
+											label={__('Trigger Colors', 'flx-blocks')}
 											desktopChildren={styleColorControls()}
 											tabletChildren={styleColorControls('Tablet')}
 											mobileChildren={styleColorControls('Mobile')}
@@ -209,7 +209,7 @@ export function Edit(props) {
 								hover={
 									<>
 										<SmallResponsiveControl
-											label={'Hover Colors'}
+											label={__('Hover Colors', 'flx-blocks')}
 											desktopChildren={styleColorControls('', 'Hover')}
 											tabletChildren={styleColorControls('Tablet', 'Hover')}
 											mobileChildren={styleColorControls('Mobile', 'Hover')}

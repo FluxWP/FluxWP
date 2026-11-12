@@ -66,7 +66,7 @@ function innerBlocks() {
 							'flx/navigation-link',
 							{
 								uniqueID: '356_6ed1df-cc',
-								label: 'New Arrivals',
+								label: __('New Arrivals', 'flx-blocks'),
 								url: 'New%20Arrivals',
 								kind: 'custom',
 							},
@@ -76,7 +76,7 @@ function innerBlocks() {
 							'flx/navigation-link',
 							{
 								uniqueID: '356_754bd9-ff',
-								label: 'Best Sellers',
+								label: __('Best Sellers', 'flx-blocks'),
 								url: 'Best%20Sellers',
 								kind: 'custom',
 							},
@@ -119,7 +119,7 @@ function innerBlocks() {
 							'flx/navigation-link',
 							{
 								uniqueID: '356_a30122-0e',
-								label: 'Women',
+								label: __('Women', 'flx-blocks'),
 								url: 'Women',
 								kind: 'custom',
 								typography: [
@@ -180,7 +180,7 @@ function innerBlocks() {
 							'flx/navigation-link',
 							{
 								uniqueID: '356_8dd1df-5c',
-								label: 'Children',
+								label: __('Children', 'flx-blocks'),
 								url: 'Children',
 								kind: 'custom',
 								typography: [
@@ -241,7 +241,7 @@ function innerBlocks() {
 							'flx/navigation-link',
 							{
 								uniqueID: '356_1deae2-98',
-								label: 'Men',
+								label: __('Men', 'flx-blocks'),
 								url: 'Men',
 								kind: 'custom',
 								typography: [
@@ -302,7 +302,7 @@ function innerBlocks() {
 							'flx/navigation-link',
 							{
 								uniqueID: '356_dc2bce-56',
-								label: 'Accessories',
+								label: __('Accessories', 'flx-blocks'),
 								url: 'Men',
 								kind: 'custom',
 								typography: [
@@ -363,7 +363,7 @@ function innerBlocks() {
 							'flx/navigation-link',
 							{
 								uniqueID: '356_2084d3-fc',
-								label: 'Sale',
+								label: __('Sale', 'flx-blocks'),
 								url: 'Men',
 								kind: 'custom',
 								typography: [

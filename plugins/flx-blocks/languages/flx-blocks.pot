@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Flux Block Editor 0.1.0\n"
-"Report-Msgid-Bugs-To: info@fluxwp.com\n"
+"Project-Id-Version: Flux Block Editor 0.1.2\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/flx-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-12T08:12:09+00:00\n"
+"POT-Creation-Date: 2026-11-12T10:22:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: flx-blocks\n"
@@ -544,6 +544,7 @@ msgid "Mute"
 msgstr ""
 
 #: includes/blocks/class-flx-blocks-search-block.php:263
+#: src/blocks/search/edit.js:903
 msgid "Close search"
 msgstr ""
 
@@ -611,8 +612,10 @@ msgstr ""
 #: packages/components/src/advanced-form/constants.js:22
 #: packages/components/src/advanced-form/submit-actions/active-campaign/index.js:167
 #: packages/components/src/advanced-form/submit-actions/active-campaign/index.js:185
+#: packages/components/src/advanced-form/submit-actions/convert-kit/index.js:149
 #: src/blocks/advanced-form/components/submit-actions/active-campaign/index.js:170
 #: src/blocks/advanced-form/components/submit-actions/active-campaign/index.js:188
+#: src/blocks/advanced-form/components/submit-actions/convert-kit/index.js:153
 #: src/blocks/advanced-form/constants.js:22
 #: src/blocks/form/edit.js:1323
 msgid "First Name"
@@ -735,6 +738,46 @@ msgstr ""
 
 #: includes/class-flx-blocks-cpt-import-export.php:387
 msgid "Invalid JSON data in import file."
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:123
+msgid "This site does not share its design library."
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:129
+msgid "The library key is missing or wrong."
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:221
+msgid "Other"
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:222
+msgid "My patterns"
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:310
+msgid "Enter a valid site address."
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:330
+msgid "Unknown action."
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:349
+msgid "Library not found."
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:379
+msgid "The library could not be reached."
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:383
+msgid "The library refused access. Check the key, and that sharing is on at the other site."
+msgstr ""
+
+#: includes/class-flx-blocks-design-library.php:387
+msgid "This address is not a Flux design library."
 msgstr ""
 
 #: includes/class-flx-blocks-duplicate-post.php:55
@@ -1308,6 +1351,15 @@ msgstr ""
 
 #: includes/resources/Design_Tokens/Registry/declarations.php:24
 #: includes/settings/class-flx-blocks-site-health.php:208
+#: packages/components/src/advanced-form/submit-actions/active-campaign/index.js:165
+#: packages/components/src/advanced-form/submit-actions/active-campaign/index.js:183
+#: packages/components/src/advanced-form/submit-actions/convert-kit/index.js:147
+#: packages/components/src/advanced-form/submit-actions/mailchimp/index.js:174
+#: packages/components/src/advanced-form/submit-actions/mailchimp/index.js:193
+#: packages/components/src/advanced-form/submit-actions/mailchimp/index.js:205
+#: packages/components/src/advanced-form/submit-actions/sendinblue/index.js:88
+#: packages/components/src/advanced-form/submit-actions/sendinblue/index.js:102
+#: packages/components/src/advanced-form/submit-actions/sendinblue/index.js:117
 #: packages/components/src/box-shadow-control/index.js:74
 #: packages/components/src/column-drag-resizer/constants.js:9
 #: packages/components/src/column-drag-resizer/constants.js:11
@@ -1324,6 +1376,22 @@ msgstr ""
 #: packages/helpers/src/spacing-utilities/index.js:6
 #: packages/helpers/src/spacing-utilities/index.js:12
 #: packages/helpers/src/spacing-utilities/index.js:74
+#: src/blocks/advanced-form/components/submit-actions/active-campaign/index.js:168
+#: src/blocks/advanced-form/components/submit-actions/active-campaign/index.js:186
+#: src/blocks/advanced-form/components/submit-actions/convert-kit/index.js:151
+#: src/blocks/advanced-form/components/submit-actions/fluent-crm/index.js:110
+#: src/blocks/advanced-form/components/submit-actions/fluent-crm/index.js:124
+#: src/blocks/advanced-form/components/submit-actions/get-response/index.js:133
+#: src/blocks/advanced-form/components/submit-actions/get-response/index.js:147
+#: src/blocks/advanced-form/components/submit-actions/mailchimp/index.js:178
+#: src/blocks/advanced-form/components/submit-actions/mailchimp/index.js:197
+#: src/blocks/advanced-form/components/submit-actions/mailchimp/index.js:209
+#: src/blocks/advanced-form/components/submit-actions/mailer-lite/index.js:95
+#: src/blocks/advanced-form/components/submit-actions/mailer-lite/index.js:110
+#: src/blocks/advanced-form/components/submit-actions/mailer-lite/index.js:124
+#: src/blocks/advanced-form/components/submit-actions/sendinblue/index.js:88
+#: src/blocks/advanced-form/components/submit-actions/sendinblue/index.js:102
+#: src/blocks/advanced-form/components/submit-actions/sendinblue/index.js:117
 #: src/blocks/advancedgallery/edit.js:116
 #: src/blocks/advancedgallery/edit.js:224
 #: src/blocks/advancedgallery/edit.js:252
@@ -1336,6 +1404,13 @@ msgstr ""
 #: src/blocks/column/edit.js:2237
 #: src/blocks/countup/inspector.js:217
 #: src/blocks/countup/inspector.js:227
+#: src/blocks/form/fluentcrm.js:90
+#: src/blocks/form/fluentcrm.js:101
+#: src/blocks/form/mailerlite.js:112
+#: src/blocks/form/mailerlite.js:124
+#: src/blocks/form/mailerlite.js:134
+#: src/blocks/form/mailerlite.js:144
+#: src/blocks/form/mailerlite.js:151
 #: src/blocks/googlemaps/edit.js:366
 #: src/blocks/googlemaps/edit.js:410
 #: src/blocks/iconlist/edit.js:674
@@ -3289,7 +3364,7 @@ msgstr ""
 #: src/blocks/listitem/edit.js:570
 #: src/blocks/navigation/edit-inner.js:1707
 #: src/blocks/single-icon/edit.js:332
-#: src/blocks/videopopup/edit.js:601
+#: src/blocks/videopopup/edit.js:609
 #: src/extension/design-tokens/global-styles-color-groups.js:88
 #: src/extension/preset-picker/PresetButton.js:50
 #: src/plugins/editor-width.js:56
@@ -3315,6 +3390,9 @@ msgstr ""
 #: src/blocks/advanced-form/components/submit-actions/get-response/index.js:135
 #: src/blocks/advanced-form/components/submit-actions/get-response/index.js:149
 #: src/blocks/advanced-form/constants.js:21
+#: src/blocks/advanced-form/edit-inner.js:369
+#: src/blocks/advanced-form/edit-inner.js:401
+#: src/blocks/advanced-form/edit-inner.js:445
 #: src/blocks/form/edit.js:1322
 #: src/style-library/components/organisms/LibraryActions.js:128
 #: src/style-library/components/organisms/PaletteActions.js:138
@@ -3334,6 +3412,10 @@ msgstr ""
 #: src/blocks/advanced-form/components/submit-actions/get-response/index.js:148
 #: src/blocks/advanced-form/components/submit-actions/options/index.js:37
 #: src/blocks/advanced-form/constants.js:24
+#: src/blocks/advanced-form/edit-inner.js:373
+#: src/blocks/advanced-form/edit-inner.js:405
+#: src/blocks/advanced-form/edit-inner.js:449
+#: src/blocks/advanced-form/edit-inner.js:474
 #: src/blocks/form/edit.js:77
 #: src/blocks/form/edit.js:1093
 #: src/blocks/form/edit.js:1139
@@ -3667,6 +3749,35 @@ msgstr ""
 msgid "By default email is sent to the email field, you can use this to override."
 msgstr ""
 
+#: packages/components/src/advanced-form/submit-actions/convert-kit/index.js:148
+#: packages/components/src/advanced-form/submit-actions/mailchimp/index.js:175
+#: packages/components/src/advanced-form/submit-actions/mailchimp/index.js:194
+#: packages/components/src/advanced-form/submit-actions/mailchimp/index.js:206
+#: packages/components/src/advanced-form/submit-actions/sendinblue/index.js:89
+#: packages/components/src/advanced-form/submit-actions/sendinblue/index.js:103
+#: packages/components/src/advanced-form/submit-actions/sendinblue/index.js:118
+#: src/blocks/advanced-form/components/submit-actions/convert-kit/index.js:152
+#: src/blocks/advanced-form/components/submit-actions/fluent-crm/index.js:111
+#: src/blocks/advanced-form/components/submit-actions/fluent-crm/index.js:125
+#: src/blocks/advanced-form/components/submit-actions/mailchimp/index.js:179
+#: src/blocks/advanced-form/components/submit-actions/mailchimp/index.js:198
+#: src/blocks/advanced-form/components/submit-actions/mailchimp/index.js:210
+#: src/blocks/advanced-form/components/submit-actions/mailer-lite/index.js:96
+#: src/blocks/advanced-form/components/submit-actions/mailer-lite/index.js:111
+#: src/blocks/advanced-form/components/submit-actions/mailer-lite/index.js:125
+#: src/blocks/advanced-form/components/submit-actions/sendinblue/index.js:89
+#: src/blocks/advanced-form/components/submit-actions/sendinblue/index.js:103
+#: src/blocks/advanced-form/components/submit-actions/sendinblue/index.js:118
+#: src/blocks/form/fluentcrm.js:91
+#: src/blocks/form/fluentcrm.js:102
+#: src/blocks/form/mailerlite.js:113
+#: src/blocks/form/mailerlite.js:125
+#: src/blocks/form/mailerlite.js:135
+#: src/blocks/form/mailerlite.js:145
+#: src/blocks/form/mailerlite.js:152
+msgid "Email *"
+msgstr ""
+
 #: packages/components/src/advanced-form/submit-actions/convert-kit/index.js:203
 #: src/blocks/advanced-form/components/submit-actions/convert-kit/index.js:207
 msgid "Kit (ConvertKit) Settings"
@@ -3698,6 +3809,7 @@ msgstr ""
 #: src/blocks/form/edit.js:2659
 #: src/blocks/form/mailerlite.js:218
 #: src/blocks/googlemaps/edit.js:528
+#: src/plugins/design-library/index.js:267
 msgid "Remove"
 msgstr ""
 
@@ -3863,7 +3975,7 @@ msgstr ""
 #: src/blocks/image/edit.js:645
 #: src/blocks/infobox/edit.js:4227
 #: src/blocks/navigation-link/edit.js:811
-#: src/blocks/videopopup/edit.js:1139
+#: src/blocks/videopopup/edit.js:1147
 msgid "Select Image"
 msgstr ""
 
@@ -4549,7 +4661,7 @@ msgid "Select Video"
 msgstr ""
 
 #: packages/components/src/common/video-control/index.js:68
-#: src/blocks/videopopup/edit.js:726
+#: src/blocks/videopopup/edit.js:734
 msgid "Edit Video"
 msgstr ""
 
@@ -4806,6 +4918,108 @@ msgstr ""
 #: src/blocks/header/constants.js:133
 #: src/blocks/header/constants.js:153
 #: src/blocks/header/constants.js:174
+#: src/blocks/header/templates/basic-1.js:50
+#: src/blocks/header/templates/basic-1.js:122
+#: src/blocks/header/templates/basic-1.js:263
+#: src/blocks/header/templates/basic-1.js:332
+#: src/blocks/header/templates/basic-1.js:369
+#: src/blocks/header/templates/basic-1.js:424
+#: src/blocks/header/templates/basic-2.js:52
+#: src/blocks/header/templates/basic-2.js:126
+#: src/blocks/header/templates/basic-2.js:251
+#: src/blocks/header/templates/basic-2.js:317
+#: src/blocks/header/templates/basic-2.js:371
+#: src/blocks/header/templates/basic-2.js:404
+#: src/blocks/header/templates/basic-3.js:57
+#: src/blocks/header/templates/basic-3.js:135
+#: src/blocks/header/templates/basic-3.js:265
+#: src/blocks/header/templates/basic-3.js:334
+#: src/blocks/header/templates/basic-3.js:371
+#: src/blocks/header/templates/basic-3.js:427
+#: src/blocks/header/templates/basic-4.js:51
+#: src/blocks/header/templates/basic-4.js:127
+#: src/blocks/header/templates/basic-4.js:212
+#: src/blocks/header/templates/basic-4.js:281
+#: src/blocks/header/templates/basic-4.js:314
+#: src/blocks/header/templates/basic-4.js:347
+#: src/blocks/header/templates/basic-5.js:63
+#: src/blocks/header/templates/basic-5.js:135
+#: src/blocks/header/templates/basic-5.js:249
+#: src/blocks/header/templates/basic-5.js:318
+#: src/blocks/header/templates/basic-5.js:351
+#: src/blocks/header/templates/basic-5.js:426
+#: src/blocks/header/templates/basic-6.js:90
+#: src/blocks/header/templates/basic-6.js:175
+#: src/blocks/header/templates/basic-6.js:411
+#: src/blocks/header/templates/basic-6.js:480
+#: src/blocks/header/templates/basic-6.js:513
+#: src/blocks/header/templates/basic-6.js:648
+#: src/blocks/header/templates/basic-7.js:51
+#: src/blocks/header/templates/basic-7.js:128
+#: src/blocks/header/templates/basic-7.js:234
+#: src/blocks/header/templates/basic-7.js:303
+#: src/blocks/header/templates/basic-7.js:336
+#: src/blocks/header/templates/basic-7.js:399
+#: src/blocks/header/templates/blank.js:36
+#: src/blocks/header/templates/blank.js:108
+#: src/blocks/header/templates/blank.js:182
+#: src/blocks/header/templates/blank.js:251
+#: src/blocks/header/templates/blank.js:288
+#: src/blocks/header/templates/blank.js:321
+#: src/blocks/header/templates/mobile-1.js:49
+#: src/blocks/header/templates/mobile-1.js:121
+#: src/blocks/header/templates/mobile-1.js:262
+#: src/blocks/header/templates/mobile-1.js:331
+#: src/blocks/header/templates/mobile-1.js:368
+#: src/blocks/header/templates/mobile-1.js:423
+#: src/blocks/header/templates/mobile-2.js:49
+#: src/blocks/header/templates/mobile-2.js:122
+#: src/blocks/header/templates/mobile-2.js:247
+#: src/blocks/header/templates/mobile-2.js:316
+#: src/blocks/header/templates/mobile-2.js:353
+#: src/blocks/header/templates/mobile-2.js:408
+#: src/blocks/header/templates/mobile-3.js:49
+#: src/blocks/header/templates/mobile-3.js:126
+#: src/blocks/header/templates/mobile-3.js:207
+#: src/blocks/header/templates/mobile-3.js:276
+#: src/blocks/header/templates/mobile-3.js:313
+#: src/blocks/header/templates/mobile-3.js:365
+#: src/blocks/header/templates/mobile-4.js:49
+#: src/blocks/header/templates/mobile-4.js:134
+#: src/blocks/header/templates/mobile-4.js:370
+#: src/blocks/header/templates/mobile-4.js:439
+#: src/blocks/header/templates/mobile-4.js:476
+#: src/blocks/header/templates/mobile-4.js:549
+#: src/blocks/header/templates/multi-row-1.js:75
+#: src/blocks/header/templates/multi-row-1.js:167
+#: src/blocks/header/templates/multi-row-1.js:254
+#: src/blocks/header/templates/multi-row-1.js:383
+#: src/blocks/header/templates/multi-row-1.js:429
+#: src/blocks/header/templates/multi-row-1.js:481
+#: src/blocks/header/templates/multi-row-2.js:57
+#: src/blocks/header/templates/multi-row-2.js:141
+#: src/blocks/header/templates/multi-row-2.js:315
+#: src/blocks/header/templates/multi-row-2.js:406
+#: src/blocks/header/templates/multi-row-2.js:506
+#: src/blocks/header/templates/multi-row-2.js:548
+#: src/blocks/header/templates/multi-row-3.js:61
+#: src/blocks/header/templates/multi-row-3.js:188
+#: src/blocks/header/templates/multi-row-3.js:338
+#: src/blocks/header/templates/multi-row-3.js:419
+#: src/blocks/header/templates/multi-row-3.js:496
+#: src/blocks/header/templates/multi-row-3.js:549
+#: src/blocks/header/templates/multi-row-4.js:45
+#: src/blocks/header/templates/multi-row-4.js:137
+#: src/blocks/header/templates/multi-row-4.js:268
+#: src/blocks/header/templates/multi-row-4.js:358
+#: src/blocks/header/templates/multi-row-4.js:407
+#: src/blocks/header/templates/multi-row-4.js:478
+#: src/blocks/header/templates/multi-row-5.js:68
+#: src/blocks/header/templates/multi-row-5.js:207
+#: src/blocks/header/templates/multi-row-5.js:354
+#: src/blocks/header/templates/multi-row-5.js:437
+#: src/blocks/header/templates/multi-row-5.js:525
+#: src/blocks/header/templates/multi-row-5.js:576
 #: src/blocks/image/image.js:1810
 #: src/blocks/infobox/edit.js:825
 #: src/blocks/infobox/edit.js:2045
@@ -5112,10 +5326,10 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
+#. translators: %s: tab name, e.g. "General".
 #: packages/components/src/inspector-control-tabs/index.js:85
-#: src/blocks/tabs/block.js:56
-#: src/blocks/tabs/tab/block.js:38
-msgid "tab"
+#, js-format
+msgid "%s tab"
 msgstr ""
 
 #: packages/components/src/links/external-link-control/index.js:66
@@ -5133,6 +5347,12 @@ msgstr ""
 
 #: packages/components/src/links/external-link-control/index.js:109
 #: packages/components/src/links/input-search/index.js:329
+#: src/blocks/advanced-form/edit-inner.js:329
+#: src/blocks/advanced-form/edit-inner.js:352
+#: src/blocks/advanced-form/edit-inner.js:383
+#: src/blocks/advanced-form/edit-inner.js:427
+#: src/blocks/advanced-form/edit-inner.js:455
+#: src/blocks/advanced-form/edit-inner.js:497
 #: src/blocks/form/edit.js:5309
 msgid "Submit"
 msgstr ""
@@ -5242,6 +5462,108 @@ msgstr ""
 #: src/blocks/header/constants.js:143
 #: src/blocks/header/constants.js:163
 #: src/blocks/header/constants.js:184
+#: src/blocks/header/templates/basic-1.js:96
+#: src/blocks/header/templates/basic-1.js:176
+#: src/blocks/header/templates/basic-1.js:309
+#: src/blocks/header/templates/basic-1.js:350
+#: src/blocks/header/templates/basic-1.js:409
+#: src/blocks/header/templates/basic-1.js:442
+#: src/blocks/header/templates/basic-2.js:98
+#: src/blocks/header/templates/basic-2.js:180
+#: src/blocks/header/templates/basic-2.js:297
+#: src/blocks/header/templates/basic-2.js:343
+#: src/blocks/header/templates/basic-2.js:389
+#: src/blocks/header/templates/basic-2.js:422
+#: src/blocks/header/templates/basic-3.js:103
+#: src/blocks/header/templates/basic-3.js:202
+#: src/blocks/header/templates/basic-3.js:311
+#: src/blocks/header/templates/basic-3.js:352
+#: src/blocks/header/templates/basic-3.js:398
+#: src/blocks/header/templates/basic-3.js:445
+#: src/blocks/header/templates/basic-4.js:97
+#: src/blocks/header/templates/basic-4.js:183
+#: src/blocks/header/templates/basic-4.js:258
+#: src/blocks/header/templates/basic-4.js:299
+#: src/blocks/header/templates/basic-4.js:332
+#: src/blocks/header/templates/basic-4.js:365
+#: src/blocks/header/templates/basic-5.js:109
+#: src/blocks/header/templates/basic-5.js:189
+#: src/blocks/header/templates/basic-5.js:295
+#: src/blocks/header/templates/basic-5.js:336
+#: src/blocks/header/templates/basic-5.js:378
+#: src/blocks/header/templates/basic-5.js:444
+#: src/blocks/header/templates/basic-6.js:136
+#: src/blocks/header/templates/basic-6.js:290
+#: src/blocks/header/templates/basic-6.js:457
+#: src/blocks/header/templates/basic-6.js:498
+#: src/blocks/header/templates/basic-6.js:540
+#: src/blocks/header/templates/basic-6.js:666
+#: src/blocks/header/templates/basic-7.js:97
+#: src/blocks/header/templates/basic-7.js:189
+#: src/blocks/header/templates/basic-7.js:280
+#: src/blocks/header/templates/basic-7.js:321
+#: src/blocks/header/templates/basic-7.js:363
+#: src/blocks/header/templates/basic-7.js:417
+#: src/blocks/header/templates/blank.js:82
+#: src/blocks/header/templates/blank.js:153
+#: src/blocks/header/templates/blank.js:228
+#: src/blocks/header/templates/blank.js:269
+#: src/blocks/header/templates/blank.js:306
+#: src/blocks/header/templates/blank.js:339
+#: src/blocks/header/templates/mobile-1.js:95
+#: src/blocks/header/templates/mobile-1.js:175
+#: src/blocks/header/templates/mobile-1.js:308
+#: src/blocks/header/templates/mobile-1.js:349
+#: src/blocks/header/templates/mobile-1.js:408
+#: src/blocks/header/templates/mobile-1.js:441
+#: src/blocks/header/templates/mobile-2.js:95
+#: src/blocks/header/templates/mobile-2.js:176
+#: src/blocks/header/templates/mobile-2.js:293
+#: src/blocks/header/templates/mobile-2.js:334
+#: src/blocks/header/templates/mobile-2.js:380
+#: src/blocks/header/templates/mobile-2.js:426
+#: src/blocks/header/templates/mobile-3.js:95
+#: src/blocks/header/templates/mobile-3.js:179
+#: src/blocks/header/templates/mobile-3.js:253
+#: src/blocks/header/templates/mobile-3.js:294
+#: src/blocks/header/templates/mobile-3.js:351
+#: src/blocks/header/templates/mobile-3.js:383
+#: src/blocks/header/templates/mobile-4.js:95
+#: src/blocks/header/templates/mobile-4.js:249
+#: src/blocks/header/templates/mobile-4.js:416
+#: src/blocks/header/templates/mobile-4.js:457
+#: src/blocks/header/templates/mobile-4.js:516
+#: src/blocks/header/templates/mobile-4.js:567
+#: src/blocks/header/templates/multi-row-1.js:126
+#: src/blocks/header/templates/multi-row-1.js:213
+#: src/blocks/header/templates/multi-row-1.js:360
+#: src/blocks/header/templates/multi-row-1.js:401
+#: src/blocks/header/templates/multi-row-1.js:455
+#: src/blocks/header/templates/multi-row-1.js:499
+#: src/blocks/header/templates/multi-row-2.js:103
+#: src/blocks/header/templates/multi-row-2.js:192
+#: src/blocks/header/templates/multi-row-2.js:361
+#: src/blocks/header/templates/multi-row-2.js:464
+#: src/blocks/header/templates/multi-row-2.js:533
+#: src/blocks/header/templates/multi-row-2.js:566
+#: src/blocks/header/templates/multi-row-3.js:151
+#: src/blocks/header/templates/multi-row-3.js:244
+#: src/blocks/header/templates/multi-row-3.js:384
+#: src/blocks/header/templates/multi-row-3.js:478
+#: src/blocks/header/templates/multi-row-3.js:522
+#: src/blocks/header/templates/multi-row-3.js:567
+#: src/blocks/header/templates/multi-row-4.js:99
+#: src/blocks/header/templates/multi-row-4.js:188
+#: src/blocks/header/templates/multi-row-4.js:322
+#: src/blocks/header/templates/multi-row-4.js:376
+#: src/blocks/header/templates/multi-row-4.js:434
+#: src/blocks/header/templates/multi-row-4.js:498
+#: src/blocks/header/templates/multi-row-5.js:158
+#: src/blocks/header/templates/multi-row-5.js:258
+#: src/blocks/header/templates/multi-row-5.js:400
+#: src/blocks/header/templates/multi-row-5.js:497
+#: src/blocks/header/templates/multi-row-5.js:551
+#: src/blocks/header/templates/multi-row-5.js:594
 #: src/blocks/image/image.js:1804
 #: src/blocks/infobox/edit.js:2046
 #: src/blocks/infobox/edit.js:2060
@@ -5346,6 +5668,7 @@ msgstr ""
 #: packages/components/src/post-selector-checkbox/index.js:216
 #: src/blocks/advancedgallery/edit.js:1670
 #: src/blocks/testimonials/edit.js:2333
+#: src/plugins/design-library/index.js:153
 msgid "All"
 msgstr ""
 
@@ -5421,6 +5744,108 @@ msgstr ""
 #: src/blocks/header/constants.js:138
 #: src/blocks/header/constants.js:158
 #: src/blocks/header/constants.js:179
+#: src/blocks/header/templates/basic-1.js:70
+#: src/blocks/header/templates/basic-1.js:150
+#: src/blocks/header/templates/basic-1.js:283
+#: src/blocks/header/templates/basic-1.js:341
+#: src/blocks/header/templates/basic-1.js:391
+#: src/blocks/header/templates/basic-1.js:433
+#: src/blocks/header/templates/basic-2.js:72
+#: src/blocks/header/templates/basic-2.js:154
+#: src/blocks/header/templates/basic-2.js:271
+#: src/blocks/header/templates/basic-2.js:334
+#: src/blocks/header/templates/basic-2.js:380
+#: src/blocks/header/templates/basic-2.js:413
+#: src/blocks/header/templates/basic-3.js:77
+#: src/blocks/header/templates/basic-3.js:161
+#: src/blocks/header/templates/basic-3.js:285
+#: src/blocks/header/templates/basic-3.js:343
+#: src/blocks/header/templates/basic-3.js:380
+#: src/blocks/header/templates/basic-3.js:436
+#: src/blocks/header/templates/basic-4.js:71
+#: src/blocks/header/templates/basic-4.js:144
+#: src/blocks/header/templates/basic-4.js:232
+#: src/blocks/header/templates/basic-4.js:290
+#: src/blocks/header/templates/basic-4.js:323
+#: src/blocks/header/templates/basic-4.js:356
+#: src/blocks/header/templates/basic-5.js:83
+#: src/blocks/header/templates/basic-5.js:163
+#: src/blocks/header/templates/basic-5.js:269
+#: src/blocks/header/templates/basic-5.js:327
+#: src/blocks/header/templates/basic-5.js:369
+#: src/blocks/header/templates/basic-5.js:435
+#: src/blocks/header/templates/basic-6.js:110
+#: src/blocks/header/templates/basic-6.js:256
+#: src/blocks/header/templates/basic-6.js:431
+#: src/blocks/header/templates/basic-6.js:489
+#: src/blocks/header/templates/basic-6.js:531
+#: src/blocks/header/templates/basic-6.js:657
+#: src/blocks/header/templates/basic-7.js:71
+#: src/blocks/header/templates/basic-7.js:155
+#: src/blocks/header/templates/basic-7.js:254
+#: src/blocks/header/templates/basic-7.js:312
+#: src/blocks/header/templates/basic-7.js:354
+#: src/blocks/header/templates/basic-7.js:408
+#: src/blocks/header/templates/blank.js:56
+#: src/blocks/header/templates/blank.js:127
+#: src/blocks/header/templates/blank.js:202
+#: src/blocks/header/templates/blank.js:260
+#: src/blocks/header/templates/blank.js:297
+#: src/blocks/header/templates/blank.js:330
+#: src/blocks/header/templates/mobile-1.js:69
+#: src/blocks/header/templates/mobile-1.js:149
+#: src/blocks/header/templates/mobile-1.js:282
+#: src/blocks/header/templates/mobile-1.js:340
+#: src/blocks/header/templates/mobile-1.js:390
+#: src/blocks/header/templates/mobile-1.js:432
+#: src/blocks/header/templates/mobile-2.js:69
+#: src/blocks/header/templates/mobile-2.js:150
+#: src/blocks/header/templates/mobile-2.js:267
+#: src/blocks/header/templates/mobile-2.js:325
+#: src/blocks/header/templates/mobile-2.js:371
+#: src/blocks/header/templates/mobile-2.js:417
+#: src/blocks/header/templates/mobile-3.js:69
+#: src/blocks/header/templates/mobile-3.js:156
+#: src/blocks/header/templates/mobile-3.js:227
+#: src/blocks/header/templates/mobile-3.js:285
+#: src/blocks/header/templates/mobile-3.js:336
+#: src/blocks/header/templates/mobile-3.js:374
+#: src/blocks/header/templates/mobile-4.js:69
+#: src/blocks/header/templates/mobile-4.js:215
+#: src/blocks/header/templates/mobile-4.js:390
+#: src/blocks/header/templates/mobile-4.js:448
+#: src/blocks/header/templates/mobile-4.js:498
+#: src/blocks/header/templates/mobile-4.js:558
+#: src/blocks/header/templates/multi-row-1.js:92
+#: src/blocks/header/templates/multi-row-1.js:187
+#: src/blocks/header/templates/multi-row-1.js:274
+#: src/blocks/header/templates/multi-row-1.js:392
+#: src/blocks/header/templates/multi-row-1.js:446
+#: src/blocks/header/templates/multi-row-1.js:490
+#: src/blocks/header/templates/multi-row-2.js:77
+#: src/blocks/header/templates/multi-row-2.js:169
+#: src/blocks/header/templates/multi-row-2.js:335
+#: src/blocks/header/templates/multi-row-2.js:455
+#: src/blocks/header/templates/multi-row-2.js:515
+#: src/blocks/header/templates/multi-row-2.js:557
+#: src/blocks/header/templates/multi-row-3.js:81
+#: src/blocks/header/templates/multi-row-3.js:213
+#: src/blocks/header/templates/multi-row-3.js:358
+#: src/blocks/header/templates/multi-row-3.js:428
+#: src/blocks/header/templates/multi-row-3.js:513
+#: src/blocks/header/templates/multi-row-3.js:558
+#: src/blocks/header/templates/multi-row-4.js:73
+#: src/blocks/header/templates/multi-row-4.js:165
+#: src/blocks/header/templates/multi-row-4.js:296
+#: src/blocks/header/templates/multi-row-4.js:367
+#: src/blocks/header/templates/multi-row-4.js:416
+#: src/blocks/header/templates/multi-row-4.js:487
+#: src/blocks/header/templates/multi-row-5.js:88
+#: src/blocks/header/templates/multi-row-5.js:235
+#: src/blocks/header/templates/multi-row-5.js:374
+#: src/blocks/header/templates/multi-row-5.js:446
+#: src/blocks/header/templates/multi-row-5.js:542
+#: src/blocks/header/templates/multi-row-5.js:585
 #: src/blocks/identity/edit.js:399
 #: src/blocks/navigation/edit-inner.js:1709
 #: src/blocks/navigation/edit-inner.js:1715
@@ -5769,34 +6194,34 @@ msgstr ""
 msgid "2XL"
 msgstr ""
 
-#: src/assets/js/fxb-countdown.js:355
-#: src/assets/js/fxb-countdown.js:381
+#: src/assets/js/fxb-countdown.js:366
+#: src/assets/js/fxb-countdown.js:392
 msgid "Countdown timer has ended."
 msgstr ""
 
-#: src/assets/js/fxb-countdown.js:385
+#: src/assets/js/fxb-countdown.js:396
 msgid "Countdown timer has ended. New content is now available."
 msgstr ""
 
-#: src/assets/js/fxb-countdown.js:703
+#: src/assets/js/fxb-countdown.js:714
 #: src/blocks/countdown/edit.js:2124
 #: src/blocks/countdown/save.js:58
 msgid "Pause countdown timer"
 msgstr ""
 
-#: src/assets/js/fxb-countdown.js:704
+#: src/assets/js/fxb-countdown.js:715
 #: src/blocks/countdown/edit.js:2126
 #: src/blocks/countdown/save.js:59
 msgid "Pause countdown"
 msgstr ""
 
-#: src/assets/js/fxb-countdown.js:733
-#: src/assets/js/fxb-countdown.js:836
+#: src/assets/js/fxb-countdown.js:744
+#: src/assets/js/fxb-countdown.js:847
 msgid "Resume countdown timer"
 msgstr ""
 
-#: src/assets/js/fxb-countdown.js:734
-#: src/assets/js/fxb-countdown.js:837
+#: src/assets/js/fxb-countdown.js:745
+#: src/assets/js/fxb-countdown.js:848
 msgid "Resume countdown"
 msgstr ""
 
@@ -6126,7 +6551,7 @@ msgstr ""
 #: src/blocks/testimonials/edit.js:3439
 #: src/blocks/testimonials/edit.js:3572
 #: src/blocks/vector/edit.js:291
-#: src/blocks/videopopup/edit.js:944
+#: src/blocks/videopopup/edit.js:952
 #: src/plugins/block-globals/typography.js:221
 #: src/style-library/presets/advancedheading-preset.js:362
 #: src/style-library/presets/button-preset.js:298
@@ -6183,7 +6608,7 @@ msgstr ""
 #: src/blocks/tableofcontents/edit.js:908
 #: src/blocks/tabs/edit.js:2356
 #: src/blocks/vector/edit.js:251
-#: src/blocks/videopopup/edit.js:978
+#: src/blocks/videopopup/edit.js:986
 msgid "Max Width"
 msgstr ""
 
@@ -6411,6 +6836,7 @@ msgid "Skip (blank)"
 msgstr ""
 
 #: src/blocks/advanced-form/components/form-title/index.js:45
+#: src/blocks/header/templates/multi-row-3.js:275
 msgid "Contact"
 msgstr ""
 
@@ -6419,6 +6845,7 @@ msgid "Contact With Options"
 msgstr ""
 
 #: src/blocks/advanced-form/components/form-title/index.js:54
+#: src/blocks/header/templates/multi-row-2.js:231
 msgid "Subscribe"
 msgstr ""
 
@@ -6571,7 +6998,7 @@ msgstr ""
 #: src/blocks/testimonials/edit.js:2770
 #: src/blocks/testimonials/edit.js:3587
 #: src/blocks/vector/edit.js:308
-#: src/blocks/videopopup/edit.js:961
+#: src/blocks/videopopup/edit.js:969
 #: src/plugins/block-globals/typography.js:249
 #: src/style-library/presets/button-preset.js:310
 msgid "Margin"
@@ -6905,6 +7332,19 @@ msgstr ""
 
 #: src/blocks/advanced-form/edit-inner.js:301
 msgid "captcha"
+msgstr ""
+
+#: src/blocks/advanced-form/edit-inner.js:380
+#: src/blocks/advanced-form/edit-inner.js:424
+msgid "Message"
+msgstr ""
+
+#: src/blocks/advanced-form/edit-inner.js:416
+msgid "Option 1"
+msgstr ""
+
+#: src/blocks/advanced-form/edit-inner.js:419
+msgid "Option 2"
 msgstr ""
 
 #: src/blocks/advanced-form/edit-inner.js:631
@@ -7693,6 +8133,7 @@ msgstr ""
 msgid "Flux Form file upload"
 msgstr ""
 
+#: src/blocks/advanced-form/fields/hidden/edit.js:144
 #: src/blocks/advanced-form/fields/hidden/index.js:21
 msgid "Hidden Field"
 msgstr ""
@@ -8177,7 +8618,7 @@ msgstr ""
 #: src/blocks/image/image.js:943
 #: src/blocks/infobox/edit.js:2608
 #: src/blocks/testimonials/edit.js:3272
-#: src/blocks/videopopup/edit.js:869
+#: src/blocks/videopopup/edit.js:877
 msgid "Landscape 4:3"
 msgstr ""
 
@@ -8228,7 +8669,7 @@ msgstr ""
 #: src/blocks/image/image.js:967
 #: src/blocks/infobox/edit.js:2632
 #: src/blocks/testimonials/edit.js:3276
-#: src/blocks/videopopup/edit.js:867
+#: src/blocks/videopopup/edit.js:875
 msgid "Portrait 3:4"
 msgstr ""
 
@@ -8247,7 +8688,7 @@ msgstr ""
 #: src/blocks/image/image.js:975
 #: src/blocks/infobox/edit.js:2640
 #: src/blocks/testimonials/edit.js:3284
-#: src/blocks/videopopup/edit.js:866
+#: src/blocks/videopopup/edit.js:874
 msgid "Square 1:1"
 msgstr ""
 
@@ -8755,6 +9196,10 @@ msgstr ""
 msgid "Text Shadow Settings"
 msgstr ""
 
+#: src/blocks/advancedheading/edit.js:2280
+msgid "Enable Text Shadow"
+msgstr ""
+
 #: src/blocks/advancedheading/edit.js:2288
 msgid "Text Shadow"
 msgstr ""
@@ -9205,6 +9650,14 @@ msgid "Link entire section"
 msgstr ""
 
 #: src/blocks/column/edit.js:2469
+#: src/blocks/navigation/templates/mega-4-nav-2.js:46
+#: src/blocks/navigation/templates/mega-4-nav-2.js:112
+#: src/blocks/navigation/templates/mega-4-nav-2.js:178
+#: src/blocks/navigation/templates/mega-4-nav-2.js:244
+#: src/blocks/navigation/templates/mega-4-nav-3.js:46
+#: src/blocks/navigation/templates/mega-4-nav-3.js:112
+#: src/blocks/navigation/templates/mega-4-nav-3.js:178
+#: src/blocks/navigation/templates/mega-4-nav-3.js:244
 msgid "Link Title"
 msgstr ""
 
@@ -10351,6 +10804,15 @@ msgstr ""
 msgid "Icon Line Width"
 msgstr ""
 
+#: src/blocks/header/children/off-canvas-trigger/edit.js:191
+msgid "Trigger Colors"
+msgstr ""
+
+#: src/blocks/header/children/off-canvas-trigger/edit.js:212
+#: src/blocks/header/children/off-canvas/edit.js:505
+msgid "Hover Colors"
+msgstr ""
+
 #: src/blocks/header/children/off-canvas-trigger/index.js:14
 msgctxt "block title"
 msgid "Off Canvas Trigger"
@@ -10408,6 +10870,16 @@ msgstr ""
 
 #: src/blocks/header/children/off-canvas/edit.js:397
 msgid "Close Trigger Settings"
+msgstr ""
+
+#: src/blocks/header/children/off-canvas/edit.js:444
+#: src/blocks/header/children/off-canvas/edit.js:485
+#: src/blocks/navigation/edit-inner.js:1576
+#: src/blocks/navigation/edit-inner.js:1599
+#: src/blocks/navigation/edit-inner.js:1977
+#: src/blocks/navigation/edit-inner.js:2187
+#: src/blocks/navigation/edit-inner.js:2315
+msgid "Colors"
 msgstr ""
 
 #: src/blocks/header/children/off-canvas/edit.js:477
@@ -10612,6 +11084,8 @@ msgid "Multi Row 5"
 msgstr ""
 
 #: src/blocks/header/components/onboard/desktop.js:74
+#: src/blocks/header/edit.js:323
+#: src/blocks/header/edit.js:430
 msgid "Desktop Layout"
 msgstr ""
 
@@ -10637,6 +11111,7 @@ msgid "Create blank desktop header."
 msgstr ""
 
 #: src/blocks/header/components/onboard/existing.js:48
+#: src/blocks/header/edit.js:422
 msgid "Header Selection"
 msgstr ""
 
@@ -10683,6 +11158,8 @@ msgstr ""
 
 #: src/blocks/header/components/onboard/name.js:31
 #: src/blocks/header/components/onboard/name.js:34
+#: src/blocks/header/edit.js:317
+#: src/blocks/header/edit.js:425
 msgid "Header Name"
 msgstr ""
 
@@ -10737,41 +11214,347 @@ msgstr ""
 #: src/blocks/header/constants.js:6
 #: src/blocks/header/constants.js:130
 #: src/blocks/header/edit-inner.js:626
+#: src/blocks/header/templates/basic-1.js:34
+#: src/blocks/header/templates/basic-1.js:324
+#: src/blocks/header/templates/basic-2.js:36
+#: src/blocks/header/templates/basic-2.js:312
+#: src/blocks/header/templates/basic-3.js:41
+#: src/blocks/header/templates/basic-3.js:326
+#: src/blocks/header/templates/basic-4.js:35
+#: src/blocks/header/templates/basic-4.js:273
+#: src/blocks/header/templates/basic-5.js:47
+#: src/blocks/header/templates/basic-5.js:310
+#: src/blocks/header/templates/basic-6.js:74
+#: src/blocks/header/templates/basic-6.js:472
+#: src/blocks/header/templates/basic-7.js:35
+#: src/blocks/header/templates/basic-7.js:295
+#: src/blocks/header/templates/blank.js:20
+#: src/blocks/header/templates/blank.js:243
+#: src/blocks/header/templates/mobile-1.js:33
+#: src/blocks/header/templates/mobile-1.js:323
+#: src/blocks/header/templates/mobile-2.js:33
+#: src/blocks/header/templates/mobile-2.js:308
+#: src/blocks/header/templates/mobile-3.js:33
+#: src/blocks/header/templates/mobile-3.js:268
+#: src/blocks/header/templates/mobile-4.js:33
+#: src/blocks/header/templates/mobile-4.js:431
+#: src/blocks/header/templates/multi-row-1.js:59
+#: src/blocks/header/templates/multi-row-1.js:375
+#: src/blocks/header/templates/multi-row-2.js:41
+#: src/blocks/header/templates/multi-row-2.js:398
+#: src/blocks/header/templates/multi-row-3.js:45
+#: src/blocks/header/templates/multi-row-3.js:411
+#: src/blocks/header/templates/multi-row-4.js:32
+#: src/blocks/header/templates/multi-row-4.js:350
+#: src/blocks/header/templates/multi-row-5.js:52
+#: src/blocks/header/templates/multi-row-5.js:429
 msgid "Top Row"
 msgstr ""
 
 #: src/blocks/header/constants.js:9
 #: src/blocks/header/constants.js:50
 #: src/blocks/header/constants.js:92
+#: src/blocks/header/templates/basic-1.js:42
+#: src/blocks/header/templates/basic-1.js:117
+#: src/blocks/header/templates/basic-1.js:255
+#: src/blocks/header/templates/basic-2.js:44
+#: src/blocks/header/templates/basic-2.js:121
+#: src/blocks/header/templates/basic-2.js:243
+#: src/blocks/header/templates/basic-3.js:49
+#: src/blocks/header/templates/basic-3.js:127
+#: src/blocks/header/templates/basic-3.js:257
+#: src/blocks/header/templates/basic-4.js:43
+#: src/blocks/header/templates/basic-4.js:119
+#: src/blocks/header/templates/basic-4.js:204
+#: src/blocks/header/templates/basic-5.js:55
+#: src/blocks/header/templates/basic-5.js:130
+#: src/blocks/header/templates/basic-5.js:241
+#: src/blocks/header/templates/basic-6.js:82
+#: src/blocks/header/templates/basic-6.js:170
+#: src/blocks/header/templates/basic-6.js:403
+#: src/blocks/header/templates/basic-7.js:43
+#: src/blocks/header/templates/basic-7.js:120
+#: src/blocks/header/templates/basic-7.js:226
+#: src/blocks/header/templates/blank.js:28
+#: src/blocks/header/templates/blank.js:103
+#: src/blocks/header/templates/blank.js:174
+#: src/blocks/header/templates/mobile-1.js:41
+#: src/blocks/header/templates/mobile-1.js:116
+#: src/blocks/header/templates/mobile-1.js:254
+#: src/blocks/header/templates/mobile-2.js:41
+#: src/blocks/header/templates/mobile-2.js:117
+#: src/blocks/header/templates/mobile-2.js:239
+#: src/blocks/header/templates/mobile-3.js:41
+#: src/blocks/header/templates/mobile-3.js:118
+#: src/blocks/header/templates/mobile-3.js:199
+#: src/blocks/header/templates/mobile-4.js:41
+#: src/blocks/header/templates/mobile-4.js:129
+#: src/blocks/header/templates/mobile-4.js:362
+#: src/blocks/header/templates/multi-row-1.js:67
+#: src/blocks/header/templates/multi-row-1.js:159
+#: src/blocks/header/templates/multi-row-1.js:246
+#: src/blocks/header/templates/multi-row-2.js:49
+#: src/blocks/header/templates/multi-row-2.js:136
+#: src/blocks/header/templates/multi-row-2.js:307
+#: src/blocks/header/templates/multi-row-3.js:53
+#: src/blocks/header/templates/multi-row-3.js:183
+#: src/blocks/header/templates/multi-row-3.js:330
+#: src/blocks/header/templates/multi-row-4.js:40
+#: src/blocks/header/templates/multi-row-4.js:132
+#: src/blocks/header/templates/multi-row-4.js:263
+#: src/blocks/header/templates/multi-row-5.js:60
+#: src/blocks/header/templates/multi-row-5.js:202
+#: src/blocks/header/templates/multi-row-5.js:346
 msgid "Left Section"
 msgstr ""
 
 #: src/blocks/header/constants.js:18
 #: src/blocks/header/constants.js:59
 #: src/blocks/header/constants.js:101
+#: src/blocks/header/templates/basic-1.js:59
+#: src/blocks/header/templates/basic-1.js:139
+#: src/blocks/header/templates/basic-1.js:272
+#: src/blocks/header/templates/basic-2.js:61
+#: src/blocks/header/templates/basic-2.js:143
+#: src/blocks/header/templates/basic-2.js:260
+#: src/blocks/header/templates/basic-3.js:66
+#: src/blocks/header/templates/basic-3.js:144
+#: src/blocks/header/templates/basic-3.js:274
+#: src/blocks/header/templates/basic-4.js:60
+#: src/blocks/header/templates/basic-4.js:136
+#: src/blocks/header/templates/basic-4.js:221
+#: src/blocks/header/templates/basic-5.js:72
+#: src/blocks/header/templates/basic-5.js:152
+#: src/blocks/header/templates/basic-5.js:258
+#: src/blocks/header/templates/basic-6.js:99
+#: src/blocks/header/templates/basic-6.js:248
+#: src/blocks/header/templates/basic-6.js:420
+#: src/blocks/header/templates/basic-7.js:60
+#: src/blocks/header/templates/basic-7.js:147
+#: src/blocks/header/templates/basic-7.js:243
+#: src/blocks/header/templates/blank.js:45
+#: src/blocks/header/templates/blank.js:116
+#: src/blocks/header/templates/blank.js:191
+#: src/blocks/header/templates/mobile-1.js:58
+#: src/blocks/header/templates/mobile-1.js:138
+#: src/blocks/header/templates/mobile-1.js:271
+#: src/blocks/header/templates/mobile-2.js:58
+#: src/blocks/header/templates/mobile-2.js:139
+#: src/blocks/header/templates/mobile-2.js:256
+#: src/blocks/header/templates/mobile-3.js:58
+#: src/blocks/header/templates/mobile-3.js:145
+#: src/blocks/header/templates/mobile-3.js:216
+#: src/blocks/header/templates/mobile-4.js:58
+#: src/blocks/header/templates/mobile-4.js:207
+#: src/blocks/header/templates/mobile-4.js:379
+#: src/blocks/header/templates/multi-row-1.js:84
+#: src/blocks/header/templates/multi-row-1.js:176
+#: src/blocks/header/templates/multi-row-1.js:263
+#: src/blocks/header/templates/multi-row-2.js:66
+#: src/blocks/header/templates/multi-row-2.js:158
+#: src/blocks/header/templates/multi-row-2.js:324
+#: src/blocks/header/templates/multi-row-3.js:70
+#: src/blocks/header/templates/multi-row-3.js:205
+#: src/blocks/header/templates/multi-row-3.js:347
+#: src/blocks/header/templates/multi-row-4.js:62
+#: src/blocks/header/templates/multi-row-4.js:154
+#: src/blocks/header/templates/multi-row-4.js:285
+#: src/blocks/header/templates/multi-row-5.js:77
+#: src/blocks/header/templates/multi-row-5.js:224
+#: src/blocks/header/templates/multi-row-5.js:363
 msgid "Center Left"
 msgstr ""
 
 #: src/blocks/header/constants.js:29
 #: src/blocks/header/constants.js:70
 #: src/blocks/header/constants.js:112
+#: src/blocks/header/templates/basic-1.js:79
+#: src/blocks/header/templates/basic-1.js:159
+#: src/blocks/header/templates/basic-1.js:292
+#: src/blocks/header/templates/basic-2.js:81
+#: src/blocks/header/templates/basic-2.js:163
+#: src/blocks/header/templates/basic-2.js:280
+#: src/blocks/header/templates/basic-3.js:86
+#: src/blocks/header/templates/basic-3.js:179
+#: src/blocks/header/templates/basic-3.js:294
+#: src/blocks/header/templates/basic-4.js:80
+#: src/blocks/header/templates/basic-4.js:166
+#: src/blocks/header/templates/basic-4.js:241
+#: src/blocks/header/templates/basic-5.js:92
+#: src/blocks/header/templates/basic-5.js:172
+#: src/blocks/header/templates/basic-5.js:278
+#: src/blocks/header/templates/basic-6.js:119
+#: src/blocks/header/templates/basic-6.js:273
+#: src/blocks/header/templates/basic-6.js:440
+#: src/blocks/header/templates/basic-7.js:80
+#: src/blocks/header/templates/basic-7.js:172
+#: src/blocks/header/templates/basic-7.js:263
+#: src/blocks/header/templates/blank.js:65
+#: src/blocks/header/templates/blank.js:136
+#: src/blocks/header/templates/blank.js:211
+#: src/blocks/header/templates/mobile-1.js:78
+#: src/blocks/header/templates/mobile-1.js:158
+#: src/blocks/header/templates/mobile-1.js:291
+#: src/blocks/header/templates/mobile-2.js:78
+#: src/blocks/header/templates/mobile-2.js:159
+#: src/blocks/header/templates/mobile-2.js:276
+#: src/blocks/header/templates/mobile-3.js:78
+#: src/blocks/header/templates/mobile-3.js:165
+#: src/blocks/header/templates/mobile-3.js:236
+#: src/blocks/header/templates/mobile-4.js:78
+#: src/blocks/header/templates/mobile-4.js:232
+#: src/blocks/header/templates/mobile-4.js:399
+#: src/blocks/header/templates/multi-row-1.js:109
+#: src/blocks/header/templates/multi-row-1.js:196
+#: src/blocks/header/templates/multi-row-1.js:343
+#: src/blocks/header/templates/multi-row-2.js:86
+#: src/blocks/header/templates/multi-row-2.js:178
+#: src/blocks/header/templates/multi-row-2.js:344
+#: src/blocks/header/templates/multi-row-3.js:134
+#: src/blocks/header/templates/multi-row-3.js:230
+#: src/blocks/header/templates/multi-row-3.js:367
+#: src/blocks/header/templates/multi-row-4.js:82
+#: src/blocks/header/templates/multi-row-4.js:174
+#: src/blocks/header/templates/multi-row-4.js:305
+#: src/blocks/header/templates/multi-row-5.js:141
+#: src/blocks/header/templates/multi-row-5.js:244
+#: src/blocks/header/templates/multi-row-5.js:383
 msgid "Right Section"
 msgstr ""
 
 #: src/blocks/header/constants.js:33
 #: src/blocks/header/constants.js:74
 #: src/blocks/header/constants.js:116
+#: src/blocks/header/templates/basic-1.js:87
+#: src/blocks/header/templates/basic-1.js:167
+#: src/blocks/header/templates/basic-1.js:300
+#: src/blocks/header/templates/basic-2.js:89
+#: src/blocks/header/templates/basic-2.js:171
+#: src/blocks/header/templates/basic-2.js:288
+#: src/blocks/header/templates/basic-3.js:94
+#: src/blocks/header/templates/basic-3.js:187
+#: src/blocks/header/templates/basic-3.js:302
+#: src/blocks/header/templates/basic-4.js:88
+#: src/blocks/header/templates/basic-4.js:174
+#: src/blocks/header/templates/basic-4.js:249
+#: src/blocks/header/templates/basic-5.js:100
+#: src/blocks/header/templates/basic-5.js:180
+#: src/blocks/header/templates/basic-5.js:286
+#: src/blocks/header/templates/basic-6.js:127
+#: src/blocks/header/templates/basic-6.js:281
+#: src/blocks/header/templates/basic-6.js:448
+#: src/blocks/header/templates/basic-7.js:88
+#: src/blocks/header/templates/basic-7.js:180
+#: src/blocks/header/templates/basic-7.js:271
+#: src/blocks/header/templates/blank.js:73
+#: src/blocks/header/templates/blank.js:144
+#: src/blocks/header/templates/blank.js:219
+#: src/blocks/header/templates/mobile-1.js:86
+#: src/blocks/header/templates/mobile-1.js:166
+#: src/blocks/header/templates/mobile-1.js:299
+#: src/blocks/header/templates/mobile-2.js:86
+#: src/blocks/header/templates/mobile-2.js:167
+#: src/blocks/header/templates/mobile-2.js:284
+#: src/blocks/header/templates/mobile-3.js:86
+#: src/blocks/header/templates/mobile-3.js:173
+#: src/blocks/header/templates/mobile-3.js:244
+#: src/blocks/header/templates/mobile-4.js:86
+#: src/blocks/header/templates/mobile-4.js:240
+#: src/blocks/header/templates/mobile-4.js:407
+#: src/blocks/header/templates/multi-row-1.js:117
+#: src/blocks/header/templates/multi-row-1.js:204
+#: src/blocks/header/templates/multi-row-1.js:351
+#: src/blocks/header/templates/multi-row-2.js:94
+#: src/blocks/header/templates/multi-row-2.js:186
+#: src/blocks/header/templates/multi-row-2.js:352
+#: src/blocks/header/templates/multi-row-3.js:142
+#: src/blocks/header/templates/multi-row-3.js:238
+#: src/blocks/header/templates/multi-row-3.js:375
+#: src/blocks/header/templates/multi-row-4.js:90
+#: src/blocks/header/templates/multi-row-4.js:182
+#: src/blocks/header/templates/multi-row-4.js:313
+#: src/blocks/header/templates/multi-row-5.js:149
+#: src/blocks/header/templates/multi-row-5.js:252
+#: src/blocks/header/templates/multi-row-5.js:391
 msgid "Center Right"
 msgstr ""
 
 #: src/blocks/header/constants.js:46
 #: src/blocks/header/constants.js:149
+#: src/blocks/header/templates/basic-1.js:109
+#: src/blocks/header/templates/basic-1.js:361
+#: src/blocks/header/templates/basic-2.js:113
+#: src/blocks/header/templates/basic-2.js:364
+#: src/blocks/header/templates/basic-3.js:119
+#: src/blocks/header/templates/basic-3.js:363
+#: src/blocks/header/templates/basic-4.js:111
+#: src/blocks/header/templates/basic-4.js:307
+#: src/blocks/header/templates/basic-5.js:122
+#: src/blocks/header/templates/basic-5.js:344
+#: src/blocks/header/templates/basic-6.js:162
+#: src/blocks/header/templates/basic-6.js:506
+#: src/blocks/header/templates/basic-7.js:112
+#: src/blocks/header/templates/basic-7.js:329
+#: src/blocks/header/templates/blank.js:95
+#: src/blocks/header/templates/blank.js:280
+#: src/blocks/header/templates/mobile-1.js:108
+#: src/blocks/header/templates/mobile-1.js:360
+#: src/blocks/header/templates/mobile-2.js:109
+#: src/blocks/header/templates/mobile-2.js:345
+#: src/blocks/header/templates/mobile-3.js:110
+#: src/blocks/header/templates/mobile-3.js:305
+#: src/blocks/header/templates/mobile-4.js:121
+#: src/blocks/header/templates/mobile-4.js:468
+#: src/blocks/header/templates/multi-row-1.js:151
+#: src/blocks/header/templates/multi-row-1.js:424
+#: src/blocks/header/templates/multi-row-2.js:128
+#: src/blocks/header/templates/multi-row-2.js:498
+#: src/blocks/header/templates/multi-row-3.js:175
+#: src/blocks/header/templates/multi-row-3.js:491
+#: src/blocks/header/templates/multi-row-4.js:124
+#: src/blocks/header/templates/multi-row-4.js:399
+#: src/blocks/header/templates/multi-row-5.js:194
+#: src/blocks/header/templates/multi-row-5.js:520
 msgid "Middle Row"
 msgstr ""
 
 #: src/blocks/header/constants.js:88
 #: src/blocks/header/constants.js:170
 #: src/blocks/header/edit-inner.js:627
+#: src/blocks/header/templates/basic-1.js:247
+#: src/blocks/header/templates/basic-1.js:417
+#: src/blocks/header/templates/basic-2.js:235
+#: src/blocks/header/templates/basic-2.js:397
+#: src/blocks/header/templates/basic-3.js:249
+#: src/blocks/header/templates/basic-3.js:420
+#: src/blocks/header/templates/basic-4.js:196
+#: src/blocks/header/templates/basic-4.js:340
+#: src/blocks/header/templates/basic-5.js:233
+#: src/blocks/header/templates/basic-5.js:419
+#: src/blocks/header/templates/basic-6.js:395
+#: src/blocks/header/templates/basic-6.js:640
+#: src/blocks/header/templates/basic-7.js:218
+#: src/blocks/header/templates/basic-7.js:391
+#: src/blocks/header/templates/blank.js:166
+#: src/blocks/header/templates/blank.js:314
+#: src/blocks/header/templates/mobile-1.js:246
+#: src/blocks/header/templates/mobile-1.js:416
+#: src/blocks/header/templates/mobile-2.js:231
+#: src/blocks/header/templates/mobile-2.js:401
+#: src/blocks/header/templates/mobile-3.js:191
+#: src/blocks/header/templates/mobile-3.js:358
+#: src/blocks/header/templates/mobile-4.js:354
+#: src/blocks/header/templates/mobile-4.js:541
+#: src/blocks/header/templates/multi-row-1.js:238
+#: src/blocks/header/templates/multi-row-1.js:474
+#: src/blocks/header/templates/multi-row-2.js:299
+#: src/blocks/header/templates/multi-row-2.js:541
+#: src/blocks/header/templates/multi-row-3.js:322
+#: src/blocks/header/templates/multi-row-3.js:542
+#: src/blocks/header/templates/multi-row-4.js:255
+#: src/blocks/header/templates/multi-row-4.js:470
+#: src/blocks/header/templates/multi-row-5.js:338
+#: src/blocks/header/templates/multi-row-5.js:568
 msgid "Bottom Row"
 msgstr ""
 
@@ -10910,6 +11693,12 @@ msgstr ""
 msgid "The selected header is in the trash."
 msgstr ""
 
+#: src/blocks/header/edit.js:324
+#: src/blocks/header/edit.js:431
+#: src/blocks/tabs/edit.js:767
+msgid "Mobile Layout"
+msgstr ""
+
 #: src/blocks/header/index.js:32
 msgctxt "block title"
 msgid "Header (Adv)"
@@ -10926,6 +11715,49 @@ msgstr ""
 
 #: src/blocks/header/index.js:34
 msgid "footer"
+msgstr ""
+
+#: src/blocks/header/templates/basic-1.js:184
+#: src/blocks/header/templates/mobile-1.js:183
+msgid "Call To Action"
+msgstr ""
+
+#: src/blocks/header/templates/basic-1.js:211
+#: src/blocks/header/templates/mobile-1.js:210
+msgid "Secondary"
+msgstr ""
+
+#: src/blocks/header/templates/basic-2.js:196
+#: src/blocks/header/templates/basic-6.js:195
+#: src/blocks/header/templates/mobile-2.js:192
+#: src/blocks/header/templates/mobile-4.js:154
+#: src/blocks/navigation-link/templates/mega-5.js:119
+#: src/blocks/navigation-link/templates/mega-6.js:255
+msgid "Call to Action"
+msgstr ""
+
+#: src/blocks/header/templates/basic-3.js:210
+msgid "Call to action"
+msgstr ""
+
+#: src/blocks/header/templates/basic-7.js:200
+msgid "Chat or support"
+msgstr ""
+
+#: src/blocks/header/templates/mobile-4.js:524
+msgid "Join Today"
+msgstr ""
+
+#: src/blocks/header/templates/multi-row-5.js:274
+msgid "Facebook"
+msgstr ""
+
+#: src/blocks/header/templates/multi-row-5.js:294
+msgid "Instagram"
+msgstr ""
+
+#: src/blocks/header/templates/multi-row-5.js:313
+msgid "Youtube"
 msgstr ""
 
 #: src/blocks/icon/block.js:42
@@ -11132,8 +11964,8 @@ msgstr ""
 #: src/blocks/infobox/edit.js:2527
 #: src/blocks/infobox/edit.js:2683
 #: src/blocks/testimonial/edit.js:155
-#: src/blocks/videopopup/edit.js:687
-#: src/blocks/videopopup/edit.js:827
+#: src/blocks/videopopup/edit.js:695
+#: src/blocks/videopopup/edit.js:835
 msgid "Image"
 msgstr ""
 
@@ -11826,7 +12658,7 @@ msgstr ""
 
 #: src/blocks/lottie/edit.js:389
 #: src/blocks/progress-bar/edit.js:910
-#: src/blocks/videopopup/edit.js:804
+#: src/blocks/videopopup/edit.js:812
 msgid "Aria Label"
 msgstr ""
 
@@ -12050,6 +12882,11 @@ msgstr ""
 msgid "Freeze Sub Menu Preview"
 msgstr ""
 
+#: src/blocks/navigation-link/edit.js:1391
+#: src/blocks/navigation-link/edit.js:1397
+msgid "Expand child menu"
+msgstr ""
+
 #: src/blocks/navigation-link/edit.js:1409
 msgid "Select Your Columns"
 msgstr ""
@@ -12077,6 +12914,10 @@ msgstr ""
 msgid "Briefly and concisely explain what you do for your audience."
 msgstr ""
 
+#: src/blocks/navigation-link/templates/mega-1.js:171
+msgid "Get Started"
+msgstr ""
+
 #: src/blocks/navigation-link/templates/mega-1.js:234
 msgid "Ask a question"
 msgstr ""
@@ -12087,6 +12928,34 @@ msgstr ""
 
 #: src/blocks/navigation-link/templates/mega-2.js:163
 msgid "Others"
+msgstr ""
+
+#: src/blocks/navigation-link/templates/mega-3.js:69
+msgid "New Arrivals"
+msgstr ""
+
+#: src/blocks/navigation-link/templates/mega-3.js:79
+msgid "Best Sellers"
+msgstr ""
+
+#: src/blocks/navigation-link/templates/mega-3.js:122
+msgid "Women"
+msgstr ""
+
+#: src/blocks/navigation-link/templates/mega-3.js:183
+msgid "Children"
+msgstr ""
+
+#: src/blocks/navigation-link/templates/mega-3.js:244
+msgid "Men"
+msgstr ""
+
+#: src/blocks/navigation-link/templates/mega-3.js:305
+msgid "Accessories"
+msgstr ""
+
+#: src/blocks/navigation-link/templates/mega-3.js:366
+msgid "Sale"
 msgstr ""
 
 #: src/blocks/navigation-link/templates/mega-4.js:97
@@ -12110,15 +12979,37 @@ msgid "Products"
 msgstr ""
 
 #: src/blocks/navigation-link/templates/mega-6.js:140
+#: src/blocks/navigation/templates/mega-2-nav-1.js:49
+#: src/blocks/navigation/templates/mega-2-nav-1.js:120
+#: src/blocks/navigation/templates/mega-2-nav-1.js:191
+#: src/blocks/navigation/templates/mega-4-nav-1.js:48
+#: src/blocks/navigation/templates/mega-4-nav-1.js:138
+#: src/blocks/navigation/templates/mega-4-nav-1.js:226
+#: src/blocks/navigation/templates/mega-4-nav-2.js:47
+#: src/blocks/navigation/templates/mega-4-nav-2.js:113
+#: src/blocks/navigation/templates/mega-4-nav-2.js:179
+#: src/blocks/navigation/templates/mega-4-nav-2.js:245
+#: src/blocks/navigation/templates/mega-4-nav-3.js:47
+#: src/blocks/navigation/templates/mega-4-nav-3.js:113
+#: src/blocks/navigation/templates/mega-4-nav-3.js:179
+#: src/blocks/navigation/templates/mega-4-nav-3.js:245
+#: src/blocks/navigation/templates/mega-7-nav-1.js:89
+#: src/blocks/navigation/templates/mega-7-nav-1.js:134
+#: src/blocks/navigation/templates/mega-7-nav-1.js:145
+#: src/blocks/navigation/templates/mega-7-nav-1.js:156
+#: src/blocks/navigation/templates/mega-7-nav-2.js:89
+#: src/blocks/navigation/templates/mega-7-nav-2.js:134
+#: src/blocks/navigation/templates/mega-7-nav-2.js:145
+#: src/blocks/navigation/templates/mega-7-nav-2.js:156
+#: src/blocks/navigation/templates/mega-7-nav-3.js:89
+#: src/blocks/navigation/templates/mega-7-nav-3.js:134
+#: src/blocks/navigation/templates/mega-7-nav-3.js:145
+#: src/blocks/navigation/templates/mega-7-nav-3.js:156
 msgid "Use this space to add a short description."
 msgstr ""
 
 #: src/blocks/navigation-link/templates/mega-6.js:213
 msgid "Resources"
-msgstr ""
-
-#: src/blocks/navigation-link/templates/mega-6.js:255
-msgid "Call to Action"
 msgstr ""
 
 #: src/blocks/navigation-link/templates/mega-7.js:84
@@ -12174,6 +13065,15 @@ msgstr ""
 
 #: src/blocks/navigation/components/menu-editor/index.js:106
 msgid "Tablet Orientation"
+msgstr ""
+
+#: src/blocks/navigation/components/menu-editor/index.js:145
+#: src/plugins/design-library/index.js:145
+msgid "Categories"
+msgstr ""
+
+#: src/blocks/navigation/components/menu-editor/index.js:156
+msgid "Product Categories"
 msgstr ""
 
 #: src/blocks/navigation/components/menu-editor/index.js:168
@@ -12356,15 +13256,8 @@ msgstr ""
 msgid "Transparent Styles"
 msgstr ""
 
-#: src/blocks/navigation/edit-inner.js:1576
-#: src/blocks/navigation/edit-inner.js:1599
-#: src/blocks/navigation/edit-inner.js:1977
-#: src/blocks/navigation/edit-inner.js:2187
-#: src/blocks/navigation/edit-inner.js:2315
-msgid "Colors"
-msgstr ""
-
 #: src/blocks/navigation/edit-inner.js:1582
+#: src/blocks/navigation/edit-inner.js:1605
 #: src/blocks/navigation/edit-inner.js:1622
 #: src/blocks/navigation/edit-inner.js:1983
 msgid "Divider"
@@ -12455,6 +13348,65 @@ msgstr ""
 #: src/blocks/navigation/index.js:22
 msgctxt "block title"
 msgid "Navigation (Adv)"
+msgstr ""
+
+#: src/blocks/navigation/templates/mega-2-nav-1.js:48
+#: src/blocks/navigation/templates/mega-2-nav-1.js:119
+#: src/blocks/navigation/templates/mega-2-nav-1.js:190
+#: src/blocks/navigation/templates/mega-2-nav-2.js:47
+#: src/blocks/navigation/templates/mega-2-nav-2.js:57
+#: src/blocks/navigation/templates/mega-2-nav-2.js:67
+msgid "Add a short title"
+msgstr ""
+
+#: src/blocks/navigation/templates/mega-4-nav-1.js:47
+#: src/blocks/navigation/templates/mega-4-nav-1.js:137
+#: src/blocks/navigation/templates/mega-4-nav-1.js:225
+#: src/blocks/navigation/templates/mega-6-nav-1.js:49
+#: src/blocks/navigation/templates/mega-6-nav-1.js:160
+#: src/blocks/navigation/templates/mega-6-nav-1.js:216
+#: src/blocks/navigation/templates/mega-6-nav-1.js:272
+#: src/blocks/navigation/templates/mega-7-nav-1.js:88
+#: src/blocks/navigation/templates/mega-7-nav-1.js:133
+#: src/blocks/navigation/templates/mega-7-nav-1.js:144
+#: src/blocks/navigation/templates/mega-7-nav-1.js:155
+#: src/blocks/navigation/templates/mega-7-nav-2.js:88
+#: src/blocks/navigation/templates/mega-7-nav-2.js:133
+#: src/blocks/navigation/templates/mega-7-nav-2.js:144
+#: src/blocks/navigation/templates/mega-7-nav-2.js:155
+#: src/blocks/navigation/templates/mega-7-nav-3.js:88
+#: src/blocks/navigation/templates/mega-7-nav-3.js:133
+#: src/blocks/navigation/templates/mega-7-nav-3.js:144
+#: src/blocks/navigation/templates/mega-7-nav-3.js:155
+#: src/blocks/navigation/templates/mega-simple-nav-1.js:88
+#: src/blocks/navigation/templates/mega-simple-nav-1.js:98
+#: src/blocks/navigation/templates/mega-simple-nav-1.js:108
+#: src/blocks/navigation/templates/mega-simple-nav-1.js:118
+msgid "Short Title"
+msgstr ""
+
+#: src/blocks/navigation/templates/mega-4-nav-4.js:51
+msgid "View Demo"
+msgstr ""
+
+#: src/blocks/navigation/templates/mega-4-nav-4.js:56
+msgid "Contact Sales"
+msgstr ""
+
+#: src/blocks/navigation/templates/mega-4-nav-4.js:61
+msgid "Documentation"
+msgstr ""
+
+#: src/blocks/navigation/templates/mega-6-nav-1.js:50
+#: src/blocks/navigation/templates/mega-6-nav-1.js:105
+#: src/blocks/navigation/templates/mega-6-nav-1.js:161
+#: src/blocks/navigation/templates/mega-6-nav-1.js:217
+#: src/blocks/navigation/templates/mega-6-nav-1.js:273
+msgid "Use this space to add a medium length description."
+msgstr ""
+
+#: src/blocks/navigation/templates/mega-6-nav-1.js:104
+msgid "Short title"
 msgstr ""
 
 #: src/blocks/posts/block.js:38
@@ -13107,6 +14059,10 @@ msgstr ""
 msgid "Specific Memberships"
 msgstr ""
 
+#: src/blocks/rowlayout/edit.js:1114
+msgid "Any Membership"
+msgstr ""
+
 #: src/blocks/rowlayout/edit.js:1143
 msgid "Row Content Only Editing"
 msgstr ""
@@ -13487,6 +14443,10 @@ msgstr ""
 
 #: src/blocks/search/edit.js:788
 msgid "Modal Style"
+msgstr ""
+
+#: src/blocks/search/edit.js:928
+msgid "Search for:"
 msgstr ""
 
 #: src/blocks/search/index.js:17
@@ -14067,6 +15027,11 @@ msgstr ""
 msgid "tabs"
 msgstr ""
 
+#: src/blocks/tabs/block.js:56
+#: src/blocks/tabs/tab/block.js:38
+msgid "tab"
+msgstr ""
+
 #: src/blocks/tabs/block.js:81
 msgid "Tab 1 Content"
 msgstr ""
@@ -14128,10 +15093,6 @@ msgstr ""
 #: src/blocks/tabs/edit.js:754
 #: src/blocks/tabs/edit.js:759
 msgid "Vertical Tabs"
-msgstr ""
-
-#: src/blocks/tabs/edit.js:767
-msgid "Mobile Layout"
 msgstr ""
 
 #: src/blocks/tabs/edit.js:784
@@ -14295,6 +15256,10 @@ msgstr ""
 
 #: src/blocks/tabs/edit.js:2309
 msgid "Tab Anchor Settings"
+msgstr ""
+
+#: src/blocks/tabs/tab/edit.js:58
+msgid "No general settings available."
 msgstr ""
 
 #: src/blocks/testimonial/block.js:17
@@ -14528,123 +15493,123 @@ msgstr ""
 msgid "Width Settings"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:589
+#: src/blocks/videopopup/edit.js:597
 msgid "YouTube/Vimeo/VideoPress"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:591
+#: src/blocks/videopopup/edit.js:599
 msgid "Self Hosted (pro)"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:602
+#: src/blocks/videopopup/edit.js:610
 msgid "Landscape 4:3 (Pro addon)"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:603
+#: src/blocks/videopopup/edit.js:611
 msgid "Wide Landscape 16:9 (Pro addon)"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:604
+#: src/blocks/videopopup/edit.js:612
 msgid "Portrait 3:4 (Pro addon)"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:605
+#: src/blocks/videopopup/edit.js:613
 msgid "Vertical 9:16 (Pro addon)"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:619
+#: src/blocks/videopopup/edit.js:627
 msgid "Mobile Video URL"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:619
+#: src/blocks/videopopup/edit.js:627
 msgid "Video URL"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:669
+#: src/blocks/videopopup/edit.js:677
 msgid "Use Mobile Video"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:674
+#: src/blocks/videopopup/edit.js:682
 msgid "Play a different video on smaller screens. You can also set a different video ratio."
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:684
+#: src/blocks/videopopup/edit.js:692
 msgid "Poster Type"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:688
+#: src/blocks/videopopup/edit.js:696
 msgid "Video (Pro addon)"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:753
+#: src/blocks/videopopup/edit.js:761
 msgid "Video Type"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:760
+#: src/blocks/videopopup/edit.js:768
 msgid "Video Ratio"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:776
+#: src/blocks/videopopup/edit.js:784
 msgid "Mobile Video Ratio"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:786
+#: src/blocks/videopopup/edit.js:794
 msgid "Is Private or Password Protected"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:793
+#: src/blocks/videopopup/edit.js:801
 msgid "Embed Youtube with no cookies"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:799
+#: src/blocks/videopopup/edit.js:807
 msgid "Auto play video (if able)"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:812
+#: src/blocks/videopopup/edit.js:820
 msgid "Video Poster"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:844
+#: src/blocks/videopopup/edit.js:852
 msgid "Poster Image File Size"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:855
+#: src/blocks/videopopup/edit.js:863
 msgid "Poster Background"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:863
+#: src/blocks/videopopup/edit.js:871
 msgid "Poster Ratio"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:868
+#: src/blocks/videopopup/edit.js:876
 msgid "Tall Portrait 1:2"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:870
+#: src/blocks/videopopup/edit.js:878
 msgid "Wide Landscape 16:9"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:871
+#: src/blocks/videopopup/edit.js:879
 msgid "Wider Landscape 2:1"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:872
+#: src/blocks/videopopup/edit.js:880
 msgid "Inherit from Image"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:883
+#: src/blocks/videopopup/edit.js:891
 msgid "Max Video Width"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:899
+#: src/blocks/videopopup/edit.js:907
 msgid "Popup Background Color"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:917
+#: src/blocks/videopopup/edit.js:925
 msgid "Popup Close Background Color"
 msgstr ""
 
-#: src/blocks/videopopup/edit.js:927
+#: src/blocks/videopopup/edit.js:935
 msgid "Popup Close Color"
 msgstr ""
 
@@ -14905,6 +15870,7 @@ msgstr ""
 msgid "Padding Type"
 msgstr ""
 
+#: src/plugins/block-rename/block-rename.js:44
 #: src/plugins/block-rename/block-rename.js:47
 msgid "Rename"
 msgstr ""
@@ -15009,6 +15975,114 @@ msgstr ""
 
 #: src/plugins/default-editor-block/index.js:38
 msgid "If Flux Block Editor is disabled Advanced Text blocks will continue to display, but may lose some of their styling."
+msgstr ""
+
+#: src/plugins/design-library/index.js:33
+msgid "Could not load the library."
+msgstr ""
+
+#: src/plugins/design-library/index.js:87
+#, js-format
+msgid "“%s” added."
+msgstr ""
+
+#: src/plugins/design-library/index.js:136
+msgid "Try again"
+msgstr ""
+
+#: src/plugins/design-library/index.js:150
+msgid "Search patterns"
+msgstr ""
+
+#: src/plugins/design-library/index.js:171
+msgid "Refresh library"
+msgstr ""
+
+#: src/plugins/design-library/index.js:180
+msgid "No pattern matches your search."
+msgstr ""
+
+#: src/plugins/design-library/index.js:181
+msgid "This library has no patterns yet. Theme and preset patterns, and the patterns you save, appear here."
+msgstr ""
+
+#: src/plugins/design-library/index.js:187
+#, js-format
+msgid "%d pattern"
+msgid_plural "%d patterns"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/plugins/design-library/index.js:196
+msgid "Insert"
+msgstr ""
+
+#: src/plugins/design-library/index.js:230
+msgid "The library could not be added."
+msgstr ""
+
+#: src/plugins/design-library/index.js:243
+msgid "Only administrators can add libraries."
+msgstr ""
+
+#: src/plugins/design-library/index.js:251
+msgid "Linked libraries"
+msgstr ""
+
+#: src/plugins/design-library/index.js:253
+msgid "Add another Flux site by its address. Its sections and pages show up here as a library; nothing is copied until you insert it."
+msgstr ""
+
+#: src/plugins/design-library/index.js:264
+msgid "with key"
+msgstr ""
+
+#: src/plugins/design-library/index.js:277
+msgid "Site address"
+msgstr ""
+
+#: src/plugins/design-library/index.js:286
+msgid "Name (optional)"
+msgstr ""
+
+#: src/plugins/design-library/index.js:293
+#: src/plugins/design-library/index.js:322
+msgid "Key"
+msgstr ""
+
+#: src/plugins/design-library/index.js:298
+#: src/plugins/design-library/index.js:370
+msgid "Add library"
+msgstr ""
+
+#: src/plugins/design-library/index.js:309
+msgid "Share this site"
+msgstr ""
+
+#: src/plugins/design-library/index.js:312
+msgid "Other Flux sites can use this site’s patterns as a library"
+msgstr ""
+
+#: src/plugins/design-library/index.js:319
+msgid "Address"
+msgstr ""
+
+#: src/plugins/design-library/index.js:325
+msgid "New key"
+msgstr ""
+
+#: src/plugins/design-library/index.js:328
+msgid "A new key cuts off every site that used the old one."
+msgstr ""
+
+#: src/plugins/design-library/index.js:355
+#: src/plugins/design-library/index.js:394
+#: src/plugins/flxbk-control-plugin.js:877
+msgid "Design Library"
+msgstr ""
+
+#: src/plugins/design-library/index.js:362
+msgid "This site"
 msgstr ""
 
 #: src/plugins/editor-width.js:59
@@ -15424,10 +16498,6 @@ msgstr ""
 
 #: src/plugins/flxbk-control-plugin.js:873
 msgid "Components"
-msgstr ""
-
-#: src/plugins/flxbk-control-plugin.js:877
-msgid "Design Library"
 msgstr ""
 
 #: src/plugins/flxbk-control-plugin.js:884

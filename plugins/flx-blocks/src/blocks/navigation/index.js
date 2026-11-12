@@ -19,6 +19,7 @@ import './style.scss';
 
 registerBlockType('flx/navigation', {
 	...metadata,
+	description: _x('An advanced navigation block.', 'block description', 'flx-blocks'),
 	title: _x('Navigation (Adv)', 'block title', 'flx-blocks'),
 	icon: navigationBlockIcon,
 	example: {

@@ -53,7 +53,7 @@ import { registerBlockType } from '@wordpress/blocks';
 registerBlockType('flx/tabs', {
 	...metadata,
 	title: _x('Tabs', 'block title', 'flx-blocks'),
-	keywords: [__('tabs', 'flx-blocks'), __('tab', 'flx-blocks'), 'KB'],
+	keywords: [__('tabs', 'flx-blocks'), __('tab', 'flx-blocks'), 'flux'],
 	icon: {
 		src: blockTabsIcon,
 	},

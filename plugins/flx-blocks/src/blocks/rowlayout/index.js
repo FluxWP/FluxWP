@@ -25,7 +25,7 @@ registerBlockType('flx/rowlayout', {
 	...metadata,
 	title: _x('Row Layout', 'block title', 'flx-blocks'),
 	description: __('A container to hold a grid layout.', 'flx-blocks'),
-	keywords: [__('column', 'flx-blocks'), __('row/layout', 'flx-blocks'), 'KB'],
+	keywords: [__('column', 'flx-blocks'), __('row/layout', 'flx-blocks'), 'flux'],
 	icon: {
 		src: blockRowIcon,
 	},

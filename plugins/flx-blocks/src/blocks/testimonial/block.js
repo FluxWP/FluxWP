@@ -15,7 +15,7 @@ export { metadata, name };
 registerBlockType('flx/testimonial', {
 	...metadata,
 	title: _x('Testimonial', 'block title', 'flx-blocks'),
-	keywords: [__('testimonial', 'flx-blocks'), __('rating', 'flx-blocks'), 'KB'],
+	keywords: [__('testimonial', 'flx-blocks'), __('rating', 'flx-blocks'), 'flux'],
 	icon: {
 		src: testimonialSingleBlockIcon,
 	},

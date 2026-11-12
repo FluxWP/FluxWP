@@ -10,6 +10,7 @@ import './plugins/flxbk-control.js';
 import './plugins/editor-width.js';
 import './plugins/block-rename/block-rename.js';
 import './plugins/site-styles';
+import './plugins/design-library';
 
 if (typeof fxt_blocks_default_size !== 'undefined') {
 	wp.data.dispatch('core/editor').updateEditorSettings({ maxWidth: fxt_blocks_default_size });

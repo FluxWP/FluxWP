@@ -3,6 +3,7 @@
  * Post Type: flxbk_navigation
  */
 
+import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
 
 const postMeta = {
@@ -42,8 +43,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '372_7c5694-c2',
-					label: 'Link Title',
-					description: 'Use this space to add a short description.',
+					label: __('Link Title', 'flx-blocks'),
+					description: __('Use this space to add a short description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					mediaType: 'icon',
@@ -108,8 +109,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '372_8c8051-3c',
-					label: 'Link Title',
-					description: 'Use this space to add a short description.',
+					label: __('Link Title', 'flx-blocks'),
+					description: __('Use this space to add a short description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					mediaType: 'icon',
@@ -174,8 +175,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '372_c6744c-a1',
-					label: 'Link Title',
-					description: 'Use this space to add a short description.',
+					label: __('Link Title', 'flx-blocks'),
+					description: __('Use this space to add a short description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					mediaType: 'icon',
@@ -240,8 +241,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '372_0a0c94-ab',
-					label: 'Link Title',
-					description: 'Use this space to add a short description.',
+					label: __('Link Title', 'flx-blocks'),
+					description: __('Use this space to add a short description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					mediaType: 'icon',

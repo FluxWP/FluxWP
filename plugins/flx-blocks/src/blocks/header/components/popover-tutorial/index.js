@@ -134,7 +134,7 @@ export default function PopoverTutorial(props) {
 		<>
 			{/* {popoverTutorialComplete && (
 				<Button variant="secondary" onClick={() => setPopoverTutorialComplete(false)}>
-					Start popover tutorial
+					{__('Start popover tutorial', 'flx-blocks')}
 				</Button>
 			)} */}
 			{!popoverTutorialComplete && (isSelected || childSelected) && <>{popoverStepContent()}</>}

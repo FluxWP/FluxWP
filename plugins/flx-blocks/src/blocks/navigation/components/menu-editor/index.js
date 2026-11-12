@@ -142,7 +142,7 @@ export default function MenuEditor({
 						useForceState={true}
 						onPanelBodyToggle={() => setSidebarTab(sidebarTab === 'categories' ? null : 'categories')}
 						postType={'categories'}
-						title={'Categories'}
+						title={__('Categories', 'flx-blocks')}
 						onSelect={onSelectCategory}
 					/>
 
@@ -153,7 +153,7 @@ export default function MenuEditor({
 							useForceState={true}
 							onPanelBodyToggle={() => setSidebarTab(sidebarTab === 'product_cat' ? null : 'product_cat')}
 							postType={'product_cat'}
-							title={'Product Categories'}
+							title={__('Product Categories', 'flx-blocks')}
 							onSelect={onSelectCategory}
 						/>
 					)}

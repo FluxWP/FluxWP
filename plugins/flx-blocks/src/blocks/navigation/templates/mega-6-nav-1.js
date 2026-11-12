@@ -3,6 +3,7 @@
  * Post Type: flxbk_navigation
  */
 
+import { __ } from '@wordpress/i18n';
 import { createBlock } from '@wordpress/blocks';
 
 const postMeta = {
@@ -45,8 +46,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '374_fd7683-b6',
-					label: 'Short Title',
-					description: 'Use this space to add a medium length description.',
+					label: __('Short Title', 'flx-blocks'),
+					description: __('Use this space to add a medium length description.', 'flx-blocks'),
 					url: '#',
 					mediaType: 'icon',
 					mediaAlign: 'top',
@@ -100,8 +101,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '374_22bf7e-36',
-					label: 'Short title',
-					description: 'Use this space to add a medium length description.',
+					label: __('Short title', 'flx-blocks'),
+					description: __('Use this space to add a medium length description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					mediaType: 'icon',
@@ -156,8 +157,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '374_7bfb70-25',
-					label: 'Short Title',
-					description: 'Use this space to add a medium length description.',
+					label: __('Short Title', 'flx-blocks'),
+					description: __('Use this space to add a medium length description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					mediaType: 'icon',
@@ -212,8 +213,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '374_75cf22-1a',
-					label: 'Short Title',
-					description: 'Use this space to add a medium length description.',
+					label: __('Short Title', 'flx-blocks'),
+					description: __('Use this space to add a medium length description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					mediaType: 'icon',
@@ -268,8 +269,8 @@ function innerBlocks() {
 				'flx/navigation-link',
 				{
 					uniqueID: '374_e05329-8e',
-					label: 'Short Title',
-					description: 'Use this space to add a medium length description.',
+					label: __('Short Title', 'flx-blocks'),
+					description: __('Use this space to add a medium length description.', 'flx-blocks'),
 					url: '#',
 					kind: 'custom',
 					mediaType: 'icon',

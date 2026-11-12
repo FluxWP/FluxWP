@@ -17,7 +17,7 @@ registerBlockType('flx/vector', {
 	...metadata,
 	title: _x('Vector Graphic', 'block title', 'flx-blocks'),
 	description: _x('Display SVGs on your site', 'block description', 'flx-blocks'),
-	keywords: [__('svg', 'flx-blocks'), __('vector', 'flx-blocks'), 'KB'],
+	keywords: [__('svg', 'flx-blocks'), __('vector', 'flx-blocks'), 'flux'],
 	icon: vectorBlockIcon,
 	edit,
 	save: () => null,

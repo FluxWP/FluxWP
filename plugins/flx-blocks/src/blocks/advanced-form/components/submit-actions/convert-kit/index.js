@@ -148,9 +148,9 @@ function ConvertKitOptions({ formInnerBlocks, parentClientId, settings, save }) 
 		})
 			.then((list) => {
 				const theAttributes = [];
-				theAttributes.push({ value: null, label: 'None' });
-				theAttributes.push({ value: 'email', label: 'Email *' });
-				theAttributes.push({ value: 'first_name', label: 'First Name' });
+				theAttributes.push({ value: null, label: __('None', 'flx-blocks') });
+				theAttributes.push({ value: 'email', label: __('Email *', 'flx-blocks') });
+				theAttributes.push({ value: 'first_name', label: __('First Name', 'flx-blocks') });
 
 				if (list.custom_fields) {
 					list.custom_fields.map((item) => {

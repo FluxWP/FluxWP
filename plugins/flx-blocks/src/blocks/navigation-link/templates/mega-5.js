@@ -116,7 +116,7 @@ function innerBlocks() {
 													'flx/singlebtn',
 													{
 														uniqueID: '358_ae164a-5e',
-														text: 'Call to Action',
+														text: __('Call to Action', 'flx-blocks'),
 														sizePreset: 'small',
 														color: 'palette3',
 														borderStyle: [

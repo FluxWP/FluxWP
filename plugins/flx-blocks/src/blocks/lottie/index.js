@@ -19,7 +19,7 @@ registerBlockType('flx/lottie', {
 	...metadata,
 	title: _x('Lottie Animations', 'block title', 'flx-blocks'),
 	description: _x('Display lottie animations on your site', 'block description', 'flx-blocks'),
-	keywords: [__('lottie', 'flx-blocks'), __('animation', 'flx-blocks'), 'KB'],
+	keywords: [__('lottie', 'flx-blocks'), __('animation', 'flx-blocks'), 'flux'],
 	getEditWrapperProps(attributes) {
 		return {
 			'data-align': attributes.align,

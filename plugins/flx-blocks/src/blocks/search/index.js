@@ -16,7 +16,7 @@ registerBlockType('flx/search', {
 	...metadata,
 	title: _x('Search (Adv)', 'block title', 'flx-blocks'),
 	description: _x('Flux search block', 'block description', 'flx-blocks'),
-	keywords: [__('search', 'flx-blocks'), __('find', 'flx-blocks'), 'kb'],
+	keywords: [__('search', 'flx-blocks'), __('find', 'flx-blocks'), 'flux'],
 	icon: {
 		src: searchBlockIcon,
 	},

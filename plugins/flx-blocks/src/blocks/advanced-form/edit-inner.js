@@ -326,7 +326,7 @@ export function EditInner(props) {
 		try {
 			const response = await addNew();
 			let buttonAttributes = {
-				text: 'Submit',
+				text: __('Submit', 'flx-blocks'),
 				widthType: 'full',
 			};
 			if ('subscribe' === template && 'infield' === style) {
@@ -349,7 +349,7 @@ export function EditInner(props) {
 							loadGoogle: true,
 						},
 					],
-					text: 'Submit',
+					text: __('Submit', 'flx-blocks'),
 					widthType: 'full',
 				};
 			}
@@ -366,21 +366,21 @@ export function EditInner(props) {
 											{ colLayout: 'equal', padding: ['0', '0', '0', '0'] },
 											[
 												createBlock('flx/column', {}, [
-													createBlock('flx/advanced-form-text', { label: 'Name' }),
+													createBlock('flx/advanced-form-text', { label: __('Name', 'flx-blocks') }),
 												]),
 												createBlock('flx/column', {}, [
 													createBlock('flx/advanced-form-email', {
-														label: 'Email',
+														label: __('Email', 'flx-blocks'),
 														required: true,
 													}),
 												]),
 											]
 										),
 										createBlock('flx/advanced-form-textarea', {
-											label: 'Message',
+											label: __('Message', 'flx-blocks'),
 											required: true,
 										}),
-										createBlock('flx/advanced-form-submit', { text: 'Submit' }),
+										createBlock('flx/advanced-form-submit', { text: __('Submit', 'flx-blocks') }),
 									],
 								},
 							],
@@ -398,11 +398,11 @@ export function EditInner(props) {
 											{ colLayout: 'equal', padding: ['0', '0', '0', '0'] },
 											[
 												createBlock('flx/column', {}, [
-													createBlock('flx/advanced-form-text', { label: 'Name' }),
+													createBlock('flx/advanced-form-text', { label: __('Name', 'flx-blocks') }),
 												]),
 												createBlock('flx/column', {}, [
 													createBlock('flx/advanced-form-email', {
-														label: 'Email',
+														label: __('Email', 'flx-blocks'),
 														required: true,
 													}),
 												]),
@@ -413,18 +413,18 @@ export function EditInner(props) {
 											{ colLayout: 'equal', padding: ['0', '0', '0', '0'] },
 											[
 												createBlock('flx/column', {}, [
-													createBlock('flx/advanced-form-select', { label: 'Option 1' }),
+													createBlock('flx/advanced-form-select', { label: __('Option 1', 'flx-blocks') }),
 												]),
 												createBlock('flx/column', {}, [
-													createBlock('flx/advanced-form-select', { label: 'Option 2' }),
+													createBlock('flx/advanced-form-select', { label: __('Option 2', 'flx-blocks') }),
 												]),
 											]
 										),
 										createBlock('flx/advanced-form-textarea', {
-											label: 'Message',
+											label: __('Message', 'flx-blocks'),
 											required: true,
 										}),
-										createBlock('flx/advanced-form-submit', { text: 'Submit' }),
+										createBlock('flx/advanced-form-submit', { text: __('Submit', 'flx-blocks') }),
 									],
 								},
 							],
@@ -442,17 +442,17 @@ export function EditInner(props) {
 											{ colLayout: 'equal', padding: ['0', '0', '0', '0'] },
 											[
 												createBlock('flx/column', {}, [
-													createBlock('flx/advanced-form-text', { label: 'Name' }),
+													createBlock('flx/advanced-form-text', { label: __('Name', 'flx-blocks') }),
 												]),
 												createBlock('flx/column', {}, [
 													createBlock('flx/advanced-form-email', {
-														label: 'Email',
+														label: __('Email', 'flx-blocks'),
 														required: true,
 													}),
 												]),
 											]
 										),
-										createBlock('flx/advanced-form-submit', { text: 'Submit' }),
+										createBlock('flx/advanced-form-submit', { text: __('Submit', 'flx-blocks') }),
 									],
 								},
 							],
@@ -471,7 +471,7 @@ export function EditInner(props) {
 											[
 												createBlock('flx/column', {}, [
 													createBlock('flx/advanced-form-email', {
-														label: 'Email',
+														label: __('Email', 'flx-blocks'),
 														required: true,
 													}),
 												]),
@@ -494,7 +494,7 @@ export function EditInner(props) {
 									innerBlocks: [
 										createBlock('core/paragraph', {}),
 										createBlock('flx/advanced-form-submit', {
-											text: 'Submit',
+											text: __('Submit', 'flx-blocks'),
 											uniqueID: '1_default',
 										}),
 									],
