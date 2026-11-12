@@ -55,3 +55,13 @@ Heartbeat: istekte `data.flxp_live = 1` → cevapta `flxp_live` (kutu başına `
 `GET /wp-json/flx-speed/v1/requests` — `hours`, `flag` (`slow`, `error`, `fatal`, `slow_query`), `type`, `q`, `min_ms`, `page`, `per_page`, `order` (`new`|`slow`). Yanıt `{items, total, page, pages}`. Ayrıntı gövdesi (SQL) dönmez.
 
 `GET /wp-json/flx-speed/v1/requests/<id>` — satır + `overview`.
+
+## CSS kırpma güvenli listesi (0.7.1)
+PageSpeed › "Kullanılmayan CSS'i kırp" sayfadaki HTML + JS kelimelerine bakar. Sınıf adını JavaScript'te birleştirerek üreten kütüphanelerin kuralları (ör. Splide `splide__pagination`) bu yüzden silinebilir. Paket kendi kalıplarını bildirir:
+
+```php
+add_filter( 'flxp_ps_safelist', function ( $patterns ) {
+	return array_merge( (array) $patterns, array( 'splide__*', 'is-active', 'glightbox*', 'gslide*', 'plyr__*' ) );
+} );
+```
+Kalıp: sınıf ya da id adı, `*` joker (`.`/`#` öneki gerekmez). Varsayılanlar (`is-*`, `has-*`, `wp-*`, `swiper-*`, `screen-reader-text`) ve Ayarlar'daki liste ile birleşir. Liste değişince kırpılmış kopyalar kendiliğinden yenilenir. Okumak için `FLXP_PageSpeed::safe_patterns()`.
