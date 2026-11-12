@@ -1,6 +1,49 @@
 # Changelog
 
+## 0.7.0
+
+- Season plan: new page with the giving seasons of the next 12 months: Ramadan and Eid, Qurban, World Forestry Day, Mother's Day, World Environment Day, 11 November tree day, Teachers' Day, Black Friday and Giving Tuesday, year end, plus your own dates. Each shows what the same period brought last year (payments, income, new donors, ad spend and ROAS) and when to start preparing. "Write a draft" opens Studio with the brief and dates filled in. Hijri dates are approximate.
+- Suggestions remind you when a season's preparation time starts.
+- Tests: A/B compares two ads of one campaign by payments per click on the site (or click rate while payments are few), with 95% confidence and a minimum of data before a winner is named; the losing ad can be paused from there. Holdout keeps a fixed share (5–50%) of a Meta audience out of the audience and compares how often each group gave: lift, extra donors and extra income from the ads. The held-out people go back when the test ends (by hand or on its end date).
+- Flux AI / MCP: `flxads_season_plan`, `flxads_tests` (read), `flxads_season_add`, `flxads_season_delete`, `flxads_test_create`, `flxads_test_end`, `flxads_test_delete` (starting, ending and deleting a test need approval).
+- New filter `flxads_seasons` for presets to add their own dates.
+
+## 0.6.0
+
+- Suggestions: new page. Every day (and when you open it) Flux Ads checks active Meta campaigns from the last 7 days against what they brought on this site and suggests: pause a sales campaign that spent without a payment, lower the daily budget 20% when ROAS is under half the target, raise it 20% when ROAS is 1.5 times the target or more, pause an ad whose click rate is under half its ad set's, and write new text when people saw the ads more than 4 times.
+- Nothing is applied by itself. Apply asks for confirmation, goes to Meta and is written to the change history; Dismiss hides a suggestion for 14 days. Applied ones are not suggested again for 7 days. Earlier suggestions are listed with who decided and from where.
+- New settings (Settings › Suggestions): target ROAS (default 2) and spend before a campaign is judged (default automatic: twice the average cost per payment).
+- The menu shows how many suggestions wait. New action `flxads_suggestions_new`.
+- Flux AI / MCP: `flxads_suggestions` (read, optional refresh), `flxads_suggestion_apply` (needs approval), `flxads_suggestion_dismiss`.
+
+## 0.5.0
+
+- Studio: new page. Write a short brief and Flux AI drafts a Meta campaign from it and this site's numbers (last 90 days of campaigns, your audiences, donor counts; no personal data): objective, daily budget, ad sets with ages, countries, audiences in/out and budget share, and ad text variants with a short reason.
+- The draft stays here until you send it: edit every field, add or remove ad sets and variants, see a live ad preview, duplicate or delete. A draft can also start empty.
+- "Send to Meta" creates the campaign, ad sets, creatives and ads all paused, after confirmation. Ad links carry UTM tags (campaign ID, variant), so donations show up in the report and under Campaigns. If a step fails, the next try reuses what was already made.
+- New setting: Facebook Page ID (Settings › Meta), the page the ads are published as.
+- Flux AI / MCP: `flxads_studio_context`, `flxads_drafts` (read), `flxads_draft_save` (draft here only), `flxads_draft_send`, `flxads_draft_delete` (need approval).
+
+## 0.4.0
+
+- Campaigns: new page with your Meta campaigns for the last 7, 30 or 90 days. Each shows its status, objective, budget, spend, impressions, link clicks and CTR next to what it brought on this site: income, payments and ROAS, matched by the campaign name or ID in utm_campaign.
+- Campaign details: ad sets, with a targeting summary (ages, gender, places, audiences in/out), and their ads with the creative title. Spend broken down by age + gender and by placement.
+- Pause or turn on a campaign, ad set or ad, and change a daily budget, from the panel. Each change asks for confirmation, goes to Meta at once and is written to the change history (who, from where, old → new). Nothing is deleted or archived from here.
+- Meta numbers are cached for 10 minutes; a change clears the cache. Reading needs ads_read, changes need ads_management.
+- Flux AI / MCP: `flxads_campaigns`, `flxads_campaign_detail` (read), `flxads_ad_status`, `flxads_ad_budget` (need approval; the budget preview warns above a 30% change).
+
+## 0.3.0
+
+- Donor value (LTV): new page. Each person belongs to the campaign of their first payment; all their later payments count for it. Per campaign or channel: new people, first payment, value at 90 days and so far, repeat rate, cost to win one (CAC), value / cost and payback days. Monthly cohort table of value per person.
+- Meta audiences: new page. A Flux CRM group (everyone with ad consent, donors, an RFM value group or a saved segment) becomes a Meta custom audience. Only people with ad consent, hashed email, phone, name and country. Daily delta sync; withdrawn consent or a deleted contact is removed from Meta at once. Lookalike audiences and exclusion audiences.
+- Flux AI / MCP: `flxads_value_report`, `flxads_audiences_list`, `flxads_audience_create`, `flxads_audience_lookalike`, `flxads_audience_sync`, `flxads_audience_delete` (creating and deleting asks for approval first).
+- Fix: the hourly job did not refresh Meta spend (only opening the screen did).
+- System check row for audiences. The Marketing API key now explains that audiences need ads_management.
+
 ## 0.2.2
+
+- Report, Ad spend, Send log, Ad link and Settings are now submenus in the left menu (own pages: `flx-ads`, `flx-ads-spend`, `flx-ads-log`, `flx-ads-links`, `flx-ads-settings`). Old `?page=flx-ads&tab=…` links still open the right page.
+- Package catalog entry: icon, description and screenshots show in FluxWP Panel › Packages before install; setup wizard preview.
 - Imported old orders (Flux Donate Excel import) are not sent as purchase conversions (`flx_silent`).
 
 ## 0.2.1

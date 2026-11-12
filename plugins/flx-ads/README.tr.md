@@ -11,8 +11,15 @@ Hangi reklam hangi bağışı getirdi. Flux Ads bağış ve sipariş dönüşüm
 - **Önce onay**: pixel'ler ziyaretçi çerez banner'ını kabul edince başlar. E-posta ve telefon yalnız hash'li ve varsayılan olarak yalnız reklam izni olan kişide gider.
 - **Rapor**: kanal, kampanya, reklam (utm_content), kaynak/ortam, açılış sayfası, ilk reklam teması, yeni bağışçı. Reklam bağlantısı (UTM) oluşturucu.
 - **Harcama ve ROAS**: Meta harcaması kampanya ve reklam bazında reklam hesabından okunur; diğer harcamalar elle girilir. Rapor harcamayı, ROAS'ı, ödeme başı ve yeni bağışçı başı maliyeti gösterir.
+- **Bağışçı değeri (LTV)**: kişi ilk ödemesini getiren kampanyaya yazılır, sonraki ödemeleri de o kampanyaya sayılır. Kampanya başına yeni bağışçı, 90 günlük ve bugüne kadarki değer, tekrar oranı, bir kişiyi kazanma maliyeti (CAC), değer / maliyet ve geri dönüş süresi; aylık kohort tablosu.
+- **Meta kitleleri**: Flux CRM'deki bir grubu (reklam izni veren herkes, bağışçılar, değer grubu ya da kayıtlı segment) Meta'ya özel hedef kitle olarak gönderir; yalnız reklam izni olanlar, hash'li. Her gün güncellenir; izni geri alan hemen çıkarılır. Benzer kitle ve hariç tutma listesi (ör. yeni bağışçılar) dahil.
+- **Kampanyalar**: Meta kampanyaları, reklam setleri ve reklamlar; harcamanın yanında getirdikleri bağışlar, yaş/cinsiyet ve yerleşim kırılımı. Panelden duraklatın, açın ya da günlük bütçeyi değiştirin; her değişiklik onayla olur ve değişiklik geçmişinde kalır.
+- **Öneriler**: etkin kampanyalar her gün getirdikleri bağışlarla karşılaştırılır: sonuçsuz harcayanı duraklat, ROAS'a göre bütçe kaydır, zayıf reklamı duraklat, yorulan reklamı yenile. Her biri yalnız Uygula'ya basınca uygulanır.
+- **Sezon planı**: Ramazan, Kurban, 11 Kasım, Giving Tuesday, yıl sonu ve kendi tarihleriniz; geçen yılın rakamları ve hazırlık hatırlatması, tek tıkla Stüdyo taslağı.
+- **Testler**: iki reklam arasında A/B ve reklamların gerçekte kaç bağış eklediğini gösteren holdout testi.
+- **Stüdyo**: brif yazın, Flux AI kampanya taslağı çıkarsın (reklam setleri, kitleler, bütçe dağılımı, metin çeşitleri). Siz düzenlersiniz; "Meta'ya gönder" duraklatılmış oluşturur, siz açana kadar hiçbir şey yayınlanmaz.
 - **Flux CRM**: kişinin zaman tünelinde reklam dönüşümü ve "Reklam kaynağı" kartı.
-- **Flux AI / MCP**: rapor, harcama ve gönderim kaydını okur; ayar değiştirir, harcama ekler/siler, Meta harcamasını günceller, bağlantıyı test eder, dönüşümü yeniden gönderir. Her değişiklik onayınla yapılır; gizli anahtarlar asla açılmaz.
+- **Flux AI / MCP**: rapor, bağışçı değeri, harcama, kitleler ve gönderim kaydını okur; ayar değiştirir, harcama ekler/siler, Meta harcamasını günceller, kitle oluşturur/günceller/siler, bağlantıyı test eder, dönüşümü yeniden gönderir. Her değişiklik onayınla yapılır; gizli anahtarlar asla açılmaz.
 
 WooCommerce gerekir. Flux Donate ile çalışır; Flux CRM isteğe bağlıdır.
 

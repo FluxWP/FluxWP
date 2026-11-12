@@ -346,3 +346,21 @@ form + .flxcrm-card{margin-top:16px}
 .flxcrm-more__item.is-bad{color:var(--c-bad)}
 .flxcrm-more__item.is-bad:hover{background:var(--c-bad-s)}
 @media (max-width:782px){.flxcrm-more__menu{left:0;right:auto}}
+/* Yolculuklar */
+.flxcrm-jtpl{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
+.flxcrm-h2{font-size:15px;margin:20px 0 10px}
+.flxcrm-jrow{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.flxcrm-jf{display:flex;flex-direction:column;gap:4px;min-width:160px;flex:1 1 180px;margin:0 0 10px}
+.flxcrm-jf[hidden]{display:none}
+.flxcrm-jf>span:first-child{font-size:12px;font-weight:600;color:var(--c-mut)}
+.flxcrm-jf input,.flxcrm-jf select,.flxcrm-jf textarea{width:100%;max-width:none}
+.flxcrm-jsteps{list-style:none;margin:0;padding:0;counter-reset:jstep}
+.flxcrm-jstep{position:relative;padding-left:46px;counter-increment:jstep}
+.flxcrm-jstep::before{content:counter(jstep);position:absolute;left:14px;top:18px;width:22px;height:22px;border-radius:50%;background:var(--c-ac-soft);color:var(--c-ac);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center}
+.flxcrm-jstep:not(:last-child)::after{content:"";position:absolute;left:24px;top:44px;bottom:-15px;border-left:2px dashed var(--c-bd2)}
+.flxcrm-jdel{position:absolute;top:8px;right:10px;font-size:20px;line-height:1;margin:0;padding:4px 6px;text-decoration:none}
+.flxcrm-jstep>.flxcrm-jrow{padding-right:28px}
+.flxcrm-jhours{display:flex;align-items:center;gap:6px}
+.flxcrm-jhours input{width:72px}
+.flxcrm-jsave{display:flex;gap:8px;margin:16px 0}
+@media (max-width:782px){.flxcrm-jf{flex-basis:100%}.flxcrm-jstep{padding-left:40px}.flxcrm-jstep::before{left:10px}.flxcrm-jstep:not(:last-child)::after{left:20px}}

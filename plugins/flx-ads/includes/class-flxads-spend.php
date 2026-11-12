@@ -84,6 +84,7 @@ final class FLXADS_Spend {
 					litespeed_finish_request();
 				}
 				self::maybe_sync();
+				FLXADS_Audiences::maybe_sync();
 			},
 			60
 		);

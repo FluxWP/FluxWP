@@ -1,6 +1,6 @@
 <?php
 /**
- * Kaldırma: CRM tabloları (olaylar, etiketler, segmentler), ayarlar, yetkiler ve günlük iş silinir. Kişiler ortak
+ * Kaldırma: CRM tabloları (olaylar, etiketler, segmentler, yolculuklar), ayarlar, yetkiler ve günlük iş silinir. Kişiler ortak
  * FluxWP tablosunda kalır.
  * Bağış, sipariş, form ve sohbet kayıtları kendi eklentilerinde kalır.
  */
@@ -9,7 +9,7 @@ defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
 global $wpdb;
 // Kişiler ortak tabloda (wp_flx_people): başka FluxWP paketleri de kullanır, CRM kaldırılınca silinmez.
-foreach ( array( 'events', 'tags', 'contact_tags', 'segments' ) as $flxcrm_t ) {
+foreach ( array( 'events', 'tags', 'contact_tags', 'segments', 'journeys', 'journey_runs' ) as $flxcrm_t ) {
 	$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}flxcrm_{$flxcrm_t}" ); // phpcs:ignore WordPress.DB
 }
 foreach ( array( 'flxcrm_settings', 'flxcrm_db_version', 'flxcrm_installed_at', 'flxcrm_scored_at', 'flxcrm_synced_at', 'flxcrm_segments_seeded', 'flxcrm_score_cursor' ) as $flxcrm_opt ) {
@@ -22,3 +22,5 @@ foreach ( wp_roles()->role_objects as $flxcrm_role ) {
 }
 wp_clear_scheduled_hook( 'flxcrm_daily' );
 wp_clear_scheduled_hook( 'flxcrm_score_resume' );
+wp_clear_scheduled_hook( 'flxcrm_journeys_tick' );
+delete_transient( 'flxcrm_journeys_due' );
