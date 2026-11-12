@@ -955,6 +955,21 @@ function flxai_ws_state( array $chat, $path = '' ) {
 }
 
 /** Panelden gezilebilen yol mu? Kendi klasörü, izinli klasörler, skill'ler; "site" erişiminde tüm site. */
+/** Kullanıcı bu dosyayı panelden düzenleyebilir mi: yalnız sohbetin kendi klasörü, metin, hassas/kod değil. */
+function flxai_ws_user_can_edit( $rel, array $chat, $content = '' ) {
+	$p = flxai_ws_policy( $chat );
+	if ( ! $p['dir'] || ! flxai_ws_inside( $rel, $p['dir'] ) ) {
+		return false;
+	}
+	if ( function_exists( 'flxfm_is_sensitive' ) && flxfm_is_sensitive( $rel ) ) {
+		return false;
+	}
+	if ( function_exists( 'flxfm_is_executable' ) && flxfm_is_executable( $rel ) ) {
+		return false;
+	}
+	return '' === $content || false === strpos( (string) $content, "\0" );
+}
+
 function flxai_ws_can_browse( $rel, array $p ) {
 	return 'deny' !== flxai_ws_kind( $rel, $p, false ) && ( ! function_exists( 'flxfm_is_sensitive' ) || ! flxfm_is_sensitive( $rel ) );
 }
@@ -1052,8 +1067,39 @@ add_action(
 						'content' => $r['content'],
 						'size'    => $r['size'],
 						'ago'     => $r['ago'],
-						'files'   => admin_url( 'admin.php?page=flx-files#path=' . rawurlencode( dirname( $rel ) ) ),
+						'files'    => admin_url( 'admin.php?page=flx-files#path=' . rawurlencode( dirname( $rel ) ) ),
+						'editable' => flxai_ws_user_can_edit( $rel, $c, $r['content'] ),
 					);
+				},
+			)
+		);
+		// Kullanıcı kendi sohbetinin klasöründeki metin dosyasını düzenler (Flux Files sürüm kaydıyla).
+		register_rest_route(
+			$ns,
+			'/chats/(?P<id>\d+)/ws/save',
+			array(
+				'methods'             => 'POST',
+				'permission_callback' => function () use ( $perm ) {
+					return $perm() && current_user_can( 'manage_options' );
+				},
+				'callback'            => function ( WP_REST_Request $req ) use ( $chat ) {
+					$c = $chat( $req );
+					if ( is_wp_error( $c ) ) {
+						return $c;
+					}
+					$rel     = flxai_ws_clean( (string) $req['path'] );
+					$content = (string) $req['content'];
+					if ( ! flxai_ws_ready() || '' === $rel || ! flxai_ws_user_can_edit( $rel, $c, $content ) ) {
+						return new WP_Error( 'flxai_forbidden', __( 'Only text files in this chat\'s own folder can be edited.', 'flx-ai' ), array( 'status' => 403 ) );
+					}
+					if ( strlen( $content ) > flxai_ws_max_write() ) {
+						return new WP_Error( 'flxai_too_big', __( 'The file is too large.', 'flx-ai' ), array( 'status' => 413 ) );
+					}
+					$r = flxai_ws_write( $rel, $content );
+					if ( is_wp_error( $r ) ) {
+						return $r;
+					}
+					return array( 'path' => $rel, 'content' => $content );
 				},
 			)
 		);

@@ -170,5 +170,8 @@ function flxai_js_strings() {
 		'Değişiklik isteği reddedilsin mi?' => __( 'Reject the change request?', 'flx-ai' ),
 		'Dosyalar değişmez; asistana reddedildiği bildirilir.' => __( 'No files change; the assistant is told it was rejected.', 'flx-ai' ),
 		'Kaydedildi.' => __( 'Saved.', 'flx-ai' ),
+		'Önizleme' => __( 'Preview', 'flx-ai' ),
+		'Kod' => __( 'Code', 'flx-ai' ),
+		'Vazgeç' => __( 'Discard', 'flx-ai' ),
 	);
 }

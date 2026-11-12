@@ -1,5 +1,10 @@
 # Flux AI — Değişiklikler
 
+## 0.13.1
+- Tam ekran sohbette sol menü (WordPress ya da Flux Admin kenar çubuğu) yerinde kalır; kenar çubuğu daraltılınca sohbet yeniden yerleşir.
+- Sağ dosya panelinin genişliği sol kenarından sürüklenerek ayarlanır (çift tık varsayılana döner), tercih hatırlanır.
+- Markdown dosyaları dosya panelinde **Önizleme** olarak açılır; **Düzenle** ile sohbetin kendi klasöründeki metin dosyaları panelden değiştirilip kaydedilir (Ctrl/Cmd+S; Flux Files sürüm kaydı tutar). Kod ve hassas dosyalar düzenlenmez.
+
 ## 0.13.0
 - **Çalışma alanı** (Codex benzeri): her sohbetin ve zamanlanmış görevin kendi klasörü var (`wp-content/flx-ai/chats/<id>`, `tasks/<id>-<ad>`). Tüm dosya işlemleri Flux Files üzerinden: sürüm, çöp kutusu ve işlem kaydı oradan gelir. Klasörler Flux Files'ta da görünür.
 - Sohbet penceresinin sağında dosya paneli: **Dosyalar** (ağaç + dosya görüntüleme), **Değişiklikler** (mini git) ve **Ayarlar**. Yeni **Flux AI & MCP › Sohbet** sayfası sohbeti tam ekran açar; panelde tam ekran düğmesi.

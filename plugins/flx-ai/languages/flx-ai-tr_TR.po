@@ -2750,3 +2750,18 @@ msgstr "Dosyalar değişmez; asistana reddedildiği bildirilir."
 msgctxt "workspace tab"
 msgid "Changes"
 msgstr "Değişiklikler"
+
+msgid "Only text files in this chat's own folder can be edited."
+msgstr "Yalnız bu sohbetin kendi klasöründeki metin dosyaları düzenlenebilir."
+
+msgid "The file is too large."
+msgstr "Dosya çok büyük."
+
+msgid "Preview"
+msgstr "Önizleme"
+
+msgid "Discard"
+msgstr "Vazgeç"
+
+msgid "Code"
+msgstr "Kod"

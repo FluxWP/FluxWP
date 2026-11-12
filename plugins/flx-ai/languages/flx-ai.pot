@@ -2349,3 +2349,18 @@ msgstr ""
 
 msgid "No files change; the assistant is told it was rejected."
 msgstr ""
+
+msgid "Only text files in this chat's own folder can be edited."
+msgstr ""
+
+msgid "The file is too large."
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "Discard"
+msgstr ""
+
+msgid "Code"
+msgstr ""

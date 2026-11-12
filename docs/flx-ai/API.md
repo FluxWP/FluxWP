@@ -406,7 +406,7 @@ Tablo `{prefix}flxai_changes` (DB 7): `kind` commit|pr, `status` done|open|merge
 
 Olaylar: `flxai_ws_committed( $commit, $chat )`, `flxai_ws_staged( $pr, $chat )`, `flxai_change_decided( $pr, $merge, $applied )`. Filtreler: `flxai_pre_run_tool( null, $name, $args, $ctx )` (null dışı dönerse araç çalışmaz, dönen sonuç kullanılır), `flxai_call_needs_approval( $bool, $name, $args, $chat )`, `flxai_chat_session( $text, $chat, $user_id )` (sistem metnine dinamik ek).
 
-REST (`/flx-ai/v1`, sohbet sahibi + Flux Files yetkisi): `GET|POST chats/<id>/ws` (durum: klasör, politika, son değişiklikler; POST `access`, `folders`), `GET chats/<id>/ws/list?path=`, `GET chats/<id>/ws/file?path=` (1 MB'a kadar), `GET changes/<id>` (fark için before/after), `POST changes/<id>/merge|reject` (`paths` verilirse yalnız o dosyalar). Admin: `admin.php?page=flx-ai-chat&flxai_chat=<id>&flxai_ws=<pr>` sohbeti tam ekran açar, değişikliği gösterir.
+REST (`/flx-ai/v1`, sohbet sahibi + Flux Files yetkisi): `GET|POST chats/<id>/ws` (durum: klasör, politika, son değişiklikler; POST `access`, `folders`), `GET chats/<id>/ws/list?path=`, `GET chats/<id>/ws/file?path=` (1 MB'a kadar; `editable`), `POST chats/<id>/ws/save` (`path`, `content`; yalnız sohbetin kendi klasöründeki metin dosyası, 0.13.1), `GET changes/<id>` (fark için before/after), `POST changes/<id>/merge|reject` (`paths` verilirse yalnız o dosyalar). Admin: `admin.php?page=flx-ai-chat&flxai_chat=<id>&flxai_ws=<pr>` sohbeti tam ekran açar, değişikliği gösterir.
 
 ## Sistem kontrolü
 `flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`, `flxai.tasks`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).

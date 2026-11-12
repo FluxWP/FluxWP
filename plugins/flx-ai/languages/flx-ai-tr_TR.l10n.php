@@ -1315,5 +1315,10 @@ return array(
   'Reject the change request?' => 'Değişiklik isteği reddedilsin mi?',
   'No files change; the assistant is told it was rejected.' => 'Dosyalar değişmez; asistana reddedildiği bildirilir.',
   "workspace tab\4Changes" => 'Değişiklikler',
+  'Only text files in this chat\'s own folder can be edited.' => 'Yalnız bu sohbetin kendi klasöründeki metin dosyaları düzenlenebilir.',
+  'The file is too large.' => 'Dosya çok büyük.',
+  'Preview' => 'Önizleme',
+  'Discard' => 'Vazgeç',
+  'Code' => 'Kod',
  ),
 );

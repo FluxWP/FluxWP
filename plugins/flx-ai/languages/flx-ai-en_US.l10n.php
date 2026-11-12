@@ -1315,5 +1315,10 @@ return array(
   'Reject the change request?' => 'Reject the change request?',
   'No files change; the assistant is told it was rejected.' => 'No files change; the assistant is told it was rejected.',
   "workspace tab\4Changes" => 'Changes',
+  'Only text files in this chat\'s own folder can be edited.' => 'Only text files in this chat\'s own folder can be edited.',
+  'The file is too large.' => 'The file is too large.',
+  'Preview' => 'Preview',
+  'Discard' => 'Discard',
+  'Code' => 'Code',
  ),
 );
