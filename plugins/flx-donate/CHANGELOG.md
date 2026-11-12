@@ -2,6 +2,7 @@
 
 ## 2.24.0
 - Birden fazla fidan başkası adına bağışlanınca "Başka bir kişi ekle (ayrı sertifika)": her kişiye ad, WhatsApp ve e-posta girilir, her biri kendi sertifikasını kendi numarasına/e-postasına alır (kişi başı 1 fidan, kalanı ilk kişinin sertifikasında). İletişimi boş kişinin sertifikası bağışçıya gider. Sipariş ve bağış kaydında "Diğer kişiler".
+- Geniş ekranda "Online sertifika" ve "Online + basılı sertifika" kartları yan yana.
 - Tutar düğmeleri görünümü: geniş ekranda "Diğer tutar" alanı düğmelerle aynı satırda, en sağda (10 fidanın yanında). Telefonda düğmelerin altında kalır.
 - "Diğer tutar" kartı düğmelerle aynı hizada ve yükseklikte; başlığı normal renkte, yazılan tutarın altında ince çizgi.
 - Geniş ekranda sertifika gönderimi: WhatsApp ve e-posta kartları yan yana; "Kendim için / Başkası adına" sekmeleri "Bu bağış kimin için?" başlığıyla aynı satırda, sağda.

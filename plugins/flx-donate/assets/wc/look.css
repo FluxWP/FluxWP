@@ -398,3 +398,9 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 .flxwb .flxwb-dcard.is-locked { border-style: dashed; background: color-mix(in srgb, var(--w-line) 22%, var(--w-surface)); cursor: default; }
 .flxwb .flxwb-dcard.is-locked input,
 .flxwb .flxwb-dcard.is-locked .flx-ph__cc { color: var(--w-text); cursor: default; pointer-events: none; }
+
+/* 2.24.0: wide form: "Online" and "Online + printed" certificate cards side by side. */
+@media (min-width: 900px) {
+	.flxwb .flxwb-cert > .flxwb-opts:has(> .flxwb-opt + .flxwb-opt) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-items: stretch; }
+	.flxwb .flxwb-cert > .flxwb-opts > .flxwb-opt { margin: 0; height: 100%; box-sizing: border-box; }
+}
