@@ -563,6 +563,27 @@ final class FLXB_Import {
 			if ( 3 !== strlen( $r['currency'] ) ) {
 				$r['currency'] = '';
 			}
+			/*
+			 * 2.26.1: a cell with one name per line ("Ayşe\nAli\nVeli" for 3 saplings) is one person per
+			 * unit, spread like "Add another person" on the donation form. When the names are in the donor
+			 * cell, the "on behalf of" cell (if any) becomes the donor.
+			 */
+			$r['names'] = array();
+			foreach ( array( 'donor', 'name' ) as $f ) {
+				$list = self::name_lines( $r[ $f ] );
+				if ( count( $list ) > 1 ) {
+					$r['names'] = $list;
+					if ( 'donor' === $f ) {
+						$r['donor'] = '' !== $r['name'] ? $r['name'] : $list[0];
+					}
+					$r['name'] = $list[0];
+					break;
+				}
+			}
+			if ( count( $r['names'] ) > $r['qty'] ) {
+				/* translators: 1: names, 2: quantity */
+				$r['warns'][] = sprintf( __( '%1$s names for %2$s units: the extra names go on the first certificate', 'flx-donate' ), number_format_i18n( count( $r['names'] ) ), number_format_i18n( $r['qty'] ) );
+			}
 			/* 2.26.0: a row without a date (older lists often fill it only now and then). */
 			$r['dated'] = '' !== $r['created'];
 			if ( $r['dated'] ) {
@@ -656,6 +677,18 @@ final class FLXB_Import {
 		return $out;
 	}
 
+	/** 2.26.1: names written one per line in a cell (empty lines dropped). */
+	public static function name_lines( $v ) {
+		$out = array();
+		foreach ( preg_split( '/\r\n|\r|\n/', (string) $v ) as $n ) {
+			$n = trim( preg_replace( '/\s+/u', ' ', $n ) );
+			if ( '' !== $n ) {
+				$out[] = $n;
+			}
+		}
+		return $out;
+	}
+
 	/** The same row is never imported twice: key over every mapped cell. */
 	public static function row_key( array $imp, array $row ) {
 		$parts = array();
@@ -721,8 +754,31 @@ final class FLXB_Import {
 		if ( null !== $r['amount'] ) {
 			$line['amount'] = $r['amount'];
 		}
-		$t = FLXB_Types::get( $r['type_id'] );
-		if ( '' !== $r['name'] && $t && ! FLXB_Types::tracks_items( $t ) ) {
+		$t     = FLXB_Types::get( $r['type_id'] );
+		$names = (array) ( $r['names'] ?? array() );
+		if ( count( $names ) > 1 && $t && ! FLXB_Types::tracks_items( $t ) ) {
+			/* 2.26.1: first name takes the rest of the units, every other name one unit (own certificate). */
+			$extra             = array_slice( $names, 1, max( 0, $r['qty'] - 1 ) );
+			$first             = implode( ', ', array_merge( array( $names[0] ), array_slice( $names, max( 1, $r['qty'] ) ) ) );
+			$line['name']      = $first;
+			$line['for_other'] = true;
+			$line['ben_name']  = $first;
+			if ( $extra ) {
+				$line['people'] = array_map(
+					static function ( $n ) {
+						return array( 'name' => $n );
+					},
+					$extra
+				);
+			}
+		} elseif ( count( $names ) > 1 ) {
+			$line['beneficiaries'] = array_slice( array_merge( $names, array_fill( 0, $r['qty'], $names[0] ) ), 0, $r['qty'] );
+			$line['name']          = $names[0];
+			if ( $t && FLXB_Types::requires_proxy( $t ) ) {
+				$pt                    = flxb_proxy_text();
+				$line['proxy_consent'] = array( 'version' => $pt ? (int) $pt['version'] : 0, 'accepted_at' => current_time( 'mysql', true ), 'source' => 'import' );
+			}
+		} elseif ( '' !== $r['name'] && $t && ! FLXB_Types::tracks_items( $t ) ) {
 			/* 2.26.0: an untracked type (e.g. saplings) keeps one "on behalf of" name, not one per unit. */
 			$line['name'] = $r['name'];
 			if ( flxb_fold( $r['name'] ) !== flxb_fold( $who ) ) {

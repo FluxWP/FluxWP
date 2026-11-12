@@ -6001,3 +6001,6 @@ msgstr "Aktarım başlasın mı?"
 
 msgid "You changed something: press \"Apply and check again\" first."
 msgstr "Bir şey değiştirdiniz: önce \"Uygula ve yeniden kontrol et\"e basın."
+
+msgid "%1$s names for %2$s units: the extra names go on the first certificate"
+msgstr "%2$s adet için %1$s ad: fazla adlar ilk sertifikaya yazılır"

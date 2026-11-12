@@ -3597,4 +3597,5 @@ Teşekkürler,
 '%1$s records (%2$s units) will be written. Paid: %3$s, waiting for payment: %4$s. Nothing is sent to anyone.'=>'%1$s kayıt (%2$s adet) yazılacak. Ödenen: %3$s, ödeme bekleyen: %4$s. Kimseye bir şey gönderilmez.',
 'Start the import?'=>'Aktarım başlasın mı?',
 'You changed something: press "Apply and check again" first.'=>'Bir şey değiştirdiniz: önce "Uygula ve yeniden kontrol et"e basın.',
+'%1$s names for %2$s units: the extra names go on the first certificate'=>'%2$s adet için %1$s ad: fazla adlar ilk sertifikaya yazılır',
 ));
