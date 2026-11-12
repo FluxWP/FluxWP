@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+- FluxWP ortak imza modülü (flx-brand) eklendi; diğer FluxWP paketleriyle aynı kişi, etkinlik, telefon ve form alanı araçları.
+
 ## 0.1.0
 
 - İlk sürüm: Flux Block Editor. Blok editörüne satır/sütun düzeni, bölüm, gelişmiş başlık, düğme, ikon, ikon listesi, bilgi kutusu, görsel, galeri, akordiyon, sekme, tablo, içindekiler, referans, geri sayım, sayaç, ilerleme çubuğu, Google Haritalar, Lottie, vektör, video açılır pencere, yazılar, arama, "daha fazla göster", boşluk/ayırıcı, form + gelişmiş form ve header/menü oluşturucu blokları (`flx/*`).

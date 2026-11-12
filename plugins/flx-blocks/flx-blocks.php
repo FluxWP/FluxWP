@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Block Editor
  * Description:       Block editor toolkit: row and column layouts, advanced heading, buttons, icons, gallery, tabs, accordion, forms, header builder and more. Design tokens, block defaults and preset support.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -17,11 +17,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
+require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
+
 if ( defined( 'FLXBK_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXBK_VERSION', '0.1.0' );
+define( 'FLXBK_VERSION', '0.1.1' );
 define( 'FLXBK_FILE', __FILE__ );
 define( 'FLXBK_PATH', realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR );
 define( 'FLXBK_URL', plugin_dir_url( __FILE__ ) );
