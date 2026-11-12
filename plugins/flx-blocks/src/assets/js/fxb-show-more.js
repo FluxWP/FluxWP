@@ -148,7 +148,7 @@
 			}
 
 			// Remove any HTML tags that might have slipped through
-			let cleaned = text.replace(/<[^>]*>/g, '').replace(/[<>]/g, '');
+			let cleaned = String(text).split('<').map(function (part, k) { return k ? part.slice(part.indexOf('>') + 1 || part.length) : part; }).join('').replace(/[<>]/g, '');
 
 			// Normalize whitespace
 			cleaned = cleaned.replace(/\s+/g, ' ').trim();

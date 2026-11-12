@@ -164,7 +164,7 @@
 		stripHtml(html) {
 			const entities = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0' };
 			return String(html ?? '')
-				.replace(/<[^>]*>/g, '')
+				.split('<').map(function (part, k) { return k ? part.slice(part.indexOf('>') + 1 || part.length) : part; }).join('')
 				.replace(/[<>]/g, '')
 				.replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|[a-z]{2,6});/gi, (m, e) => {
 					const k = e.toLowerCase();

@@ -62,7 +62,7 @@ export default function Tooltip({ children, text, className, TagName = 'span', p
 				.replace(/</g, '&lt;')
 				.replace(/>/g, '&gt;')
 				.replace(/"/g, '&quot;');
-		const source = String(input || '').replace(/<!--[\s\S]*?-->/g, '');
+		const source = String(input || '').split('<!--').map(function (part, k) { var end = part.indexOf('-->'); return k ? (end > -1 ? part.slice(end + 3) : '') : part; }).join('');
 		const tagRe = /<(\/?)([a-z][a-z0-9]*)\b[^<>]*>/gi;
 		let out = '';
 		let last = 0;

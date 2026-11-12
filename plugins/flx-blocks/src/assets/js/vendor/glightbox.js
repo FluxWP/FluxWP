@@ -1240,7 +1240,7 @@
 									.replace(/>/g, '&gt;')
 									.replace(/"/g, '&quot;');
 							};
-							var src = String(input || '').replace(/<!--[\s\S]*?-->/g, '');
+							var src = String(input || '').split('<!--').map(function (part, k) { var end = part.indexOf('-->'); return k ? (end > -1 ? part.slice(end + 3) : '') : part; }).join('');
 							var tagRe = /<(\/?)([a-z][a-z0-9]*)\b([^<>]*)>/gi;
 							var out = '';
 							var last = 0;

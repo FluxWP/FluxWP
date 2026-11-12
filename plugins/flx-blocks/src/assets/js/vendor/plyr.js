@@ -2050,7 +2050,7 @@
 									var ent = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0' };
 									(a.textContent = i
 										.replace(/<br\s*\/?>/gi, '\n')
-										.replace(/<[^>]*>/g, '')
+										.split('<').map(function (part, k) { return k ? part.slice(part.indexOf('>') + 1 || part.length) : part; }).join('')
 										.replace(/[<>]/g, '')
 										.replace(/&(#x[0-9a-f]{1,6}|#[0-9]{1,7}|[a-z]{2,6});/gi, function (m, k) {
 											k = k.toLowerCase();

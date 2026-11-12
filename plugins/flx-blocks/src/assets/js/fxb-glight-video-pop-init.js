@@ -242,7 +242,8 @@
 					if (device === 'mobile') {
 						const mobileHref = flxBlocksProVideoLightbox.cache[i]?.getAttribute('data-href-mobile');
 						if (mobileHref && /^https?:\/\/[^\s"'<>`]+$/i.test(mobileHref)) {
-							flxBlocksProVideoLightbox.cache[i].setAttribute('href', mobileHref);
+							// GLightbox reads data-href before the link's own href.
+							flxBlocksProVideoLightbox.cache[i].setAttribute('data-href', mobileHref);
 						}
 					}
 
