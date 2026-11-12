@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 1.2.5
+- Paket indirme hatası artık gerçek nedeni yazıyor: "Dosya indirilemedi." yerine HTTP kodu + sunucunun mesajı (ör. "HTTP 403: Invalid site key"), zaman aşımı, sunucuya ulaşılamadı, disk dolu, gelen dosya zip değil. Her durumda ne yapılacağı da yazar; ayrıntı debug.log'a da düşer.
+- İndirmeden önce geçici klasör yazılabilir mi ve diskte en az 50 MB boş yer var mı bakılır.
+- Geçici hatada (zaman aşımı, bağlantı, 408/425/429/5xx, yarım/bozuk dosya) 2 ve 5 sn bekleyip en fazla 3 kez denenir; PHP süre sınırına takılmamak için 25 sn'den sonra yeniden denenmez.
+- Yalnız FluxWP kaynaklarından (güncelleme sunucusu / GitHub kaynağı) gelen indirmeler; WordPress.org ve diğerleri değişmedi.
+
 ## 1.2.4
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

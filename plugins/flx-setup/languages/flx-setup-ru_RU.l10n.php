@@ -1276,5 +1276,16 @@ return array(
   '%dgün\\x00%dgün' . chr(0) . '%dgün\\x00%dgün' => '%dдень' . chr(0) . '%dдень' . chr(0) . '%dдень',
   '%skayıt\\x00%skayıt' . chr(0) . '%skayıt\\x00%skayıt' => 'Регистрация %s' . chr(0) . 'Регистрация %s' . chr(0) . 'Регистрация %s',
 
+  'Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions.' => 'Ошибка загрузки: временная папка (%s) недоступна для записи. Попросите хостинг проверить права на папку.',
+  'Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again.' => 'Ошибка загрузки: диск заполнен (свободно %s). Удалите старые резервные копии (Flux Backup) или другие большие файлы и повторите попытку.',
+  'Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full.' => 'Ошибка загрузки: полученный файл не является zip (%s). Возможно, брандмауэр или прокси изменяет ответ, либо диск заполнен.',
+  'Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again.' => 'Ошибка загрузки: не удалось сохранить файл, возможно, диск заполнен (%s). Удалите старые резервные копии (Flux Backup) или другие большие файлы и повторите попытку.',
+  'Download failed: the connection timed out (%s).' => 'Ошибка загрузки: истекло время ожидания соединения (%s).',
+  'Download failed: the server could not be reached (%s).' => 'Ошибка загрузки: сервер недоступен (%s).',
+  'The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings.' => 'Ключ сайта отклонён или этот пакет для него не разрешён. Проверьте ключ в FluxWP Panel › Настройки.',
+  'This version is no longer on the server. Click "Check for updates" and try again.' => 'Этой версии больше нет на сервере. Нажмите «Проверить обновления» и повторите попытку.',
+  'Too many requests in a short time. Wait a minute and try again.' => 'Слишком много запросов за короткое время. Подождите минуту и повторите попытку.',
+  'The update server had a temporary error. Try again in a minute.' => 'На сервере обновлений временная ошибка. Повторите попытку через минуту.',
+  'Download failed (HTTP %1$d: %2$s). %3$s' => 'Ошибка загрузки (HTTP %1$d: %2$s). %3$s',
  ),
 );

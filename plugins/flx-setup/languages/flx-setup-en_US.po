@@ -2046,3 +2046,36 @@ msgstr "Category"
 
 msgid "Released"
 msgstr "Released"
+
+msgid "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
+msgstr "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
+
+msgid "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again."
+
+msgid "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full."
+msgstr "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full."
+
+msgid "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again."
+
+msgid "Download failed: the connection timed out (%s)."
+msgstr "Download failed: the connection timed out (%s)."
+
+msgid "Download failed: the server could not be reached (%s)."
+msgstr "Download failed: the server could not be reached (%s)."
+
+msgid "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings."
+msgstr "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings."
+
+msgid "This version is no longer on the server. Click \"Check for updates\" and try again."
+msgstr "This version is no longer on the server. Click \"Check for updates\" and try again."
+
+msgid "Too many requests in a short time. Wait a minute and try again."
+msgstr "Too many requests in a short time. Wait a minute and try again."
+
+msgid "The update server had a temporary error. Try again in a minute."
+msgstr "The update server had a temporary error. Try again in a minute."
+
+msgid "Download failed (HTTP %1$d: %2$s). %3$s"
+msgstr "Download failed (HTTP %1$d: %2$s). %3$s"

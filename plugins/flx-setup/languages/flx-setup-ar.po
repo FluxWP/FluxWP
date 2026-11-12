@@ -1999,3 +1999,36 @@ msgstr[2] "النسخة الاحتياطية لتحديث%1$dحاليًا هي%2
 msgstr[3] "النسخة الاحتياطية لتحديث%1$dحاليًا هي%2$s. النسخ الاحتياطي لتحديث%1$dحاليًا هو%2$s."
 msgstr[4] "النسخة الاحتياطية لتحديث%1$dحاليًا هي%2$s. النسخ الاحتياطي لتحديث%1$dحاليًا هو%2$s."
 msgstr[5] "النسخة الاحتياطية لتحديث%1$dحاليًا هي%2$s. النسخ الاحتياطي لتحديث%1$dحاليًا هو%2$s."
+
+msgid "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
+msgstr "فشل التنزيل: المجلد المؤقت (%s) غير قابل للكتابة. اطلب من مزوّد الاستضافة التحقق من أذونات المجلد."
+
+msgid "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "فشل التنزيل: القرص ممتلئ (المساحة الحرة %s). احذف النسخ الاحتياطية القديمة (Flux Backup) أو الملفات الكبيرة الأخرى ثم أعد المحاولة."
+
+msgid "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full."
+msgstr "فشل التنزيل: الملف المستلم ليس ملف zip (%s). قد يكون جدار حماية أو وكيل يغيّر الاستجابة، أو قد يكون القرص ممتلئًا."
+
+msgid "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "فشل التنزيل: تعذّر حفظ الملف، قد يكون القرص ممتلئًا (%s). احذف النسخ الاحتياطية القديمة (Flux Backup) أو الملفات الكبيرة الأخرى ثم أعد المحاولة."
+
+msgid "Download failed: the connection timed out (%s)."
+msgstr "فشل التنزيل: انتهت مهلة الاتصال (%s)."
+
+msgid "Download failed: the server could not be reached (%s)."
+msgstr "فشل التنزيل: تعذّر الوصول إلى الخادم (%s)."
+
+msgid "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings."
+msgstr "تم رفض مفتاح الموقع أو أن هذه الحزمة غير مسموح بها له. تحقق من المفتاح في FluxWP Panel › الإعدادات."
+
+msgid "This version is no longer on the server. Click \"Check for updates\" and try again."
+msgstr "هذا الإصدار لم يعد موجودًا على الخادم. انقر على \"التحقق من التحديثات\" ثم أعد المحاولة."
+
+msgid "Too many requests in a short time. Wait a minute and try again."
+msgstr "طلبات كثيرة في وقت قصير. انتظر دقيقة ثم أعد المحاولة."
+
+msgid "The update server had a temporary error. Try again in a minute."
+msgstr "حدث خطأ مؤقت في خادم التحديثات. أعد المحاولة بعد دقيقة."
+
+msgid "Download failed (HTTP %1$d: %2$s). %3$s"
+msgstr "فشل التنزيل (HTTP %1$d: %2$s). %3$s"
