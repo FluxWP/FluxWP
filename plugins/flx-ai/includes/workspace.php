@@ -149,13 +149,45 @@ function flxai_ws_remove( $rel ) {
 /* ---------- Sohbetin / görevin klasörü ve erişimi ---------- */
 
 /** Görevin klasör adı: tasks/<id>-<başlık>. İlk kullanımda göreve yazılır, başlık değişse de aynı kalır. */
+/**
+ * Klasör adı için benzersiz, tahmin edilemez 13 haneli numara (sıra numarası görünmez).
+ * Sitede bir kez üretilen gizli anahtarla türetilir; saklamaya gerek yoktur, aynı sohbet hep aynı adı alır.
+ */
+function flxai_ws_uid( $kind, $id ) {
+	$key = (string) get_option( 'flxai_ws_key', '' );
+	if ( '' === $key ) {
+		$key = wp_generate_password( 40, false, false );
+		add_option( 'flxai_ws_key', $key, '', false );
+		$key = (string) get_option( 'flxai_ws_key', $key );
+	}
+	$h = hash_hmac( 'sha256', $kind . ':' . (int) $id, $key );
+	return (string) ( 1000000000000 + ( hexdec( substr( $h, 0, 12 ) ) % 9000000000000 ) );
+}
+
+/** Eski sıra numaralı klasör (0.13.0) varsa bir kez yeni adına taşınır. */
+function flxai_ws_adopt( $old, $new ) {
+	if ( $old !== $new && is_dir( flxai_ws_abs( $old ) ) && ! file_exists( flxai_ws_abs( $new ) ) ) {
+		@rename( flxai_ws_abs( $old ), flxai_ws_abs( $new ) ); // phpcs:ignore
+	}
+}
+
+/** Sohbetin klasörü: chats/<benzersiz numara>. */
+function flxai_ws_chat_dir( $chat_id ) {
+	$d = flxai_ws_root() . '/chats/' . flxai_ws_uid( 'chat', $chat_id );
+	flxai_ws_adopt( flxai_ws_root() . '/chats/' . (int) $chat_id, $d );
+	return $d;
+}
+
 function flxai_ws_task_dir( array $task ) {
 	$d = (string) ( $task['meta']['ws']['dir'] ?? '' );
-	if ( '' !== $d ) {
+	$n = flxai_ws_root() . '/tasks/' . flxai_ws_uid( 'task', $task['id'] );
+	if ( $d === $n ) {
 		return $d;
 	}
-	$slug = substr( trim( preg_replace( '/[^a-z0-9-]+/', '-', sanitize_title( remove_accents( (string) $task['title'] ) ) ), '-' ), 0, 40 );
-	$d    = flxai_ws_root() . '/tasks/' . (int) $task['id'] . ( '' !== $slug ? '-' . $slug : '' );
+	if ( '' !== $d ) {
+		flxai_ws_adopt( $d, $n );
+	}
+	$d    = $n;
 	$meta = (array) $task['meta'];
 	$meta['ws']        = (array) ( $meta['ws'] ?? array() );
 	$meta['ws']['dir'] = $d;
@@ -203,7 +235,7 @@ function flxai_ws_policy( array $chat ) {
 		$def = 'workspace';
 	} else {
 		$cfg = flxai_ws_clean_cfg( $chat['state']['ws'] ?? array() );
-		$dir = flxai_ws_root() . '/chats/' . $cid;
+		$dir = flxai_ws_chat_dir( $cid );
 		$def = 'workspace';
 	}
 	$p = array(
