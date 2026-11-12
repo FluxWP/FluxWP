@@ -1,0 +1,34 @@
+/* Flux Files – sitede belge kütüphanesi ([flx_files]). Tema renklerini izler. */
+.flxfd { --fd-ac: var(--wp--preset--color--primary, currentColor); --fd-bd: color-mix(in srgb, currentColor 14%, transparent); --fd-mut: color-mix(in srgb, currentColor 62%, transparent); border: 1px solid var(--fd-bd); border-radius: 16px; padding: 14px; margin: 1.5em 0; }
+.flxfd-title { margin: 0 0 10px; font-size: 1.15em; }
+.flxfd-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.flxfd-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-weight: 600; }
+.flxfd-crumbs a { text-decoration: none; color: inherit; }
+.flxfd-crumbs a:hover { color: var(--fd-ac); }
+.flxfd-crumbs span { color: var(--fd-mut); }
+.flxfd-search input { min-width: 220px; padding: 9px 14px; border: 1px solid var(--fd-bd); border-radius: 99px; background: transparent; color: inherit; font: inherit; }
+.flxfd-meta, .flxfd-empty { color: var(--fd-mut); margin: 6px 4px; font-size: .92em; }
+.flxfd-list { list-style: none; margin: 0; padding: 0; }
+.flxfd-item { margin: 0; }
+.flxfd-item a { display: grid; grid-template-columns: 40px 1fr auto; grid-template-areas: "i n d" "i s d"; align-items: center; gap: 0 12px; padding: 10px 10px; border-radius: 12px; text-decoration: none; color: inherit; }
+.flxfd-item a:hover { background: color-mix(in srgb, currentColor 6%, transparent); }
+.flxfd-ico { grid-area: i; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font: 700 10px/1 ui-monospace, Menlo, monospace; color: #475569; background: rgba(100, 116, 139, .12); }
+.flxfd-k-dir .flxfd-ico { background: color-mix(in srgb, var(--fd-ac) 14%, transparent); }
+.flxfd-k-dir .flxfd-ico::before { content: ""; width: 22px; height: 17px; border-radius: 3px 3px 4px 4px; background: var(--fd-ac); clip-path: polygon(0 0, 42% 0, 52% 18%, 100% 18%, 100% 100%, 0 100%); }
+.flxfd-k-pdf .flxfd-ico { color: #dc2626; background: rgba(220, 38, 38, .1); }
+.flxfd-k-image .flxfd-ico { color: #16a34a; background: rgba(22, 163, 74, .1); }
+.flxfd-k-doc .flxfd-ico { color: #2563eb; background: rgba(37, 99, 235, .1); }
+.flxfd-k-archive .flxfd-ico { color: #b45309; background: rgba(245, 158, 11, .14); }
+.flxfd-k-video .flxfd-ico, .flxfd-k-audio .flxfd-ico { color: #db2777; background: rgba(219, 39, 119, .1); }
+.flxfd-name { grid-area: n; font-weight: 600; overflow-wrap: anywhere; }
+.flxfd-sub { grid-area: s; color: var(--fd-mut); font-size: .86em; }
+.flxfd-dl { grid-area: d; font-size: .85em; font-weight: 600; color: var(--fd-ac); border: 1px solid currentColor; border-radius: 99px; padding: 5px 12px; }
+.flxfd--grid .flxfd-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.flxfd--grid .flxfd-item a { grid-template-columns: 1fr; grid-template-areas: "i" "n" "s" "d"; justify-items: center; text-align: center; gap: 6px; border: 1px solid var(--fd-bd); padding: 16px 10px; height: 100%; }
+.flxfd--grid .flxfd-ico { width: 56px; height: 56px; font-size: 12px; }
+.flxfd-note { padding: 10px 14px; border: 1px dashed currentColor; border-radius: 10px; opacity: .8; }
+@media (max-width: 600px) {
+	.flxfd-search, .flxfd-search input { width: 100%; min-width: 0; }
+	.flxfd-dl { display: none; }
+	.flxfd-item a { grid-template-columns: 40px 1fr; grid-template-areas: "i n" "i s"; }
+}

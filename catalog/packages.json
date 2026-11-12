@@ -2009,6 +2009,81 @@
           }
         ]
       }
+    },
+    "flx-files": {
+      "desc": {
+        "en": "A modern file manager for your site: browse, edit, upload and share files, with trash, version history and AI help.",
+        "tr": "Siteniz için modern dosya yöneticisi: dosyaları gezin, düzenleyin, yükleyin ve paylaşın; çöp kutusu, sürüm geçmişi ve AI yardımıyla."
+      },
+      "website": {},
+      "icons": {
+        "svg": {
+          "path": "plugins/flx-files/assets/icon.svg",
+          "sha": "a615c8cab7401c7531714c7a4b9e05e2c6e3639b",
+          "size": 992
+        },
+        "pastel": {
+          "path": "plugins/flx-files/assets/icon-pastel.svg",
+          "sha": "e8f24964b41fa800c9f66b2f83866bcacac9a599",
+          "size": 678
+        }
+      },
+      "gallery": {
+        "en": [
+          {
+            "path": "plugins/flx-files/docs/previews/browser-en.webp",
+            "sha": "506d8d03a6a46ae366d62b3e7817022dcb0fccf8",
+            "size": 28818
+          },
+          {
+            "path": "plugins/flx-files/docs/previews/menu-en.webp",
+            "sha": "a08981c49cfdd4b8e83d1547ce25250d6deafa7d",
+            "size": 37598
+          },
+          {
+            "path": "plugins/flx-files/docs/previews/editor-en.webp",
+            "sha": "553d61cc4252e7a57238827196fdf6b7b8731ba2",
+            "size": 39234
+          },
+          {
+            "path": "plugins/flx-files/docs/previews/activity-en.webp",
+            "sha": "2f75d64250205eae7d5531847cb3a562e2279f7f",
+            "size": 49708
+          },
+          {
+            "path": "plugins/flx-files/docs/previews/settings-en.webp",
+            "sha": "92b6c9ef3ea2eacc5153de54a4238da9b3280d60",
+            "size": 42736
+          }
+        ],
+        "tr": [
+          {
+            "path": "plugins/flx-files/docs/previews/browser-tr.webp",
+            "sha": "d5f4e52764989e6c45e16500f61db8f9ad88d8e1",
+            "size": 28866
+          },
+          {
+            "path": "plugins/flx-files/docs/previews/menu-tr.webp",
+            "sha": "4f53208ac4af1bbff45546738c04a08bb22f6790",
+            "size": 38074
+          },
+          {
+            "path": "plugins/flx-files/docs/previews/editor-tr.webp",
+            "sha": "f6801bf0e44a644885721f4ea64006423cd91521",
+            "size": 39380
+          },
+          {
+            "path": "plugins/flx-files/docs/previews/activity-tr.webp",
+            "sha": "8ed89292fd69bc052f98041d0de673e3a6d0e89c",
+            "size": 50686
+          },
+          {
+            "path": "plugins/flx-files/docs/previews/settings-tr.webp",
+            "sha": "42eb33a28afe591a87a1903b5420211d228dbedc",
+            "size": 44952
+          }
+        ]
+      }
     }
   }
 }

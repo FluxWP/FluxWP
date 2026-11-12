@@ -1,0 +1,1036 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: Flux Files\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "Browse, edit and share the site files"
+msgstr "Site dosyalarına göz at, düzenle ve paylaş"
+
+msgid "You are not allowed to do this."
+msgstr "Bunu yapma yetkiniz yok."
+
+msgid "Loading…"
+msgstr "Yükleniyor…"
+
+msgid "Flux Files needs JavaScript."
+msgstr "Flux Files için JavaScript gerekli."
+
+msgid "Something went wrong. Try again."
+msgstr "Bir şeyler ters gitti. Yeniden deneyin."
+
+msgid "Copied."
+msgstr "Kopyalandı."
+
+msgid "Location"
+msgstr "Konum"
+
+msgid "Site root"
+msgstr "Site kökü"
+
+msgid "Browser"
+msgstr "Tarayıcı"
+
+msgid "Editor"
+msgstr "Editör"
+
+msgid "Upload"
+msgstr "Yükle"
+
+msgid "New"
+msgstr "Yeni"
+
+msgid "More"
+msgstr "Diğer"
+
+msgid "Read-only: file changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "Salt okunur: bu sitede dosya değişikliği kapalı (DISALLOW_FILE_MODS)."
+
+msgid "Back"
+msgstr "Geri"
+
+msgid "Forward"
+msgstr "İleri"
+
+msgid "Folder"
+msgstr "Klasör"
+
+msgid "Search"
+msgstr "Ara"
+
+msgid "Search in this folder…"
+msgstr "Bu klasörde ara…"
+
+msgid "Also search inside text and code files"
+msgstr "Metin ve kod dosyalarının içinde de ara"
+
+msgid "Content"
+msgstr "İçerik"
+
+msgid "List or grid"
+msgstr "Liste ya da ızgara"
+
+msgid "Refresh"
+msgstr "Yenile"
+
+msgid "Drop files or folders to upload"
+msgstr "Yüklemek için dosya ya da klasör bırakın"
+
+msgid "Show or hide files"
+msgstr "Dosyaları göster/gizle"
+
+msgid "Choose a file on the left to edit it."
+msgstr "Düzenlemek için soldan bir dosya seçin."
+
+msgid "Close"
+msgstr "Kapat"
+
+msgid "Trash"
+msgstr "Çöp kutusu"
+
+msgid "Activity"
+msgstr "Etkinlik"
+
+msgid "Results for \"%s\""
+msgstr "\"%s\" sonuçları"
+
+msgid "Name · A to Z"
+msgstr "Ad · A'dan Z'ye"
+
+msgid "Name · Z to A"
+msgstr "Ad · Z'den A'ya"
+
+msgid "Modified · newest"
+msgstr "Değiştirilme · en yeni"
+
+msgid "Modified · oldest"
+msgstr "Değiştirilme · en eski"
+
+msgid "Size · largest"
+msgstr "Boyut · en büyük"
+
+msgid "Size · smallest"
+msgstr "Boyut · en küçük"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "No results"
+msgstr "Sonuç yok"
+
+msgid "This folder is empty"
+msgstr "Bu klasör boş"
+
+msgid "Drag files here or use Upload."
+msgstr "Dosyaları buraya sürükleyin ya da Yükle'yi kullanın."
+
+msgid "%s items"
+msgstr "%s öğe"
+
+msgid "1 item"
+msgstr "1 öğe"
+
+msgid "Actions"
+msgstr "İşlemler"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Modified"
+msgstr "Değiştirilme"
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "Permissions"
+msgstr "İzinler"
+
+msgid "Original location"
+msgstr "Asıl yeri"
+
+msgid "Deleted"
+msgstr "Silinme"
+
+msgid "Showing the first results only. Search in a smaller folder for more."
+msgstr "Yalnız ilk sonuçlar gösteriliyor. Daha fazlası için daha küçük bir klasörde arayın."
+
+msgid "Protected: cannot be moved, renamed or deleted"
+msgstr "Korumalı: taşınamaz, adı değiştirilemez, silinemez"
+
+msgid "Contains secrets: never shared with AI"
+msgstr "Gizli bilgi içerir: AI ile asla paylaşılmaz"
+
+msgid "WordPress core file"
+msgstr "WordPress çekirdek dosyası"
+
+msgid "%s selected"
+msgstr "%s seçildi"
+
+msgid "%s on clipboard"
+msgstr "Panoda %s öğe"
+
+msgid "Storage"
+msgstr "Depolama"
+
+msgid "Cut"
+msgstr "Kes"
+
+msgid "Copy"
+msgstr "Kopyala"
+
+msgid "Paste"
+msgstr "Yapıştır"
+
+msgid "Download"
+msgstr "İndir"
+
+msgid "Download as ZIP"
+msgstr "ZIP olarak indir"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Clear selection"
+msgstr "Seçimi temizle"
+
+msgid "Upload files"
+msgstr "Dosya yükle"
+
+msgid "Upload folder"
+msgstr "Klasör yükle"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "New file"
+msgstr "Yeni dosya"
+
+msgid "New folder"
+msgstr "Yeni klasör"
+
+msgid "Folder info"
+msgstr "Klasör bilgileri"
+
+msgid "File info"
+msgstr "Dosya bilgileri"
+
+msgid "Copy path"
+msgstr "Yolu kopyala"
+
+msgid "Path from the site root"
+msgstr "Site kökünden yol"
+
+msgid "Full server path"
+msgstr "Sunucudaki tam yol"
+
+msgid "Web address (URL)"
+msgstr "Web adresi (URL)"
+
+msgid "Edit"
+msgstr "Düzenle"
+
+msgid "Preview"
+msgstr "Önizle"
+
+msgid "Archive…"
+msgstr "Arşivle…"
+
+msgid "The ZIP file is created in this folder."
+msgstr "ZIP dosyası bu klasörde oluşturulur."
+
+msgid "Extract"
+msgstr "Arşivden çıkar"
+
+msgid "Duplicate"
+msgstr "Çoğalt"
+
+msgid "Copy or move"
+msgstr "Kopyala veya taşı"
+
+msgid "Move to…"
+msgstr "Şuraya taşı…"
+
+msgid "Copy to…"
+msgstr "Şuraya kopyala…"
+
+msgid "Show in folder"
+msgstr "Klasöründe göster"
+
+msgid "Permissions…"
+msgstr "İzinler…"
+
+msgid "Share on site"
+msgstr "Sitede paylaş"
+
+msgid "Stop sharing"
+msgstr "Paylaşımı durdur"
+
+msgid "Version history"
+msgstr "Sürüm geçmişi"
+
+msgid "Rename"
+msgstr "Yeniden adlandır"
+
+msgid "%s items cut. Open a folder and paste."
+msgstr "%s öğe kesildi. Bir klasör açıp yapıştırın."
+
+msgid "Cut. Open a folder and paste."
+msgstr "Kesildi. Bir klasör açıp yapıştırın."
+
+msgid "%s items copied. Open a folder and paste."
+msgstr "%s öğe kopyalandı. Bir klasör açıp yapıştırın."
+
+msgid "Copied. Open a folder and paste."
+msgstr "Kopyalandı. Bir klasör açıp yapıştırın."
+
+msgid "Renamed."
+msgstr "Ad değiştirildi."
+
+msgid "Move \"%s\" to the trash?"
+msgstr "\"%s\" çöp kutusuna taşınsın mı?"
+
+msgid "Move %s items to the trash?"
+msgstr "%s öğe çöp kutusuna taşınsın mı?"
+
+msgid "You can restore it from the trash."
+msgstr "Çöp kutusundan geri alabilirsiniz."
+
+msgid "%s items moved to the trash."
+msgstr "%s öğe çöp kutusuna taşındı."
+
+msgid "Moved to the trash."
+msgstr "Çöp kutusuna taşındı."
+
+msgid "Some items could not be processed"
+msgstr "Bazı öğeler işlenemedi"
+
+msgid "Already exists"
+msgstr "Zaten var"
+
+msgid "%s items already exist in the target folder. Replace them? The replaced files go to the trash."
+msgstr "Hedef klasörde %s öğe zaten var. Üzerine yazılsın mı? Eski dosyalar çöp kutusuna gider."
+
+msgid "Overwrite"
+msgstr "Üzerine yaz"
+
+msgid "Skip"
+msgstr "Atla"
+
+msgid "Skipped"
+msgstr "Atlandı"
+
+msgid "%s items moved."
+msgstr "%s öğe taşındı."
+
+msgid "Moved."
+msgstr "Taşındı."
+
+msgid "%s items copied."
+msgstr "%s öğe kopyalandı."
+
+msgid "Folder name"
+msgstr "Klasör adı"
+
+msgid "Create"
+msgstr "Oluştur"
+
+msgid "Created."
+msgstr "Oluşturuldu."
+
+msgid "Working…"
+msgstr "Çalışıyor…"
+
+msgid "Archive created."
+msgstr "Arşiv oluşturuldu."
+
+msgid "\"%s\" will be extracted into a new folder next to it."
+msgstr "\"%s\" yanındaki yeni bir klasöre çıkarılacak."
+
+msgid "Extracted %s files."
+msgstr "%s dosya çıkarıldı."
+
+msgid "Shared on the site"
+msgstr "Sitede paylaşılıyor"
+
+msgid "Visitors can browse and download this folder where you add the shortcode below (copied). Add it to any page or post."
+msgstr "Aşağıdaki kısa kodu (kopyalandı) eklediğiniz sayfada ziyaretçiler bu klasöre göz atıp dosyaları indirebilir. Herhangi bir sayfaya ya da yazıya ekleyin."
+
+msgid "No longer shared."
+msgstr "Artık paylaşılmıyor."
+
+msgid "Calculate"
+msgstr "Hesapla"
+
+msgid "Calculating…"
+msgstr "Hesaplanıyor…"
+
+msgid "%s files"
+msgstr "%s dosya"
+
+msgid "1 file"
+msgstr "1 dosya"
+
+msgid "partial"
+msgstr "kısmi"
+
+msgid "Not writable"
+msgstr "Yazılamaz"
+
+msgid "Notes"
+msgstr "Notlar"
+
+msgid "Image"
+msgstr "Görsel"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Audio"
+msgstr "Ses"
+
+msgid "PDF document"
+msgstr "PDF belgesi"
+
+msgid "Archive"
+msgstr "Arşiv"
+
+msgid "Code"
+msgstr "Kod"
+
+msgid "Document"
+msgstr "Belge"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Font"
+msgstr "Yazı tipi"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "Owner"
+msgstr "Sahip"
+
+msgid "Group"
+msgstr "Grup"
+
+msgid "Everyone"
+msgstr "Herkes"
+
+msgid "Read"
+msgstr "Okuma"
+
+msgid "Write"
+msgstr "Yazma"
+
+msgid "Execute"
+msgstr "Çalıştırma"
+
+msgid "Write access for everyone is not allowed."
+msgstr "Herkese yazma izni verilemez."
+
+msgid "Numeric value"
+msgstr "Sayısal değer"
+
+msgid "Usual values: 644 for files, 755 for folders."
+msgstr "Genelde dosyalar için 644, klasörler için 755."
+
+msgid "Cancel"
+msgstr "Vazgeç"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Saved."
+msgstr "Kaydedildi."
+
+msgid "Choose this folder"
+msgstr "Bu klasörü seç"
+
+msgid "No subfolders"
+msgstr "Alt klasör yok"
+
+msgid "Previous"
+msgstr "Önceki"
+
+msgid "Next"
+msgstr "Sonraki"
+
+msgid "Each save keeps the previous content. The last %s versions of a file are kept."
+msgstr "Her kayıtta önceki içerik saklanır. Bir dosyanın son %s sürümü tutulur."
+
+msgid "No earlier versions yet."
+msgstr "Henüz önceki sürüm yok."
+
+msgid "Difference from the current file"
+msgstr "Güncel dosyaya göre fark"
+
+msgid "Restore this version"
+msgstr "Bu sürüme dön"
+
+msgid "The file goes back to this version. The current content is kept as a new version."
+msgstr "Dosya bu sürüme döner. Şimdiki içerik yeni bir sürüm olarak saklanır."
+
+msgid "Restored."
+msgstr "Geri yüklendi."
+
+msgid "Panel"
+msgstr "Panel"
+
+msgid "AI chat"
+msgstr "AI sohbeti"
+
+msgid "MCP"
+msgstr "MCP"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "%s unchanged lines"
+msgstr "%s satır aynı"
+
+msgid "No changes."
+msgstr "Değişiklik yok."
+
+msgid "Uploading %1$s / %2$s"
+msgstr "Yükleniyor %1$s / %2$s"
+
+msgid "%s files uploaded"
+msgstr "%s dosya yüklendi"
+
+msgid "1 file uploaded"
+msgstr "1 dosya yüklendi"
+
+msgid "Upload failed"
+msgstr "Yükleme başarısız"
+
+msgid "\"%s\" already exists. Replace it? The old file is kept as a version."
+msgstr "\"%s\" zaten var. Üzerine yazılsın mı? Eski dosya sürüm olarak saklanır."
+
+msgid "Items are deleted for good after %s days."
+msgstr "Öğeler %s gün sonra kalıcı olarak silinir."
+
+msgid "Items stay until you empty the trash."
+msgstr "Öğeler çöp kutusunu boşaltana kadar kalır."
+
+msgid "Empty trash"
+msgstr "Çöpü boşalt"
+
+msgid "The trash is empty"
+msgstr "Çöp kutusu boş"
+
+msgid "Kept until %s"
+msgstr "%s tarihine kadar saklanır"
+
+msgid "Restore"
+msgstr "Geri yükle"
+
+msgid "Delete permanently"
+msgstr "Kalıcı olarak sil"
+
+msgid "This cannot be undone."
+msgstr "Bu işlem geri alınamaz."
+
+msgid "Everything in the trash will be deleted permanently. This cannot be undone."
+msgstr "Çöp kutusundaki her şey kalıcı olarak silinecek. Bu işlem geri alınamaz."
+
+msgid "Restored to %s"
+msgstr "%s konumuna geri yüklendi"
+
+msgid "%s items deleted."
+msgstr "%s öğe silindi."
+
+msgid "All"
+msgstr "Tümü"
+
+msgid "No activity yet"
+msgstr "Henüz etkinlik yok"
+
+msgid "Load more"
+msgstr "Daha fazla"
+
+msgid "%s events"
+msgstr "%s işlem"
+
+msgid "1 event"
+msgstr "1 işlem"
+
+msgid "Created"
+msgstr "Oluşturdu"
+
+msgid "Edited"
+msgstr "Düzenledi"
+
+msgid "Renamed"
+msgstr "Yeniden adlandırdı"
+
+msgid "Moved"
+msgstr "Taşıdı"
+
+msgid "Copied"
+msgstr "Kopyaladı"
+
+msgid "Moved to trash"
+msgstr "Çöpe taşıdı"
+
+msgid "Restored"
+msgstr "Geri yükledi"
+
+msgid "Deleted permanently"
+msgstr "Kalıcı sildi"
+
+msgid "Permissions changed"
+msgstr "İzinleri değiştirdi"
+
+msgid "Archived"
+msgstr "Arşivledi"
+
+msgid "Extracted"
+msgstr "Arşivden çıkardı"
+
+msgid "Uploaded"
+msgstr "Yükledi"
+
+msgid "Version restored"
+msgstr "Sürüme döndü"
+
+msgid "Settings changed"
+msgstr "Ayarları değiştirdi"
+
+msgid "Shared on site"
+msgstr "Sitede paylaştı"
+
+msgid "Sharing stopped"
+msgstr "Paylaşımı durdurdu"
+
+msgid "View"
+msgstr "Görünüm"
+
+msgid "Show hidden files"
+msgstr "Gizli dosyaları göster"
+
+msgid "Files starting with a dot, such as .htaccess."
+msgstr ".htaccess gibi noktayla başlayan dosyalar."
+
+msgid "Safety"
+msgstr "Güvenlik"
+
+msgid "Keep trash for (days)"
+msgstr "Çöp kutusunda tutma (gün)"
+
+msgid "0 keeps items until you empty the trash."
+msgstr "0: çöp kutusunu boşaltana kadar tutulur."
+
+msgid "Versions per file"
+msgstr "Dosya başına sürüm"
+
+msgid "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."
+msgstr "Her kayıtta önceki içerik saklanır (3 MB'a kadar metin dosyaları). 0 kapatır."
+
+msgid "AI and MCP"
+msgstr "AI ve MCP"
+
+msgid "Flux AI chat can list, read and search files, and asks you before every change. wp-config.php, .env and key files are never shared."
+msgstr "Flux AI sohbeti dosyaları listeleyip okuyabilir ve arayabilir; her değişiklikten önce size sorar. wp-config.php, .env ve anahtar dosyaları asla paylaşılmaz."
+
+msgid "External MCP clients may change files"
+msgstr "Dış MCP istemcileri dosya değiştirebilir"
+
+msgid "Off: Claude, ChatGPT and other MCP clients can only read. On: they can write, move and delete (to the trash)."
+msgstr "Kapalı: Claude, ChatGPT ve diğer MCP istemcileri yalnız okur. Açık: yazabilir, taşıyabilir ve silebilir (çöp kutusuna)."
+
+msgid "AI may write code files"
+msgstr "AI kod dosyası yazabilir"
+
+msgid "Lets AI change .php, .js, .css, .html, .htaccess and similar files. WordPress core and protected files stay off-limits."
+msgstr "AI'nın .php, .js, .css, .html, .htaccess gibi dosyaları değiştirmesine izin verir. WordPress çekirdeği ve korumalı dosyalar yine kapalı kalır."
+
+msgid "This lets AI change more of the site. Every change is still logged in Activity and earlier versions are kept. Continue?"
+msgstr "Bu ayar AI'nın sitede daha fazla şeyi değiştirmesine izin verir. Her değişiklik yine Etkinlik'e yazılır ve önceki sürümler saklanır. Devam edilsin mi?"
+
+msgid "Shared folders"
+msgstr "Paylaşılan klasörler"
+
+msgid "Folders in uploads that visitors can browse with the [flx_files] shortcode. Right-click a folder › Share on site."
+msgstr "Ziyaretçilerin [flx_files] kısa koduyla göz atabildiği uploads klasörleri. Klasöre sağ tıklayın › Sitede paylaş."
+
+msgid "No shared folders."
+msgstr "Paylaşılan klasör yok."
+
+msgid "Show in browser"
+msgstr "Tarayıcıda göster"
+
+msgid "\"%s\" has unsaved changes. Close it anyway?"
+msgstr "\"%s\" dosyasında kaydedilmemiş değişiklik var. Yine de kapatılsın mı?"
+
+msgid "Unsaved changes"
+msgstr "Kaydedilmemiş değişiklik"
+
+msgid "Close without saving"
+msgstr "Kaydetmeden kapat"
+
+msgid "Find"
+msgstr "Bul"
+
+msgid "Copy content"
+msgstr "İçeriği kopyala"
+
+msgid "Explain with AI"
+msgstr "AI ile açıkla"
+
+msgid "Explain the selection with AI"
+msgstr "Seçimi AI ile açıkla"
+
+msgid "Edit with AI"
+msgstr "AI ile düzenle"
+
+msgid "Line %1$s, column %2$s"
+msgstr "Satır %1$s, sütun %2$s"
+
+msgid "%s lines"
+msgstr "%s satır"
+
+msgid "Unsaved"
+msgstr "Kaydedilmedi"
+
+msgid "Saved"
+msgstr "Kaydedildi"
+
+msgid "This file holds passwords or keys. It is never sent to AI; be careful when sharing it."
+msgstr "Bu dosyada parola ya da anahtar var. AI'ya asla gönderilmez; paylaşırken dikkatli olun."
+
+msgid "WordPress core file: changes are lost when WordPress updates."
+msgstr "WordPress çekirdek dosyası: WordPress güncellenince değişiklikler kaybolur."
+
+msgid "The server does not allow writing this file; it is opened read-only."
+msgstr "Sunucu bu dosyaya yazmaya izin vermiyor; salt okunur açıldı."
+
+msgid "This is a WordPress core file. A mistake can break the site and the change is lost on the next WordPress update. Save anyway? The previous content is kept as a version."
+msgstr "Bu bir WordPress çekirdek dosyası. Bir hata siteyi bozabilir ve değişiklik bir sonraki WordPress güncellemesinde kaybolur. Yine de kaydedilsin mi? Önceki içerik sürüm olarak saklanır."
+
+msgid "This file controls the site configuration. A mistake can take the site down. Save anyway? The previous content is kept as a version."
+msgstr "Bu dosya site yapılandırmasını yönetir. Bir hata siteyi kapatabilir. Yine de kaydedilsin mi? Önceki içerik sürüm olarak saklanır."
+
+msgid "Replace with"
+msgstr "Yerine"
+
+msgid "Replace"
+msgstr "Değiştir"
+
+msgid "Replace all"
+msgstr "Tümünü değiştir"
+
+msgid "%s replaced."
+msgstr "%s yer değiştirildi."
+
+msgid "AI is working…"
+msgstr "AI çalışıyor…"
+
+msgid "What should change?"
+msgstr "Ne değişsin?"
+
+msgid "e.g. Add a comment above each function / Fix the syntax error on line 12"
+msgstr "ör. Her fonksiyonun üstüne açıklama ekle / 12. satırdaki sözdizimi hatasını düzelt"
+
+msgid "AI suggests a change and shows the difference. Nothing is saved until you apply it and press Save."
+msgstr "AI bir değişiklik önerir ve farkı gösterir. Uygulayıp Kaydet'e basana kadar hiçbir şey kaydedilmez."
+
+msgid "Suggest a change"
+msgstr "Değişiklik öner"
+
+msgid "Apply in editor"
+msgstr "Editörde uygula"
+
+msgid "Applied in the editor. Review it and press Save."
+msgstr "Editörde uygulandı. Kontrol edip Kaydet'e basın."
+
+msgid "Explain file"
+msgstr "Dosyayı açıkla"
+
+msgid "Edit file with AI"
+msgstr "AI ile dosya düzenle"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and choose a model."
+msgstr "Flux AI hazır değil. Flux AI & MCP'yi kurup bir model seçin."
+
+msgid "This file may contain passwords or keys, so it is never sent to AI."
+msgstr "Bu dosyada parola ya da anahtar olabilir; AI'ya asla gönderilmez."
+
+msgid "The file is too large for AI (limit %s). Select a smaller file."
+msgstr "Dosya AI için çok büyük (sınır %s). Daha küçük bir dosya seçin."
+
+msgid "Write what to change."
+msgstr "Neyin değişeceğini yazın."
+
+msgid "AI did not return a change."
+msgstr "AI bir değişiklik döndürmedi."
+
+msgid "This path points outside the site folder."
+msgstr "Bu yol site klasörünün dışını gösteriyor."
+
+msgid "File or folder not found."
+msgstr "Dosya ya da klasör bulunamadı."
+
+msgid "Invalid path."
+msgstr "Geçersiz yol."
+
+msgid "Invalid name."
+msgstr "Geçersiz ad."
+
+msgid "The parent folder does not exist."
+msgstr "Üst klasör yok."
+
+msgid "This is not a folder."
+msgstr "Bu bir klasör değil."
+
+msgid "The folder could not be read (permissions)."
+msgstr "Klasör okunamadı (izinler)."
+
+msgid "This is not a file."
+msgstr "Bu bir dosya değil."
+
+msgid "The file could not be read (permissions)."
+msgstr "Dosya okunamadı (izinler)."
+
+msgid "The file is larger than %s and cannot be opened in the editor. Download it instead."
+msgstr "Dosya %s'den büyük, editörde açılamaz. Bunun yerine indirin."
+
+msgid "This is a binary file and cannot be opened in the editor."
+msgstr "Bu ikili bir dosya, editörde açılamaz."
+
+msgid "File changes are disabled on this site (DISALLOW_FILE_MODS)."
+msgstr "Bu sitede dosya değişikliği kapalı (DISALLOW_FILE_MODS)."
+
+msgid "This folder is managed by Flux Files."
+msgstr "Bu klasörü Flux Files yönetir."
+
+msgid "Editing code files is disabled on this site (DISALLOW_FILE_EDIT)."
+msgstr "Bu sitede kod dosyası düzenleme kapalı (DISALLOW_FILE_EDIT)."
+
+msgid "AI cannot change protected or WordPress core files."
+msgstr "AI korumalı ya da WordPress çekirdek dosyalarını değiştiremez."
+
+msgid "AI is not allowed to write code files. Enable it in Flux Files › Settings."
+msgstr "AI'nın kod dosyası yazmasına izin verilmiyor. Flux Files › Ayarlar'dan açabilirsiniz."
+
+msgid "A folder with this name already exists."
+msgstr "Bu adda bir klasör zaten var."
+
+msgid "A file with this name already exists."
+msgstr "Bu adda bir dosya zaten var."
+
+msgid "The file changed on the server since you opened it. Reload it or save a copy."
+msgstr "Siz açtıktan sonra dosya sunucuda değişti. Yeniden yükleyin ya da bir kopya kaydedin."
+
+msgid "The file is not writable (permissions)."
+msgstr "Dosyaya yazılamıyor (izinler)."
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr "Dosya yazılamadı (izinler ya da disk alanı)."
+
+msgid "A file or folder with this name already exists."
+msgstr "Bu adda bir dosya ya da klasör zaten var."
+
+msgid "The folder could not be created (permissions)."
+msgstr "Klasör oluşturulamadı (izinler)."
+
+msgid "This file or folder is protected and cannot be moved, renamed or deleted."
+msgstr "Bu dosya ya da klasör korumalı; taşınamaz, adı değiştirilemez, silinemez."
+
+msgid "A folder cannot be moved into itself."
+msgstr "Bir klasör kendi içine taşınamaz."
+
+msgid "Could not move (permissions)."
+msgstr "Taşınamadı (izinler)."
+
+msgid "AI cannot read or copy protected files."
+msgstr "AI korumalı dosyaları okuyamaz ve kopyalayamaz."
+
+msgid "A folder cannot be copied into itself."
+msgstr "Bir klasör kendi içine kopyalanamaz."
+
+msgid "The folder has more than %s files; copy it with SSH or a backup tool."
+msgstr "Klasörde %s'den fazla dosya var; SSH ya da bir yedekleme aracıyla kopyalayın."
+
+msgid "Could not copy (permissions or disk space)."
+msgstr "Kopyalanamadı (izinler ya da disk alanı)."
+
+msgid "AI can only delete folders with fewer than 2,000 files."
+msgstr "AI yalnız 2.000'den az dosyası olan klasörleri silebilir."
+
+msgid "Could not move to the trash (permissions)."
+msgstr "Çöp kutusuna taşınamadı (izinler)."
+
+msgid "Permissions can only be changed from the Flux Files screen."
+msgstr "İzinler yalnız Flux Files ekranından değiştirilebilir."
+
+msgid "Enter permissions as three digits, e.g. 644 or 755."
+msgstr "İzinleri üç haneli girin, ör. 644 ya da 755."
+
+msgid "World-writable permissions (e.g. 777) are not allowed."
+msgstr "Herkese yazma izni (ör. 777) verilemez."
+
+msgid "Permissions could not be changed."
+msgstr "İzinler değiştirilemedi."
+
+msgid "Type at least 2 characters."
+msgstr "En az 2 karakter yazın."
+
+msgid "The PHP zip extension is not available on this server."
+msgstr "Bu sunucuda PHP zip uzantısı yok."
+
+msgid "Nothing selected."
+msgstr "Hiçbir şey seçilmedi."
+
+msgid "The archive could not be created."
+msgstr "Arşiv oluşturulamadı."
+
+msgid "Too many files for one archive."
+msgstr "Tek arşiv için çok fazla dosya var."
+
+msgid "This archive could not be opened."
+msgstr "Bu arşiv açılamadı."
+
+msgid "Too many files in this archive."
+msgstr "Bu arşivde çok fazla dosya var."
+
+msgid "The archive contains unsafe paths and was not extracted."
+msgstr "Arşivde güvenli olmayan yollar var; çıkarılmadı."
+
+msgid "Not enough disk space to extract this archive."
+msgstr "Bu arşivi çıkarmak için yeterli disk alanı yok."
+
+msgid "%1$d result for \"%2$s\""
+msgid_plural "%1$d results for \"%2$s\""
+msgstr[0] "\"%2$s\" için %1$d sonuç"
+msgstr[1] "\"%2$s\" için %1$d sonuç"
+
+msgid "This folder is not shared. Open Flux Files, right-click the folder and choose \"Share on site\"."
+msgstr "Bu klasör paylaşılmıyor. Flux Files'ı açın, klasöre sağ tıklayıp \"Sitede paylaş\"ı seçin."
+
+msgid "Search files…"
+msgstr "Dosya ara…"
+
+msgid "Search files"
+msgstr "Dosya ara"
+
+msgid "Clear"
+msgstr "Temizle"
+
+msgid "No files found."
+msgstr "Dosya bulunamadı."
+
+msgid "This folder is empty."
+msgstr "Bu klasör boş."
+
+msgid "List files"
+msgstr "Dosyaları listele"
+
+msgid "Read file"
+msgstr "Dosya oku"
+
+msgid "File activity"
+msgstr "Dosya etkinliği"
+
+msgid "Files in trash"
+msgstr "Çöp kutusundaki dosyalar"
+
+msgid "Write file"
+msgstr "Dosya yaz"
+
+msgid "Edit file (find and replace)"
+msgstr "Dosya düzenle (bul ve değiştir)"
+
+msgid "Create folder"
+msgstr "Klasör oluştur"
+
+msgid "Move or rename"
+msgstr "Taşı ya da yeniden adlandır"
+
+msgid "Delete (to trash)"
+msgstr "Sil (çöp kutusuna)"
+
+msgid "Restore from trash"
+msgstr "Çöp kutusundan geri yükle"
+
+msgid "Only folders inside the uploads folder can be shared on the site."
+msgstr "Sitede yalnız uploads içindeki klasörler paylaşılabilir."
+
+msgid "Unknown action."
+msgstr "Bilinmeyen işlem."
+
+msgid "The upload failed. The file may be larger than the server allows."
+msgstr "Yükleme başarısız. Dosya sunucunun izin verdiğinden büyük olabilir."
+
+msgid "The upload failed. Try again."
+msgstr "Yükleme başarısız. Yeniden deneyin."
+
+msgid "Not enough disk space."
+msgstr "Yeterli disk alanı yok."
+
+msgid "The upload was interrupted. Try again."
+msgstr "Yükleme yarıda kesildi. Yeniden deneyin."
+
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d öğe"
+msgstr[1] "%d öğe"
+
+msgid "Version not found."
+msgstr "Sürüm bulunamadı."
+
+msgid "This item is no longer in the trash."
+msgstr "Bu öğe artık çöp kutusunda değil."
+
+msgid "Could not restore (permissions)."
+msgstr "Geri yüklenemedi (izinler)."
+
+msgid "Trash and versions folder"
+msgstr "Çöp kutusu ve sürüm klasörü"
+
+msgid "Deleted files and earlier versions are kept in a private folder closed to the web."
+msgstr "Silinen dosyalar ve önceki sürümler web'e kapalı özel bir klasörde saklanır."
+
+msgid "The private folder under wp-content cannot be written. Deleting and versioning will fail; check the wp-content permissions."
+msgstr "wp-content altındaki özel klasöre yazılamıyor. Silme ve sürüm saklama çalışmaz; wp-content izinlerini kontrol edin."
+
+msgid "ZIP support"
+msgstr "ZIP desteği"
+
+msgid "Folders can be downloaded as ZIP, archived and extracted."
+msgstr "Klasörler ZIP olarak indirilebilir, arşivlenebilir ve arşivden çıkarılabilir."
+
+msgid "The PHP zip extension is missing; ZIP download, archive and extract are off. Enable \"zip\" in the hosting PHP extensions."
+msgstr "PHP zip uzantısı yok; ZIP indirme, arşivleme ve çıkarma kapalı. Hosting'in PHP uzantılarından \"zip\"i açın."
+
+msgid "File changes"
+msgstr "Dosya değişiklikleri"
+
+msgid "DISALLOW_FILE_MODS is on: Flux Files is read-only."
+msgstr "DISALLOW_FILE_MODS açık: Flux Files salt okunur."
+
+msgid "Only administrators can use Flux Files. wp-config.php, .htaccess and WordPress core folders are protected from deletion."
+msgstr "Flux Files'ı yalnız yöneticiler kullanabilir. wp-config.php, .htaccess ve WordPress çekirdek klasörleri silinmeye karşı korumalı."
+
+msgid "DISALLOW_FILE_EDIT is on: code files (.php, .htaccess …) cannot be edited or uploaded."
+msgstr "DISALLOW_FILE_EDIT açık: kod dosyaları (.php, .htaccess …) düzenlenemez ve yüklenemez."
+
+msgid "AI and MCP file access"
+msgstr "AI ve MCP dosya erişimi"
+
+msgid "External MCP clients can change and delete files. Turn this off when you no longer need it."
+msgstr "Dış MCP istemcileri dosya değiştirip silebilir. Artık gerekmiyorsa kapatın."
+
+msgid "AI chat asks before every change; external MCP clients can only read. Secret files are never shared."
+msgstr "AI sohbeti her değişiklikten önce sorar; dış MCP istemcileri yalnız okur. Gizli dosyalar asla paylaşılmaz."
+
+msgid "Trash cleanup"
+msgstr "Çöp kutusu temizliği"
+
+msgid "The trash was last cleaned %s. It is also cleaned when an administrator opens Flux Files."
+msgstr "Çöp kutusu en son %s temizlendi. Bir yönetici Flux Files'ı açınca da temizlenir."
