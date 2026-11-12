@@ -122,3 +122,50 @@ add_filter(
 		);
 	}
 );
+
+/**
+ * FluxWP multilingual sites: translate text nodes and image alt texts of Flux blocks through the
+ * theme's flx_t(), like the theme does for core leaf blocks (only while a translation is active).
+ */
+function flxbk_i18n_render_block( $html, $block ) {
+	if ( '' === $html || ! function_exists( 'flx_t' ) || ! function_exists( 'flx_i18n_active' ) || ! flx_i18n_active() ) {
+		return $html;
+	}
+	$html = preg_replace_callback(
+		'/>([^<>]*\S[^<>]*)</u',
+		function ( $m ) {
+			return '>' . flx_t( $m[1] ) . '<';
+		},
+		$html
+	);
+	$html = preg_replace_callback(
+		'/\b(alt|title|aria-label)="([^"]+)"/u',
+		function ( $m ) {
+			return $m[1] . '="' . esc_attr( flx_t( $m[2] ) ) . '"';
+		},
+		$html
+	);
+	if ( in_array( $block['blockName'], array( 'flx/singlebtn', 'flx/navigation-link' ), true ) && function_exists( 'flx_i18n_url' ) && ( function_exists( 'pll_get_post' ) || has_filter( 'wpml_object_id' ) ) ) {
+		$html = preg_replace_callback(
+			'/\bhref="(\/[^"]*)"/',
+			function ( $m ) {
+				return 'href="' . esc_url( flx_i18n_url( $m[1] ) ) . '"';
+			},
+			$html
+		);
+	}
+	return $html;
+}
+add_action(
+	'init',
+	function () {
+		$blocks = (array) apply_filters(
+			'flxbk_i18n_blocks',
+			array( 'flx/advancedheading', 'flx/singlebtn', 'flx/listitem', 'flx/infobox', 'flx/testimonial', 'flx/image', 'flx/countup', 'flx/pane', 'flx/tabs', 'flx/progress-bar', 'flx/table-data', 'flx/navigation-link', 'flx/advancedgallery', 'flx/countdown', 'flx/show-more' )
+		);
+		foreach ( $blocks as $name ) {
+			add_filter( 'render_block_' . $name, 'flxbk_i18n_render_block', 5, 2 );
+		}
+	},
+	20
+);
