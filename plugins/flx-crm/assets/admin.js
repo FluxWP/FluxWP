@@ -515,14 +515,10 @@ window.flxcrmBoot.push( function ( R ) {
 		if ( ! btn || ! view || ! form ) {
 			return;
 		}
-		var del = card.querySelector( '.flxcrm-details__delete' );
 		function mode( edit ) {
 			card.classList.toggle( 'is-editing', edit );
 			view.hidden = edit;
 			form.hidden = ! edit;
-			if ( del ) {
-				del.hidden = ! edit;
-			}
 			btn.hidden = edit;
 			btn.setAttribute( 'aria-expanded', edit ? 'true' : 'false' );
 			if ( edit ) {
@@ -857,3 +853,35 @@ window.flxcrmBoot.push( function ( R ) {
 	}
 	boot( document );
 } )();
+
+/* ⋯ menüsü: dışarı tıklayınca ya da Esc ile kapanır. */
+document.addEventListener( 'click', function ( e ) {
+	document.querySelectorAll( '.flxcrm-more[open]' ).forEach( function ( d ) {
+		if ( ! d.contains( e.target ) ) {
+			d.removeAttribute( 'open' );
+		}
+	} );
+} );
+document.addEventListener( 'keydown', function ( e ) {
+	if ( 'Escape' === e.key ) {
+		document.querySelectorAll( '.flxcrm-more[open]' ).forEach( function ( d ) {
+			d.removeAttribute( 'open' );
+			d.querySelector( 'summary' ).focus();
+		} );
+	}
+} );
+
+/* Kişiyi sil: ad aynen yazılınca düğme açılır (sunucu da denetler). */
+document.addEventListener( 'input', function ( e ) {
+	var inp = e.target;
+	if ( ! inp.matches || ! inp.matches( '[data-flxcrm-delete] input[name=confirm_name]' ) ) {
+		return;
+	}
+	var norm = function ( v ) {
+		return String( v || '' ).replace( /\s+/g, ' ' ).trim().toLocaleLowerCase();
+	};
+	var btn = inp.form.querySelector( '.flxcrm-delete__btn' );
+	if ( btn ) {
+		btn.disabled = norm( inp.value ) !== norm( inp.getAttribute( 'data-name' ) );
+	}
+} );

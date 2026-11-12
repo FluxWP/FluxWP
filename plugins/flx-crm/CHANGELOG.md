@@ -1,7 +1,7 @@
 # Değişiklikler
 
 ## 0.4.3
-- "Delete contact" is no longer always shown under the contact card; it appears at the bottom of the Details card only after pressing Edit.
+- "Delete contact" is no longer always shown under the contact card; it moved into a ⋯ (more actions) menu at the top right of the contact header. To delete, the contact's name has to be typed (checked on the server too).
 
 ## 0.4.2
 - CRM screens no longer reload the whole page: links, the left-menu CRM items, list filters, timeline tabs and forms (note, tags, details, delete, bulk actions) run with fetch and only the CRM content is replaced. Address bar, back/forward, page title and menu highlight follow along; styles and scripts a new screen needs (e.g. the phone field) are loaded on the fly.

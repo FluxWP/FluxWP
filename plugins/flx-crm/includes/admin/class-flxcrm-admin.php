@@ -197,7 +197,13 @@ final class FLXCRM_Admin {
 
 	public static function post_contact_delete() {
 		self::guard( 'contact_delete' );
-		$id  = absint( self::post( 'id', 0 ) );
+		$id = absint( self::post( 'id', 0 ) );
+		$c  = FLXCRM_Contacts::get( $id );
+		// Kişinin adı yazılmadan silinmez (karttaki ⋯ menüsü).
+		$typed = (string) self::post( 'confirm_name' );
+		if ( $c && ! flxcrm_name_matches( $typed, flxcrm_display_name( $c ) ) ) {
+			self::back( self::card_url( $id ), '', __( 'Type the contact\'s name exactly to delete it.', 'flx-crm' ) );
+		}
 		$res = FLXCRM_Contacts::delete( $id );
 		if ( is_wp_error( $res ) ) {
 			self::back( self::card_url( $id ), '', $res->get_error_message() );
