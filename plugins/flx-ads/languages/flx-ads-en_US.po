@@ -38,6 +38,63 @@ msgstr "Delete manual ad spend"
 msgid "Update Meta ad spend now"
 msgstr "Update Meta ad spend now"
 
+msgid "Donor value by campaign (LTV, CAC)"
+msgstr "Donor value by campaign (LTV, CAC)"
+
+msgid "Meta audiences"
+msgstr "Meta audiences"
+
+msgid "Create a Meta audience"
+msgstr "Create a Meta audience"
+
+msgid "Create a lookalike audience"
+msgstr "Create a lookalike audience"
+
+msgid "Update a Meta audience now"
+msgstr "Update a Meta audience now"
+
+msgid "Delete a Meta audience"
+msgstr "Delete a Meta audience"
+
+msgid "Everyone with ad consent"
+msgstr "Everyone with ad consent"
+
+msgid "Donors and customers (paid at least once)"
+msgstr "Donors and customers (paid at least once)"
+
+msgid "Value group: %s"
+msgstr "Value group: %s"
+
+msgid "Segment: %s"
+msgstr "Segment: %s"
+
+msgid "Show ads to them"
+msgstr "Show ads to them"
+
+msgid "Exclude from ads"
+msgstr "Exclude from ads"
+
+msgid "Flux CRM and a Meta ad account with an ads_management key are needed."
+msgstr "Flux CRM and a Meta ad account with an ads_management key are needed."
+
+msgid "Enter a name and pick a group."
+msgstr "Enter a name and pick a group."
+
+msgid "Pick one of your own audiences as the source."
+msgstr "Pick one of your own audiences as the source."
+
+msgid "%1$s · lookalike %2$d%% %3$s"
+msgstr "%1$s · lookalike %2$d%% %3$s"
+
+msgid "Audience not found."
+msgstr "Audience not found."
+
+msgid "Not from ads"
+msgstr "Not from ads"
+
+msgid "(not set)"
+msgstr "(not set)"
+
 msgid "Ad channel"
 msgstr "Ad channel"
 
@@ -55,9 +112,6 @@ msgstr "Landing page"
 
 msgid "First ad touch"
 msgstr "First ad touch"
-
-msgid "(not set)"
-msgstr "(not set)"
 
 msgid "Fill in the ID and the key first."
 msgstr "Fill in the ID and the key first."
@@ -113,6 +167,11 @@ msgstr "Ad conversions report"
 msgid "Ad tracking status"
 msgstr "Ad tracking status"
 
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "%d audience is updated daily."
+msgstr[1] "%d audiences are updated daily."
+
 msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
 msgstr "Turned on but the ID is missing or not valid. Nothing is tracked."
 
@@ -161,6 +220,9 @@ msgstr "Spend read %s."
 msgid "Not read yet; opening the Flux Ads screen starts it."
 msgstr "Not read yet; opening the Flux Ads screen starts it."
 
+msgid "Audiences"
+msgstr "Audiences"
+
 msgid "Cookie consent"
 msgstr "Cookie consent"
 
@@ -169,6 +231,11 @@ msgstr "The theme cookie banner is off, so ad pixels load without asking. Under 
 
 msgid "Theme Settings"
 msgstr "Theme Settings"
+
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] "%s day"
+msgstr[1] "%s days"
 
 msgid "%d try"
 msgid_plural "%d tries"
@@ -184,6 +251,9 @@ msgstr "Copy"
 msgid "Report"
 msgstr "Report"
 
+msgid "Donor value"
+msgstr "Donor value"
+
 msgid "Ad link"
 msgstr "Ad link"
 
@@ -195,9 +265,6 @@ msgstr "Ad conversions"
 
 msgid "Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved."
 msgstr "Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved."
-
-msgid "Sections"
-msgstr "Sections"
 
 msgid "Settings saved."
 msgstr "Settings saved."
@@ -213,6 +280,21 @@ msgstr "Spend added."
 
 msgid "Enter an amount greater than zero."
 msgstr "Enter an amount greater than zero."
+
+msgid "Meta did not accept it:"
+msgstr "Meta did not accept it:"
+
+msgid "Audience created in Meta and filled."
+msgstr "Audience created in Meta and filled."
+
+msgid "Lookalike audience created. Meta fills it within a few hours."
+msgstr "Lookalike audience created. Meta fills it within a few hours."
+
+msgid "Audience updated."
+msgstr "Audience updated."
+
+msgid "Audience deleted."
+msgstr "Audience deleted."
 
 msgid "Sent again. The row shows the result."
 msgstr "Sent again. The row shows the result."
@@ -397,6 +479,162 @@ msgstr "Delete"
 msgid "You are not allowed to do this."
 msgstr "You are not allowed to do this."
 
+msgid "What the people an ad brought in gave in total, not only their first payment. A campaign whose first gifts are cheap but never come back shows up here."
+msgstr "What the people an ad brought in gave in total, not only their first payment. A campaign whose first gifts are cheap but never come back shows up here."
+
+msgid "First payment in"
+msgstr "First payment in"
+
+msgid "%s of them from ads"
+msgstr "%s of them from ads"
+
+msgid "Value per person from ads"
+msgstr "Value per person from ads"
+
+msgid "all payments so far"
+msgstr "all payments so far"
+
+msgid "Cost to win one (CAC)"
+msgstr "Cost to win one (CAC)"
+
+msgid "%s spend"
+msgstr "%s spend"
+
+msgid "no spend recorded"
+msgstr "no spend recorded"
+
+msgid "Value / cost"
+msgstr "Value / cost"
+
+msgid "%s%% gave again"
+msgstr "%s%% gave again"
+
+msgid "First payment"
+msgstr "First payment"
+
+msgid "90 days"
+msgstr "90 days"
+
+msgid "So far"
+msgstr "So far"
+
+msgid "Per person"
+msgstr "Per person"
+
+msgid "Gave again"
+msgstr "Gave again"
+
+msgid "Paid back in"
+msgstr "Paid back in"
+
+msgid "Nobody made a first payment in this period yet."
+msgstr "Nobody made a first payment in this period yet."
+
+msgid "nobody new"
+msgstr "nobody new"
+
+msgid "not yet"
+msgstr "not yet"
+
+msgid "A person belongs to the campaign of their first payment. Their later payments count for that campaign even when they came back without an ad. CAC is the campaign spend in this period divided by the new people it brought. Value / cost above 3x is good; below 1x the ad has not paid for itself yet."
+msgstr "A person belongs to the campaign of their first payment. Their later payments count for that campaign even when they came back without an ad. CAC is the campaign spend in this period divided by the new people it brought. Value / cost above 3x is good; below 1x the ad has not paid for itself yet."
+
+msgid "Value by month of first payment"
+msgstr "Value by month of first payment"
+
+msgid "Each row is the people who paid for the first time that month. The cells show what one person gave in total by the end of each month since then."
+msgstr "Each row is the people who paid for the first time that month. The cells show what one person gave in total by the end of each month since then."
+
+msgid "Month"
+msgstr "Month"
+
+msgid "People"
+msgstr "People"
+
+msgid "M%d"
+msgstr "M%d"
+
+msgid "Send a group of people from Flux CRM to Meta as an audience: to show ads to similar people, or to stop showing ads to people who just donated. Only people who gave ad consent are sent, as encrypted (hashed) email and phone. The list is updated every day; someone who withdraws consent is removed straight away."
+msgstr "Send a group of people from Flux CRM to Meta as an audience: to show ads to similar people, or to stop showing ads to people who just donated. Only people who gave ad consent are sent, as encrypted (hashed) email and phone. The list is updated every day; someone who withdraws consent is removed straight away."
+
+msgid "Audiences need Flux CRM: people, ad consent and segments come from there."
+msgstr "Audiences need Flux CRM: people, ad consent and segments come from there."
+
+msgid "Enter the Meta ad account ID and a Marketing API key with the ads_management permission in Settings › Meta."
+msgstr "Enter the Meta ad account ID and a Marketing API key with the ads_management permission in Settings › Meta."
+
+msgid "Audience"
+msgstr "Audience"
+
+msgid "Group"
+msgstr "Group"
+
+msgid "Use"
+msgstr "Use"
+
+msgid "Updated"
+msgstr "Updated"
+
+msgid "No audience yet."
+msgstr "No audience yet."
+
+msgid "Similar to: %s"
+msgstr "Similar to: %s"
+
+msgid "(removed group)"
+msgstr "(removed group)"
+
+msgid "Meta fills it"
+msgstr "Meta fills it"
+
+msgid "%1$s · +%2$d / −%3$d"
+msgstr "%1$s · +%2$d / −%3$d"
+
+msgid "The audience is deleted in Meta too. Ad sets that use it stop reaching these people."
+msgstr "The audience is deleted in Meta too. Ad sets that use it stop reaching these people."
+
+msgid "New audience"
+msgstr "New audience"
+
+msgid "Name in Meta"
+msgstr "Name in Meta"
+
+msgid "Donors – last 12 months"
+msgstr "Donors – last 12 months"
+
+msgid "%s people"
+msgstr "%s people"
+
+msgid "Also create a lookalike audience (people similar to this group)"
+msgstr "Also create a lookalike audience (people similar to this group)"
+
+msgid "Lookalike country"
+msgstr "Lookalike country"
+
+msgid "Lookalike size"
+msgstr "Lookalike size"
+
+msgid "%d%% of the country"
+msgstr "%d%% of the country"
+
+msgid "Create in Meta"
+msgstr "Create in Meta"
+
+msgid "Meta needs at least 100 matched people for a lookalike. 1% is the closest match; larger sizes reach more people with less similarity."
+msgstr "Meta needs at least 100 matched people for a lookalike. 1% is the closest match; larger sizes reach more people with less similarity."
+
+msgid "Lookalike from an existing audience"
+msgstr "Lookalike from an existing audience"
+
+msgid "Source audience"
+msgstr "Source audience"
+
+msgid "Create lookalike"
+msgstr "Create lookalike"
+
+msgid "Unknown action."
+msgstr "Unknown action."
+
 msgid "Waiting"
 msgstr "Waiting"
 
@@ -508,11 +746,11 @@ msgstr "Ad account ID"
 msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
 msgstr "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
 
-msgid "Marketing API token (ads_read)"
-msgstr "Marketing API token (ads_read)"
+msgid "Marketing API token"
+msgstr "Marketing API token"
 
-msgid "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads."
-msgstr "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads."
+msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; Audiences also need ads_management. Empty = the Conversions API token is tried. Flux Ads changes nothing in your ad account unless you create or update an audience."
+msgstr "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; Audiences also need ads_management. Empty = the Conversions API token is tried. Flux Ads changes nothing in your ad account unless you create or update an audience."
 
 msgid "Pixel ID"
 msgstr "Pixel ID"

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Ads
  * Description:       Reklam dönüşüm takibi: Meta Pixel + Conversions API, TikTok Pixel + Events API ve Google Analytics 4 (Measurement Protocol). Meta reklam harcamasını çeker, ROAS ve bağış başı maliyeti gösterir. Bağış ve siparişleri hangi reklamın, kampanyanın ve reklam metninin getirdiğini ölçer; Havale/EFT bağışı onaylanınca dönüşümü sunucudan gönderir. Çerez onayına uyar, kişisel veri yalnız izinle ve hash'li gider. Flux CRM kuruluysa kişi kartına reklam kaynağını yazar.
- * Version:           0.2.2
+ * Version:           0.3.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -25,8 +25,8 @@ if ( defined( 'FLXADS_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXADS_VERSION', '0.2.2' );
-define( 'FLXADS_DB_VERSION', 2 );
+define( 'FLXADS_VERSION', '0.3.0' );
+define( 'FLXADS_DB_VERSION', 3 );
 define( 'FLXADS_FILE', __FILE__ );
 define( 'FLXADS_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXADS_URL', plugin_dir_url( __FILE__ ) );
@@ -38,6 +38,8 @@ require_once FLXADS_DIR . 'includes/class-flxads-orders.php';
 require_once FLXADS_DIR . 'includes/class-flxads-send.php';
 require_once FLXADS_DIR . 'includes/class-flxads-report.php';
 require_once FLXADS_DIR . 'includes/class-flxads-spend.php';
+require_once FLXADS_DIR . 'includes/class-flxads-cohort.php';
+require_once FLXADS_DIR . 'includes/class-flxads-audiences.php';
 require_once FLXADS_DIR . 'includes/crm.php';
 require_once FLXADS_DIR . 'includes/mcp.php';
 require_once FLXADS_DIR . 'includes/ai-write.php';
@@ -74,6 +76,8 @@ add_action(
 		FLXADS_Orders::init();
 		FLXADS_Send::init();
 		FLXADS_CRM::init();
+		FLXADS_Spend::init();
+		FLXADS_Audiences::init();
 		if ( is_admin() ) {
 			FLXADS_Admin::init();
 		}

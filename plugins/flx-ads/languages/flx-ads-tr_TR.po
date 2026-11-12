@@ -38,6 +38,63 @@ msgstr "Elle girilen harcamayı sil"
 msgid "Update Meta ad spend now"
 msgstr "Meta harcamasını şimdi güncelle"
 
+msgid "Donor value by campaign (LTV, CAC)"
+msgstr "Kampanyaya göre bağışçı değeri (LTV, CAC)"
+
+msgid "Meta audiences"
+msgstr "Meta kitleleri"
+
+msgid "Create a Meta audience"
+msgstr "Meta kitlesi oluştur"
+
+msgid "Create a lookalike audience"
+msgstr "Benzer kitle oluştur"
+
+msgid "Update a Meta audience now"
+msgstr "Meta kitlesini şimdi güncelle"
+
+msgid "Delete a Meta audience"
+msgstr "Meta kitlesini sil"
+
+msgid "Everyone with ad consent"
+msgstr "Reklam izni veren herkes"
+
+msgid "Donors and customers (paid at least once)"
+msgstr "Bağışçılar ve müşteriler (en az bir kez ödemiş)"
+
+msgid "Value group: %s"
+msgstr "Değer grubu: %s"
+
+msgid "Segment: %s"
+msgstr "Segment: %s"
+
+msgid "Show ads to them"
+msgstr "Reklam göster"
+
+msgid "Exclude from ads"
+msgstr "Reklamdan hariç tut"
+
+msgid "Flux CRM and a Meta ad account with an ads_management key are needed."
+msgstr "Flux CRM ve ads_management izinli anahtarı olan bir Meta reklam hesabı gerekli."
+
+msgid "Enter a name and pick a group."
+msgstr "Ad girin ve bir grup seçin."
+
+msgid "Pick one of your own audiences as the source."
+msgstr "Kaynak olarak kendi kitlelerinizden birini seçin."
+
+msgid "%1$s · lookalike %2$d%% %3$s"
+msgstr "%1$s · benzer %%%2$d %3$s"
+
+msgid "Audience not found."
+msgstr "Kitle bulunamadı."
+
+msgid "Not from ads"
+msgstr "Reklamsız gelenler"
+
+msgid "(not set)"
+msgstr "(belirtilmemiş)"
+
 msgid "Ad channel"
 msgstr "Reklam kanalı"
 
@@ -55,9 +112,6 @@ msgstr "Açılış sayfası"
 
 msgid "First ad touch"
 msgstr "İlk reklam teması"
-
-msgid "(not set)"
-msgstr "(belirtilmemiş)"
 
 msgid "Fill in the ID and the key first."
 msgstr "Önce kimliği ve anahtarı girin."
@@ -113,6 +167,11 @@ msgstr "Reklam dönüşüm raporu"
 msgid "Ad tracking status"
 msgstr "Reklam takibi durumu"
 
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "%d kitle her gün güncelleniyor."
+msgstr[1] "%d kitle her gün güncelleniyor."
+
 msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
 msgstr "Açık ama kimlik eksik ya da geçersiz. Hiçbir şey ölçülmüyor."
 
@@ -161,6 +220,9 @@ msgstr "Harcama %s okundu."
 msgid "Not read yet; opening the Flux Ads screen starts it."
 msgstr "Henüz okunmadı; Flux Ads ekranı açılınca başlar."
 
+msgid "Audiences"
+msgstr "Kitleler"
+
 msgid "Cookie consent"
 msgstr "Çerez onayı"
 
@@ -169,6 +231,11 @@ msgstr "Temanın çerez banner'ı kapalı, reklam pixel'leri izin sormadan yükl
 
 msgid "Theme Settings"
 msgstr "Tema Ayarları"
+
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] "%s gün"
+msgstr[1] "%s gün"
 
 msgid "%d try"
 msgid_plural "%d tries"
@@ -184,6 +251,9 @@ msgstr "Kopyala"
 msgid "Report"
 msgstr "Rapor"
 
+msgid "Donor value"
+msgstr "Bağışçı değeri"
+
 msgid "Ad link"
 msgstr "Reklam bağlantısı"
 
@@ -195,9 +265,6 @@ msgstr "Reklam dönüşümleri"
 
 msgid "Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved."
 msgstr "Hangi reklam, kampanya ve reklam metni hangi bağışı getirdi. Yalnız ödenmiş bağış ve siparişler; Havale/EFT onaylanınca sayılır."
-
-msgid "Sections"
-msgstr "Bölümler"
 
 msgid "Settings saved."
 msgstr "Ayarlar kaydedildi."
@@ -213,6 +280,21 @@ msgstr "Harcama eklendi."
 
 msgid "Enter an amount greater than zero."
 msgstr "Sıfırdan büyük bir tutar girin."
+
+msgid "Meta did not accept it:"
+msgstr "Meta kabul etmedi:"
+
+msgid "Audience created in Meta and filled."
+msgstr "Kitle Meta'da oluşturuldu ve dolduruldu."
+
+msgid "Lookalike audience created. Meta fills it within a few hours."
+msgstr "Benzer kitle oluşturuldu. Meta birkaç saat içinde doldurur."
+
+msgid "Audience updated."
+msgstr "Kitle güncellendi."
+
+msgid "Audience deleted."
+msgstr "Kitle silindi."
 
 msgid "Sent again. The row shows the result."
 msgstr "Yeniden gönderildi. Sonuç satırda görünür."
@@ -397,6 +479,162 @@ msgstr "Sil"
 msgid "You are not allowed to do this."
 msgstr "Bunu yapmaya yetkiniz yok."
 
+msgid "What the people an ad brought in gave in total, not only their first payment. A campaign whose first gifts are cheap but never come back shows up here."
+msgstr "Reklamın getirdiği kişilerin yalnız ilk ödemesi değil, toplamda verdiği. İlk bağışı ucuza getirip bir daha dönmeyen kampanya burada görünür."
+
+msgid "First payment in"
+msgstr "İlk ödeme"
+
+msgid "%s of them from ads"
+msgstr "%s tanesi reklamdan"
+
+msgid "Value per person from ads"
+msgstr "Reklamdan gelen kişi başı değer"
+
+msgid "all payments so far"
+msgstr "bugüne kadarki tüm ödemeler"
+
+msgid "Cost to win one (CAC)"
+msgstr "Bir kişiyi kazanma maliyeti (CAC)"
+
+msgid "%s spend"
+msgstr "%s harcama"
+
+msgid "no spend recorded"
+msgstr "harcama kaydı yok"
+
+msgid "Value / cost"
+msgstr "Değer / maliyet"
+
+msgid "%s%% gave again"
+msgstr "%%%s tekrar verdi"
+
+msgid "First payment"
+msgstr "İlk ödeme"
+
+msgid "90 days"
+msgstr "90 gün"
+
+msgid "So far"
+msgstr "Bugüne kadar"
+
+msgid "Per person"
+msgstr "Kişi başı"
+
+msgid "Gave again"
+msgstr "Tekrar verdi"
+
+msgid "Paid back in"
+msgstr "Geri dönüş"
+
+msgid "Nobody made a first payment in this period yet."
+msgstr "Bu dönemde henüz ilk ödemesini yapan olmadı."
+
+msgid "nobody new"
+msgstr "yeni kişi yok"
+
+msgid "not yet"
+msgstr "henüz değil"
+
+msgid "A person belongs to the campaign of their first payment. Their later payments count for that campaign even when they came back without an ad. CAC is the campaign spend in this period divided by the new people it brought. Value / cost above 3x is good; below 1x the ad has not paid for itself yet."
+msgstr "Kişi ilk ödemesini getiren kampanyaya yazılır. Sonraki ödemeleri reklamsız gelse de o kampanyaya sayılır. CAC, kampanyanın bu dönemdeki harcamasının getirdiği yeni kişi sayısına bölümüdür. Değer / maliyet 3x üstü iyi; 1x altında reklam henüz kendini çıkarmamış."
+
+msgid "Value by month of first payment"
+msgstr "İlk ödeme ayına göre değer"
+
+msgid "Each row is the people who paid for the first time that month. The cells show what one person gave in total by the end of each month since then."
+msgstr "Her satır o ay ilk kez ödeme yapan kişiler. Hücreler, o günden beri her ayın sonunda bir kişinin toplam ne verdiğini gösterir."
+
+msgid "Month"
+msgstr "Ay"
+
+msgid "People"
+msgstr "Kişi"
+
+msgid "M%d"
+msgstr "A%d"
+
+msgid "Send a group of people from Flux CRM to Meta as an audience: to show ads to similar people, or to stop showing ads to people who just donated. Only people who gave ad consent are sent, as encrypted (hashed) email and phone. The list is updated every day; someone who withdraws consent is removed straight away."
+msgstr "Flux CRM'deki bir kişi grubunu Meta'ya kitle olarak gönderin: benzer kişilere reklam göstermek ya da yeni bağış yapanlara reklam göstermemek için. Yalnız reklam izni veren kişiler, şifrelenmiş (özetlenmiş) e-posta ve telefonla gider. Liste her gün güncellenir; iznini geri alan kişi hemen çıkarılır."
+
+msgid "Audiences need Flux CRM: people, ad consent and segments come from there."
+msgstr "Kitleler için Flux CRM gerekli: kişiler, reklam izni ve segmentler oradan gelir."
+
+msgid "Enter the Meta ad account ID and a Marketing API key with the ads_management permission in Settings › Meta."
+msgstr "Ayarlar › Meta'da reklam hesabı kimliğini ve ads_management izinli bir Marketing API anahtarını girin."
+
+msgid "Audience"
+msgstr "Kitle"
+
+msgid "Group"
+msgstr "Grup"
+
+msgid "Use"
+msgstr "Kullanım"
+
+msgid "Updated"
+msgstr "Güncellendi"
+
+msgid "No audience yet."
+msgstr "Henüz kitle yok."
+
+msgid "Similar to: %s"
+msgstr "Benzeri: %s"
+
+msgid "(removed group)"
+msgstr "(silinmiş grup)"
+
+msgid "Meta fills it"
+msgstr "Meta doldurur"
+
+msgid "%1$s · +%2$d / −%3$d"
+msgstr "%1$s · +%2$d / −%3$d"
+
+msgid "The audience is deleted in Meta too. Ad sets that use it stop reaching these people."
+msgstr "Kitle Meta'da da silinir. Onu kullanan reklam setleri bu kişilere ulaşmayı bırakır."
+
+msgid "New audience"
+msgstr "Yeni kitle"
+
+msgid "Name in Meta"
+msgstr "Meta'daki adı"
+
+msgid "Donors – last 12 months"
+msgstr "Bağışçılar – son 12 ay"
+
+msgid "%s people"
+msgstr "%s kişi"
+
+msgid "Also create a lookalike audience (people similar to this group)"
+msgstr "Benzer kitle de oluştur (bu gruba benzeyen kişiler)"
+
+msgid "Lookalike country"
+msgstr "Benzer kitle ülkesi"
+
+msgid "Lookalike size"
+msgstr "Benzer kitle büyüklüğü"
+
+msgid "%d%% of the country"
+msgstr "Ülkenin %%%d'i"
+
+msgid "Create in Meta"
+msgstr "Meta'da oluştur"
+
+msgid "Meta needs at least 100 matched people for a lookalike. 1% is the closest match; larger sizes reach more people with less similarity."
+msgstr "Benzer kitle için Meta'nın en az 100 eşleşen kişiye ihtiyacı var. %1 en yakın benzerlik; büyüdükçe daha çok kişiye, daha az benzerlikle ulaşır."
+
+msgid "Lookalike from an existing audience"
+msgstr "Mevcut kitleden benzer kitle"
+
+msgid "Source audience"
+msgstr "Kaynak kitle"
+
+msgid "Create lookalike"
+msgstr "Benzer kitle oluştur"
+
+msgid "Unknown action."
+msgstr "Bilinmeyen işlem."
+
 msgid "Waiting"
 msgstr "Bekliyor"
 
@@ -508,11 +746,11 @@ msgstr "Reklam hesabı kimliği"
 msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
 msgstr "Reklam Yöneticisi › sol üstteki hesap menüsü, hesap adının altındaki sayı (act_ yazmak gerekmez)."
 
-msgid "Marketing API token (ads_read)"
-msgstr "Marketing API anahtarı (ads_read)"
+msgid "Marketing API token"
+msgstr "Marketing API anahtarı"
 
-msgid "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads."
-msgstr "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › ads_read ile anahtar oluşturun. Boş = Conversions API anahtarı denenir. Yalnız okur; Flux Ads reklamlarınızı değiştirmez."
+msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; Audiences also need ads_management. Empty = the Conversions API token is tried. Flux Ads changes nothing in your ad account unless you create or update an audience."
+msgstr "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › Anahtar oluştur. Harcama için ads_read yeter; Kitleler ads_management da ister. Boş = Conversions API anahtarı denenir. Siz kitle oluşturmadıkça ya da güncellemedikçe Flux Ads reklam hesabınızda hiçbir şey değiştirmez."
 
 msgid "Pixel ID"
 msgstr "Pixel kimliği"

@@ -62,13 +62,26 @@ html.flxa-dark .flxads .flxads-dot--tiktok{background:#fff}
 .flxads .flxads-builder p{grid-column:1/-1;margin:0}
 .flxads .flxads-builder label:first-child{grid-column:auto}
 .flxads .flxads-builder[data-flxads-builder] label:first-child{grid-column:1/-1}
+.flxads .flxads-scroll{overflow-x:auto}
+.flxads .flxads-cohort th[scope=row]{background:var(--c-card);font-size:13px;color:var(--c-tx);white-space:nowrap;border-bottom:1px solid var(--c-bd)}
+.flxads .flxads-cohort td{font-size:12.5px;padding:8px 10px;background:color-mix(in srgb,var(--c-ok) calc(var(--a,0)*100%),transparent)}
+.flxads .flxads-cohort td.flxads-cohort__na{background:var(--c-s2)}
+.flxads .flxads-pill--target{background:var(--c-ok-s);color:var(--c-ok)}.flxads .flxads-pill--exclude{background:var(--c-warn-s);color:var(--c-warn)}
+.flxads .flxads-actions{display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+.flxads .flxads-builder label[hidden]{display:none}
+.flxads .flxads-table td strong + small{display:block}
+.flxads .flxads-builder .flxads-check{grid-column:1/-1;flex-direction:row;align-items:center;font-weight:500}
+.flxads .flxads-builder .flxads-check input{width:auto;min-height:0}
 .flxads-crm-card p{margin:8px 0 0}
 @media (max-width:960px){.flxads .flxads-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:782px){
 	.flxads .flxads-builder{grid-template-columns:1fr}
 	.flxads .flxads-kpi strong{font-size:19px}
-	.flxads .flxads-table thead{display:none}
-	.flxads .flxads-table,.flxads .flxads-table tbody,.flxads .flxads-table tr,.flxads .flxads-table td{display:block;width:auto}
+	.flxads .flxads-table:not(.flxads-cohort) thead{display:none}
+	.flxads .flxads-table:not(.flxads-cohort),.flxads .flxads-table:not(.flxads-cohort) tbody,.flxads .flxads-table:not(.flxads-cohort) tr{display:block;width:auto}
+	.flxads .flxads-table:not(.flxads-cohort) td{width:auto}
+	.flxads .flxads-table.flxads-cohort td{display:table-cell;text-align:right;padding:8px 10px;border-bottom:1px solid var(--c-bd)}
+	.flxads .flxads-table.flxads-cohort td::before{display:none}
 	.flxads .flxads-table tr{border-bottom:1px solid var(--c-bd);padding:8px 0}
 	.flxads .flxads-table td{border:0;padding:4px 14px;display:flex;justify-content:space-between;gap:10px;text-align:right}
 	.flxads .flxads-table td::before{content:attr(data-label);color:var(--c-mut);font-size:12px;text-align:left}

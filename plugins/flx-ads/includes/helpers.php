@@ -27,7 +27,7 @@ function flxads_defaults() {
 			'meta_token'    => '',      // gizli
 			'meta_test'     => '',      // Events Manager › Test events kodu (ör. TEST12345)
 			'meta_account'  => '',      // reklam hesabı kimliği (harcama için; act_ öneki atılır)
-			'meta_ads_token' => '',     // gizli (Marketing API, ads_read); boşsa meta_token denenir
+			'meta_ads_token' => '',     // gizli (Marketing API: ads_read harcama, ads_management kitleler); boşsa meta_token denenir
 			'tiktok_on'     => 0,
 			'tiktok_pixel'  => '',
 			'tiktok_token'  => '',      // gizli
@@ -256,7 +256,7 @@ function flxads_admin_url( $tab = 'report', array $args = array() ) {
 
 /** Bölüm → sol menü alt sayfasının kısa adı (Rapor ana sayfadır). */
 function flxads_page_slug( $tab ) {
-	return in_array( $tab, array( 'spend', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
+	return in_array( $tab, array( 'value', 'spend', 'audiences', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
 }
 
 /** Açık bölüm; eski ?page=flx-ads&tab=… bağlantıları da çalışır. */

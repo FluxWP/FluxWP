@@ -206,6 +206,149 @@ function flxads_write_tools() {
 				return true === $r ? array( 'ok' => true, 'rows' => (int) ( $st['rows'] ?? 0 ), 'since' => $st['since'] ?? '', 'until' => $st['until'] ?? '' ) : array( 'ok' => false, 'error' => (string) $r );
 			},
 		),
+		'flxads_value_report'      => array(
+			'kind'        => 'read',
+			'title'       => __( 'Donor value by campaign (LTV, CAC)', 'flx-ads' ),
+			'description' => 'People whose first payment was in the period, grouped by the campaign or channel of that first payment, with everything they paid so far (also later payments without an ad). Per row: new, first, ltv30/90/180, ltv (so far), avg (per person), rate (% who paid again), spend, cac (spend / new), ratio (avg / cac; >3 good, <1 not paid back), payback (days until the cohort paid back the spend). Base currency. cohorts=true adds the monthly cohort table (cumulative value per person, M0..M11).',
+			'props'       => array(
+				'from'    => array( 'type' => 'string', 'description' => 'Y-m-d, first-payment window start, default 89 days ago.' ),
+				'to'      => array( 'type' => 'string', 'description' => 'Y-m-d, default today.' ),
+				'by'      => array( 'type' => 'string', 'enum' => array( 'campaign', 'channel' ) ),
+				'kind'    => array( 'type' => 'string', 'enum' => array( 'all', 'donations', 'orders' ) ),
+				'cohorts' => array( 'type' => 'boolean' ),
+			),
+			'run'         => static function ( $a ) {
+				$f = array( 'kind' => in_array( $a['kind'] ?? '', array( 'donations', 'orders' ), true ) ? $a['kind'] : 'all' );
+				foreach ( array( 'from', 'to' ) as $k ) {
+					if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', (string) ( $a[ $k ] ?? '' ) ) ) {
+						$f[ $k ] = $a[ $k ];
+					}
+				}
+				$r     = FLXADS_Cohort::value( 'channel' === ( $a['by'] ?? '' ) ? 'channel' : 'campaign', $f );
+				$round = static function ( $v ) {
+					return is_float( $v ) ? round( $v, 2 ) : $v;
+				};
+				$r['totals'] = array_map( $round, $r['totals'] );
+				foreach ( $r['rows'] as &$row ) {
+					$row = array_map( $round, $row );
+				}
+				unset( $row );
+				if ( ! empty( $a['cohorts'] ) ) {
+					$r['cohorts'] = FLXADS_Cohort::matrix( array( 'kind' => $f['kind'] ) );
+				}
+				return $r;
+			},
+		),
+		'flxads_audiences_list'    => array(
+			'kind'        => 'read',
+			'title'       => __( 'Meta audiences', 'flx-ads' ),
+			'description' => 'Meta custom and lookalike audiences managed by Flux Ads: id, name, source (all | donors | rfm:<segment> | seg:<CRM segment id> | lookalike:<audience id>), purpose (target | exclude), meta_id, people count, last sync, last error. sources lists the groups that can be used for a new audience with their consented people count. Only people with ad consent are ever sent.',
+			'props'       => array(),
+			'run'         => static function () {
+				$src = array();
+				foreach ( FLXADS_Audiences::sources() as $k => $l ) {
+					$src[] = array( 'source' => $k, 'label' => $l, 'people' => count( FLXADS_Audiences::member_ids( $k ) ) );
+				}
+				return array(
+					'ready'     => FLXADS_Audiences::ready(),
+					'crm'       => FLXADS_Audiences::crm_ready(),
+					'audiences' => array_values( FLXADS_Audiences::all() ),
+					'sources'   => FLXADS_Audiences::crm_ready() ? $src : array(),
+				);
+			},
+		),
+		'flxads_audience_create'   => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Create a Meta audience', 'flx-ads' ),
+			'description' => 'Create a custom audience in the Meta ad account from a CRM group and upload its consented people (hashed). purpose: target (show ads to them) | exclude (keep them out of an ad set, e.g. recent donors). lookalike=true also creates a lookalike (country ISO-2, ratio 1-10 percent). Updated daily afterwards. Needs Flux CRM and an ads_management key.',
+			'props'       => array(
+				'name'      => array( 'type' => 'string', 'maxLength' => 100 ),
+				'source'    => array( 'type' => 'string', 'description' => 'From flxads_audiences_list sources.' ),
+				'purpose'   => array( 'type' => 'string', 'enum' => array( 'target', 'exclude' ) ),
+				'lookalike' => array( 'type' => 'boolean' ),
+				'country'   => array( 'type' => 'string', 'description' => 'ISO-2, default TR.' ),
+				'ratio'     => array( 'type' => 'integer', 'minimum' => 1, 'maximum' => 10 ),
+			),
+			'required'    => array( 'name', 'source' ),
+			'preview'     => static function ( $a ) {
+				$src = FLXADS_Audiences::sources();
+				if ( ! isset( $src[ (string) ( $a['source'] ?? '' ) ] ) ) {
+					throw new Exception( 'Unknown source. Use one from flxads_audiences_list.' );
+				}
+				return array(
+					'create'    => array( 'name' => (string) $a['name'], 'group' => $src[ $a['source'] ], 'purpose' => (string) ( $a['purpose'] ?? 'target' ) ),
+					'people'    => count( FLXADS_Audiences::member_ids( (string) $a['source'] ) ),
+					'lookalike' => ! empty( $a['lookalike'] ) ? array( 'country' => strtoupper( (string) ( $a['country'] ?? 'TR' ) ), 'ratio' => (int) ( $a['ratio'] ?? 1 ) ) : false,
+				);
+			},
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Audiences::create( $a );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_audience_lookalike' => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Create a lookalike audience', 'flx-ads' ),
+			'description' => 'Create a Meta lookalike audience from one of the custom audiences (id from flxads_audiences_list). country ISO-2, ratio 1-10 percent (1 = closest). Meta needs at least 100 matched people in the source.',
+			'props'       => array(
+				'id'      => array( 'type' => 'string' ),
+				'country' => array( 'type' => 'string' ),
+				'ratio'   => array( 'type' => 'integer', 'minimum' => 1, 'maximum' => 10 ),
+			),
+			'required'    => array( 'id' ),
+			'preview'     => static function ( $a ) {
+				$o = FLXADS_Audiences::get( (string) ( $a['id'] ?? '' ) );
+				if ( ! $o || 'custom' !== $o['kind'] ) {
+					throw new Exception( 'No custom audience with this id.' );
+				}
+				return array( 'source' => $o['name'], 'source_people' => (int) $o['count'], 'country' => strtoupper( (string) ( $a['country'] ?? 'TR' ) ), 'ratio' => (int) ( $a['ratio'] ?? 1 ) );
+			},
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Audiences::lookalike( (string) $a['id'], (string) ( $a['country'] ?? 'TR' ), (float) ( $a['ratio'] ?? 1 ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_audience_sync'     => array(
+			'kind'        => 'write',
+			'title'       => __( 'Update a Meta audience now', 'flx-ads' ),
+			'description' => 'Sync one custom audience now (normally daily): adds new consented people of the group, removes people who left it or withdrew consent. Returns added, removed, count.',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'required'    => array( 'id' ),
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Audiences::sync( (string) ( $a['id'] ?? '' ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_audience_delete'   => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Delete a Meta audience', 'flx-ads' ),
+			'description' => 'Delete an audience in Meta and in Flux Ads. Ad sets using it stop reaching these people.',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'required'    => array( 'id' ),
+			'preview'     => static function ( $a ) {
+				$o = FLXADS_Audiences::get( (string) ( $a['id'] ?? '' ) );
+				if ( ! $o ) {
+					throw new Exception( 'No audience with this id.' );
+				}
+				return array( 'delete' => array_intersect_key( $o, array_flip( array( 'id', 'name', 'meta_id', 'kind', 'count' ) ) ) );
+			},
+			'run'         => static function ( $a ) {
+				$r = FLXADS_Audiences::delete( (string) ( $a['id'] ?? '' ) );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return array( 'deleted' => true );
+			},
+		),
 	);
 }
 
@@ -342,6 +485,6 @@ add_filter(
 		if ( ! flxads_can() ) {
 			return $text;
 		}
-		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign.";
+		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one.";
 	}
 );

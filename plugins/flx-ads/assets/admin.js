@@ -1,4 +1,4 @@
-/* Flux Ads · yönetim: tarih aralığı seçimi, UTM bağlantı oluşturucu. */
+/* Flux Ads · yönetim: tarih aralığı seçimi, göster/gizle anahtarları, UTM bağlantı oluşturucu. */
 (function () {
 	'use strict';
 	var L = window.flxAdsAdmin || {};
@@ -8,6 +8,13 @@
 			document.querySelectorAll('.flxads-custom').forEach(function (el) { el.hidden = range.value !== 'custom'; });
 		});
 	}
+	document.querySelectorAll('[data-flxads-toggle]').forEach(function (t) {
+		var sync = function () {
+			t.form.querySelectorAll('[data-flxads-show="' + t.getAttribute('data-flxads-toggle') + '"]').forEach(function (el) { el.hidden = !t.checked; });
+		};
+		t.addEventListener('change', sync);
+		sync();
+	});
 	var b = document.querySelector('[data-flxads-builder]');
 	if (!b) return;
 	var out = b.querySelector('[data-flxads-out]');

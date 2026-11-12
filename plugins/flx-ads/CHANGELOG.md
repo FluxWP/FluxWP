@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0
+
+- Donor value (LTV): new page. Each person belongs to the campaign of their first payment; all their later payments count for it. Per campaign or channel: new people, first payment, value at 90 days and so far, repeat rate, cost to win one (CAC), value / cost and payback days. Monthly cohort table of value per person.
+- Meta audiences: new page. A Flux CRM group (everyone with ad consent, donors, an RFM value group or a saved segment) becomes a Meta custom audience. Only people with ad consent, hashed email, phone, name and country. Daily delta sync; withdrawn consent or a deleted contact is removed from Meta at once. Lookalike audiences and exclusion audiences.
+- Flux AI / MCP: `flxads_value_report`, `flxads_audiences_list`, `flxads_audience_create`, `flxads_audience_lookalike`, `flxads_audience_sync`, `flxads_audience_delete` (creating and deleting asks for approval first).
+- Fix: the hourly job did not refresh Meta spend (only opening the screen did).
+- System check row for audiences. The Marketing API key now explains that audiences need ads_management.
+
 ## 0.2.2
 
 - Report, Ad spend, Send log, Ad link and Settings are now submenus in the left menu (own pages: `flx-ads`, `flx-ads-spend`, `flx-ads-log`, `flx-ads-links`, `flx-ads-settings`). Old `?page=flx-ads&tab=…` links still open the right page.

@@ -85,6 +85,26 @@ add_filter(
 				'action_label' => __( 'Ad spend', 'flx-ads' ),
 			);
 		}
+		$auds = array_filter(
+			FLXADS_Audiences::all(),
+			static function ( $a ) {
+				return 'custom' === $a['kind'];
+			}
+		);
+		if ( $auds ) {
+			$errs     = array_filter( wp_list_pluck( $auds, 'error' ) );
+			$checks[] = array(
+				'id'           => 'flxads.audiences',
+				'source'       => $src,
+				'group'        => __( 'Ads', 'flx-ads' ),
+				'label'        => __( 'Meta audiences', 'flx-ads' ),
+				'status'       => $errs ? 'warning' : 'ok',
+				/* translators: %d: audiences */
+				'message'      => $errs ? __( 'Last update failed:', 'flx-ads' ) . ' ' . reset( $errs ) : sprintf( _n( '%d audience is updated daily.', '%d audiences are updated daily.', count( $auds ), 'flx-ads' ), count( $auds ) ),
+				'action_url'   => flxads_admin_url( 'audiences' ),
+				'action_label' => __( 'Audiences', 'flx-ads' ),
+			);
+		}
 		if ( function_exists( 'flx_cookie_active' ) && ! flx_cookie_active() && 'auto' === flxads_setting( 'consent' ) && $any ) {
 			$checks[] = array(
 				'id'           => 'flxads.consent',

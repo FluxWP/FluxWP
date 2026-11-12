@@ -21,6 +21,22 @@ Olay kimliği `order-<sipariş id>` (tarayıcı `eventID` / `event_id` ile aynı
 - Eşleştirme: kampanya `FLXADS_Spend::norm()` ile (`Fidan Kasım 2026` = `fidan-kasim-2026`) ya da utm_campaign = Meta kampanya kimliği; reklam utm_content = reklam adı; kanal platform. Harcaması olup ödemesi olmayan kampanya da satır olur (ROAS 0).
 - ROAS paydası: harcaması bilinen kanalların geliri.
 
+## Bağışçı değeri (0.3.0)
+
+- `FLXADS_Cohort::value( $by = 'campaign'|'channel', $f )`: ilk ödemesi `from`–`to` aralığında olan kişiler (`person_id > 0`), ilk ödemenin kanal/kampanyasına yazılır; tüm ödemeleri (reklamsız da) toplanır. Satır: `new, first, ltv30, ltv90, ltv180, ltv, repeat, rate, avg, spend, cac (spend/new), ratio (avg/cac), payback (gün)`. Harcama dönemin kampanya harcaması (`FLXADS_Spend::totals`, kampanya kimliğiyle de eşleşir). `kind` ilk ödemenin türüne uygulanır.
+- `FLXADS_Cohort::matrix( $f, $months = 12 )`: edinme ayı × geçen 30 günlük dilim, kişi başı birikimli değer; henüz yaşanmamış hücre `null`.
+- SQL taşınabilir: `HAVING` yok (SQLite çevirmeni desteklemiyor), türetilmiş tablo kullanılır.
+
+## Meta kitleleri (0.3.0)
+
+- Kayıtlar `flxads_audiences` seçeneğinde: `id, name, source (all | donors | rfm:<segment> | seg:<CRM segment id> | lookalike:<id>), purpose (target|exclude), meta_id, kind (custom|lookalike), count, synced, error, last{added,removed}`.
+- Üyeler `{prefix}flxads_aud_members (aud, person_id, em, ph, sig)`: yalnız SHA-256 özetleri (çıkarmak için). Düz veri saklanmaz.
+- Kişiler: `flx_people` içinde `status = active`, `consent_ads = 1`, e-posta ya da telefonu olan. Şema `EMAIL, PHONE, FN, LN, COUNTRY` (Meta normalizasyonu, ad soyad noktalama ve boşluksuz küçük harf).
+- Eşitleme: fark; önce çıkar (`DELETE /<audience>/users`, `EMAIL, PHONE`), sonra ekle (`POST /<audience>/users`), 5000'lik parti. Bilgisi değişen kişinin eski özeti çıkar, yenisi girer. Günde bir (`flxads_retry` + ekran açılınca), 40 sn sınırı.
+- `flxcrm_consent_changed` (ads = 0) ve `flxcrm_contact_deleting`: kişi istek sonunda tüm kitlelerden çıkarılır.
+- Oluşturma `POST act_<hesap>/customaudiences` (`subtype=CUSTOM`, `customer_file_source=USER_PROVIDED_ONLY`); benzer kitle `subtype=LOOKALIKE`, `lookalike_spec {type: similarity, country, ratio}`. Anahtar gövdede gider. ads_management izni gerekir.
+- PHP: `FLXADS_Audiences::create( $d )`, `::lookalike( $id, $country, $ratio )`, `::sync( $id )`, `::delete( $id )`, `::member_ids( $source )`, `::sources()`.
+
 ## Fonksiyonlar
 
 - `flxads_track( $name, $data )`: bu sayfada tarayıcıdan olay (ör. `Lead`). `$data`: `id`, `value`, `currency`, `items[{id,name,price,qty}]`, `title`.
@@ -42,11 +58,11 @@ Olay kimliği `order-<sipariş id>` (tarayıcı `eventID` / `event_id` ile aynı
 
 ## MCP
 
-Okuma: `flxads_report` (by, from, to, kind, channel; harcama, ROAS, maliyet dahil), `flxads_status` (harcama eşitleme durumu dahil), `flxads_settings_get` (gizliler yalnız `*_set`), `flxads_send_log` (status, limit), `flxads_spend_list` (from, to; elle girilenler id'leriyle).
+Okuma: `flxads_report` (by, from, to, kind, channel; harcama, ROAS, maliyet dahil), `flxads_status` (harcama eşitleme durumu dahil), `flxads_settings_get` (gizliler yalnız `*_set`), `flxads_send_log` (status, limit), `flxads_spend_list` (from, to; elle girilenler id'leriyle), `flxads_value_report` (from, to, by, kind, cohorts), `flxads_audiences_list`.
 
-Yazma (`flxads_manage`, `includes/ai-write.php`): `flxads_settings_update` (yalnız verilen alanlar, `flxads_clean_settings( $in, true )`), `flxads_test_connection` (platform), `flxads_resend` (ids), `flxads_spend_add` (channel, day, campaign, ad, spend, currency), `flxads_spend_delete` (id, yalnız elle girilen), `flxads_spend_sync` (days).
+Yazma (`flxads_manage`, `includes/ai-write.php`): `flxads_settings_update` (yalnız verilen alanlar, `flxads_clean_settings( $in, true )`), `flxads_test_connection` (platform), `flxads_resend` (ids), `flxads_spend_add` (channel, day, campaign, ad, spend, currency), `flxads_spend_delete` (id, yalnız elle girilen), `flxads_spend_sync` (days), `flxads_audience_create` (name, source, purpose, lookalike, country, ratio), `flxads_audience_lookalike` (id, country, ratio), `flxads_audience_sync` (id), `flxads_audience_delete` (id).
 
 - Flux AI sohbeti (`flxai_tools`): yazan her araç `confirm` → onay kartı; kart onaydır.
-- MCP (`flx_mcp_tools`): `destructive` olanlar (`flxads_settings_update`, `flxads_spend_delete`) ilk çağrıda önizleme + `confirm_token` (15 dk, tek kullanımlık, aynı argümanlara bağlı) döner.
+- MCP (`flx_mcp_tools`): `destructive` olanlar (`flxads_settings_update`, `flxads_spend_delete`, `flxads_audience_create`, `flxads_audience_lookalike`, `flxads_audience_delete`) ilk çağrıda önizleme + `confirm_token` (15 dk, tek kullanımlık, aynı argümanlara bağlı) döner.
 - Gizli anahtarlar (`meta_token`, `meta_ads_token`, `tiktok_token`, `ga4_secret`) hiçbir araçla okunmaz/yazılmaz. Kişisel veri dönmez.
 - Yazmalar `flxads_tool_log` seçeneğine (son 100: tool, channel, user, at, args).
