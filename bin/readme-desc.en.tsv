@@ -24,3 +24,4 @@ flx-setup	FluxWP Panel	Setup wizard, presets and updates: installs the theme and
 flx-migrate	Flux Migrate	Moves site data saved under the old package names (settings, tables, meta, content, theme, upload folders) to the FluxWP names.
 flx-recaptcha	Flux reCAPTCHA	Protects login, registration, comments, checkout, donations and form submissions from bots with Google reCAPTCHA v3 or v2. Pick the forms to protect in the panel.
 flx-wiki	Flux Wiki	Developer wiki at /wiki: Markdown pages, detailed search, SEO, .md and llms.txt for LLMs, "Ask the wiki" with Flux AI and MCP tools. Ships with plugin and theme development guides.
+flx-files	Flux Files	A modern file manager in wp-admin: browse, edit, upload and share files, with trash, version history and AI help.
