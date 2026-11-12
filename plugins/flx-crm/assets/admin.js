@@ -1,5 +1,21 @@
 /* Flux CRM yönetim ekranları: eşitleme, skorlama, toplu işlem, onay, segment kural düzenleyici. */
-( function () {
+window.flxcrmBoot = window.flxcrmBoot || [];
+/* Her blok bir kök (document ya da fetch ile yenilenen bölüm) alır; aynı öğe iki kez bağlanmaz. */
+function flxcrmOnce( root, sel ) {
+	var list = Array.prototype.slice.call( root.querySelectorAll( sel ) );
+	if ( root.matches && root.matches( sel ) ) {
+		list.unshift( root );
+	}
+	return list.filter( function ( n ) {
+		if ( n.flxcrmBound ) {
+			return false;
+		}
+		n.flxcrmBound = true;
+		return true;
+	} );
+}
+
+window.flxcrmBoot.push( function ( R ) {
 	'use strict';
 
 	var cfg = window.flxcrmAdmin || {};
@@ -84,7 +100,7 @@
 		p.classList.toggle( 'is-bad', !! bad );
 	}
 
-	document.querySelectorAll( '[data-flxcrm-sync]' ).forEach( function ( btn ) {
+	flxcrmOnce( R, '[data-flxcrm-sync]' ).forEach( function ( btn ) {
 		btn.addEventListener( 'click', function () {
 			var p = progressFor( btn );
 			lockAll( true );
@@ -96,7 +112,7 @@
 						if ( r.finished ) {
 							say( p, t.done );
 							window.setTimeout( function () {
-								window.location.reload();
+								flxcrmReload();
 							}, 700 );
 							return;
 						}
@@ -110,7 +126,7 @@
 		} );
 	} );
 
-	document.querySelectorAll( '[data-flxcrm-score]' ).forEach( function ( btn ) {
+	flxcrmOnce( R, '[data-flxcrm-score]' ).forEach( function ( btn ) {
 		btn.addEventListener( 'click', function () {
 			var p = progressFor( btn );
 			lockAll( true );
@@ -126,7 +142,7 @@
 						}
 						say( p, fmt( t.scored, num( r.scored || 0 ) ) );
 						window.setTimeout( function () {
-							window.location.reload();
+							flxcrmReload();
 						}, 700 );
 					} )
 					.catch( function () {
@@ -141,6 +157,8 @@
 	/* Onay                                                          */
 	/* ------------------------------------------------------------ */
 
+	if ( ! window.flxcrmConfirmOn ) {
+	window.flxcrmConfirmOn = true;
 	document.addEventListener(
 		'submit',
 		function ( e ) {
@@ -154,12 +172,13 @@
 		},
 		true
 	);
+	}
 
 	/* ------------------------------------------------------------ */
 	/* Toplu işlem                                                   */
 	/* ------------------------------------------------------------ */
 
-	document.querySelectorAll( '[data-flxcrm-bulk]' ).forEach( function ( form ) {
+	flxcrmOnce( R, '[data-flxcrm-bulk]' ).forEach( function ( form ) {
 		var bar = form.querySelector( '[data-flxcrm-bulkbar]' );
 		var all = form.querySelector( '[data-flxcrm-checkall]' );
 		var count = form.querySelector( '[data-flxcrm-selcount]' );
@@ -216,7 +235,7 @@
 	/* Segment kural düzenleyici                                     */
 	/* ------------------------------------------------------------ */
 
-	document.querySelectorAll( '[data-flxcrm-segedit]' ).forEach( function ( form ) {
+	flxcrmOnce( R, '[data-flxcrm-segedit]' ).forEach( function ( form ) {
 		var schemaEl = form.querySelector( '[data-flxcrm-schema]' );
 		var hidden = form.querySelector( '[data-flxcrm-rules]' );
 		var list = form.querySelector( '[data-flxcrm-rulelist]' );
@@ -423,13 +442,13 @@
 		sync();
 		preview();
 	} );
-} )();
+} );
 
 /* Zaman tüneli: 20'şer olay; aşağı kaydırınca devamı yüklenir (mobilde tünel kendi içinde kayar). */
-( function () {
+window.flxcrmBoot.push( function ( R ) {
 	'use strict';
 	var cfg = window.flxcrmAdmin || {};
-	document.querySelectorAll( '[data-flxcrm-tl]' ).forEach( function ( list ) {
+	flxcrmOnce( R, '[data-flxcrm-tl]' ).forEach( function ( list ) {
 		var busy = false;
 		/* Mobilde tünel kendi içinde kayar: gözcünün kökü liste; masaüstünde sayfa. */
 		var own = /(auto|scroll)/.test( window.getComputedStyle( list ).overflowY );
@@ -489,7 +508,7 @@
 	} );
 
 	/* Kişi kartı › Bilgiler: salt okunur görünüm, "Düzenle" ile form; hatalı telefonla kaydetmez. */
-	document.querySelectorAll( '[data-flxcrm-details]' ).forEach( function ( card ) {
+	flxcrmOnce( R, '[data-flxcrm-details]' ).forEach( function ( card ) {
 		var btn = card.querySelector( '[data-flxcrm-edit]' );
 		var view = card.querySelector( '.flxcrm-details__view' );
 		var form = card.querySelector( '.flxcrm-details__form' );
@@ -519,7 +538,7 @@
 			cancel.addEventListener( 'click', function () {
 				/* Değişiklik varsa (telefon bileşeni dahil) sayfa yeniden yüklenir; yoksa yalnız görünüme dönülür. */
 				if ( dirty ) {
-					window.location.reload();
+					flxcrmReload();
 					return;
 				}
 				mode( false );
@@ -548,4 +567,289 @@
 			}
 		} );
 	} );
+} );
+
+/*
+ * Sayfa yenilemeden gezinme: CRM ekranlarında (ve başka eklentideki ortak kişi kartında) bağlantılar, filtreler
+ * ve formlar fetch ile gider; yalnız CRM içeriği değişir. Yeni ekranın stil/betikleri eksikse eklenir.
+ * Yeni bir sayfa CRM içeriği vermezse (başka eklentiye geçiş, hata) normal gezinmeye düşer.
+ * Kapatmak için bağlantıya/forma data-flxcrm-hard.
+ */
+( function () {
+	'use strict';
+	if ( ! window.fetch || ! window.DOMParser || ! window.history || ! history.pushState ) {
+		return;
+	}
+	var busy = null;
+
+	function root( n ) {
+		return n && n.closest ? n.closest( '.flxcrm' ) : null;
+	}
+	function pick( doc, box ) {
+		return doc.querySelector( box.classList.contains( 'wrap' ) ? '.wrap.flxcrm' : '.flxcrm--contact' );
+	}
+	function page( u ) {
+		return u.searchParams.get( 'page' ) || '';
+	}
+	/* Gidilen adres bu kökün ekranı mı: CRM ekranları kendi aralarında, kişi kartı yalnız kendi sayfasında. */
+	function ours( u, box ) {
+		var here = new URL( window.location.href );
+		if ( u.origin !== here.origin || u.pathname !== here.pathname ) {
+			return false;
+		}
+		if ( box.classList.contains( 'wrap' ) ) {
+			return 0 === page( u ).indexOf( 'flx-crm' );
+		}
+		return page( u ) === page( here );
+	}
+	function clean( url ) {
+		var u = new URL( url, window.location.href );
+		u.searchParams.delete( 'flxcrm_msg' );
+		u.searchParams.delete( 'flxcrm_err' );
+		u.searchParams.delete( 'flxcrm_edit' );
+		return u.toString();
+	}
+	/* Yeni ekranın ihtiyaç duyduğu ama sayfada olmayan stil ve betikler (ör. telefon alanı), sırayla. */
+	function assets( doc ) {
+		var chain = Promise.resolve();
+		doc.querySelectorAll( 'link[rel=stylesheet][id], style[id]' ).forEach( function ( n ) {
+			if ( ! document.getElementById( n.id ) ) {
+				document.head.appendChild( document.importNode( n, true ) );
+			}
+		} );
+		doc.querySelectorAll( 'script[id]' ).forEach( function ( n ) {
+			if ( document.getElementById( n.id ) || ( n.type && 'text/javascript' !== n.type && 'module' !== n.type ) ) {
+				return;
+			}
+			chain = chain.then( function () {
+				return new Promise( function ( done ) {
+					var s = document.createElement( 'script' );
+					s.id = n.id;
+					if ( n.src ) {
+						s.src = n.src;
+						s.onload = s.onerror = function () {
+							done();
+						};
+						document.body.appendChild( s );
+					} else {
+						s.textContent = n.textContent;
+						document.body.appendChild( s );
+						done();
+					}
+				} );
+			} );
+		} );
+		return chain;
+	}
+	/* Sol menüde geçerli öğe. */
+	function menu( doc ) {
+		var cur = doc.querySelector( '#adminmenu .wp-submenu li.current a' );
+		if ( ! cur ) {
+			return;
+		}
+		var want = cur.getAttribute( 'href' );
+		document.querySelectorAll( '#adminmenu .wp-submenu li' ).forEach( function ( li ) {
+			var a = li.querySelector( 'a' );
+			var on = !! a && a.getAttribute( 'href' ) === want;
+			li.classList.toggle( 'current', on );
+			if ( a ) {
+				a.classList.toggle( 'current', on );
+				if ( on ) {
+					a.setAttribute( 'aria-current', 'page' );
+				} else {
+					a.removeAttribute( 'aria-current' );
+				}
+			}
+		} );
+	}
+
+	/**
+	 * @param {Element} box  Değişecek CRM kökü.
+	 * @param {string}  url  Adres.
+	 * @param {Object}  opt  body (POST), push (geçmişe ekle), keep (kaydırma yerinde kalsın).
+	 */
+	function go( box, url, opt ) {
+		opt = opt || {};
+		if ( busy ) {
+			busy.abort();
+		}
+		var ctl = 'AbortController' in window ? new AbortController() : null;
+		busy = ctl;
+		var slow = setTimeout( function () {
+			box.classList.add( 'is-loading' );
+			box.setAttribute( 'aria-busy', 'true' );
+		}, 120 );
+		var y = window.scrollY;
+		var init = { credentials: 'same-origin', headers: { 'X-Flxcrm-Soft': '1' }, signal: ctl ? ctl.signal : undefined };
+		if ( opt.body ) {
+			init.method = 'POST';
+			init.body = opt.body;
+		}
+		return fetch( url, init )
+			.then( function ( r ) {
+				return r.text().then( function ( html ) {
+					return { url: r.url || url, ok: r.ok, html: html };
+				} );
+			} )
+			.then( function ( res ) {
+				var doc = new DOMParser().parseFromString( res.html, 'text/html' );
+				var next = pick( doc, box );
+				var to = new URL( res.url, window.location.href );
+				if ( ! res.ok || ! next || ! ours( to, box ) ) {
+					window.location.assign( res.url );
+					return;
+				}
+				return assets( doc ).then( function () {
+					var fresh = document.importNode( next, true );
+					box.replaceWith( fresh );
+					if ( doc.title ) {
+						document.title = doc.title;
+					}
+					menu( doc );
+					var shown = clean( res.url ) + ( opt.hash || '' );
+					if ( opt.push && shown !== window.location.href ) {
+						history.pushState( { flxcrm: 1 }, '', shown );
+					} else {
+						history.replaceState( { flxcrm: 1 }, '', shown );
+					}
+					boot( fresh );
+					var at = opt.hash ? document.getElementById( opt.hash.slice( 1 ) ) : null;
+					if ( at ) {
+						at.scrollIntoView( { block: 'start' } );
+					} else if ( opt.keep ) {
+						window.scrollTo( 0, y );
+					} else {
+						window.scrollTo( 0, 0 );
+					}
+					/* Bildirim (Kaydedildi / hata) varsa ekran okuyucu duysun; görünmüyorsa oraya kaydır. */
+					var note = fresh.querySelector( '.flxcrm-notice' );
+					if ( note && opt.body ) {
+						var top = note.getBoundingClientRect().top;
+						if ( top < 0 || top > window.innerHeight ) {
+							note.scrollIntoView( { block: 'center' } );
+						}
+					}
+				} );
+			} )
+			.catch( function ( e ) {
+				if ( e && 'AbortError' === e.name ) {
+					return;
+				}
+				window.location.assign( url );
+			} )
+			.then( function () {
+				clearTimeout( slow );
+				if ( busy === ctl ) {
+					busy = null;
+				}
+				box.classList.remove( 'is-loading' );
+				box.removeAttribute( 'aria-busy' );
+			} );
+	}
+
+	function boot( r ) {
+		( window.flxcrmBoot || [] ).forEach( function ( fn ) {
+			fn( r );
+		} );
+		if ( window.flxPhone && window.flxPhone.init ) {
+			window.flxPhone.init( r );
+		}
+		if ( window.flxField && window.flxField.init ) {
+			window.flxField.init( r );
+		}
+		if ( r !== document && window.flxaListInit ) {
+			window.flxaListInit();
+		}
+	}
+
+	/* Aynı ekranı sessizce yeniler (eşitleme / skorlama bitince). */
+	window.flxcrmReload = function () {
+		var box = document.querySelector( '.wrap.flxcrm, .flxcrm--contact' );
+		if ( ! box ) {
+			window.location.reload();
+			return;
+		}
+		go( box, window.location.href, { keep: true } );
+	};
+
+	document.addEventListener( 'click', function ( e ) {
+		if ( e.defaultPrevented || 0 !== e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ) {
+			return;
+		}
+		var a = e.target.closest ? e.target.closest( 'a[href]' ) : null;
+		var box = root( a );
+		/* Sol menüdeki CRM bağlantıları da bir CRM ekranındayken yenilemeden açılır. */
+		if ( a && ! box && a.closest( '#adminmenu' ) ) {
+			box = document.querySelector( '.wrap.flxcrm' );
+		}
+		if ( ! a || ! box || a.target || a.hasAttribute( 'download' ) || a.closest( '[data-flxcrm-hard]' ) ) {
+			return;
+		}
+		var u = new URL( a.href, window.location.href );
+		if ( ! ours( u, box ) ) {
+			return;
+		}
+		var here = new URL( window.location.href );
+		/* Aynı ekran içinde yalnız #çapa: tarayıcıya bırak. */
+		if ( u.hash && u.search === here.search ) {
+			return;
+		}
+		e.preventDefault();
+		var hash = u.hash;
+		u.hash = '';
+		/* Zaman tüneli sekmeleri gibi aynı ekrandaki geçişlerde sayfa yerinde kalır. */
+		go( box, u.toString(), { push: true, hash: hash, keep: page( u ) === page( here ) && u.searchParams.get( 'id' ) === here.searchParams.get( 'id' ) } );
+	} );
+
+	document.addEventListener( 'submit', function ( e ) {
+		var f = e.target;
+		var box = root( f );
+		if ( e.defaultPrevented || ! box || f.target || f.closest( '[data-flxcrm-hard]' ) || 'multipart/form-data' === f.enctype ) {
+			return;
+		}
+		var action = new URL( f.getAttribute( 'action' ) || window.location.href, window.location.href );
+		var post = 'post' === ( f.getAttribute( 'method' ) || 'get' ).toLowerCase();
+		var data = new FormData( f );
+		if ( e.submitter && e.submitter.name ) {
+			data.append( e.submitter.name, e.submitter.value );
+		}
+		if ( post ) {
+			if ( action.origin !== window.location.origin || ! /\/admin-post\.php$/.test( action.pathname ) ) {
+				return;
+			}
+			e.preventDefault();
+			if ( e.submitter ) {
+				e.submitter.disabled = true;
+			}
+			go( box, action.toString(), { body: data, keep: true } );
+			return;
+		}
+		var u = new URL( action.toString() );
+		u.search = '';
+		data.forEach( function ( v, k ) {
+			if ( 'string' === typeof v && '' !== v ) {
+				u.searchParams.append( k, v );
+			}
+		} );
+		if ( ! ours( u, box ) ) {
+			return;
+		}
+		e.preventDefault();
+		go( box, u.toString(), { push: true, keep: true } );
+	} );
+
+	window.addEventListener( 'popstate', function ( e ) {
+		if ( ! e.state || ! e.state.flxcrm ) {
+			return;
+		}
+		var box = document.querySelector( '.wrap.flxcrm, .flxcrm--contact' );
+		if ( box ) {
+			go( box, window.location.href, { keep: false } );
+		}
+	} );
+
+	if ( document.querySelector( '.wrap.flxcrm, .flxcrm--contact' ) ) {
+		history.replaceState( { flxcrm: 1 }, '', window.location.href );
+	}
+	boot( document );
 } )();
