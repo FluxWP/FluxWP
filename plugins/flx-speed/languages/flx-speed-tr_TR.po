@@ -1503,3 +1503,279 @@ msgstr "İşaret"
 
 msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
 msgstr "Site performansı tek yerde: istek başına sorgular, PHP hataları, dış HTTP istekleri (geliştirici paneli), yavaş/hatalı istek kayıtları, sunucu (CPU, RAM, disk, OPcache), veritabanı, autoload, cron ve Sistem Kontrolü. Yapay zekâ hepsini Flux AI & MCP / Flux AI araçlarıyla okur."
+
+msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
+msgstr "İki nesne önbelleği aynı anda açık: LiteSpeed Cache nesne önbelleği ve SQLite Object Cache. object-cache.php yalnız birine ait olabilir; aşağıdan birini seçin."
+
+msgid "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite is not used. Switch to SQLite below to fix it."
+msgstr "SQLite Object Cache etkin ama object-cache.php başka bir eklentiye ait, bu yüzden SQLite kullanılmıyor. Düzeltmek için aşağıdan SQLite'a geçin."
+
+msgid "SQLite Object Cache is active but object-cache.php is missing, so nothing is cached. Use \"Repair\" to recreate it."
+msgstr "SQLite Object Cache etkin ama object-cache.php yok, hiçbir şey önbelleğe alınmıyor. Yeniden oluşturmak için \"Onar\"a basın."
+
+msgid "LiteSpeed Cache object cache is on but object-cache.php belongs to another plugin. Turn one of them off."
+msgstr "LiteSpeed Cache nesne önbelleği açık ama object-cache.php başka bir eklentiye ait. Birini kapatın."
+
+msgid "LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache."
+msgstr "LiteSpeed Cache nesne önbelleği Redis'e ayarlı ama sunucuda Redis PHP uzantısı yok; WordPress sessizce kalıcı önbelleksiz çalışıyor."
+
+msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
+msgstr "LiteSpeed Cache nesne önbelleği Memcached'e ayarlı ama Memcached PHP uzantısı yok. Hostinger'da hPanel'den açın (Gelişmiş › PHP Yapılandırması › Memcached) ya da yerine SQLite Object Cache kullanın."
+
+msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
+msgstr "Eklenti etkin olmadığı hâlde SQLite Object Cache'in object-cache.php dosyası wp-content'te duruyor. Onar dosyayı kaldırır."
+
+msgid "Another page cache plugin (%s) is installed next to LiteSpeed Cache (advanced-cache.php). Two page caches serve stale pages; keep only LiteSpeed Cache."
+msgstr "LiteSpeed Cache'in yanında başka bir sayfa önbelleği eklentisi (%s) var (advanced-cache.php). İki sayfa önbelleği eski sayfa gösterir; yalnız LiteSpeed Cache'i bırakın."
+
+msgid "You are not allowed to install plugins."
+msgstr "Eklenti kurma yetkiniz yok."
+
+msgid "Plugin installs are disabled on this site (DISALLOW_FILE_MODS). Install it from your hosting panel."
+msgstr "Bu sitede eklenti kurma kapalı (DISALLOW_FILE_MODS). Hosting panelinden kurun."
+
+msgid "The plugin could not be written to disk (file permissions or FTP credentials). Install it from Plugins › Add New."
+msgstr "Eklenti diske yazılamadı (dosya izinleri ya da FTP bilgileri). Eklentiler › Yeni ekle'den kurun."
+
+msgid "You are not allowed to activate plugins."
+msgstr "Eklenti etkinleştirme yetkiniz yok."
+
+msgid "The plugin is not installed."
+msgstr "Eklenti kurulu değil."
+
+msgid "LiteSpeed Cache is not active."
+msgstr "LiteSpeed Cache etkin değil."
+
+msgid "The PHP sqlite3 extension is missing. Enable it in your hosting PHP settings first."
+msgstr "PHP sqlite3 uzantısı yok. Önce hosting PHP ayarlarından açın."
+
+msgid "object-cache.php belongs to another plugin (%s). Turn that plugin's object cache off first."
+msgstr "object-cache.php başka bir eklentiye ait (%s). Önce o eklentinin nesne önbelleğini kapatın."
+
+msgid "SQLite Object Cache is active but it did not write object-cache.php (wp-content may not be writable). Open Settings › Object Cache to finish."
+msgstr "SQLite Object Cache etkin ama object-cache.php yazılamadı (wp-content yazılabilir olmayabilir). Bitirmek için Ayarlar › Object Cache'i açın."
+
+msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcached in hPanel first, then try again."
+msgstr "Memcached ya da Redis PHP uzantısı yok. Hostinger'da önce hPanel'den Memcached'i açın, sonra tekrar deneyin."
+
+msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
+msgstr "Ayar kaydedildi ama LiteSpeed Cache henüz object-cache.php yazmadı. LiteSpeed Cache › Önbellek › Nesne'yi açıp bir kez Kaydet'e basın."
+
+msgid "The test request returned HTTP %d."
+msgstr "Test isteği HTTP %d döndü."
+
+msgid "Cache conflict"
+msgstr "Önbellek çakışması"
+
+msgid "Persistent object cache is on (%s)."
+msgstr "Kalıcı nesne önbelleği açık (%s)."
+
+msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
+msgstr "Kalıcı nesne önbelleği yok: her istek ayarları ve sorguları veritabanından yeniden okuyor. Performans › Önbellek'ten birini açın."
+
+msgid "Page cache"
+msgstr "Sayfa önbelleği"
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
+msgstr "Sunucu LiteSpeed ama LiteSpeed Cache sayfa önbelleği kapalı."
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache plugin is not active, so pages are not cached."
+msgstr "Sunucu LiteSpeed ama LiteSpeed Cache eklentisi etkin değil, sayfalar önbelleğe alınmıyor."
+
+msgid "Install and activate"
+msgstr "Kur ve etkinleştir"
+
+msgid "Ask an administrator who can install plugins."
+msgstr "Eklenti kurabilen bir yöneticiye başvurun."
+
+msgid "Activate"
+msgstr "Etkinleştir"
+
+msgid "Plugin installed and activated."
+msgstr "Eklenti kuruldu ve etkinleştirildi."
+
+msgid "Plugin activated."
+msgstr "Eklenti etkinleştirildi."
+
+msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
+msgstr "Nesne önbelleği artık SQLite Object Cache. Doğrulamak için aşağıdan test edin."
+
+msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
+msgstr "Nesne önbelleği artık LiteSpeed Cache. Doğrulamak için aşağıdan test edin."
+
+msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
+msgstr "LiteSpeed Cache etkinleştirildi. Nesne önbelleği ayarı bu sayfa açılınca tamamlanır; aşağıdan test edin."
+
+msgid "Object cache turned off."
+msgstr "Nesne önbelleği kapatıldı."
+
+msgid "Object cache repaired."
+msgstr "Nesne önbelleği onarıldı."
+
+msgid "Page cache turned on and purged."
+msgstr "Sayfa önbelleği açıldı ve temizlendi."
+
+msgid "Page cache turned off and purged."
+msgstr "Sayfa önbelleği kapatıldı ve temizlendi."
+
+msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
+msgstr "Tüm önbellekler temizlendi (LiteSpeed sayfa, CSS/JS ve nesne önbelleği)."
+
+msgid "Object cache emptied."
+msgstr "Nesne önbelleği boşaltıldı."
+
+msgid "another plugin"
+msgstr "başka bir eklenti"
+
+msgid "Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way."
+msgstr "Siteyi iki katman hızlandırır: sayfa önbelleği PHP çalıştırmadan hazır HTML verir, nesne önbelleği veritabanı sonuçlarını istekler arasında saklar. Aynı anda yalnız bir nesne önbelleği çalışabilir; bu ekran bunu korur."
+
+msgid "Repair"
+msgstr "Onar"
+
+msgid "LiteSpeed web server"
+msgstr "LiteSpeed web sunucusu"
+
+msgid "Not detected: LiteSpeed page cache works only on a LiteSpeed server (or through QUIC.cloud)."
+msgstr "Algılanmadı: LiteSpeed sayfa önbelleği yalnız LiteSpeed sunucuda (ya da QUIC.cloud üzerinden) çalışır."
+
+msgid "LiteSpeed Cache plugin"
+msgstr "LiteSpeed Cache eklentisi"
+
+msgid "version %s"
+msgstr "sürüm %s"
+
+msgid "installed, not active"
+msgstr "kurulu, etkin değil"
+
+msgid "not installed"
+msgstr "kurulu değil"
+
+msgid "Turn off"
+msgstr "Kapat"
+
+msgid "Turn on"
+msgstr "Aç"
+
+msgid "Purge all"
+msgstr "Tümünü temizle"
+
+msgid "LiteSpeed settings"
+msgstr "LiteSpeed ayarları"
+
+msgid "Logged-in users, cart and checkout are not cached by LiteSpeed by default. Purge after changing the theme or menus."
+msgstr "Giriş yapmış kullanıcılar, sepet ve ödeme sayfası LiteSpeed'de varsayılan olarak önbelleğe alınmaz. Tema ya da menü değişince temizleyin."
+
+msgid "In use:"
+msgstr "Kullanılan:"
+
+msgid "Persistent"
+msgstr "Kalıcı"
+
+msgid "Not persistent"
+msgstr "Kalıcı değil"
+
+msgid "Test"
+msgstr "Test et"
+
+msgid "Empty object cache"
+msgstr "Nesne önbelleğini boşalt"
+
+msgid "Turn object cache off"
+msgstr "Nesne önbelleğini kapat"
+
+msgid "Turn the object cache off? The site keeps working, only slower on database-heavy pages."
+msgstr "Nesne önbelleği kapatılsın mı? Site çalışmaya devam eder, yalnız veritabanı ağırlıklı sayfalar yavaşlar."
+
+msgid "Test: writes a value in this request and reads it in a separate request. Only then is the cache really shared between visitors."
+msgstr "Test: bu istekte bir değer yazar, ayrı bir istekte okur. Ancak o zaman önbellek ziyaretçiler arasında gerçekten paylaşılıyordur."
+
+msgid "Last test (%1$s) could not finish: %2$s"
+msgstr "Son test (%1$s) tamamlanamadı: %2$s"
+
+msgid "Last test (%1$s): works, %2$s keeps values between requests. 100 writes + 100 reads took %3$s ms."
+msgstr "Son test (%1$s): çalışıyor, %2$s değerleri istekler arasında saklıyor. 100 yazma + 100 okuma %3$s ms sürdü."
+
+msgid "Last test (%s): values are lost after the request ends, so there is no persistent object cache."
+msgstr "Son test (%s): değerler istek bitince kayboluyor, kalıcı nesne önbelleği yok."
+
+msgid "In use"
+msgstr "Kullanılıyor"
+
+msgid "Recommended here"
+msgstr "Bu sunucu için önerilen"
+
+msgid "Keeps the cache in a SQLite file in wp-content. Needs no extra service, so it fits shared hosting without Redis/Memcached."
+msgstr "Önbelleği wp-content içinde bir SQLite dosyasında tutar. Ek servis gerekmez; Redis/Memcached olmayan paylaşımlı hosting'e uyar."
+
+msgid "PHP sqlite3 extension"
+msgstr "PHP sqlite3 uzantısı"
+
+msgid "required; enable it in the hosting PHP settings"
+msgstr "gerekli; hosting PHP ayarlarından açın"
+
+msgid "PHP igbinary extension"
+msgstr "PHP igbinary uzantısı"
+
+msgid "optional, makes it smaller and faster"
+msgstr "isteğe bağlı, daha küçük ve hızlı yapar"
+
+msgid "SQLite Object Cache plugin"
+msgstr "SQLite Object Cache eklentisi"
+
+msgid "not installed, installed from wordpress.org with one click"
+msgstr "kurulu değil, wordpress.org'dan tek tıkla kurulur"
+
+msgid "Cache file %1$s, %2$s."
+msgstr "Önbellek dosyası %1$s, %2$s."
+
+msgid "Plugin settings"
+msgstr "Eklenti ayarları"
+
+msgid "Cannot be used on this server without the sqlite3 extension."
+msgstr "sqlite3 uzantısı olmadan bu sunucuda kullanılamaz."
+
+msgid "Use SQLite Object Cache"
+msgstr "SQLite Object Cache kullan"
+
+msgid "Install and use SQLite Object Cache"
+msgstr "SQLite Object Cache kur ve kullan"
+
+msgid "The current object cache is turned off and SQLite Object Cache takes over. Continue?"
+msgstr "Mevcut nesne önbelleği kapatılır, yerine SQLite Object Cache geçer. Devam edilsin mi?"
+
+msgid "LiteSpeed Cache + Memcached"
+msgstr "LiteSpeed Cache + Memcached"
+
+msgid "LiteSpeed Cache's own object cache, kept in Memcached memory. On Hostinger, Memcached is switched on per site in hPanel."
+msgstr "LiteSpeed Cache'in kendi nesne önbelleği, Memcached belleğinde tutulur. Hostinger'da Memcached site başına hPanel'den açılır."
+
+msgid "Memcached PHP extension"
+msgstr "Memcached PHP uzantısı"
+
+msgid "missing; Redis is used instead"
+msgstr "yok; yerine Redis kullanılır"
+
+msgid "missing; on Hostinger: hPanel › Advanced › PHP Configuration › Memcached"
+msgstr "yok; Hostinger'da: hPanel › Gelişmiş › PHP Yapılandırması › Memcached"
+
+msgid "Enable Memcached for this site in the hosting panel first; this option unlocks afterwards."
+msgstr "Önce hosting panelinden bu site için Memcached'i açın; bu seçenek sonra açılır."
+
+msgid "Use LiteSpeed object cache"
+msgstr "LiteSpeed nesne önbelleğini kullan"
+
+msgid "Install LiteSpeed Cache and use it"
+msgstr "LiteSpeed Cache kur ve kullan"
+
+msgid "The current object cache is turned off and LiteSpeed Cache takes over. Continue?"
+msgstr "Mevcut nesne önbelleği kapatılır, yerine LiteSpeed Cache geçer. Devam edilsin mi?"
+
+msgid "Cache status"
+msgstr "Önbellek durumu"
+
+msgid "%1$s needs the %2$s plugin. It is not installed yet."
+msgstr "%1$s için %2$s eklentisini kurmalısınız. Henüz kurulu değil."
+
+msgid "%1$s needs the %2$s plugin to be active. It is installed but turned off."
+msgstr "%1$s için %2$s eklentisi etkin olmalı. Kurulu ama kapalı."

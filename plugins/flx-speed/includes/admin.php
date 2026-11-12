@@ -1,6 +1,6 @@
 <?php
 /**
- * Yönetim ekranı: Özet, Kayıtlar, Sunucu, Veritabanı, Autoload, Cron, Sistem Kontrolü, PageSpeed, Ayarlar ve tek kayıt ayrıntısı.
+ * Yönetim ekranı: Özet, Kayıtlar, Sunucu, Veritabanı, Autoload, Cron, Sistem Kontrolü, PageSpeed, Önbellek, Ayarlar ve tek kayıt ayrıntısı.
  *
  * @package flx-speed
  */
@@ -33,6 +33,7 @@ class FLXP_Admin {
 			'cron'     => array( 'Cron', false ),
 			'system'   => array( __( 'System check', 'flx-speed' ), true ),
 			'pagespeed' => array( 'PageSpeed', true ),
+			'cache'    => array( __( 'Cache', 'flx-speed' ), true ),
 			'settings' => array( __( 'Settings', 'flx-speed' ), true ),
 		);
 	}
@@ -184,6 +185,9 @@ class FLXP_Admin {
 					break;
 				case 'pagespeed':
 					FLXP_Admin_PageSpeed::render();
+					break;
+				case 'cache':
+					FLXP_Admin_Cache::render();
 					break;
 				case 'settings':
 					self::settings();

@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.7.0
+- Yeni Önbellek sekmesi (Performans › Önbellek): LiteSpeed Cache sayfa önbelleği aç/kapa ve Tümünü temizle; nesne önbelleği için SQLite Object Cache ya da LiteSpeed Cache + Memcached seçimi tek tıkla.
+- Gereken eklenti yoksa ekran söyler ve wordpress.org'dan Kur ve etkinleştir düğmesi verir; gereken PHP uzantıları (sqlite3, igbinary, Memcached) tek tek gösterilir.
+- Çakışma kontrolü: aynı anda iki nesne önbelleği açıksa, object-cache.php başka eklentiye aitse ya da eksikse uyarı + Onar. Geçişte eskisi kapatılır, başka eklentinin drop-in'ine dokunulmaz.
+- Gerçek kalıcılık testi: bir istekte yazılan değer ayrı bir istekte okunur, 100 yazma + 100 okuma süresi gösterilir.
+- Sistem Kontrolü satırları (önbellek çakışması, nesne önbelleği, sayfa önbelleği) ve yapay zekâ aracı `flxp_cache_status`.
+
 ## 0.6.6
 - Hız API'si ve özel giriş adresi ortak önbelleksiz başlıkları kullanır. Eski Expires başlığı durur.
 

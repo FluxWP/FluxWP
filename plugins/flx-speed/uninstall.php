@@ -16,6 +16,8 @@ delete_option( 'flxp_cron_seen' );
 delete_option( 'flxp_cron_stats' );
 delete_option( 'flxp_du' );
 delete_option( 'flxp_ps_seen' );
+delete_option( 'flxp_cache_test' );
+delete_option( 'flxp_cache_pending' );
 delete_transient( 'flxp_ps_anim' );
 // PageSpeed önbelleği (uploads/flx-speed).
 $flxp_up = wp_upload_dir( null, false );
