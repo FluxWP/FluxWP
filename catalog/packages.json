@@ -421,6 +421,79 @@
         ]
       }
     },
+    "flx-blocks": {
+      "desc": {
+        "en": "A block toolkit for the WordPress editor: layouts, advanced heading, buttons, info boxes, gallery, tabs, accordion, forms and a header builder.",
+        "tr": "WordPress editörü için blok seti: düzenler, gelişmiş başlık, düğmeler, bilgi kutuları, galeri, sekmeler, akordiyon, formlar ve header oluşturucu.",
+        "de": "Ein Block-Baukasten für den WordPress-Editor: Layouts, erweiterte Überschrift, Buttons, Infoboxen, Galerie, Tabs, Akkordeon, Formulare und ein Header-Builder.",
+        "es": "Un kit de bloques para el editor de WordPress: diseños, encabezado avanzado, botones, cajas de información, galería, pestañas, acordeón, formularios y un constructor de cabeceras.",
+        "fr": "Une boîte à outils de blocs pour l'éditeur WordPress : mises en page, titre avancé, boutons, encadrés, galerie, onglets, accordéon, formulaires et un constructeur d'en-tête.",
+        "pt-br": "Um kit de blocos para o editor do WordPress: layouts, título avançado, botões, caixas de informação, galeria, abas, acordeão, formulários e um construtor de cabeçalho.",
+        "ja": "WordPress エディター用のブロックツールキット：レイアウト、高度な見出し、ボタン、情報ボックス、ギャラリー、タブ、アコーディオン、フォーム、ヘッダービルダー。",
+        "zh": "WordPress 编辑器的区块工具包：布局、高级标题、按钮、信息框、图库、选项卡、手风琴、表单和页眉构建器。",
+        "ar": "مجموعة كتل لمحرر ووردبريس: تخطيطات، عنوان متقدم، أزرار، صناديق معلومات، معرض، علامات تبويب، أكورديون، نماذج ومنشئ ترويسة.",
+        "ru": "Набор блоков для редактора WordPress: макеты, расширенный заголовок, кнопки, инфоблоки, галерея, вкладки, аккордеон, формы и конструктор шапки."
+      },
+      "website": {},
+      "icons": {
+        "svg": {
+          "path": "plugins/flx-blocks/assets/icon.svg",
+          "sha": "eef744ee74cc1e64c68bf7944c235c27e0cbdcbf",
+          "size": 1382
+        },
+        "pastel": {
+          "path": "plugins/flx-blocks/assets/icon-pastel.svg",
+          "sha": "eef744ee74cc1e64c68bf7944c235c27e0cbdcbf",
+          "size": 1382
+        }
+      },
+      "gallery": {
+        "en": [
+          {
+            "path": "plugins/flx-blocks/docs/previews/editor-en.webp",
+            "sha": "6a6ad89f362de4f1680c251ca88064d811be1a5a",
+            "size": 46606
+          },
+          {
+            "path": "plugins/flx-blocks/docs/previews/blocks-en.webp",
+            "sha": "21ca77db6e6840b0ecfed7e1599c310bfc46c1b4",
+            "size": 60622
+          },
+          {
+            "path": "plugins/flx-blocks/docs/previews/style-library-en.webp",
+            "sha": "f066a9e7f2e28ff2dae5087acb43fdc99ae48fef",
+            "size": 48732
+          },
+          {
+            "path": "plugins/flx-blocks/docs/previews/settings-en.webp",
+            "sha": "d02fcc66bb503dfdfe241ef50ba06b18b17f26df",
+            "size": 84026
+          }
+        ],
+        "tr": [
+          {
+            "path": "plugins/flx-blocks/docs/previews/editor-tr.webp",
+            "sha": "a70596b53e4cf843347f669dfeb8fd86a72556d0",
+            "size": 47646
+          },
+          {
+            "path": "plugins/flx-blocks/docs/previews/blocks-tr.webp",
+            "sha": "b96fa45374b4fb5bbdcc565cae89081759dcf6d0",
+            "size": 60818
+          },
+          {
+            "path": "plugins/flx-blocks/docs/previews/style-library-tr.webp",
+            "sha": "365c9d0ac233964905804bbaf7e89d44008080ff",
+            "size": 50420
+          },
+          {
+            "path": "plugins/flx-blocks/docs/previews/settings-tr.webp",
+            "sha": "3401e380010c1b75f93e4dfa65fc133b4159924c",
+            "size": 79162
+          }
+        ]
+      }
+    },
     "flx-certificates": {
       "desc": {
         "en": "A personal certificate, a share link and a PDF for every sapling gifted.",
