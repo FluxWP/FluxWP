@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.20
+- Logosu Flux Admin'de bulunmayan paketlerin sol menü ve sayfa başlığı logosu kırık görünmüyor: paket kendi logosunu yeni `flxa_package_logo_url` filtresiyle verir (stil `gradient` / `pastel` ile birlikte).
+
 ## 1.7.19
 - Yönetim paneli ve giriş ekranı sekme simgesi sol menü logosuyla aynı sırayı izler: site simgesi, yoksa kurum profili simgesi (ön ayarlar), o da yoksa FluxWP. Önceden site simgesi seçilmemişse hep FluxWP görünüyordu.
 - Pano sistem kontrolü listesinde `action_url` olmayan satırlar PHP uyarısı vermiyor.

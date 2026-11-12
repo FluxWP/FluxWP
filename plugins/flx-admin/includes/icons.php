@@ -160,13 +160,21 @@ function flxa_logo_style() {
 	return 'pastel' === $v ? 'pastel' : 'gradient';
 }
 
-/** assets/logos/ içindeki bir logonun adresi, seçili stile göre (pastel/ alt klasörü). */
+/** assets/logos/ içindeki bir logonun adresi, seçili stile göre (pastel/ alt klasörü). Dosya yoksa `flxa_package_logo_url` filtresi. */
 function flxa_logo_file_url( $file ) {
 	$file = sanitize_file_name( (string) $file );
 	if ( '' === $file ) {
 		return '';
 	}
-	$dir = 'pastel' === flxa_logo_style() && is_readable( FLXA_DIR . 'assets/logos/pastel/' . $file ) ? 'assets/logos/pastel/' : 'assets/logos/';
+	$style = flxa_logo_style();
+	if ( ! is_readable( FLXA_DIR . 'assets/logos/' . $file ) ) {
+		/* Logosu Flux Admin'de olmayan paket (ör. ayrı depodaki paketler) kendi adresini verir. Filtre `flxa_package_logo_url`. */
+		$url = (string) apply_filters( 'flxa_package_logo_url', '', $file, $style );
+		if ( '' !== $url ) {
+			return $url;
+		}
+	}
+	$dir = 'pastel' === $style && is_readable( FLXA_DIR . 'assets/logos/pastel/' . $file ) ? 'assets/logos/pastel/' : 'assets/logos/';
 	return FLXA_URL . $dir . $file . '?ver=' . FLXA_VERSION;
 }
 
