@@ -239,6 +239,8 @@ function flxfm_rest_op( WP_REST_Request $req ) {
 			}
 			return flxfm_rest_out( $r );
 
+		case 'usage':
+			return flxfm_rest_out( array( 'disk' => FLXFM_FS::disk( ! empty( $p['force'] ) ) ) );
 		case 'trash_list':
 			return flxfm_rest_out( array( 'items' => flxfm_trash_list(), 'days' => (int) $s['trash_days'] ) );
 

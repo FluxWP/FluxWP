@@ -7,7 +7,7 @@
 
 defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
 
-foreach ( array( 'flxfm_settings', 'flxfm_log', 'flxfm_daily_at' ) as $flxfm_opt ) {
+foreach ( array( 'flxfm_settings', 'flxfm_log', 'flxfm_daily_at', 'flxfm_usage' ) as $flxfm_opt ) {
 	delete_option( $flxfm_opt );
 }
 wp_clear_scheduled_hook( 'flxfm_daily' );

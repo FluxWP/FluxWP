@@ -877,17 +877,64 @@ class FLXFM_FS {
 	}
 
 	/** Disk kullanımı (sunucu izin veriyorsa). */
-	public static function disk() {
-		$root  = flxfm_root();
-		$total = function_exists( 'disk_total_space' ) ? @disk_total_space( $root ) : false; // phpcs:ignore WordPress.PHP.NoSilencedErrors
-		$free  = function_exists( 'disk_free_space' ) ? @disk_free_space( $root ) : false; // phpcs:ignore WordPress.PHP.NoSilencedErrors
-		if ( ! $total || false === $free ) {
-			return null;
+	/**
+	 * Depolama: hosting hesabının kullandığı alan (hesap klasörü taranır) ve Ayarlar'daki kota.
+	 * Sunucu diskinin tamamı (paylaşımlı hostingde TB'lar) gösterilmez. Tarama parça parça ilerler
+	 * (istek başına ~2 sn), sonuç 12 saat saklanır.
+	 *
+	 * @param bool $force Yeniden ölç.
+	 */
+	public static function disk( $force = false ) {
+		$root = flxfm_usage_root();
+		$u    = get_option( 'flxfm_usage', array() );
+		$u    = is_array( $u ) && ( $u['root'] ?? '' ) === $root ? $u : array( 'root' => $root );
+		$stale = empty( $u['t'] ) || $u['t'] < time() - 12 * HOUR_IN_SECONDS;
+		if ( empty( $u['scan'] ) && ( $force || $stale ) ) {
+			$u['scan'] = array( 'stack' => array( $root ), 'bytes' => 0, 'files' => 0 );
 		}
+		if ( ! empty( $u['scan'] ) ) {
+			$sc    = $u['scan'];
+			$until = microtime( true ) + 2;
+			while ( $sc['stack'] && microtime( true ) < $until ) {
+				$dir = array_pop( $sc['stack'] );
+				$h   = @opendir( $dir ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+				if ( ! $h ) {
+					continue;
+				}
+				while ( false !== ( $e = readdir( $h ) ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition
+					if ( '.' === $e || '..' === $e ) {
+						continue;
+					}
+					$f = $dir . '/' . $e;
+					if ( is_link( $f ) ) {
+						continue;
+					}
+					if ( is_dir( $f ) ) {
+						$sc['stack'][] = $f;
+					} else {
+						$sc['bytes'] += (float) @filesize( $f ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+						++$sc['files'];
+					}
+				}
+				closedir( $h );
+			}
+			if ( $sc['stack'] ) {
+				$u['scan'] = $sc;
+			} else {
+				unset( $u['scan'] );
+				$u['used']  = $sc['bytes'];
+				$u['files'] = $sc['files'];
+				$u['t']     = time();
+			}
+			update_option( 'flxfm_usage', $u, false );
+		}
+		$quota = (float) flxfm_opt( 'quota_gb' ) * 1073741824;
 		return array(
-			'total' => (float) $total,
-			'free'  => (float) $free,
-			'used'  => (float) $total - (float) $free,
+			'used'     => isset( $u['used'] ) ? (float) $u['used'] : null,
+			'total'    => $quota > 0 ? $quota : null,
+			'scanning' => ! empty( $u['scan'] ),
+			'files'    => isset( $u['files'] ) ? (int) $u['files'] : null,
+			'ago'      => empty( $u['t'] ) ? '' : flx_time_ago( (int) $u['t'] ),
 		);
 	}
 }
