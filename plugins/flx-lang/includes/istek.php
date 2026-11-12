@@ -309,14 +309,19 @@ add_filter(
  * Yerel ayar: ön yüzde istek dilinin locale'i.
  */
 function flxl_filter_locale( $locale ) {
-	$cur = flxl_current_language();
-	if ( $cur === flxl_default_language() || ( is_admin() && ! wp_doing_ajax() ) ) {
+	// İç içe çağrı (dil hesaplanırken başka bir eklenti yerel ayarı sorarsa) gelen değeri aynen döndürür.
+	static $busy = false;
+	if ( $busy ) {
 		return $locale;
 	}
-	if ( defined( 'REST_REQUEST' ) && REST_REQUEST && ! flxl_is_explicit() ) {
-		return $locale;
+	$busy = true;
+	$out  = $locale;
+	$cur  = flxl_current_language();
+	if ( $cur !== flxl_default_language() && ! ( is_admin() && ! wp_doing_ajax() ) && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST && ! flxl_is_explicit() ) ) {
+		$out = flxl_language_locale( $cur );
 	}
-	return flxl_language_locale( $cur );
+	$busy = false;
+	return $out;
 }
 add_filter( 'locale', 'flxl_filter_locale', 20 );
 add_filter(

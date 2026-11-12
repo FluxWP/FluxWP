@@ -1,5 +1,8 @@
 # Flux Lang
 
+## 0.2.9
+- Fix an endless loop ("Maximum call stack size reached") when another plugin such as LiteSpeed Cache asks for the locale while Flux Lang reads its settings. The settings read and the locale filter now return the incoming value on a nested call.
+
 ## 0.2.8
 - Ülke ucu ortak önbelleksiz başlıkları kullanır. CDN işareti ve CF-IPCountry ayrımı durur.
 

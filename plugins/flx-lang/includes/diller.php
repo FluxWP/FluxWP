@@ -53,9 +53,18 @@ function flxl_default_settings() {
 }
 
 function flxl_settings( $reset = false ) {
-	static $s = null;
+	static $s       = null;
+	static $loading = false;
+	if ( $loading ) {
+		// get_option() başka eklentilerin filtrelerini çalıştırır (ör. LiteSpeed Cache). Onlar yerel ayarı sorarsa
+		// locale filtresi buraya geri döner; okuma bitmeden varsayılanlar döner, sonsuz döngü olmaz.
+		return null !== $s ? $s : flxl_default_settings();
+	}
 	if ( null === $s || $reset ) {
-		$s = wp_parse_args( (array) get_option( 'flxl_settings', array() ), flxl_default_settings() );
+		$loading = true;
+		$raw     = get_option( 'flxl_settings', array() );
+		$loading = false;
+		$s       = wp_parse_args( (array) $raw, flxl_default_settings() );
 		if ( empty( $s['languages'] ) || ! is_array( $s['languages'] ) ) {
 			$s['languages'] = flxl_default_settings()['languages'];
 		}
