@@ -166,7 +166,7 @@ function flxi_post_button( $action, array $fields, $label, $confirm = '', $class
 	foreach ( $fields as $k => $v ) {
 		$o .= '<input type="hidden" name="' . esc_attr( $k ) . '" value="' . esc_attr( $v ) . '">';
 	}
-	$o .= '<button type="submit" class="' . esc_attr( $class ) . '"' . ( $confirm ? ' onclick="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr( $confirm ) . '"' : '' ) . '>' . esc_html( $label ) . '</button></form>';
+	$o .= '<button type="submit" class="' . esc_attr( $class ) . '"' . ( $confirm ? ' data-flx-confirm="' . esc_attr( $confirm ) . '"' : '' ) . '>' . esc_html( $label ) . '</button></form>';
 	return $o;
 }
 

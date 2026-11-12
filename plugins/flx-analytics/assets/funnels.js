@@ -123,7 +123,7 @@
 			if (title && (!st.label || st._auto)) { st.label = title; st._auto = 1; var li = x.closest('.flxan-fs'); li.querySelector('.flxan-fs__label').value = title; }
 		}
 	});
-	box.addEventListener('change', function (e) {
+	box.addEventListener('change', async function (e) {
 		var x = e.target;
 		if (x.classList.contains('flxan-fpreset')) {
 			if (x.value === '') return;
@@ -136,7 +136,7 @@
 			var st = F[+x.getAttribute('data-fi')].steps[+x.getAttribute('data-si')];
 			var v = x.value;
 			if (v === '__custom') {
-				v = window.prompt(t('Olay adı (ör. bagis_formu ya da checkout:submit):'), st.value || '') || st.value || '';
+				v = (await window.flxDialog.prompt({ title: t('Olay adı (ör. bagis_formu ya da checkout:submit):'), value: st.value || '' })) || st.value || '';
 				v = v.trim().replace(/^olay:/, '');
 			}
 			if (v && (!st.label || st._auto)) { st.label = events[v] || v; st._auto = 1; }
@@ -144,7 +144,7 @@
 			render();
 		}
 	});
-	box.addEventListener('click', function (e) {
+	box.addEventListener('click', async function (e) {
 		var b = e.target.closest('[data-act]');
 		if (!b) return;
 		var act = b.getAttribute('data-act'), fi = +b.getAttribute('data-fi'), si = +b.getAttribute('data-si');
@@ -168,12 +168,12 @@
 			if (inps.length) inps[inps.length - 1].focus();
 			return;
 		} else if (act === 'delf') {
-			if (!window.confirm(fmt(t('"%s" hunisi silinsin mi?'), F[fi].name))) return;
+			if (!(await window.flxDialog.confirm({ message: fmt(t('"%s" hunisi silinsin mi?'), F[fi].name), danger: true }))) return;
 			F.splice(fi, 1);
 		} else if (act === 'addf') {
 			F.push({ id: F.length + 1, name: fmt(t('Huni %s'), F.length + 1), steps: [{ label: t('Siteye giriş'), type: 'any', value: '' }, { label: '', type: 'path', value: '' }] });
 		} else if (act === 'reset') {
-			if (!window.confirm(t('Tüm huniler varsayılan bağış hunisiyle değiştirilsin mi? (Kaydet\'e basınca uygulanır.)'))) return;
+			if (!(await window.flxDialog.confirm({ message: t('Tüm huniler varsayılan bağış hunisiyle değiştirilsin mi? (Kaydet\'e basınca uygulanır.)'), danger: true }))) return;
 			F = clone(C.fdefault || []);
 		} else if (act === 'text') {
 			if (!text) return;

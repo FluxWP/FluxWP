@@ -60,7 +60,7 @@
 	/** Kapatılabilir WP bildirimi; links: [{text, href|onClick}] */
 	function toast( type, msg, links ) {
 		var box = $( '#flxy-toasts' );
-		if ( ! box ) { window.alert( msg ); return null; }
+		if ( ! box ) { window.flxDialog.alert( msg ); return null; }
 		var n = document.createElement( 'div' );
 		n.className = 'notice notice-' + type + ' is-dismissible flxy-toast';
 		var p = document.createElement( 'p' );
@@ -135,7 +135,7 @@
 			} ).then( function ( res ) {
 				btn.disabled = false;
 				if ( ! res.success ) {
-					window.alert( res.data && res.data.message ? res.data.message : T.error );
+					window.flxDialog.alert( res.data && res.data.message ? res.data.message : T.error );
 					return;
 				}
 				closeModal( backupModal );
@@ -206,12 +206,12 @@
 	} );
 
 	if ( rform ) {
-		rform.addEventListener( 'submit', function ( e ) {
+		rform.addEventListener( 'submit', async function ( e ) {
 			e.preventDefault();
 			var db = rform.elements.db && rform.elements.db.checked;
 			var paths = $$( 'input[name=paths]:checked', rform ).map( function ( i ) { return i.value; } );
-			if ( ! db && ! paths.length ) { window.alert( T.pickPart ); return; }
-			if ( ! window.confirm( T.confirmRestore ) ) { return; }
+			if ( ! db && ! paths.length ) { window.flxDialog.alert( T.pickPart ); return; }
+			if ( ! (await window.flxDialog.confirm({ message:  T.confirmRestore  })) ) { return; }
 			var btn = $( 'button[type=submit]', rform );
 			btn.disabled = true;
 			post( 'flxy_restore_start', {
@@ -222,7 +222,7 @@
 			} ).then( function ( res ) {
 				btn.disabled = false;
 				if ( ! res.success ) {
-					window.alert( res.data && res.data.message ? res.data.message : T.error );
+					window.flxDialog.alert( res.data && res.data.message ? res.data.message : T.error );
 					return;
 				}
 				closeModal( restoreModal );
@@ -249,7 +249,7 @@
 		} );
 		var remove = function ( ids ) {
 			return post( 'flxy_delete', { ids: ids } ).then( function ( res ) {
-				if ( ! res.success ) { window.alert( res.data && res.data.message ? res.data.message : T.error ); return; }
+				if ( ! res.success ) { window.flxDialog.alert( res.data && res.data.message ? res.data.message : T.error ); return; }
 				res.data.deleted.forEach( function ( id ) {
 					var tr = $( 'tr[data-id="' + id + '"]', listForm );
 					if ( tr ) { tr.parentNode.removeChild( tr ); }
@@ -259,11 +259,11 @@
 				syncBulk();
 			} );
 		};
-		bulk.addEventListener( 'click', function () {
+		bulk.addEventListener( 'click', async function () {
 			var ids = $$( 'input[name="ids[]"]:checked', listForm ).map( function ( c ) { return c.value; } );
-			if ( ids.length && window.confirm( T.confirmBulk ) ) { remove( ids ); }
+			if ( ids.length && (await window.flxDialog.confirm({ message:  T.confirmBulk  })) ) { remove( ids ); }
 		} );
-		listForm.addEventListener( 'click', function ( e ) {
+		listForm.addEventListener( 'click', async function ( e ) {
 			// Satırın boş bir yerine tıklamak ayrıntıyı açar.
 			if ( ! e.target.closest( 'a, button, input, label, .check-column' ) ) {
 				var row = e.target.closest( 'tr[data-id]' );
@@ -273,7 +273,7 @@
 			var del = e.target.closest( '.flxy-delete' );
 			if ( del ) {
 				var id = del.closest( 'tr' ).getAttribute( 'data-id' );
-				if ( window.confirm( T.confirmDelete ) ) { remove( [ id ] ); }
+				if ( (await window.flxDialog.confirm({ message:  T.confirmDelete , danger: true })) ) { remove( [ id ] ); }
 				return;
 			}
 			var lock = e.target.closest( '.flxy-lock' );
@@ -283,7 +283,7 @@
 				lock.disabled = true;
 				post( 'flxy_lock', { id: tr.getAttribute( 'data-id' ), lock: to ? 1 : 0 } ).then( function ( res ) {
 					lock.disabled = false;
-					if ( ! res.success ) { window.alert( res.data && res.data.message ? res.data.message : T.error ); return; }
+					if ( ! res.success ) { window.flxDialog.alert( res.data && res.data.message ? res.data.message : T.error ); return; }
 					lock.setAttribute( 'data-locked', to ? '1' : '0' );
 					lock.setAttribute( 'aria-pressed', to ? 'true' : 'false' );
 					lock.classList.toggle( 'is-locked', to );

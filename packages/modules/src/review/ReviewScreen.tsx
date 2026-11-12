@@ -18,6 +18,7 @@ export function ReviewScreen() {
   const sel = items.find((i) => i.id === selId) ?? items[0] ?? null;
   const [rejecting, setRejecting] = useState(false);
   const [zoom, setZoom] = useState(false);
+  const [asking, setAsking] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
   useEffect(() => {
@@ -120,7 +121,7 @@ export function ReviewScreen() {
 
             <footer className="detail-actions">
               <button className="btn-ghost danger" onClick={() => setRejecting(true)} disabled={approve.isPending}><X size={16} /> {t('review.reject')}</button>
-              <button className="btn-primary" disabled={approve.isPending} onClick={() => confirm(t('review.approveConfirm', { name: sel.donor.name, amount: sel.amount_label })) && approve.mutate(sel)}>
+              <button className="btn-primary" disabled={approve.isPending} onClick={() => setAsking(true)}>
                 <Check size={16} /> {t('review.approve')}
               </button>
             </footer>
@@ -130,6 +131,17 @@ export function ReviewScreen() {
       </section>
 
       {rejecting && sel && <RejectModal d={sel} busy={reject.isPending} onClose={() => setRejecting(false)} onSubmit={(reason, notify) => reject.mutate({ d: sel, reason, notify })} />}
+      {asking && sel && (
+        <Modal title={t('review.approve')} onClose={() => setAsking(false)}>
+          <div className="stack">
+            <p>{t('review.approveConfirm', { name: sel.donor.name, amount: sel.amount_label })}</p>
+            <div className="row end">
+              <button type="button" className="btn-ghost" onClick={() => setAsking(false)}>{t('common.cancel')}</button>
+              <button type="button" className="btn-primary" autoFocus disabled={approve.isPending} onClick={() => (setAsking(false), approve.mutate(sel))}><Check size={16} /> {t('review.approve')}</button>
+            </div>
+          </div>
+        </Modal>
+      )}
       {zoom && sel?.receipt && <Modal wide onClose={() => setZoom(false)}><img className="zoom-img" src={sel.receipt.url} alt="" /></Modal>}
       {toast && <div className="toast" role="status">{toast}</div>}
     </div>

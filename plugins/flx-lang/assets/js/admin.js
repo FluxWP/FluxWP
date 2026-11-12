@@ -76,20 +76,24 @@
 		} );
 	}
 
-	document.addEventListener( 'click', function ( e ) {
+	document.addEventListener( 'click', async function ( e ) {
 		var b = e.target.closest( '.flxl-ai' );
 		if ( b ) {
 			e.preventDefault();
-			if ( b.getAttribute( 'data-flxl-confirm' ) && ! window.confirm( A.t.confirm ) ) {
+			if ( b.getAttribute( 'data-flxl-confirm' ) && ! (await window.flxDialog.confirm({ message:  A.t.confirm  })) ) {
 				return;
 			}
 			run( b.getAttribute( 'data-flxl-src' ), b.getAttribute( 'data-flxl-lang' ) );
 			return;
 		}
 		var m = e.target.closest( 'a.flxl-badge.is-missing' );
-		if ( m && window.confirm( A.t.ask ) ) {
+		if ( m ) {
 			e.preventDefault();
-			run( m.getAttribute( 'data-flxl-src' ), m.getAttribute( 'data-flxl-lang' ) );
+			if ( await window.flxDialog.confirm( { message: A.t.ask } ) ) {
+				run( m.getAttribute( 'data-flxl-src' ), m.getAttribute( 'data-flxl-lang' ) );
+			} else {
+				window.location.href = m.href;
+			}
 		}
 	} );
 } )();

@@ -47,7 +47,7 @@ final class FLXB_Page_Types {
 	}
 
 	private static function post_button( $action, $id, $label, array $fields = array(), $class = 'flxb-btn flxb-btn--sm', $confirm = '' ) {
-		$h  = '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-inline"' . ( $confirm ? ' onsubmit="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr( $confirm ) . '"' : '' ) . '>';
+		$h  = '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-inline"' . ( $confirm ? ' data-flx-confirm="' . esc_attr( $confirm ) . '"' : '' ) . '>';
 		$h .= '<input type="hidden" name="action" value="' . esc_attr( $action ) . '"><input type="hidden" name="id" value="' . (int) $id . '">';
 		foreach ( $fields as $k => $v ) {
 			$h .= '<input type="hidden" name="' . esc_attr( $k ) . '" value="' . esc_attr( $v ) . '">';

@@ -117,7 +117,7 @@ function flxa_caps_render() {
 				__( 'Permissions before the first change are backed up (%s).', 'flx-admin' ),
 				flx_date( (int) ( $backup['_time'] ?? 0 ), 'datetime' )
 			)
-		) . ' <a href="' . esc_url( $url ) . '" onclick="return confirm(this.dataset.c)" data-c="' . esc_attr__( 'Restore all roles to the backup?', 'flx-admin' ) . '">' . esc_html__( 'Restore backup', 'flx-admin' ) . '</a></p></div>';
+		) . ' <a href="' . esc_url( $url ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Restore all roles to the backup?', 'flx-admin' ) . '">' . esc_html__( 'Restore backup', 'flx-admin' ) . '</a></p></div>';
 	}
 	echo '<div class="flxa-card flxa-caps-wrap"><div class="flxa-caps-scroll"><table class="flxa-caps"><thead><tr><th class="flxa-caps-name"><input type="search" class="flxa-caps-filter" placeholder="' . esc_attr__( 'Search permissions…', 'flx-admin' ) . '" data-flxa-caps-filter></th>';
 	foreach ( $roles as $rk => $r ) {

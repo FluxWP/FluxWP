@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.10
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 1.4.9
 - Yedek listesi ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
 

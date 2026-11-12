@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.22
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 1.7.21
 - Tüm form alanları dropdown ile aynı görünür: `type` yazılmamış `<input>` (ör. Flux Ads "Harcamayı elle ekle") artık köşeli/koyu kenarlı kalmıyor; text, number, date, time, month, week, textarea ve select aynı kenar, köşe yuvarlaklığı, yükseklik, hover ve odak renginde.
 - Yeni ortak tarih seçici (assets/js/datepicker.js): paneldeki her `<input type="date">` tarayıcının yerel alanı yerine dropdown görünümlü düğme + takvim penceresi olur. Asıl input yerinde kalır (name, value, required, min/max, form gönderimi, `change`/`input` olayları aynı). Hafta başlangıcı WordPress ayarından, ay/gün adları kullanıcı dilinden; klavye (oklar, PageUp/Down, Home/End, Esc), "Bugün" ve "Temizle"; telefonda alttan açılan pencere; açık/koyu tema.

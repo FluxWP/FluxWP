@@ -682,17 +682,17 @@
 		});
 	}
 
-	$('flxs-submit').addEventListener('click', function () {
+	$('flxs-submit').addEventListener('click', async function () {
 		if (state.current) { viewJob = state.current; state.current.hidden = false; refreshJobs(); return; }
 		var errs = validate();
 		if (errs.length) { A.toast(errs.slice(0, 3).join(' · '), 'err'); return; }
 		var channels = sendChannels();
 		var providers = sendProviders();
-		if (channels.length && !state.edit && !window.confirm(state.rows.length + ' kişiye ' + channels.map(function (c) { return C.channels[c]; }).join(' + ') + ' ile gönderilecek. Devam?')) return;
+		if (channels.length && !state.edit && !(await window.flxDialog.confirm({ message: state.rows.length + ' kişiye ' + channels.map(function (c) { return C.channels[c]; }).join(' + ') + ' ile gönderilecek. Devam?' }))) return;
 		var todo = state.rows.filter(function (r) { return !r.result || state.edit; });
 		if (!todo.length) { A.toast('Bu listedeki sertifikalar zaten oluşturuldu. Yeni liste için Temizle.', 'warn'); return; }
 		todo.forEach(function (r) { r.snap = rowValues(r); r.step = 'wait'; r.error = ''; });
-		if (backdated() && !window.confirm('Bu sertifikalar ' + issued().split('-').reverse().join('.') + ' tarihli oluşturulacak. Devam?')) return;
+		if (backdated() && !(await window.flxDialog.confirm({ message: 'Bu sertifikalar ' + issued().split('-').reverse().join('.') + ' tarihli oluşturulacak. Devam?' }))) return;
 		var job = { id: ++jobSeq, issued: backdated() ? issued() : '', ref: +$('flxs-ref').value || 0, event: +$('flxs-event').value || 0, tpl: state.tpl, edit: state.edit, channels: channels, providers: providers, rows: todo, done: [], finished: false, detached: false, hidden: false };
 		jobs.push(job);
 		state.current = job;
@@ -779,9 +779,9 @@
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 	$('flxs-new').addEventListener('click', resetAll);
-	document.querySelectorAll('[data-flxs-reset]').forEach(function (b) { b.addEventListener('click', function () {
+	document.querySelectorAll('[data-flxs-reset]').forEach(function (b) { b.addEventListener('click', async function () {
 		var dirty = state.results.length || state.rows.some(function (r) { return r.name || r.phone || r.email || Object.keys(r.values).some(function (k) { return r.values[k]; }); });
-		if (dirty && !window.confirm('Form temizlensin mi? Girilen kişiler ve sonuçlar ekrandan silinir (oluşturulan sertifikalar sistemde kalır).')) return;
+		if (dirty && !(await window.flxDialog.confirm({ message: 'Form temizlensin mi? Girilen kişiler ve sonuçlar ekrandan silinir (oluşturulan sertifikalar sistemde kalır).', danger: true }))) return;
 		resetAll();
 	}); });
 

@@ -164,7 +164,7 @@ function flxs_page_certificates() {
 					<option value="<?php echo (int) $u->ID; ?>"><?php echo esc_html( $u->display_name ); ?></option>
 				<?php endforeach; ?>
 			</select>
-			<button class="button" data-confirm="<?php esc_attr_e( 'Apply to the selected items?', 'flx-certificates' ); ?>"><?php esc_html_e( 'Apply', 'flx-certificates' ); ?></button>
+			<button class="button" data-flx-confirm="<?php esc_attr_e( 'Apply to the selected items?', 'flx-certificates' ); ?>"><?php esc_html_e( 'Apply', 'flx-certificates' ); ?></button>
 		</div>
 		<table class="widefat flxs-table flxs-table--certs">
 			<thead><tr>
@@ -240,7 +240,7 @@ function flxs_page_certificates() {
 								<?php if ( $can ) : ?>
 									<a href="<?php echo esc_url( admin_url( 'admin.php?page=flxs-yeni&id=' . (int) $c['id'] ) ); ?>"><?php esc_html_e( 'Edit', 'flx-certificates' ); ?></a>
 									<?php if ( 'active' === $c['status'] ) : ?>
-										<a href="#" data-cert-status="revoked" data-id="<?php echo (int) $c['id']; ?>" data-confirm="<?php esc_attr_e( 'Revoke this certificate? The link will show "revoked".', 'flx-certificates' ); ?>"><?php esc_html_e( 'Revoke', 'flx-certificates' ); ?></a>
+										<a href="#" data-cert-status="revoked" data-id="<?php echo (int) $c['id']; ?>" data-flx-confirm="<?php esc_attr_e( 'Revoke this certificate? The link will show "revoked".', 'flx-certificates' ); ?>"><?php esc_html_e( 'Revoke', 'flx-certificates' ); ?></a>
 									<?php else : ?>
 										<a href="#" data-cert-status="active" data-id="<?php echo (int) $c['id']; ?>"><?php esc_html_e( 'Make valid', 'flx-certificates' ); ?></a>
 									<?php endif; ?>

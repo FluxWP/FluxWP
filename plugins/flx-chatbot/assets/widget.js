@@ -1194,7 +1194,7 @@
 			return;
 		}
 		if (file.size > C.uploadMb * 1048576) {
-			alert(T.tooBig);
+			window.flxDialog.alert(T.tooBig);
 			return;
 		}
 		var go = function () {
@@ -1211,7 +1211,7 @@
 					absorb(j);
 				});
 			}).catch(function (e) {
-				alert(e.message || T.error);
+				window.flxDialog.alert(e.message || T.error);
 			});
 		};
 		if (!S.token) {
@@ -1240,7 +1240,7 @@
 			return;
 		}
 		api('handoff', {}).then(absorb).catch(function (e) {
-			alert(e.message || T.error);
+			window.flxDialog.alert(e.message || T.error);
 		});
 	}
 	function endChat() {

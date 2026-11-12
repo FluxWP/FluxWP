@@ -930,7 +930,7 @@ final class FLXU_Admin {
 				<input type="hidden" name="op" value="<?php echo esc_attr( $op ); ?>">
 				<input type="hidden" name="id" value="<?php echo esc_attr( $id ); ?>">
 				<?php wp_nonce_field( 'flxu_source' ); ?>
-				<button type="submit" class="<?php echo esc_attr( $class ); ?>"<?php echo 'remove' === $op ? ' data-confirm="' . esc_attr__( 'Remove this source? Packages installed from it stay on the site; they just stop receiving updates.', 'flx-setup' ) . '"' : ''; ?>><?php echo esc_html( $label ); ?></button>
+				<button type="submit" class="<?php echo esc_attr( $class ); ?>"<?php echo 'remove' === $op ? ' data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Remove this source? Packages installed from it stay on the site; they just stop receiving updates.', 'flx-setup' ) . '"' : ''; ?>><?php echo esc_html( $label ); ?></button>
 			</form>
 			<?php
 		};
@@ -1297,7 +1297,7 @@ final class FLXU_Admin {
 				<small><?php echo esc_html( sprintf( _n( 'Currently %1$d update backup, %2$s.', 'Currently %1$d update backups, %2$s.', count( $list ), 'flx-setup' ), count( $list ), size_format( $total, 1 ) ) ); ?></small>
 			</span>
 			<?php if ( $list ) : ?>
-				<button type="submit" name="flxu_bk" value="all" class="button button-link-delete flxu-confirm" data-confirm="<?php echo esc_attr__( 'Delete all unlocked update backups? This cannot be undone.', 'flx-setup' ); ?>"><?php esc_html_e( 'Delete all', 'flx-setup' ); ?></button>
+				<button type="submit" name="flxu_bk" value="all" class="button button-link-delete flxu-confirm" data-flx-confirm-danger data-flx-confirm="<?php echo esc_attr__( 'Delete all unlocked update backups? This cannot be undone.', 'flx-setup' ); ?>"><?php esc_html_e( 'Delete all', 'flx-setup' ); ?></button>
 			<?php endif; ?>
 		</form>
 		<?php
@@ -1381,7 +1381,7 @@ final class FLXU_Admin {
 								<?php if ( $backup_page ) : ?><a href="<?php echo esc_url( add_query_arg( 'view', $bid, $backup_page ) ); ?>"><?php esc_html_e( 'Open', 'flx-setup' ); ?></a><?php endif; ?>
 								<?php if ( $deletable ) : ?>
 									<?php if ( $backup_page ) : ?> · <?php endif; ?>
-									<button type="submit" name="flxu_bk" value="one" class="button-link button-link-delete flxu-del" data-id="<?php echo esc_attr( $bid ); ?>"><?php esc_html_e( 'Delete', 'flx-setup' ); ?></button>
+									<button type="submit" name="flxu_bk" value="one" class="button-link button-link-delete flxu-del" data-id="<?php echo esc_attr( $bid ); ?>" data-flx-confirm-danger data-flx-confirm="<?php echo esc_attr__( 'Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone.', 'flx-setup' ); ?>"><?php esc_html_e( 'Delete', 'flx-setup' ); ?></button>
 								<?php endif; ?>
 							<?php elseif ( $backup_page ) : ?>
 								<a href="<?php echo esc_url( add_query_arg( 'id', $bid, $backup_page ) ); ?>"><?php esc_html_e( 'Open backup', 'flx-setup' ); ?></a>
@@ -1407,7 +1407,7 @@ final class FLXU_Admin {
 		<div class="tablenav">
 			<?php if ( $bulk ) : ?>
 				<div class="alignleft actions">
-					<button type="submit" name="flxu_bk" value="selected" class="button flxu-confirm" id="flxu-hdel" disabled data-confirm="<?php echo esc_attr__( 'Delete the selected update backups? This cannot be undone.', 'flx-setup' ); ?>"><?php esc_html_e( 'Delete selected backups', 'flx-setup' ); ?></button>
+					<button type="submit" name="flxu_bk" value="selected" class="button flxu-confirm" id="flxu-hdel" disabled data-flx-confirm-danger data-flx-confirm="<?php echo esc_attr__( 'Delete the selected update backups? This cannot be undone.', 'flx-setup' ); ?>"><?php esc_html_e( 'Delete selected backups', 'flx-setup' ); ?></button>
 				</div>
 			<?php endif; ?>
 			<div class="tablenav-pages<?php echo $pages < 2 ? ' one-page' : ''; ?>">
@@ -1648,9 +1648,8 @@ final class FLXU_Admin {
 		<script>
 		(function(){
 			document.addEventListener('click',function(e){
-				var c=e.target.closest('.flxu-confirm'); if(c&&!window.confirm(c.getAttribute('data-confirm'))){e.preventDefault();}
+				// Onay penceresi data-flx-confirm ile (flx-brand modal); onaydan sonra bu tıklama yeniden gelir.
 				var d=e.target.closest('.flxu-del'); if(d){
-					if(!window.confirm(<?php echo wp_json_encode( __( 'Delete this backup? It also holds the backup of the other packages in the same bulk update. This cannot be undone.', 'flx-setup' ) ); ?>)){e.preventDefault();return;}
 					d.form.elements.flxu_id.value=d.getAttribute('data-id');
 				}
 			});

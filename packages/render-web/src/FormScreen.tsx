@@ -6,12 +6,12 @@ import { useMinWidth, TABLE_MIN } from './width';
 
 export function FormScreen({ manifest, screen, params }: { manifest: Manifest; screen: FormModel; params: Record<string, string> }) {
   const c = useFormController(manifest, screen, params);
-  const { t, nav } = useRenderer();
+  const { t, nav, ui } = useRenderer();
   const wide = useMinWidth(TABLE_MIN);
   const { register, control, formState } = c.form;
 
-  const cancel = () => {
-    if (c.dirtyGuard && c.dirty && !window.confirm(t('desktop.cancel'))) return;
+  const cancel = async () => {
+    if (c.dirtyGuard && c.dirty && !(await ui.confirm({ title: t('desktop.cancel'), tone: 'danger' }))) return;
     nav.back();
   };
 
@@ -21,7 +21,7 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
         <header className="fx-head">
           <h1>{c.title}</h1>
           <div className="fx-row">
-            <button type="button" className="fx-btn" onClick={cancel}>{t('desktop.back')}</button>
+            <button type="button" className="fx-btn" onClick={() => void cancel()}>{t('desktop.back')}</button>
             <button type="submit" className="fx-btn primary" disabled={c.submitting}>{c.submitting ? t('form.saving') : t('form.submit')}</button>
           </div>
         </header>

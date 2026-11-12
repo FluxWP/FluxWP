@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.14
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 0.4.13
 - Expo erişim belirteci ve push belirteçleri bir sonraki kayıtta ortak mühürle saklanır. Eski kayıtlar açılır. WordPress tuzları değişirse belirteçleri yeniden girin.
 

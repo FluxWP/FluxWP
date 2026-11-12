@@ -36,6 +36,7 @@ final class FLXRC_Front {
 			self::register();
 		}
 		self::$need[ $ctx ] = true;
+		if ( function_exists( 'flx_dialog_enqueue' ) ) { flx_dialog_enqueue(); } // Ortak modal (flx-brand).
 		wp_enqueue_script( 'flxrc-front' );
 		wp_enqueue_style( 'flxrc-front' );
 		return true;

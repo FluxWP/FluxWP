@@ -199,7 +199,16 @@
 			var count = boxes().filter(function (b) { return b.checked; }).length, act = form.querySelector('select[name="do"]').value;
 			var t = (window.flxbAdmin && flxbAdmin.i18n) || {};
 			var q = act === 'delete' ? (t.confirmDelete || 'Delete %s donations permanently? This cannot be undone.') : act === 'trash' ? (t.confirmTrash || 'Move %s donations to the trash?') : '';
-			if (!count || (q && !window.confirm(q.replace('%s', count)))) e.preventDefault();
+			if (form.flxbOk) { form.flxbOk = false; return; }
+			if (!count) { e.preventDefault(); return; }
+			if (!q || !window.flxDialog) return;
+			e.preventDefault();
+			var sub = e.submitter;
+			window.flxDialog.confirm({ message: q.replace('%s', count), danger: true }).then(function (yes) {
+				if (!yes) return;
+				form.flxbOk = true;
+				if (form.requestSubmit) form.requestSubmit(sub && sub.form === form ? sub : undefined); else form.submit();
+			});
 		});
 		refresh();
 	})();

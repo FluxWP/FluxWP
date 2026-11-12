@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.1
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 2.0.0
 - A person holding certificates reports itself in use (`flx_person_in_use`), so Flux CRM does not delete it; when Flux CRM merges two people the certificates and messages move to the kept one.
 - People move to the shared FluxWP people table (`{prefix}flx_people`, flx-brand 1.3.0). A person added here is the same person in Flux CRM, Flux Mail, Flux Donate and Flux Chat; Flux Certificates still works alone.

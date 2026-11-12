@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Ads
  * Description:       Reklam dönüşüm takibi: Meta Pixel + Conversions API, TikTok Pixel + Events API ve Google Analytics 4 (Measurement Protocol). Meta reklam harcamasını çeker, ROAS ve bağış başı maliyeti gösterir. Bağış ve siparişleri hangi reklamın, kampanyanın ve reklam metninin getirdiğini ölçer; Havale/EFT bağışı onaylanınca dönüşümü sunucudan gönderir. Çerez onayına uyar, kişisel veri yalnız izinle ve hash'li gider. Flux CRM kuruluysa kişi kartına reklam kaynağını yazar.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce
@@ -25,7 +25,7 @@ if ( defined( 'FLXADS_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXADS_VERSION', '0.2.0' );
+define( 'FLXADS_VERSION', '0.2.1' );
 define( 'FLXADS_DB_VERSION', 2 );
 define( 'FLXADS_FILE', __FILE__ );
 define( 'FLXADS_DIR', plugin_dir_path( __FILE__ ) );

@@ -599,13 +599,15 @@
 			if (label) label.textContent = L.copied || 'OK';
 			setTimeout(function () { b.classList.remove('is-done'); if (label) label.textContent = old; }, 1600);
 		};
+		/* Kopyalanamazsa metni seçilebilir kutuda göster (flx-brand modal). */
+		var manual = function () { if (window.flxDialog) window.flxDialog.prompt({ title: L.copyFail || '', value: text }); };
 		if (navigator.clipboard && window.isSecureContext) {
-			navigator.clipboard.writeText(text).then(done, function () { window.prompt(L.copyFail || '', text); });
+			navigator.clipboard.writeText(text).then(done, function () { manual(); });
 		} else {
 			var ta = document.createElement('textarea');
 			ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
 			document.body.appendChild(ta); ta.select();
-			try { if (document.execCommand('copy')) done(); else window.prompt(L.copyFail || '', text); } catch (x) { window.prompt(L.copyFail || '', text); }
+			try { if (document.execCommand('copy')) done(); else manual(); } catch (x) { manual(); }
 			ta.remove();
 		}
 	});

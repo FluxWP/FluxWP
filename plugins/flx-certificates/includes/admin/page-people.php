@@ -196,7 +196,7 @@ function flxs_page_person_detail( $id ) {
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 			<?php wp_nonce_field( 'flxs_person_delete' ); ?>
 			<input type="hidden" name="action" value="flxs_person_delete"><input type="hidden" name="id" value="<?php echo (int) $id; ?>">
-			<button class="button-link flxs-danger" data-confirm="Kişi silinsin mi? (Sertifikası olan kişi silinemez)">Kişiyi sil</button>
+			<button class="button-link flxs-danger" data-flx-confirm="Kişi silinsin mi? (Sertifikası olan kişi silinemez)">Kişiyi sil</button>
 		</form>
 		<?php
 	}

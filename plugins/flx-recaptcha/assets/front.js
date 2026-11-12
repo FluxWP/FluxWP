@@ -286,7 +286,7 @@
 
 	function showError( field, msg ) {
 		if ( ! field ) {
-			window.alert( msg );
+			window.flxDialog.alert( msg );
 			return;
 		}
 		var e = field.querySelector( '.flxrc-error' );

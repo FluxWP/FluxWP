@@ -322,7 +322,7 @@ function flxs_ecards_box() {
 	/* translators: 1: imported count, 2: total */
 	echo esc_html( sprintf( __( '(%1$d/%2$d added)', 'flx-certificates' ), count( $have ), $total ) ) . '</span> ';
 	if ( count( $have ) < $total ) {
-		echo '<a class="button" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxs_ecards_import' ), 'flxs_ecards_import' ) ) . '" data-confirm="' . esc_attr__( 'Add the missing e-card designs as inactive templates?', 'flx-certificates' ) . '">' . esc_html__( 'Import', 'flx-certificates' ) . '</a> ';
+		echo '<a class="button" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxs_ecards_import' ), 'flxs_ecards_import' ) ) . '" data-flx-confirm="' . esc_attr__( 'Add the missing e-card designs as inactive templates?', 'flx-certificates' ) . '">' . esc_html__( 'Import', 'flx-certificates' ) . '</a> ';
 	}
 	echo '<a class="button" href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=flxs_ecards_zip' ), 'flxs_ecards_zip' ) ) . '">' . esc_html__( 'Download images as zip', 'flx-certificates' ) . '</a>';
 	echo '</div>';

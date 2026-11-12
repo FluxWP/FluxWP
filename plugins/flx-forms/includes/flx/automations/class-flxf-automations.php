@@ -1045,6 +1045,7 @@ class FLXF_Automations {
 		$file = __DIR__ . '/assets/thankyou.css';
 		wp_enqueue_style( 'flxf-automations-card', plugins_url( 'assets/thankyou.css', __FILE__ ), wp_style_is( 'Emsfb-style-css', 'registered' ) ? array( 'Emsfb-style-css' ) : array(), is_readable( $file ) ? (string) filemtime( $file ) : '1' );
 		$js = __DIR__ . '/assets/thankyou.js';
+		if ( function_exists( 'flx_dialog_enqueue' ) ) { flx_dialog_enqueue(); } // Ortak modal (flx-brand).
 		wp_enqueue_script( 'flxf-automations-card', plugins_url( 'assets/thankyou.js', __FILE__ ), array(), is_readable( $js ) ? (string) filemtime( $js ) : '1', true );
 		wp_localize_script(
 			'flxf-automations-card',
