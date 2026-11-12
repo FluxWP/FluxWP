@@ -1660,6 +1660,13 @@
     "Continuation: prayer gets a prayer reaction": "続き: 祈りの言葉に祈りのリアクション",
     "Continuation: \"you will remind me\" sets the reminder at once": "続き: 「リマインドしてくださいね」ですぐにリマインダーを設定",
     "Changes the day afterwards: same reminder updated": "後から日付を変更: 同じリマインダーを更新",
-    "Monthly reminder turned into one-time": "毎月のリマインダーを1回限りに変更"
+    "Monthly reminder turned into one-time": "毎月のリマインダーを1回限りに変更",
+    "Has an active one-time reminder (just set)": "有効な1回限りのリマインダーあり（設定直後）",
+    "Reminder stopped": "リマインダー停止",
+    "No 🙏 in reactions or replies": "リアクションと返信に🙏なし",
+    "Continuation: \"Kapat istemiyorum\" stops the reminder at once": "続き：「Kapat istemiyorum」でリマインダーをすぐ停止",
+    "Continuation: \"vazgeçtim\" stops the reminder": "続き：「vazgeçtim」でリマインダーを停止",
+    "Continuation: complaint after a misread closes at once": "続き：誤解の後の苦情ですぐ停止",
+    "Goodbye reaction is 👍 or 🤲, never 🙏": "別れのリアクションは👍か🤲、🙏は使わない"
   }
 }

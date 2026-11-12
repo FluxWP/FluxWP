@@ -1276,5 +1276,16 @@ return array(
   '%dgün\\x00%dgün' . chr(0) . '%dgün\\x00%dgün' => '%d日',
   '%skayıt\\x00%skayıt' . chr(0) . '%skayıt\\x00%skayıt' => '%s登録',
 
+  'Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions.' => 'ダウンロードに失敗しました:一時フォルダー(%s)に書き込めません。ホスティング会社にフォルダー権限の確認を依頼してください。',
+  'Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again.' => 'ダウンロードに失敗しました:ディスクがいっぱいです(空き %s)。古いバックアップ(Flux Backup)などの大きなファイルを削除してから再試行してください。',
+  'Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full.' => 'ダウンロードに失敗しました:受信したファイルが zip ではありません(%s)。ファイアウォールやプロキシが応答を書き換えているか、ディスクがいっぱいの可能性があります。',
+  'Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again.' => 'ダウンロードに失敗しました:ファイルを保存できませんでした。ディスクがいっぱいの可能性があります(%s)。古いバックアップ(Flux Backup)などの大きなファイルを削除してから再試行してください。',
+  'Download failed: the connection timed out (%s).' => 'ダウンロードに失敗しました:接続がタイムアウトしました(%s)。',
+  'Download failed: the server could not be reached (%s).' => 'ダウンロードに失敗しました:サーバーに接続できません(%s)。',
+  'The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings.' => 'サイトキーが拒否されたか、このパッケージはこのキーで許可されていません。FluxWP Panel › 設定 でキーを確認してください。',
+  'This version is no longer on the server. Click "Check for updates" and try again.' => 'このバージョンはサーバーにありません。「更新を確認」を押して再試行してください。',
+  'Too many requests in a short time. Wait a minute and try again.' => '短時間にリクエストが多すぎます。1分待ってから再試行してください。',
+  'The update server had a temporary error. Try again in a minute.' => '更新サーバーで一時的なエラーが発生しました。1分後に再試行してください。',
+  'Download failed (HTTP %1$d: %2$s). %3$s' => 'ダウンロードに失敗しました(HTTP %1$d: %2$s)。%3$s',
  ),
 );

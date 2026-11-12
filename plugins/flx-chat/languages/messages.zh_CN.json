@@ -1660,6 +1660,13 @@
     "Continuation: prayer gets a prayer reaction": "续:祈福语得到祈福表情回应",
     "Continuation: \"you will remind me\" sets the reminder at once": "续:\"到时提醒我\"会立即设置提醒",
     "Changes the day afterwards: same reminder updated": "事后更改日期:更新同一条提醒",
-    "Monthly reminder turned into one-time": "每月提醒改为一次性"
+    "Monthly reminder turned into one-time": "每月提醒改为一次性",
+    "Has an active one-time reminder (just set)": "有一个刚设置的一次性提醒",
+    "Reminder stopped": "提醒已停止",
+    "No 🙏 in reactions or replies": "反应和回复中没有🙏",
+    "Continuation: \"Kapat istemiyorum\" stops the reminder at once": "续：“Kapat istemiyorum”立即停止提醒",
+    "Continuation: \"vazgeçtim\" stops the reminder": "续：“vazgeçtim”停止提醒",
+    "Continuation: complaint after a misread closes at once": "续：误解后被追问时立即关闭",
+    "Goodbye reaction is 👍 or 🤲, never 🙏": "告别反应为👍或🤲，绝不用🙏"
   }
 }

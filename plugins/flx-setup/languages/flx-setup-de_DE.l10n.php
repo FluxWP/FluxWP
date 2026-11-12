@@ -1276,5 +1276,16 @@ return array(
   '%dgün\\x00%dgün' . chr(0) . '%dgün\\x00%dgün' => '%dTag' . chr(0) . '%dTag',
   '%skayıt\\x00%skayıt' . chr(0) . '%skayıt\\x00%skayıt' => '%s-Registrierung' . chr(0) . '%s-Registrierung',
 
+  'Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions.' => 'Download fehlgeschlagen: Der temporäre Ordner (%s) ist nicht beschreibbar. Bitten Sie Ihren Hoster, die Ordnerrechte zu prüfen.',
+  'Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again.' => 'Download fehlgeschlagen: Die Festplatte ist voll (%s frei). Löschen Sie alte Backups (Flux Backup) oder andere große Dateien und versuchen Sie es erneut.',
+  'Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full.' => 'Download fehlgeschlagen: Die empfangene Datei ist kein Zip (%s). Eine Firewall oder ein Proxy verändert eventuell die Antwort, oder die Festplatte ist voll.',
+  'Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again.' => 'Download fehlgeschlagen: Die Datei konnte nicht gespeichert werden, die Festplatte ist eventuell voll (%s). Löschen Sie alte Backups (Flux Backup) oder andere große Dateien und versuchen Sie es erneut.',
+  'Download failed: the connection timed out (%s).' => 'Download fehlgeschlagen: Zeitüberschreitung der Verbindung (%s).',
+  'Download failed: the server could not be reached (%s).' => 'Download fehlgeschlagen: Der Server ist nicht erreichbar (%s).',
+  'The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings.' => 'Der Site-Schlüssel wurde abgelehnt oder dieses Paket ist für ihn nicht freigegeben. Prüfen Sie den Schlüssel unter FluxWP Panel › Einstellungen.',
+  'This version is no longer on the server. Click "Check for updates" and try again.' => 'Diese Version ist nicht mehr auf dem Server. Klicken Sie auf „Nach Updates suchen“ und versuchen Sie es erneut.',
+  'Too many requests in a short time. Wait a minute and try again.' => 'Zu viele Anfragen in kurzer Zeit. Warten Sie eine Minute und versuchen Sie es erneut.',
+  'The update server had a temporary error. Try again in a minute.' => 'Der Update-Server hatte einen vorübergehenden Fehler. Versuchen Sie es in einer Minute erneut.',
+  'Download failed (HTTP %1$d: %2$s). %3$s' => 'Download fehlgeschlagen (HTTP %1$d: %2$s). %3$s',
  ),
 );

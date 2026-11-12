@@ -1889,3 +1889,36 @@ msgstr[0] "已连接·%d包已连接·%d包"
 msgid "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2$s."
 msgstr[0] "当前%1$d更新备份是%2$s。当前%1$d更新备份是%2$s。"
+
+msgid "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
+msgstr "下载失败:临时文件夹(%s)不可写。请联系主机商检查文件夹权限。"
+
+msgid "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "下载失败:磁盘已满(剩余 %s)。请删除旧备份(Flux Backup)或其他大文件后重试。"
+
+msgid "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full."
+msgstr "下载失败:收到的文件不是 zip(%s)。可能是防火墙或代理修改了响应,或磁盘已满。"
+
+msgid "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "下载失败:无法保存文件,磁盘可能已满(%s)。请删除旧备份(Flux Backup)或其他大文件后重试。"
+
+msgid "Download failed: the connection timed out (%s)."
+msgstr "下载失败:连接超时(%s)。"
+
+msgid "Download failed: the server could not be reached (%s)."
+msgstr "下载失败:无法连接服务器(%s)。"
+
+msgid "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings."
+msgstr "站点密钥被拒绝,或此软件包不允许该密钥使用。请在 FluxWP Panel › 设置 中检查密钥。"
+
+msgid "This version is no longer on the server. Click \"Check for updates\" and try again."
+msgstr "服务器上已没有此版本。请点击“检查更新”后重试。"
+
+msgid "Too many requests in a short time. Wait a minute and try again."
+msgstr "短时间内请求过多。请等待一分钟后重试。"
+
+msgid "The update server had a temporary error. Try again in a minute."
+msgstr "更新服务器出现临时错误。请一分钟后重试。"
+
+msgid "Download failed (HTTP %1$d: %2$s). %3$s"
+msgstr "下载失败(HTTP %1$d:%2$s)。%3$s"

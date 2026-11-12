@@ -4965,3 +4965,24 @@ msgstr "Ändert den Tag nachträglich: dieselbe Erinnerung wird aktualisiert"
 
 msgid "Monthly reminder turned into one-time"
 msgstr "Monatliche Erinnerung wird zu einer einmaligen"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "Hat eine aktive einmalige Erinnerung (gerade erstellt)"
+
+msgid "Reminder stopped"
+msgstr "Erinnerung gestoppt"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "Kein 🙏 in Reaktionen oder Antworten"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "Fortsetzung: „Kapat istemiyorum“ stoppt die Erinnerung sofort"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "Fortsetzung: „vazgeçtim“ stoppt die Erinnerung"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "Fortsetzung: Beschwerde nach Missverständnis schließt sofort"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "Abschiedsreaktion ist 👍 oder 🤲, nie 🙏"

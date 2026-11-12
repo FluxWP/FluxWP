@@ -1660,6 +1660,13 @@
     "Continuation: prayer gets a prayer reaction": "Suite : la prière reçoit une réaction de prière",
     "Continuation: \"you will remind me\" sets the reminder at once": "Suite : « vous me le rappellerez » crée le rappel immédiatement",
     "Changes the day afterwards: same reminder updated": "Change le jour ensuite : le même rappel est mis à jour",
-    "Monthly reminder turned into one-time": "Rappel mensuel transformé en rappel ponctuel"
+    "Monthly reminder turned into one-time": "Rappel mensuel transformé en rappel ponctuel",
+    "Has an active one-time reminder (just set)": "A un rappel ponctuel actif (tout juste créé)",
+    "Reminder stopped": "Rappel arrêté",
+    "No 🙏 in reactions or replies": "Aucun 🙏 dans les réactions ni les réponses",
+    "Continuation: \"Kapat istemiyorum\" stops the reminder at once": "Suite : « Kapat istemiyorum » arrête le rappel aussitôt",
+    "Continuation: \"vazgeçtim\" stops the reminder": "Suite : « vazgeçtim » arrête le rappel",
+    "Continuation: complaint after a misread closes at once": "Suite : après un malentendu, la plainte le ferme aussitôt",
+    "Goodbye reaction is 👍 or 🤲, never 🙏": "La réaction d’au revoir est 👍 ou 🤲, jamais 🙏"
   }
 }

@@ -1276,5 +1276,16 @@ return array(
   '%dgün\\x00%dgün' . chr(0) . '%dgün\\x00%dgün' => '%ddía' . chr(0) . '%ddía',
   '%skayıt\\x00%skayıt' . chr(0) . '%skayıt\\x00%skayıt' => ' registro %s' . chr(0) . ' registro %s',
 
+  'Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions.' => 'Error en la descarga: la carpeta temporal (%s) no tiene permisos de escritura. Pide a tu proveedor que revise los permisos.',
+  'Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again.' => 'Error en la descarga: el disco está lleno (%s libres). Elimina copias de seguridad antiguas (Flux Backup) u otros archivos grandes e inténtalo de nuevo.',
+  'Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full.' => 'Error en la descarga: el archivo recibido no es un zip (%s). Un cortafuegos o proxy puede estar alterando la respuesta, o el disco puede estar lleno.',
+  'Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again.' => 'Error en la descarga: no se pudo guardar el archivo, el disco puede estar lleno (%s). Elimina copias de seguridad antiguas (Flux Backup) u otros archivos grandes e inténtalo de nuevo.',
+  'Download failed: the connection timed out (%s).' => 'Error en la descarga: se agotó el tiempo de conexión (%s).',
+  'Download failed: the server could not be reached (%s).' => 'Error en la descarga: no se pudo conectar con el servidor (%s).',
+  'The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings.' => 'La clave del sitio fue rechazada o este paquete no está permitido para ella. Revisa la clave en FluxWP Panel › Ajustes.',
+  'This version is no longer on the server. Click "Check for updates" and try again.' => 'Esta versión ya no está en el servidor. Haz clic en «Buscar actualizaciones» e inténtalo de nuevo.',
+  'Too many requests in a short time. Wait a minute and try again.' => 'Demasiadas solicitudes en poco tiempo. Espera un minuto e inténtalo de nuevo.',
+  'The update server had a temporary error. Try again in a minute.' => 'El servidor de actualizaciones tuvo un error temporal. Inténtalo de nuevo en un minuto.',
+  'Download failed (HTTP %1$d: %2$s). %3$s' => 'Error en la descarga (HTTP %1$d: %2$s). %3$s',
  ),
 );
