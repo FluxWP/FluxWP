@@ -1503,3 +1503,279 @@ msgstr ""
 
 msgid "Site performance in one place: per-request queries, PHP errors, external HTTP requests (developer panel), slow/erroneous request logs, server (CPU, RAM, disk, OPcache), database, autoload, cron and System Check. AI reads them all with Flux AI & MCP / Flux AI tools."
 msgstr ""
+
+msgid "Two object caches are on at the same time: LiteSpeed Cache object cache and SQLite Object Cache. Only one can own object-cache.php; choose one below."
+msgstr ""
+
+msgid "SQLite Object Cache is active but object-cache.php belongs to another plugin, so SQLite is not used. Switch to SQLite below to fix it."
+msgstr ""
+
+msgid "SQLite Object Cache is active but object-cache.php is missing, so nothing is cached. Use \"Repair\" to recreate it."
+msgstr ""
+
+msgid "LiteSpeed Cache object cache is on but object-cache.php belongs to another plugin. Turn one of them off."
+msgstr ""
+
+msgid "LiteSpeed Cache object cache is set to Redis but the server has no Redis PHP extension; WordPress silently falls back to no persistent cache."
+msgstr ""
+
+msgid "LiteSpeed Cache object cache is set to Memcached but the Memcached PHP extension is missing. On Hostinger enable it in hPanel (Advanced › PHP Configuration › Memcached), or use SQLite Object Cache instead."
+msgstr ""
+
+msgid "object-cache.php from SQLite Object Cache is still in wp-content although the plugin is not active. Repair removes it or turns the plugin back on."
+msgstr ""
+
+msgid "Another page cache plugin (%s) is installed next to LiteSpeed Cache (advanced-cache.php). Two page caches serve stale pages; keep only LiteSpeed Cache."
+msgstr ""
+
+msgid "You are not allowed to install plugins."
+msgstr ""
+
+msgid "Plugin installs are disabled on this site (DISALLOW_FILE_MODS). Install it from your hosting panel."
+msgstr ""
+
+msgid "The plugin could not be written to disk (file permissions or FTP credentials). Install it from Plugins › Add New."
+msgstr ""
+
+msgid "You are not allowed to activate plugins."
+msgstr ""
+
+msgid "The plugin is not installed."
+msgstr ""
+
+msgid "LiteSpeed Cache is not active."
+msgstr ""
+
+msgid "The PHP sqlite3 extension is missing. Enable it in your hosting PHP settings first."
+msgstr ""
+
+msgid "object-cache.php belongs to another plugin (%s). Turn that plugin's object cache off first."
+msgstr ""
+
+msgid "SQLite Object Cache is active but it did not write object-cache.php (wp-content may not be writable). Open Settings › Object Cache to finish."
+msgstr ""
+
+msgid "There is no Memcached or Redis PHP extension. On Hostinger enable Memcached in hPanel first, then try again."
+msgstr ""
+
+msgid "The setting was saved but LiteSpeed Cache did not write object-cache.php yet. Open LiteSpeed Cache › Cache › Object and press Save once."
+msgstr ""
+
+msgid "The test request returned HTTP %d."
+msgstr ""
+
+msgid "Cache conflict"
+msgstr ""
+
+msgid "Persistent object cache is on (%s)."
+msgstr ""
+
+msgid "No persistent object cache: every request reads options and queries from the database again. Turn one on from Performance › Cache."
+msgstr ""
+
+msgid "Page cache"
+msgstr ""
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache page cache is off."
+msgstr ""
+
+msgid "The server is LiteSpeed but the LiteSpeed Cache plugin is not active, so pages are not cached."
+msgstr ""
+
+msgid "Install and activate"
+msgstr ""
+
+msgid "Ask an administrator who can install plugins."
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "Plugin installed and activated."
+msgstr ""
+
+msgid "Plugin activated."
+msgstr ""
+
+msgid "Object cache is now SQLite Object Cache. Run the test below to confirm."
+msgstr ""
+
+msgid "Object cache is now LiteSpeed Cache. Run the test below to confirm."
+msgstr ""
+
+msgid "LiteSpeed Cache was activated. Its object cache setting is finished when this page loads; run the test below."
+msgstr ""
+
+msgid "Object cache turned off."
+msgstr ""
+
+msgid "Object cache repaired."
+msgstr ""
+
+msgid "Page cache turned on and purged."
+msgstr ""
+
+msgid "Page cache turned off and purged."
+msgstr ""
+
+msgid "All caches cleared (LiteSpeed page, CSS/JS and object cache)."
+msgstr ""
+
+msgid "Object cache emptied."
+msgstr ""
+
+msgid "another plugin"
+msgstr ""
+
+msgid "Two layers make the site fast: the page cache serves ready HTML without running PHP, the object cache keeps database results between requests. Only one object cache can run at a time; this screen keeps it that way."
+msgstr ""
+
+msgid "Repair"
+msgstr ""
+
+msgid "LiteSpeed web server"
+msgstr ""
+
+msgid "Not detected: LiteSpeed page cache works only on a LiteSpeed server (or through QUIC.cloud)."
+msgstr ""
+
+msgid "LiteSpeed Cache plugin"
+msgstr ""
+
+msgid "version %s"
+msgstr ""
+
+msgid "installed, not active"
+msgstr ""
+
+msgid "not installed"
+msgstr ""
+
+msgid "Turn off"
+msgstr ""
+
+msgid "Turn on"
+msgstr ""
+
+msgid "Purge all"
+msgstr ""
+
+msgid "LiteSpeed settings"
+msgstr ""
+
+msgid "Logged-in users, cart and checkout are not cached by LiteSpeed by default. Purge after changing the theme or menus."
+msgstr ""
+
+msgid "In use:"
+msgstr ""
+
+msgid "Persistent"
+msgstr ""
+
+msgid "Not persistent"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "Empty object cache"
+msgstr ""
+
+msgid "Turn object cache off"
+msgstr ""
+
+msgid "Turn the object cache off? The site keeps working, only slower on database-heavy pages."
+msgstr ""
+
+msgid "Test: writes a value in this request and reads it in a separate request. Only then is the cache really shared between visitors."
+msgstr ""
+
+msgid "Last test (%1$s) could not finish: %2$s"
+msgstr ""
+
+msgid "Last test (%1$s): works, %2$s keeps values between requests. 100 writes + 100 reads took %3$s ms."
+msgstr ""
+
+msgid "Last test (%s): values are lost after the request ends, so there is no persistent object cache."
+msgstr ""
+
+msgid "In use"
+msgstr ""
+
+msgid "Recommended here"
+msgstr ""
+
+msgid "Keeps the cache in a SQLite file in wp-content. Needs no extra service, so it fits shared hosting without Redis/Memcached."
+msgstr ""
+
+msgid "PHP sqlite3 extension"
+msgstr ""
+
+msgid "required; enable it in the hosting PHP settings"
+msgstr ""
+
+msgid "PHP igbinary extension"
+msgstr ""
+
+msgid "optional, makes it smaller and faster"
+msgstr ""
+
+msgid "SQLite Object Cache plugin"
+msgstr ""
+
+msgid "not installed, installed from wordpress.org with one click"
+msgstr ""
+
+msgid "Cache file %1$s, %2$s."
+msgstr ""
+
+msgid "Plugin settings"
+msgstr ""
+
+msgid "Cannot be used on this server without the sqlite3 extension."
+msgstr ""
+
+msgid "Use SQLite Object Cache"
+msgstr ""
+
+msgid "Install and use SQLite Object Cache"
+msgstr ""
+
+msgid "The current object cache is turned off and SQLite Object Cache takes over. Continue?"
+msgstr ""
+
+msgid "LiteSpeed Cache + Memcached"
+msgstr ""
+
+msgid "LiteSpeed Cache's own object cache, kept in Memcached memory. On Hostinger, Memcached is switched on per site in hPanel."
+msgstr ""
+
+msgid "Memcached PHP extension"
+msgstr ""
+
+msgid "missing; Redis is used instead"
+msgstr ""
+
+msgid "missing; on Hostinger: hPanel › Advanced › PHP Configuration › Memcached"
+msgstr ""
+
+msgid "Enable Memcached for this site in the hosting panel first; this option unlocks afterwards."
+msgstr ""
+
+msgid "Use LiteSpeed object cache"
+msgstr ""
+
+msgid "Install LiteSpeed Cache and use it"
+msgstr ""
+
+msgid "The current object cache is turned off and LiteSpeed Cache takes over. Continue?"
+msgstr ""
+
+msgid "Cache status"
+msgstr ""
+
+msgid "%1$s needs the %2$s plugin. It is not installed yet."
+msgstr ""
+
+msgid "%1$s needs the %2$s plugin to be active. It is installed but turned off."
+msgstr ""

@@ -310,6 +310,23 @@ function flxp_tools() {
 		},
 	);
 
+	$tools['flxp_cache_status'] = array(
+		'title'       => __( 'Cache status', 'flx-speed' ),
+		'description' => 'Flux Speed: sayfa önbelleği (LiteSpeed Cache: kurulu/etkin, cache açık mı, sunucu LiteSpeed mi) ve nesne önbelleği (object-cache.php sahibi: sqlite | litespeed | redis | other, kalıcı mı, SQLite dosya boyutu, LiteSpeed object kind/host/port), PHP uzantıları (memcached, redis, sqlite3, igbinary, apcu), çakışma kodları (both_on, sqlite_dropin_taken, sqlite_dropin_missing, ls_dropin_taken, ls_no_backend, sqlite_orphan, two_page_caches) ve son kalıcılık testi. Değişiklik yapmaz; geçiş/kurulum Performans › Önbellek ekranından yapılır.',
+		'readonly'    => true,
+		'cap'         => 'flxp_view',
+		'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
+		'run'         => function () {
+			$st = FLXP_Cache::status();
+			$st['conflict_text'] = array_map( array( 'FLXP_Cache', 'conflict_text' ), $st['conflicts'] );
+			unset( $st['server']['software'] );
+			if ( ! empty( $st['sqlite']['db']['path'] ) ) {
+				$st['sqlite']['db']['path'] = basename( $st['sqlite']['db']['path'] );
+			}
+			return $st;
+		},
+	);
+
 	return $tools;
 }
 
