@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.13.2
+- Sohbet ve görev klasörleri sıra numarası yerine benzersiz, tahmin edilemez 13 haneli numarayla adlanır (`chats/1251231225235`, `tasks/…`). Eski `chats/<sıra>` ve `tasks/<sıra>-<ad>` klasörleri ilk açılışta yeni adına taşınır.
+
 ## 0.13.1
 - Tam ekran sohbette sol menü (WordPress ya da Flux Admin kenar çubuğu) yerinde kalır; kenar çubuğu daraltılınca sohbet yeniden yerleşir.
 - Sağ dosya panelinin genişliği sol kenarından sürüklenerek ayarlanır (çift tık varsayılana döner), tercih hatırlanır.

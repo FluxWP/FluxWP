@@ -392,7 +392,7 @@ Onay kuyruğu: `flxai_approvals_count( $user_id )`, `flxai_approvals_list( $user
 - JS: `window.flxaiChat.start( text, files )` paneli açar, yeni sohbet başlatır ve gönderir (`files` = `File` dizisi). `window.flxaiChat.dictate( textarea, button, onChange )` Web Speech API ile sesle yazma; `window.flxaiChat.canDictate` tarayıcı desteği.
 
 ## Çalışma alanı, commit ve değişiklik istekleri (0.13.0)
-Kök `wp-content/flx-ai` (filtre `flxai_workspace_root`, site köküne göre; .htaccess + index.php ile kapalı). Sohbet `chats/<id>`, görev `tasks/<id>-<slug>` (görev `meta.ws.dir`), skill'ler `.skills/`. Flux Files (flx-files) gerekir; yoksa çalışma alanı kapalıdır, sohbet çalışır.
+Kök `wp-content/flx-ai` (filtre `flxai_workspace_root`, site köküne göre; .htaccess + index.php ile kapalı). Sohbet `chats/<uid>`, görev `tasks/<uid>` (görev `meta.ws.dir`); `<uid>` = `flxai_ws_uid( 'chat'|'task', $id )`, sitedeki gizli anahtardan (`flxai_ws_key`) türetilen 13 haneli benzersiz numara (0.13.2; eski sıra numaralı klasörler taşınır), skill'ler `.skills/`. Flux Files (flx-files) gerekir; yoksa çalışma alanı kapalıdır, sohbet çalışır.
 
 Erişim politikası (sohbet `state.ws`, görev `meta.ws`): `access` = `workspace` (varsayılan) | `site`, `folders` = izin verilen klasörler (en fazla 20). `flxai_ws_kind( $rel, $policy, $write )` → `own` | `pr` | `read` | `deny`:
 - kendi klasörü → `own` (doğrudan yazar, turun commit'ine eklenir);
