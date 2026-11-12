@@ -6,10 +6,6 @@ html.flxa-dark .flxads{--c-ok:#4ade80;--c-ok-s:rgba(74,222,128,.14)}
 .flxads .flxads-lead,.flxads .flxads-muted{color:var(--c-mut)}
 .flxads .flxads-lead{margin:0 0 14px;max-width:760px}
 .flxads small.flxads-muted{font-size:12px}
-.flxads .flxads-tabs{display:flex;gap:4px;border-bottom:1px solid var(--c-bd);margin:0 0 16px;overflow-x:auto}
-.flxads .flxads-tab{padding:9px 14px;text-decoration:none;color:var(--c-mut);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;font-weight:550}
-.flxads .flxads-tab:hover{color:var(--c-tx)}
-.flxads .flxads-tab.is-on{color:var(--c-ac);border-bottom-color:var(--c-ac)}
 .flxads .flxads-filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin:0 0 14px}
 .flxads .flxads-filters label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--c-mut)}
 .flxads .flxads-filters label[hidden]{display:none}

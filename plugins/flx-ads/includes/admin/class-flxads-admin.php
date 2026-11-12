@@ -20,6 +20,10 @@ final class FLXADS_Admin {
 
 	public static function menu() {
 		add_menu_page( 'Flux Ads', 'Flux Ads', 'flxads_view', 'flx-ads', array( __CLASS__, 'render' ), 'none', 58.6 );
+		foreach ( self::tabs() as $tab => $label ) {
+			$cap = 'settings' === $tab ? 'flxads_manage' : 'flxads_view';
+			add_submenu_page( 'flx-ads', $label . ' ‹ Flux Ads', $label, $cap, flxads_page_slug( $tab ), array( __CLASS__, 'render' ) );
+		}
 	}
 
 	public static function menu_icon() {
@@ -27,7 +31,7 @@ final class FLXADS_Admin {
 	}
 
 	public static function assets( $hook ) {
-		if ( 'toplevel_page_flx-ads' !== $hook ) {
+		if ( false === strpos( (string) $hook, '_page_flx-ads' ) ) {
 			return;
 		}
 		wp_enqueue_style( 'flxads-admin', FLXADS_URL . 'assets/admin.css', array(), FLXADS_VERSION );
@@ -66,17 +70,14 @@ final class FLXADS_Admin {
 		}
 		FLXADS_Spend::maybe_sync_later();
 		$tabs = self::tabs();
-		$tab  = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'report'; // phpcs:ignore WordPress.Security.NonceVerification
+		$tab  = flxads_current_tab();
 		$tab  = isset( $tabs[ $tab ] ) ? $tab : 'report';
 		echo '<div class="wrap flxads">';
-		echo '<h1 class="flxads-title">' . esc_html__( 'Ad conversions', 'flx-ads' ) . '</h1>';
-		echo '<p class="flxads-lead">' . esc_html__( 'Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved.', 'flx-ads' ) . '</p>';
-		self::notice();
-		echo '<nav class="flxads-tabs" aria-label="' . esc_attr__( 'Sections', 'flx-ads' ) . '">';
-		foreach ( $tabs as $k => $label ) {
-			echo '<a href="' . esc_url( flxads_admin_url( $k ) ) . '" class="flxads-tab' . ( $k === $tab ? ' is-on' : '' ) . '"' . ( $k === $tab ? ' aria-current="page"' : '' ) . '>' . esc_html( $label ) . '</a>';
+		echo '<h1 class="flxads-title">' . esc_html( 'report' === $tab ? __( 'Ad conversions', 'flx-ads' ) : $tabs[ $tab ] ) . '</h1>';
+		if ( 'report' === $tab ) {
+			echo '<p class="flxads-lead">' . esc_html__( 'Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved.', 'flx-ads' ) . '</p>';
 		}
-		echo '</nav>';
+		self::notice();
 		call_user_func( array( __CLASS__, 'tab_' . $tab ) );
 		echo '</div>';
 	}
@@ -131,7 +132,7 @@ final class FLXADS_Admin {
 		$f = self::filters();
 		$r = FLXADS_Report::grouped( $f['by'], $f );
 		$t = $r['totals'];
-		echo '<form class="flxads-filters" method="get"><input type="hidden" name="page" value="flx-ads"><input type="hidden" name="tab" value="report">';
+		echo '<form class="flxads-filters" method="get"><input type="hidden" name="page" value="flx-ads">';
 		echo '<label><span>' . esc_html__( 'Period', 'flx-ads' ) . '</span><select name="range" data-flxads-range>';
 		foreach ( array( '7' => __( 'Last 7 days', 'flx-ads' ), '30' => __( 'Last 30 days', 'flx-ads' ), '90' => __( 'Last 90 days', 'flx-ads' ), '365' => __( 'Last 12 months', 'flx-ads' ), 'custom' => __( 'Custom', 'flx-ads' ) ) as $k => $l ) {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( $f['range'], (string) $k, false ) . '>' . esc_html( $l ) . '</option>';
@@ -269,7 +270,7 @@ final class FLXADS_Admin {
 
 		/* Dönemin harcaması kampanya bazında. */
 		$sp = FLXADS_Spend::totals( $f['from'], $f['to'] );
-		echo '<form class="flxads-filters" method="get"><input type="hidden" name="page" value="flx-ads"><input type="hidden" name="tab" value="spend">';
+		echo '<form class="flxads-filters" method="get"><input type="hidden" name="page" value="flx-ads-spend">';
 		echo '<label><span>' . esc_html__( 'Period', 'flx-ads' ) . '</span><select name="range" data-flxads-range>';
 		foreach ( array( '7' => __( 'Last 7 days', 'flx-ads' ), '30' => __( 'Last 30 days', 'flx-ads' ), '90' => __( 'Last 90 days', 'flx-ads' ), '365' => __( 'Last 12 months', 'flx-ads' ), 'custom' => __( 'Custom', 'flx-ads' ) ) as $k => $l ) {
 			echo '<option value="' . esc_attr( $k ) . '"' . selected( $f['range'], (string) $k, false ) . '>' . esc_html( $l ) . '</option>';

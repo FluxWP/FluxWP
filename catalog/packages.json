@@ -85,6 +85,79 @@
         ]
       }
     },
+    "flx-ads": {
+      "desc": {
+        "en": "Shows which ad, campaign and ad text brought which donation: Meta, TikTok and GA4 conversions sent from the server, ad spend and ROAS, ready-made ad links.",
+        "tr": "Hangi reklamın, kampanyanın ve reklam metninin hangi bağışı getirdiğini gösterir: Meta, TikTok ve GA4 dönüşümleri sunucudan gönderilir, reklam harcaması ve ROAS, hazır reklam bağlantıları.",
+        "de": "Zeigt, welche Anzeige, Kampagne und welcher Anzeigentext welche Spende gebracht hat: serverseitige Meta-, TikTok- und GA4-Conversions, Werbeausgaben und ROAS, fertige Anzeigenlinks.",
+        "es": "Muestra qué anuncio, campaña y texto publicitario trajo cada donación: conversiones de Meta, TikTok y GA4 enviadas desde el servidor, gasto publicitario y ROAS, enlaces de anuncio listos.",
+        "fr": "Montre quelle publicité, quelle campagne et quel texte d'annonce ont apporté chaque don : conversions Meta, TikTok et GA4 envoyées depuis le serveur, dépenses publicitaires et ROAS, liens d'annonce prêts à l'emploi.",
+        "pt-br": "Mostra qual anúncio, campanha e texto de anúncio trouxe cada doação: conversões da Meta, TikTok e GA4 enviadas pelo servidor, gasto com anúncios e ROAS, links de anúncio prontos.",
+        "ja": "どの広告・キャンペーン・広告文がどの寄付につながったかを表示：Meta・TikTok・GA4 コンバージョンをサーバーから送信、広告費と ROAS、すぐ使える広告リンク。",
+        "zh": "显示哪条广告、哪个广告系列和哪段广告文案带来了哪笔捐款：从服务器发送 Meta、TikTok 和 GA4 转化，广告支出与 ROAS，现成的广告链接。",
+        "ar": "يبيّن أي إعلان وحملة ونص إعلاني جلب كل تبرع: تحويلات Meta وTikTok وGA4 تُرسل من الخادم، والإنفاق الإعلاني وROAS، وروابط إعلانية جاهزة.",
+        "ru": "Показывает, какое объявление, кампания и текст принесли каждое пожертвование: конверсии Meta, TikTok и GA4 с сервера, расходы на рекламу и ROAS, готовые рекламные ссылки."
+      },
+      "website": {},
+      "icons": {
+        "svg": {
+          "path": "plugins/flx-ads/assets/icon.svg",
+          "sha": "c033c3da6774ae8fb08b7f8052259b13643c0494",
+          "size": 879
+        },
+        "pastel": {
+          "path": "plugins/flx-ads/assets/icon-pastel.svg",
+          "sha": "b8fe43ea048d9bf3fb3986155a38876f9e9eeca3",
+          "size": 565
+        }
+      },
+      "gallery": {
+        "en": [
+          {
+            "path": "plugins/flx-ads/docs/previews/report-en.webp",
+            "sha": "8cccc319afb3e614979fe4777190464c5eb4aef0",
+            "size": 79752
+          },
+          {
+            "path": "plugins/flx-ads/docs/previews/spend-en.webp",
+            "sha": "d64fac175c18fbf883442b9bd80b2d1b49d48d52",
+            "size": 57706
+          },
+          {
+            "path": "plugins/flx-ads/docs/previews/links-en.webp",
+            "sha": "7400beafc2fc7989e5d03c14d48db2219d64a455",
+            "size": 53490
+          },
+          {
+            "path": "plugins/flx-ads/docs/previews/settings-en.webp",
+            "sha": "fd69581911143aa859f97b93e68ea68740da2340",
+            "size": 55856
+          }
+        ],
+        "tr": [
+          {
+            "path": "plugins/flx-ads/docs/previews/report-tr.webp",
+            "sha": "c45e47cec1f4237527a53d54064352c64f5f6e3f",
+            "size": 82296
+          },
+          {
+            "path": "plugins/flx-ads/docs/previews/spend-tr.webp",
+            "sha": "3d049ce2b0a05fafc05817250a3492dc1a44cd4d",
+            "size": 60152
+          },
+          {
+            "path": "plugins/flx-ads/docs/previews/links-tr.webp",
+            "sha": "af86fc2b18fc1a4508a5e83721e56e07e4c2aed6",
+            "size": 58106
+          },
+          {
+            "path": "plugins/flx-ads/docs/previews/settings-tr.webp",
+            "sha": "ed1ce29fa02c3c3a1bfdf1d0137e330ae9dcf56d",
+            "size": 58794
+          }
+        ]
+      }
+    },
     "flx-ai": {
       "desc": {
         "en": "One AI hub for every FluxWP plugin: keys, models, costs, limits and a shared chat.",

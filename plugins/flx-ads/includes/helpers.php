@@ -251,7 +251,23 @@ function flxads_can( $manage = false ) {
 }
 
 function flxads_admin_url( $tab = 'report', array $args = array() ) {
-	return add_query_arg( array_merge( array( 'page' => 'flx-ads', 'tab' => $tab ), $args ), admin_url( 'admin.php' ) );
+	return add_query_arg( array_merge( array( 'page' => flxads_page_slug( $tab ) ), $args ), admin_url( 'admin.php' ) );
+}
+
+/** Bölüm → sol menü alt sayfasının kısa adı (Rapor ana sayfadır). */
+function flxads_page_slug( $tab ) {
+	return in_array( $tab, array( 'spend', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
+}
+
+/** Açık bölüm; eski ?page=flx-ads&tab=… bağlantıları da çalışır. */
+function flxads_current_tab() {
+	// phpcs:disable WordPress.Security.NonceVerification
+	$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : 'flx-ads';
+	if ( 0 === strpos( $page, 'flx-ads-' ) ) {
+		return substr( $page, 8 );
+	}
+	return isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'report';
+	// phpcs:enable
 }
 
 /** Para gösterimi. */
