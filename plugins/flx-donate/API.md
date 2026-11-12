@@ -488,11 +488,13 @@ Kurban hisse takibi genelleşti: her bağış türü kendi kayıtlarını takip 
 - Yetki: kayıt sekmesi `flxb_track`, bağış sekmesi `flxb_can_manage()`; diğerleri salt okur.
 
 ## Excel / CSV içe aktarma (2.11.0)
-Bağışlar › Excel'den yükle (`page=flxb-import`; takip açıkken görünür, filtre `flxb_import_enabled`). Qurban'daki kurban yüklemesinin genel hali.
+Bağışlar › Excel'den yükle (`page=flxb-import`; 2.26.0'dan beri her sitede görünür, filtre `flxb_import_enabled`). Qurban'daki kurban yüklemesinin genel hali.
 - Akış: dosya (`.xlsx`, `.csv`) → başlık satırı ilk 10 satırdan bulunur, sütunlar tanınır (`FLXB_Import::fields()`, filtre `flxb_import_fields`: alan => [etiket, katlanmış takma adlar]) → tekrar eden değerler bir kez eşlenir (tür/seçenek, iş ortağı, getiren, durum, referans, ödeme; iş ortağı yoksa "Yeni olarak ekle") → önizleme (hazır / uyarılı / zaten yüklü / hata) → AJAX ile 12'şer satır (`wp_ajax_flxb_import_step`).
 - Her satır bir `flxb_create_order()` siparişi: ödendi → `completed` (`payment_method flxb-import`), değilse `on-hold` havale. Takipli türde birimler kayıt olur; durum yolu `approve → assign (pt:<id>) → done → delivered`, ödenmemiş ya da ortaksız satır `approved` açılır. Hedef tarih, getiren (`source_id`), adına telefon yazılır.
 - `flxb_create_order( [..., 'created_at' => 'Y-m-d H:i:s'] )` (2.11.0): sipariş ve bağış satırı eski tarihle açılır.
 - Tekrar yok: `items.import_key` = eşlenen hücrelerin özeti (birden çok birimde `#n` ekli).
+- 2.26.0 tarihsiz satır: `opts.nodate` = `above` (üstteki satır) | `target` (hedef tarih) | `day` (`opts.nodate_day`) | `today`.
+- 2.26.0 sessiz aktarım: adım sürerken `pre_wp_mail` false döner ve `FLXB_Import::$running` true. Ortak filtre **`flx_silent`** ( bool $silent, mixed $context ): aktarım sürerken ya da `$context` içe aktarılmış bir sipariş (`created_via = flxb-import`), onun bağış id'si veya bağış satırıysa true. WhatsApp / e-posta / reklam / analitik gönderen her paket önce sorar: `if ( apply_filters( 'flx_silent', false, $order ) ) return;` (Flux Chat referans + sertifika bildirimi, Flux Commerce yönetici bildirimi, Flux Ads dönüşümü, Flux Analytics bağış olayı, Flux Donate `flxb_ref_notify`).
 - Yükleme `flxb_import_<id>` option'ında (son 10). PHP: `FLXB_Import::from_file($path, $name)`, `analyze($imp)`, `prepare($imp)`, `step($id)`, `write_row($imp, $row)`. Hook'lar: `flxb_import_order_args( $args, $row, $imp )`, `flxb_import_row_done( $order, $items, $row, $imp )`, `flxb_import_status_words` (durum metni → durum).
 
 ## Ön ayar içerik türleri (2.11.0)

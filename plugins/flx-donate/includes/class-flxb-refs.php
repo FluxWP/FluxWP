@@ -84,7 +84,7 @@ final class FLXB_Refs {
 
 	private static function queue( $id ) {
 		$d = $id ? FLXB_Donations::get( $id ) : null;
-		if ( ! $d || ! (int) ( $d['ref_user_id'] ?? 0 ) ) {
+		if ( ! $d || ! (int) ( $d['ref_user_id'] ?? 0 ) || apply_filters( 'flx_silent', false, $d ) ) { // 2.26.0: no notice for imported history
 			return;
 		}
 		$key = (int) $d['wc_order_id'] ? 'o' . (int) $d['wc_order_id'] : 'd' . (int) $d['id'];

@@ -170,7 +170,7 @@ final class FLXADS_Orders {
 	public static function paid( $order_id ) {
 		global $wpdb;
 		$order = wc_get_order( $order_id );
-		if ( ! $order || ! $order->is_paid() || $order->get_meta( '_flxads_done' ) || 'shop_order_refund' === $order->get_type() ) {
+		if ( ! $order || ! $order->is_paid() || $order->get_meta( '_flxads_done' ) || 'shop_order_refund' === $order->get_type() || apply_filters( 'flx_silent', false, $order ) ) { // 0.2.2: imported history is not a conversion
 			return;
 		}
 		$order->update_meta_data( '_flxads_done', time() );
