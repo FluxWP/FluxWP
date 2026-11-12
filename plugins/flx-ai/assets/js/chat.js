@@ -39,7 +39,7 @@
 	var host, root, els = {};
 
 	function loadUi() {
-		var d = { open: false, mode: C.mode === 'dock' ? 'dock' : 'float', w: 420, fw: 400, fh: 640, chat: 0, draft: '', unread: false, model: '', page: false, ws: false, wsTab: 'files', wsw: 0 };
+		var d = { open: false, mode: C.mode === 'dock' ? 'dock' : 'float', w: 420, fw: 400, fh: 640, chat: 0, draft: '', unread: false, model: '', page: false, ws: false, wsTab: 'files', wsw: 0, side: true, sideArc: false };
 		try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); for (var k in s) if (k in d) d[k] = s[k]; } catch (e) {}
 		return d;
 	}
@@ -86,7 +86,9 @@
 		back: '<path d="m15 18-6-6 6-6"/>',
 		right: '<path d="m9 18 6-6-6-6"/>',
 		ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
-		shield: '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/>'
+		shield: '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/>',
+		sideL: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/>',
+		slash: '<path d="M15 4 9 20"/>'
 	};
 	function ic(n) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (P[n] || '') + '</svg>'; }
 	function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -394,7 +396,8 @@
 			'<button class="bstop" type="button" title="' + esc(t('Durdur')) + '" hidden>' + ic('stop') + '</button></div>' +
 			'<section class="panel" role="dialog" aria-label="' + esc(t('Yapay zekâ asistanı')) + '" hidden>' +
 			'<div class="resize-l" title="' + esc(t('Genişliği değiştir')) + '"></div><div class="resize-c" title="' + esc(t('Boyutu değiştir')) + '"></div>' +
-			'<div class="main"><header class="head"><span class="logo">' + ic('spark') + '</span>' +
+			'<aside class="side" hidden></aside>' +
+			'<div class="main"><header class="head"><button class="ib side-btn" type="button" data-a="side" title="' + esc(t('Sohbetler')) + '" hidden>' + ic('sideL') + '</button><span class="logo">' + ic('spark') + '</span>' +
 			'<button class="title-btn" type="button" data-a="list" aria-haspopup="true"><span></span>' + ic('down') + '</button>' +
 			'<button class="ib" type="button" data-a="search" title="' + esc(t('Sohbetlerde ara')) + '">' + ic('search') + '</button>' +
 			'<button class="ib" type="button" data-a="new" title="' + esc(t('Yeni sohbet')) + '">' + ic('plus') + '</button>' +
@@ -405,7 +408,7 @@
 			'<div class="popwrap"></div>' +
 			'<div class="body" aria-live="polite"></div>' +
 			'<div class="notice-wrap"></div>' +
-			'<footer class="foot"><div class="composer"><div class="files" hidden></div><div class="crow">' +
+			'<footer class="foot"><div class="slash" hidden role="listbox"></div><div class="composer"><div class="files" hidden></div><div class="crow">' +
 			'<button class="cb attach" type="button" title="' + esc(t('Dosya ekle')) + '" aria-label="' + esc(t('Dosya ekle')) + '">' + ic('clip') + '</button>' +
 			'<input class="file-in" type="file" multiple hidden accept="' + esc(C.accept || '') + '">' +
 			'<textarea rows="1" placeholder="' + esc(t('Bir şey sorun ya da bir iş verin…')) + '"></textarea>' +
@@ -439,6 +442,12 @@
 		els.page = els.wrap.querySelector('[data-a="page"]');
 		els.wsBtn = els.wrap.querySelector('[data-a="ws"]');
 		els.ws = els.wrap.querySelector('.ws');
+		els.side = els.wrap.querySelector('.side');
+		els.sideBtn = els.wrap.querySelector('.side-btn');
+		els.slash = els.wrap.querySelector('.slash');
+		els.side.addEventListener('click', onSide);
+		els.side.addEventListener('input', function (e) { if (e.target.type === 'search') { SD.q = e.target.value.trim(); sideLoad(); } });
+		els.slash.addEventListener('mousedown', function (e) { e.preventDefault(); var b = e.target.closest('[data-cmd]'); if (b) slashPick(+b.getAttribute('data-cmd')); });
 		els.ws.addEventListener('click', onWs);
 		els.ws.addEventListener('input', function (e) {
 			if (!e.target.classList.contains('ws-edit') || !WS.view) return;
@@ -466,8 +475,10 @@
 		els.bubble.addEventListener('click', function () { open(); });
 		els.wrap.querySelector('.head').addEventListener('click', onHead);
 		els.ta.value = ui.draft || '';
-		els.ta.addEventListener('input', function () { autosize(); ui.draft = els.ta.value; saveUi(); updateSend(); });
+		els.ta.addEventListener('input', function () { autosize(); ui.draft = els.ta.value; saveUi(); updateSend(); slashCheck(); });
+		els.ta.addEventListener('blur', function () { setTimeout(slashClose, 120); });
 		els.ta.addEventListener('keydown', function (e) {
+			if (SL.open && slashKey(e)) return;
 			if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); submit(); }
 			if (e.key === 'Escape') { if (S.pop) closePop(); else if (ui.mode === 'float') close(); }
 		});
@@ -561,6 +572,11 @@
 			els.page.hidden = !wide();
 		}
 		els.ws.hidden = !ui.ws;
+		var sideOn = paged && !!ui.side;
+		els.side.hidden = !sideOn;
+		els.sideBtn.hidden = !paged;
+		els.sideBtn.classList.toggle('on', sideOn);
+		if (sideOn && !SD.loaded) sideLoad();
 		if (paged && ui.wsw) {
 			var pw = p.getBoundingClientRect().width || window.innerWidth;
 			ui.wsw = Math.max(300, Math.min(ui.wsw, pw - 420));
@@ -738,13 +754,14 @@
 		els.title.textContent = c.title || t('Yeni sohbet');
 		renderBody();
 		renderBubble();
+		if (first) sideRefresh(); else sideDraw();
 	}
 	function newChat() {
 		if (S.running) return;
 		S.chat = null; S.msgs = []; S.pending = []; S.err = null; S.optimistic = null; WS.data = null; WS.chat = 0; WS.view = null; renderWs();
 		ui.chat = 0; saveUi();
 		els.title.textContent = t('Yeni sohbet');
-		closePop(); renderBody(); renderHint(); els.ta.focus();
+		closePop(); renderBody(); renderHint(); sideDraw(); els.ta.focus();
 	}
 	function page() { return { title: document.title.slice(0, 160), url: location.href.slice(0, 400), admin: !!C.admin }; }
 
@@ -835,6 +852,7 @@
 		if (!ui.open && (r.state === 'done' || r.state === 'approval')) { ui.unread = true; saveUi(); }
 		renderBubble();
 		if (S.pop === 'list') loadList();
+		sideRefresh();
 	}
 	function fail(e) {
 		S.running = false;
@@ -1180,7 +1198,7 @@
 		var label = (S.chat && S.chat.model) ? (S.modelLabels && S.modelLabels[S.chat.model]) || S.chat.model : (!S.chat && ui.model ? (S.modelLabels && S.modelLabels[ui.model]) || ui.model : (S.boot ? S.boot.modelLabel : ''));
 		var mg = S.boot && S.boot.canManage;
 		els.hint.innerHTML = (label ? (mg ? '<button class="model" type="button" title="' + esc(t('Model seç')) + '">' : '<span class="model">') + ic('cpu') + '<span>' + esc(label) + '</span>' + (mg ? ic('down') + '</button>' : '</span>') : '') +
-			'<span class="k">' + esc(t('Enter gönderir, Shift+Enter yeni satır')) + '</span>';
+			'<span class="k">' + esc(t('Enter gönderir, Shift+Enter yeni satır')) + ' · ' + esc(t('/ komutlar')) + '</span>';
 	}
 	function renderNotice() {
 		if (!S.boot || S.boot.ready) { els.notice.innerHTML = ''; return; }
@@ -1198,6 +1216,7 @@
 		else if (a === 'mode') { ui.mode = ui.mode === 'dock' ? 'float' : 'dock'; saveUi(); layout(); }
 		else if (a === 'page') { ui.page = !ui.page; saveUi(); layout(); }
 		else if (a === 'ws') { ui.ws = !ui.ws; if (ui.ws && wide() && !C.page) ui.page = true; saveUi(); layout(); if (ui.ws) wsLoad(); }
+		else if (a === 'side') { ui.side = !ui.side; saveUi(); layout(); }
 		else if (a === 'list') S.pop === 'list' && !S.searchMode ? closePop() : openList(false);
 		else if (a === 'search') S.pop === 'list' && S.searchMode ? closePop() : openList(true);
 	}
@@ -1308,6 +1327,7 @@
 		return api('POST', 'chats/' + id, data).then(function (c) {
 			if (S.chat && S.chat.id === id) { S.chat.title = c.title; S.chat.archived = c.archived; S.chat.model = c.model; els.title.textContent = c.title || t('Yeni sohbet'); renderHint(); }
 			if (S.pop === 'list') loadList();
+			sideRefresh();
 		});
 	}
 	function rename(id, title) {
@@ -1317,6 +1337,142 @@
 		S.list.forEach(function (c) { if (c.id === id) c.title = title; });
 		renderList();
 		update(id, { title: title });
+	}
+
+	/* ---------- Sol sohbet listesi (tam ekran, 0.14.0): çalışanlar, son sohbetler, arşiv, arama ---------- */
+	var SD = { loaded: false, items: [], arc: null, q: '', err: '', timer: 0, poll: 0, seq: 0 };
+	function sideLoad() {
+		clearTimeout(SD.timer);
+		SD.timer = setTimeout(function () {
+			var my = ++SD.seq, q = SD.q;
+			SD.loaded = true;
+			api('GET', 'chats?limit=100&archived=' + (q ? -1 : 0) + '&q=' + encodeURIComponent(q)).then(function (r) {
+				if (my !== SD.seq) return;
+				SD.items = r.chats || []; SD.err = ''; sideDraw(); sidePoll();
+			}).catch(function (e) { if (my === SD.seq) { SD.err = e.message; sideDraw(); } });
+			if (ui.sideArc && !q) sideArc();
+		}, SD.q ? 250 : 0);
+	}
+	function sideArc() {
+		api('GET', 'chats?limit=50&archived=1').then(function (r) { SD.arc = r.chats || []; sideDraw(); }).catch(function () {});
+	}
+	function sideRefresh() { if (SD.loaded && els.side && !els.side.hidden) sideLoad(); else SD.loaded = false; }
+	// Çalışan sohbet varken ve sekme görünürken liste 20 sn'de bir yenilenir.
+	function sidePoll() {
+		clearTimeout(SD.poll);
+		var live = SD.items.some(function (c) { return c.status === 'running'; });
+		if (live) SD.poll = setTimeout(function () { if (!document.hidden && els.side && !els.side.hidden) sideLoad(); else sidePoll(); }, 20000);
+	}
+	function sideItem(c) {
+		var cur = S.chat && S.chat.id === c.id, st = c.status === 'running' ? '<span class="spin" aria-label="' + esc(t('Çalışıyor')) + '"></span>' : (c.status === 'approval' ? '<span class="badge warn">' + esc(t('Onay bekliyor')) + '</span>' : '');
+		return '<div class="si' + (cur ? ' cur' : '') + '" data-open="' + c.id + '" tabindex="0" role="button">' +
+			'<span class="si-ic">' + ic(c.task ? 'clock' : 'spark') + '</span>' +
+			'<span class="si-t"><b>' + hl(c.title || t('Adsız sohbet'), SD.q) + '</b><small>' + (c.snippet ? hl(c.snippet, SD.q) : esc(c.task ? t('Zamanlanmış görev') + ' · ' + rel(c.updated) : rel(c.updated))) + '</small></span>' + st +
+			'<button class="ib" type="button" data-arc="' + c.id + '" data-v="' + (c.archived ? 0 : 1) + '" title="' + esc(c.archived ? t('Arşivden çıkar') : t('Arşive al')) + '">' + ic(c.archived ? 'unarchive' : 'archive') + '</button></div>';
+	}
+	function sideDraw() {
+		if (!els.side || els.side.hidden && SD.loaded === false) return;
+		var foc = els.side.querySelector('input[type=search]') === (root.activeElement || document.activeElement);
+		var live = [], rest = [], q = SD.q;
+		SD.items.forEach(function (c) { (!q && (c.status === 'running' || c.status === 'approval') ? live : rest).push(c); });
+		var h = '<div class="side-head"><b>' + esc(t('Sohbetler')) + '</b><button class="ib" type="button" data-sa="new" title="' + esc(t('Yeni sohbet')) + '">' + ic('plus') + '</button>' +
+			'<button class="ib" type="button" data-sa="hide" title="' + esc(t('Paneli gizle')) + '">' + ic('sideL') + '</button></div>' +
+			'<div class="side-search"><label class="field">' + ic('search') + '<input type="search" placeholder="' + esc(t('Sohbetlerde ara…')) + '" value="' + esc(SD.q) + '"></label></div><div class="side-list">';
+		if (SD.err) h += '<div class="pop-empty">' + esc(SD.err) + '</div>';
+		if (live.length) h += '<div class="side-sec">' + esc(t('Çalışıyor')) + '</div>' + live.map(sideItem).join('');
+		if (rest.length) h += (live.length || !q ? '<div class="side-sec">' + esc(q ? t('Sonuçlar') : t('Son sohbetler')) + '</div>' : '') + rest.map(sideItem).join('');
+		if (!SD.err && !live.length && !rest.length) h += '<div class="pop-empty">' + esc(q ? t('Sonuç yok.') : (SD.loaded && SD.seq ? t('Henüz sohbet yok.') : '')) + (SD.seq && !SD.items.length && !q ? '' : '') + '</div>';
+		if (!q) {
+			h += '<button class="side-sec side-arc" type="button" data-sa="arc" aria-expanded="' + (ui.sideArc ? 'true' : 'false') + '">' + ic(ui.sideArc ? 'down' : 'right') + esc(t('Arşivdekiler')) + (SD.arc ? ' <small>' + SD.arc.length + '</small>' : '') + '</button>';
+			if (ui.sideArc) h += SD.arc ? (SD.arc.length ? SD.arc.map(sideItem).join('') : '<div class="pop-empty">' + esc(t('Arşiv boş.')) + '</div>') : '<div class="pop-empty"><span class="spin"></span></div>';
+		}
+		h += '</div>';
+		var sc = els.side.querySelector('.side-list'), top = sc ? sc.scrollTop : 0;
+		els.side.innerHTML = h;
+		var nsc = els.side.querySelector('.side-list'); if (nsc) nsc.scrollTop = top;
+		if (foc) { var i = els.side.querySelector('input[type=search]'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
+	}
+	function onSide(e) {
+		var b;
+		if ((b = e.target.closest('[data-arc]'))) {
+			e.stopPropagation();
+			var id = +b.getAttribute('data-arc');
+			api('POST', 'chats/' + id, { archived: +b.getAttribute('data-v') }).then(function () { if (S.chat && S.chat.id === id) S.chat.archived = +b.getAttribute('data-v'); sideLoad(); if (ui.sideArc) sideArc(); });
+			return;
+		}
+		if ((b = e.target.closest('[data-sa]'))) {
+			var a = b.getAttribute('data-sa');
+			if (a === 'new') newChat();
+			else if (a === 'hide') { ui.side = false; saveUi(); layout(); }
+			else if (a === 'arc') { ui.sideArc = !ui.sideArc; saveUi(); sideDraw(); if (ui.sideArc) sideArc(); }
+			return;
+		}
+		if ((b = e.target.closest('[data-open]'))) pick(+b.getAttribute('data-open'));
+	}
+
+	/* ---------- "/" menüsü: komutlar, skill'ler, (ileride) uygulamalar ---------- */
+	var SL = { open: false, items: [], sel: 0 };
+	var SL_GROUPS = { actions: 'Komutlar', skills: 'Skill\'ler', apps: 'Uygulamalar' };
+	function slashNorm(x) { return String(x || '').toLocaleLowerCase(C.locale).replace(/[ıİ]/g, 'i').normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+	function slashCheck() {
+		var m = /^\/([^\s]*)$/.exec(els.ta.value);
+		var cmds = (S.boot && S.boot.commands) || [];
+		if (!m || !cmds.length) { slashClose(); return; }
+		var q = slashNorm(m[1]);
+		var list = cmds.filter(function (c) { return !q || slashNorm(c.id + ' ' + (c.slug || '') + ' ' + c.title + ' ' + (c.desc || '')).indexOf(q) >= 0; });
+		// Başlığı/kısaltması sorguyla başlayanlar üstte.
+		if (q) list.sort(function (a, b) { var sa = slashNorm((a.slug || a.id) + ' ' + a.title).indexOf(q) === 0 ? 0 : 1, sb = slashNorm((b.slug || b.id) + ' ' + b.title).indexOf(q) === 0 ? 0 : 1; return sa - sb; });
+		SL.items = list; SL.open = true; if (SL.sel >= list.length) SL.sel = 0;
+		slashDraw();
+	}
+	function slashDraw() {
+		if (!SL.items.length) { els.slash.innerHTML = '<div class="sl-empty">' + esc(t('Komut bulunamadı.')) + '</div>'; els.slash.hidden = false; return; }
+		var h = '', last = '', order = [];
+		var groups = {};
+		SL.items.forEach(function (c, i) { var g = c.group || 'apps'; if (!groups[g]) { groups[g] = []; order.push(g); } groups[g].push(i); });
+		// Önce komutlar, sonra skill'ler, sonra uygulamalar ve diğerleri.
+		order.sort(function (a, b) { var r = ['actions', 'skills', 'apps']; return (r.indexOf(a) < 0 ? 9 : r.indexOf(a)) - (r.indexOf(b) < 0 ? 9 : r.indexOf(b)); });
+		var flat = [];
+		order.forEach(function (g) { groups[g].forEach(function (i) { flat.push(i); }); });
+		SL.flat = flat;
+		flat.forEach(function (i, k) {
+			var c = SL.items[i], g = c.group || 'apps';
+			if (g !== last) { h += '<div class="sl-g">' + esc(SL_GROUPS[g] ? t(SL_GROUPS[g]) : (c.groupLabel || g)) + '</div>'; last = g; }
+			h += '<button type="button" class="sl-i' + (k === SL.sel ? ' sel' : '') + '" data-cmd="' + k + '" role="option" aria-selected="' + (k === SL.sel) + '">' +
+				'<span class="sl-ic">' + ic(c.icon && P[c.icon] ? c.icon : (c.kind === 'skill' ? 'brain' : (c.kind === 'insert' ? 'edit' : 'slash'))) + '</span>' +
+				'<span class="sl-t"><b>' + esc(c.title) + (c.kind === 'skill' ? ' <code>/' + esc(c.slug) + '</code>' : '') + '</b>' + (c.desc ? '<small>' + esc(c.desc) + '</small>' : '') + '</span></button>';
+		});
+		els.slash.innerHTML = h;
+		els.slash.hidden = false;
+		var s = els.slash.querySelector('.sl-i.sel'); if (s && s.scrollIntoView) s.scrollIntoView({ block: 'nearest' });
+	}
+	function slashClose() { if (!SL.open) return; SL.open = false; SL.sel = 0; els.slash.hidden = true; els.slash.innerHTML = ''; }
+	function slashKey(e) {
+		var n = (SL.flat || []).length;
+		if (e.key === 'ArrowDown' && n) { e.preventDefault(); SL.sel = (SL.sel + 1) % n; slashDraw(); return true; }
+		if (e.key === 'ArrowUp' && n) { e.preventDefault(); SL.sel = (SL.sel - 1 + n) % n; slashDraw(); return true; }
+		if ((e.key === 'Enter' || e.key === 'Tab') && !e.shiftKey && n) { e.preventDefault(); slashPick(SL.sel); return true; }
+		if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); slashClose(); return true; }
+		return false;
+	}
+	function slashSet(v) { els.ta.value = v; ui.draft = v; saveUi(); autosize(); updateSend(); els.ta.focus(); els.ta.setSelectionRange(v.length, v.length); }
+	function slashPick(k) {
+		var c = SL.items[(SL.flat || [])[k]];
+		slashClose();
+		if (!c) return;
+		if (c.kind === 'action') {
+			slashSet('');
+			var a = c.action;
+			if (a === 'new') newChat();
+			else if (a === 'side') { if (!(ui.page || C.page) || !wide()) openList(false); else { ui.side = !ui.side; saveUi(); layout(); } }
+			else if (a === 'search') { if (els.side && !els.side.hidden) { var si = els.side.querySelector('input[type=search]'); if (si) si.focus(); } else openList(true); }
+			else if (a === 'ws') { ui.ws = !ui.ws; if (ui.ws && wide() && !C.page) ui.page = true; saveUi(); layout(); if (ui.ws) wsLoad(); }
+			else if (a === 'attach') els.fileIn.click();
+			else if (a === 'model' && S.boot && S.boot.canManage) openModels();
+			else window.dispatchEvent(new CustomEvent('flxai:command', { detail: c }));
+			return;
+		}
+		slashSet(c.insert || '');
 	}
 
 	/* Model seçimi (yalnız yönetici). */

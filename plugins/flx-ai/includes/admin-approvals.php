@@ -121,7 +121,7 @@ function flxai_page_approvals() {
 		echo '<div class="flxai-appr-title">' . esc_html( $it['title'] ) . ' <code>' . esc_html( $it['tool'] ) . '</code></div>';
 		echo '<div class="flxai-note">';
 		if ( $task ) {
-			echo '<span class="flxai-pill is-ok">' . esc_html__( 'Scheduled task', 'flx-ai' ) . '</span> <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-tasks&history=' . $task['id'] ) ) . '">' . esc_html( $task['title'] ) . '</a>';
+			echo '<span class="flxai-pill is-ok">' . esc_html__( 'Scheduled task', 'flx-ai' ) . '</span> <a href="' . esc_url( flxai_task_open_url( $task ) ) . '">' . esc_html( $task['title'] ) . '</a>';
 		} else {
 			echo '<span class="flxai-pill">' . esc_html__( 'Chat', 'flx-ai' ) . '</span> ' . esc_html( '' !== $it['chat_title'] ? $it['chat_title'] : __( 'New chat', 'flx-ai' ) );
 		}

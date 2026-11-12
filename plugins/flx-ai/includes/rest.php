@@ -62,6 +62,50 @@ function flxai_rest_result( array $res, $since ) {
 	);
 }
 
+/**
+ * Sohbet kutusunda "/" menüsü: hazır komutlar, skill'ler ve eklentilerin eklediği komutlar.
+ * Öğe: id, group (actions|skills|apps|…), title, desc, kind (action|insert|skill), insert?, action?.
+ * Eklentiler `flxai_slash_commands` filtresiyle öğe ekler (ör. uygulamalar).
+ */
+function flxai_slash_commands() {
+	$out = array(
+		array( 'id' => 'new', 'icon' => 'plus', 'group' => 'actions', 'kind' => 'action', 'action' => 'new', 'title' => __( 'New chat', 'flx-ai' ), 'desc' => __( 'Start an empty chat.', 'flx-ai' ) ),
+		array( 'id' => 'chats', 'icon' => 'sideL', 'group' => 'actions', 'kind' => 'action', 'action' => 'side', 'title' => __( 'Chats', 'flx-ai' ), 'desc' => __( 'Show or hide the chat list: running, recent and archived chats.', 'flx-ai' ) ),
+		array( 'id' => 'search', 'icon' => 'search', 'group' => 'actions', 'kind' => 'action', 'action' => 'search', 'title' => __( 'Search chats', 'flx-ai' ), 'desc' => __( 'Find an earlier chat by title or content.', 'flx-ai' ) ),
+		array( 'id' => 'files', 'icon' => 'folder', 'group' => 'actions', 'kind' => 'action', 'action' => 'ws', 'title' => __( 'Workspace', 'flx-ai' ), 'desc' => __( 'Files, change requests and settings of this chat.', 'flx-ai' ) ),
+		array( 'id' => 'attach', 'icon' => 'clip', 'group' => 'actions', 'kind' => 'action', 'action' => 'attach', 'title' => __( 'Attach a file', 'flx-ai' ), 'desc' => __( 'Image, PDF or document for the assistant to read.', 'flx-ai' ) ),
+		array( 'id' => 'task', 'icon' => 'clock', 'group' => 'actions', 'kind' => 'insert', 'insert' => __( 'Create a scheduled task: ', 'flx-ai' ), 'title' => __( 'Scheduled task', 'flx-ai' ), 'desc' => __( 'Have the assistant run something on its own at set times and notify you or others.', 'flx-ai' ) ),
+		array( 'id' => 'tasks', 'icon' => 'clock', 'group' => 'actions', 'kind' => 'insert', 'insert' => __( 'List my scheduled tasks and their last reports.', 'flx-ai' ), 'title' => __( 'My tasks', 'flx-ai' ), 'desc' => __( 'Scheduled tasks, next runs and last reports.', 'flx-ai' ) ),
+		array( 'id' => 'skill', 'icon' => 'brain', 'group' => 'actions', 'kind' => 'insert', 'insert' => __( 'Create a new skill: ', 'flx-ai' ), 'title' => __( 'New skill', 'flx-ai' ), 'desc' => __( 'Save reusable instructions you can call later with /name.', 'flx-ai' ) ),
+	);
+	if ( flxai_can_manage() ) {
+		$out[] = array( 'id' => 'model', 'icon' => 'cpu', 'group' => 'actions', 'kind' => 'action', 'action' => 'model', 'title' => __( 'Change model', 'flx-ai' ), 'desc' => __( 'Pick the AI model for this chat.', 'flx-ai' ) );
+	}
+	if ( function_exists( 'flxai_skills_all' ) ) {
+		foreach ( flxai_skills_all() as $sk ) {
+			if ( 'active' !== ( $sk['status'] ?? '' ) ) {
+				continue;
+			}
+			$out[] = array(
+				'id'     => 'skill:' . $sk['slug'],
+				'group'  => 'skills',
+				'kind'   => 'skill',
+				'insert' => '/' . $sk['slug'] . ' ',
+				'slug'   => $sk['slug'],
+				'title'  => $sk['name'],
+				'desc'   => $sk['description'],
+			);
+		}
+	}
+	/**
+	 * "/" menüsü öğeleri. Uygulamalar ve eklentiler kendi komutlarını ekler (group: apps).
+	 *
+	 * @param array $out Öğeler.
+	 */
+	$out = (array) apply_filters( 'flxai_slash_commands', $out );
+	return array_values( array_filter( $out, fn( $c ) => is_array( $c ) && ! empty( $c['id'] ) && ! empty( $c['title'] ) ) );
+}
+
 function flxai_rest_boot() {
 	$model = flxai_model_for( 'flx-ai', (string) flxai_setting( 'chat_model', '' ) );
 	$tools = array();
@@ -79,6 +123,7 @@ function flxai_rest_boot() {
 		'canManage'  => flxai_can_manage(),
 		'counts'     => flxai_chat_counts(),
 		'budget'     => flxai_can_manage() ? flxai_budget_status() : null,
+		'commands'   => flxai_slash_commands(),
 	);
 }
 

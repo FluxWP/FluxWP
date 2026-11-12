@@ -126,6 +126,16 @@ function flxai_chat_list( array $args = array(), $user_id = 0 ) {
 		}
 		$out[] = $item;
 	}
+	// Zamanlanmış görev sohbetleri listede işaretlenir.
+	$ids = wp_list_pluck( $out, 'id' );
+	if ( $ids ) {
+		$tasks = $wpdb->get_results( 'SELECT chat_id, title FROM ' . flxai_table( 'tasks' ) . ' WHERE chat_id IN (' . implode( ',', array_map( 'intval', $ids ) ) . ')', ARRAY_A ); // phpcs:ignore
+		$map   = wp_list_pluck( (array) $tasks, 'title', 'chat_id' );
+		foreach ( $out as &$o ) {
+			$o['task'] = isset( $map[ $o['id'] ] ) ? (string) $map[ $o['id'] ] : '';
+		}
+		unset( $o );
+	}
 	return $out;
 }
 

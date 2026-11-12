@@ -2761,3 +2761,147 @@ msgstr "Discard"
 
 msgid "Code"
 msgstr "Code"
+
+msgid "Start an empty chat."
+msgstr "Start an empty chat."
+
+msgid "Chats"
+msgstr "Chats"
+
+msgid "Show or hide the chat list: running, recent and archived chats."
+msgstr "Show or hide the chat list: running, recent and archived chats."
+
+msgid "Find an earlier chat by title or content."
+msgstr "Find an earlier chat by title or content."
+
+msgid "Files, change requests and settings of this chat."
+msgstr "Files, change requests and settings of this chat."
+
+msgid "Attach a file"
+msgstr "Attach a file"
+
+msgid "Image, PDF or document for the assistant to read."
+msgstr "Image, PDF or document for the assistant to read."
+
+msgid "Create a scheduled task: "
+msgstr "Create a scheduled task: "
+
+msgid "Have the assistant run something on its own at set times and notify you or others."
+msgstr "Have the assistant run something on its own at set times and notify you or others."
+
+msgid "List my scheduled tasks and their last reports."
+msgstr "List my scheduled tasks and their last reports."
+
+msgid "My tasks"
+msgstr "My tasks"
+
+msgid "Scheduled tasks, next runs and last reports."
+msgstr "Scheduled tasks, next runs and last reports."
+
+msgid "Create a new skill: "
+msgstr "Create a new skill: "
+
+msgid "Save reusable instructions you can call later with /name."
+msgstr "Save reusable instructions you can call later with /name."
+
+msgid "Change model"
+msgstr "Change model"
+
+msgid "Pick the AI model for this chat."
+msgstr "Pick the AI model for this chat."
+
+msgid "Read a scheduled task report"
+msgstr "Read a scheduled task report"
+
+msgid "WhatsApp group"
+msgstr "WhatsApp group"
+
+msgid "E-mail address"
+msgstr "E-mail address"
+
+msgid "Phone number"
+msgstr "Phone number"
+
+msgid "Find notification recipients"
+msgstr "Find notification recipients"
+
+msgid "my e-mail"
+msgstr "my e-mail"
+
+msgid "Next: %1$s (%2$s)"
+msgstr "Next: %1$s (%2$s)"
+
+msgid "avg. %s"
+msgstr "avg. %s"
+
+msgid "Runs: %s"
+msgstr "Runs: %s"
+
+msgid "Notifications"
+msgstr "Notifications"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "More"
+msgstr "More"
+
+msgid "Last output"
+msgstr "Last output"
+
+msgid "Open in the AI chat: reasoning, tool calls and follow-up"
+msgstr "Open in the AI chat: reasoning, tool calls and follow-up"
+
+msgid "Also notify"
+msgstr "Also notify"
+
+msgid "People from Flux CRM, site users or WhatsApp groups. Pick a channel for each."
+msgstr "People from Flux CRM, site users or WhatsApp groups. Pick a channel for each."
+
+msgid "Search name, e-mail, phone or group…"
+msgstr "Search name, e-mail, phone or group…"
+
+msgid "Add recipient"
+msgstr "Add recipient"
+
+msgid "You can also say it in the AI chat, e.g. \"send the daily briefing to Ayşe by WhatsApp and to the board group\"."
+msgstr "You can also say it in the AI chat, e.g. \"send the daily briefing to Ayşe by WhatsApp and to the board group\"."
+
+msgid "Commands"
+msgstr "Commands"
+
+msgid "Apps"
+msgstr "Apps"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "/ commands"
+msgstr "/ commands"
+
+msgid "Hide panel"
+msgstr "Hide panel"
+
+msgid "Search chats…"
+msgstr "Search chats…"
+
+msgid "Results"
+msgstr "Results"
+
+msgid "Recent chats"
+msgstr "Recent chats"
+
+msgid "The archive is empty."
+msgstr "The archive is empty."
+
+msgid "No command found."
+msgstr "No command found."
+
+msgid "Archived"
+msgstr "Archived"

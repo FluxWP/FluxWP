@@ -626,6 +626,9 @@ function flxai_task_tool_data( array $a ) {
 	} elseif ( isset( $a['notify_whatsapp'] ) ) {
 		$n['whatsapp'] = (string) $a['notify_whatsapp'];
 	}
+	if ( isset( $a['notify_to'] ) && is_array( $a['notify_to'] ) ) {
+		$n['to'] = $a['notify_to'];
+	}
 	if ( $n ) {
 		$data['notify'] = $n;
 	}
@@ -691,11 +694,37 @@ function flxai_task_tool_schema( $with_id ) {
 		'notify_channels' => array(
 			'type'        => 'array',
 			'items'       => array( 'type' => 'string', 'enum' => array( 'email', 'whatsapp', 'panel' ) ),
-			'description' => 'Bildirim kanalları: email (görev sahibinin e-postası), whatsapp (notify_whatsapp numarası), panel (yönetim panelinde rozet).',
+			'description' => 'Görev sahibinin bildirim kanalları: email (görev sahibinin e-postası), whatsapp (notify_whatsapp numarası), panel (yönetim panelinde rozet). Başka kişiler/gruplar için notify_to.',
 		),
 		'notify_whatsapp' => array(
 			'type'        => 'string',
 			'description' => 'WhatsApp bildirimi için numara, ülke koduyla (ör. 905321234567).',
+		),
+		'notify_to'       => array(
+			'type'        => 'array',
+			'description' => 'Görev sahibi dışındaki bildirim alıcıları (tam liste; verilirse eskisinin yerine geçer, boş dizi = hepsini kaldır). Kişileri flxai_notify_find_recipients ile bul, dönen kaydı kanallarla birlikte koy. WhatsApp grubu: kind=group + jid.',
+			'items'       => array(
+				'type'       => 'object',
+				'properties' => array(
+					'kind'     => array(
+						'type' => 'string',
+						'enum' => array( 'contact', 'user', 'email', 'phone', 'group' ),
+					),
+					'id'       => array( 'type' => 'integer' ),
+					'name'     => array( 'type' => 'string' ),
+					'email'    => array( 'type' => 'string' ),
+					'phone'    => array( 'type' => 'string' ),
+					'jid'      => array( 'type' => 'string' ),
+					'channels' => array(
+						'type'  => 'array',
+						'items' => array(
+							'type' => 'string',
+							'enum' => array( 'email', 'sms', 'whatsapp' ),
+						),
+					),
+				),
+				'required'   => array( 'kind', 'channels' ),
+			),
 		),
 		'access'          => array(
 			'type'        => 'string',
@@ -799,6 +828,44 @@ add_filter(
 				return array( 'deleted' => flxai_task_delete( $task['id'] ) );
 			},
 		);
+		$tools['flxai_task_report'] = array(
+			'title'       => __( 'Read a scheduled task report', 'flx-ai' ),
+			'description' => 'Zamanlanmış görevin son çalışmalarını (zaman, durum, süre, maliyet, kime bildirildi) ve son raporun tam metnini verir. "Dünkü brifing ne dedi", "görev neden hata verdi" gibi sorular için.',
+			'readonly'    => true,
+			'cap'         => 'read',
+			'log'         => false,
+			'schema'      => array(
+				'type'       => 'object',
+				'properties' => array(
+					'id'    => array( 'type' => 'integer' ),
+					'limit' => array(
+						'type'        => 'integer',
+						'description' => 'Kaç çalışma (varsayılan 5, en çok 50).',
+					),
+				),
+				'required'   => array( 'id' ),
+			),
+			'run'         => function ( $a ) {
+				$task = flxai_task_for_tool( (int) ( $a['id'] ?? 0 ) );
+				$runs = array();
+				foreach ( array_slice( (array) ( $task['meta']['history'] ?? array() ), 0, max( 1, min( 50, (int) ( $a['limit'] ?? 5 ) ) ) ) as $h ) {
+					$runs[] = array(
+						'at'       => wp_date( 'Y-m-d H:i', (int) ( $h['ts'] ?? 0 ) ),
+						'state'    => (string) ( $h['state'] ?? '' ),
+						'ms'       => (int) ( $h['ms'] ?? 0 ),
+						'cost_usd' => (float) ( $h['cost'] ?? 0 ),
+						'error'    => (string) ( $h['error'] ?? '' ),
+						'notified' => array_values( (array) ( $h['notified'] ?? array() ) ),
+					);
+				}
+				return array(
+					'task'        => flxai_task_public( $task ),
+					'runs'        => $runs,
+					'last_report' => flxai_task_last_output( $task ),
+					'chat_url'    => $task['chat_id'] ? add_query_arg( 'flxai_chat', (int) $task['chat_id'], admin_url( 'admin.php?page=flx-ai-chat' ) ) : '',
+				);
+			},
+		);
 		$tools['flxai_task_run']    = array(
 			'title'       => __( 'Run a scheduled task now', 'flx-ai' ),
 			'description' => 'Görevi zamanını beklemeden birkaç saniye içinde arka planda çalıştırır. Sonuç görevin sohbetine yazılır.',
@@ -865,6 +932,43 @@ add_action(
 	10,
 	2
 );
+
+/** Bir çalışmanın sohbetteki mesajları: başlangıçtan bir sonraki kullanıcı mesajına kadar (onay sonrası devam dahil). */
+function flxai_task_run_messages( array $chat, array $run ) {
+	$from = (int) ( $run['from'] ?? -1 );
+	$msgs = $chat['messages'];
+	if ( $from < 0 || ! isset( $msgs[ $from ] ) ) {
+		return array();
+	}
+	$out = array( $msgs[ $from ] );
+	for ( $i = $from + 1, $n = count( $msgs ); $i < $n; $i++ ) {
+		if ( 'user' === ( $msgs[ $i ]['role'] ?? '' ) ) {
+			break;
+		}
+		$out[] = $msgs[ $i ];
+	}
+	return $out;
+}
+
+/** Görevin son çalışmasının cevabı (sohbetteki son asistan metni). */
+function flxai_task_last_output( array $t ) {
+	$run = (array) ( $t['meta']['history'][0] ?? array() );
+	$cid = (int) ( $run['chat'] ?? $t['chat_id'] );
+	if ( ! $run || ! $cid ) {
+		return '';
+	}
+	$chat = flxai_chat_get( $cid, $t['user_id'] );
+	if ( ! $chat ) {
+		return '';
+	}
+	$text = '';
+	foreach ( flxai_task_run_messages( $chat, $run ) as $m ) {
+		if ( 'assistant' === ( $m['role'] ?? '' ) && is_string( $m['content'] ?? null ) && '' !== trim( $m['content'] ) ) {
+			$text = trim( $m['content'] );
+		}
+	}
+	return $text;
+}
 
 /* ---------- Sohbet bağlamı ---------- */
 
