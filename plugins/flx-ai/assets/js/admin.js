@@ -280,6 +280,19 @@
 		}
 		sel.addEventListener('change', apply);
 		apply();
+		var nt = f.querySelector('[name="notify"]'), ch = f.querySelector('[data-for-notify]');
+		if (nt && ch) {
+			var applyN = function () { ch.hidden = nt.value === 'none'; };
+			nt.addEventListener('change', applyN);
+			applyN();
+		}
+		var wa = f.querySelector('[name="notify_wa"]'), num = f.querySelector('[name="notify_whatsapp"]');
+		if (wa && num) {
+			var box = num.closest('.flx-ph') || num;
+			var applyW = function () { box.hidden = !wa.checked; };
+			wa.addEventListener('change', applyW);
+			applyW();
+		}
 	}
 
 	/* Görev geçmişi: cevaplar AI sohbetindeki gibi Markdown (güvenli, küçük). */

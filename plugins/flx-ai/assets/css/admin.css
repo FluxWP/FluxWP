@@ -299,3 +299,36 @@ html.flxa-dark .flxai-chip.is-on { color: #0d0e13; }
 	.flxai-tl-user { max-width: 100%; }
 	.flxai-run-when { min-width: 0; }
 }
+
+/* 0.12.0: skill'ler, bildirim, onay kuyruğu */
+.flxai-pill.is-new { background: var(--a-brand); color: #fff; }
+.flxai-skill-slug { font-size: 11.5px; padding: 1px 6px; border-radius: 6px; background: var(--a-surface-2); color: var(--a-muted); }
+.flxai-skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.flxai-skill { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid var(--a-line); border-radius: 12px; background: var(--a-surface); }
+.flxai-skill.is-off { opacity: .65; }
+.flxai-skill-top { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+.flxai-skill .flxai-skill-slug { align-self: flex-start; }
+.flxai-skill .flxai-desc { margin: 0; flex: 1; }
+.flxai-skill-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.flxai-skill-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.flxai-notify-ch { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.flxai-notify-ch .flxai-check { display: flex; align-items: center; gap: 6px; }
+.flxai-notify-ch #flxai-task-wa, .flxai-notify-ch .flx-ph { max-width: 320px; }
+.flxai-appr-list { display: flex; flex-direction: column; gap: 12px; max-width: 980px; }
+.flxai-appr { padding: 16px 18px; }
+.flxai-appr-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+.flxai-appr-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.flxai-appr-title code { font-size: 11.5px; font-weight: 400; }
+.flxai-appr-note { margin: 6px 0 10px; padding: 10px 12px; border-left: 3px solid var(--a-brand); background: var(--a-surface-2); border-radius: 0 8px 8px 0; }
+.flxai-appr-note > :first-child { margin-top: 0; } .flxai-appr-note > :last-child { margin-bottom: 0; }
+.flxai-tl-pre { margin: 4px 0 12px; padding: 10px; border-radius: 8px; background: var(--a-surface-2); border: 1px solid var(--a-line); max-height: 280px; overflow: auto; font-size: 11.5px; white-space: pre-wrap; word-break: break-word; }
+.flxai-appr-acts { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; }
+.flxai-appr-edit { flex-basis: 100%; }
+.flxai-appr-edit summary { cursor: pointer; color: var(--a-brand); padding: 4px 0; }
+.flxai-appr-edit textarea { margin: 6px 0; font-size: 12px; }
+.flxai-appr-empty { max-width: 980px; }
+@media screen and (max-width: 782px) {
+	.flxai-appr-head { flex-direction: column; }
+	.flxai-appr-acts .button { min-height: 40px; }
+	.flxai-skill-grid { grid-template-columns: minmax(0, 1fr); }
+}

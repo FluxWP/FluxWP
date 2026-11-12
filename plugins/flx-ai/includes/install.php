@@ -1,7 +1,7 @@
 <?php
 /**
  * Tablolar: flxai_log (her model ve araç çağrısı), flxai_chats (ortak sohbetler), flxai_media (görsel/video işleri),
- * flxai_tasks (zamanlanmış görevler).
+ * flxai_tasks (zamanlanmış görevler), flxai_skills (skill'ler, 0.12.0).
  *
  * @package FLX_AI
  */
@@ -22,6 +22,25 @@ function flxai_install() {
 	$bdy = flxai_table( 'log_body' );
 	$med = flxai_table( 'media' );
 	$tsk = flxai_table( 'tasks' );
+	$skl = flxai_table( 'skills' );
+	dbDelta(
+		"CREATE TABLE {$skl} (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			slug varchar(60) NOT NULL DEFAULT '',
+			name varchar(190) NOT NULL DEFAULT '',
+			description varchar(500) NOT NULL DEFAULT '',
+			body longtext NOT NULL,
+			tools text NOT NULL,
+			example text NOT NULL,
+			status varchar(20) NOT NULL DEFAULT 'active',
+			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			version int(10) unsigned NOT NULL DEFAULT 1,
+			created int(10) unsigned NOT NULL DEFAULT 0,
+			updated int(10) unsigned NOT NULL DEFAULT 0,
+			PRIMARY KEY  (id),
+			UNIQUE KEY slug (slug)
+		) {$cs};"
+	);
 	dbDelta(
 		"CREATE TABLE {$tsk} (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,

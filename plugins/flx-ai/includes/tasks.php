@@ -224,6 +224,19 @@ function flxai_task_save( array $data, $id = 0, $user_id = 0 ) {
 	if ( array_key_exists( 'bot', $data ) ) {
 		$row['bot'] = sanitize_key( (string) $data['bot'] );
 	}
+	$meta = $old ? $old['meta'] : array();
+	if ( array_key_exists( 'skill', $data ) ) {
+		$sk = flxai_skill_slug( (string) $data['skill'] );
+		if ( '' !== $sk && ! flxai_skill_get( $sk ) ) {
+			/* translators: %s: skill name */
+			return new WP_Error( 'flxai_task_skill', sprintf( __( 'Skill not found: %s', 'flx-ai' ), $sk ), array( 'status' => 400 ) );
+		}
+		$meta['skill'] = $sk;
+	}
+	if ( isset( $data['notify'] ) && is_array( $data['notify'] ) ) {
+		$meta['notify'] = flxai_task_notify_clean( $data['notify'] + (array) ( $meta['notify'] ?? array() ) );
+	}
+	$row['meta'] = wp_json_encode( $meta ? $meta : new stdClass(), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES );
 	$row['updated'] = time();
 	if ( $old ) {
 		$wpdb->update( flxai_table( 'tasks' ), $row, array( 'id' => (int) $old['id'] ) ); // phpcs:ignore
@@ -239,7 +252,6 @@ function flxai_task_save( array $data, $id = 0, $user_id = 0 ) {
 			'created'    => time(),
 			'last_state' => '',
 			'last_error' => '',
-			'meta'       => '{}',
 			'model'      => '',
 			'bot'        => '',
 		);
@@ -297,6 +309,8 @@ function flxai_task_public( array $t ) {
 		'runs'           => $t['runs'],
 		'chat_id'        => $t['chat_id'],
 		'owner'          => $owner ? $owner->display_name : '',
+		'skill'          => (string) ( $t['meta']['skill'] ?? '' ),
+		'notify'         => flxai_task_notify_cfg( $t ),
 	);
 }
 
@@ -397,7 +411,9 @@ function flxai_task_run( $id, $force = false ) {
 			$chat['messages'][ $last ]['_task'] = array(
 				'id'    => (int) $task['id'],
 				'title' => (string) $task['title'],
+				'skill' => (string) ( $meta['skill'] ?? '' ),
 			);
+			unset( $meta['notify_msg'] );
 			flxai_chat_save( $chat );
 			$meta['run_start'] = time();
 			$meta['run_from']  = $last; // Bu çalışmanın sohbetteki ilk mesajı (Geçmiş ekranı).
@@ -584,7 +600,22 @@ function flxai_task_for_tool( $id ) {
 }
 
 function flxai_task_tool_data( array $a ) {
-	$data = array_intersect_key( $a, array_flip( array( 'title', 'prompt', 'status', 'model' ) ) );
+	$data = array_intersect_key( $a, array_flip( array( 'title', 'prompt', 'status', 'model', 'skill' ) ) );
+	$n    = array();
+	if ( isset( $a['notify'] ) ) {
+		$n['mode'] = (string) $a['notify'];
+	}
+	if ( isset( $a['notify_channels'] ) ) {
+		$ch           = (array) $a['notify_channels'];
+		$n['email']    = in_array( 'email', $ch, true );
+		$n['panel']    = in_array( 'panel', $ch, true );
+		$n['whatsapp'] = in_array( 'whatsapp', $ch, true ) ? (string) ( $a['notify_whatsapp'] ?? '' ) : '';
+	} elseif ( isset( $a['notify_whatsapp'] ) ) {
+		$n['whatsapp'] = (string) $a['notify_whatsapp'];
+	}
+	if ( $n ) {
+		$data['notify'] = $n;
+	}
 	$s    = array_intersect_key( $a, array_flip( array( 'freq', 'time', 'days', 'day', 'every', 'at' ) ) );
 	if ( $s ) {
 		$data['schedule'] = $s;
@@ -631,6 +662,24 @@ function flxai_task_tool_schema( $with_id ) {
 		'status' => array(
 			'type' => 'string',
 			'enum' => array( 'active', 'paused' ),
+		),
+		'skill'  => array(
+			'type'        => 'string',
+			'description' => 'Görevin kullanacağı skill adı (flxai_skill_list); talimat her çalışmada skill\'in güncel haliyle birleşir. Boş = skill yok.',
+		),
+		'notify' => array(
+			'type'        => 'string',
+			'enum'        => array( 'none', 'important', 'always' ),
+			'description' => 'Görev bitince bildirim: none, important (yalnız önemli bir şey, onay bekleyen işlem ya da hata varsa), always (her çalışmada).',
+		),
+		'notify_channels' => array(
+			'type'        => 'array',
+			'items'       => array( 'type' => 'string', 'enum' => array( 'email', 'whatsapp', 'panel' ) ),
+			'description' => 'Bildirim kanalları: email (görev sahibinin e-postası), whatsapp (notify_whatsapp numarası), panel (yönetim panelinde rozet).',
+		),
+		'notify_whatsapp' => array(
+			'type'        => 'string',
+			'description' => 'WhatsApp bildirimi için numara, ülke koduyla (ör. 905321234567).',
 		),
 	);
 	$schema = array(
@@ -802,7 +851,8 @@ add_filter(
 		}
 		return '[Zamanlanmış görev "' . mb_substr( (string) ( $m['_task']['title'] ?? '' ), 0, 120 ) . '" kendiliğinden çalıştı; kullanıcı şu an başında değil, soru sorma. '
 			. 'Gereken bilgiyi araçlarla topla ve sonucu kısa, başlıklı bir rapor olarak yaz. Değişiklik yapan işlemler kullanıcının onayına düşer: '
-			. "gerekiyorsa taslak olarak hazırla ve ne onaylanacağını raporda belirt.]\n" . $text;
+			. 'gerekiyorsa taslak olarak hazırla ve ne onaylanacağını raporda belirt.'
+			. flxai_task_notify_hint( (int) ( $m['_task']['id'] ?? 0 ) ) . "]\n" . $text;
 	},
 	10,
 	2

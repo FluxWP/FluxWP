@@ -370,30 +370,40 @@ function flxai_agent_decide( array $chat, array $decisions ) {
 	if ( ! flxai_agent_lock( $chat['id'] ) ) {
 		return array( 'state' => 'busy', 'chat' => $chat );
 	}
-	$ctx = array( 'user_id' => (int) $chat['user_id'], 'chat_id' => (int) $chat['id'], 'source' => 'flx-ai', 'purpose' => 'chat' );
 	foreach ( flxai_chat_tool_calls( $chat, $chat['state']['pending'] ) as $c ) {
-		$id = (string) $c['id'];
-		$d  = $decisions[ $id ] ?? '';
-		if ( 'approve' === $d || true === $d ) {
-			flxai_agent_tool_result( $chat, $c, flxai_run_tool( (string) $c['function']['name'], json_decode( (string) $c['function']['arguments'], true ), $ctx ) );
-		} else {
-			$chat['messages'][] = array(
-				'role'         => 'tool',
-				'tool_call_id' => $id,
-				'content'      => wp_json_encode( array( 'error' => 'Kullanıcı bu işlemi reddetti; yapılmadı.' ), JSON_UNESCAPED_UNICODE ),
-				'_name'        => (string) $c['function']['name'],
-				'_ok'          => false,
-				'_rejected'    => true,
-				'_ms'          => 0,
-			);
-		}
+		$d = $decisions[ (string) $c['id'] ] ?? '';
+		flxai_agent_decide_call( $chat, $c, 'approve' === $d || true === $d );
 	}
 	$chat['state']['pending'] = array();
 	$chat['status']           = 'running';
 	flxai_chat_save( $chat );
 	flxai_agent_unlock( $chat['id'] );
+	/**
+	 * Onay kararları uygulandı (sohbet ya da onay kuyruğu).
+	 *
+	 * @param array $chat Sohbet.
+	 */
+	do_action( 'flxai_agent_decided', $chat );
 	// Model ayrı (akışlı) adımda çağrılır.
 	return array( 'state' => 'continue', 'chat' => $chat );
+}
+
+/** Tek bir bekleyen araç çağrısını çalıştırır ya da "reddedildi" sonucu yazar. */
+function flxai_agent_decide_call( array &$chat, array $c, $approve ) {
+	if ( $approve ) {
+		$ctx = array( 'user_id' => (int) $chat['user_id'], 'chat_id' => (int) $chat['id'], 'source' => 'flx-ai', 'purpose' => 'chat' );
+		flxai_agent_tool_result( $chat, $c, flxai_run_tool( (string) $c['function']['name'], json_decode( (string) $c['function']['arguments'], true ), $ctx ) );
+		return;
+	}
+	$chat['messages'][] = array(
+		'role'         => 'tool',
+		'tool_call_id' => (string) $c['id'],
+		'content'      => wp_json_encode( array( 'error' => 'Kullanıcı bu işlemi reddetti; yapılmadı.' ), JSON_UNESCAPED_UNICODE ),
+		'_name'        => (string) $c['function']['name'],
+		'_ok'          => false,
+		'_rejected'    => true,
+		'_ms'          => 0,
+	);
 }
 
 /** Turu durdurur. */

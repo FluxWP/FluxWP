@@ -120,6 +120,10 @@ foreach ( $x['widgets'] as $w ) {
 | `flxai_tasks_max_per_user` | Kullanıcı başına en fazla görev (varsayılan 50). |
 | `flxai_task_ran` | Olay `( $task_id, $state )`: görevin bir adımı bitti (`ok`, `approval`, `running`, `error`, `waiting`). |
 | `flxai_task_history_max` | Görev başına saklanan çalışma geçmişi sayısı (varsayılan 50). |
+| `flxai_skills` | Hazır skill'ler (bkz. Skill'ler). |
+| `flxai_skills_prompt_max` | Sistem metnine eklenen en fazla skill sayısı (40). |
+| `flxai_task_notified` | Olay: görev bildirimi gönderildi `( $task, $state, $text, $sent )`. |
+| `flxai_agent_decided` | Olay: onay kararları uygulandı `( $chat )`. |
 
 ## Sohbet aracı kaydı (`flxai_tools`)
 ```php
@@ -349,6 +353,34 @@ Tetikleme: `flxai_tasks_tick` (WP-Cron, `flxai_5min`) + `shutdown`'da zamanı ge
 Araçlar (`flx_mcp_tools` ile, sohbet + MCP): `flxai_task_list` (okur), `flxai_task_create`, `flxai_task_update`, `flxai_task_delete`, `flxai_task_run` (onay ister). Yetki `read` + AI sohbeti erişimi; kullanıcı yalnız kendi görevini, yönetici hepsini yönetir. Başka eklentiler görev açmak için `flxai_task_save()` çağırır; bot/ajan katmanı (Faz 3) `bot` sütununu kullanacak.
 
 Çalışma geçmişi: `meta.history` (en yeni başta, `flxai_task_history_max` kadar): `ts`, `state`, `ms`, `cost`, `chat`, `from`/`to` (sohbet mesaj aralığı), `error`. Ekran `admin.php?page=flx-ai-tasks&history=ID` bu aralıktaki mesajları (araç girdi/sonuç, düşünme, yanıt) gösterir; onaydan sonra gelen devam mesajları da aynı çalışmaya dahildir.
+
+## Skill'ler (0.12.0)
+Tablo `{prefix}flxai_skills` (slug benzersiz). Kaynaklar: `flxai_skills` filtresi (eklentilerin hazır skill'leri, kodda) + tablo (sitede oluşturulanlar ve hazır skill'lerin sitede değiştirilmiş kopyaları; boş ad/açıklama = hazır skill'in çevrilmiş metni).
+
+```php
+add_filter( 'flxai_skills', function ( $skills ) {
+	$skills['bagisci-incelemesi'] = array(
+		'name'        => __( 'Bağışçı incelemesi', 'flx-donate' ),
+		'description' => __( '3 aydır bağış yapmayanları bulur, kimi aramalı önerir.', 'flx-donate' ),
+		'body'        => "# Bağışçı incelemesi\n1. …",   // Markdown, modele talimat
+		'tools'       => array( 'flxb_donations_search' ), // ipucu, kısıt değil
+		'example'     => '…',
+		'source'      => 'Flux Donate',
+	);
+	return $skills;
+} );
+```
+
+Fonksiyonlar: `flxai_skills_all( $active_only )` (slug => skill; ek alanlar `bundled`, `custom`, `changed`), `flxai_skill_get( $slug )`, `flxai_skill_save( $data, $old_slug )` → skill | WP_Error, `flxai_skill_delete( $slug )` (hazır skill varsayılana döner), `flxai_skill_to_md()` / `flxai_skill_from_md()` (SKILL.md: YAML ön bölüm `name` = slug, `title`, `description`, `tools`, `version`; gövde Markdown; `## Example output` sonrası örnek çıktı), `flxai_skill_prompt( $skill )`.
+
+Sohbet: etkin skill'lerin listesi sistem metnine eklenir (`flxai_skills_prompt_max`, varsayılan 40); model `flxai_skill_get` ile okur. Kullanıcı mesajı `/slug` ile başlarsa ya da görev skill'e bağlıysa (`_task.skill`) talimat `flxai_agent_user_text` ile mesaja eklenir; kayıtlı mesaj değişmez. Araçlar: `flxai_skill_list`, `flxai_skill_get` (okur, `read`), `flxai_skill_save`, `flxai_skill_delete` (onaylı, `manage_options`).
+
+## Görev bildirimleri ve onay kuyruğu (0.12.0)
+Görev `meta.skill` (slug) ve `meta.notify` (`mode` none|important|always, `email` bool, `whatsapp` numara, `panel` bool) taşır; `flxai_task_save()` `skill` ve `notify` alanlarını alır, görev araçlarında `skill`, `notify`, `notify_channels`, `notify_whatsapp`.
+
+"important": çalışmada model `flxai_task_notify` (yalnız sohbet aracı, `flxai_tools`) çağırdıysa, durum `approval` ya da `error` ise. Gönderim `flxai_task_ran` (öncelik 20): e-posta `flxi_send_email` şablonu `flx-ai/task_report` (değişkenler `gorev`, `ozet`, `ozet_html`, `durum`, `link`; yoksa `wp_mail`), WhatsApp `flxi_send_message( 'whatsapp', … , [ 'source' => 'flx-ai' ] )`, panel kullanıcı meta `flxai_task_unread` (task_id => zaman; Geçmiş açılınca silinir, `flxai_tasks_unread()`). Kanallar geçmiş kaydına `notified` olarak yazılır. Olay: `flxai_task_notified( $task, $state, $text, $sent )`.
+
+Onay kuyruğu: `flxai_approvals_count( $user_id )`, `flxai_approvals_list( $user_id )` (kullanıcının `approval` durumundaki sohbetlerinin bekleyen araç çağrıları), `flxai_approval_decide( $chat_id, $call_id, $approve, $args = null )` (tek işlem; `$args` verilirse girdi değişir; sohbette başka bekleyen kalmadıysa model bir adım devam eder). Olay `flxai_agent_decided( $chat )` (sohbetten ya da kuyruktan karar sonrası). Ekran `admin.php?page=flx-ai-approvals`.
 
 ## Sistem kontrolü
 `flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`, `flxai.tasks`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).

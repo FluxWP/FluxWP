@@ -1818,3 +1818,270 @@ msgstr ""
 
 msgid "Tools: %s"
 msgstr ""
+
+msgid "\"Important\": the assistant decides there is something you should know now, an action waits for your approval, or the task failed."
+msgstr ""
+
+msgid "%s actions are waiting for your approval."
+msgstr ""
+
+msgid "A skill named \"%s\" already exists."
+msgstr ""
+
+msgid "AI task report"
+msgstr ""
+
+msgid "AI task: %s"
+msgstr ""
+
+msgid "AI task: {gorev}"
+msgstr ""
+
+msgid "Across all your chats and tasks"
+msgstr ""
+
+msgid "Actions the assistant prepared in your chats and scheduled tasks. Nothing changes on the site until you approve. You can edit the input before approving."
+msgstr ""
+
+msgid "After every run"
+msgstr ""
+
+msgid "An action is waiting for your approval."
+msgstr ""
+
+msgid "Approve with changes"
+msgstr ""
+
+msgid "Approved and done. The assistant's reply is in the chat."
+msgstr ""
+
+msgid "Approved. The assistant is still working; open the chat to follow."
+msgstr ""
+
+msgid "By WhatsApp"
+msgstr ""
+
+msgid "By e-mail (%s)"
+msgstr ""
+
+msgid "Change the values (JSON) and approve; the action runs with your version."
+msgstr ""
+
+msgid "Checks system checks, speed and SEO audit results; reports only what changed or needs action."
+msgstr ""
+
+msgid "Comma separated tool names (see Tools). A hint for the assistant, not a restriction."
+msgstr ""
+
+msgid "Create or update a skill"
+msgstr ""
+
+msgid "Daily briefing"
+msgstr ""
+
+msgid "Delete a skill"
+msgstr ""
+
+msgid "Delete the skill \"%s\"? Tasks that use it will run without it."
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Donor review"
+msgstr ""
+
+msgid "Edit and approve"
+msgstr ""
+
+msgid "Edit skill"
+msgstr ""
+
+msgid "Edited"
+msgstr ""
+
+msgid "Example output"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Give the skill a name."
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import SKILL.md"
+msgstr ""
+
+msgid "In the admin panel (badge on the menu)"
+msgstr ""
+
+msgid "List skills"
+msgstr ""
+
+msgid "Lowercase letters, numbers and dashes. Used in chat as /short-name and by tasks. Left empty, it is made from the name."
+msgstr ""
+
+msgid "Markdown. Step by step: what to look at, which tools to use, how the result should look."
+msgstr ""
+
+msgid "Named instruction packs the assistant follows: a daily briefing, a donor review, an ad draft. Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version."
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
+msgid "New skill"
+msgstr ""
+
+msgid "Nothing is waiting for approval."
+msgstr ""
+
+msgid "Notified: %s"
+msgstr ""
+
+msgid "Notify me"
+msgstr ""
+
+msgid "Notify the task owner"
+msgstr ""
+
+msgid "One sentence on when to use it. The assistant picks skills by this."
+msgstr ""
+
+msgid "Only when something important comes up"
+msgstr ""
+
+msgid "Open in chat"
+msgstr ""
+
+msgid "Open the report"
+msgstr ""
+
+msgid "Read a skill"
+msgstr ""
+
+msgid "Rejected; nothing was changed."
+msgstr ""
+
+msgid "Report link"
+msgstr ""
+
+msgid "Report summary"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Reset \"%s\" to the version its plugin ships? Your changes are lost."
+msgstr ""
+
+msgid "Review approvals"
+msgstr ""
+
+msgid "Sent to the task owner when a scheduled AI task has something to report."
+msgstr ""
+
+msgid "Short morning report: yesterday's donations and orders, unanswered messages, site issues and what needs you today."
+msgstr ""
+
+msgid "Short name"
+msgstr ""
+
+msgid "Site health check"
+msgstr ""
+
+msgid "Skill"
+msgstr ""
+
+msgid "Skill deleted."
+msgstr ""
+
+msgid "Skill imported."
+msgstr ""
+
+msgid "Skill not found."
+msgstr ""
+
+msgid "Skill not found: %s"
+msgstr ""
+
+msgid "Skill reset to the version its plugin ships."
+msgstr ""
+
+msgid "Skills"
+msgstr ""
+
+msgid "Suggested tools"
+msgstr ""
+
+msgid "Task name"
+msgstr ""
+
+msgid "Tasks: %s"
+msgstr ""
+
+msgid "The input is not valid JSON; nothing was run."
+msgstr ""
+
+msgid "The skill's instructions are added on every run, always in their latest version. The instructions above can stay short (e.g. \"only donations\")."
+msgstr ""
+
+msgid "The task could not finish: %s"
+msgstr ""
+
+msgid "This action is no longer waiting for approval."
+msgstr ""
+
+msgid "This does not look like a SKILL.md file (it must start with a --- header)."
+msgstr ""
+
+msgid "This site"
+msgstr ""
+
+msgid "This skill comes with %s. Your edits are kept on this site; \"Reset\" brings back the original."
+msgstr ""
+
+msgid "This tool only works while a scheduled task is running."
+msgstr ""
+
+msgid "Tip: start a chat message with /name to use a skill, e.g. \"/gunluk-brifing only donations\". Plugins can ship ready skills with the flxai_skills filter."
+msgstr ""
+
+msgid "Turn off"
+msgstr ""
+
+msgid "Upload a SKILL.md file or paste its content. A skill with the same name is updated."
+msgstr ""
+
+msgid "WhatsApp needs Flux Mail with a WhatsApp connection."
+msgstr ""
+
+msgid "When the assistant or a scheduled task wants to change something (create a draft, update a setting, send a message), it appears here."
+msgstr ""
+
+msgid "Write the skill instructions."
+msgstr ""
+
+msgid "Yesterday: 12 donations, 4,350 TL in total. 2 receipts are waiting for approval."
+msgstr ""
+
+msgid "e-mail"
+msgstr ""
+
+msgid "or paste"
+msgstr ""
+
+msgid "panel"
+msgstr ""
+
+msgid "v%s"
+msgstr ""

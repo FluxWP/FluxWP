@@ -10,9 +10,15 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'admin_menu', 'flxai_admin_menu' );
 
 function flxai_admin_menu() {
-	add_menu_page( 'Flux AI & MCP', 'Flux AI & MCP', 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
+	$waiting = current_user_can( 'manage_options' ) ? flxai_approvals_count() + count( flxai_tasks_unread() ) : 0;
+	add_menu_page( 'Flux AI & MCP', 'Flux AI & MCP' . ( $waiting ? ' <span class="awaiting-mod count-' . (int) $waiting . '"><span class="pending-count">' . esc_html( number_format_i18n( $waiting ) ) . '</span></span>' : '' ), 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
 	add_submenu_page( 'flx-ai', __( 'Overview', 'flx-ai' ), __( 'Overview', 'flx-ai' ), 'manage_options', 'flx-ai', 'flxai_page_overview' );
-	add_submenu_page( 'flx-ai', __( 'Scheduled tasks', 'flx-ai' ), __( 'Scheduled tasks', 'flx-ai' ), 'manage_options', 'flx-ai-tasks', 'flxai_page_tasks' );
+	$bubble = function ( $n ) {
+		return $n ? ' <span class="awaiting-mod count-' . (int) $n . '"><span class="pending-count">' . esc_html( number_format_i18n( $n ) ) . '</span></span>' : '';
+	};
+	add_submenu_page( 'flx-ai', __( 'Scheduled tasks', 'flx-ai' ), __( 'Scheduled tasks', 'flx-ai' ) . $bubble( count( flxai_tasks_unread() ) ), 'manage_options', 'flx-ai-tasks', 'flxai_page_tasks' );
+	add_submenu_page( 'flx-ai', __( 'Awaiting approval', 'flx-ai' ), __( 'Awaiting approval', 'flx-ai' ) . $bubble( flxai_approvals_count() ), 'manage_options', 'flx-ai-approvals', 'flxai_page_approvals' );
+	add_submenu_page( 'flx-ai', __( 'Skills', 'flx-ai' ), __( 'Skills', 'flx-ai' ), 'manage_options', 'flx-ai-skills', 'flxai_page_skills' );
 	add_submenu_page( 'flx-ai', __( 'Logs', 'flx-ai' ), __( 'Logs', 'flx-ai' ), 'manage_options', 'flx-ai-log', 'flxai_page_log' );
 	add_submenu_page( 'flx-ai', __( 'Connected systems', 'flx-ai' ), __( 'Connected systems', 'flx-ai' ), 'manage_options', 'flx-ai-systems', 'flxai_page_systems' );
 	add_submenu_page( 'flx-ai', __( 'Billing', 'flx-ai' ), __( 'Billing', 'flx-ai' ), 'manage_options', 'flx-ai-billing', 'flxai_page_billing' );
