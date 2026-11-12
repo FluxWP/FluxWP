@@ -4965,3 +4965,24 @@ msgstr "後から日付を変更: 同じリマインダーを更新"
 
 msgid "Monthly reminder turned into one-time"
 msgstr "毎月のリマインダーを1回限りに変更"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "有効な1回限りのリマインダーあり（設定直後）"
+
+msgid "Reminder stopped"
+msgstr "リマインダー停止"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "リアクションと返信に🙏なし"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "続き：「Kapat istemiyorum」でリマインダーをすぐ停止"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "続き：「vazgeçtim」でリマインダーを停止"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "続き：誤解の後の苦情ですぐ停止"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "別れのリアクションは👍か🤲、🙏は使わない"

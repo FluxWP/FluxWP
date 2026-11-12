@@ -4965,3 +4965,24 @@ msgstr "事后更改日期:更新同一条提醒"
 
 msgid "Monthly reminder turned into one-time"
 msgstr "每月提醒改为一次性"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "有一个刚设置的一次性提醒"
+
+msgid "Reminder stopped"
+msgstr "提醒已停止"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "反应和回复中没有🙏"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "续：“Kapat istemiyorum”立即停止提醒"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "续：“vazgeçtim”停止提醒"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "续：误解后被追问时立即关闭"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "告别反应为👍或🤲，绝不用🙏"

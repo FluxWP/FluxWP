@@ -3245,5 +3245,12 @@ return array(
   'Continuation: "you will remind me" sets the reminder at once' => 'Продолжение: «вы мне напомните» сразу создаёт напоминание',
   'Changes the day afterwards: same reminder updated' => 'Позже меняет день: обновляется то же напоминание',
   'Monthly reminder turned into one-time' => 'Ежемесячное напоминание становится одноразовым',
+  'Has an active one-time reminder (just set)' => 'Есть активное разовое напоминание (только что создано)',
+  'Reminder stopped' => 'Напоминание остановлено',
+  'No 🙏 in reactions or replies' => 'Нет 🙏 в реакциях и ответах',
+  'Continuation: "Kapat istemiyorum" stops the reminder at once' => 'Продолжение: «Kapat istemiyorum» сразу останавливает напоминание',
+  'Continuation: "vazgeçtim" stops the reminder' => 'Продолжение: «vazgeçtim» останавливает напоминание',
+  'Continuation: complaint after a misread closes at once' => 'Продолжение: после недопонимания жалоба сразу закрывает его',
+  'Goodbye reaction is 👍 or 🤲, never 🙏' => 'Реакция на прощание — 👍 или 🤲, никогда 🙏',
  ),
 );

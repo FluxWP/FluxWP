@@ -3245,5 +3245,12 @@ return array(
   'Continuation: "you will remind me" sets the reminder at once' => 'Devam: "hatırlatırsınız" denince hatırlatıcı hemen kurulur',
   'Changes the day afterwards: same reminder updated' => 'Günü sonradan değiştirir: aynı hatırlatıcı güncellenir',
   'Monthly reminder turned into one-time' => 'Aylık hatırlatıcı tek seferliğe çevrilir',
+  'Has an active one-time reminder (just set)' => 'Etkin tek seferlik hatırlatıcısı var (az önce kuruldu)',
+  'Reminder stopped' => 'Hatırlatıcı durduruldu',
+  'No 🙏 in reactions or replies' => 'Tepki ve cevaplarda 🙏 yok',
+  'Continuation: "Kapat istemiyorum" stops the reminder at once' => 'Devam: "Kapat istemiyorum" hatırlatıcıyı hemen durdurur',
+  'Continuation: "vazgeçtim" stops the reminder' => 'Devam: "vazgeçtim" hatırlatıcıyı durdurur',
+  'Continuation: complaint after a misread closes at once' => 'Devam: yanlış anlamadan sonra itiraz gelince hemen kapatır',
+  'Goodbye reaction is 👍 or 🤲, never 🙏' => 'Veda tepkisi 👍 ya da 🤲, asla 🙏',
  ),
 );

@@ -41,6 +41,8 @@ function flxc_bench_setups() {
 		// 1.42.0
 		'chat_closed'    => __( 'Chat already marked completed (goodbyes said)', 'flx-chat' ),
 		'sample_event'   => __( 'Site search returns a sample event with a location', 'flx-chat' ),
+		// 1.43.2
+		'rem_active'     => __( 'Has an active one-time reminder (just set)', 'flx-chat' ),
 	);
 }
 
@@ -66,6 +68,9 @@ function flxc_bench_state_keys() {
 		'quiet_end'     => array( __( 'No text reply to the last message', 'flx-chat' ), array( 'close_chat' ) ),
 		'rem_once'      => array( __( 'Reminder is one-time', 'flx-chat' ), array( 'reminder_set' ) ),
 		'rem_single'    => array( __( 'Exactly one reminder', 'flx-chat' ), array( 'reminder_set' ) ),
+		// 1.43.2: kısa "kapat" ile hatırlatıcı kapanır; 🙏 hiç kullanılmaz.
+		'rem_canceled'  => array( __( 'Reminder stopped', 'flx-chat' ), array( 'reminder_cancel' ) ),
+		'no_pray'       => array( __( 'No 🙏 in reactions or replies', 'flx-chat' ), array() ),
 	);
 }
 
@@ -768,6 +773,12 @@ function flxc_bench_setup_state( array $setup ) {
 	if ( in_array( 'sample_event', $setup, true ) ) {
 		$st['test_event'] = 1;
 	}
+	if ( in_array( 'rem_active', $setup, true ) && function_exists( 'flxc_rem_build' ) ) {
+		$r = flxc_rem_build( array( 'title' => 'Baba adına fidan bağışı', 'task' => 'Babası adına yapmak istediği fidan bağışını hatırlat', 'freq' => 'once' ) );
+		if ( ! is_wp_error( $r ) ) {
+			$st['rems'] = array( 901 => array_merge( $r, array( 'id' => 901, 'status' => 'active' ) ) );
+		}
+	}
 	return $st;
 }
 
@@ -976,6 +987,21 @@ function flxc_bench_state_has( $key, array $d ) {
 			);
 		case 'rem_single':
 			return 1 === count( (array) ( $st['rems'] ?? array() ) );
+		case 'rem_canceled':
+			$seed = flxc_bench_setup_state( (array) ( $d['sc']['setup'] ?? array() ) );
+			return count( (array) ( $st['rems'] ?? array() ) ) < count( (array) ( $seed['rems'] ?? array() ) );
+		case 'no_pray':
+			foreach ( (array) ( $st['reacts'] ?? array() ) as $e ) {
+				if ( false !== strpos( (string) $e, '🙏' ) ) {
+					return false;
+				}
+			}
+			foreach ( (array) $d['transcript'] as $m ) {
+				if ( 'assistant' === ( $m['role'] ?? '' ) && false !== strpos( (string) ( $m['content'] ?? '' ), '🙏' ) ) {
+					return false;
+				}
+			}
+			return true;
 		case 'closed':
 			return ! empty( $st['closed'] );
 		case 'reacted':
@@ -1012,7 +1038,7 @@ function flxc_bench_state_checks( array $want, array $d ) {
 			continue;
 		}
 		$label = ( $neg ? __( 'Must not', 'flx-chat' ) . ': ' : '' ) . $keys[ $k ][0];
-		if ( ! array_intersect( $keys[ $k ][1], array_keys( $have ) ) ) {
+		if ( $keys[ $k ][1] && ! array_intersect( $keys[ $k ][1], array_keys( $have ) ) ) {
 			$out[] = array( 'key' => 'state', 'pass' => true, 'detail' => $label . ' · ' . __( 'disabled on this site, not checked', 'flx-chat' ) );
 			continue;
 		}

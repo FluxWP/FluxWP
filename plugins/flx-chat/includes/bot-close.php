@@ -24,9 +24,38 @@ function flxc_bot_react_on() {
 	return (bool) flxc_setting( 'bot_reactions' );
 }
 
-/** Asistanın kullanabileceği tepkiler. */
+/**
+ * Asistanın kullanabileceği tepkiler. 1.43.2 (Ahmet): yalnız 👍 ve 🤲; yasaklı emojiler filtreyle de eklenemez.
+ */
 function flxc_bot_react_emojis() {
-	return array_values( (array) apply_filters( 'flxc_bot_react_emojis', array( '👍', '🤲', '🙏', '❤️', '🌱' ) ) );
+	$list = (array) apply_filters( 'flxc_bot_react_emojis', array( '👍', '🤲' ) );
+	return array_values( array_diff( array_map( 'strval', $list ), flxc_bot_banned_emojis() ) );
+}
+
+/**
+ * 1.43.2 (Ahmet): asistanın hiç kullanmayacağı emojiler (tepki de metin de). 🙏 (birleşik eller) her zaman listededir;
+ * filtre yalnız ekleyebilir.
+ */
+function flxc_bot_banned_emojis() {
+	return array_values( array_unique( array_merge( array( '🙏' ), (array) apply_filters( 'flxc_bot_banned_emojis', array() ) ) ) );
+}
+
+/**
+ * Asistanın metninden yasaklı emojileri atar (ten rengi ve varyasyon seçicisiyle birlikte). 🙏 dua anlamında
+ * kullanılmışsa yerine 🤲 konur, metin anlamsız kalmasın.
+ */
+function flxc_bot_strip_banned( $text ) {
+	$text = (string) $text;
+	foreach ( flxc_bot_banned_emojis() as $e ) {
+		if ( '' === $e || false === strpos( $text, $e ) ) {
+			continue;
+		}
+		$to   = '🙏' === $e ? '🤲' : '';
+		$text = (string) preg_replace( '/(?:' . preg_quote( $e, '/' ) . '[\x{1F3FB}-\x{1F3FF}]?\x{FE0F}?)+/u', $to, $text );
+	}
+	$text = (string) preg_replace( '/(🤲)(?:\s*🤲)+/u', '$1', $text );
+	$text = (string) preg_replace( '/[ \t]{2,}/u', ' ', $text );
+	return preg_replace( '/[ \t]+(\R|$)/u', '$1', $text );
 }
 
 /** Tamamlandı işareti bu kadar süre geçerli; sonrasında gelen teşekkür normal karşılanır. */
@@ -115,7 +144,7 @@ function flxc_bot_react_send( $chat, $emoji ) {
 /* ---------- Asistan araçları ---------- */
 
 function flxc_bot_close_tools( $f ) {
-	$emoji = array( 'type' => 'string', 'enum' => flxc_bot_react_emojis(), 'description' => '👍 tamam / anlaşıldı · 🤲 dua ve teşekkür (Allah razı olsun, inşallah, çok teşekkürler) · 🙏 rica / minnet · ❤️ sevgi, övgü · 🌱 fidan sevinci' );
+	$emoji = array( 'type' => 'string', 'enum' => flxc_bot_react_emojis(), 'description' => 'Yalnız iki tepki var: 👍 tamam / anlaşıldı / görüşürüz · 🤲 dua ve teşekkür (Allah razı olsun, inşallah, çok teşekkürler). 🙏 YOK, asla kullanma.' );
 	$list  = array(
 		$f(
 			'close_chat',
@@ -193,8 +222,9 @@ function flxc_bot_close_rule() {
 		'- Hitabı (ad + Bey/Hanım) her mesajda tekrarlama; konuşmanın başında ve arada bir yeter.',
 	);
 	if ( flxc_bot_react_on() ) {
-		$r[] = '- Tepki: kapanışta close_chat\'e reaction ver; "tamam / anlaştık" gibi kısa onaya 👍, duaya ve teşekküre ("Allah razı olsun", "inşallah", "çok teşekkürler") 🤲. Kapanış dışında react aracıyla da tepki bırakabilirsin; tepki cevabın yerine geçmez ve her mesaja bırakılmaz.';
+		$r[] = '- Tepki: kapanışta close_chat\'e reaction ver; "tamam / anlaştık / görüşürüz" gibi kısa onaya 👍, duaya ve teşekküre ("Allah razı olsun", "inşallah", "çok teşekkürler") 🤲. Başka tepki yok. Kapanış dışında react aracıyla da tepki bırakabilirsin; tepki cevabın yerine geçmez ve her mesaja bırakılmaz.';
 	}
+	$r[] = '- 🙏 (birleşik eller) emojisini ne tepkide ne metinde ASLA kullanma; dua ve teşekkürde 🤲 kullan.';
 	return implode( "\n", $r );
 }
 
