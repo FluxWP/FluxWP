@@ -24,7 +24,12 @@ function flxs_admin_menu() {
 	if ( flxs_can_dashboard() ) {
 		add_submenu_page( 'flxs', 'Dashboard', 'Dashboard', flxs_can_manage() ? 'flxs_manage' : 'flxs_dashboard', 'flxs-dashboard', 'flxs_page_dashboard', 0 );
 	}
-	add_submenu_page( 'flxs', 'Etkinlikler', 'Etkinlikler', 'flxs_manage', 'flxs-etkinlikler', 'flxs_page_events', 1 );
+	// 2.0.2: with Flux CRM the events live in CRM › Events; no Events item here (the old address redirects there).
+	if ( function_exists( 'flxcrm_events_url' ) ) {
+		add_submenu_page( 'options.php', 'Etkinlikler', 'Etkinlikler', 'flxs_manage', 'flxs-etkinlikler', '__return_null' );
+	} else {
+		add_submenu_page( 'flxs', 'Etkinlikler', 'Etkinlikler', 'flxs_manage', 'flxs-etkinlikler', 'flxs_page_events', 1 );
+	}
 	add_submenu_page( 'flxs', 'Yeni Sertifika', 'Yeni Sertifika', $cap_use, 'flxs-yeni', 'flxs_page_create' );
 	add_submenu_page( 'flxs', 'Kişiler', 'Kişiler', $cap_use, 'flxs-kisiler', 'flxs_page_people' );
 	add_submenu_page( 'flxs', 'Gönderim Kuyruğu', 'Gönderim Kuyruğu', $cap_use, 'flxs-kuyruk', 'flxs_page_queue' );

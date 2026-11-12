@@ -626,6 +626,80 @@ window.flxcrmBoot.push( function ( R ) {
  * Yeni bir sayfa CRM içeriği vermezse (başka eklentiye geçiş, hata) normal gezinmeye düşer.
  * Kapatmak için bağlantıya/forma data-flxcrm-hard.
  */
+/* 0.6.0 Etkinlik mesajı: kanal sayıları, e-posta konusu, zaman, medya seçici. */
+window.flxcrmBoot.push( function ( R ) {
+	'use strict';
+	flxcrmOnce( R, '[data-flxcrm-evmsg]' ).forEach( function ( f ) {
+		var counts = JSON.parse( f.dataset.counts || '{}' );
+		var t = JSON.parse( f.dataset.t || '{}' );
+		var btn = f.querySelector( '.flxcrm-evmsg__submit button' );
+		var tot = f.querySelector( '[data-total]' );
+		function sync() {
+			var kind = ( f.querySelector( '[name=kind]:checked' ) || {} ).value || 'info';
+			var sum = 0;
+			var mail = false;
+			f.querySelectorAll( '[name="channels[]"]' ).forEach( function ( c ) {
+				var n = ( counts[ kind ] || {} )[ c.value ] || 0;
+				var b = f.querySelector( '[data-count="' + c.value + '"]' );
+				if ( b ) {
+					b.textContent = n.toLocaleString();
+				}
+				if ( c.checked ) {
+					sum += n;
+					mail = mail || 'email' === c.value;
+				}
+			} );
+			f.querySelector( '[data-only=email]' ).hidden = ! mail;
+			tot.textContent = ( t.total || '%s' ).replace( '%s', sum.toLocaleString() );
+			var later = 'later' === ( f.querySelector( '[name=when]:checked' ) || {} ).value;
+			f.querySelector( '[name=send_at]' ).disabled = ! later;
+			btn.textContent = later ? btn.dataset.labelLater : btn.dataset.labelNow;
+			btn.disabled = ! sum;
+		}
+		f.addEventListener( 'change', sync );
+		sync();
+		var box = f.querySelector( '[data-flxcrm-evmedia]' );
+		var inp = box.querySelector( 'input' );
+		var prev = box.querySelector( '.flxcrm-evimg__prev' );
+		var clr = box.querySelector( '[data-clear]' );
+		var frame;
+		box.querySelector( '[data-pick]' ).addEventListener( 'click', function ( ev ) {
+			ev.preventDefault();
+			if ( ! window.wp || ! window.wp.media ) {
+				window.location.reload(); // opened without a page load: the media library loads with the page
+				return;
+			}
+			frame = frame || window.wp.media( { title: t.title, multiple: false, button: { text: t.button } } );
+			frame.off( 'select' ).on( 'select', function () {
+				var a = frame.state().get( 'selection' ).first().toJSON();
+				var img = 'image' === a.type ? ( ( a.sizes && ( a.sizes.medium || a.sizes.large ) ) || a ).url : '';
+				inp.value = a.id;
+				prev.textContent = '';
+				if ( img ) {
+					var i = document.createElement( 'img' );
+					i.src = img;
+					i.alt = '';
+					prev.appendChild( i );
+				} else {
+					var sp = document.createElement( 'span' );
+					sp.textContent = '📎 ' + ( a.filename || a.title || '' );
+					prev.appendChild( sp );
+				}
+				clr.hidden = false;
+			} );
+			frame.open();
+		} );
+		clr.addEventListener( 'click', function () {
+			inp.value = 0;
+			prev.textContent = '';
+			var sp = document.createElement( 'span' );
+			sp.textContent = t.none || '';
+			prev.appendChild( sp );
+			clr.hidden = true;
+		} );
+	} );
+} );
+
 ( function () {
 	'use strict';
 	if ( ! window.fetch || ! window.DOMParser || ! window.history || ! history.pushState ) {

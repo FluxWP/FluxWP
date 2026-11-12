@@ -79,7 +79,7 @@ function flxs_page_create() {
 							<option value="<?php echo (int) $flxs_e['id']; ?>"<?php disabled( 'closed' === $flxs_e['status'] && (int) $flxs_e['id'] !== $flxs_cur_ev ); ?>><?php echo esc_html( $flxs_e['name'] . ( 'closed' === $flxs_e['status'] ? ' (arşiv)' : '' ) ); ?></option>
 						<?php endforeach; ?>
 					</select>
-					<small><?php echo $flxs_events ? 'Fidanlar bu etkinlik için toplanır; Dashboard ve listede etkinliğe göre görülür.' : 'Açık etkinlik yok.' . ( flxs_can_manage() ? ' <a href="' . esc_url( admin_url( 'admin.php?page=flxs-etkinlikler&add=1' ) ) . '">Etkinlik oluştur</a>' : '' ); ?></small>
+					<small><?php echo $flxs_events ? 'Fidanlar bu etkinlik için toplanır; Dashboard ve listede etkinliğe göre görülür.' : 'Açık etkinlik yok.' . ( flxs_can_manage() ? ' <a href="' . esc_url( flxs_events_screen_url( array( 'add' => 1 ) ) ) . '">Etkinlik oluştur</a>' : '' ); ?></small>
 				</label>
 				<label class="flxs-ref">
 					<span>Referans personel</span>

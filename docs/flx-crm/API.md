@@ -236,3 +236,25 @@ $id = FLXCRM_Journeys::save( array(
 ) ); // int|WP_Error, status = draft
 FLXCRM_Journeys::set_status( $id, 'active' );
 ```
+
+## Etkinlik mesajı (0.6.0)
+
+CRM › Etkinlikler › etkinlik › "Etkinliğe mesaj": etkinliğin tüm kişilerine (`flx_event_people`) WhatsApp, e-posta ve/veya SMS; hemen ya da planlı (site saati). Kod `includes/class-flxcrm-event-messages.php` (`FLXCRM_Event_Messages`).
+
+- Gönderim kanal başına bir Flux Mail toplu gönderimi: `flxi_create_campaign( $data, $recipients )`. Kuyruk, WhatsApp mesajları arası bekleme, kara liste, abonelikten çıkma ve günlük e-posta sınırı Flux Mail'de uygulanır. `$data` ek anahtarları: `kind` (`info` | `marketing`), `ref` (`flxcrm_event:<id>`), WhatsApp'ta `media` (URL) + `file_name`.
+- Medya: Flux Mail kampanyada WhatsApp ekini destekliyorsa `flxi_campaign_features` filtresine `media` ekler; CRM buna bakar. Destek yoksa dosya bağlantısı metnin sonuna eklenir (SMS'te her zaman bağlantı). E-postada fotoğraf metnin üstüne gömülür, diğer dosyaya düğme.
+- Alıcı: `info` = etkinliğin o kanalda adresi olan herkesi (izin şartı yok, kara liste yine geçerli); `marketing` = yalnız o kanala izin verenler (`flxcrm_mail_requires_consent`), e-postada abonelikten çıkma bağlantısı.
+- Alıcı kaynakları: `flxcrm_event:<id>` (izinli; Flux Mail › Gönder'de açık etkinlikler ve son 60 günde kapananlar listelenir) ve `flxcrm_event_info:<id>` (izinsiz, yalnız bu ekran).
+- Geçmiş: `flxcrm_event_msgs` seçeneği (etkinlik başına son 50 gönderim, kanal → kampanya kimliği). Planlı gönderim başlamadan "Gönderimi iptal et" ile `flxi_cancel_campaign()`.
+- Eylem: `do_action( 'flxcrm_event_message_queued', $event_id, array( 'campaigns' => [ kanal => id ], 'counts' => [ kanal => n ], 'skipped' => [ kanal => neden ] ), $istek )`.
+
+```php
+FLXCRM_Event_Messages::send( 12, array(
+	'channels' => array( 'whatsapp', 'email' ),
+	'kind'     => 'info',
+	'subject'  => 'Katıldığınız için teşekkürler',
+	'text'     => 'Merhaba {ad}, bugün bizimle olduğunuz için teşekkür ederiz. 🌱',
+	'media_id' => 345,                 // isteğe bağlı ortam kimliği
+	'send_at'  => '2026-11-20T19:00',  // boş = hemen
+) ); // array|WP_Error
+```
