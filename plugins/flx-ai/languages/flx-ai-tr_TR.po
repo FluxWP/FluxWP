@@ -1785,3 +1785,36 @@ msgstr "Zamanlanmış görev"
 
 msgid "Scheduled task · %s"
 msgstr "Zamanlanmış görev · %s"
+
+msgid "History"
+msgstr "Geçmiş"
+
+msgid "Reasoning"
+msgstr "Düşünme"
+
+msgid "Not run"
+msgstr "Çalışmadı"
+
+msgid "History: %s"
+msgstr "Geçmiş: %s"
+
+msgid "Runs"
+msgstr "Çalışmalar"
+
+msgid "%s completed"
+msgstr "%s tamamlandı"
+
+msgid "Shown runs"
+msgstr "Listelenen çalışmalar"
+
+msgid "Continue in the AI chat"
+msgstr "AI sohbetinde devam et"
+
+msgid "The previous run still had an action waiting for approval, so this run was skipped."
+msgstr "Önceki çalışmada onay bekleyen bir işlem vardı, bu yüzden bu çalışma atlandı."
+
+msgid "No details were kept for this run."
+msgstr "Bu çalışmanın ayrıntısı saklanmadı."
+
+msgid "Tools: %s"
+msgstr "Araç: %s"

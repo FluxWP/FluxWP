@@ -594,6 +594,17 @@
     "hours": "hours",
     "Site time zone: %s.": "Site time zone: %s.",
     "Scheduled task": "Scheduled task",
-    "Scheduled task · %s": "Scheduled task · %s"
+    "Scheduled task · %s": "Scheduled task · %s",
+    "History": "History",
+    "Reasoning": "Reasoning",
+    "Not run": "Not run",
+    "History: %s": "History: %s",
+    "Runs": "Runs",
+    "%s completed": "%s completed",
+    "Shown runs": "Shown runs",
+    "Continue in the AI chat": "Continue in the AI chat",
+    "The previous run still had an action waiting for approval, so this run was skipped.": "The previous run still had an action waiting for approval, so this run was skipped.",
+    "No details were kept for this run.": "No details were kept for this run.",
+    "Tools: %s": "Tools: %s"
   }
 }

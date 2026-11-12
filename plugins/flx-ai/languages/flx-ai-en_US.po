@@ -1785,3 +1785,36 @@ msgstr "Scheduled task"
 
 msgid "Scheduled task · %s"
 msgstr "Scheduled task · %s"
+
+msgid "History"
+msgstr "History"
+
+msgid "Reasoning"
+msgstr "Reasoning"
+
+msgid "Not run"
+msgstr "Not run"
+
+msgid "History: %s"
+msgstr "History: %s"
+
+msgid "Runs"
+msgstr "Runs"
+
+msgid "%s completed"
+msgstr "%s completed"
+
+msgid "Shown runs"
+msgstr "Shown runs"
+
+msgid "Continue in the AI chat"
+msgstr "Continue in the AI chat"
+
+msgid "The previous run still had an action waiting for approval, so this run was skipped."
+msgstr "The previous run still had an action waiting for approval, so this run was skipped."
+
+msgid "No details were kept for this run."
+msgstr "No details were kept for this run."
+
+msgid "Tools: %s"
+msgstr "Tools: %s"

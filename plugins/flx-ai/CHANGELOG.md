@@ -6,6 +6,7 @@
 - Görev, sahibinin yetkileri ve aynı araçlarla çalışır; raporu görevin kendi sohbetine yazılır (mesajda "Zamanlanmış görev" etiketi). Değişiklik yapan işlemler onay bekler; önceki çalışmanın onayı beklerken yeni çalışma atlanır, taslak kaybolmaz.
 - Listede sonraki/son çalışma, son durum, kısa sonuç özeti ve "Raporu aç"; Şimdi çalıştır, Duraklat/Sürdür, Düzenle, Sil (ortak onay penceresi). Tüm görevleri tek düğmeyle kapatma.
 - Tetikleme: WP-Cron (5 dk; Docker worker'da gerçek cron) ve cron gelmezse sitedeki herhangi bir istekten sonra kısa arka plan isteği. Bir istek en fazla ~45 sn çalışır; uzun görev sonraki istekte sürer. Sistem kontrolünde "Zamanlanmış AI görevleri" satırı (15 dk'dan fazla gecikmede uyarı).
+- **Çalışma geçmişi**: her görevin "Geçmiş" sayfası, AI sohbetindeki gibi: talimat, çağrılan araçlar (girdi/sonuç), düşünme ve yanıt; durum, süre, maliyet, araç sayısı. Son 50 çalışma saklanır. "Raporu aç" buraya gelir, "AI sohbetinde devam et" ile sohbete geçilir.
 - `?flxai_chat=ID` adresi ortak sohbette o sohbeti açar.
 
 ## 0.10.9

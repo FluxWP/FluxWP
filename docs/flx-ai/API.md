@@ -119,6 +119,7 @@ foreach ( $x['widgets'] as $w ) {
 | `flxai_agent_user_text` | `( $text, $msg )` modele giden kullanıcı metni (kayıtlı mesaj değişmez). Zamanlanmış görev notu buradan eklenir. |
 | `flxai_tasks_max_per_user` | Kullanıcı başına en fazla görev (varsayılan 50). |
 | `flxai_task_ran` | Olay `( $task_id, $state )`: görevin bir adımı bitti (`ok`, `approval`, `running`, `error`, `waiting`). |
+| `flxai_task_history_max` | Görev başına saklanan çalışma geçmişi sayısı (varsayılan 50). |
 
 ## Sohbet aracı kaydı (`flxai_tools`)
 ```php
@@ -346,6 +347,8 @@ Fonksiyonlar: `flxai_task_save( $data, $id = 0, $user_id = 0 )` (title, prompt, 
 Tetikleme: `flxai_tasks_tick` (WP-Cron, `flxai_5min`) + `shutdown`'da zamanı geçen görev varsa (`flxai_tasks_next`, autoload) `admin-ajax.php?action=flxai_tasks_run` loopback'i (gizli `flxai_tasks_token` ile, `blocking => false`). Bir istek bir sohbet adımı (~45 sn) çalıştırır; sürüyorsa `last_state = running` ve sonraki istek devam eder. Ayar `tasks_enabled` (varsayılan 1; ekrandan kapatılır).
 
 Araçlar (`flx_mcp_tools` ile, sohbet + MCP): `flxai_task_list` (okur), `flxai_task_create`, `flxai_task_update`, `flxai_task_delete`, `flxai_task_run` (onay ister). Yetki `read` + AI sohbeti erişimi; kullanıcı yalnız kendi görevini, yönetici hepsini yönetir. Başka eklentiler görev açmak için `flxai_task_save()` çağırır; bot/ajan katmanı (Faz 3) `bot` sütununu kullanacak.
+
+Çalışma geçmişi: `meta.history` (en yeni başta, `flxai_task_history_max` kadar): `ts`, `state`, `ms`, `cost`, `chat`, `from`/`to` (sohbet mesaj aralığı), `error`. Ekran `admin.php?page=flx-ai-tasks&history=ID` bu aralıktaki mesajları (araç girdi/sonuç, düşünme, yanıt) gösterir; onaydan sonra gelen devam mesajları da aynı çalışmaya dahildir.
 
 ## Sistem kontrolü
 `flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`, `flxai.tasks`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).

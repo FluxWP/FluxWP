@@ -595,6 +595,17 @@
     "hours": "saatte bir",
     "Site time zone: %s.": "Site saat dilimi: %s.",
     "Scheduled task": "Zamanlanmış görev",
-    "Scheduled task · %s": "Zamanlanmış görev · %s"
+    "Scheduled task · %s": "Zamanlanmış görev · %s",
+    "History": "Geçmiş",
+    "Reasoning": "Düşünme",
+    "Not run": "Çalışmadı",
+    "History: %s": "Geçmiş: %s",
+    "Runs": "Çalışmalar",
+    "%s completed": "%s tamamlandı",
+    "Shown runs": "Listelenen çalışmalar",
+    "Continue in the AI chat": "AI sohbetinde devam et",
+    "The previous run still had an action waiting for approval, so this run was skipped.": "Önceki çalışmada onay bekleyen bir işlem vardı, bu yüzden bu çalışma atlandı.",
+    "No details were kept for this run.": "Bu çalışmanın ayrıntısı saklanmadı.",
+    "Tools: %s": "Araç: %s"
   }
 }

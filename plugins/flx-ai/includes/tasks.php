@@ -353,6 +353,7 @@ function flxai_task_run( $id, $force = false ) {
 	$state     = 'error';
 	$meta      = $task['meta'];
 	$patch     = array();
+	$chat      = null;
 	try {
 		wp_set_current_user( $task['user_id'] );
 		$started = microtime( true );
@@ -399,6 +400,7 @@ function flxai_task_run( $id, $force = false ) {
 			);
 			flxai_chat_save( $chat );
 			$meta['run_start'] = time();
+			$meta['run_from']  = $last; // Bu çalışmanın sohbetteki ilk mesajı (Geçmiş ekranı).
 		} elseif ( 'running' !== $chat['status'] ) {
 			$state = 'approval' === $chat['status'] ? 'approval' : 'ok';
 			return $state;
@@ -423,26 +425,36 @@ function flxai_task_run( $id, $force = false ) {
 		} else {
 			$patch['last_error'] = '';
 		}
-		if ( 'running' !== $state ) {
-			$meta['summary'] = flxai_task_summary( $chat );
-			$hist            = (array) ( $meta['history'] ?? array() );
-			array_unshift(
-				$hist,
-				array(
-					'ts'    => (int) ( $meta['run_start'] ?? time() ),
-					'state' => $state,
-					'ms'    => (int) ( $chat['state']['turn']['total_ms'] ?? round( ( microtime( true ) - $started ) * 1000 ) ),
-					'cost'  => (float) ( $chat['state']['turn']['cost'] ?? 0 ),
-				)
-			);
-			$meta['history'] = array_slice( $hist, 0, 20 );
-			$patch['runs']   = $task['runs'] + 1;
-			unset( $meta['run_start'] );
-		}
 	} catch ( Throwable $e ) {
 		$state               = 'error';
 		$patch['last_error'] = $e->getMessage();
 	} finally {
+		if ( 'running' !== $state ) {
+			// Çalışma bitti (ya da atlandı): geçmişe yazılır. from/to: sohbetteki mesaj aralığı.
+			$from = isset( $meta['run_from'] ) && 'waiting' !== $state ? (int) $meta['run_from'] : -1;
+			if ( $chat && $from >= 0 ) {
+				$meta['summary'] = flxai_task_summary( $chat );
+			}
+			$hist = (array) ( $meta['history'] ?? array() );
+			array_unshift(
+				$hist,
+				array(
+					'ts'    => (int) ( 'waiting' === $state ? time() : ( $meta['run_start'] ?? time() ) ),
+					'state' => $state,
+					'ms'    => $chat && $from >= 0 ? (int) ( $chat['state']['turn']['total_ms'] ?? round( ( microtime( true ) - (float) ( $chat['state']['turn']['started'] ?? microtime( true ) ) ) * 1000 ) ) : 0,
+					'cost'  => $chat && $from >= 0 ? (float) ( $chat['state']['turn']['cost'] ?? 0 ) : 0,
+					'chat'  => $chat ? (int) $chat['id'] : 0,
+					'from'  => $chat ? $from : -1,
+					'to'    => $chat && $from >= 0 ? count( $chat['messages'] ) : -1,
+					'error' => (string) ( $patch['last_error'] ?? '' ),
+				)
+			);
+			$meta['history'] = array_slice( $hist, 0, (int) apply_filters( 'flxai_task_history_max', 50 ) );
+			if ( 'waiting' !== $state ) {
+				$patch['runs'] = $task['runs'] + 1;
+			}
+			unset( $meta['run_start'], $meta['run_from'] );
+		}
 		$patch['last_state'] = $state;
 		$patch['meta']       = $meta;
 		flxai_task_patch( $task['id'], $patch );
