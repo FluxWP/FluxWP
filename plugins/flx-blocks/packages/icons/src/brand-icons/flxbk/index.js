@@ -1,9 +1,19 @@
-export default <svg width="20px" height="20px" viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg' fillRule='evenodd'
-					clipRule='evenodd' strokeLinejoin='round' strokeMiterlimit='1.414'>
-	<g fillRule='nonzero'>
-		<path d='M44.812,1.007l-41.624,45.986l0,-45.986l41.624,0Z' fill='#105c90'
-		/>
-		<path d='M44.812,46.993l-41.624,-45.986l0,45.986l41.624,0Z' fill='#179cd4'
-		/>
+// Flux Block Editor mark: gradient rounded square with the pencil-ruler glyph.
+export default <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px">
+	<defs>
+		<linearGradient id="flxbk-mark-g" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stopColor="#F472B6" />
+			<stop offset=".5" stopColor="#DB2777" />
+			<stop offset="1" stopColor="#831843" />
+		</linearGradient>
+	</defs>
+	<path d="M12 0C3.3 0 0 3.3 0 12s3.3 12 12 12 12-3.3 12-12S20.7 0 12 0Z" fill="url(#flxbk-mark-g)" />
+	<g transform="translate(6 6) scale(0.5)" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+		<path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13" />
+		<path d="m8 6 2-2" />
+		<path d="m18 16 2-2" />
+		<path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17" />
+		<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
+		<path d="m15 5 4 4" />
 	</g>
 </svg>;
