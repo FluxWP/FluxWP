@@ -4,6 +4,7 @@
 - Flux Mail IPTAL uyumu (Flux Mail 1.17.0+). Kişi yalnız IPTAL / BAŞLA yazarsa asistan, karşılama ve mesai dışı yanıtı cevap yazmaz; onayı Flux Mail gönderir. Komutun yanında soru da varsa ya da "bağışımı iptal etmek istiyorum" gibi bir cümleyse asistan normal cevap verir.
 - Flux Mail gönderimleri (kampanya, IPTAL onayı; kaynak `flx-mail`) asistanı susturmaz. Onay mesajının bildirimi Flux Mail kimliği kaydetmeden gelse de (2 dk içinde, metin aynıysa) telefondan yazılmış sayılmaz.
 - IPTAL yazmış kişiye hatırlatıcı gitmez (iş "atlandı" olur, hatırlatıcı silinmez; BAŞLA yazınca yeniden gider). Kişi kendisi yazarsa asistan cevap verir ama kendiliğinden kampanya / bağış çağrısı önermez.
+- `flxc_external_source` filtresi numara ve metni de alır (`$source, $wa_id, $phone, $body`). Flux Mail gönderimin yankısı kimlik kaydından önce gelse de mesajı tanır, kampanya mesajları da asistanı susturmaz. Eski 2 argümanlı filtreler çalışır.
 - Kişi bilgisinde "Tanıtım mesajları: Kapalı (kişi IPTAL yazdı)" satırı, Flux Mail IPTAL listesine bağlantıyla.
 - Flux Mail kurulu değilse ya da eski sürümse hiçbir şey değişmez.
 

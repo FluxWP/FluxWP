@@ -370,7 +370,7 @@ function flxc_ingest_message( $conn_id, array $d, $opts = array() ) {
 			}
 		}
 		$status = $status && 'pending' !== $status ? $status : 'sent';
-		$source = flxc_detect_external_source( $wa_id );
+		$source = flxc_detect_external_source( $wa_id, '' !== (string) ( $chat['phone'] ?? '' ) ? (string) $chat['phone'] : flxc_jid_phone( $jid ), (string) $p['body'] );
 	}
 
 	$meta = $p['meta'];
@@ -419,8 +419,11 @@ function flxc_ingest_message( $conn_id, array $d, $opts = array() ) {
 	return $id;
 }
 
-/** Bu mesaj Flux Certificates'dan mı gönderildi? */
-function flxc_detect_external_source( $wa_id ) {
+/**
+ * Bu mesaj Flux Certificates'dan mı gönderildi? Diğer paketler flxc_external_source ile kaynak verir.
+ * 1.44.0: filtre numara ve metni de alır (Flux Mail echo kimlikten önce gelirse numara + metinle tanır).
+ */
+function flxc_detect_external_source( $wa_id, $phone = '', $body = null ) {
 	$source = 'phone';
 	if ( function_exists( 'flxs_table' ) ) {
 		global $wpdb;
@@ -430,7 +433,7 @@ function flxc_detect_external_source( $wa_id ) {
 			$source = 'certificate';
 		}
 	}
-	return (string) apply_filters( 'flxc_external_source', $source, $wa_id );
+	return (string) apply_filters( 'flxc_external_source', $source, $wa_id, (string) $phone, $body );
 }
 
 function flxc_match_pending_outgoing( $chat_id, $body, $type ) {
