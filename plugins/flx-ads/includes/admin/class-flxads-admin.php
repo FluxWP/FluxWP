@@ -16,6 +16,7 @@ final class FLXADS_Admin {
 		add_action( 'admin_post_flxads_spend', array( __CLASS__, 'spend_action' ) );
 		add_action( 'admin_post_flxads_aud', array( __CLASS__, 'audience_action' ) );
 		add_action( 'admin_post_flxads_mgr', array( __CLASS__, 'mgr_action' ) );
+		add_action( 'admin_post_flxads_studio', array( __CLASS__, 'studio_action' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'assets' ) );
 		add_action( 'admin_head', array( __CLASS__, 'menu_icon' ) );
 	}
@@ -53,6 +54,7 @@ final class FLXADS_Admin {
 		$t = array(
 			'report'    => __( 'Report', 'flx-ads' ),
 			'campaigns' => __( 'Campaigns', 'flx-ads' ),
+			'studio'    => __( 'Studio', 'flx-ads' ),
 			'value'     => __( 'Donor value', 'flx-ads' ),
 			'spend'     => __( 'Ad spend', 'flx-ads' ),
 			'audiences' => __( 'Audiences', 'flx-ads' ),
@@ -114,6 +116,16 @@ final class FLXADS_Admin {
 				'aud_lookalike' => __( 'Lookalike audience created. Meta fills it within a few hours.', 'flx-ads' ),
 				'aud_sync'      => __( 'Audience updated.', 'flx-ads' ),
 				'aud_delete'    => __( 'Audience deleted.', 'flx-ads' ),
+			);
+			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( $t[ $m ] ) . '</p></div>';
+		} elseif ( 'studio_err' === $m ) {
+			echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( (string) get_transient( 'flxads_aud_err_' . get_current_user_id() ) ) . '</p></div>';
+		} elseif ( in_array( $m, array( 'studio_ai', 'studio_saved', 'studio_deleted', 'studio_sent' ), true ) ) {
+			$t = array(
+				'studio_ai'      => __( 'Flux AI wrote a draft. Read and edit it before sending it to Meta.', 'flx-ads' ),
+				'studio_saved'   => __( 'Draft saved.', 'flx-ads' ),
+				'studio_deleted' => __( 'Draft deleted.', 'flx-ads' ),
+				'studio_sent'    => __( 'Created in Meta, paused. Turn it on under Campaigns when you are ready.', 'flx-ads' ),
 			);
 			echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( $t[ $m ] ) . '</p></div>';
 		} elseif ( 'mgr_status' === $m || 'mgr_budget' === $m ) {
@@ -875,6 +887,255 @@ final class FLXADS_Admin {
 		exit;
 	}
 
+	/* ------------------------------------------------------------ Stüdyo (AI taslakları) */
+
+	private static function tab_studio() {
+		$man  = flxads_can( true );
+		$edit = isset( $_GET['edit'] ) ? sanitize_key( wp_unslash( $_GET['edit'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+		if ( '' !== $edit && $man ) {
+			self::studio_editor( 'new' === $edit ? null : FLXADS_Studio::get( $edit ) );
+			return;
+		}
+		echo '<p class="flxads-lead">' . esc_html__( 'Flux AI writes a campaign draft from your brief and this site\'s numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. "Send to Meta" creates everything paused; nothing is shown or spent until you turn it on under Campaigns.', 'flx-ads' ) . '</p>';
+		$miss = FLXADS_Studio::missing();
+		if ( $miss ) {
+			/* translators: %s: list */
+			echo '<section class="flxads-card flxads-pad"><p>' . esc_html( sprintf( __( 'You can write drafts now. To send them to Meta, add: %s.', 'flx-ads' ), implode( ', ', $miss ) ) ) . '</p>' . ( $man ? '<p><a class="button" href="' . esc_url( flxads_admin_url( 'settings' ) ) . '">' . esc_html__( 'Settings', 'flx-ads' ) . '</a></p>' : '' ) . '</section>';
+		}
+		if ( $man ) {
+			$ai = function_exists( 'flxai_ready' ) && flxai_ready( 'flx-ads' );
+			echo '<h2 class="flxads-h2">' . esc_html__( 'Write a draft with AI', 'flx-ads' ) . '</h2><section class="flxads-card flxads-pad">';
+			if ( ! $ai ) {
+				echo '<p class="flxads-muted">' . esc_html__( 'Flux AI is not ready. Install Flux AI & MCP and add a model key, or start from an empty draft.', 'flx-ads' ) . '</p>';
+			}
+			echo '<form class="flxads-builder flxads-brief" method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+			wp_nonce_field( 'flxads_studio' );
+			echo '<input type="hidden" name="action" value="flxads_studio"><input type="hidden" name="do" value="generate">';
+			echo '<label><span>' . esc_html__( 'Brief', 'flx-ads' ) . '</span><textarea name="brief" rows="4" required maxlength="2000" placeholder="' . esc_attr__( 'e.g. Sapling campaign for November; reach people like our donors in Istanbul and Ankara, leave out people who donated this month.', 'flx-ads' ) . '"></textarea></label>';
+			echo '<label><span>' . esc_html__( 'Page the ads open', 'flx-ads' ) . '</span><input type="url" name="link" placeholder="' . esc_attr( home_url( '/' ) ) . '"></label>';
+			echo '<label><span>' . esc_html__( 'Daily budget', 'flx-ads' ) . '</span><input type="number" name="daily_budget" min="1" step="1" required placeholder="500"></label>';
+			echo '<label><span>' . esc_html__( 'Goal', 'flx-ads' ) . '</span><select name="objective">';
+			foreach ( FLXADS_Studio::objectives() as $k => $l ) {
+				echo '<option value="' . esc_attr( $k ) . '">' . esc_html( $l ) . '</option>';
+			}
+			echo '</select></label>';
+			echo '<label><span>' . esc_html__( 'Start', 'flx-ads' ) . '</span><input type="date" name="start"></label>';
+			echo '<label><span>' . esc_html__( 'End', 'flx-ads' ) . '</span><input type="date" name="end"></label>';
+			echo '<p class="flxads-actions flxads-actions--start"><button class="button button-primary"' . ( $ai ? '' : ' disabled' ) . '>' . esc_html__( 'Write draft', 'flx-ads' ) . '</button> <a class="button" href="' . esc_url( flxads_admin_url( 'studio', array( 'edit' => 'new' ) ) ) . '">' . esc_html__( 'Empty draft', 'flx-ads' ) . '</a></p>';
+			echo '</form></section>';
+		}
+
+		$all = FLXADS_Studio::all();
+		$st  = FLXADS_Studio::statuses();
+		$ob  = FLXADS_Studio::objectives();
+		echo '<h2 class="flxads-h2">' . esc_html__( 'Drafts', 'flx-ads' ) . '</h2><div class="flxads-card"><table class="flxads-table"><thead><tr><th>' . esc_html__( 'Campaign', 'flx-ads' ) . '</th><th>' . esc_html__( 'Goal', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Daily budget', 'flx-ads' ) . '</th><th class="num">' . esc_html__( 'Ad sets / ads', 'flx-ads' ) . '</th><th>' . esc_html__( 'Updated', 'flx-ads' ) . '</th><th></th></tr></thead><tbody>';
+		if ( ! $all ) {
+			echo '<tr><td colspan="6" class="flxads-empty">' . esc_html__( 'No drafts yet.', 'flx-ads' ) . '</td></tr>';
+		}
+		$cur = FLXADS_Spend::meta_ready() ? FLXADS_Manager::currency() : FLXADS_Report::base_currency();
+		$url = esc_url( admin_url( 'admin-post.php' ) );
+		foreach ( $all as $d ) {
+			$tone = array( 'draft' => 'pending', 'sent' => 'sent', 'error' => 'failed' )[ $d['status'] ] ?? 'pending';
+			echo '<tr><td data-label="' . esc_attr__( 'Campaign', 'flx-ads' ) . '"><a class="flxads-mgr__name" href="' . esc_url( flxads_admin_url( 'studio', array( 'edit' => $d['id'] ) ) ) . '">' . esc_html( $d['name'] ) . '</a> <span class="flxads-pill flxads-pill--' . esc_attr( $tone ) . '">' . esc_html( $st[ $d['status'] ] ?? $d['status'] ) . '</span>' . ( 'ai' === $d['by'] ? ' <span class="flxads-pill">AI</span>' : '' ) . ( '' !== (string) $d['error'] ? '<small class="flxads-test flxads-test--bad">' . esc_html( $d['error'] ) . '</small>' : '' ) . '</td>';
+			echo '<td data-label="' . esc_attr__( 'Goal', 'flx-ads' ) . '">' . esc_html( $ob[ $d['objective'] ] ?? $d['objective'] ) . '</td>';
+			echo '<td class="num" data-label="' . esc_attr__( 'Daily budget', 'flx-ads' ) . '">' . esc_html( flxads_money( $d['daily_budget'], $cur ) ) . '</td>';
+			echo '<td class="num" data-label="' . esc_attr__( 'Ad sets / ads', 'flx-ads' ) . '">' . (int) count( $d['adsets'] ) . ' / ' . (int) count( $d['ads'] ) . '</td>';
+			echo '<td data-label="' . esc_attr__( 'Updated', 'flx-ads' ) . '">' . esc_html( flxads_ago( $d['updated'] ) ) . '</td><td><div class="flxads-actions">';
+			if ( 'sent' === $d['status'] && ! empty( $d['meta']['campaign'] ) ) {
+				echo '<a class="button button-small" href="' . esc_url( flxads_admin_url( 'campaigns', array( 'campaign' => $d['meta']['campaign'] ) ) ) . '">' . esc_html__( 'Open in Campaigns', 'flx-ads' ) . '</a>';
+			}
+			if ( $man ) {
+				foreach ( array( 'duplicate' => __( 'Duplicate', 'flx-ads' ) ) as $do => $l ) {
+					echo '<form method="post" action="' . $url . '">'; // phpcs:ignore WordPress.Security.EscapeOutput
+					wp_nonce_field( 'flxads_studio' );
+					echo '<input type="hidden" name="action" value="flxads_studio"><input type="hidden" name="do" value="' . esc_attr( $do ) . '"><input type="hidden" name="id" value="' . esc_attr( $d['id'] ) . '"><button class="button button-small">' . esc_html( $l ) . '</button></form>';
+				}
+				echo '<form method="post" action="' . $url . '" data-flx-confirm="' . esc_attr( 'sent' === $d['status'] ? __( 'Only the draft here is deleted. The paused campaign stays in Meta.', 'flx-ads' ) : __( 'The draft is deleted.', 'flx-ads' ) ) . '" data-flx-confirm-danger="1">'; // phpcs:ignore WordPress.Security.EscapeOutput
+				wp_nonce_field( 'flxads_studio' );
+				echo '<input type="hidden" name="action" value="flxads_studio"><input type="hidden" name="do" value="delete"><input type="hidden" name="id" value="' . esc_attr( $d['id'] ) . '"><button class="button button-small button-link-delete">' . esc_html__( 'Delete', 'flx-ads' ) . '</button></form>';
+			}
+			echo '</div></td></tr>';
+		}
+		echo '</tbody></table></div>';
+	}
+
+	private static function studio_adset_row( $i, array $s, array $auds ) {
+		$n = 's[adsets][' . $i . ']';
+		echo '<div class="flxads-card flxads-pad flxads-row" data-flxads-row="adsets"><button type="button" class="flxads-row__del" data-flxads-del aria-label="' . esc_attr__( 'Remove', 'flx-ads' ) . '">×</button><div class="flxads-builder">';
+		echo '<label><span>' . esc_html__( 'Ad set name', 'flx-ads' ) . '</span><input name="' . esc_attr( $n ) . '[name]" value="' . esc_attr( (string) ( $s['name'] ?? '' ) ) . '" maxlength="120"></label>';
+		echo '<label><span>' . esc_html__( 'Ages', 'flx-ads' ) . '</span><span class="flxads-inline"><input type="number" min="18" max="65" name="' . esc_attr( $n ) . '[age_min]" value="' . (int) ( $s['age_min'] ?? 18 ) . '"> – <input type="number" min="18" max="65" name="' . esc_attr( $n ) . '[age_max]" value="' . (int) ( $s['age_max'] ?? 65 ) . '"></span></label>';
+		echo '<label><span>' . esc_html__( 'Gender', 'flx-ads' ) . '</span><select name="' . esc_attr( $n ) . '[gender]">';
+		foreach ( array( 'all' => __( 'all genders', 'flx-ads' ), 'female' => __( 'women', 'flx-ads' ), 'male' => __( 'men', 'flx-ads' ) ) as $k => $l ) {
+			echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) ( $s['gender'] ?? 'all' ), $k, false ) . '>' . esc_html( $l ) . '</option>';
+		}
+		echo '</select></label>';
+		echo '<label><span>' . esc_html__( 'Countries (ISO, comma)', 'flx-ads' ) . '</span><input name="' . esc_attr( $n ) . '[countries]" value="' . esc_attr( implode( ', ', (array) ( $s['countries'] ?? array( 'TR' ) ) ) ) . '"></label>';
+		echo '<label><span>' . esc_html__( 'Budget share %', 'flx-ads' ) . '</span><input type="number" min="0" max="100" name="' . esc_attr( $n ) . '[share]" value="' . (int) ( $s['share'] ?? 0 ) . '"></label>';
+		if ( $auds ) {
+			foreach ( array( 'audiences' => __( 'Show to audiences', 'flx-ads' ), 'exclude' => __( 'Leave out audiences', 'flx-ads' ) ) as $k => $l ) {
+				echo '<fieldset class="flxads-auds"><legend>' . esc_html( $l ) . '</legend>';
+				foreach ( $auds as $a ) {
+					echo '<label class="flxads-check"><input type="checkbox" name="' . esc_attr( $n . '[' . $k . '][]' ) . '" value="' . esc_attr( $a['id'] ) . '"' . checked( in_array( $a['id'], (array) ( $s[ $k ] ?? array() ), true ), true, false ) . '> ' . esc_html( $a['name'] ) . '</label>';
+				}
+				echo '</fieldset>';
+			}
+		}
+		echo '</div></div>';
+	}
+
+	private static function studio_ad_row( $i, array $a ) {
+		$n = 's[ads][' . $i . ']';
+		echo '<div class="flxads-card flxads-pad flxads-row flxads-adrow" data-flxads-row="ads"><button type="button" class="flxads-row__del" data-flxads-del aria-label="' . esc_attr__( 'Remove', 'flx-ads' ) . '">×</button><div class="flxads-builder">';
+		echo '<label><span>' . esc_html__( 'Variant name', 'flx-ads' ) . '</span><input name="' . esc_attr( $n ) . '[name]" value="' . esc_attr( (string) ( $a['name'] ?? '' ) ) . '" maxlength="80"></label>';
+		echo '<label class="flxads-wide"><span>' . esc_html__( 'Primary text', 'flx-ads' ) . '</span><textarea rows="3" data-k="text" name="' . esc_attr( $n ) . '[text]" maxlength="2000">' . esc_textarea( (string) ( $a['text'] ?? '' ) ) . '</textarea></label>';
+		echo '<label><span>' . esc_html__( 'Headline', 'flx-ads' ) . '</span><input data-k="headline" name="' . esc_attr( $n ) . '[headline]" value="' . esc_attr( (string) ( $a['headline'] ?? '' ) ) . '" maxlength="100"></label>';
+		echo '<label><span>' . esc_html__( 'Description', 'flx-ads' ) . '</span><input data-k="description" name="' . esc_attr( $n ) . '[description]" value="' . esc_attr( (string) ( $a['description'] ?? '' ) ) . '" maxlength="120"></label>';
+		echo '<label><span>' . esc_html__( 'Button', 'flx-ads' ) . '</span><select name="' . esc_attr( $n ) . '[cta]">';
+		foreach ( FLXADS_Studio::ctas() as $k => $l ) {
+			echo '<option value="' . esc_attr( $k ) . '"' . selected( (string) ( $a['cta'] ?? 'DONATE_NOW' ), $k, false ) . '>' . esc_html( $l ) . '</option>';
+		}
+		echo '</select></label>';
+		echo '<label><span>' . esc_html__( 'Image address (optional)', 'flx-ads' ) . '</span><input type="url" data-k="image" name="' . esc_attr( $n ) . '[image]" value="' . esc_attr( (string) ( $a['image'] ?? '' ) ) . '" placeholder="https://…/image.jpg"></label>';
+		echo '</div>';
+		$img = (string) ( $a['image'] ?? '' );
+		echo '<div class="flxads-pv" data-flxads-pv aria-hidden="true"><p data-pv="text">' . esc_html( (string) ( $a['text'] ?? '' ) ) . '</p><div class="flxads-pv__img" data-pv="image"' . ( '' !== $img ? ' style="background-image:url(&quot;' . esc_url( $img ) . '&quot;)"' : '' ) . '></div><div class="flxads-pv__foot"><div><small>' . esc_html( wp_parse_url( home_url(), PHP_URL_HOST ) ) . '</small><strong data-pv="headline">' . esc_html( (string) ( $a['headline'] ?? '' ) ) . '</strong><small data-pv="description">' . esc_html( (string) ( $a['description'] ?? '' ) ) . '</small></div><span>' . esc_html( FLXADS_Studio::ctas()[ $a['cta'] ?? 'DONATE_NOW' ] ?? '' ) . '</span></div></div>';
+		echo '</div>';
+	}
+
+	private static function studio_editor( $d ) {
+		if ( null === $d && isset( $_GET['edit'] ) && 'new' !== $_GET['edit'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			echo '<section class="flxads-card flxads-pad"><p>' . esc_html__( 'Draft not found.', 'flx-ads' ) . '</p></section>';
+			return;
+		}
+		$d    = $d ? $d : array(
+			'id'           => '',
+			'status'       => 'draft',
+			'name'         => '',
+			'objective'    => 'OUTCOME_SALES',
+			'link'         => home_url( '/' ),
+			'daily_budget' => '',
+			'start'        => '',
+			'end'          => '',
+			'adsets'       => array( array( 'name' => '', 'age_min' => 25, 'age_max' => 65, 'gender' => 'all', 'countries' => array( 'TR' ), 'share' => 100 ) ),
+			'ads'          => array( array( 'cta' => 'DONATE_NOW' ) ),
+			'notes'        => '',
+			'brief'        => '',
+		);
+		/* Kaydetme hatası: yazılanlar kaybolmasın. */
+		$back = get_transient( 'flxads_studio_form_' . get_current_user_id() );
+		if ( is_array( $back ) && (string) $back['id'] === (string) $d['id'] ) {
+			delete_transient( 'flxads_studio_form_' . get_current_user_id() );
+			$f = (array) $back['s'];
+			foreach ( array( 'name', 'objective', 'link', 'daily_budget', 'start', 'end' ) as $k ) {
+				$d[ $k ] = sanitize_text_field( (string) ( $f[ $k ] ?? '' ) );
+			}
+			$d['adsets'] = array_values( array_map( static function ( $x ) { $x = (array) $x; $x['countries'] = explode( ',', (string) ( $x['countries'] ?? '' ) ); return $x; }, (array) ( $f['adsets'] ?? array() ) ) ) ?: $d['adsets'];
+			$d['ads']    = array_values( (array) ( $f['ads'] ?? array() ) ) ?: $d['ads'];
+		}
+		$sent = 'sent' === $d['status'];
+		$auds = array_values( FLXADS_Audiences::all() );
+		echo '<p><a href="' . esc_url( flxads_admin_url( 'studio' ) ) . '">← ' . esc_html__( 'All drafts', 'flx-ads' ) . '</a></p>';
+		if ( $sent ) {
+			echo '<section class="flxads-card flxads-pad"><p>' . esc_html__( 'This draft is in Meta as a paused campaign. Turn it on or change it under Campaigns; to try a new version, duplicate it.', 'flx-ads' ) . '</p><p><a class="button button-primary" href="' . esc_url( flxads_admin_url( 'campaigns', array( 'campaign' => $d['meta']['campaign'] ?? '' ) ) ) . '">' . esc_html__( 'Open in Campaigns', 'flx-ads' ) . '</a></p></section>';
+		}
+		if ( '' !== (string) ( $d['notes'] ?? '' ) ) {
+			echo '<section class="flxads-card flxads-pad flxads-note"><h3>' . esc_html__( 'Why this plan (AI)', 'flx-ads' ) . '</h3><p>' . nl2br( esc_html( $d['notes'] ) ) . '</p></section>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxads-studio"><fieldset' . ( $sent ? ' disabled' : '' ) . '>';
+		wp_nonce_field( 'flxads_studio' );
+		echo '<input type="hidden" name="action" value="flxads_studio"><input type="hidden" name="do" value="save"><input type="hidden" name="id" value="' . esc_attr( $d['id'] ) . '"><input type="hidden" name="s[notes]" value="' . esc_attr( (string) $d['notes'] ) . '"><input type="hidden" name="s[brief]" value="' . esc_attr( (string) $d['brief'] ) . '">';
+		echo '<h2 class="flxads-h2">' . esc_html__( 'Campaign', 'flx-ads' ) . '</h2><section class="flxads-card flxads-pad"><div class="flxads-builder">';
+		echo '<label><span>' . esc_html__( 'Name', 'flx-ads' ) . '</span><input name="s[name]" required maxlength="120" value="' . esc_attr( $d['name'] ) . '"></label>';
+		echo '<label><span>' . esc_html__( 'Goal', 'flx-ads' ) . '</span><select name="s[objective]">';
+		foreach ( FLXADS_Studio::objectives() as $k => $l ) {
+			echo '<option value="' . esc_attr( $k ) . '"' . selected( $d['objective'], $k, false ) . '>' . esc_html( $l ) . '</option>';
+		}
+		echo '</select></label>';
+		echo '<label><span>' . esc_html__( 'Page the ads open', 'flx-ads' ) . '</span><input type="url" name="s[link]" required value="' . esc_attr( $d['link'] ) . '"></label>';
+		echo '<label><span>' . esc_html__( 'Daily budget', 'flx-ads' ) . '</span><input type="number" name="s[daily_budget]" min="1" step="1" required value="' . esc_attr( (string) $d['daily_budget'] ) . '"></label>';
+		echo '<label><span>' . esc_html__( 'Start', 'flx-ads' ) . '</span><input type="date" name="s[start]" value="' . esc_attr( $d['start'] ) . '"></label>';
+		echo '<label><span>' . esc_html__( 'End', 'flx-ads' ) . '</span><input type="date" name="s[end]" value="' . esc_attr( $d['end'] ) . '"></label>';
+		echo '</div></section>';
+
+		echo '<h2 class="flxads-h2">' . esc_html__( 'Ad sets (who sees it)', 'flx-ads' ) . '</h2><div data-flxads-rows="adsets" data-max="6">';
+		foreach ( $d['adsets'] as $i => $s ) {
+			self::studio_adset_row( (string) $i, $s, $auds );
+		}
+		echo '</div><template data-flxads-tpl="adsets">';
+		self::studio_adset_row( '__i__', array( 'age_min' => 25, 'age_max' => 65, 'countries' => array( 'TR' ) ), $auds );
+		echo '</template><p><button type="button" class="button" data-flxads-add="adsets">+ ' . esc_html__( 'Add ad set', 'flx-ads' ) . '</button></p>';
+
+		echo '<h2 class="flxads-h2">' . esc_html__( 'Ads (text variants)', 'flx-ads' ) . '</h2><p class="flxads-muted">' . esc_html__( 'Each variant runs in every ad set, so Meta can find the text that works best.', 'flx-ads' ) . '</p><div data-flxads-rows="ads" data-max="6">';
+		foreach ( $d['ads'] as $i => $a ) {
+			self::studio_ad_row( (string) $i, $a );
+		}
+		echo '</div><template data-flxads-tpl="ads">';
+		self::studio_ad_row( '__i__', array( 'cta' => 'DONATE_NOW' ) );
+		echo '</template><p><button type="button" class="button" data-flxads-add="ads">+ ' . esc_html__( 'Add variant', 'flx-ads' ) . '</button></p>';
+		if ( ! $sent ) {
+			echo '<p class="flxads-actions flxads-actions--start"><button class="button button-primary">' . esc_html__( 'Save draft', 'flx-ads' ) . '</button> <a class="button" href="' . esc_url( flxads_admin_url( 'studio' ) ) . '">' . esc_html__( 'Cancel', 'flx-ads' ) . '</a></p>';
+		}
+		echo '</fieldset></form>';
+
+		if ( ! $sent && '' !== $d['id'] ) {
+			$miss = FLXADS_Studio::missing();
+			echo '<h2 class="flxads-h2">' . esc_html__( 'Send to Meta', 'flx-ads' ) . '</h2><section class="flxads-card flxads-pad">';
+			if ( $miss ) {
+				/* translators: %s: list */
+				echo '<p>' . esc_html( sprintf( __( 'Missing: %s.', 'flx-ads' ), implode( ', ', $miss ) ) ) . '</p>';
+			} else {
+				/* translators: 1: ad sets, 2: ads */
+				$msg = sprintf( __( 'A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns.', 'flx-ads' ), count( $d['adsets'] ), count( $d['adsets'] ) * count( $d['ads'] ) );
+				echo '<p class="flxads-muted">' . esc_html__( 'Save your edits first. Ads open the page with UTM tags, so donations show up in the report and under Campaigns.', 'flx-ads' ) . '</p>';
+				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm="' . esc_attr( $msg ) . '" data-flx-confirm-ok="' . esc_attr__( 'Create paused', 'flx-ads' ) . '">';
+				wp_nonce_field( 'flxads_studio' );
+				echo '<input type="hidden" name="action" value="flxads_studio"><input type="hidden" name="do" value="send"><input type="hidden" name="id" value="' . esc_attr( $d['id'] ) . '"><button class="button button-primary">' . esc_html__( 'Create in Meta (paused)', 'flx-ads' ) . '</button></form>';
+			}
+			echo '</section>';
+		}
+	}
+
+	public static function studio_action() {
+		if ( ! flxads_can( true ) ) {
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-ads' ) );
+		}
+		check_admin_referer( 'flxads_studio' );
+		$p    = wp_unslash( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$do   = sanitize_key( (string) ( $p['do'] ?? '' ) );
+		$id   = sanitize_key( (string) ( $p['id'] ?? '' ) );
+		$args = array();
+		if ( 'generate' === $do ) {
+			if ( function_exists( 'set_time_limit' ) ) {
+				@set_time_limit( 90 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+			}
+			$r = FLXADS_Studio::generate( array_intersect_key( (array) $p, array_flip( array( 'brief', 'link', 'daily_budget', 'objective', 'start', 'end' ) ) ) );
+			$args = is_wp_error( $r ) ? array() : array( 'edit' => $r, 'flxads_msg' => 'studio_ai' );
+		} elseif ( 'save' === $do ) {
+			$r    = FLXADS_Studio::save( (array) ( $p['s'] ?? array() ), $id );
+			if ( is_wp_error( $r ) ) {
+				set_transient( 'flxads_studio_form_' . get_current_user_id(), array( 'id' => $id, 's' => (array) ( $p['s'] ?? array() ) ), 300 );
+			}
+			$args = is_wp_error( $r ) ? array( 'edit' => '' !== $id ? $id : 'new' ) : array( 'edit' => $r, 'flxads_msg' => 'studio_saved' );
+		} elseif ( 'duplicate' === $do ) {
+			$r    = FLXADS_Studio::duplicate( $id );
+			$args = is_wp_error( $r ) ? array() : array( 'edit' => $r, 'flxads_msg' => 'studio_saved' );
+		} elseif ( 'delete' === $do ) {
+			$r    = FLXADS_Studio::delete( $id ) ? true : new WP_Error( 'flxads_draft', __( 'Draft not found.', 'flx-ads' ) );
+			$args = array( 'flxads_msg' => 'studio_deleted' );
+		} elseif ( 'send' === $do ) {
+			$r    = FLXADS_Studio::send( $id, 'panel' );
+			$args = is_wp_error( $r ) ? array( 'edit' => $id ) : array( 'edit' => $id, 'flxads_msg' => 'studio_sent' );
+		} else {
+			$r = new WP_Error( 'flxads_bad', __( 'Unknown action.', 'flx-ads' ) );
+		}
+		if ( is_wp_error( $r ) ) {
+			set_transient( 'flxads_aud_err_' . get_current_user_id(), $r->get_error_message(), 120 );
+			$args['flxads_msg'] = 'studio_err';
+		}
+		wp_safe_redirect( flxads_admin_url( 'studio', $args ) );
+		exit;
+	}
+
 	/* ------------------------------------------------------------ Gönderim kaydı */
 
 	private static function status_label( $s, $err = '' ) {
@@ -999,7 +1260,8 @@ final class FLXADS_Admin {
 				self::text_field( 'meta_test', __( 'Test event code (optional)', 'flx-ads' ), __( 'While testing only. Empty it after testing, or real donations are reported as test events.', 'flx-ads' ), 'TEST12345' );
 				echo '<h3 class="flxads-h3">' . esc_html__( 'Ad spend (for ROAS)', 'flx-ads' ) . '</h3>';
 				self::text_field( 'meta_account', __( 'Ad account ID', 'flx-ads' ), __( 'Ads Manager › account menu at the top left, the number under the account name (act_ is optional).', 'flx-ads' ), '1234567890' );
-				self::secret_field( 'meta_ads_token', __( 'Marketing API token', 'flx-ads' ), __( 'Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; Audiences also need ads_management. Empty = the Conversions API token is tried. Flux Ads changes nothing in your ad account unless you create or update an audience.', 'flx-ads' ) );
+				self::text_field( 'meta_page', __( 'Facebook Page ID', 'flx-ads' ), __( 'The page Studio ads are published as. Page › About › Page transparency › Page ID.', 'flx-ads' ), '1029384756' );
+				self::secret_field( 'meta_ads_token', __( 'Marketing API token', 'flx-ads' ), __( 'Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; audiences, Campaigns changes and Studio drafts need ads_management. Empty = the Conversions API token is tried. Flux Ads changes your ad account only when you approve it: an audience, a pause or budget change, or a Studio draft (always created paused).', 'flx-ads' ) );
 			}
 		);
 		self::platform_box(

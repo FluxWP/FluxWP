@@ -27,6 +27,7 @@ function flxads_defaults() {
 			'meta_token'    => '',      // gizli
 			'meta_test'     => '',      // Events Manager › Test events kodu (ör. TEST12345)
 			'meta_account'  => '',      // reklam hesabı kimliği (harcama için; act_ öneki atılır)
+			'meta_page'     => '',      // Facebook sayfa kimliği (Stüdyo taslak reklamları bu sayfa adına)
 			'meta_ads_token' => '',     // gizli (Marketing API: ads_read harcama, ads_management kitleler); boşsa meta_token denenir
 			'tiktok_on'     => 0,
 			'tiktok_pixel'  => '',
@@ -86,6 +87,7 @@ function flxads_clean_settings( array $in, $partial = false ) {
 		'meta_pixel'   => static function ( $v ) { return preg_replace( '/\D+/', '', (string) $v ); },
 		'meta_test'    => static function ( $v ) { return preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ); },
 		'meta_account' => static function ( $v ) { return preg_replace( '/\D+/', '', (string) $v ); },
+		'meta_page'    => static function ( $v ) { return preg_replace( '/\D+/', '', (string) $v ); },
 		'tiktok_on'    => static function ( $v ) { return empty( $v ) ? 0 : 1; },
 		'tiktok_pixel' => static function ( $v ) { return strtoupper( preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ) ); },
 		'tiktok_test'  => static function ( $v ) { return preg_replace( '/[^A-Za-z0-9]/', '', (string) $v ); },
@@ -256,7 +258,7 @@ function flxads_admin_url( $tab = 'report', array $args = array() ) {
 
 /** Bölüm → sol menü alt sayfasının kısa adı (Rapor ana sayfadır). */
 function flxads_page_slug( $tab ) {
-	return in_array( $tab, array( 'campaigns', 'value', 'spend', 'audiences', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
+	return in_array( $tab, array( 'campaigns', 'studio', 'value', 'spend', 'audiences', 'log', 'links', 'settings' ), true ) ? 'flx-ads-' . $tab : 'flx-ads';
 }
 
 /** Açık bölüm; eski ?page=flx-ads&tab=… bağlantıları da çalışır. */

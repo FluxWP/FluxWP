@@ -432,6 +432,94 @@ function flxads_write_tools() {
 				return $r;
 			},
 		),
+		'flxads_studio_context'     => array(
+			'kind'        => 'read',
+			'title'       => __( 'Campaign planning context', 'flx-ads' ),
+			'description' => 'What a campaign draft should be based on: last 90 days campaigns from this site (payments, income, new donors, spend, ROAS, cost per payment), Meta audiences (ids to use in ad sets), Flux CRM size and value groups, account currency, allowed objectives and buttons. No personal data.',
+			'props'       => array(),
+			'run'         => static function () {
+				return FLXADS_Studio::context() + array( 'missing_for_send' => FLXADS_Studio::missing() );
+			},
+		),
+		'flxads_drafts'             => array(
+			'kind'        => 'read',
+			'title'       => __( 'Campaign drafts', 'flx-ads' ),
+			'description' => 'List Studio campaign drafts (id, name, status draft|sent|error, objective, daily budget, ad sets, ads, notes, Meta ids when sent). Give id for one draft only.',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'run'         => static function ( $a ) {
+				if ( ! empty( $a['id'] ) ) {
+					$d = FLXADS_Studio::get( (string) $a['id'] );
+					if ( ! $d ) {
+						throw new Exception( 'Draft not found.' );
+					}
+					return $d;
+				}
+				return array( 'drafts' => array_values( FLXADS_Studio::all() ) );
+			},
+		),
+		'flxads_draft_save'         => array(
+			'kind'        => 'write',
+			'title'       => __( 'Save a campaign draft', 'flx-ads' ),
+			'description' => 'Create or update a campaign DRAFT in Flux Ads › Studio. Nothing goes to Meta: the user reads and edits it, then sends it (always paused). Call flxads_studio_context first. objective: OUTCOME_SALES | OUTCOME_TRAFFIC | OUTCOME_AWARENESS. daily_budget in the ad account currency. 1-3 ad sets {name, age_min, age_max 18-65, gender all|male|female, countries [ISO-2], audiences [audience ids], exclude [audience ids], share percent}. 2-4 ads {name, headline <=40 chars, text <=300 chars, description, cta DONATE_NOW|LEARN_MORE|SHOP_NOW|SIGN_UP, image url optional}; each ad runs in every ad set. notes: why this plan, in the site language. Write texts in the site language, honest, within Meta ad policy.',
+			'props'       => array(
+				'id'           => array( 'type' => 'string', 'description' => 'Existing draft to update; omit to create.' ),
+				'name'         => array( 'type' => 'string' ),
+				'objective'    => array( 'type' => 'string', 'enum' => array_keys( FLXADS_Studio::objectives() ) ),
+				'link'         => array( 'type' => 'string' ),
+				'daily_budget' => array( 'type' => 'number' ),
+				'start'        => array( 'type' => 'string', 'description' => 'YYYY-MM-DD or empty' ),
+				'end'          => array( 'type' => 'string', 'description' => 'YYYY-MM-DD or empty' ),
+				'adsets'       => array( 'type' => 'array', 'items' => array( 'type' => 'object' ) ),
+				'ads'          => array( 'type' => 'array', 'items' => array( 'type' => 'object' ) ),
+				'notes'        => array( 'type' => 'string' ),
+			),
+			'required'    => array( 'name', 'link', 'daily_budget', 'adsets', 'ads' ),
+			'run'         => static function ( $a, $channel = 'mcp' ) {
+				$r = FLXADS_Studio::save( $a, (string) ( $a['id'] ?? '' ), $channel );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return array( 'id' => $r, 'status' => 'draft', 'url' => flxads_admin_url( 'studio', array( 'edit' => $r ) ), 'next' => 'Tell the user the draft is ready to review in Flux Ads › Studio. Do not send it to Meta unless they ask.' );
+			},
+		),
+		'flxads_draft_send'         => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Create draft in Meta (paused)', 'flx-ads' ),
+			'description' => 'Create a saved Studio draft in Meta: campaign, ad sets, creatives and ads, all PAUSED (nothing is shown or spent). The user turns it on later under Campaigns. Only when the user asks.',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'required'    => array( 'id' ),
+			'preview'     => static function ( $a ) {
+				$d = FLXADS_Studio::get( (string) ( $a['id'] ?? '' ) );
+				if ( ! $d ) {
+					throw new Exception( 'Draft not found.' );
+				}
+				return array( 'create_paused' => $d['name'], 'objective' => $d['objective'], 'daily_budget' => $d['daily_budget'], 'adsets' => count( $d['adsets'] ), 'ads' => count( $d['adsets'] ) * count( $d['ads'] ), 'missing' => FLXADS_Studio::missing() );
+			},
+			'run'         => static function ( $a, $channel = 'mcp' ) {
+				$r = FLXADS_Studio::send( (string) ( $a['id'] ?? '' ), $channel );
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() );
+				}
+				return $r;
+			},
+		),
+		'flxads_draft_delete'       => array(
+			'kind'        => 'destructive',
+			'title'       => __( 'Delete a campaign draft', 'flx-ads' ),
+			'description' => 'Delete a Studio draft from the site. A campaign already created in Meta stays there (paused or as the user left it).',
+			'props'       => array( 'id' => array( 'type' => 'string' ) ),
+			'required'    => array( 'id' ),
+			'preview'     => static function ( $a ) {
+				$d = FLXADS_Studio::get( (string) ( $a['id'] ?? '' ) );
+				if ( ! $d ) {
+					throw new Exception( 'Draft not found.' );
+				}
+				return array( 'delete_draft' => $d['name'], 'status' => $d['status'] );
+			},
+			'run'         => static function ( $a ) {
+				return array( 'deleted' => FLXADS_Studio::delete( (string) ( $a['id'] ?? '' ) ) );
+			},
+		),
 	);
 }
 
@@ -568,6 +656,6 @@ add_filter(
 		if ( ! flxads_can() ) {
 			return $text;
 		}
-		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one. For Meta campaigns, ad sets and ads use flxads_campaigns and flxads_campaign_detail; pausing, turning on and budget changes (flxads_ad_status, flxads_ad_budget) only when the user asks, one item at a time, budget steps of at most 20-30%.";
+		return $text . "\n\nFlux Ads: use flxads_report for which ad brought which donation (with spend and ROAS when known). Never ask the user to paste access tokens or API secrets into the chat; they enter them in Flux Ads › Settings. Before changing settings call flxads_settings_get. Add manual spend with the same campaign name as utm_campaign. For which campaign brings donors who keep giving (LTV, CAC, payback) use flxads_value_report. Meta audiences only ever contain people with ad consent; list sources with flxads_audiences_list before creating one. For Meta campaigns, ad sets and ads use flxads_campaigns and flxads_campaign_detail; pausing, turning on and budget changes (flxads_ad_status, flxads_ad_budget) only when the user asks, one item at a time, budget steps of at most 20-30%. To plan a new campaign: flxads_studio_context, then flxads_draft_save (a draft only); the user reviews it in Flux Ads › Studio. Send it to Meta (paused) with flxads_draft_send only when the user asks.";
 	}
 );

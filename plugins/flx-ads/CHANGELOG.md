@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0
+
+- Studio: new page. Write a short brief and Flux AI drafts a Meta campaign from it and this site's numbers (last 90 days of campaigns, your audiences, donor counts; no personal data): objective, daily budget, ad sets with ages, countries, audiences in/out and budget share, and ad text variants with a short reason.
+- The draft stays here until you send it: edit every field, add or remove ad sets and variants, see a live ad preview, duplicate or delete. A draft can also start empty.
+- "Send to Meta" creates the campaign, ad sets, creatives and ads all paused, after confirmation. Ad links carry UTM tags (campaign ID, variant), so donations show up in the report and under Campaigns. If a step fails, the next try reuses what was already made.
+- New setting: Facebook Page ID (Settings › Meta), the page the ads are published as.
+- Flux AI / MCP: `flxads_studio_context`, `flxads_drafts` (read), `flxads_draft_save` (draft here only), `flxads_draft_send`, `flxads_draft_delete` (need approval).
+
 ## 0.4.0
 
 - Campaigns: new page with your Meta campaigns for the last 7, 30 or 90 days. Each shows its status, objective, budget, spend, impressions, link clicks and CTR next to what it brought on this site: income, payments and ROAS, matched by the campaign name or ID in utm_campaign.

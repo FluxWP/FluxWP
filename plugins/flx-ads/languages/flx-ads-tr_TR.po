@@ -68,6 +68,21 @@ msgstr "Meta'da duraklat ya da aç"
 msgid "Change daily budget in Meta"
 msgstr "Meta'da günlük bütçeyi değiştir"
 
+msgid "Campaign planning context"
+msgstr "Kampanya planlama bağlamı"
+
+msgid "Campaign drafts"
+msgstr "Kampanya taslakları"
+
+msgid "Save a campaign draft"
+msgstr "Kampanya taslağı kaydet"
+
+msgid "Create draft in Meta (paused)"
+msgstr "Taslağı Meta'da oluştur (duraklatılmış)"
+
+msgid "Delete a campaign draft"
+msgstr "Kampanya taslağını sil"
+
 msgid "Everyone with ad consent"
 msgstr "Reklam izni veren herkes"
 
@@ -212,6 +227,84 @@ msgstr "Meta çok yavaş yanıt verdi; biraz sonra yeniden deneyin."
 msgid "Too many rows; only part of the period was read."
 msgstr "Satır sayısı çok fazla; dönemin yalnız bir kısmı okunabildi."
 
+msgid "Donations / sales (conversions)"
+msgstr "Bağış / satış (dönüşüm)"
+
+msgid "Visits to the page"
+msgstr "Sayfa ziyareti"
+
+msgid "Awareness (reach)"
+msgstr "Bilinirlik (erişim)"
+
+msgid "Donate now"
+msgstr "Hemen bağış yap"
+
+msgid "Learn more"
+msgstr "Daha fazla bilgi"
+
+msgid "Shop now"
+msgstr "Hemen alışveriş yap"
+
+msgid "Sign up"
+msgstr "Kaydol"
+
+msgid "Draft"
+msgstr "Taslak"
+
+msgid "In Meta (paused)"
+msgstr "Meta'da (duraklatılmış)"
+
+msgid "Not sent"
+msgstr "Gönderilmedi"
+
+msgid "Give the campaign a name."
+msgstr "Kampanyaya bir ad verin."
+
+msgid "Enter the page the ads open (a full https:// address)."
+msgstr "Reklamların açacağı sayfayı girin (tam https:// adresi)."
+
+msgid "The end date is before the start date."
+msgstr "Bitiş tarihi başlangıçtan önce."
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr "En az bir reklam seti ekleyin (reklamı kimler görecek)."
+
+msgid "Add at least one ad with a text and a headline."
+msgstr "Metni ve başlığı olan en az bir reklam ekleyin."
+
+msgid "Draft not found."
+msgstr "Taslak bulunamadı."
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr "Bu taslak zaten Meta'da. Orada düzenleyin ya da burada kopyalayın."
+
+msgid "Too many drafts; delete old ones first."
+msgstr "Çok fazla taslak var; önce eskileri silin."
+
+msgid "%s (copy)"
+msgstr "%s (kopya)"
+
+msgid "Meta ad account ID and Marketing API key (Settings › Meta)"
+msgstr "Meta reklam hesabı kimliği ve Marketing API anahtarı (Ayarlar › Meta)"
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr "Facebook sayfa kimliği (Ayarlar › Meta)"
+
+msgid "This draft is already in Meta."
+msgstr "Bu taslak zaten Meta'da."
+
+msgid "Missing: %s."
+msgstr "Eksik: %s."
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr "Flux AI hazır değil. Flux AI & MCP'yi kurun ve bir model anahtarı ekleyin."
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr "Kısa bir brif yazın: kampanya ne için ve kime ulaşmalı."
+
+msgid "The AI answer could not be read; try again."
+msgstr "AI yanıtı okunamadı; tekrar deneyin."
+
 msgid "Ad conversion"
 msgstr "Reklam dönüşümü"
 
@@ -331,6 +424,9 @@ msgstr "Rapor"
 msgid "Campaigns"
 msgstr "Kampanyalar"
 
+msgid "Studio"
+msgstr "Stüdyo"
+
 msgid "Donor value"
 msgstr "Bağışçı değeri"
 
@@ -375,6 +471,18 @@ msgstr "Kitle güncellendi."
 
 msgid "Audience deleted."
 msgstr "Kitle silindi."
+
+msgid "Flux AI wrote a draft. Read and edit it before sending it to Meta."
+msgstr "Flux AI bir taslak yazdı. Meta'ya göndermeden önce okuyup düzenleyin."
+
+msgid "Draft saved."
+msgstr "Taslak kaydedildi."
+
+msgid "Draft deleted."
+msgstr "Taslak silindi."
+
+msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
+msgstr "Meta'da duraklatılmış olarak oluşturuldu. Hazır olunca Kampanyalar'dan açın."
 
 msgid "Status changed in Meta."
 msgstr "Durum Meta'da değişti."
@@ -868,6 +976,153 @@ msgstr "Kim"
 msgid "Daily budget %1$s → %2$s"
 msgstr "Günlük bütçe %1$s → %2$s"
 
+msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
+msgstr "Flux AI, brifinizden ve bu sitenin rakamlarından bir kampanya taslağı yazar: reklam setleri, kitleler, bütçe dağılımı ve reklam metni çeşitleri. Burada okuyup düzenlersiniz. \"Meta'ya gönder\" her şeyi duraklatılmış oluşturur; Kampanyalar'dan açana kadar hiçbir şey gösterilmez, harcanmaz."
+
+msgid "You can write drafts now. To send them to Meta, add: %s."
+msgstr "Taslak yazabilirsiniz. Meta'ya göndermek için şunu ekleyin: %s."
+
+msgid "Write a draft with AI"
+msgstr "AI ile taslak yaz"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key, or start from an empty draft."
+msgstr "Flux AI hazır değil. Flux AI & MCP'yi kurup model anahtarı ekleyin ya da boş taslakla başlayın."
+
+msgid "Brief"
+msgstr "Brif"
+
+msgid "e.g. Sapling campaign for November; reach people like our donors in Istanbul and Ankara, leave out people who donated this month."
+msgstr "ör. Kasım fidan kampanyası; İstanbul ve Ankara'da bağışçılarımıza benzeyenlere ulaş, bu ay bağış yapanları dışarıda bırak."
+
+msgid "Page the ads open"
+msgstr "Reklamların açacağı sayfa"
+
+msgid "Goal"
+msgstr "Amaç"
+
+msgid "Start"
+msgstr "Başlangıç"
+
+msgid "End"
+msgstr "Bitiş"
+
+msgid "Write draft"
+msgstr "Taslak yaz"
+
+msgid "Empty draft"
+msgstr "Boş taslak"
+
+msgid "Drafts"
+msgstr "Taslaklar"
+
+msgid "Ad sets / ads"
+msgstr "Reklam seti / reklam"
+
+msgid "No drafts yet."
+msgstr "Henüz taslak yok."
+
+msgid "Open in Campaigns"
+msgstr "Kampanyalar'da aç"
+
+msgid "Duplicate"
+msgstr "Kopyala"
+
+msgid "Only the draft here is deleted. The paused campaign stays in Meta."
+msgstr "Yalnız buradaki taslak silinir. Duraklatılmış kampanya Meta'da kalır."
+
+msgid "The draft is deleted."
+msgstr "Taslak silinir."
+
+msgid "Remove"
+msgstr "Kaldır"
+
+msgid "Ad set name"
+msgstr "Reklam seti adı"
+
+msgid "Ages"
+msgstr "Yaş"
+
+msgid "Gender"
+msgstr "Cinsiyet"
+
+msgid "Countries (ISO, comma)"
+msgstr "Ülkeler (ISO, virgülle)"
+
+msgid "Budget share %"
+msgstr "Bütçe payı %"
+
+msgid "Show to audiences"
+msgstr "Gösterilecek kitleler"
+
+msgid "Leave out audiences"
+msgstr "Hariç tutulacak kitleler"
+
+msgid "Variant name"
+msgstr "Çeşit adı"
+
+msgid "Primary text"
+msgstr "Ana metin"
+
+msgid "Headline"
+msgstr "Başlık"
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Button"
+msgstr "Düğme"
+
+msgid "Image address (optional)"
+msgstr "Görsel adresi (isteğe bağlı)"
+
+msgid "All drafts"
+msgstr "Tüm taslaklar"
+
+msgid "This draft is in Meta as a paused campaign. Turn it on or change it under Campaigns; to try a new version, duplicate it."
+msgstr "Bu taslak Meta'da duraklatılmış kampanya olarak duruyor. Kampanyalar'dan açın ya da değiştirin; yeni bir sürüm denemek için kopyalayın."
+
+msgid "Why this plan (AI)"
+msgstr "Neden bu plan (AI)"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Ad sets (who sees it)"
+msgstr "Reklam setleri (kimler görür)"
+
+msgid "Add ad set"
+msgstr "Reklam seti ekle"
+
+msgid "Ads (text variants)"
+msgstr "Reklamlar (metin çeşitleri)"
+
+msgid "Each variant runs in every ad set, so Meta can find the text that works best."
+msgstr "Her çeşit her reklam setinde çalışır; Meta en iyi işleyen metni böylece bulur."
+
+msgid "Add variant"
+msgstr "Çeşit ekle"
+
+msgid "Save draft"
+msgstr "Taslağı kaydet"
+
+msgid "Cancel"
+msgstr "Vazgeç"
+
+msgid "Send to Meta"
+msgstr "Meta'ya gönder"
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr "Meta'da %1$d reklam setli, %2$d reklamlı duraklatılmış bir kampanya oluşturulur. Kampanyalar'dan açana kadar hiçbir şey gösterilmez, harcanmaz."
+
+msgid "Save your edits first. Ads open the page with UTM tags, so donations show up in the report and under Campaigns."
+msgstr "Önce değişikliklerinizi kaydedin. Reklamlar sayfayı UTM etiketleriyle açar; bağışlar raporda ve Kampanyalar'da görünür."
+
+msgid "Create paused"
+msgstr "Duraklatılmış oluştur"
+
+msgid "Create in Meta (paused)"
+msgstr "Meta'da oluştur (duraklatılmış)"
+
 msgid "Waiting"
 msgstr "Bekliyor"
 
@@ -876,9 +1131,6 @@ msgstr "Gönderildi"
 
 msgid "Failed"
 msgstr "Başarısız"
-
-msgid "Not sent"
-msgstr "Gönderilmedi"
 
 msgid "visitor did not accept cookies"
 msgstr "ziyaretçi çerezleri kabul etmedi"
@@ -979,11 +1231,17 @@ msgstr "Reklam hesabı kimliği"
 msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
 msgstr "Reklam Yöneticisi › sol üstteki hesap menüsü, hesap adının altındaki sayı (act_ yazmak gerekmez)."
 
+msgid "Facebook Page ID"
+msgstr "Facebook sayfa kimliği"
+
+msgid "The page Studio ads are published as. Page › About › Page transparency › Page ID."
+msgstr "Stüdyo reklamlarının adına yayınlanacağı sayfa. Sayfa › Hakkında › Sayfa şeffaflığı › Sayfa kimliği."
+
 msgid "Marketing API token"
 msgstr "Marketing API anahtarı"
 
-msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; Audiences also need ads_management. Empty = the Conversions API token is tried. Flux Ads changes nothing in your ad account unless you create or update an audience."
-msgstr "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › Anahtar oluştur. Harcama için ads_read yeter; Kitleler ads_management da ister. Boş = Conversions API anahtarı denenir. Siz kitle oluşturmadıkça ya da güncellemedikçe Flux Ads reklam hesabınızda hiçbir şey değiştirmez."
+msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; audiences, Campaigns changes and Studio drafts need ads_management. Empty = the Conversions API token is tried. Flux Ads changes your ad account only when you approve it: an audience, a pause or budget change, or a Studio draft (always created paused)."
+msgstr "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › Belirteç oluştur. Harcama için ads_read yeter; kitleler, Kampanyalar değişiklikleri ve Stüdyo taslakları ads_management ister. Boşsa Conversions API anahtarı denenir. Flux Ads reklam hesabınızı yalnız siz onaylayınca değiştirir: kitle, duraklatma ya da bütçe değişikliği veya Stüdyo taslağı (her zaman duraklatılmış oluşturulur)."
 
 msgid "Pixel ID"
 msgstr "Pixel kimliği"

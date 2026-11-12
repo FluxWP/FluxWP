@@ -68,6 +68,21 @@ msgstr "Pause or turn on in Meta"
 msgid "Change daily budget in Meta"
 msgstr "Change daily budget in Meta"
 
+msgid "Campaign planning context"
+msgstr "Campaign planning context"
+
+msgid "Campaign drafts"
+msgstr "Campaign drafts"
+
+msgid "Save a campaign draft"
+msgstr "Save a campaign draft"
+
+msgid "Create draft in Meta (paused)"
+msgstr "Create draft in Meta (paused)"
+
+msgid "Delete a campaign draft"
+msgstr "Delete a campaign draft"
+
 msgid "Everyone with ad consent"
 msgstr "Everyone with ad consent"
 
@@ -212,6 +227,84 @@ msgstr "Meta answered too slowly; try again later."
 msgid "Too many rows; only part of the period was read."
 msgstr "Too many rows; only part of the period was read."
 
+msgid "Donations / sales (conversions)"
+msgstr "Donations / sales (conversions)"
+
+msgid "Visits to the page"
+msgstr "Visits to the page"
+
+msgid "Awareness (reach)"
+msgstr "Awareness (reach)"
+
+msgid "Donate now"
+msgstr "Donate now"
+
+msgid "Learn more"
+msgstr "Learn more"
+
+msgid "Shop now"
+msgstr "Shop now"
+
+msgid "Sign up"
+msgstr "Sign up"
+
+msgid "Draft"
+msgstr "Draft"
+
+msgid "In Meta (paused)"
+msgstr "In Meta (paused)"
+
+msgid "Not sent"
+msgstr "Not sent"
+
+msgid "Give the campaign a name."
+msgstr "Give the campaign a name."
+
+msgid "Enter the page the ads open (a full https:// address)."
+msgstr "Enter the page the ads open (a full https:// address)."
+
+msgid "The end date is before the start date."
+msgstr "The end date is before the start date."
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr "Add at least one ad set (who sees the ads)."
+
+msgid "Add at least one ad with a text and a headline."
+msgstr "Add at least one ad with a text and a headline."
+
+msgid "Draft not found."
+msgstr "Draft not found."
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr "This draft is already in Meta. Edit it there, or duplicate it here."
+
+msgid "Too many drafts; delete old ones first."
+msgstr "Too many drafts; delete old ones first."
+
+msgid "%s (copy)"
+msgstr "%s (copy)"
+
+msgid "Meta ad account ID and Marketing API key (Settings › Meta)"
+msgstr "Meta ad account ID and Marketing API key (Settings › Meta)"
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr "Facebook Page ID (Settings › Meta)"
+
+msgid "This draft is already in Meta."
+msgstr "This draft is already in Meta."
+
+msgid "Missing: %s."
+msgstr "Missing: %s."
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr "Write a short brief: what the campaign is for and who it should reach."
+
+msgid "The AI answer could not be read; try again."
+msgstr "The AI answer could not be read; try again."
+
 msgid "Ad conversion"
 msgstr "Ad conversion"
 
@@ -331,6 +424,9 @@ msgstr "Report"
 msgid "Campaigns"
 msgstr "Campaigns"
 
+msgid "Studio"
+msgstr "Studio"
+
 msgid "Donor value"
 msgstr "Donor value"
 
@@ -375,6 +471,18 @@ msgstr "Audience updated."
 
 msgid "Audience deleted."
 msgstr "Audience deleted."
+
+msgid "Flux AI wrote a draft. Read and edit it before sending it to Meta."
+msgstr "Flux AI wrote a draft. Read and edit it before sending it to Meta."
+
+msgid "Draft saved."
+msgstr "Draft saved."
+
+msgid "Draft deleted."
+msgstr "Draft deleted."
+
+msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
+msgstr "Created in Meta, paused. Turn it on under Campaigns when you are ready."
 
 msgid "Status changed in Meta."
 msgstr "Status changed in Meta."
@@ -868,6 +976,153 @@ msgstr "Who"
 msgid "Daily budget %1$s → %2$s"
 msgstr "Daily budget %1$s → %2$s"
 
+msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
+msgstr "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
+
+msgid "You can write drafts now. To send them to Meta, add: %s."
+msgstr "You can write drafts now. To send them to Meta, add: %s."
+
+msgid "Write a draft with AI"
+msgstr "Write a draft with AI"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key, or start from an empty draft."
+msgstr "Flux AI is not ready. Install Flux AI & MCP and add a model key, or start from an empty draft."
+
+msgid "Brief"
+msgstr "Brief"
+
+msgid "e.g. Sapling campaign for November; reach people like our donors in Istanbul and Ankara, leave out people who donated this month."
+msgstr "e.g. Sapling campaign for November; reach people like our donors in Istanbul and Ankara, leave out people who donated this month."
+
+msgid "Page the ads open"
+msgstr "Page the ads open"
+
+msgid "Goal"
+msgstr "Goal"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "End"
+msgstr "End"
+
+msgid "Write draft"
+msgstr "Write draft"
+
+msgid "Empty draft"
+msgstr "Empty draft"
+
+msgid "Drafts"
+msgstr "Drafts"
+
+msgid "Ad sets / ads"
+msgstr "Ad sets / ads"
+
+msgid "No drafts yet."
+msgstr "No drafts yet."
+
+msgid "Open in Campaigns"
+msgstr "Open in Campaigns"
+
+msgid "Duplicate"
+msgstr "Duplicate"
+
+msgid "Only the draft here is deleted. The paused campaign stays in Meta."
+msgstr "Only the draft here is deleted. The paused campaign stays in Meta."
+
+msgid "The draft is deleted."
+msgstr "The draft is deleted."
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Ad set name"
+msgstr "Ad set name"
+
+msgid "Ages"
+msgstr "Ages"
+
+msgid "Gender"
+msgstr "Gender"
+
+msgid "Countries (ISO, comma)"
+msgstr "Countries (ISO, comma)"
+
+msgid "Budget share %"
+msgstr "Budget share %"
+
+msgid "Show to audiences"
+msgstr "Show to audiences"
+
+msgid "Leave out audiences"
+msgstr "Leave out audiences"
+
+msgid "Variant name"
+msgstr "Variant name"
+
+msgid "Primary text"
+msgstr "Primary text"
+
+msgid "Headline"
+msgstr "Headline"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Button"
+msgstr "Button"
+
+msgid "Image address (optional)"
+msgstr "Image address (optional)"
+
+msgid "All drafts"
+msgstr "All drafts"
+
+msgid "This draft is in Meta as a paused campaign. Turn it on or change it under Campaigns; to try a new version, duplicate it."
+msgstr "This draft is in Meta as a paused campaign. Turn it on or change it under Campaigns; to try a new version, duplicate it."
+
+msgid "Why this plan (AI)"
+msgstr "Why this plan (AI)"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Ad sets (who sees it)"
+msgstr "Ad sets (who sees it)"
+
+msgid "Add ad set"
+msgstr "Add ad set"
+
+msgid "Ads (text variants)"
+msgstr "Ads (text variants)"
+
+msgid "Each variant runs in every ad set, so Meta can find the text that works best."
+msgstr "Each variant runs in every ad set, so Meta can find the text that works best."
+
+msgid "Add variant"
+msgstr "Add variant"
+
+msgid "Save draft"
+msgstr "Save draft"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Send to Meta"
+msgstr "Send to Meta"
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+
+msgid "Save your edits first. Ads open the page with UTM tags, so donations show up in the report and under Campaigns."
+msgstr "Save your edits first. Ads open the page with UTM tags, so donations show up in the report and under Campaigns."
+
+msgid "Create paused"
+msgstr "Create paused"
+
+msgid "Create in Meta (paused)"
+msgstr "Create in Meta (paused)"
+
 msgid "Waiting"
 msgstr "Waiting"
 
@@ -876,9 +1131,6 @@ msgstr "Sent"
 
 msgid "Failed"
 msgstr "Failed"
-
-msgid "Not sent"
-msgstr "Not sent"
 
 msgid "visitor did not accept cookies"
 msgstr "visitor did not accept cookies"
@@ -979,11 +1231,17 @@ msgstr "Ad account ID"
 msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
 msgstr "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
 
+msgid "Facebook Page ID"
+msgstr "Facebook Page ID"
+
+msgid "The page Studio ads are published as. Page › About › Page transparency › Page ID."
+msgstr "The page Studio ads are published as. Page › About › Page transparency › Page ID."
+
 msgid "Marketing API token"
 msgstr "Marketing API token"
 
-msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; Audiences also need ads_management. Empty = the Conversions API token is tried. Flux Ads changes nothing in your ad account unless you create or update an audience."
-msgstr "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; Audiences also need ads_management. Empty = the Conversions API token is tried. Flux Ads changes nothing in your ad account unless you create or update an audience."
+msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; audiences, Campaigns changes and Studio drafts need ads_management. Empty = the Conversions API token is tried. Flux Ads changes your ad account only when you approve it: an audience, a pause or budget change, or a Studio draft (always created paused)."
+msgstr "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; audiences, Campaigns changes and Studio drafts need ads_management. Empty = the Conversions API token is tried. Flux Ads changes your ad account only when you approve it: an audience, a pause or budget change, or a Studio draft (always created paused)."
 
 msgid "Pixel ID"
 msgstr "Pixel ID"

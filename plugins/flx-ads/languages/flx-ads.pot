@@ -66,6 +66,21 @@ msgstr ""
 msgid "Change daily budget in Meta"
 msgstr ""
 
+msgid "Campaign planning context"
+msgstr ""
+
+msgid "Campaign drafts"
+msgstr ""
+
+msgid "Save a campaign draft"
+msgstr ""
+
+msgid "Create draft in Meta (paused)"
+msgstr ""
+
+msgid "Delete a campaign draft"
+msgstr ""
+
 msgid "Everyone with ad consent"
 msgstr ""
 
@@ -210,6 +225,84 @@ msgstr ""
 msgid "Too many rows; only part of the period was read."
 msgstr ""
 
+msgid "Donations / sales (conversions)"
+msgstr ""
+
+msgid "Visits to the page"
+msgstr ""
+
+msgid "Awareness (reach)"
+msgstr ""
+
+msgid "Donate now"
+msgstr ""
+
+msgid "Learn more"
+msgstr ""
+
+msgid "Shop now"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "In Meta (paused)"
+msgstr ""
+
+msgid "Not sent"
+msgstr ""
+
+msgid "Give the campaign a name."
+msgstr ""
+
+msgid "Enter the page the ads open (a full https:// address)."
+msgstr ""
+
+msgid "The end date is before the start date."
+msgstr ""
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr ""
+
+msgid "Add at least one ad with a text and a headline."
+msgstr ""
+
+msgid "Draft not found."
+msgstr ""
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr ""
+
+msgid "Too many drafts; delete old ones first."
+msgstr ""
+
+msgid "%s (copy)"
+msgstr ""
+
+msgid "Meta ad account ID and Marketing API key (Settings › Meta)"
+msgstr ""
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr ""
+
+msgid "This draft is already in Meta."
+msgstr ""
+
+msgid "Missing: %s."
+msgstr ""
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr ""
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr ""
+
+msgid "The AI answer could not be read; try again."
+msgstr ""
+
 msgid "Ad conversion"
 msgstr ""
 
@@ -329,6 +422,9 @@ msgstr ""
 msgid "Campaigns"
 msgstr ""
 
+msgid "Studio"
+msgstr ""
+
 msgid "Donor value"
 msgstr ""
 
@@ -372,6 +468,18 @@ msgid "Audience updated."
 msgstr ""
 
 msgid "Audience deleted."
+msgstr ""
+
+msgid "Flux AI wrote a draft. Read and edit it before sending it to Meta."
+msgstr ""
+
+msgid "Draft saved."
+msgstr ""
+
+msgid "Draft deleted."
+msgstr ""
+
+msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
 msgstr ""
 
 msgid "Status changed in Meta."
@@ -866,6 +974,153 @@ msgstr ""
 msgid "Daily budget %1$s → %2$s"
 msgstr ""
 
+msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
+msgstr ""
+
+msgid "You can write drafts now. To send them to Meta, add: %s."
+msgstr ""
+
+msgid "Write a draft with AI"
+msgstr ""
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key, or start from an empty draft."
+msgstr ""
+
+msgid "Brief"
+msgstr ""
+
+msgid "e.g. Sapling campaign for November; reach people like our donors in Istanbul and Ankara, leave out people who donated this month."
+msgstr ""
+
+msgid "Page the ads open"
+msgstr ""
+
+msgid "Goal"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Write draft"
+msgstr ""
+
+msgid "Empty draft"
+msgstr ""
+
+msgid "Drafts"
+msgstr ""
+
+msgid "Ad sets / ads"
+msgstr ""
+
+msgid "No drafts yet."
+msgstr ""
+
+msgid "Open in Campaigns"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Only the draft here is deleted. The paused campaign stays in Meta."
+msgstr ""
+
+msgid "The draft is deleted."
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Ad set name"
+msgstr ""
+
+msgid "Ages"
+msgstr ""
+
+msgid "Gender"
+msgstr ""
+
+msgid "Countries (ISO, comma)"
+msgstr ""
+
+msgid "Budget share %"
+msgstr ""
+
+msgid "Show to audiences"
+msgstr ""
+
+msgid "Leave out audiences"
+msgstr ""
+
+msgid "Variant name"
+msgstr ""
+
+msgid "Primary text"
+msgstr ""
+
+msgid "Headline"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Button"
+msgstr ""
+
+msgid "Image address (optional)"
+msgstr ""
+
+msgid "All drafts"
+msgstr ""
+
+msgid "This draft is in Meta as a paused campaign. Turn it on or change it under Campaigns; to try a new version, duplicate it."
+msgstr ""
+
+msgid "Why this plan (AI)"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Ad sets (who sees it)"
+msgstr ""
+
+msgid "Add ad set"
+msgstr ""
+
+msgid "Ads (text variants)"
+msgstr ""
+
+msgid "Each variant runs in every ad set, so Meta can find the text that works best."
+msgstr ""
+
+msgid "Add variant"
+msgstr ""
+
+msgid "Save draft"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Send to Meta"
+msgstr ""
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr ""
+
+msgid "Save your edits first. Ads open the page with UTM tags, so donations show up in the report and under Campaigns."
+msgstr ""
+
+msgid "Create paused"
+msgstr ""
+
+msgid "Create in Meta (paused)"
+msgstr ""
+
 msgid "Waiting"
 msgstr ""
 
@@ -873,9 +1128,6 @@ msgid "Sent"
 msgstr ""
 
 msgid "Failed"
-msgstr ""
-
-msgid "Not sent"
 msgstr ""
 
 msgid "visitor did not accept cookies"
@@ -977,10 +1229,16 @@ msgstr ""
 msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
 msgstr ""
 
+msgid "Facebook Page ID"
+msgstr ""
+
+msgid "The page Studio ads are published as. Page › About › Page transparency › Page ID."
+msgstr ""
+
 msgid "Marketing API token"
 msgstr ""
 
-msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; Audiences also need ads_management. Empty = the Conversions API token is tried. Flux Ads changes nothing in your ad account unless you create or update an audience."
+msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; audiences, Campaigns changes and Studio drafts need ads_management. Empty = the Conversions API token is tried. Flux Ads changes your ad account only when you approve it: an audience, a pause or budget change, or a Studio draft (always created paused)."
 msgstr ""
 
 msgid "Pixel ID"

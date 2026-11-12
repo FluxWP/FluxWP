@@ -1,4 +1,4 @@
-# Flux Ads API (0.2.0)
+# Flux Ads API (0.5.0)
 
 Önek `flxads_` / `FLXADS_`. Yetkiler `flxads_view` (rapor), `flxads_manage` (ayar). Tablolar `{prefix}flxads_orders` (siparişin atfı, sipariş başına bir satır) ve `{prefix}flxads_conversions` (platform × sipariş gönderim kuyruğu, `UNIQUE(platform, event_id)`) ve `{prefix}flxads_spend` (günlük reklam harcaması: `platform`, `day`, `ad_key`, `campaign_id`, `campaign`, `adset`, `ad`, `spend`, `currency`, `impressions`, `clicks`, `manual`; `UNIQUE(platform, day, ad_key)`).
 
@@ -58,12 +58,12 @@ Olay kimliği `order-<sipariş id>` (tarayıcı `eventID` / `event_id` ile aynı
 
 ## MCP
 
-Okuma: `flxads_report` (by, from, to, kind, channel; harcama, ROAS, maliyet dahil), `flxads_status` (harcama eşitleme durumu dahil), `flxads_settings_get` (gizliler yalnız `*_set`), `flxads_send_log` (status, limit), `flxads_spend_list` (from, to; elle girilenler id'leriyle), `flxads_value_report` (from, to, by, kind, cohorts), `flxads_audiences_list`, `flxads_campaigns` (range 7|30|90), `flxads_campaign_detail` (id, range).
+Okuma: `flxads_report` (by, from, to, kind, channel; harcama, ROAS, maliyet dahil), `flxads_status` (harcama eşitleme durumu dahil), `flxads_settings_get` (gizliler yalnız `*_set`), `flxads_send_log` (status, limit), `flxads_spend_list` (from, to; elle girilenler id'leriyle), `flxads_value_report` (from, to, by, kind, cohorts), `flxads_audiences_list`, `flxads_campaigns` (range 7|30|90), `flxads_campaign_detail` (id, range), `flxads_studio_context`, `flxads_drafts` (id).
 
-Yazma (`flxads_manage`, `includes/ai-write.php`): `flxads_settings_update` (yalnız verilen alanlar, `flxads_clean_settings( $in, true )`), `flxads_test_connection` (platform), `flxads_resend` (ids), `flxads_spend_add` (channel, day, campaign, ad, spend, currency), `flxads_spend_delete` (id, yalnız elle girilen), `flxads_spend_sync` (days), `flxads_audience_create` (name, source, purpose, lookalike, country, ratio), `flxads_audience_lookalike` (id, country, ratio), `flxads_audience_sync` (id), `flxads_audience_delete` (id), `flxads_ad_status` (id, status PAUSED|ACTIVE), `flxads_ad_budget` (id, amount: hesap para biriminde günlük bütçe).
+Yazma (`flxads_manage`, `includes/ai-write.php`): `flxads_settings_update` (yalnız verilen alanlar, `flxads_clean_settings( $in, true )`), `flxads_test_connection` (platform), `flxads_resend` (ids), `flxads_spend_add` (channel, day, campaign, ad, spend, currency), `flxads_spend_delete` (id, yalnız elle girilen), `flxads_spend_sync` (days), `flxads_audience_create` (name, source, purpose, lookalike, country, ratio), `flxads_audience_lookalike` (id, country, ratio), `flxads_audience_sync` (id), `flxads_audience_delete` (id), `flxads_ad_status` (id, status PAUSED|ACTIVE), `flxads_ad_budget` (id, amount: hesap para biriminde günlük bütçe), `flxads_draft_save` (id?, name, objective, link, daily_budget, start, end, adsets[], ads[], notes; yalnız yerel taslak), `flxads_draft_send` (id), `flxads_draft_delete` (id).
 
 - Flux AI sohbeti (`flxai_tools`): yazan her araç `confirm` → onay kartı; kart onaydır.
-- MCP (`flx_mcp_tools`): `destructive` olanlar (`flxads_settings_update`, `flxads_spend_delete`, `flxads_audience_create`, `flxads_audience_lookalike`, `flxads_audience_delete`, `flxads_ad_status`, `flxads_ad_budget`) ilk çağrıda önizleme + `confirm_token` (15 dk, tek kullanımlık, aynı argümanlara bağlı) döner.
+- MCP (`flx_mcp_tools`): `destructive` olanlar (`flxads_settings_update`, `flxads_spend_delete`, `flxads_audience_create`, `flxads_audience_lookalike`, `flxads_audience_delete`, `flxads_ad_status`, `flxads_ad_budget`, `flxads_draft_send`, `flxads_draft_delete`) ilk çağrıda önizleme + `confirm_token` (15 dk, tek kullanımlık, aynı argümanlara bağlı) döner.
 - Gizli anahtarlar (`meta_token`, `meta_ads_token`, `tiktok_token`, `ga4_secret`) hiçbir araçla okunmaz/yazılmaz. Kişisel veri dönmez.
 - Yazmalar `flxads_tool_log` seçeneğine (son 100: tool, channel, user, at, args).
 
@@ -75,3 +75,12 @@ Yazma (`flxads_manage`, `includes/ai-write.php`): `flxads_settings_update` (yaln
 - `campaign( $id, $range )`: kampanya + `adsets[]` (`targeting` özeti, `ads[]` ve `creative`) + `breakdown[ age_gender | placement ]`.
 - `set_status( $id, 'ACTIVE'|'PAUSED', $channel )`, `set_budget( $id, $amount, $channel )`: yalnız günlük bütçesi olan nesnede; Meta'ya en küçük birimde gider (ondalıksız para birimleri `ZERO_DECIMAL`). Silme/arşivleme yok.
 - Okumalar 10 dk transient (`flxads_mgr_*`, anahtar listesi `flxads_mgr_keys`); değişiklik `flush()` eder. Değişiklik geçmişi `flxads_mgr_log` (son 100: at, user, channel panel|ai|mcp, id, name, field, from, to), `history( $limit )`.
+
+## Stüdyo (0.5.0)
+
+`FLXADS_Studio` (`includes/class-flxads-studio.php`), ekran Flux Ads › Stüdyo (`flxads_admin_url( 'studio', [ 'edit' => <id>|new ] )`).
+
+- Taslaklar `flxads_drafts` seçeneğinde (en çok 50): `id, name, objective (OUTCOME_SALES|OUTCOME_TRAFFIC|OUTCOME_AWARENESS), link, daily_budget, start, end, adsets[{name, age_min, age_max, gender, countries[], audiences[], exclude[], share}], ads[{name, text, headline, description, cta, image}], notes, status (draft|sent|error), by (panel|ai|mcp), meta{campaign, adsets[], ads{}}, error`.
+- `generate( $brief )`: `flxai_chat` (source `flx-ads`, purpose `campaign_draft`), bağlam `context()` (son 90 gün kampanyalar, kitleler, CRM sayıları; kişisel veri yok). Kullanıcının verdiği alanlar AI'ın üstüne yazar.
+- `send( $id, $channel )`: kampanya → reklam setleri (bütçe payı, satışta `OFFSITE_CONVERSIONS` + pixel `PURCHASE`) → kreatif (`object_story_spec`, `meta_page`) → reklamlar, HEPSİ `PAUSED`. Link UTM: `utm_source=facebook&utm_medium=paid&utm_campaign=<kampanya id>&utm_content=<çeşit>`. Yarıda kalırsa sonraki deneme oluşturulanları yeniden kullanır. Gönderilen taslak düzenlenmez (kopyalanır).
+- Diğer: `all()`, `get()`, `save( $in, $id, $by )`, `duplicate()`, `delete()`, `missing()`. Ayar `meta_page` (Facebook sayfa kimliği).
