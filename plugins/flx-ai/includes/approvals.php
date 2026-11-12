@@ -19,6 +19,10 @@ function flxai_approvals_count( $user_id = 0 ) {
 		$s  = json_decode( (string) $s, true );
 		$n += count( (array) ( $s['pending'] ?? array() ) );
 	}
+	// Çalışma alanı: açık değişiklik istekleri (PR) de onay bekler.
+	if ( function_exists( 'flxai_changes_open_count' ) ) {
+		$n += flxai_changes_open_count( $user_id );
+	}
 	return $n;
 }
 
@@ -119,6 +123,20 @@ add_action(
 		$task = flxai_task_by_chat( (int) $chat['id'] );
 		if ( $task && 'approval' === $task['last_state'] ) {
 			flxai_task_patch( $task['id'], array( 'last_state' => 'ok' ) );
+		}
+	}
+);
+
+/* Görevin değişiklik isteği karara bağlandı: başka açık istek kalmadıysa "onay bekliyor" kalkar. */
+add_action(
+	'flxai_change_decided',
+	function ( $change ) {
+		$task = ! empty( $change['chat_id'] ) ? flxai_task_by_chat( (int) $change['chat_id'] ) : null;
+		if ( $task && 'approval' === $task['last_state'] && ! flxai_change_open_pr( (int) $change['chat_id'] ) ) {
+			$chat = flxai_chat_get( (int) $change['chat_id'], (int) $task['user_id'] );
+			if ( ! $chat || 'approval' !== $chat['status'] ) {
+				flxai_task_patch( $task['id'], array( 'last_state' => 'ok' ) );
+			}
 		}
 	}
 );

@@ -12,7 +12,7 @@ if ( empty( $flxai_settings['delete_data'] ) ) {
 	return;
 }
 global $wpdb;
-foreach ( array( 'log', 'log_body', 'chats', 'media', 'tasks', 'skills' ) as $flxai_t ) {
+foreach ( array( 'log', 'log_body', 'chats', 'media', 'tasks', 'skills', 'changes' ) as $flxai_t ) {
 	$wpdb->query( 'DROP TABLE IF EXISTS ' . $wpdb->prefix . 'flxai_' . $flxai_t ); // phpcs:ignore
 }
 foreach ( array( 'flxai_settings', 'flxai_db_version', 'flxai_budget_notified', 'flxai_or_credits', 'flxai_mcp_keys', 'flxai_mcp_log', 'flxai_oauth_clients', 'flxai_tasks_next', 'flxai_tasks_tick', 'flxai_tasks_token' ) as $flxai_o ) {

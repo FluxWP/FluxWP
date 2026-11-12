@@ -226,6 +226,10 @@ add_action(
 		$run   = (array) ( $task['meta']['history'][0] ?? array() );
 		$chat  = ! empty( $run['chat'] ) ? flxai_chat_get( (int) $run['chat'], $task['user_id'] ) : null;
 		$notes = $chat ? flxai_task_run_notes( $chat, $run ) : array();
+		// Çalışmada site dosyaları için açılan değişiklik isteği (PR) de onay bekler.
+		if ( 'ok' === $state && $chat && function_exists( 'flxai_change_open_pr' ) && flxai_change_open_pr( (int) $chat['id'] ) ) {
+			$state = 'approval';
+		}
 		if ( 'important' === $cfg['mode'] && ! $notes && 'ok' === $state ) {
 			return;
 		}

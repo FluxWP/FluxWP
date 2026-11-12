@@ -84,6 +84,9 @@ function flxai_chat_delete( $id, $user_id = 0 ) {
 	if ( $chat && function_exists( 'flxai_attach_delete_for_chat' ) ) {
 		flxai_attach_delete_for_chat( $chat );
 	}
+	if ( $chat && function_exists( 'flxai_ws_delete_for_chat' ) ) {
+		flxai_ws_delete_for_chat( $chat );
+	}
 	return (bool) $wpdb->delete( flxai_table( 'chats' ), array( 'id' => (int) $id, 'user_id' => $user_id ? (int) $user_id : get_current_user_id() ) ); // phpcs:ignore
 }
 

@@ -354,9 +354,8 @@ Araçlar (`flx_mcp_tools` ile, sohbet + MCP): `flxai_task_list` (okur), `flxai_t
 
 Çalışma geçmişi: `meta.history` (en yeni başta, `flxai_task_history_max` kadar): `ts`, `state`, `ms`, `cost`, `chat`, `from`/`to` (sohbet mesaj aralığı), `error`. Ekran `admin.php?page=flx-ai-tasks&history=ID` bu aralıktaki mesajları (araç girdi/sonuç, düşünme, yanıt) gösterir; onaydan sonra gelen devam mesajları da aynı çalışmaya dahildir.
 
-## Skill'ler (0.12.0)
-Tablo `{prefix}flxai_skills` (slug benzersiz). Kaynaklar: `flxai_skills` filtresi (eklentilerin hazır skill'leri, kodda) + tablo (sitede oluşturulanlar ve hazır skill'lerin sitede değiştirilmiş kopyaları; boş ad/açıklama = hazır skill'in çevrilmiş metni).
-
+## Skill'ler (0.12.0, 0.13.0'dan beri dosya)
+Kaynaklar: `flxai_skills` filtresi (eklentilerin hazır skill'leri, kodda) + çalışma alanındaki `.skills/<slug>/SKILL.md` dosyaları (sitede oluşturulanlar ve hazır skill'lerin değiştirilmiş kopyaları; ad/açıklama yazılmamışsa hazır skill'in çevrilmiş metni). `status: off` kapalı skill. 0.12.0 tablosu `{prefix}flxai_skills` kurulumda dosyaya taşınıp kaldırılır.
 ```php
 add_filter( 'flxai_skills', function ( $skills ) {
 	$skills['bagisci-incelemesi'] = array(
@@ -391,6 +390,23 @@ Onay kuyruğu: `flxai_approvals_count( $user_id )`, `flxai_approvals_list( $user
 - Filtreler: `flxai_attach_types` (uzantı => MIME), `flxai_attach_max_bytes` (varsayılan 10 MB), `flxai_attach_max_files` (varsayılan 5).
 - Dosyalar `uploads/flxai-chat/<kullanıcı>/` altında (.htaccess ile kapalı); `flxai_chat_delete` ekleri de siler.
 - JS: `window.flxaiChat.start( text, files )` paneli açar, yeni sohbet başlatır ve gönderir (`files` = `File` dizisi). `window.flxaiChat.dictate( textarea, button, onChange )` Web Speech API ile sesle yazma; `window.flxaiChat.canDictate` tarayıcı desteği.
+
+## Çalışma alanı, commit ve değişiklik istekleri (0.13.0)
+Kök `wp-content/flx-ai` (filtre `flxai_workspace_root`, site köküne göre; .htaccess + index.php ile kapalı). Sohbet `chats/<id>`, görev `tasks/<id>-<slug>` (görev `meta.ws.dir`), skill'ler `.skills/`. Flux Files (flx-files) gerekir; yoksa çalışma alanı kapalıdır, sohbet çalışır.
+
+Erişim politikası (sohbet `state.ws`, görev `meta.ws`): `access` = `workspace` (varsayılan) | `site`, `folders` = izin verilen klasörler (en fazla 20). `flxai_ws_kind( $rel, $policy, $write )` → `own` | `pr` | `read` | `deny`:
+- kendi klasörü → `own` (doğrudan yazar, turun commit'ine eklenir);
+- çalışma alanının geri kalanı → `deny` (`.skills` yalnız okuma: `read`);
+- `folders` içi ya da `access=site` → yazma `pr`, okuma `read`; diğer her yer `deny`.
+Bunun üstüne Flux Files'ın AI kuralları her zaman geçerli: `flxfm_clean` (.. ve symlink), `flxfm_is_sensitive`, `flxfm_is_core`, kod dosyaları `ai_code` ayarına bağlı. Sınırlar: `flxai_workspace_max_write` (bayt, varsayılan 1 MB), `flxai_workspace_max_files` (tur/istek başına dosya, varsayılan 50). `flxai_workspace_default_access` yalnız `'site'` döndürürse etkilidir.
+
+Uygulama: sohbet/görev içindeki `flxfm_*` araç çağrıları `flxai_pre_run_tool` filtresinde `flxai_ws_run()` üzerinden geçer (listeleme/arama sonuçlarından yasak yollar ayıklanır). `flxfm_write|replace|delete` kendi klasörü dışında dosyayı değiştirmez, açık değişiklik isteğine eklenir (aynı dosya üst üste yazılınca birleşir; okuma araçları bekleyen içeriği döner). Bu yazmalar `flxai_call_needs_approval` ile onay kartı istemez; kart yerine değişiklik isteği onaylanır. Dışarıdan MCP istemcisi bu kuralların dışındadır (Flux Files'ın kendi kuralları).
+
+Tablo `{prefix}flxai_changes` (DB 7): `kind` commit|pr, `status` done|open|merged|rejected|partial, `files` JSON (path, op add|edit|delete, before/after, base md5, add/del, state). Fonksiyonlar: `flxai_changes_list( $args )`, `flxai_change_get( $id )`, `flxai_change_open_pr( $chat_id )`, `flxai_changes_open_count( $user_id )`, `flxai_change_decide( $pr, $merge, $paths = null )` (base md5 farklıysa dosya uygulanmaz; uygulama `flxfm_tool_call` ile, Flux Files sürüm/çöp kaydı tutulur).
+
+Olaylar: `flxai_ws_committed( $commit, $chat )`, `flxai_ws_staged( $pr, $chat )`, `flxai_change_decided( $pr, $merge, $applied )`. Filtreler: `flxai_pre_run_tool( null, $name, $args, $ctx )` (null dışı dönerse araç çalışmaz, dönen sonuç kullanılır), `flxai_call_needs_approval( $bool, $name, $args, $chat )`, `flxai_chat_session( $text, $chat, $user_id )` (sistem metnine dinamik ek).
+
+REST (`/flx-ai/v1`, sohbet sahibi + Flux Files yetkisi): `GET|POST chats/<id>/ws` (durum: klasör, politika, son değişiklikler; POST `access`, `folders`), `GET chats/<id>/ws/list?path=`, `GET chats/<id>/ws/file?path=` (1 MB'a kadar), `GET changes/<id>` (fark için before/after), `POST changes/<id>/merge|reject` (`paths` verilirse yalnız o dosyalar). Admin: `admin.php?page=flx-ai-chat&flxai_chat=<id>&flxai_ws=<pr>` sohbeti tam ekran açar, değişikliği gösterir.
 
 ## Sistem kontrolü
 `flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`, `flxai.tasks`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).

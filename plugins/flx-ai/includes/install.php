@@ -1,7 +1,8 @@
 <?php
 /**
  * Tablolar: flxai_log (her model ve araç çağrısı), flxai_chats (ortak sohbetler), flxai_media (görsel/video işleri),
- * flxai_tasks (zamanlanmış görevler), flxai_skills (skill'ler, 0.12.0).
+ * flxai_tasks (zamanlanmış görevler), flxai_changes (çalışma alanı commit/PR, 0.13.0).
+ * Skill'ler 0.13.0'dan beri dosya: <çalışma alanı>/.skills/<ad>/SKILL.md (0.12.0 tablosu dosyaya taşınır).
  *
  * @package FLX_AI
  */
@@ -22,25 +23,26 @@ function flxai_install() {
 	$bdy = flxai_table( 'log_body' );
 	$med = flxai_table( 'media' );
 	$tsk = flxai_table( 'tasks' );
-	$skl = flxai_table( 'skills' );
+	$chg = flxai_table( 'changes' );
 	dbDelta(
-		"CREATE TABLE {$skl} (
+		"CREATE TABLE {$chg} (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-			slug varchar(60) NOT NULL DEFAULT '',
-			name varchar(190) NOT NULL DEFAULT '',
-			description varchar(500) NOT NULL DEFAULT '',
-			body longtext NOT NULL,
-			tools text NOT NULL,
-			example text NOT NULL,
-			status varchar(20) NOT NULL DEFAULT 'active',
+			chat_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			task_id bigint(20) unsigned NOT NULL DEFAULT 0,
 			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
-			version int(10) unsigned NOT NULL DEFAULT 1,
+			kind varchar(10) NOT NULL DEFAULT 'commit',
+			status varchar(12) NOT NULL DEFAULT 'done',
+			title varchar(190) NOT NULL DEFAULT '',
+			turn varchar(40) NOT NULL DEFAULT '',
+			files longtext NOT NULL,
 			created int(10) unsigned NOT NULL DEFAULT 0,
 			updated int(10) unsigned NOT NULL DEFAULT 0,
 			PRIMARY KEY  (id),
-			UNIQUE KEY slug (slug)
+			KEY chat_id (chat_id,kind,status),
+			KEY user_open (user_id,kind,status)
 		) {$cs};"
 	);
+	flxai_skills_table_to_files();
 	dbDelta(
 		"CREATE TABLE {$tsk} (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -224,6 +226,24 @@ add_filter(
 		return $caps;
 	}
 );
+
+/** 0.12.0 skill tablosundaki kayıtları .skills/<ad>/SKILL.md dosyalarına taşır, tabloyu kaldırır. */
+function flxai_skills_table_to_files() {
+	global $wpdb;
+	$t = flxai_table( 'skills' );
+	if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $t ) ) !== $t ) { // phpcs:ignore
+		return;
+	}
+	foreach ( (array) $wpdb->get_results( "SELECT * FROM {$t}", ARRAY_A ) as $r ) { // phpcs:ignore
+		$tools = json_decode( (string) $r['tools'], true );
+		$r['tools'] = is_array( $tools ) ? $tools : array();
+		$s = flxai_skill_normalize( $r['slug'], $r );
+		if ( '' !== $s['slug'] && ! is_file( flxai_ws_abs( flxai_skill_file( $s['slug'] ) ) ) ) {
+			flxai_ws_write( flxai_skill_file( $s['slug'] ), flxai_skill_to_md( $s, (string) $r['name'], (string) $r['description'] ) );
+		}
+	}
+	$wpdb->query( "DROP TABLE IF EXISTS {$t}" ); // phpcs:ignore
+}
 
 /** Aktivasyon güncellemede çalışmaz; şema sürümü değişince kurulum burada yapılır. */
 function flxai_maybe_upgrade() {
