@@ -98,10 +98,12 @@ check_page() { # check_page <yol> [cookie]
   local out code
   out="$(mktemp)"
   code="$(curl -s -o "$out" -w '%{http_code}' --max-time 60 ${2:+-H "Cookie: $2"} "$URL$1")"
-  if flx_test_response_failed "$code" "$out"; then
+  local slug=""
+  case "$1" in *admin.php\?page=*) slug="${1##*page=}" ;; esac
+  if flx_test_response_failed "$code" "$out" "$slug"; then
     # Karar smoke() sonunda: hata paketten mi, bağımlılıktan (ör. WooCommerce) mı?
     BAD_PAGES="$BAD_PAGES $1→$code"
-    log "$1 → $code (hata)"
+    log "$1 → $code (hata) $(grep -oE 'wp-die-message">(<p>)?[^<]{0,120}' "$out" | head -1 | sed -E 's/.*">(<p>)?//')"
   else
     log "$1 → $code"
   fi
