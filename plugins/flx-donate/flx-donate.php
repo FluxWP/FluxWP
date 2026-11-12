@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Donate
  * Description:       Donations on WooCommerce: donation types and sapling packages sold as hidden products, cart and checkout (iyzico, bank transfer with receipt upload), monthly donations, online and printed certificates, donors, campaigns and a donation dashboard. Includes Flux WooCommerce Bağış.
- * Version:           2.26.1
+ * Version:           2.27.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Requires Plugins:  woocommerce, flx-crm
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLXB_VERSION', '2.26.1' );
+define( 'FLXB_VERSION', '2.27.0' );
 define( 'FLXB_FILE', __FILE__ );
 define( 'FLXB_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FLXB_URL', plugin_dir_url( __FILE__ ) );
@@ -65,6 +65,7 @@ require_once FLXB_DIR . 'includes/class-flxb-app-review.php';
 require_once FLXB_DIR . 'includes/class-flxb-app-admin.php';
 require_once FLXB_DIR . 'includes/app-manifest.php';
 require_once FLXB_DIR . 'includes/api.php';
+require_once FLXB_DIR . 'includes/mcp.php'; // 2.27.0: read-only donation summary for Flux AI & MCP.
 /* E-mails: templates registered with Flux Mail (flxi_email_types), plain wp_mail without it. */
 require_once FLXB_DIR . 'includes/class-flxb-mail.php';
 FLXB_Mail::init();

@@ -327,6 +327,14 @@ Yardımcı filtreler: `flx_system_checks_labels` (ekran metinlerinin çevirisi),
 
 Flux Donate'ın satırları `flxb.*`, Flux Forms'unkiler `flxf.*` kimlikli. Flux Donate saatlik görevin her çalışmasında `flxb_cron_heartbeat` seçeneğine zaman yazar; test sonuçları `flxb_syscheck_tests` seçeneğindedir (anahtar değil, yalnızca parmak izi saklanır).
 
+## Flux AI & MCP: bağış özeti (2.27.0)
+`includes/mcp.php`, `flx_mcp_tools` ile salt okunur **`flxb_donation_summary`** aracı (Flux AI sohbeti, zamanlanmış görevler ve MCP). Flux AI yoksa hiçbir şey değişmez. Yetki: `flxb_manage_capability` (varsayılan `manage_options`).
+
+- Girdi: `date` (Y-m-d) ya da `from` / `to` ya da `period` (`today` varsayılan, `yesterday`, `last_7_days`, `last_30_days`, `this_month`, `last_month`); `compare` (bool). Tarihler site saatiyle, en fazla 731 gün.
+- Çıktı: `paid` (gifts = ödeme sayısı, aynı WC siparişinin satırları tek sayılır; lines, amount, units (ör. fidan adedi), average, donors, new_donors, one_time / monthly), `other_currencies` (varsayılan para birimi dışındakiler, toplama katılmaz), `by_type` (tür + para birimi başına), `by_kind` (sapling / zakat / kurban / fitre / sadaka / other; filtre `flxb_summary_kind`), `pending` (aralıkta oluşan; `receipt_awaiting_approval` / `awaiting_payment`, `oldest`), `open_now` (tarihten bağımsız şu an açık bekleyenler), `cancelled` (canceled / failed / refunded), `subscriptions` (aktif aylık bağış ve aylık tutar), `compare` ile `previous` + `change` ({diff, pct}), `links`.
+- Kişisel veri dönmez (ad, telefon, e-posta, dekont yok). Çöp kutusu sayılmaz.
+- PHP: `flxb_donation_summary( array $args )` aynı diziyi döner (başka eklentiler de çağırabilir).
+
 ## Bağış meta anahtarları (ayrıntı ekranında gösterilir)
 
 | Anahtar | Yapı | Yazan |
