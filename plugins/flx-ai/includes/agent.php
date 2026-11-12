@@ -49,14 +49,21 @@ function flxai_agent_system( $user_id, $at = 0 ) {
 }
 
 /** Modele giden geçmiş: son N mesaj, yarım kalan araç çiftleri olmadan; sayfa bağlamı kullanıcı mesajına eklenir. */
-function flxai_agent_history( array $messages ) {
+function flxai_agent_history( array $messages, $user_id = 0 ) {
 	$n    = max( 6, (int) flxai_setting( 'chat_history', 40 ) );
 	$msgs = array_slice( $messages, -$n );
 	while ( $msgs && ( 'user' !== ( $msgs[0]['role'] ?? '' ) ) ) {
 		array_shift( $msgs );
 	}
-	$out = array();
-	foreach ( $msgs as $m ) {
+	$out  = array();
+	$full = array(); // Dosyaları tam gönderilecek son iki ekli kullanıcı mesajı.
+	for ( $i = count( $msgs ) - 1; $i >= 0 && count( $full ) < 2; $i-- ) {
+		if ( 'user' === ( $msgs[ $i ]['role'] ?? '' ) && ! empty( $msgs[ $i ]['_files'] ) ) {
+			$full[ $i ] = true;
+		}
+	}
+	$msgs = array_values( $msgs );
+	foreach ( $msgs as $mi => $m ) {
 		if ( ! empty( $m['_error'] ) && 'assistant' === $m['role'] ) {
 			continue; // hata balonları modele gitmez
 		}
@@ -73,6 +80,11 @@ function flxai_agent_history( array $messages ) {
 			 * @param array  $m    Kayıtlı mesaj (_task, _page …).
 			 */
 			$m['content'] = (string) apply_filters( 'flxai_agent_user_text', $text, $m );
+			if ( ! empty( $m['_files'] ) && function_exists( 'flxai_attach_parts' ) ) {
+				list( $parts, $notes ) = flxai_attach_parts( (array) $m['_files'], $user_id ? (int) $user_id : get_current_user_id(), isset( $full[ $mi ] ) );
+				$txt          = trim( implode( "\n", $notes ) . "\n\n" . $m['content'] );
+				$m['content'] = $parts ? array_merge( array( array( 'type' => 'text', 'text' => $txt ) ), $parts ) : $txt;
+			}
 		}
 		$out[] = $m;
 	}
@@ -80,9 +92,9 @@ function flxai_agent_history( array $messages ) {
 }
 
 /** Kullanıcı mesajı ekler ve ilk adımı çalıştırır. */
-function flxai_agent_send( array $chat, $text, $page = array() ) {
+function flxai_agent_send( array $chat, $text, $page = array(), $files = array() ) {
 	$text = trim( (string) $text );
-	if ( '' === $text ) {
+	if ( '' === $text && ! $files ) {
 		return new WP_Error( 'flxai_empty', __( 'Message is empty.', 'flx-ai' ), array( 'status' => 400 ) );
 	}
 	if ( in_array( $chat['status'], array( 'running', 'approval' ), true ) ) {
@@ -96,6 +108,9 @@ function flxai_agent_send( array $chat, $text, $page = array() ) {
 		'_ts'     => time(),
 		'_page'   => $page,
 	);
+	if ( $files ) {
+		$chat['messages'][ count( $chat['messages'] ) - 1 ]['_files'] = array_values( $files );
+	}
 	$chat['status']        = 'running';
 	$chat['state']['turn'] = array(
 		'started'  => microtime( true ),
@@ -235,7 +250,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 			$tools = flxai_tools_for_user( $user_id );
 			$model = flxai_model_for( 'flx-ai', (string) ( $chat['model'] ?: flxai_setting( 'chat_model', '' ) ) );
 			$info  = flxai_model_info( $model );
-			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ) ) ), flxai_agent_history( $chat['messages'] ) );
+			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ) ) ), flxai_agent_history( $chat['messages'], $user_id ) );
 			if ( $emit ) {
 				$emit( array( 't' => 'model' ) );
 			}

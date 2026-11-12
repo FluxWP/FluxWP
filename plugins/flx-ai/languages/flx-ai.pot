@@ -2085,3 +2085,57 @@ msgstr ""
 
 msgid "v%s"
 msgstr ""
+
+msgid "%s is too large."
+msgstr ""
+
+msgid "Ask anything or give the assistant a job…"
+msgstr ""
+
+msgid "Attach file"
+msgstr ""
+
+msgid "Create a scheduled task: every morning at 9, "
+msgstr ""
+
+msgid "Create a skill that "
+msgstr ""
+
+msgid "Dictate"
+msgstr ""
+
+msgid "Enter to send · Shift+Enter for a new line"
+msgstr ""
+
+msgid "File not found."
+msgstr ""
+
+msgid "Hi %s, what shall we do today?"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Microphone permission was not given."
+msgstr ""
+
+msgid "Schedule a task"
+msgstr ""
+
+msgid "The file could not be uploaded."
+msgstr ""
+
+msgid "The file is too large (max %s)."
+msgstr ""
+
+msgid "The image could not be read."
+msgstr ""
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr ""
+
+msgid "What shall we do today?"
+msgstr ""
+
+msgid "You can attach up to %s files."
+msgstr ""

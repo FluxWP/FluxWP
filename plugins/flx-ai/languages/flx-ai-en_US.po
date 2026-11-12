@@ -2085,3 +2085,57 @@ msgstr "panel"
 
 msgid "v%s"
 msgstr "v%s"
+
+msgid "%s is too large."
+msgstr "%s is too large."
+
+msgid "Ask anything or give the assistant a job…"
+msgstr "Ask anything or give the assistant a job…"
+
+msgid "Attach file"
+msgstr "Attach file"
+
+msgid "Create a scheduled task: every morning at 9, "
+msgstr "Create a scheduled task: every morning at 9, "
+
+msgid "Create a skill that "
+msgstr "Create a skill that "
+
+msgid "Dictate"
+msgstr "Dictate"
+
+msgid "Enter to send · Shift+Enter for a new line"
+msgstr "Enter to send · Shift+Enter for a new line"
+
+msgid "File not found."
+msgstr "File not found."
+
+msgid "Hi %s, what shall we do today?"
+msgstr "Hi %s, what shall we do today?"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Microphone permission was not given."
+msgstr "Microphone permission was not given."
+
+msgid "Schedule a task"
+msgstr "Schedule a task"
+
+msgid "The file could not be uploaded."
+msgstr "The file could not be uploaded."
+
+msgid "The file is too large (max %s)."
+msgstr "The file is too large (max %s)."
+
+msgid "The image could not be read."
+msgstr "The image could not be read."
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr "This file type is not supported. Allowed: %s"
+
+msgid "What shall we do today?"
+msgstr "What shall we do today?"
+
+msgid "You can attach up to %s files."
+msgstr "You can attach up to %s files."

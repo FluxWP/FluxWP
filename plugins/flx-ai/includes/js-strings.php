@@ -5,6 +5,14 @@ defined( 'ABSPATH' ) || exit;
 function flxai_js_strings() {
 	return array(
 		'Zamanlanmış görev' => __( 'Scheduled task', 'flx-ai' ),
+		'Dosya ekle' => __( 'Attach file', 'flx-ai' ),
+		'Sesle yaz' => __( 'Dictate', 'flx-ai' ),
+		/* translators: %s: number of files */
+		'En fazla %s dosya eklenebilir.' => __( 'You can attach up to %s files.', 'flx-ai' ),
+		/* translators: %s: file name */
+		'%s çok büyük.' => __( '%s is too large.', 'flx-ai' ),
+		'Kaldır' => __( 'Remove', 'flx-ai' ),
+		'Mikrofon izni verilmedi.' => __( 'Microphone permission was not given.', 'flx-ai' ),
 		/* translators: %s: task name */
 		'Zamanlanmış görev · %s' => __( 'Scheduled task · %s', 'flx-ai' ),
 		'%s ms' => __( '%s ms', 'flx-ai' ),

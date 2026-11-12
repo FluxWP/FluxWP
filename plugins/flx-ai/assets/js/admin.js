@@ -335,5 +335,51 @@
 	}
 	function mdBlocks() { document.querySelectorAll('.flxai-md[data-md]').forEach(function (el) { el.innerHTML = md(el.getAttribute('data-md')); }); }
 
-	document.addEventListener('DOMContentLoaded', function () { charts(); credits(); tests(); renderTest(); bodies(); toolsUi(); taskForm(); mdBlocks(); });
+	/* Genel bakış sohbet kutusu: gönderince ortak sohbet paneli yeni sohbetle açılır (chat.js window.flxaiChat). */
+	function home() {
+		var box = document.querySelector('[data-flxai-home]');
+		if (!box) return;
+		var form = box.querySelector('form'), ta = form.querySelector('textarea'), send = form.querySelector('.flxai-home-send');
+		var inp = form.querySelector('[data-file]'), list = form.querySelector('.flxai-home-files'), mic = form.querySelector('[data-mic]');
+		var files = [];
+		function size() { ta.style.height = 'auto'; ta.style.height = Math.min(260, Math.max(56, ta.scrollHeight)) + 'px'; }
+		function upd() { send.disabled = !ta.value.trim() && !files.length; }
+		function draw() {
+			list.hidden = !files.length;
+			list.innerHTML = files.map(function (f, i) {
+				var img = /^image\//.test(f.type) && window.URL ? '<img src="' + URL.createObjectURL(f) + '" alt="">' : '<span class="fi">' + esc(f.name.split('.').pop().toUpperCase().slice(0, 4)) + '</span>';
+				return '<span class="flxai-hfile">' + img + '<span class="fn">' + esc(f.name) + '</span><button type="button" data-rm="' + i + '" aria-label="×">×</button></span>';
+			}).join('');
+			upd();
+		}
+		function add(fl) { Array.prototype.forEach.call(fl || [], function (f) { if (files.length < 5) files.push(f); }); draw(); ta.focus(); }
+		form.querySelector('[data-attach]').addEventListener('click', function () { inp.click(); });
+		inp.addEventListener('change', function () { add(inp.files); inp.value = ''; });
+		list.addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (b) { files.splice(+b.getAttribute('data-rm'), 1); draw(); } });
+		ta.addEventListener('input', function () { size(); upd(); });
+		ta.addEventListener('paste', function (e) { var f = e.clipboardData && e.clipboardData.files; if (f && f.length) { e.preventDefault(); add(f); } });
+		ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true })); } });
+		form.addEventListener('dragover', function (e) { e.preventDefault(); form.classList.add('is-drop'); });
+		form.addEventListener('dragleave', function () { form.classList.remove('is-drop'); });
+		form.addEventListener('drop', function (e) { e.preventDefault(); form.classList.remove('is-drop'); if (e.dataTransfer) add(e.dataTransfer.files); });
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+			var text = ta.value.trim();
+			if ((!text && !files.length) || !window.flxaiChat) return;
+			if (window.flxaiChat.start(text, files.slice()) !== false) { ta.value = ''; files = []; draw(); size(); }
+		});
+		box.querySelectorAll('[data-fill]').forEach(function (b) {
+			b.addEventListener('click', function () { ta.value = b.getAttribute('data-fill'); size(); upd(); ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); });
+		});
+		function micSetup() {
+			if (!mic || !window.flxaiChat || !window.flxaiChat.canDictate || mic.getAttribute('data-on')) return;
+			mic.hidden = false; mic.setAttribute('data-on', '1');
+			window.flxaiChat.dictate(ta, mic, function () { size(); upd(); });
+		}
+		micSetup();
+		window.addEventListener('load', micSetup);
+		size(); upd();
+	}
+
+	document.addEventListener('DOMContentLoaded', function () { charts(); credits(); tests(); renderTest(); bodies(); toolsUi(); taskForm(); mdBlocks(); home(); });
 })();

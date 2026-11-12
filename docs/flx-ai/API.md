@@ -382,6 +382,16 @@ Görev `meta.skill` (slug) ve `meta.notify` (`mode` none|important|always, `emai
 
 Onay kuyruğu: `flxai_approvals_count( $user_id )`, `flxai_approvals_list( $user_id )` (kullanıcının `approval` durumundaki sohbetlerinin bekleyen araç çağrıları), `flxai_approval_decide( $chat_id, $call_id, $approve, $args = null )` (tek işlem; `$args` verilirse girdi değişir; sohbette başka bekleyen kalmadıysa model bir adım devam eder). Olay `flxai_agent_decided( $chat )` (sohbetten ya da kuyruktan karar sonrası). Ekran `admin.php?page=flx-ai-approvals`.
 
+## Sohbet ekleri ve sohbeti başlatma (0.12.0)
+
+- REST `POST /flx-ai/v1/files` (multipart, alan `file`) → `{ key, name, type, size }`. `GET /flx-ai/v1/files/<key>` dosyayı yalnız sahibine verir (görsel/PDF inline, diğerleri indirme, `nosniff`).
+- `POST /flx-ai/v1/chats/<id>/send` ek parametreler: `files` (key dizisi), `names` (görünen adlar). Metin boş olabilir, en az bir dosya varsa.
+- PHP: `flxai_agent_send( $chat, $text, $page = array(), $files = array() )`; `$files` = `flxai_attach_for_message( $keys, $names, $user_id )` çıktısı. Mesajda `_files` olarak saklanır.
+- Modele: görsel `image_url` (data URL), PDF `file`, metin dosyası içerik olarak (60.000 karaktere kadar). Yalnız son iki ekli kullanıcı mesajı tam gider.
+- Filtreler: `flxai_attach_types` (uzantı => MIME), `flxai_attach_max_bytes` (varsayılan 10 MB), `flxai_attach_max_files` (varsayılan 5).
+- Dosyalar `uploads/flxai-chat/<kullanıcı>/` altında (.htaccess ile kapalı); `flxai_chat_delete` ekleri de siler.
+- JS: `window.flxaiChat.start( text, files )` paneli açar, yeni sohbet başlatır ve gönderir (`files` = `File` dizisi). `window.flxaiChat.dictate( textarea, button, onChange )` Web Speech API ile sesle yazma; `window.flxaiChat.canDictate` tarayıcı desteği.
+
 ## Sistem kontrolü
 `flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`, `flxai.tasks`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).
 

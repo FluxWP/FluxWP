@@ -40,6 +40,7 @@ require_once FLXAI_DIR . 'includes/mcp.php';
 require_once FLXAI_DIR . 'includes/oauth.php';
 require_once FLXAI_DIR . 'includes/tools.php';
 require_once FLXAI_DIR . 'includes/chats.php';
+require_once FLXAI_DIR . 'includes/attachments.php';
 require_once FLXAI_DIR . 'includes/widgets.php';
 require_once FLXAI_DIR . 'includes/media.php';
 require_once FLXAI_DIR . 'includes/agent.php';

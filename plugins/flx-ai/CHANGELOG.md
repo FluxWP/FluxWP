@@ -8,6 +8,9 @@
 - **Görev bildirimleri**: "Yalnız önemli bir şey olunca" (asistan karar verir, ya da işlem onay bekliyor / hata), "Her çalışmadan sonra" ya da "Hiçbir zaman". Kanallar: yönetim paneli (menüde rozet, listede "Yeni rapor"), e-posta (Flux Mail şablonu "AI görev raporu", yoksa wp_mail), WhatsApp (Flux Mail). Geçmişte hangi kanaldan bildirildiği görünür.
 - **Onay bekleyenler** ekranı: tüm sohbet ve görevlerin onay bekleyen işlemleri tek listede. Onayla, Reddet ya da girdiyi (JSON) düzenleyip onayla; sohbetin son işlemi karara bağlanınca asistan kaldığı yerden devam eder. Menüde sayı rozeti.
 - Görev sohbetinde onay verilince görevin "Onay bekliyor" durumu kalkar.
+- **Genel bakışta sohbet kutusu**: sayfanın üstünde AI sohbetiyle aynı yazma alanı (dosya ekle, sesle yaz, gönder) ve hızlı başlangıç düğmeleri (skill'ler, Görev zamanla, Yeni skill). Gönderince sağdaki sohbet paneli yeni sohbetle açılır, konuşma orada sürer.
+- **Sohbette dosya eki**: görsel (jpg, png, gif, webp), PDF ve metin dosyaları (txt, md, csv, tsv, json, xml, html, log); ataş düğmesi, yapıştır ya da sürükle bırak. En fazla 5 dosya, dosya başı 10 MB. Dosyalar yalnız sahibine açık klasörde durur, sohbet silinince silinir. Modele yalnız son iki ekli mesajın dosyaları tam gider (maliyet), öncekiler not olarak kalır.
+- **Sesle yazma**: tarayıcı destekliyorsa mikrofon düğmesi konuşmayı yazıya çevirir (sohbet paneli ve Genel bakış).
 
 ## 0.11.0
 - **Zamanlanmış görevler** (Flux AI & MCP › Zamanlanmış görevler): asistan belirlenen zamanda kendiliğinden çalışır. Her gün, hafta içi, haftanın seçili günleri, ayın günü, birkaç saatte bir ya da bir kez. Örnek: her sabah 9'da günlük YZ brifingi, her pazartesi bağışçı durumu, 6 saatte bir site performansı.

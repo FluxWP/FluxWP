@@ -2085,3 +2085,57 @@ msgstr "panel"
 
 msgid "v%s"
 msgstr "sürüm %s"
+
+msgid "%s is too large."
+msgstr "%s çok büyük."
+
+msgid "Ask anything or give the assistant a job…"
+msgstr "Bir şey sorun ya da asistana bir iş verin…"
+
+msgid "Attach file"
+msgstr "Dosya ekle"
+
+msgid "Create a scheduled task: every morning at 9, "
+msgstr "Zamanlanmış görev oluştur: her sabah 9'da, "
+
+msgid "Create a skill that "
+msgstr "Şunu yapan bir skill oluştur: "
+
+msgid "Dictate"
+msgstr "Sesle yaz"
+
+msgid "Enter to send · Shift+Enter for a new line"
+msgstr "Göndermek için Enter · yeni satır için Shift+Enter"
+
+msgid "File not found."
+msgstr "Dosya bulunamadı."
+
+msgid "Hi %s, what shall we do today?"
+msgstr "Merhaba %s, bugün ne yapalım?"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Microphone permission was not given."
+msgstr "Mikrofon izni verilmedi."
+
+msgid "Schedule a task"
+msgstr "Görev zamanla"
+
+msgid "The file could not be uploaded."
+msgstr "Dosya yüklenemedi."
+
+msgid "The file is too large (max %s)."
+msgstr "Dosya çok büyük (en fazla %s)."
+
+msgid "The image could not be read."
+msgstr "Görsel okunamadı."
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr "Bu dosya türü desteklenmiyor. İzin verilenler: %s"
+
+msgid "What shall we do today?"
+msgstr "Bugün ne yapalım?"
+
+msgid "You can attach up to %s files."
+msgstr "En fazla %s dosya eklenebilir."
