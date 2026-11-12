@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.15.1
+- Görev bildirimlerinde **Tanıtım içeriği** seçeneği: işaretliyse CRM kişilerine ve gruplara giden mesaj Flux Mail'e `kind = marketing` olarak gider; IPTAL/STOP yazanlara ve abonelikten çıkanlara gitmez, altına çıkış satırı eklenir (Flux Mail 1.17.0+). Varsayılan bilgilendirme (`info`); personel ve görev sahibi bildirimleri her zaman bilgilendirmedir. Sohbetten `notify_promo` ile de ayarlanır.
+
 ## 0.15.0
 - **Görsel rapor**: asistan veriyi, planı ya da açıklamayı Tailwind ile tek sayfalık, etkileşimli HTML rapora dönüştürür (KPI kartları, Chart.js grafikleri, Mermaid şemaları, tablolar; açık/koyu mod). Rapor sohbetin klasörüne (`raporlar/`) kaydedilir, sohbette **Görsel rapor** kartından sağ panelde açılır, **Tam ekran aç** ile ayrı sekmede.
 - Güvenlik: rapor WordPress sayfasına basılmaz; ayrı adresten CSP `sandbox` ile sunulur (çerez/oturum yok, dışarıya istek yok, betik yalnız izinli CDN'lerden).

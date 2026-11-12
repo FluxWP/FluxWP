@@ -629,6 +629,9 @@ function flxai_task_tool_data( array $a ) {
 	if ( isset( $a['notify_to'] ) && is_array( $a['notify_to'] ) ) {
 		$n['to'] = $a['notify_to'];
 	}
+	if ( isset( $a['notify_promo'] ) ) {
+		$n['promo'] = ! empty( $a['notify_promo'] );
+	}
 	if ( $n ) {
 		$data['notify'] = $n;
 	}
@@ -699,6 +702,10 @@ function flxai_task_tool_schema( $with_id ) {
 		'notify_whatsapp' => array(
 			'type'        => 'string',
 			'description' => 'WhatsApp bildirimi için numara, ülke koduyla (ör. 905321234567).',
+		),
+		'notify_promo'    => array(
+			'type'        => 'boolean',
+			'description' => 'Görev sahibi dışındaki kişilere/gruplara giden mesaj tanıtım/kampanya/duyuru içeriyorsa true (IPTAL yazanlara gitmez, altına çıkış satırı eklenir). Rapor, makbuz, teşekkür gibi bilgilendirmede false (varsayılan). Emin değilsen kullanıcıya sor.',
 		),
 		'notify_to'       => array(
 			'type'        => 'array',

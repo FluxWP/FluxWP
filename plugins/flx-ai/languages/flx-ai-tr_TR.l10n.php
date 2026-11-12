@@ -1377,5 +1377,6 @@ return array(
   'The report is too large.' => 'Rapor çok büyük.',
   'Create a visual report' => 'Görsel rapor oluştur',
   'This tool only works in the AI chat.' => 'Bu araç yalnız AI sohbetinde çalışır.',
+  'Promotional content: skip people who opted out (STOP) and add an opt-out line' => 'Tanıtım içeriği: çıkış yapanlara (IPTAL) gönderme, altına çıkış satırı ekle',
  ),
 );

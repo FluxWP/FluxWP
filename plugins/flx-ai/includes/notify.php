@@ -21,6 +21,7 @@ function flxai_task_notify_clean( array $n ) {
 		'whatsapp' => strlen( $wa ) >= 8 ? substr( $wa, 0, 20 ) : '',
 		'panel'    => ! empty( $n['panel'] ),
 		'to'       => flxai_notify_to_clean( (array) ( $n['to'] ?? array() ) ),
+		'promo'    => ! empty( $n['promo'] ),
 	);
 }
 
@@ -419,6 +420,8 @@ function flxai_task_send_notice( array $task, $state, $text ) {
 			continue;
 		}
 		$staff = 'user' === $r['kind'];
+		/* Tanıtım içerikli görevde kişilere/gruplara giden mesaj 'marketing' (Flux Mail 1.17.0+: IPTAL / abonelik çıkışına uyar). Personel her zaman 'info'. */
+		$mk    = ! $staff && ! empty( $cfg['promo'] ) ? 'marketing' : 'info';
 		$body  = $task['title'] . "\n" . $text . ( $staff ? "\n\n" . $link : '' );
 		foreach ( $r['channels'] as $ch ) {
 			$ok = false;
@@ -435,6 +438,8 @@ function flxai_task_send_notice( array $task, $state, $text ) {
 								'durum'     => $label,
 								'link'      => $staff ? $link : home_url( '/' ),
 							),
+							'kind'     => $mk,
+							'source'   => 'flx-ai',
 						)
 					);
 				} else {
@@ -444,7 +449,7 @@ function flxai_task_send_notice( array $task, $state, $text ) {
 			} elseif ( in_array( $ch, array( 'sms', 'whatsapp' ), true ) && function_exists( 'flxi_send_message' ) ) {
 				$to = 'whatsapp' === $ch && '' !== $r['jid'] ? $r['jid'] : $r['phone'];
 				if ( '' !== $to ) {
-					$res = flxi_send_message( $ch, $to, 'whatsapp' === $ch ? '*' . $task['title'] . "*\n" . $text . ( $staff ? "\n\n" . $link : '' ) : $body, array( 'source' => 'flx-ai' ) );
+					$res = flxi_send_message( $ch, $to, 'whatsapp' === $ch ? '*' . $task['title'] . "*\n" . $text . ( $staff ? "\n\n" . $link : '' ) : $body, array( 'source' => 'flx-ai', 'kind' => $mk ) );
 					$ok  = ! empty( $res['ok'] );
 				}
 			}

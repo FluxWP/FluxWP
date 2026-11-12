@@ -2932,3 +2932,6 @@ msgstr "Create a visual report"
 
 msgid "This tool only works in the AI chat."
 msgstr "This tool only works in the AI chat."
+
+msgid "Promotional content: skip people who opted out (STOP) and add an opt-out line"
+msgstr "Promotional content: skip people who opted out (STOP) and add an opt-out line"
