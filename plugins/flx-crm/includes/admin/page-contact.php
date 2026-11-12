@@ -142,12 +142,6 @@ final class FLXCRM_Page_Contact {
 		self::sources_card( $c, $links );
 		/** Yan sütun: eklentiye özel kartlar (sertifikalar, kayıtlar…). */
 		do_action( 'flxcrm_person_card_side', $c, self::$context );
-		if ( $can && '' === self::$context ) {
-			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-danger" data-flxcrm-confirm>';
-			wp_nonce_field( 'flxcrm_contact_delete' );
-			echo '<input type="hidden" name="action" value="flxcrm_contact_delete"><input type="hidden" name="id" value="' . (int) $id . '">';
-			echo '<button class="button-link button-link-delete">' . flxcrm_icon( 'trash', 14 ) . esc_html__( 'Delete contact', 'flx-crm' ) . '</button><small class="flxcrm-muted">' . esc_html__( 'Donations and orders stay in their own plugins; only the CRM card is deleted.', 'flx-crm' ) . '</small></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		}
 		echo '</aside></div>';
 		echo '</div>';
 	}
@@ -354,7 +348,15 @@ final class FLXCRM_Page_Contact {
 		echo '<input type="hidden" name="action" value="flxcrm_contact_save"><input type="hidden" name="id" value="' . (int) $c['id'] . '">' . self::ret();
 		self::fields( $c, $can );
 		echo '<p class="flxcrm-actions"><button class="button button-primary">' . esc_html__( 'Save', 'flx-crm' ) . '</button> <button type="button" class="button" data-flxcrm-cancel>' . esc_html__( 'Cancel', 'flx-crm' ) . '</button></p>';
-		echo '</form></section>';
+		echo '</form>';
+		// Kişiyi sil: yalnız düzenlerken, formun altında (CRM'in kendi kartında).
+		if ( '' === self::$context ) {
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-danger flxcrm-details__delete" data-flxcrm-confirm' . ( $open ? '' : ' hidden' ) . '>';
+			wp_nonce_field( 'flxcrm_contact_delete' );
+			echo '<input type="hidden" name="action" value="flxcrm_contact_delete"><input type="hidden" name="id" value="' . (int) $c['id'] . '">';
+			echo '<button class="button-link button-link-delete">' . flxcrm_icon( 'trash', 14 ) . esc_html__( 'Delete contact', 'flx-crm' ) . '</button><small class="flxcrm-muted">' . esc_html__( 'Donations and orders stay in their own plugins; only the CRM card is deleted.', 'flx-crm' ) . '</small></form>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '</section>';
 	}
 
 	/** Bilgiler kartının salt okunur görünümü. */

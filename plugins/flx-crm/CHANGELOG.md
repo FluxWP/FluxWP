@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.3
+- "Delete contact" is no longer always shown under the contact card; it appears at the bottom of the Details card only after pressing Edit.
+
 ## 0.4.2
 - CRM screens no longer reload the whole page: links, the left-menu CRM items, list filters, timeline tabs and forms (note, tags, details, delete, bulk actions) run with fetch and only the CRM content is replaced. Address bar, back/forward, page title and menu highlight follow along; styles and scripts a new screen needs (e.g. the phone field) are loaded on the fly.
 - Also works for the shared person card inside other plugins (Donate, Commerce), on that page only. Sync and scoring refresh the screen the same way.

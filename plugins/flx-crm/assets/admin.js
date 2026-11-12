@@ -515,10 +515,14 @@ window.flxcrmBoot.push( function ( R ) {
 		if ( ! btn || ! view || ! form ) {
 			return;
 		}
+		var del = card.querySelector( '.flxcrm-details__delete' );
 		function mode( edit ) {
 			card.classList.toggle( 'is-editing', edit );
 			view.hidden = edit;
 			form.hidden = ! edit;
+			if ( del ) {
+				del.hidden = ! edit;
+			}
 			btn.hidden = edit;
 			btn.setAttribute( 'aria-expanded', edit ? 'true' : 'false' );
 			if ( edit ) {
