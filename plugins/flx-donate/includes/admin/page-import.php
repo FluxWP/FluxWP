@@ -88,6 +88,28 @@ final class FLXB_Page_Import {
 		}
 		echo '</div>';
 
+		/* 2.26.0: what will be written, checked before starting */
+		$sum = $a['summary'];
+		$cur = $sum['currency'];
+		echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Summary', 'flx-donate' ) . '</h2><p class="flxb-card__hint">' . esc_html__( 'Only ready rows are counted. After changing a match, press "Apply and check again" to update it.', 'flx-donate' ) . '</p></div></div>';
+		echo '<div class="flxb-kpis">';
+		foreach ( array( array( __( 'Records', 'flx-donate' ), number_format_i18n( $sum['rows'] ), '' ), array( __( 'Units', 'flx-donate' ), number_format_i18n( $sum['units'] ), '' ), array( __( 'Paid', 'flx-donate' ), flxb_money( $sum['paid'], $cur ) . ' · ' . number_format_i18n( $sum['paid_n'] ), '#1F7A4D' ), array( __( 'Waiting for payment', 'flx-donate' ), flxb_money( $sum['waiting'], $cur ) . ' · ' . number_format_i18n( $sum['waiting_n'] ), '#B7791F' ) ) as $k ) {
+			echo '<div class="flxb-kpi"' . ( $k[2] ? ' style="--accent:' . esc_attr( $k[2] ) . '"' : '' ) . '><div class="flxb-kpi__label">' . esc_html( $k[0] ) . '</div><div class="flxb-kpi__value">' . esc_html( $k[1] ) . '</div></div>';
+		}
+		echo '</div>';
+		if ( $sum['by_ref'] ) {
+			echo '<div class="flxb-tablewrap"><table class="flxb-table flxb-table--compact"><thead><tr><th>' . esc_html__( 'Referral', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Records', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Units', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th></tr></thead><tbody>';
+			uasort( $sum['by_ref'], function ( $x, $y ) { return $y['rows'] <=> $x['rows']; } );
+			foreach ( $sum['by_ref'] as $uid => $x ) {
+				$u = $uid ? get_userdata( $uid ) : null;
+				echo '<tr><td class="flxb-col-main">' . esc_html( $u ? $u->display_name : __( '(none)', 'flx-donate' ) ) . '</td><td class="num" data-label="' . esc_attr__( 'Records', 'flx-donate' ) . '"><span>' . esc_html( number_format_i18n( $x['rows'] ) ) . '</span></td><td class="num" data-label="' . esc_attr__( 'Units', 'flx-donate' ) . '"><span>' . esc_html( number_format_i18n( $x['units'] ) ) . '</span></td><td class="num" data-label="' . esc_attr__( 'Amount', 'flx-donate' ) . '"><span>' . esc_html( flxb_money( $x['amount'], $cur ) ) . '</span></td></tr>';
+			}
+			echo '</tbody></table></div>';
+		}
+		echo '</section>';
+		/* translators: 1: records, 2: units, 3: paid amount, 4: amount waiting for payment */
+		$confirm = sprintf( __( '%1$s records (%2$s units) will be written. Paid: %3$s, waiting for payment: %4$s. Nothing is sent to anyone.', 'flx-donate' ), number_format_i18n( $sum['rows'] ), number_format_i18n( $sum['units'] ), flxb_money( $sum['paid'], $cur ), flxb_money( $sum['waiting'], $cur ) );
+
 		echo self::post_form( 'save', ' class="flxb-form"' ) . '<input type="hidden" name="import" value="' . esc_attr( $imp['id'] ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		/* Columns */
@@ -170,7 +192,8 @@ final class FLXB_Page_Import {
 
 		echo '<div class="flxb-actions flxb-actions--sticky"><button class="flxb-btn" type="submit" name="do" value="apply">' . esc_html__( 'Apply and check again', 'flx-donate' ) . '</button> ';
 		/* translators: %s: number of rows */
-		echo '<button class="flxb-btn flxb-btn--primary" type="submit" name="do" value="run"' . ( $s['ok'] ? '' : ' disabled' ) . '>' . esc_html( sprintf( _n( 'Import %s row', 'Import %s rows', $s['ok'], 'flx-donate' ), number_format_i18n( $s['ok'] ) ) ) . '</button></div></form>';
+		echo '<button class="flxb-btn flxb-btn--primary" type="submit" name="do" value="run" data-flxb-run data-flx-confirm="' . esc_attr( $confirm ) . '" data-flx-confirm-title="' . esc_attr__( 'Start the import?', 'flx-donate' ) . '" data-flx-confirm-ok="' . esc_attr__( 'Import', 'flx-donate' ) . '"' . ( $s['ok'] ? '' : ' disabled' ) . '>' . esc_html( sprintf( _n( 'Import %s row', 'Import %s rows', $s['ok'], 'flx-donate' ), number_format_i18n( $s['ok'] ) ) ) . '</button><span class="flxb-help" data-flxb-stale hidden>' . esc_html__( 'You changed something: press "Apply and check again" first.', 'flx-donate' ) . '</span></div></form>';
+		echo '<script>(function(){var f=document.querySelector("[data-flxb-run]");if(!f){return;}var m=f.form,h=m.querySelector("[data-flxb-stale]");m.addEventListener("change",function(){f.disabled=true;if(h){h.hidden=false;}});})();</script>';
 
 		/* Rows */
 		echo '<section class="flxb-card flxb-card--gap"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'Rows', 'flx-donate' ) . '</h2></div><div class="flxb-tablewrap"><table class="flxb-table flxb-table--compact"><thead><tr><th>#</th><th>' . esc_html__( 'Donor', 'flx-donate' ) . '</th><th>' . esc_html__( 'Date', 'flx-donate' ) . '</th><th>' . esc_html__( 'Donation type', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Quantity', 'flx-donate' ) . '</th><th class="num">' . esc_html__( 'Amount', 'flx-donate' ) . '</th><th>' . esc_html__( 'Status', 'flx-donate' ) . '</th><th>' . esc_html__( 'Check', 'flx-donate' ) . '</th></tr></thead><tbody>';

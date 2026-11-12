@@ -418,12 +418,40 @@ final class FLXB_Import {
 		return '1' === $k ? 1 : ( '0' === $k ? 0 : $default );
 	}
 
-	private static function users() {
-		$out = array();
-		foreach ( get_users( array( 'fields' => array( 'ID', 'display_name' ), 'number' => 500 ) ) as $u ) {
-			$out[ (int) $u->ID ] = $u->display_name;
+	/**
+	 * 2.26.0: the site user a "brought in by / referral" cell means. Exact name (display name, first +
+	 * last name, login) first; then the only user whose name holds every word of the cell, or whose
+	 * every word is in the cell ("Enes" ↔ "Enes Aktaş"). 0 when nothing or more than one fits.
+	 */
+	public static function match_user( $raw ) {
+		$k = flxb_fold( $raw );
+		if ( '' === $k ) {
+			return 0;
 		}
-		return $out;
+		static $names = null;
+		if ( null === $names ) {
+			$names = array();
+			foreach ( get_users( array( 'fields' => array( 'ID', 'display_name', 'user_login' ), 'number' => 500 ) ) as $u ) {
+				$full = trim( get_user_meta( $u->ID, 'first_name', true ) . ' ' . get_user_meta( $u->ID, 'last_name', true ) );
+				$names[ (int) $u->ID ] = array_values( array_unique( array_filter( array( flxb_fold( $u->display_name ), flxb_fold( $full ), flxb_fold( $u->user_login ) ) ) ) );
+			}
+		}
+		foreach ( $names as $uid => $list ) {
+			if ( in_array( $k, $list, true ) ) {
+				return $uid;
+			}
+		}
+		$words = explode( ' ', $k );
+		$hits  = array();
+		foreach ( $names as $uid => $list ) {
+			foreach ( $list as $n ) {
+				$nw = explode( ' ', $n );
+				if ( ! array_diff( $words, $nw ) || ( count( $nw ) > 0 && strlen( $nw[0] ) > 2 && ! array_diff( $nw, $words ) ) ) {
+					$hits[ $uid ] = 1;
+				}
+			}
+		}
+		return 1 === count( $hits ) ? (int) key( $hits ) : 0;
 	}
 
 	/**
@@ -463,15 +491,8 @@ final class FLXB_Import {
 			$g['to'] = (string) ( $res['status'][ $k ] ?? self::guess_status( $g['raw'], 0 ) );
 		}
 		unset( $g );
-		$users = self::users();
 		foreach ( $groups['ref'] as $k => &$g ) {
-			$match = 0;
-			foreach ( $users as $uid => $name ) {
-				if ( '' !== $k && flxb_fold( $name ) === $k ) {
-					$match = $uid;
-				}
-			}
-			$g['to'] = (string) ( $res['ref'][ $k ] ?? $match );
+			$g['to'] = (string) ( $res['ref'][ $k ] ?? self::match_user( $g['raw'] ) );
 		}
 		unset( $g );
 		foreach ( $groups['paid'] as $k => &$g ) {
@@ -597,7 +618,42 @@ final class FLXB_Import {
 			$seen[ $r['key'] ] = 1;
 			$rows[]            = $r;
 		}
-		return array( 'groups' => $groups, 'rows' => $rows, 'stats' => $stats );
+		return array( 'groups' => $groups, 'rows' => $rows, 'stats' => $stats, 'summary' => self::summary( $rows ) );
+	}
+
+	/**
+	 * 2.26.0: what will be written (rows that are ready): units, amount paid / waiting, per referral.
+	 *
+	 * @return array { rows, units, paid, waiting, paid_n, waiting_n, currency, by_ref: [ user_id => { rows, units, amount } ] }
+	 */
+	public static function summary( array $rows ) {
+		$out = array( 'rows' => 0, 'units' => 0, 'paid' => 0.0, 'waiting' => 0.0, 'paid_n' => 0, 'waiting_n' => 0, 'currency' => '', 'by_ref' => array() );
+		foreach ( $rows as $r ) {
+			if ( ! empty( $r['dup'] ) || $r['errors'] ) {
+				continue;
+			}
+			$t   = $r['type_id'] ? FLXB_Types::get( $r['type_id'] ) : null;
+			$amt = null !== $r['amount'] ? (float) $r['amount'] : 0.0;
+			if ( null === $r['amount'] && $t ) {
+				$o   = '' !== $r['option'] ? FLXB_Types::option( $t, $r['option'] ) : null;
+				$amt = $o ? (float) FLXB_Types::option_price( $t, $o, '' !== $r['currency'] ? $r['currency'] : (string) $t['currency'] ) * $r['qty'] : 0.0;
+			}
+			if ( '' === $out['currency'] ) {
+				$out['currency'] = '' !== $r['currency'] ? $r['currency'] : ( $t ? (string) $t['currency'] : '' );
+			}
+			++$out['rows'];
+			$out['units'] += (int) $r['qty'];
+			$out[ $r['paid'] ? 'paid' : 'waiting' ] += $amt;
+			++$out[ $r['paid'] ? 'paid_n' : 'waiting_n' ];
+			$ref = (int) $r['ref'];
+			if ( ! isset( $out['by_ref'][ $ref ] ) ) {
+				$out['by_ref'][ $ref ] = array( 'rows' => 0, 'units' => 0, 'amount' => 0.0 );
+			}
+			++$out['by_ref'][ $ref ]['rows'];
+			$out['by_ref'][ $ref ]['units']  += (int) $r['qty'];
+			$out['by_ref'][ $ref ]['amount'] += $amt;
+		}
+		return $out;
 	}
 
 	/** The same row is never imported twice: key over every mapped cell. */

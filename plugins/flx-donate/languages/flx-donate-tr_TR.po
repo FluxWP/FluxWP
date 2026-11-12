@@ -5986,3 +5986,18 @@ msgstr "İçe aktarılan kayıtlar geçmiş kayıttır: kimseye e-posta, WhatsAp
 
 msgid "Nothing is sent to donors or staff while importing (no e-mail, WhatsApp or certificate)."
 msgstr "Aktarım sırasında bağışçılara ve personele hiçbir şey gönderilmez (e-posta, WhatsApp, sertifika yok)."
+
+msgid "Only ready rows are counted. After changing a match, press \"Apply and check again\" to update it."
+msgstr "Yalnız hazır satırlar sayılır. Bir eşlemeyi değiştirince güncellemek için \"Uygula ve yeniden kontrol et\"e basın."
+
+msgid "(none)"
+msgstr "(yok)"
+
+msgid "%1$s records (%2$s units) will be written. Paid: %3$s, waiting for payment: %4$s. Nothing is sent to anyone."
+msgstr "%1$s kayıt (%2$s adet) yazılacak. Ödenen: %3$s, ödeme bekleyen: %4$s. Kimseye bir şey gönderilmez."
+
+msgid "Start the import?"
+msgstr "Aktarım başlasın mı?"
+
+msgid "You changed something: press \"Apply and check again\" first."
+msgstr "Bir şey değiştirdiniz: önce \"Uygula ve yeniden kontrol et\"e basın."

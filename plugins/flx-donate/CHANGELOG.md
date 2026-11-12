@@ -6,6 +6,8 @@
 - Tarihi boş satırlar için seçenek: üstteki satırın tarihi (varsayılan), satırdaki hedef tarih, seçilen bir gün ya da bugün. Önizleme tablosunda tarih sütunu.
 - Takip edilmeyen türlerde (fidan gibi) "Adına" tek ad olarak yazılır (adet kadar tekrarlanmaz).
 - Önizlemede takip edilmeyen türlerin "Durum" sütunu ödeme durumunu gösterir (Ödendi / Ödeme bekleniyor).
+- Yüklemeden önce özet: kayıt, adet, ödenen / ödeme bekleyen tutar ve referans (personel) başına kayıt-adet-tutar. "Yükle" düğmesi aynı özeti onay penceresinde gösterir; eşleme değişip uygulanmadıysa düğme kapanır.
+- Personel eşleştirme: görünen ad, ad + soyad ya da kullanıcı adıyla; tam eşleşme yoksa tek uyan kullanıcı ("Enes" ↔ "Enes Aktaş").
 - Aktarım sessiz: aktarım sırasında hiçbir e-posta gitmez, içe aktarılan siparişler için referans personele, bağışçıya ya da adına bağış yapılan kişiye WhatsApp, reklam dönüşümü (Flux Ads) ve analitik olayı gönderilmez. Ortak filtre `flx_silent` ( $silent, $context ): aktarım sürerken ve `created_via = flxb-import` siparişler için true.
 
 ## 2.25.1
