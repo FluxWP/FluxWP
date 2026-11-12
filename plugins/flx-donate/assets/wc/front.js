@@ -675,7 +675,21 @@
 		});
 	}
 
+	/* 2.24.2: a sticky site header covers sticky cards (summary), so they sit below it: --flx-sticky-top = the header's bottom edge. */
+	function stickyTop() {
+		var h = document.querySelector('.flx-header-part, header.wp-block-template-part, body > header, .site-header');
+		if (!h) return;
+		var set = function () {
+			var cs = getComputedStyle(h), v = 0;
+			if (cs.position === 'sticky' || cs.position === 'fixed') v = Math.max(0, (parseFloat(cs.top) || 0) + h.offsetHeight);
+			document.documentElement.style.setProperty('--flx-sticky-top', v + 'px');
+		};
+		set();
+		if (window.ResizeObserver) new ResizeObserver(set).observe(h); else window.addEventListener('resize', set);
+	}
+
 	function init() {
+		if (document.querySelector('[data-flxwb]')) stickyTop();
 		document.querySelectorAll('[data-flxwb]').forEach(setupForm);
 		document.querySelectorAll('[data-flxwb-upload]').forEach(setupUpload);
 	}

@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 2.25.1
+- Niyet seçimi (akıllı görünüm) düzeldi: seçimden sonra açılır menü + adet tek satırda, hızlı adet düğmeleri (3, 5, 10 …) yalnız seçilen niyetin altında. Önceden tüm niyetlerin düğmeleri yan yana basılıp sayfayı yatay taşırıyordu. Seçim yapılmadan liste düğmesiz, sade.
+- Adım adım görünümde sağdaki sabit özet kartı yapışkan site başlığının altında durur (başlık yüksekliği otomatik ölçülür, `--flx-sticky-top`).
+- Formun üstündeki fotoğraf bandı: türün görseli yoksa ürün görseli WooCommerce üzerinden alınır (ön ayarların görsel filtresi uygulanır, Qurban Global'de kurban fotoğrafı). Yedek fotoğraf yalnız fidan türünde fidan, diğerlerinde genel bağış görseli; rozet ikonu da yalnız fidanda filiz. Yeni filtre `flxb_hero_image_url`.
+
 ## 2.25.0
 - Bağış detayı yenilendi. "Kalemler" artık sipariş ekranındaki gibi tek tablo: bağış türü görseli, ad ve altında ayrıntılar (fidan sayısı, sertifika, sertifikadaki ad…), birim fiyat, adet, toplam. Sütun başlığına tıklayınca sıralanır. Altta ara toplam / toplam ve "Ödendi" (yöntem + tarih), bekleyen bağışta "Ödeme bekleniyor", iadede "İade edildi" ve net tutar. Sepetteki bağışlarda tüm kalemler aynı tabloda.
 - Ödeme kartı derli toplu: bilgiler ızgarada, sertifikalar ve notlar ayrı satırda. Tablodaki bilgiyi tekrar eden "Seçenek / Adet" satırları kalktı, ödeme sağlayıcısı olarak ödeme yöntemi (ör. Havale / EFT) yazılır, iç WooCommerce referansı gösterilmez.
