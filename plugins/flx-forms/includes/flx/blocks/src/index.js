@@ -3,7 +3,9 @@
  */
 import { registerFields } from './fields';
 import { registerForm } from './form';
+import { registerLegacy } from './legacy';
 import './editor.scss';
 
 registerFields();
 registerForm();
+registerLegacy();

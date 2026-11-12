@@ -50,6 +50,7 @@ class FLXF_Blocks {
 		add_filter( 'block_categories_all', array( __CLASS__, 'category' ), 10, 1 );
 		add_action( 'admin_post_flxf_block_edit', array( __CLASS__, 'edit_with_blocks' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'panel_button' ) );
+		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'hide_legacy_forms' ), 1 );
 	}
 
 	/**
@@ -70,6 +71,21 @@ class FLXF_Blocks {
 		wp_add_inline_script(
 			'flxf-blocks-panel',
 			'(function(c){function add(){document.querySelectorAll(".efb-actions-group").forEach(function(g){if(g.querySelector(".flxf-act-blocks"))return;var e=g.querySelector(".efb-act-edit");if(!e)return;var a=document.createElement("a");a.className="efb efb-act-btn flxf-act-blocks";a.href=c.url+encodeURIComponent(e.getAttribute("data-id"));a.setAttribute("data-efb-tip",c.label);a.setAttribute("aria-label",c.label);a.title=c.label;a.innerHTML=\'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7.5" height="7" rx="1.5"/><rect x="13" y="13.5" width="7.5" height="7" rx="1.5"/></svg>\';a.addEventListener("click",function(ev){ev.stopPropagation();});e.insertAdjacentElement("afterend",a);});}new MutationObserver(add).observe(document.body,{childList:true,subtree:true});add();})(' . wp_json_encode( $cfg ) . ');'
+		);
+	}
+
+	/**
+	 * Forms are made with Flux Forms: the Flux Block Editor's own form blocks leave the
+	 * inserter. Pages that already use them keep working, and the blocks offer
+	 * "Move to Flux Forms". Runs right after wp-blocks, before any block registers.
+	 */
+	public static function hide_legacy_forms() {
+		if ( ! apply_filters( 'flxf_hide_legacy_form_blocks', true ) ) {
+			return;
+		}
+		wp_add_inline_script(
+			'wp-blocks',
+			'wp.hooks.addFilter("blocks.registerBlockType","flxf/hide-legacy-forms",function(s,n){return ["flx/form","flx/advanced-form"].indexOf(n)>-1?Object.assign({},s,{supports:Object.assign({},s.supports||{},{inserter:false})}):s;});'
 		);
 	}
 

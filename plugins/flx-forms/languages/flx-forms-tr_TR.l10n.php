@@ -5983,5 +5983,12 @@ return array(
   'More settings' => 'Diğer ayarlar',
   'Front camera' => 'Ön kamera',
   'Back camera' => 'Arka kamera',
+  'Move to Flux Forms' => 'Flux Forms\'a taşı',
+  'Move' => 'Taşı',
+  'The fields of this form become Flux Forms fields. The new form is created in Flux Forms when you save the page; responses, emails and automations then run there.' => 'Bu formun alanları Flux Forms alanlarına dönüşür. Yeni form, sayfayı kaydettiğinizde Flux Forms\'ta oluşur; yanıtlar, e-postalar ve otomasyonlar artık orada çalışır.',
+  'This form has no fields to move.' => 'Bu formda taşınacak alan yok.',
+  'The form was moved to Flux Forms. Save the page to create it.' => 'Form Flux Forms\'a taşındı. Oluşturmak için sayfayı kaydedin.',
+  'The form could not be moved.' => 'Form taşınamadı.',
+  'Forms are now made with Flux Forms. This form keeps working as it is; move it to manage its responses, emails and automations in Flux Forms.' => 'Formlar artık Flux Forms ile yapılıyor. Bu form olduğu gibi çalışmaya devam eder; yanıtlarını, e-postalarını ve otomasyonlarını Flux Forms\'ta yönetmek için taşıyın.',
  ),
 );
