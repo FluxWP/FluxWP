@@ -2,6 +2,21 @@
 
 Easy Form Builder'ın (WhiteStudio, GPL) fork'u. Builder arayüzü aynı kaldı; lisans/Pro kilitleri, dış sunucu bağlantıları ve telemetri kaldırıldı, eksik eklentiler (Stripe, koşullu mantık, çevrimdışı ülke listeleri) yeniden yazıldı. Üstüne Dashboard, Otomasyonlar (sertifika entegrasyonu) ve tema uyumu eklendi.
 
+## Sürüm 2.4.0: eski blok formlarını taşıma
+Flux Forms kuruluyken Flux Block Editor'ın "Form" ve "Form (gelişmiş)" blokları ekleyicide görünmez; mevcut sayfalardaki eski formlar çalışmaya devam eder. Eski form bloğunu seçin, araç çubuğunda ya da blok ayarlarındaki "Flux Forms" panelinde "Flux Forms'a taşı"ya basın, onaylayın ve sayfayı kaydedin: form Flux Forms'ta oluşur, panel listesinde görünür.
+- Eşleme: metin, e-posta, telefon, sayı (en az/en çok), tarih, saat (metin), uzun metin, açılır liste (çoklu seçimse çoklu liste), onay kutuları, radyo, onay (şart onayı), dosya (boyut sınırı), gizli alan (gizli metin + varsayılan değer). Genişlik %50 ve %33'e yuvarlanır. Gönder düğmesi metni, başarı mesajı ve "E-posta" eylemindeki ilk alıcı adresi forma geçer; captcha açıksa formda da açılır.
+- Taşınmayanlar: Mailchimp, MailerLite, FluentCRM, webhook gibi eylemler (Flux Forms otomasyonlarıyla yeniden kurulur), alan stilleri. Eski gelişmiş form kaydı (Form (gelişmiş) yazısı) silinmez. Taşıma geri alınabilir (Ctrl+Z) ya da sayfa revizyonundan dönülebilir.
+- Eski blokları ekleyicide tutmak için: `add_filter( 'flxf_hide_legacy_form_blocks', '__return_false' );`
+
+## Sürüm 2.3.0: tüm alanlar blokta
+Flux Forms'taki her alan türünün bloğu var; "Flux Forms alanı" yedeği yalnız bilinmeyen eski türler için kalır. Ekleyicide beş grup: Flux Forms (temel), seçimler, gelişmiş, ödeme, içerik.
+- Alan ayarları: etiket, yer tutucu, yardım metni, zorunlu, genişlik, türe özel ayarlar (uzunluk/değer sınırları, varsayılan değer, sütun, dosya türü ve boyutu, kayıt kalitesi ve süresi, harita konumu, düğme metinleri...). "Diğer" panelinde gizli alan, salt okunur, etiketi gizle, boş mesajı, CSS sınıfı.
+- Seçenekler: sırala/sil/ekle; ürün alanlarında fiyat, görselli seçimde görsel (Ortam Kütüphanesi) ve açıklama, puanlama tablosunda satırlar. Ülke/il/ilçe listeleri `vendor/offline/json`'dan dolar; il için ülke kodu (TR), ilçe için ülke + il kodu (34) yazılıp "Listeyi yeniden doldur".
+- Adım bloğu formu adımlara böler. İlk alandan önceki adım bloğu 1. adımın adıdır. İleri/geri düğme metinleri form ayarlarında "Adımlar".
+- Koşullu gösterim: alan ayarlarında "Bu alanı göster: Her zaman / Yalnız şu durumda / Şu durumda gizle" + koşullar (hepsi ya da herhangi biri). Kural `head.logic_rules`'a `blk-<alan id>` kimliğiyle yazılır. Panelde kurulmuş tek eylemli (göster/gizle) kurallar blokta görünür; birden çok eylemli ya da iç içe kurallar dokunulmadan korunur.
+- Ödeme: ürün/tutar/toplam blokları ve "Kartla ödeme (Stripe)". Kart bloğu varsa form türü `payment`, sağlayıcı Stripe; para birimi ve ödeme türü (tek seferlik, günlük/haftalık/aylık/yıllık abonelik) form ayarlarında "Ödeme". Stripe anahtarları Flux Forms ayarlarında.
+- Test: 46 türün hepsi blokta oluşturuldu, kaydedildi, ön yüzde çizildi; 3 adımlı form + koşullu alan + gönderim (onay kodu) çalıştı; panelde açılıp kaydedilen blok formu birebir aynı kaldı; panelde değişince editör uyardı. Stripe ödemesi gerçek anahtarla test edilmedi.
+
 ## Sürüm 2.2.0: Gutenberg form blokları
 Formlar sayfada bloklarla kurulabilir. Editörde "Flux Form" bloğunu ekleyin, "Yeni form" ile başlayın ya da "Mevcut formu seç" ile paneldeki bir formu açın. Alan blokları: metin, e-posta, telefon, uzun metin, sayı, tarih, açılır liste, tekli ve çoklu seçim. Sayfa kaydedilince form Flux Forms'a yazılır; panel listesinde görünür, yanıtlar, e-postalar ve otomasyonlar her zamanki gibi çalışır.
 - Panelde form listesinde "Blokla düzenle" düğmesi formun olduğu sayfayı açar, yoksa yeni taslak sayfa açar.

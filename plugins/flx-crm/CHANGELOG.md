@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 0.5.0
+- New CRM › Journeys: automatic contact flows. A journey starts when a contact enters a value group (RFM), gets a tag or a role, has a timeline event, or is added to the CRM. Steps run in order: wait (days/hours), send e-mail, WhatsApp or SMS through Flux Mail, add or remove a tag, and "continue only if" (value group, tag, paid / not paid since the journey started).
+- Safe by default: a new journey (also from a template or from AI) is a draft and sends nothing until someone turns it on; saving an active journey pauses it. Messages only go to people who allowed that channel, never in the quiet hours (21–09 by default, site time), and at most 3 journey messages per person per 7 days across all journeys. Skipped steps are written on the timeline with the reason.
+- Goal: the journey ends early when the goal event happens (e.g. a donation). Re-entry after N days (0 = never).
+- Two templates: "Welcome new donors" and "Win back donors at risk".
+- Processing: hourly cron plus a light run after requests (Hostinger cron does not fire), at most 100 people per run, stops before PHP's 60 s limit.
+- AI and MCP: `flxcrm_journeys` (read), `flxcrm_journey_save` (write, always draft or paused), `flxcrm_journey_status` and `flxcrm_journey_delete` (need approval).
+
 ## 0.4.3
 - "Delete contact" moved from under the contact card into a ⋯ (more actions) menu at the top right of the contact header. "Delete permanently" opens a dialog where the contact's name has to be typed (checked on the server too).
 - Every confirmation in CRM (delete contact, timeline entry, segment, event actions, merge duplicates, bulk delete) uses the shared FluxWP dialog (flx-brand 1.6.0 `flxDialog`) instead of the browser's confirm box. Responsive: bottom sheet on phones, light/dark.

@@ -112,6 +112,20 @@ class FLXB_WC_Callcenter {
 					}
 				);
 				$line['option'] = $opt ? $key : '';
+				/* 2.26.1: other people, one unit each, with their own certificate (same shape as the donation form). */
+				if ( ! empty( $l['people'] ) && is_array( $l['people'] ) ) {
+					$people = array();
+					foreach ( array_slice( $l['people'], 0, 1000 ) as $pp ) {
+						$nm = is_array( $pp ) ? mb_substr( trim( sanitize_text_field( (string) ( $pp['name'] ?? '' ) ) ), 0, 80 ) : '';
+						if ( '' !== $nm ) {
+							$people[] = array( 'name' => $nm, 'phone' => (string) ( $pp['phone'] ?? '' ), 'email' => (string) ( $pp['email'] ?? '' ) );
+						}
+					}
+					if ( $people ) {
+						$line['for_other'] = true;
+						$line['people']    = $people;
+					}
+				}
 				/* 2.0.1: names per share and the proxy consent (proxy types), kept as given. */
 				if ( ! empty( $l['beneficiaries'] ) ) {
 					$names = flxb_split_names( is_array( $l['beneficiaries'] ) ? implode( "\n", array_filter( $l['beneficiaries'], 'is_scalar' ) ) : (string) $l['beneficiaries'] );

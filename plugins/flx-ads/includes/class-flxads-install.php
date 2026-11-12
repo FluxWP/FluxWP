@@ -22,6 +22,7 @@ final class FLXADS_Install {
 		$c  = flxads_table( 'conversions' );
 		$o  = flxads_table( 'orders' );
 		$sp = flxads_table( 'spend' );
+		$am = flxads_table( 'aud_members' );
 		dbDelta(
 			"CREATE TABLE $c (
 				id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -89,6 +90,19 @@ final class FLXADS_Install {
 				PRIMARY KEY  (id),
 				UNIQUE KEY platform_day_ad (platform,day,ad_key),
 				KEY day (day)
+			) $cs;"
+		);
+		/* Meta kitle üyeleri: yalnız özetler (SHA-256), çıkarmak için gerekli. */
+		dbDelta(
+			"CREATE TABLE $am (
+				aud varchar(20) NOT NULL DEFAULT '',
+				person_id bigint(20) unsigned NOT NULL DEFAULT 0,
+				em char(64) NOT NULL DEFAULT '',
+				ph char(64) NOT NULL DEFAULT '',
+				sig char(16) NOT NULL DEFAULT '',
+				added_at datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+				PRIMARY KEY  (aud,person_id),
+				KEY person_id (person_id)
 			) $cs;"
 		);
 		foreach ( array( 'administrator' => array( 'flxads_view', 'flxads_manage' ), 'shop_manager' => array( 'flxads_view' ) ) as $role => $caps ) {

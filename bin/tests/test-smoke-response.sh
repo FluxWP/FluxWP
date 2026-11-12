@@ -10,7 +10,7 @@ checks=0
 check_response() {
   local name="$1" expected="$2" code="$3" html="$4" actual=healthy
   printf '%s\n' "$html" > "$fixture_dir/response.html"
-  if flx_test_response_failed "$code" "$fixture_dir/response.html"; then actual=failed; fi
+  if flx_test_response_failed "$code" "$fixture_dir/response.html" "${5:-}"; then actual=failed; fi
   if [ "$actual" != "$expected" ]; then
     printf 'FAIL: %s (expected %s, got %s)\n' "$name" "$expected" "$actual" >&2
     exit 1
@@ -31,6 +31,14 @@ check_response 'HTTP 500 without an error phrase' failed 500 '<html>Server unava
 check_response 'HTTP 503 without a body' failed 503 ''
 check_response 'Menu parent without a screen' healthy 500 \
   '<body id="error-page"><div class="wp-die-message">Cannot load woocommerce.</div></body>'
+check_response 'Menu parent without a screen, Turkish core' healthy 500 \
+  '<body id="error-page"><div class="wp-die-message">woocommerce yüklenemiyor.</div></body>' woocommerce
+check_response 'Translated die naming another page' failed 500 \
+  '<body id="error-page"><div class="wp-die-message">wc-admin yüklenemiyor.</div></body>' woocommerce
+check_response 'Translated die without a slug argument' failed 500 \
+  '<body id="error-page"><div class="wp-die-message">woocommerce yüklenemiyor.</div></body>'
+check_response 'Translated critical error on a page' failed 500 \
+  '<div class="wp-die-message"><p>Sitenizde ciddi bir sorun çıktı.</p></div>' woocommerce
 check_response 'Cannot load text beside a real fatal' failed 500 \
   '<div class="wp-die-message"><p>There has been a critical error on this website.</p></div><p>Cannot load woocommerce.</p>'
 check_response 'HTTP 599' failed 599 'Proxy failure'

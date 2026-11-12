@@ -56,6 +56,11 @@ Donations live in Flux Donate, orders in WooCommerce, messages in Flux Chat and 
 - Rule editor with a live count and sample contacts: role, tag, RFM, value, paid days, last payment, last activity, churn, consent, source, city.
 - Use a segment as recipients in Flux Mail; only people who allowed that channel receive it.
 
+### Journeys
+- A journey starts when a contact enters a value group, gets a tag or role, has an event, or is added; steps wait, send e-mail / WhatsApp / SMS, tag, or continue only if a condition holds.
+- New journeys are drafts until you turn them on. Only people who allowed the channel get messages, never in quiet hours, at most 3 per week; a donation can end the journey early.
+- AI and MCP can draft and edit journeys; turning one on needs your approval.
+
 ## Screenshots
 
 | Overview | Contacts |
@@ -106,7 +111,7 @@ Full setup notes (Turkish): [KURULUM.md](../../docs/flx-crm/KURULUM.md) · API r
 | ✅ | Sources: Flux Donate, WooCommerce, Flux Chat, Flux Forms, site members |
 | ✅ | RFM scoring, churn risk, segments for Flux Mail |
 | ⬜ | Pipelines (donation follow-up, partnership, volunteering) |
-| ⬜ | Automations and journeys: welcome, thank-you, win-back with frequency caps and quiet hours |
+| ✅ | Journeys: welcome, win-back and your own flows with frequency caps and quiet hours |
 | ⬜ | Flux Ads: ad audiences and conversions as a separate plugin |
 
 ## License

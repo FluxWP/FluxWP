@@ -24,7 +24,22 @@ defined( 'ABSPATH' ) || exit;
  */
 class FLXF_Blocks {
 
-	const FIELD_BLOCKS = array( 'text', 'email', 'tel', 'textarea', 'number', 'select', 'radio', 'checkbox', 'date', 'raw' );
+	/**
+	 * Field block names after `flxf/` (one per Flux Forms element type, see src/types.js).
+	 */
+	const FIELD_BLOCKS = array(
+		'text', 'email', 'tel', 'mobile', 'textarea', 'number', 'password', 'url', 'date', 'range', 'color',
+		'select', 'radio', 'checkbox', 'multiselect', 'image-choice', 'checklist', 'choice-quantity', 'yes-no', 'switch', 'terms', 'country', 'state', 'city',
+		'file', 'file-drop', 'rating', 'score-5', 'nps', 'matrix', 'signature', 'location', 'audio', 'video', 'screen',
+		'pay-checkbox', 'pay-radio', 'pay-select', 'pay-multiselect', 'amount', 'total', 'stripe',
+		'heading', 'link', 'html',
+		'step', 'raw',
+	);
+
+	/**
+	 * Form types the blocks may write.
+	 */
+	const FORM_TYPES = array( 'form', 'survey', 'subscribe', 'payment', 'register', 'login' );
 
 	/**
 	 * Hook in.
@@ -35,6 +50,7 @@ class FLXF_Blocks {
 		add_filter( 'block_categories_all', array( __CLASS__, 'category' ), 10, 1 );
 		add_action( 'admin_post_flxf_block_edit', array( __CLASS__, 'edit_with_blocks' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'panel_button' ) );
+		add_action( 'enqueue_block_editor_assets', array( __CLASS__, 'hide_legacy_forms' ), 1 );
 	}
 
 	/**
@@ -55,6 +71,21 @@ class FLXF_Blocks {
 		wp_add_inline_script(
 			'flxf-blocks-panel',
 			'(function(c){function add(){document.querySelectorAll(".efb-actions-group").forEach(function(g){if(g.querySelector(".flxf-act-blocks"))return;var e=g.querySelector(".efb-act-edit");if(!e)return;var a=document.createElement("a");a.className="efb efb-act-btn flxf-act-blocks";a.href=c.url+encodeURIComponent(e.getAttribute("data-id"));a.setAttribute("data-efb-tip",c.label);a.setAttribute("aria-label",c.label);a.title=c.label;a.innerHTML=\'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7.5" height="7" rx="1.5"/><rect x="13" y="13.5" width="7.5" height="7" rx="1.5"/></svg>\';a.addEventListener("click",function(ev){ev.stopPropagation();});e.insertAdjacentElement("afterend",a);});}new MutationObserver(add).observe(document.body,{childList:true,subtree:true});add();})(' . wp_json_encode( $cfg ) . ');'
+		);
+	}
+
+	/**
+	 * Forms are made with Flux Forms: the Flux Block Editor's own form blocks leave the
+	 * inserter. Pages that already use them keep working, and the blocks offer
+	 * "Move to Flux Forms". Runs right after wp-blocks, before any block registers.
+	 */
+	public static function hide_legacy_forms() {
+		if ( ! apply_filters( 'flxf_hide_legacy_form_blocks', true ) ) {
+			return;
+		}
+		wp_add_inline_script(
+			'wp-blocks',
+			'wp.hooks.addFilter("blocks.registerBlockType","flxf/hide-legacy-forms",function(s,n){return ["flx/form","flx/advanced-form"].indexOf(n)>-1?Object.assign({},s,{supports:Object.assign({},s.supports||{},{inserter:false})}):s;});'
 		);
 	}
 
@@ -122,20 +153,25 @@ class FLXF_Blocks {
 	 * @return array
 	 */
 	public static function category( $cats ) {
-		foreach ( $cats as $c ) {
-			if ( isset( $c['slug'] ) && 'flux-forms' === $c['slug'] ) {
-				return $cats;
+		$have = wp_list_pluck( $cats, 'slug' );
+		$mine = array(
+			'flux-forms'          => __( 'Flux Forms', 'flx-forms' ),
+			'flux-forms-choice'   => __( 'Flux Forms: choices', 'flx-forms' ),
+			'flux-forms-advanced' => __( 'Flux Forms: advanced', 'flx-forms' ),
+			'flux-forms-payment'  => __( 'Flux Forms: payment', 'flx-forms' ),
+			'flux-forms-content'  => __( 'Flux Forms: content', 'flx-forms' ),
+		);
+		$add = array();
+		foreach ( $mine as $slug => $title ) {
+			if ( ! in_array( $slug, $have, true ) ) {
+				$add[] = array(
+					'slug'  => $slug,
+					'title' => $title,
+					'icon'  => null,
+				);
 			}
 		}
-		array_unshift(
-			$cats,
-			array(
-				'slug'  => 'flux-forms',
-				'title' => __( 'Flux Forms', 'flx-forms' ),
-				'icon'  => null,
-			)
-		);
-		return $cats;
+		return array_merge( $add, $cats );
 	}
 
 	/**
@@ -161,6 +197,8 @@ class FLXF_Blocks {
 				'panelUrl'  => admin_url( 'admin.php?page=Emsfb' ),
 				'canManage' => self::can_manage(),
 				'hasFlxBlocks' => defined( 'FLXBK_VERSION' ),
+				'geoUrl'       => EMSFB_PLUGIN_URL . 'vendor/offline/json/',
+				'sampleImage'  => EMSFB_PLUGIN_URL . 'includes/admin/assets/image/header.png',
 			)
 		);
 
@@ -329,7 +367,7 @@ class FLXF_Blocks {
 		if ( ! is_array( $structure ) || empty( $structure[0]['type'] ) ) {
 			return new WP_Error( 'flxf_form_invalid', __( 'The form structure is not valid.', 'flx-forms' ), array( 'status' => 400 ) );
 		}
-		if ( ! in_array( $structure[0]['type'], array( 'form', 'survey', 'subscribe' ), true ) ) {
+		if ( ! in_array( $structure[0]['type'], self::FORM_TYPES, true ) ) {
 			return new WP_Error( 'flxf_form_type', __( 'This form type can only be edited in the Flux Forms panel.', 'flx-forms' ), array( 'status' => 400 ) );
 		}
 		$structure[0]['formName'] = $name;

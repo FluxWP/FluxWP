@@ -16,7 +16,7 @@ function flxai_new_id() {
 }
 
 /** Sistem metni: sabit kısım önbelleğe alınır, değişken kısım (tarih, kullanıcı) sonra gelir. */
-function flxai_agent_system( $user_id, $at = 0 ) {
+function flxai_agent_system( $user_id, $at = 0, $chat = null ) {
 	$user  = get_userdata( $user_id );
 	$tr    = flxai_is_tr();
 	$fixed = "Sen \"" . get_bloginfo( 'name' ) . "\" WordPress sitesinin yönetim asistanısın (Flux AI). Site: " . home_url( '/' ) . "\n"
@@ -39,6 +39,14 @@ function flxai_agent_system( $user_id, $at = 0 ) {
 		. '- Kullanıcı: ' . ( $user ? $user->display_name . ' (' . implode( ', ', (array) $user->roles ) . ')' : '-' ) . "\n"
 		. '- Tarih: ' . flx_date( $at ? (int) $at : time(), 'l, j F Y H:i' ) . ' (' . wp_timezone_string() . ")\n"
 		. '- Arayüz dili: ' . ( $tr ? 'Türkçe' : determine_locale() );
+	/**
+	 * Sohbete özel oturum bilgisi (önbelleğe alınmayan kısım; ör. çalışma alanı).
+	 *
+	 * @param string     $text    Ek metin.
+	 * @param array|null $chat    Sohbet.
+	 * @param int        $user_id Kullanıcı.
+	 */
+	$dyn .= (string) apply_filters( 'flxai_chat_session', '', $chat, $user_id );
 	return array(
 		'role'    => 'system',
 		'content' => array(
@@ -49,14 +57,21 @@ function flxai_agent_system( $user_id, $at = 0 ) {
 }
 
 /** Modele giden geçmiş: son N mesaj, yarım kalan araç çiftleri olmadan; sayfa bağlamı kullanıcı mesajına eklenir. */
-function flxai_agent_history( array $messages ) {
+function flxai_agent_history( array $messages, $user_id = 0 ) {
 	$n    = max( 6, (int) flxai_setting( 'chat_history', 40 ) );
 	$msgs = array_slice( $messages, -$n );
 	while ( $msgs && ( 'user' !== ( $msgs[0]['role'] ?? '' ) ) ) {
 		array_shift( $msgs );
 	}
-	$out = array();
-	foreach ( $msgs as $m ) {
+	$out  = array();
+	$full = array(); // Dosyaları tam gönderilecek son iki ekli kullanıcı mesajı.
+	for ( $i = count( $msgs ) - 1; $i >= 0 && count( $full ) < 2; $i-- ) {
+		if ( 'user' === ( $msgs[ $i ]['role'] ?? '' ) && ! empty( $msgs[ $i ]['_files'] ) ) {
+			$full[ $i ] = true;
+		}
+	}
+	$msgs = array_values( $msgs );
+	foreach ( $msgs as $mi => $m ) {
 		if ( ! empty( $m['_error'] ) && 'assistant' === $m['role'] ) {
 			continue; // hata balonları modele gitmez
 		}
@@ -73,6 +88,11 @@ function flxai_agent_history( array $messages ) {
 			 * @param array  $m    Kayıtlı mesaj (_task, _page …).
 			 */
 			$m['content'] = (string) apply_filters( 'flxai_agent_user_text', $text, $m );
+			if ( ! empty( $m['_files'] ) && function_exists( 'flxai_attach_parts' ) ) {
+				list( $parts, $notes ) = flxai_attach_parts( (array) $m['_files'], $user_id ? (int) $user_id : get_current_user_id(), isset( $full[ $mi ] ) );
+				$txt          = trim( implode( "\n", $notes ) . "\n\n" . $m['content'] );
+				$m['content'] = $parts ? array_merge( array( array( 'type' => 'text', 'text' => $txt ) ), $parts ) : $txt;
+			}
 		}
 		$out[] = $m;
 	}
@@ -80,9 +100,9 @@ function flxai_agent_history( array $messages ) {
 }
 
 /** Kullanıcı mesajı ekler ve ilk adımı çalıştırır. */
-function flxai_agent_send( array $chat, $text, $page = array() ) {
+function flxai_agent_send( array $chat, $text, $page = array(), $files = array() ) {
 	$text = trim( (string) $text );
-	if ( '' === $text ) {
+	if ( '' === $text && ! $files ) {
 		return new WP_Error( 'flxai_empty', __( 'Message is empty.', 'flx-ai' ), array( 'status' => 400 ) );
 	}
 	if ( in_array( $chat['status'], array( 'running', 'approval' ), true ) ) {
@@ -96,6 +116,9 @@ function flxai_agent_send( array $chat, $text, $page = array() ) {
 		'_ts'     => time(),
 		'_page'   => $page,
 	);
+	if ( $files ) {
+		$chat['messages'][ count( $chat['messages'] ) - 1 ]['_files'] = array_values( $files );
+	}
 	$chat['status']        = 'running';
 	$chat['state']['turn'] = array(
 		'started'  => microtime( true ),
@@ -180,7 +203,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 		return FLXAI_STEP_BUDGET - ( microtime( true ) - $t0 );
 	};
 	$user_id = (int) $chat['user_id'];
-	$ctx     = array( 'user_id' => $user_id, 'chat_id' => (int) $chat['id'], 'source' => 'flx-ai', 'purpose' => 'chat' );
+	$ctx     = array( 'user_id' => $user_id, 'chat_id' => (int) $chat['id'], 'turn' => (string) ( $chat['state']['turn']['started'] ?? '' ), 'source' => 'flx-ai', 'purpose' => 'chat' );
 	$state   = 'continue';
 	$did     = false;
 	try {
@@ -235,7 +258,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 			$tools = flxai_tools_for_user( $user_id );
 			$model = flxai_model_for( 'flx-ai', (string) ( $chat['model'] ?: flxai_setting( 'chat_model', '' ) ) );
 			$info  = flxai_model_info( $model );
-			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ) ) ), flxai_agent_history( $chat['messages'] ) );
+			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ), $chat ) ), flxai_agent_history( $chat['messages'], $user_id ) );
 			if ( $emit ) {
 				$emit( array( 't' => 'model' ) );
 			}
@@ -331,7 +354,7 @@ function flxai_agent_step( array $chat, $emit = null ) {
 							'ms'     => 0,
 						)
 					);
-				} elseif ( flxai_tool_needs_approval( $tools[ $name ] ) ) {
+				} elseif ( flxai_call_needs_approval( $name, $tools[ $name ], json_decode( (string) ( $c['function']['arguments'] ?? '' ), true ), $chat ) ) {
 					$chat['state']['pending'][] = (string) $c['id'];
 				} else {
 					$chat['state']['queue'][] = (string) $c['id'];
@@ -370,30 +393,40 @@ function flxai_agent_decide( array $chat, array $decisions ) {
 	if ( ! flxai_agent_lock( $chat['id'] ) ) {
 		return array( 'state' => 'busy', 'chat' => $chat );
 	}
-	$ctx = array( 'user_id' => (int) $chat['user_id'], 'chat_id' => (int) $chat['id'], 'source' => 'flx-ai', 'purpose' => 'chat' );
 	foreach ( flxai_chat_tool_calls( $chat, $chat['state']['pending'] ) as $c ) {
-		$id = (string) $c['id'];
-		$d  = $decisions[ $id ] ?? '';
-		if ( 'approve' === $d || true === $d ) {
-			flxai_agent_tool_result( $chat, $c, flxai_run_tool( (string) $c['function']['name'], json_decode( (string) $c['function']['arguments'], true ), $ctx ) );
-		} else {
-			$chat['messages'][] = array(
-				'role'         => 'tool',
-				'tool_call_id' => $id,
-				'content'      => wp_json_encode( array( 'error' => 'Kullanıcı bu işlemi reddetti; yapılmadı.' ), JSON_UNESCAPED_UNICODE ),
-				'_name'        => (string) $c['function']['name'],
-				'_ok'          => false,
-				'_rejected'    => true,
-				'_ms'          => 0,
-			);
-		}
+		$d = $decisions[ (string) $c['id'] ] ?? '';
+		flxai_agent_decide_call( $chat, $c, 'approve' === $d || true === $d );
 	}
 	$chat['state']['pending'] = array();
 	$chat['status']           = 'running';
 	flxai_chat_save( $chat );
 	flxai_agent_unlock( $chat['id'] );
+	/**
+	 * Onay kararları uygulandı (sohbet ya da onay kuyruğu).
+	 *
+	 * @param array $chat Sohbet.
+	 */
+	do_action( 'flxai_agent_decided', $chat );
 	// Model ayrı (akışlı) adımda çağrılır.
 	return array( 'state' => 'continue', 'chat' => $chat );
+}
+
+/** Tek bir bekleyen araç çağrısını çalıştırır ya da "reddedildi" sonucu yazar. */
+function flxai_agent_decide_call( array &$chat, array $c, $approve ) {
+	if ( $approve ) {
+		$ctx = array( 'user_id' => (int) $chat['user_id'], 'chat_id' => (int) $chat['id'], 'turn' => (string) ( $chat['state']['turn']['started'] ?? '' ), 'source' => 'flx-ai', 'purpose' => 'chat' );
+		flxai_agent_tool_result( $chat, $c, flxai_run_tool( (string) $c['function']['name'], json_decode( (string) $c['function']['arguments'], true ), $ctx ) );
+		return;
+	}
+	$chat['messages'][] = array(
+		'role'         => 'tool',
+		'tool_call_id' => (string) $c['id'],
+		'content'      => wp_json_encode( array( 'error' => 'Kullanıcı bu işlemi reddetti; yapılmadı.' ), JSON_UNESCAPED_UNICODE ),
+		'_name'        => (string) $c['function']['name'],
+		'_ok'          => false,
+		'_rejected'    => true,
+		'_ms'          => 0,
+	);
 }
 
 /** Turu durdurur. */

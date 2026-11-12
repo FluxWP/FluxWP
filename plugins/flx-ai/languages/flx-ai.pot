@@ -1818,3 +1818,534 @@ msgstr ""
 
 msgid "Tools: %s"
 msgstr ""
+
+msgid "\"Important\": the assistant decides there is something you should know now, an action waits for your approval, or the task failed."
+msgstr ""
+
+msgid "%s actions are waiting for your approval."
+msgstr ""
+
+msgid "A skill named \"%s\" already exists."
+msgstr ""
+
+msgid "AI task report"
+msgstr ""
+
+msgid "AI task: %s"
+msgstr ""
+
+msgid "AI task: {gorev}"
+msgstr ""
+
+msgid "Across all your chats and tasks"
+msgstr ""
+
+msgid "Actions the assistant prepared in your chats and scheduled tasks. Nothing changes on the site until you approve. You can edit the input before approving."
+msgstr ""
+
+msgid "After every run"
+msgstr ""
+
+msgid "An action is waiting for your approval."
+msgstr ""
+
+msgid "Approve with changes"
+msgstr ""
+
+msgid "Approved and done. The assistant's reply is in the chat."
+msgstr ""
+
+msgid "Approved. The assistant is still working; open the chat to follow."
+msgstr ""
+
+msgid "By WhatsApp"
+msgstr ""
+
+msgid "By e-mail (%s)"
+msgstr ""
+
+msgid "Change the values (JSON) and approve; the action runs with your version."
+msgstr ""
+
+msgid "Checks system checks, speed and SEO audit results; reports only what changed or needs action."
+msgstr ""
+
+msgid "Comma separated tool names (see Tools). A hint for the assistant, not a restriction."
+msgstr ""
+
+msgid "Create or update a skill"
+msgstr ""
+
+msgid "Daily briefing"
+msgstr ""
+
+msgid "Delete a skill"
+msgstr ""
+
+msgid "Delete the skill \"%s\"? Tasks that use it will run without it."
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Donor review"
+msgstr ""
+
+msgid "Edit and approve"
+msgstr ""
+
+msgid "Edit skill"
+msgstr ""
+
+msgid "Edited"
+msgstr ""
+
+msgid "Example output"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Give the skill a name."
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import SKILL.md"
+msgstr ""
+
+msgid "In the admin panel (badge on the menu)"
+msgstr ""
+
+msgid "List skills"
+msgstr ""
+
+msgid "Lowercase letters, numbers and dashes. Used in chat as /short-name and by tasks. Left empty, it is made from the name."
+msgstr ""
+
+msgid "Markdown. Step by step: what to look at, which tools to use, how the result should look."
+msgstr ""
+
+msgid "Named instruction packs the assistant follows: a daily briefing, a donor review, an ad draft. Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version."
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
+msgid "New skill"
+msgstr ""
+
+msgid "Nothing is waiting for approval."
+msgstr ""
+
+msgid "Notified: %s"
+msgstr ""
+
+msgid "Notify me"
+msgstr ""
+
+msgid "Notify the task owner"
+msgstr ""
+
+msgid "One sentence on when to use it. The assistant picks skills by this."
+msgstr ""
+
+msgid "Only when something important comes up"
+msgstr ""
+
+msgid "Open in chat"
+msgstr ""
+
+msgid "Open the report"
+msgstr ""
+
+msgid "Read a skill"
+msgstr ""
+
+msgid "Rejected; nothing was changed."
+msgstr ""
+
+msgid "Report link"
+msgstr ""
+
+msgid "Report summary"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Reset \"%s\" to the version its plugin ships? Your changes are lost."
+msgstr ""
+
+msgid "Review approvals"
+msgstr ""
+
+msgid "Sent to the task owner when a scheduled AI task has something to report."
+msgstr ""
+
+msgid "Short morning report: yesterday's donations and orders, unanswered messages, site issues and what needs you today."
+msgstr ""
+
+msgid "Short name"
+msgstr ""
+
+msgid "Site health check"
+msgstr ""
+
+msgid "Skill"
+msgstr ""
+
+msgid "Skill deleted."
+msgstr ""
+
+msgid "Skill imported."
+msgstr ""
+
+msgid "Skill not found."
+msgstr ""
+
+msgid "Skill not found: %s"
+msgstr ""
+
+msgid "Skill reset to the version its plugin ships."
+msgstr ""
+
+msgid "Skills"
+msgstr ""
+
+msgid "Suggested tools"
+msgstr ""
+
+msgid "Task name"
+msgstr ""
+
+msgid "Tasks: %s"
+msgstr ""
+
+msgid "The input is not valid JSON; nothing was run."
+msgstr ""
+
+msgid "The skill's instructions are added on every run, always in their latest version. The instructions above can stay short (e.g. \"only donations\")."
+msgstr ""
+
+msgid "The task could not finish: %s"
+msgstr ""
+
+msgid "This action is no longer waiting for approval."
+msgstr ""
+
+msgid "This does not look like a SKILL.md file (it must start with a --- header)."
+msgstr ""
+
+msgid "This site"
+msgstr ""
+
+msgid "This skill comes with %s. Your edits are kept on this site; \"Reset\" brings back the original."
+msgstr ""
+
+msgid "This tool only works while a scheduled task is running."
+msgstr ""
+
+msgid "Tip: start a chat message with /name to use a skill, e.g. \"/gunluk-brifing only donations\". Plugins can ship ready skills with the flxai_skills filter."
+msgstr ""
+
+msgid "Turn off"
+msgstr ""
+
+msgid "Upload a SKILL.md file or paste its content. A skill with the same name is updated."
+msgstr ""
+
+msgid "WhatsApp needs Flux Mail with a WhatsApp connection."
+msgstr ""
+
+msgid "When the assistant or a scheduled task wants to change something (create a draft, update a setting, send a message), it appears here."
+msgstr ""
+
+msgid "Write the skill instructions."
+msgstr ""
+
+msgid "Yesterday: 12 donations, 4,350 TL in total. 2 receipts are waiting for approval."
+msgstr ""
+
+msgid "e-mail"
+msgstr ""
+
+msgid "or paste"
+msgstr ""
+
+msgid "panel"
+msgstr ""
+
+msgid "v%s"
+msgstr ""
+
+msgid "%s is too large."
+msgstr ""
+
+msgid "Ask anything or give the assistant a job…"
+msgstr ""
+
+msgid "Attach file"
+msgstr ""
+
+msgid "Create a scheduled task: every morning at 9, "
+msgstr ""
+
+msgid "Create a skill that "
+msgstr ""
+
+msgid "Dictate"
+msgstr ""
+
+msgid "Enter to send · Shift+Enter for a new line"
+msgstr ""
+
+msgid "File not found."
+msgstr ""
+
+msgid "Hi %s, what shall we do today?"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Microphone permission was not given."
+msgstr ""
+
+msgid "Schedule a task"
+msgstr ""
+
+msgid "The file could not be uploaded."
+msgstr ""
+
+msgid "The file is too large (max %s)."
+msgstr ""
+
+msgid "The image could not be read."
+msgstr ""
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr ""
+
+msgid "What shall we do today?"
+msgstr ""
+
+msgid "You can attach up to %s files."
+msgstr ""
+
+msgid "Invalid path."
+msgstr ""
+
+msgid "The file could not be written (permissions or disk space)."
+msgstr ""
+
+msgid "Outside this workspace. You may only use your own folder (%s) and the folders allowed for this chat or task."
+msgstr ""
+
+msgid "AI changes"
+msgstr ""
+
+msgid "This change request is already closed."
+msgstr ""
+
+msgid "Flux Files is required to apply file changes."
+msgstr ""
+
+msgid "Change request #%1$d was merged: %2$d file(s) changed."
+msgstr ""
+
+msgid "Change request #%1$d was partly merged: %2$d file(s) applied, %3$d rejected."
+msgstr ""
+
+msgid "Change request #%d was rejected; no files were changed."
+msgstr ""
+
+msgid "You cannot change this task."
+msgstr ""
+
+msgid "This folder is not part of the workspace."
+msgstr ""
+
+msgid "This file is not part of the workspace."
+msgstr ""
+
+msgid "Change not found."
+msgstr ""
+
+msgid "Some files were not applied: %s"
+msgstr ""
+
+msgid "Merged; the files were changed."
+msgstr ""
+
+msgid "Change request #%d"
+msgstr ""
+
+msgid "Review the diff"
+msgstr ""
+
+msgid "added"
+msgstr ""
+
+msgid "changed"
+msgstr ""
+
+msgid "deleted"
+msgstr ""
+
+msgid "Merge"
+msgstr ""
+
+msgid "Files"
+msgstr ""
+
+msgid "Install Flux Files to give tasks a workspace folder (reports, notes, drafts)."
+msgstr ""
+
+msgid "Only its own folder and the folders below"
+msgstr ""
+
+msgid "Can read all site files"
+msgstr ""
+
+msgid "Allowed folders (one per line, relative to the site root)"
+msgstr ""
+
+msgid "The task writes freely only in its own folder. Any change to other files waits for your approval as a change request. Other chats' folders, passwords and WordPress core are always off limits."
+msgstr ""
+
+msgid "The AI chat is turned off or not set up yet. Check Flux AI & MCP › Settings."
+msgstr ""
+
+msgid "The chat needs JavaScript."
+msgstr ""
+
+msgid "Workspace"
+msgstr ""
+
+msgid "Exit full screen"
+msgstr ""
+
+msgid "Full screen"
+msgstr ""
+
+msgid "Change in the assistant's folder"
+msgstr ""
+
+msgid "Change request #%s: waiting for your approval"
+msgstr ""
+
+msgid "Change request #%s: rejected"
+msgstr ""
+
+msgid "Change request #%s: merged"
+msgstr ""
+
+msgid "View diff"
+msgstr ""
+
+msgid "Empty folder"
+msgstr ""
+
+msgid "The file is too large to show a diff."
+msgstr ""
+
+msgid "No differences."
+msgstr ""
+
+msgid "Merged"
+msgstr ""
+
+msgid "Rejected"
+msgstr ""
+
+msgid "Partly merged"
+msgstr ""
+
+msgid "Saved"
+msgstr ""
+
+msgid "Change request"
+msgstr ""
+
+msgid "Change"
+msgstr ""
+
+msgid "%s files"
+msgstr ""
+
+msgid "Merge this"
+msgstr ""
+
+msgid "Once the chat starts, its folder and the assistant's changes appear here."
+msgstr ""
+
+msgid "The workspace needs the Flux Files plugin. You can install it from FluxWP Panel › Packages."
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Open in Flux Files"
+msgstr ""
+
+msgid "The folder is empty. Notes, reports and drafts the assistant writes appear here."
+msgstr ""
+
+msgid "Allowed folders"
+msgstr ""
+
+msgid "No changes yet. What the assistant writes to its own folder shows here as commits, and changes it proposes to site files as change requests."
+msgstr ""
+
+msgid "File access for this task"
+msgstr ""
+
+msgid "File access for this chat"
+msgstr ""
+
+msgid "Only its own folder"
+msgstr ""
+
+msgid "The assistant sees only this chat's folder and the folders you allow below."
+msgstr ""
+
+msgid "Can read the whole site"
+msgstr ""
+
+msgid "The assistant can read the site's files; every file it wants to change comes to you as a change request."
+msgstr ""
+
+msgid "One folder per line (relative to the site root). Changes in these folders also wait for your approval."
+msgstr ""
+
+msgid "Rules that always apply"
+msgstr ""
+
+msgid "The assistant cannot directly change any file outside its own folder."
+msgstr ""
+
+msgid "Other chats' and tasks' folders are closed; skill files are read-only."
+msgstr ""
+
+msgid "Files with passwords and keys (wp-config, .env, .sql) and WordPress core are never opened."
+msgstr ""
+
+msgid "At most 50 files per turn and 1 MB per file can be written."
+msgstr ""
+
+msgid "The file changed in the meantime and was not applied: %s"
+msgstr ""
+
+msgid "Reject the change request?"
+msgstr ""
+
+msgid "No files change; the assistant is told it was rejected."
+msgstr ""

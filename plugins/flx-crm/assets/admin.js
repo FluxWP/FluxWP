@@ -564,6 +564,62 @@ window.flxcrmBoot.push( function ( R ) {
 	} );
 } );
 
+/* Yolculuk düzenleyicisi: türe göre alan göster/gizle, adım ekle/sil. */
+window.flxcrmBoot.push( function ( R ) {
+	'use strict';
+	function sync( sel ) {
+		var group = sel.getAttribute( 'data-flxcrm-jswitch' );
+		var form = sel.closest( 'form' ) || document;
+		form.querySelectorAll( '[data-flxcrm-jshow]' ).forEach( function ( el ) {
+			var spec = el.getAttribute( 'data-flxcrm-jshow' );
+			var at = spec.lastIndexOf( ':' );
+			if ( spec.slice( 0, at ) !== group ) {
+				return;
+			}
+			var on = spec.slice( at + 1 ).split( ',' ).indexOf( sel.value ) > -1;
+			el.hidden = ! on;
+			el.querySelectorAll( 'input,select,textarea' ).forEach( function ( f ) {
+				f.disabled = ! on;
+			} );
+		} );
+	}
+	function bindSwitches( root ) {
+		flxcrmOnce( root, '[data-flxcrm-jswitch]' ).forEach( function ( sel ) {
+			sel.addEventListener( 'change', function () {
+				sync( sel );
+			} );
+			sync( sel );
+		} );
+	}
+	flxcrmOnce( R, '[data-flxcrm-journey]' ).forEach( function ( form ) {
+		var list = form.querySelector( '[data-flxcrm-jsteps]' );
+		var tpl = form.querySelector( 'template[data-flxcrm-jtpl]' );
+		var n = list ? list.children.length : 0;
+		bindSwitches( form );
+		form.addEventListener( 'click', function ( e ) {
+			var add = e.target.closest( '[data-flxcrm-jadd]' );
+			var del = e.target.closest( '[data-flxcrm-jdel]' );
+			if ( add && tpl && list ) {
+				var i = 'n' + ( n++ );
+				var box = document.createElement( 'div' );
+				box.innerHTML = tpl.innerHTML.replace( /__i__/g, i );
+				var li = box.firstElementChild;
+				list.appendChild( li );
+				bindSwitches( li );
+				var first = li.querySelector( 'select' );
+				if ( first ) {
+					first.focus();
+				}
+			} else if ( del ) {
+				var step = del.closest( '.flxcrm-jstep' );
+				if ( step && list.children.length > 1 ) {
+					step.remove();
+				}
+			}
+		} );
+	} );
+} );
+
 /*
  * Sayfa yenilemeden gezinme: CRM ekranlarında (ve başka eklentideki ortak kişi kartında) bağlantılar, filtreler
  * ve formlar fetch ile gider; yalnız CRM içeriği değişir. Yeni ekranın stil/betikleri eksikse eklenir.

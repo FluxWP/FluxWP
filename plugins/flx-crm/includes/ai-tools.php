@@ -1183,6 +1183,162 @@ function flxcrm_core_tools() {
 		);
 	}
 
+	/* --- Yolculuklar --- */
+
+	$jshape = static function ( array $j ) {
+		return array(
+			'id'      => (int) $j['id'],
+			'name'    => $j['name'],
+			'status'  => $j['status'],
+			'trigger' => $j['trigger_def'],
+			'steps'   => $j['steps'],
+			'opts'    => $j['opts'],
+			'stats'   => $j['stats'],
+			'people'  => FLXCRM_Journeys::run_counts( $j['id'] ),
+			'summary' => FLXCRM_Journeys::describe( $j ),
+		);
+	};
+	$jget   = static function ( $id ) {
+		$j = FLXCRM_Journeys::get( absint( $id ) );
+		if ( ! $j ) {
+			throw new Exception( 'Journey not found.' );
+		}
+		return $j;
+	};
+
+	$t['flxcrm_journeys'] = array(
+		'title'       => __( 'List journeys', 'flx-crm' ),
+		'description' => 'Lists automatic contact journeys (drip flows) with status (draft, active, paused), trigger, steps, rules, stats and how many people are in each. Also returns the trigger types, step types, conditions and ready templates you can use with flxcrm_journey_save.',
+		'kind'        => 'read',
+		'cap'         => $view,
+		'run'         => function () use ( $jshape ) {
+			return array(
+				'journeys'   => array_map( $jshape, FLXCRM_Journeys::all() ),
+				'triggers'   => FLXCRM_Journeys::triggers(),
+				'step_types' => FLXCRM_Journeys::step_types(),
+				'conditions' => FLXCRM_Journeys::conditions(),
+				'segments'   => flxcrm_rfm_segments_labels(),
+				'templates'  => FLXCRM_Journeys::templates(),
+			);
+		},
+	);
+
+	$t['flxcrm_journey_save'] = array(
+		'title'       => __( 'Save journey draft', 'flx-crm' ),
+		'description' => 'Creates or edits a journey. It never goes live by itself: a new journey is saved as a draft, and editing an active journey pauses it. The user turns it on in CRM › Journeys (or approves flxcrm_journey_status). trigger.type: segment (value = RFM key, e.g. new, at_risk), tag (value = tag name or id), role, event (value = event type) or created. Steps run in order: wait {days, hours}, email {subject, text}, whatsapp {text}, sms {text}, tag/untag {tag}, if {cond: segment|tag|no_tag|paid|no_paid, value} (if false the person leaves the journey). Texts may use {first_name}, {name}, {site}. opts: goal (event type that ends the journey early, e.g. donation, or empty), reenter_days (0 = never), quiet_from/quiet_to (hours with no messages), cap_week (max journey messages per person per 7 days). Messages are only sent to people who allowed that channel. Write texts in the site language.',
+		'kind'        => 'write',
+		'cap'         => $manage,
+		'schema'      => array(
+			'type'       => 'object',
+			'properties' => array(
+				'id'      => array( 'type' => 'integer', 'description' => 'Existing journey to edit; omit to create.' ),
+				'name'    => array( 'type' => 'string' ),
+				'trigger' => array(
+					'type'       => 'object',
+					'properties' => array(
+						'type'  => array( 'type' => 'string', 'enum' => array_keys( FLXCRM_Journeys::triggers() ) ),
+						'value' => array( 'type' => 'string' ),
+					),
+					'required'   => array( 'type' ),
+				),
+				'steps'   => array(
+					'type'  => 'array',
+					'items' => array(
+						'type'       => 'object',
+						'properties' => array(
+							'type'    => array( 'type' => 'string', 'enum' => array_keys( FLXCRM_Journeys::step_types() ) ),
+							'days'    => array( 'type' => 'integer' ),
+							'hours'   => array( 'type' => 'integer' ),
+							'subject' => array( 'type' => 'string' ),
+							'text'    => array( 'type' => 'string' ),
+							'tag'     => array( 'type' => 'string' ),
+							'cond'    => array( 'type' => 'string', 'enum' => array_keys( FLXCRM_Journeys::conditions() ) ),
+							'value'   => array( 'type' => 'string' ),
+						),
+						'required'   => array( 'type' ),
+					),
+				),
+				'opts'    => array(
+					'type'       => 'object',
+					'properties' => array(
+						'goal'         => array( 'type' => 'string' ),
+						'reenter_days' => array( 'type' => 'integer' ),
+						'quiet_from'   => array( 'type' => 'integer' ),
+						'quiet_to'     => array( 'type' => 'integer' ),
+						'cap_week'     => array( 'type' => 'integer' ),
+					),
+				),
+			),
+			'required'   => array( 'name', 'trigger', 'steps' ),
+		),
+		'run'         => function ( $a ) use ( $jshape, $jget ) {
+			$id = absint( $a['id'] ?? 0 );
+			if ( $id ) {
+				$jget( $id );
+			}
+			$r = FLXCRM_Journeys::save(
+				array(
+					'name'    => (string) ( $a['name'] ?? '' ),
+					'trigger' => (array) ( $a['trigger'] ?? array() ),
+					'steps'   => (array) ( $a['steps'] ?? array() ),
+					'opts'    => (array) ( $a['opts'] ?? array() ) + FLXCRM_Journeys::defaults(),
+				),
+				$id
+			);
+			if ( is_wp_error( $r ) ) {
+				throw new Exception( $r->get_error_message() );
+			}
+			$j = $jshape( FLXCRM_Journeys::get( $r ) );
+			return array(
+				'journey' => $j,
+				'url'     => flxcrm_admin_url( 'journeys', array( 'edit' => $r ) ),
+				'note'    => 'active' === $j['status'] ? '' : 'Saved as ' . $j['status'] . '. Nothing is sent until the user turns it on.',
+			);
+		},
+	);
+
+	$t['flxcrm_journey_status'] = array(
+		'title'       => __( 'Turn journey on or pause it', 'flx-crm' ),
+		'description' => 'Turns a journey on (status active: matching contacts from now on enter it and get its messages) or pauses it (status paused: people wait where they are). Needs the user\'s approval.',
+		'kind'        => 'destructive',
+		'cap'         => $manage,
+		'schema'      => array(
+			'type'       => 'object',
+			'properties' => array(
+				'id'     => array( 'type' => 'integer' ),
+				'status' => array( 'type' => 'string', 'enum' => array( 'active', 'paused' ) ),
+			),
+			'required'   => array( 'id', 'status' ),
+		),
+		'preview'     => function ( $a ) use ( $jshape, $jget ) {
+			$j = $jshape( $jget( $a['id'] ?? 0 ) );
+			return array( 'journey' => $j['name'], 'summary' => $j['summary'], 'from' => $j['status'], 'to' => (string) ( $a['status'] ?? '' ), 'steps' => $j['steps'], 'people_in_journey' => $j['people']['active'] );
+		},
+		'run'         => function ( $a ) use ( $jget ) {
+			$jget( $a['id'] ?? 0 );
+			if ( ! FLXCRM_Journeys::set_status( absint( $a['id'] ), (string) ( $a['status'] ?? '' ) ) ) {
+				throw new Exception( 'status must be active or paused.' );
+			}
+			return array( 'id' => absint( $a['id'] ), 'status' => (string) $a['status'] );
+		},
+	);
+
+	$t['flxcrm_journey_delete'] = array(
+		'title'       => __( 'Delete journey', 'flx-crm' ),
+		'description' => 'Deletes a journey and the progress of the people in it. Messages already sent stay on the timeline.',
+		'kind'        => 'destructive',
+		'cap'         => $manage,
+		'schema'      => array( 'type' => 'object', 'properties' => array( 'id' => array( 'type' => 'integer' ) ), 'required' => array( 'id' ) ),
+		'preview'     => function ( $a ) use ( $jshape, $jget ) {
+			$j = $jshape( $jget( $a['id'] ?? 0 ) );
+			return array( 'delete' => 'journey', 'name' => $j['name'], 'status' => $j['status'], 'people_in_journey' => $j['people']['active'] );
+		},
+		'run'         => function ( $a ) use ( $jget ) {
+			$jget( $a['id'] ?? 0 );
+			return array( 'deleted' => FLXCRM_Journeys::delete( absint( $a['id'] ) ) );
+		},
+	);
+
 	return $t;
 }
 

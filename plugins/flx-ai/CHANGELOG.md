@@ -1,5 +1,26 @@
 # Flux AI — Değişiklikler
 
+## 0.13.0
+- **Çalışma alanı** (Codex benzeri): her sohbetin ve zamanlanmış görevin kendi klasörü var (`wp-content/flx-ai/chats/<id>`, `tasks/<id>-<ad>`). Tüm dosya işlemleri Flux Files üzerinden: sürüm, çöp kutusu ve işlem kaydı oradan gelir. Klasörler Flux Files'ta da görünür.
+- Sohbet penceresinin sağında dosya paneli: **Dosyalar** (ağaç + dosya görüntüleme), **Değişiklikler** (mini git) ve **Ayarlar**. Yeni **Flux AI & MCP › Sohbet** sayfası sohbeti tam ekran açar; panelde tam ekran düğmesi.
+- **Commit**: asistanın kendi klasörüne bir turda yazdıkları tek commit olur; hangi dosyada nerenin değiştiği, ne eklenip silindiği satır satır fark olarak görünür. Sohbette ilgili mesajın altında "Farkı gör" bağlantısı.
+- **Değişiklik isteği (PR)**: kendi klasörü dışındaki dosyalara (izin verilen klasörler) yazmak dosyayı değiştirmez, değişiklik isteğine eklenir. Dosya dosya ya da hep birlikte Birleştir / Reddet; birleştirmeden önce dosya bu arada değiştiyse uygulanmaz. Sonuç asistana bildirilir. Onay bekleyenler ekranında ve menü sayısında da görünür; görev çalışmasında açılan istek görevi "Onay bekliyor" yapar ve bildirimi tetikler.
+- **Skill'ler dosya oldu**: `.skills/<ad>/SKILL.md`. Eski tablodaki skill'ler kurulumda dosyaya taşınır, tablo kaldırılır.
+- **Sert güvenlik kuralları** (PHP'de, model aşamaz): asistan varsayılan olarak yalnız kendi klasörünü görür; başka sohbet ve görevlerin klasörleri her zaman kapalı, `.skills` yalnız okunur (değişiklik yalnız skill araçlarıyla). Yol temizleme ve gerçek yol (symlink) kontrolü Flux Files'tan; wp-config, .env, .sql gibi hassas dosyalar ve WordPress çekirdeği hiçbir zaman açılmaz. Yazma başına 1 MB, tur ya da istek başına 50 dosya sınırı. Kendi klasörü dışındaki her değişiklik onaylı değişiklik isteği. Dışarıdan MCP bağlantısının dosya erişimi değişmedi.
+- Görev formunda **Dosyalar** satırı: "Yalnız kendi klasörü ve aşağıdaki klasörler" ya da "Sitenin tüm dosyalarını okuyabilir" + izin verilen klasörler. Sohbette aynı ayar dosya panelinin Ayarlar sekmesinde. Görev araçlarında `access` ve `folders`.
+
+## 0.12.0
+- **Skill'ler** (Flux AI & MCP › Skill'ler): adlı, sürümlü talimat paketleri (ad, açıklama, Markdown talimat, önerilen araçlar, örnek çıktı). Hazır gelenler: Günlük brifing, Site sağlığı incelemesi; eklentiler `flxai_skills` filtresiyle kendi skill'lerini getirir. Hazır skill düzenlenince sitede kopyası tutulur, "Varsayılana dön" ile aslı gelir.
+- Asistan uygun skill'i kendisi seçer (`flxai_skill_get` ile okur); sohbette mesajı `/ad` ile başlatarak doğrudan çağrılır. Sohbetten oluşturulur ve değiştirilir: `flxai_skill_list`, `flxai_skill_get`, `flxai_skill_save`, `flxai_skill_delete` (sohbet + MCP; değiştirenler onay kartı ister).
+- SKILL.md dışa/içe aktarma (dosya yükle ya da yapıştır).
+- Görevler bir skill'e bağlanır: talimat her çalışmada skill'in son haliyle birleşir; skill düzenlenince ona bağlı tüm görevler yeni hali kullanır.
+- **Görev bildirimleri**: "Yalnız önemli bir şey olunca" (asistan karar verir, ya da işlem onay bekliyor / hata), "Her çalışmadan sonra" ya da "Hiçbir zaman". Kanallar: yönetim paneli (menüde rozet, listede "Yeni rapor"), e-posta (Flux Mail şablonu "AI görev raporu", yoksa wp_mail), WhatsApp (Flux Mail). Geçmişte hangi kanaldan bildirildiği görünür.
+- **Onay bekleyenler** ekranı: tüm sohbet ve görevlerin onay bekleyen işlemleri tek listede. Onayla, Reddet ya da girdiyi (JSON) düzenleyip onayla; sohbetin son işlemi karara bağlanınca asistan kaldığı yerden devam eder. Menüde sayı rozeti.
+- Görev sohbetinde onay verilince görevin "Onay bekliyor" durumu kalkar.
+- **Genel bakışta sohbet kutusu**: sayfanın üstünde AI sohbetiyle aynı yazma alanı (dosya ekle, sesle yaz, gönder) ve hızlı başlangıç düğmeleri (skill'ler, Görev zamanla, Yeni skill). Gönderince sağdaki sohbet paneli yeni sohbetle açılır, konuşma orada sürer.
+- **Sohbette dosya eki**: görsel (jpg, png, gif, webp), PDF ve metin dosyaları (txt, md, csv, tsv, json, xml, html, log); ataş düğmesi, yapıştır ya da sürükle bırak. En fazla 5 dosya, dosya başı 10 MB. Dosyalar yalnız sahibine açık klasörde durur, sohbet silinince silinir. Modele yalnız son iki ekli mesajın dosyaları tam gider (maliyet), öncekiler not olarak kalır.
+- **Sesle yazma**: tarayıcı destekliyorsa mikrofon düğmesi konuşmayı yazıya çevirir (sohbet paneli ve Genel bakış).
+
 ## 0.11.0
 - **Zamanlanmış görevler** (Flux AI & MCP › Zamanlanmış görevler): asistan belirlenen zamanda kendiliğinden çalışır. Her gün, hafta içi, haftanın seçili günleri, ayın günü, birkaç saatte bir ya da bir kez. Örnek: her sabah 9'da günlük YZ brifingi, her pazartesi bağışçı durumu, 6 saatte bir site performansı.
 - Görevler sohbetten kurulur ve değiştirilir: "her sabah 9'da bana brifing ver", "brifingimi 8.30'a al". Yeni araçlar `flxai_task_list`, `flxai_task_create`, `flxai_task_update`, `flxai_task_delete`, `flxai_task_run` sohbette ve MCP'de; değiştirenler onay kartı ister.

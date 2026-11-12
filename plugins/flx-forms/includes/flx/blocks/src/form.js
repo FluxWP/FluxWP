@@ -30,10 +30,15 @@ import {
 import { useSelect, useDispatch, select, subscribe } from '@wordpress/data';
 import { useEffect, useRef, useState } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import { toStructure, fromStructure, defaultHead, FIELD_TYPES, newId } from './convert';
-import { FIELDS } from './fields';
+import { toStructure, fromStructure, defaultHead, newId } from './convert';
+import { FIELD_BLOCK_NAMES } from './fields';
+import { TYPES } from './types';
 
-const ALLOWED = [...Object.keys(FIELDS).map((t) => `flxf/${t}`), 'flxf/raw'];
+const ALLOWED = [...FIELD_BLOCK_NAMES, 'flxf/step', 'flxf/raw'];
+const PAYMENT_BLOCKS = Object.keys(TYPES)
+	.filter((t) => TYPES[t].payment)
+	.map((t) => `flxf/${TYPES[t].slug || t}`);
+const CURRENCIES = ['try', 'usd', 'eur', 'gbp', 'chf', 'cad', 'aud', 'sar', 'aed', 'jpy'];
 const cfg = window.flxfBlocks || {};
 
 const TEMPLATE = [
@@ -76,7 +81,6 @@ function Edit({ attributes, setAttributes, clientId }) {
 	const [state, setState] = useState(formId ? 'loading' : 'ready');
 	const [forms, setForms] = useState(null);
 	const [error, setError] = useState('');
-	const [multiStep, setMultiStep] = useState(false);
 	const [conflict, setConflict] = useState(false);
 	// While the panel version differs, saving the page must not overwrite the form.
 	const conflictRef = useRef(false);
@@ -84,6 +88,10 @@ function Edit({ attributes, setAttributes, clientId }) {
 	const hashRef = useRef('');
 	const { replaceInnerBlocks, __unstableMarkNextChangeAsNotPersistent: notPersistent } = useDispatch(blockEditorStore);
 	const innerCount = useSelect((s) => s(blockEditorStore).getBlockCount(clientId), [clientId]);
+	const hasPayment = useSelect(
+		(s) => s(blockEditorStore).getBlocks(clientId).some((b) => PAYMENT_BLOCKS.includes(b.name)),
+		[clientId]
+	);
 	const emailFields = useSelect(
 		(s) =>
 			s(blockEditorStore)
@@ -109,14 +117,11 @@ function Edit({ attributes, setAttributes, clientId }) {
 			.then((res) => {
 				hashRef.current = res.hash;
 				const parsed = fromStructure(res.structure);
-				setMultiStep(parsed.multiStep);
 				if (replace || !innerCount) {
 					setAttributes({ formId: res.id, formName: res.name, head: parsed.head, step: parsed.step });
-					if (!parsed.multiStep) {
-						replaceInnerBlocks(clientId, toBlocks(parsed.blocks), false);
-					}
+					replaceInnerBlocks(clientId, toBlocks(parsed.blocks), false);
 					setConflict(false);
-				} else if (!parsed.multiStep) {
+				} else {
 					// Form settings (button, thank-you, e-mail...) always follow the stored form,
 					// so saving the page never writes back an older copy of them.
 					if (JSON.stringify(attributes.head || {}) !== JSON.stringify(parsed.head) || attributes.formName !== res.name) {
@@ -125,12 +130,8 @@ function Edit({ attributes, setAttributes, clientId }) {
 						}
 						setAttributes({ formName: res.name, head: parsed.head, step: parsed.step });
 					}
-					const mine = JSON.stringify(
-						toStructure(attributes, select(blockEditorStore).getBlocks(clientId)).slice(2).map(strip)
-					);
-					const theirs = JSON.stringify(
-						toStructure({ ...attributes, head: parsed.head }, toBlocks(parsed.blocks)).slice(2).map(strip)
-					);
+					const mine = fingerprint(toStructure({ ...attributes, head: parsed.head }, select(blockEditorStore).getBlocks(clientId)));
+					const theirs = fingerprint(toStructure({ ...attributes, head: parsed.head }, toBlocks(parsed.blocks)));
 					setConflict(mine !== theirs);
 				}
 				setState('ready');
@@ -162,7 +163,7 @@ function Edit({ attributes, setAttributes, clientId }) {
 			if (saving && !wasSaving && !busy.current) {
 				const a = attrsRef.current;
 				const blocks = select(blockEditorStore).getBlocks(clientId);
-				if (!blocks.length || multiStep || !cfg.canManage || conflictRef.current) {
+				if (!blocks.length || !cfg.canManage || conflictRef.current) {
 					wasSaving = saving;
 					return;
 				}
@@ -210,7 +211,7 @@ function Edit({ attributes, setAttributes, clientId }) {
 			}
 			wasSaving = saving;
 		});
-	}, [clientId, multiStep]);
+	}, [clientId]);
 
 	const forceSave = () => {
 		const blocks = select(blockEditorStore).getBlocks(clientId);
@@ -230,7 +231,7 @@ function Edit({ attributes, setAttributes, clientId }) {
 	const blockProps = useBlockProps({ className: 'flxf-bform flxf-bform-editor', style: designStyle(design) });
 	const innerBlocksProps = useInnerBlocksProps(
 		{ className: 'flxf-b-fields' },
-		{ allowedBlocks: ALLOWED, templateLock: multiStep ? 'all' : false, renderAppender: multiStep ? false : undefined }
+		{ allowedBlocks: ALLOWED, templateLock: false }
 	);
 
 	if (!formId && !innerCount && 'choose' !== state) {
@@ -320,6 +321,46 @@ function Edit({ attributes, setAttributes, clientId }) {
 					) : (
 						<p className="flxf-b-help">{__('The form is created in Flux Forms when you save the page.', 'flx-forms')}</p>
 					)}
+				</PanelBody>
+				{hasPayment && (
+					<PanelBody title={__('Payment', 'flx-forms')}>
+						<SelectControl
+							__nextHasNoMarginBottom
+							label={__('Currency', 'flx-forms')}
+							value={String(h.currency || 'try').toLowerCase()}
+							options={[...new Set([String(h.currency || 'try').toLowerCase(), ...CURRENCIES])].map((c) => ({ value: c, label: c.toUpperCase() }))}
+							onChange={(v) => setHead({ currency: v })}
+						/>
+						<SelectControl
+							__nextHasNoMarginBottom
+							label={__('Payment type', 'flx-forms')}
+							value={h.paymentmethod || 'charge'}
+							options={[
+								{ value: 'charge', label: __('One-time', 'flx-forms') },
+								{ value: 'day', label: __('Daily subscription', 'flx-forms') },
+								{ value: 'week', label: __('Weekly subscription', 'flx-forms') },
+								{ value: 'month', label: __('Monthly subscription', 'flx-forms') },
+								{ value: 'year', label: __('Yearly subscription', 'flx-forms') },
+							]}
+							onChange={(v) => setHead({ paymentmethod: v })}
+						/>
+						<p className="flxf-b-help">{__('Card payments use the Stripe keys in Flux Forms settings.', 'flx-forms')}</p>
+					</PanelBody>
+				)}
+				<PanelBody title={__('Steps', 'flx-forms')} initialOpen={false}>
+					<p className="flxf-b-help">{__('Add a Step block to split the form into steps.', 'flx-forms')}</p>
+					<TextControl
+						__nextHasNoMarginBottom
+						label={__('Next button', 'flx-forms')}
+						value={h.button_Next_text}
+						onChange={(v) => setHead({ button_Next_text: v })}
+					/>
+					<TextControl
+						__nextHasNoMarginBottom
+						label={__('Previous button', 'flx-forms')}
+						value={h.button_Previous_text}
+						onChange={(v) => setHead({ button_Previous_text: v })}
+					/>
 				</PanelBody>
 				<PanelBody title={__('After sending', 'flx-forms')} initialOpen={false}>
 					<TextControl
@@ -431,12 +472,6 @@ function Edit({ attributes, setAttributes, clientId }) {
 					{__('This form was changed in the Flux Forms panel after you opened it, so your changes were not written to the form. Load the panel version, or keep yours and overwrite it.', 'flx-forms')}
 				</Notice>
 			)}
-			{multiStep && (
-				<Notice status="info" isDismissible={false}>
-					{__('This is a multi-step form. Steps are edited in the Flux Forms panel for now; the page shows the form as it is.', 'flx-forms')}{' '}
-					<ExternalLink href={`${cfg.panelUrl}&state=edit-form&id=${formId}`}>{__('Open in panel', 'flx-forms')}</ExternalLink>
-				</Notice>
-			)}
 			<div {...innerBlocksProps} />
 			<div className="flxf-b-submit">
 				<span className="flxf-b-button">{h.button_single_text}</span>
@@ -445,25 +480,37 @@ function Edit({ attributes, setAttributes, clientId }) {
 	);
 }
 
-/**
- * A field's `step`, `amount` and ids are bookkeeping; compare the rest.
- *
- * @param {Object} r Row.
- * @return {Object} Row without bookkeeping keys.
- */
-// The part of a row that tells whether the panel changed the form. Field rows compare
-// only what the blocks manage (stored values come back sanitized: true -> "1" ...);
-// rows kept as they are (flxf/raw) compare everything but their position.
-function strip(r) {
-	if ('option' === r.type) {
-		return ['option', String(r.parent || ''), String(r.value || '')];
-	}
-	if (FIELD_TYPES.includes(r.type)) {
-		const req = !!r.required && '0' !== r.required && 0 !== r.required;
-		return [r.type, r.id_, r.name || '', r.placeholder || '', r.message || '', req, String(r.size || '100')];
-	}
-	const { amount, step, dataId, ...rest } = r;
-	return rest;
+// What tells whether the panel changed the form. Stored values come back sanitized
+// (true -> "1", numbers -> strings), so values are compared as normalised strings,
+// and only the keys the blocks manage are compared; rows kept as they are
+// (flxf/raw) compare everything but their position.
+const norm = (v) => (true === v ? '1' : false === v || null === v || undefined === v || 0 === v || '0' === v ? '' : String(v));
+function fingerprint(rows) {
+	const out = rows.slice(1).map((r) => {
+		if (!r) {
+			return null;
+		}
+		if ('option' === r.type || 'r_matrix' === r.type) {
+			return [r.type, norm(r.parent), norm(r.value), norm(r.price), norm(r.src), norm(r.sub_value)];
+		}
+		if ('step' === r.type) {
+			return ['step', norm(r.step), norm(r.name), norm(r.message)];
+		}
+		const def = TYPES[r.type];
+		if (def) {
+			const keys = [...(def.settings || []).map((x) => x.key), 'hidden', 'disabled', 'hflabel', 'customRequiredMsg', 'classes'];
+			return [r.type, r.id_, norm(r.step), norm(r.name), norm(r.placeholder), norm(r.message), norm(r.required), norm(r.size || '100'), ...keys.map((k) => norm(r[k]))];
+		}
+		const { amount, step, dataId, ...rest } = r;
+		return rest;
+	});
+	const rules = (rows[0].logic_rules || []).map((r) => [
+		r.id,
+		(r.actions || []).map((a) => [a.type, norm(a.target)]),
+		norm(r.conditions && r.conditions.operator),
+		((r.conditions && r.conditions.items) || []).map((c) => [norm(c.field_id), norm(c.compare), norm(c.value)]),
+	]);
+	return JSON.stringify([out, rules]);
 }
 
 export function registerForm() {

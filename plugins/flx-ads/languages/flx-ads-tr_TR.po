@@ -38,6 +38,350 @@ msgstr "Elle girilen harcamayı sil"
 msgid "Update Meta ad spend now"
 msgstr "Meta harcamasını şimdi güncelle"
 
+msgid "Donor value by campaign (LTV, CAC)"
+msgstr "Kampanyaya göre bağışçı değeri (LTV, CAC)"
+
+msgid "Meta audiences"
+msgstr "Meta kitleleri"
+
+msgid "Create a Meta audience"
+msgstr "Meta kitlesi oluştur"
+
+msgid "Create a lookalike audience"
+msgstr "Benzer kitle oluştur"
+
+msgid "Update a Meta audience now"
+msgstr "Meta kitlesini şimdi güncelle"
+
+msgid "Delete a Meta audience"
+msgstr "Meta kitlesini sil"
+
+msgid "Meta campaigns"
+msgstr "Meta kampanyaları"
+
+msgid "Meta campaign details"
+msgstr "Meta kampanya ayrıntısı"
+
+msgid "Pause or turn on in Meta"
+msgstr "Meta'da duraklat ya da aç"
+
+msgid "Change daily budget in Meta"
+msgstr "Meta'da günlük bütçeyi değiştir"
+
+msgid "Ad suggestions"
+msgstr "Reklam önerileri"
+
+msgid "Apply an ad suggestion"
+msgstr "Reklam önerisini uygula"
+
+msgid "Dismiss an ad suggestion"
+msgstr "Reklam önerisini kapat"
+
+msgid "Season plan"
+msgstr "Sezon planı"
+
+msgid "Add a season date"
+msgstr "Sezon tarihi ekle"
+
+msgid "Delete a season date"
+msgstr "Sezon tarihini sil"
+
+msgid "Ad tests"
+msgstr "Reklam testleri"
+
+msgid "Start an ad test"
+msgstr "Reklam testi başlat"
+
+msgid "End an ad test"
+msgstr "Reklam testini bitir"
+
+msgid "Delete an ad test"
+msgstr "Reklam testini sil"
+
+msgid "Campaign planning context"
+msgstr "Kampanya planlama bağlamı"
+
+msgid "Campaign drafts"
+msgstr "Kampanya taslakları"
+
+msgid "Save a campaign draft"
+msgstr "Kampanya taslağı kaydet"
+
+msgid "Create draft in Meta (paused)"
+msgstr "Taslağı Meta'da oluştur (duraklatılmış)"
+
+msgid "Delete a campaign draft"
+msgstr "Kampanya taslağını sil"
+
+msgid "Audience not found."
+msgstr "Kitle bulunamadı."
+
+msgid "Everyone with ad consent"
+msgstr "Reklam izni veren herkes"
+
+msgid "Donors and customers (paid at least once)"
+msgstr "Bağışçılar ve müşteriler (en az bir kez ödemiş)"
+
+msgid "Value group: %s"
+msgstr "Değer grubu: %s"
+
+msgid "Segment: %s"
+msgstr "Segment: %s"
+
+msgid "Show ads to them"
+msgstr "Reklam göster"
+
+msgid "Exclude from ads"
+msgstr "Reklamdan hariç tut"
+
+msgid "Flux CRM and a Meta ad account with an ads_management key are needed."
+msgstr "Flux CRM ve ads_management izinli anahtarı olan bir Meta reklam hesabı gerekli."
+
+msgid "Enter a name and pick a group."
+msgstr "Ad girin ve bir grup seçin."
+
+msgid "Pick one of your own audiences as the source."
+msgstr "Kaynak olarak kendi kitlelerinizden birini seçin."
+
+msgid "%1$s · lookalike %2$d%% %3$s"
+msgstr "%1$s · benzer %%%2$d %3$s"
+
+msgid "Not from ads"
+msgstr "Reklamsız gelenler"
+
+msgid "(not set)"
+msgstr "(belirtilmemiş)"
+
+msgid "A/B test"
+msgstr "A/B testi"
+
+msgid "Holdout (lift)"
+msgstr "Holdout (artış)"
+
+msgid "Choose the test type."
+msgstr "Test türünü seçin."
+
+msgid "The end date is before the start date."
+msgstr "Bitiş tarihi başlangıçtan önce."
+
+msgid "Pick a campaign and two different ads in it."
+msgstr "Bir kampanya ve içinden iki farklı reklam seçin."
+
+msgid "Both ads must be in the chosen campaign."
+msgstr "İki reklam da seçilen kampanyada olmalı."
+
+msgid "Pick an audience that ads are shown to."
+msgstr "Reklam gösterilen bir kitle seçin."
+
+msgid "The holdout share must be between 5% and 50%."
+msgstr "Holdout payı %5 ile %50 arasında olmalı."
+
+msgid "This audience already has a running holdout test."
+msgstr "Bu kitlede zaten süren bir holdout testi var."
+
+msgid "Test not found."
+msgstr "Test bulunamadı."
+
+msgid "The audience of this test was deleted."
+msgstr "Bu testin kitlesi silinmiş."
+
+msgid "Not enough data yet: wait until both ads have clicks."
+msgstr "Henüz yeterli veri yok: iki reklamın da tıklama almasını bekleyin."
+
+msgid "payments per click"
+msgstr "tıklama başına ödeme"
+
+msgid "click rate"
+msgstr "tıklama oranı"
+
+msgid "Too little data yet: each ad needs at least 50 clicks (1,000 impressions while payments are few). Let it run longer."
+msgstr "Henüz veri az: her reklamın en az 50 tıklaması (ödeme azken 1.000 gösterimi) olmalı. Biraz daha çalışsın."
+
+msgid "No clear winner yet on %1$s (confidence %2$s%%; 95%% is needed). Let it run longer."
+msgstr "%1$s açısından henüz net kazanan yok (güven %%%2$s; %%95 gerekir). Biraz daha çalışsın."
+
+msgid "\"%1$s\" wins on %2$s with %3$s%% confidence. You can pause \"%4$s\"."
+msgstr "\"%1$s\" %2$s açısından %%%3$s güvenle kazanıyor. \"%4$s\" reklamını duraklatabilirsiniz."
+
+msgid "Not enough data yet."
+msgstr "Henüz yeterli veri yok."
+
+msgid "Ads work: people who could see them gave %1$s%% more often. About %2$s extra donors and %3$s extra income came from the ads (confidence %4$s%%)."
+msgstr "Reklamlar işe yarıyor: reklamı görebilenler %%%1$s daha sık bağış yaptı. Reklamlar sayesinde yaklaşık %2$s ek bağışçı ve %3$s ek gelir geldi (güven %%%4$s)."
+
+msgid "People who did not see the ads gave more often. The ads to this audience are not adding donations; try other text or another audience."
+msgstr "Reklamı görmeyenler daha sık bağış yaptı. Bu kitleye reklam bağış eklemiyor; başka metin ya da başka kitle deneyin."
+
+msgid "The holdout group is still small (%s people; at least 100 are needed). Use a larger audience or share, or wait for it to grow."
+msgstr "Holdout grubu hâlâ küçük (%s kişi; en az 100 gerekir). Daha büyük kitle ya da pay kullanın veya büyümesini bekleyin."
+
+msgid "No clear difference yet between people who could see the ads and the holdout (confidence %s%%; 95%% is needed)."
+msgstr "Reklamı görebilenlerle holdout grubu arasında henüz net fark yok (güven %%%s; %%95 gerekir)."
+
+msgid "Last 7 days"
+msgstr "Son 7 gün"
+
+msgid "Last 30 days"
+msgstr "Son 30 gün"
+
+msgid "Last 90 days"
+msgstr "Son 90 gün"
+
+msgid "Active"
+msgstr "Etkin"
+
+msgid "Paused"
+msgstr "Duraklatıldı"
+
+msgid "Campaign paused"
+msgstr "Kampanya duraklatıldı"
+
+msgid "Ad set paused"
+msgstr "Reklam seti duraklatıldı"
+
+msgid "Processing"
+msgstr "İşleniyor"
+
+msgid "Has issues"
+msgstr "Sorun var"
+
+msgid "In review"
+msgstr "İncelemede"
+
+msgid "Rejected"
+msgstr "Reddedildi"
+
+msgid "Approved"
+msgstr "Onaylandı"
+
+msgid "Billing needed"
+msgstr "Ödeme bilgisi gerekli"
+
+msgid "Archived"
+msgstr "Arşivlendi"
+
+msgid "Deleted"
+msgstr "Silindi"
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta."
+msgstr "Ayarlar › Meta'ya reklam hesabı kimliğini ve Marketing API anahtarını girin."
+
+msgid "Campaign not found."
+msgstr "Kampanya bulunamadı."
+
+msgid "Status can only be Active or Paused."
+msgstr "Durum yalnız Etkin ya da Duraklatıldı olabilir."
+
+msgid "Enter a daily budget greater than zero."
+msgstr "Sıfırdan büyük bir günlük bütçe girin."
+
+msgid "This item has no daily budget here (lifetime budget, or the budget is set on the campaign / ad sets). Change it in Meta Ads Manager."
+msgstr "Bunun burada günlük bütçesi yok (toplam bütçe ya da bütçe kampanyada / reklam setlerinde). Meta Reklam Yöneticisi'nden değiştirin."
+
+msgid "%1$s starts in %2$s day. Write the campaign now so Meta has time to review and learn."
+msgid_plural "%1$s starts in %2$s days. Write the campaign now so Meta has time to review and learn."
+msgstr[0] "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
+msgstr[1] "%1$s %2$s gün sonra başlıyor. Meta'nın inceleyip öğrenmesine zaman kalsın diye kampanyayı şimdi yazın."
+
+msgid "Pause campaign"
+msgstr "Kampanyayı duraklat"
+
+msgid "Lower budget"
+msgstr "Bütçeyi düşür"
+
+msgid "Raise budget"
+msgstr "Bütçeyi artır"
+
+msgid "Pause weak ad"
+msgstr "Zayıf reklamı duraklat"
+
+msgid "New ad text"
+msgstr "Yeni reklam metni"
+
+msgid "Season coming"
+msgstr "Sezon yaklaşıyor"
+
+msgid "Waiting"
+msgstr "Bekliyor"
+
+msgid "Applied"
+msgstr "Uygulandı"
+
+msgid "Dismissed"
+msgstr "Kapatıldı"
+
+msgid "No longer valid"
+msgstr "Artık geçerli değil"
+
+msgid "Spent %1$s in the last 7 days and brought no payment on the site (judged after %2$s)."
+msgstr "Son 7 günde %1$s harcadı, sitede hiç ödeme getirmedi (%2$s harcamadan sonra değerlendirilir)."
+
+msgid "Return on ad spend is %1$s, under half of your %2$s target. Lower the daily budget %3$s → %4$s (-20%%) and move money to better campaigns."
+msgstr "Reklam harcamasının getirisi %1$s, %2$s hedefinizin yarısının altında. Günlük bütçeyi %3$s → %4$s düşürün (-%%20), parayı daha iyi kampanyalara kaydırın."
+
+msgid "Return on ad spend is %1$s with %2$s payments, well over your target. Raise the daily budget %3$s → %4$s (+20%%, small enough that Meta keeps learning)."
+msgstr "Reklam harcamasının getirisi %1$s, %2$s ödemeyle hedefin epey üstünde. Günlük bütçeyi %3$s → %4$s artırın (+%%20; Meta'nın öğrenmesi bozulmayacak kadar)."
+
+msgid "Click rate %1$s%% while the other ads in this ad set average %2$s%%; it has spent %3$s. Pausing it moves the budget to the better ads."
+msgstr "Tıklama oranı %%%1$s, bu setteki diğer reklamların ortalaması %%%2$s; %3$s harcadı. Duraklatınca bütçe daha iyi reklamlara geçer."
+
+msgid "People saw these ads %s times each in 7 days; results usually drop after 4. Write new text variants in Studio or widen the audience."
+msgstr "Kişiler bu reklamları 7 günde ortalama %s kez gördü; 4'ten sonra sonuç genelde düşer. Stüdyo'da yeni metin çeşitleri yazın ya da kitleyi genişletin."
+
+msgid "Last year it brought %1$s payments and %2$s."
+msgstr "Geçen yıl %1$s ödeme ve %2$s getirdi."
+
+msgid "This suggestion is already closed."
+msgstr "Bu öneri zaten kapandı."
+
+msgid "This suggestion has nothing to change in Meta; open Studio or dismiss it."
+msgstr "Bu öneri Meta'da bir şey değiştirmiyor; Stüdyo'yu açın ya da kapatın."
+
+msgid "Suggestion not found."
+msgstr "Öneri bulunamadı."
+
+msgid "Ramadan and Eid"
+msgstr "Ramazan ve Bayram"
+
+msgid "Qurban (Eid al-Adha)"
+msgstr "Kurban Bayramı"
+
+msgid "World Forestry Day and Forest Week"
+msgstr "Dünya Ormancılık Günü ve Orman Haftası"
+
+msgid "Mother's Day (donate in her name)"
+msgstr "Anneler Günü (onun adına bağış)"
+
+msgid "World Environment Day"
+msgstr "Dünya Çevre Günü"
+
+msgid "National Tree Planting Day (11 November)"
+msgstr "Milli Ağaçlandırma Günü (11 Kasım)"
+
+msgid "Teachers' Day (donate in their name)"
+msgstr "Öğretmenler Günü (onun adına bağış)"
+
+msgid "Black Friday and Giving Tuesday"
+msgstr "Black Friday ve Giving Tuesday"
+
+msgid "Year-end giving"
+msgstr "Yıl sonu bağışları"
+
+msgid "Enter a name and a start date."
+msgstr "Bir ad ve başlangıç tarihi girin."
+
+msgid "Too many dates; delete old ones first."
+msgstr "Çok fazla tarih var; önce eskileri silin."
+
+msgid "Date not found."
+msgstr "Tarih bulunamadı."
+
+msgid "Campaign for %1$s (%2$s – %3$s)."
+msgstr "%1$s kampanyası (%2$s – %3$s)."
+
+msgid "Last year the same period brought %1$s payments and %2$s."
+msgstr "Geçen yıl aynı dönem %1$s ödeme ve %2$s getirdi."
+
 msgid "Ad channel"
 msgstr "Reklam kanalı"
 
@@ -55,9 +399,6 @@ msgstr "Açılış sayfası"
 
 msgid "First ad touch"
 msgstr "İlk reklam teması"
-
-msgid "(not set)"
-msgstr "(belirtilmemiş)"
 
 msgid "Fill in the ID and the key first."
 msgstr "Önce kimliği ve anahtarı girin."
@@ -86,6 +427,81 @@ msgstr "Meta çok yavaş yanıt verdi; biraz sonra yeniden deneyin."
 msgid "Too many rows; only part of the period was read."
 msgstr "Satır sayısı çok fazla; dönemin yalnız bir kısmı okunabildi."
 
+msgid "Donations / sales (conversions)"
+msgstr "Bağış / satış (dönüşüm)"
+
+msgid "Visits to the page"
+msgstr "Sayfa ziyareti"
+
+msgid "Awareness (reach)"
+msgstr "Bilinirlik (erişim)"
+
+msgid "Donate now"
+msgstr "Hemen bağış yap"
+
+msgid "Learn more"
+msgstr "Daha fazla bilgi"
+
+msgid "Shop now"
+msgstr "Hemen alışveriş yap"
+
+msgid "Sign up"
+msgstr "Kaydol"
+
+msgid "Draft"
+msgstr "Taslak"
+
+msgid "In Meta (paused)"
+msgstr "Meta'da (duraklatılmış)"
+
+msgid "Not sent"
+msgstr "Gönderilmedi"
+
+msgid "Give the campaign a name."
+msgstr "Kampanyaya bir ad verin."
+
+msgid "Enter the page the ads open (a full https:// address)."
+msgstr "Reklamların açacağı sayfayı girin (tam https:// adresi)."
+
+msgid "Add at least one ad set (who sees the ads)."
+msgstr "En az bir reklam seti ekleyin (reklamı kimler görecek)."
+
+msgid "Add at least one ad with a text and a headline."
+msgstr "Metni ve başlığı olan en az bir reklam ekleyin."
+
+msgid "Draft not found."
+msgstr "Taslak bulunamadı."
+
+msgid "This draft is already in Meta. Edit it there, or duplicate it here."
+msgstr "Bu taslak zaten Meta'da. Orada düzenleyin ya da burada kopyalayın."
+
+msgid "Too many drafts; delete old ones first."
+msgstr "Çok fazla taslak var; önce eskileri silin."
+
+msgid "%s (copy)"
+msgstr "%s (kopya)"
+
+msgid "Meta ad account ID and Marketing API key (Settings › Meta)"
+msgstr "Meta reklam hesabı kimliği ve Marketing API anahtarı (Ayarlar › Meta)"
+
+msgid "Facebook Page ID (Settings › Meta)"
+msgstr "Facebook sayfa kimliği (Ayarlar › Meta)"
+
+msgid "This draft is already in Meta."
+msgstr "Bu taslak zaten Meta'da."
+
+msgid "Missing: %s."
+msgstr "Eksik: %s."
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key."
+msgstr "Flux AI hazır değil. Flux AI & MCP'yi kurun ve bir model anahtarı ekleyin."
+
+msgid "Write a short brief: what the campaign is for and who it should reach."
+msgstr "Kısa bir brif yazın: kampanya ne için ve kime ulaşmalı."
+
+msgid "The AI answer could not be read; try again."
+msgstr "AI yanıtı okunamadı; tekrar deneyin."
+
 msgid "Ad conversion"
 msgstr "Reklam dönüşümü"
 
@@ -112,6 +528,11 @@ msgstr "Reklam dönüşüm raporu"
 
 msgid "Ad tracking status"
 msgstr "Reklam takibi durumu"
+
+msgid "%d audience is updated daily."
+msgid_plural "%d audiences are updated daily."
+msgstr[0] "%d kitle her gün güncelleniyor."
+msgstr[1] "%d kitle her gün güncelleniyor."
 
 msgid "Turned on but the ID is missing or not valid. Nothing is tracked."
 msgstr "Açık ama kimlik eksik ya da geçersiz. Hiçbir şey ölçülmüyor."
@@ -161,6 +582,9 @@ msgstr "Harcama %s okundu."
 msgid "Not read yet; opening the Flux Ads screen starts it."
 msgstr "Henüz okunmadı; Flux Ads ekranı açılınca başlar."
 
+msgid "Audiences"
+msgstr "Kitleler"
+
 msgid "Cookie consent"
 msgstr "Çerez onayı"
 
@@ -169,6 +593,26 @@ msgstr "Temanın çerez banner'ı kapalı, reklam pixel'leri izin sormadan yükl
 
 msgid "Theme Settings"
 msgstr "Tema Ayarları"
+
+msgid "Checked: %d new suggestion."
+msgid_plural "Checked: %d new suggestions."
+msgstr[0] "Kontrol edildi: %d yeni öneri."
+msgstr[1] "Kontrol edildi: %d yeni öneri."
+
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] "%s gün"
+msgstr[1] "%s gün"
+
+msgid "%s payment"
+msgid_plural "%s payments"
+msgstr[0] "%s ödeme"
+msgstr[1] "%s ödeme"
+
+msgid "in %s day"
+msgid_plural "in %s days"
+msgstr[0] "%s gün sonra"
+msgstr[1] "%s gün sonra"
 
 msgid "%d try"
 msgid_plural "%d tries"
@@ -184,6 +628,21 @@ msgstr "Kopyala"
 msgid "Report"
 msgstr "Rapor"
 
+msgid "Campaigns"
+msgstr "Kampanyalar"
+
+msgid "Suggestions"
+msgstr "Öneriler"
+
+msgid "Studio"
+msgstr "Stüdyo"
+
+msgid "Tests"
+msgstr "Testler"
+
+msgid "Donor value"
+msgstr "Bağışçı değeri"
+
 msgid "Ad link"
 msgstr "Reklam bağlantısı"
 
@@ -195,9 +654,6 @@ msgstr "Reklam dönüşümleri"
 
 msgid "Which ad, campaign and ad text brought which donation. Paid donations and orders only; bank transfers count when approved."
 msgstr "Hangi reklam, kampanya ve reklam metni hangi bağışı getirdi. Yalnız ödenmiş bağış ve siparişler; Havale/EFT onaylanınca sayılır."
-
-msgid "Sections"
-msgstr "Bölümler"
 
 msgid "Settings saved."
 msgstr "Ayarlar kaydedildi."
@@ -214,20 +670,59 @@ msgstr "Harcama eklendi."
 msgid "Enter an amount greater than zero."
 msgstr "Sıfırdan büyük bir tutar girin."
 
+msgid "Meta did not accept it:"
+msgstr "Meta kabul etmedi:"
+
+msgid "Audience created in Meta and filled."
+msgstr "Kitle Meta'da oluşturuldu ve dolduruldu."
+
+msgid "Lookalike audience created. Meta fills it within a few hours."
+msgstr "Benzer kitle oluşturuldu. Meta birkaç saat içinde doldurur."
+
+msgid "Audience updated."
+msgstr "Kitle güncellendi."
+
+msgid "Audience deleted."
+msgstr "Kitle silindi."
+
+msgid "Flux AI wrote a draft. Read and edit it before sending it to Meta."
+msgstr "Flux AI bir taslak yazdı. Meta'ya göndermeden önce okuyup düzenleyin."
+
+msgid "Draft saved."
+msgstr "Taslak kaydedildi."
+
+msgid "Draft deleted."
+msgstr "Taslak silindi."
+
+msgid "Created in Meta, paused. Turn it on under Campaigns when you are ready."
+msgstr "Meta'da duraklatılmış olarak oluşturuldu. Hazır olunca Kampanyalar'dan açın."
+
+msgid "Season plan updated."
+msgstr "Sezon planı güncellendi."
+
+msgid "Test saved."
+msgstr "Test kaydedildi."
+
+msgid "Test deleted."
+msgstr "Test silindi."
+
+msgid "Applied in Meta and written to the change history."
+msgstr "Meta'da uygulandı ve değişiklik geçmişine yazıldı."
+
+msgid "Dismissed. It does not come back for 14 days."
+msgstr "Kapatıldı. 14 gün boyunca yeniden gelmez."
+
+msgid "Status changed in Meta."
+msgstr "Durum Meta'da değişti."
+
+msgid "Daily budget changed in Meta."
+msgstr "Günlük bütçe Meta'da değişti."
+
 msgid "Sent again. The row shows the result."
 msgstr "Yeniden gönderildi. Sonuç satırda görünür."
 
 msgid "Period"
 msgstr "Dönem"
-
-msgid "Last 7 days"
-msgstr "Son 7 gün"
-
-msgid "Last 30 days"
-msgstr "Son 30 gün"
-
-msgid "Last 90 days"
-msgstr "Son 90 gün"
 
 msgid "Last 12 months"
 msgstr "Son 12 ay"
@@ -397,17 +892,659 @@ msgstr "Sil"
 msgid "You are not allowed to do this."
 msgstr "Bunu yapmaya yetkiniz yok."
 
-msgid "Waiting"
-msgstr "Bekliyor"
+msgid "What the people an ad brought in gave in total, not only their first payment. A campaign whose first gifts are cheap but never come back shows up here."
+msgstr "Reklamın getirdiği kişilerin yalnız ilk ödemesi değil, toplamda verdiği. İlk bağışı ucuza getirip bir daha dönmeyen kampanya burada görünür."
+
+msgid "First payment in"
+msgstr "İlk ödeme"
+
+msgid "%s of them from ads"
+msgstr "%s tanesi reklamdan"
+
+msgid "Value per person from ads"
+msgstr "Reklamdan gelen kişi başı değer"
+
+msgid "all payments so far"
+msgstr "bugüne kadarki tüm ödemeler"
+
+msgid "Cost to win one (CAC)"
+msgstr "Bir kişiyi kazanma maliyeti (CAC)"
+
+msgid "%s spend"
+msgstr "%s harcama"
+
+msgid "no spend recorded"
+msgstr "harcama kaydı yok"
+
+msgid "Value / cost"
+msgstr "Değer / maliyet"
+
+msgid "%s%% gave again"
+msgstr "%%%s tekrar verdi"
+
+msgid "First payment"
+msgstr "İlk ödeme"
+
+msgid "90 days"
+msgstr "90 gün"
+
+msgid "So far"
+msgstr "Bugüne kadar"
+
+msgid "Per person"
+msgstr "Kişi başı"
+
+msgid "Gave again"
+msgstr "Tekrar verdi"
+
+msgid "Paid back in"
+msgstr "Geri dönüş"
+
+msgid "Nobody made a first payment in this period yet."
+msgstr "Bu dönemde henüz ilk ödemesini yapan olmadı."
+
+msgid "nobody new"
+msgstr "yeni kişi yok"
+
+msgid "not yet"
+msgstr "henüz değil"
+
+msgid "A person belongs to the campaign of their first payment. Their later payments count for that campaign even when they came back without an ad. CAC is the campaign spend in this period divided by the new people it brought. Value / cost above 3x is good; below 1x the ad has not paid for itself yet."
+msgstr "Kişi ilk ödemesini getiren kampanyaya yazılır. Sonraki ödemeleri reklamsız gelse de o kampanyaya sayılır. CAC, kampanyanın bu dönemdeki harcamasının getirdiği yeni kişi sayısına bölümüdür. Değer / maliyet 3x üstü iyi; 1x altında reklam henüz kendini çıkarmamış."
+
+msgid "Value by month of first payment"
+msgstr "İlk ödeme ayına göre değer"
+
+msgid "Each row is the people who paid for the first time that month. The cells show what one person gave in total by the end of each month since then."
+msgstr "Her satır o ay ilk kez ödeme yapan kişiler. Hücreler, o günden beri her ayın sonunda bir kişinin toplam ne verdiğini gösterir."
+
+msgid "Month"
+msgstr "Ay"
+
+msgid "People"
+msgstr "Kişi"
+
+msgid "M%d"
+msgstr "A%d"
+
+msgid "Send a group of people from Flux CRM to Meta as an audience: to show ads to similar people, or to stop showing ads to people who just donated. Only people who gave ad consent are sent, as encrypted (hashed) email and phone. The list is updated every day; someone who withdraws consent is removed straight away."
+msgstr "Flux CRM'deki bir kişi grubunu Meta'ya kitle olarak gönderin: benzer kişilere reklam göstermek ya da yeni bağış yapanlara reklam göstermemek için. Yalnız reklam izni veren kişiler, şifrelenmiş (özetlenmiş) e-posta ve telefonla gider. Liste her gün güncellenir; iznini geri alan kişi hemen çıkarılır."
+
+msgid "Audiences need Flux CRM: people, ad consent and segments come from there."
+msgstr "Kitleler için Flux CRM gerekli: kişiler, reklam izni ve segmentler oradan gelir."
+
+msgid "Enter the Meta ad account ID and a Marketing API key with the ads_management permission in Settings › Meta."
+msgstr "Ayarlar › Meta'da reklam hesabı kimliğini ve ads_management izinli bir Marketing API anahtarını girin."
+
+msgid "Audience"
+msgstr "Kitle"
+
+msgid "Group"
+msgstr "Grup"
+
+msgid "Use"
+msgstr "Kullanım"
+
+msgid "Updated"
+msgstr "Güncellendi"
+
+msgid "No audience yet."
+msgstr "Henüz kitle yok."
+
+msgid "Similar to: %s"
+msgstr "Benzeri: %s"
+
+msgid "(removed group)"
+msgstr "(silinmiş grup)"
+
+msgid "Meta fills it"
+msgstr "Meta doldurur"
+
+msgid "%1$s · +%2$d / −%3$d"
+msgstr "%1$s · +%2$d / −%3$d"
+
+msgid "The audience is deleted in Meta too. Ad sets that use it stop reaching these people."
+msgstr "Kitle Meta'da da silinir. Onu kullanan reklam setleri bu kişilere ulaşmayı bırakır."
+
+msgid "New audience"
+msgstr "Yeni kitle"
+
+msgid "Name in Meta"
+msgstr "Meta'daki adı"
+
+msgid "Donors – last 12 months"
+msgstr "Bağışçılar – son 12 ay"
+
+msgid "%s people"
+msgstr "%s kişi"
+
+msgid "Also create a lookalike audience (people similar to this group)"
+msgstr "Benzer kitle de oluştur (bu gruba benzeyen kişiler)"
+
+msgid "Lookalike country"
+msgstr "Benzer kitle ülkesi"
+
+msgid "Lookalike size"
+msgstr "Benzer kitle büyüklüğü"
+
+msgid "%d%% of the country"
+msgstr "Ülkenin %%%d'i"
+
+msgid "Create in Meta"
+msgstr "Meta'da oluştur"
+
+msgid "Meta needs at least 100 matched people for a lookalike. 1% is the closest match; larger sizes reach more people with less similarity."
+msgstr "Benzer kitle için Meta'nın en az 100 eşleşen kişiye ihtiyacı var. %1 en yakın benzerlik; büyüdükçe daha çok kişiye, daha az benzerlikle ulaşır."
+
+msgid "Lookalike from an existing audience"
+msgstr "Mevcut kitleden benzer kitle"
+
+msgid "Source audience"
+msgstr "Kaynak kitle"
+
+msgid "Create lookalike"
+msgstr "Benzer kitle oluştur"
+
+msgid "Unknown action."
+msgstr "Bilinmeyen işlem."
+
+msgid "%s / day"
+msgstr "%s / gün"
+
+msgid "%s total"
+msgstr "toplam %s"
+
+msgid "\"%s\" stops showing in Meta right away. You can turn it back on any time."
+msgstr "\"%s\" Meta'da hemen durur. İstediğiniz zaman yeniden açabilirsiniz."
+
+msgid "\"%s\" starts showing in Meta and spending its budget."
+msgstr "\"%s\" Meta'da yayınlanmaya ve bütçesini harcamaya başlar."
+
+msgid "Pause"
+msgstr "Duraklat"
+
+msgid "Turn on"
+msgstr "Aç"
+
+msgid "The daily budget of \"%1$s\" changes in Meta right away (now %2$s)."
+msgstr "\"%1$s\" günlük bütçesi Meta'da hemen değişir (şu an %2$s)."
+
+msgid "Change budget"
+msgstr "Bütçeyi değiştir"
+
+msgid "Daily budget"
+msgstr "Günlük bütçe"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Impressions"
+msgstr "Gösterim"
+
+msgid "Link clicks"
+msgstr "Bağlantı tıklaması"
+
+msgid "CTR %s%%"
+msgstr "TO %%%s"
+
+msgid "Your Meta campaigns, ad sets and ads with spend and the donations they brought on this site. Pause, turn on or change the daily budget here; every change goes to Meta at once and is written to the history below."
+msgstr "Meta kampanyalarınız, reklam setleriniz ve reklamlarınız; harcamaları ve bu sitede getirdikleri bağışlarla. Buradan duraklatın, açın ya da günlük bütçeyi değiştirin; her değişiklik hemen Meta'ya gider ve aşağıdaki geçmişe yazılır."
+
+msgid "Enter the Meta ad account ID and a Marketing API key in Settings › Meta. Reading needs ads_read; pausing and budget changes need ads_management."
+msgstr "Ayarlar › Meta'ya reklam hesabı kimliğini ve Marketing API anahtarını girin. Okumak için ads_read, duraklatma ve bütçe değişikliği için ads_management izni gerekir."
+
+msgid "Meta could not be read:"
+msgstr "Meta okunamadı:"
+
+msgid "Brought on the site"
+msgstr "Sitede getirdiği"
+
+msgid "Active campaigns"
+msgstr "Etkin kampanya"
+
+msgid "%s in total"
+msgstr "toplam %s"
+
+msgid "Budget"
+msgstr "Bütçe"
+
+msgid "On the site"
+msgstr "Sitede"
+
+msgid "No campaigns in this ad account."
+msgstr "Bu reklam hesabında kampanya yok."
+
+msgid "in ad sets"
+msgstr "reklam setlerinde"
+
+msgid "Donations on the site are matched by campaign name or ID in the ad link (utm_campaign). Meta numbers are refreshed every 10 minutes."
+msgstr "Sitedeki bağışlar reklam bağlantısındaki kampanya adı ya da kimliğiyle (utm_campaign) eşleşir. Meta rakamları 10 dakikada bir yenilenir."
+
+msgid "Sales"
+msgstr "Satış"
+
+msgid "Leads"
+msgstr "Potansiyel müşteri"
+
+msgid "Traffic"
+msgstr "Trafik"
+
+msgid "Engagement"
+msgstr "Etkileşim"
+
+msgid "Awareness"
+msgstr "Bilinirlik"
+
+msgid "App promotion"
+msgstr "Uygulama tanıtımı"
+
+msgid "All campaigns"
+msgstr "Tüm kampanyalar"
+
+msgid "%s spent"
+msgstr "%s harcandı"
+
+msgid "Ad sets and ads"
+msgstr "Reklam setleri ve reklamlar"
+
+msgid "Ad set / ad"
+msgstr "Reklam seti / reklam"
+
+msgid "No ad sets."
+msgstr "Reklam seti yok."
+
+msgid "all genders"
+msgstr "tüm cinsiyetler"
+
+msgid "men"
+msgstr "erkek"
+
+msgid "women"
+msgstr "kadın"
+
+msgid "%1$d–%2$d, %3$s, %4$s"
+msgstr "%1$d–%2$d yaş, %3$s, %4$s"
+
+msgid "audiences +%1$d / −%2$d"
+msgstr "kitle +%1$d / −%2$d"
+
+msgid "Ad set"
+msgstr "Reklam seti"
+
+msgid "Age and gender"
+msgstr "Yaş ve cinsiyet"
+
+msgid "unknown"
+msgstr "bilinmiyor"
+
+msgid "Placement"
+msgstr "Yerleşim"
+
+msgid "No data for this period."
+msgstr "Bu dönem için veri yok."
+
+msgid "Panel"
+msgstr "Panel"
+
+msgid "Change history"
+msgstr "Değişiklik geçmişi"
+
+msgid "When"
+msgstr "Ne zaman"
+
+msgid "What"
+msgstr "Ne"
+
+msgid "Change"
+msgstr "Değişiklik"
+
+msgid "Who"
+msgstr "Kim"
+
+msgid "Daily budget %1$s → %2$s"
+msgstr "Günlük bütçe %1$s → %2$s"
+
+msgid "Flux Ads checks your active Meta campaigns every day against what they brought on this site, and suggests what to change. Nothing changes until you press Apply; every change goes to the change history under Campaigns."
+msgstr "Flux Ads etkin Meta kampanyalarınızı her gün sitede getirdikleriyle karşılaştırır ve neyin değişmesi gerektiğini önerir. Uygula'ya basmadıkça hiçbir şey değişmez; her değişiklik Kampanyalar'daki değişiklik geçmişine yazılır."
+
+msgid "Last check %s."
+msgstr "Son kontrol %s."
+
+msgid "Target ROAS %s."
+msgstr "Hedef ROAS %s."
+
+msgid "A campaign is judged after %s spend in 7 days."
+msgstr "Kampanya 7 günde %s harcadıktan sonra değerlendirilir."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days (now %s)."
+msgstr "Kampanya 7 günde ödeme başı ortalama maliyetinizin iki katını harcadıktan sonra değerlendirilir (şu an %s)."
+
+msgid "A campaign is judged after spending twice your average cost per payment in 7 days."
+msgstr "Kampanya 7 günde ödeme başı ortalama maliyetinizin iki katını harcadıktan sonra değerlendirilir."
+
+msgid "Change the rules"
+msgstr "Kuralları değiştir"
+
+msgid "Check now"
+msgstr "Şimdi kontrol et"
+
+msgid "No suggestions now. Your active campaigns are within the target."
+msgstr "Şu an öneri yok. Etkin kampanyalarınız hedef içinde."
+
+msgid "Set the daily budget of \"%1$s\" to %2$s in Meta?"
+msgstr "\"%1$s\" günlük bütçesi Meta'da %2$s yapılsın mı?"
+
+msgid "Pause \"%s\" in Meta?"
+msgstr "\"%s\" Meta'da duraklatılsın mı?"
+
+msgid "Apply: %s a day"
+msgstr "Uygula: günde %s"
+
+msgid "Apply: pause"
+msgstr "Uygula: duraklat"
+
+msgid "Write a draft"
+msgstr "Taslak yaz"
+
+msgid "Open Studio"
+msgstr "Stüdyo'yu aç"
+
+msgid "Dismiss"
+msgstr "Kapat"
+
+msgid "Earlier suggestions"
+msgstr "Önceki öneriler"
+
+msgid "Suggestion"
+msgstr "Öneri"
+
+msgid "Result"
+msgstr "Sonuç"
+
+msgid "The periods when giving peaks, with what the same period brought last year. Start the campaign before the period: Meta needs a few days to review and learn. \"Write a draft\" opens Studio with the brief and dates filled in; nothing goes to Meta from here."
+msgstr "Bağışların yükseldiği dönemler ve geçen yıl aynı dönemin getirdikleri. Kampanyayı dönemden önce başlatın: Meta'nın inceleyip öğrenmesi birkaç gün sürer. \"Taslak yaz\" Stüdyo'yu brif ve tarihler dolu açar; buradan Meta'ya hiçbir şey gitmez."
+
+msgid "Now"
+msgstr "Şimdi"
+
+msgid "Prepare now"
+msgstr "Hazırlanma zamanı"
+
+msgid "Later"
+msgstr "Sonra"
+
+msgid "running"
+msgstr "sürüyor"
+
+msgid "approximate; check the official calendar"
+msgstr "tahmini; resmi takvimden kontrol edin"
+
+msgid "Last year: %1$s payments, %2$s, %3$s new donors."
+msgstr "Geçen yıl: %1$s ödeme, %2$s, %3$s yeni bağışçı."
+
+msgid "Ad spend %1$s (ROAS %2$s)."
+msgstr "Reklam harcaması %1$s (ROAS %2$s)."
+
+msgid "No payments in this period last year."
+msgstr "Geçen yıl bu dönemde ödeme yok."
+
+msgid "Delete this date?"
+msgstr "Bu tarih silinsin mi?"
+
+msgid "Add your own date"
+msgstr "Kendi tarihinizi ekleyin"
+
+msgid "A campaign day of your own: an anniversary, an event, a planting day."
+msgstr "Size özel bir kampanya günü: yıldönümü, etkinlik, dikim günü."
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Prepare days before"
+msgstr "Kaç gün önce hazırlan"
+
+msgid "Start"
+msgstr "Başlangıç"
+
+msgid "End"
+msgstr "Bitiş"
+
+msgid "Add"
+msgstr "Ekle"
+
+msgid "Find out what really works. A/B: two ads in the same campaign, compared by donations per click on this site. Holdout: a fixed share of an audience does not see the ads; comparing the two groups shows how many donations the ads really added."
+msgstr "Gerçekte neyin işe yaradığını öğrenin. A/B: aynı kampanyadaki iki reklam, bu sitede tıklama başına bağışla karşılaştırılır. Holdout: kitlenin sabit bir payı reklamı görmez; iki grubu karşılaştırmak reklamların gerçekte kaç bağış eklediğini gösterir."
+
+msgid "No tests yet."
+msgstr "Henüz test yok."
+
+msgid "Running"
+msgstr "Sürüyor"
+
+msgid "Ended"
+msgstr "Bitti"
+
+msgid "open-ended"
+msgstr "bitiş yok"
+
+msgid "Audience \"%1$s\", %2$s%% held out"
+msgstr "\"%1$s\" kitlesi, %%%2$s dışarıda"
+
+msgid "Pause \"%s\""
+msgstr "\"%s\" reklamını duraklat"
+
+msgid "End the test? The held-out people go back into the Meta audience."
+msgstr "Test bitsin mi? Dışarıda tutulan kişiler Meta kitlesine geri girer."
+
+msgid "End the test? The result is kept."
+msgstr "Test bitsin mi? Sonuç saklanır."
+
+msgid "End test"
+msgstr "Testi bitir"
+
+msgid "Delete this test and its result?"
+msgstr "Bu test ve sonucu silinsin mi?"
+
+msgid "New A/B test"
+msgstr "Yeni A/B testi"
+
+msgid "No active campaign with ads. Create two variants in Studio first."
+msgstr "Reklamlı etkin kampanya yok. Önce Stüdyo'da iki çeşit oluşturun."
+
+msgid "Pick two ads of the same campaign. Studio drafts already tag each variant (utm_content), so donations are counted per ad."
+msgstr "Aynı kampanyadan iki reklam seçin. Stüdyo taslakları her çeşidi zaten etiketler (utm_content); bağışlar reklam başına sayılır."
+
+msgid "Ad A"
+msgstr "Reklam A"
+
+msgid "Ad B"
+msgstr "Reklam B"
+
+msgid "Start test"
+msgstr "Testi başlat"
+
+msgid "New holdout test"
+msgstr "Yeni holdout testi"
+
+msgid "Create a Meta audience that ads are shown to (Audiences) first. An audience runs one holdout test at a time."
+msgstr "Önce reklam gösterilen bir Meta kitlesi oluşturun (Kitleler). Bir kitlede aynı anda tek holdout testi çalışır."
+
+msgid "The held-out people are removed from the Meta audience right away and put back when the test ends. Run it for at least 4 weeks; the bigger the audience, the sooner the answer."
+msgstr "Dışarıda tutulan kişiler Meta kitlesinden hemen çıkar, test bitince geri girer. En az 4 hafta çalıştırın; kitle ne kadar büyükse cevap o kadar erken gelir."
+
+msgid "Start the test? The held-out people are removed from the Meta audience now."
+msgstr "Test başlasın mı? Dışarıda tutulan kişiler Meta kitlesinden şimdi çıkarılır."
+
+msgid "%1$s (%2$s people)"
+msgstr "%1$s (%2$s kişi)"
+
+msgid "Held out (%)"
+msgstr "Dışarıda tutulan (%)"
+
+msgid "Payments on the site"
+msgstr "Sitedeki ödemeler"
+
+msgid "Payments per click"
+msgstr "Tıklama başına ödeme"
+
+msgid "Gave at least once"
+msgstr "En az bir kez bağış yapan"
+
+msgid "Income"
+msgstr "Gelir"
+
+msgid "Could see ads"
+msgstr "Reklamı görebilen"
+
+msgid "Held out"
+msgstr "Dışarıda tutulan"
+
+msgid "There is no winner yet."
+msgstr "Henüz kazanan yok."
+
+msgid "Flux AI writes a campaign draft from your brief and this site's numbers: ad sets, audiences, budget split and ad text variants. You read and edit it here. \"Send to Meta\" creates everything paused; nothing is shown or spent until you turn it on under Campaigns."
+msgstr "Flux AI, brifinizden ve bu sitenin rakamlarından bir kampanya taslağı yazar: reklam setleri, kitleler, bütçe dağılımı ve reklam metni çeşitleri. Burada okuyup düzenlersiniz. \"Meta'ya gönder\" her şeyi duraklatılmış oluşturur; Kampanyalar'dan açana kadar hiçbir şey gösterilmez, harcanmaz."
+
+msgid "You can write drafts now. To send them to Meta, add: %s."
+msgstr "Taslak yazabilirsiniz. Meta'ya göndermek için şunu ekleyin: %s."
+
+msgid "Write a draft with AI"
+msgstr "AI ile taslak yaz"
+
+msgid "Flux AI is not ready. Install Flux AI & MCP and add a model key, or start from an empty draft."
+msgstr "Flux AI hazır değil. Flux AI & MCP'yi kurup model anahtarı ekleyin ya da boş taslakla başlayın."
+
+msgid "Brief"
+msgstr "Brif"
+
+msgid "e.g. Sapling campaign for November; reach people like our donors in Istanbul and Ankara, leave out people who donated this month."
+msgstr "ör. Kasım fidan kampanyası; İstanbul ve Ankara'da bağışçılarımıza benzeyenlere ulaş, bu ay bağış yapanları dışarıda bırak."
+
+msgid "Page the ads open"
+msgstr "Reklamların açacağı sayfa"
+
+msgid "Goal"
+msgstr "Amaç"
+
+msgid "Write draft"
+msgstr "Taslak yaz"
+
+msgid "Empty draft"
+msgstr "Boş taslak"
+
+msgid "Drafts"
+msgstr "Taslaklar"
+
+msgid "Ad sets / ads"
+msgstr "Reklam seti / reklam"
+
+msgid "No drafts yet."
+msgstr "Henüz taslak yok."
+
+msgid "Open in Campaigns"
+msgstr "Kampanyalar'da aç"
+
+msgid "Duplicate"
+msgstr "Kopyala"
+
+msgid "Only the draft here is deleted. The paused campaign stays in Meta."
+msgstr "Yalnız buradaki taslak silinir. Duraklatılmış kampanya Meta'da kalır."
+
+msgid "The draft is deleted."
+msgstr "Taslak silinir."
+
+msgid "Remove"
+msgstr "Kaldır"
+
+msgid "Ad set name"
+msgstr "Reklam seti adı"
+
+msgid "Ages"
+msgstr "Yaş"
+
+msgid "Gender"
+msgstr "Cinsiyet"
+
+msgid "Countries (ISO, comma)"
+msgstr "Ülkeler (ISO, virgülle)"
+
+msgid "Budget share %"
+msgstr "Bütçe payı %"
+
+msgid "Show to audiences"
+msgstr "Gösterilecek kitleler"
+
+msgid "Leave out audiences"
+msgstr "Hariç tutulacak kitleler"
+
+msgid "Variant name"
+msgstr "Çeşit adı"
+
+msgid "Primary text"
+msgstr "Ana metin"
+
+msgid "Headline"
+msgstr "Başlık"
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Button"
+msgstr "Düğme"
+
+msgid "Image address (optional)"
+msgstr "Görsel adresi (isteğe bağlı)"
+
+msgid "All drafts"
+msgstr "Tüm taslaklar"
+
+msgid "This draft is in Meta as a paused campaign. Turn it on or change it under Campaigns; to try a new version, duplicate it."
+msgstr "Bu taslak Meta'da duraklatılmış kampanya olarak duruyor. Kampanyalar'dan açın ya da değiştirin; yeni bir sürüm denemek için kopyalayın."
+
+msgid "Why this plan (AI)"
+msgstr "Neden bu plan (AI)"
+
+msgid "Ad sets (who sees it)"
+msgstr "Reklam setleri (kimler görür)"
+
+msgid "Add ad set"
+msgstr "Reklam seti ekle"
+
+msgid "Ads (text variants)"
+msgstr "Reklamlar (metin çeşitleri)"
+
+msgid "Each variant runs in every ad set, so Meta can find the text that works best."
+msgstr "Her çeşit her reklam setinde çalışır; Meta en iyi işleyen metni böylece bulur."
+
+msgid "Add variant"
+msgstr "Çeşit ekle"
+
+msgid "Save draft"
+msgstr "Taslağı kaydet"
+
+msgid "Cancel"
+msgstr "Vazgeç"
+
+msgid "Send to Meta"
+msgstr "Meta'ya gönder"
+
+msgid "A paused campaign with %1$d ad sets and %2$d ads is created in Meta. Nothing is shown or spent until you turn it on under Campaigns."
+msgstr "Meta'da %1$d reklam setli, %2$d reklamlı duraklatılmış bir kampanya oluşturulur. Kampanyalar'dan açana kadar hiçbir şey gösterilmez, harcanmaz."
+
+msgid "Save your edits first. Ads open the page with UTM tags, so donations show up in the report and under Campaigns."
+msgstr "Önce değişikliklerinizi kaydedin. Reklamlar sayfayı UTM etiketleriyle açar; bağışlar raporda ve Kampanyalar'da görünür."
+
+msgid "Create paused"
+msgstr "Duraklatılmış oluştur"
+
+msgid "Create in Meta (paused)"
+msgstr "Meta'da oluştur (duraklatılmış)"
 
 msgid "Sent"
 msgstr "Gönderildi"
 
 msgid "Failed"
 msgstr "Başarısız"
-
-msgid "Not sent"
-msgstr "Gönderilmedi"
 
 msgid "visitor did not accept cookies"
 msgstr "ziyaretçi çerezleri kabul etmedi"
@@ -508,11 +1645,17 @@ msgstr "Reklam hesabı kimliği"
 msgid "Ads Manager › account menu at the top left, the number under the account name (act_ is optional)."
 msgstr "Reklam Yöneticisi › sol üstteki hesap menüsü, hesap adının altındaki sayı (act_ yazmak gerekmez)."
 
-msgid "Marketing API token (ads_read)"
-msgstr "Marketing API anahtarı (ads_read)"
+msgid "Facebook Page ID"
+msgstr "Facebook sayfa kimliği"
 
-msgid "Business Settings › Users › System users › add the ad account › Generate token with ads_read. Empty = the Conversions API token is tried. Read only; Flux Ads never changes your ads."
-msgstr "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › ads_read ile anahtar oluşturun. Boş = Conversions API anahtarı denenir. Yalnız okur; Flux Ads reklamlarınızı değiştirmez."
+msgid "The page Studio ads are published as. Page › About › Page transparency › Page ID."
+msgstr "Stüdyo reklamlarının adına yayınlanacağı sayfa. Sayfa › Hakkında › Sayfa şeffaflığı › Sayfa kimliği."
+
+msgid "Marketing API token"
+msgstr "Marketing API anahtarı"
+
+msgid "Business Settings › Users › System users › add the ad account › Generate token. ads_read is enough for spend; audiences, Campaigns changes and Studio drafts need ads_management. Empty = the Conversions API token is tried. Flux Ads changes your ad account only when you approve it: an audience, a pause or budget change, or a Studio draft (always created paused)."
+msgstr "İşletme Ayarları › Kullanıcılar › Sistem kullanıcıları › reklam hesabını ekleyin › Belirteç oluştur. Harcama için ads_read yeter; kitleler, Kampanyalar değişiklikleri ve Stüdyo taslakları ads_management ister. Boşsa Conversions API anahtarı denenir. Flux Ads reklam hesabınızı yalnız siz onaylayınca değiştirir: kitle, duraklatma ya da bütçe değişikliği veya Stüdyo taslağı (her zaman duraklatılmış oluşturulur)."
 
 msgid "Pixel ID"
 msgstr "Pixel kimliği"
@@ -543,6 +1686,18 @@ msgstr "Measurement Protocol API gizli anahtarı"
 
 msgid "Data stream › Measurement Protocol API secrets › Create. Needed for bank-transfer donations approved later. To see donations in Google Ads, import the GA4 \"purchase\" conversion there."
 msgstr "Veri akışı › Measurement Protocol API gizli anahtarları › Oluştur. Sonradan onaylanan Havale/EFT bağışları için gerekli. Bağışları Google Ads'te görmek için GA4 \"purchase\" dönüşümünü orada içe aktarın."
+
+msgid "Target ROAS"
+msgstr "Hedef ROAS"
+
+msgid "Income on the site per 1 spent on ads. Under half of it: lower the budget; 1.5 times and more: raise it."
+msgstr "Reklama harcanan her 1 birim için sitedeki gelir. Yarısının altı: bütçeyi düşür; 1,5 katı ve üstü: artır."
+
+msgid "Spend before judging (7 days)"
+msgstr "Değerlendirme için en az harcama (7 gün)"
+
+msgid "In the ad account currency. 0 = automatic: twice your average cost per payment."
+msgstr "Reklam hesabının para biriminde. 0 = otomatik: ödeme başı ortalama maliyetin iki katı."
 
 msgid "Privacy"
 msgstr "Gizlilik"

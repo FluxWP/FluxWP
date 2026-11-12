@@ -14,31 +14,39 @@
 	function t(s) { return L[s] || s; }
 	function tf(s) { var a = arguments, i = 1; return t(s).replace(/%(\d\$)?[sd]/g, function () { return a[i++]; }); }
 
+	var Rec = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 	var KEY = 'flxai-ui';
 	var DOCK_MIN = 340, FLOAT_MIN_W = 320, FLOAT_MIN_H = 380;
 	var ui = loadUi();
-	// ?flxai_chat=ID (ör. Zamanlanmış görevler › Raporu aç): o sohbeti açar.
+	// ?flxai_chat=ID (ör. Zamanlanmış görevler › Raporu aç): o sohbeti açar; &flxai_ws=PR o değişikliği gösterir.
+	var QWS = 0;
 	try {
 		var qp = new URLSearchParams(location.search), qc = parseInt(qp.get('flxai_chat'), 10);
 		if (qc > 0) {
-			ui.chat = qc; ui.open = true; saveUi();
-			qp.delete('flxai_chat');
+			ui.chat = qc; ui.open = true;
+			QWS = parseInt(qp.get('flxai_ws'), 10) || 0;
+			if (QWS) { ui.ws = true; ui.wsTab = 'changes'; }
+			saveUi();
+			qp.delete('flxai_chat'); qp.delete('flxai_ws');
 			history.replaceState(null, '', location.pathname + (qp.toString() ? '?' + qp.toString() : '') + location.hash);
 		}
 	} catch (e) {}
 	var S = {
 		boot: null, chat: null, msgs: [], optimistic: null, running: false, pending: [],
 		list: [], q: '', archived: false, pop: null, menu: null, editing: 0, models: null, err: null,
-		openWork: {}, openTool: {}, decisions: {}, busyReq: false, tools: C.tools || {}
+		openWork: {}, openTool: {}, decisions: {}, busyReq: false, tools: C.tools || {}, files: []
 	};
 	var host, root, els = {};
 
 	function loadUi() {
-		var d = { open: false, mode: C.mode === 'dock' ? 'dock' : 'float', w: 420, fw: 400, fh: 640, chat: 0, draft: '', unread: false, model: '' };
+		var d = { open: false, mode: C.mode === 'dock' ? 'dock' : 'float', w: 420, fw: 400, fh: 640, chat: 0, draft: '', unread: false, model: '', page: false, ws: false, wsTab: 'files' };
 		try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); for (var k in s) if (k in d) d[k] = s[k]; } catch (e) {}
 		return d;
 	}
-	function saveUi() { try { localStorage.setItem(KEY, JSON.stringify(ui)); } catch (e) {} }
+	// Tam sayfa sohbette panel hep açık; diğer sayfalardaki açık/kapalı durumu değişmez.
+	var keepOpen = ui.open;
+	if (C.page) { ui.open = true; ui.ws = !!QWS || window.innerWidth >= 1024; } // dar ekranda dosya paneli sohbeti örtmesin, düğmeyle açılır
+	function saveUi() { try { localStorage.setItem(KEY, JSON.stringify(C.page ? Object.assign({}, ui, { open: keepOpen }) : ui)); } catch (e) {} }
 
 	/* ---------- Simgeler ---------- */
 	var P = {
@@ -61,10 +69,24 @@
 		alert: '<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>',
 		check: '<path d="m5 12 5 5L20 7"/>',
 		up: '<path d="M12 19V5M5 12l7-7 7 7"/>',
+		clip: '<path d="m21 12-8.6 8.6a5 5 0 0 1-7-7L14 5a3.3 3.3 0 0 1 4.7 4.7l-8.6 8.6a1.7 1.7 0 0 1-2.4-2.4L15.5 8"/>',
+		mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
+		doc: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>',
 		stop: '<rect x="7" y="7" width="10" height="10" rx="1.5" fill="currentColor"/>',
 		cpu: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
 		rewind: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
-		retry: '<path d="M4 4v6h6"/><path d="M20 12a8 8 0 0 0-14.9-4L4 10m16 10v-6h-6"/><path d="M4 12a8 8 0 0 0 14.9 4l1.1-2"/>'
+		retry: '<path d="M4 4v6h6"/><path d="M20 12a8 8 0 0 0-14.9-4L4 10m16 10v-6h-6"/><path d="M4 12a8 8 0 0 0 14.9 4l1.1-2"/>',
+		side: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16"/><path d="M18 8h-1M18 11h-1"/>',
+		expand: '<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>',
+		shrink: '<path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/>',
+		folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+		file: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>',
+		pr: '<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5v7M18 15.5V9a3 3 0 0 0-3-3h-4m2-2-2 2 2 2"/>',
+		commit: '<circle cx="12" cy="12" r="3.5"/><path d="M3 12h5.5M15.5 12H21"/>',
+		back: '<path d="m15 18-6-6 6-6"/>',
+		right: '<path d="m9 18 6-6-6-6"/>',
+		ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
+		shield: '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/>'
 	};
 	function ic(n) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (P[n] || '') + '</svg>'; }
 	function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -372,18 +394,24 @@
 			'<button class="bstop" type="button" title="' + esc(t('Durdur')) + '" hidden>' + ic('stop') + '</button></div>' +
 			'<section class="panel" role="dialog" aria-label="' + esc(t('Yapay zekâ asistanı')) + '" hidden>' +
 			'<div class="resize-l" title="' + esc(t('Genişliği değiştir')) + '"></div><div class="resize-c" title="' + esc(t('Boyutu değiştir')) + '"></div>' +
-			'<header class="head"><span class="logo">' + ic('spark') + '</span>' +
+			'<div class="main"><header class="head"><span class="logo">' + ic('spark') + '</span>' +
 			'<button class="title-btn" type="button" data-a="list" aria-haspopup="true"><span></span>' + ic('down') + '</button>' +
 			'<button class="ib" type="button" data-a="search" title="' + esc(t('Sohbetlerde ara')) + '">' + ic('search') + '</button>' +
 			'<button class="ib" type="button" data-a="new" title="' + esc(t('Yeni sohbet')) + '">' + ic('plus') + '</button>' +
+			'<button class="ib" type="button" data-a="ws" title="' + esc(t('Çalışma alanı')) + '">' + ic('side') + '</button>' +
+			'<button class="ib" type="button" data-a="page"></button>' +
 			'<button class="ib" type="button" data-a="mode"></button>' +
 			'<button class="ib" type="button" data-a="close" title="' + esc(t('Kapat')) + ' (Ctrl+J)">' + ic('x') + '</button></header>' +
 			'<div class="popwrap"></div>' +
 			'<div class="body" aria-live="polite"></div>' +
 			'<div class="notice-wrap"></div>' +
-			'<footer class="foot"><div class="composer"><textarea rows="1" placeholder="' + esc(t('Bir şey sorun ya da bir iş verin…')) + '"></textarea>' +
-			'<button class="send" type="button" aria-label="' + esc(t('Gönder')) + '">' + ic('up') + '</button></div>' +
-			'<div class="hint"></div></footer></section>';
+			'<footer class="foot"><div class="composer"><div class="files" hidden></div><div class="crow">' +
+			'<button class="cb attach" type="button" title="' + esc(t('Dosya ekle')) + '" aria-label="' + esc(t('Dosya ekle')) + '">' + ic('clip') + '</button>' +
+			'<input class="file-in" type="file" multiple hidden accept="' + esc(C.accept || '') + '">' +
+			'<textarea rows="1" placeholder="' + esc(t('Bir şey sorun ya da bir iş verin…')) + '"></textarea>' +
+			(Rec ? '<button class="cb mic" type="button" title="' + esc(t('Sesle yaz')) + '" aria-label="' + esc(t('Sesle yaz')) + '">' + ic('mic') + '</button>' : '') +
+			'<button class="send" type="button" aria-label="' + esc(t('Gönder')) + '">' + ic('up') + '</button></div></div>' +
+			'<div class="hint"></div></footer></div><aside class="ws" hidden></aside></section>';
 		els.bwrap = els.wrap.querySelector('.bwrap');
 		els.bubble = els.wrap.querySelector('.bubble');
 		els.bstop = els.wrap.querySelector('.bstop');
@@ -395,8 +423,25 @@
 		els.notice = els.wrap.querySelector('.notice-wrap');
 		els.ta = els.wrap.querySelector('textarea');
 		els.send = els.wrap.querySelector('.send');
+		els.files = els.wrap.querySelector('.files');
+		els.fileIn = els.wrap.querySelector('.file-in');
+		els.wrap.querySelector('.attach').addEventListener('click', function () { els.fileIn.click(); });
+		els.fileIn.addEventListener('change', function () { addFiles(els.fileIn.files); els.fileIn.value = ''; });
+		els.files.addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (b) { S.files.splice(+b.getAttribute('data-rm'), 1); renderFiles(); } });
+		els.ta.addEventListener('paste', function (e) { var f = e.clipboardData && e.clipboardData.files; if (f && f.length) { e.preventDefault(); addFiles(f); } });
+		els.panel.addEventListener('dragover', function (e) { if (e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0) { e.preventDefault(); els.panel.classList.add('drop'); } });
+		els.panel.addEventListener('dragleave', function (e) { if (e.target === els.panel || !els.panel.contains(e.relatedTarget)) els.panel.classList.remove('drop'); });
+		els.panel.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { e.preventDefault(); els.panel.classList.remove('drop'); addFiles(e.dataTransfer.files); } });
+		var micB = els.wrap.querySelector('.mic');
+		if (micB) dictate(els.ta, micB, function () { autosize(); ui.draft = els.ta.value; saveUi(); updateSend(); });
 		els.hint = els.wrap.querySelector('.hint');
 		els.mode = els.wrap.querySelector('[data-a="mode"]');
+		els.page = els.wrap.querySelector('[data-a="page"]');
+		els.wsBtn = els.wrap.querySelector('[data-a="ws"]');
+		els.ws = els.wrap.querySelector('.ws');
+		els.ws.addEventListener('click', onWs);
+		els.ws.addEventListener('submit', function (e) { e.preventDefault(); wsSave(); });
+		if (C.page) { ['close', 'page', 'mode'].forEach(function (a) { var b = els.wrap.querySelector('[data-a="' + a + '"]'); if (b) b.remove(); }); els.page = null; }
 		els.bubble.addEventListener('click', function () { open(); });
 		els.wrap.querySelector('.head').addEventListener('click', onHead);
 		els.ta.value = ui.draft || '';
@@ -407,7 +452,7 @@
 		});
 		els.send.addEventListener('click', function () { S.running ? stop() : submit(); });
 		els.wrap.querySelector('.composer').addEventListener('mousedown', function (e) {
-			if (e.target === els.ta || (e.target.closest('.send') && !els.send.disabled)) return;
+			if (e.target === els.ta || e.target.closest('.cb') || e.target.closest('.files') || (e.target.closest('.send') && !els.send.disabled)) return;
 			e.preventDefault(); els.ta.focus();
 		});
 		els.body.addEventListener('click', onBody);
@@ -436,6 +481,7 @@
 		else renderBody();
 		if (!restoring) setTimeout(function () { els.ta.focus(); }, 60);
 		autosize();
+		if (ui.ws) wsLoad();
 	}
 	function close() {
 		ui.open = false; saveUi();
@@ -447,25 +493,43 @@
 	}
 	function wide() { return window.innerWidth >= 1024; }
 	function layout() {
-		var html = document.documentElement, docked = ui.open && ui.mode === 'dock' && wide();
+		var paged = ui.open && (ui.page || C.page) && wide();
+		var html = document.documentElement, docked = ui.open && ui.mode === 'dock' && wide() && !paged;
 		var w = Math.round(Math.max(DOCK_MIN, Math.min(ui.w, Math.min(960, window.innerWidth - 480))));
 		html.classList.toggle('flxai-docked', docked);
 		if (docked) html.style.setProperty('--flxai-w', w + 'px'); else html.style.removeProperty('--flxai-w');
 		var p = els.panel;
-		p.classList.toggle('dock', ui.mode === 'dock');
-		p.classList.toggle('float', ui.mode !== 'dock');
-		if (ui.mode === 'dock') {
+		html.classList.toggle('flxai-paged', paged);
+		p.classList.toggle('page', paged);
+		p.classList.toggle('dock', !paged && ui.mode === 'dock');
+		p.classList.toggle('float', !paged && ui.mode !== 'dock');
+		if (paged) {
+			var bar = document.getElementById('wpadminbar'), menu = document.getElementById('adminmenuback');
+			var top = bar ? bar.getBoundingClientRect().height : 0, left = menu && getComputedStyle(menu).display !== 'none' ? menu.getBoundingClientRect().width : 0;
+			p.style.width = ''; p.style.height = '';
+			p.style.top = top + 'px'; p.style.left = left + 'px';
+		} else if (ui.mode === 'dock') {
+			p.style.left = ''; p.style.top = '';
 			p.style.width = (wide() ? w : Math.min(w, window.innerWidth)) + 'px';
 			p.style.height = '';
 			p.style.setProperty('--top', '0px');
 		} else {
+			p.style.left = ''; p.style.top = '';
 			var fw = Math.max(FLOAT_MIN_W, Math.min(ui.fw, window.innerWidth - 24));
 			var fh = Math.max(FLOAT_MIN_H, Math.min(ui.fh, window.innerHeight - 24));
 			p.style.width = fw + 'px'; p.style.height = fh + 'px';
 		}
 		els.mode.innerHTML = ui.mode === 'dock' ? ic('float') : ic('dock');
 		els.mode.title = ui.mode === 'dock' ? t('Yüzen pencere') : t('Sağa yerleştir');
-		els.mode.hidden = !wide();
+		els.mode.hidden = !wide() || paged;
+		if (els.page) {
+			els.page.innerHTML = paged ? ic('shrink') : ic('expand');
+			els.page.title = paged ? t('Küçült') : t('Tam ekran');
+			els.page.hidden = !wide();
+		}
+		els.ws.hidden = !ui.ws;
+		p.classList.toggle('ws-on', !!ui.ws);
+		els.wsBtn.classList.toggle('on', !!ui.ws);
 		scrollLock(ui.open && window.innerWidth <= 782);
 		window.dispatchEvent(new CustomEvent('flxai:layout', { detail: { docked: docked, width: docked ? w : 0 } }));
 	}
@@ -630,16 +694,16 @@
 		else S.msgs = S.msgs.slice(0, c.since).concat(c.messages || []);
 		S.chat = c;
 		S.pending = c.pending || [];
-		S.optimistic = null;
+		S.optimistic = null; S.optFiles = null;
 		if (ui.chat !== c.id) { ui.chat = c.id; saveUi(); }
-		if (first) { S.openWork = {}; S.toBottom = true; }
+		if (first) { S.openWork = {}; S.toBottom = true; WS.data = null; WS.chat = 0; WS.view = null; if (ui.ws) wsLoad(); else renderWs(); }
 		els.title.textContent = c.title || t('Yeni sohbet');
 		renderBody();
 		renderBubble();
 	}
 	function newChat() {
 		if (S.running) return;
-		S.chat = null; S.msgs = []; S.pending = []; S.err = null; S.optimistic = null;
+		S.chat = null; S.msgs = []; S.pending = []; S.err = null; S.optimistic = null; WS.data = null; WS.chat = 0; WS.view = null; renderWs();
 		ui.chat = 0; saveUi();
 		els.title.textContent = t('Yeni sohbet');
 		closePop(); renderBody(); renderHint(); els.ta.focus();
@@ -648,17 +712,79 @@
 
 	function submit() {
 		var text = els.ta.value.trim();
-		if (!text || S.running) return;
+		if ((!text && !S.files.length) || S.running) return;
 		send(text);
 	}
 	function send(text) {
-		S.running = true; S.err = null; S.optimistic = text; S.toBottom = true;
+		var files = S.files.slice();
+		S.files = []; renderFiles();
+		S.running = true; S.err = null; S.optimistic = text; S.optFiles = files; S.toBottom = true;
 		els.ta.value = ''; ui.draft = ''; saveUi(); autosize();
 		renderBody(); updateSend();
 		var id = S.chat ? S.chat.id : 0;
-		var body = { text: text, page: page(), since: S.msgs.length };
-		if (!id && ui.model) body.model = ui.model;
-		api('POST', 'chats/' + id + '/send', body).then(handle).catch(fail);
+		upload(files).then(function (up) {
+			var body = { text: text, page: page(), since: S.msgs.length };
+			if (up.length) { body.files = up.map(function (u) { return u.key; }); body.names = up.map(function (u) { return u.name; }); }
+			if (!id && ui.model) body.model = ui.model;
+			return api('POST', 'chats/' + id + '/send', body);
+		}).then(handle).catch(function (e) { S.files = files; renderFiles(); fail(e); });
+	}
+
+	/* ---------- Ekler ---------- */
+	var MAXF = 5;
+	function addFiles(list) {
+		Array.prototype.forEach.call(list || [], function (f) {
+			if (S.files.length >= MAXF) { S.err = tf('En fazla %s dosya eklenebilir.', MAXF); return; }
+			if (C.maxBytes && f.size > C.maxBytes) { S.err = tf('%s çok büyük.', f.name); return; }
+			S.files.push({ file: f, name: f.name, type: f.type || '', size: f.size, url: /^image\//.test(f.type) && window.URL ? URL.createObjectURL(f) : '' });
+		});
+		renderFiles(); renderBody(); updateSend();
+		if (els.ta) els.ta.focus();
+	}
+	function fileChip(f, i, rm) {
+		var img = f.url ? '<img src="' + esc(f.url) + '" alt="">' : '<span class="fi">' + ic('doc') + '</span>';
+		return '<span class="fchip' + (f.url ? ' img' : '') + '" title="' + esc(f.name) + '">' + img + '<span class="fn">' + esc(f.name) + '</span>' +
+			(rm ? '<button type="button" class="frm" data-rm="' + i + '" aria-label="' + esc(t('Kaldır')) + '">' + ic('x') + '</button>' : '') + '</span>';
+	}
+	function renderFiles() {
+		if (!els.files) return;
+		els.files.hidden = !S.files.length;
+		els.files.innerHTML = S.files.map(function (f, i) { return fileChip(f, i, true); }).join('');
+		updateSend();
+	}
+	function fileUrl(key) { return C.rest + (C.rest.indexOf('?') < 0 ? 'files/' + encodeURIComponent(key) + '?' : 'files/' + encodeURIComponent(key) + '&') + '_wpnonce=' + encodeURIComponent(C.nonce); }
+	function upload(files) {
+		var out = [], p = Promise.resolve();
+		files.forEach(function (f) {
+			p = p.then(function () {
+				var fd = new FormData(); fd.append('file', f.file, f.name);
+				var url = C.rest + (C.rest.indexOf('?') < 0 ? 'files?' : 'files&') + '_locale=user';
+				return fetch(url, { method: 'POST', credentials: 'same-origin', headers: { 'X-WP-Nonce': C.nonce, Accept: 'application/json' }, body: fd })
+					.then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error((j && j.message) || ('HTTP ' + r.status)); out.push({ key: j.key, name: f.name }); }); });
+			});
+		});
+		return p.then(function () { return out; });
+	}
+	/* Sesle yazma: tarayıcının konuşma tanıma özelliği (Chrome, Edge, Safari). Metin imlecin olduğu yere eklenir. */
+	function dictate(ta, btn, onChange) {
+		if (!Rec || !ta || !btn) return;
+		var rec = null, base = '';
+		btn.addEventListener('click', function () {
+			if (rec) { rec.stop(); return; }
+			rec = new Rec();
+			rec.lang = C.locale || document.documentElement.lang || 'tr-TR';
+			rec.interimResults = true; rec.continuous = true;
+			base = ta.value ? ta.value.replace(/\s*$/, ' ') : '';
+			rec.onresult = function (e) {
+				var fin = '', tmp = '';
+				for (var i = 0; i < e.results.length; i++) { if (e.results[i].isFinal) fin += e.results[i][0].transcript; else tmp += e.results[i][0].transcript; }
+				ta.value = base + fin + tmp;
+				if (onChange) onChange();
+			};
+			rec.onend = function () { rec = null; btn.classList.remove('on'); btn.setAttribute('aria-pressed', 'false'); if (onChange) onChange(); };
+			rec.onerror = function (e) { if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { S.err = t('Mikrofon izni verilmedi.'); if (els.body) renderBody(); } };
+			try { rec.start(); btn.classList.add('on'); btn.setAttribute('aria-pressed', 'true'); ta.focus(); } catch (er) { rec = null; }
+		});
 	}
 	function handle(r) {
 		if (r.chat) setChat(r.chat, false);
@@ -667,6 +793,7 @@
 		S.running = false;
 		if (r.state === 'approval') S.decisions = {};
 		renderBody(); updateSend();
+		if (ui.ws || usedFiles()) wsLoad(true);
 		if (!ui.open && (r.state === 'done' || r.state === 'approval')) { ui.unread = true; saveUi(); }
 		renderBubble();
 		if (S.pop === 'list') loadList();
@@ -674,7 +801,7 @@
 	function fail(e) {
 		S.running = false;
 		dropLive();
-		if (S.optimistic && (!S.chat || !S.msgs.length || S.msgs[S.msgs.length - 1].content !== S.optimistic)) {
+		if ((S.optimistic || (S.optFiles && S.optFiles.length)) && (!S.chat || !S.msgs.length || S.msgs[S.msgs.length - 1].content !== S.optimistic)) {
 			// Gönderilemeyen mesaj taslağa geri döner.
 			els.ta.value = S.optimistic; ui.draft = S.optimistic; saveUi(); autosize();
 		}
@@ -812,6 +939,11 @@
 					try { args = JSON.parse(c.function.arguments || '{}'); } catch (e) {}
 					cur.work.push({ k: 'tool', id: c.id, name: c.function.name, args: args, res: r });
 					cur.calls++;
+					if (r && /^flxfm_/.test(c.function.name || '')) {
+						var rj = null; try { rj = JSON.parse(r.content || 'null'); } catch (e) {}
+						if (rj && rj.staged && rj.change) { cur.ch = cur.ch || {}; cur.ch['p' + rj.change] = { id: rj.change, pr: 1, n: ((cur.ch['p' + rj.change] || {}).n || 0) + 1 }; }
+						else if (rj && rj.commit) { cur.ch = cur.ch || {}; cur.ch['c' + rj.commit] = { id: rj.commit, pr: 0, n: ((cur.ch['c' + rj.commit] || {}).n || 0) + 1 }; }
+					}
 					if (r) { cur.ms += +r._ms || 0; if (r._ok === false) cur.failed++; }
 				});
 			} else if (m.content) cur.answer = m._live ? liveText(m.content) : m.content;
@@ -856,7 +988,7 @@
 		if (!els.body) return;
 		var nearBottom = els.body.scrollHeight - els.body.scrollTop - els.body.clientHeight < 120;
 		var html = '';
-		if (!S.msgs.length && !S.optimistic && !S.running) {
+		if (!S.msgs.length && !S.optimistic && !S.running && !(S.optFiles && S.optFiles.length)) {
 			html = '<div class="empty"><span class="logo">' + ic('spark') + '</span><h3>' + esc(t('Size nasıl yardımcı olabilirim?')) + '</h3>' +
 				'<p>' + esc(C.admin ? t('İçerik, ayarlar, raporlar: yetkinizin açtığı her şey. Değişiklik yapmadan önce onayınızı isterim.') : t('Bu sayfa ve site hakkında sorabilir, iş verebilirsiniz.')) + '</p>' +
 				'<div class="sugs">' + (C.suggestions || []).map(function (s) { return '<button class="sug" type="button" data-sug="' + esc(s) + '">' + esc(s) + '</button>'; }).join('') + '</div></div>';
@@ -868,7 +1000,7 @@
 				else if (x.kind === 'err') html += '<div class="msg err"><div class="b">⚠️ ' + esc(x.m.content) + '</div></div>';
 				else html += renderTurn(x, x === last && S.running && !S.optimistic);
 			});
-			if (S.optimistic) html += '<div class="msg user"><div class="b">' + esc(S.optimistic) + '</div></div>';
+			if (S.optimistic || (S.optFiles && S.optFiles.length && S.running)) html += '<div class="msg user">' + (S.optFiles && S.optFiles.length ? '<div class="mfiles">' + S.optFiles.map(function (f) { return fileChip(f, 0, false); }).join('') + '</div>' : '') + (S.optimistic ? '<div class="b">' + esc(S.optimistic) + '</div>' : '') + '</div>';
 			if (S.running && (S.optimistic || !last || last.kind !== 'ai')) html += '<div class="msg ai"><div class="live"><span class="spin"></span><span class="dots">' + esc(t('Düşünüyor')) + '</span></div></div>';
 			if (S.pending.length && !S.running) html += renderApproval();
 		}
@@ -894,7 +1026,11 @@
 			'<button class="ab" type="button" data-edit="' + esc(id) + '" title="' + esc(t('Düzenle')) + '">' + ic('pencil') + '</button>' +
 			(isLast ? '' : '<button class="ab" type="button" data-rewind="' + esc(id) + '" title="' + esc(t('Bu noktaya geri dön')) + '">' + ic('rewind') + '</button>') + '</div>' : '';
 		var task = m._task ? '<div class="task" title="' + esc(t('Zamanlanmış görev')) + '">' + ic('clock') + '<span>' + esc(tf('Zamanlanmış görev · %s', m._task.title || '')) + '</span></div>' : '';
-		return '<div class="msg user' + (task ? ' is-task' : '') + '">' + acts + '<div class="b">' + task + esc(m.content) + '</div></div>';
+		var files = (m._files || []).length ? '<div class="mfiles">' + m._files.map(function (f) {
+			var isImg = /^image\//.test(f.type || ''), u = fileUrl(f.key);
+			return '<a class="fchip' + (isImg ? ' img' : '') + '" href="' + esc(u) + '" target="_blank" rel="noopener" title="' + esc(f.name) + '">' + (isImg ? '<img src="' + esc(u) + '" alt="" loading="lazy">' : '<span class="fi">' + ic('doc') + '</span>') + '<span class="fn">' + esc(f.name) + '</span></a>';
+		}).join('') + '</div>' : '';
+		return '<div class="msg user' + (task ? ' is-task' : '') + '">' + acts + files + (task || m.content ? '<div class="b">' + task + esc(m.content) + '</div>' : '') + '</div>';
 	}
 	function renderTurn(x, live) {
 		var h = '<div class="msg ai"><div class="b">';
@@ -918,6 +1054,16 @@
 			h += '</div>';
 		}
 		if (x.answer) h += '<div class="md">' + md(x.answer) + '</div>';
+		if (x.ch) {
+			h += '<div class="chlinks">' + Object.keys(x.ch).map(function (k) {
+				var c = x.ch[k], known = WS.data && WS.chat === (S.chat && S.chat.id) ? WS.data.changes.filter(function (z) { return z.id === c.id; })[0] : null;
+				var st = known ? known.status : 'open', wait = c.pr && st === 'open';
+				var lbl = !c.pr ? t('Asistanın klasöründe değişiklik') : wait ? tf('Değişiklik isteği #%s: onayınızı bekliyor', c.id)
+					: st === 'rejected' ? tf('Değişiklik isteği #%s: reddedildi', c.id) : tf('Değişiklik isteği #%s: birleştirildi', c.id);
+				return '<button type="button" class="chlink' + (wait ? ' pr' : '') + '" data-showch="' + c.id + '">' + ic(c.pr ? 'pr' : 'commit') +
+					'<span>' + esc(lbl) + '</span><b>' + esc(t('Farkı gör')) + '</b></button>';
+			}).join('') + '</div>';
+		}
 		return h + '</div></div>';
 	}
 	function renderTool(w) {
@@ -957,6 +1103,7 @@
 	async function onBody(e) {
 		var b;
 		if ((b = e.target.closest('[data-sug]'))) { send(b.getAttribute('data-sug')); return; }
+		if ((b = e.target.closest('[data-showch]'))) { showChanges(+b.getAttribute('data-showch')); return; }
 		if ((b = e.target.closest('[data-work]'))) { var id = b.getAttribute('data-work'); S.openWork[id] = !S.openWork[id]; renderBody(); return; }
 		if ((b = e.target.closest('[data-tool]'))) { var tid = b.getAttribute('data-tool'); S.openTool[tid] = !S.openTool[tid]; renderBody(); return; }
 		if ((b = e.target.closest('[data-dec]'))) { S.decisions[b.getAttribute('data-id')] = b.getAttribute('data-dec'); renderBody(); return; }
@@ -989,7 +1136,7 @@
 		els.send.classList.toggle('stop', S.running);
 		els.send.innerHTML = S.running ? ic('stop') : ic('up');
 		els.send.setAttribute('aria-label', S.running ? t('Durdur') : t('Gönder'));
-		els.send.disabled = !S.running && !els.ta.value.trim();
+		els.send.disabled = !S.running && !els.ta.value.trim() && !S.files.length;
 	}
 	function renderHint() {
 		var label = (S.chat && S.chat.model) ? (S.modelLabels && S.modelLabels[S.chat.model]) || S.chat.model : (!S.chat && ui.model ? (S.modelLabels && S.modelLabels[ui.model]) || ui.model : (S.boot ? S.boot.modelLabel : ''));
@@ -1011,6 +1158,8 @@
 		if (a === 'close') close();
 		else if (a === 'new') newChat();
 		else if (a === 'mode') { ui.mode = ui.mode === 'dock' ? 'float' : 'dock'; saveUi(); layout(); }
+		else if (a === 'page') { ui.page = !ui.page; saveUi(); layout(); }
+		else if (a === 'ws') { ui.ws = !ui.ws; if (ui.ws && wide() && !C.page) ui.page = true; saveUi(); layout(); if (ui.ws) wsLoad(); }
 		else if (a === 'list') S.pop === 'list' && !S.searchMode ? closePop() : openList(false);
 		else if (a === 'search') S.pop === 'list' && S.searchMode ? closePop() : openList(true);
 	}
@@ -1169,9 +1318,274 @@
 		else { ui.model = id; saveUi(); renderHint(); }
 	}
 
+	/* ---------- Çalışma alanı: Dosyalar, Değişiklikler (commit / PR), Ayarlar ---------- */
+	var WS = { data: null, chat: 0, kids: {}, open: {}, view: null, detail: {}, openCh: {}, busy: false, err: '', note: '' };
+	function usedFiles() {
+		for (var i = S.msgs.length - 1; i >= 0 && i > S.msgs.length - 40; i--) {
+			var m = S.msgs[i];
+			if (m.role === 'tool' && /^flxfm_/.test(m._name || '')) return true;
+			if (m.role === 'user') break;
+		}
+		return false;
+	}
+	function wsLoad(force) {
+		if (!els.ws) return;
+		if (!S.chat) { WS.data = null; renderWs(); return; }
+		var id = S.chat.id;
+		if (!force && WS.chat === id && WS.data) { renderWs(); return; }
+		if (WS.chat !== id) { WS.kids = {}; WS.open = {}; WS.detail = {}; WS.openCh = {}; WS.view = null; }
+		WS.chat = id; WS.err = '';
+		if (!WS.data) renderWs();
+		api('GET', 'chats/' + id + '/ws').then(function (d) {
+			if (!S.chat || S.chat.id !== id) return;
+			var had = !!WS.data; WS.data = d; WS.detail = {};
+			Object.keys(WS.openCh).forEach(function (k) { if (WS.openCh[k]) wsDetail(+k, true); });
+			if (!had || d.changes.length) renderBody();
+			Object.keys(WS.open).forEach(function (p) { if (WS.open[p]) wsKids(p, true); });
+			if (QWS) { WS.openCh[QWS] = true; wsDetail(QWS); QWS = 0; }
+			renderWs();
+		}).catch(function (e) { WS.err = e.message; renderWs(); });
+	}
+	function wsPending() {
+		var d = WS.data;
+		return d ? d.changes.filter(function (c) { return c.kind === 'pr' && c.status === 'open'; }) : [];
+	}
+	function wsKids(path, force) {
+		if (WS.kids[path] && !force) return;
+		if (!WS.kids[path]) WS.kids[path] = 'load';
+		api('GET', 'chats/' + WS.chat + '/ws/list?path=' + encodeURIComponent(path)).then(function (r) { WS.kids[path] = r.items || []; renderWs(); })
+			.catch(function (e) { WS.kids[path] = { err: e.message }; renderWs(); });
+	}
+	function wsTree(items, depth) {
+		if (items === 'load' || !items) return '<div class="ws-empty"><span class="spin"></span></div>';
+		if (items.err) return '<div class="ws-empty">' + esc(items.err) + '</div>';
+		if (!items.length) return depth ? '<div class="ws-row ws-none" style="--d:' + depth + '">' + esc(t('Boş klasör')) + '</div>' : '';
+		return items.map(function (it) {
+			var dir = it.type === 'dir', on = dir && WS.open[it.path];
+			var row = '<button type="button" class="ws-row' + (dir ? ' dir' : '') + (on ? ' on' : '') + '" style="--d:' + depth + '" data-' + (dir ? 'dir' : 'file') + '="' + esc(it.path) + '">' +
+				(dir ? '<span class="car">' + ic('right') + '</span>' + ic('folder') : '<span class="car"></span>' + ic('file')) +
+				'<span class="nm">' + esc(it.name) + '</span><small>' + esc(dir ? (it.count != null ? it.count : '') : it.ago) + '</small></button>';
+			return row + (on ? wsTree(WS.kids[it.path], depth + 1) : '');
+		}).join('');
+	}
+	/* Satır farkı: ortak baş/son kırpılır, ortası LCS (büyükse tamamı silindi/eklendi). */
+	function diffLines(a, b) {
+		var A = a == null ? [] : String(a).split('\n'), B = b == null ? [] : String(b).split('\n');
+		if (a == null) return B.map(function (l) { return ['+', l]; });
+		if (b == null) return A.map(function (l) { return ['-', l]; });
+		var s = 0, ea = A.length, eb = B.length, out = [], tail = [];
+		while (s < ea && s < eb && A[s] === B[s]) { out.push([' ', A[s]]); s++; }
+		while (ea > s && eb > s && A[ea - 1] === B[eb - 1]) { tail.unshift([' ', A[ea - 1]]); ea--; eb--; }
+		var n = ea - s, m = eb - s;
+		if (n * m > 4000000) {
+			for (var i = s; i < ea; i++) out.push(['-', A[i]]);
+			for (var j = s; j < eb; j++) out.push(['+', B[j]]);
+			return out.concat(tail);
+		}
+		var L = [], x, y;
+		for (x = n; x >= 0; x--) { L[x] = new Uint32Array(m + 1); }
+		for (x = n - 1; x >= 0; x--) for (y = m - 1; y >= 0; y--) L[x][y] = A[s + x] === B[s + y] ? L[x + 1][y + 1] + 1 : Math.max(L[x + 1][y], L[x][y + 1]);
+		x = 0; y = 0;
+		while (x < n && y < m) {
+			if (A[s + x] === B[s + y]) { out.push([' ', A[s + x]]); x++; y++; }
+			else if (L[x + 1][y] >= L[x][y + 1]) { out.push(['-', A[s + x]]); x++; }
+			else { out.push(['+', B[s + y]]); y++; }
+		}
+		while (x < n) out.push(['-', A[s + x++]]);
+		while (y < m) out.push(['+', B[s + y++]]);
+		return out.concat(tail);
+	}
+	function diffHtml(f) {
+		if (f.big) return '<div class="ws-empty">' + esc(t('Dosya fark göstermek için çok büyük.')) + '</div>';
+		var d = diffLines(f.before, f.after), keep = [], CTX = 3, i;
+		for (i = 0; i < d.length; i++) if (d[i][0] !== ' ') for (var k = Math.max(0, i - CTX); k <= Math.min(d.length - 1, i + CTX); k++) keep[k] = 1;
+		var html = '', na = 0, nb = 0, gap = false;
+		for (i = 0; i < d.length; i++) {
+			var op = d[i][0];
+			if (op !== '+') na++;
+			if (op !== '-') nb++;
+			if (!keep[i]) { gap = true; continue; }
+			if (gap && html) html += '<div class="dl gap">⋯</div>';
+			gap = false;
+			html += '<div class="dl ' + (op === '+' ? 'add' : op === '-' ? 'del' : '') + '"><i>' + (op === '+' ? '' : na) + '</i><i>' + (op === '-' ? '' : nb) + '</i><b>' + esc(op === ' ' ? ' ' : op) + '</b><code>' + esc(d[i][1]) + '</code></div>';
+		}
+		return '<div class="diff">' + (html || '<div class="ws-empty">' + esc(t('Fark yok.')) + '</div>') + '</div>';
+	}
+	function chStatus(c) {
+		var m = { open: [t('Onay bekliyor'), 'warn'], merged: [t('Birleştirildi'), 'ok'], rejected: [t('Reddedildi'), ''], partial: [t('Kısmen birleştirildi'), 'ok'], done: [t('Kaydedildi'), ''] }[c.status] || [c.status, ''];
+		return '<span class="pill ' + m[1] + '">' + esc(m[0]) + '</span>';
+	}
+	function opLbl(op) { return { add: t('eklendi'), edit: t('değişti'), 'delete': t('silindi') }[op] || op; }
+	function wsChange(c) {
+		var add = 0, del = 0, open = WS.openCh[c.id], det = WS.detail[c.id], pr = c.kind === 'pr', live = pr && c.status === 'open';
+		c.files.forEach(function (f) { add += f.add; del += f.del; });
+		var h = '<article class="ch' + (live ? ' is-open' : '') + '"><button type="button" class="ch-h" data-ch="' + c.id + '">' + ic(pr ? 'pr' : 'commit') +
+			'<span class="ch-t"><b>' + esc(c.title || (pr ? t('Değişiklik isteği') : t('Değişiklik'))) + '</b><small>' + esc((pr ? '#' + c.id + ' · ' : '') + tf('%s dosya', c.files.length) + ' · ' + c.ago) +
+			' <span class="n add">+' + add + '</span> <span class="n del">−' + del + '</span></small></span>' + chStatus(c) + '</button>';
+		if (live) h += '<div class="ch-acts"><button type="button" class="btn primary" data-merge="' + c.id + '">' + ic('check') + esc(t('Birleştir')) + '</button><button type="button" class="btn" data-reject="' + c.id + '">' + esc(t('Reddet')) + '</button></div>';
+		if (open) {
+			h += '<div class="ch-files">';
+			if (!det) h += '<div class="ws-empty"><span class="spin"></span></div>';
+			else if (det.err) h += '<div class="ws-empty">' + esc(det.err) + '</div>';
+			else det.files.forEach(function (f) {
+				h += '<div class="cf"><div class="cf-h"><span class="op ' + f.op + '">' + esc(opLbl(f.op)) + '</span><code title="' + esc(f.path) + '"><bdi>' + esc(f.path) + '</bdi></code>' +
+					(f.state ? '<span class="pill ' + (f.state === 'merged' ? 'ok' : '') + '">' + esc(f.state === 'merged' ? t('Birleştirildi') : t('Reddedildi')) + '</span>' : '') +
+					(live && !f.state ? '<span class="cf-a"><button type="button" class="lnk" data-merge="' + c.id + '" data-path="' + esc(f.path) + '">' + esc(t('Bunu birleştir')) + '</button><button type="button" class="lnk" data-reject="' + c.id + '" data-path="' + esc(f.path) + '">' + esc(t('Reddet')) + '</button></span>' : '') +
+					'</div>' + diffHtml(f) + '</div>';
+			});
+			h += '</div>';
+		}
+		return h + '</article>';
+	}
+	function renderWs() {
+		if (!els.ws) return;
+		var pend = wsPending().length;
+		if (els.wsBtn) els.wsBtn.classList.toggle('dot', pend > 0);
+		if (els.ws.hidden) return;
+		var d = WS.data, tab = ui.wsTab || 'files';
+		var h = '<div class="ws-head"><div class="ws-tabs" role="tablist">' +
+			['files', 'changes', 'settings'].map(function (k) {
+				var lbl = { files: t('Dosyalar'), changes: t('Değişiklikler'), settings: t('Ayarlar') }[k];
+				return '<button type="button" role="tab" data-wt="' + k + '" class="' + (tab === k ? 'on' : '') + '">' + esc(lbl) + (k === 'changes' && pend ? ' <b>' + pend + '</b>' : '') + '</button>';
+			}).join('') + '</div>' +
+			'<button type="button" class="ib" data-wa="refresh" title="' + esc(t('Yenile')) + '">' + ic('retry') + '</button>' +
+			'<button type="button" class="ib" data-wa="close" title="' + esc(t('Kapat')) + '">' + ic('x') + '</button></div><div class="ws-body">';
+		if (WS.note) h += '<div class="ws-note">' + esc(WS.note) + '</div>';
+		if (!S.chat) h += '<div class="ws-empty big">' + ic('folder') + '<p>' + esc(t('Sohbet başlayınca bu sohbetin klasörü ve asistanın değişiklikleri burada görünür.')) + '</p></div>';
+		else if (WS.err && !d) h += '<div class="ws-empty">' + esc(WS.err) + '</div>';
+		else if (!d) h += '<div class="ws-empty"><span class="spin"></span></div>';
+		else if (!d.ready) h += '<div class="ws-empty big">' + ic('folder') + '<p>' + esc(t('Çalışma alanı için Flux Files eklentisi gerekli. FluxWP Panel › Paketler\'den kurabilirsiniz.')) + '</p></div>';
+		else if (tab === 'files') {
+			if (WS.view) {
+				var v = WS.view;
+				h += '<div class="ws-path"><button type="button" class="ib" data-wa="back" title="' + esc(t('Geri')) + '">' + ic('back') + '</button><code>' + esc(v.path) + '</code>' +
+					(v.files ? '<a class="ib" href="' + esc(v.files) + '" target="_blank" rel="noopener" title="' + esc(t('Flux Files\'ta aç')) + '">' + ic('ext') + '</a>' : '') + '</div>';
+				h += v.err ? '<div class="ws-empty">' + esc(v.err) + '</div>' : v.content == null ? '<div class="ws-empty"><span class="spin"></span></div>'
+					: '<div class="diff view">' + String(v.content).split('\n').map(function (l, i) { return '<div class="dl"><i>' + (i + 1) + '</i><code>' + esc(l) + '</code></div>'; }).join('') + '</div>';
+			} else {
+				h += '<div class="ws-path">' + ic('folder') + '<code title="' + esc(d.dir) + '">' + esc(d.dir) + '</code>' +
+					(d.files ? '<a class="ib" href="' + esc(d.files) + '" target="_blank" rel="noopener" title="' + esc(t('Flux Files\'ta aç')) + '">' + ic('ext') + '</a>' : '') + '</div>';
+				h += d.items && d.items.length ? '<div class="ws-tree">' + wsTree(d.items, 0) + '</div>'
+					: '<div class="ws-empty">' + esc(t('Klasör henüz boş. Asistan not, rapor ya da taslak yazınca burada görünür.')) + '</div>';
+				if (d.access === 'workspace' && d.folders.length) {
+					h += '<div class="ws-sub">' + esc(t('İzin verilen klasörler')) + '</div><div class="ws-tree">' + d.folders.map(function (f) {
+						var on = WS.open[f];
+						return '<button type="button" class="ws-row dir' + (on ? ' on' : '') + '" style="--d:0" data-dir="' + esc(f) + '"><span class="car">' + ic('right') + '</span>' + ic('folder') + '<span class="nm">' + esc(f) + '</span></button>' + (on ? wsTree(WS.kids[f], 1) : '');
+					}).join('') + '</div>';
+				}
+			}
+		} else if (tab === 'changes') {
+			h += d.changes.length ? d.changes.map(wsChange).join('') : '<div class="ws-empty big">' + ic('commit') + '<p>' + esc(t('Henüz değişiklik yok. Asistanın kendi klasörüne yazdıkları commit, sitedeki dosyalara önerdikleri değişiklik isteği olarak burada görünür.')) + '</p></div>';
+		} else {
+			var task = d.task > 0;
+			h += '<form class="ws-set"><p class="ws-sub">' + esc(task ? t('Bu görevin dosya erişimi') : t('Bu sohbetin dosya erişimi')) + '</p>' +
+				'<label class="opt"><input type="radio" name="access" value="workspace"' + (d.access === 'workspace' ? ' checked' : '') + '><span><b>' + esc(t('Yalnız kendi klasörü')) + '</b><small>' + esc(t('Asistan yalnız bu sohbetin klasörünü ve aşağıda izin verdiğiniz klasörleri görür.')) + '</small></span></label>' +
+				'<label class="opt"><input type="radio" name="access" value="site"' + (d.access === 'site' ? ' checked' : '') + '><span><b>' + esc(t('Tüm site okunabilir')) + '</b><small>' + esc(t('Asistan sitenin dosyalarını okuyabilir; değiştirmek istediği her dosya değişiklik isteği olarak onayınıza gelir.')) + '</small></span></label>' +
+				'<label class="fl"><b>' + esc(t('İzin verilen klasörler')) + '</b><textarea name="folders" rows="3" placeholder="wp-content/themes/fluxwp">' + esc(d.folders.join('\n')) + '</textarea><small>' + esc(t('Her satıra bir klasör (site köküne göre). Bu klasörlerde de değişiklikler onayınıza gelir.')) + '</small></label>' +
+				'<button type="submit" class="btn primary"' + (WS.busy ? ' disabled' : '') + '>' + esc(t('Kaydet')) + '</button></form>' +
+				'<div class="ws-rules">' + ic('shield') + '<div><b>' + esc(t('Her zaman geçerli kurallar')) + '</b><ul>' +
+				[t('Asistan kendi klasörü dışında hiçbir dosyayı doğrudan değiştiremez.'), t('Başka sohbet ve görevlerin klasörleri kapalıdır; skill dosyaları yalnız okunur.'), t('Şifre ve anahtar içeren dosyalar (wp-config, .env, .sql) ve WordPress çekirdeği hiçbir zaman açılmaz.'), t('Bir turda en fazla 50 dosya, dosya başına en fazla 1 MB yazılır.')].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') +
+				'</ul><p><code>' + esc(d.dir) + '</code></p></div></div>';
+		}
+		h += '</div>';
+		els.ws.innerHTML = h;
+	}
+	function wsDetail(id, force) {
+		if (WS.detail[id] && !force) return;
+		api('GET', 'changes/' + id).then(function (r) { WS.detail[id] = r; renderWs(); }).catch(function (e) { WS.detail[id] = { err: e.message }; renderWs(); });
+	}
+	function wsDecide(id, merge, path) {
+		if (WS.busy) return;
+		var go = function () {
+			WS.busy = true; WS.note = '';
+			api('POST', 'changes/' + id + '/' + (merge ? 'merge' : 'reject'), path ? { paths: [path] } : {}).then(function (r) {
+				WS.busy = false;
+				var n = [];
+				if (r.conflicts && r.conflicts.length) n.push(tf('Dosya bu arada değişmiş, uygulanmadı: %s', r.conflicts.join(', ')));
+				if (r.errors) Object.keys(r.errors).forEach(function (p) { n.push(p + ': ' + r.errors[p]); });
+				WS.note = n.join(' · ');
+				WS.openCh[id] = true;
+				wsLoad(true);
+				if (S.chat && r.change && r.change.status !== 'open') loadChat(S.chat.id, true);
+			}).catch(function (e) { WS.busy = false; WS.note = e.message; renderWs(); });
+		};
+		if (merge || path) { go(); return; }
+		if (window.flxDialog && window.flxDialog.confirm) {
+			window.flxDialog.confirm({ title: t('Değişiklik isteği reddedilsin mi?'), message: t('Dosyalar değişmez; asistana reddedildiği bildirilir.'), ok: t('Reddet'), danger: true }).then(function (ok) { if (ok) go(); });
+		} else go();
+	}
+	function wsSave() {
+		var f = els.ws.querySelector('.ws-set');
+		if (!f || !S.chat) return;
+		var acc = f.querySelector('input[name=access]:checked');
+		WS.busy = true; renderWs();
+		api('POST', 'chats/' + S.chat.id + '/ws', { access: acc ? acc.value : 'workspace', folders: f.querySelector('textarea').value })
+			.then(function (d) { WS.busy = false; WS.data = d; WS.note = t('Kaydedildi.'); renderWs(); setTimeout(function () { WS.note = ''; renderWs(); }, 2500); })
+			.catch(function (e) { WS.busy = false; WS.note = e.message; renderWs(); });
+	}
+	function onWs(e) {
+		var b;
+		if ((b = e.target.closest('[data-wt]'))) { ui.wsTab = b.getAttribute('data-wt'); saveUi(); WS.note = ''; renderWs(); return; }
+		if ((b = e.target.closest('[data-wa]'))) {
+			var a = b.getAttribute('data-wa');
+			if (a === 'close') { ui.ws = false; saveUi(); layout(); }
+			else if (a === 'refresh') wsLoad(true);
+			else if (a === 'back') { WS.view = null; renderWs(); }
+			return;
+		}
+		if ((b = e.target.closest('[data-dir]'))) {
+			var p = b.getAttribute('data-dir');
+			WS.open[p] = !WS.open[p];
+			if (WS.open[p]) wsKids(p);
+			renderWs(); return;
+		}
+		if ((b = e.target.closest('[data-file]'))) {
+			var fp = b.getAttribute('data-file');
+			WS.view = { path: fp, content: null };
+			renderWs();
+			api('GET', 'chats/' + WS.chat + '/ws/file?path=' + encodeURIComponent(fp)).then(function (r) {
+				if (WS.view && WS.view.path === fp) { WS.view = { path: fp, content: r.content, files: r.files }; renderWs(); }
+			}).catch(function (er) { if (WS.view && WS.view.path === fp) { WS.view.err = er.message; renderWs(); } });
+			return;
+		}
+		if ((b = e.target.closest('[data-merge]'))) { wsDecide(+b.getAttribute('data-merge'), true, b.getAttribute('data-path')); return; }
+		if ((b = e.target.closest('[data-reject]'))) { wsDecide(+b.getAttribute('data-reject'), false, b.getAttribute('data-path')); return; }
+		if ((b = e.target.closest('[data-ch]'))) {
+			var id = +b.getAttribute('data-ch');
+			WS.openCh[id] = !WS.openCh[id];
+			if (WS.openCh[id]) wsDetail(id);
+			renderWs();
+		}
+	}
+	/* Sohbetteki değişiklik bağlantısı (araç sonucu) çalışma alanını açar. */
+	function showChanges(id) {
+		ui.ws = true; ui.wsTab = 'changes'; if (wide() && !C.page) ui.page = true; saveUi(); layout();
+		if (id) { WS.openCh[id] = true; wsDetail(id); }
+		wsLoad(true);
+	}
+
+	/* ---------- Dış API: Genel bakıştaki sohbet kutusu gibi yerlerden yeni sohbet başlatır ---------- */
+	window.flxaiChat = {
+		/* Yeni sohbet açar, metni ve dosyaları gönderir; panel açılır, konuşma orada sürer. */
+		start: function (text, files) {
+			if (!els.ta) start();
+			if (!els.ta) return false;
+			if (S.running) { open(); return false; }
+			S.chat = null; S.msgs = []; S.pending = []; S.err = null; S.optimistic = null; WS.data = null; WS.chat = 0; WS.view = null; renderWs();
+			ui.chat = 0; saveUi();
+			els.title.textContent = t('Yeni sohbet');
+			S.files = []; addFiles(files || []);
+			open();
+			send(String(text || '').trim());
+			return true;
+		},
+		dictate: function (ta, btn, onChange) { dictate(ta, btn, onChange); },
+		canDictate: !!Rec
+	};
+
 	/* ---------- Başlat: sayfa yüklendikten sonra, boşta ---------- */
 	function start() {
-		if (!document.body) return;
+		if (!document.body || els.ta) return;
 		mount();
 	}
 	function later() { (window.requestIdleCallback || function (f) { setTimeout(f, 200); })(start, { timeout: 2000 }); }
