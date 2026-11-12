@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.2
+- Imported old orders (Flux Donate Excel import) are not sent as purchase conversions (`flx_silent`).
+
 ## 0.2.1
 
 - Shared FluxWP library (flx-brand) brought up to date: the new shared dialog files are included, so CI verify passes.

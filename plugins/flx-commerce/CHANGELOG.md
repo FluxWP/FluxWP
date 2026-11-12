@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.3.1
+- İçe aktarılan eski siparişler (Flux Donate Excel aktarımı) için yöneticiye "yeni sipariş" WhatsApp'ı gitmez (`flx_silent`).
+
 ## 0.3.0
 - Her müşteri ortak FluxWP kişi tablosunda bir kişi (flx-brand): `commerce / email:` bağı (Flux CRM'in WooCommerce kaynağıyla aynı anahtar), kullanıcı, e-posta ya da telefonla bulunur, yoksa açılır. Müşteri tablosu yalnız sipariş özetini tutar.
 ## 0.2.12

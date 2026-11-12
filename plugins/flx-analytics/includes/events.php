@@ -13,7 +13,7 @@ function flxan_track_order( $order_id ) {
 		return;
 	}
 	$order = wc_get_order( $order_id );
-	if ( ! $order || ! is_a( $order, 'WC_Order' ) || $order->get_meta( '_flxan_tracked' ) ) {
+	if ( ! $order || ! is_a( $order, 'WC_Order' ) || $order->get_meta( '_flxan_tracked' ) || apply_filters( 'flx_silent', false, $order ) ) { // 0.4.10: imported history
 		return;
 	}
 	$name = '';

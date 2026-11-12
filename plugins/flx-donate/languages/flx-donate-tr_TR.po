@@ -5965,3 +5965,24 @@ msgstr "Yeni durumu seçin"
 
 msgid "Enter an amount between 0 and the amount left."
 msgstr "0 ile kalan tutar arasında bir tutar girin."
+
+msgid "Date when the row has none"
+msgstr "Satırda tarih yoksa"
+
+msgid "Same as the row above"
+msgstr "Üstteki satırın tarihi"
+
+msgid "The target date of the row"
+msgstr "Satırdaki hedef tarih"
+
+msgid "A day I choose"
+msgstr "Seçtiğim bir gün"
+
+msgid "Today"
+msgstr "Bugün"
+
+msgid "Imported records are history: no e-mail, WhatsApp message, certificate or ad conversion is sent to anyone."
+msgstr "İçe aktarılan kayıtlar geçmiş kayıttır: kimseye e-posta, WhatsApp mesajı, sertifika ya da reklam dönüşümü gitmez."
+
+msgid "Nothing is sent to donors or staff while importing (no e-mail, WhatsApp or certificate)."
+msgstr "Aktarım sırasında bağışçılara ve personele hiçbir şey gönderilmez (e-posta, WhatsApp, sertifika yok)."

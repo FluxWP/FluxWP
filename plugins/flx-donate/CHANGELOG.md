@@ -1,5 +1,13 @@
 # Değişiklikler
 
+## 2.26.0
+- "Excel'den içe aktar" her sitede açık (önceden yalnız kayıt takibi açıkken görünüyordu): eski fidan / bağış listeleri panelden yüklenir.
+- Sütun tanıma: "Fidan Adedi", "Fidan Sayısı" (adet), "Dikim Bölgesi" (iş ortağı), "Ödeme Durumu" (ödeme). Ödeme değerlerinde "Ekimde ödenecek" ödenmedi, "Gönderildi" / "Dekont" ödendi sayılır (önizlemede değiştirilebilir).
+- Tarihi boş satırlar için seçenek: üstteki satırın tarihi (varsayılan), satırdaki hedef tarih, seçilen bir gün ya da bugün. Önizleme tablosunda tarih sütunu.
+- Takip edilmeyen türlerde (fidan gibi) "Adına" tek ad olarak yazılır (adet kadar tekrarlanmaz).
+- Önizlemede takip edilmeyen türlerin "Durum" sütunu ödeme durumunu gösterir (Ödendi / Ödeme bekleniyor).
+- Aktarım sessiz: aktarım sırasında hiçbir e-posta gitmez, içe aktarılan siparişler için referans personele, bağışçıya ya da adına bağış yapılan kişiye WhatsApp, reklam dönüşümü (Flux Ads) ve analitik olayı gönderilmez. Ortak filtre `flx_silent` ( $silent, $context ): aktarım sürerken ve `created_via = flxb-import` siparişler için true.
+
 ## 2.25.1
 - Niyet seçimi (akıllı görünüm) düzeldi: seçimden sonra açılır menü + adet tek satırda, hızlı adet düğmeleri (3, 5, 10 …) yalnız seçilen niyetin altında. Önceden tüm niyetlerin düğmeleri yan yana basılıp sayfayı yatay taşırıyordu. Seçim yapılmadan liste düğmesiz, sade.
 - Adım adım görünümde sağdaki sabit özet kartı yapışkan site başlığının altında durur (başlık yüksekliği otomatik ölçülür, `--flx-sticky-top`).

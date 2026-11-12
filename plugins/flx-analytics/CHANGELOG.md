@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.10
+- İçe aktarılan eski siparişler bağış olayı olarak sayılmaz (`flx_silent`).
+
 ## 0.4.9
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 
