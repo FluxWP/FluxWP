@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 2.25.0
+- Bağış detayı yenilendi. "Kalemler" artık sipariş ekranındaki gibi tek tablo: bağış türü görseli, ad ve altında ayrıntılar (fidan sayısı, sertifika, sertifikadaki ad…), birim fiyat, adet, toplam. Sütun başlığına tıklayınca sıralanır. Altta ara toplam / toplam ve "Ödendi" (yöntem + tarih), bekleyen bağışta "Ödeme bekleniyor", iadede "İade edildi" ve net tutar. Sepetteki bağışlarda tüm kalemler aynı tabloda.
+- Ödeme kartı derli toplu: bilgiler ızgarada, sertifikalar ve notlar ayrı satırda. Tablodaki bilgiyi tekrar eden "Seçenek / Adet" satırları kalktı, ödeme sağlayıcısı olarak ödeme yöntemi (ör. Havale / EFT) yazılır, iç WooCommerce referansı gösterilmez.
+- WooCommerce siparişi bağlantısı ve iade "⋯" menüsüne taşındı. İade tutarı ortak pencerede sorulur, sonra onay istenir.
+- Adı geçen kişileri düzeltme "Adları düzenle" altında.
+- İşlemler kartında durum listesi "Yeni durumu seçin" ile başlar (önceden ilk seçenek seçili geliyordu).
+
 ## 2.24.1
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

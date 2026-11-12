@@ -5932,3 +5932,36 @@ msgstr "Lütfen her kişi için bir ad yazın."
 
 msgid "Other people"
 msgstr "Diğer kişiler"
+
+msgid "this page"
+msgstr "bu sayfa"
+
+msgid "One basket: every item in it is paid and changes together."
+msgstr "Tek sepet: içindeki kalemler birlikte ödenir ve birlikte değişir."
+
+msgid "Items subtotal"
+msgstr "Kalemler ara toplamı"
+
+msgid "via %1$s · %2$s"
+msgstr "%1$s · %2$s"
+
+msgid "Net"
+msgstr "Net"
+
+msgid "Edit names"
+msgstr "Adları düzenle"
+
+msgid "%1$d. %2$s"
+msgstr "%1$d. %2$s"
+
+msgid "More actions"
+msgstr "Diğer işlemler"
+
+msgid "Website checkout"
+msgstr "Web sitesi ödemesi"
+
+msgid "Choose a new status"
+msgstr "Yeni durumu seçin"
+
+msgid "Enter an amount between 0 and the amount left."
+msgstr "0 ile kalan tutar arasında bir tutar girin."
