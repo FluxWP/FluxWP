@@ -508,8 +508,8 @@ function flxc_render_reports() {
 					</details>
 					<div class="flxcs-report-acts">
 						<button class="flxcs-btn flxcs-btn-sm" name="do" value="test" onclick="this.form.elements.rtarget.value='<?php echo esc_attr( $r['id'] ); ?>'"><?php esc_html_e( 'Send me a test', 'flx-chat' ); ?></button>
-						<button class="flxcs-btn flxcs-btn-sm" name="do" value="sendnow" onclick="this.form.elements.rtarget.value='<?php echo esc_attr( $r['id'] ); ?>'; return confirm('<?php echo esc_js( __( 'Send the report to all recipients now?', 'flx-chat' ) ); ?>');"><?php esc_html_e( 'Send to everyone now', 'flx-chat' ); ?></button>
-						<button class="flxcs-btn flxcs-btn-sm flxcs-btn-danger" name="do" value="delete" onclick="this.form.elements.rtarget.value='<?php echo esc_attr( $r['id'] ); ?>'; return confirm('<?php echo esc_js( __( 'Delete this report?', 'flx-chat' ) ); ?>');"><?php esc_html_e( 'Delete', 'flx-chat' ); ?></button>
+						<button class="flxcs-btn flxcs-btn-sm" name="do" value="sendnow" onclick="this.form.elements.rtarget.value='<?php echo esc_attr( $r['id'] ); ?>'" data-flx-confirm="<?php echo esc_attr( __( 'Send the report to all recipients now?', 'flx-chat' ) ); ?>"><?php esc_html_e( 'Send to everyone now', 'flx-chat' ); ?></button>
+						<button class="flxcs-btn flxcs-btn-sm flxcs-btn-danger" name="do" value="delete" onclick="this.form.elements.rtarget.value='<?php echo esc_attr( $r['id'] ); ?>'" data-flx-confirm="<?php echo esc_attr( __( 'Delete this report?', 'flx-chat' ) ); ?>" data-flx-confirm-danger><?php esc_html_e( 'Delete', 'flx-chat' ); ?></button>
 					</div>
 				</section>
 			<?php endforeach; ?>

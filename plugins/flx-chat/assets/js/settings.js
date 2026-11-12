@@ -62,11 +62,11 @@
 			});
 			if (!conns.children.length) addBtn.click();
 		}
-		conns.addEventListener('click', function (e) {
+		conns.addEventListener('click', async function (e) {
 			var row = e.target.closest('.flxcs-conn');
 			if (!row) return;
 			if (e.target.classList.contains('flxcs-del')) {
-				if (!confirm(T.confirmDel)) return;
+				if (!(await window.flxDialog.confirm({ message: T.confirmDel }))) return;
 				if (row.dataset.conn) { row.querySelector('.flxcs-del-flag').value = '1'; row.hidden = true; }
 				else row.remove();
 				return;

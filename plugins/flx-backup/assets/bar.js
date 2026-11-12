@@ -187,15 +187,15 @@
 		closePop();
 	}
 
-	function cancel() {
-		if ( ! window.confirm( T.confirmCancel ) ) { return; }
+	async function cancel() {
+		if ( ! (await window.flxDialog.confirm({ message:  T.confirmCancel , danger: true })) ) { return; }
 		cancelling = true;
 		render();
 		post( 'flxy_cancel', {} ).then( function ( res ) {
 			if ( ! res.success ) {
 				cancelling = false;
 				render();
-				if ( res.data && res.data.message ) { window.alert( res.data.message ); }
+				if ( res.data && res.data.message ) { window.flxDialog.alert( res.data.message ); }
 				return;
 			}
 			schedule( 300 );

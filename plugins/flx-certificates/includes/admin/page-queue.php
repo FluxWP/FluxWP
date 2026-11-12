@@ -127,7 +127,7 @@ function flxs_page_queue() {
 					<?php if ( in_array( $m['status'], array( 'failed', 'cancelled' ), true ) ) : ?>
 						<button type="button" class="button button-small" data-msg-op="retry" data-id="<?php echo (int) $m['id']; ?>">Tekrar dene</button>
 					<?php elseif ( 'queued' === $m['status'] ) : ?>
-						<button type="button" class="button button-small" data-msg-op="cancel" data-id="<?php echo (int) $m['id']; ?>" data-confirm="Mesaj iptal edilsin mi?">İptal</button>
+						<button type="button" class="button button-small" data-msg-op="cancel" data-id="<?php echo (int) $m['id']; ?>" data-flx-confirm="Mesaj iptal edilsin mi?">İptal</button>
 					<?php endif; ?>
 				</td>
 			</tr>

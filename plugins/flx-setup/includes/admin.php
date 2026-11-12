@@ -405,7 +405,7 @@ function flxk_render_presets() {
 		} else {
 			printf( '<a class="button" href="%1$s">%2$s</a> ', esc_url( flxk_admin_url( array( 'preview' => $id ) ) ), esc_html__( 'Compare again', 'flx-setup' ) );
 			flxk_form_open( 'remove', array( 'preset' => $id ) );
-			echo '<button class="button-link flxk-danger" onclick="return confirm(\'' . esc_js( __( 'Remove the preset? Settings it wrote go back to their old values (your manual changes stay), pages it created become drafts.', 'flx-setup' ) ) . '\')">' . esc_html__( 'Remove preset', 'flx-setup' ) . '</button></form>';
+			echo '<button class="button-link flxk-danger" data-flx-confirm-danger data-flx-confirm="' . esc_attr( __( 'Remove the preset? Settings it wrote go back to their old values (your manual changes stay), pages it created become drafts.', 'flx-setup' ) ) . '">' . esc_html__( 'Remove preset', 'flx-setup' ) . '</button></form>';
 		}
 		echo '</div>';
 
@@ -688,7 +688,7 @@ function flxk_render_history() {
 		echo '<tr><td>' . esc_html( $e['at'] ) . '</td><td><strong>' . esc_html( $kinds[ $e['kind'] ] ?? $e['kind'] ) . '</strong> ' . esc_html( $e['title'] ?? '' ) . '<br><span class="flxk-muted">' . esc_html( flxk_preset_label( $e['preset'] ?? '' ) ) . '</span></td><td>' . esc_html( strtoupper( $e['source'] ?? 'panel' ) . ( $u ? ' · ' . $u->display_name : '' ) ) . '</td><td>' . esc_html( rtrim( $res, ' ·' ) ) . '</td><td class="flxk-right">';
 		if ( ! empty( $e['run'] ) && in_array( $e['kind'], array( 'base', 'migration', 'sync', 'patch' ), true ) && flxk_run( $e['run'] ) ) {
 			flxk_form_open( 'revert', array( 'run' => $e['run'] ) );
-			echo '<button class="button button-small" onclick="return confirm(\'' . esc_js( __( 'Undo this change?', 'flx-setup' ) ) . '\')">' . esc_html__( 'Undo', 'flx-setup' ) . '</button></form>';
+			echo '<button class="button button-small" data-flx-confirm="' . esc_attr( __( 'Undo this change?', 'flx-setup' ) ) . '">' . esc_html__( 'Undo', 'flx-setup' ) . '</button></form>';
 		}
 		echo '</td></tr>';
 	}

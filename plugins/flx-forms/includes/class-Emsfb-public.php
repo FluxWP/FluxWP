@@ -1304,14 +1304,14 @@ public function check_nonce_permission_efb($request) {
 				if( is_string($value) && (strpos($value , '\"type\":\"maps\"') !== false || strpos($value , '"type":"maps"') !== false)){
 					$sm = $this->efbFunction->openstreet_map_required_efb(1);
 					if($sm==false){
-						$s_m =" <script>alert('OpenStreetMap Error:".$lanText['tfnapca']."')</script>";
+						$s_m = \flxf_alert_script( 'OpenStreetMap Error: ' . $lanText['tfnapca'] );
 					}
 				}else{
 					$new_string_value = json_encode($value);
 					if(strpos($new_string_value , 'type":"maps"') !== false || strpos($new_string_value , 'type\":\"maps\"') !== false){
 						$sm = $this->efbFunction->openstreet_map_required_efb(1);
 						if($sm==false){
-							$s_m =" <script>alert('OpenStreetMap Error:".$lanText['tfnapca']."')</script>";
+							$s_m = \flxf_alert_script( 'OpenStreetMap Error: ' . $lanText['tfnapca'] );
 						}
 					}
 
@@ -1929,7 +1929,7 @@ public function check_nonce_permission_efb($request) {
 				if(isset($valstng->osLocationPicker) && $valstng->osLocationPicker==true){
 					$sm = $this->efbFunction->openstreet_map_required_efb(1);
 					if($sm==false){
-						$s_m =" <script>alert('OpenStreetMap Error:".$text['tfnapca']."')</script>";
+						$s_m = \flxf_alert_script( 'OpenStreetMap Error: ' . $text['tfnapca'] );
 					}
 				}
 		}
@@ -2101,6 +2101,7 @@ public function check_nonce_permission_efb($request) {
 		wp_register_script('efb-response-viewer-js', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/response-viewer-efb.js', array('efb-main-js'), $response_viewer_js_version, true);
 		wp_enqueue_script('efb-response-viewer-js');
 		wp_enqueue_script('efb-main-js', EMSFB_PLUGIN_URL . 'includes/admin/assets/js/new-efb.js', $main_deps, $main_js_version, true);
+		if ( function_exists( 'flx_dialog_enqueue' ) ) { flx_dialog_enqueue(); } // Ortak modal (flx-brand).
 		wp_register_script('Emsfb-core_js', plugins_url('../public/assets/js/core-efb.js',__FILE__), $core_deps, $core_js_version, true);
 		wp_enqueue_script('Emsfb-core_js');
 

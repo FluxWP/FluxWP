@@ -527,14 +527,15 @@ export default function Edit(props) {
 
 			if (hasChildren) {
 				//there was a submenu, proceed to add a special mega menu template with the exisiting sub menu as the first nav
-				/* eslint-disable no-alert */
-				if (window.confirm(message)) {
-					const childBlocksBasicCopy = JSON.parse(JSON.stringify(childBlocksBasic));
-					addStash(uniqueID, childBlocksBasicCopy);
-					replaceInnerBlocks(clientId, []);
-					doMegaMenu('mega-existing-sub-menu');
-					setAttributes({ isMegaMenu: true });
-				}
+				window.flxDialog.confirm({ message }).then((ok) => {
+					if (ok) {
+						const childBlocksBasicCopy = JSON.parse(JSON.stringify(childBlocksBasic));
+						addStash(uniqueID, childBlocksBasicCopy);
+						replaceInnerBlocks(clientId, []);
+						doMegaMenu('mega-existing-sub-menu');
+						setAttributes({ isMegaMenu: true });
+					}
+				});
 			} else {
 				//there were no children, proceed to standard mega onboarding
 				replaceInnerBlocks(clientId, []);
@@ -543,13 +544,14 @@ export default function Edit(props) {
 		} else {
 			//disable
 			const message = __('Are you sure you want to delete this mega menu?', 'flx-blocks');
-			/* eslint-disable no-alert */
-			if (window.confirm(message)) {
-				replaceInnerBlocks(clientId, []);
-				setAttributes({ isMegaMenu: false });
-				setMegaMenuColumnChoice('');
-				setMegaMenuOnboardingStep('design');
-			}
+			window.flxDialog.confirm({ message, danger: true }).then((ok) => {
+				if (ok) {
+					replaceInnerBlocks(clientId, []);
+					setAttributes({ isMegaMenu: false });
+					setMegaMenuColumnChoice('');
+					setMegaMenuOnboardingStep('design');
+				}
+			});
 		}
 	}
 

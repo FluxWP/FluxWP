@@ -215,13 +215,13 @@
 			(c.summary ? '<div class="flxcb-isum"><strong>' + ico('info', 14) + esc(T.summary) + '</strong><p>' + fmt(c.summary) + '</p></div>' : '') +
 			(c.fluxChat ? '<p class="flxcb-muted">' + esc(T.inFluxChat) + '</p>' : '');
 		var cl = h.querySelector('[data-close]');
-		if (cl) cl.onclick = function () {
-			if (!window.confirm(T.confirmEnd)) return;
+		if (cl) cl.onclick = async function () {
+			if (!(await window.flxDialog.confirm({ message: T.confirmEnd }))) return;
 			api('conversations/' + c.id + '/close', { method: 'POST' }).then(function (j) { state.conv = j.conv; drawHead(); addMsgs(j.messages || []); loadList(); }).catch(alertErr);
 		};
 		var del = h.querySelector('[data-del]');
-		if (del) del.onclick = function () {
-			if (!window.confirm(T.confirmDel)) return;
+		if (del) del.onclick = async function () {
+			if (!(await window.flxDialog.confirm({ message: T.confirmDel }))) return;
 			api('conversations/' + c.id, { method: 'DELETE' }).then(function () {
 				state.cur = 0;
 				root.classList.remove('has-conv');
@@ -326,7 +326,7 @@
 	}
 
 	function alertErr(e) {
-		window.alert((e && e.message) || T.error);
+		window.flxDialog.alert((e && e.message) || T.error);
 	}
 
 	document.addEventListener('visibilitychange', function () {

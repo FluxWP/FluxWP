@@ -79,8 +79,8 @@
 		i: function () { wrap( '_', '_', T.text ); },
 		code: function () { wrap( '`', '`', T.code ); },
 		pre: function () { wrap( '```php\n', '\n```\n', '', true ); },
-		link: function () {
-			var url = window.prompt( T.link || 'URL', 'https://' );
+		link: async function () {
+			var url = (await window.flxDialog.prompt({ title: T.link || 'URL', value: 'https://' }));
 			if ( url ) {
 				wrap( '[', '](' + url + ')', T.linkText );
 			}

@@ -87,7 +87,7 @@ function flxi_page_send() {
 	echo '</div>';
 
 	echo '<label class="flxi-field"><span>' . esc_html__( 'Campaign name (only visible to you)', 'flx-mail' ) . '</span><input type="text" name="name" placeholder="' . esc_attr__( 'E.g. November sapling planting invitation', 'flx-mail' ) . '"></label>';
-	echo '<div class="flxi-actions"><button type="submit" class="button button-primary button-large" data-confirm="' . esc_attr__( 'Start sending?', 'flx-mail' ) . '">' . esc_html__( 'Send', 'flx-mail' ) . '</button> <button type="button" class="button button-large" data-test-free>' . esc_html__( 'Send me a test', 'flx-mail' ) . '</button><span class="flxi-status" aria-live="polite"></span></div>';
+	echo '<div class="flxi-actions"><button type="submit" class="button button-primary button-large" data-flx-confirm="' . esc_attr__( 'Start sending?', 'flx-mail' ) . '">' . esc_html__( 'Send', 'flx-mail' ) . '</button> <button type="button" class="button button-large" data-test-free>' . esc_html__( 'Send me a test', 'flx-mail' ) . '</button><span class="flxi-status" aria-live="polite"></span></div>';
 	echo '</div></div>';
 
 	// WhatsApp / SMS önizlemesi: kanalın kendi sınırlarıyla (uzunluk, SMS parçası, biçim).

@@ -211,8 +211,8 @@
 					if (r.status === 'running') acts.appendChild(h('button', { type: 'button', class: 'flxbs-link', onclick: function () { stop(r); } }, t('Durdur')));
 					else if (r.status !== 'done') acts.appendChild(h('button', { type: 'button', class: 'flxbs-link', onclick: function () { resume(r); } }, t('Devam et')));
 					acts.appendChild(h('button', { type: 'button', class: 'flxbs-link', title: t('Tüm sohbetler, araç çağrıları ve değerlendirici logu'), onclick: function () { report(r, 'md'); } }, t('Rapor')));
-					acts.appendChild(h('button', { type: 'button', class: 'flxbs-link is-danger', onclick: function () {
-						if (!confirm(t('Bu çalıştırma ve sonuçları silinsin mi?'))) return;
+					acts.appendChild(h('button', { type: 'button', class: 'flxbs-link is-danger', onclick: async function () {
+						if (!(await window.flxDialog.confirm({ message: t('Bu çalıştırma ve sonuçları silinsin mi?'), danger: true }))) return;
 						api('bot/bench/runs/' + r.id, { method: 'DELETE' }).then(function (x) { S.data.runs = x.runs; rerender(); }).catch(function (e) { toast(e.message, 1); });
 					} }, t('Sil')));
 					tr.appendChild(acts);
@@ -249,8 +249,8 @@
 			if (i >= 0) S.data.runs[i] = Object.assign(S.data.runs[i], run);
 			if (S.run && S.run.id === run.id) S.run = Object.assign(S.run, run);
 		}
-		function resume(r) {
-			var lim = prompt(t('Ücret limiti (USD)'), String(Math.max(r.limit, r.cost + 0.25).toFixed(2)));
+		async function resume(r) {
+			var lim = (await window.flxDialog.prompt({ title: t('Ücret limiti (USD)'), value: String(Math.max(r.limit, r.cost + 0.25).toFixed(2)) }));
 			if (lim === null) return;
 			api('bot/bench/runs/' + r.id + '/state', { method: 'POST', body: { action: 'resume', limit: parseFloat(lim) || r.limit } }).then(function (x) {
 				setRow(x.run); rerender(); ensurePoll();
@@ -374,8 +374,8 @@
 			var bar = h('div', { class: 'flxbs-row flxbb-tools' },
 				h('button', { type: 'button', class: 'flxbs-btn is-primary', onclick: function () { editScenario(null); } }, t('Yeni senaryo')),
 				h('button', { type: 'button', class: 'flxbs-btn', onclick: function () { aiScenario(null); } }, t('AI ile senaryo yaz')),
-				h('button', { type: 'button', class: 'flxbs-link flxbs-right', onclick: function () {
-					if (!confirm(t('Hazır senaryolar ilk hâline dönsün mü? Sizin eklediğiniz senaryolar kalır.'))) return;
+				h('button', { type: 'button', class: 'flxbs-link flxbs-right', onclick: async function () {
+					if (!(await window.flxDialog.confirm({ message: t('Hazır senaryolar ilk hâline dönsün mü? Sizin eklediğiniz senaryolar kalır.') }))) return;
 					api('bot/bench/scenarios/reset', { method: 'POST', body: {} }).then(function (r) { S.data.scenarios = r.scenarios; rerender(); }).catch(function (e) { toast(e.message, 1); });
 				} }, t('Hazır senaryoları geri yükle')));
 			body.appendChild(bar);
@@ -423,8 +423,8 @@
 						S.view = 'runs'; var c = S.cfg || {};
 						start({ model: c.model || '', judge: c.judge || '', prompt: c.prompt || 'live', limit: parseFloat(c.limit) || 0.5, cache: c.cache || '', scenarios: [s.id] });
 					} }, t('Yalnız bunu çalıştır')),
-					h('button', { type: 'button', class: 'flxbs-link is-danger', onclick: function () {
-						if (!confirm(t('Senaryo silinsin mi?'))) return;
+					h('button', { type: 'button', class: 'flxbs-link is-danger', onclick: async function () {
+						if (!(await window.flxDialog.confirm({ message: t('Senaryo silinsin mi?'), danger: true }))) return;
 						api('bot/bench/scenarios/' + s.id, { method: 'DELETE' }).then(function (r) { S.data.scenarios = r.scenarios; rerender(); }).catch(function (e) { toast(e.message, 1); });
 					} }, t('Sil'))));
 		}

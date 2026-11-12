@@ -248,6 +248,7 @@ class FLXB_WC_Addresses {
 
 	/** Below WooCommerce's billing / shipping cards on the Addresses page (not on the edit forms). */
 	public static function account_section( $type = '' ) {
+		if ( function_exists( 'flx_dialog_enqueue' ) ) { flx_dialog_enqueue(); } // Silme onayı ortak modalla (flx-brand).
 		if ( '' !== (string) $type || ! is_user_logged_in() ) {
 			return;
 		}
@@ -271,7 +272,7 @@ class FLXB_WC_Addresses {
 			<div class="flxb-ab__actions">
 				<form method="post"><?php wp_nonce_field( self::NONCE, '_flxb_addr' ); ?><input type="hidden" name="flxb_addr_id" value="<?php echo esc_attr( $id ); ?>">
 					<button type="submit" name="flxb_addr_action" value="default" class="button flxb-ab__btn"><?php esc_html_e( 'Make default', 'flx-donate' ); ?></button>
-					<button type="submit" name="flxb_addr_action" value="delete" class="button flxb-ab__btn flxb-ab__btn--del" onclick="return confirm(this.dataset.confirm)" data-confirm="<?php esc_attr_e( 'Delete this address?', 'flx-donate' ); ?>"><?php esc_html_e( 'Delete', 'flx-donate' ); ?></button>
+					<button type="submit" name="flxb_addr_action" value="delete" class="button flxb-ab__btn flxb-ab__btn--del" data-flx-confirm-danger data-flx-confirm="<?php esc_attr_e( 'Delete this address?', 'flx-donate' ); ?>"><?php esc_html_e( 'Delete', 'flx-donate' ); ?></button>
 				</form>
 			</div>
 			<?php endif; ?>

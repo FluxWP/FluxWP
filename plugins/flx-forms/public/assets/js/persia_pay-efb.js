@@ -189,7 +189,7 @@ fun_after_bankpay_persia_ui =()=>{
 
 if(get_Status_efb=="NOK"){
   change_url_back_persia_pay_efb();
-  window.alert('پرداخت انجام نشد ، لطفا صفحه را رفرش کنید و دوباره تلاش کنید');
+  window.flxDialog.alert('پرداخت انجام نشد ، لطفا صفحه را رفرش کنید و دوباره تلاش کنید');
 د  }else if(get_Status_efb=="OK"){
 
   setTimeout(() => {

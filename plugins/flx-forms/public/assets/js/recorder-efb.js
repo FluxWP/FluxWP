@@ -23,7 +23,7 @@ function efbRecAlert(msg) {
 	if (typeof alert_message_efb === 'function') {
 		alert_message_efb('', msg, 12, 'danger');
 	} else {
-		window.alert(msg);
+		window.flxDialog.alert(msg);
 	}
 }
 

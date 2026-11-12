@@ -148,7 +148,7 @@
 				'<button type="button" data-act="del" title="Sil">✕</button></span></li>';
 		}).join('');
 	}
-	$('te-fields').addEventListener('click', function (e) {
+	$('te-fields').addEventListener('click', async function (e) {
 		var li = e.target.closest('li');
 		if (!li) return;
 		var id = li.getAttribute('data-id');
@@ -158,7 +158,7 @@
 			var a = act.getAttribute('data-act');
 			var i = cfg.fields.indexOf(f);
 			if (a === 'del') {
-				if (!window.confirm('"' + f.label + '" alanı silinsin mi?')) return;
+				if (!(await window.flxDialog.confirm({ message: '"' + f.label + '" alanı silinsin mi?', danger: true }))) return;
 				cfg.fields.splice(i, 1);
 				if (sel === id) sel = null;
 			} else if (a === 'up' && i > 0) {
@@ -351,11 +351,11 @@
 	});
 
 	/* ---------- Kaydet ---------- */
-	$('te-save').addEventListener('click', function () {
+	$('te-save').addEventListener('click', async function () {
 		var btn = this;
 		if (!T.name.trim()) { A.toast('Şablon adı gerekli', 'err'); $('te-name').focus(); return; }
 		if (!cfg.fields.some(function (f) { return f.key === 'ad_soyad'; })) {
-			if (!window.confirm('Şablonda "ad_soyad" anahtarlı alan yok; sertifikada kişinin adı yazmayacak. Yine de kaydedilsin mi?')) return;
+			if (!(await window.flxDialog.confirm({ message: 'Şablonda "ad_soyad" anahtarlı alan yok; sertifikada kişinin adı yazmayacak. Yine de kaydedilsin mi?' }))) return;
 		}
 		btn.disabled = true;
 		A.api('POST', 'templates', { id: T.id, name: T.name, status: T.status, config: cfg }).then(function (r) {

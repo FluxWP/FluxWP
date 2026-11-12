@@ -104,6 +104,7 @@ final class FLXB_WC_Form {
 
 	public static function enqueue() {
 		wp_enqueue_style( 'flxwb-front', FLXB_URL . 'assets/wc/front.css', array(), FLXB_VERSION );
+		if ( function_exists( 'flx_dialog_enqueue' ) ) { flx_dialog_enqueue(); } // Ortak modal (flx-brand).
 		wp_enqueue_script( 'flxwb-front', FLXB_URL . 'assets/wc/front.js', array(), FLXB_VERSION, true );
 		if ( ! wp_scripts()->get_data( 'flxwb-front', 'data' ) ) {
 			wp_localize_script(

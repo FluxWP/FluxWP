@@ -172,7 +172,7 @@ function flxr_render_page() {
 		if ( ! empty( $r['custom'] ) ) {
 			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 			wp_nonce_field( 'flxr_role' );
-			echo '<input type="hidden" name="action" value="flxr_role"><input type="hidden" name="do" value="delete"><input type="hidden" name="role" value="' . esc_attr( $rk ) . '"><button type="submit" class="button-link flxr-remove" onclick="return confirm(this.dataset.c)" data-c="' . esc_attr__( 'Delete this role? Its people move to the default role.', 'flx-roles' ) . '">' . esc_html__( 'Delete role', 'flx-roles' ) . '</button></form>';
+			echo '<input type="hidden" name="action" value="flxr_role"><input type="hidden" name="do" value="delete"><input type="hidden" name="role" value="' . esc_attr( $rk ) . '"><button type="submit" class="button-link flxr-remove" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Delete this role? Its people move to the default role.', 'flx-roles' ) . '">' . esc_html__( 'Delete role', 'flx-roles' ) . '</button></form>';
 		}
 		echo '</div>';
 	}
@@ -257,7 +257,7 @@ function flxr_render_page() {
 			continue;
 		}
 		$url = wp_nonce_url( admin_url( 'admin-post.php?action=flxr_reset&role=' . $rk ), 'flxr_reset' );
-		echo ' <a class="button" href="' . esc_url( $url ) . '" onclick="return confirm(this.dataset.c)" data-c="' . esc_attr__( 'Reset this role\'s permissions to the defaults?', 'flx-roles' ) . '">' . esc_html(
+		echo ' <a class="button" href="' . esc_url( $url ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Reset this role\'s permissions to the defaults?', 'flx-roles' ) . '">' . esc_html(
 			sprintf(
 				/* translators: %s: role name */
 				__( '%s: reset to defaults', 'flx-roles' ),
@@ -286,7 +286,7 @@ function flxr_render_page() {
 				echo '</div><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 				wp_nonce_field( 'flxr_user' );
 				echo '<input type="hidden" name="action" value="flxr_user"><input type="hidden" name="do" value="remove"><input type="hidden" name="role" value="' . esc_attr( $rk ) . '"><input type="hidden" name="user" value="' . (int) $u->ID . '">';
-				echo '<button type="submit" class="button-link flxr-remove" onclick="return confirm(this.dataset.c)" data-c="' . esc_attr__( 'Remove this person from the role?', 'flx-roles' ) . '">' . esc_html__( 'Remove from role', 'flx-roles' ) . '</button></form></li>';
+				echo '<button type="submit" class="button-link flxr-remove" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Remove this person from the role?', 'flx-roles' ) . '">' . esc_html__( 'Remove from role', 'flx-roles' ) . '</button></form></li>';
 			}
 			echo '</ul>';
 		} else {

@@ -2331,7 +2331,7 @@
 		$t = $t !== false ? $valj_efb[$t]->step : 0;
 
 		if ($valj_efb[0]->type == "payment" && $t == 0) {
-			return  "<script>alert('".esc_html__('Flux Forms' , 'flx-forms'). ": " .esc_html__('This form requires a payment method. Please add one or change the form type.' , 'flx-forms')."');</script>";
+			return \flxf_alert_script( __( 'Flux Forms', 'flx-forms' ) . ': ' . __( 'This form requires a payment method. Please add one or change the form type.', 'flx-forms' ) );
 		}
 
 		$corner = property_exists($valj_efb[0], 'corner') ? $valj_efb[0]->corner : 'rounded-3';

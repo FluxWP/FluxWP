@@ -2614,8 +2614,8 @@ ${blocksHtml}
     if (tab === 'settings') renderGlobalSettings_efb();
   }
 
-  function resetBuilder_efb() {
-    if (!confirm(t_efb('ebResetConfirm', 'Are you sure you want to reset the email template? This cannot be undone.'))) return;
+  async function resetBuilder_efb() {
+    if (!(await window.flxDialog.confirm({ message: t_efb('ebResetConfirm', 'Are you sure you want to reset the email template? This cannot be undone.'), danger: true }))) return;
     saveState_efb();
     builderState_efb.blocks = [];
     builderState_efb.selectedBlock = null;

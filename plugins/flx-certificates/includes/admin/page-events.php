@@ -149,7 +149,7 @@ function flxs_event_post_button( $action, $id, $label, $fields = array(), $confi
 	foreach ( $fields as $k => $v ) {
 		echo '<input type="hidden" name="' . esc_attr( $k ) . '" value="' . esc_attr( $v ) . '">';
 	}
-	echo '<button class="button button-small ' . esc_attr( $class ) . '"' . ( $confirm ? ' data-confirm="' . esc_attr( $confirm ) . '"' : '' ) . '>' . esc_html( $label ) . '</button></form> ';
+	echo '<button class="button button-small ' . esc_attr( $class ) . '"' . ( $confirm ? ' data-flx-confirm="' . esc_attr( $confirm ) . '"' : '' ) . '>' . esc_html( $label ) . '</button></form> ';
 }
 
 function flxs_event_form( $e ) {
@@ -240,7 +240,7 @@ function flxs_event_form( $e ) {
 		var inp = box.querySelector('[name=image_id]'), prev = box.querySelector('.flxs-evimg__prev'), noimg = 'Görsel yok', clr = box.querySelector('[data-evimg-clear]'), frame;
 		box.querySelector('[data-evimg-pick]').addEventListener('click', function (ev) {
 			ev.preventDefault();
-			if (!window.wp || !wp.media) { alert('Medya kütüphanesi yüklenemedi. Sayfayı yenileyip tekrar deneyin.'); return; }
+			if (!window.wp || !wp.media) { window.flxDialog.alert('Medya kütüphanesi yüklenemedi. Sayfayı yenileyip tekrar deneyin.'); return; }
 			frame = frame || wp.media({ title: 'Etkinlik görseli', library: { type: 'image' }, multiple: false, button: { text: 'Bu görseli kullan' } });
 			frame.off('select').on('select', function () {
 				var a = frame.state().get('selection').first().toJSON();

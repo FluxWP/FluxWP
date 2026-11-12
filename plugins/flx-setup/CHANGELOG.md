@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.4
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 1.2.3
 - İçe aktarılan ön ayar klasörü Apache 2.2 ve 2.4'te web'den açılmaz.
 

@@ -264,7 +264,7 @@ final class FLXB_Approval {
 		echo '<p class="flxb-card__hint">' . esc_html( implode( ' · ', array_filter( $bits ) ) ) . '</p></div>';
 		if ( self::can( $d ) ) {
 			echo '<div class="flxb-approve__actions">';
-			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Has the payment reached the bank? When you confirm, the certificate is made and sent to the donor.', 'flx-donate' ) ) ) . ')">';
+			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm="' . esc_attr( __( 'Has the payment reached the bank? When you confirm, the certificate is made and sent to the donor.', 'flx-donate' ) ) . '">';
 			wp_nonce_field( 'flxb_pay_' . (int) $d['id'] );
 			echo '<input type="hidden" name="action" value="flxb_pay_approve"><input type="hidden" name="id" value="' . (int) $d['id'] . '">';
 			echo '<button type="submit" class="flxb-btn flxb-btn--primary">' . esc_html__( 'Approve', 'flx-donate' ) . '</button></form>';

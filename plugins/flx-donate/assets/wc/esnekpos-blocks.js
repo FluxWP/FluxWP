@@ -83,7 +83,7 @@
 				}).catch(function () { finish({ paid: false, cancelled: true, message: t.cancelled }); });
 			};
 			var onKey = function (e) { if (e.key === 'Escape') ask(); };
-			var ask = function () { if (window.confirm(t.closeAsk)) checkAndClose(); };
+			var asking = false, ask = function () { if (asking || !window.flxDialog) return; asking = true; window.flxDialog.confirm({ message: t.closeAsk, danger: true }).then(function (yes) { asking = false; if (yes) checkAndClose(); }); };
 			x.addEventListener('click', ask);
 			frame.addEventListener('load', function () { root.classList.add('is-loaded'); });
 			window.addEventListener('message', onMsg);

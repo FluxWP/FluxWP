@@ -330,7 +330,7 @@ class FLXP_Admin {
 		echo '</div>';
 		if ( current_user_can( 'manage_options' ) && $res['total'] ) {
 			?>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('<?php echo esc_js( __( 'Delete all records?', 'flx-speed' ) ); ?>');" class="flxp-clear">
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-flx-confirm-danger data-flx-confirm="<?php echo esc_attr( __( 'Delete all records?', 'flx-speed' ) ); ?>" class="flxp-clear">
 				<?php wp_nonce_field( 'flxp_clear' ); ?>
 				<input type="hidden" name="action" value="flxp_clear">
 				<button class="button button-link-delete"><?php esc_html_e( 'Delete all records', 'flx-speed' ); ?></button>
@@ -751,7 +751,7 @@ class FLXP_Admin {
 		foreach ( flxp_cleanup_jobs() as $k => $label ) {
 			$btn = '';
 			if ( current_user_can( 'manage_options' ) && $count[ $k ] ) {
-				$btn = '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(\'' . esc_js( $label . ' — ' . __( 'continue?', 'flx-speed' ) ) . '\')">' . wp_nonce_field( 'flxp_cleanup', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxp_cleanup"><input type="hidden" name="job" value="' . esc_attr( $k ) . '"><button class="button button-small">' . esc_html__( 'Clean', 'flx-speed' ) . '</button></form>';
+				$btn = '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm="' . esc_attr( $label . ' — ' . __( 'continue?', 'flx-speed' ) ) . '">' . wp_nonce_field( 'flxp_cleanup', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxp_cleanup"><input type="hidden" name="job" value="' . esc_attr( $k ) . '"><button class="button button-small">' . esc_html__( 'Clean', 'flx-speed' ) . '</button></form>';
 			}
 			$rows[] = array( esc_html( $label ), number_format_i18n( $count[ $k ] ), $btn );
 		}
@@ -974,7 +974,7 @@ class FLXP_Admin {
 			</td></tr>
 		</table>
 		<script>
-		document.addEventListener('click',function(e){var b=e.target.closest('[data-flxp-copy]');if(!b)return;var t=document.getElementById(b.dataset.flxpCopy).textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){var o=b.textContent;b.textContent=b.dataset.done;setTimeout(function(){b.textContent=o;},1500);}).catch(function(){window.prompt('',t);});});
+		document.addEventListener('click',function(e){var b=e.target.closest('[data-flxp-copy]');if(!b)return;var t=document.getElementById(b.dataset.flxpCopy).textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){var o=b.textContent;b.textContent=b.dataset.done;setTimeout(function(){b.textContent=o;},1500);}).catch(function(){if(window.flxDialog)window.flxDialog.prompt({title:'',value:t});});});
 		</script>
 		<?php
 	}

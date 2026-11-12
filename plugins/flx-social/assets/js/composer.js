@@ -86,7 +86,9 @@
 			sticky: true,
 			noFocus: !!id,
 			onClose: function () {
-				if (dirty && !window.confirm(t('Kaydedilmemiş değişiklikler var. Kapatılsın mı?'))) return false;
+				if (!dirty) return;
+				window.flxDialog.confirm({ message: t('Kaydedilmemiş değişiklikler var. Kapatılsın mı?'), danger: true }).then(function (yes) { if (yes) { dirty = false; m.close(); } });
+				return false;
 			}
 		});
 		if (!active.length) {

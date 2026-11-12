@@ -275,6 +275,7 @@ function flxs_public_file_token( $cert ) {
 
 /** Herkese açık script + çevrilmiş metinleri */
 function flxs_public_script( $deps = array() ) {
+	if ( function_exists( 'flx_dialog_enqueue' ) ) { flx_dialog_enqueue(); } // Ortak modal (flx-brand).
 	wp_enqueue_script( 'flxs-public', FLXS_URL . 'assets/js/public.js', $deps, FLXS_VERSION, true );
 	if ( ! wp_script_is( 'flxs-public', 'done' ) && ! wp_scripts()->get_data( 'flxs-public', 'data' ) ) {
 		wp_localize_script(

@@ -776,8 +776,8 @@
 			api('memory/chat/' + c.id + '/summarize', { method: 'POST' }).then(function (r) { M = r; draw(); toast(t('Özet sıraya alındı')); setTimeout(load, 8000); }).catch(function (e) { toast(e.message, 'err'); }).then(function () { sumBtn.disabled = false; });
 		});
 		var allBtn = h('button', { type: 'button', class: 'flxc-btn flxc-btn-danger' }, t('Tümünü sil'));
-		allBtn.addEventListener('click', function () {
-			if (!window.confirm(t('{c} için tüm hafıza kayıtları silinsin mi?', { c: c.title }))) return;
+		allBtn.addEventListener('click', async function () {
+			if (!(await window.flxDialog.confirm({ message: t('{c} için tüm hafıza kayıtları silinsin mi?', { c: c.title }), danger: true }))) return;
 			api('memory/chat/' + c.id, { method: 'DELETE', query: { confirm: 'yes' } }).then(function (r) { M = r; draw(); }).catch(function (e) { toast(e.message, 'err'); });
 		});
 		function load() { api('memory/chat/' + c.id).then(function (r) { M = r; draw(); }).catch(function (e) { toast(e.message, 'err'); }); }
@@ -2248,8 +2248,8 @@
 			formEl.appendChild(chips);
 			formEl.appendChild(h('p', { class: 'flxc-help', text: t('Mesaj kutusuna / yazıp kısayolu yazınca bu cevap çıkar. Değişkenler gönderirken kişinin bilgisiyle dolar.') }));
 			formEl.appendChild(h('div', { class: 'flxc-rm-actions' },
-				r.id ? h('button', { type: 'button', class: 'flxc-btn flxc-btn-ghost is-danger', onclick: function () {
-					if (!confirm(t('Bu hazır cevap silinsin mi?'))) return;
+				r.id ? h('button', { type: 'button', class: 'flxc-btn flxc-btn-ghost is-danger', onclick: async function () {
+					if (!(await window.flxDialog.confirm({ message: t('Bu hazır cevap silinsin mi?'), danger: true }))) return;
 					api('replies/' + r.id, { method: 'DELETE' }).then(function (res) { S.replies = res.replies; dlg.el.classList.remove('is-editing'); renderL(); toast(t('Silindi')); });
 				} }, icon('trash'), t('Sil')) : h('span'),
 				h('button', { type: 'button', class: 'flxc-btn', onclick: function () {
@@ -2985,8 +2985,8 @@
 			var phone = (d.phone || '').replace(/\D+/g, '');
 			if (phone && !onPick) add(foot, h('button', { type: 'button', class: 'flxc-btn flxc-btn-ghost', onclick: function () { dlg.close(); goChat(phone, d.name); } }, icon('unread'), t('Sohbeti aç')));
 			if (d.admin) add(foot, h('a', { class: 'flxc-btn flxc-btn-ghost', href: d.admin, target: '_blank', rel: 'noopener' }, icon('gear'), t('Bağış kaydını aç')));
-			if (d.canPay) add(foot, h('button', { type: 'button', class: 'flxc-btn', onclick: function () {
-				if (!window.confirm(t('Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir.'))) return;
+			if (d.canPay) add(foot, h('button', { type: 'button', class: 'flxc-btn', onclick: async function () {
+				if (!(await window.flxDialog.confirm({ message: t('Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir.') }))) return;
 				api('records/donations/' + d.id + '/status', { method: 'POST', body: { status: 'completed' } }).then(function () { toast(t('Bağış onaylandı')); dlg.close(); done(); }).catch(function (e) { toast(e.message, 'err'); });
 			} }, icon('check'), t('Ödendi olarak işaretle')));
 		}).catch(function (e) { clear(body); add(body, h('div', { class: 'flxc-empty-list', text: e.message })); });

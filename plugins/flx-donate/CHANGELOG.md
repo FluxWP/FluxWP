@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.24.1
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 2.24.0
 - Birden fazla fidan başkası adına bağışlanınca "Başka bir kişi ekle (ayrı sertifika)": her kişiye ad, WhatsApp ve e-posta girilir, her biri kendi sertifikasını kendi numarasına/e-postasına alır (kişi başı 1 fidan, kalanı ilk kişinin sertifikasında). İletişimi boş kişinin sertifikası bağışçıya gider. Sipariş ve bağış kaydında "Diğer kişiler".
 - Geniş ekranda "Online sertifika" ve "Online + basılı sertifika" kartları yan yana.
