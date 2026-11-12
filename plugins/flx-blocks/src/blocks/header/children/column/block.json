@@ -1,0 +1,22 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flx/header-column",
+	"parent": ["flx/header"],
+	"title": "Header Column",
+	"category": "flx-blocks",
+	"description": "Flux header column",
+	"supports": {
+		"inserter": true
+	},
+	"textdomain": "flx-blocks",
+	"attributes": {
+		"uniqueID": {
+			"type": "string"
+		},
+		"location": {
+			"type": "string"
+		}
+	},
+	"usesContext": ["flx/headerRowLayoutConfig"]
+}

@@ -1,0 +1,100 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+// Item
+.fxt-block-spacer {
+    position: relative;
+    height: 60px;
+}
+.fxt-block-spacer .fxt-divider {
+    width: 100%;
+    border-top: solid 1px #eee;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+        margin: 0;
+    padding: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    transform: perspective(1px) translate(-50%, -50%);
+}
+.fxt-divider-stripe {
+	width: 100%;
+    border: 0;
+    position: absolute;
+    top: 50%;
+	margin: 0;
+	height:20px;
+    padding: 0;
+    left: 50%;
+	transform: perspective(1px) translate(-50%, -50%);
+}
+.fxt-block-spacer.fxt-block-spacer-halign-left .fxt-divider, .fxt-block-spacer.fxt-block-spacer-halign-left .fxt-divider-stripe {
+    left: 0;
+    transform: perspective(1px) translate(0%, -50%);
+}
+.fxt-block-spacer.fxt-block-spacer-halign-right .fxt-divider, .fxt-block-spacer.fxt-block-spacer-halign-right .fxt-divider-stripe  {
+    left: auto;
+    right:0;
+    transform: perspective(1px) translate(0%, -50%);
+}
+.fxt-divider-stripe .fxb-stripes-svg {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+}
+.wp-block-flx-spacer.aligncenter{
+    width: 100%;
+}
+@media (max-width: 1024px) {
+    .fxt-block-spacer.fxt-block-spacer-thalign-center .fxt-divider, .fxt-block-spacer.fxt-block-spacer-thalign-center .fxt-divider-stripe {
+        left: 50%;
+        right:auto;
+        transform: perspective(1px) translate(-50%, -50%);
+    }
+    .fxt-block-spacer.fxt-block-spacer-thalign-left .fxt-divider, .fxt-block-spacer.fxt-block-spacer-thalign-left .fxt-divider-stripe {
+        left: 0;
+        transform: perspective(1px) translate(0%, -50%);
+    }
+    .fxt-block-spacer.fxt-block-spacer-thalign-right .fxt-divider, .fxt-block-spacer.fxt-block-spacer-thalign-right .fxt-divider-stripe  {
+        left: auto;
+        right:0;
+        transform: perspective(1px) translate(0%, -50%);
+    }
+}
+@media (max-width: 767px) {
+    .fxt-block-spacer.fxt-block-spacer-malign-center .fxt-divider, .fxt-block-spacer.fxt-block-spacer-malign-center .fxt-divider-stripe {
+        left: 50%;
+        right:auto;
+        transform: perspective(1px) translate(-50%, -50%);
+    }
+    .fxt-block-spacer.fxt-block-spacer-malign-left .fxt-divider, .fxt-block-spacer.fxt-block-spacer-malign-left .fxt-divider-stripe {
+        left: 0;
+        transform: perspective(1px) translate(0%, -50%);
+    }
+    .fxt-block-spacer.fxt-block-spacer-malign-right .fxt-divider, .fxt-block-spacer.fxt-block-spacer-malign-right .fxt-divider-stripe  {
+        left: auto;
+        right:0;
+        transform: perspective(1px) translate(0%, -50%);
+    }
+}
+@media (max-width: 767px) {
+	.fxvs-sm-false {
+		display:none !important;
+	}
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+	.fxvs-md-false {
+		display:none !important;
+	}
+}
+@media screen and (min-width: 1025px) {
+  .fxvs-lg-false {
+  display:none !important;
+
+    }
+}

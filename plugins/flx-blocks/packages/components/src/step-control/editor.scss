@@ -1,0 +1,18 @@
+.fxb-step-control input.components-step-control__number {
+    height:36px;
+	flex-grow: 1;
+    text-align: center;
+}
+.fxb-flex-center {
+	display: flex;
+	align-items: center;
+}
+.fxb-step-control {
+    gap: 3px;
+}
+.fxb-step-control .components-button.fxb-step-btn {
+	color: #4A5568;
+}
+.fxb-step-control .components-button.fxb-step-btn:not(:hover) {
+	box-shadow: none;
+}

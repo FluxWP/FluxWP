@@ -1,0 +1,92 @@
+.fxb-floating-tooltip {
+	background-color: #333;
+	color: white;
+	font-size: 14px;
+	line-height: 1.4;
+	white-space: normal;
+	outline: 0;
+	padding: 5px 9px;
+	border-radius: 4px;
+	box-sizing: border-box;
+	width: max-content;
+	max-width: calc(100vw - 10px);
+}
+.fxb-floating-tooltip[data-placement^="top"] > .fxb-tooltip-arrow {
+	bottom: 0;
+}
+.fxb-floating-tooltip[data-placement^="top"] > .fxb-tooltip-arrow:before {
+	bottom: -7px;
+	left: 50%;
+	transform: translateX(-50%);
+	border-width: 8px 8px 0;
+	border-top-color: initial;
+	transform-origin: center top;
+}
+.fxb-floating-tooltip[data-placement^="top-start"] > .fxb-tooltip-arrow:before {
+	left: 12px;
+}
+.fxb-floating-tooltip[data-placement^="top-end"] > .fxb-tooltip-arrow:before {
+	left: calc(100% - 12px);
+}
+.fxb-floating-tooltip[data-placement^="bottom"] > .fxb-tooltip-arrow {
+	top: 0;
+}
+.fxb-floating-tooltip[data-placement^="bottom"] > .fxb-tooltip-arrow:before {
+	top: -7px;
+	left: 50%;
+	transform: translateX(-50%);
+	border-width: 0 8px 8px;
+	border-bottom-color: initial;
+	transform-origin: center bottom;
+}
+.fxb-floating-tooltip[data-placement^="bottom-start"] > .fxb-tooltip-arrow:before {
+	left: 12px;
+}
+.fxb-floating-tooltip[data-placement^="bottom-end"] > .fxb-tooltip-arrow:before {
+	left: calc(100% - 12px);
+}
+.fxb-floating-tooltip[data-placement^="left"] > .fxb-tooltip-arrow {
+	right: 0;
+}
+.fxb-floating-tooltip[data-placement^="left"] > .fxb-tooltip-arrow:before {
+	border-width: 8px 0 8px 8px;
+	border-left-color: initial;
+	right: -7px;
+	top: 50%;
+	transform: translateY(-50%);
+	transform-origin: center left;
+}
+.fxb-floating-tooltip[data-placement^="left-start"] > .fxb-tooltip-arrow:before {
+	top: 12px;
+}
+.fxb-floating-tooltip[data-placement^="left-end"] > .fxb-tooltip-arrow:before {
+	top: calc(100% - 12px);
+}
+.fxb-floating-tooltip[data-placement^="right"] > .fxb-tooltip-arrow {
+	left: 0;
+}
+.fxb-floating-tooltip[data-placement^="right"] > .fxb-tooltip-arrow:before {
+	left: -7px;
+	top: 50%;
+	transform: translateY(-50%);
+	border-width: 8px 8px 8px 0;
+	border-right-color: initial;
+	transform-origin: center right;
+}
+.fxb-floating-tooltip[data-placement^="right-start"] > .fxb-tooltip-arrow:before {
+	top: 12px;
+}
+.fxb-floating-tooltip[data-placement^="right-end"] > .fxb-tooltip-arrow:before {
+	top: calc(100% - 12px);
+}
+.fxb-tooltip-arrow {
+	width: 16px;
+	height: 16px;
+	color: #333;
+}
+.fxb-tooltip-arrow:before {
+	content: "";
+	position: absolute;
+	border-color: transparent;
+	border-style: solid;
+}

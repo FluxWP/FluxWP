@@ -1,0 +1,54 @@
+.flxbk-radio-range-control .flxbk-radio-container-control.components-button-group .components-button {
+    flex: 0 1 1;
+}
+.flxbk-radio-range-control  .flxbk-radio-container-control {
+    flex-grow: 1;
+}
+.flxbk-radio-range-control .flxbk-radio-container-control.components-button-group .components-button.has-icon.only-icon svg {
+    margin: 0;
+    width: 1em;
+    height: 1em;
+    font-size: 18px;
+}
+.flxbk-radio-range-control .flxbk-radio-container-control.components-button-group .components-button {
+	height: 32px;
+}
+.flxbk-range-control-range .components-range-control__number .components-input-control__backdrop {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 1px solid var(--fxb-border-color, #859CB6 );
+}
+.flxbk-range-control-range .components-range-control__root > span:nth-child(3) {
+    margin: 0;
+}
+.flxbk-range-control .flxbk-measure-control-select-wrapper .flxbk-measure-control-select {
+    border-left: 0;
+}
+.flxbk-radio-range-control .flxbk-units.flxbk-measure-control-select-wrapper {
+    display: block;
+    min-width: 24px;
+}
+.flxbk-radio-range-control .flxbk-units.flxbk-measure-control-select-wrapper select {
+    min-width: 24px;
+}
+.flxbk-controls-content.flxbk-single-unit-control > .components-base-control .components-flex {
+    gap:0;
+}
+.flxbk-controls-content.flxbk-single-unit-control > .components-base-control .components-flex .components-input-control__label {
+    width: 100%;
+    height: 16px;
+    padding: 0;
+    line-height: 15px;
+    font-size: 7px !important;
+    margin: 0;
+    font-weight: 500;
+    display: block;
+    border: 0;
+    border-bottom: 1px solid var(--fxb-border-color, #859CB6);
+    border-radius: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+.flxbk-controls-content.flxbk-single-unit-control > .components-base-control .components-flex .components-flex-item {
+    max-width: 100%;
+}

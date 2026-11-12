@@ -1,0 +1,220 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.flxbk-toolbar-design-library {
+	margin-left: 5px;
+	margin-right: 5px;
+	align-items: center;
+	.fxb-toolbar-prebuilt-button {
+		padding-left: 12px;
+		padding-right: 12px;
+		height: 36px;
+		border: 1px solid #1e1e1e;
+		color: #1e1e1e;
+		background: transparent;
+		&:hover {
+			color: white;
+			border-color: var(--wp-admin-theme-color);
+			background: var(--wp-admin-theme-color);
+		}
+	}
+}
+@media (max-width: 600px) {
+	.flxbk-toolbar-design-library {
+		display: none;
+	}
+}
+.fxt-block-default-palette .components-color-palette__item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: top;
+	height: 100%;
+	width: 100%;
+	border: none;
+	border-radius: 50%;
+	background: transparent;
+	box-shadow: inset 0 0 0 14px;
+	transition: box-shadow 0.1s ease;
+	cursor: pointer;
+}
+.fxt-colors-add-new {
+	margin-bottom: 16px;
+}
+.fxb-colors-show-notice {
+	background: #fef8ee;
+	padding: 10px;
+	color: #222;
+}
+
+.fxt-block-default-palette .components-color-palette__item svg {
+	color: rgba(100, 100, 100, 1);
+}
+.fxt-colors-remove-last {
+	display: inline-block;
+	height: 28px;
+	width: 28px;
+	margin-right: 14px;
+	margin-bottom: 14px;
+}
+
+.fxt-colors-remove-last .components-button {
+	border-radius: 50%;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+// Button Groups
+.fxt-blocks-width-control,
+.fxt-blocks-control-wrap {
+	padding: 10px;
+}
+.components-button-group .fxt-editor-width-btn {
+	background: transparent;
+	box-shadow: none;
+	border: 1px solid var(--fxb-border-color, #859cb6);
+	padding: 8px;
+	margin-right: 0px;
+	height: auto;
+	width: 100%;
+	font-size: 13px;
+	margin-bottom: 5px;
+	text-shadow: none;
+}
+.components-button-group .fxt-editor-width-btn:hover,
+.components-button-group .fxt-editor-width-btn.is-primary,
+.components-button-group .fxt-editor-width-btn:focus:not(:disabled):not([aria-disabled="true"]) {
+	border-color: #444;
+	box-shadow: none;
+	background: #777;
+	color: white;
+}
+.components-button-group .fxt-editor-width-btn.is-primary,
+.components-button-group .fxt-editor-width-btn:focus:not(:disabled):not([aria-disabled="true"]) {
+	background: #444;
+}
+.fxb-block-settings-visibility {
+	border: 1px solid var(--fxb-border-color, #859cb6);
+	background: #fff;
+	width: 100%;
+	margin-bottom: 10px;
+}
+.fxt-blocks-control-wrap .fxt-block-defaults {
+	display: inline-flex;
+	padding: 4px 10px 4px 0px;
+	font-size: 12px;
+	font-weight: 600;
+	align-items: center;
+	line-height: 24px;
+	text-align: left;
+	color: #444;
+	width: 80%;
+	box-shadow: none;
+	span.fxt-block-icon {
+		display: block;
+		height: 20px;
+		margin-right: 10px;
+	}
+}
+.fxt-blocks-control-wrap .fxb-block-settings-visibility:hover {
+	background: #f9f9f9;
+}
+.fxt-blocks-control-wrap .fxt-block-defaults:focus {
+	box-shadow: none;
+}
+.fxt-block-defaults-modal .components-panel__body .flxbk-controls-content .components-base-control {
+	margin-bottom: 0;
+}
+.fxt-blocks-control-row {
+	display: flex;
+}
+.fxt-blocks-control-wrap .fxt-block-settings {
+	width: 16%;
+	display: inline-flex;
+	padding: 6px 0px 6px 10px;
+	font-weight: 600;
+	-ms-flex-align: center;
+	align-items: center;
+	text-align: left;
+	color: #555;
+	box-shadow: none;
+	margin-left: 2%;
+}
+.fxt-blocks-control-wrap .fxt-block-settings span.dashicon {
+	width: auto;
+	height: auto;
+	font-size: 14px;
+}
+.fxb-modal-footer {
+	display: flex;
+	justify-content: space-between;
+}
+.fxt-blocks-control-wrap .fxt-block-settings:hover {
+	background: #f9f9f9;
+}
+.fxt-blocks-control-wrap .fxt-block-settings:focus {
+	box-shadow: none;
+}
+.fxt-block-settings-modal .components-modal__header h1,
+.fxt-block-defaults-modal .components-modal__header h1 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.fxt-block-defaults-modal button.components-button.fxt-defaults-save,
+.fxt-block-settings-modal button.components-button.fxt-settings-save {
+	margin-top: 10px;
+}
+@media (min-width: 600px) {
+	.fxt-block-defaults-modal {
+		width: 400px;
+	}
+}
+.fxt-block-defaults-modal p {
+	margin-top: 0;
+}
+.fxt-block-defaults-modal .components-color-palette {
+	padding-bottom: 5px;
+	&:after {
+		clear: both;
+		display: table;
+		content: "";
+	}
+}
+.fxt-block-defaults-modal .components-panel__body .components-base-control {
+	margin-bottom: 24px;
+}
+.fxt-block-defaults-modal .components-panel__body:last-child {
+	margin-bottom: -16px;
+}
+.fxt-block-defaults-modal .components-panel__body:first-child {
+	margin-top: 16px;
+}
+.fxt-block-defaults-modal .components-panel__body {
+	border: none;
+	border-top: 1px solid #e2e4e7;
+	margin: 0 -16px;
+}
+.fxt-font-family-modal {
+	min-height: 480px;
+}
+.fxt-blocks-width-control .components-button-group {
+	border: 0;
+}
+.fxt-blocks-component-help {
+	margin-top: calc(8px);
+	margin-bottom: 0px;
+	font-size: 12px;
+	font-style: normal;
+	color: rgb(117, 117, 117);
+}
+
+// Flux Optimizer icon
+.components-button[aria-controls*="flxbk-optimizer"] {
+	color: #eb7971;
+}

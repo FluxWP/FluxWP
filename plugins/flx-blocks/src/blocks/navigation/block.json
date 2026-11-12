@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flx/navigation",
+	"title": "Navigation (Adv)",
+	"category": "flx-blocks",
+	"description": "An advanced navigation block.",
+	"keywords": ["menu", "navigation", "links"],
+	"textdomain": "flx-blocks",
+	"attributes": {
+		"uniqueID": {
+			"type": "string"
+		},
+		"id": {
+			"type": "integer",
+			"default": 0
+		},
+		"templateKey": {
+			"type": "string",
+			"default": ""
+		},
+		"makePost": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"align": ["wide", "full"],
+		"reusable": false,
+		"ariaLabel": true,
+		"html": false,
+		"customClassName": false
+	},
+	"usesContext": ["flx/headerPostId", "flx/headerIsSticky", "flx/headerIsTransparent"]
+}

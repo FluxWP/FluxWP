@@ -1,0 +1,13 @@
+// Capped to the same step as the delete/activation modals, so the body copy wraps as a paragraph
+// rather than stretching to the viewport width. See DeleteLibraryModal.scss for why the selector is
+// compound.
+.components-modal__frame.flx-blocks-style-library__unsaved-changes-modal {
+	max-width: var(--fxb-sl-size-modal-medium);
+}
+
+.flx-blocks-style-library__unsaved-changes-modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--fxb-sl-space-10);
+	margin-top: var(--fxb-sl-space-20);
+}

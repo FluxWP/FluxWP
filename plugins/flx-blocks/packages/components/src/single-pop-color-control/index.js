@@ -1,0 +1,346 @@
+/**
+ * Advanced Color Control.
+ *
+ */
+
+/**
+ * Import Icons
+ */
+import ColorPicker from '../color-picker';
+import { usePaletteSwatches } from '../common/palette-swatches';
+import ColorIcons from '../color-icons';
+import { getFlxbkColorConfig, getPopColorSwatches, toConcreteColor } from '../common/pop-color';
+import { hexToRGBA, FlxbkColorOutput } from '@flx-blocks/helpers';
+
+import { get, map } from 'lodash';
+import { useEffect, useState, useMemo } from '@wordpress/element';
+/**
+ * Internal block libraries
+ */
+import { __, sprintf } from '@wordpress/i18n';
+import { withSelect } from '@wordpress/data';
+import { Button, Popover, ColorIndicator, Tooltip, Dashicon } from '@wordpress/components';
+
+function unConvertOpacity(value) {
+	let val = 100;
+	if (value) {
+		val = value * 100;
+	}
+	return val;
+}
+
+export default function SinglePopColorControl({
+	label,
+	alpha = true,
+	opacityValue = '',
+	opacityUnit = '',
+	onOpacityChange = null,
+	value,
+	onChange,
+	reload,
+	reloaded,
+	defaultValue,
+	onClassChange,
+	onArrayChange = null,
+	disableCustomColors = false,
+	disabled = false,
+}) {
+	const [isVisible, setIsVisible] = useState(false);
+	const [currentColor, setCurrentColor] = useState('');
+	const [currentOpacity, setCurrentOpacity] = useState(opacityValue !== '' ? opacityValue : 1);
+	const [isPalette, setIsPalette] = useState(value && value.startsWith('palette') ? true : false);
+
+	// A value changed from outside the control (undo, a reset, another control) replaces the one picked here.
+	useEffect(() => {
+		if (currentColor && currentColor !== value) {
+			setCurrentColor('');
+		}
+	}, [value]);
+	useEffect(() => {
+		setCurrentOpacity(opacityValue !== '' ? opacityValue : 1);
+	}, [opacityValue]);
+	const allColors = usePaletteSwatches();
+
+	// Get Flux Block Editor color configuration.
+	const flxbkColors = useMemo(() => getFlxbkColorConfig(), []);
+
+	// Filter colors based on the override setting, through the shared swatch-list seam.
+	const colors = useMemo(
+		() => getPopColorSwatches(allColors, flxbkColors.override),
+		[allColors, flxbkColors.override]
+	);
+	const toggleVisible = () => {
+		setIsVisible(true);
+	};
+	const toggleClose = () => {
+		if (isVisible === true) {
+			setIsVisible(false);
+		}
+	};
+	if (reload) {
+		reloaded(true);
+		setTimeout(() => {
+			setCurrentColor('');
+			setCurrentOpacity('');
+			setIsPalette(false);
+		}, 100);
+	}
+	const convertOpacity = (value) => {
+		let val = 1;
+		if (value) {
+			val = value / 100;
+		}
+		return val;
+	};
+	const convertedOpacityValue = 100 === opacityUnit ? convertOpacity(currentOpacity) : currentOpacity;
+	const colorVal = currentColor ? currentColor : value;
+	// Derived on every render from the value, unless a colour is being picked here: an effect would lag a render.
+	const usesPalette = currentColor ? isPalette : !!(value && value.startsWith('palette'));
+	const paletteIndex = usesPalette && colors && colorVal ? colorVal.match(/\d+$/)?.[0] - 1 : null;
+	let currentColorString = paletteIndex !== null && colors[paletteIndex] ? colors[paletteIndex].color : colorVal;
+	if (!usesPalette && currentColorString && currentColorString.startsWith('var(')) {
+		currentColorString = window
+			.getComputedStyle(document.documentElement)
+			.getPropertyValue(value.replace('var(', '').split(',')[0].replace(')', ''));
+	}
+	if (currentColorString && currentColorString.startsWith('var(')) {
+		let temp_currentColorString = window
+			.getComputedStyle(document.documentElement)
+			.getPropertyValue(currentColorString.replace('var(', '').replace(' ', '').replace(')', ''));
+		if ('' === temp_currentColorString) {
+			temp_currentColorString = window
+				.getComputedStyle(document.documentElement)
+				.getPropertyValue(
+					currentColorString.replace('var(', '').replace(' ', '').split(',')[0].replace(')', '')
+				);
+		}
+		currentColorString = temp_currentColorString;
+	}
+	if ('' === currentColorString) {
+		currentColorString = defaultValue;
+	}
+	// if ( '' !== currentColorString && this.props.onOpacityChange && ! this.state.isPalette ) {
+	// 	currentColorString = hexToRGBA( ( undefined === currentColorString ? '' : currentColorString ), ( convertedOpacityValue !== undefined && convertedOpacityValue !== '' ? convertedOpacityValue : 1 ) );
+	// }
+	if (onOpacityChange && !usesPalette) {
+		if (
+			Number(convertedOpacityValue !== undefined && convertedOpacityValue !== '' ? convertedOpacityValue : 1) !==
+			1
+		) {
+			currentColorString = hexToRGBA(
+				undefined === currentColorString ? '' : currentColorString,
+				convertedOpacityValue !== undefined && convertedOpacityValue !== '' ? convertedOpacityValue : 1
+			);
+		}
+	}
+	let previewColorString = currentColorString;
+	if (usesPalette && colorVal) {
+		switch (colorVal) {
+			case 'palette1':
+				previewColorString = 'var(--global-palette1,#2B6CB0)';
+				break;
+			case 'palette2':
+				previewColorString = 'var(--global-palette2,#215387)';
+				break;
+			case 'palette3':
+				previewColorString = 'var(--global-palette3,#1A202C)';
+				break;
+			case 'palette4':
+				previewColorString = 'var(--global-palette4,#2D3748)';
+				break;
+			case 'palette5':
+				previewColorString = 'var(--global-palette5,#4A5568)';
+				break;
+			case 'palette6':
+				previewColorString = 'var(--global-palette6,#718096)';
+				break;
+			case 'palette7':
+				previewColorString = 'var(--global-palette7,#EDF2F7)';
+				break;
+			case 'palette8':
+				previewColorString = 'var(--global-palette8,#F7FAFC)';
+				break;
+			case 'palette9':
+				previewColorString = 'var(--global-palette9,#ffffff)';
+				break;
+		}
+	}
+	// Delegate final resolution to @flx-blocks/helpers: a swatch value that is a token reference or a
+	// palette slug becomes a renderable CSS color, a literal (hex/rgba/var) is returned unchanged.
+	previewColorString = FlxbkColorOutput(previewColorString);
+	// The color picker needs a concrete color; flatten a token/palette reference to a literal.
+	const pickerColor = toConcreteColor(currentColorString);
+	const onChangeState = (tempColor, tempPalette) => {
+		let newColor;
+		let opacity = 100 === opacityUnit ? 100 : 1;
+		if (tempPalette) {
+			newColor = tempPalette;
+		} else if (undefined !== tempColor.rgb && undefined !== tempColor.rgb.a && 1 !== tempColor.rgb.a) {
+			if (onOpacityChange) {
+				if (tempColor.hex === 'transparent') {
+					newColor = '#000000';
+				} else {
+					newColor = tempColor.hex;
+				}
+				opacity = 100 === opacityUnit ? unConvertOpacity(tempColor.rgb.a) : tempColor.rgb.a;
+			} else {
+				newColor =
+					'rgba(' +
+					tempColor.rgb.r +
+					',' +
+					tempColor.rgb.g +
+					',' +
+					tempColor.rgb.b +
+					',' +
+					tempColor.rgb.a +
+					')';
+			}
+		} else if (undefined !== tempColor.hex) {
+			newColor = tempColor.hex;
+		} else {
+			newColor = tempColor;
+		}
+		setCurrentColor(newColor);
+		setCurrentOpacity(opacity);
+		setIsPalette(tempPalette ? true : false);
+	};
+	const onChangeComplete = (tempColorCom, tempPalettCom) => {
+		let newColor;
+		let opacity = 100 === opacityUnit ? 100 : 1;
+		if (tempPalettCom) {
+			newColor = tempPalettCom;
+		} else if (undefined !== tempColorCom.rgb && undefined !== tempColorCom.rgb.a && 1 !== tempColorCom.rgb.a) {
+			if (onOpacityChange) {
+				if (tempColorCom.hex === 'transparent') {
+					newColor = '#000000';
+				} else {
+					newColor = tempColorCom.hex;
+				}
+				opacity = 100 === opacityUnit ? unConvertOpacity(tempColorCom.rgb.a) : tempColorCom.rgb.a;
+			} else {
+				newColor =
+					'rgba(' +
+					tempColorCom.rgb.r +
+					',' +
+					tempColorCom.rgb.g +
+					',' +
+					tempColorCom.rgb.b +
+					',' +
+					tempColorCom.rgb.a +
+					')';
+			}
+		} else if (undefined !== tempColorCom.hex) {
+			newColor = tempColorCom.hex;
+		} else {
+			newColor = tempColorCom;
+		}
+		setCurrentColor(newColor);
+		setCurrentOpacity(opacity);
+		setIsPalette(tempPalettCom ? true : false);
+		if (null !== onArrayChange) {
+			onArrayChange(newColor, opacity);
+		} else {
+			onChange(newColor);
+			if (null !== onOpacityChange) {
+				setTimeout(() => {
+					onOpacityChange(opacity);
+				}, 50);
+			}
+		}
+	};
+	return (
+		<div className="single-pop-color">
+			{isVisible && (
+				<Popover position="top left" className="flxbk-pop-color-popover" onClose={toggleClose}>
+					<ColorPicker
+						color={pickerColor}
+						onChange={(color) => onChangeState(color, '')}
+						onChangeComplete={(color) => {
+							onChangeComplete(color, '');
+							if (onClassChange) {
+								onClassChange('');
+							}
+						}}
+					/>
+					{colors && (
+						<div className="flxbk-pop-color-palette-swatches">
+							{map(colors, ({ color, slug, name }, index) => {
+								const style = { color: FlxbkColorOutput(color) };
+								const palette = slug.replace('theme-', '');
+								const isActive =
+									palette === value || (!slug.startsWith('theme-palette') && value === color);
+								return (
+									<div key={`${slug}-${index}`} className="flxbk-color-palette__item-wrapper">
+										<Tooltip
+											text={
+												name ||
+												// translators: %s: color hex code e.g: "#f00".
+												sprintf(__('Color code: %s'), color)
+											}
+										>
+											<Button
+												type="button"
+												className={`flxbk-color-palette__item ${isActive ? 'is-active' : ''}`}
+												style={style}
+												onClick={() => {
+													if (slug.startsWith('theme-palette')) {
+														onChangeComplete(color, palette);
+													} else {
+														onChangeComplete(color, false);
+													}
+													if (onClassChange) {
+														onClassChange(slug);
+													}
+												}}
+												aria-label={
+													name
+														? // translators: %s: The name of the color e.g: "vivid red".
+															sprintf(__('Color: %s', 'flx-blocks'), name)
+														: // translators: %s: color hex code e.g: "#f00".
+															sprintf(__('Color code: %s', 'flx-blocks'), color)
+												}
+												aria-pressed={isActive}
+											/>
+										</Tooltip>
+										{palette === value && <Dashicon icon="admin-site" />}
+										{!slug.startsWith('theme-palette') && value === color && (
+											<Dashicon icon="saved" />
+										)}
+									</div>
+								);
+							})}
+						</div>
+					)}
+				</Popover>
+			)}
+			{isVisible && (
+				<Button
+					className={`flxbk-pop-color-icon-indicate ${alpha ? 'flxbk-has-alpha' : 'flxbk-no-alpha'}`}
+					onClick={toggleVisible}
+					showTooltip={true}
+					label={label}
+					disabled={disabled}
+				>
+					<ColorIndicator className="flxbk-pop-color-indicate" colorValue={previewColorString} />
+					{value && value.startsWith('palette') && (
+						<span className="color-indicator-icon">{<Dashicon icon="admin-site" />}</span>
+					)}
+				</Button>
+			)}
+			{!isVisible && (
+				<Button
+					className={`flxbk-pop-color-icon-indicate ${alpha ? 'flxbk-has-alpha' : 'flxbk-no-alpha'}`}
+					onClick={toggleVisible}
+					showTooltip={true}
+					label={label}
+					disabled={disabled}
+				>
+					<ColorIndicator className="flxbk-pop-color-indicate" colorValue={previewColorString} />
+					{value && value.startsWith('palette') && (
+						<span className="color-indicator-icon">{<Dashicon icon="admin-site" />}</span>
+					)}
+				</Button>
+			)}
+		</div>
+	);
+}

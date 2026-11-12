@@ -1,0 +1,24 @@
+@use '../../styles/mixins' as *;
+
+.flx-blocks-style-library__placeholder-screen {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100%;
+	padding: var(--fxb-sl-space-40);
+	text-align: center;
+}
+
+.flx-blocks-style-library__placeholder-screen-title {
+	@include section-heading(var(--fxb-sl-font-size-page-title));
+
+	color: var(--fxb-sl-color-text-primary);
+}
+
+.flx-blocks-style-library__placeholder-screen-copy {
+	@include body-text;
+
+	margin-left: auto;
+	margin-right: auto;
+}

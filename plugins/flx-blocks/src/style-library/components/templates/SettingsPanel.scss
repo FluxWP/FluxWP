@@ -1,0 +1,48 @@
+@use '../../styles/mixins' as *;
+
+.flx-blocks-style-library__settings-panel {
+	display: flex;
+	flex-direction: column;
+	// The popover's content is the scroll container, capped to the space left in the viewport, so
+	// the sticky header and footer stay put while the field area scrolls.
+}
+
+.flx-blocks-style-library__settings-panel-header {
+	@include flex-row(var(--fxb-sl-space-10), center);
+	justify-content: space-between;
+	flex: 0 0 auto;
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	padding: var(--fxb-sl-space-15) var(--fxb-sl-space-20);
+	border-bottom: 1px solid var(--fxb-sl-color-border);
+	background: var(--fxb-sl-color-surface);
+}
+
+.flx-blocks-style-library__settings-panel-title {
+	margin: 0;
+	font-size: var(--fxb-sl-font-size-body);
+	font-weight: var(--fxb-sl-font-weight-semibold);
+	color: var(--fxb-sl-color-heading);
+}
+
+// `flex: 1 1 auto` lets this grow to fill the space between the sticky header and footer. No padding: `PanelBody`'s own
+// `.is-opened` padding already supplies it.
+.flx-blocks-style-library__settings-panel-fields {
+	flex: 1 1 auto;
+}
+
+.flx-blocks-style-library__settings-panel-footer {
+	@include flex-row(var(--fxb-sl-space-10), center);
+	justify-content: flex-end;
+	flex: 0 0 auto;
+	position: sticky;
+	bottom: 0;
+	padding: var(--fxb-sl-space-15) var(--fxb-sl-space-20);
+	border-top: 1px solid var(--fxb-sl-color-border);
+	background: var(--fxb-sl-color-surface);
+}
+
+.flx-blocks-style-library__settings-panel-footer > :first-child:not(:last-child) {
+	margin-right: auto;
+}

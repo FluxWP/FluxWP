@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flx/header-container-tablet",
+	"parent": ["flx/header"],
+	"title": "Tablet Header",
+	"category": "design",
+	"description": "Flux tablet container",
+	"supports": {
+		"inserter": true
+	},
+	"textdomain": "flx-blocks",
+	"attributes": {
+		"uniqueID": {
+			"type": "string",
+			"default": "default-uniqueID"
+		}
+	}
+}

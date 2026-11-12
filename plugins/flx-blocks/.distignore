@@ -1,0 +1,17 @@
+# Kaynak ve build araçları pakete girmez (yalnız build/ ve includes/ gider)
+./src
+./packages
+./tools
+./gulp
+./docs
+./gulpfile.js
+./webpack.config.js
+./package.json
+./bun.lock
+./babel.config.js
+./.babelrc
+./postcss.config.js
+./.eslintrc.js
+./.eslintignore
+./.prettierrc.js
+./.prettierignore

@@ -1,0 +1,112 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-flx-videopopup {
+	width: 100%;
+}
+.block-editor-block-list__block[data-type="flx/videopopup"] {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.wp-block-flx-videopopup .components-base-control .components-base-control__field {
+	max-width: 80%;
+	margin: 10px auto;
+}
+.flxbk-video-intrinsic button.components-button {
+	position: relative;
+	z-index: 10;
+}
+.flxbk-video-intrinsic {
+	padding-bottom: 56.25%;
+	height: 0;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.flxbk-video-overlay {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: #000000;
+	opacity: 0.3;
+	transition: opacity 0.3s ease;
+}
+.flxbk-video-popup-link {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.fxt-video-svg-icon {
+	color: white;
+	transition: all 0.3s ease;
+}
+.fxt-video-svg-icon.fxt-video-svg-icon-style-stacked {
+	background: rgba(0, 0, 0, 0.7);
+	border-radius: 50%;
+	padding: 20px;
+	border: 0 solid transparent;
+}
+.flxbk-video-popup-wrap {
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+	border: 0 solid transparent;
+	transition: all 0.3s ease;
+	margin: 0 auto;
+}
+.fxt-video-svg-icon.fxt-video-svg-icon-size-auto:not(.fxt-video-svg-icon-style-stacked) svg {
+	width: 100%;
+	height: 100%;
+}
+.fxt-video-svg-icon.fxt-video-svg-icon-size-auto:not(.fxt-video-svg-icon-style-stacked) {
+	width: 10%;
+	height: 10%;
+}
+.fxt-video-svg-icon.fxt-video-svg-icon-size-auto.fxt-video-svg-icon-style-stacked svg {
+	width: 40px;
+	height: 40px;
+}
+.fxb-vide-edit-settings-container {
+	display: flex;
+	margin-bottom: 16px;
+
+	.fxt-cta-upload-btn {
+		padding: 4px;
+		font-size: 11px;
+		flex: 1;
+	}
+}
+.is-button.components-button.fxt-cta-upload-btn {
+	padding: 4px 8px;
+	height: auto;
+	margin: 0;
+}
+.fxb-vide-edit-settings-container .editor-media-placeholder__url-input-container {
+	width: auto;
+	padding-left: 8px;
+}
+.fxb-icon-picker-container .rfip {
+	margin: 0 0 10px;
+	width: 100%;
+}
+
+.fxb-icon-picker-container .rfip .rfipbtn {
+	width: 100%;
+}
+
+.flxbk-video-poster {
+	pointer-events: none;
+	position: absolute;
+	height: 100%;
+	object-fit: cover;
+}

@@ -1,0 +1,34 @@
+// Placeholder
+@use "./style" as style;
+
+.editor-styles-wrapper .fxb-identity .wp-block-flx-image {
+	margin-bottom: unset;
+}
+
+.editor-styles-wrapper .wp-block.fxb-identity {
+	margin-left: 0;
+	margin-right: 0;
+
+	.fxb-adv-text {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+.fxb-identity .wp-block-group {
+	margin: 0;
+}
+
+// Hide link styling in editor because we strip it out on front end so there isn't nested links
+.fxb-identity .wp-block-site-title a {
+	color: inherit;
+	text-decoration: inherit;
+}
+.fxb-identity .wp-block-site-logo {
+	margin-top: unset;
+	margin-bottom: unset;
+}
+
+.editor-styles-wrapper .fxb-identity p {
+	margin-bottom: unset;
+}

@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flx/header",
+	"title": "Header (Adv)",
+	"category": "flx-blocks",
+	"description": "A collection of blocks that allow visitors to get around your site.",
+	"supports": {
+		"html": false,
+		"customClassName": false,
+		"reusable": false,
+		"lock": false,
+		"fxbMetadata": true,
+		"ktdynamic": true
+	},
+	"textdomain": "flx-blocks",
+	"keywords": ["header", "footer", "navigation"],
+	"attributes": {
+		"uniqueID": {
+			"type": "string"
+		},
+		"id": {
+			"type": "integer",
+			"default": 0
+		}
+	}
+}

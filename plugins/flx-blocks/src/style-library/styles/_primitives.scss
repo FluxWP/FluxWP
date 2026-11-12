@@ -1,0 +1,199 @@
+// Style Library design tokens — primitives. A primitive holds a raw value and references
+// nothing else (the theme color group is the one exception, justified inline below).
+//
+// Scoped to the app root and the page's body class, not :root, so these tokens don't leak onto
+// the rest of wp-admin. The body class is needed alongside the root: `@wordpress/components`
+// `Popover` (which `DropdownMenu`/`Modal` render through) portals its content to a container
+// appended directly under `<body>`, outside `.flx-blocks-style-library-root` — a rule inside
+// a popover that reads one of these custom properties finds nothing without the body selector
+// here too, since custom properties only reach DOM descendants. Only this file and
+// _semantic.scss emit these selectors — don't `@use` either from another partial or the block
+// duplicates into the bundle once per importer.
+//
+// Sizes are rem, not px: the wp-admin root is 16px, so 1rem = 16px here — never em, since the app
+// root itself renders at 13px.
+
+.flx-blocks-style-library-root,
+body.flx-blocks-style-library-page {
+	// Grays — Gutenberg's own gray ramp. Deliberately no gray-500; do not invent one. `gray-50`
+	// extends the ramp downward for a near-white surface value — the achromatic midpoint between
+	// white and `gray-100`, not the blue-tinted `#f9fafb` a different design system's spec called
+	// for; this app standardizes on one gray ramp.
+	--fxb-sl-color-gray-50: #f8f8f8;
+	--fxb-sl-color-gray-100: #f0f0f0;
+	--fxb-sl-color-gray-200: #e0e0e0;
+	--fxb-sl-color-gray-300: #dddddd;
+	--fxb-sl-color-gray-400: #cccccc;
+	--fxb-sl-color-gray-600: #949494;
+	--fxb-sl-color-gray-700: #757575;
+	--fxb-sl-color-gray-800: #2f2f2f;
+	--fxb-sl-color-gray-900: #1e1e1e;
+	--fxb-sl-color-black: #000000;
+	--fxb-sl-color-white: #ffffff;
+
+	// Alerts
+	--fxb-sl-color-alert-yellow: #f0b849;
+	--fxb-sl-color-alert-red: #cc1818;
+	--fxb-sl-color-alert-green: #4ab866;
+	// Not on the Figma alert ramp — this is WordPress core's own destructive-button hover color
+	// (the editor's `isDestructive` hover state), reused here so the delete action matches it
+	// exactly rather than inventing a different darker red.
+	--fxb-sl-color-alert-red-dark: #710d0d;
+	// Solid fallback; a browser without color-mix() keeps this value — see the @supports block below.
+	--fxb-sl-color-alert-red-tint-4: rgba(204, 24, 24, 0.04);
+
+	// Theme — sourced from wp-admin at runtime, with a literal WordPress blue as the fallback.
+	--fxb-sl-color-theme: var(--wp-admin-theme-color, #2271b1);
+	// Solid fallback; a browser without color-mix() keeps this value — see the @supports block below.
+	--fxb-sl-color-theme-tint-4: rgba(34, 113, 177, 0.04);
+	// Twice the tint above, for a fill that has to stay apart from a 4% one beside it. Same solid
+	// fallback arrangement.
+	--fxb-sl-color-theme-tint-8: rgba(34, 113, 177, 0.08);
+	--fxb-sl-color-theme-tint-15: rgba(34, 113, 177, 0.15);
+	--fxb-sl-color-theme-tint-25: rgba(34, 113, 177, 0.25);
+
+	// Gray-200 at 60% alpha — AddTile's border. Solid fallback; a browser without color-mix() keeps
+	// this value — see the @supports block below.
+	--fxb-sl-color-gray-200-tint-60: rgba(224, 224, 224, 0.6);
+
+	// White at 70% alpha — the scrim laid over the app while its content is being replaced. Kept
+	// translucent rather than opaque so the frame stays visible underneath and the app reads as
+	// busy rather than as gone.
+	--fxb-sl-color-white-tint-70: rgba(255, 255, 255, 0.7);
+
+	// Spacing — Gutenberg's grid-unit scale, re-declared because core only ships it as Sass.
+	--fxb-sl-space-02: 0.125rem;
+	--fxb-sl-space-05: 0.25rem;
+	--fxb-sl-space-10: 0.5rem;
+	--fxb-sl-space-12: 0.625rem;
+	--fxb-sl-space-15: 0.75rem;
+	--fxb-sl-space-17: 0.875rem;
+	--fxb-sl-space-20: 1rem;
+	--fxb-sl-space-25: 1.25rem;
+	--fxb-sl-space-30: 1.5rem;
+	--fxb-sl-space-40: 2rem;
+	--fxb-sl-space-50: 2.5rem;
+	--fxb-sl-space-60: 3rem;
+	--fxb-sl-space-70: 3.5rem;
+
+	// Radii
+	--fxb-sl-radius-xs: 0.0625rem;
+	--fxb-sl-radius-s: 0.125rem;
+	--fxb-sl-radius-m: 0.25rem;
+	--fxb-sl-radius-l: 0.5rem;
+	// A "large enough to always round fully" sentinel, not a measurement — stays px.
+	--fxb-sl-radius-full: 999px;
+
+	// Border width — px, not rem: a hairline that scales with root font size renders as a blurry
+	// sub-pixel or a heavy line depending on zoom.
+	--fxb-sl-border-width-input: 1px;
+	--fxb-sl-border-width-input-focus: 1.5px;
+
+	// Font family — the design-system tables never covered this; extends them for `ListRow`'s
+	// monospaced value column. A degrading stack: the platform's UI-monospace font, common installed
+	// monospace fonts, then the generic `monospace` keyword as the final fallback.
+	--fxb-sl-font-family-monospace: ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+
+	// Font size — the Figma type ramp, plus one app-specific size named by pixel value.
+	--fxb-sl-font-size-xs: 0.6875rem;
+	--fxb-sl-font-size-s: 0.75rem;
+	--fxb-sl-font-size-m: 0.8125rem;
+	--fxb-sl-font-size-l: 0.9375rem;
+	--fxb-sl-font-size-xl: 1.25rem;
+	--fxb-sl-font-size-2xl: 2rem;
+	--fxb-sl-font-size-16: 1rem;
+	// `ScreenHeader`'s title. Not on the Figma ramp (11/12/13/15/20/32) — named by raw px identity,
+	// not reused from --fxb-sl-icon-size-s (also 1.125rem): that primitive is a deliberately separate
+	// scale from font-size.
+	--fxb-sl-font-size-18: 1.125rem;
+	// `SelectDropdown`'s row badges. Below the ramp's smallest step, named by raw px identity.
+	--fxb-sl-font-size-10: 0.625rem;
+	--fxb-sl-font-size-14: 0.875rem;
+	--fxb-sl-font-size-24: 1.5rem;
+
+	// Letter spacing — `em`, not rem: the value resolves where it is used, so one token tightens
+	// text in proportion to whatever font size it lands on.
+	--fxb-sl-letter-spacing-tight: -0.01em;
+
+	// Font weight. `semibold` is not on the Figma type table (Regular/Medium only) — it extends that
+	// table for the handful of places (`section-heading` in _mixins.scss) that call for a heavier
+	// weight.
+	--fxb-sl-font-weight-regular: 400;
+	--fxb-sl-font-weight-medium: 500;
+	--fxb-sl-font-weight-semibold: 600;
+
+	// Line height — the Figma px ramp.
+	--fxb-sl-line-height-xs: 1rem;
+	--fxb-sl-line-height-s: 1.25rem;
+	--fxb-sl-line-height-22: 1.375rem;
+	--fxb-sl-line-height-m: 1.5rem;
+	--fxb-sl-line-height-l: 1.75rem;
+	--fxb-sl-line-height-xl: 2rem;
+	--fxb-sl-line-height-2xl: 2.5rem;
+	// Relative multipliers so they scale with whatever font-size they're paired with.
+	--fxb-sl-line-height-ratio-snug: 1.3;
+	--fxb-sl-line-height-ratio-relaxed: 1.6;
+
+	// Layout dimensions — app-specific, not derived from any scale.
+	--fxb-sl-size-shell-min-height: 32rem;
+	--fxb-sl-size-sidebar-width: 16rem;
+	--fxb-sl-size-header-logo: 3rem;
+	--fxb-sl-size-settings-popover-width: 18rem;
+	--fxb-sl-size-actions-popover-width: 20rem;
+	--fxb-sl-size-content-max-width: 42rem;
+	--fxb-sl-size-text-max-width: 50rem;
+	--fxb-sl-size-modal-small: 24rem;
+	--fxb-sl-size-modal-medium: 32rem;
+	--fxb-sl-size-modal-large: 52.5rem;
+	// The select-dropdown control's toggle width (fixed, not a minimum) and its menu's matching
+	// min-width.
+	--fxb-sl-size-select-dropdown-width: 12rem;
+	// The menu's width cap before its items wrap. Numerically equal to --fxb-sl-size-modal-small by
+	// coincidence — stays its own token rather than pointing at the modal one.
+	--fxb-sl-size-select-dropdown-max-width: 24rem;
+	// The menu's own floor, wider than the toggle-derived width above: a row holds a label and a
+	// badge side by side, and the toggle is no longer a box the menu has to match.
+	--fxb-sl-size-select-dropdown-menu-min-width: 17.5rem;
+	// The floor for a menu item's label column, so a short label still holds the row open and the
+	// badges after it line up across rows instead of tracking each label's own width.
+	--fxb-sl-size-select-dropdown-label-min-width: 8rem;
+
+	// The preview slot's width inside a card. Height reuses --fxb-sl-space-50 directly rather than a
+	// second, numerically-identical primitive.
+	--fxb-sl-size-swatch-preview-width: 5.5rem;
+	// `SwatchCard`'s own width (read by `.swatch-card-main`) — derived as the preview's width plus
+	// its own inline padding on both sides, so a change to either can't silently drift this out of
+	// alignment.
+	--fxb-sl-size-swatch-card-width: calc(var(--fxb-sl-size-swatch-preview-width) + var(--fxb-sl-space-10) * 2);
+
+	// `ListRow`'s default preview-slot square — numerically equal to --fxb-sl-size-swatch-preview-width
+	// above by coincidence; kept as its own token since the two roles must stay free to diverge.
+	--fxb-sl-size-row-preview: 5rem;
+
+	// Icon sizes — dropdown/menu glyphs. A separate scale from font-size even though one value
+	// (20px) happens to coincide with --fxb-sl-font-size-xl: the two ramps mean different things
+	// and may diverge, so an icon never references a font-size primitive.
+	--fxb-sl-icon-size-s: 1.125rem;
+	--fxb-sl-icon-size-m: 1.25rem;
+
+	// Elevation — layered drop shadows for raised surfaces (menus, popovers). Authoritative
+	// per-layer values and order from Figma (specified as rgba(), matching exactly); each layer's
+	// alpha is a specific design decision, not derived from the alert/gray ramps.
+	--fxb-sl-shadow-elevation-m: 0 2px 3px 0 rgba(0, 0, 0, 0.05), 0 4px 5px 0 rgba(0, 0, 0, 0.04),
+		0 4px 5px 0 rgba(0, 0, 0, 0.03), 0 16px 16px 0 rgba(0, 0, 0, 0.02);
+}
+
+// A custom property mixing var() and color-mix() is valid at parse time even in browsers that
+// don't support color-mix(), so a plain two-declaration fallback can't work — it has to be
+// gated behind a real @supports check instead.
+@supports (background: color-mix(in srgb, red 10%, transparent)) {
+	.flx-blocks-style-library-root,
+	body.flx-blocks-style-library-page {
+		--fxb-sl-color-theme-tint-4: color-mix(in srgb, var(--fxb-sl-color-theme) 4%, transparent);
+		--fxb-sl-color-theme-tint-8: color-mix(in srgb, var(--fxb-sl-color-theme) 8%, transparent);
+		--fxb-sl-color-theme-tint-15: color-mix(in srgb, var(--fxb-sl-color-theme) 15%, transparent);
+		--fxb-sl-color-theme-tint-25: color-mix(in srgb, var(--fxb-sl-color-theme) 25%, transparent);
+		--fxb-sl-color-alert-red-tint-4: color-mix(in srgb, var(--fxb-sl-color-alert-red) 4%, transparent);
+		--fxb-sl-color-gray-200-tint-60: color-mix(in srgb, var(--fxb-sl-color-gray-200) 60%, transparent);
+	}
+}

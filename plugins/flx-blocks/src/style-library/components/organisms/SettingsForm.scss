@@ -1,0 +1,16 @@
+@use '../../styles/mixins' as *;
+
+.flx-blocks-style-library__settings-form-fields {
+	@include flex-column(var(--fxb-sl-space-15));
+}
+
+.flx-blocks-style-library__settings-form-untitled-panel {
+	padding: var(--fxb-sl-space-20) var(--fxb-sl-space-15);
+}
+
+// Only the outer `Panel` border is suppressed (no frame shows one). `PanelBody`'s own
+// border-top/border-bottom and its `margin-top: -1px` adjacent-section collapse are left exactly as
+// core ships them — removing either doubles the divider between sections.
+.flx-blocks-style-library__settings-form.components-panel {
+	border: none;
+}

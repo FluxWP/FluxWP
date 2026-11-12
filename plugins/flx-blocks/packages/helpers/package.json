@@ -1,0 +1,8 @@
+{
+	"name": "@flx-blocks/helpers",
+	"version": "1.1.1",
+	"private": true,
+	"license": "GPL-2.0-or-later",
+	"main": "src/index.js",
+	"dependencies": {}
+}

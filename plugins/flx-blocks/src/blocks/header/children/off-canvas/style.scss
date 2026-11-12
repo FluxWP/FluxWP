@@ -1,0 +1,141 @@
+@use "../../../../assets/css/variables" as vars;
+
+$admin-bar-height: 32px;
+$admin-bar-height-mobile: 46px;
+
+@mixin open-right-styles {
+	.fxb-off-canvas-inner-wrap {
+		transform: translateX(100%);
+		right: 0;
+		left: auto;
+	}
+}
+/* The off canvas area */
+.wp-block-flx-off-canvas {
+	position: fixed;
+	display: none;
+	top: 0;
+	bottom: 0;
+	left: -99999rem;
+	right: 99999rem;
+	transition: opacity 0.25s ease-in, left 0s 0.25s, right 0s 0.25s;
+	z-index: 100000;
+	.fxb-off-canvas-inner-wrap {
+		background-color: white;
+		max-width: 100vw;
+		transform: translateX(-100%);
+		width: 100%;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		opacity: 0;
+		position: fixed;
+		overflow: auto;
+		transition: transform 0.3s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.25s cubic-bezier(0.77, 0.2, 0.05, 1),
+			-webkit-transform 0.3s cubic-bezier(0.77, 0.2, 0.05, 1);
+	}
+	&.open-right {
+		@media (min-width: vars.$laptop-plus-query) {
+			@include open-right-styles();
+		}
+	}
+	&.open-tablet-right {
+		@media (min-width: vars.$before-tablet-plus-query) and (max-width: vars.$tablet-minus-query) {
+			@include open-right-styles();
+		}
+	}
+	&.open-mobile-right {
+		@media (max-width: vars.$phone-minus-query) {
+			@include open-right-styles();
+		}
+	}
+	.fxb-off-canvas-overlay {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity here */
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out;
+	}
+
+	.fxb-off-canvas-inner {
+		width: auto;
+		max-width: 100vw;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		padding-top: var(--fxb-nav-canvas-padding-top, var(--global-fxb-spacing-md, 2rem));
+		padding-right: var(--fxb-nav-canvas-padding-right, var(--global-fxb-spacing-md, 2rem));
+		padding-bottom: var(--fxb-nav-canvas-padding-bottom, var(--global-fxb-spacing-md, 2rem));
+		padding-left: var(--fxb-nav-canvas-padding-left, var(--global-fxb-spacing-md, 2rem));
+		> .wp-block-flx-column {
+			min-height: unset;
+		}
+	}
+	&.show-off-canvas {
+		display: block;
+	}
+	&.active {
+		left: 0;
+		opacity: 1;
+		right: 0;
+		transition: opacity 0.25s ease-out;
+		.fxb-off-canvas-inner-wrap {
+			opacity: 1;
+			transform: translateX(0%);
+		}
+		.fxb-off-canvas-overlay {
+			opacity: 1;
+			cursor: pointer;
+		}
+	}
+
+	.fxb-off-canvas-close {
+		margin: 0;
+		padding: 0.5rem;
+		color: currentColor;
+		border-radius: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		z-index: 100000;
+		display: inline-flex;
+		align-items: center;
+		-webkit-appearance: none;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		box-shadow: none;
+		&:hover,
+		&:focus-visible {
+			color: initial;
+			background: none;
+			box-shadow: none;
+		}
+	}
+}
+
+//admin bar top adjustment
+body.admin-bar .wp-block-flx-off-canvas,
+body.admin-bar .fxb-off-canvas-overlay,
+body.admin-bar .fxb-off-canvas-inner-wrap {
+	top: $admin-bar-height-mobile;
+
+	@media screen and (min-width: 783px) {
+		top: $admin-bar-height;
+	}
+}
+
+body.fxb-modal-open {
+	overflow: hidden;
+}
+
+.fxb-scrollbar-fixer {
+	margin-right: var(--fxb-scrollbar-offset, unset);
+	.item-is-fixed {
+		right: var(--fxb-scrollbar-offset, 0);
+	}
+}

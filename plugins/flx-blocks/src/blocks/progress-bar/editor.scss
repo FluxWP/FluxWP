@@ -1,0 +1,70 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.block-editor-block-list__block[data-type="flx/progress-bar"] {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+//fix for core stlye forcing non-aligned progress bars centered in the editor
+.editor-styles-wrapper :where(:not(.is-layout-flex, .is-layout-grid)) > .fxb-progress-bar-align,
+.block-editor-block-list__layout.is-root-container > .fxb-progress-bar-align {
+	margin-left: initial;
+	margin-right: initial;
+}
+
+.fxb-progress-bar-alignleft {
+	float: left;
+}
+
+.fxb-progress-bar-alignright {
+	float: right;
+}
+
+.fxb-progress-bar-aligncenter {
+	.fxb-progress-bar {
+		margin: 0 auto;
+	}
+}
+
+.fxb-progress-label-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3em 0.5em;
+}
+
+.fxb-progress-bar-type-line .fxt-progress-label-inside,
+.fxb-progress-bar-type-line-mask .fxt-progress-label-inside {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-55%);
+}
+
+.fxb-progress-bar-type-circle .fxt-progress-label-inside {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.fxb-progress-bar-type-semicircle .fxt-progress-label-inside {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.fxb-progress-bar-type-line-mask {
+	.fxb-progress-bar {
+		height: 80px;
+		max-width: 100%;
+
+		& > svg {
+			height: 100%;
+			width: 100%;
+		}
+	}
+}

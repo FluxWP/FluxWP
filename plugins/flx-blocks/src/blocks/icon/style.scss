@@ -1,0 +1,61 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+// Old keep for backward compatablity.
+.fxt-svg-style-stacked .fxt-svg-icon {
+	border: 0px solid var(--global-palette5, #444444);
+	transition: all 0.3s ease-in-out;
+}
+.wp-block-flx-icon,
+.wp-block-flx-icon.aligncenter:not(.specificity) {
+	display: flex;
+	gap: 0.2em;
+	align-items: center;
+	justify-content: center;
+}
+.fxt-svg-style-stacked .fxb-svg-icon-wrap {
+	border: 2px solid var(--global-palette5, #444444);
+	transition: all 0.3s ease-in-out;
+	padding: 20px;
+}
+.fxt-svg-icon-wrap {
+	display: flex;
+	a.fxt-svg-icon-link {
+		display: flex;
+		border: 0;
+		text-decoration: none;
+		box-shadow: none;
+		&:hover {
+			box-shadow: none;
+		}
+	}
+}
+.fxt-svg-icon-wrap a.fxt-svg-icon-link.fxb-icon-tooltip-border {
+	border-bottom: 1px dashed currentColor;
+}
+.fxt-svg-icon-wrap .fxb-icon-tooltip-border {
+	border-bottom: 1px dashed currentColor;
+}
+.fxb-icon-valign-top {
+	align-items: flex-start;
+}
+.fxb-icon-valign-middle,
+.fxb-icon-valign-center {
+	align-items: center;
+}
+.fxb-icon-valign-bottom {
+	align-items: flex-end;
+}
+.fxb-svg-icon-wrap {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	border-width: 0;
+
+	svg {
+		width: 1em;
+		height: 1em;
+	}
+}

@@ -1,0 +1,1 @@
+(()=>{"use strict";const s=window.flxbk.icons;wp&&wp.blocks&&wp.blocks.updateCategory("flx-blocks",{icon:s.flxbkCatNewIcon}),(this.flxbk=this.flxbk||{})["extension-flxbk-base"]={}})();

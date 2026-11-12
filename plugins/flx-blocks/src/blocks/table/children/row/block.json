@@ -1,0 +1,53 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "flx/table-row",
+	"title": "Table (Adv)",
+	"parent": [ "flx/table" ],
+	"allowedBlocks": [ "flx/table-data" ],
+	"category": "flx-blocks",
+	"textdomain": "flx-blocks",
+	"attributes": {
+		"uniqueID": {
+			"type": "string"
+		},
+		"row": {
+			"type": "number"
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundHoverColor": {
+			"type": "string",
+			"default": ""
+		},
+		"minHeight": {
+			"type": "number",
+			"default": ""
+		},
+		"minHeightTablet": {
+			"type": "number",
+			"default": ""
+		},
+		"minHeightMobile": {
+			"type": "number",
+			"default": ""
+		},
+		"minHeightType": {
+			"type": "string",
+			"default": "px"
+		}
+	},
+	"usesContext": [
+		"flx/table/columns",
+		"flx/table/isFirstRowHeader"
+	],
+	"providesContext": {
+		"flx/table/parentRow": "row",
+		"flx/table/isFirstRowHeader": "flx/table/isFirstRowHeader"
+	},
+	"supports": {
+		"fxbMetadata": true
+	}
+}
