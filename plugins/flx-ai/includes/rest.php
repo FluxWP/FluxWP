@@ -135,7 +135,8 @@ function flxai_rest_chat_send( WP_REST_Request $req ) {
 		$c['model'] = sanitize_text_field( (string) $req->get_param( 'model' ) );
 	}
 	$since = $id ? (int) $req->get_param( 'since' ) : 0;
-	$res   = flxai_agent_send( $c, (string) $req->get_param( 'text' ), (array) $req->get_param( 'page' ) );
+	$files = flxai_attach_for_message( array_map( 'strval', (array) $req->get_param( 'files' ) ), array_map( 'strval', (array) $req->get_param( 'names' ) ), (int) $c['user_id'] );
+	$res   = flxai_agent_send( $c, (string) $req->get_param( 'text' ), (array) $req->get_param( 'page' ), $files );
 	return is_wp_error( $res ) ? $res : flxai_rest_result( $res, $since );
 }
 

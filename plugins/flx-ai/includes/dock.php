@@ -115,6 +115,8 @@ function flxai_dock_enqueue() {
 			'widgets'     => (bool) flxai_setting( 'chat_widgets', 1 ),
 			'mermaid'     => FLXAI_URL . 'assets/vendor/mermaid/mermaid.min.js?ver=12.2.0',
 			'i18n'        => flxai_js_strings(),
+			'accept'      => '.' . implode( ',.', array_keys( flxai_attach_types() ) ),
+			'maxBytes'    => flxai_attach_max_bytes(),
 		)
 	);
 }

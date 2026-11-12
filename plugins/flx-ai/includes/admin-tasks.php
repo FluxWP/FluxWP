@@ -38,6 +38,13 @@ add_action(
 					'prompt'   => (string) ( $post['prompt'] ?? '' ),
 					'status'   => empty( $post['active'] ) ? 'paused' : 'active',
 					'schedule' => $sched,
+					'skill'    => (string) ( $post['skill'] ?? '' ),
+					'notify'   => array(
+						'mode'     => sanitize_key( $post['notify'] ?? 'none' ),
+						'email'    => ! empty( $post['notify_email'] ),
+						'panel'    => ! empty( $post['notify_panel'] ),
+						'whatsapp' => ! empty( $post['notify_wa'] ) ? (string) ( $post['notify_whatsapp'] ?? '' ) : '',
+					),
 				),
 				$id
 			);
@@ -138,16 +145,21 @@ function flxai_page_tasks() {
 	foreach ( $active as $t ) {
 		$next = $t['next_run'] && ( ! $next || $t['next_run'] < $next ) ? $t['next_run'] : $next;
 	}
-	$wait = count( array_filter( $tasks, fn( $t ) => 'approval' === $t['last_state'] ) );
+	$wait   = flxai_approvals_count();
+	$unread = flxai_tasks_unread();
 	$tick = (int) get_option( 'flxai_tasks_tick', 0 );
 
 	echo '<div class="flxai-kpis flxai-tools-kpis">';
 	flxai_kpi( __( 'Active', 'flx-ai' ), number_format_i18n( count( $active ) ), sprintf( /* translators: %s: number of tasks */ __( '%s in total', 'flx-ai' ), number_format_i18n( count( $tasks ) ) ) );
 	flxai_kpi( __( 'Next run', 'flx-ai' ), $next ? flx_date( $next, 'H:i' ) : '—', $next ? flx_date( $next, 'j F Y' ) : '' );
-	flxai_kpi( __( 'Awaiting approval', 'flx-ai' ), number_format_i18n( $wait ), __( 'Open the task chat to approve', 'flx-ai' ), null, $wait > 0 );
+	flxai_kpi( __( 'Awaiting approval', 'flx-ai' ), number_format_i18n( $wait ), __( 'Across all your chats and tasks', 'flx-ai' ), null, $wait > 0 );
 	flxai_kpi( __( 'Last check', 'flx-ai' ), $tick ? flx_time_ago( $tick ) : '—', $on ? __( 'Checked every 5 minutes', 'flx-ai' ) : __( 'Tasks are turned off', 'flx-ai' ), null, ! $on );
 	echo '</div>';
 
+	if ( $wait ) {
+		/* translators: %s: number of actions */
+		echo '<div class="notice notice-warning inline flxai-appr-notice"><p>' . esc_html( sprintf( __( '%s actions are waiting for your approval.', 'flx-ai' ), number_format_i18n( $wait ) ) ) . ' <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-approvals' ) ) . '">' . esc_html__( 'Review approvals', 'flx-ai' ) . '</a></p></div>';
+	}
 	echo '<section class="flxai-card flxai-tasks">';
 	echo '<div class="flxai-bill-head"><h2>' . esc_html__( 'Tasks', 'flx-ai' ) . '</h2><div class="flxai-tasks-acts">';
 	echo '<form method="post" class="flxai-inline">';
@@ -177,6 +189,12 @@ function flxai_page_tasks() {
 		$chat  = flxai_task_chat_url( $t );
 		echo '<tr' . ( 'error' === $t['last_state'] ? ' class="is-err"' : '' ) . '>';
 		echo '<td data-l="' . esc_attr__( 'Task', 'flx-ai' ) . '"><strong>' . esc_html( $t['title'] ) . '</strong> ' . flxai_task_state_pill( $t ); // phpcs:ignore WordPress.Security.EscapeOutput
+		if ( isset( $unread[ $t['id'] ] ) ) {
+			echo ' <span class="flxai-pill is-new">' . esc_html__( 'New report', 'flx-ai' ) . '</span>';
+		}
+		if ( ! empty( $t['meta']['skill'] ) ) {
+			echo ' <code class="flxai-skill-slug">/' . esc_html( $t['meta']['skill'] ) . '</code>';
+		}
 		echo '<div class="flxai-desc">' . esc_html( wp_trim_words( $t['prompt'], 24, '…' ) ) . '</div>';
 		if ( $owner && (int) $owner->ID !== get_current_user_id() ) {
 			/* translators: %s: user name */
@@ -235,6 +253,13 @@ function flxai_task_form( $t ) {
 	echo '<tr><th><label for="flxai-task-title">' . esc_html__( 'Name', 'flx-ai' ) . '</label></th><td><input id="flxai-task-title" name="title" type="text" class="regular-text" maxlength="190" value="' . esc_attr( $t ? $t['title'] : '' ) . '" placeholder="' . esc_attr__( 'Daily AI briefing', 'flx-ai' ) . '"></td></tr>';
 	echo '<tr><th><label for="flxai-task-prompt">' . esc_html__( 'Instructions', 'flx-ai' ) . '</label></th><td><textarea id="flxai-task-prompt" name="prompt" rows="7" class="large-text" required placeholder="' . esc_attr__( 'Summarise yesterday\'s donations, unanswered messages and site issues. Keep it short, with headings.', 'flx-ai' ) . '">' . esc_textarea( $t ? $t['prompt'] : '' ) . '</textarea>';
 	echo '<p class="description">' . esc_html__( 'Written to the assistant as if you sent it in the chat. It uses the same tools (CRM, Donate, SEO, Speed…) with your permissions.', 'flx-ai' ) . '</p></td></tr>';
+	$cur = (string) ( $t['meta']['skill'] ?? '' );
+	echo '<tr><th><label for="flxai-task-skill">' . esc_html__( 'Skill', 'flx-ai' ) . '</label></th><td><select id="flxai-task-skill" name="skill"><option value="">' . esc_html__( 'None', 'flx-ai' ) . '</option>';
+	foreach ( flxai_skills_all() as $sk ) {
+		printf( '<option value="%1$s"%2$s>%3$s</option>', esc_attr( $sk['slug'] ), selected( $cur, $sk['slug'], false ), esc_html( $sk['name'] . ( 'active' !== $sk['status'] ? ' (' . __( 'Off', 'flx-ai' ) . ')' : '' ) ) );
+	}
+	echo '</select> <a href="' . esc_url( admin_url( 'admin.php?page=flx-ai-skills' ) ) . '">' . esc_html__( 'Skills', 'flx-ai' ) . '</a>';
+	echo '<p class="description">' . esc_html__( 'The skill\'s instructions are added on every run, always in their latest version. The instructions above can stay short (e.g. "only donations").', 'flx-ai' ) . '</p></td></tr>';
 
 	$freqs = array(
 		'daily'    => __( 'Every day', 'flx-ai' ),
@@ -264,6 +289,44 @@ function flxai_task_form( $t ) {
 	echo '<p class="description">' . esc_html( sprintf( __( 'Site time zone: %s.', 'flx-ai' ), wp_timezone_string() ) ) . '</p></td></tr>';
 	echo '<tr data-for="once"><th><label for="flxai-task-at">' . esc_html__( 'Date and time', 'flx-ai' ) . '</label></th><td><input id="flxai-task-at" name="at" type="datetime-local" data-flxa-native value="' . esc_attr( str_replace( ' ', 'T', (string) ( $s['at'] ?? '' ) ) ) . '"></td></tr>';
 	echo '<tr><th>' . esc_html__( 'Status', 'flx-ai' ) . '</th><td><label class="flxai-check"><input type="checkbox" name="active" value="1"' . checked( ! $t || 'active' === $t['status'], true, false ) . '> ' . esc_html__( 'Active', 'flx-ai' ) . '</label></td></tr>';
+	$n = $t ? flxai_task_notify_cfg( $t ) : array(
+		'mode'     => 'important',
+		'email'    => false,
+		'panel'    => true,
+		'whatsapp' => '',
+	);
+	echo '<tr><th><label for="flxai-task-notify">' . esc_html__( 'Notify me', 'flx-ai' ) . '</label></th><td><select id="flxai-task-notify" name="notify">';
+	foreach ( array(
+		'important' => __( 'Only when something important comes up', 'flx-ai' ),
+		'always'    => __( 'After every run', 'flx-ai' ),
+		'none'      => __( 'Never', 'flx-ai' ),
+	) as $k => $l ) {
+		printf( '<option value="%1$s"%2$s>%3$s</option>', esc_attr( $k ), selected( $n['mode'], $k, false ), esc_html( $l ) );
+	}
+	echo '</select><p class="description">' . esc_html__( '"Important": the assistant decides there is something you should know now, an action waits for your approval, or the task failed.', 'flx-ai' ) . '</p>';
+	$owner = $t ? get_userdata( $t['user_id'] ) : wp_get_current_user();
+	echo '<div class="flxai-notify-ch" data-for-notify>';
+	/* translators: %s: e-mail address */
+	echo '<label class="flxai-check"><input type="checkbox" name="notify_panel" value="1"' . checked( $n['panel'], true, false ) . '> ' . esc_html__( 'In the admin panel (badge on the menu)', 'flx-ai' ) . '</label>';
+	echo '<label class="flxai-check"><input type="checkbox" name="notify_email" value="1"' . checked( $n['email'], true, false ) . '> ' . esc_html( sprintf( __( 'By e-mail (%s)', 'flx-ai' ), $owner ? $owner->user_email : '' ) ) . '</label>';
+	$wa_ok = function_exists( 'flxi_send_message' );
+	echo '<label class="flxai-check"><input type="checkbox" name="notify_wa" value="1"' . checked( '' !== $n['whatsapp'], true, false ) . disabled( ! $wa_ok, true, false ) . '> ' . esc_html__( 'By WhatsApp', 'flx-ai' ) . '</label>';
+	if ( $wa_ok ) {
+		if ( function_exists( 'flx_phone_field' ) ) {
+			echo flx_phone_field( // phpcs:ignore WordPress.Security.EscapeOutput
+				array(
+					'name'  => 'notify_whatsapp',
+					'value' => '' !== $n['whatsapp'] ? '+' . $n['whatsapp'] : '',
+					'id'    => 'flxai-task-wa',
+				)
+			);
+		} else {
+			echo '<input id="flxai-task-wa" name="notify_whatsapp" type="tel" class="regular-text" value="' . esc_attr( $n['whatsapp'] ) . '" placeholder="905321234567">';
+		}
+	} else {
+		echo '<p class="description">' . esc_html__( 'WhatsApp needs Flux Mail with a WhatsApp connection.', 'flx-ai' ) . '</p>';
+	}
+	echo '</div></td></tr>';
 	echo '</table>';
 	echo '<p class="submit"><button type="submit" class="button button-primary">' . esc_html__( 'Save', 'flx-ai' ) . '</button> <a class="button" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-tasks' ) ) . '">' . esc_html__( 'Cancel', 'flx-ai' ) . '</a></p>';
 	echo '</form>';
@@ -335,6 +398,7 @@ function flxai_task_run_timeline( array $msgs ) {
 
 /** Görevin çalışma geçmişi. */
 function flxai_task_history_page( array $t ) {
+	flxai_task_mark_read( $t['id'] );
 	$back = admin_url( 'admin.php?page=flx-ai-tasks' );
 	/* translators: %s: task name */
 	flxai_page_head( sprintf( __( 'History: %s', 'flx-ai' ), $t['title'] ), flxai_task_schedule_label( $t['schedule'] ) );
@@ -394,6 +458,15 @@ function flxai_task_history_page( array $t ) {
 		if ( ! empty( $h['cost'] ) ) {
 			echo '<span>' . esc_html( flxai_usd( (float) $h['cost'] ) ) . '</span>';
 		}
+		if ( ! empty( $h['notified'] ) ) {
+			$chn = array(
+				'email'    => __( 'e-mail', 'flx-ai' ),
+				'whatsapp' => 'WhatsApp',
+				'panel'    => __( 'panel', 'flx-ai' ),
+			);
+			/* translators: %s: notification channels */
+			echo '<span>🔔 ' . esc_html( sprintf( __( 'Notified: %s', 'flx-ai' ), implode( ', ', array_map( fn( $c ) => $chn[ $c ] ?? $c, (array) $h['notified'] ) ) ) ) . '</span>';
+		}
 		echo '</span></summary><div class="flxai-run-body">';
 		if ( ! empty( $h['error'] ) ) {
 			echo '<div class="flxai-err">' . esc_html( (string) $h['error'] ) . '</div>';
@@ -401,7 +474,11 @@ function flxai_task_history_page( array $t ) {
 		if ( $msgs ) {
 			flxai_task_run_timeline( $msgs );
 			$url = add_query_arg( 'flxai_chat', $cid, admin_url( 'admin.php?page=flx-ai-tasks&history=' . $t['id'] ) );
-			echo '<p class="flxai-run-foot"><a href="' . esc_url( $url ) . '">' . esc_html__( 'Continue in the AI chat', 'flx-ai' ) . '</a></p>';
+			echo '<p class="flxai-run-foot">';
+			if ( $chat && 'approval' === $chat['status'] && 0 === $i ) {
+				echo '<a class="button button-primary button-small" href="' . esc_url( admin_url( 'admin.php?page=flx-ai-approvals' ) ) . '">' . esc_html__( 'Review approvals', 'flx-ai' ) . '</a> ';
+			}
+			echo '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Continue in the AI chat', 'flx-ai' ) . '</a></p>';
 		} elseif ( 'waiting' === ( $h['state'] ?? '' ) ) {
 			echo '<p class="flxai-note">' . esc_html__( 'The previous run still had an action waiting for approval, so this run was skipped.', 'flx-ai' ) . '</p>';
 		} else {

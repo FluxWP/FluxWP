@@ -1818,3 +1818,324 @@ msgstr "Bu çalışmanın ayrıntısı saklanmadı."
 
 msgid "Tools: %s"
 msgstr "Araç: %s"
+
+msgid "\"Important\": the assistant decides there is something you should know now, an action waits for your approval, or the task failed."
+msgstr "\"Önemli\": asistan şu an bilmeniz gereken bir şey olduğuna karar verirse, bir işlem onayınızı bekliyorsa ya da görev hata verirse."
+
+msgid "%s actions are waiting for your approval."
+msgstr "%s işlem onayınızı bekliyor."
+
+msgid "A skill named \"%s\" already exists."
+msgstr "\"%s\" adlı bir skill zaten var."
+
+msgid "AI task report"
+msgstr "AI görev raporu"
+
+msgid "AI task: %s"
+msgstr "AI görevi: %s"
+
+msgid "AI task: {gorev}"
+msgstr "AI görevi: {gorev}"
+
+msgid "Across all your chats and tasks"
+msgstr "Tüm sohbet ve görevlerinizde"
+
+msgid "Actions the assistant prepared in your chats and scheduled tasks. Nothing changes on the site until you approve. You can edit the input before approving."
+msgstr "Asistanın sohbetlerinizde ve zamanlanmış görevlerde hazırladığı işlemler. Siz onaylamadan sitede hiçbir şey değişmez. Onaylamadan önce girdiyi düzenleyebilirsiniz."
+
+msgid "After every run"
+msgstr "Her çalışmadan sonra"
+
+msgid "An action is waiting for your approval."
+msgstr "Bir işlem onayınızı bekliyor."
+
+msgid "Approve with changes"
+msgstr "Değişikliklerle onayla"
+
+msgid "Approved and done. The assistant's reply is in the chat."
+msgstr "Onaylandı ve yapıldı. Asistanın cevabı sohbette."
+
+msgid "Approved. The assistant is still working; open the chat to follow."
+msgstr "Onaylandı. Asistan hâlâ çalışıyor; takip etmek için sohbeti açın."
+
+msgid "By WhatsApp"
+msgstr "WhatsApp ile"
+
+msgid "By e-mail (%s)"
+msgstr "E-postayla (%s)"
+
+msgid "Change the values (JSON) and approve; the action runs with your version."
+msgstr "Değerleri (JSON) değiştirip onaylayın; işlem sizin halinizle çalışır."
+
+msgid "Checks system checks, speed and SEO audit results; reports only what changed or needs action."
+msgstr "Sistem kontrolü, hız ve SEO denetimi sonuçlarına bakar; yalnız değişeni ve yapılması gerekeni bildirir."
+
+msgid "Comma separated tool names (see Tools). A hint for the assistant, not a restriction."
+msgstr "Virgülle ayrılmış araç adları (bkz. Araçlar). Asistana ipucudur, kısıtlama değildir."
+
+msgid "Create or update a skill"
+msgstr "Skill oluştur ya da güncelle"
+
+msgid "Daily briefing"
+msgstr "Günlük brifing"
+
+msgid "Delete a skill"
+msgstr "Skill sil"
+
+msgid "Delete the skill \"%s\"? Tasks that use it will run without it."
+msgstr "\"%s\" skill'i silinsin mi? Onu kullanan görevler skill'siz çalışır."
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Donor review"
+msgstr "Bağışçı incelemesi"
+
+msgid "Edit and approve"
+msgstr "Düzenleyip onayla"
+
+msgid "Edit skill"
+msgstr "Skill'i düzenle"
+
+msgid "Edited"
+msgstr "Düzenlendi"
+
+msgid "Example output"
+msgstr "Örnek çıktı"
+
+msgid "Export"
+msgstr "Dışa aktar"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "Give the skill a name."
+msgstr "Skill'e bir ad verin."
+
+msgid "Import"
+msgstr "İçe aktar"
+
+msgid "Import SKILL.md"
+msgstr "SKILL.md içe aktar"
+
+msgid "In the admin panel (badge on the menu)"
+msgstr "Yönetim panelinde (menüde rozet)"
+
+msgid "List skills"
+msgstr "Skill'leri listele"
+
+msgid "Lowercase letters, numbers and dashes. Used in chat as /short-name and by tasks. Left empty, it is made from the name."
+msgstr "Küçük harf, rakam ve tire. Sohbette /kısa-ad olarak ve görevlerde kullanılır. Boş bırakılırsa addan oluşturulur."
+
+msgid "Markdown. Step by step: what to look at, which tools to use, how the result should look."
+msgstr "Markdown. Adım adım: neye bakılacak, hangi araçlar kullanılacak, sonuç nasıl görünecek."
+
+msgid "Named instruction packs the assistant follows: a daily briefing, a donor review, an ad draft. Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version."
+msgstr "Asistanın uyduğu adlı talimat paketleri: günlük brifing, bağışçı incelemesi, reklam taslağı. Sohbetler ve zamanlanmış görevler bunları adıyla kullanır; skill'i bir kez düzenleyin, onu kullanan tüm görevler yeni hali izler."
+
+msgid "Never"
+msgstr "Hiçbir zaman"
+
+msgid "New report"
+msgstr "Yeni rapor"
+
+msgid "New skill"
+msgstr "Yeni skill"
+
+msgid "Nothing is waiting for approval."
+msgstr "Onay bekleyen bir şey yok."
+
+msgid "Notified: %s"
+msgstr "Bildirildi: %s"
+
+msgid "Notify me"
+msgstr "Bana bildir"
+
+msgid "Notify the task owner"
+msgstr "Görev sahibine bildir"
+
+msgid "One sentence on when to use it. The assistant picks skills by this."
+msgstr "Ne zaman kullanılacağı, tek cümle. Asistan skill'i buna bakarak seçer."
+
+msgid "Only when something important comes up"
+msgstr "Yalnız önemli bir şey olunca"
+
+msgid "Open in chat"
+msgstr "Sohbette aç"
+
+msgid "Open the report"
+msgstr "Raporu aç"
+
+msgid "Read a skill"
+msgstr "Skill'i oku"
+
+msgid "Rejected; nothing was changed."
+msgstr "Reddedildi; hiçbir şey değişmedi."
+
+msgid "Report link"
+msgstr "Rapor bağlantısı"
+
+msgid "Report summary"
+msgstr "Rapor özeti"
+
+msgid "Reset"
+msgstr "Varsayılana dön"
+
+msgid "Reset \"%s\" to the version its plugin ships? Your changes are lost."
+msgstr "\"%s\" eklentinin getirdiği haline dönsün mü? Değişiklikleriniz silinir."
+
+msgid "Review approvals"
+msgstr "Onayları incele"
+
+msgid "Sent to the task owner when a scheduled AI task has something to report."
+msgstr "Zamanlanmış AI görevinin bildirecek bir şeyi olunca görev sahibine gider."
+
+msgid "Short morning report: yesterday's donations and orders, unanswered messages, site issues and what needs you today."
+msgstr "Kısa sabah raporu: dünkü bağış ve siparişler, cevapsız mesajlar, site sorunları ve bugün size düşen işler."
+
+msgid "Short name"
+msgstr "Kısa ad"
+
+msgid "Site health check"
+msgstr "Site sağlığı incelemesi"
+
+msgid "Skill"
+msgstr "Skill"
+
+msgid "Skill deleted."
+msgstr "Skill silindi."
+
+msgid "Skill imported."
+msgstr "Skill içe aktarıldı."
+
+msgid "Skill not found."
+msgstr "Skill bulunamadı."
+
+msgid "Skill not found: %s"
+msgstr "Skill bulunamadı: %s"
+
+msgid "Skill reset to the version its plugin ships."
+msgstr "Skill, eklentinin getirdiği haline döndü."
+
+msgid "Skills"
+msgstr "Skill'ler"
+
+msgid "Suggested tools"
+msgstr "Önerilen araçlar"
+
+msgid "Task name"
+msgstr "Görev adı"
+
+msgid "Tasks: %s"
+msgstr "Görev: %s"
+
+msgid "The input is not valid JSON; nothing was run."
+msgstr "Girdi geçerli JSON değil; hiçbir şey çalıştırılmadı."
+
+msgid "The skill's instructions are added on every run, always in their latest version. The instructions above can stay short (e.g. \"only donations\")."
+msgstr "Skill'in talimatı her çalışmada, hep son haliyle eklenir. Yukarıdaki talimat kısa kalabilir (ör. \"yalnız bağışlar\")."
+
+msgid "The task could not finish: %s"
+msgstr "Görev tamamlanamadı: %s"
+
+msgid "This action is no longer waiting for approval."
+msgstr "Bu işlem artık onay beklemiyor."
+
+msgid "This does not look like a SKILL.md file (it must start with a --- header)."
+msgstr "Bu bir SKILL.md dosyasına benzemiyor (--- başlığıyla başlamalı)."
+
+msgid "This site"
+msgstr "Bu site"
+
+msgid "This skill comes with %s. Your edits are kept on this site; \"Reset\" brings back the original."
+msgstr "Bu skill %s ile geliyor. Değişiklikleriniz bu sitede saklanır; \"Varsayılana dön\" aslını geri getirir."
+
+msgid "This tool only works while a scheduled task is running."
+msgstr "Bu araç yalnız zamanlanmış görev çalışırken kullanılır."
+
+msgid "Tip: start a chat message with /name to use a skill, e.g. \"/gunluk-brifing only donations\". Plugins can ship ready skills with the flxai_skills filter."
+msgstr "İpucu: sohbette mesajı /ad ile başlatarak skill kullanın, ör. \"/gunluk-brifing yalnız bağışlar\". Eklentiler flxai_skills filtresiyle hazır skill getirebilir."
+
+msgid "Turn off"
+msgstr "Kapat"
+
+msgid "Upload a SKILL.md file or paste its content. A skill with the same name is updated."
+msgstr "Bir SKILL.md dosyası yükleyin ya da içeriğini yapıştırın. Aynı adlı skill güncellenir."
+
+msgid "WhatsApp needs Flux Mail with a WhatsApp connection."
+msgstr "WhatsApp için Flux Mail ve bir WhatsApp bağlantısı gerekir."
+
+msgid "When the assistant or a scheduled task wants to change something (create a draft, update a setting, send a message), it appears here."
+msgstr "Asistan ya da zamanlanmış bir görev bir şeyi değiştirmek istediğinde (taslak oluşturma, ayar güncelleme, mesaj gönderme) burada görünür."
+
+msgid "Write the skill instructions."
+msgstr "Skill talimatını yazın."
+
+msgid "Yesterday: 12 donations, 4,350 TL in total. 2 receipts are waiting for approval."
+msgstr "Dün: 12 bağış, toplam 4.350 TL. 2 dekont onay bekliyor."
+
+msgid "e-mail"
+msgstr "e-posta"
+
+msgid "or paste"
+msgstr "ya da yapıştırın"
+
+msgid "panel"
+msgstr "panel"
+
+msgid "v%s"
+msgstr "sürüm %s"
+
+msgid "%s is too large."
+msgstr "%s çok büyük."
+
+msgid "Ask anything or give the assistant a job…"
+msgstr "Bir şey sorun ya da asistana bir iş verin…"
+
+msgid "Attach file"
+msgstr "Dosya ekle"
+
+msgid "Create a scheduled task: every morning at 9, "
+msgstr "Zamanlanmış görev oluştur: her sabah 9'da, "
+
+msgid "Create a skill that "
+msgstr "Şunu yapan bir skill oluştur: "
+
+msgid "Dictate"
+msgstr "Sesle yaz"
+
+msgid "Enter to send · Shift+Enter for a new line"
+msgstr "Göndermek için Enter · yeni satır için Shift+Enter"
+
+msgid "File not found."
+msgstr "Dosya bulunamadı."
+
+msgid "Hi %s, what shall we do today?"
+msgstr "Merhaba %s, bugün ne yapalım?"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Microphone permission was not given."
+msgstr "Mikrofon izni verilmedi."
+
+msgid "Schedule a task"
+msgstr "Görev zamanla"
+
+msgid "The file could not be uploaded."
+msgstr "Dosya yüklenemedi."
+
+msgid "The file is too large (max %s)."
+msgstr "Dosya çok büyük (en fazla %s)."
+
+msgid "The image could not be read."
+msgstr "Görsel okunamadı."
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr "Bu dosya türü desteklenmiyor. İzin verilenler: %s"
+
+msgid "What shall we do today?"
+msgstr "Bugün ne yapalım?"
+
+msgid "You can attach up to %s files."
+msgstr "En fazla %s dosya eklenebilir."

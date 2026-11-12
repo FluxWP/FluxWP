@@ -1818,3 +1818,324 @@ msgstr "No details were kept for this run."
 
 msgid "Tools: %s"
 msgstr "Tools: %s"
+
+msgid "\"Important\": the assistant decides there is something you should know now, an action waits for your approval, or the task failed."
+msgstr "\"Important\": the assistant decides there is something you should know now, an action waits for your approval, or the task failed."
+
+msgid "%s actions are waiting for your approval."
+msgstr "%s actions are waiting for your approval."
+
+msgid "A skill named \"%s\" already exists."
+msgstr "A skill named \"%s\" already exists."
+
+msgid "AI task report"
+msgstr "AI task report"
+
+msgid "AI task: %s"
+msgstr "AI task: %s"
+
+msgid "AI task: {gorev}"
+msgstr "AI task: {gorev}"
+
+msgid "Across all your chats and tasks"
+msgstr "Across all your chats and tasks"
+
+msgid "Actions the assistant prepared in your chats and scheduled tasks. Nothing changes on the site until you approve. You can edit the input before approving."
+msgstr "Actions the assistant prepared in your chats and scheduled tasks. Nothing changes on the site until you approve. You can edit the input before approving."
+
+msgid "After every run"
+msgstr "After every run"
+
+msgid "An action is waiting for your approval."
+msgstr "An action is waiting for your approval."
+
+msgid "Approve with changes"
+msgstr "Approve with changes"
+
+msgid "Approved and done. The assistant's reply is in the chat."
+msgstr "Approved and done. The assistant's reply is in the chat."
+
+msgid "Approved. The assistant is still working; open the chat to follow."
+msgstr "Approved. The assistant is still working; open the chat to follow."
+
+msgid "By WhatsApp"
+msgstr "By WhatsApp"
+
+msgid "By e-mail (%s)"
+msgstr "By e-mail (%s)"
+
+msgid "Change the values (JSON) and approve; the action runs with your version."
+msgstr "Change the values (JSON) and approve; the action runs with your version."
+
+msgid "Checks system checks, speed and SEO audit results; reports only what changed or needs action."
+msgstr "Checks system checks, speed and SEO audit results; reports only what changed or needs action."
+
+msgid "Comma separated tool names (see Tools). A hint for the assistant, not a restriction."
+msgstr "Comma separated tool names (see Tools). A hint for the assistant, not a restriction."
+
+msgid "Create or update a skill"
+msgstr "Create or update a skill"
+
+msgid "Daily briefing"
+msgstr "Daily briefing"
+
+msgid "Delete a skill"
+msgstr "Delete a skill"
+
+msgid "Delete the skill \"%s\"? Tasks that use it will run without it."
+msgstr "Delete the skill \"%s\"? Tasks that use it will run without it."
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Donor review"
+msgstr "Donor review"
+
+msgid "Edit and approve"
+msgstr "Edit and approve"
+
+msgid "Edit skill"
+msgstr "Edit skill"
+
+msgid "Edited"
+msgstr "Edited"
+
+msgid "Example output"
+msgstr "Example output"
+
+msgid "Export"
+msgstr "Export"
+
+msgid "File"
+msgstr "File"
+
+msgid "Give the skill a name."
+msgstr "Give the skill a name."
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Import SKILL.md"
+msgstr "Import SKILL.md"
+
+msgid "In the admin panel (badge on the menu)"
+msgstr "In the admin panel (badge on the menu)"
+
+msgid "List skills"
+msgstr "List skills"
+
+msgid "Lowercase letters, numbers and dashes. Used in chat as /short-name and by tasks. Left empty, it is made from the name."
+msgstr "Lowercase letters, numbers and dashes. Used in chat as /short-name and by tasks. Left empty, it is made from the name."
+
+msgid "Markdown. Step by step: what to look at, which tools to use, how the result should look."
+msgstr "Markdown. Step by step: what to look at, which tools to use, how the result should look."
+
+msgid "Named instruction packs the assistant follows: a daily briefing, a donor review, an ad draft. Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version."
+msgstr "Named instruction packs the assistant follows: a daily briefing, a donor review, an ad draft. Chats and scheduled tasks use them by name; edit a skill once and every task that uses it follows the new version."
+
+msgid "Never"
+msgstr "Never"
+
+msgid "New report"
+msgstr "New report"
+
+msgid "New skill"
+msgstr "New skill"
+
+msgid "Nothing is waiting for approval."
+msgstr "Nothing is waiting for approval."
+
+msgid "Notified: %s"
+msgstr "Notified: %s"
+
+msgid "Notify me"
+msgstr "Notify me"
+
+msgid "Notify the task owner"
+msgstr "Notify the task owner"
+
+msgid "One sentence on when to use it. The assistant picks skills by this."
+msgstr "One sentence on when to use it. The assistant picks skills by this."
+
+msgid "Only when something important comes up"
+msgstr "Only when something important comes up"
+
+msgid "Open in chat"
+msgstr "Open in chat"
+
+msgid "Open the report"
+msgstr "Open the report"
+
+msgid "Read a skill"
+msgstr "Read a skill"
+
+msgid "Rejected; nothing was changed."
+msgstr "Rejected; nothing was changed."
+
+msgid "Report link"
+msgstr "Report link"
+
+msgid "Report summary"
+msgstr "Report summary"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "Reset \"%s\" to the version its plugin ships? Your changes are lost."
+msgstr "Reset \"%s\" to the version its plugin ships? Your changes are lost."
+
+msgid "Review approvals"
+msgstr "Review approvals"
+
+msgid "Sent to the task owner when a scheduled AI task has something to report."
+msgstr "Sent to the task owner when a scheduled AI task has something to report."
+
+msgid "Short morning report: yesterday's donations and orders, unanswered messages, site issues and what needs you today."
+msgstr "Short morning report: yesterday's donations and orders, unanswered messages, site issues and what needs you today."
+
+msgid "Short name"
+msgstr "Short name"
+
+msgid "Site health check"
+msgstr "Site health check"
+
+msgid "Skill"
+msgstr "Skill"
+
+msgid "Skill deleted."
+msgstr "Skill deleted."
+
+msgid "Skill imported."
+msgstr "Skill imported."
+
+msgid "Skill not found."
+msgstr "Skill not found."
+
+msgid "Skill not found: %s"
+msgstr "Skill not found: %s"
+
+msgid "Skill reset to the version its plugin ships."
+msgstr "Skill reset to the version its plugin ships."
+
+msgid "Skills"
+msgstr "Skills"
+
+msgid "Suggested tools"
+msgstr "Suggested tools"
+
+msgid "Task name"
+msgstr "Task name"
+
+msgid "Tasks: %s"
+msgstr "Tasks: %s"
+
+msgid "The input is not valid JSON; nothing was run."
+msgstr "The input is not valid JSON; nothing was run."
+
+msgid "The skill's instructions are added on every run, always in their latest version. The instructions above can stay short (e.g. \"only donations\")."
+msgstr "The skill's instructions are added on every run, always in their latest version. The instructions above can stay short (e.g. \"only donations\")."
+
+msgid "The task could not finish: %s"
+msgstr "The task could not finish: %s"
+
+msgid "This action is no longer waiting for approval."
+msgstr "This action is no longer waiting for approval."
+
+msgid "This does not look like a SKILL.md file (it must start with a --- header)."
+msgstr "This does not look like a SKILL.md file (it must start with a --- header)."
+
+msgid "This site"
+msgstr "This site"
+
+msgid "This skill comes with %s. Your edits are kept on this site; \"Reset\" brings back the original."
+msgstr "This skill comes with %s. Your edits are kept on this site; \"Reset\" brings back the original."
+
+msgid "This tool only works while a scheduled task is running."
+msgstr "This tool only works while a scheduled task is running."
+
+msgid "Tip: start a chat message with /name to use a skill, e.g. \"/gunluk-brifing only donations\". Plugins can ship ready skills with the flxai_skills filter."
+msgstr "Tip: start a chat message with /name to use a skill, e.g. \"/gunluk-brifing only donations\". Plugins can ship ready skills with the flxai_skills filter."
+
+msgid "Turn off"
+msgstr "Turn off"
+
+msgid "Upload a SKILL.md file or paste its content. A skill with the same name is updated."
+msgstr "Upload a SKILL.md file or paste its content. A skill with the same name is updated."
+
+msgid "WhatsApp needs Flux Mail with a WhatsApp connection."
+msgstr "WhatsApp needs Flux Mail with a WhatsApp connection."
+
+msgid "When the assistant or a scheduled task wants to change something (create a draft, update a setting, send a message), it appears here."
+msgstr "When the assistant or a scheduled task wants to change something (create a draft, update a setting, send a message), it appears here."
+
+msgid "Write the skill instructions."
+msgstr "Write the skill instructions."
+
+msgid "Yesterday: 12 donations, 4,350 TL in total. 2 receipts are waiting for approval."
+msgstr "Yesterday: 12 donations, 4,350 TL in total. 2 receipts are waiting for approval."
+
+msgid "e-mail"
+msgstr "e-mail"
+
+msgid "or paste"
+msgstr "or paste"
+
+msgid "panel"
+msgstr "panel"
+
+msgid "v%s"
+msgstr "v%s"
+
+msgid "%s is too large."
+msgstr "%s is too large."
+
+msgid "Ask anything or give the assistant a job…"
+msgstr "Ask anything or give the assistant a job…"
+
+msgid "Attach file"
+msgstr "Attach file"
+
+msgid "Create a scheduled task: every morning at 9, "
+msgstr "Create a scheduled task: every morning at 9, "
+
+msgid "Create a skill that "
+msgstr "Create a skill that "
+
+msgid "Dictate"
+msgstr "Dictate"
+
+msgid "Enter to send · Shift+Enter for a new line"
+msgstr "Enter to send · Shift+Enter for a new line"
+
+msgid "File not found."
+msgstr "File not found."
+
+msgid "Hi %s, what shall we do today?"
+msgstr "Hi %s, what shall we do today?"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Microphone permission was not given."
+msgstr "Microphone permission was not given."
+
+msgid "Schedule a task"
+msgstr "Schedule a task"
+
+msgid "The file could not be uploaded."
+msgstr "The file could not be uploaded."
+
+msgid "The file is too large (max %s)."
+msgstr "The file is too large (max %s)."
+
+msgid "The image could not be read."
+msgstr "The image could not be read."
+
+msgid "This file type is not supported. Allowed: %s"
+msgstr "This file type is not supported. Allowed: %s"
+
+msgid "What shall we do today?"
+msgstr "What shall we do today?"
+
+msgid "You can attach up to %s files."
+msgstr "You can attach up to %s files."

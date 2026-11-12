@@ -14,6 +14,7 @@
 	function t(s) { return L[s] || s; }
 	function tf(s) { var a = arguments, i = 1; return t(s).replace(/%(\d\$)?[sd]/g, function () { return a[i++]; }); }
 
+	var Rec = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 	var KEY = 'flxai-ui';
 	var DOCK_MIN = 340, FLOAT_MIN_W = 320, FLOAT_MIN_H = 380;
 	var ui = loadUi();
@@ -29,7 +30,7 @@
 	var S = {
 		boot: null, chat: null, msgs: [], optimistic: null, running: false, pending: [],
 		list: [], q: '', archived: false, pop: null, menu: null, editing: 0, models: null, err: null,
-		openWork: {}, openTool: {}, decisions: {}, busyReq: false, tools: C.tools || {}
+		openWork: {}, openTool: {}, decisions: {}, busyReq: false, tools: C.tools || {}, files: []
 	};
 	var host, root, els = {};
 
@@ -61,6 +62,9 @@
 		alert: '<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>',
 		check: '<path d="m5 12 5 5L20 7"/>',
 		up: '<path d="M12 19V5M5 12l7-7 7 7"/>',
+		clip: '<path d="m21 12-8.6 8.6a5 5 0 0 1-7-7L14 5a3.3 3.3 0 0 1 4.7 4.7l-8.6 8.6a1.7 1.7 0 0 1-2.4-2.4L15.5 8"/>',
+		mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
+		doc: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>',
 		stop: '<rect x="7" y="7" width="10" height="10" rx="1.5" fill="currentColor"/>',
 		cpu: '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
 		rewind: '<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>',
@@ -381,8 +385,12 @@
 			'<div class="popwrap"></div>' +
 			'<div class="body" aria-live="polite"></div>' +
 			'<div class="notice-wrap"></div>' +
-			'<footer class="foot"><div class="composer"><textarea rows="1" placeholder="' + esc(t('Bir şey sorun ya da bir iş verin…')) + '"></textarea>' +
-			'<button class="send" type="button" aria-label="' + esc(t('Gönder')) + '">' + ic('up') + '</button></div>' +
+			'<footer class="foot"><div class="composer"><div class="files" hidden></div><div class="crow">' +
+			'<button class="cb attach" type="button" title="' + esc(t('Dosya ekle')) + '" aria-label="' + esc(t('Dosya ekle')) + '">' + ic('clip') + '</button>' +
+			'<input class="file-in" type="file" multiple hidden accept="' + esc(C.accept || '') + '">' +
+			'<textarea rows="1" placeholder="' + esc(t('Bir şey sorun ya da bir iş verin…')) + '"></textarea>' +
+			(Rec ? '<button class="cb mic" type="button" title="' + esc(t('Sesle yaz')) + '" aria-label="' + esc(t('Sesle yaz')) + '">' + ic('mic') + '</button>' : '') +
+			'<button class="send" type="button" aria-label="' + esc(t('Gönder')) + '">' + ic('up') + '</button></div></div>' +
 			'<div class="hint"></div></footer></section>';
 		els.bwrap = els.wrap.querySelector('.bwrap');
 		els.bubble = els.wrap.querySelector('.bubble');
@@ -395,6 +403,17 @@
 		els.notice = els.wrap.querySelector('.notice-wrap');
 		els.ta = els.wrap.querySelector('textarea');
 		els.send = els.wrap.querySelector('.send');
+		els.files = els.wrap.querySelector('.files');
+		els.fileIn = els.wrap.querySelector('.file-in');
+		els.wrap.querySelector('.attach').addEventListener('click', function () { els.fileIn.click(); });
+		els.fileIn.addEventListener('change', function () { addFiles(els.fileIn.files); els.fileIn.value = ''; });
+		els.files.addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (b) { S.files.splice(+b.getAttribute('data-rm'), 1); renderFiles(); } });
+		els.ta.addEventListener('paste', function (e) { var f = e.clipboardData && e.clipboardData.files; if (f && f.length) { e.preventDefault(); addFiles(f); } });
+		els.panel.addEventListener('dragover', function (e) { if (e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], 'Files') >= 0) { e.preventDefault(); els.panel.classList.add('drop'); } });
+		els.panel.addEventListener('dragleave', function (e) { if (e.target === els.panel || !els.panel.contains(e.relatedTarget)) els.panel.classList.remove('drop'); });
+		els.panel.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files.length) { e.preventDefault(); els.panel.classList.remove('drop'); addFiles(e.dataTransfer.files); } });
+		var micB = els.wrap.querySelector('.mic');
+		if (micB) dictate(els.ta, micB, function () { autosize(); ui.draft = els.ta.value; saveUi(); updateSend(); });
 		els.hint = els.wrap.querySelector('.hint');
 		els.mode = els.wrap.querySelector('[data-a="mode"]');
 		els.bubble.addEventListener('click', function () { open(); });
@@ -407,7 +426,7 @@
 		});
 		els.send.addEventListener('click', function () { S.running ? stop() : submit(); });
 		els.wrap.querySelector('.composer').addEventListener('mousedown', function (e) {
-			if (e.target === els.ta || (e.target.closest('.send') && !els.send.disabled)) return;
+			if (e.target === els.ta || e.target.closest('.cb') || e.target.closest('.files') || (e.target.closest('.send') && !els.send.disabled)) return;
 			e.preventDefault(); els.ta.focus();
 		});
 		els.body.addEventListener('click', onBody);
@@ -630,7 +649,7 @@
 		else S.msgs = S.msgs.slice(0, c.since).concat(c.messages || []);
 		S.chat = c;
 		S.pending = c.pending || [];
-		S.optimistic = null;
+		S.optimistic = null; S.optFiles = null;
 		if (ui.chat !== c.id) { ui.chat = c.id; saveUi(); }
 		if (first) { S.openWork = {}; S.toBottom = true; }
 		els.title.textContent = c.title || t('Yeni sohbet');
@@ -648,17 +667,79 @@
 
 	function submit() {
 		var text = els.ta.value.trim();
-		if (!text || S.running) return;
+		if ((!text && !S.files.length) || S.running) return;
 		send(text);
 	}
 	function send(text) {
-		S.running = true; S.err = null; S.optimistic = text; S.toBottom = true;
+		var files = S.files.slice();
+		S.files = []; renderFiles();
+		S.running = true; S.err = null; S.optimistic = text; S.optFiles = files; S.toBottom = true;
 		els.ta.value = ''; ui.draft = ''; saveUi(); autosize();
 		renderBody(); updateSend();
 		var id = S.chat ? S.chat.id : 0;
-		var body = { text: text, page: page(), since: S.msgs.length };
-		if (!id && ui.model) body.model = ui.model;
-		api('POST', 'chats/' + id + '/send', body).then(handle).catch(fail);
+		upload(files).then(function (up) {
+			var body = { text: text, page: page(), since: S.msgs.length };
+			if (up.length) { body.files = up.map(function (u) { return u.key; }); body.names = up.map(function (u) { return u.name; }); }
+			if (!id && ui.model) body.model = ui.model;
+			return api('POST', 'chats/' + id + '/send', body);
+		}).then(handle).catch(function (e) { S.files = files; renderFiles(); fail(e); });
+	}
+
+	/* ---------- Ekler ---------- */
+	var MAXF = 5;
+	function addFiles(list) {
+		Array.prototype.forEach.call(list || [], function (f) {
+			if (S.files.length >= MAXF) { S.err = tf('En fazla %s dosya eklenebilir.', MAXF); return; }
+			if (C.maxBytes && f.size > C.maxBytes) { S.err = tf('%s çok büyük.', f.name); return; }
+			S.files.push({ file: f, name: f.name, type: f.type || '', size: f.size, url: /^image\//.test(f.type) && window.URL ? URL.createObjectURL(f) : '' });
+		});
+		renderFiles(); renderBody(); updateSend();
+		if (els.ta) els.ta.focus();
+	}
+	function fileChip(f, i, rm) {
+		var img = f.url ? '<img src="' + esc(f.url) + '" alt="">' : '<span class="fi">' + ic('doc') + '</span>';
+		return '<span class="fchip' + (f.url ? ' img' : '') + '" title="' + esc(f.name) + '">' + img + '<span class="fn">' + esc(f.name) + '</span>' +
+			(rm ? '<button type="button" class="frm" data-rm="' + i + '" aria-label="' + esc(t('Kaldır')) + '">' + ic('x') + '</button>' : '') + '</span>';
+	}
+	function renderFiles() {
+		if (!els.files) return;
+		els.files.hidden = !S.files.length;
+		els.files.innerHTML = S.files.map(function (f, i) { return fileChip(f, i, true); }).join('');
+		updateSend();
+	}
+	function fileUrl(key) { return C.rest + (C.rest.indexOf('?') < 0 ? 'files/' + encodeURIComponent(key) + '?' : 'files/' + encodeURIComponent(key) + '&') + '_wpnonce=' + encodeURIComponent(C.nonce); }
+	function upload(files) {
+		var out = [], p = Promise.resolve();
+		files.forEach(function (f) {
+			p = p.then(function () {
+				var fd = new FormData(); fd.append('file', f.file, f.name);
+				var url = C.rest + (C.rest.indexOf('?') < 0 ? 'files?' : 'files&') + '_locale=user';
+				return fetch(url, { method: 'POST', credentials: 'same-origin', headers: { 'X-WP-Nonce': C.nonce, Accept: 'application/json' }, body: fd })
+					.then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error((j && j.message) || ('HTTP ' + r.status)); out.push({ key: j.key, name: f.name }); }); });
+			});
+		});
+		return p.then(function () { return out; });
+	}
+	/* Sesle yazma: tarayıcının konuşma tanıma özelliği (Chrome, Edge, Safari). Metin imlecin olduğu yere eklenir. */
+	function dictate(ta, btn, onChange) {
+		if (!Rec || !ta || !btn) return;
+		var rec = null, base = '';
+		btn.addEventListener('click', function () {
+			if (rec) { rec.stop(); return; }
+			rec = new Rec();
+			rec.lang = C.locale || document.documentElement.lang || 'tr-TR';
+			rec.interimResults = true; rec.continuous = true;
+			base = ta.value ? ta.value.replace(/\s*$/, ' ') : '';
+			rec.onresult = function (e) {
+				var fin = '', tmp = '';
+				for (var i = 0; i < e.results.length; i++) { if (e.results[i].isFinal) fin += e.results[i][0].transcript; else tmp += e.results[i][0].transcript; }
+				ta.value = base + fin + tmp;
+				if (onChange) onChange();
+			};
+			rec.onend = function () { rec = null; btn.classList.remove('on'); btn.setAttribute('aria-pressed', 'false'); if (onChange) onChange(); };
+			rec.onerror = function (e) { if (e.error === 'not-allowed' || e.error === 'service-not-allowed') { S.err = t('Mikrofon izni verilmedi.'); if (els.body) renderBody(); } };
+			try { rec.start(); btn.classList.add('on'); btn.setAttribute('aria-pressed', 'true'); ta.focus(); } catch (er) { rec = null; }
+		});
 	}
 	function handle(r) {
 		if (r.chat) setChat(r.chat, false);
@@ -674,7 +755,7 @@
 	function fail(e) {
 		S.running = false;
 		dropLive();
-		if (S.optimistic && (!S.chat || !S.msgs.length || S.msgs[S.msgs.length - 1].content !== S.optimistic)) {
+		if ((S.optimistic || (S.optFiles && S.optFiles.length)) && (!S.chat || !S.msgs.length || S.msgs[S.msgs.length - 1].content !== S.optimistic)) {
 			// Gönderilemeyen mesaj taslağa geri döner.
 			els.ta.value = S.optimistic; ui.draft = S.optimistic; saveUi(); autosize();
 		}
@@ -856,7 +937,7 @@
 		if (!els.body) return;
 		var nearBottom = els.body.scrollHeight - els.body.scrollTop - els.body.clientHeight < 120;
 		var html = '';
-		if (!S.msgs.length && !S.optimistic && !S.running) {
+		if (!S.msgs.length && !S.optimistic && !S.running && !(S.optFiles && S.optFiles.length)) {
 			html = '<div class="empty"><span class="logo">' + ic('spark') + '</span><h3>' + esc(t('Size nasıl yardımcı olabilirim?')) + '</h3>' +
 				'<p>' + esc(C.admin ? t('İçerik, ayarlar, raporlar: yetkinizin açtığı her şey. Değişiklik yapmadan önce onayınızı isterim.') : t('Bu sayfa ve site hakkında sorabilir, iş verebilirsiniz.')) + '</p>' +
 				'<div class="sugs">' + (C.suggestions || []).map(function (s) { return '<button class="sug" type="button" data-sug="' + esc(s) + '">' + esc(s) + '</button>'; }).join('') + '</div></div>';
@@ -868,7 +949,7 @@
 				else if (x.kind === 'err') html += '<div class="msg err"><div class="b">⚠️ ' + esc(x.m.content) + '</div></div>';
 				else html += renderTurn(x, x === last && S.running && !S.optimistic);
 			});
-			if (S.optimistic) html += '<div class="msg user"><div class="b">' + esc(S.optimistic) + '</div></div>';
+			if (S.optimistic || (S.optFiles && S.optFiles.length && S.running)) html += '<div class="msg user">' + (S.optFiles && S.optFiles.length ? '<div class="mfiles">' + S.optFiles.map(function (f) { return fileChip(f, 0, false); }).join('') + '</div>' : '') + (S.optimistic ? '<div class="b">' + esc(S.optimistic) + '</div>' : '') + '</div>';
 			if (S.running && (S.optimistic || !last || last.kind !== 'ai')) html += '<div class="msg ai"><div class="live"><span class="spin"></span><span class="dots">' + esc(t('Düşünüyor')) + '</span></div></div>';
 			if (S.pending.length && !S.running) html += renderApproval();
 		}
@@ -894,7 +975,11 @@
 			'<button class="ab" type="button" data-edit="' + esc(id) + '" title="' + esc(t('Düzenle')) + '">' + ic('pencil') + '</button>' +
 			(isLast ? '' : '<button class="ab" type="button" data-rewind="' + esc(id) + '" title="' + esc(t('Bu noktaya geri dön')) + '">' + ic('rewind') + '</button>') + '</div>' : '';
 		var task = m._task ? '<div class="task" title="' + esc(t('Zamanlanmış görev')) + '">' + ic('clock') + '<span>' + esc(tf('Zamanlanmış görev · %s', m._task.title || '')) + '</span></div>' : '';
-		return '<div class="msg user' + (task ? ' is-task' : '') + '">' + acts + '<div class="b">' + task + esc(m.content) + '</div></div>';
+		var files = (m._files || []).length ? '<div class="mfiles">' + m._files.map(function (f) {
+			var isImg = /^image\//.test(f.type || ''), u = fileUrl(f.key);
+			return '<a class="fchip' + (isImg ? ' img' : '') + '" href="' + esc(u) + '" target="_blank" rel="noopener" title="' + esc(f.name) + '">' + (isImg ? '<img src="' + esc(u) + '" alt="" loading="lazy">' : '<span class="fi">' + ic('doc') + '</span>') + '<span class="fn">' + esc(f.name) + '</span></a>';
+		}).join('') + '</div>' : '';
+		return '<div class="msg user' + (task ? ' is-task' : '') + '">' + acts + files + (task || m.content ? '<div class="b">' + task + esc(m.content) + '</div>' : '') + '</div>';
 	}
 	function renderTurn(x, live) {
 		var h = '<div class="msg ai"><div class="b">';
@@ -989,7 +1074,7 @@
 		els.send.classList.toggle('stop', S.running);
 		els.send.innerHTML = S.running ? ic('stop') : ic('up');
 		els.send.setAttribute('aria-label', S.running ? t('Durdur') : t('Gönder'));
-		els.send.disabled = !S.running && !els.ta.value.trim();
+		els.send.disabled = !S.running && !els.ta.value.trim() && !S.files.length;
 	}
 	function renderHint() {
 		var label = (S.chat && S.chat.model) ? (S.modelLabels && S.modelLabels[S.chat.model]) || S.chat.model : (!S.chat && ui.model ? (S.modelLabels && S.modelLabels[ui.model]) || ui.model : (S.boot ? S.boot.modelLabel : ''));
@@ -1169,9 +1254,28 @@
 		else { ui.model = id; saveUi(); renderHint(); }
 	}
 
+	/* ---------- Dış API: Genel bakıştaki sohbet kutusu gibi yerlerden yeni sohbet başlatır ---------- */
+	window.flxaiChat = {
+		/* Yeni sohbet açar, metni ve dosyaları gönderir; panel açılır, konuşma orada sürer. */
+		start: function (text, files) {
+			if (!els.ta) start();
+			if (!els.ta) return false;
+			if (S.running) { open(); return false; }
+			S.chat = null; S.msgs = []; S.pending = []; S.err = null; S.optimistic = null;
+			ui.chat = 0; saveUi();
+			els.title.textContent = t('Yeni sohbet');
+			S.files = []; addFiles(files || []);
+			open();
+			send(String(text || '').trim());
+			return true;
+		},
+		dictate: function (ta, btn, onChange) { dictate(ta, btn, onChange); },
+		canDictate: !!Rec
+	};
+
 	/* ---------- Başlat: sayfa yüklendikten sonra, boşta ---------- */
 	function start() {
-		if (!document.body) return;
+		if (!document.body || els.ta) return;
 		mount();
 	}
 	function later() { (window.requestIdleCallback || function (f) { setTimeout(f, 200); })(start, { timeout: 2000 }); }

@@ -2,13 +2,13 @@
 
 Amaç: brifing, bağışçı takibi, site performansı, haber tarama, reklam taslakları gibi işler sabit özellik olarak tek tek eklentilere gömülmesin. Hepsi Flux AI & MCP'de tek bir sistemle, sohbetten kurulup değiştirilsin. Diğer eklentiler (CRM, Donate, Ads, SEO, Speed…) yalnız MCP/AI araçlarını açar; görevler ve botlar bu araçları kullanır.
 
-## Faz 1: zamanlanmış görevler (0.11.0, bu PR)
+## Faz 1: zamanlanmış görevler (0.11.0, yayında)
 - Görev = istem + zamanlama. Sahibinin yetkisiyle ortak sohbet motorunda çalışır, raporu kendi sohbetine yazar.
 - Sohbetten kur/değiştir: `flxai_task_*` araçları (sohbet + MCP), değiştirenler onay kartı ister.
 - Değişiklik yapan araç onay bekler: taslak/onay akışının ilk hali budur.
 - Yönetim ekranı, Şimdi çalıştır, duraklat, sistem kontrolü. WP-Cron + istek sonrası loopback (Hostinger'da cron gelmese de çalışır).
 
-## Faz 2: skill'ler ve bildirim
+## Faz 2: skill'ler ve bildirim (0.12.0)
 - **Skill** = adlı, sürümlü talimat paketi (ör. "Günlük brifing", "Bağışçı incelemesi", "Reklam taslağı"). Alanlar: ad, açıklama, talimat (Markdown), önerilen araçlar, örnek çıktı. Görev ve sohbet bir skill'i adla çağırır; skill düzenlenince ona bağlı tüm görevler güncellenir.
 - Eklentiler hazır skill getirebilir (`flxai_skills` filtresi); kullanıcı kopyalayıp değiştirir. Dışa/içe aktarma (SKILL.md biçimi).
 - Bildirim: görev bitince e-posta / WhatsApp / admin bildirimi (Flux Mail üzerinden), "yalnız önemli bir şey varsa" seçeneği.

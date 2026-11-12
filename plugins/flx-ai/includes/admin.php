@@ -10,9 +10,15 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'admin_menu', 'flxai_admin_menu' );
 
 function flxai_admin_menu() {
-	add_menu_page( 'Flux AI & MCP', 'Flux AI & MCP', 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
+	$waiting = current_user_can( 'manage_options' ) ? flxai_approvals_count() + count( flxai_tasks_unread() ) : 0;
+	add_menu_page( 'Flux AI & MCP', 'Flux AI & MCP' . ( $waiting ? ' <span class="awaiting-mod count-' . (int) $waiting . '"><span class="pending-count">' . esc_html( number_format_i18n( $waiting ) ) . '</span></span>' : '' ), 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
 	add_submenu_page( 'flx-ai', __( 'Overview', 'flx-ai' ), __( 'Overview', 'flx-ai' ), 'manage_options', 'flx-ai', 'flxai_page_overview' );
-	add_submenu_page( 'flx-ai', __( 'Scheduled tasks', 'flx-ai' ), __( 'Scheduled tasks', 'flx-ai' ), 'manage_options', 'flx-ai-tasks', 'flxai_page_tasks' );
+	$bubble = function ( $n ) {
+		return $n ? ' <span class="awaiting-mod count-' . (int) $n . '"><span class="pending-count">' . esc_html( number_format_i18n( $n ) ) . '</span></span>' : '';
+	};
+	add_submenu_page( 'flx-ai', __( 'Scheduled tasks', 'flx-ai' ), __( 'Scheduled tasks', 'flx-ai' ) . $bubble( count( flxai_tasks_unread() ) ), 'manage_options', 'flx-ai-tasks', 'flxai_page_tasks' );
+	add_submenu_page( 'flx-ai', __( 'Awaiting approval', 'flx-ai' ), __( 'Awaiting approval', 'flx-ai' ) . $bubble( flxai_approvals_count() ), 'manage_options', 'flx-ai-approvals', 'flxai_page_approvals' );
+	add_submenu_page( 'flx-ai', __( 'Skills', 'flx-ai' ), __( 'Skills', 'flx-ai' ), 'manage_options', 'flx-ai-skills', 'flxai_page_skills' );
 	add_submenu_page( 'flx-ai', __( 'Logs', 'flx-ai' ), __( 'Logs', 'flx-ai' ), 'manage_options', 'flx-ai-log', 'flxai_page_log' );
 	add_submenu_page( 'flx-ai', __( 'Connected systems', 'flx-ai' ), __( 'Connected systems', 'flx-ai' ), 'manage_options', 'flx-ai-systems', 'flxai_page_systems' );
 	add_submenu_page( 'flx-ai', __( 'Billing', 'flx-ai' ), __( 'Billing', 'flx-ai' ), 'manage_options', 'flx-ai-billing', 'flxai_page_billing' );
@@ -109,6 +115,7 @@ function flxai_page_overview() {
 		return;
 	}
 	flxai_page_head( 'Flux AI', __( 'AI usage across all plugins: cost, time, cache and tools.', 'flx-ai' ) );
+	flxai_home_composer();
 	$days   = (int) ( $_GET['days'] ?? 30 ); // phpcs:ignore
 	$days   = in_array( $days, array( 7, 14, 30, 90, 180 ), true ) ? $days : 30;
 	$source = sanitize_key( $_GET['source'] ?? '' ); // phpcs:ignore
@@ -740,4 +747,44 @@ function flxai_page_settings() {
 	</form>
 	</div>
 	<?php
+}
+
+/**
+ * Genel bakışın üstündeki sohbet kutusu: yaz, dosya ekle, sesle yaz, gönder. Gönderince ortak sohbet paneli
+ * yeni sohbetle açılır ve konuşma orada sürer (chat.js window.flxaiChat.start).
+ */
+function flxai_home_composer() {
+	if ( ! function_exists( 'flxai_dock_enabled' ) || ! flxai_dock_enabled() || ! flxai_can_chat() || ! flxai_providers_ready() ) {
+		return;
+	}
+	$user = wp_get_current_user();
+	$name = $user && $user->first_name ? $user->first_name : ( $user ? $user->display_name : '' );
+	$svg  = function ( $d ) {
+		return '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $d . '</svg>';
+	};
+	$chips = array();
+	foreach ( array_slice( flxai_skills_all( true ), 0, 3 ) as $sk ) {
+		$chips[] = array( $sk['name'], '/' . $sk['slug'] . ' ' );
+	}
+	$chips[] = array( __( 'Schedule a task', 'flx-ai' ), __( 'Create a scheduled task: every morning at 9, ', 'flx-ai' ) );
+	$chips[] = array( __( 'New skill', 'flx-ai' ), __( 'Create a skill that ', 'flx-ai' ) );
+	echo '<section class="flxai-home" data-flxai-home>';
+	/* translators: %s: user first name */
+	echo '<h2 class="flxai-home-hi">' . esc_html( '' !== $name ? sprintf( __( 'Hi %s, what shall we do today?', 'flx-ai' ), $name ) : __( 'What shall we do today?', 'flx-ai' ) ) . '</h2>';
+	echo '<form class="flxai-home-box" data-flxai-home-form>';
+	echo '<div class="flxai-home-files" hidden></div>';
+	echo '<label class="screen-reader-text" for="flxai-home-ta">' . esc_html__( 'Message', 'flx-ai' ) . '</label>';
+	echo '<textarea id="flxai-home-ta" rows="2" placeholder="' . esc_attr__( 'Ask anything or give the assistant a job…', 'flx-ai' ) . '"></textarea>';
+	echo '<div class="flxai-home-bar">';
+	echo '<button type="button" class="flxai-hb" data-attach title="' . esc_attr__( 'Attach file', 'flx-ai' ) . '" aria-label="' . esc_attr__( 'Attach file', 'flx-ai' ) . '">' . $svg( '<path d="m21 12-8.6 8.6a5 5 0 0 1-7-7L14 5a3.3 3.3 0 0 1 4.7 4.7l-8.6 8.6a1.7 1.7 0 0 1-2.4-2.4L15.5 8"/>' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput
+	echo '<input type="file" multiple hidden data-file accept="' . esc_attr( '.' . implode( ',.', array_keys( flxai_attach_types() ) ) ) . '">';
+	echo '<span class="flxai-home-tip">' . esc_html__( 'Enter to send · Shift+Enter for a new line', 'flx-ai' ) . '</span>';
+	echo '<button type="button" class="flxai-hb" data-mic hidden title="' . esc_attr__( 'Dictate', 'flx-ai' ) . '" aria-label="' . esc_attr__( 'Dictate', 'flx-ai' ) . '">' . $svg( '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput
+	echo '<button type="submit" class="flxai-home-send" disabled aria-label="' . esc_attr__( 'Send', 'flx-ai' ) . '">' . $svg( '<path d="M12 19V5M5 12l7-7 7 7"/>' ) . '</button>'; // phpcs:ignore WordPress.Security.EscapeOutput
+	echo '</div></form>';
+	echo '<div class="flxai-home-chips">';
+	foreach ( $chips as $c ) {
+		echo '<button type="button" class="flxai-chip" data-fill="' . esc_attr( $c[1] ) . '">' . esc_html( $c[0] ) . '</button>';
+	}
+	echo '</div></section>';
 }
