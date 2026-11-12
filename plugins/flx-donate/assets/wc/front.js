@@ -238,6 +238,12 @@
 			var who = form.querySelector('[data-flxwb-who]'), dl = form.querySelector('[data-flxwb-deliver]'), nf = form.querySelector('[data-flxwb-name]');
 			if (who) who.hidden = !!T.proxy;
 			if (dl) dl.hidden = !T.cert;
+			/* 2.24.0: with a certificate the name sits under "Where should the certificate go?"; without one, above it. */
+			if (nf && dl) {
+				var dt = dl.querySelector('.flxwb-deliver__title');
+				if (T.cert && nf.parentNode !== dl) { if (dt) dt.after(nf); else dl.prepend(nf); }
+				else if (!T.cert && nf.parentNode === dl) dl.before(nf);
+			}
 			/* 2.0.7: certificate designs and the fields of the picked one. */
 			var ds = form.querySelector('[data-flxwb-designs]');
 			if (ds) {

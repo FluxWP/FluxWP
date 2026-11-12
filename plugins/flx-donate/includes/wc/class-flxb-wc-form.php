@@ -525,9 +525,10 @@ final class FLXB_WC_Form {
 				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="0" <?php checked( ! $for_other ); ?>><span><?php echo FLXB_WC::icon( 'user' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'For myself', 'flx-donate' ); ?></span></label>
 				<label class="flxwb-seg__opt"><input type="radio" name="for_other" value="1" <?php checked( $for_other ); ?>><span><?php echo FLXB_WC::icon( 'gift' ); // phpcs:ignore WordPress.Security.EscapeOutput ?><?php esc_html_e( 'On behalf of someone else', 'flx-donate' ); ?></span></label>
 			</div>
-			<?php echo self::name_field( $old, $for_other, (bool) $cur_d['cert'] ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+			<?php if ( ! $cur_d['cert'] ) { echo self::name_field( $old, $for_other, false ); } // phpcs:ignore WordPress.Security.EscapeOutput ?>
 			<div class="flxwb-deliver" data-flxwb-deliver<?php echo $cur_d['cert'] ? '' : ' hidden'; ?>>
 				<p class="flxwb-deliver__title"><?php esc_html_e( 'Where should the certificate go?', 'flx-donate' ); ?></p>
+				<?php if ( $cur_d['cert'] ) { echo self::name_field( $old, $for_other, true ); } // phpcs:ignore WordPress.Security.EscapeOutput -- 2.24.0: the name sits under the title, with the contacts ?>
 				<div class="flxwb-dcard">
 					<span class="flxwb-dcard__body"><strong class="flxwb-dcard__title"><span class="flxwb-dcard__icon flxwb-dcard__icon--wa"><?php echo FLXB_WC::icon( 'wa' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></span>WhatsApp</strong>
 						<?php echo self::phone_input( 'ben_phone', (string) ( $old['ben_phone'] ?? ( $for_other ? '' : $me['phone'] ) ), array( 'data-flxwb-phone' => '' ) ); // phpcs:ignore WordPress.Security.EscapeOutput ?>
