@@ -8,6 +8,13 @@ flx_test_response_failed() {
   if [ "$code" = 500 ] && grep -qE '<div class="wp-die-message">(<p>)?Cannot load [A-Za-z0-9_-]+\.(</p>)?</div>' "$body"; then
     return 1
   fi
+  # The same wp_die in a translated core ("woocommerce yüklenemiyor."): a one-line die message
+  # that names the requested page slug (third argument) and nothing else.
+  local slug="${3:-}"
+  if [ "$code" = 500 ] && [ -n "$slug" ] && [[ "$slug" =~ ^[A-Za-z0-9_-]+$ ]] \
+    && grep -qE "<div class=\"wp-die-message\">(<p>)?[^<]{0,40}\b${slug}\b[^<]{0,40}(</p>)?</div>" "$body"; then
+    return 1
+  fi
   case "$code" in 5[0-9][0-9]) return 0 ;; esac
 
   # PHP's HTML diagnostics use <br /> and <b>; preserve the diagnostic's line start.
