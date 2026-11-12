@@ -208,3 +208,31 @@ Etkinlikler ortak tabloda: `{prefix}flx_events` (flx-brand 1.4.0, `events.php`).
 | `flx_event_saved`, `flx_event_status`, `flx_event_deleting` | Kaydedildi, açıldı/kapandı, siliniyor (kendi kayıtlarını ayır) |
 
 API: `flx_event_get()`, `flx_events_query()`, `flx_event_save()`, `flx_event_set_status()`, `flx_event_delete()`, `flx_event_people()`, `flx_event_stats()`, `flx_event_actions()`, `flx_event_ensure_post()`. Eski `flxs_get_event(s)`, `flxs_save_event`, `flxs_event_public` aynı tabloyu okur.
+
+## Yolculuklar (0.5.0)
+
+CRM › Yolculuklar (`flxcrm_admin_url( 'journeys' )`): kişiye bir şey olunca sırayla çalışan otomatik akışlar. Kod `includes/class-flxcrm-journeys.php` (`FLXCRM_Journeys`), ekran `includes/admin/page-journeys.php`.
+
+**Tablolar:** `{prefix}flxcrm_journeys` (name, status draft|active|paused, trigger_def, steps, opts, stats JSON) ve `{prefix}flxcrm_journey_runs` (journey_id, contact_id, step, status active|done|goal|exited, reason, next_at GMT).
+
+**Tetikler:** `segment` (`flxcrm_segment_changed`, değer = RFM anahtarı), `tag` (`flxcrm_tag_added`, değer = etiket kimliği), `role` (`flxcrm_role_added`), `event` (`flxcrm_event`, değer = olay türü), `created` (`flxcrm_contact_created`). Yalnız `active` yolculuklar kişi alır.
+
+**Adımlar:** `wait` {days, hours}, `email` {subject, text}, `whatsapp` / `sms` {text}, `tag` / `untag` {tag}, `if` {cond: segment | tag | no_tag | paid | no_paid, value}; koşul tutmazsa kişi çıkar. Metinde `{first_name}`, `{name}`, `{site}`.
+
+**Kurallar (opts):** `goal` (bu olay gelince akış biter, ör. `donation`; boş = yok), `reenter_days` (0 = bir kez), `quiet_from` / `quiet_to` (site saatiyle mesaj gitmeyen saatler, varsayılan 21–9), `cap_week` (kişi başı 7 günde tüm yolculuklardan en fazla mesaj, varsayılan 3).
+
+**Güvenlik:** yeni yolculuk taslak; etkin yolculuk kaydedilince duraklar. Gönderim Flux Mail (`flxi_send_email`, `flxi_send_message`); kanal izni (`flxcrm_mail_requires_consent`) yoksa adım atlanır. Gönderilen mesaj zaman tünelinde `journey`, atlanan `journey_skip` (nedeniyle) olarak görünür; sıklık sınırı yalnız `journey` sayar.
+
+**İşleme:** saatlik `flxcrm_journeys_tick` cron'u + istek sonunda hafif çalıştırma (`flxcrm_journeys_due` transient'i, 5 dk'da bir), tur başına 100 kişi, 40 sn'de durur.
+
+**AI / MCP:** `flxcrm_journeys` (okur: yolculuklar, tetik/adım/koşul türleri, şablonlar), `flxcrm_journey_save` (düzenler, her zaman taslak ya da duraklatılmış kaydeder), `flxcrm_journey_status` ve `flxcrm_journey_delete` (onaylı).
+
+```php
+$id = FLXCRM_Journeys::save( array(
+	'name'    => 'Yeni bağışçı',
+	'trigger' => array( 'type' => 'segment', 'value' => 'new' ),
+	'steps'   => array( array( 'type' => 'wait', 'days' => 1 ), array( 'type' => 'email', 'subject' => 'Teşekkürler {first_name}', 'text' => '…' ) ),
+	'opts'    => array( 'goal' => 'donation' ),
+) ); // int|WP_Error, status = draft
+FLXCRM_Journeys::set_status( $id, 'active' );
+```

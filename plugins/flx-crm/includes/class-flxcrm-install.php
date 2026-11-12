@@ -291,6 +291,40 @@ final class FLXCRM_Install {
 			) $c;"
 		);
 
+		dbDelta(
+			'CREATE TABLE ' . flxcrm_table( 'journeys' ) . " (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			name varchar(190) NOT NULL DEFAULT '',
+			status varchar(10) NOT NULL DEFAULT 'draft',
+			trigger_def text NULL,
+			steps longtext NULL,
+			opts text NULL,
+			stats text NULL,
+			created_by bigint(20) unsigned NOT NULL DEFAULT 0,
+			created_at datetime NOT NULL,
+			updated_at datetime NOT NULL,
+			PRIMARY KEY  (id),
+			KEY status (status)
+			) $c;"
+		);
+		dbDelta(
+			'CREATE TABLE ' . flxcrm_table( 'journey_runs' ) . " (
+			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+			journey_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			contact_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			step smallint(5) unsigned NOT NULL DEFAULT 0,
+			status varchar(10) NOT NULL DEFAULT 'active',
+			reason varchar(20) NOT NULL DEFAULT '',
+			next_at datetime NOT NULL,
+			started_at datetime NOT NULL,
+			updated_at datetime NOT NULL,
+			PRIMARY KEY  (id),
+			KEY status_next (status,next_at),
+			KEY journey_contact (journey_id,contact_id),
+			KEY contact_id (contact_id)
+			) $c;"
+		);
+
 		self::caps();
 		update_option( 'flxcrm_db_version', FLXCRM_DB_VERSION, false );
 		if ( ! get_option( 'flxcrm_installed_at' ) ) {
@@ -312,5 +346,6 @@ final class FLXCRM_Install {
 
 	public static function deactivate() {
 		wp_clear_scheduled_hook( 'flxcrm_daily' );
+		wp_clear_scheduled_hook( 'flxcrm_journeys_tick' );
 	}
 }

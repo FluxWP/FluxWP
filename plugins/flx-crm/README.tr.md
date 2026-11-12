@@ -56,6 +56,11 @@ Bağışlar Flux Donate'te, siparişler WooCommerce'te, mesajlar Flux Chat'te, b
 - Canlı sayı ve örnek kişilerle kural düzenleyici: rol, etiket, RFM, değer, ödeme günü, son ödeme, son hareket, kayıp riski, izin, kaynak, şehir.
 - Segmenti Flux Mail'de alıcı olarak seçin; yalnız o kanala izin verenler alır.
 
+### Yolculuklar
+- Kişi bir değer grubuna girince, etiket ya da rol alınca, bir olay olunca veya eklenince başlar; adımlar bekler, e-posta / WhatsApp / SMS gönderir, etiketler ya da koşul tutarsa devam eder.
+- Yeni yolculuk siz açana kadar taslaktır. Mesaj yalnız o kanala izin verenlere, sessiz saatler dışında, haftada en fazla 3 kez gider; bağış gelirse yolculuk erken biter.
+- AI ve MCP yolculuk taslağı yazar ve düzenler; açmak sizin onayınızla olur.
+
 ## Ekran görüntüleri
 
 | Genel bakış | Kişiler |
@@ -106,7 +111,7 @@ Ayrıntılı kurulum notları: [KURULUM.md](../../docs/flx-crm/KURULUM.md) · AP
 | ✅ | Kaynaklar: Flux Donate, WooCommerce, Flux Chat, Flux Forms, site üyeleri |
 | ✅ | RFM skorlama, kayıp riski, Flux Mail için segmentler |
 | ⬜ | Süreçler (bağış takibi, kurumsal ortaklık, gönüllülük) |
-| ⬜ | Otomasyonlar ve yolculuklar: hoş geldin, teşekkür, geri kazanım; sıklık sınırı ve sessiz saatler |
+| ✅ | Yolculuklar: hoş geldin, geri kazanım ve kendi akışlarınız; sıklık sınırı ve sessiz saatler |
 | ⬜ | Flux Ads: reklam kitleleri ve dönüşümler, ayrı eklenti |
 
 ## Lisans
