@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 2.24.2
+- Niyet seçimi (akıllı görünüm) düzeldi: seçimden sonra açılır menü + adet tek satırda, hızlı adet düğmeleri (3, 5, 10 …) yalnız seçilen niyetin altında. Önceden tüm niyetlerin düğmeleri yan yana basılıp sayfayı yatay taşırıyordu. Seçim yapılmadan liste düğmesiz, sade.
+- Adım adım görünümde sağdaki sabit özet kartı yapışkan site başlığının altında durur (başlık yüksekliği otomatik ölçülür, `--flx-sticky-top`).
+
 ## 2.24.1
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 
