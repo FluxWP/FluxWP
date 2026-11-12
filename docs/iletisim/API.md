@@ -190,6 +190,8 @@ Filtreler / eylemler: `flxi_optout_has` ( `bool, $kanal, $anahtar` ), `flxi_opto
 
 Flux Mail'in gönderdiği WhatsApp mesajları `flxc_external_source` filtresiyle `flx-mail` olarak işaretlenir; Flux Chat bunları "telefondan yazıldı" sayıp asistanı susturmaz.
 
+Echo webhook'u gönderim yanıtından önce gelebilir (henüz `external_id` yok). Flux Mail bu yüzden göndermeden önce numara + metin işareti bırakır (2 dk, `flxi_mark_sending()`). Flux Chat echo'yu sınıflarken `flxi_sent_pending( $tel, $metin )` (metin `null` ise yalnız numara) sorar ya da `apply_filters( 'flxc_external_source', $source, $wa_id, $tel, $metin )` ile telefon ve metni de geçirir.
+
 ## Filtreler ve eylemler
 
 | Ad | Ne zaman |

@@ -6,7 +6,7 @@
 - IPTAL: tanıtım WhatsApp mesajlarının altına "Bu tarz mesajlar istemiyorsanız IPTAL yazın." eklenir (SMS'te isteğe bağlı). Kişi yalnız IPTAL yazarsa o kanaldan tanıtım mesajı gitmez, ortak kişi kaydında kanal izni kapanır, bir kez onay mesajı gider; BAŞLA geri alır. Bilgilendirme mesajları ve kişinin kendi yazdığına verilen cevaplar gider. Gelen mesaj Flux Chat'ten okunur. Ayarlar › IPTAL: kelimeler, metinler, liste, elle ekle/kaldır.
 - Gönder ekranında "Tanıtım mesajı" anahtarı (kapalıysa bilgilendirme) ve WhatsApp için resim/video/dosya (ortam kütüphanesinden). Önizleme çıkış satırını ve çeşitlemeyi gösterir.
 - Kampanya API'si: `media`, `file_name`, `kind` (`marketing` | `info`), `ref`; `flxi_send_message( …, array( 'kind' => 'marketing' ) )`; özellik sorgusu `flxi_campaign_features`. Resim/video tek mesaj (metin altyazı), PDF önceki gibi ayrı belge.
-- Flux Mail'in gönderdiği WhatsApp mesajları Flux Chat'te asistanı susturmaz (`flxc_external_source` → `flx-mail`).
+- Flux Mail'in gönderdiği WhatsApp mesajları Flux Chat'te asistanı susturmaz (`flxc_external_source` → `flx-mail`); echo webhook'u yanıttan önce gelse bile: göndermeden önce numara + metin işareti bırakılır, `flxi_sent_pending()`.
 - MCP: `flxi_optouts`, `flxi_wa_guard`.
 
 ## 1.16.0 — 2026-11-12

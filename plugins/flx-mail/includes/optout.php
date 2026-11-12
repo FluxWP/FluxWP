@@ -308,16 +308,79 @@ function flxi_remember_sent_id( $wa_id ) {
  */
 add_filter(
 	'flxc_external_source',
-	function ( $source, $wa_id ) {
-		if ( 'phone' !== $source || '' === (string) $wa_id ) {
+	function ( $source, $wa_id, $phone = '', $body = null ) {
+		if ( 'phone' !== $source ) {
 			return $source;
 		}
 		$ids = get_option( 'flxi_sent_ids', array() );
-		return ( is_array( $ids ) && isset( $ids[ (string) $wa_id ] ) ) ? 'flx-mail' : $source;
+		if ( '' !== (string) $wa_id && is_array( $ids ) && isset( $ids[ (string) $wa_id ] ) ) {
+			return 'flx-mail';
+		}
+		// Echo webhook'u gönderim yanıtından önce gelebilir: henüz kimlik yok, bekleyen işarete bakılır.
+		return ( '' !== (string) $phone && flxi_sent_pending( $phone, $body ) ) ? 'flx-mail' : $source;
 	},
 	10,
-	2
+	4
 );
+
+function flxi_pending_key( $phone ) {
+	return preg_replace( '/\D+/', '', (string) explode( '@', (string) $phone )[0] );
+}
+
+function flxi_pending_hash( $body ) {
+	return md5( trim( preg_replace( '/\s+/u', ' ', (string) $body ) ) );
+}
+
+/**
+ * Göndermeden ÖNCE bırakılan işaret (2 dk): Evolution'ın "fromMe" echo webhook'u HTTP yanıtından önce
+ * gelirse Flux Chat bu mesajı telefondan yazılmış sanmasın. Ayrı istekte okunduğu için seçenekte tutulur.
+ */
+function flxi_mark_sending( $phone, $body ) {
+	$k = flxi_pending_key( $phone );
+	if ( '' === $k ) {
+		return;
+	}
+	$d   = get_option( 'flxi_sending', array() );
+	$d   = is_array( $d ) ? $d : array();
+	$now = time();
+	foreach ( $d as $key => $rows ) {
+		$d[ $key ] = array_values(
+			array_filter(
+				(array) $rows,
+				function ( $r ) use ( $now ) {
+					return (int) $r[0] > $now - 120;
+				}
+			)
+		);
+		if ( ! $d[ $key ] ) {
+			unset( $d[ $key ] );
+		}
+	}
+	$d[ $k ][] = array( $now, flxi_pending_hash( $body ) );
+	if ( count( $d ) > 300 ) {
+		$d = array_slice( $d, -300, null, true );
+	}
+	update_option( 'flxi_sending', $d, false );
+}
+
+/**
+ * Flux Mail son 2 dakikada bu numaraya (bu metinle) gönderim başlattı mı?
+ * $body null ise yalnız numaraya bakılır. Flux Chat echo'yu sınıflarken çağırır.
+ */
+function flxi_sent_pending( $phone, $body = null ) {
+	$k = flxi_pending_key( $phone );
+	$d = get_option( 'flxi_sending', array() );
+	if ( '' === $k || ! is_array( $d ) || empty( $d[ $k ] ) ) {
+		return false;
+	}
+	$h = null === $body ? '' : flxi_pending_hash( $body );
+	foreach ( (array) $d[ $k ] as $r ) {
+		if ( (int) $r[0] > time() - 120 && ( '' === $h || $h === $r[1] || '' === trim( (string) $body ) ) ) {
+			return true;
+		}
+	}
+	return false;
+}
 
 /* ------------------------------------------------------------------ */
 /* Yönetim: listeye elle ekle / çıkar                                  */

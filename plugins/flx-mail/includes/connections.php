@@ -235,6 +235,9 @@ function flxi_send_message( $channel, $to, $text, array $args = array() ) {
 		'file_name' => (string) ( $args['file_name'] ?? '' ),
 		'template'  => is_array( $args['wa_template'] ?? null ) ? $args['wa_template'] : array(), // Cloud API şablonu: name, lang, params
 	);
+	if ( 'whatsapp' === $channel && function_exists( 'flxi_mark_sending' ) ) {
+		flxi_mark_sending( $to, $text );
+	}
 	try {
 		$r = call_user_func( $type['send'], $conn['config'], $msg, $conn );
 	} catch ( Throwable $e ) {
