@@ -500,7 +500,6 @@ final class FLXB_WC_Form {
 						<input type="email" name="ben_email" autocomplete="off" value="<?php echo esc_attr( (string) ( $old['ben_email'] ?? ( $for_other ? '' : $me['email'] ) ) ); ?>" placeholder="ornek@eposta.com" data-flxwb-email>
 					</span>
 				</label>
-				<p class="flxwb-field__help" data-flxwb-deliver-help data-self="<?php esc_attr_e( 'Empty fields use the phone and e-mail of your account or the checkout.', 'flx-donate' ); ?>" data-other="<?php esc_attr_e( 'Their phone and e-mail. Empty fields use yours.', 'flx-donate' ); ?>"><?php echo $for_other ? esc_html__( 'Their phone and e-mail. Empty fields use yours.', 'flx-donate' ) : esc_html__( 'Empty fields use the phone and e-mail of your account or the checkout.', 'flx-donate' ); ?></p>
 				<label class="flxwb-check" data-flxwb-sendme<?php echo $for_other ? '' : ' hidden'; ?>><input type="checkbox" name="send_me" value="1" <?php checked( ! empty( $old['send_me'] ) ); ?>> <?php esc_html_e( 'Send me a copy too', 'flx-donate' ); ?></label>
 			</div>
 		</fieldset>

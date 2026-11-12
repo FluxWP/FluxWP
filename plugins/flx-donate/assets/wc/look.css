@@ -58,11 +58,11 @@
 .flxwb--steps .flxwb-types, .flxwb--steps .flxwb-main { grid-column: 1; background: var(--w-surface); border: 1px solid var(--w-line); }
 .flxwb--steps .flxwb-types { border-bottom: 0; border-radius: var(--w-radius) var(--w-radius) 0 0; padding: 24px; }
 .flxwb--steps .flxwb-main { border-radius: 0 0 var(--w-radius) var(--w-radius); display: flex; flex-direction: column; }
-.flxwb--steps .flxwb-sec { padding: 24px; border-top: 1px solid var(--w-line); display: flex; flex-direction: column; gap: 18px; }
+.flxwb--steps .flxwb-sec { padding: 18px 22px; border-top: 1px solid var(--w-line); display: flex; flex-direction: column; gap: 14px; }
 .flxwb--steps .flxwb-legend--type { display: flex; }
 .flxwb--steps .flxwb-legend--type,
 .flxwb--steps .flxwb-sec > .flxwb-fs > .flxwb-legend,
-.flxwb--steps .flxwb-panel > .flxwb-fs:first-of-type > .flxwb-legend { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; font-size: 1.1rem; color: var(--w-primary); }
+.flxwb--steps .flxwb-panel > .flxwb-fs:first-of-type > .flxwb-legend { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; font-size: 1.1rem; color: var(--w-primary); }
 .flxwb--steps .flxwb-legend--type::before,
 .flxwb--steps .flxwb-sec > .flxwb-fs > .flxwb-legend::before,
 .flxwb--steps .flxwb-panel > .flxwb-fs:first-of-type > .flxwb-legend::before {
@@ -110,7 +110,7 @@
 @media (max-width: 900px) {
 	.flxwb--steps .flxwb-form { grid-template-columns: 1fr; }
 	.flxwb--steps .flxwb-types { padding: 18px; }
-	.flxwb--steps .flxwb-sec { padding: 18px; }
+	.flxwb--steps .flxwb-sec { padding: 14px; }
 	.flxwb--steps .flxwb-end { display: contents; }
 	.flxwb--steps .flxwb-sum { display: none; }
 	.flxwb--steps .flxwb-end > * { grid-column: 1; }
@@ -309,7 +309,7 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 
 .flxwb .flxwb-legend--row { display: flex; align-items: center; gap: 12px; width: 100%; box-sizing: border-box; padding: 0; }
 .flxwb-legend__t { flex: 1 1 auto; min-width: 0; }
-.flxwb-amts-fs { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.flxwb-amts-fs { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .flxwb-amts { display: grid; grid-template-columns: repeat(var(--flxwb-amts, 4), minmax(0, 1fr)); gap: 10px; padding-top: 6px; }
 .flxwb .flxwb-amt { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 78px; margin: 0; padding: 12px 8px; border: 1.5px solid var(--w-line); border-radius: var(--w-r2); background: var(--w-surface); color: var(--w-ink); font: inherit; line-height: 1.2; cursor: pointer; box-shadow: none; transition: border-color .15s, background .15s, box-shadow .15s; }
 .flxwb .flxwb-amt:hover { border-color: var(--w-primary); }
@@ -363,8 +363,8 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-legend { grid-column: 1; grid-row: 1; margin: 0; }
 	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg { grid-column: 2; grid-row: 1; }
 	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg .flxwb-seg__opt span { min-height: 42px; padding: 6px 10px; }
-	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg ~ * { margin-top: 16px; }
-	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg ~ .flxwb-deliver { margin-top: 16px; }
+	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg ~ * { margin-top: 12px; }
+	.flxwb--steps .flxwb-sec > .flxwb-who > .flxwb-seg ~ .flxwb-deliver { margin-top: 12px; }
 }
 
 /* 2.23.0 · Appearance › no fixed bar at the bottom on phones: the total sits in the flow of the form. */
@@ -393,3 +393,8 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 /* 2.23.0 · The e-mail box has a full border, like the phone box beside it. */
 .flxwb .flxwb-dcard input[type="email"] { height: 42px; min-height: 42px; padding: 0 14px; border: 1px solid var(--flx-ph-line, var(--w-line)) !important; border-radius: 12px !important; background: var(--w-surface, #fff) !important; }
 .flxwb .flxwb-dcard input[type="email"]:focus { border-color: var(--w-primary) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--w-primary) 18%, transparent) !important; }
+
+/* 2.23.1: the account's own phone / e-mail, read-only when donating for yourself. */
+.flxwb .flxwb-dcard.is-locked { border-style: dashed; background: color-mix(in srgb, var(--w-line) 22%, var(--w-surface)); cursor: default; }
+.flxwb .flxwb-dcard.is-locked input,
+.flxwb .flxwb-dcard.is-locked .flx-ph__cc { color: var(--w-text); cursor: default; pointer-events: none; }

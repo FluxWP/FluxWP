@@ -228,7 +228,7 @@
 
 			/* On behalf of someone else: labels, account defaults, "send me a copy". */
 			var other = forOther();
-			form.querySelectorAll('[data-flxwb-name-label],[data-flxwb-name-help],[data-flxwb-deliver-help]').forEach(function (el) {
+			form.querySelectorAll('[data-flxwb-name-label],[data-flxwb-name-help]').forEach(function (el) {
 				var k = other ? (!T.cert && el.hasAttribute('data-nocert') ? 'data-nocert' : 'data-other') : 'data-self';
 				el.textContent = el.getAttribute(k) || el.textContent;
 			});
@@ -254,6 +254,22 @@
 			if (sm) sm.hidden = !(T.cert && other && ((ph && phoneOf(ph)) || (em && em.value.trim())));
 		}
 
+		/* 2.23.1: for myself, the account's own phone / e-mail sit in the fields read-only. */
+		function lockMine() {
+			var ph = form.querySelector('[data-flxwb-phone]'), em = form.querySelector('[data-flxwb-email]');
+			var other = forOther();
+			[[ph, me.phone], [em, me.email]].forEach(function (p) {
+				if (!p[0]) return;
+				var dg = function (x) { return String(x || '').replace(/\D+/g, '').replace(/^0+/, '').slice(-9); };
+				var on = !other && !!p[1] && (p[0] === ph ? (!!phoneOf(ph) && dg(phoneOf(ph)) === dg(p[1])) : p[0].value.trim() === String(p[1]).trim());
+				p[0].readOnly = on;
+				var card = p[0].closest('.flxwb-dcard');
+				if (card) card.classList.toggle('is-locked', on);
+				var cc = p[0] === ph && ph.closest('.flx-ph') ? ph.closest('.flx-ph').querySelector('.flx-ph__cc') : null;
+				if (cc) cc.disabled = on;
+			});
+		}
+
 		/* Switching "for myself" / "someone else": account defaults in or out of the delivery fields. */
 		form.querySelectorAll('input[name="for_other"]').forEach(function (r) {
 			r.addEventListener('change', function () {
@@ -266,6 +282,7 @@
 					if (other && p[1] && same) { p[0].value = ''; if (p[0] === ph && ph.closest('.flx-ph') && ph.closest('.flx-ph').flxPhone) ph.closest('.flx-ph').flxPhone.check(); }
 					else if (!other && !p[0].value && p[1]) { p[0].value = p[1]; if (p[0] === ph && ph.closest('.flx-ph') && ph.closest('.flx-ph').flxPhone) ph.closest('.flx-ph').flxPhone.check(); }
 				});
+				lockMine();
 			});
 		});
 
@@ -493,6 +510,7 @@
 		});
 
 		update();
+		lockMine();
 	}
 
 	/* ---------- Copy ---------- */

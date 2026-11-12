@@ -4,6 +4,8 @@
 - Tutar düğmeleri görünümü: geniş ekranda "Diğer tutar" alanı düğmelerle aynı satırda, en sağda (10 fidanın yanında). Telefonda düğmelerin altında kalır.
 - "Diğer tutar" kartı düğmelerle aynı hizada ve yükseklikte; başlığı normal renkte, yazılan tutarın altında ince çizgi.
 - Geniş ekranda sertifika gönderimi: WhatsApp ve e-posta kartları yan yana; "Kendim için / Başkası adına" sekmeleri "Bu bağış kimin için?" başlığıyla aynı satırda, sağda.
+- Kendin için bağışta hesabındaki telefon ve e-posta alanlarda salt okunur (kesik çizgili kart) gösterilir; "Başkası adına" seçilince boşalır, düzenlenebilir. "Boş alanlarda hesabınızdaki … kullanılır" açıklaması kaldırıldı.
+- Form bölümleri arasındaki boşluklar biraz daraltıldı.
 
 ## 2.23.0
 - Bağış formu "Tutar düğmeleri" görünümü: adet seçenekleri büyük düğmeler (1, 3, 5, 10 …), "En çok seçilen" rozeti, yanında "Diğer tutar" alanı. Görünüm sekmesinden açılır.
