@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 1.9.0
+- MCP aracı `flxseo_order_summary` artık geçmiş bir günü de verir: `date` (Y-m-d, ör. dün) ile o günün ödenmiş sipariş, ciro, bekleyen ve iptal özeti; `recent` o günün son siparişleri olur.
+- `compare=true` ile bir önceki günün özeti (`previous`) ve fark (`change`: diff + yüzde) da döner. Günlük brifing artık "dün"ü önceki günle karşılaştırabilir.
+- Parametresiz çağrı eskisi gibi bugünü verir (TV sipariş paneli etkilenmez). Geçersiz ya da gelecek tarih açık bir hata döner.
+
 ## 1.8.9
 - Sayfa yenilenince sekmede önce FluxWP simgesi, sonra sitenin simgesi görünüyordu. Sitenin simgesi (kurum profili ya da ön ayar) varsa artık ilk HTML'de yalnız o yazılır, FluxWP simgesi hiç basılmaz. /favicon.ico ve /site.webmanifest de sitenin simgesini verir.
 - Yeni filtre `flx_custom_favicon` (adres); favicon yazılınca `flx_favicon_printed` çalışır, tema ve ön ayarlar ikinci simge basmaz.
