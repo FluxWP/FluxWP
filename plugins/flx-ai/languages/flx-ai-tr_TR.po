@@ -1548,3 +1548,273 @@ msgstr "Kim bağlanabilir: flxai_mcp yetkisi olan kullanıcılar. Yazı düzenle
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr "Hesabınız bir asistan bağlayamaz (MCP yetkisi gerekli)."
+
+msgid "Every hour"
+msgstr "Her saat"
+
+msgid "Every %s hours"
+msgstr "%s saatte bir"
+
+msgid "Weekdays at %s"
+msgstr "Hafta içi her gün %s"
+
+msgid "Every %1$s at %2$s"
+msgstr "Her %1$s %2$s"
+
+msgid "Monthly on day %1$s at %2$s"
+msgstr "Her ayın %1$s. günü %2$s"
+
+msgid "Once: %s"
+msgstr "Bir kez: %s"
+
+msgid "Every day at %s"
+msgstr "Her gün %s"
+
+msgid "Task not found."
+msgstr "Görev bulunamadı."
+
+msgid "Write what the task should do."
+msgstr "Görevin ne yapacağını yazın."
+
+msgid "Pick a future date and time for a one-time task."
+msgstr "Tek seferlik görev için ileri bir tarih ve saat seçin."
+
+msgid "You can have at most %s scheduled tasks."
+msgstr "En fazla %s zamanlanmış göreviniz olabilir."
+
+msgid "The task owner can no longer use the AI chat, or Flux AI chat is turned off."
+msgstr "Görevin sahibi artık AI sohbetini kullanamıyor ya da Flux AI sohbeti kapalı."
+
+msgid "List scheduled tasks"
+msgstr "Zamanlanmış görevleri listele"
+
+msgid "Create a scheduled task"
+msgstr "Zamanlanmış görev oluştur"
+
+msgid "You cannot use the AI chat, so you cannot create tasks."
+msgstr "AI sohbetini kullanamadığınız için görev oluşturamazsınız."
+
+msgid "Update a scheduled task"
+msgstr "Zamanlanmış görevi güncelle"
+
+msgid "Delete a scheduled task"
+msgstr "Zamanlanmış görevi sil"
+
+msgid "Run a scheduled task now"
+msgstr "Zamanlanmış görevi şimdi çalıştır"
+
+msgid "Scheduled AI tasks"
+msgstr "Zamanlanmış AI görevleri"
+
+msgid "%1$s tasks are more than 15 minutes late. Last check: %2$s. Make sure WP-Cron or a server cron calls wp-cron.php."
+msgstr "%1$s görev 15 dakikadan fazla gecikti. Son kontrol: %2$s. WP-Cron'un ya da sunucu cron'unun wp-cron.php'yi çağırdığından emin olun."
+
+msgid "%1$s active tasks. Last check: %2$s."
+msgstr "%1$s etkin görev. Son kontrol: %2$s."
+
+msgid "Scheduled tasks"
+msgstr "Zamanlanmış görevler"
+
+msgid "Paused"
+msgstr "Duraklatıldı"
+
+msgid "Done"
+msgstr "Bitti"
+
+msgid "Completed"
+msgstr "Tamamlandı"
+
+msgid "Running"
+msgstr "Çalışıyor"
+
+msgid "Skipped: approval pending"
+msgstr "Atlandı: onay bekliyor"
+
+msgid "Error"
+msgstr "Hata"
+
+msgid "Active"
+msgstr "Etkin"
+
+msgid "Instructions the assistant runs on its own at set times: a daily briefing, a weekly donor review, a site performance check. Each task runs with its owner's permissions and writes its report to its own chat; changes wait for approval."
+msgstr "Asistanın belirlenen zamanlarda kendiliğinden çalıştırdığı talimatlar: günlük brifing, haftalık bağışçı incelemesi, site performans kontrolü. Her görev sahibinin yetkileriyle çalışır ve raporunu kendi sohbetine yazar; değişiklikler onay bekler."
+
+msgid "The task will start in a few seconds. Its report appears in the task chat."
+msgstr "Görev birkaç saniye içinde başlar. Raporu görevin sohbetinde görünür."
+
+msgid "Task deleted. Its chat was kept."
+msgstr "Görev silindi. Sohbeti duruyor."
+
+msgid "%s in total"
+msgstr "toplam %s"
+
+msgid "Next run"
+msgstr "Sonraki çalışma"
+
+msgid "Open the task chat to approve"
+msgstr "Onaylamak için görevin sohbetini açın"
+
+msgid "Last check"
+msgstr "Son kontrol"
+
+msgid "Checked every 5 minutes"
+msgstr "5 dakikada bir kontrol edilir"
+
+msgid "Tasks are turned off"
+msgstr "Görevler kapalı"
+
+msgid "Tasks"
+msgstr "Görevler"
+
+msgid "Turn off all tasks"
+msgstr "Tüm görevleri kapat"
+
+msgid "Turn on tasks"
+msgstr "Görevleri aç"
+
+msgid "New task"
+msgstr "Yeni görev"
+
+msgid "No scheduled tasks yet."
+msgstr "Henüz zamanlanmış görev yok."
+
+msgid "Add one here, or just tell the assistant, for example:"
+msgstr "Buradan ekleyin ya da asistana söyleyin, örneğin:"
+
+msgid "Give me an AI briefing every morning at 9: yesterday's donations, new messages and anything that needs me."
+msgstr "Her sabah 9'da bana YZ brifingi ver: dünkü bağışlar, yeni mesajlar ve benim bakmam gerekenler."
+
+msgid "Every Monday at 10, review donors who have not given in 3 months and suggest who to call."
+msgstr "Her pazartesi 10'da 3 aydır bağış yapmayan bağışçılara bak, kimi aramam gerektiğini öner."
+
+msgid "Check the site speed every 6 hours and tell me only if something got worse."
+msgstr "6 saatte bir site hızına bak, yalnız bir şey kötüleştiyse haber ver."
+
+msgid "Task"
+msgstr "Görev"
+
+msgid "Schedule"
+msgstr "Zamanlama"
+
+msgid "Last run"
+msgstr "Son çalışma"
+
+msgid "Runs as %s"
+msgstr "%s olarak çalışır"
+
+msgid "Open report"
+msgstr "Raporu aç"
+
+msgid "Not run yet"
+msgstr "Henüz çalışmadı"
+
+msgid "Run now"
+msgstr "Şimdi çalıştır"
+
+msgid "Pause"
+msgstr "Duraklat"
+
+msgid "Resume"
+msgstr "Sürdür"
+
+msgid "Delete the task \"%s\"? Its chat is kept."
+msgstr "\"%s\" görevi silinsin mi? Sohbeti kalır."
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Tip: you can also create and change tasks from the chat, e.g. \"move my daily briefing to 8:30 and add the weather\"."
+msgstr "İpucu: görevleri sohbetten de oluşturup değiştirebilirsiniz, örneğin \"günlük brifingimi 8.30'a al, hava durumunu da ekle\"."
+
+msgid "Edit task"
+msgstr "Görevi düzenle"
+
+msgid "Daily AI briefing"
+msgstr "Günlük YZ brifingi"
+
+msgid "Instructions"
+msgstr "Talimat"
+
+msgid "Summarise yesterday's donations, unanswered messages and site issues. Keep it short, with headings."
+msgstr "Dünkü bağışları, cevapsız mesajları ve site sorunlarını özetle. Kısa ve başlıklı olsun."
+
+msgid "Written to the assistant as if you sent it in the chat. It uses the same tools (CRM, Donate, SEO, Speed…) with your permissions."
+msgstr "Asistana sohbette yazmışsınız gibi gider. Aynı araçları (CRM, Bağış, SEO, Speed…) sizin yetkilerinizle kullanır."
+
+msgid "Every day"
+msgstr "Her gün"
+
+msgid "Weekdays"
+msgstr "Hafta içi"
+
+msgid "Selected days of the week"
+msgstr "Haftanın seçili günleri"
+
+msgid "Every month"
+msgstr "Her ay"
+
+msgid "Every few hours"
+msgstr "Birkaç saatte bir"
+
+msgid "Once"
+msgstr "Bir kez"
+
+msgid "Repeat"
+msgstr "Tekrar"
+
+msgid "Days"
+msgstr "Günler"
+
+msgid "Day of month"
+msgstr "Ayın günü"
+
+msgid "In shorter months the task runs on the last day."
+msgstr "Daha kısa aylarda görev ayın son günü çalışır."
+
+msgid "Every"
+msgstr "Her"
+
+msgid "hours"
+msgstr "saatte bir"
+
+msgid "Site time zone: %s."
+msgstr "Site saat dilimi: %s."
+
+msgid "Scheduled task"
+msgstr "Zamanlanmış görev"
+
+msgid "Scheduled task · %s"
+msgstr "Zamanlanmış görev · %s"
+
+msgid "History"
+msgstr "Geçmiş"
+
+msgid "Reasoning"
+msgstr "Düşünme"
+
+msgid "Not run"
+msgstr "Çalışmadı"
+
+msgid "History: %s"
+msgstr "Geçmiş: %s"
+
+msgid "Runs"
+msgstr "Çalışmalar"
+
+msgid "%s completed"
+msgstr "%s tamamlandı"
+
+msgid "Shown runs"
+msgstr "Listelenen çalışmalar"
+
+msgid "Continue in the AI chat"
+msgstr "AI sohbetinde devam et"
+
+msgid "The previous run still had an action waiting for approval, so this run was skipped."
+msgstr "Önceki çalışmada onay bekleyen bir işlem vardı, bu yüzden bu çalışma atlandı."
+
+msgid "No details were kept for this run."
+msgstr "Bu çalışmanın ayrıntısı saklanmadı."
+
+msgid "Tools: %s"
+msgstr "Araç: %s"

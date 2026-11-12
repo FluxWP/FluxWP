@@ -4965,3 +4965,24 @@ msgstr "Muda o dia depois: o mesmo lembrete é atualizado"
 
 msgid "Monthly reminder turned into one-time"
 msgstr "Lembrete mensal vira lembrete único"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "Tem um lembrete único ativo (recém-criado)"
+
+msgid "Reminder stopped"
+msgstr "Lembrete interrompido"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "Sem 🙏 em reações ou respostas"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "Continuação: \"Kapat istemiyorum\" interrompe o lembrete na hora"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "Continuação: \"vazgeçtim\" interrompe o lembrete"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "Continuação: após um mal-entendido, a reclamação fecha na hora"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "A reação de despedida é 👍 ou 🤲, nunca 🙏"

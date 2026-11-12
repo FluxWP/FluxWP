@@ -266,5 +266,61 @@
 		paint(); apply();
 	}
 
-	document.addEventListener('DOMContentLoaded', function () { charts(); credits(); tests(); renderTest(); bodies(); toolsUi(); });
+	/* Zamanlanmış görev formu: seçilen tekrara göre alanlar. */
+	function taskForm() {
+		var f = document.querySelector('[data-flxai-task-form]');
+		if (!f) return;
+		var sel = f.querySelector('[name="freq"]');
+		function apply() {
+			f.querySelectorAll('[data-for]').forEach(function (r) {
+				var on = r.getAttribute('data-for').split(' ').indexOf(sel.value) >= 0;
+				r.hidden = !on;
+				r.querySelectorAll('input').forEach(function (i) { i.disabled = !on; });
+			});
+		}
+		sel.addEventListener('change', apply);
+		apply();
+	}
+
+	/* Görev geçmişi: cevaplar AI sohbetindeki gibi Markdown (güvenli, küçük). */
+	function mdInline(s) {
+		var codes = [];
+		s = s.replace(/`([^`\n]+)`/g, function (m, c) { codes.push(c); return '\u0000' + (codes.length - 1) + '\u0000'; });
+		s = esc(s);
+		s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, txt, url) {
+			var u = url.replace(/&amp;/g, '&');
+			return /^(https?:\/\/|\/|#|mailto:)/i.test(u) ? '<a href="' + esc(u) + '"' + (/^https?:/i.test(u) ? ' target="_blank" rel="noopener"' : '') + '>' + txt + '</a>' : txt;
+		});
+		s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+		return s.replace(/\u0000(\d+)\u0000/g, function (m, i) { return '<code>' + esc(codes[+i]) + '</code>'; });
+	}
+	function md(src) {
+		var lines = String(src || '').replace(/\r/g, '').split('\n'), out = [], i = 0, li = /^\s*([-*+]|\d+[.)])\s+/;
+		while (i < lines.length) {
+			var l = lines[i];
+			if (/^```/.test(l)) { var b = []; i++; while (i < lines.length && !/^```\s*$/.test(lines[i])) b.push(lines[i++]); i++; out.push('<pre><code>' + esc(b.join('\n')) + '</code></pre>'); continue; }
+			if (/^\s*$/.test(l)) { i++; continue; }
+			var h = l.match(/^(#{1,4})\s+(.*)$/);
+			if (h) { out.push('<h' + h[1].length + '>' + mdInline(h[2]) + '</h' + h[1].length + '>'); i++; continue; }
+			if (/^\s*\|.*\|\s*$/.test(l) && i + 1 < lines.length && /^\s*\|?\s*:?-+/.test(lines[i + 1])) {
+				var row = function (r) { return r.trim().replace(/^\||\|$/g, '').split('|').map(function (c) { return mdInline(c.trim()); }); };
+				var tb = '<table><thead><tr><th>' + row(l).join('</th><th>') + '</th></tr></thead><tbody>'; i += 2;
+				while (i < lines.length && /^\s*\|.*\|\s*$/.test(lines[i])) tb += '<tr><td>' + row(lines[i++]).join('</td><td>') + '</td></tr>';
+				out.push(tb + '</tbody></table>'); continue;
+			}
+			if (li.test(l)) {
+				var ol = /^\s*\d+[.)]/.test(l), items = [];
+				while (i < lines.length && li.test(lines[i])) items.push('<li>' + mdInline(lines[i++].replace(li, '')) + '</li>');
+				out.push((ol ? '<ol>' : '<ul>') + items.join('') + (ol ? '</ol>' : '</ul>')); continue;
+			}
+			if (/^>\s?/.test(l)) { var q = []; while (i < lines.length && /^>\s?/.test(lines[i])) q.push(lines[i++].replace(/^>\s?/, '')); out.push('<blockquote>' + mdInline(q.join(' ')) + '</blockquote>'); continue; }
+			var p = [l]; i++;
+			while (i < lines.length && !/^\s*$/.test(lines[i]) && !/^(```|#{1,4}\s|\s*([-*+]|\d+[.)])\s+|>|\s*\|)/.test(lines[i])) p.push(lines[i++]);
+			out.push('<p>' + p.map(mdInline).join('<br>') + '</p>');
+		}
+		return out.join('');
+	}
+	function mdBlocks() { document.querySelectorAll('.flxai-md[data-md]').forEach(function (el) { el.innerHTML = md(el.getAttribute('data-md')); }); }
+
+	document.addEventListener('DOMContentLoaded', function () { charts(); credits(); tests(); renderTest(); bodies(); toolsUi(); taskForm(); mdBlocks(); });
 })();

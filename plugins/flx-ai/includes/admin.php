@@ -1,6 +1,6 @@
 <?php
 /**
- * Yönetim ekranları: Genel bakış (raporlar), Kayıtlar, Bağlı sistemler, Faturalandırma, Araçlar, MCP, Ayarlar.
+ * Yönetim ekranları: Genel bakış (raporlar), Zamanlanmış görevler, Kayıtlar, Bağlı sistemler, Faturalandırma, Araçlar, MCP, Ayarlar.
  *
  * @package FLX_AI
  */
@@ -12,6 +12,7 @@ add_action( 'admin_menu', 'flxai_admin_menu' );
 function flxai_admin_menu() {
 	add_menu_page( 'Flux AI & MCP', 'Flux AI & MCP', 'manage_options', 'flx-ai', 'flxai_page_overview', 'none', 59 );
 	add_submenu_page( 'flx-ai', __( 'Overview', 'flx-ai' ), __( 'Overview', 'flx-ai' ), 'manage_options', 'flx-ai', 'flxai_page_overview' );
+	add_submenu_page( 'flx-ai', __( 'Scheduled tasks', 'flx-ai' ), __( 'Scheduled tasks', 'flx-ai' ), 'manage_options', 'flx-ai-tasks', 'flxai_page_tasks' );
 	add_submenu_page( 'flx-ai', __( 'Logs', 'flx-ai' ), __( 'Logs', 'flx-ai' ), 'manage_options', 'flx-ai-log', 'flxai_page_log' );
 	add_submenu_page( 'flx-ai', __( 'Connected systems', 'flx-ai' ), __( 'Connected systems', 'flx-ai' ), 'manage_options', 'flx-ai-systems', 'flxai_page_systems' );
 	add_submenu_page( 'flx-ai', __( 'Billing', 'flx-ai' ), __( 'Billing', 'flx-ai' ), 'manage_options', 'flx-ai-billing', 'flxai_page_billing' );

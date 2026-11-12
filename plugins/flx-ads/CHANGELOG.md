@@ -44,6 +44,7 @@
 
 - Report, Ad spend, Send log, Ad link and Settings are now submenus in the left menu (own pages: `flx-ads`, `flx-ads-spend`, `flx-ads-log`, `flx-ads-links`, `flx-ads-settings`). Old `?page=flx-ads&tab=…` links still open the right page.
 - Package catalog entry: icon, description and screenshots show in FluxWP Panel › Packages before install; setup wizard preview.
+- Imported old orders (Flux Donate Excel import) are not sent as purchase conversions (`flx_silent`).
 
 ## 0.2.1
 

@@ -3245,5 +3245,12 @@ return array(
   'Continuation: "you will remind me" sets the reminder at once' => 'متابعة: «ذكّروني» تضبط التذكير فورًا',
   'Changes the day afterwards: same reminder updated' => 'يغيّر اليوم لاحقًا: يُحدَّث التذكير نفسه',
   'Monthly reminder turned into one-time' => 'تذكير شهري يتحول إلى تذكير لمرة واحدة',
+  'Has an active one-time reminder (just set)' => 'لديه تذكير لمرة واحدة نشط (أُنشئ للتو)',
+  'Reminder stopped' => 'تم إيقاف التذكير',
+  'No 🙏 in reactions or replies' => 'لا 🙏 في التفاعلات أو الردود',
+  'Continuation: "Kapat istemiyorum" stops the reminder at once' => 'متابعة: «Kapat istemiyorum» يوقف التذكير فورًا',
+  'Continuation: "vazgeçtim" stops the reminder' => 'متابعة: «vazgeçtim» يوقف التذكير',
+  'Continuation: complaint after a misread closes at once' => 'متابعة: بعد سوء فهم، الاعتراض يغلقه فورًا',
+  'Goodbye reaction is 👍 or 🤲, never 🙏' => 'تفاعل الوداع 👍 أو 🤲، وليس 🙏 أبدًا',
  ),
 );

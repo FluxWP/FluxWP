@@ -1933,3 +1933,36 @@ msgid_plural "Currently%1$dupdate backup is%2$s. Currently%1$dupdate backup is%2
 msgstr[0] "В настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s."
 msgstr[1] "В настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s."
 msgstr[2] "В настоящее время резервная копия обновления%1$d—%2$s. В настоящее время резервная копия обновления%1$d—%2$s."
+
+msgid "Download failed: the temporary folder (%s) is not writable. Ask your host to check folder permissions."
+msgstr "Ошибка загрузки: временная папка (%s) недоступна для записи. Попросите хостинг проверить права на папку."
+
+msgid "Download failed: the disk is full (%s free). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Ошибка загрузки: диск заполнен (свободно %s). Удалите старые резервные копии (Flux Backup) или другие большие файлы и повторите попытку."
+
+msgid "Download failed: the file that arrived is not a zip (%s). A firewall or proxy may be changing the response, or the disk may be full."
+msgstr "Ошибка загрузки: полученный файл не является zip (%s). Возможно, брандмауэр или прокси изменяет ответ, либо диск заполнен."
+
+msgid "Download failed: the file could not be saved, the disk may be full (%s). Delete old backups (Flux Backup) or other large files, then try again."
+msgstr "Ошибка загрузки: не удалось сохранить файл, возможно, диск заполнен (%s). Удалите старые резервные копии (Flux Backup) или другие большие файлы и повторите попытку."
+
+msgid "Download failed: the connection timed out (%s)."
+msgstr "Ошибка загрузки: истекло время ожидания соединения (%s)."
+
+msgid "Download failed: the server could not be reached (%s)."
+msgstr "Ошибка загрузки: сервер недоступен (%s)."
+
+msgid "The site key was refused or this package is not allowed for it. Check the key in FluxWP Panel › Settings."
+msgstr "Ключ сайта отклонён или этот пакет для него не разрешён. Проверьте ключ в FluxWP Panel › Настройки."
+
+msgid "This version is no longer on the server. Click \"Check for updates\" and try again."
+msgstr "Этой версии больше нет на сервере. Нажмите «Проверить обновления» и повторите попытку."
+
+msgid "Too many requests in a short time. Wait a minute and try again."
+msgstr "Слишком много запросов за короткое время. Подождите минуту и повторите попытку."
+
+msgid "The update server had a temporary error. Try again in a minute."
+msgstr "На сервере обновлений временная ошибка. Повторите попытку через минуту."
+
+msgid "Download failed (HTTP %1$d: %2$s). %3$s"
+msgstr "Ошибка загрузки (HTTP %1$d: %2$s). %3$s"

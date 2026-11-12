@@ -4,6 +4,9 @@ defined( 'ABSPATH' ) || exit;
 
 function flxai_js_strings() {
 	return array(
+		'Zamanlanmış görev' => __( 'Scheduled task', 'flx-ai' ),
+		/* translators: %s: task name */
+		'Zamanlanmış görev · %s' => __( 'Scheduled task · %s', 'flx-ai' ),
 		'%s ms' => __( '%s ms', 'flx-ai' ),
 		'%s sn' => __( '%s s', 'flx-ai' ),
 		'%1$s dk %2$s sn' => __( '%1$s min %2$s s', 'flx-ai' ),

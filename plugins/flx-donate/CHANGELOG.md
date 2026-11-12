@@ -1,5 +1,27 @@
 # Değişiklikler
 
+## 2.26.0
+- "Excel'den içe aktar" her sitede açık (önceden yalnız kayıt takibi açıkken görünüyordu): eski fidan / bağış listeleri panelden yüklenir.
+- Sütun tanıma: "Fidan Adedi", "Fidan Sayısı" (adet), "Dikim Bölgesi" (iş ortağı), "Ödeme Durumu" (ödeme). Ödeme değerlerinde "Ekimde ödenecek" ödenmedi, "Gönderildi" / "Dekont" ödendi sayılır (önizlemede değiştirilebilir).
+- Tarihi boş satırlar için seçenek: üstteki satırın tarihi (varsayılan), satırdaki hedef tarih, seçilen bir gün ya da bugün. Önizleme tablosunda tarih sütunu.
+- Takip edilmeyen türlerde (fidan gibi) "Adına" tek ad olarak yazılır (adet kadar tekrarlanmaz).
+- Önizlemede takip edilmeyen türlerin "Durum" sütunu ödeme durumunu gösterir (Ödendi / Ödeme bekleniyor).
+- Yüklemeden önce özet: kayıt, adet, ödenen / ödeme bekleyen tutar ve referans (personel) başına kayıt-adet-tutar. "Yükle" düğmesi aynı özeti onay penceresinde gösterir; eşleme değişip uygulanmadıysa düğme kapanır.
+- Personel eşleştirme: görünen ad, ad + soyad ya da kullanıcı adıyla; tam eşleşme yoksa tek uyan kullanıcı ("Enes" ↔ "Enes Aktaş").
+- Aktarım sessiz: aktarım sırasında hiçbir e-posta gitmez, içe aktarılan siparişler için referans personele, bağışçıya ya da adına bağış yapılan kişiye WhatsApp, reklam dönüşümü (Flux Ads) ve analitik olayı gönderilmez. Ortak filtre `flx_silent` ( $silent, $context ): aktarım sürerken ve `created_via = flxb-import` siparişler için true.
+
+## 2.25.1
+- Niyet seçimi (akıllı görünüm) düzeldi: seçimden sonra açılır menü + adet tek satırda, hızlı adet düğmeleri (3, 5, 10 …) yalnız seçilen niyetin altında. Önceden tüm niyetlerin düğmeleri yan yana basılıp sayfayı yatay taşırıyordu. Seçim yapılmadan liste düğmesiz, sade.
+- Adım adım görünümde sağdaki sabit özet kartı yapışkan site başlığının altında durur (başlık yüksekliği otomatik ölçülür, `--flx-sticky-top`).
+- Formun üstündeki fotoğraf bandı: türün görseli yoksa ürün görseli WooCommerce üzerinden alınır (ön ayarların görsel filtresi uygulanır, Qurban Global'de kurban fotoğrafı). Yedek fotoğraf yalnız fidan türünde fidan, diğerlerinde genel bağış görseli; rozet ikonu da yalnız fidanda filiz. Yeni filtre `flxb_hero_image_url`.
+
+## 2.25.0
+- Bağış detayı yenilendi. "Kalemler" artık sipariş ekranındaki gibi tek tablo: bağış türü görseli, ad ve altında ayrıntılar (fidan sayısı, sertifika, sertifikadaki ad…), birim fiyat, adet, toplam. Sütun başlığına tıklayınca sıralanır. Altta ara toplam / toplam ve "Ödendi" (yöntem + tarih), bekleyen bağışta "Ödeme bekleniyor", iadede "İade edildi" ve net tutar. Sepetteki bağışlarda tüm kalemler aynı tabloda.
+- Ödeme kartı derli toplu: bilgiler ızgarada, sertifikalar ve notlar ayrı satırda. Tablodaki bilgiyi tekrar eden "Seçenek / Adet" satırları kalktı, ödeme sağlayıcısı olarak ödeme yöntemi (ör. Havale / EFT) yazılır, iç WooCommerce referansı gösterilmez.
+- WooCommerce siparişi bağlantısı ve iade "⋯" menüsüne taşındı. İade tutarı ortak pencerede sorulur, sonra onay istenir.
+- Adı geçen kişileri düzeltme "Adları düzenle" altında.
+- İşlemler kartında durum listesi "Yeni durumu seçin" ile başlar (önceden ilk seçenek seçili geliyordu).
+
 ## 2.24.1
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

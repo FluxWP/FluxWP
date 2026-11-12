@@ -120,7 +120,7 @@ Check and confirm: %6$s', 'flx-commerce' ),
 	public static function paid( $order_id ) {
 		$order = wc_get_order( $order_id );
 		$phone = (string) flxcm_setting( 'notify_admin_phone' );
-		if ( ! $order || ! flxcm_setting( 'notify_admin_order' ) || '' === $phone || $order->get_meta( '_flxcm_wa_admin' ) || ! flxcm_count_order( $order ) ) {
+		if ( ! $order || ! flxcm_setting( 'notify_admin_order' ) || '' === $phone || $order->get_meta( '_flxcm_wa_admin' ) || ! flxcm_count_order( $order ) || apply_filters( 'flx_silent', false, $order ) ) { // 0.3.1: imported history
 			return;
 		}
 		$lines = array();

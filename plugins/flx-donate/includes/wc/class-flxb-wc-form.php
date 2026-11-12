@@ -418,19 +418,24 @@ final class FLXB_WC_Form {
 		if ( $post && has_block( 'core/cover', $post ) ) {
 			return '';
 		}
-		$img = (int) ( $t['image_id'] ?? 0 );
+		$fidan = 'fidan' === ( $t['options'][0]['unit'] ?? '' );
+		$img   = (int) ( $t['image_id'] ?? 0 );
 		if ( ! $img ) {
+			/* 2.24.2: through WooCommerce's getter, so presets' woocommerce_product_get_image_id filter applies (no sapling photo on other types). */
 			$pid = (int) FLXB_Types::meta( $t, 'wc_product_id', 0 );
-			$img = $pid ? (int) get_post_thumbnail_id( $pid ) : 0;
+			$pr  = $pid && function_exists( 'wc_get_product' ) ? wc_get_product( $pid ) : null;
+			$img = $pr ? (int) $pr->get_image_id() : ( $pid ? (int) get_post_thumbnail_id( $pid ) : 0 );
 		}
 		$url = $img ? (string) wp_get_attachment_image_url( $img, 'full' ) : '';
 		if ( '' === $url ) {
-			$url = FLXB_URL . 'assets/wc/img/fidan-bagisi.jpg';
+			$url = FLXB_URL . 'assets/wc/img/' . ( $fidan ? 'fidan-bagisi.jpg' : 'genel-bagis.jpg' );
 		}
+		/** 2.24.2: photo of the band over the form. */
+		$url = (string) apply_filters( 'flxb_hero_image_url', $url, $t );
 		$title = $post ? get_the_title( $post ) : (string) $t['title'];
 		$desc  = trim( strtok( (string) ( $t['description'] ?? '' ), "\n" ) );
 		$html  = '<div class="flxwb-hero" style="--flxwb-hero:url(' . esc_url( $url ) . ')"><div class="flxwb-hero__in">';
-		$html .= '<span class="flxwb-hero__pill">' . FLXB_WC::icon( 'sprout' ) . esc_html( (string) $t['title'] ) . '</span>';
+		$html .= '<span class="flxwb-hero__pill">' . FLXB_WC::icon( $fidan ? 'sprout' : 'gift' ) . esc_html( (string) $t['title'] ) . '</span>';
 		$html .= '<h1 class="flxwb-hero__title">' . esc_html( '' !== $title ? $title : (string) $t['title'] ) . '</h1>';
 		if ( '' !== $desc ) {
 			$html .= '<p class="flxwb-hero__desc">' . esc_html( $desc ) . '</p>';

@@ -95,7 +95,7 @@
 .flxwb--steps .flxwb-pkg:not(.flxwb-pkg--qty):has(input:checked) .flxwb-pkg__price { color: #fff; }
 .flxwb--steps .flxwb-pkgs > .flxwb-pkg--qty { flex: 1 1 100%; }
 /* Summary column */
-.flxwb--steps .flxwb-end { grid-column: 2; grid-row: 1 / span 3; position: sticky; top: 24px; display: flex; flex-direction: column; gap: 16px; padding: 22px; background: var(--w-surface); border: 1px solid var(--w-line); border-radius: var(--w-radius); }
+.flxwb--steps .flxwb-end { grid-column: 2; grid-row: 1 / span 3; position: sticky; top: calc(var(--flx-sticky-top, 0px) + 24px); display: flex; flex-direction: column; gap: 16px; padding: 22px; background: var(--w-surface); border: 1px solid var(--w-line); border-radius: var(--w-radius); }
 .flxwb--steps .flxwb-sum { display: block; }
 .flxwb-sum__title { margin: 0 0 10px; font-size: 1.15rem; font-weight: 800; color: var(--w-primary); }
 .flxwb-sum__lines { display: grid; grid-template-columns: minmax(0, 1fr) auto; margin: 0; }
@@ -229,9 +229,15 @@
 .flxwb-pick select:focus-visible { outline: 2px solid var(--w-primary); outline-offset: 2px; }
 .flxwb-pick__chev { position: absolute; right: 16px; top: 50%; width: 9px; height: 9px; margin-top: -7px; border-right: 2px solid var(--w-primary); border-bottom: 2px solid var(--w-primary); transform: rotate(45deg); pointer-events: none; }
 
-.flxwb-opts-fs.is-picked .flxwb-optrow { display: flex; align-items: stretch; gap: 10px; }
-.flxwb-opts-fs.is-picked .flxwb-pick { display: block; }
-.flxwb-opts-fs.is-picked .flxwb-pkgs { display: flex !important; flex: none; gap: 0; margin: 0; }
+.flxwb-opts-fs.is-picked .flxwb-optrow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; }
+.flxwb-opts-fs.is-picked .flxwb-pick { display: block; flex: 1 1 160px; }
+/* 2.24.2: the option list melts into the row (select + chosen stepper), so the quick buttons can wrap under it. */
+.flxwb-opts-fs.is-picked .flxwb-pkgs { display: contents !important; }
+.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) { display: flex !important; flex: none; }
+.flxwb-opts-fs.is-picked .flxwb-pkg:not(:has(input:checked)) + .flxwb-quick { display: none; }
+.flxwb-opts-fs.is-picked .flxwb-quick { flex: 1 1 100%; margin: 0; }
+/* Smart view, nothing picked yet: plain list, the quick buttons come with the pick. */
+.flxwb-opts-fs[data-flxwb-optview="smart"]:not(.is-picked) .flxwb-quick { display: none; }
 .flxwb-opts-fs.is-picked .flxwb-pkg:not(:has(input:checked)) { display: none !important; }
 .flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) {
 	flex-direction: row !important; align-items: center !important; gap: 12px !important;
@@ -258,6 +264,7 @@
 	.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) { padding: 0 !important; border: 0 !important; background: none !important; min-height: 0; }
 	.flxwb-opts-fs.is-picked .flxwb-pkg:has(input:checked) .flxwb-stepper { height: 100%; }
 	.flxwb-pick select { font-size: 15px; padding-left: 12px; }
+	.flxwb-opts-fs.is-picked .flxwb-pick { flex-basis: 100%; }
 }
 
 /* Transaction fee box */

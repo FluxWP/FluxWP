@@ -1548,3 +1548,273 @@ msgstr ""
 
 msgid "Your account can't connect an assistant (the MCP capability is required)."
 msgstr ""
+
+msgid "Every hour"
+msgstr ""
+
+msgid "Every %s hours"
+msgstr ""
+
+msgid "Weekdays at %s"
+msgstr ""
+
+msgid "Every %1$s at %2$s"
+msgstr ""
+
+msgid "Monthly on day %1$s at %2$s"
+msgstr ""
+
+msgid "Once: %s"
+msgstr ""
+
+msgid "Every day at %s"
+msgstr ""
+
+msgid "Task not found."
+msgstr ""
+
+msgid "Write what the task should do."
+msgstr ""
+
+msgid "Pick a future date and time for a one-time task."
+msgstr ""
+
+msgid "You can have at most %s scheduled tasks."
+msgstr ""
+
+msgid "The task owner can no longer use the AI chat, or Flux AI chat is turned off."
+msgstr ""
+
+msgid "List scheduled tasks"
+msgstr ""
+
+msgid "Create a scheduled task"
+msgstr ""
+
+msgid "You cannot use the AI chat, so you cannot create tasks."
+msgstr ""
+
+msgid "Update a scheduled task"
+msgstr ""
+
+msgid "Delete a scheduled task"
+msgstr ""
+
+msgid "Run a scheduled task now"
+msgstr ""
+
+msgid "Scheduled AI tasks"
+msgstr ""
+
+msgid "%1$s tasks are more than 15 minutes late. Last check: %2$s. Make sure WP-Cron or a server cron calls wp-cron.php."
+msgstr ""
+
+msgid "%1$s active tasks. Last check: %2$s."
+msgstr ""
+
+msgid "Scheduled tasks"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "Running"
+msgstr ""
+
+msgid "Skipped: approval pending"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Instructions the assistant runs on its own at set times: a daily briefing, a weekly donor review, a site performance check. Each task runs with its owner's permissions and writes its report to its own chat; changes wait for approval."
+msgstr ""
+
+msgid "The task will start in a few seconds. Its report appears in the task chat."
+msgstr ""
+
+msgid "Task deleted. Its chat was kept."
+msgstr ""
+
+msgid "%s in total"
+msgstr ""
+
+msgid "Next run"
+msgstr ""
+
+msgid "Open the task chat to approve"
+msgstr ""
+
+msgid "Last check"
+msgstr ""
+
+msgid "Checked every 5 minutes"
+msgstr ""
+
+msgid "Tasks are turned off"
+msgstr ""
+
+msgid "Tasks"
+msgstr ""
+
+msgid "Turn off all tasks"
+msgstr ""
+
+msgid "Turn on tasks"
+msgstr ""
+
+msgid "New task"
+msgstr ""
+
+msgid "No scheduled tasks yet."
+msgstr ""
+
+msgid "Add one here, or just tell the assistant, for example:"
+msgstr ""
+
+msgid "Give me an AI briefing every morning at 9: yesterday's donations, new messages and anything that needs me."
+msgstr ""
+
+msgid "Every Monday at 10, review donors who have not given in 3 months and suggest who to call."
+msgstr ""
+
+msgid "Check the site speed every 6 hours and tell me only if something got worse."
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Schedule"
+msgstr ""
+
+msgid "Last run"
+msgstr ""
+
+msgid "Runs as %s"
+msgstr ""
+
+msgid "Open report"
+msgstr ""
+
+msgid "Not run yet"
+msgstr ""
+
+msgid "Run now"
+msgstr ""
+
+msgid "Pause"
+msgstr ""
+
+msgid "Resume"
+msgstr ""
+
+msgid "Delete the task \"%s\"? Its chat is kept."
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Tip: you can also create and change tasks from the chat, e.g. \"move my daily briefing to 8:30 and add the weather\"."
+msgstr ""
+
+msgid "Edit task"
+msgstr ""
+
+msgid "Daily AI briefing"
+msgstr ""
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Summarise yesterday's donations, unanswered messages and site issues. Keep it short, with headings."
+msgstr ""
+
+msgid "Written to the assistant as if you sent it in the chat. It uses the same tools (CRM, Donate, SEO, Speed…) with your permissions."
+msgstr ""
+
+msgid "Every day"
+msgstr ""
+
+msgid "Weekdays"
+msgstr ""
+
+msgid "Selected days of the week"
+msgstr ""
+
+msgid "Every month"
+msgstr ""
+
+msgid "Every few hours"
+msgstr ""
+
+msgid "Once"
+msgstr ""
+
+msgid "Repeat"
+msgstr ""
+
+msgid "Days"
+msgstr ""
+
+msgid "Day of month"
+msgstr ""
+
+msgid "In shorter months the task runs on the last day."
+msgstr ""
+
+msgid "Every"
+msgstr ""
+
+msgid "hours"
+msgstr ""
+
+msgid "Site time zone: %s."
+msgstr ""
+
+msgid "Scheduled task"
+msgstr ""
+
+msgid "Scheduled task · %s"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Reasoning"
+msgstr ""
+
+msgid "Not run"
+msgstr ""
+
+msgid "History: %s"
+msgstr ""
+
+msgid "Runs"
+msgstr ""
+
+msgid "%s completed"
+msgstr ""
+
+msgid "Shown runs"
+msgstr ""
+
+msgid "Continue in the AI chat"
+msgstr ""
+
+msgid "The previous run still had an action waiting for approval, so this run was skipped."
+msgstr ""
+
+msgid "No details were kept for this run."
+msgstr ""
+
+msgid "Tools: %s"
+msgstr ""

@@ -542,3 +542,73 @@
 		});
 	}
 })();
+
+/* 2.25.0: donation detail: sortable tables (click a column header), the "⋯" menu and its refund prompt. */
+(function () {
+	document.querySelectorAll('table[data-flxb-sortable]').forEach(function (table) {
+		var body = table.tBodies[0];
+		if (!body) return;
+		var heads = table.querySelectorAll('thead th');
+		heads.forEach(function (th, col) {
+			var btn = th.querySelector('[data-flxb-sort]');
+			if (!btn) return;
+			btn.addEventListener('click', function () {
+				var num = btn.getAttribute('data-flxb-sort') === 'num';
+				var dir = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+				heads.forEach(function (h) { h.setAttribute('aria-sort', 'none'); });
+				th.setAttribute('aria-sort', dir);
+				var val = function (tr) {
+					var td = tr.children[col];
+					var v = td ? (td.getAttribute('data-v') || td.textContent) : '';
+					return num ? parseFloat(v) || 0 : String(v).trim();
+				};
+				var rows = Array.prototype.slice.call(body.rows);
+				rows.sort(function (a, b) {
+					var x = val(a), y = val(b);
+					var r = num ? x - y : String(x).localeCompare(String(y), document.documentElement.lang || undefined, { numeric: true, sensitivity: 'base' });
+					return dir === 'ascending' ? r : -r;
+				});
+				rows.forEach(function (tr) { body.appendChild(tr); });
+			});
+		});
+	});
+
+	var menus = document.querySelectorAll('[data-flxb-more]');
+	if (!menus.length) return;
+	document.addEventListener('click', function (e) {
+		menus.forEach(function (m) { if (m.open && !m.contains(e.target)) m.open = false; });
+	});
+	document.addEventListener('keydown', function (e) {
+		if (e.key !== 'Escape') return;
+		menus.forEach(function (m) {
+			if (m.open) { m.open = false; var s = m.querySelector('summary'); if (s) s.focus(); }
+		});
+	});
+	document.querySelectorAll('[data-flxb-refund]').forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			var form = document.getElementById(btn.getAttribute('data-flxb-refund'));
+			var menu = btn.closest('[data-flxb-more]');
+			if (menu) menu.open = false;
+			if (!form || !window.flxDialog) return;
+			var max = parseFloat(btn.getAttribute('data-max')) || 0;
+			window.flxDialog.prompt({
+				title: btn.getAttribute('data-title'),
+				message: btn.getAttribute('data-msg'),
+				label: btn.getAttribute('data-label'),
+				value: btn.getAttribute('data-value')
+			}).then(function (v) {
+				if (v === null || v === undefined) return;
+				var s = String(v).trim().replace(/\s/g, '');
+				/* "1.234,50" and "1234.50" both mean the same amount */
+				if (s.indexOf(',') > -1) s = s.replace(/\./g, '').replace(',', '.');
+				var n = parseFloat(s);
+				if (!(n > 0) || n > max + 0.004) {
+					window.flxDialog.alert({ message: btn.getAttribute('data-err') });
+					return;
+				}
+				form.querySelector('input[name="amount"]').value = n.toFixed(2);
+				if (form.requestSubmit) form.requestSubmit(); else form.submit();
+			});
+		});
+	});
+})();

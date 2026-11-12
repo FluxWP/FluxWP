@@ -882,6 +882,7 @@ function flxc_bot_final_reply( $reply, array $ctx ) {
 		return '';
 	}
 	$reply = flxc_bot_links_out( (string) $reply, (array) ( $ctx['links'] ?? array() ) );
+	$reply = function_exists( 'flxc_bot_strip_banned' ) ? flxc_bot_strip_banned( $reply ) : $reply; // 1.43.2: 🙏 yok
 	$lines = preg_split( '/\R/u', (string) $reply );
 	$lines = array_filter(
 		$lines,

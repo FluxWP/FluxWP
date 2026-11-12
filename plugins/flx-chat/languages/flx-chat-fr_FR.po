@@ -4965,3 +4965,24 @@ msgstr "Change le jour ensuite : le même rappel est mis à jour"
 
 msgid "Monthly reminder turned into one-time"
 msgstr "Rappel mensuel transformé en rappel ponctuel"
+
+msgid "Has an active one-time reminder (just set)"
+msgstr "A un rappel ponctuel actif (tout juste créé)"
+
+msgid "Reminder stopped"
+msgstr "Rappel arrêté"
+
+msgid "No 🙏 in reactions or replies"
+msgstr "Aucun 🙏 dans les réactions ni les réponses"
+
+msgid "Continuation: \"Kapat istemiyorum\" stops the reminder at once"
+msgstr "Suite : « Kapat istemiyorum » arrête le rappel aussitôt"
+
+msgid "Continuation: \"vazgeçtim\" stops the reminder"
+msgstr "Suite : « vazgeçtim » arrête le rappel"
+
+msgid "Continuation: complaint after a misread closes at once"
+msgstr "Suite : après un malentendu, la plainte le ferme aussitôt"
+
+msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
+msgstr "La réaction d’au revoir est 👍 ou 🤲, jamais 🙏"
