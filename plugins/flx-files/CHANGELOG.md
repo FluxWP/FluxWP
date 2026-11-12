@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1
+- The screen fits the window: the page no longer scrolls; the file list, the editor's folder tree and the file content scroll on their own. Works on mobile too.
+- AI explain and AI edit open as a panel right under the editor toolbar instead of a modal; the file stays visible.
+- Refreshing the folder tree updates it in place: open folders stay open and only changed rows are added or removed.
+- Storage shows what the hosting account uses (measured in the background, cached for 12 hours) against the new "Disk quota (GB)" setting, not the whole server disk.
+- The "⋯" button uses the normal button style in the light theme.
+
 ## 0.1.0
 
 - New plugin: modern file manager for WordPress administrators.

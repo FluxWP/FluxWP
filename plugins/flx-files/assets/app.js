@@ -5,6 +5,21 @@
 	var root = document.getElementById('flxfm-app');
 	if (!C || !root) return;
 
+	/*
+	 * Uygulama pencereye sığar: sayfa kaymaz, yalnız liste, dosya ağacı ve dosya içeriği kendi içinde kayar.
+	 * Yükseklik = pencere − uygulamanın üst kenarı − alt boşluk (Flux Admin mobil alt çubuğu dahil).
+	 */
+	function fit() {
+		var top = root.getBoundingClientRect().top + (window.scrollY || 0);
+		var wb = document.getElementById('wpbody-content');
+		var pb = wb ? parseFloat(getComputedStyle(wb).paddingBottom) || 0 : 0;
+		root.style.setProperty('--flxfm-h', Math.max(460, Math.floor(window.innerHeight - top - pb)) + 'px');
+	}
+	fit();
+	if (window.innerWidth <= 782) root.classList.add('flxfm-tree-off'); // mobilde ağaç kapalı başlar, düğmeyle açılır
+	window.addEventListener('resize', fit);
+	window.addEventListener('orientationchange', function () { setTimeout(fit, 200); });
+
 	/* ------------------------------------------------------------ yardımcılar */
 	var L = C.i18n || {};
 	function t(k, a, b) {
@@ -158,7 +173,7 @@
 				'</div>' +
 				(C.writable ? '<button type="button" class="flxfm-btn" data-menu="upload">' + ic('upload') + '<span>' + esc(t('upload')) + '</span>' + ic('down', 'flxfm-i-sm') + '</button>' +
 				'<button type="button" class="flxfm-btn" data-menu="new">' + ic('plus') + '<span>' + esc(t('new')) + '</span>' + ic('down', 'flxfm-i-sm') + '</button>' : '') +
-				'<button type="button" class="flxfm-btn flxfm-btn--dark" data-menu="more" aria-label="' + esc(t('more')) + '">' + ic('more') + '</button>' +
+				'<button type="button" class="flxfm-btn flxfm-btn--ic" data-menu="more" aria-label="' + esc(t('more')) + '">' + ic('more') + '</button>' +
 			'</div>' +
 		'</header>' +
 		(C.writable ? '' : '<div class="flxfm-banner">' + ic('lock') + esc(t('readonly_mode')) + '</div>') +
@@ -352,9 +367,27 @@
 	function renderFoot() {
 		var n = visible().length;
 		$('.flxfm-count').innerHTML = '<span>' + esc(t('items_n', n)) + '</span>' + (S.sel.size ? '<span>' + esc(t('selected_n', S.sel.size)) + '</span>' : '') + (S.clip ? '<span class="flxfm-clipinfo">' + ic(S.clip.op === 'cut' ? 'cut' : 'copy') + esc(t('clip_n', S.clip.paths.length)) + '</span>' : '');
-		var d = S.disk;
-		$('.flxfm-disk').innerHTML = d ? '<span>' + esc(t('storage')) + '</span><span class="flxfm-meter"><i style="width:' + Math.max(1, Math.round(d.used / d.total * 100)) + '%"></i></span><b>' + esc(size(d.used)) + ' / ' + esc(size(d.total)) + '</b>' : '';
+		renderDisk();
 		renderSelbar();
+	}
+	/* Depolama: hesabın kullandığı alan / Ayarlar'daki kota. Ölçüm sürerken birkaç saniyede bir ilerletilir. */
+	function renderDisk() {
+		var d = S.disk, el = $('.flxfm-disk');
+		if (!d) { el.innerHTML = ''; return; }
+		var txt = d.used == null ? t('storage_measuring') : (d.total ? size(d.used) + ' / ' + size(d.total) : t('storage_used', size(d.used)));
+		var pct = d.used != null && d.total ? Math.min(100, Math.max(1, Math.round(d.used / d.total * 100))) : 0;
+		var tip = d.used == null ? '' : t('storage_tip', d.files == null ? '' : d.files.toLocaleString(), d.ago || '');
+		el.innerHTML = '<span>' + esc(t('storage')) + '</span>' +
+			(pct ? '<span class="flxfm-meter' + (pct >= 90 ? ' is-full' : '') + '"><i style="width:' + pct + '%"></i></span>' : '') +
+			'<b title="' + esc(tip) + '">' + esc(txt) + '</b>' +
+			(d.scanning ? '<span class="flxfm-disk-spin" title="' + esc(t('storage_measuring')) + '">' + ic('refresh', 'flxfm-i-sm') + '</span>' : '');
+		if (d.scanning && !S.diskTimer) {
+			S.diskTimer = setTimeout(function () {
+				S.diskTimer = null;
+				if (document.hidden) { S.disk.scanning = true; renderDisk(); return; }
+				api('usage').then(function (r) { S.disk = r.disk; renderDisk(); }).catch(function () { /* sonra yeniden denenir */ });
+			}, 4000);
+		}
 	}
 	function selItems() { var all = visible(); return all.filter(function (i) { return S.sel.has(i.path); }); }
 	function renderSelbar() {
@@ -493,7 +526,7 @@
 		else if (a === 'view') { S.view = S.view === 'grid' ? 'list' : 'grid'; lsSet('view', S.view); render(); }
 		else if (a === 'search') openSearch();
 		else if (a === 'tree') root.classList.toggle('flxfm-tree-off');
-		else if (a === 'tree-refresh') treeLoad('', $('.flxfm-tree-body'), true);
+		else if (a === 'tree-refresh') { var tb = $('[data-act="tree-refresh"]'); tb.classList.add('is-spin'); treeLoad('', $('.flxfm-tree-body')).then(function () { tb.classList.remove('is-spin'); }); }
 		else if (a === 'up-close') { $('.flxfm-uploads').hidden = true; }
 	});
 	$$('.flxfm-seg [data-mode]').forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); }); });
@@ -1212,6 +1245,7 @@
 		var html =
 			'<h3>' + esc(t('set_view')) + '</h3>' +
 			sw('show_hidden', t('set_hidden'), t('set_hidden_d')) +
+			'<label class="flxfm-field flxfm-field--row"><span><b>' + esc(t('set_quota')) + '</b><small>' + esc(t('set_quota_d')) + '</small></span><input type="number" min="0" step="1" name="quota_gb" value="' + esc(s.quota_gb || 0) + '"></label>' +
 			'<h3>' + esc(t('set_safety')) + '</h3>' +
 			'<label class="flxfm-field flxfm-field--row"><span><b>' + esc(t('set_trash')) + '</b><small>' + esc(t('set_trash_d')) + '</small></span><input type="number" min="0" max="365" name="trash_days" value="' + esc(s.trash_days) + '"></label>' +
 			'<label class="flxfm-field flxfm-field--row"><span><b>' + esc(t('set_versions')) + '</b><small>' + esc(t('set_versions_d')) + '</small></span><input type="number" min="0" max="50" name="versions" value="' + esc(s.versions) + '"></label>' +
@@ -1231,7 +1265,7 @@
 		});
 		m.el.querySelector('[data-save]').addEventListener('click', function () {
 			var f = m.el.querySelector('form');
-			var data = { show_hidden: f.show_hidden.checked, mcp_write: f.mcp_write.checked, ai_code: f.ai_code.checked, trash_days: f.trash_days.value, versions: f.versions.value };
+			var data = { show_hidden: f.show_hidden.checked, mcp_write: f.mcp_write.checked, ai_code: f.ai_code.checked, trash_days: f.trash_days.value, versions: f.versions.value, quota_gb: f.quota_gb.value };
 			var risky = (data.mcp_write && !+s.mcp_write) || (data.ai_code && !+s.ai_code);
 			(risky ? D.confirm({ title: t('set_ai'), message: t('set_risky'), ok: t('save'), danger: true }) : Promise.resolve(true)).then(function (ok) {
 				if (!ok) return;
@@ -1250,19 +1284,40 @@
 		renderTabs();
 		if (E.active && E.active.cm) setTimeout(function () { E.active.cm.refresh(); E.active.cm.focus(); }, 0);
 	}
-	function treeLoad(path, ul, force) {
-		ul.innerHTML = '<div class="flxfm-tree-loading">' + esc(t('loading')) + '</div>';
+	function treeKey(it) { return it.type + '|' + it.name + '|' + (it.ext || '') + '|' + (it.shared ? 1 : 0); }
+	function treeNode(it, path) {
+		var open = !!E.treeOpen[it.path];
+		return h('<div class="flxfm-tn' + (it.type === 'dir' ? ' is-dir' : '') + (open ? ' is-open' : '') + '" data-tp="' + esc(it.path) + '" data-tt="' + it.type + '" data-tk="' + esc(treeKey(it)) + '">' +
+			'<button type="button" class="flxfm-tn-row' + (E.active && E.active.path === it.path ? ' is-on' : '') + '" style="--d:' + (path ? path.split('/').length : 0) + '">' +
+			(it.type === 'dir' ? '<span class="flxfm-tn-caret">' + ic('right', 'flxfm-i-sm') + '</span>' : '<span class="flxfm-tn-caret"></span>') +
+			fileIcon(it) + '<span class="flxfm-tn-name">' + esc(it.name) + '</span></button>' +
+			(it.type === 'dir' ? '<div class="flxfm-tn-kids"></div>' : '') + '</div>');
+	}
+	/*
+	 * Klasörün çocuklarını yükler. Doluysa yeniden çizmez: var olan düğümler yerinde kalır (açık klasörler açık kalır),
+	 * yalnız eklenen eklenir, silinen çıkar, sıra düzeltilir; açık alt klasörler aynı yolla tazelenir.
+	 */
+	function treeLoad(path, ul) {
+		var had = !!ul.querySelector(':scope > .flxfm-tn');
+		if (!had) ul.innerHTML = '<div class="flxfm-tree-loading">' + esc(t('loading')) + '</div>';
 		return api('tree', { path: path }).then(function (r) {
-			ul.innerHTML = r.items.map(function (it) {
-				var open = !!E.treeOpen[it.path];
-				return '<div class="flxfm-tn' + (it.type === 'dir' ? ' is-dir' : '') + (open ? ' is-open' : '') + '" data-tp="' + esc(it.path) + '" data-tt="' + it.type + '">' +
-					'<button type="button" class="flxfm-tn-row' + (E.active && E.active.path === it.path ? ' is-on' : '') + '" style="--d:' + (path ? path.split('/').length : 0) + '">' +
-					(it.type === 'dir' ? '<span class="flxfm-tn-caret">' + ic('right', 'flxfm-i-sm') + '</span>' : '<span class="flxfm-tn-caret"></span>') +
-					fileIcon(it) + '<span class="flxfm-tn-name">' + esc(it.name) + '</span></button>' +
-					(it.type === 'dir' ? '<div class="flxfm-tn-kids"></div>' : '') + '</div>';
-			}).join('') || '<div class="flxfm-tree-loading">' + esc(t('empty_folder')) + '</div>';
-			$$(':scope > .flxfm-tn.is-open', ul).forEach(function (n) { treeLoad(n.getAttribute('data-tp'), n.querySelector('.flxfm-tn-kids')); });
-		}).catch(function (e) { ul.innerHTML = '<div class="flxfm-tree-loading">' + esc(e.message) + '</div>'; });
+			var old = {};
+			$$(':scope > .flxfm-tn', ul).forEach(function (n) { old[n.getAttribute('data-tp')] = n; });
+			$$(':scope > .flxfm-tree-loading', ul).forEach(function (n) { ul.removeChild(n); });
+			var prev = null, jobs = [];
+			r.items.forEach(function (it) {
+				var n = old[it.path];
+				if (n && n.getAttribute('data-tk') === treeKey(it)) delete old[it.path];
+				else n = treeNode(it, path);
+				var at = prev ? prev.nextSibling : ul.firstChild;
+				if (n !== at) ul.insertBefore(n, at);
+				prev = n;
+				if (it.type === 'dir' && n.classList.contains('is-open')) jobs.push(treeLoad(it.path, n.querySelector('.flxfm-tn-kids')));
+			});
+			Object.keys(old).forEach(function (k) { if (old[k].parentNode === ul) ul.removeChild(old[k]); });
+			if (!r.items.length) ul.innerHTML = '<div class="flxfm-tree-loading">' + esc(t('empty_folder')) + '</div>';
+			return Promise.all(jobs);
+		}).catch(function (e) { if (!had) ul.innerHTML = '<div class="flxfm-tree-loading">' + esc(e.message) + '</div>'; else toast(e.message, 'error'); });
 	}
 	function treeRefreshSoft() { if (E.treeLoaded) treeLoad('', $('.flxfm-tree-body')); }
 	$('.flxfm-tree-body').addEventListener('click', function (e) {
@@ -1344,7 +1399,7 @@
 		$$('.flxfm-cm', $('.flxfm-emain')).forEach(function (x) { x.hidden = x !== tab.el; });
 		$('.flxfm-empty-editor').hidden = !!tab;
 		var main = $('.flxfm-emain');
-		$$('.flxfm-emsg, .flxfm-ebanner, .flxfm-find', main).forEach(function (x) { x.remove(); });
+		$$('.flxfm-emsg, .flxfm-ebanner, .flxfm-find, .flxfm-aip', main).forEach(function (x) { x.remove(); });
 		if (tab.loading) main.insertAdjacentHTML('afterbegin', '<div class="flxfm-emsg">' + esc(t('loading')) + '</div>');
 		else if (tab.error) main.insertAdjacentHTML('afterbegin', '<div class="flxfm-emsg is-err">' + ic('info') + '<p>' + esc(tab.error) + '</p><button type="button" class="flxfm-btn" data-edl>' + ic('download') + esc(t('download')) + '</button></div>');
 		else if (tab.info) {
@@ -1386,7 +1441,7 @@
 			if (E.active === tab) {
 				E.active = E.tabs[i] || E.tabs[i - 1] || null;
 				if (E.active) activate(E.active);
-				else { $('.flxfm-empty-editor').hidden = false; $$('.flxfm-emsg, .flxfm-ebanner, .flxfm-find', $('.flxfm-emain')).forEach(function (x) { x.remove(); }); renderEtools(); renderTrail(); status(null); }
+				else { $('.flxfm-empty-editor').hidden = false; $$('.flxfm-emsg, .flxfm-ebanner, .flxfm-find, .flxfm-aip', $('.flxfm-emain')).forEach(function (x) { x.remove(); }); renderEtools(); renderTrail(); status(null); }
 			}
 			renderTabs();
 		});
@@ -1529,37 +1584,57 @@
 		out = out.replace(/\n{2,}/g, '<br><br>').replace(/([^>])\n([^<])/g, '$1<br>$2');
 		return out;
 	}
+	/*
+	 * AI paneli: modal değil, araç çubuğunun hemen altında, dosyanın üstünde açılır (dosya görünür kalır).
+	 * Sekme değişince ya da X ile kapanır.
+	 */
+	function aiPanel(tab, title) {
+		var main = $('.flxfm-emain');
+		$$('.flxfm-aip', main).forEach(function (x) { x.parentNode.removeChild(x); });
+		var el = h('<section class="flxfm-aip" aria-label="' + esc(title) + '"><header class="flxfm-aip-head">' + ic('ai') + '<b>' + esc(title) + '</b><button type="button" class="flxfm-ib" data-aip-x aria-label="' + esc(t('close')) + '">' + ic('x') + '</button></header><div class="flxfm-aip-body"></div><footer class="flxfm-aip-foot" hidden></footer></section>');
+		main.insertBefore(el, tab.el && tab.el.parentNode === main ? tab.el : null);
+		var p = { el: el, body: el.querySelector('.flxfm-aip-body'), foot: el.querySelector('.flxfm-aip-foot'), close: function () { if (el.parentNode) el.parentNode.removeChild(el); if (tab.cm && tab.cm.refresh) tab.cm.refresh(); } };
+		el.querySelector('[data-aip-x]').addEventListener('click', p.close);
+		el.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); p.close(); if (tab.cm) tab.cm.focus(); } });
+		if (tab.cm && tab.cm.refresh) setTimeout(function () { tab.cm.refresh(); }, 0);
+		return p;
+	}
 	function aiExplain(tab) {
 		var sel = tab.cm.getSelection ? tab.cm.getSelection() : '';
-		var m = modal({ title: t('ai_explain') + ' · ' + tab.name, wide: true, body: '<div class="flxfm-ai-out"><div class="flxfm-ai-wait">' + ic('ai') + esc(t('ai_thinking')) + '</div></div>' });
+		var p = aiPanel(tab, t('ai_explain') + ' · ' + tab.name);
+		p.body.innerHTML = '<div class="flxfm-ai-wait">' + ic('ai') + esc(t('ai_thinking')) + '</div>';
 		api('ai_explain', { path: tab.path, content: tab.cm.getValue(), selection: sel }).then(function (r) {
-			m.body.querySelector('.flxfm-ai-out').innerHTML = '<div class="flxfm-md">' + mdLite(r.answer) + '</div>';
-		}).catch(function (e) { m.body.querySelector('.flxfm-ai-out').innerHTML = '<p class="flxfm-err">' + esc(e.message) + '</p>'; });
+			p.body.innerHTML = '<div class="flxfm-md">' + mdLite(r.answer) + '</div>';
+		}).catch(function (e) { p.body.innerHTML = '<p class="flxfm-err">' + esc(e.message) + '</p>'; });
 	}
 	function aiEdit(tab) {
-		var m = modal({ title: t('ai_edit') + ' · ' + tab.name, wide: true,
-			body: '<label class="flxfm-field"><span>' + esc(t('ai_edit_q')) + '</span><textarea rows="3" class="flxfm-ai-q" placeholder="' + esc(t('ai_edit_ph')) + '"></textarea></label><p class="flxfm-muted">' + esc(t('ai_edit_hint')) + '</p><div class="flxfm-ai-out"></div>',
-			foot: '<button type="button" class="flxfm-btn" data-close>' + esc(t('cancel')) + '</button><button type="button" class="flxfm-btn flxfm-btn--ai" data-go>' + ic('ai') + esc(t('ai_suggest')) + '</button><button type="button" class="flxfm-btn flxfm-btn--pri" data-apply hidden>' + ic('check') + esc(t('ai_apply')) + '</button>' });
-		var q = m.el.querySelector('.flxfm-ai-q'), out = m.el.querySelector('.flxfm-ai-out'), proposal = null;
+		var p = aiPanel(tab, t('ai_edit') + ' · ' + tab.name);
+		p.body.innerHTML = '<div class="flxfm-aip-ask"><textarea rows="2" class="flxfm-ai-q" placeholder="' + esc(t('ai_edit_ph')) + '" aria-label="' + esc(t('ai_edit_q')) + '"></textarea>' +
+			'<button type="button" class="flxfm-btn flxfm-btn--ai" data-go>' + ic('ai') + esc(t('ai_suggest')) + '</button></div>' +
+			'<p class="flxfm-muted flxfm-aip-hint">' + esc(t('ai_edit_hint')) + '</p><div class="flxfm-ai-out"></div>';
+		p.foot.innerHTML = '<button type="button" class="flxfm-btn" data-aip-cancel>' + esc(t('cancel')) + '</button><button type="button" class="flxfm-btn flxfm-btn--pri" data-apply>' + ic('check') + esc(t('ai_apply')) + '</button>';
+		var q = p.el.querySelector('.flxfm-ai-q'), out = p.el.querySelector('.flxfm-ai-out'), go = p.el.querySelector('[data-go]'), proposal = null;
 		q.focus();
-		q.addEventListener('keydown', function (e) { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) m.el.querySelector('[data-go]').click(); });
-		m.el.querySelector('[data-go]').addEventListener('click', function () {
+		q.addEventListener('keydown', function (e) { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) go.click(); });
+		go.addEventListener('click', function () {
 			if (!q.value.trim()) { q.focus(); return; }
-			var btn = this; btn.disabled = true;
+			go.disabled = true;
+			p.foot.hidden = true;
 			out.innerHTML = '<div class="flxfm-ai-wait">' + ic('ai') + esc(t('ai_thinking')) + '</div>';
 			var cur = tab.cm.getValue();
 			api('ai_edit', { path: tab.path, content: cur, prompt: q.value }).then(function (r) {
 				proposal = r.content;
 				out.innerHTML = (r.note ? '<p class="flxfm-ai-note">' + ic('ai') + esc(r.note) + '</p>' : '') + (proposal != null ? diffHtml(cur, proposal) : '');
-				m.el.querySelector('[data-apply]').hidden = proposal == null || proposal === cur;
-			}).catch(function (e) { out.innerHTML = '<p class="flxfm-err">' + esc(e.message) + '</p>'; }).then(function () { btn.disabled = false; });
+				p.foot.hidden = proposal == null || proposal === cur;
+			}).catch(function (e) { out.innerHTML = '<p class="flxfm-err">' + esc(e.message) + '</p>'; }).then(function () { go.disabled = false; });
 		});
-		m.el.querySelector('[data-apply]').addEventListener('click', function () {
+		p.foot.querySelector('[data-aip-cancel]').addEventListener('click', p.close);
+		p.foot.querySelector('[data-apply]').addEventListener('click', function () {
 			if (proposal == null) return;
 			var c = tab.cm.getCursor ? tab.cm.getCursor() : null;
 			tab.cm.setValue(proposal);
 			if (c && tab.cm.setCursor) tab.cm.setCursor(c);
-			m.close();
+			p.close();
 			toast(t('ai_applied'), 'info');
 		});
 	}

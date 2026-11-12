@@ -165,6 +165,11 @@ function flxfm_js_strings() {
 		/* translators: %s: number of items on the clipboard */
 		'clip_n'              => __( '%s on clipboard', 'flx-files' ),
 		'storage'             => __( 'Storage', 'flx-files' ),
+		'storage_measuring'   => __( 'measuring…', 'flx-files' ),
+		/* translators: %s: used disk space, e.g. 12.4 GB */
+		'storage_used'        => __( '%s used', 'flx-files' ),
+		/* translators: 1: number of files, 2: time ago */
+		'storage_tip'         => __( 'Hosting account: %1$s files, measured %2$s', 'flx-files' ),
 		'cut'                 => __( 'Cut', 'flx-files' ),
 		'copy'                => __( 'Copy', 'flx-files' ),
 		'paste'               => __( 'Paste', 'flx-files' ),
@@ -343,6 +348,8 @@ function flxfm_js_strings() {
 		'set_trash'           => __( 'Keep trash for (days)', 'flx-files' ),
 		'set_trash_d'         => __( '0 keeps items until you empty the trash.', 'flx-files' ),
 		'set_versions'        => __( 'Versions per file', 'flx-files' ),
+		'set_quota'           => __( 'Disk quota (GB)', 'flx-files' ),
+		'set_quota_d'         => __( 'Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only.', 'flx-files' ),
 		'set_versions_d'      => __( 'Earlier contents kept on every save (text files up to 3 MB). 0 turns it off.', 'flx-files' ),
 		'set_ai'              => __( 'AI and MCP', 'flx-files' ),
 		'set_ai_d'            => __( 'Flux AI chat can list, read and search files, and asks you before every change. wp-config.php, .env and key files are never shared.', 'flx-files' ),

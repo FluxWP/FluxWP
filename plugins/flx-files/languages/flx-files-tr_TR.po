@@ -176,6 +176,15 @@ msgstr "Panoda %s öğe"
 msgid "Storage"
 msgstr "Depolama"
 
+msgid "measuring…"
+msgstr "ölçülüyor…"
+
+msgid "%s used"
+msgstr "%s kullanılıyor"
+
+msgid "Hosting account: %1$s files, measured %2$s"
+msgstr "Hosting hesabı: %1$s dosya, %2$s ölçüldü"
+
 msgid "Cut"
 msgstr "Kes"
 
@@ -628,6 +637,12 @@ msgstr "0: çöp kutusunu boşaltana kadar tutulur."
 
 msgid "Versions per file"
 msgstr "Dosya başına sürüm"
+
+msgid "Disk quota (GB)"
+msgstr "Disk kotası (GB)"
+
+msgid "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only."
+msgstr "Hosting paketinizin disk alanı, ör. 100. Kullanım tüm hosting hesabı için ölçülür. 0 girilirse yalnız kullanılan gösterilir."
 
 msgid "Earlier contents kept on every save (text files up to 3 MB). 0 turns it off."
 msgstr "Her kayıtta önceki içerik saklanır (3 MB'a kadar metin dosyaları). 0 kapatır."

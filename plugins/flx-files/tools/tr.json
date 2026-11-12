@@ -346,5 +346,10 @@
  "%1$d result for \"%2$s\"": [
   "\"%2$s\" için %1$d sonuç",
   "\"%2$s\" için %1$d sonuç"
- ]
+ ],
+ "measuring…": "ölçülüyor…",
+ "%s used": "%s kullanılıyor",
+ "Hosting account: %1$s files, measured %2$s": "Hosting hesabı: %1$s dosya, %2$s ölçüldü",
+ "Disk quota (GB)": "Disk kotası (GB)",
+ "Your hosting plan disk space, e.g. 100. Usage is measured for the whole hosting account. 0 shows usage only.": "Hosting paketinizin disk alanı, ör. 100. Kullanım tüm hosting hesabı için ölçülür. 0 girilirse yalnız kullanılan gösterilir."
 }
