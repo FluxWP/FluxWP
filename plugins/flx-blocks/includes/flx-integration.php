@@ -103,3 +103,22 @@ add_action(
 		wp_add_inline_style( 'flxbk-theme-palette', $css );
 	}
 );
+
+/**
+ * Flux Speed "remove unused CSS": keep the classes our scripts add at runtime
+ * (sliders, lightboxes, sticky header, forms, menus), so trimmed CSS still styles them.
+ */
+add_filter(
+	'flxp_ps_safelist',
+	function ( $patterns ) {
+		return array_merge(
+			(array) $patterns,
+			array(
+				'splide*', 'slick-*', 'glightbox*', 'gslide*', 'gcontainer', 'ginner-container', 'gnext', 'gprev', 'gclose', 'gbtn',
+				'goverlay', 'gloader', 'gdesc*', 'gvideo*', 'mfp-*', 'plyr*', 'fxb-*', 'fxt-*', 'flx-blocks-*', 'flxbk-*', 'aos-*',
+				'active', 'triggered', 'toggle-show', 'show-off-canvas', 'is-*', 'item-*', 'header-is-*', 'child-is-*',
+				'sub-menu-*', 'menu-item--*', 'button-primary-disabled',
+			)
+		);
+	}
+);
