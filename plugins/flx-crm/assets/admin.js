@@ -157,22 +157,7 @@ window.flxcrmBoot.push( function ( R ) {
 	/* Onay                                                          */
 	/* ------------------------------------------------------------ */
 
-	if ( ! window.flxcrmConfirmOn ) {
-	window.flxcrmConfirmOn = true;
-	document.addEventListener(
-		'submit',
-		function ( e ) {
-			var f = e.target;
-			if ( f.matches && f.matches( '[data-flxcrm-confirm]' ) ) {
-				var msg = f.getAttribute( 'data-flxcrm-confirm' ) || t.confirm;
-				if ( ! window.confirm( msg ) ) {
-					e.preventDefault();
-				}
-			}
-		},
-		true
-	);
-	}
+	/* Onay pencereleri: flx-brand flxDialog (data-flx-confirm), tarayıcının confirm'ü değil. */
 
 	/* ------------------------------------------------------------ */
 	/* Toplu işlem                                                   */
@@ -223,9 +208,19 @@ window.flxcrmBoot.push( function ( R ) {
 			refresh();
 		} );
 		form.addEventListener( 'submit', function ( e ) {
-			if ( action && 'delete' === action.value && ! window.confirm( t.confirm ) ) {
-				e.preventDefault();
+			if ( ! action || 'delete' !== action.value || form.flxcrmOk || ! window.flxDialog ) {
+				form.flxcrmOk = false;
+				return;
 			}
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			var sub = e.submitter;
+			window.flxDialog.confirm( { title: t.bulkDelete, message: t.confirm, ok: t.del, danger: true } ).then( function ( yes ) {
+				if ( yes ) {
+					form.flxcrmOk = true;
+					form.requestSubmit( sub && sub.form === form ? sub : undefined );
+				}
+			} );
 		} );
 		swap();
 		refresh();
@@ -853,3 +848,20 @@ window.flxcrmBoot.push( function ( R ) {
 	}
 	boot( document );
 } )();
+
+/* ⋯ menüsü: dışarı tıklayınca ya da Esc ile kapanır. */
+document.addEventListener( 'click', function ( e ) {
+	document.querySelectorAll( '.flxcrm-more[open]' ).forEach( function ( d ) {
+		if ( ! d.contains( e.target ) || ( e.target.closest && e.target.closest( '.flxcrm-more__item' ) ) ) {
+			d.removeAttribute( 'open' );
+		}
+	} );
+} );
+document.addEventListener( 'keydown', function ( e ) {
+	if ( 'Escape' === e.key ) {
+		document.querySelectorAll( '.flxcrm-more[open]' ).forEach( function ( d ) {
+			d.removeAttribute( 'open' );
+			d.querySelector( 'summary' ).focus();
+		} );
+	}
+} );

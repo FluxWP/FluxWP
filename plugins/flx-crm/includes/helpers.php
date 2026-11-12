@@ -378,3 +378,12 @@ function flxcrm_icon( $name, $size = 18 ) {
 	}
 	return '<svg class="flxcrm-i" width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $p[ $name ] . '</svg>';
 }
+
+/** Silme onayı: yazılan ad gösterilen adla aynı mı (büyük/küçük harf ve fazla boşluk önemsiz). */
+function flxcrm_name_matches( $typed, $name ) {
+	$n = static function ( $v ) {
+		$v = trim( preg_replace( '/\s+/u', ' ', (string) $v ) );
+		return function_exists( 'mb_strtolower' ) ? mb_strtolower( $v, 'UTF-8' ) : strtolower( $v );
+	};
+	return '' !== $n( $name ) && $n( $typed ) === $n( $name );
+}

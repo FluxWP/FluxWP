@@ -1186,6 +1186,50 @@ function flx_check( array $args ) {
 	return $h;
 }
 
+/* ---------- Ortak modal ve bildirim (1.6.0) ----------
+ * Tarayıcının confirm/alert/prompt'u yerine. Yönetimde her sayfada yüklü; ön yüzde flx_dialog_enqueue().
+ * JS: flxDialog.confirm/alert/prompt (Promise) ve flxDialog.toast(). Formda data-flx-confirm="İleti"
+ * (data-flx-confirm-title / -ok / -danger / -type) ile kod yazmadan onay. Ayrıntı: tools/brand/README.md.
+ */
+function flx_dialog_url( $file = '' ) {
+	$dir = wp_normalize_path( __DIR__ . '/dialog' );
+	$tpl = wp_normalize_path( get_theme_root() );
+	if ( 0 === strpos( $dir, $tpl ) ) {
+		$url = get_theme_root_uri() . substr( $dir, strlen( $tpl ) );
+	} else {
+		$url = plugins_url( '', $dir . '/x' );
+	}
+	return trailingslashit( $url ) . ltrim( $file, '/' );
+}
+
+/** Pencere metinleri (TR / EN gömülü, diğer dillerde EN). */
+function flx_dialog_strings() {
+	$tr = 'tr' === flx_lang();
+	return (array) apply_filters(
+		'flx_dialog_strings',
+		array(
+			'ok'            => $tr ? 'Tamam' : 'OK',
+			'cancel'        => $tr ? 'Vazgeç' : 'Cancel',
+			'close'         => $tr ? 'Kapat' : 'Close',
+			'confirm'       => $tr ? 'Emin misiniz?' : 'Are you sure?',
+			'notice'        => $tr ? 'Bilgi' : 'Notice',
+			'sure'          => $tr ? 'Bu işlem geri alınamaz.' : 'This cannot be undone.',
+			'typeToConfirm' => $tr ? 'Onaylamak için %s yazın' : 'To confirm, type %s',
+		)
+	);
+}
+
+function flx_dialog_enqueue() {
+	if ( wp_script_is( 'flx-dialog', 'enqueued' ) ) {
+		return;
+	}
+	$v = defined( 'FLX_BRAND_VERSION' ) ? FLX_BRAND_VERSION : '1';
+	wp_enqueue_style( 'flx-dialog', flx_dialog_url( 'dialog.css' ), array(), $v );
+	wp_enqueue_script( 'flx-dialog', flx_dialog_url( 'dialog.js' ), array(), $v, true );
+	wp_localize_script( 'flx-dialog', 'FLX_DIALOG', array( 'i18n' => flx_dialog_strings() ) );
+}
+add_action( 'admin_enqueue_scripts', 'flx_dialog_enqueue', 5 );
+
 /* Shared people table and API (1.3.0): one person record for every FluxWP package. */
 require_once __DIR__ . '/people.php';
 

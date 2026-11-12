@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.4.3
+- "Delete contact" moved from under the contact card into a ⋯ (more actions) menu at the top right of the contact header. "Delete permanently" opens a dialog where the contact's name has to be typed (checked on the server too).
+- Every confirmation in CRM (delete contact, timeline entry, segment, event actions, merge duplicates, bulk delete) uses the shared FluxWP dialog (flx-brand 1.6.0 `flxDialog`) instead of the browser's confirm box. Responsive: bottom sheet on phones, light/dark.
+- Ships flx-brand 1.6.0: `flxDialog.confirm/alert/prompt/toast` and `data-flx-confirm` for every package.
+
 ## 0.4.2
 - CRM screens no longer reload the whole page: links, the left-menu CRM items, list filters, timeline tabs and forms (note, tags, details, delete, bulk actions) run with fetch and only the CRM content is replaced. Address bar, back/forward, page title and menu highlight follow along; styles and scripts a new screen needs (e.g. the phone field) are loaded on the fly.
 - Also works for the shared person card inside other plugins (Donate, Commerce), on that page only. Sync and scoring refresh the screen the same way.

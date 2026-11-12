@@ -111,7 +111,7 @@ final class FLXCRM_Page_Events {
 	}
 
 	private static function button( $action, $id, $label, $fields = array(), $class = 'button button-small', $confirm = false ) {
-		$h = '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-inline"' . ( $confirm ? ' data-flxcrm-confirm' : '' ) . '>' . wp_nonce_field( 'flxcrm_gathering_' . $action, '_wpnonce', true, false );
+		$h = '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-inline"' . ( $confirm ? ' data-flx-confirm="' . esc_attr__( 'Are you sure? This cannot be undone.', 'flx-crm' ) . '" data-flx-confirm-title="' . esc_attr( $label ) . '" data-flx-confirm-ok="' . esc_attr( $label ) . '" data-flx-confirm-danger' : '' ) . '>' . wp_nonce_field( 'flxcrm_gathering_' . $action, '_wpnonce', true, false );
 		$h .= '<input type="hidden" name="action" value="flxcrm_gathering_' . esc_attr( $action ) . '"><input type="hidden" name="id" value="' . (int) $id . '">';
 		foreach ( $fields as $k => $v ) {
 			$h .= '<input type="hidden" name="' . esc_attr( $k ) . '" value="' . esc_attr( $v ) . '">';
