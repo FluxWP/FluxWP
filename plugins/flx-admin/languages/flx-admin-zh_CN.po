@@ -1182,3 +1182,12 @@ msgstr[0] "%s警告"
 msgid "%shas a special menu layout for the role; other roles see the default grouped menu."
 msgid_plural "%shas a special menu layout for the role; other roles see the default grouped menu."
 msgstr[0] "%s对该角色有特殊的菜单布局;其他角色参见默认分组菜单。"
+
+msgid "Select date"
+msgstr "选择日期"
+
+msgid "Previous month"
+msgstr "上个月"
+
+msgid "Next month"
+msgstr "下个月"

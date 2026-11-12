@@ -395,6 +395,9 @@
     "%sdonate\u0000%sdonate": "%s bağış\u0000%s bağış",
     "%seven\u0000%seven": "%s hata\u0000%s hata",
     "%swarning\u0000%swarning": "%s uyarı\u0000%s uyarı",
-    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\u0000%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\u0000%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.",
+    "Select date": "Tarih seçin",
+    "Previous month": "Önceki ay",
+    "Next month": "Sonraki ay"
   }
 }

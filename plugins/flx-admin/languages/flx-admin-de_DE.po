@@ -1191,3 +1191,12 @@ msgid "%shas a special menu layout for the role; other roles see the default gro
 msgid_plural "%shas a special menu layout for the role; other roles see the default grouped menu."
 msgstr[0] "%shat ein spezielles Menülayout für die Rolle; Andere Rollen sehen das standardmäßige gruppierte Menü."
 msgstr[1] "%shat ein spezielles Menülayout für die Rolle; Andere Rollen sehen das standardmäßige gruppierte Menü."
+
+msgid "Select date"
+msgstr "Datum wählen"
+
+msgid "Previous month"
+msgstr "Vorheriger Monat"
+
+msgid "Next month"
+msgstr "Nächster Monat"

@@ -797,5 +797,8 @@ return array(
   '%suyarı\\x00%suyarı' . chr(0) . '%suyarı\\x00%suyarı' => 'Предупреждение %s' . chr(0) . 'Предупреждение %s' . chr(0) . 'Предупреждение %s',
   '%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\\x00%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.' . chr(0) . '%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\\x00%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.' => '%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.' . chr(0) . '%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.' . chr(0) . '%sимеет специальный макет меню для этой роли; другие роли видят сгруппированное меню по умолчанию.',
 
+  'Select date' => 'Выберите дату',
+  'Previous month' => 'Предыдущий месяц',
+  'Next month' => 'Следующий месяц',
  ),
 );

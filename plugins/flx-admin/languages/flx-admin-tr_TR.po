@@ -1191,3 +1191,12 @@ msgid "%shas a special menu layout for the role; other roles see the default gro
 msgid_plural "%shas a special menu layout for the role; other roles see the default grouped menu."
 msgstr[0] "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
 msgstr[1] "%s rol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür."
+
+msgid "Select date"
+msgstr "Tarih seçin"
+
+msgid "Previous month"
+msgstr "Önceki ay"
+
+msgid "Next month"
+msgstr "Sonraki ay"

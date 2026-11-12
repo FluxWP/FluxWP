@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.7.21
+- Tüm form alanları dropdown ile aynı görünür: `type` yazılmamış `<input>` (ör. Flux Ads "Harcamayı elle ekle") artık köşeli/koyu kenarlı kalmıyor; text, number, date, time, month, week, textarea ve select aynı kenar, köşe yuvarlaklığı, yükseklik, hover ve odak renginde.
+- Yeni ortak tarih seçici (assets/js/datepicker.js): paneldeki her `<input type="date">` tarayıcının yerel alanı yerine dropdown görünümlü düğme + takvim penceresi olur. Asıl input yerinde kalır (name, value, required, min/max, form gönderimi, `change`/`input` olayları aynı). Hafta başlangıcı WordPress ayarından, ay/gün adları kullanıcı dilinden; klavye (oklar, PageUp/Down, Home/End, Esc), "Bugün" ve "Temizle"; telefonda alttan açılan pencere; açık/koyu tema.
+- Yerel alanı korumak için input'a `data-flxa-native` ekleyin. React'in yönettiği alanlar ve uygulama ekranları dokunulmadan kalır. Sonradan eklenen alanlar otomatik dönüşür; elle `window.flxaDate.enhance(root)`.
+
 ## 1.7.20
 - Logosu Flux Admin'de bulunmayan paketlerin sol menü ve sayfa başlığı logosu kırık görünmüyor: paket kendi logosunu yeni `flxa_package_logo_url` filtresiyle verir (stil `gradient` / `pastel` ile birlikte).
 

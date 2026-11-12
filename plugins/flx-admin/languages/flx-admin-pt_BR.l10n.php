@@ -797,5 +797,8 @@ return array(
   '%suyarı\\x00%suyarı' . chr(0) . '%suyarı\\x00%suyarı' => 'Aviso %s' . chr(0) . 'Aviso %s',
   '%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\\x00%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.' . chr(0) . '%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.\\x00%srol için özel menü düzeni var; diğer roller varsayılan gruplu menüyü görür.' => '%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.' . chr(0) . '%spossui um layout de menu especial para a função; outras funções veem o menu agrupado padrão.',
 
+  'Select date' => 'Selecionar data',
+  'Previous month' => 'Mês anterior',
+  'Next month' => 'Próximo mês',
  ),
 );

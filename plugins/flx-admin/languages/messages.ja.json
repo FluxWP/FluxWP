@@ -396,6 +396,9 @@
     "%sdonate\u0000%sdonate": "%s寄付",
     "%seven\u0000%seven": "%s偶数",
     "%swarning\u0000%swarning": "%s警告",
-    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%sには、ロール用の特別なメニュー レイアウトがあります。他のロールについては、デフォルトのグループ化されたメニューを参照してください。"
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%sには、ロール用の特別なメニュー レイアウトがあります。他のロールについては、デフォルトのグループ化されたメニューを参照してください。",
+    "Select date": "日付を選択",
+    "Previous month": "前の月",
+    "Next month": "次の月"
   }
 }

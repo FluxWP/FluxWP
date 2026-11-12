@@ -396,6 +396,9 @@
     "%sdonate\u0000%sdonate": "%s捐赠",
     "%seven\u0000%seven": "%s偶",
     "%swarning\u0000%swarning": "%s警告",
-    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%s对该角色有特殊的菜单布局;其他角色参见默认分组菜单。"
+    "%shas a special menu layout for the role; other roles see the default grouped menu.\u0000%shas a special menu layout for the role; other roles see the default grouped menu.": "%s对该角色有特殊的菜单布局;其他角色参见默认分组菜单。",
+    "Select date": "选择日期",
+    "Previous month": "上个月",
+    "Next month": "下个月"
   }
 }
