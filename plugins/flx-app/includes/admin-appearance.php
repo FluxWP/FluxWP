@@ -395,7 +395,7 @@ function flxapp_render_devices( array $rows, $show_user ) {
 		echo '<td data-label="' . esc_attr__( 'Application', 'flx-app' ) . '">' . esc_html( trim( $o['app'] . ' ' . $o['app_version'] ) ) . ( '' !== $o['brand'] ? ' <code>' . esc_html( $o['brand'] ) . '</code>' : '' ) . '</td>';
 		echo '<td data-label="' . esc_attr__( 'Notifications', 'flx-app' ) . '"><span class="flxapp-pf' . ( $o['push'] ? ' is-on' : '' ) . '">' . ( $o['push'] ? esc_html__( 'On', 'flx-app' ) : esc_html__( 'Off', 'flx-app' ) ) . '</span></td>';
 		echo '<td data-label="' . esc_attr__( 'Last seen', 'flx-app' ) . '">' . esc_html( $o['last_seen_label'] ) . '</td>';
-		echo '<td><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(\'' . esc_js( __( 'Sign this device out?', 'flx-app' ) ) . '\')"><input type="hidden" name="action" value="flxapp_device"><input type="hidden" name="id" value="' . (int) $r['id'] . '">';
+		echo '<td><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr( __( 'Sign this device out?', 'flx-app' ) ) . '"><input type="hidden" name="action" value="flxapp_device"><input type="hidden" name="id" value="' . (int) $r['id'] . '">';
 		wp_nonce_field( 'flxapp_device' );
 		echo '<button class="button button-link-delete">' . esc_html__( 'Sign out', 'flx-app' ) . '</button></form></td></tr>';
 	}

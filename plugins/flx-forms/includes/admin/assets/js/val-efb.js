@@ -698,7 +698,7 @@ function open_conditional_logic_efb() {
     if (typeof alert_message_efb === 'function') {
       alert_message_efb(title, message, 20, 'danger');
     } else if (typeof window !== 'undefined' && typeof window.alert === 'function') {
-      window.alert(message);
+      window.flxDialog.alert(message);
     }
   }
 }

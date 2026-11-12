@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Migrate
  * Description:       Eski paket adlarıyla kaydedilmiş site verilerini (ayarlar, tablolar, meta, içerik, tema, yükleme klasörleri) FluxWP adlarına taşır. Ad eşlemesi map.json'dadır.
- * Version:           0.1.9
+ * Version:           0.1.10
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback; no Flux Lang dependency.
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 
-define( 'FLX_MIGRATE_VERSION', '0.1.9' );
+define( 'FLX_MIGRATE_VERSION', '0.1.10' );
 define( 'FLX_MIGRATE_DIR', __DIR__ );
 
 require_once __DIR__ . '/includes/class-mapper.php';
@@ -95,7 +95,7 @@ function flx_migrate_cleanup_section() {
 	endif;
 	?>
 	<p><?php esc_html_e( 'What is left under the old names after the migration. Delete it once you have checked that the site works with the new plugins; deleting cannot be undone, take a backup first.', 'flx-migrate' ); ?></p>
-	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm(<?php echo esc_attr( wp_json_encode( __( 'The selected items will be deleted permanently. Did you take a backup?', 'flx-migrate' ) ) ); ?>);">
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" data-flx-confirm-danger data-flx-confirm="<?php echo esc_attr( __( 'The selected items will be deleted permanently. Did you take a backup?', 'flx-migrate' ) ); ?>">
 		<input type="hidden" name="action" value="flx_migrate_cleanup">
 		<?php wp_nonce_field( 'flx_migrate_cleanup' ); ?>
 		<table class="widefat striped" style="max-width:720px">
@@ -230,7 +230,7 @@ function flx_migrate_page() {
 			if (!dry) note(L.done);
 		}
 		document.getElementById('flx-migrate-scan').addEventListener('click', function () { go(true); });
-		document.getElementById('flx-migrate-run').addEventListener('click', function () { if (confirm(L.confirm)) go(false); });
+		document.getElementById('flx-migrate-run').addEventListener('click', function () { window.flxDialog.confirm({ message: L.confirm, danger: true }).then(function (yes) { if (yes) go(false); }); });
 	})();
 	</script>
 	<?php

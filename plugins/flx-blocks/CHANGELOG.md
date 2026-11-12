@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.3
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 0.1.2
 
 - Düzeltme: blokların sayfa başı CSS ve verisi yeniden basılıyor; akordiyonda "SSS şeması" açıkken FAQPage yapılandırılmış verisi çıkıyor.

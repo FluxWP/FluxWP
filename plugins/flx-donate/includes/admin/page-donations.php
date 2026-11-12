@@ -821,7 +821,7 @@ final class FLXB_Page_Donations {
 		$multi = count( $sibs ) > 1;
 		$oid   = (int) $d['wc_order_id'];
 		$bulk  = function ( $do, $label, $confirm, $cls, $back ) use ( $id ) {
-			return '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-inline-form" onsubmit="return confirm(' . esc_attr( wp_json_encode( $confirm ) ) . ')">' . wp_nonce_field( 'flxb_bulk', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxb_bulk"><input type="hidden" name="do" value="' . esc_attr( $do ) . '"><input type="hidden" name="ids[]" value="' . (int) $id . '"><input type="hidden" name="back" value="' . esc_url( $back ) . '"><button type="submit" class="flxb-btn flxb-btn--sm ' . esc_attr( $cls ) . '">' . esc_html( $label ) . '</button></form>';
+			return '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-inline-form" data-flx-confirm="' . esc_attr( $confirm ) . '">' . wp_nonce_field( 'flxb_bulk', '_wpnonce', true, false ) . '<input type="hidden" name="action" value="flxb_bulk"><input type="hidden" name="do" value="' . esc_attr( $do ) . '"><input type="hidden" name="ids[]" value="' . (int) $id . '"><input type="hidden" name="back" value="' . esc_url( $back ) . '"><button type="submit" class="flxb-btn flxb-btn--sm ' . esc_attr( $cls ) . '">' . esc_html( $label ) . '</button></form>';
 		};
 		echo '<section class="flxb-card flxb-card--gap flxb-manage"><div class="flxb-card__head"><div><h2 class="flxb-card__title">' . esc_html__( 'Manage', 'flx-donate' ) . '</h2>';
 		if ( $multi ) {
@@ -838,13 +838,11 @@ final class FLXB_Page_Donations {
 			foreach ( $opts as $k => $l ) {
 				echo '<option value="' . esc_attr( $k ) . '">' . esc_html( $l ) . '</option>';
 			}
-			echo '</select> <button type="submit" class="flxb-btn flxb-btn--sm flxb-btn--primary" onclick="return confirm(' . esc_attr(
-				wp_json_encode(
-					$oid
-						? __( 'Change the status of this gift? Its WooCommerce order follows; when you mark it paid, the certificate is made and sent to the donor.', 'flx-donate' )
-						: __( 'Change the status of this gift?', 'flx-donate' )
-				)
-			) . ')">' . esc_html__( 'Change status', 'flx-donate' ) . '</button></form>';
+			echo '</select> <button type="submit" class="flxb-btn flxb-btn--sm flxb-btn--primary" data-flx-confirm="' . esc_attr(
+				$oid
+					? __( 'Change the status of this gift? Its WooCommerce order follows; when you mark it paid, the certificate is made and sent to the donor.', 'flx-donate' )
+					: __( 'Change the status of this gift?', 'flx-donate' )
+			) . '">' . esc_html__( 'Change status', 'flx-donate' ) . '</button></form>';
 		}
 		$list = FLXB_Admin_Url::page( 'flxb-donations' );
 		if ( $trash ) {
@@ -914,7 +912,7 @@ final class FLXB_Page_Donations {
 		echo '</div>';
 		if ( $wait && current_user_can( 'edit_shop_orders' ) ) {
 			$url = wp_nonce_url( admin_url( 'admin-post.php?action=flxb_approve&order=' . $oid . '&back=' . (int) $d['id'] ), 'flxb_approve_' . $oid );
-			echo '<a class="flxb-btn flxb-btn--primary" href="' . esc_url( $url ) . '" onclick="return confirm(' . esc_attr( wp_json_encode( __( 'Has the payment reached the bank? When you confirm, the certificate is made and sent to the donor.', 'flx-donate' ) ) ) . ')">' . esc_html__( 'Confirm payment', 'flx-donate' ) . '</a>';
+			echo '<a class="flxb-btn flxb-btn--primary" href="' . esc_url( $url ) . '" data-flx-confirm="' . esc_attr( __( 'Has the payment reached the bank? When you confirm, the certificate is made and sent to the donor.', 'flx-donate' ) ) . '">' . esc_html__( 'Confirm payment', 'flx-donate' ) . '</a>';
 		}
 		echo '</div>';
 		if ( $wait && class_exists( 'FLXB_WC_Receipts' ) ) {
@@ -961,7 +959,7 @@ final class FLXB_Page_Donations {
 			return '';
 		}
 		$form = function ( $action, $label, $confirm, $cls ) use ( $d, $oid ) {
-			return '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(' . esc_attr( wp_json_encode( $confirm ) ) . ')">' . wp_nonce_field( $action . '_' . $oid, '_wpnonce', true, false ) . '<input type="hidden" name="action" value="' . esc_attr( $action ) . '"><input type="hidden" name="order" value="' . (int) $oid . '"><input type="hidden" name="back" value="' . (int) $d['id'] . '"><button type="submit" class="flxb-btn ' . esc_attr( $cls ) . '">' . esc_html( $label ) . '</button></form>';
+			return '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm="' . esc_attr( $confirm ) . '">' . wp_nonce_field( $action . '_' . $oid, '_wpnonce', true, false ) . '<input type="hidden" name="action" value="' . esc_attr( $action ) . '"><input type="hidden" name="order" value="' . (int) $oid . '"><input type="hidden" name="back" value="' . (int) $d['id'] . '"><button type="submit" class="flxb-btn ' . esc_attr( $cls ) . '">' . esc_html( $label ) . '</button></form>';
 		};
 		return '<div class="flxb-cert-actions">'
 			. $form( 'flxb_cert_remake', __( 'Make the certificates again', 'flx-donate' ), __( 'The current certificates are revoked and new ones are made, one for each name. They are not sent until you press "Send the certificates".', 'flx-donate' ), '' )

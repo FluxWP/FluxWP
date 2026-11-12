@@ -570,7 +570,7 @@ function check_body_efb_timer (){
                 document.getElementById('body_efb').innerHTML = alarm_emsFormBuilder(ajax_object_efm.text.formIsNotShown);
                 return;
               }
-              if(sitekye_emsFormBuilder==2)alert(c_r_efb);
+              if(sitekye_emsFormBuilder==2)window.flxDialog.alert(c_r_efb);
               sitekye_emsFormBuilder = vs.siteKey;
             } else {
               sitekye_emsFormBuilder = "";
@@ -1430,7 +1430,7 @@ function fun_show_alert_setting_emsFormBuilder() {
   } else if (document.getElementById('body_tracker_emsFormBuilder')) {
     document.getElementById('body_tracker_emsFormBuilder').innerHTML = m;
   } else {
-    window.alert(`${ajax_object_efm.text.error} ${ajax_object_efm.text.formIsNotShown}`)
+    window.flxDialog.alert(`${ajax_object_efm.text.error} ${ajax_object_efm.text.formIsNotShown}`)
   }
 }
 async function validation_before_send_efb(form_id) {
@@ -2808,7 +2808,7 @@ async function btn_navigate_handle_efb(form_id , form_type , btn_state,el){
       }
     }else{
       step_payment_exists = -1;
-      alert(efb_var.text.paymentMethodMissing);
+      window.flxDialog.alert(efb_var.text.paymentMethodMissing);
       return false;
     }
   }

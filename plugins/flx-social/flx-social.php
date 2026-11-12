@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Social
  * Description:       Sosyal medya yönetimi sitenin içinde: hesap bağlama (anahtarlar panelden), hesap başına içerik, zamanlama, ağda düzenleme/silme, takvim, pano, Flux AI yazım yardımı ve MCP araçları. Facebook, Instagram, YouTube, X, LinkedIn, TikTok, Pinterest, Google İşletme, WhatsApp.
- * Version:           0.2.6
+ * Version:           0.2.7
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -21,7 +21,7 @@ if ( defined( 'FLXSM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXSM_VERSION', '0.2.6' );
+define( 'FLXSM_VERSION', '0.2.7' );
 define( 'FLXSM_DB_VERSION', 1 );
 define( 'FLXSM_FILE', __FILE__ );
 define( 'FLXSM_DIR', plugin_dir_path( __FILE__ ) );

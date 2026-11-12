@@ -111,7 +111,7 @@ final class FLXB_Page_Subscriptions {
 				echo '<td class="flxb-col-act">';
 				$p = flxf_payment_provider( $s['provider'] );
 				if ( $p && method_exists( $p, 'cancel_subscription' ) && in_array( $s['status'], array( 'active', 'past_due' ), true ) ) {
-					echo '<form method="post" class="flxb-inline" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" onsubmit="return confirm(this.dataset.confirm)" data-confirm="' . esc_attr__( 'Cancel this recurring donation at the payment provider? No further charges will be made.', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_sub_cancel"><input type="hidden" name="id" value="' . (int) $s['id'] . '"><input type="hidden" name="back" value="' . esc_attr( remove_query_arg( array( 'flxb_msg', 'flxb_err' ), wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) ) ) . '">'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					echo '<form method="post" class="flxb-inline" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Cancel this recurring donation at the payment provider? No further charges will be made.', 'flx-donate' ) . '"><input type="hidden" name="action" value="flxb_sub_cancel"><input type="hidden" name="id" value="' . (int) $s['id'] . '"><input type="hidden" name="back" value="' . esc_attr( remove_query_arg( array( 'flxb_msg', 'flxb_err' ), wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ) ) ) . '">'; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					wp_nonce_field( 'flxb_sub_cancel_' . (int) $s['id'] );
 					echo '<button type="submit" class="flxb-linkbtn flxb-linkbtn--danger">' . esc_html__( 'Cancel', 'flx-donate' ) . '</button></form>';
 				}

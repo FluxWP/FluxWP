@@ -289,8 +289,8 @@
 		return el( 'button', { type: 'button', class: 'flxm-link flxm-back', onclick: closePane }, [ icon( 'back' ), T.back ] );
 	}
 
-	function closePane() {
-		if ( S.dirty && ! window.confirm( T.leave ) ) {
+	async function closePane() {
+		if ( S.dirty && ! (await window.flxDialog.confirm({ message:  T.leave  })) ) {
 			return;
 		}
 		S.dirty = false;
@@ -561,8 +561,8 @@
 			ibtn( 'bold', T.bold, cmd( 'bold' ) ),
 			ibtn( 'italic', T.italic, cmd( 'italic' ) ),
 			ibtn( 'list', T.list, cmd( 'insertUnorderedList' ) ),
-			ibtn( 'link', T.link, function () {
-				var u = window.prompt( T.linkUrl, 'https://' );
+			ibtn( 'link', T.link, async function () {
+				var u = (await window.flxDialog.prompt({ title: T.linkUrl, value: 'https://' }));
 				if ( u && /^(https?:|mailto:|tel:)/i.test( u ) ) {
 					cmd( 'createLink', u )();
 				}
@@ -650,8 +650,8 @@
 			} ).catch( function ( e ) { toast( e.message, 'error' ); } ).then( function () { aiBtn.disabled = false; aiBtn.lastChild.textContent = T.aiFix; } );
 		}, 'is-ai is-solid', 'sparkles' );
 
-		var sendBtn = btn( T.send, function () {
-			if ( ! window.confirm( fmt( T.confirmSend, to.value ) ) ) {
+		var sendBtn = btn( T.send, async function () {
+			if ( ! (await window.flxDialog.confirm({ message:  fmt( T.confirmSend, to.value )  })) ) {
 				return;
 			}
 			sendBtn.disabled = true;
@@ -723,8 +723,8 @@
 				el( 'h2', { text: title } ),
 				stat,
 				el( 'span', { class: 'flxm-actions__sp' } ),
-				ibtn( 'trash', T.delete, function () {
-					if ( ! window.confirm( T.confirmDel ) ) {
+				ibtn( 'trash', T.delete, async function () {
+					if ( ! (await window.flxDialog.confirm({ message:  T.confirmDel  })) ) {
 						return;
 					}
 					api( 'draft/' + d.id + '/delete', {} ).then( function ( r ) {
@@ -889,8 +889,8 @@
 						}, 'is-primary', 'ok' ),
 						l.id ? btn( T.useLayout, function () { newDraft( l.id ); }, '', 'pen' ) : null,
 						el( 'span', { class: 'flxm-actions__sp' } ),
-						l.id ? el( 'button', { type: 'button', class: 'flxm-link flxm-del', onclick: function () {
-							if ( ! window.confirm( T.confirmDel ) ) {
+						l.id ? el( 'button', { type: 'button', class: 'flxm-link flxm-del', onclick: async function () {
+							if ( ! (await window.flxDialog.confirm({ message:  T.confirmDel  })) ) {
 								return;
 							}
 							api( 'layout/' + l.id + '/delete', {} ).then( function ( r ) { S.layouts = r.layouts; loadList(); showLayoutsIntro(); } );

@@ -565,7 +565,7 @@
 		draw();
 	});
 
-	document.addEventListener('click', function (e) {
+	document.addEventListener('click', async function (e) {
 		var f = form(); if (!f) { return; }
 		var t = e.target;
 		var preview = t.closest('.flxu-pkg');
@@ -602,7 +602,12 @@
 			var op = document.getElementById('flxu-bulk-op').value, inst = selectedInstalled();
 			if (busy || !op || !inst.length) { e.preventDefault(); return; }
 			f.querySelectorAll('.flxu-check[data-state="missing"]:checked').forEach(function (x) { x.checked = false; });
-			if (op === 'delete' && !window.confirm(fmt(L.confirmDel, inst.map(function (x) { return x.getAttribute('data-name') || name(x.value); }).join(', ')))) { e.preventDefault(); }
+			if (op === 'delete' && !b.flxuOk) {
+				e.preventDefault();
+				if (await window.flxDialog.confirm({ message: fmt(L.confirmDel, inst.map(function (x) { return x.getAttribute('data-name') || name(x.value); }).join(', ')), danger: true })) { b.flxuOk = true; b.click(); }
+				return;
+			}
+			b.flxuOk = false;
 			return;
 		}
 		if (!window.fetch) { return; }
@@ -613,7 +618,7 @@
 
 		if (b.value === 'version') {
 			var v = b.parentNode.querySelector('select').value;
-			if (!window.confirm(fmt(L.confirmVer, b.getAttribute('data-name'), v))) { return; }
+			if (!(await window.flxDialog.confirm({ message: fmt(L.confirmVer, b.getAttribute('data-name'), v) }))) { return; }
 			run({ steps: [{ kind: 'version', slug: b.getAttribute('data-slug'), name: b.getAttribute('data-name') + ' → ' + v, version: v }] });
 			return;
 		}
@@ -638,7 +643,7 @@
 				if (by.indexOf(s) < 0) { by.push(s); }
 			});
 		});
-		if (need.length && !window.confirm(fmt(L.confirmDeps, by.map(name).join(', '), need.map(name).join(', ')))) { return; }
+		if (need.length && !(await window.flxDialog.confirm({ message: fmt(L.confirmDeps, by.map(name).join(', '), need.map(name).join(', ')) }))) { return; }
 		run({ action: 'flxu_plan', slugs: sel, activate: b.value === 'one' ? 1 : activate, extra: wsel });
 	});
 
@@ -664,7 +669,7 @@
 			t.setAttribute('aria-checked', r.on ? 'true' : 'false');
 			t.querySelector('.flxu-auto__txt').textContent = r.label;
 		}).catch(function (err) {
-			window.alert(err.message);
+			window.flxDialog.alert(err.message);
 		}).then(function () { t.classList.remove('is-busy'); });
 	});
 

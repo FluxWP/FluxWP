@@ -380,7 +380,7 @@ class FLXB_WC_Admin {
 			}
 			if ( FLXB_WC_Havale::awaiting( $order ) ) {
 				$url = wp_nonce_url( admin_url( 'admin-post.php?action=flxb_approve&order=' . $order->get_id() ), 'flxb_approve_' . $order->get_id() );
-				echo '<p><a class="button button-primary" href="' . esc_url( $url ) . '" onclick="return confirm(\'' . esc_js( __( 'Has the payment reached the bank? When you confirm, the certificate is made and sent to the donor.', 'flx-donate' ) ) . '\')">' . esc_html__( 'Confirm payment', 'flx-donate' ) . '</a></p>';
+				echo '<p><a class="button button-primary" href="' . esc_url( $url ) . '" data-flx-confirm="' . esc_attr( __( 'Has the payment reached the bank? When you confirm, the certificate is made and sent to the donor.', 'flx-donate' ) ) . '">' . esc_html__( 'Confirm payment', 'flx-donate' ) . '</a></p>';
 			}
 		}
 		$certs = FLXB_WC_Certificates::of( $order );
@@ -490,7 +490,7 @@ class FLXB_WC_Admin {
 			if ( $left > 0 ) {
 				$gw   = wc_get_payment_gateway_by_order( $order );
 				$auto = $gw && $gw->supports( 'refunds' );
-				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-inline-form" onsubmit="return confirm(' . esc_attr( wp_json_encode( $auto ? __( 'Refund this amount to the donor\'s card?', 'flx-donate' ) : __( 'Record this refund? The money is not sent back automatically for this payment method.', 'flx-donate' ) ) ) . ')">';
+				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxb-inline-form" data-flx-confirm-danger data-flx-confirm="' . esc_attr( $auto ? __( 'Refund this amount to the donor\'s card?', 'flx-donate' ) : __( 'Record this refund? The money is not sent back automatically for this payment method.', 'flx-donate' ) ) . '">';
 				echo '<input type="hidden" name="action" value="flxb_wc_refund"><input type="hidden" name="donation" value="' . (int) $d['id'] . '">';
 				wp_nonce_field( 'flxb_wc_refund_' . (int) $d['id'] );
 				echo '<label class="screen-reader-text" for="flxb-wcr">' . esc_html__( 'Amount', 'flx-donate' ) . '</label><input id="flxb-wcr" type="text" inputmode="decimal" name="amount" size="8" value="' . esc_attr( wc_format_localized_price( $left ) ) . '"> ';

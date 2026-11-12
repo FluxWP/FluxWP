@@ -1533,10 +1533,10 @@ function efbLocateMe(efbMapId) {
                 efbErrorMessageDiv.querySelector('.efb-error-message-text').textContent = efb_var.text.errorFetchingAddress + ': ' + error.message;
             });
     }, function(error) {
-        alert(efb_var.text.error + ': ' + error.message);
+        window.flxDialog.alert(efb_var.text.error + ': ' + error.message);
     });
 } else {
-    alert(efb_var.text.geolocationNotSupported);
+    window.flxDialog.alert(efb_var.text.geolocationNotSupported);
 }
 }
 

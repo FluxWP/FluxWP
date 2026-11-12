@@ -1408,7 +1408,7 @@ function generatePDF_EFB(id)
       '</body></html>';
   }
 
-  function openPrintWindow_efb(content) {
+  async function openPrintWindow_efb(content) {
     var printWindow = null;
     if (browserSupport.isMobile) {
       if (browserSupport.isIOS) {
@@ -1438,7 +1438,7 @@ function generatePDF_EFB(id)
         printWindow = window.open(url, '_blank');
         if (printWindow) { setTimeout(function() { window.URL.revokeObjectURL(url); }, 5000); return; }
       } catch (e) {  }
-      if (confirm(efb_var.text.download || 'Open in new tab for printing?')) {
+      if ((await window.flxDialog.confirm({ message: efb_var.text.download || 'Open in new tab for printing?' }))) {
         var newWindow = window.open('about:blank', '_blank');
         if (newWindow) { newWindow.document.write(content); newWindow.document.close(); }
       }
@@ -1451,7 +1451,7 @@ function generatePDF_EFB(id)
       printWindow.document.write(content);
       setTimeout(function() { if (printWindow && !printWindow.closed) printWindow.document.close(); }, 100);
     } catch (e) {
-      if (confirm(efb_var.text.download || 'Popup blocked. Try again?')) {
+      if ((await window.flxDialog.confirm({ message: efb_var.text.download || 'Popup blocked. Try again?' }))) {
         setTimeout(function() { generatePDF_EFB(id); }, 1000);
       } else {
         var iframe = document.createElement('iframe');

@@ -306,7 +306,7 @@ class FLXAN_Admin {
 						<button class="button button-secondary"><?php esc_html_e( 'Import Koko Analytics data', 'flx-analytics' ); ?></button>
 					</form>
 				<?php endif; ?>
-				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxan-inline flxan-danger" onsubmit="return confirm(this.dataset.confirm)" data-confirm="<?php esc_attr_e( 'All statistics will be permanently deleted. Are you sure?', 'flx-analytics' ); ?>">
+				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="flxan-inline flxan-danger" data-flx-confirm-danger data-flx-confirm="<?php esc_attr_e( 'All statistics will be permanently deleted. Are you sure?', 'flx-analytics' ); ?>">
 					<input type="hidden" name="action" value="flxan_reset">
 					<?php wp_nonce_field( 'flxan_reset' ); ?>
 					<button class="button button-link-delete"><?php esc_html_e( 'Delete all statistics', 'flx-analytics' ); ?></button>

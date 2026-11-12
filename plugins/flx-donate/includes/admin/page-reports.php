@@ -224,7 +224,7 @@ final class FLXB_Page_Reports {
 		echo '<div class="flxb-actions"><button class="flxb-btn flxb-btn--primary" type="submit">' . esc_html__( 'Save', 'flx-donate' ) . '</button></div></form>';
 		if ( $def && $def['edited'] ) {
 			echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" style="margin-top:12px"><input type="hidden" name="action" value="flxb_report_delete"><input type="hidden" name="id" value="' . esc_attr( $id ) . '">' . wp_nonce_field( 'flxb_report_delete', '_wpnonce', true, false ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo '<button class="flxb-btn flxb-btn--danger" type="submit" onclick="return confirm(this.dataset.q)" data-q="' . esc_attr__( 'Are you sure?', 'flx-donate' ) . '">' . esc_html( $def['builtin'] ? __( 'Put back the original', 'flx-donate' ) : __( 'Delete report', 'flx-donate' ) ) . '</button></form>';
+			echo '<button class="flxb-btn flxb-btn--danger" type="submit" data-flx-confirm-danger data-flx-confirm="' . esc_attr__( 'Are you sure?', 'flx-donate' ) . '">' . esc_html( $def['builtin'] ? __( 'Put back the original', 'flx-donate' ) : __( 'Delete report', 'flx-donate' ) ) . '</button></form>';
 		}
 		echo '</section><aside class="flxb-card"><div class="flxb-card__head"><h2 class="flxb-card__title">' . esc_html__( 'What you can use', 'flx-donate' ) . '</h2></div>';
 		foreach ( FLXB_Reports::sources() as $s => $sl ) {

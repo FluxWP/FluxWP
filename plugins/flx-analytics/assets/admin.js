@@ -69,10 +69,10 @@
 		if (sec < 60) return fmt(t('%s sn'), sec);
 		return fmt(t('%1$s dk %2$s sn'), Math.floor(sec / 60), String(sec % 60).padStart(2, '0'));
 	}
-	function copy(text, btn) {
+	async function copy(text, btn) {
 		var done = function () { if (btn) { var o = btn.textContent; btn.textContent = t('Kopyalandı'); setTimeout(function () { btn.textContent = o; }, 1500); } };
-		if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, function () { window.prompt(t('Bağlantı'), text); }); return; }
-		window.prompt(t('Bağlantı'), text);
+		if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, async function () { (await window.flxDialog.prompt({ title: t('Bağlantı'), value: text })); }); return; }
+		(await window.flxDialog.prompt({ title: t('Bağlantı'), value: text }));
 	}
 
 	// --- İskelet ---
@@ -506,9 +506,9 @@
 			tr.querySelector('.flxan-rcgo').addEventListener('click', function (e) { e.preventDefault(); setRc(x.code); });
 			tr.querySelector('.flxan-copy').addEventListener('click', function (e) { copy(x.url, e.target); });
 			var ed = tr.querySelector('.flxan-edit');
-			if (ed) ed.addEventListener('click', function () { var v = window.prompt(fmt(t('"%s" için ad'), x.code), x.name || ''); if (v !== null) save(x.code, v.trim()).then(load); });
+			if (ed) ed.addEventListener('click', async function () { var v = (await window.flxDialog.prompt({ title: fmt(t('"%s" için ad'), x.code), value: x.name || '' })); if (v !== null) save(x.code, v.trim()).then(load); });
 			var dl = tr.querySelector('.flxan-del');
-			if (dl) dl.addEventListener('click', function () { if (window.confirm(t('Ad silinsin mi? İstatistikler kalır, kod adıyla görünür.'))) save(x.code, '', true).then(load); });
+			if (dl) dl.addEventListener('click', async function () { if ((await window.flxDialog.confirm({ message: t('Ad silinsin mi? İstatistikler kalır, kod adıyla görünür.'), danger: true }))) save(x.code, '', true).then(load); });
 		});
 	}
 

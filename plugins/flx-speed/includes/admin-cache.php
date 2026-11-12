@@ -174,12 +174,11 @@ class FLXP_Admin_Cache {
 				?>
 			</div>
 			<?php if ( $st['dropin']['exists'] && in_array( $st['provider'], array( 'sqlite', 'litespeed' ), true ) ) : ?>
-				<div class="flxp-c-foot"><?php echo self::button( 'object_off', __( 'Turn object cache off', 'flx-speed' ), false, ' data-flxp-confirm="' . esc_attr__( 'Turn the object cache off? The site keeps working, only slower on database-heavy pages.', 'flx-speed' ) . '"' ); // phpcs:ignore ?></div>
+				<div class="flxp-c-foot"><?php echo self::button( 'object_off', __( 'Turn object cache off', 'flx-speed' ), false, ' data-flx-confirm="' . esc_attr__( 'Turn the object cache off? The site keeps working, only slower on database-heavy pages.', 'flx-speed' ) . '"' ); // phpcs:ignore ?></div>
 			<?php endif; ?>
 		</section>
 		</div>
 		<script>
-		document.querySelectorAll('.flxp-cache [data-flxp-confirm]').forEach(function(b){b.addEventListener('click',function(e){if(!confirm(b.dataset.flxpConfirm))e.preventDefault();});});
 		document.querySelectorAll('.flxp-cache form.flxp-c-form').forEach(function(f){f.addEventListener('submit',function(){var b=f.querySelector('button');if(b){setTimeout(function(){b.disabled=true;b.classList.add('is-busy');},0);}});});
 		try{var u=new URL(location.href);['flxp_c','flxp_c_err'].forEach(function(k){u.searchParams.delete(k);});history.replaceState(null,'',u);}catch(e){}
 		</script>
@@ -246,7 +245,7 @@ class FLXP_Admin_Cache {
 					echo '<p class="flxp-c-blocked">' . esc_html__( 'Cannot be used on this server without the sqlite3 extension.', 'flx-speed' ) . '</p>';
 				} else {
 					$label = $sq['installed'] ? __( 'Use SQLite Object Cache', 'flx-speed' ) : __( 'Install and use SQLite Object Cache', 'flx-speed' );
-					$confirm = $st['dropin']['exists'] ? ' data-flxp-confirm="' . esc_attr__( 'The current object cache is turned off and SQLite Object Cache takes over. Continue?', 'flx-speed' ) . '"' : '';
+					$confirm = $st['dropin']['exists'] ? ' data-flx-confirm="' . esc_attr__( 'The current object cache is turned off and SQLite Object Cache takes over. Continue?', 'flx-speed' ) . '"' : '';
 					echo self::button( 'use_sqlite', $label, $rec || ! $st['dropin']['exists'], $confirm ); // phpcs:ignore
 				}
 			}
@@ -289,7 +288,7 @@ class FLXP_Admin_Cache {
 					echo '<p class="flxp-c-blocked">' . esc_html__( 'Enable Memcached for this site in the hosting panel first; this option unlocks afterwards.', 'flx-speed' ) . '</p>';
 				} else {
 					$label   = $ls['installed'] ? __( 'Use LiteSpeed object cache', 'flx-speed' ) : __( 'Install LiteSpeed Cache and use it', 'flx-speed' );
-					$confirm = $st['dropin']['exists'] ? ' data-flxp-confirm="' . esc_attr__( 'The current object cache is turned off and LiteSpeed Cache takes over. Continue?', 'flx-speed' ) . '"' : '';
+					$confirm = $st['dropin']['exists'] ? ' data-flx-confirm="' . esc_attr__( 'The current object cache is turned off and LiteSpeed Cache takes over. Continue?', 'flx-speed' ) . '"' : '';
 					echo self::button( 'use_litespeed', $label, $rec || ! $st['dropin']['exists'], $confirm ); // phpcs:ignore
 				}
 			}

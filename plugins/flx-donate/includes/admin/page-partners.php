@@ -165,7 +165,7 @@ final class FLXB_Page_Partners {
 			foreach ( $pays as $py ) {
 				echo '<tr><td>' . esc_html( flx_date( strtotime( $py['paid_at'] ), 'j M Y' ) ) . '</td><td>' . esc_html( 'in' === $py['direction'] ? __( 'Received', 'flx-donate' ) : __( 'Paid', 'flx-donate' ) ) . '</td><td class="num">' . esc_html( flxb_money( $py['amount'], $py['currency'] ) ) . '</td><td>' . esc_html( $py['note'] ) . '</td><td>';
 				if ( $can ) {
-					echo self::form( 'pay_delete', ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Delete this payment?', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="id" value="' . (int) $py['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo self::form( 'pay_delete', ' data-flx-confirm-danger data-flx-confirm="' . esc_attr( __( 'Delete this payment?', 'flx-donate' ) ) . '"' ) . '<input type="hidden" name="id" value="' . (int) $py['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				echo '</td></tr>';
 			}
@@ -199,7 +199,7 @@ final class FLXB_Page_Partners {
 				}
 				echo '</td><td>' . esc_html( $a['note'] ) . '</td><td>';
 				if ( $can ) {
-					echo self::form( 'price_delete', ' onsubmit="return confirm(' . esc_attr( wp_json_encode( __( 'Delete this agreement? Items already sent keep their price.', 'flx-donate' ) ) ) . ')"' ) . '<input type="hidden" name="id" value="' . (int) $a['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo self::form( 'price_delete', ' data-flx-confirm-danger data-flx-confirm="' . esc_attr( __( 'Delete this agreement? Items already sent keep their price.', 'flx-donate' ) ) . '"' ) . '<input type="hidden" name="id" value="' . (int) $a['id'] . '"><input type="hidden" name="partner_id" value="' . (int) $id . '"><button class="flxb-linkbtn flxb-linkbtn--danger" type="submit">' . esc_html__( 'Delete', 'flx-donate' ) . '</button></form>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				echo '</td></tr>';
 			}

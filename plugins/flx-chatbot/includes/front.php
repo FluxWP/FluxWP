@@ -216,6 +216,7 @@ function flxcb_widget_config() {
 }
 
 function flxcb_enqueue_widget( $preview = false ) {
+	if ( function_exists( 'flx_dialog_enqueue' ) ) { flx_dialog_enqueue(); } // Ortak modal (flx-brand).
 	wp_enqueue_script( 'flxcb-widget', FLXCB_URL . 'assets/widget.js', array(), FLXCB_VERSION, array( 'in_footer' => true, 'strategy' => 'defer' ) );
 	$cfg            = flxcb_widget_config();
 	$cfg['preview'] = (bool) $preview;

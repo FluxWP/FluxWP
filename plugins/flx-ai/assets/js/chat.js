@@ -943,7 +943,7 @@
 		h += '<button class="btn primary" type="button" data-a="decide"' + (done < n ? ' disabled' : '') + '>' + ic('check') + esc(t('Devam et')) + '</button></div></div>';
 		return h;
 	}
-	function onBody(e) {
+	async function onBody(e) {
 		var b;
 		if ((b = e.target.closest('[data-sug]'))) { send(b.getAttribute('data-sug')); return; }
 		if ((b = e.target.closest('[data-work]'))) { var id = b.getAttribute('data-work'); S.openWork[id] = !S.openWork[id]; renderBody(); return; }
@@ -961,7 +961,7 @@
 		if ((b = e.target.closest('[data-a="edit-cancel"]'))) { S.editId = ''; renderBody(); return; }
 		if ((b = e.target.closest('[data-a="edit-send"]'))) { editSend(); return; }
 		if ((b = e.target.closest('[data-rewind]'))) {
-			if (!window.confirm(t('Bu mesajdan sonraki konuşma silinecek. Devam edilsin mi?'))) return;
+			if (!(await window.flxDialog.confirm({ message: t('Bu mesajdan sonraki konuşma silinecek. Devam edilsin mi?'), danger: true }))) return;
 			rewind(b.getAttribute('data-rewind'), 'keep').catch(function (er) { S.err = er.message; renderBody(); });
 		}
 	}
@@ -1081,7 +1081,7 @@
 		if (e.target.classList.contains('ci') && e.key === 'Enter') pick(+e.target.getAttribute('data-open'));
 		if (e.target.classList.contains('mi') && e.key === 'Enter') e.target.click();
 	}
-	function onPop(e) {
+	async function onPop(e) {
 		var b;
 		if ((b = e.target.closest('[data-menu]'))) { e.stopPropagation(); var id = +b.getAttribute('data-menu'); S.menu = S.menu === id ? null : id; renderList(); return; }
 		if ((b = e.target.closest('[data-do]'))) {
@@ -1089,7 +1089,7 @@
 			S.menu = null;
 			if (act === 'rename') { S.editing = cid; renderList(); }
 			else if (act === 'archive' && c) update(cid, { archived: c.archived ? 0 : 1 });
-			else if (act === 'delete' && window.confirm(t('Bu sohbet kalıcı olarak silinsin mi?'))) {
+			else if (act === 'delete' && (await window.flxDialog.confirm({ message: t('Bu sohbet kalıcı olarak silinsin mi?'), danger: true }))) {
 				api('POST', 'chats/' + cid + '/delete', {}).then(function () { if (S.chat && S.chat.id === cid) newChat(); else loadList(); });
 			} else renderList();
 			return;

@@ -12,7 +12,7 @@
 		setTimeout(function () { t.remove(); }, 2200);
 	}
 
-	function copy(text) {
+	async function copy(text) {
 		if (navigator.clipboard && window.isSecureContext) {
 			return navigator.clipboard.writeText(text).then(function () { toast(t('copied', 'Link kopyalandı')); });
 		}
@@ -22,7 +22,7 @@
 		ta.style.opacity = '0';
 		document.body.appendChild(ta);
 		ta.select();
-		try { document.execCommand('copy'); toast(t('copied', 'Link kopyalandı')); } catch (e) { window.prompt(t('copyHint', 'Linki kopyalayın:'), text); }
+		try { document.execCommand('copy'); toast(t('copied', 'Link kopyalandı')); } catch (e) { (await window.flxDialog.prompt({ title: t('copyHint', 'Linki kopyalayın:'), value: text })); }
 		ta.remove();
 		return Promise.resolve();
 	}

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.15.1
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 1.15.0
 - New recipient source "All people, who allowed this channel": the shared FluxWP people table (one record per person across Flux CRM, Certificates, Donate, Commerce). Flux CRM is not needed. People without consent for the channel are left out and counted under "no consent" in the recipient breakdown.
 - "Flux Certificates contacts" counts and sends only to people Flux Certificates uses (the people table is shared since Certificates 2.0.0).

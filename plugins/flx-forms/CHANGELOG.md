@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.1.23
+- Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
+
 ## 2.1.22
 - Form listesi yanıtları ortak önbelleksiz başlıkları kullanır. CDN işareti durur.
 

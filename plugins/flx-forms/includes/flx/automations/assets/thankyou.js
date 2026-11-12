@@ -55,12 +55,12 @@
 		setTimeout(function () { t.remove(); }, 2200);
 	}
 
-	function copy(card, text) {
+	async function copy(card, text) {
 		if (navigator.clipboard && window.isSecureContext) {
 			navigator.clipboard.writeText(text).then(function () { toast(card, L.copied || 'Link copied'); });
 			return;
 		}
-		window.prompt('', text);
+		(await window.flxDialog.prompt({ title: '', value: text }));
 	}
 
 	function setup(card) {
