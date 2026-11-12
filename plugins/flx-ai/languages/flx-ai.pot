@@ -2508,3 +2508,30 @@ msgstr ""
 
 msgid "Archived"
 msgstr ""
+
+msgid "Visual report"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Open full screen"
+msgstr ""
+
+msgid "Turns data, plans or explanations into an interactive one-page visual report (Tailwind, charts, diagrams) you open in the chat."
+msgstr ""
+
+msgid "Visual reports need Flux Files (workspace)."
+msgstr ""
+
+msgid "Report"
+msgstr ""
+
+msgid "The report is too large."
+msgstr ""
+
+msgid "Create a visual report"
+msgstr ""
+
+msgid "This tool only works in the AI chat."
+msgstr ""

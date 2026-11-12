@@ -41,6 +41,26 @@ function flxai_skills_builtin() {
 				. "7. Önceki günden belirgin fark (ör. bağış yarıya düştü) varsa bir cümleyle belirt; karşılaştırma verisi yoksa bu cümleyi atla.",
 			'example'     => "## Günlük brifing\n- **Bağışlar:** dün 12 bağış, toplam 4.350 TL.\n- **Mesajlar:** 3 cevapsız WhatsApp sohbeti.\n- **Site:** sorun yok.\n\n**Bugün bakmanız gereken:** 2 dekont onay bekliyor.",
 		),
+		'gorsel-rapor'   => array(
+			'name'        => __( 'Visual report', 'flx-ai' ),
+			'description' => __( 'Turns data, plans or explanations into an interactive one-page visual report (Tailwind, charts, diagrams) you open in the chat.', 'flx-ai' ),
+			'tools'       => array( 'flxai_visual_report' ),
+			'body'        => "# Görsel rapor\n\n"
+				. "Konuyu ya da veriyi tek sayfalık, etkileşimli bir HTML rapora çevir ve flxai_visual_report ile kaydet.\n\n"
+				. "## Akış\n"
+				. "1. Gereken veriyi önce araçlarla topla (sayfa dışarıya istek atamaz, her şey sayfaya gömülür). Uydurma veri yok; eksik olanı sayfada \"veri yok\" diye belirt.\n"
+				. "2. Sayfayı yaz ve flxai_visual_report'u bir kez çağır. Cevapta HTML'i tekrarlama; 2-3 cümle özet + rapordaki en önemli bulgu.\n\n"
+				. "## Tasarım\n"
+				. "- Önce cevap: ilk ekranda büyük başlık, tek cümlelik sonuç ve 3-4 KPI kartı (sayı büyük, açıklama küçük, değişim yeşil/kırmızı rozet).\n"
+				. "- Türüne göre üslup: metrik/inceleme = sade kartlar ve tablolar; süreç/mimari = akış şeması (Mermaid ya da inline SVG); kavram = sade metin + çizim; özet/sunum = büyük başlıklar, bölüm bölüm.\n"
+				. "- Tailwind sınıfları, yalnız 1 vurgu rengi + gri tonları; her öğede dark: karşılığı (koyu modda okunur olmalı). Kartlar rounded-2xl, ince kenarlık, bol boşluk; mobilde tek sütun (grid-cols-1 sm:grid-cols-2 lg:grid-cols-4).\n"
+				. "- Grafik: <canvas> + new Chart(...) (Chart.js kendiliğinden yüklenir; responsive, maintainAspectRatio:false, sabit yükseklikli kap). Zaman serisi çizgi, karşılaştırma bar, pay en çok 5 dilimli doughnut.\n"
+				. "- Tablolar: başlık satırı sabit renk, sayılar sağa yaslı, durum için renkli küçük rozet; 4+ satırlı veri her zaman tablo ya da grafik.\n"
+				. "- Etkileşim: <details> ile açılır bölümler, sekme ya da filtre için küçük inline <script>; tıklanınca ayrıntı. Dış bağlantı yok, form yok.\n"
+				. "- Metin kısa ve sade; Türkçe karakterler doğru; tarih ve para biçimi yerel (1.250 TL, 12 Kasım 2026).\n"
+				. "- Sonda \"Ne yapmalı\" bölümü: en fazla 3 somut adım.",
+			'example'     => "Rapor kaydedildi: **Kasım bağış raporu**. Bağışlar geçen aya göre %18 arttı, en çok fidan bağışı geldi; 2 bekleyen havale var.",
+		),
 		'site-sagligi'   => array(
 			'name'        => __( 'Site health check', 'flx-ai' ),
 			'description' => __( 'Checks system checks, speed and SEO audit results; reports only what changed or needs action.', 'flx-ai' ),

@@ -1,5 +1,11 @@
 # Flux AI — Değişiklikler
 
+## 0.15.0
+- **Görsel rapor**: asistan veriyi, planı ya da açıklamayı Tailwind ile tek sayfalık, etkileşimli HTML rapora dönüştürür (KPI kartları, Chart.js grafikleri, Mermaid şemaları, tablolar; açık/koyu mod). Rapor sohbetin klasörüne (`raporlar/`) kaydedilir, sohbette **Görsel rapor** kartından sağ panelde açılır, **Tam ekran aç** ile ayrı sekmede.
+- Güvenlik: rapor WordPress sayfasına basılmaz; ayrı adresten CSP `sandbox` ile sunulur (çerez/oturum yok, dışarıya istek yok, betik yalnız izinli CDN'lerden).
+- Yeni hazır skill **Görsel rapor** ve araç `flxai_visual_report` (yalnız sohbette). Tasarım ilkeleri nicobailon/visual-explainer'dan (MIT) uyarlandı.
+- Dosya panelinde `.html` dosyaları güvenli önizlemeyle açılır.
+
 ## 0.14.0
 - Zamanlanmış görevler sayfası yenilendi: tablo yerine kartlar. Her görevde zamanlama, sonraki çalışma, çalışma sayısı, ortalama süre, maliyet ve bildirim alıcıları; **Son çıktı** kartın içinde açılır kapanır (yeni rapor açık gelir). Düğmeler sadeleşti: **Detay**, **Şimdi çalıştır** ve ⋯ menüsünde Duraklat / Düzenle / Sil. Mobilde tek sütun.
 - **Detay**, "Raporu aç" ve bildirimlerdeki bağlantı ayrı geçmiş ekranı yerine görevin AI sohbetini tam ekranda açar (düşünme ve araç çağrıları orada). Eski `&history=` bağlantıları da sohbete gider; rapor okunmuş sayılır.

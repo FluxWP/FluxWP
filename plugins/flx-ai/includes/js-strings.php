@@ -190,5 +190,8 @@ function flxai_js_strings() {
 		'Skill\'ler' => __( 'Skills', 'flx-ai' ),
 		'Uygulamalar' => __( 'Apps', 'flx-ai' ),
 		'Arşivdekiler' => __( 'Archived', 'flx-ai' ),
+		'Görsel rapor' => __( 'Visual report', 'flx-ai' ),
+		'Aç' => __( 'Open', 'flx-ai' ),
+		'Tam ekran aç' => __( 'Open full screen', 'flx-ai' ),
 	);
 }

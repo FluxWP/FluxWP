@@ -2909,3 +2909,30 @@ msgstr "Komut bulunamadı."
 
 msgid "Archived"
 msgstr "Arşivdekiler"
+
+msgid "Visual report"
+msgstr "Görsel rapor"
+
+msgid "Open"
+msgstr "Aç"
+
+msgid "Open full screen"
+msgstr "Tam ekran aç"
+
+msgid "Turns data, plans or explanations into an interactive one-page visual report (Tailwind, charts, diagrams) you open in the chat."
+msgstr "Veriyi, planı ya da açıklamayı sohbette açılan, etkileşimli tek sayfalık görsel rapora (Tailwind, grafik, şema) dönüştürür."
+
+msgid "Visual reports need Flux Files (workspace)."
+msgstr "Görsel rapor için Flux Files (çalışma alanı) gerekir."
+
+msgid "Report"
+msgstr "Rapor"
+
+msgid "The report is too large."
+msgstr "Rapor çok büyük."
+
+msgid "Create a visual report"
+msgstr "Görsel rapor oluştur"
+
+msgid "This tool only works in the AI chat."
+msgstr "Bu araç yalnız AI sohbetinde çalışır."
