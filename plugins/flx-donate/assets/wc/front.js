@@ -163,7 +163,7 @@
 		});
 
 		function update() {
-			var T = data.types[tid()] || {}, P = panel(), sum = 0, label = '';
+			var T = data.types[tid()] || {}, P = panel(), sum = 0, label = '', pcs = 1;
 			if (!P) return;
 			pickSync();
 			var opt = checked(P, 'o[' + tid() + ']');
@@ -174,6 +174,7 @@
 				sum = parseAmount(ai && ai.value);
 				P.querySelectorAll('[data-flxwb-amount]').forEach(function (c) { c.classList.toggle('is-active', sum > 0 && Math.abs(parseFloat(c.getAttribute('data-flxwb-amount')) - sum) < 0.001); });
 				if (T.unit && T.unit.unit === 'fidan' && pieceCount(T, sum)) label = pieceCount(T, sum).toLocaleString(document.documentElement.lang || undefined) + ' 🌱';
+				pcs = pieceCount(T, sum) || 1;
 			} else if (T.opts && T.opts[opt]) {
 				var o = T.opts[opt], units = 1;
 				if (o.qty) {
@@ -183,6 +184,7 @@
 				}
 				sum = o.price * units;
 				var n = units * (o.n || 1);
+				pcs = n;
 				if (o.unit === 'fidan') label = n.toLocaleString(document.documentElement.lang || undefined) + ' 🌱';
 			}
 			/* Cards with a − / + quantity show their own live total; the buttons stop at 1 and at the maximum. */
@@ -252,7 +254,59 @@
 			var ph = form.querySelector('[data-flxwb-phone]'), em = form.querySelector('[data-flxwb-email]');
 			var sm = form.querySelector('[data-flxwb-sendme]');
 			if (sm) sm.hidden = !(T.cert && other && ((ph && phoneOf(ph)) || (em && em.value.trim())));
+			syncPeople(T, pcs, other);
 		}
+
+		/* 2.24.0: more saplings for someone else: other people, each with their own certificate (one sapling each). */
+		var peopleMax = 1;
+		function syncPeople(T, pcs, other) {
+			var box = form.querySelector('[data-flxwb-people]');
+			if (!box) return;
+			var on = !!T.cert && !T.proxy && other && pcs > 1;
+			box.hidden = !on;
+			peopleMax = Math.max(0, pcs - 1);
+			var cards = box.querySelectorAll('[data-flxwb-person]');
+			cards.forEach(function (c, i) {
+				c.querySelectorAll('input').forEach(function (x) { x.disabled = !on || i >= peopleMax; });
+				c.hidden = i >= peopleMax;
+				var no = c.querySelector('[data-flxwb-person-no]');
+				if (no) no.textContent = String(L.person || '%s').replace('%s', (i + 2).toLocaleString(document.documentElement.lang || undefined));
+				var ct = c.querySelector('[data-flxwb-person-count]');
+				if (ct) ct.textContent = String(L.sapling1 || '%s').replace('%s', (1).toLocaleString(document.documentElement.lang || undefined));
+			});
+			var shown = Math.min(cards.length, peopleMax);
+			var add = box.querySelector('[data-flxwb-people-add]'), note = box.querySelector('[data-flxwb-people-note]');
+			if (add) add.hidden = shown >= peopleMax;
+			if (note) note.hidden = !shown;
+		}
+		form.addEventListener('click', function (e) {
+			var add = e.target.closest && e.target.closest('[data-flxwb-people-add]');
+			var del = e.target.closest && e.target.closest('[data-flxwb-person-del]');
+			if (!add && !del) return;
+			e.preventDefault();
+			var box = form.querySelector('[data-flxwb-people]');
+			if (!box) return;
+			if (del) {
+				var c = del.closest('[data-flxwb-person]');
+				if (c) c.remove();
+				update();
+				return;
+			}
+			var list = box.querySelector('[data-flxwb-people-list]'), tpl = box.querySelector('[data-flxwb-people-tpl]');
+			if (!list || !tpl || list.querySelectorAll('[data-flxwb-person]').length >= peopleMax) return;
+			var wrap = document.createElement('div');
+			wrap.innerHTML = tpl.innerHTML;
+			var card = wrap.firstElementChild;
+			card.querySelectorAll('[id]').forEach(function (x) {
+				var nid = x.id + '-' + Math.random().toString(36).slice(2, 7), lab = card.querySelector('label[for="' + x.id + '"]');
+				if (lab) lab.setAttribute('for', nid);
+				x.id = nid;
+			});
+			list.appendChild(card);
+			update();
+			var nm = card.querySelector('[data-flxwb-person-name]');
+			if (nm) nm.focus();
+		});
 
 		/* 2.23.1: for myself, the account's own phone / e-mail sit in the fields read-only. */
 		function lockMine() {
@@ -449,6 +503,20 @@
 				var badp = pfs ? phoneBad(pfs) : null;
 				if (badp) { msg = L.badPhone || ''; focus = badp; }
 				else if (!ok || !ok.checked) { msg = L.needConsent || ''; focus = ok; }
+			}
+			/* 2.24.0: every other person needs a name; their e-mail / phone must look right. */
+			if (!msg) {
+				var pb = form.querySelector('[data-flxwb-people]');
+				if (pb && !pb.hidden) {
+					pb.querySelectorAll('[data-flxwb-person]').forEach(function (c) {
+						if (msg || c.hidden) return;
+						var pn = c.querySelector('[data-flxwb-person-name]'), pe = c.querySelector('[data-flxwb-person-email]'), pp = c.querySelector('[data-flxwb-person-phone]');
+						var pv = pp ? phoneOf(pp) : '', pev = pe ? pe.value.trim() : '';
+						if (pn && !pn.value.trim()) { msg = L.needPersonName || L.needName || ''; focus = pn; }
+						else if (pev && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(pev)) { msg = L.badEmail || ''; focus = pe; }
+						else if (pv && pv.replace(/\D+/g, '').length < 10) { msg = L.badPhone || ''; focus = pp; }
+					});
+				}
 			}
 			/* 2.0.5: at least one of WhatsApp / e-mail (the account's own count when donating for yourself). */
 			var dv = form.querySelector('[data-flxwb-deliver]'), who = form.querySelector('[data-flxwb-who]');

@@ -391,8 +391,8 @@ body:has(.flxwb-hero) .wp-block-post-content:has(.flxwb-hero), .flxwb:has(> .flx
 .flxwb .flxwb-dcard__title .flxwb-dcard__icon, body.flx-dark .flxwb .flxwb-dcard__title .flxwb-dcard__icon { width: 20px; height: 20px; border-radius: 0; flex: none; background: none !important; }
 .flxwb .flxwb-dcard__title .flxwb-dcard__icon svg, .flxwb .flxwb-dcard__title .flxwb-dcard__icon .flxwb-ic { width: 20px; height: 20px; }
 /* 2.23.0 · The e-mail box has a full border, like the phone box beside it. */
-.flxwb .flxwb-dcard input[type="email"] { height: 42px; min-height: 42px; padding: 0 14px; border: 1px solid var(--flx-ph-line, var(--w-line)) !important; border-radius: 12px !important; background: var(--w-surface, #fff) !important; }
-.flxwb .flxwb-dcard input[type="email"]:focus { border-color: var(--w-primary) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--w-primary) 18%, transparent) !important; }
+.flxwb .flxwb-dcard input[type="email"], .flxwb .flxwb-person input[type="text"] { height: 42px; min-height: 42px; padding: 0 14px; border: 1px solid var(--flx-ph-line, var(--w-line)) !important; border-radius: 12px !important; background: var(--w-surface, #fff) !important; }
+.flxwb .flxwb-dcard input[type="email"]:focus, .flxwb .flxwb-person input[type="text"]:focus { border-color: var(--w-primary) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--w-primary) 18%, transparent) !important; }
 
 /* 2.23.1: the account's own phone / e-mail, read-only when donating for yourself. */
 .flxwb .flxwb-dcard.is-locked { border-style: dashed; background: color-mix(in srgb, var(--w-line) 22%, var(--w-surface)); cursor: default; }

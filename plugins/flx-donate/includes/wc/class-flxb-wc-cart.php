@@ -5,7 +5,7 @@
  * The choice lives in the cart item data (key `flxb`); the price is set on every calculation from
  * the donation type on the server (woocommerce_before_calculate_totals), never from the browser.
  * Order lines keep the choice in `_flxb` plus visible meta (flxb_fidan, flxb_units, flxb_cert,
- * flxb_cert_name, flxb_cert_address, flxb_cert_no, flxb_monthly, flxb_on_behalf, flxb_names, flxb_proxy).
+ * flxb_cert_name, flxb_cert_address, flxb_cert_no, flxb_monthly, flxb_on_behalf, flxb_names, flxb_people, flxb_proxy).
  *
  * Line shape: type_id, option ('' = free amount), units, amount (free amount only), cert
  * (online|print|''), name (name on the certificate), address, for_other, ben_name, ben_phone,
@@ -293,6 +293,41 @@ final class FLXB_WC_Cart {
 			$line['ben_email'] = strtolower( sanitize_email( $email ) );
 		}
 		$line['send_me'] = $line['for_other'] && ! empty( $line['cert'] ) && ! empty( $in['send_me'] ) && empty( $line['proxy_consent'] );
+		/* 2.24.0: more people, each with their own certificate and own WhatsApp / e-mail (empty = the donor's). */
+		unset( $line['people'] );
+		if ( $line['for_other'] && ! empty( $line['cert'] ) && empty( $line['proxy_consent'] ) && ! empty( $in['people'] ) && is_array( $in['people'] ) ) {
+			$people = array();
+			foreach ( array_slice( $in['people'], 0, 1000 ) as $p ) {
+				if ( ! is_array( $p ) ) {
+					continue;
+				}
+				$nm = mb_substr( trim( sanitize_text_field( (string) ( $p['name'] ?? '' ) ) ), 0, 80 );
+				$ph = trim( (string) ( $p['phone'] ?? '' ) );
+				$em = trim( (string) ( $p['email'] ?? '' ) );
+				if ( '' === $nm && '' === $ph && '' === $em ) {
+					continue;
+				}
+				if ( '' === $nm ) {
+					return new WP_Error( 'flxb_people', __( 'Please write a name for every person.', 'flx-donate' ) );
+				}
+				if ( '' !== $ph ) {
+					$ph = flxb_normalize_phone( $ph );
+					if ( '' === $ph ) {
+						return new WP_Error( 'flxb_phone', __( 'The phone number does not look right. Example: 0532 123 45 67', 'flx-donate' ) );
+					}
+				}
+				if ( '' !== $em ) {
+					if ( ! is_email( $em ) ) {
+						return new WP_Error( 'flxb_email', __( 'The e-mail address does not look right.', 'flx-donate' ) );
+					}
+					$em = strtolower( sanitize_email( $em ) );
+				}
+				$people[] = array( 'name' => $nm, 'phone' => $ph, 'email' => $em );
+			}
+			if ( $people ) {
+				$line['people'] = $people;
+			}
+		}
 
 		if ( ! empty( $in['monthly'] ) ) {
 			if ( empty( $t['allow_recurring'] ) ) {
@@ -544,6 +579,9 @@ final class FLXB_WC_Cart {
 		} elseif ( ! empty( $line['for_other'] ) && '' !== (string) ( $line['ben_name'] ?? '' ) ) {
 			$out[ __( 'On behalf of', 'flx-donate' ) ] = $line['ben_name'];
 		}
+		if ( ! empty( $line['people'] ) && is_array( $line['people'] ) ) {
+			$out[ __( 'Other people', 'flx-donate' ) ] = implode( ', ', wp_list_pluck( $line['people'], 'name' ) );
+		}
 		if ( ! empty( $line['proxy_consent']['version'] ) ) {
 			$out[ __( 'Proxy consent', 'flx-donate' ) ] = self::consent_text( $line['proxy_consent'] );
 		}
@@ -655,6 +693,9 @@ final class FLXB_WC_Cart {
 		} elseif ( ! empty( $l['for_other'] ) && '' !== (string) ( $l['ben_name'] ?? '' ) ) {
 			$item->add_meta_data( 'flxb_on_behalf', $l['ben_name'], true );
 		}
+		if ( ! empty( $l['people'] ) && is_array( $l['people'] ) ) {
+			$item->add_meta_data( 'flxb_people', implode( ', ', wp_list_pluck( $l['people'], 'name' ) ), true );
+		}
 		if ( ! empty( $l['proxy_consent']['version'] ) ) {
 			$item->add_meta_data( 'flxb_proxy', (int) $l['proxy_consent']['version'], true );
 		}
@@ -679,6 +720,7 @@ final class FLXB_WC_Cart {
 			'flxb_monthly'    => __( 'Repeats', 'flx-donate' ),
 			'flxb_on_behalf'  => __( 'On behalf of', 'flx-donate' ),
 			'flxb_names'      => __( 'Names (one per share)', 'flx-donate' ),
+			'flxb_people'     => __( 'Other people', 'flx-donate' ),
 			'flxb_proxy'      => __( 'Proxy consent', 'flx-donate' ),
 			'flxb_cert'      => __( 'Certificate', 'flx-donate' ),
 			'flxb_cert_name' => __( 'Name on the certificate', 'flx-donate' ),
