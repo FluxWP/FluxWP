@@ -1,0 +1,237 @@
+/**
+ * Front End Styles
+ */
+ .fxb-countdown-container {
+	 opacity: 0;
+	 padding:1em;
+	 border: 0 solid transparent;
+	 position: relative;
+ }
+ .fxb-countdown-container:not( .fxb-countdown-has-timer) {
+    padding: 0;
+}
+.fxb-countdown-container.fxb-countdown-reveal-on-load {
+    height:0;
+    overflow: hidden;
+    transition: height 0.8s ease;
+}
+// Pause button styles
+.fxb-countdown-pause-button {
+	position: absolute;
+	background: rgba(0, 0, 0, 0.7);
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	padding: 0.5em;
+	cursor: pointer;
+	font-size: 1em;
+	line-height: 1;
+	z-index: 10;
+	transition: background-color 0.2s ease, opacity 0.2s ease;
+	
+	&:hover {
+		background: rgba(0, 0, 0, 0.9);
+	}
+	
+	&:focus {
+		outline: 2px solid #005fcc;
+		outline-offset: 2px;
+	}
+	
+	&:focus:not(:focus-visible) {
+		outline: none;
+	}
+	
+	.fxb-countdown-pause-icon {
+		display: block;
+	}
+	
+	// Position variants
+	&.fxb-countdown-pause-button-top-left {
+		top: 0.5em;
+		left: 0.5em;
+		right: auto;
+		bottom: auto;
+		transform: translateY(-1.5em);
+	}
+	
+	&.fxb-countdown-pause-button-top-right {
+		top: 0.5em;
+		right: 0.5em;
+		left: auto;
+		bottom: auto;
+		transform: translateY(-1.5em);
+	}
+	
+	&.fxb-countdown-pause-button-bottom-left {
+		bottom: 0.5em;
+		left: 0.5em;
+		top: auto;
+		right: auto;
+		transform: translateY(1.5em);
+	}
+	
+	&.fxb-countdown-pause-button-bottom-right {
+		bottom: 0.5em;
+		right: 0.5em;
+		top: auto;
+		left: auto;
+		transform: translateY(1.5em);
+	}
+}
+
+// Respect prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+	.fxb-countdown-container.fxb-countdown-reveal-on-load {
+		transition: none !important;
+	}
+	
+	.fxb-countdown-pause-button {
+		transition: none !important;
+	}
+}
+ .fxb-countdown-timer {
+    display: flex;
+	flex-wrap: wrap;
+	word-break: normal;
+	.fxb-countdown-item {
+		justify-content: center;
+		display: flex;
+		align-items: flex-end;
+		margin-right: 0.5em;
+		border:0px solid transparent;
+	}
+	.fxb-countdown-label {
+		display:flex;
+		justify-content: flex-start;
+		//flex: 1;
+	}
+	.fxb-countdown-number {
+		display:flex;
+		flex: 1;
+		justify-content: center;
+		margin-right: 0.2em;
+	}
+}
+.fxb-countdown-timer-layout-block {
+	.fxb-countdown-item {
+		flex-direction: column;
+		align-items: center;
+		margin-right: 0.2em;
+		min-width: 1.6em;
+		padding:0.3rem;
+		&.fxb-countdown-date-item-seconds {
+			margin-right: 0;
+		}
+		&.fxb-countdown-divider-item {
+			min-width: 0;
+			padding:0.3rem 0;
+		}
+		.fxb-countdown-number {
+			margin:0;
+			font-size: 2.2rem;
+			line-height: 1;
+		}
+		.fxb-countdown-label {
+			font-size: .9rem;
+			text-transform: uppercase;
+		}
+	}
+	.fxb-countdown-item.fxb-pre-timer {
+		flex: 1 0 100%;
+		align-items: flex-start;
+		margin-right: 0;
+	}
+	.fxb-countdown-item.fxb-post-timer {
+		flex: 1 0 100%;
+		align-items: flex-start;
+		margin-right: 0;
+	}
+}
+.fxb-countdown-timer-layout-block.fxb-countdown-enable-dividers {
+	.fxb-countdown-item {
+		min-width: 1.2em;
+		&.fxb-countdown-divider-item {
+			min-width: 0;
+		}
+	}
+}
+.fxb-countdown-align-center {
+	.fxb-countdown-timer {
+		justify-content: center;
+		.fxb-pre-timer, .fxb-post-timer {
+			align-items: center;
+		}
+	}
+}
+.fxb-countdown-align-left {
+	.fxb-countdown-timer {
+		justify-content: flex-start;
+		.fxb-pre-timer, .fxb-post-timer {
+			align-items: flex-start;
+		}
+	}
+}
+.fxb-countdown-align-right {
+	.fxb-countdown-timer {
+		justify-content: flex-end;
+		.fxb-pre-timer, .fxb-post-timer {
+			align-items: flex-end;
+		}
+	}
+}
+.fxb-countdown-inner-complete {
+    display: none;
+}
+@media (max-width: 1024px) {
+	.fxb-countdown-align-tablet-center {
+		.fxb-countdown-timer {
+			justify-content: center;
+			.fxb-pre-timer, .fxb-post-timer {
+				align-items: center;
+			}
+		}
+	}
+	.fxb-countdown-align-tablet-left {
+		.fxb-countdown-timer {
+			justify-content: flex-start;
+			.fxb-pre-timer, .fxb-post-timer {
+				align-items: flex-start;
+			}
+		}
+	}
+	.fxb-countdown-align-tablet-right {
+		.fxb-countdown-timer {
+			justify-content: flex-end;
+			.fxb-pre-timer, .fxb-post-timer {
+				align-items: flex-end;
+			}
+		}
+	}
+}
+@media (max-width: 767px) {
+	.fxb-countdown-align-mobile-center {
+		.fxb-countdown-timer {
+			justify-content: center;
+			.fxb-pre-timer, .fxb-post-timer {
+				align-items: center;
+			}
+		}
+	}
+	.fxb-countdown-align-mobile-left {
+		.fxb-countdown-timer {
+			justify-content: flex-start;
+			.fxb-pre-timer, .fxb-post-timer {
+				align-items: flex-start;
+			}
+		}
+	}
+	.fxb-countdown-align-mobile-right {
+		.fxb-countdown-timer {
+			justify-content: flex-end;
+			.fxb-pre-timer, .fxb-post-timer {
+				align-items: flex-end;
+			}
+		}
+	}
+}

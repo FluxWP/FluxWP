@@ -1,0 +1,19 @@
+.fxb-video-edit svg {
+    width: 1em;
+    height: 1em;
+}
+.components-flxbk-video-btns {
+    display: flex;
+    align-items: center;
+}
+.components-flxbk-video-btns .fxb-cta-upload-btn {
+    border: 1px solid var(--fxb-border-color, #859CB6 );
+	border-radius: 2px;
+}
+.components-flxbk-video-background__label {
+    display: block;
+    margin-bottom: 6px;
+}
+.fxb-remove-video.fxb-cta-upload-btn {
+    margin-left: 5px;
+}

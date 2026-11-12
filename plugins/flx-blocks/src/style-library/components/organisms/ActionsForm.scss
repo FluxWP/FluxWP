@@ -1,0 +1,41 @@
+@use '../../styles/mixins' as *;
+
+.flx-blocks-style-library__actions-form {
+	@include flex-column(var(--fxb-sl-space-20));
+
+	width: var(--fxb-sl-size-actions-popover-width);
+	padding: var(--fxb-sl-space-20);
+}
+
+.flx-blocks-style-library__actions-form-title {
+	margin: 0;
+	color: var(--fxb-sl-color-heading);
+	font-size: var(--fxb-sl-font-size-group-title);
+	font-weight: var(--fxb-sl-font-weight-medium);
+	line-height: var(--fxb-sl-line-height-m);
+}
+
+// Core sets a control's label as small uppercase text; here the label is an ordinary word above
+// its field.
+.flx-blocks-style-library__actions-form .components-base-control__label {
+	color: var(--fxb-sl-color-text-primary);
+	font-size: var(--fxb-sl-font-size-m);
+	font-weight: var(--fxb-sl-font-weight-regular);
+	line-height: var(--fxb-sl-line-height-s);
+	text-transform: none;
+}
+
+// Destructive action alone on the left, the two that close the form together on the right, so a
+// reach for Save never lands on Delete.
+.flx-blocks-style-library__actions-form-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--fxb-sl-space-10);
+}
+
+.flx-blocks-style-library__actions-form-footer-end {
+	display: flex;
+	margin-left: auto;
+	gap: var(--fxb-sl-space-10);
+}

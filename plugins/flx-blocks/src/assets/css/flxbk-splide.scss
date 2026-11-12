@@ -1,0 +1,435 @@
+@import "./variables";
+
+.fxb-splide.splide__container {
+	box-sizing: border-box;
+	position: relative;
+}
+.fxb-splide .splide__list {
+	backface-visibility: hidden;
+	display: flex;
+	height: 100%;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.fxb-splide.splide-initial .splide__list {
+	gap: 0;
+	display: flex;
+}
+.fxb-splide.is-initialized:not(.is-active) .splide__list {
+	display: block;
+}
+.fxb-splide {
+	.splide__pagination,
+	ul.menu ul.splide__pagination.splide__pagination {
+		align-items: center;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: 0;
+		pointer-events: none;
+	}
+	.splide__pagination li {
+		display: inline-block;
+		line-height: 1;
+		list-style-type: none;
+		margin: 0;
+		pointer-events: auto;
+	}
+	.splide__progress__bar {
+		width: 0;
+	}
+	.splide__toggle__play {
+		display: inline-flex;
+	}
+	.splide__toggle.is-active .splide__toggle__play,
+	.splide__toggle__pause {
+		display: none;
+	}
+	.splide__toggle.is-active .splide__toggle__pause {
+		display: inline-flex;
+	}
+}
+.fxb-splide {
+	outline: none;
+	position: relative;
+	//visibility: hidden;
+	--splide-nav-color: #fff;
+	--splide-nav-background: rgba(0, 0, 0, 0.8);
+	--splide-nav-border: 2px solid transparent;
+	--splide-pagination-background: #000;
+	&[data-slider-dots="true"] {
+		margin-bottom: 30px;
+	}
+}
+.fxb-splide.fxt-carousel-arrowstyle-blackonlight {
+	--splide-nav-color: #000;
+	--splide-nav-background: rgba(255, 255, 255, 0.8);
+}
+.fxb-splide.fxt-carousel-arrowstyle-outlineblack {
+	--splide-nav-color: #000;
+	--splide-nav-border: 2px solid #000;
+	--splide-nav-background: transparent;
+}
+.fxb-splide.fxt-carousel-arrowstyle-outlinewhite {
+	--splide-nav-color: #fff;
+	--splide-nav-border: 2px solid #fff;
+	--splide-nav-background: transparent;
+}
+
+.fxt-blocks-carousel .splide__pagination__page.is-active {
+	background-color: #000;
+}
+.fxt-blocks-carousel .splide__pagination__page:hover,
+.fxt-blocks-carousel .splide__pagination__page:focus,
+.fxt-blocks-carousel .splide__pagination__page:focus-visible {
+	outline: none;
+}
+.fxt-blocks-carousel .fxt-carousel-dotstyle-light .splide__pagination__page,
+.fxt-blocks-carousel .fxt-carousel-dotstyle-light .splide__pagination__page.is-active {
+	background-color: #fff;
+}
+
+.fxt-blocks-carousel .fxt-carousel-dotstyle-outlinedark .splide__pagination__page {
+	background-color: transparent;
+	box-shadow: inset 0 0 0 1px #000;
+	transition: box-shadow 0.3s ease;
+}
+.fxt-blocks-carousel .fxt-carousel-dotstyle-outlinedark .splide__pagination__page.is-active {
+	background-color: transparent;
+	box-shadow: inset 0 0 0 8px #000;
+}
+
+.fxt-blocks-carousel .fxt-carousel-dotstyle-outlinelight .splide__pagination__page {
+	background-color: transparent;
+	box-shadow: inset 0 0 0 1px #fff;
+	transition: box-shadow 0.3s ease;
+}
+.fxt-blocks-carousel .fxt-carousel-dotstyle-outlinelight .splide__pagination__page.is-active {
+	background-color: transparent;
+	box-shadow: inset 0 0 0 8px #fff;
+}
+.fxb-splide.is-initialized,
+.fxb-splide.is-rendered {
+	visibility: visible;
+}
+.fxb-splide {
+	.splide__slide {
+		backface-visibility: hidden;
+		box-sizing: border-box;
+		flex-shrink: 0;
+		list-style-type: none !important;
+		margin: 0;
+		outline: none;
+		position: relative;
+	}
+	.splide__slide img {
+		vertical-align: bottom;
+	}
+	.splide__slider {
+		position: relative;
+	}
+	.splide__sr {
+		clip: rect(0 0 0 0);
+		border: 0;
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+	.splide__spinner {
+		animation: splide-loading 1s linear infinite;
+		border: 2px solid #999;
+		border-left-color: transparent;
+		border-radius: 50%;
+		bottom: 0;
+		contain: strict;
+		display: inline-block;
+		height: 20px;
+		left: 0;
+		margin: auto;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 20px;
+	}
+	.splide__track {
+		overflow: hidden;
+		position: relative;
+		z-index: 0;
+	}
+	@keyframes splide-loading {
+		0% {
+			transform: rotate(0);
+		}
+		to {
+			transform: rotate(1turn);
+		}
+	}
+}
+.fxb-splide.splide--draggable > .splide__slider > .splide__track,
+.fxb-splide.splide--draggable > .splide__track {
+	user-select: none;
+}
+.fxb-splide.splide--fade > .splide__slider > .splide__track > .splide__list,
+.fxb-splide.splide--fade > .splide__track > .splide__list {
+	display: flex;
+}
+.fxb-splide.splide--fade > .splide__slider > .splide__track > .splide__list > .splide__slide,
+.fxb-splide.splide--fade > .splide__track > .splide__list > .splide__slide {
+	position: relative;
+	left: unset;
+	right: unset;
+	top: unset;
+	opacity: 0;
+	z-index: 0;
+}
+.fxb-splide.splide--fade > .splide__slider > .splide__track > .splide__list > .splide__slide.is-active,
+.fxb-splide.splide--fade > .splide__track > .splide__list > .splide__slide.is-active {
+	opacity: 1;
+	position: relative;
+	z-index: 1;
+}
+.fxb-splide.splide--rtl {
+	direction: rtl;
+	&.splide--fade {
+		> .splide__track .splide__list {
+			direction: rtl;
+			flex-direction: row-reverse;
+		}
+	}
+}
+.fxb-splide.splide--ttb.is-active > .splide__slider > .splide__track > .splide__list,
+.fxb-splide.splide--ttb.is-active > .splide__track > .splide__list {
+	display: block;
+}
+.fxb-splide {
+	.splide__arrow {
+		font-size: 1rem;
+		align-items: center;
+		background: var(--splide-nav-background);
+		border: var(--splide-nav-border);
+		border-radius: 3px;
+		cursor: pointer;
+		display: flex;
+		height: 3em;
+		width: 2em;
+		justify-content: center;
+		opacity: $splide-arrow-opacity;
+		padding: 0;
+		color: var(--splide-nav-color);
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 1;
+		box-shadow: none;
+		transition: opacity 0.3s ease-in-out;
+	}
+	&.fxb-slider-group-arrows {
+		.splide__arrows {
+			position: absolute;
+			z-index: 1;
+			display: flex;
+			gap: 1rem;
+			.splide__arrow {
+				position: static;
+				opacity: $splide-arrow-opacity-grouped;
+				transform: none;
+				&:hover,
+				&:focus {
+					opacity: $splide-arrow-opacity-hover;
+				}
+				&:disabled {
+					opacity: $splide-arrow-opacity-disabled;
+				}
+			}
+		}
+	}
+	&.fxb-slider-arrow-position-top-right {
+		.splide__arrows {
+			top: 1rem;
+			right: 1rem;
+		}
+	}
+	&.fxb-slider-arrow-position-top-left {
+		.splide__arrows {
+			top: 1rem;
+			left: 1rem;
+		}
+	}
+	&.fxb-slider-arrow-position-bottom-left {
+		.splide__arrows {
+			bottom: 1rem;
+			left: 1rem;
+		}
+	}
+	&.fxb-slider-arrow-position-bottom-right {
+		.splide__arrows {
+			bottom: 1rem;
+			right: 1rem;
+		}
+	}
+	&:hover .splide__arrow {
+		opacity: $splide-arrow-opacity;
+	}
+	.splide__arrow {
+		svg {
+			fill: currentColor;
+			height: 1em;
+			width: 1em;
+		}
+		&:hover,
+		&:focus {
+			opacity: $splide-arrow-opacity-hover;
+			background: var(--splide-nav-background);
+			color: var(--splide-nav-color);
+		}
+		&:disabled {
+			opacity: $splide-arrow-opacity-disabled;
+			cursor: not-allowed;
+		}
+	}
+	.splide__arrow--prev {
+		left: clamp(0.05rem, 1vw, 1rem);
+	}
+	.splide__arrow--prev svg {
+		transform: scaleX(-1);
+	}
+	.splide__arrow--next {
+		right: clamp(0.05rem, 1vw, 1rem);
+	}
+	.splide__pagination,
+	ul.splide__pagination.splide__pagination {
+		bottom: -25px;
+		left: 0;
+		padding: 0 1em;
+		position: absolute;
+		right: 0;
+		z-index: 1;
+	}
+	.splide__pagination__page {
+		background: var(--splide-pagination-background);
+		border: 0;
+		border-radius: 50%;
+		display: inline-block;
+		height: 10px;
+		margin: 3px;
+		opacity: $splide-pagination-opacity;
+		padding: 0;
+		transition: opacity 0.2s ease-in-out;
+		width: 10px;
+	}
+	.splide__pagination__page.is-active {
+		background: var(--splide-pagination-background);
+		opacity: $splide-arrow-opacity;
+	}
+	.splide__pagination__page:hover {
+		cursor: pointer;
+		opacity: $splide-arrow-opacity-hover;
+	}
+	.splide__pagination__page:focus-visible {
+		outline-offset: 3px;
+	}
+	.splide.is-focus-in .splide__pagination__page:focus {
+		outline-offset: 3px;
+	}
+	.splide__progress__bar {
+		background: #ccc;
+		height: 3px;
+	}
+}
+@supports (outline-offset: -3px) {
+	.fxb-splide .splide__slide:focus-visible {
+		outline-offset: -3px;
+	}
+}
+@supports (outline-offset: -3px) {
+	.fxb-splide .splide.is-focus-in .splide__slide:focus {
+		outline-offset: -3px;
+	}
+}
+.fxb-splide {
+	.splide__toggle {
+		cursor: pointer;
+	}
+	.splide__toggle:focus-visible {
+		outline-offset: 3px;
+	}
+}
+.fxb-splide.is-focus-in .splide__toggle:focus {
+	outline-offset: 3px;
+}
+
+.fxb-splide.splide--nav > .splide__slider > .splide__track > .splide__list > .splide__slide,
+.fxb-splide.splide--nav > .splide__track > .splide__list > .splide__slide {
+	border: 3px solid transparent;
+	cursor: pointer;
+}
+.fxb-splide.splide--nav > .splide__slider > .splide__track > .splide__list > .splide__slide.is-active,
+.fxb-splide.splide--nav > .splide__track > .splide__list > .splide__slide.is-active {
+	border: 3px solid #000;
+}
+.fxb-splide.splide--nav > .splide__slider > .splide__track > .splide__list > .splide__slide:focus,
+.fxb-splide.splide--nav > .splide__track > .splide__list > .splide__slide:focus {
+	outline: none;
+}
+.fxb-splide.splide--rtl > .splide__arrows .splide__arrow--prev,
+.fxb-splide.splide--rtl > .splide__slider > .splide__track > .splide__arrows .splide__arrow--prev,
+.fxb-splide.splide--rtl > .splide__track > .splide__arrows .splide__arrow--prev {
+	left: auto;
+	right: clamp(0.05rem, 1vw, 1rem);
+}
+.fxb-splide.splide--rtl > .splide__arrows .splide__arrow--prev svg,
+.fxb-splide.splide--rtl > .splide__slider > .splide__track > .splide__arrows .splide__arrow--prev svg,
+.fxb-splide.splide--rtl > .splide__track > .splide__arrows .splide__arrow--prev svg {
+	transform: scaleX(1);
+}
+.fxb-splide.splide--rtl > .splide__arrows .splide__arrow--next,
+.fxb-splide.splide--rtl > .splide__slider > .splide__track > .splide__arrows .splide__arrow--next,
+.fxb-splide.splide--rtl > .splide__track > .splide__arrows .splide__arrow--next {
+	left: clamp(0.05rem, 1vw, 1rem);
+	right: auto;
+}
+.fxb-splide.splide--rtl > .splide__arrows .splide__arrow--next svg,
+.fxb-splide.splide--rtl > .splide__slider > .splide__track > .splide__arrows .splide__arrow--next svg,
+.fxb-splide.splide--rtl > .splide__track > .splide__arrows .splide__arrow--next svg {
+	transform: scaleX(-1);
+}
+.fxb-splide.splide--ttb > .splide__arrows .splide__arrow,
+.fxb-splide.splide--ttb > .splide__slider > .splide__track > .splide__arrows .splide__arrow,
+.fxb-splide.splide--ttb > .splide__track > .splide__arrows .splide__arrow {
+	left: 50%;
+	transform: translate(-50%);
+}
+.fxb-splide.splide--ttb > .splide__arrows .splide__arrow--prev,
+.fxb-splide.splide--ttb > .splide__slider > .splide__track > .splide__arrows .splide__arrow--prev,
+.fxb-splide.splide--ttb > .splide__track > .splide__arrows .splide__arrow--prev {
+	top: clamp(0.05rem, 1vw, 1rem);
+}
+.fxb-splide.splide--ttb > .splide__arrows .splide__arrow--prev svg,
+.fxb-splide.splide--ttb > .splide__slider > .splide__track > .splide__arrows .splide__arrow--prev svg,
+.fxb-splide.splide--ttb > .splide__track > .splide__arrows .splide__arrow--prev svg {
+	transform: rotate(-90deg);
+}
+.fxb-splide.splide--ttb > .splide__arrows .splide__arrow--next,
+.fxb-splide.splide--ttb > .splide__slider > .splide__track > .splide__arrows .splide__arrow--next,
+.fxb-splide.splide--ttb > .splide__track > .splide__arrows .splide__arrow--next {
+	bottom: clamp(0.05rem, 1vw, 1rem);
+	top: auto;
+}
+.fxb-splide.splide--ttb > .splide__arrows .splide__arrow--next svg,
+.fxb-splide.splide--ttb > .splide__slider > .splide__track > .splide__arrows .splide__arrow--next svg,
+.fxb-splide.splide--ttb > .splide__track > .splide__arrows .splide__arrow--next svg {
+	transform: rotate(90deg);
+}
+.fxb-splide.splide--ttb > .splide__pagination,
+.fxb-splide.splide--ttb > .splide__slider > .splide__pagination {
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	left: auto;
+	padding: 1em 0;
+	right: 0.5em;
+	top: 0;
+}

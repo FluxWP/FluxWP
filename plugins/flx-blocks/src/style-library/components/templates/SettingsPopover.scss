@@ -1,0 +1,25 @@
+// The class is repeated to outrank core's own popover-content rule; core's padding is dropped
+// because the panel carries its own header, fields, and footer.
+.flx-blocks-style-library__settings-popover .components-popover__content.components-popover__content {
+	width: var(--fxb-sl-size-settings-popover-width);
+	padding: 0;
+	background: var(--fxb-sl-color-surface);
+	border: var(--fxb-sl-border-width-input) solid var(--fxb-sl-color-gray-300);
+	border-radius: var(--fxb-sl-radius-m);
+	box-shadow: var(--fxb-sl-shadow-menu);
+}
+
+// Under the mobile breakpoint core turns the popover into a full-screen sheet with its own close
+// header, so the fixed width, frame, and the panel's own close control are dropped.
+.flx-blocks-style-library__settings-popover.is-expanded {
+	.components-popover__content.components-popover__content {
+		width: auto;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+	}
+
+	.flx-blocks-style-library__settings-panel-close {
+		display: none;
+	}
+}

@@ -1,0 +1,33 @@
+// Qualified with the app root so this outranks wp-admin's own default button sizing.
+.flx-blocks-style-library-root .flx-blocks-style-library__actions-popover-toggle {
+	width: var(--fxb-sl-space-40);
+	min-width: 0;
+	height: var(--fxb-sl-space-40);
+	padding: 0;
+	justify-content: center;
+	border-radius: var(--fxb-sl-radius-m);
+	color: var(--fxb-sl-color-text-secondary);
+
+	&:hover,
+	&[aria-expanded='true'] {
+		color: var(--fxb-sl-color-theme);
+	}
+
+	// Core fills every button icon (`.components-button svg { fill: currentColor }`). This icon is
+	// drawn with strokes, so a fill would turn the pencil into a solid blob.
+	svg {
+		width: var(--fxb-sl-size-action-icon-glyph);
+		height: var(--fxb-sl-size-action-icon-glyph);
+		fill: none;
+	}
+}
+
+// The class is repeated to outrank core's own popover-content rule, the same way the select
+// dropdown's menu does; core's padding is dropped because the form carries its own.
+.flx-blocks-style-library__actions-popover-content .components-popover__content.components-popover__content {
+	padding: 0;
+	background: var(--fxb-sl-color-surface);
+	border: var(--fxb-sl-border-width-input) solid var(--fxb-sl-color-gray-300);
+	border-radius: var(--fxb-sl-radius-m);
+	box-shadow: var(--fxb-sl-shadow-menu);
+}

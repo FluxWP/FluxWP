@@ -1,0 +1,92 @@
+// Style Library design tokens — semantic aliases. A semantic token holds only a `var()`
+// reference to a primitive from _primitives.scss — never a literal.
+//
+// Scoped to the app root and the page's body class — see _primitives.scss for why the body
+// selector is needed alongside the root (Popover content portals outside the root).
+
+.flx-blocks-style-library-root,
+body.flx-blocks-style-library-page {
+	// Color — surface/border/text.
+	--fxb-sl-color-surface: var(--fxb-sl-color-white);
+	--fxb-sl-color-border: var(--fxb-sl-color-theme-tint-15);
+	--fxb-sl-color-separator: var(--fxb-sl-color-theme-tint-25);
+	--fxb-sl-color-text-primary: var(--fxb-sl-color-gray-900);
+	--fxb-sl-color-text-secondary: var(--fxb-sl-color-gray-700);
+	--fxb-sl-color-text-muted: var(--fxb-sl-color-gray-700);
+
+	// Color — form control border (e.g. the library-selector toggle). A darker gray than the
+	// structural --fxb-sl-color-border above, and a separate token because the two roles must be
+	// free to diverge even though both are "a border".
+	--fxb-sl-color-control-border: var(--fxb-sl-color-gray-600);
+	--fxb-sl-color-control-border-focus: var(--fxb-sl-color-theme);
+
+	// Color — destructive actions (e.g. the header's "Delete" library action). First consumer of
+	// the alert-red primitive; named for the role, not the color, same as every other semantic
+	// alias here.
+	--fxb-sl-color-action-destructive: var(--fxb-sl-color-alert-red);
+	--fxb-sl-color-action-destructive-hover: var(--fxb-sl-color-alert-red-dark);
+	--fxb-sl-color-action-destructive-bg-hover: var(--fxb-sl-color-alert-red-tint-4);
+
+	// Color — sidebar nav.
+	--fxb-sl-color-nav-tab-text: var(--fxb-sl-color-gray-800);
+	--fxb-sl-color-nav-tab-count: var(--fxb-sl-color-gray-700);
+	--fxb-sl-color-nav-section-title: var(--fxb-sl-color-gray-700);
+	--fxb-sl-color-heading: var(--fxb-sl-color-gray-800);
+
+	// Color — a generic hover tint for an interactive surface (e.g. `AddTile`).
+	--fxb-sl-color-surface-hover: var(--fxb-sl-color-theme-tint-4);
+	--fxb-sl-color-scrim: var(--fxb-sl-color-white-tint-70);
+
+	// Color — `gray-50` does two distinct jobs (`AddTile`'s resting surface, `ShadowField`'s row hover
+	// background), so each gets its own role alias rather than pointing at the primitive directly.
+	--fxb-sl-color-tile-surface: var(--fxb-sl-color-gray-50);
+	// Sized to read as the same visual weight as the theme tint above — differs from `--selected` in
+	// hue only, not intensity.
+	--fxb-sl-color-row-bg-hover: var(--fxb-sl-color-gray-50);
+	// `SwatchCard`'s own hover background — a sibling alias, not a shared reference to
+	// --fxb-sl-color-row-bg-hover, since a row and a card should stay free to diverge.
+	--fxb-sl-color-card-bg-hover: var(--fxb-sl-color-gray-50);
+	// `SelectDropdown`'s menu rows. Tints of the theme color rather than grays, so the fills follow
+	// the admin color scheme; over a white surface, 4% and 8% land on the design's #f7fafc (hover)
+	// and #edf2f7 (selected).
+	--fxb-sl-color-menu-item-bg-hover: var(--fxb-sl-color-theme-tint-4);
+	--fxb-sl-color-menu-item-bg-selected: var(--fxb-sl-color-theme-tint-8);
+
+	// Typography
+	--fxb-sl-font-size-page-title: var(--fxb-sl-font-size-xl);
+	--fxb-sl-font-size-group-title: var(--fxb-sl-font-size-16);
+	--fxb-sl-font-size-body: var(--fxb-sl-font-size-l);
+	--fxb-sl-font-size-small: var(--fxb-sl-font-size-m);
+	--fxb-sl-font-size-nav-tab: var(--fxb-sl-font-size-14);
+	--fxb-sl-font-size-nav-tab-count: var(--fxb-sl-font-size-10);
+	--fxb-sl-font-size-meta: var(--fxb-sl-font-size-s);
+	// Large, title-level text: the app title, and a dropdown label set beside a title.
+	--fxb-sl-letter-spacing-title: var(--fxb-sl-letter-spacing-tight);
+	--fxb-sl-line-height-nav-tab: var(--fxb-sl-line-height-22);
+
+	// Component sizing — grid-unit aliases.
+	--fxb-sl-size-toggle-width: var(--fxb-sl-space-40);
+	--fxb-sl-size-toggle-height: var(--fxb-sl-space-20);
+	--fxb-sl-size-checkbox: var(--fxb-sl-space-20);
+	--fxb-sl-size-radio: var(--fxb-sl-space-20);
+	--fxb-sl-space-field-spacing-horizontal: var(--fxb-sl-space-10);
+	--fxb-sl-size-button-small: var(--fxb-sl-space-30);
+	--fxb-sl-size-button-medium: var(--fxb-sl-space-40);
+	--fxb-sl-size-button-large: var(--fxb-sl-space-50);
+
+	// Component sizing — icons, named for what they're for.
+	--fxb-sl-size-icon-chevron: var(--fxb-sl-icon-size-s);
+	--fxb-sl-size-nav-item-icon: var(--fxb-sl-space-20);
+	// Shared by every plus/action icon in the app (`AddTile`, `ScreenHeader`'s primary action) — a
+	// 24px hit box around a deliberately smaller 16px SVG, so a future glyph-size change happens
+	// once and both consumers move together instead of drifting.
+	--fxb-sl-size-action-icon-box: var(--fxb-sl-space-30);
+	--fxb-sl-size-action-icon-glyph: var(--fxb-sl-space-20);
+	// A small icon-only button's own hit box (e.g. the breakpoint switcher). Coincides numerically
+	// with --fxb-sl-size-icon-chevron but stays a separate, role-named alias — that one sizes a glyph
+	// nested inside a larger button, not a whole button's own box.
+	--fxb-sl-size-icon-button: var(--fxb-sl-icon-size-s);
+
+	// Elevation
+	--fxb-sl-shadow-menu: var(--fxb-sl-shadow-elevation-m);
+}

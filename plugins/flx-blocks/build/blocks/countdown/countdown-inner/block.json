@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "title": "Countdown Content",
+  "name": "flx/countdown-inner",
+  "category": "flx-blocks",
+  "textdomain": "flx-blocks",
+  "parent": [
+    "flx/countdown"
+  ],
+  "description": "",
+  "attributes": {
+    "uniqueID": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "inserter": false,
+    "reusable": false,
+    "html": false,
+    "fxbMetadata": true
+  }
+}

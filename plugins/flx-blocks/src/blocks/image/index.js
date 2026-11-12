@@ -1,0 +1,60 @@
+/**
+ * WordPress dependencies
+ */
+import { __, _x } from '@wordpress/i18n';
+import { imageIcon } from '@flx-blocks/icons';
+import { get } from 'lodash';
+
+import { registerBlockType } from '@wordpress/blocks';
+/**
+ * Import Css
+ */
+import './style.scss';
+/**
+ * Internal dependencies
+ */
+import edit from './edit';
+import metadata from './block.json';
+import save from './save';
+import transforms from './transforms';
+import deprecated from './deprecated';
+const { name } = metadata;
+
+export { metadata, name };
+
+export const settings = {
+	title: _x('Image (Adv)', 'block title', 'flx-blocks'),
+	description: _x('Image block with greater controls and advanced features', 'block description', 'flx-blocks'),
+	icon: {
+		src: imageIcon,
+	},
+	example: {
+		attributes: {
+			sizeSlug: 'large',
+			url: 'https://s.w.org/images/core/5.3/MtBlanc1.jpg',
+			// translators: Caption accompanying an image of the Mont Blanc, which serves as an example for the Image block.
+			caption: __('Mont Blanc appears—still, snowy, and serene.', 'flx-blocks'),
+		},
+	},
+	getEditWrapperProps(attributes) {
+		if (
+			'wide' === attributes.align ||
+			'full' === attributes.align ||
+			'left' === attributes.align ||
+			'right' === attributes.align
+		) {
+			return {
+				'data-align': attributes.align,
+			};
+		}
+	},
+	transforms,
+	edit,
+	save,
+	deprecated,
+};
+
+registerBlockType(metadata, {
+	...metadata,
+	...settings,
+});

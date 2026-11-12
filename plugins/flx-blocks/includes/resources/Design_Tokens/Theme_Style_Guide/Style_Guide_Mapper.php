@@ -1,0 +1,340 @@
+<?php declare( strict_types=1 );
+// cspell:ignore palette .
+
+namespace FluxWP\Blocks\Design_Tokens\Theme_Style_Guide;
+
+/**
+ * Pure translation from a theme Style Guide snapshot to `token id => $value`.
+ *
+ * No WordPress calls, no globals, no I/O: the reader hands raw data in and the overlay takes the map
+ * out, so every rule here is unit-testable without a database or a theme.
+ *
+ * The palette half honors the theme's "active" pointer — palette / second-palette / third-palette —
+ * because that is the set the theme renders. Only slots the caller passes in (the tokens declaring a
+ * flxbk_slot) are produced, and the settings half writes only the token ids listed here, so the
+ * mapper can never introduce a token id of its own.
+ *
+ */
+final class Style_Guide_Mapper {
+
+	/**
+	 * The palette option key naming the set the theme renders.
+	 *
+	 *
+	 * @var string
+	 */
+	private const ACTIVE_KEY = 'active';
+
+	/**
+	 * The palette set the theme falls back to when "active" is missing or empty.
+	 *
+	 *
+	 * @var string
+	 */
+	private const DEFAULT_SET = 'palette';
+
+	/**
+	 * The theme stores this on palette10 to mean "derive the complement of palette1 at render time".
+	 * It is a marker, not a color, so it must never become a token value.
+	 *
+	 *
+	 * @var string
+	 */
+	private const COMPLEMENT_MARKER = '#FfFfFf';
+
+	/**
+	 * The slot the theme reads the complement marker on.
+	 *
+	 *
+	 * @var string
+	 */
+	private const COMPLEMENT_SLOT = 'palette10';
+
+	/**
+	 * The theme's default formula for a complement-marked palette10: palette1 rotated half way round the
+	 * hue wheel and lightened slightly. Sites can swap it through the theme's
+	 * flxbk_palette_complement_color filter.
+	 *
+	 *
+	 * @var string
+	 */
+	private const COMPLEMENT_COLOR = 'oklch(from var(--global-palette1) calc(l + 0.10 * (1 - l)) calc(c * 1.00) calc(h + 180) / 100%)';
+
+	/**
+	 * Accepts hex, rgb()/rgba(), hsl()/hsla(). Anything else (an empty string, a CSS var, a bare word) is
+	 * skipped so a bad theme value never reaches the resolver. A palette slot never carries a gradient; a
+	 * button setting may, and GRADIENT_PATTERN admits it there.
+	 *
+	 *
+	 * @var string
+	 */
+	private const COLOR_PATTERN = '/^(#[0-9a-f]{3,8}|rgba?\([^)]*\)|hsla?\([^)]*\))$/i';
+
+	/**
+	 * Theme color settings that re-value a semantic color: token id => [ setting key, sub-key ] inside the
+	 * array flxbk()->option( setting key ) returns.
+	 *
+	 *
+	 * @var array<string, string[]>
+	 */
+	private const SETTING_TOKENS = [
+		'semantic.color.button-bg'         => [ 'buttons_background', 'color' ],
+		'semantic.color.button-bg-hover'   => [ 'buttons_background', 'hover' ],
+		'semantic.color.button-text'       => [ 'buttons_color', 'color' ],
+		'semantic.color.button-text-hover' => [ 'buttons_color', 'hover' ],
+	];
+
+	/**
+	 * Matches a theme palette reference such as "palette4", any of the theme's fifteen slots.
+	 *
+	 *
+	 * @var string
+	 */
+	private const SLOT_REFERENCE = '/^palette([1-9]|1[0-5])$/';
+
+	/**
+	 * A CSS gradient the theme stores in place of a background color. Kept as-is: the button's background
+	 * shorthand renders it, and dropping it would change the site. A value carrying a comment opener is
+	 * rejected because the CSS builder's sanitizer does not strip it, and an unclosed comment would swallow
+	 * the rest of the stylesheet.
+	 *
+	 *
+	 * @var string
+	 */
+	private const GRADIENT_PATTERN = '/^(linear|radial|conic)-gradient\((?!.*\/\*).+\)$/i';
+
+	/**
+	 * The theme's default complement formula, for the reader to pass through the theme's filter.
+	 *
+	 *
+	 * @return string
+	 */
+	public static function get_complement_color(): string {
+		return self::COMPLEMENT_COLOR;
+	}
+
+	/**
+	 * Map a snapshot onto the tokens that claim palette slots.
+	 *
+	 *
+	 * @param array{palette: array<string, mixed>, settings: array<string, mixed>, complement?: mixed} $snapshot    The reader's snapshot.
+	 * @param array<string, string>                                                                    $slot_tokens Slot slug => token id, from the registry.
+	 *
+	 * @return array<string, string> Token id => literal color, gradient or alias, for every claimed slot with a
+	 *                               usable color and every button setting with a usable value.
+	 */
+	public function map( array $snapshot, array $slot_tokens ): array {
+		$set    = $this->active_set( $snapshot['palette'] );
+		$values = [];
+
+		foreach ( $slot_tokens as $slug => $token_id ) {
+			$color = self::is_complement_marker( $set, $slug ) ? self::complement_of( $set, $snapshot['complement'] ?? self::COMPLEMENT_COLOR ) : self::color_of( $set, $slug );
+
+			if ( $color === null ) {
+				continue;
+			}
+
+			$values[ $token_id ] = $color;
+		}
+
+		foreach ( self::SETTING_TOKENS as $token_id => $path ) {
+			$value = self::theme_color_value( $this->setting_at( $snapshot['settings'], $path ), $set, $slot_tokens );
+
+			if ( $value === null ) {
+				continue;
+			}
+
+			$values[ $token_id ] = $value;
+		}
+
+		return $values;
+	}
+
+	/**
+	 * The theme setting keys the reader must fetch.
+	 *
+	 *
+	 * @return string[]
+	 */
+	public static function setting_keys(): array {
+		return array_values( array_unique( array_column( self::SETTING_TOKENS, 0 ) ) );
+	}
+
+	/**
+	 * A theme color setting as a token value: a palette reference becomes an alias of the primitive that
+	 * claims the slot, or the active set's literal for a slot no primitive claims, a color or gradient
+	 * literal stays as it is. Anything else is null.
+	 *
+	 *
+	 * @param mixed                 $raw         The setting value.
+	 * @param array<string, string> $set         Slot slug => color of the active set.
+	 * @param array<string, string> $slot_tokens Slot slug => token id.
+	 *
+	 * @return string|null
+	 */
+	public static function theme_color_value( $raw, array $set, array $slot_tokens ): ?string {
+		if ( ! is_string( $raw ) || trim( $raw ) === '' ) {
+			return null;
+		}
+
+		$raw = trim( $raw );
+
+		if ( preg_match( self::SLOT_REFERENCE, $raw ) === 1 ) {
+			if ( isset( $slot_tokens[ $raw ] ) ) {
+				return '{' . $slot_tokens[ $raw ] . '}';
+			}
+
+			return self::color_of( $set, $raw );
+		}
+
+		if ( preg_match( self::COLOR_PATTERN, $raw ) === 1 || preg_match( self::GRADIENT_PATTERN, $raw ) === 1 ) {
+			return $raw;
+		}
+
+		return null;
+	}
+
+	/**
+	 * The active set as the theme reads it back: a complement-marked palette10 becomes the formula the theme
+	 * renders in its place, so a palette10 read from the active set matches it.
+	 *
+	 *
+	 * @param array{palette: array<string, mixed>, settings: array<string, mixed>, complement?: mixed} $snapshot The reader's snapshot.
+	 *
+	 * @return array<string, string>
+	 */
+	public function rendered_set( array $snapshot ): array {
+		$set = $this->active_set( $snapshot['palette'] );
+
+		if ( self::is_complement_marker( $set, self::COMPLEMENT_SLOT ) ) {
+			$formula                      = $snapshot['complement'] ?? null;
+			$set[ self::COMPLEMENT_SLOT ] = is_string( $formula ) ? $formula : self::COMPLEMENT_COLOR;
+		}
+
+		return $set;
+	}
+
+	/**
+	 * The slot slug => color map of the palette set the theme renders.
+	 *
+	 * Mirrors the theme's palette_option(): the "active" pointer names the set; a missing or empty
+	 * pointer means "palette"; a pointer naming a set that does not exist yields nothing (the theme
+	 * renders empty values in that case, so re-valuing nothing keeps the two in step).
+	 *
+	 *
+	 * @param array<string, mixed> $palette The decoded flxbk_global_palette option.
+	 *
+	 * @return array<string, string>
+	 */
+	public function active_set( array $palette ): array {
+		$active = $palette[ self::ACTIVE_KEY ] ?? null;
+		$key    = is_string( $active ) && $active !== '' ? $active : self::DEFAULT_SET;
+		$list   = $palette[ $key ] ?? null;
+
+		if ( ! is_array( $list ) ) {
+			return [];
+		}
+
+		$set = [];
+
+		foreach ( $list as $entry ) {
+			if (
+				! is_array( $entry )
+				|| ! isset( $entry['slug'], $entry['color'] )
+				|| ! is_string( $entry['slug'] )
+				|| ! is_string( $entry['color'] )
+			) {
+				continue;
+			}
+
+			$set[ $entry['slug'] ] = $entry['color'];
+		}
+
+		return $set;
+	}
+
+	/**
+	 * Whether the active set marks palette10 as the complement of palette1 rather than storing a color.
+	 *
+	 *
+	 * @param array<string, string> $set  Slot slug => color of the active set.
+	 * @param string                $slug The slot slug.
+	 *
+	 * @return bool
+	 */
+	private static function is_complement_marker( array $set, string $slug ): bool {
+		return $slug === self::COMPLEMENT_SLOT && trim( $set[ $slug ] ?? '' ) === self::COMPLEMENT_MARKER;
+	}
+
+	/**
+	 * The color a complement-marked palette10 renders as. With the theme's default formula that is palette1's
+	 * complement worked out as a hex, so pages without the theme's CSS variables can show it. A formula a
+	 * site swapped in through the theme's filter is kept as written, and so is the default when palette1 can't
+	 * be read as a color. Null when there is nothing usable.
+	 *
+	 *
+	 * @param array<string, string> $set     Slot slug => color of the active set.
+	 * @param mixed                 $formula The complement formula the theme renders. Anything but a string
+	 *                                       falls back to the default, since a filter can return anything.
+	 *
+	 * @return string|null
+	 */
+	private static function complement_of( array $set, $formula ): ?string {
+		$formula = is_string( $formula ) ? trim( $formula ) : self::COMPLEMENT_COLOR;
+
+		if ( $formula !== self::COMPLEMENT_COLOR ) {
+			return $formula !== '' && preg_match( '/\/\*|[;{}]/', $formula ) !== 1 ? $formula : null;
+		}
+
+		$base = self::color_of( $set, 'palette1' );
+
+		if ( $base === null ) {
+			return null;
+		}
+
+		return Complement_Color::of( $base ) ?? $formula;
+	}
+
+	/**
+	 * The usable color stored on a slot, or null when the slot is absent, empty, the complement marker,
+	 * or not a color literal.
+	 *
+	 *
+	 * @param array<string, string> $set  Slot slug => color of the active set.
+	 * @param string                $slug The slot slug.
+	 *
+	 * @return string|null
+	 */
+	private static function color_of( array $set, string $slug ): ?string {
+		$color = trim( $set[ $slug ] ?? '' );
+
+		if ( $color === self::COMPLEMENT_MARKER || preg_match( self::COLOR_PATTERN, $color ) !== 1 ) {
+			return null;
+		}
+
+		return $color;
+	}
+
+	/**
+	 * The value at a key path inside the settings snapshot, or null when any step is missing or not an array.
+	 *
+	 *
+	 * @param array<string, mixed> $settings Setting key => the value flxbk()->option() returned.
+	 * @param string[]             $path     The key path, e.g. [ 'buttons_background', 'color' ].
+	 *
+	 * @return mixed
+	 */
+	private function setting_at( array $settings, array $path ) {
+		$node = $settings;
+
+		foreach ( $path as $key ) {
+			if ( ! is_array( $node ) || ! array_key_exists( $key, $node ) ) {
+				return null;
+			}
+
+			$node = $node[ $key ];
+		}
+
+		return $node;
+	}
+}

@@ -1,0 +1,440 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+@import '../../assets/css/variables';
+// Item
+// Defaults
+
+.fxt-row-layout-inner,
+.fxb-row-layout-wrap {
+	position: relative;
+	border: 0 solid transparent;
+}
+.fxt-row-layout-inner:before,
+.fxb-row-layout-wrap:before {
+	clear: both;
+	display: table;
+	content: "";
+}
+.fxt-row-column-wrap {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--global-row-gutter-md, 2rem) var(--global-row-gutter-md, 2rem);
+	grid-auto-rows: minmax(min-content, max-content);
+	z-index: 1;
+	position: relative;
+}
+.wp-block-flx-rowlayout .fxt-row-column-wrap.fxb-theme-content-width {
+	margin-left: auto;
+	margin-right: auto;
+}
+.fxt-row-has-bg > .fxt-row-column-wrap {
+	padding-left: var(--global-content-edge-padding, 15px);
+	padding-right: var(--global-content-edge-padding, 15px);
+}
+
+.alignfull > .fxt-row-layout-inner > .fxt-row-column-wrap,
+.alignfull > .fxt-row-column-wrap {
+	padding-left: var(--global-content-edge-padding, 15px);
+	padding-right: var(--global-content-edge-padding, 15px);
+}
+.fxt-inner-column-height-full:not(.fxt-row-layout-row) {
+	grid-auto-rows: minmax(0, 1fr);
+
+	> .wp-block-flx-column {
+		align-self: stretch;
+
+		& > .fxt-inside-inner-col {
+			height: 100%;
+		}
+	}
+}
+.fxt-row-valign-middle.fxt-inner-column-height-full
+	> .wp-block-flx-column:not(.fxb-section-dir-horizontal)
+	> .fxt-inside-inner-col {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.fxt-row-valign-bottom.fxt-inner-column-height-full
+	> .wp-block-flx-column:not(.fxb-section-dir-horizontal)
+	> .fxt-inside-inner-col {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.fxt-row-valign-middle.fxt-inner-column-height-full
+	> .wp-block-flx-column.fxb-section-dir-horizontal
+	> .fxt-inside-inner-col {
+	align-items: center;
+}
+.fxt-row-valign-bottom.fxt-inner-column-height-full
+	> .wp-block-flx-column.fxb-section-dir-horizontal
+	> .fxt-inside-inner-col {
+	align-items: flex-end;
+}
+//tablet collapsed columns
+@media screen and (max-width: 1024px) {
+	.fxt-inner-column-height-full.fxt-tab-layout-row,
+	.fxt-inner-column-height-full.fxt-tab-layout-inherit.fxt-row-layout-row {
+		/* autoprefixer: ignore next */
+		grid-auto-rows: minmax(min-content, max-content);
+	}
+	.fxt-inner-column-height-full.fxt-tab-layout-inherit.fxt-row-layout-row
+		> .wp-block-flx-column
+		> .fxt-inside-inner-col {
+		height: auto;
+	}
+	.fxt-inner-column-height-full.fxt-tab-layout-row > .wp-block-flx-column > .fxt-inside-inner-col {
+		height: auto;
+	}
+	// Add support for tablet equal layout even when desktop is row layout
+	.fxt-inner-column-height-full.fxt-tab-layout-equal,
+	.fxt-inner-column-height-full:not(.fxt-tab-layout-inherit):not(.fxt-tab-layout-row) {
+		grid-auto-rows: minmax(0, 1fr);
+	}
+	.fxt-inner-column-height-full.fxt-tab-layout-equal > .wp-block-flx-column > .fxt-inside-inner-col,
+	.fxt-inner-column-height-full:not(.fxt-tab-layout-inherit):not(.fxt-tab-layout-row)
+		> .wp-block-flx-column
+		> .fxt-inside-inner-col {
+		height: 100%;
+	}
+}
+//mobile collapsed columns
+@media screen and (max-width: 767px) {
+	//needs to be specific enough to override the tablet grid auto rows style
+	.fxt-inner-column-height-full.fxt-mobile-layout-row.fxt-mobile-layout-row {
+		/* autoprefixer: ignore next */
+		grid-auto-rows: minmax(min-content, max-content);
+	}
+	.fxt-inner-column-height-full.fxt-mobile-layout-row > .wp-block-flx-column > .fxt-inside-inner-col {
+		height: auto;
+	}
+	// Add support for mobile equal layout even when desktop/tablet is row layout
+	.fxt-inner-column-height-full.fxt-mobile-layout-equal,
+	.fxt-inner-column-height-full:not(.fxt-mobile-layout-inherit):not(.fxt-mobile-layout-row) {
+		grid-auto-rows: minmax(0, 1fr);
+	}
+	.fxt-inner-column-height-full.fxt-mobile-layout-equal > .wp-block-flx-column > .fxt-inside-inner-col,
+	.fxt-inner-column-height-full:not(.fxt-mobile-layout-inherit):not(.fxt-mobile-layout-row)
+		> .wp-block-flx-column
+		> .fxt-inside-inner-col {
+		height: 100%;
+	}
+}
+// Only apply overlay styles when lazy-loaded or not using lazy load at all
+.wp-block-flx-rowlayout {
+	.fxt-row-layout-overlay {
+		opacity: 0.3;
+
+		&.fxt-jarallax {
+			filter: none;
+		}
+	}
+
+	&.fxb-row-layout-wrap .fxt-row-layout-overlay,
+	&:not([data-flxbk-lazy-class]) .fxt-row-layout-overlay {
+		top: 0;
+		left: 0;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		z-index: 0;
+		filter: opacity(100%);
+
+		&.fxt-jarallax {
+			filter: none;
+		}
+	}
+}
+// Tablet specific
+@media (min-width: 768px) and (max-width: 1024px) {
+	.wp-block-flx-rowlayout [id*="jarallax-container-"] > div {
+		height: var(--fxb-screen-height-fix, 100vh) !important;
+		margin-top: -40px !important;
+	}
+}
+// safari tablet fix.
+@media only screen and (min-width: 768px) and (max-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+	.wp-block-flx-rowlayout [id*="jarallax-container-"] > div {
+		height: var(--fxb-screen-height-fix, 100vh) !important;
+		margin-top: -40px !important;
+	}
+}
+.entry-content .wp-block-flx-rowlayout.alignfull,
+.entry-content .wp-block-flx-rowlayout.alignwide {
+	text-align: inherit;
+	margin-bottom: 0;
+}
+.fxt-row-layout-bottom-sep {
+	position: absolute;
+	height: 100px;
+	bottom: -1px;
+	left: 0;
+	overflow: hidden;
+	right: 0;
+	z-index: 1;
+	svg {
+		position: absolute;
+		bottom: 0px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100.2%;
+		height: 100%;
+		display: block;
+		fill: white;
+	}
+}
+.fxt-row-layout-top-sep {
+	position: absolute;
+	height: 100px;
+	top: -1px;
+	left: 0;
+	overflow: hidden;
+	right: 0;
+	z-index: 1;
+	svg {
+		position: absolute;
+		top: 0px;
+		left: 50%;
+		transform: translateX(-50%) rotate(180deg);
+		width: 100.2%;
+		height: 100%;
+		display: block;
+		fill: white;
+	}
+}
+
+// Background Slider
+.fxt-row-layout-inner > .fxb-blocks-bg-slider,
+.fxb-row-layout-wrap > .fxb-blocks-bg-slider {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 0;
+	margin: 0;
+	.fxb-blocks-bg-slider-init.fxt-blocks-carousel-init {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		padding: 0;
+		margin: 0;
+	}
+	.splide__track,
+	.splide__list,
+	.splide__slide,
+	.fxb-bg-slide-contain {
+		height: 100%;
+	}
+	.splide__list {
+		height: 100% !important;
+	}
+	.fxb-bg-slide-contain div.fxb-bg-slide {
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	.fxb-blocks-bg-slider-init:not(.splide-initialized) .fxb-bg-slide-contain {
+		display: none;
+		&:first-child {
+			display: block;
+		}
+	}
+	.fxb-bg-slide-contain div {
+		position: relative;
+		height: 100%;
+	}
+}
+.fxb-blocks-bg-slider-init.splide .splide__pagination {
+	bottom: 10px;
+}
+.fxb-blocks-bg-slider-init.splide .splide__arrow {
+	z-index: 100;
+}
+
+// Optimizer: Hide background slider images until lazy loaded.
+.fxb-blocks-bg-slider-init:not(.splide-initialized) .fxb-bg-slide-contain .fxb-lazy-bg-pending {
+	background-image: none !important;
+}
+
+// background Video
+.fxb-blocks-bg-video-container {
+	bottom: 0;
+	right: 0;
+	top: 0;
+	left: 0;
+	position: absolute;
+	overflow: hidden;
+
+	.fxb-blocks-bg-video {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: auto;
+		width: 100%;
+		min-width: 100%;
+		min-height: 100%;
+		&::-webkit-media-controls {
+			display: none !important;
+		}
+	}
+
+	&.embedded {
+		.fxb-bg-video-iframe {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			min-width: 100%;
+			height: 0;
+			padding-bottom: 56.25%;
+			&.fxb-bg-video-ratio-4-3 {
+				padding-bottom: 75%;
+			}
+			&.fxb-bg-video-ratio-3-2 {
+				padding-bottom: 66.66%;
+			}
+		}
+		@media (max-aspect-ratio: 16/9) {
+			.fxb-bg-video-iframe {
+				min-height: 100%;
+				aspect-ratio: 16/9;
+			}
+		}
+		.fxb-blocks-bg-video {
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+			transform: translate(0%, 0%);
+		}
+	}
+
+	.fxb-background-video-buttons-wrapper {
+		position: absolute;
+		z-index: 11;
+		bottom: 20px;
+		right: 20px;
+
+		button.fxb-toggle-video-btn {
+			padding: 8px;
+			margin: 0 0 0 8px;
+			border: 0;
+			background: rgba(0, 0, 0, 0.3);
+			cursor: pointer;
+			font-size: 24px;
+			color: #fff;
+			display: inline-block;
+			opacity: 0.5;
+			height: 32px;
+			line-height: 16px;
+			transition: opacity 0.3s ease-in-out;
+			box-sizing: border-box;
+			svg {
+				width: 16px;
+				height: 16px;
+				vertical-align: bottom;
+			}
+		}
+		button.fxb-toggle-video-btn:hover {
+			opacity: 1;
+		}
+	}
+}
+.fxb-blocks-bg-video {
+	object-position: 50% 50%;
+	object-fit: cover;
+	background-position: center center;
+	width: 100%;
+	height: 100%;
+}
+
+@media (max-width: 767px) {
+	.fxvs-sm-false {
+		display: none !important;
+	}
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+	.fxvs-md-false {
+		display: none !important;
+	}
+}
+@media screen and (min-width: 1025px) {
+	.fxvs-lg-false {
+		display: none !important;
+	}
+}
+// Fix issue with cover block.
+.wp-block-flx-rowlayout .fxb-blocks-bg-slider .splide-arrow {
+	z-index: 1000;
+}
+
+//fix for nav blcoks inside a row layout, default them to a very high z-index for their submenus
+//weird :where selector to manage specificity to not override the z-index control
+:where(.fxb-row-layout-wrap:has(.wp-block-flx-navigation)) {
+	z-index: 49;
+}
+:where(header .fxb-row-layout-wrap:has(.wp-block-flx-navigation)) {
+	z-index: 1000;
+}
+// Pause Button Styles for Row Layout Background Slider
+.fxb-blocks-bg-slider {
+	.fxb-gallery-pause-button {
+		display: none;
+		position: absolute;
+		bottom: 20px;
+		right: 20px;
+		z-index: 2;
+	}
+
+	&:has(.fxb-blocks-bg-slider-init[data-show-pause-button="true"]) .fxb-gallery-pause-button {
+		display: block;
+	}
+
+	.fxb-gallery-pause-button {
+		padding: 8px;
+		cursor: pointer;
+		border-radius: 3px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s ease;
+		opacity: $splide-arrow-opacity;
+
+		&:hover {
+			opacity: $splide-arrow-opacity;
+		}
+
+		&:focus {
+			outline: 2px solid rgba(255, 255, 255, 0.5);
+			outline-offset: 2px;
+			opacity: $splide-arrow-opacity-hover;
+		}
+	}
+
+	&:hover .fxb-gallery-pause-button {
+		opacity: $splide-arrow-opacity-hover;
+	}
+
+	@media (max-width: 767px) {
+		.fxb-gallery-pause-button {
+			opacity: $splide-arrow-opacity-hover;
+		}
+	}
+
+	@media (hover: none) {
+		.fxb-gallery-pause-button {
+			opacity: $splide-arrow-opacity-hover;
+		}
+	}
+}

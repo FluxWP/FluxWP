@@ -1,0 +1,55 @@
+/**
+ * #.# Front end Styles
+ *
+ */
+
+.fxb-progress-bar-container {
+	position: relative;
+	svg {
+		height: auto;
+		width: 100%;
+	}
+}
+
+.fxb-progress-label-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3em 0.5em;
+}
+
+.fxb-progress-bar-type-line .fxt-progress-label-inside,
+.fxb-progress-bar-type-line-mask .fxt-progress-label-inside {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-55%);
+}
+
+.fxb-progress-bar-type-circle .fxt-progress-label-inside {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.fxb-progress-bar-type-semicircle .fxt-progress-label-inside {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.fxb-progress-bar-type-line-mask {
+	.fxb-progress-bar {
+		height: 80px;
+		max-width: 100%;
+
+		& > svg {
+			height: 100%;
+		}
+	}
+}
+.fxb-progress-bar-container.aligncenter {
+	> .fxb-progress-bar {
+		margin: 0 auto;
+	}
+}

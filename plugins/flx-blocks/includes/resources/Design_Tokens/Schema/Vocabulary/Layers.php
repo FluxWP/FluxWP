@@ -1,0 +1,72 @@
+<?php declare( strict_types=1 );
+
+namespace FluxWP\Blocks\Design_Tokens\Schema\Vocabulary;
+
+/**
+ * Single source of truth for the top-level DTCG document layers that carry resolvable tokens.
+ *
+ * A v1 document has three top-level keys: "primitive" and "semantic" hold registrable token trees,
+ * while "$extensions" (foundation presets, block presets, presets) is NOT a token tree and must
+ * never be walked, merged, or indexed as one.
+ *
+ */
+final class Layers {
+
+	/**
+	 * The "primitive" layer: raw, context-free token values.
+	 *
+	 *
+	 * @var string
+	 */
+	private const PRIMITIVE = 'primitive';
+
+	/**
+	 * The "semantic" layer: role-based tokens, often aliasing into the primitive layer.
+	 *
+	 *
+	 * @var string
+	 */
+	private const SEMANTIC = 'semantic';
+
+	/**
+	 * The DTCG layers that carry resolvable tokens, in walk order. The "$extensions" layer is
+	 * excluded by design — its entries are presets/presets, not registrable tokens.
+	 *
+	 * @var string[]
+	 *
+	 */
+	private const TOKEN_LAYERS = [
+		self::PRIMITIVE,
+		self::SEMANTIC,
+	];
+
+	/**
+	 * The DTCG layers that carry resolvable tokens.
+	 *
+	 *
+	 * @return string[]
+	 */
+	public static function token_layers(): array {
+		return self::TOKEN_LAYERS;
+	}
+
+	/**
+	 * The "semantic" layer name — the role-based layer a preset value aliases into.
+	 *
+	 *
+	 * @return string
+	 */
+	public static function get_semantic(): string {
+		return self::SEMANTIC;
+	}
+
+	/**
+	 * The "primitive" layer name — the raw, context-free layer a semantic token typically aliases into.
+	 *
+	 *
+	 * @return string
+	 */
+	public static function get_primitive(): string {
+		return self::PRIMITIVE;
+	}
+}

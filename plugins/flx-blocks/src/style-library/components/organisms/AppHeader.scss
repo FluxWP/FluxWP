@@ -1,0 +1,45 @@
+.flx-blocks-style-library__header-bar {
+	display: flex;
+	align-items: center;
+	column-gap: var(--fxb-sl-space-20);
+	padding: var(--fxb-sl-space-20) var(--fxb-sl-space-50);
+}
+
+.flx-blocks-style-library__logo {
+	flex: 0 0 auto;
+	width: var(--fxb-sl-size-header-logo);
+	height: var(--fxb-sl-size-header-logo);
+}
+
+// Qualified with the app root so this reliably outranks wp-admin's own `.wrap h1` page-title
+// rule, which otherwise wins the cascade and overrides font-size, line-height and padding.
+.flx-blocks-style-library-root .flx-blocks-style-library__title {
+	margin: 0;
+	padding: 0;
+	color: var(--fxb-sl-color-heading);
+	font-size: var(--fxb-sl-font-size-24);
+	font-weight: var(--fxb-sl-font-weight-regular);
+	letter-spacing: var(--fxb-sl-letter-spacing-tight);
+	line-height: var(--fxb-sl-line-height-xl);
+}
+
+// Same size and line height as the title, so the row centers both on the same line.
+.flx-blocks-style-library__header-separator {
+	font-size: var(--fxb-sl-font-size-24);
+	line-height: var(--fxb-sl-line-height-xl);
+}
+
+// Neither slot grows — the header row is title, selector, delete, all flowing left and separated
+// only by the row's own gap. A growing library slot (`flex: 1 1 auto`, the previous rule here)
+// consumes all the row's leftover space and pushes the actions slot to the far right edge; with
+// nothing set to grow, the actions slot instead sits immediately after the selector.
+.flx-blocks-style-library__header-library,
+// A row, not a bare block: the slot holds several sibling controls (activate, rename, delete),
+// and without an explicit gap they would sit flush against each other — `Button` is inline-flex,
+// so the whitespace between JSX siblings is not rendered as a space.
+.flx-blocks-style-library__header-actions {
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	gap: var(--fxb-sl-space-10);
+}

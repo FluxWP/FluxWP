@@ -1,0 +1,45 @@
+.fxb-small-responsive-control .fxb-small-responsive-options {
+    margin-bottom: 0px;
+    .fxb-responsive-btn {
+        background: transparent;
+        border: 0;
+        height: auto;
+        border-bottom: 0;
+        padding: 2px 4px;
+        margin-bottom: 0;
+        outline: 0;
+        color: #A0AEC0;
+        width: auto;
+        font-size: 10px;
+        box-shadow: none;
+        &.is-active {
+            color: var( --wp-admin-theme-color, #007cba );
+            background: transparent;
+        }
+        .dashicon {
+            width: 15px;
+            height: 15px;
+            font-size: 15px;
+        }
+    }
+}
+.components-button-group.fxb-measure-responsive-options, .components-button-group.fxb-small-responsive-options {
+    min-width: 68px;
+}
+
+.fxb-small-responsive-control.responsive-title-area-spacing .flxbk-title-bar {
+	margin-bottom: 24px;
+}
+.fxb-small-responsive-control .fxb-small-responsive-options .fxb-responsive-btn {
+    background: transparent;
+    border: 0;
+    height: auto;
+    border-bottom: 0;
+    padding: 2px 4px;
+    margin-bottom: 0;
+    outline: 0;
+    color: #A0AEC0;
+    width: auto;
+    font-size: 10px;
+    box-shadow: none;
+}

@@ -1,0 +1,16 @@
+// No `max-width` on purpose: a capped measure wrapped the longest sentence on one screen and not
+// the others, which made the header a different height per screen.
+.flx-blocks-style-library-root .flx-blocks-style-library__screen-description {
+	margin: 0;
+	color: var(--fxb-sl-color-text-muted);
+	font-size: var(--fxb-sl-font-size-meta);
+	line-height: var(--fxb-sl-line-height-s);
+	text-wrap: pretty;
+}
+
+// Only what core's own `.components-external-link` does not already set.
+.flx-blocks-style-library-root .flx-blocks-style-library__screen-description .components-external-link {
+	margin-left: 0;
+	color: var(--fxb-sl-color-text-primary);
+	font-weight: var(--fxb-sl-font-weight-medium);
+}

@@ -1,0 +1,23 @@
+.fxb-sub-panel {
+	border-radius: 0;
+	margin-left: -16px;
+    margin-right: -16px;
+	padding: 0 6px;
+	margin-bottom: 12px;
+	.fxb-sub-panel-title {
+		padding: 10px;
+		background: #EDF2F7;
+		margin: 0;
+		border: 1px solid #CBD5E0;
+		border-bottom:0px;
+	}
+	.fxb-inner-sub-panel {
+		padding: 10px 10px 0;
+		border: 1px solid #CBD5E0;
+		border-top:0px;
+	}
+}
+.components-panel__body .fxb-sub-panel .fxb-hover-toggle-control-tab-ui .fxt-hover-tabs .components-tab-panel__tabs {
+	margin-left: -10px;
+    margin-right: -10px;
+}

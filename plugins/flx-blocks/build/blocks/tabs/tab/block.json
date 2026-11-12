@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "title": "Tab",
+  "name": "flx/tab",
+  "category": "flx-blocks",
+  "textdomain": "flx-blocks",
+  "parent": [
+    "flx/tabs"
+  ],
+  "attributes": {
+    "id": {
+      "type": "number",
+      "default": 1
+    },
+    "uniqueID": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "inserter": false,
+    "reusable": false,
+    "html": false,
+    "lock": false,
+    "ktdynamic": true
+  },
+  "editorScript": "file:editor.js"
+}

@@ -1,0 +1,153 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"title": "Single Icon",
+	"name": "flx/single-icon",
+	"parent": ["flx/icon"],
+	"category": "flx-blocks",
+	"textdomain": "flx-blocks",
+	"attributes": {
+		"uniqueID": {
+			"type": "string",
+			"default": ""
+		},
+		"icon": {
+			"type": "string",
+			"default": "fe_aperture",
+			"__experimentalRole": "content"
+		},
+		"link": {
+			"type": "string",
+			"default": "",
+			"__experimentalRole": "content"
+		},
+		"target": {
+			"type": "string",
+			"default": "_self",
+			"__experimentalRole": "content"
+		},
+		"size": {
+			"type": ["number", "string"],
+			"default": 50
+		},
+		"width": {
+			"type": "number",
+			"default": 2
+		},
+		"title": {
+			"type": "string",
+			"default": "",
+			"__experimentalRole": "content"
+		},
+		"color": {
+			"type": "string",
+			"default": ""
+		},
+		"background": {
+			"type": "string",
+			"default": "transparent"
+		},
+		"border": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "number",
+			"default": 0
+		},
+		"borderWidth": {
+			"type": "number",
+			"default": 2
+		},
+		"padding": {
+			"type": "array",
+			"default": ["", "", "", ""]
+		},
+		"paddingUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"style": {
+			"type": "string",
+			"default": "default"
+		},
+		"margin": {
+			"type": "array",
+			"default": ["", "", "", ""]
+		},
+		"marginUnit": {
+			"type": "string",
+			"default": "px"
+		},
+		"hColor": {
+			"type": "string",
+			"default": ""
+		},
+		"hBackground": {
+			"type": "string",
+			"default": ""
+		},
+		"hBorder": {
+			"type": "string",
+			"default": ""
+		},
+		"linkTitle": {
+			"type": "string",
+			"default": "",
+			"__experimentalRole": "content"
+		},
+		"tabletSize": {
+			"type": ["number", "string"],
+			"default": ""
+		},
+		"mobileSize": {
+			"type": ["number", "string"],
+			"default": ""
+		},
+		"tabletMargin": {
+			"type": "array",
+			"default": ["", "", "", ""]
+		},
+		"mobileMargin": {
+			"type": "array",
+			"default": ["", "", "", ""]
+		},
+		"tabletPadding": {
+			"type": "array",
+			"default": ["", "", "", ""]
+		},
+		"mobilePadding": {
+			"type": "array",
+			"default": ["", "", "", ""]
+		},
+		"tooltip": {
+			"type": "string",
+			"source": "html",
+			"selector": ".fxb-tooltip-hidden-content",
+			"__experimentalRole": "content"
+		},
+		"tooltipPlacement": {
+			"type": "string",
+			"default": "",
+			"__experimentalRole": "content"
+		},
+		"tooltipDash": {
+			"type": "boolean",
+			"default": false,
+			"__experimentalRole": "content"
+		},
+		"inQueryBlock": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"ktdynamic": true,
+		"html": false,
+		"reusable": false,
+		"fxbMetadata": true,
+		"fxbPreset": true,
+		"fxbPalette": true
+	},
+	"usesContext": ["postId", "queryId", "flx/dynamicSource", "flx/repeaterRowData", "flx/repeaterRow"]
+}

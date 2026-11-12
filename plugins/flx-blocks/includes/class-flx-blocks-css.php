@@ -1,0 +1,3324 @@
+<?php
+/**
+ * Creates minified css via PHP.
+ *
+ * @author  Carlos Rios - Edited by Ben Ritner for use in Flux Block Editor
+ * @package  Flux Block Editor
+ * @version  1.9
+ */
+
+// cSpell:ignore dglobal fontvariants fontsubsets attribtues .
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+use FluxWP\Blocks\Design_Tokens\Database\Active_Token_Library_Store;
+use FluxWP\Blocks\Design_Tokens\Registry\Css_Var;
+use FluxWP\Blocks\Design_Tokens\Resolver\Token_Resolver;
+use FluxWP\Blocks\Design_Tokens\Schema\Vocabulary\Alias;
+use FluxWP\Blocks\Core\Logger as LoggerInterface;
+
+/**
+ * Class to create a minified css output.
+ */
+class Flx_Blocks_CSS {
+
+	/**
+	 * The shadow item's optional binding key: the {dot.alias} of the shadow token the value follows.
+	 * Kept alongside the numeric legs rather than replacing them, so an item stays a valid literal
+	 * shadow for readers that do not know this key and has something to fall back to when the bound
+	 * token is no longer in the active library.
+	 *
+	 *
+	 * @var string
+	 */
+	private const SHADOW_TOKEN_KEY = 'shadowToken';
+
+	/**
+	 * CSS to enqueue
+	 *
+	 * @var array
+	 */
+	public static $styles = array();
+
+	/**
+	 * CSS to enqueue
+	 *
+	 * @var array
+	 */
+	public static $head_styles = array();
+
+	/**
+	 * CSS to enqueue
+	 *
+	 * @var array
+	 */
+	public static $custom_styles = array();
+
+	/**
+	 * The css group id.
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $_style_id = '';
+
+	/**
+	 * The css selector that you're currently adding rules to
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $_selector = '';
+
+	/**
+	 * Associative array of Google Fonts to load.
+	 *
+	 * Do not access this property directly, instead use the `get_google_fonts()` method.
+	 *
+	 * @var array
+	 */
+	protected static $google_fonts = array();
+
+	/**
+	 * Stores the final css output with all of its rules for the current selector.
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $_selector_output = '';
+
+	/**
+	 * Can store a list of additional selector states which can be added and removed.
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $_selector_states = array();
+
+	/**
+	 * The array that holds all of the css to output inside of the tablet media query
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $_tablet_media_query = array();
+
+	/**
+	 * The array that holds all of the css to output inside of the tablet media query
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $_tablet_only_media_query = array();
+
+	/**
+	 * The array that holds all of the css to output inside of the tablet media query
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $_tablet_pro_media_query = array();
+
+	/**
+	 * The array that holds all of the css to output inside of the tablet media query
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $_tablet_only_pro_media_query = array();
+
+	/**
+	 * The array that holds all of the css to output inside of the tablet media query
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $_desktop_only_media_query = array();
+
+	/**
+	 * The array that holds all of the css to output inside of the mobile media query
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $_mobile_media_query = array();
+
+	/**
+	 * The array that holds all of the css to output inside of the mobile media query
+	 *
+	 * @access protected
+	 * @var array
+	 */
+	protected $_media_state = 'desktop';
+
+	/**
+	 * Stores a list of css properties that require more formatting
+	 *
+	 * @access private
+	 * @var array
+	 */
+	private $_special_properties_list = array(
+		'transition',
+		'transition-delay',
+		'transition-duration',
+		'transition-property',
+		'transition-timing-function',
+		'flex',
+		'content',
+	);
+
+	/**
+	 * Stores all of the rules that will be added to the selector
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $_css = '';
+
+	/**
+	 * Stores all of the custom css.
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $_css_string = '';
+
+	/**
+	 * The string that holds all of the css to output
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $_output = '';
+
+	/**
+	 * Stores media queries
+	 *
+	 * @var null
+	 */
+	protected $_media_query = null;
+
+	/**
+	 * The string that holds all of the css to output inside of the media query
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $_media_query_output = '';
+
+	/**
+	 * Stores media queries
+	 *
+	 * @var null
+	 */
+	protected $media_queries = null;
+
+	/**
+	 * The singleton instance
+	 */
+	private static $instance = null;
+
+	/**
+	 * Spacing variables used in string based padding / margin.
+	 */
+	protected $spacing_sizes = [
+		'ss-auto' => 'var(--global-fxb-spacing-auto, auto)',
+		'none'    => 'var(--global-fxb-spacing-none, 0rem)',
+		'xxs'     => 'var(--global-fxb-spacing-xxs, 0.5rem)',
+		'xs'      => 'var(--global-fxb-spacing-xs, 1rem)',
+		'sm'      => 'var(--global-fxb-spacing-sm, 1.5rem)',
+		'md'      => 'var(--global-fxb-spacing-md, 2rem)',
+		'lg'      => 'var(--global-fxb-spacing-lg, 3rem)',
+		'xl'      => 'var(--global-fxb-spacing-xl, 4rem)',
+		'xxl'     => 'var(--global-fxb-spacing-xxl, 5rem)',
+		'3xl'     => 'var(--global-fxb-spacing-3xl, 6.5rem)',
+		'4xl'     => 'var(--global-fxb-spacing-4xl, 8rem)',
+		'5xl'     => 'var(--global-fxb-spacing-5xl, 10rem)',
+	];
+	/**
+	 * Font size variables used in string based font sizes.
+	 */
+	protected $font_sizes = array(
+		'sm' => 'var(--global-fxb-font-size-sm, 0.9rem)',
+		'md' => 'var(--global-fxb-font-size-md, 1.25rem)',
+		'lg' => 'var(--global-fxb-font-size-lg, 2rem)',
+		'xl' => 'var(--global-fxb-font-size-xl, 3rem)',
+		'xxl' => 'var(--global-fxb-font-size-xxl, 4rem)',
+		'3xl' => 'var(--global-fxb-font-size-xxxl, 5rem)',
+	);
+	/**
+	 * Gaps variables used in string based gutters.
+	 */
+	protected $gap_sizes = array(
+		'none' => 'var(--global-fxb-gap-none, 0rem )',
+		'skinny' => 'var(--global-fxb-gap-sm, 1rem)',
+		'narrow' => '20px',
+		'wide' => '40px',
+		'widest' => '80px',
+		'default' => 'var(--global-fxb-gap-md, 2rem)',
+		'wider' => 'var(--global-fxb-gap-lg, 4rem)',
+		'xs' => 'var(--global-fxb-gap-xs, 0.5rem )',
+		'sm' => 'var(--global-fxb-gap-sm, 1rem)',
+		'md' => 'var(--global-fxb-gap-md, 2rem)',
+		'lg' => 'var(--global-fxb-gap-lg, 4rem)',
+	);
+
+	/**
+	 * The shadow item key that carries a whole-shadow token binding.
+	 *
+	 *
+	 * @return string The binding key.
+	 */
+	public static function get_shadow_token_key(): string {
+		return self::SHADOW_TOKEN_KEY;
+	}
+
+	/**
+	 * Instance Control
+	 */
+	public static function get_instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
+	/**
+	 * Class Constructor.
+	 */
+	public function __construct() {
+		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_block_css' ), 180 );
+	}
+
+	/**
+	 * Render block CSS helper function
+	 */
+	public function frontend_block_css() {
+		if ( ! empty( self::$styles ) ) {
+			self::$head_styles = self::$styles;
+			$output = '';
+			foreach ( self::$styles as $key => $value ) {
+				$output .= $value;
+			}
+			$custom_output = '';
+			if ( ! empty( self::$custom_styles ) && is_array( self::$custom_styles ) ) {
+				foreach ( self::$custom_styles as $c_key => $c_value ) {
+					$custom_output .= $c_value;
+				}
+			}
+			if ( ! empty( $output ) ) {
+				wp_register_style( 'flxbk_css', false );
+				wp_enqueue_style( 'flxbk_css' );
+				wp_add_inline_style( 'flxbk_css', $output );
+			}
+			if ( ! empty( $custom_output ) ) {
+				wp_register_style( 'flxbk_custom_css', false );
+				wp_enqueue_style( 'flxbk_custom_css' );
+				wp_add_inline_style( 'flxbk_custom_css', $custom_output );
+			}
+		}
+	}
+	/**
+	 * Sets a style id to keep a record of rendering.
+	 *
+	 * @access public
+	 *
+	 * @param  string $style_id - the css group id.
+	 * @return $this
+	 */
+	public function set_style_id( $style_id = '' ) {
+		if ( empty( $style_id ) ) {
+			return;
+		}
+		// Render the css in the output string every time the style_id changes.
+		if ( ! isset( self::$styles[ $style_id ] ) ) {
+			self::$styles[ $style_id ] = '';
+		}
+		$this->_style_id = $style_id;
+		return $this;
+	}
+
+	/**
+	 * Sets a style id to keep a record of rendering.
+	 *
+	 * @access public
+	 *
+	 * @param  string $style_id - the css group id.
+	 * @return $this
+	 */
+	public function has_styles( $style_id = '' ) {
+		if ( empty( $style_id ) ) {
+			return false;
+		}
+		if ( isset( self::$styles[ $style_id ] ) ) {
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * Sets a style id to keep a record of rendering.
+	 *
+	 * @access public
+	 *
+	 * @param  string $style_id - the css group id.
+	 * @return $this
+	 */
+	public function has_header_styles( $style_id = '' ) {
+		if ( empty( $style_id ) ) {
+			return false;
+		}
+		if ( isset( self::$head_styles[ $style_id ] ) ) {
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * Sets a selector to the object and changes the current selector to a new one
+	 *
+	 * @access public
+	 *
+	 * @param  string $selector - the css identifier of the html that you wish to target.
+	 * @return $this
+	 */
+	public function set_selector( $selector = '' ) {
+		// Render the css in the output string every time the selector changes.
+		if ( '' !== $this->_selector ) {
+			$this->add_selector_rules_to_output();
+		}
+		$this->_selector = $selector;
+		return $this;
+	}
+	/**
+	 * Sets css string for final output.
+	 *
+	 * @param  string $string - the css string.
+	 * @return $this
+	 */
+	public function add_css_string( $string ) {
+		$string = str_replace( PHP_EOL, '', trim( $string ) );
+		$this->_css_string .= $string;
+		return $this;
+	}
+	/**
+	 * Get media queries.
+	 *
+	 * @param  string $device - the device size.
+	 * @return $this
+	 */
+	public function get_media_queries( $device ) {
+		if ( ! isset( $this->media_queries[ $device ] ) ) {
+			$media_query            = array();
+			$media_query['mobile']  = apply_filters( 'flxbk_mobile_media_query', '(max-width: 767px)' );
+			$media_query['tablet']  = apply_filters( 'flxbk_tablet_media_query', '(max-width: 1024px)' );
+			$media_query['tabletPro']  = apply_filters( 'flxbk_tablet_pro_media_query', '(max-width: 1024px), only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (hover: none)' );
+			$media_query['desktop'] = apply_filters( 'flxbk_desktop_media_query', '(min-width: 1025px)' );
+			$media_query['mobileReverse'] = apply_filters( 'flxbk_mobile_reverse_media_query', '(min-width: 768px)' );
+			$media_query['tabletOnlyPro']    = apply_filters( 'flxbk_tablet_only_pro_media_query', '(min-width: 768px) and (max-width: 1024px), only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (hover: none)' );
+			$media_query['tabletOnly']    = apply_filters( 'flxbk_tablet_only_media_query', '(min-width: 768px) and (max-width: 1024px)' );
+			$this->media_queries    = $media_query;
+		}
+		return isset( $this->media_queries[ $device ] ) ? $this->media_queries[ $device ] : '';
+	}
+	/**
+	 * Wrapper for the set_selector method, changes the selector to add new rules
+	 *
+	 * @access public
+	 *
+	 * @see    set_selector()
+	 * @param  string $selector the css selector.
+	 * @return $this
+	 */
+	public function change_selector( $selector = '' ) {
+		return $this->set_selector( $selector );
+	}
+
+	/**
+	 * Adds a pseudo class to the selector ex. :hover, :active, :focus
+	 *
+	 * @access public
+	 *
+	 * @param  $state - the selector state
+	 * @param  reset - if true the        $_selector_states variable will be reset
+	 * @return $this
+	 */
+	public function add_selector_state( $state, $reset = true ) {
+		if ( $reset ) {
+			$this->reset_selector_states();
+		}
+		$this->_selector_states[] = $state;
+		return $this;
+	}
+
+	/**
+	 * Adds multiple pseudo classes to the selector
+	 *
+	 * @access public
+	 *
+	 * @param  array $states - the states you would like to add
+	 * @return $this
+	 */
+	public function add_selector_states( $states = array() ) {
+		$this->reset_selector_states();
+		foreach ( $states as $state ) {
+			$this->add_selector_state( $state, false );
+		}
+		return $this;
+	}
+
+	/**
+	 * Removes the selector's pseudo classes
+	 *
+	 * @access public
+	 *
+	 * @return $this
+	 */
+	public function reset_selector_states() {
+		$this->add_selector_rules_to_output();
+		if ( ! empty( $this->_selector_states ) ) {
+			$this->_selector_states = array();
+		}
+		return $this;
+	}
+	/**
+	 * Check to see if variable contains a number including 0.
+	 *
+	 * @access public
+	 *
+	 * @param  string $value - the css property.
+	 * @return boolean
+	 */
+	public function is_number( &$value ) {
+		return isset( $value ) && is_numeric( $value );
+	}
+	/**
+	 * Adds a new rule to the css output
+	 *
+	 * @access public
+	 *
+	 * @param  string $property - the css property.
+	 * @param  string $value - the value to be placed with the property.
+	 * @param  string $prefix - not required, but allows for the creation of a browser prefixed property.
+	 * @return $this
+	 */
+	public function add_rule( $property, $value, $prefix = null ) {
+		$format = is_null( $prefix ) ? '%1$s:%2$s;' : '%3$s%1$s:%2$s;';
+		if ( $value && ! empty( $value ) ) {
+			if ( 'mobile' === $this->_media_state ) {
+				if ( ! isset( $this->_mobile_media_query[ $this->_selector ] ) ) {
+					$this->_mobile_media_query[ $this->_selector ] = '';
+				}
+				$this->_mobile_media_query[ $this->_selector ] .= sprintf( $format, $property, $value, $prefix );
+			} elseif ( 'tablet' === $this->_media_state ) {
+				if ( ! isset( $this->_tablet_media_query[ $this->_selector ] ) ) {
+					$this->_tablet_media_query[ $this->_selector ] = '';
+				}
+				$this->_tablet_media_query[ $this->_selector ] .= sprintf( $format, $property, $value, $prefix );
+			} elseif ( 'tabletPro' === $this->_media_state ) {
+				if ( ! isset( $this->_tablet_pro_media_query[ $this->_selector ] ) ) {
+					$this->_tablet_pro_media_query[ $this->_selector ] = '';
+				}
+				$this->_tablet_pro_media_query[ $this->_selector ] .= sprintf( $format, $property, $value, $prefix );
+			} elseif ( 'tabletOnly' === $this->_media_state ) {
+				if ( ! isset( $this->_tablet_only_media_query[ $this->_selector ] ) ) {
+					$this->_tablet_only_media_query[ $this->_selector ] = '';
+				}
+				$this->_tablet_only_media_query[ $this->_selector ] .= sprintf( $format, $property, $value, $prefix );
+			} elseif ( 'tabletOnlyPro' === $this->_media_state ) {
+				if ( ! isset( $this->_tablet_only_pro_media_query[ $this->_selector ] ) ) {
+					$this->_tablet_only_pro_media_query[ $this->_selector ] = '';
+				}
+				$this->_tablet_only_pro_media_query[ $this->_selector ] .= sprintf( $format, $property, $value, $prefix );
+			} elseif ( 'desktopOnly' === $this->_media_state ) {
+				if ( ! isset( $this->_desktop_only_media_query[ $this->_selector ] ) ) {
+					$this->_desktop_only_media_query[ $this->_selector ] = '';
+				}
+				$this->_desktop_only_media_query[ $this->_selector ] .= sprintf( $format, $property, $value, $prefix );
+			} else {
+				$this->_css .= sprintf( $format, $property, $value, $prefix );
+			}
+		}
+		return $this;
+	}
+
+	/**
+	 * Adds browser prefixed rules, and other special rules to the css output
+	 *
+	 * @access public
+	 *
+	 * @param  string $property - the css property
+	 * @param  string $value - the value to be placed with the property
+	 * @return $this
+	 */
+	public function add_special_rules( $property, $value ) {
+		// Switch through the property types and add prefixed rules.
+		switch ( $property ) {
+			case 'border-top-left-radius':
+				$this->add_rule( $property, $value, '-webkit-' );
+				$this->add_rule( $property, $value );
+				break;
+			case 'border-top-right-radius':
+				$this->add_rule( $property, $value, '-webkit-' );
+				$this->add_rule( $property, $value );
+				break;
+			case 'border-bottom-left-radius':
+				$this->add_rule( $property, $value, '-webkit-' );
+				$this->add_rule( $property, $value );
+				break;
+			case 'border-bottom-right-radius':
+				$this->add_rule( $property, $value, '-webkit-' );
+				$this->add_rule( $property, $value );
+				break;
+			case 'background-image':
+				$this->add_rule( $property, sprintf( "url('%s')", $value ) );
+				break;
+			case 'content':
+				$this->add_rule( $property, sprintf( '%s', $value ) );
+				break;
+			case 'flex':
+				$this->add_rule( $property, $value, '-webkit-' );
+				$this->add_rule( $property, $value );
+				break;
+			default:
+				$this->add_rule( $property, $value, '-webkit-' );
+				$this->add_rule( $property, $value, '-moz-' );
+				$this->add_rule( $property, $value );
+				break;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Adds a css property with value to the css output
+	 *
+	 * @access public
+	 *
+	 * @param string $property - the css property.
+	 * @param mixed  $value - the value to be placed with the property.
+	 * @param mixed  $check_empty - the value to be checked if empty.
+	 * @return $this
+	 */
+	public function add_property( $property, $value = null, $check_empty = null ) {
+		if ( null === $value ) {
+			return $this;
+		}
+		if ( null !== $check_empty && empty( $check_empty ) ) {
+			return $this;
+		}
+		$value = wp_strip_all_tags( $value );
+		if ( in_array( $property, $this->_special_properties_list ) ) {
+			$this->add_special_rules( $property, $value );
+		} else {
+			$this->add_rule( $property, $value );
+		}
+		return $this;
+	}
+
+	/**
+	 * Adds multiple properties with their values to the css output
+	 *
+	 * @access public
+	 *
+	 * @param  array $properties - a list of properties and values
+	 * @return $this
+	 */
+	public function add_properties( $properties ) {
+		foreach ( (array) $properties as $property => $value ) {
+			$this->add_property( $property, $value );
+		}
+		return $this;
+	}
+
+	/**
+	 * Sets a media query in the class
+	 *
+	 * @param  string $value
+	 * @return $this
+	 */
+	public function start_media_query( $value ) {
+		// Add the current rules to the output
+		$this->add_selector_rules_to_output();
+
+		// Add any previous media queries to the output
+		if ( $this->has_media_query() ) {
+			$this->add_media_query_rules_to_output();
+		}
+
+		// Set the new media query
+		$this->_media_query = $value;
+		return $this;
+	}
+	/**
+	 * Sets a media query in the class
+	 *
+	 * @param  string $value
+	 * @return $this
+	 */
+	public function set_media_state( $value ) {
+		// Set the new media query
+		$this->_media_state = $value;
+		return $this;
+	}
+	/**
+	 * Get media state
+	 *
+	 * @return string
+	 */
+	public function get_media_state() {
+		return $this->_media_state;
+	}
+	/**
+	 * Stops using a media query.
+	 *
+	 * @see    start_media_query()
+	 *
+	 * @return $this
+	 */
+	public function stop_media_query() {
+		return $this->start_media_query( null );
+	}
+
+	/**
+	 * Gets the media query if it exists in the class
+	 *
+	 * @return string|int|null
+	 */
+	public function get_media_query() {
+		return $this->_media_query;
+	}
+
+	/**
+	 * Checks if there is a media query present in the class
+	 *
+	 * @return boolean
+	 */
+	public function has_media_query() {
+		if ( ! empty( $this->get_media_query() ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Adds the current media query's rules to the class' output variable
+	 *
+	 * @return $this
+	 */
+	private function add_media_query_rules_to_output() {
+		if ( ! empty( $this->_media_query_output ) ) {
+			$this->_output .= sprintf( '@media all and %1$s{%2$s}', $this->get_media_query(), $this->_media_query_output );
+
+			// Reset the media query output string.
+			$this->_media_query_output = '';
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Adds the current selector rules to the output variable
+	 *
+	 * @access private
+	 *
+	 * @return $this
+	 */
+	private function add_selector_rules_to_output() {
+		if ( ! empty( $this->_css ) ) {
+			$this->prepare_selector_output();
+			$selector_output = sprintf( '%1$s{%2$s}', $this->_selector_output, $this->_css );
+
+			if ( $this->has_media_query() ) {
+				$this->_media_query_output .= $selector_output;
+				$this->reset_css();
+			} else {
+				$this->_output .= $selector_output;
+			}
+
+			// Reset the css.
+			$this->reset_css();
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Prepares the $_selector_output variable for rendering
+	 *
+	 * @access private
+	 *
+	 * @return $this
+	 */
+	private function prepare_selector_output() {
+		if ( ! empty( $this->_selector_states ) ) {
+			// Create a new variable to store all of the states.
+			$new_selector = '';
+
+			foreach ( (array) $this->_selector_states as $state ) {
+				$format = end( $this->_selector_states ) === $state ? '%1$s%2$s' : '%1$s%2$s,';
+				$new_selector .= sprintf( $format, $this->_selector, $state );
+			}
+			$this->_selector_output = $new_selector;
+		} else {
+			$this->_selector_output = $this->_selector;
+		}
+		return $this;
+	}
+
+	/**
+	 * Generates the font family output.
+	 *
+	 * @param array $font an array of font settings.
+	 * @return string
+	 */
+	public function render_font_family( $font_name, $google = false, $variant = null, $subset = null ) {
+		if ( empty( $font_name ) ) {
+			return false;
+		}
+		if ( 'inherit' === $font_name ) {
+			$font_string = 'inherit';
+		} else {
+			$font_string = $font_name;
+		}
+		if ( isset( $google ) && true === $google ) {
+			$this->maybe_add_google_font( $font_name, $variant, $subset );
+		}
+		if ( strpos( $font_string, '"') === false && strpos( $font_string, ',') === false && strpos( $font_string, ' ' ) !== false ) {
+			$font_string = "'" . $font_string . "'";
+		}
+		return apply_filters( 'flxbk_font_family_string', $font_string, $font_name );
+	}
+
+	/**
+	 * Generates the font family output.
+	 *
+	 * @param array $font an array of font settings.
+	 * @return string
+	 */
+	public function render_font_weight( $weight, $google = true ) {
+		if ( empty( $weight ) ) {
+			return false;
+		}
+		if ( 'inherit' === $weight ) {
+			return false;
+		}
+		if ( 'regular' === $weight && $google ) {
+			$weight_string = 'normal';
+		} elseif ( 'regular' === $weight && ! $google ) {
+			$weight_string = false;
+		} else {
+			$weight_string = $weight;
+		}
+		return $weight_string;
+	}
+	/**
+	 * Generates the font output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name the key for attributes of font.
+	 * @param string $inherit an string to determine if the font should inherit.
+	 * @return string
+	 */
+	public function render_typography( $attributes, $name = 'typography', $inherit = null ) {
+		if ( empty( $attributes ) ) {
+			return false;
+		}
+		if ( ! empty( $name ) && ! isset( $attributes[ $name ] ) ) {
+			return false;
+		}
+		if ( ! empty( $name ) ) {
+			$font = $attributes[ $name ];
+		} elseif ( empty( $name ) ) {
+			$font = $attributes;
+		}
+		if ( empty( $font ) ) {
+			return false;
+		}
+		if ( ! is_array( $font ) ) {
+			return false;
+		}
+		if ( isset( $font[0] ) && is_array( $font[0] ) && ! empty( $font[0] ) ) {
+			$font = $font[0];
+		}
+		$size_type = ( isset( $font['sizeType'] ) && ! empty( $font['sizeType'] ) ? $font['sizeType'] : 'px' );
+		$line_type = ( isset( $font['lineType'] ) ? $font['lineType'] : '' );
+		$line_type = ( '-' !== $line_type ? $line_type : '' );
+		$letter_type = ( isset( $font['letterSpacingType'] ) && ! empty( $font['letterSpacingType'] ) ? $font['letterSpacingType'] : isset( $font['letterType'] ) && ! empty( $font['letterType'] ) ) ? $font['letterType'] : 'px';
+		if ( isset( $font['size'] ) && isset( $font['size'][0] ) && ! empty( $font['size'][0] ) ) {
+			$this->add_property( 'font-size', $this->get_font_size( $font['size'][0], $size_type ) );
+		}
+		$line_height_desktop_reference = $this->get_backed_token_reference( $font['lineHeight']['desktop'] ?? null );
+		if ( null !== $line_height_desktop_reference ) {
+			$this->add_property( 'line-height', $line_height_desktop_reference );
+		} elseif ( isset( $font['lineHeight'] ) && isset( $font['lineHeight']['desktop'] ) && ! empty( $font['lineHeight']['desktop'] ) && ! Alias::is_alias( $font['lineHeight']['desktop'] ) ) {
+			$this->add_property( 'line-height', $font['lineHeight']['desktop'] . $line_type );
+		}
+		// Numeric array.
+		$line_height_reference = $this->get_backed_token_reference( $font['lineHeight'][0] ?? null );
+		if ( null !== $line_height_reference ) {
+			$this->add_property( 'line-height', $line_height_reference );
+		} elseif ( isset( $font['lineHeight'] ) && isset( $font['lineHeight'][0] ) && ! empty( $font['lineHeight'][0] ) && ! Alias::is_alias( $font['lineHeight'][0] ) ) {
+			$this->add_property( 'line-height', $font['lineHeight'][0] . $line_type );
+		}
+		if ( isset( $font['letterSpacing'] ) && is_array( $font['letterSpacing'] ) ) {
+			$letter_spacing_desktop_reference = $this->get_backed_token_reference( $font['letterSpacing']['desktop'] ?? null );
+			if ( null !== $letter_spacing_desktop_reference ) {
+				$this->add_property( 'letter-spacing', $letter_spacing_desktop_reference );
+			} elseif ( isset( $font['letterSpacing']['desktop'] ) && is_numeric( $font['letterSpacing']['desktop'] ) ) {
+				$this->add_property( 'letter-spacing', $font['letterSpacing']['desktop'] . $letter_type );
+			}
+			$letter_spacing_reference = $this->get_backed_token_reference( $font['letterSpacing'][0] ?? null );
+			if ( null !== $letter_spacing_reference ) {
+				$this->add_property( 'letter-spacing', $letter_spacing_reference );
+			} elseif ( isset( $font['letterSpacing'][0] ) && is_numeric( $font['letterSpacing'][0] ) ) {
+				$this->add_property( 'letter-spacing', $font['letterSpacing'][0] . $letter_type );
+			}
+		} else {
+			$letter_spacing_scalar_reference = $this->get_backed_token_reference( $font['letterSpacing'] ?? null );
+			if ( null !== $letter_spacing_scalar_reference ) {
+				$this->add_property( 'letter-spacing', $letter_spacing_scalar_reference );
+			} elseif ( isset( $font['letterSpacing'] ) && is_numeric( $font['letterSpacing'] ) ) {
+				$this->add_property( 'letter-spacing', $font['letterSpacing'] . $letter_type );
+			}
+		}
+		$family = ( isset( $font['family'] ) && ! empty( $font['family'] ) && 'inherit' !== $font['family'] ? $font['family'] : '' );
+		$is_google = false;
+		if ( ! empty( $family ) ) {
+			$is_google = isset( $font['google'] ) && $font['google'] ? true : false;
+			$google    = $is_google && ( isset( $font['loadGoogle'] ) && $font['loadGoogle'] || ! isset( $font['loadGoogle'] ) ) ? true : false;
+			$this->add_property( 'font-family', $this->render_font_family( $font['family'], $google, ( isset( $font['variant'] ) ? $font['variant'] : '' ), ( isset( $font['subset'] ) ? $font['subset'] : '' ) ) );
+			if ( isset( $font['style'] ) && ! empty( $font['style'] ) && 'normal' !== $font['style'] ) {
+				$this->add_property( 'font-style', $font['style'] );
+			}
+		}
+		if ( isset( $font['weight'] ) && ! empty( $font['weight'] ) ) {
+			$this->add_property( 'font-weight', $this->render_font_weight( $font['weight'], $is_google ) );
+		}
+		if ( isset( $font['textTransform'] ) && ! empty( $font['textTransform'] ) ) {
+			$this->add_property( 'text-transform', $font['textTransform'] );
+		}
+		if ( isset( $font['color'] ) && ! empty( $font['color'] ) ) {
+			$this->add_property( 'color', $this->sanitize_color( $font['color'] ) );
+		}
+		// Tablet.
+		$this->set_media_state( 'tablet' );
+		if ( isset( $font['size'] ) && isset( $font['size'][1] ) && ! empty( $font['size'][1] ) ) {
+			$this->add_property( 'font-size', $this->get_font_size( $font['size'][1], $size_type ) );
+		}
+		$line_height_tablet_key_reference = $this->get_backed_token_reference( $font['lineHeight']['tablet'] ?? null );
+		if ( null !== $line_height_tablet_key_reference ) {
+			$this->add_property( 'line-height', $line_height_tablet_key_reference );
+		} elseif ( isset( $font['lineHeight'] ) && isset( $font['lineHeight']['tablet'] ) && ! empty( $font['lineHeight']['tablet'] ) && ! Alias::is_alias( $font['lineHeight']['tablet'] ) ) {
+			$this->add_property( 'line-height', $font['lineHeight']['tablet'] . $line_type );
+		}
+		$line_height_tablet_reference = $this->get_backed_token_reference( $font['lineHeight'][1] ?? null );
+		if ( null !== $line_height_tablet_reference ) {
+			$this->add_property( 'line-height', $line_height_tablet_reference );
+		} elseif ( isset( $font['lineHeight'] ) && isset( $font['lineHeight'][1] ) && ! empty( $font['lineHeight'][1] ) && ! Alias::is_alias( $font['lineHeight'][1] ) ) {
+			$this->add_property( 'line-height', $font['lineHeight'][1] . $line_type );
+		}
+		$letter_spacing_tablet_key_reference = $this->get_backed_token_reference( $font['letterSpacing']['tablet'] ?? null );
+		if ( null !== $letter_spacing_tablet_key_reference ) {
+			$this->add_property( 'letter-spacing', $letter_spacing_tablet_key_reference );
+		} elseif ( isset( $font['letterSpacing'] ) && isset( $font['letterSpacing']['tablet'] ) && is_numeric( $font['letterSpacing']['tablet'] ) ) {
+			$this->add_property( 'letter-spacing', $font['letterSpacing']['tablet'] . $letter_type );
+		}
+		$letter_spacing_tablet_reference = $this->get_backed_token_reference( $font['letterSpacing'][1] ?? null );
+		if ( null !== $letter_spacing_tablet_reference ) {
+			$this->add_property( 'letter-spacing', $letter_spacing_tablet_reference );
+		} elseif ( isset( $font['letterSpacing'] ) && isset( $font['letterSpacing'][1] ) && is_numeric( $font['letterSpacing'][1] ) ) {
+			$this->add_property( 'letter-spacing', $font['letterSpacing'][1] . $letter_type );
+		}
+		// Mobile.
+		$this->set_media_state( 'mobile' );
+		if ( isset( $font['size'] ) && isset( $font['size'][2] ) && ! empty( $font['size'][2] ) ) {
+			$this->add_property( 'font-size', $this->get_font_size( $font['size'][2], $size_type ) );
+		}
+		$line_height_mobile_key_reference = $this->get_backed_token_reference( $font['lineHeight']['mobile'] ?? null );
+		if ( null !== $line_height_mobile_key_reference ) {
+			$this->add_property( 'line-height', $line_height_mobile_key_reference );
+		} elseif ( isset( $font['lineHeight'] ) && isset( $font['lineHeight']['mobile'] ) && ! empty( $font['lineHeight']['mobile'] ) && ! Alias::is_alias( $font['lineHeight']['mobile'] ) ) {
+			$this->add_property( 'line-height', $font['lineHeight']['mobile'] . $line_type );
+		}
+		$line_height_mobile_reference = $this->get_backed_token_reference( $font['lineHeight'][2] ?? null );
+		if ( null !== $line_height_mobile_reference ) {
+			$this->add_property( 'line-height', $line_height_mobile_reference );
+		} elseif ( isset( $font['lineHeight'] ) && isset( $font['lineHeight'][2] ) && ! empty( $font['lineHeight'][2] ) && ! Alias::is_alias( $font['lineHeight'][2] ) ) {
+			$this->add_property( 'line-height', $font['lineHeight'][2] . $line_type );
+		}
+		$letter_spacing_mobile_key_reference = $this->get_backed_token_reference( $font['letterSpacing']['mobile'] ?? null );
+		if ( null !== $letter_spacing_mobile_key_reference ) {
+			$this->add_property( 'letter-spacing', $letter_spacing_mobile_key_reference );
+		} elseif ( isset( $font['letterSpacing'] ) && isset( $font['letterSpacing']['mobile'] ) && is_numeric( $font['letterSpacing']['mobile'] ) ) {
+			$this->add_property( 'letter-spacing', $font['letterSpacing']['mobile'] . $letter_type );
+		}
+		$letter_spacing_mobile_reference = $this->get_backed_token_reference( $font['letterSpacing'][2] ?? null );
+		if ( null !== $letter_spacing_mobile_reference ) {
+			$this->add_property( 'letter-spacing', $letter_spacing_mobile_reference );
+		} elseif ( isset( $font['letterSpacing'] ) && isset( $font['letterSpacing'][2] ) && is_numeric( $font['letterSpacing'][2] ) ) {
+			$this->add_property( 'letter-spacing', $font['letterSpacing'][2] . $letter_type );
+		}
+		$this->set_media_state( 'desktop' );
+	}
+	/**
+	 * The font-size declaration value for a stored size.
+	 *
+	 * A design-token alias becomes its token variable; a Flux font-size slug (sm/md/lg/…) becomes its
+	 * `--global-fxb-font-size-<slug>` variable; anything else is the value with the unit appended.
+	 *
+	 * The alias branch keeps the saved page in step with the editor. The token-aware size control stores a
+	 * whole-string `{dot.alias}` in the size attribute, and the editor resolves it to a var() before painting.
+	 * Without this branch the same alias reaches the page as `{dot.alias}px`, which the browser drops, so the
+	 * block silently falls back to its default rule while the canvas shows the picked size. An alias the active
+	 * library does not back yields '' so no declaration is emitted ({@see self::add_rule()}), matching every
+	 * other alias-aware renderer in this class.
+	 *
+	 * @param mixed  $size The stored size: a number, a numeric string, a font-size slug, or a `{dot.alias}`.
+	 * @param string $unit The unit to append to a plain numeric size.
+	 *
+	 * @return string The declaration value, or '' for an alias the active library does not back.
+	 */
+	public function get_font_size( $size, $unit ) {
+		if ( is_string( $size ) && Alias::is_alias( $size ) ) {
+			return $this->get_backed_token_reference( $size ) ?? '';
+		}
+		if ( $this->is_variable_font_size_value( $size ) ) {
+			return $this->get_variable_font_size_value( $size );
+		}
+		return $size . $unit;
+	}
+	/**
+	 * Generates the font output.
+	 *
+	 * @param array $typography an array of font settings.
+	 */
+	public function render_font( $typography ) {
+		$attributes = array( 'typography' => $typography );
+		$this->render_typography( $attributes );
+	}
+	/**
+	 * Generates the font height output.
+	 *
+	 * @param array  $font an array of font settings.
+	 * @param string $device the device this is showing on.
+	 * @return string
+	 */
+	public function render_font_height( $font, $device ) {
+		if ( empty( $font ) ) {
+			return false;
+		}
+		if ( ! is_array( $font ) ) {
+			return false;
+		}
+		if ( ! isset( $font['lineHeight'] ) ) {
+			return false;
+		}
+		if ( ! is_array( $font['lineHeight'] ) ) {
+			return false;
+		}
+		if ( ! isset( $font['lineHeight'][ $device ] ) ) {
+			return false;
+		}
+		if ( empty( $font['lineHeight'][ $device ] ) ) {
+			return false;
+		}
+		$font_string = $font['lineHeight'][ $device ] . ( isset( $font['lineType'] ) && ! empty( $font['lineType'] ) ? $font['lineType'] : 'px' );
+
+		return $font_string;
+	}
+	/**
+	 * Outputs a string if set.
+	 *
+	 * @param array  $string a string setting.
+	 * @param string $unit if needed add unit.
+	 * @return string
+	 */
+	public function render_string( $string = null, $unit = null ) {
+		if ( empty( $string ) ) {
+			return false;
+		}
+		$string = $string . ( isset( $unit ) && ! empty( $unit ) ? $unit : '' );
+
+		return $string;
+	}
+	/**
+	 * Resolve a design-token alias reference to its CSS custom-property var().
+	 *
+	 * A value matching the strict {dot.alias} form resolves to a bare var(--fxb-token--<id>) with no
+	 * fallback literal; anything else returns null so the caller falls through to its existing
+	 * numeric/palette handling. This is the pure syntactic recognizer — the byte-for-byte PHP peer of the
+	 * JS `resolveTokenAlias()` (see src/extension/design-tokens/alias.js and the shared conformance
+	 * fixture); it does NOT consider whether the token resolves. Render callers that must drop an
+	 * unresolved (e.g. since-deleted) token use {@see self::get_backed_token_reference()} instead.
+	 *
+	 *
+	 * @param mixed $value The raw attribute value.
+	 *
+	 * @return string|null The var() reference, or null when the value is not an alias.
+	 */
+	private function get_token_reference( $value ): ?string {
+		if ( ! is_string( $value ) || ! Alias::is_alias( $value ) ) {
+			return null;
+		}
+
+		return 'var(' . Css_Var::from_id( Alias::path_of( $value ) ) . ')';
+	}
+
+	/**
+	 * Like {@see self::get_token_reference()}, but only for a token that is backed by the active library —
+	 * i.e. one the Css_Var projector actually emits a `--fxb-token--<id>` custom property for. A binding may
+	 * reference a stale alias (a token deleted after it was saved into a post); minting a var() for it
+	 * would leave a dead custom property with no definition, so render callers use this to emit nothing and
+	 * let the property fall back to whatever global CSS exists. A syntactically-valid but unbacked alias,
+	 * and any non-alias, both return null.
+	 *
+	 *
+	 * @param mixed $value The raw attribute value.
+	 *
+	 * @return string|null The var() reference for a backed alias, or null otherwise.
+	 */
+	private function get_backed_token_reference( $value ): ?string {
+		$reference = $this->get_token_reference( $value );
+
+		// Only a string alias yields a non-null reference, so $value is a resolvable id path here.
+		if ( null === $reference || ! is_string( $value ) ) {
+			return null;
+		}
+
+		if ( ! $this->token_alias_is_backed( Alias::path_of( $value ) ) ) {
+			return null;
+		}
+
+		return $reference;
+	}
+
+	/**
+	 * Whether a value is a `{dot.alias}` reference backed by the active library — the same backing check
+	 * {@see self::get_backed_token_reference()} uses to decide whether a renderer emits a var() or falls
+	 * back to a default. Exposed for callers outside this class (e.g. the shadow-visibility gate on
+	 * {@see Flx_Blocks_Abstract_Block}) that need to reuse the check rather than duplicate it.
+	 *
+	 *
+	 * @param mixed $value The raw attribute value.
+	 *
+	 * @return bool True when the value is an alias reference backed by the active library.
+	 */
+	public function is_token_reference_backed( $value ): bool {
+		return null !== $this->get_backed_token_reference( $value );
+	}
+
+	/**
+	 * Whether a design-token id is backed by the active library — i.e. the Css_Var projector emits a
+	 * `--fxb-token--<id>` custom property for it. A binding may reference a stale alias (a token removed
+	 * after it was stored); minting a var() for it would leave a dead custom property with no definition,
+	 * so callers use this to skip the declaration and fall back to the global CSS instead.
+	 *
+	 * The active library is resolved through Token_Resolver, which memoizes per store version, so repeated
+	 * lookups stay cheap and always reflect the current version. The unresolved-alias log is de-duplicated
+	 * per (library, id) so one stale alias does not flood the debug log across a page's many blocks. Fails
+	 * open: if the container/resolver is unavailable or resolution throws, the alias is treated as backed
+	 * (today's behavior) so a render never crashes and transient resolver issues do not drop all token CSS.
+	 *
+	 *
+	 * @param string $id The design-token id (the alias path).
+	 *
+	 * @return bool True when the id resolves in the active library, or on any error (fail-open).
+	 */
+	private function token_alias_is_backed( string $id ): bool {
+		/** @var array<string, bool> $logged */
+		static $logged = [];
+
+		try {
+			/** @var Active_Token_Library_Store $active */
+			$active = flxbk()->get( Active_Token_Library_Store::class );
+			$slug   = $active->get();
+
+			/** @var Token_Resolver $resolver */
+			$resolver = flxbk()->get( Token_Resolver::class );
+			$backed   = $resolver->resolve( $slug )->value( $id ) !== null;
+
+			if ( ! $backed && ! isset( $logged[ $slug . '|' . $id ] ) && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				$logged[ $slug . '|' . $id ] = true;
+				/** @var LoggerInterface $logger */
+				$logger = flxbk()->get( LoggerInterface::class );
+				$logger->debug( sprintf( 'CSS render: skipped unresolved token alias "%s"; falling back to global CSS.', $id ) );
+			}
+
+			return $backed;
+		} catch ( \Throwable $e ) {
+			return true;
+		}
+	}
+	/**
+	 * Outputs a string if set.
+	 *
+	 * @param array  $number a string setting.
+	 * @param string $unit if needed add unit.
+	 * @return string
+	 */
+	public function render_number( $number = null, $unit = null ) {
+		$token_reference = $this->get_backed_token_reference( $number );
+		if ( null !== $token_reference ) {
+			return $token_reference;
+		}
+		if ( ! is_numeric( $number ) ) {
+			return false;
+		}
+		$number = $number . ( isset( $unit ) && ! empty( $unit ) ? $unit : '' );
+
+		return $number;
+	}
+	/**
+	 * Generates the color output.
+	 *
+	 * @param string $color   any color attribute.
+	 * @param mixed  $opacity the opacity to apply to the color, if any.
+	 * @return string|false
+	 */
+	public function render_color( $color, $opacity = null ) {
+		if ( empty( $color ) ) {
+			return false;
+		}
+		$token_reference = $this->get_backed_token_reference( $color );
+		if ( null !== $token_reference ) {
+			return $token_reference;
+		}
+		if ( is_string( $color ) && Alias::is_alias( $color ) ) {
+			// A strict alias that did not resolve: emit nothing so the property falls back to the global CSS.
+			return false;
+		}
+		if ( ! is_array( $color ) && strpos( $color, 'palette' ) === 0 ) {
+			switch ( $color ) {
+				case 'palette2':
+					$fallback = '#2B6CB0';
+					break;
+				case 'palette3':
+					$fallback = '#1A202C';
+					break;
+				case 'palette4':
+					$fallback = '#2D3748';
+					break;
+				case 'palette5':
+					$fallback = '#4A5568';
+					break;
+				case 'palette6':
+					$fallback = '#718096';
+					break;
+				case 'palette7':
+					$fallback = '#EDF2F7';
+					break;
+				case 'palette8':
+					$fallback = '#F7FAFC';
+					break;
+				case 'palette9':
+					$fallback = '#ffffff';
+					break;
+				default:
+					$fallback = '#3182CE';
+					break;
+			}
+			$color = 'var(--global-' . $color . ', ' . $fallback . ')';
+		} elseif ( isset( $opacity ) && is_numeric( $opacity ) && 1 !== (int) $opacity ) {
+			$color = flxbk_hex2rgba( $color, $opacity );
+		}
+		return $color;
+	}
+	/**
+	 * Generates the color output.
+	 *
+	 * @param string $color   any color attribute.
+	 * @param mixed  $opacity the opacity to apply to the color, if any.
+	 * @return string|false
+	 */
+	public function sanitize_color( $color, $opacity = null ) {
+		if ( empty( $color ) ) {
+			return false;
+		}
+		$token_reference = $this->get_backed_token_reference( $color );
+		if ( null !== $token_reference ) {
+			return $token_reference;
+		}
+		if ( is_string( $color ) && Alias::is_alias( $color ) ) {
+			// A strict alias that did not resolve: emit nothing so the property falls back to the global CSS.
+			return false;
+		}
+		if ( ! is_array( $color ) && strpos( $color, 'palette' ) === 0 ) {
+			switch ( $color ) {
+				case 'palette2':
+					$fallback = '#2B6CB0';
+					break;
+				case 'palette3':
+					$fallback = '#1A202C';
+					break;
+				case 'palette4':
+					$fallback = '#2D3748';
+					break;
+				case 'palette5':
+					$fallback = '#4A5568';
+					break;
+				case 'palette6':
+					$fallback = '#718096';
+					break;
+				case 'palette7':
+					$fallback = '#EDF2F7';
+					break;
+				case 'palette8':
+					$fallback = '#F7FAFC';
+					break;
+				case 'palette9':
+					$fallback = '#ffffff';
+					break;
+				default:
+					$fallback = '#3182CE';
+					break;
+			}
+			$color = 'var(--global-' . $color . ', ' . $fallback . ')';
+		} elseif ( isset( $opacity ) && is_numeric( $opacity ) && 1 !== (int) $opacity ) {
+			$color = $this->convert_hex( $color, $opacity );
+		}
+		return $color;
+	}
+	/**
+	 * Generates the color output.
+	 *
+	 * @param array $attributes an array of attributes
+	 * @param string $name Name of the color attribute
+	 * @param string $field Name of CSS property to use
+	 * @param string $opacityKey Key of opacity value in passed $attributes
+	 *
+	 * @return string
+	 */
+	public function render_color_output( $attributes, $name = 'color', $field = 'color', $opacityKey = '' ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		if ( ! empty( $attributes[ $name ] ) && isset( $attributes[ $opacityKey ] ) ) {
+			$this->add_property( $field, $this->sanitize_color( $attributes[ $name ], $attributes[ $opacityKey ] ) );
+		} else if ( ! empty( $attributes[ $name ] ) ) {
+			$this->add_property( $field, $this->sanitize_color( $attributes[ $name ] ) );
+		}
+	}
+	/**
+	 * Hex to RGBA
+	 *
+	 * @param string $hex string hex code.
+	 * @param number $alpha alpha number.
+	 */
+	public function convert_hex( $hex, $alpha ) {
+		if ( empty( $hex ) ) {
+			return '';
+		}
+		if ( 'transparent' === $hex ) {
+			return $hex;
+		}
+		$hex = str_replace( '#', '', $hex );
+		if ( strlen( $hex ) == 3 ) {
+			$r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
+			$g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
+			$b = hexdec( substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) );
+		} else {
+			$r = hexdec( substr( $hex, 0, 2 ) );
+			$g = hexdec( substr( $hex, 2, 2 ) );
+			$b = hexdec( substr( $hex, 4, 2 ) );
+		}
+		$rgba = 'rgba(' . $r . ', ' . $g . ', ' . $b . ', ' . $alpha . ')';
+		return $rgba;
+	}
+	/**
+	 * Generates the size output.
+	 *
+	 * @param array<string, mixed> $attributes an array of attributes.
+	 * @param string               $name the attribute name.
+	 * @param string               $property the css property name.
+	 * @param string               $unit the unit to append to the value.
+	 * @param bool                 $render_zero if 0 should be rendered or not.
+	 * @return string
+	 */
+	public function render_range( $attributes, $name = 'width', $property = 'width', $unit = 'px', $render_zero = true ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		if ( ! isset( $attributes[ $name ] ) ) {
+			return false;
+		}
+		$token_reference = $this->get_backed_token_reference( $attributes[ $name ] );
+		if ( null !== $token_reference ) {
+			$this->add_property( $property, $token_reference );
+		} else {
+			if ( $render_zero ) {
+				if ( ! is_numeric( $attributes[ $name ] ) ) {
+					return false;
+				}
+			} elseif ( empty( $attributes[ $name ] ) ) {
+				return false;
+			}
+			$this->add_property( $property, $attributes[ $name ] . $unit );
+		}
+	}
+	/**
+	 * Generates the measure range output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name an string of the attribute name.
+	 * @param string $property for the css string.
+	 * @param string $unit the unit to use.
+	 * @param array  $args an array of settings.
+	 * @param bool   $render_zero if 0 should be rendered or not.
+	 * @return string
+	 */
+	public function render_measure_range( $attributes, $name = 'width', $property = 'width', $unit = 'px', $args = array(), $render_zero = true ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		if ( ! isset( $attributes[ $name ] ) ) {
+			return false;
+		}
+		switch ( $property ) {
+			case 'border-width':
+				$prop_args = array(
+					'first_prop'  => 'border-top-width',
+					'second_prop' => 'border-right-width',
+					'third_prop'  => 'border-bottom-width',
+					'fourth_prop' => 'border-left-width',
+				);
+				break;
+			case 'border-radius':
+				$prop_args = array(
+					'first_prop'  => 'border-top-left-radius',
+					'second_prop' => 'border-top-right-radius',
+					'third_prop'  => 'border-bottom-right-radius',
+					'fourth_prop' => 'border-bottom-left-radius',
+				);
+				break;
+			case 'position':
+				$prop_args = array(
+					'first_prop'  => 'top',
+					'second_prop' => 'right',
+					'third_prop'  => 'bottom',
+					'fourth_prop' => 'left',
+				);
+				break;
+			default:
+				$prop_args = array(
+					'first_prop'  => $property . '-top',
+					'second_prop' => $property . '-right',
+					'third_prop'  => $property . '-bottom',
+					'fourth_prop' => $property . '-left',
+				);
+				break;
+		}
+		$defaults = array(
+			'unit_key'    => $name . 'Type',
+			'first_prop'  => $prop_args['first_prop'],
+			'second_prop' => $prop_args['second_prop'],
+			'third_prop'  => $prop_args['third_prop'],
+			'fourth_prop' => $prop_args['fourth_prop'],
+		);
+		$args = wp_parse_args( $args, $defaults );
+		$unit = ! empty( $attributes[ $args['unit_key'] ] ) ? $attributes[ $args['unit_key'] ] : $unit;
+		if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			$first_reference = $this->get_backed_token_reference( $attributes[ $name ][0] ?? null );
+			if ( null !== $first_reference ) {
+				$this->add_property( $args['first_prop'], $first_reference );
+			} elseif ( $render_zero && is_numeric( $attributes[ $name ][0] ) ) {
+				$this->add_property( $args['first_prop'], $attributes[ $name ][0] . $unit );
+			} elseif ( ! $render_zero && ! empty( $attributes[ $name ][0] ) && ! Alias::is_alias( $attributes[ $name ][0] ) ) {
+				$this->add_property( $args['first_prop'], $attributes[ $name ][0] . $unit );
+			}
+			$second_reference = $this->get_backed_token_reference( $attributes[ $name ][1] ?? null );
+			if ( null !== $second_reference ) {
+				$this->add_property( $args['second_prop'], $second_reference );
+			} elseif ( $render_zero && is_numeric( $attributes[ $name ][1] ) ) {
+				$this->add_property( $args['second_prop'], $attributes[ $name ][1] . $unit );
+			} elseif ( ! $render_zero && ! empty( $attributes[ $name ][1] ) && ! Alias::is_alias( $attributes[ $name ][1] ) ) {
+				$this->add_property( $args['second_prop'], $attributes[ $name ][1] . $unit );
+			}
+			$third_reference = $this->get_backed_token_reference( $attributes[ $name ][2] ?? null );
+			if ( null !== $third_reference ) {
+				$this->add_property( $args['third_prop'], $third_reference );
+			} elseif ( $render_zero && is_numeric( $attributes[ $name ][2] ) ) {
+				$this->add_property( $args['third_prop'], $attributes[ $name ][2] . $unit );
+			} elseif ( ! $render_zero && ! empty( $attributes[ $name ][2] ) && ! Alias::is_alias( $attributes[ $name ][2] ) ) {
+				$this->add_property( $args['third_prop'], $attributes[ $name ][2] . $unit );
+			}
+			$fourth_reference = $this->get_backed_token_reference( $attributes[ $name ][3] ?? null );
+			if ( null !== $fourth_reference ) {
+				$this->add_property( $args['fourth_prop'], $fourth_reference );
+			} elseif ( $render_zero && is_numeric( $attributes[ $name ][3] ) ) {
+				$this->add_property( $args['fourth_prop'], $attributes[ $name ][3] . $unit );
+			} elseif ( ! $render_zero && ! empty( $attributes[ $name ][3] ) && ! Alias::is_alias( $attributes[ $name ][3] ) ) {
+				$this->add_property( $args['fourth_prop'], $attributes[ $name ][3] . $unit );
+			}
+		}
+	}
+	/**
+	 * Generates the gap output.
+	 *
+	 * @param array  $attributes an array of spacing settings.
+	 * @return string
+	 */
+	public function render_gap( $attributes, $name = 'gap', $property = 'gap', $unit_name = 'gapUnit', $args = array() ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		$unit = ! empty( $attributes[ $unit_name ] ) ? $attributes[ $unit_name ] : 'px';
+
+		$defaults = array(
+			'desktop_key' => '',
+			'tablet_key'  => '',
+			'mobile_key'  => '',
+			'renderAsVars' => false,
+			'varBase' => '--fxb-'
+		);
+		$args = wp_parse_args( $args, $defaults );
+
+		$name = $args['desktop_key'] ? $args['desktop_key'] : $name;
+		$property_prefix = $args['renderAsVars'] ? $args['varBase'] : '';
+
+		if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			$attribute = isset( $attributes[ $name ][0] ) ? $attributes[ $name ][0] : '';
+			$attributeTablet = isset( $attributes[ $name ][1] ) ? $attributes[ $name ][1] : '';
+			$attributeMobile = isset( $attributes[ $name ][2] ) ? $attributes[ $name ][2] : '';
+		} else {
+			$attribute = isset( $attributes[ $args['desktop_key'] ] ) ? $attributes[ $args['desktop_key'] ] : '';
+			$attributeTablet = isset( $attributes[ $args['tablet_key'] ] ) ? $attributes[ $args['tablet_key'] ] : '';
+			$attributeMobile = isset( $attributes[ $args['mobile_key'] ] ) ? $attributes[ $args['mobile_key'] ] : '';
+		}
+
+		if ( '' !== $attribute && ! is_array( $attribute ) ) {
+			$this->add_property( $property_prefix . $property, $this->get_gap_size( $attribute, $unit ) );
+		}
+		if ( '' !== $attributeTablet && ! is_array( $attributeTablet ) ) {
+			$this->set_media_state( 'tablet' );
+			$this->add_property( $property_prefix . $property, $this->get_gap_size( $attributeTablet, $unit ) );
+		}
+		if ( '' !== $attributeMobile && ! is_array( $attributeMobile ) ) {
+			$this->set_media_state( 'mobile' );
+			$this->add_property( $property_prefix . $property, $this->get_gap_size( $attributeMobile, $unit ) );
+		}
+		$this->set_media_state( 'desktop' );
+	}
+	/**
+	 * Generates the shadow output.
+	 *
+	 * @param array  $shadow an array of shadow settings.
+	 * @return string
+	 */
+	public function render_row_gap( $attributes, $name = array( 'gap', 'tabletGap', 'mobileGap' ), $property = 'gap', $custom = '', $unit_name = 'gapUnit' ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		$unit = ! empty( $attributes[ $unit_name ] ) ? $attributes[ $unit_name ] : 'px';
+		if ( is_array( $name ) && ! empty( $attributes[ $name[0] ] ) ) {
+			if ( $attributes[ $name[0] ] === 'custom' ) {
+				if ( $this->is_number( $attributes[ $custom ][0] ) ) {
+					$this->add_property( $property, $attributes[ $custom ][0] . $unit );
+				}
+			} else {
+				$this->add_property( $property, $this->get_variable_gap_value( $attributes[ $name[0] ] ) );
+			}
+		} elseif ( ! is_array( $name ) && ! empty( $attributes[ $name ][0] ) ) {
+			if ( $attributes[ $name ][0] === 'custom' ) {
+				if ( $this->is_number( $attributes[ $custom ][0] ) ) {
+					$this->add_property( $property, $attributes[ $custom ][0] . $unit );
+				}
+			} else {
+				$this->add_property( $property, $this->get_variable_gap_value( $attributes[ $name ][0] ) );
+			}
+		}
+		if ( ! empty( $attributes[ $name[1] ] ) ) {
+			$this->set_media_state( 'tablet' );
+			if ( is_array( $name ) && $attributes[ $name[1] ] === 'custom' ) {
+				if ( $this->is_number( $attributes[ $custom ][1] ) ) {
+					$this->add_property( $property, $attributes[ $custom ][1] . $unit );
+				}
+			} else {
+				$this->add_property( $property, $this->get_variable_gap_value( $attributes[ $name[1] ] ) );
+			}
+		} elseif ( ! is_array( $name ) && ! empty( $attributes[ $name ][1] ) ) {
+			$this->set_media_state( 'tablet' );
+			if ( $attributes[ $name ][1] === 'custom' ) {
+				if ( $this->is_number( $attributes[ $custom ][1] ) ) {
+					$this->add_property( $property, $attributes[ $custom ][1] . $unit );
+				}
+			} else {
+				$this->add_property( $property, $this->get_variable_gap_value( $attributes[ $name ][1] ) );
+			}
+		}
+		if ( is_array( $name ) && ! empty( $attributes[ $name[2] ] ) ) {
+			$this->set_media_state( 'mobile' );
+			if ( $attributes[ $name[2] ] === 'custom' ) {
+				if ( $this->is_number( $attributes[ $custom ][2] ) ) {
+					$this->add_property( $property, $attributes[ $custom ][2] . $unit );
+				}
+			} else {
+				$this->add_property( $property, $this->get_variable_gap_value( $attributes[ $name[2] ] ) );
+			}
+		} elseif ( ! is_array( $name ) && ! empty( $attributes[ $name ][2] ) ) {
+			$this->set_media_state( 'mobile' );
+			if ( $attributes[ $name ][2] === 'custom' ) {
+				if ( $this->is_number( $attributes[ $custom ][2] ) ) {
+					$this->add_property( $property, $attributes[ $custom ][2] . $unit );
+				}
+			} else {
+				$this->add_property( $property, $this->get_variable_gap_value( $attributes[ $name ][2] ) );
+			}
+		}
+		$this->set_media_state( 'desktop' );
+	}
+	/**
+	 * Generates the gutter gap output.
+	 *
+
+	 */
+	public function render_row_gap_property( $attributes, $name = array( 'gap', 'tabletGap', 'mobileGap' ), $device = 'desktop', $custom = '', $unit_name = 'gapUnit' ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return '';
+		}
+		if ( ! is_array( $attributes ) ) {
+			return '';
+		}
+		$unit = ! empty( $attributes[ $unit_name ] ) ? $attributes[ $unit_name ] : 'px';
+		// inherit tablet and mobile values
+		if ( is_array( $name ) && ! empty( $attributes[ $name[0] ] ) ) {
+			if ( empty( $attributes[ $name[1] ] ) ) {
+				$attributes[ $name[1] ] = $attributes[ $name[0] ];
+			}
+			if ( empty( $attributes[ $name[2] ] ) ) {
+				$attributes[ $name[2] ] = $attributes[ $name[1] ];
+			}
+			if ( $attributes[ $name[1] ] === 'custom' && empty( $attributes[ $custom ][1] ) ) {
+				$attributes[$custom][1] = isset($attributes[$custom][0]) ? $attributes[$custom][0] : '';
+			}
+			if ( $attributes[ $name[2] ] === 'custom' && empty( $attributes[ $custom ][2] ) ) {
+				$attributes[ $custom ][2] = $attributes[ $custom ][1];
+			}
+		}
+		switch ( $device ) {
+			case 'tablet':
+				if ( ! empty( $attributes[ $name[1] ] ) ) {
+					if ( is_array( $name ) && $attributes[ $name[1] ] === 'custom' ) {
+						if ( $this->is_number( $attributes[ $custom ][1] ) ) {
+							return $attributes[ $custom ][1] . $unit;
+						}
+					} else {
+						return $this->get_variable_gap_value( $attributes[ $name[1] ] );
+					}
+				} elseif ( ! is_array( $name ) && ! empty( $attributes[ $name ][1] ) ) {
+					if ( $attributes[ $name ][1] === 'custom' ) {
+						if ( $this->is_number( $attributes[ $custom ][1] ) ) {
+							return $attributes[ $custom ][1] . $unit;
+						}
+					} else {
+						return $this->get_variable_gap_value( $attributes[ $name ][1] );
+					}
+				}
+				break;
+			case 'mobile':
+				if ( is_array( $name ) && ! empty( $attributes[ $name[2] ] ) ) {
+					if ( $attributes[ $name[2] ] === 'custom' ) {
+						if ( $this->is_number( $attributes[ $custom ][2] ) ) {
+							return $attributes[ $custom ][2] . $unit;
+						}
+					} else {
+						return $this->get_variable_gap_value( $attributes[ $name[2] ] );
+					}
+				} elseif ( ! is_array( $name ) && ! empty( $attributes[ $name ][2] ) ) {
+					if ( $attributes[ $name ][2] === 'custom' ) {
+						if ( $this->is_number( $attributes[ $custom ][2] ) ) {
+							return $attributes[ $custom ][2] . $unit;
+						}
+					} else {
+						return $this->get_variable_gap_value( $attributes[ $name ][2] );
+					}
+				}
+				break;
+			default:
+				if ( is_array( $name ) && ! empty( $attributes[ $name[0] ] ) ) {
+					if ( $attributes[ $name[0] ] === 'custom' ) {
+						if ( $this->is_number( $attributes[ $custom ][0] ) ) {
+							return $attributes[ $custom ][0] . $unit;
+						}
+					} else {
+						return $this->get_variable_gap_value( $attributes[ $name[0] ] );
+					}
+				} elseif ( ! is_array( $name ) && ! empty( $attributes[ $name ][0] ) ) {
+					if ( $attributes[ $name ][0] === 'custom' ) {
+						if ( $this->is_number( $attributes[ $custom ][0] ) ) {
+							return $attributes[ $custom ][0] . $unit;
+						}
+					} else {
+						return $this->get_variable_gap_value( $attributes[ $name ][0] );
+					}
+				}
+				break;
+		}
+		return '';
+	}
+	/**
+	 * Generates the shadow output.
+	 *
+	 * A `shadowToken` key holding a {dot.alias} binds the WHOLE shadow to a token: when that token is
+	 * backed by the active library the method returns its bare var() and reads no other key. When the
+	 * binding is unbacked (the token was deleted after the item was saved), the method returns false
+	 * instead of falling back to the item's stored legs, so the caller's own default CSS takes over —
+	 * matching every other token binding in this class. An item that carries no `shadowToken` at all is
+	 * unaffected and renders from its legs as before.
+	 *
+	 * @param array                       $shadow   an array of shadow settings.
+	 * @param array<string, string|float> $defaults optional per-caller fallback literals used to fill
+	 *                                            any empty/missing leg before rendering. When omitted
+	 *                                            the method behaves exactly as before. Numeric and
+	 *                                            {alias} values always pass through untouched.
+	 * @return string|false
+	 */
+	public function render_shadow( $shadow, array $defaults = [] ) {
+		if ( ! is_array( $shadow ) ) {
+			return false;
+		}
+
+		// A backed whole-shadow binding replaces the entire shorthand, so the legs below are never read.
+		$shadow_token           = $shadow[ self::SHADOW_TOKEN_KEY ] ?? null;
+		$shadow_token_reference = $this->get_backed_token_reference( $shadow_token );
+		if ( null !== $shadow_token_reference ) {
+			return $shadow_token_reference;
+		}
+
+		// An unbacked binding (a token deleted after the item was saved) emits nothing rather than
+		// falling back to the legs: they still hold the value the token resolved to when it was picked,
+		// not the current one, so reading them here would render a stale shadow instead of letting the
+		// caller's own default CSS take over. An item with no `shadowToken` at all is not a binding and
+		// falls through to the legs below as always.
+		if ( Alias::is_alias( $shadow_token ) ) {
+			return false;
+		}
+
+		if ( ! empty( $defaults ) ) {
+			$shadow = $this->normalize_shadow_defaults( $shadow, $defaults );
+		}
+
+		if ( empty( $shadow ) ) {
+			return false;
+		}
+
+		if ( ! isset( $shadow['color'] ) ) {
+			return false;
+		}
+		if ( ! isset( $shadow['opacity'] ) ) {
+			return false;
+		}
+		if ( ! isset( $shadow['hOffset'] ) ) {
+			return false;
+		}
+		if ( ! isset( $shadow['vOffset'] ) ) {
+			return false;
+		}
+		if ( ! isset( $shadow['blur'] ) ) {
+			return false;
+		}
+		if ( ! isset( $shadow['spread'] ) ) {
+			return false;
+		}
+		if ( ! isset( $shadow['inset'] ) ) {
+			return false;
+		}
+		$h_offset_reference = $this->get_backed_token_reference( $shadow['hOffset'] );
+		$h_offset           = $h_offset_reference ?? ( ( ! empty( $shadow['hOffset'] ) ? $shadow['hOffset'] : '0' ) . 'px' );
+		$v_offset_reference = $this->get_backed_token_reference( $shadow['vOffset'] );
+		$v_offset           = $v_offset_reference ?? ( ( ! empty( $shadow['vOffset'] ) ? $shadow['vOffset'] : '0' ) . 'px' );
+		$blur_reference     = $this->get_backed_token_reference( $shadow['blur'] );
+		$blur               = $blur_reference ?? ( ( ! empty( $shadow['blur'] ) ? $shadow['blur'] : '0' ) . 'px' );
+		$spread_reference   = $this->get_backed_token_reference( $shadow['spread'] );
+		$spread             = $spread_reference ?? ( ( ! empty( $shadow['spread'] ) ? $shadow['spread'] : '0' ) . 'px' );
+		$color              = ! empty( $shadow['color'] ) ? $this->render_color( $shadow['color'], $shadow['opacity'] ) : $this->render_color( '#000000', $shadow['opacity'] );
+
+		// A strict alias part that did not resolve (offset/blur/spread reference null, or an unresolved
+		// alias color returned false) invalidates the whole shorthand; emit nothing so the box-shadow
+		// falls back to the global CSS.
+		if (
+			( Alias::is_alias( $shadow['hOffset'] ) && null === $h_offset_reference ) ||
+			( Alias::is_alias( $shadow['vOffset'] ) && null === $v_offset_reference ) ||
+			( Alias::is_alias( $shadow['blur'] ) && null === $blur_reference ) ||
+			( Alias::is_alias( $shadow['spread'] ) && null === $spread_reference ) ||
+			false === $color
+		) {
+			return false;
+		}
+		if ( $shadow['inset'] ) {
+			$shadow_string = 'inset ' . $h_offset . ' ' . $v_offset . ' ' . $blur . ' ' . $spread . ' ' . $color;
+		} else {
+			$shadow_string = $h_offset . ' ' . $v_offset . ' ' . $blur . ' ' . $spread . ' ' . $color;
+		}
+
+		return $shadow_string;
+	}
+
+	/**
+	 * Render a legacy positional box-shadow array through the alias-aware render_shadow().
+	 *
+	 * Several blocks store a box-shadow as a positional array where index 0 is the enabled flag,
+	 * 1 the color, 2 the opacity, 3-6 the offsets/blur/spread and 7 the inset flag. This maps that
+	 * shape onto the keyed array render_shadow() expects and applies the caller's per-state
+	 * defaults, so a {dot.alias} on any numeric leg resolves to its token var().
+	 *
+	 *
+	 * @param array<int, mixed>           $box_shadow The positional shadow array (indexes 1-7 are read).
+	 * @param array<string, string|float> $defaults   Per-caller fallback literals for empty legs.
+	 *
+	 * @return string The rendered box-shadow declaration.
+	 */
+	public function render_legacy_shadow( array $box_shadow, array $defaults ): string {
+		return (string) $this->render_shadow(
+			[
+				'color'   => $box_shadow[1] ?? '',
+				'opacity' => $box_shadow[2] ?? '',
+				'hOffset' => $box_shadow[3] ?? '',
+				'vOffset' => $box_shadow[4] ?? '',
+				'blur'    => $box_shadow[5] ?? '',
+				'spread'  => $box_shadow[6] ?? '',
+				'inset'   => ! empty( $box_shadow[7] ),
+			],
+			$defaults
+		);
+	}
+
+	/**
+	 * Generates the border radius color output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name an string of the attribute name.
+	 * @param string $unit the unit to append to the value.
+	 * @return string
+	 */
+	public function render_border_radius( $attributes, $name = 'borderRadius', $unit = 'px' ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			$top_left_reference = $this->get_backed_token_reference( $attributes[ $name ][0] ?? null );
+			if ( null !== $top_left_reference ) {
+				$this->add_property( 'border-top-left-radius', $top_left_reference );
+			} elseif ( isset( $attributes[ $name ][0] ) && is_numeric( $attributes[ $name ][0] ) ) {
+				$this->add_property( 'border-top-left-radius', $attributes[ $name ][0] . $unit );
+			}
+			$top_right_reference = $this->get_backed_token_reference( $attributes[ $name ][1] ?? null );
+			if ( null !== $top_right_reference ) {
+				$this->add_property( 'border-top-right-radius', $top_right_reference );
+			} elseif ( isset( $attributes[ $name ][1] ) && is_numeric( $attributes[ $name ][1] ) ) {
+				$this->add_property( 'border-top-right-radius', $attributes[ $name ][1] . $unit );
+			}
+			$bottom_right_reference = $this->get_backed_token_reference( $attributes[ $name ][2] ?? null );
+			if ( null !== $bottom_right_reference ) {
+				$this->add_property( 'border-bottom-right-radius', $bottom_right_reference );
+			} elseif ( isset( $attributes[ $name ][2] ) && is_numeric( $attributes[ $name ][2] ) ) {
+				$this->add_property( 'border-bottom-right-radius', $attributes[ $name ][2] . $unit );
+			}
+			$bottom_left_reference = $this->get_backed_token_reference( $attributes[ $name ][3] ?? null );
+			if ( null !== $bottom_left_reference ) {
+				$this->add_property( 'border-bottom-left-radius', $bottom_left_reference );
+			} elseif ( isset( $attributes[ $name ][3] ) && is_numeric( $attributes[ $name ][3] ) ) {
+				$this->add_property( 'border-bottom-left-radius', $attributes[ $name ][3] . $unit );
+			}
+		}
+	}
+	/**
+	 * Generates the border color output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name an string of the attribute name.
+	 * @return string
+	 */
+	public function render_border_color( $attributes, $name = 'border' ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			if ( ! empty( $attributes[ $name ][0] ) ) {
+				$this->add_property( 'border-top-color', $this->sanitize_color( $attributes[ $name ][0] ) );
+			}
+			if ( ! empty( $attributes[ $name ][1] ) ) {
+				$this->add_property( 'border-right-color', $this->sanitize_color( $attributes[ $name ][1] ) );
+			}
+			if ( ! empty( $attributes[ $name ][2] ) ) {
+				$this->add_property( 'border-bottom-color', $this->sanitize_color( $attributes[ $name ][2] ) );
+			}
+			if ( ! empty( $attributes[ $name ][3] ) ) {
+				$this->add_property( 'border-left-color', $this->sanitize_color( $attributes[ $name ][3] ) );
+			}
+		}
+	}
+	/**
+	 * Generates the align output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name an string of the attribute name.
+	 * @return string
+	 */
+	public function render_align_by_margin( $attributes, $name = 'textAlign' ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			if ( ! empty( $attributes[ $name ][0] ) ) {
+				switch ( $attributes[ $name ][0] ) {
+					case 'left':
+						$this->add_property( 'margin-left', '0px' );
+						$this->add_property( 'margin-right', 'auto' );
+						break;
+					case 'center':
+						$this->add_property( 'margin-left', 'auto' );
+						$this->add_property( 'margin-right', 'auto' );
+						break;
+					case 'right':
+						$this->add_property( 'margin-left', 'auto' );
+						$this->add_property( 'margin-right', '0px' );
+						break;
+				}
+			}
+			if ( ! empty( $attributes[ $name ][1] ) ) {
+				$this->set_media_state( 'tablet' );
+				switch ( $attributes[ $name ][1] ) {
+					case 'left':
+						$this->add_property( 'margin-left', '0px' );
+						$this->add_property( 'margin-right', 'auto' );
+						break;
+					case 'center':
+						$this->add_property( 'margin-left', 'auto' );
+						$this->add_property( 'margin-right', 'auto' );
+						break;
+					case 'right':
+						$this->add_property( 'margin-left', 'auto' );
+						$this->add_property( 'margin-right', '0px' );
+						break;
+				}
+			}
+			if ( ! empty( $attributes[ $name ][2] ) ) {
+				$this->set_media_state( 'mobile' );
+				switch ( $attributes[ $name ][2] ) {
+					case 'left':
+						$this->add_property( 'margin-left', '0px' );
+						$this->add_property( 'margin-right', 'auto' );
+						break;
+					case 'center':
+						$this->add_property( 'margin-left', 'auto' );
+						$this->add_property( 'margin-right', 'auto' );
+						break;
+					case 'right':
+						$this->add_property( 'margin-left', 'auto' );
+						$this->add_property( 'margin-right', '0px' );
+						break;
+				}
+			}
+			$this->set_media_state( 'desktop' );
+		}
+	}
+	/**
+	 * Generates the text align output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name an string of the attribute name.
+	 * @return string
+	 */
+	public function render_text_align( $attributes, $name = 'textAlign', $args = array() ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		$defaults = array(
+			'desktop_key' => '',
+			'tablet_key'  => '',
+			'mobile_key'  => '',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		if ( ! empty( $args['desktop_key'] ) && isset( $attributes[ $args['desktop_key'] ] ) ) {
+			if ( ! empty( $attributes[ $args['desktop_key'] ] ) ) {
+				$this->add_property( 'text-align', $attributes[ $args['desktop_key'] ] );
+			}
+		} else if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			if ( ! empty( $attributes[ $name ][0] ) ) {
+				$this->add_property( 'text-align', $attributes[ $name ][0] );
+			}
+		}
+		if ( ! empty( $args['tablet_key'] ) && isset( $attributes[ $args['tablet_key'] ] ) ) {
+			if ( ! empty( $attributes[ $args['tablet_key'] ] ) ) {
+				$this->set_media_state( 'tablet' );
+				$this->add_property( 'text-align', $attributes[ $args['tablet_key'] ] );
+			}
+		} else if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			if ( ! empty( $attributes[ $name ][1] ) ) {
+				$this->set_media_state( 'tablet' );
+				$this->add_property( 'text-align', $attributes[ $name ][1] );
+			}
+		}
+		if ( ! empty( $args['mobile_key'] ) && isset( $attributes[ $args['mobile_key'] ] ) ) {
+			if ( ! empty( $attributes[ $args['mobile_key'] ] ) ) {
+				$this->set_media_state( 'mobile' );
+				$this->add_property( 'text-align', $attributes[ $args['mobile_key'] ] );
+			}
+		} else if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			if ( ! empty( $attributes[ $name ][2] ) ) {
+				$this->set_media_state( 'mobile' );
+				$this->add_property( 'text-align', $attributes[ $name ][2] );
+			}
+		}
+		$this->set_media_state( 'desktop' );
+	}
+	/**
+	 * Generates the responsive range output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name an string of the attribute name.
+	 * @param string $property an string of the attribute name.
+	 * @param string $unit an string of the attribute name.
+	 * @return string
+	 */
+	public function render_responsive_range( $attributes, $name = 'width', $property = 'width', $unit = '' ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		if ( empty( $unit ) ) {
+			$unit = $name . 'Type';
+		}
+		$unit = ! empty( $attributes[ $unit ] ) ? $attributes[ $unit ] : 'px';
+		if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			$desktop_reference = $this->get_backed_token_reference( $attributes[ $name ][0] ?? null );
+			if ( null !== $desktop_reference ) {
+				$this->add_property( $property, $desktop_reference );
+			} elseif ( isset( $attributes[ $name ][0] ) && is_numeric( $attributes[ $name ][0] ) ) {
+				$this->add_property( $property, $attributes[ $name ][0] . $unit );
+			}
+			$tablet_reference = $this->get_backed_token_reference( $attributes[ $name ][1] ?? null );
+			if ( null !== $tablet_reference ) {
+				$this->set_media_state( 'tablet' );
+				$this->add_property( $property, $tablet_reference );
+			} elseif ( isset( $attributes[ $name ][1] ) && is_numeric( $attributes[ $name ][1] ) ) {
+				$this->set_media_state( 'tablet' );
+				$this->add_property( $property, $attributes[ $name ][1] . $unit );
+			}
+			$mobile_reference = $this->get_backed_token_reference( $attributes[ $name ][2] ?? null );
+			if ( null !== $mobile_reference ) {
+				$this->set_media_state( 'mobile' );
+				$this->add_property( $property, $mobile_reference );
+			} elseif ( isset( $attributes[ $name ][2] ) && is_numeric( $attributes[ $name ][2] ) ) {
+				$this->set_media_state( 'mobile' );
+				$this->add_property( $property, $attributes[ $name ][2] . $unit );
+			}
+			$this->set_media_state( 'desktop' );
+		}
+	}
+	/**
+	 * Generates the responsive size output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name an string of the attribute name.
+	 * @param string $property an string of the attribute name.
+	 * @param string $unit an string of the attribute name.
+	 * @param string $defaults Optional defaults to fallback if the responsive value is empty.
+	 * @return string
+	 */
+	public function render_responsive_size( $attributes, $name = array( 'width', 'tabletWidth', 'mobileWidth' ), $property = 'width', $unit = '', $defaults = array( '', '', '' ) ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		if ( empty( $unit ) ) {
+			$unit = $name[0] . 'Type';
+		}
+		$unit = ! empty( $attributes[ $unit ] ) ? $attributes[ $unit ] : 'px';
+
+		$this->set_media_state( 'desktop' );
+		$desktop_reference = $this->get_backed_token_reference( $attributes[ $name[0] ] ?? null );
+		if ( null !== $desktop_reference ) {
+			$this->add_property( $property, $desktop_reference );
+		} elseif ( ! Alias::is_alias( $attributes[ $name[0] ] ?? null ) ) {
+			// A resolved alias emits above; an unresolved strict alias emits nothing so the property falls
+			// back to the global CSS. Only a non-alias reaches the literal/defaults handling.
+			if ( isset( $attributes[ $name[0] ] ) && '' !== $attributes[ $name[0] ] ) {
+				$this->add_property( $property, $attributes[ $name[0] ] . $unit );
+			} elseif ( $defaults[0] ) {
+				$this->add_property( $property, $defaults[0] . $unit );
+			}
+		}
+		$this->set_media_state( 'tablet' );
+		$tablet_reference = $this->get_backed_token_reference( $attributes[ $name[1] ] ?? null );
+		if ( null !== $tablet_reference ) {
+			$this->add_property( $property, $tablet_reference );
+		} elseif ( ! Alias::is_alias( $attributes[ $name[1] ] ?? null ) ) {
+			if ( isset( $attributes[ $name[1] ] ) && '' !== $attributes[ $name[1] ] ) {
+				$this->add_property( $property, $attributes[ $name[1] ] . $unit );
+			} elseif ( $defaults[1] ) {
+				$this->add_property( $property, $defaults[1] . $unit );
+			}
+		}
+		$this->set_media_state( 'mobile' );
+		$mobile_reference = $this->get_backed_token_reference( $attributes[ $name[2] ] ?? null );
+		if ( null !== $mobile_reference ) {
+			$this->add_property( $property, $mobile_reference );
+		} elseif ( ! Alias::is_alias( $attributes[ $name[2] ] ?? null ) ) {
+			if ( isset( $attributes[ $name[2] ] ) && '' !== $attributes[ $name[2] ] ) {
+				$this->add_property( $property, $attributes[ $name[2] ] . $unit );
+			} elseif ( $defaults[2] ) {
+				$this->add_property( $property, $defaults[2] . $unit );
+			}
+		}
+		$this->set_media_state( 'desktop' );
+	}
+	/**
+	 * Generates the flex align output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name an string of the attribute name.
+	 * @return string
+	 */
+	public function render_flex_align( $attributes, $name = 'textAlign', $args = array() ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		$defaults = array(
+			'desktop_key' => '',
+			'tablet_key'  => '',
+			'mobile_key'  => '',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		if ( ! empty( $args['desktop_key'] ) && isset( $attributes[ $args['desktop_key'] ] ) ) {
+			if ( ! empty( $attributes[ $args['desktop_key'] ] ) ) {
+				switch ( $attributes[ $args['desktop_key'] ] ) {
+					case 'left':
+						$this->add_property( 'justify-content', 'flex-start' );
+						break;
+					case 'center':
+						$this->add_property( 'justify-content', 'center' );
+						break;
+					case 'right':
+						$this->add_property( 'justify-content', 'flex-end' );
+						break;
+					case 'space-between':
+						$this->add_property( 'justify-content', 'space-between' );
+						break;
+				}
+			}
+		} else if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			if ( ! empty( $attributes[ $name ][0] ) ) {
+				switch ( $attributes[ $name ][0] ) {
+					case 'left':
+						$this->add_property( 'justify-content', 'flex-start' );
+						break;
+					case 'center':
+						$this->add_property( 'justify-content', 'center' );
+						break;
+					case 'right':
+						$this->add_property( 'justify-content', 'flex-end' );
+						break;
+					case 'space-between':
+						$this->add_property( 'justify-content', 'space-between' );
+						break;
+				}
+			}
+		}
+		if ( ! empty( $args['tablet_key'] ) && isset( $attributes[ $args['tablet_key'] ] ) ) {
+			if ( ! empty( $attributes[ $args['tablet_key'] ] ) ) {
+				$this->set_media_state( 'tablet' );
+				switch ( $attributes[ $args['tablet_key'] ] ) {
+					case 'left':
+						$this->add_property( 'justify-content', 'flex-start' );
+						break;
+					case 'center':
+						$this->add_property( 'justify-content', 'center' );
+						break;
+					case 'right':
+						$this->add_property( 'justify-content', 'flex-end' );
+						break;
+					case 'space-between':
+						$this->add_property( 'justify-content', 'space-between' );
+						break;
+				}
+			}
+		} else if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			if ( ! empty( $attributes[ $name ][1] ) ) {
+				$this->set_media_state( 'tablet' );
+				switch ( $attributes[ $name ][1] ) {
+					case 'left':
+						$this->add_property( 'justify-content', 'flex-start' );
+						break;
+					case 'center':
+						$this->add_property( 'justify-content', 'center' );
+						break;
+					case 'right':
+						$this->add_property( 'justify-content', 'flex-end' );
+						break;
+					case 'space-between':
+						$this->add_property( 'justify-content', 'space-between' );
+						break;
+				}
+			}
+		}
+		if ( ! empty( $args['mobile_key'] ) && isset( $attributes[ $args['mobile_key'] ] ) ) {
+			if ( ! empty( $attributes[ $args['mobile_key'] ] ) ) {
+				$this->set_media_state( 'mobile' );
+				switch ( $attributes[ $args['mobile_key'] ] ) {
+					case 'left':
+						$this->add_property( 'justify-content', 'flex-start' );
+						break;
+					case 'center':
+						$this->add_property( 'justify-content', 'center' );
+						break;
+					case 'right':
+						$this->add_property( 'justify-content', 'flex-end' );
+						break;
+					case 'space-between':
+						$this->add_property( 'justify-content', 'space-between' );
+						break;
+				}
+			}
+		} else if ( isset( $attributes[ $name ] ) && is_array( $attributes[ $name ] ) ) {
+			if ( ! empty( $attributes[ $name ][2] ) ) {
+				$this->set_media_state( 'mobile' );
+				switch ( $attributes[ $name ][2] ) {
+					case 'left':
+						$this->add_property( 'justify-content', 'flex-start' );
+						break;
+					case 'center':
+						$this->add_property( 'justify-content', 'center' );
+						break;
+					case 'right':
+						$this->add_property( 'justify-content', 'flex-end' );
+						break;
+					case 'space-between':
+						$this->add_property( 'justify-content', 'space-between' );
+						break;
+				}
+			}
+		}
+		$this->set_media_state( 'desktop' );
+	}
+
+	/**
+	 * Generates a border string for a single side at a single screen size.
+	 *
+	 *
+	 * @param array  $border an array of border settings.
+	 * @param string $side   the border side to render (top, right, bottom, left). Default 'top'.
+	 *
+	 * @return string|false
+	 */
+	public function render_border( $border, $side = 'top' ) {
+		if ( empty( $border ) || empty( $border[0] ) ) {
+			return false;
+		}
+		if ( ! is_array( $border[0] ) ) {
+			return false;
+		}
+		if ( ! isset( $border[0][ $side ] ) ) {
+			return false;
+		}
+
+		$border_side = $border[0][ $side ];
+
+		if ( ! isset( $border_side[2] ) || ( isset( $border_side[2] ) && empty( $border_side[2] ) && ! is_numeric($border_side[2]) ) ) {
+			return false;
+		}
+
+		$border_string = '';
+		$style         = ( isset( $border_side[1] ) && ! empty( $border_side[1] ) ? $border_side[1] : 'solid' );
+		$width         = ( isset( $border_side[2] ) && ! empty( $border_side[2] ) ? $border_side[2] : '0' );
+		$unit          = ( isset( $border[0]['unit'] ) && ! empty( $border[0]['unit'] ) ? $border[0]['unit'] : 'px' );
+		$color         = ( isset( $border_side[0] ) && ! empty( $border_side[0] ) ? $border_side[0] : 'transparent' );
+
+		// A token-reference width resolves to a self-contained var() (unit included), so the literal unit is dropped.
+		$width_reference = $this->get_backed_token_reference( $width );
+		$width_output    = $width_reference ?? $width . $unit;
+		$color_output    = $this->render_color( $color );
+
+		// A strict alias width or color that did not resolve invalidates the whole shorthand; emit nothing
+		// so the border falls back to the global CSS.
+		if ( ( Alias::is_alias( $width ) && null === $width_reference ) || false === $color_output ) {
+			return false;
+		}
+
+		return $width_output . ' ' . $style . ' ' . $color_output;
+	}
+
+	/**
+	 * Generates the border styles output.
+	 *
+	 * @param array   $attributes an array of attributes.
+	 * @param string  $name an string of the attribute name.
+	 * @param boolean $single_styles if property values should be calculated to be output alone.
+	 * @param array   $args an array of settings. `transparent_color` (bool, default false) keeps a stored width with no color transparent instead of the text color.
+	 * @return string
+	 */
+	public function render_border_styles( $attributes, $name = 'borderStyle', $single_styles = false, $args = array() ) {
+
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		$defaults = array(
+			'desktop_key' => $name,
+			'tablet_key'  => 'tablet' . ucfirst( $name ),
+			'mobile_key'  => 'mobile' . ucfirst( $name ),
+			'unit_key'    => 'unit',
+			'first_prop'  => 'border-top',
+			'second_prop' => 'border-right',
+			'third_prop'  => 'border-bottom',
+			'fourth_prop' => 'border-left',
+			'sides_prop_keys' => array(
+				'top' => 'first_prop',
+				'right' => 'second_prop',
+				'bottom' => 'third_prop',
+				'left' => 'fourth_prop',
+			),
+			'renderAsVars' => false,
+			'varBase' => '--fxb-',
+			'transparent_color' => false,
+		);
+		$args = wp_parse_args( $args, $defaults );
+		$sizes = array(
+			'desktop',
+			'tablet',
+			'mobile',
+		);
+		$property_prefix = $args['renderAsVars'] ? $args['varBase'] : '';
+
+		foreach ( $sizes as $size ) {
+			$this->set_media_state( $size );
+			foreach ( $args['sides_prop_keys'] as $side => $prop_key ) {
+				$width = $this->get_border_value( $attributes, $args, $side, $size, 'width', $single_styles );
+				$color = $this->get_border_value( $attributes, $args, $side, $size, 'color', $single_styles );
+				$style = $this->get_border_value( $attributes, $args, $side, $size, 'style', $single_styles );
+				if ( $width ) {
+					// A shorthand with no color falls back to `currentColor`, so a caller that wants a stored width without a color to stay invisible opts in.
+					// An unresolved alias comes back as `false` and is left alone.
+					if ( $args['transparent_color'] && '' === $color ) {
+						$color = 'transparent';
+					}
+					$this->add_property( $property_prefix . $args[ $prop_key ], $width . ' ' . $style . ' ' . $color );
+				} elseif ( $single_styles && $color ) {
+					$this->add_property( $property_prefix . $args[ $prop_key ] . '-color', $color );
+					// Only a style the block stores: the default `solid` would override a preset's own style.
+					if ( $style && $this->has_stored_border_style( $attributes, $args, $side, $size, true ) ) {
+						$this->add_property( $property_prefix . $args[ $prop_key ] . '-style', $style );
+					}
+				} elseif ( $single_styles && $style ) {
+					$desktop_width = $this->get_border_value( $attributes, $args, $side, 'desktop', 'width', $single_styles );
+					$tablet_width = $this->get_border_value( $attributes, $args, $side, 'tablet', 'width', $single_styles );
+
+					// A style the block stores at this breakpoint has to go out even with no width and no color:
+					// the width comes from the preset, which knows nothing of the style picked here.
+					$stored_style = $this->has_stored_border_style( $attributes, $args, $side, $size, false );
+
+					// Otherwise only need to output *just* the border-style if we're inheriting a width.
+					$inherits_tablet_width = 'tablet' === $size && ! empty( $desktop_width );
+					$inherits_mobile_width = 'mobile' === $size && ! empty( $desktop_width ) && ! empty( $tablet_width );
+
+					if ( $stored_style || $inherits_tablet_width || $inherits_mobile_width ) {
+						$this->add_property( $property_prefix . $args[ $prop_key ] . '-style', $style );
+					}
+				}
+			}
+		}
+
+		$this->set_media_state( 'desktop' );
+	}
+	/**
+	 * Whether the block stores a border line style for a side at a size.
+	 *
+	 * `get_border_value()` fills a missing style with `solid`, so it cannot tell a style the block
+	 * stores from that default.
+	 *
+	 *
+	 * @param array<string, mixed> $attributes    The block attributes.
+	 * @param array<string, mixed> $args          The border settings, holding the attribute key of each size.
+	 * @param string               $side          The side: top, right, bottom or left.
+	 * @param string               $size          The size: desktop, tablet or mobile.
+	 * @param bool                 $with_fallback Whether a style stored at a wider size counts.
+	 *
+	 * @return bool
+	 */
+	private function has_stored_border_style( $attributes, $args, $side, $size, $with_fallback ) {
+		$keys = [
+			'desktop' => [ 'desktop_key' ],
+			'tablet'  => [ 'tablet_key', 'desktop_key' ],
+			'mobile'  => [ 'mobile_key', 'tablet_key', 'desktop_key' ],
+		];
+
+		$size_keys = $with_fallback ? $keys[ $size ] : array_slice( $keys[ $size ], 0, 1 );
+
+		foreach ( $size_keys as $size_key ) {
+			$attribute = $args[ $size_key ] ?? '';
+			$stored    = is_string( $attribute ) ? ( $attributes[ $attribute ] ?? null ) : null;
+			$border    = is_array( $stored ) ? ( $stored[0] ?? null ) : null;
+			$values    = is_array( $border ) ? ( $border[ $side ] ?? null ) : null;
+
+			if ( is_array( $values ) && ! empty( $values[1] ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Gets a border value for a side and size.
+	 * Checks for values in sizes above itself if the given size has none
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param array  $args an array of settings.
+	 * @param string $given_side the side to retrieve a value for (desktop, tablet, mobile).
+	 * @param string $given_size the size to retrieve a value for (top, right, bottom, left).
+	 * @param string $given_value the name of the value to retrieve (color, style, width).
+	 * @param string $single_styles if this value is being calculated to be output alone.
+	 * @return string
+	 */
+	public function get_border_value( $attributes, $args, $given_side, $given_size, $given_value, $single_styles ) {
+		//border styles come in an array like this:
+		// [
+		// 	  "top": [ {{color}}, {{style}}, {{width}} ],
+		// 	  "right": [ {{color}}, {{style}}, {{width}} ],
+		// 	  "bottom": [ {{color}}, {{style}}, {{width}} ],
+		// 	  "left": [ {{color}}, {{style}}, {{width}} ],
+		// 	  "unit": "px"
+		// ]
+		// one for each size
+
+		// key setup.
+		$value_positions = array(
+			'color' => 0,
+			'style' => 1,
+			'width' => 2,
+		);
+		$value_defaults = array(
+			'color' => 'transparent',
+			'style' => 'solid',
+			'width' => '',
+		);
+		$size_keys = array(
+			'mobile' => 'mobile_key',
+			'tablet' => 'tablet_key',
+			'desktop' => 'desktop_key',
+		);
+		$sized_values = array(
+			'mobile' => '',
+			'tablet' => '',
+			'desktop' => '',
+		);
+		$sized_units = array(
+			'mobile' => '',
+			'tablet' => '',
+			'desktop' => '',
+		);
+
+		// get the value for the given side for each size, load into array.
+		foreach ($size_keys as $size => $size_key) {
+			if ( isset( $attributes[ $args[$size_key] ][0] ) && is_array( $attributes[ $args[$size_key] ][0] ) ) {
+				$border_values = $attributes[ $args[$size_key] ][0];
+				$border_unit = ( ! empty( $border_values[$args['unit_key']] ) ? $border_values[$args['unit_key']] : '' );
+				$border_value = ( $border_values[$given_side][$value_positions[$given_value]] ?? '' );
+				$sized_units[$size] = $border_unit;
+				$sized_values[$size] = $border_value;
+			}
+		}
+
+		// return the value/unit for this size or a size above it.
+		// if none is found return a default value.
+		switch ( $given_size ) {
+			case 'desktop':
+				$return_value = $sized_values[$given_size];
+				$return_unit= $sized_units[$given_size];
+				break;
+			case 'tablet':
+				if( $given_value === 'width'){
+					$return_value =  $this->is_number( $sized_values[$given_size] ) ? $sized_values[$given_size] : $sized_values['desktop'];
+				} else {
+					$return_value = $sized_values[$given_size] ?: $sized_values['desktop'];
+				}
+				$return_unit = $sized_units[$given_size] ?: $sized_units['desktop'];
+				break;
+			default:
+				if( $given_value === 'width') {
+					$return_value = $this->is_number( $sized_values[ $given_size ] ) ? $sized_values[ $given_size ] : ( $sized_values['tablet'] ?: $sized_values['desktop'] );
+				} else {
+					$return_value = $sized_values[$given_size] ?: $sized_values['tablet'] ?: $sized_values['desktop'];
+				}
+				$return_unit = $sized_units[$given_size] ?: $sized_units['tablet'] ?: $sized_units['desktop'];
+				break;
+		}
+
+		// if color is not set and single styles is selected, don't return the default, instead return blank as to not override some inherited styles.
+		if ( $given_value == 'color' && ! $return_value && $single_styles) {
+			return '';
+		}
+
+		$return_value = '' !== $return_value ? $return_value : $value_defaults[ $given_value ];
+		$return_unit = $return_unit ? $return_unit : 'px';
+
+		// extra processing for specific values.
+		if( $given_value == 'color') {
+			$return_value = $this->sanitize_color($return_value);
+		}
+		if( $given_value == 'width') {
+			$width_reference = $this->get_backed_token_reference( $return_value );
+			if ( null !== $width_reference ) {
+				$return_value = $width_reference;
+			} else {
+				$return_value = $this->is_number( $return_value ) ? $return_value . $return_unit : '';
+			}
+		}
+
+		return $return_value;
+	}
+
+	/**
+	 * Generates styles for the attributes in the button style controls with states component.
+	 * Attributes must be in the format {attributeBase}{state}{size} e.g. linkColorHoverTablet
+	 *
+	 * @param array $args an array of settings.
+	 * @param array $attributes an array of attributes.
+	 * @return void
+	 */
+	public function render_button_styles_with_states( $args, $attributes ) {
+		$default_args = array(
+			'colorBase' => '',
+			'backgroundBase' => '',
+			'backgroundTypeBase' => '',
+			'backgroundGradientBase' => '',
+			'borderBase' => '',
+			'borderRadiusBase' => '',
+			'borderRadiusUnitBase' => '',
+			'shadowBase' => '',
+			'selector' => '',
+			'selectorHover' => '',
+			'selectorActive' => '',
+			'renderAsVars' => false,
+			'varBase' => '--fxb-',
+		);
+
+		$args = array_merge( $default_args, $args );
+
+		$color_base = $args['colorBase'];
+		$background_base = $args['backgroundBase'];
+		$background_type_base = $args['backgroundTypeBase'];
+		$background_gradient_base = $args['backgroundGradientBase'];
+		$border_base = $args['borderBase'];
+		$border_radius_base = $args['borderRadiusBase'];
+		$border_radius_unit_base = $args['borderRadiusUnitBase'];
+		$shadow_base = $args['shadowBase'];
+
+		$states = array( '', 'Hover', 'Active' );
+		$sizes = array( '', 'Tablet', 'Mobile' );
+
+		$property_prefix = $args['renderAsVars'] ? $args['varBase'] : '';
+
+		foreach ( $states as $state ) {
+			if ( $args[ 'selector' . $state ] || $args['renderAsVars'] ) {
+				$state_selector = $args[ 'selector' . $state ];
+				$property_suffix = $args['renderAsVars'] ? ( $state ? '-' . strtolower($state) : '' ) : '';
+				$property_addition = $args['renderAsVars'] ? ( $state ? strtolower($state) . '-' : '' ) : '';
+
+				if ( ! $args['renderAsVars'] ) {
+					$this->set_selector( $state_selector );
+				}
+
+				foreach ( $sizes as $size ) {
+					$this->set_media_state( $size ? lcfirst( $size ) : 'desktop' );
+
+					$color_value = $color_base ? $attributes[ $color_base . $state . $size ] : '';
+					$background_value = $background_base ? $attributes[ $background_base . $state . $size ] : '';
+					$background_type_value = $background_type_base ? $attributes[ $background_type_base . $state ] : '';
+					$background_gradient_value = $background_gradient_base ? $attributes[ $background_gradient_base . $state ] : '';
+					$border_value = $border_base ? $attributes[ $border_base . $state . $size ] : '';
+					$border_radius_value = $border_radius_base ? $attributes[ $border_radius_base . $state . $size ] : '';
+					$border_radius_unit_value = $border_radius_unit_base ? $attributes[ $border_radius_unit_base . $state ] : '';
+					$shadow_value = $shadow_base ? $attributes[ $shadow_base . $state ] : '';
+
+					$this->add_property( $property_prefix . 'color' . $property_suffix, $this->render_color( $color_value ) );
+					if ( 'gradient' === $background_type_value && ! empty( $background_gradient_value ) ) {
+						$this->add_property( $property_prefix . 'background' . $property_suffix, $background_gradient_value );
+					} else {
+						$this->add_property( $property_prefix . 'background' . $property_suffix, $this->render_color( $background_value ) );
+					}
+				}
+				$this->set_media_state( 'desktop' );
+
+				$border_radius_base_args = array(
+					'desktop_key' => $border_radius_base . $state,
+					'tablet_key'  => $border_radius_base . $state . 'Tablet',
+					'mobile_key'  => $border_radius_base . $state . 'Mobile',
+					'unit_key'  => $border_radius_unit_base . $state,
+				);
+				$border_radius_args = $args['renderAsVars'] ? array_merge($border_radius_base_args,
+				[
+					'first_prop' => $property_prefix . $property_addition . 'border-top-left-radius',
+					'second_prop' => $property_prefix . $property_addition . 'border-top-right-radius',
+					'third_prop' => $property_prefix . $property_addition . 'border-bottom-right-radius',
+					'fourth_prop' => $property_prefix . $property_addition . 'border-bottom-left-radius'
+				]) : $border_radius_base_args;
+
+				$border_args = [
+					'renderAsVars' => $args['renderAsVars'],
+					'desktop_key' => $border_base . $state,
+					'tablet_key'  => $border_base . $state . 'Tablet',
+					'mobile_key'  => $border_base . $state . 'Mobile',
+					'varBase' => $property_prefix . $property_addition
+				];
+
+				$this->render_measure_output( $attributes, $border_radius_base . $state, 'border-radius', $border_radius_args );
+				$this->render_border_styles( $attributes, $border_base . $state, false, $border_args );
+				if ( $shadow_value && isset( $shadow_value[0] ) && $shadow_value[0]['enable'] ) {
+					$this->add_property( $property_prefix . 'box-shadow' . $property_suffix, $this->render_shadow( $shadow_value[0] ) );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Adds one side of a measure output, matching render_measure_output()'s per-side rules: a numeric
+	 * value gets the shared unit, a `position` keyword is emitted verbatim, a design-token alias resolves
+	 * to its `var(--fxb-token--…)` reference, and a legacy spacing variable resolves to its stored size.
+	 * An empty/unset value emits nothing.
+	 *
+	 *
+	 * @param string $prop     The CSS property to write (e.g. `border-top-left-radius`).
+	 * @param mixed  $value    The side's value: a number, a `position` keyword, a design-token alias, a
+	 *                         legacy spacing variable, or empty.
+	 * @param string $unit     The unit appended to a numeric value.
+	 * @param string $property The measure property being rendered, so `position` keywords pass through.
+	 *
+	 * @return void
+	 */
+	private function render_measure_side( $prop, $value, $unit, $property ) {
+		$token_reference = $this->get_backed_token_reference( $value );
+		if ( $this->is_number( $value ) ) {
+			$this->add_property( $prop, $value . $unit );
+		} elseif ( 'position' === $property && ! empty( $value ) ) {
+			$this->add_property( $prop, $value );
+		} elseif ( ! empty( $value ) && null !== $token_reference ) {
+			$this->add_property( $prop, $token_reference );
+		} elseif ( ! empty( $value ) && $this->is_variable_value( $value ) ) {
+			$this->add_property( $prop, $this->get_variable_value( $value ) );
+		}
+	}
+
+	/**
+	 * Generates the measure output.
+	 *
+	 * @param array  $attributes an array of attributes.
+	 * @param string $name a string of the block attribute name.
+	 * @param string $property a string of the css property name.
+	 * @param array  $args an array of settings.
+	 * @return string
+	 */
+	public function render_measure_output( $attributes, $name = 'padding', $property = 'padding', $args = array() ) {
+		if ( empty( $attributes ) || empty( $name ) ) {
+			return false;
+		}
+		if ( ! is_array( $attributes ) ) {
+			return false;
+		}
+		switch ( $property ) {
+			case 'border-width':
+				$prop_args = array(
+					'first_prop'  => 'border-top-width',
+					'second_prop' => 'border-right-width',
+					'third_prop'  => 'border-bottom-width',
+					'fourth_prop' => 'border-left-width',
+				);
+				break;
+			case 'border-radius':
+				$prop_args = array(
+					'first_prop'  => 'border-top-left-radius',
+					'second_prop' => 'border-top-right-radius',
+					'third_prop'  => 'border-bottom-right-radius',
+					'fourth_prop' => 'border-bottom-left-radius',
+				);
+				break;
+			case 'position':
+				$prop_args = array(
+					'first_prop'  => 'top',
+					'second_prop' => 'right',
+					'third_prop'  => 'bottom',
+					'fourth_prop' => 'left',
+				);
+				break;
+			default:
+				$prop_args = array(
+					'first_prop'  => $property . '-top',
+					'second_prop' => $property . '-right',
+					'third_prop'  => $property . '-bottom',
+					'fourth_prop' => $property . '-left',
+				);
+				break;
+		}
+		$defaults = array(
+			'desktop_key' => $name,
+			'tablet_key'  => 'tablet' . ucfirst( $name ),
+			'mobile_key'  => 'mobile' . ucfirst( $name ),
+			'unit_key'    => $name . 'Type',
+			'first_prop'  => $prop_args['first_prop'],
+			'second_prop' => $prop_args['second_prop'],
+			'third_prop'  => $prop_args['third_prop'],
+			'fourth_prop' => $prop_args['fourth_prop'],
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		$unit = ! empty( $attributes[ $args['unit_key'] ] ) ? $attributes[ $args['unit_key'] ] : 'px';
+		if ( isset( $attributes[ $args['desktop_key'] ] ) && is_array( $attributes[ $args['desktop_key'] ] ) ) {
+			$this->render_measure_side( $args['first_prop'], $attributes[ $args['desktop_key'] ][0] ?? null, $unit, $property );
+			$this->render_measure_side( $args['second_prop'], $attributes[ $args['desktop_key'] ][1] ?? null, $unit, $property );
+			$this->render_measure_side( $args['third_prop'], $attributes[ $args['desktop_key'] ][2] ?? null, $unit, $property );
+			$this->render_measure_side( $args['fourth_prop'], $attributes[ $args['desktop_key'] ][3] ?? null, $unit, $property );
+		}
+		$this->set_media_state( 'tablet' );
+		if ( isset( $attributes[ $args['tablet_key'] ] ) && is_array( $attributes[ $args['tablet_key'] ] ) ) {
+			$this->render_measure_side( $args['first_prop'], $attributes[ $args['tablet_key'] ][0] ?? null, $unit, $property );
+			$this->render_measure_side( $args['second_prop'], $attributes[ $args['tablet_key'] ][1] ?? null, $unit, $property );
+			$this->render_measure_side( $args['third_prop'], $attributes[ $args['tablet_key'] ][2] ?? null, $unit, $property );
+			$this->render_measure_side( $args['fourth_prop'], $attributes[ $args['tablet_key'] ][3] ?? null, $unit, $property );
+		}
+		$this->set_media_state( 'mobile' );
+		if ( isset( $attributes[ $args['mobile_key'] ] ) && is_array( $attributes[ $args['mobile_key'] ] ) ) {
+			$this->render_measure_side( $args['first_prop'], $attributes[ $args['mobile_key'] ][0] ?? null, $unit, $property );
+			$this->render_measure_side( $args['second_prop'], $attributes[ $args['mobile_key'] ][1] ?? null, $unit, $property );
+			$this->render_measure_side( $args['third_prop'], $attributes[ $args['mobile_key'] ][2] ?? null, $unit, $property );
+			$this->render_measure_side( $args['fourth_prop'], $attributes[ $args['mobile_key'] ][3] ?? null, $unit, $property );
+		}
+		$this->set_media_state( 'desktop' );
+	}
+	/**
+	 * Generates the measure output.
+	 *
+	 * @param array  $measure an array of font settings.
+	 * @param string $unit the unit to append to the value.
+	 * @return string|false
+	 */
+	public function render_measure( $measure, $unit = 'px' ) {
+		if ( empty( $measure ) ) {
+			return false;
+		}
+		if ( ! is_array( $measure ) ) {
+			return false;
+		}
+		if ( ! isset( $measure[0] ) ) {
+			return false;
+		}
+		$references = [
+			$this->get_backed_token_reference( $measure[0] ),
+			$this->get_backed_token_reference( $measure[1] ?? null ),
+			$this->get_backed_token_reference( $measure[2] ?? null ),
+			$this->get_backed_token_reference( $measure[3] ?? null ),
+		];
+
+		// A strict alias side that did not resolve invalidates the whole value; emit nothing so the
+		// property falls back to the global CSS.
+		foreach ( [ $measure[0], $measure[1] ?? null, $measure[2] ?? null, $measure[3] ?? null ] as $index => $side ) {
+			if ( Alias::is_alias( $side ) && null === $references[ $index ] ) {
+				return false;
+			}
+		}
+
+		$has_alias = null !== $references[0] || null !== $references[1] || null !== $references[2] || null !== $references[3];
+		if ( ! $has_alias && ! is_numeric( $measure[0] ) && ! is_numeric( $measure[1] ) && ! is_numeric( $measure[2] ) && ! is_numeric( $measure[3] ) ) {
+			return false;
+		}
+		return ( null !== $references[0] ? $references[0] : ( is_numeric( $measure[0] ) ? $measure[0] : '0' ) . $unit ) . ' ' . ( null !== $references[1] ? $references[1] : ( is_numeric( $measure[1] ) ? $measure[1] : '0' ) . $unit ) . ' ' . ( null !== $references[2] ? $references[2] : ( is_numeric( $measure[2] ) ? $measure[2] : '0' ) . $unit ) . ' ' . ( null !== $references[3] ? $references[3] : ( is_numeric( $measure[3] ) ? $measure[3] : '0' ) . $unit );
+	}
+	/**
+	 * Generates the opacity css output.
+	 *
+	 * @param array       $attributes an array of attributes.
+	 * @param string|null $name name of opacity attribute.
+	 */
+	public function render_opacity_from_100( $attributes, $name = null ) {
+		if ( ! isset( $attributes[ $name ] ) || ! $this->is_number( $attributes[ $name ] ) ) {
+			return;
+		}
+		if ( $attributes[ $name ] < 10 ) {
+			$this->add_property( 'opacity', '0.0' . $attributes[ $name ] );
+		} elseif ( $attributes[ $name ] >= 100 ) {
+			$this->add_property( 'opacity', '1' );
+		} else {
+			$this->add_property( 'opacity', '0.' . $attributes[ $name ] );
+		}
+	}
+	/**
+	 * Generates the background output.
+	 *
+	 * @param array  $background an array of background settings.
+	 * @param object $css an object of css output.
+	 */
+	public function render_background( $background, $css, $property = 'normal' ) {
+		if ( empty( $background ) ) {
+			return false;
+		}
+		if ( ! is_array( $background ) ) {
+			return false;
+		}
+		$type              = ( isset( $background['type'] ) && ! empty( $background['type'] ) ? $background['type'] : 'normal' );
+		if ( 'normal' === $type ) {
+			if ( $property !== 'normal' ) {
+				$background_color =  ( ! empty( $background['color'] ) ? $background['color'] : '' );
+				$image_url = ( ! empty( $background['image'] ) ? 'url("' .  $background['image'] . '")' : '' );
+				if ( ! empty( $image_url ) ) {
+					$background_size     = ( ! empty( $background['size'] ) ? $background['size'] : '' );
+					$background_position = ( ! empty( $background['position'] ) ? $background['position'] : 'center center' );
+					$background_attachment = ( ! empty( $background['attachment'] ) ? $background['attachment'] : 'scroll' );
+					$background_repeat = ( ! empty( $background['repeat'] ) ? $background['repeat'] : 'no-repeat' );
+					$css->add_property( $property, ( ! empty( $background_color ) ? $this->render_color( $background_color ) . ' ' : '' ) . $image_url . ' ' . $background_repeat . ' ' . $background_position .  ( ! empty( $background_size ) ? ' / ' . $background_size : '' ) . ' ' . $background_attachment );
+				} else {
+					$css->add_property( $property, $this->render_color( $background_color ) );
+				}
+			} else {
+				if ( ! empty( $background['color'] ) ) {
+					$css->add_property( 'background-color', $this->render_color( $background['color'] ) );
+				}
+				$image_url = ( ! empty( $background['image'] ) ? 'url("' .  $background['image'] . '")' : '' );
+				if ( ! empty( $image_url ) ) {
+					$css->add_property( 'background-image', $image_url );
+					$css->add_property( 'background-size', ( ! empty( $background['size'] ) ? $background['size'] : 'cover' ) );
+					$css->add_property( 'background-position', ( ! empty( $background['position'] ) ? $background['position'] : 'center center' ) );
+					$css->add_property( 'background-attachment', ( ! empty( $background['attachment'] ) ? $background['attachment'] : 'scroll' ) );
+					$css->add_property( 'background-repeat', ( ! empty( $background['repeat'] ) ? $background['repeat'] : 'no-repeat' ) );
+				}
+			}
+		} elseif ( 'gradient' === $type && isset( $background['gradient'] ) && ! empty( $background['gradient'] ) ) {
+			if ( $property !== 'normal' ) {
+				$css->add_property( $property, $this->render_gradient( $background['gradient'] ) );
+			} else {
+				$css->add_property( 'background', $this->render_gradient( $background['gradient'] ) );
+			}
+		}
+	}
+
+	/**
+	 * Sanitizes a gradient value.
+	 *
+	 * @param string $gradient an string of gradient markup.
+	 * @return string
+	 */
+	public function render_gradient( $gradient ) {
+		if ( empty( $gradient ) ) {
+			return false;
+		}
+		$gradient = str_replace( 'var(u002du002dglobal', 'var(--global', $gradient );
+		return $gradient;
+	}
+	/**
+	 * Generates the size output.
+	 *
+	 * @param array $size an array of size settings.
+	 * @return string
+	 */
+	public function render_half_size( $size, $unit = 'px' ) {
+		if ( empty( $size ) && $size != 0 && $size != '0' ) {
+			return false;
+		}
+		$size_number = $size ? $size : '0';
+		$size_unit   = $unit ? $unit : 'em';
+
+		$size_string = 'calc(' . $size_number . $size_unit . ' / 2)';
+		return $size_string;
+	}
+
+	/**
+	 * Generates the size output.
+	 *
+	 * @param array $size an array of size settings.
+	 * @return string
+	 */
+	public function render_size( $size, $unit = 'px' ) {
+		if ( empty( $size ) ) {
+			return false;
+		}
+		$size_number = $size ? $size : '0';
+		$size_unit   = $unit ? $unit : 'em';
+
+		$size_string = $size_number . $size_unit;
+		return $size_string;
+	}
+
+	/**
+	 * Add google font to array.
+	 *
+	 * @param string $font_name the font name.
+	 * @param string $variant the font variant.
+	 * @param string $subset the font subset.
+	 */
+	public function maybe_add_google_font( $font_name, $font_variant = null, $subset = null ) {
+		// Prevent empty array in google fonts.
+		if ( empty( $font_name ) ) {
+			return;
+		}
+		// Check if the font has been added yet.
+		if ( ! array_key_exists( $font_name, self::$google_fonts ) ) {
+			$add_font = array(
+				'fontfamily'   => $font_name,
+				'fontvariants' => ( isset( $font_variant ) && ! empty( $font_variant ) ? array( $font_variant ) : array() ),
+				'fontsubsets'  => ( isset( $subset ) && ! empty( $subset ) ? array( $subset ) : array() ),
+			);
+			self::$google_fonts[ $font_name ] = $add_font;
+		} else {
+			if ( ! in_array( $font_variant, self::$google_fonts[ $font_name ]['fontvariants'], true ) ) {
+				array_push( self::$google_fonts[ $font_name ]['fontvariants'], $font_variant );
+			}
+		}
+	}
+
+	/**
+	 * Resets the css variable
+	 *
+	 * @access private
+	 *
+	 * @return void
+	 */
+	private function reset_css() {
+		$this->_css = '';
+		return;
+	}
+	/**
+	 * Resets the css variable
+	 *
+	 * @access private
+	 *
+	 * @return void
+	 */
+	public function render_media_queries() {
+		if ( isset( $this->_desktop_only_media_query ) && is_array( $this->_desktop_only_media_query ) && ! empty( $this->_desktop_only_media_query ) ) {
+			$this->start_media_query( $this->get_media_queries( 'desktop' ) );
+			foreach ( $this->_desktop_only_media_query as $selector => $string ) {
+				$this->set_selector( $selector );
+				$this->_css .= $string;
+			}
+			$this->stop_media_query();
+		}
+		if ( isset( $this->_tablet_pro_media_query ) && is_array( $this->_tablet_pro_media_query ) && ! empty( $this->_tablet_pro_media_query ) ) {
+			foreach ( $this->_tablet_pro_media_query as $selector => $string ) {
+				$this->start_media_query( $this->get_media_queries( 'tabletPro' ) );
+				$this->set_selector( $selector );
+				$this->_css .= $string;
+			}
+			$this->stop_media_query();
+		}
+		if ( isset( $this->_tablet_media_query ) && is_array( $this->_tablet_media_query ) && ! empty( $this->_tablet_media_query ) ) {
+			foreach ( $this->_tablet_media_query as $selector => $string ) {
+				$this->start_media_query( $this->get_media_queries( 'tablet' ) );
+				$this->set_selector( $selector );
+				$this->_css .= $string;
+			}
+			$this->stop_media_query();
+		}
+		if ( isset( $this->_tablet_only_pro_media_query ) && is_array( $this->_tablet_only_pro_media_query ) && ! empty( $this->_tablet_only_pro_media_query ) ) {
+			$this->start_media_query( $this->get_media_queries( 'tabletOnlyPro' ) );
+			foreach ( $this->_tablet_only_pro_media_query as $selector => $string ) {
+				$this->set_selector( $selector );
+				$this->_css .= $string;
+			}
+			$this->stop_media_query();
+		}
+		if ( isset( $this->_tablet_only_media_query ) && is_array( $this->_tablet_only_media_query ) && ! empty( $this->_tablet_only_media_query ) ) {
+			$this->start_media_query( $this->get_media_queries( 'tabletOnly' ) );
+			foreach ( $this->_tablet_only_media_query as $selector => $string ) {
+				$this->set_selector( $selector );
+				$this->_css .= $string;
+			}
+			$this->stop_media_query();
+		}
+		if ( isset( $this->_mobile_media_query ) && is_array( $this->_mobile_media_query ) && ! empty( $this->_mobile_media_query ) ) {
+			$this->start_media_query( $this->get_media_queries( 'mobile' ) );
+			foreach ( $this->_mobile_media_query as $selector => $string ) {
+				$this->set_selector( $selector );
+				$this->_css .= $string;
+			}
+			$this->stop_media_query();
+		}
+	}
+
+	/**
+	 * Returns the google fonts array from the compiled css.
+	 *
+	 * @access public
+	 *
+	 * @return string
+	 */
+	public function fonts_output() {
+		return self::$google_fonts;
+	}
+	/**
+	 * Clears everything.
+	 *
+	 * @access public
+	 *
+	 * @return string
+	 */
+	public function clear() {
+		$this->_selector = '';
+		self::$google_fonts = array();
+		$this->_selector_output = '';
+		$this->_selector_states = array();
+		$this->_tablet_media_query = array();
+		$this->_tablet_pro_media_query = array();
+		$this->_desktop_only_media_query = array();
+		$this->_tablet_only_media_query = array();
+		$this->_tablet_only_pro_media_query = array();
+		$this->_mobile_media_query = array();
+		$this->_media_state = 'desktop';
+		$this->_css = '';
+		$this->_css_string = '';
+		$this->_output = '';
+		$this->_media_query = null;
+		$this->_media_query_output = '';
+		$this->media_queries = null;
+	}
+
+	/**
+	 * Returns the minified css in the $_output variable
+	 *
+	 * @access public
+	 *
+	 * @return string
+	 */
+	public function css_output() {
+		if ( apply_filters( 'flxbk_css_output_media_queries', true ) ) {
+			$this->render_media_queries();
+		}
+		// Add current selector's rules to output
+		$this->add_selector_rules_to_output();
+
+		if ( class_exists( 'Flx_Blocks_Google_Fonts' ) ) {
+			$fonts_instance = Flx_Blocks_Google_Fonts::get_instance();
+			$fonts_instance->add_fonts( $this->fonts_output() );
+		}
+		// Output minified css.
+		self::$styles[ $this->_style_id ] = $this->_output;
+		if ( ! empty( $this->_css_string ) ) {
+			if ( ! isset( self::$custom_styles[ $this->_style_id ] ) ) {
+				self::$custom_styles[ $this->_style_id ] = '';
+			}
+			self::$custom_styles[ $this->_style_id ] = $this->_css_string;
+		}
+		$this->clear();
+		return self::$styles[ $this->_style_id ] . ( isset( self::$custom_styles[ $this->_style_id ] ) ? self::$custom_styles[ $this->_style_id ] : '' );
+	}
+	/**
+	 * Generates the gap output.
+	 *
+	 * @param string  $size a string or number with the gap size.
+	 * @param string $unit a string with the unit type.
+	 * @return string
+	 */
+	public function get_gap_size( $size, $unit ) {
+		if ( $this->is_variable_gap_value( $size ) ) {
+			return $this->get_variable_gap_value( $size );
+		}
+		return $size . $unit;
+	}
+	/**
+	 * @param $value
+	 *
+	 * @return bool
+	 */
+	public function is_variable_gap_value( $value ) {
+		return isset( $this->gap_sizes[ $value ] );
+	}
+	/**
+	 * @param $value
+	 *
+	 * @return bool|string
+	 */
+	public function get_variable_gap_value( $value ) {
+		if ( $this->is_variable_gap_value( $value ) ) {
+			return $this->gap_sizes[ $value ];
+		}
+
+		return false;
+	}
+	/**
+	 * @param $value
+	 *
+	 * @return bool
+	 */
+	public function is_variable_font_size_value( $value ) {
+		return is_string( $value ) && isset( $this->font_sizes[ $value ] );
+	}
+	/**
+	 * @param $value
+	 *
+	 * @return bool|string
+	 */
+	public function get_variable_font_size_value( $value ) {
+		if ( $this->is_variable_font_size_value( $value ) ) {
+			return $this->font_sizes[ $value ];
+		}
+
+		return false;
+	}
+	/**
+	 * @param $value
+	 *
+	 * @return bool
+	 */
+	public function is_variable_value( $value ) {
+		return is_string( $value ) && isset( $this->spacing_sizes[ $value ] );
+	}
+
+	/**
+	 * @param $value
+	 *
+	 * @return int|string
+	 */
+	public function get_variable_value( $value ) {
+		if( $this->is_variable_value( $value) ) {
+			return $this->spacing_sizes[$value];
+		}
+
+		return 0;
+	}
+
+	/**
+	 * @param array $sizes
+	 *
+	 * @return void
+	 */
+	public function set_spacing_sizes( $sizes ) {
+		$this->spacing_sizes = $sizes;
+	}
+
+	/**
+	 * Get the value for a responsive attribute considering inheritance.
+	 *
+	 * @param mixed   $value The desktop value.
+	 * @param mixed   $value_tablet The tablet value.
+	 * @param mixed   $value_mobile The mobile value.
+	 * @param string  $size The size.
+	 * @param boolean $check_array if you should check if an array has any values.
+	 * @return mixed
+	 */
+	public function get_inherited_value( $value, $value_tablet, $value_mobile, $size = 'Desktop', $check_array = false ) {
+
+		if ( ! $check_array ) {
+			if ( $size === 'Mobile' ) {
+				if ( ( isset( $value_mobile ) && $value_mobile !== '' ) || ( is_array( $value_mobile ) && ! empty( $value_mobile ) ) ) {
+					return $value_mobile;
+				} else if ( ( isset( $value_tablet ) && $value_tablet !== '' ) || ( is_array( $value_tablet ) && ! empty( $value_tablet ) ) ) {
+					return $value_tablet;
+				}
+			} else if ( $size === 'Tablet' ) {
+				if ( ( isset( $value_tablet ) && $value_tablet !== '' ) || ( is_array( $value_tablet ) && ! empty( $value_tablet ) ) ) {
+					return $value_tablet;
+				}
+			}
+		} else {
+			if ( $size === 'Mobile' ) {
+				if ( ! $this->empty_but_check_array( $value_mobile ) ) {
+					return $value_mobile;
+				} else if ( ! $this->empty_but_check_array( $value_tablet ) ) {
+					return $value_tablet;
+				}
+			} else if ( $size === 'Tablet' ) {
+				if ( ! $this->empty_but_check_array( $value_tablet ) ) {
+					return $value_tablet;
+				}
+			}
+		}
+		return $value;
+	}
+
+	/**
+	 * Does a check to see if any of the values in this array are not empty.
+	 *
+	 * @param mixed $value the array.
+	 * @return boolean
+	 */
+	public function empty_but_check_array( $value ) {
+		$has_value = false;
+		if ( ! is_array( $value ) ) {
+			return ! ( isset( $value ) && $value !== '' );
+		}
+
+		foreach ( $value as $array_value ) {
+			if ( is_array( $array_value ) ) {
+				$has_value = ! $this->empty_but_check_array( $array_value );
+			} else if ( ( isset( $array_value ) && $array_value !== '' ) || ( is_array( $array_value ) && ! empty( $array_value ) ) ) {
+				$has_value = true;
+			}
+		}
+		return ! $has_value;
+	}
+
+	/**
+	 * Returns a copy of an attributes array, attempts to make values in the form {attribute}Tablet, {attribute}Mobile inherit.
+	 *
+	 * @param array $attributes the attributes.
+	 * @return array
+	 */
+	public function auto_inherit_attribtues( $attributes ) {
+		$inherit_array = array();
+
+		foreach ( $attributes as $key => $value ) {
+			$is_tablet_key = str_ends_with( $key, 'Tablet' );
+			$is_mobile_key = str_ends_with( $key, 'Mobile' );
+
+			if ( $is_tablet_key || $is_mobile_key ) {
+				$desktop_key = substr( $key, 0, -6 );
+				$tablet_key = $desktop_key . 'Tablet';
+				$mobile_key = $desktop_key . 'Mobile';
+
+				if ( array_key_exists( $desktop_key, $attributes ) && array_key_exists( $tablet_key, $attributes ) && array_key_exists( $mobile_key, $attributes ) ) {
+					$inherit_array[ $key ] = $this->get_inherited_value( $attributes[ $desktop_key ], $attributes[ $tablet_key ], $attributes[ $mobile_key ], $is_tablet_key ? 'Tablet' : 'Mobile', true );
+				} else {
+					$inherit_array[ $key ] = $value;
+				}
+			} else {
+				$inherit_array[ $key ] = $value;
+			}
+		}
+
+		return $inherit_array;
+	}
+
+	/**
+	 * Reduces attributes in an array of the form {attribute}Tablet, {attribute}Mobile down to their base (desktop) key given a size.
+	 *
+	 * @param array   $attributes the attributes.
+	 * @param string  $key the key.
+	 * @param string  $size the size.
+	 * @param boolean $inherit if the attribute should inherit.
+	 * @return mixed
+	 */
+	public function get_sized_attribute( $attributes, $key, $size = 'Desktop', $inherit = true ) {
+		$sized_key = $size == 'Desktop' ? $key : $key . $size;
+
+		if ( array_key_exists( $sized_key, $attributes ) ) {
+			$desktop_key = $key;
+			$tablet_key = $desktop_key . 'Tablet';
+			$mobile_key = $desktop_key . 'Mobile';
+
+			if ( array_key_exists( $desktop_key, $attributes ) && array_key_exists( $tablet_key, $attributes ) && array_key_exists( $mobile_key, $attributes ) && $inherit ) {
+				return $this->get_inherited_value( $attributes[ $desktop_key ], $attributes[ $tablet_key ], $attributes[ $mobile_key ], $size, true );
+			}
+
+			return $attributes[ $sized_key ];
+		} else if ( array_key_exists( $key, $attributes ) ) {
+			return $attributes[ $key ];
+		}
+
+		return null;
+	}
+
+	/**
+	 * Gets an Attribute for a given responsive size base on the form {attribute}Tablet, {attribute}Mobile.
+	 *
+	 * @param array   $attributes the attributes.
+	 * @param string  $size the size.
+	 * @param boolean $inherit if the attribute should inherit.
+	 * @return mixed
+	 */
+	public function get_sized_attributes_auto( $attributes, $size = 'Desktop', $inherit = true, $special_keys = array() ) {
+		$sized_array = array();
+		$found_for_this_size = array();
+
+		foreach ( $attributes as $key => $value ) {
+			$is_tablet_key = str_ends_with( $key, 'Tablet' );
+			$is_mobile_key = str_ends_with( $key, 'Mobile' );
+			$is_special_key = array_key_exists( $key, $special_keys );
+
+			//if we've already found this attribute for this size and it's already set, we don't need to process this again
+			//this condition would occur if we've already processed iconColorTablet and set the iconColor attribute in $sized_array
+			//Now we come back and find iconColor (the desktop attribute). We don't need to process it again because we've already run get_sized_attribute for it.
+			if ( array_key_exists( $key, $found_for_this_size ) && array_key_exists( $key, $sized_array ) ) {
+				continue;
+			}
+
+			if ( $is_tablet_key || $is_mobile_key ) {
+				$desktop_key = substr( $key, 0, -6 );
+				$tablet_key = $desktop_key . 'Tablet';
+				$mobile_key = $desktop_key . 'Mobile';
+
+				if ( array_key_exists( $desktop_key, $attributes ) && array_key_exists( $tablet_key, $attributes ) && array_key_exists( $mobile_key, $attributes ) ) {
+					$sized_array[ $desktop_key ] = $this->get_sized_attribute( $attributes, $desktop_key, $size, $inherit );
+					$found_for_this_size[$desktop_key] = true;
+				}
+			} else if ( $is_special_key ) {
+				$desktop_value = $special_keys[ $key ]['Desktop'];
+				$tablet_value = $special_keys[ $key ]['Tablet'];
+				$mobile_value = $special_keys[ $key ]['Mobile'];
+
+				$sized_array[ $key ] = $this->get_inherited_value( $desktop_value, $tablet_value, $mobile_value, $size, true );
+			} else {
+				$sized_array[ $key ] = $value;
+			}
+		}
+
+		return $sized_array;
+	}
+
+	/**
+	 * Fill any empty or missing shadow leg with the caller's legacy default so render_shadow()
+	 * can emit a complete declaration.
+	 *
+	 * Numeric and {alias} values pass through untouched so they still resolve to `<n>px` or
+	 * `var(--fxb-token--...)`. Only a genuinely empty (`''`/missing) leg is replaced with the
+	 * supplied default, matching the historic per-site `is_numeric( $value ) ? $value : $default`
+	 * inline behavior.
+	 *
+	 *
+	 * @param array<string, mixed>        $shadow   The stored shadow parts (may be partial).
+	 * @param array<string, string|float> $defaults Per-caller fallback literals for empty legs.
+	 *
+	 * @return array<string, mixed> The complete keyed array.
+	 */
+	private function normalize_shadow_defaults( array $shadow, array $defaults ): array {
+		$pick = static function ( $value, $fallback ) {
+			return ( isset( $value ) && '' !== $value ) ? $value : $fallback;
+		};
+
+		return [
+			'hOffset' => $pick( $shadow['hOffset'] ?? null, $defaults['hOffset'] ),
+			'vOffset' => $pick( $shadow['vOffset'] ?? null, $defaults['vOffset'] ),
+			'blur'    => $pick( $shadow['blur'] ?? null, $defaults['blur'] ),
+			'spread'  => $pick( $shadow['spread'] ?? null, $defaults['spread'] ),
+			'color'   => $pick( $shadow['color'] ?? null, $defaults['color'] ),
+			'opacity' => ( isset( $shadow['opacity'] ) && is_numeric( $shadow['opacity'] ) ) ? $shadow['opacity'] : $defaults['opacity'],
+			'inset'   => ! empty( $shadow['inset'] ),
+		];
+	}
+}
+Flx_Blocks_CSS::get_instance();

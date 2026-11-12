@@ -1,0 +1,83 @@
+/* Custom Additions */
+.fxb-blocks-fluid-carousel:not(.splide-initialized):not(.tns-slider) .splide__slide.fxb-slide-item {
+	display: block;
+}
+
+.fxt-blocks-carousel-init:not(.splide-initialized):not(.tns-slider)[data-slider-type="slider"] .splide__slide.fxb-slide-item {
+	display: block;
+}
+
+.fxb-gallery-type-thumbslider .fxt-blocks-carousel-init.splide-initialized:not(.tns-slider)[data-slider-type="thumbnail"] .splide__slide.fxb-slide-item {
+	display: block;
+}
+
+.wp-block-flx-advancedgallery .fxt-blocks-carousel {
+	overflow: hidden;
+}
+
+.wp-block-flx-advancedgallery .fxt-blocks-carousel {
+    .splide__arrow--prev {
+        left:0px;
+    }
+    .splide__arrow--next {
+        right:0px;
+    }
+    // Temp Fix while some older css could be loaded.
+    .splide--nav>.splide__track>.splide__list>.splide__slide {
+        border:0;
+    }
+    .splide--fade > .splide__track > .splide__list > .splide__slide {
+        position: relative;
+        left: unset;
+        right: unset;
+        top: unset;
+    }
+    .splide--fade>.splide__track>.splide__list {
+        display: flex;
+    }
+    // End temp Fix.
+}
+.wp-block-flx-advancedgallery .fxt-blocks-carousel {
+    .splide--fade.splide--rtl >.splide__track> .splide__list {
+        direction:rtl;
+        flex-direction: row-reverse;
+    }
+    .splide--rtl>.splide__arrows {
+        .splide__arrow--prev {
+            right:0px;
+            left:auto;
+        }
+        .splide__arrow--next {
+            left:0px;
+            right:auto;
+        }
+    }
+    // End temp Fix.
+}
+.wp-block-flx-testimonials .fxt-blocks-carousel {
+    .splide__arrow--prev {
+        left:0px;
+    }
+    .splide__arrow--next {
+        right:0px;
+    }
+	.splide__arrows--rtl .splide__arrow--next {
+		right: unset;
+	}
+}
+.wp-block-flx-rowlayout .fxt-blocks-carousel {
+    // Temp Fix while some older css could be loaded.
+    .splide--nav>.splide__track>.splide__list>.splide__slide {
+        border:0;
+    }
+    .splide--fade > .splide__track > .splide__list > .splide__slide {
+        position: relative;
+        left: unset;
+        right: unset;
+        top: unset;
+    }
+    .splide--fade>.splide__track>.splide__list {
+        display: flex;
+    }
+    // End temp Fix.
+}

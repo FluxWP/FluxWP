@@ -1,0 +1,7 @@
+.flx-blocks-style-library__header {
+	// Height is content-driven by the header-bar's own padding, not a fixed value.
+	flex: 0 0 auto;
+	// Explicit surface color so wp-admin's page background doesn't show through.
+	background: var(--fxb-sl-color-surface);
+	border-bottom: 1px solid var(--fxb-sl-color-border);
+}

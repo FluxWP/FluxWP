@@ -1,0 +1,315 @@
+/**
+ * Measure Component
+ *
+ */
+
+/**
+ * Import Css
+ */
+import './editor.scss';
+
+/**
+ * Import External
+ */
+import { isEqual } from 'lodash';
+import MeasurementSingleControl from '../single-input-control';
+import RangeControl from '../../range/range-control';
+import { undo, settings, link, linkOff } from '@wordpress/icons';
+
+/**
+ * Internal block libraries
+ */
+import { __ } from '@wordpress/i18n';
+import { useState, Fragment } from '@wordpress/element';
+import { Button, DropdownMenu, ButtonGroup, Tooltip } from '@wordpress/components';
+
+import {
+	outlineTopIcon,
+	outlineRightIcon,
+	outlineBottomIcon,
+	outlineLeftIcon,
+	pxIcon,
+	emIcon,
+	remIcon,
+	vhIcon,
+	vwIcon,
+	percentIcon,
+	individualIcon,
+	linkedIcon,
+	topLeftIcon,
+	topRightIcon,
+	bottomRightIcon,
+	bottomLeftIcon,
+	radiusLinkedIcon,
+	radiusIndividualIcon,
+} from '@flx-blocks/icons';
+import { controlEditor } from '../../common/control-extensions';
+
+/**
+ * Build the Measure controls
+ * @returns {object} Measure settings.
+ */
+export default function MeasurementControls({
+	label,
+	measurement,
+	control = 'individual',
+	onChange,
+	onControl = false,
+	step = 1,
+	max = 100,
+	min = 0,
+	firstIcon = outlineTopIcon,
+	secondIcon = outlineRightIcon,
+	thirdIcon = outlineBottomIcon,
+	fourthIcon = outlineLeftIcon,
+	linkIcon = link,
+	unlinkIcon = linkOff,
+	isBorderRadius = false,
+	unit = '',
+	onUnit,
+	showUnit = false,
+	units = ['px', 'em', 'rem'],
+	allowEmpty = false,
+	key,
+	className = '',
+	reset,
+	preset = '',
+	context,
+}) {
+	const measureIcons = {
+		first: isBorderRadius ? topLeftIcon : firstIcon,
+		second: isBorderRadius ? topRightIcon : secondIcon,
+		third: isBorderRadius ? bottomRightIcon : thirdIcon,
+		fourth: isBorderRadius ? bottomLeftIcon : fourthIcon,
+		link: isBorderRadius ? radiusLinkedIcon : linkIcon,
+		unlink: isBorderRadius ? radiusIndividualIcon : unlinkIcon,
+	};
+	const zero = allowEmpty ? '' : 0;
+	const [localControl, setLocalControl] = useState(control);
+	const realControl = onControl ? control : localControl;
+	const realSetOnControl = onControl ? onControl : setLocalControl;
+	const onReset = () => {
+		if (typeof reset === 'function') {
+			reset();
+		} else {
+			onChange(['', '', '', '']);
+		}
+	};
+	const liveValue = measurement;
+	return (
+		<>
+			{onChange && (
+				<div
+					key={key}
+					className={`components-base-control fxb-measure-control ${
+						measureIcons.first !== outlineTopIcon
+							? 'fxb-measure-corners-control'
+							: 'fxb-measure-sides-control'
+					}${'' !== className ? ' ' + className : ''}`}
+				>
+					{label && (
+						<div className="flxbk-component__header flxbk-title-bar">
+							{label && (
+								<div className="flxbk-component__header__title flxbk-measure-control__title">
+									<label className="components-base-control__label">{label}</label>
+									{reset && (
+										<div className="title-reset-wrap">
+											<Button
+												className="is-reset is-single"
+												label="reset"
+												isSmall
+												disabled={
+													isEqual(['', '', '', ''], liveValue) ||
+													isEqual(['', 'auto', '', 'auto'], liveValue)
+														? true
+														: false
+												}
+												icon={undo}
+												onClick={() => onReset()}
+											/>
+										</div>
+									)}
+								</div>
+							)}
+							{realSetOnControl && (
+								<Button
+									isSmall={true}
+									className={
+										'flxbk-radio-item flxbk-control-toggle radio-custom is-single only-icon'
+									}
+									label={
+										realControl !== 'individual'
+											? __('Individual', 'flx-blocks')
+											: __('Linked', 'flx-blocks')
+									}
+									icon={realControl !== 'individual' ? linkIcon : unlinkIcon}
+									onClick={() =>
+										realSetOnControl(realControl !== 'individual' ? 'individual' : 'linked')
+									}
+									isPressed={realControl !== 'individual' ? true : false}
+									isTertiary={realControl !== 'individual' ? false : true}
+								/>
+							)}
+						</div>
+					)}
+					<div className="flxbk-controls-content">
+						{realControl !== 'individual' &&
+							controlEditor(
+								<RangeControl
+									value={measurement ? measurement[0] : ''}
+									onChange={(value) => onChange([value, value, value, value])}
+									min={min}
+									max={max}
+									step={step}
+								/>,
+								{ control: 'measure', index: null, value: measurement, onChange, context }
+							)}
+						{realControl === 'individual' && (
+							<Fragment>
+								{controlEditor(
+									<MeasurementSingleControl
+										placement="top"
+										label={__('Top', 'flx-blocks')}
+										measurement={measurement ? measurement[0] : ''}
+										onChange={(value) =>
+											onChange([
+												value ? Number(value) : value,
+												measurement && undefined !== measurement[1] && '' !== measurement[1]
+													? measurement[1]
+													: zero,
+												measurement && undefined !== measurement[2] && '' !== measurement[2]
+													? measurement[2]
+													: zero,
+												measurement && undefined !== measurement[3] && '' !== measurement[3]
+													? measurement[3]
+													: zero,
+											])
+										}
+										min={min}
+										max={max}
+										step={step}
+										icon={measureIcons.first}
+										unit={unit}
+										allowEmpty={allowEmpty}
+										preset={preset}
+									/>,
+									{ control: 'measure', index: 0, value: measurement, onChange, context }
+								)}
+								{controlEditor(
+									<MeasurementSingleControl
+										placement="right"
+										label={__('Right', 'flx-blocks')}
+										measurement={measurement ? measurement[1] : ''}
+										onChange={(value) =>
+											onChange([
+												measurement && undefined !== measurement[0] && '' !== measurement[0]
+													? measurement[0]
+													: zero,
+												value ? Number(value) : value,
+												measurement && undefined !== measurement[2] && '' !== measurement[2]
+													? measurement[2]
+													: zero,
+												measurement && undefined !== measurement[3] && '' !== measurement[3]
+													? measurement[3]
+													: zero,
+											])
+										}
+										min={min}
+										max={max}
+										step={step}
+										icon={measureIcons.second}
+										unit={unit}
+										allowEmpty={allowEmpty}
+										preset={preset}
+									/>,
+									{ control: 'measure', index: 1, value: measurement, onChange, context }
+								)}
+								{controlEditor(
+									<MeasurementSingleControl
+										placement="bottom"
+										label={__('Bottom', 'flx-blocks')}
+										measurement={measurement ? measurement[2] : ''}
+										onChange={(value) =>
+											onChange([
+												measurement && undefined !== measurement[0] && '' !== measurement[0]
+													? measurement[0]
+													: zero,
+												measurement && undefined !== measurement[1] && '' !== measurement[1]
+													? measurement[1]
+													: zero,
+												value ? Number(value) : value,
+												measurement && undefined !== measurement[3] && '' !== measurement[3]
+													? measurement[3]
+													: zero,
+											])
+										}
+										min={min}
+										max={max}
+										step={step}
+										icon={measureIcons.third}
+										unit={unit}
+										allowEmpty={allowEmpty}
+										preset={preset}
+									/>,
+									{ control: 'measure', index: 2, value: measurement, onChange, context }
+								)}
+								{controlEditor(
+									<MeasurementSingleControl
+										placement="left"
+										label={__('Left', 'flx-blocks')}
+										measurement={measurement ? measurement[3] : ''}
+										onChange={(value) =>
+											onChange([
+												measurement && undefined !== measurement[0] && '' !== measurement[0]
+													? measurement[0]
+													: zero,
+												measurement && undefined !== measurement[1] && '' !== measurement[1]
+													? measurement[1]
+													: zero,
+												measurement && undefined !== measurement[2] && '' !== measurement[2]
+													? measurement[2]
+													: zero,
+												value ? Number(value) : value,
+											])
+										}
+										min={min}
+										max={max}
+										step={step}
+										icon={measureIcons.fourth}
+										unit={unit}
+										allowEmpty={allowEmpty}
+										preset={preset}
+									/>,
+									{ control: 'measure', index: 3, value: measurement, onChange, context }
+								)}
+							</Fragment>
+						)}
+						{(onUnit || showUnit) && (
+							<div className={'flxbk-measure-control-select-wrapper'}>
+								<select
+									className={'flxbk-measure-control-select components-unit-control__select'}
+									onChange={(event) => {
+										if (onUnit) {
+											onUnit(event.target.value);
+										}
+									}}
+									value={unit}
+								>
+									{units.map((option) => (
+										<option
+											value={option}
+											selected={unit === option ? true : undefined}
+											key={option}
+										>
+											{option}
+										</option>
+									))}
+								</select>
+							</div>
+						)}
+					</div>
+				</div>
+			)}
+		</>
+	);
+}

@@ -1,0 +1,201 @@
+/**
+ * The shared solid-color picker: a saturation square, hue/alpha sliders with a round current-color
+ * swatch, and a hex/RGB/HSL fields row.
+ *
+ * Relocated verbatim from `src/style-library/components/molecules/fields/ColorPicker.js` (now a
+ * thin re-export of this file) so `ColorControl`'s Custom tab and the Style Library's own fields
+ * share one implementation. Visually and interaction-wise modeled on `@flx-blocks/components`'
+ * `color-picker` (the editor's own picker) but built on `react-color`'s primitives directly — this
+ * library imports nothing from `@flx-blocks/components` or `src/extension/*` (see the README's
+ * "no host imports" rule).
+ */
+
+/**
+ * WordPress dependencies
+ */
+import { useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { Icon, chevronDown, chevronUp } from '@wordpress/icons';
+
+/**
+ * External dependencies
+ */
+import { CustomPicker } from 'react-color';
+import { Alpha, Checkboard, EditableInput, Hue, Saturation } from 'react-color/lib/components/common';
+import { ChromePointer } from 'react-color/lib/components/chrome/ChromePointer';
+import { ChromePointerCircle } from 'react-color/lib/components/chrome/ChromePointerCircle';
+
+/**
+ * Internal dependencies
+ */
+import { cycleFieldsView, deriveFieldsChange, toCssColor } from '../helpers/color-picker';
+import './ColorPicker.scss';
+
+/**
+ * The hex/RGB/HSL numeric fields row below the sliders, with a chevron-up/chevron-down pair that
+ * cycles which numeric format is shown. `react-color`'s `EditableInput` only takes `style` objects
+ * for its own internals (no `className`), so its box model is set inline here and everything else —
+ * layout, the chevrons — lives in the co-located stylesheet.
+ *
+ * @param {Object}                                            props         The component props.
+ * @param {string}                                             props.hex     The current hex value (no leading "#").
+ * @param {{r:number,g:number,b:number,a:number}}              props.rgb     The current RGB state.
+ * @param {{h:number,s:number,l:number,a:number}}               props.hsl     The current HSL state.
+ * @param {boolean}                                             props.unset   Whether there is no color, which leaves every field blank.
+ * @param {Function}                                            props.onChange Called with a `react-color`-shaped change payload.
+ *
+ *
+ * @return {JSX.Element} The fields row.
+ */
+function ColorPickerFields({ hex, rgb, hsl, unset, onChange }) {
+	const [view, setView] = useState('rgb');
+	const inputStyle = { input: { width: '100%' } };
+	const shown = (value) => (unset ? '' : value);
+
+	const handleFieldChange = (data) => {
+		const change = deriveFieldsChange(view, data, { rgb, hsl });
+
+		if (change) {
+			onChange(change);
+		}
+	};
+
+	return (
+		<div className="flx-blocks-style-library__color-picker-fields">
+			<div className="flx-blocks-style-library__color-picker-field flx-blocks-style-library__color-picker-field--hex">
+				<EditableInput style={inputStyle} label="hex" value={shown(hex)} onChange={handleFieldChange} />
+			</div>
+			{view === 'rgb' ? (
+				<>
+					<div className="flx-blocks-style-library__color-picker-field">
+						<EditableInput style={inputStyle} label="r" value={shown(rgb.r)} onChange={handleFieldChange} />
+					</div>
+					<div className="flx-blocks-style-library__color-picker-field">
+						<EditableInput style={inputStyle} label="g" value={shown(rgb.g)} onChange={handleFieldChange} />
+					</div>
+					<div className="flx-blocks-style-library__color-picker-field">
+						<EditableInput style={inputStyle} label="b" value={shown(rgb.b)} onChange={handleFieldChange} />
+					</div>
+					<div className="flx-blocks-style-library__color-picker-field">
+						<EditableInput style={inputStyle} label="a" value={shown(rgb.a)} onChange={handleFieldChange} />
+					</div>
+				</>
+			) : (
+				<>
+					<div className="flx-blocks-style-library__color-picker-field">
+						<EditableInput
+							style={inputStyle}
+							label="h"
+							value={shown(Math.round(hsl.h))}
+							onChange={handleFieldChange}
+						/>
+					</div>
+					<div className="flx-blocks-style-library__color-picker-field">
+						<EditableInput
+							style={inputStyle}
+							label="s"
+							value={shown(`${Math.round(hsl.s * 100)}%`)}
+							onChange={handleFieldChange}
+						/>
+					</div>
+					<div className="flx-blocks-style-library__color-picker-field">
+						<EditableInput
+							style={inputStyle}
+							label="l"
+							value={shown(`${Math.round(hsl.l * 100)}%`)}
+							onChange={handleFieldChange}
+						/>
+					</div>
+					<div className="flx-blocks-style-library__color-picker-field">
+						<EditableInput style={inputStyle} label="a" value={shown(hsl.a)} onChange={handleFieldChange} />
+					</div>
+				</>
+			)}
+			<div className="flx-blocks-style-library__color-picker-view-cycle">
+				<button
+					type="button"
+					className="flx-blocks-style-library__color-picker-view-cycle-button"
+					aria-label={__('Previous color format', 'flx-blocks')}
+					onClick={() => setView(cycleFieldsView(view, -1))}
+				>
+					<Icon icon={chevronUp} size={12} />
+				</button>
+				<button
+					type="button"
+					className="flx-blocks-style-library__color-picker-view-cycle-button"
+					aria-label={__('Next color format', 'flx-blocks')}
+					onClick={() => setView(cycleFieldsView(view, 1))}
+				>
+					<Icon icon={chevronDown} size={12} />
+				</button>
+			</div>
+		</div>
+	);
+}
+
+/**
+ * The picker body, wrapped by `CustomPicker` below: the saturation square, the hue/alpha sliders,
+ * the current-color swatch, and the fields row. `onChange` here is `react-color`'s internal
+ * `CustomPicker` handler — it accepts a partial color payload (from a slider or a field edit),
+ * merges it into the full color state, and re-renders this component with the result.
+ *
+ * @param {Object}                                 props          The component props.
+ * @param {string}                                 props.hex      The current hex value (no leading "#").
+ * @param {{r:number,g:number,b:number,a:number}}  props.rgb      The current RGB state.
+ * @param {{h:number,s:number,l:number,a:number}}  props.hsl      The current HSL state.
+ * @param {Object}                                 props.hsv      The current HSV state (`Saturation` needs this in addition to `hsl`).
+ * @param {string}                                 props.color    The color passed in, '' when there is none.
+ * @param {Function}                               props.onChange The internal `react-color` change handler.
+ *
+ *
+ * @return {JSX.Element} The picker body.
+ */
+function ColorPickerBody({ hex, rgb, hsl, hsv, color, onChange }) {
+	return (
+		<div className="flx-blocks-style-library__color-picker">
+			<div className="flx-blocks-style-library__color-picker-saturation">
+				<Saturation hsl={hsl} hsv={hsv} pointer={ChromePointerCircle} onChange={onChange} />
+			</div>
+			<div className="flx-blocks-style-library__color-picker-controls">
+				<div className="flx-blocks-style-library__color-picker-sliders">
+					<div className="flx-blocks-style-library__color-picker-hue">
+						<Hue hsl={hsl} pointer={ChromePointer} onChange={onChange} />
+					</div>
+					<div className="flx-blocks-style-library__color-picker-alpha">
+						<Alpha rgb={rgb} hsl={hsl} pointer={ChromePointer} onChange={onChange} />
+					</div>
+				</div>
+				<div className="flx-blocks-style-library__color-picker-swatch">
+					<Checkboard />
+					<div
+						className="flx-blocks-style-library__color-picker-swatch-color"
+						style={{ background: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})` }}
+					/>
+				</div>
+			</div>
+			{/*
+			 * EditableInput's hex field expects no leading "#" — it re-adds one on display. With no color,
+			 * react-color still holds black, so the fields stay blank to let typing black register.
+			 */}
+			<ColorPickerFields hex={hex.replace('#', '')} rgb={rgb} hsl={hsl} unset={!color} onChange={onChange} />
+		</div>
+	);
+}
+
+const CustomColorPicker = CustomPicker(ColorPickerBody);
+
+/**
+ * Render the shared solid-color picker.
+ *
+ * @param {Object}   props          The component props.
+ * @param {string}   props.color    The current CSS color (any format `react-color`/`tinycolor2` can
+ *                                   parse — hex, hex8, rgb(a), hsl(a)).
+ * @param {Function} props.onChange Called with the new color as a `#rrggbb`/`#rrggbbaa` string.
+ *
+ *
+ * @return {JSX.Element} The picker.
+ */
+export function ColorPicker({ color, onChange }) {
+	// `CustomPicker` swaps an undefined color for its own default, which would fill the hex field.
+	return <CustomColorPicker color={color ?? ''} onChange={(next) => onChange(toCssColor(next.rgb))} />;
+}

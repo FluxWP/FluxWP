@@ -1,0 +1,70 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-flx-icon {
+	min-width: 20px;
+	min-height: 10px;
+}
+.block-editor-block-list__block[data-type="flx/single-icon"] {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.fxb-icon-tooltip-border {
+	border-bottom: 1px dashed currentColor;
+}
+.fxt-svg-icons {
+	display: flex;
+	gap: 0.2em;
+	align-items: center;
+}
+.fxt-svg-icon-wrap {
+	display: flex;
+}
+.fxt-svg-style-stacked .fxt-svg-icon {
+	border: 0px solid #444444;
+	transition: all 0.3s ease-in-out;
+	padding: 20px;
+}
+.fxt-svg-icons {
+	&.fxb-icon-valign-top {
+		align-items: flex-start;
+	}
+	&.fxb-icon-valign-middle {
+		align-items: center;
+	}
+	&.fxb-icon-valign-bottom {
+		align-items: flex-end;
+	}
+	&.fxb-icon-halign-center {
+		justify-content: center;
+	}
+	&.fxb-icon-halign-right {
+		justify-content: flex-end;
+	}
+	&.fxb-icon-halign-left {
+		justify-content: flex-start;
+	}
+	&.fxb-icon-halign-space-between {
+		justify-content: space-between;
+	}
+	&.fxb-icon-wrap {
+		flex-wrap: wrap;
+	}
+	.fxb-icon-transparent {
+		opacity: 0.5;
+	}
+}
+.wp-block-flx-icon .fxt-svg-icons .wp-block-flx-single-icon {
+	margin: 0;
+}
+.editor-styles-wrapper .block-editor-block-list__block[data-type="flx/icon"],
+.editor-styles-wrapper .block-editor-block-list__block[data-type="flx/icon"] > .wp-block {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.fxb-inline-tooltip-control {
+	min-width: 220px;
+}

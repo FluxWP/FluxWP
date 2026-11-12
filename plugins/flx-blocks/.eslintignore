@@ -1,0 +1,14 @@
+**/*.min.js
+**/*.build.js
+**/node_modules/**
+**/vendor/**
+dist
+build
+gulp
+bin
+includes/assets/js/
+src/assets/js/scroll-magic.js
+src/assets/js/progressBar.js
+src/assets/js/countUp.js
+src/assets/js/kt-table-of-contents.js
+src/assets/js/kb-tippy.js

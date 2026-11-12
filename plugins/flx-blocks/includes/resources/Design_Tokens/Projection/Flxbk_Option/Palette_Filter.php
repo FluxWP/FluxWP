@@ -1,0 +1,264 @@
+<?php declare( strict_types=1 );
+// cspell:ignore palette subkey .
+
+namespace FluxWP\Blocks\Design_Tokens\Projection\Flxbk_Option;
+
+use FluxWP\Blocks\Design_Tokens\Database\Active_Token_Library_Store;
+use FluxWP\Blocks\Design_Tokens\Document\Document_Path;
+use FluxWP\Blocks\Design_Tokens\Registry\Token_Registry;
+use FluxWP\Blocks\Design_Tokens\Resolver\Effective_Palettes;
+use FluxWP\Blocks\Design_Tokens\Resolver\Token_Resolver;
+use FluxWP\Blocks\Design_Tokens\Theme_Style_Guide\Style_Guide_Overlay;
+use RuntimeException;
+
+/**
+ * Answers the Flux theme's palette reads with resolved token colors.
+ *
+ * The theme emits --global-palette1…15 (and every other palette read) through
+ * flxbk()->palette_option(), which ends in the flxbk_palette_option filter. Hooking that filter
+ * makes tokens win wherever the theme renders a palette color while the stored flxbk_global_palette
+ * option — the user's Style Guide — is never written. That keeps the Style Guide intact as the source
+ * the token baseline reads from, so resetting a token gives the user their own color back, and it
+ * works for whichever palette set (palette / second-palette / third-palette) the theme has active,
+ * because the filter runs after the theme picked the set.
+ *
+ * The filter only receives the slot, not the set, so a read for a set other than the saved active one
+ * (Flux Pro's dark mode asks for second-palette while the site renders palette) is told apart by its
+ * value: it does not match the color the active set has saved for that slot, and is left untouched.
+ *
+ * A literal color is returned rather than a var(--fxb-token--…) reference: the theme passes this value
+ * through hex2rgb() in places, and a var() reference cannot be converted that way.
+ *
+ * Known limit: the Customizer live preview never reaches this filter. The theme registers the palette
+ * setting with postMessage transport and its preview script writes the control value straight onto
+ * --global-paletteN, so while a palette color is being edited the preview shows the theme's own color
+ * even for a slot a token overrides. The token color is back on the next full page load.
+ *
+ * Fail-open: a corrupt stored document (alias cycle / dangling alias) leaves every read untouched.
+ * Gated on Token_Registry::is_active() so the fail-closed guard is honored.
+ *
+ */
+final class Palette_Filter {
+
+	/**
+	 * The token registry.
+	 *
+	 *
+	 * @var Token_Registry
+	 */
+	private Token_Registry $registry;
+
+	/**
+	 * The token resolver.
+	 *
+	 *
+	 * @var Token_Resolver
+	 */
+	private Token_Resolver $resolver;
+
+	/**
+	 * Owns the active-library pointer, read at filter time so the projected colors follow the active library.
+	 *
+	 *
+	 * @var Active_Token_Library_Store
+	 */
+	private Active_Token_Library_Store $active;
+
+	/**
+	 * Supplies the color the active palette set has saved for a slot.
+	 *
+	 *
+	 * @var Style_Guide_Overlay
+	 */
+	private Style_Guide_Overlay $overlay;
+
+	/**
+	 * Builds the slug => { color, name } map from the resolved tokens.
+	 *
+	 *
+	 * @var Palette_Builder
+	 */
+	private Palette_Builder $builder;
+
+	/**
+	 * Reads which colors the active library's palettes store, to tell a color the site set apart from one
+	 * that only follows the theme.
+	 *
+	 *
+	 * @var Effective_Palettes
+	 */
+	private Effective_Palettes $palettes;
+
+	/**
+	 * Per-request memo of slug => { color, name }. Null until first built; cleared when any input it is
+	 * built from changes: a token write, an active-library switch, or a change to the theme's Style Guide.
+	 *
+	 *
+	 * @var array<string, array{color: string, name: string}>|null
+	 */
+	private ?array $entries = null;
+
+	/**
+	 *
+	 * @param Token_Registry             $registry The token registry.
+	 * @param Token_Resolver             $resolver The token resolver.
+	 * @param Active_Token_Library_Store $active   The active-library pointer.
+	 * @param Palette_Builder            $builder  The palette entries builder.
+	 * @param Style_Guide_Overlay        $overlay  The Style Guide overlay.
+	 * @param Effective_Palettes         $palettes The palettes reader.
+	 */
+	public function __construct(
+		Token_Registry $registry,
+		Token_Resolver $resolver,
+		Active_Token_Library_Store $active,
+		Palette_Builder $builder,
+		Style_Guide_Overlay $overlay,
+		Effective_Palettes $palettes
+	) {
+		$this->registry = $registry;
+		$this->resolver = $resolver;
+		$this->active   = $active;
+		$this->builder  = $builder;
+		$this->overlay  = $overlay;
+		$this->palettes = $palettes;
+	}
+
+	/**
+	 * Return the resolved token color for a palette slot a token claims, or the theme's own value.
+	 *
+	 *
+	 * @param mixed $value  The value the theme resolved for this slot.
+	 * @param mixed $subkey The slot being read, e.g. "palette1". Not type-hinted because the theme
+	 *                      applies the filter with whatever it was called with.
+	 *
+	 * @return mixed The token color for a claimed slot, otherwise the theme's value untouched.
+	 */
+	public function filter( $value, $subkey ) {
+		if ( ! is_string( $subkey ) || ! $this->registry->is_active() ) {
+			return $value;
+		}
+
+		$entries = $this->entries();
+
+		if ( ! isset( $entries[ $subkey ] ) || $this->is_other_palette_set( $value, $subkey ) || $this->follows_theme_variables( $value, $subkey ) ) {
+			return $value;
+		}
+
+		return $entries[ $subkey ]['color'];
+	}
+
+	/**
+	 * Drop the per-request memo so a change made in this request is visible to later palette reads in the
+	 * same request. Bound to every input the memo is built from: the store's changed action, the
+	 * active-library pointer's, the theme's palette option hooks and the Customizer preview init.
+	 *
+	 *
+	 * @return void
+	 */
+	public function on_tokens_changed(): void {
+		$this->entries = null;
+	}
+
+	/**
+	 * Whether the theme resolved this slot from a palette set other than the saved active one.
+	 *
+	 * The theme hands the filter the color it read for the slot. For the active set that is exactly the
+	 * color saved in flxbk_global_palette, so a different value means another set was requested.
+	 * Unknown when the active set has no color for the slot (or the theme is not readable), which is not
+	 * treated as a mismatch.
+	 *
+	 * Known limit: a slot saved with the same color in both sets is indistinguishable, so it still gets
+	 * the token color.
+	 *
+	 *
+	 * @param mixed  $value  The value the theme resolved for the slot.
+	 * @param string $subkey The slot being read.
+	 *
+	 * @return bool
+	 */
+	private function is_other_palette_set( $value, string $subkey ): bool {
+		$saved = $this->overlay->active_palette()[ $subkey ] ?? null;
+
+		if ( $saved === null || ! is_string( $value ) ) {
+			return false;
+		}
+
+		return strtolower( trim( $value ) ) !== strtolower( trim( $saved ) );
+	}
+
+	/**
+	 * Whether the theme's value is built on its own CSS variables, like the complement formula on
+	 * `var(--global-palette1)`, and the site hasn't set this color in the Style Library or the token document.
+	 *
+	 * Such a value already follows the Style Library through the variables it reads, and it is the same
+	 * formula in every palette set, so the filter can't tell a dark-mode read from an active one. Leaving it
+	 * alone keeps each set working out its own color. A color the site set is still returned, with the same
+	 * limit as two sets saving the same color.
+	 *
+	 *
+	 * @param mixed  $value  The value the theme resolved for the slot.
+	 * @param string $subkey The slot being read.
+	 *
+	 * @return bool
+	 */
+	private function follows_theme_variables( $value, string $subkey ): bool {
+		if ( ! is_string( $value ) || strpos( $value, 'var(' ) === false ) {
+			return false;
+		}
+
+		$token = $this->overlay->slot_tokens()[ $subkey ] ?? null;
+
+		if ( $token === null ) {
+			return false;
+		}
+
+		$slug   = $this->active->get();
+		$stored = array_merge(
+			$this->palettes->stored_swatch_values( $this->palettes->default_palette( $slug ), $slug ),
+			$this->palettes->stored_swatch_values( $this->palettes->current( $slug ), $slug )
+		);
+
+		return ! array_key_exists( $token, $stored ) && ! Document_Path::has_value( $this->palettes->raw( $slug ), $token );
+	}
+
+	/**
+	 * The slug => { color, name } map for the active library, built once per request.
+	 *
+	 *
+	 * @return array<string, array{color: string, name: string}>
+	 */
+	private function entries(): array {
+		if ( $this->entries !== null ) {
+			return $this->entries;
+		}
+
+		// Not memoized: declarations register on init:0, and the theme reads the palette earlier than that
+		// (the Customizer and the theme's own CSS both call palette_option()). Caching the empty map here
+		// would answer every later read in the request with the theme's value, so a token override would
+		// silently do nothing.
+		//
+		// Reads that early still get the theme's own color, not the token's. The theme fills its
+		// editor-color-palette theme support from palette_option() on after_setup_theme, so those entries
+		// carry the raw Style Guide colors, and the plugin's load_color_palette() (after_setup_theme:999)
+		// merges them into its own palette as-is. The block editor does not show them: the theme's
+		// theme.json defines the same slugs as var(--global-paletteN), which this filter feeds once the
+		// declarations are in, and theme.json wins over the theme support by slug.
+		if ( ! $this->builder->has_palette_tokens() ) {
+			return [];
+		}
+
+		try {
+			$resolved = $this->resolver->resolve( $this->active->get() );
+		} catch ( RuntimeException $e ) {
+			// A corrupt stored document must not break the theme's CSS. Memoize the empty result so the
+			// fifteen palette reads on a page do not each re-attempt the failing resolve.
+			$this->entries = [];
+
+			return $this->entries;
+		}
+
+		$this->entries = $this->builder->entries( $resolved );
+
+		return $this->entries;
+	}
+}

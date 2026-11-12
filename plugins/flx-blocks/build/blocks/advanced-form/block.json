@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "flx/advanced-form",
+  "title": "Advanced Form",
+  "category": "flx-blocks",
+  "description": "Create an advanced contact or marketing form for your website.",
+  "supports": {
+    "html": false,
+    "customClassName": false,
+    "reusable": false,
+    "lock": false,
+    "fxbMetadata": true
+  },
+  "textdomain": "flx-blocks",
+  "keywords": [
+    "flx",
+    "form",
+    "contact"
+  ],
+  "attributes": {
+    "id": {
+      "type": "integer",
+      "default": 0
+    },
+    "uniqueID": {
+      "type": "string"
+    },
+    "legacyMigration": {
+      "type": "object",
+      "default": null
+    }
+  }
+}
