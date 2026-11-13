@@ -193,5 +193,16 @@ function flxai_js_strings() {
 		'Görsel rapor' => __( 'Visual report', 'flx-ai' ),
 		'Aç' => __( 'Open', 'flx-ai' ),
 		'Tam ekran aç' => __( 'Open full screen', 'flx-ai' ),
+		'Görünüm' => __( 'View', 'flx-ai' ),
+		'Tümü' => __( 'All', 'flx-ai' ),
+		'Son kullanılanlar' => __( 'Recently used', 'flx-ai' ),
+		'Tüm modeller' => __( 'All models', 'flx-ai' ),
+		/* translators: %s: number of models */
+		'%s model daha: aramayı daraltın.' => __( '%s more models: narrow your search.', 'flx-ai' ),
+		'Baloncuk' => __( 'Bubble', 'flx-ai' ),
+		'Sağ panel' => __( 'Right panel', 'flx-ai' ),
+		'Sağ altta küçük pencere' => __( 'Small window at the bottom right', 'flx-ai' ),
+		'Sayfanın sağında, sayfayı kaydırır' => __( 'On the right, pushes the page', 'flx-ai' ),
+		'Sol menü yerinde kalır' => __( 'The left menu stays in place', 'flx-ai' ),
 	);
 }

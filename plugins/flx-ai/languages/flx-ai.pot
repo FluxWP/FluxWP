@@ -2538,3 +2538,30 @@ msgstr ""
 
 msgid "Promotional content: skip people who opted out (STOP) and add an opt-out line"
 msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "Bubble"
+msgstr ""
+
+msgid "Right panel"
+msgstr ""
+
+msgid "Small window at the bottom right"
+msgstr ""
+
+msgid "On the right, pushes the page"
+msgstr ""
+
+msgid "The left menu stays in place"
+msgstr ""
+
+msgid "Recently used"
+msgstr ""
+
+msgid "All models"
+msgstr ""
+
+msgid "%s more models: narrow your search."
+msgstr ""

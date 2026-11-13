@@ -400,6 +400,10 @@ add_filter( 'flxai_slash_commands', function ( $c ) {
 
 Sohbet listesi (`GET chats`) her öğede `task` (görev adı ya da boş) döner.
 
+## Sohbet araçları filtresi ve görünüm (0.15.2)
+- Filtre `flxai_chat_tools( $tools, $chat )`: bir sohbet turunda modele sunulan araçlar. Flux AI bunu `flxai_task_notify`'ı görev dışı sohbetlerden çıkarmak için kullanır.
+- Ayar `chat_mode`: `bubble` (varsayılan) | `dock` | `page`. Kullanıcının seçimi tarayıcıda (`flxai-ui`) saklanır. Model listesi önbelleği `localStorage['flxai-models']` (6 saat).
+
 ## Bildirim türü (0.15.1)
 - Görev meta `notify.promo` (bool, varsayılan false; sohbet aracında `notify_promo`). true ise `notify.to` içindeki personel olmayan alıcılara (CRM kişisi, e-posta, telefon, WhatsApp grubu) `flxi_send_message` / `flxi_send_email` çağrısı `kind => 'marketing'` ile gider (Flux Mail 1.17.0+ IPTAL ve abonelik çıkışına uyar, çıkış satırı ekler). Diğer her durumda `kind => 'info'`. Eski Flux Mail `kind`'i yok sayar.
 

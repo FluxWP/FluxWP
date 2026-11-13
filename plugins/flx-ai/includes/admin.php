@@ -507,7 +507,7 @@ function flxai_save_settings() {
 	$new['chat_roles']     = array_values( array_intersect( $roles, array_keys( wp_roles()->get_names() ) ) );
 	$new['chat_admin']     = empty( $p['chat_admin'] ) ? 0 : 1;
 	$new['chat_front']     = empty( $p['chat_front'] ) ? 0 : 1;
-	$new['chat_mode']      = 'dock' === ( $p['chat_mode'] ?? '' ) ? 'dock' : 'bubble';
+	$new['chat_mode']      = in_array( $p['chat_mode'] ?? '', array( 'dock', 'page' ), true ) ? $p['chat_mode'] : 'bubble';
 	$new['chat_max_rounds'] = max( 2, min( 30, (int) ( $p['chat_max_rounds'] ?? 12 ) ) );
 	$new['chat_history']   = max( 6, min( 200, (int) ( $p['chat_history'] ?? 40 ) ) );
 	$new['chat_instructions'] = sanitize_textarea_field( (string) ( $p['chat_instructions'] ?? '' ) );
@@ -649,6 +649,7 @@ function flxai_page_settings() {
 					<select name="chat_mode">
 						<option value="bubble" <?php selected( $s['chat_mode'], 'bubble' ); ?>><?php esc_html_e( 'Floating window', 'flx-ai' ); ?></option>
 						<option value="dock" <?php selected( $s['chat_mode'], 'dock' ); ?>><?php esc_html_e( 'Docked right (pushes the page)', 'flx-ai' ); ?></option>
+						<option value="page" <?php selected( $s['chat_mode'], 'page' ); ?>><?php esc_html_e( 'Full screen', 'flx-ai' ); ?></option>
 					</select>
 					<p class="description"><?php esc_html_e( 'Users can switch from the panel; the choice stays in their browser.', 'flx-ai' ); ?></p></td></tr>
 				<tr><th><?php esc_html_e( 'Max steps per turn', 'flx-ai' ); ?></th><td><input type="number" min="2" max="30" class="small-text" name="chat_max_rounds" value="<?php echo esc_attr( $s['chat_max_rounds'] ); ?>"></td></tr>

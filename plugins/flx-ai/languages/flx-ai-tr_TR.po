@@ -2939,3 +2939,30 @@ msgstr "Bu araç yalnız AI sohbetinde çalışır."
 
 msgid "Promotional content: skip people who opted out (STOP) and add an opt-out line"
 msgstr "Tanıtım içeriği: çıkış yapanlara (IPTAL) gönderme, altına çıkış satırı ekle"
+
+msgid "View"
+msgstr "Görünüm"
+
+msgid "Bubble"
+msgstr "Baloncuk"
+
+msgid "Right panel"
+msgstr "Sağ panel"
+
+msgid "Small window at the bottom right"
+msgstr "Sağ altta küçük pencere"
+
+msgid "On the right, pushes the page"
+msgstr "Sayfanın sağında, sayfayı kaydırır"
+
+msgid "The left menu stays in place"
+msgstr "Sol menü yerinde kalır"
+
+msgid "Recently used"
+msgstr "Son kullanılanlar"
+
+msgid "All models"
+msgstr "Tüm modeller"
+
+msgid "%s more models: narrow your search."
+msgstr "%s model daha: aramayı daraltın."

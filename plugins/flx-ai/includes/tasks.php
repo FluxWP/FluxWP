@@ -402,6 +402,8 @@ function flxai_task_run( $id, $force = false ) {
 			}
 			flxai_chat_save( $chat );
 			$patch['chat_id'] = (int) $chat['id'];
+			// Hemen bağla: bu adımdaki araçlar (flxai_task_notify) görevi sohbetten bulur.
+			flxai_task_patch( $task['id'], array( 'chat_id' => (int) $chat['id'] ) );
 		}
 		if ( ! $resume ) {
 			if ( 'approval' === $chat['status'] ) {
@@ -422,6 +424,7 @@ function flxai_task_run( $id, $force = false ) {
 				'id'    => (int) $task['id'],
 				'title' => (string) $task['title'],
 				'skill' => (string) ( $meta['skill'] ?? '' ),
+				'at'    => time(),
 			);
 			unset( $meta['notify_msg'] );
 			flxai_chat_save( $chat );
@@ -979,6 +982,13 @@ function flxai_task_last_output( array $t ) {
 
 /* ---------- Sohbet bağlamı ---------- */
 
+/** Görev çalışmasının tarihi (geçmişteki eski çalışmalar modelin "dün"ünü şaşırtmasın). */
+function flxai_task_date_hint( $ts ) {
+	$ts = $ts > 0 ? (int) $ts : time();
+	return ' Bu çalışmanın tarihi: ' . wp_date( 'Y-m-d', $ts ) . ' (' . flx_date( $ts, 'l, j F Y H:i' ) . '); "dün" = ' . wp_date( 'Y-m-d', $ts - DAY_IN_SECONDS )
+		. '. Sohbetteki önceki çalışmalar başka günlere aittir; tarihleri buna göre ver.';
+}
+
 /* Görevden gelen mesaj modele "zamanlanmış görev, kullanıcı başında değil" notuyla gider. */
 add_filter(
 	'flxai_agent_user_text',
@@ -989,6 +999,7 @@ add_filter(
 		return '[Zamanlanmış görev "' . mb_substr( (string) ( $m['_task']['title'] ?? '' ), 0, 120 ) . '" kendiliğinden çalıştı; kullanıcı şu an başında değil, soru sorma. '
 			. 'Gereken bilgiyi araçlarla topla ve sonucu kısa, başlıklı bir rapor olarak yaz. Değişiklik yapan işlemler kullanıcının onayına düşer: '
 			. 'gerekiyorsa taslak olarak hazırla ve ne onaylanacağını raporda belirt.'
+			. flxai_task_date_hint( (int) ( $m['_task']['at'] ?? ( $m['_ts'] ?? 0 ) ) )
 			. flxai_task_notify_hint( (int) ( $m['_task']['id'] ?? 0 ) ) . "]\n" . $text;
 	},
 	10,

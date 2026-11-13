@@ -1,5 +1,11 @@
 # Flux AI — Değişiklikler
 
+## 0.15.2
+- Sohbet artık varsayılan olarak **baloncuk** (sağ altta küçük pencere) açılır. Başlıktaki **Görünüm** menüsünden Baloncuk / Sağ panel / Tam ekran seçilir, seçim hatırlanır. Dosya paneli açılınca geçici tam ekran seçili görünümü değiştirmez. Ayarlar'da varsayılan görünüme "Tam ekran" eklendi.
+- Tam ekranda soldaki **Sohbetler** paneli sağ kenarından sürüklenerek genişletilir (çift tık varsayılana döner), genişlik hatırlanır.
+- Model seçici: dışarı tıklayınca kapanır; model listesi tarayıcıda önbelleklenir ve sohbet açılınca arka planda hazırlanır (tıklayınca anında açılır, 6 saatte bir tazelenir). Sağlayıcıya göre filtre (Anthropic, OpenAI, Google…), son kullanılan modeller üstte, bağlam uzunluğu görünür.
+- Zamanlanmış görevde "Görev sahibine bildir" artık ilk çalışmada da çalışır (görev sohbeti hemen bağlanır); görev dışı sohbette bu araç modele hiç sunulmaz. Göreve çalışmanın tarihi ve "dün" net verilir; önceki günlerin çalışmaları tarihleri şaşırtmaz.
+
 ## 0.15.1
 - Görev bildirimlerinde **Tanıtım içeriği** seçeneği: işaretliyse CRM kişilerine ve gruplara giden mesaj Flux Mail'e `kind = marketing` olarak gider; IPTAL/STOP yazanlara ve abonelikten çıkanlara gitmez, altına çıkış satırı eklenir (Flux Mail 1.17.0+). Varsayılan bilgilendirme (`info`); personel ve görev sahibi bildirimleri her zaman bilgilendirmedir. Sohbetten `notify_promo` ile de ayarlanır.
 

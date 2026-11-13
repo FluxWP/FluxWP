@@ -2935,3 +2935,30 @@ msgstr "This tool only works in the AI chat."
 
 msgid "Promotional content: skip people who opted out (STOP) and add an opt-out line"
 msgstr "Promotional content: skip people who opted out (STOP) and add an opt-out line"
+
+msgid "View"
+msgstr "View"
+
+msgid "Bubble"
+msgstr "Bubble"
+
+msgid "Right panel"
+msgstr "Right panel"
+
+msgid "Small window at the bottom right"
+msgstr "Small window at the bottom right"
+
+msgid "On the right, pushes the page"
+msgstr "On the right, pushes the page"
+
+msgid "The left menu stays in place"
+msgstr "The left menu stays in place"
+
+msgid "Recently used"
+msgstr "Recently used"
+
+msgid "All models"
+msgstr "All models"
+
+msgid "%s more models: narrow your search."
+msgstr "%s more models: narrow your search."
