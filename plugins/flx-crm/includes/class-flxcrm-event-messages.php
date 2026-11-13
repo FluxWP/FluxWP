@@ -571,15 +571,17 @@ final class FLXCRM_Event_Messages {
 		);
 		$out = array( 'rows' => array(), 'total' => 0, 'counts' => array_fill_keys( array_keys( $groups ), 0 ) );
 		if ( self::mail_has( 'recipients' ) && function_exists( 'flxi_campaign_recipients' ) ) {
-			$r = (array) flxi_campaign_recipients( (int) $cid, array( 'status' => isset( $groups[ $status ] ) ? $groups[ $status ] : '', 'per_page' => $per, 'page' => $page ) );
+			$r            = (array) flxi_campaign_recipients( (int) $cid, array( 'status' => isset( $groups[ $status ] ) ? implode( ',', $groups[ $status ] ) : '', 'per_page' => $per, 'page' => $page ) );
 			$out['rows']  = (array) ( $r['rows'] ?? array() );
 			$out['total'] = (int) ( $r['total'] ?? 0 );
-			foreach ( (array) ( $r['counts'] ?? array() ) as $s => $n ) {
-				foreach ( $groups as $g => $list ) {
-					if ( in_array( $s, $list, true ) ) {
-						$out['counts'][ $g ] += (int) $n;
-					}
-				}
+			$pr           = function_exists( 'flxi_campaign_progress' ) ? (array) flxi_campaign_progress( (int) $cid ) : array();
+			if ( $pr ) {
+				$out['counts'] = array(
+					'sent'    => (int) $pr['sent'],
+					'waiting' => (int) $pr['left'],
+					'failed'  => (int) $pr['failed'],
+					'other'   => max( 0, (int) $pr['total'] - (int) $pr['sent'] - (int) $pr['left'] - (int) $pr['failed'] ),
+				);
 			}
 			return $out;
 		}

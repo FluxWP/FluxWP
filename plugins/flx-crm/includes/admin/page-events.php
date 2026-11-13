@@ -234,7 +234,7 @@ final class FLXCRM_Page_Events {
 	private static function cover( array $e, $size = 'medium_large' ) {
 		$img = (int) $e['image_id'] ? wp_get_attachment_image_url( (int) $e['image_id'], $size ) : '';
 		if ( $img ) {
-			return '<img src="' . esc_url( $img ) . '" alt="" loading="lazy">';
+			return '<img src="' . esc_url( $img ) . '" alt=""' . ( 'large' === $size ? '' : ' loading="lazy"' ) . '>';
 		}
 		if ( ! $e['event_date'] ) {
 			return '<span class="flxcrm-evdate">' . flxcrm_icon( 'clock', 26 ) . '</span>';
