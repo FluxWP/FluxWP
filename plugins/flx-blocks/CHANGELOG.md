@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+- Design Library toolbar button no longer blinks: the button keeps one holder and one React root for the page and is put back as-is when the editor header re-renders, instead of being built again a frame later.
+
 ## 0.2.0
 
 - Yeni: üst çubukta **Tasarım kütüphanesi** düğmesi. Tam ekran pencerede bu sitenin desenleri (tema, ön ayarlar, Desenlerim) önizlemeli, kategorili ve aramalı listelenir; tıklanan desen imlecin olduğu yere eklenir.

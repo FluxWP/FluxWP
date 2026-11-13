@@ -93,6 +93,10 @@ body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-column-container { ba
 body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-column h3, body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-column p { color: var(--flxa-text); }
 body.flxa:not(.flxa-appmode) .welcome-panel .welcome-panel-column > svg rect { fill: var(--flxa-accent); }
 body.flxa:not(.flxa-appmode) .card { max-width: 760px; padding: 18px 22px; }
+/* Blok editörü sağ paneli: yan meta kutuları (Dil vb.) kart; üstteki panelden ve kenarlardan boşluklu, içerik taşmaz. */
+body.flxa .edit-post-meta-boxes-area.is-side { padding: 14px 16px 2px; box-sizing: border-box; }
+body.flxa:not(.flxa-appmode) .edit-post-meta-boxes-area.is-side .postbox { margin: 0 0 14px; max-width: 100%; box-sizing: border-box; overflow: hidden; }
+body.flxa .edit-post-meta-boxes-area.is-side .postbox .inside :is(select, input:not([type=checkbox]):not([type=radio]), textarea) { max-width: 100%; box-sizing: border-box; }
 body.flxa:not(.flxa-appmode) .postbox .postbox-header { border-bottom-color: var(--flxa-border); }
 body.flxa:not(.flxa-appmode) .postbox .hndle, body.flxa:not(.flxa-appmode) .stuffbox .hndle { color: var(--flxa-text); font-size: 15px; font-weight: 700; }
 body.flxa:not(.flxa-appmode) .postbox .inside { color: var(--flxa-text); }

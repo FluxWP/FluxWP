@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.24
+- Blok editörü sağ paneli: yan meta kutuları (Dil vb.) üstteki panelden ve kenarlardan boşluklu kart olarak görünür; içindeki seçim kutusu karttan taşmaz.
+
 ## 1.7.23
 - Ortak onay/uyarı penceresinde (flx-brand 1.6.1) metinler bir kademe büyüdü: açıklama 16 px, başlık 17 px, bildirimler 14,5 px.
 

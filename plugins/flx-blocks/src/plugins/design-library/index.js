@@ -400,19 +400,25 @@ function ToolbarButton() {
 
 const TOOLBAR_SELECTORS = ['.editor-document-tools__left', '.edit-post-header-toolbar__left', '.edit-post-header-toolbar'];
 
+// One holder and one React root for the page's lifetime. When the header re-renders and drops the
+// holder, the same (already rendered) node is put back. Creating a new root each time rendered the
+// button a frame later, so it disappeared and came back: the "blinking" toolbar button.
+let holder = null;
+
 function mount() {
-	if (document.getElementById('flxbk-design-library-button')) {
-		return true;
-	}
 	const toolbar = TOOLBAR_SELECTORS.map((s) => document.querySelector(s)).find(Boolean);
 	if (!toolbar) {
 		return false;
 	}
-	const holder = document.createElement('div');
-	holder.id = 'flxbk-design-library-button';
-	holder.className = 'flxbk-dl-toolbar';
-	toolbar.appendChild(holder);
-	createRoot(holder).render(<ToolbarButton />);
+	if (!holder) {
+		holder = document.createElement('div');
+		holder.id = 'flxbk-design-library-button';
+		holder.className = 'flxbk-dl-toolbar';
+		createRoot(holder).render(<ToolbarButton />);
+	}
+	if (holder.parentNode !== toolbar) {
+		toolbar.appendChild(holder);
+	}
 	return true;
 }
 
@@ -428,7 +434,7 @@ domReady(() => {
 	// subscription cannot (it fires before the commit).
 	mount();
 	new window.MutationObserver(() => {
-		if (!document.getElementById('flxbk-design-library-button')) {
+		if (!holder || !holder.isConnected) {
 			mount();
 		}
 	}).observe(document.body, { childList: true, subtree: true });
