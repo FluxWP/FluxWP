@@ -97,6 +97,27 @@ function flxai_dock_enqueue() {
 	if ( ! flxai_dock_enabled() ) {
 		return;
 	}
+	flxai_chat_assets( false );
+}
+
+/**
+ * Gömülü sohbet (0.20.0): başka bir eklentinin ekranında Flux AI sohbetinin aynısı (window.FlxAIChat.mount).
+ * Ortak panel o sayfada kapalıysa betik yalnız gömülü kullanım için yüklenir. Bağımlılık olarak 'flxai-chat' verin.
+ *
+ * @return bool Yüklendi mi (kullanıcı sohbet kullanabiliyor mu).
+ */
+function flxai_chat_embed_enqueue() {
+	if ( ! is_user_logged_in() || ! flxai_can_chat() ) {
+		return false;
+	}
+	if ( ! wp_script_is( 'flxai-chat', 'enqueued' ) ) {
+		flxai_chat_assets( ! flxai_dock_enabled() );
+	}
+	return true;
+}
+
+/** Sohbet betiği ve ayarları. $embed_only: ortak panel açılmaz, yalnız FlxAIChat.mount. */
+function flxai_chat_assets( $embed_only ) {
 	$args = array( 'in_footer' => true, 'strategy' => 'defer' );
 	wp_enqueue_script( 'flxai-chat', FLXAI_URL . 'assets/js/chat.js', array(), FLXAI_VERSION, $args );
 	wp_localize_script(
@@ -124,6 +145,7 @@ function flxai_dock_enqueue() {
 			'page'        => is_admin() && 'flx-ai-chat' === sanitize_key( wp_unslash( $_GET['page'] ?? '' ) ), // phpcs:ignore WordPress.Security.NonceVerification
 			'accept'      => '.' . implode( ',.', array_keys( flxai_attach_types() ) ),
 			'maxBytes'    => flxai_attach_max_bytes(),
+			'embedOnly'   => (bool) $embed_only,
 		)
 	);
 }

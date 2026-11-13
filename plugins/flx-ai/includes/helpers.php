@@ -47,6 +47,7 @@ function flxai_defaults() {
 		'key_brave'           => '',        // web araması (web.php)
 		'web_on'              => 1,
 		'web_fetch_on'        => 1,
+		'image_tool_on'       => 1,
 		'shell_on'            => 1,         // sanal shell (shell.php)
 		'web_provider'        => 'auto',
 		'web_search_month'    => 0,         // 0 = sınırsız

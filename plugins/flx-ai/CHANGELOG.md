@@ -1,5 +1,12 @@
 # Flux AI — Değişiklikler
 
+## 0.20.0
+- **Gömülebilir sohbet:** Flux AI sohbet bileşeni artık başka eklentilerde aynen kullanılır: `window.FlxAIChat.mount( el, { chat, onSend, busy, dark, placeholder, emptyText } )`. Aynı çizim, araç adımları, onay kartları, çalışma alanı. PHP tarafında `flxai_chat_embed_enqueue()`. Gönderimi eklenti yürütebilir (`onSend`); bileşen sohbeti izler. Flux Agents görev penceresi bunu kullanır.
+- **Okunur onay kartları:** onay bekleyen işlemde ham JSON yerine başlık, kısa alanlar, uzun metinler Markdown önizleme, görsel adresleri küçük resim. Ham veri "Gönderilecek veri" altında.
+- **Görsel üret aracı (`flxai_image_generate`):** sohbet ve ajanlar varsayılan görsel modeliyle görsel üretir, medya kütüphanesine ekler ve `attachment_id` döner (öne çıkan görsel için). Ayarlar › Görsel ve video'dan kapatılabilir; her görsel harcama sınırına sayılır.
+- **Sayfa ekran görüntüsü (`flxai_page_screenshot`):** Görsel çevirici (Gotenberg) ayarlıysa sitenin sayfasının ya da taslağın PNG görüntüsü. Taslaklar için oturumsuz, süreli, imzalı önizleme bağlantısı (`flxai_preview_link`), veritabanı değişmez.
+- İçerik araçlarının sonucuna yayımlanmamış içerik için `preview_url` ve `edit_url` eklenir. Yeni filtre `flxai_tool_result` (başarılı araç sonucunu zenginleştirmek için).
+- Mesajda `_show` alanı: eklenti, modele giden metinden farklı bir görünen metin verebilir (kullanıcı ve asistan mesajları).
 ## 0.19.0
 - **MCP istemcisi:** yeni ekran Flux AI & MCP › **Bağlantılar**. Dış MCP sunucuları (Streamable HTTP) bağlanır; araçları sohbet, zamanlanmış görev ve ajanlarda `mcp_<bağlantı>_<araç>` adıyla kullanılır. Sunucu kaynak sunuyorsa `mcp_<bağlantı>_resources` / `_resource_read` araçları da gelir.
 - Oturum açma: yok, API anahtarı (Bearer), özel başlık ya da **OAuth 2.1** (otomatik keşif, dinamik istemci kaydı, PKCE, belirteç yenileme; kayda izin vermeyen sağlayıcıda client ID/secret elle). Anahtar ve belirteçler şifreli saklanır, yapay zekâya gitmez.

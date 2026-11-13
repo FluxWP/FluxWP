@@ -510,3 +510,31 @@ add_filter( 'flxai_web_providers', function ( $p ) {
 Ayarlar `flxai_settings` köprüsünden. `key_*` alanları write-only; boş gönderilirse eski şifreli değer kalır, yeni değer `flxai_encrypt` ile saklanır.
 
 `GET /wp-json/flx-ai/v1/log` — `page`, `per_page`, `kind` (`model`|`tool`), `source`, `q`. Yetki `manage_options`. İstek ve cevap gövdesi dönmez. Sohbet ekranı (`flxai-chat`) uygulamada sonra açılır.
+
+## Gömülü sohbet (0.20.0)
+
+Başka bir eklenti Flux AI sohbetini kendi ekranında aynen kullanır (ayrı kopya yazılmaz).
+
+PHP: `if ( function_exists( 'flxai_chat_embed_enqueue' ) ) flxai_chat_embed_enqueue();` (giriş yapmış ve sohbet yetkisi olan kullanıcıda betik + stil yüklenir; dock kapalıysa yalnız gömme modu).
+
+JS:
+```js
+const c = window.FlxAIChat.mount(el, {
+  chat: 12,                 // Flux AI sohbet kimliği (0: boş)
+  head: false,              // üst çubuk
+  placeholder: 'Yazın…', emptyText: 'Henüz mesaj yok.',
+  dark: () => true, themeEl: rootEl,   // tema ve değişim izleme
+  busy: () => false,        // dışarıda çalışan iş var mı (izleme sıklığı)
+  onSend: m => fetch(...)   // m = { text, files:[{key,name}] }; verilirse gönderimi eklenti yürütür, bileşen sohbeti izler
+});
+c.load(id); c.refresh(); c.toggleWs(); c.focus(); c.destroy();
+```
+`onSend` modunda durdur ve geri sarma kapalıdır; onay kartları Flux AI'ın `/decide` ucunu kullanır (`flxai_agent_decided` eylemi tetiklenir).
+
+Mesaj alanı `_show`: modele giden metinden farklı görünen metin (kullanıcı ya da asistan mesajı).
+
+## Araç sonucu filtresi ve yeni araçlar (0.20.0)
+
+- `flxai_tool_result( $data, $name, $args, $ctx )`: başarılı araç sonucunu değiştirir. Flux AI kendisi `flxseo_*_content` sonuçlarına `preview_url` + `edit_url` ekler.
+- `flxai_image_generate` (prompt, aspect, title, alt): varsayılan görsel modeliyle üretir, medya kütüphanesine ekler, `images[].attachment_id/url` döner. Ayar `image_tool_on`.
+- `flxai_page_screenshot` (post_id | url, width): Gotenberg (`render_url`) ile PNG. Taslaklar `flxai_preview_link( $post_id, $ttl )` imzalı süreli bağlantısıyla çekilir.

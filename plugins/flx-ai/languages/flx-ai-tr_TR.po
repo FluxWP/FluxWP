@@ -3567,3 +3567,54 @@ msgid "%d tool available."
 msgid_plural "%d tools available."
 msgstr[0] "%d araç kullanılabilir."
 msgstr[1] "%d araç kullanılabilir."
+
+msgid "No messages yet."
+msgstr "Henüz mesaj yok."
+
+msgid "Summary"
+msgstr "Özet"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Slug"
+msgstr "Kısa ad"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "Recipient"
+msgstr "Alıcı"
+
+msgid "Subject"
+msgstr "Konu"
+
+msgid "AI image"
+msgstr "AI görseli"
+
+msgid "Generate image"
+msgstr "Görsel üret"
+
+msgid "Image tool"
+msgstr "Görsel aracı"
+
+msgid "Chat and agents may generate images with the default image model (flxai_image_generate; each image is charged and counted in the spending limit)"
+msgstr "Sohbet ve ajanlar varsayılan görsel modeliyle görsel üretebilir (flxai_image_generate; her görsel ücretlidir ve harcama sınırına sayılır)"
+
+msgid "Page screenshot"
+msgstr "Sayfa ekran görüntüsü"
+
+msgid "No visual renderer (Gotenberg) is set: Flux AI & MCP › Settings › Visual renderer."
+msgstr "Görsel çevirici (Gotenberg) ayarlı değil: Flux AI & MCP › Ayarlar › Görsel çevirici."
+
+msgid "Could not take the screenshot (HTTP %d)."
+msgstr "Ekran görüntüsü alınamadı (HTTP %d)."
+
+msgid "You cannot view this content."
+msgstr "Bu içeriği görme yetkiniz yok."
+
+msgid "Only this site's addresses can be captured."
+msgstr "Yalnız bu sitenin adreslerinin görüntüsü alınabilir."
+
+msgid "Content not found."
+msgstr "İçerik bulunamadı."

@@ -1820,3 +1820,119 @@ add_action(
 		);
 	}
 );
+
+/* ---------------------------------------------------------------------------
+ * Sohbet aracı: görsel üret (0.20.0)
+ * ------------------------------------------------------------------------- */
+
+/**
+ * Üretilen görseli medya kütüphanesine ekler (dosya zaten uploads altında; kopyalanmaz).
+ *
+ * @return int Ek kimliği ya da 0.
+ */
+function flxai_media_to_library( array $out, $title = '', $alt = '' ) {
+	if ( empty( $out['path'] ) || ! is_readable( $out['path'] ) || 0 !== strpos( (string) ( $out['mime'] ?? '' ), 'image/' ) ) {
+		return 0;
+	}
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	$id = wp_insert_attachment(
+		array(
+			'post_mime_type' => $out['mime'],
+			'post_title'     => sanitize_text_field( '' !== $title ? $title : __( 'AI image', 'flx-ai' ) ),
+			'post_status'    => 'inherit',
+			'guid'           => $out['url'],
+		),
+		$out['path']
+	);
+	if ( ! $id || is_wp_error( $id ) ) {
+		return 0;
+	}
+	wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $out['path'] ) );
+	if ( '' !== $alt ) {
+		update_post_meta( $id, '_wp_attachment_image_alt', sanitize_text_field( $alt ) );
+	}
+	update_post_meta( $id, '_flxai_generated', 1 );
+	return (int) $id;
+}
+
+/** Görsel üretimi için hazır bir sağlayıcı var mı? */
+function flxai_media_image_ready() {
+	$p = flxai_media_providers();
+	$m = $p['models'][ $p['default_image'] ] ?? null;
+	return $m && ! empty( $m['providers'] );
+}
+
+add_filter(
+	'flxai_tools',
+	function ( $tools ) {
+		if ( ! flxai_setting( 'image_tool_on', 1 ) || ! flxai_media_image_ready() ) {
+			return $tools;
+		}
+		$tools['flxai_image_generate'] = array(
+			'title'       => __( 'Generate image', 'flx-ai' ),
+			'description' => 'Metinden görsel üretir (Flux AI › Görsel ve video ayarındaki varsayılan model) ve medya kütüphanesine ekler. attachment_id döner: yazının öne çıkan görseli için featured_image_id olarak, gövdede ![alt](url) olarak kullan. İstem İngilizce ve ayrıntılı olsun (konu, ortam, ışık, kompozisyon); yazı/logo isteme. Her çağrı ücretlidir: gerektiği kadar üret.',
+			'readonly'    => true,
+			'cap'         => 'upload_files',
+			'source'      => 'flx-ai',
+			'schema'      => array(
+				'type'       => 'object',
+				'properties' => array(
+					'prompt' => array( 'type' => 'string', 'description' => 'Görsel istemi' ),
+					'aspect' => array( 'type' => 'string', 'description' => 'En-boy oranı, ör. 16:9 (öne çıkan görsel), 1:1, 4:5. Varsayılan 16:9.' ),
+					'title'  => array( 'type' => 'string', 'description' => 'Medya kütüphanesindeki ad' ),
+					'alt'    => array( 'type' => 'string', 'description' => 'Alt metin (sitenin dilinde)' ),
+				),
+				'required'   => array( 'prompt' ),
+			),
+			'run'         => function ( $a, $ctx = array() ) {
+				$cat    = flxai_media_providers();
+				$model  = $cat['default_image'];
+				$aspect = (string) ( $a['aspect'] ?? '16:9' );
+				$asps   = (array) ( $cat['models'][ $model ]['aspects'] ?? array() );
+				$req    = array(
+					'source'  => (string) ( $ctx['source'] ?? 'flx-ai' ),
+					'purpose' => 'image_tool',
+					'kind'    => 'image',
+					'prompt'  => (string) ( $a['prompt'] ?? '' ),
+					'n'       => 1,
+					'user_id' => (int) ( $ctx['user_id'] ?? get_current_user_id() ),
+				);
+				if ( $asps && in_array( $aspect, $asps, true ) ) {
+					$req['aspect'] = $aspect;
+				}
+				$r = flxai_media_submit( $req );
+				// Kuyruklu sağlayıcı: en çok ~40 sn bekle (PHP ~60 sn'de kesilir).
+				for ( $i = 0; ! is_wp_error( $r ) && in_array( $r['state'], array( 'queued', 'running' ), true ) && $i < 10; $i++ ) {
+					sleep( 4 );
+					$r = flxai_media_status( $r['job'] );
+				}
+				if ( is_wp_error( $r ) ) {
+					throw new Exception( $r->get_error_message() ); // phpcs:ignore
+				}
+				if ( 'done' !== $r['state'] ) {
+					return array(
+						'state' => $r['state'],
+						'job'   => $r['job'],
+						'note'  => 'Görsel henüz hazır değil; biraz sonra aynı istemle yeniden deneme, iş sürüyor. Görselsiz devam edebilirsin.',
+					);
+				}
+				$out = array();
+				foreach ( $r['outputs'] as $o ) {
+					$aid   = flxai_media_to_library( $o, (string) ( $a['title'] ?? '' ), (string) ( $a['alt'] ?? '' ) );
+					$out[] = array(
+						'attachment_id' => $aid,
+						'url'           => $aid ? wp_get_attachment_url( $aid ) : (string) $o['url'],
+						'width'         => (int) ( $o['width'] ?? 0 ),
+						'height'        => (int) ( $o['height'] ?? 0 ),
+					);
+				}
+				return array(
+					'images' => $out,
+					'cost'   => $r['cost'],
+					'model'  => $r['model'],
+				);
+			},
+		);
+		return $tools;
+	}
+);
