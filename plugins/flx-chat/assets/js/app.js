@@ -1475,7 +1475,7 @@
 				wrap.appendChild(audioPlayer(m));
 				break;
 			case 'document':
-				wrap.appendChild(h('a', { class: 'flxc-doc', href: media.url + '&download=1', target: '_blank', rel: 'noopener' },
+				wrap.appendChild(h('a', { class: 'flxc-doc', href: media.url + '&download=1', download: media.name || '' },
 					h('span', { class: 'flxc-doc-i' }, icon('doc'), h('em', { text: ((media.name || '').split('.').pop() || 'file').slice(0, 4).toUpperCase() })),
 					h('span', { class: 'flxc-doc-t' }, h('strong', { text: media.name || t('Belge') }), h('small', { text: [fmtSize(media.size), (media.mime || '').split('/').pop()].filter(Boolean).join(' · ') })),
 					icon('download', 'flxc-doc-dl')
@@ -1569,7 +1569,7 @@
 		if (m.body) items.push({ icon: 'copy', label: t('Kopyala'), fn: function () { copyText(m.body); } });
 		// 1.45.0: WhatsApp gibi düzenle; yalnız gönderen/yönetici, WhatsApp süresi (15 dk) içinde.
 		if (m.dir === 'out' && m.editUntil && m.editUntil > Date.now() && (m.userId === S.me.id || S.me.manage)) items.push({ icon: 'edit', label: t('Düzenle'), fn: function () { openEdit(m); } });
-		if (m.media && m.media.url) items.push({ icon: 'download', label: t('İndir'), fn: function () { window.open(m.media.url + '&download=1', '_blank'); } });
+		if (m.media && m.media.url) items.push({ icon: 'download', label: t('İndir'), fn: function () { dlFile(m.media.url + '&download=1', m.media.name); } });
 		if (m.status === 'failed') items.push({ icon: 'reopen', label: t('Tekrar gönder'), fn: function () { retry(m); } });
 		if (recOn() && m.dir === 'in' && (m.type === 'image' || m.type === 'document')) items.push({ icon: 'receipt', label: t('Dekont olarak eşleştir'), fn: function () { openReceipt(m); } });
 		if (m.dir === 'note' && (m.userId === S.me.id || S.me.manage)) items.push({ icon: 'trash', label: t('Notu sil'), danger: true, fn: function () { deleteNote(m); } });
@@ -3348,7 +3348,7 @@
 		document.addEventListener('keydown', onKey, true);
 		back.appendChild(h('div', { class: 'flxc-lb-bar' },
 			h('span', { class: 'flxc-lb-who' }, h('strong', { text: !m ? '' : m.dir === 'out' ? t('Siz') : (m.sender || (S.chats.get(S.active) || {}).title || '') }), m && m.ts ? h('small', { text: fmtLong.format(m.ts) + ' ' + fmtTime.format(m.ts) }) : null),
-			h('a', { class: 'flxc-ib', href: src + '&download=1', target: '_blank', rel: 'noopener', title: t('İndir') }, icon('download')),
+			h('a', { class: 'flxc-ib', href: src + '&download=1', download: (m && m.media && m.media.name) || '', title: t('İndir') }, icon('download')),
 			btn('close', t('Kapat'), close)
 		));
 		if (kind === 'video') {
@@ -3363,6 +3363,14 @@
 		if (cap) back.appendChild(cap);
 		back.addEventListener('click', function (e) { if (e.target === back || e.target.tagName === 'IMG') close(); });
 		root.appendChild(back);
+	}
+
+	/* 1.47.1: indirme yeni sekme açmadan arka planda başlar (sunucu attachment döner, sayfa yerinde kalır). */
+	function dlFile(u, name) {
+		var a = h('a', { href: u, download: name || '', hidden: true });
+		document.body.appendChild(a);
+		a.click();
+		setTimeout(function () { a.remove(); }, 1000);
 	}
 
 	function toast(msg, kind) {

@@ -221,7 +221,8 @@ function flxc_rest_avatar_photo( WP_REST_Request $req ) {
 	header( 'X-Content-Type-Options: nosniff' );
 	header( 'Content-Length: ' . filesize( $f['path'] ) );
 	header( 'Cache-Control: private, max-age=31536000, immutable' );
-	header( 'Content-Disposition: inline; filename="' . (int) $chat['id'] . '.' . pathinfo( $f['path'], PATHINFO_EXTENSION ) . '"' );
+	$fname = sanitize_file_name( flxc_chat_title( $chat ) ) . '.' . pathinfo( $f['path'], PATHINFO_EXTENSION );
+	header( 'Content-Disposition: ' . ( $req->get_param( 'download' ) ? 'attachment' : 'inline' ) . "; filename*=UTF-8''" . rawurlencode( $fname ) );
 	readfile( $f['path'] ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	exit;
 }
