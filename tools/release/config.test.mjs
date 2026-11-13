@@ -39,3 +39,10 @@ test('signed Android AAB preparation does not require Play publishing access', (
   assert.doesNotThrow(() => preflight(releaseConfig({platform:'android', destination:'aab'}), signing));
   assert.throws(() => preflight(releaseConfig({platform:'android', destination:'internal'}), signing), /GOOGLE_PLAY_SERVICE_ACCOUNT_JSON/);
 });
+
+test('store-screenshots needs only the native screenshot run', () => {
+  const credentials = { APPLE_API_KEY: 'test', APPLE_API_ISSUER: 'test', APPLE_API_KEY_P8: 'test' };
+  const config = releaseConfig({ platform: 'ios', destination: 'store-screenshots' });
+  assert.throws(() => preflight(config, credentials), /screenshot workflow run/);
+  assert.doesNotThrow(() => preflight(config, { ...credentials, ASSET_RUN_ID: '42' }));
+});
