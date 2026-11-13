@@ -855,6 +855,21 @@ window.flxcrmBoot.push( function ( R ) {
 	} );
 } );
 
+/* 0.9.0: a running send refreshes itself every minute while the tab is visible and nothing is being typed. */
+window.flxcrmBoot.push( function ( R ) {
+	'use strict';
+	flxcrmOnce( R, '[data-flxcrm-refresh]' ).forEach( function ( box ) {
+		var sec = Math.max( 30, parseInt( box.dataset.flxcrmRefresh, 10 ) || 60 );
+		var t = setInterval( function () {
+			if ( ! document.body.contains( box ) ) { clearInterval( t ); return; }
+			var a = document.activeElement;
+			if ( document.hidden || ( a && /INPUT|TEXTAREA|SELECT/.test( a.tagName ) ) || document.querySelector( '.flxcrm-more[open], .flx-dialog[open]' ) ) { return; }
+			clearInterval( t );
+			location.reload();
+		}, sec * 1000 );
+	} );
+} );
+
 ( function () {
 	'use strict';
 	if ( ! window.fetch || ! window.DOMParser || ! window.history || ! history.pushState ) {

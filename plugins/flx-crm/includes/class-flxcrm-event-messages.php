@@ -28,6 +28,7 @@ final class FLXCRM_Event_Messages {
 		add_filter( 'flxi_recipient_source_info', array( __CLASS__, 'source_info' ), 10, 3 );
 		add_action( 'admin_post_flxcrm_event_msg', array( __CLASS__, 'post_send' ) );
 		add_action( 'admin_post_flxcrm_event_msg_cancel', array( __CLASS__, 'post_cancel' ) );
+		add_action( 'admin_post_flxcrm_event_msg_control', array( __CLASS__, 'post_control' ) );
 		add_action( 'flx_event_deleting', array( __CLASS__, 'forget' ) );
 	}
 
@@ -410,10 +411,14 @@ final class FLXCRM_Event_Messages {
 			foreach ( (array) $row['campaigns'] as $ch => $cid ) {
 				$c = function_exists( 'flxi_get_campaign' ) ? flxi_get_campaign( $cid ) : null;
 				$row['state'][ $ch ] = $c ? array(
-					'status' => (string) $c['status'],
-					'total'  => (int) $c['total'],
-					'sent'   => (int) $c['sent'],
-					'failed' => (int) $c['failed'],
+					'cid'     => (int) $cid,
+					'status'  => (string) $c['status'],
+					'total'   => (int) $c['total'],
+					'sent'    => (int) $c['sent'],
+					'failed'  => (int) $c['failed'],
+					'skipped' => (int) $c['skipped'],
+					'eta'     => self::eta( $c ),
+					'paused'  => 'paused' === $c['status'],
 				) : null;
 			}
 			$out[] = $row;
@@ -424,7 +429,7 @@ final class FLXCRM_Event_Messages {
 	/** Planned and not started yet: can be cancelled. */
 	public static function is_pending( array $row ) {
 		foreach ( $row['state'] as $s ) {
-			if ( $s && in_array( $s['status'], array( 'queued', 'sending', 'running' ), true ) ) {
+			if ( $s && in_array( $s['status'], array( 'queued', 'sending', 'running', 'paused' ), true ) ) {
 				return true;
 			}
 		}
@@ -484,6 +489,205 @@ final class FLXCRM_Event_Messages {
 		wp_safe_redirect( flxcrm_events_url( array( 'id' => $id, 'view' => 'message', 'flxcrm_msg' => 'evmsgstop' ) ) . '#flxcrm-evmsg-log' );
 		exit;
 	}
+
+	/* ------------------------------------------------------------ */
+	/* Sends: state, estimate, recipients, pause / resume / cancel   */
+	/* ------------------------------------------------------------ */
+
+	/** Flux Mail declares this campaign feature (pause, eta, recipients…). */
+	public static function mail_has( $feature ) {
+		return in_array( $feature, (array) apply_filters( 'flxi_campaign_features', array() ), true );
+	}
+
+	/** 'Y-m-d\TH:i' in site time → Unix time (0 when empty). */
+	public static function local_ts( $s ) {
+		$d = '' !== $s ? date_create_immutable( str_replace( 'T', ' ', $s ), wp_timezone() ) : false;
+		return $d ? $d->getTimestamp() : 0;
+	}
+
+	/** Pausing needs Flux Mail's flxi_pause_campaign / flxi_resume_campaign. */
+	public static function can_pause() {
+		return self::mail_has( 'pause' ) && function_exists( 'flxi_pause_campaign' ) && function_exists( 'flxi_resume_campaign' );
+	}
+
+	/** One send of an event (with state), or null. */
+	public static function find( $event_id, $key ) {
+		foreach ( self::history( $event_id ) as $row ) {
+			if ( strtolower( (string) $row['id'] ) === strtolower( (string) $key ) ) {
+				return $row;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Estimated finish (Unix time) of a running campaign: Flux Mail's own estimate when it gives one
+	 * (flxi_campaign_eta: wait between WhatsApp messages, quiet hours, daily limits), else from the pace so far.
+	 */
+	public static function eta( array $c ) {
+		$left = max( 0, (int) $c['total'] - (int) $c['sent'] - (int) $c['failed'] - (int) $c['skipped'] );
+		if ( ! $left || ! in_array( (string) $c['status'], array( 'queued', 'running', 'sending', 'paused' ), true ) ) {
+			return null;
+		}
+		if ( self::mail_has( 'eta' ) && function_exists( 'flxi_campaign_eta' ) ) {
+			$t = flxi_campaign_eta( (int) $c['id'] );
+			return $t ? (int) $t : null;
+		}
+		$done  = (int) $c['sent'] + (int) $c['failed'];
+		$start = max( flx_ts( $c['created_at'] ), self::local_ts( (string) ( $c['data']['send_at'] ?? '' ) ) );
+		if ( 'paused' === $c['status'] || $done < 2 || ! $start || time() <= $start ) {
+			return null;
+		}
+		$rate = $done / ( time() - $start ); // per second
+		return $rate > 0 ? time() + (int) ceil( $left / $rate ) : null;
+	}
+
+	/** The whole send: running, paused, planned, done or cancelled. */
+	public static function overall( array $row ) {
+		$st = array();
+		foreach ( (array) $row['state'] as $s ) {
+			if ( $s ) {
+				$st[] = $s['status'];
+			}
+		}
+		if ( self::local_ts( (string) $row['send_at'] ) > time() && array_intersect( $st, array( 'queued', 'running', 'sending' ) ) ) {
+			return 'planned'; // its time has not come yet
+		}
+		foreach ( array( 'running', 'sending', 'paused', 'queued', 'reporting', 'review' ) as $k ) {
+			if ( in_array( $k, $st, true ) ) {
+				return 'sending' === $k || 'queued' === $k ? 'running' : $k;
+			}
+		}
+		return in_array( 'done', $st, true ) ? 'done' : ( $st ? 'cancelled' : 'unknown' );
+	}
+
+	/** Recipients of one campaign: rows (name, recipient, status, error, sent_at, scheduled_at), total and counts by status. */
+	public static function recipients( $cid, $status = '', $page = 1, $per = 50 ) {
+		$groups = array(
+			'sent'    => array( 'sent', 'delivered' ),
+			'waiting' => array( 'queued', 'processing', 'submitted', 'paused' ),
+			'failed'  => array( 'failed', 'unknown' ),
+			'other'   => array( 'skipped', 'cancelled' ),
+		);
+		$out = array( 'rows' => array(), 'total' => 0, 'counts' => array_fill_keys( array_keys( $groups ), 0 ) );
+		if ( self::mail_has( 'recipients' ) && function_exists( 'flxi_campaign_recipients' ) ) {
+			$r            = (array) flxi_campaign_recipients( (int) $cid, array( 'status' => isset( $groups[ $status ] ) ? implode( ',', $groups[ $status ] ) : '', 'per_page' => $per, 'page' => $page ) );
+			$out['rows']  = (array) ( $r['rows'] ?? array() );
+			$out['total'] = (int) ( $r['total'] ?? 0 );
+			$pr           = function_exists( 'flxi_campaign_progress' ) ? (array) flxi_campaign_progress( (int) $cid ) : array();
+			if ( $pr ) {
+				$out['counts'] = array(
+					'sent'    => (int) $pr['sent'],
+					'waiting' => (int) $pr['left'],
+					'failed'  => (int) $pr['failed'],
+					'other'   => max( 0, (int) $pr['total'] - (int) $pr['sent'] - (int) $pr['left'] - (int) $pr['failed'] ),
+				);
+			}
+			return $out;
+		}
+		if ( ! function_exists( 'flxi_table' ) ) {
+			return $out;
+		}
+		// Older Flux Mail: read its queue (read only).
+		global $wpdb;
+		$t = flxi_table( 'queue' );
+		foreach ( (array) $wpdb->get_results( $wpdb->prepare( "SELECT status, COUNT(*) n FROM $t WHERE campaign_id = %d GROUP BY status", (int) $cid ), ARRAY_A ) as $r ) { // phpcs:ignore WordPress.DB
+			foreach ( $groups as $g => $list ) {
+				if ( in_array( $r['status'], $list, true ) ) {
+					$out['counts'][ $g ] += (int) $r['n'];
+				}
+			}
+		}
+		$where = $wpdb->prepare( 'campaign_id = %d', (int) $cid );
+		if ( isset( $groups[ $status ] ) ) {
+			$where .= " AND status IN ('" . implode( "','", array_map( 'esc_sql', $groups[ $status ] ) ) . "')";
+		}
+		$out['total'] = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $t WHERE $where" ); // phpcs:ignore WordPress.DB
+		$out['rows']  = (array) $wpdb->get_results( $wpdb->prepare( "SELECT name, recipient, status, error, sent_at, scheduled_at FROM $t WHERE $where ORDER BY FIELD(status,'processing','failed','queued') DESC, COALESCE(sent_at, scheduled_at) DESC, id DESC LIMIT %d OFFSET %d", (int) $per, max( 0, ( (int) $page - 1 ) * (int) $per ) ), ARRAY_A ); // phpcs:ignore WordPress.DB
+		return $out;
+	}
+
+	/**
+	 * How one campaign landed: delivered, read, replied, optout (null = not known). Flux Mail's
+	 * flxi_campaign_engagement() when it declares 'engagement'; else delivered = sent and opt-outs from its list, read only.
+	 */
+	public static function engagement( $cid, array $state ) {
+		$out = array( 'delivered' => (int) $state['sent'], 'read' => null, 'replied' => null, 'optout' => null );
+		if ( self::mail_has( 'engagement' ) && function_exists( 'flxi_campaign_engagement' ) ) {
+			foreach ( (array) flxi_campaign_engagement( (int) $cid ) as $k => $v ) {
+				if ( array_key_exists( $k, $out ) ) {
+					$out[ $k ] = null === $v ? null : (int) $v;
+				}
+			}
+			return $out;
+		}
+		if ( function_exists( 'flxi_table' ) ) {
+			global $wpdb;
+			$t = flxi_table( 'optouts' );
+			$quiet = $wpdb->suppress_errors( true ); // older Flux Mail has no opt-out list
+			$n     = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(DISTINCT recipient) FROM $t WHERE campaign_id = %d", (int) $cid ) ); // phpcs:ignore WordPress.DB
+			$wpdb->suppress_errors( $quiet );
+			$out['optout'] = null === $n ? null : (int) $n;
+		}
+		return $out;
+	}
+
+	/** engagement() summed over the channels of a send (a value stays null when no channel knows it). */
+	public static function send_engagement( array $row ) {
+		$sum = array( 'total' => 0, 'delivered' => null, 'read' => null, 'replied' => null, 'optout' => null, 'failed' => 0 );
+		foreach ( (array) $row['state'] as $ch => $s ) {
+			if ( ! $s ) {
+				continue;
+			}
+			$sum['total']  += (int) $s['total'];
+			$sum['failed'] += (int) $s['failed'];
+			foreach ( self::engagement( (int) $s['cid'], $s ) as $k => $v ) {
+				if ( null !== $v ) {
+					$sum[ $k ] = (int) $sum[ $k ] + $v;
+				}
+			}
+		}
+		return $sum;
+	}
+
+	/** Pause, resume or cancel every channel of one send. */
+	public static function post_control() {
+		check_admin_referer( 'flxcrm_event_msg_control' );
+		if ( ! flxcrm_can( true ) ) {
+			wp_die( esc_html__( 'You are not allowed to do this.', 'flx-crm' ), 403 );
+		}
+		$id   = isset( $_POST['id'] ) ? absint( $_POST['id'] ) : 0;
+		$key  = isset( $_POST['send'] ) ? sanitize_key( wp_unslash( $_POST['send'] ) ) : '';
+		$do   = isset( $_POST['do'] ) ? sanitize_key( wp_unslash( $_POST['do'] ) ) : '';
+		$back = isset( $_POST['back'] ) ? esc_url_raw( wp_unslash( $_POST['back'] ) ) : '';
+		$msg  = '';
+		foreach ( (array) ( self::all()[ $id ] ?? array() ) as $row ) {
+			if ( strtolower( (string) $row['id'] ) !== $key ) {
+				continue;
+			}
+			foreach ( (array) $row['campaigns'] as $cid ) {
+				$c  = function_exists( 'flxi_get_campaign' ) ? flxi_get_campaign( (int) $cid ) : null;
+				$cs = $c ? (string) $c['status'] : '';
+				if ( ( 'pause' === $do && ! in_array( $cs, array( 'queued', 'running', 'sending' ), true ) ) || ( 'resume' === $do && 'paused' !== $cs ) ) {
+					continue; // a finished channel stays as it is
+				}
+				if ( 'cancel' === $do && function_exists( 'flxi_cancel_campaign' ) ) {
+					flxi_cancel_campaign( (int) $cid );
+					$msg = 'evmsgstop';
+				} elseif ( 'pause' === $do && self::can_pause() ) {
+					flxi_pause_campaign( (int) $cid );
+					$msg = 'evmsgpause';
+				} elseif ( 'resume' === $do && self::can_pause() ) {
+					flxi_resume_campaign( (int) $cid );
+					$msg = 'evmsgresume';
+				}
+			}
+		}
+		$url = $back && 0 === strpos( $back, admin_url() ) ? $back : flxcrm_events_url( array( 'id' => $id, 'view' => 'message' ) );
+		wp_safe_redirect( add_query_arg( 'flxcrm_msg', $msg ? $msg : 'saved', remove_query_arg( array( 'flxcrm_msg', 'flxcrm_err' ), $url ) ) );
+		exit;
+	}
+
 }
 
 FLXCRM_Event_Messages::init();

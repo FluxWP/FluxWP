@@ -508,7 +508,9 @@ final class FLXCRM_Admin {
 		);
 		if ( 0 === strpos( $msg, 'evmsg' ) ) {
 			$map['evmsgstop'] = __( 'The send was cancelled.', 'flx-crm' );
-			if ( 'evmsgstop' !== $msg ) {
+			$map['evmsgpause']  = __( 'The send is paused.', 'flx-crm' );
+			$map['evmsgresume'] = __( 'The send continues.', 'flx-crm' );
+			if ( ! in_array( $msg, array( 'evmsgstop', 'evmsgpause', 'evmsgresume' ), true ) ) {
 				/* translators: %s: number of messages */
 				$map[ $msg ] = sprintf( __( '%s messages queued in Flux Mail.', 'flx-crm' ), number_format_i18n( (int) substr( $msg, 5 ) ) );
 			}
