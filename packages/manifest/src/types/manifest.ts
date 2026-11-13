@@ -104,7 +104,13 @@ export type DetailSection =
   | { type: 'list'; title?: string; when?: Condition; path: string; item: ListItem; onPress?: Navigate }
   | { type: 'content'; title?: string; when?: Condition; value: Tpl; format?: 'markdown' | 'html' | 'text' }
   | { type: 'actions'; title?: string; when?: Condition; items: string[] }
-  | { type: 'notice'; title?: string; when?: Condition; tone?: Tone; text: Tpl };
+  | { type: 'notice'; title?: string; when?: Condition; tone?: Tone; text: Tpl }
+  /**
+   * One point per row at `path` (rows may be plain numbers). The first series picks each point's value:
+   * `value` template, or the row field `key` (label from the row field `x`). Without series: field `x`
+   * as the label, the row's first number as the value.
+   */
+  | { type: 'chart'; title?: string; when?: Condition; chart?: 'bar' | 'line'; path: string; x?: string; series?: { label?: Tpl; value?: Tpl; key?: string }[] };
 
 export interface DetailScreen extends ScreenBase {
   type: 'detail';

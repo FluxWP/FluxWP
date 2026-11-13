@@ -1,21 +1,24 @@
 // Manifest `form` screen: react-hook-form fields from useFormController. Field types without a native
 // control yet (image, file, user, post, repeater…) are shown read-only; their full controls come in a5/c1.
 import { useLayoutEffect } from 'react';
-import { KeyboardAvoidingView, Platform, ScrollView, Switch, View } from 'react-native';
+import { ScrollView, Switch, View } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { useNavigation } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useFormController } from '@fluxwp/runtime';
 import type { FormScreen as FormDef, Manifest } from '@fluxwp/manifest';
+import { KeyboardView } from '@/ui/KeyboardView';
 import { RichEditor } from '@/ui/RichEditor';
 import { Button, Field, Segmented, Skeleton, Text } from '@/ui/primitives';
 import { EntityField, MediaField } from './fields';
 import type { RelationValue } from '@fluxwp/runtime';
+import { useScrollChrome } from '@/shell/chrome';
 
 const KEYBOARD: Record<string, 'default' | 'email-address' | 'phone-pad' | 'url' | 'decimal-pad'> = { email: 'email-address', phone: 'phone-pad', url: 'url', number: 'decimal-pad', money: 'decimal-pad' };
 
 export function FormScreen({ manifest, screen, params }: { manifest: Manifest; screen: FormDef; params: Record<string, string> }) {
+  const scrollChrome = useScrollChrome();
   const c = useFormController(manifest, screen, params);
   const { t } = useTranslation();
   const { theme } = useUnistyles();
@@ -25,8 +28,8 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
   const msg = (m?: string) => (m ? (m.startsWith('form.') ? t(m) : m) : undefined);
 
   return (
-    <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView contentContainerStyle={styles.wrap} keyboardShouldPersistTaps="handled">
+    <KeyboardView style={styles.screen}>
+      <ScrollView {...scrollChrome} contentContainerStyle={styles.wrap} keyboardShouldPersistTaps="handled">
         {c.fields.map((f) => (
           <Controller
             key={f.name}
@@ -78,7 +81,7 @@ export function FormScreen({ manifest, screen, params }: { manifest: Manifest; s
         {c.form.formState.errors.root?.message ? <Text tone="danger">{msg(c.form.formState.errors.root.message)}</Text> : null}
         <Button label={c.submitting ? t('form.saving') : t('form.submit')} loading={c.submitting} onPress={() => void c.submit()} full />
       </ScrollView>
-    </KeyboardAvoidingView>
+    </KeyboardView>
   );
 }
 

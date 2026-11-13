@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { flxg, type FlxgComment, type FlxgTask, type FlxgTaskDetail } from '@fluxwp/core';
 import { FlxgEngine, parseChecklist, toggleChecklistItem, useAccount, useApi, useEngineVersion, useRenderer } from '@fluxwp/runtime';
+import { KeyboardView } from '@/ui/KeyboardView';
 import { Avatar, Button, EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
 import { Chip, Chips, SearchField, useScreenTitle } from '../kit';
 import { mobilePorts } from '../ports';
@@ -76,13 +77,13 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
     setDetail({ ...detail, comments_list: [...detail.comments_list, c] });
   };
 
-  if (!engine.S.ready && !engine.S.error) return <View testID="screen-tasks" style={styles.fill}><Skeleton variant="cards" /></View>;
-  if (engine.S.error) return <View testID="screen-tasks" style={styles.fill}><EmptyState icon="alert" title={engine.S.error} action={{ label: t('mobile.states.retry'), onPress: () => void engine.boot() }} /></View>;
+  if (!engine.S.ready && !engine.S.error) return <KeyboardView testID="screen-tasks" style={styles.fill} chrome><Skeleton variant="cards" /></KeyboardView>;
+  if (engine.S.error) return <KeyboardView testID="screen-tasks" style={styles.fill} chrome><EmptyState icon="alert" title={engine.S.error} action={{ label: t('mobile.states.retry'), onPress: () => void engine.boot() }} /></KeyboardView>;
 
   if (detail) {
     const checks = parseChecklist(detail.description);
     return (
-      <View testID="screen-tasks" style={styles.fill}>
+      <KeyboardView testID="screen-tasks" style={styles.fill} chrome>
         <View style={styles.head}>
           <IconButton icon="back" label={t('mobile.screens.tasks.close')} onPress={() => (engine.openTask(0), setDetail(null))} />
           <Text variant="heading" style={styles.flex} numberOfLines={2}>{detail.title}</Text>
@@ -115,12 +116,12 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
           <TextInput value={comment} onChangeText={setComment} placeholder={t('mobile.screens.tasks.comment')} placeholderTextColor={theme.colors.textMuted} style={styles.input} accessibilityLabel={t('mobile.screens.tasks.comment')} />
           <Button label={t('mobile.screens.tasks.send')} onPress={() => void sendComment()} />
         </View>
-      </View>
+      </KeyboardView>
     );
   }
 
   return (
-    <View testID="screen-tasks" style={styles.fill}>
+    <KeyboardView testID="screen-tasks" style={styles.fill} chrome>
       <SearchField testID="tasks-search" value={q} onChange={(v) => (setQ(v), engine.setQuery(v))} placeholder={t('mobile.screens.tasks.search')} />
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.hscroll} contentContainerStyle={styles.filters}>
         <Chips>
@@ -171,7 +172,7 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
           ))}
         </ScrollView>
       )}
-    </View>
+    </KeyboardView>
   );
 }
 

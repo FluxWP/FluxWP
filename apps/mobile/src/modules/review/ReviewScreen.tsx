@@ -10,6 +10,7 @@ import { bagisReview, type PendingDonation } from '@fluxwp/core';
 import { useAccount, useApi, useRenderer } from '@fluxwp/runtime';
 import { Avatar, Button, EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
 import { useScreenTitle } from '../kit';
+import { ChromeFrame } from '@/shell/chrome';
 
 const Row = memo(function Row({ item, onPress }: { item: PendingDonation; onPress: () => void }) {
   return (
@@ -74,12 +75,12 @@ export default function ReviewScreen(_props: { params: Record<string, string> })
     reject.mutate({ d, reason: String(v.reason ?? ''), notify: v.notify !== false });
   };
 
-  if (q.isPending) return <View testID="screen-review" style={styles.fill}><Skeleton variant="cards" rows={4} /></View>;
-  if (q.isError) return <View testID="screen-review" style={styles.fill}><EmptyState icon="alert" title={t('states.errorTitle')} action={{ label: t('mobile.states.retry'), onPress: () => void q.refetch() }} /></View>;
+  if (q.isPending) return <ChromeFrame testID="screen-review" style={styles.fill}><Skeleton variant="cards" rows={4} /></ChromeFrame>;
+  if (q.isError) return <ChromeFrame testID="screen-review" style={styles.fill}><EmptyState icon="alert" title={t('states.errorTitle')} action={{ label: t('mobile.states.retry'), onPress: () => void q.refetch() }} /></ChromeFrame>;
 
   if (sel) {
     return (
-      <View testID="screen-review" style={styles.fill}>
+      <ChromeFrame testID="screen-review" style={styles.fill}>
         <View style={styles.head}>
           <IconButton icon="back" label={t('mobile.screens.review.back')} onPress={() => setId(null)} />
           <Text variant="heading">{sel.amount_label}</Text>
@@ -111,12 +112,12 @@ export default function ReviewScreen(_props: { params: Record<string, string> })
             <Button label={t('mobile.screens.review.approve')} onPress={() => void onApprove(sel)} loading={approve.isPending} />
           </View>
         </ScrollView>
-      </View>
+      </ChromeFrame>
     );
   }
 
   return (
-    <View testID="screen-review" style={styles.fill}>
+    <ChromeFrame testID="screen-review" style={styles.fill}>
       <Text tone="muted" style={styles.count}>{t('mobile.screens.review.count', { count: q.data?.total ?? items.length })}</Text>
       <FlashList
         data={items}
@@ -127,7 +128,7 @@ export default function ReviewScreen(_props: { params: Record<string, string> })
         onRefresh={() => void q.refetch()}
       />
       <View style={{ height: theme.space[2] }} />
-    </View>
+    </ChromeFrame>
   );
 }
 

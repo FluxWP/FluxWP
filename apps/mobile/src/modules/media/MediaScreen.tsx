@@ -10,6 +10,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { mediaThumb, uploadPickedMedia, useAccount, useApi, useRenderer, type MediaFile, type WpMedia } from '@fluxwp/runtime';
 import { Button, EmptyState, Skeleton, Text } from '@/ui/primitives';
 import { useScreenTitle } from '../kit';
+import { ChromeFrame } from '@/shell/chrome';
 
 const swatch = (id: number) => ['#1D7932', '#2563eb', '#db2777', '#d97706', '#0f766e', '#7c3aed'][Math.abs(id) % 6]!;
 
@@ -67,7 +68,7 @@ export default function MediaScreen(_props: { params: Record<string, string> }) 
   };
 
   return (
-    <View testID="screen-media" style={styles.fill}>
+    <ChromeFrame testID="screen-media" style={styles.fill}>
       <View style={styles.tools}>
         <Button kind="secondary" icon="camera" label={t('mobile.screens.media.camera')} onPress={() => void pick(true)} />
         <Button kind="secondary" icon="image" label={t('mobile.screens.media.gallery')} onPress={() => void pick(false)} />
@@ -105,7 +106,7 @@ export default function MediaScreen(_props: { params: Record<string, string> }) 
           ListEmptyComponent={<EmptyState icon="image" title={t('mobile.screens.media.empty')} body={t('mobile.screens.media.emptyBody')} />}
         />
       )}
-    </View>
+    </ChromeFrame>
   );
 }
 

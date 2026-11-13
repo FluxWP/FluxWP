@@ -16,6 +16,10 @@ WebBrowser.maybeCompleteAuthSession();
 export const APP_VERSION = Constants.expoConfig?.version ?? '0.0.0';
 const OS = RN.OS === 'ios' ? 'ios' : RN.OS === 'android' ? 'android' : 'web';
 
+/** App language sent as X-Flux-Locale so the site answers shell labels in it (set by i18n). */
+let requestLocale = '';
+export const setRequestLocale = (locale: string) => { requestLocale = locale; };
+
 let pending: { redirectUri: string; resolve: (u: URL) => void; reject: (e: Error) => void } | null = null;
 
 /** Resolves a pending sign-in from a deep link (oauth/callback route), when the auth session did not. */
@@ -73,7 +77,7 @@ export const mobilePlatform: Platform = {
   prepareOAuthRedirect,
   visibility,
   // flx-app maps ios/android to the mobile shell; the web preview asks for it by name.
-  headers: () => ({ 'X-FluxWP-Platform': OS === 'web' ? 'mobile' : OS, ...usageHeaders() }),
+  headers: () => ({ 'X-FluxWP-Platform': OS === 'web' ? 'mobile' : OS, ...(requestLocale ? { 'X-Flux-Locale': requestLocale } : null), ...usageHeaders() }),
   // Local notifications arrive with push (a6); until then nothing to show outside the app.
   notify: async () => undefined,
 };

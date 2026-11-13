@@ -12,8 +12,10 @@ import { brand } from '@/brand';
 import { APP_VERSION } from '@/platform';
 import { EmptyState, Skeleton, Text } from '@/ui/primitives';
 import { demoAdminHtml } from './demo-admin';
+import { ChromeFrame, useChrome } from '@/shell/chrome';
 
 export function WebScreen({ path, title, note }: { path: string; title?: string; note?: string }) {
+  const chrome = useChrome();
   const { t } = useTranslation();
   const { theme, rt } = useUnistyles();
   const account = useAccount();
@@ -83,10 +85,12 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
   if (failed) return <EmptyState icon="alert" title={t('mobile.web.error')} body={reason || undefined} action={{ label: t('mobile.web.reload'), onPress: () => (retried.current = false, void load()) }} />;
   if (!src) return <Skeleton variant="page" rows={4} />;
   return (
-    <View style={styles.screen}>
+    <ChromeFrame style={styles.screen} bottom={false}>
       {note || demo ? <Text variant="caption" style={styles.note}>{demo ? t('mobile.web.demo') : note}</Text> : null}
       <WebView
         ref={ref}
+        contentInset={chrome.bottom ? { top: 0, bottom: chrome.bottom } : undefined}
+        automaticallyAdjustContentInsets={false}
         source={'html' in src ? { html: src.html, baseUrl: account.siteUrl } : { uri: src.url }}
         userAgent={ua}
         applicationNameForUserAgent={ua}
@@ -121,7 +125,7 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
         renderLoading={() => <View style={styles.loading}><Skeleton variant="page" rows={4} /></View>}
         style={{ backgroundColor: theme.colors.bg }}
       />
-    </View>
+    </ChromeFrame>
   );
 }
 

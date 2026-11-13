@@ -5,9 +5,11 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { TV_KEYS, tvCommandAllowed, useAccount, useApi, useRenderer, type TvCommand, type TvState } from '@fluxwp/runtime';
+import { KeyboardView } from '@/ui/KeyboardView';
 import { Text } from '@/ui/primitives';
 import { Icon } from '@/ui/Icon';
 import { useScreenTitle } from '../kit';
+import { useScrollChrome } from '@/shell/chrome';
 
 function Key({ label, icon, onPress, disabled }: { label: string; icon?: string; onPress: () => void; disabled?: boolean }) {
   const { theme } = useUnistyles();
@@ -19,6 +21,7 @@ function Key({ label, icon, onPress, disabled }: { label: string; icon?: string;
 }
 
 export default function TvScreen(_props: { params: Record<string, string> }) {
+  const scrollChrome = useScrollChrome();
   const { t } = useTranslation();
   const { theme } = useUnistyles();
   useScreenTitle(t('mobile.screens.tv.title'));
@@ -43,7 +46,8 @@ export default function TvScreen(_props: { params: Record<string, string> }) {
   };
 
   return (
-    <ScrollView testID="screen-tv" contentContainerStyle={styles.wrap}>
+    <KeyboardView style={styles.kb}>
+      <ScrollView {...scrollChrome} testID="screen-tv" contentContainerStyle={styles.wrap}>
       <View style={[styles.banner, { backgroundColor: allowed ? theme.colors.primarySoft : theme.colors.warning }]}>
         <Text variant="label">{state?.name || t('mobile.screens.tv.title')}</Text>
         <Text variant="small">{!state ? '…' : !state.same_wifi ? t('mobile.screens.tv.wifiOff') : !state.online ? t('mobile.screens.tv.offline') : `${t('mobile.screens.tv.wifi')} · ${state.app} · ${state.muted ? t('mobile.screens.tv.mute') : state.volume}`}</Text>
@@ -86,11 +90,13 @@ export default function TvScreen(_props: { params: Record<string, string> }) {
           <Text variant="label" style={{ color: theme.colors.onPrimary }}>{t('mobile.screens.tv.type')}</Text>
         </Pressable>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardView>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
+  kb: { flex: 1 },
   wrap: { padding: theme.space[4], gap: theme.space[3], paddingBottom: theme.space[12], alignItems: 'center' },
   banner: { alignSelf: 'stretch', borderRadius: theme.radius.lg, padding: theme.space[3], gap: 4 },
   pad: { alignItems: 'center', gap: 8 },

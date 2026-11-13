@@ -52,3 +52,23 @@ export function stripTags(html: string): string {
   }
   return out;
 }
+
+const NAMED: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0', hellip: '\u2026', ndash: '\u2013', mdash: '\u2014', lsquo: '\u2018', rsquo: '\u2019', ldquo: '\u201c', rdquo: '\u201d', laquo: '\u00ab', raquo: '\u00bb', copy: '\u00a9', reg: '\u00ae', trade: '\u2122', euro: '\u20ac', bull: '\u2022', middot: '\u00b7', times: '\u00d7' };
+
+/** Decodes HTML character references (`&amp;`, `&#8217;`, `&#x2019;`) for display as plain text. */
+export function decodeEntities(s: string): string {
+  if (!s.includes('&')) return s;
+  return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e: string) => {
+    if (e[0] === '#') {
+      const n = e[1] === 'x' || e[1] === 'X' ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
+      return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : m;
+    }
+    return NAMED[e.toLowerCase()] ?? m;
+  });
+}
+
+/** Readable plain text of an HTML fragment: block ends become line breaks, entities decoded. */
+export function htmlToText(html: string): string {
+  const spaced = html.replace(/<br\s*\/?>/gi, '\n').replace(/<\/(p|div|li|h[1-6]|blockquote|tr|figure|ul|ol)>/gi, '\n\n');
+  return decodeEntities(stripTags(spaced)).replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+}

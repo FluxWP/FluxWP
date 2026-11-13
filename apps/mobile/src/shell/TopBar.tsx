@@ -1,7 +1,8 @@
 // Top bar (config.shell.topbar): drawer button on tab roots, back elsewhere, title, config actions and
 // the site avatar that opens the quick account switcher.
 import type { ReactNode } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
+import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
@@ -30,9 +31,12 @@ export function TopBar({ options, back, navigation }: TopBarProps) {
   const title = options.title ?? '';
   // Root without a screen title: the site chip carries the name. With a title, the chip shrinks to the icon.
   const chipName = switcher && !title;
+  const ios = Platform.OS === 'ios';
 
   return (
-    <View style={[styles.bar, { paddingTop: insets.top + 4 }]}>
+    <View style={[styles.bar, ios && styles.floating, { paddingTop: insets.top + 4 }]}>
+      {/* iOS: system material blur, content scrolls under it (the stack sets headerTransparent). */}
+      {ios ? <BlurView pointerEvents="none" tint={theme.mode === 'dark' ? 'systemChromeMaterialDark' : 'systemChromeMaterialLight'} intensity={100} style={styles.blur} /> : null}
       <View style={styles.row}>
         {back ? (
           <GlassButton icon="back" label={t('mobile.shell.back')} onPress={() => navigation.goBack()} />
@@ -59,6 +63,8 @@ export function TopBar({ options, back, navigation }: TopBarProps) {
 
 const styles = StyleSheet.create((theme) => ({
   bar: { backgroundColor: theme.colors.bg, paddingBottom: 6 },
+  floating: { backgroundColor: 'transparent', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
+  blur: { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 },
   row: { minHeight: 52, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, gap: 8 },
   title: { flex: 1, marginLeft: 4, fontFamily: theme.font.heading, fontWeight: '800', letterSpacing: -0.3 },
   custom: { flexDirection: 'row', alignItems: 'center' },

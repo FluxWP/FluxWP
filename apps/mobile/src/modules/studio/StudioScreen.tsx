@@ -9,6 +9,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { studioBusy, studioGenerateBody, useAccount, useApi, useRenderer, type StudioItem, type StudioKind } from '@fluxwp/runtime';
 import { Button, EmptyState, Skeleton, Spinner, Text } from '@/ui/primitives';
 import { useScreenTitle } from '../kit';
+import { ChromeFrame } from '@/shell/chrome';
 
 const swatch = (id: number) => ['#1D7932', '#0f766e', '#7c3aed', '#2563eb'][Math.abs(id) % 4]!;
 
@@ -55,7 +56,7 @@ export default function StudioScreen(_props: { params: Record<string, string> })
   });
 
   return (
-    <View testID="screen-studio" style={styles.fill}>
+    <ChromeFrame testID="screen-studio" style={styles.fill}>
       <View style={styles.form}>
         <View style={styles.kinds}>
           <Button kind={kind === 'image' ? 'primary' : 'secondary'} label={t('mobile.screens.studio.image')} onPress={() => setKind('image')} />
@@ -95,7 +96,7 @@ export default function StudioScreen(_props: { params: Record<string, string> })
           ListEmptyComponent={<EmptyState icon="studio" title={t('mobile.screens.studio.empty')} />}
         />
       )}
-    </View>
+    </ChromeFrame>
   );
 }
 

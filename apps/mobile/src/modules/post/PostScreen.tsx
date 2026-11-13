@@ -4,11 +4,14 @@ import { ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native-unistyles';
 import { postBody, postEditPath, useApi, useRenderer, type PostStatus, type WpPost } from '@fluxwp/runtime';
+import { KeyboardView } from '@/ui/KeyboardView';
 import { cleanHtml, RichEditor } from '@/ui/RichEditor';
 import { Button, Field, Segmented, Text } from '@/ui/primitives';
 import { useScreenTitle } from '../kit';
+import { useScrollChrome } from '@/shell/chrome';
 
 export default function PostScreen(_props: { params: Record<string, string> }) {
+  const scrollChrome = useScrollChrome();
   const { t } = useTranslation();
   useScreenTitle(t('mobile.screens.post.title'));
   const api = useApi();
@@ -37,7 +40,8 @@ export default function PostScreen(_props: { params: Record<string, string> }) {
   };
 
   return (
-    <ScrollView testID="screen-post" contentContainerStyle={styles.wrap} keyboardShouldPersistTaps="handled">
+    <KeyboardView style={styles.kb}>
+      <ScrollView {...scrollChrome} testID="screen-post" contentContainerStyle={styles.wrap} keyboardShouldPersistTaps="handled">
       <Field label={t('mobile.screens.post.name')} value={title} onChangeText={setTitle} />
       <RichEditor value={content} onChange={setContent} />
       <Field label={t('mobile.screens.post.excerpt')} value={excerpt} onChangeText={setExcerpt} multiline />
@@ -54,10 +58,12 @@ export default function PostScreen(_props: { params: Record<string, string> }) {
       {error ? <Text tone="danger">{error}</Text> : null}
       <Button label={t('mobile.screens.post.save')} onPress={() => void save()} loading={busy} disabled={!title.trim()} full />
       {saved ? <Button kind="secondary" icon="external" label={t('mobile.screens.post.blocks')} onPress={() => renderer.nav.push({ kind: 'web', path: postEditPath(saved.id) })} full /> : null}
-    </ScrollView>
+      </ScrollView>
+    </KeyboardView>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
+  kb: { flex: 1 },
   wrap: { padding: theme.space[4], gap: theme.space[3], paddingBottom: theme.space[12] },
 }));

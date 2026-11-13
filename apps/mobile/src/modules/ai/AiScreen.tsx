@@ -3,13 +3,14 @@
 // panel (header button): running/approval first, recent, archived on demand, search, scheduled-task
 // chats marked with a clock (Flux AI 0.14 chat sidebar).
 import { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, Modal, Platform, Pressable, TextInput, View } from 'react-native';
+import { Modal, Platform, Pressable, TextInput, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { loadTokens } from '@fluxwp/core';
 import { messageText, streamAiStep, useAccount, useApi, useRenderer, type AiChat, type AiEvent, type AiMessage } from '@fluxwp/runtime';
+import { KeyboardView } from '@/ui/KeyboardView';
 import { Button, EmptyState, IconButton, Skeleton, Spinner, Text } from '@/ui/primitives';
 import { Icon } from '@/ui/Icon';
 import { overlays, type MenuItem } from '@/ui/overlays';
@@ -206,7 +207,7 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
   })();
 
   return (
-    <KeyboardAvoidingView testID="screen-ai" style={styles.fill} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardView testID="screen-ai" style={styles.fill} chrome>
       <View style={styles.head}>
         <IconButton testID="ai-chats" icon="list-view" label={t('mobile.screens.ai.chats')} onPress={() => (refreshLists(), setListOpen(true))} />
         <Text variant="label" numberOfLines={1} style={styles.flex}>{chat?.title || t('mobile.screens.ai.new')}</Text>
@@ -245,7 +246,7 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
         <TextInput value={text} onChangeText={setText} placeholder={t('mobile.screens.ai.placeholder')} placeholderTextColor={theme.colors.textMuted} style={styles.input} accessibilityLabel={t('mobile.screens.ai.placeholder')} />
         <IconButton icon="airplane" label={t('mobile.screens.ai.send')} color={theme.colors.primary} onPress={() => text.trim() && send.mutate(text.trim())} />
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardView>
   );
 }
 

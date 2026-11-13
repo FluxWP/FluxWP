@@ -112,7 +112,10 @@ export function useFormController(manifest: Manifest, screen: FormScreen, params
   const base = useBaseContext(manifest, params);
   const invalidate = useInvalidate(manifest.id);
   const { go } = useNavigate();
-  const loadSrc = screen.load && params.id ? manifest.sources[screen.load] : undefined;
+  // Edit forms load their record by id; singleton forms (site settings) load without one. A source that
+  // needs an id is skipped on create, so "new page" starts empty instead of fetching wp/v2/pages/.
+  const loadDef = screen.load ? manifest.sources[screen.load] : undefined;
+  const loadSrc = loadDef && (params.id || !JSON.stringify(loadDef).includes('params.id')) ? loadDef : undefined;
   const loadReq = loadSrc ? sourceRequest(loadSrc, base) : null;
   const loaded = useQuery({
     queryKey: loadReq ? qk.source(manifest.id, screen.load!, loadReq.path, loadReq.query) : ['form-none'],
