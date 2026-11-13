@@ -391,3 +391,28 @@ form + .flxcrm-card{margin-top:16px}
 .flxcrm-pill{display:inline-flex;align-items:center;font-size:12px;padding:2px 10px;border-radius:99px;background:var(--c-s2);color:var(--c-tx);text-decoration:none}
 a.flxcrm-pill:hover{color:var(--c-ac)}
 @media (max-width:782px){.flxcrm-evmsg__chip{flex:1 1 auto;justify-content:center}.flxcrm-evmsg input[type=datetime-local]{width:100%}.flxcrm-evmsg__submit .button{width:100%;justify-content:center}}
+/* 0.7.0 Değerler ve önizleme */
+.flxcrm-evmsg__vars{display:grid;gap:6px;margin-top:-6px}
+.flxcrm-evmsg__vgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flxcrm-evmsg__vgroup>span{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--c-mut);min-width:64px}
+.flxcrm-evmsg__var{border:1px dashed var(--c-bd2);background:var(--c-card);color:var(--c-tx);border-radius:99px;padding:3px 10px;font-size:12px;cursor:pointer;line-height:1.6}
+.flxcrm-evmsg__var:hover{border-style:solid;border-color:var(--c-ac);color:var(--c-ac)}
+.flxcrm-evmsg__var.is-off{opacity:.5;cursor:not-allowed}
+.flxcrm-evmsg__preview{border:1px solid var(--c-bd);border-radius:12px;padding:12px;background:var(--c-s2)}
+.flxcrm-evmsg__phead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.flxcrm-evmsg__phead .flxcrm-evmsg__label{width:auto;margin:0}
+.flxcrm-evmsg__phead select{min-width:200px;max-width:100%;border-radius:8px}
+.flxcrm-evmsg__pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.flxcrm-evmsg__pane>small{display:block;color:var(--c-mut);font-size:11px;margin:0 0 6px;font-weight:600}
+.flxcrm-evmsg__chat{background:#e5ddd5;border-radius:10px;padding:14px 12px;min-height:120px}
+.flxcrm-evmsg__bubble{background:#fff;color:#111b21;border-radius:8px 8px 8px 2px;padding:6px 8px 4px;max-width:92%;box-shadow:0 1px .5px rgba(0,0,0,.13);font-size:13.5px;line-height:1.4;white-space:pre-wrap;word-break:break-word}
+.flxcrm-evmsg__bubble img,.flxcrm-evmsg__mail img{display:block;width:100%;max-height:220px;object-fit:cover;border-radius:6px;margin-bottom:6px}
+.flxcrm-evmsg__bubble time{display:block;text-align:right;font-size:10.5px;color:#667781;margin-top:2px}
+.flxcrm-evmsg__file{display:inline-block;background:#f0f2f5;border-radius:6px;padding:6px 8px;margin-bottom:6px;font-size:12px}
+.flxcrm-evmsg__mail{background:var(--c-card);border:1px solid var(--c-bd);border-radius:10px;padding:14px;font-size:13.5px;line-height:1.5;color:var(--c-tx)}
+.flxcrm-evmsg__mail strong{display:block;font-size:15px;margin-bottom:8px}
+.flxcrm-evmsg__mail p{margin:0 0 8px}
+.flxcrm-evmsg__pnote{display:block;margin-top:8px;color:var(--c-warn,#b45309)}
+html.flxa-dark .flxcrm-evmsg__chat{background:#0b141a}
+html.flxa-dark .flxcrm-evmsg__bubble{background:#202c33;color:#e9edef}
+@media (prefers-color-scheme:dark){html.flxa-auto .flxcrm-evmsg__chat{background:#0b141a}html.flxa-auto .flxcrm-evmsg__bubble{background:#202c33;color:#e9edef}}

@@ -288,10 +288,12 @@ final class FLXCRM_Page_Events {
 		echo '<label class="flxcrm-check"><input type="radio" name="kind" value="marketing"> ' . esc_html__( 'Promotion or campaign: only people who allowed that channel', 'flx-crm' ) . '</label></fieldset>';
 
 		echo '<label data-only="email" hidden><span>' . esc_html__( 'E-mail subject', 'flx-crm' ) . '</span><input type="text" name="subject" maxlength="190" placeholder="' . esc_attr( sprintf( /* translators: %s: event name */ __( 'Thank you for joining %s', 'flx-crm' ), $e['name'] ) ) . '"><small>' . esc_html__( 'Empty: the event name.', 'flx-crm' ) . '</small></label>';
-		echo '<label><span>' . esc_html__( 'Message', 'flx-crm' ) . ' *</span><textarea name="text" rows="6" required placeholder="' . esc_attr( sprintf( /* translators: %s: event name */ __( 'Hello {ad}, thank you for being with us at %s. 🌱', 'flx-crm' ), $e['name'] ) ) . '"></textarea><small>' . esc_html__( '{ad} first name, {ad_soyad} full name. The same text goes on every channel; e-mail turns it into paragraphs.', 'flx-crm' ) . '</small></label>';
+		echo '<label><span>' . esc_html__( 'Message', 'flx-crm' ) . ' *</span><textarea name="text" rows="6" required data-evmsg-text placeholder="' . esc_attr( sprintf( /* translators: %s: event name */ __( 'Hello {ad}, thank you for being with us at %s. 🌱', 'flx-crm' ), $e['name'] ) ) . '"></textarea><small>' . esc_html__( 'The same text goes on every channel; e-mail turns it into paragraphs. Click a value below to add it where the cursor is.', 'flx-crm' ) . '</small></label>';
+		self::message_vars( $e );
 
 		echo '<div class="flxcrm-evmsg__row"><span class="flxcrm-evmsg__label">' . esc_html__( 'Photo, video or file (optional)', 'flx-crm' ) . '</span><div class="flxcrm-evimg flxcrm-evmsg__media" data-flxcrm-evmedia><input type="hidden" name="media_id" value="0"><div class="flxcrm-evimg__prev"><span>' . esc_html__( 'None', 'flx-crm' ) . '</span></div><p><button type="button" class="button" data-pick>' . esc_html__( 'Choose from media', 'flx-crm' ) . '</button> <button type="button" class="button-link button-link-delete" data-clear hidden>' . esc_html__( 'Remove', 'flx-crm' ) . '</button></p></div>';
 		echo '<small>' . esc_html( FLXCRM_Event_Messages::mail_has_media() ? __( 'WhatsApp: sent as an attachment with the text. E-mail: a photo shows above the text, other files get a button. SMS: the link is added.', 'flx-crm' ) : __( 'E-mail: a photo shows above the text, other files get a button. WhatsApp and SMS: the file link is added to the text.', 'flx-crm' ) ) . '</small></div>';
+		self::message_preview();
 
 		echo '<fieldset class="flxcrm-evmsg__row"><legend>' . esc_html__( 'When', 'flx-crm' ) . '</legend>';
 		echo '<label class="flxcrm-check"><input type="radio" name="when" value="now"' . ( $def ? '' : ' checked' ) . '> ' . esc_html__( 'Now', 'flx-crm' ) . '</label>';
@@ -302,6 +304,82 @@ final class FLXCRM_Page_Events {
 		echo '</form>';
 		self::messages_log( $id );
 		echo '</section>';
+	}
+
+	/** Value buttons ({ad}, {fidan}…) and the data the preview needs. */
+	private static function message_vars( array $e ) {
+		$id     = (int) $e['id'];
+		$people = FLXCRM_Event_Messages::people( $id );
+		$pvars  = FLXCRM_Event_Messages::person_vars( $id, $people );
+		$evars  = FLXCRM_Event_Messages::event_vars( $e );
+		$gvars  = function_exists( 'flxi_global_vars' ) ? flxi_global_vars() : array( 'site' => get_bloginfo( 'name' ) );
+		$ok     = FLXCRM_Event_Messages::mail_has_recipient_vars();
+		usort(
+			$people,
+			static function ( $a, $b ) {
+				return strcasecmp( (string) $a['name'], (string) $b['name'] );
+			}
+		);
+		$sample = array();
+		foreach ( array_slice( $people, 0, 300 ) as $p ) {
+			$v = array();
+			foreach ( $pvars as $k => $d ) {
+				$v[ $k ] = (string) ( $d['values'][ (int) $p['id'] ] ?? '' );
+			}
+			$sample[] = array( 'n' => '' !== trim( (string) $p['name'] ) ? (string) $p['name'] : __( '(no name)', 'flx-crm' ), 'v' => $v );
+		}
+		$off = array();
+		if ( ! $ok ) {
+			foreach ( $pvars as $k => $d ) {
+				if ( empty( $d['builtin'] ) ) {
+					$off[] = $k;
+				}
+			}
+		}
+		$ev = array();
+		foreach ( $evars as $k => $d ) {
+			$ev[ $k ] = (string) $d[1];
+		}
+		$gl = array();
+		foreach ( array( 'site', 'site_url', 'kurum', 'yil', 'tarih', 'kurum_telefon', 'kurum_eposta' ) as $k ) {
+			if ( isset( $gvars[ $k ] ) ) {
+				$gl[ $k ] = (string) $gvars[ $k ];
+			}
+		}
+		$data = array( 'event' => $ev, 'global' => $gl, 'people' => $sample, 'off' => $off );
+		echo '<div class="flxcrm-evmsg__vars" data-evmsg-vars="' . esc_attr( wp_json_encode( $data ) ) . '">';
+		$groups = array(
+			array( __( 'Person', 'flx-crm' ), wp_list_pluck( $pvars, 'label' ) ),
+			array( __( 'Event', 'flx-crm' ), wp_list_pluck( $evars, 0 ) ),
+			array(
+				__( 'Site', 'flx-crm' ),
+				array(
+					'site'          => __( 'Site name', 'flx-crm' ),
+					'kurum'         => __( 'Organisation', 'flx-crm' ),
+					'kurum_telefon' => __( 'Organisation phone', 'flx-crm' ),
+				),
+			),
+		);
+		foreach ( $groups as $g ) {
+			echo '<div class="flxcrm-evmsg__vgroup"><span>' . esc_html( $g[0] ) . '</span>';
+			foreach ( $g[1] as $k => $label ) {
+				$is_off = in_array( $k, $off, true );
+				echo '<button type="button" class="flxcrm-evmsg__var' . ( $is_off ? ' is-off' : '' ) . '" data-var="' . esc_attr( $k ) . '" title="' . esc_attr( $is_off ? __( 'Needs a newer Flux Mail (a value for each recipient).', 'flx-crm' ) : '{' . $k . '}' ) . '"' . ( $is_off ? ' disabled' : '' ) . '>' . esc_html( $label ) . '</button>';
+			}
+			echo '</div>';
+		}
+		if ( $off ) {
+			echo '<small>' . esc_html__( 'Personal values such as saplings open once Flux Mail keeps a value for each recipient (next Flux Mail update).', 'flx-crm' ) . '</small>';
+		}
+		echo '</div>';
+	}
+
+	/** Live preview: pick a person, see the WhatsApp/SMS bubble and the e-mail as they will read it. */
+	private static function message_preview() {
+		echo '<div class="flxcrm-evmsg__preview" data-evmsg-preview data-empty="' . esc_attr( /* translators: %s: variables */ __( 'Empty for this person: %s. It is left out and the text closes up.', 'flx-crm' ) ) . '"><div class="flxcrm-evmsg__phead"><span class="flxcrm-evmsg__label">' . esc_html__( 'Preview', 'flx-crm' ) . '</span><select data-evmsg-who aria-label="' . esc_attr__( 'Preview for', 'flx-crm' ) . '"></select></div>';
+		echo '<div class="flxcrm-evmsg__pgrid"><div class="flxcrm-evmsg__pane" data-pane="chat"><small data-pane-title></small><div class="flxcrm-evmsg__chat"><div class="flxcrm-evmsg__bubble"><div data-pv-media></div><div data-pv-text></div><time></time></div></div></div>';
+		echo '<div class="flxcrm-evmsg__pane" data-pane="email"><small>' . esc_html__( 'E-mail', 'flx-crm' ) . '</small><div class="flxcrm-evmsg__mail"><strong data-pv-subject></strong><div data-pv-media></div><div data-pv-body></div></div></div></div>';
+		echo '<small class="flxcrm-evmsg__pnote" data-pv-note></small></div>';
 	}
 
 	private static function messages_log( $id ) {

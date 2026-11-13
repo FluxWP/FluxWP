@@ -66,6 +66,52 @@ add_filter(
 	2
 );
 
+/**
+ * 2.1.0: per-person values for event messages (Flux CRM › Events › Message to the event): {fidan} saplings on the
+ * person's certificates of this event, {sertifika_sayisi}, {sertifika_link} (first certificate), {sertifika_no}.
+ */
+add_filter(
+	'flx_event_vars',
+	static function ( $out, $id, $pids ) {
+		global $wpdb;
+		$pids = array_filter( array_map( 'intval', (array) $pids ) );
+		$f    = array();
+		$n    = array();
+		$link = array();
+		$no   = array();
+		foreach ( array_chunk( $pids, 500 ) as $chunk ) {
+			$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT person_id, code, number, data FROM ' . flxs_table( 'certificates' ) . " WHERE event_id = %d AND status <> 'revoked' AND person_id IN (" . implode( ',', $chunk ) . ') ORDER BY id ASC', (int) $id ), ARRAY_A ); // phpcs:ignore WordPress.DB
+			foreach ( (array) $rows as $r ) {
+				$p       = (int) $r['person_id'];
+				$f[ $p ] = ( $f[ $p ] ?? 0 ) + flxs_cert_fidan( $r['data'] );
+				$n[ $p ] = ( $n[ $p ] ?? 0 ) + 1;
+				if ( ! isset( $link[ $p ] ) ) {
+					$link[ $p ] = flxs_certificate_url( $r['code'] );
+				}
+				if ( '' !== (string) $r['number'] ) {
+					$no[ $p ][] = (string) $r['number'];
+				}
+			}
+		}
+		$out['fidan']            = array( 'label' => __( 'Saplings of the person', 'flx-certificates' ), 'sample' => '3', 'values' => array_map( 'number_format_i18n', $f ) );
+		$out['sertifika_sayisi'] = array( 'label' => __( 'Certificates of the person', 'flx-certificates' ), 'sample' => '1', 'values' => array_map( 'number_format_i18n', $n ) );
+		$out['sertifika_link']   = array( 'label' => __( 'Certificate link', 'flx-certificates' ), 'sample' => home_url( '/sertifika/ABC123' ), 'values' => $link );
+		$out['sertifika_no']     = array(
+			'label'  => __( 'Certificate number', 'flx-certificates' ),
+			'sample' => '2026-0042',
+			'values' => array_map(
+				static function ( $l ) {
+					return implode( ', ', $l );
+				},
+				$no
+			),
+		);
+		return $out;
+	},
+	10,
+	3
+);
+
 add_filter(
 	'flx_event_stats',
 	static function ( $out, $e ) {

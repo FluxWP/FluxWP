@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux Certificates
  * Description:       Sertifika şablonları, canlı PDF önizlemeli sertifika oluşturma, /sertifika/{kod} doğrulama sayfası, e-posta / SMS (Netgsm) / WhatsApp (Evolution API) gönderimi, asenkron kuyruk, kişi kaydı ve detaylı loglar.
- * Version:           2.0.2
+ * Version:           2.1.0
  * Domain Path:       /languages
  * Requires at least: 6.4
  * Requires PHP:      7.4
@@ -17,7 +17,7 @@ require_once __DIR__ . '/languages/locale-loader.php'; // Native locale fallback
 require_once __DIR__ . '/includes/flx-brand/loader.php'; // FluxWP signature (tools/brand).
 require_once __DIR__ . '/includes/flx-background.php'; // Portable worker support (tools/background).
 
-define( 'FLXS_VERSION', '2.0.2' );
+define( 'FLXS_VERSION', '2.1.0' );
 define( 'FLXS_DB_VERSION', '6' );
 define( 'FLXS_FILE', __FILE__ );
 define( 'FLXS_DIR', plugin_dir_path( __FILE__ ) );

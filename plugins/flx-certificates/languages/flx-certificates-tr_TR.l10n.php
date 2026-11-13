@@ -3,6 +3,9 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Saplings of the person' => 'Kişinin fidanı',
+  'Certificates of the person' => 'Kişinin sertifika sayısı',
+  'Certificate number' => 'Sertifika numarası',
   'Add the certificates without an event (%s) to this event' => 'Etkinliksiz sertifikaları (%s) bu etkinliğe ekle',
   'Certificate dashboard' => 'Sertifika paneli',
   'certificates' => 'sertifika',

@@ -258,3 +258,19 @@ FLXCRM_Event_Messages::send( 12, array(
 	'send_at'  => '2026-11-20T19:00',  // boş = hemen
 ) ); // array|WP_Error
 ```
+
+### Mesaj değerleri (0.7.0)
+
+- Etkinlik geneli (metne CRM yazar): `{etkinlik}`, `{etkinlik_tarihi}`, `{etkinlik_saati}`, `{etkinlik_yeri}`, `{etkinlik_link}`; ekleme `flx_event_message_vars` ( `$out[ key ] = [ etiket, değer ]`, `$e` ).
+- Kişiye özel: `{ad}`, `{ad_soyad}` (Flux Mail doldurur) + paketlerin `flx_event_vars` filtresiyle verdikleri:
+
+```php
+add_filter( 'flx_event_vars', function ( $out, $event_id, $person_ids ) {
+	$out['tutar'] = array( 'label' => __( 'Donation amount', 'my' ), 'sample' => '450 ₺', 'values' => array( 12 => '300 ₺' ) );
+	return $out;
+}, 10, 3 );
+```
+
+  Flux Certificates: `{fidan}`, `{sertifika_sayisi}`, `{sertifika_link}`, `{sertifika_no}`. Kişiye özel değer alıcıyla birlikte gider (`$recipients[] = [ 'to', 'name', 'vars' => [ … ] ]`); Flux Mail `flxi_campaign_features` içinde `recipient_vars` bildirmezse bu değerler ekranda kapalıdır ve kullanan metin reddedilir.
+- Önizleme: etkinliğin ilk 300 kişisi (ada göre) seçilebilir; WhatsApp/SMS balonu ve e-posta görünümü, boş kalan değerler uyarıyla.
+
