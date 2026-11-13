@@ -561,6 +561,29 @@ final class FLXCRM_Page_Events {
 		return $out;
 	}
 
+	/** Mini dashboard of a send: reached, read, replied, opted out, failed. */
+	private static function send_numbers( array $row ) {
+		$g     = FLXCRM_Event_Messages::send_engagement( $row );
+		$pct   = function ( $n ) use ( $g ) {
+			return $g['total'] ? sprintf( /* translators: %s: percent */ __( '%s%%', 'flx-crm' ), number_format_i18n( round( $n / $g['total'] * 100 ) ) ) : '';
+		};
+		$tiles = array(
+			array( 'send', __( 'Reached', 'flx-crm' ), $g['delivered'], true, '' ),
+			array( 'check', __( 'Read', 'flx-crm' ), $g['read'], true, '' ),
+			array( 'message', __( 'Replied', 'flx-crm' ), $g['replied'], true, '' ),
+			array( 'x', __( 'Turned off messages', 'flx-crm' ), $g['optout'], false, 'is-warn' ),
+			array( 'alert', __( 'Failed', 'flx-crm' ), $g['failed'], false, 'is-bad' ),
+		);
+		echo '<div class="flxcrm-sendnums">';
+		foreach ( $tiles as $t ) {
+			if ( null === $t[2] ) {
+				continue;
+			}
+			echo '<div class="flxcrm-sendnums__i ' . esc_attr( $t[2] ? $t[4] : '' ) . '"><span>' . flxcrm_icon( $t[0], 13 ) . esc_html( $t[1] ) . '</span><b>' . esc_html( number_format_i18n( (int) $t[2] ) ) . '</b>' . ( $t[3] && $t[2] ? '<small>' . esc_html( $pct( (int) $t[2] ) ) . '</small>' : '' ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '</div>';
+	}
+
 	/** A send as a card: state, text, media, progress per channel, estimated finish and controls. */
 	private static function send_card( array $e, array $row, $full = false ) {
 		$id    = (int) $e['id'];
@@ -584,6 +607,9 @@ final class FLXCRM_Page_Events {
 			echo '<span class="flxcrm-sendcard__thumb is-file">' . flxcrm_icon( 'link', 18 ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		echo '<p class="flxcrm-sendcard__text">' . ( $full ? nl2br( esc_html( (string) $row['text'] ) ) : esc_html( (string) $row['text'] ) ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		if ( 'planned' !== $st[0] ) {
+			self::send_numbers( $row );
+		}
 		echo '<div class="flxcrm-sendcard__chs">';
 		$eta = 0;
 		foreach ( (array) $row['state'] as $ch => $s ) {

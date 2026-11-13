@@ -6,6 +6,7 @@
 - Clicking a send opens its page inside the CRM (no jump to the Flux Mail queue): the whole text, and who it went to per channel with Sent / Waiting / Failed filters, the error of a failed message and the time; it refreshes itself every minute while it runs.
 - Stop a send from its card; Pause and Resume show once Flux Mail declares `pause` in `flxi_campaign_features` (`flxi_pause_campaign` / `flxi_resume_campaign`). Finished channels are left as they are.
 - Estimated finish comes from Flux Mail's `flxi_campaign_eta()` when it declares `eta`; until then it is worked out from the pace so far. Recipients come from `flxi_campaign_recipients()` when Flux Mail declares `recipients`; until then from its queue, read only.
+- Mini dashboard on every send card: reached, read, replied, turned off messages (STOP / unsubscribe after this send) and failed. Read and replied come from Flux Mail's `flxi_campaign_engagement()` once it declares `engagement`; until then reached = sent and opt-outs come from Flux Mail's list (by campaign).
 - Overview › Last messages: rows open the send and show its state and estimated finish.
 - Fixed: the broken image after the text in the send list (the 📎 emoji became an image that did not load); the send's image is shown instead.
 

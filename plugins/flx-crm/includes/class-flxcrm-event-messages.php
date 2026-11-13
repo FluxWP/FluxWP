@@ -607,6 +607,49 @@ final class FLXCRM_Event_Messages {
 		return $out;
 	}
 
+	/**
+	 * How one campaign landed: delivered, read, replied, optout (null = not known). Flux Mail's
+	 * flxi_campaign_engagement() when it declares 'engagement'; else delivered = sent and opt-outs from its list, read only.
+	 */
+	public static function engagement( $cid, array $state ) {
+		$out = array( 'delivered' => (int) $state['sent'], 'read' => null, 'replied' => null, 'optout' => null );
+		if ( self::mail_has( 'engagement' ) && function_exists( 'flxi_campaign_engagement' ) ) {
+			foreach ( (array) flxi_campaign_engagement( (int) $cid ) as $k => $v ) {
+				if ( array_key_exists( $k, $out ) ) {
+					$out[ $k ] = null === $v ? null : (int) $v;
+				}
+			}
+			return $out;
+		}
+		if ( function_exists( 'flxi_table' ) ) {
+			global $wpdb;
+			$t = flxi_table( 'optouts' );
+			$quiet = $wpdb->suppress_errors( true ); // older Flux Mail has no opt-out list
+			$n     = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(DISTINCT recipient) FROM $t WHERE campaign_id = %d", (int) $cid ) ); // phpcs:ignore WordPress.DB
+			$wpdb->suppress_errors( $quiet );
+			$out['optout'] = null === $n ? null : (int) $n;
+		}
+		return $out;
+	}
+
+	/** engagement() summed over the channels of a send (a value stays null when no channel knows it). */
+	public static function send_engagement( array $row ) {
+		$sum = array( 'total' => 0, 'delivered' => null, 'read' => null, 'replied' => null, 'optout' => null, 'failed' => 0 );
+		foreach ( (array) $row['state'] as $ch => $s ) {
+			if ( ! $s ) {
+				continue;
+			}
+			$sum['total']  += (int) $s['total'];
+			$sum['failed'] += (int) $s['failed'];
+			foreach ( self::engagement( (int) $s['cid'], $s ) as $k => $v ) {
+				if ( null !== $v ) {
+					$sum[ $k ] = (int) $sum[ $k ] + $v;
+				}
+			}
+		}
+		return $sum;
+	}
+
 	/** Pause, resume or cancel every channel of one send. */
 	public static function post_control() {
 		check_admin_referer( 'flxcrm_event_msg_control' );
