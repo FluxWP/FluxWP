@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.15
+- İstek hem uygulama belirteci hem oturum çerezi taşıyınca (uygulamanın web görünümü çerez bırakabilir) "Belirteç geçersiz ya da süresi dolmuş" hatası dönüyordu. Artık belirteç gelmişse kullanıcıyı yalnız belirteç belirler: geçerli belirteç kendi kullanıcısını açar, çerezdeki kullanıcı ve nonce kontrolü devreye girmez. Geçersiz, iptal edilmiş ya da süresi dolmuş belirteç çerezle kurtarılmaz, yine 401 döner.
+
 ## 0.4.14
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

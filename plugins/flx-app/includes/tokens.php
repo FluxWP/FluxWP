@@ -129,10 +129,16 @@ function flxapp_current_token( $set = null ) {
 	return $row;
 }
 
+/*
+ * Belirteç gelmişse kullanıcıyı yalnız belirteç belirler. İstek aynı zamanda oturum çerezi taşısa da
+ * (uygulamanın web görünümü çerez bırakabilir) çerezdeki kullanıcı yok sayılır: geçerli belirteç kendi
+ * kullanıcısını açar, geçersiz ya da süresi dolmuş belirteç çerezle kurtarılmaz (0 döner, aşağıda 401).
+ * Başka öneklerdeki Bearer (başka eklentilerin JWT'si vb.) bize gelmez, dokunulmaz.
+ */
 add_filter(
 	'determine_current_user',
 	function ( $user_id ) {
-		if ( $user_id || ! flxapp_is_rest_request() ) {
+		if ( ! flxapp_is_rest_request() ) {
 			return $user_id;
 		}
 		$token = flxapp_request_token();
@@ -141,11 +147,11 @@ add_filter(
 		}
 		$row = flxapp_find( $token );
 		if ( ! flxapp_is_live( $row ) || 'refresh' === $row['kind'] ) {
-			return $user_id;
+			return 0;
 		}
 		$user = get_userdata( (int) $row['user_id'] );
 		if ( ! $user ) {
-			return $user_id;
+			return 0;
 		}
 		flxapp_current_token( $row );
 		if ( time() - (int) $row['last_used'] > 300 ) {
@@ -161,7 +167,8 @@ add_filter(
 );
 
 /*
- * Belirteçle gelen REST isteği çerez nonce'u istemez; WordPress bunu zaten yalnız çerez oturumunda arar.
+ * Belirteçle gelen REST isteği çerez nonce'u istemez. Çerez de geçerliyse WordPress (rest_cookie_check_errors,
+ * öncelik 100) nonce yok diye kullanıcıyı sıfırlar; bu yüzden belirteçle doğrulanan istekte true döneriz.
  * Belirteç verilmiş ama geçersizse 401 dön ki istemci yenilemeyi denesin (sessizce anonim olmasın).
  */
 add_filter(
@@ -170,10 +177,13 @@ add_filter(
 		if ( null !== $result && true !== $result ) {
 			return $result;
 		}
-		if ( '' !== flxapp_request_token() && ! flxapp_current_token() ) {
+		if ( '' === flxapp_request_token() ) {
+			return $result;
+		}
+		if ( ! flxapp_current_token() ) {
 			return new WP_Error( 'flxapp_invalid_token', __( 'The token is invalid or expired.', 'flx-app' ), array( 'status' => 401 ) );
 		}
-		return $result;
+		return true;
 	},
 	50
 );
