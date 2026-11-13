@@ -3275,5 +3275,7 @@ return array(
   'Attachments' => 'Attachments',
   'The upload has expired. Please add the file again.' => 'The upload has expired. Please add the file again.',
   'Enlarge photo' => 'Enlarge photo',
+  'Bulk send' => 'Bulk send',
+  'Open send details' => 'Open send details',
  ),
 );

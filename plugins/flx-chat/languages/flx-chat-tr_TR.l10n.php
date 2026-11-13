@@ -3290,5 +3290,7 @@ return array(
   'Attachments' => 'Ekler',
   'The upload has expired. Please add the file again.' => 'Yükleme süresi doldu. Dosyayı yeniden ekleyin.',
   'Enlarge photo' => 'Fotoğrafı büyüt',
+  'Bulk send' => 'Toplu gönderim',
+  'Open send details' => 'Gönderim detayını aç',
  ),
 );

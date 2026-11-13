@@ -92,6 +92,7 @@
 		image: 'M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z',
 		doc: 'M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z',
 		play: 'M8 5v14l11-7z',
+		campaign: 'M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z',
 		pause: 'M6 19h4V5H6v14zm8-14v14h4V5h-4z',
 		download: 'M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z',
 		note: 'M19 3H4.99C3.89 3 3 3.9 3 5l.01 14c0 1.1.89 2 1.99 2h10l6-6V5c0-1.1-.9-2-2-2zM7 8h10v2H7V8zm5 6H7v-2h5v2zm2 5.5V14h5.5L14 19.5z',
@@ -1371,6 +1372,13 @@
 				type: 'button', class: 'flxc-quote flxc-quote-' + m.quoted.dir,
 				onclick: function () { jumpTo(m.quoted.id); }
 			}, h('strong', { text: m.quoted.dir === 'in' ? (S.chats.get(S.active) || {}).title || '' : t('Siz') }), h('span', { text: m.quoted.body })));
+		}
+		// 1.48.0: toplu gönderim (kampanya / etkinlik) etiketi; tıklayınca gönderim detayı açılır.
+		if (m.origin && m.origin.label && !m.deleted) {
+			var oTitle = t('Toplu gönderim') + ': ' + m.origin.label;
+			b.appendChild(m.origin.url
+				? h('a', { class: 'flxc-origin', href: m.origin.url, target: '_blank', rel: 'noopener', title: oTitle + ' · ' + t('Gönderim detayını aç') }, icon('campaign'), h('span', { text: m.origin.label }), icon('open', 'flxc-origin-go'))
+				: h('span', { class: 'flxc-origin', title: oTitle }, icon('campaign'), h('span', { text: m.origin.label })));
 		}
 		b.appendChild(content(m));
 		// 1.45.0: fotoğraf/video varsa balon medya genişliğinde; açıklama metni medyanın genişliğine sarılır.
