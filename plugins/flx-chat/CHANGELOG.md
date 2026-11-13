@@ -7,6 +7,7 @@
 - Kişi bilgisinde fotoğrafa basınca büyük önizleme açılır.
 - Medya tek kopya saklanır: dosya adı içeriğin özeti (`files/<ab>/<sha1>.<uzantı>`). Aynı video Çağrı Merkezi'nden ya da kampanyadan yüzlerce kişiye gitse de diskte bir dosya olur; gelen medyada da aynı. Sohbet geçmişi temizlenince dosya, başka mesaj kullanmıyorsa silinir.
 - Eski medya (her mesaja ayrı kopya) yönetici sayfaları açıldıkça arka planda küçük parçalarla tek kopyaya taşınır (30 sn'de bir, parça başına en fazla 150 mesaj / 8 sn). Kopya ancak hiçbir mesaj artık onu göstermiyorsa silinir; sonuç `flxc_media_dedupe` seçeneğinde (taşınan, birleşen, kazanılan bayt).
+- Giden mesaj ulaşınca / okununca zamanı mesaj meta'sına `delivered_at` / `read_at` (Unix sn) olarak yazılır (Flux Mail gönderim panosu için).
 - Yeni filtreler `flxc_avatar_open_ttl`, `flxc_avatar_stale_ttl`, `flxc_chat_avatar_url`.
 
 ## 1.46.0

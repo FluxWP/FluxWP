@@ -481,7 +481,20 @@ function flxc_ingest_status( $conn_id, array $d ) {
 	}
 	if ( 'out' === $m['direction'] ) {
 		if ( flxc_status_rank( $status ) > flxc_status_rank( $m['status'] ) || ( 'failed' === $status && 'sent' === $m['status'] ) ) {
-			flxc_update_message( $m['id'], array( 'status' => $status ) );
+			$upd = array( 'status' => $status );
+			// 1.47.0: ulaştı / okundu zamanı (Unix sn) meta'ya yazılır; Flux Mail gönderim panosu okur.
+			$rank = flxc_status_rank( $status );
+			if ( $rank >= flxc_status_rank( 'delivered' ) ) {
+				$meta = flxc_decode( $m['meta'] );
+				if ( empty( $meta['delivered_at'] ) ) {
+					$meta['delivered_at'] = time();
+				}
+				if ( $rank >= flxc_status_rank( 'read' ) && empty( $meta['read_at'] ) ) {
+					$meta['read_at'] = time();
+				}
+				$upd['meta'] = $meta;
+			}
+			flxc_update_message( $m['id'], $upd );
 		}
 	} elseif ( ! $from_me && 'read' === $status ) {
 		// Gelen mesaj başka bir cihazda (telefon) okundu.
