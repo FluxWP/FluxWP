@@ -177,6 +177,26 @@ flxi_campaign_recipients( $cid, array( 'status' => 'failed,skipped', 'per_page' 
 - Tahmin WhatsApp'ta ban korumasının kurallarını ortalama beklemeyle canlandırır (sessiz saat, saatlik/günlük sınır, ısınma, mola, aynı bağlantıda öndeki kampanyalar); e-postada tur başına sayı ve günlük posta kotası. Sağlayıcı yavaşlığı ve yeniden denemeler süreyi uzatabilir.
 - `flxi_cancel_campaign()` duraklatılmış satırları da iptal eder. Eylemler: `flxi_campaign_paused`, `flxi_campaign_resumed` ( `$cid` ). Filtre: `flxi_campaign_eta` ( `$unix, $kampanya, $kalan` ).
 
+### Etkileşim: ulaştı, okudu, cevap, IPTAL (1.20.0+)
+
+```php
+if ( in_array( 'engagement', apply_filters( 'flxi_campaign_features', array() ), true ) ) {
+	$e = flxi_campaign_engagement( $cid );
+	// [ channel, sent, delivered, read, replied, optout, window_hours ]  bilinmeyen alan null (2 dk önbellek)
+}
+// Alıcı satırlarında: delivered, read, replied, optout (bool|null), delivered_at, read_at, replied_at (GMT|null)
+flxi_campaign_recipients( $cid, array( 'per_page' => 50 ) );
+```
+
+| | WhatsApp | SMS (Netgsm) | E-posta |
+|---|---|---|---|
+| delivered | Flux Chat çift tik (ya da kişi yazdıysa) | teslim raporu | gönderildi |
+| read | mavi tik (ya da kişi yazdıysa) | null | null (açılma takibi yok) |
+| replied | gönderimden sonra 72 saatte gelen mesaj (IPTAL/BAŞLA hariç) | 0 (gelen SMS okunmuyor) | null |
+| optout | bu gönderimden sonra IPTAL (`optouts.campaign_id`) | aynı | abonelikten çıkanlar |
+
+WhatsApp eşleşmesi: kuyruk satırındaki mesaj kimliği (`ext_id`), eski satırlarda gönderim saatine 10 dk içinde en yakın giden mesaj. Flux Chat yoksa WhatsApp alanları null. `delivered_at` / `read_at` Flux Chat mesaj `meta.delivered_at` / `meta.read_at` (Unix) tutarsa dolar. Cevap süresi `flxi_engagement_reply_window` (saniye) ile değişir.
+
 ### WhatsApp ban koruması (1.17.0+)
 
 Evolution API / Flux WPAPI bağlantılarında, **yalnız kuyruktaki toplu gönderimlere** uygulanır (sohbet cevapları, sertifika, tekil `flxi_send_message()` beklemez). Ayarlar bağlantı başına, Bağlantılar › düzenle › "Ban koruması":

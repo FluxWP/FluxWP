@@ -1846,5 +1846,9 @@ return array(
   'Sending paused. Press Resume to continue where it stopped.' => 'Gönderim duraklatıldı. Kaldığı yerden sürdürmek için Devam et\'e basın.',
   'Sending resumed.' => 'Gönderim sürüyor.',
   'Estimated finish:' => 'Tahmini bitiş:',
+  '%s reached' => '%s ulaştı',
+  '%s read' => '%s okudu',
+  '%s replied' => '%s cevap verdi',
+  '%s opted out' => '%s IPTAL',
  ),
 );

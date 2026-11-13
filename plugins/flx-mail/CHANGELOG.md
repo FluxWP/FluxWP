@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.20.0 — 2026-11-13
+- Gönderim bazlı etkileşim: kaç kişiye **ulaştı**, kaçı **okudu**, kaçı **cevap verdi** (gönderimden sonraki 72 saatte, IPTAL/BAŞLA hariç), kaçı **IPTAL** yazdı. Gönder › Son gönderimler'de her satırın altında.
+- WhatsApp'ta veriler Flux Chat'ten gelir (Flux Mail'in gönderdiği mesaj orada telefondan giden olarak görünür, çift/mavi tik güncellenir). Kuyruk satırı artık gönderilen mesaj kimliğini saklar (`ext_id`, DB 5); eski satırlar gönderim saatine en yakın mesajla eşleşir. SMS'te Netgsm teslim raporu, e-postada gönderildi = ulaştı (açılma takibi yok).
+- API: `flxi_campaign_engagement( $id )`, `flxi_campaign_recipients()` satırlarında `delivered`, `read`, `replied`, `optout`, `delivered_at`, `read_at`, `replied_at`; özellik `engagement`; filtreler `flxi_campaign_engagement`, `flxi_engagement_reply_window`.
+
 ## 1.19.0 — 2026-11-13
 - Toplu gönderimi **duraklat / devam ettir** (WhatsApp, e-posta, SMS): Gönder › Son gönderimler ve Kuyruk ekranında düğme. O an giden tek mesaj biter, kalanlar bekler; Devam et kaldığı yerden sürdürür. Kuyruk işleyicisi değişmedi (bekleyen satırlar `paused` durumuna alınır), çalışan gönderim etkilenmez.
 - **Tahmini bitiş**: WhatsApp'ta ban koruması (bekleme aralığı, mola, saatlik/günlük sınır, ısınma, sessiz saatler) ve aynı numarada sırada önde bekleyen gönderimler, e-postada tur başına sayı ve günlük posta kotası hesaba katılır.

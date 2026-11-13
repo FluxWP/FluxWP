@@ -154,6 +154,7 @@ function flxi_install_tables() {
 			scheduled_at datetime NOT NULL,
 			sent_at datetime NULL,
 			log_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			ext_id varchar(120) NOT NULL DEFAULT '',
 			PRIMARY KEY  (id),
 			KEY campaign_status (campaign_id,status),
 			KEY status_time (status,scheduled_at)
