@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 2.29.1
+- Telefon alanı (ülke kodlu ortak alan) yönetim panelinde diğer alanlarla aynı yükseklikte, köşede ve kenarlık renginde (flx-brand 1.6.2).
+
 ## 2.29.0
 - "Bağış ekle" sadeleşti: solda bağış + bağışçı, sağda canlı özet (toplam, kime kaç adet/sertifika gidecek) ve ödeme. Tür ve seçenek tek listede, tutar adet × fiyattan kendiliğinden hesaplanır. Farklı birim fiyat ve serbest tutar yalnız gerekince açılır. Yöntem (Havale / Nakit / Diğer) ve durum (Ödendi / Ödeme bekleniyor) tek tıkla seçilir. Hesap yalnız havalede, referans ve not "+ ekle" altında görünür.
 - Başka kişiler adına bağış: her kişiye ad, WhatsApp ve e-posta girilir, her biri 1 adet ve kendi sertifikasını alır (sitedeki "Başka bir kişi ekle" ile aynı). Kalan adetler 1. kişide kalır. WhatsApp ya da e-postası boş kişinin sertifikası bağışçıya gider.
