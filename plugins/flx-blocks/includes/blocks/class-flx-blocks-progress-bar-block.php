@@ -255,7 +255,7 @@ class Flx_Blocks_Progress_Bar_Block extends Flx_Blocks_Abstract_Block implements
 	 */
 	public function build_html( $attributes, $unique_id, $content, $block_instance ) {
 
-		$css = new Flx_Blocks_CSS();
+		$css = Flx_Blocks_CSS::get_instance();
 
 		$simple_id      = str_replace( '-', '', esc_attr( $unique_id ) );
 		$progress_color = ! empty( $attributes['progressColor'] ) ? $css->sanitize_color( $attributes['progressColor'], $attributes['progressOpacity'] ) : 'var(--global-palette1, #2B6CB0)';

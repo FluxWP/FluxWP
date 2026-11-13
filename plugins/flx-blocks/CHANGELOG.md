@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3
+- Performans: İlerleme çubuğu bloğu olan sayfalarda tüm blok CSS'i (`flxbk_css`) iki kez basılıyordu (blok ikinci bir CSS nesnesi açıp yazdırma kancasını yineliyordu). Artık tek kez basılıyor (Qurban Global ana sayfası 399 KB → 277 KB, satır içi blok CSS'i 244 KB → 122 KB).
+- Görsel bloğu: yalnız adresle eklenen görsellere (desenler, ön ayarlar) genişlik/yükseklik, ortam kütüphanesindeyse `srcset`/`sizes` eklenir; şablondan doğrudan basılan görsellerde ilk görseller hemen, sonrakiler `loading="lazy"` ve `decoding="async"` ile yüklenir. Kapatmak için `flxbk_image_add_dimensions` / `flxbk_image_loading_optimization` filtreleri.
+- Akordiyon: başlık düğmesi sayfanın yazı tipini kullanıyor (önceden tarayıcı varsayılanı Arial çıkıyordu).
+
 ## 0.2.2
 - Design Library: header/footer patterns whose navigation block has no menu (WooCommerce and others) no longer list every page of the site. In the preview and after insertion they get the site's own menu: the top-level items of the header navigation (submenus become plain links, at most 6; filters `flxbk_library_menu_items`, `flxbk_library_menu_links`).
 

@@ -393,7 +393,171 @@ class Flx_Blocks_Image_Block extends Flx_Blocks_Abstract_Block {
 		if( !empty( $attributes['urlSticky']) ) {
 			$this->enqueue_script('flx-blocks-header-sticky-image');
 		}
-		return $content;
+		return $this->add_loading_attributes( $this->add_image_dimensions( $attributes, $content ) );
+	}
+
+	/**
+	 * Images saved with only a URL (patterns, presets) have no width/height,
+	 * srcset or lazy loading. Resolve the attachment (or the local file) and
+	 * add the missing attributes so WordPress can optimise the tag.
+	 *
+	 * @param array  $attributes Block attributes.
+	 * @param string $content    Block HTML.
+	 * @return string
+	 */
+	public function add_image_dimensions( $attributes, $content ) {
+		if ( ! apply_filters( 'flxbk_image_add_dimensions', true, $attributes ) || false === strpos( $content, '<img' ) ) {
+			return $content;
+		}
+		if ( ! preg_match( '/<img\b[^>]*>/i', $content, $m ) ) {
+			return $content;
+		}
+		$tag = $m[0];
+		if ( preg_match( '/\swidth=["\']?\d/i', $tag ) || preg_match( '/\sheight=["\']?\d/i', $tag ) ) {
+			return $content;
+		}
+		if ( ! preg_match( '/\ssrc=["\']([^"\']+)["\']/i', $tag, $src ) ) {
+			return $content;
+		}
+		$url  = html_entity_decode( $src[1], ENT_QUOTES );
+		$info = $this->image_info( $url, empty( $attributes['id'] ) ? 0 : (int) $attributes['id'] );
+		if ( empty( $info['width'] ) || empty( $info['height'] ) ) {
+			return $content;
+		}
+		$new = $tag;
+		if ( ! empty( $info['id'] ) && ! preg_match( '/wp-image-\d+/', $new ) ) {
+			if ( preg_match( '/\sclass=(["\'])/i', $new ) ) {
+				$new = preg_replace( '/\sclass=(["\'])/i', ' class=$1wp-image-' . (int) $info['id'] . ' ', $new, 1 );
+			} else {
+				$new = preg_replace( '/^<img\b/i', '<img class="wp-image-' . (int) $info['id'] . '"', $new, 1 );
+			}
+		}
+		$extra = ' width="' . (int) $info['width'] . '" height="' . (int) $info['height'] . '"';
+		// Outside a ratio box the browser must keep the aspect ratio when max-width shrinks the image.
+		if ( empty( $attributes['useRatio'] ) && ! preg_match( '/\sstyle=/i', $new ) ) {
+			$extra .= ' style="height:auto"';
+		}
+		$new = preg_replace( '/^<img\b/i', '<img' . $extra, $new, 1 );
+		$pos = strpos( $content, $tag );
+		return substr_replace( $content, $new, $pos, strlen( $tag ) );
+	}
+
+	/**
+	 * Inside post content WordPress adds loading/decoding/fetchpriority itself.
+	 * Blocks rendered straight from a block template (patterns in a template)
+	 * get nothing from core, so do the same here: the first images on the
+	 * page stay eager, later ones are lazy-loaded.
+	 *
+	 * @param string $content Block HTML.
+	 * @return string
+	 */
+	public function add_loading_attributes( $content ) {
+		if ( is_admin() || is_feed() || doing_filter( 'the_content' ) || doing_filter( 'widget_block_content' ) || ! function_exists( 'wp_increase_content_media_count' ) ) {
+			return $content;
+		}
+		if ( ! preg_match( '/<img\b[^>]*>/i', $content, $m ) ) {
+			return $content;
+		}
+		$tag = $m[0];
+		if ( preg_match( '/\sloading=/i', $tag ) || ! preg_match( '/\swidth=["\']?(\d+)/i', $tag, $w ) || ! preg_match( '/\sheight=["\']?(\d+)/i', $tag, $h ) ) {
+			return $content;
+		}
+		if ( ! apply_filters( 'flxbk_image_loading_optimization', true, $tag ) ) {
+			return $content;
+		}
+		$extra = preg_match( '/\sdecoding=/i', $tag ) ? '' : ' decoding="async"';
+		if ( wp_increase_content_media_count( 0 ) < wp_omit_loading_attr_threshold() ) {
+			/** This filter is documented in wp-includes/media.php */
+			if ( (int) $w[1] * (int) $h[1] >= (int) apply_filters( 'wp_min_priority_img_pixels', 50000 ) ) {
+				wp_increase_content_media_count();
+			}
+		} elseif ( wp_lazy_loading_enabled( 'img', 'flx_image' ) ) {
+			$extra .= ' loading="lazy"';
+		}
+		if ( '' === $extra ) {
+			return $content;
+		}
+		$new = preg_replace( '/^<img\b/i', '<img' . $extra, $tag, 1 );
+		return substr_replace( $content, $new, strpos( $content, $tag ), strlen( $tag ) );
+	}
+
+	/**
+	 * Width/height (and attachment ID) for an image URL, cached.
+	 *
+	 * @param string $url Image URL.
+	 * @param int    $id  Attachment ID from the block, if any.
+	 * @return array{id:int,width:int,height:int}
+	 */
+	public function image_info( $url, $id = 0 ) {
+		static $memo = array();
+		$key = md5( $id . '|' . $url );
+		if ( isset( $memo[ $key ] ) ) {
+			return $memo[ $key ];
+		}
+		$cached = get_transient( 'flxbk_img_' . $key );
+		if ( is_array( $cached ) ) {
+			return $memo[ $key ] = $cached;
+		}
+		$info = array( 'id' => 0, 'width' => 0, 'height' => 0 );
+		if ( ! $id ) {
+			$id = (int) attachment_url_to_postid( $url );
+			if ( ! $id ) {
+				// Sized URL (photo-1024x768.jpg): look up the original file.
+				$full = preg_replace( '/-\d+x\d+(\.[a-z0-9]+)(\?.*)?$/i', '$1', $url );
+				if ( $full !== $url ) {
+					$id = (int) attachment_url_to_postid( $full );
+				}
+			}
+		}
+		if ( $id && wp_attachment_is_image( $id ) ) {
+			$meta = wp_get_attachment_metadata( $id );
+			$dims = is_array( $meta ) ? wp_image_src_get_dimensions( $url, $meta, $id ) : false;
+			if ( $dims ) {
+				$info = array( 'id' => $id, 'width' => (int) $dims[0], 'height' => (int) $dims[1] );
+			}
+		}
+		if ( ! $info['width'] ) {
+			$file = $this->local_path( $url );
+			if ( $file ) {
+				$size = function_exists( 'wp_getimagesize' ) ? wp_getimagesize( $file ) : @getimagesize( $file ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+				if ( $size && $size[0] && $size[1] ) {
+					$info = array( 'id' => 0, 'width' => (int) $size[0], 'height' => (int) $size[1] );
+				} elseif ( preg_match( '/\.svg$/i', $file ) ) {
+					$svg = (string) file_get_contents( $file, false, null, 0, 4096 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+					if ( preg_match( '/viewBox=["\']\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/i', $svg, $vb ) ) {
+						$info = array( 'id' => 0, 'width' => (int) round( (float) $vb[1] ), 'height' => (int) round( (float) $vb[2] ) );
+					}
+				}
+			}
+		}
+		set_transient( 'flxbk_img_' . $key, $info, $info['width'] ? WEEK_IN_SECONDS : HOUR_IN_SECONDS );
+		return $memo[ $key ] = $info;
+	}
+
+	/**
+	 * Map a URL on this site to a readable local file path.
+	 *
+	 * @param string $url URL.
+	 * @return string Empty when not local.
+	 */
+	private function local_path( $url ) {
+		$path = strtok( $url, '?#' );
+		$maps = array(
+			content_url() => WP_CONTENT_DIR,
+			site_url()    => ABSPATH,
+		);
+		foreach ( $maps as $base => $dir ) {
+			foreach ( array( $base, set_url_scheme( $base, 'http' ), set_url_scheme( $base, 'https' ), wp_make_link_relative( $base ) ) as $prefix ) {
+				if ( '' !== $prefix && 0 === strpos( $path, $prefix ) ) {
+					$rel  = rawurldecode( substr( $path, strlen( $prefix ) ) );
+					$file = wp_normalize_path( untrailingslashit( $dir ) . '/' . ltrim( $rel, '/' ) );
+					if ( false === strpos( $rel, '..' ) && preg_match( '/\.(jpe?g|png|gif|webp|avif|svg)$/i', $file ) && is_readable( $file ) ) {
+						return $file;
+					}
+				}
+			}
+		}
+		return '';
 	}
 
 	/**
