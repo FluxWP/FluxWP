@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.11
+- Verileri sıfırlama ve kaldırma `GLOB_BRACE` kullanmıyor: Alpine/musl PHP'de (Docker) bu sabit tanımsız olduğu için fatal hata veriyordu.
+
 ## 0.4.10
 - İçe aktarılan eski siparişler bağış olayı olarak sayılmaz (`flx_silent`).
 

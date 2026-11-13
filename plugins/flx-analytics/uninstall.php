@@ -23,8 +23,9 @@ foreach ( wp_roles()->role_objects as $flxan_role ) {
 $flxan_up  = wp_upload_dir( null, false );
 $flxan_dir = rtrim( $flxan_up['basedir'], '/' ) . '/flx-analytics';
 if ( is_dir( $flxan_dir ) ) {
-	foreach ( (array) glob( $flxan_dir . '/{,.}*', GLOB_BRACE ) as $flxan_f ) {
-		if ( is_file( $flxan_f ) ) {
+	foreach ( (array) scandir( $flxan_dir ) as $flxan_n ) {
+		$flxan_f = $flxan_dir . '/' . $flxan_n;
+		if ( '' !== (string) $flxan_n && is_file( $flxan_f ) ) {
 			@unlink( $flxan_f ); // phpcs:ignore
 		}
 	}

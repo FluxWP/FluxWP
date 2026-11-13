@@ -137,7 +137,8 @@ function flxai_ws_remove( $rel ) {
 		return ! is_wp_error( FLXFM_FS::trash( $rel ) );
 	}
 	if ( is_dir( $abs ) ) {
-		foreach ( (array) glob( $abs . '/{,.}[!.,!..]*', GLOB_BRACE ) as $f ) {
+		foreach ( array_diff( (array) scandir( $abs ), array( '.', '..', '' ) ) as $n ) {
+			$f = $abs . '/' . $n;
 			is_dir( $f ) ? flxai_ws_remove( substr( $f, strlen( flxai_ws_base() ) + 1 ) ) : wp_delete_file( $f );
 		}
 		return @rmdir( $abs ); // phpcs:ignore
