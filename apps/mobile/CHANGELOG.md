@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.3
+- iPad: alt pencereler (hesaplar, menü, onay, giriş formu) ekranın ortasında, tutamaçsız bir pencere olarak açılır. Önceden içeriğe göre boyutlanan sistem penceresi ekranın ortasında, altı boş ve tutamaçlı yarım bir alt sayfa gibi duruyordu. iPhone ve Android değişmedi.
+
 ## 0.4.2
 - Flux AI menüsü sitede yerel sohbet ekranını açar. Eklentinin bildirdiği ekran adı (`flxai-chat`) uygulamada tanınmadığı için menü web sayfasına düşüyordu.
 - Mağaza görselleri: Mesajlar listesi, sohbet ve Flux AI ekranları eklendi (iPhone/iPad, TR/EN, 9 görsel).
