@@ -730,17 +730,12 @@ function flxc_rest_avatar( WP_REST_Request $req ) {
 	if ( is_wp_error( $chat ) ) {
 		return $chat;
 	}
-	if ( time() - (int) $chat['avatar_at'] > DAY_IN_SECONDS || $req->get_param( 'force' ) ) {
-		$url = flxc_group_safe_avatar( $chat );
-		flxc_update_chat( $chat['id'], array( 'avatar' => $url, 'avatar_at' => time() ) );
-		$chat['avatar'] = $url;
-	}
-	return array( 'avatar' => $chat['avatar'] );
-}
-
-function flxc_group_safe_avatar( $chat ) {
-	$url = flxc_evo_profile_picture( $chat['conn'], flxc_chat_number( $chat ) );
-	return $url ? esc_url_raw( $url ) : '';
+	// 1.47.0: sohbet açılınca güncellik sunucuda kontrol edilir (sohbet başına en sık 10 dk'da bir); fotoğraf önbellekten verilir.
+	$changed = flxc_avatar_check( $chat, $req->get_param( 'force' ) ? 0 : flxc_avatar_open_ttl() );
+	return array(
+		'avatar'  => flxc_avatar_url( flxc_get_chat( $chat['id'] ) ),
+		'changed' => (bool) $changed,
+	);
 }
 
 function flxc_rest_ai( WP_REST_Request $req ) {

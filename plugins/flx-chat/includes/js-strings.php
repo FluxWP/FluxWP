@@ -441,6 +441,7 @@ function flxc_js_strings() {
 		'Sırada' => __( 'Queued', 'flx-chat' ),
 		'Henüz gönderilmedi' => __( 'Not sent yet', 'flx-chat' ),
 		'Büyüt' => __( 'Enlarge', 'flx-chat' ),
+		'Fotoğrafı büyüt' => __( 'Enlarge photo', 'flx-chat' ),
 		'Geçerli' => __( 'Valid', 'flx-chat' ),
 		'Sertifika gönderimi' => __( 'Certificate delivery', 'flx-chat' ),
 		'Görüntülenme' => __( 'Views', 'flx-chat' ),

@@ -3289,5 +3289,6 @@ return array(
   'Files are uploading, please wait.' => 'Dosyalar yükleniyor, biraz bekleyin.',
   'Attachments' => 'Ekler',
   'The upload has expired. Please add the file again.' => 'Yükleme süresi doldu. Dosyayı yeniden ekleyin.',
+  'Enlarge photo' => 'Fotoğrafı büyüt',
  ),
 );

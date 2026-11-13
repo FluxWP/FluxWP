@@ -989,3 +989,8 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 	#flxc-app .flxc-att { width: 64px; height: 64px; }
 	#flxc-app .flxc-att.is-document { width: 132px; }
 }
+
+/* 1.47.0: kişi detayında fotoğraf büyütülür */
+#flxc-app .flxc-info-av { padding: 0; border: 0; background: none; border-radius: 50%; cursor: zoom-in; display: inline-flex; transition: transform .15s, box-shadow .15s; }
+#flxc-app .flxc-info-av:hover { transform: scale(1.03); box-shadow: 0 0 0 4px var(--flxc-line); }
+#flxc-app .flxc-info-av:focus-visible { outline: 2px solid var(--flxc-accent); outline-offset: 3px; }

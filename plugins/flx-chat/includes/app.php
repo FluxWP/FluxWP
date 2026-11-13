@@ -119,7 +119,7 @@ function flxc_app_chat( $r, $last = null ) {
 		'id'       => (int) $r['id'],
 		'name'     => flxc_chat_title( $r ),
 		'phone'    => '' === (string) $r['phone'] && '@lid' === substr( (string) $r['jid'], -4 ) ? '' : flxc_format_phone( $r['phone'] ),
-		'avatar'   => (string) $r['avatar'],
+		'avatar'   => flxc_avatar_url( $r ),
 		'unread'   => (int) $r['unread'],
 		'last'     => $last ? array(
 			'text'     => flxc_preview_text( $last ),

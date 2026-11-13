@@ -377,7 +377,7 @@ function flxc_chat_for_js( $r, $last = null ) {
 		'title'     => flxc_chat_title( $r ),
 		'name'      => $r['name'],
 		'pushName'  => $r['push_name'],
-		'avatar'    => $r['avatar'],
+		'avatar'    => flxc_avatar_url( $r ),
 		'avatarAt'  => (int) $r['avatar_at'],
 		'labels'    => '' === $r['labels'] ? array() : explode( ',', $r['labels'] ),
 		'notes'     => (string) $r['notes'],
@@ -665,7 +665,7 @@ function flxc_new_incoming_since( $since ) {
 			'chat'   => (int) $r['chat_id'],
 			'title'  => flxc_chat_title( $chat ),
 			'body'   => flxc_preview_text( $r ),
-			'avatar' => $chat['avatar'],
+			'avatar' => flxc_avatar_url( $chat ),
 		);
 	}
 	unset( $c );
