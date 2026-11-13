@@ -3252,5 +3252,9 @@ return array(
   'Continuation: "vazgeçtim" stops the reminder' => 'Continuación: «vazgeçtim» detiene el recordatorio',
   'Continuation: complaint after a misread closes at once' => 'Continuación: tras un malentendido, la queja lo cierra al instante',
   'Goodbye reaction is 👍 or 🤲, never 🙏' => 'La reacción de despedida es 👍 o 🤲, nunca 🙏',
+  'Promotional messages' => 'Mensajes promocionales',
+  'Off (the person replied STOP)' => 'Desactivado (la persona respondió STOP)',
+  'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => 'No se envían mensajes promocionales ni recordatorios. Las respuestas a los mensajes de la persona sí se envían.',
+  'The person replied STOP to promotional messages.' => 'La persona respondió STOP a los mensajes promocionales.',
  ),
 );

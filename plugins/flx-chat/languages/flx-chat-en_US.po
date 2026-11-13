@@ -4986,3 +4986,15 @@ msgstr "Continuation: complaint after a misread closes at once"
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "Goodbye reaction is 👍 or 🤲, never 🙏"
+
+msgid "Promotional messages"
+msgstr "Promotional messages"
+
+msgid "Off (the person replied STOP)"
+msgstr "Off (the person replied STOP)"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+
+msgid "The person replied STOP to promotional messages."
+msgstr "The person replied STOP to promotional messages."

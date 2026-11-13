@@ -4986,3 +4986,15 @@ msgstr "续：误解后被追问时立即关闭"
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "告别反应为👍或🤲，绝不用🙏"
+
+msgid "Promotional messages"
+msgstr "推广消息"
+
+msgid "Off (the person replied STOP)"
+msgstr "已关闭（对方回复了 STOP）"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "不会发送推广消息和提醒。对方本人消息的回复仍会发送。"
+
+msgid "The person replied STOP to promotional messages."
+msgstr "对方已对推广消息回复 STOP。"

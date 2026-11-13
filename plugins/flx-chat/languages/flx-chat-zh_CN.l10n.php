@@ -3252,5 +3252,9 @@ return array(
   'Continuation: "vazgeçtim" stops the reminder' => '续：“vazgeçtim”停止提醒',
   'Continuation: complaint after a misread closes at once' => '续：误解后被追问时立即关闭',
   'Goodbye reaction is 👍 or 🤲, never 🙏' => '告别反应为👍或🤲，绝不用🙏',
+  'Promotional messages' => '推广消息',
+  'Off (the person replied STOP)' => '已关闭（对方回复了 STOP）',
+  'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => '不会发送推广消息和提醒。对方本人消息的回复仍会发送。',
+  'The person replied STOP to promotional messages.' => '对方已对推广消息回复 STOP。',
  ),
 );

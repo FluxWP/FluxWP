@@ -3252,5 +3252,9 @@ return array(
   'Continuation: "vazgeçtim" stops the reminder' => 'Devam: "vazgeçtim" hatırlatıcıyı durdurur',
   'Continuation: complaint after a misread closes at once' => 'Devam: yanlış anlamadan sonra itiraz gelince hemen kapatır',
   'Goodbye reaction is 👍 or 🤲, never 🙏' => 'Veda tepkisi 👍 ya da 🤲, asla 🙏',
+  'Promotional messages' => 'Tanıtım mesajları',
+  'Off (the person replied STOP)' => 'Kapalı (kişi IPTAL yazdı)',
+  'Promotional messages and reminders are not sent. Replies to the person\'s own messages still go.' => 'Tanıtım mesajları ve hatırlatıcılar gitmez. Kişinin kendi mesajlarına cevap verilir.',
+  'The person replied STOP to promotional messages.' => 'Kişi tanıtım mesajları için IPTAL yazdı.',
  ),
 );

@@ -4986,3 +4986,15 @@ msgstr "続き：誤解の後の苦情ですぐ停止"
 
 msgid "Goodbye reaction is 👍 or 🤲, never 🙏"
 msgstr "別れのリアクションは👍か🤲、🙏は使わない"
+
+msgid "Promotional messages"
+msgstr "プロモーションメッセージ"
+
+msgid "Off (the person replied STOP)"
+msgstr "オフ（STOPと返信済み）"
+
+msgid "Promotional messages and reminders are not sent. Replies to the person's own messages still go."
+msgstr "プロモーションメッセージとリマインダーは送信されません。本人からのメッセージへの返信は送信されます。"
+
+msgid "The person replied STOP to promotional messages."
+msgstr "この人はプロモーションメッセージにSTOPと返信しました。"
