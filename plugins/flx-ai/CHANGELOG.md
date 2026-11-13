@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.15.4
+- Telefon alanındaki doğrulama işareti sade: arka plansız, hafif kıvrımlı yeşil tik; geçersizde küçük kırmızı çarpı (flx-brand 1.6.3).
+
 ## 0.15.3
 - Telefon alanı (ülke kodlu ortak alan) yönetim panelinde diğer alanlarla aynı yükseklikte, köşede ve kenarlık renginde (flx-brand 1.6.2).
 

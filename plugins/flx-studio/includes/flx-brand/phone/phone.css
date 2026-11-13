@@ -51,13 +51,14 @@
 .flx-ph.is-bad .flx-ph__num { border-color: var(--flx-ph-bad) !important; }
 .flx-ph.is-bad .flx-ph__num:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--flx-ph-bad) 15%, transparent) !important; }
 .flx-ph__state {
-	position: absolute; top: 50%; right: 14px; width: 20px; height: 20px; margin-top: -10px;
-	display: grid; place-items: center; border-radius: 50%; pointer-events: none;
+	position: absolute; top: 50%; right: 12px; width: 18px; height: 18px; margin-top: -9px;
+	display: grid; place-items: center; pointer-events: none;
 	transform: scale(.6); opacity: 0; transition: transform .18s, opacity .18s;
 }
-.flx-ph__state svg { width: 12px; height: 12px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-.flx-ph.is-ok .flx-ph__state { background: var(--flx-ph-ok); opacity: 1; transform: none; }
-.flx-ph.is-bad .flx-ph__state { background: var(--flx-ph-bad); opacity: 1; transform: none; }
+.flx-ph__state svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.flx-ph.is-ok .flx-ph__state { color: var(--flx-ph-ok); opacity: 1; transform: none; }
+.flx-ph.is-bad .flx-ph__state { color: var(--flx-ph-bad); opacity: 1; transform: none; }
+.flx-ph.is-bad .flx-ph__state svg { width: 12px; height: 12px; stroke-width: 2; }
 .flx-ph__msg { grid-column: 1 / -1; margin: -2px 0 0; color: var(--flx-ph-bad); font-size: .85rem; }
 
 /* Country list */
@@ -95,9 +96,9 @@
 /* Dark colours. body.flx-dark only means "dark mode allowed" (FluxWP theme), so it applies while the device is dark,
    like the theme. A site switch (fluxwp.com: html.flxfw-dark / data-flxfw-theme) and the admin dark mode (html.flxa-dark) win. */
 @media (prefers-color-scheme: dark) {
-	html:not([data-flxfw-theme]) body.flx-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; }
+	html:not([data-flxfw-theme]) body.flx-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; --flx-ph-ok: #22C55E; --flx-ph-bad: #F87171; }
 }
-html.flxfw-dark .flx-ph, html.flxa-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; }
+html.flxfw-dark .flx-ph, html.flxa-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; --flx-ph-ok: #22C55E; --flx-ph-bad: #F87171; }
 
 /* 1.6.2: in wp-admin the field matches the other inputs (height, corners, border colour, text size). */
 body.wp-admin .flx-ph {
