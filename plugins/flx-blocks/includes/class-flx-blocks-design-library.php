@@ -217,6 +217,8 @@ class Flx_Blocks_Design_Library {
 			}
 		}
 
+		$items = self::tame_navigation( $items );
+
 		$labels = array(
 			'uncategorized' => __( 'Other', 'flx-blocks' ),
 			'flx-mine'      => __( 'My patterns', 'flx-blocks' ),
@@ -242,6 +244,159 @@ class Flx_Blocks_Design_Library {
 			'url'        => home_url( '/' ),
 			'categories' => $categories,
 			'items'      => array_values( $items ),
+		);
+	}
+
+	/**
+	 * Navigation blocks with no menu (no `ref`, no links) fall back to listing every page of the
+	 * site, which floods header/footer patterns (WooCommerce and others) in the preview and after
+	 * insertion. Give them the site's own menu instead: top-level items of the header navigation
+	 * (submenus become plain links), at most a handful.
+	 *
+	 * @param array $items Catalogue items.
+	 * @return array
+	 */
+	private static function tame_navigation( array $items ) {
+		$links = null;
+		foreach ( $items as $i => $item ) {
+			$content = isset( $item['content'] ) ? (string) $item['content'] : '';
+			if ( false === strpos( $content, '<!-- wp:navigation' ) || ! function_exists( 'parse_blocks' ) ) {
+				continue;
+			}
+			if ( null === $links ) {
+				$links = self::menu_links();
+			}
+			$changed = false;
+			$blocks  = self::fill_navigation( parse_blocks( $content ), $links, $changed );
+			if ( $changed ) {
+				$items[ $i ]['content'] = serialize_blocks( $blocks );
+			}
+		}
+		return $items;
+	}
+
+	/**
+	 * Walk blocks and give empty navigation blocks the menu links.
+	 *
+	 * @param array $blocks  Parsed blocks.
+	 * @param array $links   navigation-link blocks.
+	 * @param bool  $changed Set when a block was filled.
+	 * @return array
+	 */
+	private static function fill_navigation( array $blocks, array $links, &$changed ) {
+		foreach ( $blocks as $k => $block ) {
+			if ( 'core/navigation' === $block['blockName'] ) {
+				if ( empty( $block['attrs']['ref'] ) && empty( $block['innerBlocks'] ) && $links ) {
+					$blocks[ $k ]['innerBlocks']  = $links;
+					$blocks[ $k ]['innerHTML']    = '';
+					$blocks[ $k ]['innerContent'] = array_fill( 0, count( $links ), null );
+					$changed                      = true;
+				}
+				continue;
+			}
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$blocks[ $k ]['innerBlocks'] = self::fill_navigation( $block['innerBlocks'], $links, $changed );
+			}
+		}
+		return $blocks;
+	}
+
+	/**
+	 * Top-level links of the site's main menu: the header template part's navigation (inline links
+	 * or its wp_navigation menu), else the newest published menu, else a home link.
+	 *
+	 * @return array navigation-link blocks.
+	 */
+	private static function menu_links() {
+		$max   = (int) apply_filters( 'flxbk_library_menu_items', 6 );
+		$nav   = null;
+		$parts = function_exists( 'get_block_template' ) ? get_block_template( get_stylesheet() . '//header', 'wp_template_part' ) : null;
+		if ( $parts && ! empty( $parts->content ) ) {
+			$nav = self::find_navigation( parse_blocks( $parts->content ) );
+		}
+		$inner = array();
+		if ( $nav && ! empty( $nav['innerBlocks'] ) ) {
+			$inner = $nav['innerBlocks'];
+		} else {
+			$ref  = $nav && ! empty( $nav['attrs']['ref'] ) ? (int) $nav['attrs']['ref'] : 0;
+			$post = $ref ? get_post( $ref ) : null;
+			if ( ! $post || 'wp_navigation' !== $post->post_type ) {
+				$menus = get_posts(
+					array(
+						'post_type'      => 'wp_navigation',
+						'post_status'    => 'publish',
+						'posts_per_page' => 1,
+						'no_found_rows'  => true,
+					)
+				);
+				$post  = $menus ? $menus[0] : null;
+			}
+			if ( $post ) {
+				$inner = parse_blocks( $post->post_content );
+			}
+		}
+		$links = array();
+		foreach ( $inner as $block ) {
+			if ( ! in_array( $block['blockName'], array( 'core/navigation-link', 'core/navigation-submenu' ), true ) ) {
+				continue;
+			}
+			$attrs   = isset( $block['attrs'] ) ? (array) $block['attrs'] : array();
+			$links[] = self::link_block( array_intersect_key( $attrs, array_flip( array( 'label', 'url', 'kind', 'type', 'id', 'opensInNewTab' ) ) ) );
+			if ( count( $links ) >= $max ) {
+				break;
+			}
+		}
+		if ( ! $links ) {
+			$links[] = self::link_block(
+				array(
+					'label' => __( 'Home', 'flx-blocks' ),
+					'url'   => home_url( '/' ),
+					'kind'  => 'custom',
+				)
+			);
+		}
+		/**
+		 * Links given to menu-less navigation blocks in Design Library patterns.
+		 *
+		 * @param array $links Parsed core/navigation-link blocks.
+		 */
+		return (array) apply_filters( 'flxbk_library_menu_links', $links );
+	}
+
+	/**
+	 * First navigation block in a block tree.
+	 *
+	 * @param array $blocks Parsed blocks.
+	 * @return array|null
+	 */
+	private static function find_navigation( array $blocks ) {
+		foreach ( $blocks as $block ) {
+			if ( 'core/navigation' === $block['blockName'] ) {
+				return $block;
+			}
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$found = self::find_navigation( $block['innerBlocks'] );
+				if ( $found ) {
+					return $found;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * A parsed core/navigation-link block.
+	 *
+	 * @param array $attrs Attributes.
+	 * @return array
+	 */
+	private static function link_block( array $attrs ) {
+		return array(
+			'blockName'    => 'core/navigation-link',
+			'attrs'        => $attrs,
+			'innerBlocks'  => array(),
+			'innerHTML'    => '',
+			'innerContent' => array(),
 		);
 	}
 

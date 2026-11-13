@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.2
+- Design Library: header/footer patterns whose navigation block has no menu (WooCommerce and others) no longer list every page of the site. In the preview and after insertion they get the site's own menu: the top-level items of the header navigation (submenus become plain links, at most 6; filters `flxbk_library_menu_items`, `flxbk_library_menu_links`).
+
 ## 0.2.1
 - Design Library toolbar button no longer blinks: the button keeps one holder and one React root for the page and is put back as-is when the editor header re-renders, instead of being built again a frame later.
 
