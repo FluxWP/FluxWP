@@ -153,7 +153,7 @@
 		this.valid = ok;
 		this.el.classList.toggle('is-ok', ok === true);
 		this.el.classList.toggle('is-bad', ok === false);
-		this.state.innerHTML = ok === true ? '<svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7"/></svg>' : ok === false ? '<svg viewBox="0 0 16 16"><path d="M4.5 4.5l7 7m0-7l-7 7"/></svg>' : '';
+		this.state.innerHTML = ok === true ? '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8.6c1.1.8 2.1 1.8 3 2.9 1.6-2.7 3.6-5 6.1-7"/></svg>' : ok === false ? '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7m0-7l-7 7"/></svg>' : '';
 		this.state.setAttribute('title', ok === true ? (T.ok || '') : ok === false ? (T.bad || '') : '');
 		if (this.msg) {
 			this.msg.textContent = ok === false ? (T.bad || 'Please check the number.') : '';
