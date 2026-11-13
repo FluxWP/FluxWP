@@ -1,8 +1,9 @@
 // Flux AI chat. Tokens arrive as NDJSON (`stream=1` on /step) and paint as they land.
-// The list follows Flux AI 0.14's chat sidebar: running/approval first, recent, archived on demand, search,
-// scheduled-task chats marked with a clock.
+// The screen opens straight into a chat, like Flux AI on the web. The chat list lives in a separate
+// panel (header button): running/approval first, recent, archived on demand, search, scheduled-task
+// chats marked with a clock (Flux AI 0.14 chat sidebar).
 import { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Modal, Platform, Pressable, TextInput, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -48,13 +49,16 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
     enabled: showArchived,
   });
   const refreshLists = () => void qc.invalidateQueries({ queryKey: ['flxai', account.id, 'chats'] });
-  const [openId, setOpenId] = useState<number | null>(null);
+  // 0 = a new chat that is not saved yet.
+  const [openId, setOpenId] = useState<number>(0);
+  const [listOpen, setListOpen] = useState(false);
   const [chat, setChat] = useState<AiChat | null>(null);
   const [draft, setDraft] = useState('');
   const [text, setText] = useState('');
   const [streaming, setStreaming] = useState(false);
 
   const load = async (id: number) => {
+    setListOpen(false);
     setOpenId(id);
     setChat(await api<AiChat>(`flx-ai/v1/chats/${id}`));
     setDraft('');
@@ -87,7 +91,7 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
 
   const send = useMutation({
     mutationFn: async (body: string) => {
-      const id = openId ?? 0;
+      const id = openId;
       return api<SendResult>(`flx-ai/v1/chats/${id}/send`, { method: 'POST', body: { text: body } });
     },
     onSuccess: async (r) => {
@@ -144,7 +148,8 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
     ...(draft ? [{ id: 'draft', role: 'assistant', content: draft }] : []),
   ];
 
-  if (openId === null) {
+  const newChat = () => (setListOpen(false), setOpenId(0), setChat(null), setDraft(''));
+  const chatList = (() => {
     const all = list.data?.chats ?? [];
     const active = all.filter((c) => busy(c.status));
     const recent = all.filter((c) => !busy(c.status));
@@ -154,9 +159,12 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
       ...(all.length || showArchived ? [{ kind: 'head' as const, key: 'h-arch', label: t('mobile.screens.ai.archived'), toggle: true }] : []),
       ...(showArchived ? (archived.data?.chats ?? []).map((c) => ({ kind: 'chat' as const, key: 'a' + c.id, chat: { ...c, archived: 1 } })) : []),
     ];
-    const newChat = () => (setOpenId(0), setChat(null));
     return (
-      <View testID="screen-ai" style={styles.fill}>
+      <View testID="ai-chat-list" style={styles.fill}>
+        <View style={styles.listHead}>
+          <Text variant="heading" style={styles.flex}>{t('mobile.screens.ai.chats')}</Text>
+          <IconButton icon="x" label={t('common.close')} onPress={() => setListOpen(false)} testID="ai-chats-close" />
+        </View>
         <View style={styles.tools}>
           <Button icon="plus" label={t('mobile.screens.ai.new')} onPress={newChat} />
         </View>
@@ -180,7 +188,7 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
               const c = item.chat;
               const status = c.status && c.status !== 'idle' ? t(`mobile.screens.ai.status.${c.status}`, { defaultValue: c.status }) : '';
               return (
-                <Pressable accessibilityRole="button" onPress={() => void load(c.id)} onLongPress={() => void rowMenu(c)} delayLongPress={350} style={[styles.row, c.archived ? styles.rowArchived : null]}>
+                <Pressable testID={`ai-chat-${c.id}`} accessibilityRole="button" onPress={() => void load(c.id)} onLongPress={() => void rowMenu(c)} delayLongPress={350} style={[styles.row, c.archived ? styles.rowArchived : null]}>
                   <View style={styles.rowLine}>
                     {c.task ? <Icon name="clock" size={15} color={theme.colors.textMuted} /> : null}
                     <Text numberOfLines={1} style={styles.flex}>{c.title || t('mobile.screens.ai.new')}</Text>
@@ -195,15 +203,19 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
         )}
       </View>
     );
-  }
+  })();
 
   return (
     <KeyboardAvoidingView testID="screen-ai" style={styles.fill} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <View style={styles.head}>
-        <IconButton icon="back" label={t('mobile.shell.back')} onPress={() => (setOpenId(null), setChat(null), refreshLists())} />
+        <IconButton testID="ai-chats" icon="list-view" label={t('mobile.screens.ai.chats')} onPress={() => (refreshLists(), setListOpen(true))} />
         <Text variant="label" numberOfLines={1} style={styles.flex}>{chat?.title || t('mobile.screens.ai.new')}</Text>
         {streaming || chat?.status === 'running' ? <IconButton icon="x" label={t('mobile.screens.ai.stop')} onPress={() => void stop()} /> : null}
+        {openId ? <IconButton icon="plus" label={t('mobile.screens.ai.new')} onPress={newChat} /> : null}
       </View>
+      <Modal visible={listOpen} animationType="slide" presentationStyle={Platform.OS === 'ios' ? 'pageSheet' : undefined} onRequestClose={() => setListOpen(false)}>
+        {chatList}
+      </Modal>
       <FlashList
         data={messages}
         keyExtractor={(m) => m.id}
@@ -216,7 +228,7 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
             </View>
           );
         }}
-        ListEmptyComponent={streaming ? <Spinner label={t('mobile.screens.ai.thinking')} /> : null}
+        ListEmptyComponent={streaming ? <Spinner label={t('mobile.screens.ai.thinking')} /> : <EmptyState icon="ai" title={t('mobile.screens.ai.welcome')} body={t('mobile.screens.ai.welcomeBody')} />}
         contentContainerStyle={styles.thread}
       />
       {chat?.pending?.length ? (
@@ -241,13 +253,14 @@ const styles = StyleSheet.create((theme) => ({
   fill: { flex: 1, backgroundColor: theme.colors.bg },
   flex: { flex: 1 },
   tools: { padding: theme.space[3] },
+  listHead: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingLeft: theme.space[4], paddingRight: theme.space[2], paddingTop: theme.space[3] },
   headRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: theme.space[4] + 4, paddingTop: theme.space[3], paddingBottom: 6 },
   rowLine: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   rowArchived: { opacity: 0.75 },
   row: { minHeight: 64, gap: 2, marginHorizontal: 12, marginBottom: 8, paddingHorizontal: theme.space[4], justifyContent: 'center', backgroundColor: theme.colors.surface, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.lg },
   head: { flexDirection: 'row', alignItems: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
   thread: { padding: theme.space[3] },
-  bubble: { maxWidth: '86%', borderRadius: theme.radius.lg, padding: 12, marginBottom: 8, gap: 4 },
+  bubble: { maxWidth: '86%', marginHorizontal: theme.space[3], borderRadius: theme.radius.lg, padding: 12, marginBottom: 8, gap: 4 },
   mine: { alignSelf: 'flex-end', backgroundColor: theme.colors.primarySoft },
   theirs: { alignSelf: 'flex-start', backgroundColor: theme.colors.surface, borderWidth: StyleSheet.hairlineWidth, borderColor: theme.colors.border },
   pending: { margin: theme.space[3], padding: theme.space[3], gap: 6, borderRadius: theme.radius.md, backgroundColor: theme.colors.surface, borderWidth: StyleSheet.hairlineWidth, borderColor: theme.colors.border },

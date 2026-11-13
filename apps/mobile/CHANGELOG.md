@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.4.3
+- Flux AI doğrudan sohbetle açılır (web'deki gibi). Sohbet listesi, arama, arşiv ve görev sohbetleri sol üstteki liste düğmesiyle açılan ayrı panelde; sağ üstte Yeni sohbet.
+- iPad: alt pencereler (hesaplar, menü, onay, giriş formu) ekranın ortasında, tutamaçsız bir pencere olarak açılır. Önceden içeriğe göre boyutlanan sistem penceresi ekranın ortasında, altı boş ve tutamaçlı yarım bir alt sayfa gibi duruyordu. iPhone ve Android değişmedi.
+
 ## 0.4.2
 - Flux AI menüsü sitede yerel sohbet ekranını açar. Eklentinin bildirdiği ekran adı (`flxai-chat`) uygulamada tanınmadığı için menü web sayfasına düşüyordu.
 - Mağaza görselleri: Mesajlar listesi, sohbet ve Flux AI ekranları eklendi (iPhone/iPad, TR/EN, 9 görsel).
