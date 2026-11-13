@@ -1,5 +1,13 @@
 # Flux AI — Değişiklikler
 
+## 0.17.0
+- **Agent Skills standardı:** skill artık klasör: `SKILL.md` + `references/`, `assets/`, `scripts/`, `evals/`. Ön bölüm `name`, `description` (1024), `license`, `compatibility`, `allowed-tools`, `metadata`; ad klasör adıyla aynı ve kurallara göre doğrulanır. Claude'dan indirilen skill zip'leri (birden çok skill olabilir) içe alınır, skill'ler zip olarak dışa verilir.
+- Skill düzenleme ekranı üç sekme: **SKILL.md**, **Dosyalar** (ekle, yükle, düzenle, sil, indir), **Testler**. Açıklama sayacı ve kural uyarısı.
+- Model skill'in dosyalarını gerektiğinde okur (`flxai_skill_file`); yazabilir (`flxai_skill_file_write`, onaylı). Mesajda birden çok `/skill` kullanılabilir.
+- **Skill testleri:** tetikleme testi (hangi istemde skill seçiliyor, doğruluk oranı) ve skill'li/skill'siz karşılaştırmalı fonksiyonel test (beklentiler yargıç modelle işaretlenir, token ve maliyet görünür). Testler `evals/evals.json`, skill-creator ile uyumlu.
+- İsteğe bağlı: skill kullanılan mesajda modele yalnız `allowed-tools` araçları sunulur (Skill'ler › Ayarlar).
+- Açık/kapalı durumu ayrı tutulur; hazır skill kapatılınca kopyası çıkmaz. Yeni hazır skill **Skill oluşturucu**.
+
 ## 0.16.0
 - **Web araçları:** sohbet, zamanlanmış görevler ve ajanlar internette arar (`flxai_web_search`) ve herkese açık sayfaları okunur metne çevirir (`flxai_web_fetch`: başlıklar, listeler, tablolar, bağlantılar; uzun sayfada `next_offset`). Sayfa içeriği veri sayılır, içindeki talimatlar uygulanmaz; yerel/özel ağ adresleri okunmaz, sonuç 30 dk önbellekte.
 - Arama sağlayıcısı şimdilik **Brave Search**; yenileri `flxai_web_providers` filtresiyle eklenir (OpenRouter, NVIDIA NIM vb. aynı sözleşme). Ayarlar › **Web**: anahtar, sağlayıcı, arama/okuma aç-kapa, aylık arama sınırı (bu ayki sayı görünür), 1000 arama başına maliyet (0'dan büyükse Kayıtlar'a ve harcama sınırına yazılır). Sistem kontrolünde "Web araması" satırı.

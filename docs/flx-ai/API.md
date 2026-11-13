@@ -354,25 +354,49 @@ Araçlar (`flx_mcp_tools` ile, sohbet + MCP): `flxai_task_list` (okur), `flxai_t
 
 Çalışma geçmişi: `meta.history` (en yeni başta, `flxai_task_history_max` kadar): `ts`, `state`, `ms`, `cost`, `chat`, `from`/`to` (sohbet mesaj aralığı), `error`. Ekran `admin.php?page=flx-ai-tasks&history=ID` bu aralıktaki mesajları (araç girdi/sonuç, düşünme, yanıt) gösterir; onaydan sonra gelen devam mesajları da aynı çalışmaya dahildir.
 
-## Skill'ler (0.12.0, 0.13.0'dan beri dosya)
-Kaynaklar: `flxai_skills` filtresi (eklentilerin hazır skill'leri, kodda) + çalışma alanındaki `.skills/<slug>/SKILL.md` dosyaları (sitede oluşturulanlar ve hazır skill'lerin değiştirilmiş kopyaları; ad/açıklama yazılmamışsa hazır skill'in çevrilmiş metni). `status: off` kapalı skill. 0.12.0 tablosu `{prefix}flxai_skills` kurulumda dosyaya taşınıp kaldırılır.
+## Skill'ler (0.12.0; 0.17.0'dan beri Agent Skills standardı)
+Skill = klasör: `<name>/SKILL.md` + isteğe bağlı `references/`, `assets/`, `scripts/`, `evals/`. Claude / Agent Skills ile aynı biçim; zip olarak alınıp verilir. Klasörde README.md olmaz.
+
+SKILL.md ön bölümü (YAML, `includes/yaml.php` güvenli alt küme):
+- `name` (zorunlu): kebab-case, en çok 64, klasör adıyla aynı, "claude"/"anthropic" içermez.
+- `description` (zorunlu): en çok 1024, `<` `>` yok. Ne yaptığı + ne zaman kullanılacağı (modele yalnız bu gösterilir).
+- `license`, `compatibility` (≤500), `allowed-tools` (boşlukla ayrık araç adları, sonda `*` olabilir), `metadata` (eşleme: `title`, `version`, …).
+- Eski anahtarlar (`title`, `tools`, `status`, `version`) okunmaya devam eder.
+
+Açık/kapalı durumu dosyada değil, `flxai_skills_off` seçeneğinde (hazır skill kapatılınca kopyası çıkmaz). Eski `status: off` dosyaları kapalı sayılır.
+
+Kaynaklar: `flxai_skills` filtresi + çalışma alanındaki `.skills/<slug>/` klasörleri (sitede oluşturulanlar ve hazır skill'lerin değiştirilmiş kopyaları).
 ```php
+// Klasörle (önerilen): SKILL.md + references/ assets/ scripts/ evals/
 add_filter( 'flxai_skills', function ( $skills ) {
-	$skills['bagisci-incelemesi'] = array(
-		'name'        => __( 'Bağışçı incelemesi', 'flx-donate' ),
-		'description' => __( '3 aydır bağış yapmayanları bulur, kimi aramalı önerir.', 'flx-donate' ),
-		'body'        => "# Bağışçı incelemesi\n1. …",   // Markdown, modele talimat
-		'tools'       => array( 'flxb_donations_search' ), // ipucu, kısıt değil
-		'example'     => '…',
-		'source'      => 'Flux Donate',
-	);
+	$skills['bagisci-incelemesi'] = array( 'dir' => FLXB_DIR . 'skills/bagisci-incelemesi', 'source' => 'Flux Donate' );
 	return $skills;
 } );
+// Dizi olarak (eski biçim, çalışır)
+$skills['bagisci-incelemesi'] = array( 'name' => __( '…' ), 'description' => __( '…' ), 'body' => "# …", 'tools' => array( 'flxb_donations_search' ), 'example' => '…', 'source' => 'Flux Donate' );
 ```
 
-Fonksiyonlar: `flxai_skills_all( $active_only )` (slug => skill; ek alanlar `bundled`, `custom`, `changed`), `flxai_skill_get( $slug )`, `flxai_skill_save( $data, $old_slug )` → skill | WP_Error, `flxai_skill_delete( $slug )` (hazır skill varsayılana döner), `flxai_skill_to_md()` / `flxai_skill_from_md()` (SKILL.md: YAML ön bölüm `name` = slug, `title`, `description`, `tools`, `version`; gövde Markdown; `## Example output` sonrası örnek çıktı), `flxai_skill_prompt( $skill )`.
+Üç seviyede yükleme: (1) etkin skill'lerin adı + açıklaması sistem metninde (`flxai_skills_prompt_max`, varsayılan 40); (2) model `flxai_skill_get` ile gövdeyi ve dosya listesini okur; (3) `flxai_skill_file` ile tek dosyayı okur (metin sayfalı, ikili dosyada yalnız bilgi). `scripts/` çalıştırılmaz, yalnız okunur.
 
-Sohbet: etkin skill'lerin listesi sistem metnine eklenir (`flxai_skills_prompt_max`, varsayılan 40); model `flxai_skill_get` ile okur. Kullanıcı mesajı `/slug` ile başlarsa ya da görev skill'e bağlıysa (`_task.skill`) talimat `flxai_agent_user_text` ile mesaja eklenir; kayıtlı mesaj değişmez. Araçlar: `flxai_skill_list`, `flxai_skill_get` (okur, `read`), `flxai_skill_save`, `flxai_skill_delete` (onaylı, `manage_options`).
+Mesaj `/slug` ile başlarsa (baştaki en çok 5 `/a /b`) ya da görev skill'e bağlıysa talimatlar `flxai_agent_user_text` ile mesaja eklenir.
+
+`allowed-tools` kısıtı: Skill'ler › Ayarlar'da "Skill araçlarıyla sınırla" (`flxai_skills_restrict`) açıksa, mesajda skill kullanıldığında modele yalnız skill'lerin izin verdiği araçlar (+ skill okuma araçları) sunulur (`flxai_chat_tools`). Kapalıyken alan yalnız ipucudur.
+
+Fonksiyonlar: `flxai_skills_all( $active_only )`, `flxai_skill_get( $slug )`, `flxai_skill_validate( $s, $folder )`, `flxai_skill_save( $data, $old_slug )`, `flxai_skill_toggle( $slug, $on )`, `flxai_skill_delete( $slug )`, `flxai_skill_files( $s )`, `flxai_skill_file_read( $s, $path, $offset )`, `flxai_skill_file_write( $slug, $path, $content|null )` (hazır skill'de önce kopya), `flxai_skill_zip( $s )`, `flxai_skill_import_file( $file, $name )` (zip'te birden çok skill, `__MACOSX` atlanır, sınır 500 dosya / 30 MB / dosya başı 5 MB; .php/.phar/.exe vb. engelli), `flxai_skill_to_md()` / `flxai_skill_from_md()`, `flxai_yaml_parse()` / `flxai_yaml_dump()`.
+
+Araçlar: `flxai_skill_list`, `flxai_skill_get`, `flxai_skill_file` (okur), `flxai_skill_save`, `flxai_skill_file_write`, `flxai_skill_test`, `flxai_skill_delete` (onaylı, `manage_options`). Hazır skill `skill-olusturucu` yeni skill yazarken standart ve kontrol listesiyle yönlendirir.
+
+### Skill testleri (0.17.0)
+`evals/evals.json` (skill-creator ile uyumlu):
+```json
+{ "skill_name": "ornek",
+  "trigger_evals": [ { "query": "…", "should_trigger": true } ],
+  "evals": [ { "id": 1, "prompt": "…", "expected_output": "…", "expectations": [ "…" ] } ] }
+```
+Testler ve sonuçlar (`evals/results.json`) çalışma alanında `.skills/<slug>/evals/` altında; hazır skill kopyalanmaz. Sınır 40 tetikleme, 10 senaryo.
+- Tetikleme testi: her istem için model yalnız skill ad/açıklamalarını görüp seçer (en çok 20 istem, ~38 sn; kalan için `partial`). Sonuç `rate`, `hits`, `total`, `rows[{query, should_trigger, picked, triggered}]`, `cost`.
+- Fonksiyonel test: istem skill'li ve skill'siz çalışır (araçsız), sonra yargıç model `expectations`'ı iki çıktıda işaretler. Sonuç `checks[{text, with, without}]`, `with`/`without` `{output, passed, total, in, out, cost, ms}`, `note`.
+- REST `POST flx-ai/v1/skills/<slug>/test` `{kind: trigger|functional, id}` (`manage_options`). Kullanım kaydı `purpose = skill_test`.
 
 ## Görev bildirimleri ve onay kuyruğu (0.12.0)
 Görev `meta.skill` (slug) ve `meta.notify` (`mode` none|important|always, `email` bool, `whatsapp` numara, `panel` bool) taşır; `flxai_task_save()` `skill` ve `notify` alanlarını alır, görev araçlarında `skill`, `notify`, `notify_channels`, `notify_whatsapp`.

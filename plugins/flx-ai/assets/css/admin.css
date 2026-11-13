@@ -401,3 +401,26 @@ html.flxa-dark .flxai .flxai-home-send { color: #0D0E13; }
 .flxai-rcp-res small, .flxai-rcp-none { color: var(--a-muted); font-size: 12px; }
 .flxai-rcp-none { padding: 8px 10px; }
 .flxai-tc-out > summary > span:first-child { white-space: nowrap; }
+
+/* 0.17.0 Skill'ler: sekmeler, dosyalar, testler */
+.flxai-skill-tabs { margin: 0 0 12px; }
+.flxai-skill-settings { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--a-line); }
+.flxai-count { color: var(--a-muted); font-variant-numeric: tabular-nums; }
+.flxai-count.is-bad { color: var(--a-err); font-weight: 600; }
+.flxai-skill-files { margin: 10px 0; }
+.flxai-skill-files code { font-size: 12.5px; }
+.flxai-file-acts { white-space: nowrap; }
+.flxai-inline { display: inline; margin: 0; }
+.flxai-skill-file-new { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.flxai-skill-file-new form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.flxai-skill-case { margin: 0 0 12px; padding: 10px 12px; border: 1px solid var(--a-line); border-radius: 10px; background: var(--a-surface-2); }
+.flxai-skill-case textarea { margin-top: 6px; }
+.flxai-skill-results h3 { margin: 22px 0 6px; }
+.flxai-skill-results .widefat td, .flxai-skill-results .widefat th { vertical-align: top; }
+.flxai-rate.is-ok { color: var(--a-brand); }
+.flxai-rate.is-warn { color: var(--a-warn); }
+.flxai-skill-sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
+.flxai-skill-side { border: 1px solid var(--a-line); border-radius: 10px; padding: 10px 12px; background: var(--a-surface); min-width: 0; }
+.flxai-skill-side h4 { margin: 0 0 4px; }
+.flxai-skill-side pre { white-space: pre-wrap; word-break: break-word; max-height: 320px; overflow: auto; font-size: 12px; background: var(--a-surface-2); padding: 8px; border-radius: 8px; margin: 6px 0 0; }
+@media (max-width: 782px) { .flxai-skill-sides { grid-template-columns: minmax(0, 1fr); } }
