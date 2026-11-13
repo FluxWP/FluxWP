@@ -441,6 +441,25 @@ Olaylar: `flxai_ws_committed( $commit, $chat )`, `flxai_ws_staged( $pr, $chat )`
 
 REST (`/flx-ai/v1`, sohbet sahibi + Flux Files yetkisi): `GET|POST chats/<id>/ws` (durum: klasör, politika, son değişiklikler; POST `access`, `folders`), `GET chats/<id>/ws/list?path=`, `GET chats/<id>/ws/file?path=` (1 MB'a kadar; `editable`), `POST chats/<id>/ws/save` (`path`, `content`; yalnız sohbetin kendi klasöründeki metin dosyası, 0.13.1), `GET changes/<id>` (fark için before/after), `POST changes/<id>/merge|reject` (`paths` verilirse yalnız o dosyalar). Admin: `admin.php?page=flx-ai-chat&flxai_chat=<id>&flxai_ws=<pr>` sohbeti tam ekran açar, değişikliği gösterir.
 
+## Web araçları (0.16.0)
+
+- `flxai_web_search( array $q, array $ctx = [] )` → `{ provider, results: [ { title, url, snippet, age } ] }` ya da `WP_Error`. `$q`: `query`, `count` (1-10), `freshness` (`pd|pw|pm|py`), `lang`, `country`. Ayar `web_on`, aylık sınır `web_search_month` (sayaç `flxai_web_month_count()`), maliyet `web_search_cost` (USD/1000; >0 ise `flxai_budget_check` + `flxai_log` purpose `web_search`).
+- `flxai_web_fetch( $url, $offset = 0, $max = 20000 )` → `{ url, title, type, content, total_chars, offset, next_offset, links }`. `wp_safe_remote_get` (yerel/özel ağ kapalı), 3 MB, 30 dk transient. HTML okunur metne (Markdown benzeri) çevrilir; metin/JSON/XML aynen.
+- Sohbet araçları `flxai_web_search` (sağlayıcı hazırsa) ve `flxai_web_fetch` (`web_fetch_on`), salt okunur, `edit_posts`. Sonuçta `note`: dış içerik veridir.
+- Sağlayıcı ekleme:
+
+```php
+add_filter( 'flxai_web_providers', function ( $p ) {
+	$p['ornek'] = array(
+		'label'  => 'Örnek Arama',
+		'key'    => 'key_ornek',          // flxai ayar anahtarı; anahtar istemiyorsa ''
+		'help'   => 'ornek.com › API',
+		'search' => function ( array $q, $key ) { return array( array( 'title' => '', 'url' => '', 'snippet' => '', 'age' => '' ) ); }, // ya da WP_Error
+	);
+	return $p;
+} );
+```
+
 ## Sistem kontrolü
 `flx_system_checks`: `flxai.keys`, `flxai.model`, `flxai.limit`, `flxai.errors`, `flxai.mcp`, `flxai.render`, `flxai.tasks`. `flx_system_fixes`: `flxai.limit_day`, `flxai.limit_week`, `flxai.limit_month` (USD).
 

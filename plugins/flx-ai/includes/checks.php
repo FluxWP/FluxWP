@@ -46,6 +46,24 @@ add_filter(
 			'action_label' => __( 'Settings', 'flx-ai' ),
 		);
 
+		$web = flxai_web_provider();
+		$wcap = (int) flxai_setting( 'web_search_month', 0 );
+		$checks[] = array(
+			'id'           => 'flxai.web',
+			'source'       => $src,
+			'group'        => 'AI',
+			'label'        => __( 'Web search', 'flx-ai' ),
+			'status'       => ! flxai_setting( 'web_on', 1 ) ? 'info' : ( '' === $web ? 'info' : ( $wcap > 0 && flxai_web_month_count() >= $wcap ? 'warning' : 'ok' ) ),
+			'message'      => ! flxai_setting( 'web_on', 1 )
+				? __( 'Web search is turned off.', 'flx-ai' )
+				: ( '' === $web
+					? __( 'No search provider key; agents can still read web pages but cannot search.', 'flx-ai' )
+					/* translators: 1: provider, 2: searches this month */
+					: sprintf( __( 'Using %1$s. This month: %2$s searches.', 'flx-ai' ), flxai_web_providers()[ $web ]['label'], number_format_i18n( flxai_web_month_count() ) ) ),
+			'action_url'   => $settings . '#web',
+			'action_label' => __( 'Settings', 'flx-ai' ),
+		);
+
 		$lim = flxai_limits();
 		if ( ! array_filter( $lim ) ) {
 			$checks[] = array(

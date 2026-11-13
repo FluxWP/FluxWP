@@ -44,6 +44,12 @@ function flxai_defaults() {
 		'media_image_model'   => 'gemini-nano-banana-2.1',
 		'media_video_model'   => 'seedance-2.5',
 		'media_days'          => 90,        // iş kayıtları (dosyalar silinmez)
+		'key_brave'           => '',        // web araması (web.php)
+		'web_on'              => 1,
+		'web_fetch_on'        => 1,
+		'web_provider'        => 'auto',
+		'web_search_month'    => 0,         // 0 = sınırsız
+		'web_search_cost'     => 0,         // USD / 1000 arama; >0 ise bütçeye ve kayıtlara yazılır
 		'tools_off'           => array(),   // kapalı araçlar (sohbet + MCP)
 		'tool_pick'           => array(),   // ad çakışmasında açık olacak kaynak: ad => eklenti
 		'sources_off'         => array(),   // Flux AI & MCP › Bağlı sistemler'de kapatılan kaynaklar

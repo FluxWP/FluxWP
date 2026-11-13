@@ -474,7 +474,13 @@ function flxai_save_settings() {
 	}
 	$p   = wp_unslash( $_POST ); // phpcs:ignore
 	$new = array();
-	foreach ( array( 'key_openrouter', 'key_anthropic', 'key_render', 'key_fal', 'key_evolink', 'key_openai', 'key_gemini' ) as $k ) {
+	$flxai_keys = array( 'key_openrouter', 'key_anthropic', 'key_render', 'key_fal', 'key_evolink', 'key_openai', 'key_gemini', 'key_brave' );
+	foreach ( flxai_web_providers() as $flxai_w ) { // eklentilerin eklediği arama sağlayıcılarının anahtarları
+		if ( ! empty( $flxai_w['key'] ) && 0 === strpos( (string) $flxai_w['key'], 'key_' ) ) {
+			$flxai_keys[] = sanitize_key( $flxai_w['key'] );
+		}
+	}
+	foreach ( array_unique( $flxai_keys ) as $k ) {
 		$v = trim( (string) ( $p[ $k ] ?? '' ) );
 		if ( ! empty( $p[ $k . '_clear' ] ) ) {
 			$new[ $k ] = '';
@@ -522,6 +528,12 @@ function flxai_save_settings() {
 		}
 	}
 	$new['media_days']     = max( 7, min( 1825, (int) ( $p['media_days'] ?? 90 ) ) );
+	$new['web_on']           = empty( $p['web_on'] ) ? 0 : 1;
+	$new['web_fetch_on']     = empty( $p['web_fetch_on'] ) ? 0 : 1;
+	$flxai_wp                = sanitize_key( (string) ( $p['web_provider'] ?? 'auto' ) );
+	$new['web_provider']     = ( 'auto' === $flxai_wp || isset( flxai_web_providers()[ $flxai_wp ] ) ) ? $flxai_wp : 'auto';
+	$new['web_search_month'] = max( 0, min( 1000000, (int) ( $p['web_search_month'] ?? 0 ) ) );
+	$new['web_search_cost']  = max( 0, min( 1000, round( (float) str_replace( ',', '.', (string) ( $p['web_search_cost'] ?? 0 ) ), 4 ) ) );
 	// Boş ya da 0 = sınırsız.
 	$new['log_days']       = max( 0, min( 3650, (int) ( $p['log_days'] ?? 0 ) ) );
 	$new['log_bodies']     = empty( $p['log_bodies'] ) ? 0 : 1;
@@ -707,6 +719,50 @@ function flxai_page_settings() {
 					<?php endforeach; ?>
 					</tbody></table></td></tr>
 				<tr><th><?php esc_html_e( 'Job records', 'flx-ai' ); ?></th><td><input type="number" min="7" max="1825" class="small-text" name="media_days" value="<?php echo esc_attr( $s['media_days'] ?? 90 ); ?>"> <?php esc_html_e( 'days kept (generated files are not deleted)', 'flx-ai' ); ?></td></tr>
+			</table>
+		</section>
+
+		<section class="flxai-card" id="web">
+			<h2><?php esc_html_e( 'Web', 'flx-ai' ); ?></h2>
+			<p class="description"><?php esc_html_e( 'Chat, scheduled tasks and agents can search the web and read public pages. Page content is treated as data, never as instructions. Local and private network addresses cannot be read.', 'flx-ai' ); ?></p>
+			<table class="form-table" role="presentation">
+				<tr><th><?php esc_html_e( 'Web search', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="web_on" value="1" <?php checked( ! empty( $s['web_on'] ) ); ?>> <?php esc_html_e( 'Allow the flxai_web_search tool', 'flx-ai' ); ?></label></td></tr>
+				<tr><th><?php esc_html_e( 'Read web pages', 'flx-ai' ); ?></th><td><label class="flxai-check"><input type="checkbox" name="web_fetch_on" value="1" <?php checked( ! empty( $s['web_fetch_on'] ) ); ?>> <?php esc_html_e( 'Allow the flxai_web_fetch tool (no key needed)', 'flx-ai' ); ?></label></td></tr>
+				<?php
+				$flxai_wps = flxai_web_providers();
+				foreach ( $flxai_wps as $flxai_wid => $flxai_w ) :
+					if ( empty( $flxai_w['key'] ) ) {
+						continue;
+					}
+					$flxai_k = $flxai_w['key'];
+					$flxai_v = flxai_setting( $flxai_k );
+					?>
+					<tr><th><label for="flxai-<?php echo esc_attr( $flxai_k ); ?>">
+						<?php
+						/* translators: %s: provider */
+						echo esc_html( sprintf( __( '%s API key', 'flx-ai' ), $flxai_w['label'] ) );
+						?>
+					</label></th><td>
+						<input id="flxai-<?php echo esc_attr( $flxai_k ); ?>" type="password" class="regular-text" name="<?php echo esc_attr( $flxai_k ); ?>" value="" placeholder="<?php echo esc_attr( $flxai_v ? flxai_mask( $flxai_v ) : 'BSA…' ); ?>" autocomplete="new-password">
+						<?php if ( $flxai_v ) : ?><label class="flxai-check"><input type="checkbox" name="<?php echo esc_attr( $flxai_k ); ?>_clear" value="1"> <?php esc_html_e( 'Remove', 'flx-ai' ); ?></label><?php endif; ?>
+						<p class="description"><?php echo esc_html( (string) ( $flxai_w['help'] ?? '' ) ); ?></p></td></tr>
+				<?php endforeach; ?>
+				<tr><th><label for="flxai-web-provider"><?php esc_html_e( 'Search provider', 'flx-ai' ); ?></label></th><td><select id="flxai-web-provider" name="web_provider">
+					<option value="auto" <?php selected( $s['web_provider'] ?? 'auto', 'auto' ); ?>><?php esc_html_e( 'Automatic (first provider with a key)', 'flx-ai' ); ?></option>
+					<?php foreach ( $flxai_wps as $flxai_wid => $flxai_w ) : ?>
+						<option value="<?php echo esc_attr( $flxai_wid ); ?>" <?php selected( $s['web_provider'] ?? 'auto', $flxai_wid ); ?>><?php echo esc_html( $flxai_w['label'] ); ?></option>
+					<?php endforeach; ?>
+				</select>
+					<p class="description"><?php esc_html_e( 'More providers can be added by plugins with the flxai_web_providers filter.', 'flx-ai' ); ?></p></td></tr>
+				<tr><th><label for="flxai-web-month"><?php esc_html_e( 'Monthly search limit', 'flx-ai' ); ?></label></th><td><input id="flxai-web-month" type="number" min="0" class="small-text" name="web_search_month" value="<?php echo esc_attr( (int) ( $s['web_search_month'] ?? 0 ) ); ?>">
+					<p class="description">
+						<?php
+						/* translators: %s: searches this month */
+						echo esc_html( sprintf( __( '0: no limit. This month: %s searches.', 'flx-ai' ), number_format_i18n( flxai_web_month_count() ) ) );
+						?>
+					</p></td></tr>
+				<tr><th><label for="flxai-web-cost"><?php esc_html_e( 'Cost per 1,000 searches (USD)', 'flx-ai' ); ?></label></th><td><input id="flxai-web-cost" type="number" min="0" step="0.01" class="small-text" name="web_search_cost" value="<?php echo esc_attr( (float) ( $s['web_search_cost'] ?? 0 ) ); ?>">
+					<p class="description"><?php esc_html_e( 'Above 0, each search is written to Logs and counts toward the spending limit. 0 if your plan is free.', 'flx-ai' ); ?></p></td></tr>
 			</table>
 		</section>
 
