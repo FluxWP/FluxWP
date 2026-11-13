@@ -241,8 +241,41 @@ function flxai_task_by_chat( $chat_id ) {
 		return null;
 	}
 	$id = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT id FROM ' . flxai_table( 'tasks' ) . ' WHERE chat_id = %d LIMIT 1', (int) $chat_id ) ); // phpcs:ignore
+	if ( ! $id ) {
+		// Yedek: görev mesajı taşıyan sohbet (görev başka sohbete taşındıysa ya da bağ henüz yazılmadıysa).
+		$chat = flxai_chat_get( (int) $chat_id );
+		foreach ( array_reverse( (array) ( $chat['messages'] ?? array() ) ) as $m ) {
+			if ( ! empty( $m['_task']['id'] ) ) {
+				$id = (int) $m['_task']['id'];
+				break;
+			}
+		}
+		$t = $id ? flxai_task_get( $id ) : null;
+		return $t && (int) $t['user_id'] === (int) ( $chat['user_id'] ?? 0 ) ? $t : null;
+	}
 	return $id ? flxai_task_get( $id ) : null;
 }
+
+/* Görev sohbeti değilse "Görev sahibine bildir" modele hiç sunulmaz (boşuna hata üretmesin). */
+add_filter(
+	'flxai_chat_tools',
+	function ( $tools, $chat ) {
+		if ( ! isset( $tools['flxai_task_notify'] ) ) {
+			return $tools;
+		}
+		foreach ( (array) ( $chat['messages'] ?? array() ) as $m ) {
+			if ( ! empty( $m['_task']['id'] ) ) {
+				return $tools;
+			}
+		}
+		if ( ! flxai_task_by_chat( (int) ( $chat['id'] ?? 0 ) ) ) {
+			unset( $tools['flxai_task_notify'] );
+		}
+		return $tools;
+	},
+	10,
+	2
+);
 
 /* Yalnız sohbette (MCP'de değil): görev çalışırken modelin bildirim bırakması. */
 add_filter(

@@ -255,7 +255,13 @@ function flxai_agent_step( array $chat, $emit = null ) {
 			if ( $did && $left() < 30 ) {
 				break;
 			}
-			$tools = flxai_tools_for_user( $user_id );
+			/**
+			 * Bu sohbette modele sunulan araçlar.
+			 *
+			 * @param array $tools Kullanıcının araçları.
+			 * @param array $chat  Sohbet.
+			 */
+			$tools = (array) apply_filters( 'flxai_chat_tools', flxai_tools_for_user( $user_id ), $chat );
 			$model = flxai_model_for( 'flx-ai', (string) ( $chat['model'] ?: flxai_setting( 'chat_model', '' ) ) );
 			$info  = flxai_model_info( $model );
 			$msgs  = array_merge( array( flxai_agent_system( $user_id, (int) ( $chat['state']['turn']['started'] ?? 0 ), $chat ) ), flxai_agent_history( $chat['messages'], $user_id ) );

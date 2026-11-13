@@ -39,14 +39,25 @@
 	var host, root, els = {};
 
 	function loadUi() {
-		var d = { open: false, mode: C.mode === 'dock' ? 'dock' : 'float', w: 420, fw: 400, fh: 640, chat: 0, draft: '', unread: false, model: '', page: false, ws: false, wsTab: 'files', wsw: 0, side: true, sideArc: false };
+		var d = { open: false, mode: C.mode === 'dock' ? 'dock' : 'float', w: 420, fw: 400, fh: 640, chat: 0, draft: '', unread: false, model: '', page: false, ws: false, wsTab: 'files', wsw: 0, sidew: 0, recentModels: [], side: true, sideArc: false };
+		d.page = C.mode === 'page';
 		try { var s = JSON.parse(localStorage.getItem(KEY) || '{}'); for (var k in s) if (k in d) d[k] = s[k]; } catch (e) {}
 		return d;
 	}
 	// Tam sayfa sohbette panel hep açık; diğer sayfalardaki açık/kapalı durumu değişmez.
 	var keepOpen = ui.open;
 	if (C.page) { ui.open = true; ui.ws = !!QWS || window.innerWidth >= 1024; } // dar ekranda dosya paneli sohbeti örtmesin, düğmeyle açılır
-	function saveUi() { try { localStorage.setItem(KEY, JSON.stringify(C.page ? Object.assign({}, ui, { open: keepOpen }) : ui)); } catch (e) {} }
+	// Dosya paneli açılınca geçici tam ekran: seçilen görünüm (baloncuk / sağ panel) kaydedilmiş hâliyle kalır.
+	var autoPage = false;
+	function wsPage() {
+		if (ui.ws && !ui.page && wide() && !C.page) { ui.page = true; autoPage = true; }
+		else if (!ui.ws && autoPage) { ui.page = false; autoPage = false; }
+	}
+	function saveUi() {
+		var o = Object.assign({}, ui, { page: ui.page && !autoPage });
+		if (C.page) o.open = keepOpen;
+		try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {}
+	}
 
 	/* ---------- Simgeler ---------- */
 	var P = {
@@ -398,13 +409,12 @@
 			'<section class="panel" role="dialog" aria-label="' + esc(t('Yapay zekâ asistanı')) + '" hidden>' +
 			'<div class="resize-l" title="' + esc(t('Genişliği değiştir')) + '"></div><div class="resize-c" title="' + esc(t('Boyutu değiştir')) + '"></div>' +
 			'<aside class="side" hidden></aside>' +
-			'<div class="main"><header class="head"><button class="ib side-btn" type="button" data-a="side" title="' + esc(t('Sohbetler')) + '" hidden>' + ic('sideL') + '</button><span class="logo">' + ic('spark') + '</span>' +
+			'<div class="main"><div class="side-rz" title="' + esc(t('Genişliği değiştir')) + '"></div><header class="head"><button class="ib side-btn" type="button" data-a="side" title="' + esc(t('Sohbetler')) + '" hidden>' + ic('sideL') + '</button><span class="logo">' + ic('spark') + '</span>' +
 			'<button class="title-btn" type="button" data-a="list" aria-haspopup="true"><span></span>' + ic('down') + '</button>' +
 			'<button class="ib" type="button" data-a="search" title="' + esc(t('Sohbetlerde ara')) + '">' + ic('search') + '</button>' +
 			'<button class="ib" type="button" data-a="new" title="' + esc(t('Yeni sohbet')) + '">' + ic('plus') + '</button>' +
 			'<button class="ib" type="button" data-a="ws" title="' + esc(t('Çalışma alanı')) + '">' + ic('side') + '</button>' +
-			'<button class="ib" type="button" data-a="page"></button>' +
-			'<button class="ib" type="button" data-a="mode"></button>' +
+			'<button class="ib" type="button" data-a="view" aria-haspopup="true"></button>' +
 			'<button class="ib" type="button" data-a="close" title="' + esc(t('Kapat')) + ' (Ctrl+J)">' + ic('x') + '</button></header>' +
 			'<div class="popwrap"></div>' +
 			'<div class="body" aria-live="polite"></div>' +
@@ -439,8 +449,7 @@
 		var micB = els.wrap.querySelector('.mic');
 		if (micB) dictate(els.ta, micB, function () { autosize(); ui.draft = els.ta.value; saveUi(); updateSend(); });
 		els.hint = els.wrap.querySelector('.hint');
-		els.mode = els.wrap.querySelector('[data-a="mode"]');
-		els.page = els.wrap.querySelector('[data-a="page"]');
+		els.mode = els.wrap.querySelector('[data-a="view"]');
 		els.wsBtn = els.wrap.querySelector('[data-a="ws"]');
 		els.ws = els.wrap.querySelector('.ws');
 		els.side = els.wrap.querySelector('.side');
@@ -472,7 +481,18 @@
 		});
 		els.ws.addEventListener('dblclick', function (e) { if (e.target.classList.contains('ws-rz')) { ui.wsw = 0; layout(); saveUi(); } });
 		els.ws.addEventListener('submit', function (e) { e.preventDefault(); wsSave(); });
-		if (C.page) { ['close', 'page', 'mode'].forEach(function (a) { var b = els.wrap.querySelector('[data-a="' + a + '"]'); if (b) b.remove(); }); els.page = null; }
+		// Sol Sohbetler paneli genişliği: sağ kenardan sürükle, çift tık varsayılan.
+		var srz = els.wrap.querySelector('.side-rz');
+		srz.addEventListener('pointerdown', function (e) {
+			e.preventDefault();
+			var x0 = e.clientX, w0 = els.side.getBoundingClientRect().width;
+			els.panel.classList.add('side-rzing');
+			function mv(ev) { ui.sidew = Math.round(w0 + ev.clientX - x0); layout(); }
+			function up() { els.panel.classList.remove('side-rzing'); document.removeEventListener('pointermove', mv); document.removeEventListener('pointerup', up); saveUi(); }
+			document.addEventListener('pointermove', mv); document.addEventListener('pointerup', up);
+		});
+		srz.addEventListener('dblclick', function () { ui.sidew = 0; layout(); saveUi(); });
+		if (C.page) { var cb = els.wrap.querySelector('[data-a="close"]'); if (cb) cb.remove(); }
 		els.bubble.addEventListener('click', function () { open(); });
 		els.wrap.querySelector('.head').addEventListener('click', onHead);
 		els.ta.value = ui.draft || '';
@@ -500,6 +520,17 @@
 		els.pop.addEventListener('keydown', onPopKey);
 		els.hint.addEventListener('click', function (e) { if (e.target.closest('.model') && S.boot && S.boot.canManage) openModels(); });
 		els.panel.addEventListener('keydown', function (e) { if (e.key === 'Escape' && S.pop) { e.stopPropagation(); closePop(); } });
+		// Açılır liste (model, sohbetler, görünüm) dışarı tıklanınca kapanır; açan düğme kendi aç/kapa işini yapar.
+		document.addEventListener('pointerdown', function (e) {
+			if (!S.pop) return;
+			var pop = els.pop.querySelector('.pop'), path = e.composedPath ? e.composedPath() : [e.target];
+			if (!pop || path.indexOf(pop) >= 0) return;
+			for (var i = 0; i < path.length; i++) {
+				var n = path[i];
+				if (n && n.nodeType === 1 && (/^(list|search|view|side)$/.test(n.getAttribute('data-a') || '') || n.classList.contains('model'))) return;
+			}
+			closePop();
+		}, true);
 		setupResize();
 	}
 
@@ -564,20 +595,20 @@
 			var fh = Math.max(FLOAT_MIN_H, Math.min(ui.fh, window.innerHeight - 24));
 			p.style.width = fw + 'px'; p.style.height = fh + 'px';
 		}
-		els.mode.innerHTML = ui.mode === 'dock' ? ic('float') : ic('dock');
-		els.mode.title = ui.mode === 'dock' ? t('Yüzen pencere') : t('Sağa yerleştir');
-		els.mode.hidden = !wide() || paged;
-		if (els.page) {
-			els.page.innerHTML = paged ? ic('shrink') : ic('expand');
-			els.page.title = paged ? t('Küçült') : t('Tam ekran');
-			els.page.hidden = !wide();
-		}
+		els.mode.innerHTML = ic(paged ? 'expand' : (ui.mode === 'dock' ? 'dock' : 'float'));
+		els.mode.title = t('Görünüm') + ': ' + (paged ? t('Tam ekran') : (ui.mode === 'dock' ? t('Sağ panel') : t('Baloncuk')));
+		els.mode.hidden = !wide();
 		els.ws.hidden = !ui.ws;
 		var sideOn = paged && !!ui.side;
 		els.side.hidden = !sideOn;
 		els.sideBtn.hidden = !paged;
 		els.sideBtn.classList.toggle('on', sideOn);
 		if (sideOn && !SD.loaded) sideLoad();
+		if (sideOn && ui.sidew) {
+			var sw = p.getBoundingClientRect().width || window.innerWidth;
+			ui.sidew = Math.max(200, Math.min(ui.sidew, 520, sw - 560));
+			els.side.style.width = ui.sidew + 'px';
+		} else els.side.style.width = '';
 		if (paged && ui.wsw) {
 			var pw = p.getBoundingClientRect().width || window.innerWidth;
 			ui.wsw = Math.max(300, Math.min(ui.wsw, pw - 420));
@@ -727,6 +758,7 @@
 			S.boot = b;
 			if (b.tools) S.tools = b.tools;
 			renderHint(); renderNotice();
+			if (b.canManage) { var pm = function () { primeModels(); renderHint(); }; if (window.requestIdleCallback) requestIdleCallback(pm, { timeout: 4000 }); else setTimeout(pm, 1500); }
 		}).catch(function () {});
 	}
 	function loadChat(id, quiet) {
@@ -1225,9 +1257,8 @@
 		var a = b.getAttribute('data-a');
 		if (a === 'close') close();
 		else if (a === 'new') newChat();
-		else if (a === 'mode') { ui.mode = ui.mode === 'dock' ? 'float' : 'dock'; saveUi(); layout(); }
-		else if (a === 'page') { ui.page = !ui.page; saveUi(); layout(); }
-		else if (a === 'ws') { ui.ws = !ui.ws; if (ui.ws && wide() && !C.page) ui.page = true; saveUi(); layout(); if (ui.ws) wsLoad(); }
+		else if (a === 'view') S.pop === 'view' ? closePop() : openView();
+		else if (a === 'ws') { ui.ws = !ui.ws; wsPage(); saveUi(); layout(); if (ui.ws) wsLoad(); }
 		else if (a === 'side') { ui.side = !ui.side; saveUi(); layout(); }
 		else if (a === 'list') S.pop === 'list' && !S.searchMode ? closePop() : openList(false);
 		else if (a === 'search') S.pop === 'list' && S.searchMode ? closePop() : openList(true);
@@ -1326,6 +1357,8 @@
 		if ((b = e.target.closest('[data-ok]'))) { var inp = els.pop.querySelector('.ren'); rename(+b.getAttribute('data-ok'), inp ? inp.value : ''); return; }
 		if ((b = e.target.closest('[data-open]'))) { pick(+b.getAttribute('data-open')); return; }
 		if ((b = e.target.closest('[data-model]'))) { chooseModel(b.getAttribute('data-model')); return; }
+		if ((b = e.target.closest('[data-view]'))) { setView(b.getAttribute('data-view')); return; }
+		if ((b = e.target.closest('[data-mfam]'))) { S.mfam = b.getAttribute('data-mfam'); renderModels(); var mi = els.pop.querySelector('.msearch'); if (mi) mi.focus(); return; }
 		if (S.menu && !e.target.closest('.menu')) { S.menu = null; renderList(); }
 	}
 	function pick(id) {
@@ -1478,7 +1511,7 @@
 			if (a === 'new') newChat();
 			else if (a === 'side') { if (!(ui.page || C.page) || !wide()) openList(false); else { ui.side = !ui.side; saveUi(); layout(); } }
 			else if (a === 'search') { if (els.side && !els.side.hidden) { var si = els.side.querySelector('input[type=search]'); if (si) si.focus(); } else openList(true); }
-			else if (a === 'ws') { ui.ws = !ui.ws; if (ui.ws && wide() && !C.page) ui.page = true; saveUi(); layout(); if (ui.ws) wsLoad(); }
+			else if (a === 'ws') { ui.ws = !ui.ws; wsPage(); saveUi(); layout(); if (ui.ws) wsLoad(); }
 			else if (a === 'attach') els.fileIn.click();
 			else if (a === 'model' && S.boot && S.boot.canManage) openModels();
 			else window.dispatchEvent(new CustomEvent('flxai:command', { detail: c }));
@@ -1487,39 +1520,116 @@
 		slashSet(c.insert || '');
 	}
 
+	/* Görünüm: baloncuk / sağ panel / tam ekran (seçim hatırlanır). */
+	function curView() { return C.page || (ui.page && !autoPage) ? 'page' : (ui.mode === 'dock' ? 'dock' : 'float'); }
+	function openView() {
+		S.pop = 'view'; S.menu = null; S.editing = 0;
+		var cur = curView();
+		var opts = [
+			['float', 'float', t('Baloncuk'), t('Sağ altta küçük pencere')],
+			['dock', 'dock', t('Sağ panel'), t('Sayfanın sağında, sayfayı kaydırır')],
+			['page', 'expand', t('Tam ekran'), t('Sol menü yerinde kalır')]
+		];
+		els.pop.innerHTML = '<div class="pop view-pop" role="menu" aria-label="' + esc(t('Görünüm')) + '"><div class="pop-list">' + opts.map(function (o) {
+			var on = o[0] === cur;
+			return '<div class="ci' + (on ? ' cur' : '') + '" role="menuitemradio" tabindex="0" aria-checked="' + on + '" data-view="' + o[0] + '"><span class="vi">' + ic(o[1]) + '</span><div class="ct"><b>' + esc(o[2]) + '</b><small>' + esc(o[3]) + '</small></div>' + (on ? '<span class="vi ok">' + ic('check') + '</span>' : '') + '</div>';
+		}).join('') + '</div></div>';
+	}
+	function setView(v) {
+		closePop();
+		autoPage = false;
+		if (v === 'page') ui.page = true;
+		else { ui.page = false; ui.mode = v; }
+		if (C.page && v !== 'page') {
+			// Sohbet sayfasından çıkılır; sohbet seçilen görünümde Pano'da açık gelir.
+			ui.open = true; keepOpen = true; saveUi();
+			location.href = C.dash || 'index.php';
+			return;
+		}
+		saveUi(); layout();
+	}
+
 	/* Model seçimi (yalnız yönetici). */
 	function openModels() {
 		S.pop = 'models';
-		els.pop.innerHTML = '<div class="pop" style="top:auto;bottom:96px"><div class="pop-search"><label class="field">' + ic('search') + '<input type="search" class="msearch" placeholder="' + esc(t('Model ara…')) + '"></label></div><div class="pop-list"><div class="pop-empty"><span class="spin"></span></div></div></div>';
+		els.pop.innerHTML = '<div class="pop mpop" style="top:auto;bottom:96px"><div class="pop-search"><label class="field">' + ic('search') + '<input type="search" class="msearch" placeholder="' + esc(t('Model ara…')) + '"></label></div><div class="pop-chips"></div><div class="pop-list"><div class="pop-empty"><span class="spin"></span></div></div></div>';
 		var inp = els.pop.querySelector('.msearch');
 		inp.addEventListener('input', renderModels);
 		setTimeout(function () { inp.focus(); }, 30);
-		if (S.models) { renderModels(); return; }
-		api('GET', 'models').then(function (r) {
-			S.models = (r.models || []).filter(function (m) { return m.tools; });
-			S.modelLabels = {};
-			S.models.forEach(function (m) { S.modelLabels[m.id] = m.name; });
-			renderModels();
-		}).catch(function (e) { var l = els.pop.querySelector('.pop-list'); if (l) l.innerHTML = '<div class="pop-empty">' + esc(e.message) + '</div>'; });
+		primeModels();
+		if (S.models) renderModels();
+		else fetchModels().catch(function (e) { var l = els.pop.querySelector('.pop-list'); if (l) l.innerHTML = '<div class="pop-empty">' + esc(e.message) + '</div>'; });
+	}
+	/* Model listesi tarayıcıda önbelleklenir (anında açılır), 6 saatte bir arka planda tazelenir. */
+	var MKEY = 'flxai-models';
+	function setModels(list) {
+		S.models = list;
+		S.modelLabels = {};
+		list.forEach(function (m) { S.modelLabels[m.id] = m.name; });
+	}
+	function fetchModels() {
+		if (S.modelsReq) return S.modelsReq;
+		S.modelsReq = api('GET', 'models').then(function (r) {
+			S.modelsReq = null;
+			var list = (r.models || []).filter(function (m) { return m.tools; }).map(function (m) {
+				return { id: m.id, name: m.name, family: m.family || '', provider: m.provider || '', ctx: m.ctx || 0, in: m.in, out: m.out };
+			});
+			setModels(list);
+			try { localStorage.setItem(MKEY, JSON.stringify({ t: Date.now(), m: list })); } catch (e) {}
+			if (S.pop === 'models') renderModels();
+			renderHint();
+			return list;
+		}, function (e) { S.modelsReq = null; throw e; });
+		return S.modelsReq;
+	}
+	function primeModels() {
+		if (S.models) return;
+		var c = null;
+		try { c = JSON.parse(localStorage.getItem(MKEY) || 'null'); } catch (e) {}
+		if (c && Array.isArray(c.m) && c.m.length) {
+			setModels(c.m);
+			if (Date.now() - (+c.t || 0) > 6 * 3600 * 1000) fetchModels().catch(function () {});
+		} else fetchModels().catch(function () {});
+	}
+	function fmtCtx(n) { return n >= 1000000 ? (Math.round(n / 100000) / 10) + 'M' : n >= 1000 ? Math.round(n / 1000) + 'K' : ''; }
+	function modelRow(m, cur) {
+		var meta = [m.id, fmtCtx(m.ctx), '$' + (+m.in).toFixed(2) + ' / $' + (+m.out).toFixed(2)].filter(Boolean).join(' · ');
+		return '<div class="ci' + (m.id === cur ? ' cur' : '') + '" data-model="' + esc(m.id) + '"><div class="ct"><b>' + esc(m.name) + '</b><small>' + esc(meta) + '</small></div>' + (m.id === cur ? '<span class="vi ok">' + ic('check') + '</span>' : '') + '</div>';
 	}
 	function renderModels() {
-		var box = els.pop.querySelector('.pop-list'), q = (els.pop.querySelector('.msearch') || {}).value || '';
+		var box = els.pop.querySelector('.pop-list'), chips = els.pop.querySelector('.pop-chips'), q = (els.pop.querySelector('.msearch') || {}).value || '';
 		if (!box || !S.models) return;
+		// Sağlayıcı (aile) filtreleri: en çok modeli olan 8 aile.
+		var cnt = {};
+		S.models.forEach(function (m) { if (m.family) cnt[m.family] = (cnt[m.family] || 0) + 1; });
+		var fams = Object.keys(cnt).sort(function (a, b) { return cnt[b] - cnt[a] || a.localeCompare(b); }).slice(0, 8);
+		if (S.mfam && fams.indexOf(S.mfam) < 0 && cnt[S.mfam]) fams.push(S.mfam);
+		if (chips) chips.innerHTML = [''].concat(fams).map(function (f) {
+			return '<button type="button" class="chip' + ((S.mfam || '') === f ? ' on' : '') + '" data-mfam="' + esc(f) + '">' + esc(f || t('Tümü')) + '</button>';
+		}).join('');
 		// Her kelime adda ya da kimlikte geçmeli; "-", "/", ":" boşluk sayılır ("deepseek v4.1" → deepseek/deepseek-v4.1).
 		var norm = function (x) { return String(x).toLowerCase().replace(/[-_/:()]+/g, ' '); };
 		var words = norm(q).split(/\s+/).filter(Boolean);
 		var list = S.models.filter(function (m) {
-			var h = norm(m.id + ' ' + m.name), hc = h.replace(/\s+/g, '');
+			if (S.mfam && m.family !== S.mfam) return false;
+			var h = norm(m.id + ' ' + m.name + ' ' + m.family), hc = h.replace(/\s+/g, '');
 			return words.every(function (w) { return h.indexOf(w) >= 0 || hc.indexOf(w) >= 0; });
-		}).slice(0, 60);
+		});
 		var cur = (S.chat && S.chat.model) || ui.model || '';
-		box.innerHTML = '<div class="ci' + (!cur ? ' cur' : '') + '" data-model=""><div class="ct"><b>' + esc(t('Varsayılan')) + '</b><small>' + esc(S.boot ? S.boot.modelLabel : '') + '</small></div></div>' +
-			list.map(function (m) {
-				return '<div class="ci' + (m.id === cur ? ' cur' : '') + '" data-model="' + esc(m.id) + '"><div class="ct"><b>' + esc(m.name) + '</b><small>' + esc(m.id) + ' · $' + (+m.in).toFixed(2) + ' / $' + (+m.out).toFixed(2) + '</small></div></div>';
-			}).join('') + (!list.length && q ? '<div class="pop-empty">' + esc(t('Sonuç yok.')) + '</div>' : '');
+		var h = '<div class="ci' + (!cur ? ' cur' : '') + '" data-model=""><div class="ct"><b>' + esc(t('Varsayılan')) + '</b><small>' + esc(S.boot ? S.boot.modelLabel : '') + '</small></div>' + (!cur ? '<span class="vi ok">' + ic('check') + '</span>' : '') + '</div>';
+		var recent = (ui.recentModels || []).filter(function (id) { return S.modelLabels[id]; });
+		if (!words.length && !S.mfam && recent.length) {
+			h += '<div class="pop-sec">' + esc(t('Son kullanılanlar')) + '</div>' + recent.map(function (id) { return modelRow(S.models.filter(function (m) { return m.id === id; })[0], cur); }).join('');
+			h += '<div class="pop-sec">' + esc(t('Tüm modeller')) + ' <small>' + S.models.length + '</small></div>';
+		}
+		h += list.slice(0, 150).map(function (m) { return modelRow(m, cur); }).join('');
+		if (!list.length) h += '<div class="pop-empty">' + esc(t('Sonuç yok.')) + '</div>';
+		else if (list.length > 150) h += '<div class="pop-empty">' + esc(tf('%s model daha: aramayı daraltın.', list.length - 150)) + '</div>';
+		box.innerHTML = h;
 	}
 	function chooseModel(id) {
 		closePop();
+		if (id) { ui.recentModels = [id].concat((ui.recentModels || []).filter(function (x) { return x !== id; })).slice(0, 5); saveUi(); }
 		if (S.chat) update(S.chat.id, { model: id });
 		else { ui.model = id; saveUi(); renderHint(); }
 	}
@@ -1850,7 +1960,7 @@
 		return C.rest + 'chats/' + WS.chat + '/ws/view' + (C.rest.indexOf('?') < 0 ? '?' : '&') + 'path=' + encodeURIComponent(path) + '&_wpnonce=' + encodeURIComponent(C.nonce) + '&v=' + encodeURIComponent(v || Date.now());
 	}
 	function showReport(path) {
-		ui.ws = true; ui.wsTab = 'files'; if (wide() && !C.page) ui.page = true; saveUi(); layout();
+		ui.ws = true; ui.wsTab = 'files'; wsPage(); saveUi(); layout();
 		wsLoad(true);
 		WS.view = { path: path, content: null, mode: 'preview' };
 		renderWs();
@@ -1860,7 +1970,7 @@
 	}
 	/* Sohbetteki değişiklik bağlantısı (araç sonucu) çalışma alanını açar. */
 	function showChanges(id) {
-		ui.ws = true; ui.wsTab = 'changes'; if (wide() && !C.page) ui.page = true; saveUi(); layout();
+		ui.ws = true; ui.wsTab = 'changes'; wsPage(); saveUi(); layout();
 		if (id) { WS.openCh[id] = true; wsDetail(id); }
 		wsLoad(true);
 	}
