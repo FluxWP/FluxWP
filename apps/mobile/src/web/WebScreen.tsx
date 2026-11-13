@@ -7,9 +7,10 @@ import { useNavigation } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { DEMO_SITE, WebSessionManager, classifyNavigation, embedUserAgent, parseBridgeMessage, useAccount, useApi, useBootstrap, useConfig, useMe, useRenderer, useResolveEnv } from '@fluxwp/runtime';
+import { GlassButton } from '@/ui/Glass';
 import { brand } from '@/brand';
 import { APP_VERSION } from '@/platform';
-import { EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
+import { EmptyState, Skeleton, Text } from '@/ui/primitives';
 import { demoAdminHtml } from './demo-admin';
 
 export function WebScreen({ path, title, note }: { path: string; title?: string; note?: string }) {
@@ -48,7 +49,7 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
 
   useEffect(() => void Promise.resolve().then(load), [load]);
   useLayoutEffect(() => {
-    nav.setOptions({ title: pageTitle || title || '', headerRight: () => <IconButton icon="refresh" label={t('mobile.web.reload')} onPress={() => ref.current?.reload()} /> });
+    nav.setOptions({ title: pageTitle || title || '', headerRight: () => <GlassButton icon="refresh" label={t('mobile.web.reload')} onPress={() => ref.current?.reload()} /> });
   }, [nav, pageTitle, title, t]);
 
   const onRequest = (req: WebViewNavigation) => {

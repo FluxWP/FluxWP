@@ -295,5 +295,11 @@
     "policy": "Privacy",
     "terms": "Terms of use",
     "continueTerms": "By continuing, you agree to the <terms>Terms of Use</terms>. <privacy>Privacy Policy</privacy>."
+  },
+  "drawer": {
+    "search": "Search the menu",
+    "searchPlaceholder": "Search the menu",
+    "closeSearch": "Close search",
+    "noResults": "No matching menu items."
   }
 }
