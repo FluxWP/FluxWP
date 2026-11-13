@@ -1,5 +1,8 @@
 # Flux AI — Değişiklikler
 
+## 0.15.3
+- Telefon alanı (ülke kodlu ortak alan) yönetim panelinde diğer alanlarla aynı yükseklikte, köşede ve kenarlık renginde (flx-brand 1.6.2).
+
 ## 0.15.2
 - Sohbet artık varsayılan olarak **baloncuk** (sağ altta küçük pencere) açılır. Başlıktaki **Görünüm** menüsünden Baloncuk / Sağ panel / Tam ekran seçilir, seçim hatırlanır. Dosya paneli açılınca geçici tam ekran seçili görünümü değiştirmez. Ayarlar'da varsayılan görünüme "Tam ekran" eklendi.
 - Tam ekranda soldaki **Sohbetler** paneli sağ kenarından sürüklenerek genişletilir (çift tık varsayılana döner), genişlik hatırlanır.

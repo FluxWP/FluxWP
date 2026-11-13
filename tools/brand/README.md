@@ -45,6 +45,9 @@ flx_phone_equal( '0532 123 45 67', '+90 532 123 45 67', 'tr' ); // both valid an
 - `sync.py` copies `phone/` into every package next to `flx-brand`.
 - Dark colours (1.2.1): `body.flx-dark` only means the theme allows dark mode, so the field turns dark while the device is dark (`prefers-color-scheme`), like the theme. `html.flxfw-dark` (fluxwp.com switch) and `html.flxa-dark` (Flux Admin) force it; `html[data-flxfw-theme]` turns the device rule off.
 
+
+1.6.2: in wp-admin the field takes the admin input look (Flux Admin: 36 px, `--flxa-r` corners, `--flxa-border-strong` border; plain WordPress: 30 px, 4 px, #8C8F94). Front-end size is unchanged (`--flx-ph-h` 48 px).
+
 ## Shared events (1.4.0)
 
 One event table for every FluxWP package: `{prefix}flx_events` (`events.php`). Flux Certificates groups certificates under an event, other packages attach their own records the same way. The event screen lives in Flux CRM (Flux Certificates shows its own when Flux CRM is not installed) and is built only from filters, so a new package shows up on it without changing the screen:

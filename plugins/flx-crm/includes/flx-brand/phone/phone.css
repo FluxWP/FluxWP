@@ -98,3 +98,26 @@
 	html:not([data-flxfw-theme]) body.flx-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; }
 }
 html.flxfw-dark .flx-ph, html.flxa-dark .flx-ph { --flx-ph-bg: #111827; --flx-ph-soft: #1F2937; --flx-ph-line: #374151; --flx-ph-ink: #F3F4F6; --flx-ph-muted: #9CA3AF; }
+
+/* 1.6.2: in wp-admin the field matches the other inputs (height, corners, border colour, text size). */
+body.wp-admin .flx-ph {
+	--flx-ph-h: 30px;
+	--flx-ph-radius: 4px;
+	--flx-ph-line: #8C8F94;
+	--flx-ph-bg: #fff;
+	--flx-ph-ink: #2C3338;
+	--flx-ph-accent: #2271B1;
+	gap: 6px;
+}
+body.flxa:not(.flxa-appmode) .flx-ph {
+	--flx-ph-h: 36px;
+	--flx-ph-radius: var(--flxa-r, 8px);
+	--flx-ph-line: var(--flxa-border-strong, #CBCFDA);
+	--flx-ph-bg: var(--flxa-surface, #fff);
+	--flx-ph-soft: var(--flxa-surface-2, #EEF0F4);
+	--flx-ph-ink: var(--flxa-text, #12141B);
+	--flx-ph-muted: var(--flxa-muted, #5A5F6E);
+	--flx-ph-accent: var(--flxa-accent, #1F2937);
+}
+body.wp-admin .flx-ph .flx-ph__cc { padding: 0 10px; font-size: 13px; }
+body.wp-admin .flx-ph .flx-ph__num { min-height: var(--flx-ph-h) !important; font-size: 13px; }
