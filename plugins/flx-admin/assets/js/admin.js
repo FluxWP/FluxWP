@@ -1160,12 +1160,22 @@
 	if (window.MutationObserver) {
 		var MODAL_SEL = '[aria-modal="true"], [data-flxa-modal], .media-modal, .wc-backbone-modal, #TB_window';
 		var modalT = 0, forced = 0;
+		/* Gerçekten ekranda açık mı: React tabanlı eklentiler (Site Kit, WooCommerce Admin, Jetpack…) kapalı yan panel /
+		   diyaloglarını DOM'da tutar; aria-hidden, inert, opacity 0 ya da ekran dışına (translateX(100%)) kaydırılmış olurlar.
+		   Bunlar modal sayılmaz, yoksa kabuk sebepsiz kararır. */
 		var shown = function (n) {
-			if (n.closest('[hidden], .flxa-pal')) return false;
+			if (n.closest('[hidden], [aria-hidden="true"], [inert], .flxa-pal')) return false;
 			var cs = getComputedStyle(n);
 			if (cs.display === 'none' || cs.visibility === 'hidden') return false;
 			var r = n.getBoundingClientRect();
-			return r.width > 0 && r.height > 0;
+			var vw = Math.min(r.right, window.innerWidth) - Math.max(r.left, 0);
+			var vh = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+			if (vw < 40 || vh < 40) return false;
+			for (var p = n, op = 1; p && p.nodeType === 1; p = p.parentElement) {
+				op *= parseFloat(getComputedStyle(p).opacity);
+				if (!(op >= 0.05)) return false;
+			}
+			return true;
 		};
 		/* Kabuk parçası modalın arkasında mı (modalın kendi perdesi zaten örtüyorsa ikinci kez karartma) */
 		var bare = function (id, x, y) {
@@ -1196,7 +1206,14 @@
 		};
 		B.modal = function (on) { forced = Math.max(0, forced + (on ? 1 : -1)); modalCheck(); };
 		new MutationObserver(function () { if (!modalT) modalT = requestAnimationFrame(modalCheck); })
-			.observe(d.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'hidden', 'style', 'aria-hidden', 'open', 'aria-modal'] });
+			.observe(d.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'hidden', 'style', 'aria-hidden', 'open', 'aria-modal', 'inert'] });
+		/* Açılış/kapanış animasyonu bitince (opacity / transform) yeniden ölç */
+		var modalAnim = function (e) {
+			var t = e.target;
+			if (t && t.nodeType === 1 && (t.closest(MODAL_SEL) || t.querySelector(MODAL_SEL)) && !modalT) modalT = requestAnimationFrame(modalCheck);
+		};
+		d.addEventListener('transitionend', modalAnim, true);
+		d.addEventListener('animationend', modalAnim, true);
 		modalCheck();
 	}
 

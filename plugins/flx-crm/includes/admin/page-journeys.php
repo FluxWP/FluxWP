@@ -75,7 +75,7 @@ final class FLXCRM_Page_Journeys {
 			'opts'        => FLXCRM_Journeys::defaults(),
 		);
 		$title = $j['id'] ? __( 'Edit journey', 'flx-crm' ) : __( 'New journey', 'flx-crm' );
-		FLXCRM_Admin::open( $title, __( 'Use {first_name}, {name} and {site} in texts. Saving an active journey pauses it so you can check it before turning it back on.', 'flx-crm' ) );
+		FLXCRM_Admin::open( $title, __( 'Use {first_name}, {name} and {site} in texts. Saving an active journey pauses it so you can check it before turning it back on.', 'flx-crm' ), '', true, array( flxcrm_admin_url( 'journeys' ), __( 'Journeys', 'flx-crm' ) ) );
 		$tags = FLXCRM_Tags::all();
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-journey" data-flxcrm-journey>';
 		wp_nonce_field( 'flxcrm_journey_save' );
