@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.2
+- With Flux CRM active the Certificates menu no longer has an Events item; events are managed only in CRM › Events. The old address still redirects there, and the "Create event" link on the new certificate screen and the system check links open the CRM screen. Without Flux CRM nothing changes.
+
 ## 2.0.1
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 

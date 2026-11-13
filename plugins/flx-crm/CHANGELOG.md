@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 0.6.0
+- Event messages: CRM › Events › an event › "Message to the event". One extra message to everyone tied to the event (certificates, donations, every package's people) by WhatsApp, e-mail and/or SMS, now or planned for a date and time (site time). Typical use: a thank-you with a photo when the event is over.
+- A photo, video or file from the media library can go with it: on e-mail a photo shows above the text and other files get a button; on WhatsApp it goes as an attachment once Flux Mail declares campaign media (`flxi_campaign_features` contains `media`), until then the file link is added to the text, as on SMS.
+- Message type: "Event information or thank-you" goes to every person of the event with an address on that channel; "Promotion or campaign" only to people who allowed that channel (and adds the unsubscribe link on e-mail). The blocklist and e-mail unsubscribes always apply.
+- Sending is a normal Flux Mail bulk send (`flxi_create_campaign`) per channel, so the queue, the wait between WhatsApp messages and the daily e-mail limit apply. Campaign data carries `kind` (info|marketing) and `ref` (`flxcrm_event:<id>`) for Flux Mail.
+- Works with Flux Mail 1.17.0 campaign media, `kind` and `ref` (FluxWP#240): an info message is not blocked by the IPTAL ad opt-out and gets no opt-out line; the blocklist still applies. The planning field notes the connection's quiet hours (21:00–09:00 by default), when WhatsApp and SMS wait.
+- "Sent and planned" list on the event with each channel's state and count (links to the Flux Mail queue); a planned send can be cancelled until it starts. The event card has a "Send message" button.
+- Flux Mail › Send gets the events (open, or closed in the last 60 days) as recipient sources `flxcrm_event:<id>` (consent required there). New action `flxcrm_event_message_queued`.
+
 ## 0.5.0
 - New CRM › Journeys: automatic contact flows. A journey starts when a contact enters a value group (RFM), gets a tag or a role, has a timeline event, or is added to the CRM. Steps run in order: wait (days/hours), send e-mail, WhatsApp or SMS through Flux Mail, add or remove a tag, and "continue only if" (value group, tag, paid / not paid since the journey started).
 - Safe by default: a new journey (also from a template or from AI) is a draft and sends nothing until someone turns it on; saving an active journey pauses it. Messages only go to people who allowed that channel, never in the quiet hours (21–09 by default, site time), and at most 3 journey messages per person per 7 days across all journeys. Skipped steps are written on the timeline with the reason.

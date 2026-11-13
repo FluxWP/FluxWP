@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flux CRM
  * Description:       Kişiler ve pazarlama: bağışçı, müşteri, gönüllü ve aday tek kişi kartında; zaman tüneli, etiketler, KVKK izinleri, RFM skoru ve kayıp riski, dinamik segmentler. Veriyi Flux Donate, Flux Commerce, Flux Chat, Flux Forms ve WordPress kullanıcılarından toplar; gönderim Flux Mail, AI Flux AI üzerinden.
- * Version:           0.5.0
+ * Version:           0.6.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            FluxWP
@@ -24,7 +24,7 @@ if ( defined( 'FLXCRM_VERSION' ) ) {
 	return;
 }
 
-define( 'FLXCRM_VERSION', '0.5.0' );
+define( 'FLXCRM_VERSION', '0.6.0' );
 define( 'FLXCRM_DB_VERSION', 3 );
 define( 'FLXCRM_FILE', __FILE__ );
 define( 'FLXCRM_DIR', plugin_dir_path( __FILE__ ) );
@@ -39,6 +39,7 @@ require_once FLXCRM_DIR . 'includes/class-flxcrm-scoring.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-segments.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-sync.php';
 require_once FLXCRM_DIR . 'includes/class-flxcrm-journeys.php';
+require_once FLXCRM_DIR . 'includes/class-flxcrm-event-messages.php';
 require_once FLXCRM_DIR . 'includes/adapters/donate.php';
 require_once FLXCRM_DIR . 'includes/adapters/commerce.php';
 require_once FLXCRM_DIR . 'includes/adapters/chat.php';

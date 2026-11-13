@@ -364,3 +364,30 @@ form + .flxcrm-card{margin-top:16px}
 .flxcrm-jhours input{width:72px}
 .flxcrm-jsave{display:flex;gap:8px;margin:16px 0}
 @media (max-width:782px){.flxcrm-jf{flex-basis:100%}.flxcrm-jstep{padding-left:40px}.flxcrm-jstep::before{left:10px}.flxcrm-jstep:not(:last-child)::after{left:20px}}
+/* 0.6.0 Etkinlik mesajı */
+.flxcrm-evmsg .flxcrm-evmsg__form{display:grid;gap:14px;max-width:760px;margin-top:10px}
+.flxcrm-evmsg fieldset{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.flxcrm-evmsg legend,.flxcrm-evmsg .flxcrm-evmsg__label{display:block;width:100%;font-weight:550;font-size:12.5px;margin-bottom:4px;padding:0}
+.flxcrm-evmsg fieldset>small,.flxcrm-evmsg .flxcrm-evmsg__row>small{flex-basis:100%;margin-top:0}
+.flxcrm-evmsg__chips{display:flex;flex-wrap:wrap;gap:8px}
+.flxcrm-evmsg__chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--c-bd);border-radius:99px;background:var(--c-card);cursor:pointer;font-size:13px}
+.flxcrm-evmsg__chip:has(input:checked){border-color:var(--c-ac);background:var(--c-ac-soft)}
+.flxcrm-evmsg__chip b{font-weight:650;font-variant-numeric:tabular-nums}
+.flxcrm-evmsg__chip.is-off{opacity:.55;cursor:not-allowed}
+.flxcrm-evmsg__chip small{color:var(--c-mut);font-size:11px}
+.flxcrm-evmsg input[type=datetime-local]{border-radius:8px;min-height:34px}
+.flxcrm-evmsg input[type=datetime-local]:disabled{opacity:.5}
+.flxcrm-evmsg__media .flxcrm-evimg__prev{max-width:240px}
+.flxcrm-evmsg__media .flxcrm-evimg__prev img{width:100%;height:100%;object-fit:cover}
+.flxcrm-evmsg__media p{margin:8px 0 0}
+.flxcrm-evmsg__submit{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0}
+.flxcrm-evmsg__log{margin-top:22px;border-top:1px solid var(--c-bd);padding-top:14px}
+.flxcrm-evmsg__log h3{margin:0 0 10px;font-size:14px}
+.flxcrm-evmsg__list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.flxcrm-evmsg__list li{border:1px solid var(--c-bd);border-radius:10px;padding:10px 12px;margin:0}
+.flxcrm-evmsg__list p{margin:6px 0;color:var(--c-tx)}
+.flxcrm-evmsg__meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:13px}
+.flxcrm-evmsg__states{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+.flxcrm-pill{display:inline-flex;align-items:center;font-size:12px;padding:2px 10px;border-radius:99px;background:var(--c-s2);color:var(--c-tx);text-decoration:none}
+a.flxcrm-pill:hover{color:var(--c-ac)}
+@media (max-width:782px){.flxcrm-evmsg__chip{flex:1 1 auto;justify-content:center}.flxcrm-evmsg input[type=datetime-local]{width:100%}.flxcrm-evmsg__submit .button{width:100%;justify-content:center}}

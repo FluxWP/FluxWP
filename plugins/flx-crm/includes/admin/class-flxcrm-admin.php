@@ -86,6 +86,9 @@ final class FLXCRM_Admin {
 		}
 		wp_enqueue_style( 'flxcrm-admin', FLXCRM_URL . 'assets/admin.css', array(), FLXCRM_VERSION );
 		wp_enqueue_script( 'flxcrm-admin', FLXCRM_URL . 'assets/admin.js', array(), FLXCRM_VERSION, true );
+		if ( isset( $_GET['page'] ) && 'flx-crm-events' === $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+			wp_enqueue_media(); // event image and event message file
+		}
 		wp_localize_script(
 			'flxcrm-admin',
 			'flxcrmAdmin',
@@ -496,6 +499,13 @@ final class FLXCRM_Admin {
 			'noted'   => __( 'Added to the timeline.', 'flx-crm' ),
 			'exists'  => __( 'A contact with this e-mail or phone already exists; their card is open.', 'flx-crm' ),
 		);
+		if ( 0 === strpos( $msg, 'evmsg' ) ) {
+			$map['evmsgstop'] = __( 'The send was cancelled.', 'flx-crm' );
+			if ( 'evmsgstop' !== $msg ) {
+				/* translators: %s: number of messages */
+				$map[ $msg ] = sprintf( __( '%s messages queued in Flux Mail.', 'flx-crm' ), number_format_i18n( (int) substr( $msg, 5 ) ) );
+			}
+		}
 		if ( 0 === strpos( $msg, 'bulk' ) ) {
 			/* translators: %s: number of contacts */
 			$map[ $msg ] = sprintf( __( '%s contacts updated.', 'flx-crm' ), number_format_i18n( (int) substr( $msg, 4 ) ) );

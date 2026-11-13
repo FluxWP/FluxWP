@@ -168,6 +168,9 @@ final class FLXCRM_Page_Events {
 		echo '<strong class="flxcrm-segcard__count">' . esc_html( number_format_i18n( count( $people ) ) ) . '<small>' . esc_html__( 'contacts', 'flx-crm' ) . '</small></strong></div>';
 		self::stats( $e );
 		echo '<div class="flxcrm-segcard__actions"><a class="button button-small" href="' . esc_url( flxcrm_events_url( array( 'id' => (int) $e['id'] ) ) ) . '">' . esc_html__( 'Contacts', 'flx-crm' ) . '</a>';
+		if ( $can && FLXCRM_Event_Messages::ready() ) {
+			echo '<a class="button button-small" href="' . esc_url( flxcrm_events_url( array( 'id' => (int) $e['id'] ) ) . '#flxcrm-evmsg' ) . '">' . esc_html__( 'Send message', 'flx-crm' ) . '</a>';
+		}
 		foreach ( flx_event_actions( $e ) as $a ) {
 			echo '<a class="button button-small' . ( $a['primary'] ? ' button-primary' : '' ) . '" href="' . esc_url( $a['url'] ) . '"' . ( $a['target'] ? ' target="' . esc_attr( $a['target'] ) . '"' : '' ) . '>' . esc_html( $a['label'] ) . '</a>';
 		}
@@ -222,6 +225,7 @@ final class FLXCRM_Page_Events {
 			echo '</div>';
 		}
 		echo '</div>';
+		self::messages( $e, $can );
 		$people = flx_event_people( (int) $e['id'] );
 		echo '<section class="flxcrm-card flxcrm-card--flush"><h2 class="flxcrm-card__title" style="padding:14px 18px 0">' . esc_html( sprintf( /* translators: %s: number of people */ __( 'Contacts (%s)', 'flx-crm' ), number_format_i18n( count( $people ) ) ) ) . '</h2>';
 		if ( ! $people ) {
@@ -240,6 +244,104 @@ final class FLXCRM_Page_Events {
 		}
 		echo '</tbody></table></section>';
 		FLXCRM_Admin::close();
+	}
+
+	/** Event message: compose (now or planned) and the list of sends. */
+	private static function messages( array $e, $can ) {
+		if ( ! $can ) {
+			return;
+		}
+		$id = (int) $e['id'];
+		echo '<section class="flxcrm-card flxcrm-evmsg" id="flxcrm-evmsg"><h2 class="flxcrm-card__title">' . flxcrm_icon( 'send', 16 ) . ' ' . esc_html__( 'Message to the event', 'flx-crm' ) . '</h2>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		if ( ! FLXCRM_Event_Messages::ready() ) {
+			echo '<p class="flxcrm-muted">' . esc_html__( 'Install and turn on Flux Mail to send e-mail, WhatsApp and SMS to the people of this event.', 'flx-crm' ) . '</p></section>';
+			return;
+		}
+		echo '<p class="flxcrm-muted">' . esc_html__( 'One extra message to everyone tied to this event, e.g. a thank-you with a photo when it is over. Send it now or plan it. It goes through Flux Mail: its queue, the wait between WhatsApp messages, the blocklist and the daily e-mail limit apply.', 'flx-crm' ) . '</p>';
+		$counts = array();
+		foreach ( array_keys( FLXCRM_Event_Messages::channels() ) as $ch ) {
+			foreach ( array( 'info' => false, 'marketing' => true ) as $kind => $consent ) {
+				$a                      = FLXCRM_Event_Messages::audience( $id, $ch, $consent && flxcrm_mail_requires_consent( $ch ) );
+				$counts[ $kind ][ $ch ] = count( $a['list'] );
+			}
+		}
+		$def = '';
+		if ( $e['event_date'] ) { // planned by default for an upcoming event: that evening, 20:00 site time
+			$d = date_create_immutable( $e['event_date'] . ' 20:00', wp_timezone() );
+			if ( $d && $d->getTimestamp() > time() + 120 ) {
+				$def = $d->format( 'Y-m-d\TH:i' );
+			}
+		}
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-form flxcrm-evmsg__form" data-flxcrm-evmsg data-counts="' . esc_attr( wp_json_encode( $counts ) ) . '" data-t="' . esc_attr( wp_json_encode( array( 'title' => __( 'Photo, video or file', 'flx-crm' ), 'button' => __( 'Use this file', 'flx-crm' ), 'none' => __( 'None', 'flx-crm' ), /* translators: %s: number of messages */ 'total' => __( '%s messages in total', 'flx-crm' ) ) ) ) . '">';
+		wp_nonce_field( 'flxcrm_event_msg' );
+		echo '<input type="hidden" name="action" value="flxcrm_event_msg"><input type="hidden" name="id" value="' . (int) $id . '">';
+
+		echo '<fieldset class="flxcrm-evmsg__row"><legend>' . esc_html__( 'Channels', 'flx-crm' ) . '</legend><div class="flxcrm-evmsg__chips">';
+		foreach ( FLXCRM_Event_Messages::channels() as $ch => $label ) {
+			$ok = FLXCRM_Event_Messages::ready( $ch );
+			echo '<label class="flxcrm-evmsg__chip' . ( $ok ? '' : ' is-off' ) . '"><input type="checkbox" name="channels[]" value="' . esc_attr( $ch ) . '"' . ( 'whatsapp' === $ch && $ok ? ' checked' : '' ) . ( $ok ? '' : ' disabled' ) . '> <span>' . esc_html( $label ) . '</span> <b data-count="' . esc_attr( $ch ) . '">' . esc_html( number_format_i18n( $counts['info'][ $ch ] ) ) . '</b>' . ( $ok ? '' : '<small>' . esc_html__( 'no connection', 'flx-crm' ) . '</small>' ) . '</label>';
+		}
+		echo '</div><small>' . esc_html__( 'The number is how many people get it on that channel (one per address).', 'flx-crm' ) . '</small></fieldset>';
+
+		echo '<fieldset class="flxcrm-evmsg__row"><legend>' . esc_html__( 'Message type', 'flx-crm' ) . '</legend>';
+		echo '<label class="flxcrm-check"><input type="radio" name="kind" value="info" checked> ' . esc_html__( 'Event information or thank-you: everyone of the event', 'flx-crm' ) . '</label>';
+		echo '<label class="flxcrm-check"><input type="radio" name="kind" value="marketing"> ' . esc_html__( 'Promotion or campaign: only people who allowed that channel', 'flx-crm' ) . '</label></fieldset>';
+
+		echo '<label data-only="email" hidden><span>' . esc_html__( 'E-mail subject', 'flx-crm' ) . '</span><input type="text" name="subject" maxlength="190" placeholder="' . esc_attr( sprintf( /* translators: %s: event name */ __( 'Thank you for joining %s', 'flx-crm' ), $e['name'] ) ) . '"><small>' . esc_html__( 'Empty: the event name.', 'flx-crm' ) . '</small></label>';
+		echo '<label><span>' . esc_html__( 'Message', 'flx-crm' ) . ' *</span><textarea name="text" rows="6" required placeholder="' . esc_attr( sprintf( /* translators: %s: event name */ __( 'Hello {ad}, thank you for being with us at %s. 🌱', 'flx-crm' ), $e['name'] ) ) . '"></textarea><small>' . esc_html__( '{ad} first name, {ad_soyad} full name. The same text goes on every channel; e-mail turns it into paragraphs.', 'flx-crm' ) . '</small></label>';
+
+		echo '<div class="flxcrm-evmsg__row"><span class="flxcrm-evmsg__label">' . esc_html__( 'Photo, video or file (optional)', 'flx-crm' ) . '</span><div class="flxcrm-evimg flxcrm-evmsg__media" data-flxcrm-evmedia><input type="hidden" name="media_id" value="0"><div class="flxcrm-evimg__prev"><span>' . esc_html__( 'None', 'flx-crm' ) . '</span></div><p><button type="button" class="button" data-pick>' . esc_html__( 'Choose from media', 'flx-crm' ) . '</button> <button type="button" class="button-link button-link-delete" data-clear hidden>' . esc_html__( 'Remove', 'flx-crm' ) . '</button></p></div>';
+		echo '<small>' . esc_html( FLXCRM_Event_Messages::mail_has_media() ? __( 'WhatsApp: sent as an attachment with the text. E-mail: a photo shows above the text, other files get a button. SMS: the link is added.', 'flx-crm' ) : __( 'E-mail: a photo shows above the text, other files get a button. WhatsApp and SMS: the file link is added to the text.', 'flx-crm' ) ) . '</small></div>';
+
+		echo '<fieldset class="flxcrm-evmsg__row"><legend>' . esc_html__( 'When', 'flx-crm' ) . '</legend>';
+		echo '<label class="flxcrm-check"><input type="radio" name="when" value="now"' . ( $def ? '' : ' checked' ) . '> ' . esc_html__( 'Now', 'flx-crm' ) . '</label>';
+		echo '<label class="flxcrm-check"><input type="radio" name="when" value="later"' . ( $def ? ' checked' : '' ) . '> ' . esc_html__( 'Plan for', 'flx-crm' ) . '</label>';
+		echo '<input type="datetime-local" name="send_at" value="' . esc_attr( $def ) . '" data-flxa-native><small>' . esc_html( sprintf( /* translators: %s: time zone */ __( 'Site time (%s). Planned sends can be cancelled below until they start.', 'flx-crm' ), wp_timezone_string() ) ) . ' ' . esc_html__( 'WhatsApp and SMS do not go out in the quiet hours of the Flux Mail connection (21:00–09:00 by default); a message planned then waits for the next allowed hour.', 'flx-crm' ) . '</small></fieldset>';
+
+		echo '<p class="flxcrm-evmsg__submit"><button class="button button-primary button-large" data-label-now="' . esc_attr__( 'Send now', 'flx-crm' ) . '" data-label-later="' . esc_attr__( 'Plan the message', 'flx-crm' ) . '">' . esc_html( $def ? __( 'Plan the message', 'flx-crm' ) : __( 'Send now', 'flx-crm' ) ) . '</button> <span class="flxcrm-muted" data-total></span></p>';
+		echo '</form>';
+		self::messages_log( $id );
+		echo '</section>';
+	}
+
+	private static function messages_log( $id ) {
+		$rows = FLXCRM_Event_Messages::history( $id );
+		echo '<div id="flxcrm-evmsg-log" class="flxcrm-evmsg__log"><h3>' . esc_html__( 'Sent and planned', 'flx-crm' ) . '</h3>';
+		if ( ! $rows ) {
+			echo '<p class="flxcrm-muted">' . esc_html__( 'No message sent to this event yet.', 'flx-crm' ) . '</p></div>';
+			return;
+		}
+		$st = array(
+			'queued'    => __( 'Waiting', 'flx-crm' ),
+			'sending'   => __( 'Sending', 'flx-crm' ),
+			'running'   => __( 'Sending', 'flx-crm' ),
+			'reporting' => __( 'Waiting for reports', 'flx-crm' ),
+			'review'    => __( 'Check', 'flx-crm' ),
+			'done'      => __( 'Sent', 'flx-crm' ),
+			'cancelled' => __( 'Cancelled', 'flx-crm' ),
+		);
+		$chs = FLXCRM_Event_Messages::channels();
+		echo '<ul class="flxcrm-evmsg__list">';
+		foreach ( $rows as $r ) {
+			$planned = '' !== (string) $r['send_at'] ? flx_date( str_replace( 'T', ' ', $r['send_at'] ) . ':00', 'datetime' ) : '';
+			$who     = $r['by'] ? get_the_author_meta( 'display_name', (int) $r['by'] ) : '';
+			echo '<li><div class="flxcrm-evmsg__meta"><strong>' . esc_html( $planned ? sprintf( /* translators: %s: date and time */ __( 'Planned for %s', 'flx-crm' ), $planned ) : flx_time_ago( (int) $r['at'] ) ) . '</strong>';
+			echo '<span class="flxcrm-badge">' . esc_html( 'marketing' === $r['kind'] ? __( 'Promotion', 'flx-crm' ) : __( 'Information', 'flx-crm' ) ) . '</span>';
+			echo $who ? '<span class="flxcrm-muted">' . esc_html( $who ) . '</span>' : ''; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '</div><p>' . esc_html( wp_trim_words( (string) $r['text'], 30 ) ) . ( $r['media'] ? ' 📎' : '' ) . '</p><div class="flxcrm-evmsg__states">';
+			foreach ( $r['state'] as $ch => $s ) {
+				$url = function_exists( 'flxi_admin_url' ) ? flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => (int) $r['campaigns'][ $ch ] ) ) : '';
+				$txt = ( $chs[ $ch ] ?? $ch ) . ': ' . ( $s ? ( $st[ $s['status'] ] ?? $s['status'] ) . ' · ' . number_format_i18n( $s['sent'] ) . ' / ' . number_format_i18n( $s['total'] ) . ( $s['failed'] ? ' · ' . sprintf( /* translators: %s: number */ __( '%s failed', 'flx-crm' ), number_format_i18n( $s['failed'] ) ) : '' ) : __( 'not found', 'flx-crm' ) );
+				echo $url ? '<a class="flxcrm-pill" href="' . esc_url( $url ) . '">' . esc_html( $txt ) . '</a>' : '<span class="flxcrm-pill">' . esc_html( $txt ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			}
+			echo '</div>';
+			if ( FLXCRM_Event_Messages::is_pending( $r ) ) {
+				echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-inline" data-flx-confirm="' . esc_attr__( 'Messages not sent yet will not go out.', 'flx-crm' ) . '" data-flx-confirm-title="' . esc_attr__( 'Cancel the send', 'flx-crm' ) . '" data-flx-confirm-ok="' . esc_attr__( 'Cancel the send', 'flx-crm' ) . '" data-flx-confirm-danger>' . wp_nonce_field( 'flxcrm_event_msg_cancel', '_wpnonce', true, false ); // phpcs:ignore WordPress.Security.EscapeOutput
+				echo '<input type="hidden" name="action" value="flxcrm_event_msg_cancel"><input type="hidden" name="id" value="' . (int) $id . '"><input type="hidden" name="send" value="' . esc_attr( strtolower( (string) $r['id'] ) ) . '"><button class="button-link button-link-delete">' . esc_html__( 'Cancel the send', 'flx-crm' ) . '</button></form>';
+			}
+			echo '</li>';
+		}
+		echo '</ul></div>';
 	}
 
 	private static function form( $e ) {

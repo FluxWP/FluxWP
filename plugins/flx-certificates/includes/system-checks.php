@@ -207,7 +207,7 @@ function flxs_system_checks() {
 
 	$open = flxs_get_events( 'open' );
 	if ( ! $open ) {
-		$add( 'events', $g_ste, __( 'Ongoing events', 'flx-certificates' ), 'info', __( 'No open events; the events section is hidden on the site.', 'flx-certificates' ), $page( 'flxs-etkinlikler' ), __( 'Events', 'flx-certificates' ) );
+		$add( 'events', $g_ste, __( 'Ongoing events', 'flx-certificates' ), 'info', __( 'No open events; the events section is hidden on the site.', 'flx-certificates' ), flxs_events_screen_url(), __( 'Events', 'flx-certificates' ) );
 	} else {
 		$off = array();
 		foreach ( $open as $e ) {
@@ -217,7 +217,7 @@ function flxs_system_checks() {
 		}
 		if ( $off ) {
 			/* translators: %s: comma separated event names */
-			$add( 'events', $g_ste, __( 'Ongoing events', 'flx-certificates' ), 'warning', sprintf( __( 'Open event without a published page: %s. Fix it with "Publish on site" in the event edit screen.', 'flx-certificates' ), implode( ', ', $off ) ), $page( 'flxs-etkinlikler' ), __( 'Events', 'flx-certificates' ) );
+			$add( 'events', $g_ste, __( 'Ongoing events', 'flx-certificates' ), 'warning', sprintf( __( 'Open event without a published page: %s. Fix it with "Publish on site" in the event edit screen.', 'flx-certificates' ), implode( ', ', $off ) ), flxs_events_screen_url(), __( 'Events', 'flx-certificates' ) );
 		} else {
 			/* translators: %d: number of open events */
 			$add( 'events', $g_ste, __( 'Ongoing events', 'flx-certificates' ), 'ok', sprintf( _n( '%d open event has a published page.', '%d open events have published pages.', count( $open ), 'flx-certificates' ), count( $open ) ) );
