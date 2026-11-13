@@ -3,6 +3,7 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'Engagement' => 'Etkileşim',
   'Reached' => 'Ulaştı',
   'Read' => 'Okudu',
   'Replied' => 'Cevap verdi',

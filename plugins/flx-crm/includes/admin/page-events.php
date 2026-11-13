@@ -690,13 +690,27 @@ final class FLXCRM_Page_Events {
 			'skipped'    => array( 'is-mute', __( 'Skipped', 'flx-crm' ) ),
 			'cancelled'  => array( 'is-mute', __( 'Cancelled', 'flx-crm' ) ),
 		);
-		echo '<table class="widefat striped flxcrm-table"><thead><tr><th>' . esc_html__( 'Name', 'flx-crm' ) . '</th><th>' . esc_html( 'email' === $ch ? __( 'E-mail', 'flx-crm' ) : __( 'Phone', 'flx-crm' ) ) . '</th><th>' . esc_html__( 'Status', 'flx-crm' ) . '</th><th>' . esc_html__( 'Time', 'flx-crm' ) . '</th></tr></thead><tbody>';
+		$eng = false; // Flux Mail 1.20+: delivered / read / replied / optout per row
+		foreach ( $rec['rows'] as $r ) {
+			$eng = $eng || array_key_exists( 'read', (array) $r ) || array_key_exists( 'replied', (array) $r );
+		}
+		echo '<table class="widefat striped flxcrm-table"><thead><tr><th>' . esc_html__( 'Name', 'flx-crm' ) . '</th><th>' . esc_html( 'email' === $ch ? __( 'E-mail', 'flx-crm' ) : __( 'Phone', 'flx-crm' ) ) . '</th><th>' . esc_html__( 'Status', 'flx-crm' ) . '</th>' . ( $eng ? '<th>' . esc_html__( 'Engagement', 'flx-crm' ) . '</th>' : '' ) . '<th>' . esc_html__( 'Time', 'flx-crm' ) . '</th></tr></thead><tbody>';
 		foreach ( $rec['rows'] as $r ) {
 			$n    = $names[ $r['status'] ] ?? array( 'is-mute', (string) $r['status'] );
 			$time = ! empty( $r['sent_at'] ) ? flx_date( $r['sent_at'], 'datetime' ) : ( in_array( $r['status'], array( 'queued', 'paused' ), true ) && ! empty( $r['scheduled_at'] ) && flx_ts( $r['scheduled_at'] ) > time() ? sprintf( /* translators: %s: date and time */ __( 'Not before %s', 'flx-crm' ), flx_date( $r['scheduled_at'], 'datetime' ) ) : '—' );
 			echo '<tr><td data-label="' . esc_attr__( 'Name', 'flx-crm' ) . '"><strong>' . esc_html( '' !== trim( (string) $r['name'] ) ? $r['name'] : __( '(no name)', 'flx-crm' ) ) . '</strong></td>';
 			echo '<td data-label="' . esc_attr( 'email' === $ch ? __( 'E-mail', 'flx-crm' ) : __( 'Phone', 'flx-crm' ) ) . '">' . esc_html( 'email' === $ch ? $r['recipient'] : ( function_exists( 'flx_person_phone' ) ? flx_person_phone( ltrim( (string) $r['recipient'], '+' ) ) : '+' . ltrim( (string) $r['recipient'], '+' ) ) ) . '</td>';
 			echo '<td data-label="' . esc_attr__( 'Status', 'flx-crm' ) . '"><span class="flxcrm-badge ' . esc_attr( $n[0] ) . '">' . esc_html( $n[1] ) . '</span>' . ( '' !== trim( (string) $r['error'] ) ? '<small class="flxcrm-sendrec__err">' . esc_html( wp_trim_words( (string) $r['error'], 20 ) ) . '</small>' : '' ) . '</td>';
+			if ( $eng ) {
+				$tags = array();
+				foreach ( array( 'delivered' => array( 'is-mute', __( 'Reached', 'flx-crm' ) ), 'read' => array( 'is-info', __( 'Read', 'flx-crm' ) ), 'replied' => array( 'is-ok', __( 'Replied', 'flx-crm' ) ), 'optout' => array( 'is-warn', __( 'Turned off messages', 'flx-crm' ) ) ) as $k => $l ) {
+					if ( ! empty( $r[ $k ] ) && ! ( 'delivered' === $k && ( ! empty( $r['read'] ) || ! empty( $r['replied'] ) ) ) ) {
+						$at     = ! empty( $r[ $k . '_at' ] ) ? ' title="' . esc_attr( flx_date( $r[ $k . '_at' ], 'datetime' ) ) . '"' : '';
+						$tags[] = '<span class="flxcrm-badge ' . esc_attr( $l[0] ) . '"' . $at . '>' . esc_html( $l[1] ) . '</span>';
+					}
+				}
+				echo '<td data-label="' . esc_attr__( 'Engagement', 'flx-crm' ) . '"><span class="flxcrm-sendrec__eng">' . ( $tags ? implode( '', $tags ) : '—' ) . '</span></td>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			}
 			echo '<td data-label="' . esc_attr__( 'Time', 'flx-crm' ) . '">' . esc_html( $time ) . '</td></tr>';
 		}
 		echo '</tbody></table>';

@@ -560,3 +560,4 @@ a.flxcrm-more__item{text-decoration:none}
 .flxcrm-sendnums__i{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:0 6px;padding:7px 10px}
 .flxcrm-sendnums__i span{grid-column:1/-1;font-size:11.5px}
 .flxcrm-sendnums__i b{font-size:16px}
+.flxcrm-sendrec__eng{display:inline-flex;flex-wrap:wrap;gap:4px}
