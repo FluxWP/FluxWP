@@ -3619,4 +3619,6 @@ Teşekkürler,
 'This donation is on behalf of other people (one certificate each)'=>'Bu bağış başka kişiler adına (her kişiye ayrı sertifika)',
 'WhatsApp + e-mail'=>'WhatsApp + e-posta',
 'to the donor'=>'bağışçıya',
+'Card information'=>'Kart bilgileri',
+'Security code'=>'Güvenlik kodu',
 ));

@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 2.30.0
+- Ödeme sayfasında kart alanları tek kutuda: üstte kart numarası, altında yan yana son kullanma (AA/YY) ve güvenlik kodu.
+- Kart numarası alanının sağında desteklenen kart logoları (Visa, Mastercard, Troy); numara yazıldıkça kartın cinsi anlaşılınca yalnız onun logosu kalır. Liste filtre `flxb_cc_brands` ile değişir (amex de eklenebilir).
+- Güvenlik kodu alanında kart arkası "123" ikonu; alttaki tekrar eden logo şeridi kaldırıldı.
+- Site koyu modda iken ödeme sayfasındaki kart alanları sayfanın açık zeminine uygun kalır.
+
 ## 2.29.2
 - Telefon alanındaki doğrulama işareti sade: arka plansız, hafif kıvrımlı yeşil tik; geçersizde küçük kırmızı çarpı (flx-brand 1.6.3).
 
