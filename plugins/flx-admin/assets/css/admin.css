@@ -13,34 +13,34 @@ body.flxa:not(.flxa-appmode) #wpbody-content { background: var(--flxa-bg); }
 :where(html.flxa-dark) body.flxa-appmode { background: var(--flxa-bg); }
 body.flxa:not(.flxa-appmode) { color: var(--flxa-text); font-family: var(--flxa-font); -webkit-font-smoothing: antialiased; }
 body.flxa:not(.flxa-appmode),
-body.flxa:not(.flxa-appmode) p,
+body.flxa:not(.flxa-appmode) p:where(:not(.editor-styles-wrapper *)),
 body.flxa:not(.flxa-appmode) .wrap,
-body.flxa:not(.flxa-appmode) td,
-body.flxa:not(.flxa-appmode) th,
-body.flxa:not(.flxa-appmode) label { font-family: var(--flxa-font); }
+body.flxa:not(.flxa-appmode) td:where(:not(.editor-styles-wrapper *)),
+body.flxa:not(.flxa-appmode) th:where(:not(.editor-styles-wrapper *)),
+body.flxa:not(.flxa-appmode) label:where(:not(.editor-styles-wrapper *)) { font-family: var(--flxa-font); }
 body.flxa:not(.flxa-appmode) #wpcontent { padding-left: 28px; }
 body.flxa:not(.flxa-appmode) .wrap { margin: 14px 28px 0 0; color: var(--flxa-text); }
 body.flxa:not(.flxa-appmode) .wrap h1,
 body.flxa:not(.flxa-appmode) .wrap > h2:first-child { font-size: 26px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; color: var(--flxa-text); }
-body.flxa:not(.flxa-appmode) h1, body.flxa:not(.flxa-appmode) h2, body.flxa:not(.flxa-appmode) h3, body.flxa:not(.flxa-appmode) h4 { color: var(--flxa-text); }
+body.flxa:not(.flxa-appmode) h1:where(:not(.editor-styles-wrapper *)), body.flxa:not(.flxa-appmode) h2:where(:not(.editor-styles-wrapper *)), body.flxa:not(.flxa-appmode) h3:where(:not(.editor-styles-wrapper *)), body.flxa:not(.flxa-appmode) h4:where(:not(.editor-styles-wrapper *)) { color: var(--flxa-text); }
 /* Genel bağlantı rengi düşük özgüllükte (body.flxa a) ve düğme gibi görünen bağlantılar (.button, *-btn*, blok düğmeleri) hariç:
  * eklentinin kendi düğme/sekme rengi (ör. ".x a.is-on", ".x .x-btn-primary") her zaman geçerli kalsın. */
-body.flxa:where(:not(.flxa-appmode)) a:where(:not(.button, [class*="btn"], .wp-element-button)) { color: var(--flxa-accent-strong); }
-body.flxa:where(:not(.flxa-appmode)) a:where(:not(.button, [class*="btn"], .wp-element-button)):where(:hover, :active) { color: var(--flxa-accent-hover); }
-body.flxa:not(.flxa-appmode) a:focus,
+body.flxa:where(:not(.flxa-appmode)) a:where(:not(.editor-styles-wrapper *)):where(:not(.button, [class*="btn"], .wp-element-button)) { color: var(--flxa-accent-strong); }
+body.flxa:where(:not(.flxa-appmode)) a:where(:not(.editor-styles-wrapper *)):where(:not(.button, [class*="btn"], .wp-element-button)):where(:hover, :active) { color: var(--flxa-accent-hover); }
+body.flxa:not(.flxa-appmode) a:where(:not(.editor-styles-wrapper *)):focus,
 body.flxa:not(.flxa-appmode) .button:focus { box-shadow: none; outline: none; }
-body.flxa:not(.flxa-appmode) a:focus-visible,
+body.flxa:not(.flxa-appmode) a:where(:not(.editor-styles-wrapper *)):focus-visible,
 body.flxa:not(.flxa-appmode) .button:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus) !important; outline: none; }
 /* Form alanında odak: yalnız kenar çizgisi vurgu rengine döner, dış halka yok. */
-body.flxa:not(.flxa-appmode) input:focus,
-body.flxa:not(.flxa-appmode) select:focus,
-body.flxa:not(.flxa-appmode) textarea:focus { box-shadow: none !important; outline: none; border-color: var(--flxa-accent) !important; }
-body.flxa:not(.flxa-appmode) input[type=checkbox]:focus-visible, body.flxa:not(.flxa-appmode) input[type=radio]:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus) !important; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *)):focus,
+body.flxa:not(.flxa-appmode) select:where(:not(.editor-styles-wrapper *)):focus,
+body.flxa:not(.flxa-appmode) textarea:where(:not(.editor-styles-wrapper *)):focus { box-shadow: none !important; outline: none; border-color: var(--flxa-accent) !important; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox]:focus-visible, body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio]:focus-visible { box-shadow: 0 0 0 2px var(--flxa-focus) !important; }
 body.flxa:not(.flxa-appmode) .description,
-body.flxa:not(.flxa-appmode) p.description,
+body.flxa:not(.flxa-appmode) p:where(:not(.editor-styles-wrapper *)).description,
 body.flxa:not(.flxa-appmode) .form-table td .description { color: var(--flxa-muted); }
-body.flxa:not(.flxa-appmode) code, body.flxa:not(.flxa-appmode) kbd { background: var(--flxa-surface-2); color: var(--flxa-text); border-radius: 6px; }
-body.flxa:not(.flxa-appmode) hr { border-color: var(--flxa-border); }
+body.flxa:not(.flxa-appmode) code:where(:not(.editor-styles-wrapper *)), body.flxa:not(.flxa-appmode) kbd:where(:not(.editor-styles-wrapper *)) { background: var(--flxa-surface-2); color: var(--flxa-text); border-radius: 6px; }
+body.flxa:not(.flxa-appmode) hr:where(:not(.editor-styles-wrapper *)) { border-color: var(--flxa-border); }
 body.flxa:not(.flxa-appmode) .page-title-action,
 body.flxa:not(.flxa-appmode) .wrap .page-title-action { border-radius: var(--flxa-r, 10px); border: 1px solid var(--flxa-border); background: var(--flxa-surface); color: var(--flxa-text); padding: 6px 12px; top: -2px; font-weight: 600; }
 body.flxa:not(.flxa-appmode) .wrap .page-title-action:hover { background: var(--flxa-surface-2); border-color: var(--flxa-border-strong); color: var(--flxa-text); }
@@ -56,25 +56,27 @@ body.flxa:not(.flxa-appmode) .button-primary:hover,
 body.flxa:not(.flxa-appmode) .button.button-primary:hover,
 body.flxa:not(.flxa-appmode) .button-primary:focus { background: var(--flxa-accent-hover); border-color: var(--flxa-accent-hover); color: var(--flxa-on-accent); }
 body.flxa:not(.flxa-appmode) .button-link { color: var(--flxa-accent-strong); }
-body.flxa:not(.flxa-appmode) .button-link-delete, body.flxa:not(.flxa-appmode) a.submitdelete { color: var(--flxa-error); }
+body.flxa:not(.flxa-appmode) .button-link-delete, body.flxa:not(.flxa-appmode) a:where(:not(.editor-styles-wrapper *)).submitdelete { color: var(--flxa-error); }
 body.flxa:not(.flxa-appmode) .button.button-small { min-height: 28px; line-height: 26px; padding: 0 10px; }
 body.flxa:not(.flxa-appmode) .button.button-hero { border-radius: calc(var(--flxa-radius, 14px) + 12px - 14px); }
 
 /* Form alanları */
-body.flxa:not(.flxa-appmode) input[type=text], body.flxa:not(.flxa-appmode) input[type=search], body.flxa:not(.flxa-appmode) input[type=email], body.flxa:not(.flxa-appmode) input[type=url],
-body.flxa:not(.flxa-appmode) input[type=password], body.flxa:not(.flxa-appmode) input[type=number], body.flxa:not(.flxa-appmode) input[type=tel], body.flxa:not(.flxa-appmode) input[type=date],
-body.flxa:not(.flxa-appmode) input[type=datetime-local], body.flxa:not(.flxa-appmode) input[type=time], body.flxa:not(.flxa-appmode) input[type=month], body.flxa:not(.flxa-appmode) input[type=week],
-body.flxa:not(.flxa-appmode) input:not([type]), body.flxa:not(.flxa-appmode) textarea, body.flxa:not(.flxa-appmode) select {
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=text], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=search], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=email], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=url],
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=password], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=number], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=tel], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=date],
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=datetime-local], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=time], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=month], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=week],
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *)):not([type]), body.flxa:not(.flxa-appmode) textarea:where(:not(.editor-styles-wrapper *)), body.flxa:not(.flxa-appmode) select:where(:not(.editor-styles-wrapper *)) {
 	border-radius: var(--flxa-r, 10px); border: 1px solid var(--flxa-border-strong); background-color: var(--flxa-surface); color: var(--flxa-text);
 }
-body.flxa:not(.flxa-appmode) select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2397A79D' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-size: 16px 16px; background-position: right 8px top 55%; background-repeat: no-repeat !important; padding-right: 30px; }
+body.flxa:not(.flxa-appmode) select:where(:not(.editor-styles-wrapper *)) { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2397A79D' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-size: 16px 16px; background-position: right 8px top 55%; background-repeat: no-repeat !important; padding-right: 30px; }
 /* Çoklu seçim / liste kutusunda ok yok */
-body.flxa:not(.flxa-appmode) select[multiple], body.flxa:not(.flxa-appmode) select[size]:not([size="1"]) { background-image: none; padding-right: 8px; }
-body.flxa:not(.flxa-appmode) input[type=checkbox], body.flxa:not(.flxa-appmode) input[type=radio] { border-color: var(--flxa-border-strong); background: var(--flxa-surface); }
-body.flxa:not(.flxa-appmode) input[type=checkbox]:checked::before { content: ""; display: block; background-color: var(--flxa-accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat; }
-body.flxa:not(.flxa-appmode) input[type=radio]:checked::before { background-color: var(--flxa-accent); }
-body.flxa:not(.flxa-appmode) input::placeholder, body.flxa:not(.flxa-appmode) textarea::placeholder { color: var(--flxa-muted); opacity: .8; }
+body.flxa:not(.flxa-appmode) select:where(:not(.editor-styles-wrapper *))[multiple], body.flxa:not(.flxa-appmode) select:where(:not(.editor-styles-wrapper *))[size]:not([size="1"]) { background-image: none; padding-right: 8px; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio] { border-color: var(--flxa-border-strong); background: var(--flxa-surface); }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox]:checked::before { content: ""; display: block; background-color: var(--flxa-accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio]:checked::before { background-color: var(--flxa-accent); }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))::placeholder, body.flxa:not(.flxa-appmode) textarea:where(:not(.editor-styles-wrapper *))::placeholder { color: var(--flxa-muted); opacity: .8; }
 
+/* Not: çıplak öğe kuralları (başlık, paragraf, bağlantı, form alanı) :where(:not(.editor-styles-wrapper *)) ile blok editörü içeriğine
+ * sızmaz (meta kutusu olan sayfada editör iframe'siz çalışır; yoksa manşet başlığı yönetim rengini alıyordu). Özgüllük değişmez. */
 /* Kartlar, kutular */
 body.flxa:not(.flxa-appmode) .postbox,
 body.flxa:not(.flxa-appmode) .card,
@@ -572,8 +574,8 @@ html.flxa-dark body.flxa:not(.flxa-appmode) { color: var(--flxa-text); }
 html.flxa-dark body.flxa:not(.flxa-appmode) .wp-core-ui .button-secondary:disabled,
 html.flxa-dark body.flxa:not(.flxa-appmode) .button[disabled],
 html.flxa-dark body.flxa:not(.flxa-appmode) .button:disabled { background: var(--flxa-surface-2) !important; color: var(--flxa-muted) !important; border-color: var(--flxa-border) !important; }
-html.flxa-dark body.flxa:not(.flxa-appmode) input:disabled, html.flxa-dark body.flxa:not(.flxa-appmode) select:disabled, html.flxa-dark body.flxa:not(.flxa-appmode) textarea:disabled,
-html.flxa-dark body.flxa:not(.flxa-appmode) input[readonly] { background: var(--flxa-surface-2); color: var(--flxa-muted); border-color: var(--flxa-border); }
+html.flxa-dark body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *)):disabled, html.flxa-dark body.flxa:not(.flxa-appmode) select:where(:not(.editor-styles-wrapper *)):disabled, html.flxa-dark body.flxa:not(.flxa-appmode) textarea:where(:not(.editor-styles-wrapper *)):disabled,
+html.flxa-dark body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[readonly] { background: var(--flxa-surface-2); color: var(--flxa-muted); border-color: var(--flxa-border); }
 html.flxa-dark body.flxa:not(.flxa-appmode) .widefat .plugin-update-tr .update-message,
 html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .active td, html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .active th,
 html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .inactive td, html.flxa-dark body.flxa:not(.flxa-appmode) .plugins .inactive th,
@@ -806,17 +808,17 @@ body.flxa #wpbody-content input[type=url]:hover, body.flxa #wpbody-content input
 body.flxa #wpbody-content input[type=tel]:hover, body.flxa #wpbody-content input[type=date]:hover, body.flxa #wpbody-content input[type=datetime-local]:hover,
 body.flxa #wpbody-content input[type=time]:hover, body.flxa #wpbody-content input[type=month]:hover, body.flxa #wpbody-content input:not([type]):hover, body.flxa #wpbody-content select:hover, body.flxa #wpbody-content textarea:hover { border-color: color-mix(in srgb, var(--flxa-accent) 45%, var(--flxa-border-strong)); }
 body.flxa #wpbody-content input:focus, body.flxa #wpbody-content select:focus, body.flxa #wpbody-content textarea:focus { border-color: var(--flxa-accent) !important; }
-body.flxa:not(.flxa-appmode) input[type=checkbox], body.flxa:not(.flxa-appmode) input[type=radio] { width: 18px; height: 18px; min-width: 18px; border-radius: 5px; transition: background-color .12s, border-color .12s; }
-body.flxa:not(.flxa-appmode) input[type=radio] { border-radius: 50%; }
-body.flxa:not(.flxa-appmode) input[type=checkbox]:checked { background: var(--flxa-accent); border-color: var(--flxa-accent); }
-body.flxa:not(.flxa-appmode) input[type=checkbox]:checked::before { content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='%23fff'/%3E%3C/svg%3E"); margin: -1px 0 0 -1px; width: 18px; height: 18px; }
-body.flxa:not(.flxa-appmode) input[type=radio]:checked { border-color: var(--flxa-accent); }
-body.flxa:not(.flxa-appmode) input[type=radio]:checked::before { width: 8px; height: 8px; margin: 4px; }
-body.flxa:not(.flxa-appmode) input[type=checkbox]:disabled, body.flxa:not(.flxa-appmode) input[type=radio]:disabled { opacity: .5; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio] { width: 18px; height: 18px; min-width: 18px; border-radius: 5px; transition: background-color .12s, border-color .12s; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio] { border-radius: 50%; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox]:checked { background: var(--flxa-accent); border-color: var(--flxa-accent); }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox]:checked::before { content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.83 4.89l1.34.94-5.81 8.38H9.02L5.78 9.67l1.34-1.25 2.57 2.4z' fill='%23fff'/%3E%3C/svg%3E"); margin: -1px 0 0 -1px; width: 18px; height: 18px; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio]:checked { border-color: var(--flxa-accent); }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio]:checked::before { width: 8px; height: 8px; margin: 4px; }
+body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox]:disabled, body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio]:disabled { opacity: .5; }
 @media screen and (max-width: 782px) {
-	body.flxa:not(.flxa-appmode) input[type=checkbox], body.flxa:not(.flxa-appmode) input[type=radio] { width: 22px; height: 22px; min-width: 22px; }
-	body.flxa:not(.flxa-appmode) input[type=checkbox]:checked::before { width: 22px; height: 22px; }
-	body.flxa:not(.flxa-appmode) input[type=radio]:checked::before { width: 10px; height: 10px; margin: 5px; }
+	body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox], body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio] { width: 22px; height: 22px; min-width: 22px; }
+	body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=checkbox]:checked::before { width: 22px; height: 22px; }
+	body.flxa:not(.flxa-appmode) input:where(:not(.editor-styles-wrapper *))[type=radio]:checked::before { width: 10px; height: 10px; margin: 5px; }
 }
 
 /* ───────── Uygulama modu: WhatsApp / Görevler menünün hemen sağında ───────── */
