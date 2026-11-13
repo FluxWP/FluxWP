@@ -700,6 +700,12 @@ function flxc_preview_text( $m ) {
 	return mb_substr( preg_replace( '/\s+/', ' ', $body ), 0, 120 );
 }
 
+/** Toplu gönderim kaynağı olabilecek mesaj kaynakları (eski mesajlarda etiket bir kez sorulur). */
+function flxc_origin_source( $source ) {
+	$ok = 0 === strpos( $source, 'flx-mail' ) || 'campaign' === $source;
+	return (bool) apply_filters( 'flxc_origin_source', $ok, $source );
+}
+
 function flxc_media_url( $id ) {
 	static $nonce = null;
 	if ( null === $nonce ) {
@@ -782,6 +788,23 @@ function flxc_message_for_js( $r, $q = null ) {
 		if ( $euntil ) {
 			$out['editUntil'] = $euntil;
 		}
+	}
+	// 1.48.0: toplu gönderim etiketi. Eski mesajlarda (kaynak biliniyor, kontrol edilmemiş) bir kez sorulup saklanır.
+	if ( 'out' === $r['direction'] && empty( $meta['origin'] ) && empty( $meta['origin_checked'] ) && flxc_origin_source( (string) $r['source'] ) && function_exists( 'flxc_resolve_origin' ) ) {
+		$chat_row = flxc_get_chat( $r['chat_id'] );
+		$o        = flxc_resolve_origin( (string) $r['wa_id'], $chat_row ? (string) $chat_row['phone'] : '', (string) $r['body'], (string) $r['source'], (int) $r['ts'] );
+		$meta['origin_checked'] = 1;
+		if ( $o ) {
+			$meta['origin'] = $o;
+		}
+		flxc_update_message( $r['id'], array( 'meta' => $meta ) );
+	}
+	if ( ! empty( $meta['origin']['label'] ) ) {
+		$out['origin'] = array(
+			'label' => (string) $meta['origin']['label'],
+			'url'   => (string) ( $meta['origin']['url'] ?? '' ),
+			'kind'  => (string) ( $meta['origin']['kind'] ?? '' ),
+		);
 	}
 	if ( ! empty( $meta['lp'] ) ) {
 		$out['lp'] = $meta['lp'];

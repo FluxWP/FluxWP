@@ -391,7 +391,22 @@ function flxc_ingest_message( $conn_id, array $d, $opts = array() ) {
 		$source = flxc_detect_external_source( $wa_id, '' !== (string) ( $chat['phone'] ?? '' ) ? (string) $chat['phone'] : flxc_jid_phone( $jid ), (string) $p['body'] );
 	}
 
+	if ( $from_me ) {
+		$waiting = get_transient( 'flxc_origin_' . md5( (string) $wa_id ) );
+		if ( is_array( $waiting ) ) {
+			$p['meta']['origin'] = $waiting;
+			delete_transient( 'flxc_origin_' . md5( (string) $wa_id ) );
+		}
+	}
 	$meta = $p['meta'];
+	if ( $from_me && empty( $meta['origin'] ) && '' !== $source && 'phone' !== $source ) {
+		// 1.48.0: toplu gönderim (kampanya / etkinlik) kaynağı balonda etiket olarak görünür.
+		$origin = flxc_resolve_origin( $wa_id, '' !== (string) ( $chat['phone'] ?? '' ) ? (string) $chat['phone'] : flxc_jid_phone( $jid ), (string) $p['body'], $source, $ts );
+		if ( $origin ) {
+			$meta['origin'] = $origin;
+		}
+		$meta['origin_checked'] = 1;
+	}
 	if ( flxc_is_group_jid( $jid ) && ! $from_me ) {
 		$meta['sender'] = (string) ( $d['pushName'] ?? flxc_jid_phone( $key['participant'] ?? '' ) );
 	}
@@ -452,6 +467,61 @@ function flxc_detect_external_source( $wa_id, $phone = '', $body = null ) {
 		}
 	}
 	return (string) apply_filters( 'flxc_external_source', $source, $wa_id, (string) $phone, $body );
+}
+
+/**
+ * 1.48.0: giden mesajın toplu gönderim kaynağı (kampanya, etkinlik gönderimi…).
+ * Gönderen paket flxc_message_origin filtresiyle array( label, url, kind ) döner; etiket balonun üstünde görünür,
+ * tıklayınca url (gönderim detayı) açılır. Bilinmiyorsa null.
+ *
+ * @return array|null
+ */
+function flxc_resolve_origin( $wa_id, $phone, $body, $source, $ts = 0 ) {
+	$o = apply_filters(
+		'flxc_message_origin',
+		null,
+		array(
+			'wa_id'  => (string) $wa_id,
+			'phone'  => (string) $phone,
+			'body'   => (string) $body,
+			'source' => (string) $source,
+			'ts'     => (int) $ts,
+		)
+	);
+	return flxc_clean_origin( $o );
+}
+
+function flxc_clean_origin( $o ) {
+	if ( ! is_array( $o ) || '' === trim( (string) ( $o['label'] ?? '' ) ) ) {
+		return null;
+	}
+	return array(
+		'label' => mb_substr( sanitize_text_field( (string) $o['label'] ), 0, 160 ),
+		'url'   => esc_url_raw( (string) ( $o['url'] ?? '' ) ),
+		'kind'  => sanitize_key( (string) ( $o['kind'] ?? 'campaign' ) ),
+	);
+}
+
+/**
+ * Gönderen paket, gönderim yanıtında WhatsApp kimliğini öğrenince kaynağı doğrudan yazabilir
+ * (yankı webhook'u önce geldiyse). Mesaj henüz yoksa 10 dk bekletilir, gelince eklenir.
+ */
+function flxc_set_message_origin( $wa_id, array $origin ) {
+	$o = flxc_clean_origin( $origin );
+	if ( ! $o || '' === (string) $wa_id ) {
+		return false;
+	}
+	global $wpdb;
+	$m = $wpdb->get_row( $wpdb->prepare( 'SELECT * FROM ' . flxc_table( 'messages' ) . ' WHERE wa_id = %s ORDER BY id DESC LIMIT 1', (string) $wa_id ), ARRAY_A ); // phpcs:ignore
+	if ( ! $m ) {
+		set_transient( 'flxc_origin_' . md5( (string) $wa_id ), $o, 10 * MINUTE_IN_SECONDS );
+		return false;
+	}
+	$meta                   = flxc_decode( $m['meta'] );
+	$meta['origin']         = $o;
+	$meta['origin_checked'] = 1;
+	flxc_update_message( $m['id'], array( 'meta' => $meta ) );
+	return true;
 }
 
 function flxc_match_pending_outgoing( $chat_id, $body, $type ) {
