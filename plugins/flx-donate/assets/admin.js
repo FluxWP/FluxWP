@@ -99,6 +99,118 @@
 		if (type && opt) { type.addEventListener('change', sync); sync(); }
 	});
 
+	/* 2.29.0: Add donation. One "type|option" choice, live total, per-person certificate rows and a summary. */
+	document.querySelectorAll('form[data-flxb-add2]').forEach(function (form) {
+		var data = {}, t = {};
+		try { data = JSON.parse(form.getAttribute('data-flxb-add2')) || {}; } catch (e) { data = {}; }
+		try { t = JSON.parse(form.getAttribute('data-i18n')) || {}; } catch (e) { t = {}; }
+		var loc = form.getAttribute('data-locale') || undefined;
+		var q = function (s) { return form.querySelector(s); };
+		var pick = q('[name=pick]'), qty = q('[name=quantity]'), unitIn = q('[name=unit_price]'), amountIn = q('[name=amount]'), curIn = q('[name=currency]');
+		var priceBox = q('[data-flxb-price]'), freeBox = q('[data-flxb-free]'), qtyBox = q('[data-flxb-qty]'), proxyBox = q('[data-flxb-proxy]');
+		var priceBtn = q('[data-flxb-price-toggle]'), card = q('[data-flxb-people-card]'), forOther = q('[data-flxb-for-other]');
+		var peopleBox = q('[data-flxb-people]'), rows = q('[data-flxb-people-rows]'), tpl = q('[data-flxb-person-tpl]'), addBtn = q('[data-flxb-person-add]');
+		var acc = q('[data-flxb-account]'), donorName = q('[name=donor_name]');
+		var money = function (v, c) {
+			var sym = c || '';
+			try { new Intl.NumberFormat(loc, { style: 'currency', currency: c || 'TRY', currencyDisplay: 'narrowSymbol' }).formatToParts(0).forEach(function (x) { if (x.type === 'currency') sym = x.value; }); } catch (e) {}
+			try { return new Intl.NumberFormat(loc, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v) + ' ' + sym; } catch (e) { return v.toFixed(2) + ' ' + sym; }
+		};
+		var fmt = function (s, a, b) { return String(s).replace('%1$s', a).replace('%2$s', b); };
+		var esc = function (s) { var d = document.createElement('span'); d.textContent = s; return d.innerHTML; };
+		var current = function () {
+			var parts = (pick.value || '0|').split('|'), d = data[parts[0]] || null, o = null;
+			if (d) d.options.forEach(function (x) { if (x.key === parts[1]) o = x; });
+			return { d: d, o: o };
+		};
+		var unitWord = function (o, n) {
+			var u = o && o.unit ? o.unit : t.piece;
+			return n + ' ' + (u ? u[n === 1 ? 0 : 1] : '');
+		};
+		var val = function (row, sel) { var i = row.querySelector(sel); return i ? i.value.trim() : ''; };
+		var renumber = function () {
+			Array.prototype.forEach.call(rows.children, function (row, i) {
+				row.querySelector('[data-flxb-person-n]').textContent = i + 1;
+				row.querySelectorAll('input[name^="people["], input[data-name^="people["]').forEach(function (inp) {
+					['name', 'data-name'].forEach(function (a) {
+						var v = inp.getAttribute(a);
+						if (v && v.indexOf('people[') === 0) inp.setAttribute(a, v.replace(/^people\[\d+\]/, 'people[' + i + ']'));
+					});
+				});
+			});
+		};
+		var sync = function () {
+			var c = current(), d = c.d, o = c.o;
+			var free = !o, n = free ? 1 : Math.max(1, parseInt(qty.value, 10) || 1);
+			var cur = d && o ? d.currency : (curIn ? curIn.value : 'TRY');
+			var unit = o ? (unitIn.value !== '' ? parseFloat(unitIn.value) || 0 : o.price) : 0;
+			var total = free ? (parseFloat(amountIn.value) || 0) : unit * n;
+			freeBox.hidden = !free;
+			qtyBox.hidden = free;
+			priceBtn.hidden = free;
+			if (free) priceBox.hidden = true;
+			if (o) unitIn.placeholder = o.price;
+			if (proxyBox) proxyBox.hidden = !(d && d.proxy);
+			card.hidden = !!(d && d.proxy);
+			if (acc) acc.hidden = (q('[name=method]:checked') || {}).value !== 'bank_transfer';
+			/* People: up to one row per unit. */
+			var on = forOther.checked && !card.hidden;
+			peopleBox.hidden = !on;
+			var all = rows.children.length;
+			while (rows.children.length > Math.max(1, n)) rows.removeChild(rows.lastElementChild);
+			if (rows.children.length !== all) renumber();
+			addBtn.hidden = rows.children.length >= n;
+			var units = o ? o.per : 1, k = rows.children.length;
+			Array.prototype.forEach.call(rows.children, function (row, i) {
+				var b = row.querySelector('[data-flxb-person-units]');
+				b.textContent = unitWord(o, (i === 0 ? n - (k - 1) : 1) * units);
+				row.querySelector('[data-flxb-person-remove]').hidden = i === 0;
+			});
+			q('[data-flxb-people-count]').textContent = on ? fmt(t.used, n * units, unitWord(o, n * units)) : '';
+			/* Summary */
+			q('[data-flxb-total]').textContent = total > 0 ? money(total, cur) : '—';
+			q('[data-flxb-sum-type]').textContent = d ? d.title + (o && d.options.length > 1 ? ' · ' + o.label : '') : t.free;
+			q('[data-flxb-sum-calc]').textContent = o ? fmt(t.times, n, money(unit, cur)) : '';
+			var list = q('[data-flxb-sum-people]'), items = [];
+			var how = function (ph, em) { return ph && em ? t.both : ph ? t.whatsapp : em ? t.email : t.toDonor; };
+			if (on) {
+				Array.prototype.forEach.call(rows.children, function (row, i) {
+					var nm = val(row, 'input[name$="[name]"]');
+					var ph = val(row, '.flx-ph__num') || val(row, 'input[type=tel]');
+					if (!nm) return;
+					items.push('<li><span>' + esc(nm) + '</span><small>' + esc(unitWord(o, (i === 0 ? n - (k - 1) : 1) * units)) + ' · ' + esc(how(ph, val(row, 'input[type=email]'))) + '</small></li>');
+				});
+			}
+			if (!items.length && d && !d.proxy && donorName.value.trim()) {
+				items.push('<li><span>' + esc(donorName.value.trim()) + '</span><small>' + esc(unitWord(o, n * units)) + '</small></li>');
+			}
+			list.innerHTML = items.join('');
+			list.hidden = !items.length || !(d && d.cert) && !on;
+		};
+		priceBtn.addEventListener('click', function () {
+			priceBox.hidden = !priceBox.hidden;
+			if (!priceBox.hidden) unitIn.focus();
+			else { unitIn.value = ''; q('[name=price_reason]').value = ''; sync(); }
+		});
+		addBtn.addEventListener('click', function () {
+			var node = tpl.content.firstElementChild.cloneNode(true);
+			rows.appendChild(node);
+			renumber();
+			sync();
+			var f = node.querySelector('input[type=text]');
+			if (f) f.focus();
+		});
+		rows.addEventListener('click', function (e) {
+			var b = e.target.closest('[data-flxb-person-remove]');
+			if (!b) return;
+			var row = b.closest('[data-flxb-person]');
+			if (row && rows.children.length > 1) { row.remove(); renumber(); sync(); }
+		});
+		form.addEventListener('input', sync);
+		form.addEventListener('change', sync);
+		sync();
+	});
+
 	/* Quantity stepper: − / + buttons around a number input. */
 	document.querySelectorAll('.flxb-stepper').forEach(function (box) {
 		var input = box.querySelector('input[type=number]');
