@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.47.2
+- Düzeltme: sohbete sürükle-bırakla atılan dosya, o oturumda kaç sohbet açıldıysa o kadar kez ekleniyor ve gönderiliyordu (3 sohbet açınca 1 video 3 kez gidiyordu). Bırakma dinleyicisi artık bir kez bağlanıyor.
+
 ## 1.47.1
 - Fotoğraf, video ve belge indirme yeni sekme açmıyor; indirme aynı sayfada arka planda başlıyor (mesaj menüsü, önizleme penceresi, belge balonu). Kişi fotoğrafı da kişinin adıyla iniyor.
 

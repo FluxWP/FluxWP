@@ -2087,14 +2087,19 @@
 
 	/* Sürükle bırak */
 	function bindDrop(zone) {
-		var over = h('div', { class: 'flxc-drop', hidden: true }, icon('attach'), h('span', { text: t('Eklemek için dosyayı bırakın') }));
-		zone.appendChild(over);
+		// Kaplama her sohbette yeniden eklenir (buildChat alanı temizler) ama dinleyiciler bir kez bağlanır.
+		// 1.47.2: önceden her sohbet açılışında yeni dinleyici ekleniyordu; 3 sohbet açınca 1 dosya 3 kez gidiyordu.
+		el.dropOver = h('div', { class: 'flxc-drop', hidden: true }, icon('attach'), h('span', { text: t('Eklemek için dosyayı bırakın') }));
+		zone.appendChild(el.dropOver);
+		if (zone.flxcDrop) return;
+		zone.flxcDrop = true;
 		var depth = 0;
-		zone.addEventListener('dragenter', function (e) { if (e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types, 'Files') > -1) { depth++; over.hidden = false; e.preventDefault(); } });
-		zone.addEventListener('dragover', function (e) { if (!over.hidden) e.preventDefault(); });
-		zone.addEventListener('dragleave', function () { depth = Math.max(0, depth - 1); if (!depth) over.hidden = true; });
+		var show = function (on) { if (el.dropOver) el.dropOver.hidden = !on; };
+		zone.addEventListener('dragenter', function (e) { if (e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types, 'Files') > -1) { depth++; show(true); e.preventDefault(); } });
+		zone.addEventListener('dragover', function (e) { if (depth) e.preventDefault(); });
+		zone.addEventListener('dragleave', function () { depth = Math.max(0, depth - 1); if (!depth) show(false); });
 		zone.addEventListener('drop', function (e) {
-			depth = 0; over.hidden = true;
+			depth = 0; show(false);
 			var files = Array.prototype.slice.call((e.dataTransfer && e.dataTransfer.files) || []);
 			if (files.length) { e.preventDefault(); addFiles(files); }
 		});
