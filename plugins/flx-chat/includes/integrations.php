@@ -314,7 +314,131 @@ function flxc_certificate_for_js( array $c ) {
 		'date'     => flxc_local_date( $c['created_at'] ),
 		'receipts' => flxc_receipt_count( 'certificate', (int) $c['id'] ),
 		'admin'    => flxs_can_use() ? admin_url( 'admin.php?page=flxs&s=' . rawurlencode( (string) $c['number'] ) ) : '',
+		// 1.46.0: satırda tıklamadan görünen özet (gönderim, görüntülenme, bağlı bağış).
+		'views'    => (int) ( $c['views'] ?? 0 ),
+		'sends'    => flxc_cert_sends( $c, true ),
+		'donation' => flxc_cert_donation( $c ),
 	);
+}
+
+/**
+ * 1.46.0: sertifika gönderimleri (Flux Certificates kuyruğu + Çağrı Merkezi'nden gönderilenler), yeniden eskiye.
+ * $summary true ise yalnız sayı: array( 'sent' => n, 'failed' => n, 'queued' => n ).
+ */
+function flxc_cert_sends( array $c, $summary = false ) {
+	global $wpdb;
+	$id  = (int) $c['id'];
+	$out = array();
+	if ( function_exists( 'flxs_table' ) ) {
+		$mt   = flxs_table( 'messages' );
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT channel, recipient, recipient_name, status, sent_at, scheduled_at, created_at, last_error, source FROM $mt WHERE certificate_id = %d ORDER BY id DESC LIMIT 30", $id ), ARRAY_A ); // phpcs:ignore
+		foreach ( (array) $rows as $r ) {
+			$out[] = array(
+				'channel' => (string) $r['channel'],
+				'to'      => (string) ( '' !== (string) $r['recipient_name'] ? $r['recipient_name'] . ' · ' . $r['recipient'] : $r['recipient'] ),
+				'status'  => (string) $r['status'],
+				'at'      => (string) ( $r['sent_at'] ? $r['sent_at'] : ( $r['scheduled_at'] ? $r['scheduled_at'] : $r['created_at'] ) ),
+				'error'   => (string) $r['last_error'],
+				'via'     => 'certificates',
+			);
+		}
+		$lt   = flxs_table( 'logs' );
+		$logs = $wpdb->get_results( $wpdb->prepare( "SELECT created_at, user_id, context FROM $lt WHERE object_type = 'certificate' AND object_id = %d AND action = 'certificate_sent' ORDER BY id DESC LIMIT 30", $id ), ARRAY_A ); // phpcs:ignore
+		foreach ( (array) $logs as $l ) {
+			$ctx   = json_decode( (string) $l['context'], true );
+			$u     = (int) $l['user_id'] ? get_userdata( (int) $l['user_id'] ) : null;
+			$out[] = array(
+				'channel' => (string) ( $ctx['kanal'] ?? 'whatsapp' ),
+				'to'      => (string) ( $ctx['alici'] ?? '' ),
+				'status'  => 'sent',
+				'at'      => (string) $l['created_at'],
+				'error'   => '',
+				'via'     => 'chat',
+				'by'      => $u ? (string) $u->display_name : '',
+			);
+		}
+	}
+	if ( $summary ) {
+		$n = array( 'sent' => 0, 'failed' => 0, 'queued' => 0 );
+		foreach ( $out as $o ) {
+			$k = 'sent' === $o['status'] ? 'sent' : ( 'failed' === $o['status'] ? 'failed' : ( in_array( $o['status'], array( 'queued', 'processing' ), true ) ? 'queued' : '' ) );
+			if ( $k ) {
+				++$n[ $k ];
+			}
+		}
+		return $n;
+	}
+	usort(
+		$out,
+		static function ( $a, $b ) {
+			return strcmp( $b['at'], $a['at'] );
+		}
+	);
+	$labels = function_exists( 'flxs_status_labels' ) ? flxs_status_labels() : array();
+	foreach ( $out as &$o ) {
+		$o['channelL'] = function_exists( 'flxs_channel_label' ) ? (string) flxs_channel_label( $o['channel'] ) : $o['channel'];
+		$o['statusL']  = 'chat' === $o['via'] ? __( 'Sent from the chat', 'flx-chat' ) : (string) ( $labels[ $o['status'] ] ?? $o['status'] );
+		$o['date']     = flxc_local_date( $o['at'] );
+	}
+	unset( $o );
+	return $out;
+}
+
+/** 1.46.0: sertifikanın bağlı olduğu bağış (Flux Donate; certificate_code ya da çoklu sertifika listesi). */
+function flxc_cert_donation( array $c ) {
+	global $wpdb;
+	if ( ! function_exists( 'flxc_flxb_on' ) || ! flxc_flxb_on() || ! function_exists( 'flxb_table' ) || '' === (string) $c['code'] ) {
+		return null;
+	}
+	$t    = flxb_table( 'donations' );
+	$code = (string) $c['code'];
+	$id   = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $t WHERE certificate_code = %s AND status <> 'trash' ORDER BY id DESC LIMIT 1", $code ) ); // phpcs:ignore
+	if ( ! $id ) {
+		$id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $t WHERE meta LIKE %s AND status <> 'trash' ORDER BY id DESC LIMIT 1", '%' . $wpdb->esc_like( '"' . $code . '"' ) . '%' ) ); // phpcs:ignore
+	}
+	$d = $id ? FLXB_Donations::get( $id ) : null;
+	if ( ! $d ) {
+		return null;
+	}
+	$j = flxc_donation_for_js( $d );
+	return array_intersect_key( $j, array_flip( array( 'kind', 'id', 'title', 'qty', 'money', 'status', 'statusL', 'tone', 'method', 'name', 'phone', 'date', 'receipts', 'admin', 'ref', 'refDonor' ) ) );
+}
+
+/** 1.46.0: sertifika ayrıntısı (Bağış penceresi gibi): görsel, kişi, gönderimler, bağlı bağış, referans, değerler. */
+function flxc_certificate_detail( array $c ) {
+	$c      = isset( $c['data'] ) && is_array( $c['data'] ) ? $c : flxs_prepare_certificate( $c );
+	$out    = flxc_certificate_for_js( $c );
+	$person = ! empty( $c['person_id'] ) ? flxs_get_person( (int) $c['person_id'] ) : null;
+	$fmt    = static function ( $p ) {
+		$p = (string) $p;
+		return '' !== $p && function_exists( 'flxb_format_phone' ) ? flxb_format_phone( $p ) : $p;
+	};
+	$ts             = strtotime( (string) $c['created_at'] . ' UTC' );
+	$out['ago']     = $ts && function_exists( 'flx_time_ago' ) ? flx_time_ago( $ts ) : '';
+	$out['code']    = (string) $c['code'];
+	$out['image']   = function_exists( 'flxs_certificate_file_url' ) ? flxs_certificate_file_url( $c, 'image' ) : '';
+	$out['pdf']     = function_exists( 'flxs_certificate_pdf_url' ) ? flxs_certificate_pdf_url( $c ) : '';
+	$out['imageW']  = (int) ( $c['image_w'] ?? 0 );
+	$out['imageH']  = (int) ( $c['image_h'] ?? 0 );
+	$out['person']  = $person ? array(
+		'name'  => (string) $person['name'],
+		'phone' => $fmt( $person['phone'] ?? '' ),
+		'email' => (string) ( $person['email'] ?? '' ),
+	) : null;
+	$by             = (int) ( $c['created_by'] ?? 0 ) ? get_userdata( (int) $c['created_by'] ) : null;
+	$out['by']      = $by ? (string) $by->display_name : '';
+	$ref            = (int) ( $c['ref_user_id'] ?? 0 ) ? get_userdata( (int) $c['ref_user_id'] ) : null;
+	$out['refInfo'] = $ref ? array( 'name' => (string) $ref->display_name, 'phone' => $fmt( get_user_meta( $ref->ID, 'billing_phone', true ) ) ) : null;
+	$out['sendList'] = flxc_cert_sends( $c );
+	$skip           = array( 'ad_soyad' => 1, 'fidan_sayisi' => 1 );
+	$out['values']  = array();
+	foreach ( (array) ( $c['data']['values'] ?? array() ) as $k => $v ) {
+		if ( isset( $skip[ $k ] ) || is_array( $v ) || '' === trim( (string) $v ) || mb_strlen( (string) $v ) > 200 ) {
+			continue;
+		}
+		$out['values'][] = array( 'k' => ucfirst( str_replace( '_', ' ', (string) $k ) ), 'v' => (string) $v );
+	}
+	return $out;
 }
 
 /* ---------- arama ---------- */
@@ -723,7 +847,7 @@ function flxc_rest_get_certificate( WP_REST_Request $req ) {
 	if ( ! $c ) {
 		return new WP_Error( 'flxc_404', 'Not found', array( 'status' => 404 ) );
 	}
-	$out = array( 'certificate' => flxc_certificate_for_js( $c ) );
+	$out = array( 'certificate' => $req->get_param( 'detail' ) ? flxc_certificate_detail( $c ) : flxc_certificate_for_js( $c ) );
 	// İstenirse Flux Certificates'daki WhatsApp şablonuyla hazırlanmış mesaj (taslak olarak kutuya konur).
 	if ( $req->get_param( 'message' ) ) {
 		$chat = $req->get_param( 'chat' ) ? flxc_get_chat( (int) $req->get_param( 'chat' ) ) : null;

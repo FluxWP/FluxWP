@@ -4,6 +4,13 @@
 - Açık sohbet adreste görünür (`admin.php?page=flx-chat&chat=123`). Sayfayı yenileyince aynı sohbet açılır; bağlantıyı ekip arkadaşına gönderince doğrudan o sohbet açılır.
 - Tarayıcının geri/ileri düğmeleri sohbetler arasında gezer. Telefonda geri önce listeye döner, adresle açılan sohbette de.
 - Silinmiş ya da yetkisiz bir sohbetin bağlantısı açılırsa hata gösterilir ve adres listeye döner.
+- Kayıtlar › Sertifikalar: satıra tıklayınca menü yerine sertifika penceresi açılır (Bağışlar gibi): görsel (büyütülür), numara, ad, durum, tarih, görüntülenme, kaydı açan, bağlı bağış (tıklayınca bağış penceresi), tüm gönderimler (kanal, alıcı, kim, hata), kişi/referans ve sertifika bilgileri. Altta sohbete ekleme düğmeleri, sohbeti/sertifikayı/listeyi açma.
+- Sertifika satırında gönderim durumu (gönderildi/gönderilemedi sayısı) ve bağlı bağış özeti görünür.
+- Açılır menüler artık sol menü genişliği kadar sağa kaymaz; düğmenin yanında açılır, ekrandan taşmaz.
+- Mesaja sağ tıklayınca mesaj menüsü imlecin yanında açılır (metin seçiliyse ya da bağlantıdaysa tarayıcı menüsü kalır).
+- Düzenle artık fotoğraf, video ve belge açıklamasında da var (WhatsApp açıklamayı da düzenletir). Kampanya, Flux Mail ve asistan üzerinden giden mesajları yönetici düzenleyebilir.
+- Dosya sürükle-bırak / yapıştır / seç: tam ekran pencere yerine yazma alanının üstünde küçük ek kartları (fotoğraf, videonun ilk karesi, belge adı). Her kartta kaldır düğmesi ve altında yükleme çubuğu; dosya eklenir eklenmez sunucuya yüklenir. Hepsi yüklenmeden Gönder pasif; yüklenemeyen kartta "Yüklenemedi", tıklayınca yeniden dener. Yazılan metin ilk eke açıklama olarak gider. En fazla 10 dosya.
+- Yeni uç noktalar `POST /uploads` (ön yükleme, token 1 saat, yalnız yükleyen kullanır) ve `DELETE /uploads/{token}`; `POST /chats/{id}/messages` `upload` token'ı kabul eder. Gönderilmeyen ön yüklemeler 2 saat sonra silinir.
 
 ## 1.45.0
 - Fotoğraflı ve videolu mesajlarda balon medya genişliğinde (WhatsApp gibi): uzun açıklama metni artık balonu genişletmez, medyanın altına sarılır. Gelen ve giden mesajlarda, masaüstü ve mobilde aynı.

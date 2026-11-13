@@ -295,7 +295,7 @@
 	var S = {
 		me: {}, agents: [], labels: [], conns: [], channels: [], replies: [], ai: null,
 		chats: new Map(), order: [], filter: store('filter') || 'all', label: '', channel: '', q: '',
-		active: 0, msgs: new Map(), rev: 0, unread: 0, quoted: null, note: false,
+		active: 0, msgs: new Map(), rev: 0, unread: 0, quoted: null, note: false, att: [],
 		info: false, loadingList: false, listMore: false, notified: new Set(), sections: {}, fresh: {}, delOpen: new Set(), delHours: 60
 	};
 
@@ -597,12 +597,19 @@
 			}, it.icon ? icon(it.icon) : null, h('span', { text: it.label }), it.on ? icon('check', 'flxc-menu-check') : null));
 		});
 		root.appendChild(m);
-		var r = anchor.getBoundingClientRect(), rr = root.getBoundingClientRect();
+		// 1.46.0: menü uygulama kutusuna göre konumlanır (önceden ekran koordinatı kullanılıyordu; sol menü kadar sağa kayıyordu).
+		// opts.at = {x, y}: sağ tık / tıklanan nokta; menü oranın yanında açılır, kutudan taşmaz.
+		var rr = root.getBoundingClientRect(), ra = anchor.getBoundingClientRect();
+		var r = opts.at ? { left: opts.at.x, right: opts.at.x, top: opts.at.y, bottom: opts.at.y } : ra;
+		r = { left: r.left - rr.left, right: r.right - rr.left, top: r.top - rr.top, bottom: r.bottom - rr.top };
 		var mw = m.offsetWidth, mh = m.offsetHeight;
-		var left = Math.min(Math.max(8, r.right - mw), rr.width - mw - 8);
-		if (opts.alignLeft) left = Math.min(r.left, rr.width - mw - 8);
-		var top = r.bottom + 4;
-		if (top + mh > rr.height - 8) top = Math.max(8, r.top - mh - 4);
+		var left = opts.at ? r.left : r.right - mw;
+		if (opts.alignLeft) left = r.left;
+		if (opts.at && left + mw > rr.width - 8) left = r.left - mw;
+		left = Math.min(Math.max(8, left), rr.width - mw - 8);
+		var top = r.bottom + (opts.at ? 2 : 4);
+		if (top + mh > rr.height - 8) top = r.top - mh - (opts.at ? 2 : 4);
+		top = Math.min(Math.max(8, top), Math.max(8, rr.height - mh - 8));
 		m.style.left = left + 'px';
 		m.style.top = top + 'px';
 		openMenuEl = m;
@@ -1036,6 +1043,7 @@
 	function closeChat(fromPop) {
 		if (!fromPop && urlChat()) chatUrl(0, true);
 		S.active = 0;
+		attReset();
 		closeInfo(true);
 		renderEmptyMain();
 		setView('list');
@@ -1081,7 +1089,9 @@
 		el.chips = h('div', { class: 'flxc-qchips', role: 'toolbar', 'aria-label': t('Hazır cevaplar') });
 		el.lpBar = h('div', { class: 'flxc-lpbar', hidden: true });
 		el.aiBar = h('div', { class: 'flxc-aibar', hidden: true });
-		el.main.appendChild(h('div', { class: 'flxc-foot' }, el.pop, el.aiBar, el.chips, el.lpBar, el.replyBar, el.composer));
+		attReset();
+		el.attBar = h('div', { class: 'flxc-attbar', hidden: true, role: 'list', 'aria-label': t('Ekler') });
+		el.main.appendChild(h('div', { class: 'flxc-foot' }, el.pop, el.aiBar, el.chips, el.lpBar, el.replyBar, el.attBar, el.composer));
 		renderChips();
 		renderChatHead();
 		bindDrop(el.main);
@@ -1362,6 +1372,14 @@
 			var mb = h('button', { type: 'button', class: 'flxc-m-menu', 'aria-label': t('Mesaj menüsü'), onclick: function (e) { e.stopPropagation(); msgMenu(m, e.currentTarget); } }, icon('down'));
 			b.appendChild(mb);
 			longPress(b, function () { msgMenu(m, b); });
+			// 1.46.0: sağ tık mesaj menüsünü imlecin yanında açar (metin seçiliyse ya da bağlantıdaysa tarayıcı menüsü kalır).
+			b.addEventListener('contextmenu', function (e) {
+				if (matchMedia('(hover: none)').matches) return;
+				var sel = window.getSelection && String(window.getSelection());
+				if (sel || e.target.closest('a[href]')) return;
+				e.preventDefault();
+				msgMenu(m, b, { x: e.clientX, y: e.clientY });
+			});
 			b.addEventListener('dblclick', function (e) { if (!e.target.closest('a,audio,video,button')) setQuoted(m); });
 		}
 		if (m.status === 'failed') {
@@ -1517,7 +1535,7 @@
 	}
 
 	var REACTS = ['👍', '❤️', '😂', '😮', '😢', '🤲'];
-	function msgMenu(m, anchor) {
+	function msgMenu(m, anchor, at) {
 		var items = [];
 		if (m.wa && m.dir !== 'note') {
 			var rRow = h('div', { class: 'flxc-react-row' });
@@ -1543,7 +1561,7 @@
 		if ((m.dir === 'in' || m.dir === 'out') && m.type !== 'deleted' && m.status !== 'pending') items.push({ icon: 'trash', label: t('Sil'), danger: true, fn: function () { openDelete(m); } });
 		items.push({ sep: 1 });
 		items.push({ node: h('div', { class: 'flxc-menu-info' }, fmtLong.format(m.ts) + ' ' + fmtTime.format(m.ts) + (m.dir === 'out' ? ' · ' + statusLabel(m.status) : '')) });
-		menu(anchor, items, { noFocus: true });
+		menu(anchor, items, { noFocus: true, at: at || null });
 	}
 
 	function copyText(s) {
@@ -1793,14 +1811,14 @@
 		});
 		input.addEventListener('keydown', function (e) {
 			if (popKeys(e)) return;
-			if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && !(isMobile() && 'ontouchstart' in window)) { e.preventDefault(); sendText(); }
+			if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && !(isMobile() && 'ontouchstart' in window)) { e.preventDefault(); if (S.att.length) sendAtt(); else sendText(); }
 		});
 		input.addEventListener('paste', function (e) {
 			var files = Array.prototype.slice.call((e.clipboardData && e.clipboardData.files) || []);
-			if (files.length) { e.preventDefault(); previewFiles(files); }
+			if (files.length) { e.preventDefault(); addFiles(files); }
 		});
-		el.sendB = h('button', { type: 'button', class: 'flxc-send', 'aria-label': t('Gönder'), onclick: function () { if (input.value.trim()) sendText(); else if (isMobile()) input.focus(); else startRecord(); } });
-		el.fileIn = h('input', { type: 'file', hidden: true, multiple: true, onchange: function () { previewFiles(Array.prototype.slice.call(el.fileIn.files)); el.fileIn.value = ''; } });
+		el.sendB = h('button', { type: 'button', class: 'flxc-send', 'aria-label': t('Gönder'), onmousedown: function (e) { if (S.att.length) e.preventDefault(); }, onclick: function () { if (S.att.length) sendAtt(); else if (input.value.trim()) sendText(); else if (isMobile()) input.focus(); else startRecord(); } });
+		el.fileIn = h('input', { type: 'file', hidden: true, multiple: true, onchange: function () { addFiles(Array.prototype.slice.call(el.fileIn.files)); el.fileIn.value = ''; } });
 		var bar = h('div', { class: 'flxc-comp' },
 			btn('emoji', t('Emoji'), function (e) { e.stopPropagation(); toggleEmoji(); }, 'flxc-emo-b'),
 			btn('plus', t('Ekle'), function (e) { attachMenu(e.currentTarget); }, 'flxc-att-b'),
@@ -1824,9 +1842,15 @@
 	}
 	function updateSendBtn() {
 		if (!el.sendB) return;
-		var has = el.input.value.trim().length > 0;
+		var att = S.att && S.att.length;
+		var has = el.input.value.trim().length > 0 || !!att;
 		// Telefonda mikrofonun kendi düğmesi var: gönder hep gönder, boşken sönük.
 		var send = has || S.note || isMobile();
+		// 1.46.0: ekler yüklenirken / yüklenemediyse Gönder pasif.
+		var wait = !!att && (attBusy() || S.att.some(function (a) { return a.err; }));
+		el.sendB.disabled = wait;
+		el.sendB.classList.toggle('is-wait', wait);
+		el.sendB.title = wait ? t('Dosyalar yükleniyor, biraz bekleyin.') : '';
 		clear(el.sendB).appendChild(icon(send ? 'send' : 'mic'));
 		el.sendB.setAttribute('aria-label', send ? t('Gönder') : t('Sesli mesaj kaydet'));
 		el.sendB.classList.toggle('is-mic', !send);
@@ -2048,7 +2072,7 @@
 
 	/* Sürükle bırak */
 	function bindDrop(zone) {
-		var over = h('div', { class: 'flxc-drop', hidden: true }, icon('attach'), h('span', { text: t('Göndermek için dosyayı bırakın') }));
+		var over = h('div', { class: 'flxc-drop', hidden: true }, icon('attach'), h('span', { text: t('Eklemek için dosyayı bırakın') }));
 		zone.appendChild(over);
 		var depth = 0;
 		zone.addEventListener('dragenter', function (e) { if (e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types, 'Files') > -1) { depth++; over.hidden = false; e.preventDefault(); } });
@@ -2057,45 +2081,120 @@
 		zone.addEventListener('drop', function (e) {
 			depth = 0; over.hidden = true;
 			var files = Array.prototype.slice.call((e.dataTransfer && e.dataTransfer.files) || []);
-			if (files.length) { e.preventDefault(); previewFiles(files); }
+			if (files.length) { e.preventDefault(); addFiles(files); }
 		});
 	}
 
-	/* Gönderim öncesi önizleme (açıklama eklenebilir) */
-	function previewFiles(files) {
+	/* ---------- ekler: yazma alanının üstünde kartlar (1.46.0) ----------
+	 * Sürüklenen / yapıştırılan / seçilen dosya hemen sunucuya yüklenir; kartta küçük önizleme,
+	 * kaldır düğmesi ve köşede yükleme çubuğu var. Hepsi yüklenmeden Gönder çalışmaz.
+	 * Yazma alanındaki metin ilk eke açıklama olarak gider. */
+
+	var ATT_MAX = 10;
+	// Yazma alanı odağını kaybetmesin: telefonda klavye kapanınca düzen kayar, dokunuş kaçar.
+	function keepFocus(e) { e.preventDefault(); }
+	function attKind(f) { return f.type.indexOf('image/') === 0 && f.type !== 'image/svg+xml' ? 'image' : f.type.indexOf('video/') === 0 ? 'video' : 'document'; }
+	function attBusy() { return S.att.some(function (a) { return !a.token; }); }
+	function addFiles(files) {
 		if (!files.length || !S.active) return;
-		var idx = 0;
-		var caps = files.map(function () { return ''; });
-		var stage = h('div', { class: 'flxc-pv-stage' });
-		var cap = h('input', { type: 'text', class: 'flxc-pv-cap', placeholder: t('Açıklama ekleyin…'), 'aria-label': t('Açıklama') });
-		var thumbs = h('div', { class: 'flxc-pv-thumbs' });
-		function show(i) {
-			caps[idx] = cap.value;
-			idx = i;
-			cap.value = caps[i];
-			var f = files[i];
-			clear(stage);
-			if (f.type.indexOf('image/') === 0) stage.appendChild(h('img', { src: URL.createObjectURL(f), alt: '' }));
-			else if (f.type.indexOf('video/') === 0) stage.appendChild(h('video', { src: URL.createObjectURL(f), controls: true }));
-			else stage.appendChild(h('div', { class: 'flxc-pv-doc' }, icon('doc'), h('strong', { text: f.name }), h('small', { text: fmtSize(f.size) })));
-			Array.prototype.forEach.call(thumbs.children, function (n, j) { n.classList.toggle('is-on', j === i); });
-		}
-		files.forEach(function (f, i) {
-			thumbs.appendChild(h('button', { type: 'button', class: 'flxc-pv-th', onclick: function () { show(i); } },
-				f.type.indexOf('image/') === 0 ? h('img', { src: URL.createObjectURL(f), alt: '' }) : icon(f.type.indexOf('video/') === 0 ? 'video' : 'doc')));
+		if (S.note) setNoteMode(false);
+		var room = ATT_MAX - S.att.length;
+		if (files.length > room) toast(t('En fazla {n} dosya eklenebilir.', { n: ATT_MAX }), 'err');
+		files.slice(0, Math.max(0, room)).forEach(function (f) {
+			var a = { file: f, kind: attKind(f), url: URL.createObjectURL(f), pct: 0, token: '', err: '', xhr: null };
+			S.att.push(a);
+			attUpload(a);
 		});
-		var dlg = modal({
-			cls: 'flxc-pv', title: files.length > 1 ? t('{n} dosya gönder', { n: files.length }) : files[0].name,
-			body: [stage, files.length > 1 ? thumbs : null],
-			foot: [cap, h('button', { type: 'button', class: 'flxc-send', 'aria-label': t('Gönder'), onclick: function () {
-				caps[idx] = cap.value;
-				files.forEach(function (f, i) { sendFile(f, caps[i]); });
-				dlg.close();
-			} }, icon('send'))]
+		renderAtt();
+		el.input.focus();
+	}
+	function attUpload(a) {
+		a.err = ''; a.pct = 0;
+		var fd = new FormData();
+		fd.append('file', a.file, a.file.name);
+		var x = new XMLHttpRequest();
+		a.xhr = x;
+		x.open('POST', url('uploads'));
+		x.setRequestHeader('X-WP-Nonce', nonce);
+		x.upload.onprogress = function (e) { if (e.lengthComputable) { a.pct = Math.min(99, Math.round(e.loaded / e.total * 100)); attPaint(a); } };
+		x.onload = function () {
+			a.xhr = null;
+			var j = {};
+			try { j = JSON.parse(x.responseText); } catch (e) { /* boş */ }
+			if (x.status >= 200 && x.status < 300 && j.token) { a.token = j.token; a.kind = j.type || a.kind; a.pct = 100; }
+			else a.err = (j && j.message) || t('Yüklenemedi');
+			attPaint(a); updateSendBtn();
+		};
+		x.onerror = function () { a.xhr = null; a.err = t('Bağlantı hatası'); attPaint(a); updateSendBtn(); };
+		x.send(fd);
+	}
+	function attRemove(a, keepFile) {
+		var i = S.att.indexOf(a);
+		if (i > -1) S.att.splice(i, 1);
+		if (a.xhr) { a.xhr.abort(); a.xhr = null; }
+		if (a.token && !keepFile) api('uploads/' + a.token, { method: 'DELETE' }).catch(function () {});
+		if (!keepFile) URL.revokeObjectURL(a.url);
+	}
+	function attReset() {
+		(S.att || []).slice().forEach(function (a) { attRemove(a); });
+		S.att = [];
+	}
+	function renderAtt() {
+		if (!el.attBar) return;
+		clear(el.attBar);
+		el.attBar.hidden = !S.att.length;
+		S.att.forEach(function (a) {
+			var prev = a.kind === 'image' ? h('img', { src: a.url, alt: '' })
+				: a.kind === 'video' ? h('video', { src: a.url + '#t=0.1', muted: true, preload: 'metadata', playsinline: true })
+				: h('span', { class: 'flxc-att-doc' }, icon('doc'), h('small', { text: (a.file.name.split('.').pop() || '').slice(0, 5).toUpperCase() }));
+			a.el = h('div', { class: 'flxc-att is-' + a.kind, title: a.file.name + ' · ' + fmtSize(a.file.size) },
+				prev,
+				a.kind === 'video' ? h('span', { class: 'flxc-att-play' }, icon('play')) : null,
+				a.kind === 'document' ? h('span', { class: 'flxc-att-name', text: a.file.name }) : null,
+				h('button', { type: 'button', class: 'flxc-att-x', 'aria-label': t('Kaldır'), title: t('Kaldır'), onmousedown: keepFocus, onclick: function () { attRemove(a); renderAtt(); updateSendBtn(); } }, icon('close')),
+				h('span', { class: 'flxc-att-bar' }, h('i')),
+				h('button', { type: 'button', class: 'flxc-att-err', title: t('Tekrar dene'), onmousedown: keepFocus, onclick: function () { attUpload(a); attPaint(a); updateSendBtn(); } }, icon('reopen'), h('span'))
+			);
+			el.attBar.appendChild(a.el);
+			attPaint(a);
 		});
-		cap.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); dlg.foot.querySelector('.flxc-send').click(); } });
-		show(0);
-		setTimeout(function () { cap.focus(); }, 50);
+		updateSendBtn();
+	}
+	function attPaint(a) {
+		if (!a.el) return;
+		a.el.classList.toggle('is-up', !a.token && !a.err);
+		a.el.classList.toggle('is-done', !!a.token);
+		a.el.classList.toggle('is-err', !!a.err);
+		a.el.querySelector('.flxc-att-bar i').style.width = (a.token ? 100 : a.pct) + '%';
+		var eb = a.el.querySelector('.flxc-att-err');
+		eb.querySelector('span').textContent = a.err ? t('Yüklenemedi') : '';
+		eb.setAttribute('aria-label', a.err ? a.err + ' · ' + t('Tekrar dene') : t('Tekrar dene'));
+		if (a.err) eb.title = a.err + ' · ' + t('Tekrar dene');
+	}
+	function sendAtt() {
+		var c = S.chats.get(S.active);
+		if (!c || !S.att.length) return;
+		if (attBusy()) { toast(t('Dosyalar yükleniyor, biraz bekleyin.')); return; }
+		var caption = el.input.value;
+		var quoted = S.quoted;
+		S.att.slice().forEach(function (a, i) {
+			var body = i === 0 ? caption : '';
+			var tmp = optimistic(c, { type: a.kind, body: body, extra: { media: { url: a.url, name: a.file.name, size: a.file.size, mime: a.file.type } } });
+			if (i === 0) setQuoted(null);
+			var fd = new FormData();
+			fd.append('upload', a.token);
+			fd.append('type', a.kind);
+			fd.append('body', body);
+			if (quoted && i === 0) fd.append('quoted', quoted.id);
+			attRemove(a, true);
+			api('chats/' + c.id + '/messages', { method: 'POST', form: fd })
+				.then(function (r) { settle(c, tmp, r.message); if (r.message.status === 'failed') toast(r.message.error || t('Gönderilemedi'), 'err'); })
+				.catch(function (e) { settle(c, tmp, null); toast(e.message, 'err'); })
+				.then(function () { setTimeout(function () { URL.revokeObjectURL(a.url); }, 60000); });
+		});
+		el.input.value = ''; store('draft_' + c.id, ''); autoGrow();
+		lpTake(); aiHide(); closePopovers();
+		renderAtt();
 	}
 
 	/* ---------- ses kaydı ---------- */
@@ -3028,7 +3127,9 @@
 	function recRow(rec, onPick) {
 		var isD = rec.kind === 'donation';
 		// 1.39.0: a donation opens its detail window (the menu's actions are inside it).
-		var open = function (e) { if (isD) openDonationDetail(rec, onPick); else recMenu(rec, e.currentTarget, onPick); };
+		// 1.46.0: a certificate opens its own detail window too (no far-away menu).
+		var open = function () { if (isD) openDonationDetail(rec, onPick); else openCertificateDetail(rec, onPick); };
+		var sn = !isD && rec.sends ? rec.sends : null, dn = !isD ? rec.donation : null;
 		return h('div', { class: 'flxc-row flxc-rec-row', role: 'listitem', tabindex: '0', onclick: open, onkeydown: function (e) { if (e.key === 'Enter') open(e); } },
 			h('span', { class: 'flxc-av flxc-rec-av flxc-rec-av-' + rec.kind }, icon(isD ? 'gift' : 'cert')),
 			h('span', { class: 'flxc-row-main' },
@@ -3037,8 +3138,10 @@
 					h('span', { class: 'flxc-row-prev', text: isD ? rec.title + (rec.qty > 1 ? ' × ' + rec.qty : '') + ' · ' + rec.money : rec.number + (rec.qty ? ' · ' + t('{n} adet', { n: rec.qty }) : '') + (rec.event ? ' · ' + rec.event : '') }),
 					rec.statusL ? h('em', { class: 'flxc-tone flxc-tone-' + (rec.tone || 'muted'), text: rec.statusL }) : null,
 					rec.receipts ? h('span', { class: 'flxc-rc-n', title: t('Dekont') }, icon('receipt'), String(rec.receipts)) : null,
+					sn ? h('span', { class: 'flxc-rc-n flxc-cert-sent' + (sn.failed && !sn.sent ? ' is-bad' : sn.sent ? ' is-ok' : ''), title: sn.sent ? t('{n} kez gönderildi', { n: sn.sent }) : sn.failed ? t('Gönderilemedi') : sn.queued ? t('Sırada') : t('Henüz gönderilmedi') }, icon('send'), sn.sent ? String(sn.sent) : (sn.failed ? '!' : sn.queued ? '…' : '0')) : null,
 					isD && rec.ref ? h('span', { class: 'flxc-ref' + (rec.refDonor ? ' is-donor' : ''), title: rec.refDonor ? t('Bağışçının önceki referansı') : t('Referans') }, icon('person'), rec.ref) : null
-				)
+				),
+				dn ? h('span', { class: 'flxc-row-bot flxc-cert-don' }, icon('gift'), h('span', { class: 'flxc-row-prev', text: [dn.title + (dn.qty > 1 ? ' × ' + dn.qty : ''), dn.money].filter(Boolean).join(' · ') }), dn.statusL ? h('em', { class: 'flxc-tone flxc-tone-' + (dn.tone || 'muted'), text: dn.statusL }) : null) : null
 			)
 		);
 	}
@@ -3086,6 +3189,59 @@
 				if (!(await window.flxDialog.confirm({ message: t('Ödeme hesaba geldi mi? Onaylarsan sertifika oluşturulup bağışçıya gönderilir.') }))) return;
 				api('records/donations/' + d.id + '/status', { method: 'POST', body: { status: 'completed' } }).then(function () { toast(t('Bağış onaylandı')); dlg.close(); done(); }).catch(function (e) { toast(e.message, 'err'); });
 			} }, icon('check'), t('Ödendi olarak işaretle')));
+		}).catch(function (e) { clear(body); add(body, h('div', { class: 'flxc-empty-list', text: e.message })); });
+	}
+
+	/** 1.46.0: one certificate in full (like a donation): preview, person, sends, linked donation, referral, actions. */
+	function openCertificateDetail(rec, onPick) {
+		var body = h('div', { class: 'flxc-dd flxc-cd' }, h('div', { class: 'flxc-loading' }, h('span', { class: 'flxc-spin' })));
+		var foot = h('div', { class: 'flxc-dd-foot flxc-cd-foot' });
+		var dlg = modal({ cls: 'flxc-dd-dlg', title: t('Sertifika'), body: body, foot: foot });
+		function kv(k, v) { return v ? h('div', { class: 'flxc-dd-kv' }, h('span', { text: k }), h('strong', { text: v })) : null; }
+		function sec(title, kids) { kids = kids.filter(Boolean); return kids.length ? h('section', { class: 'flxc-dd-sec' }, h('h3', { text: title }), kids) : null; }
+		function person(name, lines, cls) {
+			return h('div', { class: 'flxc-dd-person' + (cls ? ' ' + cls : '') }, h('span', { class: 'flxc-dd-av', text: (name || '?').charAt(0).toUpperCase() }),
+				h('span', { class: 'flxc-dd-pmain' }, h('strong', { text: name || '—' }), lines.filter(Boolean).map(function (x) { return h('small', { text: x }); })));
+		}
+		api('records/certificates/' + rec.id, { query: { detail: 1 } }).then(function (r) {
+			var d = r.certificate;
+			clear(body); clear(foot);
+			var img = d.image ? h('button', { type: 'button', class: 'flxc-cd-img', title: t('Büyüt'), onclick: function () { lightbox(d.image, 'image', { body: d.name + ' · ' + d.number }); } },
+				h('img', { src: d.image, alt: d.number, loading: 'lazy' })) : h('span', { class: 'flxc-cd-img is-empty' }, icon('cert'));
+			add(body, h('div', { class: 'flxc-dd-hero flxc-cd-hero' }, img,
+				h('div', { class: 'flxc-dd-amt' },
+					h('strong', { text: d.number || d.code }),
+					h('small', { text: d.name }),
+					h('small', { text: [d.title, d.qty ? t('{n} adet', { n: d.qty }) : '', d.event].filter(Boolean).join(' · ') }),
+					d.statusL ? h('em', { class: 'flxc-tone flxc-tone-failed', text: d.statusL }) : h('em', { class: 'flxc-tone flxc-tone-ok', text: t('Geçerli') }))));
+			var sent = (d.sendList || []).filter(function (x) { return x.status === 'sent'; }).length;
+			add(body, h('div', { class: 'flxc-dd-grid' },
+				kv(t('Tarih'), [d.date, d.ago].filter(Boolean).join(' · ')),
+				kv(t('Sertifika gönderimi'), sent ? t('{n} kez gönderildi', { n: sent }) : t('Henüz gönderilmedi')),
+				kv(t('Görüntülenme'), String(d.views || 0)),
+				kv(t('Kaydı açan'), d.by)));
+			if (d.donation) {
+				var dn = d.donation;
+				add(body, sec(t('Bağlı bağış'), [h('button', { type: 'button', class: 'flxc-dd-file flxc-cd-don', onclick: function () { openDonationDetail(dn, onPick); } },
+					icon('gift'), h('span', null, h('strong', { text: [dn.title + (dn.qty > 1 ? ' × ' + dn.qty : ''), dn.money].join(' · ') }), h('small', { text: [dn.date, dn.method, dn.receipts ? t('{n} dekont', { n: dn.receipts }) : ''].filter(Boolean).join(' · ') })),
+					dn.statusL ? h('em', { class: 'flxc-tone flxc-tone-' + (dn.tone || 'muted'), text: dn.statusL }) : null)]));
+			}
+			add(body, sec(t('Gönderimler'), (d.sendList || []).map(function (x) {
+				var tone = x.status === 'sent' ? 'ok' : x.status === 'failed' ? 'failed' : 'pending';
+				return h('div', { class: 'flxc-dd-line' }, h('span', { class: 'flxc-dd-lmain' }, h('strong', { text: [x.channelL, x.to].filter(Boolean).join(' · ') }), h('small', { text: [x.date, x.by].filter(Boolean).join(' · ') }), x.error ? h('small', { class: 'flxc-dd-warn', text: x.error }) : null), h('em', { class: 'flxc-tone flxc-tone-' + tone, text: x.statusL }));
+			})));
+			add(body, h('div', { class: 'flxc-dd-people' },
+				sec(t('Kişi'), [d.person ? person(d.person.name, [d.person.phone, d.person.email]) : h('p', { class: 'flxc-muted', text: t('İletişim bilgisi yok.') })]),
+				sec(t('Referans'), [d.refInfo ? person(d.refInfo.name, [d.refInfo.phone], 'is-ref') : (d.donation && d.donation.ref ? person(d.donation.ref, [t('Bağıştaki referans')], 'is-ref') : h('p', { class: 'flxc-muted', text: t('Referans yok.') }))])));
+			if (d.values && d.values.length) add(body, sec(t('Sertifika bilgileri'), [h('div', { class: 'flxc-dd-grid' }, d.values.map(function (v) { return kv(v.k, v.v); }))]));
+			// Actions: insert into the open chat, open the chat, open the certificate / list.
+			if (S.active) certInsertItems(d, function () { dlg.close(); if (onPick) onPick(); else if (isMobile() && el.recs) el.recs.close(); }).forEach(function (it, i) {
+				add(foot, h('button', { type: 'button', class: 'flxc-btn' + (i ? ' flxc-btn-ghost' : ''), onclick: it.fn }, icon(it.icon), it.label));
+			});
+			var phone = (d.phone || '').replace(/\D+/g, '');
+			if (phone && !onPick) add(foot, h('button', { type: 'button', class: 'flxc-btn flxc-btn-ghost', onclick: function () { dlg.close(); goChat(phone, d.name); } }, icon('unread'), t('Sohbeti aç')));
+			if (d.url) add(foot, h('a', { class: 'flxc-btn flxc-btn-ghost', href: d.url, target: '_blank', rel: 'noopener' }, icon('open'), t('Sertifikayı aç')));
+			if (d.admin) add(foot, h('a', { class: 'flxc-btn flxc-btn-ghost', href: d.admin, target: '_blank', rel: 'noopener' }, icon('gear'), t('Sertifika listesinde aç')));
 		}).catch(function (e) { clear(body); add(body, h('div', { class: 'flxc-empty-list', text: e.message })); });
 	}
 
