@@ -9,7 +9,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useStore } from 'zustand';
 import { canDeleteForEveryone, isDeletedMessage, type FlxcChannel, type FlxcChat, type FlxcFilter, type FlxcMessage } from '@fluxwp/core';
 import { notifyIncoming, useAccount, useApi, useRenderer, WaEngine } from '@fluxwp/runtime';
-import { Avatar, EmptyState, IconButton, Spinner, Text } from '@/ui/primitives';
+import { Avatar, EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
 import { Icon } from '@/ui/Icon';
 import { overlays, type MenuItem } from '@/ui/overlays';
 import { Chip, Chips, SearchField, useScreenTitle } from '../kit';
@@ -206,7 +206,7 @@ export default function InboxScreen({ params }: { params: Record<string, string>
     void engine.send(id, { type: 'image', file: blob, name: a.fileName ?? 'photo.jpg' }).catch(() => undefined);
   };
 
-  if (!s.boot && !s.bootError) return <View testID="screen-inbox" style={styles.fill}><Spinner label={t('mobile.states.loading')} /></View>;
+  if (!s.boot && !s.bootError) return <View testID="screen-inbox" style={styles.fill}><Skeleton /></View>;
   if (s.bootError) return <View testID="screen-inbox" style={styles.fill}><EmptyState icon="alert" title={s.bootError} action={{ label: t('mobile.states.retry'), onPress: () => void engine.start() }} /></View>;
 
   return (
@@ -228,7 +228,7 @@ export default function InboxScreen({ params }: { params: Record<string, string>
             renderItem={({ item }) => <Bubble m={item} locale={i18n.language} onLong={(m) => void messageMenu(m)} />}
             contentContainerStyle={styles.thread}
             onContentSizeChange={() => listRef.current?.scrollToEnd({ animated: false })}
-            ListEmptyComponent={<Spinner />}
+            ListEmptyComponent={<Skeleton variant="thread" />}
           />
           <View style={styles.composer}>
             <IconButton icon="image" label={t('mobile.screens.inbox.attach')} onPress={() => void attach()} />
@@ -263,7 +263,7 @@ export default function InboxScreen({ params }: { params: Record<string, string>
             data={chats}
             keyExtractor={(c) => String(c.id)}
             renderItem={({ item }) => <ChatRow chat={item} fresh={!!s.fresh[item.id]} locale={i18n.language} channel={channelOf(item)} onPress={(id) => engine.open(id)} />}
-            ListEmptyComponent={s.listLoading ? <Spinner /> : <EmptyState icon="chat" title={t('mobile.screens.inbox.empty')} body={t('mobile.screens.inbox.emptyBody')} />}
+            ListEmptyComponent={s.listLoading ? <Skeleton /> : <EmptyState icon="chat" title={t('mobile.screens.inbox.empty')} body={t('mobile.screens.inbox.emptyBody')} />}
             onEndReached={() => { if (s.listMore && !s.listLoading) void engine.loadChats(true).catch(() => undefined); }}
           />
         </>

@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.3.3
+- Flux AI stream request omits cookies (token only).
+
 ## 0.3.2
 - `flxai-chat` (Flux AI site manifest chat screen) is a known native screen id.
 

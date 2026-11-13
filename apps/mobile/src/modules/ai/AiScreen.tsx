@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { loadTokens } from '@fluxwp/core';
 import { messageText, streamAiStep, useAccount, useApi, useRenderer, type AiChat, type AiEvent, type AiMessage } from '@fluxwp/runtime';
-import { Button, EmptyState, IconButton, Spinner, Text } from '@/ui/primitives';
+import { Button, EmptyState, IconButton, Skeleton, Spinner, Text } from '@/ui/primitives';
 import { Icon } from '@/ui/Icon';
 import { overlays, type MenuItem } from '@/ui/overlays';
 import { SearchField, useScreenTitle } from '../kit';
@@ -169,7 +169,7 @@ export default function AiScreen(_props: { params: Record<string, string> }) {
           <Button icon="plus" label={t('mobile.screens.ai.new')} onPress={newChat} />
         </View>
         <SearchField testID="ai-search" value={q} onChange={setQ} placeholder={t('mobile.screens.ai.search')} />
-        {list.isPending ? <Spinner /> : (
+        {list.isPending ? <Skeleton rows={5} /> : (
           <FlashList
             data={items}
             keyExtractor={(i) => i.key}

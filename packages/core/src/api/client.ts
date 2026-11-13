@@ -147,6 +147,7 @@ function xhrSend(url: string, method: string, headers: Record<string, string>, b
   return new Promise((resolve, reject) => {
     const xhr = new XHR();
     xhr.open(method, url);
+    xhr.withCredentials = false;
     for (const [key, value] of Object.entries(headers)) xhr.setRequestHeader(key, value);
     xhr.upload.onprogress = (e) => {
       if (e.lengthComputable && e.total > 0) onProgress(e.loaded / e.total);
@@ -192,7 +193,11 @@ export function createClient(o: ClientOptions): ApiClient {
     }
     const method = opts.method ?? (body ? 'POST' : 'GET');
     if (opts.onUploadProgress && typeof XMLHttpRequest !== 'undefined') return xhrSend(url, method, headers, body, opts.signal, opts.onUploadProgress);
-    return doFetch(url, { method, headers, body, signal: opts.signal, credentials: o.credentials });
+    // A token request never carries cookies. The app's web views sign in to wp-admin and share their
+    // cookies with native requests; with a login cookie present WordPress resolves the user from the
+    // cookie, ignores the token and FluxApp answers 401 "token is invalid or expired".
+    const credentials = o.credentials ?? (cred && !opts.anonymous ? 'omit' : undefined);
+    return doFetch(url, { method, headers, body, signal: opts.signal, credentials });
   };
 
   async function request<T>(path: string, opts: RequestOptions = {}): Promise<T | ApiResult<T>> {

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { flxg, type FlxgComment, type FlxgTask, type FlxgTaskDetail } from '@fluxwp/core';
 import { FlxgEngine, parseChecklist, toggleChecklistItem, useAccount, useApi, useEngineVersion, useRenderer } from '@fluxwp/runtime';
-import { Avatar, Button, EmptyState, IconButton, Spinner, Text } from '@/ui/primitives';
+import { Avatar, Button, EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
 import { Chip, Chips, SearchField, useScreenTitle } from '../kit';
 import { mobilePorts } from '../ports';
 
@@ -76,7 +76,7 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
     setDetail({ ...detail, comments_list: [...detail.comments_list, c] });
   };
 
-  if (!engine.S.ready && !engine.S.error) return <View testID="screen-tasks" style={styles.fill}><Spinner label={t('mobile.states.loading')} /></View>;
+  if (!engine.S.ready && !engine.S.error) return <View testID="screen-tasks" style={styles.fill}><Skeleton variant="cards" /></View>;
   if (engine.S.error) return <View testID="screen-tasks" style={styles.fill}><EmptyState icon="alert" title={engine.S.error} action={{ label: t('mobile.states.retry'), onPress: () => void engine.boot() }} /></View>;
 
   if (detail) {
@@ -146,7 +146,7 @@ export default function TasksScreen(_props: { params: Record<string, string> }) 
             const overdue = !!item.due && item.due.slice(0, 10) < engine.S.config.today && st.type !== 'done';
             return <TaskRow task={item} color={st.color} names={namesOf(item)} overdue={overdue} onPress={() => void open(item.id)} />;
           }}
-          ListEmptyComponent={engine.S.loading ? <Spinner /> : <EmptyState icon="task" title={t('mobile.screens.tasks.empty')} body={t('mobile.screens.tasks.emptyBody')} />}
+          ListEmptyComponent={engine.S.loading ? <Skeleton variant="cards" /> : <EmptyState icon="task" title={t('mobile.screens.tasks.empty')} body={t('mobile.screens.tasks.emptyBody')} />}
         />
       ) : (
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.board}>

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.2
+- API client sends no cookies with token requests (`credentials: omit`, XHR `withCredentials = false`). A wp-admin login cookie shared from the app web views made WordPress ignore the token (401 `flxapp_invalid_token`).
+
 ## 0.4.1
 - Demo: Flux AI module entry (opens the native screen), 🙏 replaced in demo chats, English strings for the new demo texts.
 
