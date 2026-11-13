@@ -59,29 +59,30 @@ VARIANTS = {
 
 DEFAULT = "mariadb-redis"
 
-# Per-mode values. Coolify generates SERVICE_* secrets itself.
+# Per-mode values. These are env-var references (${...}), never secrets;
+# Coolify generates SERVICE_* secrets itself.
 MODES = {
     "coolify": {
         "db_user": "$SERVICE_USER_WORDPRESS",
-        "db_password": "$SERVICE_PASSWORD_WORDPRESS",
-        "db_root_password": "$SERVICE_PASSWORD_ROOT",
+        "db_pw_ref": "$SERVICE_PASSWORD_WORDPRESS",
+        "db_root_pw_ref": "$SERVICE_PASSWORD_ROOT",
         "db_name": "${DB_NAME:-wordpress}",
-        "redis_password": "$SERVICE_PASSWORD_REDIS",
+        "redis_pw_ref": "$SERVICE_PASSWORD_REDIS",
         "wp_url": "$SERVICE_URL_WORDPRESS",
         "wp_admin_user": "${WP_ADMIN_USER:-}",
-        "wp_admin_password": "${WP_ADMIN_PASSWORD:-}",
+        "wp_admin_pw_ref": "${WP_ADMIN_PASSWORD:-}",
         "wp_admin_email": "${WP_ADMIN_EMAIL:-}",
         "wp_auto_install": "${WP_AUTO_INSTALL:-true}",
     },
     "compose": {
         "db_user": "${DB_USER:-wordpress}",
-        "db_password": "${DB_PASSWORD:?set DB_PASSWORD in .env}",
-        "db_root_password": "${DB_ROOT_PASSWORD:?set DB_ROOT_PASSWORD in .env}",
+        "db_pw_ref": "${DB_PASSWORD:?set DB_PASSWORD in .env}",
+        "db_root_pw_ref": "${DB_ROOT_PASSWORD:?set DB_ROOT_PASSWORD in .env}",
         "db_name": "${DB_NAME:-wordpress}",
-        "redis_password": "${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}",
+        "redis_pw_ref": "${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}",
         "wp_url": "${WP_URL:-}",
         "wp_admin_user": "${WP_ADMIN_USER:-admin}",
-        "wp_admin_password": "${WP_ADMIN_PASSWORD:-}",
+        "wp_admin_pw_ref": "${WP_ADMIN_PASSWORD:-}",
         "wp_admin_email": "${WP_ADMIN_EMAIL:-}",
         "wp_auto_install": "${WP_AUTO_INSTALL:-true}",
     },
@@ -98,7 +99,7 @@ def wp_env(mode, v):
     lines = [
         f"WORDPRESS_DB_HOST={db_host}",
         f"WORDPRESS_DB_USER={m['db_user']}",
-        f"WORDPRESS_DB_PASSWORD={m['db_password']}",
+        f"WORDPRESS_DB_PASSWORD={m['db_pw_ref']}",
         f"WORDPRESS_DB_NAME={m['db_name']}",
         "WORDPRESS_TABLE_PREFIX=${WORDPRESS_TABLE_PREFIX:-wp_}",
         "PHP_MEMORY_LIMIT=${PHP_MEMORY_LIMIT:-256M}",
@@ -112,7 +113,7 @@ def wp_env(mode, v):
     if v["redis"]:
         lines += [
             "WP_REDIS_HOST=redis",
-            f"WP_REDIS_PASSWORD={m['redis_password']}",
+            f"WP_REDIS_PASSWORD={m['redis_pw_ref']}",
         ]
     return lines
 
@@ -166,10 +167,10 @@ def db_service(mode, v):
             "      - 'mariadb-data:/var/lib/mysql'\n"
             "    environment:\n"
             + env([
-                f"MARIADB_ROOT_PASSWORD={m['db_root_password']}",
+                f"MARIADB_ROOT_PASSWORD={m['db_root_pw_ref']}",
                 f"MARIADB_DATABASE={m['db_name']}",
                 f"MARIADB_USER={m['db_user']}",
-                f"MARIADB_PASSWORD={m['db_password']}",
+                f"MARIADB_PASSWORD={m['db_pw_ref']}",
                 "MARIADB_AUTO_UPGRADE=1",
             ])
             + "    healthcheck:\n"
@@ -198,10 +199,10 @@ def db_service(mode, v):
         "      - 'mysql-data:/var/lib/mysql'\n"
         "    environment:\n"
         + env([
-            f"MYSQL_ROOT_PASSWORD={m['db_root_password']}",
+            f"MYSQL_ROOT_PASSWORD={m['db_root_pw_ref']}",
             f"MYSQL_DATABASE={m['db_name']}",
             f"MYSQL_USER={m['db_user']}",
-            f"MYSQL_PASSWORD={m['db_password']}",
+            f"MYSQL_PASSWORD={m['db_pw_ref']}",
         ])
         + "    healthcheck:\n"
         "      test: ['CMD-SHELL', 'mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent']\n"
@@ -232,9 +233,9 @@ def redis_service(mode):
         "      - --appendonly\n"
         "      - 'no'\n"
         "      - --requirepass\n"
-        f"      - {m['redis_password']}\n"
+        f"      - {m['redis_pw_ref']}\n"
         "    environment:\n"
-        + env([f"REDISCLI_AUTH={m['redis_password']}"])
+        + env([f"REDISCLI_AUTH={m['redis_pw_ref']}"])
         + "    healthcheck:\n"
         "      test: ['CMD-SHELL', 'redis-cli ping | grep -q PONG']\n"
         "      interval: 10s\n"
@@ -342,7 +343,7 @@ def worker_service(mode, v):
             f"WP_URL={m['wp_url'].replace('WORDPRESS', 'NGINX') if v['web'] == 'nginx' else m['wp_url']}",
             "WP_TITLE=${WP_TITLE:-WordPress}",
             f"WP_ADMIN_USER={m['wp_admin_user']}",
-            f"WP_ADMIN_PASSWORD={m['wp_admin_password']}",
+            f"WP_ADMIN_PASSWORD={m['wp_admin_pw_ref']}",
             f"WP_ADMIN_EMAIL={m['wp_admin_email']}",
             f"WP_AUTO_INSTALL={m['wp_auto_install']}",
             "WP_LOCALE=${WP_LOCALE:-en_US}",
