@@ -991,8 +991,10 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 }
 
 /* 1.47.0: kişi detayında fotoğraf büyütülür */
-#flxc-app .flxc-info-av { padding: 0; border: 0; background: none; border-radius: 50%; cursor: zoom-in; display: inline-flex; transition: transform .15s, box-shadow .15s; }
-#flxc-app .flxc-info-av:hover { transform: scale(1.03); box-shadow: 0 0 0 4px var(--flxc-line); }
+/* Halka avatarın kendisinde: düğme avatarla aynı boyutta değilse (alt boşluk) daire kayıyordu. */
+#flxc-app .flxc-info-av { padding: 0; border: 0; background: none; border-radius: 50%; cursor: zoom-in; display: inline-flex; margin-bottom: 10px; line-height: 0; }
+#flxc-app .flxc-info-hero .flxc-info-av .flxc-av { margin: 0; transition: transform .15s, box-shadow .15s; }
+#flxc-app .flxc-info-av:hover .flxc-av { transform: scale(1.03); box-shadow: 0 0 0 4px var(--flxc-line); }
 #flxc-app .flxc-info-av:focus-visible { outline: 2px solid var(--flxc-accent); outline-offset: 3px; }
 
 /* 1.48.0: toplu gönderim etiketi (balonun üstünde, uzun başlık … ile kesilir) */

@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.48.0
+- Düzeltme: kişi bilgisinde fotoğrafın üzerine gelince çıkan halka tam daire değildi (alttaki boşluk yüzünden aşağı kayıyordu).
 - Toplu gönderimden (Flux Mail kampanyası, CRM etkinlik gönderimi) gelen mesajın balonunun üstünde gönderim başlığı küçük bir etiket olarak görünür; uzunsa "…" ile kesilir, tamamı üzerine gelince görünür. Tıklayınca gönderim detayı yeni sekmede açılır.
 - Kaynağı veren paket için yeni filtre `flxc_message_origin` (`null`, `array( wa_id, phone, body, source, ts )`) → `array( label, url, kind )`; WhatsApp kimliği sonradan öğrenilirse `flxc_set_message_origin( $wa_id, $origin )`. Eski toplu mesajlarda etiket ilk görüntülemede bir kez sorulup saklanır (`flxc_origin_source`).
 
