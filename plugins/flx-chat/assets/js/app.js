@@ -996,16 +996,45 @@
 			}
 			renderList();
 			setView('chat');
-			if (!fromPop && isMobile()) {
-				try { history.pushState({ flxc: 'chat', id: id }, ''); } catch (e) { /* yok say */ }
-			}
+			if (!fromPop) chatUrl(id);
 			store('last', String(id));
 			setTimeout(function () { if (!isMobile()) el.input && el.input.focus({ preventScroll: true }); }, 30);
 			return chat;
-		}).catch(function (e) { toast(e.message, 'err'); });
+		}).catch(function (e) {
+			toast(e.message, 'err');
+			if (urlChat() === id) chatUrl(0, true); // silinmiş/yetkisiz sohbet adreste kalmasın
+		});
 	}
 
-	function closeChat() {
+	/* 1.46.0: açık sohbet adreste (?page=flx-chat&chat=ID): yenileyince aynı sohbet açılır, geri/ileri sohbetler arasında gezer,
+	   bağlantı paylaşılınca doğrudan o sohbet açılır. */
+	function urlChat() { return +(new URLSearchParams(location.search).get('chat') || 0); }
+	function urlFor(id) {
+		var u = new URL(location.href);
+		u.searchParams.delete('phone');
+		if (id) u.searchParams.set('chat', String(id)); else u.searchParams.delete('chat');
+		return u.pathname + u.search + u.hash;
+	}
+	function chatUrl(id, replace) {
+		try {
+			var cur = urlChat();
+			if (replace || (cur === id && !id)) { history.replaceState({ flxc: id ? 'chat' : 'list', id: id }, '', urlFor(id)); return; }
+			if (cur === id) {
+				// Adresle açıldı: telefonda "geri" listeye dönsün diye altına liste girişi konur.
+				if (isMobile() && !(history.state && history.state.flxc)) {
+					history.replaceState({ flxc: 'list', id: 0 }, '', urlFor(0));
+					history.pushState({ flxc: 'chat', id: id }, '', urlFor(id));
+				} else history.replaceState({ flxc: 'chat', id: id }, '', urlFor(id));
+				return;
+			}
+			// Masaüstünde ilk açılan sohbet sayfa girişinin yerine geçer; sonrakiler geçmişe eklenir.
+			if (!cur && !isMobile()) history.replaceState({ flxc: 'chat', id: id }, '', urlFor(id));
+			else history.pushState({ flxc: 'chat', id: id }, '', urlFor(id));
+		} catch (e) { /* yok say */ }
+	}
+
+	function closeChat(fromPop) {
+		if (!fromPop && urlChat()) chatUrl(0, true);
 		S.active = 0;
 		closeInfo(true);
 		renderEmptyMain();
@@ -1017,9 +1046,10 @@
 	function isMobile() { return window.matchMedia('(max-width: 899px)').matches; }
 
 	window.addEventListener('popstate', function () {
-		if (!isMobile()) return;
-		if (S.info) { closeInfo(true); return; }
-		if (S.active) closeChat();
+		if (S.info && isMobile()) { closeInfo(true); return; }
+		var id = urlChat();
+		if (id && id !== S.active) openChat(id, true);
+		else if (!id && S.active) closeChat(true);
 	});
 
 	function refreshAvatar(c) {

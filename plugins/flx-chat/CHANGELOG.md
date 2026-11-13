@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.46.0
+- Açık sohbet adreste görünür (`admin.php?page=flx-chat&chat=123`). Sayfayı yenileyince aynı sohbet açılır; bağlantıyı ekip arkadaşına gönderince doğrudan o sohbet açılır.
+- Tarayıcının geri/ileri düğmeleri sohbetler arasında gezer. Telefonda geri önce listeye döner, adresle açılan sohbette de.
+- Silinmiş ya da yetkisiz bir sohbetin bağlantısı açılırsa hata gösterilir ve adres listeye döner.
+
 ## 1.45.0
 - Fotoğraflı ve videolu mesajlarda balon medya genişliğinde (WhatsApp gibi): uzun açıklama metni artık balonu genişletmez, medyanın altına sarılır. Gelen ve giden mesajlarda, masaüstü ve mobilde aynı.
 - Video balonda oynamaz: ilk kare (ya da WhatsApp küçük resmi), oynat simgesi ve süre görünür. Tıklayınca önizleme penceresi açılır ve video orada oynar. Fotoğraf da aynı pencerede tam boy açılır.
