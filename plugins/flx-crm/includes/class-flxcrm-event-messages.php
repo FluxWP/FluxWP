@@ -30,6 +30,7 @@ final class FLXCRM_Event_Messages {
 		add_action( 'admin_post_flxcrm_event_msg_cancel', array( __CLASS__, 'post_cancel' ) );
 		add_action( 'admin_post_flxcrm_event_msg_control', array( __CLASS__, 'post_control' ) );
 		add_action( 'flx_event_deleting', array( __CLASS__, 'forget' ) );
+		add_filter( 'flxi_campaign_url', array( __CLASS__, 'campaign_url' ), 10, 2 );
 	}
 
 	/** Flux Mail is there for this channel. */
@@ -394,6 +395,32 @@ final class FLXCRM_Event_Messages {
 		array_unshift( $list, $row );
 		$all[ $event_id ] = array_slice( $list, 0, self::MAX );
 		update_option( self::OPT, $all, false );
+	}
+
+	/**
+	 * Flux Mail link of a campaign (e.g. the title over a bulk message in Flux Chat): an event send opens
+	 * its own page in the CRM (Event › Messages › the send), not the Sent list.
+	 */
+	public static function campaign_url( $url, $campaign ) {
+		$c   = (array) $campaign;
+		$ref = (string) ( $c['data']['ref'] ?? '' );
+		$cid = (int) ( $c['id'] ?? 0 );
+		if ( ! $cid || 0 !== strpos( $ref, 'flxcrm_event:' ) ) {
+			return $url;
+		}
+		$eid  = (int) substr( $ref, strlen( 'flxcrm_event:' ) );
+		$args = array( 'id' => $eid, 'view' => 'message', 'sub' => 'sent' );
+		foreach ( (array) ( self::all()[ $eid ] ?? array() ) as $row ) {
+			if ( in_array( $cid, array_map( 'intval', (array) ( $row['campaigns'] ?? array() ) ), true ) ) {
+				$args = array( 'id' => $eid, 'view' => 'message', 'send' => (string) $row['id'] );
+				$ch   = array_search( $cid, array_map( 'intval', (array) $row['campaigns'] ), true );
+				if ( false !== $ch && count( (array) $row['campaigns'] ) > 1 ) {
+					$args['ch'] = (string) $ch;
+				}
+				break;
+			}
+		}
+		return flxcrm_admin_url( 'events', $args );
 	}
 
 	public static function forget( $event_id ) {

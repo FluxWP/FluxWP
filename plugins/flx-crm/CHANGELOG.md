@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.2
+- The title over an event's bulk message (Flux Chat, from Flux Mail's `flxi_campaign_url`) opens that send's own page in the CRM, on its channel, instead of the Sent list.
+
 ## 0.9.1
 - Send page: an Engagement column per recipient (reached, read, replied, turned off messages, with the time on hover) once Flux Mail returns these fields in `flxi_campaign_recipients()` (Flux Mail #260). Hidden with older Flux Mail.
 
