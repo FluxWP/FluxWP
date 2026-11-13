@@ -4,7 +4,7 @@ import { createStore, type StoreApi } from 'zustand/vanilla';
 import {
   ApiError, chatMatches, mergeMessages, sortChats, flxc,
   type ApiClient, type FlxcApi, type FlxcBootstrap, type FlxcChat, type FlxcChatPatch, type FlxcConnection,
-  type FlxcFilter, type FlxcMessage, type FlxcSendArgs, type FlxcSync,
+  type FlxcDeleteScope, type FlxcFilter, type FlxcMessage, type FlxcSendArgs, type FlxcSync,
 } from '@fluxwp/core';
 import { browserPorts, type ModulePorts } from '../ports';
 
@@ -26,6 +26,8 @@ export interface WaState {
   listMore: boolean;
   filter: FlxcFilter;
   label: string;
+  /** 1.37.0+: kanal süzgeci ('' = hepsi) */
+  channel: string;
   q: string;
   active: number | null;
   msgs: Record<number, ChatMsgs>;
@@ -69,7 +71,7 @@ export class WaEngine {
     this.api = flxc(o.client);
     this.store = createStore<WaState>(() => ({
       boot: null, bootError: '', rev: 0, chats: {}, order: [], listLoading: true, listMore: false,
-      filter: 'all', label: '', q: '', active: null, msgs: {}, fresh: {}, conns: [], unread: 0, offline: '',
+      filter: 'all', label: '', channel: '', q: '', active: null, msgs: {}, fresh: {}, conns: [], unread: 0, offline: '',
     }));
   }
 
@@ -113,10 +115,10 @@ export class WaEngine {
 
   async loadChats(more = false) {
     const req = ++this.listReq;
-    const { filter, q, label, order } = this.s;
+    const { filter, q, label, channel, order } = this.s;
     this.set({ listLoading: true });
     try {
-      const r = await this.api.chats({ filter, q: q || undefined, label: label || undefined, offset: more ? order.length : 0, limit: PAGE });
+      const r = await this.api.chats({ filter, q: q || undefined, label: label || undefined, channel: channel || undefined, offset: more ? order.length : 0, limit: PAGE });
       if (req !== this.listReq) return;
       this.set((s) => {
         const chats = { ...s.chats };
@@ -130,7 +132,7 @@ export class WaEngine {
     }
   }
 
-  setView(p: Partial<Pick<WaState, 'filter' | 'label' | 'q'>>) {
+  setView(p: Partial<Pick<WaState, 'filter' | 'label' | 'channel' | 'q'>>) {
     this.set(p);
     void this.loadChats().catch(() => undefined);
   }
@@ -171,7 +173,7 @@ export class WaEngine {
       const chats = { ...s.chats, [c.id]: c };
       let order = s.order;
       const inView = order.includes(c.id);
-      const match = chatMatches(c, s.filter, s.boot?.me.id ?? 0, s.label, s.q);
+      const match = chatMatches(c, s.filter, s.boot?.me.id ?? 0, s.label, s.q, s.channel);
       if (match && !inView && !s.q) order = [...order, c.id];
       if (!match && inView && c.id !== s.active && !s.q) order = order.filter((x) => x !== c.id);
       if (order !== s.order || inView) order = [...order].sort((a, b) => sortChats(chats[a]!, chats[b]!));
@@ -268,8 +270,17 @@ export class WaEngine {
   }
 
   async deleteNote(m: FlxcMessage) {
-    await this.api.deleteNote(m.id);
-    this.patchMsgs(m.chat, (x) => ({ list: x.list.map((y) => (y.id === m.id ? { ...y, type: 'deleted', body: '' } : y)) }));
+    return this.deleteMessage(m, 'panel');
+  }
+
+  /** 1.38.0+: herkesten sil (WhatsApp'ta da) ya da yalnız panelde gizle. Satır sunucuda kalır. */
+  async deleteMessage(m: FlxcMessage, scope: FlxcDeleteScope = 'panel') {
+    const r = await this.api.deleteMessage(m.id, m.dir === 'note' ? 'panel' : scope);
+    this.patchMsgs(m.chat, (x) => ({
+      list: r.message
+        ? mergeMessages(x.list, [r.message])
+        : x.list.map((y) => (y.id === m.id ? { ...y, deleted: true, type: 'deleted' as const, body: '' } : y)),
+    }));
   }
 
   private lastTyping = 0;

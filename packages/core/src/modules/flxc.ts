@@ -16,6 +16,8 @@ export interface FlxcChat {
   jid: string;
   phone: string;
   phoneFmt: string;
+  /** 1.37.0+: kanal (whatsapp | web | eklenti kanalı). Eski sunucuda yok. */
+  channel?: string;
   title: string;
   name: string;
   pushName: string;
@@ -85,6 +87,10 @@ export interface FlxcMessage {
   edited: boolean;
   sender: string;
   deleted?: boolean;
+  /** 1.38.0+: silinme bilgisi; içerik (type/body) silinmeden önceki haliyle gelir. */
+  del?: FlxcDeleted;
+  /** 1.38.0+: herkesten silme son anı (ms). Yoksa yalnız panelde gizlenebilir. */
+  revokeUntil?: number;
   lp?: FlxcLinkPreview | false;
   receipts?: unknown[];
   rcheck?: { v: string; s: string };
@@ -96,6 +102,20 @@ export interface FlxcMessage {
   local?: boolean;
 }
 
+export type FlxcDeleteScope = 'everyone' | 'panel';
+
+export interface FlxcDeleted {
+  scope: 'contact' | 'phone' | 'everyone' | 'panel' | string;
+  by: string;
+  at: number;
+  atText: string;
+  ago: string;
+  /** 1.38.0 öncesi silinen not: içerik saklanmamış. */
+  empty?: boolean;
+}
+
+export interface FlxcChannel { id: string; label: string; icon: string; color: string; active: boolean }
+
 export interface FlxcLabel { id: string; name: string; color: string }
 export interface FlxcConnection { id: string; label: string; color: string; state: string; at: number }
 export interface FlxcReply { id: number; shortcut: string; title: string; body: string; category: string; uses: number }
@@ -106,6 +126,8 @@ export interface FlxcBootstrap {
   agents: FlxcAgent[];
   labels: FlxcLabel[];
   connections: FlxcConnection[];
+  /** 1.37.0+: tek gelen kutusundaki kanallar. */
+  channels?: FlxcChannel[];
   replies: FlxcReply[];
   unread: number;
   ai: { id: string; label: string; auto: boolean } | null;
@@ -155,7 +177,7 @@ const P = 'flx-chat/v1';
 export const flxc = (api: ApiClient) => ({
   bootstrap: () => api<FlxcBootstrap>(`${P}/bootstrap`),
   sync: (q: { since: number; chat?: number; after?: number }) => api<FlxcSync>(`${P}/sync`, { query: { ...q, _t: Date.now() } }),
-  chats: (q: { filter?: FlxcFilter; q?: string; label?: string; offset?: number; limit?: number }) =>
+  chats: (q: { filter?: FlxcFilter; q?: string; label?: string; channel?: string; offset?: number; limit?: number }) =>
     api<{ chats: FlxcChat[] }>(`${P}/chats`, { query: { ...q, _t: Date.now() } }),
   newChat: (b: { phone: string; name?: string; conn?: string; check?: boolean }) => api<{ chat: FlxcChat }>(`${P}/chats`, { method: 'POST', body: b }),
   checkNumber: (phone: string, conn?: string) =>
@@ -185,7 +207,10 @@ export const flxc = (api: ApiClient) => ({
   ai: (id: number, o: { fresh?: boolean; hint?: string } = {}) => api<{ text: string; cached?: boolean }>(`${P}/chats/${id}/ai`, { method: 'POST', body: o }),
   retry: (mid: number) => api<{ message: FlxcMessage }>(`${P}/messages/${mid}/retry`, { method: 'POST' }),
   react: (mid: number, emoji: string) => api<{ message: FlxcMessage }>(`${P}/messages/${mid}/react`, { method: 'POST', body: { emoji } }),
-  deleteNote: (mid: number) => api<{ ok: boolean }>(`${P}/messages/${mid}`, { method: 'DELETE' }),
+  /** 1.38.0+: `everyone` WhatsApp'ta da siler (süre sınırlı), `panel` yalnız panelde gizler. Notlar her zaman `panel`. */
+  deleteMessage: (mid: number, scope: FlxcDeleteScope = 'panel') =>
+    api<{ message?: FlxcMessage; ok?: boolean }>(`${P}/messages/${mid}`, { method: 'DELETE', query: { scope } }),
+  deleteNote: (mid: number) => api<{ message?: FlxcMessage; ok?: boolean }>(`${P}/messages/${mid}`, { method: 'DELETE' }),
   linkPreview: (url: string) => api<FlxcLinkPreview>(`${P}/link-preview`, { query: { url } }),
   replies: () => api<{ replies: FlxcReply[] }>(`${P}/replies`),
   useReply: (rid: number, chat: number) => api<{ text: string }>(`${P}/replies/${rid}/use`, { method: 'POST', body: { chat } }),
@@ -201,9 +226,10 @@ export function sortChats(a: FlxcChat, b: FlxcChat): number {
 }
 
 /** Sohbet görünümdeki filtreye uyuyor mu (sync ile gelen değişiklikleri listeye yerleştirmek için). Aramada sunucu karar verir. */
-export function chatMatches(c: FlxcChat, f: FlxcFilter, me: number, label = '', q = ''): boolean {
+export function chatMatches(c: FlxcChat, f: FlxcFilter, me: number, label = '', q = '', channel = ''): boolean {
   if (q) return true;
   if (label && !c.labels.includes(label)) return false;
+  if (channel && (c.channel || 'whatsapp') !== channel) return false;
   switch (f) {
     case 'unread': return c.unread > 0 && c.status !== 'closed';
     case 'mine': return c.assigned === me && c.status !== 'closed';
@@ -221,4 +247,14 @@ export function mergeMessages(list: FlxcMessage[], incoming: FlxcMessage[]): Flx
   const byId = new Map(list.map((m) => [m.id, m]));
   for (const m of incoming) byId.set(m.id, m);
   return [...byId.values()].sort((a, b) => a.ts - b.ts || a.id - b.id);
+}
+
+/** Mesaj silinmiş mi (1.38.0+ `deleted` bayrağı ya da eski `type: deleted`). */
+export const isDeletedMessage = (m: FlxcMessage) => !!m.deleted || m.type === 'deleted';
+
+/** Bu mesaj şu an herkesten silinebilir mi (gönderen ya da yönetici, süre dolmamış, kanal destekliyor). */
+export function canDeleteForEveryone(m: FlxcMessage, me: { id: number; manage: boolean }, now = Date.now()): boolean {
+  if (isDeletedMessage(m) || m.dir === 'note' || m.dir === 'system' || m.local) return false;
+  if (!m.revokeUntil || now > m.revokeUntil) return false;
+  return m.userId === me.id || me.manage;
 }

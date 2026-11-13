@@ -68,6 +68,7 @@ const routes: [string, RegExp, Handler][] = [
   ['POST', /^flx-chat\/v1\/chats\/(\d+)\/typing$/, () => ({ ok: true })],
   ['POST', /^flx-chat\/v1\/chats\/(\d+)\/bot$/, (m, _q, b) => Y.flxcSetBot(Number(m[1]), b.state === 'on')],
   ['POST', /^flx-chat\/v1\/chats\/(\d+)\/ai$/, () => ({ text: 'Merhaba Ayşe Hanım, dekontunuzu aldık 🌱 Ekibimiz onayladığında sertifikanız WhatsApp ve e-postayla gelecek.' })],
+  ['DELETE', /^flx-chat\/v1\/messages\/(\d+)$/, (m, q) => Y.flxcDelete(Number(m[1]), q.get('scope') ?? 'panel')],
   ['POST', /^flx-chat\/v1\/messages\/(\d+)\/react$/, (m, _q, b) => Y.flxcReact(Number(m[1]), String(b.emoji ?? ''))],
   ['POST', /^flx-chat\/v1\/replies\/(\d+)\/use$/, (m) => ({ text: (Y.flxcBoot().replies.find((r) => r.id === Number(m[1]))?.body ?? '').replace('{first_name}', 'Ayşe') })],
   ['GET', /^flx-chat\/v1\/link-preview$/, (_m, q) => ({ ok: true, url: q.get('url'), title: 'Örnek Vakfı', domain: new URL(q.get('url') ?? 'https://x').hostname })],

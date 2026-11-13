@@ -49,6 +49,36 @@ const aiChat: AiChat = {
   ],
 };
 
+const H = 3600;
+const t0 = Math.floor(Date.now() / 1000);
+/** 0.14.0: liste satırları (görev sohbeti, onay bekleyen, arşivdeki) + tam sohbet gövdeleri. */
+const aiExtra: (AiChat & { archived: number; updated: number; task: string })[] = [
+  {
+    id: 9, title: 'Günlük brifing', status: 'idle', archived: 0, updated: t0 - 2 * H, task: 'Günlük brifing', pending: [],
+    messages: [
+      { role: 'user', content: 'Zamanlanmış görev: Günlük brifing' },
+      { role: 'assistant', content: 'Dün 14 bağış geldi (6.300 ₺), önceki güne göre %18 fazla. 3 dekont onay bekliyor. Sitede hata yok.' },
+    ],
+  },
+  {
+    id: 8, title: 'Bağışçılara teşekkür e-postası', status: 'approval', archived: 0, updated: t0 - 20 * 60, task: '',
+    pending: [{ id: 'p1', name: 'flxmail_send', title: 'E-posta gönder: 42 bağışçıya teşekkür' }],
+    messages: [
+      { role: 'user', content: 'Bu ay bağış yapanlara kısa bir teşekkür e-postası hazırla ve gönder.' },
+      { role: 'assistant', content: 'Taslak hazır. 42 kişiye göndermek için onayınız gerekiyor.' },
+    ],
+  },
+  {
+    id: 6, title: 'Ekim raporu', status: 'idle', archived: 1, updated: t0 - 9 * 24 * H, task: '', pending: [],
+    messages: [{ role: 'user', content: 'Ekim ayı özetini çıkar.' }, { role: 'assistant', content: 'Ekimde 212 bağış, 1.940 fidan.' }],
+  },
+];
+const aiRows = () => [
+  { id: aiChat.id, title: aiChat.title, status: aiChat.status, archived: 0, updated: t0 - 3 * H, snippet: '', task: '' },
+  ...aiExtra.map(({ id, title, status, archived, updated, task }) => ({ id, title, status, archived, updated, snippet: '', task })),
+].sort((a, b) => b.updated - a.updated);
+const aiFind = (id: number): AiChat | null => (id === aiChat.id ? aiChat : aiExtra.find((c) => c.id === id) ?? null);
+
 let tv: TvState = {
   online: true,
   same_wifi: true,
@@ -142,8 +172,27 @@ export const moduleDemoRoutes: [string, RegExp, Handler][] = [
     return { items: gallery.filter((i) => i.job && jobs.includes(i.job)) };
   }],
   ['GET', /^flx-ai\/v1\/boot$/, () => ({ ready: true, model: 'demo', modelLabel: 'Demo model', tools: {}, canManage: false, counts: { chats: 1 } })],
-  ['GET', /^flx-ai\/v1\/chats$/, () => ({ chats: [{ id: aiChat.id, title: aiChat.title, status: aiChat.status, archived: 0, updated: Date.now() / 1000, snippet: '' }] })],
-  ['GET', /^flx-ai\/v1\/chats\/(\d+)$/, (m) => (Number(m[1]) === aiChat.id ? aiChat : null)],
+  ['GET', /^flx-ai\/v1\/chats$/, (_m, q) => {
+    const arch = Number(q.get('archived') ?? 0);
+    const s = (q.get('q') ?? '').toLocaleLowerCase('tr');
+    return { chats: aiRows().filter((c) => (arch < 0 || c.archived === arch) && (!s || c.title.toLocaleLowerCase('tr').includes(s))) };
+  }],
+  ['GET', /^flx-ai\/v1\/chats\/(\d+)$/, (m) => aiFind(Number(m[1]))],
+  ['POST', /^flx-ai\/v1\/chats\/(\d+)$/, (m, _q, b) => {
+    const c = aiExtra.find((x) => x.id === Number(m[1]));
+    if (c && b.archived !== undefined) c.archived = b.archived ? 1 : 0;
+    return aiFind(Number(m[1]));
+  }],
+  ['POST', /^flx-ai\/v1\/chats\/(\d+)\/delete$/, (m) => {
+    const i = aiExtra.findIndex((x) => x.id === Number(m[1]));
+    if (i >= 0) aiExtra.splice(i, 1);
+    return { deleted: i >= 0 };
+  }],
+  ['POST', /^flx-ai\/v1\/chats\/(\d+)\/stop$/, (m) => {
+    const c = aiFind(Number(m[1]));
+    if (c) c.status = 'idle';
+    return { state: 'done', chat: c };
+  }],
   ['POST', /^flx-ai\/v1\/chats\/(\d+)\/send$/, (m, _q, b) => {
     const text = String(b.text ?? '');
     if (Number(m[1]) !== aiChat.id && Number(m[1]) !== 0) return null;
@@ -167,7 +216,14 @@ export const moduleDemoRoutes: [string, RegExp, Handler][] = [
     done();
     return { state: 'done', chat: aiChat };
   }],
-  ['POST', /^flx-ai\/v1\/chats\/(\d+)\/decide$/, () => ({ state: 'continue', chat: aiChat })],
+  ['POST', /^flx-ai\/v1\/chats\/(\d+)\/decide$/, (m) => {
+    const c = aiExtra.find((x) => x.id === Number(m[1]));
+    if (!c) return { state: 'continue', chat: aiChat };
+    c.pending = [];
+    c.status = 'idle';
+    c.messages.push({ role: 'assistant', content: 'Tamam.' });
+    return { state: 'done', chat: c };
+  }],
   ['GET', /^flxtv\/v1\/state$/, () => tv],
   ['POST', /^flxtv\/v1\/cmd$/, (_m, _q, b) => {
     if (!tv.same_wifi) return { ok: false, code: 'off_network', message: 'Aynı Wi-Fi’da değilsiniz.', state: tv };

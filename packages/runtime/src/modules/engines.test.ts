@@ -52,6 +52,26 @@ describe('platform ports', () => {
     engine.stop();
   });
 
+  it('deletes a message for everyone through the demo and keeps its content (flx-chat 1.38)', async () => {
+    const api = createClient({ siteUrl: DEMO_SITE, fetchImpl: demoFetch, getCredentials: async () => ({ token: 'demo' }) });
+    const engine = new WaEngine({ client: api, ports: memoryPorts(), poll: 30 });
+    await engine.start();
+    expect(engine.s.boot?.channels?.filter((c) => c.active).map((c) => c.id)).toEqual(['whatsapp', 'web']);
+    engine.open(301);
+    for (let i = 0; i < 50 && !engine.s.msgs[301]?.loaded; i++) await new Promise((r) => setTimeout(r, 20));
+    const target = engine.s.msgs[301]!.list.find((m) => m.revokeUntil)!;
+    expect(target).toBeTruthy();
+    await engine.deleteMessage(target, 'everyone');
+    const after = engine.s.msgs[301]!.list.find((m) => m.id === target.id)!;
+    expect(after.deleted).toBe(true);
+    expect(after.del?.scope).toBe('everyone');
+    expect(after.body).toBe(target.body);
+    engine.setView({ channel: 'web' });
+    await engine.loadChats();
+    expect(engine.s.order.map((id) => engine.s.chats[id]!.channel)).toEqual(['web']);
+    engine.stop();
+  });
+
   it('remembers the tasks view in the platform store, not localStorage', async () => {
     const ports = memoryPorts();
     const api = createClient({ siteUrl: DEMO_SITE, fetchImpl: demoFetch, getCredentials: async () => ({ token: 'demo' }) });

@@ -92,7 +92,8 @@
     "openBrowser": "Tarayıcıda aç",
     "reload": "Yenile",
     "relogin": "Panel oturumu düştü, yeniden açılıyor…",
-    "demo": "Demo: örnek panel sayfası (gerçek sitede oturum açık gelir)"
+    "demo": "Demo: örnek panel sayfası (gerçek sitede oturum açık gelir)",
+    "sessionLost": "Panel oturumu açılamadı. Yeniden deneyin ya da hesaptan çıkıp tekrar girin."
   },
   "shell": {
     "openDrawer": "Menüyü aç",
@@ -108,7 +109,7 @@
   },
   "screens": {
     "inbox": {
-      "title": "WhatsApp",
+      "title": "Mesajlar",
       "search": "Sohbet ara",
       "empty": "Sohbet yok",
       "emptyBody": "Bu görünümde sohbet bulunmuyor.",
@@ -127,7 +128,27 @@
         "closed": "Kapalı"
       },
       "offline": "Bağlantı yok",
-      "auth": "Oturum düştü"
+      "auth": "Oturum düştü",
+      "allChannels": "Tüm kanallar",
+      "deleted": "Bu mesaj silindi",
+      "show": "Göster",
+      "hide": "Gizle",
+      "deletedBy": "{{who}} sildi · {{ago}}",
+      "deletedContact": "Kişi sildi · {{ago}}",
+      "deletedPhone": "Telefondan silindi · {{ago}}",
+      "actions": "Mesaj",
+      "copy": "Kopyala",
+      "copied": "Kopyalandı",
+      "deleteEveryone": "Herkesten sil",
+      "deletePanel": "Yalnız panelde gizle",
+      "deleteNote": "Notu sil",
+      "deleteEveryoneAsk": "Mesaj herkesten silinsin mi?",
+      "deleteEveryoneBody": "Kişinin telefonunda \"Bu mesaj silindi\" yazar. Kayıt panelde saklanır.",
+      "deletePanelAsk": "Mesaj panelde gizlensin mi?",
+      "deletePanelBody": "Mesaj kişinin telefonunda kalır. Panelde \"Göster\" ile yine açılır.",
+      "deleteNoteAsk": "Not silinsin mi?",
+      "delete": "Sil",
+      "deletedOk": "Mesaj silindi"
     },
     "tasks": {
       "title": "Görevler",
@@ -226,7 +247,25 @@
       "approve": "Onayla",
       "deny": "Reddet",
       "tool": "Araç onayı",
-      "notReady": "Flux AI henüz ayarlanmadı"
+      "notReady": "Flux AI henüz ayarlanmadı",
+      "search": "Sohbet ara",
+      "active": "Çalışan ve onay bekleyen",
+      "recent": "Son sohbetler",
+      "archived": "Arşivdekiler",
+      "task": "Zamanlanmış görev",
+      "status": {
+        "idle": "",
+        "running": "Çalışıyor",
+        "approval": "Onay bekliyor"
+      },
+      "actions": "Sohbet",
+      "archive": "Arşivle",
+      "unarchive": "Arşivden çıkar",
+      "delete": "Sil",
+      "deleteAsk": "Sohbet silinsin mi?",
+      "deleteBody": "Sohbet ve klasöründeki dosyalar silinir.",
+      "stop": "Durdur",
+      "refresh": "Yenile"
     },
     "tv": {
       "title": "TV Kumandası",

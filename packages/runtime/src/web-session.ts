@@ -108,7 +108,9 @@ export function classifyNavigation(url: string, opts: NavOptions): NavDecision {
   }
   if (u.pathname.includes('/wp-admin/')) {
     const route = routeForAdminPath(adminPath(u.pathname + u.search), opts.env);
-    if (route) return { action: 'native', route };
+    // A route whose screen is itself a web page stays in this webview. Pushing it would open a new
+    // webview on the same page, which SSO-redirects here again: an endless push (spinner / error).
+    if (route && route.kind !== 'web' && route.kind !== 'none') return { action: 'native', route };
   }
   return { action: 'allow' };
 }

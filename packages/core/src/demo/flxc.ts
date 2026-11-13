@@ -21,7 +21,9 @@ export const flxcChats: FlxcChat[] = [
   base({ id: 303, title: '+90 535 000 00 03', name: '', phone: '905350000003', unread: 1, unknownName: true }),
   base({ id: 304, title: 'Zeynep Arslan', phone: '905360000004', labels: ['gonullu'], bot: 'paused' }),
   base({ id: 305, title: 'Burak Demir', phone: '905370000005', status: 'closed', bot: 'off' }),
+  base({ id: 306, title: 'Site ziyaretçisi', name: '', phone: '', conn: 'web', jid: 'web-306', phoneFmt: 'Site sohbeti', channel: 'web', unread: 1, bot: 'off' }),
 ];
+for (const c of flxcChats) c.channel ??= 'whatsapp';
 
 const msg = (chat: number, m: Partial<FlxcMessage> & Pick<FlxcMessage, 'dir' | 'ts'>): FlxcMessage => ({
   id: ++seq, chat, wa: 'WA' + seq, type: 'text', body: '', status: m.dir === 'out' ? 'read' : '', error: '', user: '', userId: 0,
@@ -32,7 +34,7 @@ const media = (id: number, mime: string, name: string, extra: Partial<NonNullabl
 });
 
 const day = 86_400_000;
-export const flxcMessages: Record<number, FlxcMessage[]> = { 301: [], 302: [], 303: [], 304: [], 305: [] };
+export const flxcMessages: Record<number, FlxcMessage[]> = { 301: [], 302: [], 303: [], 304: [], 305: [], 306: [] };
 {
   const a = flxcMessages[301]!;
   a.push(msg(301, { dir: 'in', ts: now - day - 40 * min, body: 'Merhaba, geçen ay *5 fidan* bağışı yapmıştım.' }));
@@ -52,6 +54,7 @@ export const flxcMessages: Record<number, FlxcMessage[]> = { 301: [], 302: [], 3
   const q = a[a.length - 1]!;
   const ans = msg(301, { dir: 'out', ts: now - 3 * min, body: 'Onaylandığı anda WhatsApp ve e-postayla iletilecek 👍', user: 'Demo Kullanıcı', userId: 1, status: 'delivered' });
   ans.quoted = { id: q.id, dir: 'in', type: 'text', body: 'Sertifika ne zaman gelir?', user: '' };
+  ans.revokeUntil = ans.ts + 60 * 60 * min;
   a.push(ans);
 
   const b = flxcMessages[302]!;
@@ -59,12 +62,17 @@ export const flxcMessages: Record<number, FlxcMessage[]> = { 301: [], 302: [], 3
   const d = msg(302, { dir: 'out', ts: now - 2 * day + 5 * min, type: 'document', body: '', user: 'Demo Kullanıcı', userId: 1 });
   d.media = media(d.id, 'application/pdf', 'FLX-2026-00412.pdf', { size: 182_000 });
   b.push(d);
+  const gone = msg(302, { dir: 'in', ts: now - 58 * min, body: 'Yanlış dosyayı gönderdim, kusura bakmayın.' });
+  gone.deleted = true;
+  gone.del = { scope: 'contact', by: '', at: now - 57 * min, atText: '', ago: '57 dk önce' };
+  b.push(gone);
   b.push(msg(302, { dir: 'in', ts: now - 55 * min, body: 'Teşekkürler 🙏🙏' }));
 
   flxcMessages[303]!.push(msg(303, { dir: 'in', ts: now - 2 * 60 * min, body: 'Merhaba, _gönüllü_ olmak istiyorum. Ne yapmam gerekiyor?' }));
   const z = flxcMessages[304]!;
   z.push(msg(304, { dir: 'in', ts: now - 3 * day, type: 'location', body: '', loc: { lat: 41.0082, lng: 28.9784, name: 'Fidan dikim alanı' } }));
   z.push(msg(304, { dir: 'out', ts: now - 3 * day + 2 * min, body: 'Konumu aldık, ~cumartesi~ pazar sabah 9:00\'da görüşmek üzere.', user: 'Demo Kullanıcı', userId: 1 }));
+  flxcMessages[306]!.push(msg(306, { dir: 'in', ts: now - 9 * min, body: 'Merhaba, kurumsal bağış için kiminle görüşebilirim?' }));
   flxcMessages[305]!.push(msg(305, { dir: 'in', ts: now - 6 * day, body: 'Tamamdır, teşekkürler.' }));
 }
 
@@ -88,6 +96,10 @@ export const flxcBoot = (): FlxcBootstrap => ({
     { id: 'gonullu', name: 'Gönüllü', color: '#E3A008' },
   ],
   connections: [{ id: 'ana', label: 'Ana hat', color: '#22C3A6', state: 'open', at: now }],
+  channels: [
+    { id: 'whatsapp', label: 'WhatsApp', icon: '', color: '#25d366', active: true },
+    { id: 'web', label: 'Site sohbeti', icon: '', color: '#5b8def', active: true },
+  ],
   replies: [
     { id: 1, shortcut: 'iban', title: 'IBAN', body: 'IBAN: TR00 0000 0000 0000 0000 0000 00 (Örnek Site)', category: 'Bağış', uses: 12 },
     { id: 2, shortcut: 'tesekkur', title: 'Teşekkür', body: 'Merhaba {first_name}, desteğiniz için çok teşekkür ederiz 🌱', category: 'Genel', uses: 30 },
@@ -106,6 +118,7 @@ export function flxcChatsQuery(q: URLSearchParams) {
   const f = q.get('filter') || 'all';
   const s = (q.get('q') ?? '').toLocaleLowerCase('tr');
   const label = q.get('label') ?? '';
+  const channel = q.get('channel') ?? '';
   let list = flxcChats.slice();
   if (f === 'unread') list = list.filter((c) => c.unread > 0 && c.status !== 'closed');
   else if (f === 'mine') list = list.filter((c) => c.assigned === 1 && c.status !== 'closed');
@@ -113,6 +126,7 @@ export function flxcChatsQuery(q: URLSearchParams) {
   else if (f === 'closed') list = list.filter((c) => c.status === 'closed');
   else if (f !== 'any') list = list.filter((c) => c.status !== 'closed');
   if (label) list = list.filter((c) => c.labels.includes(label));
+  if (channel) list = list.filter((c) => (c.channel || 'whatsapp') === channel);
   if (s) list = list.filter((c) => (c.title + c.phone + c.notes + (flxcMessages[c.id] ?? []).map((m) => m.body).join(' ')).toLocaleLowerCase('tr').includes(s));
   list.sort((a, b) => b.pinned - a.pinned || b.lastTs - a.lastTs);
   return { chats: list };
@@ -184,6 +198,21 @@ export function flxcReact(mid: number, emoji: string) {
     const m = list.find((x) => x.id === mid);
     if (m) {
       m.react = { ...m.react, out: emoji };
+      m.rev = nextRev();
+      return { message: m };
+    }
+  }
+  return null;
+}
+
+/** 1.38.0: yumuşak silme; içerik saklanır, `del` ile işaretlenir. */
+export function flxcDelete(mid: number, scope: string) {
+  for (const list of Object.values(flxcMessages)) {
+    const m = list.find((x) => x.id === mid);
+    if (m) {
+      m.deleted = true;
+      m.del = { scope: m.dir === 'note' || scope !== 'everyone' ? 'panel' : 'everyone', by: 'Demo Kullanıcı', at: Date.now(), atText: '', ago: 'şimdi' };
+      delete m.revokeUntil;
       m.rev = nextRev();
       return { message: m };
     }

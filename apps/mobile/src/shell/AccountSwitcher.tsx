@@ -2,7 +2,6 @@
 // account's route segment; each account keeps its own cache and theme.
 import { Pressable, ScrollView, View } from 'react-native';
 import { router } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { create, useStore } from 'zustand';
@@ -27,11 +26,9 @@ export function AccountSwitcherHost() {
   const { accounts, activeId } = useStore(accountsStore);
   const { t } = useTranslation();
   const { theme } = useUnistyles();
-  const insets = useSafeAreaInsets();
   return (
-    <Sheet visible={open} onDismiss={close}>
-      <View style={{ paddingBottom: insets.bottom }}>
-          <Text variant="heading" style={styles.title}>{t('mobile.switcher.title')}</Text>
+    <Sheet visible={open} title={t('mobile.switcher.title')} onDismiss={close}>
+      <View>
           <ScrollView style={styles.list}>
             {accounts.map((a) => (
               <Pressable key={a.id} accessibilityRole="button" accessibilityState={{ selected: a.id === activeId }} onPress={() => { close(); if (a.needsLogin) router.push({ pathname: '/add-site', params: { url: a.siteUrl } }); else switchTo(a); }} style={({ pressed }) => [styles.row, pressed && styles.pressed]}>
@@ -63,7 +60,6 @@ export function AccountSwitcherHost() {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  title: { paddingHorizontal: 12, marginBottom: 4 },
   list: { flexGrow: 0, maxHeight: 360 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingHorizontal: 12, borderRadius: theme.radius.md, minHeight: 60 },
   pressed: { backgroundColor: theme.colors.surface2 },

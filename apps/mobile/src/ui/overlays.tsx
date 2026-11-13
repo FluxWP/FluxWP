@@ -57,10 +57,9 @@ export function OverlayHost() {
           </View>
         </View>
       ) : null}
-      <Sheet visible={!!confirm} onDismiss={() => close(false)}>
-        <Text variant="heading">{confirm?.title}</Text>
+      <Sheet visible={!!confirm} title={confirm?.title} onDismiss={() => close(false)}>
         {confirm?.body ? <Text tone="muted">{confirm.body}</Text> : null}
-        <View style={styles.row}>
+        <View style={[styles.row, styles.actions]}>
           <Button kind="ghost" label={i18n.t('common.cancel')} onPress={() => close(false)} />
           <Button kind={confirm?.tone === 'danger' ? 'danger' : 'primary'} label={confirm?.ok ?? i18n.t('action.confirm')} onPress={() => close(true)} />
         </View>
@@ -72,16 +71,14 @@ export function OverlayHost() {
 }
 
 function MenuSheet({ title, items, resolve }: NonNullable<Overlay['menu']>) {
-  const insets = useSafeAreaInsets();
   const { theme } = useUnistyles();
   const done = (id: string | null) => {
     resolve(id);
     useOverlay.setState({ menu: null });
   };
   return (
-    <Sheet visible onDismiss={() => done(null)}>
-      <View style={{ paddingBottom: insets.bottom }}>
-        <Text variant="label" numberOfLines={1}>{title}</Text>
+    <Sheet visible title={title} onDismiss={() => done(null)}>
+      <View>
         {items.map((it) => (
           <Pressable key={it.id} accessibilityRole="button" onPress={() => done(it.id)} style={({ pressed }) => [styles.menuItem, pressed && styles.menuPressed]}>
             <Icon name={it.icon} size={20} color={it.danger ? theme.colors.danger : theme.colors.text} />
@@ -95,16 +92,14 @@ function MenuSheet({ title, items, resolve }: NonNullable<Overlay['menu']>) {
 
 function PromptSheet({ title, fields, resolve }: NonNullable<Overlay['prompt']>) {
   const [values, setValues] = useState<Record<string, unknown>>(() => Object.fromEntries(fields.map((f) => [f.name, f.default ?? ''])));
-  const insets = useSafeAreaInsets();
   const done = (v: Record<string, unknown> | null) => {
     resolve(v);
     useOverlay.setState({ prompt: null });
   };
   const missing = fields.some((f) => f.required && !values[f.name]);
   return (
-    <Sheet visible onDismiss={() => done(null)}>
-      <View style={{ paddingBottom: insets.bottom, gap: 12 }}>
-        <Text variant="heading">{title}</Text>
+    <Sheet visible title={title} onDismiss={() => done(null)}>
+      <View style={{ gap: 12 }}>
         {fields.map((f) =>
           (f.type === 'segmented' || f.type === 'radio') && Array.isArray(f.options) ? (
             <View key={f.name} style={styles.gap}>
@@ -127,7 +122,8 @@ const styles = StyleSheet.create((theme) => ({
   toastError: { backgroundColor: theme.colors.danger },
   toastText: { color: theme.mode === 'dark' ? '#14171C' : '#FFFFFF', fontWeight: '600' },
   row: { flexDirection: 'row', justifyContent: 'flex-end', gap: 8 },
+  actions: { paddingTop: 8 },
   gap: { gap: 6 },
-  menuItem: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 48, paddingHorizontal: 4 },
+  menuItem: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 48, paddingHorizontal: 4, borderRadius: theme.radius.md },
   menuPressed: { opacity: 0.6 },
 }));

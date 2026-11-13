@@ -33,6 +33,13 @@ const english: Record<string, string> = {
   'Son altı ayda üç veya daha fazla işlem': 'Three or more transactions in the last six months', '90 gündür etkileşim yok': 'No activity in 90 days',
   'Yeni içeriklerle ilgili bilgi istiyor.': 'Interested in updates about new content.', 'Açık': 'On', 'Kapalı': 'Off',
   '+{{data.new30|number}} son 30 gün': '+{{data.new30|number}} in the last 30 days', '{{data.repeat|number}} tekrar': '{{data.repeat|number}} returning',
+  'Site ziyaretçisi': 'Site visitor', 'Site sohbeti': 'Site chat', 'Merhaba, kurumsal bağış için kiminle görüşebilirim?': 'Hi, who can I talk to about a corporate donation?',
+  'Yanlış dosyayı gönderdim, kusura bakmayın.': 'Sorry, I sent the wrong file.', '57 dk önce': '57 min ago', 'şimdi': 'just now',
+  'Günlük brifing': 'Daily briefing', 'Zamanlanmış görev: Günlük brifing': 'Scheduled task: Daily briefing',
+  'Dün 14 bağış geldi (6.300 ₺), önceki güne göre %18 fazla. 3 dekont onay bekliyor. Sitede hata yok.': 'Yesterday brought 14 donations (₺6,300), 18% more than the day before. 3 receipts are waiting for approval. No site errors.',
+  'Bağışçılara teşekkür e-postası': 'Thank-you email to donors', 'Bu ay bağış yapanlara kısa bir teşekkür e-postası hazırla ve gönder.': 'Draft and send a short thank-you email to this month\'s donors.',
+  'Taslak hazır. 42 kişiye göndermek için onayınız gerekiyor.': 'The draft is ready. Sending it to 42 people needs your approval.', 'E-posta gönder: 42 bağışçıya teşekkür': 'Send email: thank 42 donors',
+  'Ekim raporu': 'October report', 'Ekim ayı özetini çıkar.': 'Summarize October.', 'Ekimde 212 bağış, 1.940 fidan.': '212 donations and 1,940 saplings in October.', 'Tamam.': 'Done.',
   'Destek': 'Support', 'Diğer': 'Other', 'Yorumlar': 'Comments', 'Kişi kaydı': 'Contact record',
 };
 
