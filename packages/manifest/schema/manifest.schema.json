@@ -1118,6 +1118,57 @@
                         "type",
                         "text"
                       ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "chart"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "chart": {
+                          "enum": [
+                            "bar",
+                            "line"
+                          ],
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "x": {
+                          "type": "string"
+                        },
+                        "series": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "value": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "key": {
+                                "type": "string"
+                              }
+                            },
+                            "required": []
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "path"
+                      ]
                     }
                   ]
                 }
@@ -1945,6 +1996,57 @@
                       "required": [
                         "type",
                         "text"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "const": "chart"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "when": {
+                          "$ref": "#/$defs/Condition"
+                        },
+                        "chart": {
+                          "enum": [
+                            "bar",
+                            "line"
+                          ],
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "x": {
+                          "type": "string"
+                        },
+                        "series": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "value": {
+                                "type": "string",
+                                "maxLength": 2000
+                              },
+                              "key": {
+                                "type": "string"
+                              }
+                            },
+                            "required": []
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "path"
                       ]
                     }
                   ]
