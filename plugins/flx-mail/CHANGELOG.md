@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.19.0 — 2026-11-13
+- Toplu gönderimi **duraklat / devam ettir** (WhatsApp, e-posta, SMS): Gönder › Son gönderimler ve Kuyruk ekranında düğme. O an giden tek mesaj biter, kalanlar bekler; Devam et kaldığı yerden sürdürür. Kuyruk işleyicisi değişmedi (bekleyen satırlar `paused` durumuna alınır), çalışan gönderim etkilenmez.
+- **Tahmini bitiş**: WhatsApp'ta ban koruması (bekleme aralığı, mola, saatlik/günlük sınır, ısınma, sessiz saatler) ve aynı numarada sırada önde bekleyen gönderimler, e-postada tur başına sayı ve günlük posta kotası hesaba katılır.
+- API: `flxi_pause_campaign()`, `flxi_resume_campaign()`, `flxi_campaign_eta()`, `flxi_campaign_progress()`, `flxi_campaign_recipients()`; `flxi_campaign_features` → `pause`, `eta`, `recipients`, `progress`. Eylemler `flxi_campaign_paused`, `flxi_campaign_resumed`; filtre `flxi_campaign_eta`.
+- Kuyruk ekranı düz kalıcı bağlantılı (?rest_route=) sitelerde de yenileniyor.
+
 ## 1.18.0 — 2026-11-13
 - Yeni **Kara liste** sayfası (İletişim › Kara liste): tam engelliler (Flux Chat kara listesi, hiçbir kanaldan mesaj gitmez) ve IPTAL yazanlar (o kanaldan tanıtım gitmez) tek listede. Her satırda ne zaman ve nasıl (kişi yazdı / AI asistan / hangi personel), kişinin yazdığı mesaj, hangi mesajdan sonra olduğu (tıklayınca mesajın tamamı, kampanya adı linkli), kişi kartı (Flux CRM) ve sohbet linki. Tür, kanal ve arama filtresi; elle ekleme (tanıtım yok WhatsApp/SMS ya da tam engel + neden); kaldırma.
 - IPTAL kaydı artık bağlam saklar: kişinin yazdığı mesaj, sohbet, öncesinde giden son mesaj ve kampanya, yönetici notu (`flxi_optouts` yeni sütunlar, DB 4). `flxi_optout_add( $kanal, $tel, $kelime, $kaynak, array( 'message' => …, 'chat_id' => …, 'note' => … ) )`.

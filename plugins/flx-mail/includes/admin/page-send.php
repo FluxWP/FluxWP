@@ -112,12 +112,13 @@ function flxi_page_send() {
 			'running'   => __( 'Sending', 'flx-mail' ),
 			'done'      => __( 'Done', 'flx-mail' ),
 			'cancelled' => __( 'Stopped', 'flx-mail' ),
+			'paused'    => __( 'Paused', 'flx-mail' ),
 			'reporting' => __( 'Awaiting delivery reports', 'flx-mail' ),
 			'review' => __( 'Needs review', 'flx-mail' ),
 		);
-		echo '<div class="flxi-card"><h2 class="flxi-card__title">' . esc_html__( 'Recent sends', 'flx-mail' ) . '</h2><div class="flxi-tablewrap"><table class="flxi-table"><thead><tr><th>' . esc_html__( 'First name', 'flx-mail' ) . '</th><th>' . esc_html__( 'Channel', 'flx-mail' ) . '</th><th>' . esc_html__( 'Status', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Sent', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Failed', 'flx-mail' ) . '</th><th>' . esc_html__( 'Date', 'flx-mail' ) . '</th></tr></thead><tbody>';
+		echo '<div class="flxi-card"><h2 class="flxi-card__title">' . esc_html__( 'Recent sends', 'flx-mail' ) . '</h2><div class="flxi-tablewrap"><table class="flxi-table"><thead><tr><th>' . esc_html__( 'First name', 'flx-mail' ) . '</th><th>' . esc_html__( 'Channel', 'flx-mail' ) . '</th><th>' . esc_html__( 'Status', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Sent', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Failed', 'flx-mail' ) . '</th><th>' . esc_html__( 'Date', 'flx-mail' ) . '</th><th></th></tr></thead><tbody>';
 		foreach ( $rows as $r ) {
-			echo '<tr><td><a href="' . esc_url( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $r['id'] ) ) ) . '">' . esc_html( $r['name'] ) . '</a></td><td>' . esc_html( flxi_channels()[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $st[ $r['status'] ] ?? $r['status'] ) . flxi_campaign_wait_html( $r ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['sent'] ) . ' / ' . number_format_i18n( $r['total'] ) ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['failed'] ) ) . '</td><td>' . esc_html( flx_date( $r['created_at'], 'datetime' ) ) . '</td></tr>';
+			echo '<tr><td><a href="' . esc_url( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $r['id'] ) ) ) . '">' . esc_html( $r['name'] ) . '</a></td><td>' . esc_html( flxi_channels()[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $st[ $r['status'] ] ?? $r['status'] ) . flxi_campaign_wait_html( $r ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['sent'] ) . ' / ' . number_format_i18n( $r['total'] ) ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['failed'] ) ) . '</td><td>' . esc_html( flx_date( $r['created_at'], 'datetime' ) ) . '</td><td class="flxi-nowrap">' . flxi_campaign_actions_html( $r ) . '</td></tr>'; // phpcs:ignore
 		}
 		echo '</tbody></table></div></div>';
 	}

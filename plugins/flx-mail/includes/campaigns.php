@@ -263,7 +263,7 @@ function flxi_get_campaign( $id ) {
 
 function flxi_cancel_campaign( $id ) {
 	global $wpdb;
-	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxi_table( 'queue' ) . " SET status = 'cancelled' WHERE campaign_id = %d AND status = 'queued'", (int) $id ) ); // phpcs:ignore
+	$wpdb->query( $wpdb->prepare( 'UPDATE ' . flxi_table( 'queue' ) . " SET status = 'cancelled' WHERE campaign_id = %d AND status IN ('queued','paused')", (int) $id ) ); // phpcs:ignore
 	$c = flxi_get_campaign( $id );
 	if ( $c ) { $c['data']['stopped'] = true; $wpdb->update( flxi_table( 'campaigns' ), array( 'data' => flxi_json( $c['data'] ) ), array( 'id' => (int) $id ) ); }
 	flxi_refresh_campaign( $id );
@@ -320,6 +320,12 @@ function flxi_run_queue( $budget = 20 ) {
 				if ( $camps[ $cid ] && 'queued' === $camps[ $cid ]['status'] ) {
 					$wpdb->update( flxi_table( 'campaigns' ), array( 'status' => 'running' ), array( 'id' => $cid ) );
 				}
+			}
+			// Duraklatılmış kampanya: yeniden denemeye düşen ya da kurtarılan satır da beklemeye alınır.
+			$fresh = flxi_get_campaign( $cid );
+			if ( $fresh && ! empty( $fresh['data']['paused'] ) ) {
+				$wpdb->query( $wpdb->prepare( "UPDATE $t SET status = 'paused' WHERE id = %d AND status = 'queued'", $row['id'] ) );
+				continue;
 			}
 			// Posta kutusu günlük sınırı: toplu e-posta yedek payı tekil e-postalara bırakır, hak açılınca devam eder.
 			if ( 'email' === $row['channel'] ) {
@@ -420,7 +426,7 @@ function flxi_refresh_campaign( $cid ) {
 	}
 	$open = ( $by['queued'] ?? 0 ) + ( $by['processing'] ?? 0 );
 	$c = flxi_get_campaign( $cid );
-	$state = $open ? 'running' : ( ! empty( $by['submitted'] ) ? 'reporting' : ( ! empty( $by['unknown'] ) ? 'review' : ( ! empty( $c['data']['stopped'] ) ? 'cancelled' : 'done' ) ) );
+	$state = ! empty( $by['paused'] ) && ! empty( $c['data']['paused'] ) && ! ( $by['processing'] ?? 0 ) ? 'paused' : ( $open || ! empty( $by['paused'] ) ? 'running' : ( ! empty( $by['submitted'] ) ? 'reporting' : ( ! empty( $by['unknown'] ) ? 'review' : ( ! empty( $c['data']['stopped'] ) ? 'cancelled' : 'done' ) ) ) );
 	$data = array( 'sent' => ( $by['sent'] ?? 0 ) + ( $by['delivered'] ?? 0 ), 'failed' => $by['failed'] ?? 0, 'skipped' => $by['skipped'] ?? 0, 'status' => $state, 'finished_at' => in_array( $state, array( 'done', 'cancelled' ), true ) ? flxi_now() : null );
 
 	$wpdb->update( flxi_table( 'campaigns' ), $data, array( 'id' => (int) $cid ) );

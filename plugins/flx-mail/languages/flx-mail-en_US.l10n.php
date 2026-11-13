@@ -1838,5 +1838,12 @@ return array(
   'Blocked. Nothing will be sent to this person on any channel.' => 'Blocked. Nothing will be sent to this person on any channel.',
   'Removed from the blocklist. Messages will be sent to this person again.' => 'Removed from the blocklist. Messages will be sent to this person again.',
   'See the list on the Blocklist page' => 'See the list on the Blocklist page',
+  'Paused' => 'Paused',
+  'Pause' => 'Pause',
+  'Resume' => 'Resume',
+  'Estimated finish: %1$s (%2$s)' => 'Estimated finish: %1$s (%2$s)',
+  'Sending paused. Press Resume to continue where it stopped.' => 'Sending paused. Press Resume to continue where it stopped.',
+  'Sending resumed.' => 'Sending resumed.',
+  'Estimated finish:' => 'Estimated finish:',
  ),
 );

@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function flxi_queue_labels() {
-	return array( 'queued' => __( 'Queued', 'flx-mail' ), 'processing' => __( 'Processing', 'flx-mail' ), 'submitted' => __( 'Accepted; awaiting delivery report', 'flx-mail' ), 'delivered' => __( 'Delivered', 'flx-mail' ), 'sent' => __( 'Sent', 'flx-mail' ), 'failed' => __( 'Failed', 'flx-mail' ), 'skipped' => __( 'Skipped', 'flx-mail' ), 'cancelled' => __( 'Cancelled', 'flx-mail' ), 'unknown' => __( 'Needs review', 'flx-mail' ), 'reporting' => __( 'Awaiting delivery reports', 'flx-mail' ), 'review' => __( 'Needs review', 'flx-mail' ), 'running' => __( 'Sending', 'flx-mail' ), 'done' => __( 'Done', 'flx-mail' ) );
+	return array( 'queued' => __( 'Queued', 'flx-mail' ), 'processing' => __( 'Processing', 'flx-mail' ), 'submitted' => __( 'Accepted; awaiting delivery report', 'flx-mail' ), 'delivered' => __( 'Delivered', 'flx-mail' ), 'sent' => __( 'Sent', 'flx-mail' ), 'failed' => __( 'Failed', 'flx-mail' ), 'skipped' => __( 'Skipped', 'flx-mail' ), 'cancelled' => __( 'Cancelled', 'flx-mail' ), 'paused' => __( 'Paused', 'flx-mail' ), 'unknown' => __( 'Needs review', 'flx-mail' ), 'reporting' => __( 'Awaiting delivery reports', 'flx-mail' ), 'review' => __( 'Needs review', 'flx-mail' ), 'running' => __( 'Sending', 'flx-mail' ), 'done' => __( 'Done', 'flx-mail' ) );
 }
 
 add_action( 'rest_api_init', static function () {
@@ -34,7 +34,12 @@ function flxi_queue_snapshot( WP_REST_Request $request ) {
 		}
 	} unset( $row );
 	$events = flx_background_events( 50, $cid, 'flx-mail' ); foreach ( $events as &$event ) { $event['date'] = flx_date( $event['time'], 'datetime' ); } unset( $event );
-	return array( 'campaigns' => $camps, 'campaign' => $campaign ? array_intersect_key( $campaign, array_flip( array( 'id', 'name', 'status' ) ) ) : null, 'counts' => $by, 'rows' => $rows, 'page' => $page, 'pages' => max( 1, (int) ceil( array_sum( $by ) / 50 ) ), 'batches' => array_values( $batches ), 'events' => $events, 'worker' => flx_background_worker_active() );
+	$info = $campaign ? array_intersect_key( $campaign, array_flip( array( 'id', 'name', 'status' ) ) ) : null;
+	if ( $info ) {
+		$info['paused'] = ! empty( $campaign['data']['paused'] );
+		$info['eta']    = (int) flxi_campaign_eta( $cid );
+	}
+	return array( 'campaigns' => $camps, 'campaign' => $info, 'counts' => $by, 'rows' => $rows, 'page' => $page, 'pages' => max( 1, (int) ceil( array_sum( $by ) / 50 ) ), 'batches' => array_values( $batches ), 'events' => $events, 'worker' => flx_background_worker_active() );
 }
 
 function flxi_queue_action( WP_REST_Request $request ) {
@@ -42,6 +47,10 @@ function flxi_queue_action( WP_REST_Request $request ) {
 	if ( 'stop' === $action ) {
 		$id = absint( $request['campaign'] ); if ( ! flxi_get_campaign( $id ) ) { return new WP_Error( 'flxi_not_found', __( 'Campaign not found.', 'flx-mail' ), array( 'status' => 404 ) ); }
 		flxi_cancel_campaign( $id ); return array( 'ok' => true );
+	}
+	if ( 'pause' === $action || 'resume' === $action ) {
+		$id = absint( $request['campaign'] ); if ( ! flxi_get_campaign( $id ) ) { return new WP_Error( 'flxi_not_found', __( 'Campaign not found.', 'flx-mail' ), array( 'status' => 404 ) ); }
+		return array( 'ok' => 'pause' === $action ? flxi_pause_campaign( $id ) : flxi_resume_campaign( $id ) );
 	}
 	$token = sanitize_text_field( (string) $request['batch'] );
 	if ( ! preg_match( '/^[a-f0-9-]{36}$/', $token ) ) { return new WP_Error( 'flxi_batch', __( 'Batch not found.', 'flx-mail' ), array( 'status' => 404 ) ); }

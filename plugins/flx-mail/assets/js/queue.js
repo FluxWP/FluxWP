@@ -13,7 +13,8 @@
   const label = state => FLXIQ.labels[state] || state;
   const el = (tag, text, cls) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (cls) node.className = cls; return node; };
   async function request(path, data) {
-    const response = await fetch(FLXIQ.rest + path, { method: data ? 'POST' : 'GET', credentials: 'same-origin', headers: { 'X-WP-Nonce': FLXIQ.nonce, ...(data ? { 'Content-Type': 'application/json' } : {}) }, ...(data ? { body: JSON.stringify(data) } : {}) });
+    const url = FLXIQ.rest + (FLXIQ.rest.includes('?') ? path.replace('?', '&') : path);
+    const response = await fetch(url, { method: data ? 'POST' : 'GET', credentials: 'same-origin', headers: { 'X-WP-Nonce': FLXIQ.nonce, ...(data ? { 'Content-Type': 'application/json' } : {}) }, ...(data ? { body: JSON.stringify(data) } : {}) });
     const json = await response.json(); if (!response.ok) throw new Error(json.message || t.error); return json;
   }
   async function action(data) {
@@ -26,7 +27,11 @@
     const options = [el('option', t.all), ...data.campaigns.map(c => { const option = el('option', `${c.name} · ${label(c.status)}`); option.value = c.id; return option; })];
     if (data.campaign && !data.campaigns.some(c => Number(c.id) === campaign)) { const option = el('option', data.campaign.name); option.value = campaign; options.push(option); }
     options[0].value = 0; picker.replaceChildren(...options); picker.value = campaign;
-    $('[data-stop]').hidden = !campaign || !(data.counts.queued > 0);
+    const paused = !!(data.campaign && data.campaign.paused);
+    $('[data-stop]').hidden = !campaign || !((data.counts.queued || 0) + (data.counts.paused || 0) > 0);
+    $('[data-pause]').hidden = !campaign || paused || !(data.counts.queued > 0);
+    $('[data-resume]').hidden = !campaign || !paused;
+    $('[data-eta]').textContent = campaign && data.campaign && data.campaign.eta ? `${t.eta} ${new Intl.DateTimeFormat(document.documentElement.lang || undefined, { dateStyle: 'medium', timeStyle: 'short', ...(FLXIQ.tz && FLXIQ.tz.includes('/') ? { timeZone: FLXIQ.tz } : {}) }).format(new Date(data.campaign.eta * 1000))}` : '';
     $('[data-summary]').replaceChildren(...Object.entries(data.counts).map(([state, count]) => { const card = el('div', undefined, 'flxi-queue-stat'); card.append(el('strong', String(count)), el('span', label(state))); return card; }));
     $('[data-health]').textContent = `${t.ready} · ${worker ? t.worker : t.native}`;
     const rows = data.rows.map(row => { const tr = el('tr'); [row.recipient, FLXIQ.channels[row.channel] || row.channel, label(row.status), row.attempts, row.jobid || '—', row.date, row.error || '—'].forEach(value => tr.append(el('td', String(value)))); return tr; });
@@ -66,6 +71,8 @@
   }
   $('[data-campaign-picker]').addEventListener('change', event => { campaign = Number(event.target.value); page = 1; const url = new URL(location.href); url.searchParams.set('campaign', campaign); history.replaceState(null, '', url); void refresh(); });
   $('[data-stop]').addEventListener('click', () => action({ action: 'stop', campaign }));
+  $('[data-pause]').addEventListener('click', () => action({ action: 'pause', campaign }));
+  $('[data-resume]').addEventListener('click', () => action({ action: 'resume', campaign }));
   $('[data-prev]').addEventListener('click', () => { if (page > 1) { --page; void refresh(); } });
   $('[data-next]').addEventListener('click', () => { if (page < pages) { ++page; void refresh(); } });
   document.addEventListener('visibilitychange', () => { clearTimeout(timer); if (document.hidden) return; quiet = 0; void refresh(); });

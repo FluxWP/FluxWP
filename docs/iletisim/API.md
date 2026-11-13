@@ -161,6 +161,22 @@ flxi_create_campaign( array( 'channel' => 'whatsapp', 'text' => 'Merhaba {ad}, {
 - Değeri olmayan değişken metinde `{fidan}` olarak kalır; her alıcıya aynı anahtarları verin.
 - Desteklendiği: `flxi_campaign_features` içinde `recipient_vars`.
 
+### Duraklat, tahmini bitiş, alıcılar (1.19.0+)
+
+```php
+$f = apply_filters( 'flxi_campaign_features', array() ); // 'pause', 'eta', 'recipients', 'progress' varsa:
+flxi_pause_campaign( $cid );    // bool; bekleyen satırlar 'paused', o an giden tek mesaj biter
+flxi_resume_campaign( $cid );   // bool; kaldığı yerden
+flxi_campaign_eta( $cid );      // Unix tahmini bitiş | null (bitti, duraklatıldı, durduruldu)
+flxi_campaign_progress( $cid ); // [ id, name, channel, status (queued|running|paused|done|cancelled|reporting|review),
+                                //   total, sent, failed, skipped, left, paused, eta, wait_until, wait_reason ]
+flxi_campaign_recipients( $cid, array( 'status' => 'failed,skipped', 'per_page' => 50, 'page' => 1, 's' => '' ) );
+// [ rows => [ id, name, recipient, status, label, error, sent_at, scheduled_at (GMT) ], total, page, pages ]
+```
+
+- Tahmin WhatsApp'ta ban korumasının kurallarını ortalama beklemeyle canlandırır (sessiz saat, saatlik/günlük sınır, ısınma, mola, aynı bağlantıda öndeki kampanyalar); e-postada tur başına sayı ve günlük posta kotası. Sağlayıcı yavaşlığı ve yeniden denemeler süreyi uzatabilir.
+- `flxi_cancel_campaign()` duraklatılmış satırları da iptal eder. Eylemler: `flxi_campaign_paused`, `flxi_campaign_resumed` ( `$cid` ). Filtre: `flxi_campaign_eta` ( `$unix, $kampanya, $kalan` ).
+
 ### WhatsApp ban koruması (1.17.0+)
 
 Evolution API / Flux WPAPI bağlantılarında, **yalnız kuyruktaki toplu gönderimlere** uygulanır (sohbet cevapları, sertifika, tekil `flxi_send_message()` beklemez). Ayarlar bağlantı başına, Bağlantılar › düzenle › "Ban koruması":
