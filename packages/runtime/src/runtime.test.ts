@@ -44,6 +44,10 @@ describe('resolveTarget (§6 order)', () => {
     expect(resolveTarget('menu:flxs', env)).toEqual({ kind: 'web', path: 'admin.php?page=flxs' });
     expect(routeForAdminPath('post.php?post=12&action=edit', env)).toMatchObject({ screen: 'post', params: { id: '12' } });
   });
+
+  it('picks the most specific route: Pages is not Posts', () => {
+    expect(resolveTarget('menu:edit.php?post_type=page', env)).toMatchObject({ kind: 'manifest', module: 'core', screen: 'pages' });
+  });
 });
 
 describe('shell model', () => {

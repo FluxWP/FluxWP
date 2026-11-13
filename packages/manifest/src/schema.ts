@@ -117,6 +117,7 @@ export const SectionSchema = v.variant('type', [
   v.looseObject({ type: v.literal('content'), ...sectionBase, value: tpl, format: opt(v.picklist(['markdown', 'html', 'text'])) }),
   v.looseObject({ type: v.literal('actions'), ...sectionBase, items: v.array(str) }),
   v.looseObject({ type: v.literal('notice'), ...sectionBase, tone: opt(tone), text: tpl }),
+  v.looseObject({ type: v.literal('chart'), ...sectionBase, chart: opt(v.picklist(['bar', 'line'])), path: str, x: opt(str), series: opt(v.array(v.looseObject({ label: opt(tpl), value: opt(tpl), key: opt(str) }))) }),
 ]);
 
 const RequestSchema = v.looseObject({

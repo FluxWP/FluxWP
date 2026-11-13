@@ -83,18 +83,24 @@ export function resolveTarget(target: string | Target | null | undefined, env: R
   }
 }
 
-/** Webview link capture: a same-site admin URL that a manifest `routes` entry claims opens natively. */
+/**
+ * Webview link capture: a same-site admin URL that a manifest `routes` entry claims opens natively.
+ * The most specific pattern wins: `edit.php?post_type=page` beats `edit.php` for the Pages menu.
+ */
 export function routeForAdminPath(path: string, env: ResolveEnv): Route | null {
+  let best: { route: Route; score: number } | null = null;
   for (const m of Object.values(env.manifests ?? {})) {
     if (!usable(m, env)) continue;
     for (const [pattern, r] of Object.entries(m.routes ?? {})) {
       const caps = matchRoute(pattern, path);
       if (!caps || !m.screens[r.screen]) continue;
+      const score = [...new URLSearchParams(pattern.split('?', 2)[1] ?? '').keys()].length;
+      if (best && best.score >= score) continue;
       const params = Object.fromEntries(Object.entries(r.params ?? {}).map(([k, v]) => [k, v.replace(/\{(\w+)\}/g, (_, n: string) => caps[n] ?? '')]));
-      return screenRoute(m, r.screen, env, params);
+      best = { route: screenRoute(m, r.screen, env, params), score };
     }
   }
-  return null;
+  return best?.route ?? null;
 }
 
 export function screenOf(bundle: ManifestBundle['modules'] | undefined, module: string, screen: string): { manifest: Manifest; screen: Screen } | null {

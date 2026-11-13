@@ -124,3 +124,15 @@ describe('config layers', () => {
     expect(s.tabs.length).toBeLessThanOrEqual(5);
   });
 });
+
+describe('chart section', () => {
+  it('accepts both chart dialects the plugins send', async () => {
+    const { SectionSchema } = await import('./schema');
+    const v = await import('valibot');
+    for (const s of [
+      { type: 'chart', chart: 'bar', path: 'series', series: [{ label: '{{label}}', value: '{{revenue}}' }] },
+      { type: 'chart', chart: 'bar', path: 'series.items', x: 'd', series: [{ key: 'visitors', label: 'Visitors' }] },
+      { type: 'chart', chart: 'bar', path: 'per_minute' },
+    ]) expect(v.safeParse(SectionSchema, s).success).toBe(true);
+  });
+});

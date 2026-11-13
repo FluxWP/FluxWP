@@ -6,7 +6,7 @@ import { FlashList } from '@shopify/flash-list';
 import { useNavigation } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
-import { stripAngles } from '@fluxwp/core';
+import { decodeEntities, htmlToText } from '@fluxwp/core';
 import { useListController, type ListController, type RowView } from '@fluxwp/runtime';
 import type { ListScreen as ListDef, Manifest } from '@fluxwp/manifest';
 import { GlassButton } from '@/ui/Glass';
@@ -79,7 +79,7 @@ function Row({ row, c }: { row: RowView; c: ListController }) {
   const actions = c.rowActions(row);
   const longPress = actions.length
     ? async () => {
-        const id = await overlays.menu(row.title, actions.map((a) => ({ id: a.id, label: a.label, icon: a.icon, danger: a.tone === 'danger' })));
+        const id = await overlays.menu(decodeEntities(row.title), actions.map((a) => ({ id: a.id, label: a.label, icon: a.icon, danger: a.tone === 'danger' })));
         if (id) await c.runAction(id, row);
       }
     : undefined;
@@ -88,10 +88,10 @@ function Row({ row, c }: { row: RowView; c: ListController }) {
       {row.avatar ? <Avatar image={row.avatar.image} text={row.avatar.text} size={42} /> : null}
       <View style={styles.rowBody}>
         <View style={styles.rowLine}>
-          <Text numberOfLines={1} style={[styles.rowTitle, row.unread && styles.unread]}>{row.title}</Text>
-          {row.meta ? <Text variant="small" tone="muted" numberOfLines={1}>{row.meta}</Text> : null}
+          <Text numberOfLines={1} style={[styles.rowTitle, row.unread && styles.unread]}>{decodeEntities(row.title)}</Text>
+          {row.meta ? <Text variant="small" tone="muted" numberOfLines={1}>{decodeEntities(row.meta)}</Text> : null}
         </View>
-        {row.subtitle ? <Text variant="small" tone="muted" numberOfLines={2}>{stripAngles(row.subtitle)}</Text> : null}
+        {row.subtitle ? <Text variant="small" tone="muted" numberOfLines={2}>{htmlToText(row.subtitle)}</Text> : null}
         {row.badges.length || row.chips.length ? (
           <View style={styles.badges}>
             {row.badges.map((b, i) => <Badge key={'b' + i} text={b.text} tone={b.tone} />)}

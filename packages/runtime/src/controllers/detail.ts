@@ -18,7 +18,8 @@ export type SectionView =
   | { type: 'list'; title: string; rows: ReturnType<typeof rowView>[] }
   | { type: 'content'; title: string; value: string; format: 'markdown' | 'html' | 'text' }
   | { type: 'actions'; title: string; actions: { id: string; label: string; icon?: string; tone?: Tone }[] }
-  | { type: 'notice'; title: string; tone: Tone; text: string };
+  | { type: 'notice'; title: string; tone: Tone; text: string }
+  | { type: 'chart'; title: string; kind: 'bar' | 'line'; points: { label: string; value: number }[] };
 
 type Text = (s: string | undefined, c?: ExprContext) => string;
 
@@ -61,9 +62,26 @@ export function sectionViews(
       case 'notice':
         out.push({ type: 'notice', title, tone: s.tone ?? 'info', text: text(s.text, ctx) });
         break;
+      case 'chart': {
+        const rows = getPath(ctx.scope, s.path);
+        const points = (Array.isArray(rows) ? rows : []).map((row: unknown, i) => chartPoint(s, row, i, ctx));
+        if (points.length) out.push({ type: 'chart', title, kind: s.chart ?? 'bar', points });
+        break;
+      }
     }
   }
   return out.filter((s) => !('fields' in s) || s.fields.length);
+}
+
+function chartPoint(s: Extract<DetailSection, { type: 'chart' }>, row: unknown, i: number, ctx: ExprContext): { label: string; value: number } {
+  if (typeof row === 'number') return { label: String(i + 1), value: row };
+  const r = (row ?? {}) as Record<string, unknown>;
+  const serie = s.series?.[0];
+  const xLabel = () => String(getPath(r, s.x ?? 'label') ?? '');
+  if (serie?.value) { const x = { ...ctx, scope: r }; return { label: serie.label ? render(serie.label, x) : xLabel(), value: Number(render(serie.value, x)) || 0 }; }
+  if (serie?.key) return { label: xLabel(), value: Number(getPath(r, serie.key)) || 0 };
+  const first = Object.entries(r).find(([k, v]) => k !== s.x && typeof v === 'number');
+  return { label: xLabel(), value: (first?.[1] as number) ?? 0 };
 }
 
 export function useDetailController(manifest: Manifest, screen: DetailScreen, params: Record<string, string>) {

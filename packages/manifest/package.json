@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/manifest",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "description": "FluxWP app contracts (flx-app-manifest/1, flx-app-config/1): types, valibot schemas, template/condition engine, target parser, config layering, fixtures. Pure TS, platform-neutral.",

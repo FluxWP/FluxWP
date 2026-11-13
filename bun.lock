@@ -33,7 +33,7 @@
     },
     "apps/mobile": {
       "name": "@fluxwp/mobile",
-      "version": "0.5.1",
+      "version": "1.0.0",
       "dependencies": {
         "@expo/ui": "~58.0.28",
         "@fluxwp/core": "workspace:*",
@@ -121,7 +121,7 @@
     },
     "packages/core": {
       "name": "@fluxwp/core",
-      "version": "0.4.2",
+      "version": "0.4.3",
       "dependencies": {
         "@fluxwp/tokens": "workspace:*",
         "i18next": "^26.6.0",
@@ -133,7 +133,7 @@
     },
     "packages/manifest": {
       "name": "@fluxwp/manifest",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/tokens": "workspace:*",
@@ -213,7 +213,7 @@
     },
     "packages/runtime": {
       "name": "@fluxwp/runtime",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "dependencies": {
         "@fluxwp/core": "workspace:*",
         "@fluxwp/manifest": "workspace:*",

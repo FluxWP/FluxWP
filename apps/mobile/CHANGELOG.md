@@ -1,6 +1,12 @@
 # Değişiklikler
 
-## 0.5.1
+## 1.0.0
+- Menüdeki sayfaların çoğu artık uygulamanın kendi ekranında açılır, web görünümünde değil: Başlangıç, Sayfalar, Yazılar, Ortam, Yorumlar, Kullanıcılar, Eklentiler, Ayarlar, WooCommerce siparişleri ve ürünleri, Mağaza (Flux Commerce), Bağışlar, Posta kutusu, Formlar, Sertifikalar, CRM, Wiki, SEO, Site analitiği, Yedekler, Performans, reCAPTCHA, Flux AI. Eklentilerin mobil ekranları 1.0.0 sürümünü bekliyordu.
+- Panolarda grafik bölümü (günlük ciro, sertifika, ziyaretçi). Önceden grafik içeren Mağaza, Sertifikalar ve Site analitiği ekranlarının tamamı web görünümüne düşüyordu.
+- Menüde Sayfalar ve Ürünler artık Yazılar listesini açmıyor; en uygun ekran seçilir.
+- Genel ayarlar gibi tek kayıtlı formlar mevcut değerlerle açılır. Önceden boş açılıyordu, kaydetmek site adını silebilirdi.
+- Sayfa içeriği ve başlıklarda HTML düz metne düzgün çevrilir: paragraflar ayrı satırda, &amp; ve ’ gibi karakterler doğru görünür.
+
 - Klavye açılınca yazma alanı klavyenin altında kalmıyor: Mesajlar sohbeti, Flux AI, İşler (arama, yorum), yazı, Social, TV ve panel formları. Ekran klavyenin örttüğü kadar yukarı kayar; iOS sekme çubuğu ve Android kenardan kenara düzende de çalışır.
 - Sol panel açıkken sağda kalan ekran şeridine hafif gölge düşer.
 - iOS: üst çubuk sistemin yarı saydam bulanık malzemesi; sayfa üst çubuğun ve alt sekme çubuğunun altından kayar, en alta inince son satır sekme çubuğunun üstünde kalır. Yazma alanı ve form düğmeleri gibi sabit alt çubuklar sekme çubuğunun üstünde durur. Android'de çubuklar içerikle yan yana kalır.
