@@ -3355,3 +3355,9 @@ msgid "%s file"
 msgid_plural "%s files"
 msgstr[0] "%s dosya"
 msgstr[1] "%s dosya"
+
+msgid "Virtual shell"
+msgstr "Sanal shell"
+
+msgid "Allow the flxai_sh tool: shell-like commands (ls, grep, sed, jq, curl…) on the workspace files. No real processes; the workspace rules apply."
+msgstr "flxai_sh aracına izin ver: çalışma alanı dosyalarında shell benzeri komutlar (ls, grep, sed, jq, curl…). Gerçek süreç açılmaz; çalışma alanı kuralları geçerli."

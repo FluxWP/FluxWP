@@ -1516,5 +1516,7 @@ return array(
   'No results yet.' => 'Henüz sonuç yok.',
   'Running…' => 'Çalışıyor…',
   '%s file' . chr(0) . '%s files' => '%s dosya' . chr(0) . '%s dosya',
+  'Virtual shell' => 'Sanal shell',
+  'Allow the flxai_sh tool: shell-like commands (ls, grep, sed, jq, curl…) on the workspace files. No real processes; the workspace rules apply.' => 'flxai_sh aracına izin ver: çalışma alanı dosyalarında shell benzeri komutlar (ls, grep, sed, jq, curl…). Gerçek süreç açılmaz; çalışma alanı kuralları geçerli.',
  ),
 );

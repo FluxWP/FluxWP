@@ -245,6 +245,23 @@ function flxai_ws_policy( array $chat ) {
 		'task'    => $task ? (int) $task['id'] : 0,
 		'ready'   => flxai_ws_ready(),
 	);
+	/**
+	 * Çalışma alanı kuralları (0.18.0). Ör. Flux Agents ajan görevlerinde klasörü ajana özel yapar
+	 * (dir çalışma alanı kökünün içinde kalmalı; değilse yok sayılır).
+	 *
+	 * @param array      $p    dir, access, folders, task, ready.
+	 * @param array      $chat Sohbet.
+	 * @param array|null $task Görev.
+	 */
+	$f = apply_filters( 'flxai_workspace_policy', $p, $chat, $task );
+	if ( is_array( $f ) ) {
+		$dir = flxai_ws_clean( (string) ( $f['dir'] ?? '' ) );
+		if ( '' !== $dir && flxai_ws_inside( $dir, flxai_ws_root() ) && $dir !== flxai_ws_root() && ! flxai_ws_inside( $dir, flxai_ws_skills_dir() ) ) {
+			$p['dir'] = $dir;
+		}
+		$p['access']  = in_array( $f['access'] ?? '', array( 'site', 'workspace' ), true ) ? $f['access'] : $p['access'];
+		$p['folders'] = flxai_ws_clean_cfg( array( 'folders' => (array) ( $f['folders'] ?? $p['folders'] ) ) )['folders'];
+	}
 	$cache[ $cid ] = $p;
 	return $p;
 }
@@ -770,7 +787,8 @@ add_filter(
 			$out .= "- Sitenin diğer dosyalarını okuyabilirsin.\n";
 		}
 		$out .= "- Klasörün dışındaki dosya değişiklikleri (flxfm_write/flxfm_replace/flxfm_delete) hemen uygulanmaz, değişiklik isteğinde (PR) birikir; kullanıcı farkı görüp birleştirir. Ayrıca onay kartı çıkmaz, işine devam et; sonunda neyi neden değiştirdiğini kısaca yaz.\n"
-			. '- Skill dosyaları: ' . flxai_ws_skills_dir() . '/<ad>/SKILL.md (okunur; skill değiştirmek için flxai_skill_save).';
+			. '- Skill dosyaları: ' . flxai_ws_skills_dir() . '/<ad>/SKILL.md (okunur; skill değiştirmek için flxai_skill_save).'
+			. ( function_exists( 'flxai_sh_exec' ) && flxai_setting( 'shell_on', 1 ) ? "\n- Sanal shell: flxai_sh (ls, cat, grep, sed, awk, jq, find, diff, curl…; |, >, heredoc). Dosya işlerinde tek tek araç yerine çoğu zaman tek flxai_sh çağrısı yeter. Gerçek süreç, Python ya da npm yok; aynı kurallar geçerli." : '' );
 		return $text . $out;
 	},
 	10,

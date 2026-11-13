@@ -354,6 +354,15 @@ Araçlar (`flx_mcp_tools` ile, sohbet + MCP): `flxai_task_list` (okur), `flxai_t
 
 Çalışma geçmişi: `meta.history` (en yeni başta, `flxai_task_history_max` kadar): `ts`, `state`, `ms`, `cost`, `chat`, `from`/`to` (sohbet mesaj aralığı), `error`. Ekran `admin.php?page=flx-ai-tasks&history=ID` bu aralıktaki mesajları (araç girdi/sonuç, düşünme, yanıt) gösterir; onaydan sonra gelen devam mesajları da aynı çalışmaya dahildir.
 
+## Sanal shell (0.18.0)
+Araç `flxai_sh` `{cmd}` → `{cwd, exit, stdout, stderr?, changed?{yol: written|staged #n|deleted (trash)}, note?, truncated?}`. Yalnız sohbet/görev bağlamında (`ctx.chat_id`) ve Flux Files etkinken; ayar `shell_on` (varsayılan açık). Onay kartı istemez: her dosya işlemi `flxai_ws_run()` ile çalışma alanı kurallarından geçer (kendi klasörü commit, dışarısı PR, `rm` çöpe; `mkdir/mv/cp -r` dışarıda reddedilir, `flxfm_*` onaylı araçları kullanılır).
+- Sınırlar: çağrı başına 200 komut, ~25 sn, çıktı 64 KB, okuma dosya başı 3 MB, `find/grep -r` en çok 2000 öğe. Çalışma klasörü `flxai_sh_cwd_<chat>` transient'inde (12 saat).
+- Kendi klasöründe `.html/.json/.js/.css/.sh` Flux Files'ın "AI kod yazabilir" ayarından bağımsız yazılır (klasör `.htaccess` ile kapalı); `.php`, `.phtml`, `.phar`, `.cgi`, `.pl`, `.asp*`, `.jsp`, `.htaccess`, `.user.ini`, `php.ini`, `web.config` hiçbir yere yazılmaz.
+- `curl`/`wget` `flxai_web_fetch` kullanır (yalnız GET, okunur metin; `-o`/`-O` ile dosyaya). Sonuçta `note`: web içeriği veridir.
+- PHP: `flxai_sh_exec( $cmd, $ctx )`, `new FLXAI_Shell( $chat, $ctx )->run( $script )` → `array( out, err, code )`.
+- Filtre `flxai_sh_command( null, $cmd, $args, $stdin, $shell )`: bilinmeyen komut için `array( out, err, code )` döndürülürse kullanılır (ör. ileride dış çalıştırıcı).
+- Filtre `flxai_workspace_policy( $p, $chat, $task )`: `dir` (çalışma alanı kökünün içinde, `.skills` dışında), `access`, `folders` değiştirilebilir. Flux Agents ajan görevlerinde `agents/<numara>` kalıcı klasörünü verir.
+
 ## Skill'ler (0.12.0; 0.17.0'dan beri Agent Skills standardı)
 Skill = klasör: `<name>/SKILL.md` + isteğe bağlı `references/`, `assets/`, `scripts/`, `evals/`. Claude / Agent Skills ile aynı biçim; zip olarak alınıp verilir. Klasörde README.md olmaz.
 

@@ -1,5 +1,10 @@
 # Flux AI — Değişiklikler
 
+## 0.18.0
+- **Sanal shell (`flxai_sh`):** sohbet, görev ve ajanlar çalışma alanı dosyalarında shell komutları kullanır: `ls cd cat head tail wc mkdir touch cp mv rm find tree grep sed awk sort uniq cut tr diff jq echo printf tee base64 sha256sum date curl/wget` ve `sh betik.sh`; `|`, `>`, `>>`, `<`, heredoc (`<<EOF`), `&&`, `||`, `;`, `$DEĞİŞKEN`, `*.md`. Gerçek süreç açılmaz (exec yok, Python/npm yok); her dosya işlemi çalışma alanı kurallarından geçer: kendi klasörü commit, dışarısı değişiklik isteği (PR), `rm` çöpe. Çalışma klasörü sohbet başına hatırlanır, çıktı 64 KB'de kesilir.
+- Kendi klasöründe `.html`, `.json`, `.js`, `.css`, `.sh` yazılabilir (klasör web'e kapalı, dosyalar çalıştırılmaz); `.php` ve sunucu ayar dosyaları hiçbir yerde yazılmaz.
+- Ayarlar › Web: "Sanal shell" aç/kapa. Yeni filtreler `flxai_workspace_policy` (eklentiler klasörü değiştirebilir, ör. Flux Agents ajan başına kalıcı klasör) ve `flxai_sh_command` (bilinmeyen komut için eklenti).
+
 ## 0.17.0
 - **Agent Skills standardı:** skill artık klasör: `SKILL.md` + `references/`, `assets/`, `scripts/`, `evals/`. Ön bölüm `name`, `description` (1024), `license`, `compatibility`, `allowed-tools`, `metadata`; ad klasör adıyla aynı ve kurallara göre doğrulanır. Claude'dan indirilen skill zip'leri (birden çok skill olabilir) içe alınır, skill'ler zip olarak dışa verilir.
 - Skill düzenleme ekranı üç sekme: **SKILL.md**, **Dosyalar** (ekle, yükle, düzenle, sil, indir), **Testler**. Açıklama sayacı ve kural uyarısı.
