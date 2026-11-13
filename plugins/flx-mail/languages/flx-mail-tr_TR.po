@@ -2958,3 +2958,96 @@ msgstr "Tekrar hoş geldiniz, mesajlarımız yeniden gelecek."
 
 msgid "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
 msgstr "WhatsApp kısa sürede çok sayıda benzer mesaj gönderen numaraları kısıtlar. Bu sınırlar yalnız kuyruktaki toplu gönderimlere uygulanır; sohbetteki cevaplar ve tekil mesajlar beklemez."
+
+msgid "AI assistant"
+msgstr "AI asistan"
+
+msgid "Added by %s"
+msgstr "%s ekledi"
+
+msgid "People who asked not to be messaged. <strong>Blocked</strong>: nothing is sent on any channel. <strong>No promotions</strong>: they replied STOP, so only promotional messages stop on that channel; information messages and chats they start still go through."
+msgstr "Mesaj almak istemeyen kişiler. <strong>Engelli</strong>: hiçbir kanaldan mesaj gitmez. <strong>Tanıtım yok</strong>: IPTAL yazdı, o kanaldan yalnız tanıtım mesajı gitmez; bilgilendirme ve kendi başlattığı sohbet sürer."
+
+msgid "Phone, email or reason"
+msgstr "Telefon, e-posta ya da neden"
+
+msgid "Type"
+msgstr "Tür"
+
+msgid "All types"
+msgstr "Tüm türler"
+
+msgid "Blocked"
+msgstr "Engelli"
+
+msgid "No promotions"
+msgstr "Tanıtım yok"
+
+msgid "%s people"
+msgstr "%s kişi"
+
+msgid "Add to the blocklist"
+msgstr "Kara listeye ekle"
+
+msgid "No promotions · WhatsApp"
+msgstr "Tanıtım yok · WhatsApp"
+
+msgid "No promotions · SMS"
+msgstr "Tanıtım yok · SMS"
+
+msgid "Blocked · all channels"
+msgstr "Engelli · tüm kanallar"
+
+msgid "Reason (optional)"
+msgstr "Neden (isteğe bağlı)"
+
+msgid "e.g. Asked on the phone"
+msgstr "ör. Telefonda istedi"
+
+msgid "Person"
+msgstr "Kişi"
+
+msgid "When and how"
+msgstr "Ne zaman, nasıl"
+
+msgid "Details"
+msgstr "Ayrıntı"
+
+msgid "No matching entries."
+msgstr "Eşleşen kayıt yok."
+
+msgid "Nobody is on the blocklist."
+msgstr "Kara listede kimse yok."
+
+msgid "Open chat"
+msgstr "Sohbeti aç"
+
+msgid "Contact card"
+msgstr "Kişi kartı"
+
+msgid "Reason"
+msgstr "Neden"
+
+msgid "They wrote"
+msgstr "Yazdığı"
+
+msgid "After"
+msgstr "Şu mesajdan sonra"
+
+msgid "Messages will be sent to this person again on all channels. Remove only if they asked for it."
+msgstr "Bu kişiye tüm kanallardan yeniden mesaj gidecek. Yalnız kendisi isterse çıkarın."
+
+msgid "Full blocks are kept by Flux Chat. Install it to block people on all channels from here and from chats."
+msgstr "Tam engel listesi Flux Chat'te tutulur. Buradan ve sohbetlerden tüm kanallarda engellemek için Flux Chat'i kurun."
+
+msgid "STOP keywords and replies"
+msgstr "IPTAL kelimeleri ve cevapları"
+
+msgid "Blocked. Nothing will be sent to this person on any channel."
+msgstr "Engellendi. Bu kişiye hiçbir kanaldan mesaj gitmeyecek."
+
+msgid "Removed from the blocklist. Messages will be sent to this person again."
+msgstr "Kara listeden çıkarıldı. Bu kişiye yeniden mesaj gidecek."
+
+msgid "See the list on the Blocklist page"
+msgstr "Listeyi Kara liste sayfasında gör"

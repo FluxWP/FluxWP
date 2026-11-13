@@ -849,6 +849,23 @@
 		tick();
 	}
 
+	/* ---------------- Aç / kapa (kara liste "Ekle") ---------------- */
+
+	$$( '[data-flxi-toggle]' ).forEach( function ( b ) {
+		b.addEventListener( 'click', function () {
+			var el = $( b.getAttribute( 'data-flxi-toggle' ) );
+			if ( el ) {
+				el.hidden = ! el.hidden;
+				if ( ! el.hidden ) {
+					var f = el.querySelector( 'input:not([type=hidden])' );
+					if ( f ) {
+						f.focus();
+					}
+				}
+			}
+		} );
+	} );
+
 	/* ---------------- Kayıtlar ---------------- */
 
 	var dlg = $( '#flxi-log-dialog' );

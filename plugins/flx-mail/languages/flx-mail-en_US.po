@@ -2958,3 +2958,96 @@ msgstr "Welcome back, you will get our messages again."
 
 msgid "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
 msgstr "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
+
+msgid "AI assistant"
+msgstr "AI assistant"
+
+msgid "Added by %s"
+msgstr "Added by %s"
+
+msgid "People who asked not to be messaged. <strong>Blocked</strong>: nothing is sent on any channel. <strong>No promotions</strong>: they replied STOP, so only promotional messages stop on that channel; information messages and chats they start still go through."
+msgstr "People who asked not to be messaged. <strong>Blocked</strong>: nothing is sent on any channel. <strong>No promotions</strong>: they replied STOP, so only promotional messages stop on that channel; information messages and chats they start still go through."
+
+msgid "Phone, email or reason"
+msgstr "Phone, email or reason"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "All types"
+msgstr "All types"
+
+msgid "Blocked"
+msgstr "Blocked"
+
+msgid "No promotions"
+msgstr "No promotions"
+
+msgid "%s people"
+msgstr "%s people"
+
+msgid "Add to the blocklist"
+msgstr "Add to the blocklist"
+
+msgid "No promotions · WhatsApp"
+msgstr "No promotions · WhatsApp"
+
+msgid "No promotions · SMS"
+msgstr "No promotions · SMS"
+
+msgid "Blocked · all channels"
+msgstr "Blocked · all channels"
+
+msgid "Reason (optional)"
+msgstr "Reason (optional)"
+
+msgid "e.g. Asked on the phone"
+msgstr "e.g. Asked on the phone"
+
+msgid "Person"
+msgstr "Person"
+
+msgid "When and how"
+msgstr "When and how"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "No matching entries."
+msgstr "No matching entries."
+
+msgid "Nobody is on the blocklist."
+msgstr "Nobody is on the blocklist."
+
+msgid "Open chat"
+msgstr "Open chat"
+
+msgid "Contact card"
+msgstr "Contact card"
+
+msgid "Reason"
+msgstr "Reason"
+
+msgid "They wrote"
+msgstr "They wrote"
+
+msgid "After"
+msgstr "After"
+
+msgid "Messages will be sent to this person again on all channels. Remove only if they asked for it."
+msgstr "Messages will be sent to this person again on all channels. Remove only if they asked for it."
+
+msgid "Full blocks are kept by Flux Chat. Install it to block people on all channels from here and from chats."
+msgstr "Full blocks are kept by Flux Chat. Install it to block people on all channels from here and from chats."
+
+msgid "STOP keywords and replies"
+msgstr "STOP keywords and replies"
+
+msgid "Blocked. Nothing will be sent to this person on any channel."
+msgstr "Blocked. Nothing will be sent to this person on any channel."
+
+msgid "Removed from the blocklist. Messages will be sent to this person again."
+msgstr "Removed from the blocklist. Messages will be sent to this person again."
+
+msgid "See the list on the Blocklist page"
+msgstr "See the list on the Blocklist page"

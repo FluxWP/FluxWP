@@ -447,3 +447,22 @@ html.flxa-dark .flxi-wa-state[data-state="error"], html.flxa-dark .flxi-wa-state
 @media (max-width: 600px) { .flxi-wrap .flxi-optouts thead { display: none; } .flxi-wrap .flxi-optouts td { display: block; border: 0; padding: 2px 0; } .flxi-wrap .flxi-optouts tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--flxi-line, #e5e7eb); } }
 .flxi-wrap .flxi-media-pick { display: flex; gap: 8px; } .flxi-wrap .flxi-media-pick input { flex: 1; min-width: 0; }
 .flxi-wrap .flxi-optout-add input, .flxi-wrap .flxi-optout-add select { width: 100%; }
+
+/* Kara liste */
+.flxi-wrap .flxi-bl-toolbar { display: flex; justify-content: flex-end; margin: -4px 0 12px; }
+.flxi-wrap .flxi-bl-add[hidden] { display: none; }
+.flxi-wrap .flxi-table--bl td { vertical-align: top; }
+.flxi-wrap .flxi-bl-name { font-weight: 600; text-decoration: none; }
+.flxi-wrap .flxi-bl-sub { margin-top: 2px; }
+.flxi-wrap .flxi-bl-detail > div + div { margin-top: 4px; }
+.flxi-wrap .flxi-bl-detail q { font-style: italic; }
+.flxi-wrap .flxi-bl-detail .flxi-logrow { text-align: left; white-space: normal; padding: 0; }
+.flxi-wrap .flxi-bl-k { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; color: #6b7c86; margin-right: 4px; }
+.flxi-wrap .flxi-bl-act { text-align: right; white-space: nowrap; }
+@media (max-width: 782px) {
+	.flxi-wrap .flxi-table--bl thead { display: none; }
+	.flxi-wrap .flxi-table--bl tr { display: block; padding: 10px 12px; border-bottom: 1px solid var(--flxi-line, #e5e7eb); }
+	.flxi-wrap .flxi-table--bl td { display: block; border: 0; padding: 3px 0; }
+	.flxi-wrap .flxi-table--bl td.flxi-nowrap { white-space: normal; }
+	.flxi-wrap .flxi-bl-act { text-align: left; }
+}

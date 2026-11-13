@@ -205,6 +205,19 @@ Filtreler / eylemler: `flxi_optout_has` ( `bool, $kanal, $anahtar` ), `flxi_opto
 
 Flux Mail'in gönderdiği WhatsApp mesajları `flxc_external_source` filtresiyle `flx-mail` olarak işaretlenir; Flux Chat bunları "telefondan yazıldı" sayıp asistanı susturmaz.
 
+### Kara liste sayfası (1.18.0+)
+
+İletişim › Kara liste (`admin.php?page=flxi-kara-liste`, `type=block|optout`, `channel`, `s`). İki tür kayıt tek listede: Flux Chat kara listesi (tam engel, `flxc_table('blocklist')`) ve IPTAL (`flxi_optouts`). Satır: kişi adı (CRM kartı linkli), sohbet linki, tarih, nasıl eklendiği, neden, kişinin yazdığı mesaj, öncesinde giden son mesaj + kampanya.
+
+```php
+flxi_blocklist_entries( array( 'type' => 'optout', 'channel' => 'whatsapp', 's' => '0532' ) );
+// [ type, id, phone, email, channel, time (unix), how (reply|assistant|staff|kaynak), keyword, reason, said, log_id, chat_id, user_id ]
+flxi_last_sent_to( 'whatsapp', '0532 111 22 33' );   // Flux Mail kaydındaki son giden mesaj (id, created_at, body, campaign_id, source)
+flxi_optout_add( 'whatsapp', $tel, 'IPTAL', 'flx-chatbot', array( 'message' => $metin, 'chat_id' => 12, 'note' => '' ) );
+```
+
+Filtre `flxi_blocklist_entries` ( `$satirlar, $filtre` ): başka bir paket kendi engel kaydını listeye ekleyebilir.
+
 Echo webhook'u gönderim yanıtından önce gelebilir (henüz `external_id` yok). Flux Mail bu yüzden göndermeden önce numara + metin işareti bırakır (2 dk, `flxi_mark_sending()`). Flux Chat echo'yu sınıflarken `flxi_sent_pending( $tel, $metin )` (metin `null` ise yalnız numara) sorar ya da `apply_filters( 'flxc_external_source', $source, $wa_id, $tel, $metin )` ile telefon ve metni de geçirir.
 
 ## Filtreler ve eylemler

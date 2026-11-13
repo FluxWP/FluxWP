@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.18.0 — 2026-11-13
+- Yeni **Kara liste** sayfası (İletişim › Kara liste): tam engelliler (Flux Chat kara listesi, hiçbir kanaldan mesaj gitmez) ve IPTAL yazanlar (o kanaldan tanıtım gitmez) tek listede. Her satırda ne zaman ve nasıl (kişi yazdı / AI asistan / hangi personel), kişinin yazdığı mesaj, hangi mesajdan sonra olduğu (tıklayınca mesajın tamamı, kampanya adı linkli), kişi kartı (Flux CRM) ve sohbet linki. Tür, kanal ve arama filtresi; elle ekleme (tanıtım yok WhatsApp/SMS ya da tam engel + neden); kaldırma.
+- IPTAL kaydı artık bağlam saklar: kişinin yazdığı mesaj, sohbet, öncesinde giden son mesaj ve kampanya, yönetici notu (`flxi_optouts` yeni sütunlar, DB 4). `flxi_optout_add( $kanal, $tel, $kelime, $kaynak, array( 'message' => …, 'chat_id' => …, 'note' => … ) )`.
+- Yeni `flxi_last_sent_to( $kanal, $alici, $once )`, `flxi_blocklist_entries( $filtre )` ve filtre `flxi_blocklist_entries`.
+- Ayarlar › IPTAL'deki liste Kara liste sayfasına taşındı.
+
 ## 1.17.1 — 2026-11-13
 - Kişiye özel değişkenler: `flxi_create_campaign()` alıcı satırı `vars` taşıyabilir (`[ 'fidan' => 3, 'tutar' => '450 TL' ]`); metinde `{fidan}`, `{tutar}` o kişinin değeriyle dolar (e-posta, WhatsApp, SMS). Alıcı kaynakları da (`flxi_recipients_from_source`) satıra `vars` ekleyebilir. Yerleşik `{ad}`, `{ad_soyad}`, `{eposta}`, `{telefon}` ezilmez. Özellik: `flxi_campaign_features` → `recipient_vars`.
 - Netgsm toplu SMS'te de IPTAL listesi, çıkış satırı ve `{a|b}` çeşitlemesi uygulanır (1.17.0'da yalnız tek tek gönderimde vardı).
