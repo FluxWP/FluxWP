@@ -1,6 +1,6 @@
 {
   "name": "@fluxwp/runtime",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "type": "module",
   "description": "Headless React runtime for FluxWP apps: account scope, query cache, contract hooks, list/detail/form/action controllers, shell model, target resolution, web session, brand gate. No react-dom / react-native: the Expo app and the desktop panel render it.",

@@ -151,6 +151,10 @@ describe('webview decisions', () => {
   it('classifies navigation', () => {
     expect(classifyNavigation('https://demo.fluxapp.local/wp-admin/admin.php?page=flx-crm-contacts&id=4', opts)).toMatchObject({ action: 'native', route: { screen: 'contact', params: { id: '4' } } });
     expect(classifyNavigation('https://demo.fluxapp.local/wp-admin/upload.php', opts)).toEqual({ action: 'allow' });
+    // A manifest route to a web screen (FluxWP Panel: admin.php?page=flx-setup) stays in the webview;
+    // pushing it would reopen the same page forever.
+    const web = { ...opts, env: { ...env, manifests: { setup: { id: 'setup', plugin: 'flx-setup', min_app: '1.0.0', title: 'P', entry: 'packages', routes: { 'admin.php?page=flx-setup': { screen: 'packages' } }, screens: { packages: { type: 'web', title: 'P', path: 'admin.php?page=flx-setup' } }, sources: {}, actions: {} } } } } as unknown as typeof opts;
+    expect(classifyNavigation('https://demo.fluxapp.local/wp-admin/admin.php?page=flx-setup', web)).toEqual({ action: 'allow' });
     expect(classifyNavigation('https://demo.fluxapp.local/wp-login.php?redirect_to=x', opts)).toEqual({ action: 'relogin' });
     expect(classifyNavigation('https://demo.fluxapp.local/wp-login.php?action=logout', opts)).toEqual({ action: 'block', reason: 'logout' });
     // Flux Speed custom login page (bootstrap auth.login_url).

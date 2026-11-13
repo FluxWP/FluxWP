@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.3.1
+- A panel link whose own screen is a web page stays in the same webview. Before, it pushed a new webview on the same page, which SSO-redirected back and pushed again forever (endless spinner on Home / FluxWP Panel).
+
 ## 0.3.0
 - Chat engine: `deleteMessage(m, scope)` keeps the returned row (content stays, folded on screen); `channel` view filter. `deleteNote` still works.
 
