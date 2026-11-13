@@ -1,5 +1,14 @@
 # Değişiklikler
 
+## 0.9.0
+- Event › Messages split into "New message", "Sent" and "Planned"; a send that is running shows at the top on every tab.
+- Sends are cards you can click: state (sending, paused, planned, sent, cancelled), the text and its image, a progress bar per channel with failures, and the estimated finish as date and time.
+- Clicking a send opens its page inside the CRM (no jump to the Flux Mail queue): the whole text, and who it went to per channel with Sent / Waiting / Failed filters, the error of a failed message and the time; it refreshes itself every minute while it runs.
+- Stop a send from its card; Pause and Resume show once Flux Mail declares `pause` in `flxi_campaign_features` (`flxi_pause_campaign` / `flxi_resume_campaign`). Finished channels are left as they are.
+- Estimated finish comes from Flux Mail's `flxi_campaign_eta()` when it declares `eta`; until then it is worked out from the pace so far. Recipients come from `flxi_campaign_recipients()` when Flux Mail declares `recipients`; until then from its queue, read only.
+- Overview › Last messages: rows open the send and show its state and estimated finish.
+- Fixed: the broken image after the text in the send list (the 📎 emoji became an image that did not load); the send's image is shown instead.
+
 ## 0.8.0
 - Events list redesigned: a grid of cards with the event image (or a date tile), a status badge (today, in N days, over, archived), people and package numbers, the goal bar, and "Open dashboard" / "Message" / ⋯ (package links, edit, site page, close, delete).
 - The site settings that packages show under the list (Flux Certificates: the events section on the home page) now have their own "On the site" tab instead of sitting under the cards.
