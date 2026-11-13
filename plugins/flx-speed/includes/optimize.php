@@ -45,6 +45,7 @@ class FLXP_PageSpeed {
 			'ps_min_css'     => 0,
 			'ps_min_js'      => 0,
 			'ps_defer'       => 0,
+			'ps_defer_jquery' => 0,
 			'ps_fonts'       => 0,
 			'ps_preload'     => 0,
 			'ps_exclude'     => '',
@@ -54,7 +55,7 @@ class FLXP_PageSpeed {
 
 	/** Açık/kapalı anahtarlar. */
 	public static function toggles() {
-		return array( 'ps_viewport', 'ps_emoji', 'ps_css', 'ps_min_css', 'ps_min_js', 'ps_defer', 'ps_fonts', 'ps_preload' );
+		return array( 'ps_viewport', 'ps_emoji', 'ps_css', 'ps_min_css', 'ps_min_js', 'ps_defer', 'ps_defer_jquery', 'ps_fonts', 'ps_preload' );
 	}
 
 	public static function sanitize( $in, $out ) {
@@ -78,7 +79,7 @@ class FLXP_PageSpeed {
 		 * Bir PageSpeed özelliğini tema/ön ayar tarafında kapatır ya da açar.
 		 *
 		 * @param bool   $on  Ayar değeri.
-		 * @param string $key ps_viewport, ps_emoji, ps_css, ps_min_css, ps_min_js, ps_defer, ps_fonts, ps_preload.
+		 * @param string $key ps_viewport, ps_emoji, ps_css, ps_min_css, ps_min_js, ps_defer, ps_defer_jquery, ps_fonts, ps_preload.
 		 */
 		return (bool) apply_filters( 'flxp_pagespeed_enabled', $on, $key );
 	}
@@ -113,6 +114,9 @@ class FLXP_PageSpeed {
 		}
 		if ( self::on( 'ps_defer' ) ) {
 			add_action( 'wp_print_scripts', array( __CLASS__, 'defer_head_scripts' ), PHP_INT_MAX );
+		}
+		if ( self::on( 'ps_defer_jquery' ) ) {
+			add_action( 'wp_print_scripts', array( __CLASS__, 'defer_jquery' ), PHP_INT_MAX );
 		}
 		if ( self::on( 'ps_min_js' ) ) {
 			add_filter( 'script_loader_src', array( __CLASS__, 'min_js_src' ), 20, 2 );
@@ -149,7 +153,7 @@ class FLXP_PageSpeed {
 			return;
 		}
 		$any = false;
-		foreach ( array( 'ps_viewport', 'ps_css', 'ps_min_css', 'ps_fonts', 'ps_preload' ) as $k ) {
+		foreach ( array( 'ps_viewport', 'ps_css', 'ps_min_css', 'ps_defer_jquery', 'ps_fonts', 'ps_preload' ) as $k ) {
 			$any = $any || self::on( $k );
 		}
 		$any = $any || self::seen_due();
@@ -403,6 +407,74 @@ class FLXP_PageSpeed {
 		}
 	}
 
+	/**
+	 * jQuery'ye defer: WordPress yalnız tüm bağımlıları ertelenmiş ve sonrasında satır içi betiği olmayan
+	 * jQuery'yi erteler; aksi halde kendisi engelleyen yazar. Sayfadaki satır içi jQuery kullanımı jquery_guard'da.
+	 */
+	public static function defer_jquery() {
+		$ws = wp_scripts();
+		if ( ! $ws->query( 'jquery', 'enqueued' ) && ! $ws->query( 'jquery-core', 'enqueued' ) ) {
+			return;
+		}
+		foreach ( array( 'jquery-core', 'jquery-migrate' ) as $h ) {
+			if ( isset( $ws->registered[ $h ] ) && ! $ws->get_data( $h, 'strategy' ) && ! (int) $ws->get_data( $h, 'group' ) ) {
+				$ws->add_data( $h, 'strategy', 'defer' );
+			}
+		}
+	}
+
+	/**
+	 * Ertelenmiş jQuery'yi bekleyemeyen satır içi betik (jQuery(...), $(...)) varsa jQuery yine engelleyen olur.
+	 *
+	 * @param string $html Sayfa.
+	 * @return string
+	 */
+	public static function jquery_guard( $html ) {
+		$re = '#<script\b([^>]*\bid=(["\'])jquery-(?:core|migrate)-js\2[^>]*)>#i';
+		if ( ! preg_match_all( $re, $html, $tags ) ) {
+			return $html;
+		}
+		$deferred = false;
+		foreach ( $tags[1] as $attrs ) {
+			$deferred = $deferred || preg_match( '/\sdefer\b/i', $attrs );
+		}
+		if ( ! $deferred ) {
+			return $html;
+		}
+		$uses = false;
+		if ( preg_match_all( '#<script\b([^>]*)>(.*?)</script>#is', $html, $all, PREG_SET_ORDER ) ) {
+			foreach ( $all as $sc ) {
+				if ( preg_match( '/\ssrc\s*=/i', $sc[1] ) ) {
+					continue;
+				}
+				if ( preg_match( '/\stype\s*=\s*["\']?([^"\'\s>]+)/i', $sc[1], $t ) && ! preg_match( '#^(text/javascript|application/javascript|text/ecmascript)$#i', $t[1] ) ) {
+					continue; // module, JSON, şablon: hemen çalışmaz ya da betik değil.
+				}
+				if ( preg_match( '/\bjQuery\b|(?<![\w$.])\$\s*(?:\(|\.)/', $sc[2] ) ) {
+					$uses = true;
+					break;
+				}
+			}
+		}
+		/**
+		 * Sayfada jQuery'yi hemen kullanan satır içi betik var mı (true: jQuery engelleyen kalır).
+		 *
+		 * @param bool   $uses Bulunan durum.
+		 * @param string $html Sayfa.
+		 */
+		if ( ! apply_filters( 'flxp_inline_jquery_found', $uses, $html ) ) {
+			return $html;
+		}
+		return preg_replace_callback(
+			$re,
+			function ( $m ) {
+				$a = preg_replace( '/\s(?:defer(?:=(["\'])defer\1)?|data-wp-strategy=(["\'])defer\2)(?=[\s>\/]|$)/i', '', $m[1] );
+				return '<script' . $a . '>';
+			},
+			$html
+		);
+	}
+
 	/* ------------------------------------------------------------ Sayfa işleme */
 
 	/**
@@ -426,6 +498,9 @@ class FLXP_PageSpeed {
 				$out = self::fix_viewport( $out );
 			}
 			$out = self::process_styles( $out );
+			if ( self::on( 'ps_defer_jquery' ) ) {
+				$out = self::jquery_guard( $out );
+			}
 			if ( self::on( 'ps_fonts' ) || self::on( 'ps_preload' ) ) {
 				$out = self::process_fonts( $out );
 			}

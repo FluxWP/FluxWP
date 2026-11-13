@@ -76,9 +76,6 @@ msgstr "缩小 JS 文件"
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr "对于主题和插件脚本,如果比源新,则使用 .min 同级脚本;否则会生成没有注释和缩进的副本(保留换行符)。加载相对于其自身位置的块的包和带有翻译的脚本将被保留。"
 
-msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
-msgstr "jQuery 始终保持阻塞状态(页面上较旧的内联脚本可能会直接调用它)。 WordPress 本身会删除后面有内联脚本或阻塞脚本所依赖的脚本的延迟。"
-
 msgid "Defer head scripts"
 msgstr "推迟头脚本"
 

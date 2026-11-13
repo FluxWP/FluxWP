@@ -76,9 +76,6 @@ msgstr "JS dosyalarını sıkıştır"
 msgid "For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone."
 msgstr "Tema ve eklenti betikleri için .min kardeşi kaynaktan yeniyse o kullanılır; değilse yorumları ve satır boşlukları atılmış kopya üretilir (satır sonları korunur). Kendi konumundan parça yükleyen paketlere ve çevirisi olan betiklere dokunulmaz."
 
-msgid "jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
-msgstr "jQuery her zaman engelleyen kalır (sayfa içindeki eski betikler ona doğrudan bağlı olabilir). WordPress, sonradan çalışan satır içi betiği olan ya da engelleyen bir betiğin bağımlı olduğu betiklerde defer'i kendisi geri alır."
-
 msgid "Defer head scripts"
 msgstr "Head betiklerini ertele (defer)"
 
@@ -1779,3 +1776,12 @@ msgstr "%1$s için %2$s eklentisini kurmalısınız. Henüz kurulu değil."
 
 msgid "%1$s needs the %2$s plugin to be active. It is installed but turned off."
 msgstr "%1$s için %2$s eklentisi etkin olmalı. Kurulu ama kapalı."
+
+msgid "jQuery stays blocking unless \"Defer jQuery too\" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on."
+msgstr "\"jQuery'yi de ertele\" açık değilse jQuery engelleyen kalır. WordPress, sonrasında satır içi betiği olan ya da engelleyen bir betiğin bağlı olduğu betiklerde defer'i kendisi kaldırır."
+
+msgid "Defer jQuery too"
+msgstr "jQuery'yi de ertele"
+
+msgid "jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly."
+msgstr "jQuery ve jQuery Migrate de defer ile yüklenir. Engelleyen bir betik onlara bağlıysa WordPress, sayfada jQuery'yi ya da $'ı doğrudan çağıran satır içi betik varsa Flux Speed onları engelleyen bırakır."

@@ -28,7 +28,6 @@ return array(
   'For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used.' => '对于未缩小的(非 .min)本地 CSS 文件,将使用最新的 .min 同级文件或不带注释和空格的副本。',
   'Minify JS files' => '缩小 JS 文件',
   'For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone.' => '对于主题和插件脚本,如果比源新,则使用 .min 同级脚本;否则会生成没有注释和缩进的副本(保留换行符)。加载相对于其自身位置的块的包和带有翻译的脚本将被保留。',
-  'jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.' => 'jQuery 始终保持阻塞状态(页面上较旧的内联脚本可能会直接调用它)。 WordPress 本身会删除后面有内联脚本或阻塞脚本所依赖的脚本的延迟。',
   'Defer head scripts' => '推迟头脚本',
   'Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts).' => '页面<head>中加载的导致渲染延迟的脚本(例如语言建议、分析脚本)。',
   'Fonts' => '字体',

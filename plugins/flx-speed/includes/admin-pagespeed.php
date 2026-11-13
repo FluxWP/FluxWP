@@ -109,11 +109,12 @@ class FLXP_Admin_PageSpeed {
 				ob_start();
 				?>
 				<div class="flxp-ps-sub">
-					<p class="description"><?php esc_html_e( 'jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.', 'flx-speed' ); ?></p>
+					<p class="description"><?php esc_html_e( 'jQuery stays blocking unless "Defer jQuery too" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.', 'flx-speed' ); ?></p>
 				</div>
 				<?php
 				$sub = ob_get_clean();
 				self::row( 'ps_defer', __( 'Defer head scripts', 'flx-speed' ), 'test', __( 'Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts).', 'flx-speed' ), $sub );
+				self::row( 'ps_defer_jquery', __( 'Defer jQuery too', 'flx-speed' ), 'test', __( 'jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly.', 'flx-speed' ) );
 				?>
 			</section>
 

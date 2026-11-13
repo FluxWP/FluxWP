@@ -3,6 +3,9 @@ return array(
  'language' => 'tr_TR',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'jQuery stays blocking unless "Defer jQuery too" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.' => '"jQuery\'yi de ertele" açık değilse jQuery engelleyen kalır. WordPress, sonrasında satır içi betiği olan ya da engelleyen bir betiğin bağlı olduğu betiklerde defer\'i kendisi kaldırır.',
+  'Defer jQuery too' => 'jQuery\'yi de ertele',
+  'jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly.' => 'jQuery ve jQuery Migrate de defer ile yüklenir. Engelleyen bir betik onlara bağlıysa WordPress, sayfada jQuery\'yi ya da $\'ı doğrudan çağıran satır içi betik varsa Flux Speed onları engelleyen bırakır.',
   'Performance' => 'Performans',
   'Safe' => 'Güvenli',
   'Test first' => 'Önce deneyin',
@@ -28,7 +31,6 @@ return array(
   'For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used.' => 'Sıkıştırılmamış (.min olmayan) yerel CSS dosyaları için güncel .min kardeşi ya da yorumları ve boşlukları atılmış kopya kullanılır.',
   'Minify JS files' => 'JS dosyalarını sıkıştır',
   'For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone.' => 'Tema ve eklenti betikleri için .min kardeşi kaynaktan yeniyse o kullanılır; değilse yorumları ve satır boşlukları atılmış kopya üretilir (satır sonları korunur). Kendi konumundan parça yükleyen paketlere ve çevirisi olan betiklere dokunulmaz.',
-  'jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.' => 'jQuery her zaman engelleyen kalır (sayfa içindeki eski betikler ona doğrudan bağlı olabilir). WordPress, sonradan çalışan satır içi betiği olan ya da engelleyen bir betiğin bağımlı olduğu betiklerde defer\'i kendisi geri alır.',
   'Defer head scripts' => 'Head betiklerini ertele (defer)',
   'Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts).' => 'Sayfanın <head> bölümünde yüklenen ve çizimi bekleten betiklere defer verilir (ör. dil önerisi, analiz betikleri).',
   'Fonts' => 'Yazı tipleri',

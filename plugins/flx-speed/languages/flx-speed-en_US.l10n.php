@@ -3,6 +3,9 @@ return array(
  'language' => 'en_US',
  'plural-forms' => 'nplurals=2; plural=(n != 1);',
  'messages' => array(
+  'jQuery stays blocking unless "Defer jQuery too" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.' => 'jQuery stays blocking unless "Defer jQuery too" is on. WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.',
+  'Defer jQuery too' => 'Defer jQuery too',
+  'jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly.' => 'jQuery and jQuery Migrate get defer as well. WordPress keeps them blocking when a blocking script depends on them, and Flux Speed keeps them blocking on pages with an inline script that calls jQuery or $ directly.',
   'Performance' => 'Performance',
   'Safe' => 'Safe',
   'Test first' => 'Test first',
@@ -28,7 +31,6 @@ return array(
   'For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used.' => 'For unminified (non-.min) local CSS files, an up-to-date .min sibling or a copy without comments and whitespace is used.',
   'Minify JS files' => 'Minify JS files',
   'For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone.' => 'For theme and plugin scripts, the .min sibling is used if it is newer than the source; otherwise a copy without comments and indentation is generated (line breaks are kept). Bundles that load chunks relative to their own location and scripts with translations are left alone.',
-  'jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.' => 'jQuery always stays blocking (older inline scripts on the page may call it directly). WordPress itself drops defer for scripts that have an inline script after them or that a blocking script depends on.',
   'Defer head scripts' => 'Defer head scripts',
   'Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts).' => 'Scripts loaded in the page <head> that hold up rendering get defer (e.g. language suggestion, analytics scripts).',
   'Fonts' => 'Fonts',
