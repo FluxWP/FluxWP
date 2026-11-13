@@ -13,8 +13,10 @@ import { GlassButton } from '@/ui/Glass';
 import { Icon } from '@/ui/Icon';
 import { overlays } from '@/ui/overlays';
 import { Avatar, Badge, EmptyState, Segmented, Skeleton, Spinner, Text } from '@/ui/primitives';
+import { ChromeFrame, useChrome } from '@/shell/chrome';
 
 export function ListScreen({ manifest, screen, params }: { manifest: Manifest; screen: ListDef; params: Record<string, string> }) {
+  const chrome = useChrome();
   const c = useListController(manifest, screen, params);
   const { t } = useTranslation();
   const { theme } = useUnistyles();
@@ -43,7 +45,7 @@ export function ListScreen({ manifest, screen, params }: { manifest: Manifest; s
   );
 
   return (
-    <View style={styles.screen}>
+    <ChromeFrame style={styles.screen} bottom={false}>
       {header}
       {c.loading ? (
         <Skeleton />
@@ -58,16 +60,17 @@ export function ListScreen({ manifest, screen, params }: { manifest: Manifest; s
           onEndReachedThreshold={0.5}
           refreshControl={<RefreshControl refreshing={c.refreshing} onRefresh={() => void c.refresh()} tintColor={theme.colors.primary} />}
           ListEmptyComponent={<EmptyState icon={c.empty.icon ?? (c.empty.searching ? 'search' : 'inbox')} title={c.empty.searching ? t('list.noResults') : c.empty.title || t('list.empty')} body={c.empty.searching ? undefined : c.empty.body} />}
-          ListFooterComponent={c.loadingMore ? <Spinner /> : <View style={styles.footer} />}
+          ListFooterComponent={<>{c.loadingMore ? <Spinner /> : <View style={styles.footer} />}<View style={{ height: chrome.bottom }} /></>}
+          scrollIndicatorInsets={{ bottom: chrome.bottom }}
           contentContainerStyle={styles.content}
         />
       )}
       {c.fab ? (
-        <Pressable accessibilityRole="button" accessibilityLabel={c.fab.label} onPress={() => void c.runAction(c.fab!.id)} style={({ pressed }) => [styles.fab, pressed && styles.pressed]}>
+        <Pressable accessibilityRole="button" accessibilityLabel={c.fab.label} onPress={() => void c.runAction(c.fab!.id)} style={({ pressed }) => [styles.fab, chrome.bottom ? { bottom: 24 + chrome.bottom } : null, pressed && styles.pressed]}>
           <Icon name={c.fab.icon ?? 'plus'} size={24} color={theme.colors.onPrimary} />
         </Pressable>
       ) : null}
-    </View>
+    </ChromeFrame>
   );
 }
 

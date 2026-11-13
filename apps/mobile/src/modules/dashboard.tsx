@@ -5,11 +5,13 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useDashboard, useMe, useNavigate } from '@fluxwp/runtime';
 import { Badge, Card, EmptyState, Skeleton, Text } from '@/ui/primitives';
 import { Icon } from '@/ui/Icon';
+import { useScrollChrome } from '@/shell/chrome';
 
 const toneColor = (t: string | undefined, c: ReturnType<typeof useUnistyles>['theme']['colors']) =>
   t === 'ok' ? c.success : t === 'warn' ? c.warning : t === 'danger' ? c.danger : t === 'accent' ? c.accent : c.primary;
 
 export default function Dashboard() {
+  const scrollChrome = useScrollChrome();
   const { t } = useTranslation();
   const { theme } = useUnistyles();
   const me = useMe().data;
@@ -24,7 +26,7 @@ export default function Dashboard() {
   const cards = [...q.data.cards].sort((a, b) => (a.order ?? 50) - (b.order ?? 50));
   const lists = [...q.data.lists].sort((a, b) => (a.order ?? 50) - (b.order ?? 50));
   return (
-    <ScrollView contentContainerStyle={styles.wrap} refreshControl={<RefreshControl refreshing={q.isRefetching} onRefresh={() => void q.refetch()} tintColor={theme.colors.primary} />}>
+    <ScrollView {...scrollChrome} contentContainerStyle={styles.wrap} refreshControl={<RefreshControl refreshing={q.isRefetching} onRefresh={() => void q.refetch()} tintColor={theme.colors.primary} />}>
       <Text variant="title">{hello}</Text>
       {me ? <Text tone="muted">{me.site.name}</Text> : null}
       <View style={styles.grid}>

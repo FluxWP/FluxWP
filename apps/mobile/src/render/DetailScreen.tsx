@@ -10,8 +10,12 @@ import { useDetailController, useRenderer, type SectionView } from '@fluxwp/runt
 import type { DetailScreen as DetailDef, Manifest } from '@fluxwp/manifest';
 import { GlassButton } from '@/ui/Glass';
 import { Avatar, Badge, Button, Card, EmptyState, Skeleton, Text } from '@/ui/primitives';
+import { useChrome, useScrollChrome } from '@/shell/chrome';
 
 export function DetailScreen({ manifest, screen, params }: { manifest: Manifest; screen: DetailDef; params: Record<string, string> }) {
+  const chrome = useChrome();
+  const scrollChrome = useScrollChrome();
+  const scrollTop = chrome.top ? { ...scrollChrome, contentInset: { top: chrome.top, bottom: 0 }, scrollIndicatorInsets: { top: chrome.top, bottom: 0 } } : scrollChrome;
   const c = useDetailController(manifest, screen, params);
   const { t } = useTranslation();
   const { theme } = useUnistyles();
@@ -27,7 +31,7 @@ export function DetailScreen({ manifest, screen, params }: { manifest: Manifest;
   if (c.error && !c.sections.length) return <EmptyState icon="alert" title={t('states.errorTitle')} body={t('states.errorBody')} action={{ label: t('mobile.states.retry'), onPress: () => void c.refresh() }} />;
   return (
     <View style={styles.screen}>
-      <ScrollView contentContainerStyle={styles.wrap} refreshControl={<RefreshControl refreshing={c.refreshing} onRefresh={() => void c.refresh()} tintColor={theme.colors.primary} />}>
+      <ScrollView {...(c.footerActions.length ? scrollTop : scrollChrome)} contentContainerStyle={styles.wrap} refreshControl={<RefreshControl refreshing={c.refreshing} onRefresh={() => void c.refresh()} tintColor={theme.colors.primary} />}>
         {c.header ? (
           <View style={styles.header}>
             {c.header.avatar ? <Avatar image={c.header.avatar.image} text={c.header.avatar.text} size={56} /> : null}
@@ -41,7 +45,7 @@ export function DetailScreen({ manifest, screen, params }: { manifest: Manifest;
         {c.headerActions.length > 2 ? c.headerActions.slice(2).map((a) => <Button key={a.id} kind={a.tone === 'danger' ? 'danger' : 'secondary'} label={a.label} icon={a.icon} onPress={() => void c.runAction(a.id)} />) : null}
       </ScrollView>
       {c.footerActions.length ? (
-        <View style={styles.footer}>
+        <View style={[styles.footer, chrome.bottom ? { paddingBottom: 16 + chrome.bottom } : null]}>
           {c.footerActions.map((a) => <View key={a.id} style={styles.flex}><Button kind="secondary" label={a.label} icon={a.icon} onPress={() => void c.runAction(a.id)} full /></View>)}
         </View>
       ) : null}

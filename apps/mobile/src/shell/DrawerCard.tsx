@@ -14,6 +14,8 @@ export function DrawerCard({ children }: { children: ReactNode }) {
   const { theme } = useUnistyles();
   const progress = useDrawerProgress();
   const shadow = theme.mode === 'dark' ? 0.5 : 0.18;
+  // A light shade on the part of the screen still visible beside the open panel.
+  const dim = theme.mode === 'dark' ? 0.35 : 0.12;
   const outer = useAnimatedStyle(() => ({
     shadowOpacity: interpolate(progress.value, [0, 0.2], [0, shadow], Extrapolation.CLAMP),
   }));
@@ -24,9 +26,15 @@ export function DrawerCard({ children }: { children: ReactNode }) {
       borderWidth: progress.value > 0.01 ? HAIRLINE : 0,
     };
   });
+  const shade = useAnimatedStyle(() => ({
+    opacity: interpolate(progress.value, [0, 1], [0, dim], Extrapolation.CLAMP),
+  }));
   return (
     <Animated.View style={[styles.outer, outer]}>
-      <Animated.View style={[styles.inner, inner]}>{children}</Animated.View>
+      <Animated.View style={[styles.inner, inner]}>
+        {children}
+        <Animated.View pointerEvents="none" style={[styles.shade, shade]} />
+      </Animated.View>
     </Animated.View>
   );
 }
@@ -34,4 +42,5 @@ export function DrawerCard({ children }: { children: ReactNode }) {
 const styles = StyleSheet.create((theme) => ({
   outer: { flex: 1, shadowColor: '#000', shadowRadius: 24, shadowOffset: { width: -6, height: 0 } },
   inner: { flex: 1, overflow: 'hidden', backgroundColor: theme.colors.bg, borderColor: theme.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.08)' },
+  shade: { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: '#000' },
 }));

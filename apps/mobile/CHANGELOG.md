@@ -1,5 +1,11 @@
 # Değişiklikler
 
+## 0.5.1
+- Klavye açılınca yazma alanı klavyenin altında kalmıyor: Mesajlar sohbeti, Flux AI, İşler (arama, yorum), yazı, Social, TV ve panel formları. Ekran klavyenin örttüğü kadar yukarı kayar; iOS sekme çubuğu ve Android kenardan kenara düzende de çalışır.
+- Sol panel açıkken sağda kalan ekran şeridine hafif gölge düşer.
+- iOS: üst çubuk sistemin yarı saydam bulanık malzemesi; sayfa üst çubuğun ve alt sekme çubuğunun altından kayar, en alta inince son satır sekme çubuğunun üstünde kalır. Yazma alanı ve form düğmeleri gibi sabit alt çubuklar sekme çubuğunun üstünde durur. Android'de çubuklar içerikle yan yana kalır.
+- Menü ve sekme adları uygulamanın dilinde gelir: uygulama site isteklerine dilini (X-Flux-Locale) ekler, dil değişince menü yeniden yüklenir. Sunucu tarafı Flux App 0.4.16 ile.
+
 ## 0.5.0
 - Sol menü ekranın arkasında durur: menü açılınca ekran köşeleri yuvarlanmış bir kart olarak sağa kayar; parmakla sürükleyerek açılır, karta dokunarak ya da sürükleyerek kapanır. Menüde büyük site adı, sağ üstte menüde arama, altta yüzen site ve Ayarlar düğmeleri; satırlar üst ve alt kenarda yumuşakça kaybolur.
 - Üst çubuk düğmeleri (menü, geri, eylemler, site) yuvarlak yüzen cam düğmeler. iOS 26'da sistemin Liquid Glass efekti, eski iOS'ta yarı saydam yüzey, Android'de Material yüzey. Ana ekranda site adı sağdaki yuvarlak etikette.

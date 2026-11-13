@@ -5,6 +5,7 @@ import { getLocales } from 'expo-localization';
 import { appResources, normalizeLocale, queryClientFor, type Locale } from '@fluxwp/runtime';
 import { accountsStore, getDemoLocale, setDemoLocale } from '@fluxwp/core';
 import { prefs } from '@/theme/prefs';
+import { setRequestLocale } from '@/platform';
 import tr from './tr.json';
 import en from './en.json';
 
@@ -15,10 +16,16 @@ export const deviceLocale = (): Locale => normalizeLocale(getLocales()[0]?.langu
 const i18n = createInstance();
 const initialLocale = prefs.get().locale ? normalizeLocale(prefs.get().locale) : deviceLocale();
 setDemoLocale(initialLocale);
+setRequestLocale(initialLocale);
 i18n.on('languageChanged', (language) => {
   setDemoLocale(language);
+  setRequestLocale(language);
   void refreshDemoAccounts();
-  for (const account of accountsStore.getState().accounts) if (account.authKind === 'demo') void queryClientFor(account.id).resetQueries();
+  // Site labels (menu, tabs) come back in the requested language: demo data resets, real sites refetch.
+  for (const account of accountsStore.getState().accounts) {
+    const client = queryClientFor(account.id);
+    void (account.authKind === 'demo' ? client.resetQueries() : client.invalidateQueries());
+  }
 });
 void i18n.use(initReactI18next).init({
   resources: Object.fromEntries((Object.keys(appResources) as Locale[]).map((l) => [l, { translation: { ...appResources[l].translation, mobile: mobile[l === 'tr' ? 'tr' : 'en'] } }])),

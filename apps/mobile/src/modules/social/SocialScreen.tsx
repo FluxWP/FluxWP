@@ -7,8 +7,10 @@ import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { socialPostBody, uploadPickedMedia, useAccount, useApi, useRenderer, type SocialAccount } from '@fluxwp/runtime';
+import { KeyboardView } from '@/ui/KeyboardView';
 import { Button, Text } from '@/ui/primitives';
 import { Chip, Chips, useScreenTitle } from '../kit';
+import { useScrollChrome } from '@/shell/chrome';
 
 interface Boot {
   accounts: SocialAccount[];
@@ -16,6 +18,7 @@ interface Boot {
 }
 
 export default function SocialScreen(_props: { params: Record<string, string> }) {
+  const scrollChrome = useScrollChrome();
   const { t } = useTranslation();
   const { theme } = useUnistyles();
   useScreenTitle(t('mobile.screens.social.title'));
@@ -71,7 +74,8 @@ export default function SocialScreen(_props: { params: Record<string, string> })
   };
 
   return (
-    <ScrollView testID="screen-social" contentContainerStyle={styles.wrap} keyboardShouldPersistTaps="handled">
+    <KeyboardView style={styles.kb}>
+      <ScrollView {...scrollChrome} testID="screen-social" contentContainerStyle={styles.wrap} keyboardShouldPersistTaps="handled">
       <Text variant="label">{t('mobile.screens.social.accounts')}</Text>
       {accounts.length === 0 && !boot.isPending ? <Text tone="muted">{t('mobile.screens.social.noAccounts')}</Text> : null}
       <Chips>
@@ -101,11 +105,13 @@ export default function SocialScreen(_props: { params: Record<string, string> })
         <Button kind="secondary" label={t('mobile.screens.social.schedule')} onPress={() => void publish(true)} disabled={busy} />
         <Button label={t('mobile.screens.social.publish')} onPress={() => void publish(false)} loading={busy} />
       </View>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardView>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
+  kb: { flex: 1 },
   wrap: { padding: theme.space[4], gap: theme.space[3], paddingBottom: theme.space[12] },
   input: { minHeight: 140, borderWidth: 1, borderColor: theme.colors.border, borderRadius: theme.radius.md, padding: theme.space[3], color: theme.colors.text, fontSize: 16, fontFamily: theme.font.family, backgroundColor: theme.colors.surface, textAlignVertical: 'top' },
   preview: { width: '100%', height: 220, borderRadius: theme.radius.md, backgroundColor: theme.colors.surface2 },

@@ -1,6 +1,6 @@
 // Flux Chat inbox (`flxc-inbox`): every channel in one list (WhatsApp, site chat…). The engine is shared with the desktop panel.
 import { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, TextInput, View } from 'react-native';
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
@@ -9,11 +9,13 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useStore } from 'zustand';
 import { canDeleteForEveryone, isDeletedMessage, type FlxcChannel, type FlxcChat, type FlxcFilter, type FlxcMessage } from '@fluxwp/core';
 import { notifyIncoming, useAccount, useApi, useRenderer, WaEngine } from '@fluxwp/runtime';
+import { KeyboardView } from '@/ui/KeyboardView';
 import { Avatar, EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
 import { Icon } from '@/ui/Icon';
 import { overlays, type MenuItem } from '@/ui/overlays';
 import { Chip, Chips, SearchField, useScreenTitle } from '../kit';
 import { mobilePorts } from '../ports';
+import { ChromeFrame } from '@/shell/chrome';
 
 const FILTERS: FlxcFilter[] = ['all', 'unread', 'mine', 'unassigned', 'closed'];
 
@@ -206,13 +208,13 @@ export default function InboxScreen({ params }: { params: Record<string, string>
     void engine.send(id, { type: 'image', file: blob, name: a.fileName ?? 'photo.jpg' }).catch(() => undefined);
   };
 
-  if (!s.boot && !s.bootError) return <View testID="screen-inbox" style={styles.fill}><Skeleton /></View>;
-  if (s.bootError) return <View testID="screen-inbox" style={styles.fill}><EmptyState icon="alert" title={s.bootError} action={{ label: t('mobile.states.retry'), onPress: () => void engine.start() }} /></View>;
+  if (!s.boot && !s.bootError) return <ChromeFrame testID="screen-inbox" style={styles.fill}><Skeleton /></ChromeFrame>;
+  if (s.bootError) return <ChromeFrame testID="screen-inbox" style={styles.fill}><EmptyState icon="alert" title={s.bootError} action={{ label: t('mobile.states.retry'), onPress: () => void engine.start() }} /></ChromeFrame>;
 
   return (
-    <View testID="screen-inbox" style={styles.fill}>
+    <ChromeFrame testID="screen-inbox" style={styles.fill}>
       {active ? (
-        <KeyboardAvoidingView style={styles.fill} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <KeyboardView style={styles.fill}>
           <View style={styles.threadHead}>
             <IconButton icon="back" label={t('mobile.screens.inbox.back')} onPress={() => engine.open(null)} />
             <View style={styles.flex}>
@@ -236,7 +238,7 @@ export default function InboxScreen({ params }: { params: Record<string, string>
             <TextInput value={text} onChangeText={(v) => (setText(v), engine.typing(active.id))} placeholder={t('mobile.screens.inbox.placeholder')} placeholderTextColor={theme.colors.textMuted} style={styles.input} accessibilityLabel={t('mobile.screens.inbox.placeholder')} />
             <IconButton icon="airplane" label={t('mobile.screens.inbox.send')} color={theme.colors.primary} onPress={send} />
           </View>
-        </KeyboardAvoidingView>
+        </KeyboardView>
       ) : (
         <>
           <SearchField testID="inbox-search" value={s.q} onChange={(q) => engine.setView({ q })} placeholder={t('mobile.screens.inbox.search')} />
@@ -268,7 +270,7 @@ export default function InboxScreen({ params }: { params: Record<string, string>
           />
         </>
       )}
-    </View>
+    </ChromeFrame>
   );
 }
 
