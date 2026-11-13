@@ -184,9 +184,11 @@ class FLXP_PageSpeed {
 		$n = 0;
 		foreach ( array( 'css', 'js', 'meta' ) as $sub ) {
 			$d = self::cache_dir( $sub )['path'];
-			foreach ( (array) glob( $d . '*.{css,js,json}', GLOB_BRACE ) as $f ) {
-				if ( $f && @unlink( $f ) ) { // phpcs:ignore
-					++$n;
+			foreach ( array( 'css', 'js', 'json' ) as $ext ) {
+				foreach ( glob( $d . '*.' . $ext ) ?: array() as $f ) { // GLOB_BRACE yok: musl/Alpine PHP'de tanımsız.
+					if ( $f && @unlink( $f ) ) { // phpcs:ignore
+						++$n;
+					}
 				}
 			}
 		}
@@ -887,8 +889,10 @@ class FLXP_PageSpeed {
 			}
 		} else {
 			foreach ( array_unique( array( get_stylesheet_directory(), get_template_directory() ) ) as $dir ) {
-				foreach ( (array) glob( $dir . '/{,assets/,assets/css/,css/}*.css', GLOB_BRACE ) as $f ) {
-					$files[] = $f;
+				foreach ( array( '', 'assets/', 'assets/css/', 'css/' ) as $sub ) {
+					foreach ( glob( $dir . '/' . $sub . '*.css' ) ?: array() as $f ) {
+						$files[] = $f;
+					}
 				}
 			}
 		}

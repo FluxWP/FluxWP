@@ -583,8 +583,10 @@ class FLXAN_Aggregator {
 		foreach ( array( 'paths', 'refs', 'site', 'pages', 'referrers', 'dims', 'events', 'visits', 'fsteps', 'seen', 'recent' ) as $t ) {
 			$wpdb->query( 'TRUNCATE TABLE ' . flxan_table( $t ) ); // phpcs:ignore
 		}
-		foreach ( (array) glob( flxan_data_dir() . '/{buffer,work}-*.ndjson', GLOB_BRACE ) as $f ) {
-			@unlink( $f ); // phpcs:ignore
+		foreach ( array( 'buffer', 'work' ) as $prefix ) {
+			foreach ( glob( flxan_data_dir() . '/' . $prefix . '-*.ndjson' ) ?: array() as $f ) {
+				@unlink( $f ); // phpcs:ignore
+			}
 		}
 		delete_option( 'flxan_last_rows' );
 	}

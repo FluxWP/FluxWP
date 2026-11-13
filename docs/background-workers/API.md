@@ -4,7 +4,7 @@ The adapter in `tools/background/runner.php` is bundled into Flux Mail, Flux Cer
 
 ## Detection and fallback
 
-- Worker context: `WP_CLI` is true and process environment `WP_CRON_MODE` equals `worker`. This matches the existing `FluxWP/docker-wordpress` worker image; no Compose changes are needed.
+- Worker context: `WP_CLI` is true and process environment `WP_CRON_MODE` equals `worker`. This matches the existing worker image (`docker/`, `ghcr.io/fluxwp/wordpress:worker-php8.4`); no Compose changes are needed.
 - `init` priority 99 renews the non-autoloaded `flx_background_worker` option containing `seen_at`, `expires_at` and the worker's `wake` capability. Writes are throttled to once per 15 seconds.
 - Lease duration: `max(300, 2 * interval + 120)` seconds; `WP_CRON_INTERVAL` defaults to 60 and is clamped to 5–3600 seconds.
 - Web execution defers only while the lease is healthy. CLI execution remains allowed. Absent or expired leases allow existing native execution.
@@ -82,7 +82,7 @@ Shared scheduling/unscheduling serializes short cron-option updates and invalida
 
 ### Fast wake without an idle PHP loop
 
-Compatible workers advertise `FLX_BACKGROUND_WAKE=1`; the heartbeat stores that capability. Scheduling a native event creates an empty `WP_CONTENT_DIR/.flx-background-wake/<due_timestamp>` signal only for a healthy compatible worker. Older images do not accumulate notifications and retain periodic cron. The updated docker-wordpress worker checks due signals every `WP_BACKGROUND_POLL_INTERVAL` seconds (default 2), removes them **before** starting cron so arrivals during a pass survive, and keeps `WP_CRON_INTERVAL` (default 60) as fallback. Idle checks are shell/filesystem operations, not a WordPress boot. Shared volume and compatible web/worker filesystem users are required.
+Compatible workers advertise `FLX_BACKGROUND_WAKE=1`; the heartbeat stores that capability. Scheduling a native event creates an empty `WP_CONTENT_DIR/.flx-background-wake/<due_timestamp>` signal only for a healthy compatible worker. Older images do not accumulate notifications and retain periodic cron. The updated Docker worker (`docker/scripts/worker.sh`) checks due signals every `WP_BACKGROUND_POLL_INTERVAL` seconds (default 2), removes them **before** starting cron so arrivals during a pass survive, and keeps `WP_CRON_INTERVAL` (default 60) as fallback. Idle checks are shell/filesystem operations, not a WordPress boot. Shared volume and compatible web/worker filesystem users are required.
 
 A ready SMS/message submitted just after a pass can therefore start after the short poll/bootstrap delay when capacity is free; this is not a delivery-time guarantee. Scheduled future work, full plugin/global slots, transport quotas and backoff still apply. Backup ticks also use an immediate worker handoff, while no-worker scheduling retains its previous interval and loopback behavior. Fast wake needs the updated worker image; parallel execution already works with the previous image's native cron command.
 

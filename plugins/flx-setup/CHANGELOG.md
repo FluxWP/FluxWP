@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 1.2.9
+- İkon önbelleği temizliği `GLOB_BRACE` kullanmıyor: Alpine/musl PHP'de (Docker worker, wordpress:cli) bu sabit tanımsız olduğu için `wp plugin install` fatal hata veriyordu.
+
 ## 1.2.8
 - Ön ayarlar: profil değeri yer tutucu taşıyınca (ör. profil e-postası "bilgi@{domain}", ayar "{profile.email}") ikinci kat da çözülür. Önceden ayar "bilgi@{domain}" ile kıyaslandığı için sitedeki çözülmüş değer her uygulamadan sonra "Değişecek" görünüyordu (flxseo:email). Kendine dönen profil değerinde döngü yok (en çok 3 kat).
 

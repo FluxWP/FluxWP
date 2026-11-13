@@ -26,6 +26,9 @@
 - İsteğe bağlı: skill kullanılan mesajda modele yalnız `allowed-tools` araçları sunulur (Skill'ler › Ayarlar).
 - Açık/kapalı durumu ayrı tutulur; hazır skill kapatılınca kopyası çıkmaz. Yeni hazır skill **Skill oluşturucu**.
 
+## 0.16.1
+- Çalışma alanı klasörü silinirken `GLOB_BRACE` kullanılmıyor: Alpine/musl PHP'de (Docker) bu sabit tanımsız olduğu için fatal hata veriyordu.
+
 ## 0.16.0
 - **Web araçları:** sohbet, zamanlanmış görevler ve ajanlar internette arar (`flxai_web_search`) ve herkese açık sayfaları okunur metne çevirir (`flxai_web_fetch`: başlıklar, listeler, tablolar, bağlantılar; uzun sayfada `next_offset`). Sayfa içeriği veri sayılır, içindeki talimatlar uygulanmaz; yerel/özel ağ adresleri okunmaz, sonuç 30 dk önbellekte.
 - Arama sağlayıcısı şimdilik **Brave Search**; yenileri `flxai_web_providers` filtresiyle eklenir (OpenRouter, NVIDIA NIM vb. aynı sözleşme). Ayarlar › **Web**: anahtar, sağlayıcı, arama/okuma aç-kapa, aylık arama sınırı (bu ayki sayı görünür), 1000 arama başına maliyet (0'dan büyükse Kayıtlar'a ve harcama sınırına yazılır). Sistem kontrolünde "Web araması" satırı.

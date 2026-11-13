@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.7.3
+- Önbelleği temizleme ve tema CSS taraması `GLOB_BRACE` kullanmıyor: Alpine/musl PHP'de (Docker) bu sabit tanımsız olduğu için fatal hata veriyordu.
+
 ## 0.7.2
 - Tarayıcının onay/uyarı/giriş pencereleri (confirm, alert, prompt) yerine ortak FluxWP modalı (flx-brand flxDialog): yeni tarz, telefonda alttan açılır, koyu modla uyumlu. Silme gibi geri alınamaz işlemlerde kırmızı onay düğmesi.
 
