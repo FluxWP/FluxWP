@@ -119,7 +119,11 @@ final class FLXU_Icon_Cache {
 			update_site_option( self::OPTION, $map );
 		}
 		// Artık kullanılmayan dosyalar.
-		foreach ( (array) glob( $dir . '/*.{svg,png,webp,jpg}', GLOB_BRACE ) as $f ) {
+		$files = array();
+		foreach ( array( 'svg', 'png', 'webp', 'jpg' ) as $ext ) { // GLOB_BRACE yok: musl/Alpine PHP'de tanımsız.
+			$files = array_merge( $files, glob( $dir . '/*.' . $ext ) ?: array() );
+		}
+		foreach ( $files as $f ) {
 			if ( is_string( $f ) && ! isset( $keep[ basename( $f ) ] ) && ! in_array( basename( $f ), self::all_mapped( $map ), true ) ) {
 				wp_delete_file( $f );
 			}
