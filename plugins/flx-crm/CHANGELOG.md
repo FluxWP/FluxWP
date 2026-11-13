@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.9.1
+- Send page: an Engagement column per recipient (reached, read, replied, turned off messages, with the time on hover) once Flux Mail returns these fields in `flxi_campaign_recipients()` (Flux Mail #260). Hidden with older Flux Mail.
+
 ## 0.9.0
 - Event › Messages split into "New message", "Sent" and "Planned"; a send that is running shows at the top on every tab.
 - Sends are cards you can click: state (sending, paused, planned, sent, cancelled), the text and its image, a progress bar per channel with failures, and the estimated finish as date and time.
