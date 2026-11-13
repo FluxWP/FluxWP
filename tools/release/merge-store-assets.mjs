@@ -12,7 +12,7 @@ const captureCommit=process.env.CAPTURE_COMMIT || process.env.GITHUB_SHA;
 const nativeSources=new Set();
 for(const part of parts) {
  const m=JSON.parse(readFileSync(join(dir,part),'utf8'));
- if(m.native!==true||m.brand!==process.env.FLUX_BRAND||m.commit!==captureCommit||m.nativeInputHash!==hash||m.files.length!==6) throw new Error('Native capture manifest mismatch');
+ if(m.native!==true||m.brand!==process.env.FLUX_BRAND||m.commit!==captureCommit||m.nativeInputHash!==hash||m.files.length!==9) throw new Error('Native capture manifest mismatch');
  nativeSources.add(m.sourceCommit);
  for(const f of m.files) {
   if(!/^ios\/(tr|en-US)\/(iphone|ipad)-[a-z0-9-]+\.png$/.test(f.path)) throw new Error('Invalid native screenshot path');

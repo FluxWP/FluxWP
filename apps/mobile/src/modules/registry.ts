@@ -22,6 +22,8 @@ export const NATIVE: Record<string, ComponentType<{ params: Record<string, strin
   studio,
   'flx-studio': studio,
   'flx-ai': ai,
+  // Flux AI's site manifest names its chat screen `flxai-chat`; without this the menu fell back to the web page.
+  'flxai-chat': ai,
   'tv-remote': tv,
   'flx-tv-remote': tv,
 };

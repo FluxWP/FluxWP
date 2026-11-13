@@ -75,6 +75,7 @@ export const demoMe: Me = {
     'flxc-inbox': { title: 'WhatsApp', menu: 'flx-chat', icon: 'chat', order: 20 },
     'flxg-tasks': { title: 'Görevler', menu: 'flx-tasks', icon: 'task', order: 30 },
     'flxb-review': { title: 'Onay bekleyenler', icon: 'check', order: 10 },
+    'flx-ai': { title: 'Flux AI', menu: 'flx-ai', icon: 'ai', order: 40 },
   },
   counts: { 'flxb-dashboard': 3, 'flx-chat': 12, 'flx-tasks': 5, 'flxi-posta': 2 },
   bottom: ['index.php', 'flx-chat', 'flx-tasks', 'flxb-dashboard'],

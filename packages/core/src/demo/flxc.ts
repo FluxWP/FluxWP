@@ -38,7 +38,7 @@ export const flxcMessages: Record<number, FlxcMessage[]> = { 301: [], 302: [], 3
 {
   const a = flxcMessages[301]!;
   a.push(msg(301, { dir: 'in', ts: now - day - 40 * min, body: 'Merhaba, geçen ay *5 fidan* bağışı yapmıştım.' }));
-  a.push(msg(301, { dir: 'out', ts: now - day - 38 * min, body: 'Merhaba Ayşe Hanım, kaydınızı gördüm 🌱 Sertifikanız e-postanıza gönderildi.', user: 'Demo Kullanıcı', userId: 1, react: { in: '🙏' } }));
+  a.push(msg(301, { dir: 'out', ts: now - day - 38 * min, body: 'Merhaba Ayşe Hanım, kaydınızı gördüm 🌱 Sertifikanız e-postanıza gönderildi.', user: 'Demo Kullanıcı', userId: 1, react: { in: '👍' } }));
   a.push(msg(301, { dir: 'system', ts: now - day - 37 * min, body: 'Demo Kullanıcı sohbeti kendine atadı' }));
   a.push(msg(301, { dir: 'in', ts: now - 32 * min, body: 'Bu sefer annem adına 5 fidan daha bağışladım.' }));
   a.push(msg(301, { dir: 'out', ts: now - 31 * min, body: 'Bağışınız için teşekkür ederiz! Havale/EFT dekontunu buradan gönderebilirsiniz.\nIBAN: TR00 0000 0000 0000 0000 0000 00', source: 'bot' }));
@@ -66,7 +66,7 @@ export const flxcMessages: Record<number, FlxcMessage[]> = { 301: [], 302: [], 3
   gone.deleted = true;
   gone.del = { scope: 'contact', by: '', at: now - 57 * min, atText: '', ago: '57 dk önce' };
   b.push(gone);
-  b.push(msg(302, { dir: 'in', ts: now - 55 * min, body: 'Teşekkürler 🙏🙏' }));
+  b.push(msg(302, { dir: 'in', ts: now - 55 * min, body: 'Teşekkürler 🌱' }));
 
   flxcMessages[303]!.push(msg(303, { dir: 'in', ts: now - 2 * 60 * min, body: 'Merhaba, _gönüllü_ olmak istiyorum. Ne yapmam gerekiyor?' }));
   const z = flxcMessages[304]!;

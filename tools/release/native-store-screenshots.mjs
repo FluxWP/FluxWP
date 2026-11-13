@@ -32,7 +32,7 @@ for (const locale of locales) {
     const id = run('xcrun', ['simctl', 'create', `FluxWP-${kind}-${locale}`, device.identifier, runtime.identifier], true);
     const folder = join(out, 'ios', locale === 'tr-TR' ? 'tr' : locale);
     mkdirSync(folder, { recursive: true });
-    const names = ['01-connect', '02-dashboard', '03-contacts', '04-posts', '05-menu', '06-accounts'].map(s => `${kind}-${s}`);
+    const names = ['01-connect', '02-dashboard', '03-messages', '04-chat', '05-ai', '06-contacts', '07-posts', '08-menu', '09-accounts'].map(s => `${kind}-${s}`);
     try {
       console.log(`Booting ${kind} ${locale} on iOS ${runtime.version}`);
       run('xcrun', ['simctl', 'boot', id]);

@@ -29,7 +29,7 @@ const channelIcon = (id?: string) => (id === 'web' ? 'globe' : id === 'email' ? 
 const ChatRow = memo(function ChatRow({ chat, fresh, locale, channel, onPress }: { chat: FlxcChat; fresh: boolean; locale: string; channel?: FlxcChannel; onPress: (id: number) => void }) {
   const { theme } = useUnistyles();
   return (
-    <Pressable accessibilityRole="button" onPress={() => onPress(chat.id)} style={[styles.row, fresh && { backgroundColor: theme.colors.primarySoft }]}>
+    <Pressable testID={`chat-${chat.id}`} accessibilityRole="button" onPress={() => onPress(chat.id)} style={[styles.row, fresh && { backgroundColor: theme.colors.primarySoft }]}>
       <View>
         <Avatar text={chat.title || chat.phoneFmt} size={46} />
         {channel ? (

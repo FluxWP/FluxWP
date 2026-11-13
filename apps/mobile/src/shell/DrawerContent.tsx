@@ -60,7 +60,7 @@ function Item({ e, onPress }: { e: NavEntry; onPress: (e: NavEntry) => void }) {
   const { theme } = useUnistyles();
   const label = useLabel();
   return (
-        <Pressable accessibilityRole="button" onPress={() => onPress(e)} style={({ pressed }) => [styles.item, pressed && styles.pressed]}>
+    <Pressable testID={`nav-${e.id}`} accessibilityRole="button" onPress={() => onPress(e)} style={({ pressed }) => [styles.item, pressed && styles.pressed]}>
       <Icon name={e.iconUrl || e.icon} slug={e.slug} size={20} color={theme.colors.textMuted} />
       <Text numberOfLines={1} style={styles.itemLabel}>{label(e.label)}</Text>
       {e.badge ? <Badge text={String(e.badge)} tone="danger" /> : null}

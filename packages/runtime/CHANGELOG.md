@@ -1,5 +1,8 @@
 # @fluxwp/runtime
 
+## 0.3.2
+- `flxai-chat` (Flux AI site manifest chat screen) is a known native screen id.
+
 ## 0.3.1
 - A panel link whose own screen is a web page stays in the same webview. Before, it pushed a new webview on the same page, which SSO-redirected back and pushed again forever (endless spinner on Home / FluxWP Panel).
 
