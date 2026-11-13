@@ -265,7 +265,10 @@
       "deleteAsk": "Sohbet silinsin mi?",
       "deleteBody": "Sohbet ve klasöründeki dosyalar silinir.",
       "stop": "Durdur",
-      "refresh": "Yenile"
+      "refresh": "Yenile",
+      "chats": "Sohbetler",
+      "welcome": "Flux AI'a ne sormak istersiniz?",
+      "welcomeBody": "Geçmiş sohbetler, arşiv ve görevler soldaki liste düğmesinde."
     },
     "tv": {
       "title": "TV Kumandası",

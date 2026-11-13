@@ -50,6 +50,8 @@ final class CaptureTests: XCTestCase {
         tab(__MORE__)
         tab(["Flux AI"])
         XCTAssertTrue(element("screen-ai").waitForExistence(timeout: 30), "Flux AI must open its native screen")
+        tap("ai-chats")
+        tap("ai-chat-9")
         shot("05-ai")
         tab(__CONTACTS__)
         shot("06-contacts")

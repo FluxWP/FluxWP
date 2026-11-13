@@ -265,7 +265,10 @@
       "deleteAsk": "Delete this chat?",
       "deleteBody": "The chat and the files in its folder are deleted.",
       "stop": "Stop",
-      "refresh": "Refresh"
+      "refresh": "Refresh",
+      "chats": "Chats",
+      "welcome": "What would you like to ask Flux AI?",
+      "welcomeBody": "Past chats, archive and tasks are under the list button on the left."
     },
     "tv": {
       "title": "TV Remote",
