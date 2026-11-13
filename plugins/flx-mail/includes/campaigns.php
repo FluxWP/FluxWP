@@ -52,7 +52,7 @@ function flxi_collect_recipients( array $sources, $manual, $channel, &$report = 
 	$list = array();
 	$stat = array( 'found' => 0, 'added' => 0, 'no_address' => 0, 'duplicate' => 0, 'no_consent' => 0 );
 	$cur  = $stat;
-	$add  = function ( $name, $email, $phone ) use ( &$list, &$cur, $channel ) {
+	$add  = function ( $name, $email, $phone, $vars = array() ) use ( &$list, &$cur, $channel ) {
 		++$cur['found'];
 		$to = 'email' === $channel ? strtolower( trim( (string) $email ) ) : flxi_normalize_phone( $phone );
 		if ( ! $to || ( 'email' === $channel && ! is_email( $to ) ) ) {
@@ -65,6 +65,10 @@ function flxi_collect_recipients( array $sources, $manual, $channel, &$report = 
 		}
 		++$cur['added'];
 		$list[ $to ] = array( 'to' => $to, 'name' => trim( (string) $name ) );
+		$vars        = flxi_clean_recipient_vars( $vars );
+		if ( $vars ) {
+			$list[ $to ]['vars'] = $vars;
+		}
 	};
 	$by_source = array();
 	foreach ( preg_split( '/\r\n|\r|\n/', (string) $manual ) as $line ) {
@@ -100,7 +104,7 @@ function flxi_collect_recipients( array $sources, $manual, $channel, &$report = 
 			foreach ( array_chunk( $users, 500 ) as $chunk ) {
 				update_meta_cache( 'user', wp_list_pluck( $chunk, 'ID' ) );
 				foreach ( $chunk as $u ) {
-					$phone = get_user_meta( $u->ID, 'billing_phone', true );
+					$phone = flxi_user_phone( $u->ID );
 					$first = trim( get_user_meta( $u->ID, 'first_name', true ) . ' ' . get_user_meta( $u->ID, 'last_name', true ) );
 					$add( $first ? $first : $u->display_name, $u->user_email, $phone );
 				}
@@ -129,7 +133,7 @@ function flxi_collect_recipients( array $sources, $manual, $channel, &$report = 
 			}
 		} else {
 			foreach ( (array) apply_filters( 'flxi_recipients_from_source', array(), $src, $channel ) as $r ) {
-				$add( $r['name'] ?? '', $r['email'] ?? '', $r['phone'] ?? '' );
+				$add( $r['name'] ?? '', $r['email'] ?? '', $r['phone'] ?? '', (array) ( $r['vars'] ?? array() ) );
 			}
 			/**
 			 * Kaynak, bu kanal için eleyip hiç döndürmediği kişileri bildirir (ör. Flux CRM: izin vermeyenler).
@@ -233,14 +237,15 @@ function flxi_create_campaign( array $data, array $recipients ) {
 	$table = flxi_table( 'queue' );
 	foreach ( $recipients as $i => $r ) {
 		$at     = gmdate( 'Y-m-d H:i:s', $t + (int) ceil( $i * $delay ) );
-		$rows[] = $wpdb->prepare( '(%d,%s,%s,%s,%s,%s)', $cid, $channel, $r['to'], mb_substr( (string) $r['name'], 0, 190 ), 'queued', $at );
+		$rv     = flxi_clean_recipient_vars( (array) ( $r['vars'] ?? array() ) );
+		$rows[] = $wpdb->prepare( '(%d,%s,%s,%s,%s,%s,%s)', $cid, $channel, $r['to'], mb_substr( (string) $r['name'], 0, 190 ), 'queued', $at, $rv ? flxi_json( array( 'fill' => $rv ) ) : '' );
 		if ( count( $rows ) >= 200 ) {
-			$wpdb->query( "INSERT INTO $table (campaign_id,channel,recipient,name,status,scheduled_at) VALUES " . implode( ',', $rows ) ); // phpcs:ignore
+			$wpdb->query( "INSERT INTO $table (campaign_id,channel,recipient,name,status,scheduled_at,vars) VALUES " . implode( ',', $rows ) ); // phpcs:ignore
 			$rows = array();
 		}
 	}
 	if ( $rows ) {
-		$wpdb->query( "INSERT INTO $table (campaign_id,channel,recipient,name,status,scheduled_at) VALUES " . implode( ',', $rows ) ); // phpcs:ignore
+		$wpdb->query( "INSERT INTO $table (campaign_id,channel,recipient,name,status,scheduled_at,vars) VALUES " . implode( ',', $rows ) ); // phpcs:ignore
 	}
 	flx_background_log( 'campaign.created', array( 'plugin' => 'flx-mail', 'campaign' => $cid, 'count' => count( $recipients ) ) );
 	flxi_kick_queue();
@@ -434,6 +439,8 @@ function flxi_send_queue_item( $row, $camp ) {
 		'eposta'   => 'email' === $row['channel'] ? $row['recipient'] : '',
 		'telefon'  => 'email' !== $row['channel'] ? $row['recipient'] : '',
 	);
+	// Kişiye özel değişkenler ({fidan}, {adet}, {tutar}…): yerleşikleri ezmez.
+	$vars = array_merge( flxi_row_vars( $row ), $vars );
 	if ( flxi_contact_blocked( 'email' === $row['channel'] ? '' : $row['recipient'], 'email' === $row['channel'] ? $row['recipient'] : '', $row['channel'] ) ) {
 		return array( 'ok' => false, 'error' => __( 'On the blocklist: not sent', 'flx-mail' ), 'retry' => false, 'skip' => true );
 	}
@@ -560,3 +567,49 @@ add_action(
 		wp_die( $form, esc_html__( 'Unsubscribe', 'flx-mail' ), array( 'response' => 200 ) ); // phpcs:ignore
 	}
 );
+
+/**
+ * Alıcıya özel değişkenleri temizler: anahtar [a-z0-9_] (küçük harf, en çok 40), değer düz metin (en çok 1000).
+ * Yerleşik değişkenler (ad, ad_soyad, eposta, telefon) kişi kaydından gelir, buradan ezilmez. En çok 50 anahtar.
+ */
+function flxi_clean_recipient_vars( $vars ) {
+	$out = array();
+	foreach ( (array) $vars as $k => $v ) {
+		$k = strtolower( (string) $k );
+		if ( ! preg_match( '/^[a-z0-9_]{1,40}$/', $k ) || in_array( $k, array( 'ad', 'ad_soyad', 'eposta', 'telefon' ), true ) || ! is_scalar( $v ) ) {
+			continue;
+		}
+		$out[ $k ] = mb_substr( wp_strip_all_tags( (string) $v ), 0, 1000 );
+		if ( count( $out ) >= 50 ) {
+			break;
+		}
+	}
+	return $out;
+}
+
+/** Kuyruk satırında saklanan alıcı değişkenleri. */
+function flxi_row_vars( $row ) {
+	$v = json_decode( (string) ( $row['vars'] ?? '' ), true );
+	return is_array( $v ) && is_array( $v['fill'] ?? null ) ? flxi_clean_recipient_vars( $v['fill'] ) : array();
+}
+
+/**
+ * Kullanıcının telefonu: WooCommerce fatura telefonu (billing_phone), yoksa hesap telefonu (Flux Roles, flx_phone),
+ * o da yoksa ortak kişi kaydı (user_id eşleşmesi).
+ */
+function flxi_user_phone( $user_id ) {
+	$user_id = (int) $user_id;
+	foreach ( array( 'billing_phone', 'flx_phone' ) as $key ) {
+		$p = trim( (string) get_user_meta( $user_id, $key, true ) );
+		if ( '' !== $p ) {
+			return $p;
+		}
+	}
+	if ( function_exists( 'flx_person_find' ) && function_exists( 'flx_people_ready' ) && flx_people_ready() ) {
+		$p = flx_person_get( (int) flx_person_find( array( 'user_id' => $user_id ) ) );
+		if ( $p && '' !== (string) $p['phone'] ) {
+			return (string) $p['phone'];
+		}
+	}
+	return (string) apply_filters( 'flxi_user_phone', '', $user_id );
+}

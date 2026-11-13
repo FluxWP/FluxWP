@@ -227,7 +227,7 @@ function flxi_page_settings() {
 	$text( 'optin_reply', __( 'Reply after starting again', 'flx-mail' ), '', 'text', flxi_optout_reply_text( 'in' ) );
 	/* translators: 1: WhatsApp sayısı, 2: SMS sayısı */
 	echo '<p class="flxi-muted"><strong>' . esc_html( sprintf( __( 'Opted out: %1$s on WhatsApp, %2$s on SMS', 'flx-mail' ), number_format_i18n( flxi_optout_count( 'whatsapp' ) ), number_format_i18n( flxi_optout_count( 'sms' ) ) ) ) . '</strong></p>';
-	echo '<p><a href="#iptal-liste">' . esc_html__( 'See the list', 'flx-mail' ) . '</a></p>';
+	echo '<p><a href="' . esc_url( flxi_admin_url( 'flxi-kara-liste', array( 'type' => 'optout' ) ) ) . '">' . esc_html__( 'See the list on the Blocklist page', 'flx-mail' ) . '</a></p>';
 	echo '</section>';
 
 	// Posta kutusu sınırları
@@ -257,7 +257,6 @@ function flxi_page_settings() {
 
 	echo '<div class="flxi-actions"><button class="button button-primary button-large">' . esc_html__( 'Save settings', 'flx-mail' ) . '</button></div>';
 	echo '</form>';
-	flxi_optout_admin_list();
 	flxi_page_foot();
 }
 
@@ -333,28 +332,3 @@ add_action(
 	}
 );
 
-/** IPTAL listesi + elle ekleme (ayar formunun dışında; ayrı formlar). */
-function flxi_optout_admin_list() {
-	$rows = flxi_optout_list( '', 200 );
-	$chs  = flxi_channels();
-	echo '<section class="flxi-card" id="iptal-liste"><h2 class="flxi-card__title">' . esc_html__( 'Opted-out people', 'flx-mail' ) . '</h2>';
-	if ( $rows ) {
-		echo '<table class="flxi-optouts"><thead><tr><th>' . esc_html__( 'Phone', 'flx-mail' ) . '</th><th>' . esc_html__( 'Channel', 'flx-mail' ) . '</th><th>' . esc_html__( 'How', 'flx-mail' ) . '</th><th>' . esc_html__( 'Date', 'flx-mail' ) . '</th><th></th></tr></thead><tbody>';
-		foreach ( $rows as $r ) {
-			$how = 'inbound' === $r['source'] ? ( '' !== $r['keyword'] ? sprintf( /* translators: %s: kelime */ __( 'Replied "%s"', 'flx-mail' ), $r['keyword'] ) : __( 'Replied', 'flx-mail' ) ) : __( 'Added by staff', 'flx-mail' );
-			echo '<tr><td>+' . esc_html( $r['recipient'] ) . '</td><td>' . esc_html( $chs[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $how ) . '</td><td>' . esc_html( flx_date( strtotime( $r['created_at'] . ' UTC' ), 'short' ) ) . '</td><td>';
-			echo flxi_post_button( 'flxi_optout_remove', array( 'channel' => $r['channel'], 'recipient' => $r['recipient'] ), __( 'Remove', 'flx-mail' ), __( 'Promotional messages will be sent to this person again. Remove only if they asked for it.', 'flx-mail' ) ); // phpcs:ignore
-			echo '</td></tr>';
-		}
-		echo '</tbody></table>';
-	} else {
-		echo '<p class="flxi-muted">' . esc_html__( 'Nobody has opted out yet.', 'flx-mail' ) . '</p>';
-	}
-	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxi-optout-add">';
-	wp_nonce_field( 'flxi_optout' );
-	echo '<input type="hidden" name="action" value="flxi_optout_add">';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Add a phone by hand', 'flx-mail' ) . '</span><input type="tel" name="recipient" placeholder="0532 123 45 67" required></label>';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Channel', 'flx-mail' ) . '</span><select name="channel"><option value="whatsapp">WhatsApp</option><option value="sms">SMS</option></select></label>';
-	echo '<button class="button">' . esc_html__( 'Add', 'flx-mail' ) . '</button></form>';
-	echo '</section>';
-}

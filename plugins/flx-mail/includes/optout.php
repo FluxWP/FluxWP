@@ -99,11 +99,13 @@ function flxi_optout_has( $channel, $to ) {
 
 /**
  * Kişiyi bu kanalın tanıtım mesajlarından çıkarır. Ortak kişi kaydında (Flux CRM) kanal izni de kapanır.
+ * Kara liste sayfası için bağlam saklanır: kişinin yazdığı mesaj, sohbet, öncesinde ona giden son mesaj.
  *
  * @param string $source 'inbound' | 'admin' | eklenti adı
+ * @param array  $ctx    message (kişinin yazdığı), chat_id (Flux Chat), note (yönetici notu)
  * @return bool yeni kayıt açıldı mı
  */
-function flxi_optout_add( $channel, $to, $keyword = '', $source = 'admin' ) {
+function flxi_optout_add( $channel, $to, $keyword = '', $source = 'admin', array $ctx = array() ) {
 	global $wpdb;
 	$key = flxi_optout_key( $channel, $to );
 	if ( '' === $key || ! in_array( $channel, array( 'whatsapp', 'sms', 'email' ), true ) ) {
@@ -113,14 +115,21 @@ function flxi_optout_add( $channel, $to, $keyword = '', $source = 'admin' ) {
 	if ( $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $t WHERE channel = %s AND recipient = %s", $channel, $key ) ) ) { // phpcs:ignore
 		return false;
 	}
+	$last = flxi_last_sent_to( $channel, $key );
 	$wpdb->insert(
 		$t,
 		array(
-			'channel'    => $channel,
-			'recipient'  => $key,
-			'keyword'    => mb_substr( (string) $keyword, 0, 40 ),
-			'source'     => mb_substr( sanitize_key( $source ), 0, 40 ),
-			'created_at' => flxi_now(),
+			'channel'     => $channel,
+			'recipient'   => $key,
+			'keyword'     => mb_substr( (string) $keyword, 0, 40 ),
+			'source'      => mb_substr( sanitize_key( $source ), 0, 40 ),
+			'message'     => mb_substr( sanitize_textarea_field( (string) ( $ctx['message'] ?? '' ) ), 0, 255 ),
+			'chat_id'     => (int) ( $ctx['chat_id'] ?? 0 ),
+			'log_id'      => $last ? (int) $last['id'] : 0,
+			'campaign_id' => $last ? (int) $last['campaign_id'] : 0,
+			'note'        => mb_substr( sanitize_text_field( (string) ( $ctx['note'] ?? '' ) ), 0, 255 ),
+			'user_id'     => 'inbound' === $source ? 0 : get_current_user_id(),
+			'created_at'  => flxi_now(),
 		)
 	);
 	unset( $GLOBALS['flxi_optout_cache'] );
@@ -128,6 +137,28 @@ function flxi_optout_add( $channel, $to, $keyword = '', $source = 'admin' ) {
 	flx_background_log( 'optout.added', array( 'plugin' => 'flx-mail', 'channel' => $channel, 'source' => $source ) );
 	do_action( 'flxi_optout_added', $channel, $key, $source );
 	return true;
+}
+
+/**
+ * Bu kişiye bu kanaldan Flux Mail'in gönderdiği son mesaj (kayıt satırı: id, created_at, body, campaign_id, source).
+ * Kayıttaki alıcı yazıldığı gibidir (0532…, +90…), bu yüzden son 10 rakamla eşleşir.
+ */
+function flxi_last_sent_to( $channel, $to, $before = '' ) {
+	global $wpdb;
+	$key = flxi_optout_key( $channel, $to );
+	if ( '' === $key ) {
+		return null;
+	}
+	$t    = flxi_table( 'log' );
+	$like = '%' . $wpdb->esc_like( 'email' === $channel ? $key : substr( $key, -10 ) ) . '%';
+	$sql  = "SELECT id, created_at, body, subject, campaign_id, source, template FROM $t WHERE channel = %s AND " . ( 'email' === $channel ? 'recipient' : "REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(recipient,' ',''),'-',''),'(',''),')',''),'.','')" ) . " LIKE %s AND status = 'sent' AND source <> 'flx-mail-optout'";
+	$prm  = array( $channel, $like );
+	if ( $before ) {
+		$sql  .= ' AND created_at <= %s';
+		$prm[] = $before;
+	}
+	$row = $wpdb->get_row( $wpdb->prepare( $sql . ' ORDER BY id DESC LIMIT 1', $prm ), ARRAY_A ); // phpcs:ignore
+	return $row ? $row : null;
 }
 
 /** Çıkışı geri alır (kişi BAŞLA yazdı ya da yönetici sildi). */
@@ -230,7 +261,7 @@ function flxi_handle_inbound( $channel, $from, $text, array $args = array() ) {
 		return '';
 	}
 	$src     = sanitize_key( $args['source'] ?? 'inbound' );
-	$changed = 'out' === $dir ? flxi_optout_add( $channel, $from, flxi_optout_norm( $text ), 'inbound' ) : flxi_optout_remove( $channel, $from, 'inbound' );
+	$changed = 'out' === $dir ? flxi_optout_add( $channel, $from, flxi_optout_norm( $text ), 'inbound', array( 'message' => $text, 'chat_id' => (int) ( $args['chat_id'] ?? 0 ) ) ) : flxi_optout_remove( $channel, $from, 'inbound' );
 	$reply   = flxi_optout_reply_text( $dir );
 	if ( $changed && '' !== $reply && 'whatsapp' === $channel ) {
 		$r = flxi_send_message(
@@ -275,7 +306,7 @@ add_action(
 			$c    = flxc_get_connection( $chat['conn'] ?? '' );
 			$flxi = ( $c && 'flxi' === ( $c['source'] ?? '' ) ) ? (int) ( $c['provider_id'] ?? 0 ) : 0;
 		}
-		flxi_handle_inbound( 'whatsapp', $phone, (string) $m['body'], array( 'connection_id' => $flxi, 'source' => 'flx-chat' ) );
+		flxi_handle_inbound( 'whatsapp', $phone, (string) $m['body'], array( 'connection_id' => $flxi, 'source' => 'flx-chat', 'chat_id' => (int) ( $chat['id'] ?? 0 ) ) );
 	},
 	5,
 	2
@@ -395,10 +426,10 @@ add_action(
 		$ch = in_array( $ch, array( 'whatsapp', 'sms' ), true ) ? $ch : 'whatsapp';
 		$to = sanitize_text_field( $in['recipient'] ?? '' );
 		if ( '' === flxi_optout_key( $ch, $to ) ) {
-			flxi_redirect( flxi_admin_url( 'flxi-ayarlar' ) . '#iptal', '', __( 'Enter a valid phone number.', 'flx-mail' ) );
+			flxi_redirect( flxi_admin_url( 'flxi-kara-liste' ), '', __( 'Enter a valid phone number.', 'flx-mail' ) );
 		}
-		flxi_optout_add( $ch, $to, '', 'admin' );
-		flxi_redirect( flxi_admin_url( 'flxi-ayarlar' ) . '#iptal', __( 'Added to the opt-out list.', 'flx-mail' ) );
+		flxi_optout_add( $ch, $to, '', 'admin', array( 'note' => $in['note'] ?? '' ) );
+		flxi_redirect( flxi_admin_url( 'flxi-kara-liste' ), __( 'Added to the opt-out list.', 'flx-mail' ) );
 	}
 );
 
@@ -408,6 +439,6 @@ add_action(
 		flxi_check( 'flxi_optout_remove' );
 		$in = wp_unslash( $_POST ); // phpcs:ignore
 		flxi_optout_remove( sanitize_key( $in['channel'] ?? '' ), sanitize_text_field( $in['recipient'] ?? '' ), 'admin' );
-		flxi_redirect( flxi_admin_url( 'flxi-ayarlar' ) . '#iptal', __( 'Removed from the opt-out list. Promotional messages will be sent to this person again.', 'flx-mail' ) );
+		flxi_redirect( flxi_back( flxi_admin_url( 'flxi-kara-liste' ) ), __( 'Removed from the opt-out list. Promotional messages will be sent to this person again.', 'flx-mail' ) );
 	}
 );

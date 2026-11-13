@@ -127,7 +127,24 @@ function flxi_netgsm_queue_batch( $first, $campaign ) {
 	if ( ! $connection || 'netgsm' !== $connection['type'] ) { return null; }
 	$size = max( 1, min( 50000, (int) ( $connection['config']['batch_size'] ?? 1000 ) ) );
 	$rows = $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM ' . flxi_table( 'queue' ) . " WHERE campaign_id=%d AND status='queued' AND scheduled_at<=%s ORDER BY id LIMIT %d", $campaign['id'], flxi_now(), $size ), ARRAY_A );
-	foreach ( $rows as &$row ) { $row['body'] = flxi_fill( (string) $campaign['data']['text'], array( 'ad' => preg_split( '/\s+/u', trim( $row['name'] ) )[0], 'ad_soyad' => $row['name'], 'telefon' => $row['recipient'] ) ); } unset( $row );
+	foreach ( $rows as &$row ) { $row['body'] = flxi_fill( flxi_spin( (string) $campaign['data']['text'] ), array_merge( flxi_row_vars( $row ), array( 'ad' => preg_split( '/\s+/u', trim( $row['name'] ) )[0], 'ad_soyad' => $row['name'], 'telefon' => $row['recipient'] ) ) ); } unset( $row );
+	// Tanıtım SMS'i: IPTAL yazmış kişi atlanır, çıkış satırı (açıksa) eklenir.
+	if ( 'marketing' === flxi_message_kind( $campaign['data']['kind'] ?? 'marketing' ) ) {
+		$keep = array();
+		foreach ( $rows as $row ) {
+			if ( flxi_optout_has( 'sms', $row['recipient'] ) ) {
+				$wpdb->update( flxi_table( 'queue' ), array( 'status' => 'skipped', 'error' => __( 'Opted out of promotional messages (replied STOP): not sent', 'flx-mail' ) ), array( 'id' => (int) $row['id'] ) );
+				continue;
+			}
+			$row['body'] = flxi_optout_append( $row['body'], 'sms' );
+			$keep[]      = $row;
+		}
+		if ( ! $keep ) {
+			flxi_refresh_campaign( (int) $campaign['id'] );
+			return array( 'processed' => count( $rows ), 'sent' => 0, 'failed' => 0, 'skipped' => count( $rows ) );
+		}
+		$rows = $keep;
+	}
 	return flxi_netgsm_dispatch( $connection['config'], $rows, $connection, $campaign );
 }
 

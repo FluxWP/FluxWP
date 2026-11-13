@@ -167,6 +167,12 @@ function flxi_install_tables() {
 			recipient varchar(190) NOT NULL,
 			keyword varchar(40) NOT NULL DEFAULT '',
 			source varchar(40) NOT NULL DEFAULT '',
+			message varchar(255) NOT NULL DEFAULT '',
+			chat_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			log_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			campaign_id bigint(20) unsigned NOT NULL DEFAULT 0,
+			note varchar(255) NOT NULL DEFAULT '',
+			user_id bigint(20) unsigned NOT NULL DEFAULT 0,
 			created_at datetime NOT NULL,
 			PRIMARY KEY  (id),
 			UNIQUE KEY channel_recipient (channel,recipient)

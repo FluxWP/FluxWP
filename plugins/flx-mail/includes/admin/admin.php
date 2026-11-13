@@ -11,6 +11,7 @@ require_once __DIR__ . '/page-templates.php';
 require_once __DIR__ . '/page-send.php';
 require_once __DIR__ . '/page-queue.php';
 require_once __DIR__ . '/page-log.php';
+require_once __DIR__ . '/page-blocklist.php';
 require_once __DIR__ . '/page-connections.php';
 require_once __DIR__ . '/page-settings.php';
 require_once __DIR__ . '/page-mailbox.php';
@@ -27,6 +28,7 @@ add_action(
 		add_submenu_page( 'flxi', __( 'Send', 'flx-mail' ), __( 'Send', 'flx-mail' ), $cap, 'flxi-gonder', 'flxi_page_send' );
 		add_submenu_page( 'flxi', __( 'Delivery queue', 'flx-mail' ), __( 'Queue', 'flx-mail' ), $cap, 'flxi-kuyruk', 'flxi_page_queue' );
 		add_submenu_page( 'flxi', __( 'Log', 'flx-mail' ), __( 'Log', 'flx-mail' ), $cap, 'flxi-kayitlar', 'flxi_page_log' );
+		add_submenu_page( 'flxi', __( 'Blocklist', 'flx-mail' ), __( 'Blocklist', 'flx-mail' ), $cap, 'flxi-kara-liste', 'flxi_page_blocklist' );
 		add_submenu_page( 'flxi', __( 'WhatsApp and SMS connections', 'flx-mail' ), __( 'Connections', 'flx-mail' ), $cap, 'flxi-baglantilar', 'flxi_page_connections' );
 		add_submenu_page( 'flxi', __( 'Communication settings', 'flx-mail' ), __( 'Settings', 'flx-mail' ), $cap, 'flxi-ayarlar', 'flxi_page_settings' );
 		if ( ! flxi_system_moved() ) {
@@ -245,6 +247,7 @@ function flxi_page_head( $title, $sub = '', $tabs_on = true ) {
 		'flxi-gonder'      => __( 'Send', 'flx-mail' ),
 		'flxi-kuyruk'      => __( 'Queue', 'flx-mail' ),
 		'flxi-kayitlar'    => __( 'Log', 'flx-mail' ),
+		'flxi-kara-liste'  => __( 'Blocklist', 'flx-mail' ),
 		'flxi-baglantilar' => __( 'Connections', 'flx-mail' ),
 		'flxi-ayarlar'     => __( 'Settings', 'flx-mail' ),
 		'flxi-sistem'      => __( 'System check', 'flx-mail' ),
