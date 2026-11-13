@@ -3051,3 +3051,24 @@ msgstr "Kara listeden çıkarıldı. Bu kişiye yeniden mesaj gidecek."
 
 msgid "See the list on the Blocklist page"
 msgstr "Listeyi Kara liste sayfasında gör"
+
+msgid "Paused"
+msgstr "Duraklatıldı"
+
+msgid "Pause"
+msgstr "Duraklat"
+
+msgid "Resume"
+msgstr "Devam et"
+
+msgid "Estimated finish: %1$s (%2$s)"
+msgstr "Tahmini bitiş: %1$s (%2$s)"
+
+msgid "Sending paused. Press Resume to continue where it stopped."
+msgstr "Gönderim duraklatıldı. Kaldığı yerden sürdürmek için Devam et'e basın."
+
+msgid "Sending resumed."
+msgstr "Gönderim sürüyor."
+
+msgid "Estimated finish:"
+msgstr "Tahmini bitiş:"

@@ -3051,3 +3051,24 @@ msgstr "Removed from the blocklist. Messages will be sent to this person again."
 
 msgid "See the list on the Blocklist page"
 msgstr "See the list on the Blocklist page"
+
+msgid "Paused"
+msgstr "Paused"
+
+msgid "Pause"
+msgstr "Pause"
+
+msgid "Resume"
+msgstr "Resume"
+
+msgid "Estimated finish: %1$s (%2$s)"
+msgstr "Estimated finish: %1$s (%2$s)"
+
+msgid "Sending paused. Press Resume to continue where it stopped."
+msgstr "Sending paused. Press Resume to continue where it stopped."
+
+msgid "Sending resumed."
+msgstr "Sending resumed."
+
+msgid "Estimated finish:"
+msgstr "Estimated finish:"

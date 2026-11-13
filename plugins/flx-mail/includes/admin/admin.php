@@ -74,7 +74,7 @@ add_action(
 		if ( 'flxi-kuyruk' === $page ) {
 			wp_enqueue_style( 'flxi-queue', FLXI_URL . 'assets/css/queue.css', array( 'flxi-admin' ), FLXI_VERSION );
 			wp_enqueue_script( 'flxi-queue', FLXI_URL . 'assets/js/queue.js', array(), FLXI_VERSION, true );
-			wp_localize_script( 'flxi-queue', 'FLXIQ', array( 'rest' => esc_url_raw( rest_url( 'flxi/v1/' ) ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'labels' => flxi_queue_labels(), 'channels' => flxi_channels(), 'i18n' => flxi_queue_ui_strings() ) );
+			wp_localize_script( 'flxi-queue', 'FLXIQ', array( 'rest' => esc_url_raw( rest_url( 'flxi/v1/' ) ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'labels' => flxi_queue_labels(), 'channels' => flxi_channels(), 'i18n' => flxi_queue_ui_strings(), 'tz' => wp_timezone_string() ) );
 		}
 		wp_enqueue_script( 'flxi-admin', FLXI_URL . 'assets/js/admin.js', array(), FLXI_VERSION, true );
 		wp_localize_script(

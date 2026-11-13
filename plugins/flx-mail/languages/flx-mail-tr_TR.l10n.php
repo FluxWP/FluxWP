@@ -1839,5 +1839,12 @@ return array(
   'Blocked. Nothing will be sent to this person on any channel.' => 'Engellendi. Bu kişiye hiçbir kanaldan mesaj gitmeyecek.',
   'Removed from the blocklist. Messages will be sent to this person again.' => 'Kara listeden çıkarıldı. Bu kişiye yeniden mesaj gidecek.',
   'See the list on the Blocklist page' => 'Listeyi Kara liste sayfasında gör',
+  'Paused' => 'Duraklatıldı',
+  'Pause' => 'Duraklat',
+  'Resume' => 'Devam et',
+  'Estimated finish: %1$s (%2$s)' => 'Tahmini bitiş: %1$s (%2$s)',
+  'Sending paused. Press Resume to continue where it stopped.' => 'Gönderim duraklatıldı. Kaldığı yerden sürdürmek için Devam et\'e basın.',
+  'Sending resumed.' => 'Gönderim sürüyor.',
+  'Estimated finish:' => 'Tahmini bitiş:',
  ),
 );
