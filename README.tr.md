@@ -118,7 +118,8 @@ plugins/<slug>/      eklentiler (ana dosya <slug>/<slug>.php)
 themes/<slug>/       temalar (style.css)
 bin/                 build.sh, package-info.sh, release-notes.sh, test-update.sh, readme-table.sh
 tools/readme-media/  tanıtım ekranları, GIF'ler ve README üretici
-.github/workflows/   release.yml, fluxapp-ci.yml, fluxapp-desktop.yml, mobile-ci.yml
+docker/              WordPress Docker imajları ve Coolify/Compose yığınları (ghcr.io/fluxwp/wordpress)
+.github/workflows/   release.yml, docker-images.yml, fluxapp-ci.yml, fluxapp-desktop.yml, mobile-ci.yml
 docs/                paket kurulum/API belgeleri (docs/README.md)
 .claude/skills/      Claude Code skill'leri: flx-wp-eklenti, flx-wp-tema, flx-paket-yayin, flx-readme-tanitim
 ```
@@ -153,6 +154,10 @@ release'den tanır, ayrıca ayar gerekmez. Siteye ilk kurulum: **FluxWP Panel �
 
 Güncelleme sunucusu ayrı repoda: [FluxWP/updater](https://github.com/FluxWP/updater) (`updater.fluxwp.com`).
 Sitelerde `plugins/flx-setup` kurulu olmalı; kurulum adımları o reponun README'sinde.
+
+## Docker
+
+Coolify ve düz Docker Compose için hazır WordPress yığınları (MariaDB, MySQL, MariaDB + Redis, nginx + PHP-FPM) [`docker/`](docker/README.tr.md) klasöründe. Worker ilk açılışta WordPress'i ve FluxWP Panel'i kurar. İmajlar: `ghcr.io/fluxwp/wordpress`, her gün amd64 ve arm64 için yeniden build edilir.
 
 ## Masaüstü ve mobil uygulama, ortak TS paketleri
 

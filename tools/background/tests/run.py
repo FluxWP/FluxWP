@@ -14,7 +14,7 @@ import fcntl
 parser = argparse.ArgumentParser()
 parser.add_argument('--container', default='fluxwp-media-20261109-wordpress-1')
 parser.add_argument('--worker-image', default='ghcr.io/fluxwp/wordpress:worker-php8.4')
-parser.add_argument('--worker-script', type=Path, default=Path(__file__).resolve().parents[4] / 'docker-wordpress/scripts/worker.sh')
+parser.add_argument('--worker-script', type=Path, default=Path(__file__).resolve().parents[3] / 'docker/scripts/worker.sh')
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[3]
 fixture = str(root / 'tools/background/tests/fixture.php')
@@ -67,7 +67,7 @@ def check(ok, message):
 
 def fast_wake():
     if not args.worker_script.is_file():
-        raise RuntimeError('Pass --worker-script from the docker-wordpress checkout to verify fast wake')
+        raise RuntimeError('docker/scripts/worker.sh not found; pass --worker-script to verify fast wake')
     excluded = run('wake-prepare')['excluded']
     name = 'fluxwp-bg-wake-qa-' + uuid.uuid4().hex[:8]
     with tempfile.TemporaryDirectory(prefix='flx-wake-qa-', dir=worker_env['WPENV']) as directory:
