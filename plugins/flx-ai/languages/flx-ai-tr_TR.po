@@ -2966,3 +2966,87 @@ msgstr "Tüm modeller"
 
 msgid "%s more models: narrow your search."
 msgstr "%s model daha: aramayı daraltın."
+
+msgid "Web"
+msgstr "Web"
+
+msgid "Web search"
+msgstr "Web araması"
+
+msgid "Read web pages"
+msgstr "Web sayfalarını okuma"
+
+msgid "Read web page"
+msgstr "Web sayfasını oku"
+
+msgid "Search provider"
+msgstr "Arama sağlayıcısı"
+
+msgid "Monthly search limit"
+msgstr "Aylık arama sınırı"
+
+msgid "Cost per 1,000 searches (USD)"
+msgstr "1.000 arama başına maliyet (USD)"
+
+msgid "Automatic (first provider with a key)"
+msgstr "Otomatik (anahtarı girilmiş ilk sağlayıcı)"
+
+msgid "Allow the flxai_web_search tool"
+msgstr "flxai_web_search aracına izin ver"
+
+msgid "Allow the flxai_web_fetch tool (no key needed)"
+msgstr "flxai_web_fetch aracına izin ver (anahtar gerekmez)"
+
+msgid "Chat, scheduled tasks and agents can search the web and read public pages. Page content is treated as data, never as instructions. Local and private network addresses cannot be read."
+msgstr "Sohbet, zamanlanmış görevler ve ajanlar internette arama yapıp herkese açık sayfaları okuyabilir. Sayfa içeriği veri sayılır, talimat olarak uygulanmaz. Yerel ve özel ağ adresleri okunmaz."
+
+msgid "More providers can be added by plugins with the flxai_web_providers filter."
+msgstr "Eklentiler flxai_web_providers filtresiyle başka sağlayıcı ekleyebilir."
+
+msgid "0: no limit. This month: %s searches."
+msgstr "0: sınır yok. Bu ay: %s arama."
+
+msgid "Above 0, each search is written to Logs and counts toward the spending limit. 0 if your plan is free."
+msgstr "0'dan büyükse her arama Kayıtlar'a yazılır ve harcama sınırına sayılır. Paketiniz ücretsizse 0 bırakın."
+
+msgid "Web search is turned off."
+msgstr "Web araması kapalı."
+
+msgid "No search provider key; agents can still read web pages but cannot search."
+msgstr "Arama sağlayıcısı anahtarı yok; ajanlar web sayfası okuyabilir ama arama yapamaz."
+
+msgid "Using %1$s. This month: %2$s searches."
+msgstr "%1$s kullanılıyor. Bu ay: %2$s arama."
+
+msgid "Web search is turned off in Flux AI & MCP › Settings › Web."
+msgstr "Web araması kapalı: Flux AI & MCP › Ayarlar › Web."
+
+msgid "No web search provider key. Enter one in Flux AI & MCP › Settings › Web."
+msgstr "Web arama sağlayıcısı anahtarı yok. Flux AI & MCP › Ayarlar › Web'den girin."
+
+msgid "Monthly web search limit (%d) reached. You can raise it in Flux AI & MCP › Settings › Web."
+msgstr "Aylık web arama sınırı (%d) doldu. Flux AI & MCP › Ayarlar › Web'den artırabilirsiniz."
+
+msgid "Search query is empty."
+msgstr "Arama ifadesi boş."
+
+msgid "Brave Search rejected the API key."
+msgstr "Brave Search API anahtarını kabul etmedi."
+
+msgid "Brave Search rate or plan limit reached. Try again later."
+msgstr "Brave Search hız ya da paket sınırı doldu. Biraz sonra tekrar deneyin."
+
+msgid "Search failed (HTTP %1$d). %2$s"
+msgstr "Arama yapılamadı (HTTP %1$d). %2$s"
+
+msgid "Reading web pages is turned off in Flux AI & MCP › Settings › Web."
+msgstr "Web sayfası okuma kapalı: Flux AI & MCP › Ayarlar › Web."
+
+msgid "Invalid or blocked address. Only public http(s) addresses can be read."
+msgstr "Geçersiz ya da engelli adres. Yalnız herkese açık http(s) adresleri okunur."
+
+msgid "The page could not be read (HTTP %d)."
+msgstr "Sayfa okunamadı (HTTP %d)."
+
+msgid "This content type cannot be read as text: %s"
+msgstr "Bu içerik türü metin olarak okunamıyor: %s"

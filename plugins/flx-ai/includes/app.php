@@ -77,6 +77,10 @@ add_filter(
 				'key_fal'           => array( 'type' => 'string', 'default' => '' ),
 				'key_evolink'       => array( 'type' => 'string', 'default' => '' ),
 				'key_render'        => array( 'type' => 'string', 'default' => '' ),
+				'key_brave'         => array( 'type' => 'string', 'default' => '' ),
+				'web_on'            => array( 'type' => 'bool', 'default' => 1 ),
+				'web_fetch_on'      => array( 'type' => 'bool', 'default' => 1 ),
+				'web_search_month'  => array( 'type' => 'int', 'default' => 0 ),
 			),
 		);
 		return $s;
