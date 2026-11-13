@@ -104,7 +104,7 @@ function flxi_collect_recipients( array $sources, $manual, $channel, &$report = 
 			foreach ( array_chunk( $users, 500 ) as $chunk ) {
 				update_meta_cache( 'user', wp_list_pluck( $chunk, 'ID' ) );
 				foreach ( $chunk as $u ) {
-					$phone = get_user_meta( $u->ID, 'billing_phone', true );
+					$phone = flxi_user_phone( $u->ID );
 					$first = trim( get_user_meta( $u->ID, 'first_name', true ) . ' ' . get_user_meta( $u->ID, 'last_name', true ) );
 					$add( $first ? $first : $u->display_name, $u->user_email, $phone );
 				}
@@ -591,4 +591,25 @@ function flxi_clean_recipient_vars( $vars ) {
 function flxi_row_vars( $row ) {
 	$v = json_decode( (string) ( $row['vars'] ?? '' ), true );
 	return is_array( $v ) && is_array( $v['fill'] ?? null ) ? flxi_clean_recipient_vars( $v['fill'] ) : array();
+}
+
+/**
+ * Kullanıcının telefonu: WooCommerce fatura telefonu (billing_phone), yoksa hesap telefonu (Flux Roles, flx_phone),
+ * o da yoksa ortak kişi kaydı (user_id eşleşmesi).
+ */
+function flxi_user_phone( $user_id ) {
+	$user_id = (int) $user_id;
+	foreach ( array( 'billing_phone', 'flx_phone' ) as $key ) {
+		$p = trim( (string) get_user_meta( $user_id, $key, true ) );
+		if ( '' !== $p ) {
+			return $p;
+		}
+	}
+	if ( function_exists( 'flx_person_find' ) && function_exists( 'flx_people_ready' ) && flx_people_ready() ) {
+		$p = flx_person_get( (int) flx_person_find( array( 'user_id' => $user_id ) ) );
+		if ( $p && '' !== (string) $p['phone'] ) {
+			return (string) $p['phone'];
+		}
+	}
+	return (string) apply_filters( 'flxi_user_phone', '', $user_id );
 }

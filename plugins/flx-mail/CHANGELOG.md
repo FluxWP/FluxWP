@@ -5,6 +5,7 @@
 - IPTAL kaydı artık bağlam saklar: kişinin yazdığı mesaj, sohbet, öncesinde giden son mesaj ve kampanya, yönetici notu (`flxi_optouts` yeni sütunlar, DB 4). `flxi_optout_add( $kanal, $tel, $kelime, $kaynak, array( 'message' => …, 'chat_id' => …, 'note' => … ) )`.
 - Yeni `flxi_last_sent_to( $kanal, $alici, $once )`, `flxi_blocklist_entries( $filtre )` ve filtre `flxi_blocklist_entries`.
 - Ayarlar › IPTAL'deki liste Kara liste sayfasına taşındı.
+- Rol alıcıları (Üyeler: Yönetici vb.) telefonu yalnız WooCommerce fatura telefonundan okuyordu; artık hesap telefonu (Flux Roles `flx_phone`) ve ortak kişi kaydı da bakılıyor (`flxi_user_phone()`). "2 kişinin geçerli telefon numarası yok" uyarısı düzeldi.
 
 ## 1.17.1 — 2026-11-13
 - Kişiye özel değişkenler: `flxi_create_campaign()` alıcı satırı `vars` taşıyabilir (`[ 'fidan' => 3, 'tutar' => '450 TL' ]`); metinde `{fidan}`, `{tutar}` o kişinin değeriyle dolar (e-posta, WhatsApp, SMS). Alıcı kaynakları da (`flxi_recipients_from_source`) satıra `vars` ekleyebilir. Yerleşik `{ad}`, `{ad_soyad}`, `{eposta}`, `{telefon}` ezilmez. Özellik: `flxi_campaign_features` → `recipient_vars`.
