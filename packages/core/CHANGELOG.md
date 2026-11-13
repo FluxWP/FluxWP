@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.1
+- Demo: Flux AI module entry (opens the native screen), 🙏 replaced in demo chats, English strings for the new demo texts.
+
 ## 0.4.0
 - Flux Chat 1.37/1.38 contract: chat `channel`, bootstrap `channels`, `chats` channel filter; messages carry `deleted`, `del` and `revokeUntil`. `deleteMessage(id, 'everyone' | 'panel')`, `isDeletedMessage()`, `canDeleteForEveryone()`.
 - Demo: a site-chat conversation, a message deleted by the contact, delete for everyone; Flux AI demo chats (scheduled task, waiting for approval, archived).

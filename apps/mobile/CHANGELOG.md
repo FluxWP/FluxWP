@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.4.2
+- Flux AI menüsü sitede yerel sohbet ekranını açar. Eklentinin bildirdiği ekran adı (`flxai-chat`) uygulamada tanınmadığı için menü web sayfasına düşüyordu.
+- Mağaza görselleri: Mesajlar listesi, sohbet ve Flux AI ekranları eklendi (iPhone/iPad, TR/EN, 9 görsel).
+- Demo: Flux AI menüde yerel ekranla açılır, demo mesajlarında 🙏 yok.
+
 ## 0.4.1
 - Alt pencereler (menü, onay, giriş formu, hesap değiştirici) içeriğe göre boyutlanır: kısa menünün altında boş alan kalmaz. Başlık ve kapat düğmesi tek satırda, üstteki boş bant gitti. Sistem penceresi zaten alt güvenli alanı bıraktığı için içerikte ek alt boşluk yok.
 - Panel sayfası (web görünümü) açılamayınca nedeni de yazar (API hatası, HTTP 5xx ya da WebKit kodu). Uygulamanın kendisinin iptal ettiği yüklemeler (yerel ekrana geçiş, tarayıcıda açma) artık hata sayılmaz. "Yenile" yeniden giriş denemesini de sıfırlar.

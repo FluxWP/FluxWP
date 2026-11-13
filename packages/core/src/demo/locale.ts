@@ -35,6 +35,7 @@ const english: Record<string, string> = {
   '+{{data.new30|number}} son 30 gün': '+{{data.new30|number}} in the last 30 days', '{{data.repeat|number}} tekrar': '{{data.repeat|number}} returning',
   'Site ziyaretçisi': 'Site visitor', 'Site sohbeti': 'Site chat', 'Merhaba, kurumsal bağış için kiminle görüşebilirim?': 'Hi, who can I talk to about a corporate donation?',
   'Yanlış dosyayı gönderdim, kusura bakmayın.': 'Sorry, I sent the wrong file.', '57 dk önce': '57 min ago', 'şimdi': 'just now',
+  'Fidan dikim duyurusu': 'Tree planting announcement', 'Teşekkürler 🌱': 'Thank you 🌱',
   'Günlük brifing': 'Daily briefing', 'Zamanlanmış görev: Günlük brifing': 'Scheduled task: Daily briefing',
   'Dün 14 bağış geldi (6.300 ₺), önceki güne göre %18 fazla. 3 dekont onay bekliyor. Sitede hata yok.': 'Yesterday brought 14 donations (₺6,300), 18% more than the day before. 3 receipts are waiting for approval. No site errors.',
   'Bağışçılara teşekkür e-postası': 'Thank-you email to donors', 'Bu ay bağış yapanlara kısa bir teşekkür e-postası hazırla ve gönder.': 'Draft and send a short thank-you email to this month\'s donors.',
