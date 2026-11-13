@@ -354,6 +354,15 @@ Araçlar (`flx_mcp_tools` ile, sohbet + MCP): `flxai_task_list` (okur), `flxai_t
 
 Çalışma geçmişi: `meta.history` (en yeni başta, `flxai_task_history_max` kadar): `ts`, `state`, `ms`, `cost`, `chat`, `from`/`to` (sohbet mesaj aralığı), `error`. Ekran `admin.php?page=flx-ai-tasks&history=ID` bu aralıktaki mesajları (araç girdi/sonuç, düşünme, yanıt) gösterir; onaydan sonra gelen devam mesajları da aynı çalışmaya dahildir.
 
+## MCP istemcisi (0.19.0)
+Bağlantılar `flxai_mcpc_servers` seçeneğinde (id => kayıt: `name, url, auth (none|bearer|header|oauth), header, secret (şifreli), oauth{client_id, client_secret, authorize, token, register, resource, scope, access, refresh, expires}, scope (personal|shared), owner, roles[], enabled, perms{araç: allow|ask|off}, tools{önbellek}, caps, info, checked, error`). Ekran `admin.php?page=flx-ai-connections`.
+- Transport: Streamable HTTP, protokol `2025-06-18`; yanıt JSON ya da SSE. `initialize` + `notifications/initialized`, `Mcp-Session-Id` 1 saat transient'te, 404'te oturum yenilenir. stdio ve eski HTTP+SSE yok.
+- OAuth 2.1: 401 `WWW-Authenticate resource_metadata` → RFC 9728 korunan kaynak → RFC 8414 / OIDC metadata → RFC 7591 dinamik kayıt (`token_endpoint_auth_method: none`) → PKCE S256 + `resource` → dönüş `admin-post.php?action=flxai_mcpc_oauth` → belirteç; süre dolunca ya da 401'de `refresh_token` ile yenilenir.
+- Araçlar `flxai_tools` (öncelik 30) ile: `mcp_<id>_<araç>` (64 karakter), `source = mcp:<id>`, `mcp_client = <id>`, `readonly` = izinli + sunucunun `readOnlyHint`'i. `flx_mcp_tool_allowed` ile yalnız bağlantıyı kullanabilen kullanıcıya (kişisel: sahibi; paylaşılan: yönetici + roller). Kaynak yeteneği varsa `mcp_<id>_resources` ve `mcp_<id>_resource_read`.
+- Sonuç `{server, text (30 KB), data? (structuredContent), items?, error?, note}`; ikili içerik atlanır.
+- PHP: `flxai_mcpc_get( $id )`, `flxai_mcpc_put( $s )`, `flxai_mcpc_refresh( $id )` (tools/list, sayfalı, en çok 200), `flxai_mcpc_call( $id, $tool, $args, $user_id )`, `flxai_mcpc_rpc( &$s, $method, $params )`, `flxai_mcpc_oauth_start( $id )` → yönlendirme adresi.
+- Güvenlik: yalnız herkese açık https adresleri (`reject_unsafe_urls`); geliştirmede `flxai_mcpc_allow_local` filtresi. Gizli değerler `flxai_encrypt`.
+
 ## Sanal shell (0.18.0)
 Araç `flxai_sh` `{cmd}` → `{cwd, exit, stdout, stderr?, changed?{yol: written|staged #n|deleted (trash)}, note?, truncated?}`. Yalnız sohbet/görev bağlamında (`ctx.chat_id`) ve Flux Files etkinken; ayar `shell_on` (varsayılan açık). Onay kartı istemez: her dosya işlemi `flxai_ws_run()` ile çalışma alanı kurallarından geçer (kendi klasörü commit, dışarısı PR, `rm` çöpe; `mkdir/mv/cp -r` dışarıda reddedilir, `flxfm_*` onaylı araçları kullanılır).
 - Sınırlar: çağrı başına 200 komut, ~25 sn, çıktı 64 KB, okuma dosya başı 3 MB, `find/grep -r` en çok 2000 öğe. Çalışma klasörü `flxai_sh_cwd_<chat>` transient'inde (12 saat).

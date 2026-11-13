@@ -3361,3 +3361,209 @@ msgstr "Sanal shell"
 
 msgid "Allow the flxai_sh tool: shell-like commands (ls, grep, sed, jq, curl…) on the workspace files. No real processes; the workspace rules apply."
 msgstr "flxai_sh aracına izin ver: çalışma alanı dosyalarında shell benzeri komutlar (ls, grep, sed, jq, curl…). Gerçek süreç açılmaz; çalışma alanı kuralları geçerli."
+
+msgid "Invalid or blocked address. Use a public https address."
+msgstr "Geçersiz ya da engelli adres. Herkese açık bir https adresi girin."
+
+msgid "The server needs sign-in. Use \"Connect\" in Flux AI & MCP › Connections."
+msgstr "Sunucu oturum açmayı istiyor. Flux AI & MCP › Bağlantılar'da \"Bağlan\"ı kullanın."
+
+msgid "The server rejected the credentials (401)."
+msgstr "Sunucu kimlik bilgilerini reddetti (401)."
+
+msgid "The server answered with HTTP %d."
+msgstr "Sunucu HTTP %d ile yanıt verdi."
+
+msgid "The server did not return a valid MCP response."
+msgstr "Sunucu geçerli bir MCP yanıtı döndürmedi."
+
+msgid "Connection not found."
+msgstr "Bağlantı bulunamadı."
+
+msgid "Resources"
+msgstr "Kaynaklar"
+
+msgid "Read resource"
+msgstr "Kaynağı oku"
+
+msgid "Could not find the sign-in (OAuth) settings of this server. Enter a token instead, or check the address."
+msgstr "Bu sunucunun oturum açma (OAuth) ayarları bulunamadı. Bunun yerine bir anahtar girin ya da adresi kontrol edin."
+
+msgid "This server does not support PKCE (S256), which OAuth 2.1 requires."
+msgstr "Bu sunucu OAuth 2.1'in gerektirdiği PKCE'yi (S256) desteklemiyor."
+
+msgid "This server does not allow automatic client registration. Create an OAuth client at the provider and enter its client ID (and secret) in the connection settings."
+msgstr "Bu sunucu otomatik istemci kaydına izin vermiyor. Sağlayıcıda bir OAuth istemcisi oluşturup client ID'sini (ve secret'ını) bağlantı ayarlarına girin."
+
+msgid "Automatic client registration failed. Enter a client ID in the connection settings."
+msgstr "Otomatik istemci kaydı başarısız. Bağlantı ayarlarına bir client ID girin."
+
+msgid "Sign-in failed: %s"
+msgstr "Oturum açılamadı: %s"
+
+msgid "Sign in again."
+msgstr "Yeniden oturum açın."
+
+msgid "Sign-in session expired. Try again."
+msgstr "Oturum açma süresi doldu. Yeniden deneyin."
+
+msgid "Sign-in was cancelled or refused (%s)."
+msgstr "Oturum açma iptal edildi ya da reddedildi (%s)."
+
+msgid "MCP connection: %s"
+msgstr "MCP bağlantısı: %s"
+
+msgid "Not checked yet."
+msgstr "Henüz kontrol edilmedi."
+
+msgid "Connections"
+msgstr "Bağlantılar"
+
+msgid "This is another user's personal connection."
+msgstr "Bu, başka bir kullanıcının kişisel bağlantısı."
+
+msgid "Connection deleted."
+msgstr "Bağlantı silindi."
+
+msgid "Tool list updated."
+msgstr "Araç listesi güncellendi."
+
+msgid "Signed in. The server's tools are listed below."
+msgstr "Oturum açıldı. Sunucunun araçları aşağıda."
+
+msgid "Signed out."
+msgstr "Oturum kapatıldı."
+
+msgid "Saved. Now sign in with \"Connect\"."
+msgstr "Kaydedildi. Şimdi \"Bağlan\" ile oturum açın."
+
+msgid "Connect external MCP servers (for example a CRM, a project tool or another site). Their tools become available in chat, scheduled tasks and agents. Only remote servers over HTTPS work here; local (stdio) servers need a computer that runs them."
+msgstr "Dış MCP sunucularını bağlayın (ör. bir CRM, proje aracı ya da başka bir site). Araçları sohbette, zamanlanmış görevlerde ve ajanlarda kullanılır. Burada yalnız HTTPS üzerinden çalışan uzak sunucular bağlanır; yerel (stdio) sunucular onları çalıştıran bir bilgisayar ister."
+
+msgid "MCP servers"
+msgstr "MCP sunucuları"
+
+msgid "Add connection"
+msgstr "Bağlantı ekle"
+
+msgid "No connections yet."
+msgstr "Henüz bağlantı yok."
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Sign-in"
+msgstr "Oturum açma"
+
+msgid "Sign-in needed"
+msgstr "Oturum açılmalı"
+
+msgid "Connected"
+msgstr "Bağlı"
+
+msgid "Shared"
+msgstr "Paylaşılan"
+
+msgid "Personal"
+msgstr "Kişisel"
+
+msgid "%1$s of %2$s"
+msgstr "%2$s içinde %1$s"
+
+msgid "API key / token (Bearer)"
+msgstr "API anahtarı / token (Bearer)"
+
+msgid "Custom header"
+msgstr "Özel başlık"
+
+msgid "Sign in (OAuth 2.1)"
+msgstr "Oturum aç (OAuth 2.1)"
+
+msgid "Server: %1$s %2$s · protocol %3$s"
+msgstr "Sunucu: %1$s %2$s · protokol %3$s"
+
+msgid "Server address"
+msgstr "Sunucu adresi"
+
+msgid "The Streamable HTTP address the provider gives for MCP clients."
+msgstr "Sağlayıcının MCP istemcileri için verdiği Streamable HTTP adresi."
+
+msgid "Header name"
+msgstr "Başlık adı"
+
+msgid "Key / token"
+msgstr "Anahtar / token"
+
+msgid "Saved (leave empty to keep)"
+msgstr "Kayıtlı (değiştirmemek için boş bırakın)"
+
+msgid "Stored encrypted; never shown to the AI."
+msgstr "Şifreli saklanır; yapay zekâya hiç gösterilmez."
+
+msgid "OAuth client"
+msgstr "OAuth istemcisi"
+
+msgid "Client ID (optional)"
+msgstr "Client ID (isteğe bağlı)"
+
+msgid "Client secret (optional)"
+msgstr "Client secret (isteğe bağlı)"
+
+msgid "Leave empty: Flux AI registers itself automatically when the server allows it. Otherwise create an OAuth app at the provider with this redirect address:"
+msgstr "Boş bırakın: sunucu izin veriyorsa Flux AI kendini otomatik kaydeder. Vermiyorsa sağlayıcıda şu yönlendirme adresiyle bir OAuth uygulaması oluşturun:"
+
+msgid "Only me (personal)"
+msgstr "Yalnız ben (kişisel)"
+
+msgid "Shared: administrators and these roles"
+msgstr "Paylaşılan: yöneticiler ve şu roller"
+
+msgid "Agents and scheduled tasks run as their owner, so they can use the connections that user can use."
+msgstr "Ajanlar ve zamanlanmış görevler sahibinin adına çalışır; o kullanıcının kullanabildiği bağlantıları kullanır."
+
+msgid "Offer this server's tools"
+msgstr "Bu sunucunun araçlarını sun"
+
+msgid "Connect"
+msgstr "Bağlan"
+
+msgid "Sign in again"
+msgstr "Yeniden oturum aç"
+
+msgid "Sign out"
+msgstr "Oturumu kapat"
+
+msgid "Test and update tools"
+msgstr "Test et ve araçları güncelle"
+
+msgid "Delete the connection \"%s\"? Its tools disappear from chats, tasks and agents."
+msgstr "\"%s\" bağlantısı silinsin mi? Araçları sohbetlerden, görevlerden ve ajanlardan kalkar."
+
+msgid "No tools listed yet. Save the connection (and sign in) to load them."
+msgstr "Henüz araç yok. Yüklemek için bağlantıyı kaydedin (ve oturum açın)."
+
+msgid "Allowed: runs without asking (only tools the server marks read-only). Ask first: shows an approval card. Off: never offered. Tools that change data always ask."
+msgstr "İzinli: sormadan çalışır (yalnız sunucunun salt okuma dediği araçlar). Önce sor: onay kartı çıkar. Kapalı: hiç sunulmaz. Veri değiştiren araçlar her zaman sorar."
+
+msgid "Allowed"
+msgstr "İzinli"
+
+msgid "Ask first"
+msgstr "Önce sor"
+
+msgid "Read-only"
+msgstr "Salt okuma"
+
+msgid "Destructive"
+msgstr "Silebilir"
+
+msgid "Changes data"
+msgstr "Veri değiştirir"
+
+msgid "Save permissions"
+msgstr "İzinleri kaydet"
+
+msgid "%d tool available."
+msgid_plural "%d tools available."
+msgstr[0] "%d araç kullanılabilir."
+msgstr[1] "%d araç kullanılabilir."

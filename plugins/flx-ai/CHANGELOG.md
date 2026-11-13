@@ -1,5 +1,11 @@
 # Flux AI — Değişiklikler
 
+## 0.19.0
+- **MCP istemcisi:** yeni ekran Flux AI & MCP › **Bağlantılar**. Dış MCP sunucuları (Streamable HTTP) bağlanır; araçları sohbet, zamanlanmış görev ve ajanlarda `mcp_<bağlantı>_<araç>` adıyla kullanılır. Sunucu kaynak sunuyorsa `mcp_<bağlantı>_resources` / `_resource_read` araçları da gelir.
+- Oturum açma: yok, API anahtarı (Bearer), özel başlık ya da **OAuth 2.1** (otomatik keşif, dinamik istemci kaydı, PKCE, belirteç yenileme; kayda izin vermeyen sağlayıcıda client ID/secret elle). Anahtar ve belirteçler şifreli saklanır, yapay zekâya gitmez.
+- Araç başına **İzinli / Önce sor / Kapalı**. Varsayılan "Önce sor"; "İzinli" yalnız sunucunun salt okuma dediği araçlarda, veri değiştirenler her zaman onaylı. Bağlantı kişisel (yalnız ekleyen) ya da paylaşılan (yöneticiler + seçili roller). Sonuçlar dış içerik sayılır (veri, talimat değil). Sistem kontrolünde her bağlantının durumu.
+- stdio sunucular ve eski HTTP+SSE transport'u desteklenmez (paylaşımlı sunucuda süreç / uzun bağlantı açılamaz).
+
 ## 0.18.0
 - **Sanal shell (`flxai_sh`):** sohbet, görev ve ajanlar çalışma alanı dosyalarında shell komutları kullanır: `ls cd cat head tail wc mkdir touch cp mv rm find tree grep sed awk sort uniq cut tr diff jq echo printf tee base64 sha256sum date curl/wget` ve `sh betik.sh`; `|`, `>`, `>>`, `<`, heredoc (`<<EOF`), `&&`, `||`, `;`, `$DEĞİŞKEN`, `*.md`. Gerçek süreç açılmaz (exec yok, Python/npm yok); her dosya işlemi çalışma alanı kurallarından geçer: kendi klasörü commit, dışarısı değişiklik isteği (PR), `rm` çöpe. Çalışma klasörü sohbet başına hatırlanır, çıktı 64 KB'de kesilir.
 - Kendi klasöründe `.html`, `.json`, `.js`, `.css`, `.sh` yazılabilir (klasör web'e kapalı, dosyalar çalıştırılmaz); `.php` ve sunucu ayar dosyaları hiçbir yerde yazılmaz.
