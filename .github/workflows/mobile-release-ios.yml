@@ -9,7 +9,7 @@ on:
       destination:
         type: choice
         default: testflight
-        options: [simulator, ipa, testflight, app-store]
+        options: [simulator, ipa, testflight, app-store, store-screenshots]
       version:
         description: Store version; empty uses apps/mobile/package.json
         default: ''
@@ -17,7 +17,7 @@ on:
         description: Existing tested TestFlight build to submit (required for app-store)
         default: ''
       screenshots_run_id:
-        description: Successful App store assets workflow run (required for app-store)
+        description: Successful App store assets workflow run (required for app-store and store-screenshots)
         default: ''
       disclosures_reviewed:
         description: App privacy, age rating, content rights and review contact are complete in App Store Connect
@@ -82,19 +82,19 @@ jobs:
           bundler-cache: true
           working-directory: tools/release
       - run: bun install --frozen-lockfile
-        if: env.RELEASE_DESTINATION != 'app-store'
+        if: env.RELEASE_DESTINATION != 'app-store' && env.RELEASE_DESTINATION != 'store-screenshots'
       - name: Check mobile and shared code
-        if: env.RELEASE_DESTINATION != 'app-store'
+        if: env.RELEASE_DESTINATION != 'app-store' && env.RELEASE_DESTINATION != 'store-screenshots'
         run: |
           bunx turbo run typecheck test --filter=@fluxwp/core --filter=@fluxwp/tokens --filter=@fluxwp/manifest --filter=@fluxwp/runtime
           bun run --filter @fluxwp/mobile typecheck
           node --test tools/release/*.test.mjs
       - name: Generate native iOS project
-        if: env.RELEASE_DESTINATION != 'app-store'
+        if: env.RELEASE_DESTINATION != 'app-store' && env.RELEASE_DESTINATION != 'store-screenshots'
         working-directory: apps/mobile
         run: bunx expo prebuild --platform ios --no-install
       - name: Install native pods
-        if: env.RELEASE_DESTINATION != 'app-store'
+        if: env.RELEASE_DESTINATION != 'app-store' && env.RELEASE_DESTINATION != 'store-screenshots'
         working-directory: apps/mobile/ios
         env:
           BUNDLE_GEMFILE: ${{ github.workspace }}/tools/release/Gemfile
@@ -111,7 +111,7 @@ jobs:
           APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
         run: node tools/release/materialize-secrets.mjs
       - name: Download reviewed native screenshots
-        if: env.RELEASE_DESTINATION == 'app-store'
+        if: env.RELEASE_DESTINATION == 'app-store' || env.RELEASE_DESTINATION == 'store-screenshots'
         env:
           GH_TOKEN: ${{ github.token }}
           ASSET_RUN_ID: ${{ inputs.screenshots_run_id }}

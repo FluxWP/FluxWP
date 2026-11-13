@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const destinations = {
-  ios: ['simulator', 'ipa', 'testflight', 'app-store'],
+  ios: ['simulator', 'ipa', 'testflight', 'app-store', 'store-screenshots'],
   android: ['apk', 'aab', 'internal', 'alpha', 'beta', 'production'],
 };
 
@@ -34,7 +34,7 @@ export function requireSecrets(names, env = process.env) {
 }
 
 export function preflight(config, env = process.env) {
-  const publishesMetadata = config.destination === 'app-store' || (config.platform === 'android' && !['apk', 'aab'].includes(config.destination));
+  const publishesMetadata = ['app-store', 'store-screenshots'].includes(config.destination) || (config.platform === 'android' && !['apk', 'aab'].includes(config.destination));
   if (publishesMetadata && config.brand !== 'flux') throw new Error('Store metadata is configured only for the flux brand');
   if (config.platform === 'android' && env.PLAY_RELEASE_STATUS && !['draft', 'completed'].includes(env.PLAY_RELEASE_STATUS)) throw new Error('Invalid Google Play release status');
   if (config.platform === 'ios' && config.destination !== 'simulator') {
@@ -43,6 +43,9 @@ export function preflight(config, env = process.env) {
       if (!config.buildNumber) throw new Error('Specify the already-tested TestFlight build number for App Store submission');
       if (!/^[1-9]\d*$/.test(env.ASSET_RUN_ID || '')) throw new Error('Specify the successful native screenshot workflow run ID');
       if (env.STORE_DISCLOSURES_REVIEWED !== 'true') throw new Error('Complete store disclosures before submission');
+    } else if (config.destination === 'store-screenshots') {
+      // Only replaces the screenshots of the editable App Store version: no build, no metadata, no review.
+      if (!/^[1-9]\d*$/.test(env.ASSET_RUN_ID || '')) throw new Error('Specify the successful native screenshot workflow run ID');
     } else requireSecrets(['APPLE_TEAM_ID', 'IOS_DISTRIBUTION_CERTIFICATE', 'IOS_DISTRIBUTION_CERTIFICATE_PASSWORD', 'IOS_PROVISIONING_PROFILE'], env);
   }
   if (config.platform === 'android') {

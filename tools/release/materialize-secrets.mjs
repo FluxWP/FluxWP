@@ -19,7 +19,7 @@ function save(name, filename, output, base64 = false) {
   values[output] = file;
 }
 if (process.env.RELEASE_PLATFORM === 'ios') {
-  if (process.env.RELEASE_DESTINATION !== 'app-store') {
+  if (!['app-store', 'store-screenshots'].includes(process.env.RELEASE_DESTINATION)) {
     save('IOS_DISTRIBUTION_CERTIFICATE', 'distribution.p12', 'IOS_CERTIFICATE_PATH', true);
     save('IOS_PROVISIONING_PROFILE', 'profile.mobileprovision', 'IOS_PROFILE_PATH', true);
   }

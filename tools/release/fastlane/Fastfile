@@ -36,11 +36,26 @@ platform :ios do
   desc 'Build a signed IPA, upload to internal TestFlight, or submit an existing build with metadata for review'
   lane :release do
     target = required('RELEASE_DESTINATION')
-    UI.user_error!('Invalid iOS release destination') unless %w[ipa testflight app-store].include?(target)
+    UI.user_error!('Invalid iOS release destination') unless %w[ipa testflight app-store store-screenshots].include?(target)
     brand = brand_config
     identifier = brand.dig('ios', 'bundleIdentifier') || brand.fetch('bundleId')
     version = ENV['FLUX_APP_VERSION'].to_s.empty? ? JSON.parse(File.read(File.join(MOBILE, 'package.json'))).fetch('version') : ENV['FLUX_APP_VERSION']
     api = asc_api_key
+    if target == 'store-screenshots'
+      # Replaces the screenshots of the editable App Store version only: no binary, no metadata, no review submission.
+      UI.user_error!('Store screenshots are configured only for the flux brand') unless brand.fetch('slug') == 'flux'
+      screenshots = required('IOS_SCREENSHOTS_PATH')
+      UI.user_error!('Real native iPhone/iPad screenshots are required') if Dir.glob(File.join(screenshots, '**/*.png')).empty?
+      upload_to_app_store(
+        api_key: api, app_identifier: identifier, app_version: version,
+        skip_binary_upload: true, skip_metadata: true,
+        skip_screenshots: false, overwrite_screenshots: true, screenshots_path: screenshots,
+        submit_for_review: false, run_precheck_before_submit: false, force: true
+      )
+      FileUtils.mkdir_p(File.join(ROOT, 'release-out/ios'))
+      File.write(File.join(ROOT, 'release-out/ios/release.json'), JSON.pretty_generate({bundle_id: identifier, version: version, destination: target, screenshots_run: ENV['ASSET_RUN_ID'], commit: ENV['GITHUB_SHA']}))
+      next
+    end
     if target == 'app-store'
       UI.user_error!('Store metadata is configured only for the flux brand') unless brand.fetch('slug') == 'flux'
       build_number = required('FLUX_BUILD_NUMBER')
