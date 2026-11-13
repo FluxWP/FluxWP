@@ -3274,5 +3274,6 @@ return array(
   'Files are uploading, please wait.' => 'Files are uploading, please wait.',
   'Attachments' => 'Attachments',
   'The upload has expired. Please add the file again.' => 'The upload has expired. Please add the file again.',
+  'Enlarge photo' => 'Enlarge photo',
  ),
 );

@@ -481,7 +481,20 @@ function flxc_ingest_status( $conn_id, array $d ) {
 	}
 	if ( 'out' === $m['direction'] ) {
 		if ( flxc_status_rank( $status ) > flxc_status_rank( $m['status'] ) || ( 'failed' === $status && 'sent' === $m['status'] ) ) {
-			flxc_update_message( $m['id'], array( 'status' => $status ) );
+			$upd = array( 'status' => $status );
+			// 1.47.0: ulaştı / okundu zamanı (Unix sn) meta'ya yazılır; Flux Mail gönderim panosu okur.
+			$rank = flxc_status_rank( $status );
+			if ( $rank >= flxc_status_rank( 'delivered' ) ) {
+				$meta = flxc_decode( $m['meta'] );
+				if ( empty( $meta['delivered_at'] ) ) {
+					$meta['delivered_at'] = time();
+				}
+				if ( $rank >= flxc_status_rank( 'read' ) && empty( $meta['read_at'] ) ) {
+					$meta['read_at'] = time();
+				}
+				$upd['meta'] = $meta;
+			}
+			flxc_update_message( $m['id'], $upd );
 		}
 	} elseif ( ! $from_me && 'read' === $status ) {
 		// Gelen mesaj başka bir cihazda (telefon) okundu.
@@ -550,8 +563,8 @@ function flxc_ingest_contact( $conn_id, array $d ) {
 	}
 	$upd = array();
 	if ( ! empty( $d['profilePicUrl'] ) && $d['profilePicUrl'] !== $chat['avatar'] ) {
-		$upd['avatar']    = esc_url_raw( $d['profilePicUrl'] );
-		$upd['avatar_at'] = time();
+		// 1.47.0: fotoğraf sunucuya indirilir (tarayıcı WhatsApp adresini görmez).
+		flxc_avatar_store( $chat, (string) $d['profilePicUrl'] );
 	}
 	if ( ! empty( $d['pushName'] ) && '' === $chat['push_name'] ) {
 		$upd['push_name'] = mb_substr( (string) $d['pushName'], 0, 190 );
@@ -598,16 +611,43 @@ function flxc_save_media_base64( $b64, $mime, $name = '' ) {
 	return flxc_save_media_binary( $bin, $mime, $name );
 }
 
+/**
+ * 1.47.0: medya içerik özetiyle (sha1) tek kopya saklanır: files/<ilk 2>/<sha1>.<uzantı>.
+ * Aynı video 500 kişiye giderse diskte bir dosya olur, tüm mesajlar aynı yolu gösterir.
+ */
+function flxc_media_hash_path( $sha1, $mime, $name = '' ) {
+	return 'files/' . substr( $sha1, 0, 2 ) . '/' . $sha1 . '.' . flxc_mime_ext( $mime, $name );
+}
+
 function flxc_save_media_binary( $bin, $mime, $name = '' ) {
-	$dir = flxc_media_dir();
-	$sub = gmdate( 'Y/m' );
-	wp_mkdir_p( $dir . '/' . $sub );
-	$file = $sub . '/' . wp_generate_password( 20, false, false ) . '.' . flxc_mime_ext( $mime, $name );
+	$dir  = flxc_media_dir();
+	$file = flxc_media_hash_path( sha1( $bin ), $mime, $name );
+	$size = strlen( $bin );
+	if ( is_file( $dir . '/' . $file ) && filesize( $dir . '/' . $file ) === $size ) {
+		return array( 'path' => $file, 'size' => $size, 'reused' => true );
+	}
+	wp_mkdir_p( dirname( $dir . '/' . $file ) );
 	// phpcs:ignore WordPress.WP.AlternativeFunctions
 	if ( false === file_put_contents( $dir . '/' . $file, $bin ) ) {
 		return null;
 	}
-	return array( 'path' => $file, 'size' => strlen( $bin ) );
+	return array( 'path' => $file, 'size' => $size );
+}
+
+/** Başka mesaj kullanmıyorsa medya dosyasını siler (dosyalar mesajlar arasında paylaşılır). */
+function flxc_media_release( $path ) {
+	global $wpdb;
+	$path = (string) $path;
+	if ( '' === $path || false !== strpos( $path, '..' ) ) {
+		return false;
+	}
+	$used = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM ' . flxc_table( 'messages' ) . ' WHERE media_path = %s', $path ) ); // phpcs:ignore
+	$f    = flxc_media_dir() . '/' . $path;
+	if ( $used || ! is_file( $f ) ) {
+		return false;
+	}
+	wp_delete_file( $f );
+	return true;
 }
 
 /* ---------- Geçmişi içe aktar ---------- */
@@ -658,7 +698,8 @@ function flxc_import_history( $conn_id, $max_chats = 30, $per_chat = 30 ) {
 			flxc_remember_alias( $chat, $jid );
 		}
 		if ( ! empty( $c['profilePicUrl'] ) && empty( $chat['avatar'] ) ) {
-			flxc_update_chat( $chat['id'], array( 'avatar' => esc_url_raw( $c['profilePicUrl'] ), 'avatar_at' => time() ) );
+			// İndirme arka plan kontrolüne kalır (avatar_at 0 = bekliyor); içe aktarma 60 sn sınırına takılmasın.
+			flxc_update_chat( $chat['id'], array( 'avatar' => esc_url_raw( $c['profilePicUrl'] ), 'avatar_at' => 0 ) );
 		}
 		foreach ( array_reverse( $records ) as $rec ) {
 			if ( is_array( $rec ) && flxc_ingest_message( $conn_id, $rec, array( 'history' => true, 'chat' => $chat ) ) ) {

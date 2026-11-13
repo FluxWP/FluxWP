@@ -1060,16 +1060,31 @@
 		else if (!id && S.active) closeChat(true);
 	});
 
+	/* 1.47.0: kişi fotoğrafı sunucuda önbelleklenir; tarayıcı yalnız sitenin adresini görür.
+	 * Sohbet açılınca güncellik sunucuda kontrol edilir (sunucu sohbet başına 10 dk'da bir sorar); değiştiyse hemen yenilenir. */
+	function setAvatar(c, url) {
+		if (!c || url === undefined || url === c.avatar) return;
+		c.avatar = url;
+		renderList();
+		if (S.active === c.id) { renderChatHead(); if (S.info) renderInfo(); }
+	}
 	function refreshAvatar(c) {
-		if (Date.now() / 1000 - (c.avatarAt || 0) < 86400 || c.group) return;
-		api('chats/' + c.id + '/avatar', { method: 'POST' }).then(function (r) {
-			if (r.avatar !== c.avatar) {
-				c.avatar = r.avatar;
-				c.avatarAt = Math.floor(Date.now() / 1000);
-				renderList();
-				if (S.active === c.id) renderChatHead();
-			}
-		}).catch(function () {});
+		if (c.group) return;
+		api('chats/' + c.id + '/avatar', { method: 'POST' }).then(function (r) { setAvatar(c, r.avatar); }).catch(function () {});
+	}
+	/* Arka planda hafif tur: listedeki sohbetlerin id'leri sunucuya gider, sunucu en eskilerden birkaçını WhatsApp'a sorar.
+	 * Tarayıcı WhatsApp'a hiç gitmez. Sayfa gizliyken beklenir, en fazla 20 tur. */
+	var avSweepN = 0;
+	function avatarSweep() {
+		if (avSweepN >= 20) return;
+		if (document.hidden) { setTimeout(avatarSweep, 60000); return; }
+		var ids = S.order.slice(0, 200);
+		if (!ids.length) return;
+		avSweepN++;
+		api('avatars/check', { method: 'POST', body: { ids: ids } }).then(function (r) {
+			Object.keys(r.updated || {}).forEach(function (id) { setAvatar(S.chats.get(+id), r.updated[id]); });
+			if (r.more) setTimeout(avatarSweep, (r.wait || 25) * 1000);
+		}).catch(function () { setTimeout(avatarSweep, 120000); });
 	}
 
 	function buildChat(c) {
@@ -2640,7 +2655,8 @@
 		el.info.appendChild(h('header', { class: 'flxc-info-head' }, btn('close', t('Kapat'), function () { closeInfo(); }), h('strong', { text: t('Kişi bilgisi') })));
 		el.info.appendChild(h('div', { class: 'flxc-info-body' },
 			h('div', { class: 'flxc-info-hero' },
-				avatar(c, 'xl'),
+				// 1.47.0: fotoğrafa basınca büyük önizleme.
+				c.avatar ? h('button', { type: 'button', class: 'flxc-info-av', title: t('Büyüt'), 'aria-label': t('Fotoğrafı büyüt'), onclick: function () { lightbox(c.avatar, 'image', { dir: 'in', sender: c.title }); } }, avatar(c, 'xl')) : avatar(c, 'xl'),
 				h('label', { class: 'flxc-info-name' }, nameIn, icon('edit')),
 				c.pushName && c.pushName !== c.name && (c.channel || 'whatsapp') === 'whatsapp' ? h('small', { class: 'flxc-muted', text: t('WhatsApp adı: {n}', { n: c.pushName }) }) : null,
 				(c.channel || 'whatsapp') !== 'whatsapp' && chanById(c.channel) ? h('span', { class: 'flxc-chtag', style: { '--chc': chanById(c.channel).color } }, chanIcon(chanById(c.channel)), chanById(c.channel).label) : null,
@@ -3523,5 +3539,6 @@
 		else if (wantPh) goChat(wantPh); // 1.39.0: Flux Donate "Open chat" (admin.php?page=flx-chat&phone=90...)
 		updateTitle();
 		schedule(interval());
+		setTimeout(avatarSweep, 8000);
 	}).catch(function (e) { toast(e.message, 'err'); });
 })();

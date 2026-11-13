@@ -286,14 +286,12 @@ function flxc_clear_chat_history( $chat_id, $keep_receipts = true ) {
 	$mt   = flxc_table( 'messages' );
 	$keep = $keep_receipts ? array_map( 'intval', (array) $wpdb->get_col( $wpdb->prepare( 'SELECT message_id FROM ' . flxc_table( 'receipts' ) . ' WHERE chat_id = %d', $chat_id ) ) ) : array(); // phpcs:ignore
 	$not  = $keep ? ' AND id NOT IN (' . implode( ',', $keep ) . ')' : '';
-	$dir  = flxc_media_dir();
-	foreach ( (array) $wpdb->get_col( $wpdb->prepare( "SELECT media_path FROM $mt WHERE chat_id = %d AND media_path <> ''$not", $chat_id ) ) as $p ) { // phpcs:ignore
-		$f = $dir . '/' . $p;
-		if ( '' !== $p && false === strpos( $p, '..' ) && is_file( $f ) ) {
-			wp_delete_file( $f );
-		}
+	$paths = array_unique( (array) $wpdb->get_col( $wpdb->prepare( "SELECT media_path FROM $mt WHERE chat_id = %d AND media_path <> ''$not", $chat_id ) ) ); // phpcs:ignore
+	$n     = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM $mt WHERE chat_id = %d$not", $chat_id ) ); // phpcs:ignore
+	// 1.47.0: dosya başka sohbetteki mesajlarda da kullanılıyor olabilir (aynı video çok kişiye); yalnız kimse kullanmıyorsa silinir.
+	foreach ( $paths as $p ) {
+		flxc_media_release( $p );
 	}
-	$n = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM $mt WHERE chat_id = %d$not", $chat_id ) ); // phpcs:ignore
 	if ( ! $keep_receipts ) {
 		$wpdb->delete( flxc_table( 'receipts' ), array( 'chat_id' => (int) $chat_id ) );
 	}

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.47.0
+- Kişi profil fotoğrafları sunucuda önbelleklenir. WhatsApp'ın fotoğraf adresi tarayıcıya hiç gitmez; fotoğrafı sunucu indirir, panel yalnız sitenin kendi adresinden alır (süresi dolan WhatsApp adresi yüzünden kırık fotoğraf da kalmaz). Adres fotoğrafın özetini taşır, tarayıcı uzun süre önbellekte tutar.
+- Sohbet açılınca fotoğrafın güncelliği sunucuda kontrol edilir (sohbet başına en sık 10 dakikada bir); değiştiyse listede, başlıkta ve kişi bilgisinde hemen yenilenir.
+- Sayfa açıkken arka planda hafif kontrol: listedeki sohbetlerden en eski kontrol edilen birkaçı (istekte en fazla 6, kullanıcı başına 20 sn'de bir, sekme gizliyken beklenir, sayfa başına en fazla 20 tur). Yeni uç nokta `POST /avatars/check`, fotoğraf `GET /chats/{id}/photo`.
+- Kişi bilgisinde fotoğrafa basınca büyük önizleme açılır.
+- Medya tek kopya saklanır: dosya adı içeriğin özeti (`files/<ab>/<sha1>.<uzantı>`). Aynı video Çağrı Merkezi'nden ya da kampanyadan yüzlerce kişiye gitse de diskte bir dosya olur; gelen medyada da aynı. Sohbet geçmişi temizlenince dosya, başka mesaj kullanmıyorsa silinir.
+- Eski medya (her mesaja ayrı kopya) yönetici sayfaları açıldıkça arka planda küçük parçalarla tek kopyaya taşınır (30 sn'de bir, parça başına en fazla 150 mesaj / 8 sn). Kopya ancak hiçbir mesaj artık onu göstermiyorsa silinir; sonuç `flxc_media_dedupe` seçeneğinde (taşınan, birleşen, kazanılan bayt).
+- Giden mesaj ulaşınca / okununca zamanı mesaj meta'sına `delivered_at` / `read_at` (Unix sn) olarak yazılır (Flux Mail gönderim panosu için).
+- Yeni filtreler `flxc_avatar_open_ttl`, `flxc_avatar_stale_ttl`, `flxc_chat_avatar_url`.
+
 ## 1.46.0
 - Açık sohbet adreste görünür (`admin.php?page=flx-chat&chat=123`). Sayfayı yenileyince aynı sohbet açılır; bağlantıyı ekip arkadaşına gönderince doğrudan o sohbet açılır.
 - Tarayıcının geri/ileri düğmeleri sohbetler arasında gezer. Telefonda geri önce listeye döner, adresle açılan sohbette de.
