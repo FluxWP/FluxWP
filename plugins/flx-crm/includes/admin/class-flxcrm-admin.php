@@ -441,9 +441,16 @@ final class FLXCRM_Admin {
 	/* Ortak parçalar                                                    */
 	/* ---------------------------------------------------------------- */
 
-	public static function open( $title, $lead = '', $actions = '', $tabs = true ) {
+	/**
+	 * Page head. $back = [ url, label ]: a back button at the top left (detail and edit screens).
+	 */
+	public static function open( $title, $lead = '', $actions = '', $tabs = true, $back = null ) {
 		echo '<div class="wrap flxcrm">';
-		echo '<div class="flxcrm-head"><div><h1>' . esc_html( $title ) . '</h1>';
+		echo '<div class="flxcrm-head' . ( $back ? ' has-back' : '' ) . '">';
+		if ( $back ) {
+			echo '<a class="flxcrm-backbtn" href="' . esc_url( $back[0] ) . '" title="' . esc_attr( $back[1] ) . '" aria-label="' . esc_attr( sprintf( /* translators: %s: page name */ __( 'Back to %s', 'flx-crm' ), $back[1] ) ) . '">' . flxcrm_icon( 'back', 18 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '<div class="flxcrm-head__text"><h1>' . esc_html( $title ) . '</h1>';
 		if ( '' !== $lead ) {
 			echo '<p class="flxcrm-lead">' . esc_html( $lead ) . '</p>';
 		}

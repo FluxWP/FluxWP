@@ -1,5 +1,12 @@
 # Değişiklikler
 
+## 0.8.0
+- Events list redesigned: a grid of cards with the event image (or a date tile), a status badge (today, in N days, over, archived), people and package numbers, the goal bar, and "Open dashboard" / "Message" / ⋯ (package links, edit, site page, close, delete).
+- The site settings that packages show under the list (Flux Certificates: the events section on the home page) now have their own "On the site" tab instead of sitting under the cards.
+- Event dashboard: clicking an event opens Overview (numbers, event info with image, place, map and site page, where its people come from, last messages, package shortcuts), Contacts (with a quick filter) and Messages (compose and history).
+- Back button at the top left of every detail and edit screen (event, event form, segment, journey, duplicates, new contact); the contact card's back link matches it.
+- Dates on the event screens follow the site language (e.g. "11 Kasım 2026").
+
 ## 0.7.0
 - Event messages get values: buttons under the text add `{ad}`, `{ad_soyad}`, event values (`{etkinlik}`, `{etkinlik_tarihi}`, `{etkinlik_saati}`, `{etkinlik_yeri}`, `{etkinlik_link}`), site values (`{site}`, `{kurum}`, `{kurum_telefon}`) and every package's personal values (Flux Certificates: `{fidan}`, `{sertifika_sayisi}`, `{sertifika_link}`, `{sertifika_no}`) where the cursor is.
 - Live preview: pick a person of the event and see the WhatsApp/SMS bubble (with the photo) and the e-mail (subject, photo, paragraphs) as that person will read it; values empty for that person are named.

@@ -87,7 +87,7 @@ final class FLXCRM_Page_Segments {
 	private static function editor( $s ) {
 		$is_new = ! $s;
 		$s      = $s ? $s : array( 'id' => 0, 'name' => '', 'description' => '', 'rules' => array( 'match' => 'all', 'rules' => array( array( 'field' => 'role', 'op' => 'has', 'value' => 'donor' ) ) ) );
-		FLXCRM_Admin::open( $is_new ? __( 'New segment', 'flx-crm' ) : __( 'Edit segment', 'flx-crm' ), __( 'Add rules; the number of matching contacts updates on the right as you go.', 'flx-crm' ) );
+		FLXCRM_Admin::open( $is_new ? __( 'New segment', 'flx-crm' ) : __( 'Edit segment', 'flx-crm' ), __( 'Add rules; the number of matching contacts updates on the right as you go.', 'flx-crm' ), '', true, array( flxcrm_admin_url( 'segments' ), __( 'Segments', 'flx-crm' ) ) );
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-segedit" data-flxcrm-segedit>';
 		wp_nonce_field( 'flxcrm_segment_save' );
 		echo '<input type="hidden" name="action" value="flxcrm_segment_save"><input type="hidden" name="id" value="' . (int) $s['id'] . '">';

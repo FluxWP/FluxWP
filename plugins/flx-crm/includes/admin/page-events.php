@@ -127,7 +127,8 @@ final class FLXCRM_Page_Events {
 		$edit = isset( $_GET['edit'] ) ? absint( $_GET['edit'] ) : 0;
 		$add  = ! empty( $_GET['add'] );
 		$one  = isset( $_GET['id'] ) ? absint( $_GET['id'] ) : 0;
-		$tab  = isset( $_GET['tab'] ) && in_array( $_GET['tab'], array( 'archive', 'arsiv' ), true ) ? 'closed' : 'open';
+		$tab  = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : '';
+		$tab  = in_array( $tab, array( 'archive', 'arsiv' ), true ) ? 'closed' : ( 'site' === $tab ? 'site' : 'open' );
 		// phpcs:enable
 		if ( ( $edit || $add ) && flxcrm_can( true ) ) {
 			self::form( $edit ? flx_event_get( $edit ) : array( 'id' => 0 ) );
@@ -142,108 +143,313 @@ final class FLXCRM_Page_Events {
 		FLXCRM_Admin::open( __( 'Events', 'flx-crm' ), __( 'Events of every FluxWP package in one place. Close an event when it is over: it moves to the archive, its records stay valid and packages stop adding new ones.', 'flx-crm' ), $actions );
 		$open   = flx_events_query( array( 'status' => 'open', 'count' => true ) );
 		$closed = flx_events_query( array( 'status' => 'closed', 'count' => true ) );
-		echo '<nav class="flxcrm-subtabs"><a href="' . esc_url( flxcrm_events_url() ) . '"' . ( 'open' === $tab ? ' class="is-on"' : '' ) . '>' . esc_html__( 'Open', 'flx-crm' ) . ' <b>' . (int) $open . '</b></a><a href="' . esc_url( flxcrm_events_url( array( 'tab' => 'archive' ) ) ) . '"' . ( 'closed' === $tab ? ' class="is-on"' : '' ) . '>' . esc_html__( 'Archived', 'flx-crm' ) . ' <b>' . (int) $closed . '</b></a></nav>';
+		// Packages show their site settings under the list (e.g. Flux Certificates: the events section on the home page).
+		ob_start();
+		do_action( 'flx_events_screen_after' );
+		$site = trim( (string) ob_get_clean() );
+		echo '<nav class="flxcrm-subtabs"><a href="' . esc_url( flxcrm_events_url() ) . '"' . ( 'open' === $tab ? ' class="is-on"' : '' ) . '>' . esc_html__( 'Open', 'flx-crm' ) . ' <b>' . (int) $open . '</b></a><a href="' . esc_url( flxcrm_events_url( array( 'tab' => 'archive' ) ) ) . '"' . ( 'closed' === $tab ? ' class="is-on"' : '' ) . '>' . esc_html__( 'Archived', 'flx-crm' ) . ' <b>' . (int) $closed . '</b></a>';
+		if ( '' !== $site ) {
+			echo '<a href="' . esc_url( flxcrm_events_url( array( 'tab' => 'site' ) ) ) . '"' . ( 'site' === $tab ? ' class="is-on"' : '' ) . '>' . esc_html__( 'On the site', 'flx-crm' ) . '</a>';
+		}
+		echo '</nav>';
+		if ( 'site' === $tab ) {
+			echo '<div class="flxcrm-evsite">' . $site . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput -- packages escape their own output
+			FLXCRM_Admin::close();
+			return;
+		}
 		$list = flx_events_query( array( 'status' => $tab ) );
 		if ( ! $list ) {
-			echo '<div class="flxcrm-card flxcrm-empty-state">' . flxcrm_icon( 'clock', 28 ) . '<p><strong>' . esc_html( 'open' === $tab ? __( 'No open events.', 'flx-crm' ) : __( 'The archive is empty.', 'flx-crm' ) ) . '</strong></p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			echo '<div class="flxcrm-card flxcrm-empty-state">' . flxcrm_icon( 'clock', 28 ) . '<p><strong>' . esc_html( 'open' === $tab ? __( 'No open events.', 'flx-crm' ) : __( 'The archive is empty.', 'flx-crm' ) ) . '</strong></p>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			if ( $can && 'open' === $tab ) {
+				echo '<p><a class="button button-primary" href="' . esc_url( flxcrm_events_url( array( 'add' => 1 ) ) ) . '">' . esc_html__( 'New event', 'flx-crm' ) . '</a></p>';
+			}
+			echo '</div>';
 		}
-		echo '<div class="flxcrm-seglist flxcrm-evlist">';
+		echo '<div class="flxcrm-evgrid">';
 		foreach ( $list as $e ) {
 			self::card( $e, $can );
 		}
 		echo '</div>';
-		do_action( 'flx_events_screen_after' );
 		FLXCRM_Admin::close();
 	}
 
 	private static function when( array $e ) {
-		$d = $e['event_date'] ? flx_date( $e['event_date'] . ' 12:00:00', get_option( 'date_format' ) ) : __( 'No date', 'flx-crm' );
+		$d = $e['event_date'] ? flx_date( $e['event_date'] . ' 12:00:00', 'date' ) : __( 'No date', 'flx-crm' );
 		return $d . ( '' !== (string) $e['event_time'] ? ' · ' . $e['event_time'] : '' );
 	}
 
-	private static function card( array $e, $can ) {
-		$people = flx_event_people( (int) $e['id'] );
-		echo '<article class="flxcrm-card flxcrm-segcard flxcrm-evcard' . ( 'closed' === $e['status'] ? ' is-closed' : '' ) . '"><div class="flxcrm-segcard__head"><div><h2><a href="' . esc_url( flxcrm_events_url( array( 'id' => (int) $e['id'] ) ) ) . '">' . esc_html( $e['name'] ) . '</a></h2>';
-		echo '<p class="flxcrm-muted">' . flxcrm_icon( 'clock', 13 ) . ' ' . esc_html( self::when( $e ) ) . ( '' !== trim( $e['loc_name'] . $e['loc_address'] ) ? ' · ' . esc_html( $e['loc_name'] ? $e['loc_name'] : wp_trim_words( (string) $e['loc_address'], 8 ) ) : '' ) . '</p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
-		echo '<strong class="flxcrm-segcard__count">' . esc_html( number_format_i18n( count( $people ) ) ) . '<small>' . esc_html__( 'contacts', 'flx-crm' ) . '</small></strong></div>';
-		self::stats( $e );
-		echo '<div class="flxcrm-segcard__actions"><a class="button button-small" href="' . esc_url( flxcrm_events_url( array( 'id' => (int) $e['id'] ) ) ) . '">' . esc_html__( 'Contacts', 'flx-crm' ) . '</a>';
-		if ( $can && FLXCRM_Event_Messages::ready() ) {
-			echo '<a class="button button-small" href="' . esc_url( flxcrm_events_url( array( 'id' => (int) $e['id'] ) ) . '#flxcrm-evmsg' ) . '">' . esc_html__( 'Send message', 'flx-crm' ) . '</a>';
-		}
-		foreach ( flx_event_actions( $e ) as $a ) {
-			echo '<a class="button button-small' . ( $a['primary'] ? ' button-primary' : '' ) . '" href="' . esc_url( $a['url'] ) . '"' . ( $a['target'] ? ' target="' . esc_attr( $a['target'] ) . '"' : '' ) . '>' . esc_html( $a['label'] ) . '</a>';
-		}
-		if ( $can ) {
-			echo '<a class="button button-small" href="' . esc_url( flxcrm_events_url( array( 'edit' => (int) $e['id'] ) ) ) . '">' . esc_html__( 'Edit', 'flx-crm' ) . '</a>';
-			$pid = (int) $e['post_id'];
-			if ( $pid && 'publish' === get_post_status( $pid ) ) {
-				echo '<a class="button button-small" href="' . esc_url( get_permalink( $pid ) ) . '" target="_blank">' . esc_html__( 'View on site', 'flx-crm' ) . '</a>';
-			} elseif ( post_type_exists( flx_event_post_type() ) ) {
-				echo self::button( 'page', $e['id'], $pid && get_post( $pid ) ? __( 'Publish on site', 'flx-crm' ) : __( 'Create site page', 'flx-crm' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
-			}
-			echo self::button( 'status', $e['id'], 'closed' === $e['status'] ? __( 'Reopen', 'flx-crm' ) : __( 'Close and archive', 'flx-crm' ), array( 'status' => 'closed' === $e['status'] ? 'open' : 'closed' ) ); // phpcs:ignore WordPress.Security.EscapeOutput
-			if ( 'closed' === $e['status'] ) {
-				echo self::button( 'delete', $e['id'], __( 'Delete', 'flx-crm' ), array(), 'button-link button-link-delete', true ); // phpcs:ignore WordPress.Security.EscapeOutput
-			}
-		}
-		echo '</div></article>';
+	/** Place shown on cards: name, else the start of the address. */
+	private static function place( array $e ) {
+		return '' !== trim( (string) $e['loc_name'] ) ? (string) $e['loc_name'] : wp_trim_words( (string) $e['loc_address'], 8 );
 	}
 
-	private static function stats( array $e ) {
-		$stats = flx_event_stats( $e );
-		if ( ! $stats ) {
-			return;
+	/** [ css class, label ]: archived, today, in N days, over. */
+	private static function phase( array $e ) {
+		if ( 'closed' === $e['status'] ) {
+			return array( 'is-mute', __( 'Archived', 'flx-crm' ) );
 		}
-		echo '<div class="flxcrm-evstats">';
-		foreach ( $stats as $s ) {
-			echo '<div><b>' . esc_html( (string) $s['value'] ) . '</b><span>' . esc_html( (string) $s['label'] ) . '</span>' . ( '' !== (string) $s['hint'] ? '<small>' . esc_html( (string) $s['hint'] ) . '</small>' : '' );
+		if ( ! $e['event_date'] ) {
+			return array( 'is-mute', __( 'No date', 'flx-crm' ) );
+		}
+		$today = wp_date( 'Y-m-d' );
+		if ( $e['event_date'] === $today ) {
+			return array( 'is-ok', __( 'Today', 'flx-crm' ) );
+		}
+		$days = (int) round( ( strtotime( $e['event_date'] . ' 00:00:00 UTC' ) - strtotime( $today . ' 00:00:00 UTC' ) ) / DAY_IN_SECONDS );
+		if ( $days > 0 ) {
+			/* translators: %s: number of days */
+			return array( 'is-info', sprintf( _n( 'In %s day', 'In %s days', $days, 'flx-crm' ), number_format_i18n( $days ) ) );
+		}
+		return array( 'is-warn', __( 'Over, still open', 'flx-crm' ) );
+	}
+
+	/** The ⋯ menu of an event: package links, edit, site page, close / reopen, delete. */
+	private static function more_menu( array $e, $can, $with_package = true ) {
+		$items = '';
+		if ( $with_package ) {
+			foreach ( flx_event_actions( $e ) as $a ) {
+				$items .= '<a class="flxcrm-more__item" role="menuitem" href="' . esc_url( $a['url'] ) . '"' . ( $a['target'] ? ' target="' . esc_attr( $a['target'] ) . '"' : '' ) . '>' . flxcrm_icon( 'link', 15 ) . esc_html( $a['label'] ) . '</a>';
+			}
+		}
+		if ( $can ) {
+			$items .= '<a class="flxcrm-more__item" role="menuitem" href="' . esc_url( flxcrm_events_url( array( 'edit' => (int) $e['id'] ) ) ) . '">' . flxcrm_icon( 'edit', 15 ) . esc_html__( 'Edit', 'flx-crm' ) . '</a>';
+			$pid = (int) $e['post_id'];
+			if ( $pid && 'publish' === get_post_status( $pid ) ) {
+				$items .= '<a class="flxcrm-more__item" role="menuitem" href="' . esc_url( get_permalink( $pid ) ) . '" target="_blank">' . flxcrm_icon( 'arrow', 15 ) . esc_html__( 'View on site', 'flx-crm' ) . '</a>';
+			} elseif ( post_type_exists( flx_event_post_type() ) ) {
+				$items .= self::button( 'page', $e['id'], $pid && get_post( $pid ) ? __( 'Publish on site', 'flx-crm' ) : __( 'Create site page', 'flx-crm' ), array(), 'flxcrm-more__item' );
+			}
+			$items .= self::button( 'status', $e['id'], 'closed' === $e['status'] ? __( 'Reopen', 'flx-crm' ) : __( 'Close and archive', 'flx-crm' ), array( 'status' => 'closed' === $e['status'] ? 'open' : 'closed' ), 'flxcrm-more__item' );
+			if ( 'closed' === $e['status'] ) {
+				$items .= self::button( 'delete', $e['id'], __( 'Delete', 'flx-crm' ), array(), 'flxcrm-more__item is-bad', true );
+			}
+		}
+		if ( '' === $items ) {
+			return '';
+		}
+		return '<details class="flxcrm-more"><summary class="button button-small" aria-label="' . esc_attr__( 'More actions', 'flx-crm' ) . '"><span aria-hidden="true">⋯</span></summary><div class="flxcrm-more__menu" role="menu">' . $items . '</div></details>';
+	}
+
+	/** Cover of a card / the dashboard: the event image, else a date tile. */
+	private static function cover( array $e, $size = 'medium_large' ) {
+		$img = (int) $e['image_id'] ? wp_get_attachment_image_url( (int) $e['image_id'], $size ) : '';
+		if ( $img ) {
+			return '<img src="' . esc_url( $img ) . '" alt="" loading="lazy">';
+		}
+		if ( ! $e['event_date'] ) {
+			return '<span class="flxcrm-evdate">' . flxcrm_icon( 'clock', 26 ) . '</span>';
+		}
+		$t = $e['event_date'] . ' 12:00:00';
+		return '<span class="flxcrm-evdate"><b>' . esc_html( flx_date( $t, 'j' ) ) . '</b><span>' . esc_html( flx_date( $t, 'F' ) ) . '</span><small>' . esc_html( flx_date( $t, 'Y' ) ) . '</small></span>';
+	}
+
+	private static function card( array $e, $can ) {
+		$id     = (int) $e['id'];
+		$url    = flxcrm_events_url( array( 'id' => $id ) );
+		$people = flx_event_people( $id );
+		$phase  = self::phase( $e );
+		$place  = self::place( $e );
+		echo '<article class="flxcrm-card flxcrm-evcard' . ( 'closed' === $e['status'] ? ' is-closed' : '' ) . '">';
+		echo '<a class="flxcrm-evcard__cover" href="' . esc_url( $url ) . '" tabindex="-1" aria-hidden="true">' . self::cover( $e ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<div class="flxcrm-evcard__body"><span class="flxcrm-badge ' . esc_attr( $phase[0] ) . '">' . esc_html( $phase[1] ) . '</span>';
+		echo '<h2><a href="' . esc_url( $url ) . '">' . esc_html( $e['name'] ) . '</a></h2>';
+		echo '<p class="flxcrm-evcard__meta"><span>' . flxcrm_icon( 'clock', 13 ) . esc_html( self::when( $e ) ) . '</span>' . ( '' !== $place ? '<span>' . flxcrm_icon( 'tag', 13 ) . esc_html( $place ) . '</span>' : '' ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<div class="flxcrm-evcard__nums"><div><b>' . esc_html( number_format_i18n( count( $people ) ) ) . '</b><span>' . esc_html__( 'contacts', 'flx-crm' ) . '</span></div>';
+		$bar = null;
+		foreach ( flx_event_stats( $e ) as $s ) {
+			echo '<div><b>' . esc_html( (string) $s['value'] ) . '</b><span>' . esc_html( (string) $s['label'] ) . '</span></div>';
+			if ( null === $bar && null !== $s['progress'] ) {
+				$bar = $s;
+			}
+		}
+		echo '</div>';
+		if ( $bar ) {
+			echo '<div class="flxcrm-evcard__goal"><i class="flxcrm-evbar"><em style="width:' . (int) $bar['progress'] . '%"></em></i><small>' . esc_html( sprintf( /* translators: %s: percent */ __( '%s%%', 'flx-crm' ), number_format_i18n( (int) $bar['progress'] ) ) . ( '' !== (string) $bar['hint'] ? ' · ' . $bar['hint'] : '' ) ) . '</small></div>';
+		}
+		echo '</div><footer class="flxcrm-evcard__foot"><a class="button button-primary button-small" href="' . esc_url( $url ) . '">' . esc_html__( 'Open dashboard', 'flx-crm' ) . '</a>';
+		if ( $can && FLXCRM_Event_Messages::ready() ) {
+			echo '<a class="button button-small" href="' . esc_url( flxcrm_events_url( array( 'id' => $id, 'view' => 'message' ) ) ) . '">' . flxcrm_icon( 'send', 14 ) . ' ' . esc_html__( 'Message', 'flx-crm' ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '<span class="flxcrm-evcard__sp"></span>' . self::more_menu( $e, $can ) . '</footer></article>'; // phpcs:ignore WordPress.Security.EscapeOutput
+	}
+
+	/** One event as a dashboard: Overview, Contacts and Message views. */
+	private static function detail( array $e ) {
+		$can  = flxcrm_can( true );
+		$id   = (int) $e['id'];
+		$view = isset( $_GET['view'] ) ? sanitize_key( wp_unslash( $_GET['view'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
+		$view = in_array( $view, array( 'people', 'message' ), true ) ? $view : 'overview';
+		if ( 'message' === $view && ! $can ) {
+			$view = 'overview';
+		}
+		$people = flx_event_people( $id );
+		$place  = self::place( $e );
+		$phase  = self::phase( $e );
+		$acts   = '';
+		if ( $can ) {
+			$acts .= '<a class="button" href="' . esc_url( flxcrm_events_url( array( 'edit' => $id ) ) ) . '">' . flxcrm_icon( 'edit', 15 ) . ' ' . esc_html__( 'Edit', 'flx-crm' ) . '</a>';
+			if ( FLXCRM_Event_Messages::ready() && 'message' !== $view ) {
+				$acts .= ' <a class="button button-primary" href="' . esc_url( flxcrm_events_url( array( 'id' => $id, 'view' => 'message' ) ) ) . '">' . flxcrm_icon( 'send', 15 ) . ' ' . esc_html__( 'Send message', 'flx-crm' ) . '</a>';
+			}
+		}
+		$acts .= ' ' . self::more_menu( $e, $can, false );
+		FLXCRM_Admin::open( $e['name'], self::when( $e ) . ( '' !== $place ? ' · ' . $place : '' ), $acts, true, array( flxcrm_events_url( 'closed' === $e['status'] ? array( 'tab' => 'archive' ) : array() ), __( 'Events', 'flx-crm' ) ) );
+		$log   = FLXCRM_Event_Messages::history( $id );
+		$views = array(
+			'overview' => __( 'Overview', 'flx-crm' ),
+			'people'   => sprintf( /* translators: %s: number of contacts */ __( 'Contacts %s', 'flx-crm' ), '<b>' . number_format_i18n( count( $people ) ) . '</b>' ),
+		);
+		if ( $can ) {
+			$views['message'] = sprintf( /* translators: %s: number of sends */ __( 'Messages %s', 'flx-crm' ), '<b>' . number_format_i18n( count( $log ) ) . '</b>' );
+		}
+		echo '<nav class="flxcrm-subtabs">';
+		foreach ( $views as $k => $label ) {
+			echo '<a href="' . esc_url( flxcrm_events_url( array( 'id' => $id ) + ( 'overview' === $k ? array() : array( 'view' => $k ) ) ) ) . '"' . ( $view === $k ? ' class="is-on" aria-current="page"' : '' ) . '>' . wp_kses( $label, array( 'b' => array() ) ) . '</a>';
+		}
+		echo '</nav>';
+		if ( 'people' === $view ) {
+			self::people_table( $people );
+		} elseif ( 'message' === $view ) {
+			self::messages( $e, $can );
+		} else {
+			self::overview( $e, $people, $log, $phase, $can );
+		}
+		FLXCRM_Admin::close();
+	}
+
+	/** Dashboard: numbers, event info, where people come from, last sends, package links. */
+	private static function overview( array $e, array $people, array $log, array $phase, $can ) {
+		$id = (int) $e['id'];
+		echo '<div class="flxcrm-kpis flxcrm-evkpis">';
+		echo '<div class="flxcrm-kpi"><span class="flxcrm-kpi__icon">' . flxcrm_icon( 'users', 17 ) . '</span><div class="flxcrm-kpi__body"><span class="flxcrm-kpi__label">' . esc_html__( 'Contacts', 'flx-crm' ) . '</span><span class="flxcrm-kpi__value">' . esc_html( number_format_i18n( count( $people ) ) ) . '</span></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		$icons = array( 'chart', 'badge', 'coins', 'heart', 'layers' );
+		foreach ( array_values( flx_event_stats( $e ) ) as $i => $s ) {
+			echo '<div class="flxcrm-kpi"><span class="flxcrm-kpi__icon">' . flxcrm_icon( $icons[ $i % count( $icons ) ], 17 ) . '</span><div class="flxcrm-kpi__body"><span class="flxcrm-kpi__label">' . esc_html( ucfirst( (string) $s['label'] ) ) . '</span><span class="flxcrm-kpi__value">' . esc_html( (string) $s['value'] ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput
+			if ( '' !== (string) $s['hint'] ) {
+				echo '<span class="flxcrm-kpi__hint">' . esc_html( (string) $s['hint'] ) . '</span>';
+			}
 			if ( null !== $s['progress'] ) {
 				echo '<i class="flxcrm-evbar"><em style="width:' . (int) $s['progress'] . '%"></em></i>';
 			}
-			echo '</div>';
+			echo '</div></div>';
+		}
+		$sent = 0;
+		foreach ( $log as $r ) {
+			foreach ( (array) $r['state'] as $st ) {
+				$sent += $st ? (int) $st['sent'] : 0;
+			}
+		}
+		echo '<div class="flxcrm-kpi"><span class="flxcrm-kpi__icon">' . flxcrm_icon( 'send', 17 ) . '</span><div class="flxcrm-kpi__body"><span class="flxcrm-kpi__label">' . esc_html__( 'Messages delivered', 'flx-crm' ) . '</span><span class="flxcrm-kpi__value">' . esc_html( number_format_i18n( $sent ) ) . '</span><span class="flxcrm-kpi__hint">' . esc_html( sprintf( /* translators: %s: number of sends */ _n( '%s send', '%s sends', count( $log ), 'flx-crm' ), number_format_i18n( count( $log ) ) ) ) . '</span></div></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '</div>';
+
+		echo '<div class="flxcrm-evdash"><div class="flxcrm-evdash__main">';
+		// Event info.
+		echo '<section class="flxcrm-card flxcrm-evinfo"><div class="flxcrm-evinfo__cover">' . self::cover( $e, 'large' ) . '</div><div class="flxcrm-evinfo__body">'; // phpcs:ignore WordPress.Security.EscapeOutput
+		echo '<span class="flxcrm-badge ' . esc_attr( $phase[0] ) . '">' . esc_html( $phase[1] ) . '</span>';
+		if ( '' !== trim( (string) $e['summary'] ) ) {
+			echo '<p class="flxcrm-evinfo__sum">' . esc_html( (string) $e['summary'] ) . '</p>';
+		}
+		echo '<dl class="flxcrm-evinfo__dl"><dt>' . esc_html__( 'Date', 'flx-crm' ) . '</dt><dd>' . esc_html( self::when( $e ) ) . '</dd>';
+		if ( '' !== trim( $e['loc_name'] . $e['loc_address'] ) ) {
+			echo '<dt>' . esc_html__( 'Place', 'flx-crm' ) . '</dt><dd>' . esc_html( (string) $e['loc_name'] ) . ( '' !== trim( (string) $e['loc_address'] ) ? '<small>' . esc_html( (string) $e['loc_address'] ) . '</small>' : '' ) . '</dd>';
+		}
+		$map = trim( (string) $e['loc_map'] );
+		if ( '' !== $map ) {
+			$href = preg_match( '#^https?://#i', $map ) ? $map : 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $map );
+			echo '<dt>' . esc_html__( 'Map', 'flx-crm' ) . '</dt><dd><a href="' . esc_url( $href ) . '" target="_blank" rel="noopener">' . esc_html__( 'Open the map', 'flx-crm' ) . '</a></dd>';
+		}
+		$pid = (int) $e['post_id'];
+		echo '<dt>' . esc_html__( 'Page on the site', 'flx-crm' ) . '</dt><dd>';
+		if ( $pid && 'publish' === get_post_status( $pid ) ) {
+			echo '<a href="' . esc_url( get_permalink( $pid ) ) . '" target="_blank">' . esc_html( get_the_title( $pid ) ) . '</a>';
+		} elseif ( $pid && get_post( $pid ) ) {
+			echo esc_html__( 'Not published', 'flx-crm' );
+		} else {
+			echo esc_html__( 'None', 'flx-crm' );
+		}
+		echo '</dd></dl>';
+		if ( $can && '' !== trim( (string) $e['note'] ) ) {
+			echo '<p class="flxcrm-evinfo__note">' . flxcrm_icon( 'note', 14 ) . esc_html( (string) $e['note'] ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput
+		}
+		echo '</div></section>';
+
+		// Last sends.
+		echo '<section class="flxcrm-card"><div class="flxcrm-card__row"><h2 class="flxcrm-card__title">' . esc_html__( 'Last messages', 'flx-crm' ) . '</h2>';
+		if ( $can ) {
+			echo '<a class="button button-small" href="' . esc_url( flxcrm_events_url( array( 'id' => $id, 'view' => 'message' ) ) ) . '">' . esc_html__( 'All and new', 'flx-crm' ) . '</a>';
 		}
 		echo '</div>';
-	}
-
-	/** One event: numbers, buttons and its people from every package. */
-	private static function detail( array $e ) {
-		$can     = flxcrm_can( true );
-		$actions = '<a class="button" href="' . esc_url( flxcrm_events_url() ) . '">' . flxcrm_icon( 'back', 15 ) . ' ' . esc_html__( 'Events', 'flx-crm' ) . '</a>';
-		if ( $can ) {
-			$actions .= ' <a class="button button-primary" href="' . esc_url( flxcrm_events_url( array( 'edit' => (int) $e['id'] ) ) ) . '">' . esc_html__( 'Edit', 'flx-crm' ) . '</a>';
+		if ( ! $log ) {
+			echo '<p class="flxcrm-muted">' . esc_html__( 'No message sent to this event yet.', 'flx-crm' ) . '</p>';
+		} else {
+			echo '<ul class="flxcrm-evlast">';
+			foreach ( array_slice( $log, 0, 3 ) as $r ) {
+				$planned = '' !== (string) $r['send_at'] ? flx_date( str_replace( 'T', ' ', $r['send_at'] ) . ':00', 'datetime' ) : '';
+				$sent    = 0;
+				$total   = 0;
+				foreach ( (array) $r['state'] as $st ) {
+					$sent  += $st ? (int) $st['sent'] : 0;
+					$total += $st ? (int) $st['total'] : 0;
+				}
+				echo '<li><div><strong>' . esc_html( wp_trim_words( (string) $r['text'], 12 ) ) . '</strong><small>' . esc_html( $planned ? sprintf( /* translators: %s: date and time */ __( 'Planned for %s', 'flx-crm' ), $planned ) : flx_time_ago( (int) $r['at'] ) ) . ' · ' . esc_html( implode( ', ', array_map( function ( $ch ) { return FLXCRM_Event_Messages::channels()[ $ch ] ?? $ch; }, array_keys( (array) $r['state'] ) ) ) ) . '</small></div><span class="flxcrm-pill">' . esc_html( number_format_i18n( $sent ) . ' / ' . number_format_i18n( $total ) ) . '</span></li>';
+			}
+			echo '</ul>';
 		}
-		FLXCRM_Admin::open( $e['name'], self::when( $e ), $actions );
-		echo '<div class="flxcrm-card">';
-		self::stats( $e );
+		echo '</section></div><aside class="flxcrm-evdash__side">';
+
+		// Where people come from.
+		$why = array();
+		foreach ( $people as $reasons ) {
+			foreach ( array_unique( (array) $reasons ) as $r ) {
+				$why[ $r ] = ( $why[ $r ] ?? 0 ) + 1;
+			}
+		}
+		arsort( $why );
+		echo '<section class="flxcrm-card"><div class="flxcrm-card__row"><h2 class="flxcrm-card__title">' . esc_html__( 'Who is in this event', 'flx-crm' ) . '</h2><a class="button button-small" href="' . esc_url( flxcrm_events_url( array( 'id' => $id, 'view' => 'people' ) ) ) . '">' . esc_html__( 'List', 'flx-crm' ) . '</a></div>';
+		if ( ! $why ) {
+			echo '<p class="flxcrm-muted">' . esc_html__( 'No one is tied to this event yet.', 'flx-crm' ) . '</p>';
+		} else {
+			$max = max( $why );
+			echo '<ul class="flxcrm-evwhy">';
+			foreach ( array_slice( $why, 0, 8, true ) as $label => $n ) {
+				echo '<li><span>' . esc_html( (string) $label ) . '</span><b>' . esc_html( number_format_i18n( $n ) ) . '</b><i class="flxcrm-evbar"><em style="width:' . (int) round( $n / $max * 100 ) . '%"></em></i></li>';
+			}
+			echo '</ul>';
+		}
+		echo '</section>';
+
 		$acts = flx_event_actions( $e );
 		if ( $acts ) {
-			echo '<div class="flxcrm-segcard__actions">';
+			echo '<section class="flxcrm-card"><div class="flxcrm-card__row"><h2 class="flxcrm-card__title">' . esc_html__( 'Shortcuts', 'flx-crm' ) . '</h2></div><div class="flxcrm-evlinks">';
 			foreach ( $acts as $a ) {
-				echo '<a class="button button-small" href="' . esc_url( $a['url'] ) . '">' . esc_html( $a['label'] ) . '</a>';
+				echo '<a href="' . esc_url( $a['url'] ) . '"' . ( $a['target'] ? ' target="' . esc_attr( $a['target'] ) . '"' : '' ) . '>' . flxcrm_icon( 'link', 15 ) . '<span>' . esc_html( $a['label'] ) . '</span>' . flxcrm_icon( 'arrow', 14 ) . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput
 			}
-			echo '</div>';
+			echo '</div></section>';
 		}
-		echo '</div>';
-		self::messages( $e, $can );
-		$people = flx_event_people( (int) $e['id'] );
-		echo '<section class="flxcrm-card flxcrm-card--flush"><h2 class="flxcrm-card__title" style="padding:14px 18px 0">' . esc_html( sprintf( /* translators: %s: number of people */ __( 'Contacts (%s)', 'flx-crm' ), number_format_i18n( count( $people ) ) ) ) . '</h2>';
+		echo '</aside></div>';
+	}
+
+	/** Contacts of the event with a quick filter. */
+	private static function people_table( array $people ) {
+		echo '<section class="flxcrm-card flxcrm-card--flush">';
 		if ( ! $people ) {
-			echo '<p class="flxcrm-muted" style="padding:0 18px 14px">' . esc_html__( 'No one is tied to this event yet.', 'flx-crm' ) . '</p></section>';
-			FLXCRM_Admin::close();
+			echo '<p class="flxcrm-muted" style="padding:14px 18px">' . esc_html__( 'No one is tied to this event yet.', 'flx-crm' ) . '</p></section>';
 			return;
 		}
 		$rows = flx_people_query( array( 'ids' => array_slice( array_keys( $people ), 0, 500 ), 'per_page' => 500, 'orderby' => 'name', 'order' => 'asc' ) );
-		echo '<table class="widefat striped flxcrm-table"><thead><tr><th>' . esc_html__( 'Name', 'flx-crm' ) . '</th><th>' . esc_html__( 'Phone', 'flx-crm' ) . '</th><th>' . esc_html__( 'E-mail', 'flx-crm' ) . '</th><th>' . esc_html__( 'Why', 'flx-crm' ) . '</th></tr></thead><tbody>';
+		echo '<div class="flxcrm-evpeople__bar"><input type="search" data-flxcrm-filter="#flxcrm-evpeople" placeholder="' . esc_attr__( 'Filter by name, phone or e-mail', 'flx-crm' ) . '" aria-label="' . esc_attr__( 'Filter', 'flx-crm' ) . '">';
+		if ( count( $people ) > 500 ) {
+			echo '<small class="flxcrm-muted">' . esc_html( sprintf( /* translators: %s: number of contacts */ __( 'First 500 of %s shown.', 'flx-crm' ), number_format_i18n( count( $people ) ) ) ) . '</small>';
+		}
+		echo '</div><table class="widefat striped flxcrm-table" id="flxcrm-evpeople"><thead><tr><th>' . esc_html__( 'Name', 'flx-crm' ) . '</th><th>' . esc_html__( 'Phone', 'flx-crm' ) . '</th><th>' . esc_html__( 'E-mail', 'flx-crm' ) . '</th><th>' . esc_html__( 'Why', 'flx-crm' ) . '</th></tr></thead><tbody>';
 		foreach ( $rows as $p ) {
 			$name = '' !== trim( (string) $p['name'] ) ? $p['name'] : __( '(no name)', 'flx-crm' );
 			echo '<tr><td data-label="' . esc_attr__( 'Name', 'flx-crm' ) . '"><a href="' . esc_url( flxcrm_contact_url( (int) $p['id'] ) ) . '"><strong>' . esc_html( $name ) . '</strong></a></td>';
 			echo '<td data-label="' . esc_attr__( 'Phone', 'flx-crm' ) . '">' . esc_html( '' !== (string) $p['phone'] ? '+' . $p['phone'] : '—' ) . '</td>';
 			echo '<td data-label="' . esc_attr__( 'E-mail', 'flx-crm' ) . '">' . esc_html( '' !== (string) $p['email'] ? $p['email'] : '—' ) . '</td>';
-			echo '<td data-label="' . esc_attr__( 'Why', 'flx-crm' ) . '">' . esc_html( implode( ', ', $people[ (int) $p['id'] ] ?? array() ) ) . '</td></tr>';
+			echo '<td data-label="' . esc_attr__( 'Why', 'flx-crm' ) . '">' . esc_html( implode( ', ', array_unique( $people[ (int) $p['id'] ] ?? array() ) ) ) . '</td></tr>';
 		}
 		echo '</tbody></table></section>';
-		FLXCRM_Admin::close();
 	}
 
 	/** Event message: compose (now or planned) and the list of sends. */
@@ -430,7 +636,7 @@ final class FLXCRM_Page_Events {
 		$fields = flx_event_fields();
 		$cols   = flx_events_columns();
 		$id     = (int) ( $e['id'] ?? 0 );
-		FLXCRM_Admin::open( $id ? __( 'Edit event', 'flx-crm' ) : __( 'New event', 'flx-crm' ), '', '<a class="button" href="' . esc_url( flxcrm_events_url( $id ? array( 'id' => $id ) : array() ) ) . '">' . flxcrm_icon( 'back', 15 ) . ' ' . esc_html__( 'Events', 'flx-crm' ) . '</a>' );
+		FLXCRM_Admin::open( $id ? __( 'Edit event', 'flx-crm' ) : __( 'New event', 'flx-crm' ), $id ? (string) $e['name'] : '', '', true, array( flxcrm_events_url( $id ? array( 'id' => $id ) : array() ), $id ? (string) $e['name'] : __( 'Events', 'flx-crm' ) ) );
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="flxcrm-evform">';
 		wp_nonce_field( 'flxcrm_gathering_save' );
 		echo '<input type="hidden" name="action" value="flxcrm_gathering_save"><input type="hidden" name="id" value="' . (int) $id . '"><div class="flxcrm-form--grid">';

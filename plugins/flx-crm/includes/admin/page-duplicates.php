@@ -81,8 +81,7 @@ final class FLXCRM_Page_Duplicates {
 	}
 
 	public static function render() {
-		$back = '<a class="button" href="' . esc_url( flxcrm_admin_url( 'contacts' ) ) . '">' . flxcrm_icon( 'back', 15 ) . ' ' . esc_html__( 'Contacts', 'flx-crm' ) . '</a>';
-		FLXCRM_Admin::open( __( 'Possible duplicates', 'flx-crm' ), __( 'The same person can arrive twice, e.g. once with only a phone and later with only an e-mail. Pick the card to keep: the others are merged into it, and every package moves its records (certificates, donations…) to it.', 'flx-crm' ), $back );
+		FLXCRM_Admin::open( __( 'Possible duplicates', 'flx-crm' ), __( 'The same person can arrive twice, e.g. once with only a phone and later with only an e-mail. Pick the card to keep: the others are merged into it, and every package moves its records (certificates, donations…) to it.', 'flx-crm' ), '', true, array( flxcrm_admin_url( 'contacts' ), __( 'Contacts', 'flx-crm' ) ) );
 		$groups = self::groups();
 		if ( ! $groups ) {
 			echo '<div class="flxcrm-card flxcrm-empty-state">' . flxcrm_icon( 'check', 28 ) . '<p><strong>' . esc_html__( 'No likely duplicates.', 'flx-crm' ) . '</strong></p></div>'; // phpcs:ignore WordPress.Security.EscapeOutput
