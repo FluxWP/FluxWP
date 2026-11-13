@@ -519,6 +519,23 @@ function flxc_update_message( $id, array $fields ) {
  * type 'deleted' olur; asıl tür/metin meta'da saklanır, kim/ne zaman/nasıl silindiği yazılır.
  * $scope: contact (kişi sildi), phone (bağlı telefondan silindi), everyone (panelden herkesten silindi), panel (yalnız panelde gizlendi).
  */
+/**
+ * 1.45.0: mesaj metnini düzenlenmiş olarak günceller (panelden ya da WhatsApp'tan gelen düzenleme).
+ * İlk metin meta orig_body'de kalır; düzenleyen panel kullanıcısıysa edited_by yazılır.
+ */
+function flxc_apply_edit( $m, $body, $user_id = 0 ) {
+	$meta = flxc_decode( $m['meta'] );
+	if ( ! isset( $meta['orig_body'] ) ) {
+		$meta['orig_body'] = (string) $m['body'];
+	}
+	$meta['edited']    = 1;
+	$meta['edited_at'] = time();
+	if ( $user_id ) {
+		$meta['edited_by'] = (int) $user_id;
+	}
+	flxc_update_message( $m['id'], array( 'body' => (string) $body, 'meta' => $meta ) );
+}
+
 function flxc_soft_delete_message( $m, $scope, $user_id = 0 ) {
 	if ( ! is_array( $m ) ) {
 		$m = flxc_get_message( (int) $m );
@@ -567,6 +584,23 @@ function flxc_revoke_until( $m ) {
 		return 0;
 	}
 	return (int) $m['ts'] + $h * HOUR_IN_SECONDS * 1000;
+}
+
+/**
+ * 1.45.0: WhatsApp düzenleme süresi (dakika). WhatsApp gönderimden sonra 15 dakika izin verir.
+ * Filtre `flxc_edit_minutes` (0 = düzenleme kapalı, en çok 15).
+ */
+function flxc_edit_minutes() {
+	return (int) min( 15, max( 0, (int) apply_filters( 'flxc_edit_minutes', 15 ) ) );
+}
+
+/** Düzenlenebileceği son an (ms), olmuyorsa 0. Yalnız Evolution hattından giden, gönderilmiş metin mesajı. */
+function flxc_edit_until( $m ) {
+	$min = flxc_edit_minutes();
+	if ( ! $min || 'out' !== $m['direction'] || '' === (string) $m['wa_id'] || 'text' !== $m['type'] || in_array( $m['status'], array( 'failed', 'pending', '' ), true ) || ! flxc_conn_can_revoke( $m['conn'] ) ) {
+		return 0;
+	}
+	return (int) $m['ts'] + $min * MINUTE_IN_SECONDS * 1000;
 }
 
 /** Durum yalnız ileri gider: pending < sent < delivered < read < played. */
@@ -740,6 +774,10 @@ function flxc_message_for_js( $r, $q = null ) {
 		$until = flxc_revoke_until( $r );
 		if ( $until ) {
 			$out['revokeUntil'] = $until;
+		}
+		$euntil = flxc_edit_until( $r );
+		if ( $euntil ) {
+			$out['editUntil'] = $euntil;
 		}
 	}
 	if ( ! empty( $meta['lp'] ) ) {

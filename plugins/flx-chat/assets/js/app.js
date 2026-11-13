@@ -1318,6 +1318,8 @@
 			}, h('strong', { text: m.quoted.dir === 'in' ? (S.chats.get(S.active) || {}).title || '' : t('Siz') }), h('span', { text: m.quoted.body })));
 		}
 		b.appendChild(content(m));
+		// 1.45.0: fotoğraf/video varsa balon medya genişliğinde; açıklama metni medyanın genişliğine sarılır.
+		if (!m.deleted && (m.type === 'image' || m.type === 'video') && m.media) b.classList.add('has-media');
 		if (b.querySelector('.flxc-lp-slot')) b.classList.add('has-lp');
 		var rb = receiptBar(m);
 		if (rb) b.appendChild(rb);
@@ -1389,9 +1391,21 @@
 				wrap.appendChild(fig);
 				break;
 			case 'video':
-				var vfig = h('div', { class: 'flxc-vid' });
-				var vid = h('video', { src: media.url, controls: true, preload: 'metadata', playsinline: true });
+				// 1.45.0: balonda oynatıcı yok; önizleme (ilk kare / küçük resim + oynat), tıklayınca önizleme penceresinde izlenir.
+				var vratio = media && media.w && media.h ? Math.min(1.6, Math.max(0.5, media.h / media.w)) : 0.75;
+				var vfig = h('button', { type: 'button', class: 'flxc-img flxc-vid', style: { aspectRatio: '1 / ' + vratio }, 'aria-label': t('Videoyu oynat'), onclick: function () { lightbox(media.url, 'video', m); } });
+				if (media && media.thumb) vfig.style.backgroundImage = 'url("' + media.thumb + '")';
+				var vdurT = h('em', { text: media.secs ? fmtSecs(media.secs) : '' });
+				var vid = h('video', { src: media.url + '#t=0.1', preload: 'metadata', playsinline: true, tabindex: '-1', 'aria-hidden': 'true' });
+				vid.muted = true;
+				vid.addEventListener('loadedmetadata', function () {
+					if (!(media.w && media.h) && vid.videoWidth) vfig.style.aspectRatio = '1 / ' + Math.min(1.6, Math.max(0.5, vid.videoHeight / vid.videoWidth));
+					if (!media.secs && isFinite(vid.duration) && vid.duration > 0) vdurT.textContent = fmtSecs(Math.round(vid.duration));
+				});
+				vid.onerror = function () { vid.remove(); };
 				vfig.appendChild(vid);
+				vfig.appendChild(h('span', { class: 'flxc-vid-play' }, icon('play')));
+				vfig.appendChild(h('span', { class: 'flxc-vid-dur' }, icon('video'), vdurT));
 				wrap.appendChild(vfig);
 				break;
 			case 'audio':
@@ -1427,7 +1441,7 @@
 			if (lps) wrap.appendChild(lps);
 			var tx = h('div', { class: 'flxc-text', html: waFormat(text) });
 			if (/^(\p{Extended_Pictographic}|️|‍|\s){1,6}$/u.test(text) && m.type === 'text') tx.classList.add('is-jumbo');
-			tx.appendChild(h('span', { class: 'flxc-meta-sp' }));
+			tx.appendChild(h('span', { class: 'flxc-meta-sp' + (m.edited ? ' is-edited' : '') }));
 			wrap.appendChild(tx);
 		}
 		wrap.appendChild(meta);
@@ -1490,6 +1504,8 @@
 		}
 		if (m.dir !== 'note' && m.wa) items.push({ icon: 'reply', label: t('Yanıtla'), fn: function () { setQuoted(m); } });
 		if (m.body) items.push({ icon: 'copy', label: t('Kopyala'), fn: function () { copyText(m.body); } });
+		// 1.45.0: WhatsApp gibi düzenle; yalnız gönderen/yönetici, WhatsApp süresi (15 dk) içinde.
+		if (m.dir === 'out' && m.editUntil && m.editUntil > Date.now() && (m.userId === S.me.id || S.me.manage)) items.push({ icon: 'edit', label: t('Düzenle'), fn: function () { openEdit(m); } });
 		if (m.media && m.media.url) items.push({ icon: 'download', label: t('İndir'), fn: function () { window.open(m.media.url + '&download=1', '_blank'); } });
 		if (m.status === 'failed') items.push({ icon: 'reopen', label: t('Tekrar gönder'), fn: function () { retry(m); } });
 		if (recOn() && m.dir === 'in' && (m.type === 'image' || m.type === 'document')) items.push({ icon: 'receipt', label: t('Dekont olarak eşleştir'), fn: function () { openReceipt(m); } });
@@ -1520,6 +1536,57 @@
 		api('messages/' + m.id, { method: 'DELETE', query: { scope: 'panel' } }).then(function (r) {
 			applyMessages([r.message]);
 		}).catch(function (e) { toast(e.message, 'err'); });
+	}
+
+	/* 1.45.0: giden metin mesajını düzenle (WhatsApp'ta da düzenlenir, kişide "Düzenlendi" görünür). */
+	function openEdit(m) {
+		var ta = h('textarea', { class: 'flxc-field flxc-edit-ta', rows: '5', 'aria-label': t('Mesaj') });
+		ta.value = m.body || '';
+		var left = h('small', { class: 'flxc-help flxc-edit-left' });
+		var save = h('button', { type: 'button', class: 'flxc-btn' }, icon('check'), t('Kaydet'));
+		var cancel = h('button', { type: 'button', class: 'flxc-btn flxc-btn-ghost' }, t('Vazgeç'));
+		var timer = 0, busy = false;
+		function tick() {
+			if (!ta.isConnected && timer) { clearInterval(timer); return; }
+			var ms = (m.editUntil || 0) - Date.now();
+			if (ms <= 0) {
+				left.textContent = t('Düzenleme süresi doldu. WhatsApp gönderimden sonra 15 dakika izin verir.');
+				left.classList.add('flxc-warn');
+				save.disabled = true;
+				clearInterval(timer);
+				return;
+			}
+			var mm = Math.floor(ms / 60000), ss = Math.floor(ms / 1000) % 60;
+			left.textContent = t('Kalan süre: {t}', { t: mm + ':' + (ss < 10 ? '0' : '') + ss });
+		}
+		function sync() { save.disabled = busy || !ta.value.trim() || ta.value.trim() === (m.body || '').trim() || (m.editUntil || 0) <= Date.now(); }
+		function go() {
+			sync();
+			if (save.disabled) return;
+			busy = true; sync();
+			api('messages/' + m.id + '/edit', { method: 'POST', body: { text: ta.value.trim() } }).then(function (r) {
+				dlg.close();
+				applyMessages([r.message]);
+				toast(t('Mesaj düzenlendi'));
+			}).catch(function (e) { busy = false; sync(); toast(e.message, 'err'); });
+		}
+		ta.addEventListener('input', sync);
+		ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); go(); } });
+		save.addEventListener('click', go);
+		var dlg = modal({
+			cls: 'flxc-exp flxc-edit-dlg', title: t('Mesajı düzenle'),
+			body: [
+				h('p', { class: 'flxc-help', text: t('Mesaj kişinin telefonunda da değişir ve altında "Düzenlendi" yazar.') }),
+				ta, left
+			],
+			foot: [cancel, save]
+		});
+		var close0 = dlg.close;
+		dlg.close = function () { clearInterval(timer); close0(); };
+		cancel.addEventListener('click', dlg.close);
+		timer = setInterval(tick, 1000);
+		tick(); sync();
+		setTimeout(function () { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); }, 30);
 	}
 
 	/* 1.38.0: WhatsApp gibi "Herkesten sil" / "Yalnız panelde gizle". Satır ve dosya sunucuda kalır. */
@@ -3078,11 +3145,20 @@
 		function onKey(e) { if (e.key === 'Escape') { e.stopPropagation(); close(); } }
 		document.addEventListener('keydown', onKey, true);
 		back.appendChild(h('div', { class: 'flxc-lb-bar' },
-			h('span', { text: (m && m.body) || '' }),
+			h('span', { class: 'flxc-lb-who' }, h('strong', { text: !m ? '' : m.dir === 'out' ? t('Siz') : (m.sender || (S.chats.get(S.active) || {}).title || '') }), m && m.ts ? h('small', { text: fmtLong.format(m.ts) + ' ' + fmtTime.format(m.ts) }) : null),
 			h('a', { class: 'flxc-ib', href: src + '&download=1', target: '_blank', rel: 'noopener', title: t('İndir') }, icon('download')),
 			btn('close', t('Kapat'), close)
 		));
-		back.appendChild(h('img', { src: src, alt: '' }));
+		if (kind === 'video') {
+			var lv = h('video', { src: src, controls: true, autoplay: true, playsinline: true, preload: 'auto' });
+			back.appendChild(lv);
+			var pp = lv.play && lv.play();
+			if (pp && pp.catch) pp.catch(function () {});
+		} else {
+			back.appendChild(h('img', { src: src, alt: (m && m.body) || '' }));
+		}
+		var cap = m && m.body ? h('div', { class: 'flxc-lb-cap', html: waFormat(m.body) }) : null;
+		if (cap) back.appendChild(cap);
 		back.addEventListener('click', function (e) { if (e.target === back || e.target.tagName === 'IMG') close(); });
 		root.appendChild(back);
 	}

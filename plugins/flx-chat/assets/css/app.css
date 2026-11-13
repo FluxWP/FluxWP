@@ -296,6 +296,8 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 #flxc-app .flxc-text.is-jumbo { font-size: 38px; line-height: 46px; }
 #flxc-app .flxc-meta-sp { display: inline-block; width: 64px; height: 1px; }
 #flxc-app .flxc-m-out .flxc-meta-sp { width: 86px; }
+#flxc-app .flxc-meta-sp.is-edited { width: 132px; }
+#flxc-app .flxc-m-out .flxc-meta-sp.is-edited { width: 154px; }
 #flxc-app .flxc-meta { display: flex; justify-content: flex-end; align-items: center; gap: 3px; font-size: 11px; color: var(--flxc-muted); white-space: nowrap; margin-top: 3px; height: 15px; }
 #flxc-app .flxc-text + .flxc-meta { position: absolute; right: 0; bottom: -5px; margin: 0; }
 #flxc-app .flxc-meta.is-over { position: absolute; right: 4px; bottom: 4px; padding: 2px 6px; border-radius: 10px; color: #fff; background: linear-gradient(transparent, rgba(0, 0, 0, .45)); }
@@ -352,7 +354,24 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 #flxc-app .flxc-sticker { width: 150px; min-width: 0; height: 150px; background: none; margin: 0; aspect-ratio: auto !important; }
 #flxc-app .flxc-sticker img { object-fit: contain; }
 #flxc-app .flxc-c:has(.flxc-img) { min-width: 220px; }
-#flxc-app .flxc-vid video { display: block; width: 330px; max-width: 100%; border-radius: 6px; background: #000; max-height: 420px; }
+/* 1.45.0: medyalı balon medya genişliğinde (WhatsApp gibi), video balonda oynamaz: önizleme + oynat */
+#flxc-app .flxc-b.has-media { width: 330px; max-width: min(85%, 330px); padding: 3px 3px 8px; }
+#flxc-app .flxc-b.has-media .flxc-c { min-width: 0; }
+#flxc-app .flxc-b.has-media .flxc-img { margin: 0 0 4px; width: 100%; min-width: 0; }
+#flxc-app .flxc-b.has-media .flxc-text, #flxc-app .flxc-b.has-media .flxc-lp, #flxc-app .flxc-b.has-media .flxc-b-tag, #flxc-app .flxc-b.has-media .flxc-b-sender, #flxc-app .flxc-b.has-media .flxc-quote, #flxc-app .flxc-b.has-media .flxc-b-del { margin-left: 6px; margin-right: 5px; }
+#flxc-app .flxc-b.has-media .flxc-quote, #flxc-app .flxc-b.has-media .flxc-b-del { width: auto; }
+#flxc-app .flxc-b.has-media .flxc-text + .flxc-meta { right: 5px; }
+#flxc-app .flxc-b.has-media:not(:has(.flxc-text)) { padding-bottom: 3px; }
+#flxc-app .flxc-b.has-media:not(:has(.flxc-text)) .flxc-img { margin-bottom: 0; }
+#flxc-app .flxc-vid { padding: 0; border: 0; cursor: pointer; background-color: #0b141a; color: #fff; }
+#flxc-app .flxc-vid video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+#flxc-app .flxc-vid-play { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: rgba(11, 20, 26, .55); display: flex; align-items: center; justify-content: center; transition: transform .15s ease, background .15s ease; }
+#flxc-app .flxc-vid-play .flxc-i { width: 32px; height: 32px; margin-left: 3px; }
+#flxc-app .flxc-vid:hover .flxc-vid-play, #flxc-app .flxc-vid:focus-visible .flxc-vid-play { transform: scale(1.08); background: rgba(11, 20, 26, .75); }
+#flxc-app .flxc-vid-dur { position: absolute; left: 6px; bottom: 5px; display: flex; align-items: center; gap: 4px; padding: 2px 6px; border-radius: 10px; font-size: 11px; color: #fff; background: rgba(0, 0, 0, .45); }
+#flxc-app .flxc-vid-dur .flxc-i { width: 14px; height: 14px; }
+#flxc-app .flxc-vid-dur em { font-style: normal; }
+#flxc-app .flxc-vid-dur em:empty { display: none; }
 #flxc-app .flxc-au { display: flex; align-items: center; gap: 8px; width: 290px; max-width: 100%; padding: 4px 2px 0 0; }
 #flxc-app .flxc-au-mic { width: 46px; height: 46px; border-radius: 50%; background: #e9edef; color: #8696a0; display: flex; align-items: center; justify-content: center; flex: none; }
 #flxc-app .flxc-au.is-ptt .flxc-au-mic { background: var(--flxc-accent); color: #fff; }
@@ -544,8 +563,16 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 #flxc-app .flxc-pv-cap { flex: 1; background: var(--flxc-input); border-radius: 8px; padding: 11px 14px; font-size: 15px; }
 
 /* --- ışık kutusu / bildirim --- */
-#flxc-app .flxc-lb { position: absolute; inset: 0; z-index: 80; background: rgba(11, 20, 26, .94); display: flex; align-items: center; justify-content: center; padding: 64px 20px 20px; animation: flxc-fade .15s ease; }
-#flxc-app .flxc-lb img { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-out; }
+#flxc-app .flxc-lb { position: absolute; inset: 0; z-index: 80; background: rgba(11, 20, 26, .97); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 64px 20px 20px; animation: flxc-fade .15s ease; }
+#flxc-app .flxc-lb { flex-direction: column; gap: 12px; }
+#flxc-app .flxc-lb img, #flxc-app .flxc-lb video { max-width: 100%; max-height: 100%; min-height: 0; flex: 0 1 auto; object-fit: contain; }
+#flxc-app .flxc-lb img { cursor: zoom-out; }
+#flxc-app .flxc-lb video { background: #000; border-radius: 4px; }
+#flxc-app .flxc-lb-who { display: flex; flex-direction: column; line-height: 1.3; }
+#flxc-app .flxc-lb-who strong { font-size: 15px; font-weight: 600; }
+#flxc-app .flxc-lb-who small { font-size: 12.5px; color: #aebac1; }
+#flxc-app .flxc-lb-cap { flex: none; max-width: 720px; width: 100%; max-height: 22%; overflow-y: auto; color: #e9edef; font-size: 14.5px; line-height: 1.45; text-align: center; overflow-wrap: anywhere; }
+#flxc-app .flxc-lb-cap a { color: #53bdeb; }
 #flxc-app .flxc-lb-bar { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 4px; padding: 10px 16px; color: #e9edef; }
 #flxc-app .flxc-lb-bar span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #flxc-app .flxc-lb-bar .flxc-ib { color: #e9edef; }
@@ -741,6 +768,10 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 	#flxc-app .flxc-b { max-width: 85%; }
 	#flxc-app .flxc-img { min-width: 0; }
 	#flxc-app .flxc-c:has(.flxc-img) { min-width: 0; width: 72vw; }
+	#flxc-app .flxc-b.has-media { width: 72vw; max-width: min(85%, 330px); }
+	#flxc-app .flxc-b.has-media .flxc-c:has(.flxc-img) { width: auto; }
+	#flxc-app .flxc-lb { padding: 60px 8px 12px; }
+	#flxc-app .flxc-lb-cap { font-size: 14px; max-height: 26%; }
 	/* Telefonda (1.11.2): üstte tam satır input, altında ikonlar, gönder sağ altta. */
 	#flxc-app .flxc-comp { flex-wrap: wrap; align-items: center; padding: 8px 8px 6px; padding-bottom: calc(6px + env(safe-area-inset-bottom)); gap: 2px; min-height: 0; }
 	#flxc-app .flxc-comp .flxc-input-wrap { order: -1; flex: 1 0 100%; margin: 0 0 6px; border-radius: 20px; }
@@ -916,3 +947,6 @@ html.flxc-lock #wpfooter, html.flxc-lock .notice, html.flxc-lock #screen-meta-li
 #flxc-app .flxc-clog-row.is-system .flxc-clog-src { background: rgba(14, 165, 233, .14); color: #0284c7; }
 #flxc-app .flxc-clog-row.is-staff .flxc-clog-src { background: rgba(0, 168, 132, .14); color: var(--flxc-accent-ink); }
 #flxc-app .flxc-clog + .flxc-link { margin-top: 6px; }
+/* 1.45.0: mesajı düzenle penceresi */
+#flxc-app .flxc-edit-dlg .flxc-edit-ta { margin-top: 12px; line-height: 1.45; }
+#flxc-app .flxc-edit-dlg .flxc-edit-left { display: block; margin-top: 8px; font-variant-numeric: tabular-nums; }

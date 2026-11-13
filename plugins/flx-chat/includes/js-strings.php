@@ -212,6 +212,7 @@ function flxc_js_strings() {
 		'Silinen mesaj sunucuda saklanır: sohbette "Bu mesaj silindi" satırı görünür, ekip tıklayıp içeriği açabilir. Yapay zekâ silinen mesajı okumaz.' => __( 'Deleted messages are kept on the server: the chat shows a "This message was deleted" line and the team can click it to see the content. AI does not read deleted messages.', 'flx-chat' ),
 		'Fotoğraf' => __( 'Photo', 'flx-chat' ),
 		'Görsel yüklenemedi' => __( 'Image could not be loaded', 'flx-chat' ),
+		'Videoyu oynat' => __( 'Play video', 'flx-chat' ),
 		'Belge' => __( 'Document', 'flx-chat' ),
 		'Konum' => __( 'Location', 'flx-chat' ),
 		'Kişi kartı' => __( 'Contact card', 'flx-chat' ),
@@ -428,5 +429,11 @@ function flxc_js_strings() {
 		'(boş)' => __( '(empty)', 'flx-chat' ),
 		'Daha az göster' => __( 'Show less', 'flx-chat' ),
 		'Tümünü göster ({n})' => __( 'Show all ({n})', 'flx-chat' ),
+		'Vazgeç' => __( 'Cancel', 'flx-chat' ),
+		'Düzenleme süresi doldu. WhatsApp gönderimden sonra 15 dakika izin verir.' => __( 'The time limit for editing has passed. WhatsApp allows 15 minutes after sending.', 'flx-chat' ),
+		'Kalan süre: {t}' => __( 'Time left: {t}', 'flx-chat' ),
+		'Mesaj düzenlendi' => __( 'Message edited', 'flx-chat' ),
+		'Mesajı düzenle' => __( 'Edit message', 'flx-chat' ),
+		'Mesaj kişinin telefonunda da değişir ve altında "Düzenlendi" yazar.' => __( 'The message also changes on the contact\'s phone and shows "Edited" below it.', 'flx-chat' ),
 	);
 }

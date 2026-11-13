@@ -144,6 +144,21 @@ function flxc_evo_delete_for_everyone( $conn, $remote_jid, $wa_id, $participant 
 	return flxc_evo( $conn, 'DELETE', '/chat/deleteMessageForEveryone/{instance}', $body, 15 );
 }
 
+/** 1.45.0: WhatsApp "düzenle" (Evolution v2 POST /chat/updateMessage). Yalnız kendi gönderdiğimiz mesaj, ~15 dk içinde. */
+function flxc_evo_edit_message( $conn, $remote_jid, $wa_id, $text ) {
+	return flxc_evo(
+		$conn,
+		'POST',
+		'/chat/updateMessage/{instance}',
+		array(
+			'number' => (string) $remote_jid,
+			'key'    => array( 'remoteJid' => (string) $remote_jid, 'fromMe' => true, 'id' => (string) $wa_id ),
+			'text'   => (string) $text,
+		),
+		15
+	);
+}
+
 function flxc_evo_mark_read( $conn, $remote_jid, array $wa_ids ) {
 	$list = array();
 	foreach ( $wa_ids as $id ) {

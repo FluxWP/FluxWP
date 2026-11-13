@@ -23,8 +23,21 @@ function flxc_handle_event( $conn_id, array $payload ) {
 			break;
 		case 'messages.update':
 			foreach ( isset( $data[0] ) ? $data : array( $data ) as $d ) {
-				if ( is_array( $d ) ) {
-					flxc_ingest_status( $conn_id, $d );
+				if ( ! is_array( $d ) ) {
+					continue;
+				}
+				// 1.45.0: bazı Evolution sürümleri düzenlemeyi update olayıyla yollar (message.editedMessage / protocolMessage).
+				if ( isset( $d['message'] ) && is_array( $d['message'] ) && ( isset( $d['message']['editedMessage'] ) || isset( $d['message']['protocolMessage'] ) ) ) {
+					flxc_ingest_message( $conn_id, $d );
+					continue;
+				}
+				flxc_ingest_status( $conn_id, $d );
+			}
+			break;
+		case 'messages.edited':
+			foreach ( isset( $data[0] ) ? $data : array( $data ) as $d ) {
+				if ( is_array( $d ) && isset( $d['message'] ) ) {
+					flxc_ingest_message( $conn_id, $d );
 				}
 			}
 			break;
@@ -138,8 +151,15 @@ function flxc_parse_wa_message( $message ) {
 		$out['type'] = 'video';
 		$out['body'] = (string) ( $x['caption'] ?? '' );
 		$out['mime'] = (string) ( $x['mimetype'] ?? 'video/mp4' );
-		$out['meta'] = array( 'seconds' => (int) ( $x['seconds'] ?? 0 ) );
-		$ctx         = $x['contextInfo'] ?? null;
+		$out['meta'] = array(
+			'seconds' => (int) ( $x['seconds'] ?? 0 ),
+			'w'       => (int) ( $x['width'] ?? 0 ),
+			'h'       => (int) ( $x['height'] ?? 0 ),
+		);
+		if ( ! empty( $x['jpegThumbnail'] ) && is_string( $x['jpegThumbnail'] ) && strlen( $x['jpegThumbnail'] ) < 20000 ) {
+			$out['meta']['thumb'] = 'data:image/jpeg;base64,' . $x['jpegThumbnail'];
+		}
+		$ctx = $x['contextInfo'] ?? null;
 	} elseif ( isset( $m['audioMessage'] ) ) {
 		$x           = $m['audioMessage'];
 		$out['type'] = 'audio';
@@ -310,10 +330,8 @@ function flxc_ingest_message( $conn_id, array $d, $opts = array() ) {
 	}
 	if ( 'edit' === $p['kind'] ) {
 		$t = flxc_find_message_by_wa( $conn_id, $p['target'] );
-		if ( $t ) {
-			$meta           = flxc_decode( $t['meta'] );
-			$meta['edited'] = 1;
-			flxc_update_message( $t['id'], array( 'body' => $p['body'], 'meta' => $meta ) );
+		if ( $t && '' !== $p['body'] && 'deleted' !== $t['type'] ) {
+			flxc_apply_edit( $t, $p['body'] );
 		}
 		return 0;
 	}
