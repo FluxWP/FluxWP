@@ -67,6 +67,7 @@ $r = flxi_send_message( 'whatsapp', '905321234567', 'Merhaba Ayşe 🌱', array(
 	'media'         => $pdf_url,    // isteğe bağlı: belge/görsel URL'si (WhatsApp)
 	'file_name'     => 'sertifika.pdf',
 	'source'        => 'flx-donate',  // kayıtta görünür
+	'kind'          => 'info',        // 1.17.0+: 'marketing' = IPTAL'e uyar + çıkış satırı; yoksa/'info' her zaman gider
 ) );
 // $r = array( 'ok' => bool, 'error' => string, 'retry' => bool, 'external_id' => string, 'connection_id' => int )
 ```
@@ -124,6 +125,73 @@ Config: `phone_id`, `waba_id`, `token`, `app_secret` (zorunlu), `graph` (ör. `v
 
 Test senaryoları: `flxi_test_scenario( $id, 'check'|'text'|'image'|'audio'|'document'|'template', $tel, [ 'text', 'caption', 'template' => [ 'name', 'lang', 'params' ] ] )`; desteklenenler `flxi_test_scenarios( $tip )`. Örnek dosyalar `assets/test/` (`flxi_test_samples()`).
 
+### Toplu gönderim (kampanya) – medya, tür, kaynak (1.17.0+)
+
+```php
+$liste = flxi_collect_recipients( array( 'flxcrm_event:12' ), '', 'whatsapp' );
+$cid   = flxi_create_campaign( array(
+	'channel'       => 'whatsapp',              // email | whatsapp | sms
+	'text'          => '{Merhaba|Selam} {ad}, etkinliğimize teşekkürler 🌱',
+	'media'         => 'https://…/tesekkur.jpg', // isteğe bağlı (yalnız WhatsApp)
+	'file_name'     => 'tesekkur.jpg',            // isteğe bağlı
+	'kind'          => 'info',                    // 'marketing' (varsayılan) | 'info'
+	'ref'           => 'flxcrm_event:12',         // isteğe bağlı; kayıtta kaynak "flx-mail:flxcrm_event:12"
+	'send_at'       => '2026-11-20T10:00',        // isteğe bağlı, site saat dilimi
+	'connection_id' => 0,
+), $liste );
+```
+
+- **`media`**: resim/video (jpg, png, webp, gif, mp4…) tek mesaj gider, metin altyazı olur. Diğer dosyalar (PDF) önce metin, sonra belge olarak gider. Cloud API'de metin + medya iki mesaj.
+- **`kind`**: `marketing` tanıtım/reklamdır: IPTAL yazmış kişiye gitmez (kuyrukta `skipped`), altına çıkış satırı eklenir; e-postada abonelikten çıkanlara gitmez. `info` bilgilendirmedir (etkinlik detayı, teşekkür, makbuz): her zaman gider, satır eklenmez. Kara liste her ikisinde de geçerli.
+- **Çeşitleme**: metinde `{Merhaba|Selam|İyi günler}` her alıcıda rastgele biri olur (`flxi_spin()`); değişkenler (`{ad}`) etkilenmez.
+- **Özellik sorgusu**: `apply_filters( 'flxi_campaign_features', array() )` → `[ 'media', 'kind', 'ref', 'optout', 'wa_guard', 'spin' ]`. Eski Flux Mail'de boş döner; çağıran taraf ona göre davranır (ör. medya yoksa linki metne ekler).
+
+### WhatsApp ban koruması (1.17.0+)
+
+Evolution API / Flux WPAPI bağlantılarında, **yalnız kuyruktaki toplu gönderimlere** uygulanır (sohbet cevapları, sertifika, tekil `flxi_send_message()` beklemez). Ayarlar bağlantı başına, Bağlantılar › düzenle › "Ban koruması":
+
+| Ayar (`config`) | Varsayılan | |
+|---|---|---|
+| `delay` / `delay_max` | 8 / 20 sn | Mesajlar arası rastgele bekleme |
+| `batch_size` / `batch_pause` | 25 / 10 dk | N mesajda bir mola (+%0–30 rastgele) |
+| `hourly_limit` / `daily_limit` | 60 / 250 | Son 1 saat / 24 saat üst sınırı (0 = yok) |
+| `warmup` | açık | Yeni bağlantıda günlük sınır 20'den başlar, her gün +20 |
+| `quiet_from` / `quiet_to` | 21 / 9 | Sessiz saatler (site saat dilimi), boş = kapalı |
+| `skip_no_wa` | açık | Göndermeden önce `/chat/whatsappNumbers`; WhatsApp'ı yoksa `skipped` (30 gün önbellek) |
+| `fail_stop` | 5 | Art arda bu kadar hatada toplu gönderim 30 dk durur, sistem kontrolünde uyarı |
+| `typing_auto` | açık | "Yazıyor…" süresi mesaj uzunluğuna göre (1–8 sn) |
+
+Kapı kapalıysa kampanyanın sıradaki satırları kapının açılacağı ana ertelenir; Gönder ekranında "Sessiz saatler · 09:04'te devam eder" görünür. Fonksiyonlar: `flxi_wa_guard_check( $conn )` (`wait`, `until`, `reason`), `flxi_wa_guard_summary()`, `flxi_wa_guard_resume( $id )`, `flxi_wa_exists( $conn, $tel )`. Eylem: `flxi_wa_guard_paused` ( `$conn_id, $son_hata` ).
+
+**Toplu tanıtım göndermek isteyen her paket (CRM, Ads, AI) `flxi_create_campaign()` kullanmalı**; döngüde `flxi_send_message()` çağırmak bu korumayı atlar.
+
+### IPTAL: tanıtım mesajlarından çıkış (1.17.0+)
+
+- Kişi WhatsApp'tan **yalnız** çıkış kelimesini yazarsa (varsayılan `IPTAL, İPTAL, STOP`; "İptal.", "iptal 🙏" de sayılır, "bağışımı iptal etmek istiyorum" sayılmaz) o kanal için `optouts` tablosuna yazılır, ortak kişi kaydında `consent_whatsapp` kapanır ve bir kez onay mesajı gider. `BAŞLA / BASLA / START` geri alır. Kelimeler ve cevaplar Ayarlar › IPTAL'den değişir.
+- Kanal bazlıdır: WhatsApp'tan çıkana SMS gidebilir.
+- Engel yalnız `kind = marketing` gönderimlere: kişi kendisi yazınca verilen cevap ve bilgilendirme gider.
+- Gelen mesaj Flux Chat'in `flxc_message_received` eyleminden okunur (öncelik 5). Başka bir kanal (SMS gelen kutusu vb.) `flxi_handle_inbound( $kanal, $tel, $metin, array( 'connection_id' => $id, 'source' => 'x' ) )` çağırır; dönüş `'out' | 'in' | ''`.
+- **Komut mu?** `flxi_optout_match( $metin )` → `'out' | 'in' | ''`. Asistan/otomatik cevap veren paketler bu mesaja ayrıca cevap yazmamalı (Flux Mail onayı gönderir).
+
+```php
+flxi_optout_has( 'whatsapp', $tel );              // bool
+flxi_optout_add( 'whatsapp', $tel, 'IPTAL', 'flx-crm' );
+flxi_optout_remove( 'whatsapp', $tel );
+flxi_optout_footer( 'whatsapp' );                 // "Bu tarz mesajlar istemiyorsanız IPTAL yazın." ('' = kapalı)
+flxi_optout_append( $metin, 'whatsapp' );         // metnin altına ekler (zaten varsa eklemez)
+
+// Tekil tanıtım mesajı (ör. AI sohbetinden kampanya önerisi):
+flxi_send_message( 'whatsapp', $tel, $metin, array( 'kind' => 'marketing', 'source' => 'flx-chatbot' ) );
+// IPTAL yazmışsa: ok=false, skip=true, optout=true; değilse metnin altına çıkış satırı eklenmiş gider.
+// 'no_optout_footer' => true satırı eklemez (metin zaten içeriyorsa gerek yok).
+```
+
+Filtreler / eylemler: `flxi_optout_has` ( `bool, $kanal, $anahtar` ), `flxi_optout_footer` ( `$metin, $kanal` ), `flxi_optout_added` / `flxi_optout_removed` ( `$kanal, $anahtar, $kaynak` ), `flxi_inbound_command` ( `$yon, $kanal, $anahtar, $kaynak` ).
+
+Flux Mail'in gönderdiği WhatsApp mesajları `flxc_external_source` filtresiyle `flx-mail` olarak işaretlenir; Flux Chat bunları "telefondan yazıldı" sayıp asistanı susturmaz.
+
+Echo webhook'u gönderim yanıtından önce gelebilir (henüz `external_id` yok). Flux Mail bu yüzden göndermeden önce numara + metin işareti bırakır (2 dk, `flxi_mark_sending()`). Flux Chat echo'yu sınıflarken `flxi_sent_pending( $tel, $metin )` (metin `null` ise yalnız numara) sorar ya da `apply_filters( 'flxc_external_source', $source, $wa_id, $tel, $metin )` ile telefon ve metni de geçirir.
+
 ## Filtreler ve eylemler
 
 | Ad | Ne zaman |
@@ -139,6 +207,7 @@ Test senaryoları: `flxi_test_scenario( $id, 'check'|'text'|'image'|'audio'|'doc
 | `flxi_verified_meta` | `flxi_mark_email_verified( $user_id )` tarafından yazılacak doğrulama meta anahtarları |
 | `flxi_connection_types` | Yeni WhatsApp/SMS sağlayıcısı |
 | `flxi_recipient_sources`, `flxi_recipients_from_source` | Toplu gönderimde yeni alıcı kaynağı |
+| `flxi_campaign_features` | 1.17.0+. Kampanyanın desteklediği özellikler (`media`, `kind`, `ref`, `optout`, `wa_guard`, `spin`) |
 | `flxi_certificate_background` | Sertifika önizlemesi için temiz arka plan görseli |
 | `flxi_mail_logged`, `flxi_message_sent`, `flxi_template_saved`, `flxi_email_verified` | Eylemler |
 | `flxi_mailbox_ai_context` ($text, $mail) | AI cevabına eklenecek kurum bilgisi |
@@ -152,7 +221,7 @@ Test senaryoları: `flxi_test_scenario( $id, 'check'|'text'|'image'|'audio'|'doc
 - `flx_system_fixes`: `flxi.from_email`, `flxi.from_name`, `flxi.noreply_email`, `flxi.reply_to`,
   `flxi.smtp_server` (`host:port:ssl|tls|yok:kullanıcı`), `flxi.mailer` (`php|smtp`), `flxi.social_block` (`on|off`),
   `flxi.send_test`, `flxi.dns_check`. Şifreler hiçbir yoldan okunmaz/yazılmaz.
-- `flxseo_mcp_tools`: `flxi_email_log`, `flxi_templates`, `flxi_update_template`, `flxi_settings`, `flxi_send_test`, `flxi_mail_quota` (sınırlar ve son 24 saat kullanım), `flxi_campaigns`.
+- `flxseo_mcp_tools`: `flxi_email_log`, `flxi_templates`, `flxi_update_template`, `flxi_settings`, `flxi_send_test`, `flxi_mail_quota` (sınırlar ve son 24 saat kullanım), `flxi_campaigns`, `flxi_optouts` (IPTAL listesi / bir numaranın durumu, 1.17.0), `flxi_wa_guard` (ban koruması durumu, 1.17.0).
 
 ## Kara liste
 

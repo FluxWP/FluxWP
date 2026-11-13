@@ -50,6 +50,10 @@ function flxi_page_connections() {
 		foreach ( $def['fields'] as $f ) {
 			$val = $conn['config'][ $f['key'] ] ?? ( $f['default'] ?? '' );
 			$nm  = 'cfg[' . $f['key'] . ']';
+			if ( 'heading' === $f['type'] ) {
+				echo '<h3 class="flxi-form-sub">' . esc_html( $f['label'] ) . '</h3>' . ( ! empty( $f['help'] ) ? '<p class="flxi-muted">' . esc_html( $f['help'] ) . '</p>' : '' );
+				continue;
+			}
 			if ( 'checkbox' === $f['type'] ) {
 				echo '<div class="flxi-field">' . flxi_switch( $nm, $val, $f['label'] ) . '</div>'; // phpcs:ignore
 				continue;

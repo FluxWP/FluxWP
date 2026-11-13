@@ -184,17 +184,12 @@ function flxi_wacloud_send( $config, $msg, $conn = array() ) {
 		)
 	);
 	if ( $r['ok'] && ! empty( $msg['media'] ) ) {
-		$m                    = flxi_wacloud_post(
-			$config,
-			$phone,
-			array(
-				'type'     => 'document',
-				'document' => array(
-					'link'     => (string) $msg['media'],
-					'filename' => $msg['file_name'] ? $msg['file_name'] : basename( (string) wp_parse_url( $msg['media'], PHP_URL_PATH ) ),
-				),
-			)
-		);
+		$mk  = function_exists( 'flxi_media_kind' ) ? flxi_media_kind( $msg['media'], $msg['file_name'] ?? '' ) : 'document';
+		$obj = array( 'link' => (string) $msg['media'] );
+		if ( 'document' === $mk ) {
+			$obj['filename'] = ! empty( $msg['file_name'] ) ? $msg['file_name'] : basename( (string) wp_parse_url( $msg['media'], PHP_URL_PATH ) );
+		}
+		$m                    = flxi_wacloud_post( $config, $phone, array( 'type' => $mk, $mk => $obj ) );
 		$r['response']['pdf'] = array( 'ok' => $m['ok'], 'error' => $m['error'] ?? '' );
 	}
 	return $r;

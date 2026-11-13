@@ -74,7 +74,9 @@ function flxi_page_send() {
 
 	// WhatsApp / SMS alanları
 	echo '<div data-for-channel="whatsapp sms" hidden>';
-	echo '<label class="flxi-field"><span>' . esc_html__( 'Message', 'flx-mail' ) . '</span><textarea name="text" rows="6" data-msg-text data-insert-target placeholder="' . esc_attr__( 'Hello {ad} 🌱 …', 'flx-mail' ) . '"></textarea><small>' . esc_html__( 'Variables: {ad}, {ad_soyad}, {telefon}. *Bold* and _italic_ work in WhatsApp.', 'flx-mail' ) . '</small></label>';
+	echo '<label class="flxi-field"><span>' . esc_html__( 'Message', 'flx-mail' ) . '</span><textarea name="text" rows="6" data-msg-text data-insert-target placeholder="' . esc_attr__( 'Hello {ad} 🌱 …', 'flx-mail' ) . '"></textarea><small>' . esc_html__( 'Variables: {ad}, {ad_soyad}, {telefon}. *Bold* and _italic_ work in WhatsApp.', 'flx-mail' ) . ' ' . esc_html__( 'Variation: {Hello|Hi|Good day} picks one at random for each person, so the same text does not go out hundreds of times.', 'flx-mail' ) . '</small></label>';
+	echo '<div class="flxi-field" data-for-channel="whatsapp"><span>' . esc_html__( 'Image, video or file (optional)', 'flx-mail' ) . '</span><div class="flxi-media-pick"><input type="url" name="media" placeholder="https://…/davet.jpg" data-media-url> <button type="button" class="button" data-media-pick>' . esc_html__( 'Choose from media', 'flx-mail' ) . '</button></div><small>' . esc_html__( 'An image or video goes with the message as its caption; a PDF goes as a separate file after the message.', 'flx-mail' ) . '</small></div>';
+	echo '<div class="flxi-field">' . flxi_switch( 'marketing', true, __( 'Promotional message (not sent to people who replied STOP; the opt-out line is added at the bottom)', 'flx-mail' ), 'data-msg-marketing' ) . '<small>' . esc_html__( 'Turn off only for information messages people expect, such as event details or a receipt.', 'flx-mail' ) . '</small></div>';
 	foreach ( $conns as $ch => $list ) {
 		if ( count( $list ) > 1 ) {
 			echo '<label class="flxi-field" data-for-channel="' . esc_attr( $ch ) . '"><span>' . esc_html__( 'Link', 'flx-mail' ) . '</span><select name="connection_' . esc_attr( $ch ) . '">';
@@ -115,7 +117,7 @@ function flxi_page_send() {
 		);
 		echo '<div class="flxi-card"><h2 class="flxi-card__title">' . esc_html__( 'Recent sends', 'flx-mail' ) . '</h2><div class="flxi-tablewrap"><table class="flxi-table"><thead><tr><th>' . esc_html__( 'First name', 'flx-mail' ) . '</th><th>' . esc_html__( 'Channel', 'flx-mail' ) . '</th><th>' . esc_html__( 'Status', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Sent', 'flx-mail' ) . '</th><th class="num">' . esc_html__( 'Failed', 'flx-mail' ) . '</th><th>' . esc_html__( 'Date', 'flx-mail' ) . '</th></tr></thead><tbody>';
 		foreach ( $rows as $r ) {
-			echo '<tr><td><a href="' . esc_url( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $r['id'] ) ) ) . '">' . esc_html( $r['name'] ) . '</a></td><td>' . esc_html( flxi_channels()[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $st[ $r['status'] ] ?? $r['status'] ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['sent'] ) . ' / ' . number_format_i18n( $r['total'] ) ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['failed'] ) ) . '</td><td>' . esc_html( flx_date( $r['created_at'], 'datetime' ) ) . '</td></tr>';
+			echo '<tr><td><a href="' . esc_url( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $r['id'] ) ) ) . '">' . esc_html( $r['name'] ) . '</a></td><td>' . esc_html( flxi_channels()[ $r['channel'] ] ?? $r['channel'] ) . '</td><td>' . esc_html( $st[ $r['status'] ] ?? $r['status'] ) . flxi_campaign_wait_html( $r ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['sent'] ) . ' / ' . number_format_i18n( $r['total'] ) ) . '</td><td class="num">' . esc_html( number_format_i18n( $r['failed'] ) ) . '</td><td>' . esc_html( flx_date( $r['created_at'], 'datetime' ) ) . '</td></tr>';
 		}
 		echo '</tbody></table></div></div>';
 	}
@@ -140,6 +142,7 @@ function flxi_timezone_label() {
 function flxi_message_preview_boot() {
 	$out = array(
 		'site'     => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+		'optout'   => array( 'whatsapp' => flxi_optout_footer( 'whatsapp' ), 'sms' => flxi_optout_footer( 'sms' ) ),
 		'whatsapp' => array(),
 		'sms'      => array(),
 	);
@@ -188,6 +191,8 @@ add_action(
 				'text'          => $in['text'] ?? '',
 				'connection_id' => (int) ( $in[ 'connection_' . $channel ] ?? 0 ),
 				'unsubscribe'   => ! empty( $in['unsubscribe'] ) && count( $list ) > 1,
+				'kind'          => ( 'email' === $channel || ! empty( $in['marketing'] ) ) ? 'marketing' : 'info',
+				'media'         => 'whatsapp' === $channel ? esc_url_raw( (string) ( $in['media'] ?? '' ) ) : '',
 			),
 			$list
 		);
@@ -212,3 +217,18 @@ add_action(
 		flxi_redirect( flxi_admin_url( 'flxi-kuyruk', array( 'campaign' => $id ) ), __( 'Sending stopped.', 'flx-mail' ) );
 	}
 );
+
+/** Ban koruması beklemesi: "Sessiz saatler · 09:04'te devam". */
+function flxi_campaign_wait_html( $r ) {
+	if ( ! in_array( $r['status'], array( 'queued', 'running' ), true ) ) {
+		return '';
+	}
+	$d     = (array) json_decode( (string) $r['data'], true );
+	$until = (int) ( $d['wait_until'] ?? 0 );
+	$label = flxi_wa_guard_reason_label( (string) ( $d['wait_reason'] ?? '' ) );
+	if ( $until <= time() + 30 || '' === $label ) {
+		return '';
+	}
+	/* translators: 1: neden, 2: saat */
+	return '<br><small class="flxi-muted">' . esc_html( sprintf( __( '%1$s · continues at %2$s', 'flx-mail' ), $label, flx_date( $until, 'time' ) . ( $until - time() > 12 * HOUR_IN_SECONDS ? ', ' . flx_date( $until, 'short' ) : '' ) ) ) . '</small>';
+}

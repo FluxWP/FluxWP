@@ -256,6 +256,38 @@ function flxi_mcp_tools( $tools ) {
 		},
 	);
 
+	$tools['flxi_optouts'] = array(
+		'title'       => 'Flux Mail: IPTAL listesi',
+		'description' => 'Tanıtım mesajlarından çıkan (IPTAL yazan) telefonlar, kanal başına. Bu kişilere tanıtım (kind=marketing) mesajı gitmez; bilgilendirme gider. phone verilirse yalnız o numaranın durumu.',
+		'readonly'    => true,
+		'cap'         => $cap,
+		'schema'      => array( 'type' => 'object', 'properties' => array( 'channel' => array( 'type' => 'string', 'enum' => array( 'whatsapp', 'sms' ) ), 'phone' => array( 'type' => 'string' ), 'limit' => array( 'type' => 'integer' ) ) ),
+		'run'         => function ( $a ) {
+			$ch = in_array( $a['channel'] ?? '', array( 'whatsapp', 'sms' ), true ) ? $a['channel'] : '';
+			if ( ! empty( $a['phone'] ) ) {
+				return array(
+					'whatsapp' => flxi_optout_has( 'whatsapp', $a['phone'] ),
+					'sms'      => flxi_optout_has( 'sms', $a['phone'] ),
+				);
+			}
+			return array(
+				'counts' => array( 'whatsapp' => flxi_optout_count( 'whatsapp' ), 'sms' => flxi_optout_count( 'sms' ) ),
+				'items'  => flxi_optout_list( $ch, max( 1, min( 200, (int) ( $a['limit'] ?? 50 ) ) ) ),
+			);
+		},
+	);
+
+	$tools['flxi_wa_guard'] = array(
+		'title'       => 'Flux Mail: WhatsApp ban koruması durumu',
+		'description' => 'Her WhatsApp bağlantısı için toplu gönderim kapısı: son 1 saat / 24 saat gönderim, bugünkü sınır (ısınma dahil), bekleme nedeni ve bitiş zamanı.',
+		'readonly'    => true,
+		'cap'         => $cap,
+		'schema'      => array( 'type' => 'object', 'properties' => new stdClass() ),
+		'run'         => function () {
+			return array( 'connections' => flxi_wa_guard_summary() );
+		},
+	);
+
 	return $tools;
 }
 
@@ -298,7 +330,7 @@ function flxi_sanitize_setting( $k, $v ) {
 	if ( is_int( $d[ $k ] ?? null ) ) {
 		return (int) ( is_bool( $v ) ? (int) $v : $v );
 	}
-	if ( 'footer_note' === $k || 'mailbox_signature' === $k ) {
+	if ( in_array( $k, array( 'footer_note', 'mailbox_signature', 'optout_reply', 'optin_reply' ), true ) ) {
 		return sanitize_textarea_field( (string) $v );
 	}
 	return sanitize_text_field( (string) $v );

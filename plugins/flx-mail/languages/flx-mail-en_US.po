@@ -2757,3 +2757,204 @@ msgstr "Shown in dark mode (Apple Mail, iOS). Default: the light logo from the o
 #: includes/helpers.php
 msgid "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
 msgstr "WhatsApp Cloud API cannot send to groups. Choose an Evolution API or Flux WPAPI connection for group messages."
+
+msgid "%1$s · continues at %2$s"
+msgstr "%1$s · continues at %2$s"
+
+msgid "0 = no break."
+msgstr "0 = no break."
+
+msgid "0 = no limit."
+msgstr "0 = no limit."
+
+msgid "A line at the bottom of promotional WhatsApp and SMS messages tells people how to stop them. When someone replies with only the opt-out word, promotional messages are no longer sent to them on that channel. Information messages (event details, receipts, certificates) and replies to their own messages still go out. If they reply with the start word, they get promotional messages again."
+msgstr "A line at the bottom of promotional WhatsApp and SMS messages tells people how to stop them. When someone replies with only the opt-out word, promotional messages are no longer sent to them on that channel. Information messages (event details, receipts, certificates) and replies to their own messages still go out. If they reply with the start word, they get promotional messages again."
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Add a phone by hand"
+msgstr "Add a phone by hand"
+
+msgid "Add the opt-out line to promotional SMS (costs extra characters; Netgsm İYS rules apply separately)"
+msgstr "Add the opt-out line to promotional SMS (costs extra characters; Netgsm İYS rules apply separately)"
+
+msgid "Add the opt-out line to promotional WhatsApp messages"
+msgstr "Add the opt-out line to promotional WhatsApp messages"
+
+msgid "Added by staff"
+msgstr "Added by staff"
+
+msgid "Added to the opt-out list."
+msgstr "Added to the opt-out list."
+
+msgid "An image or video goes with the message as its caption; a PDF goes as a separate file after the message."
+msgstr "An image or video goes with the message as its caption; a PDF goes as a separate file after the message."
+
+msgid "Ban protection (bulk sends)"
+msgstr "Ban protection (bulk sends)"
+
+msgid "Break length (min)"
+msgstr "Break length (min)"
+
+msgid "Bulk WhatsApp paused: %s"
+msgstr "Bulk WhatsApp paused: %s"
+
+msgid "Bulk messages are not sent in these hours (site time zone); the queue continues in the morning."
+msgstr "Bulk messages are not sent in these hours (site time zone); the queue continues in the morning."
+
+msgid "Bulk messages per day (at most)"
+msgstr "Bulk messages per day (at most)"
+
+msgid "Bulk messages per hour (at most)"
+msgstr "Bulk messages per hour (at most)"
+
+msgid "Choose from media"
+msgstr "Choose from media"
+
+msgid "Counted over the last 24 hours. The rest of the list waits and continues by itself. 0 = no limit."
+msgstr "Counted over the last 24 hours. The rest of the list waits and continues by itself. 0 = no limit."
+
+msgid "Daily limit reached"
+msgstr "Daily limit reached"
+
+msgid "Default: %s"
+msgstr "Default: %s"
+
+msgid "Done, you won't get promotional messages from us anymore. You can still write to us any time. To get them again, reply START."
+msgstr "Done, you won't get promotional messages from us anymore. You can still write to us any time. To get them again, reply START."
+
+msgid "Each wait is a random time between the minimum and the maximum, so the sending does not look like a machine."
+msgstr "Each wait is a random time between the minimum and the maximum, so the sending does not look like a machine."
+
+msgid "Enter a valid phone number."
+msgstr "Enter a valid phone number."
+
+msgid "Hourly limit reached"
+msgstr "Hourly limit reached"
+
+msgid "How"
+msgstr "How"
+
+msgid "If you don't want messages like this, reply STOP."
+msgstr "If you don't want messages like this, reply STOP."
+
+msgid "Image, video or file (optional)"
+msgstr "Image, video or file (optional)"
+
+msgid "Leave empty to use the default in the site language."
+msgstr "Leave empty to use the default in the site language."
+
+msgid "Many failures in a row usually mean the number was disconnected or restricted. 0 = never pause."
+msgstr "Many failures in a row usually mean the number was disconnected or restricted. 0 = never pause."
+
+msgid "Maximum wait between messages (sec)"
+msgstr "Maximum wait between messages (sec)"
+
+msgid "Minimum wait between messages (sec)"
+msgstr "Minimum wait between messages (sec)"
+
+msgid "Nobody has opted out yet."
+msgstr "Nobody has opted out yet."
+
+msgid "Off"
+msgstr "Off"
+
+msgid "Opt-out (STOP)"
+msgstr "Opt-out (STOP)"
+
+msgid "Opt-out line"
+msgstr "Opt-out line"
+
+msgid "Opt-out words (comma separated)"
+msgstr "Opt-out words (comma separated)"
+
+msgid "Opted out of promotional messages (replied STOP): not sent"
+msgstr "Opted out of promotional messages (replied STOP): not sent"
+
+msgid "Opted out: %1$s on WhatsApp, %2$s on SMS"
+msgstr "Opted out: %1$s on WhatsApp, %2$s on SMS"
+
+msgid "Opted-out people"
+msgstr "Opted-out people"
+
+msgid "Pause bulk sending for 30 minutes after … failures in a row"
+msgstr "Pause bulk sending for 30 minutes after … failures in a row"
+
+msgid "Paused after failures in a row"
+msgstr "Paused after failures in a row"
+
+msgid "Promotional message (not sent to people who replied STOP; the opt-out line is added at the bottom)"
+msgstr "Promotional message (not sent to people who replied STOP; the opt-out line is added at the bottom)"
+
+msgid "Promotional messages will be sent to this person again. Remove only if they asked for it."
+msgstr "Promotional messages will be sent to this person again. Remove only if they asked for it."
+
+msgid "Quiet hours"
+msgstr "Quiet hours"
+
+msgid "Quiet hours: from"
+msgstr "Quiet hours: from"
+
+msgid "Quiet hours: until"
+msgstr "Quiet hours: until"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Removed from the opt-out list. Promotional messages will be sent to this person again."
+msgstr "Removed from the opt-out list. Promotional messages will be sent to this person again."
+
+msgid "Replied \"%s\""
+msgstr "Replied \"%s\""
+
+msgid "Reply after opting out"
+msgstr "Reply after opting out"
+
+msgid "Reply after starting again"
+msgstr "Reply after starting again"
+
+msgid "See the list"
+msgstr "See the list"
+
+msgid "Sent once on WhatsApp. Leave empty for the default; type - to send nothing."
+msgstr "Sent once on WhatsApp. Leave empty for the default; type - to send nothing."
+
+msgid "Several messages in a row failed, so bulk sending was paused for 30 minutes. Check that the number is connected; the queue continues by itself."
+msgstr "Several messages in a row failed, so bulk sending was paused for 30 minutes. Check that the number is connected; the queue continues by itself."
+
+msgid "Show \"typing…\" for a time that fits the message length"
+msgstr "Show \"typing…\" for a time that fits the message length"
+
+msgid "Skip numbers that do not have WhatsApp (checked before sending)"
+msgstr "Skip numbers that do not have WhatsApp (checked before sending)"
+
+msgid "Start words (comma separated)"
+msgstr "Start words (comma separated)"
+
+msgid "Take a break every … messages"
+msgstr "Take a break every … messages"
+
+msgid "The whole message must be the word; \"I want to cancel my donation\" is not counted. Default: %s"
+msgstr "The whole message must be the word; \"I want to cancel my donation\" is not counted. Default: %s"
+
+msgid "Turn off only for information messages people expect, such as event details or a receipt."
+msgstr "Turn off only for information messages people expect, such as event details or a receipt."
+
+msgid "Use opt-out"
+msgstr "Use opt-out"
+
+msgid "Variation: {Hello|Hi|Good day} picks one at random for each person, so the same text does not go out hundreds of times."
+msgstr "Variation: {Hello|Hi|Good day} picks one at random for each person, so the same text does not go out hundreds of times."
+
+msgid "Waiting between messages"
+msgstr "Waiting between messages"
+
+msgid "Warm up a new number (daily limit starts at 20 and grows by 20 every day)"
+msgstr "Warm up a new number (daily limit starts at 20 and grows by 20 every day)"
+
+msgid "Welcome back, you will get our messages again."
+msgstr "Welcome back, you will get our messages again."
+
+msgid "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
+msgstr "WhatsApp restricts numbers that send many similar messages quickly. These limits apply only to bulk sends from the queue; replies in chats and single messages are not delayed."
