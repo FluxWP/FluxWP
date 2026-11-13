@@ -1,5 +1,8 @@
 # Değişiklikler
 
+## 0.4.16
+- Uygulama arayüz dilini `X-Flux-Locale` başlığıyla (ör. `tr_TR`, `tr-TR`, `tr`) gönderirse REST isteği o dille işlenir. Menü, sekme ve grup adları uygulamanın dilinde gelir. Daha önce bu adlar WordPress profil dilinden, profil dili boşsa site dilinden geliyordu, bu yüzden Türkçe uygulamada İngilizce görünebiliyordu. Yalnız yüklü diller ya da eklentilerin kendi paketindeki diller kabul edilir. Başlık yoksa ya da dil tanınmıyorsa eski kural geçerlidir.
+
 ## 0.4.15
 - İstek hem uygulama belirteci hem oturum çerezi taşıyınca (uygulamanın web görünümü çerez bırakabilir) "Belirteç geçersiz ya da süresi dolmuş" hatası dönüyordu. Artık belirteç gelmişse kullanıcıyı yalnız belirteç belirler: geçerli belirteç kendi kullanıcısını açar, çerezdeki kullanıcı ve nonce kontrolü devreye girmez. Geçersiz, iptal edilmiş ya da süresi dolmuş belirteç çerezle kurtarılmaz, yine 401 döner.
 
