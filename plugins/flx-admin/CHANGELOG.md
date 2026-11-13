@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.7.25
+## 1.7.26
 - Yönetim temasının çıplak öğe kuralları (başlık, paragraf, bağlantı, kod, form alanı) blok editörü içeriğine sızmıyor. Meta kutusu olan sayfalarda editör iframe'siz çalıştığı için manşet gibi koyu zeminli bölümlerde başlık yönetim yazı rengini (koyu) alıyordu; artık ön yüzdeki gibi görünür. Özgüllük değişmedi.
 
 ## 1.7.24
