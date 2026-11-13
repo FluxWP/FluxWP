@@ -8,7 +8,8 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { stripTags } from '@fluxwp/core';
 import { useDetailController, useRenderer, type SectionView } from '@fluxwp/runtime';
 import type { DetailScreen as DetailDef, Manifest } from '@fluxwp/manifest';
-import { Avatar, Badge, Button, Card, EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
+import { GlassButton } from '@/ui/Glass';
+import { Avatar, Badge, Button, Card, EmptyState, Skeleton, Text } from '@/ui/primitives';
 
 export function DetailScreen({ manifest, screen, params }: { manifest: Manifest; screen: DetailDef; params: Record<string, string> }) {
   const c = useDetailController(manifest, screen, params);
@@ -18,7 +19,7 @@ export function DetailScreen({ manifest, screen, params }: { manifest: Manifest;
   useLayoutEffect(() => {
     nav.setOptions({
       title: c.header?.title || c.title,
-      headerRight: c.headerActions.length ? () => <View style={styles.headerActions}>{c.headerActions.slice(0, 2).map((a) => <IconButton key={a.id} icon={a.icon ?? 'more'} label={a.label} onPress={() => void c.runAction(a.id)} color={a.tone === 'danger' ? theme.colors.danger : undefined} />)}</View> : undefined,
+      headerRight: c.headerActions.length ? () => <View style={styles.headerActions}>{c.headerActions.slice(0, 2).map((a) => <GlassButton key={a.id} icon={a.icon ?? 'more'} label={a.label} onPress={() => void c.runAction(a.id)} color={a.tone === 'danger' ? theme.colors.danger : undefined} />)}</View> : undefined,
     });
   }, [nav, c, theme.colors.danger]);
 
@@ -88,7 +89,7 @@ const styles = StyleSheet.create((theme) => ({
   wrap: { padding: theme.space[4], gap: theme.space[3], paddingBottom: 120 },
   header: { flexDirection: 'row', gap: theme.space[3], alignItems: 'center', marginBottom: theme.space[2] },
   headerTitle: { fontSize: 22 },
-  headerActions: { flexDirection: 'row' },
+  headerActions: { flexDirection: 'row', gap: 8 },
   flex: { flex: 1 },
   card: { gap: theme.space[2] },
   field: { flexDirection: 'row', gap: theme.space[3], paddingVertical: 8 },

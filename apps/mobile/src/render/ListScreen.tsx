@@ -9,9 +9,10 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { stripAngles } from '@fluxwp/core';
 import { useListController, type ListController, type RowView } from '@fluxwp/runtime';
 import type { ListScreen as ListDef, Manifest } from '@fluxwp/manifest';
+import { GlassButton } from '@/ui/Glass';
 import { Icon } from '@/ui/Icon';
 import { overlays } from '@/ui/overlays';
-import { Avatar, Badge, EmptyState, IconButton, Segmented, Skeleton, Spinner, Text } from '@/ui/primitives';
+import { Avatar, Badge, EmptyState, Segmented, Skeleton, Spinner, Text } from '@/ui/primitives';
 
 export function ListScreen({ manifest, screen, params }: { manifest: Manifest; screen: ListDef; params: Record<string, string> }) {
   const c = useListController(manifest, screen, params);
@@ -22,7 +23,7 @@ export function ListScreen({ manifest, screen, params }: { manifest: Manifest; s
   useLayoutEffect(() => {
     nav.setOptions({
       title: c.title,
-      headerRight: c.headerActions.length ? () => <View style={styles.headerActions}>{c.headerActions.slice(0, 2).map((a) => <IconButton key={a.id} icon={a.icon ?? 'plus'} label={a.label} onPress={() => void c.runAction(a.id)} />)}</View> : undefined,
+      headerRight: c.headerActions.length ? () => <View style={styles.headerActions}>{c.headerActions.slice(0, 2).map((a) => <GlassButton key={a.id} icon={a.icon ?? 'plus'} label={a.label} onPress={() => void c.runAction(a.id)} />)}</View> : undefined,
     });
   }, [nav, c.title, c.headerActions, c]);
 
@@ -118,5 +119,5 @@ const styles = StyleSheet.create((theme) => ({
   footer: { height: 24 },
   fab: { position: 'absolute', right: 20, bottom: 24, width: 56, height: 56, borderRadius: 28, backgroundColor: theme.colors.primary, alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 8, shadowOffset: { width: 0, height: 4 }, elevation: 4 },
   pressed: { opacity: 0.8 },
-  headerActions: { flexDirection: 'row' },
+  headerActions: { flexDirection: 'row', gap: 8 },
 }));

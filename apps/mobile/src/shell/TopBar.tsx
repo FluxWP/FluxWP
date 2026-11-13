@@ -1,12 +1,13 @@
 // Top bar (config.shell.topbar): drawer button on tab roots, back elsewhere, title, config actions and
 // the site avatar that opens the quick account switcher.
 import type { ReactNode } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { useAccount, useRenderer, useShellModel } from '@fluxwp/runtime';
-import { Avatar, IconButton, Text } from '@/ui/primitives';
+import { GlassButton, GlassPill } from '@/ui/Glass';
+import { Avatar, Text } from '@/ui/primitives';
 import { openSwitcher } from './AccountSwitcher';
 import { useLabel } from './label';
 
@@ -25,25 +26,31 @@ export function TopBar({ options, back, navigation }: TopBarProps) {
   const renderer = useRenderer();
   const label = useLabel();
   const root = !back;
-  const title = options.title || (root && shell.topbar.site_switcher ? account.siteName : '');
+  const switcher = root && shell.topbar.site_switcher;
+  const title = options.title ?? '';
+  // Root without a screen title: the site chip carries the name. With a title, the chip shrinks to the icon.
+  const chipName = switcher && !title;
 
   return (
-    <View style={[styles.bar, { paddingTop: insets.top }]}>
+    <View style={[styles.bar, { paddingTop: insets.top + 4 }]}>
       <View style={styles.row}>
         {back ? (
-          <IconButton icon="back" label={t('mobile.shell.back')} onPress={() => navigation.goBack()} />
+          <GlassButton icon="back" label={t('mobile.shell.back')} onPress={() => navigation.goBack()} />
         ) : shell.drawer.enabled ? (
-          <IconButton testID="open-drawer" icon="menu" label={t('mobile.shell.openDrawer')} onPress={() => navigation.dispatch({ type: 'OPEN_DRAWER' })} />
-        ) : (
-          <View style={styles.spacer} />
-        )}
+          <GlassButton testID="open-drawer" icon="menu" label={t('mobile.shell.openDrawer')} onPress={() => navigation.dispatch({ type: 'OPEN_DRAWER' })} />
+        ) : null}
         <Text variant="heading" numberOfLines={1} style={styles.title} accessibilityRole="header">{title}</Text>
-        {options.headerRight?.({ tintColor: theme.colors.text, canGoBack: !!back })}
-        {root ? shell.topbar.actionEntries.map((a) => <IconButton key={a.id} icon={a.icon} label={label(a.label)} badge={a.badge} onPress={() => renderer.nav.push(a.route)} />) : null}
-        {root && shell.topbar.site_switcher ? (
-          <Pressable testID="site-switcher" accessibilityRole="button" accessibilityLabel={t('switcher.title')} onPress={openSwitcher} hitSlop={8} style={styles.avatar}>
-            <Avatar image={account.siteIcon || undefined} text={account.siteName} size={32} square />
-          </Pressable>
+        {options.headerRight ? <View style={styles.custom}>{options.headerRight({ tintColor: theme.colors.text, canGoBack: !!back })}</View> : null}
+        {root ? shell.topbar.actionEntries.map((a) => <GlassButton key={a.id} icon={a.icon} label={label(a.label)} badge={a.badge} onPress={() => renderer.nav.push(a.route)} />) : null}
+        {switcher ? (
+          chipName ? (
+            <GlassPill testID="site-switcher" accessibilityLabel={t('switcher.title')} onPress={openSwitcher} maxWidth={200}
+              leading={<Avatar image={account.siteIcon || undefined} text={account.siteName} size={28} square />} label={account.siteName} />
+          ) : (
+            <GlassButton testID="site-switcher" label={t('switcher.title')} onPress={openSwitcher}>
+              <Avatar image={account.siteIcon || undefined} text={account.siteName} size={28} square />
+            </GlassButton>
+          )
         ) : null}
       </View>
     </View>
@@ -51,9 +58,8 @@ export function TopBar({ options, back, navigation }: TopBarProps) {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  bar: { backgroundColor: theme.colors.sidebar, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.colors.border },
-  row: { height: 48, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, gap: 4 },
+  bar: { backgroundColor: theme.colors.bg, paddingBottom: 6 },
+  row: { minHeight: 52, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, gap: 8 },
   title: { flex: 1, marginLeft: 4, fontFamily: theme.font.heading, fontWeight: '800', letterSpacing: -0.3 },
-  spacer: { width: 12 },
-  avatar: { paddingHorizontal: 8 },
+  custom: { flexDirection: 'row', alignItems: 'center' },
 }));

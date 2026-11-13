@@ -1,5 +1,10 @@
 # Değişiklikler
 
+## 0.5.0
+- Sol menü ekranın arkasında durur: menü açılınca ekran köşeleri yuvarlanmış bir kart olarak sağa kayar; parmakla sürükleyerek açılır, karta dokunarak ya da sürükleyerek kapanır. Menüde büyük site adı, sağ üstte menüde arama, altta yüzen site ve Ayarlar düğmeleri; satırlar üst ve alt kenarda yumuşakça kaybolur.
+- Üst çubuk düğmeleri (menü, geri, eylemler, site) yuvarlak yüzen cam düğmeler. iOS 26'da sistemin Liquid Glass efekti, eski iOS'ta yarı saydam yüzey, Android'de Material yüzey. Ana ekranda site adı sağdaki yuvarlak etikette.
+- Alt sekmeler platformun kendi sekme çubuğu: iOS'ta UITabBar (iOS 26'da Liquid Glass), Android'de Material alt gezinme. İkonlar SF Symbols / Material Symbols, rozetler sistem rozeti. Ekranların alt çubukları (yazma alanı, form düğmeleri) sekme çubuğunun altında kalmaz.
+
 ## 0.4.4
 - Panel sayfası açıldıktan sonra Mesajlar ve diğer ekranlar "Belirteç geçersiz ya da süresi dolmuş" hatası vermez. Web görünümünün WordPress oturum çerezi uygulamanın API isteklerine de gidiyordu; çerez varken WordPress belirteci yok sayıyordu. API istekleri artık çerez göndermez.
 - Yüklenirken dönen simge yerine içeriğin şeklinde, hafifçe yanıp sönen iskelet: Mesajlar (liste ve sohbet), İşler, Onay bekleyenler, Ortam, Stüdyo, Flux AI sohbet listesi, panel sayfaları ve ekran geçişleri.

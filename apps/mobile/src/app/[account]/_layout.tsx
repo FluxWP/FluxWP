@@ -1,6 +1,6 @@
 // Account scope: API client, per-account persisted cache (own MMKV instance), site theme, drawer.
 import { useEffect, useMemo } from 'react';
-import { View } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
@@ -69,20 +69,33 @@ function SessionGate() {
     onManage={() => router.push({ pathname: '/[account]/accounts', params: { account: accountKey(account.id) } })}/>;
 }
 
+/**
+ * Side panel behind the screen (drawerType "back"): the screen slides right as a rounded card
+ * (DrawerCard in the tabs layout) and follows the finger both ways; a tap on the card closes it.
+ */
 function AccountDrawer() {
   const { theme } = useUnistyles();
+  const { width } = useWindowDimensions();
+  const panel = Math.min(Math.round(width * 0.8), 360);
   return (
     <Drawer
       drawerContent={(p) => <DrawerContent close={() => p.navigation.closeDrawer()} />}
-      screenOptions={{ headerShown: false, drawerType: 'front', swipeEdgeWidth: 32, drawerStyle: { backgroundColor: theme.colors.sidebar, width: 304, borderTopRightRadius: 22, borderBottomRightRadius: 22, overflow: 'hidden' }, overlayColor: theme.colors.overlay }}
+      screenOptions={{
+        headerShown: false,
+        drawerType: 'back',
+        swipeEdgeWidth: Math.round(width * 0.15),
+        drawerStyle: { backgroundColor: theme.colors.sidebar, width: panel },
+        overlayColor: 'transparent',
+        sceneStyle: { backgroundColor: 'transparent' },
+      }}
     >
       <Drawer.Screen name="(tabs)" />
-      <Drawer.Screen name="accounts" options={{ headerShown: true, header: () => <SimpleHeader titleKey="mobile.switcher.title" />, swipeEnabled: false }} />
-      <Drawer.Screen name="settings" options={{ headerShown: true, header: () => <SimpleHeader titleKey="mobile.settings.title" />, swipeEnabled: false }} />
+      <Drawer.Screen name="accounts" options={{ headerShown: true, header: () => <SimpleHeader titleKey="mobile.switcher.title" />, swipeEnabled: false, sceneStyle: { backgroundColor: theme.colors.bg } }} />
+      <Drawer.Screen name="settings" options={{ headerShown: true, header: () => <SimpleHeader titleKey="mobile.settings.title" />, swipeEnabled: false, sceneStyle: { backgroundColor: theme.colors.bg } }} />
     </Drawer>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
-  frame: { flex: 1 },
+  frame: { flex: 1, backgroundColor: theme.colors.sidebar },
 }));

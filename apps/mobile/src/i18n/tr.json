@@ -295,5 +295,11 @@
     "policy": "Gizlilik",
     "terms": "Kullanım şartları",
     "continueTerms": "Devam ederek <terms>Kullanım Şartları</terms>’nı kabul edersiniz. <privacy>Gizlilik Politikası</privacy>."
+  },
+  "drawer": {
+    "search": "Menüde ara",
+    "searchPlaceholder": "Menüde ara",
+    "closeSearch": "Aramayı kapat",
+    "noResults": "Eşleşen menü yok."
   }
 }
