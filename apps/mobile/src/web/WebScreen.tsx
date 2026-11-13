@@ -26,6 +26,8 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
   const ref = useRef<ComponentRef<typeof WebView>>(null);
   const [src, setSrc] = useState<{ url: string } | { html: string } | null>(null);
   const [failed, setFailed] = useState(false);
+  /** Shown under the error so a screenshot tells what broke (API error or WebKit/Chromium code). */
+  const [reason, setReason] = useState('');
   const [pageTitle, setPageTitle] = useState(title ?? '');
   const retried = useRef(false);
   const demo = account.siteUrl === DEMO_SITE;
@@ -34,10 +36,12 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
 
   const load = useCallback(async () => {
     setFailed(false);
+    setReason('');
     try {
       if (demo) return setSrc({ html: demoAdminHtml(path, rt.themeName === 'dark') });
       setSrc({ url: (await session.open(path)).url });
-    } catch {
+    } catch (e) {
+      setReason(e instanceof Error ? e.message : String(e));
       setFailed(true);
     }
   }, [demo, path, session, rt.themeName]);
@@ -65,14 +69,17 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
           retried.current = true;
           renderer.ui.toast(t('mobile.web.relogin'));
           void load();
-        } else setFailed(true);
+        } else {
+          setReason(t('mobile.web.sessionLost'));
+          setFailed(true);
+        }
         return false;
       case 'block':
         return false;
     }
   };
 
-  if (failed) return <EmptyState icon="alert" title={t('mobile.web.error')} action={{ label: t('mobile.web.reload'), onPress: () => void load() }} />;
+  if (failed) return <EmptyState icon="alert" title={t('mobile.web.error')} body={reason || undefined} action={{ label: t('mobile.web.reload'), onPress: () => (retried.current = false, void load()) }} />;
   if (!src) return <Spinner label={t('mobile.web.loading')} />;
   return (
     <View style={styles.screen}>
@@ -96,13 +103,30 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
           else if (m?.type === 'toast') renderer.ui.toast(m.text);
           else if (m?.type === 'close') renderer.nav.back();
         }}
-        onLoadEnd={(e) => 'code' in e.nativeEvent && setFailed(true)}
+        // A load we cancelled ourselves (native screen, browser, relogin) ends with "cancelled" /
+        // "frame load interrupted": that is not a broken page.
+        onError={(e) => {
+          const { code, description } = e.nativeEvent;
+          if (isCancelledLoad(code, description)) return;
+          setReason(`${description || t('mobile.web.error')} (${code})`);
+          setFailed(true);
+        }}
+        onHttpError={(e) => {
+          if (e.nativeEvent.statusCode < 500 || !e.nativeEvent.url.startsWith(account.siteUrl.replace(/\/$/, ''))) return;
+          setReason(`HTTP ${e.nativeEvent.statusCode}`);
+          setFailed(true);
+        }}
         startInLoadingState
         renderLoading={() => <View style={styles.loading}><Spinner /></View>}
         style={{ backgroundColor: theme.colors.bg }}
       />
     </View>
   );
+}
+
+/** NSURLErrorCancelled (-999), WebKit "frame load interrupted" (102), Chromium ERR_ABORTED (-3). */
+function isCancelledLoad(code: number, description = ''): boolean {
+  return code === -999 || code === 102 || code === -3 || /cancel|interrupted|aborted/i.test(description);
 }
 
 const styles = StyleSheet.create((theme) => ({

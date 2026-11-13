@@ -92,7 +92,8 @@
     "openBrowser": "Tarayıcıda aç",
     "reload": "Yenile",
     "relogin": "Panel oturumu düştü, yeniden açılıyor…",
-    "demo": "Demo: örnek panel sayfası (gerçek sitede oturum açık gelir)"
+    "demo": "Demo: örnek panel sayfası (gerçek sitede oturum açık gelir)",
+    "sessionLost": "Panel oturumu açılamadı. Yeniden deneyin ya da hesaptan çıkıp tekrar girin."
   },
   "shell": {
     "openDrawer": "Menüyü aç",
