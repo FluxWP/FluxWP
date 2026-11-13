@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { bagisReview, type PendingDonation } from '@fluxwp/core';
 import { useAccount, useApi, useRenderer } from '@fluxwp/runtime';
-import { Avatar, Button, EmptyState, IconButton, Spinner, Text } from '@/ui/primitives';
+import { Avatar, Button, EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
 import { useScreenTitle } from '../kit';
 
 const Row = memo(function Row({ item, onPress }: { item: PendingDonation; onPress: () => void }) {
@@ -74,7 +74,7 @@ export default function ReviewScreen(_props: { params: Record<string, string> })
     reject.mutate({ d, reason: String(v.reason ?? ''), notify: v.notify !== false });
   };
 
-  if (q.isPending) return <View testID="screen-review" style={styles.fill}><Spinner /></View>;
+  if (q.isPending) return <View testID="screen-review" style={styles.fill}><Skeleton variant="cards" rows={4} /></View>;
   if (q.isError) return <View testID="screen-review" style={styles.fill}><EmptyState icon="alert" title={t('states.errorTitle')} action={{ label: t('mobile.states.retry'), onPress: () => void q.refetch() }} /></View>;
 
   if (sel) {

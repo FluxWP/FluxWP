@@ -48,6 +48,14 @@ describe('client', () => {
     await expect(api('x')).rejects.toBeInstanceOf(ApiError);
   });
 
+  it('sends no cookies with a token (a shared wp-admin cookie would make the token be ignored)', async () => {
+    const f = vi.fn<typeof fetch>().mockImplementation(async () => json(200, {}));
+    await createClient({ siteUrl: 'https://x.org', fetchImpl: f, getCredentials: async () => ({ token: 't' }) })('x');
+    expect(f.mock.calls[0]![1]!.credentials).toBe('omit');
+    await createClient({ siteUrl: 'https://x.org', fetchImpl: f, credentials: 'same-origin', getCredentials: async () => ({ token: 't' }) })('x');
+    expect(f.mock.calls[1]![1]!.credentials).toBe('same-origin');
+  });
+
   it('X-FluxWP-Token yedeği', async () => {
     const f = vi.fn<typeof fetch>().mockResolvedValue(json(200, {}));
     const api = createClient({ siteUrl: 'https://x.org', fetchImpl: f, useHeaderFallback: true, getCredentials: async () => ({ token: 't' }) });

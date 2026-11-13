@@ -9,7 +9,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { DEMO_SITE, WebSessionManager, classifyNavigation, embedUserAgent, parseBridgeMessage, useAccount, useApi, useBootstrap, useConfig, useMe, useRenderer, useResolveEnv } from '@fluxwp/runtime';
 import { brand } from '@/brand';
 import { APP_VERSION } from '@/platform';
-import { EmptyState, IconButton, Spinner, Text } from '@/ui/primitives';
+import { EmptyState, IconButton, Skeleton, Text } from '@/ui/primitives';
 import { demoAdminHtml } from './demo-admin';
 
 export function WebScreen({ path, title, note }: { path: string; title?: string; note?: string }) {
@@ -80,7 +80,7 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
   };
 
   if (failed) return <EmptyState icon="alert" title={t('mobile.web.error')} body={reason || undefined} action={{ label: t('mobile.web.reload'), onPress: () => (retried.current = false, void load()) }} />;
-  if (!src) return <Spinner label={t('mobile.web.loading')} />;
+  if (!src) return <Skeleton variant="page" rows={4} />;
   return (
     <View style={styles.screen}>
       {note || demo ? <Text variant="caption" style={styles.note}>{demo ? t('mobile.web.demo') : note}</Text> : null}
@@ -117,7 +117,7 @@ export function WebScreen({ path, title, note }: { path: string; title?: string;
           setFailed(true);
         }}
         startInLoadingState
-        renderLoading={() => <View style={styles.loading}><Spinner /></View>}
+        renderLoading={() => <View style={styles.loading}><Skeleton variant="page" rows={4} /></View>}
         style={{ backgroundColor: theme.colors.bg }}
       />
     </View>

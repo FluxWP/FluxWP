@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import type { Route } from '@fluxwp/runtime';
 import { NATIVE } from '@/modules/registry';
 import { ManifestScreen } from '@/render/ManifestScreen';
-import { EmptyState, Spinner } from '@/ui/primitives';
+import { EmptyState, Skeleton } from '@/ui/primitives';
 import { WebScreen } from '@/web/WebScreen';
 import { MoreScreen } from './MoreScreen';
 
@@ -17,7 +17,7 @@ export function RouteView({ route }: { route: Route }) {
       const C = NATIVE[route.component];
       if (!C) return <EmptyState icon="smartphone" title={t('mobile.shell.native')} />;
       return (
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<Skeleton />}>
           <C params={route.params} />
         </Suspense>
       );

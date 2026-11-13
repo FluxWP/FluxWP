@@ -8,7 +8,7 @@ import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { mediaThumb, uploadPickedMedia, useAccount, useApi, useRenderer, type MediaFile, type WpMedia } from '@fluxwp/runtime';
-import { Button, EmptyState, Spinner, Text } from '@/ui/primitives';
+import { Button, EmptyState, Skeleton, Text } from '@/ui/primitives';
 import { useScreenTitle } from '../kit';
 
 const swatch = (id: number) => ['#1D7932', '#2563eb', '#db2777', '#d97706', '#0f766e', '#7c3aed'][Math.abs(id) % 6]!;
@@ -79,7 +79,7 @@ export default function MediaScreen(_props: { params: Record<string, string> }) 
         </View>
       ) : null}
       {error ? <Text tone="danger" style={styles.err}>{error}</Text> : null}
-      {q.isPending ? <Spinner /> : (
+      {q.isPending ? <Skeleton variant="grid" rows={12} /> : (
         <FlashList
           style={styles.flex}
           data={items}

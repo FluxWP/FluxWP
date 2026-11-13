@@ -7,7 +7,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { studioBusy, studioGenerateBody, useAccount, useApi, useRenderer, type StudioItem, type StudioKind } from '@fluxwp/runtime';
-import { Button, EmptyState, Spinner, Text } from '@/ui/primitives';
+import { Button, EmptyState, Skeleton, Spinner, Text } from '@/ui/primitives';
 import { useScreenTitle } from '../kit';
 
 const swatch = (id: number) => ['#1D7932', '#0f766e', '#7c3aed', '#2563eb'][Math.abs(id) % 4]!;
@@ -74,7 +74,7 @@ export default function StudioScreen(_props: { params: Record<string, string> })
         <Button label={t('mobile.screens.studio.generate')} loading={gen.isPending} disabled={!prompt.trim()} onPress={() => (prompt.trim() ? gen.mutate() : renderer.ui.toast(t('mobile.screens.studio.need'), 'error'))} full />
       </View>
       <Text variant="label" style={styles.gallery}>{t('mobile.screens.studio.gallery')}</Text>
-      {q.isPending ? <Spinner /> : (
+      {q.isPending ? <Skeleton variant="grid" rows={6} /> : (
         <FlashList
           style={styles.flex}
           data={items}

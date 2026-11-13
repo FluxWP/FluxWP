@@ -100,6 +100,8 @@ export async function streamAiStep(req: AiStepRequest, onEvent: (ev: AiEvent) =>
     headers,
     body: '{}',
     signal: req.signal,
+    // Token only: a wp-admin cookie shared from the app's web views would make the token be ignored.
+    credentials: 'omit',
   });
   if (!res.ok) {
     let message = res.statusText;

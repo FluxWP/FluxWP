@@ -1,5 +1,9 @@
 # Değişiklikler
 
+## 0.4.4
+- Panel sayfası açıldıktan sonra Mesajlar ve diğer ekranlar "Belirteç geçersiz ya da süresi dolmuş" hatası vermez. Web görünümünün WordPress oturum çerezi uygulamanın API isteklerine de gidiyordu; çerez varken WordPress belirteci yok sayıyordu. API istekleri artık çerez göndermez.
+- Yüklenirken dönen simge yerine içeriğin şeklinde, hafifçe yanıp sönen iskelet: Mesajlar (liste ve sohbet), İşler, Onay bekleyenler, Ortam, Stüdyo, Flux AI sohbet listesi, panel sayfaları ve ekran geçişleri.
+
 ## 0.4.3
 - Flux AI doğrudan sohbetle açılır (web'deki gibi). Sohbet listesi, arama, arşiv ve görev sohbetleri sol üstteki liste düğmesiyle açılan ayrı panelde; sağ üstte Yeni sohbet.
 - iPad: alt pencereler (hesaplar, menü, onay, giriş formu) ekranın ortasında, tutamaçsız bir pencere olarak açılır. Önceden içeriğe göre boyutlanan sistem penceresi ekranın ortasında, altı boş ve tutamaçlı yarım bir alt sayfa gibi duruyordu. iPhone ve Android değişmedi.

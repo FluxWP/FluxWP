@@ -1,6 +1,6 @@
 // UI primitives on Unistyles. Every color comes from the active theme (site theme of the account).
-import { type ReactNode } from 'react';
-import { ActivityIndicator, Pressable, Text as RNText, TextInput, View, type TextInputProps, type TextProps, type ViewStyle } from 'react-native';
+import { useEffect, useState, type ReactNode } from 'react';
+import { ActivityIndicator, Animated, Pressable, Text as RNText, TextInput, View, type TextInputProps, type TextProps, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import type { Tone } from '@fluxwp/manifest';
@@ -123,19 +123,51 @@ export function EmptyState({ icon = 'inbox', title, body, action }: { icon?: str
   );
 }
 
-export function Skeleton({ rows = 6 }: { rows?: number }) {
-  return (
-    <View style={styles.skeletonWrap} accessibilityLabel="loading">
-      {Array.from({ length: rows }, (_, i) => (
-        <View key={i} style={styles.skeletonRow}>
-          <View style={styles.skeletonAvatar} />
-          <View style={styles.skeletonLines}>
-            <View style={[styles.skeletonLine, { width: `${70 - (i % 3) * 12}%` }]} />
-            <View style={[styles.skeletonLine, styles.skeletonLineSmall]} />
-          </View>
+export type SkeletonVariant = 'list' | 'cards' | 'grid' | 'thread' | 'page';
+
+/** Loading placeholder shaped like the content that is on its way; it pulses gently (native driver). */
+export function Skeleton({ rows = 6, variant = 'list' }: { rows?: number; variant?: SkeletonVariant }) {
+  const [pulse] = useState(() => new Animated.Value(0.55));
+  useEffect(() => {
+    const loop = Animated.loop(Animated.sequence([
+      Animated.timing(pulse, { toValue: 1, duration: 700, useNativeDriver: true }),
+      Animated.timing(pulse, { toValue: 0.55, duration: 700, useNativeDriver: true }),
+    ]));
+    loop.start();
+    return () => loop.stop();
+  }, [pulse]);
+  const n = Array.from({ length: rows }, (_, i) => i);
+  const line = (i: number, w = 70) => <View style={[styles.skeletonLine, { width: `${w - (i % 3) * 12}%` }]} />;
+  let body: ReactNode;
+  if (variant === 'grid') {
+    body = <View style={styles.skeletonGrid}>{n.map((i) => <View key={i} style={styles.skeletonTile} />)}</View>;
+  } else if (variant === 'thread') {
+    body = n.map((i) => <View key={i} style={[styles.skeletonBubble, i % 2 ? styles.skeletonBubbleMine : null, { width: `${62 - (i % 3) * 10}%` }]} />);
+  } else if (variant === 'page') {
+    body = (
+      <>
+        <View style={[styles.skeletonLine, styles.skeletonTitle]} />
+        <View style={styles.skeletonBlock} />
+        {n.map((i) => <View key={i} style={styles.skeletonLines}>{line(i, 92)}{line(i + 1, 80)}</View>)}
+      </>
+    );
+  } else if (variant === 'cards') {
+    body = n.map((i) => <View key={i} style={styles.skeletonCard}>{line(i, 60)}<View style={[styles.skeletonLine, styles.skeletonLineSmall]} /></View>);
+  } else {
+    body = n.map((i) => (
+      <View key={i} style={styles.skeletonRow}>
+        <View style={styles.skeletonAvatar} />
+        <View style={styles.skeletonLines}>
+          {line(i)}
+          <View style={[styles.skeletonLine, styles.skeletonLineSmall]} />
         </View>
-      ))}
-    </View>
+      </View>
+    ));
+  }
+  return (
+    <Animated.View testID="skeleton" style={[styles.skeletonWrap, { opacity: pulse }]} accessibilityRole="progressbar" accessibilityLabel="loading">
+      {body}
+    </Animated.View>
   );
 }
 
@@ -264,4 +296,11 @@ const styles = StyleSheet.create((theme) => ({
   skeletonLines: { flex: 1, gap: 8 },
   skeletonLine: { height: 12, borderRadius: 6, backgroundColor: theme.colors.surface2 },
   skeletonLineSmall: { width: '40%' },
+  skeletonTitle: { height: 22, width: '55%' },
+  skeletonBlock: { height: 140, borderRadius: theme.radius.lg, backgroundColor: theme.colors.surface2 },
+  skeletonCard: { gap: 10, padding: theme.space[4], borderRadius: theme.radius.lg, borderWidth: 1, borderColor: theme.colors.border, backgroundColor: theme.colors.surface },
+  skeletonGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
+  skeletonTile: { width: '32%', aspectRatio: 1, borderRadius: theme.radius.md, backgroundColor: theme.colors.surface2 },
+  skeletonBubble: { height: 52, borderRadius: theme.radius.lg, backgroundColor: theme.colors.surface2, alignSelf: 'flex-start' },
+  skeletonBubbleMine: { alignSelf: 'flex-end' },
 }));
